@@ -35,11 +35,27 @@ class ApiPatrol extends ApiBase {
 	 */
 	public function execute() {
 		$params = $this->extractRequestParams();
+		$this->requireOnlyOneParameter( $params, 'rcid', 'revid' );
 
-		$rc = RecentChange::newFromID( $params['rcid'] );
-		if ( !$rc instanceof RecentChange ) {
-			$this->dieUsageMsg( array( 'nosuchrcid', $params['rcid'] ) );
+		if ( isset( $params['rcid'] ) ) {
+			$rc = RecentChange::newFromID( $params['rcid'] );
+			if ( !$rc ) {
+				$this->dieUsageMsg( array( 'nosuchrcid', $params['rcid'] ) );
+			}
+		} else {
+			$rev = Revision::newFromId( $params['revid'] );
+			if ( !$rev ) {
+				$this->dieUsageMsg( array( 'nosuchrevid', $params['revid'] ) );
+			}
+			$rc = $rev->getRecentChange();
+			if ( !$rc ) {
+				$this->dieUsage(
+					'The revision ' . $params['revid'] . " can't be patrolled as it's too old",
+					'notpatrollable'
+				);
+			}
 		}
+
 		$retval = $rc->doMarkPatrolled( $this->getUser() );
 
 		if ( $retval ) {
@@ -66,8 +82,10 @@ class ApiPatrol extends ApiBase {
 				ApiBase::PARAM_REQUIRED => true
 			),
 			'rcid' => array(
-				ApiBase::PARAM_TYPE => 'integer',
-				ApiBase::PARAM_REQUIRED => true
+				ApiBase::PARAM_TYPE => 'integer'
+			),
+			'revid' => array(
+				ApiBase::PARAM_TYPE => 'integer'
 			),
 		);
 	}
@@ -76,6 +94,7 @@ class ApiPatrol extends ApiBase {
 		return array(
 			'token' => 'Patrol token obtained from list=recentchanges',
 			'rcid' => 'Recentchanges ID to patrol',
+			'revid' => 'Revision ID to patrol',
 		);
 	}
 
@@ -94,8 +113,16 @@ class ApiPatrol extends ApiBase {
 	}
 
 	public function getPossibleErrors() {
-		return array_merge( parent::getPossibleErrors(), array(
-			array( 'nosuchrcid', 'rcid' ),
+		return array_merge(
+			parent::getPossibleErrors(),
+			parent::getRequireOnlyOneParameterErrorMessages( array( 'rcid', 'revid' ) ),
+			array(
+				array( 'nosuchrcid', 'rcid' ),
+				array( 'nosuchrevid', 'revid' ),
+				array(
+					'code' => 'notpatrollable',
+					'info' => "The revision can't be patrolled as it's too old"
+				)
 		) );
 	}
 
@@ -109,7 +136,8 @@ class ApiPatrol extends ApiBase {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=patrol&token=123abc&rcid=230672766'
+			'api.php?action=patrol&token=123abc&rcid=230672766',
+			'api.php?action=patrol&token=123abc&revid=230672766'
 		);
 	}
 
