@@ -21,6 +21,7 @@
 				"classes": [
 					"mw.Title",
 					"mw.notification",
+					"mw.user",
 					"mw.util",
 					"mw.plugin.*"
 				]

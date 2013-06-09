@@ -14,6 +14,7 @@
 		"../../resources/mediawiki/mediawiki.Title.js",
 		"../../resources/mediawiki/mediawiki.notify.js",
 		"../../resources/mediawiki/mediawiki.notification.js",
+		"../../resources/mediawiki/mediawiki.user.js",
 		"../../resources/mediawiki.api",
 		"../../resources/jquery/jquery.localize.js"
 	]
