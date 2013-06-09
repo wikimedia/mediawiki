@@ -410,8 +410,7 @@ class DifferenceEngine extends ContextSource {
 	 * @return String
 	 */
 	protected function markPatrolledLink() {
-		global $wgUseRCPatrol, $wgRCMaxAge, $wgEnableAPI, $wgEnableWriteAPI;
-		$cache = wfGetMainCache();
+		global $wgUseRCPatrol, $wgEnableAPI, $wgEnableWriteAPI;
 
 		if ( $this->mMarkPatrolledLink === null ) {
 			// Prepare a change patrol link, if applicable
@@ -420,9 +419,7 @@ class DifferenceEngine extends ContextSource {
 				$wgUseRCPatrol && $this->mNewPage->quickUserCan( 'patrol', $this->getUser() ) &&
 				// Only do this if the revision isn't more than 6 hours older
 				// than the Max RC age (6h because the RC might not be cleaned out regularly)
-				RecentChange::isInRCLifespan( $this->mNewRev->getTimestamp(), 21600 ) &&
-				// Maybe the result is cached
-				!$cache->get( wfMemcKey( 'NotPatrollableRevId', $this->mNewid ) )
+				RecentChange::isInRCLifespan( $this->mNewRev->getTimestamp(), 21600 )
 			) {
 				// Look for an unpatrolled change corresponding to this diff
 
@@ -464,7 +461,6 @@ class DifferenceEngine extends ContextSource {
 						)
 					) . ']</span>';
 				} else {
-					$cache->set( wfMemcKey( 'NotPatrollableRevId', $this->mNewid ), '1', $wgRCMaxAge );
 					$this->mMarkPatrolledLink = '';
 				}
 			} else {
