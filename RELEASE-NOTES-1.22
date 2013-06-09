@@ -170,6 +170,7 @@ production.
 * New upload log entries will now contain information on the relavent
   image (sha1 and timestamp).
 * (bug 49239) action=parse now can parse in preview mode.
+* (bug 49259) action=patrol now accepts revision ids.
 
 === Languages updated in 1.22===
 
