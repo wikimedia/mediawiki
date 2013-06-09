@@ -520,7 +520,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 				} else {
 					$this->setWarning( "Conversion to XML is supported for wikitext only, " .
 										$title->getPrefixedDBkey() .
-										" uses content model " . $content->getModel() . ")" );
+										" uses content model " . $content->getModel() );
 				}
 			}
 
@@ -533,7 +533,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 				} else {
 					$this->setWarning( "Template expansion is supported for wikitext only, " .
 						$title->getPrefixedDBkey() .
-						" uses content model " . $content->getModel() . ")" );
+						" uses content model " . $content->getModel() );
 
 					$text = false;
 				}
