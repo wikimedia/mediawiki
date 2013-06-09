@@ -867,24 +867,37 @@ class Revision implements IDBAccessObject {
 	}
 
 	/**
-	 * @return Integer rcid of the unpatrolled row, zero if there isn't one
+	 * @return integer rcid of the unpatrolled row, zero if there isn't one
 	 */
 	public function isUnpatrolled() {
 		if ( $this->mUnpatrolled !== null ) {
 			return $this->mUnpatrolled;
 		}
+		$rc = $this->getRecentChange();
+		if ( $rc && $rc->getAttribute( 'rc_patrolled' ) == 0 ) {
+			$this->mUnpatrolled = $rc->getAttribute( 'rc_id' );
+		} else {
+			$this->mUnpatrolled = 0;
+		}
+		return $this->mUnpatrolled;
+	}
+
+	/**
+	 * Get the RC object belonging to the current revision, if there's one
+	 *
+	 * @since 1.22
+	 * @return RecentChange|null
+	 */
+	public function getRecentChange() {
 		$dbr = wfGetDB( DB_SLAVE );
-		$this->mUnpatrolled = $dbr->selectField( 'recentchanges',
-			'rc_id',
-			array( // Add redundant user,timestamp condition so we can use the existing index
+		return RecentChange::newFromConds(
+			array(
 				'rc_user_text' => $this->getRawUserText(),
 				'rc_timestamp' => $dbr->timestamp( $this->getTimestamp() ),
-				'rc_this_oldid' => $this->getId(),
-				'rc_patrolled' => 0
+				'rc_this_oldid' => $this->getId()
 			),
 			__METHOD__
 		);
-		return (int)$this->mUnpatrolled;
 	}
 
 	/**
