@@ -113,8 +113,8 @@ class CSSJanus {
 		$patterns['rtl_in_url'] = "/{$patterns['lookbehind_not_letter']}(rtl){$patterns['lookahead_for_closing_paren']}/i";
 		$patterns['cursor_east'] = "/{$patterns['lookbehind_not_letter']}([ns]?)e-resize/";
 		$patterns['cursor_west'] = "/{$patterns['lookbehind_not_letter']}([ns]?)w-resize/";
-		$patterns['four_notation_quantity'] = "/{$patterns['possibly_negative_quantity']}(\s+){$patterns['possibly_negative_quantity']}(\s+){$patterns['possibly_negative_quantity']}(\s+){$patterns['possibly_negative_quantity']}/i";
-		$patterns['four_notation_color'] = "/(-color\s*:\s*){$patterns['color']}(\s+){$patterns['color']}(\s+){$patterns['color']}(\s+){$patterns['color']}/i";
+		$patterns['four_notation_quantity'] = "/(:\s*){$patterns['possibly_negative_quantity']}(\s+){$patterns['possibly_negative_quantity']}(\s+){$patterns['possibly_negative_quantity']}(\s+){$patterns['possibly_negative_quantity']}(\s*[;}])/i";
+		$patterns['four_notation_color'] = "/(-color\s*:\s*){$patterns['color']}(\s+){$patterns['color']}(\s+){$patterns['color']}(\s+){$patterns['color']}(\s*[;}])/i";
 		// The two regexes below are parenthesized differently then in the original implementation to make the
 		// callback's job more straightforward
 		$patterns['bg_horizontal_percentage'] = "/(background(?:-position)?\s*:\s*[^%]*?)(-?{$patterns['num']})(%\s*(?:{$patterns['quantity']}|{$patterns['ident']}))/";
@@ -257,8 +257,8 @@ class CSSJanus {
 	 * @return string
 	 */
 	private static function fixFourPartNotation( $css ) {
-		$css = preg_replace( self::$patterns['four_notation_quantity'], '$1$2$7$4$5$6$3', $css );
-		$css = preg_replace( self::$patterns['four_notation_color'], '$1$2$3$8$5$6$7$4', $css );
+		$css = preg_replace( self::$patterns['four_notation_quantity'], '$1$2$3$8$5$6$7$4$9', $css );
+		$css = preg_replace( self::$patterns['four_notation_color'], '$1$2$3$8$5$6$7$4$9', $css );
 
 		return $css;
 	}
