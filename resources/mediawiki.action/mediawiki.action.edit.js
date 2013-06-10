@@ -1,17 +1,18 @@
+/**
+ * @class mw.toolbar
+ * @singleton
+ */
 ( function ( mw, $ ) {
-	var isReady, toolbar, currentFocused, queue, $toolbar, slice;
-
-	isReady = false;
-	queue = [];
-	$toolbar = false;
-	slice = Array.prototype.slice;
+	var toolbar, isReady, $toolbar, queue, slice, currentFocused;
 
 	/**
-	 * Internal helper that does the actual insertion
-	 * of the button into the toolbar.
-	 * See mw.toolbar.addButton for parameter documentation.
+	 * Internal helper that does the actual insertion of the button into the toolbar.
+	 *
+	 * See #addButton for parameter documentation.
+	 *
+	 * @private
 	 */
-	function insertButton( b /* imageFile */, speedTip, tagOpen, tagClose, sampleText, imageId, selectText ) {
+	function insertButton( b, speedTip, tagOpen, tagClose, sampleText, imageId ) {
 		// Backwards compatibility
 		if ( typeof b !== 'object' ) {
 			b = {
@@ -20,11 +21,10 @@
 				tagOpen: tagOpen,
 				tagClose: tagClose,
 				sampleText: sampleText,
-				imageId: imageId,
-				selectText: selectText
+				imageId: imageId
 			};
 		}
-		var $image = $( '<img>', {
+		var $image = $( '<img>' ).attr( {
 			width : 23,
 			height: 22,
 			src   : b.imageFile,
@@ -33,30 +33,37 @@
 			id    : b.imageId || undefined,
 			'class': 'mw-toolbar-editbutton'
 		} ).click( function () {
-			toolbar.insertTags( b.tagOpen, b.tagClose, b.sampleText, b.selectText );
+			toolbar.insertTags( b.tagOpen, b.tagClose, b.sampleText );
 			return false;
 		} );
 
 		$toolbar.append( $image );
-		return true;
 	}
 
+	isReady = false;
+	$toolbar = false;
+	queue = [];
+	slice = queue.slice;
+
 	toolbar = {
+
 		/**
 		 * Add buttons to the toolbar.
+		 *
 		 * Takes care of race conditions and time-based dependencies
 		 * by placing buttons in a queue if this method is called before
 		 * the toolbar is created.
-		 * @param {Object} button: Object with the following properties:
-		 * - imageFile
-		 * - speedTip
-		 * - tagOpen
-		 * - tagClose
-		 * - sampleText
-		 * - imageId
-		 * - selectText
-		 * For compatiblity, passing the above as separate arguments
+		 *
+		 * For compatiblity, passing the below listed properties as separate arguments
 		 * (in the listed order) is also supported.
+		 *
+		 * @param {Object} button Object with the following properties:
+		 * @param {string} button.imageFile
+		 * @param {string} button.speedTip
+		 * @param {string} button.tagOpen
+		 * @param {string} button.tagClose
+		 * @param {string} button.sampleText
+		 * @param {string} [button.imageId]
 		 */
 		addButton: function () {
 			if ( isReady ) {
@@ -68,8 +75,13 @@
 		},
 
 		/**
-		 * Apply tagOpen/tagClose to selection in textarea,
-		 * use sampleText instead of selection if there is none.
+		 * Apply tagOpen/tagClose to selection in currently focused textarea.
+		 *
+		 * Uses `sampleText` if selection is empty.
+		 *
+		 * @param {string} tagOpen
+		 * @param {string} tagClose
+		 * @param {string} sampleText
 		 */
 		insertTags: function ( tagOpen, tagClose, sampleText ) {
 			if ( currentFocused && currentFocused.length ) {
@@ -128,10 +140,8 @@
 		// Make sure edit summary does not exceed byte limit
 		$( '#wpSummary' ).byteLimit( 255 );
 
-		/**
-		 * Restore the edit box scroll state following a preview operation,
-		 * and set up a form submission handler to remember this state
-		 */
+		// Restore the edit box scroll state following a preview operation,
+		// and set up a form submission handler to remember this state.
 		( function scrollEditBox() {
 			var editBox, scrollTop, $editForm;
 
