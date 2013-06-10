@@ -109,6 +109,8 @@ production.
   for extensions such as OAuth:
 ** editmyusercss controls whether a user may edit their own CSS subpages.
 ** editmyuserjs controls whether a user may edit their own JS subpages.
+* Add new hook AbortTalkPageEmailNotification, this will be used to determine
+  whether to send the regular talk page email notification
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
