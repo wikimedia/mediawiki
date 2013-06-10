@@ -369,7 +369,7 @@ class ORMRow implements IORMRow {
 		$success = $dbw->update(
 			$this->table->getName(),
 			$this->getWriteValues(),
-			$this->table->getPrefixedValues( $this->getWriteValues() ),
+			$this->table->getPrefixedValues( $this->getUpdateConditions() ),
 			is_null( $functionName ) ? __METHOD__ : $functionName
 		);
 
