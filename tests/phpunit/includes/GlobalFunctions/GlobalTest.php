@@ -623,9 +623,7 @@ class GlobalTest extends MediaWikiTestCase {
 				array( "$p//www.example2.com", array( 'www.example.com', 'www.example2.com', 'www.example3.com' ), true, "Exact match with other domains in array, $pDesc URL" ),
 				array( "$p//www.example2.com", array( 'example.com', 'example2.com', 'example3,com' ), true, "Match without subdomain with other domains in array, $pDesc URL" ),
 				array( "$p//www.example4.com", array( 'example.com', 'example2.com', 'example3,com' ), false, "Domain not in array, $pDesc URL" ),
-
-				// FIXME: This is a bug in wfMatchesDomainList(). If and when this is fixed, update this test case
-				array( "$p//nds-nl.wikipedia.org", array( 'nl.wikipedia.org' ), true, "Substrings of domains match while they shouldn't, $pDesc URL" ),
+				array( "$p//nds-nl.wikipedia.org", array( 'nl.wikipedia.org' ), false, "Non-matching substring of domain, $pDesc URL" ),
 			) );
 		}
 

@@ -879,10 +879,10 @@ function wfMakeUrlIndexes( $url ) {
 function wfMatchesDomainList( $url, $domains ) {
 	$bits = wfParseUrl( $url );
 	if ( is_array( $bits ) && isset( $bits['host'] ) ) {
+		$host = '.' . $bits['host'];
 		foreach ( (array)$domains as $domain ) {
-			// FIXME: This gives false positives. http://nds-nl.wikipedia.org will match nl.wikipedia.org
-			// We should use something that interprets dots instead
-			if ( substr( $bits['host'], -strlen( $domain ) ) === $domain ) {
+			$domain = '.' . $domain;
+			if ( substr( $host, -strlen( $domain ) ) === $domain ) {
 				return true;
 			}
 		}
