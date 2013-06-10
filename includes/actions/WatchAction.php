@@ -87,17 +87,58 @@ class WatchAction extends FormAction {
 		return parent::checkCanExecute( $user );
 	}
 
-	public static function doWatch( Title $title, User $user ) {
+	/**
+	 * Watch or unwatch a page
+	 * @since 1.22
+	 * @param bool $watch Whether to watch or unwatch the page
+	 * @param Title $title Page to watch/unwatch
+	 * @param User $user User who is watching/unwatching
+	 */
+	public static function doWatchOrUnwatch( $watch, Title $title, User $user ) {
+		if ( $user->isLoggedIn() && $user->getWatchedItem( $title, true )->isWatched() != $watch ) {
+			// If the user doesn't have 'editmywatchlist', we still want to
+			// allow them to add but not remove items via edits and such.
+			if ( $watch ) {
+				self::doWatch( $title, $user, WatchedItem::IGNORE_USER_RIGHTS );
+			} else {
+				self::doUnwatch( $title, $user );
+			}
+		}
+	}
+
+	/**
+	 * Watch a page
+	 * @since 1.22 $checkRights parameter added
+	 * @param Title $title Page to watch/unwatch
+	 * @param User $user User who is watching/unwatching
+	 * @param int $checkRights Passed through to $user->addWatch()
+	 * @return true
+	 */
+	public static function doWatch( Title $title, User $user, $checkRights = WatchedItem::CHECK_USER_RIGHTS ) {
+		if ( $checkRights !== WatchedItem::CHECK_USER_RIGHTS && !$user->isAllowed( 'editmywatchlist' ) ) {
+			return true;
+		}
+
 		$page = WikiPage::factory( $title );
 
 		if ( wfRunHooks( 'WatchArticle', array( &$user, &$page ) ) ) {
-			$user->addWatch( $title );
+			$user->addWatch( $title, $checkRights );
 			wfRunHooks( 'WatchArticleComplete', array( &$user, &$page ) );
 		}
 		return true;
 	}
 
+	/**
+	 * Unwatch a page
+	 * @param Title $title Page to watch/unwatch
+	 * @param User $user User who is watching/unwatching
+	 * @return true
+	 */
 	public static function doUnwatch( Title $title, User $user ) {
+		if ( !$user->isAllowed( 'editmywatchlist' ) ) {
+			return true;
+		}
+
 		$page = WikiPage::factory( $title );
 
 		if ( wfRunHooks( 'UnwatchArticle', array( &$user, &$page ) ) ) {

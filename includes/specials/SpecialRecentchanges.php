@@ -393,7 +393,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 
 		$fields = RecentChange::selectFields();
 		// JOIN on watchlist for users
-		if ( $uid ) {
+		if ( $uid && $this->getUser()->isAllowed( 'viewmywatchlist' ) ) {
 			$tables[] = 'watchlist';
 			$fields[] = 'wl_user';
 			$fields[] = 'wl_notificationtimestamp';
