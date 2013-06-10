@@ -259,6 +259,8 @@ var mw = ( function ( $, undefined ) {
 	};
 
 	/**
+	 * Base library for MediaWiki.
+	 *
 	 * @class mw
 	 * @alternateClassName mediaWiki
 	 * @singleton
@@ -302,6 +304,14 @@ var mw = ( function ( $, undefined ) {
 		libs: {},
 
 		/**
+		 * Access container for deprecated functionality that can be moved from
+		 * from their legacy location and attached to this object (e.g. a global
+		 * function that is deprecated and as stop-gap can be exposed through here).
+		 *
+		 * This was reserved for future use but never ended up being used.
+		 *
+		 * @deprecated since 1.22: Let deprecated identifiers keep their original name
+		 * and use mw.log#deprecate to create an access container for tracking.
 		 * @property
 		 */
 		legacy: {},
@@ -424,11 +434,11 @@ var mw = ( function ( $, undefined ) {
 			 *
 			 * @private
 			 * @param {string} text CSS text
-			 * @param {Mixed} [nextnode] An Element or jQuery object for an element where
-			 * the style tag should be inserted before. Otherwise appended to the `<head>`.
-			 * @return {HTMLElement} Node reference to the created `<style>` tag.
+			 * @param {HTMLElement|jQuery} [nextnode=document.head] The element where the style tag should be
+			 *  inserted before. Otherwise it will be appended to `<head>`.
+			 * @return {HTMLElement} Reference to the created `<style>` element.
 			 */
-			function addStyleTag( text, nextnode ) {
+			function newStyleTag( text, nextnode ) {
 				var s = document.createElement( 'style' );
 				// Insert into document before setting cssText (bug 33305)
 				if ( nextnode ) {
@@ -474,8 +484,13 @@ var mw = ( function ( $, undefined ) {
 			}
 
 			/**
+			 * Add a bit of CSS text to the current browser page.
+			 *
+			 * The CSS will be appended to an existing ResourceLoader-created `<style>` tag
+			 * or create a new one based on whether the given `cssText` is safe for extension.
+			 *
 			 * @param {string} [cssText=cssBuffer] If called without cssText,
-			 * the internal buffer will be inserted instead.
+			 *  the internal buffer will be inserted instead.
 			 * @param {Function} [callback]
 			 */
 			function addEmbeddedCSS( cssText, callback ) {
@@ -547,7 +562,7 @@ var mw = ( function ( $, undefined ) {
 					}
 				}
 
-				$( addStyleTag( cssText, getMarker() ) ).data( 'ResourceLoaderDynamicStyleTag', true );
+				$( newStyleTag( cssText, getMarker() ) ).data( 'ResourceLoaderDynamicStyleTag', true );
 
 				cssCallbacks.fire().empty();
 			}
@@ -820,8 +835,7 @@ var mw = ( function ( $, undefined ) {
 			 */
 			function addScript( src, callback, async ) {
 				/*jshint evil:true */
-				var script, head,
-					done = false;
+				var script, head, done;
 
 				// Using isReady directly instead of storing it locally from
 				// a $.fn.ready callback (bug 31895).
@@ -833,6 +847,7 @@ var mw = ( function ( $, undefined ) {
 
 					// IE-safe way of getting the <head>. document.head isn't supported
 					// in old IE, and doesn't work when in the <head>.
+					done = false;
 					head = document.getElementsByTagName( 'head' )[0] || document.body;
 
 					script = document.createElement( 'script' );
@@ -852,12 +867,12 @@ var mw = ( function ( $, undefined ) {
 								// Handle memory leak in IE
 								script.onload = script.onreadystatechange = null;
 
-								// Remove the script
+								// Detach the element from the document
 								if ( script.parentNode ) {
 									script.parentNode.removeChild( script );
 								}
 
-								// Dereference the script
+								// Dereference the element from javascript
 								script = undefined;
 
 								callback();
@@ -1150,10 +1165,14 @@ var mw = ( function ( $, undefined ) {
 
 			/* Public Methods */
 			return {
-				addStyleTag: addStyleTag,
+				/**
+				 * @inheritdoc #newStyleTag
+				 * @method
+				 */
+				addStyleTag: newStyleTag,
 
 				/**
-				 * Requests dependencies from server, loading and executing when things when ready.
+				 * Batch-request queued dependencies from the server.
 				 */
 				work: function () {
 					var	reqBase, splits, maxQueryLength, q, b, bSource, bGroup, bSourceGroup,
@@ -1315,7 +1334,7 @@ var mw = ( function ( $, undefined ) {
 				},
 
 				/**
-				 * Registers a module, letting the system know about it and its
+				 * Register a module, letting the system know about it and its
 				 * properties. Startup modules contain calls to this function.
 				 *
 				 * @param {string} module Module name
@@ -1366,9 +1385,10 @@ var mw = ( function ( $, undefined ) {
 				},
 
 				/**
-				 * Implements a module, giving the system a course of action to take
-				 * upon loading. Results of a request for one or more modules contain
-				 * calls to this function.
+				 * Implement a module given the components that make up the module.
+				 *
+				 * When #load or #using requests one or more modules, the server
+				 * response contain calls to this function.
 				 *
 				 * All arguments are required.
 				 *
@@ -1423,7 +1443,7 @@ var mw = ( function ( $, undefined ) {
 				},
 
 				/**
-				 * Executes a function as soon as one or more required modules are ready
+				 * Execute a function as soon as one or more required modules are ready.
 				 *
 				 * @param {string|Array} dependencies Module name or array of modules names the callback
 				 *  dependends on to be ready before executing
@@ -1460,7 +1480,7 @@ var mw = ( function ( $, undefined ) {
 				},
 
 				/**
-				 * Loads an external script or one or more modules for future use
+				 * Load an external script or one or more modules.
 				 *
 				 * @param {string|Array} modules Either the name of a module, array of modules,
 				 *  or a URL of an external script or style
@@ -1540,7 +1560,7 @@ var mw = ( function ( $, undefined ) {
 				},
 
 				/**
-				 * Changes the state of a module
+				 * Change the state of one or more modules.
 				 *
 				 * @param {string|Object} module module name or object of module name/state pairs
 				 * @param {string} state state name
@@ -1569,9 +1589,9 @@ var mw = ( function ( $, undefined ) {
 				},
 
 				/**
-				 * Gets the version of a module
+				 * Get the version of a module.
 				 *
-				 * @param {string} module name of module to get version for
+				 * @param {string} module Name of module to get version for
 				 */
 				getVersion: function ( module ) {
 					if ( registry[module] !== undefined && registry[module].version !== undefined ) {
@@ -1581,14 +1601,15 @@ var mw = ( function ( $, undefined ) {
 				},
 
 				/**
-				 * @deprecated since 1.18 use mw.loader.getVersion() instead
+				 * @inheritdoc #getVersion
+				 * @deprecated since 1.18 use #getVersion instead
 				 */
 				version: function () {
 					return mw.loader.getVersion.apply( mw.loader, arguments );
 				},
 
 				/**
-				 * Gets the state of a module
+				 * Get the state of a module.
 				 *
 				 * @param {string} module name of module to get state for
 				 */
@@ -1611,7 +1632,13 @@ var mw = ( function ( $, undefined ) {
 				},
 
 				/**
-				 * For backwards-compatibility with Squid-cached pages. Loads mw.user
+				 * Load the `mediawiki.user` module.
+				 *
+				 * For backwards-compatibility with cached pages from before 2013 where:
+				 *
+				 * - the `mediawiki.user` module didn't exist yet
+				 * - `mw.user` was still part of mediawiki.js
+				 * - `mw.loader.go` still existed and called after `mw.loader.load()`
 				 */
 				go: function () {
 					mw.loader.load( 'mediawiki.user' );
@@ -1781,6 +1808,8 @@ var mw = ( function ( $, undefined ) {
 			var lists = {};
 
 			/**
+			 * Create an instance of mw.hook.
+			 *
 			 * @method hook
 			 * @member mw
 			 * @param {string} name Name of hook.
