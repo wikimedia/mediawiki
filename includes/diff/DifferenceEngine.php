@@ -634,7 +634,6 @@ class DifferenceEngine extends ContextSource {
 			return false;
 		}
 		// Short-circuit
-		// If mOldRev is false, it means that the
 		if ( $this->mOldRev === false || ( $this->mOldRev && $this->mNewRev
 			&& $this->mOldRev->getID() == $this->mNewRev->getID() ) )
 		{
