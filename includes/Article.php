@@ -1546,13 +1546,7 @@ class Article implements Page {
 
 			$this->doDelete( $reason, $suppress );
 
-			if ( $user->isLoggedIn() && $request->getCheck( 'wpWatch' ) != $user->isWatched( $title ) ) {
-				if ( $request->getCheck( 'wpWatch' ) ) {
-					WatchAction::doWatch( $title, $user );
-				} else {
-					WatchAction::doUnwatch( $title, $user );
-				}
-			}
+			WatchAction::doWatchOrUnwatch( $request->getCheck( 'wpWatch' ), $title, $user );
 
 			return;
 		}
