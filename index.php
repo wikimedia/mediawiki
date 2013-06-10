@@ -51,5 +51,6 @@ if ( !function_exists( 'version_compare' ) || version_compare( phpversion(), '5.
 # $wgContLang, amongst others; it does *not* load $wgTitle
 require __DIR__ . '/includes/WebStart.php';
 
-$mediaWiki = new MediaWiki();
+# XXX: Start setting up the main RequestContext here with a WebRequest
+$mediaWiki = new MediaWiki( RequestContext::getMain() );
 $mediaWiki->run();

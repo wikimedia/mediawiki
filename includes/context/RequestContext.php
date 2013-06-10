@@ -24,6 +24,8 @@
  * @file
  */
 
+class UninitializedRequestContextException extends Exception {}
+
 /**
  * Group all the pieces relevant to the context of a request into one instance
  */
@@ -79,8 +81,7 @@ class RequestContext implements IContextSource {
 	 */
 	public function getRequest() {
 		if ( $this->request === null ) {
-			global $wgRequest; # fallback to $wg till we can improve this
-			$this->request = $wgRequest;
+			$this->request = new FauxRequest;
 		}
 		return $this->request;
 	}
@@ -103,8 +104,7 @@ class RequestContext implements IContextSource {
 	 */
 	public function getTitle() {
 		if ( $this->title === null ) {
-			global $wgTitle; # fallback to $wg till we can improve this
-			$this->title = $wgTitle;
+			throw new UninitializedRequestContextException( "Title not defined by the creator of a context." );
 		}
 		return $this->title;
 	}
@@ -388,6 +388,16 @@ class RequestContext implements IContextSource {
 		static $instance = null;
 		if ( $instance === null ) {
 			$instance = new self;
+			# fallback to $wg till we can improve this
+			global $wgRequest, $wgTitle;
+			# XXX: Assuming we stub $wgRequest I'd expect we should kill this line.
+			$instance->setRequest( $wgRequest );
+			# XXX: This block is supposedly for cases where hack titles are set on
+			#   $wgTitle early on by things like cli scripts and API like entrypoints.
+			#   But do we really need it or can we force setTitle to be properly used.
+			if ( $wgTitle instanceof Title ) {
+				$instance->setTitle( $wgTitle );
+			}
 		}
 		return $instance;
 	}

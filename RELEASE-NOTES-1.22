@@ -209,6 +209,10 @@ changes to languages because of Bugzilla reports.
 * (bug 40785) mediawiki.legacy.ajax has been marked as deprecated. The following
   properties now emit mw.log.warn when accessed: sajax_debug, sajax_init_object,
   sajax_do_call and wfSupportsAjax.
+* BREAKING CHANGE: $wgRequest and RequestContext::getMain()'s request is no
+  longer implicitly initialized with a WebRequest from Setup.php. Code using
+  RequestContext::getMain() to setup the main RequestContext in a custom
+  entrypoint must explicitly set the request to the WebRequest::singleton().
 
 == Compatibility ==
 

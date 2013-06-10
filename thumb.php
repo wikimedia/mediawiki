@@ -45,11 +45,7 @@ wfLogProfilingData();
  * @return void
  */
 function wfThumbHandleRequest() {
-	$params = get_magic_quotes_gpc()
-		? array_map( 'stripslashes', $_GET )
-		: $_GET;
-
-	wfStreamThumb( $params ); // stream the thumbnail
+	wfStreamThumb( $_GET ); // stream the thumbnail
 }
 
 /**

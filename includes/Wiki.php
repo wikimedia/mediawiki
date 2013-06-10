@@ -58,6 +58,7 @@ class MediaWiki {
 	 */
 	public function __construct( IContextSource $context = null ) {
 		if ( !$context ) {
+			wfDeprecated( __METHOD__ . ": Context for MediaWiki must be pre-initialized and given to the constructor by the entrypoint.", '1.22' );
 			$context = RequestContext::getMain();
 		}
 
@@ -126,7 +127,9 @@ class MediaWiki {
 	 * @return Title
 	 */
 	public function getTitle() {
-		if ( $this->context->getTitle() === null ) {
+		try {
+			return $this->context->getTitle();
+		} catch ( UninitializedRequestContextException $e ) {
 			$this->context->setTitle( $this->parseTitle() );
 		}
 		return $this->context->getTitle();

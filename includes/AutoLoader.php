@@ -463,6 +463,7 @@ $wgAutoloadLocalClasses = array(
 	'DerivativeContext' => 'includes/context/DerivativeContext.php',
 	'IContextSource' => 'includes/context/IContextSource.php',
 	'RequestContext' => 'includes/context/RequestContext.php',
+	'UninitializedRequestContextException' => 'includes/context/RequestContext.php',
 
 	# includes/dao
 	'IDBAccessObject' => 'includes/dao/IDBAccessObject.php',

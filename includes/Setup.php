@@ -458,25 +458,80 @@ if ( is_null( $wgLocalTZoffset ) ) {
 	$wgLocalTZoffset = date( 'Z' ) / 60;
 }
 
+// If magic_quotes_gpc option is on, run the global arrays
+// through fix_magic_quotes to strip out the stupid slashes.
+// WARNING: This should only be done once! Running a second
+// time could damage the values. 
+if (
+	!$wgCommandLineMode
+	&& function_exists( 'get_magic_quotes_gpc' )
+	&& get_magic_quotes_gpc()
+) {
+	/// @todo FIXME: This preemptive de-quoting can interfere with other web libraries
+	///        and increases our memory footprint. It would be cleaner to do on
+	///        demand; but currently we have no wrapper for $_SERVER etc.
+	///        However get_magic_quotes_gpc is deprecated and will be removed in PHP 5.4
+	///        so we can probably just leave this alone until it doesn't matter anymore.
+
+	/**
+	 * Recursively strips slashes from the given array;
+	 * used for undoing the evil that is magic_quotes_gpc.
+	 *
+	 * @param array $arr will be modified
+	 * @param bool $topLevel Specifies if the array passed is from the top
+	 * level of the source. In PHP5 magic_quotes only escapes the first level
+	 * of keys that belong to an array.
+	 * @see http://www.php.net/manual/en/function.get-magic-quotes-gpc.php#49612
+	 */
+	$fix_magic_quotes = function( &$arr, $topLevel = true ) {
+		$clean = array();
+		foreach ( $arr as $key => $val ) {
+			if ( is_array( $val ) ) {
+				$cleanKey = $topLevel ? stripslashes( $key ) : $key;
+				$clean[$cleanKey] = $this->fix_magic_quotes( $arr[$key], false );
+			} else {
+				$cleanKey = stripslashes( $key );
+				$clean[$cleanKey] = stripslashes( $val );
+			}
+		}
+		$arr = $clean;
+ 	};
+
+	$fix_magic_quotes( $_COOKIE );
+	$fix_magic_quotes( $_ENV );
+	$fix_magic_quotes( $_GET );
+	$fix_magic_quotes( $_POST );
+	$fix_magic_quotes( $_REQUEST );
+	$fix_magic_quotes( $_SERVER );
+
+	unset( $fix_magic_quotes );
+}
+
 # Useful debug output
 if ( $wgCommandLineMode ) {
+	# Should be a common StubRequestContextMember (ie: Done outside of the wgCommandLineMode for both situations)
 	$wgRequest = new FauxRequest( array() );
 
 	wfDebug( "\n\nStart command line script $self\n" );
 } else {
-	# Can't stub this one, it sets up $_GET and $_REQUEST in its constructor
-	$wgRequest = new WebRequest;
+	# @fixme It would be nice if we could defer loading of WebRequest here when wfDebug is going to be a no-op.
+	$request = WebRequest::singleton();
 
-	$debug = "\n\nStart request {$wgRequest->getMethod()} {$wgRequest->getRequestURL()}\n";
+	$debug = "\n\nStart request {$request->getMethod()} {$request->getRequestURL()}\n";
 
 	if ( $wgDebugPrintHttpHeaders ) {
 		$debug .= "HTTP HEADERS:\n";
 
-		foreach ( $wgRequest->getAllHeaders() as $name => $value ) {
+		foreach ( $request->getAllHeaders() as $name => $value ) {
 			$debug .= "$name: $value\n";
 		}
 	}
 	wfDebug( $debug );
+	unset( $request );
+
+	# XXX: This is just for comapt while writing the draft. In the final version
+	# wgRequest should be stubbed when possible.
+	$wgRequest = WebRequest::singleton();
 }
 
 wfProfileOut( $fname . '-misc1' );
@@ -520,18 +575,18 @@ $wgContLang->initEncoding();
 $wgContLang->initContLang();
 
 // Now that variant lists may be available...
-$wgRequest->interpolateTitle();
-$wgUser = RequestContext::getMain()->getUser(); # BackCompat
+$wgRequest->interpolateTitle(); # XXX: Find some way to defer this
+$wgUser = RequestContext::getMain()->getUser(); # BackCompat # XXX: Create a StubRequestContextMember for this.
 
 /**
  * @var $wgLang Language
  */
-$wgLang = new StubUserLang;
+$wgLang = new StubUserLang; # BackCompat
 
 /**
  * @var OutputPage
  */
-$wgOut = RequestContext::getMain()->getOutput(); # BackCompat
+$wgOut = RequestContext::getMain()->getOutput(); # BackCompat # XXX: Create a StubRequestContextMember for this.
 
 /**
  * @var $wgParser Parser

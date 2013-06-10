@@ -52,7 +52,7 @@ wfImageAuthMain();
 wfLogProfilingData();
 
 function wfImageAuthMain() {
-	global $wgImgAuthPublicTest, $wgRequest;
+	global $wgImgAuthPublicTest;
 
 	// See if this is a public Wiki (no protections).
 	if ( $wgImgAuthPublicTest
@@ -81,7 +81,7 @@ function wfImageAuthMain() {
 	if ( $dotPos !== false ) {
 		$whitelist[] = substr( $path, $dotPos + 1 );
 	}
-	if ( !$wgRequest->checkUrlExtension( $whitelist ) ) {
+	if ( !WebRequest::singleton()->checkUrlExtension( $whitelist ) ) {
 		return;
 	}
 

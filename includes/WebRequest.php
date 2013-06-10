@@ -28,7 +28,7 @@
  * URL or via a POSTed form, handling remove of "magic quotes" slashes,
  * stripping illegal input characters and normalizing Unicode sequences.
  *
- * Usually this is used via a global singleton, $wgRequest. You should
+ * Usually this is used via a RequestContext's getRequest(). You should
  * not create a second WebRequest object; make a FauxRequest object if
  * you want to pass arbitrary data to some function in place of the web
  * input.
@@ -51,14 +51,30 @@ class WebRequest {
 	private $ip;
 
 	public function __construct() {
-		/// @todo FIXME: This preemptive de-quoting can interfere with other web libraries
-		///        and increases our memory footprint. It would be cleaner to do on
-		///        demand; but currently we have no wrapper for $_SERVER etc.
-		$this->checkMagicQuotes();
-
 		// POST overrides GET data
 		// We don't use $_REQUEST here to avoid interference from cookies...
 		$this->data = $_POST + $_GET;
+	}
+
+	/**
+	 * Return a singleton instance of WebRequest explicitly representing the
+	 * single global web request that PHP sets up for a script execution.
+	 *
+	 * This method must NOT be called by code simply wanting to work with
+	 * request data. The relevant request context must be used.
+	 * This method is for code that explicit works with the global PHP request
+	 * such as early-setup debug code outputting script request information
+	 * and the entrypoint code that initializes the main request context
+	 * for a php script.
+	 *
+	 * @return WebRequest
+	 */
+	public static function singleton() {
+		static $instance = null;
+		if ( is_null( $instance ) ) { 
+			$instance = new self;
+		}
+		return $instance;
 	}
 
 	/**
@@ -256,51 +272,6 @@ class WebRequest {
 			}
 		}
 		return array();
-	}
-
-	/**
-	 * Recursively strips slashes from the given array;
-	 * used for undoing the evil that is magic_quotes_gpc.
-	 *
-	 * @param array $arr will be modified
-	 * @param bool $topLevel Specifies if the array passed is from the top
-	 * level of the source. In PHP5 magic_quotes only escapes the first level
-	 * of keys that belong to an array.
-	 * @return array the original array
-	 * @see http://www.php.net/manual/en/function.get-magic-quotes-gpc.php#49612
-	 */
-	private function &fix_magic_quotes( &$arr, $topLevel = true ) {
-		$clean = array();
-		foreach ( $arr as $key => $val ) {
-			if ( is_array( $val ) ) {
-				$cleanKey = $topLevel ? stripslashes( $key ) : $key;
-				$clean[$cleanKey] = $this->fix_magic_quotes( $arr[$key], false );
-			} else {
-				$cleanKey = stripslashes( $key );
-				$clean[$cleanKey] = stripslashes( $val );
-			}
-		}
-		$arr = $clean;
-		return $arr;
-	}
-
-	/**
-	 * If magic_quotes_gpc option is on, run the global arrays
-	 * through fix_magic_quotes to strip out the stupid slashes.
-	 * WARNING: This should only be done once! Running a second
-	 * time could damage the values.
-	 */
-	private function checkMagicQuotes() {
-		$mustFixQuotes = function_exists( 'get_magic_quotes_gpc' )
-			&& get_magic_quotes_gpc();
-		if ( $mustFixQuotes ) {
-			$this->fix_magic_quotes( $_COOKIE );
-			$this->fix_magic_quotes( $_ENV );
-			$this->fix_magic_quotes( $_GET );
-			$this->fix_magic_quotes( $_POST );
-			$this->fix_magic_quotes( $_REQUEST );
-			$this->fix_magic_quotes( $_SERVER );
-		}
 	}
 
 	/**
@@ -843,8 +814,8 @@ class WebRequest {
 			return;
 		}
 
-		if ( function_exists( 'apache_request_headers' ) ) {
-			foreach ( apache_request_headers() as $tempName => $tempValue ) {
+		if ( function_exists( 'getallheaders' ) ) {
+			foreach ( getallheaders() as $tempName => $tempValue ) {
 				$this->headers[strtoupper( $tempName )] = $tempValue;
 			}
 		} else {

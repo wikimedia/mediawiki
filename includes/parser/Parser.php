@@ -51,7 +51,7 @@
  * Globals used:
  *    object: $wgContLang
  *
- * @warning $wgUser or $wgTitle or $wgRequest or $wgLang. Keep them away!
+ * @warning $wgUser or $wgTitle or $wgRequest or $wgLang or RequestContext. Keep them away!
  *
  * @par Settings:
  * $wgLocaltimezone

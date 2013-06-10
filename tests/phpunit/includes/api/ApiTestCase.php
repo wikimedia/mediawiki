@@ -31,10 +31,15 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 			)
 		);
 
+		// XXX: @fixme RequestContext is now initialized with an empty FauxRequest instead of a
+		//   WebRequest, is this really necessary anymore?
+		$request = new FauxRequest;
+		RequestContext::getMain()->setRequest( $request );
+
 		$this->setMwGlobals( array(
 			'wgMemc' => new EmptyBagOStuff(),
 			'wgAuth' => new StubObject( 'wgAuth', 'AuthPlugin' ),
-			'wgRequest' => new FauxRequest( array() ),
+			'wgRequest' => $request,
 			'wgUser' => self::$users['sysop']->user,
 		) );
 
@@ -82,14 +87,15 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 
 		// set up global environment
 		if ( $user ) {
-			$wgUser = $user;
+			$wgUser = $user; # b/c
 		}
 
-		$wgRequest = new FauxRequest( $params, true, $session );
-		RequestContext::getMain()->setRequest( $wgRequest );
+		$request = new FauxRequest( $params, true, $session );
+		RequestContext::getMain()->setRequest( $request );
+		$wgRequest = $request; # b/c
 
 		// set up local environment
-		$context = $this->apiContext->newTestContext( $wgRequest, $wgUser );
+		$context = $this->apiContext->newTestContext( $request, $user );
 
 		$module = new ApiMain( $context, true );
 

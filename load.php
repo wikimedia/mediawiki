@@ -33,14 +33,16 @@ require __DIR__ . '/includes/WebStart.php';
 
 wfProfileIn( 'load.php' );
 
+$request = WebRequest::singleton();
+
 // URL safety checks
-if ( !$wgRequest->checkUrlExtension() ) {
+if ( !$request->checkUrlExtension() ) {
 	return;
 }
 
 // Respond to resource loading request
 $resourceLoader = new ResourceLoader();
-$resourceLoader->respond( new ResourceLoaderContext( $resourceLoader, $wgRequest ) );
+$resourceLoader->respond( new ResourceLoaderContext( $resourceLoader, $request ) );
 
 wfProfileOut( 'load.php' );
 wfLogProfilingData();

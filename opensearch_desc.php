@@ -22,14 +22,16 @@
 
 require_once __DIR__ . '/includes/WebStart.php';
 
-if ( $wgRequest->getVal( 'ctype' ) == 'application/xml' ) {
+$request = WebRequest::singleton();
+
+if ( $request->getVal( 'ctype' ) == 'application/xml' ) {
 	// Makes testing tweaks about a billion times easier
 	$ctype = 'application/xml';
 } else {
 	$ctype = 'application/opensearchdescription+xml';
 }
 
-$response = $wgRequest->response();
+$response = $request->response();
 $response->header( "Content-type: $ctype" );
 
 // Set an Expires header so that squid can cache it for a short time
