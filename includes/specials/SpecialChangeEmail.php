@@ -41,7 +41,7 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 	protected $mNewEmail;
 
 	public function __construct() {
-		parent::__construct( 'ChangeEmail' );
+		parent::__construct( 'ChangeEmail', 'editmyprivateinfo' );
 	}
 
 	/**

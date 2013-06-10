@@ -42,6 +42,10 @@ class ApiOptions extends ApiBase {
 			$this->dieUsage( 'Anonymous users cannot change preferences', 'notloggedin' );
 		}
 
+		if ( !$user->isAllowed( 'editmyoptions' ) ) {
+			$this->dieUsage( 'You don\'t have permission to edit your options', 'permissiondenied' );
+		}
+
 		$params = $this->extractRequestParams();
 		$changed = false;
 

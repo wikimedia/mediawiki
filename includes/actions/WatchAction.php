@@ -95,7 +95,7 @@ class WatchAction extends FormAction {
 	 * @param User $user User who is watching/unwatching
 	 */
 	public static function doWatchOrUnwatch( $watch, Title $title, User $user ) {
-		if ( $user->isLoggedIn() && $user->getWatchedItem( $title, true )->isWatched() != $watch ) {
+		if ( $user->isLoggedIn() && $user->isWatched( $title, WatchedItem::IGNORE_USER_RIGHTS ) != $watch ) {
 			// If the user doesn't have 'editmywatchlist', we still want to
 			// allow them to add but not remove items via edits and such.
 			if ( $watch ) {
