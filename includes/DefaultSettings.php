@@ -3890,6 +3890,8 @@ $wgGroupPermissions['*']['createtalk'] = true;
 $wgGroupPermissions['*']['writeapi'] = true;
 $wgGroupPermissions['*']['editmyusercss'] = true;
 $wgGroupPermissions['*']['editmyuserjs'] = true;
+$wgGroupPermissions['*']['viewmywatchlist'] = true;
+$wgGroupPermissions['*']['editmywatchlist'] = true;
 #$wgGroupPermissions['*']['patrolmarks'] = false; // let anons see what was patrolled
 
 // Implicit group for all logged-in accounts

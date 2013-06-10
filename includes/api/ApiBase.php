@@ -823,7 +823,7 @@ abstract class ApiBase extends ContextSource {
 	 */
 	protected function getWatchlistValue( $watchlist, $titleObj, $userOption = null ) {
 
-		$userWatching = $this->getUser()->isWatched( $titleObj );
+		$userWatching = $this->getUser()->isWatched( $titleObj, WatchedItem::IGNORE_USER_RIGHTS );
 
 		switch ( $watchlist ) {
 			case 'watch':
@@ -865,12 +865,7 @@ abstract class ApiBase extends ContextSource {
 			return;
 		}
 
-		$user = $this->getUser();
-		if ( $value ) {
-			WatchAction::doWatch( $titleObj, $user );
-		} else {
-			WatchAction::doUnwatch( $titleObj, $user );
-		}
+		WatchAction::doWatchOrUnwatch( $value, $titleObj, $user );
 	}
 
 	/**
@@ -1544,6 +1539,9 @@ abstract class ApiBase extends ContextSource {
 		} else {
 			if ( !$this->getUser()->isLoggedIn() ) {
 				$this->dieUsage( 'You must be logged-in to have a watchlist', 'notloggedin' );
+			}
+			if ( !$this->getUser()->isAllowed( 'viewmywatchlist' ) ) {
+				$this->dieUsage( 'You don\'t have permission to view your watchlist', 'permissiondenied' );
 			}
 			$user = $this->getUser();
 		}

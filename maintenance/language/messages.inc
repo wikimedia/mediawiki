@@ -1223,6 +1223,8 @@ $wgMessageStructure = array(
 		'right-edituserjs',
 		'right-editmyusercss',
 		'right-editmyuserjs',
+		'right-viewmywatchlist',
+		'right-editmywatchlist',
 		'right-rollback',
 		'right-markbotedits',
 		'right-noratelimit',
