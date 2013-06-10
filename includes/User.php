@@ -124,6 +124,8 @@ class User {
 		'edit',
 		'editinterface',
 		'editprotected',
+		'editmyoptions',
+		'editmyprivateinfo',
 		'editmyusercss',
 		'editmyuserjs',
 		'editmywatchlist',
@@ -167,6 +169,7 @@ class User {
 		'upload_by_url',
 		'userrights',
 		'userrights-interwiki',
+		'viewmyprivateinfo',
 		'viewmywatchlist',
 		'writeapi',
 	);

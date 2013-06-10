@@ -69,6 +69,10 @@ class SpecialPreferences extends SpecialPage {
 	}
 
 	private function showResetForm() {
+		if ( !$this->getUser()->isAllowed( 'editmyoptions' ) ) {
+			throw new PermissionsError( 'editmyoptions' );
+		}
+
 		$this->getOutput()->addWikiMsg( 'prefs-reset-intro' );
 
 		$htmlForm = new HTMLForm( array(), $this->getContext(), 'prefs-restore' );
@@ -82,6 +86,10 @@ class SpecialPreferences extends SpecialPage {
 	}
 
 	public function submitReset( $formData ) {
+		if ( !$this->getUser()->isAllowed( 'editmyoptions' ) ) {
+			throw new PermissionsError( 'editmyoptions' );
+		}
+
 		$user = $this->getUser();
 		$user->resetOptions( 'all' );
 		$user->saveSettings();
