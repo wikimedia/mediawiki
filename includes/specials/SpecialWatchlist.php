@@ -59,14 +59,16 @@ class SpecialWatchlist extends SpecialPage {
 
 		// Add feed links
 		$wlToken = $user->getOption( 'watchlisttoken' );
-		if ( !$wlToken ) {
+		if ( !$wlToken && $user->isAllowed( 'editmyoptions' ) ) {
 			$wlToken = MWCryptRand::generateHex( 40 );
 			$user->setOption( 'watchlisttoken', $wlToken );
 			$user->saveSettings();
 		}
 
-		$this->addFeedLinks( array( 'action' => 'feedwatchlist', 'allrev' => 'allrev',
-							'wlowner' => $user->getName(), 'wltoken' => $wlToken ) );
+		if ( $wlToken ) {
+			$this->addFeedLinks( array( 'action' => 'feedwatchlist', 'allrev' => 'allrev',
+								'wlowner' => $user->getName(), 'wltoken' => $wlToken ) );
+		}
 
 		$this->setHeaders();
 		$this->outputHeader();

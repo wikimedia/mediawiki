@@ -104,7 +104,8 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		}
 
 		if ( isset( $this->prop['preferencestoken'] ) &&
-			is_null( $this->getMain()->getRequest()->getVal( 'callback' ) )
+			is_null( $this->getMain()->getRequest()->getVal( 'callback' ) ) &&
+			$user->isAllowed( 'editmyoptions' )
 		) {
 			$vals['preferencestoken'] = $user->getEditToken( '', $this->getMain()->getRequest() );
 		}
@@ -117,15 +118,17 @@ class ApiQueryUserInfo extends ApiQueryBase {
 			$vals['ratelimits'] = $this->getRateLimits();
 		}
 
-		if ( isset( $this->prop['realname'] ) && !in_array( 'realname', $wgHiddenPrefs ) ) {
-			$vals['realname'] = $user->getRealName();
-		}
+		if ( $user->isAllowed( 'viewmyprivateinfo' ) ) {
+			if ( isset( $this->prop['realname'] ) && !in_array( 'realname', $wgHiddenPrefs ) ) {
+				$vals['realname'] = $user->getRealName();
+			}
 
-		if ( isset( $this->prop['email'] ) ) {
-			$vals['email'] = $user->getEmail();
-			$auth = $user->getEmailAuthenticationTimestamp();
-			if ( !is_null( $auth ) ) {
-				$vals['emailauthenticated'] = wfTimestamp( TS_ISO_8601, $auth );
+			if ( isset( $this->prop['email'] ) ) {
+				$vals['email'] = $user->getEmail();
+				$auth = $user->getEmailAuthenticationTimestamp();
+				if ( !is_null( $auth ) ) {
+					$vals['emailauthenticated'] = wfTimestamp( TS_ISO_8601, $auth );
+				}
 			}
 		}
 

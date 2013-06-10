@@ -31,7 +31,7 @@
  */
 class EmailConfirmation extends UnlistedSpecialPage {
 	public function __construct() {
-		parent::__construct( 'Confirmemail' );
+		parent::__construct( 'Confirmemail', 'editmyprivateinfo' );
 	}
 
 	/**
@@ -43,6 +43,13 @@ class EmailConfirmation extends UnlistedSpecialPage {
 		$this->setHeaders();
 
 		$this->checkReadOnly();
+		$this->checkPermissions();
+
+		// This could also let someone check the current email address, so
+		// require both permissions.
+		if ( !$this->getUser()->isAllowed( 'viewmyprivateinfo' ) ) {
+			throw new PerissionsError( 'viewmyprivateinfo' );
+		}
 
 		if ( $code === null || $code === '' ) {
 			if ( $this->getUser()->isLoggedIn() ) {
@@ -149,12 +156,13 @@ class EmailConfirmation extends UnlistedSpecialPage {
  */
 class EmailInvalidation extends UnlistedSpecialPage {
 	public function __construct() {
-		parent::__construct( 'Invalidateemail' );
+		parent::__construct( 'Invalidateemail', 'editmyprivateinfo' );
 	}
 
 	function execute( $code ) {
 		$this->setHeaders();
 		$this->checkReadOnly();
+		$this->checkPermissions();
 		$this->attemptInvalidate( $code );
 	}
 
