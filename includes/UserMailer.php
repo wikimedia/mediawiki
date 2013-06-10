@@ -669,8 +669,11 @@ class EmailNotification {
 				( !$minorEdit || $targetUser->getOption( 'enotifminoredits' ) ) )
 			{
 				if ( $targetUser->isEmailConfirmed() ) {
-					wfDebug( __METHOD__ . ": sending talk page update notification\n" );
-					return true;
+					if ( wfRunHooks( 'AbortTalkPageEmailNotification', array( $targetUser, $title ) ) ) {
+						wfDebug( __METHOD__ . ": sending talk page update notification\n" );
+						return true;
+					}
+					wfDebug( __METHOD__ . ": talk page update notification is aborted for this user\n" );
 				} else {
 					wfDebug( __METHOD__ . ": talk page owner doesn't have validated email\n" );
 				}
