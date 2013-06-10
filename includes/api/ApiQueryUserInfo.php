@@ -104,7 +104,8 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		}
 
 		if ( isset( $this->prop['preferencestoken'] ) &&
-			is_null( $this->getMain()->getRequest()->getVal( 'callback' ) )
+			is_null( $this->getMain()->getRequest()->getVal( 'callback' ) ) &&
+			$user->isAllowed( 'editmyoptions' )
 		) {
 			$vals['preferencestoken'] = $user->getEditToken( '', $this->getMain()->getRequest() );
 		}

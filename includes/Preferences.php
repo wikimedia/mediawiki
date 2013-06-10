@@ -56,6 +56,12 @@ class Preferences {
 			'searchlimit' => array( 'Preferences', 'filterIntval' ),
 	);
 
+	// Stuff that shouldn't be saved as a preference.
+	private static $saveBlacklist = array(
+		'realname',
+		'emailaddress',
+	);
+
 	/**
 	 * @throws MWException
 	 * @param $user User
@@ -93,9 +99,14 @@ class Preferences {
 		## Make sure that form fields have their parent set. See bug 41337.
 		$dummyForm = new HTMLForm( array(), $context );
 
+		$disable = !$user->isAllowed( 'editmyoptions' );
+
 		## Prod in defaults from the user
 		foreach ( $defaultPreferences as $name => &$info ) {
 			$prefFromUser = self::getOptionFromUser( $name, $info, $user );
+			if ( $disable && !in_array( $name, self::$saveBlacklist ) ) {
+				$info['disabled'] = 'disabled';
+			}
 			$field = HTMLForm::loadInputFromParameters( $name, $info ); // For validation
 			$field->mParent = $dummyForm;
 			$defaultOptions = User::getDefaultOptions();
@@ -256,14 +267,19 @@ class Preferences {
 			);
 		}
 
+		$canViewPrivateInfo = $user->isAllowed( 'viewmyprivateinfo' );
+		$canEditPrivateInfo = $user->isAllowed( 'editmyprivateinfo' );
+
 		// Actually changeable stuff
-		$defaultPreferences['realname'] = array(
-			'type' => $wgAuth->allowPropChange( 'realname' ) ? 'text' : 'info',
-			'default' => $user->getRealName(),
-			'section' => 'personal/info',
-			'label-message' => 'yourrealname',
-			'help-message' => 'prefs-help-realname',
-		);
+		if ( $canViewPrivateInfo ) {
+			$defaultPreferences['realname'] = array(
+				'type' => $canEditPrivateInfo && $wgAuth->allowPropChange( 'realname' ) ? 'text' : 'info',
+				'default' => $user->getRealName(),
+				'section' => 'personal/info',
+				'label-message' => 'yourrealname',
+				'help-message' => 'prefs-help-realname',
+			);
+		}
 
 		$defaultPreferences['gender'] = array(
 			'type' => 'select',
@@ -277,7 +293,7 @@ class Preferences {
 			'help-message' => 'prefs-help-gender',
 		);
 
-		if ( $wgAuth->allowPasswordChange() ) {
+		if ( $canEditPrivateInfo && $wgAuth->allowPasswordChange() ) {
 			$link = Linker::link( SpecialPage::getTitleFor( 'ChangePassword' ),
 				$context->msg( 'prefs-resetpass' )->escaped(), array(),
 				array( 'returnto' => SpecialPage::getTitleFor( 'Preferences' )->getPrefixedText() ) );
@@ -398,22 +414,24 @@ class Preferences {
 				array( 'returnto' => SpecialPage::getTitleFor( 'Preferences' )->getPrefixedText() ) );
 
 			$emailAddress = $user->getEmail() ? htmlspecialchars( $user->getEmail() ) : '';
-			if ( $wgAuth->allowPropChange( 'emailaddress' ) ) {
+			if ( $canEditPrivateInfo && $wgAuth->allowPropChange( 'emailaddress' ) ) {
 				$emailAddress .= $emailAddress == '' ? $link : (
 					$context->msg( 'word-separator' )->plain()
 					. $context->msg( 'parentheses' )->rawParams( $link )->plain()
 				);
 			}
 
-			$defaultPreferences['emailaddress'] = array(
-				'type' => 'info',
-				'raw' => true,
-				'default' => $emailAddress,
-				'label-message' => 'youremail',
-				'section' => 'personal/email',
-				'help-messages' => $helpMessages,
-				# 'cssclass' chosen below
-			);
+			if ( $canViewPrivateInfo ) {
+				$defaultPreferences['emailaddress'] = array(
+					'type' => 'info',
+					'raw' => true,
+					'default' => $emailAddress,
+					'label-message' => 'youremail',
+					'section' => 'personal/email',
+					'help-messages' => $helpMessages,
+					# 'cssclass' chosen below
+				);
+			}
 
 			$disableEmailPrefs = false;
 
@@ -457,7 +475,9 @@ class Preferences {
 					# Apply the same CSS class used on the input to the message:
 					'cssclass' => $emailauthenticationclass,
 				);
-				$defaultPreferences['emailaddress']['cssclass'] = $emailauthenticationclass;
+				if ( isset( $defaultPreferences['emailaddress'] ) ) {
+					$defaultPreferences['emailaddress']['cssclass'] = $emailauthenticationclass;
+				}
 			}
 
 			if ( $wgEnableUserEmail && $user->isAllowed( 'sendemail' ) ) {
@@ -1389,6 +1409,10 @@ class Preferences {
 		$user = $form->getModifiedUser();
 		$result = true;
 
+		if ( !$user->isAllowedAny( 'editmyprivateinfo', 'editmyoptions' ) ) {
+			return Status::newFatal( 'mypreferencesprotected' );
+		}
+
 		// Filter input
 		foreach ( array_keys( $formData ) as $name ) {
 			if ( isset( self::$saveFilters[$name] ) ) {
@@ -1397,40 +1421,36 @@ class Preferences {
 			}
 		}
 
-		// Stuff that shouldn't be saved as a preference.
-		$saveBlacklist = array(
-			'realname',
-			'emailaddress',
-		);
-
 		// Fortunately, the realname field is MUCH simpler
 		if ( !in_array( 'realname', $wgHiddenPrefs ) ) {
 			$realName = $formData['realname'];
 			$user->setRealName( $realName );
 		}
 
-		foreach ( $saveBlacklist as $b ) {
-			unset( $formData[$b] );
+		if ( $user->isAllowed( 'editmyoptions' ) ) {
+			foreach ( self::$saveBlacklist as $b ) {
+				unset( $formData[$b] );
+			}
+
+			# If users have saved a value for a preference which has subsequently been disabled
+			# via $wgHiddenPrefs, we don't want to destroy that setting in case the preference
+			# is subsequently re-enabled
+			# TODO: maintenance script to actually delete these
+			foreach ( $wgHiddenPrefs as $pref ) {
+				# If the user has not set a non-default value here, the default will be returned
+				# and subsequently discarded
+				$formData[$pref] = $user->getOption( $pref, null, true );
+			}
+
+			// Keep old preferences from interfering due to back-compat code, etc.
+			$user->resetOptions( 'unused', $form->getContext() );
+
+			foreach ( $formData as $key => $value ) {
+				$user->setOption( $key, $value );
+			}
+
+			$user->saveSettings();
 		}
-
-		# If users have saved a value for a preference which has subsequently been disabled
-		# via $wgHiddenPrefs, we don't want to destroy that setting in case the preference
-		# is subsequently re-enabled
-		# TODO: maintenance script to actually delete these
-		foreach ( $wgHiddenPrefs as $pref ) {
-			# If the user has not set a non-default value here, the default will be returned
-			# and subsequently discarded
-			$formData[$pref] = $user->getOption( $pref, null, true );
-		}
-
-		// Keep old preferences from interfering due to back-compat code, etc.
-		$user->resetOptions( 'unused', $form->getContext() );
-
-		foreach ( $formData as $key => $value ) {
-			$user->setOption( $key, $value );
-		}
-
-		$user->saveSettings();
 
 		$wgAuth->updateExternalDB( $user );
 
@@ -1554,13 +1574,19 @@ class PreferencesForm extends HTMLForm {
 	 * @return String
 	 */
 	function getButtons() {
+		if ( !$this->getModifiedUser()->isAllowedAny( 'editmyprivateinfo', 'editmyoptions' ) ) {
+			return '';
+		}
+
 		$html = parent::getButtons();
 
-		$t = SpecialPage::getTitleFor( 'Preferences', 'reset' );
+		if ( $this->getModifiedUser()->isAllowed( 'editmyoptions' ) ) {
+			$t = SpecialPage::getTitleFor( 'Preferences', 'reset' );
 
-		$html .= "\n" . Linker::link( $t, $this->msg( 'restoreprefs' )->escaped() );
+			$html .= "\n" . Linker::link( $t, $this->msg( 'restoreprefs' )->escaped() );
 
-		$html = Xml::tags( 'div', array( 'class' => 'mw-prefs-buttons' ), $html );
+			$html = Xml::tags( 'div', array( 'class' => 'mw-prefs-buttons' ), $html );
+		}
 
 		return $html;
 	}

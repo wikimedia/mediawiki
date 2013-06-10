@@ -31,7 +31,7 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 	protected $mUserName, $mOldpass, $mNewpass, $mRetype, $mDomain;
 
 	public function __construct() {
-		parent::__construct( 'ChangePassword' );
+		parent::__construct( 'ChangePassword', 'editmyprivateinfo' );
 	}
 
 	/**
