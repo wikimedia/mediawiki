@@ -1284,6 +1284,8 @@ editinterface
 editintro
 edititis
 editlink
+editmyoptions
+editmyprivateinfo
 editmyusercss
 editmyuserjs
 editmywatchlist
@@ -4343,6 +4345,7 @@ view
 viewcount
 viewdeleted
 viewhelppage
+viewmyprivateinfo
 viewmywatchlist
 viewprevnext
 viewsource

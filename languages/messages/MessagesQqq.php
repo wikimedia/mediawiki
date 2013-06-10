@@ -1027,6 +1027,8 @@ See also {{msg-mw|protectedinterface}}.',
 'customjsprotected' => 'Used as error message.',
 'mycustomcssprotected' => 'Used as error message.',
 'mycustomjsprotected' => 'Used as error message.',
+'myprivateinfoprotected' => 'Used as error message.',
+'mypreferencesprotected' => 'Used as error message.',
 'ns-specialprotected' => 'Error message displayed when trying to edit a page in the Special namespace',
 'titleprotected' => 'Use $1 for GENDER.',
 'filereadonlyerror' => 'Parameters:
@@ -2909,6 +2911,9 @@ This user automatically bypasses IP blocks, auto-blocks and range blocks - so I 
 'right-editmyuserjs' => '{{doc-right|editmyuserjs}}',
 'right-viewmywatchlist' => '{{doc-right|viewmywatchlist}}',
 'right-editmywatchlist' => '{{doc-right|editmywatchlist}}',
+'right-viewmyprivateinfo' => '{{doc-right|viewmyprivateinfo}}',
+'right-editmyprivateinfo' => '{{doc-right|editmyprivateinfo}}',
+'right-editmyoptions' => '{{doc-right|editmyoptions}}',
 'right-rollback' => '{{doc-right|rollback}}
 {{Identical|Rollback}}',
 'right-markbotedits' => '{{doc-right|markbotedits}}
@@ -2983,6 +2988,8 @@ This action allows editing of all of the "user rights", not just the rights of t
 'action-sendemail' => '{{doc-action|sendemail}}',
 'action-editmywatchlist' => '{{doc-action|editmywatchlist}}',
 'action-viewmywatchlist' => '{{doc-action|viewmywatchlist}}',
+'action-viewmyprivateinfo' => '{{doc-action|viewmyprivateinfo}}',
+'action-editmyprivateinfo' => '{{doc-action|editmyprivateinfo}}',
 
 # Recent changes
 'nchanges' => 'Appears on the [[Special:RecentChanges]] special page in brackets after pages having more than one change on that date. $1 is the number of changes on that day.',
