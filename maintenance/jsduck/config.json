@@ -15,6 +15,7 @@
 		"../../resources/mediawiki/mediawiki.notify.js",
 		"../../resources/mediawiki/mediawiki.notification.js",
 		"../../resources/mediawiki/mediawiki.user.js",
+		"../../resources/mediawiki.action/mediawiki.action.edit.js",
 		"../../resources/mediawiki.api",
 		"../../resources/jquery/jquery.localize.js"
 	]
