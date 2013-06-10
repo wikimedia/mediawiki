@@ -167,9 +167,9 @@ class Autopromote {
 
 		switch ( $cond[0] ) {
 			case APCOND_EMAILCONFIRMED:
-				if ( Sanitizer::validateEmail( $user->getEmail() ) ) {
+				if ( Sanitizer::validateEmail( $user->getEmailInternal() ) ) {
 					if ( $wgEmailAuthentication ) {
-						return (bool)$user->getEmailAuthenticationTimestamp();
+						return (bool)$user->getEmailAuthenticationTimestampInternal();
 					} else {
 						return true;
 					}

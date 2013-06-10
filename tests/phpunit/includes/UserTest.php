@@ -46,6 +46,11 @@ class UserTest extends MediaWikiTestCase {
 		$wgRevokePermissions['formertesters'] = array(
 			'runtest' => true,
 		);
+
+		# For the options test
+		$wgGroupPermissions['*'] = array(
+			'editmyoptions' => true,
+		);
 	}
 
 	public function testGroupPermissions() {

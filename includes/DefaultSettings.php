@@ -3892,6 +3892,9 @@ $wgGroupPermissions['*']['editmyusercss'] = true;
 $wgGroupPermissions['*']['editmyuserjs'] = true;
 $wgGroupPermissions['*']['viewmywatchlist'] = true;
 $wgGroupPermissions['*']['editmywatchlist'] = true;
+$wgGroupPermissions['*']['viewmyprivateinfo'] = true;
+$wgGroupPermissions['*']['editmyprivateinfo'] = true;
+$wgGroupPermissions['*']['editmyoptions'] = true;
 #$wgGroupPermissions['*']['patrolmarks'] = false; // let anons see what was patrolled
 
 // Implicit group for all logged-in accounts
