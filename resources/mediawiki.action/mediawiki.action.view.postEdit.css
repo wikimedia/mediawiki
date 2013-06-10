@@ -12,7 +12,6 @@
 	top: 0.6em;
 	left: -50%;
 	padding: .6em 3.6em .6em 1.1em;
-	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	font-size: 0.8em;
 	line-height: 1.5625em;
 	color: #626465;
@@ -32,6 +31,10 @@
 	-ms-transition: all 0.25s ease-in-out;
 	-o-transition: all 0.25s ease-in-out;
 	transition: all 0.25s ease-in-out;
+}
+
+.skin-vector .postedit {
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 .skin-monobook .postedit {
