@@ -2907,6 +2907,8 @@ This user automatically bypasses IP blocks, auto-blocks and range blocks - so I 
 'right-edituserjs' => '{{doc-right|edituserjs}}',
 'right-editmyusercss' => '{{doc-right|editmyusercss}}',
 'right-editmyuserjs' => '{{doc-right|editmyuserjs}}',
+'right-viewmywatchlist' => '{{doc-right|viewmywatchlist}}',
+'right-editmywatchlist' => '{{doc-right|editmywatchlist}}',
 'right-rollback' => '{{doc-right|rollback}}
 {{Identical|Rollback}}',
 'right-markbotedits' => '{{doc-right|markbotedits}}

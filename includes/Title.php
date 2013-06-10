@@ -4533,7 +4533,7 @@ class Title {
 		if ( array_key_exists( $uid, $this->mNotificationTimestamp ) ) {
 			return $this->mNotificationTimestamp[$uid];
 		}
-		if ( !$uid || !$wgShowUpdatedMarker ) {
+		if ( !$uid || !$wgShowUpdatedMarker || !$user->isAllowed( 'viewmywatchlist' ) ) {
 			return $this->mNotificationTimestamp[$uid] = false;
 		}
 		// Don't cache too much!
