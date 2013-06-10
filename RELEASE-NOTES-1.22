@@ -38,6 +38,8 @@ production.
 * The 'protect' and 'autoconfirmed' rights are no longer used for the default
   page protection levels. The rights 'editprotected' and 'editsemiprotected'
   are now used for this purpose instead.
+* $wgNoFollowDomainExceptions now only matches entire domains. For example,
+  an entry for 'bar.com' will still match 'foo.bar.com' but not 'foobar.com'.
 
 === New features in 1.22 ===
 * (bug 44525) mediawiki.jqueryMsg can now parse (whitelisted) HTML elements and attributes.
