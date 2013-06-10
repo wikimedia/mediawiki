@@ -124,6 +124,8 @@ class User {
 		'edit',
 		'editinterface',
 		'editprotected',
+		'editmyoptions',
+		'editmyprivateinfo',
 		'editmyusercss',
 		'editmyuserjs',
 		'editmywatchlist',
@@ -167,6 +169,7 @@ class User {
 		'upload_by_url',
 		'userrights',
 		'userrights-interwiki',
+		'viewmyprivateinfo',
 		'viewmywatchlist',
 		'writeapi',
 	);
@@ -1785,6 +1788,10 @@ class User {
 	 * @return bool True if the user has new messages
 	 */
 	public function getNewtalk() {
+		if ( !$this->isAllowed( 'viewmyprivateinfo' ) ) {
+			return false;
+		}
+
 		$this->load();
 
 		// Load the newtalk status if it is unloaded (mNewtalk=-1)
@@ -1827,6 +1834,10 @@ class User {
 	 * @return Array
 	 */
 	public function getNewMessageLinks() {
+		if ( !$this->isAllowed( 'viewmyprivateinfo' ) ) {
+			return array();
+		}
+
 		$talks = array();
 		if ( !wfRunHooks( 'UserRetrieveNewTalks', array( &$this, &$talks ) ) ) {
 			return $talks;
@@ -1938,7 +1949,9 @@ class User {
 	 * @param $curRev Revision new, as yet unseen revision of the user talk page. Ignored if null or !$val.
 	 */
 	public function setNewtalk( $val, $curRev = null ) {
-		if ( wfReadOnly() ) {
+		// Not editmyprivateinfo! People will not want to have to grant
+		// editmyprivateinfo just to reset the indicator.
+		if ( wfReadOnly() || !$this->isAllowed( 'viewmyprivateinfo' ) ) {
 			return;
 		}
 
@@ -2222,6 +2235,10 @@ class User {
 			return Status::newFatal( 'emaildisabled' );
 		}
 
+		if ( !$this->isAllowed( 'editmyprivateinfo' ) ) {
+			return Status::newFatal( 'myprivateinfoprotected' );
+		}
+
 		$oldaddr = $this->getEmail();
 		if ( $str === $oldaddr ) {
 			return Status::newGood( true );
@@ -2261,8 +2278,10 @@ class User {
 	 * @param string $str New real name
 	 */
 	public function setRealName( $str ) {
-		$this->load();
-		$this->mRealName = $str;
+		if ( $this->isAllowed( 'editmyprivateinfo' ) ) {
+			$this->load();
+			$this->mRealName = $str;
+		}
 	}
 
 	/**
@@ -2485,6 +2504,10 @@ class User {
 		$resetKinds = array( 'registered', 'registered-multiselect', 'registered-checkmatrix', 'unused' ),
 		IContextSource $context = null
 	) {
+		if ( !$this->isAllowed( 'editmyoptions' ) ) {
+			return;
+		}
+
 		$this->load();
 		$defaultOptions = self::getDefaultOptions();
 
@@ -3773,6 +3796,10 @@ class User {
 	 * @return bool
 	 */
 	public function confirmEmail() {
+		if ( !$this->isAllowed( 'editmyprivateinfo' ) ) {
+			return false;
+		}
+
 		// Check if it's already confirmed, so we don't touch the database
 		// and fire the ConfirmEmailComplete hook on redundant confirmations.
 		if ( !$this->isEmailConfirmed() ) {
@@ -3790,6 +3817,10 @@ class User {
 	 * @return bool Returns true
 	 */
 	function invalidateEmail() {
+		if ( !$this->isAllowed( 'editmyprivateinfo' ) ) {
+			return false;
+		}
+
 		$this->load();
 		$this->mEmailToken = null;
 		$this->mEmailTokenExpires = null;
@@ -3803,6 +3834,10 @@ class User {
 	 * @param string $timestamp TS_MW timestamp
 	 */
 	function setEmailAuthenticationTimestamp( $timestamp ) {
+		if ( !$this->isAllowed( 'editmyprivateinfo' ) ) {
+			return;
+		}
+
 		$this->load();
 		$this->mEmailAuthenticated = $timestamp;
 		wfRunHooks( 'UserSetEmailAuthenticationTimestamp', array( $this, &$this->mEmailAuthenticated ) );
@@ -4490,6 +4525,10 @@ class User {
 	 * @todo document
 	 */
 	protected function saveOptions() {
+		if ( !$this->isAllowed( 'editmyoptions' ) ) {
+			return false;
+		}
+
 		$this->loadOptions();
 
 		// Not using getOptions(), to keep hidden preferences in database

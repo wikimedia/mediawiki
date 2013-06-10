@@ -41,7 +41,7 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 	protected $mNewEmail;
 
 	public function __construct() {
-		parent::__construct( 'ChangeEmail' );
+		parent::__construct( 'ChangeEmail', 'editmyprivateinfo' );
 	}
 
 	/**
@@ -88,6 +88,13 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 		}
 
 		$this->checkReadOnly();
+		$this->checkPermissions();
+
+		// This could also let someone check the current email address, so
+		// require both permissions.
+		if ( !$this->getUser()->isAllowed( 'viewmyprivateinfo' ) ) {
+			throw new PerissionsError( 'viewmyprivateinfo' );
+		}
 
 		$this->mPassword = $request->getVal( 'wpPassword' );
 		$this->mNewEmail = $request->getVal( 'wpNewEmail' );
