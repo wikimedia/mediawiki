@@ -291,6 +291,25 @@ abstract class BagOStuff {
 	}
 
 	/**
+	 * Use the last-modified timestamp of an object to determine a cache TTL
+	 *
+	 * @param string|int|bool $mtime Object timestamp or false if does not exist
+	 * @param float $factor A number in the range (0,1)
+	 * @param int $minTTL Minimum seconds to cache object
+	 * @param int $maxTTL Maximum seconds to cache object
+	 * @param int $missingTTL Seconds to cache non-existence [defaults to $minTTL]
+	 * @return int Time to cache object in seconds
+	 */
+	public function adaptiveTTL( $mtime, $factor, $minTTL, $maxTTL, $missingTTL = null ) {
+		if ( $mtime === null || $mtime === false ) {
+			return is_int( $missingTTL ) ? $missingTTL : $minTTL;
+		} else {
+			$age = time() - wfTimestamp( TS_UNIX, $mtime );
+			return min( $maxTTL, max( $minTTL, floor( $factor * $age ) ) );
+		}
+	}
+
+	/**
 	 * @param $text string
 	 */
 	public function debug( $text ) {

@@ -271,8 +271,9 @@ class LocalFile extends File {
 			}
 		}
 
-		// Cache presence for 1 week and negatives for 1 day
-		$wgMemc->set( $key, $cache, $this->fileExists ? 86400 * 7 : 86400 );
+		// Cache presence for up to 1 week and negatives for 1 day
+		$ttl = $wgMemc->adaptiveTTL( $this->timestamp, .1, 300, 7 * 86400, 86400 );
+		$wgMemc->set( $key, $cache, $ttl );
 	}
 
 	/**
