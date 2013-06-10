@@ -37,9 +37,9 @@ class MailAddress {
 	 */
 	function __construct( $address, $name = null, $realName = null ) {
 		if ( is_object( $address ) && $address instanceof User ) {
-			$this->address = $address->getEmail();
+			$this->address = $address->getEmailInternal();
 			$this->name = $address->getName();
-			$this->realName = $address->getRealName();
+			$this->realName = $address->getRealNameInternal();
 		} else {
 			$this->address = strval( $address );
 			$this->name = strval( $name );
@@ -739,7 +739,7 @@ class EmailNotification {
 			$keys['$PAGEEDITOR_EMAIL'] = wfMessage( 'noemailtitle' )->inContentLanguage()->text();
 
 		} else {
-			$keys['$PAGEEDITOR'] = $wgEnotifUseRealName ? $this->editor->getRealName() : $this->editor->getName();
+			$keys['$PAGEEDITOR'] = $wgEnotifUseRealName ? $this->editor->getRealNameInternal() : $this->editor->getName();
 			$emailPage = SpecialPage::getSafeTitleFor( 'Emailuser', $this->editor->getName() );
 			$keys['$PAGEEDITOR_EMAIL'] = $emailPage->getCanonicalURL();
 		}
@@ -767,7 +767,7 @@ class EmailNotification {
 		# global configuration level.
 		$adminAddress = new MailAddress( $wgPasswordSender, $wgPasswordSenderName );
 		if ( $wgEnotifRevealEditorAddress
-			&& ( $this->editor->getEmail() != '' )
+			&& ( $this->editor->getEmailInternal() != '' )
 			&& $this->editor->getOption( 'enotifrevealaddr' ) )
 		{
 			$editorAddress = new MailAddress( $this->editor );
@@ -837,7 +837,7 @@ class EmailNotification {
 			array( '$WATCHINGUSERNAME',
 				'$PAGEEDITDATE',
 				'$PAGEEDITTIME' ),
-			array( $wgEnotifUseRealName ? $watchingUser->getRealName() : $watchingUser->getName(),
+			array( $wgEnotifUseRealName ? $watchingUser->getRealNameInternal() : $watchingUser->getName(),
 				$wgContLang->userDate( $this->timestamp, $watchingUser ),
 				$wgContLang->userTime( $this->timestamp, $watchingUser ) ),
 			$this->body );

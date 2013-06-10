@@ -31,7 +31,7 @@
  */
 class EmailConfirmation extends UnlistedSpecialPage {
 	public function __construct() {
-		parent::__construct( 'Confirmemail' );
+		parent::__construct( 'Confirmemail', 'editmyprivateinfo' );
 	}
 
 	/**
@@ -43,6 +43,7 @@ class EmailConfirmation extends UnlistedSpecialPage {
 		$this->setHeaders();
 
 		$this->checkReadOnly();
+		$this->checkPermissions();
 
 		if ( $code === null || $code === '' ) {
 			if ( $this->getUser()->isLoggedIn() ) {
@@ -149,12 +150,13 @@ class EmailConfirmation extends UnlistedSpecialPage {
  */
 class EmailInvalidation extends UnlistedSpecialPage {
 	public function __construct() {
-		parent::__construct( 'Invalidateemail' );
+		parent::__construct( 'Invalidateemail', 'editmyprivateinfo' );
 	}
 
 	function execute( $code ) {
 		$this->setHeaders();
 		$this->checkReadOnly();
+		$this->checkPermissions();
 		$this->attemptInvalidate( $code );
 	}
 
