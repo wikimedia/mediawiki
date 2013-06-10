@@ -120,7 +120,7 @@ abstract class RdfMetaData {
 			$this->element( $name, wfMessage( 'anonymous' )->numParams( 1 )->text() );
 		} else {
 			$real = $user->getRealName();
-			if ( $real ) {
+			if ( $real && !in_array( 'realname', $wgHiddenPrefs ) ) {
 				$this->element( $name, $real );
 			} else {
 				$userName = $user->getName();
