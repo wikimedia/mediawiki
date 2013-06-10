@@ -1025,6 +1025,8 @@ See also {{msg-mw|protectedinterface}}.',
 'namespaceprotected' => '* $1 - namespace name',
 'customcssprotected' => 'Used as error message.',
 'customjsprotected' => 'Used as error message.',
+'mycustomcssprotected' => 'Used as error message.',
+'mycustomjsprotected' => 'Used as error message.',
 'ns-specialprotected' => 'Error message displayed when trying to edit a page in the Special namespace',
 'titleprotected' => 'Use $1 for GENDER.',
 'filereadonlyerror' => 'Parameters:
@@ -2903,6 +2905,8 @@ This user automatically bypasses IP blocks, auto-blocks and range blocks - so I 
 'right-editusercssjs' => '{{doc-right|editusercssjs}}',
 'right-editusercss' => '{{doc-right|editusercss}}',
 'right-edituserjs' => '{{doc-right|edituserjs}}',
+'right-editmyusercss' => '{{doc-right|editmyusercss}}',
+'right-editmyuserjs' => '{{doc-right|editmyuserjs}}',
 'right-rollback' => '{{doc-right|rollback}}
 {{Identical|Rollback}}',
 'right-markbotedits' => '{{doc-right|markbotedits}}
