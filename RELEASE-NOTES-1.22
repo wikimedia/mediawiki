@@ -30,6 +30,10 @@ production.
 * $wgDBOracleDRCP added. True enables persistent connection with DRCP on Oracle.
 * $wgLogAutopatrol added to allow disabling logging of autopatrol edits in the logging table.
   default for $wgLogAutopatrol is true.
+* The 'edit' right no longer allows for editing a user's own CSS and JS.
+* New rights 'editmyusercss' and 'editmyuserjs' restrict actions that were
+  formerly allowed by default. They have been added to the default for
+  $wgGroupPermissions['*'].
 
 === New features in 1.22 ===
 * (bug 44525) mediawiki.jqueryMsg can now parse (whitelisted) HTML elements and attributes.
@@ -101,6 +105,10 @@ production.
 * LinkCache singleton can now be altered or cleared, letting one to specify
   another instance that does not rely on a database backend.
 * MediaWiki's PHPUnit tests can now use PHPUnit installed using composer --dev.
+* New user rights have been added to increase granularity in rights management
+  for extensions such as OAuth:
+** editmyusercss controls whether a user may edit their own CSS subpages.
+** editmyuserjs controls whether a user may edit their own JS subpages.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
@@ -211,6 +219,8 @@ changes to languages because of Bugzilla reports.
   sajax_do_call and wfSupportsAjax.
 * BREAKING CHANGE: meta keywords are no longer supported. A <meta name="keywords"
   will no longer be output and OutputPage::addKeyword no longer exists.
+* Methods Title::userCanEditCssSubpage and Title::userCanEditJsSubpage,
+  deprecated since 1.19, have been removed.
 
 == Compatibility ==
 

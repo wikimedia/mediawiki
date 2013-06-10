@@ -124,6 +124,8 @@ class User {
 		'edit',
 		'editinterface',
 		'editprotected',
+		'editmyusercss',
+		'editmyuserjs',
 		'editusercssjs', #deprecated
 		'editusercss',
 		'edituserjs',

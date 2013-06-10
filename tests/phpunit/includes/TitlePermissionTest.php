@@ -402,38 +402,75 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 	function testCssAndJavascriptPermissions() {
 		$this->setUser( $this->userName );
 
+		$this->setTitle( NS_USER, $this->userName . '/test.js' );
+		$this->runCSSandJSPermissions(
+			array( array( 'badaccess-group0' ), array( 'mycustomjsprotected' ) ),
+			array( array( 'badaccess-group0' ), array( 'mycustomjsprotected' ) ),
+			array( array( 'badaccess-group0' ) ),
+			array( array( 'badaccess-group0' ), array( 'mycustomjsprotected' ) ),
+			array( array( 'badaccess-group0' ) )
+		);
+
+		$this->setTitle( NS_USER, $this->userName . '/test.css' );
+		$this->runCSSandJSPermissions(
+			array( array( 'badaccess-group0' ), array( 'mycustomcssprotected' ) ),
+			array( array( 'badaccess-group0' ) ),
+			array( array( 'badaccess-group0' ), array( 'mycustomcssprotected' ) ),
+			array( array( 'badaccess-group0' ) ),
+			array( array( 'badaccess-group0' ), array( 'mycustomcssprotected' ) )
+		);
+
 		$this->setTitle( NS_USER, $this->altUserName . '/test.js' );
 		$this->runCSSandJSPermissions(
 			array( array( 'badaccess-group0' ), array( 'customjsprotected' ) ),
 			array( array( 'badaccess-group0' ), array( 'customjsprotected' ) ),
-			array( array( 'badaccess-group0' ) ) );
+			array( array( 'badaccess-group0' ), array( 'customjsprotected' ) ),
+			array( array( 'badaccess-group0' ), array( 'customjsprotected' ) ),
+			array( array( 'badaccess-group0' ) )
+		);
 
 		$this->setTitle( NS_USER, $this->altUserName . '/test.css' );
 		$this->runCSSandJSPermissions(
 			array( array( 'badaccess-group0' ), array( 'customcssprotected' ) ),
+			array( array( 'badaccess-group0' ), array( 'customcssprotected' ) ),
+			array( array( 'badaccess-group0' ), array( 'customcssprotected' ) ),
 			array( array( 'badaccess-group0' ) ),
-			array( array( 'badaccess-group0' ), array( 'customcssprotected' ) ) );
+			array( array( 'badaccess-group0' ), array( 'customcssprotected' ) )
+		);
 
 		$this->setTitle( NS_USER, $this->altUserName . '/tempo' );
 		$this->runCSSandJSPermissions(
 			array( array( 'badaccess-group0' ) ),
 			array( array( 'badaccess-group0' ) ),
-			array( array( 'badaccess-group0' ) ) );
+			array( array( 'badaccess-group0' ) ),
+			array( array( 'badaccess-group0' ) ),
+			array( array( 'badaccess-group0' ) )
+		);
 	}
 
-	function runCSSandJSPermissions( $result0, $result1, $result2 ) {
+	function runCSSandJSPermissions( $result0, $result1, $result2, $result3, $result4 ) {
 		$this->setUserPerm( '' );
 		$this->assertEquals( $result0,
 			$this->title->getUserPermissionsErrors( 'bogus',
 				$this->user ) );
 
-		$this->setUserPerm( 'editusercss' );
+		$this->setUserPerm( 'editmyusercss' );
 		$this->assertEquals( $result1,
 			$this->title->getUserPermissionsErrors( 'bogus',
 				$this->user ) );
 
-		$this->setUserPerm( 'edituserjs' );
+		$this->setUserPerm( 'editmyuserjs' );
 		$this->assertEquals( $result2,
+			$this->title->getUserPermissionsErrors( 'bogus',
+				$this->user ) );
+
+		$this->setUserPerm( 'editusercss' );
+		$this->assertEquals( $result3,
+			$this->title->getUserPermissionsErrors( 'bogus',
+				$this->user ) );
+
+		$this->setUserPerm( 'edituserjs' );
+		$this->assertEquals( $result4,
 			$this->title->getUserPermissionsErrors( 'bogus',
 				$this->user ) );
 

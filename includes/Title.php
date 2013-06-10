@@ -1891,12 +1891,19 @@ class Title {
 		# Protect css/js subpages of user pages
 		# XXX: this might be better using restrictions
 		# XXX: right 'editusercssjs' is deprecated, for backward compatibility only
-		if ( $action != 'patrol' && !$user->isAllowed( 'editusercssjs' )
-				&& !preg_match( '/^' . preg_quote( $user->getName(), '/' ) . '\//', $this->mTextform ) ) {
-			if ( $this->isCssSubpage() && !$user->isAllowed( 'editusercss' ) ) {
-				$errors[] = array( 'customcssprotected' );
-			} elseif ( $this->isJsSubpage() && !$user->isAllowed( 'edituserjs' ) ) {
-				$errors[] = array( 'customjsprotected' );
+		if ( $action != 'patrol' && !$user->isAllowed( 'editusercssjs' ) ) {
+			if ( preg_match( '/^' . preg_quote( $user->getName(), '/' ) . '\//', $this->mTextform ) ) {
+				if ( $this->isCssSubpage() && !$user->isAllowedAny( 'editmyusercss', 'editusercss' ) ) {
+					$errors[] = array( 'mycustomcssprotected' );
+				} elseif ( $this->isJsSubpage() && !$user->isAllowedAny( 'editmyuserjs', 'edituserjs' ) ) {
+					$errors[] = array( 'mycustomjsprotected' );
+				}
+			} else {
+				if ( $this->isCssSubpage() && !$user->isAllowed( 'editusercss' ) ) {
+					$errors[] = array( 'customcssprotected' );
+				} elseif ( $this->isJsSubpage() && !$user->isAllowed( 'edituserjs' ) ) {
+					$errors[] = array( 'customjsprotected' );
+				}
 			}
 		}
 
@@ -2240,36 +2247,6 @@ class Title {
 
 		wfProfileOut( __METHOD__ );
 		return $errors;
-	}
-
-	/**
-	 * Protect css subpages of user pages: can $wgUser edit
-	 * this page?
-	 *
-	 * @deprecated in 1.19; use getUserPermissionsErrors() instead.
-	 * @return Bool
-	 */
-	public function userCanEditCssSubpage() {
-		global $wgUser;
-		wfDeprecated( __METHOD__, '1.19' );
-		return ( ( $wgUser->isAllowedAll( 'editusercssjs', 'editusercss' ) )
-			|| preg_match( '/^' . preg_quote( $wgUser->getName(), '/' ) . '\//', $this->mTextform ) );
-	}
-
-	/**
-	 * Protect js subpages of user pages: can $wgUser edit
-	 * this page?
-	 *
-	 * @deprecated in 1.19; use getUserPermissionsErrors() instead.
-	 * @return Bool
-	 */
-	public function userCanEditJsSubpage() {
-		global $wgUser;
-		wfDeprecated( __METHOD__, '1.19' );
-		return (
-			( $wgUser->isAllowedAll( 'editusercssjs', 'edituserjs' ) )
-			|| preg_match( '/^' . preg_quote( $wgUser->getName(), '/' ) . '\//', $this->mTextform )
-		);
 	}
 
 	/**
