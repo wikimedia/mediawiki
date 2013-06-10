@@ -562,6 +562,7 @@ $messages = array(
 'create-this-page' => 'Deze pagina aanmaken',
 'delete' => 'Verwijderen',
 'deletethispage' => 'Deze pagina verwijderen',
+'undeletethispage' => 'Pagina terugplaatsen',
 'undelete_short' => '$1 {{PLURAL:$1|bewerking|bewerkingen}} terugplaatsen',
 'viewdeleted_short' => '{{PLURAL: $1|Eén geschrapte bewerking |$1 geschrapte bewerkingen}} bekijken',
 'protect' => 'Beveiligen',

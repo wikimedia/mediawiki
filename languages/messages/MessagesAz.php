@@ -583,10 +583,8 @@ Ola bilər siz parolu müvəffəqiyyətlə dəyişmisiniz yaxud müvəqqəti par
 
 # Special:PasswordReset
 'passwordreset' => 'Parolu yenilə',
-'passwordreset-text' => 'Akkauntunuz haqqında xatırlatmanı elektron poçt vasitəsilə ala bilməniz üçün bu formanı doldurun.',
 'passwordreset-legend' => 'Parolu yenilə',
 'passwordreset-disabled' => 'Yenidən qurulma parolu bu vikidə işləmir',
-'passwordreset-pretext' => '{{PLURAL:$1||Enter one of the pieces of data below}}',
 'passwordreset-username' => 'İstifadəçi adı:',
 'passwordreset-domain' => 'Domen:',
 'passwordreset-email' => 'E-mail ünvanı:',
@@ -731,6 +729,7 @@ Məlumat üçün aşağıda bu səhifənin tarixçəsindən müvafiq silmə qeyd
 Çox güman ki, səhifə silinmişdir.',
 'edit-conflict' => 'Düzəlişlər münaqişəsi',
 'edit-no-change' => 'Sizin redaktələr qeydə alınmamışdır. Belə ki, mətndə heç bir düzəliş edilməmişdir.',
+'postedit-confirmation' => 'Redaktəniz qeyd edildi.',
 'edit-already-exists' => 'Yeni səhifəni yaratmaq mümkün deyil.
 Belə ki, bu adda səhifə artıq mövcuddur.',
 

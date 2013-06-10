@@ -985,8 +985,8 @@ O [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rexistro de borrad
 'blocked-notice-logextract' => 'Este usuario está bloqueado.
 Velaquí está a última entrada do rexistro de bloqueos, por se quere consultala:',
 'clearyourcache' => "'''Nota:''' Despois de gardar, cómpre limpar a memoria caché do seu navegador para ver os cambios.
-* '''Firefox / Safari:''' Prema ''Maiúsculas'' á vez que en ''Recargar'', ou prema en ''Ctrl-F5'' ou ''Ctrl-R'' (''⌘-R'' nos Mac)
-* '''Google Chrome:''' Prema en ''Ctrl-Shift-R'' (''⌘-Shift-R'' nos Mac)
+* '''Firefox/Safari:''' Prema ''Maiúsculas'' á vez que en ''Recargar'', ou prema en ''Ctrl-F5'' ou ''Ctrl-R'' (''⌘-R'' nos Mac)
+* '''Google Chrome:''' Prema en ''Ctrl-Maiús-R'' (''⌘-Maiús-R'' nos Mac)
 * '''Internet Explorer:''' Prema ''Ctrl'' ao tempo que fai clic en ''Refrescar'', ou prema en ''Ctrl-F5''
 * '''Opera:''' Limpe a súa memoria caché en ''Ferramentas → Preferencias''",
 'usercssyoucanpreview' => "'''Nota:''' Use o botón \"{{int:showpreview}}\" para verificar o novo CSS antes de gardalo.",

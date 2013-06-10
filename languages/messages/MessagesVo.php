@@ -739,6 +739,7 @@ No enunon kodi.',
 Jiniko pemoükon.',
 'edit-conflict' => 'Redakamakonflit.',
 'edit-no-change' => 'Redakam olik penedemon, bi vödemivotükams nonik pedunons.',
+'postedit-confirmation' => 'Redakam olik pedakipolon.',
 'edit-already-exists' => 'No kanoy jafön padi nulik.
 On ya dabinon.',
 

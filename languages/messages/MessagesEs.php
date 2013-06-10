@@ -65,6 +65,7 @@
  * @author Maor X
  * @author MarcoAurelio
  * @author McDutchie
+ * @author Miguel2706
  * @author Muro de Aguas
  * @author Omnipaedista
  * @author Orgullomoore
@@ -469,7 +470,7 @@ $messages = array(
 'feb' => 'feb',
 'mar' => 'mar',
 'apr' => 'abr',
-'may' => 'may',
+'may' => 'mayo',
 'jun' => 'jun',
 'jul' => 'jul',
 'aug' => 'ago',
@@ -943,6 +944,8 @@ Puede que ya hayas cambiado la contraseña o que hayas pedido una temporal.',
 
 # Special:PasswordReset
 'passwordreset' => 'Restablecimiento de contraseña',
+'passwordreset-text-one' => 'Completa este formulario para restablecer tu contraseña.',
+'passwordreset-text-many' => '{{PLURAL:$1|Introducir uno de los datos para restablecer la contraseña.}}',
 'passwordreset-legend' => 'Restablecer contraseña',
 'passwordreset-disabled' => 'Se ha desactivado el restablecimiento de contraseñas en este wiki.',
 'passwordreset-emaildisabled' => 'Las funciones de correo electrónico han sido desactivadas en esta wiki.',
@@ -3007,6 +3010,8 @@ Por favor visita [//www.mediawiki.org/wiki/Localisation Localización MediaWiki]
 'thumbnail-more' => 'Aumentar',
 'filemissing' => 'Falta archivo',
 'thumbnail_error' => 'Error al crear miniatura: $1',
+'thumbnail_error_remote' => 'Mensaje de error de  $1 :
+$2',
 'djvu_page_error' => 'Página DjVu fuera de rango',
 'djvu_no_xml' => 'Imposible obtener XML para el archivo DjVu',
 'thumbnail-temp-create' => 'No se ha podido crear el archivo temporal de la miniatura',
@@ -4090,14 +4095,14 @@ Este sitio está experimentando dificultades técnicas.',
 'logentry-delete-delete' => '$1 {{GENDER:$2|borró}} la página «$3»',
 'logentry-delete-restore' => '$1 restauró la página «$3»',
 'logentry-delete-event' => '$1 {{GENDER:$2|modificó}} la visibilidad de {{PLURAL:$5|un evento|$5 eventos}} del registro en $3: $4',
-'logentry-delete-revision' => '$1 modificó la visibilidad de {{PLURAL:$5|una edición|$5 ediciones}} en la página $3: $4',
-'logentry-delete-event-legacy' => '$1 modificó la visibilidad de los eventos del registro en $3',
-'logentry-delete-revision-legacy' => '$1 modificó la visibilidad de varias ediciones en la página $3',
+'logentry-delete-revision' => '$1 {{GENDER:$2|modificó}} la visibilidad de {{PLURAL:$5|una revisión |$5 revisiones}} en la página  $3: $4',
+'logentry-delete-event-legacy' => '$1 ha {{GENDER:$2|cambiado}} la visibilidad de registro de eventos en $3',
+'logentry-delete-revision-legacy' => '$1 ha {{GENDER:$2|cambiado}} la visibilidad de las revisiones en la página $3',
 'logentry-suppress-delete' => '$1 {{GENDER:$2|borró}}, con restricciones para administradores aplicadas, la página $3',
-'logentry-suppress-event' => '$1 modificó secretamente la visibilidad de {{PLURAL:$5|un evento del registro|$5 eventos del registro}} en $3: $4',
+'logentry-suppress-event' => '$1 {{GENDER:$2|modificó}} secretamente la visibilidad de {{PLURAL:$5|una edición|$5 ediciones}} en la página $3: $4',
 'logentry-suppress-revision' => '$1 modificó secretamente la visibilidad de {{PLURAL:$5|una edición|$5 ediciones}} en la página $3: $4',
-'logentry-suppress-event-legacy' => '$1 modificó secretamente la visibilidad de los eventos del registro en $3',
-'logentry-suppress-revision-legacy' => '$1 modificó secretamente la visibilidad de varias ediciones en la página $3',
+'logentry-suppress-event-legacy' => '$1 {{GENDER:$2|modificó}} secretamente la visibilidad de los eventos del registro en $3',
+'logentry-suppress-revision-legacy' => '$1 {{GENDER:$2|modificó}} secretamente la visibilidad de varias ediciones en la página $3',
 'revdelete-content-hid' => 'contenido ocultado',
 'revdelete-summary-hid' => 'resumen de edición oculto',
 'revdelete-uname-hid' => 'nombre de usuario ocultado',
@@ -4110,8 +4115,8 @@ Este sitio está experimentando dificultades técnicas.',
 'logentry-move-move-noredirect' => '$1 movió la página $3 a $4 sin dejar una redirección',
 'logentry-move-move_redir' => '$1 movió la página $3 a $4 sobre una redirección',
 'logentry-move-move_redir-noredirect' => '$1 movió la página $3 a $4 sobre una redirección y sin dejar una redirección',
-'logentry-patrol-patrol' => '$1 marcó como patrullada la edición $4 de la página $3',
-'logentry-patrol-patrol-auto' => '$1 marcó automáticamente la edición $4 de la página $3 como patrullada',
+'logentry-patrol-patrol' => '$1 {{GENDER:$2|marcó}} como patrullada la edición $4 de la página $3',
+'logentry-patrol-patrol-auto' => '$1 {{GENDER:$2|marcó}} automáticamente la edición $4 de la página $3 como patrullada',
 'logentry-newusers-newusers' => 'La cuenta de usuario $1 ha sido {{GENDER:$2|creada}}',
 'logentry-newusers-create' => 'La cuenta de usuario $1 ha sido creada',
 'logentry-newusers-create2' => 'La cuenta de usuario $3 ha sido creada por $1',

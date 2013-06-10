@@ -13,6 +13,7 @@
  * @author Joseph Mardy
  * @author Nipon087
  * @author Reedy
+ * @author Rillke
  * @author Salvator
  * @author Samar88
  * @author Srabony90
@@ -429,7 +430,7 @@ Amaḱ sendrare kukiko bondo hoeakana. Dayakate kukiko kạmi hoe ocoemẽ ar am
 Ale do baḍae ocolem amaḱ kuki doe kạmikana, sakam do arhõ rakaṕ lạgit́te kurumuṭuemẽ.',
 'noname' => 'Am do asol beoharićaḱ ńutum ṭhikte bam emakada.',
 'loginsuccesstitle' => 'Bhitri boloḱ do moctege puraoena',
-'loginsuccess' => '\'\'\'Am do nitge "$1" ńutumte {{SITENAME}} rem bolo akana.',
+'loginsuccess' => "'''Am do nitge \"\$1\" ńutumte {{SITENAME}} rem bolo akana.'''",
 'nosuchuser' => '"$1" ńutuman jahan beoharić bạnuea.
 Beoharićaḱ ńutum do bukṛogea.
 Amaḱ bananko ńelmẽ, se [[Special:Userlogin/signup nãwã mit́ṭen ekaunṭ tearmẽ]].',
@@ -489,10 +490,8 @@ Nitoḱ do am bhitritem boloḱkana...',
 
 # Special:PasswordReset
 'passwordreset' => 'Nãwãte oku nambar emme',
-'passwordreset-text' => 'Amaḱ ekaunṭ reaḱ purapuri thuti e-mail hotete ńam lạgit́te latar reaḱ forom purạomẽ.',
 'passwordreset-legend' => 'Nãwãte oku nambar emme',
 'passwordreset-disabled' => 'Noa wikire amaḱ uku nambar nãwãte em lạgit subita do bando gea.',
-'passwordreset-pretext' => '{{PLURAL:$1 latar re menaḱ ḍaṭako khon mit́ṭen emmẽ}}',
 'passwordreset-username' => 'Beoharicaḱ ńutum:',
 'passwordreset-domain' => 'Ḍomen:',
 'passwordreset-capture' => 'Sendra fol reaḱ e-mail ńelmẽ?',

@@ -315,6 +315,18 @@ $messages = array(
 'oct' => 'Okt',
 'nov' => 'Nov',
 'dec' => 'Des',
+'january-date' => '$1 Januarie',
+'february-date' => '$1 Februarie',
+'march-date' => '$1 Maart',
+'april-date' => '$1 April',
+'may-date' => '$1 Mei',
+'june-date' => '$1 Junie',
+'july-date' => '$1 Julie',
+'august-date' => '$1 Augustus',
+'september-date' => '$1 September',
+'october-date' => '$1 Oktober',
+'november-date' => '$1 November',
+'december-date' => '$1 Desember',
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Kategorie|Kategorieë}}',
@@ -688,7 +700,7 @@ Skakel dit asseblief aan en probeer weer.',
 'nocookiesfornew' => 'Die gebruiker is nie geskep nie omdat die oorsprong nie bevestig kon word nie.
 Maak seker dat u koekies aangeskakel het, herlaai die bladsy en probeer dan weer.',
 'noname' => 'Ongeldige gebruikersnaam.',
-'loginsuccesstitle' => 'Suksesvolle intekening',
+'loginsuccesstitle' => 'Suksesvolle aanmelding',
 'loginsuccess' => 'U is nou by {{SITENAME}} as "$1" ingeteken.',
 'nosuchuser' => 'Die gebruiker "$1" bestaan nie.
 Gebruikersname is gevoelig vir hoofletters.
@@ -770,6 +782,8 @@ U het moontlik reeds u wagwoord gewysig of 'n nuwe tydelike wagwoord aangevra.",
 
 # Special:PasswordReset
 'passwordreset' => 'Wagwoord herstel',
+'passwordreset-text-one' => 'Voltooi hierdie vorm om u wagwoord te herstel.',
+'passwordreset-text-many' => '{{PLURAL:$1|Vul een van die velde in om u wagwoord te herstel.}}',
 'passwordreset-legend' => 'Kry nuwe wagwoord',
 'passwordreset-disabled' => 'Die herskik van U wagwoord is gedeaktiveer op hierdie wiki.',
 'passwordreset-emaildisabled' => 'E-posfunksies is afgeskakel op hierdie wiki.',
@@ -1010,6 +1024,7 @@ Geen verduideliking is verskaf nie.",
 Dit lyk of dit verwyder is.',
 'edit-conflict' => 'Wysigingskonflik',
 'edit-no-change' => 'U wysiging was geignoreer omdat die teks nie verander is nie.',
+'postedit-confirmation' => 'U wysigings is gestoor.',
 'edit-already-exists' => 'Die bladsy is nie geskep nie.
 Dit bestaan alreeds.',
 'defaultmessagetext' => 'Verstekteks',
@@ -1017,7 +1032,7 @@ Dit bestaan alreeds.',
 'invalid-content-data' => 'Ongeldige inhoud',
 'content-not-allowed-here' => '"$1" word nie op bladsy [[$2]] toegelaat nie.',
 'editwarning-warning' => 'As u hierdie bladsy verlaat, verloor u moontlik al die wysigings wat u aangebring het.
-Indien u aangemeld is, kan u hierdie waarskuwing in die "{{int:prefs-editing}}"-afdeling van u voorkeure afskakel.',
+Indien u aangemeld is, kan u hierdie waarskuwing in die "Wysigings"-afdeling van u voorkeure afskakel.',
 
 # Content models
 'content-model-wikitext' => 'Wikiteks',
@@ -2276,8 +2291,8 @@ Toekomstige wysigings aan hierdie bladsy en sy bybehorende besprekingsblad sal h
 'notvisiblerev' => 'Weergawe is verwyder',
 'watchnochange' => 'Geen item op die dophoulys is geredigeer in die gekose periode nie.',
 'watchlist-details' => '{{PLURAL:$1|$1 bladsy|$1 bladsye}} in u dophoulys, besprekingsbladsye uitgesluit.',
-'wlheader-enotif' => 'E-pos notifikasie is aangeskakel.',
-'wlheader-showupdated' => "Bladsye wat verander is sedert u hulle laas besoek het word in '''vetdruk''' uitgewys",
+'wlheader-enotif' => 'E-pos kennisgewings is aangeskakel.',
+'wlheader-showupdated' => "Bladsye wat verander is sedert u hulle laas besoek het word in '''vetdruk''' uitgewys.",
 'watchmethod-recent' => 'Kontroleer onlangse wysigings aan bladsye op dophoulys',
 'watchmethod-list' => 'kontroleer bladsye op dophoulys vir wysigings',
 'watchlistcontains' => 'Jou dophoulys bevat $1 {{PLURAL:$1|bladsy|bladsye}}.',

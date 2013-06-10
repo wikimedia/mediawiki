@@ -20,6 +20,7 @@
  * @author Priyanka.rachna.jha
  * @author Rajesh
  * @author Reedy
+ * @author Rillke
  * @author Umeshberma
  * @author Vinitutpal
  */
@@ -461,7 +462,7 @@ $2',
 ई दृढ़ करू जे ज्ञापक सक्रिय अछि, ऐ पन्नाकेँ फेरसँ भारित करू आ फेरसँ प्रयास करू।',
 'noname' => 'अहाँ वैध प्रयोक्तानाम नै देने छी।',
 'loginsuccesstitle' => 'सम्प्रवेश सफल',
-'loginsuccess' => "'''अहाँ सम्प्रवेश केलहुँ {{अन्तर्जाल-पता}} \"\$1\".'''क रूपमे।",
+'loginsuccess' => "'''अहाँ सम्प्रवेश केलहुँ {{SITENAME}} \"\$1\".'''क रूपमे।",
 'nosuchuser' => '"$1" नामसँ कोनो प्रयोक्ता नै अछि।
 प्रयोक्तानाम ब्रह्मक्षर-लघ्वक्षर भेद युक्त अछि।
 अपन ह्रिजै जाँचू, वा [[Special:UserLogin/signup|नव खाता बनाउ]] ।',
@@ -538,10 +539,8 @@ $2',
 
 # Special:PasswordReset
 'passwordreset' => 'कूटशब्द फेरसँ बनाउ',
-'passwordreset-text' => 'ई-पत्र द्वारा अपन खाता विवरणक स्मरण प्राप्त करबा लेल ऐ फॉर्मकेँ भरू।',
 'passwordreset-legend' => 'कूटशब्द फेरसँ बनाउ',
 'passwordreset-disabled' => 'कूटशब्द फेरसँ बनाएब ऐ विकीपर अक्षम कएल अछि।',
-'passwordreset-pretext' => '{{PLURAL:$1||नीचाँक दत्तांशक एकटा भागक प्रविष्टि करू}}',
 'passwordreset-username' => 'प्रयोक्तानाम',
 'passwordreset-domain' => 'क्षेत्र:',
 'passwordreset-capture' => 'परिणाम ई-पत्र देखू?',

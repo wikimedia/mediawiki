@@ -409,7 +409,7 @@ $messages = array(
 'mytalk' => '討論',
 'anontalk' => '此IP的對話頁',
 'navigation' => '導覽',
-'and' => '和',
+'and' => '及',
 
 # Cologne Blue skin
 'qbfind' => '尋找',
@@ -1127,7 +1127,7 @@ $2
 'histlegend' => "差異選擇：標記要比較修訂版本的單選按鈕並點擊底部的按鈕進行比較。<br />
 說明：'''（{{int:cur}}）''' 指與最新修訂版本比較，'''（{{int:last}}）''' 指與前一個修訂修訂版本比較，'''{{int:minoreditletter}}''' = 小修改。",
 'history-fieldset-title' => '瀏覽歷史',
-'history-show-deleted' => '僅已刪除的',
+'history-show-deleted' => '僅限已刪除',
 'histfirst' => '最早版本',
 'histlast' => '最新版本',
 'historysize' => '（$1 位元組）',
@@ -3813,7 +3813,7 @@ $5
 'version-hook-subscribedby' => '利用於',
 'version-version' => '（版本 $1）',
 'version-license' => '授權',
-'version-poweredby-credits' => "這個 Wiki 由 '''[//www.mediawiki.org/ MediaWiki]''' 驅動，版權所有 © 2001-$1 $2。",
+'version-poweredby-credits' => "此維基由'''[//www.mediawiki.org/ MediaWiki]'''驅動，版權所有 © 2001-$1 $2。",
 'version-poweredby-others' => '其他',
 'version-credits-summary' => '我們感謝以下人士為[[Special:Version|MediaWiki]]作出的貢獻。',
 'version-license-info' => 'MediaWiki為自由軟件；您可依據自由軟件基金會所發表的GNU通用公共授權條款規定，就本程式再為發佈與／或修改；無論您依據的是本授權的第二版或（您自行選擇的）任一日後發行的版本。
@@ -3827,6 +3827,7 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'version-entrypoints' => '入口點URL',
 'version-entrypoints-header-entrypoint' => '入口點',
 'version-entrypoints-header-url' => 'URL',
+'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath 條目路徑]',
 
 # Special:Redirect
 'redirect' => '重定向檔案、用戶ID或頁面修訂ID',

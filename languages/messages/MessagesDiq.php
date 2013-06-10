@@ -16,6 +16,7 @@
  * @author Kaganer
  * @author Mirzali
  * @author Nemo bis
+ * @author Neribij
  * @author Olvörg
  * @author Reedy
  * @author Sahim
@@ -556,7 +557,7 @@ $1',
 'edithelp' => 'Peştdariya vurnayışi',
 'edithelppage' => 'Help:Vurnayış',
 'helppage' => 'Help:Estêni',
-'mainpage' => 'Pera Seri',
+'mainpage' => 'Pela Seri',
 'mainpage-description' => 'Pela Seri',
 'policy-url' => 'Project:Terzê hereketi',
 'portal' => 'Portalê cemaeti',

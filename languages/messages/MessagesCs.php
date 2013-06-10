@@ -928,6 +928,8 @@ Možná jste si již úspěšně heslo změnili, nebo jste si vyžádali nové d
 
 # Special:PasswordReset
 'passwordreset' => 'Reset hesla',
+'passwordreset-text-one' => 'Pro získání nového hesla vyplňte tento formulář.',
+'passwordreset-text-many' => '{{PLURAL:$1|Pro získání nového hesla zadejte jeden z údajů.}}',
 'passwordreset-legend' => 'Znovu nastavit heslo',
 'passwordreset-disabled' => 'Znovunastavení hesla je na této wiki zakázáno.',
 'passwordreset-emaildisabled' => 'E-mailové funkce byly na této wiki vypnuty.',

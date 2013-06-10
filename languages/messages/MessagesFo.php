@@ -218,6 +218,18 @@ $messages = array(
 'oct' => 'okt',
 'nov' => 'nov',
 'dec' => 'des',
+'january-date' => 'Januar $1',
+'february-date' => 'Februar $1',
+'march-date' => 'Mars $1',
+'april-date' => 'Apríl $1',
+'may-date' => 'Maj $1',
+'june-date' => 'Juni $1',
+'july-date' => 'Juli $1',
+'august-date' => 'August $1',
+'september-date' => 'September $1',
+'october-date' => 'Oktober $1',
+'november-date' => 'November $1',
+'december-date' => 'Desember $1',
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Bólkur|Bólkar}}',
@@ -537,8 +549,8 @@ Gloym ikki at broyta tínar [[Special:Preferences|{{SITENAME}}-innstillingar]].'
 'createacct-yourpasswordagain' => 'Váttað loyniorðið',
 'createacct-yourpasswordagain-ph' => 'Skrivað loyniorðið enn einaferð',
 'remembermypassword' => 'Minst til logg inn hjá mær á hesum kaganum (í mesta lagi í $1 {{PLURAL:$1|dag|dagar}})',
-'userlogin-remembermypassword' => 'Minst til mín',
-'userlogin-signwithsecure' => 'Rita inn við tryggum ambætara',
+'userlogin-remembermypassword' => 'Lat meg vera innritaðan',
+'userlogin-signwithsecure' => 'Nýt trygt samband',
 'securelogin-stick-https' => 'Varðveit sambandið við HTTPS eftir logg inn',
 'yourdomainname' => 'Títt domene:',
 'password-change-forbidden' => 'Tú kanst ikki broyta loyniorð á hesi wiki.',
@@ -559,6 +571,7 @@ Gloym ikki at broyta tínar [[Special:Preferences|{{SITENAME}}-innstillingar]].'
 'gotaccount' => "Hevur tú longu eina kontu? '''$1'''.",
 'gotaccountlink' => 'Rita inn',
 'userlogin-resetlink' => 'Hevur tú gloymt tínar logg inn upplýsingar',
+'userlogin-resetpassword-link' => 'Nullstilla títt loyniorð',
 'helplogin-url' => 'Help:Innritan',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Hjálp til innritan]]',
 'createacct-join' => 'Skrivað tínar upplýsingar niðanfyri.',
@@ -569,12 +582,14 @@ Gloym ikki at broyta tínar [[Special:Preferences|{{SITENAME}}-innstillingar]].'
 'createacct-realname' => 'Veruligt navn (valfrítt)',
 'createaccountreason' => 'Orsøk:',
 'createacct-reason' => 'Orsøk',
+'createacct-reason-ph' => 'Hví upprættar tú eina nýggja kontu',
 'createacct-captcha' => 'Trygdarkekk',
 'createacct-imgcaptcha-ph' => 'Skriva tekstin ið tú sært omanfyri',
+'createacct-submit' => 'Upprætta tína kontu',
 'createacct-benefit-heading' => '{{SITENAME}} er gjørd av fólki sum tær.',
-'createacct-benefit-body1' => 'rættingar',
-'createacct-benefit-body2' => 'síður',
-'createacct-benefit-body3' => 'seinastu høvundar',
+'createacct-benefit-body1' => '{{PLURAL:$1|rætting|rættingar}}',
+'createacct-benefit-body2' => '{{PLURAL:$1|síða|síður}}',
+'createacct-benefit-body3' => 'seinasti/u {{PLURAL:$1|høvundur|høvundar}}',
 'badretype' => 'Loyniorðið tú hevur skriva er ikki rætt.',
 'userexists' => 'Brúkaranavnið sum tú valdi er longu í nýtslu.
 Vinarliga vel eitt annað navn.',
@@ -674,11 +689,9 @@ Møguliga hevur tú longu broytt títt loyniorð ella biðið um eitt nýtt fyri
 
 # Special:PasswordReset
 'passwordreset' => 'Nullstilla loyniorðið',
-'passwordreset-text' => 'Útfyll hetta skjalið fyri at nullstilla títt loyniorð.',
 'passwordreset-legend' => 'Nulstilla loyniorðið',
 'passwordreset-disabled' => 'Tað ber ikki til at nullstilla loyniorðið á hesi wiki.',
 'passwordreset-emaildisabled' => 'Teldupost funksjónir eru óvirknar á hesi wiki.',
-'passwordreset-pretext' => '{{PLURAL:$1||Skriva ein av upplýsingunum niðanfyri}}',
 'passwordreset-username' => 'Brúkaranavn:',
 'passwordreset-domain' => 'Umdømi (domain):',
 'passwordreset-capture' => 'Sí tann endaliga t-postin?',
@@ -920,6 +933,7 @@ Ongin frágreiðing finst.',
 Tað sær út til at hon er blivin strikað.',
 'edit-conflict' => 'Rættingar trupulleiki (konflikt).',
 'edit-no-change' => 'Tín rætting var sæð burtur frá, tí ongin broyting varð gjørd í tekstinum.',
+'postedit-confirmation' => 'Tín rætting varð goymd.',
 'edit-already-exists' => 'Tað var ikki møguligt at upprætta nýggja síðu.
 Síðan er longu til.',
 'defaultmessagetext' => 'Standard boðtekstur',
@@ -1486,11 +1500,15 @@ Vinarliga gev fíluni nýtt navn og royn at senda hana upp (uploada) enn einafer
 'filename-toolong' => 'Fílunøvn mugu ikki vera longri enn 240 bytes.',
 'badfilename' => 'Myndin er umnevnd til "$1".',
 'filetype-badmime' => 'Fílur av slagnum MIME "$1" eru ikki loyvd at verða send up (uploada).',
+'filetype-banned-type' => '\'\'\'".$1"\'\'\' {{PLURAL:$4|er ikki eitt loyvt fíluslag|eru ikki loyvd fílusløg}}.
+Loyvt/loyvd {{PLURAL:$3|fíluslag er|fílusløg eru}} $2.',
 'filetype-missing' => 'Fílan hevur ongan enda (sum t.d. ".jpg").',
 'empty-file' => 'Fílan sum tú sendi upp var tóm.',
 'file-too-large' => 'Fílan sum tú sendi inn var ov stór.',
 'filename-tooshort' => 'Fílunavnið er ov stutt.',
 'filetype-banned' => 'Hetta slagi av fílum er bannað.',
+'verification-error' => 'Henda fílan varð ikki góðkend av fílugóðkenningini.',
+'hookaborted' => 'Broytingin ið tú royndi at gera var tikin burtur av einari leingjan (extension).',
 'illegal-filename' => 'Hetta fílunavnið er ikki loyvt.',
 'overwrite' => 'Tað er ikki loyvi til at yvirskriva eina verandi fílu.',
 'unknown-error' => 'Ein ókend villa kom fyri.',
@@ -1499,6 +1517,9 @@ Vinarliga gev fíluni nýtt navn og royn at senda hana upp (uploada) enn einafer
 'large-file' => 'Tað verður viðmælt, at fílur ikki eru størri enn $1;
 henda fílin er $2.',
 'largefileserver' => 'Henda fílan er størri enn servarin er innstillaður til at loyva.',
+'emptyfile' => 'Fílan ið tú legði út sær út til at vera tóm.
+Hetta kann skyldast ein sláfeil í fílunavninum.
+Vinarliga eftirkanna um tú veruliga ynskir at leggja hesa fíluna út.',
 'windows-nonascii-filename' => "Henda wiki'in stuðlar ikki fílunøvn við serstøkum bókstavum/teknum.",
 'fileexists' => 'Ein fíla við hesum navninum er longu til, vinarliga kanna eftir <strong>[[:$1]]</strong> um tú ivast í, um tú ynskir at broyta tað.
 [[$1|thumb]]',
@@ -1510,6 +1531,19 @@ Fyri at tín frágreiðing skal síggjast á síðuni, noyðist tú at skriva ta
 * Heitið á fíluni tú leggur út: <strong>[[:$1]]</strong>
 * Heitið á fílu ið longu finst: <strong>[[:$2]]</strong>
 Vinarliga vel eitt annað navn.',
+'fileexists-thumbnail-yes' => "Fílan sær út til at vera ein minka stødd ''(thumbnail)''.
+[[$1|thumb]]
+Vinarliga kanna fíluna <strong>[[:$1]]</strong>.
+Um tann kannað fílan er tann sama myndin av einari uppruna stødd, so er tað ikki neyðugt at leggja út ein eyka thumbnail.",
+'file-thumbnail-no' => "Fílunavnið byrjar við <strong>$1</strong>.
+Tað sær út til at vera ein mynd av einari minkaðari stødd ''(thumbnail)''.
+Um tú hevur hesa myndina í fullari upploysn, legg so hesa út, um ikki broyt so vinarliga fílunavnið.",
+'fileexists-forbidden' => 'Ein fíla við hesum navninum finst longu og kann ikki verða yvirskivað.
+Um tú álíkavæl ynskir at leggja út tína fílu, vinarliga far so aftur og vel eitt annað navn.
+[[File:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'Ein fíla við tí sama navninum finst longu í felags fílusavninum.
+Um tú enn ynskir at leggja út tína fílu, vinarliga far so aftur og vel eitt annað navn.
+[[File:$1|thumb|center|$1]]',
 'file-deleted-duplicate' => 'Ein fíla, sum er líka sum henda ([[:$1]]) er fyrr blivin strikað.
 Tú eigur at kanna eftir strikingarsøguna hjá hesi fílu, áðrenn tú heldur áframm við at leggja hana út enn einaferð.',
 'uploadwarning' => 'Ávaring',

@@ -8,6 +8,7 @@
  * @file
  *
  * @author Bishnu Saikia
+ * @author Britul
  * @author Chaipau
  * @author Gahori
  * @author Gitartha.bordoloi
@@ -1000,6 +1001,7 @@ $1ৰ দ্বাৰা এই অৱৰোধ কৰা হৈছে ।
 সম্ভৱতঃ পৃষ্ঠাখন বিলোপ কৰা হৈছে ।',
 'edit-conflict' => 'সম্পাদনা দ্বন্দ্ব ।',
 'edit-no-change' => 'আপোনাৰ সম্পাদনা আওকাণ কৰা হৈছে, কাৰণ লেখাত কোনো তফাৎ নাই',
+'postedit-confirmation' => "আপোনাৰ সম্পাদনা সংৰক্ষিত কৰা হ'ল ।",
 'edit-already-exists' => "নতুন পৃষ্ঠা সৃষ্টি কৰা নহ'ল ।
 পৃষ্ঠাখন ইতিমধ্যে আছেই ।",
 'defaultmessagetext' => 'সাধাৰণ বাৰ্তা পাঠ্য',
@@ -3062,6 +3064,7 @@ $2',
 'pageinfo-magic-words' => 'যাদুকৰী {{PLURAL:$1|শব্দ|শব্দবোৰ}} ($1)',
 'pageinfo-hidden-categories' => 'অদৃশ্য {{PLURAL:$1|শ্ৰেণী|শ্ৰেণীসমূহ}} ($1)',
 'pageinfo-templates' => 'সংযুক্ত {{PLURAL:$1|সাঁচ|সাঁচসমূহ}} ($1)',
+'pageinfo-transclusions' => '{{PLURAL:$1|পৃষ্ঠা|পৃষ্ঠাসমূহ}} ট্রান্সক্লুড কৰাৰ সময় ($1)',
 'pageinfo-toolboxlink' => 'পৃষ্ঠাখনৰ বিষয়ে তথ্য',
 'pageinfo-redirectsto' => 'পুনৰ্নিৰ্দেশ কৰা হৈছে',
 'pageinfo-redirectsto-info' => 'তথ্য',
@@ -3799,6 +3802,7 @@ $5
 # Special:Redirect
 'redirect' => 'ফাইল, সদস্য, বা সংশোধন আই ডিৰে পুনঃনিৰ্দেশ',
 'redirect-legend' => 'এটা ফাইল বা এখন এখন পৃষ্ঠালৈ পুনঃনিৰ্দেশ',
+'redirect-summary' => 'এই বিশেষ পৃষ্ঠাটোৱে আপোনাক পুনঃনির্দেশিত কৰিছে অন্য এটা নথিপত্রলৈ (নথিপত্রৰ নাম), এটা পৃষ্ঠালৈ (পৃষ্ঠাৰ নাম), অথবা অন্য সদস্যৰ পৃষ্ঠালৈ(সংখ্যাৰে লিখা সদস্যৰ আইডি) ।',
 'redirect-submit' => 'যাওক',
 'redirect-lookup' => 'চাওক:',
 'redirect-value' => 'মূল্য:',

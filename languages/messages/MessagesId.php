@@ -1718,8 +1718,8 @@ Jika Anda memberikannya, nama asli Anda akan digunakan untuk memberi pengenalan 
 'nchanges' => '$1 {{PLURAL:$1|perubahan|perubahan}}',
 'recentchanges' => 'Perubahan terbaru',
 'recentchanges-legend' => 'Opsi perubahan terbaru',
-'recentchanges-summary' => "Temukan perubahan terbaru dalam wiki di halaman ini. Keterangan: (beda) = perubahan, (versi) = sejarah revisi, '''B''' = halaman baru, '''k''' = suntingan kecil, '''b''' = suntingan bot, (± ''bita'') = jumlah penambahan/pengurangan isi, → = suntingan bagian, ← = ringkasan otomatis.
-----",
+'recentchanges-summary' => "Temukan perubahan terbaru dalam wiki di halaman ini.<br />
+;Keterangan:(<span style=\"color:blue;\">beda</span>) perubahan, (<span style=\"color:blue;\">versi</span>) sejarah revisi, '''B''' halaman baru, '''b''' suntingan bot, '''k''' suntingan kecil, <span class=\"unpatrolled\">!</span> perubahan belum dipatroli,<br /><span style=\"color:green;\">'''(+ ''bita'')'''</span> isi konten bertambah, <span style=\"color:red;\">(- ''bita'')</span> isi konten berkurang, (← Ringkasan otomatis), (→ <span style=\"color:grey;\">Suntingan bagian</span>)",
 'recentchanges-feed-description' => 'Temukan perubahan terbaru dalam wiki di umpan ini.',
 'recentchanges-label-newpage' => 'Suntingan ini membuat halaman baru',
 'recentchanges-label-minor' => 'Ini adalah suntingan kecil',

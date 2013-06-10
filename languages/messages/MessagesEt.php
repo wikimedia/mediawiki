@@ -398,6 +398,18 @@ $messages = array(
 'oct' => 'okt',
 'nov' => 'nov',
 'dec' => 'dets',
+'january-date' => '$1. jaanuar',
+'february-date' => '$1. veebruar',
+'march-date' => '$1. märts',
+'april-date' => '$1. aprill',
+'may-date' => '$1. mai',
+'june-date' => '$1. juuni',
+'july-date' => '$1. juuli',
+'august-date' => '$1. august',
+'september-date' => '$1. september',
+'october-date' => '$1. oktoober',
+'november-date' => '$1. november',
+'december-date' => '$1. detsember',
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Kategooria|Kategooriad}}',
@@ -714,7 +726,7 @@ Pane tähele, et seni kuni sa pole oma võrgulehitseja puhvrit tühjendanud, võ
 'createacct-yourpasswordagain-ph' => 'Sisesta uuesti parool',
 'remembermypassword' => 'Jäta parool meelde (kuni $1 {{PLURAL:$1|päevaks|päevaks}})',
 'userlogin-remembermypassword' => 'Jää sisseloginuks',
-'userlogin-signwithsecure' => 'Logi sisse turvaserveri kaudu',
+'userlogin-signwithsecure' => 'Kasuta turvalist ühendust',
 'securelogin-stick-https' => 'Jätka pärast sisselogimist HTTPS-ühenduse kasutamist',
 'yourdomainname' => 'Sinu domeen:',
 'password-change-forbidden' => 'Selles vikis ei saa paroole muuta.',
@@ -735,6 +747,7 @@ Pane tähele, et seni kuni sa pole oma võrgulehitseja puhvrit tühjendanud, võ
 'gotaccount' => "Kui sul on juba konto, '''$1'''.",
 'gotaccountlink' => 'logi sisse',
 'userlogin-resetlink' => 'Kas oled unustanud oma sisselogimisandmed?',
+'userlogin-resetpassword-link' => 'Lähtesta oma parool',
 'helplogin-url' => 'Help:Sisselogimine',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Sisselogimisabi]]',
 'createacct-join' => 'Sisesta allapoole oma andmed.',
@@ -750,9 +763,9 @@ Pane tähele, et seni kuni sa pole oma võrgulehitseja puhvrit tühjendanud, võ
 'createacct-imgcaptcha-ph' => 'Sisesta ülalnähtav tekst',
 'createacct-submit' => 'Loo oma konto',
 'createacct-benefit-heading' => '{{SITENAME}} on sinusuguste inimeste tehtud.',
-'createacct-benefit-body1' => 'muudatust',
-'createacct-benefit-body2' => 'lehekülge',
-'createacct-benefit-body3' => 'hiljutist kaastöölist',
+'createacct-benefit-body1' => '{{PLURAL:$1|muudatus|muudatust}}',
+'createacct-benefit-body2' => '{{PLURAL:$1|lehekülg|lehekülge}}',
+'createacct-benefit-body3' => '{{PLURAL:$1|hiljutine kaastööline|hiljutist kaastöölist}}',
 'badretype' => 'Sisestatud paroolid ei lange kokku.',
 'userexists' => 'Sisestatud kasutajanimi on juba kasutusel.
 Palun valige uus nimi.',
@@ -817,7 +830,7 @@ Palun pea nüüd pisut vahet.',
 
 # Email sending
 'php-mail-error-unknown' => 'Tundmatu tõrge PHP funktsioonis mail().',
-'user-mail-no-addy' => 'Püüdsid saata e-kirja ilma meiliaadressita.',
+'user-mail-no-addy' => 'Püüdsid saata e-kirja ilma e-posti aadressita.',
 'user-mail-no-body' => 'Püüti saata tühja või ebamõistlikult lühikese sisuosaga e-kirja.',
 
 # Change password dialog
@@ -843,6 +856,8 @@ Võib-olla oled juba edukalt muudnud oma salasõna või taotlenud uut ajutist sa
 
 # Special:PasswordReset
 'passwordreset' => 'Parooli lähtestamine',
+'passwordreset-text-one' => 'Täida see vorm, et oma parool lähtestada.',
+'passwordreset-text-many' => '{{PLURAL:$1|Sisesta üks andmeüksus, et oma parool lähtestada.}}',
 'passwordreset-legend' => 'Parooli lähtestamine',
 'passwordreset-disabled' => 'Selles vikis on paroolide lähtestamine keelatud.',
 'passwordreset-emaildisabled' => 'E-posti funktsioonid on selles vikis keelatud.',
@@ -1086,7 +1101,7 @@ See on juba olemas.',
 'invalid-content-data' => 'Vigased sisuandmed',
 'content-not-allowed-here' => 'Lehekülg [[$2]] ei või sisaldada $1.',
 'editwarning-warning' => 'Sellelt leheküljelt lahkumise tõttu võivad tehtud muudatused kaotsi minna.
-Kui oled sisse loginud, saad selle hoiatuse eelistuste alaosas "{{int:prefs-editing}}" keelata.',
+Kui oled sisse loginud, saad selle hoiatuse eelistuste alaosas "Toimetamine" keelata.',
 
 # Content models
 'content-model-wikitext' => 'vikiteksti',
@@ -2305,7 +2320,7 @@ Edasised muudatused sellel leheküljel ja seotud aruteluleheküljel tuuakse ära
 'notvisiblerev' => 'Redaktsioon on kustutatud',
 'watchnochange' => 'Valitud ajavahemiku jooksul pole ühelgi jälgitaval leheküljel muudatusi tehtud.',
 'watchlist-details' => 'Jälgimisloendis on {{PLURAL:$1|$1 lehekülg|$1 lehekülge}} (ei arvestata arutelulehekülgi).',
-'wlheader-enotif' => 'E-posti teel teavitamine on aktiveeritud.',
+'wlheader-enotif' => 'E-posti teel teavitamine on lubatud.',
 'wlheader-showupdated' => "Leheküljed, mida on muudetud peale sinu viimast külastust, on '''rasvases kirjas'''.",
 'watchmethod-recent' => 'jälgitud lehekülgedel tehtud viimaste muudatuste läbivaatamine',
 'watchmethod-list' => 'jälgitavate lehekülgede viimased muudatused',
@@ -2880,6 +2895,8 @@ Kui soovid MediaWiki tarkvara tõlkimises osaleda, siis vaata lehti [//www.media
 'thumbnail-more' => 'Suurenda',
 'filemissing' => 'Fail puudub',
 'thumbnail_error' => 'Viga pisipildi loomisel: $1',
+'thumbnail_error_remote' => 'Tõrketeade asukohast $1:
+$2',
 'djvu_page_error' => 'DjVu-failis ei ole sellist lehekülge',
 'djvu_no_xml' => 'DjVu failist XML-i lugemine ebaõnnestus.',
 'thumbnail-temp-create' => 'Ajutist pisipildifaili ei õnnestu luua.',
@@ -3199,6 +3216,14 @@ Järgnevas loendis, mis on sorteeritud $2, on '''$1''' {{PLURAL:$1|fail|faili}}.
 'hours-ago' => '$1 {{PLURAL:$1|tund|tundi}} tagasi',
 'minutes-ago' => '$1 {{PLURAL:$1|minut|minutit}} tagasi',
 'seconds-ago' => '$1 {{PLURAL:$1|sekund|sekundit}} tagasi',
+'monday-at' => 'Esmaspäeval kell $1',
+'tuesday-at' => 'Teisipäeval kell $1',
+'wednesday-at' => 'Kolmapäeval kell $1',
+'thursday-at' => 'Neljapäeval kell $1',
+'friday-at' => 'Reedel kell $1',
+'saturday-at' => 'Laupäeval kell $1',
+'sunday-at' => 'Pühapäeval kell $1',
+'yesterday-at' => 'Eile kell $1',
 
 # Bad image list
 'bad_image_list' => 'Arvesse võetakse ainult nimekirja ühikud (read, mis algavad sümboliga *).

@@ -634,6 +634,8 @@ $2',
 
 # Special:PasswordReset
 'passwordreset' => 'শব্দচাবি রিসেট',
+'passwordreset-text-one' => 'আপনার পাসওয়ার্ড পুনরায় সেট করতে এই ফর্মটি পূরণ করুন।',
+'passwordreset-text-many' => '{{PLURAL:$1|আপনার পাসওয়ার্ড রিসেট করতে এই তথ্যগুলোর যেকোন একটা প্রবেশ করান।}}',
 'passwordreset-legend' => 'শব্দচাবি রিসেট',
 'passwordreset-disabled' => 'এই উইকিতে শব্দচাবি রিসেটের সুবিধা নিষ্ক্রিয় রয়েছে।',
 'passwordreset-emaildisabled' => 'এই উইকিতে ইমেইল অপশনটি বন্ধ করা হয়েছে।',

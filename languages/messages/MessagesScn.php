@@ -195,6 +195,7 @@ $messages = array(
 'tog-diffonly' => "Nun visualizzari lu cuntinutu dâ pàggina quannu s'esequi na ''diff'' tra dui virsioni",
 'tog-showhiddencats' => 'Ammustra li catigurìi ammucciati.',
 'tog-norollbackdiff' => "Umettiri li ''diff'' doppu aviri fattu nu ''rollback''",
+'tog-useeditwarning' => 'Avvisa quannu si lasaa na paggina di canci cu canci nu sarbati',
 
 'underline-always' => 'sempri',
 'underline-never' => 'mai',
@@ -258,6 +259,8 @@ $messages = array(
 'oct' => 'utt',
 'nov' => 'nuv',
 'dec' => 'Dic',
+'january-date' => '$1 jinnaru',
+'february-date' => '$1 frivaru',
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Catigurìa|Catigurìi}}',
@@ -1374,7 +1377,7 @@ Pi nziriri nu file nta na pàggina, fai nu lijami accussì:
 'filepageexists' => "La pàggina di discrizzioni di stu file fu ggià criata nnû nnirizzu <strong>[[:$1]]</strong>, macari si ancora non c'è nu file cu stu nomu. La discrizzioni di l'uggettu ca fu misa ntô mentri dû caricamentu non si vidi supra a la pàggina di discussioni. Pi fàrila cumpàriri ntâ pàggina di discussioni, c'è la nicissitati di mudificàrila a manu",
 'fileexists-extension' => "Nu file cu nu nomu simili a chistu esisti già; l'unica diffirenza è l'usu dê maiusculi nte l'estensioni: [[$2|thumb]]
 * Nomu dû file carricatu: <strong>[[:$1]]</strong>
-* Nome dû file esistenti: <strong>[[:$2]]</strong>
+* Nomu dû file esistenti: <strong>[[:$2]]</strong>
 Pi favuri scegghiti n'àutru nomu.",
 'fileexists-thumbnail-yes' => "Lu file carricato sembra èssiri lu risurtatu di n'antiprima ''(thumbnail)''. [[$1|thumb]]
 Virificari, pi cunfruntu, lu file <strong>[[:$1]]</strong>.
@@ -1988,7 +1991,7 @@ $1',
 # Contributions
 'contributions' => 'cuntribbuti',
 'contributions-title' => 'Cuntribbuti di $1',
-'mycontris' => 'Li mei cuntribbuti',
+'mycontris' => 'Li mè cuntribbuti',
 'contribsub2' => 'Pi $1 ($2)',
 'nocontribs' => 'Secunnu sti criteri nun ci sunnu canci o cuntribbuti.',
 'uctop' => '(ùrtima pi la pàggina)',

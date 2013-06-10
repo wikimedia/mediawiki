@@ -13,6 +13,7 @@
  * @author Frigotoni
  * @author GatoSelvadego
  * @author Kaganer
+ * @author Malafaya
  * @author Nemo bis
  * @author Nick1915
  * @author Omnipaedista
@@ -1256,7 +1257,7 @@ Prova a métarghe \"all:\" davanti al testo che te serchi par vardar in tuti i n
 'saveprefs' => 'Salva le preferense',
 'resetprefs' => 'Reinposta le preferense',
 'restoreprefs' => 'Ripristina le inpostassion predefinìe',
-'prefs-editing' => 'Dimension de la casela de modifica',
+'prefs-editing' => 'Canbiamento',
 'prefs-edit-boxsize' => 'Dimension de la finestra de modìfega.',
 'rows' => 'Righe:',
 'columns' => 'Cołone:',
@@ -1509,7 +1510,7 @@ Co qualcheduni te scrivarà, nol vedarà mia el to indirizo.',
 'recentchanges-label-bot' => 'Sta modifica el la ga fata un bot',
 'recentchanges-label-unpatrolled' => 'Sta modifica no la xe stà gnancora verificà',
 'rcnote' => "Qua soto se vede {{PLURAL:$1|l'ultimo canbiamento|i ultimi '''$1''' canbiamenti}} {{PLURAL:$2|in te l'ultimo zorno|in tei ultimi '''$2''' zorni}}, fin a le $5 del $4.",
-'rcnotefrom' => " Qui di seguito sono elencate le modifiche da '''$2''' (fino a '''$1''').",
+'rcnotefrom' => "Qui di seguito sono elencate le modifiche da '''$2''' (fino a '''$1''').",
 'rclistfrom' => 'Fà védar i canbiamenti fati dal $1',
 'rcshowhideminor' => '$1 i canbiamenti picenini',
 'rcshowhidebots' => '$1 i bot',

@@ -228,7 +228,7 @@ $messages = array(
 'vector-action-protect' => 'Protexer',
 'vector-action-undelete' => 'Restaurar',
 'vector-action-unprotect' => 'Camudar la proteición',
-'vector-simplesearch-preference' => 'Activar la barra de gueta simplificada (namái apariencia Vector)',
+'vector-simplesearch-preference' => 'Activar la barra de búsqueda simplificada (namái tema Vector)',
 'vector-view-create' => 'Crear',
 'vector-view-edit' => 'Editar',
 'vector-view-history' => 'Ver historial',
@@ -243,8 +243,8 @@ $messages = array(
 'returnto' => 'Tornar a $1.',
 'tagline' => 'De {{SITENAME}}',
 'help' => 'Ayuda',
-'search' => 'Guetar',
-'searchbutton' => 'Guetar',
+'search' => 'Buscar',
+'searchbutton' => 'Buscar',
 'go' => 'Dir',
 'searcharticle' => 'Dir',
 'history' => 'Historial de la páxina',
@@ -293,7 +293,7 @@ $messages = array(
 'protectedpage' => 'Páxina protexida',
 'jumpto' => 'Saltar a:',
 'jumptonavigation' => 'navegación',
-'jumptosearch' => 'guetar',
+'jumptosearch' => 'buscar',
 'view-pool-error' => "Sentímoslo, los sirvidores tán sobrecargaos nestos momentos.
 Hai demasiaos usuarios intentando ver esta páxina.
 Por favor espera un ratu enantes d'intentar otra vuelta entrar a esta páxina.
@@ -471,7 +471,7 @@ El motivu conseñáu ye «''$2''».",
 L'alministrador que lu bloquió dio esti motivu: «$3».",
 'invalidtitle-knownnamespace' => "Títulu inválidu col espaciu de nomes «$2» ya'l testu «$3»",
 'invalidtitle-unknownnamespace' => "Títulu inválidu col númberu $1 d'espaciu de nomes desconocíu ya'l testu «$2»",
-'exception-nologin' => 'Non identificáu',
+'exception-nologin' => 'Nun anició sesión',
 'exception-nologin-text' => "Esta páxina o aición necesita qu'anicies sesión nesta wiki.",
 
 # Virus scanner
@@ -504,22 +504,22 @@ Nun t'escaezas de camudar les tos [[Special:Preferences|preferencies de {{SITENA
 'yourdomainname' => 'El to dominiu:',
 'password-change-forbidden' => 'Nun se pueden camudar les contraseñes nesta wiki.',
 'externaldberror' => "O hebo un fallu d'autenticación de la base de datos o nun tienes permisu p'anovar la to cuenta esterna.",
-'login' => 'Identificase',
-'nav-login-createaccount' => 'Identificase / crear una cuenta',
-'loginprompt' => 'Has tener les «cookies» activaes pa identificate en {{SITENAME}}.',
-'userlogin' => 'Identificase / crear una cuenta',
+'login' => 'Entrar',
+'nav-login-createaccount' => 'Entrar / crear cuenta',
+'loginprompt' => "Ha de tener les «cookies» activaes p'aniciar sesión en {{SITENAME}}.",
+'userlogin' => 'Entrar / crear cuenta',
 'userloginnocreate' => 'Aniciar sesión',
 'logout' => 'Colar',
 'userlogout' => 'Colar',
-'notloggedin' => 'Non identificáu',
+'notloggedin' => 'Nun anició sesión',
 'userlogin-noaccount' => '¿Nun tien una cuenta?',
 'userlogin-joinproject' => 'Xunise a {{SITENAME}}',
 'nologin' => '¿Nun tienes una cuenta? $1.',
 'nologinlink' => 'Crear una cuenta',
 'createaccount' => 'Crear una cuenta',
 'gotaccount' => '¿Ya tienes una cuenta? $1.',
-'gotaccountlink' => 'Identificase',
-'userlogin-resetlink' => "¿Escaecisti los datos d'identificación?",
+'gotaccountlink' => 'Entrar',
+'userlogin-resetlink' => "¿Escaeció los datos d'accesu?",
 'userlogin-resetpassword-link' => 'Reaniciar la contraseña',
 'helplogin-url' => 'Help:Aniciar sesión',
 'userlogin-helplink' => "[[{{MediaWiki:helplogin-url}}|Ayuda p'aniciar sesión]]",
@@ -545,13 +545,13 @@ Por favor escueyi un nome diferente.",
 'loginerror' => "Error d'aniciu de sesión",
 'createacct-error' => 'Error de creación de cuenta',
 'createaccounterror' => 'Nun se pudo crear la cuenta: $1',
-'nocookiesnew' => "La cuenta d'usuariu ta creada, pero nun aniciasti sesión.
+'nocookiesnew' => "La cuenta d'usuariu ta creada, pero nun anició sesión.
 {{SITENAME}} usa «cookies» pa identificar a los usuarios.
-Tienes les «cookies» desactivaes.
-Por favor activales y depués entra col to nome d'usuariu y clave nuevos.",
+Tien les «cookies» desactivaes.
+Por favor activeles y anicie sesión col nuevu nome d'usuariu y contraseña.",
 'nocookieslogin' => '{{SITENAME}} usa «cookies» pa identificar a los usuarios.
-Tienes les «cookies» desactivaes.
-Por favor activales y vuelvi a intentalo.',
+Tien les «cookies» desactivaes.
+Por favor activeles y vuelva a intentalo.',
 'nocookiesfornew' => "La cuenta nun se creó porque nun pudimos confirmar l'orixe.
 Comprueba que tienes activaes les «cookies», recarga esta páxina y vuelvi a intentalo.",
 'noname' => "Nun conseñasti un nome d'usuariu válidu.",
@@ -613,7 +613,7 @@ Pues escaecer esti mensaxe si esta cuenta creóse por error.",
 'usernamehasherror' => "El nome d'usuariu nun pue contener caráuteres «hash»",
 'login-throttled' => "Ficisti demasiaos intentos d'aniciu de sesión recientes.
 Por favor espera enantes d'intentalo otra vuelta.",
-'login-abort-generic' => 'Falló la to identificación - Encaboxao',
+'login-abort-generic' => 'Falló la identificación - Encaboxao',
 'loginlanguagelabel' => 'Llingua: $1',
 'suspicious-userlogout' => "La to solicitú de zarrar sesión refugose porque paez qu'unvióla un restolador frañíu o un proxy de caché.",
 
@@ -682,7 +682,7 @@ Contraseña temporal: $2",
 'changeemail' => 'Camudar la direición de corréu electrónicu',
 'changeemail-header' => 'Camudar la direición de corréu electrónicu de la cuenta',
 'changeemail-text' => "Rellena esti formulariu pa camudar la to direición de corréu electrónicu. Tendrás d'escribir la contraseña pa confirmar esti cambéu.",
-'changeemail-no-info' => "Has tar identificáu p'acceder direutamente a esta páxina.",
+'changeemail-no-info' => "Tien d'aniciar sesión pa entrar direutamente a esta páxina.",
 'changeemail-oldemail' => 'Direición de corréu electrónicu actual:',
 'changeemail-newemail' => 'Direición de corréu electrónicu nueva:',
 'changeemail-none' => '(nengún)',
@@ -720,8 +720,8 @@ Contraseña temporal: $2",
 'showpreview' => 'Amosar previsualización',
 'showlivepreview' => 'Vista rápida',
 'showdiff' => 'Amosar cambeos',
-'anoneditwarning' => "'''Avisu:''' Nun tas identificáu.
-La to direición IP va quedar grabada nel historial d'edición d'esta páxina.",
+'anoneditwarning' => "'''Avisu:''' Nun anició sesión.
+La direición IP quedará grabada nel historial d'edición d'esta páxina.",
 'anonpreviewwarning' => "''Nun aniciasti sesión. Al guardar quedará rexistrada la to direición IP nel historial d'edición d'esta páxina.''",
 'missingsummary' => "'''Recordatoriu:''' Nun conseñasti un resume d'edición.
 Si calques nuevamente \"{{int:savearticle}}\", la to edición guardaráse ensin nengún resume.",
@@ -780,15 +780,15 @@ Pa crear la páxina, empecipia a escribir nel cuadru d'embaxo (mira la [[{{Media
 Si llegasti equí por enquivocu, calca nel botón '''atrás''' del to restolador.",
 'anontalkpagetext' => "----
 ''Esta ye la páxina d'alderique pa un usuariu anónimu qu'inda nun creó una cuenta o que nun la usa.''
-Pola mor d'ello ha usase la direición numbérica IP pa identificalu/la.
-Tala IP pue ser compartida por varios usuarios.
-Si yes un usuariu anónimu y notes qu'hai comentarios irrelevantes empobinaos pa ti, por favor [[Special:UserLogin/signup|crea una cuenta]] o [[Special:UserLogin/signup|identifícate]] pa torgar futures confusiones con otros usuarios anónimos.",
+Poro, tenemos qu'usar la direición numbérica IP pa identificalu/la.
+Esa IP pue tar compartida por varios usuarios.
+Si ye un usuariu anónimu y cree qu'hai comentarios irrelevantes empobinaos a vusté, por favor, [[Special:UserLogin/signup|cree una cuenta]] o [[Special:UserLogin/signup|anicie sesión]] pa torgar futures confusiones con otros usuarios anónimos.",
 'noarticletext' => 'Nestos momentos nun hai testu nesta páxina.
-Pues [[Special:Search/{{PAGENAME}}|guetar esti títulu de páxina]] n\'otres páxines,
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} guetar los rexistros rellacionaos],
+Pue [[Special:Search/{{PAGENAME}}|buscar esti títulu de páxina]] n\'otres páxines,
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} buscar los rexistros rellacionaos],
 o [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar esta páxina]</span>.',
 'noarticletext-nopermission' => 'Nestos momentos nun hai testu nesta páxina.
-Pues [[Special:Search/{{PAGENAME}}|guetar esti títulu de páxina]] n\'otres páxines o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} guetar los rexistros rellacionaos]</span>, pero nun tienes permisu pa crear esta páxina.',
+Pue [[Special:Search/{{PAGENAME}}|buscar esti títulu de páxina]] n\'otres páxines o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} buscar los rexistros rellacionaos]</span>, pero nun tiene permisu pa crear esta páxina.',
 'missing-revision' => 'La revisión #$1 de la páxina llamada "{{PAGENAME}}" nun esiste.
 
 De vezu la causa d\'esto ye siguir un enllaz antiguu del historial a una páxina que se desanició.
@@ -1126,8 +1126,8 @@ De vezu la causa d'esto ye siguir un enllaz de diferencia antiguu a una páxina 
 Se puen alcontrar más detalles nel [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rexistru de desanicios].",
 
 # Search results
-'searchresults' => 'Resultaos de la gueta',
-'searchresults-title' => 'Resultaos de guetar "$1"',
+'searchresults' => 'Resultaos de la busca',
+'searchresults-title' => 'Resultaos de buscar "$1"',
 'searchresulttext' => 'Pa más información tocante a busques en {{SITENAME}}, vete a [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle' => 'Buscasti \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|toles páxines qu\'emprimen con "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|toles páxines qu\'enllacien a "$1"]])',
 'searchsubtitleinvalid' => "Buscasti '''$1'''",
@@ -1156,7 +1156,7 @@ Se puen alcontrar más detalles nel [{{fullurl:{{#Special:Log}}/delete|page={{FU
 'searchprofile-project-tooltip' => 'Buscar en $1',
 'searchprofile-images-tooltip' => 'Buscar ficheros',
 'searchprofile-everything-tooltip' => "Buscar tol conteníu (incluyendo páxines d'alderique)",
-'searchprofile-advanced-tooltip' => 'Guetar nos espacios de nomes personalizaos',
+'searchprofile-advanced-tooltip' => 'Buscar nos espacios de nomes personalizaos',
 'search-result-size' => '$1 ({{PLURAL:$2|1 pallabra|$2 pallabres}})',
 'search-result-category-size' => '{{PLURAL:$1|1 miembru|$1 miembros}} ({{PLURAL:$2|1 subcategoría|$2 subcategories}}, {{PLURAL:$3|1 ficheru|$3 ficheros}})',
 'search-result-score' => 'Relevancia: $1%',
@@ -1167,7 +1167,7 @@ Se puen alcontrar más detalles nel [{{fullurl:{{#Special:Log}}/delete|page={{FU
 'search-interwiki-default' => '$1 resultaos:',
 'search-interwiki-more' => '(más)',
 'search-relatedarticle' => 'Rellacionáu',
-'mwsuggest-disable' => 'Desactivar les suxerencies de gueta',
+'mwsuggest-disable' => 'Desactivar les suxerencies de busca',
 'searcheverything-enable' => 'Buscar en tolos espacios de nome',
 'searchrelated' => 'rellacionáu',
 'searchall' => 'toos',
@@ -1176,8 +1176,8 @@ Se puen alcontrar más detalles nel [{{fullurl:{{#Special:Log}}/delete|page={{FU
 'showingresultsheader' => "{{PLURAL:$5|Resultáu '''$1''' de '''$3'''|Resultaos '''$1 - $2''' de '''$3'''}} pa '''$4'''",
 'nonefound' => "'''Nota''': De mou predetermináu namái se busca en dellos espacios de nomes. Prueba a poner delantre de la to consulta ''all:'' pa buscar en tol conteníu (inxiriendo páxines d'alderique, plantíes, etc.), o usa como prefixu l'espaciu de nome deseáu.",
 'search-nonefound' => 'Nun hebo resultaos que casaren cola consulta.',
-'powersearch' => 'Gueta avanzada',
-'powersearch-legend' => 'Gueta avanzada',
+'powersearch' => 'Busca avanzada',
+'powersearch-legend' => 'Busca avanzada',
 'powersearch-ns' => 'Buscar nos espacios de nome:',
 'powersearch-redir' => 'Llistar redireiciones',
 'powersearch-field' => 'Buscar',
@@ -1186,14 +1186,14 @@ Se puen alcontrar más detalles nel [{{fullurl:{{#Special:Log}}/delete|page={{FU
 'powersearch-togglenone' => 'Dengún',
 'search-external' => 'Busca esterna',
 'searchdisabled' => "La busca en {{SITENAME}} ta desactivada. Mentanto, pues buscar en Google. Has fixate en que'l conteníu de los sos índices de {{SITENAME}} pue tar desfasáu.",
-'search-error' => 'Hebo un error al guetar: $1',
+'search-error' => 'Hebo un error al buscar: $1',
 
 # Preferences page
 'preferences' => 'Preferencies',
 'mypreferences' => 'Preferencies',
 'prefs-edits' => "Númberu d'ediciones:",
-'prefsnologin' => 'Non identificáu',
-'prefsnologintext' => 'Necesites tar <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} identificáu]</span> pa camudar les preferencies d\'usuariu.',
+'prefsnologin' => 'Nun anició sesión',
+'prefsnologintext' => 'Necesita <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} aniciar sesión]</span> pa camudar la configuración d\'usuariu.',
 'changepassword' => 'Camudar la clave',
 'prefs-skin' => 'Apariencia',
 'skin-preview' => 'Vista previa',
@@ -1223,7 +1223,7 @@ Se puen alcontrar más detalles nel [{{fullurl:{{#Special:Log}}/delete|page={{FU
 'prefs-edit-boxsize' => "Tamañu de la ventana d'edición.",
 'rows' => 'Fileres:',
 'columns' => 'Columnes:',
-'searchresultshead' => 'Guetar',
+'searchresultshead' => 'Buscar',
 'resultsperpage' => 'Resultaos por páxina:',
 'stub-threshold' => 'Llímite superior pa considerar como <a href="#" class="stub">enllaz a entamu</a> (bytes):',
 'stub-threshold-disabled' => 'Desactivao',
@@ -1253,7 +1253,7 @@ Equí tienes un valor al debalu que pues usar: $1",
 'timezoneregion-indian' => 'Océanu Índicu',
 'timezoneregion-pacific' => 'Océanu Pacíficu',
 'allowemail' => 'Dexar a los otros usuarios mandate correos',
-'prefs-searchoptions' => 'Guetar',
+'prefs-searchoptions' => 'Buscar',
 'prefs-namespaces' => 'Espacios de nome',
 'defaultns' => 'Sinón, buscar nestos espacios de nome:',
 'default' => 'predetermináu',
@@ -1326,7 +1326,7 @@ Esta información sedrá pública.",
 'userrights-reason' => 'Motivu:',
 'userrights-no-interwiki' => "Nun tienes permisu pa editar los derechos d'usuariu n'otres wikis.",
 'userrights-nodatabase' => 'La base de datos $1 nun esiste o nun ye llocal.',
-'userrights-nologin' => "Has tar [[Special:UserLogin|identificáu]] con una cuenta d'alministrador p'asignar derechos d'usuariu.",
+'userrights-nologin' => "Tien d'[[Special:UserLogin|aniciar sesión]] con una cuenta d'alministrador pa dar permisos d'usuariu.",
 'userrights-notallowed' => "La to cuenta nun tien permisu p'amestar o desaniciar permisos d'usuariu.",
 'userrights-changeable-col' => 'Grupos que pues camudar',
 'userrights-unchangeable-col' => 'Grupos que nun pues camudar',
@@ -1514,7 +1514,7 @@ Esta información sedrá pública.",
 'uploadbtn' => 'Xubir ficheru',
 'reuploaddesc' => 'Cancelar la xubida y tornar al formulariu de xubíes',
 'upload-tryagain' => 'Unviar descripción camudada del ficheru',
-'uploadnologin' => 'Non identificáu',
+'uploadnologin' => 'Nun anició sesión',
 'uploadnologintext' => 'Tienes que tar [[Special:UserLogin|identificáu]] pa poder xubir archivos.',
 'upload_directory_missing' => 'El direutoriu de xubida ($1) nun esiste y nun pudo ser creáu pol sirvidor de web.',
 'upload_directory_read_only' => "El sirvidor nun pue modificar el direutoriu de xubida d'archivos ($1).",
@@ -2007,7 +2007,7 @@ Date cuenta de qu'otros sitios web puen enllazar a un ficheru con una URL direut
 'booksources' => 'Fontes de llibros',
 'booksources-search-legend' => 'Busca de fontes de llibros',
 'booksources-go' => 'Dir',
-'booksources-text' => "Esta ye una llista d'enllaces a otros sitios que vienden llibros nuevos y usaos, y que puen tener más información sobre llibros que pueas tar guetando:",
+'booksources-text' => "Esta ye una llista d'enllaces a otros sitios que vienden llibros nuevos y usaos, y que puen tener más información sobre los llibros que ta buscando:",
 'booksources-invalid-isbn' => 'El códigu ISBN que puxisti nun paez que valga; mira que te vien copiáu de la fonte orixinal.',
 
 # Special:Log
@@ -2059,10 +2059,10 @@ Ver tamién les [[Special:WantedCategories|categoríes más buscaes]].",
 'sp-deletedcontributions-contribs' => 'collaboraciones',
 
 # Special:LinkSearch
-'linksearch' => "Gueta d'enllaces esternos",
+'linksearch' => "Busca d'enllaces esternos",
 'linksearch-pat' => 'Patrón de busca:',
 'linksearch-ns' => 'Espaciu de nomes:',
-'linksearch-ok' => 'Guetar',
+'linksearch-ok' => 'Buscar',
 'linksearch-text' => 'Se puen usar comodinos como "*.wikipedia.org".
 Necesita polo menos un dominiu de primer nivel, como "*.org".<br />
 {{PLURAL:$2|Protocolu almitíu|Protocolos almitíos}}: <code>$1</code> (el predetermináu ye http:// si nun se conseña dengún protocolu).',
@@ -2385,7 +2385,7 @@ Consulta'l [[Special:Log/delete|rexistru d'esborraos]] pa ver los esborraos y re
 'undelete-search-title' => 'Buscar páxines desaniciaes',
 'undelete-search-box' => 'Buscar páxines desaniciaes',
 'undelete-search-prefix' => "Amosar páxines qu'empecipien por:",
-'undelete-search-submit' => 'Guetar',
+'undelete-search-submit' => 'Buscar',
 'undelete-no-results' => "Nun s'atoparon páxines afechisques a la busca nel archivu d'esborraos.",
 'undelete-filename-mismatch' => "Nun se pue restaurar la revisión del archivu con fecha $1: el nome d'archivu nun concuaya",
 'undelete-bad-store-key' => "Nun se pue restaurar la revisión del archivu con fecha $1: yá nun esistía l'archivu nel momentu d'esborralu.",
@@ -2433,7 +2433,7 @@ La cabera entrada del rexistru de bloqueos s'ufre darréu pa referencia:",
 'sp-contributions-search' => 'Buscar contribuciones',
 'sp-contributions-username' => "Direición IP o nome d'usuariu:",
 'sp-contributions-toponly' => 'Amosar namái les ediciones que son les caberes revisiones',
-'sp-contributions-submit' => 'Guetar',
+'sp-contributions-submit' => 'Buscar',
 
 # What links here
 'whatlinkshere' => "Lo qu'enllaza equí",
@@ -2519,7 +2519,7 @@ Mira na [[Special:BlockList|llista de bloqueos]] pa revisar los bloqueos.',
 'blocklist-by' => 'Alministración de bloqueos',
 'blocklist-params' => 'Parámetros de bloquéu',
 'blocklist-reason' => 'Motivu',
-'ipblocklist-submit' => 'Guetar',
+'ipblocklist-submit' => 'Buscar',
 'ipblocklist-localblock' => 'Bloquéu llocal',
 'ipblocklist-otherblocks' => '{{PLURAL:$1|Otru bloquéu|Otros bloqueos}}',
 'infiniteblock' => 'pa siempre',
@@ -2948,7 +2948,7 @@ Probablemente tea causao por un enllaz a un sitiu esternu de la llista prieta.',
 'pageinfo-length' => 'Llonxitú de la páxina (en bytes)',
 'pageinfo-article-id' => 'ID de la páxina',
 'pageinfo-language' => 'Llingua del conteníu de la páxina',
-'pageinfo-robot-policy' => 'Estáu del motor de gueta',
+'pageinfo-robot-policy' => 'Estáu del motor de busca',
 'pageinfo-robot-index' => 'Pue ser índiz',
 'pageinfo-robot-noindex' => 'Nun pue ser índiz',
 'pageinfo-views' => 'Númberu de visites',
@@ -3052,7 +3052,7 @@ Al executalu pues comprometer el to sistema.",
 'newimages-label' => "Nome d'archivu (o una parte d'él):",
 'showhidebots' => '($1 bots)',
 'noimages' => 'Nun hai nada que ver.',
-'ilsubmit' => 'Guetar',
+'ilsubmit' => 'Buscar',
 'bydate' => 'por fecha',
 'sp-newimages-showfrom' => "Amosar los archivos nuevos emprimando dende'l $1 a les $2",
 
@@ -3724,7 +3724,7 @@ Tendría d'haber recibío [{{SERVER}}{{SCRIPTPATH}}/COPYING una copia de la Llic
 'fileduplicatesearch-summary' => 'Busca archivos duplicaos basándose nos sos valores fragmentarios.',
 'fileduplicatesearch-legend' => 'Buscar duplicaos',
 'fileduplicatesearch-filename' => 'Nome del ficheru:',
-'fileduplicatesearch-submit' => 'Guetar',
+'fileduplicatesearch-submit' => 'Buscar',
 'fileduplicatesearch-info' => '$1 × $2 píxeles<br />Tamañu del archivu: $3<br />Triba MIME: $4',
 'fileduplicatesearch-result-1' => 'L\'archivu "$1" nun tien duplicáu idénticu.',
 'fileduplicatesearch-result-n' => 'L\'archivu "$1" tien {{PLURAL:$2|un duplicáu idénticu|$2 duplicaos idénticos}}.',
@@ -3738,7 +3738,7 @@ Tendría d'haber recibío [{{SERVER}}{{SCRIPTPATH}}/COPYING una copia de la Llic
 * <span class="mw-specialpagecached">Páxines especiales en caché (seique nun tean actualizaes).</span>',
 'specialpages-group-maintenance' => 'Informes de mantenimientu',
 'specialpages-group-other' => 'Otres páxines especiales',
-'specialpages-group-login' => 'Identificase / crear cuenta',
+'specialpages-group-login' => 'Entrar / crear cuenta',
 'specialpages-group-changes' => 'Cambeos recientes y rexistros',
 'specialpages-group-media' => 'Informes multimedia y xubíes',
 'specialpages-group-users' => 'Usuarios y drechos',
@@ -3793,7 +3793,7 @@ Tendría d'haber recibío [{{SERVER}}{{SCRIPTPATH}}/COPYING una copia de la Llic
 'dberr-problems' => '¡Sentímoslo! Esti sitiu ta esperimentando dificultaes téuniques.',
 'dberr-again' => 'Tenta esperar dellos minutos y recargar.',
 'dberr-info' => '(Nun se pue contautar cola base de datos del sirvidor: $1)',
-'dberr-usegoogle' => 'Pues probar a guetar con Google mentanto.',
+'dberr-usegoogle' => 'Pue probar a buscar con Google mentanto.',
 'dberr-outofdate' => 'Atalanta que los sos índices del nuesu conteníu seique nun tean actualizaos.',
 'dberr-cachederror' => 'Esta ye una copia na caché de la páxina que se pidiera, y pue que nun tea actualizada.',
 
@@ -3813,8 +3813,8 @@ Tendría d'haber recibío [{{SERVER}}{{SCRIPTPATH}}/COPYING una copia de la Llic
 'htmlform-chosen-placeholder' => 'Seleicione una opción',
 
 # SQLite database support
-'sqlite-has-fts' => '$1 con sofitu pa gueta en testu completu',
-'sqlite-no-fts' => '$1 ensin sofitu pa gueta en testu completu',
+'sqlite-has-fts' => '$1 con sofitu pa busca de testu completu',
+'sqlite-no-fts' => '$1 ensin sofitu pa busca de testu completu',
 
 # New logging system
 'logentry-delete-delete' => '$1 {{GENDER:$2|desanició}} la páxina $3',
@@ -3869,7 +3869,7 @@ D\'otra miente, pues usar el formulariu cenciellu d\'abaxo. El to comentariu apa
 'feedback-bugnew' => "Yá lo comprobé. Informar d'esti fallu nuevu",
 
 # Search suggestions
-'searchsuggest-search' => 'Guetar',
+'searchsuggest-search' => 'Buscar',
 'searchsuggest-containing' => 'que contién...',
 
 # API errors

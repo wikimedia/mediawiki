@@ -759,6 +759,7 @@ Du har muligvis allerede skiftet din adgangskode eller anmodet om en ny midlerti
 
 # Special:PasswordReset
 'passwordreset' => 'Nulstil adgangskode',
+'passwordreset-text-one' => 'Udfyld denne formular for at nulstille din adgangskode.',
 'passwordreset-legend' => 'Nulstil adgangskode',
 'passwordreset-disabled' => 'Nulstilling af kodeord er slået fra på denne wiki.',
 'passwordreset-emaildisabled' => 'E-mailfunktioner er slået fra på denne wiki.',
@@ -996,6 +997,7 @@ Sletnings- og flytteloggerne for siden er vist nedenfor.',
 Den ser du til at være slettet.',
 'edit-conflict' => 'Redigeringskonflikt.',
 'edit-no-change' => 'Din ændring ignoreredes, fordi der ikke var ændring af teksten.',
+'postedit-confirmation' => 'Din redigering er gemt.',
 'edit-already-exists' => 'En ny side kunne ikke oprettes, fordi den allerede findes.',
 'defaultmessagetext' => 'Standardtekst',
 'content-failed-to-parse' => 'Kunne ikke fortolke $2-indholdet af $1-modellen: $3',

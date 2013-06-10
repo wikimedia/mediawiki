@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Altai uul
  * @author Gott wisst
  * @author JJohnson
  * @author Omnipaedista
@@ -362,25 +363,44 @@ Cȳþþuhord ageaf wōh "<code>$3: $4</code>"',
 'viewsource' => 'Sēon fruman',
 'cascadeprotected' => 'Þes trament wæs geborgen wiþ adihtunge, for þǣm þe hē is befangen in þissum {{PLURAL:$1|tramente, þe is| tramentum, þe sind}} geborgen settum wyrcende þǣm cyre "cascading": $2',
 
+# Virus scanner
+'virus-badscanner' => "Јастыра конфигурация: Јарты јок сканер ''$1''",
+'virus-unknownscanner' => 'Јарты јок антивирус:',
+
 # Login and logout pages
 'logouttext' => "'''Þū eart nū ūtmeldod.'''
 
 Þū canst ætfeolan þǣre nytte {{SITENAME}} tō ungecūðum, oþþe þū canst <span class='plainlinks'>[$1 inmeldian eft]</span> tō þǣm ylcan oþþe ōðrum brūcende.
 Cnāw þæt sume trametas mihten gīet wesan geīwde swā þū wǣre gīet inmeldod, oþ þæt þū clǣnsie þīnes sēcendtōles hord.",
+'welcomeuser' => 'Кӱӱнзеп кирер, $1!',
 'yourname' => 'Þīn brūcendnama:',
+'userlogin-yourname' => 'Эдинчиниҥ ады:',
+'userlogin-yourname-ph' => 'Эдинчиниҥ адын кийдирер:',
 'yourpassword' => 'Þafungword:',
+'userlogin-yourpassword' => 'Јажытту сӧс',
+'userlogin-yourpassword-ph' => 'Јажытту сӧсӧзрди кийдирер',
+'createacct-yourpassword-ph' => 'Јажытту сӧсти кийдирер',
 'yourpasswordagain' => 'Wrītan þafungword eft:',
+'createacct-yourpasswordagain' => 'Јажытту сӧсти јӧпсинер',
+'createacct-yourpasswordagain-ph' => 'Јажытту сӧсти јаҥынаҥ кийдирер',
 'remembermypassword' => 'Gemynan mīne inmeldunge on þissum webbsēcende (oþ $1 {{PLURAL:$1|dæg|daga}} lengest)',
+'userlogin-remembermypassword' => 'Артырар кирип алганымды',
 'yourdomainname' => 'Þīn geweald:',
+'password-change-forbidden' => 'Бу викиде, слерде јажытту сӧстӧрди солыыр арга јок.',
 'login' => 'Inmeldian',
 'nav-login-createaccount' => 'Inmeldian / wyrcan reccinge',
+'loginprompt' => 'Слер кукиларды јарадар учурлу {{SITENAME}} сайтка турган болзор.',
 'userlogin' => 'Inmeldian / wyrcan reccinge',
 'userloginnocreate' => 'Inmeldian',
 'logout' => 'Ūtmeldian',
 'userlogout' => 'Ūtmeldian',
 'notloggedin' => 'Nā ingemeldod',
+'userlogin-noaccount' => 'Слерде аккаунт јок по?',
+'userlogin-joinproject' => '{{SITENAME}} кирер',
+'nologin' => 'Слерде аккаунт јок по? $1.',
 'nologinlink' => 'Scieppan reccinge',
 'createaccount' => 'Scieppan reccinge',
+'gotaccount' => 'Белен аккаунт бар ба? $1.',
 'gotaccountlink' => 'Inmeldian',
 'createaccountmail' => 'Notian sceortne tīman hlētlic þafungword and sendan hit to þǣm spearcǣrenda naman þe is niðer',
 'createaccountreason' => 'Racu:',

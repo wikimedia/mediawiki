@@ -556,6 +556,7 @@ $messages = array(
 'create-this-page' => 'יצירת דף זה',
 'delete' => 'מחיקה',
 'deletethispage' => 'מחיקת דף זה',
+'undeletethispage' => 'שחזור דף זה',
 'undelete_short' => 'שחזור {{PLURAL:$1|עריכה אחת|$1 עריכות}}',
 'viewdeleted_short' => 'צפייה ב{{PLURAL:$1|עריכה מחוקה אחת|־$1 עריכות מחוקות}}',
 'protect' => 'הגנה',

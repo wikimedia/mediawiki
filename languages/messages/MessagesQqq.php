@@ -533,9 +533,9 @@ See also:
 * {{msg-mw|Accesskey-ca-delete}}
 * {{msg-mw|Tooltip-ca-delete}}
 {{Identical|Delete}}',
-'undeletethispage' => 'In the Cologne Blue skin this is the text for link to undelete the page in admin view, at the bottom of the page.',
 'deletethispage' => 'In the Cologne Blue skin this is the text for link to delete the page in admin view, at the bottom of the page.
 {{Identical|Delete this page}}',
+'undeletethispage' => 'In the Cologne Blue skin this is the text for link to undelete the page in admin view, at the bottom of the page.',
 'undelete_short' => "It is tab label. It's really can be named ''nstab-undelete''.",
 'viewdeleted_short' => 'Tab label for the undelete button when the user has permission to view the deleted history but not undelete.',
 'protect' => 'Name of protect tab displayed for admins. Should be in the infinitive mood.
@@ -1153,7 +1153,7 @@ It is also used on the submit button in the form/special page where you register
 'userlogin-resetlink' => 'Used on the login page.',
 'userlogin-resetpassword-link' => 'Used as link text on new vertical-layout create account form.
 
-The link points to [[Special:PasswordReset]].
+The link points to the local [[Special:PasswordReset]].
 
 See example: [{{canonicalurl:Special:UserLogin|useNew=1}} Special:UserLogin?useNew=1]
 
@@ -1351,10 +1351,14 @@ See also:
 # Special:PasswordReset
 'passwordreset' => 'Title of [[Special:PasswordReset]].
 {{Identical|Reset password}}',
-'passwordreset-text-one' => 'Text on [[Special:PasswordReset]] that appears when there is only one way of resetting the password.',
+'passwordreset-text-one' => 'Text on [[Special:PasswordReset]] that appears when there is only one way of resetting the password.
+
+{{msg-mw|Passwordreset-text-many}}, when there are multiple ways of resetting the password..',
 'passwordreset-text-many' => 'Text on [[Special:PasswordReset]] that appears when there are multiple ways of resetting the password.
 
-* $1 is the number of password reset routes.',
+* $1 is the number of password reset routes.
+
+{{msg-mw|Passwordreset-text-one}}, when there is only one way of resetting the password.',
 'passwordreset-legend' => '{{Identical|Reset password}}',
 'passwordreset-disabled' => 'Used as error message in changing password.',
 'passwordreset-emaildisabled' => "Used as error message in changing password when site's email feature is disabled.",

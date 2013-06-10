@@ -1002,7 +1002,7 @@ Si gouf anscheinend geläscht.",
 'postedit-confirmation' => 'Är Ännerung gouf gespäichert.',
 'edit-already-exists' => 'Déi nei Säit konnt net ugeluecht ginn, well et se scho gëtt.',
 'defaultmessagetext' => 'Standardtext',
-'content-failed-to-parse' => 'Den $2-Inhalt fir den $1-Modell konnt net geparst ginn: $1',
+'content-failed-to-parse' => 'Den $2-Inhalt fir den $1-Modell konnt net geparst ginn: $3',
 'invalid-content-data' => 'Donnéeë vum Inhalt sinn net valabel',
 'content-not-allowed-here' => '"$1"-Inhalt ass op der Säit [[$2]] net erlaabt',
 'editwarning-warning' => 'Wann Dir dës Säit verloosst kann dat dozou féieren datt Dir all Ännerungen, déi Dir gemaach hutt, verléiert.

@@ -38,6 +38,7 @@
  * @author Minh Nguyen
  * @author Nemo bis
  * @author Nuno Tavares
+ * @author OTAVIO1981
  * @author Opraco
  * @author Paulo Juntas
  * @author Pedroca cerebral
@@ -543,7 +544,7 @@ $messages = array(
 'viewtalkpage' => 'Ver discussão',
 'otherlanguages' => 'Noutras línguas',
 'redirectedfrom' => '(Redireccionado de $1)',
-'redirectpagesub' => 'Página de redireccionamento',
+'redirectpagesub' => 'Página de redirecionamento',
 'lastmodifiedat' => 'Esta página foi modificada pela última vez à(s) $2 de $1.',
 'viewcount' => 'Esta página foi acedida {{PLURAL:$1|uma vez|$1 vezes}}.',
 'protectedpage' => 'Página protegida',
@@ -766,7 +767,7 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências]].'
 'userlogout' => 'Sair',
 'notloggedin' => 'Não autenticado',
 'userlogin-noaccount' => 'Não tem uma conta?',
-'userlogin-joinproject' => 'Junte {{SITENAME}}',
+'userlogin-joinproject' => 'Junte-se a {{SITENAME}}',
 'nologin' => 'Não possui uma conta? $1.',
 'nologinlink' => 'Criar uma conta',
 'createaccount' => 'Criar conta',
@@ -774,7 +775,7 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências]].'
 'gotaccountlink' => 'Autentique-se',
 'userlogin-resetlink' => 'Esqueceu-se do seu nome de utilizador ou da palavra-chave?',
 'userlogin-resetpassword-link' => 'Recuperar palavra-chave',
-'helplogin-url' => 'Ajuda:login',
+'helplogin-url' => 'Ajuda:Autenticação',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Ajuda a fazer login]]',
 'createacct-join' => 'Insira a sua informação abaixo.',
 'createacct-emailrequired' => 'Endereço de email',
@@ -1138,7 +1139,7 @@ Não foi dada nenhuma explicação.',
 Ela parece ter sido eliminada.',
 'edit-conflict' => 'Conflito de edição.',
 'edit-no-change' => 'A sua edição foi ignorada, uma vez que o texto não sofreu alterações.',
-'postedit-confirmation' => 'Sua edição foi gravada',
+'postedit-confirmation' => 'A sua edição foi gravada.',
 'edit-already-exists' => 'Não foi possível criar uma página nova.
 Ela já existia.',
 'defaultmessagetext' => 'Texto da mensagem padrão',
@@ -1408,7 +1409,7 @@ Os detalhes podem ser encontrados no [{{fullurl:{{#Special:Log}}/delete|page={{F
 'search-result-size' => '$1 ({{PLURAL:$2|1 palavra|$2 palavras}})',
 'search-result-category-size' => '{{PLURAL:$1|1 membro|$1 membros}} ({{PLURAL:$2|1 subcategoria|$2 subcategorias}}, {{PLURAL:$3|1 ficheiro|$3 ficheiros}})',
 'search-result-score' => 'Relevancia: $1%',
-'search-redirect' => '(redireccionamento de $1)',
+'search-redirect' => '(redirecionamento de $1)',
 'search-section' => '(seção $1)',
 'search-suggest' => 'Será que queria dizer: $1',
 'search-interwiki-caption' => 'Projectos associados',
@@ -1619,7 +1620,7 @@ Esta informação será pública.',
 'right-move-subpages' => 'Mover páginas com as suas subpáginas',
 'right-move-rootuserpages' => 'Mover páginas raiz de utilizadores',
 'right-movefile' => 'Mover ficheiros',
-'right-suppressredirect' => 'Não criar um redireccionamento do nome antigo quando uma página é movida',
+'right-suppressredirect' => 'Não criar um redirecionamento do nome antigo quando uma página é movida',
 'right-upload' => 'Carregar ficheiros',
 'right-reupload' => 'Sobrescrever um ficheiro existente',
 'right-reupload-own' => 'Sobrescrever um ficheiro existente carregado pelo mesmo utilizador',
@@ -2058,7 +2059,7 @@ A lista abaixo apresenta apenas {{PLURAL:$1|a primeira página|as primeiras $1 p
 Encontra-se disponível uma [[Special:WhatLinksHere/$2|lista completa]].',
 'nolinkstoimage' => 'Nenhuma página contém links para este ficheiro.',
 'morelinkstoimage' => 'Ver a [[Special:WhatLinksHere/$1|lista completa]] de páginas que contêm links para este ficheiro.',
-'linkstoimage-redirect' => '$1 (redireccionamento de ficheiro) $2',
+'linkstoimage-redirect' => '$1 (redirecionamento de ficheiro) $2',
 'duplicatesoffile' => '{{PLURAL:$1|O seguinte ficheiro é duplicado|Os seguintes $1 ficheiros são duplicados}} deste ficheiro ([[Special:FileDuplicateSearch/$2|mais detalhes]]):',
 'sharedupload' => 'Este ficheiro provém de $1 e pode ser usado por outros projectos.',
 'sharedupload-desc-there' => 'Este ficheiro provém de $1 e pode ser usado por outros projectos.
@@ -2128,7 +2129,7 @@ Talvez queira editar a descrição na [$2 página original de descrição do fic
 'randompage-nopages' => 'Não há páginas {{PLURAL:$2|no seguinte espaço nominal|nos seguintes espaços nominais}}: $1.',
 
 # Random redirect
-'randomredirect' => 'Redireccionamento aleatório',
+'randomredirect' => 'Redirecionamento aleatório',
 'randomredirect-nopages' => 'Não há redireccionamentos no espaço nominal "$1".',
 
 # Statistics
@@ -2165,12 +2166,12 @@ Considera-se que uma página é de desambiguação se nela for utilizada uma pre
 'pageswithprop-submit' => 'Avançar',
 
 'doubleredirects' => 'Redireccionamentos duplos',
-'doubleredirectstext' => 'Esta página lista todas as páginas que redireccionam para outras páginas de redireccionamento.
-Cada linha contém links para o primeiro e segundo redireccionamentos, bem como o destino do segundo redireccionamento, geralmente contendo a verdadeira página de destino, que devia ser o destino do primeiro redireccionamento.
+'doubleredirectstext' => 'Esta página lista todas as páginas que redirecionam para outras páginas de redirecionamento.
+Cada linha contém links para o primeiro e segundo redirecionamentos, bem como o destino do segundo redirecionamento, geralmente contendo a verdadeira página de destino, que devia ser o destino do primeiro redirecionamento.
 <del>Entradas cortadas</del> já foram solucionadas.',
 'double-redirect-fixed-move' => '[[$1]] foi movido.
 Agora redirecciona para [[$2]].',
-'double-redirect-fixed-maintenance' => 'A corrigir redireccionamento duplo de [[$1]] para [[$2]].',
+'double-redirect-fixed-maintenance' => 'A corrigir redirecionamento duplo de [[$1]] para [[$2]].',
 'double-redirect-fixer' => 'Corrector de redireccionamentos',
 
 'brokenredirects' => 'Redireccionamentos quebrados',
@@ -2440,8 +2441,8 @@ O nome desta página passará a aparecer a '''negrito''' na lista de [[Special:R
 'enotif_subject_changed' => 'A página $1 de {{SITENAME}} foi {{GENDER:$2|alterada}} por $2',
 'enotif_body_intro_deleted' => 'A página $1 de {{SITENAME}} foi {{GENDER:$2|eliminada}} em $PAGEEDITDATE por $2, ver $3.',
 'enotif_body_intro_created' => 'A página $1 em {{SITENAME}} foi {{GENDER:$2| criada}} em $PAGEEDITDATE por $2, ver $3 para a versão actual.',
-'enotif_body_intro_moved' => 'A páginas $1 em {{SITENAME}} foi {{GENDER:$2|movida}} em $PAGEEDITDATE por $2, ver $3 para a versão actual.',
-'enotif_body_intro_restored' => 'A páginas $1 em {{SITENAME}} foi {{GENDER:$2|restaurada}} em $PAGEEDITDATE por $2, ver $3 para a versão actual.',
+'enotif_body_intro_moved' => 'A página $1 em {{SITENAME}} foi {{GENDER:$2|movida}} em $PAGEEDITDATE por $2, ver $3 para a versão actual.',
+'enotif_body_intro_restored' => 'A página $1 em {{SITENAME}} foi {{GENDER:$2|restaurada}} em $PAGEEDITDATE por $2, ver $3 para a versão actual.',
 'enotif_body_intro_changed' => 'A página $1 em {{SITENAME}} foi {{GENDER:$2|alterada}} em $PAGEEDITDATE por $2, ver $3 para a versão actual.',
 'enotif_lastvisited' => 'Consulte $1 para todas as alterações efectuadas desde a sua última visita.',
 'enotif_lastdiff' => 'Consulte $1 para ver esta alteração.',
@@ -2667,7 +2668,7 @@ $1',
 'mycontris' => 'Contribuições',
 'contribsub2' => 'Para $1 ($2)',
 'nocontribs' => 'Não foram encontradas alterações com este critério.',
-'uctop' => ' (edição actual)',
+'uctop' => '(edição atual)',
 'month' => 'Até o mês:',
 'year' => 'Até o ano:',
 
@@ -2696,7 +2697,7 @@ Para referência é apresentado abaixo o último registo de bloqueio:',
 'linkshere' => "As seguintes páginas têm links para '''[[:$1]]''':",
 'nolinkshere' => "Não existem afluentes para '''[[:$1]]''' com as condições especificadas.",
 'nolinkshere-ns' => "Não existem links para '''[[:$1]]''' no espaço nominal seleccionado.",
-'isredirect' => 'página de redireccionamento',
+'isredirect' => 'página de redirecionamento',
 'istemplate' => 'inclusão',
 'isimage' => 'link para o ficheiro',
 'whatlinkshere-prev' => '{{PLURAL:$1|anterior|$1 anteriores}}',
@@ -2829,7 +2830,7 @@ Contacte o seu fornecedor de internet ou o serviço de apoio técnico e informe-
 'proxyblocksuccess' => 'Concluído.',
 'sorbsreason' => "O seu endereço IP encontra-se listado como ''proxy'' aberto na DNSBL utilizada pela {{SITENAME}}.",
 'sorbs_create_account_reason' => "O seu endereço IP encontra-se listado como ''proxy'' aberto na DNSBL utilizada pela {{SITENAME}}. Não pode criar uma conta",
-'xffblockreason' => 'Um endereço IP presente no cabeçalho X-Forwardd-For, seja seu ou de um servidor de proxy que estiver a usar, foi bloqueado. A razão do bloqueio original foi: $1',
+'xffblockreason' => 'Um endereço IP presente no cabeçalho X-Forwarded-For, seja seu ou de um servidor de proxy que estiver a usar, foi bloqueado. A razão do bloqueio original foi: $1',
 'cant-block-while-blocked' => 'Não pode bloquear outros utilizadores enquanto estiver bloqueado.',
 'cant-see-hidden-user' => "O utilizador que está tentando bloquear já está bloqueado e oculto.
 Como não tem o privilégio para ocultar utilizadores ''(hideuser)'', não pode ver ou editar o bloqueio deste utilizador.",
@@ -2873,11 +2874,11 @@ Isto significa que pode mover uma página de volta para o seu nome original se a
 Numa página popular esta operação pode representar uma mudança drástica e inesperada;
 certifique-se de que compreende as consequências da mudança antes de prosseguir, por favor.",
 'movepagetext-noredirectfixer' => "Usando o formulário abaixo, pode alterar o nome de uma página e mover todo o histórico desta para o nome novo.
-A página antiga é transformada numa página de redireccionamento para a nova.
-Verifique a existência de [[Special:DoubleRedirects|redireccionamentos duplos]] ou [[Special:BrokenRedirects|quebrados]].
+A página antiga é transformada numa página de redirecionamento para a nova.
+Verifique a existência de [[Special:DoubleRedirects|redirecionamentos duplos]] ou [[Special:BrokenRedirects|quebrados]].
 É da sua responsabilidade certificar-se de que os links continuam a apontar para onde é suposto.
 
-Note que a página '''não''' será movida se já existir uma página com o nome novo, a menos que esta página já existente esteja vazia ou seja uma página de redireccionamento e não tenha um histórico de edições.
+Note que a página '''não''' será movida se já existir uma página com o nome novo, a menos que esta página já existente esteja vazia ou seja uma página de redirecionamento e não tenha um histórico de edições.
 Isto também significa que, se se tiver enganado, pode alterar o nome da página movida de volta para o seu nome original; e que não pode sobrescrever o conteúdo de uma página existente.
 
 '''Aviso!'''
@@ -2901,8 +2902,8 @@ Nestes casos, terá de mover a página de discussão manualmente, ou fundi-la co
 'movepagebtn' => 'Mover página',
 'pagemovedsub' => 'Página movida com sucesso',
 'movepage-moved' => '\'\'\'"$1" foi movida para "$2"\'\'\'',
-'movepage-moved-redirect' => 'Foi criado um redireccionamento.',
-'movepage-moved-noredirect' => 'A criação de um redireccionamento foi suprimida.',
+'movepage-moved-redirect' => 'Foi criado um redirecionamento.',
+'movepage-moved-noredirect' => 'A criação de um redirecionamento foi suprimida.',
 'articleexists' => 'Uma página com este nome já existe, ou o nome que escolheu é inválido.
 Escolha outro nome, por favor.',
 'cantmove-titleprotected' => 'Não pode mover uma página para esse destino, porque o novo título foi protegido para evitar a sua criação',
@@ -2940,8 +2941,8 @@ não é possível mover uma página para ela mesma.',
 'nonfile-cannot-move-to-file' => 'Não é possível mover algo que não é um ficheiro para o espaço nominal de ficheiros',
 'imagetypemismatch' => 'A extensão do novo ficheiro não corresponde ao seu tipo',
 'imageinvalidfilename' => 'O nome do ficheiro alvo é inválido',
-'fix-double-redirects' => 'Actualizar todos os redireccionamentos que apontem para o título original',
-'move-leave-redirect' => 'Criar um redireccionamento',
+'fix-double-redirects' => 'Atualizar todos os redirecionamentos que apontem para o título original',
+'move-leave-redirect' => 'Criar um redirecionamento',
 'protectedpagemovewarning' => "'''Aviso:''' Esta página foi protegida de maneira a que apenas utilizadores com privilégio de administrador possam movê-la.
 O último registo é apresentado abaixo para referência:",
 'semiprotectedpagemovewarning' => "'''Nota:''' Esta página protegida de maneira a que apenas utilizadores registados possam movê-la.
@@ -3136,7 +3137,7 @@ Utilize o botão "Antever resultado" antes de gravar, por favor.',
 'tooltip-compareselectedversions' => 'Ver as diferenças entre as duas versões seleccionadas desta página.',
 'tooltip-watch' => 'Adicionar esta página à lista de páginas vigiadas',
 'tooltip-watchlistedit-normal-submit' => 'Remover títulos',
-'tooltip-watchlistedit-raw-submit' => 'Actualizar a lista de vigiados',
+'tooltip-watchlistedit-raw-submit' => 'Atualizar a lista de vigiados',
 'tooltip-recreate' => 'Recriar a página apesar de ter sido eliminada',
 'tooltip-upload' => 'Iniciar o carregamento',
 'tooltip-rollback' => '"{{int:rollbacklink}}" reverte, com um só clique, as edições do último editor desta página.',
@@ -3853,7 +3854,7 @@ Confirme que deseja realmente recriar esta página, por favor.",
 # Auto-summaries
 'autosumm-blank' => 'Limpou toda a página',
 'autosumm-replace' => "Página substituída por '$1'",
-'autoredircomment' => 'Redireccionamento para [[$1]]',
+'autoredircomment' => 'Redirecionamento para [[$1]]',
 'autosumm-new' => "Criou nova página com '$1'",
 
 # Live preview

@@ -590,7 +590,7 @@ További információkat a [[Special:Version|verzióinformációs lapon]] talál
 'newmessageslink' => 'új üzenet vár',
 'newmessagesdifflink' => 'az utolsó üzenetet',
 'youhavenewmessagesfromusers' => '$2 kaptál {{PLURAL:$3|egy|$3}} szerkesztőtől $1!',
-'youhavenewmessagesmanyusers' => '$1ed van több szerkesztőtől ($2).',
+'youhavenewmessagesmanyusers' => '$2 kaptál több szerkesztőtől $1.',
 'newmessageslinkplural' => 'a vitalapodon',
 'newmessagesdifflinkplural' => '{{PLURAL:$1|Új üzenetet|Új üzeneteket}}',
 'youhavenewmessagesmulti' => 'Új üzenet vár a(z) $1 wikin',
@@ -772,7 +772,7 @@ Ne felejtsd el módosítani a [[Special:Preferences|{{SITENAME}} beállításaid
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Segítség a bejelentkezéshez]]',
 'createacct-join' => 'Add meg az alábbi információkat.',
 'createacct-emailrequired' => 'E-mail cím',
-'createacct-emailoptional' => 'E-mail cím (opcionáis)',
+'createacct-emailoptional' => 'E-mail cím (opcionális)',
 'createacct-email-ph' => 'Add meg e-mail címed',
 'createaccountmail' => 'Átmeneti, véletlenszerű jelszó használata és kiküldése az alábbi e-mail címre',
 'createacct-realname' => 'Igazi neved (nem kötelező)',
@@ -782,10 +782,15 @@ Ne felejtsd el módosítani a [[Special:Preferences|{{SITENAME}} beállításaid
 'createacct-captcha' => 'Biztonsági ellenőrzés',
 'createacct-imgcaptcha-ph' => 'Írd be a szöveget, amit fent látsz',
 'createacct-submit' => 'Felhasználói fiók létrehozása',
+'createacct-benefit-heading' => 'A(z) {{SITENAME}}-t hozzád hasonló emberek készítik.',
+'createacct-benefit-body1' => '{{PLURAL:$1|szerkesztés|szerkesztés}}',
+'createacct-benefit-body2' => '{{PLURAL:$1|lap|lap}}',
+'createacct-benefit-body3' => 'aktív {{PLURAL:$1|szerkesztő|szerkesztő}}',
 'badretype' => 'A megadott jelszavak nem egyeznek.',
 'userexists' => 'A megadott felhasználónév már foglalt.
 Kérlek, válassz másikat!',
 'loginerror' => 'Hiba történt a bejelentkezés során',
+'createacct-error' => 'Fióklétrehozási hiba',
 'createaccounterror' => 'Nem sikerült létrehozni a felhasználói fiókot: $1',
 'nocookiesnew' => 'A felhasználói fiókod létrejött, de nem vagy bejelentkezve. A wiki sütiket („cookie”) használ a szerkesztők azonosítására. Nálad ezek le vannak tiltva. Kérlek, engedélyezd őket a böngésződben, majd lépj be az új azonosítóddal és jelszavaddal.',
 'nocookieslogin' => 'A wiki sütiket („cookie”) használ a szerkesztők azonosításhoz.
@@ -870,9 +875,12 @@ Várj egy kicsit, mielőtt újra próbálkozol.',
 'resetpass-wrong-oldpass' => 'Nem megfelelő ideiglenes vagy jelenlegi jelszó.
 Lehet, hogy már sikeresen megváltoztattad a jelszavad, vagy pedig időközben új ideiglenes jelszót kértél.',
 'resetpass-temp-password' => 'Ideiglenes jelszó:',
+'resetpass-abort-generic' => 'A jelszómódosítást megszakította egy kiterjesztés.',
 
 # Special:PasswordReset
 'passwordreset' => 'Jelszó törlése',
+'passwordreset-text-one' => 'A jelszavad alaphelyzetbe állításához töltsd ki az űrlapot.',
+'passwordreset-text-many' => '{{PLURAL:$1|A jelszavad alaphelyzetbe állításához írd be az alábbi adatok egyikét.}}',
 'passwordreset-legend' => 'Új jelszó kérése',
 'passwordreset-disabled' => 'Új jelszó kérése nem engedélyezett ezen a wikin.',
 'passwordreset-emaildisabled' => 'Az e-mail funkció le van tiltva ezen a wikin.',
@@ -1104,6 +1112,7 @@ Nem lett magyarázat csatolva.',
 Úgy tűnik, hogy törölve lett.',
 'edit-conflict' => 'Szerkesztési ütközés.',
 'edit-no-change' => 'A szerkesztésed figyelmen kívül lett hagyva, mivel nem változtattál a lap szövegén.',
+'postedit-confirmation' => 'A szerkesztésedet elmentettük.',
 'edit-already-exists' => 'Az új lap nem készíthető el.
 Már létezik.',
 'defaultmessagetext' => 'Alapértelmezett szöveg',
@@ -1111,7 +1120,7 @@ Már létezik.',
 'invalid-content-data' => 'Érvénytelen tartalom adat',
 'content-not-allowed-here' => '"$1" tartalom nem engedélyezett a [[$2]] oldalon',
 'editwarning-warning' => 'A lap elhagyásával az összes itt végzett változtatás elveszhet.
-Ha be vagy jelentkezve letilthatod ezt a figyelmeztetést a beállításaid „{{int:prefs-editing}}” szakaszában.',
+Ha be vagy jelentkezve letilthatod ezt a figyelmeztetést a beállításaid „Szerkesztés” szakaszában.',
 
 # Content models
 'content-model-wikitext' => 'wikiszöveg',
@@ -1387,6 +1396,7 @@ Ezt általában egy elavult, törölt oldalra mutató laptörténeti hivatkozás
 'powersearch-togglenone' => 'Egyik sem',
 'search-external' => 'Külső kereső',
 'searchdisabled' => 'Elnézésed kérjük, de a teljes szöveges keresés terhelési okok miatt átmenetileg nem használható. Ezidő alatt használhatod a lenti Google keresést, mely viszont lehetséges, hogy nem teljesen friss adatokkal dolgozik.',
+'search-error' => 'A keresés közben hiba történt: $1',
 
 # Preferences page
 'preferences' => 'Beállítások',
@@ -1528,6 +1538,7 @@ A műveletet nem lehet visszavonni.',
 'userrights-notallowed' => 'Nincs jogosultságod jogosultságok adására vagy elvételére.',
 'userrights-changeable-col' => 'Megváltoztatható csoportok',
 'userrights-unchangeable-col' => 'Nem megváltoztatható csoportok',
+'userrights-conflict' => 'Felhasználói jogok ütközése! Kérlek, végez el újra a változtatásokat.',
 
 # Groups
 'group' => 'Csoport:',
@@ -1881,6 +1892,7 @@ Kérjük, hogy lépj kapcsolatba egy  [[Special:ListUsers/sysop|adminisztrátorr
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Nem sikerült csatlakozni a napló adatbázis "$1 " háttér tárolójához.',
+'filejournal-fail-dbquery' => 'Nem sikerült frissíteni a naplóadatbázis "$1 " háttértárolóját.',
 
 # Lock manager
 'lockmanager-notlocked' => 'Nem lehet a zárolást feloldani: „$1”; nincs zárolva.',
@@ -3942,6 +3954,8 @@ A MediaWikit abban a reményben terjesztjük, hogy hasznos lesz, de GARANCIA NÉ
 'htmlform-submit' => 'Elküldés',
 'htmlform-reset' => 'Változtatások visszavonása',
 'htmlform-selectorother-other' => 'egyéb',
+'htmlform-no' => 'Nem',
+'htmlform-yes' => 'Igen',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 teljes szöveges keresés támogatással',

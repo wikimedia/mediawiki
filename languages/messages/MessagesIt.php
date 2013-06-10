@@ -853,6 +853,7 @@ La password potrebbe essere stata già cambiata, oppure potrebbe essere stata ri
 # Special:PasswordReset
 'passwordreset' => 'Reimposta password',
 'passwordreset-text-one' => 'Compila questo modulo per reimpostare la tua password.',
+'passwordreset-text-many' => '{{PLURAL:$1|Compila uno dei campi per reimpostare la tua password.}}',
 'passwordreset-legend' => 'Reimposta password',
 'passwordreset-disabled' => 'La reimpostazione delle password è stata disabilitata su questa wiki',
 'passwordreset-emaildisabled' => 'Le funzionalità di posta elettronica sono state disabilitate su questa wiki.',
@@ -980,7 +981,8 @@ La password per questo nuovo account può essere modificata all'accesso nella pa
 'newarticletext' => "Il collegamento appena seguito corrisponde ad una pagina non ancora esistente.
 Se vuoi creare la pagina ora, basta cominciare a scrivere il testo nella casella qui sotto (vedi la [[{{MediaWiki:Helppage}}|pagina di aiuto]] per maggiori informazioni).
 Se il collegamento è stato aperto per errore, è sufficiente fare clic sul pulsante '''Indietro''' del proprio browser.",
-'anontalkpagetext' => "----''Questa è la pagina di discussione di un utente anonimo, che non ha ancora creato un accesso o comunque non lo usa. Per identificarlo è quindi necessario usare il numero del suo indirizzo IP. Gli indirizzi IP possono però essere condivisi da più utenti. Se sei un utente anonimo e ritieni che i commenti presenti in questa pagina non si riferiscano a te, [[Special:UserLogin/signup|crea un nuovo accesso]] o [[Special:UserLogin|entra con quello che già hai]] per evitare di essere confuso con altri utenti anonimi in futuro.''",
+'anontalkpagetext' => "----
+''Questa è la pagina di discussione di un utente anonimo, che non ha ancora creato un'utenza o comunque non la sta usando. Per identificarlo è quindi necessario usare il numero del suo indirizzo IP. Gli indirizzi IP possono però essere condivisi da più utenti. Se sei un utente anonimo e ritieni che i commenti presenti in questa pagina non si riferiscano a te, [[Special:UserLogin/signup|crea una nuova utenza]] o [[Special:UserLogin|entra con quella che già hai]] per evitare di essere confuso con altri utenti anonimi in futuro.''",
 'noarticletext' => 'In questo momento la pagina richiesta è vuota. È possibile [[Special:Search/{{PAGENAME}}|cercare questo titolo]] nelle altre pagine del sito, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cercare nei registri correlati] oppure [{{fullurl:{{FULLPAGENAME}}|action=edit}} modificare la pagina ora]</span>.',
 'noarticletext-nopermission' => 'In questo momento la pagina richiesta è vuota. È possibile [[Special:Search/{{PAGENAME}}|cercare questo titolo]] nelle altre pagine del sito o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cercare nei registri correlati]</span>, ma non hai i permessi per creare questa pagina.',
 'missing-revision' => 'La revisione #$1 della pagina "{{PAGENAME}}" non esiste.

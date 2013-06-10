@@ -329,7 +329,7 @@ $messages = array(
 'nstab-category' => 'Категорий',
 
 # Main script and global functions
-'nosuchspecialpage' => 'Тигай лӱмын-ыштыме лаштык уке',
+'nosuchspecialpage' => 'Тыгай спецлаштык уке.',
 
 # General errors
 'error' => 'Йоҥылыш',

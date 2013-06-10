@@ -8,6 +8,7 @@
  * @file
  *
  * @author Als-Holder
+ * @author Imbericle
  * @author M-sch
  * @author Manuae
  * @author SPS
@@ -57,6 +58,9 @@ $namespaceAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Lingg unnaschdraische',
+'tog-hideminor' => 'Va.schdegg klääne Be.arwaidunge',
+'tog-hidepatrolled' => 'Va.schdegg gsischdede Ännarunge',
+'tog-extendwatchlist' => 'Zaisch alle Ännarunge unn ned nur die ledschde',
 'tog-showtoolbar' => "Wergzaisch fas Beawaide zaische (dodezu brauchd's JavaScript)",
 'tog-showjumplinks' => 'Schdellde "Hubs uff"-Lingg o',
 'tog-showhiddencats' => 'Zaisch vaschdeglde Grubbe',
@@ -125,12 +129,12 @@ $messages = array(
 'pagecategories' => '{{PLURAL:$1|Grubb|Grubbe}}',
 'category_header' => 'Saide in de Grubb „$1“',
 'subcategories' => 'Unnagrubbe',
-'category-media-header' => 'Medije inde Grubb „$1“',
+'category-media-header' => 'Medⁱje in dɐ Grubb „$1“',
 'category-empty' => '"Die Grubb hod kä Said odda Medije."',
 'hidden-categories' => '{{PLURAL:$1|Vaschdegldi Grubb|Vaschdeglde Grubbe}}',
 'hidden-category-category' => 'Verschdegelde Grubbe',
 'category-subcat-count' => '{{PLURAL:$2|Die Grubb hod bloß die Unnagrubb.|Die Grubb hod {{PLURAL:$1|Unnagrubbe|$1 Unnagrubbe}},vun gsomd $2.}}',
-'category-article-count' => '{{PLURAL:$2|Inde Grubb hodss nua die Said.|Die {{PLURAL:$1|Said|$1 Saide}} gibbds inde Grubb, vun gsomd $2.}}',
+'category-article-count' => '{{PLURAL:$2|In dɐ Grubb hodds nua die Said.|Die {{PLURAL:$1|Said|$1 Saide}} gibbds inde Grubb, vun gsomd $2.}}',
 'category-file-count' => "{{PLURAL:$2|Die Grubb hod bloß ä Said.|Die {{PLURAL:$1|Said isch äni vun $2 Saide:|S'werren $1 vun gsomd $2 Saide gzaischd:}}}}",
 'listingcontinuesabbrev' => '(Fords.)',
 'noindex-category' => 'Saide, wu ned im Vazaischnis sinn',
@@ -199,6 +203,7 @@ $messages = array(
 'talk' => 'Dischbediere',
 'views' => 'Uffruf',
 'toolbox' => 'Wergzaischkischd',
+'categorypage' => 'Zaisch die Kadegorie',
 'viewtalkpage' => 'Zaischs Gbabbl',
 'otherlanguages' => 'In annare Schbroche',
 'redirectedfrom' => '(Nochgschiggd vun $1)',
@@ -352,8 +357,8 @@ Wenn do nid hin hoscht welle, no druck in Daim Browser uff '''Zrick'''.",
 odda [{{fullurl:{{FULLPAGENAME}}|action=edit}} die Said beawaide]</span>.',
 'updated' => '(Gännad)',
 'note' => "'''Hiwes:'''",
-'previewnote' => "'''Deng'g droa, dass des numme e Vorschau isch.'''
-Doi Ännerunge sinn no nid gschbaichert worre!",
+'previewnote' => "'''Deng'g drɔ̃ɔ̃, dass des nua e Vorschau is.'''
+Doi Ännerunge sinn no nedd gschbaischadd worre!",
 'editing' => 'Om $1 beawaide',
 'editingsection' => '$1 beawaide (de Deel)',
 'yourtext' => 'Doin Tegschd',

@@ -889,6 +889,8 @@ Du kanske redan har lyckats ändra ditt lösenord eller begärt ett nytt tillfä
 
 # Special:PasswordReset
 'passwordreset' => 'Lösenordsåterställning',
+'passwordreset-text-one' => 'Fyll i detta formulär för att återställa ditt lösenord.',
+'passwordreset-text-many' => '{{PLURAL:$1|Fyll i en av datafälten för att återställa ditt lösenord.}}',
 'passwordreset-legend' => 'Återställ lösenord',
 'passwordreset-disabled' => 'Lösenordsåterställning har inaktiverats på denna wiki.',
 'passwordreset-emaildisabled' => 'E-postfunktioner har inaktiverats på denna wiki.',
@@ -1134,7 +1136,7 @@ Den finns redan.',
 'invalid-content-data' => 'Ogiltig innehållsdata',
 'content-not-allowed-here' => 'innehåll av "$1" är inte tillåtet på sidan [[$2]]',
 'editwarning-warning' => 'Om du lämnar den här sidan kommer du att förlora alla ändringar du har gjort.
-Om du är inloggad kan du slå av den här varningen under "{{int:prefs-editing}}" i dina inställningar.',
+Om du är inloggad kan du slå av den här varningen under "Redigering" i dina inställningar.',
 
 # Content models
 'content-model-wikitext' => 'wikitext',

@@ -457,6 +457,18 @@ $messages = array(
 'oct' => 'Eki',
 'nov' => 'Kas',
 'dec' => 'Ara',
+'january-date' => '$1 Ocak',
+'february-date' => '$1 Şubat',
+'march-date' => '$1 Mart',
+'april-date' => '$1 Nisan',
+'may-date' => '$1 Mayıs',
+'june-date' => '$1 Haziran',
+'july-date' => '$1 Temmuz',
+'august-date' => '$1 Ağustos',
+'september-date' => '$1 Eylül',
+'october-date' => '$1 Ekim',
+'november-date' => '$1 Kasım',
+'december-date' => '$1 Aralık',
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Kategori|Kategoriler}}',
@@ -756,9 +768,18 @@ Tarayıcınızın önbelleğini temizleyene kadar bazı sayfalar sanki hâlâ ot
 'welcomecreation-msg' => 'Hesabınız açıldı.
 [[Special:Preferences|{{SITENAME}} tercihlerinizi]] değiştirmeyi unutmayın.',
 'yourname' => 'Kullanıcı adı:',
+'userlogin-yourname' => 'Kullanıcı adı',
+'userlogin-yourname-ph' => 'Kullanıcı adı girin',
 'yourpassword' => 'Parola:',
+'userlogin-yourpassword' => 'Parola',
+'userlogin-yourpassword-ph' => 'Parolanızı girin',
+'createacct-yourpassword-ph' => 'Bir parola girin',
 'yourpasswordagain' => 'Parolayı yeniden girin:',
+'createacct-yourpasswordagain' => 'Parolayı onayla',
+'createacct-yourpasswordagain-ph' => 'Parolayı yeniden girin',
 'remembermypassword' => 'Girişimi bu tarayıcıda hatırla (en fazla $1 {{PLURAL:$1|gün|gün}} için)',
+'userlogin-remembermypassword' => 'Oturumumu sürekli açık tut',
+'userlogin-signwithsecure' => 'Güvenli bağlantı kullan',
 'securelogin-stick-https' => "Giriş yaptıktan sonra HTTPS'e bağlı kal",
 'yourdomainname' => 'Alan adınız:',
 'password-change-forbidden' => 'Bu vikide parolanızı değiştiremezsiniz.',
@@ -771,18 +792,38 @@ Tarayıcınızın önbelleğini temizleyene kadar bazı sayfalar sanki hâlâ ot
 'logout' => 'Oturumu kapat',
 'userlogout' => 'Oturumu kapat',
 'notloggedin' => 'Oturum açık değil',
+'userlogin-noaccount' => 'Bir hesabınız yok mu?',
+'userlogin-joinproject' => "{{SITENAME}}'ye katılın",
 'nologin' => 'Bir hesabınız yok mu? $1.',
 'nologinlink' => 'Hesap oluşturun',
 'createaccount' => 'Hesap oluştur',
 'gotaccount' => 'Zaten bir hesabınız var mı? $1.',
 'gotaccountlink' => 'Oturum açın',
 'userlogin-resetlink' => 'Giriş bilgilerinizi mi unuttunuz?',
+'userlogin-resetpassword-link' => 'Parolanızı sıfırlayın',
+'helplogin-url' => 'Help:Oturum açma',
+'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Oturum açma konusunda yardım alın]]',
+'createacct-join' => 'Aşağıya bilgilerinizi girin.',
+'createacct-emailrequired' => 'E-posta adresi',
+'createacct-emailoptional' => 'E-posta adresi (isteğe bağlı)',
+'createacct-email-ph' => 'E-posta adresinizi girin',
 'createaccountmail' => 'Geçici bir rastgele şifre kullan ve şifreyi aşağıda belirtilen e-posta adresine gönder',
+'createacct-realname' => 'Gerçek adı (isteğe bağlı)',
 'createaccountreason' => 'Sebep:',
+'createacct-reason' => 'Gerekçe',
+'createacct-reason-ph' => 'Neden başka bir hesap oluşturuyorsunuz',
+'createacct-captcha' => 'Güvenlik kontrolü',
+'createacct-imgcaptcha-ph' => 'Yukarıda gördüğünüz metin girin',
+'createacct-submit' => 'Hesabınızı oluşturun',
+'createacct-benefit-heading' => '{{SITENAME}} sizin gibi insanlar tarafından oluşturulur.',
+'createacct-benefit-body1' => '{{PLURAL:$1|düzenleme|düzenleme}}',
+'createacct-benefit-body2' => '{{PLURAL:$1|sayfa|sayfa}}',
+'createacct-benefit-body3' => 'en son {{PLURAL:$1|katkıda bulunan|katkıda bulunan}}',
 'badretype' => 'Girdiğiniz şifreler birbirleriyle uyuşmuyor.',
 'userexists' => 'Girdiğiniz kullanıcı adı zaten kullanımda.
 Lütfen farklı bir kullanıcı adı seçiniz.',
 'loginerror' => 'Oturum açma hatası.',
+'createacct-error' => 'Hesap oluşturma hatası',
 'createaccounterror' => 'Hesap oluşturulamıyor: $1',
 'nocookiesnew' => 'Kullanıcı hesabı oluşturuldu ama oturum açamadınız.
 Oturum açmak için {{SITENAME}} çerezleri kullanır.
@@ -871,6 +912,7 @@ Girişi bitirmek için, burada yeni bir parola yazın:',
 
 # Special:PasswordReset
 'passwordreset' => 'Parola sıfırlama',
+'passwordreset-text-one' => 'Parolanızı sıfırlamak için bu formu doldurun.',
 'passwordreset-legend' => 'Şifreyi sıfırla',
 'passwordreset-disabled' => 'Parola sıfırlamaları bu wiki üzerinde devre dışı bırakıldı.',
 'passwordreset-username' => 'Kullanıcı adı:',
@@ -894,9 +936,9 @@ $2
 Bu geçici parola ile giriş yapın ve yeni bir şifre seçin. Bu talep bir başkasına aitse veya şifrenizi hatırladıysanız ve artık şifrenizi değiştirmek istemiyorsanız; bu iletiyi önemsemeyerek eski şifrenizi kullanmaya devam edebilirsiniz.',
 'passwordreset-emailelement' => 'Kullanıcı adı: $1
 Geçici şifre: $2',
-'passwordreset-emailsent' => 'Hatırlatma e-postası gönderildi.',
-'passwordreset-emailsent-capture' => 'Aşağıda gözüktüğü gibi bir hatırlatma e-postası gönderilmiştir.',
-'passwordreset-emailerror-capture' => 'Aşağıda gözüktüğü gibi bir hatırlatma e-postası oluşturulmuştur ancak $1 adlı kullanıcıya gönderilememiştir.',
+'passwordreset-emailsent' => 'Parola sıfırlama e-postası gönderildi.',
+'passwordreset-emailsent-capture' => 'Aşağıda gözüktüğü gibi bir parola sıfırlama e-postası gönderildi.',
+'passwordreset-emailerror-capture' => 'Aşağıda gözüktüğü gibi bir parola sıfırlama e-postası oluşturuldu ancak {{GENDER:$2|kullanıcıya}} gönderme işlemi başarısız oldu: $1',
 
 # Special:ChangeEmail
 'changeemail' => 'E-posta adresini değiştir',
@@ -1018,7 +1060,7 @@ Son engelleme günlüğü girdisi referans için aşağıda sağlanmıştır:',
 '''Henüz kaydedilmedi!'''",
 'sitejspreview' => "'''Sadece kullanıcı JavaScript kod dosyanızın önizlemesini görüyorsunuz.''' 
 '''Henüz kaydedilmedi!'''",
-'userinvalidcssjstitle' => "''Uyarı:''' \"\$1\" adıyla bir tema yoktur. tema-adı.css ve .js dosyalarının adları küçük harf ile yazması gerek, yani {{ns:user}}:Temel/'''V'''ector.css değil, {{ns:user}}:Temel/'''v'''ector.css.",
+'userinvalidcssjstitle' => '\'\'\'Uyarı:\'\'\' "$1" adında bir tema yoktur. Özel .css ve .js sayfalarının adlarını küçük harf ile yazın, örneğin;  "{{ns:user}}:Örnek/Vector.css" yerine "{{ns:user}}:Örnek/vector.css" yazın.',
 'updated' => '(Güncellendi)',
 'note' => "'''Not: '''",
 'previewnote' => "'''Bunun yalnızca bir ön izleme olduğunu unutmayın.'''
@@ -1048,8 +1090,8 @@ Sizin değişiklikleriniz alta gösterilmiştir. Son değişiklerinizi yazının
 'storedversion' => 'Kaydedilmiş metin',
 'nonunicodebrowser' => "'''UYARI: Tarayıcınız unicode uyumlu değil.
 Sayfaları güvenle değiştirmenize izin vermek için: ASCII olmayan karakterler değiştirme kutusunda onaltılık kodlar olarak görünecektir.'''",
-'editingold' => "'''DİKKAT: Sayfanın eski bir sürümünde değişiklik yapmaktasınız.
-Kaydettiğinizde bu tarihli sürümden günümüze kadar olan değişiklikler yok olacaktır.'''",
+'editingold' => "'''Uyarı: Sayfanın eski bir sürümünde değişiklik yapmaktasınız.'''
+Kaydettiğinizde bu tarihli sürümden günümüze kadar olan değişiklikler yok olacaktır.",
 'yourdiff' => 'Karşılaştırma',
 'copyrightwarning' => "'''Lütfen dikkat:''' {{SITENAME}} sitesine yapılan bütün katkılar $2 sözleşmesi kapsamındadır (ayrıntılar için $1'a bakınız).
 Yaptığınız katkının başka katılımcılar tarafından acımasızca değiştirilmesini ve sınırsızca başka yerlere dağıtılmasını istemiyorsanız, katkıda bulunmayınız.<br />
@@ -2299,7 +2341,7 @@ Bundan sonra, bu sayfaya ve ilgili tartışma sayfasına yapılacak değişiklik
 'notvisiblerev' => 'Revizyon silinmiş',
 'watchnochange' => 'İzleme listenizdeki sayfaların hiçbiri, gösterilen zaman aralığında güncellenmemiş.',
 'watchlist-details' => 'Tartışma sayfaları hariç {{PLURAL:$1|$1 sayfa|$1 sayfa}} izleme listenizdedir.',
-'wlheader-enotif' => 'E-posta ile haber verme açılmıştır.',
+'wlheader-enotif' => 'E-posta bildirimi etkin.',
 'wlheader-showupdated' => "Son ziyaretinizden sonraki sayfa değişiklikleri '''kalın yazıyla''' gösterilmiştir.",
 'watchmethod-recent' => 'izlediğiniz sayfalarda yapılan son değişiklikler kontrol ediliyor',
 'watchmethod-list' => 'izlediğiniz sayfalarda yapılan son değişiklikler kontrol ediliyor',
@@ -3147,6 +3189,7 @@ Bunu çalıştırmak, sisteminizi tehlikeye atabilir.",
 'minutes' => '{{PLURAL:$1|$1 dakika|$1 dakika}}',
 'hours' => '{{PLURAL:$1|$1 saat|$1 saat}}',
 'days' => '{{PLURAL:$1|$1 gün|$1 gün}}',
+'weeks' => '{{PLURAL: $1|$1 hafta|$1 hafta}}',
 'months' => '{{PLURAL:$1|$1 ay|$1 ay}}',
 'years' => '{{PLURAL:$1|$1 yıl|$1 yıl}}',
 'ago' => '$1 önce',
@@ -3795,6 +3838,10 @@ Bu programla birlikte [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU Genel Kamu Lisansın
 'version-entrypoints-header-entrypoint' => 'Giriş noktası',
 'version-entrypoints-header-url' => 'URL',
 
+# Special:Redirect
+'redirect-submit' => 'Git',
+'redirect-file' => 'Dosya adı',
+
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Benzer dosyaları ara',
 'fileduplicatesearch-summary' => 'Sağlama değeri tabanında benzer dosyaları ara.',
@@ -3884,6 +3931,8 @@ Bu programla birlikte [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU Genel Kamu Lisansın
 'htmlform-submit' => 'Gönder',
 'htmlform-reset' => 'Değişiklikleri geri al',
 'htmlform-selectorother-other' => 'Diğer',
+'htmlform-no' => 'Hayır',
+'htmlform-yes' => 'Evet',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 tam-metin arama desteği ile',
@@ -3908,10 +3957,10 @@ Bu programla birlikte [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU Genel Kamu Lisansın
 'logentry-move-move-noredirect' => '$1 $3 sayfasını $4 sayfasına yönlendirme olmaksızın taşıdı',
 'logentry-move-move_redir' => '$1 $3 sayfasını $4 sayfasına yönlendirme üzerinden taşıdı',
 'logentry-patrol-patrol-auto' => '$1 $3 sayfasını $4 sürümü ile kontrol etti',
-'logentry-newusers-newusers' => 'Kullanıcı hesabı $1 oluşturdu',
-'logentry-newusers-create' => 'Kullanıcı hesabı $1 oluşturdu',
-'logentry-newusers-create2' => '$1 kullanıcı hesabı oluşturdu $3',
-'logentry-newusers-autocreate' => '$1 hesabı otomatik olarak oluşturuldu',
+'logentry-newusers-newusers' => 'Kullanıcı hesabı $1 {{GENDER:$2|oluşturuldu}}',
+'logentry-newusers-create' => 'Kullanıcı hesabı $1 {{GENDER:$2|oluşturuldu}}',
+'logentry-newusers-create2' => '$3 kullanıcı hesabı $1 tarafından {{GENDER:$2|oluşturuldu}}',
+'logentry-newusers-autocreate' => '$1 kullanıcı hesabı otomatik olarak {{GENDER:$2|oluşturuldu}}',
 'rightsnone' => '(hiçbiri)',
 
 # Feedback

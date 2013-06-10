@@ -536,8 +536,8 @@ $messages = array(
 'help' => '도움말',
 'search' => '찾기',
 'searchbutton' => '찾기',
-'go' => '가기',
-'searcharticle' => '가기',
+'go' => '보기',
+'searcharticle' => '보기',
 'history' => '문서 역사',
 'history_short' => '역사',
 'updatedmarker' => '마지막으로 방문한 뒤 바뀜',
@@ -551,6 +551,7 @@ $messages = array(
 'create-this-page' => '이 문서 만들기',
 'delete' => '삭제',
 'deletethispage' => '이 문서 삭제하기',
+'undeletethispage' => '이 문서 되살리기',
 'undelete_short' => '{{PLURAL:$1|편집 $1개}} 되살리기',
 'viewdeleted_short' => '{{PLURAL:$1|삭제된 편집 $1개}} 보기',
 'protect' => '보호',
@@ -934,6 +935,8 @@ $2',
 
 # Special:PasswordReset
 'passwordreset' => '비밀번호 재설정',
+'passwordreset-text-one' => '비밀번호를 재설정하려면 이 양식을 작성해주세요.',
+'passwordreset-text-many' => '{{PLURAL:$1|비밀번호를 재설정하려면 다음 정보 중 하나를 입력하세요.}}',
 'passwordreset-legend' => '비밀번호 재설정',
 'passwordreset-disabled' => '이 위키에서는 비밀번호를 재설정할 수 없습니다.',
 'passwordreset-emaildisabled' => '이 위키에서 이메일 기능이 비활성화되어 있습니다.',
@@ -970,7 +973,7 @@ $2
 # Special:ChangeEmail
 'changeemail' => '이메일 주소 바꾸기',
 'changeemail-header' => '계정 메일 주소 바꾸기',
-'changeemail-text' => '이메일 주소를 바꾸려면 이 양식을 채우세요. 바뀜 내용을 확인하기 위해 비밀번호를 입력해야 합니다.',
+'changeemail-text' => '이메일 주소를 바꾸려면 이 양식을 작성해주세요. 바뀜 내용을 확인하기 위해 비밀번호를 입력해야 합니다.',
 'changeemail-no-info' => '이 특수 문서에 직접 접근하려면 반드시 로그인해야 합니다.',
 'changeemail-oldemail' => '현재 이메일 주소 :',
 'changeemail-newemail' => '새 이메일 주소:',
@@ -1068,7 +1071,7 @@ $1 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 대
 여기는 계정을 만들지 않았거나 사용하고 있지 않은 익명 사용자를 위한 토론 문서입니다.
 익명 사용자를 구별하기 위해서는 숫자로 된 IP 주소를 사용해야만 합니다.
 IP 주소는 여러 사용자가 공유할 수 있습니다.
-자신과 관계없는 의견이 자신에게 남겨져 있어 불쾌하다고 생각하는 익명 사용자는 [[Special:UserLogin/signup|계정을 만들고]] [[Special:UserLogin|로그인 하여]] 나중에 다른 익명 사용자에게 줄 혼란을 줄일 수 있습니다.',
+자신과 관계없는 의견이 자신에게 남겨져 있어 불쾌하다고 생각하는 익명 사용자는 [[Special:UserLogin/signup|계정을 만들고]] [[Special:UserLogin|로그인해서]] 나중에 다른 익명 사용자에게 줄 혼란을 줄일 수 있습니다.',
 'noarticletext' => '이 문서가 현재 존재하지 않습니다.
 이 문서와 제목이 비슷한 문서가 있는지 [[Special:Search/{{PAGENAME}}|찾거나]],
 이 문서에 관련된 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 기록]을 확인하거나,
@@ -1188,7 +1191,7 @@ IP 주소는 여러 사용자가 공유할 수 있습니다.
 'postedit-confirmation' => '편집을 저장했습니다.',
 'edit-already-exists' => '새 문서를 만들 수 없습니다.
 문서가 이미 존재합니다.',
-'defaultmessagetext' => '기본 메세지 내용',
+'defaultmessagetext' => '기본 메시지 글',
 'content-failed-to-parse' => '$1 모델에 대한 $2 내용을 구문 분석하는 데 실패했습니다: $3',
 'invalid-content-data' => '잘못된 내용 데이터입니다',
 'content-not-allowed-here' => '"$1" 내용은 [[$2]] 문서예 허용하지 않습니다',
@@ -1743,7 +1746,7 @@ HTML 태그를 확인하세요.',
 'action-deleterevision' => '이 판을 삭제',
 'action-deletedhistory' => '이 문서의 삭제된 기여의 역사 보기',
 'action-browsearchive' => '삭제된 문서 찾기',
-'action-undelete' => '이 문서를 되살리기',
+'action-undelete' => '이 문서 되살리기',
 'action-suppressrevision' => '이 숨겨진 판을 검토하고 되살릴',
 'action-suppressionlog' => '비공개 기록 보기',
 'action-block' => '이 사용자를 편집하지 못하도록 차단',
@@ -2581,7 +2584,7 @@ $UNWATCHURL
 'rollback-success' => '$1의 편집을 $2의 마지막 버전으로 되돌렸습니다.',
 
 # Edit tokens
-'sessionfailure-title' => '세션 손실',
+'sessionfailure-title' => '세션 실패',
 'sessionfailure' => '로그인 세션에 문제가 발생한 것 같습니다.
 세션 하이재킹을 막기 위해 동작이 취소되었습니다.
 브라우저의 뒤로 버튼을 누르고 문서를 새로 고침한 후에 다시 시도해 주세요.',
@@ -3038,7 +3041,7 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 # Namespace 8 related
 'allmessages' => '시스템 메시지 목록',
 'allmessagesname' => '이름',
-'allmessagesdefault' => '기본 내용',
+'allmessagesdefault' => '기본 메시지 글',
 'allmessagescurrent' => '현재 문자열',
 'allmessagestext' => '미디어위키 이름공간에 있는 모든 시스템 메시지의 목록입니다.
 미디어위키의 번역 작업에 관심이 있으면 [//www.mediawiki.org/wiki/Localisation 미디어위키 지역화]나 [//translatewiki.net translatewiki.net]에 참가해주세요.',
@@ -3657,7 +3660,7 @@ Variants for Chinese language
 'exif-exposureprogram-4' => '셔터 우선',
 'exif-exposureprogram-5' => '크리에이티브 프로그램 (피사계 심도 우선)',
 'exif-exposureprogram-6' => '액션 프로그램 (빠른 셔터 속도에 치중)',
-'exif-exposureprogram-7' => '인물 사진 모드 (배경을 초점 밖으로 하여 대상을 강조)',
+'exif-exposureprogram-7' => '인물 사진 모드 (배경을 초점 밖으로 해서 대상을 강조)',
 'exif-exposureprogram-8' => '풍경 모드 (초점이 배경인 풍경 사진용)',
 
 'exif-subjectdistance-value' => '$1 미터',
@@ -4125,13 +4128,13 @@ $5
 'compare-revision-not-exists' => '지정한 판이 없습니다.',
 
 # Database error messages
-'dberr-header' => '이 위키에 문제가 있습니다.',
+'dberr-header' => '이 위키에 문제가 있습니다',
 'dberr-problems' => '죄송합니다!
 이 사이트는 기술적인 문제가 있습니다.',
 'dberr-again' => '잠시 기다리고 나서 다시 불러오세요.',
-'dberr-info' => '(데이터베이스에 접속할 수 없습니다: $1)',
-'dberr-usegoogle' => '그 동안 구글을 통해 검색할 수도 있습니다.',
-'dberr-outofdate' => '참고로 구글의 내용 개요는 오래된 것일 수도 있습니다.',
+'dberr-info' => '(데이터베이스 서버에 연결할 수 없습니다: $1)',
+'dberr-usegoogle' => '그 동안 Google을 통해 검색할 수도 있습니다.',
+'dberr-outofdate' => '수집된 내용은 오래된 것일 수도 있음을 참고하세요.',
 'dberr-cachederror' => '다음은 요청한 문서의 캐시된 복사본이며, 최신이 아닐 수도 있습니다.',
 
 # HTML forms

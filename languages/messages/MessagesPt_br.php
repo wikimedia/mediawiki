@@ -47,6 +47,7 @@
  * @author MetalBrasil
  * @author MisterSanderson
  * @author Nemo bis
+ * @author OTAVIO1981
  * @author Opraco
  * @author Pedroca cerebral
  * @author Ppena
@@ -776,7 +777,7 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências no 
 'userlogout' => 'Sair',
 'notloggedin' => 'Não autenticado',
 'userlogin-noaccount' => 'Não possui uma conta?',
-'userlogin-joinproject' => 'Sobre {{SITENAME}}',
+'userlogin-joinproject' => 'Junte-se ao projeto {{SITENAME}}',
 'nologin' => 'Não possui uma conta? $1.',
 'nologinlink' => 'Criar uma conta',
 'createaccount' => 'Criar conta',

@@ -487,7 +487,7 @@ $messages = array(
 'category-subcat-count-limited' => '本分类包含下列$1个子分类。',
 'category-article-count' => '{{PLURAL:$2|本分类只有下列一个页面。|本分类包含下列$1个页面，共有$2个页面。}}',
 'category-article-count-limited' => '本分类包含下列$1个页面。',
-'category-file-count' => '{{PLURAL:$2|本分类只有下列文件。|本分类包含下列$1个文件，共$2个文件。}}',
+'category-file-count' => '{{PLURAL:$2|本分类只包含以下文件。|以下{{PLURAL:$1|文件|$1个文件}}在本分类中，共$2个文件。}}',
 'category-file-count-limited' => '本分类包含下列$1个文件。',
 'listingcontinuesabbrev' => '续',
 'index-category' => '允许索引的页面',
@@ -534,7 +534,7 @@ $messages = array(
 'variants' => '变换',
 
 'navigation-heading' => '导航菜单',
-'errorpagetitle' => '错误',
+'errorpagetitle' => '出错',
 'returnto' => '返回$1。',
 'tagline' => '来自{{SITENAME}}',
 'help' => '帮助',
@@ -641,7 +641,7 @@ $1',
 'viewsourceold' => '查看源代码',
 'editlink' => '编辑',
 'viewsourcelink' => '查看源代码',
-'editsectionhint' => '编辑章节：$1',
+'editsectionhint' => '编辑段落：$1',
 'toc' => '目录',
 'showtoc' => '显示',
 'hidetoc' => '隐藏',
@@ -663,7 +663,7 @@ $1',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => '页面',
-'nstab-user' => '用户页',
+'nstab-user' => '用户页面',
 'nstab-media' => '媒体页面',
 'nstab-special' => '特殊页面',
 'nstab-project' => '项目页面',
@@ -705,7 +705,7 @@ $1',
 这通常是由于点击了链向旧有差异或历史的链接，而原有修订已被删除导致的。
 
 如果情况不是这样，您可能找到了软件的一个内部错误。请记录下URL地址，并向[[Special:ListUsers/sysop|管理员]]报告。',
-'missingarticle-rev' => '（修订版本编号：$1）',
+'missingarticle-rev' => '（版本#：$1）',
 'missingarticle-diff' => '（差异：$1，$2）',
 'readonly_lag' => '从数据库服务器正在从主服务器上更新，数据库已被自动锁定',
 'internalerror' => '内部错误',
@@ -725,7 +725,7 @@ $1',
 它可能已被其他人删除了。',
 'cannotdelete-title' => '无法删除“$1”',
 'delete-hook-aborted' => '删除被扩展钩子取消。钩子并没有给出解释。',
-'badtitle' => '错误的标题',
+'badtitle' => '错误标题',
 'badtitletext' => '所请求页面的标题是无效的、不存在，跨语言或跨wiki链接的标题错误。它可能包含一个或更多的不能用于标题的字符。',
 'perfcached' => '下列数据已缓存，但可能已过时。最高{{PLURAL:$1|一个结果|$1个结果}}在缓存中可用。',
 'perfcachedts' => '下列数据已缓存，最后更新于$1。缓存中最多可有{{PLURAL:$4|1个结果|$4个结果}}。',
@@ -772,7 +772,7 @@ $2',
 
 您可以继续以匿名方式使用{{SITENAME}}，或再次以相同或不同用户身份<span class='plainlinks'>[$1 登录]</span>。请注意一些页面可能仍然显示您为登录状态，直到您清空您的浏览器缓存为止。",
 'welcomeuser' => '欢迎，$1！',
-'welcomecreation-msg' => '你的账户已创建。请不要忘记更改你的[[Special:Preferences|{{SITENAME}}系统设置]]。',
+'welcomecreation-msg' => '你的账户已创建。请不要忘记更改你的[[Special:Preferences|{{SITENAME}}设置]]。',
 'yourname' => '用户名：',
 'userlogin-yourname' => '用户名',
 'userlogin-yourname-ph' => '请输入你的用户名',
@@ -792,7 +792,7 @@ $2',
 'externaldberror' => '验证数据库出错或您被禁止更新您的外部账号。',
 'login' => '登录',
 'nav-login-createaccount' => '登录/创建账户',
-'loginprompt' => '你必须启用Cookies才能登录{{SITENAME}}。',
+'loginprompt' => '你必须启用Cookie才能登录{{SITENAME}}。',
 'userlogin' => '登录/创建账户',
 'userloginnocreate' => '登录',
 'logout' => '退出',
@@ -805,8 +805,8 @@ $2',
 'createaccount' => '创建账户',
 'gotaccount' => '已经拥有账户？请$1。',
 'gotaccountlink' => '登录',
-'userlogin-resetlink' => '忘记了你的登录信息？',
-'userlogin-resetpassword-link' => '重置您的密码',
+'userlogin-resetlink' => '忘记你的登录信息？',
+'userlogin-resetpassword-link' => '重置你的密码',
 'helplogin-url' => 'Help:登录',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|登录帮助]]',
 'createacct-join' => '请在下面输入你的信息。',
@@ -907,6 +907,7 @@ $2',
 
 # Special:PasswordReset
 'passwordreset' => '重置密码',
+'passwordreset-text-one' => '请输入你要重置的用户名。',
 'passwordreset-legend' => '重置密码',
 'passwordreset-disabled' => '此wiki已经禁用密码重置。',
 'passwordreset-emaildisabled' => '此Wiki上无法使用邮件功能。',
@@ -1046,7 +1047,7 @@ $2
 'userinvalidcssjstitle' => "'''警告：''' 不存在皮肤\"\$1\"。注意自定义的 .css 和 .js 页要使用小写标题，例如，{{ns:user}}:Foo/vector.css 不同于 {{ns:user}}:Foo/Vector.css。",
 'updated' => '（已更新）',
 'note' => "'''注意：'''",
-'previewnote' => "'''请记住这仅为预览。'''您的更改还未保存！",
+'previewnote' => "'''请记住这只是预览。'''你的更改还没有保存！",
 'continue-editing' => '往编辑框',
 'previewconflict' => '该预览反映了上面文字编辑区中的文字在你保存后的显示状况。',
 'session_fail_preview' => "'''对不起！由于会话数据丢失，我们无法处理你的编辑。'''请重试。如果仍然失败，请尝试[[Special:UserLogout|退出登录]]后重新登录。",
@@ -1061,7 +1062,7 @@ $2
 'edit_form_incomplete' => "'''编辑表格的某些部分没有到达服务器，请检查你的编辑是否完整并重试。'''",
 'editing' => '编辑“$1”',
 'creating' => '创建 $1',
-'editingsection' => '编辑“$1”（段落）',
+'editingsection' => '编辑“$1（段落）”',
 'editingcomment' => '编辑“$1”（新段落）',
 'editconflict' => '编辑冲突：$1',
 'explainconflict' => "其他用户在你开始编辑后更改了该页面。上面的文字区含有该页面当前的文字。下面的文字区显示你的更改。你必须把你的更改合并至现有文字。'''只有'''当你单击“{{int:savearticle}}”后，上面的文字区中的文字才会被保存。",
@@ -1104,7 +1105,7 @@ $2
 'permissionserrorstext-withaction' => '因为以下{{PLURAL:$1|原因}}，你没有权限$2：',
 'recreate-moveddeleted-warn' => "'''警告：你正在重新创建曾经被删除的页面。'''
 
-你应该考虑继续编辑本页是否合适。这里提供本页的删除和移动记录以供参考：",
+你应该考虑继续编辑本页是否合适。这里提供本页的删除和移动日志以供参考：",
 'moveddeleted-notice' => '本页面已被删除。下面提供本页的删除和移动日志以供参考。',
 'log-fulllog' => '查看完整日志',
 'edit-hook-aborted' => '编辑被hook指令取消。
@@ -1120,7 +1121,7 @@ $2
 'content-failed-to-parse' => '未能将 $2 内容转换为 $1：$3',
 'invalid-content-data' => '无效的内容数据',
 'content-not-allowed-here' => '[[$2]]页面上不允许“$1”内容',
-'editwarning-warning' => '离开这个页面会令您遗失之前的所有更改。若您已经登入，您可在您参数设置的“{{int:prefs-editing}}”节中关闭此警告。',
+'editwarning-warning' => '离开这个页面会令您遗失之前的所有更改。若您已经登入，您可在您参数设置的“编辑”节中关闭此警告。',
 
 # Content models
 'content-model-wikitext' => 'wiki语法',
@@ -1136,8 +1137,7 @@ $2
 'post-expand-template-inclusion-warning' => '警告：包含模板大小过大。
 一些模板将不会包含。',
 'post-expand-template-inclusion-category' => '模板包含上限已经超过的页面',
-'post-expand-template-argument-warning' => '警告：这个页面有最少一个模参数有过大扩展大小。
-这些参数会被略过。',
+'post-expand-template-argument-warning' => "'''警告：'''本页面包含至少一个模板参数有过大扩展大小。这些参数会被略过。",
 'post-expand-template-argument-category' => '包含着略过模板参数的页面',
 'parser-template-loop-warning' => '检查到模板循环：[[$1]]',
 'parser-template-recursion-depth-warning' => '模板递归深度越限（$1）',
@@ -1182,7 +1182,7 @@ $3的理由是''$2''",
 'history-fieldset-title' => '浏览历史',
 'history-show-deleted' => '仅被删除的',
 'histfirst' => '最早',
-'histlast' => '最新',
+'histlast' => '最近',
 'historysize' => '（$1字节）',
 'historyempty' => '（空）',
 
@@ -1366,7 +1366,7 @@ $1",
 'search-relatedarticle' => '相关',
 'mwsuggest-disable' => '禁用AJAX建议',
 'searcheverything-enable' => '在所有名字空间中搜索',
-'searchrelated' => '相关页面',
+'searchrelated' => '相关',
 'searchall' => '所有',
 'showingresults' => "下面显示从第'''$2'''条结果开始的'''$1'''条结果。",
 'showingresultsnum' => "下面显示从第'''$2'''条结果开始的'''$3'''条结果。",
@@ -1387,7 +1387,7 @@ $1",
 
 # Preferences page
 'preferences' => '设置',
-'mypreferences' => '系统设置',
+'mypreferences' => '设置',
 'prefs-edits' => '编辑数：',
 'prefsnologin' => '未登录',
 'prefsnologintext' => '您必须先<span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} 登录]</span>才能设置个人参数。',
@@ -1479,8 +1479,8 @@ $1",
 'prefs-help-gender' => '选填项目。使软件使用正确的性别称呼。该信息将会公开。',
 'email' => '电子邮件',
 'prefs-help-realname' => '真实姓名是选填项目。如果你选择提供它，它将会用于贡献署名。',
-'prefs-help-email' => '电子邮件地址是选填项目。但是在你忘记密码需要重置密码时需要电子邮件地址。',
-'prefs-help-email-others' => '你亦可以选择让其他用户通过你的用户页或讨论页上的链接用电子邮件联系你。其他用户联系你时你的电子邮件地址不会显示。',
+'prefs-help-email' => '电子邮件地址是选填项目，但是当你忘记密码需要重置密码时需要该项信息。',
+'prefs-help-email-others' => '你也可以选择让其他用户通过你的用户或讨论页面上的链接用电子邮件联系你。其他用户联系你时你的电子邮件地址不会显示。',
 'prefs-help-email-required' => '电子邮件地址是必填项目。',
 'prefs-info' => '基本信息',
 'prefs-i18n' => '界面语言',
@@ -1656,23 +1656,23 @@ $1",
 'action-sendemail' => '电邮联系其他用户',
 
 # Recent changes
-'nchanges' => '$1次更改',
+'nchanges' => '$1个更改',
 'recentchanges' => '最近更改',
 'recentchanges-legend' => '最近更改选项',
 'recentchanges-summary' => '在此页面上跟踪维基的更改。',
-'recentchanges-feed-description' => '跟踪订阅本wiki的最近更改。',
+'recentchanges-feed-description' => '用这个源跟踪本wiki的最近更改。',
 'recentchanges-label-newpage' => '这次编辑建立了一个新页面',
 'recentchanges-label-minor' => '这是一个小编辑',
 'recentchanges-label-bot' => '这次编辑是由机器人进行',
 'recentchanges-label-unpatrolled' => '该编辑尚未巡查',
-'rcnote' => "下面是最后'''$2'''天的最后'''$1'''个更改，截至$4 $5。",
+'rcnote' => "下面是过去'''$2'''天的最后'''$1'''个更改，截至$4 $5。",
 'rcnotefrom' => "下面是自'''$2'''起的更改（最多显示'''$1'''个）。",
 'rclistfrom' => '显示自$1起的新更改',
 'rcshowhideminor' => '$1小编辑',
 'rcshowhidebots' => '$1机器人的编辑',
 'rcshowhideliu' => '$1登录用户的编辑',
 'rcshowhideanons' => '$1匿名用户的编辑',
-'rcshowhidepatr' => '$1巡查过的编辑',
+'rcshowhidepatr' => '$1已巡查的编辑',
 'rcshowhidemine' => '$1我的编辑',
 'rclinks' => '显示最后$2天的最后$1个更改<br />$3',
 'diff' => '差异',
@@ -2137,7 +2137,7 @@ $1',
 'listusers-editsonly' => '只显示有编辑的用户',
 'listusers-creationsort' => '按建立日期排序',
 'usereditcount' => '$1次编辑',
-'usercreated' => '$1 $2{{GENDER:$3|创建}}',
+'usercreated' => '{{GENDER:$3|创建}}于$1 $2',
 'newpages' => '新页面',
 'newpages-username' => '用户名：',
 'ancientpages' => '最老页面',
@@ -2156,8 +2156,8 @@ $1',
 'querypage-disabled' => '本特殊页面因性能问题而停用。',
 
 # Book sources
-'booksources' => '网络书源',
-'booksources-search-legend' => '搜索网络书源',
+'booksources' => '图书来源',
+'booksources-search-legend' => '搜索图书来源',
 'booksources-isbn' => 'ISBN：',
 'booksources-go' => '提交',
 'booksources-text' => '以下是一些网络书店的链接列表，其中可能有您要找的书籍的更多信息：',
@@ -2317,7 +2317,7 @@ $1',
 'watchlistcontains' => '您的监视列表包含$1个页面。',
 'iteminvalidname' => "页面'$1'错误，无效命名...",
 'wlnote' => "下面是最后'''$2'''小时的最后'''$1'''个更改，截至$3 $4。",
-'wlshowlast' => '显示最近$1小时、$2天或$3的更改',
+'wlshowlast' => '显示过去$1小时 $2天 $3',
 'watchlist-options' => '监视列表选项',
 
 # Displayed when you click the "watch" button and it is in the process of watching
@@ -2566,7 +2566,7 @@ $1',
 最近的封锁日志项目在下面提供以便参考：',
 'sp-contributions-search' => '搜索贡献',
 'sp-contributions-username' => 'IP地址或用户名：',
-'sp-contributions-toponly' => '仅显示最后版本编辑',
+'sp-contributions-toponly' => '仅显示最后版本的编辑',
 'sp-contributions-submit' => '搜索',
 
 # What links here
@@ -2865,7 +2865,7 @@ $1被封禁的理由是：“$2”',
 # Thumbnails
 'thumbnail-more' => '放大',
 'filemissing' => '无法找到文件',
-'thumbnail_error' => '生成缩略图错误：$1',
+'thumbnail_error' => '生成缩略图出错：$1',
 'thumbnail_error_remote' => '来自$1的错误消息从：
 $2',
 'djvu_page_error' => 'DjVu页面超出范围',
@@ -2990,7 +2990,7 @@ $2',
 'tooltip-ca-nstab-main' => '查看内容页面',
 'tooltip-ca-nstab-user' => '查看用户页面',
 'tooltip-ca-nstab-media' => '查看媒体文件页面',
-'tooltip-ca-nstab-special' => '本页为特殊页面，你不能编辑本页',
+'tooltip-ca-nstab-special' => '这是特殊页面，你无法编辑该页',
 'tooltip-ca-nstab-project' => '查看项目页面',
 'tooltip-ca-nstab-image' => '查看文件页面',
 'tooltip-ca-nstab-mediawiki' => '查看系统信息',
@@ -3443,7 +3443,7 @@ Variants for Chinese language
 'exif-compression-4' => 'CCITT第4组传真编码',
 'exif-compression-6' => 'JPEG（旧）',
 
-'exif-copyrighted-true' => '版权',
+'exif-copyrighted-true' => '受版权保护',
 'exif-copyrighted-false' => '公共领域',
 
 'exif-unknowndate' => '未知日期',
@@ -3653,7 +3653,7 @@ Variants for Chinese language
 'edit-externally-help' => '（更多信息请见[//www.mediawiki.org/wiki/Manual:External_editors 安装说明]）',
 
 # 'all' in various places, this might be different for inflected languages
-'watchlistall2' => '全部',
+'watchlistall2' => '所有',
 'namespacesall' => '全部',
 'monthsall' => '全部',
 'limitall' => '全部',
@@ -3806,8 +3806,8 @@ $5
 'watchlistedit-raw-removed' => '$1个标题被删除：',
 
 # Watchlist editing tools
-'watchlisttools-view' => '查看监视的更改',
-'watchlisttools-edit' => '查看和编辑监视列表',
+'watchlisttools-view' => '查看相关更改',
+'watchlisttools-edit' => '查看并编辑监视列表',
 'watchlisttools-raw' => '编辑原始监视列表',
 
 # Signatures
@@ -3815,7 +3815,7 @@ $5
 
 # Core parser functions
 'unknown_extension_tag' => '不明的扩展标签“$1”',
-'duplicate-defaultsort' => "'''警告：'''默认排序关键字“$2”覆盖了之前的默认排序关键字“$1”。",
+'duplicate-defaultsort' => "'''警告：'''默认排序关键词“$2”覆盖了之前的默认排序关键词“$1”。",
 
 # Special:Version
 'version' => '版本',
@@ -3899,13 +3899,13 @@ MediaWiki发表时预期有用，但对此'''无任何保证'''，亦无隐含�
 
 # External image whitelist
 'external_image_whitelist' => ' #请原样保留本行文字<pre>
-#在下方书写正则表达式片段（//中间的部份）
-#这些规则将与外部（盗链）图像的URL匹配
-#匹配的URL将被显示为图像，否则只会显示链向图像的链接
-#以#开头的行视为评论
+#请在下面输入正则表达式片段（//之间的部份）
+#这些项目将会匹配外部图像的URL
+#匹配的项目将显示为图像，否则只会显示图像的链接
+#以#开头的行被视为评论
 #不区分大小写
 
-#在本行上面输入所有正则表达式。请原样保留本行文字</pre>',
+#请在本行上面输入所有正则表达式片段。请原样保留本行文字</pre>',
 
 # Special:Tags
 'tags' => '有效的更改标签',
