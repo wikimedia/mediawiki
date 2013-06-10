@@ -26,8 +26,8 @@ class SpecialWatchlist extends SpecialPage {
 	/**
 	 * Constructor
 	 */
-	public function __construct( $page = 'Watchlist' ) {
-		parent::__construct( $page );
+	public function __construct( $page = 'Watchlist', $restriction = 'viewmywatchlist' ) {
+		parent::__construct( $page, $restriction );
 	}
 
 	/**
