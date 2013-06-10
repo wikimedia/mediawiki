@@ -998,11 +998,13 @@ class DifferenceEngine extends ContextSource {
 				$colspan = 1;
 				$multiColspan = 2;
 			}
-			$header .= "
-			<tr style='vertical-align: top;'>
-			<td colspan='$colspan' class='diff-otitle'>{$otitle}</td>
-			<td colspan='$colspan' class='diff-ntitle'>{$ntitle}</td>
-			</tr>";
+			if ( $otitle || $ntitle ) {
+				$header .= "
+				<tr style='vertical-align: top;'>
+				<td colspan='$colspan' class='diff-otitle'>{$otitle}</td>
+				<td colspan='$colspan' class='diff-ntitle'>{$ntitle}</td>
+				</tr>";
+			}
 		}
 
 		if ( $multi != '' ) {
