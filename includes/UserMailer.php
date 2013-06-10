@@ -668,11 +668,13 @@ class EmailNotification {
 			} elseif ( $targetUser->getOption( 'enotifusertalkpages' ) &&
 				( !$minorEdit || $targetUser->getOption( 'enotifminoredits' ) ) )
 			{
-				if ( $targetUser->isEmailConfirmed() ) {
+				if ( !$targetUser->isEmailConfirmed() ) {
+					wfDebug( __METHOD__ . ": talk page owner doesn't have validated email\n" );
+				} elseif ( !wfRunHooks( 'AbortTalkPageEmailNotification', array( $targetUser, $title ) ) ) {
+					wfDebug( __METHOD__ . ": talk page update notification is aborted for this user\n" );
+				} else {
 					wfDebug( __METHOD__ . ": sending talk page update notification\n" );
 					return true;
-				} else {
-					wfDebug( __METHOD__ . ": talk page owner doesn't have validated email\n" );
 				}
 			} else {
 				wfDebug( __METHOD__ . ": talk page owner doesn't want notifications\n" );
