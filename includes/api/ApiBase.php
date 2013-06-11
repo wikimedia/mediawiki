@@ -1597,7 +1597,12 @@ abstract class ApiBase extends ContextSource {
 		}
 
 		if ( $this->needsToken() ) {
-			$ret[] = array( 'missingparam', 'token' );
+			if ( !isset( $params['token'][ApiBase::PARAM_REQUIRED] )
+				|| !$params['token'][ApiBase::PARAM_REQUIRED]
+			) {
+				// Add token as possible missing parameter, if not already done
+				$ret[] = array( 'missingparam', 'token' );
+			}
 			$ret[] = array( 'sessionfailure' );
 		}
 
