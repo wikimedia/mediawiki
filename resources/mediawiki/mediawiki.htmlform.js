@@ -129,7 +129,7 @@
 		var $matrixTooltips = $( '.mw-htmlform-matrix .mw-htmlform-tooltip' );
 		if ( $matrixTooltips.length ) {
 			mw.loader.using( 'jquery.tipsy', function () {
-				$matrixTooltips.tipsy();
+				$matrixTooltips.tipsy( { gravity: 's' } );
 			} );
 		}
 	} );
