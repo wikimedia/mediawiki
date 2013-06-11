@@ -1457,7 +1457,7 @@ class WikiPage implements Page, IDBAccessObject {
 	}
 
 	/**
-	 * Returns true iff this page's content model supports sections.
+	 * Returns true if this page's content model supports sections.
 	 *
 	 * @return boolean whether sections are supported.
 	 *

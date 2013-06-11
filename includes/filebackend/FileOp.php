@@ -384,7 +384,7 @@ abstract class FileOp {
 
 	/**
 	 * precheckDestExistence() helper function to get the source file SHA-1.
-	 * Subclasses should overwride this iff the source is not in storage.
+	 * Subclasses should overwride this if the source is not in storage.
 	 *
 	 * @return string|bool Returns false on failure
 	 */
