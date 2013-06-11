@@ -127,21 +127,6 @@ span.texhtml {
 	cursor: pointer;
 }
 
-/* Edit section links */
-/* Correct directionality when page dir is different from site/user dir */
-/* @noflip */
-.mw-content-ltr .editsection,
-.mw-content-rtl .mw-content-ltr .editsection {
-	float: right;
-	margin-left: 5px;
-}
-/* @noflip */
-.mw-content-rtl .editsection,
-.mw-content-ltr .mw-content-rtl .editsection {
-	float: left;
-	margin-right: 5px;
-}
-
 /**
  * File description page
  */
@@ -1121,7 +1106,8 @@ table.floatleft {
 	z-index: 99;
 }
 
-.mw-editsection, .editsection, .toctoggle {
+.mw-editsection,
+.toctoggle {
 	-moz-user-select: none;
 	-webkit-user-select: none;
 	-ms-user-select: none;
