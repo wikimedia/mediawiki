@@ -513,10 +513,8 @@ Motoit ki vos l' avoz ddja candjî ou ridmandé on novea scret timporaire.",
 
 # Special:PasswordReset
 'passwordreset' => "Rifé l' sicret",
-'passwordreset-text' => 'Completez cisse formulrece ci po rçure èn emile ki dene les detays do conte da vosse.',
 'passwordreset-legend' => "Rifé l' sicret",
 'passwordreset-disabled' => "Li rfijhaedje di screts a stî dismetou so ç' wiki ci.",
-'passwordreset-pretext' => '{{PLURAL:$1||Dinez onk des elemints di dnêyes shuvants}}',
 'passwordreset-username' => "No d' elodjaedje:",
 'passwordreset-domain' => 'Dominne:',
 'passwordreset-capture' => "Vey li messaedje di l' emile?",

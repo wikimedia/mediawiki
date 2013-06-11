@@ -829,10 +829,8 @@ $2',
 
 # Special:PasswordReset
 'passwordreset' => 'परवलीचा शब्द पूर्ववत करा',
-'passwordreset-text' => 'तुमच्या खात्याच्या माहितीसंदर्भात विपत्राद्वारे अनुस्मारक येण्यासाठी हा अर्ज पूर्ण भरा.',
 'passwordreset-legend' => 'परवलीचा शब्द पूर्ववत करा',
 'passwordreset-disabled' => 'या विकिवर परवलीचा शब्द पुनर्स्थापित करता येत नाही.',
-'passwordreset-pretext' => '{{PLURAL:$1||खालील माहितीच्या भागांपैकी एक भाग लिहा}}',
 'passwordreset-username' => 'सदस्यनाव:',
 'passwordreset-domain' => 'डोमेन',
 'passwordreset-capture' => 'ईमेल कशी असेल ते बघायचेय ?',

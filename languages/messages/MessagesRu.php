@@ -15,6 +15,7 @@
  * @author AlexSm
  * @author Alexander Sigachov (alexander.sigachov@gmail.com)
  * @author Alexandr Efremov
+ * @author Altai uul
  * @author Amikeco
  * @author Amire80
  * @author Anonim.one
@@ -60,6 +61,7 @@
  * @author KorneySan
  * @author Kv75
  * @author Lockal
+ * @author Lunacy1911
  * @author Matma Rex
  * @author MaxBioHazard
  * @author MaxSem
@@ -628,6 +630,7 @@ $messages = array(
 'create-this-page' => 'Создать эту страницу',
 'delete' => 'Удалить',
 'deletethispage' => 'Удалить эту страницу',
+'undeletethispage' => 'Восстановить эту страницу',
 'undelete_short' => 'Восстановить $1 {{PLURAL:$1|правку|правки|правок}}',
 'viewdeleted_short' => 'Просмотр $1 {{PLURAL:$1|удалённой правки|удалённых правок|удалённых правок}}',
 'protect' => 'Защитить',
@@ -829,6 +832,8 @@ $2',
 'namespaceprotected' => 'У вас нет разрешения редактировать страницы в пространстве имён «$1».',
 'customcssprotected' => 'У вас нет разрешения редактировать эту CSS-страницу, так как она содержит личные настройки другого участника.',
 'customjsprotected' => 'У вас нет разрешения редактировать эту JavaScript-страницу, так как она содержит личные настройки другого участника.',
+'mycustomcssprotected' => 'У вас нет прав для редактирования этого CSS страницы.',
+'mycustomjsprotected' => 'У вас нет прав для редактирования JavaScript на странице.',
 'ns-specialprotected' => 'Страницы пространства имён «{{ns:special}}» не могут правиться.',
 'titleprotected' => "Создание страницы с таким заголовком было запрещено участником [[Участник:$1|$1]].
 Указана следующая причина: ''$2''.",
@@ -1755,6 +1760,7 @@ $1",
 'right-editusercssjs' => 'правка CSS- и JS-файлов других участников',
 'right-editusercss' => 'правка CSS-файлов других участников',
 'right-edituserjs' => 'правка JavaScript-файлов других участников',
+'right-editmyusercss' => 'Редактирование файлов CSS пользователя',
 'right-rollback' => 'быстрый откат правок последнего участника на определенной странице',
 'right-markbotedits' => 'отметка откатываемых правок как правок бота',
 'right-noratelimit' => 'нет ограничений по скорости',

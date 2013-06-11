@@ -747,10 +747,8 @@ $2',
 
 # Special:PasswordReset
 'passwordreset' => 'මුරපදය වෙනස් කරන්න',
-'passwordreset-text' => 'ඔබගේ මුරපදය යළි සැකසීම සදහා මෙම ආකෘතිපත්‍රය සම්පූර්ණ කරන්න.',
 'passwordreset-legend' => 'මුරපදය යළි පිහිටුවන්න',
 'passwordreset-disabled' => 'මෙම විකියෙහි මුර පද ප්‍රත්‍යාරම්භ කිරීම් අක්‍රීය කොට ඇත.',
-'passwordreset-pretext' => '{{PLURAL:$1||පහත දැක්වෙන දත්ත කණ්ඩ වලින් එකක් ඇතුල් කරන්න}}',
 'passwordreset-username' => 'පරිශීලක නාමය:',
 'passwordreset-domain' => 'වසම:',
 'passwordreset-capture' => 'ප්‍රතිපලදායක විද්‍යුත් තැපෑල නරඹනවාද?',
@@ -983,6 +981,7 @@ $2
 එය මකා දමා ඇති බවක් පෙනේ.',
 'edit-conflict' => 'සංස්කරණ ගැටුම.',
 'edit-no-change' => 'පෙළට කිසිදු වෙනසක් සිදු නොකල  බැවින් ඔබගේ සංස්කරණය නොසලකාහරින ලදි.',
+'postedit-confirmation' => 'ඔබගේ සංස්කරණය සුරකින ලදී.',
 'edit-already-exists' => 'නව පිටුවක් තැනිය නොහැකි විය.
 එය දැනටමත් පවතියි.',
 'defaultmessagetext' => 'සාමාන්‍ය පණිවුඩ පෙළ',

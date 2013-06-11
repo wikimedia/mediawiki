@@ -1626,7 +1626,7 @@ Wan det goorei wal, do skriiw tu en [[Special:ListUsers/sysop|administraator]]."
 # img_auth script messages
 'img-auth-accessdenied' => 'Tugrip ei mögelk',
 'img-auth-nopathinfo' => 'Diar as nään PATH_INFO.
-Di server koon detdiar informatsjuun ei widjerdu.
+Di server koon detdiar informatjuun ei widjerdu.
 Ferlicht as det uun CGI iinbünjen an komt diaram uk ei mä „img_auth“ turocht.
 Üüb det sidj https://www.mediawiki.org/wiki/Manual:Image_Authorization (ingelsk) stäänt diar muar auer.',
 'img-auth-notindir' => 'Detdiar fertiaknis as ei föörsen tu huuchsjüüren.',
@@ -2781,8 +2781,8 @@ Dü könst di kweltekst uunluke.',
 'spam_deleting' => 'Aal a werjuunen mä en ferwisung tu $1 san stregen wurden.',
 
 # Info page
-'pageinfo-title' => 'Informatsjuun tu „$1“',
-'pageinfo-not-current' => 'Det informatsjuun jaft at ei för ual werjuunen.',
+'pageinfo-title' => 'Informatjuun tu „$1“',
+'pageinfo-not-current' => 'Det informatjuun jaft at ei för ual werjuunen.',
 'pageinfo-header-basic' => 'Grünjdooten',
 'pageinfo-header-edits' => 'Ferluup bewerke',
 'pageinfo-header-restrictions' => 'Sidjenseekerhaid',
@@ -2815,7 +2815,7 @@ Dü könst di kweltekst uunluke.',
 'pageinfo-transclusions' => 'Iinbünjen uun {{PLURAL:$1|1 sidj|$1 sidjen}}',
 'pageinfo-toolboxlink' => 'Sidjendooten',
 'pageinfo-redirectsto' => 'Widjerfeerangen tu',
-'pageinfo-redirectsto-info' => 'informatsjuun',
+'pageinfo-redirectsto-info' => 'Informatjuun',
 'pageinfo-contentpage' => 'Üs artiikel tääld',
 'pageinfo-contentpage-yes' => 'Ja',
 'pageinfo-protect-cascading' => 'Sidjen mä kaskaadenseekerhaid faan heer',

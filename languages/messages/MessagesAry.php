@@ -541,10 +541,8 @@ ymkn ṫkon bddalṫiha bĝda wlla ṫlbti klmṫ srr mo'qaṫa jdida.",
 
 # Special:PasswordReset
 'passwordreset' => 'ĝawd klmṫ s-srr',
-'passwordreset-text' => 'ĝmmer had l-istimara baċ iwṣlek email ṫaĝ ṫdkir b-ṫṫafaṣil dl-ḫisab ṫaĝk.',
 'passwordreset-legend' => 'ĝawd klmṫ s-srr',
 'passwordreset-disabled' => 'maymkn-ċ ṫĝawd klmṫ s-srr f-had l-wiki.',
-'passwordreset-pretext' => '{{PLURAL:$1||kṫb wḫda mn l-bayanaṫ l-ṫḫṫ}}',
 'passwordreset-username' => 'smiṫ l-mosṫĥdim:',
 'passwordreset-email' => 'ĝonwan l-email:',
 'passwordreset-emailtitle' => 'ṫafaṣil l-ḫisab f-{{SITENAME}}',

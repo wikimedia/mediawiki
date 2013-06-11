@@ -538,10 +538,8 @@ Rika ndeyan  uwis kasil ngganti tembung sandhine Rika utawa wis njaluk tembung s
 
 # Special:PasswordReset
 'passwordreset' => "Tembung sandhi di-''reset''",
-'passwordreset-text' => 'Lengkapi formulir kiye ben nampa imel ngelingna detil akune Rika.',
 'passwordreset-legend' => "Tembung sandhi di-''reset''",
 'passwordreset-disabled' => "''Reset'' tembung sandhi wis dipateni nang wiki kiye.",
-'passwordreset-pretext' => '{{PLURAL:$1||Lebokna salah siji data nang ngisor kiye}}',
 'passwordreset-username' => 'Jeneng panganggo:',
 'passwordreset-domain' => 'Domain:',
 'passwordreset-capture' => 'Deleng imel hasile?',

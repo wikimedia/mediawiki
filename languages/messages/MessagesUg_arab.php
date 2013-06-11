@@ -617,10 +617,8 @@ cookies نى قوزغاتقانلىقىڭىزنى جەزملەڭ، بۇ بەتن
 
 # Special:PasswordReset
 'passwordreset' => 'ئىمنى ئەسلىگە قايتۇرماق',
-'passwordreset-text' => 'بۇ جەدۋەل تاماملانسا ھېسابات تەپسىلاتىڭىزنى ئېلخەتىڭىزدە تاپشۇرۇۋالىسىز.',
 'passwordreset-legend' => 'ئىمنى ئەسلىگە قايتۇرماق',
 'passwordreset-disabled' => 'بۇ ۋىكىدا ئىمنى ئەسلىگە قايتۇرۇش چەكلەنگەن.',
-'passwordreset-pretext' => '{{PLURAL:$1||تۆۋەندىكى سانلىق مەلۇماتتىن بىرنى كىرگۈزۈڭ}}',
 'passwordreset-username' => 'ئىشلەتكۈچى ئاتى:',
 'passwordreset-domain' => 'دائىرە:',
 'passwordreset-capture' => 'ھاسىل قىلىنغان ئېلخەتنى كۆرسىتەمدۇ؟',

@@ -1500,7 +1500,6 @@ Lejon dhânien e arsyes në përmbledhje.',
 'modern.css' => '/* CSSi i vednosun këtu ka me i prekë shfrytëzuesit e dukjes Modern */',
 'vector.css' => '/* CSSi i vednosun këtu ka me i prekë shfrytëzuesit e dukjes Vector */',
 'print.css' => '/* CSSi i vednosun këtu ka me e prekë pamjen e shtypjes */',
-'handheld.css' => '/* CSSi i vednosun këtu ka me i prekë shfletuesit mobil (të dorës) në dukje e konfigurueme në $wgHandheldStyle */',
 
 # Scripts
 'common.js' => '/* Çdo JavaScript këtu ka me u ngarkue për të gjithë përdoruesit në secilën thirrje të faqes. */',

@@ -441,8 +441,7 @@ This can also appear in the credits page if the credits feature is enabled,for e
 'vector-action-undelete' => 'Tab at top of page, in vector skin.
 {{Identical|Undelete}}',
 'vector-action-unprotect' => 'Tab at top of page, in vector skin.
-
-{{Identical|Unprotect}}',
+{{Identical|Change protection}}',
 'vector-simplesearch-preference' => 'Preference for enhanced search suggestion in the Vector skin.',
 'vector-view-create' => 'Tab label in the Vector skin. See for example {{canonicalurl:Foo|useskin=vector}}
 {{Identical|Create}}',
@@ -555,7 +554,7 @@ See also:
 * {{msg-mw|Unprotect}}
 * {{msg-mw|Accesskey-ca-unprotect}}
 * {{msg-mw|Tooltip-ca-unprotect}}
-{{Identical|Unprotect}}',
+{{Identical|Change protection}}',
 'unprotectthispage' => 'In this Cologne Blue skin this is the anchor text for the link to unprotect the page in admin view, at the bottom of the page.
 {{Identical|Unprotect this page}}',
 'newpage' => '{{Identical|New page}}',
@@ -1298,13 +1297,13 @@ Parameters:
 'invalidemailaddress' => 'Shown as a warning when written an invalid e-mail adress in [[Special:Preferences]] and {{fullurl:Special:UserLogin|type=signup}} page',
 'cannotchangeemail' => 'Error message shown when user goes to [[Special:ChangeEmail]] but email addresses cannot be changed on the site.',
 'emaildisabled' => 'Error message shown when user tries to set an e-mail address but e-mail features are disabled.',
-'accountcreated' => 'Page title in [[Special:UserLogin]] when a logged-in user creates an account.
+'accountcreated' => 'Used as page title in [[Special:UserLogin]].
 
 See also:
 * {{msg-mw|Accountcreated|title}}
 * {{msg-mw|Accountcreatedtext|message}}',
-'accountcreatedtext' => 'Text shown in [[Special:UserLogin]] when a logged-in user creates an account. Parameters:
-* $1 - the new username
+'accountcreatedtext' => 'Used in [[Special:UserLogin]]. Parameters:
+* $1 - username
 See also:
 * {{msg-mw|Accountcreated|title}}
 * {{msg-mw|Accountcreatedtext|message}}',
@@ -2903,10 +2902,18 @@ This user automatically bypasses IP blocks, auto-blocks and range blocks - so I 
 'right-editprotected' => '{{doc-right|editprotected}}',
 'right-editinterface' => '{{doc-right|editinterface}}',
 'right-editusercssjs' => '{{doc-right|editusercssjs}}',
-'right-editusercss' => '{{doc-right|editusercss}}',
-'right-edituserjs' => '{{doc-right|edituserjs}}',
-'right-editmyusercss' => '{{doc-right|editmyusercss}}',
-'right-editmyuserjs' => '{{doc-right|editmyuserjs}}',
+'right-editusercss' => '{{doc-right|editusercss}}
+
+See also {{msg-mw|Right-editmyusercss}}',
+'right-edituserjs' => '{{doc-right|edituserjs}}
+
+See also {{msg-mw|Right-editmyuserjs}}',
+'right-editmyusercss' => '{{doc-right|editmyusercss}}
+
+See also {{msg-mw|Right-editusercss}}',
+'right-editmyuserjs' => '{{doc-right|editmyuserjs}}
+
+See also {{msg-mw|Right-edituserjs}}',
 'right-rollback' => '{{doc-right|rollback}}
 {{Identical|Rollback}}',
 'right-markbotedits' => '{{doc-right|markbotedits}}

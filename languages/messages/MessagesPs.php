@@ -686,10 +686,8 @@ $1',
 
 # Special:PasswordReset
 'passwordreset' => 'پټنوم بياپرځايول',
-'passwordreset-text' => 'د برېښليک د  بياپرځای کېدنې لپاره دا فورمه ډکه کړۍ.',
 'passwordreset-legend' => 'پټنوم بياپرځايول',
 'passwordreset-disabled' => 'په دې ويکي پټنوم بياپرځای کولو کړنه ناچارنه شوې.',
-'passwordreset-pretext' => '{{PLURAL:$1||د لاندې اومتوک يوه برخه مالومات وليکۍ}}',
 'passwordreset-username' => 'کارن-نوم:',
 'passwordreset-domain' => 'شپول:',
 'passwordreset-capture' => 'د پايلې برېښليک کتل غواړې؟',

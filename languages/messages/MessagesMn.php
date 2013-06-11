@@ -573,10 +573,8 @@ $2',
 
 # Special:PasswordReset
 'passwordreset' => 'Нууц үгийг сэргээх',
-'passwordreset-text' => 'Энэхүү маягтыг бөглөж хэрэглэгчийн мэдээллээ аваарай.',
 'passwordreset-legend' => 'Нууц үгээ сэргээх',
 'passwordreset-disabled' => 'Энэ вики-д нууц үгийг сэргээх боломжгүй байна.',
-'passwordreset-pretext' => '{{PLURAL:$1||Доорх өгөгдлийн аль нэг хэсгийг оруулна уу}}',
 'passwordreset-username' => 'Хэрэглэгчийн нэр:',
 'passwordreset-domain' => 'Домайн:',
 'passwordreset-capture' => 'Цахим шуудангийн нууц үг сэргээх шууданг үзэх',

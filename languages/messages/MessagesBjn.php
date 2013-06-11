@@ -674,10 +674,8 @@ Pian pinanya sudah barhasil maubah katasunduk Pian atawa maminta sabuting katasu
 
 # Special:PasswordReset
 'passwordreset' => 'Bulikakan setelan katasunduk',
-'passwordreset-text' => 'Tuntungakan purmulir ngini gasan manarima sabuting suril pangingat rarincian akun Pian.',
 'passwordreset-legend' => 'Bulikakan setelan katasunduk',
 'passwordreset-disabled' => 'Mambulikakan setelan katasunduk dipajahakan hagan wiki ngini.',
-'passwordreset-pretext' => '{{PLURAL:$1||Buati asa data di bawah ngini}}',
 'passwordreset-username' => 'Ngaran pamakai:',
 'passwordreset-domain' => 'Dumain:',
 'passwordreset-capture' => 'Tiringikah kulihan suril?',

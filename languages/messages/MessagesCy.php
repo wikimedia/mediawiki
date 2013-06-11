@@ -317,6 +317,7 @@ $messages = array(
 'create-this-page' => "Creu'r dudalen",
 'delete' => 'Dileu',
 'deletethispage' => 'Dileer y dudalen hon',
+'undeletethispage' => 'Adfer y dudalen hon',
 'undelete_short' => 'Adfer $1 {{PLURAL:$1|golygiad|golygiad|olygiad|golygiad}}',
 'viewdeleted_short' => "Edrych ar y {{PLURAL:$1|golygiad sydd wedi'i ddileu|golygiad sydd wedi'i ddileu|$1 olygiad sydd wedi'u dileu|$1 golygiad sydd wedi'u dileu|$1 golygiad sydd wedi'u dileu|$1 golygiad sydd wedi'u dileu}}",
 'protect' => 'Diogelu',

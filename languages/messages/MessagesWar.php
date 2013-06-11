@@ -596,7 +596,6 @@ Ikaw in naglalog-in yana...',
 
 # Special:PasswordReset
 'passwordreset' => 'igreset an tigaman-hit-pagsulod',
-'passwordreset-text' => 'Kumpletoha ini nga porma para makareset han imo password.',
 'passwordreset-legend' => 'igreset an tigaman-hit-pagsulod',
 'passwordreset-disabled' => 'Waray ginpaandar an password reset hini nga wiki.',
 'passwordreset-username' => 'Agnay hiton gumaramit:',

@@ -572,10 +572,8 @@ Eventualmain has ti gia midà cun success tes pled-clav u dumandà per in nov pl
 
 # Special:PasswordReset
 'passwordreset' => 'Redefinir il pled-clav',
-'passwordreset-text' => "Emplenescha quest formular per retschaiver in e-mail che cuntegna ils detagls per acceder tes conto d'utilisader.",
 'passwordreset-legend' => 'Redefinir il pled-clav',
 'passwordreset-disabled' => 'La pussaivladad da redefinir il pled-clav è vegnida deactivada sin questa wiki.',
-'passwordreset-pretext' => '{{PLURAL:$1||Endatescha in dals tocs da data sutvart}}',
 'passwordreset-username' => "Num d'utilisader:",
 'passwordreset-domain' => 'Domain:',
 'passwordreset-capture' => "Mussar l'e-mail che resultescha?",

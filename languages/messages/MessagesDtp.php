@@ -552,10 +552,8 @@ Naalanannu noh kaatalib toi nokopokianu koh no do kaatalib daamot.',
 
 # Special:PasswordReset
 'passwordreset' => 'Pudoliai kawagu kaatalib',
-'passwordreset-text' => 'Gonopo poom diti do mangaramit tongosurat-i ponorou do nokomoi id akaun.',
 'passwordreset-legend' => 'Pudoliai kawagu kaatalib',
 'passwordreset-disabled' => 'Pomudolian kawagu do kaatalib kitaantob id wiki diti.',
-'passwordreset-pretext' => '{{PLURAL:$1||Posuango iso data id siriba}}',
 'passwordreset-username' => 'Ngarandait:',
 'passwordreset-domain' => 'Sumanganu:',
 'passwordreset-capture' => 'Intaai surat-i dii nowonsoi?',

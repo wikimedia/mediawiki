@@ -618,10 +618,8 @@ $2',
 
 # Special:PasswordReset
 'passwordreset' => 'رمزی یئنی‌له',
-'passwordreset-text' => 'رمزینیزی یئنیله‌مک اوچون بو فورمو دولدورون.',
 'passwordreset-legend' => 'رمزی یئنی‌له',
 'passwordreset-disabled' => 'بو ویکی‌ده رمزی یئنی‌له‌مک باغلانیب‌دیر.',
-'passwordreset-pretext' => '{{PLURAL:$1|آشاغیداکی وئری پارچالارینین بیرینی وئرین}}',
 'passwordreset-username' => 'ایستیفاده‌چی آدی:',
 'passwordreset-domain' => 'دامنه:',
 'passwordreset-capture' => 'سون نتیجه ایمیل گؤستریلسین؟',

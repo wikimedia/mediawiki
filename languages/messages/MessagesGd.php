@@ -572,10 +572,8 @@ Saoil an do dh'atharraich thu am facal-faire agad mu thràth no an do dh'iarr th
 
 # Special:PasswordReset
 'passwordreset' => 'Ath-shuidhich am facal-faire',
-'passwordreset-text' => 'Lìon am foirm seo gus am facal-faire agad ath-shuidheachadh.',
 'passwordreset-legend' => 'Ath-shuidhich am facal-faire',
 'passwordreset-disabled' => 'Chaidh ath-shuidheachadh nam faclan-faire a chur à comas air an uicipeid seo.',
-'passwordreset-pretext' => '{{PLURAL:$1||Cuir a-steach aon dhe na pìosan dàta gu h-ìosal}}',
 'passwordreset-username' => 'Ainm-cleachdaiche:',
 'passwordreset-domain' => 'Àrainn-lìn:',
 'passwordreset-capture' => "A bheil thu airson coimhead air a' phost-d?",

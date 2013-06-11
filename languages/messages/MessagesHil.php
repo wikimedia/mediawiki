@@ -559,10 +559,8 @@ Mahimo nga madinalag-on mo nga nga gin-ilisan ang imo pasword ukon nagpangabay k
 
 # Special:PasswordReset
 'passwordreset' => 'Liwaton ang pasword',
-'passwordreset-text' => 'Taposon ang ini nga formas agod nga makabaton sang e-mail nga nagapahanumdom sang mga detalye sang imo akawnt.',
 'passwordreset-legend' => 'Liwaton ang pasword',
 'passwordreset-disabled' => 'Ang mga pagliwat sang pasword gin-untat sa sini nga wiki.',
-'passwordreset-pretext' => '{{PLURAL:$1||Magbutang sang isa sang mga datos sa idalom}}',
 'passwordreset-username' => 'Ngalan sang Manog-gamit"',
 'passwordreset-domain' => 'Domeyn:',
 'passwordreset-capture' => 'Lantawon ang nagresuta nga e-mail?',

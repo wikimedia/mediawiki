@@ -554,10 +554,8 @@ Możliwe co właśńy zmjyńiłżeś swoje hasło abo poprosiłżeś uo nowe tym
 
 # Special:PasswordReset
 'passwordreset' => 'Wyczyść hasło',
-'passwordreset-text' => 'Wypełnij formularz, aby otrzymać e‐mail z przypomnieniem danych Twojego konta.',
 'passwordreset-legend' => 'Wyczyść hasło',
 'passwordreset-disabled' => 'No tyj wiki zamkńynto resytowańy hasył.',
-'passwordreset-pretext' => '{{PLURAL:$1||Wćep jydną z danych}}',
 'passwordreset-username' => 'Mjano używacza:',
 'passwordreset-domain' => 'Domyna:',
 'passwordreset-capture' => 'Czy pokazywać treść wiadomości e‐mail?',

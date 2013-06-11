@@ -1225,9 +1225,9 @@ $3的理由是''$2''",
 'revdelete-show-file-submit' => '是',
 'revdelete-selected' => "'''选取'''[[:$1]]'''的$2次修订：'''",
 'logdelete-selected' => "'''{{PLURAL:$1|选取的日志项目}}：'''",
-'revdelete-text' => "'''删除的修订仍将显示在页面历史中, 但它们的文本内容已不能被公众访问。'''
-在{{SITENAME}}的其他管理员将仍能访问隐藏的内容并通过与此相同的界面恢复删除，除非站点工作者进行了一些附加的限制。",
-'revdelete-confirm' => '请确认您肯定去做的话，您就要明白到后果，以及这个程序符合[[{{MediaWiki:Policy-url}}|政策]]。',
+'revdelete-text' => "'''删除的版本仍将显示在页面历史及日志中，但公众已不能访问其文本内容。'''
+在{{SITENAME}}的其他管理员将仍能访问隐藏的内容并通过该界面恢复删除的版本，除非进行了额外限制。",
+'revdelete-confirm' => '请确认该操作，明白其后果，并确保该操作符合[[{{MediaWiki:Policy-url}}|方针]]。',
 'revdelete-suppress-text' => "阻止应该'''只'''在以下情形使用：
 *潜在的诽谤信息
 *不合适的个人信息
@@ -1245,7 +1245,7 @@ $3的理由是''$2''",
 'revdelete-suppress' => '同时阻止管理员与其他用户查看数据',
 'revdelete-unsuppress' => '在已恢复的修订中移除限制',
 'revdelete-log' => '原因：',
-'revdelete-submit' => '应用于选中的{{PLURAL:$1|修订}}',
+'revdelete-submit' => '应用于选中的{{PLURAL:$1|版本}}',
 'revdelete-success' => "'''修订的可见性已经成功更新。'''",
 'revdelete-failure' => "'''修订的可见性无法更新：'''
 $1",

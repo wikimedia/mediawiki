@@ -839,10 +839,8 @@ Misschien he'j t wachtwoord al ewiezigd of n niej veurlopig wachtwoord an-evreug
 
 # Special:PasswordReset
 'passwordreset' => 'Wachtwoord opniej instellen',
-'passwordreset-text' => 'Vul dit formulier in zoda-w joe netpost kunnen sturen mit de gebrukersgegevens.',
 'passwordreset-legend' => 'Wachtwoord opniej instellen',
 'passwordreset-disabled' => 'Je kunnen op disse wiki joew wachtwoord niet opniej instellen.',
-'passwordreset-pretext' => '{{PLURAL:$1||Voer één van de onderstaonde velden in}}',
 'passwordreset-username' => 'Gebruker:',
 'passwordreset-domain' => 'Domein:',
 'passwordreset-capture' => 'De resulterende netpost bekieken?',

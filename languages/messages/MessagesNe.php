@@ -575,10 +575,8 @@ $2',
 
 # Special:PasswordReset
 'passwordreset' => 'प्रवेशशव्द पुनः तय गर्ने',
-'passwordreset-text' => 'तपाईंको खाता-विवरणको  इमेल अनुस्मारक प्राप्त गर्न यो फारम पूरा गर्नुहोस्।',
 'passwordreset-legend' => 'प्रवेशशव्द पुनः तय गर्ने',
 'passwordreset-disabled' => 'प्रवेश शव्द पुनः निर्धारण गर्ने व्यवस्था यस विकिमा निस्क्रिय पारिएको छ।',
-'passwordreset-pretext' => '{{PLURAL:$1||तल दिएका आँकड़ाका टुकुरा मध्ये एउटा प्रविष्ट गर्नुहोस्}}',
 'passwordreset-username' => 'प्रयोगकर्ता-नाम:',
 'passwordreset-domain' => 'डोमेन',
 'passwordreset-capture' => 'निस्कने इमेलको नमुना हेर्ने ?',

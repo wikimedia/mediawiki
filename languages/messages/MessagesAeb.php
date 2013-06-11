@@ -541,10 +541,8 @@ $2',
 
 # Special:PasswordReset
 'passwordreset' => 'إعادة ضبط كلمة السر',
-'passwordreset-text' => 'أكمل هذا النموذج لتتلقى بريدا إلكترونيا يذكر بتفاصيل حسابك.',
 'passwordreset-legend' => 'إعادة تعيين كلمة السر',
 'passwordreset-disabled' => 'عُطّلت إعادة تعيين كلمة السر على هذه الويكي.',
-'passwordreset-pretext' => '{{PLURAL:$1||أدخل أحد أجزاء البيانات أدناه}}',
 'passwordreset-username' => 'اسم المستخدم:',
 'passwordreset-domain' => 'النطاق:',
 'passwordreset-capture' => 'أأعرض البريد الإلكتروني الناتج؟',

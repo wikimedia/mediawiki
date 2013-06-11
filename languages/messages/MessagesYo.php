@@ -615,11 +615,9 @@ Láti parí ìmúwọlẹ́, ẹ gbọ́dọ̀ ṣètò ọ̀rọ̀ìpamọ́ tu
 
 # Special:PasswordReset
 'passwordreset' => 'Ìtúntò ọ̀rọ̀ìpamọ́',
-'passwordreset-text' => 'Ẹ parí fọ́ọ̀mù yìí láti ṣe ìtúntò ọ̀rọ̀ìpamọ́ yín.',
 'passwordreset-legend' => 'Ìtúntò ọ̀rọ̀ìpamọ́',
 'passwordreset-disabled' => 'Ìdálẹ́kun ìtúntò ọ̀rọ̀ìpamọ́ lórí wiki yìí.',
 'passwordreset-emaildisabled' => 'Ìdálẹ́kun lílo email lórí wiki yìí.',
-'passwordreset-pretext' => '{{PLURAL:$1||Ẹ kọ ìkan nínú àwọn wẹ́wẹ́ dátà ìsàlẹ̀}}',
 'passwordreset-username' => 'Orúkọ oníṣe:',
 'passwordreset-domain' => 'Àbùgbé:',
 'passwordreset-capture' => 'Wo e-mail tí yíò jáde?',

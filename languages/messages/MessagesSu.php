@@ -624,10 +624,8 @@ Bisa jadi anjeun geus ngaganti sandina atawa ménta sandi saheulaanan anu anyar.
 
 # Special:PasswordReset
 'passwordreset' => 'Setél ulang sandi',
-'passwordreset-text' => 'Lengkepan ieu formulir pikeun nampa surélék pangéling ngeunaan wincikan akun anjeun.',
 'passwordreset-legend' => 'Setél ulang sandi',
 'passwordreset-disabled' => 'Dina ieu wiki, sandi teu bisa disetél ulang.',
-'passwordreset-pretext' => '{{PLURAL:$1||Asupkeun salah sahiji data di handap ieu}}',
 'passwordreset-username' => 'Sandiasma:',
 'passwordreset-domain' => 'Domain:',
 'passwordreset-capture' => 'Témbongkeun surat-é hasilna?',

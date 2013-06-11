@@ -40,6 +40,7 @@
  * @author ZxxZxxZ
  * @author לערי ריינהארט
  * @author جواد
+ * @author درفش کاویانی
  * @author محک
  */
 
@@ -695,7 +696,7 @@ $1',
 'privacypage' => 'Project:سیاست محرمانگی',
 
 'badaccess' => 'خطای دسترسی',
-'badaccess-group0' => 'شما اجازهٔ اجرای عملی را که درخواست کرده‌اید ندارید.',
+'badaccess-group0' => 'شما اجازهٔ اجرای عملی که درخواست کرده‌اید را ندارید.',
 'badaccess-groups' => 'عملی که درخواست کرده‌اید منحصر به کاربران {{PLURAL:$2|این گروه|این گروه‌ها}} است: $1.',
 
 'versionrequired' => 'نسخهٔ $1 از نرم‌افزار مدیاویکی لازم است',
@@ -876,7 +877,7 @@ $2',
 'createacct-yourpasswordagain-ph' => 'گذرواژه را وارد کنید برای بار دوم',
 'remembermypassword' => 'گذرواژه را (تا حداکثر $1 {{PLURAL:$1|روز|روز}}) در این رایانه به خاطر بسپار',
 'userlogin-remembermypassword' => 'من را واردشده نگه‌دار',
-'userlogin-signwithsecure' => 'از ارتباط امن استفاده کن',
+'userlogin-signwithsecure' => 'از ورود امن استفاده کنید',
 'securelogin-stick-https' => 'پس از ورود به سامانه به HTTPS متصل بمان',
 'yourdomainname' => 'دامنهٔ شما:',
 'password-change-forbidden' => 'شما نمی‌توانید گذرواژه‌ها را در این ویکی تغییر دهید.',
@@ -889,15 +890,15 @@ $2',
 'logout' => 'خروج از سامانه',
 'userlogout' => 'خروج از سامانه',
 'notloggedin' => 'به سامانه وارد نشده‌اید',
-'userlogin-noaccount' => 'آیا حسابی ندارید؟',
-'userlogin-joinproject' => 'به {{SITENAME}} بپیوندید',
+'userlogin-noaccount' => 'حساب کاربری ندارید؟',
+'userlogin-joinproject' => 'در {{SITENAME}} نام‌نویسی کنید!',
 'nologin' => 'حساب کاربری ندارید؟ $1.',
 'nologinlink' => 'یک حساب کاربری جدید بسازید',
 'createaccount' => 'ایجاد حساب کاربری',
 'gotaccount' => 'حساب کاربری دارید؟ $1.',
 'gotaccountlink' => 'به سامانه وارد شوید',
 'userlogin-resetlink' => 'جزئیات ورود را فراموش کرده‌اید؟',
-'userlogin-resetpassword-link' => 'گذرواژه را ریست کن',
+'userlogin-resetpassword-link' => 'گذرواژه‌تان را فراموش کردید؟',
 'helplogin-url' => 'Help:ورود به سامانه',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|راهنمای ورود به سامانه]]',
 'createacct-join' => 'اطلاعاتتان را در زیر وارد کنید',
