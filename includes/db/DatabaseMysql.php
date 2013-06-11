@@ -703,7 +703,7 @@ class DatabaseMysql extends DatabaseBase {
 	 * @return string
 	 */
 	public function getSoftwareLink() {
-		return '[http://www.mysql.com/ MySQL]';
+		return '[https://mariadb.org/ MariaDB] or [https://www.mysql.com/ MySQL]';
 	}
 
 	/**
