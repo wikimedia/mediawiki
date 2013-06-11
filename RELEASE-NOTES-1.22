@@ -88,6 +88,8 @@ production.
   current revision is patrollable. This also removed the usage of the rcid URI parameters.
 * Add a new parameter $patrolFooterShown to hook ArticleViewFooter so the hook
   handlers can take further action based on the status of the patrol footer
+* Add new hook AbortTalkPageEmailNotification, this will be used to determine
+  whether to send the regular talk page email notification
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
