@@ -865,7 +865,7 @@ class MessageCache {
 	 *
 	 * @param string $title Message cache key with initial uppercase letter.
 	 * @param string $code Code denoting the language to try.
-	 * @return string|bool The message, or false iff it does not exist or on error
+	 * @return string|bool The message, or false if it does not exist or on error
 	 */
 	function getMsgFromNamespace( $title, $code ) {
 		$this->load( $code );

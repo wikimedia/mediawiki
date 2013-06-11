@@ -114,7 +114,7 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 	 * @param $name string: name of the closing element to look for
 	 *           (e.g.: "mediawiki" when looking for </mediawiki>)
 	 *
-	 * @return bool: true iff the end node could be found. false otherwise.
+	 * @return bool: true if the end node could be found. false otherwise.
 	 */
 	protected function skipToNodeEnd( $name ) {
 		while ( $this->xml->read() ) {

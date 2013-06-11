@@ -44,7 +44,7 @@ define( 'RE_IPV6_ADD',
 	'|' . // contains one "::" in the middle, not ending in "::WORD" (regex for PCRE 4.0+)
 		RE_IPV6_WORD . '(?::(?P<abn>:(?P<iabn>))?' . RE_IPV6_WORD . '(?!:(?P=abn))){1,5}' .
 			':' . RE_IPV6_WORD . '(?P=iabn)' .
-		// NOTE: (?!(?P=abn)) fails iff "::" used twice; (?P=iabn) passes iff a "::" was found.
+		// NOTE: (?!(?P=abn)) fails if "::" used twice; (?P=iabn) passes if a "::" was found.
 	'|' . // contains no "::"
 		RE_IPV6_WORD . '(?::' . RE_IPV6_WORD . '){7}' .
 	')'

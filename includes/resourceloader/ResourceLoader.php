@@ -583,7 +583,7 @@ class ResourceLoader {
 	 * and clear out the output buffer. If the client cache is too old then do nothing.
 	 * @param $context ResourceLoaderContext
 	 * @param string $mtime The TS_MW timestamp to check the header against
-	 * @return bool True iff 304 header sent and output handled
+	 * @return bool True if 304 header sent and output handled
 	 */
 	protected function tryRespondLastModified( ResourceLoaderContext $context, $mtime ) {
 		// If there's an If-Modified-Since header, respond with a 304 appropriately
