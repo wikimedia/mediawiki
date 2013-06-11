@@ -696,10 +696,8 @@ Maaaring matagumpay mo nang nabago ang iyong hudyat o nakahiling na ng isang bag
 
 # Special:PasswordReset
 'passwordreset' => 'Muling pagtatakda ng hudyat',
-'passwordreset-text' => 'Punuin ang pormularyong ito upang makatanggap ng isang pampaalalang e-liham ng iyong mga detalye ng akawnt.',
 'passwordreset-legend' => 'Itakdang muli ang hudyat',
 'passwordreset-disabled' => 'Hindi pinagagana sa wiking ito ang muling mga pagtatakda ng hudyat.',
-'passwordreset-pretext' => '{{PLURAL:$1| | Ipasok ang isa sa mga piraso ng datos sa ibaba}}',
 'passwordreset-username' => 'Pangalan ng tagagamit:',
 'passwordreset-domain' => 'Nasasakupan:',
 'passwordreset-capture' => 'Tingnan ang lumabas na e-liham?',

@@ -551,10 +551,8 @@ Ahat ilaq ad beddeleḍ awal ik/im n uɛaddi naɣ ad ssutereḍ awal n uɛaddi a
 
 # Special:PasswordReset
 'passwordreset' => 'Awennez tikkelt nniḍen n awal uɛaddi',
-'passwordreset-text' => 'Ččur tiferkit agi iwakken ad eṭṭfeḍ tirawt n usmekti  deg-es tilɣa n umiḍan inek/inem.',
 'passwordreset-legend' => 'Awennez tikkelt nniḍen n awal uɛaddi',
 'passwordreset-disabled' => 'Awennez n awal uɛaddi yensa deg uwiki agi.',
-'passwordreset-pretext' => '{{PLURAL:$1||Sekcem aferdis n isefka ddaw agi}}',
 'passwordreset-username' => 'Isem n useqdac',
 'passwordreset-domain' => 'Talɣut :',
 'passwordreset-capture' => 'Ẓeṛ tirawt ?',

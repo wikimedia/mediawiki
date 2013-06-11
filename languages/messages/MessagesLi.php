@@ -667,10 +667,8 @@ Meugelik höbs doe dien wachwaord al gewiezig of 'n nuuj tiedelik wachwaord aang
 
 # Special:PasswordReset
 'passwordreset' => 'Wachwaord obbenuuts insjtèlle',
-'passwordreset-text' => "Völ dit form aan zodet weer dich 'ne mail kinne sjikk mit dien gebroekersgegaeves.",
 'passwordreset-legend' => 'Wachwaord obbenuuts insjtèlle',
 'passwordreset-disabled' => "'t Is hie neet meugelik óm die wachwaord óbbenuits in te sjtelle.",
-'passwordreset-pretext' => '{{PLURAL:$1||Veur ei van de vèljer hieónger in}}',
 'passwordreset-username' => 'Gebroekersnaam:',
 'passwordreset-domain' => 'Domein:',
 'passwordreset-capture' => 'Bekiek de resulterenden e-mail?',

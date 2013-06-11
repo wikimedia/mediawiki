@@ -804,10 +804,8 @@ Yaykuna rimaykitaqa aypalla hukcharqunkiñachá icha huk mit'alla yaykuna rimata
 
 # Special:PasswordReset
 'passwordreset' => 'Yaykuna rimata kutichiy',
-'passwordreset-text' => "Kay hunt'ana p'anqata hunt'ay, yaykuna rimaykita kutichinaykipaq.",
 'passwordreset-legend' => 'Yaykuna rimata kutichiy',
 'passwordreset-disabled' => 'Kay wikipiqa yaykuna rimata manam kutichiyta atinkichu.',
-'passwordreset-pretext' => '{{PLURAL:$1||Qatiqpi kaq willa rakikunamanta huktam yaykuchiy}}',
 'passwordreset-username' => 'Ruraqpa sutin:',
 'passwordreset-domain' => 'Duminyu:',
 'passwordreset-capture' => 'Llalliwaq e-chaskita qhawayta munankichu?',

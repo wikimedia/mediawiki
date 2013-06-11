@@ -654,10 +654,8 @@ $2',
 
 # Special:PasswordReset
 'passwordreset' => 'Полафтомс сувама валцень',
-'passwordreset-text' => 'Эряви пяшкодемс тя формать е-сёрма сёрматфтомацень колга сявоманди.',
 'passwordreset-legend' => 'Полафтомс сувама валцень',
 'passwordreset-disabled' => 'Сувама валсь аф полафтови тя викить эса.',
-'passwordreset-pretext' => '{{PLURAL:$1||Тяштьк содама пялькснень эзда фкя алу}}',
 'passwordreset-username' => 'Тиить лемоц',
 'passwordreset-domain' => 'Домен:',
 'passwordreset-capture' => 'Ваномс мекольце е-сёрма?',

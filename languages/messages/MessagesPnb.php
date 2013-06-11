@@ -526,10 +526,8 @@ Note that some pages may continue to be displayed as if you were still logged in
 
 # Special:PasswordReset
 'passwordreset' => 'کنجی واپس لیاؤ',
-'passwordreset-text' => 'اے فارم مکمل کرکے اپنے کھاتے دی معلومات اپنے ای-میل تے منگوالو۔',
 'passwordreset-legend' => 'کنجی واپس لیاؤ',
 'passwordreset-disabled' => 'اس وکی تے کنجی واپس نئیں لیائی جاسکدی۔',
-'passwordreset-pretext' => '{{PLURAL:$1||تھلے دتے ہوۓ ڈیٹا چوں اک ایتھے دیو}}',
 'passwordreset-username' => 'ورتن ناں:',
 'passwordreset-domain' => 'ڈومین',
 'passwordreset-capture' => 'آن والی ای-میل ویکھو؟',

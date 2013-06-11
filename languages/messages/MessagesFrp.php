@@ -851,10 +851,8 @@ Pôt-étre vos éd ja changiê voutron contresegno avouéc reusséta ou ben dema
 
 # Special:PasswordReset
 'passwordreset' => 'Remês’a zérô du contresegno',
-'passwordreset-text' => 'Rempléd ceti formulèro por rebetar a zérô voutron contresegno.',
 'passwordreset-legend' => 'Rebetar a zérô lo contresegno',
 'passwordreset-disabled' => 'La remês’a zérô des contresegnos est étâye dèsactivâye sur ceti vouiqui.',
-'passwordreset-pretext' => '{{PLURAL:$1||Buchiéd yona de les piéces de balyês ce-desot}}',
 'passwordreset-username' => 'Nom d’utilisator :',
 'passwordreset-domain' => 'Domêno :',
 'passwordreset-capture' => 'Est-o que vos voléd vêre lo mèssâjo que rèsulte ?',

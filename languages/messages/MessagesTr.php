@@ -13,6 +13,7 @@
  * @author Bilalokms
  * @author Bombola
  * @author Cekli829
+ * @author Coolland
  * @author Dbl2010
  * @author Don Alessandro
  * @author Emperyan
@@ -793,7 +794,7 @@ Tarayıcınızın önbelleğini temizleyene kadar bazı sayfalar sanki hâlâ ot
 'userlogout' => 'Oturumu kapat',
 'notloggedin' => 'Oturum açık değil',
 'userlogin-noaccount' => 'Bir hesabınız yok mu?',
-'userlogin-joinproject' => "{{SITENAME}}'ye katılın",
+'userlogin-joinproject' => '{{SITENAME}} sitesine katılın',
 'nologin' => 'Bir hesabınız yok mu? $1.',
 'nologinlink' => 'Hesap oluşturun',
 'createaccount' => 'Hesap oluştur',
@@ -813,7 +814,7 @@ Tarayıcınızın önbelleğini temizleyene kadar bazı sayfalar sanki hâlâ ot
 'createacct-reason' => 'Gerekçe',
 'createacct-reason-ph' => 'Neden başka bir hesap oluşturuyorsunuz',
 'createacct-captcha' => 'Güvenlik kontrolü',
-'createacct-imgcaptcha-ph' => 'Yukarıda gördüğünüz metin girin',
+'createacct-imgcaptcha-ph' => 'Yukarıda gördüğünüz metni girin',
 'createacct-submit' => 'Hesabınızı oluşturun',
 'createacct-benefit-heading' => '{{SITENAME}} sizin gibi insanlar tarafından oluşturulur.',
 'createacct-benefit-body1' => '{{PLURAL:$1|düzenleme|düzenleme}}',
@@ -857,8 +858,7 @@ Parola değişimini siz istemediyseniz veya parolanızı hatırladıysanız ve a
 'blocked-mailpassword' => 'Siteye erişiminiz engellenmiş olduğundan, yeni şifre gönderilme işlemi yapılamamaktadır.',
 'eauthentsent' => 'Kaydedilen adrese onay kodu içeren bir e-posta gönderildi.
 E-postadaki yönerge uygulanıp adresin size ait olduğu onaylanmadıkça başka e-posta gönderilmeyecek.',
-'throttled-mailpassword' => 'Parola hatırlatıcı son {{PLURAL:$1|bir saat|$1 saat}} içinde zaten gönderildi.
-Hizmeti kötüye kullanmayı önlemek için, her {{PLURAL:$1|bir saatte|$1 saatte}} sadece bir parola hatırlatıcısı gönderilecektir.',
+'throttled-mailpassword' => 'Bir parola sıfırlama e-postası son {{PLURAL:$1|bir saat|$1 saat}} içinde zaten gönderildi. Hizmeti kötüye kullanmayı önlemek için, her {{PLURAL:$1|bir saatte|$1 saatte}} sadece bir parola sıfırlama e-postası gönderilecektir.',
 'mailerror' => 'E-posta gönderim hatası: $1',
 'acct_creation_throttle_hit' => 'Sizin IP adresinizi kullanarak bu vikiyi ziyaret edenler son günde {{PLURAL:$1|1 hesap|$1 hesap}} oluşturdu, bu sayı bu zaman aralığında izin verilen azami sayıdır.
 Sonuç olarak, bu IP adresini kullanan ziyaretçiler şu anda daha fazla hesap açamazlar.',
@@ -3840,6 +3840,8 @@ Bu programla birlikte [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU Genel Kamu Lisansın
 
 # Special:Redirect
 'redirect-submit' => 'Git',
+'redirect-value' => 'Değer:',
+'redirect-user' => 'Kullanıcı kimliği',
 'redirect-file' => 'Dosya adı',
 
 # Special:FileDuplicateSearch

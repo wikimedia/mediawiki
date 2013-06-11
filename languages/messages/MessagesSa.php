@@ -809,10 +809,8 @@ You may ignore this message, if this account was created in error.',
 
 # Special:PasswordReset
 'passwordreset' => 'कूटशब्द पुनःस्थापनम्',
-'passwordreset-text' => 'भवतः सदस्यताविवरणानि ईपत्रद्वारा प्राप्तुम् इदं प्रपत्रं पूर्यताम् ।',
 'passwordreset-legend' => 'कूटशब्द पुनःस्थापनम्',
 'passwordreset-disabled' => 'अस्मिन् विक्यां कूटशब्द पुनःस्थापनं असमर्थीकृतमस्ति।',
-'passwordreset-pretext' => '{{PLURAL:$1| |समंकेषु एकम् अधस्यात् प्रविष्टीकरोतु।}}',
 'passwordreset-username' => 'योजकनामन्:',
 'passwordreset-domain' => 'क्षेत्रम्:',
 'passwordreset-capture' => 'फलितरूपम् ईपत्रं किं दृश्यते ?',

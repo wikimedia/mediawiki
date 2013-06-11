@@ -711,10 +711,8 @@ $2',
 
 # Special:PasswordReset
 'passwordreset' => 'Серсүзне бетерү',
-'passwordreset-text' => 'Сезнең хисап язмасының параметрлары турында хат алыр өчен, түбәндәгеләрне тутырыгыз',
 'passwordreset-legend' => 'Серсүзне яңадан кую',
 'passwordreset-disabled' => 'Бу викида серсүз бетереп булмый',
-'passwordreset-pretext' => '{{PLURAL:$1||Түбәндә күрсәтелгән мәгълүматларның бер өлешен языгыз}}',
 'passwordreset-username' => 'Кулланучы исеме:',
 'passwordreset-domain' => 'Домен:',
 'passwordreset-capture' => 'Килеп чыккан хатны күрсәтелсенме?',

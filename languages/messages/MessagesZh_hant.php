@@ -36,6 +36,7 @@
  * @author Pbdragonwang
  * @author PhiLiP
  * @author Philip
+ * @author Radish10cm
  * @author Shinjiman
  * @author Shirayuki
  * @author Shizhao
@@ -460,6 +461,7 @@ $messages = array(
 'create-this-page' => '建立本頁',
 'delete' => '刪除',
 'deletethispage' => '刪除本頁',
+'undeletethispage' => '取消刪除此頁',
 'undelete_short' => '反刪除$1項修訂',
 'viewdeleted_short' => '查看$1項已刪除的修訂',
 'protect' => '保護',
@@ -662,6 +664,8 @@ $2',
 'namespaceprotected' => "您並沒有權限編輯'''$1'''名字空間的頁面。",
 'customcssprotected' => '你並無權限編輯此CSS頁面，因為它包含了其他用戶的個人設置。',
 'customjsprotected' => '你並無權限去編輯此JavaScript頁面，因為他包含了另一位用戶的個人設定。',
+'mycustomcssprotected' => '你沒有編輯這CSS頁面的權限。',
+'mycustomjsprotected' => '你沒有編輯這JavaScript頁面的權限。',
 'ns-specialprotected' => '特殊頁面是不可以編輯的。',
 'titleprotected' => "這個標題已經被[[User:$1|$1]]保護以防止建立。理由是''$2''。",
 'filereadonlyerror' => '無法修改文件「$1」因為文件庫「$2」處於唯讀模式。 ！
@@ -1546,6 +1550,8 @@ $1",
 'right-editusercssjs' => '編輯其他用戶的CSS和JavaScript檔案',
 'right-editusercss' => '編輯其他用戶的CSS檔案',
 'right-edituserjs' => '編輯其他用戶的JavaScript檔案',
+'right-editmyusercss' => '編輯你自己的用戶CSS檔',
+'right-editmyuserjs' => '編輯你自己的用戶JavaScript檔',
 'right-rollback' => '快速復原上位用戶對某一頁面之編輯',
 'right-markbotedits' => '標示復原編輯作機械人編輯',
 'right-noratelimit' => '沒有使用頻率限制',

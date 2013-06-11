@@ -503,7 +503,6 @@ I thurûk i thlâk hlawhtling tawh a nih loh pawhin thurûk lailâwk i dil a ni 
 
 # Special:PasswordReset
 'passwordreset' => 'Thurûk ziakţha rawh',
-'passwordreset-text' => 'I thurûk thlâk turin ahnuaia lehkha khu dah khat ang che.',
 'passwordreset-legend' => 'Thurûk ziakţha rawh',
 'passwordreset-username' => 'Hmangtu hming:',
 'passwordreset-domain' => 'Huamchin:',

@@ -562,10 +562,8 @@ Panjengen manawa wis kasil ganti tembung sandi utawa nyuwun tembung sandi saunta
 
 # Special:PasswordReset
 'passwordreset' => 'Balèni setèl tembung sandhi',
-'passwordreset-text' => 'Jangkepi pormulir iki kanggo mbalèkaké tembung sandhiné Sampéyan.',
 'passwordreset-legend' => 'Balèni setèl tembung sandhi',
 'passwordreset-disabled' => 'Piranti kanggo mbalèni nyetèl tembung sandhi dipatèni nèng wiki iki.',
-'passwordreset-pretext' => '{{PLURAL:$1||Lebokaké siji bagéyan data ngisor iki}}',
 'passwordreset-username' => 'Jeneng panganggo:',
 'passwordreset-domain' => 'Domain:',
 'passwordreset-capture' => 'Delok layang èlèktronik sing diasilaké?',

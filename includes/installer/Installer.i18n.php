@@ -1620,6 +1620,8 @@ MediaWiki патрабуе падтрымкі UTF-8 для слушнай пра
 	'config-mod-security' => "'''Папярэджаньне''': на Вашым ўэб-сэрверы ўключаны [http://modsecurity.org/ mod_security]. У выпадку няслушнай наладцы, ён можа стаць прычынай праблемаў для MediaWiki ці іншага праграмнага забесьпячэньня, якое дазваляе ўдзельнікам дасылаць на сэрвэр любы зьмест.
 Глядзіце [http://modsecurity.org/documentation/ дакумэнтацыю mod_security] ці зьвярніцеся ў падтрымку Вашага хосту, калі ў Вас узьнікаюць выпадковыя праблемы.",
 	'config-diff3-bad' => 'GNU diff3 ня знойдзены.',
+	'config-git' => 'Знойдзеная сыстэма канстролю вэрсіяў Git: <code>$1</code>',
+	'config-git-bad' => 'Сыстэма кантролю вэрсіяў Git ня знойдзеная.',
 	'config-imagemagick' => 'Знойдзены ImageMagick: <code>$1</code>.
 Пасьля ўключэньня загрузак будзе ўключанае маштабаваньне выяваў.',
 	'config-gd' => 'GD падтрымліваецца ўбудавана.
@@ -1735,7 +1737,7 @@ $1
 	'config-missing-db-host' => 'Вы павінны ўвесьці значэньне парамэтру «Хост базы зьвестак»',
 	'config-missing-db-server-oracle' => 'Вы павінны ўвесьці значэньне парамэтру «TNS базы зьвестак»',
 	'config-invalid-db-server-oracle' => 'Няслушнае TNS базы зьвестак «$1».
-Назва можа ўтрымліваць толькі ASCII-літары (a-z, A-Z), лічбы (0-9), сымбалі падкрэсьліваньня(_) і кропкі (.).',
+Назва можа ўтрымліваць толькі ASCII-літары (a-z, A-Z), лічбы (0-9), сымбалі падкрэсьліваньня(_) і кропкі (.).', # Fuzzy
 	'config-invalid-db-name' => 'Няслушная назва базы зьвестак «$1».
 Назва можа ўтрымліваць толькі ASCII-літары (a-z, A-Z), лічбы (0-9), сымбалі падкрэсьліваньня(_) і працяжнікі (-).',
 	'config-invalid-db-prefix' => 'Няслушны прэфікс базы зьвестак «$1».
@@ -3852,17 +3854,19 @@ $messages['cv'] = array(
 );
 
 /** Welsh (Cymraeg)
+ * @author Lloffiwr
  * @author Xxglennxx
  */
 $messages['cy'] = array(
 	'mainpagetext' => "'''Wedi llwyddo gosod meddalwedd MediaWiki yma'''",
-	'mainpagedocfooter' => 'Ceir cymorth (yn Saesneg) ar ddefnyddio meddalwedd wici yn y [//meta.wikimedia.org/wiki/Help:Contents Canllaw Defnyddwyr] ar wefan Wikimedia.
+	'mainpagedocfooter' => "Ceir cymorth (yn Saesneg) ar ddefnyddio meddalwedd wici yn y [//meta.wikimedia.org/wiki/Help:Contents Canllaw Defnyddwyr] ar wefan Wikimedia.
 
 ==Cychwyn arni==
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Rhestr osodiadau wrth gyflunio]
 * [//www.mediawiki.org/wiki/Manual:FAQ Cwestiynau poblogaidd ar MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Rhestr postio datganiadau MediaWiki]', # Fuzzy
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Rhestr postio datganiadau MediaWiki]
+* [//www.mediawiki.org/wiki/Localisation#Translation_resources Cyfieithu MediaWici i'ch iaith chi]",
 );
 
 /** Danish (dansk)
@@ -4136,7 +4140,7 @@ Sofern nicht das Datenbanksystem angezeigt wird, das verwendet werden soll, gibt
 	'config-missing-db-host' => 'Bei „Datenbankhost“ muss ein Wert angegeben werden.',
 	'config-missing-db-server-oracle' => 'Für das „Datenbank-TNS“ muss ein Wert eingegeben werden',
 	'config-invalid-db-server-oracle' => 'Ungültiges Datenbank-TNS „$1“.
-Es dürfen nur ASCII-codierte Buchstaben (a-z, A-Z), Zahlen (0-9) und Unterstriche (_) und Punkte (.) verwendet werden.',
+Entweder „TNS Name“ oder eine „Easy Connect“-Zeichenfolge verwenden ([http://docs.oracle.com/cd/E11882_01/network.112/e10836/naming.htm Oracle-Benennungsmethoden])',
 	'config-invalid-db-name' => 'Ungültiger Datenbankname „$1“.
 Es dürfen nur ASCII-codierte Buchstaben (a-z, A-Z), Zahlen (0-9), Unter- (_) sowie Bindestriche (-) verwendet werden.',
 	'config-invalid-db-prefix' => 'Ungültiger Datenbanktabellenpräfix „$1“.
@@ -5944,7 +5948,7 @@ Si vous ne voyez pas le système de base de données que vous essayez d'utiliser
 	'config-missing-db-host' => "Vous devez entrer une valeur pour « l'hôte de la base de données »",
 	'config-missing-db-server-oracle' => 'Vous devez saisir une valeur pour le « Nom TNS de la base de données »',
 	'config-invalid-db-server-oracle' => 'Le nom TNS de la base de données (« $1 ») est invalide.
-Il ne peut contenir que des lettres latines de base (a-z, A-Z), des chiffres (0-9), des caractères de soulignement (_) et des points (.).',
+Utilisez uniquement la chaîne "TNS Name" ou "Easy Connect" ([http://docs.oracle.com/cd/E11882_01/network.112/e10836/naming.htm Méthodes de nommage Oracle])',
 	'config-invalid-db-name' => 'Nom de la base de données invalide (« $1 »).
 Il ne peut contenir que des lettres latines (a-z, A-Z), des chiffres (0-9), des caractères de soulignement (_) et des tirets (-).',
 	'config-invalid-db-prefix' => 'Préfixe de la base de données non valide « $1 ».
@@ -6769,7 +6773,7 @@ Se non ve listado a continuación o sistema de base de datos que intenta usar, s
 	'config-missing-db-host' => 'Debe escribir un valor "Servidor da base de datos"',
 	'config-missing-db-server-oracle' => 'Debe escribir un valor "TNS da base de datos"',
 	'config-invalid-db-server-oracle' => 'O TNS da base de datos, "$1", é incorrecto.
-Só pode conter letras ASCII (a-z, A-Z), números (0-9), guións baixos (_) e puntos (.).',
+Utilice só "TNS Name" ou unha cadea de texto "Easy Connect" ([http://docs.oracle.com/cd/E11882_01/network.112/e10836/naming.htm métodos de nomeamento de Oracle])',
 	'config-invalid-db-name' => 'O nome da base de datos, "$1", é incorrecto.
 Só pode conter letras ASCII (a-z, A-Z), números (0-9), guións baixos (_) e guións (-).',
 	'config-invalid-db-prefix' => 'O prefixo da base de datos, "$1", é incorrecto.
@@ -10266,7 +10270,7 @@ Unicode を少しでも利用する可能性がある場合は、[//www.mediawik
 共有サーバーを使用している場合は、適切なデータベース ドライバーのインストールを、サーバーの管理者に依頼してください。
 PHP を自分でコンパイルした場合は、例えば <code>./configure --with-mysql</code> を実行して、データベース クライアントを使用できるように再設定してください。
 Debian または Ubuntu のパッケージから PHP をインストールした場合は、php5-mysql モジュールもインストールする必要があります。',
-	'config-outdated-sqlite' => "'''警告:''' あなたは SQLite $1 を使っていますが、最低限要求されるバージョンである $2 未満となっています。SQLite は利用できません。",
+	'config-outdated-sqlite' => "'''警告:''' あなたは SQLite $1 を使用していますが、最低限必要なバージョン $2 より古いバージョンです。SQLite は利用できません。",
 	'config-no-fts3' => "'''警告:''' SQLite は [//sqlite.org/fts3.html FTS3] モジュールなしでコンパイルされており、このバックエンドでは検索機能は利用できなくなります。",
 	'config-register-globals' => "'''警告: PHP の <code>[http://php.net/register_globals register_globals]</code> オプションが有効になっています。'''
 '''可能なら無効化してください。'''
@@ -10414,7 +10418,7 @@ $1
 	'config-missing-db-host' => '「データベースのホスト」を入力してください',
 	'config-missing-db-server-oracle' => '「データベース TNS」の値を入力してください',
 	'config-invalid-db-server-oracle' => '「$1」は無効なデータベース TNS です。
-アスキー英字(a-z、A-Z)、数字(0-9)、アンダーバー(_)、ドット(.)のみを使用してください。',
+「TNS 名」「Easy Connect」文字列のいずれかを使用してください ([http://docs.oracle.com/cd/E11882_01/network.112/e10836/naming.htm Oracle Naming Methods])',
 	'config-invalid-db-name' => '「$1」は無効なデータベース名です。
 アスキー英字(a-z、A-Z)、数字(0-9)、アンダーバー(_)、ハイフン(-)のみを使用してください。',
 	'config-invalid-db-prefix' => '「$1」は無効なデータベース接頭語です。
@@ -12846,8 +12850,8 @@ $1
 	'config-missing-db-name' => 'Мора да внесете значење за параметарот „Име на базата“',
 	'config-missing-db-host' => 'Мора да внесете вредност за „Домаќин на базата на податоци“',
 	'config-missing-db-server-oracle' => 'Мора да внесете вредност за „TNS на базата“',
-	'config-invalid-db-server-oracle' => 'Неважечки TNS „$1“ за базата.
-Користете само знаци по ASCII - букви (a-z, A-Z), бројки (0-9), долни црти (_) и точки (.).',
+	'config-invalid-db-server-oracle' => 'Неважечки TNS „$1“.
+Користете или „TNS Name“ или низата „Easy Connect“ ([http://docs.oracle.com/cd/E11882_01/network.112/e10836/naming.htm Методи на именување за Oracle])',
 	'config-invalid-db-name' => 'Неважечко име на базата „$1“.
 Користете само ASCII-букви (a-z, A-Z), бројки (0-9), долни црти (_) и цртички (-).',
 	'config-invalid-db-prefix' => 'Неважечки префикс за базата „$1“.
@@ -14331,8 +14335,8 @@ Als u het databasesysteem dat u wilt gebruiken niet in de lijst terugvindt, volg
 	'config-missing-db-name' => 'U moet een waarde opgeven voor "Databasenaam"',
 	'config-missing-db-host' => 'U moet een waarde invoeren voor "Databaseserver"',
 	'config-missing-db-server-oracle' => 'U moet een waarde opgeven voor "Database-TNS"',
-	'config-invalid-db-server-oracle' => 'Ongeldige database-TMS "$1".
-Gebruik alleen letters (a-z, A-Z), cijfers (0-9) en liggende streepjes (_).',
+	'config-invalid-db-server-oracle' => 'Ongeldige database-TNS "$1".
+Gebruik "TNS Names" of een "Easy Connect" tekst ([http://docs.oracle.com/cd/E11882_01/network.112/e10836/naming.htm Oracle naamgevingsmethoden])',
 	'config-invalid-db-name' => 'Ongeldige databasenaam "$1".
 Gebruik alleen letters (a-z, A-Z), cijfers (0-9) en liggende streepjes (_) en streepjes (-).',
 	'config-invalid-db-prefix' => 'Ongeldig databasevoorvoegsel "$1".
@@ -15163,6 +15167,8 @@ Instalacja może się nie udać!",
 	'config-mod-security' => "''' Ostrzeżenie ''': Serwer sieci web ma włączone [http://modsecurity.org/ mod_security]. Jeśli niepoprawnie skonfigurowane, może być przyczyną problemów MediaWiki lub innego oprogramowania, które pozwala użytkownikom na wysyłanie dowolnej zawartości.
 Sprawdź w [http://modsecurity.org/documentation/ dokumentacji mod_security] lub skontaktuj się z obsługa hosta, jeśli wystąpią losowe błędy.",
 	'config-diff3-bad' => 'Nie znaleziono GNU diff3.',
+	'config-git' => 'Znaleziono oprogramowanie kontroli wersji Git: <code>$1</code>.',
+	'config-git-bad' => 'Oprogramowanie systemu kontroli wersji Git nie zostało znalezione.',
 	'config-imagemagick' => 'Mamy zainstalowany ImageMagick <code>$1</code>, dzięki czemu będzie można pomniejszać załadowane grafiki.',
 	'config-gd' => 'Mamy wbudowaną bibliotekę graficzną GD, dzięki ceymu będzie można pomniejszać załadowane grafiki.',
 	'config-no-scaling' => 'Nie można odnaleźć biblioteki GD lub ImageMagick. Nie będzie działać pomniejszanie załadowane grafiki.',
@@ -15181,7 +15187,8 @@ Instalacja została przerwana.',
 	'config-using531' => 'MediaWiki nie może być używane z PHP $1 z powodu błędu dotyczącego referencyjnych argumentów funkcji <code>__call()</code>.
 Uaktualnij do PHP 5.3.2 lub nowszego. Możesz również cofnąć wersję do PHP 5.3.0, aby naprawić ten błąd.
 Instalacja została przerwana.',
-	'config-suhosin-max-value-length' => 'Jest zainstalowany Suhosin i ogranicza długość parametru GET do $1  bajtów. Komponent ResourceLoader w MediaWiki  wykona obejście tego ograniczenia, ale kosztem wydajności. Jeśli to możliwe należy ustawić <code>suhosin.get.max_value_length</code> na 1024 lub wyższej w <code>php.ini</code> oraz ustawić <code>$wgResourceLoaderMaxQueryLength</code> w LocalSettings.php na tę samą wartość.', # Fuzzy
+	'config-suhosin-max-value-length' => 'Jest zainstalowany Suhosin i ogranicza długość parametru GET <code>length</code> do $1 bajtów. Komponent ResourceLoader w MediaWiki wykona obejście tego ograniczenia, ale kosztem wydajności.
+Jeśli to możliwe, należy ustawić <code>suhosin.get.max_value_length</code> na 1024 lub wyżej w <code>php.ini</code> oraz ustawić <code>$wgResourceLoaderMaxQueryLength</code> w <code>LocalSettings.php</code> na tę samą wartość.',
 	'config-db-type' => 'Typ bazy danych',
 	'config-db-host' => 'Adres serwera bazy danych',
 	'config-db-host-help' => 'Jeśli serwer bazy danych jest na innej maszynie, wprowadź jej nazwę domenową lub adres IP.
@@ -15271,7 +15278,7 @@ Poniżej wyświetlone są systemy baz danych gotowe do użycia. Jeżeli poniżej
 	'config-missing-db-host' => 'Musisz wpisać wartość w polu „Serwer bazy danych”',
 	'config-missing-db-server-oracle' => 'Należy wpisać wartość w polu „Nazwa instancji bazy danych (TNS)”',
 	'config-invalid-db-server-oracle' => 'Nieprawidłowa nazwa instancji bazy danych (TNS) „$1”.
-W nazwie można użyć wyłącznie liter ASCII (a-z, A-Z), cyfr (0-9), podkreślenia (_) i kropek (.).',
+Użyj "TNS Name" lub "Easy Connect" ([http://docs.oracle.com/cd/E11882_01/network.112/e10836/naming.htm Oracle Naming Methods])',
 	'config-invalid-db-name' => 'Nieprawidłowa nazwa bazy danych „$1”.
 Używaj wyłącznie liter ASCII (a-z, A-Z), cyfr (0-9), podkreślenia (_) lub znaku odejmowania (-).',
 	'config-invalid-db-prefix' => 'Nieprawidłowy prefiks bazy danych „$1”.
@@ -15346,6 +15353,12 @@ Konto, które wskazałeś tutaj musi już istnieć.',
 
 Jeśli instalacja MySQL obsługuje InnoDB, jest wysoce zalecane, by to je wybrać.
 Jeśli instalacja MySQL nie obsługuje InnoDB, być może nadszedł czas na jej uaktualnienie.",
+	'config-mysql-only-myisam-dep' => "'''Ostrzeżenie:''' MyISAM jest jedynym dostępnym mechanizmem składowania dla MySQL, który nie jest zalecany do używania z MediaWiki, ponieważ:
+* słabo obsługuje współbieżność z powodu blokowania tabel
+* jest bardziej skłonny do uszkodzeń niż inne silniki
+* kod MediaWiki nie zawsze traktuje MyISAM jak powinien
+
+Twoja instalacja MySQL nie obsługuje InnoDB, być może jest to czas na aktualizację.",
 	'config-mysql-engine-help' => "'''InnoDB''' jest prawie zawsze najlepszą opcją, ponieważ posiada dobrą obsługę współbieżności.
 
 '''MyISAM''' może być szybsze w instalacjach pojedynczego użytkownika lub tylko do odczytu.
@@ -15389,7 +15402,7 @@ Podaj inną nazwę.',
 	'config-admin-error-user' => 'Błąd wewnętrzny podczas tworzenia konta administratora o nazwie „<nowiki>$1</nowiki>”.',
 	'config-admin-error-password' => 'Wewnętrzny błąd podczas ustawiania hasła dla administratora „<nowiki>$1</nowiki>”: <pre>$2</pre>',
 	'config-admin-error-bademail' => 'Wpisałeś nieprawidłowy adres e‐mail',
-	'config-subscribe' => 'Zapisz się na [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce listę pocztową z ogłaszaniami o nowych wersjach].',
+	'config-subscribe' => 'Zapisz się na [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce listę pocztową z ogłoszeniami o nowych wersjach].',
 	'config-subscribe-help' => 'Jest to lista o małej liczbie wiadomości, wykorzystywana do przesyłania informacji o udostępnieniu nowej wersji oraz istotnych sprawach dotyczących bezpieczeństwa.
 Powinieneś zapisać się na tę listę i aktualizować zainstalowane oprogramowanie MediaWiki gdy pojawia się nowa wersja.',
 	'config-subscribe-noemail' => 'Próbowano subskrybować listę mailingową ogłoszeń wersji bez podania adresu e-mail.
@@ -15404,17 +15417,17 @@ Możesz pominąć pozostałe czynności konfiguracyjne i zainstalować wiki.',
 	'config-profile-fishbowl' => 'Wyłącznie zatwierdzeni edytorzy',
 	'config-profile-private' => 'Prywatna wiki',
 	'config-profile-help' => "Strony typu wiki działają najlepiej, gdy pozwolisz je edytować tak wielu osobom, jak to możliwie.
-W MediaWiki, jest łatwe sprawdzenie ostatnich zmian i wycofać szkody, które są spowodowane przez naiwnych lub złośliwych użytkowników.
+W MediaWiki, można łatwo sprawdzić ostatnie zmiany i wycofać szkody, które są spowodowane przez naiwnych lub złośliwych użytkowników.
 
-Jednakże wielu uznało MediaWiki użytecznymi w różnorodnych rolach, a czasami nie jest łatwo przekonać wszystkich do korzyści ze sposobu działania wiki.
+Jednakże wielu uznało MediaWiki użytecznym w różnorodnych rolach, a czasami nie jest łatwo przekonać wszystkich do korzyści ze sposobu działania wiki. Masz więc wybór.
 
-Ustawienie '''{{int:config-profil-wiki}}''' pozwala każdemu na edycję, nawet bez logowania się.
-Wiki z '''{{int:config-profile-no-anon}}''' zawiera dodatkowe funkcje rozliczania się, ale może powstrzymać dorywczych współpracowników.
+Ustawienie '''{{int:config-profile-wiki}}''' pozwala każdemu na edycję, nawet bez logowania się.
+Wiki z '''{{int:config-profile-no-anon}}''' zawiera dodatkowe możliwości ale może powstrzymywać potencjalnych edytorów.
 
 Scenariusz '''{{int:config-profile-fishbowl}}''' umożliwia zatwierdzonym użytkownikom edycję, ale wyświetlanie stron jest powszechnie dostępne, włącznie z historią.
-Ustawienie '''{{int:config-profile-private}}'' ' pozwala na wyświetlanie stron tylko zatwierdzonym użytkownikom, ta sama grupa może edytować.
+Ustawienie '''{{int:config-profile-private}}'' ' pozwala na wyświetlanie stron tylko zatwierdzonym użytkownikom, ta sama grupa może je edytować.
 
-Bardziej skomplikowane konfiguracje uprawnień użytkowników są dostępne po zakończeniu instalacji, zobacz [//www.mediawiki.org/wiki/Manual:User_rights odpowiednią część podręcznika].", # Fuzzy
+Bardziej skomplikowane konfiguracje uprawnień użytkowników są dostępne po zakończeniu instalacji, zobacz [//www.mediawiki.org/wiki/Manual:User_rights odpowiednią część podręcznika].",
 	'config-license' => 'Prawa autorskie i licencja',
 	'config-license-none' => 'Brak stopki z licencją',
 	'config-license-cc-by-sa' => 'Creative Commons – za uznaniem autora, na tych samych zasadach',
@@ -15465,7 +15478,9 @@ Najlepiej, aby nie był on dostępny z internetu.',
 	'config-logo-help' => 'Domyślny motyw MediaWiki zawiera miejsce na logo wielkości 135 x 160 pikseli powyżej menu na pasku bocznym.
 Prześlij obrazek o odpowiednim rozmiarze, a następnie wpisz jego URL tutaj.
 
-Jeśli nie chcesz logo, pozostaw to pole puste.', # Fuzzy
+Możesz użyć <code>$wgStylePath</code> lub <code>$wgScriptPath</code> jeżeli twoje logo jest relatywne do tych ścieżek.
+
+Jeśli nie chcesz logo, pozostaw to pole puste.',
 	'config-instantcommons' => 'Włącz Instant Commons',
 	'config-instantcommons-help' => '[//www.mediawiki.org/wiki/InstantCommons Instant Commons] jest funkcją, która pozwala wiki używać obrazów, dźwięków i innych mediów znalezionych na  witrynie [//commons.wikimedia.org/ Wikimedia Commons].
 Aby to zrobić, MediaWiki wymaga dostępu do internetu.
@@ -15498,8 +15513,8 @@ Jeśli nie znasz numeru portu, wartością domyślną jest 11211.',
 Mogą one wymagać dodatkowych czynności konfiguracyjnych, ale można je teraz włączyć',
 	'config-install-alreadydone' => "'''Uwaga''' – wydaje się, że MediaWiki jest już zainstalowane, a obecnie próbujesz zainstalować je ponownie.
 Przejdź do następnej strony.",
-	'config-install-begin' => 'Po naciśnięciu "{{int:config-continue}}", rozpocznie się instalacji MediaWiki.
-Jeśli nadal chcesz dokonać zmian, naciśnij wstecz.', # Fuzzy
+	'config-install-begin' => 'Po naciśnięciu "{{int:config-continue}}", rozpocznie się instalacja MediaWiki.
+Jeśli nadal chcesz dokonać zmian, naciśnij "{{int:config-back}}".',
 	'config-install-step-done' => 'gotowe',
 	'config-install-step-failed' => 'nieudane',
 	'config-install-extensions' => 'Włącznie z rozszerzeniami',
@@ -15557,13 +15572,17 @@ Po załadowaniu pliku konfiguracyjnego możesz '''[ $2  wejść na wiki]'''.",
 	'config-download-localsettings' => 'Pobierz <code>LocalSettings.php</code>',
 	'config-help' => 'pomoc',
 	'config-nofile' => 'Nie udało się odnaleźć pliku "$1". Czy nie został usunięty?',
+	'config-extension-link' => 'Czy wiesz, że twoja wiki obsługuje [//www.mediawiki.org/wiki/Manual:Extensions/pl rozszerzenia]?
+
+Możesz przejrzeć [//www.mediawiki.org/wiki/Category:Extensions_by_category rozszerzenia według kategorii] lub [//www.mediawiki.org/wiki/Extension_Matrix Extension Matrix] aby zobaczyć pełną listę rozszerzeń.',
 	'mainpagetext' => "'''Instalacja MediaWiki powiodła się.'''",
 	'mainpagedocfooter' => 'Zobacz [//meta.wikimedia.org/wiki/Help:Contents przewodnik użytkownika] w celu uzyskania informacji o działaniu oprogramowania wiki.
 
 == Na początek ==
-* [//www.mediawiki.org/wiki/Manual:Configuration_settings Lista ustawień konfiguracyjnych]
-* [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Komunikaty o nowych wersjach MediaWiki]', # Fuzzy
+* [//www.mediawiki.org/wiki/Manual:Configuration_settings/pl Lista ustawień konfiguracyjnych]
+* [//www.mediawiki.org/wiki/Manual:FAQ/pl MediaWiki FAQ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Komunikaty o nowych wersjach MediaWiki]
+* [//www.mediawiki.org/wiki/Localisation#Translation_resources Przetłumacz MediaWiki na swój język]',
 );
 
 /** Piedmontese (Piemontèis)
@@ -16192,7 +16211,7 @@ $messages['pt'] = array(
 	'config-title' => 'Instalação MediaWiki $1',
 	'config-information' => 'Informação',
 	'config-localsettings-upgrade' => 'Foi detectado um ficheiro <code>LocalSettings.php</code>.
-Para actualizar esta instalação, por favor introduza o valor de <code>$wgUpgradeKey</code> na caixa abaixo.
+Para atualizar esta instalação, por favor introduza o valor de <code>$wgUpgradeKey</code> na caixa abaixo.
 Encontra este valor no <code>LocalSettings.php</code>.',
 	'config-localsettings-cli-upgrade' => 'Foi detectada a existência de um ficheiro <code>LocalSettings.php</code>.
 Para actualizar esta instalação execute o <code>update.php</code>, por favor.',
@@ -16224,7 +16243,7 @@ Verifique o seu php.ini e certifique-se de que em <code>session.save_path</code>
 	'config-page-language' => 'Língua',
 	'config-page-welcome' => 'Bem-vindo(a) ao MediaWiki!',
 	'config-page-dbconnect' => 'Ligar à base de dados',
-	'config-page-upgrade' => 'Actualizar a instalação existente',
+	'config-page-upgrade' => 'Atualizar a instalação existente',
 	'config-page-dbsettings' => 'Configurações da base de dados',
 	'config-page-name' => 'Nome',
 	'config-page-options' => 'Opções',
@@ -16234,7 +16253,7 @@ Verifique o seu php.ini e certifique-se de que em <code>session.save_path</code>
 	'config-page-readme' => 'Leia-me',
 	'config-page-releasenotes' => 'Notas de lançamento',
 	'config-page-copying' => 'A copiar',
-	'config-page-upgradedoc' => 'A actualizar',
+	'config-page-upgradedoc' => 'Atualizando',
 	'config-page-existingwiki' => 'Wiki existente',
 	'config-help-restart' => 'Deseja limpar todos os dados gravados que introduziu e reiniciar o processo de instalação?',
 	'config-restart' => 'Sim, reiniciar',
@@ -16429,7 +16448,7 @@ Se a plataforma que pretende usar não está listada abaixo, siga as instruçõe
 	'config-missing-db-host' => 'Tem de introduzir um valor para "Servidor da base de dados"',
 	'config-missing-db-server-oracle' => 'Tem de introduzir um valor para "TNS da base de dados"',
 	'config-invalid-db-server-oracle' => 'O TNS da base de dados, "$1", é inválido.
-Use só letras (a-z, A-Z), algarismos (0-9), sublinhados (_) e pontos (.) dos caracteres ASCII.',
+Use só letras (a-z, A-Z), algarismos (0-9), sublinhados (_) e pontos (.) dos caracteres ASCII.', # Fuzzy
 	'config-invalid-db-name' => 'O nome da base de dados, "$1",  é inválido.
 Use só letras (a-z, A-Z), algarismos (0-9), sublinhados (_) e hífens (-) dos caracteres ASCII.',
 	'config-invalid-db-prefix' => 'O prefixo da base de dados, "$1",  é inválido.
@@ -16550,7 +16569,7 @@ Introduza um nome de utilizador diferente.',
 	'config-admin-error-bademail' => 'Introduziu um correio electrónico inválido',
 	'config-subscribe' => 'Subscreva a [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce lista de divulgação de anúncios de lançamento].',
 	'config-subscribe-help' => 'Esta é uma lista de divulgação de baixo volume para anúncios de lançamento de versões novas, incluindo anúncios de segurança importantes.
-Deve subscrevê-la e actualizar a sua instalação MediaWiki quando são lançadas versões novas.',
+Deve subscrevê-la e atualizar a sua instalação MediaWiki quando são lançadas versões novas.',
 	'config-subscribe-noemail' => 'Tentou subscrever a lista de divulgação dos anúncios de novas versões, sem fornecer um endereço de correio electrónico.
 Para subscrever esta lista de divulgação tem de fornecer um endereço de correio electrónico.',
 	'config-almost-done' => 'Está quase a terminar!
@@ -20618,6 +20637,7 @@ $3
 /** Traditional Chinese (中文（繁體）‎)
  * @author Anthony Fok
  * @author Hzy980512
+ * @author Justincheng12345
  * @author Liangent
  * @author Mark85296341
  * @author Simon Shek
@@ -20720,6 +20740,8 @@ $1',
 Object caching is not enabled.",
 	'config-mod-security' => "'''警告'''：您的服務器已啟動[http://modsecurity.org/ mod_security]。若其配置錯誤, 會導致MediaWiki和其他軟件的錯誤並允許用戶任意發布內容。如果您遇到任何錯誤，請查閱[http://modsecurity.org/documentation/ mod_security文檔]或聯繫您的客服。",
 	'config-diff3-bad' => '找不到GNU diff3。',
+	'config-git' => '發現Git版本控制軟件：<code>$1</code>。',
+	'config-git-bad' => '無法找到Git版本控制軟件。',
 	'config-imagemagick' => '已找到ImageMagick：<code>$1</code>。如果你啟用了上傳功能，縮略圖功能也將被啟用。',
 	'config-gd' => '已找到內建的GD圖形庫。如果你啟用了上傳功能，縮略圖功能也將被啟用。',
 	'config-no-scaling' => '找不到GD庫或ImageMagick。縮略圖功能將不可用。',
@@ -20811,7 +20833,8 @@ $1
 	'config-missing-db-name' => '您必須為“數據庫名稱”輸入內容',
 	'config-missing-db-host' => '您必須為“數據庫主機”輸入內容',
 	'config-missing-db-server-oracle' => '您必須為“數據庫透明網絡底層（TNS）”輸入內容',
-	'config-invalid-db-server-oracle' => '無效的數據庫TNS“$1”。請只使用ASCII字母（a-z、A-Z）、數字（0-9）、下劃線（_）和點號（.）。',
+	'config-invalid-db-server-oracle' => '無效的數據庫TNS「$1」。
+請只使用「TNS Name」或「Easy Connect」 字串（[http://docs.oracle.com/cd/E11882_01/network.112/e10836/naming.htm Oracle命名法]）',
 	'config-invalid-db-name' => '無效的數據庫名稱“$1”。請只使用ASCII字母（a-z、A-Z）、數字（0-9）、下劃線（_）和連字號（-）。',
 	'config-invalid-db-prefix' => '無效的數據庫前綴“$1”。請只使用ASCII字母（a-z、A-Z）、數字（0-9）、下劃線（_）和連字號（-）。',
 	'config-connection-error' => '$1。

@@ -568,6 +568,7 @@ $messages = array(
 'create-this-page' => 'このページを作成',
 'delete' => '削除',
 'deletethispage' => 'このページを削除',
+'undeletethispage' => 'このページを復元',
 'undelete_short' => '{{PLURAL:$1|$1 編集}}を復元',
 'viewdeleted_short' => '{{PLURAL:$1|削除された $1 編集}}を閲覧',
 'protect' => '保護',

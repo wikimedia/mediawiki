@@ -571,6 +571,7 @@ $messages = array(
 'create-this-page' => 'Crear esta página',
 'delete' => 'Borrar',
 'deletethispage' => 'Borrar esta página',
+'undeletethispage' => 'Restaurar esta página',
 'undelete_short' => 'Restaurar {{PLURAL:$1|una edición|$1 ediciones}}',
 'viewdeleted_short' => 'Ver {{PLURAL:$1|una edición borrada|$1 ediciones borradas}}',
 'protect' => 'Proteger',

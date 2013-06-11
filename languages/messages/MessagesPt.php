@@ -517,6 +517,7 @@ $messages = array(
 'create-this-page' => 'Criar/iniciar esta página',
 'delete' => 'Eliminar',
 'deletethispage' => 'Eliminar esta página',
+'undeletethispage' => 'Restaurar esta página',
 'undelete_short' => 'Restaurar {{PLURAL:$1|uma edição|$1 edições}}',
 'viewdeleted_short' => 'Ver {{PLURAL:$1|uma edição eliminada|$1 edições eliminadas}}',
 'protect' => 'Proteger',
@@ -717,6 +718,8 @@ $2',
 'namespaceprotected' => "Não possui permissão para editar páginas no espaço nominal '''$1'''.",
 'customcssprotected' => 'Não tem permissões para editar esta página de CSS porque ela contém as configurações pessoais de outro utilizador.',
 'customjsprotected' => 'Não tem permissões para editar esta página de JavaScript porque ela contém as configurações pessoais de outro utilizador.',
+'mycustomcssprotected' => 'Não tem permissão para editar esta página de CSS.',
+'mycustomjsprotected' => 'Não tem permissão para editar esta página de JavaScript.',
 'ns-specialprotected' => 'Não é possível editar páginas especiais',
 'titleprotected' => 'Este título foi protegido contra criação por [[User:$1|$1]].
 A justificação foi "\'\'$2\'\'".',
@@ -1654,6 +1657,8 @@ Esta informação será pública.',
 'right-editusercssjs' => 'Editar os ficheiros CSS e JS de outros utilizadores',
 'right-editusercss' => 'Editar os ficheiros CSS de outros utilizadores',
 'right-edituserjs' => 'Editar os ficheiros JS de outros utilizadores',
+'right-editmyusercss' => 'Editar os seus próprios ficheiros CSS de utilizador',
+'right-editmyuserjs' => 'Editar os seus próprios ficheiros JavaScript de utilizador',
 'right-rollback' => 'Reverter rapidamente as edições do último utilizador que editou uma página em particular',
 'right-markbotedits' => 'Marcar edições revertidas como edições de bot',
 'right-noratelimit' => 'Não ser afectado pelos limites de velocidade de operação',
@@ -3056,6 +3061,7 @@ Não há um directório temporário.',
 'import-error-unserialize' => 'Revisão $2 da página "$1" não pode ser desserializada. Foi relatado que a revisão usava o modelo de conteúdo $3 serializado como $4.',
 'import-options-wrong' => '{{PLURAL:$2|Opção errada|Opções erradas}}: <nowiki>$1</nowiki>',
 'import-rootpage-invalid' => 'A raiz da página dada é um título inválido.',
+'import-rootpage-nosubpage' => 'O domínio "$1" da página de raiz não permite subpáginas.',
 
 # Import log
 'importlogpage' => 'Registo de importações',
@@ -3194,6 +3200,7 @@ Este bloqueio foi provavelmente causado por um link para um site externo que con
 'pageinfo-header-restrictions' => 'Proteção da página',
 'pageinfo-header-properties' => 'Propriedades da página',
 'pageinfo-display-title' => 'Título exibido',
+'pageinfo-default-sort' => 'Chave de classificação padrão',
 'pageinfo-length' => 'Tamanho da página (em bytes)',
 'pageinfo-article-id' => 'ID da página',
 'pageinfo-language' => 'Idioma do conteúdo da página',
@@ -3202,6 +3209,7 @@ Este bloqueio foi provavelmente causado por um link para um site externo que con
 'pageinfo-robot-noindex' => 'Não indexável',
 'pageinfo-views' => 'Número de visitas',
 'pageinfo-watchers' => 'Número de vigilantes da página',
+'pageinfo-few-watchers' => 'Menos do que $1 {{PLURAL:$1|vigilante|vigilantes}}',
 'pageinfo-redirects-name' => 'Redirecionamentos para esta página',
 'pageinfo-subpages-name' => 'Subpáginas desta página',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|redirecionamento|redirecionamentos}}; $3 {{PLURAL:$3|não-redirecionamento|não-redirecionamentos}})',
@@ -3215,12 +3223,16 @@ Este bloqueio foi provavelmente causado por um link para um site externo que con
 'pageinfo-recent-authors' => 'Número recente de autores distintos',
 'pageinfo-magic-words' => '{{PLURAL:$1|Palavra mágica|Palavras mágicas}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Categoria oculta|Categorias ocultas}} ($1)',
+'pageinfo-templates' => '{{PLURAL:$1|Predefinição|Predefinições}} transcluídas ($1)',
+'pageinfo-transclusions' => '{{PLURAL:$1|Página|Páginas}} onde é transcluída ($1)',
 'pageinfo-toolboxlink' => 'Informações da página',
 'pageinfo-redirectsto' => 'Redireciona para',
 'pageinfo-redirectsto-info' => 'informação',
 'pageinfo-contentpage' => 'Contada como página de conteúdo',
 'pageinfo-contentpage-yes' => 'Sim',
+'pageinfo-protect-cascading' => 'A protecção é em cascata a partir daqui',
 'pageinfo-protect-cascading-yes' => 'Sim',
+'pageinfo-protect-cascading-from' => 'As protecções são em cascata a partir de',
 'pageinfo-category-info' => 'Informações da categoria',
 'pageinfo-category-pages' => 'Número de páginas',
 'pageinfo-category-subcats' => 'Número de subcategorias',
@@ -3242,6 +3254,8 @@ Este bloqueio foi provavelmente causado por um link para um site externo que con
 'markedaspatrollederror' => 'Não é possível marcar como patrulhada',
 'markedaspatrollederrortext' => 'É necessário especificar uma edição a ser marcada como patrulhada.',
 'markedaspatrollederror-noautopatrol' => 'Não está autorizado a marcar as suas próprias edições como edições patrulhadas.',
+'markedaspatrollednotify' => 'Esta mudança em $1 foi marcada como patrulhada.',
+'markedaspatrollederrornotify' => 'A marcação como patrulhada falhou.',
 
 # Patrol log
 'patrol-log-page' => 'Registo de edições patrulhadas',
@@ -3305,10 +3319,24 @@ Executá-lo poderá comprometer a segurança do seu sistema.",
 'minutes' => '{{PLURAL:$1|um minuto|$1 minutos}}',
 'hours' => '{{PLURAL:$1|uma hora|$1 horas}}',
 'days' => '{{PLURAL:$1|um dia|$1 dias}}',
+'weeks' => '{{PLURAL:$1|$1 semana|$1 semanas}}',
 'months' => '{{PLURAL:$1|1 mês|$1 meses}}',
 'years' => '{{PLURAL:$1|1 ano|$1 anos}}',
 'ago' => '$1 atrás',
 'just-now' => 'agora mesmo',
+
+# Human-readable timestamps
+'hours-ago' => 'há $1 {{PLURAL:$1|hora|horas}}',
+'minutes-ago' => 'há $1 {{PLURAL:$1|minuto|minutos}}',
+'seconds-ago' => 'há $1 {{PLURAL:$1|segundo|segundos}}',
+'monday-at' => 'Segunda-feira às $1',
+'tuesday-at' => 'Terça-feira às $1',
+'wednesday-at' => 'Quarta-feira às $1',
+'thursday-at' => 'Quinta-feira às $1',
+'friday-at' => 'Sexta-feira às $1',
+'saturday-at' => 'Sábado às $1',
+'sunday-at' => 'Domingo às $1',
+'yesterday-at' => 'Ontem às $1',
 
 # Bad image list
 'bad_image_list' => 'O formato é o seguinte:
@@ -3812,6 +3840,7 @@ Este código de confirmação expira a $4.',
 # Scary transclusion
 'scarytranscludedisabled' => '[Transclusão interwikis foi impossibilitada]',
 'scarytranscludefailed' => '[Não foi possível obter a predefinição a partir de $1]',
+'scarytranscludefailed-httpstatus' => '[Não foi possível obter a predefinição a partir de $1: HTTP $2]',
 'scarytranscludetoolong' => '[URL longa demais]',
 
 # Delete conflict
@@ -3924,6 +3953,7 @@ Também pode [[Special:EditWatchlist|editar a lista da maneira convencional]].',
 'version-license' => 'Licença',
 'version-poweredby-credits' => "Esta é uma wiki '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'outros',
+'version-credits-summary' => 'Gostaríamos de reconhecer as seguintes pessoas pela sua contribuição para o [[Special:Version|MediaWiki]].',
 'version-license-info' => 'O MediaWiki é software livre; pode redistribuí-lo e/ou modificá-lo nos termos da licença GNU General Public License, tal como publicada pela Free Software Foundation; tanto a versão 2 da Licença, como (por opção sua) qualquer versão posterior.
 
 O MediaWiki é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; inclusive, sem a garantia implícita da POSSIBILIDADE DE SER COMERCIALIZADO ou de ADEQUAÇÂO PARA QUALQUER FINALIDADE ESPECÍFICA. Consulte a licença GNU General Public License para mais detalhes.
@@ -3935,6 +3965,18 @@ Em conjunto com este programa deve ter recebido [{{SERVER}}{{SCRIPTPATH}}/COPYIN
 'version-entrypoints' => 'URLs de ponto de entrada',
 'version-entrypoints-header-entrypoint' => 'Ponto de entrada',
 'version-entrypoints-header-url' => 'URL',
+
+# Special:Redirect
+'redirect' => 'Redireccionar pelo ID do ficheiro, utilizador ou revisão',
+'redirect-legend' => 'Redirecionar para um ficheiro ou página',
+'redirect-summary' => 'Esta página especial redireciona a um ficheiro (dado o nome do ficheiro), a uma página (dado um ID de revisão) ou a uma página de utilizador (dado o ID do utilizador).',
+'redirect-submit' => 'Ir',
+'redirect-lookup' => 'Pesquisa:',
+'redirect-value' => 'Valor:',
+'redirect-user' => 'Identificador do utilizador',
+'redirect-revision' => 'Revisão da página',
+'redirect-file' => 'Nome do ficheiro',
+'redirect-not-exists' => 'Valor não encontrado',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Ficheiros duplicados',
@@ -4024,6 +4066,9 @@ Em conjunto com este programa deve ter recebido [{{SERVER}}{{SCRIPTPATH}}/COPYIN
 'htmlform-submit' => 'Enviar',
 'htmlform-reset' => 'Desfazer alterações',
 'htmlform-selectorother-other' => 'Outros',
+'htmlform-no' => 'Não',
+'htmlform-yes' => 'Sim',
+'htmlform-chosen-placeholder' => 'Seleccione uma opção',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 com suporte de pesquisa de texto completo',
@@ -4058,8 +4103,10 @@ Em conjunto com este programa deve ter recebido [{{SERVER}}{{SCRIPTPATH}}/COPYIN
 'logentry-newusers-newusers' => 'A conta de utilizador $1 foi criada',
 'logentry-newusers-create' => 'A conta de utilizador $1 foi criada',
 'logentry-newusers-create2' => 'A conta de utilizador $3 foi criada por $1',
+'logentry-newusers-byemail' => 'Conta de utilizador $3 foi {{GENDER:$2|criada}} por $1 e a senha foi enviada por e-mail',
 'logentry-newusers-autocreate' => 'A conta $1 foi criada automaticamente',
 'logentry-rights-rights' => '$1 modificou os privilégios do utilizador  $3  de  $4  para $5',
+'logentry-rights-rights-legacy' => '$1 {{GENDER:$2|mudou}} as permissões de $3',
 'logentry-rights-autopromote' => '$1 foi automaticamente {{GENDER:$2|promovido|promovida}} de $4 a $5',
 'rightsnone' => '(nenhum)',
 
@@ -4115,6 +4162,7 @@ Caso contrário, pode facilmente usar o formulário abaixo. O seu comentário se
 'api-error-ok-but-empty' => 'Erro interno: o servidor não respondeu.',
 'api-error-overwrite' => 'Não é permitido sobrescrever um ficheiro existente.',
 'api-error-stashfailed' => 'Erro interno: O servidor não conseguiu armazenar o ficheiro temporário.',
+'api-error-publishfailed' => 'Erro interno: Servidor não conseguiu publicar ficheiro temporário.',
 'api-error-timeout' => 'O servidor não respondeu no prazo esperado.',
 'api-error-unclassified' => 'Ocorreu um erro desconhecido',
 'api-error-unknown-code' => 'Erro desconhecido: "$1"',
@@ -4134,5 +4182,8 @@ Caso contrário, pode facilmente usar o formulário abaixo. O seu comentário se
 'duration-decades' => '$1 {{PLURAL:$1|década|décadas}}',
 'duration-centuries' => '$1 {{PLURAL:$1|século|séculos}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milénio|milénios}}',
+
+# Image rotation
+'rotate-comment' => 'Imagem rodada em $1 {{PLURAL:$1|grau|graus}} no sentido dos ponteiros do relógio',
 
 );

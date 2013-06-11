@@ -717,10 +717,8 @@ $2',
 
 # Special:PasswordReset
 'passwordreset' => 'कूटशब्द रीसेट',
-'passwordreset-text' => 'अपने खाते के विवरण का एक ई-मेल अनुस्मारक प्राप्त करने के लिए इस फ़ॉर्म को पूरा करें।',
 'passwordreset-legend' => 'कूटशब्द रीसेट करें',
 'passwordreset-disabled' => 'कूटशब्द रीसेट करना इस विकी पर अक्षम है।',
-'passwordreset-pretext' => '{{PLURAL:$1||नीचे पूछे गए डेटा में से एक लिखें}}',
 'passwordreset-username' => 'सदस्यनाम:',
 'passwordreset-domain' => 'डोमेन:',
 'passwordreset-capture' => 'परिणामस्वरूप बना ई-मेल देखें?',

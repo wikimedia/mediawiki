@@ -562,6 +562,7 @@ $messages = array(
 'create-this-page' => 'Vytvořit tuto stránku',
 'delete' => 'Smazat',
 'deletethispage' => 'Smazat stránku',
+'undeletethispage' => 'Obnovit tuto stránku',
 'undelete_short' => 'Obnovit $1 {{PLURAL:$1|verzi|verze|verzí}}',
 'viewdeleted_short' => 'Zobrazit {{PLURAL:$1|smazanou editaci|$1 smazané editace|$1 smazaných editací}}',
 'protect' => 'Zamknout',

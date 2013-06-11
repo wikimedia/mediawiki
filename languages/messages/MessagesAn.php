@@ -625,10 +625,8 @@ Talment ya ha cambiato a suya clau u ha demandato una nueva clau temporal.',
 
 # Special:PasswordReset
 'passwordreset' => "Restablir a clau d'acceso",
-'passwordreset-text' => "Completar ista forma ta recibir un recordatorio por correu con os detalles d'a suya cuenta.",
 'passwordreset-legend' => "Restablir a clau d'acceso",
 'passwordreset-disabled' => "S'ha desactivau o restablimiento de claus en ista wiki.",
-'passwordreset-pretext' => "{{PLURAL:$1||Introduzca uno d'os siguients datos}}",
 'passwordreset-username' => "Nombre d'usuario:",
 'passwordreset-domain' => 'Dominio:',
 'passwordreset-capture' => 'Veyer o mensache resultant?',

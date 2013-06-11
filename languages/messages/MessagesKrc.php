@@ -671,7 +671,7 @@ $2',
 'resetpass-abort-generic' => 'Пароль тюрлендириуню кенгертиу тыйды.',
 
 # Special:PasswordReset
-'passwordreset' => 'Паролну атыу',
+'passwordreset' => 'Паролну джибериу',
 'passwordreset-text-one' => 'Паролугъуз джиберилир ючюн бу форманы толтуругъуз.',
 'passwordreset-text-many' => '{{PLURAL:$1|Пароль ийилир ючюн билгилени бир бёлюмюн джазыгъыз.}}',
 'passwordreset-legend' => 'Паролну атыу',

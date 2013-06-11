@@ -736,10 +736,8 @@ Për të hyrë tërësisht duhet të vendosni një fjalëkalim të ri këtu:',
 
 # Special:PasswordReset
 'passwordreset' => 'Ndrysho fjalkalimin',
-'passwordreset-text' => 'Plotësoni këtë formular për të marrë një këshillë e-mail të dhënat e llogarisë suaj.',
 'passwordreset-legend' => 'Ndrysho fjalkalimin',
 'passwordreset-disabled' => 'Rivendosja e fjalëkalimit është deaktivizuar në këtë wiki.',
-'passwordreset-pretext' => '{{PLURAL:$1| | Shkruani një nga pjesët e të dhënave më poshtë}}',
 'passwordreset-username' => 'Nofka:',
 'passwordreset-domain' => 'Domain:',
 'passwordreset-capture' => 'Dëshiron të shikosh e-mail-in që rezulton?',

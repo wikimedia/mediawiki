@@ -564,10 +564,8 @@ Sait aap password ke safalta se badal sia hoga nai to nawaa temporary password k
 
 # Special:PasswordReset
 'passwordreset' => 'Password ke badlo',
-'passwordreset-text' => 'Password ke reset kare ke khatir ii form ke bharo.',
 'passwordreset-legend' => 'Password ke badlo',
 'passwordreset-disabled' => 'II wiki me password ke badle ke ijaajat nai hae.',
-'passwordreset-pretext' => '{{PLURAL:$1||Niche ke ek data ke likho}}',
 'passwordreset-username' => 'Sadasya ke naam:',
 'passwordreset-domain' => 'Domain:',
 'passwordreset-capture' => 'Banawa gais e-mail ke dekho',

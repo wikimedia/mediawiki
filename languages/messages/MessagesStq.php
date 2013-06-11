@@ -548,10 +548,8 @@ Muugelkerwiese hääst du dien Paaswoud al mäd Ärfoulch annerd of n näi tiede
 
 # Special:PasswordReset
 'passwordreset' => 'Paaswoud touräächsätte',
-'passwordreset-text' => 'Dit Formular uutfälle, uum per E-Mail ne Ärinnerenge tou do Anmäldeinformatione tou kriegen.',
 'passwordreset-legend' => 'Paaswoud touräächsätte',
 'passwordreset-disabled' => 'Dät Touräächsätten fon Paaswoude wuud in dissen Wiki deaktivierd.',
-'passwordreset-pretext' => '{{PLURAL:$1||Reek aan fon do foulgjende Doaten ien}}',
 'passwordreset-username' => 'Benutsernoome:',
 'passwordreset-domain' => 'Domain:',
 'passwordreset-capture' => 'Ju E-Mail-Ättergjucht bekiekje?',

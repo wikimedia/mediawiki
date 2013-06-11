@@ -239,7 +239,7 @@ $messages = array(
 'vector-action-protect' => 'காக்கவும்',
 'vector-action-undelete' => 'நீக்கத்தை நிறுத்து',
 'vector-action-unprotect' => 'காப்பை மாற்று',
-'vector-simplesearch-preference' => 'சாதாரண தேடுதல் பட்டையத்தை செயல்படுத்தவும் (Vector தோல் மட்டும்)',
+'vector-simplesearch-preference' => 'எளிதாக்கப்பட்ட தேடுதல் பட்டையை செயற்படுத்தவும் (வெக்டர் தோல் மட்டும்)',
 'vector-view-create' => 'உருவாக்கவும்',
 'vector-view-edit' => 'தொகு',
 'vector-view-history' => 'வரலாற்றைக் காட்டவும்',
@@ -519,6 +519,8 @@ MySQL returned error "$3: $4".',
 'gotaccount' => "ஏற்கனவே பயனர் கணக்கு உள்ளதா? '''$1'''.",
 'gotaccountlink' => 'புகுபதிகை',
 'userlogin-resetlink' => 'உங்கள் புகுபதிகைக் குறிப்புகளை மறந்துவிட்டீர்களா?',
+'helplogin-url' => 'Help:புகுபதிகை',
+'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|புகுபதிவதற்கான உதவி]]',
 'createacct-join' => 'உங்களின் தகவலை கீழிடவும்',
 'createacct-emailrequired' => 'மின்னஞ்சல் முகவரி',
 'createacct-emailoptional' => 'மின்னஞ்சல் முகவரி (விருப்பத்தேர்வு)',
@@ -2856,6 +2858,16 @@ $1',
 'ago' => '$1 முன்பு',
 'just-now' => 'சடுதியில்.',
 
+# Human-readable timestamps
+'monday-at' => 'திங்கள் $1 மணிக்கு',
+'tuesday-at' => 'செவ்வாய் $1 மணிக்கு',
+'wednesday-at' => 'புதன் $1 மணிக்கு',
+'thursday-at' => 'வியாழன் $1 மணிக்கு',
+'friday-at' => 'வெள்ளி $1 மணிக்கு',
+'saturday-at' => 'சனி $1 மணிக்கு',
+'sunday-at' => 'ஞாயிறு $1 மணிக்கு',
+'yesterday-at' => 'நேற்று $1 மணிக்கு',
+
 # Bad image list
 'bad_image_list' => 'முறை பின்வருமாறு:
 
@@ -3459,6 +3471,7 @@ $5
 # Special:Redirect
 'redirect-submit' => 'செல்க',
 'redirect-lookup' => 'கவனிக்கவும்:',
+'redirect-file' => 'கோப்பின் பெயர்',
 'redirect-not-exists' => 'மதிப்பு காணப்பெறவில்லை',
 
 # Special:FileDuplicateSearch
