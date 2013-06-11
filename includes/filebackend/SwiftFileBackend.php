@@ -172,10 +172,6 @@ class SwiftFileBackend extends FileBackendStore {
 		return $relStoragePath;
 	}
 
-	/**
-	 * @see FileBackendStore::isPathUsableInternal()
-	 * @return bool
-	 */
 	public function isPathUsableInternal( $storagePath ) {
 		list( $container, $rel ) = $this->resolveStoragePathReal( $storagePath );
 		if ( $rel === null ) {
@@ -223,10 +219,6 @@ class SwiftFileBackend extends FileBackendStore {
 		return $res;
 	}
 
-	/**
-	 * @see FileBackendStore::doCreateInternal()
-	 * @return Status
-	 */
 	protected function doCreateInternal( array $params ) {
 		$status = Status::newGood();
 
@@ -298,10 +290,6 @@ class SwiftFileBackend extends FileBackendStore {
 		}
 	}
 
-	/**
-	 * @see FileBackendStore::doStoreInternal()
-	 * @return Status
-	 */
 	protected function doStoreInternal( array $params ) {
 		$status = Status::newGood();
 
@@ -391,10 +379,6 @@ class SwiftFileBackend extends FileBackendStore {
 		}
 	}
 
-	/**
-	 * @see FileBackendStore::doCopyInternal()
-	 * @return Status
-	 */
 	protected function doCopyInternal( array $params ) {
 		$status = Status::newGood();
 
@@ -464,10 +448,6 @@ class SwiftFileBackend extends FileBackendStore {
 		}
 	}
 
-	/**
-	 * @see FileBackendStore::doMoveInternal()
-	 * @return Status
-	 */
 	protected function doMoveInternal( array $params ) {
 		$status = Status::newGood();
 
@@ -540,10 +520,6 @@ class SwiftFileBackend extends FileBackendStore {
 		}
 	}
 
-	/**
-	 * @see FileBackendStore::doDeleteInternal()
-	 * @return Status
-	 */
 	protected function doDeleteInternal( array $params ) {
 		$status = Status::newGood();
 
@@ -596,10 +572,6 @@ class SwiftFileBackend extends FileBackendStore {
 		}
 	}
 
-	/**
-	 * @see FileBackendStore::doDescribeInternal()
-	 * @return Status
-	 */
 	protected function doDescribeInternal( array $params ) {
 		$status = Status::newGood();
 
@@ -633,10 +605,6 @@ class SwiftFileBackend extends FileBackendStore {
 		return $status;
 	}
 
-	/**
-	 * @see FileBackendStore::doPrepareInternal()
-	 * @return Status
-	 */
 	protected function doPrepareInternal( $fullCont, $dir, array $params ) {
 		$status = Status::newGood();
 
@@ -750,10 +718,6 @@ class SwiftFileBackend extends FileBackendStore {
 		return $status;
 	}
 
-	/**
-	 * @see FileBackendStore::doCleanInternal()
-	 * @return Status
-	 */
 	protected function doCleanInternal( $fullCont, $dir, array $params ) {
 		$status = Status::newGood();
 
@@ -789,10 +753,6 @@ class SwiftFileBackend extends FileBackendStore {
 		return $status;
 	}
 
-	/**
-	 * @see FileBackendStore::doFileExists()
-	 * @return array|bool|null
-	 */
 	protected function doGetFileStat( array $params ) {
 		list( $srcCont, $srcRel ) = $this->resolveStoragePathReal( $params['src'] );
 		if ( $srcRel === null ) {
@@ -854,10 +814,6 @@ class SwiftFileBackend extends FileBackendStore {
 		return false; // failed
 	}
 
-	/**
-	 * @see FileBackendStore::doGetFileContentsMulti()
-	 * @return Array
-	 */
 	protected function doGetFileContentsMulti( array $params ) {
 		$contents = array();
 
@@ -1125,10 +1081,6 @@ class SwiftFileBackend extends FileBackendStore {
 		return $names;
 	}
 
-	/**
-	 * @see FileBackendStore::doGetFileSha1base36()
-	 * @return bool
-	 */
 	protected function doGetFileSha1base36( array $params ) {
 		$stat = $this->getFileStat( $params );
 		if ( $stat ) {
@@ -1143,10 +1095,6 @@ class SwiftFileBackend extends FileBackendStore {
 		}
 	}
 
-	/**
-	 * @see FileBackendStore::doStreamFile()
-	 * @return Status
-	 */
 	protected function doStreamFile( array $params ) {
 		$status = Status::newGood();
 
@@ -1178,10 +1126,6 @@ class SwiftFileBackend extends FileBackendStore {
 		return $status;
 	}
 
-	/**
-	 * @see FileBackendStore::doGetLocalCopyMulti()
-	 * @return null|TempFSFile
-	 */
 	protected function doGetLocalCopyMulti( array $params ) {
 		$tmpFiles = array();
 
@@ -1251,10 +1195,6 @@ class SwiftFileBackend extends FileBackendStore {
 		return $tmpFiles;
 	}
 
-	/**
-	 * @see FileBackendStore::getFileHttpUrl()
-	 * @return string|null
-	 */
 	public function getFileHttpUrl( array $params ) {
 		if ( $this->swiftTempUrlKey != '' ||
 			( $this->rgwS3AccessKey != '' && $this->rgwS3SecretKey != '' ) )
@@ -1300,10 +1240,6 @@ class SwiftFileBackend extends FileBackendStore {
 		return null;
 	}
 
-	/**
-	 * @see FileBackendStore::directoriesAreVirtual()
-	 * @return bool
-	 */
 	protected function directoriesAreVirtual() {
 		return true;
 	}
@@ -1324,10 +1260,6 @@ class SwiftFileBackend extends FileBackendStore {
 		return $hdrs;
 	}
 
-	/**
-	 * @see FileBackendStore::doExecuteOpHandlesInternal()
-	 * @return Array List of corresponding Status objects
-	 */
 	protected function doExecuteOpHandlesInternal( array $fileOpHandles ) {
 		$statuses = array();
 
@@ -1546,10 +1478,6 @@ class SwiftFileBackend extends FileBackendStore {
 		$conn->delete_container( $container );
 	}
 
-	/**
-	 * @see FileBackendStore::doPrimeContainerCache()
-	 * @return void
-	 */
 	protected function doPrimeContainerCache( array $containerInfo ) {
 		try {
 			$conn = $this->getConnection(); // Swift proxy connection
