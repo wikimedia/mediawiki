@@ -61,6 +61,14 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 			$params['serializer'] = 'php';
 		}
 
+		if ( $params['retry_timeout'] ) {
+			$this->client->setOption( Memcached::OPT_RETRY_TIMEOUT, $params['retry_timeout'] );
+		}
+
+		if ( $params['server_failure_limit'] ) {
+			$this->client->setOption( Memcached::OPT_SERVER_FAILURE_LIMIT, $params['server_failure_limit'] );
+		}
+
 		// The compression threshold is an undocumented php.ini option for some
 		// reason. There's probably not much harm in setting it globally, for
 		// compatibility with the settings for the PHP client.
