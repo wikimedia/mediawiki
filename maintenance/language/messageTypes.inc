@@ -96,7 +96,6 @@ $wgIgnoredMessages = array(
 	'talkpageheader',
 	'anonnotice',
 	'autoblock_whitelist',
-	'searchmenu-help',
 	'searchmenu-new-nocreate',
 	'googlesearch',
 	'opensearch-desc',
