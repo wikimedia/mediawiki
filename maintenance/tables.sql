@@ -760,6 +760,9 @@ CREATE TABLE /*_*/ipblocks (
 
   -- Start and end of an address range, in hexadecimal
   -- Size chosen to allow IPv6
+  -- FIXME: these fields were originally blank for single-IP blocks,
+  -- but now they are populated. No migration was ever done. They 
+  -- should be fixed to be blank again for such blocks (bug 49504).
   ipb_range_start tinyblob NOT NULL,
   ipb_range_end tinyblob NOT NULL,
 
