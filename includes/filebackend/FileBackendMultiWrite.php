@@ -145,17 +145,10 @@ class FileBackendMultiWrite extends FileBackend {
 
 		$mbe = $this->backends[$this->masterIndex]; // convenience
 
-		// Get the paths to lock from the master backend
-		$realOps = $this->substOpBatchPaths( $ops, $mbe );
-		$paths = $mbe->getPathsToLockForOpsInternal( $mbe->getOperationsInternal( $realOps ) );
-		// Get the paths under the proxy backend's name
-		$paths['sh'] = $this->unsubstPaths( $paths['sh'] );
-		$paths['ex'] = $this->unsubstPaths( $paths['ex'] );
 		// Try to lock those files for the scope of this function...
 		if ( empty( $opts['nonLocking'] ) ) {
 			// Try to lock those files for the scope of this function...
-			$scopeLockS = $this->getScopedFileLocks( $paths['sh'], LockManager::LOCK_UW, $status );
-			$scopeLockE = $this->getScopedFileLocks( $paths['ex'], LockManager::LOCK_EX, $status );
+			$scopeLock = $this->getScopedLocksForOps( $ops, $status );
 			if ( !$status->isOK() ) {
 				return $status; // abort
 			}
@@ -182,6 +175,7 @@ class FileBackendMultiWrite extends FileBackend {
 			}
 		}
 		// Actually attempt the operation batch on the master backend...
+		$realOps = $this->substOpBatchPaths( $ops, $mbe );
 		$masterStatus = $mbe->doOperations( $realOps, $opts );
 		$status->merge( $masterStatus );
 		// Propagate the operations to the clone backends if there were no unexpected errors
@@ -731,15 +725,16 @@ class FileBackendMultiWrite extends FileBackend {
 	 * @see FileBackend::getScopedLocksForOps()
 	 */
 	public function getScopedLocksForOps( array $ops, Status $status ) {
-		$fileOps = $this->backends[$this->masterIndex]->getOperationsInternal( $ops );
+		$realOps = $this->substOpBatchPaths( $ops, $this->backends[$this->masterIndex] );
+		$fileOps = $this->backends[$this->masterIndex]->getOperationsInternal( $realOps );
 		// Get the paths to lock from the master backend
 		$paths = $this->backends[$this->masterIndex]->getPathsToLockForOpsInternal( $fileOps );
 		// Get the paths under the proxy backend's name
-		$paths['sh'] = $this->unsubstPaths( $paths['sh'] );
-		$paths['ex'] = $this->unsubstPaths( $paths['ex'] );
-		return array(
-			$this->getScopedFileLocks( $paths['sh'], LockManager::LOCK_UW, $status ),
-			$this->getScopedFileLocks( $paths['ex'], LockManager::LOCK_EX, $status )
+		$pbPaths = array(
+			LockManager::LOCK_UW => $this->unsubstPaths( $paths[LockManager::LOCK_UW] ),
+			LockManager::LOCK_EX => $this->unsubstPaths( $paths[LockManager::LOCK_EX] )
 		);
+		// Actually acquire the locks
+		return array( $this->getScopedFileLocks( $pbPaths, 'mixed', $status ) );
 	}
 }
