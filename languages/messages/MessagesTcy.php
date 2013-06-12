@@ -563,7 +563,6 @@ $messages = array(
 'nextn' => 'ಬೊಕ್ಕದ {{PLURAL:$1|$1}}',
 'viewprevnext' => 'ತೂಲೆ ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-legend' => 'ನಾಡಾಟದ ಆಯ್ಕೆಲು',
-'searchhelp-url' => 'Help:ಪರಿವಿಡಿ',
 'searchprofile-articles' => 'ಲೇಖನ ಪುಟೊ',
 'searchprofile-images' => 'ಬಹುಮಾಧ್ಯಮ',
 'searchprofile-everything' => 'ಪ್ರತಿಯೊಂಜಿ',

@@ -624,7 +624,6 @@ Vider li [[Special:IPBlockList|liste de bloc de IP]] por li liste de bloces e ba
 'viewprevnext' => 'Vider ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-exists' => "'''Vi un págine nominat \"[[:\$1]]\" in ti wiki.'''",
 'searchmenu-new' => "'''Crear li págine \"[[:\$1]]\" in ti wiki!'''",
-'searchhelp-url' => 'Help:Contenete',
 'searchprofile-articles' => 'Págines de contenete',
 'searchprofile-project' => 'Auxilie e Págines de projecte',
 'searchprofile-images' => 'Multimedia',

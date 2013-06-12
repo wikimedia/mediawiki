@@ -1185,7 +1185,6 @@ Podrobnosće móžeš w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}
 'searchmenu-legend' => 'Pytanske opcije',
 'searchmenu-exists' => "'''Je strona z mjenom \"[[\$1]]\" na tutym wikiju'''",
 'searchmenu-new' => "'''Wutwor stronu \"[[:\$1|\$1]]\" na tutym wikiju!'''",
-'searchhelp-url' => 'Help:Wobsah',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Strony z tutym prefiksom přepytać]]',
 'searchprofile-articles' => 'Wobsahowe strony',
 'searchprofile-project' => 'Pomoc a projektowe strony',

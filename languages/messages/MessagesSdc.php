@@ -774,7 +774,6 @@ Cunsulthà lu [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rigi
 'nextn' => 'sighenti {{PLURAL:$1|$1}}',
 'viewprevnext' => 'Vèdi ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-legend' => 'Opzioni di zercha',
-'searchhelp-url' => 'Help:Indizi',
 'searchprofile-everything' => 'Tuttu',
 'search-result-size' => '$1 ({{PLURAL:$2|una paraura|$2 parauri}})',
 'search-redirect' => '(rinviu $1)',

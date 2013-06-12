@@ -1206,7 +1206,6 @@ Kini kujdes se përdorimi i lidhjeve të shfletimit do të ndryshojë përzgjedh
 'searchmenu-legend' => 'Parazgjedhjet e kërkimit',
 'searchmenu-exists' => "'''Në këtë wiki kjo faqe është emëruar \"[[:\$1]]\"'''",
 'searchmenu-new' => "'''Hapë faqen \"[[:\$1]]\" në këtë wiki!'''",
-'searchhelp-url' => 'Help:Ndihmë',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Shfletoi faqet me këtë parashtesë]]',
 'searchprofile-articles' => 'Përmbajtja e faqeve',
 'searchprofile-project' => 'Ndihmë dhe faqet e Projektit',

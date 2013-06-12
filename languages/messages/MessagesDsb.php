@@ -1154,7 +1154,6 @@ Drobnostki móžoš w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}
 'searchmenu-legend' => 'Pytańske opcije',
 'searchmenu-exists' => "'''Jo bok z mjenim \"[[\$1]]\" na toś tom wikiju'''",
 'searchmenu-new' => "'''Napóraj bok \"[[:\$1|\$1]]\" na toś tom wikiju!'''",
-'searchhelp-url' => 'Help:Pomoc',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Boki z toś tym prefiksom pśepytaś]]',
 'searchprofile-articles' => 'Wopśimjeśowe boki',
 'searchprofile-project' => 'Pomoc a projektowe boki',

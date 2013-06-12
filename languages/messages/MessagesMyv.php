@@ -853,7 +853,6 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'searchmenu-legend' => 'Вешнемань аравтомкат',
 'searchmenu-exists' => "'''Те викисэнть ули \"[[\$1]]\" лем марто лопа'''",
 'searchmenu-new' => "'''Шкик \"[[:\$1]]\" лопанть те викисэнть!'''",
-'searchhelp-url' => 'Help:Лопась мезе кирди',
 'searchprofile-articles' => 'Потмокс лопат',
 'searchprofile-project' => 'Лезкс ды проекттэ лопат',
 'searchprofile-images' => 'Мультимедия',

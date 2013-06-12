@@ -1356,7 +1356,6 @@ Detaloj troveblos en la [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}
 'searchmenu-legend' => 'Serĉaj opcioj',
 'searchmenu-exists' => "'''Estas paĝo nomita \"[[:\$1]]\" en ĉi tiu vikio'''",
 'searchmenu-new' => "'''Krei la paĝon \"[[:\$1]]\" en ĉi tiu vikio!'''",
-'searchhelp-url' => 'Help:Enhavo',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Traserĉi paĝojn kun ĉi tiu prefikso]]',
 'searchprofile-articles' => 'Enhavaj paĝoj',
 'searchprofile-project' => 'Paĝoj pri Helpo kaj Projektoj',

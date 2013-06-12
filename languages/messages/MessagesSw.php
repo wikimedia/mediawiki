@@ -1095,7 +1095,6 @@ Tazama [[Special:BlockList|IP block orodha ya uzuio wa IP]] kuona orodha ya zuio
 'searchmenu-legend' => 'Hitiari za kutafuta',
 'searchmenu-exists' => "'''Ukurasa wa \"[[:\$1]]\" upo kwenye wiki hii'''",
 'searchmenu-new' => "'''Anzisha ukurasa wa \"[[:\$1]]\" katika wiki hii!'''",
-'searchhelp-url' => 'Help:Yaliyomo',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Tafuta kurasa kwenye eneo hili la wiki]]',
 'searchprofile-articles' => 'Kurasa kwa kusudi ya wiki',
 'searchprofile-project' => 'Kurasa za msaada na za mradi',

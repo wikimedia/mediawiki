@@ -1370,7 +1370,6 @@ Zazwyczaj jest to spowodowane przestarzałym linkiem do usuniętej strony. Powó
 'searchmenu-legend' => 'Opcje wyszukiwania',
 'searchmenu-exists' => "* Strona '''[[$1]]'''",
 'searchmenu-new' => "'''Utwórz stronę „[[:$1|$1]]” na tej wiki.'''",
-'searchhelp-url' => 'Help:Spis treści',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Przeglądaj strony zaczynające się od tego przedrostka]]',
 'searchprofile-articles' => 'Strony',
 'searchprofile-project' => 'Strony pomocy i projektu',

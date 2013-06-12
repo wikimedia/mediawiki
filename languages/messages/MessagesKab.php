@@ -1013,7 +1013,6 @@ Tzemreḍ ad affeḍ tilɣa deg [{{fullurl:{{#Special:Log}}/delete|page={{FULLPA
 'searchmenu-legend' => 'Tixtiṛiyin n unadi',
 'searchmenu-exists' => "'''Yella asebter s isem \"[[:\$1]]\" deg wiki agi.'''",
 'searchmenu-new' => "'''Snulfud asebter « [[:$1|$1]] » deg wiki agi !'''",
-'searchhelp-url' => 'Help:Agbur',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Nadi isebtar i zwaren s adat agi]]',
 'searchprofile-articles' => 'Isebtar n ugbur',
 'searchprofile-project' => 'Isebtaren n tallat dɣa n usenfa',

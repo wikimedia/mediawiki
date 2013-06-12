@@ -1313,7 +1313,6 @@ Podrobnosti nájdete v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}
 'searchmenu-legend' => 'Možnosti hľadania',
 'searchmenu-exists' => "*Stránka '''[[$1]]'''",
 'searchmenu-new' => "'''Vytvoriť stránku „[[:$1|$1]]“ na tejto wiki'''",
-'searchhelp-url' => 'Help:Obsah',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Prehliadať stránky s touto predponou]]',
 'searchprofile-articles' => 'Stránky s obsahom',
 'searchprofile-project' => 'Stránky pomocníka a projektu',

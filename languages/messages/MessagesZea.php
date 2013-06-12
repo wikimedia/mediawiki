@@ -809,7 +809,6 @@ Zurg da je bie deêze wiezigieng de heschiedenisdeurloôpendeid van de pagina be
 'viewprevnext' => 'Bekiek ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-exists' => "'''Er is 'n pagina genaemd \"[[:\$1]]\" op deêze wiki.'''",
 'searchmenu-new' => "'''De pagina \"[[:\$1]]\" anmaek'n op deêze wiki.'''",
-'searchhelp-url' => 'Help:Inoud',
 'searchprofile-articles' => "Inhoudelike pagina's",
 'searchprofile-project' => "Hilp- en projectpagina's",
 'searchprofile-images' => 'Multimedia',

@@ -1377,7 +1377,6 @@ Mieh doh drövver fengk mer em [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAG
 'searchmenu-legend' => 'Enschtällonge för et Söhke',
 'searchmenu-exists' => "*Sigg '''[[$1]]'''",
 'searchmenu-new' => "'''Donn de Sigg „[[:$1|$1]]“ hee em Wiki aanlääje'''",
-'searchhelp-url' => 'Help:Hölp',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Zeich all Sigge, di met däm Tex aanfange]]',
 'searchprofile-articles' => 'Sigge vum Enhalt',
 'searchprofile-project' => 'Hülp- ov Projäk-Sigge',

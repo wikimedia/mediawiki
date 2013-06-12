@@ -1252,7 +1252,6 @@ Butirannya boleh didapati di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGEN
 'searchmenu-legend' => 'Pilihan carian',
 'searchmenu-exists' => "* Laman '''[[$1]]'''",
 'searchmenu-new' => "'''Cipta laman \"[[:\$1]]\" di wiki ini!'''",
-'searchhelp-url' => 'Help:Kandungan',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Senarai laman dengan awalan ini]]',
 'searchprofile-articles' => 'Laman kandungan',
 'searchprofile-project' => 'Laman bantuan dan projek',

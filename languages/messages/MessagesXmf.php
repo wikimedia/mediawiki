@@ -411,7 +411,6 @@ $messages = array(
 'viewprevnext' => 'ქოძირ  ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-exists' => 'თე ვიკის "[[:$1]]" ჯოხოთ ხასჷლა რე',
 'searchmenu-new' => "''ქჷდარსხი \"[[:\$1]]\" ხასჷლა თე ვიკის'''",
-'searchhelp-url' => 'Help:მოხვარა',
 'searchprofile-articles' => 'სტატიეფი',
 'searchprofile-project' => 'მოხვარაშ დო პროექტიშ ხასჷლეფი',
 'searchprofile-images' => 'მულტიმედია',

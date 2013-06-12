@@ -797,7 +797,7 @@ Insira un enderezo cun formato válido ou baleire ese campo.',
 'cannotchangeemail' => 'Neste wiki non se poden mudar os enderezos de correo electrónico asociados a unha conta.',
 'emaildisabled' => 'Este sitio non pode enviar correos electrónicos.',
 'accountcreated' => 'Conta creada',
-'accountcreatedtext' => 'Creouse a conta de usuario para "$1".',
+'accountcreatedtext' => 'Creouse a conta de usuario para [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|conversa]]).',
 'createaccount-title' => 'Creación dunha conta para {{SITENAME}}',
 'createaccount-text' => 'Alguén creou unha conta chamada "$2" para o seu enderezo de correo electrónico en {{SITENAME}} ($4), e con contrasinal "$3".
 Debe acceder ao sistema e mudar o contrasinal agora.
@@ -1336,7 +1336,6 @@ O [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rexistro de borrad
 'searchmenu-legend' => 'Opcións de busca',
 'searchmenu-exists' => "* Páxina \"'''[[\$1]]'''\"",
 'searchmenu-new' => "'''Crear a páxina \"[[:\$1]]\" neste wiki!'''",
-'searchhelp-url' => 'Help:Contidos',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Navegue polas páxinas que comezan coas mesmas iniciais]]',
 'searchprofile-articles' => 'Páxinas de contido',
 'searchprofile-project' => 'Páxinas do proxecto e de axuda',

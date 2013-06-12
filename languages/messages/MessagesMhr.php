@@ -529,7 +529,6 @@ $messages = array(
 'shown-title' => 'Лаштыкыште $1 {{PLURAL:$1|возымаш|возымашым}} ончыкташ',
 'viewprevnext' => 'Ончал ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-new' => "'''Тиде вики-проектыште «[[:$1]]» лӱман лаштыкым ышташ!'''",
-'searchhelp-url' => 'Help:Вуйлымаш',
 'searchprofile-articles' => 'Возымо лаштык-влак',
 'searchprofile-project' => 'Полыш да проект лаштык',
 'searchprofile-images' => 'Мультимедий',

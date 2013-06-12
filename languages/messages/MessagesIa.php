@@ -1235,7 +1235,6 @@ Detalios se trova in le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}
 'searchmenu-legend' => 'Optiones de recerca',
 'searchmenu-exists' => "'''Existe un pagina nominate \"[[\$1]]\" in iste wiki'''",
 'searchmenu-new' => "'''Crea le pagina \"[[:\$1]]\" in iste wiki!'''",
-'searchhelp-url' => 'Help:Contento',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Navigar per le paginas con iste prefixo]]',
 'searchprofile-articles' => 'Paginas de contento',
 'searchprofile-project' => 'Paginas de adjuta e del projecto',

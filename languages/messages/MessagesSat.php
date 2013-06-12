@@ -707,7 +707,6 @@ Unuduḱ: '''({{int:cur}})''' = nahaḱ nãwã aroeko saõte tulạo, '''({{int:
 'viewprevnext' => 'Ńelme ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-exists' => "'''Noa wiki re do \"[[:\$1]] ńutum sakam menaḱa",
 'searchmenu-new' => 'wiki re [[:$1]]nãwã sakam tear',
-'searchhelp-url' => 'Help: Goṛawaḱ',
 'searchprofile-articles' => 'Menaḱaḱ sakamko',
 'searchprofile-project' => 'Go̠ṛo ar Project sakam',
 'searchprofile-images' => 'Multimedia',

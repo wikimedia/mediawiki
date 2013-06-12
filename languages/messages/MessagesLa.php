@@ -571,7 +571,7 @@ Plurimas non licet creare. Ergo, ex hoc loco IP rationes plurimas hodie creari n
 'emailauthenticated' => 'Tua inscriptio electronica recognita est $3, $2.',
 'emailconfirmlink' => 'Inscriptionem tuam electronicam adfirmare',
 'accountcreated' => 'Ratio creata',
-'accountcreatedtext' => 'Ratio pro usore $1 creata est.',
+'accountcreatedtext' => 'Ratio pro usore [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|disputatio]]) creata est.',
 'createaccount-title' => 'Ratio creata apud {{grammar:accusative|{{SITENAME}}}}',
 'createaccount-text' => 'Aliquis creavit rationem pro inscriptione electronica tua apud {{grammar:accusative|{{SITENAME}}}} ($4). Nomen usoris est "$2" et tessera est "$3". Conventum aperias et statim tesseram tuam mutes.
 
@@ -853,7 +853,6 @@ Titulus: '''({{int:cur}})''' = dissimilis ab emendatione novissima,
 'searchmenu-legend' => 'Optiones',
 'searchmenu-exists' => "'''Iam est pagina \"[[:\$1]]\"'''",
 'searchmenu-new' => "'''Creare paginam \"[[:\$1]]\"'''",
-'searchhelp-url' => 'Help:Adiutatum',
 'searchprofile-articles' => 'Paginae contentorum',
 'searchprofile-project' => 'Paginae adiutati et incepti',
 'searchprofile-images' => 'Multimedia',

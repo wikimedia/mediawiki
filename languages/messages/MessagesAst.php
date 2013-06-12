@@ -1145,7 +1145,6 @@ Se puen alcontrar más detalles nel [{{fullurl:{{#Special:Log}}/delete|page={{FU
 'searchmenu-legend' => 'Opciones de busca',
 'searchmenu-exists' => "'''Hai una páxina nomada \"[[\$1]]\" nesta wiki'''",
 'searchmenu-new' => "'''¡Crear la páxina \"[[:\$1]]\" nesta wiki!'''",
-'searchhelp-url' => 'Help:Conteníos',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Restolar páxines con esti prefixu]]',
 'searchprofile-articles' => 'Páxines de conteníu',
 'searchprofile-project' => 'Páxines de proyeutu y ayuda',

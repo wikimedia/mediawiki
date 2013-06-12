@@ -1085,7 +1085,6 @@ Seh to, dat de Versionsgeschicht vun’n Artikel vun de Historie her bi de Reeg 
 'searchmenu-legend' => 'Söökoptionen',
 'searchmenu-exists' => "* Sied '''[[$1]]'''",
 'searchmenu-new' => "'''Stell de Sied „[[:$1]]“ in dit Wiki nee op!'''",
-'searchhelp-url' => 'Help:Hülp',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Wies Sieden, de mit disse Bookstaven anfangt]]',
 'searchprofile-articles' => 'Inholdsieden',
 'searchprofile-project' => 'Hülp- un Projektsieden',

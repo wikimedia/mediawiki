@@ -667,7 +667,6 @@ Leiende: (cur) = difarencis cun la version atuâl, (prec) = difarencis cun la ve
 'searchmenu-legend' => 'Opzions de ricercje',
 'searchmenu-exists' => "'''E je une pagjine di non \"[[:\$1]]\" su cheste wiki'''",
 'searchmenu-new' => "'''Cree la pagjine \"[[:\$1]]\" su cheste wiki!'''",
-'searchhelp-url' => 'Help:Contignûts',
 'searchprofile-articles' => 'Pagjinis di contignûts',
 'searchprofile-project' => 'Pagjinis di jutori e sul progjet',
 'searchprofile-images' => 'Multimedia',

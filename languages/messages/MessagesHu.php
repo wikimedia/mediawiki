@@ -1355,7 +1355,6 @@ Ezt általában egy elavult, törölt oldalra mutató laptörténeti hivatkozás
 'searchmenu-legend' => 'Keresési beállítások',
 'searchmenu-exists' => "'''A wikin már van „[[:$1]]” nevű lap'''",
 'searchmenu-new' => "'''Hozd létre a(z) „[[:$1]]” nevű lapot ezen a wikin!'''",
-'searchhelp-url' => 'Help:Tartalom',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Ilyen előtagú lapok listázása]]',
 'searchprofile-articles' => 'Tartalmi oldalak',
 'searchprofile-project' => 'Segítség- és projektlapok',

@@ -806,7 +806,6 @@ $1',
 'searchmenu-legend' => 'Лахарна гlирс нисба',
 'searchmenu-exists' => "'''Хlокху вики-кхолламашца йолуш ю ишта агlо «[[:$1]]»'''",
 'searchmenu-new' => "'''Кхолла ишта агlо «[[:$1]]» хlокху вики-кхолламашчохь!'''",
-'searchhelp-url' => 'Help:Чулацам',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Гайта агlонаш ишта хlоттам болуш]]',
 'searchprofile-articles' => 'Къаьстина агlонаш',
 'searchprofile-project' => 'Нисвохааман агlонаш а кхолламаш',
@@ -1027,6 +1026,7 @@ $1',
 'uploadwarning' => 'Дlахьедар',
 'uploadedimage' => 'чуяккхина «[[$1]]»',
 'overwroteimage' => 'Чуяккхина файлан керла верси «[[$1]]»',
+'upload-description' => 'Файлах лаьцна',
 'filename-prefix-blacklist' => '#<!-- битийша хlара могlа ша мабарра --> <pre>
 # Бухасиз шолгlа:
 #  * Массо, саболчунтlийра йуьлалуш ерш «#» хуьлу хетаме дерг (могlа чекх балац)
@@ -1663,6 +1663,7 @@ PICT # тайп тайпан
 
 # Patrolling
 'markaspatrolledtext' => 'Пайден агӏо хилар билгало ян',
+'markedaspatrollednotify' => 'АгӀо «$1» пайдане хилар билгалдина',
 
 # Browsing diffs
 'previousdiff' => '← Хьалхдоьда нисдинарг',

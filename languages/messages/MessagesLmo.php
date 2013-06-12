@@ -606,7 +606,6 @@ Per infurmazion, varda ind el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGE
 'viewprevnext' => 'Vidé ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-legend' => 'Upzión de ricerca',
 'searchmenu-new' => "'''Trà in pee la pagina \"[[:\$1]]\" ins quel sit chì!'''",
-'searchhelp-url' => 'Help:Contegnüü',
 'searchprofile-articles' => 'Paginn de cuntegnüü',
 'searchprofile-project' => 'Paginn de jüt e de pruget',
 'searchprofile-images' => 'Multimedia',

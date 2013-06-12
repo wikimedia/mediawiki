@@ -1362,7 +1362,6 @@ Detayê besternayışi [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}
 'searchmenu-legend' => 'bıgeyre tercihan (sae bıke)',
 'searchmenu-exists' => "''Ena 'Wikipediya de ser \"[[:\$1]]\" yew pel esto'''",
 'searchmenu-new' => "''Na Wiki de pelay \"[[:\$1]]\" vıraze!'''",
-'searchhelp-url' => 'Help:Tedeestey',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|pê eno prefix ser pelan de bigêre]]',
 'searchprofile-articles' => 'Pelê tedeestey',
 'searchprofile-project' => 'Pelê yardım u procey',

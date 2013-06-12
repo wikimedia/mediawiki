@@ -949,7 +949,7 @@ Besucher, die diese IP-Adresse verwenden, können momentan keine Benutzerkonten 
 'cannotchangeemail' => 'E-Mail-Adressen können in diesem Wiki nicht geändert werden.',
 'emaildisabled' => 'Über diese Website können keine E-Mails versandt werden.',
 'accountcreated' => 'Benutzerkonto erstellt',
-'accountcreatedtext' => 'Das Benutzerkonto $1 wurde eingerichtet.',
+'accountcreatedtext' => 'Das Benutzerkonto für [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|Diskussion]]) wurde eingerichtet.',
 'createaccount-title' => 'Erstellung eines Benutzerkontos für {{SITENAME}}',
 'createaccount-text' => 'Es wurde für dich ein Benutzerkonto „$2“ auf {{SITENAME}} ($4) erstellt. Das automatisch generierte Passwort für „$2“ ist „$3“. Du solltest dich nun anmelden und das Passwort ändern.
 
@@ -1471,7 +1471,6 @@ Einzelheiten sind im [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}
 'searchmenu-legend' => 'Suchoptionen',
 'searchmenu-exists' => "'''Es gibt eine Seite, die den Namen „[[:$1]]“ hat.'''",
 'searchmenu-new' => "'''Erstelle die Seite „[[:$1]]“ in diesem Wiki.'''",
-'searchhelp-url' => 'Help:Hilfe',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Zeige alle Seiten, die mit dem Suchbegriff anfangen]]',
 'searchprofile-articles' => 'Inhaltsseiten',
 'searchprofile-project' => 'Hilfe- und Projektseiten',

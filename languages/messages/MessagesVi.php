@@ -1372,7 +1372,6 @@ Xem chi tiết trong [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}
 'searchmenu-legend' => 'Tùy chọn tìm kiếm',
 'searchmenu-exists' => "* Trang '''[[$1]]'''",
 'searchmenu-new' => "'''Tạo trang “[[:$1]]” trên wiki này!'''",
-'searchhelp-url' => 'Help:Nội dung',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Duyệt các trang với tiền tố này]]',
 'searchprofile-articles' => 'Trang nội dung',
 'searchprofile-project' => 'Trang trợ giúp và trang dự án',

@@ -1061,7 +1061,6 @@ Ang mga detalye mahimo nga makita sa [{{fullurl:{{#Special:Log}}/delete|page={{F
 'searchmenu-legend' => 'Mga pililian sa pagpangita',
 'searchmenu-exists' => "'''May yara sang panid nga ginhingalanan nga \"[[:\$1]]\" sa sini nga wiki.'''",
 'searchmenu-new' => "'''Gintuga ang panid nga \"[[:\$1]]\" sa sini nga wiki!'''",
-'searchhelp-url' => 'Help:Mga Unod',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Magbasa-basa sang mga panid gamit ang ini nga unpali]]',
 'searchprofile-articles' => 'Mga panid sang unod',
 'searchprofile-project' => 'Mga panid sang Bulig kag Proyekto',

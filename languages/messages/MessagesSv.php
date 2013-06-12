@@ -1379,7 +1379,6 @@ Detaljer kan hittas i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}
 'searchmenu-legend' => 'Sökalternativ',
 'searchmenu-exists' => "'''Det finns en sida med namnet \"[[:\$1]]\" på denna wiki.'''",
 'searchmenu-new' => "'''Skapa sidan \"[[:\$1]]\" på denna wiki!'''",
-'searchhelp-url' => 'Help:Innehåll',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Bläddra igenom sidor med detta prefix]]',
 'searchprofile-articles' => 'Innehållssidor',
 'searchprofile-project' => 'Hjälp- och projektsidor',

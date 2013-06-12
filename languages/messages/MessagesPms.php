@@ -1052,7 +1052,6 @@ Sòn a l'é normalment causà da l'andèje dapress a na veja liura stòrica a na
 'searchmenu-legend' => "Opsion d'arserca",
 'searchmenu-exists' => "'''A-i é na pàgina ciamà \"[[:\$1]]\" dzora a costa wiki'''",
 'searchmenu-new' => "'''Creé la pàgina «[[:$1]]» ansima a sta wiki-sì!'''",
-'searchhelp-url' => 'Help:Contnù',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Visualisé le pàgine con sto prefiss-sì]]',
 'searchprofile-articles' => 'Pàgine ëd contnù',
 'searchprofile-project' => "Pàgine d'agiut e ëd proget",

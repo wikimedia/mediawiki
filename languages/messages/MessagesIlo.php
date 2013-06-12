@@ -1127,7 +1127,6 @@ Dagiti salaysay ket mabalin a mabirukan idiay [{{fullurl:{{#Special:Log}}/delete
 'searchmenu-legend' => 'Pagpilian ti panagbiruk',
 'searchmenu-exists' => "'''Adda panid a nanaganan ti \"[[:\$1]]\" iti daytoy a wiki.'''",
 'searchmenu-new' => "'''Partuaten ti panid ti \"[[:\$1]]\" iti daytoy a wiki!'''",
-'searchhelp-url' => 'Help:Dagiti linaon',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Kitaem dagiti panid nga adda kastoy a naipasaruno]]',
 'searchprofile-articles' => 'Dagiti naglaon a panid',
 'searchprofile-project' => 'Tulong ken Gandat a pam-panid',

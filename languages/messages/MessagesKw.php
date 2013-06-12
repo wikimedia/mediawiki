@@ -748,7 +748,6 @@ Alhwedh: '''({{int:cur}})''' = an dyffrans dhyworth an amendyans diwettha, '''({
 'searchmenu-legend' => 'Etholyow hwilas',
 'searchmenu-exists' => "''Yma folen henwys \"[[:\$1]]\" war an wiki-ma'''",
 'searchmenu-new' => "'''Gwruthyl an folen \"[[:\$1]]\" war an wiki-ma!'''",
-'searchhelp-url' => 'Help:Gweres',
 'searchprofile-articles' => 'Folennow dalgh',
 'searchprofile-project' => 'Folennow gweres ha ragdres',
 'searchprofile-images' => 'Liesmedia',

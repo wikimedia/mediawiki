@@ -619,7 +619,6 @@ Eará bajasdoallit sáhtet lohkat čihkojuvvon sisdoalu ja máhcahit dan.",
 
 $1 {{int:pipe-separator}} $2',
 'searchmenu-new' => "'''Álggat siiddu ''[[:$1]]'' dán Wikipediai'''",
-'searchhelp-url' => 'Help:Rávvagat',
 'searchprofile-articles' => 'Sisdoallosiiddut',
 'searchprofile-project' => 'Veahkke- ja prošeaktasiiddut',
 'searchprofile-everything' => 'Buot',

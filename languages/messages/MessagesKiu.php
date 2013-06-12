@@ -741,7 +741,6 @@ Eke şertê ilawekerdey ke niyê ro, idarekerê bini {{SITENAME}} de nêşikinê
 'viewprevnext' => 'Bıvêne ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-exists' => "''Ena 'Wikipediya de ser \"[[:\$1]]\" yew pel esto'''",
 'searchmenu-new' => "'''Nê wiki de pela \"[[:\$1]]\" baferne!'''",
-'searchhelp-url' => 'Help:Tedeestey',
 'searchprofile-articles' => 'Pelê tedeesteu',
 'searchprofile-project' => 'Pelê yardımi u procey',
 'searchprofile-images' => 'Multimedya',

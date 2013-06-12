@@ -1120,7 +1120,6 @@ Wees zeker det deze wieziging de gesjiedenisdoorloupendheid van de pagina zal be
 'searchmenu-legend' => 'Zeukopties',
 'searchmenu-exists' => "* Pagina '''[[$1]]'''",
 'searchmenu-new' => "'''De pagina \"[[:\$1]]\" aanmake op deze wiki'''",
-'searchhelp-url' => 'Help:Help',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Paginanaome mit dit veurveugsel weergaeve]]',
 'searchprofile-articles' => "Inhaudelike pagina's",
 'searchprofile-project' => "Help- en projekpagina's",

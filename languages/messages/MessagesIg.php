@@ -713,7 +713,6 @@ Okwu ụmà: '''({{int:cur}})''' = gbánwe na nké orü mbu, '''({{int:last}})''
 'viewprevnext' => 'Lé ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-legend' => 'Màkà nchöwa',
 'searchmenu-new' => "'''Ké ihü \"[[:\$1]]\" na wiki nke á!'''",
-'searchhelp-url' => 'Help:Ihe di ime',
 'searchprofile-articles' => 'Ihü ihe dị',
 'searchprofile-project' => 'Ihü Nkwádo na Orürü',
 'searchprofile-images' => 'Nkaníle',

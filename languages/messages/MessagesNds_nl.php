@@ -1313,7 +1313,6 @@ Waorschienlik ku'j der meer gegevens over vienen in t [{{fullurl:{{#Special:Log}
 'searchmenu-legend' => 'Zeukopsies',
 'searchmenu-exists' => "'''Der is n zied mit de naam \"[[:\$1]]\" op disse wiki.'''",
 'searchmenu-new' => "'''De zied \"[[:\$1]]\" op disse wiki anmaken!'''",
-'searchhelp-url' => 'Help:Inhold',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Ziednamen mit dit veurvoegsel laoten zien]]',
 'searchprofile-articles' => 'Artikels',
 'searchprofile-project' => 'Hulp- en projektziejen',

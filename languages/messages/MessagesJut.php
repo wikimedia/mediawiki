@@ -438,7 +438,6 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'prevn' => 'førge {{PLURAL:$1|$1}}',
 'nextn' => 'nægste {{PLURAL:$1|$1}}',
 'viewprevnext' => 'Ves ($1 {{int:pipe-separator}} $2) ($3)',
-'searchhelp-url' => 'Help:Hjælpførside',
 'searchall' => 'ål',
 'powersearch' => 'Søĝ',
 

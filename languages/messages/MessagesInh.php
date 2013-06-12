@@ -521,7 +521,6 @@ $messages = array(
 'viewprevnext' => '($1 {{int:pipe-separator}} $2) ($3) хьажа',
 'searchmenu-exists' => "'''Укх масса-хьахьоадайтамач ер оаг|ув \"[[:\$1]]\" я'''",
 'searchmenu-new' => "'''Укх \"[[:\$1]]\" масса-хьахоадайтамач оагIув хьае!'''",
-'searchhelp-url' => 'Help:Чулоацам',
 'searchprofile-articles' => 'Гомлен оагIувнаш',
 'searchprofile-project' => 'Дагарлеи хьахоадайтами оагIувнаш',
 'searchprofile-images' => 'Медифаг',

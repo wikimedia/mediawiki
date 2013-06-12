@@ -13,6 +13,7 @@
  * @author Dalibor Bosits
  * @author Demicx
  * @author Dnik
+ * @author DzWiki
  * @author Ex13
  * @author Excaliboor
  * @author FriedrickMILBarbarossa
@@ -723,11 +724,16 @@ Neke se stranice mogu prikazivati kao da ste još uvijek prijavljeni, sve dok ne
 Ne zaboravite prilagoditi Vaše [[Special:Preferences|{{SITENAME}} postavke]].',
 'yourname' => 'Suradničko ime',
 'userlogin-yourname' => 'Suradničko ime',
+'userlogin-yourname-ph' => 'Unesite Vaše suradničko ime',
 'yourpassword' => 'Lozinka:',
 'userlogin-yourpassword' => 'Zaporka',
+'userlogin-yourpassword-ph' => 'Unesite Vašu zaporku',
+'createacct-yourpassword-ph' => 'Unesite zaporku',
 'yourpasswordagain' => 'Ponovno upišite lozinku',
+'createacct-yourpasswordagain-ph' => 'Unesite zaporku ponovno',
 'remembermypassword' => 'Zapamti moju lozinku na ovom računalu (najduže $1 {{PLURAL:$1|dan|dana}})',
 'userlogin-remembermypassword' => 'Zapamti me',
+'userlogin-signwithsecure' => 'Rabi sigurnu vezu',
 'securelogin-stick-https' => 'Ostani spojen na HTTPS nakon prijave',
 'yourdomainname' => 'Vaša domena',
 'password-change-forbidden' => 'Ne možete promjeniti zaporku na ovom projektu.',
@@ -751,6 +757,8 @@ Ne zaboravite prilagoditi Vaše [[Special:Preferences|{{SITENAME}} postavke]].',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Pomoć pri prijavi]]',
 'createaccountmail' => 'poštom',
 'createaccountreason' => 'Razlog:',
+'createacct-imgcaptcha-ph' => 'Unesite tekst koji vidite iznad',
+'createacct-submit' => 'Stvorite svoj suradnički račun',
 'badretype' => 'Unesene lozinke nisu istovjetne.',
 'userexists' => 'Uneseno suradničko ime već je u upotrebi.
 Unesite neko drugo ime.',
@@ -1321,7 +1329,6 @@ Više informacija možete pronaći u [{{fullurl:{{#Special:Log}}/delete|page={{F
 'searchmenu-legend' => 'Mogućnosti pretraživanja',
 'searchmenu-exists' => "* Stranica '''[[$1]]'''",
 'searchmenu-new' => "'''Stvori stranicu \"[[:\$1]]\" na ovoj wiki!'''",
-'searchhelp-url' => 'Help:Pomoć',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Pretraži stranice s ovim prefiksom]]',
 'searchprofile-articles' => 'Stranice sa sadržajem',
 'searchprofile-project' => 'Pomoć i stranice projekta',

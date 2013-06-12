@@ -1235,7 +1235,6 @@ Es pot trobar més informació en el [{{fullurl:{{#Special:Log}}/delete|page={{F
 'searchmenu-legend' => 'Opcions de cerca',
 'searchmenu-exists' => "'''Hi ha una pàgina anomenada «[[:$1]]» en aquest wiki'''",
 'searchmenu-new' => "'''Creeu la pàgina «[[:$1]]» en aquest wiki!'''",
-'searchhelp-url' => 'Help:Ajuda',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Mostra pàgines amb aquest prefix]]',
 'searchprofile-articles' => 'Pàgines de contingut',
 'searchprofile-project' => "Pàgines d'ajuda i de projecte",

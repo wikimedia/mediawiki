@@ -574,7 +574,6 @@ folcliċum āgnunge oþþe ȝelīċum frēom horde (sēo $1 for āscungum).
 'nextn' => 'nīehst {{PLURAL:$1|$1}}',
 'viewprevnext' => 'Sēon ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-new' => "'''Scieppan þone tramet \"[[:\$1]]\" on þissum wiki!'''",
-'searchhelp-url' => 'Help:Innung',
 'searchprofile-articles' => 'Innunge trametas',
 'searchprofile-project' => 'Helpes and Weorca trametas',
 'searchprofile-images' => 'Missenendebyrdness',

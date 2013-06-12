@@ -816,7 +816,6 @@ Les ôtes manaedjeus so {{SITENAME}} pôront todi vey li contnou catchî eyet l'
 'searchmenu-legend' => 'Tchuzes di cweraedje',
 'searchmenu-exists' => "'''Gn a ddja ene pådje lomêye « [[:$1]] » so ç' wiki ci'''",
 'searchmenu-new' => "'''Ahiver l' pådje \"[[:\$1]]\" so ç' wiki ci!'''",
-'searchhelp-url' => 'Help:Aidance',
 'searchprofile-articles' => 'Pådjes di contnou',
 'searchprofile-project' => "Pådjes d' aidance et do pordjet",
 'searchprofile-images' => 'Multimedia',

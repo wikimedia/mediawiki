@@ -550,7 +550,6 @@ $messages = array(
 'searchmenu-legend' => 'Жагъурунин низамарунар',
 'searchmenu-exists' => "'''И вики-проектда \"[[:\$1]]\" тlвар алай ччин ава.'''",
 'searchmenu-new' => "'''И вики-проектда \"[[:\$1]]\" ччин туькlуьрун !'''",
-'searchhelp-url' => 'Help:КЪене авайбур',
 'searchprofile-articles' => 'Асул ччинар',
 'searchprofile-project' => 'Куьмек гунин ва проектдин ччинар',
 'searchprofile-images' => 'Мультимедиа',

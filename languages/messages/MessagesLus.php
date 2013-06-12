@@ -736,7 +736,6 @@ Lamtawi hmante: '''({{int:cur}})'''= ennawnna thar ber nena danglamna, '''({{int
 'searchmenu-legend' => 'Zawn duhthlanna',
 'searchmenu-exists' => "'''He wiki-ah hian \"[[:\$1]]\" tia koh phêk a awm.'''",
 'searchmenu-new' => "'''[[:$1]] phek hi he wiki-ah hian siam rawh le!'''",
-'searchhelp-url' => 'Help:A chhunga thu awmte',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|He thuhmabet nei phêkte hi zawng rawh]]',
 'searchprofile-articles' => 'A chhunga thu awm',
 'searchprofile-project' => 'Ţanpuina leh hna-hmachhawp phekte',

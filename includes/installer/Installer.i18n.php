@@ -19956,8 +19956,10 @@ $messages['ur'] = array(
 );
 
 /** Uzbek (oʻzbekcha)
+ * @author Sociologist
  */
 $messages['uz'] = array(
+	'config-admin-password-blank' => 'Administrator hisob yozuvi uchun maxfiy soʻz kiriting.',
 	'mainpagetext' => "'''MediaWiki muvaffaqiyatli o'rnatildi.'''",
 	'mainpagedocfooter' => "Wiki dasturini ishlatish haqida ma'lumot olish uchun  [//meta.wikimedia.org/wiki/Help:Contents Foydalanuvchi qo'llanmasi] sahifasiga murojaat qiling.
 

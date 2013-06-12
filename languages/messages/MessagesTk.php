@@ -965,7 +965,6 @@ Nawigasiýa çykgytlaryny ulanmaklygyň bu sütüni başky ýagdaýyna getirjekd
 'searchmenu-legend' => 'Gözleg opsiýalary',
 'searchmenu-exists' => "'''Bu wikide \"[[:\$1]]\" atly sahypa bar'''",
 'searchmenu-new' => "'''Bu wikide \"[[:\$1]]\" sahypasyny döret!'''",
-'searchhelp-url' => 'Help:Içindäkiler',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Şu prefiksli sahypalara göz aýla]]',
 'searchprofile-articles' => 'Mazmunly sahypalar',
 'searchprofile-project' => 'Ýardam we Taslama sahypalary',

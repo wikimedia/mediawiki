@@ -1413,7 +1413,6 @@ Podrobnosti mohou být uvedeny v [{{fullurl:{{#Special:Log}}/delete|page={{FULLP
 'searchmenu-legend' => 'Možnosti hledání',
 'searchmenu-exists' => "'''Na této wiki existuje stránka nazvaná „[[:$1]]“.'''",
 'searchmenu-new' => "'''Vytvořte na této wiki stránku „[[:$1]]“!'''",
-'searchhelp-url' => 'Help:Obsah',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Zobrazit stránky, jejichž název začíná „$1“]]',
 'searchprofile-articles' => 'Články',
 'searchprofile-project' => 'Nápověda a projektové stránky',

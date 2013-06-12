@@ -589,7 +589,6 @@ Lí ê kái-piàn tī ē-kha ê bûn-jī-keh. Lí su-iàu chiōng lí chò ê k�
 'nextn' => 'āu {{PLURAL:$1|$1}} hāng',
 'shown-title' => 'Múi ia̍h hián-sī $1 {{PLURAL:$1|kiat-kó|kiat-kó}}',
 'viewprevnext' => 'Khoàⁿ ($1 {{int:pipe-separator}} $2) ($3)',
-'searchhelp-url' => 'Help:Bo̍k-lio̍k',
 'searchprofile-articles' => 'Loē-iông ia̍h',
 'searchprofile-images' => 'To-mûi-thé',
 'searchprofile-everything' => 'Só͘-ū ê',

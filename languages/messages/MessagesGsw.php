@@ -1128,7 +1128,6 @@ Einzelheite chasch im [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}
 'searchmenu-legend' => 'Suechoptione',
 'searchmenu-exists' => "* Syte '''[[$1]]'''",
 'searchmenu-new' => "'''[[:$1|Leg d Syte ''$1'' in dem Wiki aa!]]'''",
-'searchhelp-url' => 'Help:Hilf',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Zeige alli Syte, wu mit dem Suechbegriff aafange]]',
 'searchprofile-articles' => 'Inhaltssyte',
 'searchprofile-project' => 'Hilf- un Projäktsyte',
