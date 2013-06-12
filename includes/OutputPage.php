@@ -1549,6 +1549,32 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
+	 * Adds an inline style derived from all templates which have stylesheets associated with them
+	 *
+	 * @param $parserOutput ParserOutput object
+	 */
+	public function addTemplateStyleTag( $parserOutput ) {
+		global $wgScriptPath, $wgUseSiteTemplateCss;
+		$templates = $parserOutput->getTemplates()[NS_TEMPLATE];
+		$style = '';
+		foreach( $templates as $name => $id ) {
+			$title = Title::newFromText( 'Template:' . $name . '.css' );
+			$revision = Revision::newFromTitle( $title, false, Revision::READ_NORMAL );
+			if ( $revision ) {
+				$content = $revision->getContent( Revision::RAW );
+				// is this safe?
+				$style .= $content->getNativeData();
+			}
+		}
+		$style = CSSMin::remap( $style, false, $wgScriptPath, true );
+		$style = CSSMin::minify( $style );
+		// FIXME: Move to link tag and external stylesheet
+		if ( $wgUseSiteTemplateCss ) {
+			$this->addInlineStyle( $style );
+		}
+	}
+
+	/**
 	 * Add a ParserOutput object, but without Html
 	 *
 	 * @param $parserOutput ParserOutput object
@@ -1569,6 +1595,7 @@ class OutputPage extends ContextSource {
 		$this->addModuleScripts( $parserOutput->getModuleScripts() );
 		$this->addModuleStyles( $parserOutput->getModuleStyles() );
 		$this->addModuleMessages( $parserOutput->getModuleMessages() );
+		$this->addTemplateStyleTag( $parserOutput );
 
 		// Template versioning...
 		foreach ( (array)$parserOutput->getTemplateIds() as $ns => $dbks ) {

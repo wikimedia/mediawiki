@@ -2703,6 +2703,9 @@ $wgUseSiteJs = true;
 /** Use the site's Cascading Style Sheets (CSS)? */
 $wgUseSiteCss = true;
 
+/** Allow Template:Foo to have an associated stylesheet Template:Foo.css */
+$wgUseSiteTemplateCss = true;
+
 /**
  * Break out of framesets. This can be used to prevent clickjacking attacks,
  * or to prevent external sites from framing your site with ads.
