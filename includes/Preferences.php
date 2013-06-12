@@ -320,35 +320,44 @@ class Preferences {
 
 		// see if there are multiple language variants to choose from
 		if ( !$wgDisableLangConversion ) {
-			$variants = $wgContLang->getVariants();
+			foreach ( LanguageConverter::$languagesWithVariants as $langCode ) {
+				if ( $langCode == $wgContLang->getCode() ) {
+					$variants = $wgContLang->getVariants();
 
-			if ( count( $variants ) > 1 ) {
-				$variantArray = array();
-				foreach ( $variants as $v ) {
-					$v = str_replace( '_', '-', strtolower( $v ) );
-					$variantArray[$v] = $wgContLang->getVariantname( $v, false );
-				}
+					if ( count( $variants ) <= 1 ) {
+						continue;
+					}
 
-				$options = array();
-				foreach ( $variantArray as $code => $name ) {
-					$display = wfBCP47( $code ) . ' - ' . $name;
-					$options[$display] = $code;
-				}
+					$variantArray = array();
+					foreach ( $variants as $v ) {
+						$v = str_replace( '_', '-', strtolower( $v ) );
+						$variantArray[$v] = $lang->getVariantname( $v, false );
+					}
 
-				$defaultPreferences['variant'] = array(
-					'label-message' => 'yourvariant',
-					'type' => 'select',
-					'options' => $options,
-					'section' => 'personal/i18n',
-					'help-message' => 'prefs-help-variant',
-				);
+					$options = array();
+					foreach ( $variantArray as $code => $name ) {
+						$display = wfBCP47( $code ) . ' - ' . $name;
+						$options[$display] = $code;
+					}
 
-				if ( !$wgDisableTitleConversion ) {
-					$defaultPreferences['noconvertlink'] =
-						array(
-						'type' => 'toggle',
+					$defaultPreferences['variant'] = array(
+						'label-message' => 'yourvariant',
+						'type' => 'select',
+						'options' => $options,
 						'section' => 'personal/i18n',
-						'label-message' => 'tog-noconvertlink',
+						'help-message' => 'prefs-help-variant',
+					);
+
+					if ( !$wgDisableTitleConversion ) {
+						$defaultPreferences['noconvertlink'] = array(
+							'type' => 'toggle',
+							'section' => 'personal/i18n',
+							'label-message' => 'tog-noconvertlink',
+						);
+					}
+				} else {
+					$defaultPreferences["variant-$langCode"] = array(
+						'type' => 'api',
 					);
 				}
 			}
