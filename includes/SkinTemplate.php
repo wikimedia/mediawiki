@@ -165,6 +165,47 @@ class SkinTemplate extends Skin {
 		return $language_urls;
 	}
 
+	protected function setupTemplateForOutput() {
+		wfProfileIn( __METHOD__ );
+
+		$request = $this->getRequest();
+		$user = $this->getUser();
+		$title = $this->getTitle();
+
+		wfProfileIn( __METHOD__ . '-init' );
+		$tpl = $this->setupTemplate( $this->template, 'skins' );
+		wfProfileOut( __METHOD__ . '-init' );
+
+		wfProfileIn( __METHOD__ . '-stuff' );
+		$this->thispage = $title->getPrefixedDBkey();
+		$this->titletxt = $title->getPrefixedText();
+		$this->userpage = $user->getUserPage()->getPrefixedText();
+		$query = array();
+		if ( !$request->wasPosted() ) {
+			$query = $request->getValues();
+			unset( $query['title'] );
+			unset( $query['returnto'] );
+			unset( $query['returntoquery'] );
+		}
+		$this->thisquery = wfArrayToCgi( $query );
+		$this->loggedin = $user->isLoggedIn();
+		$this->username = $user->getName();
+
+		if ( $this->loggedin || $this->showIPinHeader() ) {
+			$this->userpageUrlDetails = self::makeUrlDetails( $this->userpage );
+		} else {
+			# This won't be used in the standard skins, but we define it to preserve the interface
+			# To save time, we check for existence
+			$this->userpageUrlDetails = self::makeKnownUrlDetails( $this->userpage );
+		}
+
+		wfProfileOut( __METHOD__ . '-stuff' );
+
+		wfProfileOut( __METHOD__ );
+
+		return $tpl;
+	}
+
 	/**
 	 * initialize various variables and generate the template
 	 *
@@ -197,34 +238,9 @@ class SkinTemplate extends Skin {
 
 		wfProfileIn( __METHOD__ . '-init' );
 		$this->initPage( $out );
-
-		$tpl = $this->setupTemplate( $this->template, 'skins' );
 		wfProfileOut( __METHOD__ . '-init' );
 
-		wfProfileIn( __METHOD__ . '-stuff' );
-		$this->thispage = $title->getPrefixedDBkey();
-		$this->titletxt = $title->getPrefixedText();
-		$this->userpage = $user->getUserPage()->getPrefixedText();
-		$query = array();
-		if ( !$request->wasPosted() ) {
-			$query = $request->getValues();
-			unset( $query['title'] );
-			unset( $query['returnto'] );
-			unset( $query['returntoquery'] );
-		}
-		$this->thisquery = wfArrayToCgi( $query );
-		$this->loggedin = $user->isLoggedIn();
-		$this->username = $user->getName();
-
-		if ( $this->loggedin || $this->showIPinHeader() ) {
-			$this->userpageUrlDetails = self::makeUrlDetails( $this->userpage );
-		} else {
-			# This won't be used in the standard skins, but we define it to preserve the interface
-			# To save time, we check for existence
-			$this->userpageUrlDetails = self::makeKnownUrlDetails( $this->userpage );
-		}
-
-		wfProfileOut( __METHOD__ . '-stuff' );
+		$tpl = $this->setupTemplateForOutput();
 
 		wfProfileIn( __METHOD__ . '-stuff-head' );
 		if ( !$this->useHeadElement ) {
@@ -513,6 +529,20 @@ class SkinTemplate extends Skin {
 			$this->setContext( $oldContext );
 		}
 		wfProfileOut( __METHOD__ );
+	}
+
+	/**
+	 * Get the HTML for the p-personal list
+	 * @return string
+	 */
+	public function getPersonalToolsList() {
+		$tpl = $this->setupTemplateForOutput();
+		$tpl->set( 'personal_urls', $this->buildPersonalUrls() );
+		$html = '';
+		foreach ( $tpl->getPersonalTools() as $key => $item ) {
+			$html .= $tpl->makeListItem( $key, $item );
+		}
+		return $html;
 	}
 
 	/**
