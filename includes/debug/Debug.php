@@ -310,7 +310,7 @@ class MWDebug {
 		global $wgDebugComments, $wgShowDebug;
 
 		if ( self::$enabled || $wgDebugComments || $wgShowDebug ) {
-			self::$debug[] = rtrim( $str );
+			self::$debug[] = rtrim( UtfNormal::cleanUp( $str ) );
 		}
 	}
 
