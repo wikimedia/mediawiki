@@ -353,6 +353,7 @@ class Revision implements IDBAccessObject {
 	 * @return ResultWrapper
 	 */
 	private static function fetchFromConds( $db, $conditions, $flags = 0 ) {
+		global $wgDBtype;
 		$fields = array_merge(
 			self::selectFields(),
 			self::selectPageFields(),
@@ -360,7 +361,9 @@ class Revision implements IDBAccessObject {
 		);
 		$options = array( 'LIMIT' => 1 );
 		if ( ( $flags & self::READ_LOCKING ) == self::READ_LOCKING ) {
-			$options[] = 'FOR UPDATE';
+			if( $wgDBtype != "postgres" ) {
+				$options[] = 'FOR UPDATE';
+			}
 		}
 		return $db->select(
 			array( 'revision', 'page', 'user' ),
