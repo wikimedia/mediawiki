@@ -727,7 +727,7 @@ Ne zaboravite da prilagodite sebi svoja [[Special:Preferences|{{SITENAME}} pode�
 'logout' => 'Odjavi me',
 'userlogout' => 'Odjavi me',
 'notloggedin' => 'Niste prijavljeni',
-'userlogin-noaccount' => 'Nemate korisničko ime?',
+'userlogin-noaccount' => 'Nemate korisnički račun?',
 'userlogin-joinproject' => 'Pridružite se {{SITENAME}}',
 'nologin' => "Nemate korisničko ime? '''$1'''.",
 'nologinlink' => 'Napravite nalog',
@@ -752,6 +752,7 @@ Ne zaboravite da prilagodite sebi svoja [[Special:Preferences|{{SITENAME}} pode�
 'createacct-benefit-heading' => '{{SITENAME}} je napravljen od strane ljudi kao što ste Vi.',
 'createacct-benefit-body1' => '{{PLURAL:$1|izmjena|izmjene}}',
 'createacct-benefit-body2' => '{{PLURAL:$1|stranica|stranice|stranica}}',
+'createacct-benefit-body3' => 'nedavni {{PLURAL:$1|doprinosa}}',
 'badretype' => 'Šifre koje ste unijeli se ne poklapaju.',
 'userexists' => 'Korisničko ime koje ste unijeli je već u upotrebi.
 Molimo Vas da izaberete drugo ime.',
@@ -806,7 +807,7 @@ Molimo vas da unesete ispravnu adresu ili ostavite prazno polje.',
 'cannotchangeemail' => 'Na ovom wikiju ne možete promijeniti e-mail adresu računa.',
 'emaildisabled' => 'Ova web-stranica ne može da šalje e-poruke.',
 'accountcreated' => 'Korisnički račun je napravljen',
-'accountcreatedtext' => 'Korisnički račun za $1 je napravljen.',
+'accountcreatedtext' => 'Korisnički račun za [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|razgovor]]) je napravljen.',
 'createaccount-title' => 'Pravljenje korisničkog računa za {{SITENAME}}',
 'createaccount-text' => 'Neko je napravio korisnički račun za vašu e-mail adresu na {{SITENAME}} ($4) sa imenom "$2", i sa šifrom "$3".
 Trebali biste se prijaviti i promjeniti šifru.
@@ -844,6 +845,7 @@ Možda ste već uspješno promijenili Vašu šifru ili ste tražili novu privrem
 
 # Special:PasswordReset
 'passwordreset' => 'Poništavanje šifre',
+'passwordreset-text-one' => 'Ispunite ovaj obrazac da biste resetovali Vašu šifru/lozinku.',
 'passwordreset-legend' => 'Poništi šifru',
 'passwordreset-disabled' => 'Poništavanje šifre  je onemogućeno na ovoj wiki.',
 'passwordreset-username' => 'Korisničko ime:',
@@ -1089,6 +1091,7 @@ Nije ponuđeno nikakvo objašnjenje.',
 Izgleda da je obrisana.',
 'edit-conflict' => 'Sukob izmjena.',
 'edit-no-change' => 'Vaša izmjena je ignorirana, jer nije bilo promjena teksta stranice.',
+'postedit-confirmation' => 'Vaša izmjena je sačuvana.',
 'edit-already-exists' => 'Stranica nije mogla biti kreirana.
 Izgleda da već postoji.',
 'defaultmessagetext' => 'Uobičajeni tekst poruke',
@@ -1337,7 +1340,6 @@ Više informacija možete pronaći u [{{fullurl:{{#Special:Log}}/delete|page={{F
 'searchmenu-legend' => 'Opcije pretrage',
 'searchmenu-exists' => "'''Postoji stranica pod nazivom \"[[:\$1]]\" na ovoj wiki'''",
 'searchmenu-new' => "'''Napravi stranicu \"[[:\$1|\$1]]\" na ovoj wiki!'''",
-'searchhelp-url' => 'Help:Sadržaj',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Pregledaj stranice sa ovim prefiksom]]',
 'searchprofile-articles' => 'Stranice sadržaja',
 'searchprofile-project' => 'Stranice pomoći i projekta',

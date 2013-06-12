@@ -706,7 +706,6 @@ Legenda: (corr) = differense co-a verscion corrente, (prec) = differense co-a ve
 'viewprevnext' => 'Veddi ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-exists' => "'''Inte questa wiki gh'è za 'na pàgina co-o nómme \"[[:\$1]]\"'''",
 'searchmenu-new' => 'Crea a pagina "[[:$1]]" insce questo scito',
-'searchhelp-url' => 'Help:Contegnûi',
 'searchprofile-articles' => 'Pàgina di contegnûi',
 'searchprofile-project' => 'Pàgine de agiùtto e relative a-o progetto',
 'searchprofile-images' => 'Moltimedia',

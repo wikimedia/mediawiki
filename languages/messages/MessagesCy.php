@@ -1160,7 +1160,6 @@ Mae manylion pellach i'w cael yn [{{fullurl:{{#Special:Log}}/delete|page={{FULLP
 'searchmenu-legend' => 'Dewisiadau chwilio',
 'searchmenu-exists' => "'''Mae tudalen o'r enw \"[[\$1]]\" ar y wici hwn'''",
 'searchmenu-new' => "'''Creu'r dudalen \"[[:\$1]]\" ar y wici hwn!'''",
-'searchhelp-url' => 'Help:Cymorth',
 'searchmenu-prefix' => "[[Special:PrefixIndex/$1|Chwilio drwy tudalennau gyda'r rhagddodiad hwn]]",
 'searchprofile-articles' => 'Tudalennau pwnc (erthyglau/ffeiliau)',
 'searchprofile-project' => 'Tudalennau Cymorth a Phrosiect',

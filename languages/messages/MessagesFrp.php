@@ -1357,7 +1357,6 @@ Vos pouede trovar més de dètalys sur lo [{{fullurl:{{#Special:Log}}/delete|pag
 'searchmenu-legend' => 'Chouèx de rechèrche',
 'searchmenu-exists' => "'''Y at na pâge apelâye « [[:$1]] » sur ceti vouiqui.'''",
 'searchmenu-new' => "'''Fâre la pâge « [[:$1|$1]] » sur ceti vouiqui !'''",
-'searchhelp-url' => 'Help:Somèro',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Fâre dèfelar les pâges que començont per ceti prèfixo]]',
 'searchprofile-articles' => 'Pâges de contegnu',
 'searchprofile-project' => 'Pâges d’éde et pâges projèt',

@@ -1397,7 +1397,6 @@ Os detalhes podem ser encontrados no [{{fullurl:{{#Special:Log}}/delete|page={{F
 'searchmenu-legend' => 'Opções de pesquisa',
 'searchmenu-exists' => "'''Há uma página com o nome \"[[:\$1]]\" nesta wiki'''",
 'searchmenu-new' => "'''Crie a página \"[[:\$1]]\" nesta wiki!'''",
-'searchhelp-url' => 'Help:Conteúdos',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Navegar as páginas com este prefixo]]',
 'searchprofile-articles' => 'Páginas de conteúdo',
 'searchprofile-project' => 'Páginas de Ajuda e de Projecto',

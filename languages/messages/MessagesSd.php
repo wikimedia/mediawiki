@@ -524,7 +524,6 @@ You cannot use the 'e-mail this user' feature unless a valid e-mail address is s
 'prevn' => 'پويان {{PLURAL:$1|$1}}',
 'nextn' => 'اڳيان {{PLURAL:$1|$1}}',
 'viewprevnext' => 'ڏسو ($1 {{int:pipe-separator}} $2) ($3)',
-'searchhelp-url' => 'Help:فهرست',
 'powersearch' => 'نفيس ڳولا',
 'powersearch-redir' => 'چورڻن جي فهرست ڏيکاريو',
 

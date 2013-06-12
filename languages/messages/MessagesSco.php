@@ -706,7 +706,6 @@ there micht be parteeculars in the [{{fullurl:{{#Special:Log}}/suppress|page={{F
 'viewprevnext' => 'View ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-exists' => "'''There is a page named \"[[:\$1]]\" oan this wiki.'''",
 'searchmenu-new' => "'''Mak the page \"[[:\$1]]\" on this wiki!'''",
-'searchhelp-url' => 'Help:Contents',
 'searchprofile-articles' => 'Content pages',
 'searchprofile-project' => 'Help and Project pages',
 'searchprofile-images' => 'Multimedia',

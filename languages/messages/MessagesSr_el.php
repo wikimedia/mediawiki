@@ -1341,7 +1341,6 @@ Više informacija možete pronaći u [{{fullurl:{{#Special:Log}}/delete|page={{F
 'searchmenu-legend' => 'Postavke pretrage',
 'searchmenu-exists' => "'''Postoji i članak pod nazivom „[[:$1]]“.'''",
 'searchmenu-new' => "'''Napravite stranicu „[[:$1]]“.'''",
-'searchhelp-url' => 'Help:Sadržaj',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Pregledaj stranice s ovim prefiksom]]',
 'searchprofile-articles' => 'Članci',
 'searchprofile-project' => 'Stranice pomoći i projekata',

@@ -593,7 +593,6 @@ $messages = array(
 'prevn' => '{{PLURAL:$1|$1}} προηγουμένων',
 'nextn' => '{{PLURAL:$1|$1}} επομένων',
 'viewprevnext' => 'Τέρεν ($1 {{int:pipe-separator}} $2) ($3)',
-'searchhelp-url' => 'Help:Περιεχόμενα',
 'searchprofile-images' => 'Πολυμέσα',
 'searchprofile-everything' => 'Όλεα',
 'search-result-size' => '$1 ({{PLURAL:$2|1 λέξη|$2 λέξεις}})',

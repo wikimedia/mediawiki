@@ -1064,7 +1064,6 @@ Detagls pon vegnir chattads en il [{{fullurl:{{#Special:Log}}/delete|page={{FULL
 'searchmenu-legend' => 'Opziuns da tschertgar',
 'searchmenu-exists' => "'''Igl exista ina pagina cun il num \"[[:\$1]] sin questa vichi\"'''",
 'searchmenu-new' => "'''Crear la pagina \"[[:\$1]]\" sin questa vichi!'''",
-'searchhelp-url' => 'Help:Cuntegn',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Mussar tut las paginas cun quest prefix]]',
 'searchprofile-articles' => 'Paginas da cuntegn',
 'searchprofile-project' => 'Agid e paginas dal project',

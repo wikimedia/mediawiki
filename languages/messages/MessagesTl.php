@@ -1187,7 +1187,6 @@ Matatagpuan ang mga detalye sa loob ng [{{fullurl:{{#Special:Log}}/delete|page={
 'searchmenu-legend' => 'Mga pagpipilian para sa paghahanap',
 'searchmenu-exists' => "'''Mayroong pahinang may pangalang \"[[:\$1]]\" dito sa wiking ito'''",
 'searchmenu-new' => "'''Likhain ang pahinang \"[[:\$1]]\" sa wiking ito!'''",
-'searchhelp-url' => 'Help:Nilalaman',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Tingnan-tingnan ang mga pahinang may ganitong unahan/unlapi]]',
 'searchprofile-articles' => 'Mga pahina ng nilalaman',
 'searchprofile-project' => 'Mga pahina ng Tulong at Proyekto',

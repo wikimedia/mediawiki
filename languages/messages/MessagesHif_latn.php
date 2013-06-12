@@ -1053,7 +1053,6 @@ Iske baare me aur jaankari [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAM
 'searchmenu-legend' => 'Khoje ke option',
 'searchmenu-exists' => "'''Ii wiki me \"[[\$1]]\" naam ke panna hai'''",
 'searchmenu-new' => "'''Ii wiki me \"[[:\$1]]\" panna ke banao!'''",
-'searchhelp-url' => 'Help:Madat',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Ii prefix ke panna ke browse karo]]',
 'searchprofile-articles' => 'Content panna',
 'searchprofile-project' => 'Madat aur Project panna',

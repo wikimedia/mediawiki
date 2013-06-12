@@ -1263,7 +1263,6 @@ Podrobnosti lahko najdete v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENA
 'searchmenu-legend' => 'Možnosti za iskanje',
 'searchmenu-exists' => "'''Na tem wikiju obstaja stran »[[:$1]]«'''",
 'searchmenu-new' => "'''Ustvari stran »[[:$1]]« na tem wikiju!'''",
-'searchhelp-url' => 'Help:Vsebina',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Iskanje strani s to predpono]]',
 'searchprofile-articles' => 'Članki',
 'searchprofile-project' => 'Pomoč in projektne strani',

@@ -859,7 +859,6 @@ Liá-chhṳ chhà-fûng he yù $1 só fûng ke. Tông-chûng ke ngièn-yîn he '
 'viewprevnext' => '查看（$1 {{int:pipe-separator}} $2）（$3）',
 'searchmenu-exists' => "'''在邇隻wiki上已經有一頁喊做“[[:$1]]”。'''",
 'searchmenu-new' => "'''在本wiki上建立邇隻頁面“[[:$1]]”！'''",
-'searchhelp-url' => 'Help:目錄',
 'searchprofile-articles' => '內容頁面',
 'searchprofile-project' => '幫助撈計劃頁面',
 'searchprofile-images' => '多媒體',

@@ -1026,7 +1026,6 @@ Rinciané bisa ditemokaké nèng [{{fullurl:{{#Special:Log}}/delete|page={{FULLP
 'searchmenu-legend' => 'Pilihan panggolèkan',
 'searchmenu-exists' => "'''Ana kaca kanthi jeneng \"[[\$1]]\" ing wiki iki'''",
 'searchmenu-new' => "'''Gawé kaca \"[[:\$1]]\" ing wiki iki!'''",
-'searchhelp-url' => 'Help:Isi',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Tlusuri kaca-kaca kanthi tembung-wiwitan iki]]',
 'searchprofile-articles' => 'Kaca isi',
 'searchprofile-project' => 'Kaca pitulung lan proyèk',

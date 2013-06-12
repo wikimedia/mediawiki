@@ -636,7 +636,6 @@ A kan ben trowe efu dribi.
 'prevn' => '{{PLURAL:$1|$1}} di psa',
 'nextn' => '{{PLURAL:$1|$1}} trawan',
 'viewprevnext' => 'Luku ($1 {{int:pipe-separator}} $2) ($3).',
-'searchhelp-url' => 'Help:San de',
 'powersearch' => 'Suku moro dipi',
 
 # Preferences page

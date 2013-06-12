@@ -1161,7 +1161,6 @@ An mga detalye mapuwedeng matatagboan sa [{{fullurl:{{#Special:Log}}/delete|page
 'searchmenu-legend' => 'Opsyon sa paghahanap',
 'searchmenu-exists' => "'''Igwa nin sarong pahina na pinagngaranan na \"[[:\$1]]\" sa wiking ini.'''",
 'searchmenu-new' => "'''Muknaon an pahina \"[[:\$1]]\" sa wiking ini!'''",
-'searchhelp-url' => 'Help:Mga laog',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Kilyawon an mga pahina sa paagi kainin enotang panigmit]]',
 'searchprofile-articles' => 'Mga pahina nin laog',
 'searchprofile-project' => 'Mga pahina nin Tabang asin Proyekto',

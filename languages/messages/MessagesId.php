@@ -1391,7 +1391,6 @@ Rinciannya dapat ditemukan di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGE
 'searchmenu-legend' => 'Opsi pencarian',
 'searchmenu-exists' => "* Halaman '''[[$1]]'''",
 'searchmenu-new' => "'''Buat halaman \"[[:\$1]]\" di wiki ini!'''",
-'searchhelp-url' => 'Help:Isi',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Lihat daftar halaman dengan awalan ini]]',
 'searchprofile-articles' => 'Halaman isi',
 'searchprofile-project' => 'Halaman Bantuan dan Proyek',

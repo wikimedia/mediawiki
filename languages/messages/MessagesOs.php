@@ -1055,7 +1055,6 @@ ASCII нысæнттæм чи нæ хауы, уыдон ивыны бынаты 
 'viewprevnext' => 'Кæсын ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-exists' => "'''Ацы викийы ис фарс \"[[:\$1]]\" номимæ.'''",
 'searchmenu-new' => "'''Сараз фарс \"[[:\$1]]\" ацы викийы!'''",
-'searchhelp-url' => 'Help:Мидис',
 'searchprofile-articles' => 'Мидисы фæрстæ',
 'searchprofile-project' => 'Æххуыс æмæ Проекты фæрстæ',
 'searchprofile-images' => 'Мультимеди',

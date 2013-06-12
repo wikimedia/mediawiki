@@ -577,7 +577,6 @@ Informacion: (curt) = quiíxde vercion currentua,
 'prevn' => 'jan {{PLURAL:$1|$1}}',
 'nextn' => 'hun {{PLURAL:$1|$1}}',
 'viewprevnext' => 'Cohuatlöx ($1 {{int:pipe-separator}} $2) ($3)',
-'searchhelp-url' => 'Help:Caálixötöj',
 'powersearch' => 'Yahöx',
 
 # Preferences page

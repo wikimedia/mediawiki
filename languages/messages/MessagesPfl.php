@@ -58,11 +58,11 @@ $namespaceAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Lingg unnaschdraische',
-'tog-hideminor' => 'Va.schdegg klääne Be.arwaidunge',
-'tog-hidepatrolled' => 'Va.schdegg gsischdede Ännarunge',
+'tog-hideminor' => 'Vaschdegg klääne Bearwaidunge',
+'tog-hidepatrolled' => 'Vaschdegg gsischdede Ännarunge',
 'tog-extendwatchlist' => 'Zaisch alle Ännarunge unn ned nur die ledschde',
 'tog-showtoolbar' => "Wergzaisch fas Beawaide zaische (dodezu brauchd's JavaScript)",
-'tog-showjumplinks' => 'Schdellde "Hubs uff"-Lingg o',
+'tog-showjumplinks' => 'Schdellde "Hubs uff"-Lingg',
 'tog-showhiddencats' => 'Zaisch vaschdeglde Grubbe',
 
 'underline-always' => 'Imma',
@@ -258,7 +258,7 @@ $messages = array(
 'site-atom-feed' => '$1 Atom-Feed',
 'page-rss-feed' => '"$1" RSS-Feed',
 'page-atom-feed' => '"$1" Atom-Feed',
-'red-link-title' => '$1 (Said gibbds ned)',
+'red-link-title' => '$1 (Said gibbds nedd)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'Said',
@@ -901,7 +901,7 @@ Bitte duu se vun Hand zammefiehre.'''",
 'tooltip-pt-preferences' => 'Dai Aistellunge',
 'tooltip-pt-watchlist' => 'D Lischd vun Saide, wu du beowachde duschd',
 'tooltip-pt-mycontris' => 'Lischd vun Daine Baidräsch',
-'tooltip-pt-login' => 'Du konnschd disch aamelde, awwer du mugschd s nit',
+'tooltip-pt-login' => 'Du konnschd disch õmelde, awwa du mugschds ned',
 'tooltip-pt-logout' => 'Abmelde',
 'tooltip-ca-talk' => 'Iwwa d Inhaldssaid dischbediere',
 'tooltip-ca-edit' => 'Du konnschd die Said beawaide.
@@ -914,13 +914,13 @@ Bidde nemmde Vorschau-Gnobb vorm Schbaischare',
 'tooltip-ca-move' => 'Die Said vaschiewe',
 'tooltip-ca-watch' => 'Die Said zu Dainer Beowachdungslischd zufiesche',
 'tooltip-ca-unwatch' => 'Die Said aus Dainer Beowachdunschlischd wegnemme',
-'tooltip-search' => 'Gugg uff {{SITENAME}} noch',
+'tooltip-search' => 'Gugg uff {{SITENAME}} fa',
 'tooltip-search-go' => 'Geh zu ere Said mid genää dem Namme, wenn s se gebbt',
 'tooltip-search-fulltext' => 'Gugg inde Said nochm Tegschd',
 'tooltip-p-logo' => 'Schdadsaid',
 'tooltip-n-mainpage' => 'Uff d Schdadsaid geje',
-'tooltip-n-mainpage-description' => 'Haubdsaid aagugge',
-'tooltip-n-portal' => 'Iwwers Brojegd, wude duu kannschd, wu ebbes finne duschd',
+'tooltip-n-mainpage-description' => 'Haubdsaid õgugge',
+'tooltip-n-portal' => 'Iwwas Brojegd, wu mache konnschd, wu ebbes finne duschd',
 'tooltip-n-currentevents' => 'Finn Auskinfd iwwa naiji Voafell',
 'tooltip-n-recentchanges' => 'Lischd vun de ledschde Ännarunge im Wiki',
 'tooltip-n-randompage' => 'Lad e zufellischi Said',
@@ -970,9 +970,9 @@ Du kannschd e Grund in de Zommefassung aagewwe.",
 # Bad image list
 'bad_image_list' => 'Formad:
 
-nur Zaile, wu mid eme * aafange werre bericksichdischd.
-De erschd Link muss e Link zu ere unerwinschd Dadei sai.
-Annere Links in der glaiche Zail werre als Ausnahme behanneld, d. h. Saide, wu d Dadei drin vorkumme därfd.',
+nur Zaile, wu mid em * õfange werren beriggsischdischd.
+De erschd Lingg mussn Lingg zu änna uuerwinschdi Dadai soi.
+Annare Linggs inde glaische Zail werren als Ausnõhm behonneld, des heesd, Saide, wu inde Dadai vorkumme dirfn.',
 
 # Metadata
 'metadata' => 'Metadata',

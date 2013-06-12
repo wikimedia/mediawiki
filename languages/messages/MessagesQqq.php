@@ -423,7 +423,7 @@ This can also appear in the credits page if the credits feature is enabled,for e
 {{Identical|My pages}}',
 'qbspecialpages' => '{{Identical|Special page}}',
 'faq' => "FAQ is short for ''frequently asked questions''.",
-'faqpage' => "FAQ is short for ''frequently asked questions''. This page is only linked on some of the old skins, not in Monobook or Modern.
+'faqpage' => "FAQ is short for ''frequently asked questions''. This page is only linked in CologneBlue (an old skin), not in Monobook or Vector.
 
 {{doc-important|Do not translate <tt>Project:</tt> part.}}",
 
@@ -2347,9 +2347,6 @@ Viewprevnext is sometimes preceded by the {{msg-mw|Showingresults}} or {{msg-mw|
 'searchmenu-legend' => '{{Identical|Search options}}',
 'searchmenu-exists' => 'An option shown in a menu beside search form offering a link to the existing page having the specified title (when using the default MediaWiki search engine).',
 'searchmenu-new' => 'An option shown in a menu beside search form offering a red link to the not yet existing page having the specified title (when using the default MediaWiki search engine).',
-'searchhelp-url' => 'Description: The URL of the search help page.
-{{doc-important|Do not change the "<tt>Help:</tt>" part.}}
-{{Identical|HelpContent}}',
 'searchmenu-prefix' => '{{doc-important|Do not translate "Special:PrefixIndex"}}
 Parameters:
 * $1 - prefix string',

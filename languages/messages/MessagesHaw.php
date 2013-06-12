@@ -464,7 +464,6 @@ E ʻoluʻolu, e hōʻoia i ka hoʻokūkū ʻana i lalo, a laila, e mālama i nā
 'prevn' => '{{PLURAL:$1|$1}} ma mua',
 'nextn' => '{{PLURAL:$1|$1}} ma hope',
 'viewprevnext' => 'Nānā i nā ($1 {{int:pipe-separator}} $2) ($3)',
-'searchhelp-url' => 'Help:Papa kuhikuhi',
 'search-result-size' => '$1 ({{PLURAL:$2|1 huaʻōlelo|$2 huaʻōlelo}})',
 'search-section' => '(māhele $1)',
 'search-suggest' => 'ʻO kēia paha kou manaʻo: $1',

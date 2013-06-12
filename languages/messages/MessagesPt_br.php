@@ -523,6 +523,7 @@ $messages = array(
 'create-this-page' => 'Iniciar esta página',
 'delete' => 'Eliminar',
 'deletethispage' => 'Eliminar esta página',
+'undeletethispage' => 'Restaure esta página',
 'undelete_short' => 'Restaurar {{PLURAL:$1|uma edição|$1 edições}}',
 'viewdeleted_short' => 'Ver {{PLURAL:$1|uma edição eliminada|$1 edições eliminadas}}',
 'protect' => 'Proteger',
@@ -727,6 +728,8 @@ $2',
 'namespaceprotected' => "Você não possui permissão para editar páginas no espaço nominal '''$1'''.",
 'customcssprotected' => 'Você não tem permissão para editar esta página CSS, porque ele contém configurações pessoais de outro usuário.',
 'customjsprotected' => 'Você não tem permissão para editar esta página de JavaScript, porque ele contém configurações pessoais de outro usuário.',
+'mycustomcssprotected' => 'Você não tem permissão para editar esta página CSS',
+'mycustomjsprotected' => 'Você não tem permissão para editar esta página JavaScript',
 'ns-specialprotected' => 'Não é possível editar páginas especiais',
 'titleprotected' => "Este título foi protegido, para que não seja criado.
 Quem o protegeu foi [[User:$1|$1]], com a justificativa: ''$2''.",
@@ -763,7 +766,7 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências no 
 'createacct-yourpasswordagain-ph' => 'Digite a senha novamente',
 'remembermypassword' => 'Lembrar meu login neste navegador (por no máximo $1 {{PLURAL:$1|dia|dias}})',
 'userlogin-remembermypassword' => 'Mantenha-me conectado',
-'userlogin-signwithsecure' => 'Entrar com um servidor seguro',
+'userlogin-signwithsecure' => 'Use a conexão segura',
 'securelogin-stick-https' => 'Permanecer conectado ao HTTPS após a autenticação',
 'yourdomainname' => 'Seu domínio:',
 'password-change-forbidden' => 'Você não pode alterar senhas nessa wiki.',
@@ -784,6 +787,7 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências no 
 'gotaccount' => "Já possui uma conta? '''$1'''.",
 'gotaccountlink' => 'Autenticar-se',
 'userlogin-resetlink' => 'Esqueceu-se do seu nome de usuário ou da senha?',
+'userlogin-resetpassword-link' => 'Troque sua senha',
 'helplogin-url' => 'Help:Iniciar sessão',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Ajuda para iniciar sessão]]',
 'createacct-join' => 'Insira suas informações abaixo.',
@@ -801,7 +805,7 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências no 
 'createacct-benefit-heading' => '{{SITENAME}} é feita por pessoas como você.',
 'createacct-benefit-body1' => '{{PLURAL:$1|edição|edições}}',
 'createacct-benefit-body2' => '{{PLURAL:$1|página|páginas}}',
-'createacct-benefit-body3' => 'contribuidores recentes',
+'createacct-benefit-body3' => '{{PLURAL:$1|contribuidor|contribuidores}} recentes',
 'badretype' => 'As senhas que você digitou não são iguais.',
 'userexists' => 'O nome de usuário fornecido já está em uso.
 Escolha um nome diferente.',
@@ -856,7 +860,7 @@ Como resultado, visitantes que usam este endereço IP não podem criar mais nenh
 'cannotchangeemail' => 'A conta de e-mail não pode ser alterada neste wiki.',
 'emaildisabled' => 'Este site não tem como enviar e-mails.',
 'accountcreated' => 'Conta criada',
-'accountcreatedtext' => 'A conta de usuário para $1 foi criada.',
+'accountcreatedtext' => 'A conta de usuário para [[{{ns:User}}:$1|$1]] ([[{{ns:Usuário Discussão}}:$1|Discussão]]) foi criada.',
 'createaccount-title' => 'Criação de conta em {{SITENAME}}',
 'createaccount-text' => 'Alguém criou uma conta de nome $2 para o seu endereço de email no wiki {{SITENAME}} ($4), tendo como senha "$3".
 Você deve se autenticar e alterar sua senha.
@@ -895,6 +899,7 @@ Você pode já ter alterado com sucesso a sua senha, ou solicitado uma nova senh
 
 # Special:PasswordReset
 'passwordreset' => 'Redefinir senha',
+'passwordreset-text-one' => 'Complete este formulário para trocar sua senha.',
 'passwordreset-legend' => 'Reiniciar a senha',
 'passwordreset-disabled' => 'Redefinições de senha foram desabilitadas nesta wiki.',
 'passwordreset-emaildisabled' => 'Os recursos de e-mail foram desativados nesta wiki.',
@@ -1386,7 +1391,6 @@ Os detalhes podem ser encontrados no [{{fullurl:{{#Special:Log}}/delete|page={{F
 'searchmenu-legend' => 'Opções de pesquisa',
 'searchmenu-exists' => "'''Há uma página com o nome \"[[:\$1]]\" nesta wiki'''",
 'searchmenu-new' => "'''Criar a página \"[[:\$1|\$1]]\" nesta wiki!'''",
-'searchhelp-url' => 'Help:Conteúdos',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Navegue pelas páginas com este prefixo]]',
 'searchprofile-articles' => 'Páginas de conteúdo',
 'searchprofile-project' => 'Ajuda e páginas de projeto',

@@ -1292,7 +1292,6 @@ Frekari upplýsingar eru í [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENA
 'searchmenu-legend' => 'Leitarvalmöguleikar',
 'searchmenu-exists' => "'''Það er síða að nafni „[[:$1]]“ á þessum wiki'''",
 'searchmenu-new' => "'''Skapaðu síðuna \"[[:\$1]]\" á þessum wiki!'''",
-'searchhelp-url' => 'Help:Efnisyfirlit',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Leita að síðum með þessu forskeyti]]',
 'searchprofile-articles' => 'Efnissíður',
 'searchprofile-project' => 'Hjálpar- og verkefnasíður',

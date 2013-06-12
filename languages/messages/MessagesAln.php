@@ -903,7 +903,6 @@ Kini kujdes se përdorimi i lidhjeve të shfletimit do të ndryshojë përzgjedh
 'searchmenu-legend' => 'Opcionet e kërkimit',
 'searchmenu-exists' => "'''Në këtë wiki âsht nji faqe me titullin \"[[:\$1]]\"'''",
 'searchmenu-new' => "'''Krijo faqen \"[[:\$1]]\" në këtë wiki!'''",
-'searchhelp-url' => 'Help:Përmbajtja',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Shfleto faqet me këtë prefiks]]',
 'searchprofile-articles' => 'Faqet me përmbajtje',
 'searchprofile-project' => 'Faqet e ndihmës dhe projekteve',

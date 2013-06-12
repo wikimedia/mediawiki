@@ -631,7 +631,6 @@ Cosas de ammentare: '''({{int:cur}})''' = diferèntzias cun sa versione currente
 'shown-title' => 'Ammustra $1 {{PLURAL:$1|resurtadu|resurtados}} pro pàgina',
 'viewprevnext' => 'Càstia ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-legend' => 'Possibilidades de chirca',
-'searchhelp-url' => 'Help:Agiudu',
 'searchprofile-everything' => 'Totu',
 'searchprofile-advanced' => 'Avantzada',
 'searchprofile-articles-tooltip' => 'Chirca in $1',

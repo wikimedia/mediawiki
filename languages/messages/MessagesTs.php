@@ -512,7 +512,6 @@ Swihlamuseri: '''({{int:sweswi}})''' = kuhambana na ndzulamiso wa sweswinyana, '
 'viewprevnext' => 'Vona ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-exists' => "'''Tluka leri vuriwaka \"[[:\$1]]\" ikhale ririkona eka wiki leyi.'''",
 'searchmenu-new' => "'''Tumbuluxa tluka ra \"[[:\$1]]\" eka wiki leyi!'''",
-'searchhelp-url' => 'Help:Leswinga ndzeni',
 'searchprofile-articles' => 'Matluka lama tsariweke',
 'searchprofile-project' => 'Mpfuno na matluka ya phurojeki',
 'searchprofile-images' => 'Tifayili ta mfpumawulo na swifaniso',

@@ -682,7 +682,6 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'searchmenu-legend' => 'Издөө опциялары',
 'searchmenu-exists' => "'''Бул Уикиде \"[[:\$1]]\" деп аталган барак бар.'''",
 'searchmenu-new' => "'''Бул Уикиде \"[[:\$1]]\" барагын түз!'''",
-'searchhelp-url' => 'Help:Мазмун',
 'searchprofile-articles' => 'Негизги барактар',
 'searchprofile-project' => 'Жардам жана долбоор барактары',
 'searchprofile-images' => 'Мултимедиа',

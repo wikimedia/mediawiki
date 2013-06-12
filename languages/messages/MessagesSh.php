@@ -1283,7 +1283,6 @@ Više informacija možete pronaći u [{{fullurl:{{#Special:Log}}/delete|page={{F
 'searchmenu-legend' => 'Opcije pretrage',
 'searchmenu-exists' => "'''Postoji stranica pod nazivom \"[[:\$1]]\" na ovoj wiki'''",
 'searchmenu-new' => "'''Napravi stranicu \"[[:\$1|\$1]]\" na ovoj wiki!'''",
-'searchhelp-url' => 'Help:Sadržaj',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Pregledaj stranice sa ovim prefiksom]]',
 'searchprofile-articles' => 'Stranice sadržaja',
 'searchprofile-project' => 'Stranice pomoći i projekta',

@@ -806,7 +806,6 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'searchmenu-legend' => 'የፍለጋ ምርጫዎች',
 'searchmenu-exists' => "'''\"[[:\$1]]\" የሚባል መጣጥፍ በዚሁ ዊኪ ላይ አለ።'''",
 'searchmenu-new' => "'''\"[[:\$1]]\" የሚባል መጣጥፍ ይፈጠር?'''",
-'searchhelp-url' => 'Help:ይዞታ',
 'searchprofile-articles' => 'ይዞታ ያላቸው መጣጥፎች',
 'searchprofile-project' => 'የመርሃግብሩ ገጾች',
 'searchprofile-images' => 'ፋይሎች',

@@ -785,7 +785,6 @@ Treoir: (rth) = difríocht ón leagan reatha, (rmh) = difríocht ón leagan roim
 'viewprevnext' => 'Taispeáin ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-legend' => 'Sainroghanna cuardaithe',
 'searchmenu-new' => "'''Cruthaigh an leathanach \"[[:\$1]]\" ar an vicí seo!'''",
-'searchhelp-url' => 'Help:Clár_ábhair',
 'searchprofile-articles' => 'Leathanaigh ábhair',
 'searchprofile-project' => 'Leathanaigh thionscadail agus cabhair',
 'searchprofile-images' => 'Ilmheáin',

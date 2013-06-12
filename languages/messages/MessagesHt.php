@@ -888,7 +888,6 @@ Lejand : ({{MediaWiki:Cur}}) = diferans ak vèsyon kounye a, ({{MediaWiki:Last}}
 'prevn' => '{{PLURAL:$1|$1}} anvan yo',
 'nextn' => '{{PLURAL:$1|$1}} swivan yo',
 'viewprevnext' => 'Wè ($1 {{int:pipe-separator}} $2) ($3).',
-'searchhelp-url' => 'Help:Èd',
 'searchprofile-everything' => 'Tout',
 'search-result-size' => '$1 ({{PLURAL:$2| mo|$2 mo yo}})',
 'search-redirect' => '(redireksyon depi $1)',

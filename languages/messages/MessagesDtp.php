@@ -949,7 +949,6 @@ Intaai [[Special:BlockList|lis nantaban]] montok lis kawawagu karaja mogoduh om 
 'searchmenu-legend' => 'Pilion ihum-ihumon',
 'searchmenu-exists' => "'''Haro no bolikon pinungaranan do \"[[:\$1]]\" hiti id wiki.'''",
 'searchmenu-new' => "'''Pomonsoi do bolikon \"[[:\$1]]\"hiti id wiki!'''",
-'searchhelp-url' => 'Help:Susuang',
 'searchprofile-articles' => 'Suang bobolikon',
 'searchprofile-project' => 'Tatabang om Tongobolikon purujik',
 'searchprofile-images' => 'Multimodia',

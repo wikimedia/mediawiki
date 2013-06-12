@@ -1338,7 +1338,6 @@ Detaljar kan ein finna i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE
 'searchmenu-legend' => 'Søkjeval',
 'searchmenu-exists' => "* Sida '''[[$1]]'''",
 'searchmenu-new' => "'''Opprett sida «[[:$1|$1]]» på denne wikien.'''",
-'searchhelp-url' => 'Help:Innhald',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Sjå gjennom alle sider med denne forstavinga]]',
 'searchprofile-articles' => 'Innhaldssider',
 'searchprofile-project' => 'Hjelp- og prosjektsider',

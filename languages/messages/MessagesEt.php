@@ -1334,7 +1334,6 @@ Harilikult tähendab see seda, et sind siia juhatanud link on vananenud ja siin 
 'searchmenu-legend' => 'Otsingu sätted',
 'searchmenu-exists' => "'''Lehekülg pealkirjaga \"[[:\$1]]\" on olemas.'''",
 'searchmenu-new' => "'''Loo lehekülg pealkirjaga \"[[:\$1]]\".'''",
-'searchhelp-url' => 'Help:Sisukord',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Sirvi selle eesliitega lehekülgi]]',
 'searchprofile-articles' => 'Sisuleheküljed',
 'searchprofile-project' => 'Abi- ja projektilehed',

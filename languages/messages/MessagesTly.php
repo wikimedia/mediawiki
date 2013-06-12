@@ -591,7 +591,6 @@ $messages = array(
 'searchmenu-legend' => 'Бо нәве кукон',
 'searchmenu-exists' => "'''Бы вики-нәхшәдә һесте сәһифә «[[:$1]]»'''",
 'searchmenu-new' => "'''Сәһифә офәјеј «[[:$1]]» бә ым вики-нахшәдә!'''",
-'searchhelp-url' => 'Help:Мындәриҹот',
 'searchprofile-articles' => 'Әсосә сәһифон',
 'searchprofile-project' => 'Че араијшон ијән нахшон сәһифон',
 'searchprofile-images' => 'Мултимедијә',
@@ -824,7 +823,7 @@ $messages = array(
 'contributions-title' => 'Иштирокәкә гәнҹ $1',
 'mycontris' => 'Гәнҹ',
 'contribsub2' => 'Гәнҹ $1 ($2)',
-'uctop' => '(охонәни)',
+'uctop' => '(есәтнә)',
 'month' => 'Че мангику (һәнијән рә):',
 'year' => 'Че сорику (һәнијән рә):',
 

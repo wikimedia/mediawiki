@@ -1057,7 +1057,6 @@ Asegure-se que iste cambio no trencará a continidat de l'historial d'a pachina.
 'searchmenu-legend' => 'Opcions de busca',
 'searchmenu-exists' => "'''Bi ha una pachina clamada \"[[\$1]]\" en ista wiki'''",
 'searchmenu-new' => "'''Creyar a pachina \"[[:\$1]]\" en ista wiki!'''",
-'searchhelp-url' => 'Help:Aduya',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Veyer pachinas con iste prefixo]]',
 'searchprofile-articles' => 'Pachinas de conteniu',
 'searchprofile-project' => "Pachinas d'aduya y d'o prochecto",

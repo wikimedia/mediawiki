@@ -775,7 +775,6 @@ Lisateedüst või ollaq [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAME
 'shown-title' => 'Näütäq lehe kotsilõ $1 {{PLURAL:$1|tulõmus|tulõmust}}',
 'viewprevnext' => 'Näütäq ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-new' => "'''Luuq leht päälkiräga \"[[:\$1]]\".'''",
-'searchhelp-url' => 'Help:Oppus',
 'searchprofile-articles' => 'Sisuleheq',
 'searchprofile-project' => 'Abi- ja projektileheq',
 'searchprofile-images' => 'Multimeediä',

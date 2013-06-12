@@ -1129,7 +1129,6 @@ Tryggja tær, at henda broyting fer at varðveita framhaldssøguna hjá síðuni
 'searchmenu-legend' => 'Leiti møguleikar',
 'searchmenu-exists' => "'''Tað er longu ein síða sum eitur \"[[:\$1]]\" á hesi wiki.'''",
 'searchmenu-new' => "'''Stovna síðuna \"[[:\$1]]\" á hesi wiki!'''",
-'searchhelp-url' => 'Help:Innihald',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Leita í síðum við hesum prefiksinum (byrjan av orðinum)]]',
 'searchprofile-articles' => 'Innihaldssíður',
 'searchprofile-project' => 'Hjálpar og verkætlanar síður',

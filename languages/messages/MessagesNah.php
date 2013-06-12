@@ -600,7 +600,6 @@ Hueliz ōmopolo huiqui nozo ōmozacac.
 'viewprevnext' => 'Xiquintta ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-exists' => "'''Ye ia zāzanilli ītōca \"[[\$1]]\" inīn huiquipan'''",
 'searchmenu-new' => "'''Tihuelīti ticchīhuāz zāzanilli ītōca \"[[:\$1]]\" inīn huiquipan'''",
-'searchhelp-url' => 'Help:Tlapiyaliztli',
 'searchprofile-articles' => 'Tlapiyaliztli zāzanilli',
 'searchprofile-project' => 'Tēpalēhuiliztli īhuān īxiptlahtli āmatl',
 'searchprofile-images' => 'Nepapan media',

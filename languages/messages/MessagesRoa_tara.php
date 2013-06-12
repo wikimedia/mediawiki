@@ -582,7 +582,7 @@ Pe piacere mitte l'indirizze a cumme criste cumanne, ce nò no 'u scè mettènne
 'cannotchangeemail' => "Le indirizze e-mail d'u cunde utende non ge ponne essere cangiate sus a sta uicchi.",
 'emaildisabled' => 'Stu site non ge pò mannà e-mail.',
 'accountcreated' => 'cunde utende ccrejete',
-'accountcreatedtext' => "'U cunde utende pe $1 ha state ccrejete.",
+'accountcreatedtext' => "'U cunde utende pe [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|'ngazzaminde]]) ha state ccrejate.",
 'createaccount-title' => "Ccreazzione de 'u cunde utende pe {{SITENAME}}",
 'createaccount-text' => 'Quacchedune ha ccrejete \'nu cunde utende cu l\'indirizze e-mail tue sus a {{SITENAME}} ($4) chiamete "$2", cu password "$3".
 Tu, mò, t\'avisse a collegà e cangià \'a password toje.
@@ -1126,7 +1126,6 @@ Le dettaglie le puè acchià jndr'à l'[{{fullurl:{{#Special:Log}}/delete|page={
 'searchmenu-legend' => 'Opzione de ricerche',
 'searchmenu-exists' => "'''Stè 'na pàgene nnumenete \"[[\$1]]\" sus 'a sta Uicchipèdie'''",
 'searchmenu-new' => "'''[[:\$1|Ccreje]] 'a pàgene \"[[:\$1|\$1]]\" sus 'a sta Uicchipèdie!'''",
-'searchhelp-url' => 'Help:Condenute',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Sfogghije le pàggene cu stu prefisse]]',
 'searchprofile-articles' => 'Vôsce',
 'searchprofile-project' => 'Pàggene de ajiute e de pruggette',
@@ -2423,7 +2422,7 @@ $1",
 'mycontris' => 'Condrebbute mie',
 'contribsub2' => 'Pe $1 ($2)',
 'nocontribs' => 'Nisciune cangiamende ha state acchiate cu ste criterie.',
-'uctop' => '(sus)',
+'uctop' => '(de mò)',
 'month' => "Da 'u mese (e cchiù recende):",
 'year' => "Da l'anne (e cchiù recende):",
 

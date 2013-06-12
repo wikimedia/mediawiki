@@ -1182,7 +1182,6 @@ I detaji i pol esar catai inte'l [{{fullurl:{{#Special:Log}}/delete|page={{FULLP
 'searchmenu-legend' => 'Opzion de riserca',
 'searchmenu-exists' => 'Su sto sito ghe xe na pagina che se ciama "[[:$1]]"',
 'searchmenu-new' => "'''Crèa la pagina \"[[:\$1]]\" su sta wiki!'''",
-'searchhelp-url' => 'Help:Ajuto',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Varda tute le pagine che taca co ste létere]]',
 'searchprofile-articles' => 'Pagine de contenuti',
 'searchprofile-project' => 'Pagine de progeto e de ajuto',

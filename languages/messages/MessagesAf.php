@@ -1274,7 +1274,6 @@ Details kan in die [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} s
 'searchmenu-legend' => 'Soekopsies',
 'searchmenu-exists' => "'''Daar is reeds 'n bladsy genaamd \"[[:\$1]]\" op die wiki'''",
 'searchmenu-new' => "'''Skep die bladsy \"[[:\$1]]\" op hierdie wiki'''",
-'searchhelp-url' => 'Help:Inhoud',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Wys bladsye wat met die voorvoegsel begin]]',
 'searchprofile-articles' => 'Inhoudelike bladsye',
 'searchprofile-project' => 'Hulp- en projekbladsye',

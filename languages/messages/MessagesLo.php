@@ -474,7 +474,6 @@ $messages = array(
 'prevn' => '{{PLURAL:$1|$1}} ກ່ອນໜ້າ',
 'nextn' => '{{PLURAL:$1|$1}} ຕໍ່ໄປ',
 'viewprevnext' => 'ເບິ່ງ ($1 {{int:pipe-separator}} $2) ($3).',
-'searchhelp-url' => 'Help:ເນື້ອໃນ',
 'search-result-size' => '$1 ({{PLURAL:$2|1 ຄຳ|$2 ຄຳ}})',
 'search-result-score' => 'ຄວາມກ່ຽວຂ້ອງ: $1%',
 'search-redirect' => '(ໂອນ $1)',

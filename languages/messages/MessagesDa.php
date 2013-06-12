@@ -1241,7 +1241,6 @@ Detaljer kan findes i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}
 'searchmenu-legend' => 'Søgemuligheder',
 'searchmenu-exists' => "'''Der er en side med navnet \"[[:\$1]]\" på denne wiki'''",
 'searchmenu-new' => "'''Opret siden \"[[:\$1]]\" i denne wiki'''",
-'searchhelp-url' => 'Help:Hjælp',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Vis alle sider som begynder med dette præfiks]]',
 'searchprofile-articles' => 'Indholdssider',
 'searchprofile-project' => 'Hjælpe- og projektsider',

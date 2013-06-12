@@ -723,7 +723,6 @@ Kėtė admėnėstratuorē šėtom pruojekte vėsdar galės pasėiktė pasliepta 
 'searchmenu-legend' => 'Paėiškuos nustatīmā',
 'searchmenu-exists' => "'''Poslapis pavadėnts „[[$1]]“ šėtuo wiki'''",
 'searchmenu-new' => "'''Sokortė poslapi „[[:$1]]“ šėtuo wiki!'''",
-'searchhelp-url' => 'Help:Torėnīs',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Ėiškuotė poslapiu so šėtuom prīšdielio]]',
 'searchprofile-articles' => 'Torėnė poslapē',
 'searchprofile-project' => 'Pagelbas ė pruojekta poslapē',

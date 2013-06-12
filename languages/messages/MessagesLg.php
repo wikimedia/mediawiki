@@ -823,7 +823,6 @@ oba ku gano agali ku lupapula luno.<br />
 'searchmenu-legend' => 'Kyusamu ennoonya',
 'searchmenu-exists' => "'''Olupapula \"[[:\$1]]\" gyeruli ku wiki eno.'''",
 'searchmenu-new' => "'''Oba oyagala, olupapula \"[[:\$1]]\" gwe osobola okulukolawo ku wiki eno.'''",
-'searchhelp-url' => 'Help:Endagiriro',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Kebera mu mpapula eziriko akatandikwa kano]]',
 'searchprofile-articles' => "Empapula ez'ensonga",
 'searchprofile-project' => "Empapula eziriko obuyambi n'eza Kawefube",

@@ -400,7 +400,6 @@ Legend: '''({{int:cur}})''' = difference with latest revision, '''({{int:last}})
 'searchmenu-legend' => '3ayar duKruxyo',
 'searchmenu-exists' => "'''Kito Faṭo herke Işma \"[[:\$1]]\"yo'''",
 'searchmenu-new' => 'Kṭaw iFaṭaṭe "[[:$1]]" buWiki.',
-'searchhelp-url' => 'Help: Ḥbişoṭo',
 'searchprofile-articles' => 'Faṭoṭe daḤbişoṭo',
 'searchprofile-project' => 'Faṭoṭe du3udrono u daProjat',
 'searchprofile-images' => 'Multimediya',

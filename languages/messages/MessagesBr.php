@@ -1193,7 +1193,6 @@ Gallout a reot kavout munudoù e [{{fullurl:{{#Special:Log}}/delete|page={{FULLP
 'searchmenu-legend' => 'Dibarzhioù klask',
 'searchmenu-exists' => "'''Ur bajenn anvet\"[[:\$1]]\" zo war ar wiki-mañ'''",
 'searchmenu-new' => "'''Krouiñ ar bajenn \"[[:\$1]]\" war ar wiki-mañ !'''",
-'searchhelp-url' => 'Help:Skoazell',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Furchal er pajennoù a grog gant ar rakger-mañ]]',
 'searchprofile-articles' => 'Pajennoù gant boued',
 'searchprofile-project' => 'Pajennoù skoazell ha pajennoù ar raktres',
