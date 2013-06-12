@@ -1088,6 +1088,7 @@ $wgMessageStructure = array(
 		'yourrealname',
 		'yourlanguage',
 		'yourvariant',
+		'yourvariantlang',
 		'prefs-help-variant',
 		'yournick',
 		'prefs-help-signature',
