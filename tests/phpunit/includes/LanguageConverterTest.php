@@ -75,6 +75,20 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 		$this->assertEquals( 'tg-latn', $this->lc->getPreferredVariant() );
 	}
 
+	function testGetPreferredVariantUserOptionForForeignLanguage() {
+		global $wgContLang, $wgUser;
+
+		$wgContLang = Language::factory( 'en' );
+		$wgUser = new User;
+		$wgUser->load(); // from 'defaults'
+		$wgUser->mId = 1;
+		$wgUser->mDataLoaded = true;
+		$wgUser->mOptionsLoaded = true;
+		$wgUser->setOption( 'variant-tg', 'tg-latn' );
+
+		$this->assertEquals( 'tg-latn', $this->lc->getPreferredVariant() );
+	}
+
 	function testGetPreferredVariantHeaderUserVsUrl() {
 		global $wgContLang, $wgRequest, $wgUser;
 
@@ -129,6 +143,7 @@ class LanguageToTest extends Language {
 	function __construct() {
 		parent::__construct();
 		$variants = array( 'tg', 'tg-latn' );
+		$this->setCode( 'tg' );
 		$this->mConverter = new TestConverter( $this, 'tg', $variants );
 	}
 }
