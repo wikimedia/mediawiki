@@ -320,13 +320,37 @@ class Preferences {
 
 		// see if there are multiple language variants to choose from
 		if ( !$wgDisableLangConversion ) {
-			$variants = $wgContLang->getVariants();
+			// Three arrays for better ordering of preferences
+			$defaultVariantPreferences = array();
+			$otherVariantPreferences = array();
+			$linkConvertPreferences = array();
 
-			if ( count( $variants ) > 1 ) {
+			foreach ( LanguageConverter::$languagesWithVariants as $langCode ) {
+				if ( $langCode == $wgContLang->getCode() ) {
+					$variantPreferences = &$defaultVariantPreferences;
+					$prefKey = 'variant';
+					$labelMessage = 'yourvariant';
+					if ( !$wgDisableTitleConversion ) {
+						$linkConvertPreferences['noconvertlink'] = array(
+							'type' => 'toggle',
+							'section' => 'personal/i18n',
+							'label-message' => 'tog-noconvertlink',
+						);
+					}
+				} else {
+					$variantPreferences = &$otherVariantPreferences;
+					$prefKey = "variant-$langCode";
+					$labelMessage = array( 'yourvariantlang', Language::fetchLanguageName(
+						$langCode, $context->getLanguage()->getCode()
+					) );
+				}
+
+				$lang = Language::factory( $langCode );
+				$variants = $lang->getVariants();
 				$variantArray = array();
 				foreach ( $variants as $v ) {
 					$v = str_replace( '_', '-', strtolower( $v ) );
-					$variantArray[$v] = $wgContLang->getVariantname( $v, false );
+					$variantArray[$v] = $lang->getVariantname( $v, false );
 				}
 
 				$options = array();
@@ -335,23 +359,20 @@ class Preferences {
 					$options[$display] = $code;
 				}
 
-				$defaultPreferences['variant'] = array(
-					'label-message' => 'yourvariant',
+				$variantPreferences[$prefKey] = array(
+					'label-message' => $labelMessage,
 					'type' => 'select',
 					'options' => $options,
 					'section' => 'personal/i18n',
-					'help-message' => 'prefs-help-variant',
 				);
-
-				if ( !$wgDisableTitleConversion ) {
-					$defaultPreferences['noconvertlink'] =
-						array(
-						'type' => 'toggle',
-						'section' => 'personal/i18n',
-						'label-message' => 'tog-noconvertlink',
-					);
-				}
+				unset( $variantPreferences );
 			}
+			$variantPreferences = $defaultVariantPreferences + $otherVariantPreferences;
+			// Avoid duplicated help messages
+			end( $variantPreferences );
+			$variantPreferences[key( $variantPreferences )]['help-message'] = 'prefs-help-variant';
+
+			$defaultPreferences = $defaultPreferences + $variantPreferences + $linkConvertPreferences;
 		}
 
 		// show a preview of the old signature first

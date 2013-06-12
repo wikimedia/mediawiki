@@ -246,7 +246,7 @@ class LanguageConverter {
 	 * @return Mixed: variant if one found, false otherwise.
 	 */
 	protected function getUserVariant() {
-		global $wgUser;
+		global $wgUser, $wgContLang;
 
 		// memoizing this function wreaks havoc on parserTest.php
 		/*
@@ -259,7 +259,11 @@ class LanguageConverter {
 		// Don't call this on stub objects because that causes infinite
 		// recursion during initialisation
 		if ( $wgUser->isLoggedIn() ) {
-			$ret = $wgUser->getOption( 'variant' );
+			if ( $this->mMainLanguageCode == $wgContLang->getCode() ) {
+				$ret = $wgUser->getOption( 'variant' );
+			} else {
+				$ret = $wgUser->getOption( 'variant-' . $this->mLangObj->getCode() );
+			}
 		} else {
 			// figure out user lang without constructing wgLang to avoid
 			// infinite recursion
