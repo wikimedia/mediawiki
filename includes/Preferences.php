@@ -320,38 +320,54 @@ class Preferences {
 
 		// see if there are multiple language variants to choose from
 		if ( !$wgDisableLangConversion ) {
-			$variants = $wgContLang->getVariants();
+			// Two arrays for better ordering of preferences
+			$variantPreferences = array();
+			$linkConvertPreferences = array();
 
-			if ( count( $variants ) > 1 ) {
-				$variantArray = array();
-				foreach ( $variants as $v ) {
-					$v = str_replace( '_', '-', strtolower( $v ) );
-					$variantArray[$v] = $wgContLang->getVariantname( $v, false );
+			foreach ( LanguageConverter::$languagesWithVariants as $langCode ) {
+				if ( $langCode == $wgContLang->getCode() ) {
+					$prefKey = 'variant';
+					$prefType = 'select';
+					$labelMessage = 'yourvariant';
+
+					if ( !$wgDisableTitleConversion ) {
+						$linkConvertPreferences['noconvertlink'] = array(
+							'type' => 'toggle',
+							'section' => 'personal/i18n',
+							'label-message' => 'tog-noconvertlink',
+						);
+					}
+
+					$lang = Language::factory( $langCode );
+					$variants = $lang->getVariants();
+					$variantArray = array();
+					foreach ( $variants as $v ) {
+						$v = str_replace( '_', '-', strtolower( $v ) );
+						$variantArray[$v] = $lang->getVariantname( $v, false );
+					}
+
+					$options = array();
+					foreach ( $variantArray as $code => $name ) {
+						$display = wfBCP47( $code ) . ' - ' . $name;
+						$options[$display] = $code;
+					}
+				} else {
+					$prefKey = "variant-$langCode";
+					$prefType = 'api';
+					$labelMessage = null;
+					$options = null;
 				}
 
-				$options = array();
-				foreach ( $variantArray as $code => $name ) {
-					$display = wfBCP47( $code ) . ' - ' . $name;
-					$options[$display] = $code;
-				}
-
-				$defaultPreferences['variant'] = array(
-					'label-message' => 'yourvariant',
-					'type' => 'select',
+				$variantPreferences[$prefKey] = array(
+					'label-message' => $labelMessage,
+					'type' => $prefType,
 					'options' => $options,
 					'section' => 'personal/i18n',
 					'help-message' => 'prefs-help-variant',
 				);
-
-				if ( !$wgDisableTitleConversion ) {
-					$defaultPreferences['noconvertlink'] =
-						array(
-						'type' => 'toggle',
-						'section' => 'personal/i18n',
-						'label-message' => 'tog-noconvertlink',
-					);
-				}
 			}
+
+			$defaultPreferences = $defaultPreferences + $variantPreferences + $linkConvertPreferences;
 		}
 
 		// show a preview of the old signature first
