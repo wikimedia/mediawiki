@@ -37,6 +37,8 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 	 *   - compress_threshold:  The minimum size an object must be before it is compressed
 	 *   - timeout:             The read timeout in microseconds
 	 *   - connect_timeout:     The connect timeout in seconds
+	 *   - retry_timeout:       Time in seconds to wait before retrying a failled connect attempt
+	 *   - server_failure_limit:  Limit for server connect failures before it is removed
 	 *   - serializer:          May be either "php" or "igbinary". Igbinary produces more compact
 	 *                          values, but serialization is much slower unless the php.ini option
 	 *                          igbinary.compact_strings is off.
@@ -59,6 +61,14 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 
 		if ( !isset( $params['serializer'] ) ) {
 			$params['serializer'] = 'php';
+		}
+
+		if ( isset( $params['retry_timeout'] ) ) {
+			$this->client->setOption( Memcached::OPT_RETRY_TIMEOUT, $params['retry_timeout'] );
+		}
+
+		if ( isset ( $params['server_failure_limit'] ) ) {
+			$this->client->setOption( Memcached::OPT_SERVER_FAILURE_LIMIT, $params['server_failure_limit'] );
 		}
 
 		// The compression threshold is an undocumented php.ini option for some
