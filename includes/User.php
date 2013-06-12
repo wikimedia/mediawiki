@@ -1228,7 +1228,10 @@ class User {
 
 		$defOpt = $wgDefaultUserOptions;
 		// Default language setting
-		$defOpt['language'] = $defOpt['variant'] = $wgContLang->getCode();
+		$defOpt['language'] = $wgContLang->getCode();
+		foreach ( LanguageConverter::$languagesWithVariants as $langCode ) {
+			$defOpt[$langCode == $wgContLang->getCode() ? 'variant' : "variant-$langCode"] = $langCode;
+		}
 		foreach ( SearchEngine::searchableNamespaces() as $nsnum => $nsname ) {
 			$defOpt['searchNs' . $nsnum] = !empty( $wgNamespacesToBeSearchedDefault[$nsnum] );
 		}
