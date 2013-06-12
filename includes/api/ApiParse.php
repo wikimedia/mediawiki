@@ -369,8 +369,8 @@ class ApiParse extends ApiBase {
 
 		$popts = $pageObj->makeParserOptions( $this->getContext() );
 		$popts->enableLimitReport( !$params['disablepp'] );
-		$popts->setIsPreview( $params['preview'] );
-		$popts->setIsSectionPreview( $params['preview'] && $this->section !== false );
+		$popts->setIsPreview( $params['preview'] || $params['sectionpreview'] );
+		$popts->setIsSectionPreview( $params['sectionpreview'] );
 
 		wfProfileOut( __METHOD__ );
 		return $popts;
@@ -612,6 +612,7 @@ class ApiParse extends ApiBase {
 			'disablepp' => false,
 			'generatexml' => false,
 			'preview' => false,
+			'sectionpreview' => false,
 			'contentformat' => array(
 				ApiBase::PARAM_TYPE => ContentHandler::getAllContentFormats(),
 			),
@@ -668,6 +669,7 @@ class ApiParse extends ApiBase {
 			'disablepp' => 'Disable the PP Report from the parser output',
 			'generatexml' => 'Generate XML parse tree (requires prop=wikitext)',
 			'preview' => 'Parse in preview mode',
+			'sectionpreview' => 'Parse in section preview mode (enables preview mode too)',
 			'contentformat' => 'Content serialization format used for the input text',
 			'contentmodel' => 'Content model of the new content',
 		);
