@@ -514,6 +514,10 @@ class LoginForm extends SpecialPage {
 		$wgAuth->initUser( $u, $autocreate );
 
 		$u->setOption( 'rememberpassword', $this->mRemember ? 1 : 0 );
+		# New users should have these two options on upon registration
+		$u->setOption( 'watchcreations', 1 );
+		$u->setOption( 'watchdefault', 1 );
+
 		$u->saveSettings();
 
 		# Update user count
