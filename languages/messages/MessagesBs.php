@@ -3221,10 +3221,24 @@ $1',
 'minutes' => '{{PLURAL:$1|$1 minuta|$1 minute|$1 minuta}}',
 'hours' => '{{PLURAL:$1|$1 sat|$1 sata|$1 sati}}',
 'days' => '{{PLURAL:$1|$1 dan|$1 dana|$1 dana}}',
+'weeks' => '{{PLURAL:$1|$1 sedmica}}',
 'months' => '{{PLURAL:$1|$1 mjesec|$1 mjeseci}}',
 'years' => '{{PLURAL:$1|$1 godina|$1 godine|$1 godina}}',
 'ago' => 'prije $1',
 'just-now' => 'upravo sad',
+
+# Human-readable timestamps
+'hours-ago' => 'prije $1 {{PLURAL:$1|sat|sata|sati}}',
+'minutes-ago' => 'prije $1 {{PLURAL:$1|minute|minute|minuta}}',
+'seconds-ago' => 'prije $1 {{PLURAL:$1|sekunde|sekunde|sekundi}}',
+'monday-at' => 'Ponedeljak u $1',
+'tuesday-at' => 'Utorak u $1',
+'wednesday-at' => 'Srijeda u $1',
+'thursday-at' => 'Četvrtak u $1',
+'friday-at' => 'Petak u $1',
+'saturday-at' => 'Subota u $1',
+'sunday-at' => 'Nedjelja u $1',
+'yesterday-at' => 'Jučer u $1',
 
 # Bad image list
 'bad_image_list' => "Koristi se sljedeći format:
@@ -3906,6 +3920,12 @@ Trebali biste dobiti [{{SERVER}}{{SCRIPTPATH}}/KOPIJU GNU opće javne licence] z
 'version-entrypoints-header-entrypoint' => 'Ulazna tačka',
 'version-entrypoints-header-url' => 'URL',
 
+# Special:Redirect
+'redirect-submit' => 'Idi',
+'redirect-user' => 'Korisnički ID',
+'redirect-revision' => 'Verzija stranice',
+'redirect-file' => 'Naziv datoteke',
+
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Pretraga za duplim datotekama',
 'fileduplicatesearch-summary' => 'Pretraga za duplim datotekama na bazi njihove haš vrijednosti.',
@@ -3994,6 +4014,9 @@ Trebali biste dobiti [{{SERVER}}{{SCRIPTPATH}}/KOPIJU GNU opće javne licence] z
 'htmlform-submit' => 'Pošalji',
 'htmlform-reset' => 'Vrati izmjene',
 'htmlform-selectorother-other' => 'Ostalo',
+'htmlform-no' => 'Ne',
+'htmlform-yes' => 'Da',
+'htmlform-chosen-placeholder' => 'Izaberite opciju',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 sa podrškom pretrage cijelog teksta',

@@ -691,6 +691,8 @@ $2',
 'namespaceprotected' => "Sul pole õigust redigeerida lehekülgi nimeruumis '''$1'''.",
 'customcssprotected' => 'Sul pole õigust seda CSS-lehekülge redigeerida, sest see sisaldab teise kasutaja isiklikke sätteid.',
 'customjsprotected' => 'Sul pole õigust seda JavaScripti lehekülge redigeerida, sest see sisaldab teise kasutaja isiklikke sätteid.',
+'mycustomcssprotected' => 'Sul pole õigust redigeerida seda CSS-lehekülge.',
+'mycustomjsprotected' => 'Sul pole õigust redigeerida seda JavaScript-lehekülge.',
 'ns-specialprotected' => 'Erilehekülgi ei saa redigeerida.',
 'titleprotected' => "Kasutaja [[User:$1|$1]] on selle pealkirjaga lehe loomise keelanud esitades järgmise põhjenduse: ''$2''.",
 'filereadonlyerror' => 'Faili "$1" ei saa muuta, sest hoidla "$2" on kirjutuskaitstud.
@@ -816,7 +818,7 @@ Ole hea ja sisesta õige e-posti aadress või jäta väli tühjaks.',
 'cannotchangeemail' => 'Selles vikis ei saa konto e-posti aadressi muuta.',
 'emaildisabled' => 'Selle võrgukoha kaudu ei saa e-kirju saata.',
 'accountcreated' => 'Konto loodud',
-'accountcreatedtext' => 'Kasutajakonto kasutajatunnusele $1 loodud.',
+'accountcreatedtext' => 'Kasutaja [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|talk]]) konto on loodud.',
 'createaccount-title' => '{{GRAMMAR:illative|{{SITENAME}}}} konto loomine',
 'createaccount-text' => 'Keegi on loonud {{GRAMMAR:illative|{{SITENAME}}}} ($4) sinu e-posti aadressile vastava kasutajatunnuse "$2". Parooliks seati "$3". Logi sisse ja muuda oma parool.
 
@@ -1378,6 +1380,7 @@ päringu ees prefiksit ''all:''. Konkreetsest nimeruumist otsimiseks kasuta pref
 'searchdisabled' => "Otsimine on preagu keelatud.
 Vahepeal saad otsimiseks Google'it kasutada.
 Pane tähele, et Google'is talletatud {{GRAMMAR:genitive|{{SITENAME}}}} sisu võib olla iganenud.",
+'search-error' => 'Otsimise ajal ilmnes tõrge: $1',
 
 # Preferences page
 'preferences' => 'Eelistused',
@@ -1592,6 +1595,8 @@ See ei tohi olla pikem kui {{PLURAL:$1|üks märk|$1 märki}}.',
 'right-editusercssjs' => 'Redigeerida teiste kasutajate CSS- ja JS-faile',
 'right-editusercss' => 'Redigeerida teiste kasutajate CSS-faile',
 'right-edituserjs' => 'Redigeerida teiste kasutajate JS-faile',
+'right-editmyusercss' => 'Redigeerida oma CSS-kasutajafaile',
+'right-editmyuserjs' => 'Redigeerida oma JavaScript-kasutajafaile',
 'right-rollback' => 'Tühistada otsekohe lehekülje viimase redigeerija muudatused',
 'right-markbotedits' => 'Märkida muudatuse tühistamine robotimuudatusena',
 'right-noratelimit' => 'Mööduda toimingumäära limiitidest',
@@ -2570,7 +2575,7 @@ $1',
 'mycontris' => 'Kaastöö',
 'contribsub2' => 'Kasutaja $1 ($2) jaoks',
 'nocontribs' => 'Antud kriteeriumitele vastavaid muudatusi ei leitud.',
-'uctop' => ' (uusim)',
+'uctop' => '(praegune)',
 'month' => 'Alates kuust (ja varasemad):',
 'year' => 'Alates aastast (ja varasemad):',
 

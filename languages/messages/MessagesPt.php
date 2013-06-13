@@ -770,7 +770,7 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências]].'
 'userlogout' => 'Sair',
 'notloggedin' => 'Não autenticado',
 'userlogin-noaccount' => 'Não tem uma conta?',
-'userlogin-joinproject' => 'Junte-se a {{SITENAME}}',
+'userlogin-joinproject' => 'Junte-se ao projeto {{SITENAME}}',
 'nologin' => 'Não possui uma conta? $1.',
 'nologinlink' => 'Criar uma conta',
 'createaccount' => 'Criar conta',

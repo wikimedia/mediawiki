@@ -5071,7 +5071,7 @@ See also:
 'contribsub2' => 'Contributions for "user" (links)
 {{Identical|For $1}}',
 'nocontribs' => 'Optional parameter: $1 is the user name',
-'uctop' => 'This message is used in [[Special:Contributions]]. It is used to show that a particular edit was the last made to a page. Example: 09:57, 11 February 2008 (hist) (diff) Pagename‎ (edit summary) (top)
+'uctop' => 'This message is used in [[Special:Contributions]]. It is used to show that a particular edit was the last made to a page. Example: 09:57, 11 February 2008 (hist) (diff) Pagename‎ (edit summary) (current)
 {{Identical|Top}}',
 'month' => 'Used in [[Special:Contributions]] and history pages ([{{fullurl:Sandbox|action=history}} example]), as label for a dropdown box to select a specific month to view the edits made in that month, and the earlier months. See also {{msg-mw|year}}.',
 'year' => 'Used in [[Special:Contributions]] and history pages ([{{fullurl:Sandbox|action=history}} example]), as label for an input box to select a specific year to view the edits made in that year, and the earlier years.

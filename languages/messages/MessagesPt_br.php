@@ -451,9 +451,9 @@ $messages = array(
 'category-empty' => "''No momento esta categoria não possui nenhuma página ou arquivo multimídia.''",
 'hidden-categories' => '{{PLURAL:$1|Categoria oculta|Categorias ocultas}}',
 'hidden-category-category' => 'Categorias ocultas',
-'category-subcat-count' => '{{PLURAL:$2|Esta categoria possui apenas a seguinte subcategoria.|Esta categoria possui {{PLURAL:$1|uma subcategoria|$1 subcategorias}}, de um total de $2.}}',
+'category-subcat-count' => '{{PLURAL:$2|Esta categoria tem apenas a seguinte subcategoria.|Esta categoria tem {{PLURAL:$1|uma subcategoria|$1 subcategorias}}, de um total de $2.}}',
 'category-subcat-count-limited' => 'Esta categoria possui {{PLURAL:$1|a seguinte sub-categoria|as $1 sub-categorias a seguir}}.',
-'category-article-count' => '{{PLURAL:$2|Esta categoria possui apenas a seguinte página.|Esta categoria possui {{PLURAL:$1|a seguinte página|as $1 páginas a seguir}}, de um total de $2.}}',
+'category-article-count' => '{{PLURAL:$2|Esta categoria contém apenas a página seguinte subcategoria.|{{PLURAL:$1|A seguinte página está|As seguintes $1 páginas estão}}, nesta categoria de um total de $2.}}',
 'category-article-count-limited' => 'Esta categoria possui {{PLURAL:$1|a seguinte página|as $1 páginas a seguir}}.',
 'category-file-count' => '{{PLURAL:$2|Esta categoria possui apenas o seguinte arquivo.|Esta categoria possui {{PLURAL:$1|o seguinte arquivo|os $1 arquivos a seguir}}, de um total de $2.}}',
 'category-file-count-limited' => 'Esta categoria possui {{PLURAL:$1|um arquivo|$1 arquivos}}.',
@@ -564,7 +564,7 @@ Aguarde um instante antes de tentar acessar esta página novamente.
 
 $1',
 'pool-timeout' => 'Tempo limite de espera para o bloqueio excedido',
-'pool-queuefull' => 'A pool queue está cheia',
+'pool-queuefull' => 'A fila de processos está cheia',
 'pool-errorunknown' => 'Erro desconhecido',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -1151,7 +1151,7 @@ Ela já existia.',
 'invalid-content-data' => 'Dados de conteúdo inválidos',
 'content-not-allowed-here' => 'Conteúdo do tipo "$1" não é permitido na página [[$2]]',
 'editwarning-warning' => 'Abandonar esta página pode fazer com que você perca todas as alterações que fez.
-Se você estiver autenticado, você pode desabilitar este aviso na seção "{{int:prefs-editing}}" de suas preferências.',
+Se você estiver autenticado, você pode desabilitar este aviso na seção "Edição" de suas preferências.',
 
 # Content models
 'content-model-wikitext' => 'wikitexto',
@@ -2414,7 +2414,7 @@ Futuras modificações em tal página e páginas de discussão relacionadas ser�
 'watchnochange' => 'Nenhuma das páginas vigiadas foi editada no período exibido.',
 'watchlist-details' => '{{PLURAL:$1|$1 página|$1 páginas}} na sua lista de páginas vigiadas, excluindo páginas de discussão.',
 'wlheader-enotif' => 'A notificação por email encontra-se ativada.',
-'wlheader-showupdated' => "As páginas modificadas desde a sua última visita são mostradas em '''negrito'''",
+'wlheader-showupdated' => "Páginas modificadas desde a sua última visita são mostradas em '''negrito'''",
 'watchmethod-recent' => 'verificando edições recentes para as páginas vigiadas',
 'watchmethod-list' => 'verificando páginas vigiadas para edições recentes',
 'watchlistcontains' => 'Sua lista de páginas vigiadas contém $1 {{PLURAL:$1|página|páginas}}.',
@@ -2985,6 +2985,7 @@ Acesse [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [//trans
 'thumbnail-more' => 'Ampliar',
 'filemissing' => 'arquivo não encontrado',
 'thumbnail_error' => 'Erro ao criar miniatura: $1',
+'thumbnail_error_remote' => 'Mensagem de erro para $1, $2',
 'djvu_page_error' => 'página DjVu inacessível',
 'djvu_no_xml' => 'Não foi possível acessar o XML do arquivo DjVU',
 'thumbnail-temp-create' => 'Não foi possível criar o arquivo temporário de miniatura',

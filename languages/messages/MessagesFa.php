@@ -1676,7 +1676,7 @@ $1",
 'prefs-diffs' => 'تفاوت‌ها',
 
 # User preference: email validation using jQuery
-'email-address-validity-valid' => 'نشانی رایانامه معتبر به نظر می رسد',
+'email-address-validity-valid' => 'نشانی رایانامه معتبر به نظر می‌رسد',
 'email-address-validity-invalid' => 'نشانی رایانامهٔ معتبر وارد کنید',
 
 # User rights

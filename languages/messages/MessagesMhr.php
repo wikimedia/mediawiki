@@ -635,7 +635,7 @@ $messages = array(
 'action-edit' => 'тиде лаштыкым тӧрлаташ',
 
 # Recent changes
-'nchanges' => '$1 {{PLURAL:$1|тӧрлатымаш|тӧрлатымаш-влак}}',
+'nchanges' => '$1 {{PLURAL:$1|тӧрлатымаш}}',
 'recentchanges' => 'Пытартыш тӧрлатымаш-влак',
 'recentchanges-legend' => 'Пытартыш тӧрлатымаш-влакын келыштарымашышт',
 'recentchanges-summary' => 'Тиде лаштыкыште пытартыш тӧрлатымашым шекланаш.',
@@ -668,7 +668,7 @@ $messages = array(
 'recentchangeslinked' => 'Ваш кылдалтше тӧрлатымаш-влак',
 'recentchangeslinked-feed' => 'Ваш кылдалтше тӧрлатымаш-влак',
 'recentchangeslinked-toolbox' => 'Ваш кылдалтше тӧрлатымаш-влак',
-'recentchangeslinked-title' => '"$1" лаштыклан кылдалтше тӧрлатымаш-влак',
+'recentchangeslinked-title' => '"$1" лаштык дене кылдалтше тӧрлатымаш-влак',
 'recentchangeslinked-noresult' => 'Ончыктымо пагытыште кылдалтше лаштыклаште вашталтыш лийын огыл.',
 'recentchangeslinked-summary' => "Это список недавних изменений в страницах, на которые ссылается указанная страница (или входящих в указанную категорию).
 Страницы, входящие в [[Special:Watchlist|ваш список наблюдения]] '''выделены'''.",
@@ -739,7 +739,7 @@ $messages = array(
 'statistics-views-peredit' => 'Ик тӧрлатымашлан ончымо',
 'statistics-users' => 'Регистрацийым эртыше [[Special:ListUsers|пайдаланыше-влак]]',
 'statistics-users-active' => 'Чӱчкыдын пайдаланыше-влак',
-'statistics-users-active-desc' => 'Пытартыш {{PLURAL:$1|кечыште|$1 кечыште}} иктаж-мом ыштыше пайаланыше-влак',
+'statistics-users-active-desc' => 'Пытартыш {{PLURAL:$1|кечыште|$1 кечыште}} иктаж-мом ыштыше пайдаланыше-влак',
 'statistics-mostpopular' => 'Эн чӱчкыдын ончымо лаштык-влак',
 
 'brokenredirects' => 'Пудыртымо вес вере колтымаш-влак',
@@ -840,7 +840,7 @@ $messages = array(
 Пеҥгыдемде тидым [[{{MediaWiki:Policy-url}}|правил]] почеш ыштыметым да, мо тидын деч вара лиймым, умылыметым.',
 'actioncomplete' => 'Ыштыме',
 'deletedtext' => '«$1» шӧрымӧ.
-Ончо $2 пытартыш шӧрымӧ-влак лӱмер гыч.',
+Шӧрымаш лӱмер гыч $2лан ончо.',
 'dellogpage' => 'Шӧрымӧ нерген журнал',
 'deletionlog' => 'шӧрымӧ нерген журнал',
 'deletecomment' => 'Амал:',
@@ -1016,7 +1016,7 @@ $messages = array(
 'tooltip-n-randompage' => 'Лаштыкым чокым ойыраш',
 'tooltip-n-help' => 'Википедийым кучылтмо да тӧрлатыме шотышто полшык.',
 'tooltip-t-whatlinkshere' => 'Тышке кондышо лаштык-влакын лӱмерышт',
-'tooltip-t-recentchangeslinked' => 'Тиде лаштык кылдалтше пытартыш тӧрлатымаш-влак',
+'tooltip-t-recentchangeslinked' => 'Тиде лаштык дене кылдалтше пытартыш тӧрлатымаш-влак',
 'tooltip-feed-rss' => 'Тиде лаштыклан RSS-кыл',
 'tooltip-feed-atom' => 'Тиде лаштыклан Atom-кыл',
 'tooltip-t-contributions' => 'Пайдаланышын ыштыме пашажым ончалаш',
