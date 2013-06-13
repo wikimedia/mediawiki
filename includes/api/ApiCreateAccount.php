@@ -128,17 +128,7 @@ class ApiCreateAccount extends ApiBase {
 			$result['result'] = 'needtoken';
 		} elseif ( !$status->isOK() ) {
 			// There was an error. Die now.
-			// Cannot use dieUsageMsg() directly because extensions
-			// might return custom error messages.
-			$errors = $status->getErrorsArray();
-			if ( $errors[0] instanceof Message ) {
-				$code = 'aborted';
-				$desc = $errors[0];
-			} else {
-				$code = array_shift( $errors[0] );
-				$desc = wfMessage( $code, $errors[0] );
-			}
-			$this->dieUsage( $desc, $code );
+			$this->dieStatus( $status );
 		} elseif ( !$status->isGood() ) {
 			// Status is not good, but OK. This means warnings.
 			$result['result'] = 'warning';

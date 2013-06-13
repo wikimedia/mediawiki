@@ -103,8 +103,7 @@ class ApiProtect extends ApiBase {
 		$status = $pageObj->doUpdateRestrictions( $protections, $expiryarray, $cascade, $params['reason'], $this->getUser() );
 
 		if ( !$status->isOK() ) {
-			$errors = $status->getErrorsArray();
-			$this->dieUsageMsg( $errors[0] );
+			$this->dieStatus( $status );
 		}
 		$res = array(
 			'title' => $titleObj->getPrefixedText(),

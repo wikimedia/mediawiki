@@ -61,8 +61,7 @@ class ApiDelete extends ApiBase {
 			$this->dieUsageMsg( $status[0] );
 		}
 		if ( !$status->isGood() ) {
-			$errors = $status->getErrorsArray();
-			$this->dieUsageMsg( $errors[0] ); // We don't care about multiple errors, just report one of them
+			$this->dieStatus( $status );
 		}
 
 		// Deprecated parameters
