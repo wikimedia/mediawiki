@@ -126,6 +126,7 @@ class User {
 		'editprotected',
 		'editmyusercss',
 		'editmyuserjs',
+		'editmywatchlist',
 		'editusercssjs', #deprecated
 		'editusercss',
 		'edituserjs',
@@ -166,6 +167,7 @@ class User {
 		'upload_by_url',
 		'userrights',
 		'userrights-interwiki',
+		'viewmywatchlist',
 		'writeapi',
 	);
 	/**
@@ -2860,11 +2862,14 @@ class User {
 	/**
 	 * Get a WatchedItem for this user and $title.
 	 *
+	 * @since 1.22 $checkRights parameter added
 	 * @param $title Title
+	 * @param $checkRights int Whether to check 'viewmywatchlist'/'editmywatchlist' rights.
+	 *     Pass WatchedItem::CHECK_USER_RIGHTS or WatchedItem::IGNORE_USER_RIGHTS.
 	 * @return WatchedItem
 	 */
-	public function getWatchedItem( $title ) {
-		$key = $title->getNamespace() . ':' . $title->getDBkey();
+	public function getWatchedItem( $title, $checkRights = WatchedItem::CHECK_USER_RIGHTS ) {
+		$key = $checkRights . ':' . $title->getNamespace() . ':' . $title->getDBkey();
 
 		if ( isset( $this->mWatchedItems[$key] ) ) {
 			return $this->mWatchedItems[$key];
@@ -2874,34 +2879,43 @@ class User {
 			$this->mWatchedItems = array();
 		}
 
-		$this->mWatchedItems[$key] = WatchedItem::fromUserTitle( $this, $title );
+		$this->mWatchedItems[$key] = WatchedItem::fromUserTitle( $this, $title, $checkRights );
 		return $this->mWatchedItems[$key];
 	}
 
 	/**
 	 * Check the watched status of an article.
+	 * @since 1.22 $checkRights parameter added
 	 * @param $title Title of the article to look at
+	 * @param $checkRights int Whether to check 'viewmywatchlist'/'editmywatchlist' rights.
+	 *     Pass WatchedItem::CHECK_USER_RIGHTS or WatchedItem::IGNORE_USER_RIGHTS.
 	 * @return bool
 	 */
-	public function isWatched( $title ) {
-		return $this->getWatchedItem( $title )->isWatched();
+	public function isWatched( $title, $checkRights = WatchedItem::CHECK_USER_RIGHTS ) {
+		return $this->getWatchedItem( $title, $checkRights )->isWatched();
 	}
 
 	/**
 	 * Watch an article.
+	 * @since 1.22 $checkRights parameter added
 	 * @param $title Title of the article to look at
+	 * @param $checkRights int Whether to check 'viewmywatchlist'/'editmywatchlist' rights.
+	 *     Pass WatchedItem::CHECK_USER_RIGHTS or WatchedItem::IGNORE_USER_RIGHTS.
 	 */
-	public function addWatch( $title ) {
-		$this->getWatchedItem( $title )->addWatch();
+	public function addWatch( $title, $checkRights = WatchedItem::CHECK_USER_RIGHTS ) {
+		$this->getWatchedItem( $title, $checkRights )->addWatch();
 		$this->invalidateCache();
 	}
 
 	/**
 	 * Stop watching an article.
+	 * @since 1.22 $checkRights parameter added
 	 * @param $title Title of the article to look at
+	 * @param $checkRights int Whether to check 'viewmywatchlist'/'editmywatchlist' rights.
+	 *     Pass WatchedItem::CHECK_USER_RIGHTS or WatchedItem::IGNORE_USER_RIGHTS.
 	 */
-	public function removeWatch( $title ) {
-		$this->getWatchedItem( $title )->removeWatch();
+	public function removeWatch( $title, $checkRights = WatchedItem::CHECK_USER_RIGHTS ) {
+		$this->getWatchedItem( $title, $checkRights )->removeWatch();
 		$this->invalidateCache();
 	}
 
@@ -2909,6 +2923,7 @@ class User {
 	 * Clear the user's notification timestamp for the given title.
 	 * If e-notif e-mails are on, they will receive notification mails on
 	 * the next change of the page if it's watched etc.
+	 * @note If the user doesn't have 'editmywatchlist', this will do nothing.
 	 * @param $title Title of the article to look at
 	 */
 	public function clearNotification( &$title ) {
@@ -2916,6 +2931,11 @@ class User {
 
 		// Do nothing if the database is locked to writes
 		if ( wfReadOnly() ) {
+			return;
+		}
+
+		// Do nothing if not allowed to edit the watchlist
+		if ( !$this->isAllowed( 'editmywatchlist' ) ) {
 			return;
 		}
 
@@ -2954,9 +2974,15 @@ class User {
 	 * Resets all of the given user's page-change notification timestamps.
 	 * If e-notif e-mails are on, they will receive notification mails on
 	 * the next change of any watched page.
+	 * @note If the user doesn't have 'editmywatchlist', this will do nothing.
 	 */
 	public function clearAllNotifications() {
 		if ( wfReadOnly() ) {
+			return;
+		}
+
+		// Do nothing if not allowed to edit the watchlist
+		if ( !$this->isAllowed( 'editmywatchlist' ) ) {
 			return;
 		}
 
