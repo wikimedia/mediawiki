@@ -1054,14 +1054,14 @@ class Article implements Page {
 	 * @return bool
 	 */
 	public function showPatrolFooter() {
-		global $wgUseNPPatrol, $wgEnableAPI, $wgEnableWriteAPI;
+		global $wgUseNPPatrol, $wgUseRCPatrol, $wgEnableAPI, $wgEnableWriteAPI;
 
 		$outputPage = $this->getContext()->getOutput();
 		$user = $this->getContext()->getUser();
 		$cache = wfGetMainCache();
 		$rc = false;
 
-		if ( !$this->getTitle()->quickUserCan( 'patrol', $user ) || !$wgUseNPPatrol ) {
+		if ( !$this->getTitle()->quickUserCan( 'patrol', $user ) || !( $wgUseRCPatrol || $wgUseNPPatrol ) ) {
 			// Patrolling is disabled or the user isn't allowed to
 			return false;
 		}
