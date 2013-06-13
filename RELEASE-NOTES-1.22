@@ -178,6 +178,7 @@ production.
   honors $wgBlockCIDRLimit. Note any clients passing invalid values to bkip
   will now receive an error, rather than the previous behavior listing all
   user blocks.
+* action=watch may now return errors.
 
 === Languages updated in 1.22===
 

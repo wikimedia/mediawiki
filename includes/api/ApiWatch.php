@@ -57,19 +57,33 @@ class ApiWatch extends ApiBase {
 		if ( $params['unwatch'] ) {
 			$res['unwatched'] = '';
 			$res['message'] = $this->msg( 'removedwatchtext', $title->getPrefixedText() )->title( $title )->parseAsBlock();
-			$success = UnwatchAction::doUnwatch( $title, $user );
+			$status = UnwatchAction::doUnwatch( $title, $user );
 		} else {
 			$res['watched'] = '';
 			$res['message'] = $this->msg( 'addedwatchtext', $title->getPrefixedText() )->title( $title )->parseAsBlock();
-			$success = WatchAction::doWatch( $title, $user );
+			$status = WatchAction::doWatch( $title, $user );
 		}
 
 		if ( !is_null( $oldLang ) ) {
 			$this->getContext()->setLanguage( $oldLang ); // Reset language to $oldLang
 		}
 
-		if ( !$success ) {
-			$this->dieUsageMsg( 'hookaborted' );
+		if ( !$status->isOK() ) {
+			// Cannot use dieUsageMsg() because extensions might return custom
+			// error messages.
+			$errors = $status->getErrorsArray();
+			if ( $errors[0] instanceof Message ) {
+				$msg = $errors[0];
+				$code = $msg->getKey();
+			} else {
+				$code = array_shift( $errors[0] );
+				$msg = wfMessage( $code, $errors[0] );
+			}
+			if ( isset( ApiBase::$messageMap[$code] ) ) {
+				// Translate message to code, for backwards compatability
+				$code = ApiBase::$messageMap[$code]['code'];
+			}
+			$this->dieUsage( $msg->inLanguage( 'en' )->useDatabase( false )->plain(), $code );
 		}
 		$this->getResult()->addValue( null, $this->getModuleName(), $res );
 	}
