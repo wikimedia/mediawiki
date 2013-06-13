@@ -643,6 +643,7 @@ return array(
 			'jquery.hidpi',
 		),
 		'targets' => array( 'desktop', 'mobile' ),
+		'position' => 'top',
 	),
 	'mediawiki.htmlform' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.htmlform.js',
