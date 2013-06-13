@@ -66,8 +66,7 @@ class ApiUserrights extends ApiBase {
 		$form->setContext( $this->getContext() );
 		$status = $form->fetchUser( $params['user'] );
 		if ( !$status->isOK() ) {
-			$errors = $status->getErrorsArray();
-			$this->dieUsageMsg( $errors[0] );
+			$this->dieStatus( $status );
 		} else {
 			$user = $status->value;
 		}

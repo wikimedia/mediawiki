@@ -1222,6 +1222,44 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
+	 * Throw a UsageException based on the errors in the Status object.
+	 *
+	 * @since 1.22
+	 * @param Status $status Status object
+	 * @throws UsageException
+	 */
+	public function dieStatus( $status ) {
+		if ( $status->isGood() ) {
+			throw new MWException( 'Successful status passed to ApiBase::dieStatus' );
+		}
+
+		$errors = $status->getErrorsArray();
+		if ( !$errors ) {
+			// No errors? Assume the warnings should be treated as errors
+			$errors = $status->getWarningsArray();
+		}
+		if ( !$errors ) {
+			// Still no errors? Punt
+			$errors = array( array( 'unknownerror-nocode' ) );
+		}
+
+		// Cannot use dieUsageMsg() because extensions might return custom
+		// error messages.
+		if ( $errors[0] instanceof Message ) {
+			$msg = $errors[0];
+			$code = $msg->getKey();
+		} else {
+			$code = array_shift( $errors[0] );
+			$msg = wfMessage( $code, $errors[0] );
+		}
+		if ( isset( ApiBase::$messageMap[$code] ) ) {
+			// Translate message to code, for backwards compatability
+			$code = ApiBase::$messageMap[$code]['code'];
+		}
+		$this->dieUsage( $msg->inLanguage( 'en' )->useDatabase( false )->plain(), $code );
+	}
+
+	/**
 	 * Array that maps message keys to error messages. $1 and friends are replaced.
 	 */
 	public static $messageMap = array(

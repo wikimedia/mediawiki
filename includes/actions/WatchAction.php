@@ -87,24 +87,42 @@ class WatchAction extends FormAction {
 		return parent::checkCanExecute( $user );
 	}
 
+	/**
+	 * Watch a page
+	 * @since 1.22 Returns Status object
+	 * @param Title $title Page to watch/unwatch
+	 * @param User $user User who is watching/unwatching
+	 * @return Status
+	 */
 	public static function doWatch( Title $title, User $user ) {
 		$page = WikiPage::factory( $title );
 
-		if ( wfRunHooks( 'WatchArticle', array( &$user, &$page ) ) ) {
+		$status = Status::newFatal( 'hookaborted' );
+		if ( wfRunHooks( 'WatchArticle', array( &$user, &$page, &$status ) ) ) {
+			$status = Status::newGood();
 			$user->addWatch( $title );
 			wfRunHooks( 'WatchArticleComplete', array( &$user, &$page ) );
 		}
-		return true;
+		return $status;
 	}
 
+	/**
+	 * Unwatch a page
+	 * @since 1.22 Returns Status
+	 * @param Title $title Page to watch/unwatch
+	 * @param User $user User who is watching/unwatching
+	 * @return Status
+	 */
 	public static function doUnwatch( Title $title, User $user ) {
 		$page = WikiPage::factory( $title );
 
-		if ( wfRunHooks( 'UnwatchArticle', array( &$user, &$page ) ) ) {
+		$status = Status::newFatal( 'hookaborted' );
+		if ( wfRunHooks( 'UnwatchArticle', array( &$user, &$page, &$status ) ) ) {
+			$status = Status::newGood();
 			$user->removeWatch( $title );
 			wfRunHooks( 'UnwatchArticleComplete', array( &$user, &$page ) );
 		}
-		return true;
+		return $status;
 	}
 
 	/**

@@ -57,7 +57,7 @@ class ApiImport extends ApiBase {
 			$source = ImportStreamSource::newFromUpload( 'xml' );
 		}
 		if ( !$source->isOK() ) {
-			$this->dieUsageMsg( $source->getErrorsArray() );
+			$this->dieStatus( $source );
 		}
 
 		$importer = new WikiImporter( $source->value );
@@ -67,7 +67,7 @@ class ApiImport extends ApiBase {
 		if ( isset( $params['rootpage'] ) ) {
 			$statusRootPage = $importer->setTargetRootPage( $params['rootpage'] );
 			if ( !$statusRootPage->isGood() ) {
-				$this->dieUsageMsg( $statusRootPage->getErrorsArray() );
+				$this->dieStatus( $statusRootPage );
 			}
 		}
 		$reporter = new ApiImportReporter(

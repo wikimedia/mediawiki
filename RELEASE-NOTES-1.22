@@ -185,6 +185,7 @@ production.
   user blocks.
 * (bug 48201) action=parse&text=foo now assumes wikitext if no title is given,
   rather than using the content model of the page "API".
+* action=watch may now return errors.
 
 === Languages updated in 1.22===
 
