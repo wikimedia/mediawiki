@@ -99,7 +99,7 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 
 		// left join with watchlist table to highlight watched rows
 		$uid = $this->getUser()->getId();
-		if ( $uid ) {
+		if ( $uid && $this->getUser()->isAllowed( 'viewmywatchlist' ) ) {
 			$tables[] = 'watchlist';
 			$select[] = 'wl_user';
 			$join_conds['watchlist'] = array( 'LEFT JOIN', array(

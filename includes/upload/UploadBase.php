@@ -688,7 +688,7 @@ abstract class UploadBase {
 
 		if ( $status->isGood() ) {
 			if ( $watch ) {
-				$user->addWatch( $this->getLocalFile()->getTitle() );
+				WatchAction::doWatch( $this->getLocalFile()->getTitle(), $user, WatchedItem::IGNORE_USER_RIGHTS );
 			}
 			wfRunHooks( 'UploadComplete', array( &$this ) );
 		}

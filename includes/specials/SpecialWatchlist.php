@@ -26,8 +26,8 @@ class SpecialWatchlist extends SpecialPage {
 	/**
 	 * Constructor
 	 */
-	public function __construct( $page = 'Watchlist' ) {
-		parent::__construct( $page );
+	public function __construct( $page = 'Watchlist', $restriction = 'viewmywatchlist' ) {
+		parent::__construct( $page, $restriction );
 	}
 
 	/**
@@ -53,6 +53,9 @@ class SpecialWatchlist extends SpecialPage {
 			$output->addHTML( $this->msg( 'watchlistanontext' )->rawParams( $llink )->parse() );
 			return;
 		}
+
+		// Check permissions
+		$this->checkPermissions();
 
 		// Add feed links
 		$wlToken = $user->getOption( 'watchlisttoken' );

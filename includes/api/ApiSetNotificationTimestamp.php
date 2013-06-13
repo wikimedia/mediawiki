@@ -39,6 +39,9 @@ class ApiSetNotificationTimestamp extends ApiBase {
 		if ( $user->isAnon() ) {
 			$this->dieUsage( 'Anonymous users cannot use watchlist change notifications', 'notloggedin' );
 		}
+		if ( !$user->isAllowed( 'editmywatchlist' ) ) {
+			$this->dieUsage( 'You don\'t have permission to edit your watchlist', 'permissiondenied' );
+		}
 
 		$params = $this->extractRequestParams();
 		$this->requireMaxOneParameter( $params, 'timestamp', 'torevid', 'newerthanrevid' );
