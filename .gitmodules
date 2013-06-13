@@ -463,3 +463,6 @@
 [submodule "extensions/Campaigns"]
 	path = extensions/Campaigns
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Campaigns.git
+[submodule "extensions/CoreEvents"]
+	path = extensions/CoreEvents
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/CoreEvents.git
