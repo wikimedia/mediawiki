@@ -2914,6 +2914,8 @@ See also {{msg-mw|Right-editusercss}}',
 'right-editmyuserjs' => '{{doc-right|editmyuserjs}}
 
 See also {{msg-mw|Right-edituserjs}}',
+'right-viewmywatchlist' => '{{doc-right|viewmywatchlist}}',
+'right-editmywatchlist' => '{{doc-right|editmywatchlist}}',
 'right-rollback' => '{{doc-right|rollback}}
 {{Identical|Rollback}}',
 'right-markbotedits' => '{{doc-right|markbotedits}}
@@ -2986,6 +2988,8 @@ This action allows editing of all of the "user rights", not just the rights of t
 'action-userrights-interwiki' => '{{Doc-action|userrights-interwiki}}',
 'action-siteadmin' => '{{Doc-action|siteadmin}}',
 'action-sendemail' => '{{doc-action|sendemail}}',
+'action-editmywatchlist' => '{{doc-action|editmywatchlist}}',
+'action-viewmywatchlist' => '{{doc-action|viewmywatchlist}}',
 
 # Recent changes
 'nchanges' => 'Appears on the [[Special:RecentChanges]] special page in brackets after pages having more than one change on that date. $1 is the number of changes on that day.',
