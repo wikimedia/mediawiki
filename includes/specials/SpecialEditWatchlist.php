@@ -49,7 +49,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	private $badItems = array();
 
 	public function __construct() {
-		parent::__construct( 'EditWatchlist' );
+		parent::__construct( 'EditWatchlist', 'editmywatchlist' );
 	}
 
 	/**

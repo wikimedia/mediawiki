@@ -59,6 +59,28 @@ class Status {
 	}
 
 	/**
+	 * Factory function for fatal permission-denied errors
+	 *
+	 * @since 1.22
+	 * @param string $permission User right required
+	 * @return Status
+	 */
+	static function newFatalPermissionDenied( $permission ) {
+		global $wgLang;
+
+		$groups = array_map(
+			array( 'User', 'makeGroupLinkWiki' ),
+			User::getGroupsWithPermission( $permission )
+		);
+
+		if ( $groups ) {
+			return self::newFatal( 'badaccess-groups', $wgLang->commaList( $groups ), count( $groups ) );
+		} else {
+			return self::newFatal( 'badaccess-group0' );
+		}
+	}
+
+	/**
 	 * Factory function for good results
 	 *
 	 * @param $value Mixed

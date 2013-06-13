@@ -1743,7 +1743,9 @@ class EditPage {
 	protected function updateWatchlist() {
 		global $wgUser;
 
-		if ( $wgUser->isLoggedIn() && $this->watchthis != $wgUser->isWatched( $this->mTitle ) ) {
+		if ( $wgUser->isLoggedIn()
+			&& $this->watchthis != $wgUser->isWatched( $this->mTitle, WatchedItem::IGNORE_USER_RIGHTS )
+		) {
 			$fname = __METHOD__;
 			$title = $this->mTitle;
 			$watch = $this->watchthis;
@@ -1752,8 +1754,10 @@ class EditPage {
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->onTransactionIdle( function() use ( $dbw, $title, $watch, $wgUser, $fname ) {
 				$dbw->begin( $fname );
+				// If the user doesn't have editmywatchlist, we want to allow
+				// adding based on the checkbox but not removing.
 				if ( $watch ) {
-					WatchAction::doWatch( $title, $wgUser );
+					WatchAction::doWatch( $title, $wgUser, WatchedItem::IGNORE_USER_RIGHTS );
 				} else {
 					WatchAction::doUnwatch( $title, $wgUser );
 				}
