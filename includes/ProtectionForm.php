@@ -330,13 +330,8 @@ class ProtectionForm {
 			return false;
 		}
 
-		if ( $wgUser->isLoggedIn() && $wgRequest->getCheck( 'mwProtectWatch' ) != $wgUser->isWatched( $this->mTitle ) ) {
-			if ( $wgRequest->getCheck( 'mwProtectWatch' ) ) {
-				WatchAction::doWatch( $this->mTitle, $wgUser );
-			} else {
-				WatchAction::doUnwatch( $this->mTitle, $wgUser );
-			}
-		}
+		WatchAction::doWatchOrUnwatch( $wgRequest->getCheck( 'mwProtectWatch' ), $this->mTitle, $wgUser );
+
 		return true;
 	}
 
