@@ -2427,6 +2427,7 @@ $article: article "acted on"
 'UnwatchArticle': Before a watch is removed from an article.
 $user: user watching
 $page: WikiPage object to be removed
+&$status: Status object to be returned if the hook returns false
 
 'UnwatchArticleComplete': After a watch is removed from an article.
 $user: user that watched
@@ -2676,6 +2677,7 @@ used to alter the SQL query which gets the list of wanted pages.
 'WatchArticle': Before a watch is added to an article.
 $user: user that will watch
 $page: WikiPage object to be watched
+&$status: Status object to be returned if the hook returns false
 
 'WatchArticleComplete': After a watch is added to an article.
 $user: user that watched
