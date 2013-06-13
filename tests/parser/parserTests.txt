@@ -14018,6 +14018,353 @@ parsoid=wt2html,wt2wt
 </span><dl about="#mwt3"><dd>a</dd></dl>
 !!end
 
+#### ----------------------------------------------------------------
+#### Parsoid-only testing of Parsoid's impl of <ref> and <references>
+#### tags. Parsoid's output for these tags differs from that of the
+#### PHP parser.
+#### ----------------------------------------------------------------
+
+!!test
+Ref: 1. ref-location should be replaced with an index span
+!!options
+parsoid
+!!input
+A <ref>foo</ref>
+B <ref name="x">foo</ref>
+C <ref name="y" />
+!!result
+<p>A <span about="#mwt1" class="reference" data-mw='{"name":"ref","body":{"html":"foo"},"attrs":{}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-1">[1]</a></span>
+B <span about="#mwt2" class="reference" data-mw='{"name":"ref","body":{"html":"foo"},"attrs":{"name":"x"}}' id="cite_ref-x-2-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-x-2">[2]</a></span>
+C <span about="#mwt3" class="reference" data-mw='{"name":"ref","attrs":{"name":"y"}}' id="cite_ref-y-3-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-y-3">[3]</a></span></p>
+!!end
+
+!!test
+Ref: 2. ref-tags with identical names should all get the same index
+!!options
+parsoid
+!!input
+A <ref name="x">foo</ref>
+B <ref name="x" />
+!!result
+<p>A <span about="#mwt1" class="reference" data-mw='{"name":"ref","body":{"html":"foo"},"attrs":{"name":"x"}}' id="cite_ref-x-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-x-1">[1]</a></span>
+B <span about="#mwt2" class="reference" data-mw='{"name":"ref","attrs":{"name":"x"}}' id="cite_ref-x-1-1" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-x-1">[1]</a></span></p>
+!!end
+
+!!test
+Ref: 3. spaces in ref-names should be ignored
+!!options
+parsoid
+!!input
+A <ref name="x">foo</ref>
+B <ref name=" x " />
+C <ref name= x  />
+!!result
+<p>A <span about="#mwt1" class="reference" data-mw='{"name":"ref","body":{"html":"foo"},"attrs":{"name":"x"}}' id="cite_ref-x-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-x-1">[1]</a></span>
+B <span about="#mwt2" class="reference" data-mw='{"name":"ref","attrs":{"name":"x"}}' id="cite_ref-x-1-1" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-x-1">[1]</a></span>
+C <span about="#mwt3" class="reference" data-mw='{"name":"ref","attrs":{"name":"x"}}' id="cite_ref-x-1-2" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-x-1">[1]</a></span></p>
+!!end
+
+!!test
+Ref: 4. 'constructor' should be accepted as a valid ref-name
+(NOTE: constructor is a predefined property in JS and constructor as a ref-name can clash with it if not handled properly)
+!!options
+parsoid
+!!input
+A <ref name="constructor">foo</ref>
+!!result
+<p>A <span about="#mwt1" class="reference" data-mw='{"name":"ref","body":{"html":"foo"},"attrs":{"name":"constructor"}}' id="cite_ref-constructor-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-constructor-1">[1]</a></span></p>
+!!end
+
+!!test
+Ref: 5. body should accept generic wikitext
+!!options
+parsoid
+!!input
+A <ref>
+ This is a '''[[bolded link]]''' and this is a {{echo|transclusion}}
+</ref>
+
+<references />
+!!result
+<p>A <span about="#mwt1" class="reference" data-mw='{"name":"ref","body":{"html":"This is a <b data-parsoid=\"{&amp;quot;dsr&amp;quot;:[19,40,3,3]}\"><a rel=\"mw:WikiLink\" href=\"./Bolded_link\" data-parsoid=\"{&amp;quot;a&amp;quot;:{&amp;quot;href&amp;quot;:&amp;quot;./Bolded_link&amp;quot;},&amp;quot;sa&amp;quot;:{&amp;quot;href&amp;quot;:&amp;quot;bolded link&amp;quot;},&amp;quot;stx&amp;quot;:&amp;quot;simple&amp;quot;,&amp;quot;dsr&amp;quot;:[22,37,2,2]}\">bolded link</a></b> and this is a <span about=\"#mwt3\" typeof=\"mw:Transclusion\" data-mw=\"{&amp;quot;target&amp;quot;:{&amp;quot;wt&amp;quot;:&amp;quot;echo&amp;quot;,&amp;quot;href&amp;quot;:&amp;quot;./Template:Echo&amp;quot;},&amp;quot;params&amp;quot;:{&amp;quot;1&amp;quot;:{&amp;quot;wt&amp;quot;:&amp;quot;transclusion&amp;quot;}}}\" data-parsoid=\"{&amp;quot;src&amp;quot;:&amp;quot;{{echo|transclusion}}&amp;quot;,&amp;quot;dsr&amp;quot;:[55,76,null,null]}\">transclusion</span>\n"},"attrs":{}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-1">[1]</a></span></p>
+
+<ol about="#mwt2" class="references" data-mw='{"name":"references","attrs":{}}' typeof="mw:Extension/references">
+<li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> This is a <b><a rel="mw:WikiLink" href="./Bolded_link">bolded link</a></b> and this is a <span about="#mwt3" typeof="mw:Transclusion" data-mw='{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"transclusion"}}}'>transclusion</span>
+</li></ol>
+!!end
+
+!!test
+Ref: 6. indent-pres should not be output in ref-body
+!!options
+parsoid
+!!input
+A <ref>
+ foo
+ bar
+ baz
+</ref>
+
+<references />
+!!result
+<p>A <span about="#mwt1" class="reference" data-mw='{"name":"ref","body":{"html":"foo\n bar\n baz\n"},"attrs":{}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-1">[1]</a></span></p>
+
+<ol about="#mwt2" class="references" data-mw='{"name":"references","attrs":{}}' typeof="mw:Extension/references">
+<li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> foo
+ bar
+ baz
+</li></ol>
+!!end
+
+!!test
+Ref: 6. No p-wrapping in ref-body
+!!options
+parsoid
+!!input
+A <ref>
+foo
+
+bar
+
+
+baz
+
+
+
+booz
+</ref>
+
+<references />
+!!result
+<p>A <span about="#mwt1" class="reference" data-mw='{"name":"ref","body":{"html":"foo\n\nbar\n\n\nbaz\n\n\n\nbooz\n"},"attrs":{}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-1">[1]</a></span></p>
+
+<ol about="#mwt2" class="references" data-mw='{"name":"references","attrs":{}}' typeof="mw:Extension/references">
+<li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> foo
+
+bar
+
+
+baz
+
+
+
+booz
+</li></ol>
+!!end
+
+!!test
+Ref: 8. transclusion wikitext has lower precedence
+!!options
+parsoid
+!!input
+A <ref> foo {{echo|</ref> B C}}
+
+<references />
+!!result
+<p>A <span about="#mwt1" class="reference" data-mw='{"name":"ref","body":{"html":"foo <span typeof=\"mw:Nowiki\" data-parsoid=\"{&amp;quot;src&amp;quot;:&amp;quot;{{&amp;quot;,&amp;quot;dsr&amp;quot;:[12,14,2,null]}\">{{</span>echo|"},"attrs":{}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-1">[1]</a></span> B C<span typeof="mw:Nowiki">}}</span></p>
+
+<ol about="#mwt2" class="references" data-mw='{"name":"references","attrs":{}}' typeof="mw:Extension/references">
+<li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> foo <span typeof="mw:Nowiki">{{</span>echo|</li></ol>
+!!end
+
+!!test
+Ref: 9. unclosed comments should not leak out of ref-body
+!!options
+parsoid
+!!input
+A <ref> foo <!--</ref> B C
+
+<references />
+!!result
+<p>A <span about="#mwt1" class="reference" data-mw='{"name":"ref","body":{"html":"foo <!---->"},"attrs":{}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-1">[1]</a></span> B C</p>
+
+<ol about="#mwt2" class="references" data-mw='{"name":"references","attrs":{}}' typeof="mw:Extension/references">
+<li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> foo <!----></li></ol>
+!!end
+
+!!test
+Ref: 10. Unclosed HTML tags should not leak out of ref-body
+!!options
+parsoid
+!!input
+A <ref> <b> foo </ref> B C
+
+<references />
+!!result
+<p>A <span about="#mwt1" class="reference" data-mw='{"name":"ref","body":{"html":"<b data-parsoid=\"{&amp;quot;stx&amp;quot;:&amp;quot;html&amp;quot;,&amp;quot;autoInsertedEnd&amp;quot;:true,&amp;quot;dsr&amp;quot;:[8,16,3,0]}\"> foo </b>"},"attrs":{}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-1">[1]</a></span> B C</p>
+
+<ol about="#mwt2" class="references" data-mw='{"name":"references","attrs":{}}' typeof="mw:Extension/references">
+<li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> <b> foo </b></li></ol>
+!!end
+
+!!test
+Ref: 11. ref-tags acts like an inline element wrt P-wrapping
+!!options
+parsoid
+!!input
+A <ref>foo</ref> B
+C <ref>bar</ref> D
+!!result
+<p>A <span about="#mwt1" class="reference" data-mw='{"name":"ref","body":{"html":"foo"},"attrs":{}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-1">[1]</a></span> B
+C <span about="#mwt2" class="reference" data-mw='{"name":"ref","body":{"html":"bar"},"attrs":{}}' id="cite_ref-2-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-2">[2]</a></span> D</p>
+!!end
+
+!!test
+Ref: 12. ref-tags act as trailing newline migration barrier
+!!options
+parsoid
+!!input
+<!--the newline at the end of this line moves out of the p-tag-->a
+
+b<!--the newline at the end of this line stays inside the p-tag--> <ref />
+<ref />
+
+c
+!!result
+<p><!--the newline at the end of this line moves out of the p-tag-->a</p>
+
+
+<p>b<!--the newline at the end of this line stays inside the p-tag--> <span about="#mwt1" class="reference" data-mw='{"name":"ref","attrs":{}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-1">[1]</a></span>
+<span about="#mwt2" class="reference" data-mw='{"name":"ref","attrs":{}}' id="cite_ref-2-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-2">[2]</a></span></p>
+
+
+<p>c</p>
+!!end
+
+!!test
+Ref: 13. ref-tags are not SOL-transparent and block indent-pres
+!!options
+parsoid
+!!input
+<ref>foo</ref> A
+<ref>bar
+</ref> B
+!!result
+<p><span about="#mwt1" class="reference" data-mw='{"name":"ref","body":{"html":"foo"},"attrs":{}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-1">[1]</a></span> A
+<span about="#mwt2" class="reference" data-mw='{"name":"ref","body":{"html":"bar\n"},"attrs":{}}' id="cite_ref-2-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-2">[2]</a></span> B</p>
+!!end
+
+!!test
+Ref: 14. A nested ref-tag should be emitted as plain text
+!!options
+parsoid
+!!input
+<ref>foo <ref>bar</ref> baz</ref>
+
+<references />
+!!result
+<p><span about="#mwt1" class="reference" data-mw='{"name":"ref","body":{"html":"foo &amp;lt;ref&amp;gt;bar"},"attrs":{}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-1">[1]</a></span> baz&lt;/ref&gt;</p>
+
+<ol about="#mwt2" class="references" data-mw='{"name":"references","attrs":{}}' typeof="mw:Extension/references"><li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> foo &lt;ref&gt;bar</li></ol>
+!!end
+
+!!test
+Ref: 15. ref-tags with identical names should get identical indexes
+!!options
+parsoid
+!!input
+A1 <ref name="a">foo</ref> A2 <ref name="a" />
+B1 <ref name="b" /> B2 <ref name="b">bar</ref>
+
+<references />
+!!result
+<p>A1 <span about="#mwt3" class="reference" data-mw='{"name":"ref","body":{"html":"foo"},"attrs":{"name":"a"}}' id="cite_ref-a-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-a-1">[1]</a></span> A2 <span about="#mwt4" class="reference" data-mw='{"name":"ref","attrs":{"name":"a"}}' id="cite_ref-a-1-1" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-a-1">[1]</a></span>
+B1 <span about="#mwt7" class="reference" data-mw='{"name":"ref","attrs":{"name":"b"}}' id="cite_ref-b-2-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-b-2">[2]</a></span> B2 <span about="#mwt8" class="reference" data-mw='{"name":"ref","body":{"html":"bar"},"attrs":{"name":"b"}}' id="cite_ref-b-2-1" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-b-2">[2]</a></span></p>
+
+<ol about="#mwt10" class="references" data-mw='{"name":"references","attrs":{}}' typeof="mw:Extension/references"><li about="#cite_note-a-1" id="cite_note-a-1"><span rel="mw:referencedBy">↑ <a href="#cite_ref-a-1-0">1.0</a> <a href="#cite_ref-a-1-1">1.1</a></span> foo</li><li about="#cite_note-b-2" id="cite_note-b-2"><span rel="mw:referencedBy">↑ <a href="#cite_ref-b-2-0">2.0</a> <a href="#cite_ref-b-2-1">2.1</a></span> bar</li></ol>
+!!end
+
+!!test
+References: 1. references tag without any refs should be handled properly
+!!options
+parsoid
+!!input
+<references />
+!!result
+<ol about="#mwt2" class="references" data-mw='{"name":"references","attrs":{}}' typeof="mw:Extension/references"></ol>
+!!end
+
+!!test
+References: 2. references tag with group only outputs references from that group
+!!options
+parsoid
+!!input
+A <ref group="a">foo</ref>
+B <ref group="b">bar</ref>
+
+<references group='a' />
+!!result
+<p>A <span about="#mwt2" class="reference" data-mw='{"name":"ref","body":{"html":"foo"},"attrs":{"group":"a"}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-1">[a 1]</a></span>
+B <span about="#mwt4" class="reference" data-mw='{"name":"ref","body":{"html":"bar"},"attrs":{"group":"b"}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-1">[b 1]</a></span></p>
+
+<ol about="#mwt6" class="references" data-mw='{"name":"references","attrs":{"group":"a"}}' typeof="mw:Extension/references"><li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> foo</li></ol>
+!!end
+
+!!test
+References: 3. ref list should be cleared after processing references
+!!options
+parsoid
+!!input
+A <ref>foo</ref>
+
+<references />
+
+B <ref>bar</ref>
+
+<references />
+!!result
+<p>A <span about="#mwt2" class="reference" data-mw='{"name":"ref","body":{"html":"foo"},"attrs":{}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-1">[1]</a></span></p>
+
+<ol about="#mwt4" class="references" data-mw='{"name":"references","attrs":{}}' typeof="mw:Extension/references"><li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> foo</li></ol>
+
+<p>B <span about="#mwt6" class="reference" data-mw='{"name":"ref","body":{"html":"bar"},"attrs":{}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-1">[1]</a></span></p>
+
+<ol about="#mwt8" class="references" data-mw='{"name":"references","attrs":{}}' typeof="mw:Extension/references"><li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> bar</li></ol>
+!!end
+
+!!test
+References: 4. only referenced group should be cleared after processing references
+!!options
+parsoid
+!!input
+A <ref group="a">afoo</ref>
+B <ref>bfoo</ref>
+
+<references group="a"/>
+
+C <ref>cfoo</ref>
+
+<references />
+!!result
+<p>A <span about="#mwt2" class="reference" data-mw='{"name":"ref","body":{"html":"afoo"},"attrs":{"group":"a"}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-1">[a 1]</a></span>
+B <span about="#mwt4" class="reference" data-mw='{"name":"ref","body":{"html":"bfoo"},"attrs":{}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref" data-parsoid='{"src":"<ref>bfoo</ref>","dsr":[30,45,5,6]}'><a href="#cite_note-1">[1]</a></span></p>
+
+<ol about="#mwt6" class="references" data-mw='{"name":"references","attrs":{"group":"a"}}' typeof="mw:Extension/references"><li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> afoo</li></ol>
+
+<p>C <span about="#mwt8" class="reference" data-mw='{"name":"ref","body":{"html":"cfoo"},"attrs":{}}' id="cite_ref-2-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-2">[2]</a></span></p>
+
+<ol about="#mwt10" class="references" data-mw='{"name":"references","attrs":{}}' typeof="mw:Extension/references"><li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> bfoo</li><li about="#cite_note-2" id="cite_note-2"><span rel="mw:referencedBy"><a href="#cite_ref-2-0">↑</a></span> cfoo</li></ol>
+!!end
+
+!!test
+References: 5. ref tags in references should be processed while ignoring all other content
+!!options
+parsoid
+!!input
+A <ref name="a" />
+B <ref name="b">bar</ref>
+
+<references>
+<ref name="a">foo</ref>
+This should just get lost.
+</references>
+!!result
+<p>A <span about="#mwt2" class="reference" data-mw='{"name":"ref","attrs":{"name":"a"}}' id="cite_ref-a-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-a-1">[1]</a></span>
+B <span about="#mwt4" class="reference" data-mw='{"name":"ref","body":{"html":"bar"},"attrs":{"name":"b"}}' id="cite_ref-b-2-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-b-2">[2]</a></span></p>
+
+<ol about="#mwt7" class="references" data-mw='{"name":"references","body":{"extsrc":"<ref name=\"a\">foo</ref>\nThis should just get lost."},"attrs":{}}' typeof="mw:Extension/references"><li about="#cite_note-a-1" id="cite_note-a-1"><span rel="mw:referencedBy"><a href="#cite_ref-a-1-0">↑</a></span> foo</li><li about="#cite_note-b-2" id="cite_note-b-2"><span rel="mw:referencedBy"><a href="#cite_ref-b-2-0">↑</a></span> bar</li></ol>
+!!end
+
+#### ----------------------------------------------------------------
 #### The following section of tests are primarily to test
 #### wikitext escaping capabilities of Parsoid.  Given that
 #### escaping can be done any number of ways, the wikitext (input)
@@ -14027,6 +14374,7 @@ parsoid=wt2html,wt2wt
 #### We are marking several tests as parsoid-only since the
 #### HTML in the result section is different from what the
 #### PHP parser generates for it.
+#### ----------------------------------------------------------------
 
 
 #### --------------- Headings ---------------
