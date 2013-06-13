@@ -98,7 +98,7 @@ class FSFile {
 	 * Get an associative array containing information about
 	 * a file with the given storage path.
 	 *
-	 * @param $ext Mixed: the file extension, or true to extract it from the filename.
+	 * @param Mixed $ext: the file extension, or true to extract it from the filename.
 	 *             Set it to false to ignore the extension.
 	 *
 	 * @return array
@@ -171,7 +171,7 @@ class FSFile {
 	/**
 	 * Exract image size information
 	 *
-	 * @param $gis array
+	 * @param array $gis
 	 * @return Array
 	 */
 	protected function extractImageSizeInfo( array $gis ) {
@@ -194,7 +194,7 @@ class FSFile {
 	 * 160 log 2 / log 36 = 30.95, so the 160-bit hash fills 31 digits in base 36
 	 * fairly neatly.
 	 *
-	 * @param $recache bool
+	 * @param bool $recache
 	 * @return bool|string False on failure
 	 */
 	public function getSha1Base36( $recache = false ) {
@@ -220,7 +220,7 @@ class FSFile {
 	/**
 	 * Get the final file extension from a file system path
 	 *
-	 * @param $path string
+	 * @param string $path
 	 * @return string
 	 */
 	public static function extensionFromPath( $path ) {
@@ -232,7 +232,7 @@ class FSFile {
 	 * Get an associative array containing information about a file in the local filesystem.
 	 *
 	 * @param string $path absolute local filesystem path
-	 * @param $ext Mixed: the file extension, or true to extract it from the filename.
+	 * @param Mixed $ext: the file extension, or true to extract it from the filename.
 	 *             Set it to false to ignore the extension.
 	 *
 	 * @return array
@@ -249,8 +249,8 @@ class FSFile {
 	 * 160 log 2 / log 36 = 30.95, so the 160-bit hash fills 31 digits in base 36
 	 * fairly neatly.
 	 *
-	 * @param $path string
-	 * @param $recache bool
+	 * @param string $path
+	 * @param bool $recache
 	 *
 	 * @return bool|string False on failure
 	 */

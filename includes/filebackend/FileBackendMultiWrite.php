@@ -81,7 +81,7 @@ class FileBackendMultiWrite extends FileBackend {
 	 *   - noPushQuickOps : (hack) Only apply doQuickOperations() to the master backend.
 	 *   - noPushDirConts : (hack) Only apply directory functions to the master backend.
 	 *
-	 * @param $config Array
+	 * @param Array $config
 	 * @throws MWException
 	 */
 	public function __construct( array $config ) {
@@ -387,7 +387,7 @@ class FileBackendMultiWrite extends FileBackend {
 	 * for a set of operations with that of a given internal backend.
 	 *
 	 * @param array $ops List of file operation arrays
-	 * @param $backend FileBackendStore
+	 * @param FileBackendStore $backend
 	 * @return Array
 	 */
 	protected function substOpBatchPaths( array $ops, FileBackendStore $backend ) {
@@ -408,7 +408,7 @@ class FileBackendMultiWrite extends FileBackend {
 	 * Same as substOpBatchPaths() but for a single operation
 	 *
 	 * @param array $ops File operation array
-	 * @param $backend FileBackendStore
+	 * @param FileBackendStore $backend
 	 * @return Array
 	 */
 	protected function substOpPaths( array $ops, FileBackendStore $backend ) {
@@ -420,7 +420,7 @@ class FileBackendMultiWrite extends FileBackend {
 	 * Substitute the backend of storage paths with an internal backend's name
 	 *
 	 * @param array|string $paths List of paths or single string path
-	 * @param $backend FileBackendStore
+	 * @param FileBackendStore $backend
 	 * @return Array|string
 	 */
 	protected function substPaths( $paths, FileBackendStore $backend ) {
@@ -500,7 +500,7 @@ class FileBackendMultiWrite extends FileBackend {
 
 	/**
 	 * @see FileBackend::doSecure()
-	 * @param $params array
+	 * @param array $params
 	 * @return Status
 	 */
 	protected function doSecure( array $params ) {
@@ -517,7 +517,7 @@ class FileBackendMultiWrite extends FileBackend {
 
 	/**
 	 * @see FileBackend::doPublish()
-	 * @param $params array
+	 * @param array $params
 	 * @return Status
 	 */
 	protected function doPublish( array $params ) {
@@ -534,7 +534,7 @@ class FileBackendMultiWrite extends FileBackend {
 
 	/**
 	 * @see FileBackend::doClean()
-	 * @param $params array
+	 * @param array $params
 	 * @return Status
 	 */
 	protected function doClean( array $params ) {
@@ -551,7 +551,7 @@ class FileBackendMultiWrite extends FileBackend {
 
 	/**
 	 * @see FileBackend::concatenate()
-	 * @param $params array
+	 * @param array $params
 	 * @return Status
 	 */
 	public function concatenate( array $params ) {
@@ -562,7 +562,7 @@ class FileBackendMultiWrite extends FileBackend {
 
 	/**
 	 * @see FileBackend::fileExists()
-	 * @param $params array
+	 * @param array $params
 	 * @return bool|null
 	 */
 	public function fileExists( array $params ) {
@@ -572,7 +572,7 @@ class FileBackendMultiWrite extends FileBackend {
 
 	/**
 	 * @see FileBackend::getFileTimestamp()
-	 * @param $params array
+	 * @param array $params
 	 * @return bool|string
 	 */
 	public function getFileTimestamp( array $params ) {
@@ -582,7 +582,7 @@ class FileBackendMultiWrite extends FileBackend {
 
 	/**
 	 * @see FileBackend::getFileSize()
-	 * @param $params array
+	 * @param array $params
 	 * @return bool|int
 	 */
 	public function getFileSize( array $params ) {
@@ -592,7 +592,7 @@ class FileBackendMultiWrite extends FileBackend {
 
 	/**
 	 * @see FileBackend::getFileStat()
-	 * @param $params array
+	 * @param array $params
 	 * @return Array|bool|null
 	 */
 	public function getFileStat( array $params ) {
@@ -602,7 +602,7 @@ class FileBackendMultiWrite extends FileBackend {
 
 	/**
 	 * @see FileBackend::getFileContentsMulti()
-	 * @param $params array
+	 * @param array $params
 	 * @return bool|string
 	 */
 	public function getFileContentsMulti( array $params ) {
@@ -618,7 +618,7 @@ class FileBackendMultiWrite extends FileBackend {
 
 	/**
 	 * @see FileBackend::getFileSha1Base36()
-	 * @param $params array
+	 * @param array $params
 	 * @return bool|string
 	 */
 	public function getFileSha1Base36( array $params ) {
@@ -628,7 +628,7 @@ class FileBackendMultiWrite extends FileBackend {
 
 	/**
 	 * @see FileBackend::getFileProps()
-	 * @param $params array
+	 * @param array $params
 	 * @return Array
 	 */
 	public function getFileProps( array $params ) {
@@ -638,7 +638,7 @@ class FileBackendMultiWrite extends FileBackend {
 
 	/**
 	 * @see FileBackend::streamFile()
-	 * @param $params array
+	 * @param array $params
 	 * @return \Status
 	 */
 	public function streamFile( array $params ) {
@@ -648,7 +648,7 @@ class FileBackendMultiWrite extends FileBackend {
 
 	/**
 	 * @see FileBackend::getLocalReferenceMulti()
-	 * @param $params array
+	 * @param array $params
 	 * @return FSFile|null
 	 */
 	public function getLocalReferenceMulti( array $params ) {
@@ -664,7 +664,7 @@ class FileBackendMultiWrite extends FileBackend {
 
 	/**
 	 * @see FileBackend::getLocalCopyMulti()
-	 * @param $params array
+	 * @param array $params
 	 * @return null|TempFSFile
 	 */
 	public function getLocalCopyMulti( array $params ) {
@@ -689,7 +689,7 @@ class FileBackendMultiWrite extends FileBackend {
 
 	/**
 	 * @see FileBackend::directoryExists()
-	 * @param $params array
+	 * @param array $params
 	 * @return bool|null
 	 */
 	public function directoryExists( array $params ) {
@@ -699,7 +699,7 @@ class FileBackendMultiWrite extends FileBackend {
 
 	/**
 	 * @see FileBackend::getSubdirectoryList()
-	 * @param $params array
+	 * @param array $params
 	 * @return Array|null|Traversable
 	 */
 	public function getDirectoryList( array $params ) {
@@ -709,7 +709,7 @@ class FileBackendMultiWrite extends FileBackend {
 
 	/**
 	 * @see FileBackend::getFileList()
-	 * @param $params array
+	 * @param array $params
 	 * @return Array|null|\Traversable
 	 */
 	public function getFileList( array $params ) {

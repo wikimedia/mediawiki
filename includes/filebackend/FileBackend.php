@@ -94,7 +94,7 @@ abstract class FileBackend {
 	 *                   Allowed values are "implicit", "explicit" and "off".
 	 *   - concurrency : How many file operations can be done in parallel.
 	 *
-	 * @param $config Array
+	 * @param array $config
 	 * @throws MWException
 	 */
 	public function __construct( array $config ) {
@@ -1043,7 +1043,7 @@ abstract class FileBackend {
 	 *
 	 * Storage backends with eventual consistency might return stale data.
 	 *
-	 * @param $params array
+	 * @param array $params
 	 * $params include:
 	 *   - dir : storage directory
 	 * @return bool|null Returns null on failure
@@ -1061,7 +1061,7 @@ abstract class FileBackend {
 	 *
 	 * Storage backends with eventual consistency might return stale data.
 	 *
-	 * @param $params array
+	 * @param array $params
 	 * $params include:
 	 *   - dir     : storage directory
 	 *   - topOnly : only return direct child dirs of the directory
@@ -1076,7 +1076,7 @@ abstract class FileBackend {
 	 *
 	 * Storage backends with eventual consistency might return stale data.
 	 *
-	 * @param $params array
+	 * @param array $params
 	 * $params include:
 	 *   - dir : storage directory
 	 * @return Traversable|Array|null Returns null on failure
@@ -1096,7 +1096,7 @@ abstract class FileBackend {
 	 *
 	 * Storage backends with eventual consistency might return stale data.
 	 *
-	 * @param $params array
+	 * @param array $params
 	 * $params include:
 	 *   - dir        : storage directory
 	 *   - topOnly    : only return direct child files of the directory (since 1.20)
@@ -1111,7 +1111,7 @@ abstract class FileBackend {
 	 *
 	 * Storage backends with eventual consistency might return stale data.
 	 *
-	 * @param $params array
+	 * @param array $params
 	 * $params include:
 	 *   - dir        : storage directory
 	 *   - adviseStat : set to true if stat requests will be made on the files (since 1.22)
@@ -1147,7 +1147,7 @@ abstract class FileBackend {
 	 * Callers should consider using getScopedFileLocks() instead.
 	 *
 	 * @param array $paths Storage paths
-	 * @param $type integer LockManager::LOCK_* constant
+	 * @param integer $type LockManager::LOCK_* constant
 	 * @return Status
 	 */
 	final public function lockFiles( array $paths, $type ) {
@@ -1158,7 +1158,7 @@ abstract class FileBackend {
 	 * Unlock the files at the given storage paths in the backend.
 	 *
 	 * @param array $paths Storage paths
-	 * @param $type integer LockManager::LOCK_* constant
+	 * @param integer $type LockManager::LOCK_* constant
 	 * @return Status
 	 */
 	final public function unlockFiles( array $paths, $type ) {
@@ -1174,8 +1174,8 @@ abstract class FileBackend {
 	 * the status updated. Unlock fatals will not change the status "OK" value.
 	 *
 	 * @param array $paths Storage paths
-	 * @param $type integer LockManager::LOCK_* constant
-	 * @param $status Status Status to update on lock/unlock
+	 * @param integer $type LockManager::LOCK_* constant
+	 * @param Status $status Status to update on lock/unlock
 	 * @return ScopedLock|null Returns null on failure
 	 */
 	final public function getScopedFileLocks( array $paths, $type, Status $status ) {
@@ -1194,7 +1194,7 @@ abstract class FileBackend {
 	 * @see FileBackend::doOperations()
 	 *
 	 * @param array $ops List of file operations to FileBackend::doOperations()
-	 * @param $status Status Status to update on lock/unlock
+	 * @param Status $status Status to update on lock/unlock
 	 * @return Array List of ScopedFileLocks or null values
 	 * @since 1.20
 	 */
@@ -1235,7 +1235,7 @@ abstract class FileBackend {
 	 * Check if a given path is a "mwstore://" path.
 	 * This does not do any further validation or any existence checks.
 	 *
-	 * @param $path string
+	 * @param string $path
 	 * @return bool
 	 */
 	final public static function isStoragePath( $path ) {
@@ -1247,7 +1247,7 @@ abstract class FileBackend {
 	 * and a relative file path. The relative path may be the empty string.
 	 * This does not do any path normalization or traversal checks.
 	 *
-	 * @param $storagePath string
+	 * @param string $storagePath
 	 * @return Array (backend, container, rel object) or (null, null, null)
 	 */
 	final public static function splitStoragePath( $storagePath ) {
@@ -1269,7 +1269,7 @@ abstract class FileBackend {
 	 * Normalize a storage path by cleaning up directory separators.
 	 * Returns null if the path is not of the format of a valid storage path.
 	 *
-	 * @param $storagePath string
+	 * @param string $storagePath
 	 * @return string|null
 	 */
 	final public static function normalizeStoragePath( $storagePath ) {
@@ -1290,7 +1290,7 @@ abstract class FileBackend {
 	 * This returns a path like "mwstore://backend/container",
 	 * "mwstore://backend/container/...", or null if there is no parent.
 	 *
-	 * @param $storagePath string
+	 * @param string $storagePath
 	 * @return string|null
 	 */
 	final public static function parentStoragePath( $storagePath ) {
@@ -1302,7 +1302,7 @@ abstract class FileBackend {
 	/**
 	 * Get the final extension from a storage or FS path
 	 *
-	 * @param $path string
+	 * @param string $path
 	 * @return string
 	 */
 	final public static function extensionFromPath( $path ) {
@@ -1313,7 +1313,7 @@ abstract class FileBackend {
 	/**
 	 * Check if a relative path has no directory traversals
 	 *
-	 * @param $path string
+	 * @param string $path
 	 * @return bool
 	 * @since 1.20
 	 */

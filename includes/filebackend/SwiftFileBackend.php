@@ -190,7 +190,7 @@ class SwiftFileBackend extends FileBackendStore {
 	}
 
 	/**
-	 * @param $headers array
+	 * @param array $headers
 	 * @return array
 	 */
 	protected function sanitizeHdrs( array $headers ) {
@@ -202,7 +202,7 @@ class SwiftFileBackend extends FileBackendStore {
 	}
 
 	/**
-	 * @param $disposition string Content-Disposition header value
+	 * @param string $disposition Content-Disposition header value
 	 * @return string Truncated Content-Disposition header value to meet Swift limits
 	 */
 	protected function truncDisp( $disposition ) {
@@ -783,7 +783,7 @@ class SwiftFileBackend extends FileBackendStore {
 	/**
 	 * Fill in any missing object metadata and save it to Swift
 	 *
-	 * @param $obj CF_Object
+	 * @param CF_Object $obj
 	 * @param string $path Storage path to object
 	 * @return bool Success
 	 * @throws Exception cloudfiles exceptions
@@ -923,7 +923,7 @@ class SwiftFileBackend extends FileBackendStore {
 	 * @param string $fullCont Resolved container name
 	 * @param string $dir Resolved storage directory with no trailing slash
 	 * @param string|null $after Storage path of file to list items after
-	 * @param $limit integer Max number of items to list
+	 * @param integer $limit Max number of items to list
 	 * @param array $params Parameters for getDirectoryList()
 	 * @return Array List of resolved paths of directories directly under $dir
 	 */
@@ -997,7 +997,7 @@ class SwiftFileBackend extends FileBackendStore {
 	 * @param string $fullCont Resolved container name
 	 * @param string $dir Resolved storage directory with no trailing slash
 	 * @param string|null $after Storage path of file to list items after
-	 * @param $limit integer Max number of items to list
+	 * @param integer $limit Max number of items to list
 	 * @param array $params Parameters for getDirectoryList()
 	 * @return Array List of resolved paths of files under $dir
 	 */
@@ -1311,7 +1311,7 @@ class SwiftFileBackend extends FileBackendStore {
 	 * In general, we don't allow listings to end-users. It's not useful, isn't well-defined
 	 * (lists are truncated to 10000 item with no way to page), and is just a performance risk.
 	 *
-	 * @param $contObj CF_Container Swift container
+	 * @param CF_Container $contObj Swift container
 	 * @param array $readGrps List of read access routes
 	 * @param array $writeGrps List of write access routes
 	 * @return Status
@@ -1419,7 +1419,7 @@ class SwiftFileBackend extends FileBackendStore {
 	/**
 	 * Get the cache key for a container
 	 *
-	 * @param $username string
+	 * @param string $username
 	 * @return string
 	 */
 	private function getCredsCacheKey( $username ) {
@@ -1499,9 +1499,9 @@ class SwiftFileBackend extends FileBackendStore {
 	 * Log an unexpected exception for this backend.
 	 * This also sets the Status object to have a fatal error.
 	 *
-	 * @param $e Exception
-	 * @param $status Status|null
-	 * @param $func string
+	 * @param Exception $e
+	 * @param Status $status|null
+	 * @param string $func
 	 * @param array $params
 	 * @return void
 	 */
@@ -1536,7 +1536,15 @@ class SwiftFileOpHandle extends FileBackendStoreOpHandle {
 	/** @var Array */
 	public $affectedObjects = array();
 
-	public function __construct( $backend, array $params, $call, CF_Async_Op $cfOp ) {
+	/**
+	 * @param SwiftFileBackend $backend
+	 * @param array $params
+	 * @param string $call
+	 * @param CF_Async_Op $cfOp
+	 */
+	public function __construct(
+		SwiftFileBackend $backend, array $params, $call, CF_Async_Op $cfOp
+	) {
 		$this->backend = $backend;
 		$this->params = $params;
 		$this->call = $call;
@@ -1568,7 +1576,7 @@ abstract class SwiftFileBackendList implements Iterator {
 	const PAGE_SIZE = 9000; // file listing buffer size
 
 	/**
-	 * @param $backend SwiftFileBackend
+	 * @param SwiftFileBackend $backend
 	 * @param string $fullCont Resolved container name
 	 * @param string $dir Resolved directory relative to container
 	 * @param array $params
@@ -1642,8 +1650,8 @@ abstract class SwiftFileBackendList implements Iterator {
 	 *
 	 * @param string $container Resolved container name
 	 * @param string $dir Resolved path relative to container
-	 * @param $after string|null
-	 * @param $limit integer
+	 * @param string $after|null
+	 * @param integer $limit
 	 * @param array $params
 	 * @return Traversable|Array|null Returns null on failure
 	 */

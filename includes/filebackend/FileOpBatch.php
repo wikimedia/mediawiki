@@ -51,7 +51,7 @@ class FileOpBatch {
 	 *
 	 * @param array $performOps List of FileOp operations
 	 * @param array $opts Batch operation options
-	 * @param $journal FileJournal Journal to log operations to
+	 * @param FileJournal $journal Journal to log operations to
 	 * @return Status
 	 */
 	public static function attempt( array $performOps, array $opts, FileJournal $journal ) {
@@ -145,8 +145,8 @@ class FileOpBatch {
 	 * within any given sub-batch do not depend on each other.
 	 * This will abort remaining ops on failure.
 	 *
-	 * @param $pPerformOps Array
-	 * @param $status Status
+	 * @param Array $pPerformOps
+	 * @param Status $status
 	 * @return bool Success
 	 */
 	protected static function runParallelBatches( array $pPerformOps, Status $status ) {
