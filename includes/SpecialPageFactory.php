@@ -94,6 +94,7 @@ class SpecialPageFactory {
 		'PasswordReset'             => 'SpecialPasswordReset',
 		'DeletedContributions'      => 'DeletedContributionsPage',
 		'Preferences'               => 'SpecialPreferences',
+		'ResetTokens'               => 'SpecialResetTokens',
 		'Contributions'             => 'SpecialContributions',
 		'Listgrouprights'           => 'SpecialListGroupRights',
 		'Listusers'                 => 'SpecialListUsers',

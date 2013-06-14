@@ -946,19 +946,6 @@ class Preferences {
 			);
 		}
 
-		if ( $wgEnableAPI ) {
-			# Some random gibberish as a proposed default
-			// @todo Fixme: this should use CryptRand but we may not want to read urandom on every view
-			$hash = sha1( mt_rand() . microtime( true ) );
-
-			$defaultPreferences['watchlisttoken'] = array(
-				'type' => 'text',
-				'section' => 'watchlist/advancedwatchlist',
-				'label-message' => 'prefs-watchlist-token',
-				'help' => $context->msg( 'prefs-help-watchlist-token', $hash )->escaped()
-			);
-		}
-
 		$watchTypes = array(
 			'edit' => 'watchdefault',
 			'move' => 'watchmoves',
@@ -978,6 +965,20 @@ class Preferences {
 					'label-message' => "tog-$pref",
 				);
 			}
+		}
+
+		if ( $wgEnableAPI ) {
+			$defaultPreferences['watchlisttoken'] = array(
+				'type' => 'api',
+			);
+			$defaultPreferences['watchlisttoken-info'] = array(
+				'type' => 'info',
+				'section' => 'watchlist/tokenwatchlist',
+				'label-message' => 'prefs-watchlist-token',
+				'default' => $user->getTokenFromOption( 'watchlisttoken' ),
+				// 'help' => $context->msg( 'prefs-help-watchlist-token2' )->parse()
+				'help-message' => 'prefs-help-watchlist-token2',
+			);
 		}
 	}
 
