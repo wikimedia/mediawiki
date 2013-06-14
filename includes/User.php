@@ -2363,6 +2363,50 @@ class User {
 	}
 
 	/**
+	 * Get a token stored in the preferences (like the watchlist one),
+	 * resetting it if it's empty.
+	 *
+	 * @param string $oname The option name to retrieve the token from
+	 * @return string|bool User's current value for the option, or false if this option is disabled.
+	 * @see resetTokenFromOption()
+	 * @see getOption()
+	 */
+	public function getTokenFromOption( $oname ) {
+		global $wgHiddenPrefs;
+		if ( in_array( $oname, $wgHiddenPrefs ) ) {
+			return false;
+		}
+
+		$token = $this->getOption( $oname );
+		if ( !$token ) {
+			$this->resetTokenFromOption( $oname );
+			$token = $this->getOption( $oname );
+		}
+		return $token;
+	}
+
+	/**
+	 * Reset a token stored in the preferences (like the watchlist one)
+	 * and save user's preferences.
+	 *
+	 * @param string $oname The option name to reset the token in
+	 * @return bool False if this option is disabled, otherwise true
+	 * @see getTokenFromOption()
+	 * @see setOption()
+	 */
+	public function resetTokenFromOption( $oname ) {
+		global $wgHiddenPrefs;
+		if ( in_array( $oname, $wgHiddenPrefs ) ) {
+			return false;
+		}
+
+		$token = MWCryptRand::generateHex( 40 );
+		$this->setOption( $oname, $token );
+		$this->saveSettings();
+		return true;
+	}
+
+	/**
 	 * Return a list of the types of user options currently returned by
 	 * User::getOptionKinds().
 	 *
