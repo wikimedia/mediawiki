@@ -243,6 +243,7 @@ $wgIgnoredMessages = array(
 	'version-summary',
 	'tags-summary',
 	'comparepages-summary',
+	'resettokens-summary',
 	'version-entrypoints-index-php',
 	'version-entrypoints-api-php',
 	'version-entrypoints-load-php',

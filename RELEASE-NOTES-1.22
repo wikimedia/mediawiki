@@ -151,6 +151,9 @@ production.
   in the history or when previewing changes while editing).
 * New hook 'IsUploadAllowedFromUrl' is added which can be used to intercept uploads by
   URL, useful for blacklisting specific URLs
+* (bug 21912) Watchlist token implementation has been refactored and
+  Special:ResetTokens was added to allow users to reset their tokens
+  instead of presenting them in Preferences.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
