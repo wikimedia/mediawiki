@@ -97,15 +97,4 @@ $wgAutoloadClasses += array(
 	# tests/parser
 	'ParserTest' => "$testDir/parser/parserTest.inc",
 	'ParserTestParserHook' => "$testDir/parser/parserTestsParserHook.php",
-
-	# tests/selenium
-	'Selenium' => "$testDir/selenium/Selenium.php",
-	'SeleniumLoader' => "$testDir/selenium/SeleniumLoader.php",
-	'SeleniumTestCase' => "$testDir/selenium/SeleniumTestCase.php",
-	'SeleniumTestConsoleLogger' => "$testDir/selenium/SeleniumTestConsoleLogger.php",
-	'SeleniumTestConstants' => "$testDir/selenium/SeleniumTestConstants.php",
-	'SeleniumTestHTMLLogger' => "$testDir/selenium/SeleniumTestHTMLLogger.php",
-	'SeleniumTestListener' => "$testDir/selenium/SeleniumTestListener.php",
-	'SeleniumTestSuite' => "$testDir/selenium/SeleniumTestSuite.php",
-	'SeleniumConfig' => "$testDir/selenium/SeleniumConfig.php",
 );

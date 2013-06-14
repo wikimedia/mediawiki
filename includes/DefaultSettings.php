@@ -6288,15 +6288,6 @@ $wgPoolCounterConf = null;
 $wgUploadMaintenance = false;
 
 /**
- * Allows running of selenium tests via maintenance/tests/RunSeleniumTests.php
- */
-$wgEnableSelenium = false;
-$wgSeleniumTestConfigs = array();
-$wgSeleniumConfigFile = null;
-$wgDBtestuser = ''; //db user that has permission to create and drop the test databases only
-$wgDBtestpassword = '';
-
-/**
  * Associative array mapping namespace IDs to the name of the content model pages in that namespace should have by
  * default (use the CONTENT_MODEL_XXX constants). If no special content type is defined for a given namespace,
  * pages in that namespace will  use the CONTENT_MODEL_WIKITEXT (except for the special case of JS and CS pages).

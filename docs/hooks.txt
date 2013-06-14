@@ -1990,8 +1990,6 @@ $title : Current Title object being displayed in search results.
 'SearchableNamespaces': An option to modify which namespaces are searchable.
 &$arr : Array of namespaces ($nsId => $name) which will be used.
 
-'SeleniumSettings': TODO
-
 'SetupAfterCache': Called in Setup.php, after cache objects are set
 
 'ShowMissingArticle': Called when generating the output for a non-existent page.
