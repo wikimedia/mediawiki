@@ -115,8 +115,8 @@ class FSFileBackend extends FileBackendStore {
 	 * Given the short (unresolved) and full (resolved) name of
 	 * a container, return the file system path of the container.
 	 *
-	 * @param $shortCont string
-	 * @param $fullCont string
+	 * @param string $shortCont
+	 * @param string $fullCont
 	 * @return string|null
 	 */
 	protected function containerFSRoot( $shortCont, $fullCont ) {
@@ -737,8 +737,8 @@ class FSFileBackend extends FileBackendStore {
 	}
 
 	/**
-	 * @param $errno integer
-	 * @param $errstr string
+	 * @param integer $errno
+	 * @param string $errstr
 	 * @return bool
 	 * @access private
 	 */
@@ -757,13 +757,15 @@ class FSFileOpHandle extends FileBackendStoreOpHandle {
 	public $chmodPath; // string; file to chmod
 
 	/**
-	 * @param $backend
-	 * @param $params array
-	 * @param $call
-	 * @param $cmd
-	 * @param $chmodPath null
+	 * @param FSFileBackend $backend
+	 * @param array $params
+	 * @param string $call
+	 * @param string $cmd
+	 * @param integer|null $chmodPath
 	 */
-	public function __construct( $backend, array $params, $call, $cmd, $chmodPath = null ) {
+	public function __construct(
+		FSFileBackend $backend, array $params, $call, $cmd, $chmodPath = null
+	) {
 		$this->backend = $backend;
 		$this->params = $params;
 		$this->call = $call;
@@ -789,7 +791,7 @@ abstract class FSFileBackendList implements Iterator {
 
 	/**
 	 * @param string $dir file system directory
-	 * @param $params array
+	 * @param array $params
 	 */
 	public function __construct( $dir, array $params ) {
 		$path = realpath( $dir ); // normalize
@@ -889,7 +891,7 @@ abstract class FSFileBackendList implements Iterator {
 	 * Return only the relative path and normalize slashes to FileBackend-style.
 	 * Uses the "real path" since the suffix is based upon that.
 	 *
-	 * @param $path string
+	 * @param string $path
 	 * @return string
 	 */
 	protected function getRelPath( $dir ) {

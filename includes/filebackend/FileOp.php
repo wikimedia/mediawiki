@@ -57,8 +57,8 @@ abstract class FileOp {
 	/**
 	 * Build a new batch file operation transaction
 	 *
-	 * @param $backend FileBackendStore
-	 * @param $params Array
+	 * @param FileBackendStore $backend
+	 * @param Array $params
 	 * @throws MWException
 	 */
 	final public function __construct( FileBackendStore $backend, array $params ) {
@@ -85,7 +85,7 @@ abstract class FileOp {
 	/**
 	 * Normalize $item or anything in $item that is a valid storage path
 	 *
-	 * @param $item string|array
+	 * @param string $item|array
 	 * @return string|Array
 	 */
 	protected function normalizeAnyStoragePaths( $item ) {
@@ -105,7 +105,7 @@ abstract class FileOp {
 	/**
 	 * Normalize a string if it is a valid storage path
 	 *
-	 * @param $path string
+	 * @param string $path
 	 * @return string
 	 */
 	protected static function normalizeIfValidStoragePath( $path ) {
@@ -119,7 +119,7 @@ abstract class FileOp {
 	/**
 	 * Set the batch UUID this operation belongs to
 	 *
-	 * @param $batchId string
+	 * @param string $batchId
 	 * @return void
 	 */
 	final public function setBatchId( $batchId ) {
@@ -129,7 +129,7 @@ abstract class FileOp {
 	/**
 	 * Get the value of the parameter with the given name
 	 *
-	 * @param $name string
+	 * @param string $name
 	 * @return mixed Returns null if the parameter is not set
 	 */
 	final public function getParam( $name ) {
@@ -240,7 +240,7 @@ abstract class FileOp {
 	 * This must update $predicates for each path that the op can change
 	 * except when a failing status object is returned.
 	 *
-	 * @param $predicates Array
+	 * @param Array $predicates
 	 * @return Status
 	 */
 	final public function precheck( array &$predicates ) {
@@ -317,7 +317,7 @@ abstract class FileOp {
 	/**
 	 * Adjust params to FileBackendStore internal file calls
 	 *
-	 * @param $params Array
+	 * @param Array $params
 	 * @return Array (required params list, optional params list)
 	 */
 	protected function setFlags( array $params ) {
@@ -347,7 +347,7 @@ abstract class FileOp {
 	 * Also set the destExists, overwriteSameCase and sourceSha1 member variables.
 	 * A bad status will be returned if there is no chance it can be overwritten.
 	 *
-	 * @param $predicates Array
+	 * @param Array $predicates
 	 * @return Status
 	 */
 	protected function precheckDestExistence( array $predicates ) {
@@ -396,7 +396,7 @@ abstract class FileOp {
 	 * Check if a file will exist in storage when this operation is attempted
 	 *
 	 * @param string $source Storage path
-	 * @param $predicates Array
+	 * @param Array $predicates
 	 * @return bool
 	 */
 	final protected function fileExists( $source, array $predicates ) {
@@ -412,7 +412,7 @@ abstract class FileOp {
 	 * Get the SHA-1 of a file in storage when this operation is attempted
 	 *
 	 * @param string $source Storage path
-	 * @param $predicates Array
+	 * @param Array $predicates
 	 * @return string|bool False on failure
 	 */
 	final protected function fileSha1( $source, array $predicates ) {
@@ -438,7 +438,7 @@ abstract class FileOp {
 	/**
 	 * Log a file operation failure and preserve any temp files
 	 *
-	 * @param $action string
+	 * @param string $action
 	 * @return void
 	 */
 	final public function logFailure( $action ) {

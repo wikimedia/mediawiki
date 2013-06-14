@@ -55,7 +55,7 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * @see FileBackend::__construct()
 	 *
-	 * @param $config Array
+	 * @param array $config
 	 */
 	public function __construct( array $config ) {
 		parent::__construct( $config );
@@ -81,7 +81,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * written under it, and that any file already there is writable.
 	 * Backends using key/value stores should check if the container exists.
 	 *
-	 * @param $storagePath string
+	 * @param string $storagePath
 	 * @return bool
 	 */
 	abstract public function isPathUsableInternal( $storagePath );
@@ -1278,7 +1278,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * Check if a container name is valid.
 	 * This checks for for length and illegal characters.
 	 *
-	 * @param $container string
+	 * @param string $container
 	 * @return bool
 	 */
 	final protected static function isValidContainerName( $container ) {
@@ -1300,7 +1300,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * this means that the path can only refer to a directory and can only
 	 * be scanned by looking in all the container shards.
 	 *
-	 * @param $storagePath string
+	 * @param string $storagePath
 	 * @return Array (container, path, container suffix) or (null, null, null) if invalid
 	 */
 	final protected function resolveStoragePath( $storagePath ) {
@@ -1340,7 +1340,7 @@ abstract class FileBackendStore extends FileBackend {
 	 *
 	 * @see FileBackendStore::resolveStoragePath()
 	 *
-	 * @param $storagePath string
+	 * @param string $storagePath
 	 * @return Array (container, path) or (null, null) if invalid
 	 */
 	final protected function resolveStoragePathReal( $storagePath ) {
@@ -1405,7 +1405,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * If greater than 0, then all file storage paths within
 	 * the container are required to be hashed accordingly.
 	 *
-	 * @param $container string
+	 * @param string $container
 	 * @return Array (integer levels, integer base, repeat flag) or (0, 0, false)
 	 */
 	final protected function getContainerHashLevels( $container ) {
@@ -1425,7 +1425,7 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * Get a list of full container shard suffixes for a container
 	 *
-	 * @param $container string
+	 * @param string $container
 	 * @return Array
 	 */
 	final protected function getContainerSuffixes( $container ) {
@@ -1443,7 +1443,7 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * Get the full container name, including the wiki ID prefix
 	 *
-	 * @param $container string
+	 * @param string $container
 	 * @return string
 	 */
 	final protected function fullContainerName( $container ) {
@@ -1459,7 +1459,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * This is intended for internal use, such as encoding illegal chars.
 	 * Subclasses can override this to be more restrictive.
 	 *
-	 * @param $container string
+	 * @param string $container
 	 * @return string|null
 	 */
 	protected function resolveContainerName( $container ) {
@@ -1519,7 +1519,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * used in a list of container names, storage paths, or FileOp objects.
 	 * This loads the persistent cache values into the process cache.
 	 *
-	 * @param $items Array
+	 * @param Array $items
 	 * @return void
 	 */
 	final protected function primeContainerCache( array $items ) {
@@ -1736,7 +1736,7 @@ abstract class FileBackendStoreShardListIterator extends FilterIterator {
 	protected $multiShardPaths = array(); // (rel path => 1)
 
 	/**
-	 * @param $backend FileBackendStore
+	 * @param FileBackendStore $backend
 	 * @param string $container Full storage container name
 	 * @param string $dir Storage directory relative to container
 	 * @param array $suffixes List of container shard suffixes
