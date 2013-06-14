@@ -196,6 +196,18 @@ $messages = array(
 'oct' => 'Кас',
 'nov' => 'Ліс',
 'dec' => 'Сне',
+'january-date' => '$1 студзеня',
+'february-date' => '$1 лютага',
+'march-date' => '$1 сакавіка',
+'april-date' => '$1 красавіка',
+'may-date' => '$1 мая',
+'june-date' => '$1 чэрвеня',
+'july-date' => '$1 ліпеня',
+'august-date' => '$1 жніўня',
+'september-date' => '$1 верасня',
+'october-date' => '$1 кастрычніка',
+'november-date' => '$1 лістапада',
+'december-date' => '$1 снежня',
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Катэгорыя|Катэгорыі}}',
@@ -221,6 +233,7 @@ $messages = array(
 'newwindow' => '(адкрыецца ў новым акне)',
 'cancel' => 'Нічога',
 'moredotdotdot' => 'Яшчэ...',
+'morenotlisted' => 'Больш нічога няма...',
 'mypage' => 'Уласная старонка',
 'mytalk' => 'Размовы',
 'anontalk' => 'Размова для гэтага IP',
@@ -254,6 +267,7 @@ $messages = array(
 'namespaces' => 'Прасторы імёнаў',
 'variants' => 'Варыянты',
 
+'navigation-heading' => 'Навігацыя',
 'errorpagetitle' => 'Памылка',
 'returnto' => 'Вярнуцца да $1.',
 'tagline' => 'З пляцоўкі {{SITENAME}}.',
@@ -275,6 +289,7 @@ $messages = array(
 'create-this-page' => 'Стварыць старонку',
 'delete' => 'сцерці',
 'deletethispage' => 'Сцерці гэту старонку',
+'undeletethispage' => 'Аднавіць гэту старонку',
 'undelete_short' => 'Аднавіць {{PLURAL:$1|адну праўку|$1 правак}}',
 'viewdeleted_short' => 'Паказаць {{PLURAL:$1|адну сцёртую праўку|$1 сцёртыя праўкі}}',
 'protect' => 'Ахова',
@@ -351,6 +366,8 @@ $1',
 'youhavenewmessages' => 'Вы маеце $1 ($2).',
 'newmessageslink' => 'новыя паведамленні',
 'newmessagesdifflink' => 'розн. з найноўшай версіяй',
+'youhavenewmessagesfromusers' => 'Вы атрымалі $1 ад {{PLURAL:$3|$3 ўдзельніка|$3 удзельнікаў}} ($2).',
+'youhavenewmessagesmanyusers' => 'Вы атрымалі $1 ад мноства карыстальнікаў ($2).',
 'youhavenewmessagesmulti' => 'У вас ёсць новыя паведамленні на $1',
 'editsection' => 'правіць',
 'editold' => 'правіць',
@@ -486,9 +503,18 @@ $2',
 'welcomecreation-msg' => 'Ваш рахунак быў створаны.
 Не забудзьцеся дапасаваць [[Special:Preferences|персанальныя настаўленні]] для {{SITENAME}}.',
 'yourname' => 'Імя ўдзельніка',
+'userlogin-yourname' => 'Імя ўліковага запісу',
+'userlogin-yourname-ph' => 'Увядзіце імя вашага ўліковага запісу',
 'yourpassword' => 'Пароль',
+'userlogin-yourpassword' => 'Пароль',
+'userlogin-yourpassword-ph' => 'Увядзіце ваш пароль',
+'createacct-yourpassword-ph' => 'Увядзіце пароль',
 'yourpasswordagain' => 'Паўтарыце пароль',
+'createacct-yourpasswordagain' => 'Пацвердзіце пароль',
+'createacct-yourpasswordagain-ph' => 'Увядзіце пароль яшчэ раз',
 'remembermypassword' => "Памятаць мяне на гэтым камп'ютары (не даўжэй за $1 {{PLURAL:$1|дзень|дзён}})",
+'userlogin-remembermypassword' => 'Заставацца ў сістэме',
+'userlogin-signwithsecure' => 'Выкарыстоўваць абароненае злучэнне',
 'securelogin-stick-https' => 'Працягваць злучэнне па HTTPS пасля ўвахода',
 'yourdomainname' => 'Ваш дамен',
 'externaldberror' => 'Або памылка вонкавай аўтэнтыкацыі ў базе дадзеных, або вам не дазволена абнаўляць свой вонкавы рахунак.',
@@ -740,6 +766,7 @@ $2
 'updated' => '(абноўлена)',
 'note' => "'''Заўвага:'''",
 'previewnote' => "'''Памятайце, гэта папярэдні паказ; праўкі яшчэ не замацаваныя!'''",
+'continue-editing' => 'Працягнуць рэдагаванне',
 'previewconflict' => 'Гэта папярэдні паказ магчымага выніку замацоўвання актуальнага стану крынічнага тэксту ў верхнім тэкставым полі.',
 'session_fail_preview' => "'''Не ўдалося апрацаваць вашую праўку, таму што сервер згубіў звесткі аб вашым сеансе.
 Паспрабуйце, калі ласка, ізноў. Калі і тады не атрымаецца, паспрабуйце [[Special:UserLogout|выйсці з сістэмы]] і зайсці ізноў.'''",
@@ -815,6 +842,12 @@ $2
 Такая ўжо існуе.',
 'editwarning-warning' => 'Выхад з гэтай старонкі прывядзе да страты правак, якія вы зрабілі. 
 Калі Вы зарэгістраваныя ў сістэме, Вы можаце адключыць гэта папярэджанне ў закладцы "Праца" Вашых настаўленняў.',
+
+# Content models
+'content-model-wikitext' => 'вікі-тэкст',
+'content-model-text' => 'звычайны тэкст',
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "Увага: На старонцы занадта шмат працаёмістых зваротаў да парсера.
@@ -1922,6 +1955,7 @@ $1',
 'mailnologin' => 'Няма эл.адрасу',
 'mailnologintext' => 'Трэба [[Special:UserLogin|ўвайсці ў сістэму]] і мець пацверджаны адрас эл.пошты ў сваіх [[Special:Preferences|настáўленнях]], каб слаць эл.пошту іншым удзельнікам.',
 'emailuser' => 'Эл.пошта ўдзельніка',
+'emailuser-title-notarget' => 'Напісанне электроннага ліста ўдзельніку',
 'emailpage' => 'Зварот да ўдзельніка праз эл.пошту',
 'emailpagetext' => 'Тут можна выслаць эл.пошту гэтаму ўдзельніку.
 Адрас эл.пошты, уведзены вамі ў [[Special:Preferences|сваіх настаўленнях]], з\'явіцца ў полі "From" вашага ліста, і атрымальнік зможа адказаць на ваш ліст.',
@@ -2699,11 +2733,16 @@ $1',
 
 # Info page
 'pageinfo-title' => 'Інфармацыя для "$1"',
-'pageinfo-header-edits' => 'Змены',
+'pageinfo-header-basic' => 'Агульныя звесткі',
+'pageinfo-header-edits' => 'Гісторыя правак',
+'pageinfo-robot-index' => 'Індэксуюцца',
+'pageinfo-robot-noindex' => 'Не індэксуюцца',
 'pageinfo-views' => 'Колькасць праглядаў',
 'pageinfo-watchers' => 'Колькасць назіральнікаў',
-'pageinfo-edits' => 'Колькасць правак:',
-'pageinfo-authors' => 'Колькасць розных аўтараў',
+'pageinfo-lastuser' => 'Апошні рэдактар',
+'pageinfo-lasttime' => 'Дата апошняй праўкі',
+'pageinfo-edits' => 'Агульная колькасць правак',
+'pageinfo-authors' => 'Агульная колькасць розных аўтараў',
 
 # Skin names
 'skinname-cologneblue' => 'Сіні Кёльн',
@@ -3379,6 +3418,8 @@ MediaWiki распаўсюджваецца, спадзеючыся на прыд
 'version-software' => 'Устаноўленыя праграмныя прадукты',
 'version-software-product' => 'Прадукт',
 'version-software-version' => 'Версія',
+'version-entrypoints-header-entrypoint' => 'Кропка ўваходу',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Пошук дублікатных файлаў',

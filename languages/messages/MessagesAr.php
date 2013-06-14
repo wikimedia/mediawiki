@@ -610,7 +610,7 @@ $messages = array(
 'listingcontinuesabbrev' => 'يُتبع',
 'index-category' => 'صفحات مفهرسة',
 'noindex-category' => 'صفحات غير مفهرسة',
-'broken-file-category' => 'صفحات تحتوي روابط ملفات معطوبة',
+'broken-file-category' => 'صفحات تحوي روابط ملفات معطوبة',
 
 'about' => 'عن هذه الويكي',
 'article' => 'صفحة محتوى',

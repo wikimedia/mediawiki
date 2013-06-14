@@ -1551,7 +1551,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'userrights-groups-help' => 'Możesz zmienić przynależność tego użytkownika do podanych grup.
 * Zaznaczone pole oznacza przynależność użytkownika do danej grupy.
 * Niezaznaczone pole oznacza, że użytkownik nie należy do danej grupy.
-* Gwiazdka * informuje, że nie możesz usunąć użytkownika z grupy po dodaniu do niej lub dodać po usunięciu z grupy.',
+* Gwiazdka * informuje, że nie możesz usunąć użytkownika z grupy po dodaniu do niej lub dodać po usunięciu.',
 'userrights-reason' => 'Powód',
 'userrights-no-interwiki' => 'Nie masz dostępu do edycji uprawnień na innych wiki.',
 'userrights-nodatabase' => 'Baza danych $1 nie istnieje lub nie jest lokalna.',

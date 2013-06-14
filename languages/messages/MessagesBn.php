@@ -549,7 +549,7 @@ $2',
 'createacct-benefit-heading' => '{{SITENAME}} আপনার মত লোকেরই তৈরি।',
 'createacct-benefit-body1' => '{{PLURAL:$1|টি সম্পাদনা}}',
 'createacct-benefit-body2' => '{{PLURAL:$1|টি পাতা}}',
-'createacct-benefit-body3' => 'জন সাম্প্রতিক {{PLURAL:$1|অবদানকারী}}',
+'createacct-benefit-body3' => 'সাম্প্রতিক {{PLURAL:$1|অবদানকারী}}',
 'badretype' => "আপনার প্রবেশ করানো শব্দচাবি'টি মিলছেনা।",
 'userexists' => 'এই ব্যবহারকারী নামটি ইতমধ্যে ব্যবহার করা হয়েছে।
 অনুগ্রহ করে অন্য নাম বেছে নিন।',

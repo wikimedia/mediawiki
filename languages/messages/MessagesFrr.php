@@ -187,7 +187,7 @@ $messages = array(
 'vector-action-protect' => 'Seekre',
 'vector-action-undelete' => 'Weder iinstel',
 'vector-action-unprotect' => 'Sidjenseekerhaid',
-'vector-simplesearch-preference' => 'Ianfacher sjüklist iinstel (bluas bi Vector)',
+'vector-simplesearch-preference' => 'Ianfacher schüklist iinstel (bluas bi Vector)',
 'vector-view-create' => 'Maage',
 'vector-view-edit' => 'Bewerke',
 'vector-view-history' => 'Ferluup uunluke',
@@ -552,7 +552,7 @@ Iar en e-mail faan ööder brükern auer det e-mail-funktjuun uunnimen wurd koon
 'acct_creation_throttle_hit' => 'Beschükern faan detheer wiki mä din IP-adres haa di leetst dai {{PLURAL:$1|1 brükerkonto|$1 brükerkontos}} iinracht. Muar san ei tuläät.
 
 Beschükern mä detdiar IP-adres kön daalang nian brükerkontos muar iinracht.',
-'emailauthenticated' => 'Din e-mail-adräs word di $2 am e klook $3 bestääsied.',
+'emailauthenticated' => 'Din e-mail-adres as di $2 am a klook $3 gudkäänd wurden.',
 'emailnotauthenticated' => 'Din e-mail-adres as noch ei gudkäänd. Jodiar e-mail-funktjuunen kön iarst brükt wurd, wan det adres gudkäänd wurden as.',
 'noemailprefs' => 'Du en e-mail-adres uun din iinstelangen iin, amdat dü jodiar funktjuunen brük könst.',
 'emailconfirmlink' => 'E-mail-adres gudkään',
@@ -1101,7 +1101,7 @@ Dü könst det uun't [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}
 'search-interwiki-default' => '$1 resultaaten:',
 'search-interwiki-more' => '(muar)',
 'search-relatedarticle' => 'Ferbünjen',
-'mwsuggest-disable' => "Föörslacher för't sjüken deaktiwiare",
+'mwsuggest-disable' => "Föörslacher för't schüken deaktiwiare",
 'searcheverything-enable' => 'Uun arke nöömrüm schük',
 'searchrelated' => 'ferbünjen',
 'searchall' => 'aaltumaal',

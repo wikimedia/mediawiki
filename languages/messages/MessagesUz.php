@@ -1495,7 +1495,7 @@ Umumiy omborda [[:$1]] mavjud. Faylning bu nomga qayta nomlanishi faylning umumi
 'export' => 'Sahifalar eksporti',
 'export-submit' => 'Eksport',
 'export-addcattext' => "Shu turkumdan sahifalarni qo'shish:",
-'export-addcat' => "Qo'shish",
+'export-addcat' => 'Qoʻshish',
 'export-addnstext' => "Shu nomfazodan sahifalarni qo'shish:",
 'export-addns' => "Qo'shish",
 'export-download' => 'Fayl sifatida saqlash',
