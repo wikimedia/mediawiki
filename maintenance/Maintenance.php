@@ -426,7 +426,7 @@ abstract class Maintenance {
 		$this->addOption( 'server', "The protocol and server name to use in URLs, e.g. " .
 				"http://en.wikipedia.org. This is sometimes necessary because " .
 				"server name detection may fail in command line scripts.", false, true );
-		$this->addOption( 'profiler', 'Set to "text" or "trace" show profiling output', false, true );
+		$this->addOption( 'profiler', 'Set to "text" or "trace" to show profiling output', false, true );
 
 		# Save generic options to display them separately in help
 		$this->mGenericParameters = $this->mParams;
