@@ -138,6 +138,9 @@ production.
 * (bug 48256) Make brackets in section edit links accessible to CSS.
   They are now wrapped in <span class="mw-editsection-bracket" />.
 * (bug 8480) Allow handler specific parameters in galleries (like page number)
+* (bug 21912) Watchlist token implementation has been refactored and
+  Special:ResetTokens was added to allow users to reset their tokens
+  instead of presenting them in Preferences.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
