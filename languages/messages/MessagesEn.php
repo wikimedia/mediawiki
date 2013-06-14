@@ -450,6 +450,7 @@ $specialPageAliases = array(
 	'Recentchanges'             => array( 'RecentChanges' ),
 	'Recentchangeslinked'       => array( 'RecentChangesLinked', 'RelatedChanges' ),
 	'Redirect'                  => array( 'Redirect' ),
+	'ResetTokens'               => array( 'ResetTokens' ),
 	'Revisiondelete'            => array( 'RevisionDelete' ),
 	'Search'                    => array( 'Search' ),
 	'Shortpages'                => array( 'ShortPages' ),
@@ -1330,6 +1331,20 @@ Temporary password: $2',
 'changeemail-submit'   => 'Change email',
 'changeemail-cancel'   => 'Cancel',
 
+# Special:ResetTokens
+'resettokens'                 => 'Reset tokens',
+'resettokens-summary'         => '', # do not translate or duplicate this message to other languages
+'resettokens-text'            => 'You can reset tokens which allow access to certain private data associated with your account here.
+
+You should do it if you accidentally shared them with someone or if your account has been compromised.',
+'resettokens-no-tokens'       => 'There are no tokens to reset.',
+'resettokens-legend'          => 'Reset tokens',
+'resettokens-tokens'          => 'Tokens:',
+'resettokens-token-label'     => '$1 (current value: $2)',
+'resettokens-watchlist-token' => 'Watchlist web feed token',
+'resettokens-done'            => 'Tokens reset.',
+'resettokens-resetbutton'     => 'Reset selected tokens',
+
 # Edit page toolbar
 'bold_sample'     => 'Bold text',
 'bold_tip'        => 'Bold text',
@@ -1914,9 +1929,9 @@ Note that their indexes of {{SITENAME}} content may be out of date.',
 'recentchangesdays-max'         => 'Maximum $1 {{PLURAL:$1|day|days}}',
 'recentchangescount'            => 'Number of edits to show by default:',
 'prefs-help-recentchangescount' => 'This includes recent changes, page histories, and logs.',
-'prefs-help-watchlist-token'    => "Filling in this field with a secret key will generate an RSS feed for your watchlist.
-Anyone who knows the key in this field will be able to read your watchlist, so choose a secure value.
-Here's a randomly-generated value you can use: $1",
+'prefs-help-watchlist-token2'   => "This is the secret key to the web feed of your watchlist.
+Anyone who knows it will be able to read your watchlist, so do not share it.
+[[Special:ResetTokens|Click here if you need to reset it]].",
 'savedprefs'                    => 'Your preferences have been saved.',
 'timezonelegend'                => 'Time zone:',
 'localtime'                     => 'Local time:',
@@ -1991,6 +2006,7 @@ Your email address is not revealed when other users contact you.',
 'prefs-displayrc'               => 'Display options',
 'prefs-displaysearchoptions'    => 'Display options',
 'prefs-displaywatchlist'        => 'Display options',
+'prefs-tokenwatchlist'          => 'Token',
 'prefs-diffs'                   => 'Diffs',
 
 # User preference: email validation using jQuery

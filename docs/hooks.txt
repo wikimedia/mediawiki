@@ -2226,6 +2226,11 @@ $opts: FormOptions for this request
 &$query_options: array of options for the database request
 &$select: Array of columns to select
 
+'SpecialResetTokensTokens': Called when building token list for
+SpecialResetTokens.
+&$tokens: array of token information arrays in the format of
+  array( 'preference' => '<preference-name>', 'label-message' => '<message-key>' )
+
 'SpecialSearchCreateLink': Called when making the message to create a page or
 go to the existing page.
 $t: title object searched for

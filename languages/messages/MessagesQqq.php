@@ -1421,6 +1421,18 @@ See also:
 
 {{Identical|Cancel}}',
 
+# Special:ResetTokens
+'resettokens' => 'Title of [[Special:ResetTokens|special page]].',
+'resettokens-text' => 'Text on [[Special:ResetTokens]].',
+'resettokens-no-tokens' => 'Additional text on [[Special:ResetTokens]] if the user has no tokens.',
+'resettokens-legend' => 'Form legend on [[Special:ResetTokens]].',
+'resettokens-tokens' => 'Form label on [[Special:ResetTokens]].',
+'resettokens-token-label' => 'Label for each checkbox on [[Special:ResetTokens]].
+$1 is short information about the token (for example {{msg-mw|resettokens-watchlist-token}}), $2 is its current value.',
+'resettokens-watchlist-token' => 'Label for watchlist token checkbox on [[Special:ResetTokens]].',
+'resettokens-done' => 'Message shown on [[Special:ResetTokens]] after the tokens are reset.',
+'resettokens-resetbutton' => 'Form submit button on [[Special:ResetTokens]].',
+
 # Edit page toolbar
 'bold_sample' => 'This is the sample text that you get when you press the first button on the left on the edit toolbar.
 
@@ -2552,7 +2564,7 @@ When changing this message, please also update {{msg-mw|vector-editwarning-warni
 'recentchangesdays-max' => 'Shown as hint in [[Special:Preferences]], tab "Recent changes"',
 'recentchangescount' => 'Used in [[Special:Preferences]], tab "Recent changes".',
 'prefs-help-recentchangescount' => 'Used in [[Special:Preferences]], tab "Recent changes".',
-'prefs-help-watchlist-token' => 'Used in [[Special:Preferences]], tab Watchlist.',
+'prefs-help-watchlist-token2' => 'Used in [[Special:Preferences]], tab Watchlist.',
 'savedprefs' => 'This message appears after saving changes to your user preferences.',
 'timezonelegend' => '{{Identical|Time zone}}',
 'localtime' => 'Used as label in [[Special:Preferences#mw-prefsection-datetime|preferences]].',
@@ -2689,11 +2701,8 @@ Used in [[Special:Preferences]], tab "Recent changes". The display options refer
 
 Used in [[Special:Preferences]], tab "Search options". The display options refer to:
 * {{msg-mw|Vector-simplesearch-preference}}',
-'prefs-displaywatchlist' => '"Display" is a noun that specifies the kind of "options". So translate as "options about display", not as "display the options".
-
-Used in [[Special:Preferences]], tab "Watchlist". The display options refer to:
-* {{msg-mw|Prefs-watchlist-days}}
-* {{msg-mw|Prefs-watchlist-edits}}',
+'prefs-tokenwatchlist' => 'Section heading.
+Used in [[Special:Preferences]], tab "Watchlist".',
 'prefs-diffs' => 'Used in [[Special:Preferences]], tab "Misc".',
 
 # User preference: email validation using jQuery
