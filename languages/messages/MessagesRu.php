@@ -86,6 +86,7 @@
  * @author Гусейн
  * @author ОйЛ
  * @author Умар
+ * @author Чаховіч Уладзіслаў
  * @author לערי ריינהארט
  * @author გიორგიმელა
  */
@@ -892,7 +893,7 @@ $2',
 'gotaccountlink' => 'Представьтесь',
 'userlogin-resetlink' => 'Забыли данные для входа?',
 'userlogin-resetpassword-link' => 'Сброс пароля',
-'helplogin-url' => 'Help:Вход в систему',
+'helplogin-url' => 'Help:Представление системе',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Помощь со входом в систему]]',
 'createacct-join' => 'Введите свои данные ниже.',
 'createacct-emailrequired' => 'Адрес электронной почты',

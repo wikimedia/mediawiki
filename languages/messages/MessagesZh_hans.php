@@ -2155,7 +2155,7 @@ $1',
 'querypage-disabled' => '本特殊页面因性能问题而停用。',
 
 # Book sources
-'booksources' => '图书来源',
+'booksources' => '网络书源',
 'booksources-search-legend' => '搜索图书来源',
 'booksources-isbn' => 'ISBN：',
 'booksources-go' => '提交',

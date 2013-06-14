@@ -780,7 +780,7 @@ Tarayıcınızın önbelleğini temizleyene kadar bazı sayfalar sanki hâlâ ot
 'createacct-yourpasswordagain-ph' => 'Parolayı yeniden girin',
 'remembermypassword' => 'Girişimi bu tarayıcıda hatırla (en fazla $1 {{PLURAL:$1|gün|gün}} için)',
 'userlogin-remembermypassword' => 'Oturumumu sürekli açık tut',
-'userlogin-signwithsecure' => 'Güvenli bağlantı kullan',
+'userlogin-signwithsecure' => 'Güvenli bağlantı kullanın',
 'securelogin-stick-https' => "Giriş yaptıktan sonra HTTPS'e bağlı kal",
 'yourdomainname' => 'Alan adınız:',
 'password-change-forbidden' => 'Bu vikide parolanızı değiştiremezsiniz.',

@@ -254,6 +254,18 @@ $messages = array(
 'oct' => 'Okt',
 'nov' => 'Nob',
 'dec' => 'Dis',
+'january-date' => '$1 Enero',
+'february-date' => '$1 Pebrero',
+'march-date' => '$1 Marso',
+'april-date' => '$1 Abril',
+'may-date' => '$1 Mayo',
+'june-date' => '$1 Hunyo',
+'july-date' => '$1 Hulyo',
+'august-date' => '$1 Agosto',
+'september-date' => '$1 Setyembre',
+'october-date' => '$1 Oktubre',
+'november-date' => '$1 Nobyembre',
+'december-date' => '$1 Disyembre',
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Kategorya|Mga kategorya}}',
@@ -305,7 +317,7 @@ $messages = array(
 'vector-action-protect' => 'Ipagsanggalang',
 'vector-action-undelete' => 'Alisin ang pagbubura',
 'vector-action-unprotect' => 'Baguhin ang pagsasanggalang',
-'vector-simplesearch-preference' => 'Paganahin ang pinainam na mga mungkahi sa paghahanap (pabalat na Vector lang)',
+'vector-simplesearch-preference' => 'Paganahin ang pinainam na bar ng paghahanap (pabalat na Vector lang)',
 'vector-view-create' => 'Likhain',
 'vector-view-edit' => 'Baguhin',
 'vector-view-history' => 'Tingnan ang kasaysayan',
@@ -315,6 +327,7 @@ $messages = array(
 'namespaces' => 'Mga ngalan-espasyo',
 'variants' => 'Naiiba pa',
 
+'navigation-heading' => 'Menu ng paglilibot',
 'errorpagetitle' => 'Pagkakamali',
 'returnto' => 'Bumalik sa $1.',
 'tagline' => 'Mula sa {{SITENAME}}',
@@ -348,7 +361,7 @@ $messages = array(
 'talkpagelinktext' => 'Usapan',
 'specialpage' => 'Natatanging pahina',
 'personaltools' => 'Mga kagamitang pansarili',
-'postcomment' => 'Bagong seksyon',
+'postcomment' => 'Bagong seksiyon',
 'articlepage' => 'Tingnan ang pahina ng nilalaman',
 'talk' => 'Usapan',
 'views' => 'Mga anyo',
@@ -472,10 +485,10 @@ Matatagpuan ang isang tala ng mga tamang natatanging pahina sa [[Special:Special
 
 # General errors
 'error' => 'Kamalian',
-'databaseerror' => 'Kamalian sa kalipunan ng dato',
-'dberrortext' => 'Naganap ang isang pagkakamali sa pag-uusisa na pampalaugnayan sa kalipunan ng dato.
+'databaseerror' => 'Kamalian sa kalipunan ng datos',
+'dberrortext' => 'Naganap ang isang pagkakamali sa pag-uusisa na pampalaugnayan sa kalipunan ng datos.
 Maaaring magpahiwatig ito ng isang surot sa loob ng sopwer.
-Ang huling tinangkang pag-uusisa sa kalipunan ng dato ay:
+Ang huling tinangkang pag-uusisa sa kalipunan ng datos ay:
 <blockquote><code>$1</code></blockquote>
 magmula sa loob ng tungkuling "<code>$2</code>".
 Nagbalik ang kalipunan ng dato ng kamalian na "<samp>$3: $4</samp>".',
@@ -537,14 +550,16 @@ Pakisubok na lang ulit pagkaraan ng kaunting mga minuto.",
 'viewyourtext' => "Matitingnan at makukopya mo ang pinagmulan ng '''mga pagbabago''' papunta sa pahinang ito:",
 'protectedinterface' => "Nagbibigay ang pahinang ito ng tekstong panghangganan (''interface'') para sa sopwer, at ikinandado para maiwasan ang pangaabuso.",
 'editinginterface' => "'''Babala:''' Binabago mo ang isang pahinang ginagamit sa pagbibigay ng tekstong panghangganan para sa sopwer.
-Makakaapekto ang mga pagbago sa pahinang ito sa anyo ng hangganang (''interface'') pangtagagamit na para sa ibang mga tagagamit.
-Para sa mga salinwika, paki isang-alang-alang o konsiderahin ang paggamit ng [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], ang proyektong panglokalisasyon ng MediaWiki.",
+Makaaapekto ang mga pagbago sa pahinang ito sa anyo ng hangganang (''interface'') pantagagamit na para sa ibang mga tagagamit sa wiking ito.
+Upang magdagag o magbago ng mga salinwika, isaaalang-alang na lang po ang paggamit ng [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], ang proyekto para sa lokalisasyon ng MediaWiki.",
 'sqlhidden' => '(nakatago ang tanong ng SQL)',
 'cascadeprotected' => 'Nakasanggalang ang pahinang ito mula sa mga pagbabago, dahil kabilang ito sa sumusunod na {{PLURAL:$1|pahinang|mga pahinang}} nakasanggalang sa pamamagitan ng binuhay na opsyong "nahuhulog" (kumakaskada):
 $2',
 'namespaceprotected' => "Wala kang pahintulot na magbago ng mga pahinang nasa ngalan-espasyong '''$1'''.",
 'customcssprotected' => 'Wala kang pahintulot na baguhin ang pahina ng CSS na ito, dahil naglalaman ito ng mga katakdaang pansarili ng ibang tagagamit.',
 'customjsprotected' => 'Wala kang pahintulot na baguhin ang pahina ng JavaScript na ito, dahil naglalaman ito ng mga katakdaang pansarili ng ibang tagagamit.',
+'mycustomcssprotected' => 'Wala kang pahintulot na baguhin itong pahinang CSS.',
+'mycustomjsprotected' => 'Wala kang pahintulot na baguhin itong pahinang JavaScript.',
 'ns-specialprotected' => 'Hindi pwedeng baguhin ang mga natatanging pahina.',
 'titleprotected' => "Nakasanggalang ang pamagat na ito mula sa paglikha ni [[User:$1|$1]].
 Ang ibinigay na dahilan ay ''$2''.",
@@ -585,6 +600,7 @@ Huwag kalimutang baguhin ang iyong [[Special:Preferences|mga kagustuhan sa {{SIT
 'logout' => 'Umalis sa pagkakalagda',
 'userlogout' => 'Umalis sa pagkakalagda',
 'notloggedin' => 'Hindi nakalagda',
+'userlogin-joinproject' => 'Sumali sa {{SITENAME}}',
 'nologin' => 'Wala ka pang kuwenta? $1.',
 'nologinlink' => 'Lumikha ng kuwenta',
 'createaccount' => 'Lumikha ng kuwenta',
@@ -1914,13 +1930,13 @@ Marahil ay naisa mong baguhin ang paglalarawan doon sa [$2 pahina ng paglalarawa
 'randompage-nopages' => 'Walang mga pahina sa sumusunod na {{PLURAL:$2|ngalan-espasyo|mga ngalan-espasyo}}: $1.',
 
 # Random redirect
-'randomredirect' => 'Alinmang panuto',
-'randomredirect-nopages' => 'Walang mga panuto sa pangalan-espasyong "$1".',
+'randomredirect' => 'Pagkargang walang-pili',
+'randomredirect-nopages' => 'Walang mga pagkarga sa ngalan-espasyong "$1".',
 
 # Statistics
 'statistics' => 'Mga estadistika',
 'statistics-header-pages' => 'Mga estadistika ng pahina',
-'statistics-header-edits' => 'Baguhin ang mga estadistika',
+'statistics-header-edits' => 'Mga estadistika sa mga pagbabago',
 'statistics-header-views' => 'Tingnan ang mga estadistika',
 'statistics-header-users' => 'Mga estadistika sa mga tagagamit',
 'statistics-header-hooks' => 'Ibang mga estadistika',
@@ -1930,7 +1946,7 @@ Marahil ay naisa mong baguhin ang paglalarawan doon sa [$2 pahina ng paglalarawa
 'statistics-files' => 'Ikinargang mga talaksan',
 'statistics-edits' => 'Naihanda na ang mga pagbabago ng pahina mula sa {{SITENAME}}',
 'statistics-edits-average' => 'Karaniwang pagbabago sa bawat pahina',
-'statistics-views-total' => 'Kalahatang pagdayo',
+'statistics-views-total' => 'Kabuuan ng mga pagtanaw',
 'statistics-views-total-desc' => 'Hindi kabilang ang mga pagtanaw sa mga pahinang hindi umiiral at mga pahinang natatangi',
 'statistics-views-peredit' => 'Pagtingin sa bawat pagbabago',
 'statistics-users' => 'Mga nakatalang [[Special:ListUsers|tagagamit]]',
@@ -2164,7 +2180,7 @@ Ang ipinasok mong direksiyong e-liham sa [[Special:Preferences|iyong mga kagustu
 'emailmessage' => 'Mensahe:',
 'emailsend' => 'Ipadala',
 'emailccme' => 'Padalhan ako ng sipi ng aking mensahe sa pamamagitan ng e-liham.',
-'emailccsubject' => 'Kopya ng iyong mensahe sa $1: $2',
+'emailccsubject' => 'Kopya ng iyong mensahe kay $1: $2',
 'emailsent' => 'Naipadala na ang e-liham',
 'emailsenttext' => 'Naipadala na ang mensahe ng iyong e-liham.',
 'emailuserfooter' => 'Ipinadala ang e-liham na ito ni $1 para kay $2 sa pamamagitan ng tungkuling "Magpadala ng e-liham" na nasa {{SITENAME}}.',
@@ -2437,7 +2453,7 @@ $1',
 'mycontris' => 'Mga ambag',
 'contribsub2' => 'Para kay $1 ($2)',
 'nocontribs' => 'Walang pagbabagong nakita sa binigay na kondisyon.',
-'uctop' => ' (itaas)',
+'uctop' => '(kasalukuyan)',
 'month' => 'Mula sa buwan (at nauna):',
 'year' => 'Mula sa taon (at nauna):',
 

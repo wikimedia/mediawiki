@@ -77,7 +77,7 @@ $messages = array(
 'sunday' => 'Sundaach',
 'monday' => 'Mondaach',
 'tuesday' => 'Dienschdaach',
-'wednesday' => 'Midwoch',
+'wednesday' => 'Middwoch',
 'thursday' => 'Dunnaschdaach',
 'friday' => 'Fraidaach',
 'saturday' => 'Sõmschdaach',
@@ -127,20 +127,20 @@ $messages = array(
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Sachgrubb|Sachgrubbe}}',
-'category_header' => 'Saide in de Sachgrubb „$1“',
+'category_header' => 'Saide inde Sachgrubb „$1“',
 'subcategories' => 'Unnagrubbe',
-'category-media-header' => 'Medⁱje indɐ Sachgrubb „$1“',
-'category-empty' => '"Die Sachgrubb hod kä Said odda Medije."',
+'category-media-header' => 'Medje indɐ Sachgrubb „$1“',
+'category-empty' => '"Die Sachgrubb hodd kä Said odda Medje."',
 'hidden-categories' => '{{PLURAL:$1|Vaschdegldi Sachgrubb|Vaschdeglde Sachgrubbe}}',
 'hidden-category-category' => 'Verschdegelde Grubbe',
-'category-subcat-count' => '{{PLURAL:$2|Die Grubb hod bloß die Unnagrubb.|Die Grubb hod {{PLURAL:$1|Unnagrubbe|$1 Unnagrubbe}},vun gsomd $2.}}',
-'category-article-count' => '{{PLURAL:$2|In dɐ Grubb hodds nua die Said.|Die {{PLURAL:$1|Said|$1 Saide}} gibbds inde Grubb, vun gsomd $2.}}',
-'category-file-count' => "{{PLURAL:$2|Die Grubb hod bloß ä Said.|Die {{PLURAL:$1|Said isch äni vun $2 Saide:|S'werren $1 vun gsomd $2 Saide gzaischd:}}}}",
-'listingcontinuesabbrev' => '(Fords.)',
+'category-subcat-count' => '{{PLURAL:$2|Die Sachgrubb hod die Unnagrubb.|Die Sachgrubb hod {{PLURAL:$1|Unnagrubb|$1 Unnagrubbe}},vun gsomd $2.}}',
+'category-article-count' => '{{PLURAL:$2|Indɐ Sachgrubb hodds die Said.|Die {{PLURAL:$1|Said|$1 Saide}} gibbds inde Sachgrubb, vun gsomd $2.}}',
+'category-file-count' => "{{PLURAL:$2|Die Sachgrubb hodd ä Said.|Die {{PLURAL:$1|Said isch änni vun $2 Saide:|S'werren $1 vun gsomd $2 Saide gzaischd:}}}}",
+'listingcontinuesabbrev' => '(Waida)',
 'noindex-category' => 'Saide, wu ned im Vazaischnis sinn',
 
 'about' => 'Iwwa',
-'newwindow' => '(werd inem naije Fenschda uffgmachd)',
+'newwindow' => '(werd innem naije Fenschda uffgmachd)',
 'cancel' => 'Abbresche',
 'moredotdotdot' => 'Mea …',
 'mypage' => 'Said',
@@ -205,7 +205,7 @@ $messages = array(
 'toolbox' => 'Wergzaischkischd',
 'categorypage' => 'Zaisch die Kadegorie',
 'viewtalkpage' => 'Zaischs Gbabbl',
-'otherlanguages' => 'In annare Schbroche',
+'otherlanguages' => 'In õnnare Schbroche',
 'redirectedfrom' => '(Nochgschiggd vun $1)',
 'redirectpagesub' => 'Nochschigg-Said',
 'lastmodifiedat' => 'Die Said ischs ledschde Mol gännad worre õm $1, õm $2.',
@@ -244,7 +244,7 @@ $messages = array(
 'newmessagesdifflink' => 'ledschdi Ännarung',
 'editsection' => 'beawaide',
 'editold' => 'beawaide',
-'viewsourceold' => 'Gwelltegschd ogugge',
+'viewsourceold' => 'Gwelltegschd õgugge',
 'editlink' => 'beawaide',
 'viewsourcelink' => 'Gwell õgugge',
 'editsectionhint' => 'Deel ännare: $1',
@@ -258,7 +258,7 @@ $messages = array(
 'site-atom-feed' => '$1 Atom-Feed',
 'page-rss-feed' => '"$1" RSS-Feed',
 'page-atom-feed' => '"$1" Atom-Feed',
-'red-link-title' => '$1 (Said gibbds nedd)',
+'red-link-title' => '$1 (Said hodds nedd)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'Said',
@@ -274,38 +274,38 @@ $messages = array(
 
 # General errors
 'error' => 'Irrdumm',
-'missing-article' => 'De Tegschd fa „$1“ $2 isch inde Daadebongg ned gfunne worre.
+'missing-article' => 'De Tegschd fa „$1“ $2 isch inde Daadebongg nedd gfunne worre.
 
 Noamalawees heeßd des, dass die Said gleschd worre isch.
 
-Wonnse des awwa ned isch, hoschd villaischdn Irdumm inde Daadebongg gfunne.
+Wonnse des awwa nedd isch, hoschd villaischdn Irdumm inde Daadebongg gfunne.
 Bidde meldsm [[Special:ListUsers/sysop|Adminischdrador]], un gebbde URL dzu õ.',
-'missingarticle-rev' => '(Versionsnummer#: $1)',
+'missingarticle-rev' => '(Ausgawenumma#: $1)',
 'badtitle' => 'Schleschde Didl',
-'badtitletext' => 'De Tidl vunde aagefordad Said isch nid gildisch, leer, oddan nid gildische Lingg vunem annare Wiki.
-S kann sai, dass es ää odda meh Zaische drin hod, wu im Tidl vunde Said nid gbrauchd werre dirfn.',
+'badtitletext' => 'De Tidl vunde õgfordad Said isch nedd gildisch, lea, oddan nedd gildische Lingg vunem õnnare Wiki.
+S konn soi, dasses ä odda mea Zaische drin hodd, wu im Tidl vunde Said nedd gbrauchd werre dirfn.',
 'viewsource' => 'Gwelltegschd õgugge',
 
 # Login and logout pages
 'welcomeuser' => 'Willkumme, $1!',
-'yourname' => 'Benudzernõme:',
-'yourpassword' => 'Password:',
-'yourpasswordagain' => 'Password nomol oigewe:',
-'remembermypassword' => 'Mai Passwort uffm Computer merge (hegschdns fa $1 {{PLURAL:$1|Daach|Daach}})',
+'yourname' => 'Middawaidanõme:',
+'yourpassword' => 'Kennword:',
+'yourpasswordagain' => 'Kennword nomol oigewe:',
+'remembermypassword' => 'Moi Kennword uffm Rechna merge (hegschdns fa $1 {{PLURAL:$1|Daach|Daach}})',
 'login' => 'Õmelde',
-'nav-login-createaccount' => 'Õmelde / Benudzerkondo õleesche',
-'loginprompt' => 'Cookies mugschd fa {{SITENAME}} schun ohawe.',
-'userlogin' => 'Õmelde / Benudzerkondo õleesche',
+'nav-login-createaccount' => 'Õmelde / Kondo õleesche',
+'loginprompt' => 'Cookies mugschd fa {{SITENAME}} schun õhawe.',
+'userlogin' => 'Õmelde / Kondo õleesche',
 'userloginnocreate' => 'Oilogge',
 'logout' => 'Uffhere',
 'userlogout' => 'Uffhere',
 'nologin' => 'Hoschd noch kä Kondo? $1',
-'nologinlink' => 'E Benudzerkondo aaleesche',
-'createaccount' => 'Bnudza oleesche',
+'nologinlink' => 'E Kondo õleesche',
+'createaccount' => 'Kondo õleesche',
 'gotaccount' => 'Hoschd schun ä Kondo? $1',
 'gotaccountlink' => 'Õmelde',
 'userlogin-resetlink' => 'Hoschd doi Daade vagesse?',
-'mailmypassword' => 'Nais Passwort per E-Mail schigge',
+'mailmypassword' => 'Naijs Kennword iwwa E-Mail schigge',
 'loginlanguagelabel' => 'Schbrooch: $1',
 
 # Change password dialog
@@ -329,18 +329,18 @@ S kann sai, dass es ää odda meh Zaische drin hod, wu im Tidl vunde Said nid gb
 'extlink_tip' => 'Exderna Lingg (uff http:// uffbasse)',
 'headline_sample' => 'Schlaachzail',
 'headline_tip' => 'Iwwaschrifd Ewene 2',
-'nowiki_sample' => "Gebb do'n Tegschd oi, wu ned uffberaid werd",
+'nowiki_sample' => "Gebb do'n Tegschd oi, wu nedd uffberaid werd",
 'nowiki_tip' => 'Wiki-Formatierunge ned beachde',
 'image_tip' => 'Bildvawais',
 'media_tip' => 'Dadailingg',
-'sig_tip' => 'Doi Unnaschrifd midena Zaidõgab',
-'hr_tip' => 'Waagreschdi Linje (schbaasõm vawenne)',
+'sig_tip' => 'Doi Unnaschrifd midena Zaidõgawb',
+'hr_tip' => 'Waagreschdi Linje (schbaasõm vawende)',
 
 # Edit pages
 'summary' => 'Iwwabligg:',
 'subject' => 'Bedreff:',
 'minoredit' => 'Des ische glänni Beawaidung',
-'watchthis' => 'Die Said im Aach bhalde',
+'watchthis' => 'Die Said im Aach palde',
 'savearticle' => 'Said schbaischere',
 'preview' => 'Voaschau',
 'showpreview' => 'Voaschau zaische',
@@ -349,16 +349,16 @@ S kann sai, dass es ää odda meh Zaische drin hod, wu im Tidl vunde Said nid gb
 'anoneditwarning' => "'''Baßma uff:''' Du bischd ned õgemeld. Doi IP-Adress werd inde Gschischd vum Adiggl gschbaischad.",
 'summary-preview' => 'Iwwabligg:',
 'blockednoreason' => "s'hod kän Grund",
-'newarticle' => '(Nai)',
-'newarticletext' => "Du bisch eme Link nogange zu re Said, wu s no gar nit gebbt.
-Zum die Said aaleche, kannscht do in dem Käschtel unne aafange mid schraiwe (guck[[{{MediaWiki:Helppage}}|Hilfe]] fer meh Informatione).
-Wenn do nid hin hoscht welle, no druck in Daim Browser uff '''Zrick'''.",
-'noarticletext' => 'Uffde Said hods noch kän Tegschd. Du konnschd uff onnare Saide nochm [[Special:Search/{{PAGENAME}}|Oidrach gugge]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} Logbuchaidrach gugge, wu dezu kead],
+'newarticle' => '(Naij)',
+'newarticletext' => "Du bischdm Lingg nochgõnge zu enna Said, wus ganedd hodd.
+Fa die Said õzleesche, konnschd do im Käschdl unne õfonge mid schraiwe (gugg [[{{MediaWiki:Helppage}}|Hilf]] fa mea Auskinfd).
+Wonn do nedd hoschd heakumme wolle, drigg uff Browser uff '''Zrigg'''.",
+'noarticletext' => 'Uffde Said hods noch kän Tegschd. Du konnschd uff õnnare Saide nochm [[Special:Search/{{PAGENAME}}|Oidrach gugge]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} Logbuchaidrach gugge, wu dezu kead],
 odda [{{fullurl:{{FULLPAGENAME}}|action=edit}} die Said beawaide]</span>.',
 'updated' => '(Gännad)',
 'note' => "'''Hiwes:'''",
-'previewnote' => "'''Deng'g drɔ̃ɔ̃, dass des nua e Vorschau is.'''
-Doi Ännerunge sinn no nedd gschbaischadd worre!",
+'previewnote' => "'''Deng'g drõõ, dasses nua e Vorschau isch.'''
+Doi Ännarunge sinn noch nedd gschbaischadd worre!",
 'editing' => 'Õm $1 beawaide',
 'editingsection' => '$1 beawaide (de Deel)',
 'yourtext' => 'Doin Tegschd',
@@ -372,11 +372,11 @@ Du gibbschd do a zu, dasses selwaschd gschriwwe hoschd odda vuna effendlischi, f
 'templatesusedpreview' => '{{PLURAL:$1|Vorlach wu inde Vorschau gbrauchd werd|Vorlache wu inde Vorschau gbrauchd werren}}:',
 'template-protected' => '(gschizd)',
 'template-semiprotected' => '(halwa-gschizd)',
-'hiddencategories' => 'Die Said ghert zu {{PLURAL:$1|1 versteckelte Kategorie|$1 versteckelte Kategorie}}:',
-'permissionserrorstext-withaction' => 'Du därfscht nid $2, wesche{{PLURAL:$1|m Grund|de Grind}}:',
-'recreate-moveddeleted-warn' => "'''Baßma uff: Du magschd do ä Said, wuma frija schumol geleschd kabd hod.'''",
+'hiddencategories' => 'Die Said kerd zu vaschdeggelde {{PLURAL:$1|1 Sachgrubb|$1 Sachgrubbe}}:',
+'permissionserrorstext-withaction' => 'Du därfschd nedd $2, weesch{{PLURAL:$1|m Grund|ede Grind}}:',
+'recreate-moveddeleted-warn' => "'''Baßma uff: Du maggschd do ä Said, wuma frija schumol geleschd kabd hod.'''",
 'moveddeleted-notice' => 'Die Said isch gleschd worre.
-De Leschaidrach fa die Said isch do unne als Kwell aagewwe.',
+De Leschoidrach fa die Said isch do unne als Gwell õgewwe.',
 
 # Content models
 'content-model-css' => 'CSS',
@@ -384,29 +384,29 @@ De Leschaidrach fa die Said isch do unne als Kwell aagewwe.',
 # Parser/template warnings
 'post-expand-template-inclusion-warning' => "'''Baßma uff:''' Greeß vunde Vorlach isch iwwaschridde. Oinischi Vorlache werren ned bnuzd.",
 'post-expand-template-inclusion-category' => 'Saide mid Vorlache, wu die Greeß iwwaschridde worre isch',
-'post-expand-template-argument-warning' => "'''Baßma uff:''' Die Said hod wenigschdns ä Vorlach mida Kenngreeß, wu groß werre dud. Die Kenngreeß wead do ned ogeguggd.",
+'post-expand-template-argument-warning' => "'''Baßma uff:''' Die Said hodd wenigschdns ä Vorlach midä Kenngreeß, wu groß werre dud. Die Kenngreeß wead do nedd õgeguggd.",
 
 # History pages
-'viewpagelogs' => 'Lochbischer fer die Said aagucke',
+'viewpagelogs' => 'Lochbischa fa die Said õgugge',
 'currentrev' => 'Ledschdi Änarung',
 'currentrev-asof' => 'Agduell Ausgab vun $1',
 'revisionasof' => 'Iwwaawaidung vun $1',
 'revision-info' => 'Ännarung vun $1 duasch $2',
 'previousrevision' => '← Älderi Beawaidung',
-'nextrevision' => 'Naijare Ausgab →',
-'currentrevisionlink' => 'Agduell Ausgab',
+'nextrevision' => 'Naijari Ausgawb →',
+'currentrevisionlink' => 'Agduelli Ausgawb',
 'cur' => 'jedzischi',
 'next' => 'Negschd',
 'last' => 'vorischi',
 'page_first' => 'Easchd',
 'page_last' => 'Ledschd',
-'histlegend' => "Du kannscht zwää Versione auswähle un verglaiche.<br />
-Erklärung: '''({{int:cur}})''' = Unnerschied zu jetzert,
-'''({{int:last}})''' = Unnerschied zu de voriche Version, '''{{int:minoreditletter}}''' = klenni Ännerung.",
+'histlegend' => "Du konnschd zwää Ausgawe wehle un vaglaische.<br />
+Ealaidarung: '''({{int:cur}})''' = Unnaschied zu jezd,
+'''({{int:last}})''' = Unnaschied zude vorischi Ausgab, '''{{int:minoreditletter}}''' = gleni Ännarung.",
 'history-fieldset-title' => 'Gugg die Gschischd',
 'history-show-deleted' => 'Bloß gleschdi Saide zaische',
-'histfirst' => 'Ältschde',
-'histlast' => 'Naischde',
+'histfirst' => 'Äldschde',
+'histlast' => 'Naijschde',
 'historyempty' => '(lea)',
 
 # Revision feed
@@ -448,9 +448,9 @@ Erklärung: '''({{int:cur}})''' = Unnerschied zu jetzert,
 'notextmatches' => 'Kä Iwwaoinschdimmunge midm Tegschd',
 'prevn' => 'ledschda {{PLURAL:$1|$1}}',
 'nextn' => 'negschd {{PLURAL:$1|$1}}',
-'prevn-title' => 'Frijari $1 {{PLURAL:$1|Ergewnis|Ergewnis}}',
-'nextn-title' => 'Negschdi $1 {{PLURAL:$1|Ergewnis|Ergewnis}}',
-'shown-title' => 'Zaisch $1 {{PLURAL:$1|Ergewnis}} bro Said',
+'prevn-title' => 'Frijari $1 {{PLURAL:$1|Eagewnis|Eagewnis}}',
+'nextn-title' => 'Negschdi $1 {{PLURAL:$1|Eagewnis|Eagewnis}}',
+'shown-title' => 'Zaisch $1 {{PLURAL:$1|Eagewnis}} bro Said',
 'viewprevnext' => 'Gugg ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-exists' => "'''Dohods ä Said \"[[:\$1]]\".'''",
 'searchmenu-new' => "'''Mach die Said „[[:$1]]“ im Wiki.'''",
@@ -463,7 +463,7 @@ Erklärung: '''({{int:cur}})''' = Unnerschied zu jetzert,
 'searchprofile-project-tooltip' => 'In $1 gugge',
 'searchprofile-images-tooltip' => 'Gugg noch Bilda',
 'searchprofile-everything-tooltip' => 'Such iwwaraal (a wuma dischbedierd)',
-'searchprofile-advanced-tooltip' => 'Gugg in onare Nõmensreum',
+'searchprofile-advanced-tooltip' => 'Gugg in õnnare Nõmensreum',
 'search-result-size' => '$1 ({{PLURAL:$2|1 Word|$2 Wärda}})',
 'search-redirect' => '(Waidalaidung $1)',
 'search-section' => '(Abschnidd $1)',
@@ -475,9 +475,9 @@ Erklärung: '''({{int:cur}})''' = Unnerschied zu jetzert,
 'mwsuggest-disable' => 'Schald Voaschlesch ab',
 'searchrelated' => 'vawond',
 'searchall' => 'alle',
-'showingresultsheader' => "{{PLURAL:$5|Ergewnis '''$1''' vun '''$3'''|Ergewnis '''$1–$2''' vun '''$3'''}} fa '''$4'''",
+'showingresultsheader' => "{{PLURAL:$5|Eagewnis '''$1''' vun '''$3'''|Eagewnis '''$1–$2''' vun '''$3'''}} fa '''$4'''",
 'nonefound' => "'''Hiiwais:''' S werre standardmäßich numme e Dail Namensraim durchsucht. Setz ''all:'' vor Dai Suchbegriff zum alle Saide (mit Dischbediersaide, Voalaache usw.) durchsuche odder direkt de Name vum Namensraum, wu durchsucht werre sell.",
-'search-nonefound' => 'Die Such hod kä Ergewnis.',
+'search-nonefound' => 'Kä Eagewnis vunde Õfroch.',
 'powersearch' => 'Erwaiterte Such',
 'powersearch-legend' => 'Erwaiterte Such',
 'powersearch-ns' => 'In de Namensraim suche:',
@@ -511,8 +511,8 @@ Erklärung: '''({{int:cur}})''' = Unnerschied zu jetzert,
 'gender-unknown' => 'Ghoim gkalde',
 'gender-male' => 'Männlisch',
 'gender-female' => 'Waiblisch',
-'prefs-help-email-others' => 'Konschd a wehle, ob onnare disch iwwan Lingg uff doina Dischbedier-Said oschbresche kennen.
-Doi Meil-Address isch ned zaisch nix waida.',
+'prefs-help-email-others' => 'Konschd a wehle, ob õnnare disch iwwan Lingg uff doina Dischbedier-Said õschbresche kennen.
+Doi Address werd ned gzaischd, wõnse midda babbln.',
 'prefs-diffs' => 'Unaschied',
 
 # User rights
@@ -540,7 +540,7 @@ Doi Meil-Address isch ned zaisch nix waida.',
 'right-delete' => 'Saide lesche',
 
 # Special:Log/newusers
-'newuserlogpage' => 'Naiaameldungs-Logbuch',
+'newuserlogpage' => 'Naijõmeldungs-Logbuch',
 
 # User rights log
 'rightslog' => 'Benutzerrecht-Logbuch',
@@ -552,17 +552,17 @@ Doi Meil-Address isch ned zaisch nix waida.',
 'nchanges' => '$1 {{PLURAL:$1|Ännarung|Ännarunge}}',
 'recentchanges' => 'Ledschdi Ännarunge',
 'recentchanges-legend' => 'Wehl ä Õzaisch fa die ledschde Ännarunge',
-'recentchanges-feed-description' => 'Di letschte Ännerunge vun {{SITENAME}} in des Feed aigewwe.',
+'recentchanges-feed-description' => 'Ledschde Ännarunge vun {{SITENAME}} im Feed oigewwe.',
 'recentchanges-label-newpage' => 'Domid magschd ä naiji Said',
-'recentchanges-label-minor' => "S'ische glänni Beawaidung",
+'recentchanges-label-minor' => "S'ische glenni Beawaidung",
 'recentchanges-label-bot' => 'Ännarunge duaschn Bod',
-'recentchanges-label-unpatrolled' => 'Die Änarung isch noch ned iwwabriefd worre',
-'rcnote' => "Aagezaicht {{PLURAL:$1|werd '''1''' Ännerung|werre die letschte '''$1''' Ännerunge}} {{PLURAL:$2|vum letschte Dach|in de letschte '''$2''' Dache}} (Stand: $4, $5)",
+'recentchanges-label-unpatrolled' => 'Die Ännarung isch noch nedd iwwabriefd worre',
+'rcnote' => "Õgzaischd {{PLURAL:$1|werd '''1''' Ännarung|werren die ledschde '''$1''' Ännarunge}} {{PLURAL:$2|vum ledschde Daach|inde ledschde '''$2''' Daache}} (Schdond: $4, $5)",
 'rclistfrom' => 'Zaisch die ledschde Ännarunge ab $1',
 'rcshowhideminor' => 'Glenni Ännarunge $1',
 'rcshowhidebots' => 'Bots $1',
-'rcshowhideliu' => 'Õgmelda Benudzer $1',
-'rcshowhideanons' => 'Ned õgmelda Benudzer $1',
+'rcshowhideliu' => 'Õgmelda Middawaida $1',
+'rcshowhideanons' => 'Ned õgmelda Middawaida $1',
 'rcshowhidepatr' => '$1 iwabriefde Ännarunge',
 'rcshowhidemine' => 'Moi Beawaidunge $1',
 'rclinks' => 'Zaisch die ledschde $1 Ännarunge inde ledschde $2 Daach<br />$3',
@@ -582,8 +582,8 @@ Doi Meil-Address isch ned zaisch nix waida.',
 'recentchangeslinked-feed' => 'Ännarunge on valinggde Saide',
 'recentchangeslinked-toolbox' => 'Ännarunge uff verlingde Saide',
 'recentchangeslinked-title' => 'Ännarunge õn Saide, wu „$1“ druff verlinggd',
-'recentchangeslinked-noresult' => 'Inde Zaid ischdo nix gännad worre.',
-'recentchangeslinked-summary' => "Die Lischd zaischd ledschde Ännarunge, vunna bschdimmde Said, wu do valinggd isch (odda ä Midglied vuna bschdimmde Sachgrubb isch).
+'recentchangeslinked-noresult' => 'Do isch nix gännad worre inde Zaid.',
+'recentchangeslinked-summary' => "Die Lischd zaischd ledschdi Ännarunge, vunna bschdimmde Said, wu do valinggd isch (odda ä Midglied vunna bschdimmde Sachgrubb isch).
 Saide uff [[Special:Watchlist|Doina Beowachdungslischd]] sinn '''fedd'''.",
 'recentchangeslinked-page' => 'Saide:',
 'recentchangeslinked-to' => 'Zaisch Ännarunge uff Saide, wu do her valinggd sinn',
@@ -595,7 +595,7 @@ Saide uff [[Special:Watchlist|Doina Beowachdungslischd]] sinn '''fedd'''.",
 'filedesc' => 'Iwwabligg',
 'fileuploadsummary' => 'Iwwabligg:',
 'savefile' => 'Dadai schbaischere',
-'uploadedimage' => 'hod „[[$1]]“ nuffglade',
+'uploadedimage' => 'hodd „[[$1]]“ nuffglade',
 
 # Lock manager
 'lockmanager-notlocked' => "„$1“ hod ned uffgmachd were kenne, s'isch ganed gschberd gwesd.",
@@ -616,7 +616,7 @@ Saide uff [[Special:Watchlist|Doina Beowachdungslischd]] sinn '''fedd'''.",
 # File description page
 'file-anchor-link' => 'Dadai',
 'filehist' => 'Dadaigschischd',
-'filehist-help' => 'Drigg uffn Zaidpunggd zum õzaische, wies dord ausgseje hod.',
+'filehist-help' => 'Drigg uffn Zaidpunggd zum õzaische, wies dord ausgseje hodd.',
 'filehist-deleteall' => 'alles lesche',
 'filehist-deleteone' => 'lesche',
 'filehist-revert' => 'zriggsedze',
@@ -624,12 +624,12 @@ Saide uff [[Special:Watchlist|Doina Beowachdungslischd]] sinn '''fedd'''.",
 'filehist-datetime' => 'Zaidpungd',
 'filehist-thumb' => 'Gleenes Bild',
 'filehist-thumbtext' => 'Skizz fa die Ausgab vum $1',
-'filehist-user' => 'Benudzer',
+'filehist-user' => 'Middawaida',
 'filehist-dimensions' => 'Maß',
-'filehist-comment' => 'Aißarung',
+'filehist-comment' => 'Oißarung',
 'imagelinks' => 'Dadaivawendung',
 'linkstoimage' => 'Die {{PLURAL:$1|Said vawaisd|$1 Saide vawaisn}} uff die Dadai:',
-'nolinkstoimage' => 'Do hods kä Said, wu dohea zaischd.',
+'nolinkstoimage' => 'Do hodds kä Said, wu dohea zaischd.',
 'sharedupload' => 'Die Datei isch vun $1 un s kann sai, dass se ach vun annere Projekt gebraucht werd.',
 'uploadnewversion-linktext' => 'E naiere Version vun derre Datei hochlade',
 
@@ -644,7 +644,7 @@ Saide uff [[Special:Watchlist|Doina Beowachdungslischd]] sinn '''fedd'''.",
 'download' => 'Runalaade',
 
 # Random page
-'randompage' => 'Irschnd en Adiggl',
+'randompage' => 'Irschndn Adiggl',
 
 # Statistics
 'statistics' => 'Schdadischdigge',
@@ -659,18 +659,18 @@ Saide uff [[Special:Watchlist|Doina Beowachdungslischd]] sinn '''fedd'''.",
 
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|Byte|Bytes}}',
-'nmembers' => '$1 {{PLURAL:$1|Dailnemma|Dailnemma}}',
-'prefixindex' => 'Alle Saide (mid Präfix)',
+'nmembers' => '$1 {{PLURAL:$1|Dailneema|Dailneema}}',
+'prefixindex' => 'Alle Saide (midd Voasilw)',
 'listusers-editsonly' => 'Zaisch bloß Bnudza mid Baidräsch',
 'newpages' => 'Naije Saide',
 'move' => 'Vaschiewe',
 'movethispage' => 'Die Said verschiewe',
-'pager-newer-n' => '{{PLURAL:$1|negschte 1|negschte $1}}',
-'pager-older-n' => '{{PLURAL:$1|vorich 1|voriche $1}}',
+'pager-newer-n' => '{{PLURAL:$1|negschd 1|negschd $1}}',
+'pager-older-n' => '{{PLURAL:$1|vorisch 1|vorische $1}}',
 
 # Book sources
 'booksources' => 'Buchgwelle',
-'booksources-search-legend' => 'No Buchquelle suche',
+'booksources-search-legend' => 'Noch Buchgwelle gugge',
 'booksources-go' => 'Geh',
 
 # Special:Log
@@ -695,10 +695,10 @@ Saide uff [[Special:Watchlist|Doina Beowachdungslischd]] sinn '''fedd'''.",
 'linksearch-line' => '$1 isch vun $2 valinggd',
 
 # Special:ListGroupRights
-'listgrouprights-members' => '(Midgliederlischd)',
+'listgrouprights-members' => '(Midgliedalischd)',
 
 # Email user
-'emailuser' => 'E-Mail on de Benutzer',
+'emailuser' => 'E-Mail õnde Benudzer',
 'emailfrom' => 'Vum:',
 'emailto' => 'Fa:',
 'emailsubject' => 'Bdreff:',
@@ -714,10 +714,10 @@ Zukinfdischi Ännarunge onde Said unde Dischbediersaid, wu dzu kead, werren doo 
 'removedwatchtext' => 'D Said "[[:$1]]" isch aus [[Special:Watchlist|Dainer Beowachdungslischt]] rausgenumme worre.',
 'watch' => 'Beowachde',
 'watchthispage' => 'Die Said beowachde',
-'unwatch' => 'Nimmi beowachde',
-'watchlist-details' => 'S hot {{PLURAL:$1|$1 Said|$1 Saide}} uff Dainer Beowachdungslischt, Dischbediersaide zelle nid.',
-'wlshowlast' => 'Die letschte $1 Stunne $2 Dache $3 zaiche',
-'watchlist-options' => 'Optione vun de Beowachdungslischt',
+'unwatch' => 'Nemme beowachde',
+'watchlist-details' => 'S hodd {{PLURAL:$1|$1 Said|$1 Saide}} uff doina Beowachdungslischd, Dischbediersaide zeeln nedd.',
+'wlshowlast' => 'Die ledschde $1 Schdunnd $2 Daach $3 zaische',
+'watchlist-options' => 'Meschlischkaide vunde Beowachdungslischd',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching' => 'Beowachde ...',
@@ -731,7 +731,7 @@ Zukinfdischi Ännarunge onde Said unde Dischbediersaid, wu dzu kead, werren doo 
 'delete-legend' => 'Lesche',
 'confirmdeletetext' => 'Du bisch debai e Said z lesche mid alle Versione.
 Bitte du bstätiche, dass Du des wllscht du, dass Du verstehsch, was des hääßt, un dass Du des machscht in Iwweraistimmung mit de [[{{MediaWiki:Policy-url}}|Richtline]].',
-'actioncomplete' => 'Agzion ferdisch',
+'actioncomplete' => 'Maßnohm ferdisch',
 'actionfailed' => 'Maßnohm gschaidad',
 'deletedtext' => '"$1" isch gelescht worre.
 Guck $2 fer e Lischt vun de letschte Leschunge.',
@@ -744,8 +744,8 @@ Guck $2 fer e Lischt vun de letschte Leschunge.',
 'rollbacklink' => 'Zriggsedze',
 
 # Protect
-'protectlogpage' => 'Saideschutz-Logbuch',
-'protectedarticle' => 'hod "[[$1]]" gschizd',
+'protectlogpage' => 'Saideschudz-Logbuch',
+'protectedarticle' => 'hodd "[[$1]]" gschizd',
 'modifiedarticleprotection' => 'hot de Schutzstatus vun "[[$1]]" gännert',
 'protectcomment' => 'Grund:',
 'protectexpiry' => 'Bis:',
@@ -786,12 +786,12 @@ Der Schutzstatus vun derre Said kannscht ännere, awwer des hot kää Aifluss uf
 'blanknamespace' => '(Schdadsaid)',
 
 # Contributions
-'contributions' => '{{GENDER:$1|Wasa gemachd hod}}',
+'contributions' => '{{GENDER:$1|Wassa gemachd hodd}}',
 'contributions-title' => 'Benutzerbaidräch vun $1',
 'mycontris' => 'Baidräsch',
-'contribsub2' => 'Fer $1 ($2)',
-'uctop' => '(akduell)',
-'month' => 'än Monad (un frija):',
+'contribsub2' => 'Fa $1 ($2)',
+'uctop' => '(geschewedisch)',
+'month' => 'än Monad (un frieja):',
 'year' => 'Abm Johr (un frieja):',
 
 'sp-contributions-newbies' => 'Zaisch nua Baidräsch vun naije Konde',
@@ -802,22 +802,22 @@ Der Schutzstatus vun derre Said kannscht ännere, awwer des hot kää Aifluss uf
 'sp-contributions-search' => 'Noch Baidräsch gugge',
 'sp-contributions-username' => 'IP-Adress odda Benudzernõme:',
 'sp-contributions-toponly' => 'Bloß agduelli Ännarunge zaische',
-'sp-contributions-submit' => 'Suche',
+'sp-contributions-submit' => 'Gugge',
 
 # What links here
 'whatlinkshere' => 'Was doher zaische dud',
-'whatlinkshere-title' => 'Saide wu uff "$1" verlinke',
+'whatlinkshere-title' => 'Saide wu uff "$1" valinggn',
 'whatlinkshere-page' => 'Said:',
-'linkshere' => "Die Saide valingge uff '''[[:$1]]''':",
+'linkshere' => "Die Saide valinggn uff '''[[:$1]]''':",
 'nolinkshere' => "Kä Said zaischd uff '''[[:$1]]'''.",
 'isredirect' => 'Waidalaidungsaid',
 'istemplate' => 'Vorlacheoibindung',
 'isimage' => 'Dadailingg',
-'whatlinkshere-prev' => '{{PLURAL:$1|vorich|voriche $1}}',
+'whatlinkshere-prev' => '{{PLURAL:$1|vorisch|vorische $1}}',
 'whatlinkshere-next' => '{{PLURAL:$1|negschd|negschde $1}}',
 'whatlinkshere-links' => '← Linggs',
 'whatlinkshere-hideredirs' => '$1 Waidalaidunge',
-'whatlinkshere-hidetrans' => '$1 Vorlacheaibindunge',
+'whatlinkshere-hidetrans' => '$1 Vorlacheoibindunge',
 'whatlinkshere-hidelinks' => '$1 Linggs',
 'whatlinkshere-filters' => 'Filda',
 
@@ -827,16 +827,16 @@ Der Schutzstatus vun derre Said kannscht ännere, awwer des hot kää Aifluss uf
 'ipboptions' => '2 Schdunne:2 hours,1 Daach:1 day,3 Daach:3 days,1 Woch:1 week,2 Woche:2 weeks,1 Monad:1 month,3 Monad:3 months,6 Monad:6 months,1 Johr:1 year,Fa imma:infinite',
 'ipbotheroption' => 'onnari',
 'ipusubmit' => 'Die Adreß fraigewwe',
-'ipblocklist' => 'Gschberrdi IP-Adress un Benudzernõme',
+'ipblocklist' => 'Gschberrdi IP-Adress un Middawaidanõme',
 'infiniteblock' => 'ubgrensd',
 'blocklink' => 'schberre',
 'unblocklink' => 'Sperr uffhewe',
 'change-blocklink' => 'Schberr ännare',
 'contribslink' => 'Baidräsch',
 'blocklogpage' => 'Schberrlogbuch',
-'blocklogentry' => 'hot [[$1]] gsperrt fer e Zaidraum vun $2 $3',
+'blocklogentry' => "hodd [[$1]] gschberrd fa'n Zaidraum vun $2 $3",
 'unblocklogentry' => 'hot d Sperr vun $1 uffghowwe',
-'block-log-flags-nocreate' => 'Aalesche vun Benudzerkonde isch gschberrd',
+'block-log-flags-nocreate' => 'Õleesche vun Konde isch gschberrd',
 
 # Developer tools
 'lockbtn' => 'Dadebongg schberre',
@@ -874,14 +874,14 @@ Bitte nemm e annere Name.',
 Bitte duu se vun Hand zammefiehre.'''",
 'movedto' => 'vaschowe uff',
 'movetalk' => 'Dischbediersaid, wu dezu ghert, verschiewe',
-'movelogpage' => 'Verschiewungs-Logbuch',
+'movelogpage' => 'Vaschiewungs-Logbuch',
 'movereason' => 'Grund:',
 'revertmove' => 'Zurigg vaschiewe',
 'delete_and_move' => 'Lesche un Verschiewe',
 'delete_and_move_confirm' => 'Ja, Said lesche',
 
 # Export
-'export' => 'Saide expordiere',
+'export' => 'Saide rausgewe',
 'export-submit' => 'Saide exbordiere',
 
 # Namespace 8 related
@@ -907,13 +907,13 @@ Bitte duu se vun Hand zammefiehre.'''",
 'tooltip-ca-edit' => 'Du konnschd die Said beawaide.
 Bidde nemmde Vorschau-Gnobb vorm Schbaischare',
 'tooltip-ca-addsection' => "N'naije Abschnidd õleche",
-'tooltip-ca-viewsource' => 'Die Said isch gschizd. Du konnschd awwa de Gwelltegschd õgugge.',
-'tooltip-ca-history' => 'Ledschde Versione vunde Said',
+'tooltip-ca-viewsource' => 'Die Said isch gschizd. Du konnschdda de Gwelltegschd õgugge.',
+'tooltip-ca-history' => 'Ledschdi Ausgawe vunde Said',
 'tooltip-ca-protect' => 'Die Said schidze',
 'tooltip-ca-delete' => 'Die Said lesche',
 'tooltip-ca-move' => 'Die Said vaschiewe',
-'tooltip-ca-watch' => 'Die Said zu Doiner Beowachdungslischd dzufiesche',
-'tooltip-ca-unwatch' => 'Die Said aus Dainer Beowachdunschlischd wegnemme',
+'tooltip-ca-watch' => 'Die Said zu doina Beowachdungslischd dzufiesche',
+'tooltip-ca-unwatch' => 'Die Said vun doina Beowachdunschlischd wegnemme',
 'tooltip-search' => 'Gugg uff {{SITENAME}} fa',
 'tooltip-search-go' => 'Geh zude Said midm Nõme, wonnses hodd',
 'tooltip-search-fulltext' => 'Gugg inde Said nochm Tegschd',
@@ -921,46 +921,46 @@ Bidde nemmde Vorschau-Gnobb vorm Schbaischare',
 'tooltip-n-mainpage' => "Uff d'Schdadsaid geje",
 'tooltip-n-mainpage-description' => 'Haubdsaid õgugge',
 'tooltip-n-portal' => 'Iwwas Brojegd, wu mache konnschd, wu ebbes finne duschd',
-'tooltip-n-currentevents' => 'Finn Auskinfd iwwa naiji Voafell',
-'tooltip-n-recentchanges' => 'Lischd vun de ledschde Ännarunge im Wiki',
-'tooltip-n-randompage' => 'Lad e zufellischi Said',
+'tooltip-n-currentevents' => 'Finn Auskinfd iwwas Naijischde',
+'tooltip-n-recentchanges' => 'Lischd vunde ledschde Ännarunge im Wiki',
+'tooltip-n-randompage' => 'Laad e zufellischi Said',
 'tooltip-n-help' => 'Do konschds rausfinne',
-'tooltip-t-whatlinkshere' => 'Lischd vun alle Wikisaide, wu do hie verlingd sinn',
-'tooltip-t-recentchangeslinked' => 'Ledschde Ännarunge in Saide, wu vun do verlinggd sinn',
+'tooltip-t-whatlinkshere' => 'Lischd vun alle Wikisaide, wu dohie verlingd sinn',
+'tooltip-t-recentchangeslinked' => 'Ledschdi Ännarunge in Saide, wu vun do verlinggd sinn',
 'tooltip-feed-rss' => 'RSS feed fer die Said',
 'tooltip-feed-atom' => 'Atom-Feed fa die Said',
-'tooltip-t-contributions' => 'Die ledschde Baidräsch vum Benudzer õgugge',
-'tooltip-t-emailuser' => 'Dem Benutzer e E-Mail schicke',
+'tooltip-t-contributions' => 'Ledschdi Baidräsch vum Middawaida õgugge',
+'tooltip-t-emailuser' => 'Dem Benutzer e E-Mail schigge',
 'tooltip-t-upload' => 'Dadaije nufflade',
 'tooltip-t-specialpages' => 'Lischd vunde Schbezialsaide',
 'tooltip-t-print' => 'Druggausgab vunde Said',
-'tooltip-t-permalink' => "N'dauwahafde Lingg uff die Version vunde Said",
+'tooltip-t-permalink' => "N'dauwahafde Lingg uff die Ausgab vunde Said",
 'tooltip-ca-nstab-main' => 'Inhald õgugge',
-'tooltip-ca-nstab-user' => 'D Benudzersaid õgugge',
-'tooltip-ca-nstab-special' => 'Des isch e Spezialsaid, du kannscht d Said sälwerscht nit ännere',
-'tooltip-ca-nstab-project' => 'Brojegdsaid agugge',
+'tooltip-ca-nstab-user' => 'Benudzersaid õgugge',
+'tooltip-ca-nstab-special' => 'Des isch e Spezialsaid, du konnschd d Said selwaschd nedd ännare',
+'tooltip-ca-nstab-project' => 'Brojegdsaid õgugge',
 'tooltip-ca-nstab-image' => 'Dadaisaid õgugge',
 'tooltip-ca-nstab-template' => 'Vorlach õgugge',
 'tooltip-ca-nstab-category' => 'Sachgrubbsaid õgugge',
-'tooltip-minoredit' => 'Des als klenni Ännarung makiere',
-'tooltip-save' => 'Doi Ännarunge schbaischere',
-'tooltip-preview' => 'Guggda Doi Ännarunge inde Vorschau õ, bvor uff Schbaischare drigschd!',
+'tooltip-minoredit' => 'Als gleeni Ännarung makiere',
+'tooltip-save' => 'Doi Ännarunge schbaischare',
+'tooltip-preview' => 'Guggda doi Ännarunge inde Vorschau õ, bvor uff Schbaischare drigschd!',
 'tooltip-diff' => 'Gugg, welschi Ännarunge im Tegschd gmachd hoschd',
-'tooltip-compareselectedversions' => 'D Unnaschied zwische denne zwee gwehlde Versione aagugge',
-'tooltip-watch' => 'Die Said zu Dainer Beowachdunglischd zufieche',
-'tooltip-rollback' => "„Zriggsedze“ machd alli Beawaidunge vum ledschde Midawaida rigg'gängisch",
+'tooltip-compareselectedversions' => 'D Unnaschied zwische denne zwee gwehlde Ausgawe õgugge',
+'tooltip-watch' => 'Die Said zu doina Beowachdunglischd zufiesche',
+'tooltip-rollback' => "„Zriggsedze“ machd alli Beawaidunge vum ledschde Middawaida rigg'gängisch",
 'tooltip-undo' => "„Zrigg“ machd nua die Ännarung rigg'gängich un zaischd ä Vorschau õ.
-Du konnschdn Grund inde Zommefassung õgewwe.",
+Konnschdn Grund inde Zommefassung õgewwe.",
 'tooltip-summary' => 'Gebä koaz Resimee',
 
 # Browsing diffs
-'previousdiff' => '← Ältere Bearwaidung',
+'previousdiff' => '← Äldari Beawaidung',
 'nextdiff' => 'Naijari Beawaidung →',
 
 # Media information
 'file-info-size' => '$1 × $2 Pixels, Dadaigreß: $3, MIME-Type: $4',
 'file-nohires' => 'Ke heheri Ufflesung vafieschba.',
-'svg-long-desc' => 'SVG-Datei, Basisgreß $1 × $2 Pixels, Dateigreß: $3',
+'svg-long-desc' => 'SVG-Datei, Grundgreß $1 × $2 Pixels, Dadaigreß: $3',
 'show-big-image' => 'Volli Ufflesung',
 
 # Special:NewFiles
@@ -968,20 +968,18 @@ Du konnschdn Grund inde Zommefassung õgewwe.",
 'ilsubmit' => 'Such',
 
 # Bad image list
-'bad_image_list' => 'Formad:
-
-nur Zaile, wu midm * õfonge werren beriggsischdischd.
-De erschd Lingg mussn Lingg zu änna uuerwinschdi Dadai soi.
-Annare Linggs inde glaische Zail werren als Ausnõhm gnumme, des heesd, Saide, wu inde Dadai vorkumme dirfn.',
+'bad_image_list' => 'Uffbau: bloß Zaile, wu midm * õfonge werren briggsischdischd.
+De erschd Lingg mussn Lingg zu änna uuerwinschde Dadai soi.
+Õnnare Linggs inde glaische Zail werren als Ausnõhm gnumme, des heesd, Saide, wu inde Dadai vorkumme dirfn.',
 
 # Metadata
-'metadata' => 'Metadata',
-'metadata-help' => 'Die Dadai hod waidari Õgawe, waaschoinlisch vunde Digidalkomara odda vum Skänna, wuse mid gmachd worre isch.
+'metadata' => 'Medadaade',
+'metadata-help' => 'Die Dadai hodd waidari Õgawe, waschoinlisch vunde Digidalkõmara odda vum Skänna, wumase mid gmachd hodd.
 Wonn die Dadai vaännad worre isch, donn konns soi, daß zusedzlischi Õgawe fa die vaännad Dadai nemme rischdisch sinn.',
 'metadata-expand' => 'Erwaiterte Details aazaiche',
 'metadata-collapse' => 'Erwaiterte Details versteckeln',
-'metadata-fields' => 'Die EXIF-Medadaade werren inde Bild-Bschraiwung a ogzaischd, wonn die Medadaade-Tabelle verschdegld isch.
-Annere Medadaade sinn noamalawais verschdegld.
+'metadata-fields' => 'Die EXIF-Medadaade werren inde Bild-Bschraiwung a õgzaischd, wonn die Medadaade-Tabell vaschdegld isch.
+Õnnare Medadaade sinn noamalawais vaschdegld.
 * make
 * model
 * datetimeoriginal
@@ -999,8 +997,8 @@ Annere Medadaade sinn noamalawais verschdegld.
 'exif-gaincontrol-0' => 'Kään',
 
 # External editor support
-'edit-externally' => 'Die Datei bearwaide mit ener externe Aawendung',
-'edit-externally-help' => '(Guck uff [//www.mediawiki.org/wiki/Manual:External_editors Installationsaawisige] fer meh Informatione)',
+'edit-externally' => 'Die Dadai midm õnnare Weagzaisch beawaide',
+'edit-externally-help' => '(Gugg uff [//www.mediawiki.org/wiki/Manual:External_editors Inschdallazionsõwaisunge] fa mea Auskinfd)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'alle',
@@ -1008,9 +1006,9 @@ Annere Medadaade sinn noamalawais verschdegld.
 'monthsall' => 'alle',
 
 # Watchlist editing tools
-'watchlisttools-view' => 'Die wichdiche Ännerunge aagucke',
-'watchlisttools-edit' => 'D Beowachdunglischt aagucke un bearwaide',
-'watchlisttools-raw' => 'ime große Textfeld bearwaide',
+'watchlisttools-view' => 'Die wischdische Ännarunge õgugge',
+'watchlisttools-edit' => 'Beowachdunglischd õgugge un beawaide',
+'watchlisttools-raw' => 'Im große Tegschdfeld beawaide',
 
 # Core parser functions
 'duplicate-defaultsort' => '\'\'\'Baßma uff:\'\'\' De Schlissl "$2" dudde frijare Schlissl "$1" iwwaschraiwe.',

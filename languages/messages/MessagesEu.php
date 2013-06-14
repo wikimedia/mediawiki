@@ -701,19 +701,26 @@ Agian dagoeneko ondo aldatu duzu zure pasahitza edo behin-behineko pasahitza bat
 # Special:PasswordReset
 'passwordreset' => 'Pasahitzaren berrezarpena',
 'passwordreset-legend' => 'Pasahitza berrezarri',
+'passwordreset-disabled' => 'Pasahitza berrezartzea ez da posible wiki honetan.',
+'passwordreset-emaildisabled' => 'E-posta aukerak ez daude eskuragarri wiki honetan.',
 'passwordreset-username' => 'Lankide izena:',
 'passwordreset-domain' => 'Domeinua:',
 'passwordreset-capture' => 'Bidaliko den e-posta ikusi nahi?',
 'passwordreset-email' => 'E-mail helbidea:',
+'passwordreset-emailtitle' => '{{SITENAME}}-rako kontuaren xehetasunak',
 'passwordreset-emailelement' => 'Erabiltzaile izena: $1
 Behin-behineko pasahitza: $2',
 'passwordreset-emailsent' => 'Pasahitza berrezartzeko e-posta bidali da.',
 
 # Special:ChangeEmail
 'changeemail' => 'Aldatu e-mail helbidea',
+'changeemail-header' => 'Aldatu kontuko e-posta helbidea',
+'changeemail-text' => 'Bete ezazu formulario hau e-posta helbidea aldatzeko. Zure pasahitza sartu beharko duzu aldaketa hau baieztatzeko.',
+'changeemail-no-info' => 'Orrialde honetara zuzenean sartzeko izena eman behar duzu.',
 'changeemail-oldemail' => 'Egungo e-mail helbidea:',
 'changeemail-newemail' => 'E-posta helbide berria:',
 'changeemail-none' => '(bat ere ez)',
+'changeemail-password' => 'Zure {{SITENAME}}ko pasahitza:',
 'changeemail-submit' => 'E-posta aldatu',
 'changeemail-cancel' => 'Utzi',
 
@@ -937,6 +944,8 @@ Eztabaidak aipatu gabe utzi dira.',
 'node-count-exceeded-warning' => 'Orrialdeak nodo-zenbaketa gainditu du',
 'expansion-depth-exceeded-category' => 'Orrialdearen espantsio sakonera gainditu da',
 'expansion-depth-exceeded-warning' => 'Espantsio sakonera gainditu duten orrialdeak',
+'parser-unstrip-loop-warning' => 'Loop unstrip bat aurkitu da',
+'parser-unstrip-recursion-limit' => 'Unstrip errekurtsio limitea gainditu da ($1)',
 
 # "Undo" feature
 'undo-success' => 'Aldaketa desegin daiteke.
@@ -1407,6 +1416,7 @@ $1 {{PLURAL:$1|karakteretik|karakteretik}} behera izan behar ditu.',
 'right-siteadmin' => 'Databasea blokeatu eta desblokeatu',
 'right-override-export-depth' => '5eko sakonerararteko loturiko orrialdeak barne esportatu',
 'right-sendemail' => 'Beste erabiltzaileei e-posta bidali',
+'right-passwordreset' => 'Ikusi pasahitza berrezartze e-postak',
 
 # Special:Log/newusers
 'newuserlogpage' => 'Erabiltzaile erregistroa',
@@ -1622,6 +1632,7 @@ $1',
 'backend-fail-hashes' => 'Ezin izan da fitxategien hashak eskuratu konparatzeko.',
 'backend-fail-notsame' => 'Berdina ez den beste fitxategi bat dago "$1"n',
 'backend-fail-invalidpath' => '"$1" ez da gordetzeko helbide baliagarria.',
+'backend-fail-delete' => 'Ezin izan da ezabatu "$1" fitxategia.',
 'backend-fail-alreadyexists' => '"$1" fitxategia jadanik badago.',
 'backend-fail-store' => 'Ezin izan da gorde "$1" fitxategia "$2" helbidean.',
 'backend-fail-copy' => 'Ezin izan da kopiatu "$1" fitxategia "$2" helbidean.',
@@ -1803,6 +1814,8 @@ Bere [$2 fitxategiaren deskribapen orrialdea] behean dago.',
 Kasu bakoitzean dagokion artikulu zuzenarekin izan beharko lukete lotura.<br />
 Orrialde bat argipen motakoa dela antzeman ohi da [[MediaWiki:Disambiguationspage]] orrialdean agertzen den txantiloietako bat duenean.",
 
+'pageswithprop' => 'Orrialde propietatea duten orrialdeak',
+'pageswithprop-legend' => 'Orrialde propietatea duten orrialdeak',
 'pageswithprop-prop' => 'Ezaugarriaren izena:',
 'pageswithprop-submit' => 'Joan',
 
@@ -1854,6 +1867,7 @@ Orrialde bat argipen motakoa dela antzeman ohi da [[MediaWiki:Disambiguationspag
 'mostlinkedtemplates' => 'Txantiloi erabilienak',
 'mostcategories' => 'Sailkapenean kategoria gehien dituzten orrialdeak',
 'mostimages' => 'Gehien lotutako irudiak',
+'mostinterwikis' => 'Interwiki gehien dituzten orrialdeak',
 'mostrevisions' => 'Berrikuspen gehien dituzten orrialdeak',
 'prefixindex' => 'Orri guztiak aurrizkiekin',
 'prefixindex-namespace' => '$1 izentartean honako aurrizkia duten orrialde guztiak:',
@@ -1889,6 +1903,7 @@ Mesedez, kontuan izan beste webgune batzutatik URL zuzena erabiliz lotura izan d
 'pager-newer-n' => '{{PLURAL:$1|berriago den 1|berriagoak diren $1}}',
 'pager-older-n' => '{{PLURAL:$1|zaharragoa den 1|zaharragoak diren $1}}',
 'suppress' => 'Gain-ikuspena',
+'querypage-disabled' => 'Orrialde berezi hau desgaituta dago funtzionamendu arrazoiengatik.',
 
 # Book sources
 'booksources' => 'Iturri liburuak',
@@ -1906,6 +1921,7 @@ Mesedez, kontuan izan beste webgune batzutatik URL zuzena erabiliz lotura izan d
 Erregistro mota, erabiltzailearen izena edota orrialdearen izena iragaziz bistaratu daiteke. Letra larriak eta xeheak bereizten dira.',
 'logempty' => 'Ez dago emaitzarik erregistroan.',
 'log-title-wildcard' => 'Testu honekin hasten diren izenburuak bilatu',
+'showhideselectedlogentries' => 'Erakutsi/izkutatu aukeratutako log sarrerak',
 
 # Special:AllPages
 'allpages' => 'Orri guztiak',
@@ -1949,7 +1965,7 @@ Ikus, gainera [[Special:WantedCategories|kategoriarik eskatuenak]].',
 'linksearch-ok' => 'Bilatu',
 'linksearch-text' => '"*.wikipedia.org" bezalako izartxoak erabil daitezke.
 Gutxienez goi mailako domeinua behar du, adibidez "*.org".<br />
-Baimendutako protokoloak: <code>$1</code> (protokoloa zehazten ez bada http:// hartzen da lehenetsitzat).',
+Baimendutako {{PLURAL:$2|protokoloa|protokoloak}}: <code>$1</code> (protokoloa zehazten ez bada http:// hartzen da lehenetsitzat).',
 'linksearch-line' => '$1, $2(e)tik lotuta',
 'linksearch-error' => 'Komodinak izenaren hasieran bakarrik agertu beharko lirateke.',
 
@@ -2016,6 +2032,7 @@ Badago [[{{MediaWiki:Listgrouprights-helppage}}|informazio osagarria]] banakako 
 'emailuserfooter' => 'E-posta hau $1(e)k bidali dio $2(r)i {{SITENAME}}ko "E-posta bidali" funtzioa erabiliz.',
 
 # User Messenger
+'usermessage-summary' => 'Sistema mezua uzten.',
 'usermessage-editor' => 'Sistemako mezularia',
 
 # Watchlist
@@ -2561,6 +2578,7 @@ Mesedez bisitatu [//www.mediawiki.org/wiki/Localisation MediaWiki] eta [//transl
 'thumbnail_error' => 'Errorea irudi txikia sortzerakoan: $1',
 'djvu_page_error' => 'DjVu orrialdea eremuz kanpo',
 'djvu_no_xml' => 'Ezinezkoa izan da DjVu fitxategiaren XML lortzea',
+'thumbnail-dest-create' => 'Ezin izan da iruditxoa gorde helburuan',
 'thumbnail_invalid_params' => 'Irudi txikiaren ezarpenak ez dira baliagarriak',
 'thumbnail_dest_directory' => 'Ezinezkoa izan da helburu direktorioa sortu',
 'thumbnail_image-type' => 'Irudi mota ez babestua',
@@ -2614,6 +2632,7 @@ Fitxategiaren atal bat baino ez zen igo.',
 
 # JavaScriptTest
 'javascripttest' => 'JavaScript frogatzen',
+'javascripttest-title' => '$1 frogak egiten',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'Nire lankide orria',
@@ -3019,12 +3038,28 @@ Zerrenda elementuak (hasieran * duten lerroak) baino ez dira kontuan hartzen. Le
 'exif-languagecode' => 'Hizkuntza',
 'exif-iimversion' => 'IIM bertsioa',
 'exif-iimcategory' => 'Kategoria',
+'exif-datetimeexpires' => 'Ez erabili data hau pasata:',
+'exif-datetimereleased' => 'Ekoizpen data:',
+'exif-identifier' => 'Identifikatzailea',
 'exif-lens' => 'Erabilitako lentea',
 'exif-serialnumber' => 'Kameraren serie-zenbakia',
 'exif-cameraownername' => 'Kameraren jabea',
 'exif-label' => 'Etiketa',
+'exif-copyrighted' => 'Copyright egoera',
 'exif-copyrightowner' => 'Copyright-aren jabea',
 'exif-usageterms' => 'Erabilera baldintzak',
+'exif-pngfilecomment' => 'PNG fitxategiaren iruzkina',
+'exif-disclaimer' => 'Mugaketak',
+'exif-contentwarning' => 'Edukiarekin adi',
+'exif-giffilecomment' => 'GIF fitxategiaren iruzkina',
+'exif-intellectualgenre' => 'Elementu mota',
+'exif-subjectnewscode' => 'Gaiaren kodea',
+'exif-scenecode' => 'IPTC eskena kodea',
+'exif-event' => 'Agertzen den ebentoa',
+'exif-organisationinimage' => 'Agertzen den antolakundea',
+'exif-personinimage' => 'Agertzen den pertsona',
+'exif-originalimageheight' => 'Irudiaren altuera moztu aurretik',
+'exif-originalimagewidth' => 'Irudiaren zabalera moztu aurretik',
 
 # Exif attributes
 'exif-compression-1' => 'Konprimatu gabe',
@@ -3201,6 +3236,9 @@ Zerrenda elementuak (hasieran * duten lerroak) baino ez dira kontuan hartzen. Le
 
 'exif-gpsdop-excellent' => 'Bikaina ($1)',
 'exif-gpsdop-good' => 'Ona  ($1)',
+'exif-gpsdop-moderate' => 'Moderatua ($1)',
+'exif-gpsdop-fair' => 'Justua ($1)',
+'exif-gpsdop-poor' => 'Pobrea ($1)',
 
 'exif-objectcycle-a' => 'Goizetan bakarrik',
 'exif-objectcycle-p' => 'Arratsaldetan bakarrik',
@@ -3213,8 +3251,12 @@ Zerrenda elementuak (hasieran * duten lerroak) baino ez dira kontuan hartzen. Le
 'exif-ycbcrpositioning-1' => 'Zentratua',
 
 'exif-dc-contributor' => 'Egileak',
+'exif-dc-date' => 'Data(k)',
 'exif-dc-publisher' => 'Argitaratzailea',
+'exif-dc-relation' => 'Harremana duen media',
 'exif-dc-rights' => 'Eskubideak',
+'exif-dc-source' => 'Jatorrizko media',
+'exif-dc-type' => 'Media mota',
 
 'exif-rating-rejected' => 'Ukatua',
 
@@ -3227,7 +3269,9 @@ Zerrenda elementuak (hasieran * duten lerroak) baino ez dira kontuan hartzen. Le
 'exif-iimcategory-edu' => 'Hezkuntza',
 'exif-iimcategory-evn' => 'Ingurumena',
 'exif-iimcategory-hth' => 'Osasuna',
+'exif-iimcategory-hum' => 'Gizakientzako interesa',
 'exif-iimcategory-lab' => 'Lana',
+'exif-iimcategory-lif' => 'Bizimoduak eta denborapasak',
 'exif-iimcategory-pol' => 'Politika',
 'exif-iimcategory-rel' => 'Erlijioa eta sinesmenak',
 'exif-iimcategory-sci' => 'Zientzia eta teknologia',
@@ -3376,6 +3420,7 @@ Halaber [[Special:EditWatchlist|aldatzaile estandarra]] erabil dezakezu.',
 'version-specialpages' => 'Aparteko orrialdeak',
 'version-parserhooks' => 'Parser estentsioak',
 'version-variables' => 'Aldagaiak',
+'version-antispam' => 'Spam ekiditea',
 'version-skins' => 'Itxurak',
 'version-other' => 'Bestelakoak',
 'version-mediahandlers' => 'Media gordailuak',
@@ -3392,11 +3437,20 @@ Halaber [[Special:EditWatchlist|aldatzaile estandarra]] erabil dezakezu.',
 'version-software' => 'Instalatutako softwarea',
 'version-software-product' => 'Produktua',
 'version-software-version' => 'Bertsioa',
+'version-entrypoints' => 'Sarrera puntuko URLa',
+'version-entrypoints-header-entrypoint' => 'Sarrera puntua',
 'version-entrypoints-header-url' => 'URL',
 
 # Special:Redirect
+'redirect' => 'Birzuzendu fitxategi, lankide edo berrikuspen IDaren arabera',
+'redirect-legend' => 'Orrialde edo fitxategi batera birzuzendu',
 'redirect-submit' => 'Joan',
+'redirect-lookup' => 'Ikuskatu:',
+'redirect-value' => 'Balioa:',
+'redirect-user' => 'Erabiltzailearen identifikazioa (ID):',
+'redirect-revision' => 'Orrialdearen berrikuspena',
 'redirect-file' => 'Fitxategiaren izena',
+'redirect-not-exists' => 'Ez da baliorik aurkitu',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Artxibo bikoiztuen bilaketa',
@@ -3484,17 +3538,28 @@ Halaber [[Special:EditWatchlist|aldatzaile estandarra]] erabil dezakezu.',
 'htmlform-selectorother-other' => 'Beste bat',
 'htmlform-no' => 'Ez',
 'htmlform-yes' => 'Bai',
+'htmlform-chosen-placeholder' => 'Aukeratu',
+
+# SQLite database support
+'sqlite-has-fts' => '$1 testu osoan bilatzeko laguntzarekin',
 
 # New logging system
 'logentry-delete-delete' => '$1 wikilariak «$3» orria ezabatu du',
 'logentry-delete-event' => '$1 wikilariak ikusgaitasuna aldatu {{PLURAL:$5|dio erregistroko sarrera bati|die erregistroko $5 sarrerari}}, $3 orrian: $4',
 'logentry-suppress-event' => '$1 wikilariak ezkutuan ikusgaitasuna aldatu {{PLURAL:$5|dio erregistroko sarrera bati|die erregistroko $5 sarrerari}}, $3 orrian: $4',
+'revdelete-content-hid' => 'edukia izkutatua',
+'revdelete-summary-hid' => 'aldaketa laburpena izkutatua',
+'revdelete-uname-hid' => 'lankide izena ezkutatua',
+'revdelete-content-unhid' => 'eduki ezkutua erakutsi',
+'revdelete-summary-unhid' => 'aldaketa laburpen izkutua erakutsi',
+'revdelete-uname-unhid' => 'lankide ezkutua erakutsi',
 'revdelete-restricted' => 'administratzaileentzako mugak ezarri dira',
 'revdelete-unrestricted' => 'administratzaileentzako mugak kendu dira',
-'logentry-move-move' => '$1 wikilariak «$3» orria «$4» izenera aldatu du',
-'logentry-move-move-noredirect' => '$1 wikilariak «$3» orria «$4» izenera aldatu du, birzuzenketarik utzi gabe',
-'logentry-move-move_redir' => '$1 wikilariak «$3» orria «$4» izenera aldatu du, birzuzenketaren gainetik',
-'logentry-move-move_redir-noredirect' => '$1 wikilariak «$3» orria «$4» izenera aldatu du, birzuzenketa bat gainidatzita, birzuzenketarik utzi gabe',
+'logentry-move-move' => '$1 {{GENDER:$2|wikilariak}} $3 orria $4 izenera aldatu du',
+'logentry-move-move-noredirect' => '$1 {{GENDER:$2|wikilariak}} $3 orria $4 izenera aldatu du, birzuzenketarik utzi gabe',
+'logentry-move-move_redir' => '$1 {{GENDER:wikilariak}} «$3» orria «$4» izenera aldatu du, birzuzenketaren gainetik',
+'logentry-move-move_redir-noredirect' => '$1 {{GENDER:wikilariak}} «$3» orria «$4» izenera aldatu du, birzuzenketa bat gainidatzita, birzuzenketarik utzi gabe',
+'logentry-patrol-patrol' => '$1(e)k $3 orrialdearen $4 berrikuzpena patruilatutzat {{GENDER:$2|markatu}} du',
 'logentry-newusers-newusers' => '$1 erabiltzaile kontua sortu da',
 'logentry-newusers-create' => '$1 erabiltzaile kontua sortu da',
 'logentry-newusers-create2' => '$1 wikilariak $3 erabiltzaile kontua sortu du',
@@ -3510,6 +3575,10 @@ Halaber [[Special:EditWatchlist|aldatzaile estandarra]] erabil dezakezu.',
 # Search suggestions
 'searchsuggest-search' => 'Bilatu',
 'searchsuggest-containing' => 'edukian...',
+
+# API errors
+'api-error-unclassified' => 'Ezezaguna den errorea gertatu da.',
+'api-error-unknown-code' => 'Akats ezezaguna: "$1".',
 
 # Durations
 'duration-seconds' => '{{PLURAL:$1|Segundu $1|$1 segundu}}',

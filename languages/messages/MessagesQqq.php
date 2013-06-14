@@ -67,6 +67,7 @@
  * @author Leinad
  * @author Lejonel
  * @author Li-sung
+ * @author Liangent
  * @author Lloffiwr
  * @author MF-Warburg
  * @author Malafaya
@@ -4186,10 +4187,15 @@ See also:
 'querypage-disabled' => "On special pages that use expensive database queries but are not cacheable, this message is displayed when 'miser mode' is on (i.e. no expensive queries allowed).",
 
 # Book sources
-'booksources' => '{{doc-special|BookSources}}
+'booksources' => "{{doc-special|BookSources}}
+
+'''This message shouldn't be changed unless it has serious mistakes.'''
+
+It's used as the page name of the configuration page of [[Special:BookSources]]. Changing it breaks existing sites using the default version of this message.
+
 See also:
 * {{msg-mw|Booksources|title}}
-* {{msg-mw|Booksources-text|text}}',
+* {{msg-mw|Booksources-text|text}}",
 'booksources-search-legend' => 'Box heading on [[Special:BookSources|book sources]] special page. The box is for searching for places where a particular book can be bought or viewed.',
 'booksources-isbn' => '{{optional}}',
 'booksources-go' => 'Name of button in [[Special:BookSources]]
@@ -5193,7 +5199,8 @@ Parameter $1 is a page title.',
 
 {{Identical|Redirect page}}',
 'istemplate' => 'Means that a page (a template, specifically) is used as <code><nowiki>{{Page name}}</nowiki></code>.
-Displayed in [[Special:WhatLinksHere]] (see [[Special:WhatLinksHere/Template:New portal]] for example).',
+Displayed in [[Special:WhatLinksHere]] (see [[Special:WhatLinksHere/Template:New portal]] for example).
+{{Identical|Transclusion}}',
 'isimage' => 'This message is displayed on [[Special:WhatLinksHere]] for images. It means that the image is used on the page (as opposed to just being linked to like an non-image page).',
 'whatlinkshere-prev' => 'This is part of the navigation message on the top and bottom of Whatlinkshere pages, where it is used as the first argument of {{msg-mw|Viewprevnext}}.
 $1 is the number of items shown per page. It is not used when $1 is zero; not sure what happens when $1 is one.
