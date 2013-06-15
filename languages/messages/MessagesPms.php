@@ -261,9 +261,9 @@ $messages = array(
 'lastmodifiedat' => "Modificà l'ùltima vira ai $1 a $2.",
 'viewcount' => "St'artìcol-sì a l'é stàit lesù {{PLURAL:$1|na vira|$1 vire}}.",
 'protectedpage' => 'Pàgina proteta',
-'jumpto' => 'Va a:',
+'jumpto' => 'Andé a:',
 'jumptonavigation' => 'navigassion',
-'jumptosearch' => 'arserca',
+'jumptosearch' => 'arserché',
 'view-pool-error' => "An dëspias, ij servent a son motobin carià al moment.
 Tròpi utent a son an camin ch'a preuvo a lese sta pàgina-sì.
 Për piasì, speta un pòch prima ëd prové torna a vardé sta pàgina-sì.

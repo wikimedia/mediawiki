@@ -12126,6 +12126,8 @@ $messages['lb'] = array(
 	'config-localsettings-upgrade' => "'''Opgepasst''': E Fichier <code>LocalSettings.php</code> gouf fonnt.
 Är Software kann aktualiséiert ginn, setzt w.e.g. de Wäert vum <code>\$wgUpgradeKey</code> an d'Këscht.
 Dir fannt en am <code>LocalSettings.php</code>.",
+	'config-localsettings-cli-upgrade' => "E Fichier <code>LocalSettings.php</code> gouf fonnt.
+Fir dës Installatioun z'aktuaéliséieren start w.e.g. <code>update.php</code>",
 	'config-localsettings-key' => 'Aktualisatiounsschlëssel:',
 	'config-localsettings-badkey' => 'De Schlëssel deen Dir aginn hutt ass net korrekt',
 	'config-localsettings-incomplete' => 'De Fichier <code>LocalSettings.php</code> schéngt net komplett ze sinn.
@@ -12316,6 +12318,7 @@ Dir kënnt elo déi Astellungen déi nach iwwreg sinn iwwersprangen an d'Wiki el
 	'config-install-stats' => 'Initialisatioun vun de Statistiken',
 	'config-install-keys' => 'Generéiere vum Geheimschlëssel',
 	'config-install-sysop' => 'Administrateur Benotzerkont gëtt ugeluecht',
+	'config-install-mainpage' => 'Haaptsäit mat Standard-Inhalt gëtt ugeluecht',
 	'config-install-extension-tables' => "D'Tabelle fir déi aktivéiert Erweiderunge ginn ugeluecht",
 	'config-install-mainpage-failed' => "D'Haaptsäit konnt net dragesat ginn: $1",
 	'config-download-localsettings' => '<code>LocalSettings.php</code> eroflueden',
@@ -18042,7 +18045,7 @@ $1
 	'config-missing-db-host' => 'Vnesti morate vrednost za »Gostitelj zbirke podatkov«',
 	'config-missing-db-server-oracle' => 'Vnesti morate vrednost za »TNS zbirke podatkov«',
 	'config-invalid-db-server-oracle' => 'Neveljaven TNS zbirke podatkov »$1«.
-Uporabljajte samo črke ASCII (a-z, A-Z), številke (0-9), podčrtaje (_) in pike (.).',
+Uporabite ali "ime TNS" ali niz "Easy Connect" ([http://docs.oracle.com/cd/E11882_01/network.112/e10836/naming.htm Načini poimenovanja Oracle])',
 	'config-invalid-db-name' => 'Neveljavno ime zbirke podatkov »$1«.
 Uporabljajte samo črke ASCII (a-z, A-Z), številke (0-9), podčrtaje (_) in vezaje (-).',
 	'config-invalid-db-prefix' => 'Neveljavna predpona zbirke podatkov »$1«.

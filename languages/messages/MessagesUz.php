@@ -577,8 +577,8 @@ Vaqtinchalik maxfiy so'z: $2",
 'showdiff' => 'O‘zgarishlarni ko‘rsatish',
 'anoneditwarning' => "'''Diqqat:''' Siz tizimga kirmagansiz. Ushbu sahifa tarixida Sizning IP manzilingiz yozib qolinadi.",
 'missingcommenttext' => 'Iltimos sharh qoldiring.',
-'summary-preview' => "Tavsif shunday bo'ladi:",
-'subject-preview' => "Sarlavha shunday bo'ladi:",
+'summary-preview' => 'Tavsif bunday koʻrinishda boʻladi:',
+'subject-preview' => 'Sarlavha bunday koʻrinishda boʻladi:',
 'blockedtitle' => 'Foydalanuvchi chetlashtirildi',
 'blockedtext' => "'''Siz (foydalanuvchi nomingiz yoki IP manzilingiz) tahrir qilishdan chetlashtirildingiz.'''
 

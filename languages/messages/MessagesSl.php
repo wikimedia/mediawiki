@@ -387,6 +387,7 @@ $messages = array(
 'create-this-page' => 'Ustvari stran',
 'delete' => 'Briši',
 'deletethispage' => 'Briši stran',
+'undeletethispage' => 'Obnovi stran',
 'undelete_short' => 'Vrni $1 {{PLURAL:$1|izbrisano urejanje|izbrisani urejanji|izbrisana urejanja|izbrisanih urejanj|izbrisanih urejanj}}',
 'viewdeleted_short' => 'Ogled {{PLURAL:$1|enega izbrisanega urejanja|$1 izbrisanih urejanj}}',
 'protect' => 'Zaščiti',
@@ -591,6 +592,8 @@ $2',
 'namespaceprotected' => "Nimate dovoljenja urejati strani v imenskem prostoru '''$1'''.",
 'customcssprotected' => 'Nimate pravice urejati te strani CSS, ker vsebuje osebne nastavitve drugega uporabnika.',
 'customjsprotected' => 'Nimate pravice urejati te strani JavaScript, ker vsebuje osebne nastavitve drugega uporabnika.',
+'mycustomcssprotected' => 'Nimate pravic za urejanje te strani s CSS.',
+'mycustomjsprotected' => 'Nimate pravic za urejanje te strani z JavaScriptom.',
 'ns-specialprotected' => 'Posebnih strani ni mogoče urejati.',
 'titleprotected' => "Uporabnik [[User:$1|$1]] je preprečil ustvarjanje strani s takim naslovom.
 Podani razlog je bil »''$2''«.",
@@ -731,7 +734,7 @@ Prosimo, vpišite pravilno oblikovanega ali polje izpraznite.',
 'cannotchangeemail' => 'E-poštnih naslovov računa na tem wikiju ni mogoče spremeniti.',
 'emaildisabled' => 'Stran ne more pošiljati e-pošte.',
 'accountcreated' => 'Račun je ustvarjen',
-'accountcreatedtext' => 'Uporabniški račun za »$1« je ustvarjen.',
+'accountcreatedtext' => 'Ustvarili smo uporabniški račun za [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|pogovor]]).',
 'createaccount-title' => 'Ustvarjanje računa za {{GRAMMAR:tožilnik|{{SITENAME}}}}',
 'createaccount-text' => 'Nekdo je ustvaril račun $2 na {{GRAMMAR:dajalnik|{{SITENAME}}}} ($4). Geslo za »$2« je »$3«. Priporočljivo je, da se prijavite in spremenite svoje geslo sedaj.
 
@@ -770,6 +773,8 @@ Morda ste že uspešno spremenili geslo ali pa ste zahtevali novo začasno geslo
 
 # Special:PasswordReset
 'passwordreset' => 'Ponastavitev gesla',
+'passwordreset-text-one' => 'Izpolnite obrazec, da ponastavite svoje geslo.',
+'passwordreset-text-many' => 'Vnesite {{PLURAL:$1|podatek|enega od podatkov}}, da ponastavite svoje geslo.',
 'passwordreset-legend' => 'Ponastavitev gesla',
 'passwordreset-disabled' => 'Ponastavljanje gesla je na tem wikiju onemogočeno.',
 'passwordreset-emaildisabled' => 'Na tem wikiju so možnosti e-pošte onemogočene.',
@@ -1014,13 +1019,14 @@ Spodaj sta za sklicevanje na razpolago dnevnik brisanja in dnevnik prestavljanja
 Izgleda, da je bila izbrisana.',
 'edit-conflict' => 'Navzkrižje urejanj.',
 'edit-no-change' => 'Vaše urejanje je bilo prezrto, saj ni vsebovalo sprememb.',
+'postedit-confirmation' => 'Vaše urejanje smo shranili.',
 'edit-already-exists' => 'Ni bilo mogoče ustvariti nove strani, ker že obstaja.',
 'defaultmessagetext' => 'Prednastavljeno besedilo',
 'content-failed-to-parse' => 'Nisem mogel razčleniti vsebine $2 za obliko $1: $3',
 'invalid-content-data' => 'Neveljavni podatki vsebine',
 'content-not-allowed-here' => 'Vsebina »$1« ni dovoljena na strani [[$2]]',
 'editwarning-warning' => 'Če zapustite stran, boste morda izgubili vse spremembe, ki ste jih naredili.
-Če ste prijavljeni, lahko to opozorilo onemogočite v razdelku »{{int:prefs-editing}}« v svojih nastavitvah.',
+Če ste prijavljeni, lahko to opozorilo onemogočite v razdelku »Urejanje« v svojih nastavitvah.',
 
 # Content models
 'content-model-wikitext' => 'wikibesedilo',
@@ -1406,7 +1412,7 @@ Ne sme biti daljši od $1 {{PLURAL:$1|znaka|znakov}}.',
 'prefs-help-gender' => 'Podatek ni obvezen, uporablja pa se ga izključno za pravilno obliko naslavljanja programja glede na spol.
 Podatek bo javno prikazan.',
 'email' => 'E-pošta',
-'prefs-help-realname' => 'Pravo ime je neobvezno.
+'prefs-help-realname' => 'Pravo ime ni obvezno.
 Če se ga odločite navesti, bo uporabljeno za priznavanje vašega dela.',
 'prefs-help-email' => 'E-poštni naslov ni obvezen, vendar omogoča, da vam v primeru pozabljenega gesla pošljemo novo.',
 'prefs-help-email-others' => 'Omogočite lahko tudi možnost, da vam lahko ostali uporabniki pošiljajo e-pošto prek vaše uporabniške ali pogovorne strani.
@@ -1523,6 +1529,8 @@ Ko vas drugi uporabniki kontaktirajo, jim vašega e-poštnega naslova ne bomo ra
 'right-editusercssjs' => 'Urejanje CSS- in JS-datotek drugih uporabnikov',
 'right-editusercss' => 'Uredi CSS datotek drugih uporabnikov',
 'right-edituserjs' => 'Uredi JS datotek drugih uporabnikov',
+'right-editmyusercss' => 'Uredite svoje uporabniške datoteke CSS',
+'right-editmyuserjs' => 'Uredite svoje uporabniške datoteke JavaScript',
 'right-rollback' => 'Hitro vračanje urejanj zadnjega uporabnika, ki je urejal določeno stran',
 'right-markbotedits' => 'Označi vrnjena urejanja kot urejanja botov',
 'right-noratelimit' => 'Omejitve dejavnosti ne veljajo',
@@ -2541,7 +2549,7 @@ $1',
 'mycontris' => 'Prispevki',
 'contribsub2' => 'Uporabnik: $1 ($2)',
 'nocontribs' => 'Ne najdem nobene merilom ustrezajoče spremembe.',
-'uctop' => ' (vrh)',
+'uctop' => '(trenutno)',
 'month' => 'Od meseca (in prej):',
 'year' => 'Od leta (in prej):',
 

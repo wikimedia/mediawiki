@@ -602,7 +602,7 @@ Njezabudź swoje [[Special:Preferences|nastajenja za {{GRAMMAR:akuzatiw|{{SITENA
 'userlogout' => 'wotzjewić',
 'notloggedin' => 'Njepřizjewjeny',
 'userlogin-noaccount' => 'Nimaš žane konto?',
-'userlogin-joinproject' => '{{GRAMMAR:datiw|{{SITENAME}}}} přistupić',
+'userlogin-joinproject' => 'Konto za {{GRAMMAR:akuzatiw|{{SITENAME}}}} załožić',
 'nologin' => 'Nimaš žane konto? $1.',
 'nologinlink' => 'Konto załožić',
 'createaccount' => 'Konto załožić',
@@ -677,7 +677,7 @@ Prjedy hač so druha e-mejlka na konto pósćele, dyrbiš so po instrukcijach w 
 'cannotchangeemail' => 'Kontowe e-mejlowe adresy njehodźa so na tutym wikiju změnić.',
 'emaildisabled' => 'Tute sydło njemóže e-mejle pósłać.',
 'accountcreated' => 'Wužiwarske konto załožene',
-'accountcreatedtext' => 'Wužiwarske konto za $1 bu załožene.',
+'accountcreatedtext' => 'Wužiwarske konto za [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|diskusiju]]) bu załožene.',
 'createaccount-title' => 'Wutworjenje wužiwarskeho konta za {{SITENAME}}',
 'createaccount-text' => 'Něchtó je wužiwarske konto za twoju e-mejlowu adresu na {{SITENAME}} ($4) z mjenom "$2" z hesłom "$3" wutworił. Ty měł so nětko přizjewić a swoje hesło změnić.
 
@@ -2423,7 +2423,7 @@ $1',
 'mycontris' => 'Přinoški',
 'contribsub2' => 'za wužiwarja $1 ($2)',
 'nocontribs' => 'Žane změny, kotrež podatym kriterijam wotpowěduja.',
-'uctop' => '(aktualnje)',
+'uctop' => '(aktualny)',
 'month' => 'wot měsaca (a do toho):',
 'year' => 'wot lěta (a do toho):',
 

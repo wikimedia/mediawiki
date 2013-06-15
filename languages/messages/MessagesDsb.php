@@ -592,7 +592,7 @@ Móžoš {{SITENAME}} anomymnje dalej wužywaś abo móžoš <span class='plainl
 'userlogout' => 'wótzjawiś se',
 'notloggedin' => 'Njepśizjawjony(a)',
 'userlogin-noaccount' => 'Njamaš wužywarske konto?',
-'userlogin-joinproject' => '{{GRAMMAR:datiw|{{SITENAME}}}} pśistupiś',
+'userlogin-joinproject' => 'Konto za {{GRAMMAR:akuzatiw|{{SITENAME}}}} załožyś',
 'nologin' => "Njamaš wužywarske konto? '''$1'''.",
 'nologinlink' => 'Nowe wužywarske konto załožyś',
 'createaccount' => 'Wužywarske konto załožyś',
@@ -652,7 +652,7 @@ Woglědowarje, kótarež wužywaju toś tu IP-adresu njamógu tuchylu dalšne ko
 'cannotchangeemail' => 'Kontowe e-mailowe adrese njedaju se změniś na toś tom wikiju.',
 'emaildisabled' => 'Toś to sedło njamóžo e-maile pósłaś.',
 'accountcreated' => 'Wužywarske konto jo se wutwóriło.',
-'accountcreatedtext' => 'Wužywarske konto $1 jo se wutwóriło.',
+'accountcreatedtext' => 'Wužywarske konto [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|diskusiju]]) jo se załožyło.',
 'createaccount-title' => 'Wužywarske konto za {{SITENAME}} nawarjone',
 'createaccount-text' => 'Něchten jo konto za twóje e-mailowu adresu na {{GRAMMAR:lokatiw|{{SITENAME}}}} ($4) z mjenim "$2", z pótajmnym słowom "$3", wutwórił. Dejš se pśizjawiś a swóje pótajmne słowo něnt změniś.
 

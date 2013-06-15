@@ -646,7 +646,7 @@ Vergiesst net fir Är [[Special:Preferences|{{SITENAME}} Astellungen]] z'ännere
 'userlogin-resetlink' => "Hutt Dir d'Detailer vun Ärem Login vergiess?",
 'userlogin-resetpassword-link' => 'Setzt Ärt Passwuert zréck',
 'helplogin-url' => 'Help:Aloggen',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Hëllef beim aloggen]]',
+'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Hëllef beim Aloggen]]',
 'createacct-join' => 'Gitt Är Informatioune hei drënner an.',
 'createacct-emailrequired' => 'E-Mailadress',
 'createacct-emailoptional' => 'E-Mailadress (fakultativ)',

@@ -22,6 +22,7 @@
  * @author Habjchen
  * @author Hannibal
  * @author Jon Harald Søby
+ * @author Jopparn
  * @author Kaganer
  * @author LPfi
  * @author Lejonel
@@ -1639,6 +1640,8 @@ Om du väljer att ange ditt riktiga namn, kommer det att användas för att till
 'right-editusercssjs' => 'Redigera andra användares CSS- och JS-filer',
 'right-editusercss' => 'Redigera andra användares CSS-filer',
 'right-edituserjs' => 'Redigera andra användares JS-filer',
+'right-editmyusercss' => 'Redigera din egen användares CSS-filer',
+'right-editmyuserjs' => 'Redigera din egen användares JavaScript-filer',
 'right-rollback' => 'Rulla tillbaka den användare som senast redigerat en sida',
 'right-markbotedits' => 'Markera tillbakarullningar som robotändringar',
 'right-noratelimit' => 'Påverkas inte av hastighetsgränser',

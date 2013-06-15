@@ -1305,7 +1305,7 @@ Pane tähele, et navigeerimislinkide kasutamine lähtestab redaktsioonide valiku
 'difference-title' => 'Erinevus lehekülje "$1" redaktsioonide vahel',
 'difference-title-multipage' => 'Erinevus lehekülgede "$1" ja "$2" vahel',
 'difference-multipage' => '(Lehekülgede erinevus)',
-'lineno' => 'Rida $1:',
+'lineno' => '$1. rida:',
 'compareselectedversions' => 'Võrdle valitud redaktsioone',
 'showhideselectedversions' => 'Näita/peida valitud versioonid',
 'editundo' => 'eemalda',
