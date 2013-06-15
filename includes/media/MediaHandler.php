@@ -78,7 +78,7 @@ abstract class MediaHandler {
 	/**
 	 * Merge a parameter array into a string appropriate for inclusion in filenames
 	 *
-	 * @param $params array
+	 * @param $params array Array of parameters that have been through normaliseParams.
 	 */
 	abstract function makeParamString( $params );
 
@@ -220,6 +220,7 @@ abstract class MediaHandler {
 	 * @param string $dstPath filesystem destination path
 	 * @param string $dstUrl destination URL to use in output HTML
 	 * @param array $params arbitrary set of parameters validated by $this->validateParam()
+	 *   Note: These parameters have *not* gone through $this->normaliseParams()
 	 * @param $flags Integer: a bitfield, may contain self::TRANSFORM_LATER
 	 *
 	 * @return MediaTransformOutput
@@ -479,6 +480,8 @@ abstract class MediaHandler {
 	}
 
 	/**
+	 * Used instead of getLongDesc if there is no handler registered for file.
+	 *
 	 * @param $file File
 	 * @return string
 	 */
@@ -488,6 +491,8 @@ abstract class MediaHandler {
 	}
 
 	/**
+	 * Short description. Shown on Special:Search results.
+	 *
 	 * @param $file File
 	 * @return string
 	 */
@@ -498,6 +503,8 @@ abstract class MediaHandler {
 	}
 
 	/**
+	 * Long description. Shown under image on image description page surounded by ().
+	 *
 	 * @param $file File
 	 * @return string
 	 */
@@ -507,6 +514,8 @@ abstract class MediaHandler {
 	}
 
 	/**
+	 * Used instead of getShortDesc if there is no handler registered for file.
+	 *
 	 * @param $file File
 	 * @return string
 	 */
@@ -534,12 +543,25 @@ abstract class MediaHandler {
 		}
 	}
 
+	/**
+	 * Shown in file history box on image description page.
+	 *
+	 * @param File $file
+	 * @return String Dimensions
+	 */
 	function getDimensionsString( $file ) {
 		return '';
 	}
 
 	/**
-	 * Modify the parser object post-transform
+	 * Modify the parser object post-transform.
+	 *
+	 * This is often used to do $parser->addOutputHook(),
+	 * in order to add some javascript to render a viewer.
+	 * See TimedMediaHandler or OggHandler for an example.
+	 *
+	 * @param Parser $parser
+	 * @param File $file
 	 */
 	function parserTransformHook( $parser, $file ) {}
 
@@ -587,10 +609,17 @@ abstract class MediaHandler {
 	}
 
 	/**
-	 * Remove files from the purge list
+	 * Remove files from the purge list.
+	 *
+	 * This is used by some video handlers to prevent ?action=purge
+	 * from removing a transcoded video, which is expensive to
+	 * regenerate.
+	 *
+	 * @see LocalFile::purgeThumbnails
 	 *
 	 * @param array $files
-	 * @param array $options
+	 * @param array $options Purge options. Currently will always be
+	 *  an array with a single key 'forThumbRefresh' set to true.
 	 */
 	public function filterThumbnailPurgeList( &$files, $options ) {
 		// Do nothing
