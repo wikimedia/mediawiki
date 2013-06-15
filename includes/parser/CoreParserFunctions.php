@@ -862,7 +862,10 @@ class CoreParserFunctions {
 			return '';
 		} else {
 			return '<span class="error">' .
-				wfMessage( 'duplicate-defaultsort', $old, $text )->inContentLanguage()->escaped() .
+				wfMessage( 'duplicate-defaultsort' )->rawParams(
+					htmlspecialchars( $old, ENT_QUOTES, 'UTF-8', false ), // Message should be parsed, but these params should only be escaped.
+					htmlspecialchars( $text, ENT_QUOTES, 'UTF-8', false )
+				)->inContentLanguage()->parse() .
 				'</span>';
 		}
 	}
