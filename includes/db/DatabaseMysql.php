@@ -164,7 +164,7 @@ class DatabaseMysql extends DatabaseMysqlBase {
 	}
 
 	protected function mysqlError( $conn = null ) {
-		return mysql_error( $conn );
+		return ( $conn !== null ) ? mysql_error( $conn ) : mysql_error(); // avoid warning
 	}
 
 	protected function mysqlRealEscapeString( $s ) {
