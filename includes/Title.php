@@ -163,6 +163,10 @@ class Title implements LinkTarget {
 
 	/** @var bool Would deleting this page be a big deletion? */
 	private $mIsBigDeletion = null;
+
+	/** @var string HTML for the page's {{DISPLAYTITLE:...}} */
+	private $mDisplayTitle = null;
+
 	// @}
 
 	/**
@@ -4836,4 +4840,37 @@ class Title implements LinkTarget {
 		$this->mTextform = strtr( $this->mDbkeyform, '_', ' ' );
 	}
 
+	/**
+	 * Returns the display title if it exists, or $this->getPrefixedText().
+	 *
+	 * @note returns (safe) HTML. The result should be safe, and should not be escaped.
+	 *
+	 * @return string HTML of display title, or $this->getPrefixedText() escaped.
+	 */
+	public function getDisplayTitle() {
+		if ( is_null( $this->mDisplayTitle ) ) {
+			$id = $this->getArticleId();
+			if ( $id === 0 ) {
+				// Not an existing page.
+				$this->mDisplayTitle = false;
+			} else {
+				$dbr = wfGetDB( DB_SLAVE );
+				$this->mDisplayTitle = $dbr->selectField(
+					'page_props',
+					'pp_value',
+					[
+						'pp_page' => $id,
+						'pp_propname' => 'displaytitle'
+					],
+					__METHOD__
+				);
+			}
+		}
+		if ( $this->mDisplayTitle === false ) {
+			// Since this is the "default" display title in a sense.
+			return htmlspecialchars( $this->getPrefixedText() );
+		} else {
+			return $this->mDisplayTitle;
+		}
+	}
 }
