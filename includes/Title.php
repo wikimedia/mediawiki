@@ -155,6 +155,10 @@ class Title {
 
 	/** @var TitleValue A corresponding TitleValue object */
 	private $mTitleValue = null;
+
+	/** @var string HTML for the page's {{DISPLAYTITLE:...}} */
+	public $mDisplayTitle = null;
+
 	// @}
 
 	/**
@@ -5079,5 +5083,39 @@ class Title {
 
 		wfRunHooks( 'TitleGetEditNotices', array( $this, $oldid, &$notices ) );
 		return $notices;
+	}
+
+	/**
+	 * Returns the display title if it exists, or $this->getPrefixedText().
+	 *
+	 * @note returns (safe) HTML. The result should be safe, and should not be escaped.
+	 *
+	 * @return String HTML of display title, or $this->getPrefixedText() escaped.
+	 */
+	public function getDisplayTitle() {
+		if ( is_null( $this->mDisplayTitle ) ) {
+			$id = $this->getArticleId();
+			if ( $id === 0 ) {
+				// Not an existing page.
+				$this->mDisplayTitle = false;
+			} else {
+				$dbr = wfGetDB( DB_SLAVE );
+				$this->mDisplayTitle = $dbr->selectField(
+					'page_props',
+					'pp_value',
+					array(
+						'pp_page' => $id,
+						'pp_propname' => 'displaytitle'
+					),
+					__METHOD__
+				);
+			}
+		}
+		if ( $this->mDisplayTitle === false ) {
+			// Since this is the "default" display title in a sense.
+			return htmlspecialchars( $this->getPrefixedText() );
+		} else {
+			return $this->mDisplayTitle;
+		}
 	}
 }
