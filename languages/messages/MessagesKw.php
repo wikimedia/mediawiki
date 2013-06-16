@@ -300,6 +300,18 @@ $messages = array(
 'oct' => 'Hed',
 'nov' => 'Du',
 'dec' => 'Kev',
+'january-date' => '$1 Genver',
+'february-date' => '$1 Hwevrel',
+'march-date' => '$1 Meurth',
+'april-date' => '$1 Ebrel',
+'may-date' => '$1 Me',
+'june-date' => '$1 Metheven',
+'july-date' => '$1 Gortheren',
+'august-date' => '$1 Est',
+'september-date' => '$1 Gwynngala',
+'october-date' => '$1 Hedra',
+'november-date' => '$1 Du',
+'december-date' => '$1 Kevardhu',
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Klass|Klassys}}',
@@ -318,6 +330,7 @@ $messages = array(
 'listingcontinuesabbrev' => 'pes.',
 
 'about' => 'A-dro dhe',
+'article' => 'Folen dhalgh',
 'newwindow' => '(ygeri yn fenester nowyth)',
 'cancel' => 'Hedhi',
 'moredotdotdot' => 'Moy...',
@@ -374,6 +387,7 @@ $messages = array(
 'create-this-page' => 'Gwruthyl an folen-ma',
 'delete' => 'Dilea',
 'deletethispage' => 'Dilea an folen-ma',
+'undeletethispage' => 'Diswul dilea an folen-ma',
 'undelete_short' => 'Disdhilea {{PLURAL:$1|unn janj|$1 chanj}}',
 'viewdeleted_short' => 'Gweles {{PLURAL:$1|unn janj diles|$1 chanj diles}}',
 'protect' => 'Difres',
@@ -493,8 +507,14 @@ $1',
 'cannotdelete-title' => 'Ny yllir dilea an folen "$1"',
 'badtitle' => 'Titel drog',
 'viewsource' => 'Gweles an bennfenten',
+'viewsource-title' => 'Gweles an bennfenten rag $1',
 'protectedpagetext' => 'Difresys re beu an folen-ma rag gwitha rag chanjya po gwriansow erel.',
 'viewsourcetext' => 'Hwi a yll gweles ha kopia pennfenten an folen-ma:',
+'mycustomcssprotected' => "Ny'gas beus kummyes dhe janjya an folen CSS-ma.",
+'mycustomjsprotected' => "Ny'gas beus kummyes dhe janjya an folen JavaScript-ma.",
+'ns-specialprotected' => 'Ny yllir chanjya folennow arbennek.',
+'exception-nologin' => 'Nyns owgh omgelmys',
+'exception-nologin-text' => 'An folen-ma po an gwrians-ma a wovyn mayth omgelmowgh war an wiki-ma.',
 
 # Login and logout pages
 'logouttext' => "'''Digelmys owgh lemmyn.'''
@@ -505,11 +525,21 @@ Notyewgh: Neb folennow a alsa bos diskwedhys kepar del owgh hwath omgelmys, erna
 'welcomecreation-msg' => 'Gwruthys re beu agas akont.
 Na ankevewgh dhe janjya agas [[Special:Preferences|dewisyansow {{SITENAME}}]].',
 'yourname' => 'Hanow devnydhyer:',
+'userlogin-yourname' => 'Hanow devnydhyer',
+'userlogin-yourname-ph' => 'Entrewgh agas hanow devnydhyer',
 'yourpassword' => 'Ger tremena:',
+'userlogin-yourpassword' => 'Ger tremena',
+'userlogin-yourpassword-ph' => 'Entrewgh agas ger tremena',
+'createacct-yourpassword-ph' => 'Entrewgh ger tremena',
 'yourpasswordagain' => 'Jynnskrifewgh agas ger tremena arta:',
+'createacct-yourpasswordagain' => 'Afydhyewgh an ger tremena',
+'createacct-yourpasswordagain-ph' => 'Entrewgh an ger tremena arta',
 'remembermypassword' => "Perthi kov a'm omgelmi war an jynn amontya-ma (rag $1 {{PLURAL:$1|dydh}} dhe'n moyha)",
+'userlogin-remembermypassword' => "Perthi kov a'm omgelmi",
+'userlogin-signwithsecure' => 'Devnydhya junyans diogel',
 'securelogin-stick-https' => 'Gwitha junyes gans HTTPS wosa omgelmi',
 'yourdomainname' => 'Agas tiredh:',
+'password-change-forbidden' => 'Ny yllir chanjya geryow tremena war an wiki-ma.',
 'login' => 'Omgelmi',
 'nav-login-createaccount' => 'Omgelmi / Gwruthyl akont nowyth',
 'loginprompt' => 'Res yw dhywgh galosegi cookies rag omgelmi orth {{SITENAME}}.',
@@ -518,18 +548,38 @@ Na ankevewgh dhe janjya agas [[Special:Preferences|dewisyansow {{SITENAME}}]].',
 'logout' => 'Digelmi',
 'userlogout' => 'Digelmi',
 'notloggedin' => 'Digelmys',
+'userlogin-noaccount' => "A ny'gas beus akont?",
+'userlogin-joinproject' => 'Junya {{SITENAME}}',
 'nologin' => "A ny'gas beus akont? '''$1'''.",
 'nologinlink' => 'Gwruthyl akont',
 'createaccount' => 'Gwruthyl akont nowyth',
 'gotaccount' => "Eus akont dhywgh seulabrys? '''$1'''.",
 'gotaccountlink' => 'Omgelmi',
 'userlogin-resetlink' => 'A ankevsowgh hwi agas manylyon omgelmi?',
+'userlogin-resetpassword-link' => 'Dassettya agas ger tremena',
+'helplogin-url' => 'Help:Omgelmi',
+'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Gweres gans omgelmi]]',
+'createacct-join' => 'Entrewgh agas kedhlow a-woles.',
+'createacct-emailrequired' => 'Trigva ebost',
+'createacct-emailoptional' => 'Trigva ebost (a-dhewis)',
+'createacct-email-ph' => 'Entrewgh agas trigva ebost',
 'createaccountmail' => "Devnydhya ger tremena chonsus anbarthus hag y dhanvon dhe'n drigva ebost res a-woles",
+'createacct-realname' => 'Hanow gwir (a-dhewis)',
 'createaccountreason' => 'Acheson:',
+'createacct-reason' => 'Acheson',
+'createacct-reason-ph' => 'Prag yth esowgh ow kwruthyl akont aral',
+'createacct-captcha' => 'Gwiryans sekerder',
+'createacct-imgcaptcha-ph' => 'Entrewgh an tekst a welowgh a-ugh',
+'createacct-submit' => 'Gwruthyl agas akont',
+'createacct-benefit-heading' => 'Gwrys yw {{SITENAME}} gans tus kepar ha hwi.',
+'createacct-benefit-body1' => '{{PLURAL:$1|janj|chanj}}',
+'createacct-benefit-body2' => '{{PLURAL:$1|folen}}',
+'createacct-benefit-body3' => '{{PLURAL:$1|gevriyas|kevriyas}} a-dhiwedhes',
 'badretype' => 'Ny omdhesedh an geryow tremena entrys genowgh.',
 'userexists' => 'Y tevnydhir an hanow devnydhyer entrys genowgh seulabrys.
 Dewisewgh ken hanow mar pleg.',
 'loginerror' => 'Gwall omgelmi',
+'createacct-error' => 'Gwall ow kwruthyl akont',
 'createaccounterror' => 'Ny allas gwruthyl an akont: $1',
 'nocookiesnew' => "Gwruthys veu an akont, mes nyns owgh omgelmys.
 {{SITENAME}} a dhevnydh cookies rag omgelmi devnydhyoryon.
@@ -592,17 +642,26 @@ Orth agas omgelmi lemmyn...',
 
 # Special:PasswordReset
 'passwordreset' => 'Dassettya an ger tremena',
+'passwordreset-text-one' => 'Lenwewgh an furvlen-ma rag dassettya agas ger tremena.',
 'passwordreset-legend' => 'Dassettya an ger tremena',
 'passwordreset-disabled' => 'Dialosegys yw dassettya geryow tremena war an wiki-ma.',
 'passwordreset-username' => 'Hanow devnydhyer:',
 'passwordreset-domain' => 'Tiredh:',
 'passwordreset-email' => 'Trigva ebost:',
 'passwordreset-emailtitle' => 'Manylyon agas akont war {{SITENAME}}',
+'passwordreset-emailsent' => 'Ebost dassettya ger tremena re beu danvenys.',
+'passwordreset-emailsent-capture' => 'Ebost dassettya ger tremena re beu danvenys, hag y hyllir y weles a-woles.',
 
 # Special:ChangeEmail
 'changeemail' => 'Chanjya trigva ebost',
 'changeemail-header' => 'Chanjya trigva ebost an akont',
 'changeemail-text' => 'Lenwewgh an furvlen-ma rag chanjya agas trigva ebost. Y fydh res dhywgh entra agas ger tremena rag afydhya an chanj-ma.',
+'changeemail-oldemail' => 'Agas trigva ebost a-lemmyn:',
+'changeemail-newemail' => 'Agas trigva ebost nowyth:',
+'changeemail-none' => '(nagonan)',
+'changeemail-password' => 'Agas ger tremena war {{SITENAME}}:',
+'changeemail-submit' => 'Chanjya an trigva ebost',
+'changeemail-cancel' => 'Hedhi',
 
 # Edit page toolbar
 'bold_sample' => 'Tekst tew',
@@ -629,6 +688,7 @@ Orth agas omgelmi lemmyn...',
 'savearticle' => 'Gwitha an folen',
 'preview' => 'Ragwel',
 'showpreview' => 'Diskwedhes ragwel',
+'showlivepreview' => 'Ragwel byw',
 'showdiff' => 'Diskwedhes an chanjyow',
 'anoneditwarning' => "'''Gwarnyans:''' Nyns owgh omgelmys.
 Rekordys vydh agas trigva IP yn istori an folen-ma.",
@@ -675,7 +735,7 @@ Mars owgh omgelmys, hwi a yll dialosegi an gwarnyans-ma yn tregh "Chanjya" agas 
 # "Undo" feature
 'undo-success' => 'Y hyllir diswul an chanj-ma.
 Checkyewgh mar pleg an kehevelyans a-woles rag gwirya bos hemma an pyth a vynnowgh, hag ena gwithewgh an chanjyow a-woles rag gorfenna diswul an chanj.',
-'undo-summary' => 'Diswul amendyans $1 gans [[Special:Contributions/$2|$2]] ([[User talk:$2|keskows]])',
+'undo-summary' => 'Amendyans $1 gans [[Special:Contributions/$2|$2]] ([[User talk:$2|keskows]]) diswrys',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Ny yllir gwruthyl an akont',
@@ -1394,7 +1454,7 @@ Hwi a yll gweles hy fennfenten.',
 
 # Auto-summaries
 'autosumm-blank' => 'Gwakhes veu an folen',
-'autoredircomment' => 'Daswedyes veu an folen war-tu ha [[$1]]',
+'autoredircomment' => 'Folen daswedyes war-tu ha [[$1]]',
 'autosumm-new' => "Folen gwruthys gans: '$1'",
 
 # Live preview
@@ -1460,6 +1520,9 @@ An wiasva-ma a's teves kaletter teknogel.",
 
 # New logging system
 'logentry-delete-delete' => '$1 a {{GENDER:$2|dhileas}} an folen $3',
+'logentry-move-move' => '$1 {{GENDER:$2|a wayas}} an folen $3 dhe $4',
+'logentry-move-move-noredirect' => '$1 {{GENDER:$2|a wayas}} an folen $3 dhe $4 heb gasa daskedyans',
+'logentry-move-move_redir' => '$1 {{GENDER:$2|a wayas}} an folen $3 dhe $4 dres daskedyans',
 
 # Search suggestions
 'searchsuggest-search' => 'Hwilas',

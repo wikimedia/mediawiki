@@ -902,8 +902,10 @@ Anda mungkin telah berhasil mengganti kata sandi Anda atau telah meminta kata sa
 'resetpass-abort-generic' => 'Perubahan kata sandi telah dibatalkan oleh ekstensi.',
 
 # Special:PasswordReset
-'passwordreset' => 'Setel ulang sandi',
-'passwordreset-legend' => 'Setel ulang sandi',
+'passwordreset' => 'Setel ulang kata sandi',
+'passwordreset-text-one' => 'Lengkapi formulir ini untuk menyetel ulang kata sandi.',
+'passwordreset-text-many' => '{{PLURAL:$1|Masukkan data di bawah ini untuk menyetel ulang kata sandi Anda.}}',
+'passwordreset-legend' => 'Setel ulang kata sandi',
 'passwordreset-disabled' => 'Penyetelan ulang sandi telah dimatikan di wiki ini.',
 'passwordreset-emaildisabled' => 'Fitur surel telah dinonaktifkan pada wiki ini.',
 'passwordreset-username' => 'Nama pengguna:',

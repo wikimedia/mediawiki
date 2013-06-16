@@ -3185,7 +3185,7 @@ Tal bloqueio foi provavelmente causado por uma ligação para um ''website'' ext
 'pageinfo-length' => 'Tamanho da página (em bytes)',
 'pageinfo-article-id' => 'ID da página',
 'pageinfo-language' => 'Idioma do conteúdo da página',
-'pageinfo-robot-policy' => 'Status do mecanismo de pesquisa',
+'pageinfo-robot-policy' => 'Estado para mecanismos de pesquisa',
 'pageinfo-robot-index' => 'Indexável',
 'pageinfo-robot-noindex' => 'Não indexável',
 'pageinfo-views' => 'Número de visitas',

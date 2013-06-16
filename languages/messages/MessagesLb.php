@@ -1752,6 +1752,7 @@ Wann de Problem weider besteet, dann un de [[Special:ListUsers/sysop|Administrat
 'backend-fail-stream' => 'De Fichier $1 konnt net iwwerdroe ginn.',
 'backend-fail-backup' => 'De Fichier $1 konnt net geséchert ginn.',
 'backend-fail-notexists' => 'De Fichier $1 gëtt et net.',
+'backend-fail-hashes' => "Et konnt net all 'hash' fonnt gi fir ze vergläichen.",
 'backend-fail-notsame' => 'Et gëtt schonn en net-identesche Fichier op $1.',
 'backend-fail-invalidpath' => '$1 ass keng valabel Plaz fir ze späicheren.',
 'backend-fail-delete' => 'De Fichier $1 konnt net geläscht ginn.',
@@ -1767,6 +1768,7 @@ Wann de Problem weider besteet, dann un de [[Special:ListUsers/sysop|Administrat
 'backend-fail-create' => 'De Fichier $1 konnt net geschriwwe ginn.',
 'backend-fail-maxsize' => 'De Fichier $1 konnt net geschriwwe gi well e méi grouss ass wéi {{PLURAL:$2|ee Byte|$2 Byten}}.',
 'backend-fail-readonly' => 'De Späicher-Backend "$1" kann elo nëmme geliest ginn (read-only). De Grond deen ugi gouf war: "$2"',
+'backend-fail-synced' => 'De Fichier "$1" ass an den internen Späichersystemer am Hannergrond an engem net konsistenten Zoustand',
 'backend-fail-connect' => 'Keng Verbindung mam Backend vum Späicher "$1".',
 'backend-fail-internal' => 'Onbekannte Feeler am Backend vum Späicher: "$1"',
 

@@ -3611,6 +3611,7 @@ Halaber [[Special:EditWatchlist|aldatzaile estandarra]] erabil dezakezu.',
 'feedback-message' => 'Mezua:',
 'feedback-cancel' => 'Utzi',
 'feedback-submit' => 'Feedbacka bidali',
+'feedback-error2' => 'Akatsa: Aldaketa ez da egin',
 'feedback-close' => 'Egina',
 'feedback-bugnew' => 'Txekeatu dut. Bug berria bidaliko',
 
