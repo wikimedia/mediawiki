@@ -854,8 +854,8 @@ abstract class FSFileBackendList implements Iterator {
 		try {
 			$this->iter->next();
 			$this->filterViaNext();
-		} catch ( UnexpectedValueException $e ) {
-			$this->iter = null;
+		} catch ( UnexpectedValueException $e ) { // bad permissions? deleted?
+			throw new FileBackendError( "File iterator gave UnexpectedValueException." );
 		}
 		++$this->pos;
 	}
@@ -869,8 +869,8 @@ abstract class FSFileBackendList implements Iterator {
 		try {
 			$this->iter->rewind();
 			$this->filterViaNext();
-		} catch ( UnexpectedValueException $e ) {
-			$this->iter = null;
+		} catch ( UnexpectedValueException $e ) { // bad permissions? deleted?
+			throw new FileBackendError( "File iterator gave UnexpectedValueException." );
 		}
 	}
 

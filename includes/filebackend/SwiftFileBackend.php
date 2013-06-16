@@ -926,6 +926,7 @@ class SwiftFileBackend extends FileBackendStore {
 	 * @param integer $limit Max number of items to list
 	 * @param array $params Parameters for getDirectoryList()
 	 * @return Array List of resolved paths of directories directly under $dir
+	 * @throws FileBackendError
 	 */
 	public function getDirListPageInternal( $fullCont, $dir, &$after, $limit, array $params ) {
 		$dirs = array();
@@ -933,7 +934,7 @@ class SwiftFileBackend extends FileBackendStore {
 			return $dirs; // nothing more
 		}
 
-		wfProfileIn( __METHOD__ . '-' . $this->name );
+		$section = new ProfileSection( __METHOD__ . '-' . $this->name );
 		try {
 			$container = $this->getContainer( $fullCont );
 			$prefix = ( $dir == '' ) ? null : "{$dir}/";
@@ -981,8 +982,8 @@ class SwiftFileBackend extends FileBackendStore {
 		} catch ( CloudFilesException $e ) { // some other exception?
 			$this->handleException( $e, null, __METHOD__,
 				array( 'cont' => $fullCont, 'dir' => $dir ) );
+			throw new FileBackendError( "Got " . get_class( $e ) . " exception." );
 		}
-		wfProfileOut( __METHOD__ . '-' . $this->name );
 
 		return $dirs;
 	}
@@ -1000,6 +1001,7 @@ class SwiftFileBackend extends FileBackendStore {
 	 * @param integer $limit Max number of items to list
 	 * @param array $params Parameters for getDirectoryList()
 	 * @return Array List of resolved paths of files under $dir
+	 * @throws FileBackendError
 	 */
 	public function getFileListPageInternal( $fullCont, $dir, &$after, $limit, array $params ) {
 		$files = array();
@@ -1007,7 +1009,7 @@ class SwiftFileBackend extends FileBackendStore {
 			return $files; // nothing more
 		}
 
-		wfProfileIn( __METHOD__ . '-' . $this->name );
+		$section = new ProfileSection( __METHOD__ . '-' . $this->name );
 		try {
 			$container = $this->getContainer( $fullCont );
 			$prefix = ( $dir == '' ) ? null : "{$dir}/";
@@ -1048,8 +1050,8 @@ class SwiftFileBackend extends FileBackendStore {
 		} catch ( CloudFilesException $e ) { // some other exception?
 			$this->handleException( $e, null, __METHOD__,
 				array( 'cont' => $fullCont, 'dir' => $dir ) );
+			throw new FileBackendError( "Got " . get_class( $e ) . " exception." );
 		}
-		wfProfileOut( __METHOD__ . '-' . $this->name );
 
 		return $files;
 	}
@@ -1653,7 +1655,7 @@ abstract class SwiftFileBackendList implements Iterator {
 	 * @param string $after|null
 	 * @param integer $limit
 	 * @param array $params
-	 * @return Traversable|Array|null Returns null on failure
+	 * @return Traversable|Array
 	 */
 	abstract protected function pageFromList( $container, $dir, &$after, $limit, array $params );
 }
@@ -1672,7 +1674,7 @@ class SwiftFileBackendDirList extends SwiftFileBackendList {
 
 	/**
 	 * @see SwiftFileBackendList::pageFromList()
-	 * @return Array|null
+	 * @return Array
 	 */
 	protected function pageFromList( $container, $dir, &$after, $limit, array $params ) {
 		return $this->backend->getDirListPageInternal( $container, $dir, $after, $limit, $params );
@@ -1693,7 +1695,7 @@ class SwiftFileBackendFileList extends SwiftFileBackendList {
 
 	/**
 	 * @see SwiftFileBackendList::pageFromList()
-	 * @return Array|null
+	 * @return Array
 	 */
 	protected function pageFromList( $container, $dir, &$after, $limit, array $params ) {
 		return $this->backend->getFileListPageInternal( $container, $dir, $after, $limit, $params );

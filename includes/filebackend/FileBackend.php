@@ -1061,6 +1061,8 @@ abstract class FileBackend {
 	 *
 	 * Storage backends with eventual consistency might return stale data.
 	 *
+	 * Failures during iteration can result in FileBackendError exceptions (since 1.22).
+	 *
 	 * @param array $params
 	 * $params include:
 	 *   - dir     : storage directory
@@ -1075,6 +1077,8 @@ abstract class FileBackend {
 	 * directories that are immediately under the given directory.
 	 *
 	 * Storage backends with eventual consistency might return stale data.
+	 *
+	 * Failures during iteration can result in FileBackendError exceptions (since 1.22).
 	 *
 	 * @param array $params
 	 * $params include:
@@ -1096,6 +1100,8 @@ abstract class FileBackend {
 	 *
 	 * Storage backends with eventual consistency might return stale data.
 	 *
+	 * Failures during iteration can result in FileBackendError exceptions (since 1.22).
+	 *
 	 * @param array $params
 	 * $params include:
 	 *   - dir        : storage directory
@@ -1110,6 +1116,8 @@ abstract class FileBackend {
 	 * files that are immediately under the given directory.
 	 *
 	 * Storage backends with eventual consistency might return stale data.
+	 *
+	 * Failures during iteration can result in FileBackendError exceptions (since 1.22).
 	 *
 	 * @param array $params
 	 * $params include:
@@ -1379,3 +1387,9 @@ abstract class FileBackend {
 		return $path;
 	}
 }
+
+/**
+ * @ingroup FileBackend
+ * @since 1.22
+ */
+class FileBackendError extends MWException {}
