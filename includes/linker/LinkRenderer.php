@@ -388,11 +388,17 @@ class LinkRenderer {
 	 * @return string non-escaped text
 	 */
 	private function getLinkText( LinkTarget $target ) {
+		global $wgAlwaysUseDisplayTitle;
 		$prefixedText = $this->titleFormatter->getPrefixedText( $target );
 		// If the target is just a fragment, with no title, we return the fragment
 		// text.  Otherwise, we return the title text itself.
 		if ( $prefixedText === '' && $target->hasFragment() ) {
 			return $target->getFragment();
+		}
+
+		if ( $wgAlwaysUseDisplayTitle ) {
+			// Note, this returns html, that we want to output without escaping.
+			return new HtmlArmor( $target->getDisplayTitle() );
 		}
 
 		return $prefixedText;

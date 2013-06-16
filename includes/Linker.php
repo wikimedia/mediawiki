@@ -81,7 +81,8 @@ class Linker {
 	 * @param string $html The HTML contents of the <a> element, i.e.,
 	 *   the link text.  This is raw HTML and will not be escaped.  If null,
 	 *   defaults to the prefixed text of the Title; or if the Title is just a
-	 *   fragment, the contents of the fragment.
+	 *   fragment, the contents of the fragment. If $wgAlwaysUseDisplayTitle is
+	 *   set to true, the default will be the pages {{DEFAULTTITLE:..}} if set.
 	 * @param array $customAttribs A key => value array of extra HTML attributes,
 	 *   such as title and class.  (href is ignored.)  Classes will be
 	 *   merged with the default classes, while other attributes will replace
