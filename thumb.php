@@ -330,6 +330,10 @@ function wfExtractThumbParams( $thumbRel ) {
 			$params['page'] = $pagenum;
 		}
 		return $params; // valid thumbnail URL
+	} elseif ( preg_match( '!^lang([a-z]+(?:-[a-z]+)*)-(\d*)px-[^/]*$!', $thumbname, $matches ) ) {
+		$params['lang'] = $matches[1];
+		$params['width'] = array_pop( $matches );
+		return $params; // valid thumbnail URL
 	}
 
 	return null; // not a valid thumbnail URL
