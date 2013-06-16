@@ -592,10 +592,6 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 
 		$defaults = $opts->getAllValues();
 		$nondefaults = $opts->getChangedValues();
-		$opts->consumeValues( array(
-			'namespace', 'invert', 'associated', 'tagfilter',
-			'categories', 'categories_any'
-		) );
 
 		$panel = array();
 		$panel[] = $this->optionsPanel( $defaults, $nondefaults );
@@ -664,6 +660,10 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	 * @return array
 	 */
 	function getExtraOptions( $opts ) {
+		$opts->consumeValues( array(
+			'namespace', 'invert', 'associated', 'tagfilter', 'categories', 'categories_any'
+		) );
+
 		$extraOpts = array();
 		$extraOpts['namespace'] = $this->namespaceFilterForm( $opts );
 
@@ -677,7 +677,10 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 			$extraOpts['tagfilter'] = $tagFilter;
 		}
 
-		wfRunHooks( 'SpecialRecentChangesPanel', array( &$extraOpts, $opts ) );
+		// Don't fire the hook for subclasses. (Or should we?)
+		if ( $this->getName() === 'Recentchanges' ) {
+			wfRunHooks( 'SpecialRecentChangesPanel', array( &$extraOpts, $opts ) );
+		}
 
 		return $extraOpts;
 	}

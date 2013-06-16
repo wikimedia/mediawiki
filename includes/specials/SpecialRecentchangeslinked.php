@@ -226,21 +226,21 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 	}
 
 	/**
-	 * @param $opts FormOptions
+	 * Get options to be displayed in a form
+	 *
+	 * @param FormOptions $opts
 	 * @return array
 	 */
 	function getExtraOptions( $opts ) {
-		$opts->consumeValues( array( 'showlinkedto', 'target', 'tagfilter' ) );
-		$extraOpts = array();
-		$extraOpts['namespace'] = $this->namespaceFilterForm( $opts );
+		$extraOpts = parent::getExtraOptions( $opts );
+
+		$opts->consumeValues( array( 'showlinkedto', 'target' ) );
+
 		$extraOpts['target'] = array( $this->msg( 'recentchangeslinked-page' )->escaped(),
 			Xml::input( 'target', 40, str_replace( '_', ' ', $opts['target'] ) ) .
 			Xml::check( 'showlinkedto', $opts['showlinkedto'], array( 'id' => 'showlinkedto' ) ) . ' ' .
 			Xml::label( $this->msg( 'recentchangeslinked-to' )->text(), 'showlinkedto' ) );
-		$tagFilter = ChangeTags::buildTagFilterSelector( $opts['tagfilter'] );
-		if ( $tagFilter ) {
-			$extraOpts['tagfilter'] = $tagFilter;
-		}
+
 		return $extraOpts;
 	}
 
