@@ -110,6 +110,19 @@ abstract class DBLockManager extends QuorumLockManager {
 		$this->session = wfRandomString( 31 );
 	}
 
+	// @TODO: change this code to work in one batch
+	protected function getLocksOnServer( $lockSrv, array $pathsByType ) {
+		$status = Status::newGood();
+		foreach ( $pathsByType as $type => $paths ) {
+			$status->merge( $this->doGetLocksOnServer( $lockSrv, $paths, $type ) );
+		}
+		return $status;
+	}
+
+	protected function freeLocksOnServer( $lockSrv, array $pathsByType ) {
+		return Status::newGood();
+	}
+
 	/**
 	 * @see QuorumLockManager::isServerUp()
 	 * @return bool
@@ -252,7 +265,7 @@ class MySqlLockManager extends DBLockManager {
 	 * @see DBLockManager::getLocksOnServer()
 	 * @return Status
 	 */
-	protected function getLocksOnServer( $lockSrv, array $paths, $type ) {
+	protected function doGetLocksOnServer( $lockSrv, array $paths, $type ) {
 		$status = Status::newGood();
 
 		$db = $this->getConnection( $lockSrv ); // checked in isServerUp()
@@ -294,6 +307,7 @@ class MySqlLockManager extends DBLockManager {
 				__METHOD__
 			);
 			if ( !$blocked ) {
+				var_dump( $encSession );
 				# Build up values for INSERT clause
 				$data = array();
 				foreach ( $keys as $key ) {
@@ -316,14 +330,6 @@ class MySqlLockManager extends DBLockManager {
 		}
 
 		return $status;
-	}
-
-	/**
-	 * @see QuorumLockManager::freeLocksOnServer()
-	 * @return Status
-	 */
-	protected function freeLocksOnServer( $lockSrv, array $paths, $type ) {
-		return Status::newGood(); // not supported
 	}
 
 	/**
@@ -361,7 +367,7 @@ class PostgreSqlLockManager extends DBLockManager {
 		self::LOCK_EX => self::LOCK_EX
 	);
 
-	protected function getLocksOnServer( $lockSrv, array $paths, $type ) {
+	protected function doGetLocksOnServer( $lockSrv, array $paths, $type ) {
 		$status = Status::newGood();
 		if ( !count( $paths ) ) {
 			return $status; // nothing to lock
@@ -405,14 +411,6 @@ class PostgreSqlLockManager extends DBLockManager {
 		}
 
 		return $status;
-	}
-
-	/**
-	 * @see QuorumLockManager::freeLocksOnServer()
-	 * @return Status
-	 */
-	protected function freeLocksOnServer( $lockSrv, array $paths, $type ) {
-		return Status::newGood(); // not supported
 	}
 
 	/**
