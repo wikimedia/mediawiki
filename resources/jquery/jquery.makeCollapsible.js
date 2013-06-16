@@ -227,7 +227,7 @@
 		}
 
 		return this.each( function () {
-			var $collapsible, collapseText, expandText, $toggle, clickHandler, $defaultToggleLink,
+			var $collapsible, collapseText, expandText, $toggle, clickHandler, buildDefaultToggleLink,
 				premadeToggleHandler, $toggleLink, $firstItem, collapsibleId, $customTogglers, firstval;
 
 			// Ensure class "mw-collapsible" is present in case .makeCollapsible()
@@ -254,14 +254,16 @@
 				opts = $.extend( defaultOpts, options, opts );
 				togglingHandler( $( this ), $collapsible, e, opts );
 			};
-			$defaultToggleLink =
-				$( '<a href="#"></a>' )
+			// Default toggle link. Only build it when needed to avoid jQuery memory leaks (event data).
+			buildDefaultToggleLink = function () {
+				return $( '<a href="#"></a>' )
 					.text( collapseText )
 					.wrap( '<span class="mw-collapsible-toggle"></span>' )
 						.parent()
 						.prepend( '&nbsp;[' )
 						.append( ']&nbsp;' )
 						.on( 'click.mw-collapsible', clickHandler );
+			};
 
 			// Default handler for clicking on premade toggles
 			premadeToggleHandler = function ( e, opts ) {
@@ -309,7 +311,7 @@
 
 					// If theres no toggle link, add it to the last cell
 					if ( !$toggle.length ) {
-						$toggleLink = $defaultToggleLink.prependTo( $firstItem.eq( -1 ) );
+						$toggleLink = buildDefaultToggleLink().prependTo( $firstItem.eq( -1 ) );
 					} else {
 						clickHandler = premadeToggleHandler;
 						$toggleLink = $toggle.on( 'click.mw-collapsible', clickHandler );
@@ -329,7 +331,7 @@
 						if ( firstval === undefined || !firstval || firstval === '-1' || firstval === -1 ) {
 							$firstItem.attr( 'value', '1' );
 						}
-						$toggleLink = $defaultToggleLink;
+						$toggleLink = buildDefaultToggleLink();
 						$toggleLink.wrap( '<li class="mw-collapsible-toggle-li"></li>' ).parent().prependTo( $collapsible );
 					} else {
 						clickHandler = premadeToggleHandler;
@@ -348,7 +350,7 @@
 
 					// If theres no toggle link, add it
 					if ( !$toggle.length ) {
-						$toggleLink = $defaultToggleLink.prependTo( $collapsible );
+						$toggleLink = buildDefaultToggleLink().prependTo( $collapsible );
 					} else {
 						clickHandler = premadeToggleHandler;
 						$toggleLink = $toggle.on( 'click.mw-collapsible', clickHandler );
