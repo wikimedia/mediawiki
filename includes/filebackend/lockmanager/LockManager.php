@@ -98,7 +98,7 @@ abstract class LockManager {
 	/**
 	 * Lock the resources at the given abstract paths
 	 *
-	 * @param array $paths Map of LockManager::LOCK_* constants to lists of storage paths
+	 * @param array $pathsByType Map of LockManager::LOCK_* constants to lists of paths
 	 * @param integer $timeout Timeout in seconds (0 means non-blocking) (since 1.21)
 	 * @return Status
 	 * @since 1.22
@@ -125,7 +125,7 @@ abstract class LockManager {
 	/**
 	 * Unlock the resources at the given abstract paths
 	 *
-	 * @param array $paths List of storage paths
+	 * @param array $paths List of paths
 	 * @param $type integer LockManager::LOCK_* constant
 	 * @return Status
 	 */
@@ -136,7 +136,7 @@ abstract class LockManager {
 	/**
 	 * Unlock the resources at the given abstract paths
 	 *
-	 * @param array $paths Map of LockManager::LOCK_* constants to lists of storage paths
+	 * @param array $pathsByType Map of LockManager::LOCK_* constants to lists of paths
 	 * @return Status
 	 * @since 1.22
 	 */
@@ -176,7 +176,7 @@ abstract class LockManager {
 	 * Normalize the $paths array by converting LOCK_UW locks into the
 	 * appropriate type and removing any duplicated paths for each lock type.
 	 *
-	 * @param array $paths Map of LockManager::LOCK_* constants to lists of storage paths
+	 * @param array $paths Map of LockManager::LOCK_* constants to lists of paths
 	 * @return Array
 	 * @since 1.22
 	 */
@@ -190,7 +190,7 @@ abstract class LockManager {
 
 	/**
 	 * @see LockManager::lockByType()
-	 * @param array $paths Map of LockManager::LOCK_* constants to lists of storage paths
+	 * @param array $paths Map of LockManager::LOCK_* constants to lists of paths
 	 * @return Status
 	 * @since 1.22
 	 */
@@ -215,7 +215,7 @@ abstract class LockManager {
 	/**
 	 * Lock resources with the given keys and lock type
 	 *
-	 * @param array $paths List of storage paths
+	 * @param array $paths List of paths
 	 * @param $type integer LockManager::LOCK_* constant
 	 * @return Status
 	 */
@@ -223,7 +223,7 @@ abstract class LockManager {
 
 	/**
 	 * @see LockManager::unlockByType()
-	 * @param array $paths Map of LockManager::LOCK_* constants to lists of storage paths
+	 * @param array $paths Map of LockManager::LOCK_* constants to lists of paths
 	 * @return Status
 	 * @since 1.22
 	 */
@@ -238,7 +238,7 @@ abstract class LockManager {
 	/**
 	 * Unlock resources with the given keys and lock type
 	 *
-	 * @param array $paths List of storage paths
+	 * @param array $paths List of paths
 	 * @param $type integer LockManager::LOCK_* constant
 	 * @return Status
 	 */
@@ -250,22 +250,10 @@ abstract class LockManager {
  * @since 1.19
  */
 class NullLockManager extends LockManager {
-	/**
-	 * @see LockManager::doLock()
-	 * @param $paths array
-	 * @param $type int
-	 * @return Status
-	 */
 	protected function doLock( array $paths, $type ) {
 		return Status::newGood();
 	}
 
-	/**
-	 * @see LockManager::doUnlock()
-	 * @param $paths array
-	 * @param $type int
-	 * @return Status
-	 */
 	protected function doUnlock( array $paths, $type ) {
 		return Status::newGood();
 	}
