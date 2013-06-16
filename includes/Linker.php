@@ -168,7 +168,8 @@ class Linker {
 	 * @param $html          string The HTML contents of the <a> element, i.e.,
 	 *   the link text.  This is raw HTML and will not be escaped.  If null,
 	 *   defaults to the prefixed text of the Title; or if the Title is just a
-	 *   fragment, the contents of the fragment.
+	 *   fragment, the contents of the fragment. If $wgAlwaysUseDisplayTitle is
+	 *   set to true, the default will be the pages {{DEFAULTTITLE:..}} if set.
 	 * @param array $customAttribs  A key => value array of extra HTML attributes,
 	 *   such as title and class.  (href is ignored.)  Classes will be
 	 *   merged with the default classes, while other attributes will replace
@@ -380,6 +381,7 @@ class Linker {
 	 * @return string
 	 */
 	private static function linkText( $target ) {
+		global $wgAlwaysUseDisplayTitle;
 		// We might be passed a non-Title by make*LinkObj().  Fail gracefully.
 		if ( !$target instanceof Title ) {
 			return '';
@@ -390,7 +392,12 @@ class Linker {
 		if ( $target->getPrefixedText() === '' && $target->getFragment() !== '' ) {
 			return htmlspecialchars( $target->getFragment() );
 		}
-		return htmlspecialchars( $target->getPrefixedText() );
+		if ( $wgAlwaysUseDisplayTitle ) {
+			// Note, this returns html, that we want to output without escaping.
+			return $target->getDisplayTitle();
+		} else {
+			return htmlspecialchars( $target->getPrefixedText() );
+		}
 	}
 
 	/**

@@ -86,6 +86,7 @@ class Title {
 	var $mRedirect = null;            // /< Is the article at this title a redirect?
 	var $mNotificationTimestamp = array(); // /< Associative array of user ID -> timestamp/false
 	var $mHasSubpage;                 // /< Whether a page has any subpages
+	var $mDisplayTitle = null;        // /< HTML for the page's {{DISPLAYTITLE:...}}
 	// @}
 
 	/**
@@ -4784,5 +4785,39 @@ class Title {
 			}
 		}
 		return $notices;
+	}
+
+	/**
+	 * Returns the display title if it exists, or $this->getPrefixedText().
+	 *
+	 * @note returns (safe) HTML. The result should be safe, and should not be escaped.
+	 *
+	 * @return String HTML of display title, or $this->getPrefixedText() escaped.
+	 */
+	public function getDisplayTitle() {
+		if ( is_null( $this->mDisplayTitle ) ) {
+			$id = $this->getArticleId();
+			if ( $id === 0 ) {
+				// Not an existing page.
+				$this->mDisplayTitle = false;
+			} else {
+				$dbr = wfGetDB( DB_SLAVE );
+				$this->mDisplayTitle = $dbr->selectField(
+					'page_props',
+					'pp_value',
+					array(
+						'pp_page' => $id,
+						'pp_propname' => 'displaytitle'
+					),
+					__METHOD__
+				);
+			}
+		}
+		if ( $this->mDisplayTitle === false ) {
+			// Since this is the "default" display title in a sense.
+			return htmlspecialchars( $this->getPrefixedText() );
+		} else {
+			return $this->mDisplayTitle;
+		}
 	}
 }

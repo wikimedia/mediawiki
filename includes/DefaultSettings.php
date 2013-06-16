@@ -3521,6 +3521,15 @@ $wgAllowDisplayTitle = true;
 $wgRestrictDisplayTitle = true;
 
 /**
+ * Use DISPLAYTITLE outside of the current page.
+ * For example, Category listings. Most places that link to a page using the
+ * full page name.
+ *
+ * May increase the number of DB queries.
+ */
+$wgAlwaysUseDisplayTitle = false;
+
+/**
  * Maximum number of calls per parse to expensive parser functions such as
  * PAGESINCATEGORY.
  */
