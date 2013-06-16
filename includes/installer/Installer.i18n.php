@@ -18317,6 +18317,7 @@ $messages['su'] = array(
 );
 
 /** Swedish (svenska)
+ * @author Jopparn
  * @author Skalman
  * @author WikiPhoenix
  */
@@ -18366,12 +18367,28 @@ Du kan inte installera MediaWiki.',
 	'config-env-php' => 'PHP $1 är installerad.',
 	'config-env-php-toolow' => 'PHP $1 är installerad.
 MediaWiki kräver PHP $2 eller högre.',
+	'config-register-globals' => "'''Varning: PHP:s <code>[http://php.net/register_globals register_globals]</code> tillval är aktiverat.'''
+'''Inaktivera den om du kan.'''
+MediaWiki kommer att fungera, men din server exponeras för potentiella säkerhetsluckor.",
+	'config-safe-mode' => "''' Varning:''' PHP:s [http://www.php.net/features.safe-mode felsäkert läge] är aktivt.
+Det kan orsaka problem, särskilt om du använder filöverföringar och <code>math</code>-stöd.",
+	'config-xml-bad' => 'PHP:s XML-modul saknas.
+MediaWiki kräver funktioner i denna modul och kommer inte att fungera i den här konfigurationen.
+Om du kör Mandrake, installera php-xml-paketet.',
+	'config-memory-bad' => "''' Varning:''' PHP:s <code>memory_limit</code> är $1.
+Detta är förmodligen för lågt.
+Installationen kan misslyckas!",
 	'config-xcache' => '[http://xcache.lighttpd.net/ XCache] är installerad',
 	'config-apc' => '[http://www.php.net/apc APC] är installerad',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] är installerad',
 	'config-diff3-bad' => 'GNU diff3 hittades inte.',
+	'config-git-bad' => 'Git-versionen av kontrollmjukvaran hittades inte.',
+	'config-no-uri' => "'''Fel:''' Kunde inte fastställa det nuvarande URI:et.
+Installationen avbröts.",
+	'config-no-cli-uri' => "'''Varning:''' inget --scriptpath är anget, med standarden: <code>$1</code> .",
 	'config-using-server' => 'Använder servernamn "<nowiki>$1</nowiki>".',
 	'config-using-uri' => 'Använder server-URL "<nowiki>$1$2</nowiki>".',
+	'config-no-cli-uploads-check' => "'''Varning:''' Din standardkatalog för uppladdningar (<code>$1</code>) inte är kontrollerad för sårbarhet från godtyckliga skriptkörning under CLI-installationen.",
 	'config-db-type' => 'Databastyp:',
 	'config-db-wiki-settings' => 'Identifiera denna wiki',
 	'config-db-name' => 'Databasnamn:',
@@ -18379,8 +18396,11 @@ MediaWiki kräver PHP $2 eller högre.',
 	'config-db-install-account' => 'Användarkonto för installation',
 	'config-db-username' => 'Databas-användarnamn:',
 	'config-db-password' => 'Databas-lösenord:',
+	'config-db-wiki-account' => 'Användarkonto för normal drift',
+	'config-db-prefix' => 'Prefix för tabellerna i databasen:',
 	'config-db-port' => 'Databasport:',
 	'config-db-schema' => 'Schema för MediaWiki',
+	'config-sqlite-dir' => 'SQLite data-katalog:',
 	'config-header-mysql' => 'MySQL-inställningar',
 	'config-header-postgres' => 'PostgreSQL-inställningar',
 	'config-header-sqlite' => 'SQLite-inställningar',
@@ -18388,6 +18408,7 @@ MediaWiki kräver PHP $2 eller högre.',
 	'config-invalid-db-type' => 'Ogiltig databastyp',
 	'config-missing-db-name' => 'Du måste ange ett värde för "Databasnamn"',
 	'config-missing-db-host' => 'Du måste ange ett värde för "Databasvärd"',
+	'config-missing-db-server-oracle' => 'Du måste ange ett värde för "Databas TNS"',
 	'config-invalid-db-name' => '"$1" är ett ogiltigt databasnamn.
 Använd bara ASCII-bokstäver (a-z, A-Z), siffror (0-9), understreck (_) och bindestreck (-).',
 	'config-invalid-db-prefix' => '"$1" är ett ogiltigt databasprefix.
@@ -18397,6 +18418,7 @@ Använd bara ASCII-bokstäver (a-z, A-Z), siffror (0-9), understreck (_) och bin
 Kontrollera värden, användarnamnet och lösenordet nedan och försök igen',
 	'config-invalid-schema' => '"$1" är ett ogiltigt schema för MediaWiki.
 Använd bara ASCII-bokstäver (a-z, A-Z), siffror (0-9), understreck (_) och bindestreck (-).',
+	'config-db-sys-create-oracle' => 'Installationsprogrammet stöder endast med ett SYSDBA-konto för att skapa ett nytt konto.',
 	'config-db-sys-user-exists-oracle' => 'Användarkontot "$1" finns redan. SYSDBA kan endast användas för att skapa ett nytt konto!',
 	'config-postgres-old' => 'PostgreSQL $1 eller senare krävs, du har $2.',
 	'config-upgrade-done' => "Uppgraderingen slutfördes.

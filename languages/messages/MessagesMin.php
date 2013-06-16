@@ -645,7 +645,9 @@ Sanak mungkin alah berhasil mangganti kato sandi Sanak atau alah maminto kato sa
 'resetpass-abort-generic' => 'Parubahan kato sandi alah dibatalan dek ekstensi.',
 
 # Special:PasswordReset
-'passwordreset' => 'Setel ulang sandi',
+'passwordreset' => 'Setel ulang kato sandi',
+'passwordreset-text-one' => 'Lengkapkan formulir ko untuak manuka baliak kato sandi Sanak.',
+'passwordreset-text-many' => '{{PLURAL:$1|Masuakan data di bawah ko untuak manuka baliak kato sandi Sanak.}}',
 'passwordreset-legend' => 'Tuka baliak kato sandi',
 'passwordreset-disabled' => 'Pangubahan kato sandi alah dimatian di wiki iko.',
 'passwordreset-emaildisabled' => 'Fitur surel alah dimatian pado wiki iko.',

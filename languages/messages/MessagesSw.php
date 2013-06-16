@@ -432,7 +432,7 @@ Tazama [[Special:Version|ukurasa wa toleo]].',
 'sort-ascending' => 'Pangia kwa kupanda',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main' => 'Makala',
+'nstab-main' => 'Ukurasa',
 'nstab-user' => 'Ukurasa wa mtumiaji',
 'nstab-media' => 'Ukurasa wa faili',
 'nstab-special' => 'Ukurasa maalum',
@@ -2213,7 +2213,7 @@ $1',
 'mycontris' => 'Michango',
 'contribsub2' => 'Kwa $1 ($2)',
 'nocontribs' => 'Mabadiliko yanayolingana na vigezo vilivyoulizwa hayakupatikana.',
-'uctop' => '(juu)',
+'uctop' => '(ya kisasa)',
 'month' => 'Kutoka mwezi (na zamani zaidi):',
 'year' => 'Kutoka mwakani (na zamani zaidi):',
 

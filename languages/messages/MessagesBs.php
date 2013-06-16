@@ -746,6 +746,7 @@ Ne zaboravite da prilagodite sebi svoja [[Special:Preferences|{{SITENAME}} pode�
 'createacct-realname' => 'Pravo ime (opcionalno)',
 'createaccountreason' => 'Razlog:',
 'createacct-reason' => 'Razlog',
+'createacct-reason-ph' => 'Zašto pravite još jedan korisnički račun?',
 'createacct-captcha' => 'Sigurnosna provjera',
 'createacct-imgcaptcha-ph' => 'Unesite tekst koji vidite iznad',
 'createacct-submit' => 'Napravite svoj korisnički račun',
