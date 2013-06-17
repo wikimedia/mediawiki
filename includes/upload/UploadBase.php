@@ -406,10 +406,10 @@ abstract class UploadBase {
 			return $status;
 		}
 
-		if ( $wgVerifyMimeType ) {
-			$this->mFileProps = FSFile::getPropsFromPath( $this->mTempPath, $this->mFinalExtension );
-			$mime = $this->mFileProps['file-mime'];
+		$this->mFileProps = FSFile::getPropsFromPath( $this->mTempPath, $this->mFinalExtension );
+		$mime = $this->mFileProps['file-mime'];
 
+		if ( $wgVerifyMimeType ) {
 			# XXX: Missing extension will be caught by validateName() via getTitle()
 			if ( $this->mFinalExtension != '' && !$this->verifyExtension( $mime, $this->mFinalExtension ) ) {
 				wfProfileOut( __METHOD__ );
