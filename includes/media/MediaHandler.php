@@ -79,13 +79,15 @@ abstract class MediaHandler {
 	 * Merge a parameter array into a string appropriate for inclusion in filenames
 	 *
 	 * @param $params array
+	 * @return String
 	 */
 	abstract function makeParamString( $params );
 
 	/**
 	 * Parse a param string made with makeParamString back into an array
 	 *
-	 * @param $str string
+	 * @param $str string The parameter string without file name (e.g. 122px)
+	 * @return Array|Boolean Array of parameters or false on failure.
 	 */
 	abstract function parseParamString( $str );
 
