@@ -49,6 +49,7 @@
  * @author O
  * @author Onecountry
  * @author PhiLiP
+ * @author Qiyue2001
  * @author Shinjiman
  * @author Shirayuki
  * @author Shizhao
@@ -555,6 +556,7 @@ $messages = array(
 'create-this-page' => '创建本页',
 'delete' => '删除',
 'deletethispage' => '删除本页',
+'undeletethispage' => '撤消删除此页',
 'undelete_short' => '恢复$1个被删除的编辑',
 'viewdeleted_short' => '查看$1个被删除的编辑',
 'protect' => '保护',
@@ -752,6 +754,8 @@ $2',
 'namespaceprotected' => "您没有权限编辑'''$1'''名字空间内的页面。",
 'customcssprotected' => '您没有权限编辑此CSS页面，因为它包含另一位用户的个人设置。',
 'customjsprotected' => '您没有权限编辑此JavaScript页面，因为它包含另一位用户的个人设置。',
+'mycustomcssprotected' => '您没有权限编辑这个 CSS 页面。',
+'mycustomjsprotected' => '您没有权限编辑这个 JavaScript 页面。',
 'ns-specialprotected' => '您不能编辑特殊页面。',
 'titleprotected' => '此标题已被[[User:$1|$1]]保护以防止创建。理由是“$2”。',
 'filereadonlyerror' => '因为媒体库$2处于只读模式而无法修改文件$1。
@@ -871,7 +875,7 @@ $2',
 'cannotchangeemail' => '本wiki不允许对账户的电子邮件地址进行更改。',
 'emaildisabled' => '此站点不能发送电子邮件。',
 'accountcreated' => '已建立账户',
-'accountcreatedtext' => '$1的账户已经被创建。',
+'accountcreatedtext' => '[[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|talk]])的账户已创建。',
 'createaccount-title' => '在{{SITENAME}}中创建新账户',
 'createaccount-text' => '有人在{{SITENAME}}中利用您的邮箱创建了一个名为 "$2" 的新帐户（$4），密码是 "$3" 。您应该立即登录并更改密码。
 
@@ -1592,6 +1596,8 @@ $1",
 'right-editusercssjs' => '编辑其他用户的CSS和JavaScript文件',
 'right-editusercss' => '编辑其他用户的CSS文件',
 'right-edituserjs' => '编辑其他用户的JavaScript文件',
+'right-editmyusercss' => '编辑您自己的用户 CSS 文件',
+'right-editmyuserjs' => '编辑您自己的用户 JavaScript 文件',
 'right-rollback' => '快速回退最后编辑特定页面的用户的编辑',
 'right-markbotedits' => '标记回退编辑为机器人编辑',
 'right-noratelimit' => '不受速率限制影响',
@@ -2546,7 +2552,7 @@ $1',
 'mycontris' => '贡献',
 'contribsub2' => '$1的贡献（$2）',
 'nocontribs' => '没有找到符合特征的更改。',
-'uctop' => '（最后更改）',
+'uctop' => '(当前)',
 'month' => '截止月份：',
 'year' => '截止年份：',
 

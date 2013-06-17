@@ -2651,7 +2651,7 @@ $1',
 'mycontris' => 'Kontribusi',
 'contribsub2' => 'Untuk $1 ($2)',
 'nocontribs' => 'Tidak ada perubahan yang sesuai dengan kriteria tersebut.',
-'uctop' => ' (atas)',
+'uctop' => '(saat ini)',
 'month' => 'Sejak bulan (dan sebelumnya):',
 'year' => 'Sejak tahun (dan sebelumnya):',
 

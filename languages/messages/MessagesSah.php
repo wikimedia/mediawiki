@@ -244,6 +244,7 @@ $messages = array(
 'create-this-page' => 'Бу сирэйи ай',
 'delete' => 'Соттор',
 'deletethispage' => 'Бу сирэйи соттор',
+'undeletethispage' => 'Бу сирэйи сөргүт (төннөр)',
 'undelete_short' => 'Төттөрү аҕал {{PLURAL:$1|биир уларытыыны|$1 уларытыылары}}',
 'viewdeleted_short' => '{{PLURAL:$1|Соҕотох сотторуллубут көннөрүүнү|$1 сотторуллубут көннөрүүнү}} көрүү',
 'protect' => 'Уларыппат гын',
@@ -441,6 +442,8 @@ $2',
 'namespaceprotected' => "Эн '''$1''' аат эйгэтигэр киирэр сирэйдэри уларытар кыаҕыҥ суох.",
 'customcssprotected' => 'Эн бу CSS-сирэйи уларытар кыаҕыҥ суох, тоҕо диэтэххэ онтуҥ атын киһи тус бэйэтин туруорууларын таарыйар.',
 'customjsprotected' => 'Эн бу JavaScript-сирэйи уларытар кыаҕыҥ суох, тоҕо диэтэххэ онтуҥ атын киһи тус бэйэтин туруорууларын таарыйар.',
+'mycustomcssprotected' => 'CSS-сирэйи уларытар кыаҕыҥ суох эбит.',
+'mycustomjsprotected' => 'Сирэйгэ JavaScript уларытар кыаҕыҥ суох эбит.',
 'ns-specialprotected' => '{{ns:special}} ааттаах сирэйдэр уларытыллыбаттар.',
 'titleprotected' => "Бу бас тыл оҥоһулларын [[User:$1|$1]] боппут.
 Төрүөтэ - ''$2''",
@@ -617,6 +620,7 @@ $2',
 'passwordreset' => 'Киирии тылы саҥаттан',
 'passwordreset-legend' => 'Киирии тылы саҥаттан',
 'passwordreset-disabled' => 'Бу биикигэ киирии тылы саҥардыы бобуллубут.',
+'passwordreset-emaildisabled' => 'Бу биикигэ эл. почтаны туттуу араарыллыбыт',
 'passwordreset-username' => 'Кыттааччы:',
 'passwordreset-domain' => 'Домен:',
 'passwordreset-capture' => 'Суруллубут суругу көрөҕүн дуо?',
@@ -647,7 +651,7 @@ $2
 Быстах киирии тыл: $2',
 'passwordreset-emailsent' => 'Киирии тылы уларытар туһунан сурук барда.',
 'passwordreset-emailsent-capture' => 'Киирии тылы уларытар туһунан сурук аллара эмиэ көрдөрүлүннэ.',
-'passwordreset-emailerror-capture' => 'Манна киирии тылы уларытар туһунан сурук көрдөрүлүннэ. Ол эрэн сурук бу төрүөттэн сатаан барбата: $1',
+'passwordreset-emailerror-capture' => 'Манна киирии тылы уларытар туһунан сурук көрдөрүлүннэ. Ол эрэн сурук бу төрүөттэн $2 кыттааччыга сатаан барбата: $1',
 
 # Special:ChangeEmail
 'changeemail' => 'Ааадырыһын уларыт',
@@ -857,14 +861,15 @@ IP-аадырыһа эрэ көстөр.
 Арааһа сотуллубут быһыылаах.',
 'edit-conflict' => 'Көннөрүүлэр утарсыылара.',
 'edit-no-change' => 'Эн көннөрүүҥ киирбэтэ, тоҕо диэтэххэ тугу да уларыппатаххын.',
+'postedit-confirmation' => 'Көннөрүүҥ бигэргэннэ.',
 'edit-already-exists' => 'Саҥа сирэйи оҥорор табыллыбат.
 Маннык сирэй баар эбит.',
 'defaultmessagetext' => 'Туспа этиллибэтэҕинэ суруллар тиэкис',
 'content-failed-to-parse' => '$2 иһинээҕитэ $1 көрүҥэр сөп түбэспэт: $3.',
 'invalid-content-data' => 'Алҕастаах дааннайдар',
 'content-not-allowed-here' => '[[$2]] сирэйгэ "$1" туттуллуо суохтаах',
-'editwarning-warning' => 'Атын сирэйгэ көстөххүнэ билигин оҥорбут уларытыыларыҥ барыта сүтэн хаалыахтара.
-Бэлиэтэммит буоллаҕына, бу сэрэтиини туруорууларыҥ «{{int:prefs-editing}}» сирэйигэр араарыаххын сөп.',
+'editwarning-warning' => 'Атын сирэйгэ көстөххүнэ билигин оҥорбут уларытыыҥ барыта сүтэн хаалыаҕа.
+Бэлиэтэммит буоллаххына, бу сэрэтиини туруорууларыҥ «Уларытыы» салаатыгар араарар кыахтааххын.',
 
 # Content models
 'content-model-wikitext' => 'биики-тиэкис',
@@ -1147,6 +1152,7 @@ $1",
 'powersearch-togglenone' => 'Бэлиэтээмэ',
 'search-external' => 'Тастан көрдөөһүн',
 'searchdisabled' => '{{SITENAME}} көрдүүр тэрилэ араарыллыбыт. Атын көрдүүр системаларынан наадыйар сирэйдэргитин көрдөтүөххүтүн сөп. Ол гынан баран поисковик кээһигэр баар торум эргэрбит буолуон сөп.',
+'search-error' => 'Көрдүүр кэмҥэ алҕас таҕыста: $1',
 
 # Preferences page
 'preferences' => 'Уларытыылар',
@@ -1290,6 +1296,7 @@ $1 {{PLURAL:$1|бэлиэттэн|бэлиэттэн (буукубаттан)}} 
 'userrights-notallowed' => 'Бэлиэтэммит ааккынан атын кыттааччы быраабын уларытар кыаҕыҥ суох эбит.',
 'userrights-changeable-col' => 'Эн уларытар кыахтаах бөлөхтөрүҥ',
 'userrights-unchangeable-col' => 'Бу бөлөхтөрү уларытар кыаҕыҥ суох',
+'userrights-conflict' => 'Кыттааччы быраабын быһаарарга алҕас таҕыста! Хатылаан көр.',
 
 # Groups
 'group' => 'Бөлөх:',
@@ -1360,6 +1367,7 @@ $1 {{PLURAL:$1|бэлиэттэн|бэлиэттэн (буукубаттан)}} 
 'right-editusercssjs' => 'Атын кыттааччылар CSS- и JS-билэлэрин уларытыы',
 'right-editusercss' => 'Атын кыттааччылар CSS-билэлэрин уларытыы',
 'right-edituserjs' => 'Атын кыттааччылар JS-билэлэрин уларытыы',
+'right-editmyusercss' => 'Кыттааччы CSS-билэтин уларытыы',
 'right-rollback' => 'Кыттааччы оҥорбут көннөрүүлэрин талыллыбыт биир сирэйгэ суох гыныы',
 'right-markbotedits' => 'Төннөрүллэр көннөрүүлэри робот уларытыытын курдук бэлиэтээһин',
 'right-noratelimit' => 'Нуорманнан хааччахтааһын суох',
@@ -2237,6 +2245,7 @@ $UNWATCHURL
 'prot_1movedto2' => '[[$1]] аата манныкка уларытылынна: [[$2]]',
 'protect-badnamespace-title' => 'Көмүскэммэт аат дала',
 'protect-badnamespace-text' => 'Бу аат далын сирэйдэрэ көмүскэниллэр кыахтара суохю',
+'protect-norestrictiontypes-title' => 'Көмүскэниллибэт сирэй',
 'protect-legend' => 'Уларытыы таһымын бигэргэт',
 'protectcomment' => 'Төрүөтэ:',
 'protectexpiry' => 'Бүтүөхтээх:',
@@ -2357,7 +2366,7 @@ $1',
 'mycontris' => 'Суруйуу тиһигэ',
 'contribsub2' => 'Вклад $1 ($2)',
 'nocontribs' => 'Эппит критерийгэр эппиэттиир уларытыылар көстүбэтилэр.',
-'uctop' => '(бүтэһик)',
+'uctop' => '(билиҥҥи)',
 'month' => 'Ыйтан бэттэх:',
 'year' => 'Сылтан бэттэх:',
 
@@ -2989,6 +2998,16 @@ $1',
 'ago' => '$1 ынараа өттүгэр',
 'just-now' => 'сибилигин',
 
+# Human-readable timestamps
+'monday-at' => 'Бэнидиэнньиккэ, баччаҕа: $1',
+'tuesday-at' => 'оптуорунньукка, баччаҕа: $1',
+'wednesday-at' => 'сэрэдэҕэ, баччаҕа: $1',
+'thursday-at' => 'чэппиэргэ, баччаҕа: $1',
+'friday-at' => 'бээтинсэҕэ, баччаҕа: $1',
+'saturday-at' => 'субуотаҕа, баччаҕа: $1',
+'sunday-at' => 'өрөбүлгэ, баччаҕа: $1',
+'yesterday-at' => 'Бэҕэһээ, баччаҕа: $1',
+
 # Bad image list
 'bad_image_list' => 'Формаата маннык буолуохтаах:
 
@@ -3481,6 +3500,7 @@ $5
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwiki transcluding араҕыста]',
 'scarytranscludefailed' => '[$1 халыыбы туһанар табыллыбата]',
+'scarytranscludefailed-httpstatus' => '[Манна $1 анаммыт халыыбы холбуур сатаммата: HTTP $2]',
 'scarytranscludetoolong' => '[URL наһаа уһун]',
 
 # Delete conflict
@@ -3592,6 +3612,7 @@ $5
 'version-license' => 'Лиссиэнзийэ',
 'version-poweredby-credits' => "Бу биики бу движокка олоҕурар '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'атыттар',
+'version-credits-summary' => '[[Special:Version|MediaWiki]] сайдыытыгар үлэлэрин иһин манна ахтыллыбыт дьоҥҥо махтанабыт.',
 'version-license-info' => 'MediaWiki көҥүл тарҕанар бырагырааммаларга киирэр, кинини көмпүүтэр аһаҕас бырагырааммаларын пуондатын GNU General Public License усулуобуйатынан көҥүл тарҕатаргыт уонна/эбэтэр уларытаргыт көҥүллэнэр; иккис эбэтэр онтон хойукку ханнык баҕарар барылыттан саҕалаан.
 
 MediaWiki туһалаах буоллун диэн тарҕатыллар, ол эрээри АТЫЫЛАНАР СЫАННАҺА эбэтэр ХАННЫК ЭРЭ ЧОПЧУ СОРУККА СӨП ТҮБЭҺИИТЭ бигэргэтиллибэт (гарантията суох). Сиһилии GNU General Public License усулуобуйатын көрүҥ.
@@ -3603,6 +3624,17 @@ MediaWiki туһалаах буоллун диэн тарҕатыллар, ол 
 'version-entrypoints' => 'Киирэр аадырыстар (URL)',
 'version-entrypoints-header-entrypoint' => 'Киирии сирэ',
 'version-entrypoints-header-url' => 'URL',
+
+# Special:Redirect
+'redirect' => 'Билэттэн, кыттааччыттан эбэтэр барыл идентификаторыттан утаарыы',
+'redirect-legend' => 'Билэҕэ эбэтэр сирэйгэ утаарыы',
+'redirect-submit' => 'Толор',
+'redirect-lookup' => 'Көрдөт:',
+'redirect-value' => 'Суолтата:',
+'redirect-user' => 'Кыттааччы нүөмэрэ',
+'redirect-revision' => 'Сирэй барыла',
+'redirect-file' => 'Билэ аата',
+'redirect-not-exists' => 'Суолта көстүбэтэ',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Хос билэлэри көрдөөһүн',
@@ -3693,6 +3725,9 @@ MediaWiki туһалаах буоллун диэн тарҕатыллар, ол 
 'htmlform-submit' => 'Ыыт',
 'htmlform-reset' => 'Уларытыыны төннөр',
 'htmlform-selectorother-other' => 'Атын',
+'htmlform-no' => 'Суох',
+'htmlform-yes' => 'Сөп',
+'htmlform-chosen-placeholder' => 'Барылы тал',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 толору тиэкистээх көрдөөһүнү өйүүр',
@@ -3783,6 +3818,7 @@ MediaWiki туһалаах буоллун диэн тарҕатыллар, ол 
 'api-error-ok-but-empty' => 'Ис алҕас: сиэрбэртэн хоруй кэлбэтэ.',
 'api-error-overwrite' => 'Баар билэни уларытар сатаммат.',
 'api-error-stashfailed' => 'Ис алҕас: сиэрбэр быстах кэмҥэ оҥоһуллубут билэни кыайан бигэргэппэтэх.',
+'api-error-publishfailed' => 'Ис алҕас: сиэрбэр быстах билэни кыайан бигэргэппэтэх.',
 'api-error-timeout' => 'Сиэрбэр кэтэһэр кэмҥэ хоруйдаабата.',
 'api-error-unclassified' => 'Биллибэт алҕас таҕыста',
 'api-error-unknown-code' => 'Биллибэт алҕас: «$1»',
@@ -3802,5 +3838,8 @@ MediaWiki туһалаах буоллун диэн тарҕатыллар, ол 
 'duration-decades' => '$1 декаада',
 'duration-centuries' => '$1 үйэ',
 'duration-millennia' => '$1 тыһыынча сыл',
+
+# Image rotation
+'rotate-comment' => 'Ойуу $1 кыраадыс чаһы хоту эргитиллибит',
 
 );
