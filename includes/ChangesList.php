@@ -136,9 +136,10 @@ class ChangesList extends ContextSource {
 	 * @param string $nothing to use for empty space
 	 * @return String
 	 */
-	protected function recentChangesFlags( $flags, $nothing = '&#160;' ) {
+	public function recentChangesFlags( $flags, $nothing = '&#160;' ) {
+		global $wgRecentChangesFlags;
 		$f = '';
-		foreach ( array( 'newpage', 'minor', 'bot', 'unpatrolled' ) as $flag ) {
+		foreach ( array_keys( $wgRecentChangesFlags ) as $flag ) {
 			$f .= isset( $flags[$flag] ) && $flags[$flag]
 				? self::flag( $flag )
 				: $nothing;
@@ -152,36 +153,35 @@ class ChangesList extends ContextSource {
 	 * unpatrolled edit.  By default in English it will contain "N", "m", "b",
 	 * "!" respectively, plus it will have an appropriate title and class.
 	 *
-	 * @param string $flag 'newpage', 'unpatrolled', 'minor', or 'bot'
+	 * @param string $flag One key of $wgRecentChangesFlags
 	 * @return String: Raw HTML
 	 */
 	public static function flag( $flag ) {
-		static $messages = null;
-		if ( is_null( $messages ) ) {
-			$messages = array(
-				'newpage' => array( 'newpageletter', 'recentchanges-label-newpage' ),
-				'minoredit' => array( 'minoreditletter', 'recentchanges-label-minor' ),
-				'botedit' => array( 'boteditletter', 'recentchanges-label-bot' ),
-				'unpatrolled' => array( 'unpatrolledletter', 'recentchanges-label-unpatrolled' ),
-			);
-			foreach ( $messages as &$value ) {
-				$value[0] = wfMessage( $value[0] )->escaped();
-				$value[1] = wfMessage( $value[1] )->escaped();
+		static $flagInfos = null;
+		if ( is_null( $flagInfos ) ) {
+			global $wgRecentChangesFlags;
+			$flagInfos = array();
+			foreach ( $wgRecentChangesFlags as $key => $value ) {
+				$flagInfos[$key]['letter'] = wfMessage( $value[0] )->escaped();
+				$flagInfos[$key]['title'] = wfMessage( $value[1] )->escaped();
+				// Allow customized class name, fall back to flag name
+				$flagInfos[$key]['class'] = Sanitizer::escapeClass(
+					isset( $value['class'] ) ? $value['class'] : $key );
 			}
 		}
 
-		# Inconsistent naming, bleh
+		# Inconsistent naming, bleh, kepted for b/c
 		$map = array(
-			'newpage' => 'newpage',
-			'minor' => 'minoredit',
-			'bot' => 'botedit',
-			'unpatrolled' => 'unpatrolled',
-			'minoredit' => 'minoredit',
-			'botedit' => 'botedit',
+			'minoredit' => 'minor',
+			'botedit' => 'bot',
 		);
-		$flag = $map[$flag];
+		if ( isset( $map[$flag] ) ) {
+			$flag = $map[$flag];
+		}
 
-		return "<abbr class='$flag' title='" . $messages[$flag][1] . "'>" . $messages[$flag][0] . '</abbr>';
+		return "<abbr class='" . $flagInfos[$flag]['class'] . "' title='" . $flagInfos[$flag]['title'] . "'>" .
+			$flagInfos[$flag]['letter'] .
+			'</abbr>';
 	}
 
 	/**
@@ -1198,7 +1198,7 @@ class EnhancedChangesList extends ChangesList {
 		$r .= '<td class="mw-enhanced-rc"><span class="mw-enhancedchanges-arrow-space"></span>';
 		# Flag and Timestamp
 		if ( $type == RC_MOVE || $type == RC_MOVE_OVER_REDIRECT ) {
-			$r .= '&#160;&#160;&#160;&#160;'; // 4 flags -> 4 spaces
+			$r .= $this->recentChangesFlags( array() ); //no flags, but need the placeholders
 		} else {
 			$r .= $this->recentChangesFlags( array(
 				'newpage' => $type == RC_NEW,

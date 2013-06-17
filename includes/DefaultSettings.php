@@ -5235,6 +5235,22 @@ $wgUseTagFilter = true;
  */
 $wgUnwatchedPageThreshold = false;
 
+/**
+ * Recent changes flag, shown in Recentchanges and watchlist
+ *
+ * Adding a new one:
+ *   $wgRecentChangesFlags['flag'] => array( 'letter-msg', 'tooltip-msg' );
+ * 'class' allows to set a css class different than the flag name
+ *
+ * @since 1.22
+ */
+$wgRecentChangesFlags = array(
+	'newpage' => array( 'newpageletter', 'recentchanges-label-newpage' ),
+	'minor' => array( 'minoreditletter', 'recentchanges-label-minor', 'class' => 'minoredit' ),
+	'bot' => array( 'boteditletter', 'recentchanges-label-bot', 'class' => 'botedit' ),
+	'unpatrolled' => array( 'unpatrolledletter', 'recentchanges-label-unpatrolled' ),
+);
+
 /** @} */ # end RC/watchlist }
 
 /************************************************************************//**
