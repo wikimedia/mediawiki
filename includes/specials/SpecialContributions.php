@@ -175,6 +175,7 @@ class SpecialContributions extends SpecialPage {
 				'target' => $target,
 				'contribs' => $this->opts['contribs'],
 				'namespace' => $this->opts['namespace'],
+				'tagfilter' => $this->opts['tagfilter'],
 				'year' => $this->opts['year'],
 				'month' => $this->opts['month'],
 				'deletedOnly' => $this->opts['deletedOnly'],
