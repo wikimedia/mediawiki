@@ -1071,6 +1071,7 @@ change the tables headers.
 
 'ExtractThumbParameters': Called when extracting thumbnail parameters from a
 thumbnail file name.
+DEPRECATED: Media handler should override MediaHandler::parseParamString instead.
 $thumbname: the base name of the thumbnail file
 &$params: the currently extracted params (has source name, temp or archived zone)
 

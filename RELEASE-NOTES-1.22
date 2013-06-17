@@ -235,6 +235,8 @@ changes to languages because of Bugzilla reports.
   will no longer be output and OutputPage::addKeyword no longer exists.
 * Methods Title::userCanEditCssSubpage and Title::userCanEditJsSubpage,
   deprecated since 1.19, have been removed.
+* (bug 49629) The hook ExtractThumbParamaters has been deprecated in favour
+  of media handler overriding MediaHandler::parseParamString.
 
 == Compatibility ==
 
