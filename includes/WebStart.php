@@ -139,10 +139,6 @@ if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 	require_once MW_CONFIG_FILE;
 }
 
-if ( $wgEnableSelenium ) {
-	require_once "$IP/includes/SeleniumWebSettings.php";
-}
-
 wfProfileOut( 'WebStart.php-conf' );
 
 wfProfileIn( 'WebStart.php-ob_start' );
