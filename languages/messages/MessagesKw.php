@@ -643,6 +643,7 @@ Orth agas omgelmi lemmyn...',
 # Special:PasswordReset
 'passwordreset' => 'Dassettya an ger tremena',
 'passwordreset-text-one' => 'Lenwewgh an furvlen-ma rag dassettya agas ger tremena.',
+'passwordreset-text-many' => "{{PLURAL:$1|Entrewgh onan a'n tymmyn a dhata a-woles rag dassettya agas ger tremena.}}",
 'passwordreset-legend' => 'Dassettya an ger tremena',
 'passwordreset-disabled' => 'Dialosegys yw dassettya geryow tremena war an wiki-ma.',
 'passwordreset-username' => 'Hanow devnydhyer:',

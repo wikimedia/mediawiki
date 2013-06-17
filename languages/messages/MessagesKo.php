@@ -351,7 +351,7 @@ $dateFormats = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline' => '링크에 밑줄 표시하기:',
+'tog-underline' => '링크에 밑줄:',
 'tog-justify' => '문단 정렬하기',
 'tog-hideminor' => '최근 바뀜에서 사소한 편집을 숨기기',
 'tog-hidepatrolled' => '최근 바뀜에서 검토한 편집을 숨기기',
@@ -970,7 +970,7 @@ $2
 임시 비밀번호: $2',
 'passwordreset-emailsent' => '비밀번호 재설정 이메일을 보냈습니다.',
 'passwordreset-emailsent-capture' => '비밀번호 재설정 이메일이 발송되었으며, 아래에 나타나 있습니다.',
-'passwordreset-emailerror-capture' => '비밀번호 재설정 이메일이 생성되어 아래에 표시되어 있지만, {{GENDER:$2|사용자}}에게 발송하는 데에는 실패했습니다: $1',
+'passwordreset-emailerror-capture' => '비밀번호 재설정 이메일이 생성되어 아래에 보여져 있지만, {{GENDER:$2|사용자}}에게 발송하는 데에는 실패했습니다: $1',
 
 # Special:ChangeEmail
 'changeemail' => '이메일 주소 바꾸기',

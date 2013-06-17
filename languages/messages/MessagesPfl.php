@@ -355,6 +355,8 @@ Fa die Said õzleesche, konnschd do im Käschdl unne õfonge mid schraiwe (gugg 
 Wonn do nedd hoschd heakumme wolle, drigg uff Browser uff '''Zrigg'''.",
 'noarticletext' => 'Uffde Said hods noch kän Tegschd. Du konnschd uff õnnare Saide nochm [[Special:Search/{{PAGENAME}}|Oidrach gugge]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} Logbuchaidrach gugge, wu dezu kead],
 odda [{{fullurl:{{FULLPAGENAME}}|action=edit}} die Said beawaide]</span>.',
+'noarticletext-nopermission' => 'Do hods känn Tegschd.
+Du konschd uff onnare Saide [[Special:Search/{{PAGENAME}}|faden Tidl gugge]], odda <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} in alle Logs gugge]</span>, awwa du hoschd kä Ealauwnis die Said zu mache.',
 'updated' => '(Gännad)',
 'note' => "'''Hiwes:'''",
 'previewnote' => "'''Deng'g drõõ, dasses nua e Vorschau isch.'''
@@ -385,6 +387,7 @@ De Leschoidrach fa die Said isch do unne als Gwell õgewwe.',
 'post-expand-template-inclusion-warning' => "'''Baßma uff:''' Greeß vunde Vorlach isch iwwaschridde. Oinischi Vorlache werren ned bnuzd.",
 'post-expand-template-inclusion-category' => 'Saide mid Vorlache, wu die Greeß iwwaschridde worre isch',
 'post-expand-template-argument-warning' => "'''Baßma uff:''' Die Said hodd wenigschdns ä Vorlach midä Kenngreeß, wu groß werre dud. Die Kenngreeß wead do nedd õgeguggd.",
+'post-expand-template-argument-category' => 'Saide, wu wegfallene Vorlachewead hawen.',
 
 # History pages
 'viewpagelogs' => 'Lochbischa fa die Said õgugge',
@@ -511,6 +514,7 @@ Ealaidarung: '''({{int:cur}})''' = Unnaschied zu jezd,
 'gender-unknown' => 'Ghoim gkalde',
 'gender-male' => 'Männlisch',
 'gender-female' => 'Waiblisch',
+'prefs-help-email' => 'E-mail muss ned soi, awwa wead fas naijsedze vum Kennwoad bneedischd, wonns vagesse hoschd.',
 'prefs-help-email-others' => 'Konschd a wehle, ob õnnare disch iwwan Lingg uff doina Dischbedier-Said õschbresche kennen.
 Doi Address werd ned gzaischd, wõnse midda babbln.',
 'prefs-diffs' => 'Unaschied',
@@ -558,6 +562,7 @@ Doi Address werd ned gzaischd, wõnse midda babbln.',
 'recentchanges-label-bot' => 'Ännarunge duaschn Bod',
 'recentchanges-label-unpatrolled' => 'Die Ännarung isch noch nedd iwwabriefd worre',
 'rcnote' => "Õgzaischd {{PLURAL:$1|werd '''1''' Ännarung|werren die ledschde '''$1''' Ännarunge}} {{PLURAL:$2|vum ledschde Daach|inde ledschde '''$2''' Daache}} (Schdond: $4, $5)",
+'rcnotefrom' => "Unne sinn Ännarunge said '''$2''' (bis '''$1''').",
 'rclistfrom' => 'Zaisch die ledschde Ännarunge ab $1',
 'rcshowhideminor' => 'Glenni Ännarunge $1',
 'rcshowhidebots' => 'Bots $1',
@@ -631,6 +636,8 @@ Saide uff [[Special:Watchlist|Doina Beowachdungslischd]] sinn '''fedd'''.",
 'linkstoimage' => 'Die {{PLURAL:$1|Said vawaisd|$1 Saide vawaisn}} uff die Dadai:',
 'nolinkstoimage' => 'Do hodds kä Said, wu dohea zaischd.',
 'sharedupload' => 'Die Datei isch vun $1 un s kann sai, dass se ach vun annere Projekt gebraucht werd.',
+'sharedupload-desc-here' => 'Die Dadai isch vun $1 un konn a wuonaschda bnuzd werre.
+Ä Bschraiwung finschd [$2 Dadaibschraiwungssaid] unne.',
 'uploadnewversion-linktext' => 'E naiere Version vun derre Datei hochlade',
 
 # File deletion
@@ -662,6 +669,7 @@ Saide uff [[Special:Watchlist|Doina Beowachdungslischd]] sinn '''fedd'''.",
 'nmembers' => '$1 {{PLURAL:$1|Dailneema|Dailneema}}',
 'prefixindex' => 'Alle Saide (midd Voasilw)',
 'listusers-editsonly' => 'Zaisch bloß Bnudza mid Baidräsch',
+'usercreated' => '{{GENDER:$3|Gmachd}} vun $1 om $2',
 'newpages' => 'Naije Saide',
 'move' => 'Vaschiewe',
 'movethispage' => 'Die Said verschiewe',
@@ -819,6 +827,7 @@ Der Schutzstatus vun derre Said kannscht ännere, awwer des hot kää Aifluss uf
 'whatlinkshere-hideredirs' => '$1 Waidalaidunge',
 'whatlinkshere-hidetrans' => '$1 Vorlacheoibindunge',
 'whatlinkshere-hidelinks' => '$1 Linggs',
+'whatlinkshere-hideimages' => '$1 Dadailinggs',
 'whatlinkshere-filters' => 'Filda',
 
 # Block/unblock
@@ -891,6 +900,7 @@ Bitte duu se vun Hand zammefiehre.'''",
 
 # Thumbnails
 'thumbnail-more' => 'Mags greßa',
+'thumbnail_error' => 'Baim Voaschaubild ischwas falsch glaafe: $1',
 
 # Special:Import
 'import-interwiki-submit' => 'Impordiere',

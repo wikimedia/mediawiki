@@ -1521,7 +1521,7 @@ Il tuo indirizzo non viene rivelato quando gli altri utenti ti contattano.',
 'group-sysop' => 'Amministratori',
 'group-bureaucrat' => 'Burocrati',
 'group-suppress' => 'Oversight',
-'group-all' => 'Utenti',
+'group-all' => '(tutti)',
 
 'group-user-member' => '{{GENDER:$1|utente}}',
 'group-autoconfirmed-member' => '{{GENDER:$1|utente autoconvalidato|utente autoconvalidata|utente autoconvalidato/a}}',
