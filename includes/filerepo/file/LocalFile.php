@@ -1294,11 +1294,16 @@ class LocalFile extends File {
 		// creation, page doesn't exist yet, so log_page = 0
 		// but we want it to point to the page we're making,
 		// so we later modify the log entry.
+		// For a similar reason, we avoid making an RC entry
+		// now and wait until the page exists.
 		$logId = $logEntry->insert();
-		$logEntry->publish( $logId );
 
-		wfProfileIn( __METHOD__ . '-edit' );
 		$exists = $descTitle->exists();
+		if ( $exists ) {
+			// Page exists, do RC entry now (otherwise we wait for later).
+			$logEntry->publish( $logId );
+		}
+		wfProfileIn( __METHOD__ . '-edit' );
 
 		if ( $exists ) {
 			# Create a null revision
@@ -1336,16 +1341,20 @@ class LocalFile extends File {
 			$content = ContentHandler::makeContent( $pageText, $descTitle );
 			$status = $wikiPage->doEditContent( $content, $comment, EDIT_NEW | EDIT_SUPPRESS_RC, false, $user );
 
-			if ( isset( $status->value['revision'] ) ) { // XXX; doEdit() uses a transaction
-				$dbw->begin( __METHOD__ );
+			$dbw->begin( __METHOD__ ); // XXX; doEdit() uses a transaction
+			// Now that the page exists, make an RC entry.
+			$logEntry->publish( $logId );
+			if ( isset( $status->value['revision'] ) ) {
 				$dbw->update( 'logging',
 					array( 'log_page' => $status->value['revision']->getPage() ),
 					array( 'log_id' => $logId ),
 					__METHOD__
 				);
-				$dbw->commit( __METHOD__ ); // commit before anything bad can happen
 			}
+			$dbw->commit( __METHOD__ ); // commit before anything bad can happen
 		}
+
+
 		wfProfileOut( __METHOD__ . '-edit' );
 
 		# Save to cache and purge the squid
