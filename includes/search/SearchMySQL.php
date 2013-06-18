@@ -370,6 +370,19 @@ class SearchMySQL extends SearchEngine {
 	}
 
 	/**
+	 * Delete an indexed page
+	 * Title should be pre-processed.
+	 *
+	 * @param Integer $id Page id that was deleted
+	 * @param String $title Title of page that was deleted
+	 */
+	function delete( $id, $title ) {
+		$dbw = wfGetDB( DB_MASTER );
+
+		$dbw->delete( 'searchindex', array( 'si_page' => $id ), __METHOD__ );
+	}
+
+	/**
 	 * Converts some characters for MySQL's indexing to grok it correctly,
 	 * and pads short words to overcome limitations.
 	 * @return mixed|string

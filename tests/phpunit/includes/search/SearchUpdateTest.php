@@ -17,6 +17,7 @@ class MockSearch extends SearchEngine {
 
 /**
  * @group Search
+ * @group Database
  */
 class SearchUpdateTest extends MediaWikiTestCase {
 
