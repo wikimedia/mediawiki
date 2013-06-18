@@ -62,6 +62,7 @@ $messages = array(
 'tog-hidepatrolled' => 'Vaschdegg gsischdede Ännarunge',
 'tog-extendwatchlist' => 'Zaisch alle Ännarunge unn ned nur die ledschde',
 'tog-showtoolbar' => "Wergzaisch fas Beawaide zaische (dodezu brauchd's JavaScript)",
+'tog-oldsig' => 'Voahonneni Unnaschfrid',
 'tog-showjumplinks' => 'Schdellde "Hubs uff"-Lingg',
 'tog-showhiddencats' => 'Zaisch vaschdeglde Grubbe',
 
@@ -137,6 +138,7 @@ $messages = array(
 'category-article-count' => '{{PLURAL:$2|Indɐ Sachgrubb hodds die Said.|Die {{PLURAL:$1|Said|$1 Saide}} gibbds inde Sachgrubb, vun gsomd $2.}}',
 'category-file-count' => "{{PLURAL:$2|Die Sachgrubb hodd ä Said.|Die {{PLURAL:$1|Said isch änni vun $2 Saide:|S'werren $1 vun gsomd $2 Saide gzaischd:}}}}",
 'listingcontinuesabbrev' => '(Waida)',
+'index-category' => 'Eafassdi Saide',
 'noindex-category' => 'Saide, wu ned im Vazaischnis sinn',
 
 'about' => 'Iwwa',
@@ -146,6 +148,7 @@ $messages = array(
 'mypage' => 'Said',
 'mytalk' => 'Dischbediere',
 'navigation' => 'Nawigadzion',
+'and' => '&#32;unn',
 
 # Cologne Blue skin
 'qbfind' => 'Finne',
@@ -153,6 +156,7 @@ $messages = array(
 'qbedit' => 'Beawaide',
 'qbpageoptions' => 'Die Said',
 'qbmyoptions' => 'Moi Saide',
+'qbspecialpages' => 'Schbezialsaide',
 'faq' => 'Ofd gschdeldi Froche',
 
 # Vector skin
@@ -187,6 +191,7 @@ $messages = array(
 'edit' => 'Beawaide',
 'create' => 'Õleesche',
 'editthispage' => 'Die Said beawaide',
+'create-this-page' => 'Mach die Said',
 'delete' => 'Lesche',
 'deletethispage' => 'Lesch die Said',
 'undelete_short' => '{{PLURAL:$1|ä Ännarung|$1 Ännarunge}} widdaheaschdelle',
@@ -198,11 +203,19 @@ $messages = array(
 'newpage' => 'Naiji Said',
 'talkpage' => 'Iwwa die Said dischbediere',
 'talkpagelinktext' => 'Dischbediere',
+'specialpage' => 'Schbezielli Said',
 'personaltools' => 'Persenlischs Wergzaisch',
 'postcomment' => 'Naije Abschnidd',
+'articlepage' => 'Inhald õgugge',
 'talk' => 'Dischbediere',
 'views' => 'Uffruf',
 'toolbox' => 'Wergzaischkischd',
+'userpage' => 'Benudzersaid õgugge',
+'projectpage' => 'Brojegdsaid õgugge',
+'imagepage' => 'Dadaisaid õgugge',
+'mediawikipage' => 'Nochrischd õgugge',
+'templatepage' => 'Voalach õgugge',
+'viewhelppage' => 'Hilf õgugge',
 'categorypage' => 'Zaisch die Kadegorie',
 'viewtalkpage' => 'Zaischs Gbabbl',
 'otherlanguages' => 'In õnnare Schbroche',
@@ -226,10 +239,10 @@ $messages = array(
 'disclaimers' => 'Hafdungsausschluß',
 'disclaimerpage' => 'Project:Impressum',
 'edithelp' => 'Unaschdizung fas Beawaide',
-'edithelppage' => 'Help:Ännare',
 'helppage' => 'Help:Inhald',
 'mainpage' => 'Schdadsaid',
 'mainpage-description' => 'Schdadsaid',
+'policy-url' => 'Project:Grundsedz',
 'portal' => '{{SITENAME}}-Bordal',
 'portal-url' => 'Project:Gmoinschafdsbordal',
 'privacy' => 'Daadeschuds',
@@ -242,6 +255,8 @@ $messages = array(
 'youhavenewmessages' => 'Du hoschd $1 ($2).',
 'newmessageslink' => 'naije Nochrischde',
 'newmessagesdifflink' => 'ledschdi Ännarung',
+'newmessagesdifflinkplural' => 'ledschdi {{PLURAL:$1|Ännarung|Ännarunge}}',
+'youhavenewmessagesmulti' => 'Do hoschd ä Nochrischd grischd: $1',
 'editsection' => 'beawaide',
 'editold' => 'beawaide',
 'viewsourceold' => 'Gwelltegschd õgugge',
@@ -252,6 +267,8 @@ $messages = array(
 'showtoc' => 'zaische',
 'hidetoc' => 'vaschdeggle',
 'collapsible-collapse' => 'Oiglabbe',
+'collapsible-expand' => 'Uffglabbe',
+'thisisdeleted' => '$1 õgugge odda widdaheaschdelle?',
 'viewdeleted' => '$1 zaische?',
 'restorelink' => '{{PLURAL:$1|ä gleschdi Ännarung|$1 gleschde Ännarunge}}',
 'site-rss-feed' => '$1 RSS-Feed',
@@ -272,8 +289,13 @@ $messages = array(
 'nstab-help' => 'Unaschdidzung',
 'nstab-category' => 'Sachgrubb',
 
+# Main script and global functions
+'nosuchaction' => 'Des hodds nedd',
+'nosuchspecialpage' => 'Schbezialsaid hodds nedd',
+
 # General errors
 'error' => 'Irrdumm',
+'databaseerror' => 'Daadebongg-Irrdumm',
 'missing-article' => 'De Tegschd fa „$1“ $2 isch inde Daadebongg nedd gfunne worre.
 
 Noamalawees heeßd des, dass die Said gleschd worre isch.
@@ -281,10 +303,29 @@ Noamalawees heeßd des, dass die Said gleschd worre isch.
 Wonnse des awwa nedd isch, hoschd villaischdn Irdumm inde Daadebongg gfunne.
 Bidde meldsm [[Special:ListUsers/sysop|Adminischdrador]], un gebbde URL dzu õ.',
 'missingarticle-rev' => '(Ausgawenumma#: $1)',
+'internalerror' => 'Inderna Irrdumm',
+'internalerror_info' => 'Inderna Irrdumm: $1',
+'fileappenderrorread' => 'Beim dzugiesche hoddma „$1“ nedd lese kenne.',
+'fileappenderror' => '"$1" hoddma nedd zu "$2" dzugiesche kenne.',
+'filecopyerror' => '"$1" hoddma nedd zu "$2" kobiere kenne.',
+'filerenameerror' => 'Die Said "$1" hoddma nedd uff "$2" umbenenne kenne.',
+'filedeleteerror' => '"$1" hoddma nedd lesche kenne.',
+'directorycreateerror' => 'S\'Vazaischnis "$1" hoddma nedd mache kenne.',
+'filenotfound' => '"$1" hoddma nedd finne kenne.',
+'fileexistserror' => '"$1" hodds schun: do hoddma nix schraiwe kenne.',
+'unexpected' => 'Uueawadeda Wead: "$1"="$2".',
+'formerror' => 'Irrdumm: hoddma nedd mache kenne.',
+'badarticleerror' => 'Des geed nedd uffde Said.',
+'cannotdelete-title' => '"$1" komma nedd lesche',
 'badtitle' => 'Schleschde Didl',
 'badtitletext' => 'De Tidl vunde õgfordad Said isch nedd gildisch, lea, oddan nedd gildische Lingg vunem õnnare Wiki.
 S konn soi, dasses ä odda mea Zaische drin hodd, wu im Tidl vunde Said nedd gbrauchd werre dirfn.',
 'viewsource' => 'Gwelltegschd õgugge',
+'viewsource-title' => "D'Tegschd vun $1 õgugge",
+'exception-nologin' => 'Bischd nedd õgmeld',
+
+# Virus scanner
+'virus-unknownscanner' => 'Uubekonnda Viresucha:',
 
 # Login and logout pages
 'welcomeuser' => 'Willkumme, $1!',
@@ -309,9 +350,18 @@ S konn soi, dasses ä odda mea Zaische drin hodd, wu im Tidl vunde Said nedd gbr
 'loginlanguagelabel' => 'Schbrooch: $1',
 
 # Change password dialog
+'resetpass' => 'Kennword wegsle',
+'oldpassword' => 'Alds Kennword',
+'newpassword' => 'Naijes Kennword',
+'retypenew' => 'Naijes Kennword nomol oigewe:',
+'resetpass_forbidden' => 'Kennwerda komma nedd wegsle',
 'resetpass-submit-loggedin' => 'Password wegsle',
+'resetpass-submit-cancel' => 'Uffhere',
+'resetpass-temp-password' => 'Bschrengds Kennword',
 
 # Special:PasswordReset
+'passwordreset' => 'Kennword zriggsedze',
+'passwordreset-legend' => 'Kennword zriggsedze',
 'passwordreset-username' => 'Benudza:',
 
 # Special:ChangeEmail
@@ -348,7 +398,10 @@ S konn soi, dasses ä odda mea Zaische drin hodd, wu im Tidl vunde Said nedd gbr
 'showdiff' => 'Ännarunge zaische',
 'anoneditwarning' => "'''Baßma uff:''' Du bischd ned õgemeld. Doi IP-Adress werd inde Gschischd vum Adiggl gschbaischad.",
 'summary-preview' => 'Iwwabligg:',
+'blockedtitle' => 'Middawaida isch gschbead',
 'blockednoreason' => "s'hod kän Grund",
+'loginreqtitle' => 'Mugschd disch õmelde',
+'loginreqlink' => 'Õmelde',
 'newarticle' => '(Naij)',
 'newarticletext' => "Du bischdm Lingg nochgõnge zu enna Said, wus ganedd hodd.
 Fa die Said õzleesche, konnschd do im Käschdl unne õfonge mid schraiwe (gugg [[{{MediaWiki:Helppage}}|Hilf]] fa mea Auskinfd).
@@ -379,6 +432,7 @@ Du gibbschd do a zu, dasses selwaschd gschriwwe hoschd odda vuna effendlischi, f
 'recreate-moveddeleted-warn' => "'''Baßma uff: Du maggschd do ä Said, wuma frija schumol geleschd kabd hod.'''",
 'moveddeleted-notice' => 'Die Said isch gleschd worre.
 De Leschoidrach fa die Said isch do unne als Gwell õgewwe.',
+'log-fulllog' => 'Alli Oidräsch vunde Logbischa õgugge',
 
 # Content models
 'content-model-css' => 'CSS',
@@ -419,6 +473,10 @@ Ealaidarung: '''({{int:cur}})''' = Unnaschied zu jezd,
 'rev-delundel' => 'zaisch/vaschdeggl',
 'rev-showdeleted' => 'zaische',
 'revdelete-show-file-submit' => 'Ja',
+'revdelete-hide-image' => 'Vaschdegglde Inhald',
+'revdelete-hide-name' => 'Vaschdeggls',
+'revdelete-hide-comment' => 'Vaschdeggls Resimee',
+'revdelete-hide-user' => 'Vaschdeggl Middawaidanome/IP',
 'revdelete-radio-same' => '(dudo nix ännare)',
 'revdelete-radio-set' => 'Ja',
 'revdelete-radio-unset' => 'Nä',
@@ -427,6 +485,7 @@ Ealaidarung: '''({{int:cur}})''' = Unnaschied zu jezd,
 'revdel-restore-deleted' => 'gleschdi Ännarunge',
 'revdel-restore-visible' => 'sischdbari Ännarunge',
 'pagehist' => 'Gschischd vunde Said',
+'deletedhist' => 'Gleschde Gschischde',
 
 # History merging
 'mergehistory-go' => 'Zaisch, wasma vaoinische konn',
@@ -493,8 +552,10 @@ Ealaidarung: '''({{int:cur}})''' = Unnaschied zu jezd,
 # Preferences page
 'preferences' => 'Obzione',
 'mypreferences' => 'Oischdellunge',
+'datedefault' => 'Kä Oischdellunge',
 'prefs-watchlist' => 'Beowachdungslischd',
 'prefs-misc' => 'Schunschdisches',
+'prefs-rendering' => 'Uffdridd',
 'saveprefs' => 'Oischdellunge schbaischere',
 'resetprefs' => 'Oischdellunge vawerfe',
 'prefs-editing' => 'Schaffe',
@@ -504,7 +565,16 @@ Ealaidarung: '''({{int:cur}})''' = Unnaschied zu jezd,
 'resultsperpage' => 'Dreffa bro Said',
 'stub-threshold-disabled' => 'Abgschdeld',
 'guesstimezone' => 'Aus em Browser iwwernemme',
+'timezoneregion-africa' => 'Afrika',
+'timezoneregion-america' => 'Õmerika',
+'timezoneregion-antarctica' => 'Õngdagdika',
+'timezoneregion-arctic' => 'Aadigk',
+'timezoneregion-asia' => 'Asije',
+'timezoneregion-atlantic' => 'Adlõndischa Ozeõn',
+'timezoneregion-australia' => 'Auschdralije',
 'timezoneregion-europe' => 'Oirobba',
+'timezoneregion-indian' => 'Indischa Ozeõn',
+'timezoneregion-pacific' => 'Pazifischa Ozeõn',
 'prefs-searchoptions' => 'Nochgugge',
 'youremail' => 'E-Mail:',
 'yourrealname' => 'Birschalischa Nõme:',
@@ -1041,5 +1111,19 @@ Wonn die Dadai vaännad worre isch, donn konns soi, daß zusedzlischi Õgawe fa 
 
 # Search suggestions
 'searchsuggest-search' => 'Suche',
+
+# API errors
+'api-error-unknownerror' => 'Uubekonde Irrdumm: "$1".',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|Sekund|Sekunde}}',
+'duration-minutes' => '$1 {{PLURAL:$1|Minud|Minude}}',
+'duration-hours' => '$1 {{PLURAL:$1|Schdund|Schdunde}}',
+'duration-days' => '$1 {{PLURAL:$1|Daach|Daache}}',
+'duration-weeks' => '$1 {{PLURAL:$1|Woch|Woche}}',
+'duration-years' => '$1 {{PLURAL:$1|Joa|Joare}}',
+'duration-decades' => '$1 {{PLURAL:$1|Jaazehnd|Jaazehnde}}',
+'duration-centuries' => '$1 {{PLURAL:$1|Jaahunnad|Jaahunnade}}',
+'duration-millennia' => '$1 {{PLURAL:$1|Jaadausnd|Jaadausnde}}',
 
 );

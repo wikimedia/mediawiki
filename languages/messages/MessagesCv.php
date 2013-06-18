@@ -251,7 +251,6 @@ $messages = array(
 'disclaimers' => 'Яваплăха тивĕçтерменни',
 'disclaimerpage' => 'Project:Яваплăха тивĕçтерменни',
 'edithelp' => 'Улшăнусене кĕртме пулăшакан пулăшу',
-'edithelppage' => 'Help:Улшăнусене кĕртме пулăшакан пулăшу',
 'helppage' => 'Help:Пулăшу',
 'mainpage' => 'Тĕп страница',
 'mainpage-description' => 'Тĕп страницă',

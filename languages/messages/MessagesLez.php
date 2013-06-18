@@ -238,7 +238,6 @@ $messages = array(
 'disclaimers' => 'Жавабдарвал хивяй акъудун',
 'disclaimerpage' => 'Project:Жавабдарвал хивяй акъудун',
 'edithelp' => 'Дуьзар хъувун патал куьмек',
-'edithelppage' => 'Help:Дуьзар хъувун',
 'helppage' => 'Help:Къене авайбур',
 'mainpage' => 'Кьилин ччин',
 'mainpage-description' => 'Кьилин ччин',

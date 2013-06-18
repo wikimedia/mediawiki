@@ -213,7 +213,6 @@ $messages = array(
 'disclaimers' => 'Diklarasion Inadahi',
 'disclaimerpage' => 'Project:Diklarasion inadahi henerat',
 'edithelp' => 'Ayudo tumulaika',
-'edithelppage' => 'Help:Tumulaika',
 'helppage' => 'Help:Guinaha',
 'mainpage' => 'Fanhaluman',
 'mainpage-description' => 'Fanhaluman',

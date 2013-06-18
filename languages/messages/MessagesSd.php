@@ -321,7 +321,6 @@ $messages = array(
 'disclaimers' => 'غيرجوابداريناما',
 'disclaimerpage' => 'Project:عام غيرجوابدارينامو',
 'edithelp' => 'مدد براءِ ترميم',
-'edithelppage' => 'Help:سنوارڻ',
 'helppage' => 'Help:فهرست',
 'mainpage' => 'مُک صفحو',
 'mainpage-description' => 'مُک صفحو',

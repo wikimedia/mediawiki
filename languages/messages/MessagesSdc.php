@@ -304,7 +304,6 @@ $messages = array(
 'disclaimers' => 'Avvirthènzi',
 'disclaimerpage' => 'Project:Avvirthènzi ginarari',
 'edithelp' => 'Ghia',
-'edithelppage' => 'Help:Mudìfigga',
 'helppage' => 'Help:Indizi',
 'mainpage' => 'Pàgina prinzipari',
 'mainpage-description' => 'Pàgina prinzipari',

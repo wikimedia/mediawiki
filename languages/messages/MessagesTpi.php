@@ -243,7 +243,6 @@ $messages = array(
 'disclaimers' => 'Ol toksave bilong lo',
 'disclaimerpage' => 'Project:Ol tok warn long lo',
 'edithelp' => 'Halivim mi long pasin bilong wokim senis',
-'edithelppage' => 'Help:Senisim',
 'mainpage' => 'Fran Pes',
 'mainpage-description' => 'Fran Pes',
 'portal' => 'Bung ples',

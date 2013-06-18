@@ -147,7 +147,6 @@ $messages = array(
 'disclaimers' => 'Kūondõkst',
 'disclaimerpage' => 'Project:Kūondõkst',
 'edithelp' => 'Redigīerimiz opātõks',
-'edithelppage' => 'Help:Redigīerimiz_opātõks',
 'helppage' => 'Help:Sižāli',
 'mainpage' => 'Eḑḑilēḑ',
 'mainpage-description' => 'Eḑḑilēḑ',

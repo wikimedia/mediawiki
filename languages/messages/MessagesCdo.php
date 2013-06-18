@@ -156,7 +156,6 @@ $messages = array(
 'disclaimers' => 'Mò̤ hô-cáik sĭng-mìng',
 'disclaimerpage' => 'Project:Mò̤ hô-cáik sĭng-mìng',
 'edithelp' => 'Siŭ-gāi bŏng-cô',
-'edithelppage' => 'Help:Siŭ-gāi',
 'helppage' => 'Help:Mŭk-liŏh',
 'mainpage' => 'Tàu Hiĕk',
 'mainpage-description' => 'Tàu Hiĕk',

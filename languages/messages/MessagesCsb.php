@@ -261,7 +261,6 @@ $messages = array(
 'disclaimers' => 'Prawné zastrzedżi',
 'disclaimerpage' => 'Project:Prawné zastrzedżi',
 'edithelp' => 'Pòmòc do edicëji',
-'edithelppage' => 'Help:Editowanié starnë',
 'helppage' => 'Help:Spisënk zamkłoscë',
 'mainpage' => 'Przédnô starna',
 'mainpage-description' => 'Przédnô starna',

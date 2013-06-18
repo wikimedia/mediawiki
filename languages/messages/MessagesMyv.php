@@ -414,7 +414,6 @@ $messages = array(
 'disclaimers' => 'Видечинь кортамотне',
 'disclaimerpage' => 'Project:Видечинь прякс кортнема',
 'edithelp' => 'Витнемань-петнемань лезкс',
-'edithelppage' => 'Help:Витнема-петнема',
 'helppage' => 'Help:Лопась мезе кирди',
 'mainpage' => 'Прякслопа',
 'mainpage-description' => 'Прякслопа',

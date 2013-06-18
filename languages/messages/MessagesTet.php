@@ -238,7 +238,6 @@ $messages = array(
 'disclaimers' => 'Avisu legál',
 'disclaimerpage' => 'Project:Avisu legál',
 'edithelp' => 'Ajuda kona-ba edita',
-'edithelppage' => 'Help:Edita',
 'helppage' => 'Help:Konteúdu',
 'mainpage' => 'Pájina Mahuluk',
 'mainpage-description' => 'Pájina Mahuluk',

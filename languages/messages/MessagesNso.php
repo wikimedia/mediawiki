@@ -235,7 +235,6 @@ $messages = array(
 'disclaimers' => 'Hlapa-matsogo',
 'disclaimerpage' => 'Project:Hlapa-Matsogo',
 'edithelp' => 'Thušo ya go fetola',
-'edithelppage' => 'Help:Fetola',
 'helppage' => 'Help:Mateng',
 'mainpage' => 'Letlakala la Pele',
 'mainpage-description' => 'Letlakala la Pele',

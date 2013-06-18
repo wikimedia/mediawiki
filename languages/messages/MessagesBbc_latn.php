@@ -199,7 +199,6 @@ $messages = array(
 'disclaimers' => 'Panyakalon',
 'disclaimerpage' => 'Project:Pamorsoon umum',
 'edithelp' => 'Pangurupion laho patotahon',
-'edithelppage' => 'Help:Panotaan',
 'helppage' => 'Help:Isi',
 'mainpage' => 'Pogu ni Alaman',
 'mainpage-description' => 'Pogu ni alaman',

@@ -533,7 +533,6 @@ $1',
 'disclaimers' => 'Odricanje odgovornosti',
 'disclaimerpage' => 'Project:Uslovi korištenja, pravne napomene i odricanje odgovornosti',
 'edithelp' => 'Pomoć pri uređivanju stranice',
-'edithelppage' => 'Help:Uređivanje',
 'helppage' => 'Help:Sadržaj',
 'mainpage' => 'Početna strana',
 'mainpage-description' => 'Početna strana',
@@ -1526,6 +1525,7 @@ Ako izaberete da date ime, biće korišteno za pripisivanje za vaš rad.',
 'userrights-notallowed' => 'Vaš račun nema privilegije da dodaje ili oduzima prava korisnika.',
 'userrights-changeable-col' => 'Grupe koje možete mijenjati',
 'userrights-unchangeable-col' => 'Grupe koje ne možete mijenjati',
+'userrights-conflict' => 'Sukob u korisničkim pravima! Molimo pošaljite Vaše promjene ponovno.',
 
 # Groups
 'group' => 'Grupa:',
@@ -3119,6 +3119,7 @@ Ovo je vjerovatno izazvao vezom ka vanjskoj nepoželjnoj stranici.',
 'pageinfo-language' => 'Jezik sadržaja stranice',
 'pageinfo-views' => 'Broj pogleda',
 'pageinfo-watchers' => 'Broj pratitelja stranice',
+'pageinfo-few-watchers' => 'Manje od $1 {{PLURAL:$1|pratioca|pratilaca}}',
 'pageinfo-redirects-name' => 'Preusmjeravanja na ovu stranicu',
 'pageinfo-subpages-name' => 'Podstranice ove stranice',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|preusmjerenje|preusmjerenja}}; $3 {{PLURAL:$3|nepreusmjerenje|nepreusmjerenja}})',
@@ -3923,9 +3924,11 @@ Trebali biste dobiti [{{SERVER}}{{SCRIPTPATH}}/KOPIJU GNU opće javne licence] z
 
 # Special:Redirect
 'redirect-submit' => 'Idi',
+'redirect-value' => 'Vrijednost:',
 'redirect-user' => 'Korisnički ID',
 'redirect-revision' => 'Verzija stranice',
 'redirect-file' => 'Naziv datoteke',
+'redirect-not-exists' => 'Vrijednost nije pronađena',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Pretraga za duplim datotekama',
@@ -4131,5 +4134,8 @@ Inače, možete ispuniti jednostavan obrazac ispod. Vaš komentar biti će dodan
 'duration-decades' => '$1 {{PLURAL:$1|decenija|decenije|decenija}}',
 'duration-centuries' => '$1 {{PLURAL:$1|vijek|vijeka|vijekova}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenij|milenija}}',
+
+# Image rotation
+'rotate-comment' => 'Slika rotirana za $1 {{PLURAL:$1|stepen|stepeni}} u smjeru kazaljke na satu',
 
 );

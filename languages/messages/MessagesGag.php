@@ -288,7 +288,6 @@ $messages = array(
 'disclaimers' => 'Cuvapçılık reti',
 'disclaimerpage' => 'Project:Genel cuvapçılık reti',
 'edithelp' => 'Nesoy var nicä diiştirmää?',
-'edithelppage' => 'Help:Nesoy var nicä sayfa diiştirmää',
 'helppage' => 'Help:İçindekilär',
 'mainpage' => 'Baş yaprak',
 'mainpage-description' => 'Baş yaprak',

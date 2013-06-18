@@ -203,7 +203,6 @@ $messages = array(
 'disclaimers' => 'Førbeholt',
 'disclaimerpage' => 'Project:Huses førbeholt',
 'edithelp' => 'Hjælp til redigærenge',
-'edithelppage' => "Help:Vordan redigærer a'n side",
 'helppage' => 'Help:Hjælpførside',
 'mainpage' => 'Førsit',
 'mainpage-description' => 'Førsit',

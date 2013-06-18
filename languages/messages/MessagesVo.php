@@ -349,7 +349,6 @@ $messages = array(
 'disclaimers' => 'Nuneds',
 'disclaimerpage' => 'Project:Gididimiedükam valemik',
 'edithelp' => 'Redakamayuf',
-'edithelppage' => 'Help:Redakam',
 'helppage' => 'Help:Ninäd',
 'mainpage' => 'Cifapad',
 'mainpage-description' => 'Cifapad',

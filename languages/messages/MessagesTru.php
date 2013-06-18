@@ -167,7 +167,6 @@ $messages = array(
 'disclaimers' => 'Disclaimers',
 'disclaimerpage' => 'Project: Disclaimer gawonoyo',
 'edithelp' => 'Editing help',
-'edithelppage' => 'Help:Mşaḥlaf',
 'helppage' => 'Help: Ḥbişoṭo',
 'mainpage' => 'Faṭo rişoyto',
 'mainpage-description' => 'Faṭo rişoyto',

@@ -277,7 +277,6 @@ $messages = array(
 'disclaimers' => 'ຂໍ້ປະຕິເສດຄວາມຮັບຜິດຊອບ',
 'disclaimerpage' => 'Project:ຂໍ້ປະຕິເສດຄວາມຮັບຜິດຊອບ',
 'edithelp' => 'ວິທີດັດແກ້ໜ້າ',
-'edithelppage' => 'Help:ການດັດແກ້',
 'helppage' => 'Help:ເນື້ອໃນ',
 'mainpage' => 'ໜ້າຫຼັກ',
 'mainpage-description' => 'ໜ້າຫຼັກ',

@@ -331,7 +331,6 @@ $messages = array(
 'disclaimers' => 'Friijavuohta vástideamis',
 'disclaimerpage' => 'Project:Friijavuohta vástideamis',
 'edithelp' => 'Rievdadanrávvagat',
-'edithelppage' => 'Help:Mo rievdadit siidduid',
 'helppage' => 'Help:Sisdoallu',
 'mainpage' => 'Váldosiidu',
 'mainpage-description' => 'Váldosiidu',

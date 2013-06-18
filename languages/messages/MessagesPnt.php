@@ -243,7 +243,6 @@ $messages = array(
 'disclaimers' => 'Ιμπρέσουμ',
 'disclaimerpage' => 'Project:Ιμπρέσουμ',
 'edithelp' => "Βοήθεια για τ' αλλαγμαν",
-'edithelppage' => 'Help:Άλλαγμαν',
 'helppage' => 'Help:Περιεχόμενα',
 'mainpage' => 'Αρχικόν σελίδα',
 'mainpage-description' => 'Αρχικόν σελίδα',

@@ -311,7 +311,6 @@ $messages = array(
 'disclaimers' => 'Walzera',
 'disclaimerpage' => 'Project:Jadif walzereem',
 'edithelp' => 'Pomara',
-'edithelppage' => 'Help:Tokinde bubetat',
 'helppage' => 'Help:Pomara',
 'mainpage' => 'Emudexo',
 'mainpage-description' => 'Emudexo',

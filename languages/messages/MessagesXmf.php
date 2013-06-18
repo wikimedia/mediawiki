@@ -190,7 +190,6 @@ $messages = array(
 'disclaimers' => 'გამამინჯალაშ ვარება',
 'disclaimerpage' => 'Project:გამამინჯალაშ ვარება',
 'edithelp' => 'მოხვარა რედაქტირაფას',
-'edithelppage' => 'Help:ტექსტიშ რედაქტირაფა',
 'helppage' => 'Help:დინორე',
 'mainpage' => 'დუდხასჷლა',
 'mainpage-description' => 'დუდხასჷლა',

@@ -192,7 +192,6 @@ $messages = array(
 'disclaimers' => 'Daīšmu nūstatejumi',
 'disclaimerpage' => 'Project:Dasaīšonu nūstateišona',
 'edithelp' => 'Paleigs',
-'edithelppage' => 'Help:Pataiseišona',
 'helppage' => 'Help:Turīņs',
 'mainpage' => 'Suoku puslopa',
 'mainpage-description' => 'Suoku puslopa',

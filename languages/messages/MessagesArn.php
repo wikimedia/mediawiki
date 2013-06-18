@@ -192,7 +192,6 @@ $messages = array(
 'disclaimers' => 'Tukuldungun ñi pin ley',
 'disclaimerpage' => 'Project:Katrütuwün ñi llowdüngun',
 'edithelp' => 'Kellü wirin',
-'edithelppage' => 'Help:Chum wiringekey pakina',
 'helppage' => 'Help:Trokiñdungu',
 'mainpage' => 'Ñidol Wülngiñ',
 'mainpage-description' => 'Ñidol Wülngiñ',

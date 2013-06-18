@@ -294,7 +294,6 @@ $messages = array(
 'disclaimers' => 'Ажыглаар харысаалгазын чөрчүүрү (ойталаары)',
 'disclaimerpage' => 'Project:Ажыглаар харысаалгазын ойталаары',
 'edithelp' => 'Эдеринге дуза',
-'edithelppage' => 'Help:Эдери',
 'helppage' => 'Help:Допчузу',
 'mainpage' => 'Кол Арын',
 'mainpage-description' => 'Кол Арын',

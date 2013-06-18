@@ -280,7 +280,6 @@ $messages = array(
 'disclaimers' => 'Abbertimentos',
 'disclaimerpage' => 'Project:Abbertimentos generales',
 'edithelp' => "Agiudu pro s'acontzu o sa scritura",
-'edithelppage' => 'Help:Acontzare',
 'helppage' => 'Help:Agiudu',
 'mainpage' => 'Pàgina Base',
 'mainpage-description' => 'Pàgina Base',

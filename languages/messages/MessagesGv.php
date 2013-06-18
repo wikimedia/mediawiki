@@ -251,7 +251,6 @@ $messages = array(
 'disclaimers' => 'Jiooldeyderyn',
 'disclaimerpage' => 'Project:Obbalys cadjin',
 'edithelp' => 'Cooney reaghee',
-'edithelppage' => 'Help:Reaghey',
 'helppage' => 'Help:Cummal',
 'mainpage' => 'Ard-ghuillag',
 'mainpage-description' => 'Ard-ghuillag',

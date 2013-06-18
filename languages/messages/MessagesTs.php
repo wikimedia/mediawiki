@@ -224,7 +224,6 @@ $messages = array(
 'disclaimers' => 'Swi alanandzu',
 'disclaimerpage' => 'Project:Swithsuxa nadzu hikuangara',
 'edithelp' => 'Mpfuno hi ta mindzulamiso',
-'edithelppage' => 'Help:Mindzulamiso',
 'helppage' => 'Help:Leswinga ndzeni',
 'mainpage' => 'Tlukankulu',
 'mainpage-description' => 'Tluka-Nkulu',

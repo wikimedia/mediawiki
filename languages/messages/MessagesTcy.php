@@ -241,7 +241,6 @@ $messages = array(
 'disclaimers' => 'ಅಬಾಧ್ಯತೆಲು',
 'disclaimerpage' => 'Project:ಸಾಮಾನ್ಯ ಅಬಾಧ್ಯತೆಲು',
 'edithelp' => 'ಸಂಪಾದನೆ(ಎಡಿಟ್) ಮಲ್ಪೆರೆ ಸಹಾಯ',
-'edithelppage' => 'Help:ಸಂಪಾದನೆ',
 'helppage' => 'Help:ಪರಿವಿಡಿ',
 'mainpage' => 'ಮುಖ್ಯ ಪುಟ',
 'mainpage-description' => 'ಮುಖ್ಯ ಪುಟ',

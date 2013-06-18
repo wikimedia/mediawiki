@@ -324,7 +324,6 @@ $messages = array(
 'disclaimers' => 'Séanadh',
 'disclaimerpage' => 'Project:Séanadh_ginearálta',
 'edithelp' => 'Cabhair eagarthóireachta',
-'edithelppage' => 'Help:Eagarthóireacht',
 'helppage' => 'Help:Clár_ábhair',
 'mainpage' => 'Príomhleathanach',
 'mainpage-description' => 'Príomhleathanach',

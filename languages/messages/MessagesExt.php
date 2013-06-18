@@ -236,7 +236,6 @@ $messages = array(
 'disclaimers' => 'Avissu legal',
 'disclaimerpage' => 'Project:Arrayu heneral de responsabiliá',
 'edithelp' => "Ayua d'eición",
-'edithelppage' => 'Help:Eitandu',
 'helppage' => 'Help:Continius',
 'mainpage' => 'Página prencipal',
 'mainpage-description' => 'Páhina prencipal',

@@ -240,7 +240,6 @@ $messages = array(
 'disclaimers' => 'Disclamation',
 'disclaimerpage' => 'Project:General_disclamation',
 'edithelp' => 'Editin help',
-'edithelppage' => 'Help:Editin',
 'helppage' => 'Help:Contents',
 'mainpage' => 'Main Page',
 'mainpage-description' => 'Main Page',

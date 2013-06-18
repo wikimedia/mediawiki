@@ -228,7 +228,6 @@ $messages = array(
 'disclaimers' => 'Démintis',
 'disclaimerpage' => 'Project:Déminti général',
 'edithelp' => 'Éditer el aiyude',
-'edithelppage' => 'Help:Édichion',
 'helppage' => 'Help:Étnus',
 'mainpage' => 'Moaite Pache',
 'mainpage-description' => 'Moaite Pache',

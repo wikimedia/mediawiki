@@ -325,7 +325,6 @@ $messages = array(
 'disclaimers' => 'Avîs legâi',
 'disclaimerpage' => 'Project:Avîs gjenerâi',
 'edithelp' => 'Jutori pai cambiaments',
-'edithelppage' => 'Help:Cambiaments',
 'helppage' => 'Help:Contignûts',
 'mainpage' => 'Pagjine principâl',
 'mainpage-description' => 'Pagjine principâl',

@@ -198,7 +198,6 @@ $messages = array(
 'disclaimers' => 'Isój cacóomx',
 'disclaimerpage' => 'Project:Isoj cacóomx geniiraloj',
 'edithelp' => 'Help ticpatlöx',
-'edithelppage' => 'Help:Ticpatlöx',
 'helppage' => 'Help:Caálixötöj',
 'mainpage' => 'Caálixötöj',
 'mainpage-description' => 'Caálixötöj',

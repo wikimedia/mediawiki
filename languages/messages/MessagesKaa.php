@@ -368,7 +368,6 @@ $messages = array(
 'disclaimers' => 'Juwapkershilikten bas tartıw',
 'disclaimerpage' => 'Project:Juwapkershilikten bas tartıw',
 'edithelp' => "O'zgertiw anıqlaması",
-'edithelppage' => "Help:O'zgertiw",
 'helppage' => 'Help:Mazmunı',
 'mainpage' => 'Bas bet',
 'mainpage-description' => 'Bas bet',

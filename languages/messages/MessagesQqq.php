@@ -657,8 +657,6 @@ See also:
 'disclaimerpage' => 'Used as page for that contains the site disclaimer. Used at the bottom of every page on the wiki. Example: [[{{MediaWiki:Disclaimerpage}}|{{MediaWiki:Disclaimers}}]].
 {{doc-important|Do not change the "<tt>Project:</tt>" part.}}',
 'edithelp' => 'This is the text that appears on the editing help link that is near the bottom of the editing page',
-'edithelppage' => 'The help page displayed when a user clicks on editing help link which is present on the right of Show changes button.
-Can be customized by local wikis to point to a local page, but not translated.',
 'helppage' => 'The link destination used by default in the sidebar, and in {{msg-mw|noarticletext}}.
 {{doc-important|Do not change the "<tt>Help:</tt>" part.}}
 {{Identical|HelpContent}}',

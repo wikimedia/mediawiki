@@ -166,7 +166,6 @@ $messages = array(
 'disclaimers' => 'Ceeltümin vassamizõõ',
 'disclaimerpage' => 'Project:Ceeltümin vassamizõõ',
 'edithelp' => 'Muutuzavid',
-'edithelppage' => 'Help:Kui muuttaa cülciä',
 'helppage' => 'Help:Sisälto',
 'mainpage' => 'Esicülci',
 'mainpage-description' => 'Esicülci',

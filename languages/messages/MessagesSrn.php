@@ -346,7 +346,6 @@ $messages = array(
 'disclaimers' => 'Disclaimers',
 'disclaimerpage' => 'Project:Disclaimer gi ala',
 'edithelp' => 'Yepi nanga kenki',
-'edithelppage' => 'Help:Kenki',
 'helppage' => 'Help:San de',
 'mainpage' => 'Fesipapira',
 'mainpage-description' => 'Fesipapira',

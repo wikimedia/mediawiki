@@ -216,7 +216,6 @@ $messages = array(
 'disclaimers' => 'Negas de respondablia',
 'disclaimerpage' => 'Project:Nega jeneral de respondablia',
 'edithelp' => 'Aida con edita',
-'edithelppage' => 'Help:Edita',
 'helppage' => 'Help:Contenis',
 'mainpage' => 'Paje Prima',
 'mainpage-description' => 'Paje Prima',

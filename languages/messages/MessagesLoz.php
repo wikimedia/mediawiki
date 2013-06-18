@@ -189,7 +189,6 @@ $messages = array(
 'disclaimers' => 'Dikulemi',
 'disclaimerpage' => 'Project:Dikulemi generali',
 'edithelp' => "Hloli ye ng'i",
-'edithelppage' => "Help:Hloli ye ng'i",
 'helppage' => 'Help:Buinaneli di petulo',
 'mainpage' => 'Petulo yem efro',
 'mainpage-description' => 'Petulo yem efro',

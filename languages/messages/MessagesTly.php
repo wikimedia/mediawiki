@@ -349,7 +349,6 @@ $messages = array(
 'disclaimers' => 'Çe məsuliyyətiku imtino.',
 'disclaimerpage' => 'Project:Дејни бә гиј ныгәтеј',
 'edithelp' => 'Арајиш бо редактә кардеј',
-'edithelppage' => 'Help:Арајиш бо сәрост кардеј',
 'helppage' => 'Help:Мындәриҹот',
 'mainpage' => 'Əsosə səhifə',
 'mainpage-description' => 'Әсосә сәһифә',

@@ -262,7 +262,6 @@ $messages = array(
 'disclaimers' => 'Palapala hoʻokuʻu kuleana',
 'disclaimerpage' => 'Project:Palapala hoʻokuʻu kuleana',
 'edithelp' => 'Kōkua me ka ho‘ololi ‘ana',
-'edithelppage' => 'Help:Ho‘ololi',
 'helppage' => 'Help:Papa kuhikuhi',
 'mainpage' => "Kahua pa'a",
 'mainpage-description' => 'Ka papa kinohi',

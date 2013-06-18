@@ -550,7 +550,6 @@ $messages = array(
 'disclaimers' => 'Jawapkerşilikten bas tartw',
 'disclaimerpage' => 'Project:Jawapkerşilikten bas tartw',
 'edithelp' => 'Öndew anıqtaması',
-'edithelppage' => 'Help:Öñdew',
 'helppage' => 'Help:Mazmunı',
 'mainpage' => 'Bastı bet',
 'mainpage-description' => 'Bastı bet',

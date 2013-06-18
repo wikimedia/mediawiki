@@ -284,7 +284,6 @@ $messages = array(
 'disclaimers' => 'Вуйшиймаш деч кораҥмаш',
 'disclaimerpage' => 'Project:Вуйшиймаш деч кораҥмаш',
 'edithelp' => 'Тӧрлатымаш полыш',
-'edithelppage' => 'Help:Тӧрлымаш',
 'helppage' => 'Help:Полшык',
 'mainpage' => 'Тӱҥ лаштык',
 'mainpage-description' => 'Тӱҥ лаштык',

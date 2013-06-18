@@ -587,7 +587,6 @@ $messages = array(
 'disclaimers' => 'جاۋاپكەرشىلىكتەن باس تارتۋ',
 'disclaimerpage' => 'Project:جاۋاپكەرشىلىكتەن باس تارتۋ',
 'edithelp' => 'وندەۋ انىقتاماسى',
-'edithelppage' => 'Help:وڭدەۋ',
 'helppage' => 'Help:مازمۇنى',
 'mainpage' => 'باستى بەت',
 'mainpage-description' => 'باستى بەت',

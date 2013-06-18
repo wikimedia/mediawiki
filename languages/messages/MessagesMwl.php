@@ -273,7 +273,6 @@ $messages = array(
 'disclaimers' => 'Abiso de Cuntenido',
 'disclaimerpage' => 'Project:Abiso giral',
 'edithelp' => 'Ajuda de eidiçon',
-'edithelppage' => 'Help:Eiditar',
 'helppage' => 'Help:Cuntenidos',
 'mainpage' => 'Páigina Percipal',
 'mainpage-description' => 'Páigina Percipal',

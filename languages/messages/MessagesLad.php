@@ -410,7 +410,6 @@ $messages = array(
 'disclaimers' => 'Refuso de responsabilitá',
 'disclaimerpage' => 'Project:Refuso de responsabilitá jeneral',
 'edithelp' => '¿Cómo se la troca?',
-'edithelppage' => 'Help:Una hoja, ¿cómodo se la troca?',
 'helppage' => 'Help:Contènidos',
 'mainpage' => 'La Primera Hoja',
 'mainpage-description' => 'La Primera Hoja',

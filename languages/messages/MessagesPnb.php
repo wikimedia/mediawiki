@@ -257,7 +257,6 @@ $messages = array(
 'disclaimers' => 'منکرنا',
 'disclaimerpage' => 'Project:عام منکرنا',
 'edithelp' => 'لکھن وچ مدد',
-'edithelppage' => 'Help:لکھنا',
 'helppage' => 'Help:لسٹ',
 'mainpage' => 'پہلا صفہ',
 'mainpage-description' => 'پہلا صفہ',

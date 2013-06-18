@@ -246,7 +246,6 @@ $messages = array(
 'disclaimers' => 'Бокъонах юхавалаp',
 'disclaimerpage' => 'Project:Бокъонах юхавалаp',
 'edithelp' => 'Хувцама куцтохкам',
-'edithelppage' => 'Help:ГӀалатнийсдар',
 'helppage' => 'Help:Чулоацам',
 'mainpage' => 'Кертера оагӀув',
 'mainpage-description' => 'Кертера оагӀув',

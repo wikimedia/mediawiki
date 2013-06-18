@@ -155,7 +155,6 @@ $messages = array(
 'disclaimers' => 'Мийö сöстöмöсь йöз одзын',
 'disclaimerpage' => 'Project:Мийö сöстöмöсь йöз одзын',
 'edithelp' => 'Уджкерись понда отсöт',
-'edithelppage' => 'Help:Уджкерись понда отсöт',
 'helppage' => 'Help:Отсöт',
 'mainpage' => 'Пондöтчан листбок',
 'mainpage-description' => 'Пондöтчан листбок',

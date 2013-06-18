@@ -285,7 +285,6 @@ $messages = array(
 'currentevents-url' => 'Project:Āxcāncāyōtl',
 'disclaimers' => 'Nahuatīllahtōl',
 'edithelp' => 'Tlapatlaliztechcopa tēpalēhuiliztli',
-'edithelppage' => 'Help:¿Quēn motlahcuiloa cē zāzanilli?',
 'helppage' => 'Help:Tlapiyaliztli',
 'mainpage' => 'Achkàuhìxtlapalli',
 'mainpage-description' => 'Achkàuhìxtlapalli',

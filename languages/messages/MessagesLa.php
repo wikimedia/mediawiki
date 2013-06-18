@@ -380,7 +380,6 @@ $messages = array(
 'disclaimers' => 'Repudiationes',
 'disclaimerpage' => 'Project:Repudiationes',
 'edithelp' => 'Opes recensendi',
-'edithelppage' => 'Help:De recensendo',
 'helppage' => 'Help:Adiutatum',
 'mainpage' => 'Pagina prima',
 'mainpage-description' => 'Pagina prima',

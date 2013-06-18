@@ -300,7 +300,6 @@ $messages = array(
 'disclaimers' => 'ಅಬಾಧ್ಯತೆಗಳು',
 'disclaimerpage' => 'Project:ಸಾಮಾನ್ಯ ಅಬಾಧ್ಯತೆಗಳು',
 'edithelp' => 'ಸಂಪಾದನೆಗೆ ಸಹಾಯ',
-'edithelppage' => 'Help:ಸಂಪಾದನೆ',
 'helppage' => 'Help:ಪರಿವಿಡಿ',
 'mainpage' => 'ಮುಖ್ಯ ಪುಟ',
 'mainpage-description' => 'ಮುಖ್ಯ ಪುಟ',
