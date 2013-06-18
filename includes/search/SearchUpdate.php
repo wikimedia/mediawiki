@@ -33,7 +33,7 @@ class SearchUpdate implements DeferrableUpdate {
 	private $mId = 0, $mNamespace, $mTitle, $mText;
 	private $mTitleWords;
 
-	function __construct( $id, $title, $text = false ) {
+	public function __construct( $id, $title, $text = false ) {
 		if ( is_string( $title ) ) {
 			$nt = Title::newFromText( $title );
 		} else {
@@ -53,8 +53,8 @@ class SearchUpdate implements DeferrableUpdate {
 		}
 	}
 
-	function doUpdate() {
-		global $wgContLang, $wgDisableSearchUpdate;
+	public function doUpdate() {
+		global $wgDisableSearchUpdate;
 
 		if ( $wgDisableSearchUpdate || !$this->mId ) {
 			return;
@@ -63,17 +63,34 @@ class SearchUpdate implements DeferrableUpdate {
 		wfProfileIn( __METHOD__ );
 
 		$search = SearchEngine::create();
-		$lc = SearchEngine::legalSearchChars() . '&#;';
+		$normalTitle = $search->normalizeText( Title::indexTitle( $this->mNamespace, $this->mTitle ) );
 
-		if ( $this->mText === false ) {
-			$search->updateTitle( $this->mId,
-				$search->normalizeText( Title::indexTitle( $this->mNamespace, $this->mTitle ) ) );
+		if ( WikiPage::newFromId( $this->mId ) === null ) {
+			$search->delete( $this->mId, $normalTitle );
 			wfProfileOut( __METHOD__ );
 			return;
+		} elseif ( $this->mText === false ) {
+			$search->updateTitle( $this->mId, $normalTitle );
+			wfProfileOut( __METHOD__ );
+			return;
+		} else {
+			$text = self::updateText( $this->mText );
 		}
 
+		wfRunHooks( 'SearchUpdate', array( $this->mId, $this->mNamespace, $this->mTitle, &$text ) );
+
+		# Perform the actual update
+		$search->update( $this->mId, $normalTitle, $search->normalizeText( $text ) );
+
+		wfProfileOut( __METHOD__ );
+	}
+
+	public static function updateText( $text ) {
+		global $wgContLang;
+
 		# Language-specific strip/conversion
-		$text = $wgContLang->normalizeForSearch( $this->mText );
+		$text = $wgContLang->normalizeForSearch( $text );
+		$lc = SearchEngine::legalSearchChars() . '&#;';
 
 		wfProfileIn( __METHOD__ . '-regexps' );
 		$text = preg_replace( "/<\\/?\\s*[A-Za-z][^>]*?>/",
@@ -123,14 +140,7 @@ class SearchUpdate implements DeferrableUpdate {
 		# Strip wiki '' and '''
 		$text = preg_replace( "/''[']*/", " ", $text );
 		wfProfileOut( __METHOD__ . '-regexps' );
-
-		wfRunHooks( 'SearchUpdate', array( $this->mId, $this->mNamespace, $this->mTitle, &$text ) );
-
-		# Perform the actual update
-		$search->update( $this->mId, $search->normalizeText( Title::indexTitle( $this->mNamespace, $this->mTitle ) ),
-				$search->normalizeText( $text ) );
-
-		wfProfileOut( __METHOD__ );
+		return $text;
 	}
 }
 
