@@ -3057,6 +3057,9 @@ $templates
 		if ( $title->isMainPage() ) {
 			$vars['wgIsMainPage'] = true;
 		}
+		if ( $this->isPrintable() ) {
+			$vars['wgPrintableMode'] = true;
+		}
 		if ( $this->mRedirectedFrom ) {
 			$vars['wgRedirectedFrom'] = $this->mRedirectedFrom->getPrefixedDBkey();
 		}
