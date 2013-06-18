@@ -2648,7 +2648,7 @@ class WikiPage implements Page, IDBAccessObject {
 	/**
 	 * Do some database updates after deletion
 	 *
-	 * @param int $id page_id value of the page being deleted (B/C, currently unused)
+	 * @param int $id page_id value of the page being deleted
 	 * @param $content Content: optional page content to be used when determining the required updates.
 	 *        This may be needed because $this->getContent() may already return null when the page proper was deleted.
 	 */
@@ -2665,6 +2665,9 @@ class WikiPage implements Page, IDBAccessObject {
 
 		// Reset this object and the Title object
 		$this->loadFromRow( false, self::READ_LATEST );
+
+		// Search engine
+		DeferredUpdates::addUpdate( new SearchUpdate( $id, $this->mTitle ) );
 	}
 
 	/**

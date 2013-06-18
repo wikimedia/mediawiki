@@ -495,6 +495,18 @@ class SearchEngine {
 	}
 
 	/**
+	 * Delete an indexed page
+	 * Title should be pre-processed.
+	 * STUB
+	 *
+	 * @param Integer $id Page id that was deleted
+	 * @param String $title Title of page that was deleted
+	 */
+	function delete( $id, $title ) {
+		// no-op
+	}
+
+	/**
 	 * Get OpenSearch suggestion template
 	 *
 	 * @return String
