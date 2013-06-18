@@ -64,10 +64,14 @@ class SearchUpdate implements DeferrableUpdate {
 
 		$search = SearchEngine::create();
 		$lc = SearchEngine::legalSearchChars() . '&#;';
+		$normalTitle = $search->normalizeText( Title::indexTitle( $this->mNamespace, $this->mTitle ) );
 
-		if ( $this->mText === false ) {
-			$search->updateTitle( $this->mId,
-				$search->normalizeText( Title::indexTitle( $this->mNamespace, $this->mTitle ) ) );
+		if( WikiPage::newFromId( $this->mId ) === null ) {
+			$search->delete( $this->mId, $normalTitle );
+			wfProfileOut( __METHOD__ );
+			return;
+		} elseif ( $this->mText === false ) {
+			$search->updateTitle( $this->mId, $normalTitle );
 			wfProfileOut( __METHOD__ );
 			return;
 		}
@@ -127,8 +131,7 @@ class SearchUpdate implements DeferrableUpdate {
 		wfRunHooks( 'SearchUpdate', array( $this->mId, $this->mNamespace, $this->mTitle, &$text ) );
 
 		# Perform the actual update
-		$search->update( $this->mId, $search->normalizeText( Title::indexTitle( $this->mNamespace, $this->mTitle ) ),
-				$search->normalizeText( $text ) );
+		$search->update( $this->mId, $normalTitle, $search->normalizeText( $text ) );
 
 		wfProfileOut( __METHOD__ );
 	}
