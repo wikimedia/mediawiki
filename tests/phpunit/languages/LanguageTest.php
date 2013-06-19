@@ -494,6 +494,7 @@ class LanguageTest extends LanguageClassesTestCase {
 	public static function provideUnknownLanguageTags() {
 		return array(
 			array( 'mw', 'non-existent two-letter code' ),
+			array( 'foo"<bar', 'very invalid language code' ),
 		);
 	}
 

@@ -385,6 +385,12 @@ class Language {
 	public static function isKnownLanguageTag( $tag ) {
 		static $coreLanguageNames;
 
+		// Quick escape for invalid input to avoid exceptions down the line
+		// when code tries to process tags which are not valid at all.
+		if ( !self::isValidBuiltInCode( $tag ) ) {
+			return false;
+		}
+
 		if ( $coreLanguageNames === null ) {
 			include MWInit::compiledPath( 'languages/Names.php' );
 		}
