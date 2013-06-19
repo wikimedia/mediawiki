@@ -44,6 +44,14 @@ class ApiParse extends ApiBase {
 		$params = $this->extractRequestParams();
 		$text = $params['text'];
 		$title = $params['title'];
+		if ( $title === '' ) {
+			$titleProvided = false;
+			// This is the old default value
+			$title = 'API';
+		} else {
+			$titleProvided = true;
+		}
+
 		$page = $params['page'];
 		$pageid = $params['pageid'];
 		$oldid = $params['oldid'];
@@ -51,7 +59,7 @@ class ApiParse extends ApiBase {
 		$model = $params['contentmodel'];
 		$format = $params['contentformat'];
 
-		if ( !is_null( $page ) && ( !is_null( $text ) || $title != 'API' ) ) {
+		if ( !is_null( $page ) && ( !is_null( $text ) || $titleProvided ) ) {
 			$this->dieUsage( 'The page parameter cannot be used together with the text and title parameters', 'params' );
 		}
 
@@ -171,7 +179,7 @@ class ApiParse extends ApiBase {
 			$popts = $this->makeParserOptions( $pageObj, $params );
 
 			if ( is_null( $text ) ) {
-				if ( $title !== 'API' && ( $prop || $params['generatexml'] ) ) {
+				if ( $titleProvided && ( $prop || $params['generatexml'] ) ) {
 					$this->setWarning(
 						"'title' used without 'text', and parsed page properties were requested " .
 						"(did you mean to use 'page' instead of 'title'?)"
@@ -179,6 +187,16 @@ class ApiParse extends ApiBase {
 				}
 				// Prevent warning from ContentHandler::makeContent()
 				$text = '';
+			}
+
+			// If we are parsing text, do not use the content model of the default
+			// API title, but default to wikitext to keep BC.
+			if ( !$titleProvided && is_null( $model ) ) {
+				$model = CONTENT_MODEL_WIKITEXT;
+				$this->setWarning(
+					"Please set content model with contentmodel parameter. " .
+					"Assuming it is $model."
+				);
 			}
 
 			try {
@@ -576,7 +594,7 @@ class ApiParse extends ApiBase {
 	public function getAllowedParams() {
 		return array(
 			'title' => array(
-				ApiBase::PARAM_DFLT => 'API',
+				ApiBase::PARAM_DFLT => '',
 			),
 			'text' => null,
 			'summary' => null,
