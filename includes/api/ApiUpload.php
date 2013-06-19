@@ -61,10 +61,14 @@ class ApiUpload extends ApiBase {
 		}
 
 		// Select an upload module
-		if ( !$this->selectUploadModule() ) {
-			return; // not a true upload, but a status request or similar
-		} elseif ( !isset( $this->mUpload ) ) {
-			$this->dieUsage( 'No upload module set', 'nomodule' );
+		try {
+			if ( !$this->selectUploadModule() ) {
+				return; // not a true upload, but a status request or similar
+			} elseif ( !isset( $this->mUpload ) ) {
+				$this->dieUsage( 'No upload module set', 'nomodule' );
+			}
+		} catch ( UploadStashException $e ) { // XXX: don't spam exception log
+			$this->dieUsage( get_class( $e ) . ": " . $e->getMessage() );
 		}
 
 		// First check permission to upload
@@ -106,9 +110,13 @@ class ApiUpload extends ApiBase {
 		}
 
 		// Get the result based on the current upload context:
-		$result = $this->getContextResult();
-		if ( $result['result'] === 'Success' ) {
-			$result['imageinfo'] = $this->mUpload->getImageInfo( $this->getResult() );
+		try {
+			$result = $this->getContextResult();
+			if ( $result['result'] === 'Success' ) {
+				$result['imageinfo'] = $this->mUpload->getImageInfo( $this->getResult() );
+			}
+		} catch ( UploadStashException $e ) { // XXX: don't spam exception log
+			$this->dieUsage( get_class( $e ) . ": " . $e->getMessage() );
 		}
 
 		$this->getResult()->addValue( null, $this->getModuleName(), $result );
