@@ -30,13 +30,15 @@ $forms_whitelist['amazon'] = array(
 /**********
  * Adyen *
  **********/
-$forms_whitelist['adyen'] = array(
-	'file' => $form_dirs['adyen'] . '/adyen.html',
-	'gateway' => 'adyen',
-	'countries' => array( '+' => 'US',),
-	'currencies' => array( '+' => 'USD',),
-	'payment_methods' => array('card' => 'ALL'),
-);
+if ( $wgDonationInterfaceEnableAdyen === true ) {
+	$forms_whitelist['adyen'] = array(
+		'file' => $form_dirs['adyen'] . '/adyen.html',
+		'gateway' => 'adyen',
+		'countries' => array( '+' => 'US',),
+		'currencies' => array( '+' => 'USD',),
+		'payment_methods' => array('card' => 'ALL'),
+	);
+}
 
 /****************************
  * Bank Transfer - Two-Step *
