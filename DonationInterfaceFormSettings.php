@@ -9,8 +9,12 @@ $form_dirs = array(
 	'gc' => $wgGlobalCollectGatewayHtmlFormDir,
 	'paypal' => $wgPaypalGatewayHtmlFormDir,
 //	'pfp' => $wgPayflowProGatewayHtmlFormDir,
-	'adyen' => $wgAdyenGatewayHtmlFormDir,
 );
+
+// If it's not enabled we don't ever set this variable.
+if ( $wgDonationInterfaceEnableAdyen === true ) {
+	$form_dirs['adyen'] = $wgAdyenGatewayHtmlFormDir;
+}
 
 /**********
  * Amazon *
