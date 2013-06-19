@@ -105,8 +105,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @return Status
 	 */
 	final public function createInternal( array $params ) {
-		wfProfileIn( __METHOD__ );
-		wfProfileIn( __METHOD__ . '-' . $this->name );
+		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
 		if ( strlen( $params['content'] ) > $this->maxFileSizeInternal() ) {
 			$status = Status::newFatal( 'backend-fail-maxsize',
 				$params['dst'], $this->maxFileSizeInternal() );
@@ -117,8 +116,6 @@ abstract class FileBackendStore extends FileBackend {
 				$this->deleteFileCache( $params['dst'] ); // persistent cache
 			}
 		}
-		wfProfileOut( __METHOD__ . '-' . $this->name );
-		wfProfileOut( __METHOD__ );
 		return $status;
 	}
 
@@ -147,8 +144,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @return Status
 	 */
 	final public function storeInternal( array $params ) {
-		wfProfileIn( __METHOD__ );
-		wfProfileIn( __METHOD__ . '-' . $this->name );
+		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
 		if ( filesize( $params['src'] ) > $this->maxFileSizeInternal() ) {
 			$status = Status::newFatal( 'backend-fail-maxsize',
 				$params['dst'], $this->maxFileSizeInternal() );
@@ -159,8 +155,6 @@ abstract class FileBackendStore extends FileBackend {
 				$this->deleteFileCache( $params['dst'] ); // persistent cache
 			}
 		}
-		wfProfileOut( __METHOD__ . '-' . $this->name );
-		wfProfileOut( __METHOD__ );
 		return $status;
 	}
 
@@ -190,15 +184,12 @@ abstract class FileBackendStore extends FileBackend {
 	 * @return Status
 	 */
 	final public function copyInternal( array $params ) {
-		wfProfileIn( __METHOD__ );
-		wfProfileIn( __METHOD__ . '-' . $this->name );
+		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
 		$status = $this->doCopyInternal( $params );
 		$this->clearCache( array( $params['dst'] ) );
 		if ( !isset( $params['dstExists'] ) || $params['dstExists'] ) {
 			$this->deleteFileCache( $params['dst'] ); // persistent cache
 		}
-		wfProfileOut( __METHOD__ . '-' . $this->name );
-		wfProfileOut( __METHOD__ );
 		return $status;
 	}
 
@@ -223,13 +214,10 @@ abstract class FileBackendStore extends FileBackend {
 	 * @return Status
 	 */
 	final public function deleteInternal( array $params ) {
-		wfProfileIn( __METHOD__ );
-		wfProfileIn( __METHOD__ . '-' . $this->name );
+		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
 		$status = $this->doDeleteInternal( $params );
 		$this->clearCache( array( $params['src'] ) );
 		$this->deleteFileCache( $params['src'] ); // persistent cache
-		wfProfileOut( __METHOD__ . '-' . $this->name );
-		wfProfileOut( __METHOD__ );
 		return $status;
 	}
 
@@ -259,16 +247,13 @@ abstract class FileBackendStore extends FileBackend {
 	 * @return Status
 	 */
 	final public function moveInternal( array $params ) {
-		wfProfileIn( __METHOD__ );
-		wfProfileIn( __METHOD__ . '-' . $this->name );
+		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
 		$status = $this->doMoveInternal( $params );
 		$this->clearCache( array( $params['src'], $params['dst'] ) );
 		$this->deleteFileCache( $params['src'] ); // persistent cache
 		if ( !isset( $params['dstExists'] ) || $params['dstExists'] ) {
 			$this->deleteFileCache( $params['dst'] ); // persistent cache
 		}
-		wfProfileOut( __METHOD__ . '-' . $this->name );
-		wfProfileOut( __METHOD__ );
 		return $status;
 	}
 
@@ -305,8 +290,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @return Status
 	 */
 	final public function describeInternal( array $params ) {
-		wfProfileIn( __METHOD__ );
-		wfProfileIn( __METHOD__ . '-' . $this->name );
+		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
 		if ( count( $params['headers'] ) ) {
 			$status = $this->doDescribeInternal( $params );
 			$this->clearCache( array( $params['src'] ) );
@@ -314,8 +298,6 @@ abstract class FileBackendStore extends FileBackend {
 		} else {
 			$status = Status::newGood(); // nothing to do
 		}
-		wfProfileOut( __METHOD__ . '-' . $this->name );
-		wfProfileOut( __METHOD__ );
 		return $status;
 	}
 
@@ -339,8 +321,7 @@ abstract class FileBackendStore extends FileBackend {
 	}
 
 	final public function concatenate( array $params ) {
-		wfProfileIn( __METHOD__ );
-		wfProfileIn( __METHOD__ . '-' . $this->name );
+		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
 		$status = Status::newGood();
 
 		// Try to lock the source files for the scope of this function
@@ -356,8 +337,6 @@ abstract class FileBackendStore extends FileBackend {
 			}
 		}
 
-		wfProfileOut( __METHOD__ . '-' . $this->name );
-		wfProfileOut( __METHOD__ );
 		return $status;
 	}
 
@@ -428,15 +407,12 @@ abstract class FileBackendStore extends FileBackend {
 	}
 
 	final protected function doPrepare( array $params ) {
-		wfProfileIn( __METHOD__ );
-		wfProfileIn( __METHOD__ . '-' . $this->name );
-
+		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
 		$status = Status::newGood();
+
 		list( $fullCont, $dir, $shard ) = $this->resolveStoragePath( $params['dir'] );
 		if ( $dir === null ) {
 			$status->fatal( 'backend-fail-invalidpath', $params['dir'] );
-			wfProfileOut( __METHOD__ . '-' . $this->name );
-			wfProfileOut( __METHOD__ );
 			return $status; // invalid storage path
 		}
 
@@ -450,8 +426,6 @@ abstract class FileBackendStore extends FileBackend {
 			}
 		}
 
-		wfProfileOut( __METHOD__ . '-' . $this->name );
-		wfProfileOut( __METHOD__ );
 		return $status;
 	}
 
@@ -464,15 +438,12 @@ abstract class FileBackendStore extends FileBackend {
 	}
 
 	final protected function doSecure( array $params ) {
-		wfProfileIn( __METHOD__ );
-		wfProfileIn( __METHOD__ . '-' . $this->name );
+		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
 		$status = Status::newGood();
 
 		list( $fullCont, $dir, $shard ) = $this->resolveStoragePath( $params['dir'] );
 		if ( $dir === null ) {
 			$status->fatal( 'backend-fail-invalidpath', $params['dir'] );
-			wfProfileOut( __METHOD__ . '-' . $this->name );
-			wfProfileOut( __METHOD__ );
 			return $status; // invalid storage path
 		}
 
@@ -486,8 +457,6 @@ abstract class FileBackendStore extends FileBackend {
 			}
 		}
 
-		wfProfileOut( __METHOD__ . '-' . $this->name );
-		wfProfileOut( __METHOD__ );
 		return $status;
 	}
 
@@ -500,15 +469,12 @@ abstract class FileBackendStore extends FileBackend {
 	}
 
 	final protected function doPublish( array $params ) {
-		wfProfileIn( __METHOD__ );
-		wfProfileIn( __METHOD__ . '-' . $this->name );
+		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
 		$status = Status::newGood();
 
 		list( $fullCont, $dir, $shard ) = $this->resolveStoragePath( $params['dir'] );
 		if ( $dir === null ) {
 			$status->fatal( 'backend-fail-invalidpath', $params['dir'] );
-			wfProfileOut( __METHOD__ . '-' . $this->name );
-			wfProfileOut( __METHOD__ );
 			return $status; // invalid storage path
 		}
 
@@ -522,8 +488,6 @@ abstract class FileBackendStore extends FileBackend {
 			}
 		}
 
-		wfProfileOut( __METHOD__ . '-' . $this->name );
-		wfProfileOut( __METHOD__ );
 		return $status;
 	}
 
@@ -536,8 +500,7 @@ abstract class FileBackendStore extends FileBackend {
 	}
 
 	final protected function doClean( array $params ) {
-		wfProfileIn( __METHOD__ );
-		wfProfileIn( __METHOD__ . '-' . $this->name );
+		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
 		$status = Status::newGood();
 
 		// Recursive: first delete all empty subdirs recursively
@@ -555,8 +518,6 @@ abstract class FileBackendStore extends FileBackend {
 		list( $fullCont, $dir, $shard ) = $this->resolveStoragePath( $params['dir'] );
 		if ( $dir === null ) {
 			$status->fatal( 'backend-fail-invalidpath', $params['dir'] );
-			wfProfileOut( __METHOD__ . '-' . $this->name );
-			wfProfileOut( __METHOD__ );
 			return $status; // invalid storage path
 		}
 
@@ -564,8 +525,6 @@ abstract class FileBackendStore extends FileBackend {
 		$filesLockEx = array( $params['dir'] );
 		$scopedLockE = $this->getScopedFileLocks( $filesLockEx, LockManager::LOCK_EX, $status );
 		if ( !$status->isOK() ) {
-			wfProfileOut( __METHOD__ . '-' . $this->name );
-			wfProfileOut( __METHOD__ );
 			return $status; // abort
 		}
 
@@ -581,8 +540,6 @@ abstract class FileBackendStore extends FileBackend {
 			}
 		}
 
-		wfProfileOut( __METHOD__ . '-' . $this->name );
-		wfProfileOut( __METHOD__ );
 		return $status;
 	}
 
@@ -595,29 +552,20 @@ abstract class FileBackendStore extends FileBackend {
 	}
 
 	final public function fileExists( array $params ) {
-		wfProfileIn( __METHOD__ );
-		wfProfileIn( __METHOD__ . '-' . $this->name );
+		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
 		$stat = $this->getFileStat( $params );
-		wfProfileOut( __METHOD__ . '-' . $this->name );
-		wfProfileOut( __METHOD__ );
 		return ( $stat === null ) ? null : (bool)$stat; // null => failure
 	}
 
 	final public function getFileTimestamp( array $params ) {
-		wfProfileIn( __METHOD__ );
-		wfProfileIn( __METHOD__ . '-' . $this->name );
+		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
 		$stat = $this->getFileStat( $params );
-		wfProfileOut( __METHOD__ . '-' . $this->name );
-		wfProfileOut( __METHOD__ );
 		return $stat ? $stat['mtime'] : false;
 	}
 
 	final public function getFileSize( array $params ) {
-		wfProfileIn( __METHOD__ );
-		wfProfileIn( __METHOD__ . '-' . $this->name );
+		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
 		$stat = $this->getFileStat( $params );
-		wfProfileOut( __METHOD__ . '-' . $this->name );
-		wfProfileOut( __METHOD__ );
 		return $stat ? $stat['size'] : false;
 	}
 
@@ -626,8 +574,7 @@ abstract class FileBackendStore extends FileBackend {
 		if ( $path === null ) {
 			return false; // invalid storage path
 		}
-		wfProfileIn( __METHOD__ );
-		wfProfileIn( __METHOD__ . '-' . $this->name );
+		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
 		$latest = !empty( $params['latest'] ); // use latest data?
 		if ( !$this->cheapCache->has( $path, 'stat', self::CACHE_TTL ) ) {
 			$this->primeFileCache( array( $path ) ); // check persistent cache
@@ -638,14 +585,10 @@ abstract class FileBackendStore extends FileBackend {
 			// value was in fact fetched with the latest available data.
 			if ( is_array( $stat ) ) {
 				if ( !$latest || $stat['latest'] ) {
-					wfProfileOut( __METHOD__ . '-' . $this->name );
-					wfProfileOut( __METHOD__ );
 					return $stat;
 				}
 			} elseif ( in_array( $stat, array( 'NOT_EXIST', 'NOT_EXIST_LATEST' ) ) ) {
 				if ( !$latest || $stat === 'NOT_EXIST_LATEST' ) {
-					wfProfileOut( __METHOD__ . '-' . $this->name );
-					wfProfileOut( __METHOD__ );
 					return false;
 				}
 			}
@@ -671,8 +614,6 @@ abstract class FileBackendStore extends FileBackend {
 		} else { // an error occurred
 			wfDebug( __METHOD__ . ": Could not stat file $path.\n" );
 		}
-		wfProfileOut( __METHOD__ . '-' . $this->name );
-		wfProfileOut( __METHOD__ );
 		return $stat;
 	}
 
@@ -682,14 +623,11 @@ abstract class FileBackendStore extends FileBackend {
 	abstract protected function doGetFileStat( array $params );
 
 	public function getFileContentsMulti( array $params ) {
-		wfProfileIn( __METHOD__ );
-		wfProfileIn( __METHOD__ . '-' . $this->name );
+		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
 
 		$params = $this->setConcurrencyFlags( $params );
 		$contents = $this->doGetFileContentsMulti( $params );
 
-		wfProfileOut( __METHOD__ . '-' . $this->name );
-		wfProfileOut( __METHOD__ );
 		return $contents;
 	}
 
@@ -712,16 +650,13 @@ abstract class FileBackendStore extends FileBackend {
 		if ( $path === null ) {
 			return false; // invalid storage path
 		}
-		wfProfileIn( __METHOD__ );
-		wfProfileIn( __METHOD__ . '-' . $this->name );
+		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
 		$latest = !empty( $params['latest'] ); // use latest data?
 		if ( $this->cheapCache->has( $path, 'sha1', self::CACHE_TTL ) ) {
 			$stat = $this->cheapCache->get( $path, 'sha1' );
 			// If we want the latest data, check that this cached
 			// value was in fact fetched with the latest available data.
 			if ( !$latest || $stat['latest'] ) {
-				wfProfileOut( __METHOD__ . '-' . $this->name );
-				wfProfileOut( __METHOD__ );
 				return $stat['hash'];
 			}
 		}
@@ -731,8 +666,6 @@ abstract class FileBackendStore extends FileBackend {
 		wfProfileOut( __METHOD__ . '-miss-' . $this->name );
 		wfProfileOut( __METHOD__ . '-miss' );
 		$this->cheapCache->set( $path, 'sha1', array( 'hash' => $hash, 'latest' => $latest ) );
-		wfProfileOut( __METHOD__ . '-' . $this->name );
-		wfProfileOut( __METHOD__ );
 		return $hash;
 	}
 
@@ -750,18 +683,14 @@ abstract class FileBackendStore extends FileBackend {
 	}
 
 	final public function getFileProps( array $params ) {
-		wfProfileIn( __METHOD__ );
-		wfProfileIn( __METHOD__ . '-' . $this->name );
+		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
 		$fsFile = $this->getLocalReference( $params );
 		$props = $fsFile ? $fsFile->getProps() : FSFile::placeholderProps();
-		wfProfileOut( __METHOD__ . '-' . $this->name );
-		wfProfileOut( __METHOD__ );
 		return $props;
 	}
 
 	final public function getLocalReferenceMulti( array $params ) {
-		wfProfileIn( __METHOD__ );
-		wfProfileIn( __METHOD__ . '-' . $this->name );
+		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
 
 		$params = $this->setConcurrencyFlags( $params );
 
@@ -791,8 +720,6 @@ abstract class FileBackendStore extends FileBackend {
 			}
 		}
 
-		wfProfileOut( __METHOD__ . '-' . $this->name );
-		wfProfileOut( __METHOD__ );
 		return $fsFiles;
 	}
 
@@ -805,14 +732,11 @@ abstract class FileBackendStore extends FileBackend {
 	}
 
 	final public function getLocalCopyMulti( array $params ) {
-		wfProfileIn( __METHOD__ );
-		wfProfileIn( __METHOD__ . '-' . $this->name );
+		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
 
 		$params = $this->setConcurrencyFlags( $params );
 		$tmpFiles = $this->doGetLocalCopyMulti( $params );
 
-		wfProfileOut( __METHOD__ . '-' . $this->name );
-		wfProfileOut( __METHOD__ );
 		return $tmpFiles;
 	}
 
@@ -831,8 +755,7 @@ abstract class FileBackendStore extends FileBackend {
 	}
 
 	final public function streamFile( array $params ) {
-		wfProfileIn( __METHOD__ );
-		wfProfileIn( __METHOD__ . '-' . $this->name );
+		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
 		$status = Status::newGood();
 
 		$info = $this->getFileStat( $params );
@@ -863,8 +786,6 @@ abstract class FileBackendStore extends FileBackend {
 			$status->fatal( 'backend-fail-stream', $params['src'] );
 		}
 
-		wfProfileOut( __METHOD__ . '-' . $this->name );
-		wfProfileOut( __METHOD__ );
 		return $status;
 	}
 
@@ -1050,8 +971,7 @@ abstract class FileBackendStore extends FileBackend {
 	}
 
 	final protected function doOperationsInternal( array $ops, array $opts ) {
-		wfProfileIn( __METHOD__ );
-		wfProfileIn( __METHOD__ . '-' . $this->name );
+		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
 		$status = Status::newGood();
 
 		// Fix up custom header name/value pairs...
@@ -1068,8 +988,6 @@ abstract class FileBackendStore extends FileBackend {
 			$scopeLockS = $this->getScopedFileLocks( $paths['sh'], LockManager::LOCK_UW, $status );
 			$scopeLockE = $this->getScopedFileLocks( $paths['ex'], LockManager::LOCK_EX, $status );
 			if ( !$status->isOK() ) {
-				wfProfileOut( __METHOD__ . '-' . $this->name );
-				wfProfileOut( __METHOD__ );
 				return $status; // abort
 			}
 		}
@@ -1091,14 +1009,11 @@ abstract class FileBackendStore extends FileBackend {
 		$status->merge( $subStatus );
 		$status->success = $subStatus->success; // not done in merge()
 
-		wfProfileOut( __METHOD__ . '-' . $this->name );
-		wfProfileOut( __METHOD__ );
 		return $status;
 	}
 
 	final protected function doQuickOperationsInternal( array $ops ) {
-		wfProfileIn( __METHOD__ );
-		wfProfileIn( __METHOD__ . '-' . $this->name );
+		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
 		$status = Status::newGood();
 
 		// Fix up custom header name/value pairs...
@@ -1117,8 +1032,6 @@ abstract class FileBackendStore extends FileBackend {
 		// Perform the sync-only ops and build up op handles for the async ops...
 		foreach ( $ops as $index => $params ) {
 			if ( !in_array( $params['op'], $supportedOps ) ) {
-				wfProfileOut( __METHOD__ . '-' . $this->name );
-				wfProfileOut( __METHOD__ );
 				throw new MWException( "Operation '{$params['op']}' is not supported." );
 			}
 			$method = $params['op'] . 'Internal'; // e.g. "storeInternal"
@@ -1152,8 +1065,6 @@ abstract class FileBackendStore extends FileBackend {
 			}
 		}
 
-		wfProfileOut( __METHOD__ . '-' . $this->name );
-		wfProfileOut( __METHOD__ );
 		return $status;
 	}
 
@@ -1167,16 +1078,11 @@ abstract class FileBackendStore extends FileBackend {
 	 * @throws MWException
 	 */
 	final public function executeOpHandlesInternal( array $fileOpHandles ) {
-		wfProfileIn( __METHOD__ );
-		wfProfileIn( __METHOD__ . '-' . $this->name );
+		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
 		foreach ( $fileOpHandles as $fileOpHandle ) {
 			if ( !( $fileOpHandle instanceof FileBackendStoreOpHandle ) ) {
-				wfProfileOut( __METHOD__ . '-' . $this->name );
-				wfProfileOut( __METHOD__ );
 				throw new MWException( "Given a non-FileBackendStoreOpHandle object." );
 			} elseif ( $fileOpHandle->backend->getName() !== $this->getName() ) {
-				wfProfileOut( __METHOD__ . '-' . $this->name );
-				wfProfileOut( __METHOD__ );
 				throw new MWException( "Given a FileBackendStoreOpHandle for the wrong backend." );
 			}
 		}
@@ -1184,8 +1090,6 @@ abstract class FileBackendStore extends FileBackend {
 		foreach ( $fileOpHandles as $fileOpHandle ) {
 			$fileOpHandle->closeResources();
 		}
-		wfProfileOut( __METHOD__ . '-' . $this->name );
-		wfProfileOut( __METHOD__ );
 		return $res;
 	}
 
@@ -1523,8 +1427,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @return void
 	 */
 	final protected function primeContainerCache( array $items ) {
-		wfProfileIn( __METHOD__ );
-		wfProfileIn( __METHOD__ . '-' . $this->name );
+		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
 
 		$paths = array(); // list of storage paths
 		$contNames = array(); // (cache key => resolved container name)
@@ -1556,9 +1459,6 @@ abstract class FileBackendStore extends FileBackend {
 
 		// Populate the container process cache for the backend...
 		$this->doPrimeContainerCache( array_filter( $contInfo, 'is_array' ) );
-
-		wfProfileOut( __METHOD__ . '-' . $this->name );
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -1628,8 +1528,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @return void
 	 */
 	final protected function primeFileCache( array $items ) {
-		wfProfileIn( __METHOD__ );
-		wfProfileIn( __METHOD__ . '-' . $this->name );
+		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
 
 		$paths = array(); // list of storage paths
 		$pathNames = array(); // (cache key => storage path)
@@ -1663,9 +1562,6 @@ abstract class FileBackendStore extends FileBackend {
 				}
 			}
 		}
-
-		wfProfileOut( __METHOD__ . '-' . $this->name );
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**
