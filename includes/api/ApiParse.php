@@ -181,6 +181,12 @@ class ApiParse extends ApiBase {
 				$text = '';
 			}
 
+			// If we are parsing text, do not use the content model of the default
+			// API title, but default to wikitext to keep BC.
+			if ( $title === 'API' && is_null( $model ) ) {
+				$model = 'wikitext';
+			}
+
 			try {
 				$this->content = ContentHandler::makeContent( $text, $titleObj, $model, $format );
 			} catch ( MWContentSerializationException $ex ) {
