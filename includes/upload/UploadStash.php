@@ -675,11 +675,12 @@ class UploadStashFile extends UnregisteredLocalFile {
 
 }
 
-class UploadStashNotAvailableException extends MWException {};
-class UploadStashFileNotFoundException extends MWException {};
-class UploadStashBadPathException extends MWException {};
-class UploadStashFileException extends MWException {};
-class UploadStashZeroLengthFileException extends MWException {};
-class UploadStashNotLoggedInException extends MWException {};
-class UploadStashWrongOwnerException extends MWException {};
-class UploadStashNoSuchKeyException extends MWException {};
+class UploadStashException extends MWException {};
+class UploadStashNotAvailableException extends UploadStashException {};
+class UploadStashFileNotFoundException extends UploadStashException {};
+class UploadStashBadPathException extends UploadStashException {};
+class UploadStashFileException extends UploadStashException {};
+class UploadStashZeroLengthFileException extends UploadStashException {};
+class UploadStashNotLoggedInException extends UploadStashException {};
+class UploadStashWrongOwnerException extends UploadStashException {};
+class UploadStashNoSuchKeyException extends UploadStashException {};
