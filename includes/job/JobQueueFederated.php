@@ -46,15 +46,10 @@
  * @since 1.22
  */
 class JobQueueFederated extends JobQueue {
-	/** @var Array (wiki ID => section name) */
-	protected $sectionsByWiki = array();
-	/** @var Array (section name => (partition name => weight)) */
-	protected $partitionsBySection = array();
-	/** @var Array (section name => config array) */
-	protected $configByPartition = array();
-	/** @var Array (partition names => integer) */
-	protected $partitionsNoPush = array();
-
+	/** @var Array (partition name => weight) */
+	protected $partitionMap = array();
+	/** @var Array (partition name => weight) */
+	protected $partitionPushMap = array();
 	/** @var Array (partition name => JobQueue) */
 	protected $partitionQueues = array();
 	/** @var BagOStuff */
@@ -80,28 +75,36 @@ class JobQueueFederated extends JobQueue {
 	 */
 	protected function __construct( array $params ) {
 		parent::__construct( $params );
-		$this->sectionsByWiki = $params['sectionsByWiki'];
-		$this->partitionsBySection = $params['partitionsBySection'];
-		$this->configByPartition = $params['configByPartition'];
-		if ( isset( $params['partitionsNoPush'] ) ) {
-			$this->partitionsNoPush = array_flip( $params['partitionsNoPush'] );
+		$section = isset( $params['sectionsByWiki'][$this->wiki] )
+			? $params['sectionsByWiki'][$this->wiki]
+			: 'default';
+		if ( !isset( $params['partitionsBySection'][$section] ) ) {
+			throw new MWException( "No configuration for section '$section'." );
 		}
+		$this->partitionMap = $params['partitionsBySection'][$section];
+		$this->partitionPushMap = $this->partitionMap;
+		if ( isset( $params['partitionsNoPush'] ) ) {
+			foreach ( $params['partitionsNoPush'] as $partition ) {
+				unset( $this->partitionPushMap[$partition] );
+			}
+		}
+		// Get the config to pass to merge into each partition queue config
 		$baseConfig = $params;
 		foreach ( array( 'class', 'sectionsByWiki',
 			'partitionsBySection', 'configByPartition', 'partitionsNoPush' ) as $o )
 		{
 			unset( $baseConfig[$o] );
 		}
-		foreach ( $this->getPartitionMap() as $partition => $w ) {
-			if ( !isset( $this->configByPartition[$partition] ) ) {
+		// Get the partition queue objects
+		foreach ( $this->partitionMap as $partition => $w ) {
+			if ( !isset( $params['configByPartition'][$partition] ) ) {
 				throw new MWException( "No configuration for partition '$partition'." );
 			}
 			$this->partitionQueues[$partition] = JobQueue::factory(
-				$baseConfig + $this->configByPartition[$partition]
-			);
+				$baseConfig + $params['configByPartition'][$partition] );
 		}
 		// Aggregate cache some per-queue values if there are multiple partition queues
-		$this->cache = $this->isFederated() ? wfGetMainCache() : new EmptyBagOStuff();
+		$this->cache = count( $this->partitionMap ) > 1 ? wfGetMainCache() : new EmptyBagOStuff();
 	}
 
 	protected function supportedOrders() {
@@ -181,11 +184,7 @@ class JobQueueFederated extends JobQueue {
 			return true; // nothing to do
 		}
 
-		$partitionsTry = array_diff_key(
-			$this->getPartitionMap(),
-			$this->partitionsNoPush
-		); // (partition => weight)
-
+		$partitionsTry = $this->partitionPushMap;
 		// Try to insert the jobs and update $partitionsTry on any failures
 		$jobsLeft = $this->tryJobInsertions( $jobs, $partitionsTry, $flags );
 		if ( count( $jobsLeft ) ) { // some jobs failed to insert?
@@ -270,7 +269,7 @@ class JobQueueFederated extends JobQueue {
 			return false;
 		}
 
-		$partitionsTry = $this->getPartitionMap(); // (partition => weight)
+		$partitionsTry = $this->partitionMap; // (partition => weight)
 
 		while ( count( $partitionsTry ) ) {
 			$partition = ArrayUtils::pickRandom( $partitionsTry );
@@ -356,26 +355,6 @@ class JobQueueFederated extends JobQueue {
 		foreach ( $this->partitionQueues as $queue ) {
 			$queue->setTestingPrefix( $key );
 		}
-	}
-
-	/**
-	 * @return Array Map of (partition name => weight)
-	 */
-	protected function getPartitionMap() {
-		$section = isset( $this->sectionsByWiki[$this->wiki] )
-			? $this->sectionsByWiki[$this->wiki]
-			: 'default';
-		if ( !isset( $this->partitionsBySection[$section] ) ) {
-			throw new MWException( "No configuration for section '$section'." );
-		}
-		return $this->partitionsBySection[$section];
-	}
-
-	/**
-	 * @return bool The queue is actually split up across multiple queue partitions
-	 */
-	protected function isFederated() {
-		return ( count( $this->getPartitionMap() ) > 1 );
 	}
 
 	/**
