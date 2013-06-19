@@ -2109,7 +2109,7 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		DeferredUpdates::addUpdate( new SiteStatsUpdate( 0, 1, $good, $total ) );
-		DeferredUpdates::addUpdate( new SearchUpdate( $id, $title, $content->getTextForSearchIndex() ) );
+		DeferredUpdates::addUpdate( new SearchUpdate( $id, $title, $content ) );
 		// @todo let the search engine decide what to do with the content object
 
 		// If this is another user's talk page, update newtalk.

@@ -115,9 +115,8 @@ class RebuildTextIndex extends Maintenance {
 
 					$rev = new Revision( $s );
 					$content = $rev->getContent();
-					$text = $content->getTextForSearchIndex();
 
-					$u = new SearchUpdate( $s->page_id, $title, $text );
+					$u = new SearchUpdate( $s->page_id, $title, $content );
 					$u->doUpdate();
 				} catch ( MWContentSerializationException $ex ) {
 					$this->output( "Failed to deserialize content of revision {$s->rev_id} of page "
