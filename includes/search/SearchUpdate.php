@@ -33,7 +33,7 @@ class SearchUpdate implements DeferrableUpdate {
 	private $mId = 0, $mNamespace, $mTitle, $mText;
 	private $mTitleWords;
 
-	public function __construct( $id, $title, $text = false ) {
+	public function __construct( $id, $title, $content = false ) {
 		if ( is_string( $title ) ) {
 			$nt = Title::newFromText( $title );
 		} else {
@@ -42,7 +42,9 @@ class SearchUpdate implements DeferrableUpdate {
 
 		if ( $nt ) {
 			$this->mId = $id;
-			$this->mText = $text;
+			// @todo This isn't ideal, we'd really like to have content-specific
+			// handling here. See similar content in SearchEngine::initText().
+			$this->mText = $content->getTextForSearchIndex();
 
 			$this->mNamespace = $nt->getNamespace();
 			$this->mTitle = $nt->getText(); # Discard namespace
