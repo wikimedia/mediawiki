@@ -3272,6 +3272,7 @@ class User {
 		$this->mTouched = self::newTouchedTimestamp();
 
 		$dbw = wfGetDB( DB_MASTER );
+		$inWrite = $dbw->writesOrCallbacksPending();
 		$seqVal = $dbw->nextSequenceValue( 'user_user_id_seq' );
 		$dbw->insert( 'user',
 			array(
@@ -3291,6 +3292,12 @@ class User {
 			array( 'IGNORE' )
 		);
 		if ( !$dbw->affectedRows() ) {
+			if ( !$inWrite ) {
+				// XXX: Get out of REPEATABLE-READ so the SELECT below works.
+				// Often this case happens early in views before any writes.
+				// This shows up at least with CentralAuth.
+				$dbw->commit( __METHOD__, 'flush' );
+			}
 			$this->mId = $dbw->selectField( 'user', 'user_id',
 				array( 'user_name' => $this->mName ), __METHOD__ );
 			$loaded = false;
