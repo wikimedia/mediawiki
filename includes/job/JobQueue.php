@@ -168,7 +168,7 @@ abstract class JobQueue {
 	 * not distinguishable from the race condition between isEmpty() and pop().
 	 *
 	 * @return bool
-	 * @throws MWException
+	 * @throws JobQueueError
 	 */
 	final public function isEmpty() {
 		wfProfileIn( __METHOD__ );
@@ -190,7 +190,7 @@ abstract class JobQueue {
 	 * If caching is used, this number might be out of date for a minute.
 	 *
 	 * @return integer
-	 * @throws MWException
+	 * @throws JobQueueError
 	 */
 	final public function getSize() {
 		wfProfileIn( __METHOD__ );
@@ -212,7 +212,7 @@ abstract class JobQueue {
 	 * If caching is used, this number might be out of date for a minute.
 	 *
 	 * @return integer
-	 * @throws MWException
+	 * @throws JobQueueError
 	 */
 	final public function getAcquiredCount() {
 		wfProfileIn( __METHOD__ );
@@ -234,7 +234,7 @@ abstract class JobQueue {
 	 * If caching is used, this number might be out of date for a minute.
 	 *
 	 * @return integer
-	 * @throws MWException
+	 * @throws JobQueueError
 	 * @since 1.22
 	 */
 	final public function getDelayedCount() {
@@ -259,7 +259,7 @@ abstract class JobQueue {
 	 * If caching is used, this number might be out of date for a minute.
 	 *
 	 * @return integer
-	 * @throws MWException
+	 * @throws JobQueueError
 	 */
 	final public function getAbandonedCount() {
 		wfProfileIn( __METHOD__ );
@@ -284,7 +284,7 @@ abstract class JobQueue {
 	 * @param $jobs Job|Array
 	 * @param $flags integer Bitfield (supports JobQueue::QOS_ATOMIC)
 	 * @return bool Returns false on failure
-	 * @throws MWException
+	 * @throws JobQueueError
 	 */
 	final public function push( $jobs, $flags = 0 ) {
 		return $this->batchPush( is_array( $jobs ) ? $jobs : array( $jobs ), $flags );
@@ -298,7 +298,7 @@ abstract class JobQueue {
 	 * @param array $jobs List of Jobs
 	 * @param $flags integer Bitfield (supports JobQueue::QOS_ATOMIC)
 	 * @return bool Returns false on failure
-	 * @throws MWException
+	 * @throws JobQueueError
 	 */
 	final public function batchPush( array $jobs, $flags = 0 ) {
 		if ( !count( $jobs ) ) {
@@ -333,7 +333,7 @@ abstract class JobQueue {
 	 * Outside callers should use JobQueueGroup::pop() instead of this function.
 	 *
 	 * @return Job|bool Returns false if there are no jobs
-	 * @throws MWException
+	 * @throws JobQueueError
 	 */
 	final public function pop() {
 		global $wgJobClasses;
@@ -374,7 +374,7 @@ abstract class JobQueue {
 	 *
 	 * @param $job Job
 	 * @return bool
-	 * @throws MWException
+	 * @throws JobQueueError
 	 */
 	final public function ack( Job $job ) {
 		if ( $job->getType() !== $this->type ) {
@@ -421,7 +421,7 @@ abstract class JobQueue {
 	 *
 	 * @param $job Job
 	 * @return bool
-	 * @throws MWException
+	 * @throws JobQueueError
 	 */
 	final public function deduplicateRootJob( Job $job ) {
 		if ( $job->getType() !== $this->type ) {
@@ -466,7 +466,7 @@ abstract class JobQueue {
 	 *
 	 * @param $job Job
 	 * @return bool
-	 * @throws MWException
+	 * @throws JobQueueError
 	 */
 	final protected function isRootJobOldDuplicate( Job $job ) {
 		if ( $job->getType() !== $this->type ) {
@@ -511,7 +511,7 @@ abstract class JobQueue {
 	 * Deleted all unclaimed and delayed jobs from the queue
 	 *
 	 * @return bool Success
-	 * @throws MWException
+	 * @throws JobQueueError
 	 * @since 1.22
 	 */
 	final public function delete() {
@@ -535,7 +535,7 @@ abstract class JobQueue {
 	 * This does nothing for certain queue classes.
 	 *
 	 * @return void
-	 * @throws MWException
+	 * @throws JobQueueError
 	 */
 	final public function waitForBackups() {
 		wfProfileIn( __METHOD__ );
@@ -600,7 +600,7 @@ abstract class JobQueue {
 	 * This should only be called on a queue that is no longer being popped.
 	 *
 	 * @return Iterator
-	 * @throws MWException
+	 * @throws JobQueueError
 	 */
 	abstract public function getAllQueuedJobs();
 
@@ -609,7 +609,7 @@ abstract class JobQueue {
 	 * This should only be called on a queue that is no longer being popped.
 	 *
 	 * @return Iterator
-	 * @throws MWException
+	 * @throws JobQueueError
 	 * @since 1.22
 	 */
 	public function getAllDelayedJobs() {
@@ -640,3 +640,10 @@ abstract class JobQueue {
 		throw new MWException( "Queue namespacing not supported for this queue type." );
 	}
 }
+
+/**
+ * @ingroup JobQueue
+ * @since 1.22
+ */
+class JobQueueError extends MWException {}
+class JobQueueConnectionError extends JobQueueError {}

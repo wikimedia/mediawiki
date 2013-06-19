@@ -780,7 +780,7 @@ LUA;
 	protected function getConnection() {
 		$conn = $this->redisPool->getConnection( $this->server );
 		if ( !$conn ) {
-			throw new MWException( "Unable to connect to redis server." );
+			throw new JobQueueConnectionError( "Unable to connect to redis server." );
 		}
 		return $conn;
 	}
@@ -793,7 +793,7 @@ LUA;
 	 */
 	protected function throwRedisException( $server, RedisConnRef $conn, $e ) {
 		$this->redisPool->handleException( $server, $conn, $e );
-		throw new MWException( "Redis server error: {$e->getMessage()}\n" );
+		throw new JobQueueError( "Redis server error: {$e->getMessage()}\n" );
 	}
 
 	/**

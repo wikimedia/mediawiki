@@ -310,9 +310,13 @@ class JobQueueGroup {
 				} elseif ( !isset( $lastRuns[$type][$task] )
 					|| $lastRuns[$type][$task] < ( time() - $definition['period'] ) )
 				{
-					if ( call_user_func( $definition['callback'] ) !== null ) {
-						$tasksRun[$type][$task] = time();
-						++$count;
+					try {
+						if ( call_user_func( $definition['callback'] ) !== null ) {
+							$tasksRun[$type][$task] = time();
+							++$count;
+						}
+					} catch ( JobQueueError $e ) {
+						wfDebugLog( 'exception', $e->getLogMessage() );
 					}
 				}
 			}
