@@ -2012,6 +2012,7 @@ Your email address is not revealed when other users contact you.',
 'userrights-unchangeable-col'    => 'Groups you cannot change',
 'userrights-irreversible-marker' => '$1*', # only translate this message to other languages if you have to change it
 'userrights-conflict'            => 'User rights conflict! Please apply your changes again.',
+'userrights-removed-self'        => 'You successfully removed your own rights. As such, you are no longer able to access this page.',
 
 # Groups
 'group'               => 'Group:',

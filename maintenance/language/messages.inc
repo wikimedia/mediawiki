@@ -1137,6 +1137,7 @@ $wgMessageStructure = array(
 		'userrights-unchangeable-col',
 		'userrights-irreversible-marker',
 		'userrights-conflict',
+		'userrights-removed-self',
 	),
 	'group' => array(
 		'group',
