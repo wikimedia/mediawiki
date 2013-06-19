@@ -392,6 +392,10 @@ class ResourceLoader {
 			if ( isset( $info['object'] ) ) {
 				// Object given in info array
 				$object = $info['object'];
+			} elseif ( isset( $info['callback'] ) ) {
+				// Callback given in info array
+				$callback = $info['callback'];
+				$object = call_user_func( $callback, $info );
 			} else {
 				if ( !isset( $info['class'] ) ) {
 					$class = 'ResourceLoaderFileModule';

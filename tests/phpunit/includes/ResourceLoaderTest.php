@@ -18,8 +18,15 @@ class ResourceLoaderTest extends MediaWikiTestCase {
 	/* Provider Methods */
 	public static function provideValidModules() {
 		return array(
-			array( 'TEST.validModule1', new ResourceLoaderTestModule() ),
+			array( 'TEST.validModule.instance', new ResourceLoaderTestModule() ),
+			array( 'TEST.validModule.instanceInArray', array( 'object' => new ResourceLoaderTestModule() ) ),
+			array( 'TEST.validModule.class', array( 'class' => 'ResourceLoaderTestModule' ) ),
+			array( 'TEST.validModule.callback', array( 'callback' => 'ResourceLoaderTest::makeResourceLoaderTestModule' ) ),
 		);
+	}
+
+	public static function makeResourceLoaderTestModule( array $info ) {
+		return new ResourceLoaderTestModule();
 	}
 
 	/* Test Methods */
@@ -43,10 +50,11 @@ class ResourceLoaderTest extends MediaWikiTestCase {
 	 * @covers ResourceLoader::getModule
 	 */
 	public function testRegisteredValidModulesAreAccessible(
-		$name, ResourceLoaderModule $module, ResourceLoader $resourceLoader
+		$name, $info, ResourceLoader $resourceLoader
 	) {
-		$resourceLoader->register( $name, $module );
-		$this->assertEquals( $module, $resourceLoader->getModule( $name ) );
+		$resourceLoader->register( $name, $info );
+		$module = $resourceLoader->getModule( $name );
+		$this->assertInstanceOf( 'ResourceLoaderModule', $module );
 	}
 
 	/**
