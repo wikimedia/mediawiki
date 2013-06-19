@@ -824,10 +824,13 @@ class XmlDumpWriter {
 			$archiveName = '';
 		}
 		if ( $dumpContents ) {
+			$be = $file->getRepo()->getBackend();
 			# Dump file as base64
 			# Uses only XML-safe characters, so does not need escaping
+			# @TODO: too bad this loads the contents into memory (script might swap)
 			$contents = '      <contents encoding="base64">' .
-				chunk_split( base64_encode( file_get_contents( $file->getPath() ) ) ) .
+				chunk_split( base64_encode(
+					$be->getFileContents( array( 'src' => $file->getPath() ) ) ) ) .
 				"      </contents>\n";
 		} else {
 			$contents = '';
