@@ -143,12 +143,3 @@ class SearchUpdate implements DeferrableUpdate {
 		return $text;
 	}
 }
-
-/**
- * Placeholder class
- *
- * @ingroup Search
- */
-class SearchUpdateMyISAM extends SearchUpdate {
-	# Inherits everything
-}

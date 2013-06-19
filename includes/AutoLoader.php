@@ -874,7 +874,6 @@ $wgAutoloadLocalClasses = array(
 	'SearchResultTooMany' => 'includes/search/SearchEngine.php',
 	'SearchSqlite' => 'includes/search/SearchSqlite.php',
 	'SearchUpdate' => 'includes/search/SearchUpdate.php',
-	'SearchUpdateMyISAM' => 'includes/search/SearchUpdate.php',
 	'SqliteSearchResultSet' => 'includes/search/SearchSqlite.php',
 	'SqlSearchResultSet' => 'includes/search/SearchEngine.php',
 
