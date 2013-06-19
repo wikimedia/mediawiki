@@ -662,6 +662,7 @@ $wgAutoloadLocalClasses = array(
 	'JobQueueAggregatorMemc' => 'includes/job/aggregator/JobQueueAggregatorMemc.php',
 	'JobQueueAggregatorRedis' => 'includes/job/aggregator/JobQueueAggregatorRedis.php',
 	'JobQueueDB' => 'includes/job/JobQueueDB.php',
+	'JobQueueError' => 'includes/job/JobQueue.php',
 	'JobQueueGroup' => 'includes/job/JobQueueGroup.php',
 	'JobQueueFederated' => 'includes/job/JobQueueFederated.php',
 	'JobQueueRedis' => 'includes/job/JobQueueRedis.php',
