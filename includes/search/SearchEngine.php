@@ -816,7 +816,8 @@ class SearchResult {
 		if ( !isset( $this->mText ) ) {
 			if ( $this->mRevision != null ) {
 				//TODO: if we could plug in some code that knows about special content models *and* about
-				//      special features of the search engine, the search could benefit.
+				//      special features of the search engine, the search could benefit. See similar
+				//      comment in SearchUpdate's constructor
 				$content = $this->mRevision->getContent();
 				$this->mText = $content ? $content->getTextForSearchIndex() : '';
 			} else { // TODO: can we fetch raw wikitext for commons images?

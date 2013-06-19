@@ -33,7 +33,16 @@ class SearchUpdate implements DeferrableUpdate {
 	private $mId = 0, $mNamespace, $mTitle, $mText;
 	private $mTitleWords;
 
-	public function __construct( $id, $title, $text = false ) {
+	/**
+	 * Constructor
+	 *
+	 * @param int $id Page id to update
+	 * @param Title|string $title Title of page to update
+	 * @param Content|string|false $content Content of the page to update.
+	 *  If a Content object, text will be gotten from it. String is for back-compat.
+	 *  Passing false tells the backend to just update the title, not the content
+	 */
+	public function __construct( $id, $title, $content = false ) {
 		if ( is_string( $title ) ) {
 			$nt = Title::newFromText( $title );
 		} else {
@@ -42,7 +51,14 @@ class SearchUpdate implements DeferrableUpdate {
 
 		if ( $nt ) {
 			$this->mId = $id;
-			$this->mText = $text;
+			// @todo This isn't ideal, we'd really like to have content-specific
+			// handling here. See similar content in SearchEngine::initText().
+			if( is_string( $content ) ) {
+				// b/c for ApprovedRevs
+				$this->mText = $content;
+			} else {
+				$this->mText = $content ? $content->getTextForSearchIndex() : false;
+			}
 
 			$this->mNamespace = $nt->getNamespace();
 			$this->mTitle = $nt->getText(); # Discard namespace
