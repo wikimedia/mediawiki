@@ -23,6 +23,7 @@
 
 			apiPromise = this.get( {
 					action: 'parse',
+					contentmodel: 'wikitext',
 					text: wikitext
 				} )
 				.done( function ( data ) {
