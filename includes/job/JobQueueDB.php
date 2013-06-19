@@ -80,9 +80,13 @@ class JobQueueDB extends JobQueue {
 		}
 
 		list( $dbr, $scope ) = $this->getSlaveDB();
-		$found = $dbr->selectField( // unclaimed job
-			'job', '1', array( 'job_cmd' => $this->type, 'job_token' => '' ), __METHOD__
-		);
+		try {
+			$found = $dbr->selectField( // unclaimed job
+				'job', '1', array( 'job_cmd' => $this->type, 'job_token' => '' ), __METHOD__
+			);
+		} catch ( DBError $e ) {
+			$this->throwDBException( $e );
+		}
 		$this->cache->add( $key, $found ? 'false' : 'true', self::CACHE_TTL_LONG );
 
 		return !$found;
@@ -100,11 +104,15 @@ class JobQueueDB extends JobQueue {
 			return $size;
 		}
 
-		list( $dbr, $scope ) = $this->getSlaveDB();
-		$size = (int)$dbr->selectField( 'job', 'COUNT(*)',
-			array( 'job_cmd' => $this->type, 'job_token' => '' ),
-			__METHOD__
-		);
+		try {
+			list( $dbr, $scope ) = $this->getSlaveDB();
+			$size = (int)$dbr->selectField( 'job', 'COUNT(*)',
+				array( 'job_cmd' => $this->type, 'job_token' => '' ),
+				__METHOD__
+			);
+		} catch ( DBError $e ) {
+			$this->throwDBException( $e );
+		}
 		$this->cache->set( $key, $size, self::CACHE_TTL_SHORT );
 
 		return $size;
@@ -127,10 +135,14 @@ class JobQueueDB extends JobQueue {
 		}
 
 		list( $dbr, $scope ) = $this->getSlaveDB();
-		$count = (int)$dbr->selectField( 'job', 'COUNT(*)',
-			array( 'job_cmd' => $this->type, "job_token != {$dbr->addQuotes( '' )}" ),
-			__METHOD__
-		);
+		try {
+			$count = (int)$dbr->selectField( 'job', 'COUNT(*)',
+				array( 'job_cmd' => $this->type, "job_token != {$dbr->addQuotes( '' )}" ),
+				__METHOD__
+			);
+		} catch ( DBError $e ) {
+			$this->throwDBException( $e );
+		}
 		$this->cache->set( $key, $count, self::CACHE_TTL_SHORT );
 
 		return $count;
@@ -156,14 +168,18 @@ class JobQueueDB extends JobQueue {
 		}
 
 		list( $dbr, $scope ) = $this->getSlaveDB();
-		$count = (int)$dbr->selectField( 'job', 'COUNT(*)',
-			array(
-				'job_cmd' => $this->type,
-				"job_token != {$dbr->addQuotes( '' )}",
-				"job_attempts >= " . $dbr->addQuotes( $this->maxTries )
-			),
-			__METHOD__
-		);
+		try {
+			$count = (int)$dbr->selectField( 'job', 'COUNT(*)',
+				array(
+					'job_cmd' => $this->type,
+					"job_token != {$dbr->addQuotes( '' )}",
+					"job_attempts >= " . $dbr->addQuotes( $this->maxTries )
+				),
+				__METHOD__
+			);
+		} catch ( DBError $e ) {
+			$this->throwDBException( $e );
+		}
 		$wgMemc->set( $key, $count, self::CACHE_TTL_SHORT );
 
 		return $count;
@@ -269,43 +285,47 @@ class JobQueueDB extends JobQueue {
 		}
 
 		list( $dbw, $scope ) = $this->getMasterDB();
-		$dbw->commit( __METHOD__, 'flush' ); // flush existing transaction
-		$autoTrx = $dbw->getFlag( DBO_TRX ); // get current setting
-		$dbw->clearFlag( DBO_TRX ); // make each query its own transaction
-		$scopedReset = new ScopedCallback( function() use ( $dbw, $autoTrx ) {
-			$dbw->setFlag( $autoTrx ? DBO_TRX : 0 ); // restore old setting
-		} );
+		try {
+			$dbw->commit( __METHOD__, 'flush' ); // flush existing transaction
+			$autoTrx = $dbw->getFlag( DBO_TRX ); // get current setting
+			$dbw->clearFlag( DBO_TRX ); // make each query its own transaction
+			$scopedReset = new ScopedCallback( function() use ( $dbw, $autoTrx ) {
+				$dbw->setFlag( $autoTrx ? DBO_TRX : 0 ); // restore old setting
+			} );
 
-		$uuid = wfRandomString( 32 ); // pop attempt
-		$job = false; // job popped off
-		do { // retry when our row is invalid or deleted as a duplicate
-			// Try to reserve a row in the DB...
-			if ( in_array( $this->order, array( 'fifo', 'timestamp' ) ) ) {
-				$row = $this->claimOldest( $uuid );
-			} else { // random first
-				$rand = mt_rand( 0, self::MAX_JOB_RANDOM ); // encourage concurrent UPDATEs
-				$gte = (bool)mt_rand( 0, 1 ); // find rows with rand before/after $rand
-				$row = $this->claimRandom( $uuid, $rand, $gte );
-			}
-			// Check if we found a row to reserve...
-			if ( !$row ) {
-				$this->cache->set( $this->getCacheKey( 'empty' ), 'true', self::CACHE_TTL_LONG );
-				break; // nothing to do
-			}
-			JobQueue::incrStats( 'job-pop', $this->type );
-			// Get the job object from the row...
-			$title = Title::makeTitleSafe( $row->job_namespace, $row->job_title );
-			if ( !$title ) {
-				$dbw->delete( 'job', array( 'job_id' => $row->job_id ), __METHOD__ );
-				wfDebug( "Row has invalid title '{$row->job_title}'." );
-				continue; // try again
-			}
-			$job = Job::factory( $row->job_cmd, $title,
-				self::extractBlob( $row->job_params ), $row->job_id );
-			$job->metadata['id'] = $row->job_id;
-			$job->id = $row->job_id; // XXX: work around broken subclasses
-			break; // done
-		} while ( true );
+			$uuid = wfRandomString( 32 ); // pop attempt
+			$job = false; // job popped off
+			do { // retry when our row is invalid or deleted as a duplicate
+				// Try to reserve a row in the DB...
+				if ( in_array( $this->order, array( 'fifo', 'timestamp' ) ) ) {
+					$row = $this->claimOldest( $uuid );
+				} else { // random first
+					$rand = mt_rand( 0, self::MAX_JOB_RANDOM ); // encourage concurrent UPDATEs
+					$gte = (bool)mt_rand( 0, 1 ); // find rows with rand before/after $rand
+					$row = $this->claimRandom( $uuid, $rand, $gte );
+				}
+				// Check if we found a row to reserve...
+				if ( !$row ) {
+					$this->cache->set( $this->getCacheKey( 'empty' ), 'true', self::CACHE_TTL_LONG );
+					break; // nothing to do
+				}
+				JobQueue::incrStats( 'job-pop', $this->type );
+				// Get the job object from the row...
+				$title = Title::makeTitleSafe( $row->job_namespace, $row->job_title );
+				if ( !$title ) {
+					$dbw->delete( 'job', array( 'job_id' => $row->job_id ), __METHOD__ );
+					wfDebug( "Row has invalid title '{$row->job_title}'." );
+					continue; // try again
+				}
+				$job = Job::factory( $row->job_cmd, $title,
+					self::extractBlob( $row->job_params ), $row->job_id );
+				$job->metadata['id'] = $row->job_id;
+				$job->id = $row->job_id; // XXX: work around broken subclasses
+				break; // done
+			} while ( true );
+		} catch ( DBError $e ) {
+			$this->throwDBException( $e );
+		}
 
 		return $job;
 	}
@@ -461,16 +481,20 @@ class JobQueueDB extends JobQueue {
 		}
 
 		list( $dbw, $scope ) = $this->getMasterDB();
-		$dbw->commit( __METHOD__, 'flush' ); // flush existing transaction
-		$autoTrx = $dbw->getFlag( DBO_TRX ); // get current setting
-		$dbw->clearFlag( DBO_TRX ); // make each query its own transaction
-		$scopedReset = new ScopedCallback( function() use ( $dbw, $autoTrx ) {
-			$dbw->setFlag( $autoTrx ? DBO_TRX : 0 ); // restore old setting
-		} );
+		try {
+			$dbw->commit( __METHOD__, 'flush' ); // flush existing transaction
+			$autoTrx = $dbw->getFlag( DBO_TRX ); // get current setting
+			$dbw->clearFlag( DBO_TRX ); // make each query its own transaction
+			$scopedReset = new ScopedCallback( function() use ( $dbw, $autoTrx ) {
+				$dbw->setFlag( $autoTrx ? DBO_TRX : 0 ); // restore old setting
+			} );
 
-		// Delete a row with a single DELETE without holding row locks over RTTs...
-		$dbw->delete( 'job',
-			array( 'job_cmd' => $this->type, 'job_id' => $job->metadata['id'] ), __METHOD__ );
+			// Delete a row with a single DELETE without holding row locks over RTTs...
+			$dbw->delete( 'job',
+				array( 'job_cmd' => $this->type, 'job_id' => $job->metadata['id'] ), __METHOD__ );
+		} catch ( DBError $e ) {
+			$this->throwDBException( $e );
+		}
 
 		return true;
 	}
@@ -516,7 +540,11 @@ class JobQueueDB extends JobQueue {
 	protected function doDelete() {
 		list( $dbw, $scope ) = $this->getMasterDB();
 
-		$dbw->delete( 'job', array( 'job_cmd' => $this->type ) );
+		try {
+			$dbw->delete( 'job', array( 'job_cmd' => $this->type ) );
+		} catch ( DBError $e ) {
+			$this->throwDBException( $e );
+		}
 		return true;
 	}
 
@@ -555,20 +583,25 @@ class JobQueueDB extends JobQueue {
 	 */
 	public function getAllQueuedJobs() {
 		list( $dbr, $scope ) = $this->getSlaveDB();
-		return new MappedIterator(
-			$dbr->select( 'job', '*', array( 'job_cmd' => $this->getType(), 'job_token' => '' ) ),
-			function( $row ) use ( $scope ) {
-				$job = Job::factory(
-					$row->job_cmd,
-					Title::makeTitle( $row->job_namespace, $row->job_title ),
-					strlen( $row->job_params ) ? unserialize( $row->job_params ) : false,
-					$row->job_id
-				);
-				$job->metadata['id'] = $row->job_id;
-				$job->id = $row->job_id; // XXX: work around broken subclasses
-				return $job;
-			}
-		);
+		try {
+			return new MappedIterator(
+				$dbr->select( 'job', '*',
+					array( 'job_cmd' => $this->getType(), 'job_token' => '' ) ),
+				function( $row ) use ( $scope ) {
+					$job = Job::factory(
+						$row->job_cmd,
+						Title::makeTitle( $row->job_namespace, $row->job_title ),
+						strlen( $row->job_params ) ? unserialize( $row->job_params ) : false,
+						$row->job_id
+					);
+					$job->metadata['id'] = $row->job_id;
+					$job->id = $row->job_id; // XXX: work around broken subclasses
+					return $job;
+				}
+			);
+		} catch ( DBError $e ) {
+			$this->throwDBException( $e );
+		}
 	}
 
 	/**
@@ -578,75 +611,79 @@ class JobQueueDB extends JobQueue {
 	 */
 	public function recycleAndDeleteStaleJobs() {
 		$now = time();
-		list( $dbw, $scope ) = $this->getMasterDB();
 		$count = 0; // affected rows
+		list( $dbw, $scope ) = $this->getMasterDB();
 
-		if ( !$dbw->lock( "jobqueue-recycle-{$this->type}", __METHOD__, 1 ) ) {
-			return $count; // already in progress
-		}
+		try {
+			if ( !$dbw->lock( "jobqueue-recycle-{$this->type}", __METHOD__, 1 ) ) {
+				return $count; // already in progress
+			}
 
-		// Remove claims on jobs acquired for too long if enabled...
-		if ( $this->claimTTL > 0 ) {
-			$claimCutoff = $dbw->timestamp( $now - $this->claimTTL );
-			// Get the IDs of jobs that have be claimed but not finished after too long.
-			// These jobs can be recycled into the queue by expiring the claim. Selecting
-			// the IDs first means that the UPDATE can be done by primary key (less deadlocks).
-			$res = $dbw->select( 'job', 'job_id',
-				array(
-					'job_cmd' => $this->type,
-					"job_token != {$dbw->addQuotes( '' )}", // was acquired
-					"job_token_timestamp < {$dbw->addQuotes( $claimCutoff )}", // stale
-					"job_attempts < {$dbw->addQuotes( $this->maxTries )}" ), // retries left
-				__METHOD__
+			// Remove claims on jobs acquired for too long if enabled...
+			if ( $this->claimTTL > 0 ) {
+				$claimCutoff = $dbw->timestamp( $now - $this->claimTTL );
+				// Get the IDs of jobs that have be claimed but not finished after too long.
+				// These jobs can be recycled into the queue by expiring the claim. Selecting
+				// the IDs first means that the UPDATE can be done by primary key (less deadlocks).
+				$res = $dbw->select( 'job', 'job_id',
+					array(
+						'job_cmd' => $this->type,
+						"job_token != {$dbw->addQuotes( '' )}", // was acquired
+						"job_token_timestamp < {$dbw->addQuotes( $claimCutoff )}", // stale
+						"job_attempts < {$dbw->addQuotes( $this->maxTries )}" ), // retries left
+					__METHOD__
+				);
+				$ids = array_map(
+					function( $o ) {
+						return $o->job_id;
+					}, iterator_to_array( $res )
+				);
+				if ( count( $ids ) ) {
+					// Reset job_token for these jobs so that other runners will pick them up.
+					// Set the timestamp to the current time, as it is useful to now that the job
+					// was already tried before (the timestamp becomes the "released" time).
+					$dbw->update( 'job',
+						array(
+							'job_token' => '',
+							'job_token_timestamp' => $dbw->timestamp( $now ) ), // time of release
+						array(
+							'job_id' => $ids ),
+						__METHOD__
+					);
+					$count += $dbw->affectedRows();
+					JobQueue::incrStats( 'job-recycle', $this->type, $dbw->affectedRows() );
+					$this->cache->set( $this->getCacheKey( 'empty' ), 'false', self::CACHE_TTL_LONG );
+				}
+			}
+
+			// Just destroy any stale jobs...
+			$pruneCutoff = $dbw->timestamp( $now - self::MAX_AGE_PRUNE );
+			$conds = array(
+				'job_cmd' => $this->type,
+				"job_token != {$dbw->addQuotes( '' )}", // was acquired
+				"job_token_timestamp < {$dbw->addQuotes( $pruneCutoff )}" // stale
 			);
+			if ( $this->claimTTL > 0 ) { // only prune jobs attempted too many times...
+				$conds[] = "job_attempts >= {$dbw->addQuotes( $this->maxTries )}";
+			}
+			// Get the IDs of jobs that are considered stale and should be removed. Selecting
+			// the IDs first means that the UPDATE can be done by primary key (less deadlocks).
+			$res = $dbw->select( 'job', 'job_id', $conds, __METHOD__ );
 			$ids = array_map(
 				function( $o ) {
 					return $o->job_id;
 				}, iterator_to_array( $res )
 			);
 			if ( count( $ids ) ) {
-				// Reset job_token for these jobs so that other runners will pick them up.
-				// Set the timestamp to the current time, as it is useful to now that the job
-				// was already tried before (the timestamp becomes the "released" time).
-				$dbw->update( 'job',
-					array(
-						'job_token' => '',
-						'job_token_timestamp' => $dbw->timestamp( $now ) ), // time of release
-					array(
-						'job_id' => $ids ),
-					__METHOD__
-				);
+				$dbw->delete( 'job', array( 'job_id' => $ids ), __METHOD__ );
 				$count += $dbw->affectedRows();
-				JobQueue::incrStats( 'job-recycle', $this->type, $dbw->affectedRows() );
-				$this->cache->set( $this->getCacheKey( 'empty' ), 'false', self::CACHE_TTL_LONG );
+				JobQueue::incrStats( 'job-abandon', $this->type, $dbw->affectedRows() );
 			}
-		}
 
-		// Just destroy any stale jobs...
-		$pruneCutoff = $dbw->timestamp( $now - self::MAX_AGE_PRUNE );
-		$conds = array(
-			'job_cmd' => $this->type,
-			"job_token != {$dbw->addQuotes( '' )}", // was acquired
-			"job_token_timestamp < {$dbw->addQuotes( $pruneCutoff )}" // stale
-		);
-		if ( $this->claimTTL > 0 ) { // only prune jobs attempted too many times...
-			$conds[] = "job_attempts >= {$dbw->addQuotes( $this->maxTries )}";
+			$dbw->unlock( "jobqueue-recycle-{$this->type}", __METHOD__ );
+		} catch ( DBError $e ) {
+			$this->throwDBException( $e );
 		}
-		// Get the IDs of jobs that are considered stale and should be removed. Selecting
-		// the IDs first means that the UPDATE can be done by primary key (less deadlocks).
-		$res = $dbw->select( 'job', 'job_id', $conds, __METHOD__ );
-		$ids = array_map(
-			function( $o ) {
-				return $o->job_id;
-			}, iterator_to_array( $res )
-		);
-		if ( count( $ids ) ) {
-			$dbw->delete( 'job', array( 'job_id' => $ids ), __METHOD__ );
-			$count += $dbw->affectedRows();
-			JobQueue::incrStats( 'job-abandon', $this->type, $dbw->affectedRows() );
-		}
-
-		$dbw->unlock( "jobqueue-recycle-{$this->type}", __METHOD__ );
 
 		return $count;
 	}
@@ -655,14 +692,22 @@ class JobQueueDB extends JobQueue {
 	 * @return Array (DatabaseBase, ScopedCallback)
 	 */
 	protected function getSlaveDB() {
-		return $this->getDB( DB_SLAVE );
+		try {
+			return $this->getDB( DB_SLAVE );
+		} catch ( DBConnectionError $e ) {
+			throw new JobQueueConnectionError( "DBConnectionError:" . $e->getMessage() );
+		}
 	}
 
 	/**
 	 * @return Array (DatabaseBase, ScopedCallback)
 	 */
 	protected function getMasterDB() {
-		return $this->getDB( DB_MASTER );
+		try {
+			return $this->getDB( DB_MASTER );
+		} catch ( DBConnectionError $e ) {
+			throw new JobQueueConnectionError( "DBConnectionError:" . $e->getMessage() );
+		}
 	}
 
 	/**
@@ -736,5 +781,13 @@ class JobQueueDB extends JobQueue {
 		} else {
 			return false;
 		}
+	}
+
+	/**
+	 * @param DBError $e
+	 * @throws JobQueueError
+	 */
+	protected function throwDBException( DBError $e ) {
+		throw new JobQueueError( get_class( $e ) . ": " . $e->getMessage() );
 	}
 }
