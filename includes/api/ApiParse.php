@@ -44,9 +44,9 @@ class ApiParse extends ApiBase {
 		$params = $this->extractRequestParams();
 		$text = $params['text'];
 		$title = $params['title'];
-		if ( $title === '' ) {
+		if ( $title === null ) {
 			$titleProvided = false;
-			// This is the old default value
+			// A title is needed for parsing, so arbitrarily choose one
 			$title = 'API';
 		} else {
 			$titleProvided = true;
@@ -193,10 +193,7 @@ class ApiParse extends ApiBase {
 			// API title, but default to wikitext to keep BC.
 			if ( !$titleProvided && is_null( $model ) ) {
 				$model = CONTENT_MODEL_WIKITEXT;
-				$this->setWarning(
-					"Please set content model with contentmodel parameter. " .
-					"Assuming it is $model."
-				);
+				$this->setWarning( "No 'title' or 'contentmodel' was given, assuming $model." );
 			}
 
 			try {
@@ -593,9 +590,7 @@ class ApiParse extends ApiBase {
 
 	public function getAllowedParams() {
 		return array(
-			'title' => array(
-				ApiBase::PARAM_DFLT => '',
-			),
+			'title' => null,
 			'text' => null,
 			'summary' => null,
 			'page' => null,
@@ -649,11 +644,13 @@ class ApiParse extends ApiBase {
 
 	public function getParamDescription() {
 		$p = $this->getModulePrefix();
+		$wikitext = CONTENT_MODEL_WIKITEXT;
 		return array(
-			'text' => 'Wikitext to parse',
+			'text' => "Text to parse. Use {$p}title or {$p}contentmodel to control the content model",
 			'summary' => 'Summary to parse',
 			'redirects' => "If the {$p}page or the {$p}pageid parameter is set to a redirect, resolve it",
-			'title' => 'Title of page the text belongs to',
+			'title' => "Title of page the text belongs to. " .
+				"If omitted, \"API\" is used as the title with content model $wikitext",
 			'page' => "Parse the content of this page. Cannot be used together with {$p}text and {$p}title",
 			'pageid' => "Parse the content of this page. Overrides {$p}page",
 			'oldid' => "Parse the content of this revision. Overrides {$p}page and {$p}pageid",
@@ -683,27 +680,40 @@ class ApiParse extends ApiBase {
 			),
 			'pst' => array(
 				'Do a pre-save transform on the input before parsing it',
-				'Ignored if page, pageid or oldid is used'
+				"Only valid when used with {$p}text",
 			),
 			'onlypst' => array(
 				'Do a pre-save transform (PST) on the input, but don\'t parse it',
-				'Returns the same wikitext, after a PST has been applied. Ignored if page, pageid or oldid is used'
+				'Returns the same wikitext, after a PST has been applied.',
+				"Only valid when used with {$p}text",
 			),
 			'uselang' => 'Which language to parse the request in',
 			'section' => 'Only retrieve the content of this section number',
 			'disablepp' => 'Disable the PP Report from the parser output',
-			'generatexml' => 'Generate XML parse tree (requires prop=wikitext)',
+			'generatexml' => "Generate XML parse tree (requires contentmodel=$wikitext)",
 			'preview' => 'Parse in preview mode',
 			'sectionpreview' => 'Parse in section preview mode (enables preview mode too)',
-			'contentformat' => 'Content serialization format used for the input text',
-			'contentmodel' => 'Content model of the new content',
+			'contentformat' => array(
+				'Content serialization format used for the input text',
+				"Only valid when used with {$p}text",
+			),
+			'contentmodel' => array(
+				"Content model of the input text. Default is the model of the " .
+				"specified ${p}title, or $wikitext if ${p}title is not specified",
+				"Only valid when used with {$p}text",
+			),
 		);
 	}
 
 	public function getDescription() {
+		$p = $this->getModulePrefix();
 		return array(
-			'Parses wikitext and returns parser output',
+			'Parses content and returns parser output',
 			'See the various prop-Modules of action=query to get information from the current version of a page',
+			'There are several ways to specify the text to parse:',
+			"1) Specify a page or revision, using {$p}page, {$p}pageid, or {$p}oldid.",
+			"2) Specify content explicitly, using {$p}text, {$p}title, and {$p}contentmodel.",
+			"3) Specify only a summary to parse. {$p}prop should be given an empty value.",
 		);
 	}
 

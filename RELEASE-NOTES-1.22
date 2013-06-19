@@ -183,6 +183,8 @@ production.
   honors $wgBlockCIDRLimit. Note any clients passing invalid values to bkip
   will now receive an error, rather than the previous behavior listing all
   user blocks.
+* (bug 48201) action=parse&text=foo now assumes wikitext if no title is given,
+  rather than using the content model of the page "API".
 
 === Languages updated in 1.22===
 
