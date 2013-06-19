@@ -1155,8 +1155,7 @@ abstract class Maintenance {
 			$title = $titleObj->getPrefixedDBkey();
 			$this->output( "$title..." );
 			# Update searchindex
-			# TODO: pass the Content object to SearchUpdate, let the search engine decide how to deal with it.
-			$u = new SearchUpdate( $pageId, $titleObj->getText(), $rev->getContent()->getTextForSearchIndex() );
+			$u = new SearchUpdate( $pageId, $titleObj->getText(), $rev->getContent() );
 			$u->doUpdate();
 			$this->output( "\n" );
 		}
