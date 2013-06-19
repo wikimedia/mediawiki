@@ -65,22 +65,27 @@ class SearchUpdate implements DeferrableUpdate {
 		$search = SearchEngine::create();
 		$normalTitle = $search->normalizeText( Title::indexTitle( $this->mNamespace, $this->mTitle ) );
 
+		$action = 'update';
 		if ( WikiPage::newFromId( $this->mId ) === null ) {
-			$search->delete( $this->mId, $normalTitle );
-			wfProfileOut( __METHOD__ );
-			return;
+			$action = 'delete';
 		} elseif ( $this->mText === false ) {
-			$search->updateTitle( $this->mId, $normalTitle );
-			wfProfileOut( __METHOD__ );
-			return;
+			$action = 'updateTitle';
 		}
 
-		$text = self::updateText( $this->mText );
-
-		wfRunHooks( 'SearchUpdate', array( $this->mId, $this->mNamespace, $this->mTitle, &$text ) );
-
-		# Perform the actual update
-		$search->update( $this->mId, $normalTitle, $search->normalizeText( $text ) );
+		if( wfRunHooks( 'SearchUpdate', array( $this->mId, $this->mNamespace, $this->mTitle, &$text ) ) ) {
+			switch ( $action ) {
+				# Simple delete/title update case
+				case 'delete':
+				case 'updateTitle';
+					$search->$action( $this->mId, $normalTitle );
+					break;
+				default:
+					# Perform the actual update
+					$text = self::updateText( $this->mText );
+					$search->update( $this->mId, $normalTitle, $search->normalizeText( $text ) );
+					break;
+			}
+		}
 
 		wfProfileOut( __METHOD__ );
 	}
