@@ -34,6 +34,7 @@ class HashRing {
 
 	/**
 	 * @param array $map (location => weight)
+	 * @throws MWException
 	 */
 	public function __construct( array $map ) {
 		$map = array_filter( $map, function( $w ) { return $w > 0; } );

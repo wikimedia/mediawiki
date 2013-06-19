@@ -1160,18 +1160,18 @@ class Revision implements IDBAccessObject {
 	}
 
 	/**
-	  * Get revision text associated with an old or archive row
-	  * $row is usually an object from wfFetchRow(), both the flags and the text
-	  * field must be included
-	  *
-	  * @param $row Object: the text data
-	  * @param string $prefix table prefix (default 'old_')
-	  * @param string|false $wiki the name of the wiki to load the revision text from
-	  *         (same as the the wiki $row was loaded from) or false to indicate the local
-	  *         wiki (this is the default). Otherwise, it must be a symbolic wiki database
-	  *         identifier as understood by the LoadBalancer class.
-	  * @return String: text the text requested or false on failure
-	  */
+	 * Get revision text associated with an old or archive row
+	 * $row is usually an object from wfFetchRow(), both the flags and the text
+	 * field must be included
+	 *
+	 * @param $row Object: the text data
+	 * @param string $prefix table prefix (default 'old_')
+	 * @param string|bool $wiki the name of the wiki to load the revision text from
+	 *         (same as the the wiki $row was loaded from) or false to indicate the local
+	 *         wiki (this is the default). Otherwise, it must be a symbolic wiki database
+	 *         identifier as understood by the LoadBalancer class.
+	 * @return String: text the text requested or false on failure
+	 */
 	public static function getRevisionText( $row, $prefix = 'old_', $wiki = false ) {
 		wfProfileIn( __METHOD__ );
 

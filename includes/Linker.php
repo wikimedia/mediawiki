@@ -260,6 +260,11 @@ class Linker {
 
 	/**
 	 * Identical to link(), except $options defaults to 'known'.
+	 * @param $target
+	 * @param null $html
+	 * @param array $customAttribs
+	 * @param array $query
+	 * @param array $options
 	 * @return string
 	 */
 	public static function linkKnown(
@@ -555,7 +560,7 @@ class Linker {
 	 *
 	 * @param array $handlerParams associative array of media handler parameters, to be passed
 	 *       to transform(). Typical keys are "width" and "page".
-	 * @param string $time timestamp of the file, set as false for current
+	 * @param bool|string $time timestamp of the file, set as false for current
 	 * @param string $query query params for desc url
 	 * @param $widthOption: Used by the parser to remember the user preference thumbnailsize
 	 * @since 1.20
@@ -710,6 +715,7 @@ class Linker {
 	 * frame parameters supplied by the Parser.
 	 * @param array $frameParams The frame parameters
 	 * @param string $query An optional query string to add to description page links
+	 * @param null $parser
 	 * @return array
 	 */
 	private static function getImageLinkMTOParams( $frameParams, $query = '', $parser = null ) {
@@ -931,8 +937,8 @@ class Linker {
 	 * @param $title Title object
 	 * @param string $label link label (plain text)
 	 * @param string $query query string
-	 * @param $unused1 Unused parameter kept for b/c
-	 * @param $unused2 Unused parameter kept for b/c
+	 * @param string $unused1 Unused parameter kept for b/c
+	 * @param string $unused2 Unused parameter kept for b/c
 	 * @param $time Boolean: a file of a certain timestamp was requested
 	 * @return String
 	 */
@@ -997,7 +1003,7 @@ class Linker {
 	 *
 	 * @param $title Title object.
 	 * @param string $html pre-sanitized HTML
-	 * @param string $time MW timestamp of file creation time
+	 * @param bool|string $time MW timestamp of file creation time
 	 * @return String: HTML
 	 */
 	public static function makeMediaLinkObj( $title, $html = '', $time = false ) {
@@ -1037,6 +1043,8 @@ class Linker {
 	 * a message key from the link text.
 	 * Usage example: Linker::specialLink( 'Recentchanges' )
 	 *
+	 * @param string $name
+	 * @param string $key
 	 * @return string
 	 */
 	public static function specialLink( $name, $key = '' ) {
@@ -1091,7 +1099,7 @@ class Linker {
 	 * Make user link (or user contributions for unregistered users)
 	 * @param $userId   Integer: user id in database.
 	 * @param string $userName user name in database.
-	 * @param string $altUserName text to display instead of the user name (optional)
+	 * @param bool|string $altUserName text to display instead of the user name (optional)
 	 * @return String: HTML fragment
 	 * @since 1.19 Method exists for a long time. $altUserName was added in 1.19.
 	 */
@@ -1645,6 +1653,7 @@ class Linker {
 	/**
 	 * Finish one or more sublevels on the Table of Contents
 	 *
+	 * @param int $level
 	 * @return string
 	 */
 	public static function tocUnindent( $level ) {
@@ -1654,6 +1663,11 @@ class Linker {
 	/**
 	 * parameter level defines if we are on an indentation level
 	 *
+	 * @param $anchor
+	 * @param $tocline
+	 * @param $tocnumber
+	 * @param $level
+	 * @param bool $sectionIndex
 	 * @return string
 	 */
 	public static function tocLine( $anchor, $tocline, $tocnumber, $level, $sectionIndex = false ) {
@@ -1681,8 +1695,8 @@ class Linker {
 	 * Wraps the TOC in a table and provides the hide/collapse javascript.
 	 *
 	 * @param string $toc html of the Table Of Contents
-	 * @param $lang String|Language|false: Language for the toc title, defaults to user language
-	 * @return String: full html of the TOC
+	 * @param bool|Language|string $lang Language for the toc title, defaults to user language
+	 * @return string: full html of the TOC
 	 */
 	public static function tocList( $toc, $lang = false ) {
 		$lang = wfGetLangObj( $lang );
@@ -1752,6 +1766,7 @@ class Linker {
 	/**
 	 * Split a link trail, return the "inside" portion and the remainder of the trail
 	 * as a two-element array
+	 * @param $trail
 	 * @return array
 	 */
 	static function splitTrail( $trail ) {
@@ -1881,8 +1896,8 @@ class Linker {
 	 *
 	 * @param $rev Revision object
 	 * @param $context IContextSource context to use or null for the main context.
-	 * @param $editCount integer Number of edits that would be reverted
-	 * @return String: HTML fragment
+	 * @param bool|int $editCount Number of edits that would be reverted
+	 * @return string: HTML fragment
 	 */
 	public static function buildRollbackLink( $rev, IContextSource $context = null, $editCount = false ) {
 		global $wgShowRollbackEditCount, $wgMiserMode;
@@ -2157,7 +2172,7 @@ class Linker {
 	 *
 	 * @param User $user
 	 * @param Revision $rev
-	 * @param Revision $title
+	 * @param Title $title
 	 * @return string HTML fragment
 	 */
 	public static function getRevDeleteLink( User $user, Revision $rev, Title $title ) {
@@ -2385,6 +2400,7 @@ class Linker {
 
 	/**
 	 * Returns the attributes for the tooltip and access key.
+	 * @param $name
 	 * @return array
 	 */
 	public static function tooltipAndAccesskeyAttribs( $name ) {
@@ -2406,6 +2422,8 @@ class Linker {
 
 	/**
 	 * Returns raw bits of HTML, use titleAttrib()
+	 * @param $name
+	 * @param null $options
 	 * @return null|string
 	 */
 	public static function tooltip( $name, $options = null ) {

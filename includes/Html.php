@@ -855,8 +855,8 @@ class Html {
 	 * @param string $text wikitext, get this with wfMessage()->plain()
 	 * @param string $icon icon name, file in skins/common/images
 	 * @param string $alt alternate text for the icon
-	 * @param string $class additional class name to add to the wrapper div
-	 * @param $useStylePath
+	 * @param bool|string $class additional class name to add to the wrapper div
+	 * @param bool $useStylePath
 	 *
 	 * @return string
 	 */

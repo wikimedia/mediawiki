@@ -173,6 +173,7 @@ abstract class PoolCounterWork {
 
 	/**
 	 * Do something with the error, like showing it to the user.
+	 * @param $status
 	 * @return bool
 	 */
 	function error( $status ) {

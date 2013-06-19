@@ -1380,10 +1380,10 @@ class Title {
 	 *
 	 * @see self::getLocalURL
 	 * @see wfExpandUrl
-	 * @param $query
-	 * @param $query2 bool
-	 * @param $proto Protocol type to use in URL
-	 * @return String the URL
+	 * @param string $query
+	 * @param bool $query2
+	 * @param string $proto Protocol type to use in URL
+	 * @return string the URL
 	 */
 	public function getFullURL( $query = '', $query2 = false, $proto = PROTO_RELATIVE ) {
 		$query = self::fixUrlQueryArgs( $query, $query2 );
@@ -1507,9 +1507,9 @@ class Title {
 	 *
 	 * See getLocalURL for the arguments.
 	 *
-	 * @param $query
+	 * @param string $query
 	 * @param $query2 bool
-	 * @param $proto Protocol to use; setting this will cause a full URL to be used
+	 * @param string $proto Protocol to use; setting this will cause a full URL to be used
 	 * @see self::getLocalURL
 	 * @return String the URL
 	 */
@@ -1550,6 +1550,8 @@ class Title {
 	 * See getLocalURL for the arguments.
 	 *
 	 * @see self::getLocalURL
+	 * @param string $query
+	 * @param bool $query2
 	 * @return String the URL
 	 * @deprecated since 1.19
 	 */
@@ -1570,6 +1572,8 @@ class Title {
 	 * See getLocalURL for the arguments.
 	 *
 	 * @see self::getLocalURL
+	 * @param string $query
+	 * @param bool $query2
 	 * @return String the URL
 	 */
 	public function getInternalURL( $query = '', $query2 = false ) {
@@ -1591,6 +1595,8 @@ class Title {
 	 * See getLocalURL for the arguments.
 	 *
 	 * @see self::getLocalURL
+	 * @param string $query
+	 * @param bool $query2
 	 * @return string The URL
 	 * @since 1.18
 	 */
@@ -1608,6 +1614,8 @@ class Title {
 	 *
 	 * @see self::getLocalURL
 	 * @since 1.18
+	 * @param string $query
+	 * @param bool $query2
 	 * @return string
 	 * @deprecated since 1.19
 	 */

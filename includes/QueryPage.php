@@ -403,6 +403,7 @@ abstract class QueryPage extends SpecialPage {
 	/**
 	 * Somewhat deprecated, you probably want to be using execute()
 	 * @param int|bool $offset
+	 * @param bool $limit
 	 * @oaram int|bool $limit
 	 * @return ResultWrapper
 	 */
@@ -458,7 +459,7 @@ abstract class QueryPage extends SpecialPage {
 	/**
 	 * This is the actual workhorse. It does everything needed to make a
 	 * real, honest-to-gosh query page.
-	 * @para $par
+	 * @param $par
 	 * @return int
 	 */
 	function execute( $par ) {

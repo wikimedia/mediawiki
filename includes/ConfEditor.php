@@ -332,6 +332,7 @@ class ConfEditor {
 
 	/**
 	 * Parse a scalar value in PHP
+	 * @param $str
 	 * @return mixed Parsed value
 	 */
 	function parseScalar( $str ) {
@@ -482,6 +483,7 @@ class ConfEditor {
 	 * Find the path name of the last element in the array.
 	 * If the array is empty, this will return the \@extra interstitial element.
 	 * If the specified path is not found or is not an array, it will return false.
+	 * @param $path
 	 * @return bool|int|string
 	 */
 	function findLastArrayElement( $path ) {
@@ -519,6 +521,7 @@ class ConfEditor {
 	 * Find the path name of first element in the array.
 	 * If the array is empty, this will return the \@extra interstitial element.
 	 * If the specified path is not found or is not an array, it will return false.
+	 * @param $path
 	 * @return bool|int|string
 	 */
 	function findFirstArrayElement( $path ) {
@@ -544,6 +547,9 @@ class ConfEditor {
 	/**
 	 * Get the indent string which sits after a given start position.
 	 * Returns false if the position is not at the start of the line.
+	 * @param $pos
+	 * @param bool $key
+	 * @param bool $arrowPos
 	 * @return array
 	 */
 	function getIndent( $pos, $key = false, $arrowPos = false ) {
@@ -768,6 +774,7 @@ class ConfEditor {
 
 	/**
 	 * Create a ConfEditorToken from an element of token_get_all()
+	 * @param $internalToken
 	 * @return ConfEditorToken
 	 */
 	function newTokenObj( $internalToken ) {
@@ -820,6 +827,7 @@ class ConfEditor {
 	/**
 	 * Get the token $offset steps ahead of the current position.
 	 * $offset may be negative, to get tokens behind the current position.
+	 * @param $offset
 	 * @return ConfEditorToken
 	 */
 	function getTokenAhead( $offset ) {
@@ -875,6 +883,7 @@ class ConfEditor {
 	/**
 	 * Returns true if the user input path is valid.
 	 * This exists to allow "/" and "@" to be reserved for string path keys
+	 * @param $path
 	 * @return bool
 	 */
 	function validatePath( $path ) {
@@ -996,6 +1005,7 @@ class ConfEditor {
 
 	/**
 	 * Get a readable name for the given token type.
+	 * @param $type
 	 * @return string
 	 */
 	function getTypeName( $type ) {
@@ -1010,6 +1020,8 @@ class ConfEditor {
 	 * Looks ahead to see if the given type is the next token type, starting
 	 * from the current position plus the given offset. Skips any intervening
 	 * whitespace.
+	 * @param $type
+	 * @param int $offset
 	 * @return bool
 	 */
 	function isAhead( $type, $offset = 0 ) {

@@ -69,6 +69,7 @@ class ZhClient {
 	 *
 	 * @access private
 	 *
+	 * @param $request
 	 * @return string
 	 */
 	function query( $request ) {

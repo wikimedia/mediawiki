@@ -137,7 +137,7 @@ class WatchedItem {
 	/**
 	 * Reset the notification timestamp of this entry
 	 *
-	 * @param $force Whether to force the write query to be executed even if the
+	 * @param string $force Whether to force the write query to be executed even if the
 	 *        page is not watched or the notification timestamp is already NULL.
 	 */
 	public function resetNotificationTimestamp( $force = '' ) {

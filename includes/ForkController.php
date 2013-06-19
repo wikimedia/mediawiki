@@ -150,6 +150,7 @@ class ForkController {
 	/**
 	 * Fork a number of worker processes.
 	 *
+	 * @param $numProcs
 	 * @return string
 	 */
 	protected function forkWorkers( $numProcs ) {

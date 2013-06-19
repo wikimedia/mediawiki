@@ -285,7 +285,7 @@ class Xml {
 	/**
 	 * Convenience function to build an HTML text input field
 	 * @param string $name value of the name attribute
-	 * @param int $size value of the size attribute
+	 * @param bool|int $size value of the size attribute
 	 * @param $value mixed value of the value attribute
 	 * @param array $attribs other attributes
 	 * @return string HTML
@@ -307,7 +307,7 @@ class Xml {
 	/**
 	 * Convenience function to build an HTML password input field
 	 * @param string $name value of the name attribute
-	 * @param int $size value of the size attribute
+	 * @param bool|int $size value of the size attribute
 	 * @param $value mixed value of the value attribute
 	 * @param array $attribs other attributes
 	 * @return string HTML
@@ -554,7 +554,7 @@ class Xml {
 	 * Shortcut for creating fieldsets.
 	 *
 	 * @param string|bool $legend Legend of the fieldset. If evaluates to false, legend is not added.
-	 * @param string $content Pre-escaped content for the fieldset. If false, only open fieldset is returned.
+	 * @param bool|string $content Pre-escaped content for the fieldset. If false, only open fieldset is returned.
 	 * @param array $attribs Any attributes to fieldset-element.
 	 *
 	 * @return string

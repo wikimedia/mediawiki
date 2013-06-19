@@ -1024,7 +1024,7 @@ class WikiPage implements Page, IDBAccessObject {
 	/**
 	 * Get the last N authors
 	 * @param $num Integer: number of revisions to get
-	 * @param string $revLatest the latest rev_id, selected from the master (optional)
+	 * @param int|string $revLatest the latest rev_id, selected from the master (optional)
 	 * @return array Array of authors, duplicates not removed
 	 */
 	public function getLastNAuthors( $num, $revLatest = 0 ) {
@@ -2165,7 +2165,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param string $text text submitted
 	 * @param $user User The relevant user
 	 * @param string $comment comment submitted
-	 * @param $minor Boolean: whereas it's a minor modification
+	 * @param bool|int $minor Boolean: whereas it's a minor modification
 	 *
 	 * @deprecated since 1.21, use doEditContent() instead.
 	 */
@@ -2184,8 +2184,8 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param $content Content: content submitted
 	 * @param $user User The relevant user
 	 * @param string $comment comment submitted
+	 * @param bool|int $minor Boolean: whereas it's a minor modification
 	 * @param $serialisation_format String: format for storing the content in the database
-	 * @param $minor Boolean: whereas it's a minor modification
 	 */
 	public function doQuickEditContent( Content $content, User $user, $comment = '', $minor = 0, $serialisation_format = null ) {
 		wfProfileIn( __METHOD__ );
@@ -2494,7 +2494,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 *        the suppression log instead of the deletion log
 	 * @param int $id article ID
 	 * @param $commit boolean defaults to true, triggers transaction end
-	 * @param &$error Array of errors to append to
+	 * @param array|string $error Array of errors to append to
 	 * @param $user User The deleting user
 	 * @return boolean true if successful
 	 */
@@ -2516,7 +2516,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 *        the suppression log instead of the deletion log
 	 * @param int $id article ID
 	 * @param $commit boolean defaults to true, triggers transaction end
-	 * @param &$error Array of errors to append to
+	 * @param Array|string $error
 	 * @param $user User The deleting user
 	 * @return Status: Status object; if successful, $status->value is the log_id of the
 	 *                 deletion log entry. If the page couldn't be deleted because it wasn't

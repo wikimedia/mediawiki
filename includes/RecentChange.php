@@ -300,7 +300,7 @@ class RecentChange {
 	 * @param string $line text to send
 	 * @param string $address defaults to $wgRC2UDPAddress.
 	 * @param string $prefix defaults to $wgRC2UDPPrefix.
-	 * @param int $port defaults to $wgRC2UDPPort. (Since 1.17)
+	 * @param int|string $port defaults to $wgRC2UDPPort. (Since 1.17)
 	 * @return Boolean: success
 	 */
 	public static function sendToUDP( $line, $address = '', $prefix = '', $port = '' ) {

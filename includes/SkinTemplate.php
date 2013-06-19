@@ -113,8 +113,8 @@ class SkinTemplate extends Skin {
 	 * roughly equivalent to PHPTAL 0.7.
 	 *
 	 * @param $classname String
-	 * @param string $repository subdirectory where we keep template files
-	 * @param $cache_dir string
+	 * @param bool|string $repository subdirectory where we keep template files
+	 * @param bool|string $cache_dir string
 	 * @return QuickTemplate
 	 * @private
 	 */
@@ -1104,6 +1104,7 @@ class SkinTemplate extends Skin {
 
 	/**
 	 * an array of edit links by default used for the tabs
+	 * @param $content_navigation
 	 * @return array
 	 * @private
 	 */
@@ -1373,6 +1374,7 @@ abstract class QuickTemplate {
 
 	/**
 	 * @private
+	 * @param $str
 	 * @return bool
 	 */
 	function haveData( $str ) {
@@ -1382,6 +1384,7 @@ abstract class QuickTemplate {
 	/**
 	 * @private
 	 *
+	 * @param $str
 	 * @return bool
 	 */
 	function haveMsg( $str ) {
@@ -1877,6 +1880,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * If you pass "flat" as an option then the returned array will be a flat array
 	 * of footer icons instead of a key/value array of footerlinks arrays broken
 	 * up into categories.
+	 * @param null $option
 	 * @return array|mixed
 	 */
 	function getFooterLinks( $option = null ) {
@@ -1916,7 +1920,8 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * in the list of footer icons. This is mostly useful for skins which only
 	 * display the text from footericons instead of the images and don't want a
 	 * duplicate copyright statement because footerlinks already rendered one.
-	 * @return
+	 * @param null $option
+	 * @return mixed
 	 */
 	function getFooterIcons( $option = null ) {
 		// Generate additional footer icons

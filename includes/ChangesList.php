@@ -465,6 +465,7 @@ class ChangesList extends ContextSource {
 
 	/**
 	 * Returns the string which indicates the number of watching users
+	 * @param $count
 	 * @return string
 	 */
 	protected function numberofWatchingusers( $count ) {
@@ -850,6 +851,7 @@ class EnhancedChangesList extends ChangesList {
 
 	/**
 	 * Enhanced RC group
+	 * @param $block
 	 * @return string
 	 */
 	protected function recentChangesBlockGroup( $block ) {

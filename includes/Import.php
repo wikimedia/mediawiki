@@ -291,7 +291,7 @@ class WikiImporter {
 	 * @param $revCount
 	 * @param $sRevCount
 	 * @param $pageInfo
-	 * @return
+	 * @return bool
 	 */
 	public function finishImportPage( $title, $origTitle, $revCount, $sRevCount, $pageInfo ) {
 		$args = func_get_args();

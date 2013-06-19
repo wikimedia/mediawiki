@@ -14,9 +14,9 @@ class ArrayUtils {
 	 * justification for breaking compatibility with installations
 	 * compiled with ./configure --disable-hash.
 	 *
-	 * @param $array The array to sort
-	 * @param $key The string key
-	 * @param $separator A separator used to delimit the array elements and the
+	 * @param array $array The array to sort
+	 * @param string $key The string key
+	 * @param string $separator A separator used to delimit the array elements and the
 	 *     key. This can be chosen to provide backwards compatibility with
 	 *     various consistent hash implementations that existed before this
 	 *     function was introduced.

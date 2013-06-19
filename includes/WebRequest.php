@@ -235,7 +235,7 @@ class WebRequest {
 	 *
 	 * @param string $path the URL path given from the client
 	 * @param array $bases one or more URLs, optionally with $1 at the end
-	 * @param string $key if provided, the matching key in $bases will be
+	 * @param bool|string $key if provided, the matching key in $bases will be
 	 *             passed on as the value of this URL parameter
 	 * @return array of URL variables to interpolate; empty if no match
 	 */

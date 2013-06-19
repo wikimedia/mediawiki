@@ -153,7 +153,7 @@ class Fallback {
 	 * Fallback implementation of mb_strpos, hardcoded to UTF-8.
 	 * @param $haystack String
 	 * @param $needle String
-	 * @param string $offset optional start position
+	 * @param int $offset optional start position
 	 * @param string $encoding optional encoding; ignored
 	 * @return int
 	 */
@@ -174,7 +174,7 @@ class Fallback {
 	 * Fallback implementation of mb_strrpos, hardcoded to UTF-8.
 	 * @param $haystack String
 	 * @param $needle String
-	 * @param string $offset optional start position
+	 * @param int $offset optional start position
 	 * @param string $encoding optional encoding; ignored
 	 * @return int
 	 */

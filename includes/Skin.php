@@ -1561,7 +1561,7 @@ abstract class Skin extends ContextSource {
 	 *   to be included in the link, like "&section=$section"
 	 * @param string $tooltip The tooltip to use for the link: will be escaped
 	 *   and wrapped in the 'editsectionhint' message
-	 * @param $lang    string Language code
+	 * @param bool|string $lang Language code
 	 * @return         string HTML to use for edit link
 	 */
 	public function doEditSectionLink( Title $nt, $section, $tooltip = null, $lang = false ) {

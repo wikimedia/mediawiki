@@ -405,6 +405,8 @@ class UserMailer {
 	 * This method is doing Q encoding inside encoded-words as defined by RFC 2047
 	 * This is for email headers.
 	 * The built in quoted_printable_encode() is for email bodies
+	 * @param $string
+	 * @param string $charset
 	 * @return string
 	 */
 	public static function quotedPrintable( $string, $charset = '' ) {

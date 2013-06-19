@@ -406,7 +406,7 @@ class MediaWiki {
 	 * Perform one of the "standard" actions
 	 *
 	 * @param $page Page
-	 * @param $requestTitle The original title, before any redirects were applied
+	 * @param Title $requestTitle The original title, before any redirects were applied
 	 */
 	private function performAction( Page $page, Title $requestTitle ) {
 		global $wgUseSquid, $wgSquidMaxage;

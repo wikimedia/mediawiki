@@ -1165,12 +1165,12 @@ class Block {
 	 *  - Other softblocks are chosen over autoblocks
 	 *  - If there are multiple exact or range blocks at the same level, the one chosen
 	 *    is random
-
+	 * @param array $blocks Array of blocks
 	 * @param Array $ipChain list of IPs (strings). This is used to determine how "close"
-	 * 	  a block is to the server, and if a block matches exactly, or is in a range.
-	 *	  The order is furthest from the server to nearest e.g., (Browser, proxy1, proxy2,
-	 *	  local-squid, ...)
-	 * @param Array $block Array of blocks
+	 *    a block is to the server, and if a block matches exactly, or is in a range.
+	 *    The order is furthest from the server to nearest e.g., (Browser, proxy1, proxy2,
+	 *    local-squid, ...)
+	 * @throws MWException
 	 * @return Block|null the "best" block from the list
 	 */
 	public static function chooseBlock( array $blocks, array $ipChain ) {

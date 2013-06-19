@@ -212,6 +212,8 @@ class CookieJar {
 
 	/**
 	 * @see Cookie::serializeToHttpRequest
+	 * @param $path
+	 * @param $domain
 	 * @return string
 	 */
 	public function serializeToHttpRequest( $path, $domain ) {

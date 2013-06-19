@@ -324,7 +324,7 @@ class SquidPurgeClient {
 
 	/**
 	 * @param $line
-	 * @return
+	 * @return void
 	 */
 	protected function processStatusLine( $line ) {
 		if ( !preg_match( '!^HTTP/(\d+)\.(\d+) (\d{3}) (.*)$!', $line, $m ) ) {

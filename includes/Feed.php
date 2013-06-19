@@ -190,7 +190,6 @@ abstract class ChannelFeed extends FeedItem {
 	 * @code
 	 * print "<feed>";
 	 * @endcode
-	 * @param $item
 	 */
 	abstract public function outHeader();
 
@@ -335,6 +334,7 @@ class RSSFeed extends ChannelFeed {
 class AtomFeed extends ChannelFeed {
 	/**
 	 * @todo document
+	 * @param $ts
 	 * @return string
 	 */
 	function formatTime( $ts ) {

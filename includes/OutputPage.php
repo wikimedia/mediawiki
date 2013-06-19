@@ -2107,7 +2107,7 @@ class OutputPage extends ContextSource {
 	 * and optionally an custom HTML title (content of the "<title>" tag).
 	 *
 	 * @param string|Message $pageTitle will be passed directly to setPageTitle()
-	 * @param string|Message $htmlTitle will be passed directly to setHTMLTitle();
+	 * @param bool|Message|string $htmlTitle will be passed directly to setHTMLTitle();
 	 *                   optional, if not passed the "<title>" attribute will be
 	 *                   based on $pageTitle
 	 */
@@ -2429,7 +2429,7 @@ $templates
 	 * @param $title Title to link
 	 * @param array $query query string parameters
 	 * @param string $text text of the link (input is not escaped)
-	 * @param $options Options array to pass to Linker
+	 * @param array $options Options array to pass to Linker
 	 */
 	public function addReturnTo( $title, $query = array(), $text = null, $options = array() ) {
 		if ( in_array( 'http', $options ) ) {

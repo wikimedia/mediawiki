@@ -342,6 +342,7 @@ class FileDeleteForm {
 	/**
 	 * Is the provided `oldimage` value valid?
 	 *
+	 * @param $oldimage
 	 * @return bool
 	 */
 	public static function isValidOldSpec( $oldimage ) {

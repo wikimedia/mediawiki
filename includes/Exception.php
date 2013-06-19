@@ -503,9 +503,9 @@ class UserBlockedError extends ErrorPageError {
 class UserNotLoggedIn extends ErrorPageError {
 
 	/**
-	 * @param $reasonMsg A message key containing the reason for the error.
+	 * @param string $reasonMsg A message key containing the reason for the error.
 	 *        Optional, default: 'exception-nologin-text'
-	 * @param $titleMsg A message key to set the page title.
+	 * @param string $titleMsg A message key to set the page title.
 	 *        Optional, default: 'exception-nologin'
 	 * @param $params Parameters to wfMessage().
 	 *        Optional, default: null

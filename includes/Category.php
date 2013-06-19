@@ -239,8 +239,8 @@ class Category {
 	/**
 	 * Fetch a TitleArray of up to $limit category members, beginning after the
 	 * category sort key $offset.
-	 * @param $limit integer
-	 * @param $offset string
+	 * @param bool|int $limit
+	 * @param string $offset
 	 * @return TitleArray object for category members.
 	 */
 	public function getMembers( $limit = false, $offset = '' ) {
@@ -277,6 +277,7 @@ class Category {
 
 	/**
 	 * Generic accessor
+	 * @param $key
 	 * @return bool
 	 */
 	private function getX( $key ) {

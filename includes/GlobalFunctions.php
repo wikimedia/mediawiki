@@ -38,6 +38,9 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 if ( !function_exists( 'iconv' ) ) {
 	/**
 	 * @codeCoverageIgnore
+	 * @param $from
+	 * @param $to
+	 * @param $string
 	 * @return string
 	 */
 	function iconv( $from, $to, $string ) {
@@ -48,6 +51,9 @@ if ( !function_exists( 'iconv' ) ) {
 if ( !function_exists( 'mb_substr' ) ) {
 	/**
 	 * @codeCoverageIgnore
+	 * @param $str
+	 * @param $start
+	 * @param string $count
 	 * @return string
 	 */
 	function mb_substr( $str, $start, $count = 'end' ) {
@@ -56,6 +62,8 @@ if ( !function_exists( 'mb_substr' ) ) {
 
 	/**
 	 * @codeCoverageIgnore
+	 * @param $str
+	 * @param $splitPos
 	 * @return int
 	 */
 	function mb_substr_split_unicode( $str, $splitPos ) {
@@ -66,6 +74,8 @@ if ( !function_exists( 'mb_substr' ) ) {
 if ( !function_exists( 'mb_strlen' ) ) {
 	/**
 	 * @codeCoverageIgnore
+	 * @param $str
+	 * @param string $enc
 	 * @return int
 	 */
 	function mb_strlen( $str, $enc = '' ) {
@@ -76,6 +86,10 @@ if ( !function_exists( 'mb_strlen' ) ) {
 if ( !function_exists( 'mb_strpos' ) ) {
 	/**
 	 * @codeCoverageIgnore
+	 * @param $haystack
+	 * @param $needle
+	 * @param int $offset
+	 * @param string $encoding
 	 * @return int
 	 */
 	function mb_strpos( $haystack, $needle, $offset = 0, $encoding = '' ) {
@@ -87,6 +101,10 @@ if ( !function_exists( 'mb_strpos' ) ) {
 if ( !function_exists( 'mb_strrpos' ) ) {
 	/**
 	 * @codeCoverageIgnore
+	 * @param $haystack
+	 * @param $needle
+	 * @param int $offset
+	 * @param string $encoding
 	 * @return int
 	 */
 	function mb_strrpos( $haystack, $needle, $offset = 0, $encoding = '' ) {
@@ -1485,7 +1503,7 @@ function wfMsgReal( $key, $args, $useDB = true, $forContent = false, $transform 
  *
  * @param $key String
  * @param $useDB Bool
- * @param string $langCode Code of the language to get the message for, or
+ * @param bool|string $langCode Code of the language to get the message for, or
  *                  behaves as a content language switch if it is a boolean.
  * @param $transform Boolean: whether to parse magic words, etc.
  * @return string
@@ -3428,7 +3446,7 @@ function wfSplitWikiID( $wiki ) {
  *                belongs to. May contain a single string if the query is only
  *                in one group.
  *
- * @param string $wiki the wiki ID, or false for the current wiki
+ * @param bool|string $wiki the wiki ID, or false for the current wiki
  *
  * Note: multiple calls to wfGetDB(DB_SLAVE) during the course of one request
  * will always return the same object, unless the underlying connection or load
@@ -3446,7 +3464,7 @@ function &wfGetDB( $db, $groups = array(), $wiki = false ) {
 /**
  * Get a load balancer object.
  *
- * @param string $wiki wiki ID, or false for the current wiki
+ * @param bool|string $wiki wiki ID, or false for the current wiki
  * @return LoadBalancer
  */
 function wfGetLB( $wiki = false ) {
@@ -3591,9 +3609,9 @@ function wfGetNull() {
  * in maintenance scripts, to avoid causing too much lag.  Of course, this is
  * a no-op if there are no slaves.
  *
- * @param $maxLag Integer (deprecated)
+ * @param bool|int $maxLag Integer (deprecated)
  * @param $wiki mixed Wiki identifier accepted by wfGetLB
- * @param $cluster string cluster name accepted by LBFactory
+ * @param bool|string $cluster string cluster name accepted by LBFactory
  */
 function wfWaitForSlaves( $maxLag = false, $wiki = false, $cluster = false ) {
 	$lb = ( $cluster !== false )
@@ -3839,13 +3857,13 @@ function wfRunHooks( $event, array $args = array() ) {
  *
  * @param string $format The format string (See php's docs)
  * @param $data: A binary string of binary data
- * @param $length integer or false: The minimum length of $data. This is to
- *	prevent reading beyond the end of $data. false to disable the check.
+ * @param bool|int $length integer or false: The minimum length of $data. This is to
+ *    prevent reading beyond the end of $data. false to disable the check.
  *
  * Also be careful when using this function to read unsigned 32 bit integer
  * because php might make it negative.
  *
- * @throws MWException if $data not long enough, or if unpack fails
+ * @throws MWException
  * @return array Associative array of the extracted data
  */
 function wfUnpack( $format, $data, $length = false ) {

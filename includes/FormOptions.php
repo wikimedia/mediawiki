@@ -320,6 +320,7 @@ class FormOptions implements ArrayAccess {
 	/* @{ */
 	/**
 	 * Whether option exist
+	 * @param mixed $name
 	 * @return bool
 	 */
 	public function offsetExists( $name ) {
@@ -327,6 +328,7 @@ class FormOptions implements ArrayAccess {
 	}
 	/**
 	 * Retrieve an option value
+	 * @param mixed $name
 	 * @return Mixed
 	 */
 	public function offsetGet( $name ) {

@@ -342,9 +342,9 @@ class SpecialAllpages extends IncludableSpecialPage {
 
 	/**
 	 * @param int $namespace Namespace (Default NS_MAIN)
-	 * @param string $from list all pages from this name (default FALSE)
-	 * @param string $to list all pages to this name (default FALSE)
-	 * @param bool $hideredirects dont show redirects (default FALSE)
+	 * @param bool|string $from list all pages from this name (default FALSE)
+	 * @param bool|string $to list all pages to this name (default FALSE)
+	 * @param bool $hideredirects don't show redirects (default FALSE)
 	 */
 	function showChunk( $namespace = NS_MAIN, $from = false, $to = false, $hideredirects = false ) {
 		$output = $this->getOutput();

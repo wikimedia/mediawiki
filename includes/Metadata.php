@@ -28,7 +28,7 @@ abstract class RdfMetaData {
 
 	/**
 	 * Constructor
-	 * @param $article Article object
+	 * @param Page $article Article object
 	 */
 	public function __construct( Page $article ) {
 		$this->mArticle = $article;
