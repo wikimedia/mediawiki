@@ -1021,6 +1021,7 @@ $wgAutoloadLocalClasses = array(
 	'UploadFromUrl' => 'includes/upload/UploadFromUrl.php',
 	'UploadStash' => 'includes/upload/UploadStash.php',
 	'UploadStashBadPathException' => 'includes/upload/UploadStash.php',
+	'UploadStashException' => 'includes/upload/UploadStash.php',
 	'UploadStashFile' => 'includes/upload/UploadStash.php',
 	'UploadStashFileException' => 'includes/upload/UploadStash.php',
 	'UploadStashFileNotFoundException' => 'includes/upload/UploadStash.php',
