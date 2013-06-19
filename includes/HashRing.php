@@ -27,6 +27,8 @@
  * @since 1.22
  */
 class HashRing {
+	/** @var Array (location => weight) */
+	protected $sourceMap = array();
 	/** @var Array (location => (start, end)) */
 	protected $ring = array();
 
@@ -40,6 +42,7 @@ class HashRing {
 		if ( !count( $map ) ) {
 			throw new MWException( "Ring is empty or all weights are zero." );
 		}
+		$this->sourceMap = $map;
 		// Sort the locations based on the hash of their names
 		$hashes = array();
 		foreach ( $map as $location => $weight ) {
@@ -111,5 +114,29 @@ class HashRing {
 			$locations[] = $location;
 		}
 		return $locations;
+	}
+
+	/**
+	 * Get the map of locations to weight (ignores 0-weight items)
+	 *
+	 * @return array
+	 */
+	public function getLocationWeights() {
+		return $this->sourceMap;
+	}
+
+	/**
+	 * Get a new hash ring with a location removed from the ring
+	 *
+	 * @param string $location
+	 * @return HashRing|bool Returns false if no non-zero weighted spots are left
+	 */
+	public function newWithoutLocation( $location ) {
+		$map = $this->sourceMap;
+		unset( $map[$location] );
+		if ( count( $map ) ) {
+			return new self( $map );
+		}
+		return false;
 	}
 }
