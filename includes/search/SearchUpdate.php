@@ -29,9 +29,28 @@
  * @ingroup Search
  */
 class SearchUpdate implements DeferrableUpdate {
+	/**
+	 * Page id being updated
+	 * @var int
+	 */
+	private $id = 0;
 
-	private $mId = 0, $mNamespace, $mTitle, $mText;
-	private $mTitleWords;
+	/**
+	 * Namespace of page being updated
+	 * @var int
+	 */
+	private $namespace;
+
+	/**
+	 * Title we're updating (without namespace)
+	 * @var string
+	 */
+	private $title;
+
+	/**
+	 * Raw text to put into the index
+	 */
+	private $text;
 
 	/**
 	 * Constructor
@@ -50,57 +69,63 @@ class SearchUpdate implements DeferrableUpdate {
 		}
 
 		if ( $nt ) {
-			$this->mId = $id;
+			$this->id = $id;
 			// @todo This isn't ideal, we'd really like to have content-specific
 			// handling here. See similar content in SearchEngine::initText().
 			if( is_string( $content ) ) {
 				// b/c for ApprovedRevs
-				$this->mText = $content;
+				$this->text = $content;
 			} else {
-				$this->mText = $content ? $content->getTextForSearchIndex() : false;
+				$this->text = $content ? $content->getTextForSearchIndex() : false;
 			}
 
-			$this->mNamespace = $nt->getNamespace();
-			$this->mTitle = $nt->getText(); # Discard namespace
-
-			$this->mTitleWords = $this->mTextWords = array();
+			$this->namespace = $nt->getNamespace();
+			$this->title = $nt->getText(); # Discard namespace
 		} else {
 			wfDebug( "SearchUpdate object created with invalid title '$title'\n" );
 		}
 	}
 
+	/**
+	 * Perform actual update for the entry
+	 */
 	public function doUpdate() {
 		global $wgDisableSearchUpdate;
 
-		if ( $wgDisableSearchUpdate || !$this->mId ) {
+		if ( $wgDisableSearchUpdate || !$this->id ) {
 			return;
 		}
 
 		wfProfileIn( __METHOD__ );
 
 		$search = SearchEngine::create();
-		$normalTitle = $search->normalizeText( Title::indexTitle( $this->mNamespace, $this->mTitle ) );
+		$normalTitle = $search->normalizeText( Title::indexTitle( $this->namespace, $this->title ) );
 
-		if ( WikiPage::newFromId( $this->mId ) === null ) {
-			$search->delete( $this->mId, $normalTitle );
+		if ( WikiPage::newFromId( $this->id ) === null ) {
+			$search->delete( $this->id, $normalTitle );
 			wfProfileOut( __METHOD__ );
 			return;
-		} elseif ( $this->mText === false ) {
-			$search->updateTitle( $this->mId, $normalTitle );
+		} elseif ( $this->text === false ) {
+			$search->updateTitle( $this->id, $normalTitle );
 			wfProfileOut( __METHOD__ );
 			return;
 		}
 
-		$text = self::updateText( $this->mText );
+		$text = self::updateText( $this->text );
 
-		wfRunHooks( 'SearchUpdate', array( $this->mId, $this->mNamespace, $this->mTitle, &$text ) );
+		wfRunHooks( 'SearchUpdate', array( $this->id, $this->namespace, $this->title, &$text ) );
 
 		# Perform the actual update
-		$search->update( $this->mId, $normalTitle, $search->normalizeText( $text ) );
+		$search->update( $this->id, $normalTitle, $search->normalizeText( $text ) );
 
 		wfProfileOut( __METHOD__ );
 	}
 
+	/**
+	 * Clean text for indexing. Only really suitable for indexing in databases.
+	 * If you're using a real search engine, you'll probably want to override
+	 * this behavior and do something nicer with the original wikitext.
+	 */
 	public static function updateText( $text ) {
 		global $wgContLang;
 
