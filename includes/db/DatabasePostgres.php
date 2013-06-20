@@ -721,6 +721,29 @@ __INDEXATTR__;
 	}
 
 	/**
+	 * Change the FOR UPDATE option as necessary based on the join conditions. Then pass
+	 * to the parent function to get the actual SQL text.
+	 *
+	 * In Postgres when using FOR UPDATE, only the main table and tables that are inner joined
+	 * can be locked. That means tables in an outer join cannot be FOR UPDATE locked. Trying to do
+	 * so causes a DB error. This wrapper checks which tables can be locked and adjusts it accordingly.
+	 */
+	function selectSQLText( $table, $vars, $conds = '', $fname = __METHOD__, $options = array(), $join_conds = array() ) {
+		$forUpdateKey = array_search( 'FOR UPDATE', $options );
+		if ( $forUpdateKey !== false && $join_conds ) {
+			unset( $options[$forUpdateKey] );
+
+			foreach ( $join_conds as $table => $join_cond ) {
+				if ( 0 === preg_match( '/^(?:LEFT|RIGHT|FULL)(?: OUTER)? JOIN$/i', $join_cond[0] ) ) {
+					$options['FOR UPDATE'][] = $table;
+				}
+			}
+		}
+
+		return parent::selectSQLText( $table, $vars, $conds, $fname, $options, $join_conds );
+	}
+
+	/**
 	 * INSERT wrapper, inserts an array into a table
 	 *
 	 * $args may be a single associative array, or an array of these with numeric keys,
@@ -1399,9 +1422,12 @@ SQL;
 		//		: false );
 		//}
 
-		if ( isset( $noKeyOptions['FOR UPDATE'] ) ) {
+		if ( isset( $options['FOR UPDATE'] ) ) {
+			$postLimitTail .= ' FOR UPDATE OF ' . implode( ', ', $options['FOR UPDATE'] );
+		} else if ( isset( $noKeyOptions['FOR UPDATE'] ) ) {
 			$postLimitTail .= ' FOR UPDATE';
 		}
+
 		if ( isset( $noKeyOptions['DISTINCT'] ) || isset( $noKeyOptions['DISTINCTROW'] ) ) {
 			$startOpts .= 'DISTINCT';
 		}
