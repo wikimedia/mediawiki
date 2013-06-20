@@ -344,6 +344,7 @@ $messages = array(
 'create-this-page' => 'Crear iste pagina',
 'delete' => 'Deler',
 'deletethispage' => 'Deler iste pagina',
+'undeletethispage' => 'Restaurar iste pagina',
 'undelete_short' => 'Restaurar {{PLURAL:$1|un modification|$1 modificationes}}',
 'viewdeleted_short' => 'Vider {{PLURAL:$1|un modification|$1 modificationes}} delite',
 'protect' => 'Proteger',
@@ -545,6 +546,8 @@ $2',
 'namespaceprotected' => "Tu non ha le permission de modificar paginas in le spatio de nomines '''$1'''.",
 'customcssprotected' => 'Tu non ha le permission de modificar iste pagina de CSS perque illo contine le configuration personal de un altere usator.',
 'customjsprotected' => 'Tu non ha le permission de modificar iste pagina de JavaScript perque illo contine le configuration personal de un altere usator.',
+'mycustomcssprotected' => 'Tu non ha le permission de modificar iste pagina de CSS.',
+'mycustomjsprotected' => 'Tu non ha le permission de modificar iste pagina de JavaScript.',
 'ns-specialprotected' => 'Le paginas special non es modificabile.',
 'titleprotected' => "Iste titulo ha essite protegite contra creation per [[User:$1|$1]].
 Le motivo specificate es ''$2''.",
@@ -685,7 +688,7 @@ Entra un adresse ben formatate, o vacua ille campo.',
 'cannotchangeemail' => 'Le adresses de e-mail associate al contos non pote esser cambiate in iste wiki.',
 'emaildisabled' => 'Iste sito non pote inviar e-mail.',
 'accountcreated' => 'Conto create',
-'accountcreatedtext' => 'Le conto del usator $1 ha essite create.',
+'accountcreatedtext' => 'Le conto de usator [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|discussion]]) ha essite create.',
 'createaccount-title' => 'Creation de un conto pro {{SITENAME}}',
 'createaccount-text' => 'Un persona ha create un conto in tu adresse de e-mail a {{SITENAME}} ($4) denominate "$2", con le contrasigno "$3".
 Tu deberea aperir un session e cambiar tu contrasigno ora.
@@ -726,6 +729,7 @@ Es possibile que tu ha ja cambiate tu contrasigno o requestate un nove contrasig
 # Special:PasswordReset
 'passwordreset' => 'Reinitialisar contrasigno',
 'passwordreset-text-one' => 'Completa iste formulario pro reinitialisar tu contrasigno.',
+'passwordreset-text-many' => '{{PLURAL:$1|Entra un de iste datos pro reinitialisar tu contrasigno.}}',
 'passwordreset-legend' => 'Reinitialisar contrasigno',
 'passwordreset-disabled' => 'Le reinitialisation de contrasignos ha essite disactivate in iste wiki.',
 'passwordreset-emaildisabled' => 'Le functionalitate de e-mail ha essite disactivate in iste wiki.',
@@ -981,6 +985,7 @@ Nulle explication disponibile.',
 Pare que illo ha essite delite.',
 'edit-conflict' => 'Conflicto inter modificationes.',
 'edit-no-change' => 'Tu modification ha essite ignorate, proque nulle cambio esseva facite in le texto.',
+'postedit-confirmation' => 'Tu modification ha essite salveguardate.',
 'edit-already-exists' => 'Non poteva crear un nove pagina.
 Illo existe ja.',
 'defaultmessagetext' => 'Texto predefinite del message',
@@ -988,7 +993,7 @@ Illo existe ja.',
 'invalid-content-data' => 'Datos de contento invalide',
 'content-not-allowed-here' => 'Le contento "$1" non es permittite in le pagina [[$2]]',
 'editwarning-warning' => 'Quitar iste pagina pote causar le perdita de omne modificationes que tu ha facite.
-Si tu ha aperite un session, tu pote disactivar iste aviso in le section "{{int:prefs-editing}}" de tu preferentias.',
+Si tu ha aperite un session, tu pote disactivar iste aviso in le section "Modification" de tu preferentias.',
 
 # Content models
 'content-model-wikitext' => 'wikitexto',
@@ -1422,6 +1427,7 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'userrights-changeable-col' => 'Gruppos que tu pote modificar',
 'userrights-unchangeable-col' => 'Gruppos que tu non pote modificar',
 'userrights-conflict' => 'Conflicto inter derectos de usator! Per favor applica tu cambiamentos de novo.',
+'userrights-removed-self' => 'Tu ha removite con successo tu proprie derectos. In consequentia, tu non plus pote acceder a iste pagina.',
 
 # Groups
 'group' => 'Gruppo:',
@@ -1492,6 +1498,8 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'right-editusercssjs' => 'Modificar le files CSS e JS de altere usatores',
 'right-editusercss' => 'Modificar le files CSS de altere usatores',
 'right-edituserjs' => 'Modificar le files JS de altere usatores',
+'right-editmyusercss' => 'Modificar le proprie files CSS de usator',
+'right-editmyuserjs' => 'Modificar le proprie files JavaScript de usator',
 'right-rollback' => 'Rapidemente revocar le modificationes del ultime usator que modificava un pagina particular',
 'right-markbotedits' => 'Marcar modificationes de reversion como facite per un bot',
 'right-noratelimit' => 'Non esser subjecte al limites de frequentia de actiones',

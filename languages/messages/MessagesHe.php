@@ -1618,6 +1618,7 @@ $1",
 'userrights-changeable-col' => 'קבוצות שבאפשרותכם לשנות',
 'userrights-unchangeable-col' => 'קבוצות שאין באפשרותכם לשנות',
 'userrights-conflict' => 'התנגשות הרשאות משתמש! אנא בצעו את השינויים שלכם שוב.',
+'userrights-removed-self' => 'הסרת בהצלחה את הרשאות המשתמש שלך. לכן אין לך כעת אפשרות לגשת לדף זה.',
 
 # Groups
 'group' => 'קבוצה:',

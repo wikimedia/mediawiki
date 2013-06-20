@@ -490,6 +490,7 @@ $messages = array(
 'create-this-page' => 'Loo see lehekülg',
 'delete' => 'Kustuta',
 'deletethispage' => 'Kustuta see lehekülg',
+'undeletethispage' => 'Taasta see lehekülg',
 'undelete_short' => 'Taasta {{PLURAL:$1|üks muudatus|$1 muudatust}}',
 'viewdeleted_short' => 'Vaata {{PLURAL:$1|üht|$1}} kustutatud redaktsiooni',
 'protect' => 'Kaitse',

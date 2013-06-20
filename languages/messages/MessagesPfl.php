@@ -296,6 +296,7 @@ $messages = array(
 # General errors
 'error' => 'Irrdumm',
 'databaseerror' => 'Daadebongg-Irrdumm',
+'readonly' => 'Daadebongg blogiead',
 'missing-article' => 'De Tegschd fa „$1“ $2 isch inde Daadebongg nedd gfunne worre.
 
 Noamalawees heeßd des, dass die Said gleschd worre isch.
@@ -303,6 +304,7 @@ Noamalawees heeßd des, dass die Said gleschd worre isch.
 Wonnse des awwa nedd isch, hoschd villaischdn Irdumm inde Daadebongg gfunne.
 Bidde meldsm [[Special:ListUsers/sysop|Adminischdrador]], un gebbde URL dzu õ.',
 'missingarticle-rev' => '(Ausgawenumma#: $1)',
+'missingarticle-diff' => '(Unnaschied: $1, $2)',
 'internalerror' => 'Inderna Irrdumm',
 'internalerror_info' => 'Inderna Irrdumm: $1',
 'fileappenderrorread' => 'Beim dzugiesche hoddma „$1“ nedd lese kenne.',
@@ -346,7 +348,16 @@ S konn soi, dasses ä odda mea Zaische drin hodd, wu im Tidl vunde Said nedd gbr
 'gotaccount' => 'Hoschd schun ä Kondo? $1',
 'gotaccountlink' => 'Õmelde',
 'userlogin-resetlink' => 'Hoschd doi Daade vagesse?',
+'badretype' => 'Kennword bassd nedd',
+'userexists' => 'De Middawaida hodds schun.
+Nemmen onnare.',
+'loginerror' => 'Irrdumm baim Õmelde',
+'createaccounterror' => 'Kondo $1 komma nedd mache',
+'loginsuccesstitle' => 'Konschd schaffe',
+'login-userblocked' => 'De Middawaida deaf do nemme schaffe.',
 'mailmypassword' => 'Naijs Kennword iwwa E-Mail schigge',
+'accountcreated' => 'Kondo õgleeschd',
+'login-abort-generic' => 'Hodd nedd gklabbd - Abgbroche',
 'loginlanguagelabel' => 'Schbrooch: $1',
 
 # Change password dialog
@@ -400,8 +411,10 @@ S konn soi, dasses ä odda mea Zaische drin hodd, wu im Tidl vunde Said nedd gbr
 'summary-preview' => 'Iwwabligg:',
 'blockedtitle' => 'Middawaida isch gschbead',
 'blockednoreason' => "s'hod kän Grund",
+'whitelistedittext' => 'Mugschd disch $1 fas schaffe',
 'loginreqtitle' => 'Mugschd disch õmelde',
 'loginreqlink' => 'Õmelde',
+'accmailtitle' => 'Kennword gschiggd',
 'newarticle' => '(Naij)',
 'newarticletext' => "Du bischdm Lingg nochgõnge zu enna Said, wus ganedd hodd.
 Fa die Said õzleesche, konnschd do im Käschdl unne õfonge mid schraiwe (gugg [[{{MediaWiki:Helppage}}|Hilf]] fa mea Auskinfd).
@@ -415,7 +428,10 @@ Du konschd uff onnare Saide [[Special:Search/{{PAGENAME}}|faden Tidl gugge]], od
 'previewnote' => "'''Deng'g drõõ, dasses nua e Vorschau isch.'''
 Doi Ännarunge sinn noch nedd gschbaischadd worre!",
 'editing' => 'Õm $1 beawaide',
+'creating' => 'Magsch $1',
 'editingsection' => '$1 beawaide (de Deel)',
+'editingcomment' => '$1 beawaide (de Deel)',
+'editconflict' => 'Schdraid ums Ännare: $1',
 'yourtext' => 'Doin Tegschd',
 'storedversion' => 'Gschbaischerdi Version',
 'yourdiff' => 'Unaschied',
@@ -433,8 +449,10 @@ Du gibbschd do a zu, dasses selwaschd gschriwwe hoschd odda vuna effendlischi, f
 'moveddeleted-notice' => 'Die Said isch gleschd worre.
 De Leschoidrach fa die Said isch do unne als Gwell õgewwe.',
 'log-fulllog' => 'Alli Oidräsch vunde Logbischa õgugge',
+'edit-conflict' => 'Schdraid ums Ännare.',
 
 # Content models
+'content-model-text' => 'Glaategschd',
 'content-model-css' => 'CSS',
 
 # Parser/template warnings
@@ -527,6 +545,7 @@ Ealaidarung: '''({{int:cur}})''' = Unnaschied zu jezd,
 'searchprofile-everything-tooltip' => 'Such iwwaraal (a wuma dischbedierd)',
 'searchprofile-advanced-tooltip' => 'Gugg in õnnare Nõmensreum',
 'search-result-size' => '$1 ({{PLURAL:$2|1 Word|$2 Wärda}})',
+'search-result-score' => 'Bdaidung: $1%',
 'search-redirect' => '(Waidalaidung $1)',
 'search-section' => '(Abschnidd $1)',
 'search-suggest' => 'Hoschd gemäänd: $1',
@@ -535,6 +554,7 @@ Ealaidarung: '''({{int:cur}})''' = Unnaschied zu jezd,
 'search-interwiki-more' => '(meh)',
 'search-relatedarticle' => 'Vawond',
 'mwsuggest-disable' => 'Schald Voaschlesch ab',
+'searcheverything-enable' => 'Gugg iwwaraal',
 'searchrelated' => 'vawond',
 'searchall' => 'alle',
 'showingresultsheader' => "{{PLURAL:$5|Eagewnis '''$1''' vun '''$3'''|Eagewnis '''$1–$2''' vun '''$3'''}} fa '''$4'''",
@@ -768,15 +788,26 @@ Saide uff [[Special:Watchlist|Doina Beowachdungslischd]] sinn '''fedd'''.",
 # Special:Categories
 'categories' => 'Sachgrubbe',
 
+# Special:DeletedContributions
+'sp-deletedcontributions-contribs' => 'Baidräsch',
+
 # Special:LinkSearch
 'linksearch' => 'Exderne Lings',
+'linksearch-pat' => 'Suchmuschda',
 'linksearch-line' => '$1 isch vun $2 valinggd',
 
+# Special:ListUsers
+'listusers-submit' => 'Zaische',
+'listusers-noresult' => 'Kä Middawaida gfunne',
+'listusers-blocked' => '(gschberd)',
+
 # Special:ListGroupRights
+'listgrouprights-group' => 'Grubb',
 'listgrouprights-members' => '(Midgliedalischd)',
 
 # Email user
 'emailuser' => 'E-Mail õnde Benudzer',
+'emailusername' => 'Middawaidanõme:',
 'emailfrom' => 'Vum:',
 'emailto' => 'Fa:',
 'emailsubject' => 'Bdreff:',

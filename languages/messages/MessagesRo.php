@@ -1553,6 +1553,7 @@ Dacă decideți furnizarea sa, acesta va fi folosit pentru a vă atribui munca.'
 'userrights-changeable-col' => 'Grupuri pe care le puteți schimba',
 'userrights-unchangeable-col' => 'Grupuri pe care nu le puteți schimba',
 'userrights-conflict' => 'Conflict al drepturilor de utilizator! Aplicați din nou modificările dumneavoastră.',
+'userrights-removed-self' => 'V-ați eliminat cu succes propriile drepturi. Ca urmare, nu mai puteți accesa această pagină.',
 
 # Groups
 'group' => 'Grup:',

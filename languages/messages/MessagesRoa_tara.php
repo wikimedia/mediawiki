@@ -1317,6 +1317,7 @@ Ce tu 'u mitte, a fatje ca è fatte t'avène ricanusciute.",
 'userrights-unchangeable-col' => 'Gruppe ca tu non ge puè cangià',
 'userrights-irreversible-marker' => '$1*',
 'userrights-conflict' => 'Conflitte sus a le deritte utende! Pe piacere appliche le cangiaminde tune arrete.',
+'userrights-removed-self' => "T'è luate le deritte tune. Mò non ge puè cchiù trasè jndr'à sta pàgene.",
 
 # Groups
 'group' => 'Gruppe:',
