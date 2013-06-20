@@ -47,7 +47,7 @@ directories. See FileBackend.php for full documentation for each function.
 The following basic operations are supported for reading from a backend:
 
 On files:
-* state a file for basic information (timestamp, size)
+* stat a file for basic information (timestamp, size)
 * read a file into a string or  several files into a map of path names to strings
 * download a file or set of files to a temporary file (on a mounted file system)
 * get the SHA1 hash of a file
