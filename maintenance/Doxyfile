@@ -1,5 +1,7 @@
-# Doxyfile 1.7.5.1
+# Doxyfile 1.7.6.1
 
+# This file describes the settings to be used by the documentation system
+# doxygen (www.doxygen.org) for MediaWiki.
 #
 # Some placeholders have been added for MediaWiki usage:
 # {{OUTPUT_DIRECTORY}}
@@ -64,6 +66,7 @@ ALIASES =	"type{1}=<b> \1 </b>:" \
 		"copyright=\note" \
 		"license=\note" \
 		"codeCoverageIgnore="
+TCL_SUBST              =
 OPTIMIZE_OUTPUT_FOR_C  = NO
 OPTIMIZE_OUTPUT_JAVA   = NO
 OPTIMIZE_FOR_FORTRAN   = NO
@@ -72,13 +75,14 @@ EXTENSION_MAPPING      =
 BUILTIN_STL_SUPPORT    = NO
 CPP_CLI_SUPPORT        = NO
 SIP_SUPPORT            = NO
-IDL_PROPERTY_SUPPORT   = NO
+IDL_PROPERTY_SUPPORT   = YES
 DISTRIBUTE_GROUP_DOC   = YES
 SUBGROUPING            = YES
 INLINE_GROUPED_CLASSES = NO
 INLINE_SIMPLE_STRUCTS  = NO
 TYPEDEF_HIDES_STRUCT   = NO
 SYMBOL_CACHE_SIZE      = 0
+LOOKUP_CACHE_SIZE      = 0
 #---------------------------------------------------------------------------
 # Build related configuration options
 #---------------------------------------------------------------------------
@@ -217,7 +221,7 @@ HTML_STYLESHEET        =
 HTML_EXTRA_FILES       =
 HTML_COLORSTYLE_HUE    = 220
 HTML_COLORSTYLE_SAT    = 100
-HTML_COLORSTYLE_GAMMA  =  80
+HTML_COLORSTYLE_GAMMA  = 80
 HTML_TIMESTAMP         = YES
 HTML_ALIGN_MEMBERS     = YES
 HTML_DYNAMIC_SECTIONS  = NO
