@@ -1055,6 +1055,8 @@ Parameters:
 * $1 - an URL to [[Special:Userlogin]] containing <code>returnto</code> and <code>returntoquery</code> parameters',
 'welcomeuser' => 'Text for a welcome heading that users see after registering a user account. $1 is the username of the new user. See [[bugzilla:42215]]',
 'welcomecreation-msg' => 'A welcome message users see after registering a user account, following a welcomeuser heading. $1 is the username of the new user. Replaces welcomecreation in 1.21wmf5,see [[bugzilla:42215]]',
+'yourname' => 'Since 1.22 no longer used in core, but used by some extensions.
+{{Identical|Username}}',
 'userlogin-yourname' => "In user login & create account forms, label for username field.
 {{doc-important|<nowiki>{{</nowiki>[[Gender|GENDER]]<nowiki>}}</nowiki> is '''NOT''' supported.}}
 
@@ -1078,6 +1080,7 @@ See examples: [{{canonicalurl:Special:UserLogin}} Special:UserLogin] and [{{cano
 
 See example: [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]
 {{Identical|Enter password}}',
+'yourpasswordagain' => 'Since 1.22 no longer used in core, but may be used by some extensions. DEPRECATED',
 'createacct-yourpasswordagain' => 'In create account form, label for field to re-enter password
 
 See example: [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]
@@ -1108,6 +1111,12 @@ See also:
 'nav-login-createaccount' => "Shown to anonymous users in the upper right corner of the page. When you can't create an account, the message {{msg-mw|login}} is shown.
 {{Identical|Log in / create account}}",
 'loginprompt' => 'A small notice in the log in form.',
+'userlogin' => 'Since 1.22 no longer used in core, but may still be used by extensions. DEPRECATED
+
+{{Identical|Log in / create account}}',
+'userloginnocreate' => 'Since 1.22 no longer used in core, but may still be used by some extensions. A variant of {{msg-mw|Userlogin}} when the user is not allowed to create a new account. DEPRECATED
+
+{{Identical|Log in}}',
 'logout' => 'Used as link text in your personal toolbox (upper right side).
 
 See also:
@@ -1128,11 +1137,21 @@ See example: [{{canonicalurl:Special:UserLogin}} Special:UserLogin]
 'userlogin-joinproject' => 'Text of button inviting user to create an account.
 
 See example: [{{canonicalurl:Special:UserLogin}} Special:UserLogin]',
+'nologin' => 'Since 1.22 no longer used in core, but may be used by some extensions. DEPRECATED. Parameters:
+* $1 - a link to the account creation form, and the text of it is {{msg-mw|Nologinlink}}
+{{Identical|Do not have an account}}',
+'nologinlink' => 'Since 1.22 no longer used in core, but may be used by some extensions. DEPRECATED.
+{{Identical|Create an account}}',
 'createaccount' => 'Used on the top of the page for logged out users, where it appears next to {{msg-mw|login}}, so consider making them similar.
 
 It is also used on the submit button in the form/special page where you register a new account.
 {{doc-special|CreateAccount}}
 {{Identical|Create account}}',
+'gotaccount' => 'Since 1.22 no longer used in core, but may be used by some extensions. DEPRECATED. Parameter:
+* $1 - a link to the log in form, and the text of it is {{msg-mw|Gotaccountlink}}',
+'gotaccountlink' => 'Since 1.22 no longer used in core, but may be used by some extensions. DEPRECATED.
+{{Identical|Log in}}',
+'userlogin-resetlink' => 'Since 1.22 no longer used in core, but may be used by some extensions. DEPRECATED.',
 'userlogin-resetpassword-link' => 'Used as link text on login form.
 
 The link points to the local [[Special:PasswordReset]].
@@ -1172,6 +1191,9 @@ See example: [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?t
 
 See example: [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]',
 'createacct-realname' => 'In vertical-layout create account form, label for field to enter optional real name.',
+'createaccountreason' => 'Since 1.22 no longer used in core, but may be used by some extensions. DEPRECATED
+
+{{Identical|Reason}}',
 'createacct-reason' => 'In create account form, label for field to enter reason to create an account when already logged-in.
 
 See example: [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]
