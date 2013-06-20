@@ -377,7 +377,7 @@ class CoreParserFunctions {
 
 		// disallow some styles that could be used to bypass $wgRestrictDisplayTitle
 		if ( $wgRestrictDisplayTitle ) {
-			$htmlTagsCallback = function ( $params ) {
+			$htmlTagsCallback = function ( &$params ) {
 				$decoded = Sanitizer::decodeTagAttributes( $params );
 
 				if ( isset( $decoded['style'] ) ) {
