@@ -883,6 +883,7 @@ Być może właśnie zmienił{{GENDER:|eś|aś|eś(‐aś)}} swoje hasło lub po
 # Special:PasswordReset
 'passwordreset' => 'Wyczyść hasło',
 'passwordreset-text-one' => 'Wypełnij ten formularz, aby zresetować hasło.',
+'passwordreset-text-many' => '{{PLURAL:$1|Aby zresetować hasło, wpisz jedną z danych poniżej}}',
 'passwordreset-legend' => 'Zresetuj hasło',
 'passwordreset-disabled' => 'Na tej wiki wyłączono możliwość resetowania haseł.',
 'passwordreset-emaildisabled' => 'Wysyłanie emaili zostało wyłączone na tej wiki',
@@ -4134,7 +4135,7 @@ Powinieneś otrzymać [{{SERVER}}{{SCRIPTPATH}}/COPYING kopię licencji GNU Gene
 'rightsnone' => 'brak',
 
 # Feedback
-'feedback-bugornote' => 'Jeśli jesteś {{GENDER:|gotów|gotowa}} szczegółowo opisać problem techniczny, proszę [$1 zgłoś błąd].
+'feedback-bugornote' => 'Jeśli jesteś w stanie szczegółowo opisać problem techniczny, proszę [$1 zgłoś błąd].
 W przeciwnym wypadku można użyć prostego formularza poniżej. Komentarz zostanie dodany do strony "[$3  $2]", wraz z nazwą użytkownika.',
 'feedback-subject' => 'Temat',
 'feedback-message' => 'Wiadomość:',

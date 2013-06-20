@@ -434,6 +434,7 @@ $messages = array(
 'create-this-page' => 'Skapa þessari síðu',
 'delete' => 'Eyða',
 'deletethispage' => 'Eyða þessari síðu',
+'undeletethispage' => 'Endurvekja þessa síðu',
 'undelete_short' => 'Endurvekja {{PLURAL:$1|eina breytingu|$1 breytingar}}',
 'viewdeleted_short' => 'Skoða {{PLURAL:$1|eina eydda breytingu|$1 eyddar breytingar}}',
 'protect' => 'Vernda',
@@ -633,6 +634,8 @@ $2',
 'namespaceprotected' => "Þú hefur ekki leyfi til að breyta síðum í '''$1''' nafnrýminu.",
 'customcssprotected' => 'Þú hefur ekki leyfi að breyta þessari CSS-umbrotsíðu, því hún hefur notendastillingar annars notanda.',
 'customjsprotected' => 'Þú hefur ekki leyfi til að breyta þessari JavaScript síðu, því hún hefur notendastillingar annars notanda.',
+'mycustomcssprotected' => 'Þú hefur ekki leyfi til þess að breyta þessari CSS-síðu.',
+'mycustomjsprotected' => 'Þú hefur ekki leyfi til þess að breyta þessari JavaScript-síðu.',
 'ns-specialprotected' => 'Kerfissíðum er ekki hægt að breyta.',
 'titleprotected' => "Þessi titill hefur verið verndaður fyrir sköpun af [[User:$1|$1]].
 Ástæðan sem gefin var ''$2''.",
@@ -683,6 +686,7 @@ Ekki gleyma að breyta [[Special:Preferences|{{SITENAME}} stillingunum]] þínum
 'userlogout' => 'Útskrá',
 'notloggedin' => 'Ekki innskráð(ur)',
 'userlogin-noaccount' => 'Áttu ekki aðgang?',
+'userlogin-joinproject' => 'Sameina {{SITENAME}}',
 'nologin' => "Ekki með aðgang? '''$1'''.",
 'nologinlink' => 'Stofnaðu aðgang',
 'createaccount' => 'Nýskrá',
@@ -707,6 +711,7 @@ Ekki gleyma að breyta [[Special:Preferences|{{SITENAME}} stillingunum]] þínum
 'createacct-benefit-heading' => '{{SITENAME}} er skrifuð af fólki eins og þér.',
 'createacct-benefit-body1' => '{{PLURAL:$1|breyting|breytingar}}',
 'createacct-benefit-body2' => '{{PLURAL:$1|síða|síður}}',
+'createacct-benefit-body3' => '{{PLURAL:$1|nýlegur stuðningsaðili|nýlegir stuðningsaðilar}}',
 'badretype' => 'Lykilorðin sem þú skrifaðir eru ekki eins.',
 'userexists' => 'Þetta notandanafn er þegar í notkun.
 Vinsamlegast veldu þér annað.',
@@ -764,7 +769,7 @@ Gjörðu svo vel og settu inn netfang á gildu formi eða tæmdu reitinn.',
 'cannotchangeemail' => 'Ekki er hægt að breyta netföngum notenda á þessum wiki',
 'emaildisabled' => 'Þessi síða getur ekki sent tölvupóst.',
 'accountcreated' => 'Aðgangur búinn til',
-'accountcreatedtext' => 'Notandaaðgangur fyrir $1 er tilbúinn.',
+'accountcreatedtext' => 'Notandaaðgangurinn fyrir [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|spjall]]) hefur verið búinn til.',
 'createaccount-title' => 'Innskráningagerð á {{SITENAME}}',
 'createaccount-text' => 'Einhver bjó til aðgang fyrir netfangið þitt á {{SITENAME}} ($4) undir nafninu „$2“, með lykilorðið „$3“.
 Þú ættir að skrá þig inn og breyta lykilorðinu núna.
@@ -800,11 +805,14 @@ Til að klára að skrá þig inn, verður þú að endurstilla lykilorðið hé
 'resetpass-wrong-oldpass' => 'Vitlaust tímabundið eða núverandi lykilorð.
 Þú gætir þegar verið búin/n að breyta lykilorðinu eða sótt um nýtt tímabundið lykilorð',
 'resetpass-temp-password' => 'Tímabundið lykilorð:',
+'resetpass-abort-generic' => 'Breytingum á lykilorðum hefur verið hætt með viðbót.',
 
 # Special:PasswordReset
 'passwordreset' => 'Endurstilla lykilorð',
+'passwordreset-text-one' => 'Útfylltu þetta eyðublað til þess að endursetja lykilorðið.',
 'passwordreset-legend' => 'Endurstilla lykilorð',
 'passwordreset-disabled' => 'Lokað hefur verið fyrir að endurstilla lykilorð á þessum wiki.',
+'passwordreset-emaildisabled' => 'Tölvupósteiginleikar hafa verið gerðir óvirkir á þessum wiki.',
 'passwordreset-username' => 'Notandanafn:',
 'passwordreset-domain' => 'Lén:',
 'passwordreset-capture' => 'Sjá áminninguna sem var send í tölvupósti?',
@@ -1333,6 +1341,7 @@ Frekari upplýsingar eru í [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENA
 'searchdisabled' => '{{SITENAME}}-leit er óvirk.
 Þú getur leitað í genum Google á meðan.
 Athugaðu að skrár þeirra yfir {{SITENAME}}-efni kunna að vera úreltar.',
+'search-error' => 'Villa kom upp við leit að: $1',
 
 # Preferences page
 'preferences' => 'Stillingar',
@@ -1546,6 +1555,8 @@ Tölvupóstfang þitt er ekki gefið upp þegar aðrir notendur hafa samband vi�
 'right-editusercssjs' => 'Breyta CSS- og JS-skrám annarra',
 'right-editusercss' => 'Breyta CSS-skrám annarra',
 'right-edituserjs' => 'Breyta JS-skrám annarra',
+'right-editmyusercss' => 'Breyta þinni eigin CSS-notandaskrá',
+'right-editmyuserjs' => 'Breyta þinni eigin JavaScript-notandaskrá',
 'right-rollback' => 'Taka snögglega aftur breytingar síðasta notanda sem breytti síðunni',
 'right-markbotedits' => 'Merkja endurtektar breytingar sem vélmennabreytingar',
 'right-noratelimit' => 'Sneiða hjá takmörkunum',
@@ -2039,6 +2050,8 @@ Leitarstrengurinn á að vera á þessu formi: efnistag/myndasnið, t.d. <code>i
 'disambiguations-text' => "Þessar síður innihalda tengla á svokallaðar „'''aðgreiningarsíður'''“.
 Laga ætti tenglanna og láta þá vísa á rétta síðu.<br />
 Farið er með síðu sem aðgreiningarsíðu ef að hún inniheldur snið sem vísað er í frá [[MediaWiki:Disambiguationspage]]",
+
+'pageswithprop-submit' => 'Áfram',
 
 'doubleredirects' => 'Tvöfaldar tilvísanir',
 'doubleredirectstext' => 'Þessi síða er listi yfir skrár sem eru tilvísanir á aðrar tilvísanir.
@@ -2544,7 +2557,7 @@ $1',
 'mycontris' => 'Framlög',
 'contribsub2' => 'Eftir $1 ($2)',
 'nocontribs' => 'Engar breytingar fundnar sem passa við þessa viðmiðun.',
-'uctop' => '(nýjast)',
+'uctop' => '(núverandi)',
 'month' => 'Frá mánuðinum (og fyrr):',
 'year' => 'Frá árinu (og fyrr):',
 
@@ -2869,6 +2882,8 @@ Vinsamlegast heimsæktu [//www.mediawiki.org/wiki/Localisation MediaWiki-staðf�
 'thumbnail-more' => 'Stækka',
 'filemissing' => 'Skrá vantar',
 'thumbnail_error' => 'Villa við gerð smámyndar: $1',
+'thumbnail_error_remote' => 'Villumelding frá $1:
+$2',
 'djvu_page_error' => 'DjVu-blaðsíða er utan marka',
 'djvu_no_xml' => 'Mistókst að sækja XML-gögn fyrir DjVu skrá',
 'thumbnail-temp-create' => 'Mistókst að búa til tímabundna smámynd.',
@@ -3173,10 +3188,24 @@ Vinsamlegast reyndu aftur.',
 'minutes' => '{{PLURAL:$1|einni mínútu|$1 mínútum}}',
 'hours' => '{{PLURAL:$1|einum klukkutíma|$1 klukkutímum}}',
 'days' => '{{PLURAL:$1|einum degi|$1 dögum}}',
+'weeks' => '{{PLURAL:$1|$1 vika|$1 vikur}}',
 'months' => '{{PLURAL:$1|$1 mánuði|$1 mánuðum}}',
 'years' => '{{PLURAL:$1|$1 ári|$1 árum}}',
 'ago' => '$1 síðan',
 'just-now' => 'akkúrat núna',
+
+# Human-readable timestamps
+'hours-ago' => '$1 {{PLURAL:$1|klukkutíma|klukkutímum}} síðan',
+'minutes-ago' => '$1 {{PLURAL:$1|mínútu|mínútum}} síðan',
+'seconds-ago' => '$1 {{PLURAL:$1|sekúndu|sekúndum}} síðan',
+'monday-at' => 'Mánudag klukkan $1',
+'tuesday-at' => 'Þriðjudag klukkan $1',
+'wednesday-at' => 'Miðvikudag klukkan $1',
+'thursday-at' => 'Fimmtudag klukkan $1',
+'friday-at' => 'Föstudag klukkan $1',
+'saturday-at' => 'Laugardag klukkan $1',
+'sunday-at' => 'Sunnudag klukkan $1',
+'yesterday-at' => 'Í gær klukkan $1',
 
 # Bad image list
 'bad_image_list' => 'Sniðið er eftirfarandi:
@@ -3743,6 +3772,14 @@ MediaWiki er útgefin í þeirri von að hann sé gagnlegur, en ÁN ALLRAR ÁBYR
 'version-software-version' => 'Útgáfa',
 'version-entrypoints-header-url' => 'vefslóð',
 
+# Special:Redirect
+'redirect-submit' => 'Áfram',
+'redirect-lookup' => 'Fletta upp:',
+'redirect-value' => 'Gildi:',
+'redirect-user' => 'Notandanúmer',
+'redirect-file' => 'Skráarnafn',
+'redirect-not-exists' => 'Gildi fannst ekki',
+
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Leita að afriti',
 'fileduplicatesearch-summary' => 'Leita að afritum sem hafa sama hakk gildi.',
@@ -3832,6 +3869,9 @@ Tæknilegir örðugleikar eru á þessari síðu.',
 'htmlform-submit' => 'Senda',
 'htmlform-reset' => 'Taka aftur breytingu',
 'htmlform-selectorother-other' => 'Annað',
+'htmlform-no' => 'Nei',
+'htmlform-yes' => 'Já',
+'htmlform-chosen-placeholder' => 'Veldu valmöguleika',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 með fullum texta leitar stuðningi',

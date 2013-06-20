@@ -1622,6 +1622,7 @@ Elle ne doit pas dépasser $1 caractère{{PLURAL:$1||s}}.',
 'userrights-changeable-col' => 'Les groupes que vous pouvez modifier',
 'userrights-unchangeable-col' => 'Les groupes que vous ne pouvez pas modifier',
 'userrights-conflict' => 'Conflit de droits utilisateur ! Veuillez appliquer de nouveau vos modifications.',
+'userrights-removed-self' => 'Vous avez bien supprimé vos propres droits. Du coup, vous ne pouvez plus accéder à cette page.',
 
 # Groups
 'group' => 'Groupe :',

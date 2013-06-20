@@ -193,8 +193,8 @@ $magicWords = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline' => 'සබැඳි යටීර කිරීම:',
-'tog-justify' => 'ඡේදයන් පේළ ගස්වන්න',
+'tog-underline' => 'සබැඳි යටිඉර කිරීම:',
+'tog-justify' => 'ඡේදයන් පෙළ ගස්වන්න',
 'tog-hideminor' => 'මෑත වෙනස් කිරීම්වල සුළු සංස්කරණ සඟවන්න',
 'tog-hidepatrolled' => 'මෑත වෙනස් කිරීම්වල මුර සංචාරය කරන ලද සංස්කරණ සඟවන්න',
 'tog-newpageshidepatrolled' => 'විමසුමට ලක්කෙරුණු පිටු, අළුත් පිටු ලැයිස්තුවෙහි නොපෙන්වන්න',

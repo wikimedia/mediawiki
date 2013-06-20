@@ -1656,6 +1656,7 @@ Dies kann nicht mehr rückgängig gemacht werden.',
 'userrights-changeable-col' => 'Gruppenzugehörigkeit, die du ändern kannst',
 'userrights-unchangeable-col' => 'Gruppenzugehörigkeit, die du nicht ändern kannst',
 'userrights-conflict' => 'Benutzerrechtekonflikt! Bitte führe deine Änderungen erneut durch.',
+'userrights-removed-self' => 'Du hast deine eigenen Rechte erfolgreich entfernt. Du kannst nicht länger auf diese Seite zugreifen.',
 
 # Groups
 'group' => 'Gruppe:',

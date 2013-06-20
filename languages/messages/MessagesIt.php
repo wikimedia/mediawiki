@@ -1511,6 +1511,7 @@ Il tuo indirizzo non viene rivelato quando gli altri utenti ti contattano.',
 'userrights-changeable-col' => 'Gruppi modificabili',
 'userrights-unchangeable-col' => 'Gruppi non modificabili',
 'userrights-conflict' => 'Conflitto di diritti utente! Applica nuovamente le tue modifiche.',
+'userrights-removed-self' => 'Hai rimosso con successo i tuoi diritti. E quindi, non sarai più in grado di accedere a questa pagina.',
 
 # Groups
 'group' => 'Gruppo:',

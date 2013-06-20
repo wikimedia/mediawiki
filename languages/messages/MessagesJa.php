@@ -1664,6 +1664,7 @@ $1 {{PLURAL:$1|文字}}以下である必要があります。',
 'userrights-unchangeable-col' => '変更できないグループ',
 'userrights-irreversible-marker' => '$1*',
 'userrights-conflict' => '利用者権限に競合があります! 変更内容をもう一度適用してください。',
+'userrights-removed-self' => 'あなた自身の権限を除去しました。そのため、このページにはもうアクセスできません。',
 
 # Groups
 'group' => 'グループ:',

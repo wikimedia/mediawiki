@@ -1522,6 +1522,7 @@ Ha de ter menos {{PLURAL:$1|dun carácter|de $1 caracteres}}.',
 'userrights-changeable-col' => 'Os grupos que pode cambiar',
 'userrights-unchangeable-col' => 'Os grupos que non pode cambiar',
 'userrights-conflict' => 'Hai un conflito cos dereitos de usuario! Aplique de novo os seus cambios.',
+'userrights-removed-self' => 'Retirou correctamente os seus propios dereitos. Polo tanto, xa non ten acceso a esta páxina.',
 
 # Groups
 'group' => 'Grupo:',
