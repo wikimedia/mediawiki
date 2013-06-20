@@ -111,6 +111,8 @@ production.
 * Add new hook AbortTalkPageEmailNotification, this will be used to determine
   whether to send the regular talk page email notification
 * (bug 46513) Vector: Add the collapsibleTabs script from the Vector extension.
+* Added $wgRecentChangesFlags for defining new flags for RecentChanges and
+  watchlists.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
