@@ -523,6 +523,20 @@ class SearchEngine {
 			return $wgCanonicalServer . wfScript( 'api' ) . '?action=opensearch&search={searchTerms}&namespace=' . $ns;
 		}
 	}
+
+	/**
+	 * Get the raw text for updating the index from a content object
+	 * Nicer search backends could possibly do something cooler than
+	 * just returning raw text
+	 *
+	 * @todo This isn't ideal, we'd really like to have content-specific handling here
+	 * @param Content $c Content of the page to index
+	 * @param Title $t Title we're indexing
+	 * @return string
+	 */
+	public function getTextFromContent( Content $c, Title $t ) {
+		return $content ? $content->getTextForSearchIndex() : '';
+	}
 }
 
 /**
@@ -818,8 +832,7 @@ class SearchResult {
 				//TODO: if we could plug in some code that knows about special content models *and* about
 				//      special features of the search engine, the search could benefit. See similar
 				//      comment in SearchUpdate's constructor
-				$content = $this->mRevision->getContent();
-				$this->mText = $content ? $content->getTextForSearchIndex() : '';
+				$this->mText = $this->getTextFromContent( $this->mRevision->getContent(), $this->mTitle );
 			} else { // TODO: can we fetch raw wikitext for commons images?
 				$this->mText = '';
 			}
