@@ -1949,11 +1949,12 @@ $data: the data stored in old_text.  The meaning depends on $flags: if external
 $flags: a comma-delimited list of strings representing the options used.  May
   include: utf8 (this will always be set for new revisions); gzip; external.
 
-'SearchUpdate': Prior to search update completion.
+'SearchUpdate': Prior to search update completion. Return false to stop any
+further text/content processing
 $id : Page id
-$namespace : Page namespace
-$title : Page title
+$title : Title object
 $text : Current text being indexed
+$content : Content object for text being indexed.
 
 'SearchGetNearMatchBefore': Perform exact-title-matches in "go" searches before
 the normal operations.
