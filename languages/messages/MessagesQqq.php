@@ -4328,7 +4328,8 @@ You can apparently use 'URL' instead of 'hostname'.",
 {{Identical|Show}}',
 'listusers-noresult' => 'identical with {{msg-mw|activeusers-noresult}}',
 'listusers-blocked' => 'Used on [[Special:ActiveUsers]] when a user has been blocked.
-* $1 is a user name for use with GENDER (optional)',
+* $1 - a user name for use with GENDER (optional)
+{{Identical|Blocked}}',
 
 # Special:ActiveUsers
 'activeusers' => 'Title of [[Special:ActiveUsers]]',

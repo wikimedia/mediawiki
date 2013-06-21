@@ -1332,6 +1332,7 @@ Esta información sedrá pública.",
 'userrights-changeable-col' => 'Grupos que pues camudar',
 'userrights-unchangeable-col' => 'Grupos que nun pues camudar',
 'userrights-conflict' => "¡Hai un conflictu de permisos d'usuariu! Por favor, vuelva a aplicar los cambios.",
+'userrights-removed-self' => 'Retiró correutamente los sos propios drechos. Poro, yá nun tendrá accesu a esta páxina.',
 
 # Groups
 'group' => 'Grupu:',

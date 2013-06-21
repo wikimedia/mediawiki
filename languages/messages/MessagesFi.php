@@ -827,7 +827,7 @@ Tästä johtuen tästä IP-osoitteesta ei voi tällä hetkellä luoda uusia tunn
 'cannotchangeemail' => 'Tunnusten sähköpostiosoitteita ei voi muuttaa tässä wikissä.',
 'emaildisabled' => 'Tältä sivustolta ei voi lähettää sähköpostia.',
 'accountcreated' => 'Käyttäjätunnus luotiin',
-'accountcreatedtext' => 'Käyttäjän $1 käyttäjätunnus luotiin.',
+'accountcreatedtext' => 'Käyttäjätunnus [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|keskustelu]]) luotiin.',
 'createaccount-title' => 'Tunnuksen luominen {{GRAMMAR:illative|{{SITENAME}}}}',
 'createaccount-text' => 'Joku on luonut tunnuksen $2 {{GRAMMAR:illative|{{SITENAME}}}} ($4).
 Tunnuksen $2 salasana on $3. Kirjaudu sisään ja vaihda salasanasi.
@@ -867,6 +867,7 @@ Olet saattanut jo onnistuneesti vaihtaa salasanasi tai pyytää uutta väliaikai
 # Special:PasswordReset
 'passwordreset' => 'Salasanan alustus',
 'passwordreset-text-one' => 'Täytä tämä lomake vaihtaaksesi salasanasi.',
+'passwordreset-text-many' => '{{PLURAL:$1|Täytä yksi datakentistä alustaaksesi salasanasi.}}',
 'passwordreset-legend' => 'Salasanan vaihto',
 'passwordreset-disabled' => 'Salasanojen alustus ei ole mahdollista tässä wikissä.',
 'passwordreset-emaildisabled' => 'Sähköpostitoiminnot on poistettu käytöstä tässä wikissä.',
@@ -1521,6 +1522,7 @@ Tässä satunnaisesti tuotettu arvo, jota voit käyttää: $1',
 'userrights-changeable-col' => 'Ryhmät, joita voit muuttaa',
 'userrights-unchangeable-col' => 'Ryhmät, joita et voi muuttaa',
 'userrights-conflict' => 'Päällekkäinen käyttöoikeuksien muutos! Ole hyvä ja tee muutoksesi uudestaan.',
+'userrights-removed-self' => 'Poistit onnistuneesti omat oikeutesi. Tämän myötä sinulla ei ole enää oikeutta käyttää tätä sivua.',
 
 # Groups
 'group' => 'Ryhmä',
@@ -2566,7 +2568,7 @@ $1',
 'mycontris' => 'Omat muokkaukset',
 'contribsub2' => 'Käyttäjän $1 ($2) muokkaukset',
 'nocontribs' => 'Näihin ehtoihin sopivia muokkauksia ei löytynyt.',
-'uctop' => ' (uusin)',
+'uctop' => '(uusin)',
 'month' => 'Kuukausi',
 'year' => 'Vuosi',
 

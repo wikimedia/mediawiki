@@ -1348,6 +1348,7 @@ Mae'r wybodaeth hon ar gael i'r cyhoedd.",
 'userrights-changeable-col' => 'Grwpiau y gallwch eu newid',
 'userrights-unchangeable-col' => 'Grwpiau na allwch eu newid',
 'userrights-conflict' => 'Gwrthdaro gyda hawliau defnyddiwr! Gwnewch eich newidiadau eto.',
+'userrights-removed-self' => "Rydych wedi llwyddo rhoi'r gorau i'ch galluoedd. Gan hynny, nid ydych yn cael myned i'r dudalen hon bellach.",
 
 # Groups
 'group' => 'Grŵp:',

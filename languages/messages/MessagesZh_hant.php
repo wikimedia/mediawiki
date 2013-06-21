@@ -1148,8 +1148,7 @@ $2
 'rev-deleted-user' => '（用戶名已移除）',
 'rev-deleted-event' => '（日誌已除）',
 'rev-deleted-user-contribs' => '[用戶名或IP地址已移除 - 從貢獻中隱藏編輯]',
-'rev-deleted-text-permission' => "該頁面修訂已被'''刪除'''。
-在[{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}} 刪除日誌]中可以找到詳細的訊息。",
+'rev-deleted-text-permission' => "該頁面修訂已被'''刪除'''。在[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 刪除日誌]中可以找到詳細的訊息。",
 'rev-deleted-text-unhide' => "本頁面版本已被'''刪除'''。詳情請見[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 刪除日誌]。如果你想繼續操作，你仍然可以[$1 查看本版本]。",
 'rev-suppressed-text-unhide' => "該頁面修訂已經被'''監督隱藏'''。在[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 監督日誌]中可以找到詳細的信息。如果您想繼續的話，您可以仍然[$1 去查看這次修訂]。",
 'rev-deleted-text-view' => "該頁面修訂已經被'''刪除'''。您可以查看它。在[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 刪除日誌]中可以找到詳細的信息。",

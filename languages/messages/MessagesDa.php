@@ -391,6 +391,7 @@ $messages = array(
 'create-this-page' => 'Opret denne side',
 'delete' => 'Slet',
 'deletethispage' => 'Slet side',
+'undeletethispage' => 'Gendan denne side',
 'undelete_short' => 'Fortryd sletning af {{PLURAL:$1|én version|$1 versioner}}',
 'viewdeleted_short' => 'Vis {{PLURAL:$1|en slettet redigering|$1 slettede redigeringer}}',
 'protect' => 'Beskyt',
@@ -589,6 +590,8 @@ $2',
 'namespaceprotected' => 'Du har ikke rettigheder til at redigere sider i $1-navnerummet.',
 'customcssprotected' => 'Du har ikke tilladelse til at redigere denne CSS-side, da den indeholder en anden brugers personlige indstillinger.',
 'customjsprotected' => 'Du har ikke tilladelse til at redigere denne JavaScript-side, da den indeholder en anden brugers personlige indstillinger.',
+'mycustomcssprotected' => 'Du har ikke rettigheder til at redigere denne CSS-side.',
+'mycustomjsprotected' => 'Du har ikke rettigheder til at redigere denne JavaScript-side.',
 'ns-specialprotected' => 'Sider i navnerummet {{ns:special}} kan ikke redigeres.',
 'titleprotected' => "Dette sidenavn er beskyttet mod oprettelse af [[User:$1|$1]]. Begrundelsen for beskyttelsen er ''$2''.",
 'filereadonlyerror' => 'Ude af stand til at redigere filen "$1", fordi fildatabasen "$2" er skrivebeskyttet.
@@ -719,7 +722,7 @@ Derfor kan besøgende ikke oprette flere kontoer fra denne IP-adresse i øjeblik
 'cannotchangeemail' => 'De email-adresser, der er tilknyttet brugerkontoer, kan ikke ændres på denne wiki.',
 'emaildisabled' => 'Denne hjemmeside kan ikke sende emails.',
 'accountcreated' => 'Brugerkonto oprettet',
-'accountcreatedtext' => 'Brugerkontoen $1 er oprettet.',
+'accountcreatedtext' => 'Brugerkontoen for [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|diskussion]]) er oprettet.',
 'createaccount-title' => 'Opret brugerkonto på {{SITENAME}}',
 'createaccount-text' => 'Nogen har oprettet en konto for din e-post-adresse på {{SITENAME}} ($4) med navnet "$2". Adgangskoden er "$3".
 Du opfordres til at logge ind og ændre adgangskoden med det samme.
@@ -759,6 +762,7 @@ Du har muligvis allerede skiftet din adgangskode eller anmodet om en ny midlerti
 # Special:PasswordReset
 'passwordreset' => 'Nulstil adgangskode',
 'passwordreset-text-one' => 'Udfyld denne formular for at nulstille din adgangskode.',
+'passwordreset-text-many' => '{{PLURAL:$1|Udfyld en af oplysningerne nedenfor for at nulstille din adgangskode.}}',
 'passwordreset-legend' => 'Nulstil adgangskode',
 'passwordreset-disabled' => 'Nulstilling af kodeord er slået fra på denne wiki.',
 'passwordreset-emaildisabled' => 'E-mailfunktioner er slået fra på denne wiki.',
@@ -1425,6 +1429,7 @@ Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit
 'userrights-changeable-col' => 'Redigerbare grupper',
 'userrights-unchangeable-col' => 'Uredigerbare grupper',
 'userrights-conflict' => 'Brugerrettighedskonflikt. Tilføj venligst dine ændringer påny.',
+'userrights-removed-self' => 'Du har fjernet dine egne rettigheder. Du har derfor ikke længere adgang til denne side.',
 
 # Groups
 'group' => 'Gruppe:',
@@ -1495,6 +1500,8 @@ Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit
 'right-editusercssjs' => 'Ændre andre brugeres JS og CSS filer',
 'right-editusercss' => 'Ændre andre brugeres CSS filer',
 'right-edituserjs' => 'Ændre andre brugeres JS filer',
+'right-editmyusercss' => 'Redigere dine egne CSS-filer',
+'right-editmyuserjs' => 'Redigere dine egne JavaScript-filer',
 'right-rollback' => 'Hurtig gendannelse af alle redigeringer foretaget af den seneste bruger',
 'right-markbotedits' => 'Markere gendannelser som ændringer foretaget af en robot',
 'right-noratelimit' => 'Upåvirket af hastighedsgrænser',
@@ -2490,7 +2497,7 @@ $1',
 'mycontris' => 'Bidrag',
 'contribsub2' => 'For $1 ($2)',
 'nocontribs' => 'Ingen ændringer er fundet som opfylder disse kriterier.',
-'uctop' => ' (seneste)',
+'uctop' => '(seneste)',
 'month' => 'Måned:',
 'year' => 'År:',
 

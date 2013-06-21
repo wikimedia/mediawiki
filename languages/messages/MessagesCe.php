@@ -1023,10 +1023,16 @@ $1',
 'fileuploadsummary' => 'Файлах лаьцна:',
 'filereuploadsummary' => 'Файлан хийцамаш:',
 'filesource' => 'Хьост:',
+'ignorewarnings' => 'ДӀахедар тергал ца дан',
 'uploadwarning' => 'Дlахьедар',
 'uploadedimage' => 'чуяккхина «[[$1]]»',
 'overwroteimage' => 'Чуяккхина файлан керла верси «[[$1]]»',
+'upload-source' => 'ДIайолалун файл',
+'sourcefilename' => 'ДIайолалун файл:',
+'destfilename' => 'Файлан керла цӀе:',
 'upload-description' => 'Файлах лаьцна',
+'upload-options' => 'Чуякхаран параметраш',
+'watchthisupload' => 'Латайе хlара файл тергаме могlам юкъа',
 'filename-prefix-blacklist' => '#<!-- битийша хlара могlа ша мабарра --> <pre>
 # Бухасиз шолгlа:
 #  * Массо, саболчунтlийра йуьлалуш ерш «#» хуьлу хетаме дерг (могlа чекх балац)
@@ -1044,6 +1050,7 @@ PICT # тайп тайпан
 
 'license' => 'Бакъойалар:',
 'license-header' => 'Бакъойалар',
+'nolicense' => 'Яц',
 
 # Special:ListFiles
 'listfiles-summary' => 'Лахахь гойтуш ю ерриг файлаш.

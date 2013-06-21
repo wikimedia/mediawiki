@@ -1628,6 +1628,7 @@ $1",
 'userrights-unchangeable-col' => 'Групи кои не може да ги промените',
 'userrights-irreversible-marker' => '$1*',
 'userrights-conflict' => 'Спротиставеност во корисничките права. Применете ги промените повторно.',
+'userrights-removed-self' => 'Успешно ги отстранивте вашите права. Затоа, повеќе немате пристап на страницава.',
 
 # Groups
 'group' => 'Група:',
