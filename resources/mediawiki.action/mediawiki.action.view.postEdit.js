@@ -4,42 +4,65 @@
 	var config = mw.config.get( [ 'wgAction', 'wgCookiePrefix', 'wgCurRevisionId' ] ),
 		// This should match EditPage::POST_EDIT_COOKIE_KEY_PREFIX:
 		cookieKey = config.wgCookiePrefix + 'PostEditRevision' + config.wgCurRevisionId,
-		div, id;
+		$div, id;
 
-	if ( config.wgAction !== 'view' || $.cookie( cookieKey ) !== '1' ) {
-		return;
-	}
+	function showConfirmation( data ) {
+		data = data || {};
+		if ( data.message === undefined ) {
+			data.message = $.parseHTML( mw.message( 'postedit-confirmation', data.user || mw.user ).escaped() );
+		}
 
-	$.cookie( cookieKey, null, { path: '/' } );
-	mw.config.set( 'wgPostEdit', true );
+		$div = $(
+			'<div class="postedit-container">' +
+				'<div class="postedit">' +
+					'<div class="postedit-icon postedit-icon-checkmark postedit-content"></div>' +
+					'<a href="#" class="postedit-close">&times;</a>' +
+				'</div>' +
+			'</div>'
+		);
 
-	function removeConfirmation() {
-		div.parentNode.removeChild( div );
-		mw.hook( 'postEdit.afterRemoval' ).fire();
+		if ( typeof data.message === 'string' ) {
+			$div.find( '.postedit-content' ).text( data.message );
+		} else if ( typeof data.message === 'object' ) {
+			$div.find( '.postedit-content' ).append( data.message );
+		}
+
+		$div
+			.click( fadeOutConfirmation )
+			.prependTo( 'body' );
+
+		id = setTimeout( fadeOutConfirmation, 3000 );
 	}
 
 	function fadeOutConfirmation() {
 		clearTimeout( id );
-		div.firstChild.className = 'postedit postedit-faded';
+		$div.find( '.postedit' ).addClass( 'postedit postedit-faded' );
 		setTimeout( removeConfirmation, 500 );
+
 		return false;
 	}
 
-	function showConfirmation() {
-		div = document.createElement( 'div' );
-		div.className = 'postedit-container';
-		div.innerHTML =
-			'<div class="postedit">' +
-				'<div class="postedit-icon postedit-icon-checkmark">' +
-					mw.message( 'postedit-confirmation', mw.user ).escaped() +
-				'</div>' +
-				'<a href="#" class="postedit-close">&times;</a>' +
-			'</div>';
-		id = setTimeout( fadeOutConfirmation, 3000 );
-		div.firstChild.lastChild.onclick = fadeOutConfirmation;
-		document.body.insertBefore( div, document.body.firstChild );
+	function removeConfirmation() {
+		$div.remove();
+		mw.hook( 'postEdit.afterRemoval' ).fire();
 	}
 
-	mw.hook( 'postEdit' ).add( showConfirmation ).fire();
+	mw.hook( 'postEdit' ).add( showConfirmation );
+
+	if ( config.wgAction === 'view' && $.cookie( cookieKey ) === '1' ) {
+		$.cookie( cookieKey, null, { path: '/' } );
+		mw.config.set( 'wgPostEdit', true );
+
+		/**
+		 * @event postEdit
+		 * @member mw.hook
+		 * @param {Object} [data]
+		 * @param {string|jQuery|Array} [data.message] Message that listeners
+		 *  should use when displaying notifications. String for plain text,
+		 *  use array or jQuery object to pass actual nodes.
+		 * @param {string|mw.user} [data.user=mw.user] User that made the edit.
+		 */
+		mw.hook( 'postEdit' ).fire();
+	}
 
 } ( mediaWiki, jQuery ) );
