@@ -580,6 +580,20 @@ class NewParserTest extends MediaWikiTestCase {
 
 		$title = Title::newFromText( $titleText );
 
+		# Parser test requiring math. Make sure texvc is executable
+		# or just skip such tests.
+		if ( isset( $opts['math'] ) ) {
+			global $wgTexvc;
+
+			if ( !isset( $wgTexvc ) ) {
+				$this->markTestSkipped( "SKIPPED: \$wgTexvc is not set" );
+			} elseif ( !is_executable( $wgTexvc ) ) {
+				$this->markTestSkipped( "SKIPPED: texvc binary does not exist"
+					. " or is not executable.\n"
+					. "Current configuration is:\n\$wgTexvc = '$wgTexvc'" );
+			}
+		}
+
 		if ( isset( $opts['pst'] ) ) {
 			$out = $parser->preSaveTransform( $input, $title, $user, $options );
 		} elseif ( isset( $opts['msg'] ) ) {
