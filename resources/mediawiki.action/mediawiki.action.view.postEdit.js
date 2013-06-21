@@ -6,40 +6,53 @@
 		cookieKey = config.wgCookiePrefix + 'PostEditRevision' + config.wgCurRevisionId,
 		div, id;
 
-	if ( config.wgAction !== 'view' || $.cookie( cookieKey ) !== '1' ) {
-		return;
-	}
-
-	$.cookie( cookieKey, null, { path: '/' } );
-	mw.config.set( 'wgPostEdit', true );
-
 	function removeConfirmation() {
-		div.parentNode.removeChild( div );
+		div.remove();
 		mw.hook( 'postEdit.afterRemoval' ).fire();
 	}
 
 	function fadeOutConfirmation() {
 		clearTimeout( id );
-		div.firstChild.className = 'postedit postedit-faded';
+		div.find( '.postedit' ).addClass( 'postedit postedit-faded' );
 		setTimeout( removeConfirmation, 500 );
 		return false;
 	}
 
-	function showConfirmation() {
-		div = document.createElement( 'div' );
-		div.className = 'postedit-container';
-		div.innerHTML =
-			'<div class="postedit">' +
-				'<div class="postedit-icon postedit-icon-checkmark">' +
-					mw.message( 'postedit-confirmation', mw.user ).escaped() +
+	function showConfirmation( message ) {
+		if ( message === undefined ) {
+			message = mw.message( 'postedit-confirmation', mw.user ).escaped();
+		}
+		div = $(
+			'<div class="postedit-container">' +
+				'<div class="postedit">' +
+					'<div class="postedit-icon postedit-icon-checkmark postedit-contents">' +
+					'</div>' +
+					'<a href="#" class="postedit-close">&times;</a>' +
 				'</div>' +
-				'<a href="#" class="postedit-close">&times;</a>' +
-			'</div>';
+			'</div>'
+		);
+		if ( typeof message === 'string' ) {
+			div.find( '.postedit-contents' ).text( message );
+		} else if ( typeof message === 'object' ) {
+			div.find( '.postedit-contents' ).append( message );
+		}
 		id = setTimeout( fadeOutConfirmation, 3000 );
-		div.firstChild.lastChild.onclick = fadeOutConfirmation;
-		document.body.insertBefore( div, document.body.firstChild );
+		div.click( fadeOutConfirmation );
+		div.insertBefore( $( 'body' ).children().first() );
 	}
 
-	mw.hook( 'postEdit' ).add( showConfirmation ).fire();
+	// Expose showConfirmation to other processes, e.g. VisualEditor
+	mw.showPostEditConfirmation = showConfirmation;
+
+	// postEdit hook calls showConfirmation without any arguments
+	mw.hook( 'postEdit' ).add( function() {
+		mw.showPostEditConfirmation();
+	} );
+
+	if ( config.wgAction === 'view' && $.cookie( cookieKey ) === '1' ) {
+		$.cookie( cookieKey, null, { path: '/' } );
+		mw.config.set( 'wgPostEdit', true );
+		mw.hook( 'postEdit' ).fire();
+	}
 
 } ( mediaWiki, jQuery ) );
