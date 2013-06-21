@@ -1041,6 +1041,7 @@ It may have already been deleted by someone else.',
 'cannotdelete-title'            => 'Cannot delete page "$1"',
 'delete-hook-aborted'           => 'Deletion aborted by hook.
 It gave no explanation.',
+'no-null-revision'              => 'Could not create new null revision for page "$1"',
 'badtitle'                      => 'Bad title',
 'badtitletext'                  => 'The requested page title was invalid, empty, or an incorrectly linked inter-language or inter-wiki title.
 It may contain one or more characters that cannot be used in titles.',
