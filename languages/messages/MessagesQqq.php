@@ -982,6 +982,7 @@ See also:
 'cannotdelete-title' => 'Title of error page when the user cannot delete a page. Parameters:
 * $1 - the page name',
 'delete-hook-aborted' => 'Error message shown when an extension hook prevents a page deletion, but does not provide an error message.',
+'no-null-revision' => 'Error message shown when no null revision could be created to reflect a protection level change.',
 'badtitle' => 'The page title when a user requested a page with invalid page name. The content will be {{msg-mw|badtitletext}}.',
 'badtitletext' => 'The message shown when a user requested a page with invalid page name. The page title will be {{msg-mw|badtitle}}.
 

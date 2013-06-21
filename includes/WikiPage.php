@@ -2362,24 +2362,6 @@ class WikiPage implements Page, IDBAccessObject {
 				$cascade = false;
 			}
 
-			// Update restrictions table
-			foreach ( $limit as $action => $restrictions ) {
-				if ( $restrictions != '' ) {
-					$dbw->replace( 'page_restrictions', array( array( 'pr_page', 'pr_type' ) ),
-						array( 'pr_page' => $id,
-							'pr_type' => $action,
-							'pr_level' => $restrictions,
-							'pr_cascade' => ( $cascade && $action == 'edit' ) ? 1 : 0,
-							'pr_expiry' => $encodedExpiry[$action]
-						),
-						__METHOD__
-					);
-				} else {
-					$dbw->delete( 'page_restrictions', array( 'pr_page' => $id,
-						'pr_type' => $action ), __METHOD__ );
-				}
-			}
-
 			// Prepare a null revision to be added to the history
 			$editComment = $wgContLang->ucfirst(
 				wfMessage(
@@ -2401,8 +2383,30 @@ class WikiPage implements Page, IDBAccessObject {
 				)->inContentLanguage()->text();
 			}
 
-			// Insert a null revision
 			$nullRevision = Revision::newNullRevision( $dbw, $id, $editComment, true );
+			if ( $nullRevision === null ) {
+				return Status::newFatal( 'no-null-revision', $this->mTitle->getPrefixedText() );
+			}
+
+			// Update restrictions table
+			foreach ( $limit as $action => $restrictions ) {
+				if ( $restrictions != '' ) {
+					$dbw->replace( 'page_restrictions', array( array( 'pr_page', 'pr_type' ) ),
+						array( 'pr_page' => $id,
+							'pr_type' => $action,
+							'pr_level' => $restrictions,
+							'pr_cascade' => ( $cascade && $action == 'edit' ) ? 1 : 0,
+							'pr_expiry' => $encodedExpiry[$action]
+						),
+						__METHOD__
+					);
+				} else {
+					$dbw->delete( 'page_restrictions', array( 'pr_page' => $id,
+						'pr_type' => $action ), __METHOD__ );
+				}
+			}
+
+			// Insert a null revision
 			$nullRevId = $nullRevision->insertOn( $dbw );
 
 			$latest = $this->getLatest();
