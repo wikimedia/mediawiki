@@ -3133,7 +3133,8 @@ See also:
 * {{msg-mw|reuploaddesc|button text}}',
 'uploadnologin' => 'Used as title of the error message {{msg-mw|Uploadnologintext}}.
 {{Identical|Not logged in}}',
-'uploadnologintext' => 'Used as error message. The title for this message is {{msg-mw|Uploadnologin}}.
+'uploadnologintext' => 'Used as error message. The title for this message is {{msg-mw|Uploadnologin}}. Parameters:
+* $1 - Login link
 
 See also:
 * {{msg-mw|Whitelistedittext}}
