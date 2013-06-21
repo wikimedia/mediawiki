@@ -36,32 +36,27 @@ class SearchUpdate implements DeferrableUpdate {
 	private $id = 0;
 
 	/**
-	 * Namespace of page being updated
-	 * @var int
-	 */
-	private $namespace;
-
-	/**
-	 * Title we're updating (without namespace)
-	 * @var string
+	 * Title we're updating
+	 * @var Title
 	 */
 	private $title;
 
 	/**
-	 * Raw text to put into the index
+	 * Content of the page (not text)
+	 * @var Content|false
 	 */
-	private $text;
+	private $content;
 
 	/**
 	 * Constructor
 	 *
 	 * @param int $id Page id to update
 	 * @param Title|string $title Title of page to update
-	 * @param Content|string|false $content Content of the page to update.
+	 * @param Content|string|false $c Content of the page to update.
 	 *  If a Content object, text will be gotten from it. String is for back-compat.
 	 *  Passing false tells the backend to just update the title, not the content
 	 */
-	public function __construct( $id, $title, $content = false ) {
+	public function __construct( $id, $title, $c = false ) {
 		if ( is_string( $title ) ) {
 			$nt = Title::newFromText( $title );
 		} else {
@@ -70,17 +65,13 @@ class SearchUpdate implements DeferrableUpdate {
 
 		if ( $nt ) {
 			$this->id = $id;
-			// @todo This isn't ideal, we'd really like to have content-specific
-			// handling here. See similar content in SearchEngine::initText().
-			if( is_string( $content ) ) {
-				// b/c for ApprovedRevs
-				$this->text = $content;
+			// is_string() check is back-compat for ApprovedRevs
+			if( is_string( $c ) ) {
+				$this->content = new TextContent( $c );
 			} else {
-				$this->text = $content ? $content->getTextForSearchIndex() : false;
+				$this->content = $c ?: false;
 			}
-
-			$this->namespace = $nt->getNamespace();
-			$this->title = $nt->getText(); # Discard namespace
+			$this->title = $nt;
 		} else {
 			wfDebug( "SearchUpdate object created with invalid title '$title'\n" );
 		}
@@ -99,21 +90,23 @@ class SearchUpdate implements DeferrableUpdate {
 		wfProfileIn( __METHOD__ );
 
 		$search = SearchEngine::create();
-		$normalTitle = $search->normalizeText( Title::indexTitle( $this->namespace, $this->title ) );
+		$normalTitle = $search->normalizeText(
+			Title::indexTitle( $this->title->getNamespace(), $this->title->getText() ) );
 
 		if ( WikiPage::newFromId( $this->id ) === null ) {
 			$search->delete( $this->id, $normalTitle );
 			wfProfileOut( __METHOD__ );
 			return;
-		} elseif ( $this->text === false ) {
+		} elseif ( $this->content === false ) {
 			$search->updateTitle( $this->id, $normalTitle );
 			wfProfileOut( __METHOD__ );
 			return;
 		}
 
-		$text = self::updateText( $this->text );
-
-		wfRunHooks( 'SearchUpdate', array( $this->id, $this->namespace, $this->title, &$text ) );
+		$text = $search->getTextFromContent( $this->title, $this->content );
+		if( wfRunHooks( 'SearchUpdate', array( $this->id, $this->title, &$text, $this->content ) ) ) {
+			$text = self::updateText( $text );
+		}
 
 		# Perform the actual update
 		$search->update( $this->id, $normalTitle, $search->normalizeText( $text ) );
