@@ -6,13 +6,6 @@
 		cookieKey = config.wgCookiePrefix + 'PostEditRevision' + config.wgCurRevisionId,
 		div, id;
 
-	if ( config.wgAction !== 'view' || $.cookie( cookieKey ) !== '1' ) {
-		return;
-	}
-
-	$.cookie( cookieKey, null, { path: '/' } );
-	mw.config.set( 'wgPostEdit', true );
-
 	function removeConfirmation() {
 		div.parentNode.removeChild( div );
 		mw.hook( 'postEdit.afterRemoval' ).fire();
@@ -40,6 +33,13 @@
 		document.body.insertBefore( div, document.body.firstChild );
 	}
 
-	mw.hook( 'postEdit' ).add( showConfirmation ).fire();
+	// Always register showConfirmation incase an asynchronous edit occurs, e.g. VisualEditor
+	mw.hook( 'postEdit' ).add( showConfirmation );
+
+	if ( config.wgAction === 'view' && $.cookie( cookieKey ) === '1' ) {
+		$.cookie( cookieKey, null, { path: '/' } );
+		mw.config.set( 'wgPostEdit', true );
+		mw.hook( 'postEdit' ).fire();
+	}
 
 } ( mediaWiki, jQuery ) );
