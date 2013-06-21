@@ -233,8 +233,16 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	protected function mergeThumbParams( $image, $thumbParams, $otherParams ) {
 
 		if ( !isset( $thumbParams['width'] ) && isset( $thumbParams['height'] ) ) {
-			// Populate the width with the image's width, so only the height restriction applies
-			$thumbParams['width'] = $image->getWidth();
+			// We want to limit only by height in this situation, so pass the
+			// image's full width as the limiting width. But some file types
+			// don't have a width of their own, so pick something arbitrary so
+			// thumbnailing the default icon works.
+			if ( $image->getWidth() <= 0 ) {
+				global $wgThumbLimits;
+				$thumbParams['width'] = max( $wgThumbLimits );
+			} else {
+				$thumbParams['width'] = $image->getWidth();
+			}
 		}
 
 		if ( !$otherParams ) {
