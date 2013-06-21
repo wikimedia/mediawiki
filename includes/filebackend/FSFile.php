@@ -28,7 +28,7 @@
  */
 class FSFile {
 	protected $path; // path to file
-	private $sha1Base36 = null; // File Sha1Base36
+	protected $sha1Base36; // file SHA-1 in base 36
 
 	/**
 	 * Sets up the file object
@@ -234,7 +234,6 @@ class FSFile {
 	 * @param string $path absolute local filesystem path
 	 * @param Mixed $ext: the file extension, or true to extract it from the filename.
 	 *             Set it to false to ignore the extension.
-	 *
 	 * @return array
 	 */
 	public static function getPropsFromPath( $path, $ext = true ) {
@@ -250,18 +249,10 @@ class FSFile {
 	 * fairly neatly.
 	 *
 	 * @param string $path
-	 * @param bool $recache
-	 *
 	 * @return bool|string False on failure
 	 */
-	public static function getSha1Base36FromPath( $path, $recache = false ) {
-		static $sha1Base36 = array();
-
-		if ( !isset( $sha1Base36[$path] ) || $recache ) {
-			$fsFile = new self( $path );
-			$sha1Base36[$path] = $fsFile->getSha1Base36();
-		}
-
-		return $sha1Base36[$path];
+	public static function getSha1Base36FromPath( $path ) {
+		$fsFile = new self( $path );
+		return $fsFile->getSha1Base36();
 	}
 }
