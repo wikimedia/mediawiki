@@ -6,13 +6,6 @@
 		cookieKey = config.wgCookiePrefix + 'PostEditRevision' + config.wgCurRevisionId,
 		div, id;
 
-	if ( config.wgAction !== 'view' || $.cookie( cookieKey ) !== '1' ) {
-		return;
-	}
-
-	$.cookie( cookieKey, null, { path: '/' } );
-	mw.config.set( 'wgPostEdit', true );
-
 	function removeConfirmation() {
 		div.parentNode.removeChild( div );
 		mw.hook( 'postEdit.afterRemoval' ).fire();
@@ -25,13 +18,16 @@
 		return false;
 	}
 
-	function showConfirmation() {
+	function showConfirmation( message ) {
+		if ( message === undefined ) {
+			message = mw.message( 'postedit-confirmation', mw.user ).escaped();
+		}
 		div = document.createElement( 'div' );
 		div.className = 'postedit-container';
 		div.innerHTML =
 			'<div class="postedit">' +
 				'<div class="postedit-icon postedit-icon-checkmark">' +
-					mw.message( 'postedit-confirmation', mw.user ).escaped() +
+					message +
 				'</div>' +
 				'<a href="#" class="postedit-close">&times;</a>' +
 			'</div>';
@@ -40,6 +36,13 @@
 		document.body.insertBefore( div, document.body.firstChild );
 	}
 
-	mw.hook( 'postEdit' ).add( showConfirmation ).fire();
+	// Always register showConfirmation incase an asynchronous edit occurs, e.g. VisualEditor
+	mw.hook( 'postEdit' ).add( showConfirmation );
+
+	if ( config.wgAction === 'view' && $.cookie( cookieKey ) === '1' ) {
+		$.cookie( cookieKey, null, { path: '/' } );
+		mw.config.set( 'wgPostEdit', true );
+		mw.hook( 'postEdit' ).fire();
+	}
 
 } ( mediaWiki, jQuery ) );
