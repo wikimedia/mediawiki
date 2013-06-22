@@ -16,6 +16,7 @@
  * @author Fader
  * @author Fluff
  * @author GameOn
+ * @author Geitost
  * @author Greggegorius
  * @author Grillo
  * @author Habj
@@ -1569,6 +1570,7 @@ Om du väljer att ange ditt riktiga namn, kommer det att användas för att till
 'userrights-changeable-col' => 'Grupper du kan ändra',
 'userrights-unchangeable-col' => 'Grupper du inte kan ändra',
 'userrights-conflict' => 'Användarrättighetskonflikt! Var god tillämpa dina ändringar igen.',
+'userrights-removed-self' => 'Du tog bort dina egna rättigheter. Som sådan, kan du inte längre komma åt denna sida.',
 
 # Groups
 'group' => 'Grupp:',
@@ -1887,7 +1889,7 @@ $1',
 'upload-proto-error' => 'Felaktigt protokoll',
 'upload-proto-error-text' => 'Fjärruppladdning kräver URL:ar som börjar med <code>http://</code> eller <code>ftp://</code>.',
 'upload-file-error' => 'Internt fel',
-'upload-file-error-text' => 'Ett internt fel inträffade när en temporär fil skulle skapas på servern. Kontakta en [[Special:ListUsers/sysop|systemadministratör]].',
+'upload-file-error-text' => 'Ett internt fel inträffade när en temporär fil skulle skapas på servern. Kontakta en [[Special:ListUsers/sysop|administratör]].',
 'upload-misc-error' => 'Okänt uppladdningsfel',
 'upload-misc-error-text' => 'Ett okänt fel inträffade under uppladdningen.
 Kontrollera att URL:en giltig och försök igen.

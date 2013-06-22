@@ -1431,6 +1431,7 @@ Si muss manner wéi $1 {{PLURAL:$1|Zeechen|Zeechen}} hunn.',
 'userrights-changeable-col' => 'Gruppen déi Dir ännere kënnt',
 'userrights-unchangeable-col' => 'Gruppen déi Dir net ännere kënnt',
 'userrights-conflict' => 'Konflikt bäi de Benotzerrechter! Maacht Är Ännerunge w.e.g. nach eng Kéier.',
+'userrights-removed-self' => 'Dir hutt Är eege Rechter ewechgeholl. Dofir kënnt Dir net méi op dës Säit zougräifen.',
 
 # Groups
 'group' => 'Grupp:',

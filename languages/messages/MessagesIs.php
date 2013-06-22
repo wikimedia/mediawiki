@@ -10,6 +10,7 @@
  * @author Bjarki S
  * @author Cessator
  * @author Friðrik Bragi Dýrfjörð
+ * @author Geitost
  * @author Gott wisst
  * @author Jóna Þórunn
  * @author Kaganer
@@ -1795,7 +1796,7 @@ $1',
 'upload-proto-error-text' => 'Upphlöðun frá öðrum vefþjón þarfnast vefslóðar sem byrjar á <code>http://</code> eða <code>ftp://</code>.',
 'upload-file-error' => 'Innri villa',
 'upload-file-error-text' => 'Innri villa: Gat ekki búið til tímabundna skrá á vefþjóni.
-Vinsamlegast hafðu samband við [[Special:ListUsers/sysop|möppudýr]].',
+Vinsamlegast hafðu samband við [[Special:ListUsers/sysop|stjórnanda]].',
 'upload-misc-error' => 'Óþekkt innhleðsluvilla',
 'upload-misc-error-text' => 'Upphal þitt mistókst vegna óþekktrar villu.
 Athugaðu hvort vefslóðin sé rétt og aðgengileg og að því loknu reyndu aftur.

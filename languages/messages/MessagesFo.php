@@ -311,6 +311,7 @@ $messages = array(
 'create-this-page' => 'Stovna hesa síðuna',
 'delete' => 'Strika',
 'deletethispage' => 'Strika hesa síðuna',
+'undeletethispage' => 'Endurskapað hesa síðuna',
 'undelete_short' => 'Ógilda striking av {{PLURAL:$1|einari rætting|$1 broytingum}}',
 'viewdeleted_short' => 'Vís {{PLURAL:$1|eina strikaða broyting|$1 strikaðar broytingar}}',
 'protect' => 'Friða',
@@ -514,6 +515,8 @@ $2',
 'namespaceprotected' => 'Tú hevur ikki loyvi til at rætta síður í $1 navnateiginum.',
 'customcssprotected' => 'Tú hevur ikki loyvi til at rætta hesa CSS síðuna, tí hon inniheldur persónligar innstillingar hjá øðrum brúkara.',
 'customjsprotected' => 'Tú hevur ikki loyvir til at rætta hesa JavaScript síðuna, tí hon inniheldur persónligar innstillingar hjá øðrum brúkara.',
+'mycustomcssprotected' => 'Tú hevur ikki loyvi til at rætta hesa CSS síðuna.',
+'mycustomjsprotected' => 'Tú hevur ikki loyvi til at rætta hesa JavaScript síðuna.',
 'ns-specialprotected' => 'Serstakar síður kunnu ikki rættast.',
 'titleprotected' => '[[User:$1|$1]] hevur vart hetta heitið frá skapan.
 Givin orsøk er "\'\'$2\'\'".',
@@ -649,7 +652,7 @@ Vinarliga skriva t-post bústað í røttum formati ella lat handa teigin vera t
 'cannotchangeemail' => 'T-post adressur, sum eru knýttar at brúkarakontum, kunnu ikki broytast á hesi wiki.',
 'emaildisabled' => 'Henda heimasíðan kann ikki senda teldupostar.',
 'accountcreated' => 'Konto upprættað',
-'accountcreatedtext' => 'Brúkarakontan hjá $1 er nú upprættað.',
+'accountcreatedtext' => 'Henda brúkarakontan fyri [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|kjak]]) er nú upprættað.',
 'createaccount-title' => 'Upprætta brúkarakonto á {{SITENAME}}',
 'createaccount-text' => 'Onkur hevur stovnað eina konto fyri tína teldupost adressu á {{SITENAME}} ($4) nevnd "$2", við loyniorðinum "$3".
 Tú eigur at innrita og broyta loyniorðið nú.
@@ -685,9 +688,12 @@ Nú verður tú ritaður inn...',
 'resetpass-wrong-oldpass' => 'Ógyldug fyribils ella verandi loyniorð.
 Møguliga hevur tú longu broytt títt loyniorð ella biðið um eitt nýtt fyribils loyniorð.',
 'resetpass-temp-password' => 'Fyribils loyniorð',
+'resetpass-abort-generic' => 'Broyting av loyniorði bleiv avbrotin av einari víðkan.',
 
 # Special:PasswordReset
 'passwordreset' => 'Nullstilla loyniorðið',
+'passwordreset-text-one' => 'Útfyll henda teigin fyri at nullstilla títt loyniorð.',
+'passwordreset-text-many' => '{{PLURAL:$1|Skriva eitt av pettunum av dáta fyri at nullstilla títt loyniorð.}}',
 'passwordreset-legend' => 'Nulstilla loyniorðið',
 'passwordreset-disabled' => 'Tað ber ikki til at nullstilla loyniorðið á hesi wiki.',
 'passwordreset-emaildisabled' => 'Teldupost funksjónir eru óvirknar á hesi wiki.',
@@ -949,6 +955,9 @@ Um tú hevur ritað inn, so kanst tú sláa hesa ávaring frá í "Rættingar" p
 'content-model-css' => 'CSS',
 
 # Parser/template warnings
+'expensive-parserfunction-warning' => "'''Ávaring:''' Henda síðan inniheldur ov nógvar útrokningstungar parsara-funksjónskall.
+
+Hon eigur at hava minni enn $2 {{PLURAL:$2|kall}}, tað {{PLURAL:$1|er nú $1|eru nú $1 kall}}.",
 'expensive-parserfunction-category' => 'Síður við ov nógvum dýrum parsara funktiónskallum',
 'post-expand-template-inclusion-warning' => "'''Ávaring:''' Tað eru ov nógvar skabilónir á hesi síðu. 
 Nakrar skabilónir vera ikki vístar.",
@@ -957,6 +966,7 @@ Nakrar skabilónir vera ikki vístar.",
 Hetta parametur er tí ikki tikið við.",
 'post-expand-template-argument-category' => 'Síður har skabilón parametur (template arguments) ikki eru tikin við',
 'parser-template-loop-warning' => 'Skapilónssloyfa funnin: [[$1]]',
+'language-converter-depth-warning' => 'Markið fyri dýpd á málkonverteraranum er farið út um mark ($1)',
 'node-count-exceeded-category' => 'Síður har talið av notum (node) er ov høgt',
 'node-count-exceeded-warning' => 'Síðan hevur og høgt tal av notum (node-count)',
 'expansion-depth-exceeded-category' => 'Síður ið fara yvir loyvdu víðkanar-dýpdina',
@@ -1075,12 +1085,23 @@ Tú hevur ikki atgongd til hann.',
 'revdelete-edit-reasonlist' => 'Rætta strikingar orsøkir',
 'revdelete-offender' => 'Høvundurin av hesi endurskoðan:',
 
+# Suppression log
+'suppressionlog' => 'Samanpressingarloggur',
+'suppressionlogtext' => 'Niðanfyri sæst eitt yvirlit yvir slettingar og sperringar, sum fevnir um innihald, sum er fjalt fyri administratorum.
+Hygg at [[Special:BlockList|sperringslistanum]] fyri at síggja listan yvir verandi bann og sperringar.',
+
 # History merging
 'mergehistory' => 'Samantvinna søgurnar hjá síðunum',
 'mergehistory-header' => 'Henda síðan letur teg samanflætta versjónirnar frá søguni av einari síðu til eina nýggjari síðu.
 Tryggja tær, at henda broyting fer at varðveita framhaldssøguna hjá síðuni.',
 'mergehistory-box' => 'Samantvinna versjónirnar av tveimum síðum:',
 'mergehistory-from' => 'Keldusíða:',
+'mergehistory-into' => 'Komusíða:',
+'mergehistory-list' => 'Rættingarsøgur, sum kunnu samanflættast',
+'mergehistory-go' => 'Vís rættingar ið kunnu samantvinnast',
+'mergehistory-submit' => 'Samanflætta versjónirnar',
+'mergehistory-empty' => 'Ongar versjónir kunnu samanflættast.',
+'mergehistory-success' => '$3 {{PLURAL:$3|versjón|versjónir}} av [[:$1]] er samanflættað við [[:$2]].',
 'mergehistory-no-source' => 'Keldu síðan $1 er ikki til.',
 'mergehistory-no-destination' => 'Destinatiónssíðan $1 er ikki til.',
 'mergehistory-invalid-source' => 'Keldusíðan má hava eitt gyldugt heiti.',
@@ -1171,12 +1192,14 @@ Tú kanst royna at brúka ''all:'' sum fyrsta stavilsi fyri at søkja í øllum 
 'searchdisabled' => '{{SITENAME}} leitan er sett úr gildi.
 Tú kanst leita via Google ímeðan.
 Legg til merkis, at teirra innihaldsyvirlit av {{SITENAME}} kann vera gamalt og ikki dagført.',
+'search-error' => 'Ein feilur hendi undir leitanini: $1',
 
 # Preferences page
 'preferences' => 'Innstillingar',
 'mypreferences' => 'Innstillingar',
 'prefs-edits' => 'Tal av rættingum:',
 'prefsnologin' => 'Tú hevur ikki ritað inn',
+'prefsnologintext' => 'Tú mást vera <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} innritað/ur]</span> fyri at broyta brúkarainnstillingar.',
 'changepassword' => 'Broyt loyniorð',
 'prefs-skin' => 'Hamur',
 'skin-preview' => 'Forskoðan',
@@ -1214,6 +1237,9 @@ Legg til merkis, at teirra innihaldsyvirlit av {{SITENAME}} kann vera gamalt og 
 'recentchangesdays-max' => 'Í mesta lagi $1 {{PLURAL:$1|dagur|dagar}}',
 'recentchangescount' => 'Tal av rættingum at vísa í standard:',
 'prefs-help-recentchangescount' => 'Íroknað seinastu broytingar, søgur hjá síðum og loggar.',
+'prefs-help-watchlist-token' => 'Um tú fyllir út henda teigin við einum tryggum lykli, so verður ein RSS feed upprættaður til tín eftirlitslista.
+Ein og hvør ið kennir lykilin í hesum teiginum, hevur møguleika fyri at lesa tín eftirlitslista, so vel ein trygt virði.
+Her er eitt tilvildarliga valdt virði, sum tú kanst brúka: $1',
 'savedprefs' => 'Tínar innstillingar eru goymdar.',
 'timezonelegend' => 'Tíðar sona:',
 'localtime' => 'Lokal tíð:',
@@ -1252,6 +1278,7 @@ Tú kanst ikki angra, tá tað fyrst er gjørt.',
 'prefs-registration' => 'Skrásett tíðspunkt:',
 'yourrealname' => 'Títt navn*:',
 'yourlanguage' => 'Mál til brúkaraflatu:',
+'yourvariant' => 'Málvariantur fyri innihald:',
 'yournick' => 'Nýggj undirskrift:',
 'prefs-help-signature' => 'Viðmerkingar á kjaksíðum eiga at vera undirskrivaðar við "<nowiki>~~~~</nowiki>", sum verður gjørt um til tína undirskrift og eitt dagfestingarmerki.',
 'badsig' => 'Ógyldug ráð undirskrift.
@@ -1584,6 +1611,8 @@ Um trupulleikin heldur fram, set teg so vinarliga í samband við ein [[Special:
 'backend-fail-backup' => 'Tað bar ikki til at taka backup av fílu "$1".',
 'backend-fail-notexists' => 'Fílan $1 er ikki til.',
 'backend-fail-notsame' => 'Ein ikki-eins fíla finst longu á "$1".',
+'backend-fail-delete' => 'Tað bar ikki til at sletta fílu "$1".',
+'backend-fail-describe' => 'Tað bar ikki til at broyta metadáta fyri fílu "$1".',
 'backend-fail-alreadyexists' => 'Fílan "$1" finst longu.',
 'backend-fail-store' => 'Kundi ikki goyma fílu $1 á $2.',
 'backend-fail-copy' => 'Kundi ikki avrita fílu $1 til $2.',
@@ -1594,6 +1623,7 @@ Um trupulleikin heldur fram, set teg so vinarliga í samband við ein [[Special:
 'backend-fail-read' => 'Kundi ikki lesa fílu $1.',
 'backend-fail-create' => 'Kundi ikki skriva fílu $1.',
 'backend-fail-maxsize' => 'Tað bar ikki til at lesa fíluna "$1" tí hon er størri enn {{PLURAL:$2|eitt byte|$2 bytes}}.',
+'backend-fail-readonly' => 'Goymslu backend "$1" er í løtuni í "bara-lesa" støðu. Orsøkin til hetta er: "\'\'$2\'\'"',
 
 # Lock manager
 'lockmanager-notlocked' => 'Kundi ikki lata upp "$1"; hon er ikki stongd.',
@@ -1684,6 +1714,10 @@ Ein [[Special:WhatLinksHere/$2|fullur listi]] er tøkur.',
 Vinarliga hygg at [$2 fílu frágreiðingarsíðu] fyri nærri kunning.',
 'sharedupload-desc-here' => 'Henda fíla er frá $1 og kann verða brúka í øðrum verkætlanum.
 Frágreiðingin á [$2 fílu frágreiðingar síðu] er víst her niðanfyri.',
+'sharedupload-desc-edit' => 'Henda fílan er frá $1 og kann vera brúkt av øðrum verkætlanum.
+Kanska ynskir tú at rætta frágreiðingina hjá fíluni á [$2 fílu frágreiðingarsíðuni] her.',
+'sharedupload-desc-create' => 'Henda fílan er frá $1 og kann vera brúkt av øðrum verkætlanum.
+Kanska ynskir tú at rætta frágreiðingina til fíluna á [$2 fílu frágreiðingarsíðuni] her.',
 'filepage-nofile' => 'Ongin fíla við hesum navninum finst.',
 'filepage-nofile-link' => 'Ongin fíla við hesum navninum finst, men tú kanst [$1 leggja hana út].',
 'uploadnewversion-linktext' => 'Legg eina nýggja versjón av hesi fílu út',
@@ -1692,7 +1726,13 @@ Frágreiðingin á [$2 fílu frágreiðingar síðu] er víst her niðanfyri.',
 'upload-disallowed-here' => 'Tú kanst ikki yvirskriva hesa fílu.',
 
 # File reversion
+'filerevert' => 'Endurstovna $1',
+'filerevert-legend' => 'Endurstovna fílu',
+'filerevert-intro' => "Tú ert í ferð við at endurstovna fílu '''[[Media:$1|$1]]''' til [$4 verssjónina sum hon sá út kl. $3, hin $2].",
 'filerevert-comment' => 'Orsøk:',
+'filerevert-defaultcomment' => 'Endurstovanð til versjón frá kl. $2, hin $1',
+'filerevert-submit' => 'Endurstovna',
+'filerevert-success' => "'''[[Media:$1|$1]]''' er blivið endurstovna til [$4 versjónina frá $2, kl. $3].",
 
 # File deletion
 'filedelete' => 'Strika $1',
@@ -1704,10 +1744,20 @@ Frágreiðingin á [$2 fílu frágreiðingar síðu] er víst her niðanfyri.',
 'filedelete-success' => "'''$1''' er blivin strikað.",
 'filedelete-success-old' => "Versjónin av '''[[Media:$1|$1]]''' frá kl. $3, hin $2 er blivið strikað.",
 'filedelete-nofile' => "'''$1''' er ikki til.",
+'filedelete-reason-otherlist' => 'Onnur orsøk',
+'filedelete-reason-dropdown' => '*Vanligar orsøkir til sletting
+** Brot á upphavsrættin
+** Fílan kemur fyri tvær ferðir',
+'filedelete-edit-reasonlist' => 'Rætta orsøkina til striking',
 'filedelete-maintenance-title' => 'Ógjørligt at sletta fílu',
 
 # MIME search
 'mimesearch' => 'MIME-leit',
+'mimetype' => 'MIME slag:',
+'download' => 'tak niður',
+
+# Unwatched pages
+'unwatchedpages' => 'Ikki eftiransaðar síður',
 
 # List redirects
 'listredirects' => 'Sýn ávísingar',
@@ -1741,12 +1791,16 @@ Frágreiðingin á [$2 fílu frágreiðingar síðu] er víst her niðanfyri.',
 'disambiguations' => 'Síður sum vísa til síður við fleirfaldum týdningi',
 'disambiguationspage' => 'Template:fleiri týdningar',
 
+'pageswithprop-submit' => 'Far',
+
 'doubleredirects' => 'Tvífaldað ávísing',
 'doubleredirectstext' => 'Henda síða gevur yvirlit yvir síður, sum vísa víðari til aðrar víðaristillaðar síður.
 Hvør linja inniheldur leinkjur til ta fyrstu og næstu víðaristillingina, eins væl og málið fyri tað næstu víðaristillingina, sum vanliga er tann "veruliga" endamáls síðan, sum tann fyrsta víðaristillingin átti at peika móti.
 <del>Útkrossaðir</del> postar eru loystir.',
 'double-redirect-fixed-move' => '[[$1]] er blivin flutt.
 Víðaristilling verður nú gjørd til [[$2]].',
+'double-redirect-fixed-maintenance' => 'Rætta dupulta umstýring frá [[$1]] til [[$2]].',
+'double-redirect-fixer' => 'Umstýringsrættari',
 
 'brokenredirects' => 'Brotnar ávísingar',
 'brokenredirectstext' => 'Hesar víðaristillingar slóða til síður, ið ikki eru til:',
@@ -1762,6 +1816,7 @@ Víðaristilling verður nú gjørd til [[$2]].',
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|beit}}',
 'ncategories' => '$1 {{PLURAL:$1|bólkur|bólkar}}',
+'ninterwikis' => '$1 {{PLURAL:$1|interwiki|interwikiir}}',
 'nlinks' => '$1 {{PLURAL:$1|slóð|slóðir}}',
 'nmembers' => '$1 {{PLURAL:$1|limur|limir}}',
 'nviews' => '$1 {{PLURAL:$1|skoðan|skoðanir}}',
@@ -1780,11 +1835,14 @@ Víðaristilling verður nú gjørd til [[$2]].',
 'mostlinked' => 'Síður við flest ávísingum',
 'mostlinkedcategories' => 'Bólkar við flestum ávísandi slóðum',
 'mostcategories' => 'Greinir við flest bólkum',
+'mostimages' => 'Mest leinkjaðar-til fílur',
+'mostinterwikis' => 'Síður við flestum interwiki-slóðum',
 'mostrevisions' => 'Greinir við flestum útgávum',
 'prefixindex' => 'Allar síður við forskoyti (prefiks)',
 'shortpages' => 'Stuttar síður',
 'longpages' => 'Langar síður',
 'deadendpages' => 'Gøtubotnssíður',
+'deadendpagestext' => 'Hesar síðurnar slóða ikki til aðrar síður í {{SITENAME}}.',
 'protectedpages' => 'Friðaðar síður',
 'listusers' => 'Brúkaralisti',
 'listusers-editsonly' => 'Vís bara brúkarar sum hava gjørt rættingar',
@@ -2017,7 +2075,7 @@ broytti tað aftur til seinastu versjón hjá $2.',
 'contributions-title' => 'Brúkaraíkøst fyri $1',
 'mycontris' => 'Íkøst',
 'contribsub2' => 'Eftir $1 ($2)',
-'uctop' => '(ovast)',
+'uctop' => '(verandi)',
 'month' => 'Frá mánaði (og áðrenn):',
 'year' => 'Frá ár (og áðrenn):',
 

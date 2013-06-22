@@ -550,8 +550,8 @@ $messages = array(
 'category-file-count' => '{{PLURAL:$2|Diese Kategorie enthält folgende Datei:|{{PLURAL:$1|Folgende Datei ist eine von insgesamt $2 Dateien in dieser Kategorie:|Es werden $1 von insgesamt $2 Dateien in dieser Kategorie angezeigt:}}}}',
 'category-file-count-limited' => 'Folgende {{PLURAL:$1|Datei ist|$1 Dateien sind}} in dieser Kategorie enthalten:',
 'listingcontinuesabbrev' => '(Fortsetzung)',
-'index-category' => 'Indizierte Seiten',
-'noindex-category' => 'Nichtindizierte Seiten',
+'index-category' => 'Indexierte Seiten',
+'noindex-category' => 'Nichtindexierte Seiten',
 'broken-file-category' => 'Seiten mit defekten Dateilinks',
 
 'about' => 'Über',
@@ -601,7 +601,7 @@ $messages = array(
 'search' => 'Suche',
 'searchbutton' => 'Suchen',
 'go' => 'Ausführen',
-'searcharticle' => 'Seite',
+'searcharticle' => 'Inhaltsseite',
 'history' => 'Versionen',
 'history_short' => 'Versionen/Autoren',
 'updatedmarker' => 'Änderung seit meinem letzten Besuch',
@@ -1112,7 +1112,7 @@ Vermutlich wurde er verschoben oder gelöscht, nachdem du die Seite aufgerufen h
 Das Passwort für dieses neue Benutzerkonto kann auf der Spezialseite „[[Special:ChangePassword|Passwort ändern]]“ geändert werden.',
 'newarticle' => '(Neu)',
 'newarticletext' => "Du bist einem Link zu einer Seite gefolgt, die nicht vorhanden ist.
-Um diese Seite anzulegen, trage deinen Text in das untenstehende Bearbeitungsfeld ein (siehe die [[{{MediaWiki:Helppage}}|Hilfeseite]] für weitere Informationen).
+Um diese Seite anzulegen, trage deinen Text in das untenstehende Bearbeitungsfeld ein (weitere Informationen auf der [[{{MediaWiki:Helppage}}|Hilfeseite]]).
 Sofern du fälschlicherweise hier bist, klicke auf die Schaltfläche '''Zurück''' deines Browsers.",
 'anontalkpagetext' => "----''Diese Seite dient dazu, einem nicht angemeldeten Benutzer Nachrichten zu hinterlassen. Es wird seine IP-Adresse zur Identifizierung verwendet. IP-Adressen können von mehreren Benutzern gemeinsam verwendet werden. Wenn du mit den Kommentaren auf dieser Seite nichts anfangen kannst, richten sie sich vermutlich an einen früheren Inhaber deiner IP-Adresse und du kannst sie ignorieren. Du kannst dir auch ein [[Special:UserLogin/signup|Benutzerkonto erstellen]] oder dich [[Special:UserLogin|anmelden]], um künftig Verwechslungen mit anderen anonymen Benutzern zu vermeiden.''",
 'noarticletext' => 'Diese Seite enthält momentan noch keinen Text.
@@ -1138,7 +1138,7 @@ Zur Information folgt ein aktueller Auszug aus dem Benutzersperr-Logbuch:',
 'userjsyoucanpreview' => "'''Tipp:''' Benutze den „{{int:showpreview}}“-Button, um dein neues JavaScript vor dem Speichern zu testen.",
 'usercsspreview' => "'''Beachte, dass du nur eine Vorschau deines Benutzer-CSS betrachtest.'''
 '''Es wurde noch nicht gespeichert!'''",
-'userjspreview' => "'''Beachte, dass du nur eine Vorschau deines Benutzer-JavaScript betrachtest.'''
+'userjspreview' => "'''Beachte, dass du nur eine Vorschau deines Benutzer-JavaScripts betrachtest.'''
 '''Es wurde noch nicht gespeichert!'''",
 'sitecsspreview' => "'''Beachte, dass du nur eine Vorschau dieses CSS betrachtest.'''
 '''Es wurde noch nicht gespeichert!'''",
@@ -1185,7 +1185,7 @@ Du gibst uns hiermit deine Zusage, dass du den Text '''selbst verfasst''' hast, 
 Reiche hier keine Texte ein, falls du nicht willst, dass diese ohne Einschränkung geändert werden können.
 
 Du bestätigst hiermit auch, dass du diese Texte selbst geschrieben hast oder diese von einer gemeinfreien Quelle kopiert hast
-(siehe $1 für weitere Einzelheiten). '''ÜBERTRAGE OHNE GENEHMIGUNG KEINE URHEBERRECHTLICH GESCHÜTZTEN INHALTE!'''",
+(weitere Einzelheiten unter $1). '''ÜBERTRAGE OHNE GENEHMIGUNG KEINE URHEBERRECHTLICH GESCHÜTZTEN INHALTE!'''",
 'longpageerror' => "'''Fehler: Der Text, den du zu speichern versuchst, ist {{PLURAL:$1|ein Kilobyte|$1 Kilobyte}} groß. Dies ist größer als das erlaubte Maximum von {{PLURAL:$2|ein Kilobyte|$2 Kilobyte}}.'''
 Er kann nicht gespeichert werden.",
 'readonlywarning' => "'''Achtung: Die Datenbank wurde für Wartungsarbeiten gesperrt, so dass deine Änderungen derzeit nicht gespeichert werden können.
@@ -1453,7 +1453,7 @@ Einzelheiten sind im [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}
 # Search results
 'searchresults' => 'Suchergebnisse',
 'searchresults-title' => 'Suchergebnisse für „$1“',
-'searchresulttext' => 'Für mehr Informationen zur Suche siehe die [[{{MediaWiki:Helppage}}|Hilfeseite]].',
+'searchresulttext' => 'Mehr Informationen zur Suche sind auf der [[{{MediaWiki:Helppage}}|Hilfeseite]] zu finden.',
 'searchsubtitle' => 'Deine Suchanfrage: „[[:$1]]“ ([[Special:Prefixindex/$1|alle mit „$1“ beginnenden Seiten]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|alle Seiten, die nach „$1“ verlinken]])',
 'searchsubtitleinvalid' => 'Deine Suchanfrage: „$1“.',
 'toomanymatches' => 'Die Anzahl der Suchergebnisse ist zu groß, bitte versuche eine andere Abfrage.',
@@ -1499,7 +1499,7 @@ Einzelheiten sind im [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}
 'showingresultsnum' => "Hier {{PLURAL:$3|ist '''1''' Ergebnis|sind '''$3''' Ergebnisse}}, beginnend mit Nummer '''$2.'''",
 'showingresultsheader' => "{{PLURAL:$5|Ergebnis '''$1''' von '''$3'''|Ergebnisse '''$1–$2''' von '''$3'''}} für '''$4'''",
 'nonefound' => "'''Hinweis:''' Es werden standardmäßig nur einige Namensräume durchsucht. Setze ''all:'' vor deinen Suchbegriff, um alle Seiten (inkl. Diskussionsseiten, Vorlagen usw.) zu durchsuchen oder gezielt den Namen des zu durchsuchenden Namensraumes.",
-'search-nonefound' => 'Für deine Suchanfrage wurden keine Ergebnisse gefunden.',
+'search-nonefound' => 'Zu deiner Suchanfrage wurden keine Ergebnisse gefunden.',
 'powersearch' => 'Erweiterte Suche',
 'powersearch-legend' => 'Erweiterte Suche',
 'powersearch-ns' => 'Suche in Namensräumen:',
@@ -1975,11 +1975,11 @@ $1',
 'upload-proto-error-text' => 'Die URL muss mit <code>http://</code> oder <code>ftp://</code> beginnen.',
 'upload-file-error' => 'Interner Fehler',
 'upload-file-error-text' => 'Bei der Erstellung einer temporären Datei auf dem Server ist ein interner Fehler aufgetreten.
-Bitte informiere einen [[Special:ListUsers/sysop|System-Administrator]].',
+Bitte informiere einen [[Special:ListUsers/sysop|Administrator]].',
 'upload-misc-error' => 'Unbekannter Fehler beim Hochladen',
 'upload-misc-error-text' => 'Beim Hochladen ist ein unbekannter Fehler aufgetreten.
 Prüfe die URL auf Fehler, den Online-Status der Seite und versuche es erneut.
-Wenn das Problem weiter besteht, informiere einen [[Special:ListUsers/sysop|System-Administrator]].',
+Wenn das Problem weiter besteht, informiere einen [[Special:ListUsers/sysop|Administrator]].',
 'upload-too-many-redirects' => 'Die URL beinhaltete zu viele Weiterleitungen',
 'upload-unknown-size' => 'Unbekannte Größe',
 'upload-http-error' => 'Ein HTTP-Fehler ist aufgetreten: $1',
@@ -2051,7 +2051,7 @@ Sie kann daher keiner ordnungsgemäßen Sicherheitsüberprüfung unterzogen werd
 'img-auth-nopathinfo' => 'Die Angabe PATH_INFO fehlt.
 Der Server ist nicht dafür eingerichtet, diese Information weiterzugeben.
 Sie könnte CGI-gestützt sein und kann daher „img_auth“ (Authentifizierung des Dateiaufrufs) nicht unterstützen.
-Siehe hierzu die Seite https://www.mediawiki.org/wiki/Manual:Image_Authorization (englisch) für weitere Informationen.',
+Siehe auch https://www.mediawiki.org/wiki/Manual:Image_Authorization (englisch).',
 'img-auth-notindir' => 'Der gewünschte Pfad ist nicht im konfigurierten Uploadverzeichnis.',
 'img-auth-badtitle' => 'Aus „$1“ kann kein gültiger Titel erstellt werden.',
 'img-auth-nologinnWL' => 'Du bist nicht angemeldet und „$1“ ist nicht in der weißen Liste.',
@@ -3007,7 +3007,7 @@ Alternativ ist der Export auch mit der Syntax [[{{#Special:Export}}/{{MediaWiki:
 'exportall' => 'Alle Seiten exportieren',
 'exportcuronly' => 'Nur die aktuelle Version der Seite exportieren',
 'exportnohistory' => "----
-'''Hinweis:''' Der Export kompletter Versionsgeschichten ist aus Performancegründen bis auf weiteres nicht möglich.",
+'''Hinweis:''' Der Export kompletter Versionsgeschichten ist aus Gründen der Systemleistung bis auf Weiteres nicht möglich.",
 'exportlistauthors' => 'Für jede Seite die jeweils vollständige Liste der Bearbeiter einbeziehen',
 'export-submit' => 'Seiten exportieren',
 'export-addcattext' => 'Seiten aus folgender Kategorie hinzufügen:',
@@ -3203,7 +3203,7 @@ Diese auf dem lokalen Rechner speichern und danach hier hochladen.',
 # Scripts
 'common.js' => '/* Das folgende JavaScript wird für alle Benutzer geladen. */',
 'cologneblue.js' => '/* Das folgende JavaScript wird für Benutzer der Kölnisch-Blau-Benutzeroberfläche geladen. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */',
-'monobook.js' => '/* Das folgende JavaScript wird für Benutzer der MonoBook-Benutzeroberfläche geladen */',
+'monobook.js' => '/* Das folgende JavaScript wird für Benutzer der Monobook-Benutzeroberfläche geladen. */',
 'modern.js' => '/* Das folgende JavaScript wird für Benutzer der Modern-Benutzeroberfläche geladen. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */',
 'vector.js' => '/* Das folgende JavaScript wird für Benutzer der Vector-Benutzeroberfläche geladen. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */',
 'group-autoconfirmed.js' => '/* Das folgende JavaScript wird nur für automatisch bestätigte Benutzer geladen. */',
@@ -3801,7 +3801,7 @@ Weitere werden standardmäßig nicht angezeigt.
 
 # External editor support
 'edit-externally' => 'Diese Datei mit einem externen Programm bearbeiten',
-'edit-externally-help' => '(Siehe die [//www.mediawiki.org/wiki/Manual:External_editors Installationsanweisungen] für weitere Informationen)',
+'edit-externally-help' => '(weitere Informationen in den [//www.mediawiki.org/wiki/Manual:External_editors Installationsanweisungen])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'alle',

@@ -1477,6 +1477,7 @@ $1",
 'userrights-changeable-col' => '您可以更改的群組',
 'userrights-unchangeable-col' => '您不可以更改的群組',
 'userrights-conflict' => '使用者權限衝突！請重新套用您的更改。',
+'userrights-removed-self' => '您已成功移除自己的權限，故此您沒法再次訪問此頁。',
 
 # Groups
 'group' => '群組：',

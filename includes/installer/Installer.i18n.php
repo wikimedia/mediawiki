@@ -11230,7 +11230,7 @@ MySQL의 UTF-8 모드를 보다 더 효율적이고 유니코드 문자의 전�
 예를 들어 <code>/var/lib/mediawiki/yourwiki</code>와 같이 다른 곳에 데이터베이스를 넣는 것이 좋습니다.",
 	'config-oracle-def-ts' => '기본 테이블공간:',
 	'config-oracle-temp-ts' => '임시 테이블공간:',
-	'config-type-oracle' => '오라클',
+	'config-type-oracle' => 'Oracle',
 	'config-support-info' => '미디어위키는 다음의 데이터베이스 시스템을 지원합니다:
 
 $1
@@ -11243,13 +11243,13 @@ $1
 	'config-header-mysql' => 'MySQL 설정',
 	'config-header-postgres' => 'PostgreSQL 설정',
 	'config-header-sqlite' => 'SQLite 설정',
-	'config-header-oracle' => '오라클 설정',
+	'config-header-oracle' => 'Oracle 설정',
 	'config-invalid-db-type' => '잘못된 데이터베이스 종류',
 	'config-missing-db-name' => '"데이터베이스 이름"에 대한 값을 입력해야 합니다',
 	'config-missing-db-host' => '"데이터베이스 호스트"에 대한 값을 입력해야 합니다',
 	'config-missing-db-server-oracle' => '"데이터베이스 TNS"에 대한 값을 입력해야 합니다',
 	'config-invalid-db-server-oracle' => '"$1" 데이터베이스 TNS가 잘못됐습니다.
-ASCII 글자 (a-z, A-Z), 숫자 (0-9), 밑줄 (_)과 하이픈 (-)만 사용하세요.',
+ASCII 글자 (a-z, A-Z), 숫자 (0-9), 밑줄 (_)과 하이픈 (-)만 사용하세요.', # Fuzzy
 	'config-invalid-db-name' => '"$1" 데이터베이스 이름이 잘못되었습니다.
 ASCII 글자 (a-z, A-Z), 숫자 (0-9), 밑줄 (_)과 하이픈 (-)만 사용하세요.',
 	'config-invalid-db-prefix' => '"$1" 데이터베이스 접두어가 잘못됐습니다.
@@ -18380,8 +18380,20 @@ $messages['sv'] = array(
 	'config-desc' => 'Installationsprogram för MediaWiki',
 	'config-title' => 'Installation av MediaWiki $1',
 	'config-information' => 'Information',
+	'config-localsettings-upgrade' => 'A <code>LocalSettings.php</code>-fil har upptäckts.
+För att uppgradera den här installationen, vänligen ange värdet för <code>$wgUpgradeKey</code> i rutan nedan.
+Du hittar den i <code>LocalSettings.php</code>.',
+	'config-localsettings-cli-upgrade' => 'En <code>LocalSettings.php</code>-fil har upptäckts.
+För att uppgradera denna installation, kör <code>update.php</code> istället',
 	'config-localsettings-key' => 'Uppgraderingsnyckel:',
 	'config-localsettings-badkey' => 'Nyckeln du angav är inkorrekt.',
+	'config-upgrade-key-missing' => 'En nuvarande installerade av MediaWiki har upptäckts.
+För att uppgradera installationen, lägg till följande rad i slutet av din <code>LocalSettings.php</code>:
+
+$1',
+	'config-localsettings-incomplete' => 'De befintliga <code>LocalSettings.php</code> verkar vara ofullständig.
+Variabeln $1 är inte inställd.
+Ändra <code>LocalSettings.php</code> så att denna variabel är inställd och klicka på "{{int:Config-continue}}".',
 	'config-session-error' => 'Fel vid uppstart av session: $1',
 	'config-your-language' => 'Ditt språk:',
 	'config-your-language-help' => 'Välj ett språk som ska användas under installationen.',
@@ -18422,6 +18434,7 @@ Du kan inte installera MediaWiki.',
 	'config-env-php' => 'PHP $1 är installerad.',
 	'config-env-php-toolow' => 'PHP $1 är installerad.
 MediaWiki kräver PHP $2 eller högre.',
+	'config-outdated-sqlite' => "'''Varning:''' du har SQLite $1, vilket är lägre än minimikravet version $2. SQLite kommer inte att vara tillgänglig.",
 	'config-register-globals' => "'''Varning: PHP:s <code>[http://php.net/register_globals register_globals]</code> tillval är aktiverat.'''
 '''Inaktivera den om du kan.'''
 MediaWiki kommer att fungera, men din server exponeras för potentiella säkerhetsluckor.",
@@ -18445,6 +18458,7 @@ Installationen avbröts.",
 	'config-using-uri' => 'Använder server-URL "<nowiki>$1$2</nowiki>".',
 	'config-no-cli-uploads-check' => "'''Varning:''' Din standardkatalog för uppladdningar (<code>$1</code>) inte är kontrollerad för sårbarhet från godtyckliga skriptkörning under CLI-installationen.",
 	'config-db-type' => 'Databastyp:',
+	'config-db-host' => 'Databasvärd:',
 	'config-db-wiki-settings' => 'Identifiera denna wiki',
 	'config-db-name' => 'Databasnamn:',
 	'config-db-name-oracle' => 'Databasschema:',
@@ -18455,6 +18469,7 @@ Installationen avbröts.",
 	'config-db-prefix' => 'Prefix för tabellerna i databasen:',
 	'config-db-port' => 'Databasport:',
 	'config-db-schema' => 'Schema för MediaWiki',
+	'config-pg-test-error' => "Kan inte ansluta till databas '''$1''': $2",
 	'config-sqlite-dir' => 'SQLite data-katalog:',
 	'config-header-mysql' => 'MySQL-inställningar',
 	'config-header-postgres' => 'PostgreSQL-inställningar',

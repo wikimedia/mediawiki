@@ -16,6 +16,7 @@
  * @author EPO
  * @author Emilkris33
  * @author Froztbyte
+ * @author Geitost
  * @author Gorbi
  * @author H92
  * @author HenrikKbh
@@ -1746,9 +1747,9 @@ $1',
 'upload-proto-error-text' => 'Adressen skal begynde med <code>http://</code> eller <code>ftp://</code>.',
 'upload-file-error' => 'Intern fejl',
 'upload-file-error-text' => 'Ved oprettelse af en midlertidig fil på serveren, er der sket en fejl.
-Informer venligst en [[Special:ListUsers/sysop|systemadministrator]].',
+Informer venligst en [[Special:ListUsers/sysop|administrator]].',
 'upload-misc-error' => 'Ukendt fejl ved upload',
-'upload-misc-error-text' => 'Ved upload er der sket en ukendt fejl. Kontroller adressen for fejl, sidens onlinestatus og forsøg igen. Hvis problemet fortsætter, informeres en system-administrator.',
+'upload-misc-error-text' => 'Ved upload er der sket en ukendt fejl. Kontroller adressen for fejl, sidens onlinestatus og forsøg igen. Hvis problemet fortsætter, informeres en [[Special:ListUsers/sysop|administrator]].',
 'upload-too-many-redirects' => "URL'en indeholdt for mange omdirigeringer",
 'upload-unknown-size' => 'Ukendt størrelse',
 'upload-http-error' => 'Der opstod en HTTP-fejl: $1',

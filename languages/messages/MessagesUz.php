@@ -618,7 +618,8 @@ Agar siz anonim ishtirokchi boʻlsangiz va siz oʻzingizga yoʻnaltirilmagan xab
 'continue-editing' => 'tahrirlashni davom ettirish',
 'editing' => '$1 tahrirlanmoqda',
 'creating' => '«$1» sahifasini yaratish',
-'editingsection' => '$1 (boʻlim) tahrirlanmoqda',
+'editingsection' => '$1 tahrirlanmoqda (boʻlim)',
+'editingcomment' => '$1 tahrirlanmoqda (yangi mavzu)',
 'editconflict' => 'Tahrirlash toʻqnashuvi: $1',
 'copyrightwarning' => "Iltimos, {{SITENAME}}ga yuklangan har qanday axborot $2 ostida tarqatilishiga diqqat qiling (batafsil ma'lumot uchun $1ni ko'ring).
 Agar yozganlaringiz keyinchalik tahrir qilinishi va qayta tarqatilishiga rozi bo'lmasangiz, u holda bu yerga yozmang.<br />

@@ -266,7 +266,7 @@ $messages = array(
 'jumptosearch' => 'arserché',
 'view-pool-error' => "An dëspias, ij servent a son motobin carià al moment.
 Tròpi utent a son an camin ch'a preuvo a lese sta pàgina-sì.
-Për piasì, speta un pòch prima ëd prové torna a vardé sta pàgina-sì.
+Për piasì, ch'a speta un pòch prima ëd prové torna a lese costa pàgina.
 
 $1",
 'pool-timeout' => "Ël temp a l'é finì antramentre ch'a së spetava la saradura",
@@ -280,7 +280,7 @@ $1",
 'copyrightpage' => "{{ns:project}}:Drit d'autor",
 'currentevents' => 'Neuve',
 'currentevents-url' => 'Project:Neuve',
-'disclaimers' => 'Difide',
+'disclaimers' => 'Avertense',
 'disclaimerpage' => 'Project:Avertense generaj',
 'edithelp' => 'Manual dë spiegassion',
 'helppage' => 'Help:Agiut',
