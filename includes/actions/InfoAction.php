@@ -121,7 +121,8 @@ class InfoAction extends FormlessAction {
 			foreach ( $infoTable as $infoRow ) {
 				$name = ( $infoRow[0] instanceof Message ) ? $infoRow[0]->escaped() : $infoRow[0];
 				$value = ( $infoRow[1] instanceof Message ) ? $infoRow[1]->escaped() : $infoRow[1];
-				$table = $this->addRow( $table, $name, $value ) . "\n";
+				$id = ( $infoRow[0] instanceof Message ) ? $infoRow[0]->getKey() : null;
+				$table = $this->addRow( $table, $name, $value, $id ) . "\n";
 			}
 			$content = $this->addTable( $content, $table ) . "\n";
 		}
@@ -156,10 +157,11 @@ class InfoAction extends FormlessAction {
 	 * @param string $table The table that will be added to the content
 	 * @param string $name The name of the row
 	 * @param string $value The value of the row
+	 * @param string $id The ID to use for the 'tr' element
 	 * @return string The table with the row added
 	 */
-	protected function addRow( $table, $name, $value ) {
-		return $table . Html::rawElement( 'tr', array(),
+	protected function addRow( $table, $name, $value, $id ) {
+		return $table . Html::rawElement( 'tr', $id == null ? array() : array( 'id' => 'mw-' . $id ),
 			Html::rawElement( 'td', array( 'style' => 'vertical-align: top;' ), $name ) .
 			Html::rawElement( 'td', array(), $value )
 		);
