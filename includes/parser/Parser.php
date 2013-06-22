@@ -54,7 +54,6 @@
  * @warning $wgUser or $wgTitle or $wgRequest or $wgLang. Keep them away!
  *
  * @par Settings:
- * $wgLocaltimezone
  * $wgNamespacesWithSubpages
  *
  * @par Settings only within ParserOptions:
@@ -2682,27 +2681,6 @@ class Parser {
 		$ts = wfTimestamp( TS_UNIX, $this->mOptions->getTimestamp() );
 		wfRunHooks( 'ParserGetVariableValueTs', array( &$this, &$ts ) );
 
-		# Use the time zone
-		global $wgLocaltimezone;
-		if ( isset( $wgLocaltimezone ) ) {
-			$oldtz = date_default_timezone_get();
-			date_default_timezone_set( $wgLocaltimezone );
-		}
-
-		$localTimestamp = date( 'YmdHis', $ts );
-		$localMonth = date( 'm', $ts );
-		$localMonth1 = date( 'n', $ts );
-		$localMonthName = date( 'n', $ts );
-		$localDay = date( 'j', $ts );
-		$localDay2 = date( 'd', $ts );
-		$localDayOfWeek = date( 'w', $ts );
-		$localWeek = date( 'W', $ts );
-		$localYear = date( 'Y', $ts );
-		$localHour = date( 'H', $ts );
-		if ( isset( $wgLocaltimezone ) ) {
-			date_default_timezone_set( $oldtz );
-		}
-
 		$pageLang = $this->getFunctionLang();
 
 		switch ( $index ) {
@@ -2728,25 +2706,25 @@ class Parser {
 				$value = $pageLang->formatNum( gmdate( 'd', $ts ) );
 				break;
 			case 'localmonth':
-				$value = $pageLang->formatNum( $localMonth );
+				$value = $pageLang->formatNum( date( 'm', $ts ) );
 				break;
 			case 'localmonth1':
-				$value = $pageLang->formatNum( $localMonth1 );
+				$value = $pageLang->formatNum( date( 'n', $ts ) );
 				break;
 			case 'localmonthname':
-				$value = $pageLang->getMonthName( $localMonthName );
+				$value = $pageLang->getMonthName( date( 'n', $ts ) );
 				break;
 			case 'localmonthnamegen':
-				$value = $pageLang->getMonthNameGen( $localMonthName );
+				$value = $pageLang->getMonthNameGen( date( 'n', $ts ) );
 				break;
 			case 'localmonthabbrev':
-				$value = $pageLang->getMonthAbbreviation( $localMonthName );
+				$value = $pageLang->getMonthAbbreviation( date( 'n', $ts ) );
 				break;
 			case 'localday':
-				$value = $pageLang->formatNum( $localDay );
+				$value = $pageLang->formatNum( date( 'j', $ts ) );
 				break;
 			case 'localday2':
-				$value = $pageLang->formatNum( $localDay2 );
+				$value = $pageLang->formatNum( date( 'd', $ts ) );
 				break;
 			case 'pagename':
 				$value = wfEscapeWikiText( $this->mTitle->getText() );
@@ -2912,24 +2890,24 @@ class Parser {
 				$value = $pageLang->formatNum( gmdate( 'w', $ts ) );
 				break;
 			case 'localdayname':
-				$value = $pageLang->getWeekdayName( $localDayOfWeek + 1 );
+				$value = $pageLang->getWeekdayName( date( 'w', $ts ) + 1 );
 				break;
 			case 'localyear':
-				$value = $pageLang->formatNum( $localYear, true );
+				$value = $pageLang->formatNum( date( 'Y', $ts ), true );
 				break;
 			case 'localtime':
-				$value = $pageLang->time( $localTimestamp, false, false );
+				$value = $pageLang->time( date( 'YmdHis', $ts ), false, false );
 				break;
 			case 'localhour':
-				$value = $pageLang->formatNum( $localHour, true );
+				$value = $pageLang->formatNum( date( 'H', $ts ), true );
 				break;
 			case 'localweek':
 				# @bug 4594 PHP5 has it zero padded, PHP4 does not, cast to
 				# int to remove the padding
-				$value = $pageLang->formatNum( (int)$localWeek );
+				$value = $pageLang->formatNum( (int)date( 'W', $ts ) );
 				break;
 			case 'localdow':
-				$value = $pageLang->formatNum( $localDayOfWeek );
+				$value = $pageLang->formatNum( date( 'w', $ts ) );
 				break;
 			case 'numberofarticles':
 				$value = $pageLang->formatNum( SiteStats::articles() );
@@ -2960,7 +2938,7 @@ class Parser {
 				$value = wfTimestamp( TS_MW, $ts );
 				break;
 			case 'localtimestamp':
-				$value = $localTimestamp;
+				$value = date( 'YmdHis', $ts );
 				break;
 			case 'currentversion':
 				$value = SpecialVersion::getVersion();
@@ -4537,7 +4515,7 @@ class Parser {
 	 * @return string
 	 */
 	function pstPass2( $text, $user ) {
-		global $wgContLang, $wgLocaltimezone;
+		global $wgContLang;
 
 		# Note: This is the timestamp saved as hardcoded wikitext to
 		# the database, we use $wgContLang here in order to give
@@ -4545,15 +4523,7 @@ class Parser {
 		# than the one selected in each user's preferences.
 		# (see also bug 12815)
 		$ts = $this->mOptions->getTimestamp();
-		if ( isset( $wgLocaltimezone ) ) {
-			$tz = $wgLocaltimezone;
-		} else {
-			$tz = date_default_timezone_get();
-		}
-
 		$unixts = wfTimestamp( TS_UNIX, $ts );
-		$oldtz = date_default_timezone_get();
-		date_default_timezone_set( $tz );
 		$ts = date( 'YmdHis', $unixts );
 		$tzMsg = date( 'T', $unixts );  # might vary on DST changeover!
 
@@ -4565,8 +4535,6 @@ class Parser {
 		if ( $msg->exists() ) {
 			$tzMsg = $msg->text();
 		}
-
-		date_default_timezone_set( $oldtz );
 
 		$d = $wgContLang->timeanddate( $ts, false, false ) . " ($tzMsg)";
 
