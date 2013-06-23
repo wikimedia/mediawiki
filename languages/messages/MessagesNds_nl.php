@@ -737,7 +737,7 @@ t Kan ween dat der wat ziejen bin die weeregeven wörden asof je an-emeld bin to
 'notloggedin' => 'Niet an-emeld',
 'userlogin-noaccount' => "He'j nog gien gebrukersnaam?",
 'userlogin-joinproject' => 'Over {{SITENAME}}',
-'nologin' => "He'j nog gien gebrukersnaam? '''$1'''.",
+'nologin' => "He'j nog gien gebrukersnaam? $1.",
 'nologinlink' => 'Maak n gebrukersprofiel an',
 'createaccount' => 'Niej gebrukersprofiel anmaken',
 'gotaccount' => "Stao'j al in-eschreven? '''$1'''.",
@@ -1799,11 +1799,11 @@ Gao weerumme naor t [[Special:Upload/stash/$1|opstuurformulier]] um dit probleem
 'upload-proto-error' => 'Verkeerd protokol',
 'upload-proto-error-text' => 'Um op disse maniere bestaanden toe te voegen mutten webadressen beginnen mit <code>http://</code> of <code>ftp://</code>.',
 'upload-file-error' => 'Interne fout',
-'upload-file-error-text' => 'Bie ons gung der effen wat fout to n tiedelik bestaand op de server an-emaakt wörden. Neem kontakt op mit n [[Special:ListUsers/sysop|systeembeheerder]].',
+'upload-file-error-text' => 'Bie ons gung der effen wat fout to n tiedelik bestaand op de server an-emaakt wörden. Neem kontakt op mit n [[Special:ListUsers/sysop|beheerder]].',
 'upload-misc-error' => 'Onbekende fout bie t inlaojen van joew bestaand',
 'upload-misc-error-text' => 'Der is bie t inlaojen van t bestaand n onbekende fout op-etrejen. 
 Kiek effen nao of de verwiezing t wel döt en probeer t opniej. 
-As t probleem zo blif, neem dan kontakt op mit één van de [[Special:ListUsers/sysop|systeembeheerders]].',
+As t probleem zo blif, neem dan kontakt op mit één van de [[Special:ListUsers/sysop|beheerders]].',
 'upload-too-many-redirects' => 'Der zatten te veule deurverwiezingen in de URL.',
 'upload-unknown-size' => 'Onbekende grootte',
 'upload-http-error' => 'Der is n HTTP-fout op-etrejen: $1',

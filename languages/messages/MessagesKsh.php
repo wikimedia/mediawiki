@@ -8,6 +8,7 @@
  * @file
  *
  * @author Caesius noh en Idee vum Manes
+ * @author Geitost
  * @author Nemo bis
  * @author Purodha
  * @author Reedy
@@ -678,7 +679,7 @@ Wann De wells, künnts De Ding [[Special:Preferences|Enschtällonge aanpaße]].'
 'notloggedin' => 'Nit enjelogg',
 'userlogin-noaccount' => 'Do häß noch keine Zohjang?',
 'userlogin-joinproject' => 'Aanmälde zom Metmaache!',
-'nologin' => "Wann De Dich noch nit aanjemeldt häs, dann dun Dich '''$1'''.",
+'nologin' => 'Wann de dich noch nit aanjemeldt häs, dann dun dich $1.',
 'nologinlink' => 'neu aanmelde',
 'createaccount' => 'Aanmelde als ene neue Metmaacher',
 'gotaccount' => "Do bes ald aanjemeldt {{GRAMMAR:en|{{SITENAME}}}}? Dann jangk nohm '''$1'''.",

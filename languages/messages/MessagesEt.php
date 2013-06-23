@@ -9,6 +9,7 @@
  *
  * @author Avjoska
  * @author Cylly1512
+ * @author Geitost
  * @author Hendrik
  * @author Hendrix
  * @author Jaan513
@@ -743,7 +744,7 @@ Pane tähele, et seni kuni sa pole oma võrgulehitseja puhvrit tühjendanud, võ
 'notloggedin' => 'Sisse logimata',
 'userlogin-noaccount' => 'Kas sul pole kontot?',
 'userlogin-joinproject' => 'Ühine projektiga {{SITENAME}}',
-'nologin' => "Sul pole kontot? '''$1'''.",
+'nologin' => 'Sul pole kontot? $1.',
 'nologinlink' => 'Registreeru siin',
 'createaccount' => 'Loo uus konto',
 'gotaccount' => "Kui sul on juba konto, '''$1'''.",

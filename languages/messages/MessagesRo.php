@@ -12,6 +12,7 @@
  * @author Danutz
  * @author Emily
  * @author Firilacroco
+ * @author Geitost
  * @author Gutza
  * @author KlaudiuMihaila
  * @author Laurap
@@ -756,7 +757,7 @@ Nu uitați să vă modificați [[Special:Preferences|preferințele]] pentru {{SI
 'notloggedin' => 'Nu sunteți autentificat',
 'userlogin-noaccount' => 'Nu aveți cont încă?',
 'userlogin-joinproject' => 'Înscrieți-vă la {{SITENAME}}',
-'nologin' => "Nu aveți cont încă? '''$1'''.",
+'nologin' => 'Nu aveți cont încă? $1.',
 'nologinlink' => 'Creați-vă un cont de utilizator acum',
 'createaccount' => 'Creare cont',
 'gotaccount' => "Aveți deja un cont de utilizator? '''$1'''.",

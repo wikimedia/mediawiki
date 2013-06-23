@@ -11,6 +11,7 @@
  * @author CERminator
  * @author Charmed94
  * @author FriedrickMILBarbarossa
+ * @author Geitost
  * @author Helios13
  * @author Kaganer
  * @author Kale
@@ -857,7 +858,7 @@ $2',
 'notloggedin' => 'Нисте пријављени',
 'userlogin-noaccount' => 'Немате налог?',
 'userlogin-joinproject' => 'Отворите га',
-'nologin' => 'Немате налог? Идите на страницу „$1“.',
+'nologin' => 'Немате налог? Идите на страницу $1.',
 'nologinlink' => 'Отварање налога',
 'createaccount' => 'Отвори налог',
 'gotaccount' => 'Већ имате налог? Идите на страницу „$1“.',

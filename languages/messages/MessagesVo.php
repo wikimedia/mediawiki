@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Geitost
  * @author Iketsi
  * @author Kaganer
  * @author Malafaya
@@ -520,7 +521,7 @@ Küpälolös, das pads anik ba nog pojenons äsva no esenunädol oli, jüs uklin
 'notloggedin' => 'No enunädol oli',
 'userlogin-noaccount' => 'No labol-li kali?',
 'userlogin-joinproject' => 'Sogolös oki lä {{SITENAME}}',
-'nologin' => "No labol-li kali? '''$1'''.",
+'nologin' => 'No labol-li kali? $1.',
 'nologinlink' => 'Jafolös bali',
 'createaccount' => 'Jafön kali',
 'gotaccount' => "Ya labol-li kali? '''$1'''.",

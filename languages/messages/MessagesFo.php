@@ -9,6 +9,7 @@
  *
  * @author Diupwijk
  * @author EileenSanda
+ * @author Geitost
  * @author Krun
  * @author Quackor
  * @author S.Örvarr.S
@@ -567,7 +568,7 @@ Gloym ikki at broyta tínar [[Special:Preferences|{{SITENAME}}-innstillingar]].'
 'notloggedin' => 'Ikki ritað inn',
 'userlogin-noaccount' => 'Hevur tú ikki nakra kontu?',
 'userlogin-joinproject' => 'Meldað teg til {{SITENAME}}',
-'nologin' => "Hevur tú ikki eina kontu? '''$1'''.",
+'nologin' => 'Hevur tú ikki eina kontu? $1.',
 'nologinlink' => 'Stovna eina kontu',
 'createaccount' => 'Stovna nýggja kontu',
 'gotaccount' => "Hevur tú longu eina kontu? '''$1'''.",

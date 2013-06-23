@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Geitost
  * @author Maartenvdbent
  * @author Purodha
  * @author Pyt
@@ -515,7 +516,7 @@ Mûglik wurdt noch in tal siden werjûn as wiene Jo oanmeld, oant Jo de cache fa
 'logout' => 'Ofmelde',
 'userlogout' => 'Ofmelde',
 'notloggedin' => 'Net oanmelde',
-'nologin' => "Noch net oanmelden as meidogger? '''$1'''.",
+'nologin' => 'Noch net oanmelden as meidogger? $1.',
 'nologinlink' => 'Meitsje in brûker oan',
 'createaccount' => 'Nije ynstellings oanmeitsje',
 'gotaccount' => "Hawwe jo jo al as meidogger oanmelde? '''$1'''.",
@@ -1338,12 +1339,12 @@ PICT # ferskaat
 'upload-proto-error-text' => "Oanbieden mei dizze metoade freget URL's dy't begjinne mei <code>http://</code> of <code>ftp://</code>.",
 'upload-file-error' => 'Ynterne fout',
 'upload-file-error-text' => "Der wie in ynterne fout doe't in tydlike triem op'e server oanmakke waard.
-Nim kontakt op mei in [[Special:ListUsers/sysop|systeembehearder]].",
+Nim kontakt op mei in [[Special:ListUsers/sysop|behearder]].",
 'upload-misc-error' => 'Unbekende oanbiedfout',
 'upload-misc-error-text' => 'Der is by it oanbieden in ûnbekende fout optreden.
 Kontrolearje of de URL krekt en beskikber is en besykje it nochris.
 As it probleem oanhâldt, nim dan kontakt op mei in
-[[Special:ListUsers/sysop|systeembehearder]].',
+[[Special:ListUsers/sysop|behearder]].',
 'upload-unknown-size' => 'Unbekinde grutte',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>

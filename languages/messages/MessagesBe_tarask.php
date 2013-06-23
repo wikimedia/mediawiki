@@ -10,6 +10,7 @@
  * @author Cesco
  * @author Crt
  * @author EugeneZelenko
+ * @author Geitost
  * @author Jim-by
  * @author Kaganer
  * @author Nemo bis
@@ -1813,11 +1814,11 @@ $1',
 'upload-proto-error-text' => 'Аддаленая загрузка файлаў патрабуе URL-адрас, які пачынаецца з <code>http://</code> альбо <code>ftp://</code>.',
 'upload-file-error' => 'Унутраная памылка',
 'upload-file-error-text' => 'Адбылася ўнутраная памылка пад час спробы стварыць часовы файл на сэрвэры.
-Калі ласка, зьвярніцеся да [[Special:ListUsers/sysop|сыстэмнага адміністратара]].',
+Калі ласка, зьвярніцеся да [[Special:ListUsers/sysop|адміністратара]].',
 'upload-misc-error' => 'Невядомая памылка загрузкі',
 'upload-misc-error-text' => 'Адбылася невядомая памылка пад час загрузкі.
 Калі ласка, упэўніцеся, што URL-адрас слушны, і паспрабуйце ізноў.
-Калі памылка паўтарыцца, зьвярніцеся да [[Special:ListUsers/sysop|сыстэмнага адміністратара]].',
+Калі памылка паўтарыцца, зьвярніцеся да [[Special:ListUsers/sysop|адміністратара]].',
 'upload-too-many-redirects' => 'URL-адрас утрымлівае зашмат перанакіраваньняў',
 'upload-unknown-size' => 'Невядомы памер',
 'upload-http-error' => 'Узьнікла памылка HTTP: $1',

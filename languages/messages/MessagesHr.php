@@ -17,6 +17,7 @@
  * @author Ex13
  * @author Excaliboor
  * @author FriedrickMILBarbarossa
+ * @author Geitost
  * @author Herr Mlinka
  * @author Kaganer
  * @author Luka Krstulovic
@@ -747,7 +748,7 @@ Ne zaboravite prilagoditi Vaše [[Special:Preferences|{{SITENAME}} postavke]].',
 'notloggedin' => 'Niste prijavljeni',
 'userlogin-noaccount' => 'Nemate suradnički račun?',
 'userlogin-joinproject' => 'Pridružite se {{SITENAME}}',
-'nologin' => "Nemate suradnički račun? '''$1'''.",
+'nologin' => 'Nemate suradnički račun? $1.',
 'nologinlink' => 'Otvorite račun',
 'createaccount' => 'Otvori novi suradnički račun',
 'gotaccount' => "Već imate suradnički račun? '''$1'''.",

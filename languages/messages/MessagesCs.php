@@ -10,6 +10,7 @@
  * @author Chmee2
  * @author Danny B.
  * @author Dontlietome7
+ * @author Geitost
  * @author Helix84
  * @author Jachym
  * @author Jezevec
@@ -813,7 +814,7 @@ Nezapomeňte si upravit své [[Special:Preferences|nastavení {{grammar:2sg|{{SI
 'notloggedin' => 'Nejste přihlášen(a)',
 'userlogin-noaccount' => 'Nemáte účet?',
 'userlogin-joinproject' => 'Přidejte se k {{grammar:3sg|{{SITENAME}}}}',
-'nologin' => "Dosud nemáte účet? '''$1'''.",
+'nologin' => 'Dosud nemáte účet? $1.',
 'nologinlink' => 'Zaregistrujte se',
 'createaccount' => 'Vytvořit účet',
 'gotaccount' => "Už jste registrováni? '''$1'''.",
@@ -1915,7 +1916,7 @@ $1',
 'upload-file-error-text' => 'Při vytváření dočasného souboru na serveru nastala vnitřní chyba.
 Kontaktuje prosím [[Special:ListUsers/sysop|správce]].',
 'upload-misc-error' => 'Neznámá chyba',
-'upload-misc-error-text' => 'Neznámá chyba se vyskytla během nahrávání souboru.  Zkontrolujte zda je URL platná a přístupné a zkuste to znovu.  Pokud se chyba znovu objeví, kontaktuje administrátora systému.',
+'upload-misc-error-text' => 'Neznámá chyba se vyskytla během nahrávání souboru.  Zkontrolujte zda je URL platná a přístupné a zkuste to znovu.  Pokud se chyba znovu objeví, kontaktuje [[Special:ListUsers/sysop|správce]].',
 'upload-too-many-redirects' => 'URL obsahovalo příliš mnoho přesměrování',
 'upload-unknown-size' => 'Neznámá velikost',
 'upload-http-error' => 'Došlo k chybě HTTP: $1',

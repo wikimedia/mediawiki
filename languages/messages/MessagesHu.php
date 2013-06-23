@@ -21,6 +21,7 @@
  * @author Dj
  * @author Dorgan
  * @author Enbéká
+ * @author Geitost
  * @author Glanthor Reviol
  * @author Gondnok
  * @author Hunyadym
@@ -760,7 +761,7 @@ Ne felejtsd el módosítani a [[Special:Preferences|{{SITENAME}} beállításaid
 'notloggedin' => 'Nem vagy bejelentkezve',
 'userlogin-noaccount' => 'Nem rendelkezel még felhasználói fiókkal?',
 'userlogin-joinproject' => 'Csatlakozz a(z) {{SITENAME}} wikihez',
-'nologin' => "Nem rendelkezel még felhasználói fiókkal? '''$1'''.",
+'nologin' => 'Nem rendelkezel még felhasználói fiókkal? $1.',
 'nologinlink' => 'Itt regisztrálhatsz',
 'createaccount' => 'Regisztráció',
 'gotaccount' => "Ha már korábban regisztráltál, '''$1'''.",
@@ -1855,7 +1856,7 @@ $1',
 'upload-file-error-text' => 'Belső hiba történt egy ideiglenes fájl szerveren történő létrehozásakor.
 Kérjük, hogy lépj kapcsolatba egy  [[Special:ListUsers/sysop|adminisztrátorral]].',
 'upload-misc-error' => 'Ismeretlen feltöltési hiba',
-'upload-misc-error-text' => 'A feltöltés során ismeretlen hiba történt.  Kérjük, ellenőrizd, hogy az URL érvényes-e és hozzáférhető-e, majd próbáld újra.  Ha a probléma továbbra is fennáll, akkor lépj kapcsolatba a rendszergazdával.',
+'upload-misc-error-text' => 'A feltöltés során ismeretlen hiba történt.  Kérjük, ellenőrizd, hogy az URL érvényes-e és hozzáférhető-e, majd próbáld újra.  Ha a probléma továbbra is fennáll, akkor lépj kapcsolatba a [[Special:ListUsers/sysop|adminisztrátorral]].',
 'upload-too-many-redirects' => 'Az URL túl sokszor volt átirányítva',
 'upload-unknown-size' => 'Ismeretlen méretű',
 'upload-http-error' => 'HTTP-hiba történt: $1',

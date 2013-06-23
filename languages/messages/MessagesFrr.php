@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Geitost
  * @author Inkowik
  * @author Maartenvdbent
  * @author Merlissimo
@@ -476,7 +477,7 @@ Ferjid det ei, an aachte üüb din [[Special:Preferences|{{SITENAME}} iinstelang
 'notloggedin' => 'Ei uunmeldet',
 'userlogin-noaccount' => 'Dü heest noch nian brükerkonto ?',
 'userlogin-joinproject' => 'Bi {{SITENAME}} mämaage',
-'nologin' => "Dü hääst niinj brükerkonto? '''$1'''.",
+'nologin' => 'Dü hääst niinj brükerkonto? $1.',
 'nologinlink' => 'Nei brükerkonto iinracht',
 'createaccount' => 'Brükerkonto iinracht',
 'gotaccount' => "Dü hääst ål en brükerkonto? '''$1'''.",

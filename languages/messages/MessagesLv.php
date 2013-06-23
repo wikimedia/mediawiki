@@ -11,6 +11,7 @@
  * @author Dark Eagle
  * @author FnTmLV
  * @author Geimeris
+ * @author Geitost
  * @author Gleb Borisov
  * @author GreenZeb
  * @author Kaganer
@@ -455,7 +456,7 @@ Vari turpināt to izmantot anonīmi, vari <span class='plainlinks'>[$1 atgriezti
 'userlogout' => 'Iziet',
 'notloggedin' => 'Neesi iegājis',
 'userlogin-joinproject' => 'Pievienojieties {{SITENAME}}',
-'nologin' => "Nav lietotājvārda? '''$1'''.",
+'nologin' => 'Nav lietotājvārda? $1.',
 'nologinlink' => 'Reģistrējies',
 'createaccount' => 'Izveidot jaunu lietotāju',
 'gotaccount' => "Tev jau ir lietotājvārds? '''$1'''!",

@@ -759,7 +759,7 @@ Gløym ikkje å endra [[Special:Preferences|innstillingane dine for {{SITENAME}}
 'notloggedin' => 'Ikkje innlogga',
 'userlogin-noaccount' => 'Har du ingen konto?',
 'userlogin-joinproject' => 'Vert med på {{SITENAME}}',
-'nologin' => "Har du ingen brukarkonto? '''$1'''.",
+'nologin' => 'Har du ingen brukarkonto? $1.',
 'nologinlink' => 'Registrer deg',
 'createaccount' => 'Opprett ny konto',
 'gotaccount' => "Har du ein brukarkonto? '''$1'''.",

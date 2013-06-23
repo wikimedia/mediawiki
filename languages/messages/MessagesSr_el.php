@@ -8,6 +8,7 @@
  * @file
  *
  * @author FriedrickMILBarbarossa
+ * @author Geitost
  * @author Kaganer
  * @author Liangent
  * @author Meno25
@@ -762,7 +763,7 @@ Imajte na umu da neke stranice mogu nastaviti da se prikazuju kao da ste još pr
 'notloggedin' => 'Niste prijavljeni',
 'userlogin-noaccount' => 'Nemate nalog?',
 'userlogin-joinproject' => 'Otvorite ga',
-'nologin' => 'Nemate nalog? Idite na stranicu „$1“.',
+'nologin' => 'Nemate nalog? Idite na stranicu $1.',
 'nologinlink' => 'Otvaranje naloga',
 'createaccount' => 'Otvori nalog',
 'gotaccount' => 'Već imate nalog? Idite na stranicu „$1“.',

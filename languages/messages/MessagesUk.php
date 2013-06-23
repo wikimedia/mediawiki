@@ -22,6 +22,7 @@
  * @author DixonD
  * @author Dubyk
  * @author EugeneZelenko
+ * @author Geitost
  * @author Gucci Mane Burrr
  * @author Gutsul (Gutsul.ua at Google Mail)
  * @author Ickis
@@ -814,7 +815,7 @@ $1',
 'notloggedin' => 'Ви не ввійшли до системи',
 'userlogin-noaccount' => 'Немає облікового запису?',
 'userlogin-joinproject' => 'Приєднатися до {{GRAMMAR:genitive|{{SITENAME}}}}',
-'nologin' => "Ви ще не зареєструвались? '''$1'''.",
+'nologin' => 'Ви ще не зареєструвались? $1.',
 'nologinlink' => 'Створіть обліковий запис',
 'createaccount' => 'Зареєструватися',
 'gotaccount' => "Ви вже зареєстровані? '''$1'''.",
@@ -1957,7 +1958,7 @@ $1',
 'upload-file-error' => 'Внутрішня помилка',
 'upload-file-error-text' => 'Сталася внутрішня помилка при спробі створити тимчасовий файл на сервері. Будь-ласка, зверніться до [[Special:ListUsers/sysop|адміністратора]].',
 'upload-misc-error' => 'Невідома помилка завантаження',
-'upload-misc-error-text' => 'Невідома помилка завантаження. Будь-ласка, перевірте, що вказана адреса вірна й спробуйте ще. Якщо проблема виникає знову, зверніться до системного адміністратора.',
+'upload-misc-error-text' => 'Невідома помилка завантаження. Будь-ласка, перевірте, що вказана адреса вірна й спробуйте ще. Якщо проблема виникає знову, зверніться до [[Special:ListUsers/sysop|адміністратора]].',
 'upload-too-many-redirects' => 'URL містить надто багато перенаправлень',
 'upload-unknown-size' => 'Невідомий розмір',
 'upload-http-error' => 'Відбулася помилка HTTP: $1',

@@ -619,7 +619,7 @@ Denk dor an, dat welk Sieden ünner Ümstänn noch jümmer so wiest warrn köön
 'logout' => 'Afmellen',
 'userlogout' => 'Afmellen',
 'notloggedin' => 'Nich anmellt',
-'nologin' => "Wenn du noch keen Brukerkonto hest, denn kannst di anmellen: '''$1'''.",
+'nologin' => 'Wenn du noch keen Brukerkonto hest, denn kannst di anmellen: $1.',
 'nologinlink' => 'Brukerkonto inrichten',
 'createaccount' => 'Nieg Brukerkonto anleggen',
 'gotaccount' => "Hest Du al en Brukerkonto? '''$1'''.",
@@ -1513,7 +1513,7 @@ Wenn du ehr liekers hoochladen wullt, gah trüch un laad de Datei ünner en anne
 'upload-file-error' => 'Internen Fehler',
 'upload-file-error-text' => 'Dat geev en internen Fehler bi dat Anleggen vun en temporäre Datei op’n Server. Segg man en [[Special:ListUsers/sysop|Administrater]] bescheed.',
 'upload-misc-error' => 'Unbekannt Fehler bi dat Hoochladen',
-'upload-misc-error-text' => 'Bi dat Hoochladen geev dat en unbekannten Fehler. Kiek na, wat dor en Fehler in de URL is, wat de Websteed ok löppt un versöök dat denn noch wedder. Wenn dat Problem denn noch jümmer dor is, denn vertell dat en [[Special:ListUsers/sysop|System-Administrater]].',
+'upload-misc-error-text' => 'Bi dat Hoochladen geev dat en unbekannten Fehler. Kiek na, wat dor en Fehler in de URL is, wat de Websteed ok löppt un versöök dat denn noch wedder. Wenn dat Problem denn noch jümmer dor is, denn vertell dat en [[Special:ListUsers/sysop|Administrater]].',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'Kunn de URL nich kriegen',

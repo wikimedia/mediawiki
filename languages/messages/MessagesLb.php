@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Geitost
  * @author Hercule
  * @author Kaffi
  * @author Kaganer
@@ -637,7 +638,7 @@ Vergiesst net fir Är [[Special:Preferences|{{SITENAME}} Astellungen]] z'ännere
 'notloggedin' => 'Net ageloggt',
 'userlogin-noaccount' => 'Hutt Dir kee Benotzerkont?',
 'userlogin-joinproject' => 'Maacht mat bäi {{SITENAME}}',
-'nologin' => "Hutt Dir kee Benotzerkont? '''$1'''.",
+'nologin' => 'Hutt Dir kee Benotzerkont? $1.',
 'nologinlink' => 'Neie Benotzerkont maachen',
 'createaccount' => 'Neie Kont opmaachen',
 'gotaccount' => "Dir hutt schonn e Benotzerkont? '''$1'''.",

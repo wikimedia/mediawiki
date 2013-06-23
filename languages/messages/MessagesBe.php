@@ -8,6 +8,7 @@
  * @file
  *
  * @author Cesco
+ * @author Geitost
  * @author Jim-by
  * @author Kaganer
  * @author LexArt
@@ -525,7 +526,7 @@ $2',
 'logout' => 'Выйсці з сістэмы',
 'userlogout' => 'Выйсці з сістэмы',
 'notloggedin' => 'Не ўвайшоў',
-'nologin' => "Не маеце рахунку? '''$1'''.",
+'nologin' => 'Не маеце рахунку? $1.',
 'nologinlink' => 'Завесці рахунак',
 'createaccount' => 'Стварыць рахунак',
 'gotaccount' => "Ужо маеце рахунак? '''$1'''.",
@@ -1538,9 +1539,9 @@ $1',
 'upload-proto-error' => 'Няправільны пратакол',
 'upload-proto-error-text' => 'Укладанне файла зводдаль патрабуе URL, які пачынаецца з <code>http://</code> або <code>ftp://</code>.',
 'upload-file-error' => 'Унутраная памылка',
-'upload-file-error-text' => 'Унутраная памылка пры спробе стварыць на серверы тымчасовы файл. Звярніцеся да аднаго з [[Special:ListUsers/sysop|сістэмных адміністратараў]].',
+'upload-file-error-text' => 'Унутраная памылка пры спробе стварыць на серверы тымчасовы файл. Звярніцеся да аднаго з [[Special:ListUsers/sysop|адміністратараў]].',
 'upload-misc-error' => 'Нявызначаная памылка пры ўкладанні',
-'upload-misc-error-text' => 'Нявызначаная памылка пры ўкладанні. Праверце правільнасць і даступнасць URL і паспрабуйце ізноў. Калі праблема трывалая, звярніцеся да аднаго з [[Special:ListUsers/sysop|сістэмных адміністратараў]].',
+'upload-misc-error-text' => 'Нявызначаная памылка пры ўкладанні. Праверце правільнасць і даступнасць URL і паспрабуйце ізноў. Калі праблема трывалая, звярніцеся да аднаго з [[Special:ListUsers/sysop|адміністратараў]].',
 'upload-too-many-redirects' => 'Занадта шмат перасылак за гэтым адрасам (URL)',
 'upload-unknown-size' => 'Невядомы памер',
 'upload-http-error' => 'Памылка HTTP: $1',

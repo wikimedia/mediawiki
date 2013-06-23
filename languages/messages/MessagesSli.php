@@ -8,6 +8,7 @@
  * @file
  *
  * @author Als-Holder
+ * @author Geitost
  * @author Jens Liebenau
  * @author Jonny84
  * @author Kaganer
@@ -374,7 +375,7 @@ Beachte, doas einige Seyta noo oazeiga kinna, doas du oagemeldet best, sulange d
 'logout' => 'Oabmelda',
 'userlogout' => 'Oabmelda',
 'notloggedin' => 'Nä oangemeldet',
-'nologin' => "Du hast keen Benutzerkonto? '''$1'''.",
+'nologin' => 'Du hast keen Benutzerkonto? $1.',
 'nologinlink' => 'Neues Benutzerkonto oanleega',
 'createaccount' => 'Benutzerkonto oanlega',
 'gotaccount' => "Du hast bereits a Benutzerkonto? '''$1'''.",
@@ -1089,11 +1090,11 @@ Bitte gieb dar Datei an'n Noama, dar dann Inhalt besser beschreibt.",
 'upload-proto-error' => 'Foalsches Protokoll',
 'upload-proto-error-text' => 'De URL muuß miet <code>http://</code> oder <code>ftp://</code> beginna.',
 'upload-file-error-text' => "Bei dar Erstellung a'r temporären Datei uff'd Server ies a interner Fahler uffgetreta.
-Bitte informiere an'n [[Special:ListUsers/sysop|System-Administrator]].",
+Bitte informiere an'n [[Special:ListUsers/sysop|Administrator]].",
 'upload-misc-error' => 'Unbekennter Fahler beim Huchloada',
 'upload-misc-error-text' => "Beim Huchloada ies a unbekennter Fahler uffgetreta.
 Priefe de URL uff Fahler, dann Online-Status der Seite und versuche 's erneut.
-Wenn doas Problem wetter bestieht, informiere anna [[Special:ListUsers/sysop|System-Administrator]].",
+Wenn doas Problem wetter bestieht, informiere anna [[Special:ListUsers/sysop|Administrator]].",
 'upload-too-many-redirects' => 'De URL beinhaltete zu viele Wetterleitunga',
 'upload-unknown-size' => 'Unbekennte Grieße',
 'upload-http-error' => 'A HTTP-Fahler ies uffgetreta: $1',

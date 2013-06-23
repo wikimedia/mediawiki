@@ -11,6 +11,7 @@
  * @author Derbeth
  * @author Dunak
  * @author Dundak
+ * @author Geitost
  * @author Kaganer
  * @author Michawiki
  * @author Murjarik
@@ -592,7 +593,7 @@ Móžoš {{SITENAME}} anomymnje dalej wužywaś abo móžoš <span class='plainl
 'notloggedin' => 'Njepśizjawjony(a)',
 'userlogin-noaccount' => 'Njamaš wužywarske konto?',
 'userlogin-joinproject' => 'Konto za {{GRAMMAR:akuzatiw|{{SITENAME}}}} załožyś',
-'nologin' => "Njamaš wužywarske konto? '''$1'''.",
+'nologin' => 'Njamaš wužywarske konto? $1.',
 'nologinlink' => 'Nowe wužywarske konto załožyś',
 'createaccount' => 'Wužywarske konto załožyś',
 'gotaccount' => "Maš južo wužywarske konto? '''$1'''.",
@@ -1647,7 +1648,7 @@ $1',
 'upload-proto-error' => 'Njekorektny protokol',
 'upload-proto-error-text' => 'URL musy zachopiś z <code>http://</code> abo <code>ftp://</code>.',
 'upload-file-error' => 'Interna zmólka',
-'upload-file-error-text' => 'Pśi napóranju temporarneje dataje na serwerje jo nastała interna zmólka. Pšosym staj se ze [[Special:ListUsers/sysop|systemowym administratorom]] do zwiska.',
+'upload-file-error-text' => 'Pśi napóranju temporarneje dataje na serwerje jo nastała interna zmólka. Pšosym staj se ze [[Special:ListUsers/sysop|administratorom]] do zwiska.',
 'upload-misc-error' => 'Njeznata zmólka pśi nagrawanju.',
 'upload-misc-error-text' => 'Pśi nagrawanju jo nastała njeznata zmólka. Kontrolěruj pšosym, lěc URL jo płaśiwy a pśistupny a wopytaj hyšći raz. Jolic problem dalej eksistěrujo, staj se z [[Special:ListUsers/sysop|administratorom]] do zwiska.',
 'upload-too-many-redirects' => 'URL jo pśewjele dalejpósrědnjenja wopśimjeł',

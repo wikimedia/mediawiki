@@ -12,6 +12,7 @@
  * @author Cimon Avaro
  * @author Crt
  * @author ElmA
+ * @author Geitost
  * @author Harriv
  * @author Hyperborean
  * @author Jaakonam
@@ -760,7 +761,7 @@ Huomaa, että jotkut sivut saattavat näkyä edelleen kuin olisit kirjautunut si
 'notloggedin' => 'Et ole kirjautunut',
 'userlogin-noaccount' => 'Eikö sinulla vielä ole käyttäjätunnusta?',
 'userlogin-joinproject' => 'Liity {{GRAMMAR:illative|{{SITENAME}}}}',
-'nologin' => "Jos sinulla ei ole vielä käyttäjätunnusta, '''$1'''.",
+'nologin' => 'Jos sinulla ei ole vielä käyttäjätunnusta, $1.',
 'nologinlink' => 'voit luoda sellaisen',
 'createaccount' => 'Luo uusi käyttäjätunnus',
 'gotaccount' => "Jos sinulla on jo tunnus, voit '''$1'''.",
@@ -1834,7 +1835,7 @@ $1',
 'upload-file-error' => 'Sisäinen virhe',
 'upload-file-error-text' => 'Väliaikaistiedoston luominen epäonnistui. Ota yhteyttä sivuston [[Special:ListUsers/sysop|ylläpitäjään]].',
 'upload-misc-error' => 'Virhe',
-'upload-misc-error-text' => 'Tiedoston etälähetys ei onnistunut. Varmista, että antamasi osoite on oikein ja toimiva. Jos virhe ei katoa, ota yhteyttä sivuston ylläpitäjään.',
+'upload-misc-error-text' => 'Tiedoston etälähetys ei onnistunut. Varmista, että antamasi osoite on oikein ja toimiva. Jos virhe ei katoa, ota yhteyttä sivuston [[Special:ListUsers/sysop|ylläpitäjään]].',
 'upload-too-many-redirects' => 'URL sisälsi liian monta ohjausta',
 'upload-unknown-size' => 'Tuntematon koko',
 'upload-http-error' => 'HTTP-virhe: $1',

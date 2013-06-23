@@ -16,6 +16,7 @@
  * @author Blahma
  * @author Castelobranco
  * @author Eliovir
+ * @author Geitost
  * @author Iketsi
  * @author Jens Liebenau
  * @author Kaganer
@@ -760,7 +761,7 @@ Ne forgesu ŝanĝi viajn [[Special:Preferences|{{SITENAME}}-preferojn]]',
 'userlogout' => 'Elsaluti',
 'notloggedin' => 'Ne ensalutinta',
 'userlogin-noaccount' => 'Ĉu vi ne havas konton?',
-'nologin' => "Ĉu vi ne havas konton? '''$1'''.",
+'nologin' => 'Ĉu vi ne havas konton? $1.',
 'nologinlink' => 'Krei konton',
 'createaccount' => 'Krei novan konton',
 'gotaccount' => "Ĉu vi jam havas konton? '''$1'''.",
@@ -1842,11 +1843,11 @@ $1',
 'upload-proto-error' => 'Malvalida protokolo',
 'upload-proto-error-text' => 'Fora alŝuto devas URL-on komence de <code>http://</code> aŭ <code>ftp://</code>.',
 'upload-file-error' => 'Interna eraro',
-'upload-file-error-text' => 'Interna eraro okazis provante krei labordosieron ĉe la servilo. Bonvolu kontakti [[Special:ListUsers/sysop|sistem-administranton]].',
+'upload-file-error-text' => 'Interna eraro okazis provante krei labordosieron ĉe la servilo. Bonvolu kontakti [[Special:ListUsers/sysop|administranton]].',
 'upload-misc-error' => 'Nekonata eraro pri alŝutado.',
 'upload-misc-error-text' => 'Nekonata eraro okazis dum la alŝuto.
 Bonvolu kontroli ke la URL-o estas valida kaj atingebla tiam reprovu.
-Se la problemo kontinuas, kontaku [[Special:ListUsers/sysop|sisteman administranton]].',
+Se la problemo kontinuas, kontaku [[Special:ListUsers/sysop|administranton]].',
 'upload-too-many-redirects' => 'La URL-o enhavis tro multajn alidirektilojn',
 'upload-unknown-size' => 'Nekonata grandeco',
 'upload-http-error' => 'HTTP-eraro okazis: $1',

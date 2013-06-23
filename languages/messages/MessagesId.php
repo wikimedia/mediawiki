@@ -17,6 +17,7 @@
  * @author Borgx
  * @author Dosmiin Barsbold
  * @author Farras
+ * @author Geitost
  * @author Gombang
  * @author Irwangatot
  * @author IvanLanin
@@ -787,7 +788,7 @@ Perhatikan bahwa beberapa halaman mungkin masih terus menunjukkan bahwa Anda mas
 'notloggedin' => 'Belum masuk log',
 'userlogin-noaccount' => 'Belum punya akun?',
 'userlogin-joinproject' => 'Join {{SITENAME}}',
-'nologin' => "Belum mempunyai akun? '''$1'''.",
+'nologin' => 'Belum mempunyai akun? $1.',
 'nologinlink' => 'Daftarkan akun baru',
 'createaccount' => 'Buat akun baru',
 'gotaccount' => "Sudah terdaftar sebagai pengguna? '''$1'''.",

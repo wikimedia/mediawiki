@@ -552,7 +552,7 @@ Ochat: s cha syy, ass bstimmti Syte eso aazeigt wäre, wie wänn Du allno aagmä
 'logout' => 'Abmälde',
 'userlogout' => 'Abmälde',
 'notloggedin' => 'Nit aagmäldet',
-'nologin' => "No kei Benutzerkonto? '''$1'''.",
+'nologin' => 'No kei Benutzerkonto? $1.',
 'nologinlink' => '»Konto aaleege«',
 'createaccount' => 'Nöis Benutzerkonto aalege',
 'gotaccount' => "Du häsch scho a Konto? '''$1'''",

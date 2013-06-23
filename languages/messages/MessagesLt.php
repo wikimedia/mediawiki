@@ -13,6 +13,7 @@
  * @author Dark Eagle
  * @author Eitvys200
  * @author Garas
+ * @author Geitost
  * @author Homo
  * @author Hugo.arg
  * @author Ignas693
@@ -1713,9 +1714,9 @@ $1',
 'upload-proto-error-text' => 'Nuotoliniai įkėlimas reikalauja, kad URL prasidėtų <code>http://</code> arba <code>ftp://</code>.',
 'upload-file-error' => 'Vidinė klaida',
 'upload-file-error-text' => 'Įvyko vidinė klaida bandant sukurti laikinąjį failą serveryje.
-Prašome susisiekti su [[Special:ListUsers/sysop|sistemos administratoriumi]].',
+Prašome susisiekti su [[Special:ListUsers/sysop|administratoriumi]].',
 'upload-misc-error' => 'Nežinoma įkėlimo klaida',
-'upload-misc-error-text' => 'Įvyko nežinoma klaida vykstant įkėlimui. Prašome patikrinti, kad URL teisingas bei pasiekiamas ir pamėginkite vėl. Jei problema lieka, susisiekite su sistemos administratoriumi.',
+'upload-misc-error-text' => 'Įvyko nežinoma klaida vykstant įkėlimui. Prašome patikrinti, kad URL teisingas bei pasiekiamas ir pamėginkite vėl. Jei problema lieka, susisiekite su [[Special:ListUsers/sysop|administratoriumi]].',
 'upload-too-many-redirects' => 'URL yra per daug kartų peradresuotas',
 'upload-unknown-size' => 'Nežinomas dydis',
 'upload-http-error' => 'Įvyko HTTP klaida: $1',

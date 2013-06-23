@@ -12,6 +12,7 @@
  * @author DCLXVI
  * @author Daggerstab
  * @author Dimi z
+ * @author Geitost
  * @author Kaganer
  * @author Simona
  * @author Spiritia
@@ -682,7 +683,7 @@ $2',
 'notloggedin' => 'Не сте влезли',
 'userlogin-noaccount' => 'Нямате сметка?',
 'userlogin-joinproject' => 'Присъединяване към {{SITENAME}}',
-'nologin' => "Нямате потребителско име? '''$1'''.",
+'nologin' => 'Нямате потребителско име? $1.',
 'nologinlink' => 'Създаване на сметка',
 'createaccount' => 'Регистриране',
 'gotaccount' => "Имате ли вече сметка? '''$1'''.",

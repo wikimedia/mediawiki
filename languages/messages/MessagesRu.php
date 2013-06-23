@@ -41,6 +41,7 @@
  * @author Flrn
  * @author G0rn
  * @author Gazeb
+ * @author Geitost
  * @author Grigol
  * @author Haffman
  * @author HalanTul
@@ -2009,7 +2010,7 @@ $1',
 'upload-file-error-text' => 'Внутренняя ошибка при попытке создать временный файл на сервере.
 Пожалуйста, обратитесь к [[Special:ListUsers/sysop|администратору]].',
 'upload-misc-error' => 'Неизвестная ошибка загрузки',
-'upload-misc-error-text' => 'Неизвестная ошибка загрузки. Пожалуйста, проверьте, что адрес верен, и повторите попытку. Если проблема остаётся, обратитесь к системному администратору.',
+'upload-misc-error-text' => 'Неизвестная ошибка загрузки. Пожалуйста, проверьте, что адрес верен, и повторите попытку. Если проблема остаётся, обратитесь к [[Special:ListUsers/sysop|администратору]].',
 'upload-too-many-redirects' => 'URL содержит слишком много перенаправлений',
 'upload-unknown-size' => 'Неизвестный размер',
 'upload-http-error' => 'Произошла ошибка HTTP: $1',

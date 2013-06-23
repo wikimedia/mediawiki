@@ -13,6 +13,7 @@
  * @author DzWiki
  * @author Edinwiki
  * @author Fulup
+ * @author Geitost
  * @author Kaganer
  * @author Kal-El
  * @author Malafaya
@@ -728,7 +729,7 @@ Ne zaboravite da prilagodite sebi svoja [[Special:Preferences|{{SITENAME}} pode�
 'notloggedin' => 'Niste prijavljeni',
 'userlogin-noaccount' => 'Nemate korisni훾ki ra훾un?',
 'userlogin-joinproject' => 'Pridru탑ite se {{SITENAME}}',
-'nologin' => "Nemate korisni훾ko ime? '''$1'''.",
+'nologin' => 'Nemate korisni훾ko ime? $1.',
 'nologinlink' => 'Napravite nalog',
 'createaccount' => 'Napravi nalog',
 'gotaccount' => "Imate nalog? '''$1'''.",

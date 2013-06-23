@@ -28,6 +28,7 @@
  * @author F. Cosoleto
  * @author Felis
  * @author FollowTheMedia
+ * @author Geitost
  * @author Gianfranco
  * @author HalphaZ
  * @author Jasonbleinel
@@ -1820,9 +1821,9 @@ $1',
 'upload-proto-error' => 'Protocollo errato',
 'upload-proto-error-text' => "Per l'upload remoto è necessario specificare URL che iniziano con <code>http://</code> oppure <code>ftp://</code>.",
 'upload-file-error' => 'Errore interno',
-'upload-file-error-text' => 'Si è verificato un errore interno durante la creazione di un file temporaneo sul server. Contattare un [[Special:ListUsers/sysop|amministratore]] del sito.',
+'upload-file-error-text' => 'Si è verificato un errore interno durante la creazione di un file temporaneo sul server. Contattare un [[Special:ListUsers/sysop|amministratore]].',
 'upload-misc-error' => 'Errore di caricamento sconosciuto',
-'upload-misc-error-text' => 'Si è verificato un errore non identificato durante il caricamento del file. Verificare che la URL sia corretta e accessibile e provare di nuovo. Se il problema persiste, contattare un [[Special:ListUsers/sysop|amministratore]] del sito.',
+'upload-misc-error-text' => 'Si è verificato un errore non identificato durante il caricamento del file. Verificare che la URL sia corretta e accessibile e provare di nuovo. Se il problema persiste, contattare un [[Special:ListUsers/sysop|amministratore]].',
 'upload-too-many-redirects' => "L'URL conteneva troppi redirect",
 'upload-unknown-size' => 'Dimensione sconosciuta',
 'upload-http-error' => 'Si è verificato un errore HTTP: $1',

@@ -12,6 +12,7 @@
  * @author Autokrator
  * @author Dferg
  * @author Esteban97
+ * @author Geitost
  * @author Kaganer
  * @author LeighvsOptimvsMaximvs
  * @author MF-Warburg
@@ -522,7 +523,7 @@ Noli oblivisci [[Special:Preferences|praeferentias]] tuas apud {{grammar:accusat
 'userlogout' => 'Conventum concludere',
 'notloggedin' => 'Conventum non est apertum',
 'userlogin-noaccount' => 'Num rationem non habes?',
-'nologin' => "Num rationem non habes? '''$1'''.",
+'nologin' => 'Num rationem non habes? $1.',
 'nologinlink' => 'Eam crea',
 'createaccount' => 'Rationem novam creare',
 'gotaccount' => "Habesne iam rationem? '''$1'''.",

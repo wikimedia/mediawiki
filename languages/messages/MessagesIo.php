@@ -9,6 +9,7 @@
  *
  * @author Albonio
  * @author Artomo
+ * @author Geitost
  * @author Kaganer
  * @author Lakaoso
  * @author Malafaya
@@ -421,7 +422,7 @@ Atencez ke kelka pagini posible duras montresar semblante ke vu ne ekirus, til v
 'logout' => 'Ekirar',
 'userlogout' => 'Ekirar',
 'notloggedin' => 'Sesiono ne esas iniciata',
-'nologin' => "Ka vu ne havas konto? '''$1'''.",
+'nologin' => 'Ka vu ne havas konto? $1.',
 'nologinlink' => 'Kreez konto',
 'createaccount' => 'Krear nova konto',
 'gotaccount' => "Ka vu ja havas konto? '''$1'''.",

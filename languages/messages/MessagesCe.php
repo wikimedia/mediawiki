@@ -1724,6 +1724,8 @@ PICT # тайп тайпан
 * gpsaltitude',
 
 # Exif tags
+'exif-imagewidth' => 'Шоралла',
+'exif-imagelength' => 'Локхалла',
 'exif-orientation' => 'Суьртан хьал',
 'exif-xresolution' => 'Шоралла',
 'exif-yresolution' => 'Локхалла',
@@ -1731,7 +1733,10 @@ PICT # тайп тайпан
 'exif-imagedescription' => 'Суьртан цӏе',
 'exif-software' => 'Лелина программа',
 'exif-colorspace' => 'Беснашан хьал',
+'exif-pixelxdimension' => 'Суьртан локхалла',
 'exif-datetimeoriginal' => 'Дуьххьарлера терахь а хан',
+'exif-gpsaltitude' => 'Локхалла',
+'exif-gpsdestlatitude' => 'Объектан дохалла',
 'exif-gpsdatestamp' => 'Терахь',
 'exif-source' => 'Хьост',
 'exif-languagecode' => 'Мотт',

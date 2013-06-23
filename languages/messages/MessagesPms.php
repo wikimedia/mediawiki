@@ -10,6 +10,7 @@
  * @author Borichèt
  * @author Bèrto 'd Sèra
  * @author Dragonòt
+ * @author Geitost
  * @author Kaganer
  * @author MaxSem
  * @author SabineCretella
@@ -282,7 +283,7 @@ $1",
 'currentevents-url' => 'Project:Neuve',
 'disclaimers' => 'Avertense',
 'disclaimerpage' => 'Project:Avertense generaj',
-'edithelp' => 'Manual dë spiegassion',
+'edithelp' => 'Agiut a la modìfica',
 'helppage' => 'Help:Agiut',
 'mainpage' => 'Intrada',
 'mainpage-description' => 'Intrada',
@@ -467,7 +468,7 @@ Che as dësmentia pa ëd cambié ij [[Special:Preferences|"sò gust" an {{SITENA
 'logout' => "Seurte da 'nt ël sistema",
 'userlogout' => 'seurte dal sistema',
 'notloggedin' => "a l'é pa ant ël sistema",
-'nologin' => "Ha-lo ancó nen un cont? '''$1'''.",
+'nologin' => 'Ha-lo ancó nen un cont? $1.',
 'nologinlink' => 'creésse un cont.',
 'createaccount' => 'Crea un cont neuv',
 'gotaccount' => "Ha-lo già un sò cont? '''$1'''.",

@@ -688,7 +688,7 @@ Ekki gleyma að breyta [[Special:Preferences|{{SITENAME}} stillingunum]] þínum
 'notloggedin' => 'Ekki innskráð(ur)',
 'userlogin-noaccount' => 'Áttu ekki aðgang?',
 'userlogin-joinproject' => 'Sameina {{SITENAME}}',
-'nologin' => "Ekki með aðgang? '''$1'''.",
+'nologin' => 'Ekki með aðgang? $1.',
 'nologinlink' => 'Stofnaðu aðgang',
 'createaccount' => 'Nýskrá',
 'gotaccount' => "Nú þegar með notandanafn? '''$1'''.",

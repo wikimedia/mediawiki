@@ -9,6 +9,7 @@
  *
  * @author Chiak
  * @author Danny B.
+ * @author Geitost
  * @author Helix84
  * @author Kaganer
  * @author Kusavica
@@ -718,7 +719,7 @@ Nezabudnite zmeniť svoje [[Special:Preferences|Predvoľby {{GRAMMAR:genitív|{{
 'notloggedin' => 'Neprihlásený/á',
 'userlogin-noaccount' => 'Nemáte ešte účet?',
 'userlogin-joinproject' => 'Pridajte sa k {{GRAMMAR:lokál|{{SITENAME}}}}',
-'nologin' => "Nemáte ešte účet? '''$1'''.",
+'nologin' => 'Nemáte ešte účet? $1.',
 'nologinlink' => 'Vytvoriť nový účet',
 'createaccount' => 'Vytvoriť nový účet',
 'gotaccount' => "Máte už vytvorený účet? '''$1'''.",

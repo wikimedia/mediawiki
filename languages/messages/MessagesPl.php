@@ -18,6 +18,7 @@
  * @author Derbeth
  * @author Equadus
  * @author Fizykaa
+ * @author Geitost
  * @author Herr Kriss
  * @author Holek
  * @author Jwitos
@@ -756,7 +757,7 @@ Nie zapomnij dostosować [[Special:Preferences|preferencji]].',
 'notloggedin' => 'Nie jesteś zalogowany',
 'userlogin-noaccount' => 'Nie masz konta?',
 'userlogin-joinproject' => 'Dołącz do {{GRAMMAR:D.lp|{{SITENAME}}}}',
-'nologin' => "Nie masz konta? '''$1'''.",
+'nologin' => 'Nie masz konta? $1.',
 'nologinlink' => 'Zarejestruj się',
 'createaccount' => 'Załóż nowe konto',
 'gotaccount' => "Masz już konto? '''$1'''.",
@@ -1883,11 +1884,11 @@ $1',
 'upload-proto-error-text' => 'Zdalne przesyłanie plików wymaga podania adresu URL zaczynającego się od <code>http://</code> lub <code>ftp://</code>.',
 'upload-file-error' => 'Błąd wewnętrzny',
 'upload-file-error-text' => 'Wystąpił błąd wewnętrzny podczas próby utworzenia tymczasowego pliku na serwerze.
-Skontaktuj się z [[Special:ListUsers/sysop|administratorem systemu]].',
+Skontaktuj się z [[Special:ListUsers/sysop|administratorem]].',
 'upload-misc-error' => 'Nieznany błąd przesyłania',
 'upload-misc-error-text' => 'Wystąpił nieznany błąd podczas przesyłania.
 Sprawdź, czy podany adres URL jest poprawny i dostępny, a następnie spróbuj ponownie.
-Jeśli problem będzie się powtarzał, skontaktuj się z [[Special:ListUsers/sysop|administratorem systemu]].',
+Jeśli problem będzie się powtarzał, skontaktuj się z [[Special:ListUsers/sysop|administratorem]].',
 'upload-too-many-redirects' => 'URL zawiera zbyt wiele przekierowań',
 'upload-unknown-size' => 'Nieznany rozmiar',
 'upload-http-error' => 'Wystąpił błąd protokołu HTTP – $1',

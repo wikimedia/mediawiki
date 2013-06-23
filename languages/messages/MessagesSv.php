@@ -776,7 +776,7 @@ Glöm inte att justera dina [[Special:Preferences|{{SITENAME}}-inställningar]].
 'notloggedin' => 'Inte inloggad',
 'userlogin-noaccount' => 'Har du inget konto?',
 'userlogin-joinproject' => 'Gå med i {{SITENAME}}',
-'nologin' => "Har du inget användarkonto? '''$1'''.",
+'nologin' => 'Har du inget användarkonto? $1.',
 'nologinlink' => 'Skapa ett användarkonto',
 'createaccount' => 'Skapa ett konto',
 'gotaccount' => "Har du redan ett användarkonto? '''$1'''.",

@@ -20,6 +20,7 @@
  * @author Erdemaslancan
  * @author Erkan Yilmaz
  * @author Fryed-peach
+ * @author Geitost
  * @author Goktr001
  * @author Gorizon
  * @author Hanberke
@@ -1878,7 +1879,7 @@ $1',
 'upload-proto-error-text' => "Uzaktan yükleme, <code>http://</code> veya <code>ftp://</code> ile başlayan URL'ler gerektirmektedir.",
 'upload-file-error' => 'Dahili hata',
 'upload-file-error-text' => 'Sunucuda geçici dosya oluşturma girişimi sırasında bir iç hata meydana geldi.
-Lütfen bir [[Special:ListUsers/sysop|yonetici]]yle iletişime geçin.',
+Lütfen bir [[Special:ListUsers/sysop|hizmetli]]ler iletişime geçin.',
 'upload-misc-error' => 'Bilinmeyen yükleme hatası',
 'upload-misc-error-text' => 'Yükleme sırasında bilinmeyen bir hata meydana geldi.
 Lütfen bağlantının geçerli ve ulaşılabilir olduğunu doğrulayın ve yeniden deneyin.

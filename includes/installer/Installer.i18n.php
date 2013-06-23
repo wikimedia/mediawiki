@@ -13482,11 +13482,12 @@ Bagaimanapun, MediaWiki memerlukan PHP $2 ke atas.',
 	'mainpagetext' => "'''MediaWiki telah berjaya dipasang.'''",
 	'mainpagedocfooter' => 'Sila rujuk [//meta.wikimedia.org/wiki/Help:Contents Panduan Penggunaan] untuk maklumat mengenai penggunaan perisian wiki ini.
 
-== Untuk bermula ==
+== Permulaan ==
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Senarai tetapan konfigurasi]
 * [//www.mediawiki.org/wiki/Manual:FAQ Soalan Lazim MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Senarai mel bagi keluaran MediaWiki]', # Fuzzy
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Senarai surat keluaran MediaWiki]
+* [//www.mediawiki.org/wiki/Localisation#Translation_resources Terjemahkan MediaWiki ke dalam bahasa anda]',
 );
 
 /** Maltese (Malti)

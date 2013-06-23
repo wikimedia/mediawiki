@@ -44,6 +44,7 @@
  * @author MichaelFrey
  * @author MtaÄ
  * @author Omnipaedista
+ * @author Patrick87
  * @author Pill
  * @author Purodha
  * @author Raimond Spekking (Raymond) <raimond.spekking@gmail.com> since January 2007
@@ -601,9 +602,9 @@ $messages = array(
 'search' => 'Suche',
 'searchbutton' => 'Suchen',
 'go' => 'Ausführen',
-'searcharticle' => 'Inhaltsseite',
+'searcharticle' => 'Seite',
 'history' => 'Versionen',
-'history_short' => 'Versionen/Autoren',
+'history_short' => 'Versionsgeschichte',
 'updatedmarker' => 'Änderung seit meinem letzten Besuch',
 'printableversion' => 'Druckversion',
 'permalink' => 'Permanenter Link',
@@ -869,7 +870,7 @@ Vergiss nicht, deine [[Special:Preferences|{{SITENAME}}-Einstellungen]] zu ände
 'notloggedin' => 'Nicht angemeldet',
 'userlogin-noaccount' => 'Du hast noch kein Benutzerkonto?',
 'userlogin-joinproject' => '{{SITENAME}} beitreten',
-'nologin' => "Du hast kein Benutzerkonto? '''$1'''.",
+'nologin' => 'Du hast kein Benutzerkonto? $1.',
 'nologinlink' => 'Neues Benutzerkonto anlegen',
 'createaccount' => 'Benutzerkonto anlegen',
 'gotaccount' => "Du hast bereits ein Benutzerkonto? '''$1'''.",
@@ -1175,7 +1176,7 @@ Bitte füge deine Änderungen in das obere Textfeld ein.
 '''Nur''' der Inhalt des oberen Textfeldes wird gespeichert, wenn du auf „{{int:savearticle}}“ klickst.",
 'yourtext' => 'Dein Text',
 'storedversion' => 'Gespeicherte Version',
-'nonunicodebrowser' => "'''Achtung:''' Dein Browser kann Unicode-Zeichen nicht richtig verarbeiten. Bitte verwende einen anderen Browser um Seiten zu bearbeiten.",
+'nonunicodebrowser' => "'''Achtung: Dein Browser kann Unicode-Zeichen nicht richtig verarbeiten.''' Es wird eine Hilfsroutine eingesetzt, um dir zu erlauben, Seiten sicher zu bearbeiten: Nicht-ASCII-Zeichen werden dabei im Bearbeitungsfenster als hexadezimale Codes angezeigt.",
 'editingold' => "'''Achtung: Du bearbeitest eine alte Version dieser Seite. Sofern du sie speicherst, werden alle neueren Versionen überschrieben.'''",
 'yourdiff' => 'Unterschiede',
 'copyrightwarning' => "'''Bitte kopiere keine Webseiten, die nicht deine eigenen sind, benutze keine urheberrechtlich geschützten Werke ohne Erlaubnis des Urhebers!'''<br />
@@ -1454,7 +1455,7 @@ Einzelheiten sind im [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}
 'searchresults' => 'Suchergebnisse',
 'searchresults-title' => 'Suchergebnisse für „$1“',
 'searchresulttext' => 'Mehr Informationen zur Suche sind auf der [[{{MediaWiki:Helppage}}|Hilfeseite]] zu finden.',
-'searchsubtitle' => 'Deine Suchanfrage: „[[:$1]]“ ([[Special:Prefixindex/$1|alle mit „$1“ beginnenden Seiten]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|alle Seiten, die nach „$1“ verlinken]])',
+'searchsubtitle' => 'Du hast nach „[[:$1]]“ gesucht ([[Special:Prefixindex/$1|alle mit „$1“ beginnenden Seiten]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|alle Seiten, die nach „$1“ verlinken]])',
 'searchsubtitleinvalid' => 'Deine Suchanfrage: „$1“.',
 'toomanymatches' => 'Die Anzahl der Suchergebnisse ist zu groß, bitte versuche eine andere Abfrage.',
 'titlematches' => 'Übereinstimmungen mit Seitentiteln',

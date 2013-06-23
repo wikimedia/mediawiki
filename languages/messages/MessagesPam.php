@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Geitost
  * @author Kaganer
  * @author Katimawan2005
  * @author Urhixidur
@@ -378,7 +379,7 @@ Apansingan mung mapalyaring makalto la pa murin deng aliwang bulung a bala mu ma
 'logout' => 'Mag-log out',
 'userlogout' => 'Mag logout',
 'notloggedin' => 'E maka login',
-'nologin' => "Ala kang login? '''$1'''.",
+'nologin' => 'Ala kang login? $1.',
 'nologinlink' => 'Maglalang kang account',
 'createaccount' => 'Maglalang kang account',
 'gotaccount' => "Atin na kang account? '''$1'''.",
@@ -1072,11 +1073,11 @@ Mamili ka sanang lagyung mas maglarawan keng kekang simpan.",
 'upload-proto-error-text' => 'Mangailangan yang URL a magumpisa king <code>http://</code> o <code>ftp://</code> ing pang-malaut a pamaglulan (remote upload).',
 'upload-file-error' => 'Pamagkamaling pangkilub (internal error)',
 'upload-file-error-text' => 'Mika pamagkamaling pangkilub aniang susubukan nang maglalang pansamantalang simpan king server.
-Pakiyaus me ing metung a talapanibala ning sistema (system administrator).',
+Pakiyaus me ing metung a talapanibala ([[Special:ListUsers/sysop|administrator]]).',
 'upload-misc-error' => 'E makikilalang pamagkamali king pamaglulan (unknown upload error)',
 'upload-misc-error-text' => 'Ating miliaring e makikilalang pamagkamali aniang maglulan.
 Pakilawe mu nung ustu ya at maliari yang luban ing URL, at subukan mung pasibayu.
-Nung atin pa muring prublema, maus kang talapanibala king sistema (system administrator).',
+Nung atin pa muring prublema, maus kang talapanibala ([[Special:ListUsers/sysop|administrator]]).',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'E ne ayabut ing URL',

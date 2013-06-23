@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Geitost
  * @author Julian Mendez
  * @author Kaganer
  * @author Malafaya
@@ -599,7 +600,7 @@ Non oblida personalisar tu [[Special:Preferences|preferentias in {{SITENAME}}]].
 'notloggedin' => 'Tu non ha aperite un session',
 'userlogin-noaccount' => 'Non ha un conto?',
 'userlogin-joinproject' => 'Crear un conto in {{SITENAME}}',
-'nologin' => "Tu non ha un conto? '''$1'''.",
+'nologin' => 'Tu non ha un conto? $1.',
 'nologinlink' => 'Crear un conto',
 'createaccount' => 'Crear conto',
 'gotaccount' => "Tu jam ha un conto? '''$1'''.",

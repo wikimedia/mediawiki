@@ -11,6 +11,7 @@
  * @author Candalua
  * @author Fohanno
  * @author Fulup
+ * @author Geitost
  * @author Gwendal
  * @author Gwenn-Ael
  * @author Kaganer
@@ -612,7 +613,7 @@ Na zisoñjit ket resisaat ho [[Special:Preferences|penndibaboù evit {{SITENAME}
 'notloggedin' => 'Digevreet',
 'userlogin-noaccount' => "Kont ebet ganeoc'h c'hoazh ?",
 'userlogin-joinproject' => 'Kemer perzh e {{SITENAME}}',
-'nologin' => "N'hoc'h eus kont ebet ? '''$1'''.",
+'nologin' => "N'hoc'h eus kont ebet ? $1.",
 'nologinlink' => 'Krouiñ ur gont',
 'createaccount' => 'Krouiñ ur gont nevez',
 'gotaccount' => "Ur gont zo ganeoc'h dija ? '''$1'''.",
@@ -1690,11 +1691,11 @@ $1",
 'upload-proto-error-text' => 'Rekis eo an URLoù a grog gant <code>http://</code> pe <code>ftp://</code> evit enporzhiañ.',
 'upload-file-error' => 'Fazi diabarzh',
 'upload-file-error-text' => "Ur fazi diabarzh zo c'hoarvezet en ur grouiñ ur restr da c'hortoz war ar servijer.
-Kit e darempred gant [[Special:ListUsers/sysop|unan eus merourien ar reizhiad]].",
+Kit e darempred gant [[Special:ListUsers/sysop|unan eus merourien]].",
 'upload-misc-error' => 'Fazi kargañ dianav',
 'upload-misc-error-text' => "Ur fazi dianav zo bet e-ser kargañ.
 Gwiriit eo reizh an URL hag e c'hall bezañ tizhet ha klaskit en-dro.
-Ma talc'h ar gudenn, kit e darempred gant [[Special:ListUsers/sysop|merourien ar reizhiad]].",
+Ma talc'h ar gudenn, kit e darempred gant [[Special:ListUsers/sysop|merourien]].",
 'upload-too-many-redirects' => 'Re a adkasoù zo en URL-mañ.',
 'upload-unknown-size' => 'Ment dianav',
 'upload-http-error' => 'Ur fazi HTTP zo bet : $1',
