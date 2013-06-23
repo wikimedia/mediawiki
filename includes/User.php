@@ -1156,13 +1156,17 @@ class User {
 	 * @see $wgAutopromoteOnce
 	 */
 	public function addAutopromoteOnceGroups( $event ) {
-		global $wgAutopromoteOnceLogInRC;
+		global $wgAutopromoteOnceLogInRC, $wgAuth;
 
 		$toPromote = array();
 		if ( $this->getId() ) {
 			$toPromote = Autopromote::getAutopromoteOnceGroups( $this, $event );
 			if ( count( $toPromote ) ) {
 				$oldGroups = $this->getGroups(); // previous groups
+
+				// update groups in external authentication database
+				$wgAuth->updateExternalDBGroups( $this, $toPromote );
+
 				foreach ( $toPromote as $group ) {
 					$this->addGroup( $group );
 				}
