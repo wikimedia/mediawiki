@@ -216,6 +216,8 @@ class UserrightsPage extends SpecialPage {
 	 * @return Array: Tuple of added, then removed groups
 	 */
 	function doSaveUserGroups( $user, $add, $remove, $reason = '' ) {
+		global $wgAuth;
+
 		// Validate input set...
 		$isself = ( $user->getName() == $this->getUser()->getName() );
 		$groups = $user->getGroups();
@@ -232,6 +234,9 @@ class UserrightsPage extends SpecialPage {
 
 		$oldGroups = $user->getGroups();
 		$newGroups = $oldGroups;
+
+		// update groups in external authentication database
+		$wgAuth->updateExternalDBGroups( $this, $add, $remove );
 
 		// remove then add groups
 		if ( $remove ) {
