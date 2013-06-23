@@ -213,6 +213,19 @@ class AuthPlugin {
 	}
 
 	/**
+	 * Update user groups in the external authentication database.
+	 * Return true if successful.
+	 *
+	 * @param $user User object.
+	 * @param $addgroups Groups to add.
+	 * @param $delgroups Groups to remove.
+	 * @return Boolean
+	 */
+	public function updateExternalDBGroups( $user, $addgroups, $delgroups = array() ) {
+		return true;
+	}
+
+	/**
 	 * Check to see if external accounts can be created.
 	 * Return true if external accounts can be created.
 	 * @return Boolean

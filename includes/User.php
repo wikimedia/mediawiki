@@ -1162,16 +1162,20 @@ class User {
 	 * @see $wgAutopromoteOnce
 	 */
 	public function addAutopromoteOnceGroups( $event ) {
-		global $wgAutopromoteOnceLogInRC;
+		global $wgAutopromoteOnceLogInRC, $wgAuth;
 
 		$toPromote = array();
 		if ( $this->getId() ) {
 			$toPromote = Autopromote::getAutopromoteOnceGroups( $this, $event );
 			if ( count( $toPromote ) ) {
 				$oldGroups = $this->getGroups(); // previous groups
+
 				foreach ( $toPromote as $group ) {
 					$this->addGroup( $group );
 				}
+				// update groups in external authentication database
+				$wgAuth->updateExternalDBGroups( $this, $toPromote );
+
 				$newGroups = array_merge( $oldGroups, $toPromote ); // all groups
 
 				$logEntry = new ManualLogEntry( 'rights', 'autopromote' );
