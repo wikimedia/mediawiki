@@ -23,20 +23,30 @@ $namespaceNames = array(
 	NS_SPECIAL          => 'Тускай',
 	NS_TALK             => 'Чугаа',
 	NS_USER             => 'Aжыглакчы',
-	NS_USER_TALK        => 'Aжыглакчы_чугаазы',
-	NS_PROJECT_TALK     => '$1_чугаазы',
+	NS_USER_TALK        => 'Aжыглакчы_чугаа',
+	NS_PROJECT_TALK     => '$1_чугаа',
 	NS_FILE             => 'Файл',
-	NS_FILE_TALK        => 'Файл_чугаазы',
+	NS_FILE_TALK        => 'Файл_чугаа',
 	NS_MEDIAWIKI        => 'МедиаВики',
-	NS_MEDIAWIKI_TALK   => 'МедиаВики_чугаазы',
+	NS_MEDIAWIKI_TALK   => 'МедиаВики_чугаа',
 	NS_TEMPLATE         => 'Майык',
-	NS_TEMPLATE_TALK    => 'Майык_чугаазы',
+	NS_TEMPLATE_TALK    => 'Майык_чугаа',
 	NS_HELP             => 'Дуза',
-	NS_HELP_TALK        => 'Дуза_чугаазы',
-	NS_CATEGORY         => 'Категория',
-	NS_CATEGORY_TALK    => 'Категория_чугаазы',
+	NS_HELP_TALK        => 'Дуза_чугаа',
+	NS_CATEGORY         => 'Аңгылал',
+	NS_CATEGORY_TALK    => 'Аңгылал_чугаа',
 );
 
+$namespaceAliases = array(
+	'Aжыглакчы_чугаазы'  => NS_USER_TALK,
+	'$1_чугаазы'         => NS_PROJECT_TALK,
+	'Файл_чугаазы'       => NS_FILE_TALK,
+	'МедиаВики_чугаазы'  => NS_MEDIAWIKI_TALK,
+	'Майык_чугаазы'      => NS_TEMPLATE_TALK,
+	'Дуза_чугаазы'       => NS_HELP_TALK,
+	'Категория'          => NS_CATEGORY,
+	'Категория_чугаазы'  => NS_CATEGORY_TALK,
+);
 
 $magicWords = array(
 	'redirect'                  => array( '0', '#көжүрүлге', '#ШИГЛЕДИР', '#перенаправление', '#перенапр', '#REDIRECT' ),

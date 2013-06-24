@@ -22,8 +22,8 @@ $namespaceNames = array(
 	NS_SPECIAL          => 'Лӱмын_ыштыме',
 	NS_TALK             => 'Каҥашымаш',
 	NS_USER             => 'Пайдаланыше',
-	NS_USER_TALK        => 'Пайдаланышын_каҥашымаш',
-	NS_PROJECT_TALK     => '$1ын_каҥашымаш',
+	NS_USER_TALK        => 'Пайдаланышын_каҥашымашыже',
+	NS_PROJECT_TALK     => '$1ын_каҥашымашыже',
 	NS_FILE             => 'Файл',
 	NS_FILE_TALK        => 'Файл_шотышто_каҥашымаш',
 	NS_TEMPLATE         => 'Кышкар',
@@ -53,6 +53,8 @@ $namespaceAliases = array(
 	'Обсуждение_категории'               => NS_CATEGORY_TALK,
 
 	// Namspace changes
+	'Пайдаланышын_каҥашымаш'    => NS_USER_TALK,
+	'$1ын_каҥашымаш'            => NS_PROJECT_TALK,
 	'Файлын_каҥашымаш'          => NS_FILE_TALK,
 	'Ямдылык'                   => NS_TEMPLATE,
 	'Ямдылык_шотышто_каҥашымаш' => NS_TEMPLATE_TALK,

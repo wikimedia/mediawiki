@@ -34,8 +34,8 @@ $namespaceNames = array(
 	NS_TEMPLATE_TALK    => 'Diskusyón_de_Xablón',
 	NS_HELP             => 'Ayudo',
 	NS_HELP_TALK        => 'Diskusyón_de_Ayudo',
-	NS_CATEGORY         => 'Katēggoría',
-	NS_CATEGORY_TALK    => 'Diskusyón_de_Katēggoría',
+	NS_CATEGORY         => 'Kateggoría',
+	NS_CATEGORY_TALK    => 'Diskusyón_de_Kateggoría',
 );
 
 $namespaceAliases = array(
@@ -66,8 +66,8 @@ $namespaceAliases = array(
 	'Xabblón'                  => NS_TEMPLATE,
 	'Diskusyón_de_Xabblón'     => NS_TEMPLATE_TALK,
 	'Diskussión_de_Ayudo'      => NS_HELP_TALK,
-	'Kateggoría'               => NS_CATEGORY,
-	'Diskussión_de_Kateggoría' => NS_CATEGORY_TALK,
+	'Katēggoría'               => NS_CATEGORY,
+	'Diskusyón_de_Katēggoría'  => NS_CATEGORY_TALK,
 );
 
 // Remove Spanish gender aliases (bug 37090)
