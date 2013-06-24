@@ -20,7 +20,7 @@
 
 $namespaceNames = array(
 	NS_MEDIA            => 'Media',
-	NS_SPECIAL          => 'Arbednek',
+	NS_SPECIAL          => 'Arbennek',
 	NS_TALK             => 'Keskows',
 	NS_USER             => 'Devnydhyer',
 	NS_USER_TALK        => 'Keskows_Devnydhyer',
@@ -38,7 +38,7 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
-	'Arbennek'           => NS_SPECIAL,
+	'Arbednek'           => NS_SPECIAL,
 	'Cows'               => NS_TALK,
 	'Kescows'            => NS_TALK,
 	'Cows_Devnydhyer'    => NS_USER_TALK,

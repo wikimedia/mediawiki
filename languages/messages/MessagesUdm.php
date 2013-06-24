@@ -23,8 +23,8 @@ $namespaceNames = array(
 	NS_USER             => 'Викиавтор',
 	NS_USER_TALK        => 'Викиавтор_сярысь_вераськон',
 	NS_PROJECT_TALK     => '$1_сярысь_вераськон',
-	NS_FILE             => 'Суред',
-	NS_FILE_TALK        => 'Суред_сярысь_вераськон',
+	NS_FILE             => 'Файл',
+	NS_FILE_TALK        => 'Файл_сярысь_вераськон',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'MediaWiki_сярысь_вераськон',
 	NS_TEMPLATE         => 'Шаблон',
@@ -33,6 +33,11 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Валэктон_сярысь_вераськон',
 	NS_CATEGORY         => 'Категория',
 	NS_CATEGORY_TALK    => 'Категория_сярысь_вераськон',
+);
+
+$namespaceAliases = array(
+	'Суред'                  => NS_FILE,
+	'Суред_сярысь_вераськон' => NS_FILE_TALK,
 );
 
 // Remove Russian aliases
