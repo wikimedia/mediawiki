@@ -218,13 +218,13 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 			),
 			'offset' => 'Used for paging. Use the value returned for "continue"',
 			'protocol' => array(
-				"Protocol of the url. If empty and {$p}query set, the protocol is http.",
+				"Protocol of the URL. If empty and {$p}query set, the protocol is http.",
 				"Leave both this and {$p}query empty to list all external links"
 			),
 			'query' => 'Search string without protocol. See [[Special:LinkSearch]]. Leave empty to list all external links',
 			'namespace' => 'The page namespace(s) to enumerate.',
 			'limit' => 'How many pages to return.',
-			'expandurl' => 'Expand protocol-relative urls with the canonical protocol',
+			'expandurl' => 'Expand protocol-relative URLs with the canonical protocol',
 		);
 
 		if ( $wgMiserMode ) {

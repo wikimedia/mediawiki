@@ -131,11 +131,11 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 			'limit' => 'How many links to return',
 			'offset' => 'When more results are available, use this to continue',
 			'protocol' => array(
-				"Protocol of the url. If empty and {$p}query set, the protocol is http.",
+				"Protocol of the URL. If empty and {$p}query set, the protocol is http.",
 				"Leave both this and {$p}query empty to list all external links"
 			),
 			'query' => 'Search string without protocol. Useful for checking whether a certain page contains a certain external url',
-			'expandurl' => 'Expand protocol-relative urls with the canonical protocol',
+			'expandurl' => 'Expand protocol-relative URLs with the canonical protocol',
 		);
 	}
 
@@ -148,7 +148,7 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 	}
 
 	public function getDescription() {
-		return 'Returns all external urls (not interwikis) from the given page(s)';
+		return 'Returns all external URLs (not interwikis) from the given page(s)';
 	}
 
 	public function getPossibleErrors() {
