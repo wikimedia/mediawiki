@@ -256,6 +256,9 @@ changes to languages because of Bugzilla reports.
   will no longer be output and OutputPage::addKeyword no longer exists.
 * Methods Title::userCanEditCssSubpage and Title::userCanEditJsSubpage,
   deprecated since 1.19, have been removed.
+* (bug 50134) Hook functions are no longer required to return a value. When a
+  hook function does not return a value (or return an explicit null),
+  processing continues.
 
 == Compatibility ==
 
