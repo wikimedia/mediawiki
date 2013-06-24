@@ -693,13 +693,7 @@ class LoadBalancer {
 		}
 
 		# Create object
-		try {
-			$db = DatabaseBase::factory( $server['type'], $server );
-		} catch ( DBConnectionError $e ) {
-			// FIXME: This is probably the ugliest thing I have ever done to
-			// PHP. I'm half-expecting it to segfault, just out of disgust. -- TS
-			$db = $e->db;
-		}
+		$db = DatabaseBase::factory( $server['type'], $server );
 
 		$db->setLBInfo( $server );
 		if ( isset( $server['fakeSlaveLag'] ) ) {
