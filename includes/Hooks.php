@@ -126,6 +126,9 @@ class Hooks {
 	 * @param array $args  Array of parameters passed to hook functions
 	 * @return bool True if no handler aborted the hook
 	 *
+	 * @since 1.22 A hook function is not required to return a value for
+	 *   processing to continue. Not returning a value (or explicitly
+	 *   returning null) is equivalent to returning true.
 	 * @throws MWException
 	 * @throws FatalError
 	 */
@@ -210,14 +213,7 @@ class Hooks {
 					'Detected bug in an extension! ' .
 					"Hook $func has invalid call signature; " . $badhookmsg
 				);
-			} elseif ( $retval === null ) {
-				// Null was returned. Error.
-				throw new MWException(
-					'Detected bug in an extension! ' .
-					"Hook $func failed to return a value; " .
-					'should return true to continue hook processing or false to abort.'
-				);
-			} elseif ( !$retval ) {
+			} elseif ( $retval === false ) {
 				wfProfileOut( 'hook: ' . $event );
 				// False was returned. Stop processing, but no error.
 				return false;

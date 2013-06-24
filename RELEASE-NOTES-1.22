@@ -256,6 +256,11 @@ changes to languages because of Bugzilla reports.
   will no longer be output and OutputPage::addKeyword no longer exists.
 * Methods Title::userCanEditCssSubpage and Title::userCanEditJsSubpage,
   deprecated since 1.19, have been removed.
+* (bug 50134) Hook functions are no longer required to return a value. When a
+  hook function does not return a value (or when it returns an explicit null),
+  processing continues. To abort the hook, a hook function must return an
+  explicit, boolean false or a string error message. Other falsey values are
+  tantamount to a 'return true' in earlier versions of MediaWiki.
 
 == Compatibility ==
 
