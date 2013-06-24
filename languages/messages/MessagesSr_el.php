@@ -1363,7 +1363,7 @@ Više informacija možete pronaći u [{{fullurl:{{#Special:Log}}/delete|page={{F
 
 # Search results
 'searchresults' => 'Rezultati pretrage',
-'searchresults-title' => 'Rezultati pretrage za „$1”',
+'searchresults-title' => 'Rezultati pretrage za „$1“',
 'searchresulttext' => 'Za više informacija o pretraživanju projekta {{SITENAME}} pogledajte [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle' => "Tražili ste '''[[:$1]]''' ([[Special:Prefixindex/$1|sve stranice koje počinju sa „$1“]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|sve stranice koje vode do „$1“]])",
 'searchsubtitleinvalid' => "Tražili ste '''$1'''",

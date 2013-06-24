@@ -227,7 +227,7 @@ $messages = array(
 'tog-watchcreations' => 'Тlетоха ас кхоллина агlонаш тергаме могlам чу',
 'tog-watchdefault' => 'Тlетоха ас нисйина агlонаш тергаме могlам чу',
 'tog-watchmoves' => 'Тlетоха ас цlераш хийцина агlонаш тергаме могlам чу',
-'tog-watchdeletion' => 'Тlетоха ас дlайайина агlонаш тергаме могlам чу',
+'tog-watchdeletion' => 'Тlетоха ас дӀаяхина агlонаш тергаме могlам чу',
 'tog-minordefault' => 'Къастам бе нисйиначарн хlумцадеш кегийра долушсанна',
 'tog-previewontop' => 'Чуяккха хьалххьажар рéдоккхучу кора хьалха',
 'tog-previewonfirst' => 'Гайта хьалххьажар рéдоккхуче дехьа волуш',
@@ -257,7 +257,7 @@ $messages = array(
 
 'underline-always' => 'Даимна',
 'underline-never' => 'Цкъа а',
-'underline-default' => 'Лелайа хьажгlодириг нисйарца',
+'underline-default' => 'Лелайа браузеран нисйарца',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Тадар чохь долу йозан тайп:',
@@ -412,6 +412,7 @@ $messages = array(
 'create-this-page' => 'Кхолла хlара агlо',
 'delete' => 'ДӀаяккха',
 'deletethispage' => 'ДӀаяккха хӀара агӀо',
+'undeletethispage' => 'ХӀара агӀо меттахӀоттор',
 'undelete_short' => 'Меттахlоттайé $1 {{PLURAL:$1|нисйинарг|нисйинарш|нисйинарш}}',
 'viewdeleted_short' => 'Хьажар {{PLURAL:$1|$1 дlадаьккхина нийсдар|$1 дlадаьхна нийсдарш|$1 дlадаьхна нийсдарш}}',
 'protect' => 'Гlаролла дé',
@@ -489,6 +490,8 @@ $1',
 'newmessageslink' => 'керла хаамаш',
 'newmessagesdifflink' => 'тlаьххьара хийцамаш',
 'youhavenewmessagesfromusers' => 'Хьуна кхачанна $1 {{PLURAL:$3|$3 декъашхочунгара|$3 декъашхошкара|$3 декъашхошкара}} ($2).',
+'newmessageslinkplural' => '{{PLURAL:$1|керла хаам}}',
+'newmessagesdifflinkplural' => '{{PLURAL:$1|тӀаьхьара бина хийцамаш}}',
 'youhavenewmessagesmulti' => 'Хьуна кхаьчна керла хаам оцу $1',
 'editsection' => 'нисйé',
 'editsection-brackets' => '[$1]',
@@ -515,6 +518,8 @@ $1',
 'feed-atom' => 'Атом',
 'feed-rss' => 'RSS',
 'red-link-title' => '$1 (ишта агlо йоцуш йу)',
+'sort-descending' => 'Ма хийла нисяр',
+'sort-ascending' => 'Ма хила нисяр',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'Яззам',
@@ -531,11 +536,16 @@ $1',
 # Main script and global functions
 'nosuchaction' => 'Ишта дийриг дац',
 'nosuchspecialpage' => 'Ишта белха агlо йац',
+'nospecialpagetext' => '<strong>Ишта белхан агӀо яц.</strong>
+
+Белхан агӀонашан могӀам: [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error' => 'Гlалат',
 'databaseerror' => 'Гlалат хаамийн бухера',
+'laggedslavemode' => 'Тергам бе: агӀона чохь керла йаьхинарш ца хила мега.',
 'readonly' => 'Блоктоьхна дӀайаздар хаамийн бухе',
+'enterlockreason' => 'Билгал де блоктохаран бахьна а и чекх йолу хан а.',
 'missing-article' => 'Хlокху чохь кароезаш йолу хьан дехарца йозан агlонаш цакарийна «$1» $2.
 
 Иштнарг наггахь хуьлу хьажориг дlайаьккхина йалхь йа хийцам бина тиша хьажоригца дехьа вала гlоьртича.
@@ -546,7 +556,12 @@ $1',
 'missingarticle-diff' => '(тейп тайпнара: $1, $2)',
 'internalerror' => 'Чоьхьара гlалат',
 'internalerror_info' => 'Чоьхьара гlалат: $1',
+'fileappenderrorread' => 'Тар ца дели еша «$1» тӀетухучу хенахь.',
+'fileappenderror' => 'Тар ца дели тӀетоха «$1» оцунах «$2».',
+'filerenameerror' => 'Файлан «$1» цӀе хийца «$2» йиш яц.',
 'filedeleteerror' => 'ДӀаяккха цатарло файл «$1».',
+'filenotfound' => 'Файл «$1» каро йиш яц.',
+'fileexistserror' => 'Файл «$1» дӀаязяан йиш яц: файл йолуш ю.',
 'cannotdelete' => 'Цатарло дӀаяккха я цӀе хийца «$1».
 АгӀо хьалхо дӀаяккхина хила тарло',
 'cannotdelete-title' => 'Цатарло агӀо дӀаяккха «$1»',
@@ -559,6 +574,9 @@ $1',
 'viewsourcetext' => 'Хьоьга далундерг хьажар а дезахь хlокху агlон чура йоза хьаэцар:',
 'protectedinterface' => 'ХӀара схьгайтарна гӀирса хаамаш латтош йолу агӀо ю. Куьйгалхошна бен иза хийца цало.',
 'exception-nologin' => 'Ахьа хӀой вовзийтина/йовзийтина вац/яц',
+
+# Virus scanner
+'virus-unknownscanner' => 'йозуш йоцу антивирус:',
 
 # Login and logout pages
 'welcomeuser' => 'Марша ДогӀийла, $1!',
@@ -583,12 +601,19 @@ $1',
 'logout' => 'Аравалар/ялар',
 'userlogout' => 'Аравалар/ялар',
 'notloggedin' => 'Хьо вовзийта/йовзийта гlирсан',
+'userlogin-noaccount' => 'Хlинца дlа вазвина/язйина вац/яц?',
 'nologin' => "Хlинца дlа вазвина/язйина вац/яц? '''$1'''.",
 'nologinlink' => 'Кхолла декъашхон дӀаяздар',
 'createaccount' => 'Кхолла декъашхон дӀаяздар',
 'gotaccount' => "Дlавазвелла вуй хьо? '''$1'''.",
 'gotaccountlink' => 'Чувалар/ялар',
+'userlogin-resetlink' => 'Чуволу/йолу хаам биц бела?',
+'createacct-join' => 'ДӀаязбе лахахь хай хаам.',
+'createacct-emailrequired' => 'Электронни почтан адрес',
+'createacct-emailoptional' => 'Электронни почтан адрес (ца яздича мега)',
+'createacct-email-ph' => 'ДӀаязде электронни почтан адрес',
 'createaccountmail' => 'хааман зlене хула',
+'createacct-realname' => 'Хьан цӀе (ца язйича мега)',
 'createaccountreason' => 'Бахьан:',
 'createacct-reason' => 'Бахьна',
 'createacct-reason-ph' => '{{PLURAL:$1|агӀо|агӀонаш}}‎',
@@ -1237,6 +1262,10 @@ PICT # тайп тайпан
 
 # Special:Categories
 'categories' => 'Категореш',
+'categoriespagetext' => '{{PLURAL:$1|Лахара категореш чохь ю|Лахара категореш чохь ю}} агӀонаш я медиа-файлаш.
+Кхузахь гойтуш яц [[Special:UnusedCategories|лелош йоцу категореш]].
+Кхин дӀа [[Special:WantedCategories| хийла еза категореш]].',
+'categoriesfrom' => 'Гучé яха категореш, оцу:',
 
 # Special:DeletedContributions
 'deletedcontributions' => 'Декъашхочуьн дlабайина къинхьегам',

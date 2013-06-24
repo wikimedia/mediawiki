@@ -1463,7 +1463,7 @@ $1",
 
 # Search results
 'searchresults' => 'Резултати претраге',
-'searchresults-title' => 'Резултати претраге за „$1”',
+'searchresults-title' => 'Резултати претраге за „$1“',
 'searchresulttext' => 'За више информација о претраживању пројекта {{SITENAME}} погледајте [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle' => "Тражили сте '''[[:$1]]''' ([[Special:Prefixindex/$1|све странице које почињу са „$1“]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|све странице које воде до „$1“]])",
 'searchsubtitleinvalid' => "Тражили сте '''$1'''",

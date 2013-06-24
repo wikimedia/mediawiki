@@ -10475,14 +10475,14 @@ $1
 	'config-invalid-db-server-oracle' => '「$1」は無効なデータベース TNS です。
 「TNS 名」「Easy Connect」文字列のいずれかを使用してください ([http://docs.oracle.com/cd/E11882_01/network.112/e10836/naming.htm Oracle Naming Methods])',
 	'config-invalid-db-name' => '「$1」は無効なデータベース名です。
-アスキー英字(a-z、A-Z)、数字(0-9)、アンダーバー(_)、ハイフン(-)のみを使用してください。',
-	'config-invalid-db-prefix' => '「$1」は無効なデータベース接頭語です。
-アスキー英字(a-z, A-Z)、数字(0-9)、下線(_)、ハイフン(-)のみを使用してください。',
+半角の英数字 (a-z、A-Z、0-9)、アンダースコア (_)、ハイフン (-) のみを使用してください。',
+	'config-invalid-db-prefix' => '「$1」は無効なデータベース接頭辞です。
+半角の英数字 (a-z、A-Z、0-9)、アンダースコア (_)、ハイフン (-) のみを使用してください。',
 	'config-connection-error' => '$1。
 
 以下のホスト名、ユーザー名、パスワードを確認してから再度試してください。',
 	'config-invalid-schema' => '「$1」は MediaWiki のスキーマとして無効です。
-ASCII の英数字 (a-z、A-Z、0-9)、下線 (_) のみを使用してください。',
+半角の英数字 (a-z、A-Z、0-9)、アンダースコア (_) のみを使用してください。',
 	'config-postgres-old' => 'PostgreSQL $1 以降が必要です。ご使用中の PostgreSQL は $2 です。',
 	'config-sqlite-name-help' => 'あなたのウェキと同一性のある名前を選んでください。
 空白およびハイフンは使用しないでください。
