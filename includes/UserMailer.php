@@ -258,6 +258,8 @@ class UserMailer {
 			wfDebug( "Assembling multipart mime email\n" );
 			if ( !stream_resolve_include_path( 'Mail/mime.php' ) ) {
 				wfDebug( "PEAR Mail_Mime package is not installed. Falling back to text email.\n" );
+				// remove the html body for text email fall back
+				$body = $body['text'];
 			}
 			else {
 				require_once 'Mail/mime.php';
