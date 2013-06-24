@@ -376,7 +376,7 @@ $1',
 
 'badaccess' => 'Kasalahan hak akses',
 'badaccess-group0' => 'Sanak indak diizinkan untuak malakuan tindakan ko.',
-'badaccess-groups' => 'Tindakan nan Sanak nio babateh untuak pangguno dalam {{PLURAL:$2|kalompok}}: $1.',
+'badaccess-groups' => 'Tindakan nan ka Sanak buek babateh hanyo untuak pangguno dalam {{PLURAL:$2|kalompok}}: $1.',
 
 'versionrequired' => 'Dibutuahan MediaWiki versi $1',
 'versionrequiredtext' => 'MediaWiki versi $1 dibutuahan untuak manggunoan laman ko. Caliak [[Special:Version|versi laman]]',
@@ -901,7 +901,7 @@ Sanak dapek baliak dan manyuntiang laman nan alah ado, atau [[Special:UserLogin|
 'sectioneditnotsupported-text' => 'Panyuntiangan bagian indak didukuang di laman suntiang iko.',
 'permissionserrors' => 'Kasalahan Hak Akses',
 'permissionserrorstext' => 'Sanak indak ado hak untuak malakuannyo dek {{PLURAL:$1|alasan}} barikuik:',
-'permissionserrorstext-withaction' => 'Awak indak punyo hak akses untuak $2, karano {{PLURAL:$1|alasan}} barikuik:',
+'permissionserrorstext-withaction' => 'Sanak indak punyo hak akses untuak $2, dek {{PLURAL:$1|alasan}} barikuik:',
 'recreate-moveddeleted-warn' => "'''Ingek: Sanak mambuek ulang suatu laman nan alah dihapuih.'''
 
 Harap ditimbang apo rancak malanjuikan suntiangan Sanak.
@@ -2095,15 +2095,15 @@ Caliak [[Special:BlockList|daftar sakek]] untuak kasado pangguno nan kini kanai 
 # Move page
 'move-page' => 'Pindahan $1',
 'move-page-legend' => 'Pindahkan laman',
-'movepagetext' => "Formulir di bawah ko digunoan untuak maubah namo suatu laman dan mamindahan sadonyo data riwayaik ka namo baru. 
-Judua lamo tu ka manjadi laman paraliahan manuju judua nan baru. 
-Awak dapek mampabarui paraliahan-paraliahan nan manuju ka judua lamo sacaro otomatis.
-Kok indak dipabarui sacaro otomatis, pastikan lah dipareso laman ko dari [[Special:DoubleRedirects|paraliahan ganda]] atau [[Special:BrokenRedirects|paralihan rusak]]. Awak batanggung-jawak untuak mamastian bahaso pautan tu taruih manyambuang ka laman nan saaruihnyo.
+'movepagetext' => "Formulir di bawah ko digunoan untuak maubah namo suatu laman dan mamindahan kasado data riwayaiknyo ka namo baru. 
+Judua lamo tu ka manjadi laman pangaliahan manuju judua nan baru. 
+Sanak dapek mampabarui pangaliahan-pangaliahan nan manuju ka judua lamo sacaro otomatih.
+Kok indak dipabarui sacaro otomatih, pastikan lah dipareso laman ko dari [[Special:DoubleRedirects|pangaliahan ganda]] atau [[Special:BrokenRedirects|pangaliahan rusak]]. Sanak batangguang jawek untuak mamastian baso pautan tu taruih manyambuang ka laman nan saharuihnyo.
 
-Ingeklah bahaso laman ko '''indak''' ka bapindah apobilo lah ado laman nan manggunoan judua nan baru, kacuali bilo laman tu kosong atau marupoan laman paraliahan dan indak punyo riwayaik suntiangan. Aratinyo awak dapek maubah baliak namo laman ka namo samulo apobilo ado kasalahan, dan bahaso awak indak dapek manimpo laman nan lah ado.
+Ingek baso laman ko '''indak''' ka bapindah apobilo lah ado laman nan manggunoan judua nan baru, kacuali bilo laman tu kosong atau marupoan laman pangaliahan dan indak adoi riwayaik suntiangan. Aratinyo Sanak dapek maubah baliak namo laman tu ka namo lamo apobilo ado kasalahan, dan baso awak indak dapek maimpok laman nan alah ado.
 
 '''Paringatan!''' 
-Iko dapek maakibaikan parubahan nan indak dipakiroan pado laman nan populer; jadi pastikan awak paham akibaik tindakan ko sabalun malanjuikannyo.",
+Iko dapek maakibaikan parubahan nan indak dipakiroan pado laman nan populer; jadi pastian Sanak paham bana akibaik dari tindakan ko sabalun malanjuikannyo.",
 'movepagetext-noredirectfixer' => "Formulir di bawah ko digunoan untuak maubah namo suatu laman dan mamindahan sado data riwayaiknyo ka namo baru. 
 Judul lamo tu ka manjadi laman paraliahan manuju judul nan baru. 
 Sanak dapek mampabarui paraliahan-paraliahan nan manuju ka judul lamo sacaro otomatih.

@@ -2267,7 +2267,7 @@ delete|ਹਟਾਉਣ ਦਾ ਚਿੱਠਾ]] ਵੇਖੋ।',
 'htmlform-selectorother-other' => 'ਹੋਰ',
 
 # New logging system
-'logentry-move-move' => "$1 ਨੇ $3 ਪੰਨੇ $4 'ਤੇ ਸਥਾਨਾਂਤਰਿਤ ਕੀਤਾ",
+'logentry-move-move' => '$1 ਨੇ ਸਫ਼ਾ $3 ਨੂੰ $4 ’ਤੇ ਭੇਜਿਆ',
 'logentry-newusers-newusers' => 'ਮੈਂਬਰ ਖਾਤਾ $1 ਬਣਾਇਆ ਗਿਆ',
 'logentry-newusers-create' => 'ਵਰਤੋਂਕਾਰ ਖਾਤਾ $1 ਬਣਾਇਆ ਗਿਆ',
 'logentry-newusers-create2' => 'ਵਰਤੋਂਕਾਰ ਖਾਤਾ $3 $1 ਦੁਆਰਾ ਬਣਾਇਆ ਗਿਆ ਸੀ',

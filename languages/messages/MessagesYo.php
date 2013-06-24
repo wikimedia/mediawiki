@@ -524,12 +524,14 @@ Olùṣeàmójútó tó típa ṣe àlàyé yìí: "$3".',
 'createacct-realname' => 'Orúkọ yín gangan (kò pọndandan)',
 'createaccountreason' => 'Ìdíẹ̀:',
 'createacct-reason' => 'Ìdí',
+'createacct-reason-ph' => 'Ìdí tí ẹ ṣe fẹ́ dá àkópamọ́ míràn',
 'createacct-captcha' => 'Àyẹ̀wò àbò',
 'createacct-imgcaptcha-ph' => 'Ẹ kọ ìkọ̀rọ̀ tí ẹ rí lókè',
+'createacct-submit' => 'Ìdá àkópamọ́ yín',
 'createacct-benefit-heading' => 'Àwọn ènìyàn bíi yín ni wọ́n dá {{SITENAME}}.',
-'createacct-benefit-body1' => 'àtúnṣe',
-'createacct-benefit-body2' => 'ojúewé',
-'createacct-benefit-body3' => 'olùkópa ní oṣù yìí',
+'createacct-benefit-body1' => '{{PLURAL:$1|àtúnṣe|àwọn àtúnṣe}}',
+'createacct-benefit-body2' => '{{PLURAL:$1|ojúewé|àwọn ojúewé}}',
+'createacct-benefit-body3' => ' {{PLURAL:$1|olùkópa|Àwọn olùkópa}} aṣẹ̀ṣẹ̀ṣe',
 'badretype' => 'Àwọn ọ̀rọ̀ìpamọ́ tí ẹ kọ kò jọ ra wọn.',
 'userexists' => 'Orúkọ oníṣe tí ẹ mú wà lọ́wọ́ ẹlòmíràn.
 Ẹjọ̀wọ́ ẹ yan orúkọ mìíràn tó yàtọ̀.',
@@ -593,7 +595,7 @@ E-mail kankan kò ní jẹ́ fífiránṣẹ́ fún ìkankan nínú àwọn ìn�
 'cannotchangeemail' => 'Àwọn àdírẹ́sì e-mail àpamọ́ kò ṣe é yípadà lórí wiki yìí.',
 'emaildisabled' => 'Ibiìtàkùn yìí kò le fi e-mail ránṣẹ́.',
 'accountcreated' => 'Ẹ ti fi orúkọ sílẹ̀',
-'accountcreatedtext' => "A ti ṣ'èdá àkópamọ́ oniṣe fún $1.",
+'accountcreatedtext' => 'Àkópamọ́ oniṣe fún [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|ọ̀rọ̀]]) ti jẹ́ dídá.',
 'createaccount-title' => 'Ìforúkọ sílẹ̀ fún {{SITENAME}}',
 'createaccount-text' => 'Ẹnìkan dá àpamọ́ kan fún àdírẹ́sì e-mail yín sórí {{SITENAME}} ($4) tóún jẹ́ "$2", pẹ̀kú ọ̀rọ̀ìpamọ́ \'\'$3\'\'.
 Ẹ gbọ́dọ̀ wọlé kí ẹ sì ṣàyípadà ọ́rọ́ìpamọ́ yín nísinsìyí.
@@ -877,6 +879,7 @@ Kò ṣe àlàyé kankan.',
 Ó dà bíi pé a ti paárẹ́.',
 'edit-conflict' => 'Ìtakora áwọn àtúnṣe',
 'edit-no-change' => 'A ṣe àìkàsí àtúnṣe yín, nítorípé ìkọ̀wé kò ní àtúnṣe kankan.',
+'postedit-confirmation' => 'Àtúnṣe yín ti jẹ́ gbígbépamọ́.',
 'edit-already-exists' => "A kò le è ṣè'dá ojúewé tuntun.
 Ó pilẹ̀ ti wà.",
 'defaultmessagetext' => 'Ìkọ ìránṣẹ́ àtìbẹ̀rẹ̀',
@@ -3011,6 +3014,16 @@ Tí ẹ bá jẹ́ ó ṣiṣẹ́, ẹ̀rọ sístẹ́mù yín le kó sí ewu.
 'days' => '{{PLURAL:$1|ọjọ́ $1}}',
 'ago' => '$1 sẹ́yìn',
 'just-now' => 'nísinsìnyí',
+
+# Human-readable timestamps
+'monday-at' => 'Ọjọ́ajé ní ago $1',
+'tuesday-at' => 'Ọjọ́ìṣẹ́gun ní ago $1',
+'wednesday-at' => 'Ọjọ́rú ní ago $1',
+'thursday-at' => 'Ọjọ́bọ̀ ní ago $1',
+'friday-at' => 'Ọjọ́ẹtì ní ago $1',
+'saturday-at' => 'Ọjọ́àbámẹ́ta ní ago $1',
+'sunday-at' => 'Ọjọ́àìkú ní ago $1',
+'yesterday-at' => 'Àná ní ago $1',
 
 # Bad image list
 'bad_image_list' => 'Onírú jẹ́ gẹ́gẹ́ bíi àtèlé yìí:
