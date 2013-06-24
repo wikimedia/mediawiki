@@ -192,6 +192,7 @@ production.
 * (bug 48201) action=parse&text=foo now assumes wikitext if no title is given,
   rather than using the content model of the page "API".
 * action=watch may now return errors.
+* The new query module list=allfileusages to enumerate file usages was added.
 
 === Languages updated in 1.22===
 
