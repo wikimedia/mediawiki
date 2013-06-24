@@ -19,8 +19,40 @@
 $fallback = 'id';
 
 $namespaceNames = array(
+	NS_MEDIA            => 'Media',
+	NS_SPECIAL          => 'Istimewa',
+	NS_TALK             => 'Maota',
+	NS_USER             => 'Pangguno',
+	NS_USER_TALK        => 'Rundiang_Pangguno',
+	NS_PROJECT_TALK     => 'Rundiang_$1',
 	NS_FILE             => 'Berkas',
+	NS_FILE_TALK        => 'Rundiang_Berkas',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'Rundiang_MediaWiki',
 	NS_TEMPLATE         => 'Templat',
+	NS_TEMPLATE_TALK    => 'Rundiang_Templat',
+	NS_HELP             => 'Bantuan',
+	NS_HELP_TALK        => 'Rundiang_Bantuan',
+	NS_CATEGORY         => 'Kategori',
+	NS_CATEGORY_TALK    => 'Rundiang_Kategori',
+);
+
+$namespaceAliases = array(
+	# Indonesian namespaces
+	'Istimewa'              => NS_SPECIAL,
+	'Pembicaraan'           => NS_TALK,
+	'Pengguna'              => NS_USER,
+	'Pembicaraan_Pengguna'  => NS_USER_TALK,
+	'Pembicaraan_$1'        => NS_PROJECT_TALK,
+	'Berkas'                => NS_FILE,
+	'Pembicaraan_Berkas'    => NS_FILE_TALK,
+	'Pembicaraan_MediaWiki' => NS_MEDIAWIKI_TALK,
+	'Templat'               => NS_TEMPLATE,
+	'Pembicaraan_Templat'   => NS_TEMPLATE_TALK,
+	'Bantuan'               => NS_HELP,
+	'Pembicaraan_Bantuan'   => NS_HELP_TALK,
+	'Kategori'              => NS_CATEGORY,
+	'Pembicaraan_Kategori'  => NS_CATEGORY_TALK,
 );
 
 $specialPageAliases = array(

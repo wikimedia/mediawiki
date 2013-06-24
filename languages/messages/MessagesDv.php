@@ -19,21 +19,32 @@ $rtl = true;
 
 $namespaceNames = array(
 	NS_MEDIA            => 'މީޑިއާ',
-	NS_SPECIAL          => 'ހާއްޞަ',
+	NS_SPECIAL          => 'ޚާއްސަ',
 	NS_MAIN             => '',
 	NS_TALK             => 'ޚިޔާލު',
 	NS_USER             => 'މެމްބަރު',
 	NS_USER_TALK        => 'މެމްބަރުގެ_ވާހަކަ',
-	NS_FILE             => 'ފައިލް',
-	NS_FILE_TALK        => 'ފައިލް_ޚިޔާލު',
+	NS_PROJECT_TALK     => '$1ގެ_ވާހަކަ',
+	NS_FILE             => 'ފައިލު',
+	NS_FILE_TALK        => 'ފައިލުގެ_ޚިޔާލު',
 	NS_MEDIAWIKI        => 'މީޑިއާވިކީ',
-	NS_MEDIAWIKI_TALK   => 'މީޑިޔާވިކި_ޚިޔާލު',
+	NS_MEDIAWIKI_TALK   => 'މިޑިއާވިކީ_ޚިޔާލު',
 	NS_TEMPLATE         => 'ފަންވަތް',
-	NS_TEMPLATE_TALK    => 'ފަންވަތް_ޚިޔާލު',
+	NS_TEMPLATE_TALK    => 'ފަންވަތުގެ_ޚިޔާލު',
 	NS_HELP             => 'އެހީ',
-	NS_HELP_TALK        => 'އެހީ_ޚިޔާލު',
+	NS_HELP_TALK        => 'އެހީގެ_ޚިޔާލު',
 	NS_CATEGORY         => 'ޤިސްމު',
-	NS_CATEGORY_TALK    => 'ޤިސްމު_ޚިޔާލު',
+	NS_CATEGORY_TALK    => 'ޤިސްމުގެ_ޚިޔާލު',
+);
+
+$namespaceAliases = array(
+	'ހާއްޞަ'          => NS_SPECIAL,
+	'ފައިލް'           => NS_FILE,
+	'ފައިލް_ޚިޔާލު'    => NS_FILE_TALK,
+	'މީޑިޔާވިކި_ޚިޔާލު' => NS_MEDIAWIKI_TALK,
+	'ފަންވަތް_ޚިޔާލު'  => NS_TEMPLATE_TALK,
+	'އެހީ_ޚިޔާލު'      => NS_HELP_TALK,
+	'ޤިސްމު_ޚިޔާލު'   => NS_CATEGORY_TALK,
 );
 
 $specialPageAliases = array(

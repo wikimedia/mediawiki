@@ -11,7 +11,6 @@
  */
 
 $fallback = 'ur';
-
 $rtl = true;
 
 $messages = array(
