@@ -15,10 +15,38 @@ var mw = ( function ( $, undefined ) {
 	/**
 	 * Creates an object that can be read from or written to from prototype functions
 	 * that allow both single and multiple variables at once.
+	 *
+	 * Example:
+	 *
+	 *     var addies, wanted, results;
+	 *
+	 *     // Create your address book
+	 *     addies = new mw.Map();
+	 *
+	 *     // This data could be coming from an external source (eg. API/AJAX)
+	 *     addies.set( {
+	 *         'John Doe' : '10 Wall Street, New York, USA',
+	 *         'Jane Jackson' : '21 Oxford St, London, United Kingdom',
+	 *         'Dominique van Halen' : 'Kalverstraat 7, Amsterdam, The Netherlands'
+	 *     } );
+	 *
+	 *     wanted = ['Dominique van Halen', 'George Johnson', 'Jane Jackson'];
+	 *
+	 *     // You can detect missing keys first
+	 *     if ( !myAddressBook.exists( wantedNames ) ) {
+	 *         // One ore more are missing (e.g. George Johson)
+	 *         mw.log( 'One or more names do not have a known address' );
+	 *     }
+	 *
+	 *    // Or just let it give you what it can
+	 *    results = myAddressBook.get( wantedNames, 'Middle of Nowhere, Alaska' );
+	 *    mw.log( results['Jane Jackson'] ); // "1 Oxford St"
+	 *    mw.log( results['George Johnson'] ); // "1 Oxford St"
+	 *
 	 * @class mw.Map
 	 *
 	 * @constructor
-	 * @param {boolean} global Whether to store the values in the global window
+	 * @param {boolean} [global=false] Whether to store the values in the global window
 	 *  object or a exclusively in the object property 'values'.
 	 */
 	function Map( global ) {
@@ -288,13 +316,17 @@ var mw = ( function ( $, undefined ) {
 		Message: Message,
 
 		/**
-		 * List of configuration values
+		 * Map of configuration values
 		 *
-		 * Dummy placeholder. Initiated in startUp module as a new instance of mw.Map().
-		 * If `$wgLegacyJavaScriptGlobals` is true, this Map will have its values
-		 * in the global window object.
-		 * @property
+		 * Check out [the complete list of configuration values](https://www.mediawiki.org/wiki/Manual:Interface/JavaScript#mw.config)
+		 * on MediaWiki.org.
+		 *
+		 * If `$wgLegacyJavaScriptGlobals` is true, this Map will put its values in the
+		 * global window object.
+		 *
+		 * @property {mw.Map} config
 		 */
+		// Dummy placeholder. Re-assigned in ResourceLoaderStartupModule with an instance of `mw.Map`.
 		config: null,
 
 		/**
