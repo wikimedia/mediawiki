@@ -355,6 +355,7 @@ production.
 * (bug 49090) Token-getting functions will fail when using jsonp callbacks.
 * (bug 52699) action=upload returns normalized file name on warning
   "exists-normalized" instead of filename to be uploaded to.
+* The new query module list=allfileusages to enumerate file usages was added.
 
 === Languages updated in 1.22===
 
