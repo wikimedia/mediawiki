@@ -3080,6 +3080,15 @@ External link containing double-single-quotes with no space separating the url f
 !! end
 
 !! test
+External link with comments in link text
+!! input
+[http://www.google.com Google <!-- comment -->]
+!! result
+<p><a rel="nofollow" class="external text" href="http://www.google.com">Google </a>
+</p>
+!! end
+
+!! test
 URL-encoding in URL functions (single parameter)
 !! input
 {{localurl:Some page|amp=&}}
@@ -3866,6 +3875,15 @@ Plain link, uncapitalized
 Piped link
 !! input
 [[Main Page|The Main Page]]
+!! result
+<p><a href="/wiki/Main_Page" title="Main Page">The Main Page</a>
+</p>
+!! end
+
+!! test
+Piped link with comment in link text
+!! input
+[[Main Page|The Main<!--front--> Page]]
 !! result
 <p><a href="/wiki/Main_Page" title="Main Page">The Main Page</a>
 </p>
@@ -5051,6 +5069,33 @@ Single-comment whitespace lines dont break lists, but multi-comment whitespace l
 <ul><li>d
 </li></ul>
 
+!!end
+
+!!test
+Test the li-hack
+(Cannot test this with PHP parser since it relies on Tidy for the hack)
+!!options
+parsoid=wt2html,wt2wt
+!!input
+* foo
+* <li>li-hack
+* {{echo|<li>templated li-hack}}
+* <!--foo--> <li> unsupported li-hack with preceding comments
+
+<ul>
+<li><li>not a li-hack
+</li>
+</ul>
+!!result
+<ul><li> foo</li>
+<li>li-hack</li>
+<li about="#mwt1" typeof="mw:Transclusion" data-mw='{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"<li>templated li-hack"}}}'>templated li-hack</li>
+<li> <!--foo--> </li><li> li-hack with preceding comments</li></ul>
+
+<ul>
+<li></li><li>not a li-hack
+</li>
+</ul>
 !!end
 
 ###
@@ -14427,10 +14472,15 @@ Headings: 1. Nested inside html
 parsoid
 !! input
 =<nowiki>=foo=</nowiki>=
+
 ==<nowiki>=foo=</nowiki>==
+
 ===<nowiki>=foo=</nowiki>===
+
 ====<nowiki>=foo=</nowiki>====
+
 =====<nowiki>=foo=</nowiki>=====
+
 ======<nowiki>=foo=</nowiki>======
 !! result
 <h1><span typeof="mw:Nowiki">=foo=</span></h1>
@@ -14448,8 +14498,10 @@ parsoid
 !! input
 =foo=
 <nowiki>*bar</nowiki>
+
 =foo=
 =bar
+
 =foo=
 <nowiki>=bar=</nowiki>
 !! result
@@ -14474,12 +14526,19 @@ Headings: 4a. No escaping needed (testing just h1 and h2)
 parsoid
 !! input
 ==foo=
+
 =foo==
+
 = =foo= =
+
 ==foo= bar=
+
 ===foo==
+
 ==foo===
+
 =''=''foo==
+
 =<nowiki>=</nowiki>=
 !! result
 <h1>=foo</h1>
@@ -14513,10 +14572,15 @@ Headings: 5. Empty headings
 parsoid
 !! input
 =<nowiki/>=
+
 ==<nowiki/>==
+
 ===<nowiki/>===
+
 ====<nowiki/>====
+
 =====<nowiki/>=====
+
 ======<nowiki/>======
 !! result
 <h1></h1>
@@ -14528,15 +14592,78 @@ parsoid
 !!end
 
 !! test
-Headings: 6. Heading chars in SOL context
+Headings: 6a. Heading chars in SOL context (with trailing spaces)
 !! options
 parsoid
 !! input
-<!--cmt--><nowiki>=h1=</nowiki>
-<!--cmt--><nowiki> =h1= </nowiki>
 !! result
-<p><!--cmt--><span typeof="mw:Nowiki">=h1=</span>
-<!--cmt--><span typeof="mw:Nowiki"> =h1= </span></p>
+<p>=a=</p>
+<p>=a= </p>
+<p>=a=	</p>
+<p>=a= 	</p>
+!!end
+
+!! test
+Headings: 6b. Heading chars in SOL context (with trailing newlines)
+!! options
+parsoid
+!! input
+<nowiki>=a=
+b</nowiki>
+
+<nowiki>=a= 
+b</nowiki>
+
+<nowiki>=a=	
+b</nowiki>
+
+<nowiki>=a=	 
+b</nowiki>
+!! result
+<p>=a=
+b</p>
+<p>=a= 
+b</p>
+<p>=a=	
+b</p>
+<p>=a=	 
+b</p>
+</p>
+!!end
+
+!! test
+Headings: 6c. Heading chars in SOL context (leading newline break)
+!! options
+parsoid
+!! input
+<nowiki>a
+=b=</nowiki>
+!! result
+<p>a
+=b=</p>
+!!end
+
+!! test
+Headings: 6d. Heading chars in SOL context (with interspersed comments)
+!! options
+parsoid
+!! input
+<!--c0--><nowiki>=a=</nowiki>
+<!--c1-->
+<nowiki>=a= </nowiki><!--c2-->	 <!--c3-->
+!! result
+<p><!--c0-->=a=</p>
+<p><!--c1-->=a= <!--c2-->	 <!--c3--></p>
+!!end
+
+!! test
+Headings: 6d. Heading chars in SOL context (No escaping needed)
+!! options
+parsoid=html2wt
+!! input
+=a=<div>b</div>
+!! result
+=a=<div>b</div>
 !!end
 
 #### --------------- Lists ---------------
@@ -14947,7 +15074,7 @@ disabled
 
 !! end
 
-#### --------------- Links ---------------
+#### --------------- Links ----------------
 #### 1. Quote marks in link text
 #### 2. Wikilinks: Escapes needed
 #### 3. Wikilinks: No escapes needed
@@ -15078,7 +15205,7 @@ parsoid
 </p>
 !! end
 
-#### --------------- Paragraphs ---------------
+#### ----------- Paragraphs ---------------
 #### 1. No unnecessary escapes
 #### --------------------------------------
 
@@ -15103,27 +15230,51 @@ bar <span><nowiki>[[foo]]</nowiki></span>
 </p>
 !!end
 
-#### --------------- PRE ------------------
-#### 1. Leading space in SOL context should be escaped
-#### --------------------------------------
+#### ----------------------- PRE --------------------------
+#### 1. Leading whitespace in SOL context should be escaped
+#### ------------------------------------------------------
 !! test
-1. Leading space in SOL context should be escaped
+1. Leading whitespace in SOL context should be escaped
 !! options
 parsoid
 !! input
-<nowiki> foo</nowiki>
-<!--cmt--><nowiki> foo</nowiki>
+<nowiki> a</nowiki>
+
+<nowiki>  a</nowiki>
+
+<nowiki>	a(tab)</nowiki>
+
+<nowiki> 	a</nowiki>
+<!--cmt-->
+<nowiki>  a</nowiki>
+
+<nowiki>a
+ b</nowiki>
+
+<nowiki>a
+	b</nowiki>
+
+<nowiki>a
+	 b</nowiki>
 !! result
-<p> foo
-<!--cmt--> foo
-</p>
+<p> a</p>
+<p>  a</p>
+<p>	a(tab)</p>
+<p> 	a</p>
+<p><!--cmt-->  a</p>
+<p>a
+ b</p>
+<p>a
+	b</p>
+<p>a
+	 b</p>
 !! end
 
 #### --------------- HTML tags ---------------
 #### 1. a tags
 #### 2. other tags
 #### 3. multi-line html tag
-#### --------------------------------------
+#### -----------------------------------------
 !! test
 1. a tags
 !! options
