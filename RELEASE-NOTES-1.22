@@ -113,6 +113,8 @@ production.
 * (bug 46513) Vector: Add the collapsibleTabs script from the Vector extension.
 * Added $wgRecentChangesFlags for defining new flags for RecentChanges and
   watchlists.
+* The 'UnwatchArticle' and 'WatchArticle' hooks now support a Status object
+  instead of just a boolean return value to abort the hook.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
@@ -191,7 +193,7 @@ production.
   user blocks.
 * (bug 48201) action=parse&text=foo now assumes wikitext if no title is given,
   rather than using the content model of the page "API".
-* action=watch may now return errors.
+* action=watch no longer silently ignores hook abort.
 
 === Languages updated in 1.22===
 
@@ -256,6 +258,8 @@ changes to languages because of Bugzilla reports.
   will no longer be output and OutputPage::addKeyword no longer exists.
 * Methods Title::userCanEditCssSubpage and Title::userCanEditJsSubpage,
   deprecated since 1.19, have been removed.
+* Methods WatchAction::doWatch and WatchAction::doUnwatch now return a Status
+  object instead of a boolean.
 
 == Compatibility ==
 
