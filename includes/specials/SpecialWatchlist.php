@@ -253,7 +253,8 @@ class SpecialWatchlist extends SpecialPage {
 		if ( $wgEnotifWatchlist && $user->getOption( 'enotifwatchlistpages' ) ) {
 			$form .= $this->msg( 'wlheader-enotif' )->parse() . "\n";
 		}
-		if ( $wgShowUpdatedMarker ) {
+        $newrc = $this->getRequest()->getBool( 'enhanced', $user->getOption( 'usenewrc' ) );
+		if ( !$newrc && $wgShowUpdatedMarker ) {
 			$form .= $this->msg( 'wlheader-showupdated' )->parse() . "\n";
 		}
 		$form .= "</p>";
