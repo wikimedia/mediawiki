@@ -1625,7 +1625,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'right-ipblock-exempt' => 'Obejście blokad, automatycznych blokad i blokad zakresów, adresów IP',
 'right-proxyunbannable' => 'Obejście automatycznych blokad proxy',
 'right-unblockself' => 'Odblokowanie samego siebie',
-'right-protect' => 'Zmiana poziomu zabezpieczenia i dostęp do edycji zabezpieczonych stron',
+'right-protect' => 'Zmiana stopnia zabezpieczenia i dostęp do edycji zabezpieczonych stron',
 'right-editprotected' => 'Dostęp do edycji zabezpieczonych stron (bez zabezpieczenia dziedziczonego)',
 'right-editinterface' => 'Edycja interfejsu użytkownika',
 'right-editusercssjs' => 'Edycja plików CSS i JS innych użytkowników',

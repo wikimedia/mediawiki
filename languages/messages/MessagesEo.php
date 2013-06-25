@@ -2094,6 +2094,8 @@ Bonvolu kontroli aliajn ligilojn al la ŝablonoj antaŭ ol forigi ilin.',
 Ili devus anstataŭe alligi la ĝustan temon.<br />
 Paĝo estas traktata kiel apartigilo se ĝi uzas ŝablonon kiu estas ligita de [[MediaWiki:Disambiguationspage]]",
 
+'pageswithprop' => 'Paĝoj kun paĝa atributo',
+'pageswithprop-legend' => 'Paĝoj kun paĝa atributo',
 'pageswithprop-prop' => 'Nomo de la atributo:',
 'pageswithprop-submit' => 'Ek',
 
@@ -2612,7 +2614,7 @@ $1',
 'sp-contributions-blocked-notice-anon' => 'Ĉi tiu IP-adreso estas nune forbarita.
 Jen la lasta ero de la forbara protokolo:',
 'sp-contributions-search' => 'Serĉado de kontribuoj',
-'sp-contributions-username' => 'IP-adreso aŭ salutnomo:',
+'sp-contributions-username' => 'IP-adreso aŭ uzantonomo:',
 'sp-contributions-toponly' => 'Montru nur ŝanĝojn kiuj estas la plej lastaj revizioj',
 'sp-contributions-submit' => 'Serĉi',
 

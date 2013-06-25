@@ -731,7 +731,7 @@ Ne zaboravite da prilagodite sebi svoja [[Special:Preferences|{{SITENAME}} pode�
 'userlogin-joinproject' => 'Pridružite se {{SITENAME}}',
 'nologin' => 'Nemate korisničko ime? $1.',
 'nologinlink' => 'Napravite nalog',
-'createaccount' => 'Napravi nalog',
+'createaccount' => 'Napravi korisnički račun',
 'gotaccount' => "Imate nalog? '''$1'''.",
 'gotaccountlink' => 'Prijavi se',
 'userlogin-resetlink' => 'Zaboravili ste detalje vaše prijave?',

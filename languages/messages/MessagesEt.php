@@ -1526,6 +1526,7 @@ See ei tohi olla pikem kui {{PLURAL:$1|üks märk|$1 märki}}.',
 'userrights-changeable-col' => 'Rühmad, mida sa saad muuta',
 'userrights-unchangeable-col' => 'Rühmad, mida sa ei saa muuta',
 'userrights-conflict' => 'Kasutajaõiguste konflikt! Palun tee muudatused uuesti.',
+'userrights-removed-self' => 'Võtsid edukalt endalt õigused. Seetõttu sellele leheküljele sa enam ligi ei pääse.',
 
 # Groups
 'group' => 'Rühm:',

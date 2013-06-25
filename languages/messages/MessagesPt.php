@@ -777,7 +777,7 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências]].'
 'gotaccountlink' => 'Autentique-se',
 'userlogin-resetlink' => 'Esqueceu-se do seu nome de utilizador ou da palavra-chave?',
 'userlogin-resetpassword-link' => 'Recuperar palavra-chave',
-'helplogin-url' => 'Ajuda:Autenticação',
+'helplogin-url' => 'Help:Autenticação',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Ajuda a fazer login]]',
 'createacct-join' => 'Insira a sua informação abaixo.',
 'createacct-emailrequired' => 'Endereço de email',
@@ -854,7 +854,7 @@ Introduza um endereço formatado correctamente ou deixe o campo vazio.',
 'cannotchangeemail' => 'Os endereços de correio electrónico das contas não podem ser alterados nesta wiki.',
 'emaildisabled' => 'Este site não consegue enviar e-mails.',
 'accountcreated' => 'Conta criada',
-'accountcreatedtext' => 'A conta de utilizador para $1 foi criada.',
+'accountcreatedtext' => 'A conta de utilizador para [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|talk]]) foi criada.',
 'createaccount-title' => 'Criação de conta na {{SITENAME}}',
 'createaccount-text' => 'Alguém criou uma conta com o nome $2 para o seu endereço de correio electrónico, na wiki {{SITENAME}} ($4), com a palavra-chave "$3".
 Deve agora autenticar-se e alterar a sua palavra-chave.
@@ -905,21 +905,23 @@ Pode ter já alterado com sucesso a sua palavra-chave ou solicitado uma nova pal
 'passwordreset-capture-help' => 'Se marcar esta caixa, o e-mail (com a senha temporária) será-lhe mostrado, além de ser enviado para o utilizador.',
 'passwordreset-email' => 'Correio electrónico:',
 'passwordreset-emailtitle' => 'Detalhes da conta na {{SITENAME}}',
-'passwordreset-emailtext-ip' => 'Alguém, provavelmente você a partir do endereço IP $1, pediu a recuperação dos detalhes da sua conta na {{SITENAME}} ($4). {{PLURAL:$3|A seguinte conta está associada|As seguintes contas estão associadas}} a este correio electrónico:
+'passwordreset-emailtext-ip' => 'Alguém (provavelmente você, a partir do endereço IP $1) pediu a recuperação da palavra-passe no projeto {{SITENAME}} ($4). {{PLURAL:$3|A seguinte conta de utilizador está associada|As seguintes contas de utilizador estão associadas}} a este correio eletrónico:
 
 $2
 
-{{PLURAL:$3|Esta palavra-chave temporária irá|Estas palavras-chave temporárias irão}} expirar dentro de {{PLURAL:$5|um dia|$5 dias}}. Deve autenticar-se e escolher uma palavra-chave nova agora. Se este pedido não foi feito por si, ou se entretanto se recordou da sua palavra-chave original e já não deseja alterá-la, pode ignorar esta mensagem e continuar a usar a palavra-chave antiga.',
-'passwordreset-emailtext-user' => 'O utilizador $1 da {{SITENAME}} pediu a recuperação dos detalhes da sua conta na {{SITENAME}} ($4). {{PLURAL:$3|A seguinte conta está associada|As seguintes contas estão associadas}} a este correio electrónico:
+{{PLURAL:$3|Esta palavra-passe temporária irá|Estas palavras-passes temporárias irão}} expirar dentro de {{PLURAL:$5|um dia|$5 dias}}.
+Deve autenticar-se e escolher uma palavra-passe nova agora. Se outra pessoa fez este pedido, ou se entretanto se recordou da sua palavra-passe original e já não deseja alterá-la, pode ignorar esta mensagem e continuar a usar a palavra-passe antiga.',
+'passwordreset-emailtext-user' => 'O utilizador $1 do projeto {{SITENAME}} pediu a recuperação da sua palavra-passe no projeto {{SITENAME}} ($4). {{PLURAL:$3|A seguinte conta de utilizador está associada|As seguintes contas de utilizador estão associadas}} a este endereço de correio eletrónico:
 
 $2
 
-{{PLURAL:$3|Esta palavra-chave temporária irá|Estas palavras-chave temporárias irão}} expirar dentro de {{PLURAL:$5|um dia|$5 dias}}. Deve autenticar-se e escolher uma palavra-chave nova agora. Se este pedido não foi feito por si, ou se entretanto se recordou da sua palavra-chave original e já não deseja alterá-la, pode ignorar esta mensagem e continuar a usar a palavra-chave antiga.',
+{{PLURAL:$3|Esta palavra-passe temporária irá|Estas palavras-passes temporárias irão}} expirar dentro de {{PLURAL:$5|um dia|$5 dias}}.
+Deve autenticar-se e escolher uma palavra-passe nova agora. Se outra pessoa fez este pedido, ou se entretanto se recordou da sua palavra-passe original e já não deseja alterá-la, pode ignorar esta mensagem e continuar a usar a palavra-passe antiga.',
 'passwordreset-emailelement' => 'Utilizador: $1
 Palavra-chave temporária: $2',
-'passwordreset-emailsent' => 'Foi enviado um correio electrónico de recuperação dos dados da conta.',
-'passwordreset-emailsent-capture' => 'Foi enviado um e-mail de lembrete, que é mostrado abaixo.',
-'passwordreset-emailerror-capture' => 'Foi gerado o lembrete de e-mail mostrado abaixo, contudo falhou o envio para o utilizador: $1',
+'passwordreset-emailsent' => 'Foi enviado um correio eletrónico para recuperação da palavra-passe.',
+'passwordreset-emailsent-capture' => 'Foi enviado um e-mail de recuperação da palavra-passe, que é mostrado abaixo.',
+'passwordreset-emailerror-capture' => 'Foi gerado o e-mail de reposição de palavra-passe mostrado abaixo, contudo falhou o seu envio para {{GENDER:$2|o utilizador|a utilizadora}}: $1',
 
 # Special:ChangeEmail
 'changeemail' => 'Alterar o endereço de correio electrónico',
@@ -1103,7 +1105,7 @@ Garante-nos também que isto é algo escrito por si, ou copiado do domínio púb
 'longpageerror' => "'''Erro: O texto que submeteu ocupa {{PLURAL:$1|um kilobyte|$1 kilobytes}}, que excede o máximo de {{PLURAL:$2|um kilobyte|$2 kilobytes}}.'''
 A página não pode ser gravada.",
 'readonlywarning' => "'''Aviso: A base de dados foi bloqueada para manutenção, pelo que não poderá gravar a sua edição neste momento.'''
-Pode, no entanto, copiar o seu texto para um editor externo e guardá-lo para posterior submissão.
+Pode, no entanto, copiar e colar o seu texto num ficheiro de texto e guardá-lo para mais tarde.
 
 O administrador que bloqueou a base de dados forneceu a seguinte explicação: $1",
 'protectedpagewarning' => "'''Aviso: Esta página foi protegida para só poder ser editada por administradores.'''
@@ -1148,8 +1150,8 @@ Ela já existia.',
 'content-failed-to-parse' => 'Falha ao analisar conteúdo $2 para modelo $1:$3',
 'invalid-content-data' => 'Dados de conteúdo inválidos',
 'content-not-allowed-here' => 'Conteúdo do tipo "$1" não é permitido na página [[$2]]',
-'editwarning-warning' => 'Sair desta página fará com que você perca todas as alterações feitas por você.
-Se você fez login, pode desabilitar este aviso na seção "{{int:prefs-editing}}" das suas preferências.',
+'editwarning-warning' => 'Sair desta página fará com que você perca quaisquer alterações feitas por você.
+Se você se autenticou, pode desabilitar este aviso na secção "Edição" das suas preferências.',
 
 # Content models
 'content-model-wikitext' => 'wikitexto',
@@ -1521,7 +1523,7 @@ Esta operação não pode ser desfeita.',
 'prefs-textboxsize' => 'Tamanho da janela de edição',
 'youremail' => 'Correio electrónico:',
 'username' => 'Nome de {{GENDER:$1|utilizador|utilizadora}}:',
-'uid' => 'Número de identificação:',
+'uid' => 'Identificação de {{GENDER:$1|utilizador|utilizadora}}:',
 'prefs-memberingroups' => '{{GENDER:$2|Membro}} {{PLURAL:$1|do grupo|dos grupos}}:',
 'prefs-registration' => 'Hora de registo:',
 'yourrealname' => 'Nome verdadeiro:',
@@ -1585,6 +1587,7 @@ Esta informação será pública.',
 'userrights-changeable-col' => 'Grupos que pode alterar',
 'userrights-unchangeable-col' => 'Grupos que não pode alterar',
 'userrights-conflict' => 'Conflito com os privilégios dos utilizadores! Por favor, aplique as suas mudanças novamente.',
+'userrights-removed-self' => 'Você removeu com sucesso os seus privilégios. Como resultado disso, já não consegue aceder a esta página.',
 
 # Groups
 'group' => 'Grupo:',
@@ -1946,7 +1949,7 @@ Caso o problema persista, contacte um [[Special:ListUsers/sysop|administrador]].
 'backend-fail-internal' => 'Ocorreu um erro desconhecido no servidor de armazenamento "$1".',
 'backend-fail-contenttype' => 'Não foi possível determinar o tipo de conteúdo do ficheiro para armazenar em "$1".',
 'backend-fail-batchsize' => 'Foi fornecido um bloco de $1 {{PLURAL:$1|operação|operações}} sobre ficheiros ao servidor de armazenamento; o limite é de $2 {{PLURAL:$2|operação|operações}}.',
-'backend-fail-usable' => 'Não foi possível gravar o ficheiro $1 devido a permissões insuficientes ou a directórios ou repositórios inexistentes.',
+'backend-fail-usable' => 'Não foi possível ler ou gravar o ficheiro "$1" devido a permissões insuficientes ou a directórios/repositórios inexistentes.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Não foi possível estabelecer ligação à base de dados de registos no servidor de armazenamento "$1".',
@@ -2406,9 +2409,8 @@ O endereço de correio que introduziu nas [[Special:Preferences|suas preferênci
 'watchnologin' => 'Não está autenticado(a)',
 'watchnologintext' => 'Precisa de [[Special:UserLogin|autenticar-se]] para modificar a sua lista de páginas vigiadas.',
 'addwatch' => 'Adicionar às páginas vigiadas',
-'addedwatchtext' => "A página \"[[:\$1]]\" foi adicionada à sua lista de [[Special:Watchlist|páginas vigiadas]], onde serão indicadas quaisquer
-modificações futuras desta página e da respectiva página de discussão.
-O nome desta página passará a aparecer a '''negrito''' na lista de [[Special:RecentChanges|mudanças recentes]], para que a encontre facilmente.",
+'addedwatchtext' => 'A página "[[:$1]]" foi adicionada à sua [[Special:Watchlist|lista de páginas vigiadas]].
+Modificações futuras desta página e da respetiva página de discussão serão listadas lá.',
 'removewatch' => 'Remover das páginas vigiadas',
 'removedwatchtext' => 'A página "[[:$1]]" foi removida da sua lista de [[Special:Watchlist|páginas vigiadas]].',
 'watch' => 'Vigiar',
@@ -2419,8 +2421,8 @@ O nome desta página passará a aparecer a '''negrito''' na lista de [[Special:R
 'notvisiblerev' => 'Edição eliminada',
 'watchnochange' => 'Nenhuma das páginas vigiadas foi editada no período apresentado.',
 'watchlist-details' => '{{PLURAL:$1|Existe $1 página|Existem $1 páginas}} na sua lista de páginas vigiadas, excluindo páginas de discussão.',
-'wlheader-enotif' => 'A notificação por correio electrónico está activada.',
-'wlheader-showupdated' => "As páginas modificadas desde a última vez que as visitou aparecem destacadas a '''negrito'''",
+'wlheader-enotif' => 'A notificação por correio electrónico está activa.',
+'wlheader-showupdated' => "As páginas modificadas desde a última vez que as visitou aparecem destacadas a '''negrito'''.",
 'watchmethod-recent' => 'a procurar páginas vigiadas nas mudanças recentes',
 'watchmethod-list' => 'a procurar mudanças recentes nas páginas vigiadas',
 'watchlistcontains' => 'A sua lista de páginas vigiadas contém $1 {{PLURAL:$1|página|páginas}}.',
@@ -2870,7 +2872,7 @@ Pode corrigir de forma automática os redireccionamentos existentes que apontam 
 Caso escolha não o fazer, após a operação certifique-se de que dela não resultaram  [[Special:DoubleRedirects|redireccionamentos duplos]] ou [[Special:BrokenRedirects|quebrados]].
 É da sua responsabilidade verificar que os links continuam a apontar para onde é suposto que apontem.
 
-Note que a página '''não''' será movida se já existir uma página com o novo nome, a menos que esta esteja vazia ou seja um redireccionamento sem qualquer histórico de edições.
+Note que a página '''não''' será movida se já existir uma página com o novo título, a menos que esta última seja um redireccionamento sem qualquer histórico de edições.
 Isto significa que pode mover uma página de volta para o seu nome original se a tiver movido por engano e que não pode mover uma página para cima de outra já existente.
 
 '''CUIDADO!'''
@@ -4001,7 +4003,7 @@ Em conjunto com este programa deve ter recebido [{{SERVER}}{{SCRIPTPATH}}/COPYIN
 'specialpages-group-highuse' => 'Páginas muito usadas',
 'specialpages-group-pages' => 'Listas de páginas',
 'specialpages-group-pagetools' => 'Ferramentas de páginas',
-'specialpages-group-wiki' => 'Dados e ferramentas da wiki',
+'specialpages-group-wiki' => 'Dados e ferramentas',
 'specialpages-group-redirects' => 'Pesquisas e aleatoriedade',
 'specialpages-group-spam' => 'Ferramentas anti-spam',
 
@@ -4075,15 +4077,15 @@ Em conjunto com este programa deve ter recebido [{{SERVER}}{{SCRIPTPATH}}/COPYIN
 # New logging system
 'logentry-delete-delete' => '$1 apagou a página $3',
 'logentry-delete-restore' => '$1 restaurou a página $3',
-'logentry-delete-event' => '$1 alterou a visibilidade {{PLURAL:$5|de uma entrada|das $5 entradas}} em $3: $4',
-'logentry-delete-revision' => '$1 alterou a visibilidade de {{PLURAL:$5|uma revisão|$5 revisões}} em $3: $4',
-'logentry-delete-event-legacy' => '$1 alterou a visibilidade de uma entrada em $3',
-'logentry-delete-revision-legacy' => '$1 alterou a visibilidade de uma revisão em $3',
-'logentry-suppress-delete' => '$1 suprimiu a página $3',
-'logentry-suppress-event' => '$1 alterou secretamente a visibilidade {{PLURAL:$5|de uma entrada|das $5 entradas}} em $3: $4',
-'logentry-suppress-revision' => '$1 secretamente alterou a visibilidade {{PLURAL:$5|de uma revisão|das $5 revisões}} em $3: $4',
-'logentry-suppress-event-legacy' => '$1 secretamente alterou a visibilidade das entradas em $3',
-'logentry-suppress-revision-legacy' => '$1 secretamente alterou a visibilidade das revisões em $3',
+'logentry-delete-event' => '$1 alterou a visibilidade de {{PLURAL:$5|uma entrada|$5 entradas}} em $3: $4',
+'logentry-delete-revision' => '$1 {{GENDER:$2|alterou}} a visibilidade de {{PLURAL:$5|uma revisão|$5 revisões}} em $3: $4',
+'logentry-delete-event-legacy' => '$1 {{GENDER:$2|alterou}} a visibilidade de entradas de registo em $3',
+'logentry-delete-revision-legacy' => '$1 {{GENDER:$2|alterou}} a visibilidade de revisões na página $3',
+'logentry-suppress-delete' => '$1 {{GENDER:$2|suprimiu}} a página $3',
+'logentry-suppress-event' => '$1 {{GENDER:$2|alterou}} secretamente a visibilidade de {{PLURAL:$5|uma entrada|$5 entradas}} em $3: $4',
+'logentry-suppress-revision' => '$1 secretamente alterou a visibilidade de {{PLURAL:$5|uma revisão|$5 revisões}} em $3: $4',
+'logentry-suppress-event-legacy' => '$1 {{GENDER:$2|alterou}} secretamente a visibilidade de entradas de registo em $3',
+'logentry-suppress-revision-legacy' => '$1 {{GENDER:$2|alterou}} secretamente a visibilidade de revisões da página $3',
 'revdelete-content-hid' => 'conteúdo oculto',
 'revdelete-summary-hid' => 'sumário de edição oculto',
 'revdelete-uname-hid' => 'utilizador oculto',
@@ -4094,16 +4096,16 @@ Em conjunto com este programa deve ter recebido [{{SERVER}}{{SCRIPTPATH}}/COPYIN
 'revdelete-unrestricted' => 'restrições a administradores removidas',
 'logentry-move-move' => '$1 moveu a página $3 para $4',
 'logentry-move-move-noredirect' => '$1 moveu a página $3 para $4 sem deixar um redireccionamento',
-'logentry-move-move_redir' => '$1 moveu a página $3 para $4 através de um redireccionamento',
-'logentry-move-move_redir-noredirect' => '$1 moveu a página $3 para $4 sem um redireccionamento',
-'logentry-patrol-patrol' => '$1 marcou a revisão $4 da página $3 como patrulhada',
-'logentry-patrol-patrol-auto' => '$1 marcou automaticamente a revisão $4 da página $3 como patrulhada',
-'logentry-newusers-newusers' => 'A conta de utilizador $1 foi criada',
+'logentry-move-move_redir' => '$1 moveu a página $3 para $4 sobre um redireccionamento',
+'logentry-move-move_redir-noredirect' => '$1 moveu a página $3 para $4 sobre um redireccionamento sem deixar um redireccionamento',
+'logentry-patrol-patrol' => '$1 {{GENDER:$2|marcou}} a revisão $4 da página $3 como patrulhada',
+'logentry-patrol-patrol-auto' => '$1 {{GENDER:$2|marcou}} automaticamente a revisão $4 da página $3 como patrulhada',
+'logentry-newusers-newusers' => 'A conta de utilizador $1 foi {{GENDER:$2|criada}}',
 'logentry-newusers-create' => 'A conta de utilizador $1 foi criada',
 'logentry-newusers-create2' => 'A conta de utilizador $3 foi criada por $1',
 'logentry-newusers-byemail' => 'Conta de utilizador $3 foi {{GENDER:$2|criada}} por $1 e a senha foi enviada por e-mail',
-'logentry-newusers-autocreate' => 'A conta $1 foi criada automaticamente',
-'logentry-rights-rights' => '$1 modificou os privilégios do utilizador  $3  de  $4  para $5',
+'logentry-newusers-autocreate' => 'A conta de utilizador $1 foi criada automaticamente',
+'logentry-rights-rights' => '$1 modificou os privilégios do utilizador $3 de $4 para $5',
 'logentry-rights-rights-legacy' => '$1 {{GENDER:$2|mudou}} as permissões de $3',
 'logentry-rights-autopromote' => '$1 foi automaticamente {{GENDER:$2|promovido|promovida}} de $4 a $5',
 'rightsnone' => '(nenhum)',
