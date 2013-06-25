@@ -8140,7 +8140,7 @@ parsoid
 <a href="File:Foobar.jpg">
 <img resource="./File:Foobar.jpg" src="//upload.wikimedia.org/wikipedia/commons/3/3a/Foobar.jpg/180px-Foobar.jpg" height="21" width="180" />
 </a>
-<figcaption class="mw-figcaption">caption content</figcaption>
+<figcaption>caption content</figcaption>
 </figure>
 !! end
 
@@ -8155,7 +8155,7 @@ parsoid
 <a href="File:Foobar.jpg">
 <img resource="./File:Foobar.jpg" src="//upload.wikimedia.org/wikipedia/commons/3/3a/Foobar.jpg/50px-Foobar.jpg" height="6" width="50" />
 </a>
-<figcaption class="mw-figcaption">caption</figcaption>
+<figcaption>caption</figcaption>
 </figure>
 !! end
 
@@ -8170,7 +8170,7 @@ parsoid
 <a href="File:Foobar.jpg">
 <img resource="./File:Foobar.jpg" src="//upload.wikimedia.org/wikipedia/commons/3/3a/Foobar.jpg/442px-Foobar.jpg" height="50" width="442" />
 </a>
-<figcaption class="mw-figcaption">caption</figcaption>
+<figcaption>caption</figcaption>
 </figure>
 !! end
 
@@ -8185,7 +8185,7 @@ parsoid
 <a href="File:Foobar.jpg">
 <img resource="./File:Foobar.jpg" src="//upload.wikimedia.org/wikipedia/commons/3/3a/Foobar.jpg/442px-Foobar.jpg" height="50" width="442" />
 </a>
-<figcaption class="mw-figcaption">caption</figcaption>
+<figcaption>caption</figcaption>
 </figure>
 !! end
 
