@@ -35,6 +35,10 @@ class RebuildAll extends Maintenance {
 		$this->mDescription = "Rebuild links, text index and recent changes";
 	}
 
+	public function getDbType() {
+		return Maintenance::DB_ADMIN;
+	}
+
 	public function execute() {
 		// Rebuild the text index
 		if ( wfGetDB( DB_SLAVE )->getType() != 'postgres' ) {
