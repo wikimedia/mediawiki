@@ -7188,13 +7188,7 @@ Parameters:
 
 Parameters:
 * $1 - the number of years',
-'ago' => 'Phrase for indicating how long ago something happened. $1 is something like "3 days 10 hours", taken from these messages:
-*{{msg-mw|Seconds}}
-*{{msg-mw|Minutes}}
-*{{msg-mw|Hours}}
-*{{msg-mw|Days}}
-*{{msg-mw|Months}}
-*{{msg-mw|Years}}',
+'ago' => 'Phrase for indicating how long ago something happened. $1 is some kind of timestamp.',
 'just-now' => 'Phrase for indicating something happened just now.',
 
 # Human-readable timestamps

@@ -587,6 +587,9 @@ $1',
 'virus-unknownscanner' => 'йозуш йоцу антивирус:',
 
 # Login and logout pages
+'logouttext' => "'''Хьо аравела/ела.'''
+Хьан йиш ю {{grammar:genitive|{{SITENAME}}}} чохь хьой ца вовзийташ/йовзийташ болх бан я <span class='plainlinks'>[$1 кхин чувала/яла ]</span> хьой чохь хила цӀарца я кхин цӀарца.
+Цхьа йолу агӀонаш чохь хьо хьай цӀарца болх беш сана хила тарло ишта ца хилийта керлаякха браузеран кэш.",
 'welcomeuser' => 'Марша ДогӀийла, $1!',
 'yourname' => 'Декъашхон цlе:',
 'userlogin-yourname' => 'Декъашхон цӀе',
@@ -599,7 +602,7 @@ $1',
 'createacct-yourpasswordagain' => 'Бакъе ишар',
 'createacct-yourpasswordagain-ph' => 'Кхин цкъа язъе ишар',
 'remembermypassword' => 'Даглаца сан дlавазвалар/ялар хlокху гlулкхдечу гlирса тlяхь (цхьан $1 {{PLURAL:$1|ден|динахь|динахь}})',
-'userlogin-remembermypassword' => 'Дагахь латт ве со',
+'userlogin-remembermypassword' => 'Дагахь латт ве/е со',
 'yourdomainname' => 'Хьан машан меттиг:',
 'login' => 'Чувалар/ялар',
 'nav-login-createaccount' => 'Вовзийта/Йовзийта хьой / дӀавазло/дӀаязло',
@@ -625,7 +628,14 @@ $1',
 'createaccountreason' => 'Бахьан:',
 'createacct-reason' => 'Бахьна',
 'createacct-reason-ph' => '{{PLURAL:$1|агӀо|агӀонаш}}‎',
+'createacct-imgcaptcha-ph' => 'ДӀаязде хьайна лакхахь гуш долу йоза',
+'createacct-submit' => 'Кхолла декъашхон дӀаяздар',
+'createacct-benefit-heading' => '{{SITENAME}} кхолийна хьо санначу наха.',
+'createacct-benefit-body1' => '{{PLURAL:$1|нисдар|нисдарш}}',
+'createacct-benefit-body2' => '{{PLURAL:$1|яззам|яззамаш}}',
+'createacct-benefit-body3' => '{{PLURAL:$1|декъашхо|декъашхой}} тӀаьхьарачу хенахь',
 'loginerror' => 'Гlалат ду декъашхо вовзарехь/йовзарехь',
+'createaccounterror' => 'Декъашхон дӀаяздар кхолла йиш яц: $1',
 'nocookiesforlogin' => '{{int:nocookieslogin}}',
 'loginsuccesstitle' => 'Хьо вовзар хаз чакхдели',
 'loginsuccess' => 'Хlинца ахьа болх бó оцу цlарца $1.',
@@ -1301,7 +1311,13 @@ PICT # тайп тайпан
 
 # Email user
 'emailuser' => 'Декъашхочун хааман кехат',
+'emailuser-title-target' => 'Декъашхочунга кехат яздар',
+'emailuser-title-notarget' => 'Декъашхочунга кехат яздар',
 'defemailsubject' => 'Хаам {{grammar:genitive|{{SITENAME}}}} чура бу',
+'emailusernamesubmit' => 'ДӀадахьийта',
+'email-legend' => '{{grammar:genitive|{{SITENAME}}}} кхечу декъашхочунга кехат дахьийтар',
+'emailfrom' => 'Хьаьнгара',
+'emailto' => 'Хьаьнга:',
 'emailmessage' => 'Хаам:',
 'emailsent' => 'Кехат дӏадахьийтина',
 'emailsenttext' => 'Хьан электроннан хаам дӏабахьийтина.',
@@ -1892,6 +1908,7 @@ PICT # тайп тайпан
 'dberr-outofdate' => 'Хьуна хаалахь, цуьна йолу меттиг хила мега тишйелла черахь.',
 
 # HTML forms
+'htmlform-submit' => 'ДӀадахьийта',
 'htmlform-selectorother-other' => 'Кхин',
 
 # New logging system
