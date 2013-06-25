@@ -102,7 +102,7 @@ class RunJobs extends Maintenance {
 				} catch ( MWException $e ) {
 					$status = false;
 					$error = get_class( $e ) . ': ' . $e->getMessage();
-					wfDebugLog( 'exception', $e->getLogMessage() );
+					$e->report(); // write error to STDERR and the log
 				}
 				wfProfileOut( __METHOD__ . '-' . get_class( $job ) );
 				$timeMs = intval( ( microtime( true ) - $t ) * 1000 );
