@@ -2,7 +2,7 @@
  * Collapsible tabs jQuery Plugin
  */
 ( function ( $ ) {
-	var rtl = $( 'body' ).is( '.rtl' );
+	var rtl = $( 'html' ).attr( 'dir' ) == 'rtl';
 	$.fn.collapsibleTabs = function ( options ) {
 		// return if the function is called on an empty jquery object
 		if ( !this.length ) {
