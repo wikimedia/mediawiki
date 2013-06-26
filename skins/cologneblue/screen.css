@@ -259,6 +259,7 @@ input.mw-searchInput {
 	font-size: small;
 	margin-right: 8px;
 	text-align: right;
+	padding-left: 140px;
 }
 /* Override text justification (user preference), see bug 31990 */
 #linkcollection * {
