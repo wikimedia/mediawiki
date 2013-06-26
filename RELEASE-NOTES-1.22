@@ -153,6 +153,7 @@ production.
   warning will instead be issued if 'title' is non-default, unless no props are
   requested.
 * Special:Recentchangeslinked will now include upload log entries
+* (bug 41281) Fixed ugly output if file size could not be extracted for multi-page media.
 
 === API changes in 1.22 ===
 * (bug 25553) The JSON output formatter now leaves forward slashes unescaped

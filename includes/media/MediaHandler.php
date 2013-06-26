@@ -332,18 +332,28 @@ abstract class MediaHandler {
 	 * Get an associative array of page dimensions
 	 * Currently "width" and "height" are understood, but this might be
 	 * expanded in the future.
-	 * Returns false if unknown or if the document is not multi-page.
+	 * Returns false if unknown.
+	 *
+	 * It is expected that handlers for paged media (e.g. DjVuHandler)
+	 * will override this method so that it gives the correct results
+	 * for each specific page of the file, using the $page argument.
+	 *
+	 * @note For non-paged media, use getImageSize.
 	 *
 	 * @param $image File
-	 * @param $page Unused, left for backcompatibility?
-	 * @return array
+	 * @param $page What page to get dimensions of
+	 * @return array|bool
 	 */
 	function getPageDimensions( $image, $page ) {
 		$gis = $this->getImageSize( $image, $image->getLocalRefPath() );
-		return array(
-			'width' => $gis[0],
-			'height' => $gis[1]
-		);
+		if ( $gis ) {
+			return array(
+				'width' => $gis[0],
+				'height' => $gis[1]
+			);
+		} else {
+			return false;
+		}
 	}
 
 	/**
