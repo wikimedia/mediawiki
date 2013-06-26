@@ -1648,6 +1648,17 @@ var mw = ( function ( $, undefined ) {
 
 		/**
 		 * HTML construction helper functions
+		 *
+		 *     @example
+		 *
+		 *     var Html, output;
+		 *
+		 *     Html = mw.html;
+		 *     output = Html.element( 'div', {}, new Html.Raw(
+		 *         Html.element( 'img', { src: '<' } )
+		 *     ) );
+		 *     mw.log( output ); // <div><img src="&lt;"/></div>
+		 *
 		 * @class mw.html
 		 * @singleton
 		 */
@@ -1688,12 +1699,6 @@ var mw = ( function ( $, undefined ) {
 				 *  - this.Cdata: The value attribute is included, and an exception is
 				 *   thrown if it contains an illegal ETAGO delimiter.
 				 *   See http://www.w3.org/TR/1999/REC-html401-19991224/appendix/notes.html#h-B.3.2
-				 *
-				 * Example:
-				 *	var h = mw.html;
-				 *	return h.element( 'div', {},
-				 *		new h.Raw( h.element( 'img', {src: '<'} ) ) );
-				 * Returns <div><img src="&lt;"/></div>
 				 */
 				element: function ( name, attrs, contents ) {
 					var v, attrName, s = '<' + name;
