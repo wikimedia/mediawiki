@@ -27,6 +27,8 @@ production.
 
 === API changes in 1.23 ===
 
+* (bug 23005) Added action=revisiondelete.
+
 === Languages updated in 1.23===
 
 MediaWiki supports over 350 languages. Many localisations are updated
