@@ -2,19 +2,87 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>MediaWiki Examples</title>
+    <title>MediaWiki Code Example</title>
+    <script src="modules/startup.js"></script>
     <script>
-        function loadInlineExample(code, options, callback) {
+        function startUp() {
+            mw.config = new mw.Map();
+        }
+    </script>
+    <script src="modules/jquery/jquery.js"></script>
+    <script src="modules/mediawiki/mediawiki.js"></script>
+    <style>
+        .mw-jsduck-log {
+            position: relative;
+            min-height: 3em;
+            margin-top: 2em;
+            background: #f7f7f7;
+            border: 1px solid #e4e4e4;
+        }
+
+        .mw-jsduck-log::after {
+            position: absolute;
+            bottom: 100%;
+            right: -1px;
+            padding: 0.5em;
+            background: #fff;
+            border: 1px solid #e4e4e4;
+            border-bottom: 0;
+            border-radius: 0.5em 0.5em 0 0;
+            font: normal 0.5em sans-serif;
+            content: 'console';
+        }
+
+        .mw-jsduck-log-line {
+            padding: 0.2em 0.5em;
+            white-space: pre-wrap;
+        }
+
+        .mw-jsduck-log-line:nth-child(odd) {
+            background: #fff;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        /**
+         * Basic log console for the example iframe in documentation pages.
+         */
+        ( function () {
+            var pre;
+            mw.log = function () {
+                var str, i, len, line;
+                if ( !pre ) {
+                    pre = document.createElement( 'pre' );
+                    pre.className = 'mw-jsduck-log';
+                    document.body.appendChild( pre );
+                }
+                str = [];
+                for ( i = 0, len = arguments.length; i < len; i++ ) {
+                    str.push( String( arguments[ i ] ) );
+                }
+                line = document.createElement( 'div' );
+                line.className = 'mw-jsduck-log-line';
+                line.appendChild(
+                    document.createTextNode( str.join( ' , ' ) + '\n' )
+                );
+                pre.appendChild( line );
+            };
+        }() );
+
+        /**
+         * Method called by jsduck to execute the example code.
+         */
+        function loadInlineExample( code, options, callback ) {
             try {
-                document.body.innerHTML = '';
-                eval(code);
-                callback && callback(true);
+                eval( code );
+                callback && callback( true );
             } catch (e) {
-                document.body.innerHTML = document.createTextNode(e);
-                callback && callback(false, e);
+                mw.log( 'Uncaught exception: ' + e );
+                callback && callback( false, e );
+                throw e;
             }
         }
     </script>
-</head>
-<body></body>
+</body>
 </html>
