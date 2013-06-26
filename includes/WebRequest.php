@@ -569,6 +569,29 @@ class WebRequest {
 	}
 
 	/**
+	 * Return the contents of the Query with no decoding. Use when you need to
+	 * know exactly what was sent, e.g. for an OAuth signature over the elements.
+	 *
+	 * @return String
+	 */
+	public function getRawQueryString() {
+		return $_SERVER['QUERY_STRING'];
+	}
+
+	/**
+	 * Return the contents of the POST with no decoding. Use when you need to
+	 * know exactly what was sent, e.g. for an OAuth signature over the elements.
+	 *
+	 * @return String
+	 */
+	public function getRawPostString() {
+		if ( !$this->wasPosted() ) {
+			return '';
+		}
+		return file_get_contents( 'php://input' );
+	}
+
+	/**
 	 * Get the HTTP method used for this request.
 	 *
 	 * @return String
