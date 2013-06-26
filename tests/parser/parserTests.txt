@@ -13134,7 +13134,7 @@ comment title=[[Main Page]]
 !! input
 pre-comment text /* External links */ removed bogus entries
 !! result
-pre-comment text - <a href="/wiki/Main_Page#External_links" title="Main Page">→</a>‎<span dir="auto"><span class="autocomment">External links: </span> removed bogus entries</span>
+pre-comment text <a href="/wiki/Main_Page#External_links" title="Main Page">→</a>‎<span dir="auto"><span class="autocomment">External links: </span> removed bogus entries</span>
 !!end
 
 !! test

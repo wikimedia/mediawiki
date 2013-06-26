@@ -4595,7 +4595,7 @@ Please confirm that you really want to recreate this page.",
 'semicolon-separator' => ';&#32;', # only translate this message to other languages if you have to change it
 'comma-separator'     => ',&#32;', # only translate this message to other languages if you have to change it
 'colon-separator'     => ':&#32;', # only translate this message to other languages if you have to change it
-'autocomment-prefix'  => '-&#32;', # only translate this message to other languages if you have to change it
+'autocomment-prefix'  => '', # only translate this message to other languages if you have to change it
 'pipe-separator'      => '&#32;|&#32;', # only translate this message to other languages if you have to change it
 'word-separator'      => '&#32;', # only translate this message to other languages if you have to change it
 'ellipsis'            => '...', # only translate this message to other languages if you have to change it
