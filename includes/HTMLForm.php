@@ -187,6 +187,7 @@ class HTMLForm extends ContextSource {
 		'table',
 		'div',
 		'raw',
+		'vform',
 	);
 
 	/**
@@ -223,7 +224,14 @@ class HTMLForm extends ContextSource {
 			}
 
 			$field = self::loadInputFromParameters( $fieldname, $info );
+			// FIXME During field's construct, the parent form isn't available!
+			// could add a 'parent' name-value to $info, could add a third parameter.
 			$field->mParent = $this;
+
+			// vform gets too much space if empty labels generate HTML.
+			if ( $this->isVForm() ) {
+				$field->setShowEmptyLabel( false );
+			}
 
 			$setSection =& $loadedDescriptor;
 			if ( $section ) {
@@ -270,6 +278,15 @@ class HTMLForm extends ContextSource {
 	 */
 	public function getDisplayFormat() {
 		return $this->displayFormat;
+	}
+
+	/**
+	 * Test if displayFormat is 'vform'
+	 * @since 1.22
+	 * @return Bool
+	 */
+	public function isVForm() {
+		return $this->displayFormat === 'vform';
 	}
 
 	/**
@@ -611,6 +628,11 @@ class HTMLForm extends ContextSource {
 		# For good measure (it is the default)
 		$this->getOutput()->preventClickjacking();
 		$this->getOutput()->addModules( 'mediawiki.htmlform' );
+		if ( $this->isVForm() ) {
+			$this->getOutput()->addModuleStyles( 'mediawiki.ui' );
+			// TODO should vertical form set setWrapperLegend( false )
+			// to hide ugly fieldsets?
+		}
 
 		$html = ''
 			. $this->getErrors( $submitResult )
@@ -645,13 +667,16 @@ class HTMLForm extends ContextSource {
 		$attribs = array(
 			'action' => $this->mAction === false ? $this->getTitle()->getFullURL() : $this->mAction,
 			'method' => $this->mMethod,
-			'class' => 'visualClear',
+			'class' => array( 'visualClear' ),
 			'enctype' => $encType,
 		);
 		if ( !empty( $this->mId ) ) {
 			$attribs['id'] = $this->mId;
 		}
 
+		if ( $this->isVForm() ) {
+			array_push( $attribs['class'], 'mw-ui-vform', 'mw-ui-container' );
+		}
 		return Html::rawElement( 'form', $attribs, $html );
 	}
 
@@ -702,9 +727,22 @@ class HTMLForm extends ContextSource {
 				$attribs += Linker::tooltipAndAccesskeyAttribs( $this->mSubmitTooltip );
 			}
 
-			$attribs['class'] = 'mw-htmlform-submit';
+			$attribs['class'] = array( 'mw-htmlform-submit' );
+
+			if ( $this->isVForm() ) {
+				// XXX mw-ui-block wouldn't be necessary if the div was styled
+				// a certain way.
+				array_push( $attribs['class'], 'mw-ui-button', 'mw-ui-big', 'mw-ui-primary', 'mw-ui-block' );
+			}
 
 			$html .= Xml::submitButton( $this->getSubmitText(), $attribs ) . "\n";
+
+			// Buttons are top-level form elements in table and div layouts,
+			// but vform wants all elements inside divs to get spaced-out block
+			// styling.
+			if ( $this->isVForm() ) {
+				$html = Html::rawElement( 'div', null, "\n$html\n" );
+			}
 		}
 
 		if ( $this->mShowReset ) {
@@ -896,7 +934,8 @@ class HTMLForm extends ContextSource {
 	/**
 	 * Prompt the whole form to be wrapped in a "<fieldset>", with
 	 * this text as its "<legend>" element.
-	 * @param string $legend HTML to go inside the "<legend>" element.
+	 * @param string|false $legend HTML to go inside the "<legend>" element, or
+	 * false for no <legend>
 	 *	 Will be escaped
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
@@ -965,7 +1004,7 @@ class HTMLForm extends ContextSource {
 
 	/**
 	 * @todo Document
-	 * @param $fields array[]|HTMLFormField[] array of fields (either arrays or objects)
+	 * @param array[]|HTMLFormField[] $fields array of fields (either arrays or objects)
 	 * @param string $sectionName ID attribute of the "<table>" tag for this section, ignored if empty
 	 * @param string $fieldsetIDPrefix ID prefix for the "<fieldset>" tag of each subsection, ignored if empty
 	 * @return String
@@ -977,7 +1016,17 @@ class HTMLForm extends ContextSource {
 		$subsectionHtml = '';
 		$hasLabel = false;
 
-		$getFieldHtmlMethod = ( $displayFormat == 'table' ) ? 'getTableRow' : 'get' . ucfirst( $displayFormat );
+		switch( $displayFormat ) {
+			case 'table':
+				$getFieldHtmlMethod = 'getTableRow';
+				break;
+			case 'vform':
+				// Close enough to a div.
+				$getFieldHtmlMethod = 'getDiv';
+				break;
+			default:
+				$getFieldHtmlMethod = 'get' . ucfirst( $displayFormat );
+		}
 
 		foreach ( $fields as $key => $value ) {
 			if ( $value instanceof HTMLFormField ) {
@@ -1025,7 +1074,7 @@ class HTMLForm extends ContextSource {
 			if ( $displayFormat === 'table' ) {
 				$html = Html::rawElement( 'table', $attribs,
 					Html::rawElement( 'tbody', array(), "\n$html\n" ) ) . "\n";
-			} elseif ( $displayFormat === 'div' ) {
+			} elseif ( $displayFormat === 'div' || $displayFormat === 'vform' ) {
 				$html = Html::rawElement( 'div', $attribs, "\n$html\n" );
 			}
 		}
@@ -1206,6 +1255,18 @@ abstract class HTMLFormField {
 	}
 
 	/**
+	 * Tell the field whether to generate a separate label element if its label
+	 * is blank.
+	 *
+	 * @since 1.22
+	 * @param bool $show Set to false to not generate a label.
+	 * @return void
+	 */
+	public function setShowEmptyLabel( $show ) {
+		$this->mShowEmptyLabels = $show;
+	}
+
+	/**
 	 * Get the value that this input has been set to from a posted form,
 	 * or the input's default value if it has not been set.
 	 * @param $request WebRequest
@@ -1368,8 +1429,12 @@ abstract class HTMLFormField {
 			array( 'class' => $outerDivClass ) + $cellAttributes,
 			$inputHtml . "\n$errors"
 		);
+		$divCssClasses = array( "mw-htmlform-field-$fieldType", $this->mClass, $errorClass );
+		if ( $this->mParent->isVForm() ) {
+			$divCssClasses[] = 'mw-ui-vform-div';
+		}
 		$html = Html::rawElement( 'div',
-			array( 'class' => "mw-htmlform-field-$fieldType {$this->mClass} $errorClass" ),
+			array( 'class' => $divCssClasses ),
 			$label . $field );
 		$html .= $helptext;
 		return $html;
@@ -1813,8 +1878,25 @@ class HTMLCheckField extends HTMLFormField {
 			$attr['class'] = $this->mClass;
 		}
 
-		return Xml::check( $this->mName, $value, $attr ) . '&#160;' .
-			Html::rawElement( 'label', array( 'for' => $this->mID ), $this->mLabel );
+		if ( $this->mParent->isVForm() ) {
+			// Nest checkbox inside label.
+			return Html::rawElement(
+					'label',
+					array(
+						'class' => 'mw-ui-checkbox-label'
+					),
+					Xml::check(
+						$this->mName,
+						$value,
+						$attr
+					) .
+					// Html:rawElement doesn't escape contents.
+					htmlspecialchars( $this->mLabel )
+				);
+		} else {
+			return Xml::check( $this->mName, $value, $attr ) . '&#160;' .
+				Html::rawElement( 'label', array( 'for' => $this->mID ), $this->mLabel );
+		}
 	}
 
 	/**
@@ -1824,6 +1906,13 @@ class HTMLCheckField extends HTMLFormField {
 	 */
 	function getLabel() {
 		return '&#160;';
+	}
+
+	/**
+	 * checkboxes don't need a label.
+	 */
+	protected function needsLabel() {
+		return false;
 	}
 
 	/**
@@ -2803,7 +2892,7 @@ interface HTMLNestedFilterable {
 }
 
 class HTMLFormFieldRequiredOptionsException extends MWException {
-	static public function create( HTMLFormField $field, array $missing ) {
+	public static function create( HTMLFormField $field, array $missing ) {
 		return new self( sprintf(
 			"Form type `%s` expected the following parameters to be set: %s",
 			get_class( $field ),
