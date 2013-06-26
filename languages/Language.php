@@ -1989,8 +1989,6 @@ class Language {
 	 * @param $type string May be date, time or both
 	 * @param $pref string The format name as it appears in Messages*.php
 	 *
-	 * @since 1.22 New type 'pretty' that provides a more readable timestamp format
-	 *
 	 * @return string
 	 */
 	function getDateFormatString( $type, $pref ) {
@@ -2000,10 +1998,6 @@ class Language {
 				$df = self::$dataCache->getSubitem( $this->mCode, 'dateFormats', "$pref $type" );
 			} else {
 				$df = self::$dataCache->getSubitem( $this->mCode, 'dateFormats', "$pref $type" );
-
-				if ( $type === 'pretty' && $df === null ) {
-					$df = $this->getDateFormatString( 'date', $pref );
-				}
 
 				if ( $df === null ) {
 					$pref = $this->getDefaultDateFormat();
@@ -2257,17 +2251,13 @@ class Language {
 		$diff = $ts->diff( $relativeTo );
 		$diffDay = (bool)( (int)$ts->timestamp->format( 'w' ) - (int)$relativeTo->timestamp->format( 'w' ) );
 		$days = $diff->days ?: (int)$diffDay;
-		if ( $diff->invert || $days > 5 && $ts->timestamp->format( 'Y' ) !== $relativeTo->timestamp->format( 'Y' ) ) {
-			// Timestamps are in different years: use full timestamp
-			// Also do full timestamp for future dates
+		if ( $diff->invert || $days > 5 ) {
+			// Timestamp is in the future or was more than 5 days ago
+			// do full timestamp
 			/**
 			 * @FIXME Add better handling of future timestamps.
 			 */
 			$format = $this->getDateFormatString( 'both', $user->getDatePreference() ?: 'default' );
-			$ts = $this->sprintfDate( $format, $ts->getTimestamp( TS_MW ) );
-		} elseif ( $days > 5 ) {
-			// Timestamps are in same year,  but more than 5 days ago: show day and month only.
-			$format = $this->getDateFormatString( 'pretty', $user->getDatePreference() ?: 'default' );
 			$ts = $this->sprintfDate( $format, $ts->getTimestamp( TS_MW ) );
 		} elseif ( $days > 1 ) {
 			// Timestamp within the past week: show the day of the week and time
