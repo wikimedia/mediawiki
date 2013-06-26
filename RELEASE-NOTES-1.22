@@ -75,7 +75,9 @@ production.
   of core for all skins. Take care when upgrading that you don't use an older
   version of the Vector extension as this feature may conflict.
 * New 'mediawiki.ui' CSS module providing mw-ui-* styles for buttons and a
-  compact vertical form layout.
+  compact vertical form layout.  Although it is included on all pages, code and
+  gadgets using the classes should add it via dependencies or
+  addModuleStyles()/mediaWiki.loader(), like any other ResourceLoader CSS module.
 * New versions of login (Special:UserLogin) and create account
   (Special:UserLogin/signup) forms using the "vform" compact vertical form layout.
   These forms use new messages that assume a "Help logging in" link, see
