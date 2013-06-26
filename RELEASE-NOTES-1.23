@@ -153,6 +153,7 @@ production.
   list=usercontribs.
 * list=watchlist now uses the querying user's rights rather than the wlowner's
   rights when checking whether wlprop=patrol is allowed.
+* (bug 23005) Added action=revisiondelete.
 
 === Languages updated in 1.23 ===
 
