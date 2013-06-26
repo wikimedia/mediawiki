@@ -213,6 +213,8 @@ production.
   against allowed proxy lists.
 * Add deferrable update support for callback/closure
 * Add TitleMove hook before page renames
+* Revision deletion backend code is moved out of SpecialRevisiondelete, and
+  RevDel_Item gets a new method to support ApiRevisiondelete.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
@@ -349,6 +351,7 @@ production.
 * (bug 49090) Token-getting functions will fail when using jsonp callbacks.
 * (bug 52699) action=upload returns normalized file name on warning
   "exists-normalized" instead of filename to be uploaded to.
+* (bug 23005) Added action=revisiondelete.
 
 === Languages updated in 1.22===
 
