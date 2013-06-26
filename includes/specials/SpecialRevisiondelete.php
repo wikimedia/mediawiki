@@ -49,66 +49,41 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	/** Array of checkbox specs (message, name, deletion bits) */
 	var $checks;
 
-	/** Information about the current type */
-	var $typeInfo;
+	/** UI Labels about the current type */
+	var $typeLabels;
 
 	/** The RevDel_List object, storing the list of items to be deleted/undeleted */
 	var $list;
 
 	/**
-	 * Assorted information about each type, needed by the special page.
-	 * TODO Move some of this to the list class
+	 * UI labels for each type.
 	 */
-	static $allowedTypes = array(
+	static $UILabels = array(
 		'revision' => array(
 			'check-label' 	=> 'revdelete-hide-text',
-			'deletion-bits' => Revision::DELETED_TEXT,
 			'success' 		=> 'revdelete-success',
 			'failure' 		=> 'revdelete-failure',
-			'list-class' 	=> 'RevDel_RevisionList',
-			'permission'	=> 'deleterevision',
 		),
 		'archive' => array(
 			'check-label' 	=> 'revdelete-hide-text',
-			'deletion-bits' => Revision::DELETED_TEXT,
 			'success' 		=> 'revdelete-success',
 			'failure' 		=> 'revdelete-failure',
-			'list-class' 	=> 'RevDel_ArchiveList',
-			'permission'	=> 'deleterevision',
 		),
 		'oldimage' => array(
 			'check-label' 	=> 'revdelete-hide-image',
-			'deletion-bits' => File::DELETED_FILE,
 			'success' 		=> 'revdelete-success',
 			'failure' 		=> 'revdelete-failure',
-			'list-class' 	=> 'RevDel_FileList',
-			'permission'	=> 'deleterevision',
 		),
 		'filearchive' => array(
 			'check-label' 	=> 'revdelete-hide-image',
-			'deletion-bits' => File::DELETED_FILE,
 			'success' 		=> 'revdelete-success',
 			'failure' 		=> 'revdelete-failure',
-			'list-class' 	=> 'RevDel_ArchivedFileList',
-			'permission'	=> 'deleterevision',
 		),
 		'logging' => array(
 			'check-label'	=> 'revdelete-hide-name',
-			'deletion-bits' => LogPage::DELETED_ACTION,
 			'success' 		=> 'logdelete-success',
 			'failure' 		=> 'logdelete-failure',
-			'list-class'	=> 'RevDel_LogList',
-			'permission'	=> 'deletelogentry',
 		),
-	);
-
-	/** Type map to support old log entries */
-	static $deprecatedTypeMap = array(
-		'oldid' => 'revision',
-		'artimestamp' => 'archive',
-		'oldimage' => 'oldimage',
-		'fileid' => 'filearchive',
-		'logid' => 'logging',
 	);
 
 	public function __construct() {
@@ -147,19 +122,6 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		} else {
 			$this->typeName = $request->getVal( 'type' );
 			$this->targetObj = Title::newFromText( $request->getText( 'target' ) );
-			if ( $this->targetObj && $this->targetObj->isSpecial( 'Log' ) && count( $this->ids ) !== 0 ) {
-				$result = wfGetDB( DB_SLAVE )->select( 'logging',
-					'log_type',
-					array( 'log_id' => $this->ids ),
-					__METHOD__,
-					array( 'DISTINCT' )
-				);
-
-				if ( $result->numRows() == 1 ) {
-					// If there's only one type, the target can be set to include it.
-					$this->targetObj = SpecialPage::getTitleFor( 'Log', $result->current()->log_type );
-				}
-			}
 		}
 
 		# For reviewing deleted files...
@@ -170,24 +132,17 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			return;
 		}
 
-		if ( isset( self::$deprecatedTypeMap[$this->typeName] ) ) {
-			$this->typeName = self::$deprecatedTypeMap[$this->typeName];
-		}
+		$this->typeName = RevisionDeleter::getCanonicalTypeName( $this->typeName );
 
 		# No targets?
-		if ( !isset( self::$allowedTypes[$this->typeName] ) || count( $this->ids ) == 0 ) {
+		if ( !$this->typeName || count( $this->ids ) == 0 ) {
 			throw new ErrorPageError( 'revdelete-nooldid-title', 'revdelete-nooldid-text' );
 		}
-		$this->typeInfo = self::$allowedTypes[$this->typeName];
-		$this->mIsAllowed = $user->isAllowed( $this->typeInfo['permission'] );
+		$this->typeLabels = self::$UILabels[$this->typeName];
+		$this->mIsAllowed = $user->isAllowed( RevisionDeleter::getRestriction( $this->typeName ) );
 
-		# If we have revisions, get the title from the first one
-		# since they should all be from the same page. This allows
-		# for more flexibility with page moves...
-		if ( $this->typeName == 'revision' ) {
-			$rev = Revision::newFromId( $this->ids[0] );
-			$this->targetObj = $rev ? $rev->getTitle() : $this->targetObj;
-		}
+		# Allow the list type to adjust the passed target
+		$this->targetObj = RevisionDeleter::suggestTarget( $this->typeName, $this->targetObj, $this->ids );
 
 		$this->otherReason = $request->getVal( 'wpReason' );
 		# We need a target page!
@@ -200,7 +155,9 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 
 		# Initialise checkboxes
 		$this->checks = array(
-			array( $this->typeInfo['check-label'], 'wpHidePrimary', $this->typeInfo['deletion-bits'] ),
+			array( $this->typeLabels['check-label'], 'wpHidePrimary',
+				RevisionDeleter::getRevdelConstant( $this->typeName )
+			),
 			array( 'revdelete-hide-comment', 'wpHideComment', Revision::DELETED_COMMENT ),
 			array( 'revdelete-hide-user', 'wpHideUser', Revision::DELETED_USER )
 		);
@@ -343,8 +300,9 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	 */
 	protected function getList() {
 		if ( is_null( $this->list ) ) {
-			$class = $this->typeInfo['list-class'];
-			$this->list = new $class( $this->getContext(), $this->targetObj, $this->ids );
+			$this->list = RevisionDeleter::createList(
+				$this->typeName, $this->getContext(), $this->targetObj, $this->ids
+			);
 		}
 		return $this->list;
 	}
@@ -561,7 +519,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	 */
 	protected function success() {
 		$this->getOutput()->setPageTitle( $this->msg( 'actioncomplete' ) );
-		$this->getOutput()->wrapWikiMsg( "<span class=\"success\">\n$1\n</span>", $this->typeInfo['success'] );
+		$this->getOutput()->wrapWikiMsg( "<span class=\"success\">\n$1\n</span>", $this->typeLabels['success'] );
 		$this->list->reloadFromMaster();
 		$this->showForm();
 	}
@@ -571,7 +529,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	 */
 	protected function failure( $status ) {
 		$this->getOutput()->setPageTitle( $this->msg( 'actionfailed' ) );
-		$this->getOutput()->addWikiText( $status->getWikiText( $this->typeInfo['failure'] ) );
+		$this->getOutput()->addWikiText( $status->getWikiText( $this->typeLabels['failure'] ) );
 		$this->showForm();
 	}
 
@@ -598,21 +556,13 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 
 	/**
 	 * Put together a rev_deleted bitfield
+	 * @deprecated since 1.22, use RevisionDeleter::extractBitfield instead
 	 * @param array $bitPars extractBitParams() params
 	 * @param int $oldfield current bitfield
 	 * @return array
 	 */
 	public static function extractBitfield( $bitPars, $oldfield ) {
-		// Build the actual new rev_deleted bitfield
-		$newBits = 0;
-		foreach ( $bitPars as $const => $val ) {
-			if ( $val == 1 ) {
-				$newBits |= $const; // $const is the *_deleted const
-			} elseif ( $val == -1 ) {
-				$newBits |= ( $oldfield & $const ); // use existing
-			}
-		}
-		return $newBits;
+		return RevisionDeleter::extractBitfield( $bitPars, $oldfield );
 	}
 
 	/**
