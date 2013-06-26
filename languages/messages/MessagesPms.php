@@ -298,10 +298,10 @@ $1",
 'badaccess-groups' => "Costa funsion-sì a l'é riservà a j'utent che a sio almanch ant {{PLURAL:$2|la partìa|un-a dle partìe}}: $1.",
 
 'versionrequired' => 'A-i va për fòrsa la version $1 ëd MediaWiki',
-'versionrequiredtext' => 'Për dovré sta pàgina-sì a-i va la version $1 dël programa MediaWiki. Che a varda [[Special:Version]]',
+'versionrequiredtext' => 'Për dovré sta pàgina-sì a-i va la version $1 dël programa MediaWiki. Che a varda [[Special:Version|la pàgina dle version]].',
 
 'ok' => 'Va bin',
-'retrievedfrom' => 'Pijàit da  "$1"',
+'retrievedfrom' => 'Pijàit da «$1»',
 'youhavenewmessages' => "A l'ha $1 ($2).",
 'newmessageslink' => 'mëssagi neuv',
 'newmessagesdifflink' => "A-i é chèich-còs ëd diferent da 'nt l'ùltima revision",

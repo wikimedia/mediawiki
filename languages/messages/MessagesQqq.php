@@ -5842,8 +5842,10 @@ See also:
 'movepagebtn' => "Button label on the special 'Move page'.
 
 {{Identical|Move page}}",
-'pagemovedsub' => 'Message displayed as aheader of the body, after succesfully moving a page from source to target name.',
-'movepage-moved' => 'Message displayed after succesfully moving a page from source to target name. Parameters:
+'pagemovedsub' => 'Message displayed as aheader of the body, after successfully moving a page from source to target name.',
+'movepage-moved' => 'Message displayed after successfully moving a page from source to target name.
+
+Parameters:
 * $1 - the source page as a link with display name
 * $2 - the target page as a link with display name
 * $3 - (optional) the source page name without a link

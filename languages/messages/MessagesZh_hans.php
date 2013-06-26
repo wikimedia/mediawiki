@@ -41,6 +41,7 @@
  * @author Li3939108
  * @author Liangent
  * @author Linforest
+ * @author M13253
  * @author Makecat
  * @author Mark85296341
  * @author MarkAHershberger
@@ -384,7 +385,7 @@ $messages = array(
 'tog-enotifrevealaddr' => '在通知电子邮件中显示我的电子邮件地址',
 'tog-shownumberswatching' => '显示监视用户数',
 'tog-oldsig' => '当前签名：',
-'tog-fancysig' => '将签名视为wiki代码（不自动生成链接）',
+'tog-fancysig' => '将签名视为维基代码（不自动生成链接）',
 'tog-showjumplinks' => '启用“跳转到”访问链接',
 'tog-uselivepreview' => '使用实时预览（需要JavaScript）（实验功能）',
 'tog-forceeditsummary' => '未输入编辑摘要时提醒我',
@@ -511,7 +512,7 @@ $messages = array(
 'qbfind' => '查找',
 'qbbrowse' => '浏览',
 'qbedit' => '编辑',
-'qbpageoptions' => '页面选项',
+'qbpageoptions' => '此页',
 'qbmyoptions' => '我的页面',
 'qbspecialpages' => '特殊页面',
 'faq' => '常见问题',
@@ -536,7 +537,7 @@ $messages = array(
 
 'navigation-heading' => '导航菜单',
 'errorpagetitle' => '出错',
-'returnto' => '返回$1。',
+'returnto' => '返回到$1。',
 'tagline' => '来自{{SITENAME}}',
 'help' => '帮助',
 'search' => '搜索',
@@ -584,7 +585,7 @@ $messages = array(
 'viewtalkpage' => '查看讨论',
 'otherlanguages' => '其他语言',
 'redirectedfrom' => '（重定向自$1）',
-'redirectpagesub' => '重定向页面',
+'redirectpagesub' => '重定向页',
 'lastmodifiedat' => '本页面最后修改于$1 $2。',
 'viewcount' => '此页面已被浏览过$1次。',
 'protectedpage' => '受保护页面',
@@ -596,7 +597,7 @@ $messages = array(
 请稍等片刻后再次尝试访问本页面。
 
 $1',
-'pool-timeout' => '等待锁超时',
+'pool-timeout' => '等待锁定超时',
 'pool-queuefull' => '请求队列已满',
 'pool-errorunknown' => '未知错误',
 
@@ -620,7 +621,7 @@ $1',
 'privacypage' => 'Project:隐私权政策',
 
 'badaccess' => '权限错误',
-'badaccess-group0' => '你被禁止执行你刚才请求的操作。',
+'badaccess-group0' => '系统不允许您执行刚才请求的操作。',
 'badaccess-groups' => '您刚才请求的操作只有{{PLURAL:$2|这个用户组|以下用户组}}中的用户才能使用： $1',
 
 'versionrequired' => '需要版本为$1的MediaWiki',
@@ -654,8 +655,8 @@ $1',
 'feedlinks' => '订阅：',
 'feed-invalid' => '无效的订阅类型。',
 'feed-unavailable' => '不提供联合订阅源',
-'site-rss-feed' => '$1的RSS订阅',
-'site-atom-feed' => '$1的Atom',
+'site-rss-feed' => '$1的RSS供稿',
+'site-atom-feed' => '$1的Atom供稿',
 'page-rss-feed' => '“$1”的RSS订阅',
 'page-atom-feed' => '“$1”的Atom订阅',
 'red-link-title' => '$1（页面不存在）',
@@ -755,7 +756,7 @@ $2',
 'customjsprotected' => '您没有权限编辑此JavaScript页面，因为它包含另一位用户的个人设置。',
 'mycustomcssprotected' => '您没有权限编辑这个 CSS 页面。',
 'mycustomjsprotected' => '您没有权限编辑这个 JavaScript 页面。',
-'ns-specialprotected' => '您不能编辑特殊页面。',
+'ns-specialprotected' => '特殊页面不可编辑。',
 'titleprotected' => '此标题已被[[User:$1|$1]]保护以防止创建。理由是“$2”。',
 'filereadonlyerror' => '因为媒体库$2处于只读模式而无法修改文件$1。
 
@@ -913,7 +914,7 @@ $2',
 'passwordreset-text-one' => '请输入你要重置的用户名。',
 'passwordreset-text-many' => '{{PLURAL:$1|输入部分数据以重置您的密码。}}',
 'passwordreset-legend' => '重置密码',
-'passwordreset-disabled' => '此wiki已经禁用密码重置。',
+'passwordreset-disabled' => '此Wiki已经禁用密码重置。',
 'passwordreset-emaildisabled' => '此Wiki上无法使用邮件功能。',
 'passwordreset-username' => '用户名：',
 'passwordreset-domain' => '域：',
@@ -2345,7 +2346,7 @@ $1',
 'enotif_body_intro_restored' => '{{SITENAME}}页面$1已于$PAGEEDITDATE被$2{{GENDER:$2|恢复}}，请浏览<$3>查看当前版本。',
 'enotif_body_intro_changed' => '{{SITENAME}}页面$1已于$PAGEEDITDATE被$2{{GENDER:$2|更改}}，请浏览 $3 查看当前版本。',
 'enotif_lastvisited' => '请浏览 $1 查看你上次访问后的所有更改。',
-'enotif_lastdiff' => '请浏览$1查看该更改。',
+'enotif_lastdiff' => '请浏览 $1 查看该更改。',
 'enotif_anon_editor' => '匿名用户$1',
 'enotif_body' => '亲爱的$WATCHINGUSERNAME：
 
