@@ -46,9 +46,9 @@ class Http {
 	 *                          Otherwise it will use $wgHTTPProxy (if set)
 	 *                          Otherwise it will use the environment variable "http_proxy" (if set)
 	 *    - noProxy             Don't use any proxy at all. Takes precedence over proxy value(s).
-	 *    - sslVerifyHost       (curl only) Verify hostname against certificate
-	 *    - sslVerifyCert       (curl only) Verify SSL certificate
-	 *    - caInfo              (curl only) Provide CA information
+	 *    - sslVerifyHost       Verify hostname against certificate
+	 *    - sslVerifyCert       Verify SSL certificate
+	 *    - caInfo              Provide CA information
 	 *    - maxRedirects        Maximum number of redirects to follow (defaults to 5)
 	 *    - followRedirects     Whether to follow redirects (defaults to false).
 	 *		                    Note: this should only be used when the target URL is trusted,
@@ -885,7 +885,23 @@ class PhpHttpRequest extends MWHttpRequest {
 
 		$options['timeout'] = $this->timeout;
 
-		$context = stream_context_create( array( 'http' => $options ) );
+		if ( $this->sslVerifyHost ) {
+			$options['CN_match'] = $this->parsedUrl['host'];
+		}
+		if ( $this->sslVerifyCert ) {
+			$options['verify_peer'] = true;
+		}
+
+		if ( is_dir( $this->caInfo ) ) {
+			$options['capath'] = $this->caInfo;
+		} elseif ( is_file( $this->caInfo ) ) {
+			$options['cafile'] = $this->caInfo;
+		} elseif ( $this->caInfo ) {
+			throw new MWException( "Invalid CA info passed: {$this->caInfo}" );
+		}
+
+		$scheme = $this->parsedUrl['scheme'];
+		$context = stream_context_create( array( "$scheme" => $options ) );
 
 		$this->headerList = array();
 		$reqCount = 0;
