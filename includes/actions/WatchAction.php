@@ -88,19 +88,45 @@ class WatchAction extends FormAction {
 	}
 
 	/**
-	 * Watch a page
-	 * @since 1.22 Returns Status object
+	 * Watch or unwatch a page
+	 * @since 1.22
+	 * @param bool $watch Whether to watch or unwatch the page
 	 * @param Title $title Page to watch/unwatch
 	 * @param User $user User who is watching/unwatching
 	 * @return Status
 	 */
-	public static function doWatch( Title $title, User $user ) {
+	public static function doWatchOrUnwatch( $watch, Title $title, User $user ) {
+		if ( $user->isLoggedIn() && $user->isWatched( $title, WatchedItem::IGNORE_USER_RIGHTS ) != $watch ) {
+			// If the user doesn't have 'editmywatchlist', we still want to
+			// allow them to add but not remove items via edits and such.
+			if ( $watch ) {
+				return self::doWatch( $title, $user, WatchedItem::IGNORE_USER_RIGHTS );
+			} else {
+				return self::doUnwatch( $title, $user );
+			}
+		}
+		return Status::newGood();
+	}
+
+	/**
+	 * Watch a page
+	 * @since 1.22 Returns Status, $checkRights parameter added
+	 * @param Title $title Page to watch/unwatch
+	 * @param User $user User who is watching/unwatching
+	 * @param int $checkRights Passed through to $user->addWatch()
+	 * @return Status
+	 */
+	public static function doWatch( Title $title, User $user, $checkRights = WatchedItem::CHECK_USER_RIGHTS ) {
+		if ( $checkRights !== WatchedItem::IGNORE_USER_RIGHTS && !$user->isAllowed( 'editmywatchlist' ) ) {
+			return User::newFatalPermissionDeniedStatus( 'editmywatchlist' );
+		}
+
 		$page = WikiPage::factory( $title );
 
 		$status = Status::newFatal( 'hookaborted' );
 		if ( wfRunHooks( 'WatchArticle', array( &$user, &$page, &$status ) ) ) {
 			$status = Status::newGood();
-			$user->addWatch( $title );
+			$user->addWatch( $title, $checkRights );
 			wfRunHooks( 'WatchArticleComplete', array( &$user, &$page ) );
 		}
 		return $status;
@@ -114,6 +140,10 @@ class WatchAction extends FormAction {
 	 * @return Status
 	 */
 	public static function doUnwatch( Title $title, User $user ) {
+		if ( !$user->isAllowed( 'editmywatchlist' ) ) {
+			return User::newFatalPermissionDeniedStatus( 'editmywatchlist' );
+		}
+
 		$page = WikiPage::factory( $title );
 
 		$status = Status::newFatal( 'hookaborted' );

@@ -669,7 +669,9 @@ class ApiQueryInfo extends ApiQueryBase {
 	private function getWatchedInfo() {
 		$user = $this->getUser();
 
-		if ( $user->isAnon() || count( $this->everything ) == 0 ) {
+		if ( $user->isAnon() || count( $this->everything ) == 0
+			|| !$user->isAllowed( 'viewmywatchlist' )
+		) {
 			return;
 		}
 
