@@ -26,6 +26,7 @@ production.
   acting as if the latest revision was being viewed.
 
 === API changes in 1.23 ===
+* (bug 23005) Added action=revisiondelete.
 
 === Languages updated in 1.23===
 
