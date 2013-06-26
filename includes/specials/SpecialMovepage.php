@@ -624,7 +624,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		$extraOutput = array();
 		$count = 1;
 		foreach ( $extraPages as $oldSubpage ) {
-			if ( $ot->equals( $oldSubpage ) ) {
+			if ( $ot->equals( $oldSubpage ) || $nt->equals( $oldSubpage ) ) {
 				# Already did this one.
 				continue;
 			}
