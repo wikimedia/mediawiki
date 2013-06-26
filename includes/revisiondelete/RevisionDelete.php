@@ -41,6 +41,19 @@ class RevDel_RevisionList extends RevDel_List {
 		return 'rev_id';
 	}
 
+	public static function getRestriction() {
+		return 'deleterevision';
+	}
+
+	public static function getRevdelConstant() {
+		return Revision::DELETED_TEXT;
+	}
+
+	public static function suggestTarget( $target, array $ids ) {
+		$rev = Revision::newFromId( $ids[0] );
+		return $rev ? $rev->getTitle() : $target;
+	}
+
 	/**
 	 * @param $db DatabaseBase
 	 * @return mixed
@@ -441,6 +454,14 @@ class RevDel_FileList extends RevDel_List {
 		return 'oi_archive_name';
 	}
 
+	public static function getRestriction() {
+		return 'deleterevision';
+	}
+
+	public static function getRevdelConstant() {
+		return File::DELETED_FILE;
+	}
+
 	var $storeBatch, $deleteBatch, $cleanupBatch;
 
 	/**
@@ -789,6 +810,28 @@ class RevDel_LogList extends RevDel_List {
 
 	public static function getRelationType() {
 		return 'log_id';
+	}
+
+	public static function getRestriction() {
+		return 'deletelogentry';
+	}
+
+	public static function getRevdelConstant() {
+		return LogPage::DELETED_ACTION;
+	}
+
+	public static function suggestTarget( $target, array $ids ) {
+		$result = wfGetDB( DB_SLAVE )->select( 'logging',
+			'log_type',
+			array( 'log_id' => $ids ),
+			__METHOD__,
+			array( 'DISTINCT' )
+		);
+		if ( $result->numRows() == 1 ) {
+			// If there's only one type, the target can be set to include it.
+			return SpecialPage::getTitleFor( 'Log', $result->current()->log_type );
+		}
+		return SpecialPage::getTitleFor( 'Log' );
 	}
 
 	/**
