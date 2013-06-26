@@ -2266,8 +2266,8 @@ class Language {
 			$format = $this->getDateFormatString( 'both', $user->getDatePreference() ?: 'default' );
 			$ts = $this->sprintfDate( $format, $ts->getTimestamp( TS_MW ) );
 		} elseif ( $days > 5 ) {
-			// Timestamps are in same year,  but more than 5 days ago: show day and month only.
-			$format = $this->getDateFormatString( 'pretty', $user->getDatePreference() ?: 'default' );
+			// Timestamps are in same year, but more than 5 days ago: show also full timestamp
+			$format = $this->getDateFormatString( 'both', $user->getDatePreference() ?: 'default' );
 			$ts = $this->sprintfDate( $format, $ts->getTimestamp( TS_MW ) );
 		} elseif ( $days > 1 ) {
 			// Timestamp within the past week: show the day of the week and time
