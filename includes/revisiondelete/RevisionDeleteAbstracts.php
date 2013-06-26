@@ -44,6 +44,38 @@ abstract class RevDel_List extends RevisionListBase {
 	}
 
 	/**
+	 * Get the user right required for this list type
+	 * Override this function.
+	 * @since 1.22
+	 * @return null
+	 */
+	public static function getRestriction() {
+		return null;
+	}
+
+	/**
+	 * Get the revision deletion constant for this list type
+	 * Override this function.
+	 * @since 1.22
+	 * @return null
+	 */
+	public static function getRevdelConstant() {
+		return null;
+	}
+
+	/**
+	 * Suggest a target for the revision deletion
+	 * Optionally override this function.
+	 * @since 1.22
+	 * @params Title $target User-supplied target
+	 * @params array $ids
+	 * @return null
+	 */
+	public static function suggestTarget( $target, array $ids ) {
+		return $target;
+	}
+
+	/**
 	 * Set the visibility for the revisions in this list. Logging and
 	 * transactions are done here.
 	 *
@@ -72,7 +104,7 @@ abstract class RevDel_List extends RevisionListBase {
 
 			$oldBits = $item->getBits();
 			// Build the actual new rev_deleted bitfield
-			$newBits = SpecialRevisionDelete::extractBitfield( $bitPars, $oldBits );
+			$newBits = RevisionDeleter::extractBitfield( $bitPars, $oldBits );
 
 			if ( $oldBits == $newBits ) {
 				$status->warning( 'revdelete-no-change', $item->formatDate(), $item->formatTime() );
