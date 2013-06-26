@@ -2257,17 +2257,13 @@ class Language {
 		$diff = $ts->diff( $relativeTo );
 		$diffDay = (bool)( (int)$ts->timestamp->format( 'w' ) - (int)$relativeTo->timestamp->format( 'w' ) );
 		$days = $diff->days ?: (int)$diffDay;
-		if ( $diff->invert || $days > 5 && $ts->timestamp->format( 'Y' ) !== $relativeTo->timestamp->format( 'Y' ) ) {
-			// Timestamps are in different years: use full timestamp
-			// Also do full timestamp for future dates
+		if ( $diff->invert || $days > 5 ) {
+			// Timestamp is in the future or was more than 5 days ago
+			// show full timestamp
 			/**
 			 * @FIXME Add better handling of future timestamps.
 			 */
 			$format = $this->getDateFormatString( 'both', $user->getDatePreference() ?: 'default' );
-			$ts = $this->sprintfDate( $format, $ts->getTimestamp( TS_MW ) );
-		} elseif ( $days > 5 ) {
-			// Timestamps are in same year,  but more than 5 days ago: show day and month only.
-			$format = $this->getDateFormatString( 'pretty', $user->getDatePreference() ?: 'default' );
 			$ts = $this->sprintfDate( $format, $ts->getTimestamp( TS_MW ) );
 		} elseif ( $days > 1 ) {
 			// Timestamp within the past week: show the day of the week and time
