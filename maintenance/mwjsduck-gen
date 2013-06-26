@@ -11,7 +11,11 @@ then
 	exit 1
 fi
 
+MWCORE_DIR=$(cd $(dirname $0)/..; pwd)
+
 jsduck \
---config=$(cd $(dirname $0)/..; pwd)/maintenance/jsduck/config.json \
+--config=$MWCORE_DIR/maintenance/jsduck/config.json \
 --footer="Documentation for MediaWiki core ($JSDUCK_MWVERSION). Generated on {DATE} by {JSDUCK} {VERSION}." \
 && echo 'JSDuck execution finished.'
+
+ln -s ../../resources $MWCORE_DIR/docs/js/modules
