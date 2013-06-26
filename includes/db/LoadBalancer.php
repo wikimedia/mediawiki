@@ -902,6 +902,7 @@ class LoadBalancer {
 	 *  Issue COMMIT only on master, only if queries were done on connection
 	 */
 	function commitMasterChanges() {
+		wfDebug( "!!! " . wfBacktrace() );
 		// Always 0, but who knows.. :)
 		$masterIndex = $this->getWriterIndex();
 		foreach ( $this->mConns as $conns2 ) {

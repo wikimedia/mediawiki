@@ -37,10 +37,42 @@ abstract class RevDel_List extends RevisionListBase {
 	 * Get the DB field name associated with the ID list.
 	 * This used to populate the log_search table for finding log entries.
 	 * Override this function.
-	 * @return null
+	 * @return string|null
 	 */
 	public static function getRelationType() {
 		return null;
+	}
+
+	/**
+	 * Get the user right required for this list type
+	 * Override this function.
+	 * @since 1.22
+	 * @return string|null
+	 */
+	public static function getRestriction() {
+		return null;
+	}
+
+	/**
+	 * Get the revision deletion constant for this list type
+	 * Override this function.
+	 * @since 1.22
+	 * @return int|null
+	 */
+	public static function getRevdelConstant() {
+		return null;
+	}
+
+	/**
+	 * Suggest a target for the revision deletion
+	 * Optionally override this function.
+	 * @since 1.22
+	 * @param Title|null $target User-supplied target
+	 * @param array $ids
+	 * @return Title|null
+	 */
+	public static function suggestTarget( $target, array $ids ) {
+		return $target;
 	}
 
 	/**
@@ -72,7 +104,7 @@ abstract class RevDel_List extends RevisionListBase {
 
 			$oldBits = $item->getBits();
 			// Build the actual new rev_deleted bitfield
-			$newBits = SpecialRevisionDelete::extractBitfield( $bitPars, $oldBits );
+			$newBits = RevisionDeleter::extractBitfield( $bitPars, $oldBits );
 
 			if ( $oldBits == $newBits ) {
 				$status->warning( 'revdelete-no-change', $item->formatDate(), $item->formatTime() );
