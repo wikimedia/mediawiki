@@ -157,6 +157,7 @@ production.
   rights when checking whether wlprop=patrol is allowed.
 * (bug 32151) ApiWatch now has pageset capabilities (titles/pageids/generators).
   Title parameter is now deprecated.
+* (bug 23005) Added action=revisiondelete.
 
 === Languages updated in 1.23 ===
 
