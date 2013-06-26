@@ -22,11 +22,71 @@
  */
 
 /**
- * Temporary b/c interface, collection of static functions.
- * @ingroup SpecialPage
+ * General controller for RevDel, used by both SpecialRevisiondelete and
+ * ApiRevisiondelete.
  * @ingroup RevisionDelete
  */
 class RevisionDeleter {
+	/** List of known revdel types, with their corresponding list classes */
+	private static $allowedTypes = array(
+		'revision' => 'RevDel_RevisionList',
+		'archive' => 'RevDel_ArchiveList',
+		'oldimage' => 'RevDel_FileList',
+		'filearchive' => 'RevDel_ArchivedFileList',
+		'logging' => 'RevDel_LogList',
+	);
+
+	/** Type map to support old log entries */
+	private static $deprecatedTypeMap = array(
+		'oldid' => 'revision',
+		'artimestamp' => 'archive',
+		'oldimage' => 'oldimage',
+		'fileid' => 'filearchive',
+		'logid' => 'logging',
+	);
+
+	/**
+	 * Lists the valid possible types for revision deletion.
+	 *
+	 * @since 1.22
+	 * @return array
+	 */
+	public static function getTypes() {
+		return array_keys( self::$allowedTypes );
+	}
+
+	/**
+	 * Gets the canonical type name, if any.
+	 *
+	 * @since 1.22
+	 * @param string $typeName
+	 * @return string|null
+	 */
+	public static function getCanonicalTypeName( $typeName ) {
+		if ( isset( self::$deprecatedTypeMap[$typeName] ) ) {
+			$typeName = self::$deprecatedTypeMap[$typeName];
+		}
+		return isset( self::$allowedTypes[$typeName] ) ? $typeName : null;
+	}
+
+	/**
+	 * Instantiate the appropriate list class for a given list of IDs.
+	 *
+	 * @since 1.22
+	 * @param string $typeName RevDel type, see RevisionDeleter::getTypes()
+	 * @param IContextSource $context
+	 * @param Title $title
+	 * @param array $ids
+	 * @return RevDel_List
+	 */
+	public static function createList( $typeName, IContextSource $context, Title $title, array $ids ) {
+		$typeName = self::getCanonicalTypeName( $typeName );
+		if ( !$typeName ) {
+			throw new MWException( __METHOD__ . ": Unknown RevDel type '$typeName'" );
+		}
+		return new self::$allowedTypes[$typeName]( $context, $title, $ids );
+	}
+
 	/**
 	 * Checks for a change in the bitfield for a certain option and updates the
 	 * provided array accordingly.
@@ -86,19 +146,61 @@ class RevisionDeleter {
 	/** Get DB field name for URL param...
 	 * Future code for other things may also track
 	 * other types of revision-specific changes.
+	 * @param string $typeName
 	 * @return string One of log_id/rev_id/fa_id/ar_timestamp/oi_archive_name
 	 */
 	public static function getRelationType( $typeName ) {
-		if ( isset( SpecialRevisionDelete::$deprecatedTypeMap[$typeName] ) ) {
-			$typeName = SpecialRevisionDelete::$deprecatedTypeMap[$typeName];
-		}
-		if ( isset( SpecialRevisionDelete::$allowedTypes[$typeName] ) ) {
-			$class = SpecialRevisionDelete::$allowedTypes[$typeName]['list-class'];
-			return call_user_func( array( $class, 'getRelationType' ) );
-		} else {
+		$typeName = self::getCanonicalTypeName( $typeName );
+		if ( !$typeName ) {
 			return null;
 		}
+		return call_user_func( array( self::$allowedTypes[$typeName], 'getRelationType' ) );
 	}
+
+	/**
+	 * Get the user right required for the RevDel type
+	 * @since 1.22
+	 * @param string $typeName
+	 * @return string User right
+	 */
+	public static function getRestriction( $typeName ) {
+		$typeName = self::getCanonicalTypeName( $typeName );
+		if ( !$typeName ) {
+			return null;
+		}
+		return call_user_func( array( self::$allowedTypes[$typeName], 'getRestriction' ) );
+	}
+
+	/**
+	 * Get the revision deletion constant for the RevDel type
+	 * @since 1.22
+	 * @param string $typeName
+	 * @return int RevDel constant
+	 */
+	public static function getRevdelConstant( $typeName ) {
+		$typeName = self::getCanonicalTypeName( $typeName );
+		if ( !$typeName ) {
+			return null;
+		}
+		return call_user_func( array( self::$allowedTypes[$typeName], 'getRevdelConstant' ) );
+	}
+
+	/**
+	 * Suggest a target for the revision deletion
+	 * @since 1.22
+	 * @param string $typeName
+	 * @param Title|null $title User-supplied target
+	 * @param array $ids
+	 * @return Title|null
+	 */
+	public static function suggestTarget( $typeName, $target, array $ids ) {
+		$typeName = self::getCanonicalTypeName( $typeName );
+		if ( !$typeName ) {
+			return $target;
+		}
+		return call_user_func( array( self::$allowedTypes[$typeName], 'suggestTarget' ), $target, $ids );
+	}
+
 
 	/**
 	 * Checks if a revision still exists in the revision table.
@@ -124,5 +226,25 @@ class RevisionDeleter {
 					'ar_rev_id' => $revid ), __METHOD__ );
 
 		return $timestamp;
+	}
+
+	/**
+	 * Put together a rev_deleted bitfield
+	 * @since 1.22
+	 * @param array $bitPars extractBitParams() params
+	 * @param int $oldfield current bitfield
+	 * @return array
+	 */
+	public static function extractBitfield( $bitPars, $oldfield ) {
+		// Build the actual new rev_deleted bitfield
+		$newBits = 0;
+		foreach ( $bitPars as $const => $val ) {
+			if ( $val == 1 ) {
+				$newBits |= $const; // $const is the *_deleted const
+			} elseif ( $val == -1 ) {
+				$newBits |= ( $oldfield & $const ); // use existing
+			}
+		}
+		return $newBits;
 	}
 }
