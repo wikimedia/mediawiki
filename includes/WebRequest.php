@@ -569,6 +569,44 @@ class WebRequest {
 	}
 
 	/**
+	 * Return the contents of the Query with no decoding. Use when you need to
+	 * know exactly what was sent, e.g. for an OAuth signature over the elements.
+	 *
+	 * @return String
+	 */
+	public function getRawQueryString() {
+		return $_SERVER['QUERY_STRING'];
+	}
+
+	/**
+	 * Return the contents of the POST with no decoding. Use when you need to
+	 * know exactly what was sent, e.g. for an OAuth signature over the elements.
+	 *
+	 * @return String
+	 */
+	public function getRawPostString() {
+		if ( !$this->wasPosted() ) {
+			return '';
+		}
+		return $this->getRawInput();
+	}
+
+	/**
+	 * Return the raw request body, with no processing. Cached since some methods
+	 * disallow reading the stream more than once. As stated in the php docs, this
+	 * does not work with enctype="multipart/form-data".
+	 *
+	 * @return String
+	 */
+	public function getRawInput() {
+		static $input = false;
+		if ( $input === false ) {
+			$input = file_get_contents( 'php://input' );
+		}
+		return $input;
+	}
+
+	/**
 	 * Get the HTTP method used for this request.
 	 *
 	 * @return String
