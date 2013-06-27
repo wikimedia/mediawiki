@@ -1515,6 +1515,17 @@ Templates: Strip whitespace from named parameters, but not positional ones
 
 !! end
 
+!! test
+Templates: Parsoid parameter escaping test 1
+!! options
+parsoid
+!! input
+{{echo|[foo]|{{echo|[bar]}}}}
+!! result
+<p about="#mwt1" typeof="mw:Transclusion"
+data-mw="{&quot;target&quot;:{&quot;wt&quot;:&quot;echo&quot;,&quot;href&quot;:&quot;./Template:Echo&quot;},&quot;params&quot;:{&quot;1&quot;:{&quot;wt&quot;:&quot;[foo]&quot;},&quot;2&quot;:{&quot;wt&quot;:&quot;{{echo|[bar]}}&quot;}},&quot;i&quot;:0}">[foo]</p>
+!! end
+
 ###
 ### Parsoid-centric tests for testing RT edge cases for pre
 ###
@@ -4541,6 +4552,84 @@ language=ln
 !!result
 <p><a href="/index.php?title=WW_II&amp;action=edit&amp;redlink=1" class="new" title="WW II (lonkásá  ezalí tɛ̂)">WW&#160;II</a>
 </p>
+!! end
+
+!! test
+Parsoid: handle constructor well
+!! options
+parsoid
+!! input
+[[constructor]]
+
+[[constructor:foo]]
+!! result
+<p data-parsoid="{&quot;dsr&quot;:[0,15,0,0]}"><a rel="mw:WikiLink" href="./Constructor" data-parsoid="{&quot;stx&quot;:&quot;simple&quot;,&quot;a&quot;:{&quot;href&quot;:&quot;./Constructor&quot;},&quot;sa&quot;:{&quot;href&quot;:&quot;constructor&quot;},&quot;dsr&quot;:[0,15,2,2]}">constructor</a></p>
+
+
+<p data-parsoid="{&quot;dsr&quot;:[17,36,0,0]}"><a rel="mw:WikiLink" href="./Foo" data-parsoid="{&quot;stx&quot;:&quot;simple&quot;,&quot;a&quot;:{&quot;href&quot;:&quot;./Foo&quot;},&quot;sa&quot;:{&quot;href&quot;:&quot;constructor:foo&quot;},&quot;dsr&quot;:[17,36,2,2]}">constructor:foo</a></p>
+!! end
+
+##
+## Redirects, Parsoid-only
+##
+!! test
+Simple redirect to page
+!! options
+parsoid
+!! input
+#REDIRECT [[Main Page]]
+!! result
+<link rel="mw:PageProp/redirect" href="./Main_Page">
+!! end
+
+!! test
+Redirect to category
+!! options
+parsoid=wt2html
+!! input
+#REDIRECT [[Category:Foo]]
+!! result
+<link rel="mw:PageProp/redirect" href="./Category:Foo"><link rel="mw:WikiLink/Category" href="./Category:Foo">
+!! end
+
+!! test
+Redirect to category page
+!! options
+parsoid=wt2html,html2html
+!! input
+#REDIRECT [[:Category:Foo]]
+!! result
+<p><a rel="mw:WikiLink" href="Category:Foo">Category:Foo</a></p>
+!! end
+
+!! test
+Redirect to image page
+!! options
+parsoid
+!! input
+#REDIRECT [[File:Wiki.png]]
+!! result
+<link rel="mw:PageProp/redirect" href="./File:Wiki.png">
+!! end
+
+!! test
+Redirect to language
+!! options
+parsoid
+!! input
+#REDIRECT [[en:File:Wiki.png]]
+!! result
+<link rel="mw:PageProp/redirect" href="File:Wiki.png">
+!! end
+
+!! test
+Redirect to interwiki
+!! options
+parsoid
+!! input
+#REDIRECT [[meatball:File:Wiki.png]]
+!! result
+<link rel="mw:PageProp/redirect" href="File:Wiki.png">
 !! end
 
 ##
@@ -8140,7 +8229,7 @@ parsoid
 <a href="File:Foobar.jpg">
 <img resource="./File:Foobar.jpg" src="//upload.wikimedia.org/wikipedia/commons/3/3a/Foobar.jpg/180px-Foobar.jpg" height="21" width="180" />
 </a>
-<figcaption class="mw-figcaption">caption content</figcaption>
+<figcaption>caption content</figcaption>
 </figure>
 !! end
 
@@ -8155,7 +8244,7 @@ parsoid
 <a href="File:Foobar.jpg">
 <img resource="./File:Foobar.jpg" src="//upload.wikimedia.org/wikipedia/commons/3/3a/Foobar.jpg/50px-Foobar.jpg" height="6" width="50" />
 </a>
-<figcaption class="mw-figcaption">caption</figcaption>
+<figcaption>caption</figcaption>
 </figure>
 !! end
 
@@ -8170,7 +8259,7 @@ parsoid
 <a href="File:Foobar.jpg">
 <img resource="./File:Foobar.jpg" src="//upload.wikimedia.org/wikipedia/commons/3/3a/Foobar.jpg/442px-Foobar.jpg" height="50" width="442" />
 </a>
-<figcaption class="mw-figcaption">caption</figcaption>
+<figcaption>caption</figcaption>
 </figure>
 !! end
 
@@ -8185,7 +8274,7 @@ parsoid
 <a href="File:Foobar.jpg">
 <img resource="./File:Foobar.jpg" src="//upload.wikimedia.org/wikipedia/commons/3/3a/Foobar.jpg/442px-Foobar.jpg" height="50" width="442" />
 </a>
-<figcaption class="mw-figcaption">caption</figcaption>
+<figcaption>caption</figcaption>
 </figure>
 !! end
 
@@ -8433,6 +8522,48 @@ Bar
 </p><p>Foo
 Bar
 </p>
+!! end
+
+!! test
+Parsoid: Serialize link to category page with colon escape
+!! options
+parsoid
+!! input
+
+[[:Category:Foo]]
+[[:Category:Foo|Bar]]
+!! result
+<p>
+<a rel="mw:WikiLink" href="Category:Foo">Category:Foo</a>
+<a rel="mw:WikiLink" href="Category:Foo">Bar</a>
+</p>
+!! end
+
+!! test
+Parsoid: Serialize link to file page with colon escape
+!! options
+parsoid
+!! input
+
+[[:File:Foo.png]]
+[[:File:Foo.png|Bar]]
+!! result
+<p>
+<a rel="mw:WikiLink" href="File:Foo.png">File:Foo.png</a>
+<a rel="mw:WikiLink" href="File:Foo.png">Bar</a>
+</p>
+!! end
+
+!! test
+Parsoid: Serialize a genuine category link without colon escape
+!! options
+parsoid
+!! input
+[[Category:Foo]]
+[[Category:Foo|Bar]]
+!! result
+<link rel="mw:WikiLink/Category" href="Category:Foo">
+<link rel="mw:WikiLink/Category" href="Category:Foo#Bar">
 !! end
 
 ###
@@ -14596,6 +14727,13 @@ Headings: 6a. Heading chars in SOL context (with trailing spaces)
 !! options
 parsoid
 !! input
+<nowiki>=a=</nowiki>
+
+<nowiki>=a= </nowiki>
+
+<nowiki>=a=	</nowiki>
+
+<nowiki>=a= 	</nowiki>
 !! result
 <p>=a=</p>
 <p>=a= </p>
@@ -15164,18 +15302,22 @@ parsoid
 ''<nowiki>'foo'</nowiki>''
 ''<nowiki>''foo''</nowiki>''
 ''<nowiki>'''foo'''</nowiki>''
+''foo''<nowiki>'s</nowiki>
 '''<nowiki>'foo'</nowiki>'''
 '''<nowiki>''foo''</nowiki>'''
 '''<nowiki>'''foo'''</nowiki>'''
 '''<nowiki>foo'</nowiki>''<nowiki>bar'</nowiki>''baz'''
+'''foo'''<nowiki>'s</nowiki>
 !! result
 <p><i>'foo'</i>
 <i>''foo''</i>
 <i>'''foo'''</i>
+<i>foo</i>'s
 <b>'foo'</b>
 <b>''foo''</b>
 <b>'''foo'''</b>
 <b>foo'<i>bar'</i>baz</b>
+<b>foo</b>'s
 </p>
 !! end
 
