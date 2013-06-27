@@ -2,54 +2,6 @@
  * Styling for Special:Watchlist and Special:RecentChanges
  */
 
-table.mw-enhanced-rc {
-	border: 0;
-	border-spacing: 0;
-}
-
-table.mw-enhanced-rc th,
-table.mw-enhanced-rc td {
-	padding: 0;
-	vertical-align: top;
-}
-
-td.mw-enhanced-rc {
-	white-space: nowrap;
-	font-family: monospace;
-}
-
-.mw-enhanced-rc-time {
-	font-family: monospace;
-}
-
-table.mw-enhanced-rc td.mw-enhanced-rc-nested {
-	padding-left: 1em;
-}
-
-/* Show/hide arrows in enhanced changeslist */
-.mw-enhanced-rc .collapsible-expander {
-	float: none;
-}
-
-/* If JS is disabled, the arrows or the placeholder space shouldn't be shown */
-.client-nojs .mw-enhancedchanges-arrow-space {
-	display: none;
-}
-
-.mw-enhancedchanges-arrow-space {
-	display: inline-block;
-	*display: inline; /* IE7 and below */
-	zoom: 1;
-	width: 15px;
-	height: 15px;
-}
-
-/* let it look like it is clickable */
-.mw-enhancedchanges-arrow.mw-collapsible-toggle {
-	cursor: pointer;
-}
-
-.mw-changeslist-line-watched .mw-title,
-.mw-enhanced-watched .mw-enhanced-rc-time {
+.mw-changeslist-line-watched .mw-title {
 	font-weight: bold;
 }

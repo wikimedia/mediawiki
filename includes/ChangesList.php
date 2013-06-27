@@ -194,7 +194,7 @@ class ChangesList extends ContextSource {
 		$this->rcCacheIndex = 0;
 		$this->lastdate = '';
 		$this->rclistOpen = false;
-		$this->getOutput()->addModules( 'mediawiki.special.changeslist' );
+		$this->getOutput()->addModuleStyles( 'mediawiki.special.changeslist' );
 		return '';
 	}
 
@@ -703,7 +703,14 @@ class EnhancedChangesList extends ChangesList {
 		$this->rcCacheIndex = 0;
 		$this->lastdate = '';
 		$this->rclistOpen = false;
-		$this->getOutput()->addModules( 'mediawiki.special.changeslist' );
+		$this->getOutput()->addModuleStyles( array(
+			'mediawiki.special.changeslist',
+			'mediawiki.special.changeslist.enhanced',
+		) );
+		$this->getOutput()->addModules( array(
+			'jquery.makeCollapsible',
+			'mediawiki.icon',
+		) );
 		return '';
 	}
 	/**

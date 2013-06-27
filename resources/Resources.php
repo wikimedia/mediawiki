@@ -924,7 +924,9 @@ return array(
 	),
 	'mediawiki.special.changeslist' => array(
 		'styles' => 'resources/mediawiki.special/mediawiki.special.changeslist.css',
-		'dependencies' => array( 'jquery.makeCollapsible', 'mediawiki.icon' ),
+	),
+	'mediawiki.special.changeslist.enhanced' => array(
+		'styles' => 'resources/mediawiki.special/mediawiki.special.changeslist.enhanced.css',
 	),
 	'mediawiki.special.movePage' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.movePage.js',
