@@ -1677,22 +1677,6 @@ var mw = ( function ( $, undefined ) {
 				},
 
 				/**
-				 * Wrapper object for raw HTML passed to mw.html.element().
-				 * @class mw.html.Raw
-				 */
-				Raw: function ( value ) {
-					this.value = value;
-				},
-
-				/**
-				 * Wrapper object for CDATA element contents passed to mw.html.element()
-				 * @class mw.html.Cdata
-				 */
-				Cdata: function ( value ) {
-					this.value = value;
-				},
-
-				/**
 				 * Create an HTML element string, with safe escaping.
 				 *
 				 * @param {string} name The tag name.
@@ -1758,6 +1742,22 @@ var mw = ( function ( $, undefined ) {
 					}
 					s += '</' + name + '>';
 					return s;
+				},
+
+				/**
+				 * Wrapper object for raw HTML passed to mw.html.element().
+				 * @class mw.html.Raw
+				 */
+				Raw: function ( value ) {
+					this.value = value;
+				},
+
+				/**
+				 * Wrapper object for CDATA element contents passed to mw.html.element()
+				 * @class mw.html.Cdata
+				 */
+				Cdata: function ( value ) {
+					this.value = value;
 				}
 			};
 		}() ),
