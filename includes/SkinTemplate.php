@@ -613,12 +613,15 @@ class SkinTemplate extends Skin {
 				'href' => $href,
 				'active' => ( $href == $pageurl )
 			);
-			$href = self::makeSpecialUrl( 'Watchlist' );
-			$personal_urls['watchlist'] = array(
-				'text' => $this->msg( 'mywatchlist' )->text(),
-				'href' => $href,
-				'active' => ( $href == $pageurl )
-			);
+
+			if ( $this->getUser()->isAllowed( 'viewmywatchlist' ) ) {
+				$href = self::makeSpecialUrl( 'Watchlist' );
+				$personal_urls['watchlist'] = array(
+					'text' => $this->msg( 'mywatchlist' )->text(),
+					'href' => $href,
+					'active' => ( $href == $pageurl )
+				);
+			}
 
 			# We need to do an explicit check for Special:Contributions, as we
 			# have to match both the title, and the target, which could come
@@ -992,7 +995,7 @@ class SkinTemplate extends Skin {
 				wfProfileOut( __METHOD__ . '-live' );
 
 				// Checks if the user is logged in
-				if ( $this->loggedin ) {
+				if ( $this->loggedin && $user->isAllowedAll( 'viewmywatchlist', 'editmywatchlist' ) ) {
 					/**
 					 * The following actions use messages which, if made particular to
 					 * the any specific skins, would break the Ajax code which makes this

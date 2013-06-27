@@ -1222,6 +1222,8 @@ $wgMessageStructure = array(
 		'right-edituserjs',
 		'right-editmyusercss',
 		'right-editmyuserjs',
+		'right-viewmywatchlist',
+		'right-editmywatchlist',
 		'right-rollback',
 		'right-markbotedits',
 		'right-noratelimit',
@@ -1283,6 +1285,8 @@ $wgMessageStructure = array(
 		'action-userrights-interwiki',
 		'action-siteadmin',
 		'action-sendemail',
+		'action-editmywatchlist',
+		'action-viewmywatchlist',
 	),
 	'recentchanges' => array(
 		'nchanges',

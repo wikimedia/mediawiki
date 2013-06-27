@@ -120,13 +120,7 @@ class FileDeleteForm {
 				// file, otherwise go back to the description page
 				$wgOut->addReturnTo( $this->oldimage ? $this->title : Title::newMainPage() );
 
-				if ( $wgUser->isLoggedIn() && $wgRequest->getCheck( 'wpWatch' ) != $wgUser->isWatched( $this->title ) ) {
-					if ( $wgRequest->getCheck( 'wpWatch' ) ) {
-						WatchAction::doWatch( $this->title, $wgUser );
-					} else {
-						WatchAction::doUnwatch( $this->title, $wgUser );
-					}
-				}
+				WatchAction::doWatchOrUnwatch( $wgRequest->getCheck( 'wpWatch' ), $this->title, $wgUser );
 			}
 			return;
 		}

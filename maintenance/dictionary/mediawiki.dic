@@ -1286,6 +1286,7 @@ edititis
 editlink
 editmyusercss
 editmyuserjs
+editmywatchlist
 editnotice
 editnotsupported
 editondblclick
@@ -4342,6 +4343,7 @@ view
 viewcount
 viewdeleted
 viewhelppage
+viewmywatchlist
 viewprevnext
 viewsource
 viewsourcelink

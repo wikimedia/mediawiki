@@ -1743,7 +1743,9 @@ class EditPage {
 	protected function updateWatchlist() {
 		global $wgUser;
 
-		if ( $wgUser->isLoggedIn() && $this->watchthis != $wgUser->isWatched( $this->mTitle ) ) {
+		if ( $wgUser->isLoggedIn()
+			&& $this->watchthis != $wgUser->isWatched( $this->mTitle, WatchedItem::IGNORE_USER_RIGHTS )
+		) {
 			$fname = __METHOD__;
 			$title = $this->mTitle;
 			$watch = $this->watchthis;
@@ -1752,11 +1754,7 @@ class EditPage {
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->onTransactionIdle( function() use ( $dbw, $title, $watch, $wgUser, $fname ) {
 				$dbw->begin( $fname );
-				if ( $watch ) {
-					WatchAction::doWatch( $title, $wgUser );
-				} else {
-					WatchAction::doUnwatch( $title, $wgUser );
-				}
+				WatchAction::doWatchOrUnwatch( $watch, $title, $wgUser );
 				$dbw->commit( $fname );
 			} );
 		}

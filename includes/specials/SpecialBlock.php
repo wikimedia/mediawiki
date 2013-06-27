@@ -753,7 +753,7 @@ class SpecialBlock extends FormSpecialPage {
 
 		# Can't watch a rangeblock
 		if ( $type != Block::TYPE_RANGE && $data['Watch'] ) {
-			$performer->addWatch( Title::makeTitle( NS_USER, $target ) );
+			WatchAction::doWatch( Title::makeTitle( NS_USER, $target ), $performer, WatchedItem::IGNORE_USER_RIGHTS );
 		}
 
 		# Block constructor sanitizes certain block options on insert
