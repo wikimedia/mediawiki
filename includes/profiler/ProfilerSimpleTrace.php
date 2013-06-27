@@ -59,6 +59,8 @@ class ProfilerSimpleTrace extends ProfilerSimple {
 			$elapsedreal = $this->getTime() - $ortime;
 			$this->trace .= sprintf( "%03.6f %6.1f", $elapsedreal, $this->memoryDiff() ) .
 					str_repeat( " ", count( $this->mWorkStack ) + 1 ) . " < " . $functionname . "\n";
+
+			$this->updateTrxProfiling( $functionname, $elapsedreal );
 		}
 	}
 

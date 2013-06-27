@@ -938,6 +938,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		# Keep track of whether the transaction has write queries pending
 		if ( $this->mTrxLevel && !$this->mTrxDoneWrites && $this->isWriteQuery( $sql ) ) {
 			$this->mTrxDoneWrites = true;
+			Profiler::instance()->transactionWritingIn( $this->mServer, $this->mDBname );
 		}
 
 		if ( $this->debug() ) {
@@ -1594,8 +1595,8 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		$sql = str_replace( "\\\\", '', $sql );
 		$sql = str_replace( "\\'", '', $sql );
 		$sql = str_replace( "\\\"", '', $sql );
-		$sql = preg_replace( "/'.*'/s", "'X'", $sql );
-		$sql = preg_replace( '/".*"/s', "'X'", $sql );
+		$sql = preg_replace( "/'.*'/sU", "'X'", $sql );
+		$sql = preg_replace( '/".*"/sU', "'X'", $sql );
 
 		# All newlines, tabs, etc replaced by single space
 		$sql = preg_replace( '/\s+/', ' ', $sql );
@@ -3172,6 +3173,9 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 
 			$this->runOnTransactionPreCommitCallbacks();
 			$this->doCommit( $fname );
+			if ( $this->mTrxDoneWrites ) {
+				Profiler::instance()->transactionWritingOut( $this->mServer, $this->mDBname );
+			}
 			$this->runOnTransactionIdleCallbacks();
 		}
 
@@ -3221,6 +3225,9 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 
 		$this->runOnTransactionPreCommitCallbacks();
 		$this->doCommit( $fname );
+		if ( $this->mTrxDoneWrites ) {
+			Profiler::instance()->transactionWritingOut( $this->mServer, $this->mDBname );
+		}
 		$this->runOnTransactionIdleCallbacks();
 	}
 
@@ -3252,6 +3259,9 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		$this->doRollback( $fname );
 		$this->mTrxIdleCallbacks = array(); // cancel
 		$this->mTrxPreCommitCallbacks = array(); // cancel
+		if ( $this->mTrxDoneWrites ) {
+			Profiler::instance()->transactionWritingOut( $this->mServer, $this->mDBname );
+		}
 	}
 
 	/**
