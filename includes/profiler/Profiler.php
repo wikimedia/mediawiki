@@ -100,6 +100,12 @@ class Profiler {
 	protected $mTimeMetric = 'wall';
 	protected $mProfileID = false, $mCollateDone = false, $mTemplated = false;
 
+	protected $mDBLockThreshold = 5.0;
+	/** @var Array DB/server name => active trx count */
+	protected $mDBTrxHoldingLocks = array();
+	/** @var Array DB/server name => list of (method, elapsed time) */
+	protected $mDBTrxMethodTimes = array();
+
 	/** @var Profiler */
 	public static $__instance = null; // do not call this outside Profiler and ProfileSection
 
@@ -223,20 +229,19 @@ class Profiler {
 		if ( !$bit ) {
 			$this->debug( "Profiling error, !\$bit: $functionname\n" );
 		} else {
-			//if( $wgDebugProfiling ) {
-				if ( $functionname == 'close' ) {
-					$message = "Profile section ended by close(): {$bit[0]}";
-					$this->debug( "$message\n" );
-					$this->mStack[] = array( $message, 0, 0.0, 0, 0.0, 0 );
-				} elseif ( $bit[0] != $functionname ) {
-					$message = "Profiling error: in({$bit[0]}), out($functionname)";
-					$this->debug( "$message\n" );
-					$this->mStack[] = array( $message, 0, 0.0, 0, 0.0, 0 );
-				}
-			//}
+			if ( $functionname == 'close' ) {
+				$message = "Profile section ended by close(): {$bit[0]}";
+				$this->debug( "$message\n" );
+				$this->mStack[] = array( $message, 0, 0.0, 0, 0.0, 0 );
+			} elseif ( $bit[0] != $functionname ) {
+				$message = "Profiling error: in({$bit[0]}), out($functionname)";
+				$this->debug( "$message\n" );
+				$this->mStack[] = array( $message, 0, 0.0, 0, 0.0, 0 );
+			}
 			$bit[] = $time;
 			$bit[] = $memory;
 			$this->mStack[] = $bit;
+			$this->updateTrxProfiling( $functionname, $time );
 		}
 	}
 
@@ -247,6 +252,87 @@ class Profiler {
 		while ( count( $this->mWorkStack ) ) {
 			$this->profileOut( 'close' );
 		}
+	}
+
+	/**
+	 * Mark a DB as in a transaction with one or more writes pending
+	 *
+	 * Note that there can be multiple connections to a single DB.
+	 *
+	 * @param string $server DB server
+	 * @param string $db DB name
+	 */
+	public function transactionWritingIn( $server, $db ) {
+		$name = "{$server} ({$db})";
+		if ( isset( $this->mDBTrxHoldingLocks[$name] ) ) {
+			++$this->mDBTrxHoldingLocks[$name];
+		} else {
+			$this->mDBTrxHoldingLocks[$name] = 0;
+			$this->mDBTrxMethodTimes[$name] = array();
+		}
+	}
+
+	/**
+	 * Register the name and time of a method for slow DB trx detection
+	 *
+	 * @param string $method Function name
+	 * @param float $realtime Wal time ellapsed
+	 */
+	protected function updateTrxProfiling( $method, $realtime ) {
+		// @TODO: regex is a tad janky
+		if ( !preg_match( '!^query-m:!', $method ) && $realtime < $this->mDBLockThreshold ) {
+			return; // not a DB master query nor slow enough
+		}
+		foreach ( $this->mDBTrxHoldingLocks as $name => $count ) {
+			$this->mDBTrxMethodTimes[$name][] = array( $method, $realtime );
+		}
+	}
+
+	/**
+	 * Mark a DB as no longer in a transaction
+	 *
+	 * This will check if locks are possibly held for longer than
+	 * needed and log any affected transactions to a special DB log.
+	 * Note that there can be multiple connections to a single DB.
+	 *
+	 * @param string $server DB server
+	 * @param string $db DB name
+	 */
+	public function transactionWritingOut( $server, $db ) {
+		$name = "{$server} ({$db})";
+		if ( --$this->mDBTrxHoldingLocks[$name] <= 0 ) {
+			$slow = false;
+			foreach ( $this->mDBTrxMethodTimes[$name] as $info ) {
+				list( $method, $realtime ) = $info;
+				if ( $realtime >= $this->mDBLockThreshold ) {
+					$slow = true;
+					break;
+				}
+			}
+			if ( $slow ) {
+				$dbs = implode( ', ', array_keys( $this->mDBTrxHoldingLocks ) );
+				$msg = "Sub-optimal transaction on DB(s) {$dbs}:\n";
+				foreach ( $this->mDBTrxMethodTimes[$name] as $i => $info ) {
+					list( $method, $realtime ) = $info;
+					$msg .= sprintf( "%d\t%.6f\t%s\n", $i, $realtime, $method );
+				}
+				wfDebugLog( 'DBPerfomance', $msg );
+			}
+			unset( $this->mDBTrxHoldingLocks[$name] );
+			unset( $this->mDBTrxMethodTimes[$name] );
+		}
+	}
+
+	/**
+	 * Report a slow method that ran while DB writes were pending in a transaction
+	 *
+	 * @param string $method
+	 * @param float $elapsedreal
+	 */
+	protected function logSlowMethodInTransaction( $method, $elapsedreal ) {
+		$dbs = implode( ', ', array_keys( $this->mDBTrxHoldingLocks ) );
+		wfDebugLog( 'DBPerfomance',
+			"Function '$method' took {$elapsedreal}s during pending writes to {$dbs}." );
 	}
 
 	/**
