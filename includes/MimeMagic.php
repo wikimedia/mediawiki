@@ -591,7 +591,8 @@ class MimeMagic {
 			return 'unknown/unknown';
 		}
 		$head = fread( $f, 1024 );
-		fseek( $f, -65558, SEEK_END );
+		fseek( $f, 0, SEEK_END );
+		fseek( $f, max( 0, ftell( $f ) - 65558 ), SEEK_SET );
 		$tail = fread( $f, 65558 ); // 65558 = maximum size of a zip EOCDR
 		fclose( $f );
 
@@ -726,7 +727,7 @@ class MimeMagic {
 		// Check for ZIP variants (before getimagesize)
 		if ( strpos( $tail, "PK\x05\x06" ) !== false ) {
 			wfDebug( __METHOD__ . ": ZIP header present in $file\n" );
-			return $this->detectZipType( $head, $tail, $ext );
+			return $this->detectZipType( $file, $head, $tail, $ext );
 		}
 
 		wfSuppressWarnings();
@@ -754,6 +755,7 @@ class MimeMagic {
 	 * header data.  Currently works for OpenDocument and OpenXML types...
 	 * If can't tell, returns 'application/zip'.
 	 *
+	 * @param $file   String: filename
 	 * @param string $header some reasonably-sized chunk of file header
 	 * @param $tail   String: the tail of the file
 	 * @param $ext Mixed: the file extension, or true to extract it from the filename.
@@ -762,13 +764,14 @@ class MimeMagic {
 	 *
 	 * @return string
 	 */
-	function detectZipType( $header, $tail = null, $ext = false ) {
+	function detectZipType( $file, $header, $tail = null, $ext = false ) {
 		if ( $ext ) { # TODO: remove $ext param
 			wfDebug( __METHOD__ . ": WARNING: use of the \$ext parameter is deprecated. " .
 				"Use improveTypeFromExtension(\$mime, \$ext) instead.\n" );
 		}
 
-		$mime = 'application/zip';
+		// Fall back to external type detection by default
+		$mime = false;
 		$opendocTypes = array(
 			'chart-template',
 			'chart',
@@ -793,9 +796,47 @@ class MimeMagic {
 
 		$openxmlRegex = "/^\[Content_Types\].xml/";
 
+		$openxmlTypeRegex = '/ContentType=[\"\']?(application\/vnd\.(?:'.
+			'openxmlformats-officedocument\.wordprocessingml\.document|'.
+			'openxmlformats-officedocument\.wordprocessingml\.template|'.
+			'ms-word\.document\.macroEnabled\.12|'.
+			'ms-word\.template\.macroEnabled\.12|'.
+			'openxmlformats-officedocument\.presentationml\.template|'.
+			'openxmlformats-officedocument\.presentationml\.slideshow|'.
+			'openxmlformats-officedocument\.presentationml\.presentation|'.
+			'ms-powerpoint\.addin\.macroEnabled\.12|'.
+			'ms-powerpoint\.presentation\.macroEnabled\.12|'.
+			'ms-powerpoint\.presentation\.macroEnabled\.12|'.
+			'ms-powerpoint\.slideshow\.macroEnabled\.12|'.
+			'openxmlformats-officedocument\.spreadsheetml\.sheet|'.
+			'openxmlformats-officedocument\.spreadsheetml\.template|'.
+			'ms-excel\.sheet\.macroEnabled\.12|'.
+			'ms-excel\.template\.macroEnabled\.12|'.
+			'ms-excel\.addin\.macroEnabled\.12|'.
+			'ms-excel\.sheet\.binary\.macroEnabled\.12|'.
+			'ms-xpsdocument))/';
+
 		if ( preg_match( $opendocRegex, substr( $header, 30 ), $matches ) ) {
+			// 'mimetype' entry is ALWAYS stored in the beginning of an ODF file
 			$mime = $matches[1];
 			wfDebug( __METHOD__ . ": detected $mime from ZIP archive\n" );
+		} elseif ( function_exists( 'zip_open' ) && is_resource( $zip = zip_open( $file ) ) ) {
+			// MSOffice stores [Content_Types].xml in the beginning of OXML files,
+			// but Open/LibreOffice stores it in the end, so we won't find it in $header!
+			while ( ( $entry = zip_read( $zip ) ) ) {
+				$fn = strtolower( zip_entry_name( $entry ) );
+				if ( $fn == '[content_types].xml' &&
+						zip_entry_open( $zip, $entry, 'r' ) ) {
+					$n = zip_entry_filesize( $entry );
+					$types = zip_entry_read( $entry, $n > 0x10000 ? 0x10000 : $n );
+					zip_entry_close( $entry );
+					if ( preg_match( $openxmlTypeRegex, $types, $m ) ) {
+						$mime = $m[1];
+					}
+					break;
+				}
+			}
+			zip_close( $zip );
 		} elseif ( preg_match( $openxmlRegex, substr( $header, 30 ) ) ) {
 			$mime = "application/x-opc+zip";
 			# TODO: remove the block below, as soon as improveTypeFromExtension is used everywhere
@@ -814,7 +855,9 @@ class MimeMagic {
 				}
 			}
 			wfDebug( __METHOD__ . ": detected an Open Packaging Conventions archive: $mime\n" );
-		} elseif ( substr( $header, 0, 8 ) == "\xd0\xcf\x11\xe0\xa1\xb1\x1a\xe1" &&
+		}
+		// OPC trailer may contain only some 'theme', but no real document content
+		if ( !$mime && substr( $header, 0, 8 ) == "\xd0\xcf\x11\xe0\xa1\xb1\x1a\xe1" &&
 				( $headerpos = strpos( $tail, "PK\x03\x04" ) ) !== false &&
 				preg_match( $openxmlRegex, substr( $tail, $headerpos + 30 ) ) ) {
 			if ( substr( $header, 512, 4 ) == "\xEC\xA5\xC1\x00" ) {
@@ -843,7 +886,8 @@ class MimeMagic {
 			}
 
 			wfDebug( __METHOD__ . ": detected a MS Office document with OPC trailer\n" );
-		} else {
+		}
+		if ( !$mime ) {
 			wfDebug( __METHOD__ . ": unable to identify type of ZIP archive\n" );
 		}
 		return $mime;
