@@ -1627,6 +1627,8 @@ Dacă decideți furnizarea sa, acesta va fi folosit pentru a vă atribui munca.'
 'right-edituserjs' => 'Modifică fișierele JS ale altor utilizatori',
 'right-editmyusercss' => 'Modificați-vă propriile fișiere CSS',
 'right-editmyuserjs' => 'Modificați-vă propriile fișiere JavaScript',
+'right-viewmywatchlist' => 'Vizualizați propria listă de pagini urmărite',
+'right-editmywatchlist' => 'Modificați propria listă de pagini urmărite. Rețineți că anumite acțiuni vor adăuga pagini chiar și fără acest drept.',
 'right-rollback' => 'Revocarea rapidă a modificărilor ultimului utilizator care a modificat o pagină particulară',
 'right-markbotedits' => 'Marchează revenirea ca modificare efectuată de robot',
 'right-noratelimit' => 'Neafectat de limitele raportului',
@@ -1688,6 +1690,8 @@ Dacă decideți furnizarea sa, acesta va fi folosit pentru a vă atribui munca.'
 'action-userrights-interwiki' => 'modificați permisiunile utilizatorilor de pe alte wiki',
 'action-siteadmin' => 'blocați sau deblocați baza de date',
 'action-sendemail' => 'trimite e-mailuri',
+'action-editmywatchlist' => 'vă modificați lista de pagini urmărite',
+'action-viewmywatchlist' => 'vă vizualizați lista de pagini urmărite',
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|modificare|modificări|de modificări}}',

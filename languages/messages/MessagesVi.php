@@ -1560,6 +1560,7 @@ Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao c�
 'userrights-changeable-col' => 'Những nhóm bạn có thể thay đổi',
 'userrights-unchangeable-col' => 'Những nhóm bạn không thể thay đổi',
 'userrights-conflict' => 'Mâu thuẫn thay đổi sửa nhóm thành viên! Xin vui lòng áp dụng các thay đổi của bạn một lần nữa.',
+'userrights-removed-self' => 'Bạn đã loại bỏ quyền của chính mình nên không còn truy cập được trang này.',
 
 # Groups
 'group' => 'Nhóm:',
@@ -1632,6 +1633,8 @@ Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao c�
 'right-edituserjs' => 'Sửa đổi tập tin JavaScript của người dùng khác',
 'right-editmyusercss' => 'Sửa đổi tập tin CSS cá nhân của mình',
 'right-editmyuserjs' => 'Sửa đổi tập tin JavaScript cá nhân của mình',
+'right-viewmywatchlist' => 'Xem danh sách theo dõi của mình',
+'right-editmywatchlist' => 'Sửa đổi danh sách theo dõi của mình – một số tác vụ có thể thêm trang vào danh sách bất chấp quyền này',
 'right-rollback' => 'Nhanh chóng lùi tất cả sửa đổi của người dùng cuối cùng sửa đổi trang nào đó',
 'right-markbotedits' => 'Đánh dấu sửa đổi phục hồi là sửa đổi bot',
 'right-noratelimit' => 'Không bị ảnh hưởng bởi mức giới hạn tần suất sử dụng',
@@ -1693,6 +1696,8 @@ Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao c�
 'action-userrights-interwiki' => 'sửa đổi quyền của người dùng tại wiki khác',
 'action-siteadmin' => 'khóa hoặc mở khóa cơ sở dữ liệu',
 'action-sendemail' => 'gửi thư điện tử',
+'action-editmywatchlist' => 'sửa đổi danh sách theo dõi của mình',
+'action-viewmywatchlist' => 'xem danh sách theo dõi của mình',
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|thay đổi|thay đổi}}',

@@ -1219,7 +1219,7 @@ Szczegółowe informacje mogą znajdować się w [{{fullurl:{{#Special:Log}}/del
 'rev-deleted-text-unhide' => "Ta wersja strony została '''usunięta'''.
 Szczegółowe informacje mogą znajdować się w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].
 Jeśli chcesz możesz [$1 obejrzeć tę wersję].",
-'rev-suppressed-text-unhide' => "Ta wersja strony została '''ukryta'''.
+'rev-suppressed-text-unhide' => "Ta wersja strony została '''utajniona'''.
 Szczegółowe informacje mogą znajdować się w [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rejestrze utajniania].
 Jeśli chcesz możesz [$1 obejrzeć tę wersję].",
 'rev-deleted-text-view' => "Ta wersja strony została '''usunięta'''.
@@ -1237,8 +1237,8 @@ Szczegółowe informacje mogą znajdować się w [{{fullurl:{{#Special:Log}}/sup
 Jeśli chcesz możesz [$1 obejrzeć porównanie wersji].",
 'rev-deleted-diff-view' => "Jedna z wersji użytych w porównaniu została '''usunięta'''.
 Jeśli chcesz możesz zobaczyć porównanie. Szczegóły mogą znajdować się w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].",
-'rev-suppressed-diff-view' => "Jedna z wersji użytych w porównaniu została '''ukryta'''.
-Jeśli chcesz możesz zobaczyć porównanie. Szczegóły mogą znajdować się w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rejestrze ukrywania].",
+'rev-suppressed-diff-view' => "Jedna z wersji użytych w porównaniu została '''utajniona'''.
+Jeśli chcesz możesz zobaczyć porównanie. Szczegóły mogą znajdować się w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rejestrze utajniania].",
 'rev-delundel' => 'pokaż/ukryj',
 'rev-showdeleted' => 'pokaż',
 'revisiondelete' => 'Usuń/odtwórz wersje',
