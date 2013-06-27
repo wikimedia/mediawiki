@@ -970,7 +970,6 @@ return array(
 			'resources/mediawiki.special/mediawiki.special.vforms.css',
 			'resources/mediawiki.special/mediawiki.special.userLogin.css',
 		),
-		'position' => 'top',
 	),
 	'mediawiki.special.createaccount' => array(
 		'styles' => array(
@@ -1091,6 +1090,5 @@ return array(
 			'default' => 'resources/mediawiki.ui/mediawiki.ui.default.css',
 			'vector' => 'resources/mediawiki.ui/mediawiki.ui.vector.css',
 		),
-		'position' => 'top',
 	),
 );
