@@ -1643,6 +1643,8 @@ Om du väljer att ange ditt riktiga namn, kommer det att användas för att till
 'right-edituserjs' => 'Redigera andra användares JS-filer',
 'right-editmyusercss' => 'Redigera din egen användares CSS-filer',
 'right-editmyuserjs' => 'Redigera din egen användares JavaScript-filer',
+'right-viewmywatchlist' => 'Visa din egen bevakningslista',
+'right-editmywatchlist' => 'Redigera din egen bevakningslista. Observera att en del åtgärder kommer fortfarande lägga till sidor även utan denna rättighet.',
 'right-rollback' => 'Rulla tillbaka den användare som senast redigerat en sida',
 'right-markbotedits' => 'Markera tillbakarullningar som robotändringar',
 'right-noratelimit' => 'Påverkas inte av hastighetsgränser',
@@ -1704,6 +1706,8 @@ Om du väljer att ange ditt riktiga namn, kommer det att användas för att till
 'action-userrights-interwiki' => 'ändra rättigheter för användare på andra wikier',
 'action-siteadmin' => 'låsa eller låsa upp databasen',
 'action-sendemail' => 'skicka e-post',
+'action-editmywatchlist' => 'redigera din bevakningslista',
+'action-viewmywatchlist' => 'visa din bevakningslista',
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|ändring|ändringar}}',

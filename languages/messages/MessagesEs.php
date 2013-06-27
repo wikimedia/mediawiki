@@ -907,7 +907,7 @@ Por favor, escribe una dirección en el formato adecuado o deja el campo en blan
 'cannotchangeemail' => 'Las direcciones de la correo electrónico de las cuentas de usuario no puedes cambiarse en esta wiki.',
 'emaildisabled' => 'Este sitio no puede enviar mensajes de correo electrónico.',
 'accountcreated' => 'Cuenta creada',
-'accountcreatedtext' => 'La cuenta de usuario [[{{ns:User}}: $1 | $1 ]] ([[{{ns:User talk}}: $1 |talk]]) ha sido creada.',
+'accountcreatedtext' => 'La cuenta de usuario de [[{{ns:User}}: $1 | $1 ]] ([[{{ns:User talk}}: $1 |talk]]) ha sido creada.',
 'createaccount-title' => 'Creación de cuenta para {{SITENAME}}',
 'createaccount-text' => 'Alguien creó en {{SITENAME}} ($4) una cuenta asociada a este correo electrónico con el nombre «$2».
 La contraseña asignada automáticamente es «$3». Por favor entra ahora y cambia tu contraseña.
@@ -1625,6 +1625,7 @@ Tu dirección de correo no se revela cuando otros usuarios te contactan.',
 'userrights-changeable-col' => 'Grupos que puedes cambiar',
 'userrights-unchangeable-col' => 'Grupos que no puedes cambiar',
 'userrights-conflict' => 'Hay un conflicto de permisos de usuario. Aplica tus cambios de nuevo.',
+'userrights-removed-self' => 'Usted eliminado con éxito sus propios derechos. Por lo tanto, usted ya no es capaz de acceder a esta página.',
 
 # Groups
 'group' => 'Grupo:',
@@ -2692,7 +2693,7 @@ $1',
 'mycontris' => 'Contribuciones',
 'contribsub2' => '$1 ($2)',
 'nocontribs' => 'No se encontraron cambios que cumplieran estos criterios.',
-'uctop' => '(última edición)',
+'uctop' => '(Edición actual)',
 'month' => 'Desde el mes (y anteriores):',
 'year' => 'Desde el año (y anteriores):',
 

@@ -519,6 +519,8 @@ V\'arringrazziamu si signaliati zoccu succidìu a nu [[Special:ListUsers/sysop|a
 'badarticleerror' => 'Opirazzioni nun cunzintita pi sta pàggina.',
 'cannotdelete' => 'Mpussìbbili cancillari la pàggina o lu file "$1" addumannatu. Putissi siri già cancillatu di quarcun\'àutru.',
 'cannotdelete-title' => 'Mpussibbili eliminari la pàggina "$1"',
+'delete-hook-aborted' => "Canciamentu nun arsciuttiattu di l'hook.
+Nun desi nudda spiecazzioni.",
 'badtitle' => 'Tìtulu nun currettu',
 'badtitletext' => "Lu tìtulu dâ pàggina addumannata è vacanti, erratu o cu caràttiri nun ammessi oppuru diriva di n'erruri ntê culligamenti tra siti wiki diversi o virsioni n lingui diversi dû stissu situ.",
 'perfcached' => "'''Nota:''' li dati ca sèquinu sunnu stratti di na copia ''cache'' dû database, nun aggiurnati n tempu riali. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.",
@@ -533,7 +535,8 @@ Query: $2',
 'actionthrottledtext' => "Comu misura di sicurezza contru lu spam, l'esecuzioni di alcuni azzionu è limitata a nu nùmmuru massimu di voti ni nu determinatu piriudu du tempu, limiti ca ni stu casu fu supiratu. Si prega di ripruvari tra qualchi minutu.",
 'protectedpagetext' => 'Sta pàggina fu bluccata pi privèniri li canciamenti.',
 'viewsourcetext' => 'È pussìbbili visualizzari e cupiari lu còdici surgenti di sta pàggina:',
-'protectedinterface' => "Sta pàggina cunteni un elementu ca fà parti dâ nterfaccia utenti dû software; è quinni prutetta p'evitari pussìbbili abbusi.",
+'viewyourtext' => "È pussibbili visualizzarei cupiari lu còdici surgenti dî '''tò canciamenti''' nti sta pàggina:",
+'protectedinterface' => "Sta pàggina cunteni un elementu ca fà parti dâ nterfaccia utenti dû software eggh'è  prutetta p'evitari pussìbbili abbusi. Pi jùnciri o canciari li traduzzioni pi tutti li wiki usari [//translatewiki.net/translatewiki.net] lu pruggettu di lucalizzazzioni di Mediawiki.",
 'editinginterface' => "'''Accura:''' Lu testu di sta pàggina fà parti dî interfaccia utenti dû situ. Tutti li canciamenti appurtati a sta pàggina si riflèttinu supra li missaggi visualizzati pi tutti l'utenti. Pi li traduzioni, cunsidira â pussibilità di usari [//translatewiki.net/wiki/Main_Page?setlang=scn translatewiki.net], u prugettu di localizzazioni MediaWiki.",
 'sqlhidden' => '(la query SQL hà statu ammucciata)',
 'cascadeprotected' => 'Supra sta pàggina nun è pussìbbili effittuari canciamenti pirchì veni nclusa nt{{PLURAL:$1|â pàggina siquenti, ca fu prutetta|ê pàggini siquenti, ca foru prutetti}} silizziunannu la prutizzioni "ricursiva":
@@ -850,6 +853,7 @@ Nun desi nudda spiecazzioni.",
 Pari ca fu scancillata.',
 'edit-conflict' => 'Cunflittu di edizzioni.',
 'edit-no-change' => 'La mudifica fu ignurata pirchì nu foru appurtati canci ntô testu.',
+'postedit-confirmation' => 'Lu canciamentu fu sarbatu.',
 'edit-already-exists' => 'Mpussìbbili criari na nova pàggina.
 Esisti ggià.',
 

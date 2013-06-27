@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author C933103
  * @author Itsmine
  * @author Justincheng12345
  * @author Omnipaedista
@@ -747,7 +748,7 @@ $2',
 'editing' => '纂$1',
 'creating' => '撰$1',
 'editingsection' => '纂節$1',
-'editingcomment' => '贊$1',
+'editingcomment' => '撰$1',
 'editconflict' => '纂沖$1',
 'explainconflict' => "子纂與他人沖，上者時也，下者子也，望子合之。
 註，'''{{int:savearticle}}'''上文儲焉",
