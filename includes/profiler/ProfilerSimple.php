@@ -101,6 +101,7 @@ class ProfilerSimple extends Profiler {
 			$entry['real_sq'] += $elapsedreal * $elapsedreal;
 			$entry['count']++;
 
+			$this->updateTrxProfiling( $functionname, $elapsedreal );
 		}
 	}
 
