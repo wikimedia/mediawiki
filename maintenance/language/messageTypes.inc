@@ -258,6 +258,7 @@ $wgIgnoredMessages = array(
 	'today-at',
 	'redirect-text',
 	'edithelppage',
+	'autocomment-prefix',
 );
 
 /** Optional messages, which may be translated only if changed in the target language. */
@@ -454,7 +455,6 @@ $wgOptionalMessages = array(
 	'percent',
 	'parentheses',
 	'brackets',
-	'autocomment-prefix',
 	'listgrouprights-right-display',
 	'listgrouprights-right-revoked',
 	'timezone-utc',
