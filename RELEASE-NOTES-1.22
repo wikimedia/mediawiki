@@ -31,6 +31,12 @@ production.
 * New rights 'editmyusercss', 'editmyuserjs', 'viewmywatchlist',
   and 'editmywatchlist' restrict actions that were formerly allowed by default.
   They have been added to the default for $wgGroupPermissions['*'].
+* The 'editprotected' right no longer allows bypassing of all page protection
+  restrictions. Any group using it for this purpose will now need to have all
+  the individual rights listed in $wgRestrictionTypes for the same effect.
+* The 'protect' and 'autoconfirmed' rights are no longer used for the default
+  page protection levels. The rights 'editprotected' and 'editsemiprotected'
+  are now used for this purpose instead.
 
 === New features in 1.22 ===
 * (bug 44525) mediawiki.jqueryMsg can now parse (whitelisted) HTML elements and attributes.
@@ -119,6 +125,10 @@ production.
   watchlists.
 * (bug 40518) mw.toolbar: Implemented mw.toolbar.addButtons for adding multiple
  button objects in one call.
+* Rights used for the default protection levels ('sysop' and 'autoconfirmed')
+  are now used just for that purpose, instead of overloading other rights. This
+  allows easy granting of the ability to edit sysop-protected pages without
+  also granting the ability to protect and unprotect.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one

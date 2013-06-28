@@ -135,8 +135,13 @@ class ProtectionForm {
 			if ( isset( $val ) && in_array( $val, $wgRestrictionLevels ) ) {
 				// Prevent users from setting levels that they cannot later unset
 				if ( $val == 'sysop' ) {
-					// Special case, rewrite sysop to either protect and editprotected
-					if ( !$wgUser->isAllowedAny( 'protect', 'editprotected' ) ) {
+					// Special case, rewrite sysop to editprotected
+					if ( !$wgUser->isAllowed( 'editprotected' ) ) {
+						continue;
+					}
+				} elseif ( $val == 'autoconfirmed' ) {
+					// Special case, rewrite autoconfirmed to editsemiprotected
+					if ( !$wgUser->isAllowed( 'editsemiprotected' ) ) {
 						continue;
 					}
 				} elseif ( !$wgUser->isAllowed( $val ) ) {
@@ -297,14 +302,7 @@ class ProtectionForm {
 			}
 		}
 
-		# They shouldn't be able to do this anyway, but just to make sure, ensure that cascading restrictions aren't being applied
-		#  to a semi-protected page.
-		$edit_restriction = isset( $this->mRestrictions['edit'] ) ? $this->mRestrictions['edit'] : '';
 		$this->mCascade = $wgRequest->getBool( 'mwProtect-cascade' );
-		if ( $this->mCascade && ( $edit_restriction != 'protect' ) &&
-			!User::groupHasPermission( $edit_restriction, 'protect' ) ) {
-			$this->mCascade = false;
-		}
 
 		$status = $this->mArticle->doUpdateRestrictions( $this->mRestrictions, $expiry, $this->mCascade, $reasonstr, $wgUser );
 
@@ -562,8 +560,13 @@ class ProtectionForm {
 		foreach ( $wgRestrictionLevels as $key ) {
 			//don't let them choose levels above their own (aka so they can still unprotect and edit the page). but only when the form isn't disabled
 			if ( $key == 'sysop' ) {
-				//special case, rewrite sysop to protect and editprotected
-				if ( !$wgUser->isAllowedAny( 'protect', 'editprotected' ) && !$this->disabled ) {
+				//special case, rewrite sysop to editprotected
+				if ( !$wgUser->isAllowed( 'editprotected' ) && !$this->disabled ) {
+					continue;
+				}
+			} elseif ( $key == 'autoconfirmed' ) {
+				//special case, rewrite autoconfirmed to editsemiprotected
+				if ( !$wgUser->isAllowed( 'editsemiprotected' ) && !$this->disabled ) {
 					continue;
 				}
 			} else {

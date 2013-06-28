@@ -506,39 +506,59 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 
 		$this->assertEquals( array( array( 'badaccess-group0' ),
 				array( 'protectedpagetext', 'bogus' ),
-				array( 'protectedpagetext', 'protect' ),
+				array( 'protectedpagetext', 'editprotected' ),
 				array( 'protectedpagetext', 'protect' ) ),
 			$this->title->getUserPermissionsErrors( 'bogus',
 				$this->user ) );
 		$this->assertEquals( array( array( 'protectedpagetext', 'bogus' ),
-				array( 'protectedpagetext', 'protect' ),
+				array( 'protectedpagetext', 'editprotected' ),
 				array( 'protectedpagetext', 'protect' ) ),
 			$this->title->getUserPermissionsErrors( 'edit',
 				$this->user ) );
 		$this->setUserPerm( "" );
 		$this->assertEquals( array( array( 'badaccess-group0' ),
 				array( 'protectedpagetext', 'bogus' ),
-				array( 'protectedpagetext', 'protect' ),
+				array( 'protectedpagetext', 'editprotected' ),
 				array( 'protectedpagetext', 'protect' ) ),
 			$this->title->getUserPermissionsErrors( 'bogus',
 				$this->user ) );
 		$this->assertEquals( array( array( 'badaccess-groups', "*, [[$prefix:Users|Users]]", 2 ),
 				array( 'protectedpagetext', 'bogus' ),
-				array( 'protectedpagetext', 'protect' ),
+				array( 'protectedpagetext', 'editprotected' ),
 				array( 'protectedpagetext', 'protect' ) ),
 			$this->title->getUserPermissionsErrors( 'edit',
 				$this->user ) );
 		$this->setUserPerm( array( "edit", "editprotected" ) );
 		$this->assertEquals( array( array( 'badaccess-group0' ),
 				array( 'protectedpagetext', 'bogus' ),
-				array( 'protectedpagetext', 'protect' ),
 				array( 'protectedpagetext', 'protect' ) ),
 			$this->title->getUserPermissionsErrors( 'bogus',
 				$this->user ) );
-		$this->assertEquals( array(),
+		$this->assertEquals( array(
+				array( 'protectedpagetext', 'bogus' ),
+				array( 'protectedpagetext', 'protect' ) ),
 			$this->title->getUserPermissionsErrors( 'edit',
 				$this->user ) );
+
 		$this->title->mCascadeRestriction = true;
+		$this->setUserPerm( "edit" );
+		$this->assertEquals( false,
+			$this->title->quickUserCan( 'bogus', $this->user ) );
+		$this->assertEquals( false,
+			$this->title->quickUserCan( 'edit', $this->user ) );
+		$this->assertEquals( array( array( 'badaccess-group0' ),
+				array( 'protectedpagetext', 'bogus' ),
+				array( 'protectedpagetext', 'editprotected' ),
+				array( 'protectedpagetext', 'protect' ) ),
+			$this->title->getUserPermissionsErrors( 'bogus',
+				$this->user ) );
+		$this->assertEquals( array( array( 'protectedpagetext', 'bogus' ),
+				array( 'protectedpagetext', 'editprotected' ),
+				array( 'protectedpagetext', 'protect' ) ),
+			$this->title->getUserPermissionsErrors( 'edit',
+				$this->user ) );
+
+		$this->setUserPerm( array( "edit", "editprotected" ) );
 		$this->assertEquals( false,
 			$this->title->quickUserCan( 'bogus', $this->user ) );
 		$this->assertEquals( false,
@@ -566,6 +586,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		$this->assertEquals( false,
 			$this->title->userCan( 'bogus', $this->user ) );
 		$this->assertEquals( array( array( "cascadeprotected", 2, "* [[:Bogus]]\n* [[:UnBogus]]\n" ),
+				array( "cascadeprotected", 2, "* [[:Bogus]]\n* [[:UnBogus]]\n" ),
 				array( "cascadeprotected", 2, "* [[:Bogus]]\n* [[:UnBogus]]\n" ) ),
 			$this->title->getUserPermissionsErrors( 'bogus', $this->user ) );
 
@@ -591,6 +612,12 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 
 		$this->title->mTitleProtection['pt_create_perm'] = 'sysop';
 		$this->setUserPerm( array( 'createpage', 'protect' ) );
+		$this->assertEquals( array( array( 'titleprotected', 'Useruser', 'test' ) ),
+			$this->title->getUserPermissionsErrors( 'create', $this->user ) );
+		$this->assertEquals( false,
+			$this->title->userCan( 'create', $this->user ) );
+
+		$this->setUserPerm( array( 'createpage', 'editprotected' ) );
 		$this->assertEquals( array(),
 			$this->title->getUserPermissionsErrors( 'create', $this->user ) );
 		$this->assertEquals( true,

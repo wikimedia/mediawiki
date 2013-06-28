@@ -3896,17 +3896,18 @@ $wgGroupPermissions['user']['sendemail'] = true;
 
 // Implicit group for accounts that pass $wgAutoConfirmAge
 $wgGroupPermissions['autoconfirmed']['autoconfirmed'] = true;
+$wgGroupPermissions['autoconfirmed']['editsemiprotected'] = true;
 
 // Users with bot privilege can have their edits hidden
 // from various log pages by default
 $wgGroupPermissions['bot']['bot'] = true;
 $wgGroupPermissions['bot']['autoconfirmed'] = true;
+$wgGroupPermissions['bot']['editsemiprotected'] = true;
 $wgGroupPermissions['bot']['nominornewtalk'] = true;
 $wgGroupPermissions['bot']['autopatrol'] = true;
 $wgGroupPermissions['bot']['suppressredirect'] = true;
 $wgGroupPermissions['bot']['apihighlimits'] = true;
 $wgGroupPermissions['bot']['writeapi'] = true;
-#$wgGroupPermissions['bot']['editprotected'] = true; // can edit all protected pages without cascade protection enabled
 
 // Most extra permission abilities go to this group
 $wgGroupPermissions['sysop']['block'] = true;
@@ -3927,6 +3928,7 @@ $wgGroupPermissions['sysop']['move-rootuserpages'] = true;
 $wgGroupPermissions['sysop']['patrol'] = true;
 $wgGroupPermissions['sysop']['autopatrol'] = true;
 $wgGroupPermissions['sysop']['protect'] = true;
+$wgGroupPermissions['sysop']['editprotected'] = true;
 $wgGroupPermissions['sysop']['proxyunbannable'] = true;
 $wgGroupPermissions['sysop']['rollback'] = true;
 $wgGroupPermissions['sysop']['upload'] = true;
@@ -3934,6 +3936,7 @@ $wgGroupPermissions['sysop']['reupload'] = true;
 $wgGroupPermissions['sysop']['reupload-shared'] = true;
 $wgGroupPermissions['sysop']['unwatchedpages'] = true;
 $wgGroupPermissions['sysop']['autoconfirmed'] = true;
+$wgGroupPermissions['sysop']['editsemiprotected'] = true;
 $wgGroupPermissions['sysop']['ipblock-exempt'] = true;
 $wgGroupPermissions['sysop']['blockemail'] = true;
 $wgGroupPermissions['sysop']['markbotedits'] = true;
@@ -4032,7 +4035,8 @@ $wgRestrictionTypes = array( 'create', 'edit', 'move', 'upload' );
  * dictates the order on the protection form's lists.
  *
  *   - '' will be ignored (i.e. unprotected)
- *   - 'sysop' is quietly rewritten to 'protect' for backwards compatibility
+ *   - 'autoconfirmed' is quietly rewritten to 'editsemiprotected' for backwards compatibility
+ *   - 'sysop' is quietly rewritten to 'editprotected' for backwards compatibility
  */
 $wgRestrictionLevels = array( '', 'autoconfirmed', 'sysop' );
 
@@ -4047,7 +4051,8 @@ $wgRestrictionLevels = array( '', 'autoconfirmed', 'sysop' );
  * "protect" them by transcluding them on protected pages they are
  * allowed to edit.
  *
- * 'sysop' is quietly rewritten to 'protect' for backwards compatibility.
+ * 'autoconfirmed' is quietly rewritten to 'editsemiprotected' for backwards compatibility.
+ * 'sysop' is quietly rewritten to 'editprotected' for backwards compatibility.
  */
 $wgCascadingRestrictionLevels = array( 'sysop' );
 

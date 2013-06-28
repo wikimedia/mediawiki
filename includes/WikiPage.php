@@ -2348,8 +2348,11 @@ class WikiPage implements Page, IDBAccessObject {
 			$editrestriction = isset( $limit['edit'] ) ? array( $limit['edit'] ) : $this->mTitle->getRestrictions( 'edit' );
 
 			$cascadingRestrictionLevels = $wgCascadingRestrictionLevels;
-			if ( in_array( 'sysop', $cascadingRestrictionLevels ) ) {
-				$cascadingRestrictionLevels[] = 'protect'; // backwards compatibility
+			foreach ( array_keys( $cascadingRestrictionLevels, 'sysop' ) as $key ) {
+				$cascadingRestrictionLevels[$key] = 'editprotected'; // backwards compatibility
+			}
+			foreach ( array_keys( $cascadingRestrictionLevels, 'autoconfirmed' ) as $key ) {
+				$cascadingRestrictionLevels[$key] = 'editsemiprotected'; // backwards compatibility
 			}
 
 			// The schema allows multiple restrictions
