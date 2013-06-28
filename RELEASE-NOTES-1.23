@@ -31,6 +31,10 @@ production.
   and {{REVISIONTIMESTAMP:}} (with friends).
 * Add "wgRelevantUserName" to mw.config containing the current
   Skin::getRelevantUser value
+* For namespaces with $wgNamespaceProtection (including the MediaWiki
+  namespace), the "protect" tab will be shown iff there are restriction levels
+  available that would restrict editing beyond what $wgNamespaceProtection
+  already applies. The protection form will offer only those protection levels.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
