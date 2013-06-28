@@ -1217,6 +1217,7 @@ $wgMessageStructure = array(
 		'right-unblockself',
 		'right-protect',
 		'right-editprotected',
+		'right-editsemiprotected',
 		'right-editinterface',
 		'right-editusercssjs',
 		'right-editusercss',

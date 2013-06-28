@@ -2910,6 +2910,7 @@ This user automatically bypasses IP blocks, auto-blocks and range blocks - so I 
 {{doc-singularthey}}',
 'right-protect' => '{{doc-right|protect}}',
 'right-editprotected' => '{{doc-right|editprotected}}',
+'right-editsemiprotected' => '{{doc-right|editsemiprotected}}',
 'right-editinterface' => '{{doc-right|editinterface}}',
 'right-editusercssjs' => '{{doc-right|editusercssjs}}',
 'right-editusercss' => '{{doc-right|editusercss}}

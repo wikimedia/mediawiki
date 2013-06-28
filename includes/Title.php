@@ -1925,18 +1925,21 @@ class Title {
 	 */
 	private function checkPageRestrictions( $action, $user, $errors, $doExpensiveQueries, $short ) {
 		foreach ( $this->getRestrictions( $action ) as $right ) {
-			// Backwards compatibility, rewrite sysop -> protect
+			// Backwards compatibility, rewrite sysop -> editprotected
 			if ( $right == 'sysop' ) {
-				$right = 'protect';
+				$right = 'editprotected';
 			}
-			if ( $right != '' && !$user->isAllowed( $right ) ) {
-				// Users with 'editprotected' permission can edit protected pages
-				// without cascading option turned on.
-				if ( $action != 'edit' || !$user->isAllowed( 'editprotected' )
-					|| $this->mCascadeRestriction )
-				{
-					$errors[] = array( 'protectedpagetext', $right );
-				}
+			// Backwards compatibility, rewrite autoconfirmed -> editsemiprotected
+			if ( $right == 'autoconfirmed' ) {
+				$right = 'editsemiprotected';
+			}
+			if ( $right == '' ) {
+				continue;
+			}
+			if ( !$user->isAllowed( $right ) ) {
+				$errors[] = array( 'protectedpagetext', $right );
+			} elseif ( $this->mCascadeRestriction && !$user->isAllowed( 'protect' ) ) {
+				$errors[] = array( 'protectedpagetext', 'protect' );
 			}
 		}
 
@@ -1968,8 +1971,15 @@ class Title {
 			# This is only for protection restrictions, not for all actions
 			if ( isset( $restrictions[$action] ) ) {
 				foreach ( $restrictions[$action] as $right ) {
-					$right = ( $right == 'sysop' ) ? 'protect' : $right;
-					if ( $right != '' && !$user->isAllowed( $right ) ) {
+					// Backwards compatibility, rewrite sysop -> editprotected
+					if ( $right == 'sysop' ) {
+						$right = 'editprotected';
+					}
+					// Backwards compatibility, rewrite autoconfirmed -> editsemiprotected
+					if ( $right == 'autoconfirmed' ) {
+						$right = 'editsemiprotected';
+					}
+					if ( $right != '' && !$user->isAllowedAll( 'protect', $right ) ) {
 						$pages = '';
 						foreach ( $cascadingSources as $page ) {
 							$pages .= '* [[:' . $page->getPrefixedText() . "]]\n";
@@ -2006,7 +2016,10 @@ class Title {
 			$title_protection = $this->getTitleProtection();
 			if ( $title_protection ) {
 				if ( $title_protection['pt_create_perm'] == 'sysop' ) {
-					$title_protection['pt_create_perm'] = 'protect'; // B/C
+					$title_protection['pt_create_perm'] = 'editprotected'; // B/C
+				}
+				if ( $title_protection['pt_create_perm'] == 'autoconfirmed' ) {
+					$title_protection['pt_create_perm'] = 'editsemiprotected'; // B/C
 				}
 				if ( $title_protection['pt_create_perm'] == '' ||
 					!$user->isAllowed( $title_protection['pt_create_perm'] ) )
@@ -3548,7 +3561,13 @@ class Title {
 			}
 		} else {
 			$tp = $nt->getTitleProtection();
-			$right = ( $tp['pt_create_perm'] == 'sysop' ) ? 'protect' : $tp['pt_create_perm'];
+			$right = $tp['pt_create_perm'];
+			if ( $right == 'sysop' ) {
+				$right = 'editprotected'; // B/C
+			}
+			if ( $right == 'autoconfirmed' ) {
+				$right = 'editsemiprotected'; // B/C
+			}
 			if ( $tp and !$wgUser->isAllowed( $right ) ) {
 				$errors[] = array( 'cantmove-titleprotected' );
 			}
