@@ -129,6 +129,7 @@ class User {
 		'editmyusercss',
 		'editmyuserjs',
 		'editmywatchlist',
+		'editsemiprotected',
 		'editusercssjs', #deprecated
 		'editusercss',
 		'edituserjs',
