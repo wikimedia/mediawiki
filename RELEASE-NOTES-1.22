@@ -129,6 +129,10 @@ production.
   are now used just for that purpose, instead of overloading other rights. This
   allows easy granting of the ability to edit sysop-protected pages without
   also granting the ability to protect and unprotect.
+* For namespaces with $wgNamespaceProtection (including the MediaWiki
+  namespace), the "protect" tab will be shown iff there are restriction levels
+  available that would restrict editing beyond what $wgNamespaceProtection
+  already applies. The protection form will offer only those protection levels.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
