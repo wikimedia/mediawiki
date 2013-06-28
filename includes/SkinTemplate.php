@@ -983,7 +983,9 @@ class SkinTemplate extends Skin {
 					}
 				}
 
-				if ( $title->getNamespace() !== NS_MEDIAWIKI && $title->quickUserCan( 'protect', $user ) && $title->getRestrictionTypes() ) {
+				if ( $title->quickUserCan( 'protect', $user ) && $title->getRestrictionTypes() &&
+					MWNamespace::getRestrictionLevels( $title->getNamespace(), $user ) !== array( '' )
+				) {
 					$mode = $title->isProtected() ? 'unprotect' : 'protect';
 					$content_navigation['actions'][$mode] = array(
 						'class' => ( $onPage && $action == $mode ) ? 'selected' : false,
