@@ -34,7 +34,7 @@ class ObjectCache {
 	 *
 	 * @param $id string
 	 *
-	 * @return ObjectCache
+	 * @return BagOStuff
 	 */
 	static function getInstance( $id ) {
 		if ( isset( self::$instances[$id] ) ) {
@@ -59,7 +59,7 @@ class ObjectCache {
 	 * @param $id string
 	 *
 	 * @throws MWException
-	 * @return ObjectCache
+	 * @return BagOStuff
 	 */
 	static function newFromId( $id ) {
 		global $wgObjectCaches;
@@ -78,7 +78,7 @@ class ObjectCache {
 	 * @param $params array
 	 *
 	 * @throws MWException
-	 * @return ObjectCache
+	 * @return BagOStuff
 	 */
 	static function newFromParams( $params ) {
 		if ( isset( $params['factory'] ) ) {
@@ -102,7 +102,7 @@ class ObjectCache {
 	 * If no cache choice is configured (by default $wgMainCacheType is CACHE_NONE),
 	 * then CACHE_ANYTHING will forward to CACHE_DB.
 	 * @param $params array
-	 * @return ObjectCache
+	 * @return BagOStuff
 	 */
 	static function newAnything( $params ) {
 		global $wgMainCacheType, $wgMessageCacheType, $wgParserCacheType;
@@ -120,7 +120,7 @@ class ObjectCache {
 	 *
 	 * @param $params array
 	 * @throws MWException
-	 * @return ObjectCache
+	 * @return BagOStuff
 	 */
 	static function newAccelerator( $params ) {
 		if ( function_exists( 'apc_fetch' ) ) {
