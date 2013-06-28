@@ -39,7 +39,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 	private $fld_comment = false, $fld_parsedcomment = false, $fld_user = false, $fld_userid = false,
 			$fld_flags = false, $fld_timestamp = false, $fld_title = false, $fld_ids = false,
 			$fld_sizes = false, $fld_redirect = false, $fld_patrolled = false, $fld_loginfo = false,
-			$fld_tags = false, $token = array();
+			$fld_tags = false, $fld_sha1 = false, $token = array();
 
 	private $tokenFunctions;
 
@@ -121,6 +121,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		$this->fld_patrolled = isset( $prop['patrolled'] );
 		$this->fld_loginfo = isset( $prop['loginfo'] );
 		$this->fld_tags = isset( $prop['tags'] );
+		$this->fld_sha1 = isset( $prop['sha1'] );
 	}
 
 	public function execute() {
@@ -271,6 +272,12 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			$this->addTables( 'tag_summary' );
 			$this->addJoinConds( array( 'tag_summary' => array( 'LEFT JOIN', array( 'rc_id=ts_rc_id' ) ) ) );
 			$this->addFields( 'ts_tags' );
+		}
+
+		if ( $this->fld_sha1 ) {
+			$this->addTables( 'revision' );
+			$this->addJoinConds( array( 'revision' => array( 'LEFT JOIN', array( 'rc_this_oldid=rev_id' ) ) ) );
+			$this->addFields( array( 'rev_sha1', 'rev_deleted' ) );
 		}
 
 		if ( $params['toponly'] || $showRedirects ) {
@@ -475,6 +482,19 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			}
 		}
 
+		if ( $this->fld_sha1 && $row->rev_sha1 !== null ) {
+			// The RevDel check should currently never pass due to the
+			// rc_deleted = 0 condition in the WHERE clause, but in case that
+			// ever changes we check it here too.
+			if ( $row->rev_deleted & Revision::DELETED_TEXT ) {
+				$vals['sha1hidden'] = '';
+			} elseif ( $row->rev_sha1 !== '' ) {
+				$vals['sha1'] = wfBaseConvert( $row->rev_sha1, 36, 16, 40 );
+			} else {
+				$vals['sha1'] = '';
+			}
+		}
+
 		if ( !is_null( $this->token ) ) {
 			$tokenFunctions = $this->getTokenFunctions();
 			foreach ( $this->token as $t ) {
@@ -571,7 +591,8 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 					'redirect',
 					'patrolled',
 					'loginfo',
-					'tags'
+					'tags',
+					'sha1',
 				)
 			),
 			'token' => array(
@@ -638,6 +659,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 				' patrolled      - Tags edits that have been patrolled',
 				' loginfo        - Adds log information (logid, logtype, etc) to log entries',
 				' tags           - Lists tags for the entry',
+				' sha1           - Adds the content checksum for entries associated with a revision',
 			),
 			'token' => 'Which tokens to obtain for each change',
 			'show' => array(
@@ -735,7 +757,17 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 					ApiBase::PROP_TYPE => 'string',
 					ApiBase::PROP_NULLABLE => true
 				)
-			)
+			),
+			'sha1' => array(
+				'sha1' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'sha1hidden' => array(
+					ApiBase::PROP_TYPE => 'boolean',
+					ApiBase::PROP_NULLABLE => true
+				),
+			),
 		);
 
 		self::addTokenProperties( $props, $this->getTokenFunctions() );
