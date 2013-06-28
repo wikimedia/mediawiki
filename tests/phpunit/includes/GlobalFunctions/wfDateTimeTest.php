@@ -1,0 +1,18 @@
+<?php
+/*
+ * Tests for wfDateTime() and wfLocalDateTime();
+ */
+class WfDateTimeTest extends MediaWikiTestCase {
+
+	function testLocalTimezone() {
+		global $wgLocaltimezone;
+		$dateTime = wfLocalDateTime();
+		$this->assertEquals( $wgLocaltimezone, $dateTime->getTimezone()->getName(), "wfLocalDateTime returns local time zone" );
+		$this->assertEquals( date( 'T' ), $dateTime->getTimezone()->getName(), "wfLocalDateTime returns local time zone" );
+	}
+
+	function testUTCTimezone() {
+		$dateTime = wfDateTime();
+		$this->assertEquals( 'UTC', $dateTime->getTimezone()->getName(), "wfDateTime returns UTC time zone" );
+	}
+}

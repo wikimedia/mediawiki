@@ -635,7 +635,7 @@ class Preferences {
 			# Timezone offset can vary with DST
 			$userTZ = timezone_open( $tz[2] );
 			if ( $userTZ !== false ) {
-				$minDiff = floor( timezone_offset_get( $userTZ, date_create( 'now' ) ) / 60 );
+				$minDiff = floor( timezone_offset_get( $userTZ, wfLocalDateTime() ) / 60 );
 				$tzSetting = "ZoneInfo|$minDiff|{$tz[2]}";
 			}
 		}
@@ -1275,10 +1275,11 @@ class Preferences {
 	static function getTimezoneOptions( IContextSource $context ) {
 		$opt = array();
 
-		global $wgLocalTZoffset, $wgLocaltimezone;
-		// Check that $wgLocalTZoffset is the same as $wgLocaltimezone
-		if ( $wgLocalTZoffset == date( 'Z' ) / 60 ) {
-			$server_tz_msg = $context->msg( 'timezoneuseserverdefault', $wgLocaltimezone )->text();
+		global $wgLocalTZoffset;
+		$localDateTime = wfLocalDateTime();
+		// Check that $wgLocalTZoffset is the same as the local time zone offset
+		if ( $wgLocalTZoffset == $localDateTime->format( 'Z' ) / 60 ) {
+			$server_tz_msg = $context->msg( 'timezoneuseserverdefault', $localDateTime->getTimezone()->getName() )->text();
 		} else {
 			$tzstring = sprintf( '%+03d:%02d', floor( $wgLocalTZoffset / 60 ), abs( $wgLocalTZoffset ) % 60 );
 			$server_tz_msg = $context->msg( 'timezoneuseserverdefault', $tzstring )->text();
@@ -1308,8 +1309,6 @@ class Preferences {
 			$prefill = array_fill_keys( array_values( $tzRegions ), array() );
 			$opt = array_merge( $opt, $prefill );
 
-			$now = date_create( 'now' );
-
 			foreach ( $tzs as $tz ) {
 				$z = explode( '/', $tz, 2 );
 
@@ -1323,7 +1322,7 @@ class Preferences {
 				# Localize region
 				$z[0] = $tzRegions[$z[0]];
 
-				$minDiff = floor( timezone_offset_get( timezone_open( $tz ), $now ) / 60 );
+				$minDiff = floor( timezone_offset_get( timezone_open( $tz ), $localDateTime ) / 60 );
 
 				$display = str_replace( '_', ' ', $z[0] . '/' . $z[1] );
 				$value = "ZoneInfo|$minDiff|$tz";

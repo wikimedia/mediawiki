@@ -965,7 +965,7 @@ class FileRepo {
 	public function storeTemp( $originalName, $srcPath ) {
 		$this->assertWritableRepo(); // fail out if read-only
 
-		$date = gmdate( "YmdHis" );
+		$date = wfDateTime()->format( 'YmdHis' );
 		$hashPath = $this->getHashPath( $originalName );
 		$dstUrlRel = $hashPath . $date . '!' . rawurlencode( $originalName );
 		$virtualUrl = $this->getVirtualUrl( 'temp' ) . '/' . $dstUrlRel;
