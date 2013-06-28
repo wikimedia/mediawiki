@@ -2460,7 +2460,9 @@ class EditPage {
 			}
 		}
 
-		if ( $this->mTitle->getNamespace() != NS_MEDIAWIKI && $this->mTitle->isProtected( 'edit' ) ) {
+		if ( $this->mTitle->isProtected( 'edit' ) &&
+			MWNamespace::getRestrictionLevels( $this->mTitle->getNamespace() ) !== array( '' )
+		) {
 			# Is the title semi-protected?
 			if ( $this->mTitle->isSemiProtected() ) {
 				$noticeMsg = 'semiprotectedpagewarning';
@@ -2662,7 +2664,9 @@ HTML
 			$attribs = array( 'style' => 'display:none;' );
 		} else {
 			$classes = array(); // Textarea CSS
-			if ( $this->mTitle->getNamespace() != NS_MEDIAWIKI && $this->mTitle->isProtected( 'edit' ) ) {
+			if ( $this->mTitle->isProtected( 'edit' ) &&
+				MWNamespace::getRestrictionLevels( $this->mTitle->getNamespace() ) !== array( '' )
+			) {
 				# Is the title semi-protected?
 				if ( $this->mTitle->isSemiProtected() ) {
 					$classes[] = 'mw-textarea-sprotected';
