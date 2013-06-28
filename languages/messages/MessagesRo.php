@@ -985,14 +985,14 @@ Nu veți putea folosi opțiunea de "trimite e-mail" decât dacă aveți înregis
 Aveți adresa IP $3, iar identificatorul dumneavoastră de blocare este $5.
 Vă rugăm să includeți detaliile de mai sus în orice interogări pe care le faceți.',
 'blockednoreason' => 'nici un motiv oferit',
-'whitelistedittext' => 'Trebuie să $1 pentru a edita articole.',
+'whitelistedittext' => 'Trebuie să vă $1 pentru a putea modifica pagini.',
 'confirmedittext' => 'Trebuie să vă confirmați adresa de e-mail înainte de a edita pagini. Vă rugăm să vă setați și să vă validați adresa de e-mail cu ajutorul [[Special:Preferences|preferințelor utilizatorului]].',
 'nosuchsectiontitle' => 'Secțiunea nu poate fi găsită',
 'nosuchsectiontext' => 'Ați încercat să modificați o secțiune care nu există.
 Aceasta fie a fost mutată, fie a fost ștearsă în timp ce vizualizați pagina.',
 'loginreqtitle' => 'Necesită autentificare',
 'loginreqlink' => 'autentificați',
-'loginreqpagetext' => 'Trebuie să te $1 pentru a vizualiza alte pagini.',
+'loginreqpagetext' => 'Trebuie să vă $1 pentru a vizualiza alte pagini.',
 'accmailtitle' => 'Parola a fost trimisă.',
 'accmailtext' => "Parola generată automat pentru [[User talk:$1|$1]] a fost trimisă la $2.
 
@@ -1749,7 +1749,7 @@ Paginile pe care le [[Special:Watchlist|urmăriți]] apar în '''aldine'''.",
 'reuploaddesc' => 'Revocare încărcare și întoarcere la formularul de trimitere.',
 'upload-tryagain' => 'Trimiteți descrierea fișierului modificată',
 'uploadnologin' => 'Nu sunteți autentificat',
-'uploadnologintext' => 'Trebuie să fiți [[Special:UserLogin|autentificat]] pentru a putea trimite fișiere.',
+'uploadnologintext' => 'Trebuie să vă $1 pentru a încărca fișiere.',
 'upload_directory_missing' => 'Directorul în care sunt încărcate fișierele ($1) lipsește și nu poate fi creat de serverul web.',
 'upload_directory_read_only' => 'Directorul de încărcare ($1) nu poate fi scris de server.',
 'uploaderror' => 'Eroare la trimitere fișier',

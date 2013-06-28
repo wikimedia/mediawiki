@@ -332,7 +332,7 @@ $messages = array(
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Stil slova područja uređivanja:',
-'editfont-default' => 'Po podešavanjima preglednika',
+'editfont-default' => 'Po postavkama preglednika',
 'editfont-monospace' => 'Slova sa jednostrukim razmakom',
 'editfont-sansserif' => 'Slova bez serifa',
 'editfont-serif' => 'Slova serif',
@@ -1384,11 +1384,11 @@ Pokušajte u Vaš upit uključiti prefiks ''all:'' da bi ste pretražili sav sad
 'searchdisabled' => '<p>Izvinjavamo se!  Puno pretraga teksta je privremeno onemogućena.  U međuvremenu, možete koristiti Google za pretragu.  Indeks može biti stariji.',
 
 # Preferences page
-'preferences' => 'Podešavanja',
+'preferences' => 'Postavke',
 'mypreferences' => 'Postavke',
 'prefs-edits' => 'Broj izmjena:',
 'prefsnologin' => 'Niste prijavljeni',
-'prefsnologintext' => 'Da biste mogli podešavati korisnička podešavanja, morate <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} biti prijavljeni]</span>.',
+'prefsnologintext' => 'Da biste mogli podešavati korisničke postavke, morate <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} biti prijavljeni]</span>.',
 'changepassword' => 'Promijeni šifru',
 'prefs-skin' => 'Koža',
 'skin-preview' => 'Pregled',
@@ -1411,7 +1411,7 @@ Pokušajte u Vaš upit uključiti prefiks ''all:'' da bi ste pretražili sav sad
 'prefs-setemail' => 'Postavite e-mail adresu',
 'prefs-email' => 'E-mail opcije',
 'prefs-rendering' => 'Izgled',
-'saveprefs' => 'Sačuvajte podešavanja',
+'saveprefs' => 'Sačuvaj',
 'resetprefs' => 'Vrati podešavanja',
 'restoreprefs' => 'Vrati sve pretpostavljene postavke',
 'prefs-editing' => 'Veličine tekstualnog polja',
@@ -1429,7 +1429,7 @@ Pokušajte u Vaš upit uključiti prefiks ''all:'' da bi ste pretražili sav sad
 'prefs-help-watchlist-token' => 'Popunjavanjem ovog polja tajnim ključem će generisati RSS fid za Vaš spisak praćenja.
 Svako ko zna ključ u ovom polju će biti u mogućnosti da pročita Vaš spisak praćenja, tako da trebate izabrati sigurnu vrijednost.
 Ovdje su navedene neke nasumično odabrane vrijednosti koje možete koristiti: $1',
-'savedprefs' => 'Vaša podešavanja su sačuvana.',
+'savedprefs' => 'Vaše postavke su sačuvane.',
 'timezonelegend' => 'Vremenska zona:',
 'localtime' => 'Lokalno vrijeme:',
 'timezoneuseserverdefault' => 'Koristi postavke wikija ($1)',
@@ -3003,7 +3003,7 @@ Nedostaje privremeni folder.',
 'tooltip-pt-anonuserpage' => 'Korisnička stranica za ip koju Vi uređujete kao',
 'tooltip-pt-mytalk' => 'Vaša stranica za razgovor',
 'tooltip-pt-anontalk' => 'Razgovor o doprinosu sa ove IP adrese',
-'tooltip-pt-preferences' => 'Moja podešavanja',
+'tooltip-pt-preferences' => 'Vaše postavke',
 'tooltip-pt-watchlist' => 'Spisak članaka koje pratite.',
 'tooltip-pt-mycontris' => 'Spisak vašeg doprinosa',
 'tooltip-pt-login' => 'Predlažemo da se prijavite, ali nije obvezno.',

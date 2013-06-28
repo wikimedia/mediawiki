@@ -1559,7 +1559,7 @@ See also:
 See also:
 * {{msg-mw|permissionserrors}}
 {{Identical|Login required}}',
-'loginreqlink' => 'Take a look on inflection. Used as parameter in {{msg-mw|loginreqpagetext}}, {{msg-mw|whitelistedittext}}, {{msg-mw|watchlistanontext‎}} and {{msg-mw|Confirmemail needlogin}}.
+'loginreqlink' => 'Take a look on inflection. Used as parameter in {{msg-mw|loginreqpagetext}}, {{msg-mw|whitelistedittext}}, {{msg-mw|Uploadnologintext}}, {{msg-mw|watchlistanontext‎}} and {{msg-mw|Confirmemail needlogin}}.
 
 {{Identical|Log in}}',
 'loginreqpagetext' => 'This message is displayed if an anonymous reader attempts to access a page which is only available to logged-in users.
@@ -3134,7 +3134,7 @@ See also:
 'uploadnologin' => 'Used as title of the error message {{msg-mw|Uploadnologintext}}.
 {{Identical|Not logged in}}',
 'uploadnologintext' => 'Used as error message. The title for this message is {{msg-mw|Uploadnologin}}. Parameters:
-* $1 - Login link
+* $1 - Login link – {{msg-mw|Loginreqlink}}
 
 See also:
 * {{msg-mw|Whitelistedittext}}

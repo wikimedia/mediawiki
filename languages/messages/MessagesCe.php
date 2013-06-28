@@ -603,6 +603,7 @@ $1',
 'createacct-yourpasswordagain-ph' => 'Кхин цкъа язъе ишар',
 'remembermypassword' => 'Даглаца сан дlавазвалар/ялар хlокху гlулкхдечу гlирса тlяхь (цхьан $1 {{PLURAL:$1|ден|динахь|динахь}})',
 'userlogin-remembermypassword' => 'Дагахь латт ве/е со',
+'userlogin-signwithsecure' => 'Ларийна цхьаьнакхетар',
 'yourdomainname' => 'Хьан машан меттиг:',
 'login' => 'Чувалар/ялар',
 'nav-login-createaccount' => 'Вовзийта/Йовзийта хьой / дӀавазло/дӀаязло',
@@ -619,6 +620,8 @@ $1',
 'gotaccount' => "Дlавазвелла вуй хьо? '''$1'''.",
 'gotaccountlink' => 'Чувалар/ялар',
 'userlogin-resetlink' => 'Чуволу/йолу хаам биц бела?',
+'helplogin-url' => 'Help:Чувалар/ялар',
+'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Чувала/яла гӀодар]]',
 'createacct-join' => 'ДӀаязбе лахахь хай хаам.',
 'createacct-emailrequired' => 'Электронни почтан адрес',
 'createacct-emailoptional' => 'Электронни почтан адрес (ца яздича мега)',
@@ -628,6 +631,7 @@ $1',
 'createaccountreason' => 'Бахьан:',
 'createacct-reason' => 'Бахьна',
 'createacct-reason-ph' => '{{PLURAL:$1|агӀо|агӀонаш}}‎',
+'createacct-captcha' => 'Кхерамзалла хьажар',
 'createacct-imgcaptcha-ph' => 'ДӀаязде хьайна лакхахь гуш долу йоза',
 'createacct-submit' => 'Кхолла декъашхон дӀаяздар',
 'createacct-benefit-heading' => '{{SITENAME}} кхолийна хьо санначу наха.',
@@ -637,7 +641,7 @@ $1',
 'loginerror' => 'Гlалат ду декъашхо вовзарехь/йовзарехь',
 'createaccounterror' => 'Декъашхон дӀаяздар кхолла йиш яц: $1',
 'nocookiesforlogin' => '{{int:nocookieslogin}}',
-'loginsuccesstitle' => 'Хьо вовзар хаз чакхдели',
+'loginsuccesstitle' => 'Хьо вовзар/йовзар хаз чакхдели',
 'loginsuccess' => 'Хlинца ахьа болх бó оцу цlарца $1.',
 'nosuchuser' => 'Цlарца $1 декъашхо вац/яц.
 Декъашхой цlераш хаалуш йу дlайазвалрца/яларца элраш.
@@ -1194,10 +1198,10 @@ PICT # тайп тайпан
 'unusedtemplates' => 'Лелош доцу кепаш',
 
 # Random page
-'randompage' => 'Цахуаш нисйелла агlо',
+'randompage' => 'Цахууш нисйелла агӀо',
 
 # Random redirect
-'randomredirect' => 'Ца хууш нисделла дIасахьажор',
+'randomredirect' => 'Цахууш нисделла дIасахьажор',
 
 # Statistics
 'statistics' => 'Бухехьдерг',
@@ -1259,7 +1263,7 @@ PICT # тайп тайпан
 'longpages' => 'Беха яззамаш',
 'deadendpages' => 'Дика йоцу агIонаш',
 'protectedpages' => 'ГIаролла дина агIонаш',
-'protectedtitles' => 'Ца магийна йолу цIераш',
+'protectedtitles' => 'ГIаролла дина цIераш',
 'listusers' => 'Декъашхой могlам',
 'listusers-editsonly' => 'Цхаъ мукъане а хийцам бина декъашхой гайта',
 'listusers-creationsort' => 'Кхолларан хене хьаьжна нисъяр',
@@ -1445,7 +1449,7 @@ PICT # тайп тайпан
 'protect-edit-reasonlist' => 'Бахьанин список нисяр',
 'protect-expiry-options' => '1 сахьт:1 hour,1 де:1 day,1 кӀиран:1 week,2 кӀиран:2 weeks,1 бутт:1 month,3 бутт:3 months,6 бутт:6 months,1 шо:1 year,цlкъа:infinite',
 'restriction-type' => 'Бакъо:',
-'restriction-level' => 'Тlевитарна локхалла:',
+'restriction-level' => 'ТӀекхочаран локхалла:',
 
 # Restrictions (nouns)
 'restriction-upload' => 'Чуйолуш',

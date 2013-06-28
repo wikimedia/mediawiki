@@ -1216,7 +1216,7 @@ $messages['an'] = array(
  * @author Gott wisst
  */
 $messages['ang'] = array(
-	'mainpagetext' => "'''MediaǷiki hafaþ ȝeƿorden spēdiȝe inseted.'''",
+	'mainpagetext' => "'''MediaWiki hafaþ geworden spēdige inseted.'''",
 	'mainpagedocfooter' => 'Þeahta þone [//meta.wikimedia.org/wiki/Help:Contents Brūcenda Lǣdend]  on helpe mid þǣre nytte of ƿikisōftƿare.
 
 == Beȝinnunȝ ==

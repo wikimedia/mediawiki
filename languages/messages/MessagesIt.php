@@ -1704,7 +1704,7 @@ Le pagine contenute nella propria lista degli [[Special:Watchlist|Osservati spec
 'reuploaddesc' => 'Torna al modulo per il caricamento.',
 'upload-tryagain' => 'Invia la descrizione del file modificato',
 'uploadnologin' => 'Accesso non effettuato',
-'uploadnologintext' => "Il caricamento dei file è consentito solo agli utenti registrati che hanno eseguito [[Special:UserLogin|l'accesso]] al sito.",
+'uploadnologintext' => 'Per caricare file è necessario $1.',
 'upload_directory_missing' => 'La directory di upload ($1) non esiste e non può essere creata dal server web.',
 'upload_directory_read_only' => 'Il server web non è in grado di scrivere nella directory di upload ($1).',
 'uploaderror' => 'Errore nel caricamento',

@@ -956,14 +956,14 @@ Teña en conta que non pode empregar a característica "Enviar un correo electr�
 O seu enderezo IP actual é $3 e o ID do bloqueo é #$5.
 Por favor, inclúa eses datos nas consultas que faga.',
 'blockednoreason' => 'non se deu ningunha razón',
-'whitelistedittext' => 'Ten que $1 para poder editar páxinas.',
+'whitelistedittext' => 'Debe $1 para poder editar páxinas.',
 'confirmedittext' => 'Debe confirmar o correo electrónico antes de comezar a editar. Por favor, configure e dea validez ao correo mediante as súas [[Special:Preferences|preferencias de usuario]].',
 'nosuchsectiontitle' => 'Non se pode atopar a sección',
 'nosuchsectiontext' => 'Intentou editar unha sección que non existe.
 Poida que a movesen ou borrasen mentres ollaba a páxina.',
 'loginreqtitle' => 'Cómpre acceder ao sistema',
 'loginreqlink' => 'acceder ao sistema',
-'loginreqpagetext' => 'Debe $1 para ver outras páxinas.',
+'loginreqpagetext' => 'Debe $1 para poder ver outras páxinas.',
 'accmailtitle' => 'Enviouse o contrasinal',
 'accmailtext' => 'Un contrasinal xerado ao chou para "[[User talk:$1|$1]]" foi enviado a "$2".
 
@@ -1715,7 +1715,7 @@ As páxinas da súa [[Special:Watchlist|lista de vixilancia]] aparecen en '''neg
 'reuploaddesc' => 'Cancelar a carga e volver ao formulario de carga',
 'upload-tryagain' => 'Enviar a descrición do ficheiro modificada',
 'uploadnologin' => 'Non accedeu ao sistema',
-'uploadnologintext' => 'Debe [[Special:UserLogin|acceder ao sistema]] para poder cargar ficheiros.',
+'uploadnologintext' => 'Debe $1 para poder cargar ficheiros.',
 'upload_directory_missing' => 'Falta o directorio de carga ($1) e non pode ser creado polo servidor da páxina web.',
 'upload_directory_read_only' => 'O servidor web non pode escribir no directorio de carga ($1).',
 'uploaderror' => 'Erro ao cargar',

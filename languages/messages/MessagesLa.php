@@ -1137,7 +1137,7 @@ Si vis id dare, opera tua tibi ascribentur.',
 'uploadbtn' => 'Fasciculum imponere',
 'reuploaddesc' => 'Siste imponere et ad imponendi formam redi',
 'uploadnologin' => 'Conventum non est apertum',
-'uploadnologintext' => 'Oportet [[Special:UserLogin|aperire conventum]] ut fasciculos imponas.',
+'uploadnologintext' => 'Necesse est tibi $1 priusquam fasciculos imponas.',
 'uploaderror' => 'Imponendi erratum',
 'uploadtext' => "Utere formam subter ad fasciculos imponendos.
 Ut fasciculos antea impositos videas aut quaeras, adi ad [[Special:FileList|indicem fasciculorum impositorum]]. Fasciculi impositi et deleti quoque in [[Special:Log/upload|notatione fasciculorum impositorum]] notantur.
