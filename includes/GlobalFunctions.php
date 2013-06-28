@@ -2413,6 +2413,48 @@ function wfTimestampNow() {
 }
 
 /**
+ * Get a DateTime object with the local timezone
+ *
+ * @param $ts int: unix timestamp, default 0 for the current time
+ * @return Mixed: DateTime / false A DateTime object or false
+ */
+function wfLocalDateTime( $ts = 0 ) {
+	global $wgLocaltimezone;
+
+	try {
+		$localDateTime = new DateTime( null, new DateTimeZone( $wgLocaltimezone ) );
+		if ( $ts !== 0 ) {
+			$localDateTime->setTimestamp( $ts );
+		}
+		return $localDateTime;
+	} catch ( Exception $e ) {
+		wfDebug( "wfLocalDateTime() fed bogus time value: " .
+			"VALUE=" . $ts . "; MESSAGE=" . $e->getMessage() . "\n" );
+		return false;
+	}
+}
+
+/**
+ * Get a DateTime object in UTC
+ *
+ * @param $ts int: unix timestamp, default 0 for the current time
+ * @return Mixed: DateTime / false A DateTime object or false
+ */
+function wfDateTime( $ts = 0 ) {
+	try {
+		$dateTime = new DateTime( null, new DateTimeZone( 'UTC' ) );
+		if ( $ts !== 0 ) {
+			$dateTime->setTimestamp( $ts );
+		}
+		return $dateTime;
+	} catch ( Exception $e ) {
+		wfDebug( "wfDateTime() fed bogus time value: " .
+			"VALUE=" . $ts . "; MESSAGE=" . $e->getMessage() . "\n" );
+		return false;
+	}
+}
+
+/**
  * Check if the operating system is Windows
  *
  * @return Bool: true if it's Windows, False otherwise.

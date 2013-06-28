@@ -195,8 +195,9 @@ class Xml {
 		if ( $year ) {
 			$encYear = intval( $year );
 		} elseif ( $encMonth ) {
-			$thisMonth = intval( gmdate( 'n' ) );
-			$thisYear = intval( gmdate( 'Y' ) );
+			$dateTime = wfDateTime();
+			$thisMonth = intval( $dateTime->format( 'n' ) );
+			$thisYear = intval( $dateTime->format( 'Y' ) );
 			if ( intval( $encMonth ) > $thisMonth ) {
 				$thisYear--;
 			}

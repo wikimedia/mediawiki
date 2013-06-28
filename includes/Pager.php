@@ -872,9 +872,10 @@ abstract class ReverseChronologicalPager extends IndexPager {
 			$year = $this->mYear;
 		} else {
 			// If no year given, assume the current one
-			$year = gmdate( 'Y' );
+			$dateTime = wfDateTime();
+			$year = $dateTime->format( 'Y' );
 			// If this month hasn't happened yet this year, go back to last year's month
-			if ( $this->mMonth > gmdate( 'n' ) ) {
+			if ( $this->mMonth > $dateTime->format( 'n' ) ) {
 				$year--;
 			}
 		}
