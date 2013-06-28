@@ -49,12 +49,7 @@ class MergeMessageFileList extends Maintenance {
 	public function execute() {
 		global $mmfl;
 
-		# Add setup files contained in file passed to --list-file
-		$lines = file( $this->getOption( 'list-file' ) );
-		if ( $lines === false ) {
-			$this->error( 'Unable to open list file.' );
-		}
-		$mmfl = array( 'setupFiles' => array_map( 'trim', $lines ) );
+		$mmfl = array( 'setupFiles' => $this->getSetupFiles() );
 
 		# Now find out files in a directory
 		$hasError = false;
@@ -85,6 +80,32 @@ class MergeMessageFileList extends Maintenance {
 		if ( $this->hasOption( 'quiet' ) ) {
 			$mmfl['quiet'] = true;
 		}
+	}
+
+	protected function getSetupFiles() {
+		global $IP;
+
+		// Add setup files contained in file passed to --list-file
+		$lines = file( $this->getOption( 'list-file' ) );
+		if ( $lines === false ) {
+			$this->error( 'Unable to open list file.' );
+		}
+
+		// omit any extension files that are not available
+		$setupFiles = array_filter(
+			array_map( 'trim', str_replace( '$IP', $IP, $lines ) ),
+			function( $fileName ) {
+				$isReadable = is_readable( $fileName );
+
+				if ( !$isReadable ) {
+					fwrite( STDERR, "Unable to read $fileName\n" );
+				}
+
+				return $isReadable;
+			}
+		);
+
+		return $setupFiles;
 	}
 }
 
