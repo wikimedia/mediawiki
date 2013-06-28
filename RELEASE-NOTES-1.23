@@ -39,6 +39,11 @@ production.
   hide their (unrelated) log entries.
 * Added $wgOpenSearchDefaultLimit defining the default number of entries to show
   on action=opensearch API call.
+* For namespaces with $wgNamespaceProtection (including the MediaWiki
+  namespace), the "protect" tab will be shown only if there are restriction
+  levels available that would restrict editing beyond what
+  $wgNamespaceProtection already applies. The protection form will offer only
+  those protection levels.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
