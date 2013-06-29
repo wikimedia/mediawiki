@@ -137,7 +137,7 @@
 	mw.toolbar = toolbar;
 
 	$( document ).ready( function () {
-		var buttons, i, b, $iframe, editBox, scrollTop, $editForm;
+		var i, b, $iframe, editBox, scrollTop, $editForm;
 
 		// currentFocus is used to determine where to insert tags
 		$currentFocused = $( '#wpTextbox1' );
@@ -145,13 +145,8 @@
 		// Populate the selector cache for $toolbar
 		$toolbar = $( '#toolbar' );
 
-		// Legacy: Merge buttons from mwCustomEditButtons
-		buttons = [].concat( queue, window.mwCustomEditButtons );
-		// Clear queue
-		queue.length = 0;
-
-		for ( i = 0; i < buttons.length; i++ ) {
-			b = buttons[i];
+		for ( i = 0; i < queue.length; i++ ) {
+			b = queue[i];
 			if ( $.isArray( b ) ) {
 				// Forwarded arguments array from mw.toolbar.addButton
 				insertButton.apply( toolbar, b );
@@ -160,6 +155,9 @@
 				insertButton( b );
 			}
 		}
+
+		// Clear queue
+		queue.length = 0;
 
 		// This causes further calls to addButton to go to insertion directly
 		// instead of to the queue.
