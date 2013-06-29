@@ -118,8 +118,7 @@
 		// Populate the selector cache for $toolbar
 		$toolbar = $( '#toolbar' );
 
-		// Legacy: Merge buttons from mwCustomEditButtons
-		buttons = [].concat( queue, window.mwCustomEditButtons );
+		buttons = [].concat( queue );
 		// Clear queue
 		queue.length = 0;
 		for ( i = 0; i < buttons.length; i++ ) {
