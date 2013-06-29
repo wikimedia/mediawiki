@@ -426,6 +426,8 @@ changes to languages because of Bugzilla reports.
 * SpecialPrefixindex methods namespacePrefixForm() and showPrefixChunk() have
   been made protected. They were accepting form variance arguments, this is now
   using properties in the SpecialPrefixindex class.
+* (bug 50310) BREAKING CHANGE: wikibits: Drop support for mwCustomEditButtons.
+  It defaults to an empty array and emits mw.log.warn when accessed.
 
 == Compatibility ==
 

@@ -137,7 +137,7 @@ window.killEvt = function( evt ) {
 };
 
 window.mwEditButtons = [];
-window.mwCustomEditButtons = []; // eg to add in MediaWiki:Common.js
+mw.log.deprecate( window, 'mwCustomEditButtons', [], 'Use mw.toolbar.addButton instead.' );
 
 window.escapeQuotes = function( text ) {
 	var re = new RegExp( "'", "g" );
