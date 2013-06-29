@@ -922,11 +922,21 @@ $1',
 'searchresultshead' => 'Лаха',
 'resultsperpage' => 'Карийначу дӀаяздаршан дукхалла:',
 'stub-threshold' => 'Кеч яран доза <a href="#" class="stub">коьртамогӀамна хьажоригаш</a> (байташках):',
+'recentchangesdays' => 'Керла нисдар гайта динахь:',
 'recentchangesdays-max' => 'Къезиг  $1 {{PLURAL:$1|дена}}',
+'recentchangescount' => 'Iад йитарца гойтуш долу нисдаршан дукхалла',
+'prefs-help-recentchangescount' => 'Гойту керла нисдарш, аӀонашан истори, тептарш.',
+'prefs-help-watchlist-token' => 'Кхуза къайлах догӀа яздича хьан тергаме спискан RSS-трансляци кхуллур ю. 
+Массо а догӀа хууш верг трансляци еша йиш йолуш ву. 
+Цундела цхьанне а ца хуу догӀа харжа деза. Хьан йиш ю ца хууш кхоьллина догӀа лелада: $1',
 'savedprefs' => 'Хьан гӀирс Ӏалашбина.',
 'timezonelegend' => 'Сахьатан аса:',
 'localtime' => 'Меттигера хан:',
 'servertime' => 'Сервера хан:',
+'timezoneregion-asia' => 'Ази',
+'timezoneregion-australia' => 'Австрали',
+'timezoneregion-indian' => 'Индин океан',
+'timezoneregion-pacific' => 'Тийна океан',
 'allowemail' => 'Магийта декъашхошна хьайга электрони почтехула кехат кхехьийта',
 'prefs-searchoptions' => 'Лаха',
 'defaultns' => 'Я лаха лахахь гайтинчу аннашкахь:',
@@ -1452,6 +1462,8 @@ PICT # тайп тайпан
 'restriction-level' => 'ТӀекхочаран локхалла:',
 
 # Restrictions (nouns)
+'restriction-edit' => 'Тадар',
+'restriction-move' => 'ЦӀе хийцар',
 'restriction-upload' => 'Чуйолуш',
 
 # Restriction levels
@@ -1781,6 +1793,7 @@ PICT # тайп тайпан
 'pageinfo-toolboxlink' => 'Агlонах болу бовзам',
 
 # Skin names
+'skinname-modern' => 'Кхузаманан',
 'skinname-vector' => 'Векторни',
 
 # Patrolling

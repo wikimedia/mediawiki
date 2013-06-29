@@ -1501,6 +1501,8 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'right-edituserjs' => 'Modificar le files JS de altere usatores',
 'right-editmyusercss' => 'Modificar le proprie files CSS de usator',
 'right-editmyuserjs' => 'Modificar le proprie files JavaScript de usator',
+'right-viewmywatchlist' => 'Vider le proprie observatorio',
+'right-editmywatchlist' => 'Modificar le proprie observatorio. Remarca que alcun actiones totevia adde paginas mesmo sin iste derecto.',
 'right-rollback' => 'Rapidemente revocar le modificationes del ultime usator que modificava un pagina particular',
 'right-markbotedits' => 'Marcar modificationes de reversion como facite per un bot',
 'right-noratelimit' => 'Non esser subjecte al limites de frequentia de actiones',
@@ -1562,6 +1564,8 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'action-userrights-interwiki' => 'modificar le derectos de usatores in altere wikis',
 'action-siteadmin' => 'blocar e disblocar le base de datos',
 'action-sendemail' => 'inviar e-mail',
+'action-editmywatchlist' => 'modificar le proprie observatorio',
+'action-viewmywatchlist' => 'vider le proprie observatorio',
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|modification|modificationes}}',
@@ -1616,7 +1620,7 @@ Le paginas presente in [[Special:Watchlist|tu observatorio]] appare in litteras 
 'reuploaddesc' => 'Cancellar e retornar al formulario de incargamento',
 'upload-tryagain' => 'Submitter description modificate del file',
 'uploadnologin' => 'Tu non ha aperite un session',
-'uploadnologintext' => 'Tu debe [[Special:UserLogin|aperir un session]] pro poter incargar files.',
+'uploadnologintext' => 'Tu debe $1 pro poter incargar files.',
 'upload_directory_missing' => 'Le directorio de incargamento ($1) manca, e le servitor de web non poteva crear lo.',
 'upload_directory_read_only' => 'Le servitor web non ha le permission de scriber in le directorio de incargamento ($1).',
 'uploaderror' => 'Error de incargamento',

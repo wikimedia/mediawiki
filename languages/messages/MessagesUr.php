@@ -1419,7 +1419,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'sp-contributions-submit' => 'تلاش',
 
 # What links here
-'whatlinkshere' => 'ادھر کس کا ربط ہے',
+'whatlinkshere' => 'ادھر کونسا ربط ہے',
 'whatlinkshere-title' => '"$1" سے مربوط صفحات',
 'whatlinkshere-page' => 'صفحہ:',
 'linkshere' => "'''[[:$1]]''' سے درج ذیل صفحات مربوط ہیں:",

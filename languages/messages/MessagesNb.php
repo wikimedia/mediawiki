@@ -2010,7 +2010,7 @@ Når den filtreres av en bruker, vises bare de sist opplastede versjonene av fil
 # File description page
 'file-anchor-link' => 'Fil',
 'filehist' => 'Filhistorikk',
-'filehist-help' => 'Klikk på en dato/klokkeslett for å se filen slik den var da.',
+'filehist-help' => 'Klikk på et tidspunkt for å vise filen slik den var på det tidspunktet.',
 'filehist-deleteall' => 'slett alt',
 'filehist-deleteone' => 'slett',
 'filehist-revert' => 'tilbakestill',

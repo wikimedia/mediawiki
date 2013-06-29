@@ -1458,6 +1458,7 @@ Ko vas drugi uporabniki kontaktirajo, jim vašega e-poštnega naslova ne bomo ra
 'userrights-changeable-col' => 'Skupine, ki jih lahko spremenite',
 'userrights-unchangeable-col' => 'Skupine, ki jih ne morete spremeniti',
 'userrights-conflict' => 'Spor uporabniških pravic! Prosimo, da ponovno uveljavite svoje spremembe.',
+'userrights-removed-self' => 'Uspešno ste odstranili svoje pravice. Tako sedaj ne morete več dostopati do te strani.',
 
 # Groups
 'group' => 'Skupina:',
@@ -1530,6 +1531,8 @@ Ko vas drugi uporabniki kontaktirajo, jim vašega e-poštnega naslova ne bomo ra
 'right-edituserjs' => 'Uredi JS datotek drugih uporabnikov',
 'right-editmyusercss' => 'Uredite svoje uporabniške datoteke CSS',
 'right-editmyuserjs' => 'Uredite svoje uporabniške datoteke JavaScript',
+'right-viewmywatchlist' => 'Ogledovanje svojega spiska nadzorov',
+'right-editmywatchlist' => 'Urejanje svojega spiska nadzorov. Pomnite, da bodo nekatera dejanja dodala strani tudi brez te pravice.',
 'right-rollback' => 'Hitro vračanje urejanj zadnjega uporabnika, ki je urejal določeno stran',
 'right-markbotedits' => 'Označi vrnjena urejanja kot urejanja botov',
 'right-noratelimit' => 'Omejitve dejavnosti ne veljajo',
@@ -1591,6 +1594,8 @@ Ko vas drugi uporabniki kontaktirajo, jim vašega e-poštnega naslova ne bomo ra
 'action-userrights-interwiki' => 'upravljanje uporabniških pravic za uporabnike drugih wikijev',
 'action-siteadmin' => 'zaklenitev ali odklepanje podatkovne baze',
 'action-sendemail' => 'pošiljanje e-sporočil',
+'action-editmywatchlist' => 'urejanje svojega spiska nadzorov',
+'action-viewmywatchlist' => 'ogleda svojega spiska nadzorov',
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|sprememba|spremembi|spremembe|sprememb|sprememb}}',
@@ -1645,7 +1650,7 @@ Strani iz [[Special:Watchlist|vašega spiska nadzorov]] so '''odebeljene'''.",
 'reuploaddesc' => 'Prekliči nalaganje in se vrni na obrazec za nalaganje',
 'upload-tryagain' => 'Vnesite spremenjen opis datoteke',
 'uploadnologin' => 'Niste prijavljeni',
-'uploadnologintext' => 'Za nalaganje datotek se [[Special:UserLogin|prijavite]].',
+'uploadnologintext' => 'Za nalaganje datotek se morate $1.',
 'upload_directory_missing' => 'Mapa za nalaganje datotek ($1) manjka in je ni bilo mogoče ustvariti s spletnim strežnikom.',
 'upload_directory_read_only' => 'V mapo za nalaganje datotek ($1) spletni strežnik ne more pisati.',
 'uploaderror' => 'Napaka',

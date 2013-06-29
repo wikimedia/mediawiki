@@ -1602,8 +1602,7 @@ Les pàgines de la vostra [[Special:Watchlist|llista de seguiment]] apareixen en
 'reuploaddesc' => 'Torna al formulari per apujar.',
 'upload-tryagain' => 'Envia la descripció del fitxer modificat',
 'uploadnologin' => 'No heu iniciat una sessió',
-'uploadnologintext' => "Heu d'[[Special:UserLogin|iniciar una sessió]]
-per a penjar-hi fitxers.",
+'uploadnologintext' => 'Heu de $1 per a penjar-hi fitxers.',
 'upload_directory_missing' => "No s'ha trobat el directori de càrrega ($1) i tampoc no ha pogut ser creat pel servidor web.",
 'upload_directory_read_only' => 'El servidor web no pot escriure al directori de càrrega ($1)',
 'uploaderror' => "S'ha produït un error en l'intent de carregar",

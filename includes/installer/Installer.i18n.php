@@ -616,6 +616,7 @@ Used as error message.',
 	'config-page-name' => '{{Identical|Name}}',
 	'config-page-options' => '{{Identical|Options}}',
 	'config-page-install' => '{{Identical|Install}}',
+	'config-page-complete' => '{{Identical|Complete}}',
 	'config-page-releasenotes' => '{{Identical|Release notes}}',
 	'config-page-copying' => 'This is a link to the full GPL text',
 	'config-restart' => 'Button text to confirm the installation procedure has to be restarted.',
@@ -768,6 +769,7 @@ See also:
 	'config-db-web-account-same' => 'checkbox label',
 	'config-db-web-create' => 'checkbox label',
 	'config-mysql-only-myisam-dep' => 'Used as warning message when mysql does not support the minimum suggested feature set.',
+	'config-mysql-binary' => '{{Identical|Binary}}',
 	'config-ns-generic' => 'Used as label for "namespace type" radio button.
 
 See also:
@@ -13410,7 +13412,7 @@ $messages['ms'] = array(
 	'config-localsettings-key' => 'Kunci naik taraf:',
 	'config-localsettings-badkey' => 'Kunci yang anda berikan tidak betul.',
 	'config-session-error' => 'Ralat ketika memulakan sesi: $1',
-	'config-your-language' => 'Bahasa kamu:',
+	'config-your-language' => 'Bahasa anda:',
 	'config-your-language-help' => 'Pilihkan bahasa untuk digunakan dalam proses pemasangan ini.',
 	'config-wiki-language' => 'Bahasa wiki:',
 	'config-wiki-language-help' => 'Pilih bahasa utama wiki yang bakal dicipta ini.',

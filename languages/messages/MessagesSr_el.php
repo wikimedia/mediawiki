@@ -18,6 +18,7 @@
  * @author Red Baron
  * @author Reedy
  * @author Slaven Kosanovic
+ * @author TheStefan12345
  * @author Жељко Тодоровић
  * @author Михајло Анђелковић
  * @author לערי ריינהארט
@@ -1129,7 +1130,7 @@ Nije dato nikakvo obrazloženje.',
 Izgleda da je obrisana.',
 'edit-conflict' => 'Sukob izmena.',
 'edit-no-change' => 'Vaša izmena je zanemarena jer nije bilo nikakvih izmena u tekstu.',
-'postedit-confirmation' => 'Vaša izmena ja sačuvana.',
+'postedit-confirmation' => 'Vaša izmena je sačuvana.',
 'edit-already-exists' => 'Ne mogu da napravim stranicu.
 Izgleda da ona već postoji.',
 'defaultmessagetext' => 'Podrazumevani tekst poruke',
