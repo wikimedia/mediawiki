@@ -67,7 +67,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		$this->addTables( array( 'logging', 'user', 'page' ) );
 		$this->addOption( 'STRAIGHT_JOIN' );
 		$this->addJoinConds( array(
-			'user' => array( 'JOIN',
+			'user' => array( 'LEFT JOIN',
 				'user_id=log_user' ),
 			'page' => array( 'LEFT JOIN',
 				array( 'log_namespace=page_namespace',
@@ -82,8 +82,8 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		) );
 
 		$this->addFieldsIf( array( 'log_id', 'page_id' ), $this->fld_ids );
-		$this->addFieldsIf( array( 'log_user', 'user_name' ), $this->fld_user );
-		$this->addFieldsIf( 'user_id', $this->fld_userid );
+		$this->addFieldsIf( array( 'log_user', 'log_user_text', 'user_name' ), $this->fld_user );
+		$this->addFieldsIf( 'log_user', $this->fld_userid );
 		$this->addFieldsIf( array( 'log_namespace', 'log_title' ), $this->fld_title || $this->fld_parsedcomment );
 		$this->addFieldsIf( 'log_comment', $this->fld_comment || $this->fld_parsedcomment );
 		$this->addFieldsIf( 'log_params', $this->fld_details );
@@ -336,10 +336,10 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				$vals['userhidden'] = '';
 			} else {
 				if ( $this->fld_user ) {
-					$vals['user'] = $row->user_name;
+					$vals['user'] = $row->user_name === null ? $row->log_user_text : $row->user_name;
 				}
 				if ( $this->fld_userid ) {
-					$vals['userid'] = $row->user_id;
+					$vals['userid'] = $row->log_user;
 				}
 
 				if ( !$row->log_user ) {
