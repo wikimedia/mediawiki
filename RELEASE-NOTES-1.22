@@ -331,6 +331,8 @@ changes to languages because of Bugzilla reports.
 * (bug 50785) A "null edit", that is, a save action in which no changes to the
   page text are made and no revision recorded, will no longer send refreshLinks
   jobs to the job table to update pages which use the edited page as a template.
+* (bug 50310) BREAKING CHANGE: mwCustomEditButtons has been removed in favour
+  of mw.toolbar.addButton.
 
 == Compatibility ==
 
