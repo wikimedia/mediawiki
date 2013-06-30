@@ -188,19 +188,65 @@ class Status {
 			}
 		}
 		if ( count( $this->errors ) == 1 ) {
-			$s = $this->getErrorMessage( $this->errors[0] );
+			$s = $this->getErrorMessage( $this->errors[0] )->plain();
 			if ( $shortContext ) {
 				$s = wfMessage( $shortContext, $s )->plain();
 			} elseif ( $longContext ) {
 				$s = wfMessage( $longContext, "* $s\n" )->plain();
 			}
 		} else {
-			$s = '* ' . implode( "\n* ",
-				$this->getErrorMessageArray( $this->errors ) ) . "\n";
+			$errors = $this->getErrorMessageArray( $this->errors );
+			foreach ( $errors as &$error ) {
+				$error = $error->plain();
+			}
+			$s = '* ' . implode( "\n* ", $errors ) . "\n";
 			if ( $longContext ) {
 				$s = wfMessage( $longContext, $s )->plain();
 			} elseif ( $shortContext ) {
 				$s = wfMessage( $shortContext, "\n$s\n" )->plain();
+			}
+		}
+		return $s;
+	}
+
+	/**
+	 * Get the error list as a Message object
+	 *
+	 * @param string $shortContext a short enclosing context message name, to
+	 *        be used when there is a single error
+	 * @param string $longContext a long enclosing context message name, for a list
+	 * @return Message
+	 */
+	function getMessage( $shortContext = false, $longContext = false ) {
+		if ( count( $this->errors ) == 0 ) {
+			if ( $this->ok ) {
+				$this->fatal( 'internalerror_info',
+					__METHOD__ . " called for a good result, this is incorrect\n" );
+			} else {
+				$this->fatal( 'internalerror_info',
+					__METHOD__ . ": Invalid result object: no error text but not OK\n" );
+			}
+		}
+		if ( count( $this->errors ) == 1 ) {
+			$s = $this->getErrorMessage( $this->errors[0] );
+			if ( $shortContext ) {
+				$s = wfMessage( $shortContext, $s );
+			} elseif ( $longContext ) {
+				$wrapper = new RawMessage( "* \$1\n" );
+				$wrapper->params( $s )->parse();
+				$s = wfMessage( $longContext, $wrapper );
+			}
+		} else {
+			$msgs =  $this->getErrorMessageArray( $this->errors );
+			$wrapper = new RawMessage( '* $' . implode( "\n* \$", range( 1, count( $msgs ) + 1 ) ) );
+			$wrapper->params( $msgs )->parse();
+
+			if ( $longContext ) {
+				$s = wfMessage( $longContext, $wrapper );
+			} elseif ( $shortContext ) {
+				$wrapper = new RawMessage( "\n\$1\n", $wrapper );
+				$wrapper->parse();
+				$s = wfMessage( $shortContext, $wrapper );
 			}
 		}
 		return $s;
@@ -230,7 +276,7 @@ class Status {
 		} else {
 			$msg = wfMessage( $error );
 		}
-		return $msg->plain();
+		return $msg;
 	}
 
 	/**
@@ -369,15 +415,6 @@ class Status {
 			}
 		}
 		return $replaced;
-	}
-
-	/**
-	 * Backward compatibility function for WikiError -> Status migration
-	 *
-	 * @return String
-	 */
-	public function getMessage() {
-		return $this->getWikiText();
 	}
 
 	/**

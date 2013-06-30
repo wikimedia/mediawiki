@@ -799,7 +799,7 @@ class Message {
 	 * @return Tuple(type, value)
 	 */
 	protected function extractParam( $param ) {
-		if ( is_array( $param ) ){
+		if ( is_array( $param ) ) {
 			if ( isset( $param['raw'] ) ) {
 				return array( 'after', $param['raw'] );
 			} elseif ( isset( $param['num'] ) ) {
@@ -823,6 +823,11 @@ class Message {
 				);
 				return array( 'before', '[INVALID]' );
 			}
+		} elseif ( $param instanceof Message ) {
+			// Message objects should not be before parameters because
+			// then they'll get double escaped. If the message needs to be
+			// escaped, it'll happen right here when we call toString().
+			return array( 'after', $param->toString() );
 		} else {
 			return array( 'before', $param );
 		}
