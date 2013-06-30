@@ -3750,22 +3750,17 @@ function wfBCP47( $code ) {
 	$codeSegment = explode( '-', $code );
 	$codeBCP = array();
 	foreach ( $codeSegment as $segNo => $seg ) {
-		if ( count( $codeSegment ) > 0 ) {
-			// when previous segment is x, it is a private segment and should be lc
-			if ( $segNo > 0 && strtolower( $codeSegment[( $segNo - 1 )] ) == 'x' ) {
-				$codeBCP[$segNo] = strtolower( $seg );
-			// ISO 3166 country code
-			} elseif ( ( strlen( $seg ) == 2 ) && ( $segNo > 0 ) ) {
-				$codeBCP[$segNo] = strtoupper( $seg );
-			// ISO 15924 script code
-			} elseif ( ( strlen( $seg ) == 4 ) && ( $segNo > 0 ) ) {
-				$codeBCP[$segNo] = ucfirst( strtolower( $seg ) );
-			// Use lowercase for other cases
-			} else {
-				$codeBCP[$segNo] = strtolower( $seg );
-			}
+		// when previous segment is x, it is a private segment and should be lc
+		if ( $segNo > 0 && strtolower( $codeSegment[( $segNo - 1 )] ) == 'x' ) {
+			$codeBCP[$segNo] = strtolower( $seg );
+		// ISO 3166 country code
+		} elseif ( ( strlen( $seg ) == 2 ) && ( $segNo > 0 ) ) {
+			$codeBCP[$segNo] = strtoupper( $seg );
+		// ISO 15924 script code
+		} elseif ( ( strlen( $seg ) == 4 ) && ( $segNo > 0 ) ) {
+			$codeBCP[$segNo] = ucfirst( strtolower( $seg ) );
+		// Use lowercase for other cases
 		} else {
-		// Use lowercase for single segment
 			$codeBCP[$segNo] = strtolower( $seg );
 		}
 	}
