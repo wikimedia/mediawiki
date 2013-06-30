@@ -116,7 +116,6 @@ class WfBCP47Test extends MediaWikiTestCase {
 			// a-DE
 			// ar-a-aaa-b-bbb-a-ccc
 
-			/*
 			// ISO 15924 :
 			array( 'sr-Cyrl', 'sr-Cyrl' ),
 			# @todo FIXME: Fix our function?
@@ -128,7 +127,6 @@ class WfBCP47Test extends MediaWikiTestCase {
 			array( 'uS', 'us' ),  # USA
 			array( 'Fr', 'fr' ),  # France
 			array( 'va', 'va' ),  # Holy See (Vatican City State)
-			 */
 		);
 	}
 }
