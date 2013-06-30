@@ -61,6 +61,34 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 	}
 
 	/**
+	 * @dataProvider provideMakeRedirectContent
+	 * @param Title|string $title Title object or string for Title::newFromText()
+	 * @param string $expected Serialized form of the content object built
+	 */
+	public function testMakeRedirectContent( $title, $expected ) {
+		if ( is_string( $title ) ) {
+			$title = Title::newFromText( $title );
+		}
+		$content = $this->handler->makeRedirectContent( $title );
+		global $wgContLang;
+		$this->assertEquals( $expected, $content->serialize(), var_export( $wgContLang->getNsText( 14 ), true ) );
+	}
+
+	public static function provideMakeRedirectContent() {
+		return array(
+			array( 'Hello', '#REDIRECT [[Hello]]' ),
+			array( 'Template:Hello', '#REDIRECT [[Template:Hello]]' ),
+			array( 'Hello#section', '#REDIRECT [[Hello#section]]' ),
+			array( 'user:john_doe#section', '#REDIRECT [[User:John doe#section]]' ),
+			array( 'MEDIAWIKI:FOOBAR', '#REDIRECT [[MediaWiki:FOOBAR]]' ),
+			array( 'Category:Foo', '#REDIRECT [[:Category:Foo]]' ),
+			array( Title::makeTitle( NS_MAIN, 'en:Foo' ), '#REDIRECT [[en:Foo]]' ),
+			array( Title::makeTitle( NS_MAIN, 'Foo', '', 'en' ), '#REDIRECT [[:en:Foo]]' ),
+			array( Title::makeTitle( NS_MAIN, 'Bar', 'fragment', 'google' ), '#REDIRECT [[google:Bar#fragment]]' ),
+		);
+	}
+
+	/**
 	 * @dataProvider dataIsSupportedFormat
 	 */
 	public function testIsSupportedFormat( $format, $supported ) {
