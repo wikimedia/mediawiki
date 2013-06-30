@@ -1190,15 +1190,15 @@ class SkinTemplate extends Skin {
 
 		// A print stylesheet is attached to all pages, but nobody ever
 		// figures that out. :)  Add a link...
-		if ( $out->isArticle() ) {
-			if ( !$out->isPrintable() ) {
-				$nav_urls['print'] = array(
-					'text' => $this->msg( 'printableversion' )->text(),
-					'href' => $this->getTitle()->getLocalURL(
-						$request->appendQueryValue( 'printable', 'yes', true ) )
-				);
-			}
+		if ( !$out->isPrintable() && ( $out->isArticle() || $this->getTitle()->isSpecialPage() ) ) {
+			$nav_urls['print'] = array(
+				'text' => $this->msg( 'printableversion' )->text(),
+				'href' => $this->getTitle()->getLocalURL(
+					$request->appendQueryValue( 'printable', 'yes', true ) )
+			);
+		}
 
+		if ( $out->isArticle() ) {
 			// Also add a "permalink" while we're at it
 			$revid = $this->getRevisionId();
 			if ( $revid ) {
