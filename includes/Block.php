@@ -809,7 +809,7 @@ class Block {
 	}
 
 	/**
-	 * Get the IP address at the start of the range in Hex form
+	 * Get the IP address at the end of the range in Hex form
 	 * @throws MWException
 	 * @return String IP in Hex form
 	 */
