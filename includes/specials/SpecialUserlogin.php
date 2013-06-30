@@ -221,8 +221,8 @@ class LoginForm extends SpecialPage {
 
 		$status = $this->addNewaccountInternal();
 		if ( !$status->isGood() ) {
-			$error = $this->getOutput()->parse( $status->getWikiText() );
-			$this->mainLoginForm( $error );
+			$error = $status->getMessage();
+			$this->mainLoginForm( $error->toString() );
 			return;
 		}
 
@@ -257,8 +257,8 @@ class LoginForm extends SpecialPage {
 		# Create the account and abort if there's a problem doing so
 		$status = $this->addNewAccountInternal();
 		if ( !$status->isGood() ) {
-			$error = $this->getOutput()->parse( $status->getWikiText() );
-			$this->mainLoginForm( $error );
+			$error = $status->getMessage();
+			$this->mainLoginForm( $error->toString() );
 			return false;
 		}
 
@@ -447,7 +447,9 @@ class LoginForm extends SpecialPage {
 		if ( !wfRunHooks( 'AbortNewAccount', array( $u, &$abortError ) ) ) {
 			// Hook point to add extra creation throttles and blocks
 			wfDebug( "LoginForm::addNewAccountInternal: a hook blocked creation\n" );
-			return Status::newFatal( new RawMessage( $abortError ) );
+			$abortError = new RawMessage( $abortError );
+			$abortError->text();
+			return Status::newFatal( $abortError );
 		}
 
 		// Hook point to check for exempt from account creation throttle
