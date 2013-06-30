@@ -60,7 +60,7 @@ class WikitextContentHandler extends TextContentHandler {
 	 */
 	public function makeRedirectContent( Title $destination ) {
 		$mwRedir = MagicWord::get( 'redirect' );
-		$redirectText = $mwRedir->getSynonym( 0 ) . ' [[' . $destination->getPrefixedText() . ']]';
+		$redirectText = $mwRedir->getSynonym( 0 ) . ' [[:' . $destination->getFullText() . ']]';
 
 		return new WikitextContent( $redirectText );
 	}
