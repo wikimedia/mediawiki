@@ -409,7 +409,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 						Xml::listDropDown( 'wpRevDeleteReasonList',
 							$this->msg( 'revdelete-reason-dropdown' )->inContentLanguage()->text(),
 							$this->msg( 'revdelete-reasonotherlist' )->inContentLanguage()->text(),
-							'', 'wpReasonDropDown', 1
+							$this->getRequest()->getText( 'wpRevDeleteReasonList', 'other' ), 'wpReasonDropDown', 1
 						) .
 					'</td>' .
 				"</tr><tr>\n" .
