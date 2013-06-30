@@ -111,6 +111,13 @@ class WfBCP47Test extends MediaWikiTestCase {
 			array( 'zh-cn-a-myext-x-private', 'zh-CN-a-myext-x-private' ),
 			array( 'en-a-myext-b-another', 'en-a-myext-b-another' ),
 
+			# Use lowercase for single segment
+			# ISO 3166-1-alpha-2 code
+			array( 'US', 'us' ),  # USA
+			array( 'uS', 'us' ),  # USA
+			array( 'Fr', 'fr' ),  # France
+			array( 'va', 'va' ),  # Holy See (Vatican City State)
+
 			# Invalid:
 			// de-419-DE
 			// a-DE
@@ -122,12 +129,6 @@ class WfBCP47Test extends MediaWikiTestCase {
 			# @todo FIXME: Fix our function?
 			array( 'SR-lATN', 'sr-Latn' ),
 			array( 'fr-latn', 'fr-Latn' ),
-			// Use lowercase for single segment
-			// ISO 3166-1-alpha-2 code
-			array( 'US', 'us' ),  # USA
-			array( 'uS', 'us' ),  # USA
-			array( 'Fr', 'fr' ),  # France
-			array( 'va', 'va' ),  # Holy See (Vatican City State)
 			 */
 		);
 	}
