@@ -158,7 +158,7 @@ class LoginForm extends SpecialPage {
 
 		$this->load();
 
-		// Check for [[Special:Userlogin/signup]. This affects form display and
+		// Check for [[Special:Userlogin/signup]]. This affects form display and
 		// page title.
 		if ( $subPage == 'signup' ) {
 			$this->mType = 'signup';
