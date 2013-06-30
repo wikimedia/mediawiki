@@ -1887,7 +1887,7 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 	public function __construct( $params ) {
 		$missing = array_diff( self::$requiredParams, array_keys( $params ) );
 		if ( $missing ) {
-			throw HTMLFormFieldRequiredOptionsException::create( $this, $missing );
+			throw new HTMLFormFieldRequiredOptionsException( $this, $missing );
 		}
 		parent::__construct( $params );
 	}
@@ -2803,8 +2803,8 @@ interface HTMLNestedFilterable {
 }
 
 class HTMLFormFieldRequiredOptionsException extends MWException {
-	static public function create( HTMLFormField $field, array $missing ) {
-		return new self( sprintf(
+	public function __construct( HTMLFormField $field, array $missing ) {
+		parent::__construct( sprintf(
 			"Form type `%s` expected the following parameters to be set: %s",
 			get_class( $field ),
 			implode( ', ', $missing )
