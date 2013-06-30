@@ -115,20 +115,6 @@ class WfBCP47Test extends MediaWikiTestCase {
 			// de-419-DE
 			// a-DE
 			// ar-a-aaa-b-bbb-a-ccc
-
-			/*
-			// ISO 15924 :
-			array( 'sr-Cyrl', 'sr-Cyrl' ),
-			# @todo FIXME: Fix our function?
-			array( 'SR-lATN', 'sr-Latn' ),
-			array( 'fr-latn', 'fr-Latn' ),
-			// Use lowercase for single segment
-			// ISO 3166-1-alpha-2 code
-			array( 'US', 'us' ),  # USA
-			array( 'uS', 'us' ),  # USA
-			array( 'Fr', 'fr' ),  # France
-			array( 'va', 'va' ),  # Holy See (Vatican City State)
-			 */
 		);
 	}
 }
