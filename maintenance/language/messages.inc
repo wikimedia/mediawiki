@@ -780,6 +780,7 @@ $wgMessageStructure = array(
 		'undo-failure',
 		'undo-norev',
 		'undo-summary',
+		'undo-summary-username-hidden',
 	),
 	'cantcreateaccount' => array(
 		'cantcreateaccounttitle',

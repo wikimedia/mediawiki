@@ -1848,6 +1848,8 @@ See also:
 
 {{Identical|Undo}}',
 'undo-summary' => 'Edit summary for an undo action.{{Identical|Undo}}',
+'undo-summary-username-hidden' => 'Edit summary for an undo action where the username of the old revision is hidden.
+$1 is the revision ID being undone',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Used as title of the error message {{msg-mw|Cantcreateaccount-text}}.',
