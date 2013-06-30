@@ -492,8 +492,6 @@ window.removeHandler = function( element, remove, handler ) {
 		element.detachEvent( 'on' + remove, handler );
 	}
 };
-// note: all skins should call runOnloadHook() at the end of html output,
-//      so the below should be redundant. It's there just in case.
 window.hookEvent( 'load', window.runOnloadHook );
 
 if ( isIE6 ) {
