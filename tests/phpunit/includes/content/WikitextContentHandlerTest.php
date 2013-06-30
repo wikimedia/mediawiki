@@ -13,6 +13,9 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 	public function setUp() {
 		parent::setUp();
 
+		global $wgContLang;
+		$wgContLang->resetNamespaces();
+
 		$this->handler = ContentHandler::getForModelID( CONTENT_MODEL_WIKITEXT );
 	}
 
@@ -57,6 +60,33 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 			array( null, true ),
 			array( CONTENT_FORMAT_WIKITEXT, true ),
 			array( 99887766, false ),
+		);
+	}
+
+	/**
+	 * @dataProvider provideMakeRedirectContent
+	 * @param Title|string $title Title object or string for Title::newFromText()
+	 * @param string $expected Serialized form of the content object built
+	 */
+	public function testMakeRedirectContent( $title, $expected ) {
+		if ( is_string( $title ) ) {
+			$title = Title::newFromText( $title );
+		}
+		$content = $this->handler->makeRedirectContent( $title );
+		$this->assertEquals( $expected, $content->serialize() );
+	}
+
+	public static function provideMakeRedirectContent() {
+		return array(
+			array( 'Hello', '#REDIRECT [[Hello]]' ),
+			array( 'Template:Hello', '#REDIRECT [[Template:Hello]]' ),
+			array( 'Hello#section', '#REDIRECT [[Hello#section]]' ),
+			array( 'user:john_doe#section', '#REDIRECT [[User:John doe#section]]' ),
+			array( 'MEDIAWIKI:FOOBAR', '#REDIRECT [[MediaWiki:FOOBAR]]' ),
+			array( 'Category:Foo', '#REDIRECT [[:Category:Foo]]' ),
+			array( Title::makeTitle( NS_MAIN, 'en:Foo' ), '#REDIRECT [[en:Foo]]' ),
+			array( Title::makeTitle( NS_MAIN, 'Foo', '', 'en' ), '#REDIRECT [[:en:Foo]]' ),
+			array( Title::makeTitle( NS_MAIN, 'Bar', 'fragment', 'google' ), '#REDIRECT [[google:Bar#fragment]]' ),
 		);
 	}
 
