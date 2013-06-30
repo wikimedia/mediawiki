@@ -220,7 +220,7 @@ class LoginForm extends SpecialPage {
 
 		$status = $this->addNewaccountInternal();
 		if ( !$status->isGood() ) {
-			$error = $this->getOutput()->parse( $status->getWikiText() );
+			$error = $status->getWikiText();
 			$this->mainLoginForm( $error );
 			return;
 		}
@@ -256,7 +256,7 @@ class LoginForm extends SpecialPage {
 		# Create the account and abort if there's a problem doing so
 		$status = $this->addNewAccountInternal();
 		if ( !$status->isGood() ) {
-			$error = $this->getOutput()->parse( $status->getWikiText() );
+			$error = $status->getWikiText();
 			$this->mainLoginForm( $error );
 			return false;
 		}
