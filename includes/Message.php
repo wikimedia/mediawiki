@@ -670,6 +670,11 @@ class Message {
 			// Replace number params always in before step for now.
 			// No support for combined raw and num params
 			return array( 'before', $this->language->formatNum( $param['num'] ) );
+		} elseif ( $param instanceof Message ) {
+			// Message objects should not be before parameters because
+			// then they'll get double escaped. If the message needs to be
+			// escaped, it'll happen right here when we call toString().
+			return array( 'after', $param->toString() );
 		} elseif ( !is_array( $param ) ) {
 			return array( 'before', $param );
 		} else {
