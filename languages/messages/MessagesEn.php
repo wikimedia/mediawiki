@@ -3043,7 +3043,7 @@ someone else has edited or rolled back the page already.
 The last edit to the page was by [[User:$3|$3]] ([[User talk:$3|talk]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'                => "The edit summary was: \"''\$1''\".",
 'revertpage'                 => 'Reverted edits by [[Special:Contributions/$2|$2]] ([[User talk:$2|talk]]) to last revision by [[User:$1|$1]]',
-'revertpage-nouser'          => 'Reverted edits by (username removed) to last revision by [[User:$1|$1]]',
+'revertpage-nouser'          => 'Reverted edits by a hidden user to last revision by [[User:$1|$1]]',
 'rollback-success'           => 'Reverted edits by $1;
 changed back to last revision by $2.',
 
