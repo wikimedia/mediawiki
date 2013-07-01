@@ -47,6 +47,9 @@ class ResourceLoader {
 	/** array( 'source-id' => array( 'loadScript' => 'http://.../load.php' ) ) **/
 	protected $sources = array();
 
+	/** @var bool */
+	protected $hasErrors = false;
+
 	/* Protected Methods */
 
 	/**
@@ -174,7 +177,7 @@ class ResourceLoader {
 			// Save filtered text to Memcached
 			$cache->set( $key, $result );
 		} catch ( Exception $exception ) {
-			wfDebugLog( 'resourceloader', __METHOD__ . ": minification failed: $e" );
+			wfDebugLog( 'resourceloader', __METHOD__ . ": minification failed: $exception" );
 			$this->hasErrors = true;
 			// Return exception as a comment
 			$result = $this->makeComment( $exception->__toString() );
@@ -277,7 +280,7 @@ class ResourceLoader {
 		global $IP, $wgEnableJavaScriptTest;
 
 		if ( $wgEnableJavaScriptTest !== true ) {
-			throw new MWException( 'Attempt to register JavaScript test modules but <tt>$wgEnableJavaScriptTest</tt> is false. Edit your <tt>LocalSettings.php</tt> to enable it.' );
+			throw new MWException( 'Attempt to register JavaScript test modules but <code>$wgEnableJavaScriptTest</code> is false. Edit your <code>LocalSettings.php</code> to enable it.' );
 		}
 
 		wfProfileIn( __METHOD__ );
@@ -389,6 +392,7 @@ class ResourceLoader {
 			}
 			// Construct the requested object
 			$info = $this->moduleInfos[$name];
+			/** @var ResourceLoaderModule $object */
 			if ( isset( $info['object'] ) ) {
 				// Object given in info array
 				$object = $info['object'];
@@ -443,7 +447,6 @@ class ResourceLoader {
 
 		wfProfileIn( __METHOD__ );
 		$errors = '';
-		$this->hasErrors = false;
 
 		// Split requested modules into two groups, modules and missing
 		$modules = array();
@@ -454,7 +457,7 @@ class ResourceLoader {
 				// Do not allow private modules to be loaded from the web.
 				// This is a security issue, see bug 34907.
 				if ( $module->getGroup() === 'private' ) {
-					wfDebugLog( 'resourceloader', __METHOD__ . ": request for private module denied: $e" );
+					wfDebugLog( 'resourceloader', __METHOD__ . ": request for private module '$name' denied" );
 					$this->hasErrors = true;
 					// Add exception to the output as a comment
 					$errors .= $this->makeComment( "Cannot show private module \"$name\"" );
@@ -544,7 +547,7 @@ class ResourceLoader {
 	 * Send content type and last modified headers to the client.
 	 * @param $context ResourceLoaderContext
 	 * @param string $mtime TS_MW timestamp to use for last-modified
-	 * @param bool $error Whether there are commented-out errors in the response
+	 * @param bool $errors Whether there are commented-out errors in the response
 	 * @return void
 	 */
 	protected function sendResponseHeaders( ResourceLoaderContext $context, $mtime, $errors ) {
@@ -1132,6 +1135,18 @@ class ResourceLoader {
 	/**
 	 * Build a query array (array representation of query string) for load.php. Helper
 	 * function for makeLoaderURL().
+	 *
+	 * @param array $modules
+	 * @param string $lang
+	 * @param string $skin
+	 * @param string $user
+	 * @param string $version
+	 * @param bool $debug
+	 * @param string $only
+	 * @param bool $printable
+	 * @param bool $handheld
+	 * @param array $extraQuery
+	 *
 	 * @return array
 	 */
 	public static function makeLoaderQuery( $modules, $lang, $skin, $user = null, $version = null, $debug = false, $only = null,
