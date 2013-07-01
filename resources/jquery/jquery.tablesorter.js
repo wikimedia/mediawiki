@@ -287,8 +287,10 @@
 
 	function buildHeaders( table, msg ) {
 		var maxSeen = 0,
+			colspanOffset = 0,
 			longest,
-			realCellIndex = 0,
+			columns,
+			i,
 			$tableHeaders = $( 'thead:eq(0) > tr', table );
 		if ( $tableHeaders.length > 1 ) {
 			$tableHeaders.each( function () {
@@ -299,13 +301,23 @@
 			});
 			$tableHeaders = $( longest );
 		}
-		$tableHeaders = $tableHeaders.children( 'th' ).each( function ( index ) {
-			this.column = realCellIndex;
 
-			var colspan = this.colspan;
-			colspan = colspan ? parseInt( colspan, 10 ) : 1;
-			realCellIndex += colspan;
+		// as each header can span over multiple columns (using colspan=N),
+		// we have to bidirectionally map headers to their columns and columns to their headers
+		table.headerToColumns = [];
+		table.columnToHeader = [];
 
+		$tableHeaders = $tableHeaders.children( 'th' ).each( function ( headerIndex ) {
+			columns = [];
+			for ( i = 0; i < this.colSpan; i++ ) {
+				table.columnToHeader[ colspanOffset + i ] = headerIndex;
+				columns.push( colspanOffset + i );
+			}
+
+			table.headerToColumns[ headerIndex ] = columns;
+			colspanOffset += this.colSpan;
+
+			this.headerIndex = headerIndex;
 			this.order = 0;
 			this.count = 0;
 
@@ -318,7 +330,7 @@
 			}
 
 			// add cell to headerList
-			table.config.headerList[index] = this;
+			table.config.headerList[headerIndex] = this;
 		} );
 
 		return $tableHeaders;
@@ -645,7 +657,6 @@
 				return $tables.each( function ( i, table ) {
 					// Declare and cache.
 					var $headers, cache, config,
-						headerToColumns, columnToHeader, colspanOffset,
 						$table = $( table ),
 						firstTime = true;
 
@@ -713,22 +724,6 @@
 						table.config.parsers = buildParserCache( table, $headers );
 					}
 
-					// as each header can span over multiple columns (using colspan=N),
-					// we have to bidirectionally map headers to their columns and columns to their headers
-					headerToColumns = [];
-					columnToHeader = [];
-					colspanOffset = 0;
-					$headers.each( function ( headerIndex ) {
-						var columns = [];
-						for ( var i = 0; i < this.colSpan; i++ ) {
-							columnToHeader[ colspanOffset + i ] = headerIndex;
-							columns.push( colspanOffset + i );
-						}
-
-						headerToColumns[ headerIndex ] = columns;
-						colspanOffset += this.colSpan;
-					} );
-
 					// Apply event handling to headers
 					// this is too big, perhaps break it out?
 					$headers.filter( ':not(.unsortable)' ).click( function ( e ) {
@@ -758,7 +753,7 @@
 
 							var cell = this;
 							// Get current column index
-							var columns = headerToColumns[this.column];
+							var columns = table.headerToColumns[ this.headerIndex ];
 							var newSortList = $.map( columns, function (c) {
 								// jQuery "helpfully" flattens the arrays...
 								return [[c, cell.order]];
@@ -793,10 +788,10 @@
 							}
 
 							// Reset order/counts of cells not affected by sorting
-							setHeadersOrder( $headers, config.sortList, headerToColumns );
+							setHeadersOrder( $headers, config.sortList, table.headerToColumns );
 
 							// Set CSS for headers
-							setHeadersCss( $table[0], $headers, config.sortList, sortCSS, sortMsg, columnToHeader );
+							setHeadersCss( $table[0], $headers, config.sortList, sortCSS, sortMsg, table.columnToHeader );
 							appendToTable(
 								$table[0], multisort( $table[0], config.sortList, cache )
 							);
@@ -837,13 +832,13 @@
 
 						// Set each column's sort count to be able to determine the correct sort
 						// order when clicking on a header cell the next time
-						setHeadersOrder( $headers, sortList, headerToColumns );
+						setHeadersOrder( $headers, sortList, table.headerToColumns );
 
 						// re-build the cache for the tbody cells
 						cache = buildCache( table );
 
 						// set css for headers
-						setHeadersCss( table, $headers, sortList, sortCSS, sortMsg, columnToHeader );
+						setHeadersCss( table, $headers, sortList, sortCSS, sortMsg, table.columnToHeader );
 
 						// sort the table and append it to the dom
 						appendToTable( table, multisort( table, sortList, cache ) );
