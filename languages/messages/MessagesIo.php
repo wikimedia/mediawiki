@@ -1066,7 +1066,6 @@ Volutez kontrolar <strong>[[:$1]]</strong> se vu ne esas certa pri chanjar olu.
 'unwatch' => 'Ne plus surveyar',
 'unwatchthispage' => 'Ne plus surveyar',
 'notanarticle' => 'Ne esas artiklo',
-'watchnochange' => 'Nula artikli ek vua listo di surveyaji redaktesis dum la tempo montrata.',
 'watchmethod-recent' => 'serchante recenta chanji en la listo di surveyaji',
 'watchmethod-list' => 'serchante recenta redakti en la listo di surveyaji',
 'watchlistcontains' => 'Vua listo di surveyaji kontenas $1 {{PLURAL:$1|pagino|pagini}}.',

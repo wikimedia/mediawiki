@@ -946,7 +946,6 @@ Kaberê bini ke şıma de kewti irtıbat, adresa e-postey şıma eşkera nêbena
 'recentchangeslinked' => 'Ney sero vurnayene',
 'recentchangeslinked-toolbox' => 'Ney sero vurnayene',
 'recentchangeslinked-title' => 'Heqa "$1"i de vurnais',
-'recentchangeslinked-noresult' => 'Pelanê ke link biye ey vurnayîşî çino.',
 'recentchangeslinked-summary' => "Lista cêrêne, pela bêlikerdiye rê (ya ki karberunê kategoriya bêlikerdiye rê) pelunê girêdaoğu de lista de vurnaisê peyênuna.
 [[Special:Watchlist|Lista sımawa şêrkedişi de]] peli be nusto '''qolınd''' bêli kerdê.",
 'recentchangeslinked-page' => 'Namê pele:',

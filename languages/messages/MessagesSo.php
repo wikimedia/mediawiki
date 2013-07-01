@@ -901,7 +901,6 @@ E-mailkaada mala sheegaayo markii ee dadka kale kula soo xiriirayaan.',
 'recentchangeslinked' => "Isbedelada la'xiriira",
 'recentchangeslinked-toolbox' => "Isbedelada la'xiriira",
 'recentchangeslinked-title' => 'Wax bedelka la xiriiro "$1"',
-'recentchangeslinked-noresult' => 'Wax isbedel ah laguma sameyn boggaga ilaa xiligii la doortay.',
 'recentchangeslinked-summary' => "Liiskaan waa badalyada mardhow lagu sameeyay bogyaasha la xiriiray boggaga khaaska ah  (ama ka mid ahaa qeybaha khaaska ah).
 Boggaga ku jiro  [[Special:Watchlist|liiskaaga waardiyaha]] waa '''butac'''.",
 'recentchangeslinked-page' => 'Magaca bogga:',

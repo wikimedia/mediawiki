@@ -973,7 +973,6 @@ Vini re se indeksat e tyne të përmbajtjes së {{SITENAME}} munden me qenë të
 'resetprefs' => 'Fshij ndryshimet e paruejtuna',
 'restoreprefs' => 'Kthe tâna përcaktimet si në fillim',
 'prefs-editing' => 'Tue redaktue',
-'prefs-edit-boxsize' => 'Madhësia e dritares redaktuese.',
 'rows' => 'Rreshta:',
 'columns' => 'Kolona:',
 'searchresultshead' => 'Kërkimi',

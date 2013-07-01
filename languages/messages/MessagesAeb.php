@@ -1074,7 +1074,6 @@ $1",
 'recentchangeslinked' => 'تغييرات ذات علاقة',
 'recentchangeslinked-toolbox' => 'تغييرات ذات علاقة',
 'recentchangeslinked-title' => 'التغييرات المرتبطة ب "$1"',
-'recentchangeslinked-noresult' => 'لم تحدث تعديلات في الصفحات التي لها وصلات هنا خلال الفترة المحددة.',
 'recentchangeslinked-summary' => "هذه قائمة بالتغييرات التي تمت حديثا للصفحات الموصولة من صفحة معينة (أو إلى الأعضاء ضمن تصنيف معين).
 الصفحات في [[Special:Watchlist|قائمة مراقبتك]] '''عريضة'''",
 'recentchangeslinked-page' => 'اسم الصفحة:',

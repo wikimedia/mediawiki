@@ -612,7 +612,8 @@ See also:
 'protectedpage' => "This message is displayed when trying to edit a page you can't edit because it has been protected.
 
 This message is the title for the message {{msg-mw|protectedpagetext}}.",
-'jumpto' => '"Jump to" navigation links. Hidden by default in monobook skin. The format is: {{int:jumpto}} [[MediaWiki:Jumptonavigation/{{SUBPAGENAME}}|{{int:jumptonavigation}}]], [[MediaWiki:Jumptosearch/{{SUBPAGENAME}}|{{int:jumptosearch}}]].',
+'jumpto' => '"Jump to" navigation links. Hidden by default in monobook skin. The format is: {{int:jumpto}} [[MediaWiki:Jumptonavigation/{{SUBPAGENAME}}|{{int:jumptonavigation}}]], [[MediaWiki:Jumptosearch/{{SUBPAGENAME}}|{{int:jumptosearch}}]].
+{{Identical|Jump to}}',
 'jumptonavigation' => 'Part of the "jump to" navigation links. Hidden by default in monobook skin. The format is: [[MediaWiki:Jumpto/{{SUBPAGENAME}}|{{int:jumpto}}]] {{int:jumptonavigation}}, [[MediaWiki:Jumptosearch/{{SUBPAGENAME}}|{{int:jumptosearch}}]].
 
 {{Identical|Navigation}}',
@@ -2426,7 +2427,8 @@ $1 is the relevance of this result in per cent.
 
 {{Identical|Relevance: $1%}}',
 'search-redirect' => "\$1 is a link to the redirect to the page (so, \$1 is the page that the search result is redirected '''from'''). \"Redirect\" is a noun here, not a verb.",
-'search-section' => 'This text will be shown on the search result listing after the page title of a result if the search algorithm thinks that section is more relevant than the rest of the page. $1 is a section title.',
+'search-section' => 'This text will be shown on the search result listing after the page title of a result if the search algorithm thinks that section is more relevant than the rest of the page. $1 is a section title.
+{{Identical|Section}}',
 'search-suggest' => 'Used for "Did you mean" suggestions:
 * $1 - suggested link',
 'search-interwiki-caption' => 'Used in [[Special:Search]], when showing search results from other wikis.',
@@ -2546,7 +2548,6 @@ See also:
 'prefs-editing' => 'Title of a tab in [[Special:Preferences]].
 When changing this message, please also update {{msg-mw|vector-editwarning-warning}} which references to this message.
 {{Identical|Editing}}',
-'prefs-edit-boxsize' => 'Used on [[Special:Preferences]].',
 'rows' => 'Used on [[Special:Preferences]], "Editing" section in the "Size of editing window" fieldset',
 'columns' => 'Used on [[Special:Preferences]], "Editing" section in the "Size of editing window" fieldset',
 'searchresultshead' => 'This is the label of the tab in [[Special:Preferences|my preferences]] which contains options for searching the wiki.
@@ -2605,7 +2606,6 @@ This option lets your time zone setting use the one that is used on the wiki (of
 'prefs-common-css-js' => 'Used as label in [[Special:Preferences#mw-prefsection-rendering|preferences]], tab "Appearance", section "Skin".',
 'prefs-reset-intro' => 'Used in [[Special:Preferences/reset]].',
 'prefs-emailconfirm-label' => 'Sub-heading in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.',
-'prefs-textboxsize' => "Header for the box specifying the size of the editing window, displayed on the 'editing' tab of the [[Special:Preferences|user preferences]] special page.",
 'youremail' => 'Label of the e-mail text box of the "E-mail options" section of [[Special:Preferences]].
 Also used on create account form.
 
@@ -6979,13 +6979,15 @@ See also:
 'pageinfo-redirectsto-info' => 'Text to put in parentheses for the link to the action=info of the redirect target.
 {{Identical|Info}}',
 'pageinfo-contentpage' => 'Key for the row shown on [{{fullurl:News|action=info}} action=info] if this page is [[mw:Manual:Article count|counted as a content page]]',
-'pageinfo-contentpage-yes' => 'Yes, this page is a content page',
+'pageinfo-contentpage-yes' => 'Yes, this page is a content page.
+{{Identical|Yes}}',
 'pageinfo-protect-cascading' => 'Key for the row which shows whether this page has cascading protection enabled
 *{{msg-mw|Pageinfo-protect-cascading}}
 *{{msg-mw|Pageinfo-protect-cascading-yes}}',
 'pageinfo-protect-cascading-yes' => 'Yes, protections are cascading from here
 *{{msg-mw|Pageinfo-protect-cascading}}
-*{{msg-mw|Pageinfo-protect-cascading-yes}}',
+*{{msg-mw|Pageinfo-protect-cascading-yes}}
+{{Identical|Yes}}',
 'pageinfo-protect-cascading-from' => 'Key for a list of pages where protections are cascading from',
 'pageinfo-category-info' => 'Showed on the page displaying information about the current page (add "?action=info" to the URL)',
 'pageinfo-category-pages' => 'See also:
@@ -8455,7 +8457,8 @@ See also:
 
 {{Identical|Edit raw watchlist}}',
 'watchlistedit-raw-explain' => 'An introduction/explanation about the [[Special:Watchlist/raw|raw edit watchlist function]].',
-'watchlistedit-raw-titles' => 'Text above edit box containing items being watched on [[Special:Watchlist/raw]].',
+'watchlistedit-raw-titles' => 'Text above edit box containing items being watched on [[Special:Watchlist/raw]].
+{{Identical|Title}}',
 'watchlistedit-raw-submit' => 'Text of submit button on [[Special:Watchlist/raw]].
 
 See also:

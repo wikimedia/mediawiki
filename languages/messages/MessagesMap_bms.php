@@ -935,7 +935,6 @@ Ningen Rika kudu eling nek indeks Google kanggo {{SITENAME}} bisa baen isine anu
 'resetprefs' => 'Bersihna owah-owahan sing ora disimpen',
 'restoreprefs' => 'Balekna kabeh setelan gawane',
 'prefs-editing' => 'Panyuntingan',
-'prefs-edit-boxsize' => 'Ukuran kotak panyuntingan.',
 'rows' => 'Baris:',
 'searchresultshead' => 'Goleti',
 'resultsperpage' => 'Hasil saben kaca:',
@@ -978,7 +977,6 @@ Kiye PIN acak sing teyeng digunakna Rika: $1',
 'prefs-reset-intro' => 'Rika teyeng nggunakna kaca kiye nggo mbalekna preferensi-ne Rika balik maring setelan baku situs.
 Pambalikan kiye ora teyeng dibatalna.',
 'prefs-emailconfirm-label' => 'Konfirmasi imel:',
-'prefs-textboxsize' => 'Ukuran kotak suntingan',
 'youremail' => 'Imel:',
 'username' => 'Jeneng panganggo:',
 'uid' => 'ID panganggo:',
@@ -1201,7 +1199,6 @@ Aja kuatir, alamat imele Rika ora ditidokna dong pangganggo sejen ngontak Rika.'
 'recentchangeslinked-feed' => 'Pengobahan terkait',
 'recentchangeslinked-toolbox' => 'Pengobahan terkait',
 'recentchangeslinked-title' => 'Owah-owahan sing ana gandhèngané karo "$1"',
-'recentchangeslinked-noresult' => 'Ora ana owah-owahan nang kaca-kaca kagandhèng kiye salawasé periode sing wis ditemtokaké.',
 'recentchangeslinked-summary' => "Kaca astamiwa kiye isine daftar owahan anyar sekang kaca-kaca sing kagandheng karo kaca terkait (utawa anggota sawijining kategori) .
 Kaca-kaca sing mlebu [[Special:Watchlist|pangawasane Rika]] ditandani ''kandel''.",
 'recentchangeslinked-page' => 'Jeneng kaca:',

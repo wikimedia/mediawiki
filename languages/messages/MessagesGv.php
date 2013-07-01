@@ -762,7 +762,6 @@ My bailliu eh y chiarail, bee eh ymmydit son cur gys lieh y chur dhyt er son yn 
 'recentchangeslinked-feed' => 'Caghlaaghyn-vooinjerys',
 'recentchangeslinked-toolbox' => 'Caghlaaghyn-vooinjerys',
 'recentchangeslinked-title' => 'Caghlaaghyn bentyn rish "$1"',
-'recentchangeslinked-noresult' => 'Cha nel caghlaa erbee er duillagyn kianglt car y traa taishbynit.',
 'recentchangeslinked-summary' => "Shoh rolley caghlaaghyn va jeant er duillagyn kianglt veih duillag sonrit (ny er olteynyn ronney sonrit).<br />
 Ta duillagyn er [[Special:Watchlist|dty rolley arrey]] ayns '''clou trome'''.",
 'recentchangeslinked-page' => 'Ennym y duillag:',

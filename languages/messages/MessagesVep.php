@@ -1001,7 +1001,6 @@ Otkat sil'mnägubale üks-se, miše {{SITENAME}}-saitan sädäimišt voib olda v
 'resetprefs' => 'Čuta kaičematomad toižetused',
 'restoreprefs' => 'Endištada kaik augotižjärgendused',
 'prefs-editing' => 'Redaktiruind',
-'prefs-edit-boxsize' => 'Redaktiruindan iknan suruz.',
 'rows' => 'Rivid:',
 'columns' => 'Pachid:',
 'searchresultshead' => 'Ecind',
@@ -1042,7 +1041,6 @@ Otkat sil'mnägubale üks-se, miše {{SITENAME}}-saitan sädäimišt voib olda v
 'prefs-reset-intro' => "Tö sat kävutada nece lehtpol', miše pördutada teiden järgendused saitan ezijärgendusidennoks.
 Necidä tegendad ei sa toižetada.",
 'prefs-emailconfirm-label' => 'E-počtan vahvištand:',
-'prefs-textboxsize' => 'Redaktiruindan iknan suruz',
 'youremail' => 'E-počt:',
 'username' => 'Kävutajan nimi:',
 'uid' => 'Kävutajan nomer:',
@@ -1270,7 +1268,6 @@ Ku tö kirjutat sen, nece nimi kävutadas, miše ozutada lehtpolen toižetajad.'
 'recentchangeslinked-feed' => 'Sidotud toižetused',
 'recentchangeslinked-toolbox' => 'Sidotud toižetused',
 'recentchangeslinked-title' => '"$1"-lehtpol\'he sidotud toižetused',
-'recentchangeslinked-noresult' => 'Sidotud lehtpolil ei olend toižetusid anttud pordon aigan.',
 'recentchangeslinked-summary' => "Neciš nimikirjuteses om tantoižid toižetusid lehtpoliš, kudambid kosketab ozutadud lehtpol'.
 [[Special:Watchlist|Teiden kaclendnimikirjutesen]] lehtpoled oma erigoittud lihavoitud šriftal.",
 'recentchangeslinked-page' => 'Lehtpolen nimi:',

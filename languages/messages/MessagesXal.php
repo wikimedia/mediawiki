@@ -744,7 +744,6 @@ $1',
 'recentchangeslinked-feed' => 'Садта чикллһн',
 'recentchangeslinked-toolbox' => 'Садта чикллһн',
 'recentchangeslinked-title' => '$1 садта сольлһн',
-'recentchangeslinked-noresult' => 'Садта халх заасн цагт сольсн уга',
 'recentchangeslinked-summary' => "Эн тер халх заалдг халхсин (аль тер янзин халхсин) шидрә сольлһн.
 Тана [[Special:Watchlist|шинҗллһнә сеткүлин]] халхс '''тарһн''' бичәтә.",
 'recentchangeslinked-page' => 'Халхна нернь:',

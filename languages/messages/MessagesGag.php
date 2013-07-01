@@ -651,7 +651,6 @@ Aaramaanızın önünä ''all:'' prefiksini koyun da deneyin hepsi içlii aarama
 'recentchangeslinked-feed' => 'İlgili diişilmäklär',
 'recentchangeslinked-toolbox' => 'İlgili diişilmäklär',
 'recentchangeslinked-title' => '"$1" ilgili diişmäklär',
-'recentchangeslinked-noresult' => 'Baalantılı sayfalarda verilmiş devirde diişmäk olmadı.',
 'recentchangeslinked-summary' => "Bu maasus sayfa baalantılı sayfalardaki diişmäkleri sayêr.
 Sizin bakmaa [[Special:Watchlist|listasındaki]] sayfalar verildi '''kalın''' bukvalarnan.",
 'recentchangeslinked-page' => 'Yaprak adı:',

@@ -1091,7 +1091,6 @@ Imurai no do indik suang diti {{SITENAME}} nopo nga nokolipas.',
 'recentchangeslinked' => 'Kinaalanan di kohompit',
 'recentchangeslinked-toolbox' => 'Kinaalanan di kohompit',
 'recentchangeslinked-title' => "Kinowolion 'parameter' it awu noguno: $1",
-'recentchangeslinked-noresult' => 'Ingaa nalanan do noputan bolikon id timpu nokomoi.',
 'recentchangeslinked-summary' => "Iti nopo nga lis kawawagu kaalanai winonsoi kumaa noputan bobolikon mantad bolikon pointantu (toi kumaa momomoguno tinansaran pointantu).
 Bobolikon id [[Special:Watchlist|lis pintangannu]] nopo nga '''pinakapal'''.",
 'recentchangeslinked-page' => 'Ngaran bolikon:',

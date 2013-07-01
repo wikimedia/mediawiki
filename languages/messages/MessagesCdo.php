@@ -593,7 +593,6 @@ Iŏk-sṳ̄ nṳ̄ buóh-siōng téng nṳ̄ gáng-sê-dăng gà̤-dēng dṳ̀ 
 'watch' => 'Gáng-sê',
 'watchthispage' => 'Gáng-sê ciā hiĕk',
 'unwatch' => 'Ng-sāi gáng-sê',
-'watchnochange' => 'Nṳ̄ gì gáng-sê hiĕk-miêng cī-bŏng dŭ mò̤ nè̤ng dŭng.',
 'watchlist-details' => '{{PLURAL:$1|$1|$1}} tiŏng hiĕk ké̤ṳk gáng-sê, mò̤ bău-guăk tō̤-lâung-hiĕk.',
 'wlshowlast' => 'Hiēng-sê có̤i hâiu $1 dēng-cṳ̆ng $2 gĕ̤ng $3',
 

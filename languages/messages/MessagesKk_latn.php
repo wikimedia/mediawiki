@@ -1294,7 +1294,6 @@ Eger bunı jetistirwdi tañdasañız, bul tüzetwiñizdiñ awtorlığın anıqta
 'recentchangeslinked-feed' => 'Qatıstı özgerister',
 'recentchangeslinked-toolbox' => 'Qatıstı özgerister',
 'recentchangeslinked-title' => '«$1» degenge qatıstı özgerister',
-'recentchangeslinked-noresult' => 'Siltegen betterde keltirilgen merzimde eşqandaý özgeris bolmağan.',
 'recentchangeslinked-summary' => "Bul tizimde özindik betke siltegen betterdegi (ne özindik sanat müşelerindegi) istelgen jwıqtağı özgerister beriledi.
 [[{{#special:Watchlist}}|Baqılaw tizimiñizdegi]] better '''jwan''' bolıp belgilenedi.",
 'recentchangeslinked-page' => 'Bet atawı:',
@@ -1681,7 +1680,6 @@ Bul bettiñ jäne baýlanıstı talqılaw betiniñ keleşektegi özgeristeri mı
 'unwatchthispage' => 'Baqılawdı toqtatw',
 'notanarticle' => 'Mağlumat beti emes',
 'notvisiblerev' => 'Tüzetw joýıldı',
-'watchnochange' => 'Körsetilgen merzimde eş baqılanğan dana öñdelgen joq.',
 'watchlist-details' => 'Talqılaw betterin sanamağanda $1 bet baqlanıladı.',
 'wlheader-enotif' => 'Eskertw xat jiberwi qosılğan.',
 'wlheader-showupdated' => "Soñğı kelip-ketwiñizden beri özgertilgen betterdi '''jwan''' qaripimen körset",

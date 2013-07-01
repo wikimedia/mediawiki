@@ -1001,7 +1001,6 @@ $1",
 'prefs-email' => 'Электронэ почтэм и опциэхэр',
 'prefs-rendering' => 'Сурэтыр',
 'prefs-editing' => 'Гъэтэрэзыгъуэ',
-'prefs-edit-boxsize' => 'Гъэтэрэзыгъуэм и нэкӀубгъум и инагъыр',
 'searchresultshead' => 'Къэгъуэтын',
 
 # Groups

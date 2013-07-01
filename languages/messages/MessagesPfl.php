@@ -723,7 +723,6 @@ Doi Address werd ned gzaischd, wõnse midda babbln.',
 'recentchangeslinked-feed' => 'Ännarunge on valinggde Saide',
 'recentchangeslinked-toolbox' => 'Ännarunge uff verlingde Saide',
 'recentchangeslinked-title' => 'Ännarunge õn Saide, wu „$1“ druff verlinggd',
-'recentchangeslinked-noresult' => 'Do isch nix gännad worre inde Zaid.',
 'recentchangeslinked-summary' => "Die Lischd zaischd ledschdi Ännarunge, vunna bschdimmde Said, wu do valinggd isch (odda ä Midglied vunna bschdimmde Sachgrubb isch).
 Saide uff [[Special:Watchlist|Doina Beowachdungslischd]] sinn '''fedd'''.",
 'recentchangeslinked-page' => 'Saide:',

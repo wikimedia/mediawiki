@@ -11,6 +11,7 @@
  * @author Aidabishkek
  * @author Amire80
  * @author Chorobek
+ * @author Connexx
  * @author Growingup
  * @author Muratjumashev
  * @author Ztimur
@@ -808,7 +809,6 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'resetprefs' => 'Сакталбаган өзгөртүүлөрдү тазалоо',
 'restoreprefs' => 'Жарыяланбасча ырастоолорду калыбына келтирүү',
 'prefs-editing' => 'Редакторлоо',
-'prefs-edit-boxsize' => 'Редакторлоо терезесинин өлчөмү.',
 'rows' => 'Сап:',
 'columns' => 'Тилке:',
 'searchresultshead' => 'Издөө',
@@ -836,7 +836,6 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'prefs-custom-css' => 'Өз CSS',
 'prefs-custom-js' => 'Өз JavaScript',
 'prefs-emailconfirm-label' => 'Эл. почтаны аныктоо:',
-'prefs-textboxsize' => 'Редакторлоо терезесинин өлчөмү',
 'youremail' => 'Электрондук дарек:',
 'username' => '{{GENDER:$1|Катышуучу аты}}:',
 'uid' => '{{GENDER:$1|Катышуучунун}} коду:',
@@ -974,7 +973,6 @@ HTML-тегдеринин тууралыгын текшериңиз.',
 'recentchangeslinked-feed' => 'Тиешелүү өзгөрүүлөр',
 'recentchangeslinked-toolbox' => 'Байланыштуу өзгөрүүлөр',
 'recentchangeslinked-title' => '"$1" үчүн тийиштүү өзгөртүүлөр',
-'recentchangeslinked-noresult' => 'Берилген мөөнөттө шилтемеленген барактарда өзгөртүү жок.',
 'recentchangeslinked-summary' => 'Бул көрсөтүлгөн (же көрсөтүлгөн категорияга кирген) барактан шилтемеленген барактардагы жакын арада жасалган өзгөрүүлөрдүн тизмеси.
 [[Special:Watchlist|Көзөмөл тизмеңиз]]деги барактар калын арип менен белгиленген.',
 'recentchangeslinked-page' => 'Барактын аталышы',
@@ -984,6 +982,13 @@ HTML-тегдеринин тууралыгын текшериңиз.',
 'upload' => 'Файлды жүктөө',
 'uploadbtn' => 'Файлды жүктөө',
 'uploaderror' => 'Жүктөө катасы',
+'uploadtext' => "Cүрөт жүктөш үчүн астыдагы форманы колдонуңуз.
+Мурда жүктөлгөн сүрөттөрдү издеп көрүш үчүн  [[Special:FileList|жүктөлгөн сүрөттөрдүн тизмеси]]не кириңиз, кайра жүктөлгөндөр да [[Special:Log/upload|жүктөлгөндөр тизмеси]] журналында жазылышат, өчүрүлгөндөр да [[Special:Log/delete|өчүрүлгөндөр тизмеси]] журналында сакталат.
+
+To include a file in a page, use a link in one of the following forms:
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></code>''' to use the full version of the file
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></code>''' to use a 200 pixel wide rendition in a box in the left margin with 'alt text' as description
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code>''' for directly linking to the file without displaying the file",
 'uploadlog' => 'жүктөө журналы',
 'uploadlogpage' => 'Жүктөөлөрдүн тизмеси',
 'filename' => 'Файл аты',
@@ -997,6 +1002,8 @@ HTML-тегдеринин тууралыгын текшериңиз.',
 'upload-source' => 'Баштапкы файл',
 'sourcefilename' => 'Булактын файл аты:',
 'sourceurl' => 'Булактын URL-дареги:',
+'destfilename' => 'Файлдын аталышы:',
+'upload-maxfilesize' => 'Максималдуу файл өлчөмү: $1',
 'upload-description' => 'Файл баяндамасы',
 'upload-success-subj' => 'Ийгиликтүү жүктөлдү',
 'upload-failure-subj' => 'Жүктөө көйгөйү',

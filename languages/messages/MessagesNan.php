@@ -677,7 +677,6 @@ Tī pat-lâng liân-lo̍k lí ê sî-chūn bē kā e-mail tsū-tsí siá chhut--
 'recentchangeslinked' => 'Siong-koan ê kái-piàn',
 'recentchangeslinked-feed' => 'Siong-koan ê kái-piàn',
 'recentchangeslinked-toolbox' => 'Siong-koan ê kái-piàn',
-'recentchangeslinked-noresult' => 'Lí chí-tēng ê tiâu-kiaⁿ lāi-té chhōe bô jīn-hô kái-piàn.',
 'recentchangeslinked-page' => 'Ia̍h ê miâ:',
 
 # Upload
@@ -868,7 +867,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'watchthispage' => 'Kàm-sī chit ia̍h',
 'unwatch' => 'Mài kàm-sī',
 'unwatchthispage' => 'Mài koh kàm-sī',
-'watchnochange' => 'Lí kàm-sī ê hāng-bo̍k tī hián-sī ê sî-kî í-lāi lóng bô siu-kái kòe.',
 'watchlist-details' => 'Kàm-sī-toaⁿ ū {{PLURAL:$1|$1 ia̍h|$1 ia̍h}}, thó-lūn-ia̍h bô sǹg chāi-lāi.',
 'watchmethod-recent' => 'tng teh kíam-cha choè-kīn ê siu-kái, khoàⁿ ū kàm-sī ê ia̍h bô',
 'watchmethod-list' => 'tng teh kiám-cha kàm-sī ê ia̍h khoàⁿ chòe-kīn ū siu-kái bô',

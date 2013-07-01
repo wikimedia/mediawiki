@@ -917,7 +917,6 @@ Vos ploz sayî di mete «all:» pa dvant l' tecse a cweri po cweri dins tot l' c
 'prefs-reset-intro' => "Vos ploz eployî ç' boton chal po rmete totes vos preferinces åzès prémetowès valixhances del waibe.
 Çoul n' pôrè nén esse disfwait.",
 'prefs-emailconfirm-label' => "Acertinaedje di l' emile:",
-'prefs-textboxsize' => 'Grandeu del boesse di tecse',
 'youremail' => 'Vost emile:',
 'username' => "No d' elodjaedje:",
 'uid' => "Limero d' l' uzeu:",
@@ -1458,7 +1457,6 @@ Si vos vloz bodjî l' pådje foû di vosse djivêye des shuvous, clitchîz so «
 'unwatch' => 'Èn pus shuve',
 'unwatchthispage' => 'Èn pus shuve li pådje',
 'notanarticle' => 'Nén èn årtike',
-'watchnochange' => "Nole des pådjes di vosse djivêye di pådjes a shuve n' a stî candjeye dins l' termene di tins dmandêye.",
 'watchlist-details' => 'Vos avoz {{PLURAL:$1|$1 pådje shuvowe|$1 pådjes shuvowes}} (sins conter les pådjes di copene).',
 'wlheader-enotif' => 'Li notifiaedje pa emile est en alaedje.',
 'wlheader-showupdated' => "Les pådjes k' ont candjî dispoy vosse dierinne vizite sont metowes e '''cråssès letes'''",

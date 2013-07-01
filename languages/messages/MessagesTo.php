@@ -761,7 +761,6 @@ Kapau ʻaho ʻe taha, te ke fietoʻo ʻa e pēsí mei hoʻo hokohoko leʻo, lomi
 'watchthispage' => 'Leʻo he pēsí ni',
 'unwatch' => 'Taʻeleʻo',
 'unwatchthispage' => 'Tuʻu he leʻo',
-'watchnochange' => 'ʻOku ʻikai ʻaupito ʻe fatuʻi hoʻo ngaahi kupu fakaleʻo lolotonga ha taimi ʻoku ʻasi mai.',
 'watchlist-details' => 'ʻOku leʻoʻi ʻa e peesi ʻe $1, ʻikai kau ki ai ʻa e ngaahi peesi alea.',
 'wlheader-enotif' => 'Kuo fakamafeiaʻi tala mei he tohila',
 'wlheader-showupdated' => '*Ko e ngaahi peesi kuo liliu talu he taimi hoʻo ʻaʻahi ki ai, ʻoku ʻasi mai fakasinolahi',

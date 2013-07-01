@@ -827,7 +827,6 @@ Amaḱ e-mail ṭhikạna do bań cabaḱa tinre onko do ko beohara',
 'recentchangeslinked' => 'Sãotenaḱ bodolko',
 'recentchangeslinked-toolbox' => 'Noṛjoṛ palaṭko',
 'recentchangeslinked-title' => 'Bodolaḱko do "$1" sãote joṛao geya',
-'recentchangeslinked-noresult' => 'Joṛao sakam re emoḱ oktere jahanaḱ bodolko bạnuḱa.',
 'recentchangeslinked-summary' => "Noa do ona tạlika kana oka do nebetarge bodol hoyakan oka do asokayte hatao akan sakam khon.
 
 [[Special:Watchlist|your watchlist]] renaḱ sakamko do '''bold''' .",

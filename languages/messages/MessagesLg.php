@@ -934,7 +934,6 @@ W'owandikira by'onoonya bw'osoosawo akagambo ''all:'', okunoonya kubuna Wikipedi
 'recentchangeslinked-feed' => 'Ebikyusiddwa ebyekuusa ku lupapula luno',
 'recentchangeslinked-toolbox' => 'Ebikyusiddwa ebyekuusa ku lupapula luno',
 'recentchangeslinked-title' => 'Enkyukakyuka ezikwatagana ne "$1"',
-'recentchangeslinked-noresult' => 'Empapula eziriko enyunzi tewali lukyuse mu kiseera kino.',
 'recentchangeslinked-summary' => "Olulpapula olw'enjawulo luno luliko olukalala lw'ebikyuse ku mpapula eziriko enyunzi ezigguka ku lw'obadde otunuulira. Ebiwandikidwa mu '''nukuta enziggumivu''' biri ku [[Special:Watchlist|mpapula z'ogoberera]].",
 'recentchangeslinked-page' => 'Lupapula:',
 'recentchangeslinked-to' => "Nonamu eby'empapula ezikuggusa ku luno zokka",

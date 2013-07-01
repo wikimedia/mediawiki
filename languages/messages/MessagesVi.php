@@ -1448,7 +1448,6 @@ Xem chi tiết trong [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}
 'resetprefs' => 'Mặc định lại lựa chọn',
 'restoreprefs' => 'Mặc định lại toàn bộ tùy chọn',
 'prefs-editing' => 'Sửa đổi',
-'prefs-edit-boxsize' => 'Kích thước cửa sổ soạn thảo.',
 'rows' => 'Số hàng:',
 'columns' => 'Số cột:',
 'searchresultshead' => 'Tìm kiếm',
@@ -1492,7 +1491,6 @@ Bất cứ ai biết được khóa trong ô này cũng có thể đọc đượ
 'prefs-reset-intro' => 'Có thể mặc định lại toàn bộ tùy chọn dùng trang này.
 Không có thể lùi lại tác động này.',
 'prefs-emailconfirm-label' => 'Xác nhận thư điện tử:',
-'prefs-textboxsize' => 'Kích cỡ hộp sửa đổi',
 'youremail' => 'Thư điện tử:',
 'username' => '{{GENDER:$1}}Tên người dùng:',
 'uid' => '{{GENDER:$1}}Số thứ tự thành viên:',
@@ -1740,7 +1738,6 @@ Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao c�
 'recentchangeslinked-feed' => 'Thay đổi liên quan',
 'recentchangeslinked-toolbox' => 'Thay đổi liên quan',
 'recentchangeslinked-title' => 'Thay đổi liên quan tới “$1”',
-'recentchangeslinked-noresult' => 'Không có thay đổi nào trên trang được liên kết đến trong khoảng thời gian đã chọn.',
 'recentchangeslinked-summary' => "Đây là danh sách các thay đổi được thực hiện gần đây tại những trang được liên kết đến từ một trang nào đó (hoặc tại các trang thuộc một thể loại nào đó).
 Các trang trong [[Special:Watchlist|danh sách bạn theo dõi]] được '''tô đậm'''.",
 'recentchangeslinked-page' => 'Tên trang:',
@@ -2384,7 +2381,6 @@ Những sửa đổi đối với trang này và trang thảo luận của nó s
 'unwatchthispage' => 'Ngừng theo dõi',
 'notanarticle' => 'Không phải trang có nội dung',
 'notvisiblerev' => 'Phiên bản bị xóa',
-'watchnochange' => 'Không có trang nào bạn theo dõi được sửa đổi.',
 'watchlist-details' => 'Bạn đang theo dõi {{PLURAL:$1|$1 trang|$1 trang}}, không kể các trang thảo luận.',
 'wlheader-enotif' => 'Đã bật thông báo qua thư điện tử.',
 'wlheader-showupdated' => "Các trang đã thay đổi kể từ lần cuối bạn xem chúng được in '''đậm'''",

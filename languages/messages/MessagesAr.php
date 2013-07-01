@@ -18,6 +18,7 @@
  * @author Antime
  * @author Arjanizary
  * @author Avocato
+ * @author Bachounda
  * @author Bassem JARKAS
  * @author Chaos
  * @author Ciphers
@@ -1631,7 +1632,6 @@ $1",
 'resetprefs' => 'أزل التغييرات غير المحفوظة',
 'restoreprefs' => 'استرجع كل الإعدادات الافتراضية',
 'prefs-editing' => 'التحرير',
-'prefs-edit-boxsize' => 'حجم نافذة التحرير.',
 'rows' => 'صفوف:',
 'columns' => 'أعمدة:',
 'searchresultshead' => 'بحث',
@@ -1675,7 +1675,6 @@ $1",
 'prefs-reset-intro' => 'يمكنك استخدام هذه الصفحة لإعادة تفضيلاتك للحالة الافتراضية للموقع.
 لن تستطيع استرجاع الحالة السابقة.',
 'prefs-emailconfirm-label' => 'تأكيد البريد الإلكتروني:',
-'prefs-textboxsize' => 'حجم نافذة التحرير',
 'youremail' => 'البريد:',
 'username' => '{{GENDER:$1|اسم المستخدم|اسم المستخدمة}}:',
 'uid' => 'رقم {{GENDER:$1|المستخدم|المستخدمة}}:',
@@ -1915,7 +1914,6 @@ $1",
 'recentchangeslinked-feed' => 'تغييرات ذات علاقة',
 'recentchangeslinked-toolbox' => 'تغييرات ذات علاقة',
 'recentchangeslinked-title' => 'التغييرات المرتبطة ب "$1"',
-'recentchangeslinked-noresult' => 'لم تحدث تعديلات في الصفحات التي لها وصلات هنا خلال الفترة المحددة.',
 'recentchangeslinked-summary' => "هذه قائمة بالتغييرات التي تمت حديثا للصفحات الموصولة من صفحة معينة (أو إلى الأعضاء ضمن تصنيف معين).
 الصفحات في [[Special:Watchlist|قائمة مراقبتك]] '''مغلظة'''",
 'recentchangeslinked-page' => 'اسم الصفحة:',
@@ -2575,7 +2573,6 @@ $1',
 'unwatchthispage' => 'أوقف المراقبة',
 'notanarticle' => 'ليست صفحة محتوى',
 'notvisiblerev' => 'المراجعة تم حذفها',
-'watchnochange' => 'لم تُعدّل أي صفحة في قائمة مراقبتك خلال الفترة الزمنية المحددة.',
 'watchlist-details' => '{{PLURAL:$1||صفحة واحدة|صفحتان|$1 صفحات|$1 صفحة}} في قائمة مراقبتك، بدون عد صفحات النقاش.',
 'wlheader-enotif' => 'الإخطار بالبريد الإلكتروني مُفعّل.',
 'wlheader-showupdated' => "الصفحات التي تم تحريرها بعد مطالعتك إياها آخر مرة عناوينها بالخط '''الغليظ'''",
@@ -2835,7 +2832,7 @@ $1',
 'mycontris' => 'مساهماتي',
 'contribsub2' => 'ل$1 ($2)',
 'nocontribs' => 'لم يتم العثور على تغييرات تطابق هذه المحددات.',
-'uctop' => '(أعلى)',
+'uctop' => 'حالي',
 'month' => 'من شهر (وأقدم):',
 'year' => 'من سنة (وأقدم):',
 

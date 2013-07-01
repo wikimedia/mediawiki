@@ -689,7 +689,6 @@ Ga re fane ka e-poso ya gago go bašumiši ba bangwe ge ba polela le wena ka yon
 'recentchangeslinked-feed' => 'Diphetogo tša go tswalana',
 'recentchangeslinked-toolbox' => 'Diphetogo tša go tswalana',
 'recentchangeslinked-title' => 'Diphetogo tša go tswalana le "$1"',
-'recentchangeslinked-noresult' => 'Gago na diphetogo go matlakala a hlomaganya ka sebaka/sekga seo o se kgethilego.',
 'recentchangeslinked-summary' => "Letlakala le le laetša diphetogo tša bjale matlakaleng a go hlomaganya.
 Matlakala ago ba [[Special:Watchlist|lenanong la gago la matlakala ditlhapetšo]]  a '''ngwadilwe ka bogolo'''.",
 'recentchangeslinked-page' => 'Leina la letlakala:',

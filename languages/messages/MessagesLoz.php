@@ -526,7 +526,6 @@ Informasi: (bye) = petuho a nca selt,
 'recentchangeslinked-feed' => 'Petuho adusi',
 'recentchangeslinked-toolbox' => 'Petuho adusi',
 'recentchangeslinked-title' => 'Petuho dadusi di "$1"',
-'recentchangeslinked-noresult' => "Ni petuhoni kwa ling'ki petulo kwa bye datum.",
 'recentchangeslinked-summary' => "Bye petulo zwenti kamukile lapu-kona petuho di petulo sa ling'ki. Petulo di zwa mukoloko di kentezi sa '''ombelu'''.",
 
 # Upload

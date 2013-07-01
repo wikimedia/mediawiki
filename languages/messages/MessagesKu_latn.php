@@ -1426,7 +1426,6 @@ Gava tu bixwazî wê rûpelê ji nav lîsteya xwe ya şopandinê derbixî, li se
 'unwatch' => 'Êdî neşopîne',
 'unwatchthispage' => 'Êdî neşopîne',
 'notanarticle' => 'Ne gotar e',
-'watchnochange' => 'Ne rûpelek, yê tu dişopînê, hate xeyrandin di vê wextê da, yê tu dixazê bibînê.',
 'watchlist-details' => '{{PLURAL:$1|Rûpeleka|$1 rûpel}} li ser lîsteya te ya şopandinê, rûpelên gotûbêjê nayên jimartin.',
 'wlheader-enotif' => 'Agahdariya E-nameyê pêk tê.',
 'wlheader-showupdated' => "Ev rûpela hatî guhertin dema te lê meyzand bi '''nivîsa stûr''' tê xuyakirin.",

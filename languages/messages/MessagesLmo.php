@@ -959,7 +959,6 @@ i vegnarann segnalaa chichinscì e la pagina la se vedarà cun caràter '''grev'
 'watch' => "Tegn d'öcc",
 'watchthispage' => "Tegn d'ögg quela pagina chì",
 'unwatch' => "Tegn pü d'ögg",
-'watchnochange' => "Nissün cambiament l'è stai faa ins i pàginn che te tegn d'ögg ind 'l períud de temp indicaa.",
 'watchlist-details' => '{{PLURAL:$1|$1 pagina|$1 paginn}} tegnüü sot ögg, fö che i paginn de discüssión.',
 'wlshowlast' => 'Fa vidé i ültim $1 ur $2 dì $3',
 'watchlist-options' => "Upzión lista d'ussevazión",
