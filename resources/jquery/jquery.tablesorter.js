@@ -301,10 +301,7 @@
 		}
 		$tableHeaders = $tableHeaders.children( 'th' ).each( function ( index ) {
 			this.column = realCellIndex;
-
-			var colspan = this.colspan;
-			colspan = colspan ? parseInt( colspan, 10 ) : 1;
-			realCellIndex += colspan;
+			realCellIndex += this.colSpan;
 
 			this.order = 0;
 			this.count = 0;
@@ -758,7 +755,7 @@
 
 							var cell = this;
 							// Get current column index
-							var columns = headerToColumns[this.column];
+							var columns = headerToColumns[columnToHeader[this.column]];
 							var newSortList = $.map( columns, function (c) {
 								// jQuery "helpfully" flattens the arrays...
 								return [[c, cell.order]];
