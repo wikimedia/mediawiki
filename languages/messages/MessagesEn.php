@@ -1530,7 +1530,7 @@ You can go back and edit an existing page, or [[Special:UserLogin|log in or crea
 'nocreate-loggedin'                => 'You do not have permission to create new pages.',
 'sectioneditnotsupported-title'    => 'Section editing not supported',
 'sectioneditnotsupported-text'     => 'Section editing is not supported in this page.',
-'permissionserrors'                => 'Permissions errors',
+'permissionserrors'                => 'Permission error',
 'permissionserrorstext'            => 'You do not have permission to do that, for the following {{PLURAL:$1|reason|reasons}}:',
 'permissionserrorstext-withaction' => 'You do not have permission to $2, for the following {{PLURAL:$1|reason|reasons}}:',
 'recreate-moveddeleted-warn'       => "'''Warning: You are recreating a page that was previously deleted.'''
