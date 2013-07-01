@@ -362,7 +362,7 @@
 		function ( $table ) {
 			// Make colspanned header for test
 			$table.find( 'tr:eq(0) th:eq(1), tr:eq(0) th:eq(2)' ).remove();
-			$table.find( 'tr:eq(0) th:eq(0)' ).prop( 'colspan', '3' );
+			$table.find( 'tr:eq(0) th:eq(0)' ).attr( 'colspan', '3' );
 
 			$table.tablesorter();
 			$table.find( '.headerSort:eq(0)' ).click();
@@ -375,7 +375,7 @@
 		function ( $table ) {
 			// Make colspanned header for test
 			$table.find( 'tr:eq(0) th:eq(1), tr:eq(0) th:eq(2)' ).remove();
-			$table.find( 'tr:eq(0) th:eq(0)' ).prop( 'colspan', '3' );
+			$table.find( 'tr:eq(0) th:eq(0)' ).attr( 'colspan', '3' );
 
 			$table.tablesorter();
 			$table.find( '.headerSort:eq(0)' ).click();
@@ -389,7 +389,7 @@
 		function ( $table ) {
 			// Make colspanned header for test
 			$table.find( 'tr:eq(0) th:eq(1), tr:eq(0) th:eq(2)' ).remove();
-			$table.find( 'tr:eq(0) th:eq(0)' ).prop( 'colspan', '3' );
+			$table.find( 'tr:eq(0) th:eq(0)' ).attr( 'colspan', '3' );
 
 			$table.tablesorter();
 			$table.find( '.headerSort:eq(1)' ).click();
@@ -402,7 +402,7 @@
 		function ( $table ) {
 			// Make colspanned header for test
 			$table.find( 'tr:eq(0) th:eq(1), tr:eq(0) th:eq(2)' ).remove();
-			$table.find( 'tr:eq(0) th:eq(0)' ).prop( 'colspan', '3' );
+			$table.find( 'tr:eq(0) th:eq(0)' ).attr( 'colspan', '3' );
 
 			$table.tablesorter();
 			$table.find( '.headerSort:eq(1)' ).click();
@@ -561,12 +561,12 @@
 		$table.find( 'tr:eq(3) td:eq(1), tr:eq(4) td:eq(1)' ).remove();
 		// - Set rowspan for 2nd cell of 3rd row to 3.
 		//   This covers the removed cell in the 4th and 5th row.
-		$table.find( 'tr:eq(2) td:eq(1)' ).prop( 'rowspan', '3' );
+		$table.find( 'tr:eq(2) td:eq(1)' ).attr( 'rowspan', '3' );
 
 		$table.tablesorter();
 
 		assert.equal(
-			$table.find( 'tr:eq(2) td:eq(1)' ).prop( 'rowspan' ),
+			$table.find( 'tr:eq(2) td:eq(1)' ).prop( 'rowSpan' ),
 			3,
 			'Rowspan not exploded'
 		);
@@ -593,7 +593,7 @@
 			$table.find( 'tr:eq(3) td:eq(1), tr:eq(4) td:eq(1)' ).remove();
 			// - Set rowspan for 2nd cell of 3rd row to 3.
 			//   This covers the removed cell in the 4th and 5th row.
-			$table.find( 'tr:eq(2) td:eq(1)' ).prop( 'rowspan', '3' );
+			$table.find( 'tr:eq(2) td:eq(1)' ).attr( 'rowspan', '3' );
 
 			$table.tablesorter();
 			$table.find( '.headerSort:eq(0)' ).click();
@@ -610,7 +610,7 @@
 			$table.find( 'tr:eq(3) td:eq(1), tr:eq(4) td:eq(1)' ).remove();
 			// - Set rowspan for 2nd cell of 3rd row to 3.
 			//   This covers the removed cell in the 4th and 5th row.
-			$table.find( 'tr:eq(2) td:eq(1)' ).prop( 'rowspan', '3' );
+			$table.find( 'tr:eq(2) td:eq(1)' ).attr( 'rowspan', '3' );
 
 			$table.tablesorter( { sortList: [
 				{ 0: 'asc' }
@@ -628,7 +628,7 @@
 			$table.find( 'tr:eq(3) td:eq(0), tr:eq(4) td:eq(0)' ).remove();
 			// - Set rowspan for 1st cell of 3rd row to 3.
 			//   This covers the removed cell in the 4th and 5th row.
-			$table.find( 'tr:eq(2) td:eq(0)' ).prop( 'rowspan', '3' );
+			$table.find( 'tr:eq(2) td:eq(0)' ).attr( 'rowspan', '3' );
 
 			$table.tablesorter();
 			$table.find( '.headerSort:eq(0)' ).click();
