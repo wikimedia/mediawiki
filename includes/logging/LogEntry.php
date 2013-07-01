@@ -430,12 +430,13 @@ class ManualLogEntry extends LogEntryBase {
 
 	/**
 	 * Inserts the entry into the logging table.
+	 * @param DatabaseBase $dbw
 	 * @return int If of the log entry
 	 */
-	public function insert() {
+	public function insert( DatabaseBase $dbw = null ) {
 		global $wgContLang;
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $dbw ?: wfGetDB( DB_MASTER );
 		$id = $dbw->nextSequenceValue( 'logging_log_id_seq' );
 
 		if ( $this->timestamp === null ) {
