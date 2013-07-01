@@ -460,3 +460,6 @@
 [submodule "extensions/WikibaseDataModel"]
 	path = extensions/WikibaseDataModel
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/WikibaseDataModel.git
+[submodule "extensions/Campaigns"]
+	path = extensions/Campaigns
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Campaigns.git
