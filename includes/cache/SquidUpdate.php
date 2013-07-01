@@ -129,7 +129,7 @@ class SquidUpdate {
 			return;
 		}
 
-		wfDebug( "Squid purge: " . implode( ' ', $urlArr ) . "\n" );
+		wfDebugLog( 'squid', __METHOD__ . ': ' . implode( ' ', $urlArr ) . "\n" );
 
 		if ( $wgHTCPMulticastRouting ) {
 			SquidUpdate::HTCPPurge( $urlArr );
@@ -197,7 +197,8 @@ class SquidUpdate {
 				$url = SquidUpdate::expand( $url );
 				$conf = self::getRuleForURL( $url, $wgHTCPMulticastRouting );
 				if ( !$conf ) {
-					wfDebug( "No HTCP rule configured for URL $url , skipping\n" );
+					wfDebugLog( 'squid', __METHOD__ .
+						"No HTCP rule configured for URL $url , skipping\n" );
 					continue;
 				}
 				if ( !isset( $conf['host'] ) || !isset( $conf['port'] ) ) {
@@ -225,13 +226,15 @@ class SquidUpdate {
 					$htcpTransID, $htcpSpecifier, 2 );
 
 				// Send out
-				wfDebug( "Purging URL $url via HTCP\n" );
+				wfDebugLog( 'squid', __METHOD__ .
+					"Purging URL $url via HTCP\n" );
 				socket_sendto( $conn, $htcpPacket, $htcpLen, 0,
 					$conf['host'], $conf['port'] );
 			}
 		} else {
 			$errstr = socket_strerror( socket_last_error() );
-			wfDebug( __METHOD__ . "(): Error opening UDP socket: $errstr\n" );
+			wfDebugLog( 'squid', __METHOD__ .
+				": Error opening UDP socket: $errstr\n" );
 		}
 		wfProfileOut( __METHOD__ );
 	}
