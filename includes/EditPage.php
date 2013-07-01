@@ -1507,8 +1507,17 @@ class EditPage {
 				return $status;
 			}
 
-			# Don't save a new article if it's blank.
-			if ( $this->textbox1 == '' ) {
+			// Don't save a new page if it's blank or if it's a MediaWiki:
+			// message with content equivalent to default (allow empty pages
+			// in this case to disable messages, see bug 50124)
+			$defaultMessageText = $this->mTitle->getDefaultMessageText();
+			if( $this->mTitle->getNamespace() === NS_MEDIAWIKI && $defaultMessageText !== false ) {
+				$defaultText = $defaultMessageText;
+			} else {
+				$defaultText = '';
+			}
+
+			if ( $this->textbox1 === $defaultText ) {
 				$status->setResult( false, self::AS_BLANK_ARTICLE );
 				wfProfileOut( __METHOD__ );
 				return $status;
