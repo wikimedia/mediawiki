@@ -741,9 +741,10 @@ class Xml {
 	 * Output optionally includes a submit button.
 	 * @param array $fields Associative array, key is the name of a message that contains a description for the field, value is an HTML string containing the appropriate input.
 	 * @param string $submitLabel The name of a message containing a label for the submit button.
+	 * @param array $submitAttribs The attributes to add to the submit button
 	 * @return string HTML form.
 	 */
-	public static function buildForm( $fields, $submitLabel = null ) {
+	public static function buildForm( $fields, $submitLabel = null, $submitAttribs = array() ) {
 		$form = '';
 		$form .= "<table><tbody>";
 
@@ -763,7 +764,7 @@ class Xml {
 		if ( $submitLabel ) {
 			$form .= Xml::openElement( 'tr' );
 			$form .= Xml::tags( 'td', array(), '' );
-			$form .= Xml::openElement( 'td', array( 'class' => 'mw-submit' ) ) . Xml::submitButton( wfMessage( $submitLabel )->text() ) . Xml::closeElement( 'td' );
+			$form .= Xml::openElement( 'td', array( 'class' => 'mw-submit' ) ) . Xml::submitButton( wfMessage( $submitLabel )->text(), $submitAttribs ) . Xml::closeElement( 'td' );
 			$form .= Xml::closeElement( 'tr' );
 		}
 
