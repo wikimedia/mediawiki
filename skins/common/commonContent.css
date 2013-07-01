@@ -14,6 +14,14 @@
 	padding: 5px;
 	font-size: 95%;
 }
+#toc,
+.toc { /* Fit content width */
+	display: -moz-inline-stack; /* Firefox 2 */
+	display: inline-block;
+	vertical-align: top;
+	zoom: 1; /* IE 6-7 */
+	*display: inline;
+}
 #toc h2,
 .toc h2 {
 	display: inline;
