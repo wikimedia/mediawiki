@@ -865,7 +865,7 @@ Harap masukkan alamat surel dalam format yang benar atau kosongkan isian tersebu
 'cannotchangeemail' => 'Alamat surel akun tidak dapat diubah di wiki ini.',
 'emaildisabled' => 'Situs ini tidak dapat mengirim surel.',
 'accountcreated' => 'Akun dibuat',
-'accountcreatedtext' => 'Akun pengguna untuk $1 telah dibuat.',
+'accountcreatedtext' => 'Akun pengguna untuk [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|bicara]]) telah dibuat.',
 'createaccount-title' => 'Pembuatan akun untuk {{SITENAME}}',
 'createaccount-text' => 'Seseorang telah membuat sebuah akun untuk alamat surel Anda di {{SITENAME}} ($4) dengan nama "$2" dan kata sandi "$3". Anda dianjurkan untuk masuk log dan mengganti kata sandi Anda sekarang.
 
@@ -1543,7 +1543,7 @@ Jika Anda memberikannya, nama asli Anda akan digunakan untuk memberi pengenalan 
 'prefs-signature' => 'Tanda tangan',
 'prefs-dateformat' => 'Format tanggal',
 'prefs-timeoffset' => 'Format waktu',
-'prefs-advancedediting' => 'Opsi lanjutan',
+'prefs-advancedediting' => 'Umum',
 'prefs-advancedrc' => 'Opsi lanjutan',
 'prefs-advancedrendering' => 'Opsi lanjutan',
 'prefs-advancedsearchoptions' => 'Opsi lanjutan',
@@ -1767,7 +1767,7 @@ Jika Anda memberikannya, nama asli Anda akan digunakan untuk memberi pengenalan 
 'reuploaddesc' => 'Kembali ke formulir pemuatan',
 'upload-tryagain' => 'Kirim perubahan keterangan berkas',
 'uploadnologin' => 'Belum masuk log',
-'uploadnologintext' => 'Anda harus [[Special:UserLogin|masuk log]] untuk dapat memuatkan berkas.',
+'uploadnologintext' => 'Anda harus $1 untuk dapat mengunggah berkas.',
 'upload_directory_missing' => 'Direktori pemuatan ($1) tidak ditemukan dan tidak dapat dibuat oleh server web.',
 'upload_directory_read_only' => 'Direktori pemuatan ($1) tidak dapat ditulis oleh server web.',
 'uploaderror' => 'Kesalahan pemuatan',

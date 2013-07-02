@@ -1176,6 +1176,7 @@ Var god och kontrollera jämförelsen nedan för att bekräfta att detta är vad
 'undo-failure' => 'Redigeringen kunde inte göras ogjord på grund av konflikt med mellanliggande redigeringar.',
 'undo-norev' => 'Redigeringen kan inte göras ogjord eftersom den inte finns eller har raderats.',
 'undo-summary' => 'Gör version $1 av [[Special:Contributions/$2|$2]] ([[User talk:$2|diskussion]]) ogjord',
+'undo-summary-username-hidden' => 'Ångra version $1 av en dold användare',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Kan inte skapa konto',
@@ -1532,7 +1533,9 @@ Om du väljer att ange ditt riktiga namn, kommer det att användas för att till
 'prefs-signature' => 'Signatur',
 'prefs-dateformat' => 'Datumformat',
 'prefs-timeoffset' => 'Tidsförskjutning',
-'prefs-advancedediting' => 'Avancerade alternativ',
+'prefs-advancedediting' => 'Allmänt',
+'prefs-editor' => 'Redigerare',
+'prefs-preview' => 'Förhandsvisa',
 'prefs-advancedrc' => 'Avancerade alternativ',
 'prefs-advancedrendering' => 'Avancerade alternativ',
 'prefs-advancedsearchoptions' => 'Avancerade alternativ',
@@ -1712,6 +1715,7 @@ Om du väljer att ange ditt riktiga namn, kommer det att användas för att till
 'recentchanges' => 'Senaste ändringarna',
 'recentchanges-legend' => 'Alternativ för senaste ändringarna',
 'recentchanges-summary' => 'Följ de senaste ändringarna i wikin på denna sida.',
+'recentchanges-noresult' => 'Inga ändringar under den angivna perioden matchar dessa kriterier.',
 'recentchanges-feed-description' => 'Följ de senaste ändringarna i wikin genom den här matningen.',
 'recentchanges-label-newpage' => 'Denna redigering skapade en ny sida',
 'recentchanges-label-minor' => 'Detta är en mindre ändring',

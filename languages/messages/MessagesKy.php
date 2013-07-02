@@ -13,6 +13,7 @@
  * @author Chorobek
  * @author Connexx
  * @author Growingup
+ * @author Kgbek
  * @author Muratjumashev
  * @author Ztimur
  */
@@ -989,6 +990,7 @@ To include a file in a page, use a link in one of the following forms:
 * '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></code>''' to use the full version of the file
 * '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></code>''' to use a 200 pixel wide rendition in a box in the left margin with 'alt text' as description
 * '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code>''' for directly linking to the file without displaying the file",
+'upload-permitted' => 'Уруксат болгон файл типтери: $1.',
 'uploadlog' => 'жүктөө журналы',
 'uploadlogpage' => 'Жүктөөлөрдүн тизмеси',
 'filename' => 'Файл аты',
@@ -997,6 +999,9 @@ To include a file in a page, use a link in one of the following forms:
 'filereuploadsummary' => 'Файлдагы өзгөрүүлөр:',
 'filesource' => 'Булак:',
 'uploadedfiles' => 'Жүктөлгөн файлдар',
+'ignorewarnings' => 'Болгон эскертүүлөрдү этибар кылбоо',
+'filetype-banned-type' => '\'\'\'".$1"\'\'\' {{PLURAL:$4|уруксат болбогон файл тиби|уруксат болбогон файл типтери}}.
+Уруксат болгон {{PLURAL:$3|файл тиби|файл типтери}} $2.',
 'savefile' => 'Файлды сактоо',
 'uploadedimage' => '"[[$1]]" жүктөлдү',
 'upload-source' => 'Баштапкы файл',
@@ -1005,6 +1010,7 @@ To include a file in a page, use a link in one of the following forms:
 'destfilename' => 'Файлдын аталышы:',
 'upload-maxfilesize' => 'Максималдуу файл өлчөмү: $1',
 'upload-description' => 'Файл баяндамасы',
+'upload-options' => 'Жүктөө варианты',
 'upload-success-subj' => 'Ийгиликтүү жүктөлдү',
 'upload-failure-subj' => 'Жүктөө көйгөйү',
 

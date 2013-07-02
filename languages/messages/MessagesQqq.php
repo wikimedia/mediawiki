@@ -744,7 +744,8 @@ Parameters:
 * $2 - {{msg-mw|newmessagesdifflinkplural}}',
 'newmessageslinkplural' => 'Like {{msg-mw|newmessageslink}} but supporting pluralization. Used in message {{msg-mw|youhavenewmessagesfromusers}} (as parameter $1).
 This message itself takes one parameter, $1, which is 1 if there was one new edit, or 2 if there was more than one new edit
-since the last time the user has seen his or her talk page.',
+since the last time the user has seen his or her talk page.
+{{Identical|New messages}}',
 'newmessagesdifflinkplural' => 'This message itself takes one parameter, $1, which is the number of new edits since the last time the user has seen his or her talk page: it should be used only for correct [[plural]] as in the source text, as the exact number is not relevant.
 
 Like {{msg-mw|newmessagesdifflink}} but supporting pluralization.
@@ -1360,12 +1361,13 @@ See also:
 {{Identical|Reset password}}',
 'passwordreset-text-one' => 'Text on [[Special:PasswordReset]] that appears when there is only one way of resetting the password.
 
-{{msg-mw|Passwordreset-text-many}}, when there are multiple ways of resetting the password..',
+{{msg-mw|Passwordreset-text-many}} will be used, when there are multiple ways of resetting the password.',
 'passwordreset-text-many' => 'Text on [[Special:PasswordReset]] that appears when there are multiple ways of resetting the password.
 
-* $1 is the number of password reset routes.
+Parameters:
+* $1 - the number of password reset routes
 
-{{msg-mw|Passwordreset-text-one}}, when there is only one way of resetting the password.',
+{{msg-mw|Passwordreset-text-one}} will be used, when there is only one way of resetting the password.',
 'passwordreset-legend' => '{{Identical|Reset password}}',
 'passwordreset-disabled' => 'Used as error message in changing password.',
 'passwordreset-emaildisabled' => "Used as error message in changing password when site's email feature is disabled.",
@@ -1564,8 +1566,12 @@ See also:
 See also:
 * {{msg-mw|permissionserrors}}
 {{Identical|Login required}}',
-'loginreqlink' => 'Take a look on inflection. Used as parameter in {{msg-mw|loginreqpagetext}}, {{msg-mw|whitelistedittext}}, {{msg-mw|Uploadnologintext}}, {{msg-mw|watchlistanontext‎}} and {{msg-mw|Confirmemail needlogin}}.
-
+'loginreqlink' => 'Take a look on inflection. Used as <code>$1</code> in the following messages:
+* {{msg-mw|loginreqpagetext}}
+* {{msg-mw|whitelistedittext}}
+* {{msg-mw|Uploadnologintext}}
+* {{msg-mw|watchlistanontext‎}}
+* {{msg-mw|Confirmemail needlogin}}
 {{Identical|Log in}}',
 'loginreqpagetext' => 'This message is displayed if an anonymous reader attempts to access a page which is only available to logged-in users.
 * $1 is a link to [[Special:UserLogin]] with {{msg-mw|loginreqlink}} as link description
@@ -1850,7 +1856,11 @@ See also:
 {{Identical|Undo}}',
 'undo-summary' => 'Edit summary for an undo action.{{Identical|Undo}}',
 'undo-summary-username-hidden' => 'Edit summary for an undo action where the username of the old revision is hidden.
-$1 is the revision ID being undone',
+
+Parameters:
+* $1 - the revision ID being undone
+See also:
+* {{msg-mw|Undo-summary}}',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Used as title of the error message {{msg-mw|Cantcreateaccount-text}}.',
@@ -2680,8 +2690,11 @@ See also:
 'prefs-timeoffset' => 'Used in [[Special:Preferences]], tab "Date and time".',
 'prefs-advancedediting' => 'Used in [[Special:Preferences]], tab "Editing".
 This used to say "Advanced options", the key name is a left over from that.',
-'prefs-editor' => 'Used in [[Special:Preferences]], tab "Editing".',
-'prefs-preview' => 'Used in [[Special:Preferences]], tab "Editing".',
+'prefs-editor' => 'Used in [[Special:Preferences]], tab "Editing" ({{int:prefs-editing}}).
+
+{{Identical|Editor}}',
+'prefs-preview' => 'Used in [[Special:Preferences]], tab "Editing".
+{{Identical|Preview}}',
 'prefs-advancedrc' => 'Used in [[Special:Preferences]], tab "Recent changes".
 {{Identical|Advanced options}}',
 'prefs-advancedrendering' => 'Used in [[Special:Preferences]], tab "Appearence".
@@ -2913,17 +2926,17 @@ This user automatically bypasses IP blocks, auto-blocks and range blocks - so I 
 'right-editinterface' => '{{doc-right|editinterface}}',
 'right-editusercssjs' => '{{doc-right|editusercssjs}}',
 'right-editusercss' => '{{doc-right|editusercss}}
-
-See also {{msg-mw|Right-editmyusercss}}',
+See also:
+* {{msg-mw|Right-editmyusercss}}',
 'right-edituserjs' => '{{doc-right|edituserjs}}
-
-See also {{msg-mw|Right-editmyuserjs}}',
+See also:
+* {{msg-mw|Right-editmyuserjs}}',
 'right-editmyusercss' => '{{doc-right|editmyusercss}}
-
-See also {{msg-mw|Right-editusercss}}',
+See also:
+* {{msg-mw|Right-editusercss}}',
 'right-editmyuserjs' => '{{doc-right|editmyuserjs}}
-
-See also {{msg-mw|Right-edituserjs}}',
+See also:
+* {{msg-mw|Right-edituserjs}}',
 'right-viewmywatchlist' => '{{doc-right|viewmywatchlist}}',
 'right-editmywatchlist' => '{{doc-right|editmywatchlist}}',
 'right-rollback' => '{{doc-right|rollback}}
@@ -4498,7 +4511,8 @@ Parameters:
 * $2 - Tool links (View relevant changes | View and edit watchlist | Edit raw watchlist)
 {{Identical|For $1}}',
 'nowatchlist' => 'Displayed when there is no pages in the watchlist.',
-'watchlistanontext' => '* $1 is a link to [[Special:UserLogin]] with {{msg-mw|loginreqlink}} as link description',
+'watchlistanontext' => 'Parameters:
+* $1 - a link to [[Special:UserLogin]] with {{msg-mw|loginreqlink}} as link description',
 'watchnologin' => 'Used as error page title.
 
 The error message for this title is:
@@ -6228,7 +6242,8 @@ See also:
 * {{msg-mw|Import-interwiki-namespace}}
 * {{msg-mw|Import-comment}}
 * {{msg-mw|Import-interwiki-submit}}',
-'import-upload-filename' => 'Used on [[Special:Import]] as label for upload of an XML file containing the pages to import.',
+'import-upload-filename' => 'Used on [[Special:Import]] as label for upload of an XML file containing the pages to import.
+{{Identical|Filename}}',
 'import-comment' => 'Used as label for input box in [[Special:Import]].
 
 See also:
@@ -7211,7 +7226,8 @@ Parameters:
 
 Parameters:
 * $1 - the number of years',
-'ago' => 'Phrase for indicating how long ago something happened. $1 is some kind of timestamp.',
+'ago' => 'Phrase for indicating how long ago something happened. Parameters:
+* $1 - some kind of timestamp',
 'just-now' => 'Phrase for indicating something happened just now.',
 
 # Human-readable timestamps

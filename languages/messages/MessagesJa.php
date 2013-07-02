@@ -1201,7 +1201,7 @@ $1または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこのブロッ�
 'nocreate-loggedin' => '新しいページを作成する権限がありません。',
 'sectioneditnotsupported-title' => '節単位編集はサポートされていません',
 'sectioneditnotsupported-text' => 'このページでは節単位編集はサポートされません。',
-'permissionserrors' => '認証エラー',
+'permissionserrors' => '権限エラー',
 'permissionserrorstext' => 'あなたにはこの操作を行う権限はありません。{{PLURAL:$1|理由}}は以下の通りです:',
 'permissionserrorstext-withaction' => 'あなたには「$2」を行う権限はありません。{{PLURAL:$1|理由}}は以下の通りです:',
 'recreate-moveddeleted-warn' => "'''警告: 以前削除されたページを再作成しようとしています。'''
@@ -1809,6 +1809,7 @@ $1 {{PLURAL:$1|文字}}以下である必要があります。',
 'recentchanges' => '最近の更新',
 'recentchanges-legend' => '最近の更新のオプション',
 'recentchanges-summary' => 'このページでは、このウィキでの最近の更新を確認できます。',
+'recentchanges-noresult' => '指定した条件に該当する期間の変更はありません。',
 'recentchanges-feed-description' => 'このフィードでこのウィキの最近の更新を追跡できます。',
 'recentchanges-label-newpage' => 'この編集で新しいページが作成されました',
 'recentchanges-label-minor' => 'これは細部の編集です',
@@ -3964,7 +3965,7 @@ Variants for Chinese language
 メールサーバーからの返答: $1',
 'confirmemail_invalid' => '確認用コードが正しくありません。
 このコードの有効期限が切れている可能性があります。',
-'confirmemail_needlogin' => 'メールアドレスを確認するために$1が必要です。',
+'confirmemail_needlogin' => 'メールアドレスを確認するには$1する必要があります。',
 'confirmemail_success' => 'メールアドレスは確認されました。
 [[Special:UserLogin|ログイン]]してウィキを使用できます。',
 'confirmemail_loggedin' => 'メールアドレスは確認されました。',

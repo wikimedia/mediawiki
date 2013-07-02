@@ -722,7 +722,7 @@ Nobis etiam spondes te esse ipsum horum verborum scriptorem primum, aut ex opere
 'template-semiprotected' => '(semi-protecta)',
 'hiddencategories' => 'Haec pagina ad {{PLURAL:$1|unam categoriam celatam|$1 categorias celatas}} pertinet:',
 'nocreate-loggedin' => 'Tibi non licet paginas novas creare.',
-'permissionserrors' => 'Errores permissionis',
+'permissionserrors' => 'Error permissionis',
 'permissionserrorstext-withaction' => 'Tibi non licet $2, ex {{PLURAL:$1|ratione|rationibus}}:',
 'recreate-moveddeleted-warn' => "'''Cave: paginam qui antea iam deleta est creas.'''
 

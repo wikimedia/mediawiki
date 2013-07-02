@@ -493,6 +493,7 @@ $messages = array(
 'create-this-page' => 'Crear aquesta pagina',
 'delete' => 'Suprimir',
 'deletethispage' => 'Suprimir aquesta pagina',
+'undeletethispage' => "Anullar la supression d'aquesta pagina",
 'undelete_short' => 'Restablir {{PLURAL:$1|1 modificacion| $1 modificacions}}',
 'viewdeleted_short' => 'Veire {{PLURAL:$1|una edicion escafada|$1 edicions escafadas}}',
 'protect' => 'Protegir',
@@ -690,10 +691,18 @@ $2",
 'namespaceprotected' => "Avètz pas la permission de modificar las paginas de l’espaci de noms « '''$1''' ».",
 'customcssprotected' => "Avètz pas la permission d'editar aquesta pagina CSS perque conten de preferéncias d’autres utilizaires.",
 'customjsprotected' => "Avètz pas la permission d'editar aquesta pagina JavaScript perque conten de preferéncias d’autres utilizaires.",
+'mycustomcssprotected' => 'Avètz pas lo drech de modificar aquesta pagina CSS.',
+'mycustomjsprotected' => 'Avètz pas lo drech de modificar aquesta pagina JavaScript.',
 'ns-specialprotected' => 'Las paginas dins l’espaci de noms « {{ns:special}} » pòdon pas èsser modificadas',
 'titleprotected' => "Aqueste títol es estat protegit a la creacion per [[User:$1|$1]].
 Lo motiu avançat es « ''$2'' ».",
+'filereadonlyerror' => "Impossible de modificar lo fichièr « $1 » perque lo repertòri de fichièrs « $2 » es en lectura sola.
+
+L'administrator que l'a varrolhat a provesit aqueste motiu : « $3 ».",
+'invalidtitle-knownnamespace' => "Títol invalid amb l'espaci de noms « $2 » e l'intitulat « $3 »",
+'invalidtitle-unknownnamespace' => "Títol invalid amb lo numèro d'espaci de noms $1 e l'intitulat « $2 » desconeguts",
 'exception-nologin' => 'Pas connectat',
+'exception-nologin-text' => "Aquesta pagina o aquesta accion necessita d'èsser connectada sus aqueste wiki.",
 
 # Virus scanner
 'virus-badscanner' => "Marrida configuracion : escaner de virús desconegut : ''$1''",
@@ -768,6 +777,8 @@ Causissètz-ne un autre.",
 'createaccounterror' => 'Impossible de crear lo compte : $1',
 'nocookiesnew' => "Lo compte d'utilizaire es estat creat, mas sètz pas connectat. {{SITENAME}} utiliza de cookies per la connexion mas los avètz desactivats. Activatz-los e reconnectatz-vos amb lo meteis nom e lo meteis senhal.",
 'nocookieslogin' => '{{SITENAME}} utiliza de cookies per la connexion mas avètz los cookies desactivats. Activatz-los e reconnectatz-vos.',
+'nocookiesfornew' => "Lo compte d'utilizaire es pas estat creat, perque avèm pas pogut identificar son origina.
+Verificatz qu'avètz activat los cookies, recargatz la pagina e tornatz ensajar.",
 'noname' => "Avètz pas picat de nom d'utilizaire valid.",
 'loginsuccesstitle' => 'Identificacion capitada.',
 'loginsuccess' => 'Sètz actualament connectat(ada) sus {{SITENAME}} en tant que « $1 ».',
@@ -800,7 +811,7 @@ Identificatz-vos tre que l'aurètz recebut.",
 'blocked-mailpassword' => 'Vòstra adreça IP es blocada en edicion, la foncion de rapèl del senhal es doncas desactivada per evitar los abuses.',
 'eauthentsent' => 'Un corrièr de confirmacion es estat mandat a l’adreça indicada.
 Abans qu’un autre corrièr sià mandat a aqueste compte, vos caldrà seguir las instruccions donadas dins lo messatge per confirmar que sètz plan lo titular.',
-'throttled-mailpassword' => 'Un corrièr electronic de rapèl de vòstre senhal ja es estat mandat durant {{PLURAL:$1|la darrièra ora|las $1 darrièras oras}}. Per evitar los abuses, un sol corrièr de rapèl serà mandat per {{PLURAL:$1|ora|interval de $1 oras}}.',
+'throttled-mailpassword' => 'Un corrièr electronic de reïnicializacion de vòstre senhal es ja estat mandat durant {{PLURAL:$1|la darrièra ora|las $1 darrièras oras}}. Per evitar los abuses, un sol corrièr de reïnicializacion de vòstre senhal serà pas mandat per {{PLURAL:$1|ora|interval de $1 oras}}.',
 'mailerror' => 'Error en mandant lo corrièr electronic : $1',
 'acct_creation_throttle_hit' => "De visitors d'aqueste wiki qu'utilizan vòstra adreça IP an creat $1 {{PLURAL:$1|compte|comptes}} lo jorn darrièr, aquò es lo limit maximum autorizat pendent aqueste periòde.
 Atal los visitors qu'utilizan aquesta adreça IP pòdon pas crear mai de compte novèl pel moment.",
@@ -810,9 +821,10 @@ Atal los visitors qu'utilizan aquesta adreça IP pòdon pas crear mai de compte 
 'emailconfirmlink' => 'Confirmatz vòstra adreça de corrièr electronic',
 'invalidemailaddress' => "Aquesta adreça de corrièr electronic pòt pas èsser acceptada perque sembla qu'a un format incorrècte.
 Picatz una adreça plan formatada o daissatz aqueste camp void.",
+'cannotchangeemail' => 'Las adreças de corrièr electronic dels comptes pòdon pas èsser modificadas sus aqueste wiki.',
 'emaildisabled' => 'Aqueste site pòt pas mandar de corrièls.',
 'accountcreated' => 'Compte creat.',
-'accountcreatedtext' => "Lo compte d'utilizaire de $1 es estat creat.",
+'accountcreatedtext' => "Lo compte d'utilizaire per [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|discussion]]) es estat creat.",
 'createaccount-title' => "Creacion d'un compte per {{SITENAME}}",
 'createaccount-text' => "Qualqu'un a creat un compte per vòstra adreça de corrièr electronic sus {{SITENAME}} ($4) intitolat « $2 », amb per senhal « $3 ». Deuriaz dobrir una sessilha e cambiar, tre ara, aqueste senhal.
 
@@ -826,6 +838,8 @@ Esperatz abans d’ensajar tornamai.',
 
 # Email sending
 'php-mail-error-unknown' => 'Error desconeguda dins la foncion mail() de PHP.',
+'user-mail-no-addy' => 'Ensajat de mandar un corrièr electronic sens adreça',
+'user-mail-no-body' => "Ensag de mandadís d'un corrièr electronic amb un còs void o desrasonablament cort.",
 
 # Change password dialog
 'resetpass' => 'Cambiar lo senhal del compte',
@@ -844,17 +858,36 @@ Esperatz abans d’ensajar tornamai.',
 'resetpass-wrong-oldpass' => 'Senhal actual o temporari invalid.
 Benlèu ja avètz modificat vòstre senhal o demandat un senhal temporari novèl.',
 'resetpass-temp-password' => 'Senhal temporari :',
+'resetpass-abort-generic' => 'La modificacion del senhal es estada anulada per una extension.',
 
 # Special:PasswordReset
 'passwordreset' => 'Remesa a zèro del senhal',
+'passwordreset-text-one' => 'Emplenatz aqueste formulari per reïnicializar vòstre senhal.',
+'passwordreset-text-many' => "{{PLURAL:$1|Entratz una d'aquelas donadas per reïnicializar vòstre senhal.}}",
 'passwordreset-legend' => 'Reïnicializar lo senhal',
+'passwordreset-disabled' => 'La reïnicializacion dels senhals es estada desactivada sus aqueste wiki.',
+'passwordreset-emaildisabled' => 'Las foncionalitats e-mail son estadas desactivadas sus aqueste wiki.',
 'passwordreset-username' => "Nom d'utilizaire :",
 'passwordreset-domain' => 'Domeni:',
 'passwordreset-capture' => 'Veire lo corrièl resultant ?',
+'passwordreset-capture-help' => "Se marcatz aquesta casa, lo corrièr electronic (amb lo senhal temporari) vos serà afichat al meteis temps que serà mandat a l'utilizaire.",
 'passwordreset-email' => 'Adreça de corrièr electronic :',
 'passwordreset-emailtitle' => "Detailhs d'un compte per {{SITENAME}}",
+'passwordreset-emailtext-ip' => "Qualqu'un (probablament vos, dempuèi l'adreça IP $1) a demandat una reïnicializacion de vòstre senhal per {{SITENAME}} ($4). {{PLURAL:$3|Lo compte d'utilizaire seguent es associat|Los comptes d'utilizaires seguents son associats}} a aquesta adreça de corrièr electronic :
+
+$2
+
+{{PLURAL:$3|Aqueste senhal temporari expirarà|Aquestes senhals temporaris expiraràn}} dins {{PLURAL:$5|un jorn|$5 jorns}}. Ara, vos cal vos connectar e causir un senhal novèl. Se aquesta demanda proven pas de vos, o que vos sètz remembrat de vòstre senhal inicial, e que volètz pas mai lo modificar, podètz ignorar aqueste messatge e contunhar d'utilizar vòstre ancian senhal.",
+'passwordreset-emailtext-user' => "L'utilizaire $1 sus {{SITENAME}} a demandat una reïnicializacion de vòstre senhal per {{SITENAME}} ($4). {{PLURAL:$3|Lo compte d'utilizaire seguent es associat|Los comptes d'utilizaires seguents son associats}} a aquesta adreça de corrièr electronic :
+
+$2
+
+{{PLURAL:$3|Aqueste senhal temporari expirarà|Aquestes senhals temporaris expiraràn}} dins {{PLURAL:$5|un jorn|$5 jorns}}. Ara, vos cal vos connectar e causir un senhal novèl. Se aquesta demanda proven pas de vos, o que vos sètz remembrat de vòstre senhal inicial, e que lo volètz pas mai modificar, podètz ignorar aqueste messatge e contunhar d'utilizar vòstre ancian senhal.",
 'passwordreset-emailelement' => 'Utilizaire: $1
 Senhal temporari: $2',
+'passwordreset-emailsent' => 'Un corrièr electronic de reïnicializacion de senhal es estat mandat.',
+'passwordreset-emailsent-capture' => "Un corrièr electronic de reïnicializacion senhal es estat mandat, qu'es afichat çaijós.",
+'passwordreset-emailerror-capture' => "Un corrièr electronic de reïnicializacion de senhal es estat generat, qu'es afichat çaijós, mas lo mandadís a l'{{GENDER:$2|utilizaire}} a fracassat : $1",
 
 # Special:ChangeEmail
 'changeemail' => "Cambiar l'adreça electronica:",
@@ -863,6 +896,7 @@ Senhal temporari: $2',
 'changeemail-oldemail' => 'Adreça electronica actuala:',
 'changeemail-newemail' => 'Novela adreça electronica:',
 'changeemail-none' => '(pas cap)',
+'changeemail-password' => 'Vòstre senhal sus {{SITENAME}} :',
 'changeemail-submit' => "Cambiar l'adreça electronica:",
 'changeemail-cancel' => 'Anullar',
 
@@ -1027,7 +1061,7 @@ Podètz tonar en rèire e modificar una pagina existenta, [[Special:UserLogin|vo
 'nocreate-loggedin' => 'Avètz pas la permission de crear de paginas novèlas.',
 'sectioneditnotsupported-title' => 'Modificacion de seccion pas presa en carga',
 'sectioneditnotsupported-text' => "La modificacion d'una seccion es pas suportada dins aquesta pagina de modificacion.",
-'permissionserrors' => 'Error de permissions',
+'permissionserrors' => 'Error de permission',
 'permissionserrorstext' => 'Avètz pas la permission d’efectuar l’operacion demandada per {{PLURAL:$1|la rason seguenta|las rasons seguentas}} :',
 'permissionserrorstext-withaction' => 'Sètz pas autorizat(ada) a $2, per {{PLURAL:$1|la rason seguenta|las rasons seguentas}} :',
 'recreate-moveddeleted-warn' => "'''Atencion : sètz a tornar crear una pagina qu'es estada suprimida precedentament.'''
@@ -1043,13 +1077,14 @@ Cap d'explicacion pas balhada.",
 Sembla que siá estada suprimida.',
 'edit-conflict' => 'Modificar lo conflicte.',
 'edit-no-change' => 'Vòstra modificacion es estada ignorada perque cap de cambiament es pas estat fach dins lo tèxte.',
+'postedit-confirmation' => 'Vòstra modificacion es estada salvada.',
 'edit-already-exists' => 'La pagina novèla a pogut èsser creada .
 Existís ja.',
 'defaultmessagetext' => 'Messatge per defaut',
 'content-failed-to-parse' => "Fracàs de l'analisi del contengut de $2 pel modèl $1: $3",
 'invalid-content-data' => 'Donadas del contengut invalidas',
-'editwarning-warning' => "Quitar aquesta pagina vos farà pèrdre totas las modificacions qu'avètz fachas.
-Se sètz connectat amb vòstre compte, podètz levar aqueste avertiment dins la seccion {{int:prefs-editing}} de vòstras preferéncias.",
+'content-not-allowed-here' => 'Lo contengut "$1" es pas autorizat sus la pagina [[$2]]',
+'editwarning-warning' => "Quitar aquesta pagina vos farà pèrdre totas las modificacions qu'avètz fachas. Se sètz connectat amb vòstre compte, podètz levar aqueste avertiment dins la seccion « Modificacion » de vòstras preferéncias.",
 
 # Content models
 'content-model-wikitext' => 'wikitèxte',
@@ -1083,6 +1118,7 @@ D'unas inclusions seràn pas efectuadas.",
 'undo-failure' => 'Aquesta modificacion a pas pogut èsser desfacha a causa de conflictes amb de modificacions intermediàrias.',
 'undo-norev' => 'La modificacion a pas pogut èsser desfacha perque siá es inexistenta siá es estada suprimida.',
 'undo-summary' => 'Anullacion de las modificacions $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|discutir]] | [[Special:Contributions/$2|{{MediaWiki:Contribslink}}]])',
+'undo-summary-username-hidden' => 'Anullar la revision $1 per un utilizaire amagat',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Podètz pas crear de compte.',
@@ -1149,9 +1185,9 @@ Podètz totjorn [$1 veire aquesta diferéncia] se lo volètz.",
 De detalhs son disponibles dins lo [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jornal de las supressions].
 Podètz totjorn [$1 veire aqueste diff] se volètz contunhar.",
 'rev-deleted-diff-view' => "Una de las revisions d'aquesta diff es estada '''suprimida'''.
-En tant qu'administrator podètz veire aquesta diff ; i pòt aver mai de detalhs dins lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de las supressions].",
+Podètz veire aquesta diff ; i pòt aver mai de detalhs dins lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de las supressions].",
 'rev-suppressed-diff-view' => "Una de las revisions d'aquesta diff es estada '''escafada'''.
-En tant qu'administrator podètz veire aquesta diff ; i pòt aver mai de detalhs dins lo [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jornal dels escafaments].",
+Podètz veire aquesta diff ; i pòt aver mai de detalhs dins lo [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jornal dels escafaments].",
 'rev-delundel' => 'afichar/amagar',
 'rev-showdeleted' => 'afichar',
 'revisiondelete' => 'Suprimir/Restablir de versions',
@@ -1210,7 +1246,9 @@ Verificatz los jornals.",
 'revdelete-only-restricted' => "Error al moment de la supression de l'entrada datada del $1 a $2 : podètz pas suprimir aqueles elements als administrators sens seleccionar tanben d'opcions de supression mai.",
 'revdelete-reason-dropdown' => "* Rasons correntas de supression
 ** Violacion dels dreches d'autors
-** Entresenhas personalas inapropriadas",
+** Entresenhas personalas inapropriadas
+** Nom d'utilizaire inapropriat
+** Informacions potencialament difamatòrias.",
 'revdelete-otherreason' => 'Autra rason / rason suplementària :',
 'revdelete-reasonotherlist' => 'Autra rason',
 'revdelete-edit-reasonlist' => 'Modifica los motius de la supression',
@@ -1218,7 +1256,7 @@ Verificatz los jornals.",
 
 # Suppression log
 'suppressionlog' => 'Jornal de las supressions',
-'suppressionlogtext' => 'Çaijós, se tròba la tièra de las supressions e dels blocatges que comprenon las revisions amagadas als administrators. Vejatz [[Special:IPBlockList|la lista dels blocatges de las IP]] per la lista dels fòrabandiments e dels blocatges operacionals.',
+'suppressionlogtext' => 'Çaijós, se tròba la lista de las supressions e dels blocatges que comprenon las revisions amagadas als administrators. Vejatz [[Special:BlockList|la lista dels blocatges de las IP]] per la lista dels fòrabandiments e dels blocatges operacionals.',
 
 # History merging
 'mergehistory' => "Fusion dels istorics d'una pagina",
@@ -1251,6 +1289,8 @@ Asseguratz-vos qu'aqueste cambiament pòsca conservar la continuitat de l'istori
 
 # Diffs
 'history-title' => '$1 : Istoric de las versions',
+'difference-title' => '$1 : Diferéncia entre versions',
+'difference-title-multipage' => 'Diferéncias entre las paginas « $1 » e « $2 »',
 'difference-multipage' => '(Diferéncias entre las paginas)',
 'lineno' => 'Linha $1 :',
 'compareselectedversions' => 'Comparar las versions seleccionadas',
@@ -1427,7 +1467,9 @@ Tanben podètz causir de permetre a d’autres de vos contactar per vòstra pagi
 'prefs-signature' => 'Signatura',
 'prefs-dateformat' => 'Format de las datas',
 'prefs-timeoffset' => 'Descalatge orari',
-'prefs-advancedediting' => 'Opcions avançadas',
+'prefs-advancedediting' => 'General',
+'prefs-editor' => 'Editor',
+'prefs-preview' => 'Apercebut',
 'prefs-advancedrc' => 'Opcions avançadas',
 'prefs-advancedrendering' => 'Opcions avançadas',
 'prefs-advancedsearchoptions' => 'Opcions avançadas',
@@ -1531,6 +1573,9 @@ Tanben podètz causir de permetre a d’autres de vos contactar per vòstra pagi
 'right-editusercssjs' => "Modificar los fichièrs CSS e JS d'autres utilizaires",
 'right-editusercss' => "Modificar los fichièrs CSS d'autres utilizaires",
 'right-edituserjs' => "Modificar los fichièrs JS d'autres utilizaires",
+'right-editmyusercss' => 'Modificar vòstres pròpris fichièrs CSS utilizaire',
+'right-editmyuserjs' => 'Modificar vòstres pròpris fichièrs JavaScript utilizaire',
+'right-viewmywatchlist' => 'Afichar vòstra pròpria lista de seguiment',
 'right-rollback' => "Revocacion rapida del darrièr utilizaire qu'a modificat una pagina particulara",
 'right-markbotedits' => 'Marcar los cambiaments revocats coma de cambiaments que son estats fachs per de robòts',
 'right-noratelimit' => 'Pas afectat pels limits de taus',
