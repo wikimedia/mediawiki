@@ -147,6 +147,11 @@ production.
 * Added a new method and hook, User::isEveryoneAllowed() and
   UserIsEveryoneAllowed, for use in situations where a "does everyone have this
   right?" check is used to avoid more expensive checks.
+* (BREAKING CHANGE) $wgHTCPMulticastRouting renamed $wgHTCPRouting since it
+  accepts unicast.
+* $wgHTCPRouting rules can now be passed an array of hosts/ports to send purge
+  too. Can be used whenever several multicast group could be interested by a
+  specific purge.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
