@@ -2168,12 +2168,12 @@ $wgSquidPurgeUseHostHeader = true;
  * Each key in this array is a regular expression to match against the purged
  * URL, or an empty string to match all URLs. The purged URL is matched against
  * the regexes in the order specified, and the first rule whose regex matches
- * is used.
+ * is used, all remaining rules will thus be ignored.
  *
- * Example configuration to send purges for upload.wikimedia.org to one
+ * @par Example configuration to send purges for upload.wikimedia.org to one
  * multicast group and all other purges to another:
  * @code
- * $wgHTCPMulticastRouting = array(
+ * $wgHTCPRouting = array(
  *         '|^https?://upload\.wikimedia\.org|' => array(
  *                 'host' => '239.128.0.113',
  *                 'port' => 4827,
@@ -2185,11 +2185,43 @@ $wgSquidPurgeUseHostHeader = true;
  * );
  * @endcode
  *
- * @since 1.20
+ * You can also pass an array of hosts to send purges too. This is useful when
+ * you have several multicast groups or unicast address that should receive a
+ * given purge.  Multiple hosts support was introduced in MediaWiki 1.22.
+ *
+ * @par Example of sending purges to multiple hosts:
+ * @code
+ * $wgHTCPRouting = array(
+ *     '' => array(
+ *         // Purges to text caches using multicast
+ *         array( 'host' => '239.128.0.114', 'port' => '4827' ),
+ *         // Purges to a hardcoded list of caches
+ *         array( 'host' => '10.88.66.1', 'port' => '4827' ),
+ *         array( 'host' => '10.88.66.2', 'port' => '4827' ),
+ *         array( 'host' => '10.88.66.3', 'port' => '4827' ),
+ *     ),
+ * );
+ * @endcode
+ *
+ * @since 1.22
+ *
+ * $wgHTCPRouting replaces $wgHTCPMulticastRouting that was introduced in 1.20.
+ * For back compatibility purposes, whenever its array is empty
+ * $wgHTCPMutlicastRouting will be used as a fallback if it not null.
  *
  * @see $wgHTCPMulticastTTL
  */
-$wgHTCPMulticastRouting = array();
+$wgHTCPRouting = array();
+
+/**
+ * @deprecated since 1.22, please use $wgHTCPRouting instead.
+ *
+ * A non null value will be applied to $wgHTCPRouting if it is not set already
+ * this is merely for back compatibility.
+ *
+ * @since 1.20
+ */
+$wgHTCPMulticastRouting = null;
 
 /**
  * HTCP multicast address. Set this to a multicast IP address to enable HTCP.
@@ -2197,25 +2229,28 @@ $wgHTCPMulticastRouting = array();
  * Note that MediaWiki uses the old non-RFC compliant HTCP format, which was
  * present in the earliest Squid implementations of the protocol.
  *
- * This setting is DEPRECATED in favor of $wgHTCPMulticastRouting , and kept
- * for backwards compatibility only. If $wgHTCPMulticastRouting is set, this
- * setting is ignored. If $wgHTCPMulticastRouting is not set and this setting
- * is, it is used to populate $wgHTCPMulticastRouting.
+ * This setting is DEPRECATED in favor of $wgHTCPRouting , and kept for
+ * backwards compatibility only. If $wgHTCPRouting is set, this setting is
+ * ignored. If $wgHTCPRouting is not set and this setting is, it is used to
+ * populate $wgHTCPRouting.
  *
- * @deprecated since 1.20 in favor of $wgHTCPMulticastRouting
+ * @deprecated since 1.20 in favor of $wgHTCPMulticastRouting and since 1.22 in
+ * favor of $wgHTCPRouting.
  */
 $wgHTCPMulticastAddress = false;
 
 /**
  * HTCP multicast port.
- * @deprecated since 1.20 in favor of $wgHTCPMulticastRouting
+ * @deprecated since 1.20 in favor of $wgHTCPMulticastRouting and since 1.22 in
+ * favor of $wgHTCPRouting.
+ *
  * @see $wgHTCPMulticastAddress
  */
 $wgHTCPPort = 4827;
 
 /**
  * HTCP multicast TTL.
- * @see $wgHTCPMulticastRouting
+ * @see $wgHTCPRouting
  */
 $wgHTCPMulticastTTL = 1;
 

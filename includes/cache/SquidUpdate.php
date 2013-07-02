@@ -123,7 +123,7 @@ class SquidUpdate {
 	 * @return void
 	 */
 	static function purge( $urlArr ) {
-		global $wgSquidServers, $wgHTCPMulticastRouting;
+		global $wgSquidServers, $wgHTCPRouting;
 
 		if ( !$urlArr ) {
 			return;
@@ -131,7 +131,7 @@ class SquidUpdate {
 
 		wfDebugLog( 'squid', __METHOD__ . ': ' . implode( ' ', $urlArr ) . "\n" );
 
-		if ( $wgHTCPMulticastRouting ) {
+		if ( $wgHTCPRouting ) {
 			SquidUpdate::HTCPPurge( $urlArr );
 		}
 
@@ -166,7 +166,7 @@ class SquidUpdate {
 	 * @param $urlArr array
 	 */
 	static function HTCPPurge( $urlArr ) {
-		global $wgHTCPMulticastRouting, $wgHTCPMulticastTTL;
+		global $wgHTCPRouting, $wgHTCPMulticastTTL;
 		wfProfileIn( __METHOD__ );
 
 		$htcpOpCLR = 4; // HTCP CLR
@@ -202,15 +202,22 @@ class SquidUpdate {
 				throw new MWException( 'Bad purge URL' );
 			}
 			$url = SquidUpdate::expand( $url );
-			$conf = self::getRuleForURL( $url, $wgHTCPMulticastRouting );
+			$conf = self::getRuleForURL( $url, $wgHTCPRouting );
 			if ( !$conf ) {
 				wfDebugLog( 'squid', __METHOD__ .
 					"No HTCP rule configured for URL $url , skipping\n" );
 				continue;
 			}
-			if ( !isset( $conf['host'] ) || !isset( $conf['port'] ) ) {
-				wfProfileOut( __METHOD__ );
-				throw new MWException( "Invalid HTCP rule for URL $url\n" );
+
+			if( isset( $conf['host'] ) && isset( $conf['port'] ) ) {
+				// Normalize single entries
+				$conf = array( $conf );
+			}
+			foreach( $conf as $subconf ) {
+				if ( !isset( $subconf['host'] ) || !isset( $subconf['port'] ) ) {
+					wfProfileOut( __METHOD__ );
+					throw new MWException( "Invalid HTCP rule for URL $url\n" );
+				}
 			}
 
 			// Construct a minimal HTCP request diagram
@@ -232,11 +239,12 @@ class SquidUpdate {
 				$htcpLen, $htcpDataLen, $htcpOpCLR,
 				$htcpTransID, $htcpSpecifier, 2 );
 
-			// Send out
 			wfDebugLog( 'squid', __METHOD__ .
 				"Purging URL $url via HTCP\n" );
-			socket_sendto( $conn, $htcpPacket, $htcpLen, 0,
-				$conf['host'], $conf['port'] );
+			foreach( $conf as $subconf ) {
+				socket_sendto( $conn, $htcpPacket, $htcpLen, 0,
+					$subconf['host'], $subconf['port'] );
+			}
 		}
 		wfProfileOut( __METHOD__ );
 	}
@@ -263,7 +271,7 @@ class SquidUpdate {
 	/**
 	 * Find the HTCP routing rule to use for a given URL.
 	 * @param string $url URL to match
-	 * @param array $rules Array of rules, see $wgHTCPMulticastRouting for format and behavior
+	 * @param array $rules Array of rules, see $wgHTCPRouting for format and behavior
 	 * @return mixed Element of $rules that matched, or false if nothing matched
 	 */
 	static function getRuleForURL( $url, $rules ) {

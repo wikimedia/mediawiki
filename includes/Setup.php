@@ -427,9 +427,16 @@ if ( $wgCanonicalServer === false ) {
 	$wgCanonicalServer = wfExpandUrl( $wgServer, PROTO_HTTP );
 }
 
-// Initialize $wgHTCPMulticastRouting from backwards-compatible settings
-if ( !$wgHTCPMulticastRouting && $wgHTCPMulticastAddress ) {
-	$wgHTCPMulticastRouting = array(
+// $wgHTCPMulticastRouting got renamed to $wgHTCPRouting in MediaWiki 1.22
+// ensure back compatibility.
+if ( !$wgHTCPRouting && $wgHTCPMulticastRouting ) {
+	$wgHTCPRouting = $wgHTCPMulticastRouting;
+}
+
+// Initialize $wgHTCPRouting from backwards-compatible settings that
+// comes from pre 1.20 version.
+if ( !$wgHTCPRouting && $wgHTCPMulticastAddress ) {
+	$wgHTCPRouting = array(
 		'' => array(
 			'host' => $wgHTCPMulticastAddress,
 			'port' => $wgHTCPPort,
