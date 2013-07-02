@@ -91,11 +91,6 @@ if ( $IP === false ) {
 	}
 }
 
-# Load composer's autoloader if present
-if ( is_readable( "$IP/vendor/autoload.php" ) ) {
-	require_once "$IP/vendor/autoload.php";
-}
-
 # Get MWInit class
 require_once "$IP/includes/Init.php";
 
@@ -137,6 +132,11 @@ if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 
 	# Include site settings. $IP may be changed (hopefully before the AutoLoader is invoked)
 	require_once MW_CONFIG_FILE;
+}
+
+# Load composer's autoloader if present
+if ( is_readable( "$IP/vendor/autoload.php" ) ) {
+	require_once "$IP/vendor/autoload.php";
 }
 
 wfProfileOut( 'WebStart.php-conf' );
