@@ -119,6 +119,9 @@ production.
   watchlists.
 * (bug 40518) mw.toolbar: Implemented mw.toolbar.addButtons for adding multiple
  button objects in one call.
+* $wgHTCPMulticastRouting rules now be passed an array of hosts/ports to send
+  purge too. Can be used whenever several multicast group could be interested
+  by a specific purge.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
