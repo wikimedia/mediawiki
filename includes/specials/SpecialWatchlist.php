@@ -244,10 +244,14 @@ class SpecialWatchlist extends SpecialPage {
 		}
 
 		# Create output form
+		$newrc = $this->getRequest()->getBool( 'enhanced', $user->getOption( 'usenewrc' ) );
 		$form = Xml::fieldset(
 			$this->msg( 'watchlist-options' )->text(),
 			false,
-			array( 'id' => 'mw-watchlist-options' )
+			array(
+				'id' => 'mw-watchlist-options',
+				'class' => ( $newrc ? 'mw-watchlist-options-enhanced' : 'mw-watchlist-options-old' ),
+			)
 		);
 
 		# Show watchlist header
