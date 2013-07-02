@@ -355,6 +355,11 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 # that value)
 \$wgResourceLoaderMaxQueryLength = {$this->values['wgResourceLoaderMaxQueryLength']};
 
+# Load composer's autoloader if present.
+if ( is_readable( \$IP . '/vendor/autoload.php' ) ) {
+	require_once \$IP . '/vendor/autoload.php';
+}
+
 {$groupRights}";
 	}
 
