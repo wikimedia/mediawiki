@@ -2168,9 +2168,9 @@ $wgSquidPurgeUseHostHeader = true;
  * Each key in this array is a regular expression to match against the purged
  * URL, or an empty string to match all URLs. The purged URL is matched against
  * the regexes in the order specified, and the first rule whose regex matches
- * is used.
+ * is used, all remaining rules will thus be ignored.
  *
- * Example configuration to send purges for upload.wikimedia.org to one
+ * @par Example configuration to send purges for upload.wikimedia.org to one
  * multicast group and all other purges to another:
  * @code
  * $wgHTCPMulticastRouting = array(
@@ -2182,6 +2182,21 @@ $wgSquidPurgeUseHostHeader = true;
  *                 'host' => '239.128.0.112',
  *                 'port' => 4827,
  *         ),
+ * );
+ * @endcode
+ *
+ * You can also past an array of hosts to send purges too. This is useful when
+ * you have several multicast groups that should receive a given purge. This
+ * feature has been introduced with MediaWiki 1.22.
+ * @par Example of sending purges to multiple hosts:
+ * @code
+ * $wgHTCPMulticastRouting = array(
+ *     '' => array(
+ *         // Purges to text caches
+ *         array( 'host' => '239.128.0.114', 'port' => '4827' ),
+ *         // Purges to mobile caches
+ *         array( 'host' => '239.128.0.115', 'port' => '4827' ),
+ *     ),
  * );
  * @endcode
  *
