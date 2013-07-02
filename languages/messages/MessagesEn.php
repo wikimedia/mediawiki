@@ -541,7 +541,6 @@ $preloadedMessages = array(
 	'disclaimers',
 	'edit',
 	'editsection',
-	'editsection-brackets',
 	'editsectionhint',
 	'help',
 	'helppage',
@@ -941,7 +940,6 @@ See [[Special:Version|version page]].',
 'youhavenewmessagesmulti'      => 'You have new messages on $1',
 'newtalkseparator'             => ',&#32;', # do not translate or duplicate this message to other languages
 'editsection'                  => 'edit',
-'editsection-brackets'         => '[$1]', # only translate this message to other languages if you have to change it
 'editold'                      => 'edit',
 'viewsourceold'                => 'view source',
 'editlink'                     => 'edit',
