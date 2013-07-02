@@ -3384,7 +3384,7 @@ function wfForeignMemcKey( $db, $prefix /*, ... */ ) {
 	} else {
 		$key = $db . ':' . implode( ':', $args );
 	}
-	return $key;
+	return str_replace( ' ', '_', $key );
 }
 
 /**
