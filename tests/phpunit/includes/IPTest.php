@@ -259,14 +259,63 @@ class IPTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * test wrapper around ip2long which might return -1 or false depending on PHP version
 	 * @covers IP::toUnsigned
+	 * @dataProvider provideToUnsigned
 	 */
-	public function testip2longWrapper() {
-		// @todo FIXME: Add more tests ?
-		$this->assertEquals( pow( 2, 32 ) - 1, IP::toUnsigned( '255.255.255.255' ) );
-		$i = 'IN.VA.LI.D';
-		$this->assertFalse( IP::toUnSigned( $i ) );
+	public function testToUnsigned( $expected, $input ) {
+		$result = IP::toUnsigned( $input );
+		$this->assertTrue( $result === false || is_string( $result ) || is_int( $result ) );
+		$this->assertEquals( $expected, $result );
+	}
+
+	/**
+	 * Provider for IP::testToUnsigned()
+	 */
+	public static function provideToUnsigned() {
+		return array(
+			array ( 1, '0.0.0.1' ),
+			array ( 16909060, '1.2.3.4' ),
+			array ( 2130706433, '127.0.0.1' ),
+			array ( '2147483648', '128.0.0.0' ),
+			array ( '3735931646', '222.173.202.254' ),
+			array ( pow( 2, 32 ) - 1, '255.255.255.255' ),
+			array ( false, 'IN.VA.LI.D' ),
+			array ( 1, '::1' ),
+			array ( '42540766452641154071740215577757643572', '2001:0db8:85a3:0000:0000:8a2e:0370:7334' ),
+			array ( '42540766452641154071740215577757643572', '2001:db8:85a3::8a2e:0370:7334' ),
+			array ( false, 'IN:VA::LI:D' ),
+			array ( false, ':::1' )
+		);
+	}
+
+	/**
+	 * @covers IP::toHex
+	 * @dataProvider provideToHex
+	 */
+	public function testToHex( $expected, $input ) {
+		$result = IP::toHex( $input );
+		$this->assertTrue( $result === false || is_string( $result ) );
+		$this->assertEquals( $expected, $result );
+	}
+
+	/**
+	 * Provider for IP::testToHex()
+	 */
+	public static function provideToHex() {
+		return array(
+			array ( '00000001', '0.0.0.1' ),
+			array ( '01020304', '1.2.3.4' ),
+			array ( '7F000001', '127.0.0.1' ),
+			array ( '80000000', '128.0.0.0' ),
+			array ( 'DEADCAFE', '222.173.202.254' ),
+			array ( 'FFFFFFFF', '255.255.255.255' ),
+			array ( false, 'IN.VA.LI.D' ),
+			array ( 'v6-00000000000000000000000000000001', '::1' ),
+			array ( 'v6-20010DB885A3000000008A2E03707334', '2001:0db8:85a3:0000:0000:8a2e:0370:7334' ),
+			array ( 'v6-20010DB885A3000000008A2E03707334', '2001:db8:85a3::8a2e:0370:7334' ),
+			array ( false, 'IN:VA::LI:D' ),
+			array ( false, ':::1' )
+		);
 	}
 
 	/**
