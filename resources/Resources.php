@@ -835,6 +835,16 @@ return array(
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 
+	'mediawiki.language.months' => array(
+		'scripts' => 'resources/mediawiki.language/mediawiki.language.months.js',
+		'dependencies' => 'mediawiki.language',
+		'messages' => array_merge(
+			Language::$mMonthMsgs,
+			Language::$mMonthGenMsgs,
+			Language::$mMonthAbbrevMsgs
+		)
+	),
+
 	/* MediaWiki Libs */
 
 	'mediawiki.libs.jpegmeta' => array(
