@@ -275,6 +275,8 @@ changes to languages because of Bugzilla reports.
   processing continues. To abort the hook, a hook function must return an
   explicit, boolean false or a string error message. Other falsey values are
   tantamount to a 'return true' in earlier versions of MediaWiki.
+* BREAKING CHANGE: The EditSectionLink hook was removed after being
+  deprecated since MediaWiki 1.14. Use DoEditSectionLink instead.
 
 == Compatibility ==
 
