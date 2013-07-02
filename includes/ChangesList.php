@@ -456,6 +456,8 @@ class ChangesList extends ContextSource {
 
 	/**
 	 * Check whether to enable recent changes patrol features
+	 *
+	 * @deprecated since 1.22
 	 * @return Boolean
 	 */
 	public static function usePatrol() {
