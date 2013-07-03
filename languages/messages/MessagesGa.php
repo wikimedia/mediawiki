@@ -349,7 +349,6 @@ $messages = array(
 'newmessagesdifflink' => 'difear ón leasú leathdhéanach',
 'youhavenewmessagesmulti' => 'Tá teachtaireachtaí nua agat ar $1',
 'editsection' => 'athraigh',
-'editsection-brackets' => '[$1]',
 'editold' => 'athraigh',
 'viewsourceold' => 'féach ar foinse',
 'editlink' => 'cur in eagar',

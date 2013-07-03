@@ -209,7 +209,7 @@ $messages = array(
 'create-this-page' => 'Khai-sí siá chit ia̍h',
 'delete' => 'Thâi',
 'deletethispage' => 'Thâi chit ia̍h',
-'undelete_short' => 'Kiù $1 ê siu-kái',
+'undelete_short' => 'Kiù {{PLURAL:$1|$1|$1} ê siu-kái',
 'viewdeleted_short' => 'Khoàⁿ {{PLURAL:$1|chi̍t-ê thâi tiàu--ê pian-chi̍p|$1 ê thâi tiàu--ê pian-chi̍p}}',
 'protect' => 'Pó-hō·',
 'protect_change' => 'kái-piàn',
@@ -393,6 +393,7 @@ $2',
 
 Lí ē-sái mài kì-miâ kè-siok sú-iōng {{SITENAME}}, mā ē-sái iōng kāng-ê a̍h-sī pa̍t-ê sin-hūn têng teng-ji̍p.
 Chhiaⁿ chù-ì: ū-kóa ia̍h ū khó-lêng khoàⁿ-tio̍h bē-su lí iû-goân teng-ji̍p tiong; che chi-iàu piàⁿ tiāu lí ê browser ê cache chiū ē chèng-siông.",
+'welcomeuser' => 'Hoan-gêng, $1!',
 'yourname' => 'Lí ê iōng-chiá miâ-chheng:',
 'userlogin-yourname' => 'Iōng-chiá miâ-chheng',
 'yourpassword' => 'Lí ê bi̍t-bé:',

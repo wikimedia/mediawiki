@@ -299,7 +299,6 @@ $messages = array(
 'newmessagesdifflink' => 'ùrtima mudàntzia',
 'youhavenewmessagesmulti' => 'Tenes messàgios noos in $1',
 'editsection' => 'acontza',
-'editsection-brackets' => '[$1]',
 'editold' => 'acontza',
 'viewsourceold' => 'càstia mitza',
 'editlink' => 'acontza',

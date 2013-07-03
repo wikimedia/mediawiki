@@ -5110,7 +5110,7 @@ See also:
 {{Identical|Contribution}}',
 'contribsub2' => 'Contributions for "user" (links)
 {{Identical|For $1}}',
-'nocontribs' => 'Optional parameter: $1 is the user name',
+'nocontribs' => '',
 'uctop' => 'This message is used in [[Special:Contributions]]. It is used to show that a particular edit was the last made to a page. Example: 09:57, 11 February 2008 (hist) (diff) Pagename‎ (edit summary) (current)
 {{Identical|Top}}',
 'month' => 'Used in [[Special:Contributions]] and history pages ([{{fullurl:Sandbox|action=history}} example]), as label for a dropdown box to select a specific month to view the edits made in that month, and the earlier months. See also {{msg-mw|year}}.',
@@ -9079,13 +9079,19 @@ $4 is the gender of the target user.',
 'api-error-publishfailed' => 'API error message that can be used for client side localisation of API errors.',
 'api-error-timeout' => 'API error message that can be used for client side localisation of API errors.',
 'api-error-unclassified' => 'API error message that can be used for client side localisation of API errors.',
-'api-error-unknown-code' => 'API error message that can be used for client side localisation of API errors. Parameters:
-* $1 may contain more error details.',
+'api-error-unknown-code' => 'API error message that can be used for client side localisation of API errors.
+
+Parameters:
+* $1 - may contain more error details
+{{Identical|Unknown error}}',
 'api-error-unknown-error' => 'API error message that can be used for client side localisation of API errors.',
 'api-error-unknown-warning' => 'API error message that can be used for client side localisation of API errors. Parameters:
 * $1 is an unknown warning.',
-'api-error-unknownerror' => 'API error message that can be used for client side localisation of API errors. Parameters:
-* $1 is an unknown error message.',
+'api-error-unknownerror' => 'API error message that can be used for client side localisation of API errors.
+
+Parameters:
+* $1 - an unknown error message
+{{Identical|Unknown error}}',
 'api-error-uploaddisabled' => 'API error message that can be used for client side localisation of API errors.',
 'api-error-verification-error' => 'The word "extension" refers to the part behind the last dot in a file name, that by convention gives a hint about the kind of data format which a files contents are in.',
 

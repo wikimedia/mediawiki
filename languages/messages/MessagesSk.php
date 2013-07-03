@@ -24,6 +24,7 @@
  * @author Reedy
  * @author Rudko
  * @author Sp5uhe
+ * @author Sudo77(new)
  * @author Tchoř
  * @author Teslaton
  * @author Urhixidur
@@ -391,6 +392,18 @@ $messages = array(
 'oct' => 'okt',
 'nov' => 'nov',
 'dec' => 'dec',
+'january-date' => '$1. januára',
+'february-date' => '$1. februára',
+'march-date' => '$1. marca',
+'april-date' => '$1. apríla',
+'may-date' => '$1. mája',
+'june-date' => '$1. júna',
+'july-date' => '$1. júla',
+'august-date' => '$1. augusta',
+'september-date' => '$1. septembra',
+'october-date' => '$1. októbra',
+'november-date' => '$1. novembra',
+'december-date' => '$1. decembra',
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Kategória|Kategórie|Kategórie}}',
@@ -1065,6 +1078,7 @@ Neudala vysvetlenie.',
 Zdá sa, že bola zmazaná.',
 'edit-conflict' => 'Konflikt pri upravovaní.',
 'edit-no-change' => 'Vaša úprava bola ignorovaná, pretože ste v texte nič nezmenili.',
+'postedit-confirmation' => 'Vaša úprava bola uložená.',
 'edit-already-exists' => 'Nebolo možné vytvoriť novú stránku.
 Už existuje.',
 'defaultmessagetext' => 'Predvolený text správy',
