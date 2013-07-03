@@ -267,7 +267,7 @@ class UserMailer {
 					$body['text'] = str_replace( "\n", "\r\n", $body['text'] );
 					$body['html'] = str_replace( "\n", "\r\n", $body['html'] );
 				}
-				$mime = new Mail_mime( array( 'eol' => $endl ) );
+				$mime = new Mail_mime( array( 'eol' => $endl, 'text_charset' => 'UTF-8', 'html_charset' => 'UTF-8' ) );
 				$mime->setTXTBody( $body['text'] );
 				$mime->setHTMLBody( $body['html'] );
 				$body = $mime->get(); // must call get() before headers()
