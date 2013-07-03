@@ -672,10 +672,9 @@ class ApiQuery extends ApiBase {
 		$moduleNames = $this->mModuleMgr->getNames( $group );
 		sort( $moduleNames );
 		foreach ( $moduleNames as $name ) {
-			/**
-			 * @var $module ApiQueryBase
-			 */
-			$module = $this->mModuleMgr->getModule( $name );
+			/**@var $module ApiQueryBase */
+			// Ignore module cache in case multiple versions of the same module are present
+			$module = $this->mModuleMgr->getModule( $name, null, true );
 
 			$msg = ApiMain::makeHelpMsgHeader( $module, $group );
 			$msg2 = $module->makeHelpMsg();
