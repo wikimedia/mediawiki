@@ -63,11 +63,16 @@ if ( !$wgEnableAPI ) {
 // In a perfect world this wouldn't be necessary
 $wgTitle = Title::makeTitle( NS_MAIN, 'API' );
 
+// Version might be set in api2.php or another versioned entry point
+if ( !isset( $apiVersion ) ) {
+	$apiVersion = -1; // -1 will be treated as 1 in case pathInfo is set, and 0 otherwise
+}
+
 /* Construct an ApiMain with the arguments passed via the URL. What we get back
  * is some form of an ApiMain, possibly even one that produces an error message,
  * but we don't care here, as that is handled by the ctor.
  */
-$processor = new ApiMain( RequestContext::getMain(), $wgEnableWriteAPI );
+$processor = new ApiMain( RequestContext::getMain(), $wgEnableWriteAPI, $apiVersion );
 
 // Process data & print results
 $processor->execute();
