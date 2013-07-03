@@ -4287,6 +4287,7 @@ The other parts are {{msg-mw|Prevpage}} and {{msg-mw|Nextpage}}.
 'allpagesbadtitle' => 'Used in [[Special:AllPages]], [[Special:PrefixIndex]] and [[Special:RecentChangesLinked]].',
 'allpages-bad-ns' => '* $1 - namespace name',
 'allpages-hide-redirects' => 'Label for a checkbox. If the checkbox is checked redirects will not be shown in the list. Used in [[Special:PrefixIndex]] and [[Special:Allpages]].',
+'allpages-strip-prefix' => 'Label for a checkbox. If the checkbox is checked, the prefix searched will be removed from the title displayed in the list. Used in [[Special:PrefixIndex]].',
 
 # SpecialCachedPage
 'cachedspecial-viewing-cached-ttl' => 'Message notifying they are watching a cached page. $1 is a duration (ie "1 hour and 30 minutes")',

@@ -121,6 +121,9 @@ production.
  button objects in one call.
 * (bug 48256) Make brackets in section edit links accessible to CSS.
   They are now wrapped in <span class="mw-editsection-bracket" />.
+* Special:PrefixIndex now let you strip the searched prefix from the displayed
+  titles. Given a list of articles named Bug1, Bug2, you can now transculde the
+  list of bug numbers using: {{Special:PrefixIndex/Bug|stripprefix=1}}
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
