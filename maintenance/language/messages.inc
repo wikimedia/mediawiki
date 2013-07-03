@@ -1874,6 +1874,7 @@ $wgMessageStructure = array(
 		'allpagesbadtitle',
 		'allpages-bad-ns',
 		'allpages-hide-redirects',
+		'allpages-strip-prefix',
 	),
 	'cachedspecial' => array(
 		'cachedspecial-viewing-cached-ttl',
