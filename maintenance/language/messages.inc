@@ -1794,6 +1794,7 @@ $wgMessageStructure = array(
 		'prefixindex',
 		'prefixindex-namespace',
 		'prefixindex-summary',
+		'prefixindex-strip',
 		'shortpages',
 		'shortpages-summary',
 		'longpages',
