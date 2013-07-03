@@ -96,6 +96,9 @@ class PurgeDeletedFiles extends Maintenance {
 			__METHOD__
 		);
 		foreach ( $res as $row ) {
+			if ( $row->fa_archive_name === null ) {
+				continue; // was not an old version (current version names checked already)
+			}
 			$ofile = $repo->newFromArchiveName( $file->getTitle(), $row->fa_archive_name );
 			// If there is an orphaned storage file still there...delete it
 			if ( !$file->exists() && $repo->fileExists( $ofile->getPath() ) ) {
