@@ -73,7 +73,7 @@ abstract class ApiBase extends ContextSource {
 	 */
 	const GET_VALUES_FOR_HELP = 1;
 
-	private $mMainModule, $mModuleName, $mModulePrefix;
+	private $mMainModule, $mModuleName, $mUnversionedName, $mModulePrefix;
 	private $mSlaveDB = null;
 	private $mParamCache = array();
 
@@ -87,7 +87,7 @@ abstract class ApiBase extends ContextSource {
 		$this->mMainModule = $mainModule;
 		$this->mModuleName = $moduleName;
 		$this->mModulePrefix = $modulePrefix;
-
+		list( $this->mUnversionedName, $this->mModuleVersion ) = ApiModuleManager::parseVersion( $moduleName );
 		if ( !$this->isMain() ) {
 			$this->setContext( $mainModule->getContext() );
 		}
@@ -128,10 +128,26 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
+	 * Get integer version of the module being executed by this instance
+	 * @return int
+	 */
+	public function getModuleVersion() {
+		return $this->mModuleVersion;
+	}
+
+	/**
 	 * Get the name of the module being executed by this instance
 	 * @return string
 	 */
 	public function getModuleName() {
+		return $this->mUnversionedName;
+	}
+
+	/**
+	 * Get the unversioned name of the module being executed by this instance
+	 * @return string
+	 */
+	public function getVersionedName() {
 		return $this->mModuleName;
 	}
 

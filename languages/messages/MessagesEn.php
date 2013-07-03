@@ -5018,6 +5018,7 @@ Otherwise, you can use the easy form below. Your comment will be added to the pa
 'searchsuggest-containing' => 'containing...',
 
 # API errors
+'api-error-multiversion-conflict'         => 'Modules with the same name and different versions may not be used together. ($1, $2)',
 'api-error-badaccess-groups'              => 'You are not permitted to upload files to this wiki.',
 'api-error-badtoken'                      => 'Internal error: Bad token.',
 'api-error-copyuploaddisabled'            => 'Uploading by URL is disabled on this server.',
