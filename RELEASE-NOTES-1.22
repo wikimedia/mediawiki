@@ -149,6 +149,10 @@ production.
   right?" check is used to avoid more expensive checks.
 * Display "(No difference)" instead of an empty diff (when comparing revisions
   in the history or when previewing changes while editing).
+* Special:PrefixIndex now lets you strip the searched prefix from the displayed
+  titles. Given a list of articles named Bug1, Bug2, you can now transclude the
+  list of bug numbers using: {{Special:PrefixIndex/Bug|stripprefix=1}}.
+  The special page form received a new checkbox matching that option.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
