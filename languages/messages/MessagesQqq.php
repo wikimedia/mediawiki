@@ -4200,6 +4200,7 @@ $1 is a page title",
 'prefixindex' => '{{doc-special|PrefixIndex}}
 When the user limits the list to a certain namespace, {{msg-mw|allinnamespace}} is used instead.',
 'prefixindex-namespace' => 'The page title of [[Special:PrefixIndex]] limited to a specific namespace. Similar to {{msg-mw|allinnamespace}}. $1 is the name of the namespace',
+'prefixindex-strip' => 'Label for a checkbox. If the checkbox is checked, the prefix searched will be removed from the title displayed in the list. Used in [[Special:PrefixIndex]].',
 'shortpages' => '{{doc-special|ShortPages}}',
 'longpages' => '{{doc-special|LongPages}}',
 'deadendpages' => '{{doc-special|DeadendPages}}',
