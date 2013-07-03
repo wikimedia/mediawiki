@@ -101,6 +101,7 @@ class ApiQuery extends ApiBase {
 	private static $QueryMetaModules = array(
 		'allmessages' => 'ApiQueryAllMessages',
 		'siteinfo' => 'ApiQuerySiteinfo',
+		'siteinfo~1' => 'ApiQuerySiteinfo',
 		'userinfo' => 'ApiQueryUserInfo',
 	);
 
@@ -675,7 +676,7 @@ class ApiQuery extends ApiBase {
 			/**
 			 * @var $module ApiQueryBase
 			 */
-			$module = $this->mModuleMgr->getModule( $name );
+			$module = $this->mModuleMgr->getModule( $name, null, false, true );
 
 			$msg = ApiMain::makeHelpMsgHeader( $module, $group );
 			$msg2 = $module->makeHelpMsg();
