@@ -27,6 +27,13 @@
  * @ingroup SpecialPage
  */
 class SpecialPrefixindex extends SpecialAllpages {
+
+	/**
+	 * Whether to remove the searched prefix from the displayed link. Useful
+	 * for inclusion of a set of sub pages in a root page.
+	 */
+	protected $stripPrefix = false;
+
 	// Inherit $maxPerPage
 
 	function __construct() {
@@ -53,6 +60,7 @@ class SpecialPrefixindex extends SpecialAllpages {
 		$ns = $request->getIntOrNull( 'namespace' );
 		$namespace = (int)$ns; // if no namespace given, use 0 (NS_MAIN).
 		$hideredirects = $request->getBool( 'hideredirects', false );
+		$this->stripPrefix = $request->getBool( 'stripprefix', $this->stripPrefix );
 
 		$namespaces = $wgContLang->getNamespaces();
 		$out->setPageTitle(
@@ -121,6 +129,12 @@ class SpecialPrefixindex extends SpecialAllpages {
 				'hideredirects',
 				'hideredirects',
 				$hideredirects
+			) . ' ' .
+			Xml::checkLabel(
+				$this->msg( 'allpages-strip-prefix' )->text(),
+				'stripprefix',
+				'stripprefix',
+				$this->stripPrefix
 			) . ' ' .
 			Xml::submitButton( $this->msg( 'allpagessubmit' )->text() ) .
 			"</td>
@@ -191,13 +205,18 @@ class SpecialPrefixindex extends SpecialAllpages {
 			if ( $res->numRows() > 0 ) {
 				$out = Xml::openElement( 'table', array( 'id' => 'mw-prefixindex-list-table' ) );
 
+				$prefixLength = strlen( $prefix );
 				while ( ( $n < $this->maxPerPage ) && ( $s = $res->fetchObject() ) ) {
 					$t = Title::makeTitle( $s->page_namespace, $s->page_title );
 					if ( $t ) {
+						$displayed = $t->getText();
+						if( $this->stripPrefix ) {
+							$displayed = substr( $displayed, $prefixLength );
+						}
 						$link = ( $s->page_is_redirect ? '<div class="allpagesredirect">' : '' ) .
 							Linker::linkKnown(
 								$t,
-								htmlspecialchars( $t->getText() ),
+								htmlspecialchars( $displayed ),
 								$s->page_is_redirect ? array( 'class' => 'mw-redirect' ) : array()
 							) .
 							( $s->page_is_redirect ? '</div>' : '' );

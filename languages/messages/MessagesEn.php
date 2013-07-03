@@ -2808,6 +2808,7 @@ You can narrow down the view by selecting a log type, the username (case-sensiti
 It may contain one or more characters that cannot be used in titles.',
 'allpages-bad-ns'         => '{{SITENAME}} does not have namespace "$1".',
 'allpages-hide-redirects' => 'Hide redirects',
+'allpages-strip-prefix'   => 'Strip prefix in list',
 
 # SpecialCachedPage
 'cachedspecial-viewing-cached-ttl' => 'You are viewing a cached version of this page, which can be up to $1 old.',
