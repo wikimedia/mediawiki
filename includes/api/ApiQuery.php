@@ -675,7 +675,7 @@ class ApiQuery extends ApiBase {
 			/**
 			 * @var $module ApiQueryBase
 			 */
-			$module = $this->mModuleMgr->getModule( $name );
+			$module = $this->mModuleMgr->getModule( $name, null, false, true );
 
 			$msg = ApiMain::makeHelpMsgHeader( $module, $group );
 			$msg2 = $module->makeHelpMsg();

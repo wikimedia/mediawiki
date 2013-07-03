@@ -146,8 +146,10 @@ class ApiMain extends ApiBase {
 	 *
 	 * @param $context IContextSource|WebRequest - if this is an instance of FauxRequest, errors are thrown and no printing occurs
 	 * @param bool $enableWrite should be set to true if the api may modify data
+	 * @param int $apiVersion If the version is default (-1), the version will either be 0 or 1 depending if
+	 * 		request's pathinfo is set
 	 */
-	public function __construct( $context = null, $enableWrite = false ) {
+	public function __construct( $context = null, $enableWrite = false, $apiVersion = -1 ) {
 		if ( $context === null ) {
 			$context = RequestContext::getMain();
 		} elseif ( $context instanceof WebRequest ) {
@@ -162,12 +164,34 @@ class ApiMain extends ApiBase {
 			$this->getContext()->setRequest( $request );
 		}
 
-		$this->mInternalMode = ( $this->getRequest() instanceof FauxRequest );
+		$req = $this->getRequest();
+		$isInternal = ( $req instanceof FauxRequest );
+		$this->mInternalMode = $isInternal;
+
+		// action is determined by the pathinfo, e.g. /w/api.php/query for live requests,
+		// and by the action=xxx parameter for the internal FauxRequests
+		$this->mAction = null;
+		if ( !$isInternal ) {
+			// @TODO: pathinfo should be part of the context
+			$pathInfo = WebRequest::getPathInfo();
+			if ( array_key_exists( 'title', $pathInfo ) ) {
+				$this->mAction = $pathInfo['title'];
+			}
+		}
+
+		if ( $apiVersion < 0 ) {
+			$apiVersion = $this->mAction === null ? 0 : 1;
+		}
+
+		$name = $isInternal ? 'main_int' : 'main';
+		if ( $apiVersion > 0 ) {
+			$name = $name . '~' . $apiVersion;
+		}
 
 		// Special handling for the main module: $parent === $this
-		parent::__construct( $this, $this->mInternalMode ? 'main_int' : 'main' );
+		parent::__construct( $this, $name );
 
-		if ( !$this->mInternalMode ) {
+		if ( !$isInternal ) {
 			// Impose module restrictions.
 			// If the current user cannot read,
 			// Remove all modules other than login
@@ -693,7 +717,9 @@ class ApiMain extends ApiBase {
 
 		$params = $this->extractRequestParams();
 
-		$this->mAction = $params['action'];
+		if ( $this->mAction === null ) {
+			$this->mAction = $params['action'];
+		}
 
 		if ( !is_string( $this->mAction ) ) {
 			$this->dieUsage( 'The API requires a valid action parameter', 'unknown_action' );
@@ -999,14 +1025,10 @@ class ApiMain extends ApiBase {
 	 * @return array
 	 */
 	public function getAllowedParams() {
-		return array(
+		$res = array(
 			'format' => array(
 				ApiBase::PARAM_DFLT => ApiMain::API_DEFAULT_FORMAT,
 				ApiBase::PARAM_TYPE => $this->mModuleMgr->getNames( 'format' )
-			),
-			'action' => array(
-				ApiBase::PARAM_DFLT => 'help',
-				ApiBase::PARAM_TYPE => $this->mModuleMgr->getNames( 'action' )
 			),
 			'maxlag' => array(
 				ApiBase::PARAM_TYPE => 'integer'
@@ -1023,6 +1045,16 @@ class ApiMain extends ApiBase {
 			'servedby' => false,
 			'origin' => null,
 		);
+		if ( $this->getModuleVersion() < 1 || $this->isInternalMode() ) {
+			// Force 'action' to be the first value
+			$res = array_merge( array(
+				'action' => array(
+					ApiBase::PARAM_DFLT => 'help',
+					ApiBase::PARAM_TYPE => $this->mModuleMgr->getNames( 'action' )
+				) ),
+				$res );
+		}
+		return $res;
 	}
 
 	/**
@@ -1031,9 +1063,8 @@ class ApiMain extends ApiBase {
 	 * @return array
 	 */
 	public function getParamDescription() {
-		return array(
+		$res = array(
 			'format' => 'The format of the output',
-			'action' => 'What action you would like to perform. See below for module help',
 			'maxlag' => array(
 				'Maximum lag can be used when MediaWiki is installed on a database replicated cluster.',
 				'To save actions causing any more site replication lag, this parameter can make the client',
@@ -1054,6 +1085,10 @@ class ApiMain extends ApiBase {
 				'If this parameter matches the Origin: header and the origin is whitelisted, an Access-Control-Allow-Origin header will be set.',
 			),
 		);
+		if ( $this->getModuleVersion() < 1 || $this->isInternalMode() ) {
+			$res['action'] = 'What action you would like to perform. See below for module help';
+		}
+		return $res;
 	}
 
 	/**
@@ -1177,7 +1212,8 @@ class ApiMain extends ApiBase {
 		$msg .= "\n\n$astriks Modules  $astriks\n\n";
 
 		foreach ( $this->mModuleMgr->getNames( 'action' ) as $name ) {
-			$module = $this->mModuleMgr->getModule( $name );
+			// Allow different versions of the same module
+			$module = $this->mModuleMgr->getModule( $name, null, false, true );
 			$msg .= self::makeHelpMsgHeader( $module, 'action' );
 
 			$msg2 = $module->makeHelpMsg();
