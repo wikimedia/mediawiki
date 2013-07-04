@@ -571,6 +571,34 @@ class JobQueueDB extends JobQueue {
 		);
 	}
 
+	public function getCoalesceLocationInternal() {
+		return $this->cluster ? "DBCluster:{$this->cluster}" : "LBFactory:{$this->wiki}";
+	}
+
+	protected function doGetSiblingQueuesNonEmpty( array $types ) {
+		list( $dbr, $scope ) = $this->getSlaveDB();
+		$res = $dbr->select( 'job', 'DISTINCT job_cmd',
+			array( 'job_cmd' => $types ), __METHOD__ );
+
+		$types = array();
+		foreach ( $res as $row ) {
+			$types[] = $row->job_cmd;
+		}
+		return $types;
+	}
+
+	protected function doGetSiblingQueueSizes( array $types ) {
+		list( $dbr, $scope ) = $this->getSlaveDB();
+		$res = $dbr->select( 'job', array( 'job_cmd', 'COUNT(*) AS count' ),
+			array( 'job_cmd' => $types ), __METHOD__ );
+
+		$sizes = array();
+		foreach ( $res as $row ) {
+			$sizes[$row->job_cmd] = (int)$row->count;
+		}
+		return $sizes;
+	}
+
 	/**
 	 * Recycle or destroy any jobs that have been claimed for too long
 	 *
