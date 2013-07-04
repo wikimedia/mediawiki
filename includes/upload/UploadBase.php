@@ -1038,7 +1038,6 @@ abstract class UploadBase {
 		$tags = array(
 			'<a href',
 			'<body',
-			'<head',
 			'<html',   #also in safari
 			'<img',
 			'<pre',
@@ -1048,6 +1047,10 @@ abstract class UploadBase {
 
 		if ( !$wgAllowTitlesInSVG && $extension !== 'svg' && $mime !== 'image/svg' ) {
 			$tags[] = '<title';
+		}
+
+		if ( $extension !== 'x3d' && $mime !== 'model/x3d+xml' ) {
+			$tags[] = '<head';
 		}
 
 		foreach ( $tags as $tag ) {

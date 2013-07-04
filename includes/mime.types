@@ -104,6 +104,9 @@ image/x-xwindowdump xwd
 model/iges igs iges
 model/mesh msh mesh silo
 model/vrml wrl vrml
+model/x3d+xml x3d
+model/x3d+vrml x3dv
+model/x3d+binary x3db
 text/calendar ics ifb
 text/css css
 text/html html htm
