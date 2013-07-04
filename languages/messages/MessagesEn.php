@@ -446,6 +446,7 @@ $specialPageAliases = array(
 	'Protectedpages'            => array( 'ProtectedPages' ),
 	'Protectedtitles'           => array( 'ProtectedTitles' ),
 	'Randompage'                => array( 'Random', 'RandomPage' ),
+	'RandomInCategory'          => array( 'RandomInCategory' ),
 	'Randomredirect'            => array( 'RandomRedirect' ),
 	'Recentchanges'             => array( 'RecentChanges' ),
 	'Recentchangeslinked'       => array( 'RecentChangesLinked', 'RelatedChanges' ),
@@ -2601,6 +2602,15 @@ Remember to check for other links to the templates before deleting them.',
 'randompage'         => 'Random page',
 'randompage-nopages' => 'There are no pages in the following {{PLURAL:$2|namespace|namespaces}}: $1.',
 'randompage-url'     => 'Special:Random', # do not translate or duplicate this message to other languages
+
+# Random page in category
+'randomincategory'                  => 'Random page in category',
+'randomincategory-invalidcategory'  => '"$1" is not a valid category name.',
+'randomincategory-nopages'          => 'There are no pages in [[:Category:$1]].',
+'randomincategory-selectcategory'   => 'Get random page from category $1 $2.
+
+<small>The selection process of this page may be biased towards certain articles and should not be used for statistical purposes.</small>',
+'randomincategory-selectcategory-submit' => 'Go',
 
 # Random redirect
 'randomredirect'         => 'Random redirect',
