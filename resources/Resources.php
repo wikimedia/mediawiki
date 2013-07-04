@@ -100,8 +100,8 @@ return array(
 	),
 	'skins.vector.js' => array(
 		'scripts' => array(
-			'vector/vector.js',
 			'vector/collapsibleTabs.js',
+			'vector/vector.js',
 		),
 		'position' => 'top',
 		'dependencies' => 'jquery.delayedBind',
