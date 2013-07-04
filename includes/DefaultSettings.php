@@ -3019,8 +3019,10 @@ $wgLegacyJavaScriptGlobals = true;
  *
  * If set to a negative number, ResourceLoader will assume there is no query
  * string length limit.
+ *
+ * Defaults to a value based on php configuration.
  */
-$wgResourceLoaderMaxQueryLength = -1;
+$wgResourceLoaderMaxQueryLength = false;
 
 /**
  * If set to true, JavaScript modules loaded from wiki pages will be parsed
