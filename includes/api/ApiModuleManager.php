@@ -35,8 +35,10 @@ class ApiModuleManager extends ContextSource {
 
 	private $mParent;
 	private $mInstances = array();
+	private $mInstanceVersions = array();
 	private $mGroups = array();
 	private $mModules = array();
+	private $mTopVersions = array();
 
 	/**
 	 * Construct new module manager
@@ -48,7 +50,7 @@ class ApiModuleManager extends ContextSource {
 
 	/**
 	 * Add a list of modules to the manager
-	 * @param array $modules A map of ModuleName => ModuleClass
+	 * @param array $modules A map of versioned ModuleName => ModuleClass
 	 * @param string $group Which group modules belong to (action,format,...)
 	 */
 	public function addModules( array $modules, $group ) {
@@ -67,13 +69,17 @@ class ApiModuleManager extends ContextSource {
 	 * @param string $class The class where this module is implemented.
 	 */
 	public function addModule( $name, $group, $class ) {
+		list( $mod, $ver ) = self::parseVersion( $name );
+		if ( !isset( $this->mTopVersions[$mod] ) || $this->mTopVersions[$mod] < $ver ) {
+			$this->mTopVersions[$mod] = $ver;
+		}
 		$this->mGroups[$group] = null;
 		$this->mModules[$name] = array( $group, $class );
 	}
 
 	/**
 	 * Get module instance by name, or instantiate it if it does not exist
-	 * @param string $moduleName module name
+	 * @param string $moduleName versioned module name
 	 * @param string $group optionally validate that the module is in a specific group
 	 * @param bool $ignoreCache if true, force-creates a new instance and does not cache it
 	 * @return mixed the new module instance, or null if failed
@@ -92,10 +98,18 @@ class ApiModuleManager extends ContextSource {
 		} else {
 			// new instance
 			$class = $grpCls[1];
+			/** @var $instance ApiBase */
 			$instance = new $class ( $this->mParent, $moduleName );
 			if ( !$ignoreCache ) {
+				$mod = $instance->getModuleName();
+				if ( isset( $this->mInstanceVersions[$mod] ) ) {
+					$this->mParent->dieStatus(
+						Status::newFatal( 'api-error-multiversion-conflict', $moduleName, $this->mInstanceVersions[$mod] ) );
+				}
+
 				// cache this instance in case it is needed later
 				$this->mInstances[$moduleName] = $instance;
+				$this->mInstanceVersions[$mod] = $moduleName;
 			}
 			return $instance;
 		}
@@ -135,8 +149,18 @@ class ApiModuleManager extends ContextSource {
 	}
 
 	/**
+	 * Get the top version number for the given module. Will throw on incorrect name.
+	 * @param string $moduleName module name with or without version number
+	 * @return int|bool version number or false if not found
+	 */
+	public function getTopVersion( $moduleName ) {
+		list( $mod, $ver ) = self::parseVersion( $name );
+		return isset( $this->mTopVersions[$mod] ) ? $this->mTopVersions[$mod] : false;
+	}
+
+	/**
 	 * Returns true if the specific module is defined at all or in a specific group.
-	 * @param string $moduleName module name
+	 * @param string $moduleName versioned module name
 	 * @param string $group group name to check against, or null to check all groups,
 	 * @return boolean true if defined
 	 */
@@ -150,7 +174,7 @@ class ApiModuleManager extends ContextSource {
 
 	/**
 	 * Returns the group name for the given module
-	 * @param string $moduleName
+	 * @param string $moduleName versioned module name
 	 * @return string group name or null if missing
 	 */
 	public function getModuleGroup( $moduleName ) {
@@ -167,5 +191,28 @@ class ApiModuleManager extends ContextSource {
 	 */
 	public function getGroups() {
 		return array_keys( $this->mGroups );
+	}
+
+	/**
+	 * Validates module name against "string[~positiveInteger]" pattern.
+	 * Returns two element array( non-versioned-name, integer-version ),
+	 * or null if the validation fails.
+	 * Missing version is treated as 0, but version 0 is not allowed.
+	 * @param string $name versioned module name
+	 * @return array array(unversionedName, version) or throws an error
+	 */
+	public static function parseVersion( $name ) {
+		$verPos = strpos( $name, '~' );
+		$ver = 0;
+		if ( $verPos !== false ) {
+			$verStr = substr( $name, $verPos + 1 );
+			$ver = intval( $verStr );
+			if ( $verPos === 0 || $ver <= 0 || $verStr !== strval( $ver ) ) {
+				wfDebugDieBacktrace( 'Internal error in ' . __METHOD__ . ': Invalid module name "'
+					. $name . '". Must be in format "string[~positiveInteger]"' );
+			}
+			return array( substr( $name, 0, $verPos ), $ver );
+		}
+		return array( $name, 0 );
 	}
 }

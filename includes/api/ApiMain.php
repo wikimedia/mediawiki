@@ -1177,7 +1177,8 @@ class ApiMain extends ApiBase {
 		$msg .= "\n\n$astriks Modules  $astriks\n\n";
 
 		foreach ( $this->mModuleMgr->getNames( 'action' ) as $name ) {
-			$module = $this->mModuleMgr->getModule( $name );
+			// Ignore module cache in case multiple versions of the same module are present
+			$module = $this->mModuleMgr->getModule( $name, null, true );
 			$msg .= self::makeHelpMsgHeader( $module, 'action' );
 
 			$msg2 = $module->makeHelpMsg();
@@ -1221,7 +1222,7 @@ class ApiMain extends ApiBase {
 			$modulePrefix = "($modulePrefix) ";
 		}
 
-		return "* $paramName={$module->getModuleName()} $modulePrefix*";
+		return "* $paramName={$module->getVersionedName()} $modulePrefix*";
 	}
 
 	private $mCanApiHighLimits = null;
