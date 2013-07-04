@@ -1087,6 +1087,7 @@ $wgXMLMimeTypes = array(
 	'http://www.lysator.liu.se/~alla/dia/:diagram' => 'application/x-dia-diagram',
 	'http://www.w3.org/1999/xhtml:html' => 'text/html', // application/xhtml+xml?
 	'html' => 'text/html', // application/xhtml+xml?
+	'X3D' => 'model/x3d+xml',
 );
 
 /**
