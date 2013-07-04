@@ -29,8 +29,9 @@ production.
   default for $wgLogAutopatrol is true.
 * The 'edit' right no longer allows for editing a user's own CSS and JS.
 * New rights 'editmyusercss', 'editmyuserjs', 'viewmywatchlist',
-  and 'editmywatchlist' restrict actions that were formerly allowed by default.
-  They have been added to the default for $wgGroupPermissions['*'].
+  'editmywatchlist', 'viewmyprivateinfo', 'editmyprivateinfo', and
+  'editmyoptions' restrict actions that were formerly allowed by default. They
+  have been added to the default for $wgGroupPermissions['*'].
 
 === New features in 1.22 ===
 * (bug 44525) mediawiki.jqueryMsg can now parse (whitelisted) HTML elements and attributes.
@@ -112,6 +113,11 @@ production.
 ** editmyuserjs controls whether a user may edit their own JS subpages.
 ** viewmywatchlist controls whether a user may view their watchlist.
 ** editmywatchlist controls whether a user may edit their watchlist.
+** viewmyprivateinfo controls whether a user may access their private
+   information (e.g. registered email address, real name).
+** editmyprivateinfo controls whether a user may change their private
+   information.
+** editmyoptions controls whether a user may change their preferences.
 * Add new hook AbortTalkPageEmailNotification, this will be used to determine
   whether to send the regular talk page email notification
 * (bug 46513) Vector: Add the collapsibleTabs script from the Vector extension.
