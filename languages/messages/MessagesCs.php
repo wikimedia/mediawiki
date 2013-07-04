@@ -3839,7 +3839,6 @@ Opravdu si přejete znovu tuto stránku založit?',
 'confirm-unwatch-top' => 'Vyjmout tuto stránku ze sledovaných?',
 
 # Separators for various lists, etc.
-'autocomment-prefix' => '–&#32;',
 'ellipsis' => '…',
 'percent' => '$1&nbsp;%',
 

@@ -3130,7 +3130,6 @@ $5
 'semicolon-separator' => ';&#32;',
 'comma-separator' => ',&#32;',
 'colon-separator' => ':&#32;',
-'autocomment-prefix' => '-&#32;',
 'pipe-separator' => '&#32;•&#32;',
 'word-separator' => '&#32;',
 'ellipsis' => '...',

@@ -3579,7 +3579,6 @@ Jekk jogħġbok konferma jekk vera trid terġa' toħloq din il-paġna.",
 
 # Separators for various lists, etc.
 'semicolon-separator' => ';',
-'autocomment-prefix' => '-',
 
 # Multipage image navigation
 'imgmultipageprev' => "← il-paġna ta' qabel",

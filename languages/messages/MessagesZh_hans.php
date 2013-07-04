@@ -56,6 +56,7 @@
  * @author Shizhao
  * @author Simon Shek
  * @author Slboat
+ * @author StephDC
  * @author Stevenliuyi
  * @author Supaiku
  * @author Tommyang
@@ -1160,6 +1161,7 @@ $2
 'undo-failure' => '因存在冲突的中间编辑，本编辑不能撤销。',
 'undo-norev' => '由于其修订版本不存在或已删除，此编辑不能撤销。',
 'undo-summary' => '撤销[[Special:Contributions/$2|$2]]（[[User talk:$2|讨论]]）的版本$1',
+'undo-summary-username-hidden' => '取消由一匿名用户所作的修订$1',
 
 # Account creation failure
 'cantcreateaccounttitle' => '无法创建账户',
@@ -1489,7 +1491,9 @@ $1",
 'prefs-signature' => '签名',
 'prefs-dateformat' => '日期格式',
 'prefs-timeoffset' => '时差',
-'prefs-advancedediting' => '高级选项',
+'prefs-advancedediting' => '通用',
+'prefs-editor' => '编辑',
+'prefs-preview' => '预览',
 'prefs-advancedrc' => '高级选项',
 'prefs-advancedrendering' => '高级选项',
 'prefs-advancedsearchoptions' => '高级选项',
@@ -1669,6 +1673,7 @@ $1",
 'recentchanges' => '最近更改',
 'recentchanges-legend' => '最近更改选项',
 'recentchanges-summary' => '在此页面上跟踪维基的更改。',
+'recentchanges-noresult' => '在此期间没有符合这些条件的编辑',
 'recentchanges-feed-description' => '用这个源跟踪本wiki的最近更改。',
 'recentchanges-label-newpage' => '这次编辑建立了一个新页面',
 'recentchanges-label-minor' => '这是一个小编辑',

@@ -1707,7 +1707,7 @@ Tanben podètz causir de permetre a d’autres de vos contactar per vòstra pagi
 
 Lo jornal de las supressions e lo dels desplaçaments d'aquesta pagina son afichats aicí per informacion :",
 'uploadtext' => "Utilizatz lo formulari çaijós per importar de fichièrs sul servidor.
-Per veire o recercar d'imatges mandats precedentament, consultatz [[Special:FileList|la tièra dels imatges]]. Las còpias e las supressions tanben son enregistradas dins l'[[Special:Log/upload|istoric dels impòrts]], las supressions dins l’[[Special:Log/delete|istoric de las supressions]].
+Per veire o recercar d'imatges mandats precedentament, consultatz [[Special:FileList|la lista dels imatges]]. Las còpias e las supressions tanben son enregistradas dins l'[[Special:Log/upload|istoric dels impòrts]], las supressions dins l’[[Special:Log/delete|istoric de las supressions]].
 
 Per inclure un imatge dins una pagina, utilizatz un ligam de la forma
 * '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:fichièr.jpg]]</nowiki></code>''',
@@ -1718,7 +1718,7 @@ Per inclure un imatge dins una pagina, utilizatz un ligam de la forma
 'upload-prohibited' => 'Formats de fichièrs interdiches : $1.',
 'uploadlog' => 'Istoric de las importacions',
 'uploadlogpage' => 'Istoric de las importacions de fichièrs multimèdia',
-'uploadlogpagetext' => 'Vaquí la tièra dels darrièrs fichièrs copiats sul servidor.
+'uploadlogpagetext' => 'Aquí la lista dels darrièrs fichièrs copiats sul servidor.
 Vejatz la [[Special:NewFiles|galariá dels imatges novèls]] per una presentacion mai visuala.',
 'filename' => 'Nom del fichièr',
 'filedesc' => 'Descripcion',
@@ -3639,7 +3639,6 @@ Confirmatz que desiratz tornar crear aqueste article.",
 
 # Separators for various lists, etc.
 'colon-separator' => '&nbsp;:&#32;',
-'autocomment-prefix' => '-',
 
 # Multipage image navigation
 'imgmultipageprev' => '← pagina precedenta',

@@ -1138,9 +1138,10 @@ $3 келтірілген себебі: ''$2''",
 'last' => 'соң.',
 'page_first' => 'алғашқысына',
 'page_last' => 'соңғысына',
-'histlegend' => 'Айырмасын бөлектеу: салыстырмақ нұсқаларының қосу көздерін белгілеп <Enter> пернесін басыңыз, немесе төмендегі батырманы нұқыңыз.<br />
-Шартты белгілер: (ағым.) = ағымдық нұсқамен айырмасы,
-(соң.) = алдыңғы нұсқамен айырмасы, ш = шағын өңдеме',
+'histlegend' => "</span><br /><span style=\"white-space:nowrap;\">Сыртқы құралдар: [http://vs.aka-online.de/cgi-bin/wppagehiststat.pl?lang=kk.wikipedia&page={{FULLPAGENAMEE}} Өңдеу статистикасы] '''·'''</span> <span style=\"white-space:nowrap;\">[http://wikipedia.ramselehof.de/wikiblame.php?lang=kk&article={{FULLPAGENAMEE}} Өзгеріс тарихын іздеу] '''·'''</span> <span style=\"white-space:nowrap;\">[//toolserver.org/~daniel/WikiSense/Contributors.php?wikilang=kk&wikifam=.wikipedia.org&grouped=on&page={{FULLPAGENAMEE}} Үлестер статистикасы] '''·'''</span> <span style=\"white-space:nowrap;\">[http://toolserver.org/~snottywong/usersearch.html?page={{FULLPAGENAMEE}} Қатысушы өңдемелері] '''·'''</span> <span style=\"white-space:nowrap;\">[//toolserver.org/~mzmcbride/cgi-bin/watcher.py?db=kkwiki_p&titles={{FULLPAGENAMEE}} Көрушілер саны] '''·'''</span> <span style=\"white-space:nowrap;\">[http://stats.grok.se/kk/latest/{{FULLPAGENAMEE}} Бетің қаралу статистикасы]</span>
+----
+Айырмасын бөлектеу: салыстырмақ нұсқаларының қосу көздерін белгілеп <Enter> пернесін басыңыз, немесе төмендегі батырманы нұқыңыз.<br />
+Шартты белгілер: <span style=\"white-space:nowrap;\">(ағым.) = ағымдық нұсқамен айырмасы, <span style=\"white-space:nowrap;\">(соң.) = алдыңғы нұсқамен айырмасы, </span> <span style=\"white-space:nowrap;\">&nbsp; '''ш''' = [[Уикипедия:Шағын өңдеме|шағын өңдеме]], → = [[Help:Бөлім#Бөлімін өңдеу|бөлімін өңдеу]], ← = [[Уикипедия:Өңдеменің түйіндемесі|автоматты өңдеу түйіндемесі]]</span></div>",
 'history-fieldset-title' => 'Тарихынан іздеу',
 'history-show-deleted' => 'Жойылғанын ғана көрсету',
 'histfirst' => 'Ең алғашқысына',

@@ -86,6 +86,7 @@
  * @author Mpradeep
  * @author Murma174
  * @author Najami
+ * @author Naudefj
  * @author Nemo bis
  * @author Niels
  * @author Nike
@@ -5118,7 +5119,12 @@ See also:
 {{Identical|Contribution}}',
 'contribsub2' => 'Contributions for "user" (links)
 {{Identical|For $1}}',
-'nocontribs' => '',
+'nocontribs' => 'Used in [[Special:Contributions]] and [[Special:DeletedContributions]].
+
+See examples: [[Special:Contributions/x]] and [[Special:DeletedContributions/x]].
+
+Parameters:
+* $1 - (Unused) the user name',
 'uctop' => 'This message is used in [[Special:Contributions]]. It is used to show that a particular edit was the last made to a page. Example: 09:57, 11 February 2008 (hist) (diff) Pagename‎ (edit summary) (current)
 {{Identical|Top}}',
 'month' => 'Used in [[Special:Contributions]] and history pages ([{{fullurl:Sandbox|action=history}} example]), as label for a dropdown box to select a specific month to view the edits made in that month, and the earlier months. See also {{msg-mw|year}}.',
@@ -8342,7 +8348,6 @@ See also:
 'comma-separator' => '{{optional}}',
 'colon-separator' => "{{optional}}
 Change it only if your language uses another character for ':' or it needs an extra space before the colon.",
-'autocomment-prefix' => '{{optional}}',
 'pipe-separator' => '{{optional}}',
 'word-separator' => '{{optional}}
 This is a string which is (usually) put between words of the language. It is used, e.g. when messages are concatenated (appended to each other). Note that you must express a space as html entity &amp;#32; because the editing and updating process strips leading and trailing spaces from messages.

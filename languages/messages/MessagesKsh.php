@@ -3942,7 +3942,6 @@ Wells Do jetz met en neu Version die Sigg widder neu aanläje?',
 
 # Separators for various lists, etc.
 'semicolon-separator' => ';',
-'autocomment-prefix' => '-',
 'word-separator' => '&#32;',
 'ellipsis' => '&nbsp;…',
 'parentheses' => '($1)',

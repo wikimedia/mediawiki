@@ -2591,7 +2591,7 @@ $1',
 'mycontris' => 'Doprinos',
 'contribsub2' => 'Za $1 ($2)',
 'nocontribs' => 'Nisu nađene promjene koje zadovoljavaju ove uslove.',
-'uctop' => ' (trenutno)',
+'uctop' => '(trenutno)',
 'month' => 'Od mjeseca (i ranije):',
 'year' => 'Od godine (i ranije):',
 

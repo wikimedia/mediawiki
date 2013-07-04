@@ -13,6 +13,7 @@
  * @author Omnipaedista
  * @author Shinjiman
  * @author Simon Shek
+ * @author StephDC
  * @author Super Wang
  */
 
@@ -255,6 +256,7 @@ $messages = array(
 'oct' => '十月',
 'nov' => '十一月',
 'dec' => '十二月',
+'january-date' => '正月 $1',
 
 # Categories related messages
 'pagecategories' => '$1類',
@@ -408,7 +410,7 @@ $1',
 'youhavenewmessages' => '有$1書至子書房也。（$2）',
 'newmessageslink' => '新訊',
 'newmessagesdifflink' => '變更',
-'youhavenewmessagesfromusers' => '子有 $1 自 {{PLURAL:$3|another user|$3 簿戶也}} ($2)。',
+'youhavenewmessagesfromusers' => '子有 $1 自 {{PLURAL:$3|一簿戶也|$3 簿戶也}} ($2)。',
 'youhavenewmessagesmanyusers' => '子有 $1 自多簿戶 ( $2 )',
 'youhavenewmessagesmulti' => '新訊於$1',
 'editsection' => '纂',
@@ -562,8 +564,14 @@ $2',
 'gotaccountlink' => '登簿',
 'userlogin-resetlink' => '君忘登簿所需爾？',
 'helplogin-url' => 'Help:登簿',
+'createacct-emailrequired' => '電郵',
+'createacct-emailoptional' => '電郵 （可選）',
 'createaccountmail' => '同郵',
 'createaccountreason' => '因：',
+'createacct-reason' => '因：',
+'createacct-submit' => '增簿',
+'createacct-benefit-body1' => '纂',
+'createacct-benefit-body2' => '頁',
 'createacct-benefit-body3' => '是月纂者',
 'badretype' => '符節不合也。',
 'userexists' => '簿名存矣，惠更之。',
@@ -599,7 +607,7 @@ $2',
 'throttled-mailpassword' => '密記已寄之於$1時前。
 防濫，單一密記短至$1時寄之。',
 'mailerror' => '信失遣如下：$1',
-'acct_creation_throttle_hit' => '一日之內，但許一註。',
+'acct_creation_throttle_hit' => '一日之內，於一址但許一人增簿。',
 'emailauthenticated' => '$2 $3郵驛證矣',
 'emailnotauthenticated' => '郵驛<strong>未證</strong>，下不遺書。',
 'noemailprefs' => '郵驛設而用之。',
@@ -608,7 +616,7 @@ $2',
 'cannotchangeemail' => '電郵地址不可改于此wiki',
 'emaildisabled' => '是站不可遣函也。',
 'accountcreated' => '簿增矣',
-'accountcreatedtext' => '$1簿增矣',
+'accountcreatedtext' => '[[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|書]])簿增矣。',
 'createaccount-title' => '於{{SITENAME}}增簿',
 'createaccount-text' => '有人於{{SITENAME}}用爾之電郵增名為 "$2" 之簿 （$4），符節為 "$3" 。汝應登，再改符節也。
 
@@ -623,6 +631,7 @@ $2',
 # Email sending
 'php-mail-error-unknown' => '於 PHP mail() 參數現錯',
 'user-mail-no-addy' => '遣函豈能無址？',
+'user-mail-no-body' => '試遞一空或過短郵',
 
 # Change password dialog
 'resetpass' => '變符',
@@ -642,10 +651,18 @@ $2',
 'resetpass-wrong-oldpass' => '無效之臨符或現符。
 爾或改符，或求新臨符。',
 'resetpass-temp-password' => '臨符節:',
+'resetpass-abort-generic' => '符節不可更',
 
 # Special:PasswordReset
 'passwordreset' => '重設符節',
 'passwordreset-legend' => '重設符節',
+'passwordreset-username' => '簿名：',
+'passwordreset-email' => '電郵址',
+
+# Special:ChangeEmail
+'changeemail-none' => '（無）',
+'changeemail-password' => '汝 {{SITENAME}} 之符節',
+'changeemail-cancel' => '棄',
 
 # Edit page toolbar
 'bold_sample' => '粗體',
@@ -697,6 +714,7 @@ $2',
 * 見禁之人：$7
 
 存惑可詢$1，或[[{{MediaWiki:Grouppage-sysop}}|有秩]]，[[Special:Preferences|簿註]]無驛則信不遣。另，子用IP $3，禁號為#$5。詢時切附之。",
+'blockednoreason' => '無由',
 'whitelistedittext' => '$1後方可纂文。',
 'confirmedittext' => '驛證方可纂文。惠見[[Special:Preferences|簿註]]。',
 'nosuchsectiontitle' => '無尋節',
@@ -706,7 +724,9 @@ $2',
 'loginreqlink' => '登簿',
 'loginreqpagetext' => '$1以覽它頁。',
 'accmailtitle' => '符節傳矣',
-'accmailtext' => '"$1"符節至$2矣',
+'accmailtext' => '"$1"之新符節至$2矣
+
+此符節可於登簿後改',
 'newarticle' => '撰',
 'newarticletext' => '此頁尚缺。欲補，撰於下，有惑見[[{{MediaWiki:Helppage}}|助]]。
 誤入者，返前即可。',
@@ -714,7 +734,9 @@ $2',
 'noarticletext' => '查無此文。[[Special:Search/{{PAGENAME}}|尋題]]，
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 尋誌]，
 或[{{fullurl:{{FULLPAGENAME}}|action=edit}} 纂頁]</span>。',
-'noarticletext-nopermission' => '查無此文。[[Special:Search/{{PAGENAME}}|尋題]]，或<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 尋誌]</span>。',
+'noarticletext-nopermission' => '查無此文。[[Special:Search/{{PAGENAME}}|尋題]]，
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 尋誌]，
+或[{{fullurl:{{FULLPAGENAME}}|action=edit}} 纂頁]</span>。',
 'userpage-userdoesnotexist' => '「<nowiki>$1</nowiki>」之簿未增也。請建纂本頁前查之。',
 'userpage-userdoesnotexist-view' => '「$1」之簿未增也。',
 'blocked-notice-logextract' => '該簿現鎖也。
@@ -780,7 +802,7 @@ $2',
 'nocreate-loggedin' => '子權未逮，新頁謝焉。',
 'sectioneditnotsupported-title' => '不纂持節',
 'sectioneditnotsupported-text' => '此頁不持纂節也。',
-'permissionserrors' => '權未逮也',
+'permissionserrors' => '無權',
 'permissionserrorstext' => '子權未逮，有{{PLURAL:$1|因|因}}如下：',
 'permissionserrorstext-withaction' => '子權未逮，有{{PLURAL:$1|因|因}}如$2：',
 'recreate-moveddeleted-warn' => "'''留意：刪文復造，惠慎纂。'''
@@ -794,8 +816,13 @@ $2',
 刪之也。',
 'edit-conflict' => '纂突。',
 'edit-no-change' => '爾之纂已略，由字無改也。',
+'postedit-confirmation' => '汝之纂已成',
 'edit-already-exists' => '不建新頁。
 已存也。',
+'defaultmessagetext' => '慣話文',
+
+# Content models
+'content-model-css' => '層疊樣式表',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => '警：頁有多貴功呼。
@@ -926,9 +953,9 @@ $1",
 'revdelete-concurrent-change' => '錯改於$1 $2項：眾改之設，乃另之改。查誌。',
 'revdelete-only-restricted' => '藏期於 $1 $2 之項：爾無廢有秩見之項，而無選另廢項也。',
 'revdelete-reason-dropdown' => '*常因
-** 侵權
-** 無合之人料
-** 無合之簿
+** 侵版權
+** 人料不合
+** 簿名不合
 ** 隱謗譏',
 'revdelete-otherreason' => '它附因：',
 'revdelete-reasonotherlist' => '它因',
@@ -996,6 +1023,7 @@ $1",
 'notextmatches' => '無文合',
 'prevn' => '前{{PLURAL:$1|$1}}',
 'nextn' => '次{{PLURAL:$1|$1}}',
+'shown-title' => '每頁示 $1',
 'viewprevnext' => '見（$1 {{int:pipe-separator}} $2）（$3）',
 'searchmenu-legend' => '尋選',
 'searchmenu-exists' => "'''在此wiki中有頁為\"[[:\$1]]\"。'''",
@@ -1138,6 +1166,8 @@ $1",
 'prefs-dateformat' => '日格',
 'prefs-timeoffset' => '偏時',
 'prefs-advancedediting' => '進',
+'prefs-editor' => '纂者',
+'prefs-preview' => '草覽',
 'prefs-advancedrc' => '進',
 'prefs-advancedrendering' => '進',
 'prefs-advancedsearchoptions' => '進',
@@ -1381,6 +1411,7 @@ $1",
 'ignorewarnings' => '警略。',
 'minlength1' => '名務逾一字元。',
 'illegalfilename' => '名"$1"不格，更之再焉。',
+'filename-toolong' => '檔名宜簡。',
 'badfilename' => '更名"$1。"。',
 'filetype-mime-mismatch' => '檔展名「.$1」無配偵檔之MIME類（$2）。',
 'filetype-badmime' => '「$1」之MIME類物檔案不能獻之。',
@@ -1412,6 +1443,7 @@ $1",
 'savefile' => '存之',
 'uploadedimage' => '進獻"[[$1]]"',
 'overwroteimage' => '新置「[[$1]]」矣',
+'uploaddisabled' => '進獻已阻',
 'copyuploaddisabled' => '由URL之貢被禁也。',
 'uploadfromurl-queued' => '爾之貢已排之。',
 'uploaddisabledtext' => '檔之貢被禁也。',
@@ -1436,9 +1468,16 @@ $1',
 'upload-warning-subj' => '貢警',
 'upload-warning-msg' => '爾自[$2]之貢出問。爾可回[[Special:Upload/stash/$1|貢表]]修此問。',
 
+'upload-proto-error' => '協訂錯誤',
 'upload-too-many-redirects' => '網址含多轉',
 'upload-unknown-size' => '未知之積',
 'upload-http-error' => '發一HTTP之錯：$1',
+
+# File backend
+'backend-fail-notexists' => '無檔 $1 。',
+'backend-fail-alreadyexists' => '$1 已含。',
+'backend-fail-read' => '"$1"不可見。',
+'backend-fail-create' => '"$1"不可纂。',
 
 # Special:UploadStash
 'uploadstash' => '貢貯',
@@ -2115,7 +2154,7 @@ $1',
 'ipusubmit' => '赦此址',
 'unblocked' => '[[User:$1|$1]]赦焉',
 'unblocked-id' => '禁$1赦焉',
-'ipblocklist' => '列禁簿、禁址',
+'ipblocklist' => '列禁簿',
 'ipblocklist-legend' => '尋禁簿',
 'ipblocklist-submit' => '尋',
 'ipblocklist-localblock' => '本禁',

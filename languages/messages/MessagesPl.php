@@ -3839,7 +3839,6 @@ Czy na pewno chcesz ją ponownie utworzyć?",
 'confirm-unwatch-top' => 'Usunąć tę stronę z listy obserwowanych?',
 
 # Separators for various lists, etc.
-'autocomment-prefix' => '–&#32;',
 'percent' => '$1&nbsp;%',
 
 # Multipage image navigation

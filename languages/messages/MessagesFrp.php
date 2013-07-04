@@ -3811,7 +3811,6 @@ Volyéd confirmar que vos voléd franc refâre cela pâge.",
 # Separators for various lists, etc.
 'semicolon-separator' => '&nbsp;;&#32;',
 'colon-separator' => '&nbsp;:&#32;',
-'autocomment-prefix' => '&#32;–&#32;',
 'percent' => '$1&nbsp;%',
 
 # Multipage image navigation

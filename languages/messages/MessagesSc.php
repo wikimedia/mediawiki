@@ -1472,7 +1472,6 @@ Is acàpius chi sighint in sa matessi lìnia sunt cunsideraus comente eccetzione
 'semicolon-separator' => ';&#32;',
 'comma-separator' => ',&#32;',
 'colon-separator' => ':&#32;',
-'autocomment-prefix' => '-&#32;',
 'word-separator' => '&#32;',
 'ellipsis' => '…',
 'percent' => '$1%',

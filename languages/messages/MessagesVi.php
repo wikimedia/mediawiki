@@ -3870,7 +3870,6 @@ Xin hãy xác nhận bạn thực sự muốn tạo lại trang này.",
 'confirm-unwatch-top' => 'Bạn có muốn gỡ trang này khỏi danh sách theo dõi của bạn?',
 
 # Separators for various lists, etc.
-'autocomment-prefix' => '–&#32;',
 'ellipsis' => '…',
 
 # Multipage image navigation

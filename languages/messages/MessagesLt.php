@@ -349,7 +349,7 @@ $messages = array(
 # Vector skin
 'vector-action-addsection' => 'Pridėti temą',
 'vector-action-delete' => 'Ištrinti',
-'vector-action-move' => 'Perkelti',
+'vector-action-move' => 'Pervardyti',
 'vector-action-protect' => 'Užrakinti',
 'vector-action-undelete' => 'Atkurti',
 'vector-action-unprotect' => 'Keisti apsaugą',
@@ -2689,7 +2689,7 @@ dėl to šį veiksmą vykdykite tik įsitikinę, kad suprantate visas pasekmes."
 'movenologintext' => 'Norėdami pervadinti puslapį, turite būti užsiregistravęs naudotojas ir būti  [[Special:UserLogin|prisijungęs]].',
 'movenotallowed' => 'Jūs neturite teisių pervadinti puslapių.',
 'movenotallowedfile' => 'Jūs neturite teisės perkelti failus.',
-'cant-move-user-page' => 'Jūs neturite teisės perkelti naudotojų puslapių (išskyrus popuslapius).',
+'cant-move-user-page' => 'Jūs neturite teisės pervardyti naudotojų puslapių (išskyrus subpuslapius).',
 'cant-move-to-user-page' => 'Jūs neturite teisių perkelti puslapį į naudotojo puslapį (išskyrus į naudotojo popuslapį).',
 'newtitle' => 'Naujas pavadinimas:',
 'move-watch' => 'Stebėti šį puslapį',

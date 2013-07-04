@@ -3559,7 +3559,6 @@ $5
 
 # Separators for various lists, etc.
 'semicolon-separator' => ';',
-'autocomment-prefix' => '-',
 
 # Multipage image navigation
 'imgmultipageprev' => '← पिछला पृष्ठ',

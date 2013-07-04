@@ -2808,7 +2808,7 @@ Lembre [[Special:UnlockDB|eliminar o bloqueo]] unha vez completado o seu manteme
 
 # Move page
 'move-page' => 'Mover "$1"',
-'move-page-legend' => 'Mover páxina',
+'move-page-legend' => 'Mover unha páxina',
 'movepagetext' => "Ao usar o formulario inferior vai cambiar o nome da páxina, movendo todo o seu historial ao novo nome.
 O título vello vaise converter nunha páxina de redirección ao novo título.
 Pode actualizar automaticamente as redireccións que van dar ao título orixinal.
@@ -3812,7 +3812,7 @@ Por favor, confirme que realmente quere recrear esta páxina.",
 
 # Multipage image navigation
 'imgmultipageprev' => '← páxina anterior',
-'imgmultipagenext' => 'seguinte páxina →',
+'imgmultipagenext' => 'páxina seguinte →',
 'imgmultigo' => 'Ir!',
 'imgmultigoto' => 'Ir á páxina $1',
 
