@@ -1664,6 +1664,13 @@ $wgMessageStructure = array(
 		'randompage-nopages',
 		'randompage-url',
 	),
+	'randomincategory' => array(
+		'randomincategory',
+		'randomincategory-invalidcategory',
+		'randomincategory-nopages',
+		'randomincategory-selectcategory',
+		'randomincategory-selectcategory-submit',
+	),
 	'randomredirect' => array(
 		'randomredirect',
 		'randomredirect-nopages',
@@ -4005,6 +4012,7 @@ future releases. Also note that since each list value is wrapped in a unique
 	'listredirects'       => 'List redirects',
 	'unusedtemplates'     => 'Unused templates',
 	'randompage'          => 'Random page',
+	'randomincategory'    => 'Special:RandomInCategory,
 	'randomredirect'      => 'Random redirect',
 	'statistics'          => 'Statistics',
 	'disambiguations'     => '',
