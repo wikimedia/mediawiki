@@ -864,8 +864,9 @@ class CoreParserFunctions {
 		} else {
 			return '<span class="error">' .
 				wfMessage( 'duplicate-defaultsort',
-					wfEscapeWikiText( $old ), // Message should be parsed, but these params should only be escaped.
-					wfEscapeWikiText( $text )
+					// Message should be parsed, but these params should only be escaped.
+					$parser->getConverterLanguage()->getConverter()->markNoConversion( wfEscapeWikiText( $old ) ),
+					$parser->getConverterLanguage()->getConverter()->markNoConversion( wfEscapeWikiText( $text ) )
 				)->inContentLanguage()->text() .
 				'</span>';
 		}
