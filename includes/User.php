@@ -3147,7 +3147,7 @@ class User {
 		$this->clearCookie( 'forceHTTPS' );
 
 		// Remember when user logged out, to prevent seeing cached pages
-		$this->setCookie( 'LoggedOut', wfTimestampNow(), time() + 86400 );
+		$this->setCookie( 'LoggedOut', time(), time() + 86400 );
 	}
 
 	/**
