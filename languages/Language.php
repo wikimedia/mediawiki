@@ -409,11 +409,7 @@ class Language {
 	 * @return String Name of the language class
 	 */
 	public static function classFromCode( $code ) {
-		if ( $code == 'en' ) {
-			return 'Language';
-		} else {
-			return 'Language' . str_replace( '-', '_', ucfirst( $code ) );
-		}
+		return 'Language' . str_replace( '-', '_', ucfirst( $code ) );
 	}
 
 	/**
