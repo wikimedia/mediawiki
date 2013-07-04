@@ -226,7 +226,7 @@ class Language {
 		}
 
 		// Check if there is a language class for the code
-		$class = self::classFromCode( $code );
+		$class = self::classFromCode( $code, false );
 		self::preloadLanguageClass( $class );
 		if ( MWInit::classExists( $class ) ) {
 			$lang = new $class;
@@ -408,8 +408,8 @@ class Language {
 	 * @param $code
 	 * @return String Name of the language class
 	 */
-	public static function classFromCode( $code ) {
-		if ( $code == 'en' ) {
+	public static function classFromCode( $code, $fallback = true ) {
+		if ( $fallback && $code == 'en' ) {
 			return 'Language';
 		} else {
 			return 'Language' . str_replace( '-', '_', ucfirst( $code ) );
