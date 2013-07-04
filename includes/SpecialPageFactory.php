@@ -130,6 +130,7 @@ class SpecialPageFactory {
 		// Redirecting special pages
 		'LinkSearch'                => 'LinkSearchPage',
 		'Randompage'                => 'Randompage',
+		'RandomInCategory'          => 'RandomInCategory',
 		'Randomredirect'            => 'SpecialRandomredirect',
 
 		// High use pages

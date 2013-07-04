@@ -4041,6 +4041,12 @@ See also:
 'randompage-nopages' => '* $1 - list of namespaces
 * $2 - number of namespaces',
 
+'randomincategory'                  => '{{doc-special|RandomInCategory}}',
+'randomincategory-invalidcategory'  => 'Message shown if an invalid category is specified. (Note, if the category is simply empty, but could possibly exist, {{msg-mw|randomincategory-nopages}} is shown instead). $1 is the invalid category name given.',
+'randomincategory-nopages'          => 'Message shown from Special:RandomInCategory if the category is empty. $1 is the category name (without the namespace prefix)',
+'randomincategory-selectcategory'   => 'Shown on Special:RandomInCategory if no category is selected. Displays a form allowing the user to input a category name. $1 is the text field input box, $2 is the go button. The text content of the button comes from {{msg-mw|randomcategory-selectcategory}}.',
+'randomincategory-selectcategory-submit' => 'Text of button used in {{msg-mw|randomcategory-selectcategory}}',
+
 # Random redirect
 'randomredirect' => '{{doc-special|RandomRedirect}}',
 'randomredirect-nopages' => '* $1 - namespace name',
