@@ -189,7 +189,7 @@ class SiteStats {
 	static function jobs() {
 		if ( !isset( self::$jobs ) ) {
 			$dbr = wfGetDB( DB_SLAVE );
-			self::$jobs = $dbr->estimateRowCount( 'job' );
+			self::$jobs = array_sum( JobQueueGroup::singleton()->getQueueSizes() );
 			/* Zero rows still do single row read for row that doesn't exist, but people are annoyed by that */
 			if ( self::$jobs == 1 ) {
 				self::$jobs = 0;

@@ -36,6 +36,9 @@ class JobQueueGroup {
 
 	protected $wiki; // string; wiki ID
 
+	/** @var array Map of (bucket => (queue => JobQueue, types => list of types) */
+	protected $coalescedQueues;
+
 	const TYPE_DEFAULT = 1; // integer; jobs popped by default
 	const TYPE_ANY = 2; // integer; any job
 
@@ -254,12 +257,69 @@ class JobQueueGroup {
 	 */
 	public function getQueuesWithJobs() {
 		$types = array();
-		foreach ( $this->getQueueTypes() as $type ) {
-			if ( !$this->get( $type )->isEmpty() ) {
-				$types[] = $type;
+		foreach ( $this->getCoalescedQueues() as $info ) {
+			$nonEmpty = $info['queue']->getSiblingQueuesWithJobs( $this->getQueueTypes() );
+			if ( is_array( $nonEmpty ) ) { // batching features supported
+				$types = array_merge( $types, $nonEmpty );
+			} else { // we have to go through the queues in the bucket one-by-one
+				foreach ( $info['types'] as $type ) {
+					if ( !$this->get( $type )->isEmpty() ) {
+						$types[] = $type;
+					}
+				}
 			}
 		}
 		return $types;
+	}
+
+	/**
+	 * Get the size of the queus for a list of job types
+	 *
+	 * @return Array Map of (job type => size)
+	 */
+	public function getQueueSizes() {
+		$sizeMap = array();
+		foreach ( $this->getCoalescedQueues() as $info ) {
+			$sizes = $info['queue']->getSiblingQueueSizes( $this->getQueueTypes() );
+			if ( is_array( $sizes ) ) { // batching features supported
+				$sizeMap = $sizeMap + $sizes;
+			} else { // we have to go through the queues in the bucket one-by-one
+				foreach ( $info['types'] as $type ) {
+					$sizeMap[$type] = $this->get( $type )->getSize();
+				}
+			}
+		}
+		return $sizeMap;
+	}
+
+	/**
+	 * @return array
+	 */
+	protected function getCoalescedQueues() {
+		global $wgJobTypeConf;
+
+		if ( $this->coalescedQueues === null ) {
+			$this->coalescedQueues = array();
+			foreach ( $wgJobTypeConf as $type => $conf ) {
+				$queue = JobQueue::factory(
+					array( 'wiki' => $this->wiki, 'type' => 'null' ) + $conf );
+				$loc = $queue->getCoalesceLocationInternal();
+				if ( !isset( $this->coalescedQueues[$loc] ) ) {
+					$this->coalescedQueues[$loc]['queue'] = $queue;
+					$this->coalescedQueues[$loc]['types'] = array();
+				}
+				if ( $type === 'default' ) {
+					$this->coalescedQueues[$loc]['types'] = array_merge(
+						$this->coalescedQueues[$loc]['types'],
+						array_diff( $this->getQueueTypes(), array_keys( $wgJobTypeConf ) )
+					);
+				} else {
+					$this->coalescedQueues[$loc]['types'][] = $type;
+				}
+			}
+		}
+
+		return $this->coalescedQueues;
 	}
 
 	/**

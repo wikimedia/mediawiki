@@ -352,6 +352,38 @@ class JobQueueFederated extends JobQueue {
 		return $iterator;
 	}
 
+	public function getCoalesceLocationInternal() {
+		return "JobQueueFederated:wiki:" . $this->wiki;
+	}
+
+	protected function doGetSiblingQueuesWithJobs( array $types ) {
+		$result = array();
+		foreach ( $this->partitionQueues as $queue ) {
+			$nonEmpty = $queue->doGetSiblingQueuesWithJobs( $types );
+			if ( is_array( $nonEmpty ) ) {
+				$result = array_merge( $result, $nonEmpty );
+			} else {
+				return null; // not supported on all partitions; bail
+			}
+		}
+		return array_values( array_unique( $result ) );
+	}
+
+	protected function doGetSiblingQueueSizes( array $types ) {
+		$result = array();
+		foreach ( $this->partitionQueues as $queue ) {
+			$sizes = $queue->doGetSiblingQueueSizes( $types );
+			if ( is_array( $sizes ) ) {
+				foreach ( $sizes as $type => $size ) {
+					$result[$type] = isset( $result[$type] ) ? $result[$type] + $size : $size;
+				}
+			} else {
+				return null; // not supported on all partitions; bail
+			}
+		}
+		return $result;
+	}
+
 	public function setTestingPrefix( $key ) {
 		foreach ( $this->partitionQueues as $queue ) {
 			$queue->setTestingPrefix( $key );
