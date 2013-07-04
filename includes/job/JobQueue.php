@@ -617,6 +617,63 @@ abstract class JobQueue {
 	}
 
 	/**
+	 * Do not use this function outside of JobQueue/JobQueueGroup
+	 *
+	 * @return string
+	 * @since 1.22
+	 */
+	public function getCoalesceLocationInternal() {
+		return null;
+	}
+
+	/**
+	 * Check whether each of the given queues are empty.
+	 * This is used for batching checks for queues stored at the same place.
+	 *
+	 * @param array $types List of queues types
+	 * @return array|null (list of non-empty queue types) or null if unsupported
+	 * @throws MWException
+	 * @since 1.22
+	 */
+	final public function getSiblingQueuesWithJobs( array $types ) {
+		$section = new ProfileSection( __METHOD__ );
+		return $this->doGetSiblingQueuesWithJobs( $types );
+	}
+
+	/**
+	 * @see JobQueue::getSiblingQueuesWithJobs()
+	 * @param array $types List of queues types
+	 * @return array|null (list of queue types) or null if unsupported
+	 */
+	protected function doGetSiblingQueuesWithJobs( array $types ) {
+		return null; // not supported
+	}
+
+	/**
+	 * Check the size of each of the given queues.
+	 * For queues not served by the same store as this one, 0 is returned.
+	 * This is used for batching checks for queues stored at the same place.
+	 *
+	 * @param array $types List of queues types
+	 * @return array|null (job type => whether queue is empty) or null if unsupported
+	 * @throws MWException
+	 * @since 1.22
+	 */
+	final public function getSiblingQueueSizes( array $types ) {
+		$section = new ProfileSection( __METHOD__ );
+		return $this->doGetSiblingQueueSizes( $types );
+	}
+
+	/**
+	 * @see JobQueue::getSiblingQueuesSize()
+	 * @param array $types List of queues types
+	 * @return array|null (list of queue types) or null if unsupported
+	 */
+	protected function doGetSiblingQueueSizes( array $types ) {
+		return null; // not supported
+	}
+
+	/**
 	 * Call wfIncrStats() for the queue overall and for the queue type
 	 *
 	 * @param string $key Event type
