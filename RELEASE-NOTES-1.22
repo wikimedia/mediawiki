@@ -171,6 +171,7 @@ production.
 * $wgHTCPRouting rules can now be passed an array of hosts/ports to send purge
   too. Can be used whenever several multicast group could be interested by a
   specific purge.
+* (bug 25931) Add Special:RandomInCategory.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
