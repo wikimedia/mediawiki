@@ -862,10 +862,12 @@ class CoreParserFunctions {
 		if ( $old === false || $old == $text || $arg ) {
 			return '';
 		} else {
+			$converter = $parser->getConverterLanguage()->getConverter();
 			return '<span class="error">' .
 				wfMessage( 'duplicate-defaultsort',
-					wfEscapeWikiText( $old ), // Message should be parsed, but these params should only be escaped.
-					wfEscapeWikiText( $text )
+					// Message should be parsed, but these params should only be escaped.
+					$converter->markNoConversion( wfEscapeWikiText( $old ) ),
+					$converter->markNoConversion( wfEscapeWikiText( $text ) )
 				)->inContentLanguage()->text() .
 				'</span>';
 		}
