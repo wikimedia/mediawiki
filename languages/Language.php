@@ -209,7 +209,7 @@ class Language {
 	 * @throws MWException
 	 * @return Language
 	 */
-	protected static function newFromCode( $code ) {
+	protected static function newFromCode( $code, $fallback = false ) {
 		// Protect against path traversal below
 		if ( !Language::isValidCode( $code )
 			|| strcspn( $code, ":/\\\000" ) !== strlen( $code ) )
@@ -226,7 +226,7 @@ class Language {
 		}
 
 		// Check if there is a language class for the code
-		$class = self::classFromCode( $code );
+		$class = self::classFromCode( $code, $fallback );
 		self::preloadLanguageClass( $class );
 		if ( MWInit::classExists( $class ) ) {
 			$lang = new $class;
@@ -243,7 +243,7 @@ class Language {
 			$class = self::classFromCode( $fallbackCode );
 			self::preloadLanguageClass( $class );
 			if ( MWInit::classExists( $class ) ) {
-				$lang = Language::newFromCode( $fallbackCode );
+				$lang = Language::newFromCode( $fallbackCode, true );
 				$lang->setCode( $code );
 				return $lang;
 			}
@@ -408,8 +408,8 @@ class Language {
 	 * @param $code
 	 * @return String Name of the language class
 	 */
-	public static function classFromCode( $code ) {
-		if ( $code == 'en' ) {
+	public static function classFromCode( $code, $fallback = true ) {
+		if ( $fallback && $code == 'en' ) {
 			return 'Language';
 		} else {
 			return 'Language' . str_replace( '-', '_', ucfirst( $code ) );

@@ -2451,7 +2451,7 @@ $wgDefaultLanguageVariant = false;
  *  $wgDisabledVariants[] = 'zh-my';
  * @endcode
  */
-$wgDisabledVariants = array();
+$wgDisabledVariants = array( 'en-x-piglatin' );
 
 /**
  * Like $wgArticlePath, but on multi-variant wikis, this provides a
