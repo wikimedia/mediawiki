@@ -2856,7 +2856,7 @@ Related messages:
 The right to use <tt>&action=purge</tt> in the URL, without needing to confirm it (by default, anonymous users need to confirm it).',
 'right-autoconfirmed' => "{{doc-right|autoconfirmed}}
 If your account is older than [[mw:Manual:\$wgAutoConfirmAge|wgAutoConfirmAge]] and if you have at least [[mw:Manual:\$wgAutoConfirmCount|\$wgAutoConfirmCount]] edits, you are in the '''group \"autoconfirmed\"''' (note that you can't see this group at [[Special:ListUsers]]).
-If you are in that group, you have (by default) the '''right \"autoconfirmed\"'''. With this right, you can for example <!-- I think this right includes more things --> edit semi-protected pages.",
+If you are in that group, you have (by default) the '''right \"autoconfirmed\"''', which exempts you from certain rate limits (those based on your IP address or otherwise intended solely for new users). Other rate limits may still apply; see {{msg-mw|right-noratelimit}}.",
 'right-bot' => '{{doc-right|bot}}',
 'right-nominornewtalk' => '{{doc-right|nominornewtalk}}
 If someone with this right (bots by default) edits a user talk page and marks it as minor (requires {{msg-mw|right-minoredit}}), the user will not get a notification "You have new messages".',
