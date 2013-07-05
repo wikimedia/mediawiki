@@ -61,8 +61,7 @@ div#mw-head {
 	right: 0;
 	width: 100%;
 }
-div#mw-head h3,
-div#mw-head h5 {
+div#mw-head h3 {
 	margin: 0;
 	padding: 0;
 }
@@ -78,8 +77,7 @@ div.emptyPortlet {
 	/* Display on top of page tabs - bugs 37158, 48078 */
 	z-index: 100;
 }
-#p-personal h3,
-#p-personal h5 {
+#p-personal h3 {
 	display: none;
 }
 #p-personal ul {
@@ -112,9 +110,7 @@ div.emptyPortlet {
 }
 /* Navigation Labels */
 div.vectorTabs h3,
-div.vectorTabs h5,
-div.vectorMenu h3 span,
-div.vectorMenu h5 span {
+div.vectorMenu h3 span {
 	display: none;
 }
 /* Namespaces and Views */
@@ -246,22 +242,19 @@ body.rtl div.vectorMenu {
 }
 /* OVERRIDDEN BY COMPLIANT BROWSERS */
 /* @noflip */
-div#mw-head div.vectorMenu h3,
-div#mw-head div.vectorMenu h5 {
+div#mw-head div.vectorMenu h3 {
 	float: left;
 	/* @embed */
 	background-image: url(images/tab-break.png);
 	background-repeat: no-repeat;
 }
 /* This will be flipped - unlike the one above it */
-div#mw-head div.vectorMenu h3,
-div#mw-head div.vectorMenu h5 {
+div#mw-head div.vectorMenu h3 {
 	background-position: bottom left;
 	margin-left: -1px;
 }
 /* IGNORED BY IE6 */
-div#mw-head div.vectorMenu > h3,
-div#mw-head div.vectorMenu > h5 {
+div#mw-head div.vectorMenu > h3 {
 	background-image: none;
 }
 div#mw-head div.vectorMenu h4,
@@ -276,8 +269,7 @@ div.vectorMenu#p-variants #mw-vector-current-variant {
 }
 /* OVERRIDDEN BY COMPLIANT BROWSERS */
 /* @noflip */
-div.vectorMenu h3 a,
-div.vectorMenu h5 a {
+div.vectorMenu h3 a {
 	display: inline-block;
 	width: 24px;
 	height: 1.9em;
@@ -287,13 +279,11 @@ div.vectorMenu h5 a {
 	background-repeat: no-repeat;
 }
 /* This will be flipped - unlike the one above it */
-div.vectorMenu h3 a,
-div.vectorMenu h5 a {
+div.vectorMenu h3 a {
 	background-position: bottom right;
 }
 /* IGNORED BY IE6 */
-div.vectorMenu h3 > a,
-div.vectorMenu h5 > a {
+div.vectorMenu h3 > a {
 	display: block;
 }
 div.vectorMenu div.menu {
@@ -372,8 +362,7 @@ div.vectorMenu li.selected a:visited {
 	text-decoration: none;
 }
 /* Search */
-#p-search h3,
-#p-search h5 {
+#p-search h3 {
 	display: none;
 }
 /* @noflip */
@@ -490,8 +479,7 @@ div#mw-panel div.portal {
 	padding-bottom: 1.5em;
 	direction: ltr;
 }
-div#mw-panel div.portal h3,
-div#mw-panel div.portal h5 {
+div#mw-panel div.portal h3 {
 	font-weight: normal;
 	color: #444;
 	padding: 0.25em;

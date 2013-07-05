@@ -142,12 +142,12 @@
 
 		pTestTb = '\
 		<div class="portlet" id="p-test-tb">\
-			<h5>Toolbox</h5>\
+			<h3>Toolbox</h3>\
 			<ul class="body"></ul>\
 		</div>';
 		pCustom = '\
 		<div class="portlet" id="p-test-custom">\
-			<h5>Views</h5>\
+			<h3>Views</h3>\
 			<ul class="body">\
 				<li id="c-foo"><a href="#">Foo</a></li>\
 				<li id="c-barmenu">\
@@ -159,7 +159,7 @@
 		</div>';
 		vectorTabs = '\
 		<div id="p-test-views" class="vectorTabs">\
-			<h5>Views</h5>\
+			<h3>Views</h3>\
 			<ul></ul>\
 		</div>';
 

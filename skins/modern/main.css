@@ -58,8 +58,7 @@ body {
 	font-variant: small-caps;
 }
 
-#p-personal h3,
-#p-personal h5 {
+#p-personal h3 {
 	display: none;
 }
 
@@ -177,8 +176,7 @@ textarea {
 	margin-top: .4em;
 }
 
-.portlet h3,
-.portlet h5 {
+.portlet h3 {
 	padding: 0.1em 0 0.3em 1em;
 	margin: 0 0 0 0;
 	background-color: #dddddd;
@@ -252,8 +250,7 @@ ul {
 	color: white;
 }
 
-#p-cactions h3,
-#p-cactions h5 {
+#p-cactions h3 {
 	display: none;
 }
 
