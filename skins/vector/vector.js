@@ -32,14 +32,14 @@ jQuery( function ( $ ) {
 			if ( $cactions.hasClass( 'emptyPortlet' ) ) {
 				$cactions
 					.removeClass( 'emptyPortlet' )
-					.find( 'h3, h5' )
+					.find( 'h3' )
 						.css( 'width', '1px' ).animate( { 'width': '24px' }, 390 );
 			}
 		} )
 		.bind( 'beforeTabExpand', function () {
 			// If we're removing the last child node right now, hide the dropdown
 			if ( $cactions.find( 'li' ).length === 1 ) {
-				$cactions.find( 'h3, h5' ).animate( { 'width': '1px' }, 390, function () {
+				$cactions.find( 'h3' ).animate( { 'width': '1px' }, 390, function () {
 					$( this ).attr( 'style', '' )
 						.parent().addClass( 'emptyPortlet' );
 				});
