@@ -64,6 +64,7 @@ class ApiPurge extends ApiBase {
 		$params = $this->extractRequestParams();
 
 		$forceLinkUpdate = $params['forcelinkupdate'];
+		$forceRecursiveLinkUpdate = $params['forcerecursivelinkupdate'];
 		$pageSet = $this->getPageSet();
 		$pageSet->execute();
 
@@ -82,7 +83,7 @@ class ApiPurge extends ApiBase {
 			$page->doPurge(); // Directly purge and skip the UI part of purge().
 			$r['purged'] = '';
 
-			if ( $forceLinkUpdate ) {
+			if ( $forceLinkUpdate || $forceRecursiveLinkUpdate ) {
 				if ( !$this->getUser()->pingLimiter() ) {
 					global $wgEnableParserCache;
 
@@ -93,7 +94,8 @@ class ApiPurge extends ApiBase {
 					$p_result = $content->getParserOutput( $title, $page->getLatest(), $popts, $wgEnableParserCache );
 
 					# Update the links tables
-					$updates = $content->getSecondaryDataUpdates( $title, null, true, $p_result );
+					$updates = $content->getSecondaryDataUpdates(
+						$title, null, $forceRecursiveLinkUpdate, $p_result );
 					DataUpdate::runUpdates( $updates );
 
 					$r['linkupdate'] = '';
@@ -150,7 +152,10 @@ class ApiPurge extends ApiBase {
 	}
 
 	public function getAllowedParams( $flags = 0 ) {
-		$result = array( 'forcelinkupdate' => false );
+		$result = array(
+			'forcelinkupdate' => false,
+			'forcerecursivelinkupdate' => false
+		);
 		if ( $flags ) {
 			$result += $this->getPageSet()->getFinalParams( $flags );
 		}
@@ -159,7 +164,11 @@ class ApiPurge extends ApiBase {
 
 	public function getParamDescription() {
 		return $this->getPageSet()->getFinalParamDescription()
-			+ array( 'forcelinkupdate' => 'Update the links tables' );
+			+ array(
+				'forcelinkupdate' => 'Update the links tables',
+				'forcerecursivelinkupdate' => 'Update the links table, and update ' .
+					'the links tables for any page that uses this page as a template',
+			);
 	}
 
 	public function getResultProperties() {
