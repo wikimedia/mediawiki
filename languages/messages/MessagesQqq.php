@@ -2924,8 +2924,12 @@ This user automatically bypasses IP blocks, auto-blocks and range blocks - so I 
 'right-unblockself' => '{{doc-right|unblockself}}
 {{doc-singularthey}}',
 'right-protect' => '{{doc-right|protect}}',
-'right-editprotected' => '{{doc-right|editprotected}}',
-'right-editsemiprotected' => '{{doc-right|editsemiprotected}}',
+'right-editprotected' => '{{doc-right|editprotected}}
+See also:
+* {{msg-mw|Right-editsemiprotected}}',
+'right-editsemiprotected' => '{{doc-right|editsemiprotected}}
+See also:
+* {{msg-mw|Right-editprotected}}',
 'right-editinterface' => '{{doc-right|editinterface}}',
 'right-editusercssjs' => '{{doc-right|editusercssjs}}',
 'right-editusercss' => '{{doc-right|editusercss}}

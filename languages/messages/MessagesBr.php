@@ -2390,7 +2390,7 @@ Ma'z eus bet krouet ur bajenn nevez dezhi an hevelep anv abaoe an diverkadenn, e
 'undeletelink' => 'gwelet/assevel',
 'undeleteviewlink' => 'gwelet',
 'undeletereset' => 'Adderaouekaat',
-'undeleteinvert' => 'Eilpennañ diuzadenn',
+'undeleteinvert' => 'Eilpennañ an diuzadenn',
 'undeletecomment' => 'Abeg :',
 'undeletedrevisions' => 'Adsavet {{PLURAL:$1|1 stumm|$1 stumm}}',
 'undeletedrevisions-files' => 'Adsavet ez ez eus bet {{PLURAL:$1|1 stumm|$1 stumm}} ha {{PLURAL:$2|1 restr|$2 restr}}',

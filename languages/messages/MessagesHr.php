@@ -798,8 +798,8 @@ koristiti staru lozinku.',
 'blocked-mailpassword' => 'Vašoj IP adresi je blokirano uređivanje stranica, a da bi se spriječila nedopuštena radnja, mogućnost zahtijevanja nove lozinke je također onemogućena.',
 'eauthentsent' => 'Na navedenu adresu poslan je e-mail s potvrdom.
 Prije nego što pošaljemo daljnje poruke, molimo Vas da otvorite e-mail i slijedite u njemu sadržana uputstva kako biste potvrdili da je e-mail adresa zaista Vaša.',
-'throttled-mailpassword' => 'Već Vam je poslan e-mail za promjenu lozinke, u {{PLURAL:$1|zadnjih sat vremena|zadnja $1 sata|zadnjih $1 sati}}.
-Da bi spriječili zloupotrebu, moguće je poslati samo jedan e-mail za promjenu lozinke {{PLURAL:$1|svakih sat vremena|svaka $1 sata|svakih $1 sati}}.',
+'throttled-mailpassword' => 'Već Vam je poslan e-mail za promjenu zaporke, u {{PLURAL:$1|zadnjih sat vremena|zadnja $1 sata|zadnjih $1 sati}}.
+Da bi spriječili zloupotrebu, moguće je poslati samo jedan e-mail za promjenu zaporke {{PLURAL:$1|svakih sat vremena|svaka $1 sata|svakih $1 sati}}.',
 'mailerror' => 'Pogrješka pri slanju e-pošte: $1',
 'acct_creation_throttle_hit' => 'Posjetitelji ovog wikija koji rabe Vašu IP adresu napravili su {{PLURAL:$1|1 račun|$1 računa}} u posljednjem danu, što je najveći dopušteni broj u tom vremenskom razdoblju.
 Zbog toga posjetitelji s ove IP adrese trenutačno ne mogu otvoriti nove suradničke račune.',
@@ -813,7 +813,7 @@ Molim unesite ispravno oblikovanu adresu ili ostavite polje praznim.',
 'cannotchangeemail' => 'Na ovom wikiju ne možete promijeniti adresu e-pošte.',
 'emaildisabled' => 'Slanje e-pošte na ovom projektu nije moguće.',
 'accountcreated' => 'Suradnički račun otvoren',
-'accountcreatedtext' => 'Suradnički račun za $1 je otvoren.',
+'accountcreatedtext' => 'Suradnički račun $1 je stvoren.',
 'createaccount-title' => 'Otvaranje suradničkog računa za {{SITENAME}}',
 'createaccount-text' => 'Netko je stvorio suradnički račun s Vašom adresom elektronske pošte na {{SITENAME}} ($4) nazvan "$2", s lozinkom "$3". Trebali biste se prijaviti i odmah promijeniti lozinku.
 
@@ -845,6 +845,7 @@ Molimo Vas da pričekate prije nego što pokušate ponovo.',
 'resetpass-wrong-oldpass' => 'Pogrešna privremena ili trenutačna lozinka.
 Možda ste već uspješno promijenili Vašu lozinku ili ste zatražili novu privremenu lozinku.',
 'resetpass-temp-password' => 'Privremena lozinka:',
+'resetpass-abort-generic' => 'Poništena je promjena zaporke.',
 
 # Special:PasswordReset
 'passwordreset' => 'Ponovno postavi lozinku',
@@ -877,7 +878,7 @@ zahtjev, ili ako ste sjeti Vaše izvorne lozinke, a vi je više ne želite promi
 možete zanemariti ovu poruku i nastavite koristiti staru lozinku.',
 'passwordreset-emailelement' => 'Suradničko ime: $1
 Privremena lozinka: $2',
-'passwordreset-emailsent' => 'E-mail podsjetnik je poslan.',
+'passwordreset-emailsent' => 'E-mail podsjetnik zaporke je poslan.',
 'passwordreset-emailsent-capture' => 'Poslan Vam je podsjetnik kao e-pošta (tekst je prikazan dolje).',
 'passwordreset-emailerror-capture' => 'Napravljen je podsjetnik za slanje e-pošte (prikazan dolje), ali njegovo slanje nije uspjelo: $1',
 
@@ -1571,7 +1572,7 @@ Ne smije biti duži od $1 {{PLURAL:$1|znaka|znaka|znakova}}.',
 'right-proxyunbannable' => 'Imunitet na automatska blokiranja posrednika (proxya)',
 'right-unblockself' => 'Odblokirati se',
 'right-protect' => 'Mijenjanje razina zaštićivanja i uređivanje zaštićenih stranica',
-'right-editprotected' => 'Uređivanje zaštićenih stranica (s prenosivom zaštitom)',
+'right-editprotected' => 'Uređivanje zaštićenih stranica (bez prenosive zaštite)',
 'right-editinterface' => 'Uređivanje suradničkog sučelja',
 'right-editusercssjs' => 'Uređivanje CSS i JS stranica drugih suradnika',
 'right-editusercss' => 'Uređivanje CSS stranica drugih suradnika',
@@ -2547,7 +2548,7 @@ $1',
 'mycontris' => 'Moji doprinosi',
 'contribsub2' => 'Za $1 ($2)',
 'nocontribs' => 'Nema promjena koje udovoljavaju ovim kriterijima.',
-'uctop' => ' (vrh)',
+'uctop' => '(vrh)',
 'month' => 'Od mjeseca (i ranije):',
 'year' => 'Od godine (i ranije):',
 
@@ -3089,6 +3090,9 @@ Razlog je vjerojatno vanjska poveznica koja se nalazi na crnom popisu.',
 'pageinfo-protect-cascading' => 'Prenosiva zaštita počinje od ove stranice',
 'pageinfo-protect-cascading-yes' => 'Da',
 'pageinfo-protect-cascading-from' => 'Prenosiva zaštita počinje od',
+'pageinfo-category-pages' => 'Broj stranica',
+'pageinfo-category-subcats' => 'Broj podkategorija',
+'pageinfo-category-files' => 'Broj datoteka',
 
 # Skin names
 'skinname-cologneblue' => 'Kölnska plava',
@@ -3169,6 +3173,8 @@ Njegovim izvršavanjem mogli biste oštetiti svoj sustav.",
 'minutes' => '{{PLURAL:$1|$1 minuta|$1 minute|$1 minuta}}',
 'hours' => '{{PLURAL:$1|$1 sat|$1 sata|$1 sati}}',
 'days' => '{{PLURAL:$1|$1 dan|$1 dana|$1 dana}}',
+'months' => '{{PLURAL:$1|$1 mjesec|$1 mjeseca|$1 mjeseci}}',
+'years' => '{{PLURAL:$1|$1 godina|$1 godine|$1 godina}}',
 'ago' => 'prije $1',
 'just-now' => 'upravo',
 

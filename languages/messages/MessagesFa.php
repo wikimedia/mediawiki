@@ -917,6 +917,7 @@ $2',
 'createacct-benefit-heading' => '{{SITENAME}} توسط افرادی مانند شما ساخته شده‌است',
 'createacct-benefit-body1' => '{{PLURAL:$1|ویرایش|ویرایش‌ها}}',
 'createacct-benefit-body2' => '{{PLURAL:$1|صفحه|صفحه‌ها}}',
+'createacct-benefit-body3' => '{{PLURAL:$1|مشارکت‌کنندهٔ|مشارکت‌کنندگان}} اخیر',
 'badretype' => 'گذرواژه‌هایی که وارد کرده‌اید یکسان نیستند.',
 'userexists' => 'نام کاربری‌ای که وارد کردید قبلاً استفاده شده‌است.
 لطفاً یک نام دیگر انتخاب کنید.',
