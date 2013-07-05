@@ -59,8 +59,19 @@ class WikitextContentHandler extends TextContentHandler {
 	 * @return Content
 	 */
 	public function makeRedirectContent( Title $destination ) {
+		$optionalColon = '';
+
+		if ( $destination->getNamespace() == NS_CATEGORY ) {
+			$optionalColon = ':';
+		} else {
+			$iw = $destination->getInterwiki();
+			if ( $iw && Language::fetchLanguageName( $iw, null, 'mw' ) ) {
+				$optionalColon = ':';
+			}
+		}
+
 		$mwRedir = MagicWord::get( 'redirect' );
-		$redirectText = $mwRedir->getSynonym( 0 ) . ' [[' . $destination->getPrefixedText() . ']]';
+		$redirectText = $mwRedir->getSynonym( 0 ) . ' [[' . $optionalColon . $destination->getFullText() . ']]';
 
 		return new WikitextContent( $redirectText );
 	}
