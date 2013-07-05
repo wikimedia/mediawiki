@@ -2343,8 +2343,7 @@ class WikiPage implements Page, IDBAccessObject {
 				return Status::newGood();
 			}
 
-			// Only certain restrictions can cascade... Otherwise, users who cannot normally protect pages
-			// could "protect" them by transcluding them on protected pages they are allowed to edit.
+			// Only certain restrictions can cascade...
 			$editrestriction = isset( $limit['edit'] ) ? array( $limit['edit'] ) : $this->mTitle->getRestrictions( 'edit' );
 
 			$cascadingRestrictionLevels = $wgCascadingRestrictionLevels;

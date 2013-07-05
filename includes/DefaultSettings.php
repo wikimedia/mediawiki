@@ -4051,11 +4051,6 @@ $wgRestrictionLevels = array( '', 'autoconfirmed', 'sysop' );
  * A page can only be protected with cascading protection if the
  * requested restriction level is included in this array.
  *
- * This is intended to prevent abuse - if any protection could be
- * cascading, users could who cannot normally protect pages could
- * "protect" them by transcluding them on protected pages they are
- * allowed to edit.
- *
  * 'autoconfirmed' is quietly rewritten to 'editsemiprotected' for backwards compatibility.
  * 'sysop' is quietly rewritten to 'editprotected' for backwards compatibility.
  */
