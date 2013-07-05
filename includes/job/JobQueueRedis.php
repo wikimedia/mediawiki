@@ -514,13 +514,8 @@ LUA;
 	public function getAllQueuedJobs() {
 		$conn = $this->getConnection();
 		try {
-			$that = $this;
-			return new MappedIterator(
-				$conn->lRange( $this->getQueueKey( 'l-unclaimed' ), 0, -1 ),
-				function( $uid ) use ( $that, $conn ) {
-					return $that->getJobFromUidInternal( $uid, $conn );
-				}
-			);
+			$baseIter = $conn->lRange( $this->getQueueKey( 'l-unclaimed' ), 0, -1 );
+			return new JobQueueRedis_Iterator( $this, $conn, $baseIter );
 		} catch ( RedisException $e ) {
 			$this->throwRedisException( $this->server, $conn, $e );
 		}
@@ -533,13 +528,8 @@ LUA;
 	public function getAllDelayedJobs() {
 		$conn = $this->getConnection();
 		try {
-			$that = $this;
-			return new MappedIterator( // delayed jobs
-				$conn->zRange( $this->getQueueKey( 'z-delayed' ), 0, -1 ),
-				function( $uid ) use ( $that, $conn ) {
-					return $that->getJobFromUidInternal( $uid, $conn );
-				}
-			);
+			$baseIter = $conn->zRange( $this->getQueueKey( 'z-delayed' ), 0, -1 );
+			return new JobQueueRedis_Iterator( $this, $conn, $baseIter );
 		} catch ( RedisException $e ) {
 			$this->throwRedisException( $this->server, $conn, $e );
 		}
@@ -550,14 +540,13 @@ LUA;
 	 *
 	 * @param $uid string
 	 * @param $conn RedisConnRef
-	 * @return Job
-	 * @throws MWException
+	 * @return Job|false
 	 */
 	public function getJobFromUidInternal( $uid, RedisConnRef $conn ) {
 		try {
 			$item = $this->unserialize( $conn->hGet( $this->getQueueKey( 'h-data' ), $uid ) );
-			if ( !is_array( $item ) ) { // this shouldn't happen
-				throw new MWException( "Could not find job with ID '$uid'." );
+			if ( !is_array( $item ) ) {
+				return false;
 			}
 			$title = Title::makeTitle( $item['namespace'], $item['title'] );
 			$job = Job::factory( $item['type'], $title, $item['params'] );
@@ -815,5 +804,57 @@ LUA;
 	 */
 	public function setTestingPrefix( $key ) {
 		$this->key = $key;
+	}
+}
+
+class JobQueueRedis_Iterator implements Iterator {
+	/** @var The JobQueueRedis instance */
+	protected $queue;
+	/** @var RedisConnRef */
+	protected $conn;
+	/** @var The UID iterator */
+	protected $baseIter;
+	/** @var the Job object for the current position, or false for invalid */
+	protected $currentJob;
+
+	function __construct( $queue, $conn, $baseIter ) {
+		$this->queue = $queue;
+		$this->conn = $conn;
+		$this->baseIter = $baseIter;
+		$this->skipInvalidAndGetCurrent();
+	}
+
+	public function current() {
+		return $this->currentJob;
+	}
+
+	public function key() {
+		return $this->baseIter->key();
+	}
+
+	public function next() {
+		$this->baseIter->next();
+		return $this->skipInvalidAndGetCurrent();
+	}
+
+	protected function skipInvalidAndGetCurrent() {
+		while ( $this->baseIter->valid() ) {
+			$uid = $this->baseIter->current();
+			$this->currentJob = $this->queue->getJobFromUidInternal( $uid, $this->conn );
+			if ( $this->currentJob ) {
+				break;
+			}
+			$this->baseIter->next();
+		}
+		return $this->currentJob;
+	}
+
+	public function rewind() {
+		$this->baseIter->rewind();
+		return $this->skipInvalidAndGetCurrent();
+	}
+
+	public function valid() {
+		return !!$this->currentJob;
 	}
 }
