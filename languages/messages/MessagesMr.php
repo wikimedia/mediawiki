@@ -947,9 +947,8 @@ $2',
 'noarticletext' => 'या लेखात सध्या काहीही मजकूर नाही.
 तुम्ही विकिपीडियावरील इतर लेखांमध्ये या [[Special:Search/{{PAGENAME}}|मथळ्याच्या शोध घेऊ शकता]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} इतर याद्या शोधा],
 किंवा हा लेख [{{fullurl:{{FULLPAGENAME}}|action=edit}} लिहू शकता]</span>.',
-'noarticletext-nopermission' => 'या लेखात सध्या काहीही मजकूर नाही.
-तुम्ही विकिपीडियावरील इतर लेखांमध्ये या [[Special:Search/{{PAGENAME}}|मथळ्याच्या शोध घेऊ शकता]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} इतर याद्या शोधा],
-किंवा हा लेख [{{fullurl:{{FULLPAGENAME}}|action=edit}} लिहू शकता]</span>.',
+'noarticletext-nopermission' => 'सध्या या लेखात  काहीही मजकूर नाही.
+तुम्ही विकिपीडियावरील इतर लेखांमध्ये [[Special:Search/{{PAGENAME}}|या मथळ्याचा शोध घेऊ शकता]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAME}}}}आपण या लेखाच्या इतर नोंदी शोधा]</span>,परंतु, आपणास हा लेख लिहीण्याची परवानगी देण्यात येउ शकत नाही.',
 'userpage-userdoesnotexist' => '"<nowiki>$1</nowiki>" सदस्य खात्याची नोंद नाही. कृपया हे पान तुम्ही संपादित किंवा नव्याने तयार करू इच्छिता का या बद्दल विचार करा.',
 'userpage-userdoesnotexist-view' => 'सदस्यखाते "$1"  हे नोंदलेले नाही.',
 'blocked-notice-logextract' => 'हा सदस्य सध्या प्रतिबंधित आहे.
@@ -1315,7 +1314,7 @@ $1",
 
 # Preferences page
 'preferences' => 'माझ्या पसंती',
-'mypreferences' => 'माझ्या पसंती',
+'mypreferences' => 'पसंतीक्रम',
 'prefs-edits' => 'संपादनांची संख्या:',
 'prefsnologin' => 'प्रवेश केलेला नाही',
 'prefsnologintext' => 'तुम्हाला सदस्य पसंती बदलण्यासाठी <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} प्रवेश]</span> करावा लागेल.',
@@ -2205,8 +2204,8 @@ Input:contenttype/subtype, e.g. <code>image/jpeg</code>.',
 'usermessage-editor' => 'प्रणाली संदेशवाहक',
 
 # Watchlist
-'watchlist' => 'माझी नित्य पहाण्याची सूची',
-'mywatchlist' => 'माझी नित्य पहाण्याची सूची',
+'watchlist' => 'निरीक्षणसूची',
+'mywatchlist' => 'माझी निरीक्षणसूची',
 'watchlistfor2' => '$1 $2 साठी',
 'nowatchlist' => 'तुमची पहाऱ्याची सूची रिकामी आहे.',
 'watchlistanontext' => 'तुमच्या पहाऱ्याच्या सूचीमधील बाबी पाहण्याकरता किंवा संपादित करण्याकरता, कृपया $1.',
@@ -2454,12 +2453,12 @@ $1',
 'blanknamespace' => '(मुख्य)',
 
 # Contributions
-'contributions' => 'सदस्याचे योगदान',
+'contributions' => '{{GENDER:$1|सदस्य}} योगदान',
 'contributions-title' => '$1 साठी सदस्याचे योगदान',
-'mycontris' => 'माझे योगदान',
+'mycontris' => 'योगदान',
 'contribsub2' => '$1 ($2) साठी',
 'nocontribs' => 'या मानदंडाशी जुळणारे बदल सापडले नाहीत.',
-'uctop' => ' (वर)',
+'uctop' => '(सद्य)',
 'month' => 'या महिन्यापासून (आणि पूर्वीचे):',
 'year' => 'या वर्षापासून (आणि पूर्वीचे):',
 
@@ -2497,7 +2496,7 @@ $1',
 'whatlinkshere-hideredirs' => '$1 पुनर्निर्देशने',
 'whatlinkshere-hidetrans' => '$1 ट्रान्स्क्ल्युजन्स',
 'whatlinkshere-hidelinks' => '$1 दुवे',
-'whatlinkshere-hideimages' => '$1 चित्र दुवे',
+'whatlinkshere-hideimages' => '$1 संचिका दुवे',
 'whatlinkshere-filters' => 'फिल्टर्स',
 
 # Block/unblock

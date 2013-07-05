@@ -1132,7 +1132,7 @@ $1',
 'group-bot' => 'Шаболххой',
 'group-sysop' => 'Куьйгалхой',
 'group-bureaucrat' => 'Даржахой',
-'group-suppress' => 'Левисорхой',
+'group-suppress' => 'Ревизораш',
 'group-all' => '(массо)',
 
 'group-user-member' => '{{GENDER:$1|декъашхо}}',
@@ -1146,7 +1146,7 @@ $1',
 'grouppage-bot' => '{{ns:project}}:Шаболххой',
 'grouppage-sysop' => '{{ns:project}}:Куьйгалхой',
 'grouppage-bureaucrat' => '{{ns:project}}:Даржахой',
-'grouppage-suppress' => '{{ns:project}}:Левисорхой',
+'grouppage-suppress' => '{{ns:project}}:Ревизораш',
 
 # Rights
 'right-edit' => 'АгӀоаш нисяр',

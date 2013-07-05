@@ -1452,7 +1452,7 @@ Hwi a yll gweles hy fennfenten.',
 
 # Auto-summaries
 'autosumm-blank' => 'Gwakhes veu an folen',
-'autoredircomment' => 'Folen daswedyes war-tu ha [[$1]]',
+'autoredircomment' => 'Folen daskedyes war-tu ha [[$1]]',
 'autosumm-new' => "Folen gwruthys gans: '$1'",
 
 # Live preview

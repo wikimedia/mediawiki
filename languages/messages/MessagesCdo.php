@@ -42,13 +42,13 @@ $messages = array(
 'tog-showjumplinks' => '允許「跳遘」可訪問其鏈接',
 'tog-uselivepreview' => '使即時預覽（需要JavaScript）（敆𡅏實驗）',
 'tog-forceeditsummary' => '提醒我行遘蜀萆空白其編輯總結',
-'tog-watchlisthideown' => 'Káung kī gáng-sê-dăng gà̤-dēng nguāi cê-gă gì siŭ-gāi',
-'tog-watchlisthidebots' => 'Káung kī gáng-sê-dăng gà̤-dēng gì gĭ-ké-nè̤ng siŭ-gāi',
-'tog-watchlisthideminor' => 'Káung kī gáng-sê-dăng gà̤-dēng gì guó-éu siŭ-gāi',
+'tog-watchlisthideown' => '趁監視單𡅏藏起我其修改',
+'tog-watchlisthidebots' => '藏起監視單其機器人其修改',
+'tog-watchlisthideminor' => '藏起監視單其過要修改',
 'tog-watchlisthideliu' => '共已經躒底其用戶其編輯趁監視單𡅏藏起咯',
 'tog-watchlisthideanons' => '共匿名其用戶其編輯趁監視單𡅏藏起咯',
 'tog-watchlisthidepatrolled' => '共巡查其編輯趁監視單𡅏藏起咯',
-'tog-ccmeonemails' => 'Gié bĕk-nè̤ng diêng-piĕ sèng-âu iâ hók-cié siŏh hông gié ké̤ṳk nguāi cê-gă',
+'tog-ccmeonemails' => '共我發乞其他用戶其電子郵件其備份發乞我。',
 'tog-diffonly' => '伓使敆下底其顯示𣍐蜀様其地方顯示頁面內容',
 'tog-showhiddencats' => '㪗藏類別',
 'tog-norollbackdiff' => '敆回滾其時候，無叕𣍐蜀様其地方',
@@ -135,7 +135,7 @@ $messages = array(
 'subcategories' => '子類別',
 'category-media-header' => '「$1」類別下底其媒體',
 'category-empty' => "''茲類別下底現在無文章也無媒體。''",
-'hidden-categories' => '共類別藏起咯',
+'hidden-categories' => '乞藏起其類別',
 'hidden-category-category' => '已經藏起其類別',
 'category-subcat-count-limited' => '茲蜀萆類別下底有子類別',
 'category-article-count' => '{{PLURAL:$2|茲蜀萆類別儷有下底蜀頁。|共總有$2頁，下底其茲$1頁敆茲蜀萆類別𡅏。}}',
@@ -167,7 +167,7 @@ $messages = array(
 'qbmyoptions' => '我其頁面',
 'qbspecialpages' => '特殊頁',
 'faq' => '經稠碰著其問題',
-'faqpage' => '經稠碰著其問題',
+'faqpage' => 'Project:經稠碰著其問題',
 
 # Vector skin
 'vector-action-addsection' => '加話題',
@@ -267,7 +267,7 @@ $1',
 'mainpage-description' => '頭頁',
 'policy-url' => 'Project:政策',
 'portal' => '廳中',
-'portal-url' => '工程：社區門戶',
+'portal-url' => 'Project:社區門戶',
 'privacy' => '隱私政策',
 'privacypage' => 'Project:隱私政策',
 
@@ -403,14 +403,14 @@ Sō̤ kī só-gé̤ṳ-kó gì guāng-lī-uòng cūng-kuāng gāi-sék: $1',
 'welcomeuser' => '歡迎，$1！',
 'welcomecreation-msg' => '汝其賬戶已經開好了。
 伓嗵𣍐記改蜀改汝其[[Special:Preferences|{{SITENAME}}設定]]。',
-'yourname' => 'Ê̤ṳng-hô-miàng',
+'yourname' => '用戶名：',
 'userlogin-yourname' => '用戶名',
 'userlogin-yourname-ph' => '輸底汝其用戶名',
-'yourpassword' => 'Mĭk-mā',
+'yourpassword' => '密碼：',
 'userlogin-yourpassword' => '密碼',
 'userlogin-yourpassword-ph' => '輸底汝其密碼',
 'createacct-yourpassword-ph' => '輸底蜀萆密碼',
-'yourpasswordagain' => 'Dṳ̀ng-sĭng páh diē mĭk-mā',
+'yourpasswordagain' => '重新拍囇密碼：',
 'createacct-yourpasswordagain' => '確定密碼',
 'createacct-yourpasswordagain-ph' => '再輸入蜀回密碼',
 'remembermypassword' => '共我敆茲蜀萆瀏覽器其躒底記錄記定幾日（最価$1日）',
@@ -422,8 +422,8 @@ Sō̤ kī só-gé̤ṳ-kó gì guāng-lī-uòng cūng-kuāng gāi-sék: $1',
 'externaldberror' => '可能是驗證數據庫鄭咯，或者是汝𣍐使升級汝其外部賬戶。',
 'login' => '躒底',
 'nav-login-createaccount' => '躒底/開賬戶',
-'loginprompt' => 'Páh kŭi cookies ciáh â̤ diē {{SITENAME}}.',
-'userlogin' => 'Láuk-diē / kŭi dióng-hô̤',
+'loginprompt' => '汝著清除cookies才會底{{SITENAME}}。',
+'userlogin' => '躒底/開賬戶',
 'userloginnocreate' => '躒底',
 'logout' => '躒出',
 'userlogout' => '躒出',
@@ -518,7 +518,7 @@ Sō̤ kī só-gé̤ṳ-kó gì guāng-lī-uòng cūng-kuāng gāi-sék: $1',
 'loginreqlink' => '躒底',
 'loginreqpagetext' => '著$1才會使看其它頁面。',
 'accmailtitle' => '密碼寄出了',
-'accmailtext' => "共「$1」用戶其臨時產生其密碼已經發$2了。
+'accmailtext' => "共[[User talk:$1|$1]]用戶其臨時產生其密碼已經發$2了。
 
 茲蜀萆新其賬戶其密碼會使敆用戶躒底以後著''[[Special:ChangePassword|改密碼]]''頁面𡅏改變。",
 'newarticle' => '（新）',
@@ -554,9 +554,9 @@ Iŏk-guō nṳ̄ dĭk-ciék áik \"{{int:savearticle}}\", '''nâ ô''' gà̤-dē
 'readonlywarning' => "'''Gīng-gó̤: Ôi lāu mì-hô buōng câng, só-gé̤ṳ-kó ké̤ṳk sō̤ kī lāu, gó-chṳ̄ cī-lùng nṳ̄ mò̤ nièng-ngài bō̤-còng nṳ̄ gì siŭ-gāi. Chiāng sĕng bō̤-còng diŏh nṳ̄ diêng-nō̤ buōng-dê, dīng nék-gū mâing gái ché.'''",
 'protectedpagewarning' => "'''GĪNG-GÓ̤: Ciā hiĕk ī-gĭng ké̤ṳk sō̤ kī go̤ lāu, nâ ô guāng-lī-uòng â̤ siŭ-gāi ĭ.'''",
 'semiprotectedpagewarning' => "'''Cé̤ṳ-é:''' Ciā hiĕk-miêng ī-gĭng ké̤ṳk bō̤-hô, gó-chṳ̄ nâ ô láuk-diē gì ê̤ṳng-hô â̤-sāi siŭ-gāi ĭ.",
-'templatesused' => 'Ciā hiĕk gà̤-dēng gì muò-bēng:',
-'templatesusedpreview' => 'Ciā ché-káng-hiĕk gà̤-dēng gì muò-bēng:',
-'templatesusedsection' => 'Cī dâung diē-sié gì muò-bēng:',
+'templatesused' => '茲頁底裏使其模板：',
+'templatesusedpreview' => '茲萆預覽使其模板：',
+'templatesusedsection' => '茲蜀段使其模板：',
 'template-protected' => '（保護）',
 'template-semiprotected' => '（半保護）',
 'recreate-moveddeleted-warn' => "'''注意：汝重新創建其茲蜀頁面以前已經乞刪掉了。'''
@@ -609,13 +609,13 @@ Siók-mìng: (dāng) = gâe̤ng dék sĭng bēng-buōng bī-piâng, (sèng) = g�
 # Search results
 'searchresults' => '討結果',
 'searchresulttext' => '更更価關於討{{SITENAME}}其內容，覷蜀覷[[{{MediaWiki:Helppage}}|{{int:help}}]]。',
-'searchsubtitle' => "汝是討'''[[:$1]]'''",
+'searchsubtitle' => "汝是討'''[[:$1]]'''（[[Special:Prefixindex/$1|所有「$1」開始其頁面]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|所有鏈遘「$1」其頁面]]）",
 'searchsubtitleinvalid' => "汝討'''$1'''",
 'prevn' => '前$1萆',
 'nextn' => '後$1萆',
 'viewprevnext' => '看（$1 {{int:pipe-separator}} $2）（$3）。',
-'showingresults' => "Hiēng-sê téng #<b>$2</b> kăi-sṳ̄ gì {{PLURAL:$1|'''1'''|'''$1'''}} bĭk giék-guō.",
-'showingresultsnum' => "Hiēng-sê téng #<b>$2</b> kăi-sṳ̄ gì {{PLURAL:$3|'''1'''|'''$3'''}} bĭk giék-guō.",
+'showingresults' => "顯示趁#<b>$2</b>開始其'''$1'''萆結果。",
+'showingresultsnum' => "顯示趁#<b>$2</b>開始其'''$3'''萆結果。",
 
 # Preferences page
 'preferences' => '設定',
@@ -719,11 +719,12 @@ Siók-mìng: (dāng) = gâe̤ng dék sĭng bēng-buōng bī-piâng, (sèng) = g�
 'uploadbtn' => '上傳文件',
 'reuploaddesc' => '取消上傳，轉去上傳頁面',
 'uploadnologin' => '未躒底',
-'uploadnologintext' => '著[[Special:用戶躒底|躒底]]才會使上傳文件。',
+'uploadnologintext' => '汝著$1才會使上傳文件。',
 'uploaderror' => '上傳有鄭',
 'uploadlog' => '上傳日誌',
 'uploadlogpage' => '上傳日誌',
-'uploadlogpagetext' => 'Â-dā̤ sê gé-luŏh cī-bŏng ùng-giông siông-duòng gì dăng-dăng.',
+'uploadlogpagetext' => '下底是最近上傳其文件。
+卜挃更更好看其列表，看蜀看[[Special:NewFiles|新文件其列表]]。',
 'filename' => '文件名',
 'filedesc' => '總結',
 'fileuploadsummary' => '總結：',
@@ -731,12 +732,12 @@ Siók-mìng: (dāng) = gâe̤ng dék sĭng bēng-buōng bī-piâng, (sèng) = g�
 'uploadedfiles' => '上傳文件',
 'ignorewarning' => '無視警告保存文件',
 'ignorewarnings' => '無視警告',
-'fileexists' => 'Ī-gĭng ô siŏh bĭk dè̤ng miàng ùng-giông, nṳ̄ nâ mâ̤ káuk-dêng nṳ̄ sê-ng-sê dŏng-cĭng páh-sáung gāi-biéng ĭ, chiāng giēng-chă <strong>[[:$1]]</strong>.
+'fileexists' => '名字蜀樣其文件已經存在去了。如果汝𣍐確定汝是伓是卜想刪掉伊，起動檢查蜀下<strong>[[:$1]]</strong>。
 [[$1|thumb]]',
 'uploadwarning' => '上傳警告',
 'savefile' => '保存文件',
-'uploadedimage' => '上傳「[$1]]」',
-'uploadvirus' => '茲文件有病！
+'uploadedimage' => '已經上傳其「[$1]]」',
+'uploadvirus' => '茲文件有病毒！
 細底：$1',
 'sourcefilename' => '源文件名：',
 'destfilename' => '目標文件名：',
@@ -755,14 +756,14 @@ Siók-mìng: (dāng) = gâe̤ng dék sĭng bēng-buōng bī-piâng, (sèng) = g�
 'file-anchor-link' => '文件',
 'imagelinks' => '文件使用方法',
 'linkstoimage' => '下底$1頁鏈接遘茲文件：',
-'nolinkstoimage' => 'Mò̤ hiĕk-miêng lièng gáu ciā ùng-giông.',
-'uploadnewversion-linktext' => 'Siông-duòng ciā ùng-giông gì sĭng bēng-buōng',
+'nolinkstoimage' => '無鏈接遘茲蜀萆文件其頁面。',
+'uploadnewversion-linktext' => '上傳蜀萆新版本其茲萆文件。',
 
 # MIME search
 'download' => '下載',
 
 # Unwatched pages
-'unwatchedpages' => 'Mò̤ gáng-sê gì hiĕk-miêng',
+'unwatchedpages' => '無監視其頁面',
 
 # List redirects
 'listredirects' => '重定向其單單',
@@ -786,21 +787,21 @@ Siók-mìng: (dāng) = gâe̤ng dék sĭng bēng-buōng bī-piâng, (sèng) = g�
 'brokenredirects-delete' => '刪',
 
 'withoutinterwiki' => '無跨語言其鏈接',
-'withoutinterwiki-summary' => 'Â-dā̤ hiĕk-miêng mò̤ lièng gáu gì-tă ngṳ̄-ngiòng bēng-buōng gì kuá wiki lièng-giék:',
+'withoutinterwiki-summary' => '下底其頁面無鏈接遘其它語言其版本。',
 
-'fewestrevisions' => 'Ké̤ṳk siŭ-gāi guó dék ciēu làu gì ùng-ciŏng',
+'fewestrevisions' => '修改最少其頁面',
 
 # Miscellaneous special pages
-'nbytes' => '{{PLURAL:$1|1|$1}} cê-ciék',
-'nlinks' => '{{PLURAL:$1|1|$1}} ciáh lièng-giék',
-'nmembers' => '{{PLURAL:$1|1|$1}} ciáh sìng-uòng',
-'wantedcategories' => 'Buóh dĭh gì lôi-biék',
-'wantedpages' => 'Buóh dĭh gì hiĕk',
-'mostlinked' => 'Ké̤ṳk lièng-giék dék sâ̤ làu gì hiĕk',
-'mostlinkedcategories' => 'Ké̤ṳk lièng-giék dék sâ̤ làu gì lôi-biék',
-'mostcategories' => 'Ô dék sâ̤ lôi-biék gì ùng-ciŏng',
-'mostimages' => 'Ké̤ṳk lièng-giék dék sâ̤ làu gì dù',
-'mostrevisions' => 'Ké̤ṳk siŭ-gāi guó dék sâ̤ làu gì ùng-ciŏng',
+'nbytes' => '$1字節',
+'nlinks' => '$1隻鏈接',
+'nmembers' => '$1隻成員',
+'wantedcategories' => '卜挃其類別',
+'wantedpages' => '卜挃其頁',
+'mostlinked' => '鏈接第一価其頁',
+'mostlinkedcategories' => '鏈接第一価其類別',
+'mostcategories' => '有第一価類別其頁面',
+'mostimages' => '鏈接第一価其文件',
+'mostrevisions' => '最近修改其頁面',
 'shortpages' => '短頁',
 'longpages' => '長頁',
 'protectedpages' => '保護頁',
@@ -815,36 +816,36 @@ Siók-mìng: (dāng) = gâe̤ng dék sĭng bēng-buōng bī-piâng, (sèng) = g�
 'booksources' => '書源',
 'booksources-search-legend' => '尋討書源',
 'booksources-go' => '去',
-'booksources-text' => 'Â-dā̤ sê mâ̤ cṳ̆ uōng-câng gì dăng-dăng, kō̤-nèng ô nṳ̄ buóh tō̤ gì cṳ̆ gì gáing sâ̤ séng-sék:',
+'booksources-text' => '下底是鏈接遘其它賣新書共舊書其站點其單單，固加可能有更多關於汝敆𡅏看其茲本書其信息：',
 
 # Special:Log
 'specialloguserlabel' => '表演者：',
 'speciallogtitlelabel' => '目標（稱呼或者用戶）：',
 'log' => '日誌',
 'alllogstext' => "Siông-diòng (''upload''), chēng (''deletion''), bō̤-hô (''protection''), hŭng-sō̤ (''blocking''), gâe̤ng guāng-lī-uòng (''sysop'') nĭk-cé ciòng-buô hiēng-sê diŏh â-dā̤. Nṳ̄ â̤-sāi gēng-sōng nĭk-cé lôi-biék, ê̤ṳng-hô gì miàng, hĕ̤k-ciā 1 tiŏng hiĕk lì gāng-huá giék-guō.",
-'logempty' => 'Nĭk-cé diē-sié tō̤ mâ̤ diŏh hâung-mŭk.',
+'logempty' => '日誌底裏討要𣍐著項目',
 
 # Special:AllPages
 'allpages' => '所有頁面',
 'alphaindexline' => '$1遘$2',
 'nextpage' => '下蜀頁（$1）',
 'prevpage' => '前蜀頁（$1）',
-'allpagesfrom' => 'Iù ciā cê-mō̤ kăi-sṳ̄ gì miàng:',
+'allpagesfrom' => '使下底其乇開始顯示頁：',
 'allarticles' => '所有文章',
 'allinnamespace' => '所有頁面（$1命名空間）',
-'allnotinnamespace' => '所有頁面（無著$1命名空間）',
+'allnotinnamespace' => '所有頁面（無著$1其命名空間）',
 'allpagesprev' => '前蜀頁',
 'allpagesnext' => '下蜀頁',
 'allpagessubmit' => '去',
-'allpagesprefix' => 'Áng cê-tàu hiēng-sê:',
+'allpagesprefix' => '按頭部顯示頁面：',
 'allpagesbadtitle' => 'Nṳ̄ sṳ̆-ĭk gì biĕu-dà̤ buōng câng mò̤ ciĕ-tì.',
 
 # Special:Categories
 'categories' => '類別',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Ké̤ṳk chēng lâi gì ê̤ṳng-hô góng-hióng',
-'deletedcontributions-title' => 'Ké̤ṳk chēng lâi gì ê̤ṳng-hô góng-hióng',
+'deletedcontributions' => '乞刪掉其用戶貢獻',
+'deletedcontributions-title' => '乞刪掉其用戶貢獻',
 
 # Special:LinkSearch
 'linksearch-ok' => '尋討',
@@ -866,7 +867,7 @@ Siók-mìng: (dāng) = gâe̤ng dék sĭng bēng-buōng bī-piâng, (sèng) = g�
 # Watchlist
 'watchlist' => '我其監視單',
 'mywatchlist' => '我其監視單',
-'nowatchlist' => 'Nṳ̄ gì gáng-sê-dăng gà̤-dēng mò̤ dèu-mĕ̤k.',
+'nowatchlist' => '汝其監視單𡅏無項目。',
 'watchnologin' => '未躒底',
 'addedwatchtext' => '頁面「[[:$1]]」已經加遘汝其[[Special:Watchlist|監視單]]。以後敆茲蜀頁其改變共伊關聯其討論頁都會列敆嚽塊。',
 'removewatch' => '趁汝其監視單臺中移去',
@@ -876,7 +877,7 @@ Siók-mìng: (dāng) = gâe̤ng dék sĭng bēng-buōng bī-piâng, (sèng) = g�
 'unwatch' => '伓使監視',
 'unwatchthispage' => '停止監視',
 'watchlist-details' => '$1頁敆汝其監視單𡅏，無算討論頁。',
-'wlshowlast' => 'Hiēng-sê có̤i hâiu $1 dēng-cṳ̆ng $2 gĕ̤ng $3',
+'wlshowlast' => '顯示最$1點鐘$2日$3',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching' => '監視...',
@@ -884,44 +885,45 @@ Siók-mìng: (dāng) = gâe̤ng dék sĭng bēng-buōng bī-piâng, (sèng) = g�
 # Delete
 'deletepage' => '刪頁',
 'confirm' => '確認',
-'excontent' => "nô̤i-ṳ̀ng sê: '$1'",
-'excontentauthor' => "nô̤i-ṳ̀ng sê: '$1' (bêng-chiā cáuk-ciā nâ ô '[[Special:Contributions/$2|$2]]')",
-'exbeforeblank' => "dù táh cĭ-sèng gì nô̤i-ṳ̀ng sê: '$1'",
+'excontent' => '乇是：「$1」',
+'excontentauthor' => '乇是：「$1」（並且作者囇有「[[Special:Contributions/$2|$2]]」）',
+'exbeforeblank' => '空白以前其乇是：「$1」',
 'historywarning' => "'''警告：'''汝卜想刪掉其頁面有蜀段大概$1版本其它歷史：",
 'confirmdeletetext' => 'Nṳ̄ cūng-bê ciŏng ciā hiĕk-miêng hĕ̤k ùng-giông lièng ĭ găk só-gé̤ṳ-kó gì lĭk-sṳ̄ ciòng-buô chēng lâi. Chiāng nṳ̄ káuk-nêng: nṳ̄ dŏng-cĭng buóh siōng cūng-kuāng có̤, nṳ̄ liēu-gāi cūng-kuāng có̤ gì hâiu-guō, bêng-chiā nṳ̄ cūng-kuāng có̤ sê hù-hăk [[{{MediaWiki:Policy-url}}]].',
 'actioncomplete' => '行動成功',
-'deletedtext' => '"$1" ī-gĭng ké̤ṳk chēng lâi go̤ lāu. Cī-bŏng chēng hiĕk gì gé-liŏh dŭ gé diŏh $2.',
-'dellogpage' => 'Chēng hiĕk nĭk-cé',
-'dellogpagetext' => 'Â-dā̤ sê gé-liŏh cī-bŏng chēng hiĕk gì dăng-dăng.',
+'deletedtext' => '「$1」已經乞刪掉去了。
+最近其刪除記錄看$2。',
+'dellogpage' => '刪頁日誌',
+'dellogpagetext' => '下底是最近刪掉其單單。',
 'deletionlog' => '刪除日誌',
 'deletecomment' => '原因：',
 
 # Rollback
-'rollback' => 'Gâe̤ng siŭ-gāi duōng kó̤',
-'rollback_short' => 'Duōng',
-'rollbacklink' => 'duōng',
-'rollbackfailed' => 'Duōng mâ̤ kó̤',
+'rollback' => '在修改轉去',
+'rollback_short' => '轉',
+'rollbacklink' => '轉',
+'rollbackfailed' => '轉𣍐去',
 'cantrollback' => 'Mò̤ bâing-huák huòi-tó̤i siŭ-gāi; sèng 1 ciáh góng-hióng-ciā sê ciā hiĕk mì-ék gì cáuk-ciā.',
 'alreadyrolled' => 'Mò̤ nièng-ngài huòi-tó̤i [[User:$2|$2]] ([[User talk:$2|Tō̤-lâung]]) có̤i âu sū có̤ gì [[$1]] siŭ-gāi; bĕk-nè̤ng ī-gĭng siū-gái hĕ̤k-ciā huòi-tó̤i ciā hiĕk-miêng go̤ lāu.
 
 Có̤i âu gì siŭ-gāi sê [[User:$3|$3]] ([[User talk:$3|Tō̤-lâung]]) sū có̤ gì.',
 'editcomment' => "修改評論是：「''$1''」。",
-'revertpage' => '[[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) sū có̤ gì siŭ-gāi duōng kó̤ [[User:$1|$1]] gì sèng 1 bĭk bēng-buōng',
+'revertpage' => '[[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]])所做其修改轉去[[User:$1|$1]]其前蜀萆版本',
 
 # Protect
 'protectlogpage' => '保護日誌',
-'protect-title' => 'Bō̤-hô "$1"',
-'prot_1movedto2' => '[[$1]] iè gáu [[$2]]',
+'protect-title' => '改變「$1」其保護等級',
+'prot_1movedto2' => '[[$1]]移遘[[$2]]',
 'protect-legend' => 'Káuk-nêng bō̤-hô',
 'protectcomment' => '原因：',
 'protect-level-autoconfirmed' => '囇允許自動確認用戶',
 'protect-level-sysop' => '囇允許管理員',
-'protect-expiry-options' => '2 點鐘:2 hours,1 日:1 day,3 日:3 days,1 禮拜:1 week,2 禮拜:2 weeks,1 month:1 月日,3 月日:3 months,6 月日:6 months,1 nièng:1 year,永遠:infinite',
+'protect-expiry-options' => '2 點鐘:2 hours,1 日:1 day,3 日:3 days,1 禮拜:1 week,2 禮拜:2 weeks,1 月:1 month,3 月:3 months,6 月:6 months,1 年:1 year,永遠:infinite',
 'restriction-type' => '權限：',
-'restriction-level' => 'Âing-cié dēng-gék:',
-'minimum-size' => 'Có̤i nâung chióh-cháung',
-'maximum-size' => 'Có̤i duâi chióh-cháung',
-'pagesize' => '(cê-ciék)',
+'restriction-level' => '框定其等級：',
+'minimum-size' => '最嫩尺寸：',
+'maximum-size' => '最大尺寸：',
+'pagesize' => '（字節）',
 
 # Restrictions (nouns)
 'restriction-edit' => '修改',
@@ -930,33 +932,33 @@ Có̤i âu gì siŭ-gāi sê [[User:$3|$3]] ([[User talk:$3|Tō̤-lâung]]) sū 
 # Restriction levels
 'restriction-level-sysop' => '全保護',
 'restriction-level-autoconfirmed' => '半保護',
-'restriction-level-all' => 'sū-iū dēng-gék',
+'restriction-level-all' => '所有等級',
 
 # Undelete
-'undeletepage' => 'Káng bêng-chiā hŭi-hók ké̤ṳk chēng lâi gì hiĕk-miêng',
-'viewdeletedpage' => 'Káng chēng lâi gì hiĕk',
+'undeletepage' => '看共恢復刪掉其頁面',
+'viewdeletedpage' => '看刪掉其頁',
 'undeleteextrahelp' => "Buóh gâe̤ng gó̤-lòng hiĕk dŭ hŭi-hók, chiāng ng-sāi sōng \"Hiĕk-miêng lĭk-sṳ̄\" â-dā̤ gì ăk-ăk, áik '''''Hŭi-hók''''' cêu â̤-sāi lāu. Buóh hŭi-hók gēng-sōng gì lĭk-sṳ̄, chiāng sōng-dĕk nṳ̄ buóh hŭi-hók gì hiĕk-miêng lĭk-sṳ̄ sèng-sāu gì ăk-ăk gái áik '''''Hŭi-hók'''''. Áik '''''Dṳ̀ng-sĭng siā''''' â̤ cháe̤ lâi pàng-lâung gáh-gáh gâe̤ng sōng-dĕk ăk-ăk.",
 'undeletehistory' => 'If you restore the page, all revisions will be restored to the history.
 If a new page with the same name has been created since the deletion, the restored revisions will appear in the prior history.',
 'undeletebtn' => '恢復',
-'undeletereset' => 'Dṳ̀ng-sĭng siā',
+'undeletereset' => '重新寫',
 'undeletecomment' => '原因：',
 'undelete-search-submit' => '尋討',
 
 # Namespace form on various pages
 'namespace' => '命名空間：',
-'invert' => 'Huāng sōng',
+'invert' => '反選',
 
 # Contributions
-'contributions' => '用戶貢獻',
+'contributions' => '{{GENDER:$1|User}}用戶貢獻',
 'contributions-title' => '用戶對$1其貢獻',
 'mycontris' => '我其貢獻',
 'uctop' => '（當前）',
 'month' => '趁月（共更早）：',
 'year' => '趁年（共更早）：',
 
-'sp-contributions-newbies' => 'Nâ hiēng-sê sĭng kŭi dióng-hô gì góng-hióng',
-'sp-contributions-newbies-sub' => 'Ciáh lì gì',
+'sp-contributions-newbies' => '囇顯示新開賬戶其貢獻',
+'sp-contributions-newbies-sub' => '才來其',
 'sp-contributions-blocklog' => '封鎖日誌',
 'sp-contributions-deleted' => '開除來其用戶貢獻',
 'sp-contributions-talk' => '討論',
@@ -967,17 +969,17 @@ If a new page with the same name has been created since the deletion, the restor
 # What links here
 'whatlinkshere' => '什乇鏈遘嚽塊',
 'whatlinkshere-title' => '鏈接遘$1其頁面',
-'linkshere' => "Â-dā̤ gì hiĕk-miêng lièng gáu '''[[:$1]]''':",
-'nolinkshere' => "Mò̤ hiĕk-miêng lièng gáu '''[[:$1]]'''.",
+'linkshere' => "下底其頁面鏈接遘'''[[:$1]]'''：",
+'nolinkshere' => "無頁鏈接遘'''[[:$1]]'''。",
 'isredirect' => '重定向頁面',
-'whatlinkshere-prev' => '{{PLURAL:$1|sèng|sèng $1 hâung}}',
-'whatlinkshere-next' => '{{PLURAL:$1|â|â $1 hâung}}',
+'whatlinkshere-prev' => '{{PLURAL:$1|前|前$1}}',
+'whatlinkshere-next' => '{{PLURAL:$1|下|下$1}}',
 'whatlinkshere-links' => '← 鏈接',
 
 # Block/unblock
 'blockip' => '封鎖用戶',
 'blockiptext' => 'Sāi-ê̤ṳng â-dā̤ gì dăng-dăng lì hŭng-sō̤ IP dê-cī hĕ̤k-ciā ê̤ṳng-hô-miàng gì siā guòng-âing. Cuòi nâ sê ôi lāu huòng-cī nè̤ng cáuk-ták wiki, bêng-chiā găi-dŏng hù-hăk [[{{MediaWiki:Policy-url}}|céng-cháik]]. Chiāng diŏh â-dā̤ siā giâ hŭng-sō̤ gì nguòng-ĭng (pī-ṳ̀-gōng, īng-ê̤ṳng ké̤ṳk cáuk-ták gì hiĕk-miêng).',
-'ipadressorusername' => 'IP dê-cī hĕ̤k ê̤ṳng-hô-miàng:',
+'ipadressorusername' => 'IP地址或者用戶名：',
 'ipbexpiry' => '過期：',
 'ipbreason' => '原因：',
 'ipbreasonotherlist' => '其它原因',
@@ -989,50 +991,50 @@ If a new page with the same name has been created since the deletion, the restor
 ** Có̤-hák / lièu-sê̤ṳ
 ** Luâng kŭi dŏ̤ dióng-hô̤
 ** Luâng kī ê̤ṳng-hô-miàng',
-'ipbcreateaccount' => 'Huòng-cī kŭi dióng-hô̤',
+'ipbcreateaccount' => '封鎖開賬戶',
 'ipbemailban' => '防止用戶寄電子郵件',
 'ipbenableautoblock' => 'Cê̤ṳ-dông hŭng-sō̤ ciā ê̤ṳng-hô siā-ê̤ṳng gì IP dê-cī',
-'ipbsubmit' => 'Hŭng-sō̤ ciā ê̤ṳng-hô',
+'ipbsubmit' => '封鎖茲用戶',
 'ipbother' => '其它時間',
 'ipboptions' => '2 dēng-cṳ̆ng:2 hours,1 gĕ̤ng:1 day,3 gĕ̤ng:3 days,1 lā̤-buái:1 week,2 lā̤-buái:2 weeks,1 nguŏk-nĭk:1 month,3 nguŏk-nĭk:3 months,6 nguŏk-nĭk:6 months,1 nièng:1 year,īng-uōng:infinite',
 'ipbotheroption' => '其它',
-'ipbotherreason' => 'Gì-tă nguòng-ĭng:',
-'blockipsuccesssub' => 'Hŭng-sō̤ sìng-gŭng',
+'ipbotherreason' => '其它原因：',
+'blockipsuccesssub' => '封鎖成功',
 'blockipsuccesstext' => '[[Special:Contributions/$1|$1]]已經乞封鎖.<br />
 覷蜀覷[[Special:BlockList|封鎖單]]來瀏覽封鎖。',
-'ipb-edit-dropdown' => 'Siŭ-gāi hŭng-sō̤ nguòng-ĭng',
-'ipb-unblock-addr' => 'Gāi-hŭng $1',
-'ipb-unblock' => 'Gāi-hŭng siŏh ciáh ê̤ṳng-hô hĕ̤k IP dê-cī',
-'ipb-blocklist' => 'Káng hŭng-sō̤ dăng-dăng',
+'ipb-edit-dropdown' => '修改封鎖原因',
+'ipb-unblock-addr' => '開封$1',
+'ipb-unblock' => '開封鎖蜀隻用戶或者IP地址',
+'ipb-blocklist' => '看封鎖單單',
 'unblockip' => '開放用戶',
 'ipusubmit' => '開放茲地址',
 'unblocked' => '[[User:$1|$1]]已經乞開放了。',
 'ipblocklist' => '乞封鎖其用戶',
-'ipblocklist-legend' => 'Tō̤ siŏh ciáh ké̤ṳk hŭng-sō̤ gì ê̤ṳng-hô',
+'ipblocklist-legend' => '討蜀隻乞封鎖其用戶',
 'ipblocklist-submit' => '尋討',
 'infiniteblock' => '永遠',
-'anononlyblock' => 'nâ mò̤-miàng ê̤ṳng-hô',
-'createaccountblock' => 'huòng-cī kŭi dióng-hô̤',
-'ipblocklist-empty' => 'Cī tiŏng hŭng-sō̤ dăng-dăng sê kĕ̤ng gì.',
-'blocklink' => 'hŭng-sō̤',
-'unblocklink' => 'gāi-hŭng',
-'contribslink' => 'góng-hióng',
-'blocklogpage' => 'Hŭng-sō̤ nĭk-cé',
-'blocklogentry' => 'hŭng-sō̤ [[$1]], gáu $2 hâiu guó-gĭ, $3',
-'block-log-flags-anononly' => 'nâ mò̤-miàng ê̤ṳng-hô',
-'block-log-flags-nocreate' => 'huòng-cī kŭi dióng-hô̤',
-'ipb_expiry_invalid' => 'Guó-gĭ sì-găng mò̤-hâu.',
-'ipb_already_blocked' => '"$1" ī-gĭng ké̤ṳk nè̤ng hŭng-sō̤ lāu',
+'anononlyblock' => '囇無名用戶',
+'createaccountblock' => '防止開賬戶',
+'ipblocklist-empty' => '茲張封鎖單單是空其。',
+'blocklink' => '封鎖',
+'unblocklink' => '開封',
+'contribslink' => '貢獻',
+'blocklogpage' => '封鎖日誌',
+'blocklogentry' => '封鎖[[$1]]，遘$2時候過時，$3',
+'block-log-flags-anononly' => '囇無名用戶',
+'block-log-flags-nocreate' => '防止開賬戶',
+'ipb_expiry_invalid' => '過期時間無效。',
+'ipb_already_blocked' => '「$1」已經乞封鎖了',
 
 # Developer tools
-'lockconfirm' => 'Ciáng-sê, sō̤ kī ciā só-gé̤ṳ-kó.',
-'lockbtn' => 'Sō̤ kī só-gé̤ṳ-kó',
-'unlockbtn' => 'Kŭi só-gé̤ṳ-kó',
-'lockdbsuccesssub' => 'Só-gé̤ṳ-kó sō̤ hō̤ lāu',
-'databasenotlocked' => 'Só-gé̤ṳ-kó mò̤ sō̤',
+'lockconfirm' => '正式，我卜想鎖定數據庫。',
+'lockbtn' => '鎖定數據庫',
+'unlockbtn' => '開數據庫',
+'lockdbsuccesssub' => '數據庫鎖定好了',
+'databasenotlocked' => '茲數據庫無鎖。',
 
 # Move page
-'move-page-legend' => 'Iè-dông hiĕk-miêng',
+'move-page-legend' => '移動頁面',
 'movepagetext' => "Sāi-ê̤ṳng â-dā̤ gì dăng-dăng â̤ gâe̤ng hiĕk-miêng dṳ̀ng-sĭng kī-miàng, bêng-chiā ĭ ciòng-buô lĭk-sṳ̄ dŭ â̤ ké̤ṳk iè gáu sĭng miàng â-dā̤. Gô miàng â̤ biéng có̤ dṳ̀ng-dêng-hióng hiĕk-miêng. Lièng gáu gô hiĕk dà̤-mĕ̤k gì lièng-giék dŭ mò̤ gāi-biéng; chiāng káuk-nêng mò̤ huák-sĕng sĕ̤ng dṳ̀ng-dêng-hióng (''double redirect'') hĕ̤k-ciā sê ngài dṳ̀ng-dêng-hióng (''broken redirect''). Nṳ̄ ô dăng-dŏng hô-cáik lièng-giék ĭng-nguòng â̤ lièng gáu ciáng-káuk gì sū-câi.
 
 Cé̤ṳ-é, nâ ô găk sĭng dà̤-mĕ̤k gô-dā̤ mò̤ ùng-ciŏng (mò̤ bău-guăk páng hiĕk hĕ̤k-ciā sê mò̤ siŭ-gāi lĭk-sṳ̄ gì dṳ̀ng-dêng-hióng hiĕk) gì cìng-hióng â-dā̤, ciáh â̤ iè-dông. Cuòi cêu sê gōng, nṳ̄ â̤-sāi gâe̤ng hiĕk-miêng gì miàng gāi duōng go̤ iŏk-guō nṳ̄ tā-sĕng có̤ dâng go̤, dáng-sê nṳ̄ mâ̤-sāi hók-gái ī-gĭng còng-câi gì hiĕk-miêng.
@@ -1043,80 +1045,81 @@ Cé̤ṳ-é, nâ ô găk sĭng dà̤-mĕ̤k gô-dā̤ mò̤ ùng-ciŏng (mò̤ b
 * Nṳ̄ chṳ̄-siĕu â-dā̤ gì sōng-hâung.
 
 Nâ cūng-kuāng, nṳ̄ â̤-sāi cê-gă iè-dông hĕ̤k-ciā sê hăk-biáng hiĕk-miêng.",
-'movearticle' => 'Iè-dông ùng-ciŏng',
-'movenologin' => 'Muôi láuk-diē',
-'movenologintext' => 'Sĕng [[Special:UserLogin|láuk-diē]] ciáh â̤-sāi iè-dông hiĕk-miêng.',
-'newtitle' => 'Gáu sĭng dà̤-mĕ̤k',
-'move-watch' => 'Gáng-sê ciā hiĕk',
-'movepagebtn' => 'Iè-dông hiĕk-miêng',
-'pagemovedsub' => 'Iè-dông sìng-gŭng',
+'movearticle' => '移動頁面',
+'movenologin' => '未躒底',
+'movenologintext' => '著[[Special:UserLogin|躒底]]才會使移動頁面。',
+'newtitle' => '遘新題目：',
+'move-watch' => '監視茲頁',
+'movepagebtn' => '移動頁面',
+'pagemovedsub' => '移動成功',
 'talkexists' => "'''Hiĕk-miêng buōng-sĭng ī-gĭng ké̤ṳk iè-dông go̤ lāu, dáng-sê tō̤-lâung-hiĕk mò̤ nièng-ngài iè-dông ĭng-ôi sĭng biĕu-dà̤ â-dā̤ ī-gĭng ô siŏh tiŏng tō̤-lâung-hiĕk lāu. Chiāng nṳ̄ cê-gă gâe̤ng cī lâng hiĕk biáng lâ.'''",
-'movedto' => 'iè gáu',
-'movetalk' => 'Iè-dông siŏng-guăng tō̤-lâung hiĕk',
-'movelogpage' => 'Iè-dông nĭk-cé',
-'movelogpagetext' => 'Â-dā̤ sê ké̤ṳk iè-dông guó gì hiĕk-miêng gì dăng-dăng.',
-'movereason' => 'Nguòng-ĭng',
-'delete_and_move' => 'Chēng lâi bêng-chiā iè-dông',
-'delete_and_move_confirm' => 'Ciáng-sê, chēng lâi cī miêng hiĕk',
+'movedto' => '移遘',
+'movetalk' => '移動相關討論頁',
+'movelogpage' => '移動日誌',
+'movelogpagetext' => '下底是乞移動過其頁其單單。',
+'movereason' => '原因：',
+'delete_and_move' => '刪掉並且移動',
+'delete_and_move_confirm' => '正式，刪掉茲蜀頁',
 
 # Namespace 8 related
-'allmessages' => 'Hiê-tūng siĕu-sék',
-'allmessagesname' => 'Miàng',
-'allmessagesdefault' => 'Nguòng-sṳ̄ gì ùng-cê',
-'allmessagescurrent' => 'Hiêng-sì gì ùng-cê',
+'allmessages' => '系統消息',
+'allmessagesname' => '名',
+'allmessagesdefault' => '默認其消息文字',
+'allmessagescurrent' => '現時其文字',
 'allmessagestext' => 'Cī tiŏng dăng-dăng sê MediaWiki miàng-kŭng-găng â̤ ciĕ-tì gì hiê-tūng siĕu-sék.',
 'allmessagesnotsupportedDB' => "Mò̤ bâing-huák sāi-ê̤ṳng '''{{ns:special}}:Allmessages''', ĭng-ôi '''\$wgUseDatabaseMessages''' ī-gĭng cĕk lâi gó̤.",
 
 # Tooltip help for the actions
-'tooltip-search' => 'Sìng-tō̤ {{SITENAME}} [alt-f]',
-'tooltip-save' => 'Bō̤-còng nṳ̄ gì gāi-biéng [alt-s]',
-'tooltip-watch' => 'Gă-tiĕng ciā hiĕk-miêng gáu nṳ̄ gì gáng-sê-hiĕk [alt-w]',
+'tooltip-search' => '尋討 {{SITENAME}} [alt-f]',
+'tooltip-save' => '保存汝其改變 [alt-s]',
+'tooltip-watch' => '共茲蜀頁加遘汝其監視單[alt-w]',
 
 # Attribution
 'anonymous' => '{{SITENAME}} gì mò̤ miàng ê̤ṳng-hô.',
-'lastmodifiedatby' => 'Ciā hiĕk-miêng sê diŏh $2, $1, iù  $3 có̤i-hâiu siŭ-gāi gì.',
+'lastmodifiedatby' => '茲頁最後是$3著$1$2改變其。',
 
 # Image deletion
-'deletedrevision' => 'Ī-gĭng chēng lâi gì bēng-buōng $1.',
+'deletedrevision' => '刪掉舊其版本$1',
 
 # Browsing diffs
-'previousdiff' => '← Sèng 1 hâung chă-biék',
-'nextdiff' => 'Â 1 hâung chă-biék →',
+'previousdiff' => '← 舊其修改',
+'nextdiff' => '新其修改 →',
 
 # Media information
-'file-nohires' => 'Cuòi sê có̤i duâi chióh-cháung.',
+'file-nohires' => '無更高決斷',
 
 # Special:NewFiles
-'showhidebots' => '($1 gĭ-ké-nè̤ng)',
-'ilsubmit' => 'Sìng-tō̤',
-'bydate' => 'áng nĭk-gĭ',
+'showhidebots' => '（$1機器人）',
+'ilsubmit' => '尋討',
+'bydate' => '按日期',
 
 # Metadata
-'metadata' => 'Nguòng-só-gé̤ṳ',
+'metadata' => '元數據',
 
-'exif-componentsconfiguration-0' => 'mò̤ còng-câi',
+'exif-componentsconfiguration-0' => '無存在',
 
-'exif-meteringmode-0' => 'Muôi báik',
+'exif-meteringmode-0' => '𣍐八',
 
-'exif-lightsource-0' => 'Muôi báik',
+'exif-lightsource-0' => '𣍐八',
 
-'exif-subjectdistancerange-0' => 'Muôi báik',
+'exif-subjectdistancerange-0' => '𣍐八',
 
 # External editor support
-'edit-externally' => 'Sāi nguôi-buô tiàng-sê̤ṳ piĕng-cék ciā ùng-giông',
+'edit-externally' => '使外程序來編輯茲文件',
 'edit-externally-help' => 'Chăng-kō̤ [//www.mediawiki.org/wiki/Manual:External_editors setup instructions] liēu-gāi gáing sâ̤ séng-sék.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => '所有',
 'namespacesall' => '所有',
-'monthsall' => 'gó̤-lòng nièng',
+'monthsall' => '囫圇年',
 
 # Email address confirmation
-'confirmemail' => 'Káuk-nêng diêng-piĕ dê-cī',
-'confirmemail_invalid' => 'Káuk-nêng mā mò̤-hâu, kō̤-nèng ī-gĭng guó-gĭ lāu.',
-'confirmemail_needlogin' => 'Chiāng nṳ̄ sĕng $1 nṳ̄ gì diêng-piĕ dê-cī.',
-'confirmemail_loggedin' => 'Nṳ̄ gì diêng-piĕ dê-cī hiêng-câi ī-gĭng káuk-nêng lāu.',
-'confirmemail_error' => 'Bō̤-còng nṳ̄  káuk-nêng gì sèng-hâiu huák-sĕng ông-dà̤ lāu.',
+'confirmemail' => '確定電子郵件地址',
+'confirmemail_invalid' => '確認碼無效。
+可能已經過期了。',
+'confirmemail_needlogin' => '汝著$1來確定汝其電子郵件地址。',
+'confirmemail_loggedin' => '汝其電子郵件地址現在已經確定去了。',
+'confirmemail_error' => '保存汝其確認其時候發現有鄭了。',
 'confirmemail_body' => 'Tā-lĕng ô nè̤ng (kō̤-nèng sê nṳ̄) téng IP dê-cī $1 găk {{SITENAME}} sāi cī ciáh diêng-piĕ dê-cī cé̤ṳ-cháh lāu "$2" dióng-hô̤.
 
 Ciā diêng-piĕ dê-cī nâ sê nṳ̄ gì, chiāng nṳ̄ páh kŭi â-dā̤ lièng-giék:
@@ -1127,7 +1130,7 @@ Nâ-sāi ĭ *ng-sê* nṳ̄, chiāng mŏ̤h chák ĭ. Gáu $4, káuk-nêng-mā �
 
 # Delete conflict
 'deletedwhileediting' => 'Gīng-gó̤: Cī miêng hiĕk găk nṳ̄ kī-chiū siŭ-gāi cĭ hâiu ké̤ṳk chēng lâi go̤ lāu!',
-'recreate' => 'Dṳ̀ng-sĭng kŭi',
+'recreate' => '重新開',
 
 # action=purge
 'confirm_purge_button' => '好',
@@ -1138,38 +1141,38 @@ Nâ-sāi ĭ *ng-sê* nṳ̄, chiāng mŏ̤h chák ĭ. Gáu $4, káuk-nêng-mā �
 'imgmultigo' => '去！',
 
 # Table pager
-'ascending_abbrev' => 'sĭng',
-'descending_abbrev' => 'gáung',
-'table_pager_next' => 'Â 1 hiĕk',
-'table_pager_prev' => 'Sèng 1 hiĕk',
-'table_pager_first' => 'Tàu hiĕk',
-'table_pager_last' => 'Muōi hiĕk',
-'table_pager_limit' => 'Mūi hiĕk hiêng-sê $1 hâung',
-'table_pager_limit_submit' => 'Kó̤',
-'table_pager_empty' => 'Mò̤ giék-guō',
+'ascending_abbrev' => '升',
+'descending_abbrev' => '降',
+'table_pager_next' => '下蜀頁',
+'table_pager_prev' => '前蜀頁',
+'table_pager_first' => '頭頁',
+'table_pager_last' => '尾頁',
+'table_pager_limit' => '每頁顯示$1項目',
+'table_pager_limit_submit' => '去',
+'table_pager_empty' => '無結果',
 
 # Auto-summaries
-'autosumm-blank' => 'Dù lâi ciòng-buô ùng-cê',
-'autoredircomment' => 'Dṳ̀ng-sĭng dêng-hióng gáu [[$1]]',
-'autosumm-new' => 'Sĭng hiĕk: $1',
+'autosumm-blank' => '都來空其頁',
+'autoredircomment' => '重定向頁面遘[[$1]]',
+'autosumm-new' => '新其頁面「$1」',
 
 # Live preview
-'livepreview-loading' => 'Tĕ̤k-chṳ̄...',
-'livepreview-ready' => 'Tĕ̤k-chṳ̄... Hō̤ lāu!',
+'livepreview-loading' => '載入...',
+'livepreview-ready' => '載入…好了！',
 
 # Watchlist editor
-'watchlistedit-raw-title' => 'Siŭ-gāi nguòng-sṳ̄ gáng-sê-dăng',
-'watchlistedit-raw-legend' => 'Siŭ-gāi nguòng-sṳ̄ gáng-sê-dăng',
-'watchlistedit-raw-titles' => 'Dà̤-mĕ̤k:',
-'watchlistedit-raw-submit' => 'Huăng-sĭng Gáng-sê-dăng',
-'watchlistedit-raw-removed' => '{{PLURAL:$1|1|$1}} bĭk dà̤-mĕ̤k ké̤ṳk chēng lâi:',
+'watchlistedit-raw-title' => '修改原始監視單',
+'watchlistedit-raw-legend' => '修改原始監視單',
+'watchlistedit-raw-titles' => '題目：',
+'watchlistedit-raw-submit' => '更新監視單',
+'watchlistedit-raw-removed' => '$1萆題目已經刪掉了：',
 
 # Watchlist editing tools
-'watchlisttools-view' => 'Káng siŏng-guăng gāi-biéng',
-'watchlisttools-edit' => 'Káng gâe̤ng siŭ-gāi gáng-sê-dăng',
-'watchlisttools-raw' => 'Siŭ-gāi nguòng-sṳ̄ gáng-sê-dăng',
+'watchlisttools-view' => '看相關改變',
+'watchlisttools-edit' => '看共修改監視單',
+'watchlisttools-raw' => '修改原始監視單',
 
 # Special:SpecialPages
-'specialpages' => 'Dĕk-sṳ̀ hiĕk',
+'specialpages' => '特殊頁',
 
 );
