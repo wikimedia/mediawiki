@@ -101,6 +101,7 @@ $specialPageAliases = array(
 	'Uncategorizedpages'        => array( 'Некатэгарызаваныя_старонкі' ),
 	'Uncategorizedtemplates'    => array( 'Некатэгарызаваныя_шаблёны' ),
 	'Upload'                    => array( 'Загрузка' ),
+	'Userlogin'                 => array( 'Уваход_у_сыстэму' ),
 	'Version'                   => array( 'Вэрсія' ),
 	'Wantedcategories'          => array( 'Запатрабаваныя_катэгорыі' ),
 	'Wantedfiles'               => array( 'Запатрабаваныя_файлы' ),

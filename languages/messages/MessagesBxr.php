@@ -48,3 +48,25 @@ $namespaceAliases = array(
 // Remove Russian gender aliases
 $namespaceGenderAliases = array();
 
+$specialPageAliases = array(
+	'Activeusers'               => array( 'Эдэбхитэй_хэрэглэгшэд' ),
+	'Allmessages'               => array( 'Бүхы_зурбас' ),
+	'Allpages'                  => array( 'Соохи_бүхы_хуудаһан' ),
+	'Ancientpages'              => array( 'Хуушарһан_хуудаһан' ),
+	'Categories'                => array( 'Категоринууд' ),
+	'ComparePages'              => array( 'Хуудаһа_харисуулха' ),
+	'Confirmemail'              => array( 'Сахим_хаяг_баталха' ),
+	'CreateAccount'             => array( 'Данса_үүсхэхэ' ),
+	'Mypage'                    => array( 'Минии_хуудаһан' ),
+	'Mytalk'                    => array( 'Минии_хэлэлсэл' ),
+	'Myuploads'                 => array( 'Минии_ашаалһан_зүйл' ),
+	'Newpages'                  => array( 'Шэнэ_хуудаһан' ),
+	'Popularpages'              => array( 'Оло_уншагдаһан_хуудаһан' ),
+	'Protectedpages'            => array( 'Хамгаалалтатай_хуудаһан' ),
+	'Protectedtitles'           => array( 'Хамгаалалтатай_гаршаг' ),
+	'Recentchanges'             => array( 'Сайтдахи_хубилалтанууд' ),
+	'Upload'                    => array( 'Ашаалха' ),
+	'Userlogin'                 => array( 'Нэбтэрхэ' ),
+	'Userlogout'                => array( 'Гараха' ),
+);
+

@@ -100,6 +100,7 @@ $specialPageAliases = array(
 	'MIMEsearch'                => array( 'זוכן_MIME' ),
 	'Mostcategories'            => array( 'מערסטע_קאטעגאריעס' ),
 	'Mostimages'                => array( 'מערסטע_פארבונדענע_בילדער' ),
+	'Mostinterwikis'            => array( 'מערסטע_פארבונדענע_אינטערוויקיס' ),
 	'Mostlinked'                => array( 'מערסטע_פארבונדענע_בלעטער' ),
 	'Mostlinkedcategories'      => array( 'מערסטע_פארבונדענע_קאטעגאריעס' ),
 	'Mostlinkedtemplates'       => array( 'מערסטע_פארבונדענע_מוסטערן' ),
