@@ -2346,6 +2346,12 @@ class WikiPage implements Page, IDBAccessObject {
 			// Only certain restrictions can cascade... Otherwise, users who cannot normally protect pages
 			// could "protect" them by transcluding them on protected pages they are allowed to edit.
 			$editrestriction = isset( $limit['edit'] ) ? array( $limit['edit'] ) : $this->mTitle->getRestrictions( 'edit' );
+			foreach ( array_keys( $editrestriction, 'sysop' ) as $key ) {
+				$cascadingRestrictionLevels[$key] = 'editprotected'; // backwards compatibility
+			}
+			foreach ( array_keys( $editrestriction, 'autoconfirmed' ) as $key ) {
+				$cascadingRestrictionLevels[$key] = 'editsemiprotected'; // backwards compatibility
+			}
 
 			$cascadingRestrictionLevels = $wgCascadingRestrictionLevels;
 			foreach ( array_keys( $cascadingRestrictionLevels, 'sysop' ) as $key ) {
