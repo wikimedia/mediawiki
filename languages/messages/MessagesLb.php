@@ -117,6 +117,7 @@ $specialPageAliases = array(
 	'Randomredirect'            => array( 'Zoufälleg_Viruleedung' ),
 	'Recentchanges'             => array( 'Rezent_Ännerungen' ),
 	'Recentchangeslinked'       => array( 'Ännerungen_op_verlinkte_Säiten' ),
+	'Redirect'                  => array( 'Viruleedung' ),
 	'Revisiondelete'            => array( 'Versioun_läschen' ),
 	'Search'                    => array( 'Sichen' ),
 	'Shortpages'                => array( 'Kuerz_Säiten' ),

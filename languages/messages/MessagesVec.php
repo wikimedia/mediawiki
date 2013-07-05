@@ -126,6 +126,7 @@ $specialPageAliases = array(
 	'Randomredirect'            => array( 'UnRimandoAOcio' ),
 	'Recentchanges'             => array( 'ÙltimiCanbiamenti' ),
 	'Recentchangeslinked'       => array( 'CanbiamentiLigà' ),
+	'Redirect'                  => array( 'Rimando' ),
 	'Revisiondelete'            => array( 'ScancelaRevision' ),
 	'Search'                    => array( 'Serca' ),
 	'Shortpages'                => array( 'PaginePiCurte' ),

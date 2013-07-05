@@ -54,10 +54,16 @@ $namespaceAliases = array(
 $separatorTransformTable = array( ',' => '.', '.' => ',' );
 
 $specialPageAliases = array(
+	'Allmessages'               => array( 'Hemû_Peyam' ),
+	'Allpages'                  => array( 'Hemû_Rûpel' ),
 	'Categories'                => array( 'Dara_kategoriyan' ),
 	'DoubleRedirects'           => array( 'Redirect\'ên_ducarî' ),
 	'Export'                    => array( 'Eksport' ),
+	'Listadmins'                => array( 'Lîsteya_Rêveberan' ),
+	'Listbots'                  => array( 'Lîsteya_Botan' ),
 	'Listusers'                 => array( 'Lîsteya_bikarhêneran' ),
+	'Longpages'                 => array( 'Rûpelên_dirêj' ),
+	'Newpages'                  => array( 'Rûpelên_nû' ),
 	'Randompage'                => array( 'Rûpela_tesadufî' ),
 	'Randomredirect'            => array( 'Redirecta_tasadufî' ),
 	'Recentchanges'             => array( 'Guherandinên_dawî' ),
@@ -66,6 +72,7 @@ $specialPageAliases = array(
 	'Statistics'                => array( 'Statîstîk' ),
 	'Uncategorizedcategories'   => array( 'Kategoriyên_bê_kategorî' ),
 	'Uncategorizedpages'        => array( 'Rûpelên_bê_kategorî' ),
+	'Upload'                    => array( 'Bar_Bike' ),
 	'Version'                   => array( 'Versiyon' ),
 	'Wantedcategories'          => array( 'Kategorîyên_tên_xwestin' ),
 	'Wantedtemplates'           => array( 'Şablonên_tên_xwestin' ),

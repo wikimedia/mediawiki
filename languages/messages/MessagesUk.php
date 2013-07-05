@@ -168,6 +168,7 @@ $specialPageAliases = array(
 	'PermanentLink'             => array( 'Постійне_посилання' ),
 	'Popularpages'              => array( 'Популярні_сторінки' ),
 	'Preferences'               => array( 'Налаштування' ),
+	'Prefixindex'               => array( 'Покажчик_за_початком_назви' ),
 	'Protectedpages'            => array( 'Захищені_сторінки' ),
 	'Protectedtitles'           => array( 'Захищені_назви_сторінок' ),
 	'Randompage'                => array( 'Випадкова_сторінка' ),

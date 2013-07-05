@@ -107,6 +107,7 @@ $specialPageAliases = array(
 	'Myuploads'                 => array( 'Minu_üleslaaditu' ),
 	'Newimages'                 => array( 'Uued_failid' ),
 	'Newpages'                  => array( 'Uued_leheküljed' ),
+	'PagesWithProp'             => array( 'Atribuudiga_leheküljed' ),
 	'PasswordReset'             => array( 'Parooli_lähtestamine' ),
 	'PermanentLink'             => array( 'Püsilink' ),
 	'Popularpages'              => array( 'Loetumad_leheküljed' ),

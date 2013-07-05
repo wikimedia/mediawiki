@@ -136,6 +136,7 @@ $specialPageAliases = array(
 	'Randomredirect'            => array( 'Redirección_aleatoria' ),
 	'Recentchanges'             => array( 'Cambios_recentes' ),
 	'Recentchangeslinked'       => array( 'Cambios_relacionados' ),
+	'Redirect'                  => array( 'Redirección' ),
 	'Revisiondelete'            => array( 'Revisións_borradas' ),
 	'Search'                    => array( 'Procurar' ),
 	'Shortpages'                => array( 'Páxinas_curtas' ),
