@@ -334,6 +334,7 @@ class ManualLogEntry extends LogEntryBase {
 	protected $type; ///!< @var string
 	protected $subtype; ///!< @var string
 	protected $parameters = array(); ///!< @var array
+	protected $relations = array(); ///!< @var array
 	protected $performer; ///!< @var User
 	protected $target; ///!< @var Title
 	protected $timestamp; ///!< @var string
@@ -371,6 +372,16 @@ class ManualLogEntry extends LogEntryBase {
 	 */
 	public function setParameters( $parameters ) {
 		$this->parameters = $parameters;
+	}
+
+	/**
+	 * Declare aribitrary tag/value relations to this log entry.
+	 * These can be used to filter log entries later on.
+	 *
+	 * @param array Map of (tag => (list of values))
+	 */
+	public function setRelations( array $relations ) {
+		$this->relations = $relations;
 	}
 
 	/**
@@ -464,6 +475,24 @@ class ManualLogEntry extends LogEntryBase {
 		);
 		$dbw->insert( 'logging', $data, __METHOD__ );
 		$this->id = !is_null( $id ) ? $id : $dbw->insertId();
+
+		$rows = array();
+		foreach ( $this->relations as $tag => $values ) {
+			if ( !strlen( $tag ) ) {
+				throw new MWException( "Got empty log search tag." );
+			}
+			foreach ( $values as $value ) {
+				$rows[] = array(
+					'ls_field'  => $tag,
+					'ls_value'  => $value,
+					'ls_log_id' => $this->id
+				);
+			}
+		}
+		if ( count( $rows ) ) {
+			$dbw->insert( 'log_search', $rows, __METHOD__, 'IGNORE' );
+		}
+
 		return $this->id;
 	}
 
