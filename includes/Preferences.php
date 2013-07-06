@@ -1290,10 +1290,11 @@ class Preferences {
 	static function getTimezoneOptions( IContextSource $context ) {
 		$opt = array();
 
-		global $wgLocalTZoffset, $wgLocaltimezone;
-		// Check that $wgLocalTZoffset is the same as $wgLocaltimezone
-		if ( $wgLocalTZoffset == date( 'Z' ) / 60 ) {
-			$server_tz_msg = $context->msg( 'timezoneuseserverdefault', $wgLocaltimezone )->text();
+		global $wgLocalTZoffset;
+		$timestamp = MWTimestamp::getLocalInstance();
+		// Check that $wgLocalTZoffset is the same as the local time zone offset
+		if ( $wgLocalTZoffset == $timestamp->format( 'Z' ) / 60 ) {
+			$server_tz_msg = $context->msg( 'timezoneuseserverdefault', $timestamp->getTimezone()->getName() )->text();
 		} else {
 			$tzstring = sprintf( '%+03d:%02d', floor( $wgLocalTZoffset / 60 ), abs( $wgLocalTZoffset ) % 60 );
 			$server_tz_msg = $context->msg( 'timezoneuseserverdefault', $tzstring )->text();

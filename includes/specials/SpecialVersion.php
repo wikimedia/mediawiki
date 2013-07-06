@@ -129,7 +129,7 @@ class SpecialVersion extends SpecialPage {
 			'Timo Tijhof', 'Daniel Kinzler', 'Jeroen De Dauw', $othersLink
 		);
 
-		return wfMessage( 'version-poweredby-credits', date( 'Y' ),
+		return wfMessage( 'version-poweredby-credits', MWTimestamp::getLocalInstance()->format( 'Y' ),
 			$wgLang->listToText( $authorList ) )->text();
 	}
 

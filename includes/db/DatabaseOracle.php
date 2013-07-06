@@ -341,7 +341,7 @@ class DatabaseOracle extends DatabaseBase {
 		$union_unique = ( preg_match( '/\/\* UNION_UNIQUE \*\/ /', $sql ) != 0 );
 		// EXPLAIN syntax in Oracle is EXPLAIN PLAN FOR and it return nothing
 		// you have to select data from plan table after explain
-		$explain_id = date( 'dmYHis' );
+		$explain_id = MWTimestamp::getLocalInstance()->format( 'dmYHis' );
 
 		$sql = preg_replace( '/^EXPLAIN /', 'EXPLAIN PLAN SET STATEMENT_ID = \'' . $explain_id . '\' FOR', $sql, 1, $explain_count );
 

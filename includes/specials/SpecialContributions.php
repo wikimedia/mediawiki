@@ -567,7 +567,7 @@ class SpecialContributions extends SpecialPage {
 
 		$dateSelectionAndSubmit = Xml::tags( 'td', array( 'colspan' => 2 ),
 			Xml::dateMenu(
-				$this->opts['year'] === '' ? gmdate( 'Y' ) : $this->opts['year'],
+				$this->opts['year'] === '' ? MWTimestamp::getInstance()->format( 'Y' ) : $this->opts['year'],
 				$this->opts['month']
 			) . ' ' .
 				Xml::submitButton(
