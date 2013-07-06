@@ -455,6 +455,8 @@ $wgAutoloadLocalClasses = array(
 	'TitleListDependency' => 'includes/cache/CacheDependency.php',
 
 	# includes/clientpool
+	'DBConnectionPool' => 'includes/clientpool/DBConnectionPool.php',
+	'DBConnRef' => 'includes/clientpool/DBConnectionPool.php',
 	'RedisConnectionPool' => 'includes/clientpool/RedisConnectionPool.php',
 	'RedisConnRef' => 'includes/clientpool/RedisConnectionPool.php',
 
