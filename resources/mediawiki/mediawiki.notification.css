@@ -3,12 +3,17 @@
  */
 
 #mw-notification-area {
-	position: absolute;
+	position: fixed;
 	top: 1em;
 	right: 1em;
 	width: 20em;
 	line-height: 1.35;
 	z-index: 10000;
+}
+
+* html #mw-notification-area {
+	/* Make it at least 'absolute' in IE6 since 'fixed' is not supported */
+	position: absolute;
 }
 
 .mw-notification {
