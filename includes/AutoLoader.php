@@ -483,6 +483,7 @@ $wgAutoloadLocalClasses = array(
 	'DatabaseType' => 'includes/db/Database.php',
 	'DBAccessError' => 'includes/db/LBFactory.php',
 	'DBConnectionError' => 'includes/db/DatabaseError.php',
+	'DBConnRef' => 'includes/db/LoadBalancer.php',
 	'DBError' => 'includes/db/DatabaseError.php',
 	'DBObject' => 'includes/db/DatabaseUtility.php',
 	'IORMRow' => 'includes/db/IORMRow.php',
