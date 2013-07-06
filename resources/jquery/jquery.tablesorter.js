@@ -332,7 +332,13 @@
 			}
 
 			if ( !this.sortDisabled ) {
-				$( this ).addClass( table.config.cssHeader ).attr( 'title', msg[1] );
+				$( this )
+					.addClass( table.config.cssHeader )
+					.attr( {
+						title:  msg[1],
+						role: 'button',
+						tabIndex: 0
+					} );
 			}
 
 			// add cell to headerList
@@ -749,10 +755,12 @@
 
 					// Apply event handling to headers
 					// this is too big, perhaps break it out?
-					$headers.filter( ':not(.unsortable)' ).click( function ( e ) {
-						if ( e.target.nodeName.toLowerCase() === 'a' ) {
+					$headers.filter( ':not(.unsortable)' ).on( 'keypress click', function ( e ) {
+						if ( ( e.type === 'click' && e.target.nodeName.toLowerCase() === 'a' ) ||
+							( e.type === 'keypress' && e.which !== 13 ) ) {
 							// The user clicked on a link inside a table header
-							// Do nothing and let the default link click action continue
+							// do nothing and let the default link click action continue.
+							// Or the user pressed a key other than enter
 							return true;
 						}
 
