@@ -2685,46 +2685,46 @@ class Parser {
 
 		switch ( $index ) {
 			case 'currentmonth':
-				$value = $pageLang->formatNum( gmdate( 'm', $ts ) );
+				$value = $pageLang->formatNum( MWTimestamp::getInstance( $ts )->format( 'm' ) );
 				break;
 			case 'currentmonth1':
-				$value = $pageLang->formatNum( gmdate( 'n', $ts ) );
+				$value = $pageLang->formatNum( MWTimestamp::getInstance( $ts )->format( 'n' ) );
 				break;
 			case 'currentmonthname':
-				$value = $pageLang->getMonthName( gmdate( 'n', $ts ) );
+				$value = $pageLang->getMonthName( MWTimestamp::getInstance( $ts )->format( 'n' ) );
 				break;
 			case 'currentmonthnamegen':
-				$value = $pageLang->getMonthNameGen( gmdate( 'n', $ts ) );
+				$value = $pageLang->getMonthNameGen( MWTimestamp::getInstance( $ts )->format( 'n' ) );
 				break;
 			case 'currentmonthabbrev':
-				$value = $pageLang->getMonthAbbreviation( gmdate( 'n', $ts ) );
+				$value = $pageLang->getMonthAbbreviation( MWTimestamp::getInstance( $ts )->format( 'n' ) );
 				break;
 			case 'currentday':
-				$value = $pageLang->formatNum( gmdate( 'j', $ts ) );
+				$value = $pageLang->formatNum( MWTimestamp::getInstance( $ts )->format( 'j' ) );
 				break;
 			case 'currentday2':
-				$value = $pageLang->formatNum( gmdate( 'd', $ts ) );
+				$value = $pageLang->formatNum( MWTimestamp::getInstance( $ts )->format( 'd' ) );
 				break;
 			case 'localmonth':
-				$value = $pageLang->formatNum( date( 'm', $ts ) );
+				$value = $pageLang->formatNum( MWTimestamp::getLocalInstance( $ts )->format( 'm' ) );
 				break;
 			case 'localmonth1':
-				$value = $pageLang->formatNum( date( 'n', $ts ) );
+				$value = $pageLang->formatNum( MWTimestamp::getLocalInstance( $ts )->format( 'n' ) );
 				break;
 			case 'localmonthname':
-				$value = $pageLang->getMonthName( date( 'n', $ts ) );
+				$value = $pageLang->getMonthName( MWTimestamp::getLocalInstance( $ts )->format( 'n' ) );
 				break;
 			case 'localmonthnamegen':
-				$value = $pageLang->getMonthNameGen( date( 'n', $ts ) );
+				$value = $pageLang->getMonthNameGen( MWTimestamp::getLocalInstance( $ts )->format( 'n' ) );
 				break;
 			case 'localmonthabbrev':
-				$value = $pageLang->getMonthAbbreviation( date( 'n', $ts ) );
+				$value = $pageLang->getMonthAbbreviation( MWTimestamp::getLocalInstance( $ts )->format( 'n' ) );
 				break;
 			case 'localday':
-				$value = $pageLang->formatNum( date( 'j', $ts ) );
+				$value = $pageLang->formatNum( MWTimestamp::getLocalInstance( $ts )->format( 'j' ) );
 				break;
 			case 'localday2':
-				$value = $pageLang->formatNum( date( 'd', $ts ) );
+				$value = $pageLang->formatNum( MWTimestamp::getLocalInstance( $ts )->format( 'd' ) );
 				break;
 			case 'pagename':
 				$value = wfEscapeWikiText( $this->mTitle->getText() );
@@ -2870,44 +2870,44 @@ class Parser {
 				$value = ( wfUrlencode( $this->mTitle->getSubjectNsText() ) );
 				break;
 			case 'currentdayname':
-				$value = $pageLang->getWeekdayName( gmdate( 'w', $ts ) + 1 );
+				$value = $pageLang->getWeekdayName( MWTimestamp::getInstance( $ts )->format( 'w' ) + 1 );
 				break;
 			case 'currentyear':
-				$value = $pageLang->formatNum( gmdate( 'Y', $ts ), true );
+				$value = $pageLang->formatNum( MWTimestamp::getInstance( $ts )->format( 'Y' ), true );
 				break;
 			case 'currenttime':
 				$value = $pageLang->time( wfTimestamp( TS_MW, $ts ), false, false );
 				break;
 			case 'currenthour':
-				$value = $pageLang->formatNum( gmdate( 'H', $ts ), true );
+				$value = $pageLang->formatNum( MWTimestamp::getInstance( $ts )->format( 'H' ), true );
 				break;
 			case 'currentweek':
 				# @bug 4594 PHP5 has it zero padded, PHP4 does not, cast to
 				# int to remove the padding
-				$value = $pageLang->formatNum( (int)gmdate( 'W', $ts ) );
+				$value = $pageLang->formatNum( (int)MWTimestamp::getInstance( $ts )->format( 'W' ) );
 				break;
 			case 'currentdow':
-				$value = $pageLang->formatNum( gmdate( 'w', $ts ) );
+				$value = $pageLang->formatNum( MWTimestamp::getInstance( $ts )->format( 'w' ) );
 				break;
 			case 'localdayname':
-				$value = $pageLang->getWeekdayName( date( 'w', $ts ) + 1 );
+				$value = $pageLang->getWeekdayName( MWTimestamp::getLocalInstance( $ts )->format( 'w' ) + 1 );
 				break;
 			case 'localyear':
-				$value = $pageLang->formatNum( date( 'Y', $ts ), true );
+				$value = $pageLang->formatNum( MWTimestamp::getLocalInstance( $ts )->format( 'Y' ), true );
 				break;
 			case 'localtime':
-				$value = $pageLang->time( date( 'YmdHis', $ts ), false, false );
+				$value = $pageLang->time( MWTimestamp::getLocalInstance( $ts )->format( 'YmdHis' ), false, false );
 				break;
 			case 'localhour':
-				$value = $pageLang->formatNum( date( 'H', $ts ), true );
+				$value = $pageLang->formatNum( MWTimestamp::getLocalInstance( $ts )->format( 'H' ), true );
 				break;
 			case 'localweek':
 				# @bug 4594 PHP5 has it zero padded, PHP4 does not, cast to
 				# int to remove the padding
-				$value = $pageLang->formatNum( (int)date( 'W', $ts ) );
+				$value = $pageLang->formatNum( (int)MWTimestamp::getLocalInstance( $ts )->format( 'W' ) );
 				break;
 			case 'localdow':
-				$value = $pageLang->formatNum( date( 'w', $ts ) );
+				$value = $pageLang->formatNum( MWTimestamp::getLocalInstance( $ts )->format( 'w' ) );
 				break;
 			case 'numberofarticles':
 				$value = $pageLang->formatNum( SiteStats::articles() );
@@ -2938,7 +2938,7 @@ class Parser {
 				$value = wfTimestamp( TS_MW, $ts );
 				break;
 			case 'localtimestamp':
-				$value = date( 'YmdHis', $ts );
+				$value = MWTimestamp::getLocalInstance( $ts )->format( 'YmdHis' );
 				break;
 			case 'currentversion':
 				$value = SpecialVersion::getVersion();
@@ -4523,11 +4523,11 @@ class Parser {
 		# than the one selected in each user's preferences.
 		# (see also bug 12815)
 		$ts = $this->mOptions->getTimestamp();
-		$unixts = wfTimestamp( TS_UNIX, $ts );
-		$ts = date( 'YmdHis', $unixts );
-		$tzMsg = date( 'T', $unixts );  # might vary on DST changeover!
+		$timestamp = MWTimestamp::getLocalInstance( $ts );
+		$ts = $timestamp->format( 'YmdHis' );
+		$tzMsg = $timestamp->format( 'T' );  # might vary on DST changeover!
 
-		# Allow translation of timezones through wiki. date() can return
+		# Allow translation of timezones through wiki. format() can return
 		# whatever crap the system uses, localised or not, so we cannot
 		# ship premade translations.
 		$key = 'timezone-' . strtolower( trim( $tzMsg ) );

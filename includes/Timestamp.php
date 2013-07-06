@@ -289,6 +289,67 @@ class MWTimestamp {
 	public function diff( MWTimestamp $relativeTo ) {
 		return $this->timestamp->diff( $relativeTo->timestamp );
 	}
+
+	/**
+	 * Set the timezone of this timestamp to the specified timezone.
+	 *
+	 * @since 1.22
+	 * @param String $timezone Timezone to set
+	 * @throws TimestampException
+	 */
+	public function setTimezone( $timezone ) {
+		try {
+			$this->timestamp->setTimezone( new DateTimeZone( $timezone ) );
+		} catch ( Exception $e ) {
+			throw new TimestampException( __METHOD__ . ' Invalid timezone.' );
+		}
+	}
+
+	/**
+	 * Get the timezone of this timestamp.
+	 *
+	 * @since 1.22
+	 * @return DateTimeZone The timezone
+	 */
+	public function getTimezone() {
+		return $this->timestamp->getTimezone();
+	}
+
+	/**
+	 * Format the timestamp in a given format.
+	 *
+	 * @since 1.22
+	 * @param string $format Pattern to format in
+	 * @return string The formatted timestamp
+	 */
+	public function format( $format ) {
+		return $this->timestamp->format( $format );
+	}
+
+	/**
+	 * Get a timestamp instance in the server local timezone ($wgLocaltimezone)
+	 *
+	 * @since 1.22
+	 * @param bool|string $ts Timestamp to set, or false for current time
+	 * @return MWTimestamp the local instance
+	 */
+	public static function getLocalInstance( $ts = false ) {
+		global $wgLocaltimezone;
+		$timestamp = new self( $ts );
+		$timestamp->setTimezone( $wgLocaltimezone );
+		return $timestamp;
+	}
+
+	/**
+	 * Get a timestamp instance in GMT
+	 *
+	 * @since 1.22
+	 * @param bool|string $ts Timestamp to set, or false for current time
+	 * @return MWTimestamp the instance
+	 */
+	public static function getInstance( $ts = false ) {
+		return new self( $ts );
+	}
 }
 
 /**

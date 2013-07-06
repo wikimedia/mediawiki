@@ -241,7 +241,7 @@ class UserMailer {
 			$headers['Reply-To'] = $replyto->toString();
 		}
 
-		$headers['Date'] = date( 'r' );
+		$headers['Date'] = MWTimestamp::getLocalInstance()->format( 'r' );
 		$headers['Message-ID'] = self::makeMsgId();
 		$headers['X-Mailer'] = 'MediaWiki mailer';
 
