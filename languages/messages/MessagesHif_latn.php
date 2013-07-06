@@ -437,6 +437,8 @@ $2',
 'customjsprotected' => 'Aap ke ii JavaScript panna ke badle ke ijaajat nai hae, kaahe ki isme duusra sadasya ke personal settings hae.',
 'mycustomcssprotected' => 'Ii panna ke badle ke khatir aap ke lage iajaajat nai hae.',
 'mycustomjsprotected' => 'Sadasya ke naam',
+'myprivateinfoprotected' => 'Aap ke aapan private jaankari ke badle ke ijaajat nai hae.',
+'mypreferencesprotected' => 'Aap ke aapan preferences ke badle ke ijaajat nai hae.',
 'ns-specialprotected' => 'Khaas panna ke badla nai jae sake hai.',
 'titleprotected' => "Ii title ke banae se [[User:$1|$1]] rokis hai.
 Iske kaaran hai ''$2''.",
@@ -494,7 +496,7 @@ Aapan [[Special:Preferences|{{SITENAME}} pasand]]  ke badle nai bhulna.',
 'gotaccountlink' => 'Log in',
 'userlogin-resetlink' => 'Ka aap aapan login kare waala jaankari ke bhulae gaya hae?',
 'userlogin-resetpassword-link' => 'Aapan password ke reset karo',
-'helplogin-url' => 'Madat:Logging in',
+'helplogin-url' => 'Help:Logging in',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Aap ke login khatir madat]]',
 'createacct-join' => 'Aapan jankari niche likho',
 'createacct-emailrequired' => 'Email address',
@@ -1358,7 +1360,8 @@ Iske $1 {{PLURAL:$1|character|characters}} se kamti rahe ke chaahi.',
 'right-proxyunbannable' => 'Proxies ke automatic blocks ke bypass karo',
 'right-unblockself' => 'Apne ke unblock karo',
 'right-protect' => 'Protection level ke badlo aur bachawa gais panna ke badlo',
-'right-editprotected' => 'Bachawa gais panna ke badlo (without cascading protection)',
+'right-editprotected' => 'Badla gais panna ke "{{int:protect-level-sysop}}" ke rakam bachawa gais hae',
+'right-editsemiprotected' => 'Badla gais panna ke "{{int:protect-level-autoconfirmed}}" ke rakam bachawa gais hae',
 'right-editinterface' => 'User interface ke badlo',
 'right-editusercssjs' => 'Duusra sadsya ke CSS aur JS files ke badlo',
 'right-editusercss' => 'Duusra sadsya ke CSS files ke badlo',
@@ -1367,6 +1370,9 @@ Iske $1 {{PLURAL:$1|character|characters}} se kamti rahe ke chaahi.',
 'right-editmyuserjs' => 'Aapan JacaScript file ke edit karo',
 'right-viewmywatchlist' => 'Appan dhyan suchi ke dekho',
 'right-editmywatchlist' => 'Aapan dhyan suchi ke edit karo. Note karna ki app ke kuchh action bina ii rights ke nawaa panna jorri.',
+'right-viewmyprivateinfo' => 'Aapn private data ke dekho (jaise ki email address, aslii naam)',
+'right-editmyprivateinfo' => 'Aapn private data ke badlo (jaise ki email address, aslii naam)',
+'right-editmyoptions' => 'Aapan preferences ke badlo',
 'right-rollback' => 'Jaldi se ek khaas panna ke pichhla sadasya ke badlao ke ulta kar do',
 'right-markbotedits' => 'Rolled-back edits ke bot edits mark karo',
 'right-noratelimit' => 'Rrate limits se koi asar nai hai',
@@ -1430,6 +1436,8 @@ Iske $1 {{PLURAL:$1|character|characters}} se kamti rahe ke chaahi.',
 'action-sendemail' => 'E-mail bhejo',
 'action-editmywatchlist' => 'Aapan dhyan suchi ke badlo',
 'action-viewmywatchlist' => 'Aapan dhyan suchi ke dekho',
+'action-viewmyprivateinfo' => 'Aapan private jaankari ke dekho',
+'action-editmyprivateinfo' => 'Aapan private jaankari ke badlo',
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|badlao|badlao}}',
@@ -2020,7 +2028,7 @@ Is me ek nai to jaada akchhar hai jiske title me nai kaam me lawa jaae sake hai.
 'linksearch-ok' => 'Khojo',
 'linksearch-text' => 'Wildcard jaise ki "*.wikipedia.org" ke kaam me lawa jaae sake hae.
 Iske khatir ek top-level domain, jaise ki "*.org" ke jaruri hae.<br /> 
-Support karaa gais {{PLURAL:$2|protocol|protocols}: <code>$1</code> (defaults to http:// if no protocol is specified).',
+Support karaa gais {{PLURAL:$2|protocol|protocols}}: <code>$1</code> (defaults to http:// if no protocol is specified).',
 'linksearch-line' => '$1, $2 se jurraa hai',
 'linksearch-error' => 'Wildcards khaali hostname ke suruu me hoe ke chaahi.',
 
@@ -3218,7 +3226,18 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'exif-webstatement' => 'Online copyright statement',
 'exif-originaldocumentid' => 'Unique ID of original document',
 'exif-licenseurl' => 'Copyright licence ke khatir URl',
+'exif-morepermissionsurl' => 'Duusra licencing jaankari',
 'exif-attributionurl' => 'Iske fir se use kare ke time, link karo',
+'exif-preferredattributionname' => 'Ii jaankari ke kaam me laae se phile, credit do',
+'exif-intellectualgenre' => 'Item ke rakam',
+'exif-subjectnewscode' => 'Subject ke code',
+'exif-originalimageheight' => 'Crop kare se pahile, chaapa ke uunchai',
+'exif-originalimagewidth' => 'Crop kare se pahike, chhapa ke churrai',
+
+# Exif attributes
+'exif-compression-1' => 'Bina compres karaa gais',
+
+'exif-unknowndate' => 'Taarik nai maalum',
 
 'exif-orientation-2' => 'Baraabar ultawa gais hae',
 'exif-orientation-3' => '180° ghumawa gais hae',
@@ -3227,6 +3246,16 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'exif-orientation-6' => '90° CCW ghumawa gais hae',
 'exif-orientation-7' => '90° CW ghumawa aur kharraa ultawa gais hae',
 'exif-orientation-8' => '90° CW ghumawa gais hae',
+
+'exif-planarconfiguration-2' => ' planar format',
+
+'exif-colorspace-65535' => 'Bina calibrate karaa gais',
+
+'exif-componentsconfiguration-0' => 'nai hae',
+
+'exif-exposureprogram-0' => 'define nai karaa gais hae',
+'exif-exposureprogram-5' => 'Creative program (field ke deph ke bagal biased hae)',
+'exif-exposureprogram-6' => 'Action program (fast shutter speed ke bagal biased)',
 
 'exif-meteringmode-0' => 'Nai maluum',
 'exif-meteringmode-6' => 'Puura nai',
@@ -3238,16 +3267,27 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'exif-lightsource-9' => 'Achchhaa mausam',
 'exif-lightsource-10' => 'Baadal ke mausam',
 'exif-lightsource-11' => 'Chhanhi',
+'exif-lightsource-15' => 'Ujjar fluorescent (WW 3200 – 3700K)',
+'exif-lightsource-255' => 'Dusra light ke source',
 
 # Flash modes
 'exif-flash-fired-0' => 'Flash nai chalaa',
 'exif-flash-fired-1' => 'Flash chal gais hae',
+'exif-flash-return-2' => 'strobe return light ke detect nai karaa gais hae',
+'exif-flash-return-3' => 'strobe return light ke detect nai karaa gais hae',
 'exif-flash-mode-1' => 'flash ke kaam me laae ke jaruri hae',
 'exif-flash-mode-2' => 'flash ke kaam me nai laae ke chaahi',
 'exif-flash-function-1' => 'Flash nai hae',
 'exif-flash-redeye-1' => 'laal-aankhi ke kamti kare waala mode',
 
+'exif-sensingmethod-1' => 'Define nai karaa gais hae',
+
+'exif-scenetype-1' => 'Directly utaara gais chaapa',
+
+'exif-gaincontrol-0' => 'Kuchh bhi nai',
+
 'exif-contrast-1' => 'Naram',
+'exif-contrast-2' => 'Karraa',
 
 'exif-sharpness-1' => 'Naram',
 'exif-sharpness-2' => 'Karraa',

@@ -1987,6 +1987,12 @@ Daħħal: tip/sottotip, eż. <code>image/jpeg</code>.",
 Dawn probabbilment għandhom jippuntaw lejn l-paġna t-tajba minflok.<br />
 Paġna tiġi stmata bħala paġna ta' diżambigwazzjoni jekk tuża' mudell fil-lista li tinsab fuq [[MediaWiki:Disambiguationspage]].",
 
+'pageswithprop' => "Paġni bi proprjetà ta' paġna",
+'pageswithprop-legend' => "Paġni bi proprjetà ta' paġna",
+'pageswithprop-text' => "Din il-paġna telenka paġni li jużaw proprjetà ta' paġna partikulari.",
+'pageswithprop-prop' => 'Isem tal-proprjetà:',
+'pageswithprop-submit' => 'Mur',
+
 'doubleredirects' => 'Rindirizzi doppji',
 'doubleredirectstext' => 'Din il-paġna telenka dawk il-paġni li jindirizzaw lejn paġna oħra ta\' rindirizzament.
 Kull filliera għandha ħolqa għall-ewwel u t-tieni rindirizz, kif ukoll fejn tirrindirizza t-tieni paġna, is-soltu magħrufa bħalha l-paġna "reali" fejn se twassal, fejn suppost l-ewwel rindirizz għandu jipponta.
@@ -3698,6 +3704,9 @@ Flimkien ma' dan il-programm suppost kellek tirċievi [{{SERVER}}{{SCRIPTPATH}}/
 'version-entrypoints' => "URL ta' aċċess",
 'version-entrypoints-header-entrypoint' => "Punt ta' dħul",
 'version-entrypoints-header-url' => 'URL',
+
+# Special:Redirect
+'redirect-submit' => 'Mur',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Fittex fajls duplikati',

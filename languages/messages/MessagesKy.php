@@ -858,7 +858,7 @@ HTML-тегдеринин тууралыгын текшериңиз.',
 'email' => 'Электрондук дарек',
 'prefs-help-email' => 'Электрондук дарек милдетүү эмес, бирок сырсөзүңүздү унутуп калсаңыз ал сырсөздү жиберүүгө керек.',
 'prefs-help-email-others' => 'Ошондой эле башкалар сиз менен колдонуучу же баарлашуу барактарыңыздагы шилтеме аркылуу байланыш түзүүгө уруксат берүүнү тандай аласыз.
-Электрондук дарегиңиз башка кодонуучуларга байланыш түзгөндө көрүнбөйт.',
+Байлашууңузда электрондук дарегиңиз башка кодонуучуларга  көрүнбөйт.',
 'prefs-help-email-required' => 'Эл. почтанын дарегин көрсөтүү керек.',
 'prefs-info' => 'Негизги маалыматтар',
 'prefs-i18n' => 'Интернационализация',
@@ -1165,7 +1165,7 @@ To include a file in a page, use a link in one of the following forms:
 # Special:ListUsers
 'listusers-submit' => 'Көрсөтүү',
 'listusers-noresult' => 'Колдонуучу табылган жок.',
-'listusers-blocked' => '(бөгөттөлдү)',
+'listusers-blocked' => '(бөгөттөлгөн)',
 
 # Special:ActiveUsers
 'activeusers' => 'Активдүү колдонуучулардын тизмеси',
@@ -1256,8 +1256,8 @@ To include a file in a page, use a link in one of the following forms:
 'mycontris' => 'Салымдар',
 'contribsub2' => '$1 үчүн ($2)',
 'uctop' => '(учурдагы)',
-'month' => 'Айынан (жана андан мурдагы):',
-'year' => 'Жылынан (жана андан мурдагы):',
+'month' => 'Айынан (же андан мурдараак):',
+'year' => 'Жылынан (же андан мурдараак):',
 
 'sp-contributions-newbies' => 'Жаңы эсептерден кылынган салымдарды көрсөтүү',
 'sp-contributions-blocklog' => 'бөгөттөөлөр журналы',
@@ -1329,7 +1329,7 @@ To include a file in a page, use a link in one of the following forms:
 'move-page-legend' => 'Барактын атын өзгөртүү',
 'movearticle' => 'Барактын атын өзгөртүү:',
 'movenologin' => 'Системге кирген жоксуз',
-'newtitle' => 'Жаңы аталышы:',
+'newtitle' => 'Жаңы аталышка:',
 'movepagebtn' => 'Барактын атын өзгөртүү',
 'pagemovedsub' => 'Барактын аты өзгөртүлдү',
 'movepage-moved-redirect' => 'Багыттама түзүлдү.',
@@ -1358,11 +1358,11 @@ To include a file in a page, use a link in one of the following forms:
 'allmessagesname' => 'Аталышы',
 'allmessagesdefault' => 'Белгиленген билдирүүнүн тексти',
 'allmessagescurrent' => 'Учурдагы текст',
-'allmessages-filter-legend' => 'Элек',
+'allmessages-filter-legend' => 'Чыпка',
 'allmessages-filter-unmodified' => 'Өзгөртүлбөгөндөр',
 'allmessages-filter-all' => 'Баардыгы',
 'allmessages-filter-modified' => 'Өзгөртүлгөндөр',
-'allmessages-prefix' => 'Префикс боюнча электөө:',
+'allmessages-prefix' => 'Префикси боюнча чыпкалоо:',
 'allmessages-language' => 'Тили:',
 'allmessages-filter-submit' => 'Өтүү',
 
@@ -1426,7 +1426,7 @@ To include a file in a page, use a link in one of the following forms:
 'tooltip-pt-logout' => 'Иш сеансын аяктоо',
 'tooltip-ca-talk' => 'Барактын мазмунун талкуулоо',
 'tooltip-ca-edit' => 'Сиз бул баракты оңдой аласыз. Кичи пейилдикке, сактоодон мурда алдын ала көрсөтүү баскычын колдонуңуз.',
-'tooltip-ca-addsection' => 'Жаңы бөлүм түзүү',
+'tooltip-ca-addsection' => 'Жаңы бөлүм баштоо',
 'tooltip-ca-viewsource' => 'Бул барак корголгон.
 Сиз анын кайнарын көрө аласыз',
 'tooltip-ca-history' => 'Бул барактын мурунку оңдоолору',
@@ -1468,7 +1468,7 @@ To include a file in a page, use a link in one of the following forms:
 'tooltip-minoredit' => 'Муну майда оңдоо деп белгилөө',
 'tooltip-save' => 'Өзгөртүүлөрүңүздү сактоо',
 'tooltip-preview' => 'Сураныч, сактоодон мурда өзгөртүүлөрдү алдын ала көрсөтүүнү  колдонуңуз!',
-'tooltip-diff' => 'Текстке киргизилген өзгөртүүлөрдү көрсөтүү',
+'tooltip-diff' => 'Текстке киргизилген өзгөртүүлөрүңүздү көрсөтүү',
 'tooltip-compareselectedversions' => 'Бул барактын тандалган эки версиясынын айырмаларын кароо',
 'tooltip-watch' => 'Бул баракты көзөмөл тизмеңизге кошуңуз',
 'tooltip-watchlistedit-raw-submit' => 'Көзөмөл тизмесин жаңыртуу',
@@ -1489,7 +1489,7 @@ To include a file in a page, use a link in one of the following forms:
 'pageinfo-header-edits' => 'Оңдоо тарыхы',
 'pageinfo-display-title' => 'Көрсөтүлгөн башжазуусу',
 'pageinfo-article-id' => 'Барактын идентификатору',
-'pageinfo-views' => 'Кароолор саны',
+'pageinfo-views' => 'Кароолордун саны',
 'pageinfo-redirects-name' => 'Бул баракка багыттамалар',
 'pageinfo-firstuser' => 'Барактын түзүүчүсү',
 'pageinfo-lastuser' => 'Акыркы редактор',
@@ -1514,7 +1514,7 @@ To include a file in a page, use a link in one of the following forms:
 
 # Special:NewFiles
 'newimages' => 'Жаңы файлдардын галереясы',
-'newimages-legend' => 'Элек',
+'newimages-legend' => 'Чыпка',
 'newimages-label' => 'Файл аты (же анын жартысы):',
 'showhidebots' => '($1 боттор)',
 'noimages' => 'Көрүүгө эчтеке жок.',

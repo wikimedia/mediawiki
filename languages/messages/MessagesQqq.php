@@ -731,7 +731,8 @@ Used in message {{msg-mw|youhavenewmessages}} (as parameter $1).
 'newmessagesdifflink' => 'This is the second link displayed in an orange rectangle when a user gets a message on his talk page. Used in message {{msg-mw|youhavenewmessages}} (as parameter $2).
 
 See also:
-* {{msg-mw|Newmessagesdifflinkplural}}',
+* {{msg-mw|Newmessagesdifflinkplural}}
+{{Identical|Last change}}',
 'youhavenewmessagesfromusers' => 'New talk indicator message: the message appearing when someone edited your user talk page. Parameters:
 * $1 - defined as {{msg-mw|newmessageslinkplural}}
 * $2 - defined as {{msg-mw|newmessagesdifflinkplural}}
@@ -751,7 +752,8 @@ since the last time the user has seen his or her talk page.
 
 Like {{msg-mw|newmessagesdifflink}} but supporting pluralization.
 
-Used in message {{msg-mw|youhavenewmessagesfromusers}} (as parameter $2).',
+Used in message {{msg-mw|youhavenewmessagesfromusers}} (as parameter $2).
+{{Identical|Last change}}',
 'youhavenewmessagesmulti' => 'The alternative of {{msg|youhavenewmessages}} as used on wikis with a special setup so they can receive the "new message" notice on other wikis as well. Used on [http://www.wikia.com/ Wikia].
 The format is: "{{int:youhavenewmessagesmulti| [[MediaWiki:Newmessageslink/{{SUBPAGENAME}}|{{int:newmessageslink}}]]}}"',
 'editsection' => 'Display name of link to edit a section on a content page. Example: [{{MediaWiki:Editsection}}].
@@ -1067,21 +1069,21 @@ Parameters:
 'userlogin-yourname' => "In user login & create account forms, label for username field.
 {{doc-important|<nowiki>{{</nowiki>[[Gender|GENDER]]<nowiki>}}</nowiki> is '''NOT''' supported.}}
 
-See examples: [{{canonicalurl:Special:UserLogin}} Special:UserLogin] and [{{canonicalurl:Special:UserLogin}} Special:UserLogin]
+See examples: [[Special:UserLogin]] and [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]
 {{Identical|Username}}",
 'userlogin-yourname-ph' => 'Placeholder text in login & create account form field.
 
-See example: [{{canonicalurl:Special:UserLogin}} Special:UserLogin] and [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]',
+See example: [[Special:UserLogin]] and [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]',
 'yourpassword' => 'In user preferences
 
 {{Identical|Password}}',
 'userlogin-yourpassword' => 'In login & create account forms, label for password field.
 
-See examples: [{{canonicalurl:Special:UserLogin}} Special:UserLogin] and [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]
+See examples: [[Special:UserLogin]] and [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]
 {{Identical|Password}}',
 'userlogin-yourpassword-ph' => 'Placeholder text in login form for password field.
 
-See examples: [{{canonicalurl:Special:UserLogin}} Special:UserLogin] and [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]
+See examples: [[Special:UserLogin]] and [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]
 {{Identical|Enter password}}',
 'createacct-yourpassword-ph' => 'Placeholder text in create account form for password field.
 
@@ -1098,12 +1100,10 @@ See example: [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?t
 'remembermypassword' => 'A check box in [[Special:UserLogin]]
 
 {{Identical|Remember my login on this computer}}',
-'userlogin-remembermypassword' => 'The text for a check box in the new-style [[Special:UserLogin]].
-
-See example: [{{canonicalurl:Special:UserLogin}} Special:UserLogin]',
+'userlogin-remembermypassword' => 'The text for a check box in [[Special:UserLogin]].',
 'userlogin-signwithsecure' => 'Text of link to HTTPS login form.
 
-See example: [{{canonicalurl:Special:UserLogin}} Special:UserLogin]',
+See example: [[Special:UserLogin]]',
 'securelogin-stick-https' => 'Used as label for checkbox.',
 'yourdomainname' => 'Used as label for listbox.',
 'password-change-forbidden' => 'Error message shown when an external authentication source does not allow the password to be changed.',
@@ -1138,12 +1138,10 @@ See also:
 
 {{Identical|Not logged in}}',
 'userlogin-noaccount' => 'In the [[Special:Userlogin]] form, this is the text prior to button inviting user to join project.
-
-See example: [{{canonicalurl:Special:UserLogin}} Special:UserLogin]
 {{Identical|Do not have an account}}',
 'userlogin-joinproject' => 'Text of button inviting user to create an account.
 
-See example: [{{canonicalurl:Special:UserLogin}} Special:UserLogin]',
+See example: [[Special:UserLogin]]',
 'nologin' => 'Since 1.22 no longer used in core, but may be used by some extensions. DEPRECATED. Parameters:
 * $1 - a link to the account creation form, and the text of it is {{msg-mw|Nologinlink}}
 {{Identical|Do not have an account}}',
@@ -1163,7 +1161,7 @@ It is also used on the submit button in the form/special page where you register
 
 The link points to the local [[Special:PasswordReset]].
 
-See example: [{{canonicalurl:Special:UserLogin}} Special:UserLogin]
+See example: [[Special:UserLogin]]
 
 userlogin-resetpassword-link may have to be shorter than the old {{msg-mw|userlogin-resetlink}}',
 'helplogin-url' => '{{doc-important|Do not translate the namespace name <code>Help</code>.}}
@@ -1173,7 +1171,7 @@ Used as a link target in the message {{msg-mw|Userlogin-helplink}}.',
 'userlogin-helplink' => '{{doc-important|Do not change <code><nowiki>{{MediaWiki:helplogin-url}}</nowiki></code>.}}
 Wikitext linking to login help.
 
-See example: [{{canonicalurl:Special:UserLogin}} Special:UserLogin]
+See example: [[Special:UserLogin]]
 
 See also:
 * {{msg-mw|Helplogin-url}}',
@@ -8185,7 +8183,8 @@ See: http://www.awaresystems.be/imaging/tiff/tifftags/ycbcrpositioning.html
 'exif-dc-source' => 'Source of the image. This is another image that this image is based on. This does not refer to the person who provided the image.',
 'exif-dc-type' => 'Type or genre of image/media. This might be something like painting or photograph.',
 
-'exif-rating-rejected' => 'If the rating field has a rating of -1 to mean that the file was totally "rejected"',
+'exif-rating-rejected' => 'If the rating field has a rating of -1 to mean that the file was totally "rejected".
+{{Identical|Rejected}}',
 
 'exif-isospeedratings-overflow' => "Exif can't store iso speed ratings beyond 65535. This message is shown if the iso speed is too big to be stored.",
 
