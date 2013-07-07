@@ -28,7 +28,7 @@
  *
  * @since 1.20
  */
-class MWTimestamp {
+class MWTimestamp extends DateTime {
 	/**
 	 * Standard gmdate() formats for the different timestamp types.
 	 */
@@ -57,9 +57,21 @@ class MWTimestamp {
 	 * @since 1.20
 	 *
 	 * @param bool|string $timestamp Timestamp to set, or false for current time
+	 * @param string|DateTimeZone|bool $tz Timezone to set, or false for GMT
 	 */
-	public function __construct( $timestamp = false ) {
-		$this->setTimestamp( $timestamp );
+	public function __construct( $timestamp = false, $tz = 'GMT' ) {
+		$timestamp = $this->parseTimestamp( $timestamp );
+
+		try {
+			if ( !$tz instanceof DateTimeZone ) {
+				$tz = new DateTimeZone( $tz );
+			}
+			parent::__construct( $timestamp, $tz );
+		} catch ( Exception $e ) {
+			throw new TimestampException( __METHOD__ . ' Invalid constructor arguments.', $e->getCode(), $e );
+		}
+
+		$this->timestamp = $this;
 	}
 
 	/**
@@ -71,9 +83,28 @@ class MWTimestamp {
 	 * @since 1.20
 	 *
 	 * @param string|bool $ts Timestamp to store, or false for now
+	 * @param string|DateTimeZone|bool $tz Timezone to set, or false for GMT
 	 * @throws TimestampException
 	 */
-	public function setTimestamp( $ts = false ) {
+	public function setTimestamp( $ts = false, $tz = false ) {
+		$ts = $this->parseTimestamp( $ts );
+
+		$success = $this->modify( $strtime );
+		$this->setTimezone( $tz );
+
+		if ( !$success ) {
+			throw new TimestampException( __METHOD__ . ' Invalid timestamp format.' );
+		}
+	}
+
+	/**
+	 * Normalize a string or integer timestamp into something recognizeable by
+	 * the DateTime class.
+	 *
+	 * @param mixed $ts Timestamp to parse
+	 * @return string
+	 */
+	public function parseTimestamp( $ts = false ) {
 		$da = array();
 		$strtime = '';
 
@@ -114,7 +145,8 @@ class MWTimestamp {
 			# asctime
 			$strtime = $ts;
 		} else {
-			throw new TimestampException( __METHOD__ . " : Invalid timestamp - $ts" );
+			// Unknown format. See if the DateTime class knows it
+			$strtime = $ts;
 		}
 
 		if ( !$strtime ) {
@@ -123,16 +155,7 @@ class MWTimestamp {
 			$strtime = call_user_func_array( "sprintf", $da );
 		}
 
-		try {
-			$final = new DateTime( $strtime, new DateTimeZone( 'GMT' ) );
-		} catch ( Exception $e ) {
-			throw new TimestampException( __METHOD__ . ' Invalid timestamp format.' );
-		}
-
-		if ( $final === false ) {
-			throw new TimestampException( __METHOD__ . ' Invalid timestamp format.' );
-		}
-		$this->timestamp = $final;
+		return $strtime;
 	}
 
 	/**
@@ -152,13 +175,36 @@ class MWTimestamp {
 			throw new TimestampException( __METHOD__ . ' : Illegal timestamp output type.' );
 		}
 
-		$output = $this->timestamp->format( self::$formats[$style] );
+		$output = $this->format( self::$formats[$style] );
 
 		if ( ( $style == TS_RFC2822 ) || ( $style == TS_POSTGRES ) ) {
 			$output .= ' GMT';
 		}
 
 		return $output;
+	}
+
+	/**
+	 * Set the timezone of this timestamp to the specified timezone.
+	 *
+	 * @since 1.22
+	 * @param string|false $timezone Timezone to set
+	 * @throws TimestampException
+	 */
+	public function setTimezone( $timezone ) {
+		if ( !$timezone instanceof DateTimeZone ) {
+			try {
+				$timezone = new DateTimeZone( $timezone );
+			} catch ( Exception $e ) {
+				throw new TimestampException( __METHOD__ . ' Invalid timezone.', $e->getCode(), $e );
+			}
+		}
+
+		$success = parent::setTimezone( $timezone );
+		if ( !$success ) {
+			throw new TimestampException( __METHOD__ . ' Failed to set timezone.' );
+		}
+		return true;
 	}
 
 	/**
@@ -197,8 +243,8 @@ class MWTimestamp {
 		}
 
 		// Reset the timezone on the objects.
-		$this->timestamp->sub( $offsetThis );
-		$relativeTo->timestamp->sub( $offsetRel );
+		$this->sub( $offsetThis );
+		$relativeTo->sub( $offsetRel );
 
 		return $ts;
 	}
@@ -227,7 +273,7 @@ class MWTimestamp {
 			}
 
 			if ( $tz ) {
-				$this->timestamp->setTimezone( $tz );
+				$this->setTimezone( $tz );
 				return new DateInterval( 'P0Y' );
 			} else {
 				$data[0] = 'Offset';
@@ -266,7 +312,7 @@ class MWTimestamp {
 			$interval->invert = 1;
 		}
 
-		$this->timestamp->add( $interval );
+		$this->add( $interval );
 		return $interval;
 	}
 
@@ -280,53 +326,6 @@ class MWTimestamp {
 	}
 
 	/**
-	 * Calculate the difference between two MWTimestamp objects.
-	 *
-	 * @since 1.22
-	 * @param MWTimestamp $relativeTo Base time to calculate difference from
-	 * @return DateInterval|bool The DateInterval object representing the difference between the two dates or false on failure
-	 */
-	public function diff( MWTimestamp $relativeTo ) {
-		return $this->timestamp->diff( $relativeTo->timestamp );
-	}
-
-	/**
-	 * Set the timezone of this timestamp to the specified timezone.
-	 *
-	 * @since 1.22
-	 * @param String $timezone Timezone to set
-	 * @throws TimestampException
-	 */
-	public function setTimezone( $timezone ) {
-		try {
-			$this->timestamp->setTimezone( new DateTimeZone( $timezone ) );
-		} catch ( Exception $e ) {
-			throw new TimestampException( __METHOD__ . ' Invalid timezone.' );
-		}
-	}
-
-	/**
-	 * Get the timezone of this timestamp.
-	 *
-	 * @since 1.22
-	 * @return DateTimeZone The timezone
-	 */
-	public function getTimezone() {
-		return $this->timestamp->getTimezone();
-	}
-
-	/**
-	 * Format the timestamp in a given format.
-	 *
-	 * @since 1.22
-	 * @param string $format Pattern to format in
-	 * @return string The formatted timestamp
-	 */
-	public function format( $format ) {
-		return $this->timestamp->format( $format );
-	}
-
-	/**
 	 * Get a timestamp instance in the server local timezone ($wgLocaltimezone)
 	 *
 	 * @since 1.22
@@ -335,9 +334,7 @@ class MWTimestamp {
 	 */
 	public static function getLocalInstance( $ts = false ) {
 		global $wgLocaltimezone;
-		$timestamp = new self( $ts );
-		$timestamp->setTimezone( $wgLocaltimezone );
-		return $timestamp;
+		return new self( $ts, $wgLocaltimezone );
 	}
 
 	/**
