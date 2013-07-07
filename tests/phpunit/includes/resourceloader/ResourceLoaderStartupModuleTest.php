@@ -151,6 +151,7 @@ mw.loader.addSource( {
 							'test.x.foo',
 							'test.x.bar',
 							'test.x.util',
+							'test.x.unknown',
 						),
 					) ),
 					'test.group.foo.1' => new ResourceLoaderTestModule( array(
@@ -211,7 +212,6 @@ mw.loader.addSource( {
         "test.x.bar",
         "1388534400",
         [
-            "test.x.core",
             "test.x.util"
         ]
     ],
@@ -220,8 +220,7 @@ mw.loader.addSource( {
         "1388534400",
         [
             "test.x.foo",
-            "test.x.bar",
-            "test.x.util"
+            "test.x.bar"
         ]
     ],
     [
@@ -256,7 +255,10 @@ mw.loader.addSource( {
 
 	/**
 	 * @dataProvider provideGetModuleRegistrations
+	 * @covers ResourceLoaderStartupModule::optimizeDependencies
 	 * @covers ResourceLoaderStartUpModule::getModuleRegistrations
+	 * @covers ResourceLoader::makeLoaderSourcesScript
+	 * @covers ResourceLoader::makeLoaderRegisterScript
 	 */
 	public function testGetModuleRegistrations( $case ) {
 		if ( isset( $case['sources'] ) ) {
