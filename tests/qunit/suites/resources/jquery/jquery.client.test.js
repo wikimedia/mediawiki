@@ -264,6 +264,24 @@
 					rtl: true
 				}
 			},
+			// Opera 15 (WebKit-based)
+			'Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.52 Safari/537.36 OPR/15.0.1147.130': {
+				title: 'Opera 15',
+				platform: 'Win32',
+				profile: {
+					name: 'opera',
+					layout: 'webkit',
+					layoutVersion: 537,
+					platform: 'win',
+					version: '15.0.1147.130',
+					versionBase: '15',
+					versionNumber: 15
+				},
+				wikiEditor: {
+					ltr: true,
+					rtl: true
+				}
+			},
 			// Chrome 5
 			// Chrome 6
 			// Chrome 7
