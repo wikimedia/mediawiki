@@ -48,6 +48,7 @@
  * @ingroup FileAbstraction
  */
 abstract class File {
+	// Bitfield values akin to the Revision deletion constants
 	const DELETED_FILE = 1;
 	const DELETED_COMMENT = 2;
 	const DELETED_USER = 4;
@@ -1499,7 +1500,7 @@ abstract class File {
 	 * Is this file a "deleted" file in a private archive?
 	 * STUB
 	 *
-	 * @param $field
+	 * @param integer $field one of DELETED_* bitfield constants
 	 *
 	 * @return bool
 	 */
