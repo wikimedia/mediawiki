@@ -61,13 +61,13 @@
 						['KHTML', 'Konqueror'],
 						// Firefox nightly builds
 						['Minefield', 'Firefox'],
-						// This helps keep differnt versions consistent
+						// This helps keep different versions consistent
 						['Navigator', 'Netscape'],
 						// This prevents version extraction issues, otherwise translation would happen later
 						['PLAYSTATION 3', 'PS3']
 					],
-					// Strings which precede a version number in a user agent string - combined and used as match 1 in
-					// version detectection
+					// Strings which precede a version number in a user agent string - combined and used as
+					// match 1 in version detection
 					versionPrefixes = [
 						'camino', 'chrome', 'firefox', 'iceweasel', 'netscape', 'netscape6', 'opera', 'version', 'konqueror',
 						'lynx', 'msie', 'safari', 'ps3', 'android'
@@ -143,18 +143,26 @@
 				/* Edge Cases -- did I mention about how user agent string lie? */
 
 				// Decode Safari's crazy 400+ version numbers
-				if ( name.match( /safari/ ) && version > 400 ) {
+				if ( name === 'safari' && version > 400 ) {
 					version = '2.0';
 				}
 				// Expose Opera 10's lies about being Opera 9.8
-				if ( name === 'opera' && version >= 9.8) {
-					match = ua.match( /version\/([0-9\.]*)/i );
+				if ( name === 'opera' && version >= 9.8 ) {
+					match = ua.match( /\bversion\/([0-9\.]*)/ );
 					if ( match && match[1] ) {
 						version = match[1];
 					} else {
 						version = '10';
 					}
 				}
+				// And Opera 15's lies about being Chrome
+				if ( name === 'chrome' && ( match = ua.match( /\bopr\/([0-9\.]*)/ ) ) ) {
+					if ( match[1] ) {
+						name = 'opera';
+						version = match[1];
+					}
+				}
+
 				versionNumber = parseFloat( version, 10 ) || 0.0;
 
 				/* Caching */
