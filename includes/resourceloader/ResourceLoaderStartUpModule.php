@@ -165,6 +165,8 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 				$registrations[] = array( $name, $mtime, $deps, $group, $source );
 			}
 		}
+		$resourceLoaderRegistrations = new ResourceLoaderRegistrations( $registrations );
+		$registrations = $resourceLoaderRegistrations->optimizeDependencies();
 		$out .= ResourceLoader::makeLoaderRegisterScript( $registrations );
 
 		wfProfileOut( __METHOD__ );
