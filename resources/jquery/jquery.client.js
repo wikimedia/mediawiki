@@ -82,11 +82,11 @@
 					// Tanslations for conforming browser names
 					nameTranslations = [],
 					// Names of known layout engines
-					layouts = ['gecko', 'konqueror', 'msie', 'opera', 'webkit'],
+					layouts = ['gecko', 'konqueror', 'msie', 'trident', 'opera', 'webkit'],
 					// Translations for conforming layout names
 					layoutTranslations = [ ['konqueror', 'khtml'], ['msie', 'trident'], ['opera', 'presto'] ],
 					// Names of supported layout engines for version number
-					layoutVersions = ['applewebkit', 'gecko'],
+					layoutVersions = ['applewebkit', 'gecko', 'trident'],
 					// Names of known operating systems
 					platforms = ['win', 'mac', 'linux', 'sunos', 'solaris', 'iphone'],
 					// Translations for conforming operating system names
@@ -147,9 +147,8 @@
 					version = '2.0';
 				}
 				// Expose Opera 10's lies about being Opera 9.8
-				if ( name === 'opera' && version >= 9.8 ) {
-					match = ua.match( /\bversion\/([0-9\.]*)/ );
-					if ( match && match[1] ) {
+				if ( name === 'opera' && version >= 9.8 && ( match = ua.match( /\bversion\/([0-9\.]*)/ ) ) ) {
+					if ( match[1] ) {
 						version = match[1];
 					} else {
 						version = '10';
@@ -159,6 +158,13 @@
 				if ( name === 'chrome' && ( match = ua.match( /\bopr\/([0-9\.]*)/ ) ) ) {
 					if ( match[1] ) {
 						name = 'opera';
+						version = match[1];
+					}
+				}
+				// And IE 11's lies about being not being IE
+				if ( layout === 'trident' && layoutversion >= 7 && ( match = ua.match( /\brv[ :\/]([0-9\.]*)/ ) ) ) {
+					if ( match[1] ) {
+						name = 'msie';
 						version = match[1];
 					}
 				}
