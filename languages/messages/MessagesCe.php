@@ -941,6 +941,8 @@ $1',
 'rev-delundel' => 'гайта/къайла',
 'rev-showdeleted' => 'гайта',
 'revdelete-show-file-submit' => 'Хlаъ',
+'revdelete-hide-image' => 'Къайлабаккха файлан чулацам',
+'revdelete-hide-user' => 'Къайлаяккха авторан цӀе',
 'revdelete-radio-same' => '(ма хийца)',
 'revdelete-radio-set' => 'Хlаъ',
 'revdelete-radio-unset' => 'Хlахlа',
@@ -1461,13 +1463,13 @@ PICT # тайп тайпан
 'linksearch-line' => '$2 — хьажориг кху $1',
 
 # Special:ListUsers
-'listusersfrom' => 'ТӀера волавелла декъашхой гайта:',
+'listusersfrom' => 'Гучé баха декъашхой, болалуш болу тӀера:',
 'listusers-submit' => 'Гайта',
 'listusers-noresult' => 'Декъашхой цакарий.',
 
 # Special:ActiveUsers
 'activeusers' => 'Жигар декъашхой могlам',
-'activeusers-from' => 'Гучé баха декъашхой, болалуш болу оцу:',
+'activeusers-from' => 'Гучé баха декъашхой, болалуш болу тӀера:',
 'activeusers-noresult' => 'Декъашхой цакарий.',
 
 # Special:ListGroupRights

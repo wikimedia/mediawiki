@@ -18446,6 +18446,7 @@ Det kan orsaka problem, särskilt om du använder filöverföringar och <code>ma
 	'config-xml-bad' => 'PHP:s XML-modul saknas.
 MediaWiki kräver funktioner i denna modul och kommer inte att fungera i den här konfigurationen.
 Om du kör Mandrake, installera php-xml-paketet.',
+	'config-memory-raised' => 'PHPs <code>memory_limit</code> är $1, ökar till $2.',
 	'config-memory-bad' => "''' Varning:''' PHP:s <code>memory_limit</code> är $1.
 Detta är förmodligen för lågt.
 Installationen kan misslyckas!",
@@ -18518,6 +18519,7 @@ Du kan nu [$1 börja använda din wiki].',
 	'config-site-name' => 'Namnet på wikin:',
 	'config-site-name-blank' => 'Ange ett sidnamn.',
 	'config-ns-generic' => 'Projekt',
+	'config-ns-site-name' => 'Samma som wikinamnet: $1',
 	'config-ns-other' => 'Annan (specificera)',
 	'config-ns-invalid' => 'Den angivna namnrymden "<nowiki>$1</nowiki>" är ogiltig.
 Ange ett annat namnrymd för projektet.',
@@ -18537,6 +18539,7 @@ Ange ett annat användarnamn.',
 	'config-admin-password-mismatch' => 'De två lösenord du uppgett överensstämmer inte med varandra.',
 	'config-admin-email' => 'E-postadress:',
 	'config-admin-error-bademail' => 'Du har angivit en felaktigt e-postadress.',
+	'config-subscribe' => 'Prenumerera på [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce e-postlistan för utgivningsmeddelanden].',
 	'config-almost-done' => 'Du är nästan färdig!
 Du kan nu hoppa över återstående konfigurationer och installera wikin nu.',
 	'config-optional-continue' => 'Ställ fler frågor till mig.',
@@ -18565,6 +18568,7 @@ Du kan nu hoppa över återstående konfigurationer och installera wikin nu.',
 	'config-upload-enable' => 'Aktivera filöverföringar',
 	'config-upload-deleted' => 'Mapp för raderade filer:',
 	'config-logo' => 'Logotyp-URL:',
+	'config-instantcommons' => 'Aktivera Instant Commons',
 	'config-cc-again' => 'Välj igen...',
 	'config-advanced-settings' => 'Avancerad konfiguration',
 	'config-extensions' => 'Tillägg',

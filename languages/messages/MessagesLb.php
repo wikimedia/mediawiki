@@ -1786,6 +1786,8 @@ Wann de Problem weider besteet, dann un de [[Special:ListUsers/sysop|Administrat
 'backend-fail-synced' => 'De Fichier "$1" ass an den internen Späichersystemer am Hannergrond an engem net konsistenten Zoustand',
 'backend-fail-connect' => 'Keng Verbindung mam Backend vum Späicher "$1".',
 'backend-fail-internal' => 'Onbekannte Feeler am Backend vum Späicher: "$1"',
+'backend-fail-contenttype' => 'Den Typ vum Inhalt deen op "$1" gespäichert gi soll konnt net bestëmmt ginn.',
+'backend-fail-usable' => 'De Fichier "$1" konnt net geliest oder geschriwwe gi well Rechter oder Repertoire feelen.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Et konnt keng Verbindung mat der Datebank vum Logbuch mam Späicher-Backend "$1" opgebaut ginn.',

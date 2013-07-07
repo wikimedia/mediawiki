@@ -24,6 +24,9 @@ $dateFormats = array(
 
 $messages = array(
 # User preference toggles
+'tog-underline' => '下劃綫鏈接',
+'tog-hideminor' => '藏起最近改變其過要修改',
+'tog-hidepatrolled' => '藏起最近改變其巡邏修改',
 'tog-rememberpassword' => '共我其躒底記錄記敆茲萆瀏覽器𡅏（最長$1{{PLURAL:$1|日}}）',
 'tog-watchcreations' => '加添我開其頁面共我上傳其文件遘我其監視單',
 'tog-watchdefault' => '添加我編輯其頁面共文件遘我其監視單',
@@ -191,8 +194,8 @@ $messages = array(
 'returnto' => '轉去$1。',
 'tagline' => '來源：{{SITENAME}}',
 'help' => '幫助',
-'search' => '討',
-'searchbutton' => '討',
+'search' => '尋討',
+'searchbutton' => '尋討',
 'go' => '去',
 'searcharticle' => '去',
 'history' => '頁面歷史',
@@ -356,6 +359,15 @@ Sō̤ kī só-gé̤ṳ-kó gì guāng-lī-uòng cūng-kuāng gāi-sék: $1',
 'missingarticle-diff' => '（比並：$1、$2）',
 'internalerror' => '內部錯誤',
 'internalerror_info' => '內部錯誤：$1',
+'fileappenderror' => '𣍐使加添「$1」遘「$2」。',
+'filecopyerror' => '𣍐使趁「$1」𡅏複製文件遘「$2」。',
+'filerenameerror' => '𣍐使共「$1」其名字改去「$2」。',
+'filedeleteerror' => '𣍐使刪掉文件「$1」。',
+'directorycreateerror' => '𣍐使刪掉目錄「$1」。',
+'filenotfound' => '討𣍐著文件「$1」。',
+'fileexistserror' => '無辦法寫遘文件「$1」：文件已經存在。',
+'unexpected' => '伓是卜挃其值：「$1」＝「$2」。',
+'formerror' => '賺：𣍐使提交表單。',
 'cannotdelete' => '無能耐刪掉頁面或者文件「$1」。
 可能茲已經共別儂刪掉咯了。',
 'cannotdelete-title' => '無辦法刪掉頁面「$1」',
@@ -452,9 +464,9 @@ Sō̤ kī só-gé̤ṳ-kó gì guāng-lī-uòng cūng-kuāng gāi-sék: $1',
 'createacct-imgcaptcha-ph' => '輸底汝敆懸頂看見其文字',
 'createacct-submit' => '開賬戶',
 'createacct-benefit-heading' => '{{SITENAME}}是共汝蜀様其儂做其。',
-'createacct-benefit-body1' => '{{PLURAL:$1|修改|修改}}',
-'createacct-benefit-body2' => '{{PLURAL:$1|頁面|頁面}}',
-'createacct-benefit-body3' => '最近其{{PLURAL:$1|貢獻者|貢獻者}}',
+'createacct-benefit-body1' => '{{PLURAL:$1|修改}}',
+'createacct-benefit-body2' => '{{PLURAL:$1|頁面}}',
+'createacct-benefit-body3' => '最近其{{PLURAL:$1|貢獻者}}',
 'badretype' => '汝輸底其密碼𣍐蜀様。',
 'userexists' => '用戶名已經乞別人使去了。
 起動另外再起蜀萆名字。',
@@ -468,36 +480,75 @@ Sō̤ kī só-gé̤ṳ-kó gì guāng-lī-uòng cūng-kuāng gāi-sék: $1',
 检查汝其拼写，或者覷蜀覷[[Special:UserLogin/signup|開新賬戶]]。',
 'nosuchusershort' => '無總款其用戶名「$1」。
 檢查汝其拼寫。',
+'nouserspecified' => '汝著指定蜀萆用戶名。',
+'login-userblocked' => '茲隻用戶已經乞封鎖去了。躒底是𣍐允許其。',
 'wrongpassword' => '密碼鄭咯。
 起動再查蜀下。',
 'wrongpasswordempty' => '未輸入密碼。
 請再查蜀下。',
-'passwordtooshort' => '密碼著設最少{{PLURAL:$1|$1萆字符|$1萆字符}}。',
+'passwordtooshort' => '密碼著設最少{{PLURAL:$1|$1萆字符}}。',
 'password-name-match' => '汝其密碼硬著共汝其用戶名𣍐蜀様才會使其。',
 'password-login-forbidden' => '茲蜀萆用戶名共密碼應經乞禁止去了。',
 'mailmypassword' => '共新密碼發遘電子郵件',
 'passwordsent' => '新密碼已經寄遘「$1」註冊其電子郵件地址了。
 收遘後，請再躒底蜀頭部。',
-'acct_creation_throttle_hit' => '使汝其IP訪問茲蜀萆維基百科訪問者其已經敆最後蜀日創建{{PLURAL:$1|$1萆賬戶|$1萆賬戶}}去了。茲蜀段時間最価若允許創建茲滿価萆賬戶。故此講使茲蜀萆IP訪問其儂敆現刻時𣍐使再開賬戶了。',
+'mailerror' => '發電子郵件有賺：$1',
+'acct_creation_throttle_hit' => '使汝其IP訪問茲蜀萆維基百科訪問者其已經敆最後蜀日創建{{PLURAL:$1|$1萆賬戶}}去了。茲蜀段時間最価若允許創建茲滿価萆賬戶。故此講使茲蜀萆IP訪問其儂敆現刻時𣍐使再開賬戶了。',
 'emailauthenticated' => '汝其電子郵件地址已經敆$2$3驗證過了。',
 'emailconfirmlink' => '確認汝其電子郵件地址',
+'emaildisabled' => '茲萆站點𣍐使發電子郵件。',
 'accountcreated' => '賬戶創建了',
 'accountcreatedtext' => '[[{{ns:User}}:$1|$1]]([[{{ns:User talk}}:$1|talk]])用戶已經創建。',
+'createaccount-title' => '{{SITENAME}}其開賬戶',
+'login-abort-generic' => '汝其躒底𣍐成功——放棄去了',
 'loginlanguagelabel' => '語言：$1',
 
+# Email sending
+'php-mail-error-unknown' => 'PHP其mail()函數，𣍐八什乇賺去。',
+
 # Change password dialog
+'resetpass' => '密碼已經乞修改去了',
+'resetpass_header' => '改變賬戶其密碼',
 'oldpassword' => '舊密碼：',
 'newpassword' => '新密碼：',
 'retypenew' => '確認密碼：',
+'resetpass_submit' => '設置密碼再躒底',
+'resetpass_forbidden' => '密碼改𣍐來',
+'resetpass-no-info' => '汝著躒底乍會使直接看茲蜀頁。',
+'resetpass-submit-loggedin' => '修改密碼',
+'resetpass-submit-cancel' => '取消',
+'resetpass-temp-password' => '臨時密碼：',
+
+# Special:PasswordReset
+'passwordreset' => '重置密碼',
+'passwordreset-legend' => '重置密碼',
+'passwordreset-username' => '用戶名：',
+'passwordreset-domain' => '域名：',
+'passwordreset-email' => '電子郵件地址：',
+'passwordreset-emailsent' => '蜀萆密碼重置其電子郵件已經發出去了。',
+'passwordreset-emailsent-capture' => '蜀萆密碼重置其電子郵件已經發出去了，顯示敆下底。',
+
+# Special:ChangeEmail
+'changeemail' => '修改電子郵件地址',
+'changeemail-header' => '修改賬戶電子郵件地址',
+'changeemail-oldemail' => '現刻時其電子郵件地址：',
+'changeemail-newemail' => '新其電子郵件地址：',
+'changeemail-none' => '（無）',
+'changeemail-password' => '汝其{{SITENAME}}密碼：',
+'changeemail-submit' => '修改電子郵件地址',
+'changeemail-cancel' => '取消',
 
 # Edit page toolbar
 'bold_sample' => '粗體文字',
 'bold_tip' => '粗體文字',
+'italic_sample' => '敧其文字',
+'italic_tip' => '敧其文字',
 'link_sample' => '鏈接標題',
 'link_tip' => '內部鏈接',
 'extlink_tip' => '外部鏈接（記𡅏http:// 開頭）',
 'headline_sample' => '標題文字',
 'headline_tip' => '第二等標題',
+'image_tip' => '嵌底其文件',
 'media_sample' => 'Liê.ogg',
 'media_tip' => '文件鏈接',
 
@@ -512,8 +563,11 @@ Sō̤ kī só-gé̤ṳ-kó gì guāng-lī-uòng cūng-kuāng gāi-sék: $1',
 'showdiff' => '看改變其部分',
 'anoneditwarning' => "'''警告：'''汝未躒底。
 汝起IP地址會乞記錄敆茲頁面修改歷史底裏。",
+'missingcommenttext' => '起動敆下底輸底蜀條評論。',
 'summary-preview' => '總結預覽：',
 'blockedtitle' => '用戶乞封鎖了',
+'blockednoreason' => '無掏出原因',
+'whitelistedittext' => '汝必須$1乍會使修改頁面。',
 'loginreqtitle' => '需要躒底',
 'loginreqlink' => '躒底',
 'loginreqpagetext' => '著$1才會使看其它頁面。',
@@ -551,12 +605,17 @@ Iŏk-guō nṳ̄ dĭk-ciék áik \"{{int:savearticle}}\", '''nâ ô''' gà̤-dē
 'editingold' => "'''警告：汝現在𡅏修改已經過時其版本。'''
 如果汝保存伊，趁茲以後其任何改變都變無了。",
 'yourdiff' => '差別',
-'readonlywarning' => "'''Gīng-gó̤: Ôi lāu mì-hô buōng câng, só-gé̤ṳ-kó ké̤ṳk sō̤ kī lāu, gó-chṳ̄ cī-lùng nṳ̄ mò̤ nièng-ngài bō̤-còng nṳ̄ gì siŭ-gāi. Chiāng sĕng bō̤-còng diŏh nṳ̄ diêng-nō̤ buōng-dê, dīng nék-gū mâing gái ché.'''",
-'protectedpagewarning' => "'''GĪNG-GÓ̤: Ciā hiĕk ī-gĭng ké̤ṳk sō̤ kī go̤ lāu, nâ ô guāng-lī-uòng â̤ siŭ-gāi ĭ.'''",
-'semiprotectedpagewarning' => "'''Cé̤ṳ-é:''' Ciā hiĕk-miêng ī-gĭng ké̤ṳk bō̤-hô, gó-chṳ̄ nâ ô láuk-diē gì ê̤ṳng-hô â̤-sāi siŭ-gāi ĭ.",
+'readonlywarning' => "'''警告：數據庫已經乞鎖定來保養去了，故此汝現刻時𣍐使保存汝其編輯。'''
+汝可能希望複製再粘貼汝其文字遘蜀萆文本文件𡅏，再共伊保存起咯。
+
+鎖定伊其管理員給出茲蜀萆解釋：$1",
+'protectedpagewarning' => "''警告：茲蜀頁已經乞保護起去了，故此囇有管理員權力其用戶乍會使修改伊。'''
+最新其日誌已經敆下底提供來做參考：",
+'semiprotectedpagewarning' => "'''注意：''' 茲蜀頁已經乞保護起去了，故此囇有註冊其用戶乍會使修改伊。
+最新其日誌已經敆下底提供來做參考：",
 'templatesused' => '{{PLURAL:$1}}茲頁底裏使其模板：',
-'templatesusedpreview' => '茲萆預覽使其{{PLURAL:$1|模板|模板}}：',
-'templatesusedsection' => '茲蜀段使其{{PLURAL:$1|模板|模板}}：',
+'templatesusedpreview' => '茲萆預覽使其{{PLURAL:$1|模板}}：',
+'templatesusedsection' => '茲蜀段使其{{PLURAL:$1|模板}}：',
 'template-protected' => '（保護）',
 'template-semiprotected' => '（半保護）',
 'recreate-moveddeleted-warn' => "'''注意：汝重新創建其茲蜀頁面以前已經乞刪掉了。'''
@@ -781,7 +840,7 @@ Iŏk-guō nṳ̄ dĭk-ciék áik \"{{int:savearticle}}\", '''nâ ô''' gà̤-dē
 'statistics' => '統計',
 'statistics-header-users' => '用戶統計',
 
-'disambiguationspage' => 'Template:Gì-ngiê',
+'disambiguationspage' => 'Template:歧義',
 
 'brokenredirects-edit' => '改',
 'brokenredirects-delete' => '刪',

@@ -333,10 +333,10 @@ $1",
 'page-atom-feed' => 'Emission Atom ëd «$1»',
 'red-link-title' => "$1 (pàgina ch'a esist pa)",
 'sort-descending' => 'Ordinament an caland',
-'sort-ascending' => 'Órdina an chërsend',
+'sort-ascending' => 'Ordinament an chërsend',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main' => 'Artìcol',
+'nstab-main' => 'Pàgina',
 'nstab-user' => "Pàgina dl'utent",
 'nstab-media' => 'Pàgina multimedial',
 'nstab-special' => 'Pàgina special',

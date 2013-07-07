@@ -2078,6 +2078,8 @@ Vergeet niet de verwiezingen nao te kieken veurda\'j de mal vortdoon.',
 Feitelik mutten ze rechtstreeks verwiezen naor t juuste onderwarp.<br />
 Ziejen wörden ezien as n deurverwieszied, as de mal gebruukt wörden die vermeld steet op [[MediaWiki:Disambiguationspage]].",
 
+'pageswithprop' => 'Ziejen mit n zied-eigenschap',
+'pageswithprop-legend' => 'Ziejen mit n zied-eigenschap',
 'pageswithprop-submit' => 'Zeuk',
 
 'doubleredirects' => 'Dubbele deurverwiezingen',
@@ -2132,7 +2134,7 @@ Meestentieds is leste zied de gewunste doelzied, waor oek de eerste zied heer zo
 'mostlinkedtemplates' => 'Meestgebruukten mallen',
 'mostcategories' => 'Artikels mit de meeste kategorieën',
 'mostimages' => 'Meestgebruukten bestaanden',
-'mostinterwikis' => "Pagina's mit de meeste interwikiverwiezingen",
+'mostinterwikis' => 'Ziejen mit de meeste interwikiverwiezingen',
 'mostrevisions' => 'Artikels mit de meeste bewarkingen',
 'prefixindex' => 'Alle ziejen op veurvoegsel',
 'prefixindex-namespace' => 'Alle ziejen mit t veurvoegsel (naamruumte $1)',
@@ -3802,6 +3804,16 @@ Samen mit dit programma heur je n [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van de
 'version-entrypoints-header-entrypoint' => 'Ingang',
 'version-entrypoints-header-url' => 'Webadres',
 
+# Special:Redirect
+'redirect' => 'Deurverwiezen op bestaandsnaam, gebrukersnummer of versienummer',
+'redirect-submit' => 'Zeuk',
+'redirect-lookup' => 'Opzeuken:',
+'redirect-value' => 'Weerde:',
+'redirect-user' => 'Gebrukersnummer',
+'redirect-revision' => 'Ziedversie',
+'redirect-file' => 'Bestaandsnaam',
+'redirect-not-exists' => 'Weerde niet evunnen',
+
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Dubbele bestaanden zeuken',
 'fileduplicatesearch-summary' => 'Dubbele bestaanden zeuken op baosis van de hashweerde.',
@@ -3828,7 +3840,7 @@ Samen mit dit programma heur je n [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van de
 'specialpages-group-highuse' => 'Veulgebruukten ziejen',
 'specialpages-group-pages' => 'Liesten mit ziejen',
 'specialpages-group-pagetools' => 'Ziedhulpmiddels',
-'specialpages-group-wiki' => 'Wikigegevens en -hulpmiddels',
+'specialpages-group-wiki' => 'Gegevens en hulpmiddels',
 'specialpages-group-redirects' => 'Deurverwiezende spesiale ziejen',
 'specialpages-group-spam' => 'Hulpmiddels tegen ongewunste bewarkingen',
 
@@ -3893,6 +3905,7 @@ Samen mit dit programma heur je n [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van de
 'htmlform-selectorother-other' => 'Aanders',
 'htmlform-no' => 'Nee',
 'htmlform-yes' => 'Ja',
+'htmlform-chosen-placeholder' => 'Kies n opsie',
 
 # SQLite database support
 'sqlite-has-fts' => 'Versie $1 mit ondersteuning veur "full-text" zeuken',
