@@ -48,17 +48,16 @@
  * @ingroup FileAbstraction
  */
 abstract class File {
+	// Bitfield values akin to the Revision deletion constants
 	const DELETED_FILE = 1;
 	const DELETED_COMMENT = 2;
 	const DELETED_USER = 4;
 	const DELETED_RESTRICTED = 8;
 
-	/** Force rendering in the current process */
+	// Force rendering in the current process
 	const RENDER_NOW = 1;
-	/**
-	 * Force rendering even if thumbnail already exist and using RENDER_NOW
-	 * I.e. you have to pass both flags: File::RENDER_NOW | File::RENDER_FORCE
-	 */
+	// Force rendering even if thumbnail already exist and using RENDER_NOW
+	// I.e. you have to pass both flags: File::RENDER_NOW | File::RENDER_FORCE
 	const RENDER_FORCE = 2;
 
 	const DELETE_SOURCE = 1;
@@ -1499,7 +1498,7 @@ abstract class File {
 	 * Is this file a "deleted" file in a private archive?
 	 * STUB
 	 *
-	 * @param $field
+	 * @param integer $field one of DELETED_* bitfield constants
 	 *
 	 * @return bool
 	 */
