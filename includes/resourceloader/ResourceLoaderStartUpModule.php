@@ -118,6 +118,75 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	}
 
 	/**
+	 * Recursively get all explicit and implicit dependencies for to the given module.
+	 *
+	 * @param array $registryData
+	 * @param string $moduleName
+	 * @return array
+	 */
+	protected static function getImplicitDependencies( Array $registryData, $moduleName ) {
+		static $dependencyCache = array();
+
+		// The list of implicit dependencies won't be altered, so we can
+		// cache them without having to worry.
+		if ( !isset( $dependencyCache[$moduleName] ) ) {
+
+			if ( !isset( $registryData[$moduleName] ) ) {
+				// Dependencies may not exist
+				$dependencyCache[$moduleName] = array();
+			} else {
+				$data = $registryData[$moduleName];
+				$dependencyCache[$moduleName] = $data['dependencies'];
+
+				foreach ( $data['dependencies'] as $dependency ) {
+					// Recursively get the dependencies of the dependencies
+					$dependencyCache[$moduleName] = array_merge(
+						$dependencyCache[$moduleName],
+						self::getImplicitDependencies( $registryData, $dependency )
+					);
+				}
+			}
+		}
+
+		return $dependencyCache[$moduleName];
+	}
+
+	/**
+	 * Optimize the dependency tree in $this->modules and return it.
+	 *
+	 * The optimization basically works like this:
+	 *	Given we have module A with the dependencies B and C
+	 *		and module B with the dependency C.
+	 *	Now we don't have to tell the client to explicitly fetch module
+	 *		C as that's already included in module B.
+	 *
+	 * This way we can reasonably reduce the amout of module registration
+	 * data send to the client.
+	 *
+	 * @param Array &$registryData Modules keyed by name with properties:
+	 *  - string 'version'
+	 *  - array 'dependencies'
+	 *  - string|null 'group'
+	 *  - string 'source'
+	 *  - string|false 'loader'
+	 */
+	public static function compileUnresolvedDependencies( Array &$registryData ) {
+		foreach ( $registryData as $name => &$data ) {
+			if ( $data['loader'] !== false ) {
+				continue;
+			}
+			$dependencies = $data['dependencies'];
+			foreach ( $data['dependencies'] as $dependency ) {
+				$implicitDependencies = self::getImplicitDependencies( $registryData, $dependency );
+				$dependencies = array_diff( $dependencies, $implicitDependencies );
+			}
+			// Rebuild keys
+			$data['dependencies'] = array_values( $dependencies );
+		}
+	}
+
+
+	/**
 	 * Get registration code for all modules.
 	 *
 	 * @param ResourceLoaderContext $context object
@@ -156,6 +225,8 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 				'loader' => $module->getLoaderScript(),
 			);
 		}
+
+		self::compileUnresolvedDependencies( $registryData );
 
 		// Register sources
 		$out .= ResourceLoader::makeLoaderSourcesScript( $resourceLoader->getSources() );
