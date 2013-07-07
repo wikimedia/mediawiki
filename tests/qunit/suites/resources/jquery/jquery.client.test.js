@@ -34,11 +34,29 @@
 				profile: {
 					name: 'msie',
 					layout: 'trident',
-					layoutVersion: 'unknown', // should be able to report 6?
+					layoutVersion: 6,
 					platform: 'win',
 					version: '10.0',
 					versionBase: '10',
 					versionNumber: 10
+				},
+				wikiEditor: {
+					ltr: true,
+					rtl: true
+				}
+			},
+			// Internet Explorer 11
+			'Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv 11.0) like Gecko': {
+				title: 'Internet Explorer 11',
+				platform: 'Win32',
+				profile: {
+					name: 'msie',
+					layout: 'trident',
+					layoutVersion: 7,
+					platform: 'win',
+					version: '11.0',
+					versionBase: '11',
+					versionNumber: 11
 				},
 				wikiEditor: {
 					ltr: true,
