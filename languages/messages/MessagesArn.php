@@ -520,7 +520,6 @@ Rulpakünuy feychi kangelkülelu dungu.",
 'recentchangeslinked' => 'Koneltuyelelu kalekünulu wirin',
 'recentchangeslinked-toolbox' => 'Koneltuyelelu kalekünulu wirin',
 'recentchangeslinked-title' => 'Koneltuyelelu kalekünun tuwküleyelu "$1"',
-'recentchangeslinked-noresult' => 'Nülkükawlelu wülngiñ kalekünulay.',
 'recentchangeslinked-summary' => "Tüfachi wif niey pu wülngiñ kalekünulu ka nülkükawlelu kiñe feypingechi wülngiñ (kam nülkükawlelu feypingechi trokiñ).
 [[Special:Watchlist|Tami llaytun wif]] ñi pu wülngiñ '''kurükünuley'''.",
 'recentchangeslinked-page' => 'Wülngiñ ñi üy:',

@@ -230,7 +230,6 @@ $messages = array(
 'disclaimers' => 'དགག་བྱ།',
 'disclaimerpage' => 'Project:སྤྱིའི་དགག་བྱ།',
 'edithelp' => 'རྩོམ་སྒྲིག་རོགས་རམ།',
-'edithelppage' => 'Help:རྩོམ་སྒྲིག',
 'helppage' => 'Help:ནང་དོན་',
 'mainpage' => 'གཙོ་ངོས།',
 'mainpage-description' => 'གཙོ་ངོས།',

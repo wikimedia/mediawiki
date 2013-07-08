@@ -502,7 +502,6 @@ Legend: '''({{int:cur}})''' = difference with latest revision, '''({{int:last}})
 'recentchangeslinked' => 'Şuḥlofe bFaṭoṭe masre',
 'recentchangeslinked-toolbox' => 'Şuḥlofe bFaṭoṭe masre',
 'recentchangeslinked-title' => 'Şuḥlofe bFaṭoṭe dkıtne masre b$1',
-'recentchangeslinked-noresult' => 'No changes on linked pages during the given period.',
 'recentchangeslinked-summary' => "This is a list of changes made recently to pages linked from a specified page (or to members of a specified category).
 Pages on [[Special:Watchlist|your watchlist]] are '''bold'''.",
 'recentchangeslinked-page' => 'Işmo diFaṭo',

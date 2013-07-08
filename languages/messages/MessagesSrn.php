@@ -744,7 +744,6 @@ A kan ben trowe efu dribi.
 'recentchangeslinked-feed' => 'Kenki di abi wan sani fu du nanga disi',
 'recentchangeslinked-toolbox' => 'Kenki di abi wan sani fu du nanga disi',
 'recentchangeslinked-title' => 'Kenki di abi wan sani fu du nanga "$1"',
-'recentchangeslinked-noresult' => 'Noti ben kenki ini den miti papira ini a pisi di gi.',
 'recentchangeslinked-summary' => "A spesrutu papira disi e sori den laste kenki di ben meki tapu papira di miti tapu wan papira di sori (noso go na memre fu wan grupu di sori).
 Papira ini [[Special:Watchlist|yu Tan Luku réy]] '''fatu'''.",
 

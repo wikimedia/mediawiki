@@ -636,7 +636,6 @@ Spróbùjë szëkbë z przëdôwkã ''all:'' dlô całowny zamkłoscë starnów 
 'prefs-reset-intro' => 'Na ti starnie mòże doprowôdzëc nazôd domëslné nastôwë dlô ti starnë.
 Negò dzéjaniô ni mòżé pòzdze ju copnąc.',
 'prefs-emailconfirm-label' => 'Pòcwierdzenié e-mailowi adresë:',
-'prefs-textboxsize' => 'Miara edicjowégò òkna',
 'youremail' => 'E-mail:',
 'username' => 'Miono brëkòwnika:',
 'uid' => 'ID brëkòwnika:',

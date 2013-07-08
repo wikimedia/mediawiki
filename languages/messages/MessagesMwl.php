@@ -681,7 +681,6 @@ Causo l çponiblizes, este será outelizado pa te dar crédito pul tou trabalho.
 'recentchangeslinked-feed' => 'Alterações relacionadas',
 'recentchangeslinked-toolbox' => 'Alterações relacionadas',
 'recentchangeslinked-title' => 'Altaraçones que ténen a ber cun "$1"',
-'recentchangeslinked-noresult' => 'Nun houbo alteraçones an páiginas relacionadas ne l anterbalo de tiempo.',
 'recentchangeslinked-summary' => "Esta páigina special amostra las redadeiras altaraçones de páiginas que téngan ua lhigaçon a outra (ó de nembros dua catadorie speceficada).
 Páiginas que steian ne ls [[Special:Watchlist|tous begiados]] son amostradas an '''negrito'''.",
 'recentchangeslinked-page' => 'Nome de la páigina:',

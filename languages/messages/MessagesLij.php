@@ -802,7 +802,6 @@ Legenda: (corr) = differense co-a verscion corrente, (prec) = differense co-a ve
 'recentchangeslinked-feed' => 'Cangiamenti correlæ',
 'recentchangeslinked-toolbox' => 'Cangiaménti corelæ',
 'recentchangeslinked-title' => 'Modiffiche correlæ a "$1"',
-'recentchangeslinked-noresult' => 'Nisciûn cangiamento a-e paggine collegæ into periodo speçificòu.',
 'recentchangeslinked-summary' => "Sta pàgina a fa védde i cangiaménti ciù reçenti a-e pàgine colegæ a questa.
 E pàgine che t'æ in oservaçion inti [[Special:Watchlist|oservæ speciâli]] son in '''grascetto'''.",
 'recentchangeslinked-page' => 'Nómme da pàgina:',

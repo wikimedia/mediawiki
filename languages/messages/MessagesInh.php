@@ -672,7 +672,6 @@ $messages = array(
 'recentchangeslinked-feed' => 'Гаргалон хувцамаш',
 'recentchangeslinked-toolbox' => 'Гаргалон хувцамаш',
 'recentchangeslinked-title' => '$1ца хьалаьца хувцамаш',
-'recentchangeslinked-noresult' => 'Укх заманашка гаргарон оагIувнаш тIа хувцамаш хиннаяц.',
 'recentchangeslinked-summary' => "Ер, Iинк яь йола оагIув (е укх цатегачу чуйоагIараш), дукха ха йоацаш хьийца оагIувнашкий дагарле я.
 [[Special:Watchlist|Шун теркама дагарленашках]] чуйоагIа оагIувнаш '''белгалаяь я'''.",
 'recentchangeslinked-page' => 'ОагIува цIи',

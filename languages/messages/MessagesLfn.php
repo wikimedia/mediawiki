@@ -526,7 +526,6 @@ La arcivo de sutraes per esta paje es asi per conveni:",
 'recentchangeslinked-feed' => 'Cambias relateda',
 'recentchangeslinked-toolbox' => 'Cambias relateda',
 'recentchangeslinked-title' => 'Cambias relatada a "$1"',
-'recentchangeslinked-noresult' => 'No cambias de pajes liada entre esta periodo.',
 'recentchangeslinked-summary' => "Esta lista conteni la cambias plu resente de la pajes liada a otra (o de la membros de un categoria).
 Pajes a [[Special:Watchlist|tu lista de pajes oservada]] es en leteras '''forte'''.",
 'recentchangeslinked-page' => 'Nom de la paje:',

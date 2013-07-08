@@ -210,7 +210,6 @@ $messages = array(
 'newmessageslink' => 'jaunus viestejumus',
 'newmessagesdifflink' => 'pādejā pataise',
 'editsection' => 'pataiseit',
-'editsection-brackets' => '[$1]',
 'editold' => 'pataiseit',
 'editlink' => 'pataiseit',
 'viewsourcelink' => 'Apsavērt suokūtnejū kodu',

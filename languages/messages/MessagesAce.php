@@ -797,7 +797,6 @@ Ceunatat: (bida) = neuubah, (riwayat) = riwayat teumuléh, '''B''' = ôn barô, 
 'recentchangeslinked-feed' => 'Neuubah meuhubông',
 'recentchangeslinked-toolbox' => 'Neuubah meuhubông',
 'recentchangeslinked-title' => 'Neuubah nyang meuhubông ngön $1',
-'recentchangeslinked-noresult' => 'Hana neu’ubah bak ôn-ôn meuhubông silawét masa nyang ka geupeuteuntèë.',
 'recentchangeslinked-summary' => "Nyoë nakeuh dapeuta neuubah nyang geupeugèt ban-ban nyoë keu on-on nyang meuhubông nibak ôn ka kusuih (atawa keu anggèëta kawan kusuih).
 Ôn-ôn bak [[Special:Watchlist|keunalon droeneuh]] geucitak '''teubay'''.",
 'recentchangeslinked-page' => 'Nan ôn:',

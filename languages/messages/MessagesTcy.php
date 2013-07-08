@@ -265,7 +265,6 @@ $messages = array(
 'newmessagesdifflink' => 'ಕಡೆತ ಬದಲಾವಣೆ',
 'youhavenewmessagesmulti' => '$1 ಡ್ ಇರೆಗ್ ಪೊಸ ಸಂದೇಶೊಲು ಉಂಡು',
 'editsection' => 'ಸಂಪಾದನೆ ಮಲ್ಪುಲೆ',
-'editsection-brackets' => '[$1]',
 'editold' => 'ಸಂಪಾದನೆ ಮಲ್ಪುಲೆ',
 'viewsourceold' => 'ಮೂಲೊನು ತೂಲೆ',
 'editlink' => 'ಎಡಿಟ್ ಮಲ್ಪುಲೆ',
@@ -686,7 +685,6 @@ $messages = array(
 'recentchangeslinked-feed' => 'ಸಂಬಂಧ ಉಪ್ಪುನಂಚಿನ ಬದಲಾವಣೆಲು',
 'recentchangeslinked-toolbox' => 'ಸಂಬಂಧ ಉಪ್ಪುನಂಚಿನ ಬದಲಾವಣೆಲು',
 'recentchangeslinked-title' => '"$1" ಪುಟೊಟು ಆತಿನ ಬದಲಾವಣೆಲು',
-'recentchangeslinked-noresult' => 'ಕೊರ್ತಿನ ಸಮಯೊಡು ಲಿಂಕ್ ಉಪ್ಪುನ ಪುಟೊಲೆಡ್ ಓವುಲಾ ಬದಲಾವಣೆಲು ಆತಿಜಿ.',
 'recentchangeslinked-summary' => "ಒಂಜಿ ನಿರ್ದಿಷ್ಟ ಪುಟೊರ್ದು (ಅತ್ತ್’ನ್ಡ ನಿರ್ದಿಷ್ಟ ವರ್ಗೊಗು ಸೇರ್ದಿನ ಪುಟೊಲೆರ್ದ್) ಸಂಪರ್ಕ ಉಪ್ಪುನ ಪುಟೊಲೆಡ್ ಇಂಚಿಪ ಮಲ್ತಿನಂಚಿನ ಬದಲಾವಣೆಲೆನ್ ತಿರ್ತ್ ಪಟ್ಟಿ ಮಲ್ಪೆರಾತ್’ನ್ಡ್.
 [[Special:Watchlist|ಇರೆನ ವೀಕ್ಷಣಾಪಟ್ಟಿಡ್]] ಉಪ್ಪುನ ಪುಟೊಲು '''ದಪ್ಪ ಅಕ್ಷರೊಡು''' ಉಂಡು.",
 'recentchangeslinked-page' => 'ಪುಟೊತ ಪುದರ್:',
