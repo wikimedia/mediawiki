@@ -26,11 +26,15 @@
  *
  * @since 1.21
  */
-class MappedIterator implements Iterator {
-	/** @var Iterator */
-	protected $baseIterator;
+class MappedIterator extends FilterIterator {
 	/** @var callable */
 	protected $vCallback;
+	/** @var callable */
+	protected $aCallback;
+	/** @var array */
+	protected $cache = array();
+
+	protected $rewound = false; // boolean; whether rewind() has been called
 
 	/**
 	 * Build an new iterator from a base iterator by having the former wrap the
@@ -38,59 +42,73 @@ class MappedIterator implements Iterator {
 	 * The callback takes the result of current() on the base iterator as an argument.
 	 * The keys of the base iterator are reused verbatim.
 	 *
+	 * An "accept" callback can also be provided which will be called for each value in
+	 * the base iterator (post-callback) and will return true if that value should be
+	 * included in iteration of the MappedIterator (otherwise it will be filtered out).
+	 *
 	 * @param Iterator|Array $iter
-	 * @param callable $vCallback
+	 * @param callable $vCallback Value transformation callback
+	 * @param array $options Options map (includes "accept") (since 1.22)
 	 * @throws MWException
 	 */
-	public function __construct( $iter, $vCallback ) {
+	public function __construct( $iter, $vCallback, array $options = array() ) {
 		if ( is_array( $iter ) ) {
-			$this->baseIterator = new ArrayIterator( $iter );
+			$baseIterator = new ArrayIterator( $iter );
 		} elseif ( $iter instanceof Iterator ) {
-			$this->baseIterator = $iter;
+			$baseIterator = $iter;
 		} else {
 			throw new MWException( "Invalid base iterator provided." );
 		}
+		parent::__construct( $baseIterator );
 		$this->vCallback = $vCallback;
+		$this->aCallback = isset( $options['accept'] ) ? $options['accept'] : null;
 	}
 
-	/**
-	 * @return void
-	 */
-	public function rewind() {
-		$this->baseIterator->rewind();
-	}
-
-	/**
-	 * @return Mixed|null Returns null if out of range
-	 */
-	public function current() {
-		if ( !$this->baseIterator->valid() ) {
-			return null; // out of range
-		}
-		return call_user_func_array( $this->vCallback, array( $this->baseIterator->current() ) );
-	}
-
-	/**
-	 * @return Mixed|null Returns null if out of range
-	 */
-	public function key() {
-		if ( !$this->baseIterator->valid() ) {
-			return null; // out of range
-		}
-		return $this->baseIterator->key();
-	}
-
-	/**
-	 * @return void
-	 */
 	public function next() {
-		$this->baseIterator->next();
+		$this->cache = array();
+		parent::next();
+	}
+
+	public function rewind() {
+		$this->rewound = true;
+		$this->cache = array();
+		parent::rewind();
+	}
+
+	public function accept() {
+		$value = call_user_func( $this->vCallback, $this->getInnerIterator()->current() );
+		$ok = ( $this->aCallback ) ? call_user_func( $this->aCallback, $value ) : true;
+		if ( $ok ) {
+			$this->cache['current'] = $value;
+		}
+		return $ok;
+	}
+
+	public function key() {
+		$this->init();
+		return parent::key();
+	}
+
+	public function valid() {
+		$this->init();
+		return parent::valid();
+	}
+
+	public function current() {
+		$this->init();
+		if ( parent::valid() ) {
+			return $this->cache['current'];
+		} else {
+			return null; // out of range
+		}
 	}
 
 	/**
-	 * @return bool
+	 * Obviate the usual need for rewind() before using a FilterIterator in a manual loop
 	 */
-	public function valid() {
-		return $this->baseIterator->valid();
+	protected function init() {
+		if ( !$this->rewound ) {
+			$this->rewind();
+		}
 	}
 }
