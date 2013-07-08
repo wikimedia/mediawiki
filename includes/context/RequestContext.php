@@ -417,7 +417,9 @@ class RequestContext implements IContextSource {
 	 * This will setup the session from the given ID. This is useful when
 	 * background scripts inherit context when acting on behalf of a user.
 	 *
-	 * $param array $params Result of RequestContext::exportSession()
+	 * @note suhosin.session.encrypt may interfere with this method.
+	 *
+	 * @param array $params Result of RequestContext::exportSession()
 	 * @return ScopedCallback
 	 * @throws MWException
 	 * @since 1.21
