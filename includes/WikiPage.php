@@ -2071,7 +2071,9 @@ class WikiPage implements Page, IDBAccessObject {
 
 		// Update the links tables and other secondary data
 		if ( $content ) {
-			$updates = $content->getSecondaryDataUpdates( $this->getTitle(), null, true, $editInfo->output );
+			$recursive = $options['changed']; // bug 50785
+			$updates = $content->getSecondaryDataUpdates(
+				$this->getTitle(), null, $recursive, $editInfo->output );
 			DataUpdate::runUpdates( $updates );
 		}
 
