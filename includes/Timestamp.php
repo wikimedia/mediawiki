@@ -114,7 +114,7 @@ class MWTimestamp {
 			# asctime
 			$strtime = $ts;
 		} else {
-			throw new TimestampException( __METHOD__ . " : Invalid timestamp - $ts" );
+			throw new TimestampException( __METHOD__ . ": Invalid timestamp - $ts" );
 		}
 
 		if ( !$strtime ) {
@@ -126,11 +126,11 @@ class MWTimestamp {
 		try {
 			$final = new DateTime( $strtime, new DateTimeZone( 'GMT' ) );
 		} catch ( Exception $e ) {
-			throw new TimestampException( __METHOD__ . ' Invalid timestamp format.' );
+			throw new TimestampException( __METHOD__ . ': Invalid timestamp format.', $e->getCode(), $e );
 		}
 
 		if ( $final === false ) {
-			throw new TimestampException( __METHOD__ . ' Invalid timestamp format.' );
+			throw new TimestampException( __METHOD__ . ': Invalid timestamp format.' );
 		}
 		$this->timestamp = $final;
 	}
@@ -149,7 +149,7 @@ class MWTimestamp {
 	 */
 	public function getTimestamp( $style = TS_UNIX ) {
 		if ( !isset( self::$formats[$style] ) ) {
-			throw new TimestampException( __METHOD__ . ' : Illegal timestamp output type.' );
+			throw new TimestampException( __METHOD__ . ': Illegal timestamp output type.' );
 		}
 
 		$output = $this->timestamp->format( self::$formats[$style] );
@@ -301,7 +301,7 @@ class MWTimestamp {
 		try {
 			$this->timestamp->setTimezone( new DateTimeZone( $timezone ) );
 		} catch ( Exception $e ) {
-			throw new TimestampException( __METHOD__ . ' Invalid timezone.' );
+			throw new TimestampException( __METHOD__ . ': Invalid timezone.', $e->getCode(), $e );
 		}
 	}
 
