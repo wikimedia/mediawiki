@@ -134,24 +134,24 @@ class CheckLanguageCLI {
 	protected function getChecks() {
 		return array(
 			'untranslated' => 'getUntranslatedMessages',
-			'duplicate'    => 'getDuplicateMessages',
-			'obsolete'     => 'getObsoleteMessages',
-			'variables'    => 'getMessagesWithMismatchVariables',
-			'plural'       => 'getMessagesWithoutPlural',
-			'empty'        => 'getEmptyMessages',
-			'whitespace'   => 'getMessagesWithWhitespace',
-			'xhtml'        => 'getNonXHTMLMessages',
-			'chars'        => 'getMessagesWithWrongChars',
-			'links'        => 'getMessagesWithDubiousLinks',
-			'unbalanced'   => 'getMessagesWithUnbalanced',
-			'namespace'    => 'getUntranslatedNamespaces',
-			'projecttalk'  => 'getProblematicProjectTalks',
-			'magic'        => 'getUntranslatedMagicWords',
-			'magic-old'    => 'getObsoleteMagicWords',
-			'magic-over'   => 'getOverridingMagicWords',
-			'magic-case'   => 'getCaseMismatchMagicWords',
-			'special'      => 'getUntraslatedSpecialPages',
-			'special-old'  => 'getObsoleteSpecialPages',
+			'duplicate' => 'getDuplicateMessages',
+			'obsolete' => 'getObsoleteMessages',
+			'variables' => 'getMessagesWithMismatchVariables',
+			'plural' => 'getMessagesWithoutPlural',
+			'empty' => 'getEmptyMessages',
+			'whitespace' => 'getMessagesWithWhitespace',
+			'xhtml' => 'getNonXHTMLMessages',
+			'chars' => 'getMessagesWithWrongChars',
+			'links' => 'getMessagesWithDubiousLinks',
+			'unbalanced' => 'getMessagesWithUnbalanced',
+			'namespace' => 'getUntranslatedNamespaces',
+			'projecttalk' => 'getProblematicProjectTalks',
+			'magic' => 'getUntranslatedMagicWords',
+			'magic-old' => 'getObsoleteMagicWords',
+			'magic-over' => 'getOverridingMagicWords',
+			'magic-case' => 'getCaseMismatchMagicWords',
+			'special' => 'getUntraslatedSpecialPages',
+			'special-old' => 'getObsoleteSpecialPages',
 		);
 	}
 
@@ -163,14 +163,14 @@ class CheckLanguageCLI {
 	 */
 	protected function getTotalCount() {
 		return array(
-			'namespace'    => array( 'getNamespaceNames', 'en' ),
-			'projecttalk'  => null,
-			'magic'        => array( 'getMagicWords', 'en' ),
-			'magic-old'    => array( 'getMagicWords', null ),
-			'magic-over'   => array( 'getMagicWords', null ),
-			'magic-case'   => array( 'getMagicWords', null ),
-			'special'      => array( 'getSpecialPageAliases', 'en' ),
-			'special-old'  => array( 'getSpecialPageAliases', null ),
+			'namespace' => array( 'getNamespaceNames', 'en' ),
+			'projecttalk' => null,
+			'magic' => array( 'getMagicWords', 'en' ),
+			'magic-old' => array( 'getMagicWords', null ),
+			'magic-over' => array( 'getMagicWords', null ),
+			'magic-case' => array( 'getMagicWords', null ),
+			'special' => array( 'getSpecialPageAliases', 'en' ),
+			'special-old' => array( 'getSpecialPageAliases', null ),
 		);
 	}
 
@@ -181,24 +181,24 @@ class CheckLanguageCLI {
 	protected function getDescriptions() {
 		return array(
 			'untranslated' => '$1 message(s) of $2 are not translated to $3, but exist in en:',
-			'duplicate'    => '$1 message(s) of $2 are translated the same in en and $3:',
-			'obsolete'     => '$1 message(s) of $2 do not exist in en or are in the ignore list, but exist in $3:',
-			'variables'    => '$1 message(s) of $2 in $3 don\'t match the variables used in en:',
-			'plural'       => '$1 message(s) of $2 in $3 don\'t use {{plural}} while en uses:',
-			'empty'        => '$1 message(s) of $2 in $3 are empty or -:',
-			'whitespace'   => '$1 message(s) of $2 in $3 have trailing whitespace:',
-			'xhtml'        => '$1 message(s) of $2 in $3 contain illegal XHTML:',
-			'chars'        => '$1 message(s) of $2 in $3 include hidden chars which should not be used in the messages:',
-			'links'        => '$1 message(s) of $2 in $3 have problematic link(s):',
-			'unbalanced'   => '$1 message(s) of $2 in $3 have unbalanced {[]}:',
-			'namespace'    => '$1 namespace name(s) of $2 are not translated to $3, but exist in en:',
-			'projecttalk'  => '$1 namespace name(s) and alias(es) in $3 are project talk namespaces without the parameter:',
-			'magic'        => '$1 magic word(s) of $2 are not translated to $3, but exist in en:',
-			'magic-old'    => '$1 magic word(s) of $2 do not exist in en, but exist in $3:',
-			'magic-over'   => '$1 magic word(s) of $2 in $3 do not contain the original en word(s):',
-			'magic-case'   => '$1 magic word(s) of $2 in $3 change the case-sensitivity of the original en word:',
-			'special'      => '$1 special page alias(es) of $2 are not translated to $3, but exist in en:',
-			'special-old'  => '$1 special page alias(es) of $2 do not exist in en, but exist in $3:',
+			'duplicate' => '$1 message(s) of $2 are translated the same in en and $3:',
+			'obsolete' => '$1 message(s) of $2 do not exist in en or are in the ignore list, but exist in $3:',
+			'variables' => '$1 message(s) of $2 in $3 don\'t match the variables used in en:',
+			'plural' => '$1 message(s) of $2 in $3 don\'t use {{plural}} while en uses:',
+			'empty' => '$1 message(s) of $2 in $3 are empty or -:',
+			'whitespace' => '$1 message(s) of $2 in $3 have trailing whitespace:',
+			'xhtml' => '$1 message(s) of $2 in $3 contain illegal XHTML:',
+			'chars' => '$1 message(s) of $2 in $3 include hidden chars which should not be used in the messages:',
+			'links' => '$1 message(s) of $2 in $3 have problematic link(s):',
+			'unbalanced' => '$1 message(s) of $2 in $3 have unbalanced {[]}:',
+			'namespace' => '$1 namespace name(s) of $2 are not translated to $3, but exist in en:',
+			'projecttalk' => '$1 namespace name(s) and alias(es) in $3 are project talk namespaces without the parameter:',
+			'magic' => '$1 magic word(s) of $2 are not translated to $3, but exist in en:',
+			'magic-old' => '$1 magic word(s) of $2 do not exist in en, but exist in $3:',
+			'magic-over' => '$1 magic word(s) of $2 in $3 do not contain the original en word(s):',
+			'magic-case' => '$1 magic word(s) of $2 in $3 change the case-sensitivity of the original en word:',
+			'special' => '$1 special page alias(es) of $2 are not translated to $3, but exist in en:',
+			'special-old' => '$1 special page alias(es) of $2 do not exist in en, but exist in $3:',
 		);
 	}
 
@@ -299,6 +299,7 @@ ENDS;
 	 */
 	protected function getCheckBlacklist() {
 		global $checkBlacklist;
+
 		return $checkBlacklist;
 	}
 
@@ -313,6 +314,7 @@ ENDS;
 		$results = array();
 		if ( $this->level === 0 ) {
 			$this->L->getMessages( $code );
+
 			return $results;
 		}
 
@@ -320,7 +322,8 @@ ENDS;
 		$checkBlacklist = $this->getCheckBlacklist();
 		foreach ( $this->checks as $check ) {
 			if ( isset( $checkBlacklist[$code] ) &&
-				in_array( $check, $checkBlacklist[$code] ) ) {
+				in_array( $check, $checkBlacklist[$code] )
+			) {
 				$results[$check] = array();
 				continue;
 			}
@@ -427,7 +430,6 @@ ENDS;
 				} else {
 					$numbers[] = $count;
 				}
-
 			}
 
 			if ( count( $detailTextForLangChecks ) ) {
@@ -470,6 +472,7 @@ EOL;
 				}
 			}
 		}
+
 		return true;
 	}
 }
@@ -675,48 +678,48 @@ ENDS;
 # Blacklist some checks for some languages
 $checkBlacklist = array(
 #'code'        => array( 'check1', 'check2' ... )
-'az'           => array( 'plural' ),
-'bo'           => array( 'plural' ),
-'dz'           => array( 'plural' ),
-'id'           => array( 'plural' ),
-'fa'           => array( 'plural' ),
-'gan'          => array( 'plural' ),
-'gan-hans'     => array( 'plural' ),
-'gan-hant'     => array( 'plural' ),
-'gn'           => array( 'plural' ),
-'hak'          => array( 'plural' ),
-'hu'           => array( 'plural' ),
-'ja'           => array( 'plural' ), // Does not use plural
-'jv'           => array( 'plural' ),
-'ka'           => array( 'plural' ),
-'kk-arab'      => array( 'plural' ),
-'kk-cyrl'      => array( 'plural' ),
-'kk-latn'      => array( 'plural' ),
-'km'           => array( 'plural' ),
-'kn'           => array( 'plural' ),
-'ko'           => array( 'plural' ),
-'lzh'          => array( 'plural' ),
-'mn'           => array( 'plural' ),
-'ms'           => array( 'plural' ),
-'my'           => array( 'plural', 'chars' ),  // Uses a lot zwnj
-'sah'          => array( 'plural' ),
-'sq'           => array( 'plural' ),
-'tet'          => array( 'plural' ),
-'th'           => array( 'plural' ),
-'to'           => array( 'plural' ),
-'tr'           => array( 'plural' ),
-'vi'           => array( 'plural' ),
-'wuu'          => array( 'plural' ),
-'xmf'          => array( 'plural' ),
-'yo'           => array( 'plural' ),
-'yue'          => array( 'plural' ),
-'zh'           => array( 'plural' ),
-'zh-classical' => array( 'plural' ),
-'zh-cn'        => array( 'plural' ),
-'zh-hans'      => array( 'plural' ),
-'zh-hant'      => array( 'plural' ),
-'zh-hk'        => array( 'plural' ),
-'zh-sg'        => array( 'plural' ),
-'zh-tw'        => array( 'plural' ),
-'zh-yue'       => array( 'plural' ),
+	'az' => array( 'plural' ),
+	'bo' => array( 'plural' ),
+	'dz' => array( 'plural' ),
+	'id' => array( 'plural' ),
+	'fa' => array( 'plural' ),
+	'gan' => array( 'plural' ),
+	'gan-hans' => array( 'plural' ),
+	'gan-hant' => array( 'plural' ),
+	'gn' => array( 'plural' ),
+	'hak' => array( 'plural' ),
+	'hu' => array( 'plural' ),
+	'ja' => array( 'plural' ), // Does not use plural
+	'jv' => array( 'plural' ),
+	'ka' => array( 'plural' ),
+	'kk-arab' => array( 'plural' ),
+	'kk-cyrl' => array( 'plural' ),
+	'kk-latn' => array( 'plural' ),
+	'km' => array( 'plural' ),
+	'kn' => array( 'plural' ),
+	'ko' => array( 'plural' ),
+	'lzh' => array( 'plural' ),
+	'mn' => array( 'plural' ),
+	'ms' => array( 'plural' ),
+	'my' => array( 'plural', 'chars' ), // Uses a lot zwnj
+	'sah' => array( 'plural' ),
+	'sq' => array( 'plural' ),
+	'tet' => array( 'plural' ),
+	'th' => array( 'plural' ),
+	'to' => array( 'plural' ),
+	'tr' => array( 'plural' ),
+	'vi' => array( 'plural' ),
+	'wuu' => array( 'plural' ),
+	'xmf' => array( 'plural' ),
+	'yo' => array( 'plural' ),
+	'yue' => array( 'plural' ),
+	'zh' => array( 'plural' ),
+	'zh-classical' => array( 'plural' ),
+	'zh-cn' => array( 'plural' ),
+	'zh-hans' => array( 'plural' ),
+	'zh-hant' => array( 'plural' ),
+	'zh-hk' => array( 'plural' ),
+	'zh-sg' => array( 'plural' ),
+	'zh-tw' => array( 'plural' ),
+	'zh-yue' => array( 'plural' ),
 );
