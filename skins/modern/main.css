@@ -514,6 +514,7 @@ div.magnify {
 	float: right;
 	border: none !important;
 	background: none !important;
+	margin-left: 3px;
 }
 div.magnify a, div.magnify img {
 	display: block;
