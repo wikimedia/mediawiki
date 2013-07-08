@@ -302,6 +302,7 @@ changes to languages because of Bugzilla reports.
 * (bug 48256) The 'editsection-brackets' optional message was removed.
   Section edit links' brackets can now be customized using CSS by
   styling span.mw-editsection-bracket.
+* The usePatrol function in ChangesList has been marked as deprecated.
 
 == Compatibility ==
 
