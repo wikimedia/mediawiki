@@ -1622,8 +1622,8 @@ Legend: '''({{int:cur}})''' = difference with latest revision, '''({{int:last}})
 'history-fieldset-title' => 'Browse history',
 'history-show-deleted'   => 'Deleted only',
 'history_copyright'      => '-', # do not translate or duplicate this message to other languages
-'histfirst'              => 'Earliest',
-'histlast'               => 'Latest',
+'histfirst'              => 'oldest',
+'histlast'               => 'newest',
 'historysize'            => '({{PLURAL:$1|1 byte|$1 bytes}})',
 'historyempty'           => '(empty)',
 
