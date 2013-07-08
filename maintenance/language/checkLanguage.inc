@@ -680,6 +680,7 @@ $checkBlacklist = array(
 #'code'        => array( 'check1', 'check2' ... )
 	'az' => array( 'plural' ),
 	'bo' => array( 'plural' ),
+	'cdo' => array( 'plural' ),
 	'dz' => array( 'plural' ),
 	'id' => array( 'plural' ),
 	'fa' => array( 'plural' ),
