@@ -323,6 +323,9 @@ $wgAllowImageMoving = true;
  * Enable deferred upload tasks that use the job queue.
  * Only enable this if job runners are set up for both the
  * 'AssembleUploadChunks' and 'PublishStashedFile' job types.
+ *
+ * @note If you use suhosin, this setting is incompatible with
+ *   suhosin.session.encrypt.
  */
 $wgEnableAsyncUploads = false;
 
