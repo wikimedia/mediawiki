@@ -760,7 +760,6 @@ Hinumdomi nga ang ilang indeks sa sulod sa {{SITENAME}} mahimong dugay-dugay na.
 'resetprefs' => 'Limpyohi ang wala matipigi nga mga kausaban',
 'restoreprefs' => 'Ibalik ang tanang default settings',
 'prefs-editing' => 'Nagausab',
-'prefs-edit-boxsize' => 'Size sa edit window.',
 'rows' => 'Mga row:',
 'columns' => 'Mga kolum:',
 'searchresultshead' => 'Pangitaa',
@@ -799,7 +798,6 @@ Hinumdomi nga ang ilang indeks sa sulod sa {{SITENAME}} mahimong dugay-dugay na.
 'prefs-reset-intro' => 'Puyde nimo gamiton ang kining panid aron ma-reset ang imong mga preprensiya ngadto sa default sa sayt.
 Dili kini puyde mabalik.',
 'prefs-emailconfirm-label' => 'Kompirmasyon sa e-mail:',
-'prefs-textboxsize' => 'Size sa editing window',
 'youremail' => 'E-mail:',
 'username' => 'Username:',
 'uid' => 'ID sa gumagamit:',

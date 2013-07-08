@@ -484,7 +484,6 @@ Proovvi lizät etsün alkuu ''all:'', nii ettsü etsib kõikkõõ sisältoo (taa
 'recentchangeslinked-feed' => 'Sukulaizõd muutussõd',
 'recentchangeslinked-toolbox' => 'Sukulaizõd muutussõd',
 'recentchangeslinked-title' => 'Cüľľelt $1 linkitettüďďe cülcije muutuhsõd.',
-'recentchangeslinked-noresult' => 'Cüseizez aigakõhaz eväd õltu milliziitäid muuttumiziit.',
 'recentchangeslinked-summary' => "Kase osoobennoi cülci näütteb muutusõd cülcillä, kummalõõ on seltä cüľľeltä näüteltü.
 Cüľľed, kummad õmad teďďellä [[Special:Watchlist|kattsõspiizgalla]] on cirjuttõnnu '''pimmiässi'''.",
 'recentchangeslinked-page' => 'Cüľľee nimi:',

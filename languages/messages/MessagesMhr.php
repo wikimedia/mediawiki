@@ -670,7 +670,6 @@ $messages = array(
 'recentchangeslinked-feed' => 'Ваш кылдалтше тӧрлатымаш-влак',
 'recentchangeslinked-toolbox' => 'Ваш кылдалтше тӧрлатымаш-влак',
 'recentchangeslinked-title' => '"$1" лаштык дене кылдалтше тӧрлатымаш-влак',
-'recentchangeslinked-noresult' => 'Ончыктымо пагытыште кылдалтше лаштыклаште вашталтыш лийын огыл.',
 'recentchangeslinked-summary' => "Это список недавних изменений в страницах, на которые ссылается указанная страница (или входящих в указанную категорию).
 Страницы, входящие в [[Special:Watchlist|ваш список наблюдения]] '''выделены'''.",
 'recentchangeslinked-page' => 'Лаштыкын лӱмжӧ:',

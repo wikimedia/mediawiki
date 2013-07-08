@@ -582,7 +582,6 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'recentchangeslinked-feed' => 'لاڳاپيل تبديليون',
 'recentchangeslinked-toolbox' => 'لاڳاپيل تبديليون',
 'recentchangeslinked-title' => '"$1" سان لاڳاپيل تبديليون',
-'recentchangeslinked-noresult' => 'ڄاڻايل مدي دوران ڳنڍيل صفحن ۾ ڪا به تبديلي ناهي ٿي.',
 
 # Upload
 'upload' => 'فائيل چاڙهيو',

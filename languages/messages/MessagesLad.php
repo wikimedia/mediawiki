@@ -792,7 +792,6 @@ Las búsquedas producen más o munco a buscar biervos comunes como «la» o «de
 'recentchangeslinked-feed' => 'Trocamientos conectados',
 'recentchangeslinked-toolbox' => 'Trocamientos relatados',
 'recentchangeslinked-title' => 'Los trocamientos relacionados con "$1"',
-'recentchangeslinked-noresult' => 'Sin trokamientos en las ójas atadas en la data demandada',
 'recentchangeslinked-summary' => "Esto es la lista de los trocamientos de alcavo de las hojas que relatan á una hoja spēcifik (ou de los miembros de la katēggoría spēcifikada).
 Las hojas en tu [[Special:Watchlist|lista de akavidamiento]] son escritas '''con letras grexas'''.",
 'recentchangeslinked-page' => 'Nombre de la hoja',

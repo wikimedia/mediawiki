@@ -723,6 +723,8 @@ $2',
 'customjsprotected' => 'Bạn không có quyền sửa đổi trang JavaScript này vì nó chứa các tùy chọn cá nhân của một thành viên khác.',
 'mycustomcssprotected' => 'Bạn không có quyền sửa đổi trang CSS này.',
 'mycustomjsprotected' => 'Bạn không có quyền sửa đổi trang JavaScript này.',
+'myprivateinfoprotected' => 'Bạn không có quyền sửa đổi thông tin cá nhân của bạn.',
+'mypreferencesprotected' => 'Bạn không có quyền thay đổi tùy chọn của bạn.',
 'ns-specialprotected' => 'Không thể sửa chữa các trang trong không gian tên {{ns:special}}.',
 'titleprotected' => "Tựa đề này đã bị [[User:$1|$1]] khóa không cho tạo ra.
 Lý do được cung cấp là ''$2''.",
@@ -1037,9 +1039,9 @@ Xem chi tiết trong [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}
 * '''Opera:''' Xóa bộ nhớ đệm trong ''Công cụ → Sở thích'' (''Tools → Preferences'')",
 'usercssyoucanpreview' => "'''Mẹo:''' Sử dụng nút “{{int:showpreview}}” để kiểm thử bản CSS của bạn trước khi lưu trang.",
 'userjsyoucanpreview' => "'''Mẹo:''' Sử dụng nút “{{int:showpreview}}” để kiểm thử bản JS của bạn trước khi lưu trang.",
-'usercsspreview' => "'''Hãy nhớ rằng bạn chỉ đang xem thử trang CSS cá nhân của bạn.
+'usercsspreview' => "'''Hãy nhớ rằng bạn chỉ đang xem trước trang CSS cá nhân của bạn.
 Nó chưa được lưu!'''",
-'userjspreview' => "'''Nhớ rằng bạn chỉ đang kiểm thử/xem thử trang JavaScript, nó chưa được lưu!'''",
+'userjspreview' => "'''Nhớ rằng bạn chỉ đang kiểm thử/xem trước trang JavaScript, nó chưa được lưu!'''",
 'sitecsspreview' => "'''Nhớ rằng bạn chỉ đang xem trước bản CSS này.'''
 '''Nó chưa được lưu!'''",
 'sitejspreview' => "'''Nhớ rằng bạn chỉ đang xem trước bản JavaScript này.
@@ -1050,13 +1052,13 @@ Nó chưa được lưu!'''",
 'previewnote' => "'''Đây chỉ mới là bản xem trước.'''
 Các thay đổi của bạn vẫn chưa được lưu!",
 'continue-editing' => 'Đi đến hộp sửa đổi',
-'previewconflict' => 'Phần xem thử này là kết quả của văn bản trong vùng soạn thảo phía trên và nó sẽ xuất hiện như vậy nếu bạn chọn lưu trang.',
+'previewconflict' => 'Phần xem trước này là kết quả của văn bản trong vùng soạn thảo phía trên và nó sẽ xuất hiện như vậy nếu bạn chọn lưu trang.',
 'session_fail_preview' => "'''Rất tiếc, những sửa đổi của bạn chưa được lưu giữ do mất dữ liệu về phiên làm việc.'''
 Xin hãy thử lần nữa.
 Nếu vẫn không thành công, hãy thử [[Special:UserLogout|đăng xuất]] rồi đăng nhập lại.",
 'session_fail_preview_html' => "'''Những sửa đổi của bạn chưa được lưu giữ do mất dữ liệu về phiên làm việc.'''
 
-''Do {{SITENAME}} cho phép dùng mã HTML, trang xem thử được ẩn đi để đề phòng bị tấn công bằng JavaScript.''
+''Do {{SITENAME}} cho phép dùng mã HTML, trang xem trước được ẩn đi để đề phòng bị tấn công bằng JavaScript.''
 
 '''Nếu sửa đổi này là đúng đắn, xin hãy thử lần nữa.
 Nếu vẫn không thành công, bạn hãy thử [[Special:UserLogout|đăng xuất]] rồi đăng nhập lại.'''",
@@ -1168,6 +1170,7 @@ Những tham số này sẽ bị bỏ đi.',
 'undo-failure' => 'Sửa đổi không thể phục hồi vì đã có những sửa đổi mới ở sau.',
 'undo-norev' => 'Sửa đổi không thể hồi phục vì nó không tồn tại hoặc đã bị xóa.',
 'undo-summary' => 'Đã lùi lại sửa đổi $1 của [[Special:Contributions/$2|$2]] ([[User talk:$2|Thảo luận]])',
+'undo-summary-username-hidden' => 'Đã lùi lại sửa đổi $1 của một người dùng ẩn',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Không thể mở tài khoản',
@@ -1522,7 +1525,9 @@ Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao c�
 'prefs-signature' => 'Chữ ký',
 'prefs-dateformat' => 'Kiểu ngày tháng',
 'prefs-timeoffset' => 'Chênh giờ',
-'prefs-advancedediting' => 'Tùy chọn nâng cao',
+'prefs-advancedediting' => 'Tổng quát',
+'prefs-editor' => 'Trình soạn',
+'prefs-preview' => 'Xem trước',
 'prefs-advancedrc' => 'Tùy chọn nâng cao',
 'prefs-advancedrendering' => 'Tùy chọn nâng cao',
 'prefs-advancedsearchoptions' => 'Tùy chọn nâng cao',
@@ -1624,7 +1629,8 @@ Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao c�
 'right-proxyunbannable' => 'Bỏ qua cấm proxy tự động',
 'right-unblockself' => 'Tự bỏ cấm',
 'right-protect' => 'Thay đổi mức khóa và sửa trang khóa',
-'right-editprotected' => 'Sửa trang khóa (không bị khóa theo tầng)',
+'right-editprotected' => 'Sửa trang khóa ở mức “{{int:protect-level-sysop}}”',
+'right-editsemiprotected' => 'Sửa trang khóa ở mức “{{int:protect-level-autoconfirmed}}”',
 'right-editinterface' => 'Sửa giao diện người dùng',
 'right-editusercssjs' => 'Sửa tập tin CSS và JS của người dùng khác',
 'right-editusercss' => 'Sửa tập tin CSS của người dùng khác',
@@ -1633,6 +1639,9 @@ Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao c�
 'right-editmyuserjs' => 'Sửa đổi tập tin JavaScript cá nhân của mình',
 'right-viewmywatchlist' => 'Xem danh sách theo dõi của mình',
 'right-editmywatchlist' => 'Sửa đổi danh sách theo dõi của mình – một số tác vụ có thể thêm trang vào danh sách bất chấp quyền này',
+'right-viewmyprivateinfo' => 'Xem dữ liệu cá nhân của bạn (ví dụ địa chỉ thư điện tử hoặc tên thật)',
+'right-editmyprivateinfo' => 'Sửa đổi dữ liệu cá nhân của bạn (thí dụ địa chỉ thư điện tử hoặc tên thật)',
+'right-editmyoptions' => 'Sửa đổi tùy chọn của bạn',
 'right-rollback' => 'Nhanh chóng lùi tất cả sửa đổi của người dùng cuối cùng sửa đổi trang nào đó',
 'right-markbotedits' => 'Đánh dấu sửa đổi phục hồi là sửa đổi bot',
 'right-noratelimit' => 'Không bị ảnh hưởng bởi mức giới hạn tần suất sử dụng',
@@ -1696,12 +1705,15 @@ Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao c�
 'action-sendemail' => 'gửi thư điện tử',
 'action-editmywatchlist' => 'sửa đổi danh sách theo dõi của mình',
 'action-viewmywatchlist' => 'xem danh sách theo dõi của mình',
+'action-viewmyprivateinfo' => 'xem thông tin cá nhân của bạn',
+'action-editmyprivateinfo' => 'sửa đổi thông tin cá nhân của bạn',
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|thay đổi|thay đổi}}',
 'recentchanges' => 'Thay đổi gần đây',
 'recentchanges-legend' => 'Tùy chọn thay đổi gần đây',
 'recentchanges-summary' => 'Xem các thay đổi gần đây nhất tại wiki trên trang này.',
+'recentchanges-noresult' => 'Không có thay đổi trong khoảng thời gian phù hợp với các tiêu chí này.',
 'recentchanges-feed-description' => 'Theo dõi các thay đổi gần đây nhất của wiki dùng nguồn tin này.',
 'recentchanges-label-newpage' => 'Bản sửa này tạo ra trang mới',
 'recentchanges-label-minor' => 'Đây là một sửa đổi nhỏ',
@@ -1749,7 +1761,7 @@ Các trang trong [[Special:Watchlist|danh sách bạn theo dõi]] được '''t�
 'reuploaddesc' => 'Hủy tác vụ tải và quay lại mẫu tải tập tin lên',
 'upload-tryagain' => 'Lưu miêu tả tập tin được sửa đổi',
 'uploadnologin' => 'Chưa đăng nhập',
-'uploadnologintext' => 'Bạn phải [[Special:UserLogin|đăng nhập]] để tải tập tin lên.',
+'uploadnologintext' => 'Bạn phải $1 để tải tập tin lên.',
 'upload_directory_missing' => 'Thư mục tải lên ($1) không có hoặc máy chủ web không thể tạo được.',
 'upload_directory_read_only' => 'Máy chủ không thể sửa đổi thư mục tải lên ($1) được.',
 'uploaderror' => 'Lỗi khi tải lên',
@@ -3046,7 +3058,7 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 'tooltip-pt-anonlogin' => 'Không đăng nhập vẫn tham gia được, tuy nhiên đăng nhập sẽ lợi hơn.',
 'tooltip-pt-logout' => 'Đăng xuất',
 'tooltip-ca-talk' => 'Thảo luận về trang này',
-'tooltip-ca-edit' => 'Bạn có thể sửa được trang này! (Xin vui lòng xem thử trước khi lưu.)',
+'tooltip-ca-edit' => 'Bạn có thể sửa được trang này! (Xin vui lòng xem trước trước khi lưu.)',
 'tooltip-ca-addsection' => 'Bắt đầu một đề mục mới',
 'tooltip-ca-viewsource' => 'Trang này được khóa. Bạn có thể xem mã nguồn.',
 'tooltip-ca-history' => 'Các phiên bản cũ của trang này',
@@ -3090,7 +3102,7 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 'tooltip-ca-nstab-category' => 'Xem trang thể loại',
 'tooltip-minoredit' => 'Đánh dấu đây là sửa đổi nhỏ',
 'tooltip-save' => 'Lưu lại những thay đổi của bạn',
-'tooltip-preview' => 'Xem thử những thay đổi, hãy dùng nó trước khi lưu!',
+'tooltip-preview' => 'Xem trước những thay đổi, hãy dùng nó trước khi lưu!',
 'tooltip-diff' => 'Xem thay đổi bạn đã thực hiện.',
 'tooltip-compareselectedversions' => 'Xem khác biệt giữa hai phiên bản đã chọn của trang này.',
 'tooltip-watch' => 'Thêm trang này vào danh sách theo dõi',
@@ -3099,7 +3111,7 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 'tooltip-recreate' => 'Tạo lại trang dù cho nó vừa bị xóa',
 'tooltip-upload' => 'Bắt đầu tải lên',
 'tooltip-rollback' => '“Lùi tất cả” sẽ lùi mọi sửa đổi của người sửa đổi cuối cùng chỉ bằng một cú nhấp chuột.',
-'tooltip-undo' => '"Lùi lại" sẽ lùi sửa đổi này và mở trang sửa đổi ở chế độ xem thử. Cho phép thêm lý do vào tóm lược.',
+'tooltip-undo' => '“Lùi lại” sẽ lùi sửa đổi này và mở trang sửa đổi ở chế độ xem trước. Cho phép thêm lý do vào tóm lược.',
 'tooltip-preferences-save' => 'Lưu tùy chọn',
 'tooltip-summary' => 'Hãy nhập câu tóm lược',
 
@@ -3914,7 +3926,7 @@ Xin hãy xác nhận bạn thực sự muốn tạo lại trang này.",
 'livepreview-loading' => 'Đang tải…',
 'livepreview-ready' => 'Đang tải… Xong!',
 'livepreview-failed' => 'Không thể xem trước trực tiếp! Hãy dùng thử chế độ xem trước thông thường.',
-'livepreview-error' => 'Không thể kết nối: $1 “$2”. Hãy dùng thử chế độ xem thử thông thường.',
+'livepreview-error' => 'Không thể kết nối: $1 “$2”. Hãy dùng thử chế độ xem trước thông thường.',
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => 'Những thay đổi trong vòng $1 {{PLURAL:||}}giây trở lại đây có thể chưa xuất hiện trong danh sách.',

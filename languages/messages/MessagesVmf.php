@@ -506,7 +506,6 @@ Hirmid sagsd, das Du den dhägsd '''selbâr gschriim''' hasd, das däär dhägsd
 'resetprefs' => 'Nigs iwârneemn',
 'restoreprefs' => 'Uf dii uur-ajschdelungn dsrig',
 'prefs-editing' => 'Bearbajdungs-fenschdâr',
-'prefs-edit-boxsize' => 'Grees fom bearbajdungs-fenschdâr:',
 'rows' => 'Soofiil dsajln:',
 'columns' => 'Soofiil schbaldn',
 'searchresultshead' => 'Suuchn',

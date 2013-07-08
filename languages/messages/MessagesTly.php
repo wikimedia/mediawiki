@@ -689,7 +689,6 @@ $messages = array(
 'recentchangeslinked' => 'Ангыл кардә быә дәгишон',
 'recentchangeslinked-toolbox' => 'Ангыл кардә быә дәгишон',
 'recentchangeslinked-title' => 'Ангыл кардә быә дәгишон бо "$1"',
-'recentchangeslinked-noresult' => 'Нишо доә быә мыддәтәдә, ангыл кардә быә сәһифонәдә дәгишон бәнин.',
 'recentchangeslinked-summary' => "Бә ым сәһифонәдә охонә дәгишон сијоһије, бә кон сәһифон сәбон вардә ын сәһифә (јаанки дахыл кардә быән бә нишо доә быә категоријә).
 [[Special:Watchlist|Шымә ноғо доә сијоһиәдә]] быә сәһифон, де '''ғалинә''' шрифти нишо доә быән.",
 'recentchangeslinked-page' => 'Сәһифә ном:',

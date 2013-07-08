@@ -560,7 +560,6 @@ $messages = array(
 'recentchangeslinked-feed' => 'ການດັດແກ້ທີ່ກ່ຽວຂ້ອງ',
 'recentchangeslinked-toolbox' => 'ການດັດແກ້ທີ່ກ່ຽວຂ້ອງ',
 'recentchangeslinked-title' => 'ການປ່ຽນແປງກ່ຽວຂ້ອງກັບ "$1"',
-'recentchangeslinked-noresult' => 'ບໍ່ມີການປ່ຽນແປງຢູ່ໜ້າລິ້ງຄ໌ໃນໄລຍະດັ່ງກ່າວ.',
 
 # Upload
 'upload' => 'ອັບໂຫຼດໄຟລ໌',
@@ -709,7 +708,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'watch' => 'ຕິດຕາມ',
 'watchthispage' => 'ຕິດຕາມໜ້ານີ້',
 'unwatch' => 'ເຊົາຕິດຕາມ',
-'watchnochange' => 'ບໍ່ມີໜ້າທີ່ທ່ານຕິດຕາມໃດໆ ຖືກດັດແປງໃນໄລຍະສະແດງຂ້າງເທິງນີ້.',
 'wlheader-showupdated' => "ບັນດາ ໜ້າ ທີ່ມີການປ່ຽນແປງ ຫຼັງຈາກທີ່ທ່ານ ເຂົ້າຊົມຫຼ້າສຸດ ຈະຖືກສະແດງເປັນ ໂຕໜັງສື  '''ເຂັ້ມ'''",
 'wlshowlast' => 'ສະແດງ $1 ຊົ່ວໂມງຫຼ້າສຸດ $2 ມື້ຫຼ້າສຸດ $3',
 
