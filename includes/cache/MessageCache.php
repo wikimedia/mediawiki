@@ -738,6 +738,9 @@ class MessageCache {
 
 		// Loop through each language in the fallback list until we find something useful
 		$lang = wfGetLangObj( $langcode );
+		if ( !StubObject::isRealObject( $lang ) ) {
+			$lang = wfGetLangObj( $lang->getCode() );
+		}
 		$message = $this->getMessageFromFallbackChain(
 			$lang,
 			$lckey,
@@ -795,76 +798,62 @@ class MessageCache {
 	 * @see MessageCache::get
 	 * @return string|bool The message, or false if not found
 	 */
-	protected function getMessageFromFallbackChain( $lang, $lckey, $uckey, $useDB ) {
+	protected function getMessageFromFallbackChain( Language $lang, $lckey, $uckey, $useDB ) {
 		global $wgLanguageCode, $wgContLang;
 
 		$langcode = $lang->getCode();
-		$message = false;
-
-		// First try the requested language.
-		if ( $useDB ) {
-			if ( $langcode === $wgLanguageCode ) {
-				// Messages created in the content language will not have the /lang extension
-				$message = $this->getMsgFromNamespace( $uckey, $langcode );
-			} else {
-				$message = $this->getMsgFromNamespace( "$uckey/$langcode", $langcode );
-			}
-		}
-
-		if ( $message !== false ) {
-			return $message;
-		}
-
-		// Check the CDB cache
-		$message = $lang->getMessage( $lckey );
-		if ( $message !== null ) {
-			return $message;
-		}
 
 		list( $fallbackChain, $siteFallbackChain ) =
 			Language::getFallbacksIncludingSiteLanguage( $langcode );
 
+		$actualCode = null;
+		$message = null;
+		$overrideMessage = false;
+
+		if ( $useDB ) {
+			$overrideMessage = $this->getMsgFromNamespace( $uckey, $wgLanguageCode );
+		}
+
+		if ( $overrideMessage === false ) {
+			// Check the CDB cache
+			$message = $lang->getMessage( $lckey, $actualCode );
+			if ( $message !== null && $actualCode === $langcode ) {
+				return $message;
+			}
+		}
+
 		// Next try checking the database for all of the fallback languages of the requested language.
 		if ( $useDB ) {
 			foreach ( $fallbackChain as $code ) {
-				if ( $code === $wgLanguageCode ) {
-					// Messages created in the content language will not have the /lang extension
-					$message = $this->getMsgFromNamespace( $uckey, $code );
-				} else {
-					$message = $this->getMsgFromNamespace( "$uckey/$code", $code );
-				}
+				$dbMessage = $this->getMsgFromNamespace( "$uckey/$code", $code );
 
-				if ( $message !== false ) {
+				if ( $dbMessage !== false ) {
 					// Found the message.
+					return $dbMessage;
+				} elseif ( $message !== null && $actualCode === $code ) {
+					// This language was what the CDB cache entry was for
 					return $message;
 				}
 			}
 		}
 
-		// Now try checking the site language.
-		if ( $useDB ) {
-			$message = $this->getMsgFromNamespace( $uckey, $wgLanguageCode );
-			if ( $message !== false ) {
+		if ( $overrideMessage === false ) {
+			$actualCode = null;
+			$message = $wgContLang->getMessage( $lckey, $actualCode );
+			if ( $message !== null && $actualCode === $wgLanguageCode ) {
 				return $message;
 			}
-		}
-
-		$message = $wgContLang->getMessage( $lckey );
-		if ( $message !== null ) {
-			return $message;
 		}
 
 		// Finally try the DB for the site language's fallbacks.
 		if ( $useDB ) {
 			foreach ( $siteFallbackChain as $code ) {
-				$message = $this->getMsgFromNamespace( "$uckey/$code", $code );
-				if ( $message === false && $code === $wgLanguageCode ) {
-					// Messages created in the content language will not have the /lang extension
-					$message = $this->getMsgFromNamespace( $uckey, $code );
-				}
+				$dbMessage = $this->getMsgFromNamespace( "$uckey/$code", $code );
 
-				if ( $message !== false ) {
+				if ( $dbMessage !== false ) {
 					// Found the message.
+					return $dbMessage;
+				} elseif ( $message !== null && $actualCode === $code ) {
 					return $message;
 				}
 			}
