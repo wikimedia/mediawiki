@@ -2313,10 +2313,11 @@ class Language {
 
 	/**
 	 * @param $key string
+	 * @param[out] &$actualCode
 	 * @return array|null
 	 */
-	function getMessage( $key ) {
-		return self::$dataCache->getSubitem( $this->mCode, 'messages', $key );
+	function getMessage( $key, &$actualCode = null ) {
+		return self::$dataCache->getSubitem( $this->mCode, 'messages', $key, $actualCode );
 	}
 
 	/**
