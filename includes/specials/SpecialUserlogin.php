@@ -1083,6 +1083,7 @@ class LoginForm extends SpecialPage {
 
 			$q = 'action=submitlogin&type=signup';
 			$linkq = 'type=login';
+
 		} else {
 			$template = new UserloginTemplate();
 
@@ -1152,6 +1153,12 @@ class LoginForm extends SpecialPage {
 		$template->set( 'remember', $user->getOption( 'rememberpassword' ) || $this->mRemember );
 		$template->set( 'cansecurelogin', ( $wgSecureLogin === true ) );
 		$template->set( 'stickHTTPS', $this->mStickHTTPS );
+
+		if (  $this->mType == 'signup' && $user->isLoggedIn() ) {
+			$template->set ('createAnother', true );
+		} else {
+			$template->set ('createAnother', false );
+		}
 
 		if ( $this->mType == 'signup' ) {
 			if ( !self::getCreateaccountToken() ) {

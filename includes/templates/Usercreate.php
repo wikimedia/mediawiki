@@ -56,7 +56,12 @@ class UsercreateTemplate extends BaseTemplate {
 	}
 	?>
 <div id="userloginForm">
-<h2 class="createaccount-join"><?php $this->msg( 'createacct-join' ); ?></h2>
+<h2 class="createaccount-join">
+	<?php
+	$this->msg( $this->data['createAnother'] ?
+		'createacct-another-join' : 'createacct-join' );
+	?>
+</h2>
 <form name="userlogin2" id="userlogin2" class="mw-ui-vform" method="post" action="<?php $this->text( 'action' ); ?>">
 	<section class="mw-form-header">
 		<?php $this->html( 'header' ); /* extensions such as ConfirmEdit add form HTML here */ ?>
@@ -77,15 +82,17 @@ class UsercreateTemplate extends BaseTemplate {
 
 				<span class="mw-ui-flush-right"><?php echo $this->getMsg( 'createacct-helpusername' )->parse(); ?></span>
 			</label>
-			<?php echo Html::input( 'wpName', $this->data['name'], 'text', array(
+			<?php
+			echo Html::input( 'wpName', $this->data['name'], 'text', array(
 				'class' => 'mw-input loginText',
 				'id' => 'wpName2',
 				'tabindex' => '1',
 				'size' => '20',
 				'required',
-				'placeholder' => $this->getMsg( 'userlogin-yourname-ph' )->text(),
-				'autofocus'
-			) ); ?>
+				'placeholder' => $this->getMsg( $this->data['createAnother'] ?
+					'createacct-another-username-ph' : 'userlogin-yourname-ph' )->text(),
+			) );
+			?>
 		</div>
 		<div>
 		<?php if ( $this->data['createemail'] ) { ?>
@@ -155,7 +162,8 @@ class UsercreateTemplate extends BaseTemplate {
 					'id' => 'wpEmail',
 					'tabindex' => '6',
 					'size' => '20',
-					'placeholder' => $this->getMsg( 'createacct-email-ph' )->text()
+					'placeholder' => $this->getMsg( $this->data['createAnother'] ?
+						'createacct-another-email-ph' : 'createacct-email-ph' )->text()
 				) + ( $this->data['emailrequired'] ? array() : array( 'required' => '' ) ) );
 			?>
 		<?php } ?>
@@ -243,9 +251,17 @@ class UsercreateTemplate extends BaseTemplate {
 		$tabIndex++;
 		?>
 		<div class="mw-submit">
-			<input type='submit' class="mw-ui-button mw-ui-big mw-ui-block mw-ui-primary" name="wpCreateaccount" id="wpCreateaccount"
-				tabindex="<?php echo $tabIndex++; ?>"
-				value="<?php $this->msg( 'createacct-submit' ); ?>" />
+			<?php
+			echo Html::input( 'wpCreateaccountXxx',
+				$this->getMsg( $this->data['createAnother'] ?
+					'createacct-another-submit' : 'createacct-submit' ),
+				'submit',
+				array(
+					'class' => "mw-ui-button mw-ui-big mw-ui-block mw-ui-primary",
+					'id' => 'wpCreateaccountXxx',
+					'tabindex' => $tabIndex++
+				) );
+			?>
 		</div>
 <?php if ( $this->haveData( 'uselang' ) ) { ?><input type="hidden" name="uselang" value="<?php $this->text( 'uselang' ); ?>" /><?php } ?>
 <?php if ( $this->haveData( 'token' ) ) { ?><input type="hidden" name="wpCreateaccountToken" value="<?php $this->text( 'token' ); ?>" /><?php } ?>
