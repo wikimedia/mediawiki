@@ -390,11 +390,6 @@ class SpecialVersion extends SpecialPage {
 		// We want the 'other' type to be last in the list.
 		$out .= $this->getExtensionCategory( 'other', $extensionTypes['other'] );
 
-		if ( count( $wgExtensionFunctions ) ) {
-			$out .= $this->openExtType( $this->msg( 'version-extension-functions' )->text(), 'extension-functions' );
-			$out .= '<tr><td colspan="4">' . $this->listToText( $wgExtensionFunctions ) . "</td></tr>\n";
-		}
-
 		$tags = $wgParser->getTags();
 		$cnt = count( $tags );
 

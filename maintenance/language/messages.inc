@@ -3655,7 +3655,6 @@ $wgMessageStructure = array(
 		'version-other',
 		'version-mediahandlers',
 		'version-hooks',
-		'version-extension-functions',
 		'version-parser-extensiontags',
 		'version-parser-function-hooks',
 		'version-hook-name',
