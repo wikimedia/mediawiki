@@ -34,8 +34,8 @@ var mw = ( function ( $, undefined ) {
 	 *
 	 *     // You can detect missing keys first
 	 *     if ( !addies.exists( wanted ) ) {
-	 *         // One ore more are missing (e.g. George Johson)
-	 *         mw.log( 'One or more names do not have a known address' );
+	 *         // One or more are missing (in this case: "George Johnson")
+	 *         mw.log( 'One or more names were not found in your address book' );
 	 *     }
 	 *
 	 *     // Or just let it give you what it can
