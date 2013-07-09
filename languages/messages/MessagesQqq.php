@@ -1192,7 +1192,7 @@ See also:
 'createacct-email-ph' => 'Placeholder in vertical-layout create account form for email field.
 
 See example: [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]',
-'createaccountmail' => 'Used as label for the checkbox for creating a new account and sending the new password to the specified e-mail address directly, as used on [[Special:UserLogin/signup]] if creating accounts by e-mail is allowed.
+'createaccountmail' => 'The label for the checkbox for creating a new account and sending the new password to the specified e-mail address directly, as used on [[Special:UserLogin/signup]] when one user creates an account for another (if creating accounts by e-mail is allowed).
 
 See example: [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]',
 'createacct-realname' => 'In vertical-layout create account form, label for field to enter optional real name.',
@@ -1314,8 +1314,8 @@ See also:
 See also:
 * {{msg-mw|Accountcreated|title}}
 * {{msg-mw|Accountcreatedtext|message}}',
-'createaccount-title' => 'This is the subject of an e-mail sent to the e-mail address entered at [[Special:CreateAccount]] if the button "by e-mail" is clicked.',
-'createaccount-text' => 'This text is sent as an e-mail to the e-mail address entered at [[Special:CreateAccount]] if the button "by e-mail" is clicked.
+'createaccount-title' => 'Subject of the e-mail sent to the e-mail address entered at [[Special:CreateAccount]] when one user creates an account for another and clicks the checkbox labelled "{{msg-mw|createaccountmail}}".',
+'createaccount-text' => 'Body of the e-mail sent to the e-mail address entered at [[Special:CreateAccount]] when one user creates an account for another and clicks the checkbox labelled "{{msg-mw|createaccountmail}}".
 
 *Parameter $2 is the name entered as username.
 *Parameter $3 is a password (randomly generated).
@@ -8266,10 +8266,10 @@ See also:
 'confirmemail_success' => 'Explanation on [[Special:ConfirmEmail]] on completion of confirmation.',
 'confirmemail_loggedin' => 'Explanation on [[Special:ConfirmEmail]] on completion of confirmation.',
 'confirmemail_error' => 'Error message on [[Special:ConfirmEmail]]',
-'confirmemail_subject' => 'Text in subject box of e-mail sent to user during e-mail address confirmation
+'confirmemail_subject' => 'Subject of the e-mail sent to user during e-mail address confirmation
 {{Identical|SITENAME e-mail address confirmation}}',
-'confirmemail_body' => 'This message is sent as an e-mail to users when they add or change their e-mail adress in [[Special:Preferences]].
-*$1 is the IP address of the user that changed the e-mail address
+'confirmemail_body' => 'Body of the e-mail sent to user when their account is created or they confirm their e-mail address.
+*$1 is the IP address of the user that created or confirmed the e-mail address
 *$2 is the name of the user
 *$3 is a URL to [[Special:ConfirmEmail]]
 *$4 is a time and date (duplicated by $6 and $7)
