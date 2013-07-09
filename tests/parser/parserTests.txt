@@ -4792,6 +4792,7 @@ parsoid
 !! result
 <link rel="mw:PageProp/redirect" href="File:Wiki.png">
 !! end
+
 ##
 ## XHTML tidiness
 ###
@@ -8110,6 +8111,7 @@ SVG thumbnails with invalid language code
 <div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.svg" class="image"><img alt="" src="http://example.com/images/thumb/f/ff/Foobar.svg/180px-Foobar.svg.png" width="180" height="180" class="thumbimage" srcset="http://example.com/images/thumb/f/ff/Foobar.svg/270px-Foobar.svg.png 1.5x, http://example.com/images/thumb/f/ff/Foobar.svg/360px-Foobar.svg.png 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.svg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>lang=invalid.language.code</div></div></div>
 
 !! end
+
 !! test
 BUG 1887: A ISBN with a thumbnail
 !! input
@@ -8497,6 +8499,7 @@ parsoid
 #</span>
 #</p>
 
+
 ###
 ### Subpages
 ###
@@ -8784,6 +8787,7 @@ parsoid
 <link rel="mw:WikiLink/Category" href="Category:Foo">
 <link rel="mw:WikiLink/Category" href="Category:Foo#Bar">
 !! end
+
 ###
 ### Inter-language links
 ###
@@ -14442,6 +14446,7 @@ HttP://MediaWiki.Org/
 </p>
 !! end
 
+
 ###
 ### Parsoids-specific tests
 ### Parsoid-PHP parser incompatibilities
@@ -14869,10 +14874,15 @@ Headings: 1. Nested inside html
 parsoid
 !! input
 =<nowiki>=foo=</nowiki>=
+
 ==<nowiki>=foo=</nowiki>==
+
 ===<nowiki>=foo=</nowiki>===
+
 ====<nowiki>=foo=</nowiki>====
+
 =====<nowiki>=foo=</nowiki>=====
+
 ======<nowiki>=foo=</nowiki>======
 !! result
 <h1><span typeof="mw:Nowiki">=foo=</span></h1>
@@ -14890,8 +14900,10 @@ parsoid
 !! input
 =foo=
 <nowiki>*bar</nowiki>
+
 =foo=
 =bar
+
 =foo=
 <nowiki>=bar=</nowiki>
 !! result
@@ -14916,12 +14928,19 @@ Headings: 4a. No escaping needed (testing just h1 and h2)
 parsoid
 !! input
 ==foo=
+
 =foo==
+
 = =foo= =
+
 ==foo= bar=
+
 ===foo==
+
 ==foo===
+
 =''=''foo==
+
 =<nowiki>=</nowiki>=
 !! result
 <h1>=foo</h1>
@@ -14955,10 +14974,15 @@ Headings: 5. Empty headings
 parsoid
 !! input
 =<nowiki/>=
+
 ==<nowiki/>==
+
 ===<nowiki/>===
+
 ====<nowiki/>====
+
 =====<nowiki/>=====
+
 ======<nowiki/>======
 !! result
 <h1></h1>
