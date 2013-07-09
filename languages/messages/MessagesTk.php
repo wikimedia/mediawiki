@@ -3016,7 +3016,6 @@ Bolanyňyzdan soňra "{{int:Watchlistedit-raw-submit}}" düwmesine basyň.
 'version-other' => 'Başga',
 'version-mediahandlers' => 'Media işleýjiler',
 'version-hooks' => 'Ilgençekler',
-'version-extension-functions' => 'Giňeltme funksiýalary',
 'version-parser-extensiontags' => 'Analizator giňeltme bellikleri',
 'version-parser-function-hooks' => 'Analizator funsiýasynyň ilgençekleri',
 'version-hook-name' => 'Ilgençegiň ady',

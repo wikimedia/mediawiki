@@ -2804,7 +2804,6 @@ $5
 'version-other' => 'Иля',
 'version-mediahandlers' => 'Медиа файлхнень ладямат',
 'version-hooks' => 'Кярьмодихне',
-'version-extension-functions' => 'Келептема функциенза',
 'version-parser-extensiontags' => 'Анализаторонь келептема кодонза',
 'version-parser-function-hooks' => 'Синтаксонь анализаторть функциензон кярьмодихне',
 'version-hook-name' => 'Кярьмодинь лемоц',

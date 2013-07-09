@@ -4207,7 +4207,6 @@ $5
 'version-other' => 'その他',
 'version-mediahandlers' => 'メディアハンドラー',
 'version-hooks' => 'フック',
-'version-extension-functions' => '拡張機能関数',
 'version-parser-extensiontags' => '構文解析拡張機能タグ',
 'version-parser-function-hooks' => 'パーサー関数フック',
 'version-hook-name' => 'フック名',

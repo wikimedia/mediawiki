@@ -3612,7 +3612,6 @@ $5
 'version-other' => 'Атын',
 'version-mediahandlers' => 'Медиа уларытааччылар',
 'version-hooks' => 'Перехватчиктар',
-'version-extension-functions' => 'Расширениялар функциялара',
 'version-parser-extensiontags' => 'Синтаксииһы анаалыстыыр тэрил расширениятын тиэктэрэ',
 'version-parser-function-hooks' => 'Синтаксииһы анаалыстыыр тэрил функциятын перехватчиктара',
 'version-hook-name' => 'Перехватчик аата',

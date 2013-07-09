@@ -3840,7 +3840,6 @@ Si noti che è anche possibile [[Special:EditWatchlist|modificare la lista con l
 'version-other' => 'Altro',
 'version-mediahandlers' => 'Gestori di contenuti multimediali',
 'version-hooks' => 'Hook',
-'version-extension-functions' => 'Funzioni introdotte da estensioni',
 'version-parser-extensiontags' => 'Tag riconosciuti dal parser introdotti da estensioni',
 'version-parser-function-hooks' => 'Hook per funzioni del parser',
 'version-hook-name' => "Nome dell'hook",

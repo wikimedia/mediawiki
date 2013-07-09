@@ -3716,7 +3716,6 @@ $5
 'version-other' => 'अन्यत्',
 'version-mediahandlers' => 'माध्यनिर्वाहकाः ।',
 'version-hooks' => 'आलम्बाः ।',
-'version-extension-functions' => 'विस्तरणस्य कार्यकलापाः ।',
 'version-parser-extensiontags' => 'विन्यासविस्तारणस्य सूत्रम् ।',
 'version-parser-function-hooks' => 'विन्यासकलापस्य आलम्बाः ।',
 'version-hook-name' => 'आलम्बस्य नाम ।',

@@ -2210,7 +2210,6 @@ $3
 'version-variables' => '变量',
 'version-other' => '别𠮶',
 'version-mediahandlers' => '媒体处理程序',
-'version-extension-functions' => '扩展功能',
 'version-parser-extensiontags' => '解析器扩展标签',
 'version-hook-name' => '钩子名',
 'version-hook-subscribedby' => '订阅人',

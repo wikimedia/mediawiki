@@ -3362,7 +3362,6 @@ $5
 'version-other' => 'دوجے',
 'version-mediahandlers' => 'میڈیا ہینڈلرز',
 'version-hooks' => 'ہکز',
-'version-extension-functions' => 'ایکسٹنشن فنکشن',
 'version-parser-extensiontags' => 'پاسر ایکسٹنشن ٹیگز',
 'version-parser-function-hooks' => 'پاسر فنکشن ہکز',
 'version-hook-name' => 'ہک ناں',

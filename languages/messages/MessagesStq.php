@@ -3147,7 +3147,6 @@ Du koast dien Beooboachtengslieste uk in dät [[Special:EditWatchlist/raw|Lieste
 'version-other' => 'Uurswät',
 'version-mediahandlers' => 'Medien-Handlere',
 'version-hooks' => "Snitsteeden ''(Hooks)''",
-'version-extension-functions' => 'Funktionsaproupe',
 'version-parser-extensiontags' => "Parser-Ärwiederengen ''(tags)''",
 'version-parser-function-hooks' => 'Parser-Funktione',
 'version-hook-name' => 'Snitsteedennoome',

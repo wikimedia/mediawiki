@@ -4039,7 +4039,6 @@ $5
 'version-other' => 'אחר',
 'version-mediahandlers' => 'מציגי מדיה',
 'version-hooks' => 'מבני Hook',
-'version-extension-functions' => 'פונקציות של הרחבות',
 'version-parser-extensiontags' => 'תגיות של הרחבות מפענח',
 'version-parser-function-hooks' => 'משתנים',
 'version-hook-name' => 'שם ה־Hook',

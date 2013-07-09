@@ -1920,11 +1920,12 @@ Parameters:
 Used in History and [[Special:Contributions]].',
 'histfirst' => 'This is part of the navigation message on the top and bottom of Page History pages which are lists of things in date order, e.g. [{{canonicalurl:Support|action=history}} Page History of Support].
 
-It is followed by the message {{msg-mw|Viewprevnext}}.',
+It is followed by the message {{msg-mw|Viewprevnext}}.
+{{Identical|Oldest}}',
 'histlast' => 'This is part of the navigation message on the top and bottom of Page History pages which are lists of things in date order, e.g. [{{canonicalurl:Support|action=history}} Page History of Support].
 
 It is followed by the message {{msg-mw|Viewprevnext}}.
-{{Identical|Latest}}',
+{{Identical|Newest}}',
 'historysize' => '* $1 - byte count',
 'historyempty' => 'Text in page history for empty page revisions
 
@@ -8660,7 +8661,6 @@ This message is followed by the list of SPAM prevention extensions.',
 'version-mediahandlers' => 'Used in [[Special:Version]]. It is the title of a section for media handler extensions (e.g. [[mw:Extension:OggHandler]]).
 There are no such extensions here, so look at [[wikipedia:Special:Version]] for an example.',
 'version-hooks' => 'Shown in [[Special:Version]]',
-'version-extension-functions' => 'Shown in [[Special:Version]]',
 'version-parser-extensiontags' => 'Part of [[Special:Version]].
 This message is followed by the list of parser extension tags like <code><nowiki><charinsert></nowiki></code>, <code><nowiki><coordinates></nowiki></code>, etc.',
 'version-parser-function-hooks' => 'Shown in [[Special:Version]]',

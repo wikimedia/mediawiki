@@ -3607,7 +3607,6 @@ Ju gjithashtu mund [[Special:EditWatchlist|të përdorni redaktuesin standart]].
 'version-other' => 'Të tjera',
 'version-mediahandlers' => 'Mbajtesit e Media-s',
 'version-hooks' => 'Goditjet',
-'version-extension-functions' => 'Funksionet shtese',
 'version-parser-extensiontags' => 'Parser etiketat shtese',
 'version-parser-function-hooks' => 'Parser goditjet e funksionit',
 'version-hook-name' => 'Emri i goditjes',

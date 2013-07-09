@@ -3003,7 +3003,6 @@ $5
 'version-other' => 'دگر',
 'version-mediahandlers' => 'دست گروک مدیا',
 'version-hooks' => 'گیر کنت',
-'version-extension-functions' => 'عملگران الحاقی',
 'version-parser-extensiontags' => 'برچسپان الحاقی تجزیه گر',
 'version-parser-function-hooks' => 'عمل گر تجزیه کنوک گیر کت',
 'version-hook-name' => 'نام گیر',

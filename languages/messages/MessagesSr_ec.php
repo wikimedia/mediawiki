@@ -4208,7 +4208,6 @@ $5
 'version-other' => 'Друго',
 'version-mediahandlers' => 'Руководиоци медијима',
 'version-hooks' => 'Куке',
-'version-extension-functions' => 'Функције',
 'version-parser-extensiontags' => 'Ознаке',
 'version-parser-function-hooks' => 'Куке',
 'version-hook-name' => 'Назив куке',

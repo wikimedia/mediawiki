@@ -3689,7 +3689,6 @@ $5
 'version-other' => 'باشقا',
 'version-mediahandlers' => 'ۋاسىتە بىر تەرەپ قىلغۇچ',
 'version-hooks' => 'ئىلمەك',
-'version-extension-functions' => 'تەھلىلچى فونكسىيە',
 'version-parser-extensiontags' => 'تەھلىلچى كېڭەيتىلمە خەتكۈچ',
 'version-parser-function-hooks' => 'تەھلىلچى فونكسىيە ئىلمىكى',
 'version-hook-name' => 'ئىلمەك ئاتى',

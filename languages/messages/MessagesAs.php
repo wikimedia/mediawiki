@@ -3777,7 +3777,6 @@ $5
 'version-other' => 'অন্য',
 'version-mediahandlers' => 'মাধ্যম ব্যৱস্থাপকসমূহ',
 'version-hooks' => 'হুকসমূহ',
-'version-extension-functions' => 'সম্প্ৰসাৰন ফলনসমূহ',
 'version-parser-extensiontags' => 'পাৰ্চাৰ এক্সটেনচন টেগসমূহ',
 'version-parser-function-hooks' => 'পাৰ্চাৰ ফাংচন হুকসমূহ',
 'version-hook-name' => 'হুক নাম',

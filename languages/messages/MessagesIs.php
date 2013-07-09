@@ -3752,7 +3752,6 @@ einn titil í hverri línu.
 'version-skins' => 'Þemu',
 'version-other' => 'Aðrar',
 'version-mediahandlers' => 'Rekill margmiðlunarskráa',
-'version-extension-functions' => 'Aðgerðir smáforrita',
 'version-parser-extensiontags' => 'Þáttuð smáforrita tög',
 'version-hook-subscribedby' => 'Í áskrift af',
 'version-version' => '(Útgáfa $1)',

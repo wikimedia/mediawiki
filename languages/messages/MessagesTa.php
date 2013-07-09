@@ -3445,7 +3445,6 @@ $5
 'version-other' => 'பிறர்',
 'version-mediahandlers' => 'ஊடக கையாளிகள்',
 'version-hooks' => 'கொக்கிகள்',
-'version-extension-functions' => 'நீட்சி செயற்பாடுகள்',
 'version-parser-extensiontags' => 'இலக்கணப் பாகுபடுத்தி நீட்சி குறிச்சொற்கள்',
 'version-parser-function-hooks' => 'இலக்கணப் பாகுபடுத்தி செயற்பாட்டு கொக்கிகள்',
 'version-hook-name' => 'கொக்கியின் பெயர்',

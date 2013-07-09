@@ -2502,7 +2502,6 @@ $3
 'version-variables' => 'ተለዋጮች',
 'version-other' => 'ሌላ',
 'version-hooks' => 'ሜንጦዎች',
-'version-extension-functions' => 'የቅጥያ ሥራዎች',
 'version-parser-extensiontags' => 'የዝርዛሪ ቅጥያ ምልክቶች',
 'version-parser-function-hooks' => 'የዘርዛሪ ተግባር ሜጦዎች',
 'version-hook-name' => 'የሜንጦ ስም',

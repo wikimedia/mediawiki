@@ -3884,7 +3884,6 @@ $5
 'version-other' => 'Άλλα',
 'version-mediahandlers' => 'Χειριστές των μέσων',
 'version-hooks' => 'Άγκιστρα',
-'version-extension-functions' => 'Συναρτήσεις επεκτάσεων',
 'version-parser-extensiontags' => 'Ετικέτες επεκτάσεων του συντακτικού αναλυτή',
 'version-parser-function-hooks' => 'Άγκιστρα συναρτήσεων του συντακτικού αναλυτή',
 'version-hook-name' => 'Όνομα άγκιστρου',

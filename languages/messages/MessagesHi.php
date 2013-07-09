@@ -3689,7 +3689,6 @@ $5
 'version-other' => 'अन्य',
 'version-mediahandlers' => 'मीडिया संचालक',
 'version-hooks' => 'हूक',
-'version-extension-functions' => 'विस्तार प्रकार्यात्मकता',
 'version-parser-extensiontags' => 'पार्सर एक्स्टेंशन टैग',
 'version-parser-function-hooks' => 'पार्सर कार्य हूक',
 'version-hook-name' => 'हूक नाम',

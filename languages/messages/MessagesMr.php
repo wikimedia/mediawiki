@@ -3652,7 +3652,6 @@ $5
 'version-other' => 'इतर',
 'version-mediahandlers' => 'मिडिया हॅंडलर',
 'version-hooks' => 'अंकुश',
-'version-extension-functions' => 'अतिविस्तार(एक्स्टेंशन) कार्ये',
 'version-parser-extensiontags' => 'पृथकक विस्तारीत खूणा',
 'version-parser-function-hooks' => 'पृथकक कार्य अंकुश',
 'version-hook-name' => 'अंकुश नाव',

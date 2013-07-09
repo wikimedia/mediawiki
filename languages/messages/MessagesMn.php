@@ -3346,7 +3346,6 @@ $5
 'version-other' => 'Бусад',
 'version-mediahandlers' => 'Медиа боловсруулагч',
 'version-hooks' => 'Гогцоо',
-'version-extension-functions' => 'Өргөтгөлүүдийн функцууд',
 'version-parser-extensiontags' => 'Парсер нэмэлт тагууд',
 'version-parser-function-hooks' => 'Парсер функцийн тагууд',
 'version-hook-name' => 'Хүүкийн нэр',

@@ -3362,7 +3362,6 @@ $5
 'version-other' => 'Other',
 'version-mediahandlers' => 'Media handlers',
 'version-hooks' => 'قولاپەکان',
-'version-extension-functions' => 'Extension functions',
 'version-parser-extensiontags' => 'Parser extension tags',
 'version-parser-function-hooks' => 'Parser function hooks',
 'version-hook-name' => 'ناوی قولاپ',

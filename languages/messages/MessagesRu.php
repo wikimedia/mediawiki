@@ -4120,7 +4120,6 @@ $5
 'version-other' => 'Иное',
 'version-mediahandlers' => 'Обработчики медиа',
 'version-hooks' => 'Перехватчики',
-'version-extension-functions' => 'Функции расширений',
 'version-parser-extensiontags' => 'Теги расширений синтаксического анализатора',
 'version-parser-function-hooks' => 'Перехватчики функций синтаксического анализатора',
 'version-hook-name' => 'Имя перехватчика',

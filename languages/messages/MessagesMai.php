@@ -3353,7 +3353,6 @@ $5
 'version-other' => 'आन',
 'version-mediahandlers' => 'मीडिया संचालक',
 'version-hooks' => 'हूक',
-'version-extension-functions' => 'प्रकार्य बढ़ाउ',
 'version-parser-extensiontags' => 'विभाजन बढल चेन्ह',
 'version-parser-function-hooks' => 'विभाजक प्रकार्य खुट्टी',
 'version-hook-name' => 'खुट्टीक नाम',

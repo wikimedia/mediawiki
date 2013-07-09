@@ -3588,7 +3588,6 @@ $5
 'version-other' => 'อื่นๆ',
 'version-mediahandlers' => 'ตัวจัดการเกี่ยวกับสื่อ (media handler)',
 'version-hooks' => 'ฮุก',
-'version-extension-functions' => 'ฟังก์ชันจากส่วนขยายเพิ่ม (extension function)',
 'version-parser-extensiontags' => 'แท็กที่มีการใช้งานของพาร์สเซอร์',
 'version-parser-function-hooks' => 'ฮุกที่มีฟังก์ชันพาร์สเซอร์',
 'version-hook-name' => 'ชื่อฮุก',

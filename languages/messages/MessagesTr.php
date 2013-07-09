@@ -3812,7 +3812,6 @@ Ayrıca [[Special:EditWatchlist|standart düzenleme sayfasını]] da kullanabili
 'version-other' => 'Diğer',
 'version-mediahandlers' => 'Ortam işleyiciler',
 'version-hooks' => 'Çengeller',
-'version-extension-functions' => 'Ek fonksiyonları',
 'version-parser-extensiontags' => 'Derleyici eklenti etiketleri',
 'version-parser-function-hooks' => 'Derleyici fonksiyon çengelleri',
 'version-hook-name' => 'Çengel adı',

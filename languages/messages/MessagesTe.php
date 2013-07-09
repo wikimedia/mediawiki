@@ -3431,7 +3431,6 @@ $5
 'version-other' => 'ఇతర',
 'version-mediahandlers' => 'మీడియాను ఫైళ్లను నడిపించే పొడిగింపులు',
 'version-hooks' => 'కొక్కాలు',
-'version-extension-functions' => 'పొడిగింపు ఫంక్షనులు',
 'version-parser-extensiontags' => 'పార్సరు పొడిగింపు ట్యాగులు',
 'version-parser-function-hooks' => 'పార్సరుకు కొక్కాలు',
 'version-hook-name' => 'కొక్కెం పేరు',

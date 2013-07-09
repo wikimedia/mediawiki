@@ -2232,7 +2232,6 @@ $3
 'version-variables' => '變量',
 'version-other' => '別嗰',
 'version-mediahandlers' => '媒體處理程序',
-'version-extension-functions' => '擴展功能',
 'version-parser-extensiontags' => '解析器擴展標籤',
 'version-hook-name' => '鉤子名',
 'version-hook-subscribedby' => '訂閱人',
