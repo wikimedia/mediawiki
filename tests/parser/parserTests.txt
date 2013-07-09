@@ -4808,11 +4808,24 @@ parsoid
 
 !! test
 Broken br tag sanitization
+!! options
+php
 !! input
 </br>
 !! result
 <p>&lt;/br&gt;
 </p>
+!! end
+
+# TODO: Fix html2html mode (bug 51055)!
+!! test
+Parsoid: Broken br tag recognition
+!! options
+parsoid=wt2html
+!! input
+</br>
+!! result
+<p><br></p>
 !! end
 
 !! test
@@ -16143,6 +16156,32 @@ parsoid=html2wt
 <li> bar</li>
 <li><span> baz</span></li>
 </ul>
+!! end
+
+# This test case is fixed by domino 1.0.12.
+# Note that html2wt is considerably more difficult if we use <b> in
+# the test case, instead of <big>
+!! test
+Ensure that HTML adoption agency algorithm is properly implemented.
+!! options
+!! input
+<big>X<big>Y</big>Z</big>
+!! result
+<p><big>X<big>Y</big>Z</big>
+</p>
+!! end
+
+# The parsoid team believes the below behavior of the PHP parser to be
+# a bug.
+!! test
+Document PHP parser behavior for HTML adoption agency test case.
+!! options
+php
+!! input
+<em>X<em>Y</em>Z</em>
+!! result
+<p><em>X&lt;em&gt;Y</em>Z&lt;/em&gt;
+</p>
 !! end
 
 TODO:
