@@ -810,6 +810,23 @@ The ''[[Main Page]]'''s talk page.
 </p>
 !! end
 
+!! test
+Parsoid only: Quote balancing context should be restricted to td/th cells on the same wikitext line
+(Requires tidy for PHP parser output to be fixed up)
+!! options
+parsoid=wt2html,wt2wt
+!! input
+{|
+!''a!!''b
+|''a||''b
+|}
+!! result
+<table>
+<tbody><tr><th><i>a</i></th><th><i>b</i></th>
+<td><i>a</i></td><td><i>b</i></td></tr>
+</tbody></table>
+!! end
+
 ###
 ### Non-html5 tags
 ###
@@ -898,6 +915,16 @@ Entities inside <nowiki>
 </p>
 !! end
 
+!! test
+Entities inside template parameters
+!! options
+parsoid
+!! input
+{{echo|&ndash;}}
+!! result
+<p><span typeof="mw:Transclusion mw:Entity" data-mw='{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"&amp;ndash;"}},"i":0}'>&ndash;</span>
+</p>
+!! end
 
 ###
 ### Comments
@@ -1516,6 +1543,17 @@ Templates: Strip whitespace from named parameters, but not positional ones
 !! end
 
 !! test
+Templates: Dont strip whitespace from whitespace/comment-only arguments
+!! input
+{{echo| }}
+{{echo|<!--cmt-->}}
+{{echo| <!--cmt--> }}
+!! result
+<p><br />
+</p>
+!! end
+
+!! test
 Templates: Parsoid parameter escaping test 1
 !! options
 parsoid
@@ -1525,6 +1563,52 @@ parsoid
 <p about="#mwt1" typeof="mw:Transclusion"
 data-mw="{&quot;target&quot;:{&quot;wt&quot;:&quot;echo&quot;,&quot;href&quot;:&quot;./Template:Echo&quot;},&quot;params&quot;:{&quot;1&quot;:{&quot;wt&quot;:&quot;[foo]&quot;},&quot;2&quot;:{&quot;wt&quot;:&quot;{{echo|[bar]}}&quot;}},&quot;i&quot;:0}">[foo]</p>
 !! end
+
+!! test
+Parsoid: Pipes in external links in template parameter
+!! options
+parsoid
+!! input
+{{echo|[{{echo|http://example.com}} link]}}
+!! result
+<p><a rel="mw:ExtLink" href="http://example.com" about="#mwt31" typeof="mw:Transclusion" data-mw="{&quot;target&quot;:{&quot;wt&quot;:&quot;echo&quot;,&quot;href&quot;:&quot;./Template:Echo&quot;},&quot;params&quot;:{&quot;1&quot;:{&quot;wt&quot;:&quot;[{{echo|http://example.com}} link]&quot;}},&quot;i&quot;:0}">link</a></p>
+!! end
+
+!! test
+Parsoid: pipe in transclusion parameter
+!! options
+parsoid
+!! input
+{{echo|http://foo.com/a&#124;b}}
+!! result
+<p><a rel="mw:ExtLink" href="http://foo.com/a|b" about="#mwt1"
+typeof="mw:Transclusion"
+data-mw='{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"http://foo.com/a|b"}},"i":0}'>http://foo.com/a|b</a></p>
+!! end
+
+!! test
+Parsoid: Pipe in external link target and content in template parameter
+!! options
+parsoid=html2wt,wt2wt
+!! input
+{{echo|[http://foo.com/a&#124;b a&#124;b]}}
+!! result
+<p><a rel="mw:ExtLink" href="http://foo.com/a|b" about="#mwt1"
+typeof="mw:Transclusion"
+data-mw='{"target":{"wt":"echo","href":"./Template:Echo"},
+"params":{"1":{"wt":"[http://foo.com/a|b a|b]"}},"i":0}'>a|b</a></p>
+!! end
+
+!! test
+Templates: Dont escape already nowiki-escaped text in template parameters
+!! options
+parsoid=html2wt,wt2wt
+!! input
+{{echo|foo<nowiki>|</nowiki>bar}}
+!! result
+<p about="#mwt1" typeof="mw:Transclusion" data-mw='{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"foo<nowiki>|</nowiki>bar"}},"i":0}'>foo<span typeof="mw:Nowiki" data-parsoid="{}">|</span>bar</p>
+!! end
+
 ###
 ### Parsoid-centric tests for testing RT edge cases for pre
 ###
@@ -3170,6 +3254,28 @@ Non-extlinks in brackets
 </p>
 !! end
 
+!! test
+Parsoid: Percent encoding in external links
+!! options
+parsoid
+!! input
+[https://github.com/search?l=&q=ResourceLoader+%40wikimedia Search]
+!! result
+<p><a rel="mw:ExtLink"
+href="https://github.com/search?l=&amp;q=ResourceLoader+%40wikimedia">Search</a></p>
+!! end
+
+!! test
+Parsoid: use url link syntax for links where the content is equal the link
+target
+!! options
+parsoid
+!! input
+http://example.com
+!! result
+<p><a rel="mw:ExtLink" href="http://example.com">http://example.com</a></p>
+!! end
+
 ###
 ### Quotes
 ###
@@ -3275,7 +3381,7 @@ Plain ''italic'''s plain
 ###
 
 # This should not produce <table></table> as <table><tr><td></td></tr></table>
-# is the bare minimun required by the spec, see:
+# is the bare minimum required by the spec, see:
 # http://www.w3.org/TR/xhtml-modularization/dtd_module_defs.html#a_module_Basic_Tables
 !! test
 A table with no data. (php)
@@ -3858,6 +3964,62 @@ parsoid
 <tbody>
 <tr>
 <td>foo</td></tr></tbody></table>
+!! end
+
+!! test
+Implicit <td> after a |-
+(PHP parser relies on Tidy to add the missing <td> tags)
+!! options
+parsoid=wt2html,wt2wt
+!! input
+{|
+|-
+a
+|}
+!! result
+<table>
+<tr><td>a</td></tr>
+</table>
+!! end
+
+!! test
+Pres should be recognized in an explicit <td> context, but not in an implicit <td> context
+(PHP parser relies on Tidy to add the missing <td> tags)
+!! options
+parsoid=wt2html,wt2wt
+!! input
+{|
+|-
+|
+ a
+|-
+ b
+|}
+!! result
+<table>
+<tbody>
+<tr><td><pre>a</pre></td></tr>
+<tr><td> b</td></tr>
+</tbody>
+</table>
+!! end
+
+!! test
+Lists should be recognized in an implicit <td> context
+(PHP parser relies on Tidy to add the missing <td> tags)
+!! options
+parsoid=wt2html,wt2wt
+!! input
+{|
+|-
+*a
+|}
+!! result
+<table>
+<tr>
+<td><ul><li>a</li></ul></td>
+</tr>
+</table>
 !! end
 
 ###
@@ -5184,6 +5346,23 @@ parsoid=wt2html,wt2wt
 </li>
 </ul>
 !!end
+
+!! test
+Parsoid: Make sure nested lists are serialized on their own line even if HTML contains no newlines
+!! options
+parsoid
+!! input
+# foo
+## bar
+* foo
+** bar
+: foo
+:: bar
+!! result
+<ol><li> foo<ol><li> bar</li></ol></li></ol><ul><li> foo<ul><li> bar</li></ul></li></ul><dl><dd> foo<dl><dd> bar</dd></dl></dd></dl>
+!! end
+
+
 ###
 ### Magic Words
 ###
@@ -6681,6 +6860,20 @@ Templates: HTML Tables: 4f. Generating a single tag of a HTML table
 !!result
 <table><tr><td>foo</td></tr></table>
 
+!!end
+
+!!test
+Templates: HTML Tables: 5. Proper fostering of categories from inside
+!!options
+parsoid=wt2html,wt2wt
+!!input
+<table>[[Category:foo1]]<tr><td>foo</td></tr></table>
+<!--Two categories (Bug 50330)-->
+<table>[[Category:bar1]][[Category:bar2]]<tr><td>foo</td></tr></table>
+!!result
+<link rel="mw:WikiLink/Category" href="./Category:Foo1"><table><tbody><tr><td>foo</td></tr></tbody></table>
+<!--Two categories (Bug 50330)-->
+<link rel="mw:WikiLink/Category" href="./Category:Bar1"><link rel="mw:WikiLink/Category" href="./Category:Bar2"><table><tbody><tr><td>foo</td></tr></tbody></table>
 !!end
 
 !!test
@@ -8333,6 +8526,38 @@ subpage title=[[Subpage test]]
 !! result
 <p><a href="/wiki/Subpage_test/subpage" title="Subpage test/subpage">subpage</a>
 </p>
+!! end
+
+# TODO: make this PHP-parser compatible!
+!! test
+Relative subpage noslash link
+!! options
+parsoid=wt2wt,wt2html,html2html
+subpage title=[[Subpage test/1/2/3/4]]
+!!input
+[[../../subpage/]]
+
+[[../../subpage]]
+!! result
+<p><a rel="mw:WikiLink" href="Subpage_test/1/2/subpage/">subpage</a></p>
+<p><a rel="mw:WikiLink" href="Subpage_test/1/2/subpage">Subpage_test/1/2/subpage</a></p>
+!! end
+
+# TODO: make this PHP-parser compatible!
+!! test
+Parsoid: dot-slash prefixed wikilinks
+!! options
+parsoid=wt2wt,wt2html,html2html
+!!input
+[[./foo]]
+
+[[././bar]]
+
+[[././baz/]]
+!! result
+<p><a rel="mw:WikiLink" href="./Foo">foo</a></p>
+<p><a rel="mw:WikiLink" href="./Bar">bar</a></p>
+<p><a rel="mw:WikiLink" href="./Baz/">baz/</a></p>
 !! end
 
 !! test
@@ -14584,6 +14809,16 @@ B <span about="#mwt4" class="reference" data-mw='{"name":"ref","body":{"html":"b
 <ol about="#mwt7" class="references" data-mw='{"name":"references","body":{"extsrc":"<ref name=\"a\">foo</ref>\nThis should just get lost."},"attrs":{}}' typeof="mw:Extension/references"><li about="#cite_note-a-1" id="cite_note-a-1"><span rel="mw:referencedBy"><a href="#cite_ref-a-1-0">↑</a></span> foo</li><li about="#cite_note-b-2" id="cite_note-b-2"><span rel="mw:referencedBy"><a href="#cite_ref-b-2-0">↑</a></span> bar</li></ol>
 !!end
 
+!!test
+References: 6. <references /> from a transclusion
+!!options
+parsoid
+!!input
+{{echo|<references />}}
+!!result
+<ol class="references" about="#mwt2" typeof="mw:Transclusion" data-mw='{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"<references />"}},"i":0}'></ol>
+!!end
+
 #### ----------------------------------------------------------------
 #### The following section of tests are primarily to test
 #### wikitext escaping capabilities of Parsoid.  Given that
@@ -15463,6 +15698,15 @@ parsoid
 </p>
 !! end
 
+!! test
+4. extension tags
+!! input
+<nowiki><ref>foo</ref></nowiki>
+!! result
+<p>&lt;ref&gt;foo&lt;/ref&gt;
+</p>
+!! end
+
 #### --------------- Others ---------------
 !! test
 Escaping nowikis
@@ -15830,6 +16074,52 @@ parsoid
 <b> <i>x</i></b><i> </i>
 </p>
 !!end
+
+# -----------------------------------------------------------------
+# The following section of tests are primarily to spec requirements
+# around serialization of new/edited content.
+#
+# All these tests are marked Parsoid html2wt and html2html only
+# ----------------------------------------------------------------
+
+!! test
+Image: Modifying size of an image
+!! options
+parsoid=html2wt
+!! input
+[[Image:Wiki.png|230x230px]]
+!! result
+<p data-parsoid='{"dsr":[0,24,0,0]}'><span typeof="mw:Image" data-parsoid='{"optList":[{"ck":"width","ak":"100px"}],"cacheKey":"[[Image:Wiki.png|100px]]","img":{"h":115,"w":100,"wdset":true},"dsr":[0,24,null,null]}'><a href="./File:Wiki.png" data-parsoid='{"a":{"href":"./File:Wiki.png"}}'><img resource="./File:Wiki.png" src="//upload.wikimedia.org/wikipedia/en/thumb/b/bc/Wiki.png/100px-Wiki.png" height="230" width="200" data-parsoid='{"a":{"resource":"./File:Wiki.png"},"sa":{"resource":"Image:Wiki.png"}}'></a></span></p>
+!!end
+
+!! test
+Image: New block level image should have \n before and after
+!! options
+parsoid=html2wt
+!! input
+123
+[[File:Wiki.png|right|thumb|150x150px]]
+456
+!! result
+<p>123</p><figure typeof="mw:Image/Thumb" class="mw-halign-right"><a href="./File:Wiki.png"><img src="http://192.168.142.128/mw/images/thumb/b/bc/Wiki.png/131px-Wiki.png" width="131" height="150" resource="./File:Wiki.png"></a></figure><p>456</p>
+!!end
+
+!! test
+Lists: Add space after bullets
+!! options
+parsoid=html2wt
+!! input
+
+* foo
+* bar
+* <span> baz</span>
+!! result
+<ul>
+<li>foo</li>
+<li> bar</li>
+<li><span> baz</span></li>
+</ul>
+!! end
 
 TODO:
 more images
