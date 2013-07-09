@@ -1074,6 +1074,7 @@ See examples: [[Special:UserLogin]] and [{{canonicalurl:Special:UserLogin|type=s
 'userlogin-yourname-ph' => 'Placeholder text in login & create account form field.
 
 See example: [[Special:UserLogin]] and [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]',
+'createacct-another-username-ph' => 'Placeholder text in create account form field when one user creates an account for another.',
 'yourpassword' => 'In user preferences
 
 {{Identical|Password}}',
@@ -1178,7 +1179,8 @@ See also:
 'createacct-join' => 'Subheading of vertical-layout create account form encouraging user to join the wiki.
 
 See example: [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]',
-'createacct-emailrequired' => 'Label in vertical-layout create account form for email field when it is required.
+'createacct-another-join' => 'Subheading of create account form when one user creates an account for another.',
+'createacct-emailrequired' => 'Label in create account form for email field when it is required.
 
 See also:
 * {{msg-mw|Createacct-emailoptional}}
@@ -1192,6 +1194,7 @@ See also:
 'createacct-email-ph' => 'Placeholder in vertical-layout create account form for email field.
 
 See example: [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]',
+'createacct-another-email-ph' => 'Placeholder in create account form for email field when one user creates an account for another.',
 'createaccountmail' => 'Used as label for the checkbox for creating a new account and sending the new password to the specified e-mail address directly, as used on [[Special:UserLogin/signup]] if creating accounts by e-mail is allowed.
 
 See example: [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]',
@@ -1211,6 +1214,7 @@ See example: [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?t
 'createacct-submit' => 'Submit button on vertical-layout create account form.
 
 See example: [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]',
+'createacct-submit' => 'Submit button on vertical-layout create account form when one user creates an account for another.',
 'createacct-benefit-heading' => 'In vertical-layout create account form, the heading for the section describing the benefits of creating an account.
 
 See example: [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]',
