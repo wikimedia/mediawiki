@@ -10,15 +10,20 @@
 		var $emailLabel = $( 'label[for="wpEmail"]' ),
 			originalText = $emailLabel.text(),
 			requiredText = mw.message( 'createacct-emailrequired' ).text(),
-			$createByMailCheckbox = $( '#wpCreateaccountMail' );
+			$createByMailCheckbox = $( '#wpCreateaccountMail' ),
+			$beforePwds = $( '.mw-row-password:first').prev(),
+			$pwds;
 
 		function updateForCheckbox() {
 			var checked = $createByMailCheckbox.prop( 'checked' );
 			if ( checked ) {
-				$( '.mw-row-password' ).hide();
+				$pwds = $( '.mw-row-password' ).detach();
 				$emailLabel.text( requiredText );
 			} else {
-				$( '.mw-row-password' ).show();
+				if ( $pwds ) {
+					$beforePwds.after( $pwds );
+					$pwds = null;
+				}
 				$emailLabel.text( originalText );
 			}
 		}
