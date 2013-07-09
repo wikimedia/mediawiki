@@ -228,6 +228,10 @@ production.
 * (bug 48201) action=parse&text=foo now assumes wikitext if no title is given,
   rather than using the content model of the page "API".
 * action=watch may now return errors.
+* (bug 50785) action=purge with forcelinkupdate=1 no longer queues refreshLinks
+  jobs in the job queue for link table updates of pages that use the given page
+  as a template. Instead, forcerecursivelinkupdate=1 is introduced and should
+  be used if that behaviour is desirable.
 
 === Languages updated in 1.22===
 
@@ -303,6 +307,9 @@ changes to languages because of Bugzilla reports.
   Section edit links' brackets can now be customized using CSS by
   styling span.mw-editsection-bracket.
 * The usePatrol function in ChangesList has been marked as deprecated.
+* (bug 50785) A "null edit", that is, a save action in which no changes to the
+  page text are made and no revision recorded, will no longer send refreshLinks
+  jobs to the job table to update pages which use the edited page as a template.
 
 == Compatibility ==
 
