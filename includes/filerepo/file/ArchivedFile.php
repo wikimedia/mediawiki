@@ -196,6 +196,7 @@ class ArchivedFile {
 			'fa_user_text',
 			'fa_timestamp',
 			'fa_deleted',
+			'fa_deleted_timestamp', /* Used by LocalFileRestoreBatch */
 			'fa_sha1',
 		);
 	}
