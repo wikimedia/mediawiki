@@ -4010,7 +4010,6 @@ Du kannst auch die [[Special:EditWatchlist|Standardseite]] zum Bearbeiten benutz
 'version-other' => 'Sonstige Erweiterungen',
 'version-mediahandlers' => 'Mediennutzungserweiterungen',
 'version-hooks' => "Schnittstellen ''(Hooks)''",
-'version-extension-functions' => 'Funktionsaufrufe',
 'version-parser-extensiontags' => "Parsererweiterungen ''(Tags)''",
 'version-parser-function-hooks' => "Parsererweiterungen ''(Funktionen)''",
 'version-hook-name' => 'Schnittstellenname',

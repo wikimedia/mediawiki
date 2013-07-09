@@ -3647,7 +3647,6 @@ $5
 'version-skins' => 'באניצער־אייבערפלאכן',
 'version-other' => 'אנדער',
 'version-hooks' => 'Hook סטרוקטורן',
-'version-extension-functions' => 'פארברייטערן פונקציעס',
 'version-parser-extensiontags' => 'פארזער פארברייטערן טאַגן',
 'version-hook-name' => 'נאמען פון hook',
 'version-version' => '(ווערסיע $1)',

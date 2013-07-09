@@ -3397,7 +3397,6 @@ $5
 'version-other' => 'Рознае',
 'version-mediahandlers' => 'Апрацоўнікі мультымедый',
 'version-hooks' => 'Хукі',
-'version-extension-functions' => 'Функцыі прыстаўкі',
 'version-parser-extensiontags' => 'Тагі прыстаўкі да парсера',
 'version-parser-function-hooks' => 'Хукі функцый парсера',
 'version-hook-name' => 'Назва хука',

@@ -701,36 +701,36 @@ $1',
 'yourname' => 'Декъашхон цlе:',
 'userlogin-yourname' => 'Декъашхон цӀе',
 'userlogin-yourname-ph' => 'Язъе декъашхон цӀе',
-'yourpassword' => 'Ишар:',
-'userlogin-yourpassword' => 'Ишар',
-'userlogin-yourpassword-ph' => 'Язъе ишар',
-'createacct-yourpassword-ph' => 'Язъе ишар',
-'yourpasswordagain' => 'Юха язъйе ишар:',
-'createacct-yourpasswordagain' => 'Бакъе ишар',
-'createacct-yourpasswordagain-ph' => 'Кхин цкъа язъе ишар',
+'yourpassword' => 'Пароль:',
+'userlogin-yourpassword' => 'Пароль',
+'userlogin-yourpassword-ph' => 'Язъе хьай пароль',
+'createacct-yourpassword-ph' => 'Язъе пароль',
+'yourpasswordagain' => 'Юха язъе пароль:',
+'createacct-yourpasswordagain' => 'Бакъе пароль',
+'createacct-yourpasswordagain-ph' => 'Кхин цкъа язъе пароль',
 'remembermypassword' => 'Даглаца сан дlавазвалар/ялар хlокху гlулкхдечу гlирса тlяхь (цхьан $1 {{PLURAL:$1|ден|динахь|динахь}})',
 'userlogin-remembermypassword' => 'Дагахь латт ве/е со',
 'userlogin-signwithsecure' => 'Ларийна цхьаьнакхетар',
 'yourdomainname' => 'Хьан машан меттиг:',
-'login' => 'Чувалар/ялар',
+'login' => 'Системин чугӀо',
 'nav-login-createaccount' => 'Вовзийта/Йовзийта хьой / дӀавазло/дӀаязло',
 'loginprompt' => 'Ахьа бакъо йала йеза оцу «cookies» хьайна вовзийта лаахь гlирсан.',
-'userlogin' => 'Чувалар/ялар я декъашхон дӀаяздар кхоллар',
-'userloginnocreate' => 'Чувалар/ялар',
-'logout' => 'Аравалар/ялар',
-'userlogout' => 'Аравалар/ялар',
+'userlogin' => 'Довзийтар я декъашхон дӀаяздар кхоллар',
+'userloginnocreate' => 'Довзийта',
+'logout' => 'Болх дӀаберзор',
+'userlogout' => 'Болх дӀаберзор',
 'notloggedin' => 'Хьо вовзийта/йовзийта гlирсан',
-'userlogin-noaccount' => 'Хlинца дlа вазвина/язйина вац/яц?',
-'userlogin-joinproject' => 'Цуьнах {{grammar:genitive|{{SITENAME}}}} кхета',
-'nologin' => "Хlинца дlа вазвина/язйина вац/яц? '''$1'''.",
+'userlogin-noaccount' => 'Декъашхон дӀаяздар дац хьа?',
+'userlogin-joinproject' => '{{grammar:genitive|{{SITENAME}}}} юкъахӀотта',
+'nologin' => "Декъашхон дӀаяздар дац хьа? '''$1'''.",
 'nologinlink' => 'Кхолла декъашхон дӀаяздар',
 'createaccount' => 'Кхолла декъашхон дӀаяздар',
 'gotaccount' => "Дlавазвелла вуй хьо? '''$1'''.",
-'gotaccountlink' => 'Чувалар/ялар',
+'gotaccountlink' => 'Довзийта',
 'userlogin-resetlink' => 'Чуволу/йолу хаам биц бела?',
-'userlogin-resetpassword-link' => 'Ишар кхоссар',
-'helplogin-url' => 'Help:Чувалар/ялар',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Чувала/яла гӀодар]]',
+'userlogin-resetpassword-link' => 'Пароль кхоссар',
+'helplogin-url' => 'Help:Системин довзийтар',
+'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Системин чудаха гӀодар]]',
 'createacct-join' => 'ДӀаязбе лахахь хай хаам.',
 'createacct-emailrequired' => 'Электронни почтан адрес',
 'createacct-emailoptional' => 'Электронни почтан адрес (ца яздича мега)',
@@ -754,15 +754,15 @@ $1',
 'createaccounterror' => 'Декъашхон дӀаяздар кхолла йиш яц: $1',
 'nocookiesforlogin' => '{{int:nocookieslogin}}',
 'noname' => 'Ахьа магийтина йолу декъашхон цӀе билгал йина яц.',
-'loginsuccesstitle' => 'Хьо вовзар/йовзар хаз чакхдели',
+'loginsuccesstitle' => 'Хьан пароль тӀеэца, марша догӀила Википеди чу!',
 'loginsuccess' => 'Хlинца ахьа болх бó оцу цlарца $1.',
 'nosuchuser' => 'Цlарца $1 декъашхо вац/яц.
 Декъашхой цlераш хаалуш йу дlайазвалрца/яларца элраш.
 Нийса юьй хьажа цlе йа [[Special:UserLogin/signup|дlаяздар кхолла керла]].',
 'nosuchusershort' => 'Ишта «$1» цӀе йолу декъашхо вац/яц. Хьажа цӀе нийса язйина юй.',
 'nouserspecified' => 'Ахьа декъашхочун цӀе билгал ян езаш ю.',
-'wrongpassword' => 'Ахьа язъйина йолу ишар нийса яц. Хьажа йуху цхьаъз.',
-'mailmypassword' => 'Схьаэца керла ишар',
+'wrongpassword' => 'Ахьа язйина йолу пароль нийса яц. Хьажа юху цхьаъз.',
+'mailmypassword' => 'Яийта керла пароль электронан почтехула',
 'noemail' => 'ЦӀе $1 йолу декъашхон электронни адрес яздина дац.',
 'mailerror' => 'Кехат дохьуьйтуш гӀалат ду: $1',
 'emailauthenticated' => 'Хьан почтан адрес бакъдина $2 $3.',
@@ -771,20 +771,20 @@ $1',
 'loginlanguagelabel' => 'Мотт: $1',
 
 # Change password dialog
-'resetpass' => 'Ишар хийца',
+'resetpass' => 'Хийца пароль',
 'resetpass_text' => '<!-- Кхузахь язъде хьай йоза -->',
-'resetpass_header' => 'Жамlаш дlаязвеллачуьна ишар хийцар',
-'oldpassword' => 'Шираелла ишар:',
-'newpassword' => 'Керла ишар:',
-'retypenew' => 'Юха язъйе керла ишар:',
-'resetpass_forbidden' => 'Ишар хийца йиш яц',
-'resetpass-submit-loggedin' => 'Хийца ишар',
+'resetpass_header' => 'Хийца дӀаяздаран пароль',
+'oldpassword' => 'Шираелла пароль:',
+'newpassword' => 'Керла пароль:',
+'retypenew' => 'Юха язъйе керла пароль:',
+'resetpass_forbidden' => 'Пароль хийца йиш яц',
+'resetpass-submit-loggedin' => 'Хийца пароль',
 'resetpass-submit-cancel' => 'Цаоьшу',
-'resetpass-temp-password' => 'Цхьан хана ишар:',
+'resetpass-temp-password' => 'Цхьан хана пароль:',
 
 # Special:PasswordReset
-'passwordreset' => 'Ишар кхоссар',
-'passwordreset-legend' => 'Кхосса ишар',
+'passwordreset' => 'Пароль кхоссар',
+'passwordreset-legend' => 'Пароль кхоссар',
 'passwordreset-username' => 'Декъашхочун цӀе:',
 'passwordreset-domain' => 'Домен:',
 'passwordreset-email' => 'Электронни почтан адрес:',
@@ -828,10 +828,10 @@ $1',
 'summary-preview' => 'Цуьнах лаьцна хирду:',
 'blockedtitle' => 'Декъашхон блоктоьхана',
 'loginreqlink' => 'Логин',
-'accmailtitle' => 'Ишар дlаяхьийтина.',
-'accmailtext' => "Ишар декъашхочуьна [[User talk:$1|$1]], йина ша шех хитта делла чу элпашах, дlаяхийтина хьокху хааман зlен чу $2.
+'accmailtitle' => 'Пароль дlаяхьийтина.',
+'accmailtext' => "Пароль декъашхочуьна [[User talk:$1|$1]], йина ша шех хитта делла чу элпашах, дlаяхийтина хьокху $2 адрес тӀе.
 
-Дlаязвинчултlяхьа, кху гlирса чохь шуьга хийцалур ю ''[[Special:ChangePassword|шай ишар]]''.",
+Чуваьлла/яла чул тӀехьа , кху гlирса чохь шуьга хийцалур ю ''[[Special:ChangePassword|шай пароль]]''.",
 'newarticle' => '(Kерла)',
 'newarticletext' => "Хьо веана хьажоригци хlокху агlон тlе, хlара агlо хlинца йоцаш ю.
 Нагахь иза кхолла лаахь, хlотта де лахо гуш долу корехь йоза (мадарра хьажа. [[{{MediaWiki:Helppage}}|гlон агlон чу]]).
@@ -850,8 +850,8 @@ $1',
 'userpage-userdoesnotexist' => 'Ишта дlайазвар «<nowiki>$1</nowiki>» хlинца дац. Хьажа билгал, хьуна бакъалла лаьи кхолла йа хийцам ба хlокху агlон.',
 'sitecsspreview' => "'''ХӀара хьалх хьажар ду, хӀара CSS.'''
 '''хӀинца Ӏалашдина дац!'''",
-'sitejspreview' => "'''ХӀара хьалх хьажар ду, хӀара JavaScript-ишар.'''
-'''хӀинца Ӏалашдина дац!'''",
+'sitejspreview' => "'''ХӀара хьалх хьажар ду, хӀара JavaScript-код.'''
+'''хӀинца Ӏалашйина яц!'''",
 'updated' => '(Карла йаькхина)',
 'note' => "'''Билгалдаккхар:'''",
 'previewnote' => "'''Хlара хьалх хьажар ду, йоза хlинца язданза ду!'''",
@@ -891,7 +891,7 @@ $1',
 'edittools' => '<!-- Кхузе буха диллина йоза гуш хир ду редоккхуче бухахь а хlума чуйоккхуче бухахь. -->',
 'permissionserrorstext' => 'Хьан бакъо яц кхочуш хилийта хийцам оцу {{PLURAL:$1|шолгlа бахьанца|шолгlа бахьанашца}}:',
 'permissionserrorstext-withaction' => "Хьан бакъо яц хlумда «'''$2'''» оцу {{PLURAL:$1|шолгlа бахьанца|шолгlа бахьанашца}}:",
-'recreate-moveddeleted-warn' => "'''Тидам бе. Хьо ву (ле йу) йуха кхолла гӀерташ агӀо, хьалхо дӀаяккхина йолу.'''
+'recreate-moveddeleted-warn' => "'''Тидам бе. Хьо ву (ле ю) йуха кхолла гӀерташ агӀо, хьалхо дӀаяккхина йолу.'''
 
 Хьажа, билгалла оьши хьуна хӀара яззам йуха кхолла.
 Лахахь далина ду дӀаяхарш тӀяхь долу тептарш а хӀокх яззам цӀера бина хийцамаш.",
@@ -1019,7 +1019,7 @@ $1',
 'preferences' => 'Гlирс нисбан',
 'mypreferences' => 'ГӀирс нисбан',
 'prefs-edits' => 'Нисдарши дукхалла:',
-'changepassword' => 'Хийцамба ишарна',
+'changepassword' => 'Хийца пароль',
 'prefs-skin' => 'Кечяран тема',
 'skin-preview' => 'Хьалха муха ю хьажа',
 'datedefault' => 'Iад йитарца',
@@ -1036,7 +1036,7 @@ $1',
 'prefs-watchlist-edits-max' => 'Уггар дукха: 1000',
 'prefs-watchlist-token' => 'Тергаме могӀанан токен:',
 'prefs-misc' => 'Кхин гlирсаш',
-'prefs-resetpass' => 'Хийца ишар',
+'prefs-resetpass' => 'Хийца пароль',
 'prefs-changeemail' => 'Хийца электрони почт',
 'prefs-email' => 'Электронан почтан параметрш',
 'prefs-rendering' => 'Арахьара хатl',
@@ -1092,7 +1092,7 @@ $1',
 'prefs-help-gender' => 'ТӀехь доцург: и хаам лелош бу цхьайолу хаамаш чохь декъашхочун пол гучуйоккхуш.
 И хаам массарна гуш хир бу.',
 'email' => 'Email',
-'prefs-help-email' => 'Кехат яздо зlен цlе цахlоттийча аъ хlумма дац, амма иза оьшар ю, нагахь хьуна хьай ишар йицлахь.',
+'prefs-help-email' => 'Электрони почтан адрес цахlоттийча аъ хlумма дац, амма иза оьшар ю, нагахь хьуна хьай пароль йицлахь.',
 'prefs-help-email-others' => 'Кхин дӀа цо кхечу декъашхошна йиш хуьлуьйту хьога электронни кехат даийта хьан агӀона чохь йолу хьажориган гӀонца.',
 'prefs-info' => 'Коьрта хаам',
 'prefs-i18n' => 'Юкъардекъа мотт',
@@ -1240,7 +1240,7 @@ $1',
 'upload-maxfilesize' => 'Файлан: $1 максимальни барам',
 'upload-description' => 'Файлах лаьцна',
 'upload-options' => 'Чуякхаран параметраш',
-'watchthisupload' => 'Латайе хlара файл тергаме могlам юкъа',
+'watchthisupload' => 'Латайе хӀара файл тергаме могӀам юкъахь',
 'filename-prefix-blacklist' => '#<!-- битийша хlара могlа ша мабарра --> <pre>
 # Бухасиз шолгlа:
 #  * Массо, саболчунтlийра йуьлалуш ерш «#» хуьлу хетаме дерг (могlа чекх балац)
@@ -1478,6 +1478,7 @@ PICT # тайп тайпан
 'activeusers-intro' => 'Лахахь гойтуш бу  {{PLURAL:$1|тӀаьхьара $1 динахь|тӀаьхьара $1 деношкахь}} хийцамаш бина декъашхой.',
 'activeusers-count' => '{{PLURAL:$3|тӀаьхьарчу $3 динахь|тӀаьхьара $3 деношкахь}} $1 {{PLURAL:$1|нисдар|нисдарш}} дина',
 'activeusers-from' => 'Гучé баха декъашхой, болалуш болу тӀера:',
+'activeusers-hidebots' => 'Къайлабаха шабелхалой',
 'activeusers-hidesysops' => 'Къайлабаха куьйгалхой',
 'activeusers-noresult' => 'Декъашхой цакарий.',
 
@@ -1911,8 +1912,8 @@ PICT # тайп тайпан
 'print.css' => '/* Чуйиллина йолу кхузе CSS хир йу лелош масхьа зорба тухучуче чохь */',
 
 # Scripts
-'common.js' => '/* Чуйиллина йолу кхузе JavaScript ишар гучу ерайу массо декъашхошна оцара схьаелларца хlора агlо */',
-'monobook.js' => '/* Кхузе чу яззийна йолу JavaScript ишар, чу йера йу, массо MonoBook хатl лелош болу декъашхошна */',
+'common.js' => '/* Чуйиллина йолу кхузе JavaScript код гучу ера ю массо декъашхошна оцара схьаелларца хlора агlо */',
+'monobook.js' => '/* Кхузе чу язийна йолу JavaScript код, чу ера ю, массо MonoBook хатl лелош болу декъашхошна */',
 
 # Attribution
 'siteuser' => 'декъашхо {{grammar:genitive|{{SITENAME}}}} $1',
@@ -2033,9 +2034,10 @@ PICT # тайп тайпан
 'limitall' => 'массо',
 
 # Delete conflict
-'confirmrecreate' => "Декъашхо [[User:$1|$1]] ([[User talk:$1|дийцаре]]) хlара агlо дlадайина, хьо иза нисда вола велча, дlадайарна бахьан:
+'confirmrecreate' => "Декъашхочо [[User:$1|$1]] ([[User talk:$1|дийцаре]]) хӀара агӀо дӀаяккхина, ахьа иза тая йолийча, дӀаяккхарна бахьна:
 : ''$2''
-Дехар до, тешал де, хьо иза агlо метта хlотто лууш ву але.",
+Дехар до, тешал де, хьо иза агӀо меттахӀотто лууш ву/ю але.",
+'confirmrecreate-noreason' => 'Декъашхочо [[User:$1|$1]] ([[User talk:$1|дийцаре]]) хӀара агӀо дӀаяккхина, ахьа иза тая йолийча. Дехар до, тешал де, хьо иза агӀо меттахӀотто лууш ву/ю але.',
 
 # Multipage image navigation
 'imgmultipageprev' => '← хьалхара агlо',
@@ -2064,7 +2066,10 @@ PICT # тайп тайпан
 'livepreview-ready' => 'Чуйолуш… Кийча йу!',
 
 # Watchlist editor
-'watchlistedit-normal-submit' => 'Дlадайá язъдинарш',
+'watchlistedit-normal-explain' => 'Лахахь гойту хьан тергаме могӀамехь йолу агӀонаш.
+ДӀаяздарш дӀадаха билгалде уьш такха тӀетаӀе кнопка «{{int:Watchlistedit-normal-submit}}».
+Кхин хьа йиш ю [[Special:EditWatchlist/raw|йозан кепар могӀом нисба ]].',
+'watchlistedit-normal-submit' => 'ДӀадаха дӀаяздарш',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Могlам чура агlонашан хийцамаш',

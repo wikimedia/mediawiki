@@ -4071,7 +4071,6 @@ Dä Shtanndat-Zoot-Schlößel „$1“ övverschriif dä älldere Zoot-Schlöße
 'version-other' => 'Söns',
 'version-mediahandlers' => 'Medije-Handler',
 'version-hooks' => 'Schnettstelle oder Hooke',
-'version-extension-functions' => 'Funktione för Zosätz',
 'version-parser-extensiontags' => 'Erjänzunge zom Parser',
 'version-parser-function-hooks' => 'Parserfunktione',
 'version-hook-name' => 'De Schnettstelle ier Name',

@@ -3661,7 +3661,6 @@ Móžeš tež [[Special:EditWatchlist|standardnu wobdźěłowansku stronu]] wuž
 'version-other' => 'Druhe',
 'version-mediahandlers' => 'Předźěłaki medijow',
 'version-hooks' => 'Hoki',
-'version-extension-functions' => 'Funkcije rozšěrjenjow',
 'version-parser-extensiontags' => "Parserowe rozšěrjenja ''(taflički)''",
 'version-parser-function-hooks' => 'Parserowe funkcije',
 'version-hook-name' => 'Mjeno hoki',

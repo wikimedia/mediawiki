@@ -3344,7 +3344,6 @@ $5
 'version-other' => 'تانية',
 'version-mediahandlers' => 'متحكمات الميديا',
 'version-hooks' => 'الخطاطيف',
-'version-extension-functions' => 'وظايف الامتداد',
 'version-parser-extensiontags' => 'التاجز بتوع امتداد البريزر',
 'version-parser-function-hooks' => 'خطاطيف دالة المحلل',
 'version-hook-name' => 'اسم الخطاف',

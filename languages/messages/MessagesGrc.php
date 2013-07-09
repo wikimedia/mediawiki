@@ -2586,7 +2586,6 @@ $5
 'version-other' => 'Ἄλλα',
 'version-mediahandlers' => 'Χειρισταὶ μέσων',
 'version-hooks' => 'Ἀγγύλαι',
-'version-extension-functions' => 'Ἐνέργειαι ἐπεκτάσεων',
 'version-parser-extensiontags' => 'Σἠμαντρα ἐπεκτάσεων λεξιαναλυτικοῦ προγράμματος',
 'version-parser-function-hooks' => 'Ἀγγύλαι ἐνεργειῶν λεξιαναλυτικοῦ προγράμματος',
 'version-hook-name' => 'Ὄνομα ἀγκύλης',

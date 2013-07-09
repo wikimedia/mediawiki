@@ -3561,7 +3561,6 @@ $5
 'version-other' => 'آیری',
 'version-mediahandlers' => 'مئدیا ایشلدنلری',
 'version-hooks' => 'چنگل‌لر',
-'version-extension-functions' => 'علاوه‌‌ فوبکسیيالار',
 'version-parser-extensiontags' => 'آیریشدیران گنیشلندیرمه اِتیکِتلری',
 'version-parser-function-hooks' => 'آیریشدیران فونکسیا چنگل‌لری',
 'version-hook-name' => 'چنگه‌لین آدی',

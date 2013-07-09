@@ -3618,7 +3618,6 @@ $5
 'version-other' => 'Інше',
 'version-mediahandlers' => 'Обслуга медії',
 'version-hooks' => 'Припойны пункты',
-'version-extension-functions' => 'Функції розшыриня',
 'version-parser-extensiontags' => 'Приданы сінтактічны значкы',
 'version-parser-function-hooks' => 'Функціа парсера',
 'version-hook-name' => 'Назва припойного пункту',

@@ -3641,7 +3641,6 @@ $5
 'version-other' => 'Башҡалар',
 'version-mediahandlers' => 'Медиа эшкәртеүсе ҡоралдар',
 'version-hooks' => 'Эләктереп алыусылар',
-'version-extension-functions' => 'Киңәйтеү функциялары',
 'version-parser-extensiontags' => 'Уҡыу ҡоралдары киңәйтеүҙәре тегтары',
 'version-parser-function-hooks' => 'Уҡыу ҡоралдары функцияларын эләктереп алыусылар',
 'version-hook-name' => 'Эләктереп алыусы исеме',

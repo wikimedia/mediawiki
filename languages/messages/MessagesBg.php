@@ -3564,7 +3564,6 @@ $5
 'version-other' => 'Други',
 'version-mediahandlers' => 'Обработчици на медия',
 'version-hooks' => 'Куки',
-'version-extension-functions' => 'Допълнителни функции',
 'version-parser-extensiontags' => 'Етикети от парсерни разширения',
 'version-parser-function-hooks' => 'Куки в парсерни функции',
 'version-hook-name' => 'Име на куката',

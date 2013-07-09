@@ -3577,7 +3577,6 @@ $5
 'version-skins' => 'សំបក',
 'version-other' => 'ផ្សេង',
 'version-mediahandlers' => 'កម្មវិធី​បើក​មេឌា​ (Media handlers)',
-'version-extension-functions' => 'មុខងារផ្នែកបន្ថែម',
 'version-hook-name' => 'ឈ្មោះ​ Hook',
 'version-hook-subscribedby' => 'បានជាវ ជាប្រចាំ ដោយ',
 'version-version' => '(កំណែ $1)',

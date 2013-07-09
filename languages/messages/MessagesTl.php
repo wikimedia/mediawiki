@@ -3882,7 +3882,6 @@ Maaari mo ring [[Special:EditWatchlist|gamitin ang pangkaraniwang pampatnugot]].
 'version-other' => 'Iba pa',
 'version-mediahandlers' => 'Mga tagahawak/tagapamahala ng midya',
 'version-hooks' => 'Mga pangkawit',
-'version-extension-functions' => 'Mga tungkuling pangkarugtong',
 'version-parser-extensiontags' => "Mga tatak ng banghay (''parser'')",
 'version-parser-function-hooks' => "Mga pangkawit ng/sa tungkuling pambanghay (''parser'')",
 'version-hook-name' => 'Pangalan ng pangkawit',

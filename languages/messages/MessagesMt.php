@@ -3684,7 +3684,6 @@ Inti tista' wkoll tuża' l-[[Special:EditWatchlist|editur bl-interfaċċa standa
 'version-other' => 'Oħrajn',
 'version-mediahandlers' => 'Imradd tal-medja',
 'version-hooks' => 'Hook',
-'version-extension-functions' => 'Funzjonijiet tal-estensjoni',
 'version-parser-extensiontags' => "Tikketti magħrufa mill-''parser'' introdotti minn estensjonijiet",
 'version-parser-function-hooks' => "''Hooks'' għal funzjonijiet tal-''parser''",
 'version-hook-name' => 'Isem tal-hook',

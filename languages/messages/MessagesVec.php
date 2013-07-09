@@ -3630,7 +3630,6 @@ Nota che te pol anca [[Special:EditWatchlist|modificar la lista con l'interfacia
 'version-other' => 'Altro',
 'version-mediahandlers' => 'Gestori de contenuti multimediài',
 'version-hooks' => 'Hook',
-'version-extension-functions' => 'Funzion introdote da estensioni',
 'version-parser-extensiontags' => 'Tag riconossiùi dal parser introdoti da estensioni',
 'version-parser-function-hooks' => 'Hook par funzioni del parser',
 'version-hook-name' => "Nome de l'hook",

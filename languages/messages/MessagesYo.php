@@ -3453,7 +3453,6 @@ $5
 'version-skins' => 'Skin (Àwọ̀)',
 'version-other' => 'Òmíràn',
 'version-hooks' => 'Àwọn hook',
-'version-extension-functions' => 'Àwọn ìmúṣe ìfàgùn',
 'version-hook-name' => 'Orúkọ hook',
 'version-version' => '(Àtẹ̀jáde $1)',
 'version-license' => 'Ìwé àṣẹ',

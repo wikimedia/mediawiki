@@ -3677,7 +3677,6 @@ $5
 'version-other' => 'અન્ય',
 'version-mediahandlers' => 'દ્રશ્યશ્રાવ્ય માધ્યમના ધારક',
 'version-hooks' => 'ખૂંટા',
-'version-extension-functions' => 'વિસ્તારક કાર્ય',
 'version-parser-extensiontags' => 'પૃથક્કરણ વિસ્તારક ટૅગ્સ',
 'version-parser-function-hooks' => 'પદચ્છેદ કાર્ય ખૂંટા',
 'version-hook-name' => 'ખૂંટાનું નામ્',

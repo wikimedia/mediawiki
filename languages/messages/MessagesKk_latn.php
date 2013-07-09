@@ -2777,7 +2777,6 @@ Tağı da [[Special:EditWatchlist|qalıpalğan öñdewişti paýdalana]] alasız
 'version-other' => 'Tağı basqalar',
 'version-mediahandlers' => 'Taspa öñdetkişteri',
 'version-hooks' => 'Jete tuzaqtarı',
-'version-extension-functions' => 'Keñeýtimder jeteleri',
 'version-parser-extensiontags' => 'Qurılımdıq taldatqış keñeýtimderiniñ belgilemeri',
 'version-parser-function-hooks' => 'Qurılımdıq taldatqış jeteleriniñ tuzaqtarı',
 'version-hook-name' => 'Tuzaq atawı',

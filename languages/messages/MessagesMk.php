@@ -1263,8 +1263,8 @@ $2
 Легенда: '''({{int:cur}})''' = разлика со последна ревизија, '''({{int:last}})''' = разлика со претходна ревизија, '''{{int:minoreditletter}}''' = ситна промена.",
 'history-fieldset-title' => 'Прелистување на историја',
 'history-show-deleted' => 'Само избришани',
-'histfirst' => 'Први',
-'histlast' => 'Последни',
+'histfirst' => 'најстари',
+'histlast' => 'најнови',
 'historysize' => '({{PLURAL:$1|1 бајт|$1 бајти}})',
 'historyempty' => '(празно)',
 
@@ -4170,7 +4170,6 @@ $5
 'version-other' => 'Друго',
 'version-mediahandlers' => 'Ракувачи со мултимедијални содржини',
 'version-hooks' => 'Куки',
-'version-extension-functions' => 'Функции на додатоците',
 'version-parser-extensiontags' => 'Ознаки за парсерски додатоци',
 'version-parser-function-hooks' => 'Куки на парсерските функции',
 'version-hook-name' => 'Име на кука',

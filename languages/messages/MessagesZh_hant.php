@@ -42,6 +42,7 @@
  * @author Shizhao
  * @author Simon Shek
  * @author Skjackey tse
+ * @author StephDC
  * @author Waihorace
  * @author Wmr89502270
  * @author Wong128hk
@@ -3813,7 +3814,6 @@ $5
 'version-other' => '其他',
 'version-mediahandlers' => '媒體處理器',
 'version-hooks' => '鈎',
-'version-extension-functions' => '擴展函數',
 'version-parser-extensiontags' => '語法擴展標籤',
 'version-parser-function-hooks' => '語法函數鈎',
 'version-hook-name' => '鈎名',

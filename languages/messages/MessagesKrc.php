@@ -3526,7 +3526,6 @@ $5
 'version-other' => 'Башха',
 'version-mediahandlers' => 'Медияны джарашдырыучула',
 'version-hooks' => 'Тутуучула',
-'version-extension-functions' => 'Кенгертиулени функциялары',
 'version-parser-extensiontags' => 'Синтиаксис анализаторну кенгертиулерин теглери',
 'version-parser-function-hooks' => 'Синтаксис анализаторну функцияларын тутуучула',
 'version-hook-name' => 'Тутуучуну аты',

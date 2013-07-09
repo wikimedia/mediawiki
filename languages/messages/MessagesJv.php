@@ -3455,7 +3455,6 @@ Panjenengan uga bisa [[Special:EditWatchlist|nganggo éditor standar panjenengan
 'version-other' => 'Liyané',
 'version-mediahandlers' => 'Pananganan média',
 'version-hooks' => 'Canthèlan-canthèlan',
-'version-extension-functions' => 'Fungsi-fungsi èkstènsi',
 'version-parser-extensiontags' => 'Rambu èkstènsi parser',
 'version-parser-function-hooks' => 'Canthèlan fungsi parser',
 'version-hook-name' => 'Jeneng canthèlan',

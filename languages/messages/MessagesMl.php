@@ -3901,7 +3901,6 @@ $5
 'version-other' => 'മറ്റുള്ളവ',
 'version-mediahandlers' => 'മീഡിയ കൈകാര്യോപകരണങ്ങൾ',
 'version-hooks' => 'കൊളുത്തുകൾ',
-'version-extension-functions' => 'അനുബന്ധങ്ങളുടെ കർത്തവ്യങ്ങൾ',
 'version-parser-extensiontags' => 'പാഴ്‌സർ അനുബന്ധ റ്റാഗുകൾ',
 'version-parser-function-hooks' => 'പാഴ്‌സർ ഫങ്ഷൻ കൊളുത്തുകൾ',
 'version-hook-name' => 'കൊളുത്തിന്റെ പേര്',

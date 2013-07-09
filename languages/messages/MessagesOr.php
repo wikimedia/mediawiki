@@ -3814,7 +3814,6 @@ $5
 'version-other' => 'ବାକି',
 'version-mediahandlers' => 'ମିଡ଼ିଆ ହ୍ୟାଣ୍ଡଲର',
 'version-hooks' => 'ହୁକ',
-'version-extension-functions' => 'ଏକ୍ସଟେନସନ କାମସବୁ',
 'version-parser-extensiontags' => 'ପାର୍ସର ଏକ୍ସଟେନସନ ଚିହ୍ନ',
 'version-parser-function-hooks' => 'ପାର୍ସର କାମ ହୁକ',
 'version-hook-name' => 'ହୁକ ନାମ',

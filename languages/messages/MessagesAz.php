@@ -2858,7 +2858,6 @@ Variants for Chinese language
 'version-skins' => 'Üzlük',
 'version-other' => 'Digər',
 'version-hooks' => 'Çəngəllər',
-'version-extension-functions' => 'Əlavə fubksiyalar',
 'version-hook-name' => 'Çəngəlin adı',
 'version-hook-subscribedby' => 'Abunə olan',
 'version-version' => '(Versiya $1)',

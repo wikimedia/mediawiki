@@ -2254,7 +2254,6 @@ Tavaççūh kuned, ki şumo metavoned az [[Special:EditWatchlist|viroişgari sta
 'version-other' => 'Digar',
 'version-mediahandlers' => 'Badastgirandahoi rasonaho',
 'version-hooks' => 'Qolabho',
-'version-extension-functions' => 'Amalgarhoi afzuna',
 'version-parser-extensiontags' => 'Barcasbhoi afzunahoi taçzehgar',
 'version-parser-function-hooks' => 'Qolabhoi amalgarhoi taçzehgar',
 'version-hook-name' => 'Nomi qolab',

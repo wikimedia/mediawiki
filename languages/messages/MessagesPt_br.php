@@ -3916,7 +3916,6 @@ Você também pode [[Special:EditWatchlist|editar a lista da maneira convenciona
 'version-other' => 'Diversos',
 'version-mediahandlers' => 'Executores de média',
 'version-hooks' => 'Hooks',
-'version-extension-functions' => 'Funções de extensão',
 'version-parser-extensiontags' => 'Etiquetas de extensões de tipo "parser"',
 'version-parser-function-hooks' => 'Funções "hooks" de "parser"',
 'version-hook-name' => 'Nome do hook',

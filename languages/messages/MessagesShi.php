@@ -1271,7 +1271,6 @@ Wiyyaḍ raggis ḥbun s ɣiklli sttin kkan gantn.
 'version-other' => 'wayya',
 'version-mediahandlers' => 'motahakkimat lmedia',
 'version-hooks' => 'lkhtatif',
-'version-extension-functions' => 'lkhdaym n limtidad',
 'version-parser-extensiontags' => 'imarkiwn n limtidad n lmohalil',
 'version-parser-function-hooks' => 'lkhtatif ndala',
 'version-poweredby-others' => 'wiyyad',

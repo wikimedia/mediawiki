@@ -3600,7 +3600,6 @@ Móžoš teke [[Special:EditWatchlist|standardny wobźěłowański bok wužywaś
 'version-other' => 'Druge',
 'version-mediahandlers' => 'Pśeźěłaki medijow',
 'version-hooks' => 'Kokule',
-'version-extension-functions' => 'Funkcije rozšyrjenjow',
 'version-parser-extensiontags' => 'Tagi parserowych rozšyrjenjow',
 'version-parser-function-hooks' => 'Parserowe funkcije',
 'version-hook-name' => 'Mě kokule',

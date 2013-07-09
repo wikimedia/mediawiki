@@ -4158,7 +4158,6 @@ $5
 'version-other' => 'Інше',
 'version-mediahandlers' => 'Обробники медіа',
 'version-hooks' => 'Перехоплювачі',
-'version-extension-functions' => 'Функції розширень',
 'version-parser-extensiontags' => 'Теги розширень синтаксичного аналізатора',
 'version-parser-function-hooks' => 'Перехоплювачі функцій синтаксичного аналізатора',
 'version-hook-name' => "Ім'я перехоплювача",

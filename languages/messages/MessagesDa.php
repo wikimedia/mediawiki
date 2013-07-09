@@ -12,6 +12,7 @@
  * @author Aputtu
  * @author Boivie
  * @author Byrial
+ * @author Cgtdk
  * @author Christian List
  * @author EPO
  * @author Emilkris33
@@ -1066,8 +1067,8 @@ Kontroller venligst sammenligningen herunder for at bekræfte at det er hvad du 
 version, (forrige) = forskel til den forrige version, M = mindre ændring',
 'history-fieldset-title' => 'Bladr i historikken efter dato',
 'history-show-deleted' => 'Kun slettede',
-'histfirst' => 'Ældste',
-'histlast' => 'Nyeste',
+'histfirst' => 'ældste',
+'histlast' => 'nyeste',
 'historysize' => '($1 {{PLURAL:$1|Byte|Bytes}})',
 'historyempty' => '(tom)',
 
@@ -1392,7 +1393,8 @@ Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit
 'prefs-signature' => 'Signatur',
 'prefs-dateformat' => 'Formatering af datoer',
 'prefs-timeoffset' => 'Tidsforskel',
-'prefs-advancedediting' => 'Avancerede indstillinger',
+'prefs-advancedediting' => 'Generelle',
+'prefs-preview' => 'Forhåndsvisning',
 'prefs-advancedrc' => 'Avancerede indstillinger',
 'prefs-advancedrendering' => 'Avancerede indstillinger',
 'prefs-advancedsearchoptions' => 'Avancerede indstillinger',
@@ -1501,6 +1503,7 @@ Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit
 'right-edituserjs' => 'Ændre andre brugeres JS filer',
 'right-editmyusercss' => 'Redigere dine egne CSS-filer',
 'right-editmyuserjs' => 'Redigere dine egne JavaScript-filer',
+'right-viewmywatchlist' => 'Se din egen overvågningsliste',
 'right-rollback' => 'Hurtig gendannelse af alle redigeringer foretaget af den seneste bruger',
 'right-markbotedits' => 'Markere gendannelser som ændringer foretaget af en robot',
 'right-noratelimit' => 'Upåvirket af hastighedsgrænser',
@@ -1562,6 +1565,9 @@ Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit
 'action-userrights-interwiki' => 'ændre brugerrettigheder for brugere på andre wikier',
 'action-siteadmin' => 'låse eller låse databasen op',
 'action-sendemail' => 'sende email',
+'action-editmywatchlist' => 'rediger din overvågningsliste',
+'action-viewmywatchlist' => 'se din overvågningsliste',
+'action-viewmyprivateinfo' => 'se din private information',
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|ændring|ændringer}}',
@@ -3731,7 +3737,6 @@ Du kan også [[Special:EditWatchlist|bruge standard editoren]].',
 'version-other' => 'Andet',
 'version-mediahandlers' => 'Specialhåndtering af mediefiler',
 'version-hooks' => 'Funktionstilføjelser',
-'version-extension-functions' => 'Udvidelsesfunktioner',
 'version-parser-extensiontags' => 'Tilføjede tags',
 'version-parser-function-hooks' => 'Oversætter-funktioner',
 'version-hook-name' => 'Navn',

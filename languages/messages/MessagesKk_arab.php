@@ -2818,7 +2818,6 @@ $5
 'version-other' => 'تاعى باسقالار',
 'version-mediahandlers' => 'تاسپا وڭدەتكىشتەرى',
 'version-hooks' => 'جەتە تۇزاقتارى',
-'version-extension-functions' => 'كەڭەيتىمدەر جەتەلەرى',
 'version-parser-extensiontags' => 'قۇرىلىمدىق تالداتقىش كەڭەيتىمدەرىنىڭ بەلگىلەمەرى',
 'version-parser-function-hooks' => 'قۇرىلىمدىق تالداتقىش جەتەلەرىنىڭ تۇزاقتارى',
 'version-hook-name' => 'تۇزاق اتاۋى',

@@ -341,7 +341,7 @@ $1",
 'nstab-media' => 'Pàgina multimojen',
 'nstab-special' => 'Pàgina special',
 'nstab-project' => 'Pàgina ëd proget',
-'nstab-image' => 'Figura',
+'nstab-image' => 'Archivi',
 'nstab-mediawiki' => 'Mëssagi',
 'nstab-template' => 'Stamp',
 'nstab-help' => 'Agiut',
@@ -350,8 +350,8 @@ $1",
 # Main script and global functions
 'nosuchaction' => 'Operassion nen arconossùa',
 'nosuchactiontext' => "L'operassion che a l'ha ciamà ant l'anliura a l'é nen arconossùa.
-A peul esse che it l'abie batù mal l'URL, o che it sie andàit dapress a n'anliura nen giusta.
-Sossì a podrìa ëdcò esse un bigat andrinta al programa dovrà da {{SITENAME}}.",
+A peul esse che a l'abie batù mal l'adrëssa, o che a sia andàit dapress a n'anliura nen giusta.
+Sossì a podrìa ëdcò esse un givo andrinta al programa dovrà da {{SITENAME}}.",
 'nosuchspecialpage' => "A-i é pa gnun-a pàgina special tan-me cola che chiel a l'ha ciamà.",
 'nospecialpagetext' => "<strong>It l'has ciamà na pàgina special pa bon-a.</strong>
 
@@ -3570,7 +3570,6 @@ As peul ëdcò [[Special:EditWatchlist|dovré l'editor sòlit]].",
 'version-other' => 'Àutr',
 'version-mediahandlers' => 'Gestor multimojen',
 'version-hooks' => 'Gancio',
-'version-extension-functions' => "Fonsion dj'estension",
 'version-parser-extensiontags' => "Tichëtte dj'estension conossùe dal dëscompositor",
 'version-parser-function-hooks' => 'Gancio për le fonsion dël dëscompositor',
 'version-hook-name' => 'Nòm dël gancio',

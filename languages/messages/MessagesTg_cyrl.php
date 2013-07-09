@@ -2481,7 +2481,6 @@ $5
 'version-other' => 'Дигар',
 'version-mediahandlers' => 'Бадастгирандаҳои расонаҳо',
 'version-hooks' => 'Қолабҳо',
-'version-extension-functions' => 'Амалгарҳои афзуна',
 'version-parser-extensiontags' => 'Барчасбҳои афзунаҳои таҷзеҳгар',
 'version-parser-function-hooks' => 'Қолабҳои амалгарҳои таҷзеҳгар',
 'version-hook-name' => 'Номи қолаб',

@@ -933,6 +933,7 @@ Boggaga ku jiro  [[Special:Watchlist|liiskaaga waardiyaha]] waa '''butac'''.",
 'uploadbtn' => 'Soo geli file',
 'uploadnologin' => 'Gudaha kuma jirtid',
 'uploaderror' => 'Qalad soo gelinta',
+'upload-permitted' => 'Nuucyada faylasha la ogolyahay: $1.',
 'uploadlog' => 'gudagalaha soo galiyay',
 'uploadlogpage' => 'Gudagalaha soo galiyay',
 'filename' => 'Magaca faylka',
@@ -958,6 +959,7 @@ file'kaan waa  $2.",
 'uploaddisabledtext' => 'soo gelinta faylyada waa la xiray',
 'uploadvirus' => 'faylka waxaa ku jiro fayrus!
 ku saabsan: $1',
+'upload-source' => 'Asalka fileka',
 'upload-options' => 'Dooqyada soo gelinta',
 'watchthisupload' => 'Faylkaan waardiyeey',
 'upload-failure-subj' => 'Dhibaatada soo gelinta',
@@ -1472,6 +1474,9 @@ waxaad awoodaa [[Special:EditWatchlist/raw|Liiska wax ka bedel]].',
 
 # Special:Version
 'version-poweredby-others' => 'kuwa kale',
+
+# Special:Redirect
+'redirect-file' => 'Magaca faylka',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-legend' => 'Raadi mid tusaale ah',
