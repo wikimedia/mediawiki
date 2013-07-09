@@ -4135,8 +4135,8 @@ class Language {
 	}
 
 	/**
-	 * Get the ordered list of fallback languages, ending with the fallback
-	 * language chain for the site language.
+	 * Get the ordered list of fallback languages, starting with the requested language and
+	 * ending with the fallback language chain for the site language.
 	 *
 	 * @since 1.22
 	 * @param string $code Language code
@@ -4151,6 +4151,7 @@ class Language {
 
 		if ( !array_key_exists( $cacheKey, self::$fallbackLanguageCache ) ) {
 			$fallbacks = self::getFallbacksFor( $code );
+			array_unshift( $fallbacks, $code );
 
 			// Append the site's fallback chain, including the site language itself
 			$siteFallbacks = self::getFallbacksFor( $wgLanguageCode );
