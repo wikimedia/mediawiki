@@ -134,6 +134,7 @@ $wgAutoloadLocalClasses = array(
 	'LCStoreCDB' => 'includes/cache/LocalisationCache.php',
 	'LCStoreDB' => 'includes/cache/LocalisationCache.php',
 	'LCStoreNull' => 'includes/cache/LocalisationCache.php',
+	'LCValue' => 'includes/cache/LocalisationCache.php',
 	'License' => 'includes/Licenses.php',
 	'Licenses' => 'includes/Licenses.php',
 	'Linker' => 'includes/Linker.php',
