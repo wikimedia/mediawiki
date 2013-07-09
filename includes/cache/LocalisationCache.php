@@ -251,9 +251,10 @@ class LocalisationCache {
 	 * need to fetch all of the subitems from the cache individually.
 	 * @param $code
 	 * @param $key
+	 * @param[out] &$actualCode
 	 * @return mixed
 	 */
-	public function getItem( $code, $key ) {
+	public function getItem( $code, $key, &$actualCode = null ) {
 		if ( !isset( $this->loadedItems[$code][$key] ) ) {
 			wfProfileIn( __METHOD__ . '-load' );
 			$this->loadItem( $code, $key );
@@ -261,10 +262,25 @@ class LocalisationCache {
 		}
 
 		if ( $key === 'fallback' && isset( $this->shallowFallbacks[$code] ) ) {
-			return $this->shallowFallbacks[$code];
+			$value = $this->shallowFallbacks[$code];
+		} else {
+			$value = $this->data[$code][$key];
 		}
 
-		return $this->data[$code][$key];
+		$actualCode = $code;
+		if ( $value instanceof LCValue ) {
+			$actualCode = $value->code;
+			return $value->val;
+		} elseif ( is_array( $value ) ) {
+			array_walk_recursive( $value, function( &$item ) {
+				if ( $item instanceof LCValue ) {
+					$item = $item->val;
+				}
+			} );
+			return $value;
+		} else {
+			return $value;
+		}
 	}
 
 	/**
@@ -272,9 +288,10 @@ class LocalisationCache {
 	 * @param $code
 	 * @param $key
 	 * @param $subkey
+	 * @param[out] &$actualCode
 	 * @return null
 	 */
-	public function getSubitem( $code, $key, $subkey ) {
+	public function getSubitem( $code, $key, $subkey, &$actualCode = null ) {
 		if ( !isset( $this->loadedSubitems[$code][$key][$subkey] ) &&
 			 !isset( $this->loadedItems[$code][$key] ) ) {
 			wfProfileIn( __METHOD__ . '-load' );
@@ -282,10 +299,24 @@ class LocalisationCache {
 			wfProfileOut( __METHOD__ . '-load' );
 		}
 
-		if ( isset( $this->data[$code][$key][$subkey] ) ) {
-			return $this->data[$code][$key][$subkey];
-		} else {
+		$actualCode = $code;
+		if ( !isset( $this->data[$code][$key][$subkey] ) ) {
 			return null;
+		}
+
+		$value = $this->data[$code][$key][$subkey];
+		if ( $value instanceof LCValue ) {
+			$actualCode = $value->code;
+			return $value->val;
+		} elseif ( is_array( $value ) ) {
+			array_walk_recursive( $value, function( &$item ) {
+				if ( $item instanceof LCValue ) {
+					$item = $item->val;
+				}
+			} );
+			return $value;
+		} else {
+			return $this->data[$code][$key][$subkey];
 		}
 	}
 
@@ -340,7 +371,7 @@ class LocalisationCache {
 				if ( isset( $this->data[$code][$key][$subkey] ) ) {
 					continue;
 				}
-				$this->data[$code][$key][$subkey] = $this->getSubitem( $code, $key, $subkey );
+				$this->loadSubitem( $code, $key, $subkey );
 			}
 		} else {
 			$this->data[$code][$key] = $this->store->get( $code, $key );
@@ -642,8 +673,19 @@ class LocalisationCache {
 	 * @param $key
 	 * @param $value
 	 * @param $fallbackValue
+	 * @param $code
 	 */
-	protected function mergeItem( $key, &$value, $fallbackValue ) {
+	protected function mergeItem( $key, &$value, $fallbackValue, $code = null ) {
+		if ( $code !== null ) {
+			if ( is_array( $fallbackValue ) ) {
+				array_walk_recursive( $fallbackValue, function( &$item ) use ( $code ) {
+					$item = new LCValue( $item, $code );
+				} );
+			} else {
+				$fallbackValue = new LCValue( $fallbackValue, $code );
+			}
+		}
+
 		if ( !is_null( $value ) ) {
 			if ( !is_null( $fallbackValue ) ) {
 				if ( in_array( $key, self::$mergeableMapKeys ) ) {
@@ -704,7 +746,7 @@ class LocalisationCache {
 		$used = false;
 		foreach ( $codeSequence as $code ) {
 			if ( isset( $fallbackValue[$code] ) ) {
-				$this->mergeItem( $key, $value, $fallbackValue[$code] );
+				$this->mergeItem( $key, $value, $fallbackValue[$code], $code );
 				$used = true;
 			}
 		}
@@ -780,7 +822,7 @@ class LocalisationCache {
 					}
 
 					if ( is_null( $coreData[$key] ) || $this->isMergeableKey( $key ) ) {
-						$this->mergeItem( $key, $coreData[$key], $fbData[$key] );
+						$this->mergeItem( $key, $coreData[$key], $fbData[$key], $fbCode );
 					}
 				}
 			}
@@ -907,6 +949,8 @@ class LocalisationCache {
 		}
 
 		foreach ( $data['preloadedMessages'] as $subkey ) {
+			$subkey = (string)$subkey;
+
 			if ( isset( $data['messages'][$subkey] ) ) {
 				$subitem = $data['messages'][$subkey];
 			} else {
@@ -952,6 +996,20 @@ class LocalisationCache {
 	public function disableBackend() {
 		$this->store = new LCStore_Null;
 		$this->manualRecache = false;
+	}
+}
+
+class LCValue {
+	public $code = null;
+	public $val = '';
+
+	public function __construct( $val, $code ) {
+		$this->val = $val;
+		$this->code = $code;
+	}
+
+	public function __toString() {
+		return $this->val;
 	}
 }
 
@@ -1296,24 +1354,26 @@ class LocalisationCache_BulkLoad extends LocalisationCache {
 	/**
 	 * @param $code
 	 * @param $key
+	 * @param[out] &$actualCode
 	 * @return mixed
 	 */
-	public function getItem( $code, $key ) {
+	public function getItem( $code, $key, &$actualCode = null ) {
 		unset( $this->mruLangs[$code] );
 		$this->mruLangs[$code] = true;
-		return parent::getItem( $code, $key );
+		return parent::getItem( $code, $key, $actualCode );
 	}
 
 	/**
 	 * @param $code
 	 * @param $key
 	 * @param $subkey
+	 * @param[out] &$actualCode
 	 * @return
 	 */
-	public function getSubitem( $code, $key, $subkey ) {
+	public function getSubitem( $code, $key, $subkey, &$actualCode = null ) {
 		unset( $this->mruLangs[$code] );
 		$this->mruLangs[$code] = true;
-		return parent::getSubitem( $code, $key, $subkey );
+		return parent::getSubitem( $code, $key, $subkey, $actualCode );
 	}
 
 	/**
