@@ -766,6 +766,13 @@ return array(
 			'mediawiki.Title',
 		),
 	),
+	'mediawiki.api.query' => array(
+		'scripts' => 'resources/mediawiki.api/mediawiki.api.query.js',
+		'dependencies' => array(
+			'jquery',
+			'mediawiki.api',
+		),
+	),
 	'mediawiki.api.edit' => array(
 		'scripts' => 'resources/src/mediawiki.api/mediawiki.api.edit.js',
 		'dependencies' => array(
