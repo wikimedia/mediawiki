@@ -397,7 +397,7 @@ class Sanitizer {
 			$htmlnest = array( # Tags that can be nested--??
 				'table', 'tr', 'td', 'th', 'div', 'blockquote', 'ol', 'ul',
 				'li', 'dl', 'dt', 'dd', 'font', 'big', 'small', 'sub', 'sup', 'span',
-				'var', 'kbd', 'samp'
+				'var', 'kbd', 'samp', 'em', 'strong', 'q', 'ruby', 'bdo'
 			);
 			$tabletags = array( # Can only appear inside table, we will close them
 				'td', 'th', 'tr',
