@@ -139,6 +139,10 @@ production.
   They are now wrapped in <span class="mw-editsection-bracket" />.
 * (bug 8480) Allow handler specific parameters in galleries (like page number)
 * jquery.client: Add detection for Opera 15.
+* Change tags (used by the AbuseFilter extension) are now shown on diff pages.
+* Change tags lists (shown on recent changes, watchlist, user contributions,
+  history pages, diff pages) now include a link to Special:Tags to distinguish
+  them from edit summaries.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
