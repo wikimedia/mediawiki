@@ -301,6 +301,7 @@ $messages = array(
 'nstab-category' => 'Categurìa',
 
 # General errors
+'missingarticle-rev' => "(nummero 'e verzione: $1)",
 'filedeleteerror' => 'Nun se pô scancellà \'o file "$1"',
 'cannotdelete' => "Nun è possibbele scassà 'a paggena o 'a fiura addamannata. (Putria éssere stato già scancellato.)",
 'badtitle' => "'O nnomme nun è jùsto",
@@ -328,6 +329,7 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 'createaccount' => 'Cria nu cunto novo',
 'gotaccount' => "Tiene già nu cunto? '''$1'''.",
 'gotaccountlink' => 'Tràse',
+'userlogin-resetlink' => "Haje dimenticato 'e toje date 'e acciesso?",
 'loginerror' => "Probblema 'e accièsso",
 'loginsuccesstitle' => 'Acciesso affettuato',
 'nosuchusershort' => 'Nun ce stanno utente cu o nòmme "$1". Cuntrolla si scrivìste buòno.',
@@ -367,7 +369,7 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 'newarticle' => '(Novo)',
 'previewnote' => "'''Chesta è sola n'anteprimma; 'e cagnamiénte â paggena nun songo ancora sarvate!'''",
 'editing' => "Cagnamiento 'e $1",
-'editingsection' => 'Cagnamiénto di $1 (sezzione)',
+'editingsection' => "Cagnamiénto 'e $1 (sezzione)",
 'templatesused' => "{{PLURAL:$1|Template|Templates}} ausate 'a chesta paggena:",
 'template-protected' => '(prutetto)',
 'template-semiprotected' => '(semi-prutetto)',
@@ -383,8 +385,11 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 'currentrev-asof' => 'Vversione attuale dde $1',
 'revisionasof' => 'Vversione delle $1',
 'nextrevision' => 'Vversione cchiù recente →',
+'currentrevisionlink' => "Verzione 'e mmo",
 'cur' => 'corr',
 'last' => 'prec',
+'histfirst' => 'primma',
+'histlast' => 'urdema',
 
 # Revision feed
 'history-feed-item-nocomment' => "$1 'o $2",
@@ -451,6 +456,7 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 
 # Recent changes
 'recentchanges' => 'Urdeme nove',
+'recentchanges-legend' => 'Opzione urdeme cagnamiénte',
 'recentchanges-summary' => "Ncoppa chesta paggena song' appresentate ll'urdeme cagnamiente fatto ê cuntenute d\"o sito.",
 'recentchanges-label-newpage' => "Chista modifica ha criato 'na nova paggena",
 'recentchanges-label-minor' => 'Chisto è nu cagnamiénto piccerillo',
@@ -475,6 +481,7 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 'recentchangeslinked' => 'Cagnamiénte cullegate',
 'recentchangeslinked-feed' => 'Cagnamiénte cullegate',
 'recentchangeslinked-toolbox' => 'Cagnamiénte cullegate',
+'recentchangeslinked-title' => 'Cagnamiénte cullegate a "$1"',
 'recentchangeslinked-page' => 'Nomme dda paggena',
 
 # Upload
@@ -491,6 +498,7 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 # File description page
 'file-anchor-link' => 'Fiùra',
 'filehist' => 'Cronologgia d"o file',
+'filehist-revert' => 'ripristina',
 'filehist-current' => 'attuale',
 'filehist-datetime' => 'Data/Ora',
 'filehist-thumb' => 'Miniature',
@@ -521,8 +529,10 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 'newpages' => 'Paggene cchiù frische',
 'move' => 'Spusta',
 'movethispage' => 'Spusta chesta paggena',
+'pager-older-n' => '{{PLURAL:$1|1 cchiù viecchio|$1 cchiù viecchie}}',
 
 # Book sources
+'booksources' => 'Funte libbrarie',
 'booksources-go' => 'Vàje',
 
 # Special:Log
@@ -591,9 +601,13 @@ Also see [[Special:WantedCategories|wanted categories]].",
 'contributions' => 'Contribbute {{GENDER:$1|utente}}',
 'mycontris' => "'E ffatiche d''e mmeje",
 'contribsub2' => 'Ppe $1 ($2)',
-'uctop' => '(ultima ppe a paggena)',
+'uctop' => '(attuale)',
 
+'sp-contributions-newbies' => "Mosta solo 'e contribbute dde nove utente",
+'sp-contributions-blocklog' => 'blocche',
+'sp-contributions-logs' => 'registre',
 'sp-contributions-talk' => 'Chiàcchiera',
+'sp-contributions-username' => 'Nnerizzo IP o nomme utente',
 'sp-contributions-submit' => 'Truova',
 
 # What links here
@@ -616,6 +630,7 @@ Also see [[Special:WantedCategories|wanted categories]].",
 'blockipsuccesssub' => 'Blocco aseguito',
 'blocklink' => 'ferma',
 'unblocklink' => 'sblocca',
+'change-blocklink' => 'càgna blocco',
 'contribslink' => 'contribuzzione',
 'blocklogpage' => 'Blocche',
 'blocklogentry' => 'ha fermato "[[$1]]" pe\' nu mumento \'e $2 $3',
@@ -687,6 +702,7 @@ Also see [[Special:WantedCategories|wanted categories]].",
 'tooltip-ca-nstab-user' => 'Vere a paggena utente',
 'tooltip-ca-nstab-special' => "Chista è 'na paggena speciale, nun può essere càgnata",
 'tooltip-ca-nstab-project' => "Vere a paggena 'e servizio",
+'tooltip-ca-nstab-image' => 'Vere a paggena ddo file',
 'tooltip-ca-nstab-template' => "Vere 'o modello",
 'tooltip-ca-nstab-category' => 'Vere a paggena d"a categurìa',
 'tooltip-minoredit' => 'Rénne chìsto cagnamiénto cchiù ppiccirìllo.',
@@ -696,6 +712,9 @@ Also see [[Special:WantedCategories|wanted categories]].",
 
 # Attribution
 'others' => 'ate',
+
+# Browsing diffs
+'nextdiff' => 'Cagnamiénte successivo',
 
 # Media information
 'file-info-size' => '$1 × $2 pixel, dimenzione ddo file: $3, tipo MIME: $4',

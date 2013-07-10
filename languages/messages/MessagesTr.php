@@ -1699,6 +1699,7 @@ Diğer kullanıcılar sizinle bu yolla iletişime geçtiğinde e-posta adresiniz
 'recentchanges' => 'Son değişiklikler',
 'recentchanges-legend' => 'Son değişiklikler seçenekleri',
 'recentchanges-summary' => 'Yapılan en son değişiklikleri bu sayfadan izleyin.',
+'recentchanges-noresult' => 'Belirtilen kriterlere uyan herhangi bir değişiklik bulunamadı.',
 'recentchanges-feed-description' => "Bu beslemede, viki'de yapılan en son değişiklikleri takip edin.",
 'recentchanges-label-newpage' => 'Bu değişiklik yeni bir sayfa oluşturdu',
 'recentchanges-label-minor' => 'Bu küçük bir değişiklik',
