@@ -58,7 +58,7 @@ class SpecialTags extends SpecialPage {
 			$html .= $this->doTagRow( $tag, 0 );
 		}
 
-		$out->addHTML( Xml::tags( 'table', array( 'class' => 'wikitable mw-tags-table' ), $html ) );
+		$out->addHTML( Xml::tags( 'table', array( 'class' => 'wikitable sortable mw-tags-table' ), $html ) );
 	}
 
 	function doTagRow( $tag, $hitcount ) {
