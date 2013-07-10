@@ -87,3 +87,11 @@ div.mw-number-text {
 	min-height: 75px; /* matches max icon height, ensures icon emblem is visible */
 	text-align: center;
 }
+
+/*********************  Responsive Styles *********************/
+/* Hide benefits column on narrower screens (bug 49002). */
+@media (max-width: 975px ) {
+	.mw-createacct-benefits-container {
+		display: none;
+	}
+}
