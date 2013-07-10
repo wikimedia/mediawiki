@@ -143,7 +143,7 @@
 	}
 
 	/**
-	 * Handles clicking on the collapsible element toggle and other
+	 * Handles clicking/keypressing on the collapsible element toggle and other
 	 * situations where a collapsible element is toggled (e.g. the initial
 	 * toggle for collapsed ones).
 	 *
@@ -160,8 +160,11 @@
 		}
 
 		if ( e ) {
-			// Don't fire if a link was clicked, if requested  (for premade togglers by default)
-			if ( options.linksPassthru && $.nodeName( e.target, 'a' ) ) {
+			if ( e.type === 'click' && options.linksPassthru && $.nodeName( e.target, 'a' ) ) {
+				// Don't fire if a link was clicked, if requested  (for premade togglers by default)
+				return;
+			} else if ( e.type === 'keypress' && e.which !== 13 ) {
+				// Only handle keypresses on the "Enter" key
 				return;
 			} else {
 				e.preventDefault();
@@ -227,7 +230,7 @@
 		}
 
 		return this.each( function () {
-			var $collapsible, collapseText, expandText, $toggle, clickHandler, buildDefaultToggleLink,
+			var $collapsible, collapseText, expandText, $toggle, actionHandler, buildDefaultToggleLink,
 				premadeToggleHandler, $toggleLink, $firstItem, collapsibleId, $customTogglers, firstval;
 
 			// Ensure class "mw-collapsible" is present in case .makeCollapsible()
@@ -245,8 +248,8 @@
 			collapseText = options.collapseText || $collapsible.attr( 'data-collapsetext' ) || mw.msg( 'collapsible-collapse' );
 			expandText = options.expandText || $collapsible.attr( 'data-expandtext' ) || mw.msg( 'collapsible-expand' );
 
-			// Default click handler and toggle link to use when none is present
-			clickHandler = function ( e, opts ) {
+			// Default click/keypress handler and toggle link to use when none is present
+			actionHandler = function ( e, opts ) {
 				var defaultOpts = {
 					toggleClasses: true,
 					toggleText: { collapseText: collapseText, expandText: expandText }
@@ -262,7 +265,7 @@
 						.parent()
 						.prepend( '&nbsp;[' )
 						.append( ']&nbsp;' )
-						.on( 'click.mw-collapsible', clickHandler );
+						.on( 'click.mw-collapsible keypress.mw-collapsible', actionHandler );
 			};
 
 			// Default handler for clicking on premade toggles
@@ -291,14 +294,14 @@
 
 			// Bind the togglers
 			if ( $customTogglers && $customTogglers.length ) {
-				clickHandler = function ( e, opts ) {
+				actionHandler = function ( e, opts ) {
 					var defaultOpts = {};
 					opts = $.extend( defaultOpts, options, opts );
 					togglingHandler( $( this ), $collapsible, e, opts );
 				};
 
 				$toggleLink = $customTogglers;
-				$toggleLink.on( 'click.mw-collapsible', clickHandler );
+				$toggleLink.on( 'click.mw-collapsible keypress.mw-collapsible', actionHandler );
 
 			} else {
 				// If this is not a custom case, do the default: wrap the
@@ -313,8 +316,8 @@
 					if ( !$toggle.length ) {
 						$toggleLink = buildDefaultToggleLink().prependTo( $firstItem.eq( -1 ) );
 					} else {
-						clickHandler = premadeToggleHandler;
-						$toggleLink = $toggle.on( 'click.mw-collapsible', clickHandler );
+						actionHandler = premadeToggleHandler;
+						$toggleLink = $toggle.on( 'click.mw-collapsible keypress.mw-collapsible', actionHandler );
 					}
 
 				} else if ( $collapsible.is( 'ul' ) || $collapsible.is( 'ol' ) ) {
@@ -334,8 +337,8 @@
 						$toggleLink = buildDefaultToggleLink();
 						$toggleLink.wrap( '<li class="mw-collapsible-toggle-li"></li>' ).parent().prependTo( $collapsible );
 					} else {
-						clickHandler = premadeToggleHandler;
-						$toggleLink = $toggle.on( 'click.mw-collapsible', clickHandler );
+						actionHandler = premadeToggleHandler;
+						$toggleLink = $toggle.on( 'click.mw-collapsible keypress.mw-collapsible', actionHandler );
 					}
 
 				} else { // <div>, <p> etc.
@@ -352,8 +355,8 @@
 					if ( !$toggle.length ) {
 						$toggleLink = buildDefaultToggleLink().prependTo( $collapsible );
 					} else {
-						clickHandler = premadeToggleHandler;
-						$toggleLink = $toggle.on( 'click.mw-collapsible', clickHandler );
+						actionHandler = premadeToggleHandler;
+						$toggleLink = $toggle.on( 'click.mw-collapsible keypress.mw-collapsible', actionHandler );
 					}
 				}
 			}
@@ -368,7 +371,7 @@
 				$collapsible.removeClass( 'mw-collapsed' );
 				// One toggler can hook to multiple elements, and one element can have
 				// multiple togglers. This is the sanest way to handle that.
-				clickHandler.call( $toggleLink.get( 0 ), null, { instantHide: true } );
+				actionHandler.call( $toggleLink.get( 0 ), null, { instantHide: true } );
 			}
 		} );
 	};
