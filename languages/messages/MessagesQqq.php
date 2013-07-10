@@ -8789,6 +8789,11 @@ It appears that the word 'valid' describes 'tags', not 'change'. It also appears
 'tag-filter-submit' => 'Caption of the submit button displayed next to the tag filter on lists of changes (e.g. [[Special:Log]], [[Special:Contributions]], [[Special:Newpages]], [[Special:Recentchanges]], [[Special:Recentchangeslinked]], page histories)
 
 {{Identical|Filter}}',
+'tag-list-wrapper' => 'Wrapper for the list of tags shown on recent changes, watchlists, history pages and diffs.
+
+Parameters:
+* $1 - number of distinct tags for given edit
+* $2 - comma-separated list of tags for given edit',
 'tags-title' => 'The title of [[Special:Tags]]',
 'tags-intro' => 'Explanation on top of [[Special:Tags]]. For more information on tags see [[mw:Manual:Tags|MediaWiki]].',
 'tags-tag' => 'Caption of a column in [[Special:Tags]]. For more information on tags see [[mw:Manual:Tags|MediaWiki]].',

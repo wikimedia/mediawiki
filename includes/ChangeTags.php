@@ -54,7 +54,10 @@ class ChangeTags {
 			);
 			$classes[] = Sanitizer::escapeClass( "mw-tag-$tag" );
 		}
-		$markers = wfMessage( 'parentheses' )->rawParams( $wgLang->commaList( $displayTags ) )->text();
+		$markers = wfMessage( 'tag-list-wrapper' )
+			->numParams( count( $displayTags ) )
+			->rawParams( $wgLang->commaList( $displayTags ) )
+			->parse();
 		$markers = Xml::tags( 'span', array( 'class' => 'mw-tag-markers' ), $markers );
 
 		return array( $markers, $classes );
