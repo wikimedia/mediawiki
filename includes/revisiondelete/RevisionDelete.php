@@ -501,6 +501,9 @@ class RevDel_FileList extends RevDel_List {
 		$file = wfLocalFile( $this->title );
 		$file->purgeCache();
 		$file->purgeDescription();
+		foreach ( $this->ids as $timestamp ) {
+			$file->purgeOldThumbnails( $timestamp . '!' . $this->title->getDBkey() );
+		}
 		return Status::newGood();
 	}
 

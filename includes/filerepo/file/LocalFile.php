@@ -798,7 +798,9 @@ class LocalFile extends File {
 	}
 
 	/**
-	 * Purge the shared history (OldLocalFile) cache
+	 * Purge the shared history (OldLocalFile) cache.
+	 *
+	 * @note This used to purge old thumbnails as well.
 	 */
 	function purgeHistory() {
 		global $wgMemc;
@@ -806,20 +808,20 @@ class LocalFile extends File {
 		$hashedName = md5( $this->getName() );
 		$oldKey = $this->repo->getSharedCacheKey( 'oldfile', $hashedName );
 
-		// Must purge thumbnails for old versions too! bug 30192
-		foreach ( $this->getHistory() as $oldFile ) {
-			$oldFile->purgeThumbnails();
-		}
-
 		if ( $oldKey ) {
 			$wgMemc->delete( $oldKey );
 		}
 	}
 
 	/**
-	 * Delete all previously generated thumbnails, refresh metadata in memcached and purge the squid
+	 * Delete all previously generated thumbnails, refresh metadata in memcached and purge the squid.
+	 *
+	 * @param Array $options An array potentially with the key forThumbRefresh.
+	 *
+	 * @note This used to purge old thumbnails by default as well, but doesn't anymore.
 	 */
 	function purgeCache( $options = array() ) {
+		wfProfileIn( __METHOD__ );
 		// Refresh metadata cache
 		$this->purgeMetadataCache();
 
@@ -828,6 +830,7 @@ class LocalFile extends File {
 
 		// Purge squid cache for this file
 		SquidUpdate::purge( array( $this->getURL() ) );
+		wfProfileOut( __METHOD__ );
 	}
 
 	/**
