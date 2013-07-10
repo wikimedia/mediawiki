@@ -27,6 +27,10 @@
 # comment       run through Linker::formatComment() instead of main parser
 # local         format section links in edit comment text as local links
 #
+# You can also set the following parser properties via test options:
+#  wgEnableUploads, wgAllowExternalImages, wgMaxTocLevel,
+#  wgLinkHolderBatchSize, wgRawHtml
+#
 # For testing purposes, temporary articles can created:
 # !!article / NAMESPACE:TITLE / !!text / ARTICLE TEXT / !!endarticle
 # where '/' denotes a newline.
@@ -2748,6 +2752,17 @@ External image from https
 External image from https: https://meta.wikimedia.org/upload/f/f1/Ncwikicol.png
 !! result
 <p>External image from https: <img src="https://meta.wikimedia.org/upload/f/f1/Ncwikicol.png" alt="Ncwikicol.png" />
+</p>
+!! end
+
+!! test
+External image (when not allowed)
+!! options
+wgAllowExternalImages=0
+!! input
+External image: http://meta.wikimedia.org/upload/f/f1/Ncwikicol.png
+!! result
+<p>External image: <a rel="nofollow" class="external free" href="http://meta.wikimedia.org/upload/f/f1/Ncwikicol.png">http://meta.wikimedia.org/upload/f/f1/Ncwikicol.png</a>
 </p>
 !! end
 
@@ -12238,7 +12253,7 @@ Images with the "|" character in the comment
 !! test
 HTML with raw HTML ($wgRawHtml==true)
 !! options
-rawhtml
+wgRawHtml=1
 !! input
 <html><script>alert(1);</script></html>
 !! result
