@@ -3731,6 +3731,7 @@ $wgMessageStructure = array(
 		'tags-summary',
 		'tag-filter',
 		'tag-filter-submit',
+		'tag-list-wrapper',
 		'tags-title',
 		'tags-intro',
 		'tags-tag',
