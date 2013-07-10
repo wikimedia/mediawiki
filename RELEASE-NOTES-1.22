@@ -147,6 +147,8 @@ production.
 * Added a new method and hook, User::isEveryoneAllowed() and
   UserIsEveryoneAllowed, for use in situations where a "does everyone have this
   right?" check is used to avoid more expensive checks.
+* Display "(No differences)" instead of an empty diff (when comparing revisions
+  in the history or when previewing changes while editing).
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
