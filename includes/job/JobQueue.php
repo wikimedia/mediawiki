@@ -597,7 +597,7 @@ abstract class JobQueue {
 	/**
 	 * Get an iterator to traverse over all available jobs in this queue.
 	 * This does not include jobs that are currently acquired or delayed.
-	 * This should only be called on a queue that is no longer being popped.
+	 * Note: results may be stale if the queue is concurrently modified.
 	 *
 	 * @return Iterator
 	 * @throws MWException
@@ -606,7 +606,7 @@ abstract class JobQueue {
 
 	/**
 	 * Get an iterator to traverse over all delayed jobs in this queue.
-	 * This should only be called on a queue that is no longer being popped.
+	 * Note: results may be stale if the queue is concurrently modified.
 	 *
 	 * @return Iterator
 	 * @throws MWException

@@ -38,11 +38,22 @@ class ShowJobs extends Maintenance {
 		parent::__construct();
 		$this->mDescription = "Show number of jobs waiting in master database";
 		$this->addOption( 'group', 'Show number of jobs per job type' );
+		$this->addOption( 'list', 'Show a complete list of all jobs in a machine-readable format, instead of statistics' );
 	}
 
 	public function execute() {
 		$group = JobQueueGroup::singleton();
-		if ( $this->hasOption( 'group' ) ) {
+		if ( $this->hasOption( 'list' ) ) {
+			foreach ( $group->getQueueTypes() as $type ) {
+				$queue = $group->get( $type );
+				foreach ( $queue->getAllQueuedJobs() as $job ) {
+					$this->output( $job->toString() . " status=unclaimed\n" );
+				}
+				foreach ( $queue->getAllDelayedJobs() as $job ) {
+					$this->output( $job->toString() . " status=delayed\n" );
+				}
+			}
+		} elseif ( $this->hasOption( 'group' ) ) {
 			foreach ( $group->getQueueTypes() as $type ) {
 				$queue = $group->get( $type );
 				$pending = $queue->getSize();
