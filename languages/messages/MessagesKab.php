@@ -86,6 +86,7 @@ $messages = array(
 'tog-diffonly' => 'Ur temliḍ-iyi-d ara ayen yellan seddaw imgerraden',
 'tog-showhiddencats' => 'Beqqeḍ taggayin yeffren',
 'tog-norollbackdiff' => 'Ur beqqeḍ ara "diff" ma yella usemmet',
+'tog-useeditwarning' => 'Σeggen iyid mi ara fγaγ seg usebter mebla ma skeslaγ ibeddilen.',
 
 'underline-always' => 'Daymen',
 'underline-never' => 'Abaden',

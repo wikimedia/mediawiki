@@ -352,10 +352,10 @@ $1",
 'nosuchactiontext' => "L'operassion che a l'ha ciamà ant l'anliura a l'é nen arconossùa.
 A peul esse che a l'abie batù mal l'adrëssa, o che a sia andàit dapress a n'anliura nen giusta.
 Sossì a podrìa ëdcò esse un givo andrinta al programa dovrà da {{SITENAME}}.",
-'nosuchspecialpage' => "A-i é pa gnun-a pàgina special tan-me cola che chiel a l'ha ciamà.",
-'nospecialpagetext' => "<strong>It l'has ciamà na pàgina special pa bon-a.</strong>
+'nosuchspecialpage' => "A-i é gnun-a pàgina special tan-me cola che chiel a l'ha ciamà.",
+'nospecialpagetext' => "<strong>A l'ha ciamà na pàgina special ch'a esist pa.</strong>
 
-Na lista ëd pàgine speciaj bon-e a peul esse trovà ambelessì [[Special:SpecialPages|{{int:specialpages}}]].",
+Na lista dle pàgine speciaj bon-e a peul esse trovà ambelessì [[Special:SpecialPages|{{int:specialpages}}]].",
 
 # General errors
 'error' => 'Eror',

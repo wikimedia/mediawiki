@@ -3229,16 +3229,31 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'exif-morepermissionsurl' => 'Duusra licencing jaankari',
 'exif-attributionurl' => 'Iske fir se use kare ke time, link karo',
 'exif-preferredattributionname' => 'Ii jaankari ke kaam me laae se phile, credit do',
+'exif-pngfilecomment' => 'PNG file ke bare me comment',
+'exif-disclaimer' => 'Jimwaari nai leta',
+'exif-contentwarning' => 'Content ke bare me chetauni',
+'exif-giffilecomment' => 'GIG file ke bare me comment',
 'exif-intellectualgenre' => 'Item ke rakam',
 'exif-subjectnewscode' => 'Subject ke code',
+'exif-scenecode' => 'IPTC scene ke code',
+'exif-event' => 'Ghatna',
+'exif-organisationinimage' => 'Sanstha',
+'exif-personinimage' => 'Log',
 'exif-originalimageheight' => 'Crop kare se pahile, chaapa ke uunchai',
 'exif-originalimagewidth' => 'Crop kare se pahike, chhapa ke churrai',
 
 # Exif attributes
 'exif-compression-1' => 'Bina compres karaa gais',
+'exif-compression-2' => 'CCITT Group 3 1-Dimensional Modified Huffman run length ke encoding',
+'exif-compression-3' => 'CCITT Group 3 fax ke encoding',
+'exif-compression-4' => 'CCITT Group 4 fax ke encoding',
+
+'exif-copyrighted-true' => 'Copyright karaa gais hae',
+'exif-copyrighted-false' => 'Janata ke khatir',
 
 'exif-unknowndate' => 'Taarik nai maalum',
 
+'exif-orientation-1' => 'Saamaan',
 'exif-orientation-2' => 'Baraabar ultawa gais hae',
 'exif-orientation-3' => '180° ghumawa gais hae',
 'exif-orientation-4' => 'Khrraa ultawa gais hae',
@@ -3247,6 +3262,7 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'exif-orientation-7' => '90° CW ghumawa aur kharraa ultawa gais hae',
 'exif-orientation-8' => '90° CW ghumawa gais hae',
 
+'exif-planarconfiguration-1' => 'dekhe me chunky hae',
 'exif-planarconfiguration-2' => ' planar format',
 
 'exif-colorspace-65535' => 'Bina calibrate karaa gais',
@@ -3254,49 +3270,158 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'exif-componentsconfiguration-0' => 'nai hae',
 
 'exif-exposureprogram-0' => 'define nai karaa gais hae',
+'exif-exposureprogram-1' => 'Haanth se',
+'exif-exposureprogram-2' => 'Saamaan program',
+'exif-exposureprogram-3' => 'Aperture ke priority',
+'exif-exposureprogram-4' => 'Shutter ke priority',
 'exif-exposureprogram-5' => 'Creative program (field ke deph ke bagal biased hae)',
 'exif-exposureprogram-6' => 'Action program (fast shutter speed ke bagal biased)',
+'exif-exposureprogram-7' => 'Portrait mode (uu closeup photo ke khatir jisme  background out of focus hae)',
+'exif-exposureprogram-8' => 'Landscape mode (landscape photo ke khatir jisme  background focus me nai hae)',
+
+'exif-subjectdistance-value' => '$1 meter',
 
 'exif-meteringmode-0' => 'Nai maluum',
+'exif-meteringmode-1' => 'Biich waala',
+'exif-meteringmode-2' => 'Biich waala weighted average',
+'exif-meteringmode-3' => 'Jagha',
+'exif-meteringmode-4' => 'Dher jagha',
+'exif-meteringmode-5' => 'Design',
 'exif-meteringmode-6' => 'Puura nai',
 'exif-meteringmode-255' => 'Duusra',
 
 'exif-lightsource-0' => 'Nai maluum',
 'exif-lightsource-1' => 'Din',
+'exif-lightsource-2' => 'Chamke waala',
+'exif-lightsource-3' => 'Tungsten (incandescent batti)',
 'exif-lightsource-4' => 'Chamak',
 'exif-lightsource-9' => 'Achchhaa mausam',
 'exif-lightsource-10' => 'Baadal ke mausam',
 'exif-lightsource-11' => 'Chhanhi',
+'exif-lightsource-12' => 'Din ke unjer fluorescent (D 5700 – 7100K)',
+'exif-lightsource-13' => 'Din waala ujjarfluorescent (N 4600 – 5400K)',
+'exif-lightsource-14' => 'Cool ujjar fluorescent (W 3900 – 4500K)',
 'exif-lightsource-15' => 'Ujjar fluorescent (WW 3200 – 3700K)',
+'exif-lightsource-17' => 'Standard batti A',
+'exif-lightsource-18' => 'Standard batti B',
+'exif-lightsource-19' => 'Standard batti C',
+'exif-lightsource-24' => 'ISO studio tungsten dhaatu',
 'exif-lightsource-255' => 'Dusra light ke source',
 
 # Flash modes
 'exif-flash-fired-0' => 'Flash nai chalaa',
 'exif-flash-fired-1' => 'Flash chal gais hae',
+'exif-flash-return-0' => 'koi strobe return detection function nai hae',
 'exif-flash-return-2' => 'strobe return light ke detect nai karaa gais hae',
 'exif-flash-return-3' => 'strobe return light ke detect nai karaa gais hae',
 'exif-flash-mode-1' => 'flash ke kaam me laae ke jaruri hae',
 'exif-flash-mode-2' => 'flash ke kaam me nai laae ke chaahi',
+'exif-flash-mode-3' => 'apne se hoe waala mode',
 'exif-flash-function-1' => 'Flash nai hae',
 'exif-flash-redeye-1' => 'laal-aankhi ke kamti kare waala mode',
 
+'exif-focalplaneresolutionunit-2' => 'inch',
+
 'exif-sensingmethod-1' => 'Define nai karaa gais hae',
+'exif-sensingmethod-2' => 'Ek-chip rang area sensor',
+'exif-sensingmethod-3' => 'Dui-chip rang area sensor',
+'exif-sensingmethod-4' => 'Tiin-chip rang area sensor',
+'exif-sensingmethod-5' => 'Rang sequential area sensor',
+'exif-sensingmethod-7' => 'Tiinlinear sensor',
+'exif-sensingmethod-8' => 'Rang sequential linear sensor',
+
+'exif-filesource-3' => 'Digital still waala camera',
 
 'exif-scenetype-1' => 'Directly utaara gais chaapa',
 
-'exif-gaincontrol-0' => 'Kuchh bhi nai',
+'exif-customrendered-0' => 'Saamaan process',
+'exif-customrendered-1' => 'Custom kare waala process',
 
+'exif-exposuremode-0' => 'Apne se hoe waala exposure',
+'exif-exposuremode-1' => 'Haanth se adjust kare waala exposure',
+'exif-exposuremode-2' => 'Different exposure ke dher chhaapa utaro',
+
+'exif-whitebalance-0' => 'Apne se ujjar balance',
+'exif-whitebalance-1' => 'Haanth se ujjar balance',
+
+'exif-scenecapturetype-0' => 'Ek rakam',
+'exif-scenecapturetype-1' => 'Chaklaa',
+'exif-scenecapturetype-2' => 'Patraa',
+'exif-scenecapturetype-3' => 'Raat waala scene',
+
+'exif-gaincontrol-0' => 'Kuchh bhi nai',
+'exif-gaincontrol-1' => 'Brightness level ke uppar karo',
+'exif-gaincontrol-2' => 'Brightness level ke uppar karo',
+'exif-gaincontrol-3' => 'Brightness level ke niche karo',
+'exif-gaincontrol-4' => 'Brightness level ke niche karo',
+
+'exif-contrast-0' => 'Saamaan',
 'exif-contrast-1' => 'Naram',
 'exif-contrast-2' => 'Karraa',
 
+'exif-saturation-0' => 'Saamaan',
+'exif-saturation-1' => 'Kamti saturation',
+'exif-saturation-2' => 'Jaada saturation',
+
+'exif-sharpness-0' => 'Saamaan',
 'exif-sharpness-1' => 'Naram',
 'exif-sharpness-2' => 'Karraa',
 
+'exif-subjectdistancerange-0' => 'nai maalum',
 'exif-subjectdistancerange-2' => 'Najdik se dekho',
 'exif-subjectdistancerange-3' => 'Duur se dekho',
 
+# Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
+'exif-gpslatitude-n' => 'Uttar latitude',
+'exif-gpslatitude-s' => 'Dakchhin latitude',
+
+# Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
+'exif-gpslongitude-e' => 'Purab latitude',
+'exif-gpslongitude-w' => 'Pachhim latitude',
+
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '$1 {{PLURAL:$1|meter}} samundar se uppar',
+'exif-gpsaltitude-below-sealevel' => '$1 {{PLURAL:$1|meter}} samundar se niche',
+
+'exif-gpsstatus-a' => 'Naapa jaawe hae',
+'exif-gpsstatus-v' => 'Naapa nai jaae sake hae',
+
+'exif-gpsmeasuremode-2' => '2-dimensional naap',
+'exif-gpsmeasuremode-3' => '3-dimensional naap',
+
 # Pseudotags used for GPSSpeedRef
+'exif-gpsspeed-k' => 'Kilometer har ghantaa',
+'exif-gpsspeed-m' => 'Mile har ghantaa',
 'exif-gpsspeed-n' => 'Knots',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilometer',
+'exif-gpsdestdistance-m' => 'Mile',
+'exif-gpsdestdistance-n' => 'Nautical mile',
+
+'exif-gpsdop-excellent' => 'Be haal ($1)',
+'exif-gpsdop-good' => 'Achchhaa ($1)',
+'exif-gpsdop-moderate' => 'Thiik hae ($1)',
+'exif-gpsdop-fair' => 'Chal jaai ($1)',
+'exif-gpsdop-poor' => 'Kharaab ($1)',
+
+'exif-objectcycle-a' => 'Khaali sabere',
+'exif-objectcycle-p' => 'Khaali sanjhaa ke',
+'exif-objectcycle-b' => 'Duuno sabere aur sanjhaa',
+
+# Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
+'exif-gpsdirection-t' => 'Aslii direction',
+'exif-gpsdirection-m' => 'Magnet waala direction',
+
+'exif-ycbcrpositioning-1' => 'Biich me karaa gais',
+'exif-ycbcrpositioning-2' => 'Ekke saathe',
+
+'exif-dc-contributor' => 'Yogdaan de waala',
+'exif-dc-coverage' => 'Spatial nai to temporal scope of media',
+'exif-dc-date' => 'Taarik',
+'exif-dc-publisher' => 'Chhaape waala',
+'exif-dc-relation' => 'Saathe waala media',
+'exif-dc-rights' => 'Adhikaar',
 
 # External editor support
 'edit-externally' => 'Ii file ke bahaari program me kaam me laae ke badlo',

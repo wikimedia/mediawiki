@@ -8,6 +8,7 @@
  * @file
  *
  * @author Altai uul
+ * @author Espreon
  * @author Gott wisst
  * @author JJohnson
  * @author Omnipaedista
@@ -535,7 +536,7 @@ folcliċum āgnunge oþþe ȝelīċum frēom horde (sēo $1 for āscungum).
 'rev-deleted-user' => '(brūcendnama fornōm)',
 'rev-delundel' => 'scēaƿian/hȳdan',
 'rev-showdeleted' => 'scēaƿan',
-'revdelete-show-file-submit' => 'Ȝēa',
+'revdelete-show-file-submit' => 'Gēa',
 'revdelete-hide-text' => 'Ednīƿungtraht hȳdan',
 'revdelete-hide-image' => 'Fīlinnoþ hȳdan',
 'revdelete-hide-comment' => 'Ādihtcƿide hȳdan',
@@ -971,7 +972,7 @@ Gif se brūcend asifte hine. synderlīce sind ymelan geīwda þǣre þe se brūc
 'month' => 'Fram mōnþe (and ǣror)',
 'year' => 'Fram ȝēare (and ǣror)',
 
-'sp-contributions-talk' => 'ȝespreċ',
+'sp-contributions-talk' => 'gesprec',
 'sp-contributions-search' => 'Forðunga sēċan',
 'sp-contributions-username' => 'IP address oþþe brūcendnama:',
 'sp-contributions-submit' => 'Sēċan',

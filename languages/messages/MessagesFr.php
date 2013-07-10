@@ -2935,7 +2935,7 @@ Ceci peut provoquer un changement radical et imprévu pour une page souvent cons
 
 Dans ces cas-là, vous devrez renommer ou fusionner cette page de discussion manuellement si vous le désirez.",
 'movearticle' => 'Renommer la page :',
-'moveuserpage-warning' => "'''Attention :''' Vous êtes sur le point de renommer une page d'utilisateur. Veuillez noter que seul la page sera renommée et que l'utilisateur '''ne''' sera '''pas''' renommé.",
+'moveuserpage-warning' => "'''Attention :''' Vous êtes sur le point de renommer une page d’utilisateur. Veuillez noter que seule la page sera renommée et que l’utilisateur '''ne''' sera '''pas''' renommé.",
 'movenologin' => "Vous n'êtes pas identifié{{GENDER:||e|(e)}}.",
 'movenologintext' => "Pour pouvoir renommer une page, vous devez être [[Special:UserLogin|identifié{{GENDER:||e|(e)}}]] avec un compte utilisateur enregistré et d'ancienneté suffisante.",
 'movenotallowed' => "Vous n'avez pas la permission de renommer les pages.",
