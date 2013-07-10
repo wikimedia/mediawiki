@@ -204,6 +204,8 @@ production.
 * Handle relative inclusions ({{../name}}) in main namespace with subpages
   enabled correctly (previously MediaWiki tried to include Template:Parent/name
   instead of just Parent/name).
+* Added $wgAPIUselessQueryPages to allow extensions to flag their query pages
+  for non-inclusion in ApiQueryQueryPages.
 
 === API changes in 1.22 ===
 * (bug 25553) The JSON output formatter now leaves forward slashes unescaped
