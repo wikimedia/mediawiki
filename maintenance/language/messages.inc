@@ -930,6 +930,7 @@ $wgMessageStructure = array(
 		'compareselectedversions',
 		'showhideselectedversions',
 		'editundo',
+		'diff-empty',
 		'diff-multi',
 		'diff-multi-manyusers',
 		'difference-missing-revision',
