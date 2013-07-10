@@ -1280,7 +1280,7 @@ You may have already successfully changed your password or requested a new tempo
 # Special:PasswordReset
 'passwordreset'                    => 'Reset password',
 'passwordreset-text-one'           => 'Complete this form to reset your password.',
-'passwordreset-text-many'          => '{{PLURAL:$1|Enter one of the pieces of data to reset your password.}}',
+'passwordreset-text-many'          => '{{PLURAL:$1|Fill one of the fields to reset your password.}}',
 'passwordreset-legend'             => 'Reset password',
 'passwordreset-disabled'           => 'Password resets have been disabled on this wiki.',
 'passwordreset-emaildisabled'      => 'Email features have been disabled on this wiki.',
