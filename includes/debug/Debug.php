@@ -498,15 +498,10 @@ class MWDebug {
 
 		$result->setIndexedTagName( $debugInfo, 'debuginfo' );
 		$result->setIndexedTagName( $debugInfo['log'], 'line' );
-		foreach ( $debugInfo['debugLog'] as $index => $debugLogText ) {
-			$vals = array();
-			ApiResult::setContent( $vals, $debugLogText );
-			$debugInfo['debugLog'][$index] = $vals; //replace
-		}
 		$result->setIndexedTagName( $debugInfo['debugLog'], 'msg' );
 		$result->setIndexedTagName( $debugInfo['queries'], 'query' );
 		$result->setIndexedTagName( $debugInfo['includes'], 'queries' );
-		$result->addValue( array(), 'debuginfo', $debugInfo );
+		$result->addValue( null, 'debuginfo', $debugInfo );
 	}
 
 	/**
