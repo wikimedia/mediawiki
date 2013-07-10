@@ -610,6 +610,13 @@ class DifferenceEngine extends ContextSource {
 			return false;
 		} else {
 			$multi = $this->getMultiNotice();
+			// give a notice, when there is a empty diff
+			if ( $body === '' ) {
+				if ( $multi !== '' ) {
+					$multi .= '<br />';
+				}
+				$multi .= $this->msg( 'diff-empty' )->parse();
+			}
 			return $this->addHeader( $body, $otitle, $ntitle, $multi, $notice );
 		}
 	}
