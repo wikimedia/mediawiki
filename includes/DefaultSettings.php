@@ -6037,6 +6037,17 @@ $wgAPIRequestLog = false;
 $wgAPICacheHelpTimeout = 60 * 60;
 
 /**
+ * The ApiQueryQueryPages module should skip pages that are redundant to true
+ * API queries.
+ */
+$wgAPIUselessQueryPages = array(
+	'MIMEsearch', // aiprop=mime
+	'LinkSearch', // list=exturlusage
+	'FileDuplicateSearch', // prop=duplicatefiles
+	'Withoutinterwiki', // list=allpages&apfilterlanglinks=withoutlanglinks
+);
+
+/**
  * Enable AJAX framework
  */
 $wgUseAjax = true;

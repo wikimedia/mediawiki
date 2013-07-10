@@ -237,6 +237,8 @@ production.
   jobs in the job queue for link table updates of pages that use the given page
   as a template. Instead, forcerecursivelinkupdate=1 is introduced and should
   be used if that behaviour is desirable.
+* 'Withoutinterwiki' is no longer available to list=querypage. Use
+  list=allpages&apfilterlanglinks=withoutlanglinks instead.
 
 === Languages updated in 1.22===
 

@@ -32,15 +32,6 @@
 class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 	private $qpMap;
 
-	/**
-	 * Some query pages are useless because they're available elsewhere in the API
-	 */
-	private $uselessQueryPages = array(
-		'MIMEsearch', // aiprop=mime
-		'LinkSearch', // list=exturlusage
-		'FileDuplicateSearch', // prop=duplicatefiles
-	);
-
 	public function __construct( $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'qp' );
 		// We need to do this to make sure $wgQueryPages is set up
@@ -49,10 +40,10 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 		require_once "$IP/includes/QueryPage.php";
 
 		// Build mapping from special page names to QueryPage classes
-		global $wgQueryPages;
+		global $wgQueryPages, $wgAPIUselessQueryPages;
 		$this->qpMap = array();
 		foreach ( $wgQueryPages as $page ) {
-			if ( !in_array( $page[1], $this->uselessQueryPages ) ) {
+			if ( !in_array( $page[1], $wgAPIUselessQueryPages ) ) {
 				$this->qpMap[$page[1]] = $page[0];
 			}
 		}
