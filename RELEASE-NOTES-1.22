@@ -253,6 +253,8 @@ production.
   with the content.
 * (bug 51342) prop=imageinfo iicontinue now contains the dbkey, not the text
   version of the title.
+* 'Withoutinterwiki' is no longer available to list=querypage. Use
+  list=allpages&apfilterlanglinks=withoutlanglinks instead.
 
 === Languages updated in 1.22===
 
