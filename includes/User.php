@@ -2712,7 +2712,11 @@ class User {
 		// In case loadGroups was not called before, we now have the right twice.
 		// Get rid of the duplicate.
 		$this->mGroups = array_unique( $this->mGroups );
-		$this->mRights = User::getGroupPermissions( $this->getEffectiveGroups( true ) );
+
+		// Refresh the groups caches, and clear the rights cache so it will be
+		// refreshed on the next call to $this->getRights().
+		$this->getEffectiveGroups( true );
+		$this->mRights = null;
 
 		$this->invalidateCache();
 	}
@@ -2742,7 +2746,11 @@ class User {
 		}
 		$this->loadGroups();
 		$this->mGroups = array_diff( $this->mGroups, array( $group ) );
-		$this->mRights = User::getGroupPermissions( $this->getEffectiveGroups( true ) );
+
+		// Refresh the groups caches, and clear the rights cache so it will be
+		// refreshed on the next call to $this->getRights().
+		$this->getEffectiveGroups( true );
+		$this->mRights = null;
 
 		$this->invalidateCache();
 	}
