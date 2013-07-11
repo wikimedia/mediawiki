@@ -914,7 +914,7 @@ var mw = ( function ( $, undefined ) {
 					// scripts only start loading after the document has been rendered,
 					// but so be it. Opera users don't deserve faster web pages if their
 					// browser makes it impossible.
-					$( function () {
+					$( document ).ready( function () {
 						document.body.appendChild( script );
 					} );
 				} else {
