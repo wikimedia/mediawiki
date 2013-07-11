@@ -613,7 +613,7 @@ Sait aap password ke safalta se badal sia hoga nai to nawaa temporary password k
 # Special:PasswordReset
 'passwordreset' => 'Password ke badlo',
 'passwordreset-text-one' => 'Aapan password ke reset kare ke khatir ii form ke bharo.',
-'passwordreset-text-many' => '{{PLURAL:$1|Aapan password ke reset kare ke khatir ek data ke likho}}',
+'passwordreset-text-many' => '{{PLURAL:$1|Aapan password ke reset kare ke khatir ek field me likho}}',
 'passwordreset-legend' => 'Password ke badlo',
 'passwordreset-disabled' => 'II wiki me password ke badle ke ijaajat nai hae.',
 'passwordreset-emaildisabled' => 'Ii wiki me email ke band kar dewa gais hae.',
@@ -1338,7 +1338,7 @@ Iske $1 {{PLURAL:$1|character|characters}} se kamti rahe ke chaahi.',
 'right-reupload-shared' => 'Share media repository ke file ke uppar likh do',
 'right-upload_by_url' => 'URL address se ek file ke upload karo',
 'right-purge' => 'Site cache se ek panna ke mina fir se puchhe mitae do',
-'right-autoconfirmed' => 'Semi-protected panna ke badlo',
+'right-autoconfirmed' => 'Ispe IP-based rate limit ke koi asar nai rahii',
 'right-bot' => 'Automated process ke rakam treat karo',
 'right-nominornewtalk' => 'Salah waalaa panaa me chhota badlao ke kaaran nawaa sandes ke prompt nai dekhao',
 'right-apihighlimits' => 'API queries me uppar ke limit ke kaam me lao',
@@ -1359,7 +1359,7 @@ Iske $1 {{PLURAL:$1|character|characters}} se kamti rahe ke chaahi.',
 'right-ipblock-exempt' => 'IP blocks, auto-blocks aur range blocks ke bagal se aae jao',
 'right-proxyunbannable' => 'Proxies ke automatic blocks ke bypass karo',
 'right-unblockself' => 'Apne ke unblock karo',
-'right-protect' => 'Protection level ke badlo aur bachawa gais panna ke badlo',
+'right-protect' => 'Protection level ke badlo aur cascade-protected panna ke badlo',
 'right-editprotected' => 'Badla gais panna ke "{{int:protect-level-sysop}}" ke rakam bachawa gais hae',
 'right-editsemiprotected' => 'Badla gais panna ke "{{int:protect-level-autoconfirmed}}" ke rakam bachawa gais hae',
 'right-editinterface' => 'User interface ke badlo',
@@ -3368,6 +3368,7 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'exif-sharpness-2' => 'Karraa',
 
 'exif-subjectdistancerange-0' => 'nai maalum',
+'exif-subjectdistancerange-1' => 'Macro hae',
 'exif-subjectdistancerange-2' => 'Najdik se dekho',
 'exif-subjectdistancerange-3' => 'Duur se dekho',
 
@@ -3422,6 +3423,35 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'exif-dc-publisher' => 'Chhaape waala',
 'exif-dc-relation' => 'Saathe waala media',
 'exif-dc-rights' => 'Adhikaar',
+'exif-dc-source' => 'Media ke source',
+'exif-dc-type' => 'Media ke rakam',
+
+'exif-rating-rejected' => 'Namanjuur',
+
+'exif-isospeedratings-overflow' => '65535 se barraa',
+
+'exif-iimcategory-ace' => 'Arts, culture aur entertainment',
+'exif-iimcategory-clj' => 'Crime aur law',
+'exif-iimcategory-dis' => 'Disasters aur accidents',
+'exif-iimcategory-fin' => 'Economy aur business',
+'exif-iimcategory-edu' => 'Parrhai',
+'exif-iimcategory-evn' => 'Mausam',
+'exif-iimcategory-hth' => 'Haal',
+'exif-iimcategory-hum' => 'Insaan ke interest',
+'exif-iimcategory-lab' => 'Kaam',
+'exif-iimcategory-lif' => 'Lifestyle aur leisure',
+'exif-iimcategory-pol' => 'Politics ke baare me',
+'exif-iimcategory-rel' => 'Religion aur belief',
+'exif-iimcategory-sci' => 'Science aur technology',
+'exif-iimcategory-soi' => 'Samaj ke issue',
+'exif-iimcategory-spo' => 'Khel',
+'exif-iimcategory-war' => 'War, conflict aur unrest',
+'exif-iimcategory-wea' => 'Mausam',
+
+'exif-urgency-normal' => 'Saamaan ($1)',
+'exif-urgency-low' => 'Kamti ($1)',
+'exif-urgency-high' => 'Jaada ($1)',
+'exif-urgency-other' => 'Sadasya-defined priority ($1)',
 
 # External editor support
 'edit-externally' => 'Ii file ke bahaari program me kaam me laae ke badlo',
@@ -3435,6 +3465,7 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 
 # Email address confirmation
 'confirmemail' => 'E-mail address ke pakka karo',
+'confirmemail_noemail' => 'Aap ke lage ek valid email address [[Special:Preferences|user preferences]] me set nai hae.',
 
 # Delete conflict
 'recreate' => 'Fir se banao',

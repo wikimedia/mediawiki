@@ -1009,7 +1009,7 @@ $2',
 # Special:PasswordReset
 'passwordreset' => 'Сброс пароля',
 'passwordreset-text-one' => 'Заполните эту форму, чтобы сбросить свой пароль.',
-'passwordreset-text-many' => '{{PLURAL:$1|Введите одну из частей данных для сброса пароля.}}',
+'passwordreset-text-many' => '{{PLURAL:$1|Заполните одно из полей для сброса пароля.}}',
 'passwordreset-legend' => 'Сбросить пароль',
 'passwordreset-disabled' => 'Сбросы пароля отключены на этой вики.',
 'passwordreset-emaildisabled' => 'Функции электронной почты отключены в этой вики.',

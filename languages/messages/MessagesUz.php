@@ -619,7 +619,7 @@ Agar siz anonim ishtirokchi boʻlsangiz va siz oʻzingizga yoʻnaltirilmagan xab
 * '''Opera:''' ''Asboblar → Moslamalar'' menyusidan keshni tozalashni tanlang",
 'updated' => '(Yangilandi)',
 'note' => "'''Izoh:'''",
-'previewnote' => "'''Bu shunchaki ko‘rib chiqish. O‘zgartirishlar hali saqlangani yo‘q!'''",
+'previewnote' => "'''Bu shunchaki koʻrib chiqish.''' Oʻzgartirishlar hali saqlangani yoʻq!",
 'continue-editing' => 'tahrirlashni davom ettirish',
 'editing' => '$1 tahrirlanmoqda',
 'creating' => '«$1» sahifasini yaratish',

@@ -296,6 +296,7 @@ $messages = array(
 
 # General errors
 'error' => 'блаꙁна',
+'badtitle' => 'ꙁъло имѧ',
 'viewsource' => 'страницѧ источьнъ обраꙁъ',
 
 # Login and logout pages
@@ -330,6 +331,7 @@ $messages = array(
 'userexists' => 'сѫщє польꙃєватєлꙗ имѧ пьса ⁙
 бѫди добръ · ино сѥ иꙁобрѧщи',
 'loginerror' => 'въхода блаꙁна',
+'mailmypassword' => 'посъли ново таино слово',
 'accountcreated' => 'мѣсто сътворєно ѥстъ',
 'loginlanguagelabel' => 'ѩꙁꙑкъ : $1',
 
@@ -381,6 +383,7 @@ $messages = array(
 'templatesused' => 'сѥѩ страницѧ {{PLURAL:$1|сь обраꙁьць польꙃоуѥтъ сѧ ѥстъ|с҄и обраꙁьца польꙃоуѭтъ сѧ ѥстє|с҄и обраꙁьци польꙃоуѭтъ сѧ сѫтъ}} :',
 'template-protected' => '(ꙁабранєно ѥстъ)',
 'template-semiprotected' => '(чѧстьно ꙁабранѥно)',
+'hiddencategories' => 'сꙗ страница въ {{PLURAL:$1|1 съкрꙑтѣи катигорїи|$1 съкрꙑтѣхъ катигорїѩ}} сѧ авлꙗѥтъ :',
 'postedit-confirmation' => 'твоꙗ мѣна съхранѥна ѥстъ',
 
 # History pages
@@ -676,6 +679,7 @@ $messages = array(
 # Watchlist
 'watchlist' => 'блюдєниꙗ',
 'mywatchlist' => 'блюдєниꙗ',
+'watchlistfor2' => 'дѣлꙗ ⁖ $1 ⁖ $2',
 'addedwatchtext' => 'страница ⁖ [[:$1]] ⁖ нꙑнѣ подъ твоимь [[Special:Watchlist|блюдєниѥмь]] ѥстъ ⁙
 всꙗ ѥѩ и ѥѩжє бєсѣдꙑ страницѧ мѣнꙑ твоꙗ блюдєнии каталоꙃѣ покаꙁанꙑ бѫдѫтъ',
 'removedwatchtext' => 'страница ⁖ [[:$1]] ⁖ нꙑнѣ твоѥго [[Special:Watchlist|блюдєниꙗ]] иꙁнєсєна ѥстъ',
@@ -922,6 +926,7 @@ $messages = array(
 'specialpages' => 'нарочьнꙑ страницѧ',
 
 # Special:Tags
+'tag-filter' => '[[Special:Tags|мѣтъць]] сито :',
 'tags-edit' => 'исправи',
 
 # Database error messages

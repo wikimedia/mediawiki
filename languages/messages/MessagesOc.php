@@ -863,7 +863,7 @@ Benlèu ja avètz modificat vòstre senhal o demandat un senhal temporari novèl
 # Special:PasswordReset
 'passwordreset' => 'Remesa a zèro del senhal',
 'passwordreset-text-one' => 'Emplenatz aqueste formulari per reïnicializar vòstre senhal.',
-'passwordreset-text-many' => "{{PLURAL:$1|Entratz una d'aquelas donadas per reïnicializar vòstre senhal.}}",
+'passwordreset-text-many' => "{{PLURAL:$1|Completatz un d'aqueles camps per reïnicializar vòstre senhal.}}",
 'passwordreset-legend' => 'Reïnicializar lo senhal',
 'passwordreset-disabled' => 'La reïnicializacion dels senhals es estada desactivada sus aqueste wiki.',
 'passwordreset-emaildisabled' => 'Las foncionalitats e-mail son estadas desactivadas sus aqueste wiki.',

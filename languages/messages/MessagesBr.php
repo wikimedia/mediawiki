@@ -650,6 +650,7 @@ Na zisoñjit ket resisaat ho [[Special:Preferences|penndibaboù evit {{SITENAME}
 'createacct-realname' => 'Anv gwir (diret)',
 'createaccountreason' => 'Abeg :',
 'createacct-reason' => 'Abeg',
+'createacct-submit' => 'Krouiñ ho kont',
 'createacct-benefit-body1' => '$1 {{PLURAL:$1|kemm}}',
 'badretype' => 'Ne glot ket ar gerioù-tremen an eil gant egile.',
 'userexists' => "Implijet eo an anv implijer lakaet ganeoc'h dija.
@@ -3733,6 +3734,9 @@ Sañset oc'h bezañ resevet [{{SERVER}}{{SCRIPTPATH}}/COPYING un eilskrid eus ar
 'version-entrypoints' => 'URLoù ar poent mont e-barzh',
 'version-entrypoints-header-entrypoint' => 'Poent mont e-barzh',
 'version-entrypoints-header-url' => 'URL',
+
+# Special:Redirect
+'redirect-submit' => 'Mont',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Klask ar restroù e doubl',

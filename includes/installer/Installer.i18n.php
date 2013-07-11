@@ -15096,6 +15096,7 @@ $messages['pdc'] = array(
  * @author BeginaFelicysym
  * @author Chrumps
  * @author Holek
+ * @author Matma Rex
  * @author Saper
  * @author Sp5uhe
  * @author Woytecr
@@ -15633,7 +15634,7 @@ $3
 
 '''Uwaga''': Jeśli tego nie zrobisz tego teraz, wygenerowany plik konfiguracyjny nie będzie już dostępny po zakończeniu instalacji.
 
-Po załadowaniu pliku konfiguracyjnego możesz '''[ $2  wejść na wiki]'''.",
+Po załadowaniu pliku konfiguracyjnego możesz '''[$2 wejść na wiki]'''.",
 	'config-download-localsettings' => 'Pobierz <code>LocalSettings.php</code>',
 	'config-help' => 'pomoc',
 	'config-nofile' => 'Nie udało się odnaleźć pliku "$1". Czy nie został usunięty?',

@@ -22,6 +22,7 @@
  * @author Nemo bis
  * @author Praveen Prakash <me.praveen@gmail.com>
  * @author Praveenp
+ * @author Raghith
  * @author Sadik Khalid
  * @author Sadik Khalid <sadik.khalid@gmail.com>
  * @author Santhosh.thottingal
@@ -740,8 +741,8 @@ $2',
 'customjsprotected' => 'ഈ ജാവാസ്ക്രിപ്റ്റ് താളിൽ മറ്റൊരു ഉപയോക്താവിന്റെ സ്വകാര്യസജ്ജീകരണങ്ങൾ ഉൾക്കൊള്ളുന്നു, അതിനാൽ താങ്കൾക്ക് ഈ താൾ തിരുത്താൻ അനുവാദമില്ല.',
 'mycustomcssprotected' => 'ഈ സി.എസ്.എസ്.  താൾ തിരുത്താനുള്ള അനുമതി താങ്കൾക്കില്ല.',
 'mycustomjsprotected' => 'ഈ ജാവാസ്ക്രിപ്റ്റ് താൾ തിരുത്താനുള്ള അനുമതി താങ്കൾക്കില്ല.',
-'myprivateinfoprotected' => 'താങ്കൾക്ക് താങ്കളുടെ സ്വകാര്യവിവരങ്ങൾ തിരുത്തുവാനുള്ള അനുമതിയില്ല.',
-'mypreferencesprotected' => 'താങ്കൾക്ക് താങ്കളുടെ ക്രമീകരണങ്ങൾ തിരുത്തുവാനുള്ള അനുമതിയില്ല.',
+'myprivateinfoprotected' => 'താങ്കൾക്ക് സ്വന്തം സ്വകാര്യവിവരങ്ങൾ തിരുത്തുവാനുള്ള അനുമതിയില്ല.',
+'mypreferencesprotected' => 'താങ്കൾക്ക് സ്വന്തം ക്രമീകരണങ്ങൾ തിരുത്തുവാനുള്ള അനുമതിയില്ല.',
 'ns-specialprotected' => 'പ്രത്യേകം എന്ന നാമമേഖലയിൽ വരുന്ന താളുകൾ തിരുത്താനാവുന്നവയല്ല.',
 'titleprotected' => "[[User:$1|$1]] എന്ന ഉപയോക്താവ് ഈ താൾ ഉണ്ടാക്കുന്നതു നിരോധിച്ചിരിക്കുന്നു.
 ''$2'' എന്നതാണു അതിനു കാണിച്ചിട്ടുള്ള കാരണം.",
@@ -1633,7 +1634,7 @@ $1",
 'right-proxyunbannable' => 'പ്രോക്സികളെ സ്വതേ തടയുന്നത് ബാധകമല്ലാതിരിക്കുക',
 'right-unblockself' => 'തടയപ്പെട്ടവർ സ്വയം തടയൽ നീക്കുക',
 'right-protect' => 'സംരക്ഷണ മാനത്തിൽ മാറ്റം വരുത്തുക, സംരക്ഷിത താളുകൾ തിരുത്തുക',
-'right-editprotected' => '"{{int:protect-level-sysop}}" എന്ന അടയാളപ്പെടുത്തി സംരക്ഷിച്ചിട്ടുള്ള താളുകൾ തിരുത്തുക',
+'right-editprotected' => '"{{int:protect-level-sysop}}" എന്ന് അടയാളപ്പെടുത്തി സംരക്ഷിച്ചിട്ടുള്ള താളുകൾ തിരുത്തുക',
 'right-editinterface' => 'ഉപയോക്തൃ സമ്പർക്കമുഖത്തിൽ മാറ്റം വരുത്തുക',
 'right-editusercssjs' => 'മറ്റ് ഉപയോക്താക്കളുടെ CSS, JS പ്രമാണങ്ങൾ തിരുത്തുക',
 'right-editusercss' => 'മറ്റ് ഉപയോക്താക്കളുടെ CSS പ്രമാണങ്ങൾ തിരുത്തുക',
