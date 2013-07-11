@@ -965,7 +965,7 @@ var mw = ( function ( $, undefined ) {
 							registry[module].state = 'ready';
 							handlePending( module );
 						};
-						nestedAddScript = function ( arr, callback, async, i ) {
+						nestedAddScript = function ( arr, callback, i ) {
 							// Recursively call addScript() in its own callback
 							// for each element of arr.
 							if ( i >= arr.length ) {
@@ -975,12 +975,12 @@ var mw = ( function ( $, undefined ) {
 							}
 
 							addScript( arr[i], function () {
-								nestedAddScript( arr, callback, async, i + 1 );
-							}, async );
+								nestedAddScript( arr, callback, i + 1 );
+							} );
 						};
 
 						if ( $.isArray( script ) ) {
-							nestedAddScript( script, markModuleReady, registry[module].async, 0 );
+							nestedAddScript( script, markModuleReady, 0 );
 						} else if ( $.isFunction( script ) ) {
 							registry[module].state = 'ready';
 							script( $ );
@@ -1096,10 +1096,8 @@ var mw = ( function ( $, undefined ) {
 			 * @param {string|string[]} dependencies Module name or array of string module names
 			 * @param {Function} [ready] Callback to execute when all dependencies are ready
 			 * @param {Function} [error] Callback to execute when any dependency fails
-			 * @param {boolean} [async] If true, load modules asynchronously even if
-			 *  document ready has not yet occurred.
 			 */
-			function request( dependencies, ready, error, async ) {
+			function request( dependencies, ready, error ) {
 				var n;
 
 				// Allow calling by single module name
@@ -1124,10 +1122,6 @@ var mw = ( function ( $, undefined ) {
 				for ( n = 0; n < dependencies.length; n += 1 ) {
 					if ( $.inArray( dependencies[n], queue ) === -1 ) {
 						queue[queue.length] = dependencies[n];
-						if ( async ) {
-							// Mark this module as async in the registry
-							registry[dependencies[n]].async = true;
-						}
 					}
 				}
 
@@ -1164,15 +1158,14 @@ var mw = ( function ( $, undefined ) {
 			}
 
 			/**
-			 * Asynchronously append a script tag to the end of the body
-			 * that invokes load.php
+			 * Asynchronously append a script tag that invokes load.php to the end of the body.
+			 * 
 			 * @private
 			 * @param {Object} moduleMap Module map, see #buildModulesString
 			 * @param {Object} currReqBase Object with other parameters (other than 'modules') to use in the request
 			 * @param {string} sourceLoadScript URL of load.php
-			 * @param {boolean} async If true, use an asynchrounous request even if document ready has not yet occurred
 			 */
-			function doRequest( moduleMap, currReqBase, sourceLoadScript, async ) {
+			function doRequest( moduleMap, currReqBase, sourceLoadScript ) {
 				var request = $.extend(
 					{ modules: buildModulesString( moduleMap ) },
 					currReqBase
@@ -1180,7 +1173,7 @@ var mw = ( function ( $, undefined ) {
 				request = sortQuery( request );
 				// Asynchronously append a script tag to the end of the body
 				// Append &* to avoid triggering the IE6 extension check
-				addScript( sourceLoadScript + '?' + $.param( request ) + '&*', null, async );
+				addScript( sourceLoadScript + '?' + $.param( request ) + '&*' );
 			}
 
 			/* Public Methods */
@@ -1198,7 +1191,7 @@ var mw = ( function ( $, undefined ) {
 					var	reqBase, splits, maxQueryLength, q, b, bSource, bGroup, bSourceGroup,
 						source, group, g, i, modules, maxVersion, sourceLoadScript,
 						currReqBase, currReqBaseLength, moduleMap, l,
-						lastDotIndex, prefix, suffix, bytesAdded, async;
+						lastDotIndex, prefix, suffix, bytesAdded;
 
 					// Build a list of request parameters common to all requests.
 					reqBase = {
@@ -1279,7 +1272,6 @@ var mw = ( function ( $, undefined ) {
 								currReqBase.user = mw.config.get( 'wgUserName' );
 							}
 							currReqBaseLength = $.param( currReqBase ).length;
-							async = true;
 							// We may need to split up the request to honor the query string length limit,
 							// so build it piece by piece.
 							l = currReqBaseLength + 9; // '&modules='.length == 9
@@ -1301,26 +1293,19 @@ var mw = ( function ( $, undefined ) {
 								if ( maxQueryLength > 0 && !$.isEmptyObject( moduleMap ) && l + bytesAdded > maxQueryLength ) {
 									// This request would become too long, create a new one
 									// and fire off the old one
-									doRequest( moduleMap, currReqBase, sourceLoadScript, async );
+									doRequest( moduleMap, currReqBase, sourceLoadScript );
 									moduleMap = {};
-									async = true;
 									l = currReqBaseLength + 9;
 								}
 								if ( moduleMap[prefix] === undefined ) {
 									moduleMap[prefix] = [];
 								}
 								moduleMap[prefix].push( suffix );
-								if ( !registry[modules[i]].async ) {
-									// If this module is blocking, make the entire request blocking
-									// This is slightly suboptimal, but in practice mixing of blocking
-									// and async modules will only occur in debug mode.
-									async = false;
-								}
 								l += bytesAdded;
 							}
 							// If there's anything left in moduleMap, request that too
 							if ( !$.isEmptyObject( moduleMap ) ) {
-								doRequest( moduleMap, currReqBase, sourceLoadScript, async );
+								doRequest( moduleMap, currReqBase, sourceLoadScript );
 							}
 						}
 					}
@@ -1507,12 +1492,8 @@ var mw = ( function ( $, undefined ) {
 				 * @param {string} [type='text/javascript'] mime-type to use if calling with a URL of an
 				 *  external script or style; acceptable values are "text/css" and
 				 *  "text/javascript"; if no type is provided, text/javascript is assumed.
-				 * @param {boolean} [async] If true, load modules asynchronously
-				 *  even if document ready has not yet occurred. If false, block before
-				 *  document ready and load async after. If not set, true will be
-				 *  assumed if loading a URL, and false will be assumed otherwise.
 				 */
-				load: function ( modules, type, async ) {
+				load: function ( modules, type ) {
 					var filtered, m, module, l;
 
 					// Validate input
@@ -1523,10 +1504,6 @@ var mw = ( function ( $, undefined ) {
 					if ( typeof modules === 'string' ) {
 						// Support adding arbitrary external scripts
 						if ( /^(https?:)?\/\//.test( modules ) ) {
-							if ( async === undefined ) {
-								// Assume async for bug 34542
-								async = true;
-							}
 							if ( type === 'text/css' ) {
 								// IE7-8 throws security warnings when inserting a <link> tag
 								// with a protocol-relative URL set though attributes (instead of
@@ -1538,7 +1515,7 @@ var mw = ( function ( $, undefined ) {
 								return;
 							}
 							if ( type === 'text/javascript' || type === undefined ) {
-								addScript( modules, null, async );
+								addScript( modules );
 								return;
 							}
 							// Unknown type
@@ -1576,7 +1553,7 @@ var mw = ( function ( $, undefined ) {
 						return;
 					}
 					// Since some modules are not yet ready, queue up a request.
-					request( filtered, undefined, undefined, async );
+					request( filtered );
 				},
 
 				/**
