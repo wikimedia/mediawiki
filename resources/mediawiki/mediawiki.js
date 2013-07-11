@@ -858,79 +858,67 @@ var mw = ( function ( $, undefined ) {
 			}
 
 			/**
-			 * Adds a script tag to the DOM, either using document.write or low-level DOM manipulation,
-			 * depending on whether document-ready has occurred yet and whether we are in async mode.
+			 * Adds a script tag to the DOM. The script will be loaded asynchronously, firing the callback
+			 * after it is loaded and executed.
 			 *
 			 * @private
 			 * @param {string} src URL to script, will be used as the src attribute in the script tag
 			 * @param {Function} [callback] Callback which will be run when the script is done
 			 */
-			function addScript( src, callback, async ) {
-				/*jshint evil:true */
+			function addScript( src, callback ) {
 				var script, head, done;
 
-				// Using isReady directly instead of storing it locally from
-				// a $.fn.ready callback (bug 31895).
-				if ( $.isReady || async ) {
-					// Can't use jQuery.getScript because that only uses <script> for cross-domain,
-					// it uses XHR and eval for same-domain scripts, which we don't want because it
-					// messes up line numbers.
-					// The below is based on jQuery ([jquery@1.8.2]/src/ajax/script.js)
+				// Can't use jQuery.getScript because that only uses <script> for cross-domain,
+				// it uses XHR and eval for same-domain scripts, which we don't want because it
+				// messes up line numbers.
+				// The below is based on jQuery ([jquery@1.8.2]/src/ajax/script.js)
 
-					// IE-safe way of getting the <head>. document.head isn't supported
-					// in old IE, and doesn't work when in the <head>.
-					done = false;
-					head = document.getElementsByTagName( 'head' )[0] || document.body;
+				// IE-safe way of getting the <head>. document.head isn't supported
+				// in old IE, and doesn't work when in the <head>.
+				done = false;
+				head = document.getElementsByTagName( 'head' )[0] || document.body;
 
-					script = document.createElement( 'script' );
-					script.async = true;
-					script.src = src;
-					if ( $.isFunction( callback ) ) {
-						script.onload = script.onreadystatechange = function () {
-							if (
-								!done
-								&& (
-									!script.readyState
-									|| /loaded|complete/.test( script.readyState )
-								)
-							) {
-								done = true;
+				script = document.createElement( 'script' );
+				script.async = true;
+				script.src = src;
+				if ( $.isFunction( callback ) ) {
+					script.onload = script.onreadystatechange = function () {
+						if (
+							!done
+							&& (
+								!script.readyState
+								|| /loaded|complete/.test( script.readyState )
+							)
+						) {
+							done = true;
 
-								// Handle memory leak in IE
-								script.onload = script.onreadystatechange = null;
+							// Handle memory leak in IE
+							script.onload = script.onreadystatechange = null;
 
-								// Detach the element from the document
-								if ( script.parentNode ) {
-									script.parentNode.removeChild( script );
-								}
-
-								// Dereference the element from javascript
-								script = undefined;
-
-								callback();
+							// Detach the element from the document
+							if ( script.parentNode ) {
+								script.parentNode.removeChild( script );
 							}
-						};
-					}
 
-					if ( window.opera ) {
-						// Appending to the <head> blocks rendering completely in Opera,
-						// so append to the <body> after document ready. This means the
-						// scripts only start loading after the document has been rendered,
-						// but so be it. Opera users don't deserve faster web pages if their
-						// browser makes it impossible.
-						$( function () {
-							document.body.appendChild( script );
-						} );
-					} else {
-						head.appendChild( script );
-					}
+							// Dereference the element from javascript
+							script = undefined;
+
+							callback();
+						}
+					};
+				}
+
+				if ( window.opera ) {
+					// Appending to the <head> blocks rendering completely in Opera,
+					// so append to the <body> after document ready. This means the
+					// scripts only start loading after the document has been rendered,
+					// but so be it. Opera users don't deserve faster web pages if their
+					// browser makes it impossible.
+					$( function () {
+						document.body.appendChild( script );
+					} );
 				} else {
-					document.write( mw.html.element( 'script', { 'src': src }, '' ) );
-					if ( $.isFunction( callback ) ) {
-						// Document.write is synchronous, so this is called when it's done
-						// FIXME: that's a lie. doc.write isn't actually synchronous
-						callback();
-					}
+					head.appendChild( script );
 				}
 			}
 
