@@ -129,6 +129,25 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data['dbtype'] = $GLOBALS['wgDBtype'];
 		$data['dbversion'] = $this->getDB()->getServerVersion();
 
+		$allowfrom = array();
+		$allowexception = true;
+		if ( !$GLOBALS['wgAllowExternalImages'] ) {
+			if ( $GLOBALS['wgEnableImageWhitelist'] ) {
+				$data['imagewhitelist'] = '';
+			}
+			$allowfrom = $GLOBALS['wgAllowExternalImagesFrom'];
+			$allowexception = !empty( $allowfrom );
+			if ( !is_array( $allowfrom ) ) {
+				$allowfrom = array( $allowfrom );
+			}
+		}
+		if ( $allowexception ) {
+			$data['externalimages'] = $allowfrom;
+			$this->getResult()->setIndexedTagName( $data['externalimages'],
+												   'allow' );
+		}
+
+
 		if ( !$wgDisableLangConversion ) {
 			$data['langconversion'] = '';
 		}
