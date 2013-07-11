@@ -262,9 +262,8 @@ class HistoryAction extends FormlessAction {
 		// Get a limit on number of feed entries. Provide a sane default
 		// of 10 if none is defined (but limit to $wgFeedLimit max)
 		$limit = $request->getInt( 'limit', 10 );
-		if ( $limit > $wgFeedLimit || $limit < 1 ) {
-			$limit = 10;
-		}
+		$limit = min( max( $limit, 1 ), $wgFeedLimit );
+
 		$items = $this->fetchRevisions( $limit, 0, HistoryPage::DIR_NEXT );
 
 		// Generate feed elements enclosed between header and footer.

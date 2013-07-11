@@ -655,17 +655,14 @@ abstract class QueryPage extends SpecialPage {
 	 * @return bool
 	 */
 	function doFeed( $class = '', $limit = 50 ) {
-		global $wgFeed, $wgFeedClasses;
+		global $wgFeed, $wgFeedClasses, $wgFeedLimit;
 
 		if ( !$wgFeed ) {
 			$this->getOutput()->addWikiMsg( 'feed-unavailable' );
 			return false;
 		}
 
-		global $wgFeedLimit;
-		if ( $limit > $wgFeedLimit ) {
-			$limit = $wgFeedLimit;
-		}
+		$limit = min( $limit, $wgFeedLimit );
 
 		if ( isset( $wgFeedClasses[$class] ) ) {
 			$feed = new $wgFeedClasses[$class](
