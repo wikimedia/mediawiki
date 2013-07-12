@@ -3923,6 +3923,7 @@ Questo programma deve essere distribuito assieme ad [{{SERVER}}{{SCRIPTPATH}}/CO
 'tags' => 'Etichette di modifiche valide',
 'tag-filter' => 'Filtra per [[Special:Tags|etichetta]]:',
 'tag-filter-submit' => 'Filtra',
+'tag-list-wrapper' => '([[Special:Tags|{{PLURAL:$1|Etichetta|Etichette}}]]: $2)',
 'tags-title' => 'Etichette',
 'tags-intro' => 'Questa pagina elenca le etichette che il software potrebbe associare a una modifica e il loro significato.',
 'tags-tag' => "Nome dell'etichetta",

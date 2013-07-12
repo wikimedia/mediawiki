@@ -915,7 +915,7 @@ $2',
 # Special:PasswordReset
 'passwordreset' => '重置密码',
 'passwordreset-text-one' => '请输入你要重置的用户名。',
-'passwordreset-text-many' => '{{PLURAL:$1|输入部分数据以重置您的密码。}}',
+'passwordreset-text-many' => '{{PLURAL:$1|填充部分字段以重置您的密码。}}',
 'passwordreset-legend' => '重置密码',
 'passwordreset-disabled' => '此Wiki已经禁用密码重置。',
 'passwordreset-emaildisabled' => '此Wiki上无法使用邮件功能。',

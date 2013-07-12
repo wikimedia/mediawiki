@@ -2377,7 +2377,7 @@ Sila lihat $2 untuk rekod penghapusan terkini.',
 Suntingan terakhir telah dibuat oleh [[User:$3|$3]] ([[User talk:$3|Perbualan]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment' => "Ringkasan sutingan: \"''\$1''\".",
 'revertpage' => 'Membalikkan suntingan oleh [[Special:Contributions/$2|$2]] ([[User talk:$2|Perbincangan]]) kepada versi terakhir oleh [[User:$1|$1]]',
-'revertpage-nouser' => 'Membalikkan suntingan oleh (nama pengguna dibuang) kepada semakan terakhir oleh [[User:$1|$1]]',
+'revertpage-nouser' => 'Membalikkan suntingan oleh seorang pengguna tersorok kepada semakan terakhir oleh [[User:$1|$1]]',
 'rollback-success' => 'Membalikkan suntingan oleh $1 kepada versi terakhir oleh $2.',
 
 # Edit tokens

@@ -55,6 +55,7 @@
  * @author Rillke
  * @author SVG
  * @author Saibo
+ * @author Se4598
  * @author Sebastian Wallroth
  * @author Spacebirdy
  * @author Srhat
@@ -2589,7 +2590,7 @@ Rückmeldungen und weitere Hilfe: {{canonicalurl:{{MediaWiki:Helppage}}}}',
 Die letzte Änderung stammt von [[User:$3|$3]] ([[User talk:$3|Diskussion]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment' => "Die Änderungszusammenfassung lautet: ''„$1“''.",
 'revertpage' => 'Änderungen von [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussion]]) wurden auf die letzte Version von [[User:$1|$1]] zurückgesetzt',
-'revertpage-nouser' => 'Änderungen von (Benutzername entfernt) rückgängig gemacht und letzte Version von [[User:$1|$1]] wiederhergestellt',
+'revertpage-nouser' => 'Änderungen von einem versteckten Benutzer rückgängig gemacht und letzte Version von [[User:$1|$1]] wiederhergestellt',
 'rollback-success' => 'Die Änderungen von $1 wurden rückgängig gemacht und die letzte Version von $2 wurde wiederhergestellt.',
 
 # Edit tokens

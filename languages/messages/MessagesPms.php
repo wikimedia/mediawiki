@@ -359,19 +359,19 @@ Na lista dle pàgine speciaj bon-e a peul esse trovà ambelessì [[Special:Speci
 
 # General errors
 'error' => 'Eror',
-'databaseerror' => 'Eror ant la base dat',
+'databaseerror' => 'Eror ant la base ëd dat',
 'dberrortext' => "A l'é capitaje n'eror ëd sintassi ant la domanda mandà a la base dij dat.
 Sòn a peul vorèj dì n'eror ant ël programa.
 L'ùltima arcesta mandà a la base dij dat a l'é stàita:
-<blockquote><tt>$1</tt></blockquote>
-da 'nt la funsion «<tt>$2</tt>».
-La base dij dat a l'ha dàit n'eror «<tt>$3: $4</tt>».",
-'dberrortextcl' => 'A-i é staje n\'eror ant la sintassi d\'anterogassion dla base dat.
-L\'ùltima anterogassion a l\'é stàita:
-"$1"
-da andrinta a la funsion "$2".
-La base dat a l\'ha dane n\'eror "$3: $4"',
-'laggedslavemode' => 'Avis: la pàgina a podrìa ëdcò nen mostré tute soe modìfiche.',
+<blockquote><code>$1</code></blockquote>
+da 'nt la funsion «<code>$2</code>».
+La base dij dat a l'ha dàit n'eror «<samp>$3: $4</samp>».",
+'dberrortextcl' => "A-i é staje n'eror ant la sintassi d'anterogassion dla base ëd dat.
+L'ùltima anterogassion a l'é stàita:
+«$1»
+da andrinta a la funsion «$2».
+La base ëd dat a l'ha dane l'eror «$3: $4»",
+'laggedslavemode' => "'''Avis:''' la pàgina a podrìa ëdcò nen mostré le modìfiche pi recente.",
 'readonly' => 'Acess a la base dat sërà për chèich temp.',
 'enterlockreason' => 'Che a buta na rason për ël blocagi, con andrinta data e ora ëd quand che a stima che a sarà gavà.',
 'readonlytext' => "La base dat ëd {{SITENAME}} për adess a l'é blocà, e as peulo pa fesse nì dle neuve imission, nì dle modìfiche, con tute le probabilità për n'operassion ëd manutension dël servent. Se a l'é parèj, motobin ampressa la base a sarà torna duvèrta.<br />

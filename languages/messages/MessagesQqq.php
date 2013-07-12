@@ -2814,7 +2814,8 @@ This is a member of the optional (disabled by default) user group, meant for the
 'right-read' => '{{doc-right|read}}
 Basic right to read any page.',
 'right-edit' => '{{doc-right|edit}}
-Basic right to edit pages that are not protected.',
+Basic right to edit pages that are not protected.
+{{Identical|Edit page}}',
 'right-createpage' => '{{doc-right|createpage}}
 Basic right to create pages. The right to edit discussion/talk pages is {{msg-mw|right-createtalk}}.',
 'right-createtalk' => '{{doc-right|createtalk}}
@@ -2983,7 +2984,8 @@ In [[Special:Log]]',
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => '{{Doc-action|read}}',
 'action-edit' => '{{Doc-action|edit}}',
-'action-createpage' => '{{Doc-action|createpage}}',
+'action-createpage' => '{{Doc-action|createpage}}
+{{Identical|Create page}}',
 'action-createtalk' => '{{Doc-action|createtalk}}',
 'action-createaccount' => '{{Doc-action|createaccount}}',
 'action-minoredit' => '{{Doc-action|minoredit}}',

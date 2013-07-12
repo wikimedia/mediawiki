@@ -1617,7 +1617,7 @@ Om du väljer att ange ditt riktiga namn, kommer det att användas för att till
 'right-reupload-shared' => 'Skriva över delade filer lokalt',
 'right-upload_by_url' => 'Ladda upp en fil genom en URL',
 'right-purge' => 'Rensa cachen för sidor utan att behöva bekräfta',
-'right-autoconfirmed' => 'Redigera halvlåsta sidor',
+'right-autoconfirmed' => 'Påverkas inte av IP-baserade hastighetsgränser',
 'right-bot' => 'Behandlas som en automatisk process',
 'right-nominornewtalk' => 'Mindre ändringar på diskussionssidor ger inte besked om nya meddelanden',
 'right-apihighlimits' => 'Använda högre gränser i API-frågor',
@@ -2511,7 +2511,7 @@ Se $2 för noteringar om de senaste raderingarna.',
 Sidan ändrades senast av [[User:$3|$3]] ([[User talk:$3|diskussion]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]).',
 'editcomment' => "Redigeringskommentaren var: \"''\$1''\".",
 'revertpage' => 'Återställde redigeringar av  [[Special:Contributions/$2|$2]] ([[User talk:$2|användardiskussion]]) till senaste versionen av [[User:$1|$1]]',
-'revertpage-nouser' => 'Återställda redigeringar av (användarnamn borttaget) till senaste version av [[User:$1|$1]]',
+'revertpage-nouser' => 'Återställde redigeringar av en dold användare till den senaste versionen av [[User:$1|$1]]',
 'rollback-success' => 'Återställde ändringar av $1;
 ändrade tillbaka till senaste version av $2.',
 

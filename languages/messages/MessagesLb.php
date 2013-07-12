@@ -766,7 +766,7 @@ Vläicht hutt Dir Äert Passwuert scho geännert oder en neit temporäert Passwu
 # Special:PasswordReset
 'passwordreset' => 'Passwuert zrécksetzen',
 'passwordreset-text-one' => 'Fëllt dëse Formulaire aus fir Äert Passwuert zréckzesetzen.',
-'passwordreset-text-many' => '{{PLURAL:$1|Gitt eng vun dësen Donnéeën a fir Ärt Passwuert zréckzesetzen.}}',
+'passwordreset-text-many' => '{{PLURAL:$1|Fëllt eent vun de Felder aus fir Äert Passwuert zeréckzesetzen.}}',
 'passwordreset-legend' => 'Passwuert zrécksetzen',
 'passwordreset-disabled' => "D'Zerécksetze vum Passwuert ass op dëser Wiki ausgeschalt.",
 'passwordreset-emaildisabled' => "D'E-Mail-Fonctioune goufen op dëser Wiki ausgeschalt.",

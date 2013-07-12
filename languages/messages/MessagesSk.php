@@ -841,6 +841,7 @@ Prosím, počkajte predtým, než to skúsite znova.',
 'resetpass-wrong-oldpass' => 'Neplatné dočasné alebo aktuálne heslo.
 Je možné, že sa vám už podarilo úspešne zmeniť svoje heslo alebo ste si vyžiadali nové dočasné heslo.',
 'resetpass-temp-password' => 'Dočasné heslo:',
+'resetpass-abort-generic' => 'Zmena hesla bola zablokovaná rozšírením.',
 
 # Special:PasswordReset
 'passwordreset' => 'Reset hesla',
@@ -2570,7 +2571,7 @@ $1',
 'blanknamespace' => '(Hlavný)',
 
 # Contributions
-'contributions' => 'Príspevky používateľa',
+'contributions' => 'Príspevky {{GENDER:$1|používateľa|používateľky}}',
 'contributions-title' => 'Príspevky používateľa pre $1',
 'mycontris' => 'Príspevky',
 'contribsub2' => 'Príspevky $1 ($2)',
@@ -3123,6 +3124,7 @@ Pravdepodobne to spôsobil odkaz na externú internetovú lokalitu, ktorá sa na
 'pageinfo-robot-noindex' => 'Neindexovať stránku',
 'pageinfo-views' => 'Počet zobrazení',
 'pageinfo-watchers' => 'Počet používateľov sledujúcich stránku',
+'pageinfo-few-watchers' => 'Menej ako $1 {{PLURAL:$1|sledujúci|sledujúci|sledujúcich}}',
 'pageinfo-redirects-name' => 'Presmerovania na túto stránku',
 'pageinfo-subpages-name' => 'Podstránky tejto stránky',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|presmerovanie|presmerovania|presmerovaní}}; $3 {{PLURAL:$3|nie je presmerovanie|nie sú presmerovania}})',
@@ -3137,6 +3139,7 @@ Pravdepodobne to spôsobil odkaz na externú internetovú lokalitu, ktorá sa na
 'pageinfo-magic-words' => 'Magické {{PLURAL:$1|slovo|slová}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Skrytá kategória|Skryté kategórie}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Vložená šablóna|Vložené šablóny}} ($1)',
+'pageinfo-transclusions' => '{{PLURAL:$1|Stránka, do ktorej|Stránky, do ktorých}} je táto stránka vložená ($1)',
 'pageinfo-toolboxlink' => 'Informácie o stránke',
 'pageinfo-redirectsto' => 'Presmerovanie na',
 'pageinfo-redirectsto-info' => 'info',
@@ -3145,6 +3148,10 @@ Pravdepodobne to spôsobil odkaz na externú internetovú lokalitu, ktorá sa na
 'pageinfo-protect-cascading' => 'Kaskádové zamknutie',
 'pageinfo-protect-cascading-yes' => 'Áno',
 'pageinfo-protect-cascading-from' => 'Zámky pochádzajú z kaskádových zamknutí',
+'pageinfo-category-info' => 'Informácie o kategórii',
+'pageinfo-category-pages' => 'Počet stránok',
+'pageinfo-category-subcats' => 'Počet podkategórií',
+'pageinfo-category-files' => 'Počet súborov',
 
 # Skin names
 'skinname-cologneblue' => 'Kolínska modrá',
@@ -3971,10 +3978,10 @@ Spolu s týmto programom by ste obdržať [{{SERVER}}{{SCRIPTPATH}}/COPYING kóp
 'logentry-delete-delete' => '$1 zmazal stránku $3',
 'logentry-delete-restore' => '$1 obnovil stránku $3',
 'logentry-delete-event' => '$1 zmenil viditeľnosť {{PLURAL:$5|záznamu udalostí|$5 záznamov udalostí}} k stránke $3: $4',
-'logentry-delete-revision' => '$1 zmenil viditeľnosť {{PLURAL:$5|revízie|$5 revízií}} na stránke $3: $4',
-'logentry-delete-event-legacy' => '$1 zmenil viditeľnosť záznamov udalostí k stránke $3',
-'logentry-delete-revision-legacy' => '$1 zmenil viditeľnosť revízií na stránke $3',
-'logentry-suppress-delete' => '$1 utajil stránku $3',
+'logentry-delete-revision' => '$1 {{GENDER:$2|zmenil|zmenila}} viditeľnosť {{PLURAL:$5|revízie|$5 revízií}} na stránke $3: $4',
+'logentry-delete-event-legacy' => '$1 {{GENDER:$2|zmenil|zmenila}} viditeľnosť záznamov udalostí k stránke $3',
+'logentry-delete-revision-legacy' => '$1 {{GENDER:$2|zmenil|zmenila}} viditeľnosť revízií na stránke $3',
+'logentry-suppress-delete' => '$1 {{GENDER:$2|utajil|utajila}} stránku $3',
 'logentry-suppress-event' => '$1 utajene zmenil viditeľnosť {{PLURAL:$5|záznamu udalostí|$5 záznamov udalostí}} k stránke $3: $4',
 'logentry-suppress-revision' => '$1 utajene zmenil viditeľnosť {{PLURAL:$5|revízie|$5 revízií}} na stránke $3: $4',
 'logentry-suppress-event-legacy' => '$1 utajene zmenil viditeľnosť záznamov udalostí k stránke $3',

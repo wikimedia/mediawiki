@@ -38,7 +38,7 @@ $messages = array(
 'tog-underline' => 'Шилтемелердин алдын сызуу:',
 'tog-justify' => 'Текстти барактын эни боюнча түздөө',
 'tog-hideminor' => 'Соңку өзгөрүүлөрдүн тизмесинен майда өзгөрүүлөрдү жашыруу',
-'tog-hidepatrolled' => 'Соңку өзгөрүүлөрдүн тизмесинен күзөттөлгөнн оңдоолорду жашыруу',
+'tog-hidepatrolled' => 'Соңку өзгөрүүлөрдүн тизмесинен күзөттөлгөн оңдоолорду жашыруу',
 'tog-newpageshidepatrolled' => 'Жаңы барактар тизмесинен күзөттөлгөн барактарды жашыруу',
 'tog-extendwatchlist' => 'Бүт өзгөртүүлөрдү камтыган кеңири көзөмөл тизмеси, эң соңкуларды гана эмес',
 'tog-usenewrc' => 'Өзгөртүүлөрдү соңку өзгөрүүлөргө жана көзөмөл тизмеме топтоо (JavaScript талап кылынат)',
@@ -53,7 +53,7 @@ $messages = array(
 'tog-watchdefault' => 'Мен өзгөрткөн барактарды жана файлдарды көзөмөл тизмеме кошуу',
 'tog-watchmoves' => 'Мен атын өзгөрткөн барактарды жана файлдарды көзөмөл тизмеме кошуу',
 'tog-watchdeletion' => 'Мен өчүргөн барактарды жана файлдарды көзөмөл тизмеме кошуу',
-'tog-minordefault' => 'Жарыяланбасча бүт оңдоолорду майда деп белглөө',
+'tog-minordefault' => 'Жарыяланбасча бүт оңдоолорду майда деп белгилөө',
 'tog-previewontop' => 'Оңдоо терезесинин алдына алдын ала көрсөтүүнү жайгаштыруу',
 'tog-previewonfirst' => 'Оңдоого өтөөрдөн мурда алдын ала көрсөтүү',
 'tog-nocache' => 'Барактарды кэштөөнү браузерден өчүрүү',
@@ -264,7 +264,7 @@ $messages = array(
 
 $1',
 'pool-timeout' => 'Бөгөттөөнүн күтүү убактысы аяктады',
-'pool-queuefull' => 'Суроо жыйнагыч толук',
+'pool-queuefull' => 'Суроо жыйнагыч толгон',
 'pool-errorunknown' => 'Белгисиз ката',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -351,7 +351,7 @@ $1',
 «<code>$2</code>» функциясынан пайда болду.
 Маалымат базасы «<samp>$3: $4</samp>» катасын кайтарды.',
 'laggedslavemode' => "'''Эскертүү:''' баракта акыркы жаңыртуулар жок болуп калышы мүмкүн.",
-'readonly' => 'Маалымат базасы камаланган',
+'readonly' => 'Маалымат базасы бөгөттөлгөн',
 'enterlockreason' => 'Бөгөттөөнүн себебин жана мөөнөтүн көрсөтүңүз',
 'missing-article' => 'Табылууга тийиш «$1» $2 деп аталган баракта текст маалыматтар базасында табылган жок.
 
@@ -468,7 +468,7 @@ $1',
 Кукилериңиз жандырылгандыгын текшериңиз, баракты жаңыртып туруп, кайрадан аракет кылыңыз.',
 'noname' => 'Сиз колдонуучунун анык атын көрсөткөн жоксуз.',
 'loginsuccesstitle' => 'Сиз ийгиликтүү кирдиңиз',
-'loginsuccess' => "'''Сиз эми {{SITENAME}} сайтына \"\$1\" болуп кирдиңиз.'''",
+'loginsuccess' => "'''Сиз азыр {{SITENAME}} сайтына \"\$1\" болуп кирдиңиз.'''",
 'nosuchuser' => '"$1" аттуу колдонуучу катталган эмес.
 Колдонуучун аты регистирди айырмалайт.
 Катасын текшериңиз же [[Special:UserLogin/signup|жаңы эсеп түзүү]]',
@@ -514,7 +514,7 @@ $1',
 'oldpassword' => 'Эски сырсөз:',
 'newpassword' => 'Жаңы сырсөз:',
 'retypenew' => 'Жаңы сырсөздү кайра териңиз:',
-'resetpass_submit' => 'Сырсөз коюу анан кирүү',
+'resetpass_submit' => 'Сырсөздү терип анан кирүү',
 'resetpass_success' => 'Сиздин сырсөзүңүз ийгиликтүү өзгөртүлдү!
 Системага кирүү аткарылып жатат...',
 'resetpass_forbidden' => 'Сырсөздү өзгөртүүгө мүмкүн эмес',
@@ -582,7 +582,7 @@ $1',
 'anoneditwarning' => "'''Эскертүү:''' Сиз системге кирген жоксуз.
 IP дарегиңиз бул барактын оңдоо тарыхына жазылат.",
 'anonpreviewwarning' => '"Сиз системге кирген жоксуз. Барактын тарыхында сиздин IP дарегиңиз жазылып калат."',
-'missingcommenttext' => 'Сураныч, комментарийиңизди төмөн жака киргизиңиз.',
+'missingcommenttext' => 'Сураныч, комментарийиңизди төмөн жака териңиз.',
 'blockedtitle' => 'Колдонуучу бөгөттөлгөн',
 'blockedtext' => 'Сиздин колдонуучу атыңыз же IP дарегиңиз тосмолонгон',
 'blockednoreason' => 'себеби көрсөтүлгөн жок',
@@ -604,9 +604,9 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 Сиз [[Special:Search/{{PAGENAME}}|бул ат жөнүндө эскертүүлөрдү]] башка барактардан таба аласыз, же <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} тийиштүү журналдардын жазууларын таба аласыз]</span>. Бул баракты жаратууга укуктарыңыз жок.',
 'userpage-userdoesnotexist' => '"$1" Мындай колдонуучу катталган эмес. Сураныч, ушул баракты түзүүнү же оңдогонду каалганыңыз анык болсун',
 'updated' => '(Жаңыртылды)',
-'note' => "'''Эскертүү:'''",
+'note' => "'''Эскертме:'''",
 'previewnote' => "'''Бул алдын ала көрүнүшү гана болгонун эсиңизге алыңыз.'''
-Өзгөртүүлөрүңүз сактала элек!",
+Өзгөртүүлөрүңүз али сактала элек!",
 'continue-editing' => 'Өзгөртүүүлөрдү улантабыз',
 'session_fail_preview' => 'Кечиресиз, байланыш үзүлгөндүктөн сиздин өзгөртүүлөр сакталган жок. Дагы бир жолу аракет кылып көрүңүз. Болбосо, [[Special:UserLogout|logging out]] аткарып, кайра кирип көрүңүз.',
 'editing' => '$1 оңдоолууда',
@@ -649,7 +649,7 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'post-expand-template-argument-warning' => "'''Эскертүү:''' Бул барак, жок дегенде, абдан чоң көлөмдүү калыптын бир жүйөсүн камтыйт жана  жайылганда өлчөмү абдан чоң болуп кетет. 
 Ушул сыяктуу жүйөлөр аттатылды.",
 'post-expand-template-argument-category' => 'Калыптардын аттатылган жүйөлөрүн камтыган барактар',
-'parser-template-loop-warning' => 'Калыптарда айланма бар:[[$1]]',
+'parser-template-loop-warning' => 'Калыптарда илмек бар:[[$1]]',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Эсеп жазуусун түзүү мүмкүн эмес',
@@ -657,7 +657,7 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 # History pages
 'viewpagelogs' => 'Бул барактын журналдарын көрсөтүү',
 'nohistory' => 'Бул барактын өзгөртүүлөр тарыхы жок',
-'currentrev' => 'Акыркы версиясы',
+'currentrev' => 'Соңку версиясы',
 'currentrev-asof' => '$1 -га соңку версиясы',
 'revisionasof' => '$1 -деги абалы',
 'revision-info' => '$1 карата $2 тарабынан жасалган версия',
@@ -676,7 +676,7 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'histfirst' => 'илгерки',
 'histlast' => 'Соңку',
 'historysize' => '({{PLURAL:$1|1 байт}})',
-'historyempty' => 'бош',
+'historyempty' => '(бош)',
 
 # Revision feed
 'history-feed-title' => 'Өзгөртүүлөр тарыхы',
@@ -807,7 +807,7 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'prefs-watchlist-token' => 'Көзөмөл тизмесинин токени:',
 'prefs-resetpass' => 'Сырсөздү өзгөртүү',
 'prefs-changeemail' => 'Эл. почта дарегин өзгөртүү',
-'prefs-setemail' => 'Эл. почта дарегин коюу',
+'prefs-setemail' => 'Эл. почта дарегин терүү',
 'prefs-email' => 'Электрондук почта параметрлери',
 'prefs-rendering' => 'Сырткы көрүнүш',
 'saveprefs' => 'Сактоо',
@@ -1285,7 +1285,7 @@ To include a file in a page, use a link in one of the following forms:
 'whatlinkshere-hidetrans' => '$1 бириктирүүлөр',
 'whatlinkshere-hidelinks' => 'Шилтемелерди $1',
 'whatlinkshere-hideimages' => '$1 файл шилтемелери',
-'whatlinkshere-filters' => 'Электер',
+'whatlinkshere-filters' => 'Чыпкалар',
 
 # Block/unblock
 'block' => 'Колдонуучуну бөгөттөө',
@@ -1460,11 +1460,11 @@ To include a file in a page, use a link in one of the following forms:
 'tooltip-ca-nstab-media' => 'Медиа барагын көрүү',
 'tooltip-ca-nstab-special' => 'Бул кызматтык барак, сиз аны оңдой албайсыз',
 'tooltip-ca-nstab-project' => 'Долбоор барагы',
-'tooltip-ca-nstab-image' => 'Файл барагын көрүү',
-'tooltip-ca-nstab-mediawiki' => 'Системалык билдирүүсүн көрүү',
-'tooltip-ca-nstab-template' => 'Калыпты көрүү',
-'tooltip-ca-nstab-help' => 'Жардам барагын көрүү',
-'tooltip-ca-nstab-category' => 'Категория барагын көрүү',
+'tooltip-ca-nstab-image' => 'Файл барагын кароо',
+'tooltip-ca-nstab-mediawiki' => 'Системалык билдирүүсүн кароо',
+'tooltip-ca-nstab-template' => 'Калыпты кароо',
+'tooltip-ca-nstab-help' => 'Жардам барагын кароо',
+'tooltip-ca-nstab-category' => 'Категория барагын кароо',
 'tooltip-minoredit' => 'Муну майда оңдоо деп белгилөө',
 'tooltip-save' => 'Өзгөртүүлөрүңүздү сактоо',
 'tooltip-preview' => 'Сураныч, сактоодон мурда өзгөртүүлөрдү алдын ала көрсөтүүнү  колдонуңуз!',
@@ -1487,7 +1487,7 @@ To include a file in a page, use a link in one of the following forms:
 'pageinfo-title' => '«$1» үчүн маалымат',
 'pageinfo-header-basic' => 'Негизги маалыматтар',
 'pageinfo-header-edits' => 'Оңдоо тарыхы',
-'pageinfo-display-title' => 'Көрсөтүлгөн башжазуусу',
+'pageinfo-display-title' => 'Көрүнүүчү башжазуу',
 'pageinfo-article-id' => 'Барактын идентификатору',
 'pageinfo-views' => 'Кароолордун саны',
 'pageinfo-redirects-name' => 'Бул баракка багыттамалар',
@@ -1502,8 +1502,8 @@ To include a file in a page, use a link in one of the following forms:
 'patrol-log-page' => 'Күзөттөө журналы',
 
 # Browsing diffs
-'previousdiff' => '← Эскисин оңдоо',
-'nextdiff' => 'Жаңысын оңдоо →',
+'previousdiff' => '← Эскирээк оңдоо',
+'nextdiff' => 'Жаңыраак оңдоо →',
 
 # Media information
 'file-info-size' => '$1 × $2 пиксель, файлдын көлөмү: $3, MIME түрү: $4',

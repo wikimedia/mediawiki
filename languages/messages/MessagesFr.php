@@ -1026,7 +1026,7 @@ Mot de passe temporaire : $2",
 'subject' => 'Sujet / titre :',
 'minoredit' => 'Modification mineure',
 'watchthis' => 'Suivre cette page',
-'savearticle' => 'Publier',
+'savearticle' => 'Sauvegarder',
 'preview' => 'Prévisualisation',
 'showpreview' => 'Prévisualiser',
 'showlivepreview' => 'Aperçu rapide',
@@ -2571,7 +2571,7 @@ quelqu'un d'autre a déjà modifié ou révoqué la page.
 La dernière modification de la page a été effectuée par [[User:$3|$3]] ([[User talk:$3|Discuter]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
 'editcomment' => "Le résumé de la modification était : « ''$1'' ».",
 'revertpage' => 'Révocation des modifications de [[Special:Contributions/$2|$2]] ([[User talk:$2|discussion]]) vers la dernière version de [[User:$1|$1]]',
-'revertpage-nouser' => "Révocation des modifications par (nom d'utilisateur supprimé) à la dernière version par [[User:$1|$1]]",
+'revertpage-nouser' => 'Révocation des modifications par un utilisateur masqué à la dernière version par [[User:$1|$1]]',
 'rollback-success' => 'Révocation des modifications effectuées par $1 ;
 rétablissement de la dernière version par $2.',
 

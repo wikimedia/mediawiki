@@ -961,7 +961,7 @@ Cookieを有効にしていることを確認して、このページを再読�
 # Special:PasswordReset
 'passwordreset' => 'パスワードの再設定',
 'passwordreset-text-one' => 'パスワードを再設定するにはこのフォームに記入してください。',
-'passwordreset-text-many' => '{{PLURAL:$1|パスワードを再設定するにはいずれかの情報を入力してください。}}',
+'passwordreset-text-many' => '{{PLURAL:$1|パスワードを再設定するにはいずれかの欄に記入してください。}}',
 'passwordreset-legend' => 'パスワードの再設定',
 'passwordreset-disabled' => 'パスワードの再設定は、このウィキでは無効になっています。',
 'passwordreset-emaildisabled' => 'メール機能は、このウィキでは無効化されています。',
@@ -2634,7 +2634,7 @@ $UNWATCHURL
 このページの最後の編集は[[User:$3|$3]] ([[User talk:$3|トーク]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) によるものです。',
 'editcomment' => "編集内容の要約:「''$1''」",
 'revertpage' => '[[Special:Contributions/$2|$2]] ([[User talk:$2|トーク]]) による編集を[[User:$1|$1]]による直前の版へ差し戻しました',
-'revertpage-nouser' => '(利用者名削除) による編集を[[User:$1|$1]]による直前の版へ差し戻しました',
+'revertpage-nouser' => '非表示の利用者による編集を[[User:$1|$1]]による直前の版へ差し戻しました',
 'rollback-success' => '$1による編集を差し戻しました。
 $2による直前の版へ変更されました。',
 

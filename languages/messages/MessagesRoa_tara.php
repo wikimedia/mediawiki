@@ -2283,7 +2283,7 @@ quacche otre ha cangiate o annullate ggià 'a pàgene.
 L'urteme cangiamende d'a pàgene ere de [[User:$3|$3]] ([[User talk:$3|'Ngazzaminde]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
 'editcomment' => "'U riepileghe d'u cangiamende ere: \"''\$1''\".",
 'revertpage' => "Cangiaminde annullate da [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) a l'urtema versione da [[User:$1|$1]]",
-'revertpage-nouser' => "Le cangiaminde annullate ba (nome utende luate) a l'urtema revisione da [[User:$1|$1]]",
+'revertpage-nouser' => "Le cangiaminde annullate da (nome utende luate) a l'urtema revisione da [[User:$1|$1]]",
 'rollback-success' => "Cangiaminde annullate da $1;
 turnate rete a l'urtema versione da $2.",
 

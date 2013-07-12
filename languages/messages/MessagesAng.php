@@ -34,20 +34,20 @@ $messages = array(
 # User preference toggles
 'tog-underline' => 'Mearc under hlencan:',
 'tog-justify' => 'Macian cwidfloccas rihte',
-'tog-hideminor' => 'Hȳdan lytela adihtunga in nīwra wendinga getæle',
+'tog-hideminor' => 'Hȳdan lytela adihtunga in nīwra andwendinga getæle',
 'tog-hidepatrolled' => 'Hȳdan weardoda adihtunga in nīwra andwendinga getæle',
 'tog-newpageshidepatrolled' => 'Hȳdan weardode trametas in nīwra andwendinga getæle',
-'tog-extendwatchlist' => 'Sprǣdan wæccgetæl tō īwenne ealla andwendinga, nā synderlīce þā nīwostan',
-'tog-usenewrc' => 'Settan andwendunge on hēapas æfter tramete on nīwra andwendunga getæle and wæccgetæle (þearf JavaScript)',
+'tog-extendwatchlist' => 'Sprǣdan behealdungtæl tō īwenne ealla andwendinga, nā synderlīce þā nīwostan',
+'tog-usenewrc' => 'Settan andwendunga on hēapas on trametum on nīwra andwendunga getæle and behealdungtæle (þearf JavaScript)',
 'tog-numberheadings' => 'Settan rīm on fōrecwidas selflīce',
 'tog-showtoolbar' => 'Īwan þā adihtunge tōlmearce (þearf JavaScript)',
 'tog-editondblclick' => 'Adihtan trametas mid twifealdum mȳs swenge (þearf JavaScript)',
-'tog-editsection' => 'Þafian dǣla adihtunge mid [ādihtan] hlencum',
+'tog-editsection' => 'Þafian dǣla adihtunge mid [adihtan] hlencum',
 'tog-editsectiononrightclick' => 'Þafian dǣla adihtunge þurh swīðran healfe mȳs swengas on dǣla titulum (þearf JavaScript)',
 'tog-showtoc' => 'Īwan innunge tabulan (for trametum þe mā þonne 3 fōrecwidas habbaþ)',
 'tog-rememberpassword' => 'Gemynan mīne inmeldunge on þissum spearctellende (oþ $1 {{PLURAL:$1|dæg|dagas}} lengest)',
 'tog-watchcreations' => 'Ēacnian mīn behealdungtæl mid trametum þā ic scieppe and ymelum þā ic hlade on nett.',
-'tog-watchdefault' => 'Ēacnian mīn behealdungetæl mid trametum and ymelum þā ic adihte.',
+'tog-watchdefault' => 'Ēacnian mīn behealdungtæl mid trametum and ymelum þā ic adihte.',
 'tog-watchmoves' => 'Ēacnian mīn behealdungtæl mid trametum and ymelum þā ic wege.',
 'tog-watchdeletion' => 'Ēacnian mīn behealdungæl mid trametum and ymelum þā ic forlēose.',
 'tog-minordefault' => 'Mearcian ealla adihtunga lytela tō gewunan',
@@ -528,20 +528,20 @@ folcliċum āgnunge oþþe ȝelīċum frēom horde (sēo $1 for āscungum).
 
 # Revision feed
 'history-feed-title' => 'Ednīwunge stǣr',
-'history-feed-description' => 'Ednīƿunge stǣr þisse sīdan on þǣre ƿiki',
+'history-feed-description' => 'Ednīwunge stǣr þisses trametes on þǣre wiki',
 'history-feed-item-nocomment' => '$1 on $2',
 
 # Revision deletion
-'rev-deleted-comment' => '(fornōm cwide)',
-'rev-deleted-user' => '(brūcendnama fornōm)',
-'rev-delundel' => 'scēaƿian/hȳdan',
-'rev-showdeleted' => 'scēaƿan',
+'rev-deleted-comment' => '(fornōm adihtunge sceortnesse)',
+'rev-deleted-user' => '(brūcendnaman fornōm)',
+'rev-delundel' => 'īwan/hȳdan',
+'rev-showdeleted' => 'īwan',
 'revdelete-show-file-submit' => 'Gēa',
-'revdelete-hide-text' => 'Ednīƿungtraht hȳdan',
-'revdelete-hide-image' => 'Fīlinnoþ hȳdan',
-'revdelete-hide-comment' => 'Ādihtcƿide hȳdan',
-'revdelete-hide-user' => 'Ādihteres brūcendnama/IP address hȳdan',
-'revdelete-radio-same' => '(ne hƿeorfan)',
+'revdelete-hide-text' => 'Hȳdan ednīwunge traht',
+'revdelete-hide-image' => 'Hȳdan ymelan innunge',
+'revdelete-hide-comment' => 'Hȳdan adihtunge sceortnesse',
+'revdelete-hide-user' => 'Hȳdan adihtendes brūcendnaman/IP address',
+'revdelete-radio-same' => '(nā andwendan)',
 'revdelete-radio-set' => 'Gēa',
 'revdelete-radio-unset' => 'Nese',
 'revdel-restore' => 'andwendan īwunge',
@@ -736,14 +736,14 @@ Gif se brūcend asifte hine. synderlīce sind ymelan geīwda þǣre þe se brūc
 # File description page
 'file-anchor-link' => 'Ymele',
 'filehist' => 'Ymelan stǣr',
-'filehist-help' => 'Cnæpp on dæȝe/tīde to sēonne þā fīlan sƿā ƿæs hēo on þǣre tīde.',
+'filehist-help' => 'Swing dæg/tīde mid mýs to sēonne þā ymelan swā wæs hēo on þǣre tīde.',
 'filehist-deleteall' => 'forlēosan eall',
 'filehist-deleteone' => 'forlēosan',
 'filehist-revert' => 'undōn',
 'filehist-current' => 'nū',
 'filehist-datetime' => 'Dæg/Tīd',
 'filehist-thumb' => 'Lytelbiliþ',
-'filehist-thumbtext' => 'Lytelbiliþ for fadunge fram $1 and siþþan',
+'filehist-thumbtext' => 'Lytelbiliþ þǣre fadunge fram $3 on $2',
 'filehist-nothumb' => 'Nān lytelbiliþ',
 'filehist-user' => 'Brūcend',
 'filehist-dimensions' => 'Micelnesse gemetu',
@@ -846,7 +846,7 @@ Gif se brūcend asifte hine. synderlīce sind ymelan geīwda þǣre þe se brūc
 
 # Special:LinkSearch
 'linksearch' => 'Sēcung ūtanweardra hlencena',
-'linksearch-ok' => 'Sēċan',
+'linksearch-ok' => 'Sēcan',
 
 # Special:ListUsers
 'listusers-noresult' => 'Nān brūcend wæs gefunden.',
@@ -933,13 +933,13 @@ Gif se brūcend asifte hine. synderlīce sind ymelan geīwda þǣre þe se brūc
 'protect-fallback' => 'Synderlīce līefan brūcendum þā habbaþ "$1" lēafe',
 'protect-level-autoconfirmed' => 'Līefan synderlīce selflīce afæstnodum brūcendum',
 'protect-level-sysop' => 'Līefan synderlīce bewitendum',
-'protect-summary-cascade' => 'beflōƿende',
+'protect-summary-cascade' => 'beflōwende',
 'protect-expiring' => 'endaþ $1 (UTC)',
 'protect-cascade' => 'Beorgan ealle trametas þā sind befangen on þissum tramete (forþ brǣdende beorg)',
 'protect-cantedit' => 'Þū ne meaht þæt beorges emnet hƿeorfan þisre sīdan, forþǣm ne hæfst þū þafunge to ādihtenne hīe.',
 'protect-expiry-options' => '1 stund:1 hour,1 dæg:1 day,1 wucu:1 week,2 wuca:2 weeks,1 mōnaþ:1 month,3 mōnþas:3 months,6 mōnþas:6 months,1 gēar:1 year,unendiendlic:infinite',
 'restriction-type' => 'Þafung:',
-'restriction-level' => 'Ȝehæftes emnet:',
+'restriction-level' => 'Gehæftes emnet:',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Adihtan',
@@ -973,12 +973,12 @@ Gif se brūcend asifte hine. synderlīce sind ymelan geīwda þǣre þe se brūc
 'year' => 'Fram ȝēare (and ǣror)',
 
 'sp-contributions-talk' => 'gesprec',
-'sp-contributions-search' => 'Forðunga sēċan',
+'sp-contributions-search' => 'Sēcan forðunga',
 'sp-contributions-username' => 'IP address oþþe brūcendnama:',
-'sp-contributions-submit' => 'Sēċan',
+'sp-contributions-submit' => 'Sēcan',
 
 # What links here
-'whatlinkshere' => 'Hƿæt hæfþ hlenċan hider',
+'whatlinkshere' => 'Hwæt hæfþ hlencan hider',
 'whatlinkshere-title' => 'Trametas þā habbaþ hlencan tō "$1"',
 'whatlinkshere-page' => 'Tramet:',
 'linkshere' => "Þā folgiendan trametas habbaþ hlencan tō: '''[[:$1]]'''",
@@ -1045,21 +1045,21 @@ Cēos ōðerne naman lā.',
 'allmessages-filter-unmodified' => 'Nā andwended',
 'allmessages-filter-all' => 'Eall',
 'allmessages-filter-modified' => 'Andwended',
-'allmessages-language' => 'Sprǣċ:',
+'allmessages-language' => 'Sprǣc:',
 'allmessages-filter-submit' => 'Gān',
 
 # Thumbnails
 'thumbnail-more' => 'Mǣrsian',
-'filemissing' => 'Þrǣd unandƿeard',
+'filemissing' => 'Ymele is æfweard',
 
 # Special:Import
-'import' => 'Sīdan inbringan',
+'import' => 'Inbringan trametas',
 'import-interwiki-submit' => 'Inbringan',
-'importstart' => 'Inbringende sīdan...',
-'importnopages' => 'Nān sīdan to inbringenne.',
+'importstart' => 'Inbringende trametas...',
+'importnopages' => 'Nǣnge trametas to inbringenne.',
 'importfailed' => 'Inbringung tōsǣlede: $1',
-'importnotext' => 'Ǣmtiȝ oþþe nān traht',
-'importsuccess' => 'Inbringoþ ȝesǣled!',
+'importnotext' => 'Æmettig oþþe nān traht',
+'importsuccess' => 'Inbringoþ gesǣlde!',
 'import-noarticle' => 'Nān tramet tō inbringenne!',
 
 # Tooltip help for the actions
@@ -1101,7 +1101,7 @@ Cēos ōðerne naman lā.',
 'tooltip-t-emailuser' => 'Sendan spearcǣrend þissum brūcende',
 'tooltip-t-upload' => 'Hladan ymelan forþ',
 'tooltip-t-specialpages' => 'Getæl eallra syndrigra trameta',
-'tooltip-t-print' => 'Gemǣnendliċu fadung þisses trametes',
+'tooltip-t-print' => 'Gemǣnendlicu fadung þisses trametes',
 'tooltip-t-permalink' => 'Fæst hlenca tō þisre fadunge þæs trametes',
 'tooltip-ca-nstab-main' => 'Sēon þone innunge tramet',
 'tooltip-ca-nstab-user' => 'Sēon þone brūcendes tramet',
@@ -1131,7 +1131,7 @@ Cēos ōðerne naman lā.',
 # Media information
 'imagemaxsize' => "Mǣst biliðes micelness:<br />''(for ymelena amearcunga trametum)''",
 'thumbsize' => 'Þumannæglmicelnes:',
-'file-info-size' => '$1 × $2 pixels, fīlmiċelu: $3, MIMEcynn: $4',
+'file-info-size' => '$1 × $2 pixels, ymelan micelu: $3, MIME cynn: $4',
 'file-nohires' => 'Þǣr nis nǣnig māre micelness.',
 'svg-long-desc' => 'SVG ymele, rihte $1 × $2 pixels, ymelan micelness: $3',
 'show-big-image' => 'Full micelness',
@@ -1176,16 +1176,16 @@ Cēos ōðerne naman lā.',
 'exif-meteringmode-255' => 'Ōðer',
 
 'exif-lightsource-0' => 'Uncūþ',
-'exif-lightsource-1' => 'Dæȝeslēoht',
+'exif-lightsource-1' => 'Dægeslēoht',
 
 # Flash modes
 'exif-flash-mode-3' => 'selffremmende mōd',
 
-'exif-focalplaneresolutionunit-2' => 'ynċas',
+'exif-focalplaneresolutionunit-2' => 'yncas',
 
 'exif-exposuremode-1' => 'Handlic blice',
 
-'exif-whitebalance-0' => 'Selffremmende hƿītefnetta',
+'exif-whitebalance-0' => 'Selffremmende hwītefnett',
 
 'exif-scenecapturetype-1' => 'Landsceap',
 
@@ -1197,8 +1197,8 @@ Cēos ōðerne naman lā.',
 'exif-sharpness-1' => 'Sōfte',
 'exif-sharpness-2' => 'Heard',
 
-'exif-subjectdistancerange-2' => 'Nēah hāƿung',
-'exif-subjectdistancerange-3' => 'Feorr hāƿung',
+'exif-subjectdistancerange-2' => 'Nēah hāwung',
+'exif-subjectdistancerange-3' => 'Feorr hāwung',
 
 # Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
 'exif-gpslatitude-n' => 'Norþ brǣdu',
@@ -1253,44 +1253,44 @@ $5
 'autosumm-new' => "Sīdan mid '$1' ȝescapen",
 
 # Watchlist editor
-'watchlistedit-noitems' => 'Þīnu ƿæccȝetalu ne hæfþ nǣniȝ naman.',
-'watchlistedit-normal-title' => 'Ƿæccȝetale ādihtan',
-'watchlistedit-normal-legend' => 'Naman forniman ƿiþ ƿæccȝetale',
-'watchlistedit-normal-submit' => 'Naman forniman',
+'watchlistedit-noitems' => 'Þīn behealdungtæl næfþ nǣnga ymelan.',
+'watchlistedit-normal-title' => 'Adihtan behealdungtæl',
+'watchlistedit-normal-legend' => 'Forniman naman fram behealdungtæle',
+'watchlistedit-normal-submit' => 'Forniman naman',
 'watchlistedit-raw-titles' => 'Naman:',
-'watchlistedit-raw-done' => 'Þīnu ƿæccȝetalu nīƿode.',
+'watchlistedit-raw-done' => 'Þīn behealdungtæl wæs ednīwod.',
 
 # Watchlist editing tools
-'watchlisttools-view' => 'Ƿeorþliċe hƿearfas sēon',
-'watchlisttools-edit' => 'Ƿæccȝetale sēon and ādihtan',
-'watchlisttools-raw' => 'Grēne ƿæccȝetale ādihtan',
+'watchlisttools-view' => 'Sēon andwendunga',
+'watchlisttools-edit' => 'Sēon and adihtan behealdungtæle',
+'watchlisttools-raw' => 'Adihtan hrēaw behealdungtæle',
 
 # Special:Version
 'version' => 'Fadung',
-'version-specialpages' => 'Syndriȝa sīdan',
+'version-specialpages' => 'Syndrige trametas',
 'version-other' => 'Ōðer',
 'version-hooks' => 'Anglas',
 'version-hook-name' => 'Angelnama',
-'version-version' => '(Fadung $1)',
+'version-version' => '($1. fadung)',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch-filename' => 'Fīlnama:',
-'fileduplicatesearch-submit' => 'Sēċan',
+'fileduplicatesearch-filename' => 'Ymelan nama:',
+'fileduplicatesearch-submit' => 'Sēcan',
 
 # Special:SpecialPages
-'specialpages' => 'Syndriȝa sīdan',
-'specialpages-group-other' => 'Ōðra syndriȝa sīdan',
+'specialpages' => 'Syndrige trametas',
+'specialpages-group-other' => 'Ōðre syndrige trametas',
 'specialpages-group-users' => 'Brūcendas and riht',
 
 # Special:BlankPage
-'blankpage' => 'Blæċu sīde',
+'blankpage' => 'Tramet is æmettig',
 
 # Special:Tags
-'tags-edit' => 'ādihtan',
+'tags-edit' => 'adihtan',
 
 # HTML forms
 'htmlform-submit' => 'Forþsendan',
-'htmlform-reset' => 'Hƿearfas undōn',
+'htmlform-reset' => 'Undōn andwendunga',
 'htmlform-selectorother-other' => 'Ōðer',
 
 );

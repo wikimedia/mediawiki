@@ -886,7 +886,7 @@ Być może właśnie zmienił{{GENDER:|eś|aś|eś(‐aś)}} swoje hasło lub po
 # Special:PasswordReset
 'passwordreset' => 'Wyczyść hasło',
 'passwordreset-text-one' => 'Wypełnij ten formularz, aby zresetować hasło.',
-'passwordreset-text-many' => '{{PLURAL:$1|Aby zresetować hasło, wpisz jedną z danych poniżej}}',
+'passwordreset-text-many' => '{{PLURAL:$1|Wypełnij jedno z poniższych pól, aby zresetować hasło.}}',
 'passwordreset-legend' => 'Zresetuj hasło',
 'passwordreset-disabled' => 'Na tej wiki wyłączono możliwość resetowania haseł.',
 'passwordreset-emaildisabled' => 'Wysyłanie emaili zostało wyłączone na tej wiki',
@@ -2509,7 +2509,7 @@ Ktoś inny zdążył już to zrobić lub wprowadził własne poprawki do treści
 Autorem ostatniej zmiany jest teraz [[User:$3|$3]] ([[User talk:$3|dyskusja]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment' => "Edycję opisał „''$1''”.",
 'revertpage' => 'Wycofano edycje użytkownika [[Special:Contributions/$2|$2]] ([[User talk:$2|dyskusja]]). Autor przywróconej wersji to [[User:$1|$1]].',
-'revertpage-nouser' => 'Wycofano edycje (nazwa użytkownika usunięta). Autor przywróconej wersji to [[User:$1|$1]].',
+'revertpage-nouser' => 'Wycofano edycje ukrytego użytkownika. Autor przywróconej wersji to [[User:$1|$1]].',
 'rollback-success' => 'Wycofano edycje użytkownika $1;
 przywrócono ostatnią wersję autorstwa $2.',
 
@@ -4061,6 +4061,7 @@ Powinieneś otrzymać [{{SERVER}}{{SCRIPTPATH}}/COPYING kopię licencji GNU Gene
 'tags' => 'Sprawdź zmiany w oparciu o wzorce tekstu',
 'tag-filter' => 'Filtr [[Special:Tags|wzorców tekstu]]',
 'tag-filter-submit' => 'Filtr',
+'tag-list-wrapper' => '([[Special:Tags|{{PLURAL:$1|Znacznik|Znaczniki}}]]: $2)',
 'tags-title' => 'Wzorce tekstu',
 'tags-intro' => 'Na tej stronie znajduje się lista wzorców tekstu, dla których oprogramowanie może oznaczyć edycje, dodatkowo wskazując ich znaczenie.',
 'tags-tag' => 'Nazwa znacznika',

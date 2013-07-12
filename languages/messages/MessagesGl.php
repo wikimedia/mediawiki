@@ -2480,7 +2480,7 @@ proceda con coidado.',
 A última edición fíxoa [[User:$3|$3]] ([[User talk:$3|conversa]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment' => "O resumo de edición foi: \"''\$1''\".",
 'revertpage' => 'Desfixéronse as edicións de [[Special:Contributions/$2|$2]] ([[User talk:$2|conversa]]); cambiado á última versión feita por [[User:$1|$1]]',
-'revertpage-nouser' => 'Desfixéronse as edicións de (nome eliminado); cambiado á última versión feita por [[User:$1|$1]]',
+'revertpage-nouser' => 'Desfixéronse as edicións dun usuario agochado; cambiado á última versión feita por [[User:$1|$1]]',
 'rollback-success' => 'Desfixéronse as edicións de $1;
 volveuse á última edición, feita por $2.',
 

@@ -468,7 +468,7 @@ $messages = array(
 'morenotlisted' => 'Кхин хӀума яц',
 'mypage' => 'Долахь йолу агӀо',
 'mytalk' => 'Сан дийцаре агӀо',
-'anontalk' => 'Дийцаре хӀара IP-долуметтиг',
+'anontalk' => 'Дийцаре хӀокху IP-адресна',
 'navigation' => 'Навигаци',
 'and' => '&#32;а',
 
@@ -1014,6 +1014,7 @@ $1',
 'powersearch-toggleall' => 'Массо',
 'powersearch-togglenone' => 'Хlумма цаоьшу',
 'search-external' => 'Арахула лахар',
+'search-error' => 'Лохуш гӀалат даьлла: $1',
 
 # Preferences page
 'preferences' => 'Гlирс нисбан',
