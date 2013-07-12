@@ -362,8 +362,6 @@ class ChangesList extends ContextSource {
 	 * @param $watched
 	 */
 	public function insertArticleLink( &$s, &$rc, $unpatrolled, $watched ) {
-		global $wgUseRCPatrol;
-
 		$params = array();
 
 		$articlelink = Linker::linkKnown(
