@@ -48,7 +48,7 @@ class EmailConfirmation extends UnlistedSpecialPage {
 		// This could also let someone check the current email address, so
 		// require both permissions.
 		if ( !$this->getUser()->isAllowed( 'viewmyprivateinfo' ) ) {
-			throw new PerissionsError( 'viewmyprivateinfo' );
+			throw new PermissionsError( 'viewmyprivateinfo' );
 		}
 
 		if ( $code === null || $code === '' ) {
