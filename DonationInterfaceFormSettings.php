@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Some setup vars to make our lives a little easier.
  * These are unset at the end of the file.
@@ -27,6 +28,7 @@ $forms_whitelist['amazon'] = array(
 	'redirect',
 );
 
+
 /**********
  * Adyen *
  **********/
@@ -36,7 +38,7 @@ if ( $wgDonationInterfaceEnableAdyen === true ) {
 		'gateway' => 'adyen',
 		'countries' => array( '+' => 'US',),
 		'currencies' => array( '+' => 'USD',),
-		'payment_methods' => array('card' => 'ALL'),
+		'payment_methods' => array('cc' => array( 'visa', 'mc', 'amex', 'discover' )),
 	);
 }
 
@@ -445,7 +447,6 @@ $forms_whitelist['paypal-recurring'] = array(
 	'payment_methods' => array('paypal' => 'ALL'),
 	'recurring',
 );
-
 
 //Yes: We definitely want to blow away everything that didn't come from this file.
 $wgDonationInterfaceAllowedHtmlForms = $forms_whitelist;
