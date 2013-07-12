@@ -2099,7 +2099,7 @@ class Title {
 	 * @return Array list of errors
 	 */
 	private function checkReadPermissions( $action, $user, $errors, $doExpensiveQueries, $short ) {
-		global $wgWhitelistRead, $wgWhitelistReadRegexp, $wgRevokePermissions;
+		global $wgWhitelistRead, $wgWhitelistReadRegexp;
 
 		$whitelisted = false;
 		if ( User::isEveryoneAllowed( 'read' ) ) {
