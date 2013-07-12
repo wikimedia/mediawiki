@@ -372,9 +372,7 @@ class HistoryPager extends ReverseChronologicalPager {
 				array( 'rev_page' => $this->getWikiPage()->getId() ),
 				$this->conds ),
 			'options' => array( 'USE INDEX' => array( 'revision' => 'page_timestamp' ) ),
-			'join_conds' => array(
-				'user' => Revision::userJoinCond(),
-				'tag_summary' => array( 'LEFT JOIN', 'ts_rev_id=rev_id' ) ),
+			'join_conds' => array( 'user' => Revision::userJoinCond() ),
 		);
 		ChangeTags::modifyDisplayQuery(
 			$queryInfo['tables'],
