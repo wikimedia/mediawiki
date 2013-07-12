@@ -2100,33 +2100,9 @@ class Title {
 	 */
 	private function checkReadPermissions( $action, $user, $errors, $doExpensiveQueries, $short ) {
 		global $wgWhitelistRead, $wgWhitelistReadRegexp, $wgRevokePermissions;
-		static $useShortcut = null;
-
-		# Initialize the $useShortcut boolean, to determine if we can skip quite a bit of code below
-		if ( is_null( $useShortcut ) ) {
-			$useShortcut = true;
-			if ( !User::groupHasPermission( '*', 'read' ) ) {
-				# Not a public wiki, so no shortcut
-				$useShortcut = false;
-			} elseif ( !empty( $wgRevokePermissions ) ) {
-				/**
-				 * Iterate through each group with permissions being revoked (key not included since we don't care
-				 * what the group name is), then check if the read permission is being revoked. If it is, then
-				 * we don't use the shortcut below since the user might not be able to read, even though anon
-				 * reading is allowed.
-				 */
-				foreach ( $wgRevokePermissions as $perms ) {
-					if ( !empty( $perms['read'] ) ) {
-						# We might be removing the read right from the user, so no shortcut
-						$useShortcut = false;
-						break;
-					}
-				}
-			}
-		}
 
 		$whitelisted = false;
-		if ( $useShortcut ) {
+		if ( User::isEveryoneAllowed( 'read' ) ) {
 			# Shortcut for public wikis, allows skipping quite a bit of code
 			$whitelisted = true;
 		} elseif ( $user->isAllowed( 'read' ) ) {

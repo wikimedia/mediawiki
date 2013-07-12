@@ -2579,6 +2579,10 @@ $title: Title of the page in question
 $ip: User's IP address
 &$blocked: Whether the user is blocked, to be modified by the hook
 
+'UserIsEveryoneAllowed': Check if all users are allowed some user right; return
+false if a UserGetRights hook might remove the named right.
+$right: The user right being checked
+
 'UserLoadAfterLoadFromSession': Called to authenticate users on external or
 environmental means; occurs after session is loaded.
 $user: user object being loaded

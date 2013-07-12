@@ -3974,6 +3974,10 @@ class User {
 	/**
 	 * Check, if the given group has the given permission
 	 *
+	 * If you're wanting to check whether all users have a permission, use
+	 * User::isEveryoneAllowed() instead. That properly checks if it's revoked
+	 * from anyone.
+	 *
 	 * @since 1.21
 	 * @param string $group Group to check
 	 * @param string $role Role to check
@@ -3983,6 +3987,44 @@ class User {
 		global $wgGroupPermissions, $wgRevokePermissions;
 		return isset( $wgGroupPermissions[$group][$role] ) && $wgGroupPermissions[$group][$role]
 			&& !( isset( $wgRevokePermissions[$group][$role] ) && $wgRevokePermissions[$group][$role] );
+	}
+
+	/**
+	 * Check if all users have the given permission
+	 *
+	 * @since 1.22
+	 * @param string $right Right to check
+	 * @return bool
+	 */
+	public static function isEveryoneAllowed( $right ) {
+		global $wgGroupPermissions, $wgRevokePermissions;
+		static $cache = array();
+
+		if ( isset( $cache[$right] ) ) {
+			return $cache[$right];
+		}
+
+		if ( !isset( $wgGroupPermissions['*'][$right] ) || !$wgGroupPermissions['*'][$right] ) {
+			$cache[$right] = false;
+			return false;
+		}
+
+		// If it's revoked anywhere, then everyone doesn't have it
+		foreach ( $wgRevokePermissions as $rights ) {
+			if ( isset( $rights[$right] ) && $rights[$right] ) {
+				$cache[$right] = false;
+				return false;
+			}
+		}
+
+		// Allow extensions (e.g. OAuth) to say false
+		if ( !wfRunHooks( 'UserIsEveryoneAllowed', array( $right ) ) ) {
+			$cache[$right] = false;
+			return false;
+		}
+
+		$cache[$right] = true;
+		return true;
 	}
 
 	/**
