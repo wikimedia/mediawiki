@@ -4000,7 +4000,9 @@ class User {
 		global $wgGroupPermissions, $wgRevokePermissions;
 		static $cache = array();
 
-		if ( isset( $cache[$right] ) ) {
+		// Use the cached results, except in unit tests which rely on
+		// being able change the permission mid-request
+		if ( isset( $cache[$right] ) && !defined( 'MW_PHPUNIT_TEST' ) ) {
 			return $cache[$right];
 		}
 
