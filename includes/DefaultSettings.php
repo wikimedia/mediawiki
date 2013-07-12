@@ -1634,11 +1634,6 @@ $wgSlaveLagWarning = 10;
 /** @see $wgSlaveLagWarning */
 $wgSlaveLagCritical = 30;
 
-/**
- * Use old names for change_tags indices.
- */
-$wgOldChangeTagsIndex = false;
-
 /**@}*/ # End of DB settings }
 
 /************************************************************************//**
