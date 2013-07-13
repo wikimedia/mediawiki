@@ -1336,6 +1336,20 @@ abstract class QuickTemplate {
 	}
 
 	/**
+	 * Gets the template data requested
+	 * @since 1.22
+	 * @param string $name Key for the data
+	 * @return Mixed the value of the data requested or null
+	 */
+	public function get( $name ) {
+		if ( isset( $this->data[$name] ) ) {
+			return $this->data[$name];
+		} else {
+			return null;
+		}
+	}
+
+	/**
 	 * @param $name
 	 * @param $value
 	 */
