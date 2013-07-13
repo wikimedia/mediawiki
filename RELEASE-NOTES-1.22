@@ -241,6 +241,10 @@ production.
   jobs in the job queue for link table updates of pages that use the given page
   as a template. Instead, forcerecursivelinkupdate=1 is introduced and should
   be used if that behaviour is desirable.
+* The 'debugLog' property (enabled by $wgDebugToolbar) no longer sets the log
+  entry values through ApiResult::content but directly. This changes the JSON
+  output from an array of objects with content in '*' to an array of strings
+  with the content.
 
 === Languages updated in 1.22===
 
