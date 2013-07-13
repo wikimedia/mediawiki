@@ -1336,6 +1336,21 @@ abstract class QuickTemplate {
 	}
 
 	/**
+	 * Gets the template data requested
+	 * @since 1.22
+	 * @param string $name Key for the data
+	 * @param string $default Optional default (or null)
+	 * @return Mixed The value of the data requested or null
+	 */
+	public function get( $name, $default = null ) {
+		if ( array_key_exists( $name, $this->data ) ) {
+			return $this->data[$name];
+		} else {
+			return $default;
+		}
+	}
+
+	/**
 	 * @param $name
 	 * @param $value
 	 */
