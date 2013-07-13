@@ -130,7 +130,7 @@
 		assert.ok( mw.config instanceof mw.Map, 'mw.config instance of mw.Map' );
 	} );
 
-	QUnit.test( 'mw.message & mw.messages', 83, function ( assert ) {
+	QUnit.test( 'mw.message & mw.messages', 100, function ( assert ) {
 		var goodbye, hello;
 
 		// Convenience method for asserting the same result for multiple formats
@@ -204,6 +204,16 @@
 		assert.ok( mw.messages.set( 'plural-test-msg', 'There {{PLURAL:$1|is|are}} $1 {{PLURAL:$1|result|results}}' ), 'mw.messages.set: Register' );
 		assertMultipleFormats( ['plural-test-msg', 6], ['text', 'parse', 'escaped'], 'There are 6 results', 'plural get resolved' );
 		assert.equal( mw.message( 'plural-test-msg', 6 ).plain(), 'There {{PLURAL:6|is|are}} 6 {{PLURAL:6|result|results}}', 'Parameter is substituted but plural is not resolved in plain' );
+
+		assert.ok( mw.messages.set( 'plural-test-msg-explicit', 'There {{plural:$1|is one car|are $1 cars|0=are no cars|12=are a dozen cars}}' ), 'mw.messages.set: Register message with explicit plural forms' );
+		assertMultipleFormats( ['plural-test-msg-explicit', 12], ['text', 'parse', 'escaped'], 'There are a dozen cars', 'explicit plural get resolved' );
+
+		assert.ok( mw.messages.set( 'plural-test-msg-explicit-beginning', 'Basket has {{plural:$1|0=no eggs|12=a dozen eggs|6=half a dozen eggs|one egg|$1 eggs}}' ), 'mw.messages.set: Register message with explicit plural forms' );
+		assertMultipleFormats( ['plural-test-msg-explicit-beginning', 1], ['text', 'parse', 'escaped'], 'Basket has one egg', 'explicit plural given at beginning get resolved for singular' );
+		assertMultipleFormats( ['plural-test-msg-explicit-beginning', 4], ['text', 'parse', 'escaped'], 'Basket has 4 eggs', 'explicit plural given at beginning get resolved for plural' );
+		assertMultipleFormats( ['plural-test-msg-explicit-beginning', 6], ['text', 'parse', 'escaped'], 'Basket has half a dozen eggs', 'explicit plural given at beginning get resolved for 6' );
+		assertMultipleFormats( ['plural-test-msg-explicit-beginning', 0], ['text', 'parse', 'escaped'], 'Basket has no eggs', 'explicit plural given at beginning get resolved for 0' );
+
 
 		assertMultipleFormats( ['mediawiki-test-pagetriage-del-talk-page-notify-summary'], ['plain', 'text'], mw.messages.get( 'mediawiki-test-pagetriage-del-talk-page-notify-summary' ), 'Double square brackets with no parameters unchanged' );
 
