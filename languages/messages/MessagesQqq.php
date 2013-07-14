@@ -8678,7 +8678,8 @@ This is being used in [[Special:Version]], preceeding the subversion revision nu
 'version-poweredby-credits' => 'Message shown on [[Special:Version]]. Parameters:
 * $1 - the current year
 * $2 - a list of selected MediaWiki authors',
-'version-poweredby-others' => 'Used at the very end of {{msg-mw|version-poweredby-credits}} on [[Special:Version]]. First, there\'s a long list of selected MediaWiki authors, then the word "and" (from {{msg-mw|and}}) follows and then this translation, which is supposed to credit the many other people than developer helping with MediaWiki.',
+'version-poweredby-others' => 'Used at the end of {{msg-mw|version-poweredby-credits}} on [[Special:Version]]. First, there\'s a long list of selected MediaWiki authors, then a comma and then this translation, which is supposed to credit the many other people than developer helping with MediaWiki.',
+'version-poweredby-translators' => 'Label for a link to [[Translating:MediaWiki/Credits]], which follows {{msg-mw|version-poweredby-others}} and an "and" (from {{msg-mw|and}}), at the end of {{msg-mw|version-poweredby-credits}} on [[Special:Version]].',
 'version-credits-summary' => 'Summary of the [[Special:Version/Credits]] sub page, which lists all developers etc. who contributed to MediaWiki. Shown at the top.',
 'version-license-info' => '[[wikipedia:GNU GPL|GNU GPL]] notice shown at [[Special:Version]]. See //www.gnu.org/licenses/old-licenses/gpl-2.0-translations.html for available translations.',
 'version-software' => 'Message shown on [[Special:Version]].

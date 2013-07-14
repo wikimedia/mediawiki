@@ -3664,6 +3664,7 @@ $wgMessageStructure = array(
 		'version-license',
 		'version-poweredby-credits',
 		'version-poweredby-others',
+		'version-poweredby-translators',
 		'version-credits-summary',
 		'version-license-info',
 		'version-software',
