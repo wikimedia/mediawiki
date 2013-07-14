@@ -47,6 +47,12 @@ class AssembleUploadChunksJob extends Job {
 				array( 'result' => 'Poll', 'stage' => 'assembling', 'status' => Status::newGood() )
 			);
 
+			// Save that we are now "assembling" the file, back to session.
+			// No point making this sort of status update if the session isn't
+			// updated until after the job finished.
+			unset( $scope );
+			$scope = RequestContext::importScopedSession( $this->params['session'] );
+
 			$upload = new UploadFromChunks( $user );
 			$upload->continueChunks(
 				$this->params['filename'],

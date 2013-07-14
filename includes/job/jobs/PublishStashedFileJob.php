@@ -47,6 +47,10 @@ class PublishStashedFileJob extends Job {
 				array( 'result' => 'Poll', 'stage' => 'publish', 'status' => Status::newGood() )
 			);
 
+			// Save that we are now in "publish" stage back to session.
+			unset( $scope );
+			$scope = RequestContext::importScopedSession( $this->params['session'] );
+
 			$upload = new UploadFromStash( $user );
 			// @todo initialize() causes a GET, ideally we could frontload the antivirus
 			// checks and anything else to the stash stage (which includes concatenation and
