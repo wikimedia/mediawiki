@@ -1629,7 +1629,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'right-ipblock-exempt' => 'Obejście blokad, automatycznych blokad i blokad zakresów adresów IP',
 'right-proxyunbannable' => 'Obejście automatycznych blokad proxy',
 'right-unblockself' => 'Odblokowanie samego siebie',
-'right-protect' => 'Zmiana stopnia zabezpieczenia i dostęp do edycji zabezpieczonych stron',
+'right-protect' => 'Zmiana stopnia zabezpieczenia i dostęp do edycji stron zabezpieczonych kaskadowo',
 'right-editprotected' => 'Edycja stron zabezpieczonych na poziomie „{{int:protect-level-sysop}}”',
 'right-editsemiprotected' => 'Edycja stron zabezpieczonych na poziomie „{{int:protect-level-autoconfirmed}}”',
 'right-editinterface' => 'Edycja interfejsu użytkownika',

@@ -1299,8 +1299,8 @@ $2
 '''({{int:last}})''' – разлика с претходном изменом, '''{{int:minoreditletter}}''' – мала измена",
 'history-fieldset-title' => 'Преглед историје',
 'history-show-deleted' => 'само обрисано',
-'histfirst' => 'најстарије',
-'histlast' => 'најновије',
+'histfirst' => 'Најстарије',
+'histlast' => 'Најновије',
 'historysize' => '({{PLURAL:$1|1 бајт|$1 бајта|$1 бајтова}})',
 'historyempty' => '(празно)',
 
@@ -4231,6 +4231,7 @@ $5
 'version-entrypoints-header-url' => 'Адреса',
 
 # Special:Redirect
+'redirect-legend' => 'Преусмери на датотеку или страницу',
 'redirect-submit' => 'Иди',
 'redirect-value' => 'Вредност:',
 'redirect-file' => 'Назив датотеке',
@@ -4439,5 +4440,8 @@ $5
 'duration-decades' => '$1 {{PLURAL:$1|деценија|деценије|деценија}}',
 'duration-centuries' => '$1 {{PLURAL:$1|век|века|векова}}',
 'duration-millennia' => '$1 {{PLURAL:$1|миленијум|миленијума|миленијума}}',
+
+# Image rotation
+'rotate-comment' => 'Слика је ротирана за $1° у смеру казаљке на сату',
 
 );

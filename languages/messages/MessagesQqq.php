@@ -761,7 +761,7 @@ The format is: "{{int:youhavenewmessagesmulti| [[MediaWiki:Newmessageslink/{{SUB
 {{Identical|Edit}}',
 'editold' => '{{Identical|Edit}}',
 'viewsourceold' => '{{Identical|View source}}',
-'editlink' => 'Teks dari pranala yang terlihat di sebelah setiap templat yang dapat disunting (tidak diproteksi) pada daftar templat di bawah jendela penyuntingan. Lihat juga {{msg-mw|Viewsourcelink}}.
+'editlink' => 'Text of the edit link shown next to every (editable) template in the list of used templates below the edit window. See also {{msg-mw|Viewsourcelink}}.
 
 {{Identical|Edit}}',
 'viewsourcelink' => 'Text of the link shown next to every uneditable (protected) template in the list of used templates below the edit window. See also {{msg-mw|Editlink}}.
@@ -7235,10 +7235,8 @@ See also {{msg-mw|hours-abbrev}}, {{msg-mw|hours-ago}}.',
 See also {{msg-mw|Days-abbrev}}
 
 {{Identical|Day}}',
-'weeks' => 'Full word for "weeks".
-
-Parameters:
-* $1 - the number of weeks',
+'weeks' => 'Full word for "weeks". Parameters:
+* $1 is the number of weeks',
 'months' => 'Full word for "months". $1 is the number of months.',
 'years' => 'Full word for "years".
 

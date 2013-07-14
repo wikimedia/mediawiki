@@ -14,6 +14,7 @@
  * @author Bencmq
  * @author Biŋhai
  * @author Breawycker
+ * @author Byfserag
  * @author Chenxiaoqino
  * @author Chenzw
  * @author Chinalace
@@ -1031,9 +1032,8 @@ $2
 要创建该页面，请在下面的编辑框中输入内容（详情参见[[{{MediaWiki:Helppage}}|帮助页]]）。
 如果您误入此页，请点击浏览器中的“返回”按钮。',
 'anontalkpagetext' => "---- ''这是一个还未建立账户的匿名用户的讨论页, 因此我们只能用IP地址来与他或她联络。该IP地址可能由几名用户共享。如果您是一名匿名用户并认为此页上的评语与您无关，请[[Special:UserLogin/signup|创建新账户]]或[[Special:UserLogin|登录]]以避免在未来与其他匿名用户混淆。''",
-'noarticletext' => '本页面目前没有内容。你可以在其他页面中[[Special:Search/{{PAGENAME}}|搜索该页标题]]、<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 搜索相关日志]或[{{fullurl:{{FULLPAGENAME}}|action=edit}} 编辑本页面]。</span>',
-'noarticletext-nopermission' => '此页目前没有内容。
-您可以在其它页[[Special:Search/{{PAGENAME}}|搜寻此页标题]]，或<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 搜寻有关日志]</span>，但您没有权限建立此页。',
+'noarticletext' => '本页面目前没有内容。你可以在其他页面中[[Special:Search/{{PAGENAME}}|搜索本页标题]]、<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 搜索相关日志]或[{{fullurl:{{FULLPAGENAME}}|action=edit}} 编辑本页面]。</span>',
+'noarticletext-nopermission' => '本页面目前没有内容。你可以在其他页面中[[Special:Search/{{PAGENAME}}|搜索本页标题]]或<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 搜索相关日志]，但你没有权限创建本页面。',
 'missing-revision' => '“{{PAGENAME}}”的修订#$1不存在。
 
 这通常是因为进入了一个已被删除的页面的历史链接。
@@ -1378,7 +1378,7 @@ $1",
 'searchall' => '所有',
 'showingresults' => "下面显示从第'''$2'''条结果开始的'''$1'''条结果。",
 'showingresultsnum' => "下面显示从第'''$2'''条结果开始的'''$3'''条结果。",
-'showingresultsheader' => "关于'''$4'''的{{PLURAL:$5|第'''$1'''条至第'''$3'''条结果|第'''$1'''条至第'''$2'''条结果，共'''$3'''条结果}}",
+'showingresultsheader' => "关于'''$4'''的{{PLURAL:$5|第'''$1'''条结果，共'''$3'''条结果|第'''$1-$2'''条结果，共'''$3'''条结果}}",
 'nonefound' => "'''注意'''：只有某些名字空间被默认搜索。请尝试给你的搜索内容添加前缀“all:”以搜索全部内容（包括讨论页面、模板等）或使用期望的名字空间作为前缀。",
 'search-nonefound' => '找不到和查询相匹配的结果。',
 'powersearch' => '高级搜索',
@@ -1718,8 +1718,7 @@ $1",
 'recentchangeslinked-feed' => '相关更改',
 'recentchangeslinked-toolbox' => '相关更改',
 'recentchangeslinked-title' => '与“$1”有关的更改',
-'recentchangeslinked-summary' => "这一个特殊页面列示''由''所给出的一个页面之链接到页面的最近更改（或者是对于指定分类的成员）。
-在[[Special:Watchlist|您的监视列表]]中的页面会以'''粗体'''显示。",
+'recentchangeslinked-summary' => "这是链接自指定页面（或至指定分类的成员）的页面的最近更改的列表。[[Special:Watchlist|你的监视列表]]中的页面以'''粗体'''显示。",
 'recentchangeslinked-page' => '页面名称：',
 'recentchangeslinked-to' => '显示链到所给出的页面',
 
@@ -2431,7 +2430,7 @@ $UNWATCHURL
 本页最后的编辑者是[[User:$3|$3]]（[[User talk:$3|讨论]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]）。',
 'editcomment' => '编辑摘要："<i>$1</i>"。',
 'revertpage' => '已恢复[[Special:Contributions/$2|$2]]（[[User talk:$2|讨论]]）的编辑至[[User:$1|$1]]的最后一个修订版本',
-'revertpage-nouser' => '恢复由（移除了的用户名）的编辑到[[User:$1|$1]]的最后一个修订版本',
+'revertpage-nouser' => '恢复由隐藏用户的编辑到[[User:$1|$1]]的最后一个修订版本',
 'rollback-success' => '已恢复$1的编辑，更改回$2的最后修订版本。',
 
 # Edit tokens
@@ -2968,14 +2967,14 @@ $2',
 'tooltip-pt-anonuserpage' => '你用于编辑的IP地址的用户页面',
 'tooltip-pt-mytalk' => '你的讨论页面',
 'tooltip-pt-anontalk' => '有关本IP地址的编辑的讨论',
-'tooltip-pt-preferences' => '你的系统设置',
+'tooltip-pt-preferences' => '你的设置',
 'tooltip-pt-watchlist' => '你正在监视更改的页面的列表',
 'tooltip-pt-mycontris' => '你的贡献的列表',
 'tooltip-pt-login' => '我们鼓励你登录，不过这不是强制的',
 'tooltip-pt-anonlogin' => '我们鼓励你登录，不过这不是强制的',
 'tooltip-pt-logout' => '退出登录',
-'tooltip-ca-talk' => '有关内容页面的讨论',
-'tooltip-ca-edit' => '你可以编辑本页面。请在保存前使用预览按钮。',
+'tooltip-ca-talk' => '关于内容页面的讨论',
+'tooltip-ca-edit' => '你可以编辑本页面。请在保存前使用预览按钮',
 'tooltip-ca-addsection' => '开始新段落',
 'tooltip-ca-viewsource' => '本页面受到保护。你可以查看其源代码。',
 'tooltip-ca-history' => '本页面过去的版本',
@@ -2986,7 +2985,7 @@ $2',
 'tooltip-ca-move' => '移动本页',
 'tooltip-ca-watch' => '添加本页面至你的监视列表',
 'tooltip-ca-unwatch' => '从你的监视列表删除本页面',
-'tooltip-search' => '在{{SITENAME}}中搜索',
+'tooltip-search' => '搜索{{SITENAME}}',
 'tooltip-search-go' => '如果相同的标题存在的话便直接前往该页面',
 'tooltip-search-fulltext' => '搜索含这些文字的页面',
 'tooltip-p-logo' => '访问首页',
@@ -2994,11 +2993,11 @@ $2',
 'tooltip-n-mainpage-description' => '访问首页',
 'tooltip-n-portal' => '关于本项目，你可以做什么，在哪里找到你需要的事物',
 'tooltip-n-currentevents' => '查看当前事件的背景信息',
-'tooltip-n-recentchanges' => '本wiki的最近更改列表',
+'tooltip-n-recentchanges' => '本wiki最近更改的列表',
 'tooltip-n-randompage' => '载入一个随机页面',
 'tooltip-n-help' => '查找帮助的地方',
-'tooltip-t-whatlinkshere' => '所有链入本页的wiki页面列表',
-'tooltip-t-recentchangeslinked' => '本页链入的页面的最近更改',
+'tooltip-t-whatlinkshere' => '所有链至本页的wiki页面的列表',
+'tooltip-t-recentchangeslinked' => '链自本页的页面的最近更改',
 'tooltip-feed-rss' => '本页面的RSS源',
 'tooltip-feed-atom' => '本页面的Atom源',
 'tooltip-t-contributions' => '查看该用户的贡献列表',
@@ -3229,10 +3228,9 @@ $1',
 'yesterday-at' => '昨天$1',
 
 # Bad image list
-'bad_image_list' => '请按照下列格式编写：
+'bad_image_list' => '格式如下：
 
-只有（以 * 开头）列出的项目会被考虑。每一行的第一个链接必须是不雅文件的链接。
-然后同一行后方的链接会被视为例外，即是该文件可以在哪些页面内被显示。',
+仅列表项目（以*开头的行）被考虑。每行的第一个链接必需为劣质文件的链接。同一行任何后续链接均被视为例外，即该文件可以内链的页面。',
 
 /*
 Short names for language variants used for language conversion links.

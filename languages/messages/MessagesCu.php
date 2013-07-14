@@ -575,6 +575,7 @@ $messages = array(
 'filehist-deleteone' => 'поничьжєниѥ',
 'filehist-current' => 'нꙑнѣщьн҄ь обраꙁъ',
 'filehist-datetime' => 'дьнь / врѣмѧ',
+'filehist-thumb' => 'малъ обраꙁъ',
 'filehist-user' => 'польꙃєватєл҄ь',
 'filehist-dimensions' => 'мѣра',
 'filehist-filesize' => 'дѣла мѣра',
@@ -611,6 +612,7 @@ $messages = array(
 'statistics-header-users' => 'польꙃєватєлъ статїстїка',
 'statistics-articles' => 'истиньнꙑ члѣни',
 'statistics-pages' => 'страницѧ',
+'statistics-pages-desc' => 'вьсѩ страницѧ въкоупомь съ бѣсєдꙑ · прѣнаправлѥниꙗ и инꙑ',
 'statistics-files' => 'положєнꙑ дѣла',
 'statistics-users-active' => 'дѣꙗтєльнꙑ польꙃєватєлє',
 
@@ -666,6 +668,9 @@ $messages = array(
 
 # Special:ListUsers
 'listusers-submit' => 'виждь',
+
+# Special:ListGroupRights
+'listgrouprights-members' => '(польꙃєватєлъ каталогъ)',
 
 # Email user
 'emailuser' => 'посъли єпїстолѫ',
@@ -758,6 +763,7 @@ $messages = array(
 'whatlinkshere-links' => '← съвѧꙁи',
 'whatlinkshere-hideredirs' => '$1 прѣнаправлѥниꙗ',
 'whatlinkshere-hidelinks' => '$1 съвѧꙁи',
+'whatlinkshere-filters' => 'ситꙑ',
 
 # Block/unblock
 'block' => 'ꙁагради польꙃєватєл҄ь',
@@ -830,6 +836,8 @@ $messages = array(
 'tooltip-t-specialpages' => 'вьсѣѩ нарочьнъ страницѧ каталогъ',
 'tooltip-t-print' => 'сѥѩ страницѧ пєчатьнъ обраꙁъ',
 'tooltip-ca-nstab-special' => 'си нарочьна страница ѥстъ · ѥѩжє иꙁмѣнꙗти нє можєши',
+'tooltip-ca-nstab-image' => 'виждь дѣла страницѫ',
+'tooltip-ca-nstab-category' => 'виждь катигорїѩ страницѫ',
 'tooltip-minoredit' => 'оꙁначи ꙗко малоу мѣноу',
 'tooltip-save' => 'твоѩ мѣнъ съхранѥниѥ',
 'tooltip-watch' => 'си страницѧ блюдєниѥ',

@@ -2500,8 +2500,8 @@ người viết trang cuối cùng cũng là tác giả duy nhất của trang n
 
 Sửa đổi cuối cùng tại trang do [[User:$3|$3]] ([[User talk:$3|thảo luận]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) thực hiện.',
 'editcomment' => "Tóm lược sửa đổi: “''$1''”.",
-'revertpage' => 'Đã hủy sửa đổi của [[Special:Contributions/$2|$2]] ([[User talk:$2|Thảo luận]]) quay về phiên bản của [[User:$1|$1]]',
-'revertpage-nouser' => 'Lùi sửa đổi của (tên người dùng đã xóa) quay lại phiên bản cuối của [[User:$1|$1]]',
+'revertpage' => 'Đã lùi lại sửa đổi của [[Special:Contributions/$2|$2]] ([[User talk:$2|Thảo luận]]) quay về phiên bản cuối của [[User:$1|$1]]',
+'revertpage-nouser' => 'Đã lùi lại sửa đổi của người dùng ẩn quay về phiên bản cuối của [[User:$1|$1]]',
 'rollback-success' => 'Đã hủy sửa đổi của $1;
 quay về phiên bản cuối của $2.',
 

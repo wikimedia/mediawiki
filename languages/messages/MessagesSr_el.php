@@ -4327,4 +4327,7 @@ U suprotnom, poslužite se jednostavnim obrascem ispod. Vaš komentar će stajat
 'duration-centuries' => '$1 {{PLURAL:$1|vek|veka|vekova}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenijum|milenijuma|milenijuma}}',
 
+# Image rotation
+'rotate-comment' => 'Slika je rotirana za $1° u smeru kazaljke na satu',
+
 );

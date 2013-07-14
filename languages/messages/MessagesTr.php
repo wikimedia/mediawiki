@@ -42,6 +42,7 @@
  * @author Myildirim2007
  * @author Nazif İLBEK
  * @author Nemo bis
+ * @author Rapsar
  * @author Reedy
  * @author Runningfridgesrule
  * @author Sadrettin
@@ -367,8 +368,8 @@ $messages = array(
 'tog-showtoc' => 'İçindekiler tablosunu göster (3 taneden fazla başlığı olan sayfalar için)',
 'tog-rememberpassword' => 'Girişimi bu tarayıcıda hatırla (en fazla $1 {{PLURAL:$1|gün|gün}} için)',
 'tog-watchcreations' => 'Açtığım sayfaları ve yüklediğim dosyaları izleme listeme ekle',
-'tog-watchdefault' => 'Düzenleme yaptığım sayfaları ve dosyaları izleme listeme ekle',
-'tog-watchmoves' => 'Taşıdığım sayfaları ve dosyaları izleme listeme ekle',
+'tog-watchdefault' => 'Düzenleme yaptığım sayfaları izleme listeme ekle',
+'tog-watchmoves' => 'Taşıdığım sayfaları izleme listeme ekle',
 'tog-watchdeletion' => 'Sildiğim sayfaları ve dosyaları izleme listeme ekle',
 'tog-minordefault' => 'Varsayılan olarak bütün düzenlemeleri küçük olarak işaretle',
 'tog-previewontop' => 'Ön izlemeyi düzenleme kutusunun üstünde göster',
@@ -2330,7 +2331,7 @@ Bireysel haklarla ilgili [[{{MediaWiki:Listgrouprights-helppage}}|daha fazla bil
 Bundan sonra, bu sayfaya ve ilgili tartışma sayfasına yapılacak değişiklikler burada listelenecek.',
 'removewatch' => 'İzleme listesinden kaldır',
 'removedwatchtext' => '"[[:$1]]" sayfası [[Special:Watchlist|izleme listenizden]] silinmiştir.',
-'watch' => 'İzle',
+'watch' => 'izle',
 'watchthispage' => 'Sayfayı izle',
 'unwatch' => 'İzleme',
 'unwatchthispage' => 'Sayfa izlemeyi durdur',

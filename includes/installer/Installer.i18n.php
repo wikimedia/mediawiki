@@ -15622,17 +15622,17 @@ Tworzenie domyślnej listy pominięto.",
 	'config-install-extension-tables' => 'Tworzenie tabel dla aktywnych rozszerzeń',
 	'config-install-mainpage-failed' => 'Nie udało się wstawić strony głównej – $1',
 	'config-install-done' => "'''Gratulacje!'''
-Udało ci się zainstalować MediaWiki.
+Udało Ci się zainstalować MediaWiki.
 
 Instalator wygenerował plik konfiguracyjny <code>LocalSettings.php</code>.
 
-Musisz go pobrać i umieścić go w korzeniu twojej instalacji wiki (tym samym katalogu co index.php). Pobieranie powinno zacząć się automatycznie.
+Musisz go pobrać i umieścić w katalogu głównym Twojej instalacji wiki (tym samym katalogu co index.php). Pobieranie powinno zacząć się automatycznie.
 
-Jeżeli pobieranie nie zostało zaproponowane, lub jeśli użytkownik anulował je, można ponownie uruchomić pobranie klikając poniższe łącze:
+Jeżeli pobieranie nie zostało zaproponowane lub jeśli użytkownik je anulował, można ponownie uruchomić pobranie klikając poniższe łącze:
 
 $3
 
-'''Uwaga''': Jeśli tego nie zrobisz tego teraz, wygenerowany plik konfiguracyjny nie będzie już dostępny po zakończeniu instalacji.
+'''Uwaga''': Jeśli nie zrobisz tego teraz, wygenerowany plik konfiguracyjny nie będzie już dostępny po zakończeniu instalacji.
 
 Po załadowaniu pliku konfiguracyjnego możesz '''[$2 wejść na wiki]'''.",
 	'config-download-localsettings' => 'Pobierz <code>LocalSettings.php</code>',

@@ -4020,6 +4020,7 @@ Em conjunto com este programa deve ter recebido [{{SERVER}}{{SCRIPTPATH}}/COPYIN
 'tags' => 'Etiquetas de modificação válidas',
 'tag-filter' => 'Filtro de [[Special:Tags|etiquetas]]:',
 'tag-filter-submit' => 'Filtrar',
+'tag-list-wrapper' => '([[Special:Tags|{{PLURAL:$1|Etiqueta|Etiquetas}}]]: $2)',
 'tags-title' => 'Etiquetas',
 'tags-intro' => 'Esta página lista as etiquetas com que o software poderá marcar uma edição, e o seu significado.',
 'tags-tag' => 'Nome da etiqueta',

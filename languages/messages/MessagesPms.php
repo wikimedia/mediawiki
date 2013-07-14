@@ -372,18 +372,18 @@ L'ùltima anterogassion a l'é stàita:
 da andrinta a la funsion «$2».
 La base ëd dat a l'ha dane l'eror «$3: $4»",
 'laggedslavemode' => "'''Avis:''' la pàgina a podrìa ëdcò nen mostré le modìfiche pi recente.",
-'readonly' => 'Acess a la base dat sërà për chèich temp.',
+'readonly' => 'Acess a la base ëd dat sërà për chèich temp.',
 'enterlockreason' => 'Che a buta na rason për ël blocagi, con andrinta data e ora ëd quand che a stima che a sarà gavà.',
-'readonlytext' => "La base dat ëd {{SITENAME}} për adess a l'é blocà, e as peulo pa fesse nì dle neuve imission, nì dle modìfiche, con tute le probabilità për n'operassion ëd manutension dël servent. Se a l'é parèj, motobin ampressa la base a sarà torna duvèrta.<br />
-L'aministrator che a l'ha blocala a l'ha lassà sto messagi-sì:
-<p>:$1",
-'missing-article' => "Ël database a l'ha nen trovà ël test ëd na pagina che a l'avrìa dovù trové, ciamà \"\$1\" \$2.
+'readonlytext' => "La base ëd dat për adess a l'é blocà, e as peulo pa fesse nì dle neuve imission, nì dle modìfiche, con tute le probabilità për n'operassion ëd manutension dël servent. Se a l'é parèj, motobin ampressa la base a sarà torna duvèrta.
 
-Sossì ëd sòlit a l'é causà përché a l'é ciamasse na diferensa o n'anliura stòrica a na paginà scancelà.
+L'aministrator che a l'ha blocala a l'ha lassà sta spiegassion: $1",
+'missing-article' => "La base ëd dàit a l'ha nen trovà ël test ëd na pàgina che a l'avrìa dovù trové, ciamà «$1» $2.
 
-Se cost a l'é nen ël cas, it podrìe avèj trovà un bigat ant ël programa.
-Për piasì, fa rapòrt a n'[[Special:ListUsers/sysop|aministrator]], pijand nòta ëd la URL.",
-'missingarticle-rev' => '(revision#: $1)',
+Sossì ëd sòlit a l'é causà përché a l'é ciamasse na diferensa o n'anliura stòrica a na pàgina scancelà.
+
+Se cost a l'é nen ël cas, a podrìa avèj trovà un givo ant ël programa.
+Për piasì, ch'a lo signala a n'[[Special:ListUsers/sysop|aministrator]], sensa dësmentié l'adrëssa dla liura.",
+'missingarticle-rev' => '(nùmer ëd revision: $1)',
 'missingarticle-diff' => '(Diff: $1, $2)',
 'readonly_lag' => "La base dat a l'é staita blocà n'automàtich antramentr che le màchine dël sircùit secondari (slave) as buto an pari con cole dël prinsipal (master)",
 'internalerror' => 'Eror intern',

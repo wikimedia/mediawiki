@@ -1737,8 +1737,8 @@ Dies kann nicht mehr rückgängig gemacht werden.',
 'right-editmyuserjs' => 'Eigene Benutzer-JavaScript-Dateien bearbeiten',
 'right-viewmywatchlist' => 'Eigene Beobachtungsliste ansehen',
 'right-editmywatchlist' => 'Eigene Beobachtungsliste bearbeiten. Einige Aktionen ermöglichen das Hinzufügen von Seiten ohne dieses Recht.',
-'right-viewmyprivateinfo' => 'Eigene private Daten ansehen (z.&nbsp;B. E-Mail-Adresse, bürgerlicher Name)',
-'right-editmyprivateinfo' => 'Eigene private Daten bearbeiten (z.&nbsp;B. E-Mail-Adresse, bürgerlicher Name)',
+'right-viewmyprivateinfo' => 'Eigene private Daten ansehen (beispielsweise E-Mail-Adresse, bürgerlicher Name)',
+'right-editmyprivateinfo' => 'Eigene private Daten bearbeiten (beispielsweise E-Mail-Adresse, bürgerlicher Name)',
 'right-editmyoptions' => 'Eigene Einstellungen bearbeiten',
 'right-rollback' => 'Schnelles Zurücksetzen',
 'right-markbotedits' => 'Schnell zurückgesetzte Bearbeitungen als Bot-Bearbeitung markieren',
@@ -3915,7 +3915,7 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 
 # Separators for various lists, etc.
 'ellipsis' => '…',
-'percent' => '$1&nbsp;%',
+'percent' => '$1&#160;%',
 
 # Multipage image navigation
 'imgmultipageprev' => '← vorherige Seite',

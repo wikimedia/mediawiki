@@ -1480,7 +1480,7 @@ Si muss manner wéi $1 {{PLURAL:$1|Zeechen|Zeechen}} hunn.',
 'right-reupload-shared' => 'Lokalt Iwwerschreiwe vun engem Fichier deen an engem gemeinsam benotzte Repertoire steet',
 'right-upload_by_url' => 'Fichiere vun enger URL-Adress eroplueden',
 'right-purge' => 'De Säitecache eidel maachen ouni nozefroen',
-'right-autoconfirmed' => 'Hallef-gespaarte Säiten änneren',
+'right-autoconfirmed' => 'Net betraff vun IP-baséierten Zäitlimiten',
 'right-bot' => 'Als automatesche Prozess behandelen (Bot)',
 'right-nominornewtalk' => 'Kleng Ännerungen op Diskussiounssäite léisen de Banner vun de neie Messagen net aus',
 'right-apihighlimits' => 'Benotzt méi héich Limite bei den API Ufroen',
@@ -2369,7 +2369,7 @@ een Aneren huet dëst entweder scho gemaach oder nei Ännerungen agedroen.
 Déi lescht Ännerung vun der Säit ass vum [[User:$3|$3]] ([[User talk:$3|Diskussioun]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment' => "De Resumé vun der Ännerung war: \"''\$1''\".",
 'revertpage' => 'Ännerunge vum [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussioun]]) zréckgesat op déi lescht Versioun vum [[User:$1|$1]]',
-'revertpage-nouser' => 'Zréckgesaten Ännerungen vum (Benotzernummewechgeholl) op déilescht Versioun vum [[User:$1|$1]]',
+'revertpage-nouser' => 'Zréckgesaten Ännerungen duerch e verstoppte Benotzer op déi lescht Versioun vum [[User:$1|$1]]',
 'rollback-success' => "D'Ännerunge vum $1 goufen zréckgesat op déi lescht Versioun vum $2.",
 
 # Edit tokens

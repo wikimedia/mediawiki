@@ -794,7 +794,7 @@ Vă rugăm să alegeți un alt nume.',
 'nocookieslogin' => '{{SITENAME}} folosește module cookie pentru a autentifica utilizatorii. Browser-ul dvs. are cookie-urile dezactivate. Vă rugăm să le activați și să incercați din nou.',
 'nocookiesfornew' => 'Contul de utilizator nu a fost creat, deoarece nu am putut confirma sursa.
 Asigurați-vă că aveți cookie-urile activate, reîncărcați pagina și încercați din nou.',
-'noname' => 'Numele de utilizator pe care l-ai specificat este invalid.',
+'noname' => 'Numele de utilizator pe care l-ați introdus nu este valid.',
 'loginsuccesstitle' => 'Autentificare reușită',
 'loginsuccess' => "'''Ați fost autentificat la {{SITENAME}} ca „$1”.'''",
 'nosuchuser' => 'Nu există nici un utilizator cu numele „$1”.
@@ -2498,7 +2498,7 @@ acționați cu precauție.',
 Ultima editare a fost făcută de către [[User:$3|$3]] ([[User talk:$3|discuție]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment' => "Descrierea modificărilor a fost: „''$1''”.",
 'revertpage' => 'Anularea modificărilor efectuate de către [[Special:Contributions/$2|$2]] ([[User talk:$2|discuție]]) și revenire la ultima versiune de către [[User:$1|$1]]',
-'revertpage-nouser' => 'Anularea modificărilor efectuate de (nume de utilizator șters) și revenirea la ultima modificare de către [[User:$1|$1]]',
+'revertpage-nouser' => 'Anularea modificărilor efectuate de un utilizator ascuns și revenirea la ultima modificare de către [[User:$1|$1]]',
 'rollback-success' => 'Anularea modificărilor făcute de $1;
 revenire la ultima versiune de $2.',
 
