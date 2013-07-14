@@ -113,7 +113,7 @@ class SpecialVersion extends SpecialPage {
 		global $wgLang;
 
 		if ( defined( 'MEDIAWIKI_INSTALL' ) ) {
-			$othersLink = '[http://www.mediawiki.org/wiki/Special:Version/Credits ' . wfMessage( 'version-poweredby-others' )->text() . ']';
+			$othersLink = '[//www.mediawiki.org/wiki/Special:Version/Credits ' . wfMessage( 'version-poweredby-others' )->text() . ']';
 		} else {
 			$othersLink = '[[Special:Version/Credits|' . wfMessage( 'version-poweredby-others' )->text() . ']]';
 		}
