@@ -1159,6 +1159,7 @@ abstract class FileBackend {
 	 * @return Status
 	 */
 	final public function lockFiles( array $paths, $type ) {
+		$paths = array_map( 'FileBackend::normalizeStoragePath', $paths );
 		return $this->lockManager->lock( $paths, $type );
 	}
 
@@ -1170,6 +1171,7 @@ abstract class FileBackend {
 	 * @return Status
 	 */
 	final public function unlockFiles( array $paths, $type ) {
+		$paths = array_map( 'FileBackend::normalizeStoragePath', $paths );
 		return $this->lockManager->unlock( $paths, $type );
 	}
 
@@ -1187,6 +1189,13 @@ abstract class FileBackend {
 	 * @return ScopedLock|null Returns null on failure
 	 */
 	final public function getScopedFileLocks( array $paths, $type, Status $status ) {
+		if ( $type === 'mixed' ) {
+			foreach ( $paths as &$typePaths ) {
+				$typePaths = array_map( 'FileBackend::normalizeStoragePath', $typePaths );
+			}
+		} else {
+			$paths = array_map( 'FileBackend::normalizeStoragePath', $paths );
+		}
 		return ScopedLock::factory( $this->lockManager, $paths, $type, $status );
 	}
 
