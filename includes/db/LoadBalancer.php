@@ -546,6 +546,22 @@ class LoadBalancer {
 	}
 
 	/**
+	 * Get a database connection handle reference
+	 *
+	 * The handle's methods wrap simply wrap those of a DatabaseBase handle
+	 *
+	 * @see LoadBalancer::getConnection() for parameter information
+	 *
+	 * @param integer $db
+	 * @param mixed $groups
+	 * @param string $wiki
+	 * @return DBConnRef
+	 */
+	public function getConnectionRef( $db, $groups = array(), $wiki = false ) {
+		return new DBConnRef( $this, $this->getConnection( $db, $groups, $wiki ) );
+	}
+
+	/**
 	 * Open a connection to the server given by the specified index
 	 * Index must be an actual index into the array.
 	 * If the server is already open, returns it.
@@ -1066,5 +1082,35 @@ class LoadBalancer {
 	 */
 	function clearLagTimeCache() {
 		$this->mLagTimes = null;
+	}
+}
+
+/**
+ * Helper class to handle automatically marking connectons as reusable (via RAII pattern)
+ *
+ * @ingroup Database
+ * @since 1.22
+ */
+class DBConnRef {
+	/** @var LoadBalancer */
+	protected $lb;
+	/** @var DatabaseBase */
+	protected $conn;
+
+	/**
+	 * @param $lb LoadBalancer
+	 * @param $conn DatabaseBase
+	 */
+	public function __construct( LoadBalancer $lb, DatabaseBase $conn ) {
+		$this->lb = $lb;
+		$this->conn = $conn;
+	}
+
+	public function __call( $name, $arguments ) {
+		return call_user_func_array( array( $this->conn, $name ), $arguments );
+	}
+
+	function __destruct() {
+		$this->lb->reuseConnection( $this->conn );
 	}
 }
