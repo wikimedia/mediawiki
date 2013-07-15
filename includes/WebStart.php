@@ -91,11 +91,6 @@ if ( $IP === false ) {
 	}
 }
 
-# Load composer's autoloader if present
-if ( is_readable( "$IP/vendor/autoload.php" ) ) {
-	require_once "$IP/vendor/autoload.php";
-}
-
 # Get MWInit class
 require_once "$IP/includes/Init.php";
 
@@ -118,6 +113,11 @@ wfProfileIn( 'WebStart.php-conf' );
 
 # Load default settings
 require_once "$IP/includes/DefaultSettings.php";
+
+# Load composer's autoloader if present
+if ( is_readable( "$IP/vendor/autoload.php" ) ) {
+	require_once "$IP/vendor/autoload.php";
+}
 
 if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 	# Use a callback function to configure MediaWiki
