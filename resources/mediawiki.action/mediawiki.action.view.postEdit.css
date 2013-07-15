@@ -7,6 +7,10 @@
 	z-index: 1000;
 }
 
+.postedit-container:hover {
+	cursor: pointer;
+}
+
 .postedit {
 	position: relative;
 	top: 0.6em;
@@ -77,7 +81,6 @@
 .postedit-close:hover {
 	color: black;
 	text-decoration: none;
-	cursor: pointer;
 	opacity: 0.4;
 	filter: alpha(opacity=40);
 }
