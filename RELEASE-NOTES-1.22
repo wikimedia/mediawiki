@@ -245,6 +245,8 @@ production.
   entry values through ApiResult::content but directly. This changes the JSON
   output from an array of objects with content in '*' to an array of strings
   with the content.
+* (bug 51342) prop=imageinfo iicontinue now contains the dbkey, not the text
+  version of the title.
 
 === Languages updated in 1.22===
 

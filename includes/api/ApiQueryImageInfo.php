@@ -477,7 +477,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		if ( $start === null ) {
 			$start = $img->getTimestamp();
 		}
-		return $img->getOriginalTitle()->getText() . '|' . $start;
+		return $img->getOriginalTitle()->getDBkey() . '|' . $start;
 	}
 
 	public function getAllowedParams() {
