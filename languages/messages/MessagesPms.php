@@ -384,8 +384,8 @@ Sossì ëd sòlit a l'é causà përché a l'é ciamasse na diferensa o n'anliur
 Se cost a l'é nen ël cas, a podrìa avèj trovà un givo ant ël programa.
 Për piasì, ch'a lo signala a n'[[Special:ListUsers/sysop|aministrator]], sensa dësmentié l'adrëssa dla liura.",
 'missingarticle-rev' => '(nùmer ëd revision: $1)',
-'missingarticle-diff' => '(Diff: $1, $2)',
-'readonly_lag' => "La base dat a l'é staita blocà n'automàtich antramentr che le màchine dël sircùit secondari (slave) as buto an pari con cole dël prinsipal (master)",
+'missingarticle-diff' => '(Dif: $1, $2)',
+'readonly_lag' => "La base ëd dat a l'é staita blocà n'automàtich antramentr che le màchine dël sircùit secondari as buto an pari con cole dël prinsipal",
 'internalerror' => 'Eror intern',
 'internalerror_info' => 'Eror antern: $1',
 'fileappenderrorread' => 'As peul pa les-se "$1" durant dla gionta.',

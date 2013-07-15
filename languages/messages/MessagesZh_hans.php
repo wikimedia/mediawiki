@@ -497,6 +497,7 @@ $messages = array(
 'index-category' => '允许索引的页面',
 'noindex-category' => '禁止索引的页面',
 'broken-file-category' => '包含损坏的文件链接的页面',
+'categoryviewer-pagedlinks' => '（$1）（$2）',
 
 'about' => '关于',
 'article' => '内容页面',

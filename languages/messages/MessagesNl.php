@@ -770,6 +770,8 @@ $2",
 'customjsprotected' => 'U kunt deze JavaScriptpagina niet bewerken, omdat die persoonlijke instellingen van een andere gebruiker bevat.',
 'mycustomcssprotected' => 'U hebt geen rechten om deze CSS-pagina te bewerken.',
 'mycustomjsprotected' => 'U hebt geen rechten om deze JavaScriptpagina te bewerken.',
+'myprivateinfoprotected' => 'U hebt geen rechten om uw privégegevens te bewerken.',
+'mypreferencesprotected' => 'U hebt geen rechten om uw voorkeuren aan te passen.',
 'ns-specialprotected' => 'Pagina\'s in de naamruimte "{{ns:special}}" kunnen niet bewerkt worden.',
 'titleprotected' => "Het aanmaken van deze pagina is beveiligd door [[User:$1|$1]].
 De gegeven reden is ''$2''.",
@@ -1250,6 +1252,7 @@ Controleer voor het opslaan of het resultaat gewenst is.',
 'undo-failure' => 'De wijziging kan niet ongedaan gemaakt worden vanwege andere strijdige wijzigingen.',
 'undo-norev' => 'De bewerking kon niet ongedaan gemaakt worden, omdat die niet bestaat of is verwijderd.',
 'undo-summary' => 'Versie $1 van [[Special:Contributions/$2|$2]] ([[User talk:$2|overleg]]) ongedaan gemaakt',
+'undo-summary-username-hidden' => 'Versie $1 door een verborgen gebruiker ongedaan gemaakt',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Registreren is mislukt.',
@@ -1612,6 +1615,8 @@ Als u deze opgeeft, kan deze naam gebruikt worden om u erkenning te geven voor u
 'prefs-dateformat' => 'Datumopmaak:',
 'prefs-timeoffset' => 'Tijdverschil',
 'prefs-advancedediting' => 'Algemeen',
+'prefs-editor' => 'Tekstverwerker',
+'prefs-preview' => 'Voorvertoning',
 'prefs-advancedrc' => 'Gevorderde instellingen',
 'prefs-advancedrendering' => 'Gevorderde instellingen',
 'prefs-advancedsearchoptions' => 'Gevorderde instellingen',
@@ -1713,7 +1718,8 @@ Als u deze opgeeft, kan deze naam gebruikt worden om u erkenning te geven voor u
 'right-proxyunbannable' => "Blokkades voor proxy's gelden niet",
 'right-unblockself' => 'Eigen gebruiker deblokkeren',
 'right-protect' => 'Beveiligingsniveaus wijzigen',
-'right-editprotected' => "Beveiligde pagina's bewerken",
+'right-editprotected' => 'Pagina\'s bewerken die beveiligd zijn als "{{int:protect-level-sysop}}"',
+'right-editsemiprotected' => 'Pagina\'s bewerken die beveiligd zijn als "{{int:protect-level-autoconfirmed}}"',
 'right-editinterface' => 'De gebruikersinterface bewerken',
 'right-editusercssjs' => 'De CSS- en JS-bestanden van andere gebruikers bewerken',
 'right-editusercss' => 'De CSS-bestanden van andere gebruikers bewerken',
@@ -1722,6 +1728,9 @@ Als u deze opgeeft, kan deze naam gebruikt worden om u erkenning te geven voor u
 'right-editmyuserjs' => "Uw eigen JavaScriptpagina's bewerken",
 'right-viewmywatchlist' => 'Uw eigen volglijst bekijken',
 'right-editmywatchlist' => "Uw eigen volglijst bewerken. Via sommige handelingen kunnen nog steeds pagina's toegevoegd worden, zelfs zonder deze bevoegdheid",
+'right-viewmyprivateinfo' => 'Uw eigen privégegevens bekijken (bijvoorbeeld e-mailadres, echte naam)',
+'right-editmyprivateinfo' => 'Uw eigen privégegevens bewerken (bijvoorbeeld e-mailadres, echte naam)',
+'right-editmyoptions' => 'Uw eigen voorkeuren bewerken',
 'right-rollback' => 'Snel de laatste bewerking(en) van een gebruiker van een pagina terugdraaien',
 'right-markbotedits' => 'Teruggedraaide bewerkingen markeren als botbewerkingen',
 'right-noratelimit' => 'Tijdsafhankelijke beperkingen negeren',
@@ -1785,6 +1794,8 @@ Als u deze opgeeft, kan deze naam gebruikt worden om u erkenning te geven voor u
 'action-sendemail' => 'e-mails te verzenden',
 'action-editmywatchlist' => 'uw eigen volglijst te bewerken',
 'action-viewmywatchlist' => 'uw eigen volglijst te bekijken',
+'action-viewmyprivateinfo' => 'uw eigen privégegevens te bekijken',
+'action-editmyprivateinfo' => 'uw eigen privégegevens te bewerken',
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|bewerking|bewerkingen}}',
@@ -2607,7 +2618,7 @@ Iemand anders heeft deze pagina al bewerkt of hersteld naar een eerdere versie.
 De meest recente bewerking is gemaakt door [[User:$3|$3]] ([[User talk:$3|overleg]]{{int:pipe-separator}}[[Special:Contributions/$3|bijdragen]]).',
 'editcomment' => "De bewerkingssamenvatting was: \"''\$1''\".",
 'revertpage' => 'Wijzigingen door [[Special:Contributions/$2|$2]] ([[User talk:$2|Overleg]]) hersteld tot de laatste versie door [[User:$1|$1]]',
-'revertpage-nouser' => 'Wijzigingen door (gebruikersnaam verwijderd) teruggedraaid naar de laatste versie door [[User:$1|$1]]',
+'revertpage-nouser' => 'Wijzigingen door een verborgen gebruiker teruggedraaid naar de laatste versie door [[User:$1|$1]]',
 'rollback-success' => 'De wijzigingen door $1 zijn teruggedraaid.
 De laatste versie van $2 is hersteld.',
 
