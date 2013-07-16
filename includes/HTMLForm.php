@@ -976,6 +976,7 @@ class HTMLForm extends ContextSource {
 		$html = '';
 		$subsectionHtml = '';
 		$hasLabel = false;
+		$hasContents = false;
 
 		$getFieldHtmlMethod = ( $displayFormat == 'table' ) ? 'getTableRow' : 'get' . ucfirst( $displayFormat );
 
@@ -990,21 +991,37 @@ class HTMLForm extends ContextSource {
 				if ( $labelValue != '&#160;' && $labelValue !== '' ) {
 					$hasLabel = true;
 				}
+
+				if ( get_class( $value ) !== 'HTMLHiddenField' &&
+			   			get_class( $value ) !== 'HTMLApiField' ) {
+					$hasContents = true;
+				}
 			} elseif ( is_array( $value ) ) {
 				$section = $this->displaySection( $value, "mw-htmlform-$key", "$fieldsetIDPrefix$key-" );
-				$legend = $this->getLegend( $key );
-				if ( isset( $this->mSectionHeaders[$key] ) ) {
-					$section = $this->mSectionHeaders[$key] . $section;
+
+				if ( $section !== '' ) {
+					$hasContents = true;
+
+					$legend = $this->getLegend( $key );
+					if ( isset( $this->mSectionHeaders[$key] ) ) {
+						$section = $this->mSectionHeaders[$key] . $section;
+					}
+					if ( isset( $this->mSectionFooters[$key] ) ) {
+						$section .= $this->mSectionFooters[$key];
+					}
+					$attributes = array();
+					if ( $fieldsetIDPrefix ) {
+						$attributes['id'] = Sanitizer::escapeId( "$fieldsetIDPrefix$key" );
+					}
+					$subsectionHtml .= Xml::fieldset( $legend, $section, $attributes ) . "\n";
 				}
-				if ( isset( $this->mSectionFooters[$key] ) ) {
-					$section .= $this->mSectionFooters[$key];
-				}
-				$attributes = array();
-				if ( $fieldsetIDPrefix ) {
-					$attributes['id'] = Sanitizer::escapeId( "$fieldsetIDPrefix$key" );
-				}
-				$subsectionHtml .= Xml::fieldset( $legend, $section, $attributes ) . "\n";
 			}
+		}
+
+		// Either there are no fields or all the fields are of type
+		// HTMLHiddenField - valid use case.
+		if ( $hasContents === false ) {
+			return '';
 		}
 
 		if ( $displayFormat !== 'raw' ) {
