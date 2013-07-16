@@ -13,6 +13,6 @@
 	// Enqueued into domready from here instead of mediawiki.page.ready to ensure that it gets enqueued
 	// before other modules hook into document ready, so that mw.util.$content (defined by mw.util.init),
 	// is defined for them.
-	$( document ).ready( mw.util.init );
+	$( mw.util.init );
 
 }( mediaWiki, jQuery ) );
