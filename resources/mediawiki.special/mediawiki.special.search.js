@@ -2,7 +2,7 @@
  * JavaScript for Special:Search
  */
 ( function ( mw, $ ) {
-	$( document ).ready( function () {
+	$( function () {
 		var $checkboxes, $headerLinks;
 
 		// Emulate HTML5 autofocus behavior in non HTML5 compliant browsers
