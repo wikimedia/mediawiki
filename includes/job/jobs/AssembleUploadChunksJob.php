@@ -42,6 +42,15 @@ class AssembleUploadChunksJob extends Job {
 				return false;
 			}
 
+			if ( count( $_SESSION ) === 0 ) {
+				// Empty session probably indicates that we didn't associate
+				// with the session correctly. Note that being able to load
+				// the user does not necessarily mean the session was loaded.
+				// Most likely cause by suhosin.session.encrypt = On.
+				$this->setLastError( "Error associating with user session. Try setting suhosin.session.encrypt = Off" );
+				return false;
+			}
+
 			UploadBase::setSessionStatus(
 				$this->params['filekey'],
 				array( 'result' => 'Poll', 'stage' => 'assembling', 'status' => Status::newGood() )
