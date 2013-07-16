@@ -968,14 +968,16 @@ class HTMLForm extends ContextSource {
 	 * @param $fields array[]|HTMLFormField[] array of fields (either arrays or objects)
 	 * @param string $sectionName ID attribute of the "<table>" tag for this section, ignored if empty
 	 * @param string $fieldsetIDPrefix ID prefix for the "<fieldset>" tag of each subsection, ignored if empty
+	 * @param boolean &$hasUserVisibleFields Whether the section had user-visible fields
 	 * @return String
 	 */
-	public function displaySection( $fields, $sectionName = '', $fieldsetIDPrefix = '' ) {
+	public function displaySection( $fields, $sectionName = '', $fieldsetIDPrefix = '', &$hasUserVisibleFields = false ) {
 		$displayFormat = $this->getDisplayFormat();
 
 		$html = '';
 		$subsectionHtml = '';
 		$hasLabel = false;
+		$hasContents = false;
 
 		$getFieldHtmlMethod = ( $displayFormat == 'table' ) ? 'getTableRow' : 'get' . ucfirst( $displayFormat );
 
@@ -990,15 +992,29 @@ class HTMLForm extends ContextSource {
 				if ( $labelValue != '&#160;' && $labelValue !== '' ) {
 					$hasLabel = true;
 				}
+
+				if ( get_class( $value ) !== 'HTMLHiddenField' &&
+			   			get_class( $value ) !== 'HTMLApiField' ) {
+					$hasUserVisibleFields = true;
+				}
 			} elseif ( is_array( $value ) ) {
-				$section = $this->displaySection( $value, "mw-htmlform-$key", "$fieldsetIDPrefix$key-" );
-				$legend = $this->getLegend( $key );
+				$subsectionHasVisibleFields = false;
+				$section = $this->displaySection( $value, "mw-htmlform-$key", "$fieldsetIDPrefix$key-", $subsectionHasVisibleFields );
+				$legend = null;
+
+				if ( $subsectionHasVisibleFields === true ) {
+					$hasUserVisibleFields = true;
+
+					$legend = $this->getLegend( $key );
+				}
+
 				if ( isset( $this->mSectionHeaders[$key] ) ) {
 					$section = $this->mSectionHeaders[$key] . $section;
 				}
 				if ( isset( $this->mSectionFooters[$key] ) ) {
 					$section .= $this->mSectionFooters[$key];
 				}
+
 				$attributes = array();
 				if ( $fieldsetIDPrefix ) {
 					$attributes['id'] = Sanitizer::escapeId( "$fieldsetIDPrefix$key" );
