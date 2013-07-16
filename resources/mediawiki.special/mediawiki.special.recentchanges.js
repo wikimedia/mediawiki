@@ -27,7 +27,7 @@
 		}
 	};
 
-	$( document ).ready( rc.init );
+	$( rc.init );
 
 	mw.special.recentchanges = rc;
 

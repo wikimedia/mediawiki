@@ -1,7 +1,7 @@
 /**
  * JavaScript for Special:Preferences
  */
-jQuery( document ).ready( function ( $ ) {
+jQuery( function ( $ ) {
 	var $preftoc, $preferences, $fieldsets, $legends,
 		hash,
 		$tzSelect, $tzTextbox, $localtimeHolder, servertime;

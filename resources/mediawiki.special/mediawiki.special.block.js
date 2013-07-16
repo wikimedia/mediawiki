@@ -2,7 +2,7 @@
  * JavaScript for Special:Block
  */
 ( function ( mw, $ ) {
-	$( document ).ready( function () {
+	$( function () {
 		var $blockTarget = $( '#mw-bi-target' ),
 			$anonOnlyRow = $( '#mw-input-wpHardBlock' ).closest( 'tr' ),
 			$enableAutoblockRow = $( '#mw-input-wpAutoBlock' ).closest( 'tr' ),

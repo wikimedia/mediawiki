@@ -2,7 +2,7 @@
  * Javascript for module editWarning
  */
 ( function ( mw, $ ) {
-	$( document ).ready( function () {
+	$( function () {
 		// Check if EditWarning is enabled and if we need it
 		if ( $( '#wpTextbox1' ).length === 0 ) {
 			return true;
