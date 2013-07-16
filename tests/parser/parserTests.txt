@@ -1106,7 +1106,7 @@ b
 !! end
 
 ###
-### paragraph wraping tests
+### paragraph wrapping tests
 ###
 !! test
 No block tags
@@ -9504,6 +9504,81 @@ I always thought &xacute; was a cute letter.
 
 
 ###
+### Nesting tests (see bug 41545, 50604, 51081)
+###
+
+# This test case is fixed in Parsoid by domino 1.0.12. (bug 50604)
+# Note that html2wt is considerably more difficult if we use <b> in
+# the test case, instead of <big>
+!! test
+Ensure that HTML adoption agency algorithm is properly implemented.
+!! input
+<big>X<big>Y</big>Z</big>
+!! result
+<p><big>X<big>Y</big>Z</big>
+</p>
+!! end
+
+# This was bug 41545 in the PHP parser.
+!! test
+Nesting of <kbd>
+!! input
+<kbd>X<kbd>Y</kbd>Z</kbd>
+!! result
+<p><kbd>X<kbd>Y</kbd>Z</kbd>
+</p>
+!! end
+
+# The following cases were bug 51081 in the PHP parser.
+# Note that there are some other nestable tags (b, i, etc) which are
+# not covered; see bug 51081 for discussion.
+!! test
+Nesting of <em>
+!! input
+<em>X<em>Y</em>Z</em>
+!! result
+<p><em>X<em>Y</em>Z</em>
+</p>
+!! end
+
+!! test
+Nesting of <strong>
+!! input
+<strong>X<strong>Y</strong>Z</strong>
+!! result
+<p><strong>X<strong>Y</strong>Z</strong>
+</p>
+!! end
+
+!! test
+Nesting of <q>
+!! input
+<q>X<q>Y</q>Z</q>
+!! result
+<p><q>X<q>Y</q>Z</q>
+</p>
+!! end
+
+!! test
+Nesting of <ruby>
+!! input
+<ruby>X<ruby>Y</ruby>Z</ruby>
+!! result
+<p><ruby>X<ruby>Y</ruby>Z</ruby>
+</p>
+!! end
+
+!! test
+Nesting of <bdo>
+!! input
+<bdo>X<bdo>Y</bdo>Z</bdo>
+!! result
+<p><bdo>X<bdo>Y</bdo>Z</bdo>
+</p>
+!! end
+
+
+###
 ### Media links
 ###
 
@@ -16158,31 +16233,6 @@ parsoid=html2wt
 </ul>
 !! end
 
-# This test case is fixed by domino 1.0.12.
-# Note that html2wt is considerably more difficult if we use <b> in
-# the test case, instead of <big>
-!! test
-Ensure that HTML adoption agency algorithm is properly implemented.
-!! options
-!! input
-<big>X<big>Y</big>Z</big>
-!! result
-<p><big>X<big>Y</big>Z</big>
-</p>
-!! end
-
-# The parsoid team believes the below behavior of the PHP parser to be
-# a bug.
-!! test
-Document PHP parser behavior for HTML adoption agency test case.
-!! options
-php
-!! input
-<em>X<em>Y</em>Z</em>
-!! result
-<p><em>X&lt;em&gt;Y</em>Z&lt;/em&gt;
-</p>
-!! end
 
 TODO:
 more images
