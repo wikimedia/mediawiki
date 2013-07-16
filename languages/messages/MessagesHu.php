@@ -515,6 +515,7 @@ $messages = array(
 'create-this-page' => 'Oldal létrehozása',
 'delete' => 'Törlés',
 'deletethispage' => 'Lap törlése',
+'undeletethispage' => 'Lap helyreállítása',
 'undelete_short' => '{{PLURAL:$1|Egy|$1}} szerkesztés helyreállítása',
 'viewdeleted_short' => '{{PLURAL:$1|Egy|$1}} törölt szerkesztés megtekintése',
 'protect' => 'Lapvédelem',

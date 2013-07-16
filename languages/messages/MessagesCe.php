@@ -2018,6 +2018,8 @@ PICT # тайп тайпан
 # Exif tags
 'exif-imagewidth' => 'Шоралла',
 'exif-imagelength' => 'Локхалла',
+'exif-bitspersample' => 'Бесан кIоргалла',
+'exif-photometricinterpretation' => 'Беснин модель',
 'exif-orientation' => 'Суьртан хьал',
 'exif-xresolution' => 'Шоралла',
 'exif-yresolution' => 'Локхалла',
@@ -2025,6 +2027,7 @@ PICT # тайп тайпан
 'exif-imagedescription' => 'Суьртан цӏе',
 'exif-software' => 'Лелина программа',
 'exif-colorspace' => 'Беснашан хьал',
+'exif-compressedbitsperpixel' => 'Бесан кIоргалла дацдина чул тӀехьа',
 'exif-pixelxdimension' => 'Суьртан локхалла',
 'exif-datetimeoriginal' => 'Дуьххьарлера терахь а хан',
 'exif-datetimedigitized' => 'Оцифровк йина терахь а хан а',
@@ -2033,9 +2036,12 @@ PICT # тайп тайпан
 'exif-gpsdatestamp' => 'Терахь',
 'exif-source' => 'Хьост',
 'exif-languagecode' => 'Мотт',
+'exif-datetimemetadata' => 'ТӀехьара метахаамаш хийцина терахь',
 
 # Exif attributes
 'exif-compression-1' => 'ТIеIовдан яц',
+
+'exif-copyrighted-false' => 'Юкъараллин хьал',
 
 'exif-orientation-1' => 'Лартӏахь',
 
