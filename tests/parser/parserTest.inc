@@ -885,7 +885,8 @@ class ParserTest {
 		}
 
 		# Update certain things in site_stats
-		$this->db->insert( 'site_stats', array( 'ss_row_id' => 1, 'ss_images' => 2, 'ss_good_articles' => 1 ) );
+		$this->db->insert( 'site_stats',
+			array( 'ss_row_id' => 1, 'ss_images' => 2, 'ss_good_articles' => 1 ) );
 
 		# Reinitialise the LocalisationCache to match the database state
 		Language::getLocalisationCache()->unloadAll();
@@ -982,7 +983,8 @@ class ParserTest {
 		$tables = $this->listTables();
 
 		foreach ( $tables as $table ) {
-			$sql = $this->db->getType() == 'oracle' ? "DROP TABLE pt_$table DROP CONSTRAINTS" : "DROP TABLE `parsertest_$table`";
+			$sql = $this->db->getType() == 'oracle' ?
+				"DROP TABLE pt_$table DROP CONSTRAINTS" : "DROP TABLE `parsertest_$table`";
 			$this->db->query( $sql );
 		}
 
@@ -1210,7 +1212,8 @@ class ParserTest {
 	 * @param $outFileTail String: tailing for the output file name
 	 * @return String
 	 */
-	protected function quickDiff( $input, $output, $inFileTail = 'expected', $outFileTail = 'actual' ) {
+	protected function quickDiff( $input, $output,
+		$inFileTail = 'expected', $outFileTail = 'actual' ) {
 		# Windows, or at least the fc utility, is retarded
 		$slash = wfIsWindows() ? '\\' : '/';
 		$prefix = wfTempDir() . "{$slash}mwParser-" . mt_rand();

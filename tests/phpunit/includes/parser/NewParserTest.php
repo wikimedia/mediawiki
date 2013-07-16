@@ -105,11 +105,14 @@ class NewParserTest extends MediaWikiTestCase {
 		) );
 		$tmpGlobals['wgNamespaceProtection'] = array( NS_MEDIAWIKI => 'editinterface' );
 
-		$tmpGlobals['wgParser'] = new StubObject( 'wgParser', $GLOBALS['wgParserConf']['class'], array( $GLOBALS['wgParserConf'] ) );
+		$tmpGlobals['wgParser'] = new StubObject(
+			'wgParser', $GLOBALS['wgParserConf']['class'],
+			array( $GLOBALS['wgParserConf'] ) );
 
 		$tmpGlobals['wgFileExtensions'][] = 'svg';
 		$tmpGlobals['wgSVGConverter'] = 'rsvg';
-		$tmpGlobals['wgSVGConverters']['rsvg'] = '$path/rsvg-convert -w $width -h $height $input -o $output';
+		$tmpGlobals['wgSVGConverters']['rsvg'] =
+			'$path/rsvg-convert -w $width -h $height $input -o $output';
 
 		if ( $GLOBALS['wgStyleDirectory'] === false ) {
 			$tmpGlobals['wgStyleDirectory'] = "$IP/skins";
@@ -698,7 +701,9 @@ class NewParserTest extends MediaWikiTestCase {
 			} catch ( Exception $exception ) {
 				$input_dump = sprintf( "string(%d) \"%s\"\n", strlen( $input ), $input );
 
-				$this->assertTrue( false, "Test $id, fuzz seed {$this->fuzzSeed}. \n\nInput: $input_dump\n\nError: {$exception->getMessage()}\n\nBacktrace: {$exception->getTraceAsString()}" );
+				$this->assertTrue( false, "Test $id, fuzz seed {$this->fuzzSeed}. \n\n" .
+					"Input: $input_dump\n\nError: {$exception->getMessage()}\n\n" .
+					"Backtrace: {$exception->getTraceAsString()}" );
 			}
 
 			$this->teardownGlobals();
