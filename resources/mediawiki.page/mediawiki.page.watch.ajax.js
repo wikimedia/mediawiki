@@ -100,7 +100,7 @@
 		updateWatchLink: updateWatchLink
 	};
 
-	$( document ).ready( function () {
+	$( function () {
 		var $links = $( '.mw-watchlink a, a.mw-watchlink, ' +
 			'#ca-watch a, #ca-unwatch a, #mw-unwatch-link1, ' +
 			'#mw-unwatch-link2, #mw-watch-link2, #mw-watch-link1' );

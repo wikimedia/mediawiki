@@ -2,7 +2,7 @@
  * Add search suggestions to the search form.
  */
 ( function ( mw, $ ) {
-	$( document ).ready( function ( $ ) {
+	$( function () {
 		var map, resultRenderCache, searchboxesSelectors,
 			// Region where the suggestions box will appear directly below
 			// (using the same width). Can be a container element or the input

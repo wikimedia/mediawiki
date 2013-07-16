@@ -307,6 +307,6 @@ window.wgUploadLicenseObj = {
 
 };
 
-$( document ).ready( uploadSetup );
+$( uploadSetup );
 
 }( mediaWiki, jQuery ) );

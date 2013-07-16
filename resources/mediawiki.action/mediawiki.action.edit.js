@@ -136,7 +136,7 @@
 	// Explose API publicly
 	mw.toolbar = toolbar;
 
-	$( document ).ready( function () {
+	$( function () {
 		var buttons, i, b, $iframe, editBox, scrollTop, $editForm;
 
 		// currentFocus is used to determine where to insert tags
