@@ -56,7 +56,7 @@ class Sanitizer {
 	 * As well as &apos; which is only defined starting in XHTML1.
 	 * @private
 	 */
-	static $htmlEntities = array(
+	private static $htmlEntities = array(
 		'Aacute'   => 193,
 		'aacute'   => 225,
 		'Acirc'    => 194,
@@ -314,16 +314,18 @@ class Sanitizer {
 
 	/**
 	 * Character entity aliases accepted by MediaWiki
+	 * @private
 	 */
-	static $htmlEntityAliases = array(
+	private static $htmlEntityAliases = array(
 		'רלמ' => 'rlm',
 		'رلم' => 'rlm',
 	);
 
 	/**
 	 * Lazy-initialised attributes regex, see getAttribsRegex()
+	 * @private
 	 */
-	static $attribsRegex;
+	private static $attribsRegex;
 
 	/**
 	 * Regular expression to match HTML/XML attribute pairs within a tag.
@@ -357,13 +359,16 @@ class Sanitizer {
 	 * removes HTML comments
 	 * @private
 	 * @param $text String
-	 * @param $processCallback Callback to do any variable or parameter replacements in HTML attribute values
+	 * @param $processCallback Callback to do any variable or parameter
+	 *        replacements in HTML attribute values
 	 * @param array $args for the processing callback
 	 * @param array $extratags for any extra tags to include
 	 * @param array $removetags for any tags (default or extra) to exclude
 	 * @return string
 	 */
-	static function removeHTMLtags( $text, $processCallback = null, $args = array(), $extratags = array(), $removetags = array() ) {
+	static function removeHTMLtags( $text, $processCallback = null,
+		$args = array(), $extratags = array(), $removetags = array()
+	) {
 		global $wgUseTidy, $wgAllowMicrodataAttributes, $wgAllowImageTag;
 
 		static $htmlpairsStatic, $htmlsingle, $htmlsingleonly, $htmlnest, $tabletags,
@@ -624,7 +629,8 @@ class Sanitizer {
 			while ( substr( $text, $spaceStart + $spaceLen, 1 ) === ' ' ) {
 				$spaceLen++;
 			}
-			if ( substr( $text, $spaceStart, 1 ) === "\n" and substr( $text, $spaceStart + $spaceLen, 1 ) === "\n" ) {
+			if ( substr( $text, $spaceStart, 1 ) === "\n"
+				&& substr( $text, $spaceStart + $spaceLen, 1 ) === "\n" ) {
 				# Remove the comment, leading and trailing
 				# spaces, and leave only one newline.
 				$text = substr_replace( $text, "\n", $spaceStart, $spaceLen + 1 );
@@ -748,13 +754,18 @@ class Sanitizer {
 				continue;
 			}
 
-			//RDFa and microdata properties allow URLs, URIs and/or CURIs. check them for sanity
-			if ( $attribute === 'rel' || $attribute === 'rev' ||
-				$attribute === 'about' || $attribute === 'property' || $attribute === 'resource' || #RDFa
-				$attribute === 'datatype' || $attribute === 'typeof' ||                             #RDFa
-				$attribute === 'itemid' || $attribute === 'itemprop' || $attribute === 'itemref' || #HTML5 microdata
-				$attribute === 'itemscope' || $attribute === 'itemtype' ) {                         #HTML5 microdata
-
+			// RDFa and microdata properties allow URLs, URIs and/or CURIs.
+			// Check them for sanity.
+			if ( $attribute === 'rel' || $attribute === 'rev'
+				# RDFa
+				|| $attribute === 'about' || $attribute === 'property'
+				|| $attribute === 'resource' || $attribute === 'datatype'
+				|| $attribute === 'typeof'
+				# HTML5 microdata
+				|| $attribute === 'itemid' || $attribute === 'itemprop'
+				|| $attribute === 'itemref' || $attribute === 'itemscope'
+				|| $attribute === 'itemtype'
+			) {
 				//Paranoia. Allow "simple" values but suppress javascript
 				if ( preg_match( self::EVIL_URI_PATTERN, $value ) ) {
 					continue;
@@ -766,7 +777,7 @@ class Sanitizer {
 			if ( $attribute === 'href' || $attribute === 'src' ) {
 				if ( !preg_match( $hrefExp, $value ) ) {
 					continue; //drop any href or src attributes not using an allowed protocol.
-						  //NOTE: this also drops all relative URLs
+					// NOTE: this also drops all relative URLs
 				}
 			}
 
@@ -1460,14 +1471,16 @@ class Sanitizer {
 		);
 
 		if ( $wgAllowRdfaAttributes ) {
-			#RDFa attributes as specified in section 9 of http://www.w3.org/TR/2008/REC-rdfa-syntax-20081014
+			# RDFa attributes as specified in section 9 of
+			# http://www.w3.org/TR/2008/REC-rdfa-syntax-20081014
 			$common = array_merge( $common, array(
 				'about', 'property', 'resource', 'datatype', 'typeof',
 			) );
 		}
 
 		if ( $wgAllowMicrodataAttributes ) {
-			# add HTML5 microdata tags as specified by http://www.whatwg.org/html/microdata.html#the-microdata-model
+			# add HTML5 microdata tags as specified by
+			# http://www.whatwg.org/html/microdata.html#the-microdata-model
 			$common = array_merge( $common, array(
 				'itemid', 'itemprop', 'itemref', 'itemscope', 'itemtype'
 			) );
@@ -1579,7 +1592,9 @@ class Sanitizer {
 			'td'         => array_merge( $common, $tablecell, $tablealign ),
 			'th'         => array_merge( $common, $tablecell, $tablealign ),
 
-			# 12.2 # NOTE: <a> is not allowed directly, but the attrib whitelist is used from the Parser object
+			# 12.2
+			# NOTE: <a> is not allowed directly, but the attrib
+			# whitelist is used from the Parser object
 			'a'          => array_merge( $common, array( 'href', 'rel', 'rev' ) ), # rel/rev esp. for RDFa
 
 			# 13.2
