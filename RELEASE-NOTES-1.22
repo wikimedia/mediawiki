@@ -199,6 +199,9 @@ production.
 * Special:Listfiles can no longer be sorted by image name when filtering
   by user in miser mode.
 * (bug 49074) CSSJanus: Handle values of border-radius correctly.
+* Handle relative inclusions ({{../name}}) in main namespace with subpages
+  enabled correctly (previously MediaWiki tried to include Template:Parent/name
+  instead of just Parent/name).
 
 === API changes in 1.22 ===
 * (bug 25553) The JSON output formatter now leaves forward slashes unescaped
