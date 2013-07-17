@@ -5167,6 +5167,18 @@ $wgJavaScriptTestConfig = array(
 );
 
 /**
+ * Whether PHPUnit tests should assert that tests did not modify PHPs error_reporting setting.
+ * This error_reporting is typically modified using wfSuppressWarnings(), and restored using
+ * wfRestoreWarnings(). Failing to pair these calls correctly can lead to failures being silently
+ * ignored.
+ *
+ * @todo: set this to true per default once all test cases failing this assertion have been fixed.
+ *
+ * @since 1.22
+ */
+$wgPHPUnitAssertErrorReporting = false;
+
+/**
  * Overwrite the caching key prefix with custom value.
  * @since 1.19
  */
