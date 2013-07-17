@@ -50,6 +50,9 @@ class ResourceLoader {
 	/** @var bool */
 	protected $hasErrors = false;
 
+	/** @var array: Associative array of content filters */
+	protected $filters = array();
+
 	/* Protected Methods */
 
 	/**
@@ -135,14 +138,12 @@ class ResourceLoader {
 	 * @return String: Filtered data, or a comment containing an error message
 	 */
 	protected function filter( $filter, $data ) {
-		global $wgResourceLoaderMinifierStatementsOnOwnLine, $wgResourceLoaderMinifierMaxLineLength;
 		wfProfileIn( __METHOD__ );
 
 		// For empty/whitespace-only data or for unknown filters, don't perform
 		// any caching or processing
-		if ( trim( $data ) === ''
-			|| !in_array( $filter, array( 'minify-js', 'minify-css' ) ) )
-		{
+		$filterObj = $this->getFilter( $filter );
+		if ( trim( $data ) === '' || !$filterObj ) {
 			wfProfileOut( __METHOD__ );
 			return $data;
 		}
@@ -157,22 +158,10 @@ class ResourceLoader {
 			return $cacheEntry;
 		}
 
-		$result = '';
-		// Run the filter - we've already verified one of these will work
+		// Run the filter
 		try {
-			switch ( $filter ) {
-				case 'minify-js':
-					$result = JavaScriptMinifier::minify( $data,
-						$wgResourceLoaderMinifierStatementsOnOwnLine,
-						$wgResourceLoaderMinifierMaxLineLength
-					);
-					$result .= "\n/* cache key: $key */";
-					break;
-				case 'minify-css':
-					$result = CSSMin::minify( $data );
-					$result .= "\n/* cache key: $key */";
-					break;
-			}
+			$result = $filterObj->filter( $data );
+			$result .= "\n/* cache key: $key */";
 
 			// Save filtered text to Memcached
 			$cache->set( $key, $result );
@@ -186,6 +175,25 @@ class ResourceLoader {
 		wfProfileOut( __METHOD__ );
 
 		return $result;
+	}
+
+	/**
+	 * Returns a filter object
+	 *
+	 * @param string $name: Filter name
+	 * @return IResourceFilter
+	 */
+	protected function getFilter( $name ) {
+		global $wgResourceFilters;
+
+		if ( isset( $this->filters[$name] ) ) {
+			return $this->filters[$name];
+		}
+		if ( isset( $wgResourceFilters[$name] ) ) {
+			$this->filters[$name] = new $wgResourceFilters[$name];
+			return $this->filters[$name];
+		}
+		return null;
 	}
 
 	/* Methods */

@@ -3048,6 +3048,15 @@ $wgResourceLoaderValidateStaticJS = false;
  */
 $wgResourceLoaderExperimentalAsyncLoading = false;
 
+/**
+ * Filter classes configuration: 'filter type' => 'class name'.
+ * Used for overriding default minification.
+ */
+$wgResourceFilters = array(
+	'minify-js' => 'JsMinifierFilter',
+	'minify-css' => 'CssMinifierFilter',
+);
+
 /** @} */ # End of resource loader settings }
 
 /*************************************************************************//**

@@ -824,6 +824,9 @@ $wgAutoloadLocalClasses = array(
 	'ProfileSection' => 'includes/profiler/Profiler.php',
 
 	# includes/resourceloader
+	'IResourceFilter' => 'includes/resourceloader/ResourceFilters.php',
+	'CssMinifierFilter' => 'includes/resourceloader/ResourceFilters.php',
+	'JsMinifierFilter' => 'includes/resourceloader/ResourceFilters.php',
 	'ResourceLoader' => 'includes/resourceloader/ResourceLoader.php',
 	'ResourceLoaderContext' => 'includes/resourceloader/ResourceLoaderContext.php',
 	'ResourceLoaderFileModule' => 'includes/resourceloader/ResourceLoaderFileModule.php',
