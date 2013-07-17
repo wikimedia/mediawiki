@@ -410,6 +410,35 @@
 		}
 	);
 
+	// Unsortable
+	var unsortableRowAscending = [earth, venus, jupiter, mars, mercury, saturn];
+	tableTest(
+		'Basic planet table: one unsortable row (ascending)',
+		header,
+		planets,
+		unsortableRowAscending,
+		function ( $table ) {
+			$table.find( 'tr:eq(2)' ).addClass('unsortable');
+
+			$table.tablesorter();
+			$table.find( '.headerSort:eq(0)' ).click();
+		}
+	);
+
+	var unsortableRowDescending = [saturn, venus, mercury, mars, jupiter, earth];
+	tableTest(
+		'Basic planet table: one unsortable row (descending)',
+		header,
+		planets,
+		unsortableRowDescending,
+		function ( $table ) {
+			$table.find( 'tr:eq(2)' ).addClass('unsortable');
+
+			$table.tablesorter();
+			$table.find( '.headerSort:eq(0)' ).click();
+			$table.find( '.headerSort:eq(0)' ).click();
+		}
+	);
 
 	// Regression tests!
 	tableTest(
