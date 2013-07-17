@@ -163,6 +163,8 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		return $fname;
 	}
 
+	private $phpErrorLevel;
+
 	/**
 	 * setUp and tearDown should (where significant)
 	 * happen in reverse order.
@@ -171,6 +173,8 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		wfProfileIn( __METHOD__ );
 		parent::setUp();
 		$this->called['setUp'] = 1;
+
+		$this->phpErrorLevel = intval( ini_get( 'error_reporting' ) );
 
 		/*
 		// @todo global variables to restore for *every* test
@@ -232,6 +236,22 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			$GLOBALS[$key] = $value;
 		}
 		$this->mwGlobals = array();
+
+		$phpErrorLevel = intval( ini_get( 'error_reporting' ) );
+
+		if ( $phpErrorLevel !== $this->phpErrorLevel ) {
+			ini_set( 'error_reporting', $this->phpErrorLevel );
+
+			$oldHex = strtoupper( dechex( $this->phpErrorLevel ) );
+			$newHex = strtoupper( dechex( $phpErrorLevel ) );
+			$message = "PHP error_reporting setting was lft dirty: was 0x$oldHex before test, 0x$newHex after test!";
+
+			if ( $GLOBALS['wgPHPUnitAssertErrorReporting'] ) {
+				$this->fail( $message );
+			} else {
+				wfDebugLog( __CLASS__, 'Test case ' . $this->getName() . ': ' . $message );
+			}
+		}
 
 		parent::tearDown();
 		wfProfileOut( __METHOD__ );
