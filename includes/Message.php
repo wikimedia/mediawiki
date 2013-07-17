@@ -234,7 +234,13 @@ class Message {
 	 * @return string
 	 */
 	public function getKey() {
-		return $this->key;
+		if ( is_array( $this->key ) ) {
+			// May happen if some kind of fallback is applied.
+			// For now, just use the first key. We really need a better solution.
+			return $this->key[0];
+		} else {
+			return $this->key;
+		}
 	}
 
 	/**
