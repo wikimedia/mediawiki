@@ -325,6 +325,9 @@ changes to languages because of Bugzilla reports.
 * (bug 50785) A "null edit", that is, a save action in which no changes to the
   page text are made and no revision recorded, will no longer send refreshLinks
   jobs to the job table to update pages which use the edited page as a template.
+* BREAKING CHANGE: Special:Disambiguations has been removed from MediaWiki core.
+  Functions related to disambiguation pages are now handled by the Disambiguator
+  extension (http://www.mediawiki.org/wiki/Extension:Disambiguator) (bug 35981).
 
 == Compatibility ==
 
