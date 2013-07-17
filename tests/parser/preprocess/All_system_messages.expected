@@ -1239,27 +1239,6 @@ diff
 &lt;/td&gt;&lt;td&gt;
 <template lineStart="1"><title>int:Difference</title></template>
 &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;
-[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Disambiguations&amp;action=edit disambiguations]&lt;br&gt;
-[[MediaWiki_talk:Disambiguations|Talk]]
-&lt;/td&gt;&lt;td&gt;
-Disambiguation pages
-&lt;/td&gt;&lt;td&gt;
-<template lineStart="1"><title>int:Disambiguations</title></template>
-&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;
-[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Disambiguationspage&amp;action=edit disambiguationspage]&lt;br&gt;
-[[MediaWiki_talk:Disambiguationspage|Talk]]
-&lt;/td&gt;&lt;td&gt;
-Wiktionary:Links_to_disambiguating_pages
-&lt;/td&gt;&lt;td&gt;
-<template lineStart="1"><title>int:Disambiguationspage</title></template>
-&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;
-[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Disambiguationstext&amp;action=edit disambiguationstext]&lt;br&gt;
-[[MediaWiki_talk:Disambiguationstext|Talk]]
-&lt;/td&gt;&lt;td&gt;
-The following pages link to a &amp;lt;i&amp;gt;disambiguation page&amp;lt;/i&amp;gt;. They should link to the appropriate topic instead.&amp;lt;br /&amp;gt;A page is treated as dismbiguation if it is linked from $1.&amp;lt;br /&amp;gt;Links from other namespaces are &amp;lt;i&amp;gt;not&amp;lt;/i&amp;gt; listed here.
-&lt;/td&gt;&lt;td&gt;
-<template lineStart="1"><title>int:Disambiguationstext</title></template>
-&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;
 [http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Disclaimerpage&amp;action=edit disclaimerpage]&lt;br&gt;
 [[MediaWiki_talk:Disclaimerpage|Talk]]
 &lt;/td&gt;&lt;td&gt;
