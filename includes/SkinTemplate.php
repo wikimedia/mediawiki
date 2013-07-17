@@ -1336,6 +1336,21 @@ abstract class QuickTemplate {
 	}
 
 	/**
+	 * Gets the template data requested
+	 * @since 1.22
+	 * @param string $name Key for the data
+	 * @param mixed $default Optional default (or null)
+	 * @return mixed The value of the data requested or the deafult
+	 */
+	public function get( $name, $default = null ) {
+		if ( isset( $this->data[$name] ) ) {
+			return $this->data[$name];
+		} else {
+			return $default;
+		}
+	}
+
+	/**
 	 * @param $name
 	 * @param $value
 	 */
@@ -1537,7 +1552,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	 */
 	function getPersonalTools() {
 		$personal_tools = array();
-		foreach ( $this->data['personal_urls'] as $key => $plink ) {
+		foreach ( $this->get( 'personal_urls' ) as $key => $plink ) {
 			# The class on a personal_urls item is meant to go on the <a> instead
 			# of the <li> so we have to use a single item "links" array instead
 			# of using most of the personal_url's keys directly.
@@ -1854,7 +1869,7 @@ abstract class BaseTemplate extends QuickTemplate {
 			'type' => 'search',
 			'name' => 'search',
 			'placeholder' => wfMessage( 'searchsuggest-search' )->text(),
-			'value' => isset( $this->data['search'] ) ? $this->data['search'] : '',
+			'value' => $this->get( 'search', '' ),
 		);
 		$realAttrs = array_merge( $realAttrs, Linker::tooltipAndAccesskeyAttribs( 'search' ), $attrs );
 		return Html::element( 'input', $realAttrs );
@@ -1913,7 +1928,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * @return array|mixed
 	 */
 	function getFooterLinks( $option = null ) {
-		$footerlinks = $this->data['footerlinks'];
+		$footerlinks = $this->get( 'footerlinks' );
 
 		// Reduce footer links down to only those which are being used
 		$validFooterLinks = array();
@@ -1953,7 +1968,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	 */
 	function getFooterIcons( $option = null ) {
 		// Generate additional footer icons
-		$footericons = $this->data['footericons'];
+		$footericons = $this->get( 'footericons' );
 
 		if ( $option == 'icononly' ) {
 			// Unset any icons which don't have an image
