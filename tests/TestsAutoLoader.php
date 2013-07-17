@@ -38,6 +38,7 @@ $wgAutoloadClasses += array(
 	# tests/phpunit
 	'MediaWikiTestCase' => "$testDir/phpunit/MediaWikiTestCase.php",
 	'MediaWikiPHPUnitCommand' => "$testDir/phpunit/MediaWikiPHPUnitCommand.php",
+	'MediaWikiPHPUnitListener' => "$testDir/phpunit/MediaWikiPHPUnitCommand.php",
 	'MediaWikiLangTestCase' => "$testDir/phpunit/MediaWikiLangTestCase.php",
 	'MediaWikiProvide' => "$testDir/phpunit/includes/Providers.php",
 	'TestUser' => "$testDir/phpunit/includes/TestUser.php",
