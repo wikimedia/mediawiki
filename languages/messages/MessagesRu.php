@@ -21,6 +21,7 @@
  * @author Anonim.one
  * @author Askarmuk
  * @author Assele
+ * @author BellaIlabekyan
  * @author Biathlon
  * @author Bouron
  * @author Chilin
@@ -835,6 +836,7 @@ $2',
 'customjsprotected' => 'У вас нет разрешения редактировать эту JavaScript-страницу, так как она содержит личные настройки другого участника.',
 'mycustomcssprotected' => 'У вас нет прав для редактирования этого CSS страницы.',
 'mycustomjsprotected' => 'У вас нет прав для редактирования JavaScript на странице.',
+'myprivateinfoprotected' => 'У вас нет разрешения на изменение вашей личной информации',
 'ns-specialprotected' => 'Страницы пространства имён «{{ns:special}}» не могут правиться.',
 'titleprotected' => "Создание страницы с таким заголовком было запрещено участником [[Участник:$1|$1]].
 Указана следующая причина: ''$2''.",
@@ -1326,7 +1328,7 @@ $3 {{GENDER:$3|указал|указала}} следующую причину: 
 'history-fieldset-title' => 'Просмотреть историю',
 'history-show-deleted' => 'Только удалённые',
 'histfirst' => 'старейшие',
-'histlast' => 'недавние',
+'histlast' => 'недавние latest',
 'historysize' => '($1 {{PLURAL:$1|байт|байта|байт}})',
 'historyempty' => '(пусто)',
 
@@ -1653,6 +1655,8 @@ $1",
 'prefs-dateformat' => 'Формат даты',
 'prefs-timeoffset' => 'Смещение поясного времени',
 'prefs-advancedediting' => 'Расширенные настройки',
+'prefs-editor' => 'редактор',
+'prefs-preview' => 'предварительный просмотр',
 'prefs-advancedrc' => 'Расширенные настройки',
 'prefs-advancedrendering' => 'Расширенные настройки',
 'prefs-advancedsearchoptions' => 'Расширенные настройки',
@@ -1763,6 +1767,7 @@ $1",
 'right-editmyuserjs' => 'Редактировать свои пользовательские JavaScript-файлы',
 'right-viewmywatchlist' => 'Посмотреть свой список наблюдения',
 'right-editmywatchlist' => 'Редактировать свой список наблюдения. Обратите внимание, что некоторые действия будут добавлять страницы даже без такого права.',
+'right-editmyoptions' => 'Редактировать собственные предпочтения',
 'right-rollback' => 'быстрый откат правок последнего участника на определенной странице',
 'right-markbotedits' => 'отметка откатываемых правок как правок бота',
 'right-noratelimit' => 'нет ограничений по скорости',

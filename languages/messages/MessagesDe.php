@@ -1448,6 +1448,7 @@ Stelle sicher, dass die Versionsgeschichte einer Seite historisch korrekt ist.',
 'compareselectedversions' => 'Gewählte Versionen vergleichen',
 'showhideselectedversions' => 'Gewählte Versionen zeigen/verstecken',
 'editundo' => 'rückgängig machen',
+'diff-empty' => '(kein Unterschied)',
 'diff-multi' => '({{PLURAL:$1|Eine dazwischenliegende Version|$1 dazwischenliegende Versionen}} von {{PLURAL:$2|einem Benutzer|$2 Benutzern}} {{PLURAL:$1|wird|werden}} nicht angezeigt)',
 'diff-multi-manyusers' => '({{PLURAL:$1|$1 dazwischenliegende Versionen}} von mehr als {{PLURAL:$2|$2 Benutzern}}, die nicht angezeigt werden)',
 'difference-missing-revision' => '{{PLURAL:$2|Eine Version|$2 Versionen}} dieser Unterschiedsanzeige ($1) {{PLURAL:$2|wurde|wurden}} nicht gefunden.

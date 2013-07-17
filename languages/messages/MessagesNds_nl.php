@@ -748,10 +748,10 @@ t Kan ween dat der wat ziejen bin die weeregeven wörden asof je an-emeld bin to
 'userlogout' => 'Aofmelden',
 'notloggedin' => 'Niet an-emeld',
 'userlogin-noaccount' => "He'j nog gien gebrukersnaam?",
-'userlogin-joinproject' => 'Over {{SITENAME}}',
+'userlogin-joinproject' => 'Wörd lid van {{SITENAME}}',
 'nologin' => "He'j nog gien gebrukersnaam? $1.",
 'nologinlink' => 'Maak n gebrukersprofiel an',
-'createaccount' => 'Niej gebrukersprofiel anmaken',
+'createaccount' => 'Inschrieven',
 'gotaccount' => "Stao'j al in-eschreven? '''$1'''.",
 'gotaccountlink' => 'Anmelden',
 'userlogin-resetlink' => "Bi'j de anmeldgegevens kwiet?",
@@ -772,7 +772,7 @@ t Kan ween dat der wat ziejen bin die weeregeven wörden asof je an-emeld bin to
 'createacct-benefit-heading' => '{{SITENAME}} wörden emaakt deur meensen zo as jie.',
 'createacct-benefit-body1' => 'bewarking{{PLURAL:$1||en}}',
 'createacct-benefit-body2' => '{{PLURAL:$1|zied|ziejen}}',
-'createacct-benefit-body3' => 'leste biedrager{{PLURAL:$1||s}}',
+'createacct-benefit-body3' => 'aktieve {{PLURAL:$1|biedrager|biedragers}}',
 'badretype' => "De wachtwoorden die'j in-etikt hebben bin niet liek alleens.",
 'userexists' => 'Disse gebrukersnaam is al gebruuk.
 Kies n aandere naam.',
@@ -817,7 +817,7 @@ en blief joew bestaonde wachtwoord gebruken.',
 'passwordsent' => 'Der is n niej wachtwoord verstuurd naor t netpostadres van gebruker "$1". Meld an, a\'j t wachtwoord ontvangen.',
 'blocked-mailpassword' => "Dit IP-adres is eblokkeerd. Dit betekent da'j niet bewarken kunnen en dat {{SITENAME}} joew wachtwoord niet weerummehaolen kan, dit wörden edaon um misbruuk tegen te gaon.",
 'eauthentsent' => "Der is n bevestigingsberich naor t op-egeven netpostadres verstuurd. Veurdat der veerdere berichten naor dit netpostadres verstuurd kunnen wörden, mu'j de instruksies volgen in t toe-esturen berich, um te bevestigen da'j joe eigen daodwarkelik an-emeld hebben.",
-'throttled-mailpassword' => 'In {{PLURAL:$1|t leste ure|de leste $1 uren}} is der al n wachtwoordherinnering estuurd.
+'throttled-mailpassword' => 'In {{PLURAL:$1|t veurbieje ure|de veurbieje $1 uren}} is der al n wachtwoordherinnering estuurd.
 Um misbruuk te veurkoemen wörden der mer één wachtwoordherinnering per {{PLURAL:$1|ure|$1 uren}} verstuurd.',
 'mailerror' => 'Fout bie t versturen van bericht: $1',
 'acct_creation_throttle_hit' => 'Onder dit IP-adres hebben luui de veurbieje dag al {{PLURAL:$1|1 gebruker|$1 gebrukers}} an-emaakt. Meer is niet toe-estaon in disse periode. Daorumme kunnen gebrukers mit dit IP-adres noen effen gien gebrukers meer anmaken.',
@@ -830,7 +830,7 @@ Voer de juuste opmaak van t adres in of laot t veld leeg.',
 'cannotchangeemail' => 't Netpostadres veur n gebruker kan op disse wiki niet ewiezigd wörden.',
 'emaildisabled' => 'Disse webstee kan gien netpost versturen.',
 'accountcreated' => 'Gebrukersprofiel is an-emaakt',
-'accountcreatedtext' => 'De gebrukersnaam veur $1 is an-emaakt.',
+'accountcreatedtext' => 'De gebrukersnaam veur [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|talk]]) is an-emaakt.',
 'createaccount-title' => 'Gebrukers anmaken veur {{SITENAME}}',
 'createaccount-text' => 'Der hef der ene n gebruker veur $2 an-emaakt op {{SITENAME}} ($4). t Wachtwoord veur "$2" is "$3".
 Meld je noen an en wiezig t wachtwoord.
@@ -864,6 +864,7 @@ Je mutten effen wachten veurda'j t opniej proberen kunnen.",
 'resetpass-wrong-oldpass' => "t Veurlopige wachtwoord of t wachtwoord da'j noen hebben is ongeldig.
 Misschien he'j t wachtwoord al ewiezigd of n niej veurlopig wachtwoord an-evreugen.",
 'resetpass-temp-password' => 'Veurlopig wachtwoord:',
+'resetpass-abort-generic' => 'De wachtwoordwieziging is aofebreuken deur n uutbreiding.',
 
 # Special:PasswordReset
 'passwordreset' => 'Wachtwoord opniej instellen',
@@ -875,25 +876,25 @@ Misschien he'j t wachtwoord al ewiezigd of n niej veurlopig wachtwoord an-evreug
 'passwordreset-capture-help' => "A'j dit vakjen anvinken, dan krie'j t netpostbericht (mit t tiedelike wachtwoord) te zien en t wörden naor de gebruker estuurd.",
 'passwordreset-email' => 'Netpostadres:',
 'passwordreset-emailtitle' => 'Gebrukersgegevens op {{SITENAME}}',
-'passwordreset-emailtext-ip' => "Der hef der ene, warschienlik jie zelf, gebrukersgegevens veur {{SITENAME}} ($4) op-evreugen vanaof t IP-adres $1.
+'passwordreset-emailtext-ip' => "Der hef der ene, waorschienlik jie zelf vanaof t IP-adres $1, n anvraag edaon um joew wachtwoord veur {{SITENAME}} ($4) opniej in te stellen.
 De volgende {{PLURAL:$3|gebruker is|gebrukers bin}} ekoppeld an dit netpostadres:
 
 $2
 
-{{PLURAL:$3|Dit tiedelike wachtwoord vervölt|Disse tiedelike wachtwoorden vervallen}} over {{PLURAL:$5|één dag|$5 dagen}}.
+{{PLURAL:$3|Dit tiejelike wachtwoord vervölt|Disse tiejelike wachtwoorden vervallen}} over {{PLURAL:$5|één dag|$5 dagen}}.
 Meld je eigen noen an en wiezig t wachtwoord. A'j dit verzeuk niet zelf edaon hebben, of a'j t oorspronkelike wachtwoord nog kennen en t niet wiezigen willen, negeer dit bericht dan en blief joew ouwe wachtwoord gebruken.",
-'passwordreset-emailtext-user' => "De gebruker $1 van {{SITENAME}} hef joew gebrukersgegevens veur {{SITENAME}} ($4) op-evreugen vanaof t IP-adres $1.
+'passwordreset-emailtext-user' => "De gebruker $1 van {{SITENAME}} hef n anvraag edaon um joew wachtwoord veur {{SITENAME}} ($4) opniej in te stellen. 
 De volgende {{PLURAL:$3|gebruker is|gebrukers bin}} ekoppeld an dit netpostadres:
 
 $2
 
-{{PLURAL:$3|Dit tiedelike wachtwoord vervölt|Disse tiedelike wachtwoorden vervallen}} over {{PLURAL:$5|één dag|$5 dagen}}.
+{{PLURAL:$3|Dit tiejelike wachtwoord vervölt|Disse tiejelike wachtwoorden vervallen}} over {{PLURAL:$5|één dag|$5 dagen}}.
 Meld je eigen noen an en wiezig t wachtwoord. A'j dit verzeuk niet zelf edaon hebben, of a'j t oorspronkelike wachtwoord nog kennen en t niet wiezigen willen, negeer dit bericht dan en blief joew ouwe wachtwoord gebruken.",
 'passwordreset-emailelement' => 'Gebrukersnaam: $1
 Tiedelik wachtwoord: $2',
-'passwordreset-emailsent' => 'Der is per netpost n herinnering verstuurd.',
-'passwordreset-emailsent-capture' => "Der is n herinneringsbericht verstuurd. Dit ku'j hieronder lezen.",
-'passwordreset-emailerror-capture' => "Der is n herinneringsbericht an-emaakt. Dit ku'j hieronder lezen. t Versturne naor de gebruker is mislokt um de volgende reden: $1",
+'passwordreset-emailsent' => 'Der is n bericht verstuurd um t wachtwoord opniej in te stellen.',
+'passwordreset-emailsent-capture' => "Der is n bericht verstuurd um joew wachtwoord opniej in te stellen. Dit ku'j hieronder lezen.",
+'passwordreset-emailerror-capture' => "Der is n bericht veur t opniej opstellen van joew wachwoord an-emaakt, dit ku'j hieronder lezen. t Versturen naor de {{GENDER:$2|gebruker}} is mislokt um de volgende reden: $1",
 
 # Special:ChangeEmail
 'changeemail' => 'Wiezig netpostadres',
@@ -1068,7 +1069,7 @@ Deur op \"Zied opslaon\" te klikken beleuf je ons da'j disse tekste zelf eschrev
 'readonlywarning' => "'''Waorschuwing: De databanke is op dit moment in onderhoud; t is daorumme niet meugelik um ziejen te wiezigen.
 Je kunnen de tekste t beste bie joew eigen systeem opslaon en laoter opniej proberen de zied te bewarken.'''
 
-As grund is angeven: $1",
+As reden is an-egeven: $1",
 'protectedpagewarning' => "'''Waorschuwing: disse zied is beveiligd, zodat allinnig beheerders t kunnen wiezigen.'''
 De leste logboekregel steet hieronder:",
 'semiprotectedpagewarning' => "'''Let op:''' disse zied is beveiligd en ku'j allinnig bewarken a'j n eregistreerden gebruker bin.
@@ -1087,7 +1088,7 @@ De leste logboekregel steet hieronder:",
 'nocreate-loggedin' => 'Je hebben gien toestemming um nieje ziejen an te maken.',
 'sectioneditnotsupported-title' => 't Bewarken van seksies wörden niet ondersteund',
 'sectioneditnotsupported-text' => 'Je kunnen op disse zied gien seksies bewarken.',
-'permissionserrors' => 'Fouten mit de rechten',
+'permissionserrors' => 'Gien toestemming',
 'permissionserrorstext' => 'Je maggen of kunnen dit niet doon. De {{PLURAL:$1|reden|redens}} daorveur {{PLURAL:$1|is|bin}}:',
 'permissionserrorstext-withaction' => 'Je hebben gien rech um $2, mit de volgende {{PLURAL:$1|reden|redens}}:',
 'recreate-moveddeleted-warn' => "'''Waorschuwing: je maken n zied an die eerder al vortedaon is.'''
@@ -1462,7 +1463,7 @@ Disse haandeling kan niet ongedaonemaakt wörden.',
 'youremail' => 'Netpostadres (niet verplicht) *',
 'username' => '{{GENDER:$1|Gebrukersnaam}}:',
 'uid' => '{{GENDER:$1|Gebrukersnummer}}:',
-'prefs-memberingroups' => 'Lid van {{PLURAL:$1|groep|groepen}}:',
+'prefs-memberingroups' => '{{GENDER:$2|Lid}} van {{PLURAL:$1|groep|groepen}}:',
 'prefs-registration' => 'Registrasiedaotum:',
 'yourrealname' => 'Echte naam (niet verplicht)',
 'yourlanguage' => 'Taal veur systeemteksten',
@@ -1569,7 +1570,7 @@ Disse informasie is zichtbaor veur aandere gebrukers.',
 'right-reupload-shared' => 'Media uut de edeelden mediadatabanke plaotselik overschrieven',
 'right-upload_by_url' => 'Bestaanden inlaojen via n webadres',
 'right-purge' => 't Tussengeheugen van n zied legen',
-'right-autoconfirmed' => 'Behaandeld wörden as n an-emelde gebruker',
+'right-autoconfirmed' => 'Uutezonderd van IP-adres-ebaseerden tiedsaofhankelike beparkingen',
 'right-bot' => 'Behaandeld wörden as n eautomatiseerd preces',
 'right-nominornewtalk' => "Kleine bewarkingen an n overlegzied leien niet tot n melding 'nieje berichten'",
 'right-apihighlimits' => 'Hoge API-limieten gebruken',
@@ -1591,7 +1592,7 @@ Disse informasie is zichtbaor veur aandere gebrukers.',
 'right-proxyunbannable' => "Blokkeringen veur proxy's gelden niet",
 'right-unblockself' => 'Eigen gebruker deblokkeren',
 'right-protect' => "Beveiligingsnivo's wiezigen",
-'right-editprotected' => 'Beveiligden ziejen bewarken',
+'right-editprotected' => 'Ziejen bewarken die beveiligd bin as "{{int:protect-level-sysop}}"',
 'right-editinterface' => 'Systeemteksten bewarken',
 'right-editusercssjs' => 'De CSS- en JS-bestaanden van aandere gebrukers bewarken',
 'right-editusercss' => 'De CSS-bestaanden van aandere gebrukers bewarken',
@@ -1712,7 +1713,7 @@ Disse informasie is zichtbaor veur aandere gebrukers.',
 'reuploaddesc' => 'Weerumme naor de opstuurzied',
 'upload-tryagain' => 'Bestaandsbeschrieving biewarken',
 'uploadnologin' => 'Niet an-emeld',
-'uploadnologintext' => 'Je mutten [[Special:UserLogin|an-emeld]] ween um bestaanden toe te kunnen voegen.',
+'uploadnologintext' => 'Je mutten $1 ween um bestaanden op te kunnen sturen.',
 'upload_directory_missing' => 'De inlaojmap veur bestaanden ($1) is vort en kon niet an-emaakt wörden deur de webserver.',
 'upload_directory_read_only' => "Op t moment ku'j gien bestaanden opsturen vanwegen techniese problemen ($1).",
 'uploaderror' => 'Fout bie t inlaojen van t bestaand',
@@ -1994,7 +1995,7 @@ Je kunnen de [$2 zied mit de bestaandsbeschrieving] daor bewarken.',
 'uploadnewversion-linktext' => 'n Niejere versie van dit bestaand opsturen.',
 'shared-repo-from' => 'uut $1',
 'shared-repo' => 'n edeelden mediadatabanke',
-'upload-disallowed-here' => 'Je kunnen disse aofbeelding niet overschrieven.',
+'upload-disallowed-here' => 'Je kunnen dit bestaand niet overschrieven.',
 
 # File reversion
 'filerevert' => '$1 weerummedreien',
@@ -2238,7 +2239,7 @@ Zie oek [[Special:WantedCategories|gewunste kategorieën]].",
 'linksearch-ok' => 'Zeuken',
 'linksearch-text' => 'Jokers zo as "*.wikipedia.org" of "*.org" bin toe-estaon.
 Hef tenminsten n topdomein, zo as "*.org".<br />
-Ondersteunde protokollen: <code>$1</code> (zet t niet in joew zeukopdrachte).',
+{{PLURAL:$2|Ondersteund protokol|Ondersteunde protokollen}}: <code>$1</code> (wörden "http://" as der gien protokol op-egeven wörden).',
 'linksearch-line' => '$1 hef n verwiezing in $2',
 'linksearch-error' => 'Jokers bin allinnig toe-estaon an t begin van n webadres.',
 
@@ -2251,7 +2252,7 @@ Ondersteunde protokollen: <code>$1</code> (zet t niet in joew zeukopdrachte).',
 # Special:ActiveUsers
 'activeusers' => 'Aktieve gebrukers',
 'activeusers-intro' => 'Dit is n lieste van gebrukers die de aofgeleupen $1 {{PLURAL:$1|dag|dagen}} enigszins aktief ewest hebben.',
-'activeusers-count' => '$1 leste {{PLURAL:$1|bewarking|bewarkingen}} in de aofgeleupen {{PLURAL:$3|dag|$3 dagen}}',
+'activeusers-count' => '$1 leste {{PLURAL:$1|haandeling|haandelingen}} in de aofeleupen {{PLURAL:$3|dag|$3 dagen}}',
 'activeusers-from' => 'Laot gebrukers zien vanaof:',
 'activeusers-hidebots' => 'Bots verbargen',
 'activeusers-hidesysops' => 'Beheerders verbargen',
@@ -2283,7 +2284,7 @@ Meer informasie over de rechten ku'j [[{{MediaWiki:Listgrouprights-helppage}}|hi
 'emailuser-title-target' => 'Disse {{GENDER:$1|gebruker}} n bericht sturen',
 'emailuser-title-notarget' => 'Gebruker n bericht sturen',
 'emailpage' => 'Gebruker n bericht sturen',
-'emailpagetext' => "Deur middel van dit formulier ku'j n bericht sturen naor disse gebruker.
+'emailpagetext' => "Deur middel van dit formulier ku'j n bericht sturen naor disse {{GENDER:$1|gebruker}}.
 t Adres da'j op-egeven hebben bie [[Special:Preferences|joew veurkeuren]] zal as aofzender gebruukt wörden.
 De ontvanger kan dus drek beantwoorden.",
 'usermailererror' => 'Foutmelding bie t versturen:',
@@ -2323,8 +2324,8 @@ De ontvanger kan dus drek beantwoorden.",
 'watchnologin' => 'Niet an-emeld',
 'watchnologintext' => "Um je volglieste an te passen mu'j eerst [[Special:UserLogin|an-emeld]] ween.",
 'addwatch' => 'Op mien volglieste zetten',
-'addedwatchtext' => "De zied \"[[:\$1]]\" steet noen op joew [[Special:Watchlist|volglieste]].
-Toekomstige wiezigingen op disse zied en de overlegzied zullen hier vermeld wörden, oek zullen disse ziejen '''vet-edrokt''' ween in de lieste mit de [[Special:RecentChanges|leste wiezigingen]] zoda'j t makkeliker zien kunnen.",
+'addedwatchtext' => 'De zied "[[:$1]]" steet noen op joew [[Special:Watchlist|volglieste]].
+Toekomstige wiezigingen op disse zied en de overlegzied zullen hier vermeld wörden.',
 'removewatch' => 'Van mien volglieste aofhaolen',
 'removedwatchtext' => 'De zied "[[:$1]]" is van [[Special:Watchlist|joew volglieste]] aofehaold.',
 'watch' => 'Volgen',
@@ -2357,9 +2358,7 @@ Toekomstige wiezigingen op disse zied en de overlegzied zullen hier vermeld wör
 'enotif_anon_editor' => 'anonieme gebruker $1',
 'enotif_body' => 'Huj $WATCHINGUSERNAME,
 
-De zied $PAGETITLE op {{SITENAME}} is $CHANGEDORCREATED op $PAGEEDITDATE deur $PAGEEDITOR, zie $PAGETITLE_URL veur de leste versie.
-
-$NEWPAGE
+$PAGEINTRO $NEWPAGE
 
 Samenvatting van de wieziging: $PAGESUMMARY $PAGEMINOREDIT
 
@@ -2434,7 +2433,7 @@ n Aander hef disse zied al bewarkt of hersteld naor n eerdere versie.
 De leste bewarking op disse zied is edaon deur [[User:$3|$3]] ([[User talk:$3|Overleg]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment' => "De bewarkingssamenvatting was: ''$1''.",
 'revertpage' => 'Wiezigingen deur [[Special:Contributions/$2|$2]] hersteld tot de versie nao de leste wieziging deur $1',
-'revertpage-nouser' => 'Wiezigingen deur (gebrukersnaam vortedaon) weerummedreid naor de leste versie deur [[User:$1|$1]]',
+'revertpage-nouser' => 'Wiezigingen deur n verbörgen gebruker weerummedreid naor de leste versie deur [[User:$1|$1]]',
 'rollback-success' => 'Wiezigingen van $1; weerummedreid naor de leste versie van $2.',
 
 # Edit tokens
@@ -2468,9 +2467,9 @@ Hier staon de instellingen zo as ze noen bin veur de zied '''$1''':",
 Hier staon de instellingen zo as ze noen bin veur de zied '''$1''':",
 'protect-cascadeon' => 'Disse zied wörden beveiligd, umdat t op-eneumen is in de volgende {{PLURAL:$1|zied|ziejen}} die beveiligd {{PLURAL:$1|is|bin}} mit de kaskadeopsie. Je kunnen t beveiligingsnivo van disse zied anpassen, mer dat hef gien invleud op de kaskadebeveiliging.',
 'protect-default' => 'Veur alle gebrukers',
-'protect-fallback' => 'Hierveur is t rech "$1" neudig',
-'protect-level-autoconfirmed' => 'Blokkeer nieje en anonieme gebrukers',
-'protect-level-sysop' => 'Allinnig beheerders',
+'protect-fallback' => 'Allinnig gebrukers mit t recht "$1" toestaon',
+'protect-level-autoconfirmed' => 'Allinnig automaties bevestigden gebrukers toestaon',
+'protect-level-sysop' => 'Allinnig beheerders toestaon',
 'protect-summary-cascade' => 'kaskade',
 'protect-expiring' => 'löp aof op $1 (UTC)',
 'protect-expiring-local' => 'vervölt op $1',
@@ -2533,7 +2532,8 @@ In dat geval mu'j de leste versie as zichtbaor instellen.",
 'undeletedrevisions' => '$1 {{PLURAL:$1|versie|versies}} weerummeplaotst',
 'undeletedrevisions-files' => '{{PLURAL:$1|1 versie|$1 versies}} en {{PLURAL:$2|1 bestaand|$2 bestaanden}} bin weerummeplaotst',
 'undeletedfiles' => '{{PLURAL:$1|1 bestaand|$1 bestaanden}} weerummeplaotst',
-'cannotundelete' => 'Weerummeplaotsen van t bestaand is mislokt; n aander hef disse zied misschien al weerummeplaotst.',
+'cannotundelete' => 't Weerummeplaotsen is mislokt:
+$1',
 'undeletedpage' => "'''$1 is weerummeplaotst'''
 
 Bekiek t [[Special:Log/delete|vortdologboek]] veur n overzichte van ziejen die kortens vortedaon en weerummeplaotst bin.",
@@ -3064,6 +3064,7 @@ Meestentieds kömp dit deur n uutgaonde verwiezing die op de zwarte lieste steet
 
 # Info page
 'pageinfo-title' => 'Informasie over "$1"',
+'pageinfo-not-current' => 'Disse gegevens bin allinnig beschikbaor veur disse versie.',
 'pageinfo-header-basic' => 'Baosisinformasie',
 'pageinfo-header-edits' => 'Bewarkingsgeschiedenisse',
 'pageinfo-header-restrictions' => 'Ziedbeveiliging',
@@ -3912,17 +3913,17 @@ Samen mit dit programma heur je n [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van de
 'sqlite-no-fts' => 'Versie $1 zonder ondersteuning veur "full-text" zeuken',
 
 # New logging system
-'logentry-delete-delete' => '$1 hef de zied $3 vortedaon',
-'logentry-delete-restore' => '$1 hef de zied $3 weerummezet',
-'logentry-delete-event' => '$1 hef de zichtbaorheid van {{PLURAL:$5|een logboekregel|$5 logboekregels}} van $3 ewiezigd: $4',
-'logentry-delete-revision' => '$1 hef de zichtbaorheid van {{PLURAL:$5|een versie|$5 versies}} van de zied $3 ewiezigd: $4',
-'logentry-delete-event-legacy' => '$1 hef de zichtbaorheid van logboekregels van $3 ewiezigd',
-'logentry-delete-revision-legacy' => '$1 hef de zichtbaorheid van versies van de zied $3 ewiezigd.',
-'logentry-suppress-delete' => '$1 hef de zied $3 onderdrokt',
-'logentry-suppress-event' => '$1 hef de zichtbaorheid van {{PLURAL:$5|een logboekregel|$5 logboekregels}} van $3 sluuksem ewiezigd: $4',
-'logentry-suppress-revision' => '$1 hef de zichtbaorheid van {{PLURAL:$5|een versie|$5 versies}} van de zied $3 sluuksem ewiezigd: $4',
-'logentry-suppress-event-legacy' => '$1 hef de zichtbaorheid van logboekregels van $3 sluuksem ewiezigd',
-'logentry-suppress-revision-legacy' => '$1 hef de zichtbaorheid van versies van de zied $3 sluuksem ewiezigd.',
+'logentry-delete-delete' => '$1 hef de zied $3 {{GENDER:$2|vortedaon}}',
+'logentry-delete-restore' => '$1 hef de zied $3 {{GENDER:$2|weerummezet}}',
+'logentry-delete-event' => '$1 hef de zichtbaorheid van {{PLURAL:$5|n logboekregel|$5 logboekregels}} van $3 {{GENDER:$2|ewiezigd}}: $4',
+'logentry-delete-revision' => '$1 hef de zichtbaorheid van {{PLURAL:$5|een versie|$5 versies}} van de zied $3 {{GENDER:$2|ewiezigd}}: $4',
+'logentry-delete-event-legacy' => '$1 hef de zichtbaorheid van logboekregels van $3 {{GENDER:$2|ewiezigd}}',
+'logentry-delete-revision-legacy' => '$1 hef de zichtbaorheid van versies van de zied $3 {{GENDER:$2|ewiezigd}}.',
+'logentry-suppress-delete' => '$1 hef de zied $3 {{GENDER:$2|onderdrokt}}',
+'logentry-suppress-event' => '$1 hef de zichtbaorheid van {{PLURAL:$5|een logboekregel|$5 logboekregels}} van $3 sluuksem {{GENDER:$2|ewiezigd}}: $4',
+'logentry-suppress-revision' => '$1 hef de zichtbaorheid van {{PLURAL:$5|een versie|$5 versies}} van de zied $3 sluuksem {{GENDER:$2|ewiezigd}}: $4',
+'logentry-suppress-event-legacy' => '$1 hef de zichtbaorheid van logboekregels van $3 sluuksem {{GENDER:$2|ewiezigd}}',
+'logentry-suppress-revision-legacy' => '$1 hef de zichtbaorheid van versies van de zied $3 sluuksem {{GENDER:$2|ewiezigd}}.',
 'revdelete-content-hid' => 'inhoud verbörgen',
 'revdelete-summary-hid' => 'bewarkingssamenvatting verbörgen',
 'revdelete-uname-hid' => 'gebrukersnaam verbörgen',
@@ -3931,16 +3932,16 @@ Samen mit dit programma heur je n [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van de
 'revdelete-uname-unhid' => 'gebrukersnaam zichtbaor emaakt',
 'revdelete-restricted' => 'hef beparkingen an beheerders op-eleg',
 'revdelete-unrestricted' => 'hef beparkingen veur beheerders deraof ehaold',
-'logentry-move-move' => '$1 herneumden de zied $3 naor $4',
-'logentry-move-move-noredirect' => '$1 herneumden de zied $3 naor $4 zonder n deurverwiezing achter te laoten',
-'logentry-move-move_redir' => '$1 herneumden de zied $3 naor $4 over n deurverwiezing heer',
-'logentry-move-move_redir-noredirect' => '$1 herneumden de zied $3 naor $4 over n deurverwiezing heer zonder n deurverwiezing achter te laoten',
-'logentry-patrol-patrol' => '$1 hef versie $4 van de zied $3 op nao-ekeken ezet',
-'logentry-patrol-patrol-auto' => '$1 hef versie $4 van de zied $3 automaties op nao-ekeken ezet',
-'logentry-newusers-newusers' => '$1 hef n gebruker an-emaakt',
-'logentry-newusers-create' => '$1 hef n gebruker an-emaakt',
-'logentry-newusers-create2' => '$1 hef n gebruker $3 an-emaakt',
-'logentry-newusers-autocreate' => 'De gebruker $1 is automaties an-emaakt',
+'logentry-move-move' => '$1 hef de zied $3 {{GENDER:$2|herneumd}} naor $4',
+'logentry-move-move-noredirect' => '$1 hef de zied $3 {{GENDER:$2|herneumd}} naor $4 zonder n deurverwiezing achter te laoten',
+'logentry-move-move_redir' => '$1 hef de zied $3 {{GENDER:$2|herneumd}} naor $4 over n deurverwiezing heer',
+'logentry-move-move_redir-noredirect' => '$1 hef de zied $3 {{GENDER:$2|herneumd}} naor $4 over n deurverwiezing heer zonder n deurverwiezing achter te laoten',
+'logentry-patrol-patrol' => '$1 hef versie $4 van de zied $3 op {{GENDER:$2|nao-ekeken}} ezet',
+'logentry-patrol-patrol-auto' => '$1 hef versie $4 van de zied $3 automaties op {{GENDER:$2|nao-ekeken}} ezet',
+'logentry-newusers-newusers' => '$1 hef n gebruker {{GENDER:$2|an-emaakt}}',
+'logentry-newusers-create' => '$1 hef n gebruker {{GENDER:$2|an-emaakt}}',
+'logentry-newusers-create2' => '$1 hef n gebruker $3 {{GENDER:$2|an-emaakt}}',
+'logentry-newusers-autocreate' => 'De gebruker $1 is automaties {{GENDER:$2|an-emaakt}}',
 'rightsnone' => '(gien)',
 
 # Feedback

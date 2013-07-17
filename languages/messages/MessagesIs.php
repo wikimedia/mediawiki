@@ -2289,7 +2289,7 @@ Póstfangið sem þú tilgreindir í [[Special:Preferences|stillingunum þínum]
 'watchnologintext' => 'Þú verður að vera [[Special:UserLogin|innskáð(ur)]] til að geta breytt vaktlistanum.',
 'addwatch' => 'Bæta á vaktlistann',
 'addedwatchtext' => 'Síðunni „[[:$1]]“ hefur verið bætt á [[Special:Watchlist|vaktlistann]] þinn.
-Frekari breytingar á henni eða spallsíðu hennar munu verða sýndar þar.',
+Frekari breytingar á henni eða spjallsíðu hennar munu verða sýndar þar.',
 'removewatch' => 'Fjarlægja af vaktlistanum',
 'removedwatchtext' => 'Síðan „[[:$1]]“ hefur verið fjarlægð af [[Special:Watchlist|vaktlistanum þínum]].',
 'watch' => 'Vakta',

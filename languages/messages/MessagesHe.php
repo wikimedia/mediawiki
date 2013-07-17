@@ -19,6 +19,7 @@
  * @author Rotem Liss (March 2006 on)
  * @author Rotemliss
  * @author YaronSh
+ * @author אור שפירא
  * @author ערן
  * @author פדיחה
  * @author שומבלע
@@ -763,6 +764,8 @@ $2',
 'customjsprotected' => 'אינכם מורשים לערוך דף JavaScript זה, כיוון שהוא כולל את ההגדרות האישיות של משתמש אחר.',
 'mycustomcssprotected' => 'אינכם מורשים לערוך דף CSS זה.',
 'mycustomjsprotected' => 'אינכם מורשים לערוך דף JavaScript זה.',
+'myprivateinfoprotected' => 'אין לך הרשאות לערוך את המידע הפרטי שלך',
+'mypreferencesprotected' => 'אין לך הרשאה לערוך את ההעדפות שלך.',
 'ns-specialprotected' => 'לא ניתן לערוך דפים מיוחדים.',
 'titleprotected' => 'לא ניתן ליצור דף זה, כיוון שהמשתמש [[User:$1|$1]] הגן עליו מפני יצירה.
 הסיבה שניתנה לכך היא "$2".',
@@ -1166,7 +1169,7 @@ $2
 'nocreate-loggedin' => 'אינכם מורשים ליצור דפים חדשים.',
 'sectioneditnotsupported-title' => 'עריכת פסקאות אינה נתמכת',
 'sectioneditnotsupported-text' => 'עריכת פסקאות אינה נתמכת בדף זה.',
-'permissionserrors' => 'שגיאות הרשאה',
+'permissionserrors' => 'שגיאת הרשאה',
 'permissionserrorstext' => 'אינכם מורשים לבצע פעולה זו, {{PLURAL:$1|מהסיבה הבאה|מהסיבות הבאות}}:',
 'permissionserrorstext-withaction' => 'אינכם מורשים $2, {{PLURAL:$1|מהסיבה הבאה|מהסיבות הבאות}}:',
 'recreate-moveddeleted-warn' => "'''אזהרה: הנכם יוצרים דף חדש שנמחק בעבר.'''
@@ -1250,8 +1253,8 @@ $2
 מקרא: '''({{int:cur}})''' = השוואה עם הגרסה הנוכחית, '''({{int:last}})''' = השוואה עם הגרסה הקודמת, '''{{int:minoreditletter}}''' = שינוי משני.",
 'history-fieldset-title' => 'חיפוש בהיסטוריית הדף',
 'history-show-deleted' => 'רק מחוקות',
-'histfirst' => 'ראשונות',
-'histlast' => 'אחרונות',
+'histfirst' => 'הישן ביותר',
+'histlast' => 'החדש ביותר',
 'historysize' => '({{PLURAL:$1|בית אחד|$1 בתים}})',
 'historyempty' => '(ריק)',
 
@@ -1696,6 +1699,9 @@ $1",
 'right-editmyuserjs' => 'עריכת דפי JavaScript של עצמך',
 'right-viewmywatchlist' => 'צפייה ברשימת המעקב של עצמך',
 'right-editmywatchlist' => 'עריכת רשימת המעקב של עצמך. יצוין שמספר פעולות עדיין יוסיפו דפים גם ללא הרשאה זו.',
+'right-viewmyprivateinfo' => 'צפיה במידע הפרטי שלך (למשל: כתובת דוא"ל, שם אמתי ועוד)',
+'right-editmyprivateinfo' => 'עריכת המידע האישי שלך (למשל דוא"ל, שם אמתי)',
+'right-editmyoptions' => 'עריכת ההעדפות שלך',
 'right-rollback' => 'שחזור מהיר של עריכות המשתמש האחרון שערך דף מסוים',
 'right-markbotedits' => 'סימון עריכות משוחזרות כעריכות של בוט',
 'right-noratelimit' => 'עקיפת הגבלת קצב העריכות',
@@ -1759,12 +1765,15 @@ $1",
 'action-sendemail' => 'לשלוח דואר אלקטרוני',
 'action-editmywatchlist' => 'לערוך את רשימת המעקב שלך',
 'action-viewmywatchlist' => 'לצפות ברשימת המעקב שלך',
+'action-viewmyprivateinfo' => 'צפייה במידע הפרטי שלך',
+'action-editmyprivateinfo' => 'לערוך את המידע הפרטי שלך',
 
 # Recent changes
 'nchanges' => '{{PLURAL:$1|שינוי אחד|$1 שינויים}}',
 'recentchanges' => 'שינויים אחרונים',
 'recentchanges-legend' => 'אפשרויות בשינויים האחרונים',
 'recentchanges-summary' => 'ניתן לעקוב אחרי השינויים האחרונים באתר בדף זה.',
+'recentchanges-noresult' => 'אין שינויים במהלך התקופה הנתונה התאמת קריטריונים אלה.',
 'recentchanges-feed-description' => 'ניתן לעקוב אחרי השינויים האחרונים באתר בדף זה.',
 'recentchanges-label-newpage' => 'בעריכה זו נוצר דף חדש',
 'recentchanges-label-minor' => 'זוהי עריכה משנית',
@@ -2560,7 +2569,7 @@ $UNWATCHURL
 העריכה האחרונה הייתה של [[User:$3|$3]] ([[User talk:$3|שיחה]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment' => "תקציר העריכה היה: \"'''\$1'''\".",
 'revertpage' => 'שוחזר מעריכות של [[Special:Contributions/$2|$2]] ([[User talk:$2|שיחה]]) לעריכה האחרונה של [[User:$1|$1]]',
-'revertpage-nouser' => 'שוחזר מעריכות של (שם המשתמש הוסר) לעריכה האחרונה של [[User:$1|$1]]',
+'revertpage-nouser' => 'שוחזר מעריכות של משתמש שהוסר לעריכה האחרונה של [[User:$1|$1]]',
 'rollback-success' => 'שוחזר מעריכה של $1 לעריכה האחרונה של $2',
 
 # Edit tokens

@@ -827,7 +827,7 @@ $1',
 'image_sample' => 'Example.jpg',
 'image_tip' => 'Чохь йолу файл',
 'media_sample' => 'Example.ogg',
-'media_tip' => 'Хьажориг оцу медиа-хlуман',
+'media_tip' => 'Хьажориг медиа-файлан тӀе',
 'sig_tip' => 'Хьан куьгтаlор аъ хlоттина хан',
 'hr_tip' => 'Ана сиз (сих сиха ма леладайша)',
 
@@ -843,6 +843,7 @@ $1',
 'anoneditwarning' => "'''Тергам бе''': Ахьа хьай цӀарца тадарш деш дац. Хьан IP-адрес дӀаяздина хира ду хӀокху агӀон истори чу.",
 'summary-preview' => 'Цуьнах лаьцна хирду:',
 'blockedtitle' => 'Декъашхон блоктоьхана',
+'loginreqtitle' => 'Хьай цӀарца чугӀо',
 'loginreqlink' => 'Логин',
 'accmailtitle' => 'Пароль дlаяхьийтина.',
 'accmailtext' => "Пароль декъашхочуьна [[User talk:$1|$1]], йина ша шех хитта делла чу элпашах, дlаяхийтина хьокху $2 адрес тӀе.
@@ -956,6 +957,7 @@ $1',
 'rev-deleted-user' => '(авторан цӏе дӏаяйина)',
 'rev-delundel' => 'гайта/къайла',
 'rev-showdeleted' => 'гайта',
+'revisiondelete' => 'ДӀаяха / меттахӀотае агӀона версеш',
 'revdelete-show-file-submit' => 'Хlаъ',
 'revdelete-hide-image' => 'Къайлабаккха файлан чулацам',
 'revdelete-hide-user' => 'Къайлаяккха авторан цӀе',
@@ -1239,6 +1241,7 @@ $1',
 # Upload
 'upload' => 'Файл чуяккхар',
 'uploadbtn' => 'Файл чуяккхар',
+'uploadnologintext' => 'Серверан чу файлаш яха хьо $1.',
 'upload-permitted' => 'Магийна файлашан тайпанаш: $1.',
 'uploadlogpage' => 'Чуйахаран тéптар',
 'uploadlogpagetext' => 'Лахахьа гойтуш бу могlам тlаьххьара чуяхна файлаши. Ишта хьажа. [[Special:ImageList|файлаши могlам]] йа [[Special:NewImages|галеларе файлаши]].',
@@ -1327,7 +1330,7 @@ PICT # тайп тайпан
 'filerevert-success' => "Юхаерзина файл '''[[Media:$1|$1]]''' оцу [$4 верси $3, $2].",
 
 # File deletion
-'filedelete-legend' => 'ДӀаяккха и файл',
+'filedelete-legend' => 'ДӀаяккха файл',
 'filedelete-intro' => "<div class=\"plainlinks\">
 Хьо  дӀаяккха лууш ву '''[[Media:\$1|\$1]]''' ([{{fullurl:{{FULLPAGENAME}}|action=history}} истори])
 
@@ -1529,6 +1532,7 @@ PICT # тайп тайпан
 'addwatch' => 'Тергаме могӀам юкъа тоха',
 'addedwatchtext' => 'Хlар агlо «[[:$1]]» тlетоьхна хьан [[Special:Watchlist|тидаме могlам чу]].
 Тlаьхьабогlу хийцамаш хlокх агlонна а кхунца дозуш долу дийцаре агlо а дlаяздийра ду кху могlамашкахь, ишта къастина хирду уьш шуьрочу элпашца хlокх агlон чохь [[Special:RecentChanges|керла хийцаме могlамашкахь]], бгlаьран га атту болуш.',
+'removewatch' => 'ДӀаяккха тергаме могӀам юкъар',
 'removedwatchtext' => 'Агlо «[[:$1]]» дlаяккхина йара хьан [[Special:Watchlist|тергаме могlам юкъар]].',
 'watch' => 'Тидам бе',
 'watchthispage' => 'Тергам бé хlокху агlон',

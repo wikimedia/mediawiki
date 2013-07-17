@@ -700,7 +700,8 @@ See also:
 'privacypage' => 'Used as page for that contains the privacy policy. Used at the bottom of every page on the wiki. Example: [[{{MediaWiki:Privacypage}}|{{MediaWiki:Privacy}}]].
 {{doc-important|Do not change the "<tt>Project:</tt>" part.}}',
 
-'badaccess' => 'Title shown within page indicating unauthorized access.',
+'badaccess' => 'Title shown within page indicating unauthorized access.
+{{Identical|Permission error}}',
 'badaccess-group0' => 'Shown when you are not allowed to do something.',
 'badaccess-groups' => "Error message when you aren't allowed to do something. Parameters:
 * $1 - a list of groups
@@ -1694,7 +1695,8 @@ See also:
 'permissionserrors' => 'Used as title of error message.
 
 See also:
-* {{msg-mw|loginreqtitle}}',
+* {{msg-mw|loginreqtitle}}
+{{Identical|Permission error}}',
 'permissionserrorstext' => "This message is \"without action\" version of {{msg-mw|Permissionserrorstext-withaction}}.
 * \$1 is the number of reasons that were found why ''the action'' cannot be performed.",
 'permissionserrorstext-withaction' => 'This message is "with action" version of {{msg-mw|Permissionserrorstext}}.
@@ -2305,7 +2307,6 @@ See also:
 
 This message has sometimes a tooltip {{msg-mw|tooltip-undo}}
 {{Identical|Undo}}',
-'diff-empty' => 'This message appears instead of a "diff" when comparing two revisions that are identical.',
 'diff-multi' => "This message appears in the revision history of a page when comparing two versions which aren't consecutive.
 
 *Parameter $1 is the number of revisions
@@ -4241,7 +4242,8 @@ See also:
 * {{msg-mw|Booksources|title}}
 * {{msg-mw|Booksources-text|text}}",
 'booksources-search-legend' => 'Box heading on [[Special:BookSources|book sources]] special page. The box is for searching for places where a particular book can be bought or viewed.',
-'booksources-isbn' => '{{optional}}',
+'booksources-isbn' => '{{optional}}
+{{Identical|ISBN}}',
 'booksources-go' => 'Name of button in [[Special:BookSources]]
 
 {{Identical|Go}}',

@@ -768,13 +768,13 @@ Det sidj as oober noch ei seekert!",
 'continue-editing' => "Gung tu't fial för't bewerkin",
 'previewconflict' => 'Detdiar föörskau wiset di boowenst dial faan dan tekst. So schocht hi ütj, wan dü ham nü seekerst.',
 'session_fail_preview' => "'''Din werk küd ei ufseekert wurd, diar as wat skiaf gingen.'''
-Fersjük det man noch ans an trak do üüb ''Sid spiikre''.
+Ferschük det man noch ans an trak do üüb ''Sidj seekre''.
 Wan't do imer noch ei loket, [[Special:UserLogout|melde di uf]] an weder uun.",
 'session_fail_preview_html' => "'''Din werk küd ei seekert wurd. Diar as wat skiaf gingen.'''
 
 ''Uun {{SITENAME}} as HTML aktiwiaret, an diaram as JavaScript deaktiwiaret wurden.''
 
-Fersjük det man noch ans an trak do üüb ''Sid spiikre''.
+Ferschük det man noch ans an trak do üüb ''Sidj seekre''.
 Wan't do imer noch ei loket, [[Special:UserLogout|melde di uf]] an weder uun.",
 'token_suffix_mismatch' => "'''Din werk küd ei ufseekert wurd, auer diar frääm tiaken uun san.'''
 
@@ -1068,7 +1068,7 @@ Dü könst det uun't [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}
 'searchresulttext' => "Wan dü muar auer't schüken uun {{SITENAME}} wed wel, luke efter bi [[{{MediaWiki:Helppage}}|{{int:help}}]].",
 'searchsubtitle' => 'Din uunfraag: „[[:$1|$1]]“ ([[Special:Prefixindex/$1|sidjen, diar mä „$1“ began]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|sidjen, diar efter „$1“ ferwise]])',
 'searchsubtitleinvalid' => 'Din uunfraag: "$1".',
-'toomanymatches' => 'Diar kaam tuföl resultooten üüb din uunfraag. Fersjük det ööders.',
+'toomanymatches' => 'Diar kaam tuföl resultaaten üüb din uunfraag. Ferschük det ööders.',
 'titlematches' => 'Auerianstemangen mä sidjennöömer',
 'notitlematches' => 'Nian auerianstemangen mä sidjennöömer',
 'textmatches' => 'Auerianstemangen mä teksten',

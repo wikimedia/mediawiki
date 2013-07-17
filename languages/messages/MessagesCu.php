@@ -691,6 +691,7 @@ $messages = array(
 'watch' => 'блюдєниѥ',
 'watchthispage' => 'си страницѧ блюдєниѥ',
 'unwatch' => 'остави блюдєниѥ',
+'watchlist-options' => 'блюдєниѩ строи',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching' => 'блюдєниѥ ...',

@@ -485,6 +485,7 @@ $messages = array(
 'create-this-page' => 'Vytvoriť túto stránku',
 'delete' => 'Vymazať',
 'deletethispage' => 'Vymazať túto stránku',
+'undeletethispage' => 'Obnoviť túto stránku',
 'undelete_short' => 'Obnoviť {{PLURAL:$1|jednu úpravu|$1 úpravy|$1 úprav}}',
 'viewdeleted_short' => 'Zobraziť {{PLURAL:$1|jednu zmazanú úpravu|$1 zmazané úpravy|$1 zmazaných úprav}}',
 'protect' => 'Zamknúť',
@@ -744,7 +745,11 @@ Nezabudnite zmeniť svoje [[Special:Preferences|Predvoľby {{GRAMMAR:genitív|{{
 'userlogin-resetpassword-link' => 'Obnoviť heslo',
 'helplogin-url' => 'Pomoc:Prihlasovanie',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Pomoc s prihlásením]]',
+'createacct-emailrequired' => 'E-mailová adresa',
+'createacct-emailoptional' => 'E-mailová adresa (nepovinné)',
+'createacct-email-ph' => 'Zadajte vašu e-mailovú adresu',
 'createaccountmail' => 'Použiť dočasné náhodné heslo a poslať ho na nižšie uvedenú emailovú adresu',
+'createacct-realname' => 'Skutočné meno (nepovinné)',
 'createaccountreason' => 'Dôvod:',
 'createacct-reason' => 'Dôvod',
 'createacct-reason-ph' => 'Prečo si vytvárate ďalší účet',
@@ -1484,6 +1489,7 @@ Musí obsahovať menej ako $1 {{PLURAL:$1|znak|znaky|znakov}}.',
 'prefs-dateformat' => 'Formát dátumu',
 'prefs-timeoffset' => 'Časový posun',
 'prefs-advancedediting' => 'Rozšírené možnosti',
+'prefs-preview' => 'Náhľad',
 'prefs-advancedrc' => 'Rozšírené možnosti',
 'prefs-advancedrendering' => 'Rozšírené možnosti',
 'prefs-advancedsearchoptions' => 'Rozšírené možnosti',
@@ -1649,6 +1655,10 @@ Musí obsahovať menej ako $1 {{PLURAL:$1|znak|znaky|znakov}}.',
 'action-userrights-interwiki' => 'upravovať práva používateľov na iných wiki',
 'action-siteadmin' => 'zamykať alebo odomykať databázu',
 'action-sendemail' => 'posielať e-maily',
+'action-editmywatchlist' => 'upraviť zoznam sledovaných stránok',
+'action-viewmywatchlist' => 'zobraziť zoznam sledovaných stránok',
+'action-viewmyprivateinfo' => 'zobraziť vaše súkromné údaje',
+'action-editmyprivateinfo' => 'upraviť vaše súkromné údaje',
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|zmena|zmeny|zmien}}',
@@ -3878,6 +3888,12 @@ Spolu s týmto programom by ste obdržať [{{SERVER}}{{SCRIPTPATH}}/COPYING kóp
 'version-entrypoints-header-entrypoint' => 'Vstupný bod',
 'version-entrypoints-header-url' => 'URL',
 
+# Special:Redirect
+'redirect-submit' => 'Ísť',
+'redirect-value' => 'Hodnota:',
+'redirect-file' => 'Názov súboru',
+'redirect-not-exists' => 'Hodnota nebola nájdená',
+
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Hľadať duplicitné súbory',
 'fileduplicatesearch-summary' => 'Hľadanie duplicitných súborov na základe ich haš hodnôt.',
@@ -3969,6 +3985,7 @@ Spolu s týmto programom by ste obdržať [{{SERVER}}{{SCRIPTPATH}}/COPYING kóp
 'htmlform-selectorother-other' => 'Iné',
 'htmlform-no' => 'Nie',
 'htmlform-yes' => 'Áno',
+'htmlform-chosen-placeholder' => 'Vyberte možnosť',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 s podporou vyhľadávania v plnom texte',
