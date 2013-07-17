@@ -411,6 +411,19 @@
 	);
 
 
+	tableTest(
+		'Basic planet table: one unsortable column',
+		header,
+		planets,
+		planets,
+		function ( $table ) {
+			$table.find( 'tr:eq(0) > th:eq(0)' ).addClass( 'unsortable' );
+
+			$table.tablesorter();
+			$table.find( 'tr:eq(0) > th:eq(0)' ).click();
+		}
+	);
+
 	// Regression tests!
 	tableTest(
 		'Bug 28775: German-style (dmy) short numeric dates',
