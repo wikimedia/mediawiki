@@ -693,12 +693,6 @@ $wgAutoloadLocalClasses = array(
 	'IEContentAnalyzer' => 'includes/libs/IEContentAnalyzer.php',
 	'IEUrlExtension' => 'includes/libs/IEUrlExtension.php',
 	'JavaScriptMinifier' => 'includes/libs/JavaScriptMinifier.php',
-	'JSCompilerContext' => 'includes/libs/jsminplus.php',
-	'JSMinPlus' => 'includes/libs/jsminplus.php',
-	'JSNode' => 'includes/libs/jsminplus.php',
-	'JSParser' => 'includes/libs/jsminplus.php',
-	'JSToken' => 'includes/libs/jsminplus.php',
-	'JSTokenizer' => 'includes/libs/jsminplus.php',
 
 	# includes/logging
 	'DatabaseLogEntry' => 'includes/logging/LogEntry.php',
