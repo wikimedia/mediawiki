@@ -350,20 +350,20 @@ class MWNamespaceTest extends MediaWikiTestCase {
 
 		# test !is_array( $wgcontentNamespaces )
 		$wgContentNamespaces = '';
-		$this->assertEquals( NS_MAIN, MWNamespace::getContentNamespaces() );
+		$this->assertEquals( array( NS_MAIN ), MWNamespace::getContentNamespaces() );
 
 		$wgContentNamespaces = false;
-		$this->assertEquals( NS_MAIN, MWNamespace::getContentNamespaces() );
+		$this->assertEquals( array( NS_MAIN ), MWNamespace::getContentNamespaces() );
 
 		$wgContentNamespaces = null;
-		$this->assertEquals( NS_MAIN, MWNamespace::getContentNamespaces() );
+		$this->assertEquals( array( NS_MAIN ), MWNamespace::getContentNamespaces() );
 
 		$wgContentNamespaces = 5;
-		$this->assertEquals( NS_MAIN, MWNamespace::getContentNamespaces() );
+		$this->assertEquals( array( NS_MAIN ), MWNamespace::getContentNamespaces() );
 
 		# test $wgContentNamespaces === array()
 		$wgContentNamespaces = array();
-		$this->assertEquals( NS_MAIN, MWNamespace::getContentNamespaces() );
+		$this->assertEquals( array( NS_MAIN ), MWNamespace::getContentNamespaces() );
 
 		# test !in_array( NS_MAIN, $wgContentNamespaces )
 		$wgContentNamespaces = array( NS_USER, NS_CATEGORY );
