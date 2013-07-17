@@ -1,6 +1,12 @@
 <?php
 class AutoLoaderTest extends MediaWikiTestCase {
 
+	/**
+	 * Assert that there were no classes loaded that are not registered with the AutoLoader.
+	 *
+	 * For example foo.php having class Foo and class Bar but only registering Foo.
+	 * This is important because we should not be relying on Foo being used before Bar.
+	 */
 	public function testAutoLoadConfig() {
 		$results = self::checkAutoLoadConf();
 
