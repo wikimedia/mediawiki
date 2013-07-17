@@ -403,7 +403,6 @@ $specialPageAliases = array(
 	'CreateAccount'             => array( 'CreateAccount' ),
 	'Deadendpages'              => array( 'DeadendPages' ),
 	'DeletedContributions'      => array( 'DeletedContributions' ),
-	'Disambiguations'           => array( 'Disambiguations' ),
 	'DoubleRedirects'           => array( 'DoubleRedirects' ),
 	'EditWatchlist'             => array( 'EditWatchlist' ),
 	'Emailuser'                 => array( 'EmailUser' ),
@@ -904,7 +903,7 @@ $1',
 'pool-queuefull'     => 'Pool queue is full',
 'pool-errorunknown'  => 'Unknown error',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite'            => 'About {{SITENAME}}',
 'aboutpage'            => 'Project:About',
 'copyright'            => 'Content is available under $1.',
@@ -2661,13 +2660,6 @@ Remember to check for other links to the templates before deleting them.',
 'statistics-users-active-desc' => 'Users who have performed an action in the last {{PLURAL:$1|day|$1 days}}',
 'statistics-mostpopular'       => 'Most viewed pages',
 'statistics-footer'            => '', # do not translate or duplicate this message to other languages
-
-'disambiguations'         => 'Pages linking to disambiguation pages',
-'disambiguations-summary' => '', # do not translate or duplicate this message to other languages
-'disambiguationspage'     => 'Template:disambig',
-'disambiguations-text'    => "The following pages contain at least one link to a '''disambiguation page'''.
-They may have to link to a more appropriate page instead.<br />
-A page is treated as a disambiguation page if it uses a template that is linked from [[MediaWiki:Disambiguationspage]].",
 
 'pageswithprop'                   => 'Pages with a page property',
 'pageswithprop-summary'           => '', # do not translate or duplicate this message to other languages

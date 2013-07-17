@@ -437,6 +437,9 @@ changes to languages because of Bugzilla reports.
   using properties in the SpecialPrefixindex class.
 * (bug 50310) BREAKING CHANGE: wikibits: Drop support for mwCustomEditButtons.
   It defaults to an empty array and emits mw.log.warn when accessed.
+* BREAKING CHANGE: Special:Disambiguations has been removed from MediaWiki core.
+  Functions related to disambiguation pages are now handled by the Disambiguator
+  extension (http://www.mediawiki.org/wiki/Extension:Disambiguator) (bug 35981).
 
 == Compatibility ==
 
