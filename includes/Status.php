@@ -269,7 +269,8 @@ class Status {
 	/**
 	 * Get the list of errors (but not warnings)
 	 *
-	 * @return Array
+	 * @return array A list in which each entry is an array with a message key as its first element.
+	 *         The remaining array elements are the message parameters.
 	 */
 	function getErrorsArray() {
 		return $this->getStatusArray( "error" );
@@ -278,7 +279,8 @@ class Status {
 	/**
 	 * Get the list of warnings (but not errors)
 	 *
-	 * @return Array
+	 * @return array A list in which each entry is an array with a message key as its first element.
+	 *         The remaining array elements are the message parameters.
 	 */
 	function getWarningsArray() {
 		return $this->getStatusArray( "warning" );
@@ -295,7 +297,7 @@ class Status {
 		foreach ( $this->errors as $error ) {
 			if ( $error['type'] === $type ) {
 				if ( $error['message'] instanceof Message ) {
-					$result[] = $error['message'];
+					$result[] = array_merge( array( $error['message']->getKey() ), $error['message']->getParams() );
 				} elseif ( $error['params'] ) {
 					$result[] = array_merge( array( $error['message'] ), $error['params'] );
 				} else {
