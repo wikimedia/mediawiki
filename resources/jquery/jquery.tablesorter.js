@@ -195,7 +195,8 @@
 			parsers = table.config.parsers,
 			cache = {
 				row: [],
-				normalized: []
+				normalized: [],
+				unsortable: []
 			};
 
 		for ( var i = 0; i < totalRows; ++i ) {
@@ -203,6 +204,13 @@
 			// Add the table data to main data array
 			var $row = $( table.tBodies[0].rows[i] ),
 				cols = [];
+
+			// if this row has a fixed position in the table, then we don't want to consider it
+			// for sorting and we just remember its original position
+			if ( $row.hasClass( 'unsortable' ) ) {
+				cache.unsortable.push( [i, $row.get(0)] );
+				continue;
+			}
 
 			// if this is a child row, add it to the last row's children and
 			// continue to the next row
@@ -226,19 +234,43 @@
 		return cache;
 	}
 
+	/**
+	 * Re-add the rows in cache.row in the order as determined by cache.normalized to the table.
+	 * After it is finished with the DOM manipulation, it will trigger the "sortEnd.tablesorter" event on the table
+	 *
+	 * @param {HTMLElement} table that will be sorted
+	 * @param {Object} cache of rows of the table and a normalized index of their post append position
+	 */
 	function appendToTable( table, cache ) {
 		var row = cache.row,
 			normalized = cache.normalized,
-			totalRows = normalized.length,
+			unsortable = cache.unsortable,
+			totalRows = normalized.length + unsortable.length,
 			checkCell = ( normalized[0].length - 1 ),
-			fragment = document.createDocumentFragment();
+			fragment = document.createDocumentFragment(),
+			sortablesOffset = 0,
+			appended = false,
+			i, j, l;
 
-		for ( var i = 0; i < totalRows; i++ ) {
-			var pos = normalized[i][checkCell];
+		for ( i = 0; i < totalRows; i++ ) {
+			// If there is an unsortable row that wants this position, add it
+			for ( j = 0; j < unsortable.length; j++ ) {
+				if( unsortable[j][0] == i ) {
+					fragment.appendChild( unsortable[j][1] );
+					appended = true;
+					break;
+				}
+			}
+			if( appended === true ) {
+				// If a row was inserted, then we are done.
+				sortablesOffset++;
+				appended = false;
+				continue;
+			}
+			var pos = normalized[i-sortablesOffset][checkCell];
+			l = row[pos].length;
 
-			var l = row[pos].length;
-
-			for ( var j = 0; j < l; j++ ) {
+			for ( j = 0; j < l; j++ ) {
 				fragment.appendChild( row[pos][j] );
 			}
 
