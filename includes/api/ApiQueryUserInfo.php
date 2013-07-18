@@ -111,7 +111,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		}
 
 		if ( isset( $this->prop['editcount'] ) ) {
-			$vals['editcount'] = intval( $user->getEditCount() );
+			$vals['editcount'] = $user->getEditCount();
 		}
 
 		if ( isset( $this->prop['ratelimits'] ) ) {

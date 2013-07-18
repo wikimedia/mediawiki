@@ -149,7 +149,7 @@ class ApiQueryUsers extends ApiQueryBase {
 				$data[$name]['name'] = $name;
 
 				if ( isset( $this->prop['editcount'] ) ) {
-					$data[$name]['editcount'] = intval( $user->getEditCount() );
+					$data[$name]['editcount'] = $user->getEditCount();
 				}
 
 				if ( isset( $this->prop['registration'] ) ) {

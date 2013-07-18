@@ -2687,10 +2687,10 @@ class User {
 				// it has not been initialized. do so.
 				$count = $this->initEditCount();
 			}
-			$this->mEditCount = intval( $count );
+			$this->mEditCount = $count;
 			wfProfileOut( __METHOD__ );
 		}
-		return $this->mEditCount;
+		return intval( $this->mEditCount );
 	}
 
 	/**
