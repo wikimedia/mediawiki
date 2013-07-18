@@ -764,6 +764,9 @@ class ResourceLoader {
 
 				header( 'HTTP/1.0 304 Not Modified' );
 				header( 'Status: 304 Not Modified' );
+
+				// Send content type and cache headers
+				$this->sendResponseHeaders( $context, $mtime, false );
 				return true;
 			}
 		}
@@ -798,18 +801,18 @@ class ResourceLoader {
 		}
 		if ( $good ) {
 			$ts = $fileCache->cacheTimestamp();
-			// Send content type and cache headers
-			$this->sendResponseHeaders( $context, $ts, false );
 			// If there's an If-Modified-Since header, respond with a 304 appropriately
 			if ( $this->tryRespondLastModified( $context, $ts ) ) {
 				return false; // output handled (buffers cleared)
 			}
-			$response = $fileCache->fetchText();
 			// Capture any PHP warnings from the output buffer and append them to the
 			// response in a comment if we're in debug mode.
 			if ( $context->getDebug() && strlen( $warnings = ob_get_contents() ) ) {
 				$response = "/*\n$warnings\n*/\n" . $response;
 			}
+			// Send content type and cache headers
+			$this->sendResponseHeaders( $context, $ts, false );
+			$response = $fileCache->fetchText();
 			// Remove the output buffer and output the response
 			ob_end_clean();
 			echo $response . "\n/* Cached {$ts} */";
