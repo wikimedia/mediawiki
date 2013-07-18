@@ -35,14 +35,8 @@
  *         to sortable tr elements in the thead on a descending sort. Default
  *         value: "headerSortDown"
  *
- * @option String sortInitialOrder ( optional ) A string of the inital sorting
- *         order can be asc or desc. Default value: "asc"
- *
  * @option String sortMultisortKey ( optional ) A string of the multi-column sort
  *         key. Default value: "shiftKey"
- *
- * @option Boolean sortLocaleCompare ( optional ) Boolean flag indicating whatever
- *         to use String.localeCampare method or not. Set to false.
  *
  * @option Boolean cancelSelection ( optional ) Boolean flag indicating if
  *         tablesorter should cancel selection of the table headers text.
@@ -52,9 +46,6 @@
  *         By passing more than one object, multi-sorting will be applied. Object structure:
  *         { <Integer column index>: <String 'asc' or 'desc'> }
  *         Default value: []
- *
- * @option Boolean debug ( optional ) Boolean flag indicating if tablesorter
- *         should display debuging information usefull for development.
  *
  * @event sortEnd.tablesorter: Triggered as soon as any sorting has been applied.
  *
@@ -702,18 +693,12 @@
 				cssAsc: 'headerSortUp',
 				cssDesc: 'headerSortDown',
 				cssChildRow: 'expand-child',
-				sortInitialOrder: 'asc',
 				sortMultiSortKey: 'shiftKey',
-				sortLocaleCompare: false,
 				unsortableClass: 'unsortable',
 				parsers: {},
-				widgets: [],
-				headers: {},
 				cancelSelection: true,
 				sortList: [],
-				headerList: [],
-				selectorHeaders: 'thead tr:eq(0) th',
-				debug: false
+				headerList: []
 			},
 
 			dateRegex: [],
