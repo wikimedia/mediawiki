@@ -1839,6 +1839,9 @@ var mw = ( function ( $, undefined ) {
 		 *     var h = mw.hook( 'bar.ready' );
 		 *     new mw.Foo( .. ).fetch( { callback: h.fire } );
 		 *
+		 * Note: Events are documented with an underscore instead of a dot in the event
+		 * name due to jsduck not supporting dots in that position.
+		 *
 		 * @class mw.hook
 		 */
 		hook: ( function () {
