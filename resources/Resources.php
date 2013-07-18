@@ -1755,6 +1755,16 @@ return array(
 		'skipFunction' => 'resources/src/es5-skip.js',
 	),
 
+	/* es6-shim */
+	'es6-shim' => array(
+		'scripts' => array(
+			'resources/lib/es6-shim/es6-shim.js',
+			'resources/src/polyfill-object-create.js',
+		),
+		'targets' => array( 'desktop', 'moble' ),
+		'skipFunction' => 'resources/src/es6-skip.js',
+	),
+
 	/* dom-level2-shim */
 	// IE 8
 	'dom-level2-shim' => array(
