@@ -74,7 +74,7 @@ class RemoveUnusedAccounts extends Maintenance {
 
 		# If required, go back and delete each marked account
 		if ( $count > 0 && $this->hasOption( 'delete' ) ) {
-			$this->output( "\nDeleting inactive accounts..." );
+			$this->output( "\nDeleting unused accounts..." );
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->delete( 'user', array( 'user_id' => $del ), __METHOD__ );
 			$dbw->delete( 'user_groups', array( 'ug_user' => $del ), __METHOD__ );
