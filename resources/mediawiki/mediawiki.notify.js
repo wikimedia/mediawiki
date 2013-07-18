@@ -1,7 +1,7 @@
 /**
  * @class mw.plugin.notify
  */
-( function ( mw ) {
+( function ( mw, $ ) {
 	'use strict';
 
 	/**
@@ -24,4 +24,4 @@
 	 * @mixins mw.plugin.notify
 	 */
 
-}( mediaWiki ) );
+}( mediaWiki, jQuery ) );
