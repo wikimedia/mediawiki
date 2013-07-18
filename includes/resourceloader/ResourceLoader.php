@@ -619,6 +619,9 @@ class ResourceLoader {
 
 				header( 'HTTP/1.0 304 Not Modified' );
 				header( 'Status: 304 Not Modified' );
+
+				// Send content type and cache headers
+				$this->sendResponseHeaders( $context, $mtime, false );
 				return true;
 			}
 		}
@@ -653,8 +656,6 @@ class ResourceLoader {
 		}
 		if ( $good ) {
 			$ts = $fileCache->cacheTimestamp();
-			// Send content type and cache headers
-			$this->sendResponseHeaders( $context, $ts, false );
 			// If there's an If-Modified-Since header, respond with a 304 appropriately
 			if ( $this->tryRespondLastModified( $context, $ts ) ) {
 				return false; // output handled (buffers cleared)
