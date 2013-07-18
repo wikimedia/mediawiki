@@ -54,7 +54,16 @@ class MergeMessageFileList extends Maintenance {
 		if ( $lines === false ) {
 			$this->error( 'Unable to open list file.' );
 		}
-		$mmfl = array( 'setupFiles' => array_map( 'trim', $lines ) );
+		$mmfl = array( 'setupFiles' => array() );
+
+		# Strip comments, discard empty lines, and trim leading and trailing
+		# whitespace. Comments start with '#' and extend to the end of the line.
+		foreach( $lines as $line ) {
+			$line = trim( preg_replace( '/#.*/', '', $line ) );
+			if ( $line ) {
+				$mmfl['setupFiles'][] = $line;
+			}
+		}
 
 		# Now find out files in a directory
 		$hasError = false;
