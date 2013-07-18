@@ -2,6 +2,10 @@
 .mw-collapsible-toggle {
 	float: right;
 }
+.mw-customtoggle,
+.mw-collapsible-toggle {
+	cursor: pointer;
+}
 
 /* collapse links in captions should be inline */
 caption .mw-collapsible-toggle {
