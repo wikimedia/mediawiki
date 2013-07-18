@@ -180,61 +180,63 @@ class SquidUpdate {
 
 		// pfsockopen doesn't work because we need set_sock_opt
 		$conn = socket_create( AF_INET, SOCK_DGRAM, SOL_UDP );
-		if ( $conn ) {
-			// Set socket options
-			socket_set_option( $conn, IPPROTO_IP, IP_MULTICAST_LOOP, 0 );
-			if ( $wgHTCPMulticastTTL != 1 ) {
-				socket_set_option( $conn, IPPROTO_IP, IP_MULTICAST_TTL,
-					$wgHTCPMulticastTTL );
-			}
-
-			$urlArr = array_unique( $urlArr ); // Remove duplicates
-			foreach ( $urlArr as $url ) {
-				if ( !is_string( $url ) ) {
-					wfProfileOut( __METHOD__ );
-					throw new MWException( 'Bad purge URL' );
-				}
-				$url = SquidUpdate::expand( $url );
-				$conf = self::getRuleForURL( $url, $wgHTCPMulticastRouting );
-				if ( !$conf ) {
-					wfDebugLog( 'squid', __METHOD__ .
-						"No HTCP rule configured for URL $url , skipping\n" );
-					continue;
-				}
-				if ( !isset( $conf['host'] ) || !isset( $conf['port'] ) ) {
-					wfProfileOut( __METHOD__ );
-					throw new MWException( "Invalid HTCP rule for URL $url\n" );
-				}
-
-				// Construct a minimal HTCP request diagram
-				// as per RFC 2756
-				// Opcode 'CLR', no response desired, no auth
-				$htcpTransID = rand();
-
-				$htcpSpecifier = pack( 'na4na*na8n',
-					4, 'HEAD', strlen( $url ), $url,
-					8, 'HTTP/1.0', 0 );
-
-				$htcpDataLen = 8 + 2 + strlen( $htcpSpecifier );
-				$htcpLen = 4 + $htcpDataLen + 2;
-
-				// Note! Squid gets the bit order of the first
-				// word wrong, wrt the RFC. Apparently no other
-				// implementation exists, so adapt to Squid
-				$htcpPacket = pack( 'nxxnCxNxxa*n',
-					$htcpLen, $htcpDataLen, $htcpOpCLR,
-					$htcpTransID, $htcpSpecifier, 2 );
-
-				// Send out
-				wfDebugLog( 'squid', __METHOD__ .
-					"Purging URL $url via HTCP\n" );
-				socket_sendto( $conn, $htcpPacket, $htcpLen, 0,
-					$conf['host'], $conf['port'] );
-			}
-		} else {
+		if ( ! $conn ) {
 			$errstr = socket_strerror( socket_last_error() );
 			wfDebugLog( 'squid', __METHOD__ .
 				": Error opening UDP socket: $errstr\n" );
+			wfProfileOut( __METHOD__ );
+			return;
+		}
+
+		// Set socket options
+		socket_set_option( $conn, IPPROTO_IP, IP_MULTICAST_LOOP, 0 );
+		if ( $wgHTCPMulticastTTL != 1 ) {
+			socket_set_option( $conn, IPPROTO_IP, IP_MULTICAST_TTL,
+				$wgHTCPMulticastTTL );
+		}
+
+		$urlArr = array_unique( $urlArr ); // Remove duplicates
+		foreach ( $urlArr as $url ) {
+			if ( !is_string( $url ) ) {
+				wfProfileOut( __METHOD__ );
+				throw new MWException( 'Bad purge URL' );
+			}
+			$url = SquidUpdate::expand( $url );
+			$conf = self::getRuleForURL( $url, $wgHTCPMulticastRouting );
+			if ( !$conf ) {
+				wfDebugLog( 'squid', __METHOD__ .
+					"No HTCP rule configured for URL $url , skipping\n" );
+				continue;
+			}
+			if ( !isset( $conf['host'] ) || !isset( $conf['port'] ) ) {
+				wfProfileOut( __METHOD__ );
+				throw new MWException( "Invalid HTCP rule for URL $url\n" );
+			}
+
+			// Construct a minimal HTCP request diagram
+			// as per RFC 2756
+			// Opcode 'CLR', no response desired, no auth
+			$htcpTransID = rand();
+
+			$htcpSpecifier = pack( 'na4na*na8n',
+				4, 'HEAD', strlen( $url ), $url,
+				8, 'HTTP/1.0', 0 );
+
+			$htcpDataLen = 8 + 2 + strlen( $htcpSpecifier );
+			$htcpLen = 4 + $htcpDataLen + 2;
+
+			// Note! Squid gets the bit order of the first
+			// word wrong, wrt the RFC. Apparently no other
+			// implementation exists, so adapt to Squid
+			$htcpPacket = pack( 'nxxnCxNxxa*n',
+				$htcpLen, $htcpDataLen, $htcpOpCLR,
+				$htcpTransID, $htcpSpecifier, 2 );
+
+			// Send out
+			wfDebugLog( 'squid', __METHOD__ .
+				"Purging URL $url via HTCP\n" );
+			socket_sendto( $conn, $htcpPacket, $htcpLen, 0,
+				$conf['host'], $conf['port'] );
 		}
 		wfProfileOut( __METHOD__ );
 	}
