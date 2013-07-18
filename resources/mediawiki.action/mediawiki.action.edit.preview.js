@@ -12,6 +12,7 @@
 
 		e.preventDefault();
 
+		// Deprecated: Use mw.hook instead
 		$( mw ).trigger( 'LivePreviewPrepare' );
 
 		$wikiPreview = $( '#wikiPreview' );
@@ -78,7 +79,7 @@
 
 		// Load new preview data.
 		// TODO: This should use the action=parse API instead of loading the entire page
-		// Though that requires figuring out how to conver that raw data into proper HTML.
+		// Though that requires figuring out how to convert that raw data into proper HTML.
 		$previewDataHolder.load( targetUrl + ' ' + copySelectors.join( ',' ), postData, function () {
 			var i, $from;
 			// Copy the contents of the specified elements from the loaded page to the real page.
@@ -92,12 +93,15 @@
 					.attr( 'class', $from.attr( 'class' ) );
 			}
 
+			// Deprecated: Use mw.hook instead
+			$( mw ).trigger( 'LivePreviewDone', [copySelectors] );
+
+			mw.hook( 'wikipage.content' ).fire( $wikiPreview );
+
 			$spinner.remove();
 			$copyElements.animate( {
 				opacity: 1
 			}, 'fast' );
-
-			$( mw ).trigger( 'LivePreviewDone', [copySelectors] );
 		} );
 	}
 
