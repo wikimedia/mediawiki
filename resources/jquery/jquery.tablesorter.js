@@ -207,7 +207,7 @@
 
 			// if this row has a fixed position in the table, then we don't want to consider it
 			// for sorting and we just remember its original position
-			if ( $row.hasClass( 'unsortable' ) ) {
+			if ( $row.hasClass( table.config.unsortableClass ) ) {
 				cache.unsortable.push( [i, $row.get(0)] );
 				continue;
 			}
@@ -370,7 +370,7 @@
 			this.order = 0;
 			this.count = 0;
 
-			if ( $( this ).is( '.unsortable' ) ) {
+			if ( $( this ).is( '.' + table.config.unsortableClass ) ) {
 				this.sortDisabled = true;
 			}
 
@@ -685,6 +685,7 @@
 				sortInitialOrder: 'asc',
 				sortMultiSortKey: 'shiftKey',
 				sortLocaleCompare: false,
+				unsortableClass: 'unsortable',
 				parsers: {},
 				widgets: [],
 				headers: {},
@@ -775,7 +776,7 @@
 
 					// Apply event handling to headers
 					// this is too big, perhaps break it out?
-					$headers.filter( ':not(.unsortable)' ).click( function ( e ) {
+					$headers.filter( ':not( table.config.unsortableClass )' ).click( function ( e ) {
 						if ( e.target.nodeName.toLowerCase() === 'a' ) {
 							// The user clicked on a link inside a table header
 							// Do nothing and let the default link click action continue
