@@ -173,6 +173,15 @@ body .ui-button {
 	-moz-box-shadow: 0 1px 3px rgba(0,0,0,.2);
 	box-shadow: 0 1px 3px rgba(0,0,0,.2);
 }
+
+body .ui-button-icon-only {
+	width: 2.2em;
+}
+
+body .ui-button-icons-only {
+	width: 3.4em;
+}
+
 body .ui-button:hover {
 	color: #2779aa;
 	border-color: #bbb !important;
