@@ -234,6 +234,7 @@ production.
 * (bug 52006) Corrected documentation of $wgTranscludeCacheExpiry.
 * (bug 49694) $wgSpamRegex is now also applied on the new section headline text
   adding a new topic on a page
+* (bug 51283) load.php sometimes sends 304 response without full headers
 
 === API changes in 1.22 ===
 * (bug 25553) The JSON output formatter now leaves forward slashes unescaped
