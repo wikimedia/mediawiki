@@ -111,6 +111,8 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		}
 
 		if ( isset( $this->prop['editcount'] ) ) {
+			// use intval to prevent null if a non-logged-in user calls
+			// api.php?format=jsonfm&action=query&meta=userinfo&uiprop=editcount
 			$vals['editcount'] = intval( $user->getEditCount() );
 		}
 

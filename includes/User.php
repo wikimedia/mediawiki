@@ -2665,7 +2665,7 @@ class User {
 
 	/**
 	 * Get the user's edit count.
-	 * @return int
+	 * @return int, null for anonymous users
 	 */
 	public function getEditCount() {
 		if ( !$this->getId() ) {
@@ -2687,10 +2687,10 @@ class User {
 				// it has not been initialized. do so.
 				$count = $this->initEditCount();
 			}
-			$this->mEditCount = intval( $count );
+			$this->mEditCount = $count;
 			wfProfileOut( __METHOD__ );
 		}
-		return $this->mEditCount;
+		return ( int ) $this->mEditCount;
 	}
 
 	/**
