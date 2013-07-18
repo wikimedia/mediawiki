@@ -16,6 +16,11 @@
 		// mw.util.init), is defined for them.
 		mw.util.init();
 
+		/**
+		 * @event wikpage_content
+		 * @member mw.hook
+		 * @param {jQuery} $content
+		 */
 		mw.hook( 'wikipage.content' ).fire( $( '#mw-content-text' ) );
 	} );
 
