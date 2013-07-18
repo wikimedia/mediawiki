@@ -104,8 +104,6 @@
 				return util.$content;
 			} )();
 
-			mw.hook( 'wikipage.content' ).fire( util.$content );
-
 			// Table of contents toggle
 			$tocTitle = $( '#toctitle' );
 			$tocToggleLink = $( '#togglelink' );
