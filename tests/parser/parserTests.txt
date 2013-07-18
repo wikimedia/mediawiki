@@ -1609,8 +1609,13 @@ Templates: Dont escape already nowiki-escaped text in template parameters
 parsoid=html2wt,wt2wt
 !! input
 {{echo|foo<nowiki>|</nowiki>bar}}
+{{echo|<nowiki>&lt;div&gt;</nowiki>}}
+{{echo|<nowiki></nowiki>}}
 !! result
-<p about="#mwt1" typeof="mw:Transclusion" data-mw='{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"foo<nowiki>|</nowiki>bar"}},"i":0}'>foo<span typeof="mw:Nowiki" data-parsoid="{}">|</span>bar</p>
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"foo<nowiki>|</nowiki>bar"}},"i":0}'}'>foo</span><span typeof="mw:Nowiki" about="#mwt1">|</span><span about="#mwt1">bar</span>
+<span typeof="mw:Transclusion mw:Nowiki" about="#mwt2" data-mw='{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"<nowiki>&amp;lt;div&amp;gt;</nowiki>"}},"i":0}'><span typeof="mw:Entity">&lt;</span>div<span typeof="mw:Entity">&gt;</span></span>
+<span typeof="mw:Transclusion mw:Nowiki" about="#mwt3" data-mw='{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"<nowiki></nowiki>"}},"i":0}'></span>
+</p>
 !! end
 
 ###
@@ -5184,73 +5189,6 @@ Nested lists 8 (multiple nesting transitions)
 !! end
 
 !! test
-Unbalanced closing block tags break a list
-(Parsoid-only since php parser generates broken html -- relies on Tidy to fix up)
-!! options
-parsoid
-!! input
-<div>
-*a</div><div>
-*b</div>
-!! result
-<div>
-<ul><li>a
-</li></ul></div><div>
-<ul><li>b
-</li></ul></div>
-!! end
-
-!! test
-Unbalanced closing non-block tags don't break a list
-(Parsoid-only since php parser generates broken html -- relies on Tidy to fix up)
-!! options
-parsoid
-!! input
-<span>
-*a</span><span>
-*b</span>
-!! result
-<p><span></span>
-</p>
-<ul><li>a<span></span>
-</li><li>b
-</li></ul>
-!! end
-
-!! test
-Unclosed formatting tags that straddle lists are closed and reopened
-(Parsoid-only since php parser generates broken html -- relies on Tidy to fix up)
-!! options
-parsoid
-!! input
-# <s> a
-# b </s>
-!! result
-<ol><li> <s> a </s>
-</li><li> <s> b </s>
-</li></ol>
-!! end
-
-!!test
-List embedded in a non-block tag
-(Ugly Parsoid output -- worth fixing; Disabled for PHP parser since it relies on Tidy)
-!! options
-parsoid
-!!input
-<small>
-* foo
-</small>
-!!result
-<p><small></small></p>
-<small>
-<ul>
-<li> foo</li>
-</ul>
-</small>
-<p><small></small></p>
-!!end
-
-!! test
 List items are not parsed correctly following a <pre> block (bug 785)
 !! input
 * <pre>foo</pre>
@@ -5391,6 +5329,77 @@ parsoid
 <ol><li> foo<ol><li> bar</li></ol></li></ol><ul><li> foo<ul><li> bar</li></ul></li></ul><dl><dd> foo<dl><dd> bar</dd></dl></dd></dl>
 !! end
 
+# ------------------------------------------------------------------------
+# The next set of tests are about Parsoid's ability to handle badly nested
+# tags (parse, minimize scope of fixup, and roundtrip back)
+# ------------------------------------------------------------------------
+
+!! test
+Unbalanced closing block tags break a list
+(Parsoid-only since php parser generates broken html -- relies on Tidy to fix up)
+!! options
+parsoid
+!! input
+<div>
+*a</div><div>
+*b</div>
+!! result
+<div>
+<ul><li>a
+</li></ul></div><div>
+<ul><li>b
+</li></ul></div>
+!! end
+
+!! test
+Unbalanced closing non-block tags don't break a list
+(Parsoid-only since php parser generates broken html -- relies on Tidy to fix up)
+!! options
+parsoid
+!! input
+<span>
+*a</span><span>
+*b</span>
+!! result
+<p><span></span>
+</p>
+<ul><li>a<span></span>
+</li><li>b
+</li></ul>
+!! end
+
+!! test
+Unclosed formatting tags that straddle lists are closed and reopened
+(Parsoid-only since php parser generates broken html -- relies on Tidy to fix up)
+!! options
+parsoid
+!! input
+# <s> a
+# b </s>
+!! result
+<ol><li> <s> a </s>
+</li><li> <s> b </s>
+</li></ol>
+!! end
+
+!!test
+List embedded in a non-block tag
+(Ugly Parsoid output -- worth fixing; Disabled for PHP parser since it relies on Tidy)
+!! options
+parsoid
+!!input
+<small>
+* foo
+</small>
+!!result
+<p><small></small></p>
+<small>
+<ul>
+<li> foo</li>
+</ul>
+</small>
+<p><small></small></p>
+!!end
 
 ###
 ### Magic Words
@@ -8787,6 +8796,17 @@ parsoid
 <a rel="mw:WikiLink" href="Category:Foo">Category:Foo</a>
 <a rel="mw:WikiLink" href="Category:Foo">Bar</a>
 </p>
+!! end
+
+!! test
+Parsoid: Link prefix/suffixes aren't applied to category links
+!! options
+parsoid=wt2html,wt2wt,html2html
+language=is
+!! input
+x[[Category:Foo]]y
+!! result
+<p>x<link rel="mw:WikiLink/Category" href="Category:Foo">y</p>
 !! end
 
 !! test
@@ -14805,9 +14825,10 @@ parsoid
 
 <references />
 !!result
-<p><span about="#mwt1" class="reference" data-mw='{"name":"ref","body":{"html":"foo &amp;lt;ref&amp;gt;bar"},"attrs":{}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-1">[1]</a></span> baz&lt;/ref&gt;</p>
+<span about="#mwt1" class="reference" data-mw="{&quot;name&quot;:&quot;ref&quot;,&quot;body&quot;:{&quot;html&quot;:&quot;foo &amp;lt;ref&amp;gt;bar&amp;lt;/ref&amp;gt; baz&quot;},&quot;attrs&quot;:{}}" id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-1">[1]</a></span>
 
-<ol about="#mwt2" class="references" data-mw='{"name":"references","attrs":{}}' typeof="mw:Extension/references"><li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> foo &lt;ref&gt;bar</li></ol>
+<ol class="references" typeof="mw:Extension/references" about="#mwt2" data-mw="{&quot;name&quot;:&quot;references&quot;,&quot;attrs&quot;:{}}">
+<li about="#cite_note-1" id="cite_note-1" data-parsoid="{}"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> foo &lt;ref&gt;bar&lt;/ref&gt; baz</li></ol>
 !!end
 
 !!test
@@ -15002,7 +15023,7 @@ Headings: 2. Outside heading nest on a single line <h1>foo</h1>*bar
 parsoid
 !! input
 =foo=
-<nowiki>*bar</nowiki>
+<nowiki>*</nowiki>bar
 
 =foo=
 =bar
@@ -15103,11 +15124,11 @@ parsoid
 !! input
 <nowiki>=a=</nowiki>
 
-<nowiki>=a= </nowiki>
+<nowiki>=a=</nowiki> 
 
-<nowiki>=a=	</nowiki>
+<nowiki>=a=</nowiki>	
 
-<nowiki>=a= 	</nowiki>
+<nowiki>=a=</nowiki> 	
 !! result
 <p>=a=</p>
 <p>=a= </p>
@@ -15148,8 +15169,8 @@ Headings: 6c. Heading chars in SOL context (leading newline break)
 !! options
 parsoid
 !! input
-<nowiki>a
-=b=</nowiki>
+a
+<nowiki>=b=</nowiki>
 !! result
 <p>a
 =b=</p>
@@ -15162,7 +15183,7 @@ parsoid
 !! input
 <!--c0--><nowiki>=a=</nowiki>
 <!--c1-->
-<nowiki>=a= </nowiki><!--c2-->	 <!--c3-->
+<nowiki>=a=</nowiki> <!--c2-->	 <!--c3-->
 !! result
 <p><!--c0-->=a=</p>
 <p><!--c1-->=a= <!--c2-->	 <!--c3--></p>
@@ -15192,9 +15213,9 @@ parsoid=html2wt
 !! test
 Lists: 0. Outside nests
 !! input
-<nowiki>*foo</nowiki>
+<nowiki>*</nowiki>foo
 
-<nowiki>#foo</nowiki>
+<nowiki>#</nowiki>foo
 !! result
 <p>*foo
 </p><p>#foo
@@ -15339,8 +15360,8 @@ parsoid
 !! test
 Lists: 7. Escape bullets in a multi-line context
 !! input
-<nowiki>a
-*b</nowiki>
+a
+<nowiki>*</nowiki>b
 !! result
 <p>a
 *b
@@ -15598,7 +15619,7 @@ Links 1. Quote marks in link text
 !! options
 parsoid
 !! input
-[[Foo|<nowiki>Foo''boo''</nowiki>]]
+[[Foo|Foo<nowiki>''boo''</nowiki>]]
 !! result
 <a rel="mw:WikiLink" href="Foo">Foo''boo''</a>
 !! end
@@ -15754,24 +15775,24 @@ bar <span><nowiki>[[foo]]</nowiki></span>
 !! options
 parsoid
 !! input
-<nowiki> a</nowiki>
+<nowiki> </nowiki>a
 
-<nowiki>  a</nowiki>
+<nowiki> </nowiki> a
 
-<nowiki>	a(tab)</nowiki>
+<nowiki>	</nowiki>a(tab)
 
-<nowiki> 	a</nowiki>
+<nowiki> </nowiki>	a
 <!--cmt-->
-<nowiki>  a</nowiki>
+<nowiki> </nowiki> a
 
-<nowiki>a
- b</nowiki>
+a
+<nowiki> </nowiki>b
 
-<nowiki>a
-	b</nowiki>
+a
+<nowiki>	</nowiki>b
 
-<nowiki>a
-	 b</nowiki>
+a
+<nowiki>	</nowiki> b
 !! result
 <p> a</p>
 <p>  a</p>
@@ -16248,6 +16269,22 @@ parsoid=html2wt
 </ul>
 !! end
 
+!! test
+Parsoid: Serialize positional parameters with = in them as named parameter
+!! options
+parsoid=html2wt
+!! input
+{{echo|1 = f=oo}}
+!! result
+<p about="#mwt1" typeof="mw:Transclusion"
+data-mw='{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"f=oo"}},"i":0}'
+>foo</p>
+!! end
+
+# -----------------------------------------------------------------
+# End of section for Parsoid-only html2wt tests for serialization
+# of new content
+# -----------------------------------------------------------------
 
 TODO:
 more images
