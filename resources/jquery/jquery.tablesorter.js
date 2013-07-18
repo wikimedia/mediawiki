@@ -338,7 +338,7 @@
 			this.order = 0;
 			this.count = 0;
 
-			if ( $( this ).is( '.unsortable' ) ) {
+			if ( $( this ).hasClass( table.config.unsortableClass ) ) {
 				this.sortDisabled = true;
 			}
 
@@ -656,6 +656,7 @@
 				sortInitialOrder: 'asc',
 				sortMultiSortKey: 'shiftKey',
 				sortLocaleCompare: false,
+				unsortableClass: 'unsortable',
 				parsers: {},
 				widgets: [],
 				headers: {},
@@ -746,7 +747,7 @@
 
 					// Apply event handling to headers
 					// this is too big, perhaps break it out?
-					$headers.filter( ':not(.unsortable)' ).on( 'keypress click', function ( e ) {
+					$headers.not( '.' + table.config.unsortableClass ).on( 'keypress click', function ( e ) {
 						if ( e.type === 'click' && e.target.nodeName.toLowerCase() === 'a' ) {
 							// The user clicked on a link inside a table header.
 							// Do nothing and let the default link click action continue.
