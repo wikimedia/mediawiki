@@ -1111,6 +1111,18 @@ class DBConnRef implements IDatabase {
 	}
 
 	function __destruct() {
-		$this->lb->reuseConnection( $this->conn );
+		// We can call reuse the connection for another wiki via selectDB() on this as
+		// long as it is not in a transaction (which can easily happen with DBO_TRX) as
+		// cross-DB transactions are not supported. In that case it can only be reused
+		// for same-DB queries until it commits.
+		if ( $this->conn->writesOrCallbacksPending() ) {
+			$lb = $this->lb;
+			$conn = $this->conn;
+			$conn->onTransactionIdle( function() use ( $lb, $conn ) {
+				$lb->reuseConnection( $conn ); // might get called some extra times, meh
+			} );
+		} else {
+			$this->lb->reuseConnection( $this->conn );
+		}
 	}
 }
