@@ -1755,6 +1755,14 @@ return array(
 		'skipFunction' => 'resources/src/es5-skip.js',
 	),
 
+	/* es6-shim */
+	'es6-shim' => array(
+		'scripts' => array(
+			'resources/lib/es6-shim/es6-shim.js'
+		),
+		'targets' => array( 'desktop', 'moble' ),
+	),
+
 	/* dom-level2-shim */
 	// IE 8
 	'dom-level2-shim' => array(
