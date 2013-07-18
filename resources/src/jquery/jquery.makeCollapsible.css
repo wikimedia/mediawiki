@@ -6,6 +6,10 @@
 	-ms-user-select: none;
 	user-select: none;
 }
+.mw-customtoggle,
+.mw-collapsible-toggle {
+	cursor: pointer;
+}
 
 /* collapse links in captions should be inline */
 caption .mw-collapsible-toggle {
