@@ -442,10 +442,10 @@ class ManualLogEntry extends LogEntryBase {
 
 	/**
 	 * Inserts the entry into the logging table.
-	 * @param DatabaseBase $dbw
+	 * @param IDatabase $dbw
 	 * @return int If of the log entry
 	 */
-	public function insert( DatabaseBase $dbw = null ) {
+	public function insert( IDatabase $dbw = null ) {
 		global $wgContLang;
 
 		$dbw = $dbw ?: wfGetDB( DB_MASTER );

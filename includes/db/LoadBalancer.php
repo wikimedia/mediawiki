@@ -1091,7 +1091,7 @@ class LoadBalancer {
  * @ingroup Database
  * @since 1.22
  */
-class DBConnRef {
+class DBConnRef implements IDatabase {
 	/** @var LoadBalancer */
 	protected $lb;
 	/** @var DatabaseBase */
