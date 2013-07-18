@@ -158,6 +158,8 @@ production.
   titles. Given a list of articles named Bug1, Bug2, you can now transclude the
   list of bug numbers using: {{Special:PrefixIndex/Bug|stripprefix=1}}.
   The special page form received a new checkbox matching that option.
+* (bug 23580) Implement javascript callback interface "mw.hook".
+* (bug 30713) New mw.hook "wikipage.content".
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
