@@ -206,6 +206,8 @@ production.
 * Handle relative inclusions ({{../name}}) in main namespace with subpages
   enabled correctly (previously MediaWiki tried to include Template:Parent/name
   instead of just Parent/name).
+* (bug 33399) LivePreview: Re-run wikipage content handlers
+  (jquery.makeCollapsible, jquery.tablesorter) after preview content is loaded.
 
 === API changes in 1.22 ===
 * (bug 25553) The JSON output formatter now leaves forward slashes unescaped
@@ -333,6 +335,8 @@ changes to languages because of Bugzilla reports.
 * (bug 50785) A "null edit", that is, a save action in which no changes to the
   page text are made and no revision recorded, will no longer send refreshLinks
   jobs to the job table to update pages which use the edited page as a template.
+* The LivePreviewPrepare and LivePreviewDone events triggered on "jQuery( mw )"
+  have been deprecated in favour of using mw.hook.
 
 == Compatibility ==
 
