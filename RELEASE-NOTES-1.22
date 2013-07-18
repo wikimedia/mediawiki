@@ -204,6 +204,7 @@ production.
 * Handle relative inclusions ({{../name}}) in main namespace with subpages
   enabled correctly (previously MediaWiki tried to include Template:Parent/name
   instead of just Parent/name).
+* (bug 51283) load.php sometimes sends 304 response without full headers
 
 === API changes in 1.22 ===
 * (bug 25553) The JSON output formatter now leaves forward slashes unescaped
