@@ -56,11 +56,6 @@ table.mw-enhanced-rc td.mw-enhanced-rc-nested {
 	height: 15px;
 }
 
-/* let it look like it is clickable */
-.mw-enhancedchanges-arrow.mw-collapsible-toggle {
-	cursor: pointer;
-}
-
 .mw-enhanced-watched .mw-enhanced-rc-time {
 	font-weight: bold;
 }
