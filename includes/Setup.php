@@ -581,6 +581,9 @@ foreach ( $wgExtensionFunctions as $func ) {
 	wfProfileOut( $profName );
 }
 
+# Fix for bug 45031, to force re-cache of Canonical namespaces
+MWNamespace::getCanonicalNamespaces( true );
+
 wfDebug( "Fully initialised\n" );
 $wgFullyInitialised = true;
 
