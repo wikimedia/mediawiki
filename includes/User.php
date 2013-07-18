@@ -1844,10 +1844,23 @@ class User {
 		$utp = $this->getTalkPage();
 		$dbr = wfGetDB( DB_SLAVE );
 		// Get the "last viewed rev" timestamp from the oldest message notification
-		$timestamp = $dbr->selectField( 'user_newtalk',
+		$timestamp = $dbr->selectField(
+			'user_newtalk',
 			'MIN(user_last_timestamp)',
 			$this->isAnon() ? array( 'user_ip' => $this->getName() ) : array( 'user_id' => $this->getID() ),
-			__METHOD__ );
+			__METHOD__
+		);
+		// If the user has never visited their talk page, user_last_timestamp
+		// will be null for all of their talk page revisions.
+		if ( !$timestamp ) {
+			// Retrieve the timestamp of the first revision for the talk page
+			$timestamp = $dbr->selectField(
+				'revision',
+				'MIN(rev_timestamp)',
+				array( 'rev_page' => $utp->getArticleID() ),
+				__METHOD__
+			);
+		}
 		$rev = $timestamp ? Revision::loadFromTimestamp( $dbr, $utp, $timestamp ) : null;
 		return array( array( 'wiki' => wfWikiID(), 'link' => $utp->getLocalURL(), 'rev' => $rev ) );
 	}
