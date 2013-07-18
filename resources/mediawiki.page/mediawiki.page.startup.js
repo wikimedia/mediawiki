@@ -13,6 +13,11 @@
 		// messageBoxNew, profile, tooltip access keys, Table of contents toggle, ..).
 		mw.util.init();
 
+		/**
+		 * @event wikpage_content
+		 * @member mw.hook
+		 * @param {jQuery} $content
+		 */
 		mw.hook( 'wikipage.content' ).fire( $( '#mw-content-text' ) );
 	} );
 
