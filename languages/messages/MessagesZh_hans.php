@@ -1325,6 +1325,7 @@ $1",
 'compareselectedversions' => '对比选择的版本',
 'showhideselectedversions' => '显示/隐藏选择的版本',
 'editundo' => '撤销',
+'diff-empty' => '（没有差异）',
 'diff-multi' => '（未显示$2个用户的$1个中间版本）',
 'diff-multi-manyusers' => '（未显示超过$2个用户的$1个中间版本）',
 'difference-missing-revision' => '此差异对比的{{PLURAL:$2|一个修订|$2个修订}}（$1）{{PLURAL:$2|没有}}找到。

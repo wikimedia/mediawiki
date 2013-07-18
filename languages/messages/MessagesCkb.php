@@ -3484,7 +3484,7 @@ $5
 'logentry-newusers-create' => 'ھەژماری بەکارھێنەریی $1 {{GENDER:$2|دروست کرا}}',
 'logentry-newusers-create2' => 'ھەژماری بەکارھێنەریی $3 لە لایەن $1 {{GENDER:$2|دروست کرا}}',
 'logentry-newusers-autocreate' => 'ھەژماری بەکارھێنەریی $1 بە شێوەی خۆگەڕ {{GENDER:$2|دروست کرا}}',
-'logentry-rights-rights' => '$1 ئەندامێتیی $1ی لە $2 بۆ $3 {{GENDER:$2|گۆڕی}}',
+'logentry-rights-rights' => '$1 ئەندامێتیی $3ی لە $4 بۆ $5 {{GENDER:$2|گۆڕی}}',
 'rightsnone' => '(ھیچ)',
 
 # Feedback

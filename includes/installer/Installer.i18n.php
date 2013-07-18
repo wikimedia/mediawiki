@@ -16282,7 +16282,7 @@ Para atualizar esta instalação, por favor introduza o valor de <code>$wgUpgrad
 Encontra este valor no <code>LocalSettings.php</code>.',
 	'config-localsettings-cli-upgrade' => 'Foi detectada a existência de um ficheiro <code>LocalSettings.php</code>.
 Para actualizar esta instalação execute o <code>update.php</code>, por favor.',
-	'config-localsettings-key' => 'Chave de actualização:',
+	'config-localsettings-key' => 'Chave de atualização:',
 	'config-localsettings-badkey' => 'A chave que forneceu está incorreta.',
 	'config-upgrade-key-missing' => 'Foi detectada uma instalação existente do MediaWiki.
 Para actualizar esta instalação, por favor coloque a seguinte linha no final do seu <code>LocalSettings.php</code>:
@@ -16369,18 +16369,18 @@ Se instalou o PHP a partir de um pacote Debian ou Ubuntu, então precisa de inst
 	'config-register-globals' => "'''Aviso: A opção <code>[http://php.net/register_globals register_globals]</code> do PHP está activada.'''
 '''Desactive-a, se puder.'''
 O MediaWiki funciona mesmo assim, mas o seu servidor está exposto a potenciais vulnerabilidades de segurança.",
-	'config-magic-quotes-runtime' => "'''Fatal: A opção [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime magic_quotes_runtime] está activada!'''
+	'config-magic-quotes-runtime' => "'''Fatal: A opção [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime magic_quotes_runtime] está ativada!'''
 Esta opção causa corrupção dos dados de entrada, de uma forma imprevisível.
-Não pode instalar ou usar o MediaWiki a menos que esta opção seja desactivada.",
-	'config-magic-quotes-sybase' => "'''Fatal: A opção [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-sybase magic_quotes_sybase] está activada!'''
+Não pode instalar ou usar o MediaWiki a menos que esta opção seja desativada.",
+	'config-magic-quotes-sybase' => "'''Fatal: A opção [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-sybase magic_quotes_sybase] está ativada!'''
 Esta opção causa corrupção dos dados de entrada, de uma forma imprevisível.
-Não pode instalar ou usar o MediaWiki a menos que esta opção seja desactivada.",
-	'config-mbstring' => "'''Fatal: A opção [http://www.php.net/manual/en/ref.mbstring.php#mbstring.overload mbstring.func_overload] está activada!'''
+Não pode instalar ou usar o MediaWiki a menos que esta opção seja desativada.",
+	'config-mbstring' => "'''Fatal: A opção [http://www.php.net/manual/en/ref.mbstring.php#mbstring.overload mbstring.func_overload] está ativada!'''
 Esta opção causa erros e pode corromper os dados de uma forma imprevisível.
-Não pode instalar ou usar o MediaWiki a menos que esta opção seja desactivada.",
-	'config-ze1' => "'''Fatal: A opção [http://www.php.net/manual/en/ini.core.php zend.ze1_compatibility_mode] está activada!'''
+Não pode instalar ou usar o MediaWiki a menos que esta opção seja desativada.",
+	'config-ze1' => "'''Fatal: A opção [http://www.php.net/manual/en/ini.core.php zend.ze1_compatibility_mode] está ativada!'''
 Esta opção causa problemas significativos no MediaWiki.
-Não pode instalar ou usar o MediaWiki a menos que esta opção seja desactivada.",
+Não pode instalar ou usar o MediaWiki a menos que esta opção seja desativada.",
 	'config-safe-mode' => "'''Aviso:''' O [http://www.php.net/features.safe-mode safe mode] do PHP está activo.
 Este modo pode causar problemas, especialmente no upload de ficheiros e no suporte a <code>math</code>.",
 	'config-xml-bad' => 'Falta o módulo XML do PHP.
@@ -16408,7 +16408,7 @@ Se possibilitar uploads, a miniaturização de imagens será activada.',
 	'config-gd' => 'Foi encontrada a biblioteca gráfica GD.
 Se possibilitar uploads, a miniaturização de imagens será activada.',
 	'config-no-scaling' => 'Não foi encontrada a biblioteca gráfica GD nem o ImageMagick.
-A miniaturização de imagens será desactivada.',
+A miniaturização de imagens será desativada.',
 	'config-no-uri' => "'''Erro:''' Não foi possível determinar a URI actual.
 A instalação foi abortada.",
 	'config-no-cli-uri' => "'''Aviso''':  Não foi especificado um --scriptpath; por omissão, será usado: <code>$1</code>.",
@@ -16568,7 +16568,7 @@ Agora pode [$1 começar a usar a sua wiki].
 
 Se quiser regenerar o seu ficheiro <code>LocalSettings.php</code>, clique o botão abaixo.
 Esta operação '''não é recomendada''' a menos que esteja a ter problemas com a sua wiki.",
-	'config-upgrade-done-no-regenerate' => 'Actualização terminada.
+	'config-upgrade-done-no-regenerate' => 'Atualização terminada.
 
 Agora pode [$1 começar a usar a sua wiki].',
 	'config-regenerate' => 'Regenerar o LocalSettings.php →',
@@ -16585,11 +16585,11 @@ A conta que especificar aqui já tem de existir.',
 	'config-mysql-myisam' => 'MyISAM',
 	'config-mysql-myisam-dep' => "'''Aviso''': Seleccionou o MyISAM para motor de armazenamento do MySQL, uma combinação desaconselhada para usar com o MediaWiki porque:
 * praticamente não permite acessos simultâneos, devido aos bloqueios de tabelas
-* o MyISAM é mais susceptível a perdas da integridade dos dados do que outros motores
+* o MyISAM é mais suscetível a perdas da integridade dos dados do que outros motores
 * o código do MediaWiki não trabalha devidamente com o MyISAM
 
 Se a sua instalação do MySQL suporta InnoDB, é altamente recomendado que o escolha em vez do MyISAM.
-Se não suporta o InnoDB, talvez esta seja uma boa altura para fazer a actualização para a versão mais recente do MySQL.",
+Se não suporta o InnoDB, talvez esta seja uma boa altura para fazer a atualização para a versão mais recente do MySQL.",
 	'config-mysql-engine-help' => "'''InnoDB''' é quase sempre a melhor opção, porque suporta bem acessos simultâneos ''(concurrency)''.
 
 '''MyISAM''' pode ser mais rápido no modo de utilizador único ou em instalações somente para leitura.

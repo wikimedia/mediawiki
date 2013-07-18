@@ -1371,6 +1371,7 @@ Pastikan bahwa perubahan ini tetap mempertahankan kontinuitas versi terdahulu ha
 'compareselectedversions' => 'Bandingkan versi terpilih',
 'showhideselectedversions' => 'Tampilkan/sembunyikan versi terpilih',
 'editundo' => 'balikkan',
+'diff-empty' => '(Tidak ada perbedaan)',
 'diff-multi' => '({{PLURAL:$1|Satu|$1}} revisi antara oleh {{PLURAL:$2|satu|$2}} pengguna tak ditampilkan)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Satu|$1}} revisi antara oleh lebih dari $2 {{PLURAL:$2|satu|$2}} pengguna tak ditampilkan)',
 'difference-missing-revision' => '{{PLURAL:$2|Satu revisi|$2 revisi}} dari perbedaan ini ($1) {{PLURAL:$2|tidak|tidak}} ditemukan.

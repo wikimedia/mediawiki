@@ -1343,6 +1343,7 @@ Folosirea linkurilor de navigare va reseta această coloană.',
 'compareselectedversions' => 'Compară versiunile marcate',
 'showhideselectedversions' => 'Șterge/recuperează versiunile marcate',
 'editundo' => 'anulare',
+'diff-empty' => '(Nicio diferență)',
 'diff-multi' => '(Nu {{PLURAL:$1|s-a afișat o versiune intermediară efectuată|s-au afișat $1 versiuni intermediare efectuate|s-au afișat $1 de versiuni intermediare efectuate}} de {{PLURAL:$2|un utilizator|$2 utilizatori|$2 de utilizatori}})',
 'diff-multi-manyusers' => '({{PLURAL:$1|O versiune intermediară efectuată de|$1 (de) versiuni intermediare efectuate de peste}} $2 {{PLURAL:$2|utilizator|utilizatori}} {{PLURAL:$1|neafișată|neafișate}})',
 'difference-missing-revision' => '{{PLURAL:$2|O versiune a|$2 versiuni ale|$2 de versiuni ale}} acestei diferențe ($1) nu {{PLURAL:$2|a fost găsită|au fost găsite}}.

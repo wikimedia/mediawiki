@@ -510,7 +510,7 @@ $messages = array(
 'searcharticle' => 'Дехьа хьажа',
 'history' => 'Истори',
 'history_short' => 'Истори',
-'updatedmarker' => 'Керла яккхина со чуваьллачултlаьхьа',
+'updatedmarker' => 'Керла яккхина сона гинчултӀаьхьа',
 'printableversion' => 'Зорба туху верси',
 'permalink' => 'Даиман йолу хьажориг',
 'print' => 'Зорба тоха',
@@ -2170,6 +2170,7 @@ PICT # тайп тайпан
 
 # HTML forms
 'htmlform-submit' => 'ДӀадахьийта',
+'htmlform-reset' => 'Цаоьшу хийцамаш',
 'htmlform-selectorother-other' => 'Кхин',
 
 # New logging system

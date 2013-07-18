@@ -1417,6 +1417,7 @@ $1",
 'compareselectedversions' => '선택한 판을 비교하기',
 'showhideselectedversions' => '선택한 판을 보이기/숨기기',
 'editundo' => '편집 취소',
+'diff-empty' => '(차이 없음)',
 'diff-multi' => '({{PLURAL:$2|한 사용자의|사용자 $2명의}} {{PLURAL:$1|중간의 편집 $1개}} 숨겨짐)',
 'diff-multi-manyusers' => '({{PLURAL:$2|한 사용자의|사용자 $2명 이상의}} {{PLURAL:$1|중간의 편집 $1개}} 숨겨짐)',
 'difference-missing-revision' => '문서 비교에서 {{PLURAL:$2|하나|$2개}}의 판($1)을 찾을 수 {{PLURAL:$2|없습니다}}.
@@ -2375,7 +2376,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 [[Special:UnusedCategories|사용되지 않는 분류]]는 여기에 보이지 않습니다.
 [[Special:WantedCategories|필요한 분류]]도 참고하세요.',
 'categoriesfrom' => '다음으로 시작하는 분류를 보여주기:',
-'special-categories-sort-count' => '항목 갯수 순으로 정렬',
+'special-categories-sort-count' => '갯수 순으로 정렬',
 'special-categories-sort-abc' => '알파벳순으로 정렬',
 
 # Special:DeletedContributions

@@ -793,6 +793,7 @@ $2',
 'yourname' => 'Қатысушы аты:',
 'userlogin-yourname' => 'Қатысушы есіміңіз',
 'userlogin-yourname-ph' => 'Қатысушы есіміңізді еңгізіңіз',
+'createacct-another-username-ph' => 'Қатысушы есіміңізді еңгізіңіз',
 'yourpassword' => 'Құпия сөз:',
 'userlogin-yourpassword' => 'Құпия сөз',
 'userlogin-yourpassword-ph' => 'Құпия сөздіңізді енгізіңіз',
@@ -1574,7 +1575,7 @@ $1",
 'right-ipblock-exempt' => 'IP бұғаттауларды, өзбұғаттауларды және ауқым бұғаттауларды орағыту',
 'right-proxyunbannable' => 'Прокси серверлердің өзбұғаттауларын орағыту',
 'right-unblockself' => 'Өздерін бұғаттамау (Бұғаттаудан шығару)',
-'right-protect' => 'Қорғау деңгейлерін өзгерту және қорғалған беттерді өңдеу',
+'right-protect' => 'Қорғау деңгейлерін өзгерту және баулы-қорғаулы беттерді өңдеу',
 'right-editprotected' => 'Қорғалған беттерді өңдеу "{{int:protect-level-sysop}}"',
 'right-editsemiprotected' => 'Қорғалған беттерді өңдеу "{{int:protect-level-autoconfirmed}}"',
 'right-editinterface' => 'Қатысушы тілдесіуін өңдеу',
@@ -1756,7 +1757,8 @@ The deletion and move log for this page are provided here for convenience:",
 [[$1|thumb]]',
 'filepageexists' => 'Бұл файлдың сипаттама беті алдақашан <strong>[[:$1]]</strong> дегенде жасалған, бірақ ағымда былай аталған еш файл жоқ.
 Енгізген қысқаша мазмұндамаңыз сипаттамасы бетінде көрсетілмейді.
-Қысқаша мазмұндамаңыз осы арада көрсетілу үшін, бұны қолмен өңдемек болыңыз',
+Қысқаша мазмұндамаңыз осы арада көрсетілу үшін, бұны қолмен өңдемек болыңыз.
+[[$1|нобай]]',
 'fileexists-extension' => 'Ұқсас атауы бар файл табылды: [[$2|thumb]]
 * Қотарып берілетін файл атауы: <strong>[[:$1]]</strong>
 * Бар болған файл атауы: <strong>[[:$2]]</strong>
@@ -1768,9 +1770,9 @@ The deletion and move log for this page are provided here for convenience:",
 Бұл — мөлшері кішірітілген сурет ''(нобай)'' сияқты.
 Егер бұл суреттің толық ажыратылымдығы болса, бұны қотарып беріңіз, әйтпесе файл атауын өзгертіңіз.",
 'fileexists-forbidden' => 'Осылай аталған файл алдақашан бар;
-кері қайтыңыз да, осы файлды жаңа атымен қотарып беріңіз. [[File:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'Осылай аталған файл ортақ қоймада алдақашан бар;
-кері қайтыңыз да, осы файлды жаңа атымен қотарып беріңіз. [[File:$1|thumb|center|$1]]',
+кері қайтыңыз да, осы файлды жаңа атымен жүктеп беріңіз. [[File:$1|нобай|center|$1]]',
+'fileexists-shared-forbidden' => 'Осылай аталған файл ортаққорда алдақашан бар;
+кері қайтыңыз да, осы файлды жаңа атымен жүктеп беріңіз. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate' => 'Бұл файл келесі {{PLURAL:$1|файлдың|файлдарының}} телнұсқасы:',
 'uploadwarning' => 'Жүктеу жөнінде құлақтандыру',
 'savefile' => 'Файлды сақтау',
@@ -2976,6 +2978,7 @@ $2',
 
 # Patrol log
 'patrol-log-page' => 'Зерттеу журналы',
+'log-show-hide-patrol' => '$1 зерттеу журналы',
 
 # Image deletion
 'deletedrevision' => 'Ескі түзетуін жойды: $1',
@@ -2993,16 +2996,27 @@ $1',
 'nextdiff' => 'Келесі өңдеме →',
 
 # Media information
-'mediawarning' => "'''Құлақтандыру''': Бұл файл түрінде қаскүнемді коды бар болуы ықтимал; бұны жегіп жүйеңізге зиян келтіруіңіз мүмкін.",
-'imagemaxsize' => 'Сипаттамасы бетіндегі суреттің мөлшерін шектеуі:',
+'mediawarning' => "'''Ескерту''': Бұл файл түрінде қаскүнемді коды бар болуы ықтимал; бұны жегіп жүйеңізге зиян келтіруіңіз мүмкін.",
+'imagemaxsize' => "Суреттің өлшем шектеуі:<br />''(файл сипаттама беттері үшін)''",
 'thumbsize' => 'Нобай мөлшері:',
 'widthheight' => '$1 × $2',
 'widthheightpage' => '$1 × $2, $3 бет',
 'file-info' => 'Файл мөлшері: $1, MIME түрі: $2',
 'file-info-size' => '$1 × $2 нүкте, файл мөлшері: $3, MIME түрі: $4',
+'file-info-size-pages' => '$1 × $2 пиксель, Файл өлшемі: $3, MIME түрі: $4, $5 {{PLURAL:$5|бет|беттер}}',
 'file-nohires' => 'Жоғары кеңейтілімдегі нұсқалары жоқ.',
 'svg-long-desc' => 'SVG файлы, кесімді $1 × $2 нүкте, файл мөлшері: $3',
+'svg-long-desc-animated' => 'SVG қозғалысты файлы, кесімді $1 × $2 нүкте, файл өлшемі: $3',
+'svg-long-error' => 'жарамсыз SVG файлы: $1',
 'show-big-image' => 'Жоғары ажыратылымды',
+'show-big-image-preview' => 'Бұл қарап шығудағы өлшемі: $1.',
+'show-big-image-other' => 'Басқа {{PLURAL:$2|ажыратылымдық|ажыратылымдық}}: $1.',
+'show-big-image-size' => '$1 × $2 нүкте',
+'file-info-gif-looped' => 'тұйықталған',
+'file-info-gif-frames' => '$1 {{PLURAL:$1|жақтау терезе|жақтау терезелер}}',
+'file-info-png-looped' => 'тұйықталған',
+'file-info-png-repeat' => '$1 {{PLURAL:$1|уақыт|уақыт}} ойнатылды',
+'file-info-png-frames' => '$1 {{PLURAL:$1|жақтау терезе|жақтау терезелер}}',
 
 # Special:NewFiles
 'newimages' => 'Жаңа файлдар көрмесі',
@@ -3194,6 +3208,20 @@ $1',
 'exif-specialinstructions' => 'Арнайы таныстырылымдар',
 'exif-headline' => 'Тақырып',
 'exif-source' => 'Қайнары',
+'exif-contact' => 'Байланыс ақпараттары',
+'exif-writer' => 'Жазушы',
+'exif-languagecode' => 'Тіл',
+'exif-iimversion' => 'IIM нұсқа',
+'exif-iimcategory' => 'Санат',
+'exif-iimsupplementalcategory' => 'Қосымша санаттар',
+'exif-datetimeexpires' => 'Соңынан қолданба',
+'exif-identifier' => 'Жалпылауыш',
+'exif-lens' => 'Линза қолданылған',
+'exif-serialnumber' => 'Фотоаппараттың сериал нөмері',
+'exif-cameraownername' => 'Фотоаппараттың иесі',
+'exif-label' => 'Деңгей',
+'exif-copyrighted' => 'Авторлық құқық күйі:',
+'exif-copyrightowner' => 'Авторлық құқықтар иесі',
 
 # Exif attributes
 'exif-compression-1' => 'Ұлғайтылған',
@@ -3354,6 +3382,19 @@ $1',
 
 'exif-isospeedratings-overflow' => '65535-нан үлкенірек',
 
+'exif-iimcategory-fin' => 'Экономика және бизнес',
+'exif-iimcategory-edu' => 'Білім',
+'exif-iimcategory-evn' => 'Қоршаған орта',
+'exif-iimcategory-hth' => 'Денсаулық',
+'exif-iimcategory-pol' => 'Саясат',
+'exif-iimcategory-sci' => 'Ғылым және технология',
+'exif-iimcategory-spo' => 'Спорт',
+'exif-iimcategory-wea' => 'Ауа райы',
+
+'exif-urgency-normal' => 'Қалыпты ($1)',
+'exif-urgency-low' => 'Төмен ($1)',
+'exif-urgency-high' => 'Жоғары ($1)',
+
 # External editor support
 'edit-externally' => 'Бұл файлды шеттік қондырма арқылы өңдеу',
 'edit-externally-help' => '(көбірек ақпарат үшін [//www.mediawiki.org/wiki/Manual:External_editors орнату нұсқауларын] қараңыз.',
@@ -3362,10 +3403,11 @@ $1',
 'watchlistall2' => 'барлық',
 'namespacesall' => 'барлығы',
 'monthsall' => 'барлығы',
+'limitall' => 'барлығы',
 
 # Email address confirmation
 'confirmemail' => 'Е-пошта мекенжайын құптау',
-'confirmemail_noemail' => '[[{{#special:Preferences}}|Пайдаланушылық бапталымдарыңызда]] жарамды е-пошта мекенжайын қоймапсыз.',
+'confirmemail_noemail' => '[[Special:Preferences|Пайдаланушылық бапталымдарыңызда]] жарамды е-пошта мекенжайын қоймапсыз.',
 'confirmemail_text' => '{{SITENAME}} е-пошта мүмкіндіктерін пайдалану үшін алдынан е-пошта мекенжайыңыздың жарамдылығын тексеріп шығуыңыз керек.
 Өзіңіздің мекенжайыңызға құптау хатын жөнелту үшін төмендегі батырманы нұқыңыз.
 Хаттың ішінде коды бар сілтеме кірістірмек;
@@ -3376,7 +3418,7 @@ $1',
 'confirmemail_sent' => 'Құптау хаты жөнелтілді.',
 'confirmemail_oncreate' => 'Құптау коды е-пошта мекенжайыңызға жөнелтілді.
 Бұл белгілеме кіру үдірісіне керегі жоқ, бірақ е-пошта негізіндегі уики мүмкіндіктерді қосу үшін бұны жетістіруіңіз керек.',
-'confirmemail_sendfailed' => 'Құптау хаты жөнелтілмеді.
+'confirmemail_sendfailed' => '{{SITENAME}} құптау хаты жөнелтілмеді.
 Жарамсыз таңбалар үшін мекенжайды тексеріп шығыңыз.
 
 Пошта жібергіштің қайтарған мәліметі: $1',
@@ -3411,8 +3453,8 @@ $5
 'scarytranscludetoolong' => '[URL тым ұзын; ғафу етіңіз]',
 
 # Delete conflict
-'deletedwhileediting' => 'Құлақтандыру: Бұл бетті өңдеуіңізді бастағанда, осы бет жойылды!',
-'confirmrecreate' => "Бұл бетті өңдеуіңізді бастағанда [[{{ns:user}}:$1|$1]] ([[{{ns:user_talk}}:$1|талқылауы]]) осы бетті жойды, келтірген себебі:
+'deletedwhileediting' => 'Ескету: Бұл бетті өңдеуіңізді бастағанда, осы бет жойылды!',
+'confirmrecreate' => "Бұл бетті өңдеуіңізді бастағанда [[User:$1|$1]] ([[User talk:$1|талқылауы]]) осы бетті жойды, келтірген себебі:
 : ''$2''
 Осы бетті қайта бастауын нақты тілегеніңізді құптаңыз.",
 'recreate' => 'Қайта бастау',
@@ -3617,6 +3659,7 @@ $5
 'tags' => 'Тектерді өзгерту жарамсыз',
 'tag-filter' => '[[Special:Tags|Тег]] сүзгісі:',
 'tag-filter-submit' => 'Сүзгі',
+'tag-list-wrapper' => '([[Special:Tags|{{PLURAL:$1|Тег|Тег}}]]: $2)',
 'tags-title' => 'Тегтер',
 'tags-tag' => 'Тег атауы',
 'tags-display-header' => 'Өзгеріс тізіміндегі көрінісі',

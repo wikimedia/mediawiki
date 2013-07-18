@@ -99,6 +99,9 @@ $dateFormats = array(
 $linkTrail = '/^([a-zабвгдеєжѕзїіıићклмнопсстѹфхѡѿцчшщъыьѣюѥѧѩѫѭѯѱѳѷѵґѓђёјйљњќуўџэ҄я“»]+)(.*)$/sDu';
 
 $messages = array(
+# User preference toggles
+'tog-oldsig' => 'нꙑнѣшьн҄ь аѵтографъ :',
+
 'underline-always' => 'вьсѥгда',
 'underline-never' => 'никъгда',
 
@@ -269,7 +272,8 @@ $messages = array(
 'youhavenewmessages' => '$1 тєбѣ напьсанꙑ сѫтъ ($2)',
 'newmessageslink' => 'нови напьсаниꙗ',
 'newmessagesdifflink' => 'послѣдьнꙗ мѣна',
-'newmessageslinkplural' => '{{PLURAL:$1|ново напьсаниѥ|нова напьсании|новꙑ напьсаниꙗ}',
+'newmessageslinkplural' => '{{PLURAL:$1|ново напьсаниѥ|нова напьсании|новꙑ напьсаниꙗ}}',
+'newmessagesdifflinkplural' => '{{PLURAL:$1|послѣдьнꙗ мѣна|послѣдьни мѣни|послѣдьн҄ь мѣнъ}}',
 'editsection' => 'исправи',
 'editold' => 'исправи',
 'viewsourceold' => 'страницѧ источьнъ обраꙁъ',
@@ -294,10 +298,15 @@ $messages = array(
 'nstab-help' => 'страница помощи',
 'nstab-category' => 'катигорїꙗ',
 
+# Main script and global functions
+'nosuchspecialpage' => 'си нарочнꙑ страницѧ нѣстъ',
+
 # General errors
 'error' => 'блаꙁна',
+'internalerror' => 'вънѫтрѣнꙗ блаꙁна',
 'badtitle' => 'ꙁъло имѧ',
 'viewsource' => 'страницѧ источьнъ обраꙁъ',
+'viewsource-title' => 'вижьдь страницѧ ⁖ $1 ⁖ источьнъ обраꙁъ',
 
 # Login and logout pages
 'welcomeuser' => 'Добрѣ прити · $1!',
@@ -324,13 +333,18 @@ $messages = array(
 'createaccount' => 'съꙁижди си мѣсто',
 'gotaccount' => 'мѣсто ти ѥстъ ли? $1',
 'gotaccountlink' => 'въниди',
+'helplogin-url' => 'Help:Въниждѥниѥ',
 'createaccountreason' => 'какъ съмꙑслъ :',
 'createacct-reason' => 'какъ съмꙑслъ',
+'createacct-submit' => 'съꙁижди си мѣсто',
 'createacct-benefit-heading' => '{{SITENAME}} съꙁьдаѥтъ сѧ чьловѣкꙑ · ижє ꙗко тꙑ сѫтъ',
+'createacct-benefit-body1' => '{{PLURAL:$1|мѣна|мѣнꙑ|мѣнъ}}',
 'createacct-benefit-body2' => '{{PLURAL:$1|страница|страници|страницѧ}}',
 'userexists' => 'сѫщє польꙃєватєлꙗ имѧ пьса ⁙
 бѫди добръ · ино сѥ иꙁобрѧщи',
 'loginerror' => 'въхода блаꙁна',
+'createacct-error' => 'мѣста сътворѥниꙗ блаꙁна',
+'loginsuccess' => "'''нꙑнѣ тꙑ {{GENDER|въшьлъ|въшьла}} въ {{grammar:locative|{{SITENAME}}}} подь имьньмъ ⁖ $1 ⁖.'''",
 'mailmypassword' => 'посъли ново таино слово',
 'accountcreated' => 'мѣсто сътворєно ѥстъ',
 'loginlanguagelabel' => 'ѩꙁꙑкъ : $1',
@@ -343,6 +357,9 @@ $messages = array(
 
 # Special:PasswordReset
 'passwordreset-username' => 'польꙃєватєлꙗ имѧ :',
+
+# Special:ChangeEmail
+'changeemail-none' => '(нѣстъ)',
 
 # Edit page toolbar
 'link_sample' => 'съвѧꙁи имѧ',
@@ -444,6 +461,7 @@ $messages = array(
 # Preferences page
 'preferences' => 'строи',
 'mypreferences' => 'строи',
+'prefs-edits' => 'мѣнъ число :',
 'changepassword' => 'таина словєсє иꙁмѣнѥниѥ',
 'prefs-datetime' => 'дьнь и врѣмѧ',
 'prefs-rc' => 'послѣдьнѩ мѣнꙑ',
@@ -468,6 +486,7 @@ $messages = array(
 'prefs-files' => 'дѣла',
 'username' => '{{GENDER:$1|польꙃєватєлꙗ имѧ}} :',
 'uid' => '{{GENDER:$1|польꙃєватєлꙗ}} число :',
+'prefs-memberingroups' => '{{GENDER:$2|польꙃєватєлꙗ}} {{PLURAL:$1|чинъ|чина|чинꙑ}} :',
 'yourrealname' => 'истиньно имѧ :',
 'yourlanguage' => 'ѩꙁꙑкъ :',
 'yournick' => 'аѵтографъ :',

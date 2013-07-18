@@ -3801,7 +3801,7 @@ $5
 'specialpages-group-highuse' => 'सर्वात जास्त वापरली जाणारी पृष्ठे',
 'specialpages-group-pages' => 'पृष्ठ याद्या',
 'specialpages-group-pagetools' => 'पृष्ठ उपकरणे',
-'specialpages-group-wiki' => 'विकि डाटा व उपकरणे',
+'specialpages-group-wiki' => 'डाटा व उपकरणे',
 'specialpages-group-redirects' => 'पुनर्निर्देशन करणारी विशेष पृष्ठे',
 'specialpages-group-spam' => 'उत्पात साधने',
 

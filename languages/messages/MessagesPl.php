@@ -4062,7 +4062,7 @@ Powinieneś otrzymać [{{SERVER}}{{SCRIPTPATH}}/COPYING kopię licencji GNU Gene
 'tag-filter' => 'Filtr [[Special:Tags|wzorców tekstu]]',
 'tag-filter-submit' => 'Filtr',
 'tag-list-wrapper' => '([[Special:Tags|{{PLURAL:$1|Znacznik|Znaczniki}}]]: $2)',
-'tags-title' => 'Wzorce tekstu',
+'tags-title' => 'Znaczniki',
 'tags-intro' => 'Na tej stronie znajduje się lista wzorców tekstu, dla których oprogramowanie może oznaczyć edycje, dodatkowo wskazując ich znaczenie.',
 'tags-tag' => 'Nazwa znacznika',
 'tags-display-header' => 'Wystąpienia na listach zmian',

@@ -2311,6 +2311,7 @@ See also:
 
 This message has sometimes a tooltip {{msg-mw|tooltip-undo}}
 {{Identical|Undo}}',
+'diff-empty' => 'This message appears instead of a "diff" when comparing two revisions that are identical.',
 'diff-multi' => "This message appears in the revision history of a page when comparing two versions which aren't consecutive.
 
 *Parameter $1 is the number of revisions

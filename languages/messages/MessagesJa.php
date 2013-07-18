@@ -1445,6 +1445,7 @@ $1",
 'compareselectedversions' => '選択した版同士を比較',
 'showhideselectedversions' => '選択した版を表示/非表示',
 'editundo' => '取り消し',
+'diff-empty' => '(相違点なし)',
 'diff-multi' => '({{PLURAL:$2|$2人の利用者}}による、{{PLURAL:$1|間の$1版}}が非表示)',
 'diff-multi-manyusers' => '({{PLURAL:$2|$2人を超える利用者}}による、{{PLURAL:$1|間の$1版}}が非表示)',
 'difference-missing-revision' => '指定された{{PLURAL:$2|$2版}}の差分 ($1) が見つかりませんでした。

@@ -35,6 +35,7 @@
  * @author Roozbeh Pournader <roozbeh at gmail.com>
  * @author Sahim
  * @author Surena
+ * @author Taha
  * @author Wayiran
  * @author Zack90
  * @author ZxxZxxZ
@@ -1496,6 +1497,7 @@ $1",
 'compareselectedversions' => 'مقایسهٔ نسخه‌های انتخاب‌شده',
 'showhideselectedversions' => 'نمایش/نهفتن نسخه‌های انتخاب شده',
 'editundo' => 'خنثی‌سازی',
+'diff-empty' => '(بدون تفاوت)',
 'diff-multi' => '({{PLURAL:$1|یک|$1}} ویرایش میانی توسط {{PLURAL:$2|یک|$2}} کاربر نشان داده نشده‌است)',
 'diff-multi-manyusers' => '({{PLURAL:$1|یک|$1}} ویرایش میانی توسط بیش از {{PLURAL:$2|یک|$2}} کاربر نشان داده نشده‌است)',
 'difference-missing-revision' => '{{PLURAL:$2|یک ویرایش|$2 ویرایش}}  از تفاوت نسخه‌ها ($1) {{PLURAL:$2|یافت|یافت}}  نشد.
