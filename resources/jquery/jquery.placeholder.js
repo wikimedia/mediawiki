@@ -10,17 +10,23 @@
  */
 ( function ( $ ) {
 
-	$.fn.placeholder = function () {
+	$.fn.placeholder = function ( text ) {
+		// Check whether supplied argument is a string
+		var textIsValid = ( typeof text === 'string' );
 
 		return this.each( function () {
 			var placeholder, $input;
 
+
 			// If the HTML5 placeholder attribute is supported, use it
 			if ( this.placeholder && 'placeholder' in document.createElement( this.tagName ) ) {
+				if ( textIsValid ) {
+					this.setAttribute( 'placeholder', text );
+				}
 				return;
 			}
 
-			placeholder = this.getAttribute( 'placeholder' );
+			placeholder = textIsValid ? text : this.getAttribute( 'placeholder' );
 			$input = $(this);
 
 			// Show initially, if empty
