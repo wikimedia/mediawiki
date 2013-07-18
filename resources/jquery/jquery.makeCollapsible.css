@@ -2,6 +2,10 @@
 .mw-collapsible-toggle {
 	float: right;
 }
+.mw-customtoggle,
+.mw-collapsible-toggle {
+	cursor: pointer;
+}
 
 /* list-items go as wide as their parent element, don't float them inside list items */
 li .mw-collapsible-toggle {

@@ -284,6 +284,7 @@
 				if ( collapsibleId.indexOf( 'mw-customcollapsible-' ) === 0 ) {
 					mw.log( lpx + 'Found custom collapsible: #' + collapsibleId );
 					$customTogglers = $( '.' + collapsibleId.replace( 'mw-customcollapsible', 'mw-customtoggle' ) );
+					$customTogglers.addClass( 'mw-customtoggle' );
 
 					// Double check that there is actually a customtoggle link
 					if ( !$customTogglers.length ) {
