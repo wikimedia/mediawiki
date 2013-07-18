@@ -205,10 +205,16 @@ interface DatabaseType {
 }
 
 /**
+ * Interface for classes that implement or wrap DatabaseBase
+ * @ingroup Database
+ */
+interface IDatabase {}
+
+/**
  * Database abstraction object
  * @ingroup Database
  */
-abstract class DatabaseBase implements DatabaseType {
+abstract class DatabaseBase implements IDatabase, DatabaseType {
 	/** Number of times to re-try an operation in case of deadlock */
 	const DEADLOCK_TRIES = 4;
 	/** Minimum time to wait before retry, in microseconds */

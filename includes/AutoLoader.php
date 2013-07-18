@@ -486,6 +486,7 @@ $wgAutoloadLocalClasses = array(
 	'DBConnRef' => 'includes/db/LoadBalancer.php',
 	'DBError' => 'includes/db/DatabaseError.php',
 	'DBObject' => 'includes/db/DatabaseUtility.php',
+	'IDatabase'  => 'includes/db/Database.php',
 	'IORMRow' => 'includes/db/IORMRow.php',
 	'IORMTable' => 'includes/db/IORMTable.php',
 	'DBMasterPos' => 'includes/db/DatabaseUtility.php',
