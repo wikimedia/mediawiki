@@ -1609,8 +1609,13 @@ Templates: Dont escape already nowiki-escaped text in template parameters
 parsoid=html2wt,wt2wt
 !! input
 {{echo|foo<nowiki>|</nowiki>bar}}
+{{echo|<nowiki>&lt;div&gt;</nowiki>}}
+{{echo|<nowiki></nowiki>}}
 !! result
-<p about="#mwt1" typeof="mw:Transclusion" data-mw='{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"foo<nowiki>|</nowiki>bar"}},"i":0}'>foo<span typeof="mw:Nowiki" data-parsoid="{}">|</span>bar</p>
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"foo<nowiki>|</nowiki>bar"}},"i":0}'}'>foo</span><span typeof="mw:Nowiki" about="#mwt1">|</span><span about="#mwt1">bar</span>
+<span typeof="mw:Transclusion mw:Nowiki" about="#mwt2" data-mw='{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"<nowiki>&amp;lt;div&amp;gt;</nowiki>"}},"i":0}'><span typeof="mw:Entity">&lt;</span>div<span typeof="mw:Entity">&gt;</span></span>
+<span typeof="mw:Transclusion mw:Nowiki" about="#mwt3" data-mw='{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"<nowiki></nowiki>"}},"i":0}'></span>
+</p>
 !! end
 
 ###
@@ -8787,6 +8792,17 @@ parsoid
 <a rel="mw:WikiLink" href="Category:Foo">Category:Foo</a>
 <a rel="mw:WikiLink" href="Category:Foo">Bar</a>
 </p>
+!! end
+
+!! test
+Parsoid: Link prefix/suffixes aren't applied to category links
+!! options
+parsoid=wt2html,wt2wt,html2html
+language=is
+!! input
+x[[Category:Foo]]y
+!! result
+<p>x<link rel="mw:WikiLink/Category" href="Category:Foo">y</p>
 !! end
 
 !! test
@@ -16248,6 +16264,22 @@ parsoid=html2wt
 </ul>
 !! end
 
+!! test
+Parsoid: Serialize positional parameters with = in them as named parameter
+!! options
+parsoid=html2wt
+!! input
+{{echo|1 = f=oo}}
+!! result
+<p about="#mwt1" typeof="mw:Transclusion"
+data-mw='{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"f=oo"}},"i":0}'
+>foo</p>
+!! end
+
+# -----------------------------------------------------------------
+# End of section for Parsoid-only html2wt tests for serialization
+# of new content
+# -----------------------------------------------------------------
 
 TODO:
 more images
