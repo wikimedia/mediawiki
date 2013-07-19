@@ -1062,11 +1062,13 @@ class Preferences {
 			'type' => 'toggle',
 			'section' => 'misc/diffs',
 			'label-message' => 'tog-diffonly',
+			'agora' => true,
 		);
 		$defaultPreferences['norollbackdiff'] = array(
 			'type' => 'toggle',
 			'section' => 'misc/diffs',
 			'label-message' => 'tog-norollbackdiff',
+			'agora' => true,
 		);
 
 		// Stuff from Language::getExtraUserToggles()

@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /**
  * Provide Agora appearance for mw-ui-* classes when using a skin other than
  * Vector.
@@ -171,7 +172,7 @@ a.mw-ui-button {
   box-shadow: #4091ed 0px 0px 5px;
   border-color: #4091ed;
 }
-/* line 38, sourcefiles/scss/components/default/_forms.scss */
+/* line 40, sourcefiles/scss/components/default/_forms.scss */
 .mw-ui-vform > div label {
   display: block;
   -webkit-box-sizing: border-box;
@@ -187,7 +188,7 @@ a.mw-ui-button {
 .mw-ui-vform > div label * {
   font-weight: normal;
 }
-/* line 49, sourcefiles/scss/components/default/_forms.scss */
+/* line 51, sourcefiles/scss/components/default/_forms.scss */
 .mw-ui-vform > div input[type="checkbox"],
 .mw-ui-vform > div input[type="radio"] {
   display: inline;
@@ -197,7 +198,7 @@ a.mw-ui-button {
   width: auto;
 }
 
-/* line 65, sourcefiles/scss/components/default/_forms.scss */
+/* line 67, sourcefiles/scss/components/default/_forms.scss */
 .mw-ui-input {
   outline: 0;
   border-style: solid;
@@ -212,7 +213,7 @@ a.mw-ui-button {
   border-color: #4091ed;
 }
 
-/* line 72, sourcefiles/scss/components/default/_forms.scss */
+/* line 74, sourcefiles/scss/components/default/_forms.scss */
 .mw-ui-label {
   font-size: 0.9em;
   color: #4a4a4a;
@@ -222,7 +223,7 @@ a.mw-ui-button {
   font-weight: normal;
 }
 
-/* line 81, sourcefiles/scss/components/default/_forms.scss */
+/* line 83, sourcefiles/scss/components/default/_forms.scss */
 .mw-ui-checkbox-label, .mw-ui-radio-label {
   margin-bottom: 0.5em;
   cursor: pointer;
@@ -240,4 +241,34 @@ a.mw-ui-button {
   border-width: 1px;
   border-color: #c9c9c9;
   cursor: pointer;
+}
+
+/* line 88, sourcefiles/scss/components/default/_forms.scss */
+.client-js .mw-ui-check-label {
+  padding: 3px 9px;
+  border: 1px solid grey;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+  margin-right: 3px;
+}
+/* line 89, sourcefiles/scss/components/default/_forms.scss */
+.client-js .mw-ui-check-label .mw-ui-checkbox {
+  display: none;
+}
+/* line 99, sourcefiles/scss/components/default/_forms.scss */
+.client-js .mw-ui-check-label.mw-ui-checked {
+  background: url("img/form-icon/checked.png") no-repeat;
+}
+/* line 103, sourcefiles/scss/components/default/_forms.scss */
+.client-js .mw-ui-check-label.mw-ui-disabled {
+  background-color: lightgrey;
+}
+
+/* line 109, sourcefiles/scss/components/default/_forms.scss */
+table.mw-htmlform-container {
+  border-collapse: separate;
+  border-spacing: 0px 4px;
 }
