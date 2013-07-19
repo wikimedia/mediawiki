@@ -5227,8 +5227,11 @@ $wgUnwatchedPageThreshold = false;
  * Recent changes flag, shown in Recentchanges and watchlist
  *
  * Adding a new one:
- *   $wgRecentChangesFlags['flag'] => array( 'letter-msg', 'tooltip-msg' );
- * 'class' allows to set a css class different than the flag name
+ * @code
+ * $wgRecentChangesFlags['flag'] => array( 'letter' => 'letter-msg',
+ *     'title' => 'tooltip-msg' );
+ * @endcode
+ * optional 'class' allows to set a css class different than the flag name
  *
  * @since 1.22
  */
