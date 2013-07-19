@@ -151,7 +151,7 @@ $messages = array(
 'category-empty' => "''Бул категорияда азырынча эч бир барак же файл жок.''",
 'hidden-categories' => '{{PLURAL:$1|Жашыруун категория|Жашыруун категориялар}}',
 'hidden-category-category' => 'Жашыруун категориялар',
-'category-subcat-count' => '{{PLURAL:$2|Бул категория төмөнкү ички категорияны гана камтыйт.|Бул категорияда {{PLURAL:$1|ички категория|$1 ички категория}} бар.}}, $2 ичинен}}',
+'category-subcat-count' => '{{PLURAL:$2|Бул категория төмөнкү ички категорияны гана камтыйт.|Бул категорияда {{PLURAL:$1|ички категория|$1 ички категориялар}} бар, $2 ичинен}}',
 'category-subcat-count-limited' => 'Бул категорияда {{PLURAL:$1|$1|$1|$1}} ички категория бар.',
 'category-article-count' => '{{PLURAL:$2|Бул категория төмөнкү баракты камтыйт.|Бул категорияда жалпы $2, төмөнкү {{PLURAL:$1|барак|$1 барак}} бар.}}',
 'category-article-count-limited' => 'Бул категорияда {{PLURAL:$1|$1 барак}} бар.',
@@ -673,8 +673,8 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 Түшүндүрүү: '''({{int:cur}})''' = соңку версиясынан айырма, '''({{int:last}})''' = мурунку версиясынан айырма, '''{{int:minoreditletter}}''' = майда оңдоо.",
 'history-fieldset-title' => 'Тарыхын кароо',
 'history-show-deleted' => 'Өчүрүлгөндөрдү гана',
-'histfirst' => 'илгерки',
-'histlast' => 'Соңку',
+'histfirst' => 'эскирээк',
+'histlast' => 'жаңыраак',
 'historysize' => '({{PLURAL:$1|1 байт}})',
 'historyempty' => '(бош)',
 
@@ -996,7 +996,7 @@ To include a file in a page, use a link in one of the following forms:
 * '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code>''' for directly linking to the file without displaying the file",
 'upload-permitted' => 'Уруксат болгон файл типтери: $1.',
 'uploadlog' => 'жүктөө журналы',
-'uploadlogpage' => 'Жүктөөлөрдүн тизмеси',
+'uploadlogpage' => 'Жүктөөлөр журналы',
 'filename' => 'Файл аталышы',
 'filedesc' => 'Жыйынтыгы',
 'fileuploadsummary' => 'Кыскача баяндама:',
@@ -1210,7 +1210,7 @@ To include a file in a page, use a link in one of the following forms:
 'delete-legend' => 'Өчүрүү',
 'actioncomplete' => 'Иш-аракет жыйынтыкталды',
 'actionfailed' => 'Аракет натыйжасыз болду',
-'dellogpage' => 'Өчүрүүлөрдүн журналы',
+'dellogpage' => 'Өчүрүүлөр журналы',
 'deletecomment' => 'Себеби:',
 'deletereasonotherlist' => 'Башка себеби',
 
@@ -1423,7 +1423,7 @@ To include a file in a page, use a link in one of the following forms:
 'tooltip-pt-watchlist' => 'Өзгөрүүлөрүн көзөмөлгө алган барактардын тизмеси',
 'tooltip-pt-mycontris' => 'Салымдарыңыздын тизмеси',
 'tooltip-pt-login' => 'Сизге системада катталууга сунуш кылынат, бирок милдеттүү эмес',
-'tooltip-pt-logout' => 'Иш сеансын аяктоо',
+'tooltip-pt-logout' => 'Чыгуу',
 'tooltip-ca-talk' => 'Барактын мазмунун талкуулоо',
 'tooltip-ca-edit' => 'Сиз бул баракты оңдой аласыз. Кичи пейилдикке, сактоодон мурда алдын ала көрсөтүү баскычын колдонуңуз.',
 'tooltip-ca-addsection' => 'Жаңы бөлүм баштоо',
@@ -1732,7 +1732,7 @@ To include a file in a page, use a link in one of the following forms:
 'watchlistedit-raw-submit' => 'Көзөмөл тизмесин жаңыртуу',
 
 # Watchlist editing tools
-'watchlisttools-view' => 'Тийиштүү өзгөрүүлөрдү көрсөтүү',
+'watchlisttools-view' => 'Тийиштүү өзгөрүүлөрдү кароо',
 'watchlisttools-edit' => 'Көзөмөл тизмесин кароо жана оңдоо',
 'watchlisttools-raw' => 'Жетиле элек көзөмөл тизмени оңдоо',
 

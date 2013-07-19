@@ -1456,6 +1456,7 @@ Vos pouede trovar més de dètalys sur lo [{{fullurl:{{#Special:Log}}/delete|pag
 'searchdisabled' => 'La rechèrche dessus {{SITENAME}} est dèsactivâye.
 Pendent cél temps, vos pouede fâre na rechèrche avouéc Google.
 Notâd que lor endèxacion du contegnu de {{SITENAME}} pôt pas étre a jorn.',
+'search-error' => 'Na fôta est arrevâye en rechèrchient : $1',
 
 # Preferences page
 'preferences' => 'Prèferences',

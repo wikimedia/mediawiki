@@ -497,6 +497,7 @@ Nun t'escaezas de camudar les tos [[Special:Preferences|preferencies de {{SITENA
 'yourname' => "Nome d'usuariu:",
 'userlogin-yourname' => "Nome d'usuariu",
 'userlogin-yourname-ph' => "Escriba'l so nome d'usuariu",
+'createacct-another-username-ph' => "Escriba'l nome d'usuariu",
 'yourpassword' => 'Contraseña:',
 'userlogin-yourpassword' => 'Contraseña',
 'userlogin-yourpassword-ph' => 'Escriba la so contraseña',
@@ -531,9 +532,11 @@ Nun t'escaezas de camudar les tos [[Special:Preferences|preferencies de {{SITENA
 'helplogin-url' => 'Help:Aniciar sesión',
 'userlogin-helplink' => "[[{{MediaWiki:helplogin-url}}|Ayuda p'aniciar sesión]]",
 'createacct-join' => 'Escriba abaxo la so información.',
+'createacct-another-join' => 'Escriba abaxo la información de la cuenta nueva.',
 'createacct-emailrequired' => 'Direición de corréu electrónicu',
 'createacct-emailoptional' => 'Direición de corréu electrónicu (opcional)',
 'createacct-email-ph' => 'Escriba la so direición de corréu electrónicu',
+'createacct-another-email-ph' => 'Escriba la direición de corréu electrónicu',
 'createaccountmail' => 'Usar una contraseña al debalu temporal y unviala a la direición de corréu electrónicu conseñada más abaxo',
 'createacct-realname' => 'Nome real (opcional)',
 'createaccountreason' => 'Motivu:',
@@ -542,6 +545,7 @@ Nun t'escaezas de camudar les tos [[Special:Preferences|preferencies de {{SITENA
 'createacct-captcha' => 'Comprobación de seguridá',
 'createacct-imgcaptcha-ph' => "Escriba'l testu qu'apaez arriba",
 'createacct-submit' => 'Crear la cuenta',
+'createacct-another-submit' => 'Crear otra cuenta',
 'createacct-benefit-heading' => '{{SITENAME}} failu xente como vusté.',
 'createacct-benefit-body1' => '{{PLURAL:$1|edición|ediciones}}',
 'createacct-benefit-body2' => '{{PLURAL:$1|páxina|páxines}}',
@@ -653,7 +657,7 @@ Seique yá camudaras correutamente la contraseña o que pidieras una nueva contr
 # Special:PasswordReset
 'passwordreset' => 'Reaniciar contraseña',
 'passwordreset-text-one' => 'Complete esti formulariu pa reaniciar la contraseña.',
-'passwordreset-text-many' => '{{PLURAL:$1|Escriba una de les partes de los datos pa reaniciar la contraseña.}}',
+'passwordreset-text-many' => '{{PLURAL:$1|Rellene unu de los campos pa reaniciar la contraseña.}}',
 'passwordreset-legend' => 'Reaniciar contraseña',
 'passwordreset-disabled' => 'Los reanicios de contraseña tán desactivaos nesta wiki.',
 'passwordreset-emaildisabled' => 'Les funciones de corréu electrónicu tan desactivaes nesta wiki.',
@@ -1126,6 +1130,7 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'compareselectedversions' => 'Comparar les revisiones seleicionaes',
 'showhideselectedversions' => 'Amosar/anubrir les versiones seleicionaes',
 'editundo' => 'desfacer',
+'diff-empty' => '(Nun hai diferencies)',
 'diff-multi' => "({{PLURAL:$1|Nun s'amuesa 1 revisión intermedia|Nun s'amuesen $1 revisiones intermedies}} {{PLURAL:$2|d'un usuariu|de $2 usuarios}} )",
 'diff-multi-manyusers' => "({{PLURAL:$1|Nun s'amuesa una revisión intermedia|Nun s'amuesen $1 revisiones intermedies}} de más de $2 {{PLURAL:$2|usuariu|usuarios}})",
 'difference-missing-revision' => "{{PLURAL:$2|Nun s'alcontró|Nun s'alcontraron}} {{PLURAL:$2|una revisión|$2 revisiones}} d'esta diferencia ($1).
@@ -2288,7 +2293,7 @@ daquién más yá editó o revirtió la páxina.
 La postrer edición foi fecha por [[User:$3|$3]] ([[User talk:$3|alderique]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment' => "El resume de la edición yera: \"''\$1''\".",
 'revertpage' => 'Revertíes les ediciones de [[Special:Contributions/$2|$2]] ([[User talk:$2|alderique]]) hasta la cabera versión de [[User:$1|$1]]',
-'revertpage-nouser' => "Revertíes les ediciones de (nome d'usuariu desaniciáu) a la cabera revisión de [[User:$1|$1]]",
+'revertpage-nouser' => "Revertíes les ediciones d'un usuariu tapecíu a la cabera revisión de [[User:$1|$1]]",
 'rollback-success' => 'Revertíes les ediciones de $1; camudáu a la última versión de $2.',
 
 # Edit tokens

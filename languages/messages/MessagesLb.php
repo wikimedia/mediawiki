@@ -1625,9 +1625,9 @@ Si muss manner wéi $1 {{PLURAL:$1|Zeechen|Zeechen}} hunn.',
 'rc-old-title' => 'original als "$1" ugeluecht',
 
 # Recent changes linked
-'recentchangeslinked' => 'Ännerungen op verlinkte Säiten',
-'recentchangeslinked-feed' => 'Ännerungen op verlinkte Säiten',
-'recentchangeslinked-toolbox' => 'Ännerungen op verlinkte Säiten',
+'recentchangeslinked' => 'Ännerungen op verlinkt Säiten',
+'recentchangeslinked-feed' => 'Ännerungen op verlinkt Säiten',
+'recentchangeslinked-toolbox' => 'Ännerungen op verlinkt Säiten',
 'recentchangeslinked-title' => 'Ännerungen a Verbindung mat "$1"',
 'recentchangeslinked-summary' => "Dëst ass eng Lëscht mat Ännerunge vu verlinkte Säiten op eng bestëmmte Säit (oder vu Membersäite vun der spezifizéierter Kategorie).
 Säite vun [[Special:Watchlist|Ärer Iwwerwaachungslëscht]] si '''fett''' geschriwwen.",
@@ -1963,13 +1963,13 @@ Dir musst ëmmer de Medien- a Subtyp aginn: z. Bsp. <code>image/jpeg</code>.",
 'download' => 'eroflueden',
 
 # Unwatched pages
-'unwatchedpages' => 'Nët iwwerwaachte Säiten',
+'unwatchedpages' => 'Net iwwerwaacht Säiten',
 
 # List redirects
 'listredirects' => 'Lëscht vun de Viruleedungen',
 
 # Unused templates
-'unusedtemplates' => 'Onbenotzte Schablounen',
+'unusedtemplates' => 'Net benotzt Schablounen',
 'unusedtemplatestext' => 'Op dëser Säit stinn all Säiten aus dem {{ns:template}} Nummraum, déi a kenger anerer Säit benotzt ginn. Vergiesst net nozekucken, ob et keng aner Linken op dës Schabloune gëtt, ier Dir eng Schabloun läscht.',
 'unusedtemplateswlh' => 'Aner Linken',
 
@@ -2002,14 +2002,14 @@ Dir musst ëmmer de Medien- a Subtyp aginn: z. Bsp. <code>image/jpeg</code>.",
 'statistics-users-active-desc' => 'Benotzer déi während {{PLURAL:$1|dem leschten Dag|de leschten $1 Deeg}} eppes gemaach hunn',
 'statistics-mostpopular' => 'Am meeschte gekuckte Säiten',
 
-'disambiguations' => 'Säiten déi op Homonymie-Säite linken',
+'disambiguations' => 'Säiten déi op Homonymiesäite linken',
 'disambiguationspage' => 'Template:Homonymie',
 'disambiguations-text' => "Dës Säite ass mat mindestens enger '''Homonymie-Säit''' verlinkt.
 Si sollte am beschten op déi eigentlech gemengte Säit verlinkt sinn.<br />
 Eng Säite gëtt als Homonymie-Säit behandelt, wa si eng Schabloun benotzt déi vu [[MediaWiki:Disambiguationspage]] verlinkt ass.",
 
-'pageswithprop' => 'Säite mat enger Säiten-Eegeschaft',
-'pageswithprop-legend' => 'Säite mat enger Säiten-Eegeschaft',
+'pageswithprop' => 'Säite mat enger Säiteneegeschaft',
+'pageswithprop-legend' => 'Säite mat enger Säiteneegeschaft',
 'pageswithprop-text' => 'Op dëser Säit sti Säiten déi eng speziell Säiteneegeschaft benotzen.',
 'pageswithprop-prop' => 'Numm vun der Eegeschaft:',
 'pageswithprop-submit' => 'Lass',
@@ -2027,7 +2027,7 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi d\'Zil vun d
 'brokenredirects-edit' => 'änneren',
 'brokenredirects-delete' => 'läschen',
 
-'withoutinterwiki' => 'Säiten ouni Interwiki-Linken',
+'withoutinterwiki' => 'Säiten ouni Interwikilinken',
 'withoutinterwiki-summary' => 'Op dëser Spezialsäit stinn all déi Säiten déi keng Interwikilinken hunn.',
 'withoutinterwiki-legend' => 'Prefix',
 'withoutinterwiki-submit' => 'Weisen',
@@ -2051,8 +2051,8 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi d\'Zil vun d
 'uncategorizedcategories' => 'Kategorien déi selwer nach keng Kategorie hunn',
 'uncategorizedimages' => 'Biller ouni Kategorie',
 'uncategorizedtemplates' => 'Schablounen ouni Kategorie',
-'unusedcategories' => 'Onbenotzte Kategorien',
-'unusedimages' => 'Onbenotzte Biller',
+'unusedcategories' => 'Net benotzt Kategorien',
+'unusedimages' => 'Net benotzt Biller',
 'popularpages' => 'Populär Säiten',
 'wantedcategories' => 'Gewënscht Kategorien',
 'wantedpages' => 'Gewënscht Säiten',
@@ -2061,11 +2061,11 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi d\'Zil vun d
 'wantedfiletext-cat' => 'Dës Fichiere gi benotzt awer et gëtt se net. Fichiere aus frieme Repositorie kënnen hei gewise ginn och wann et se gëtt. All esou falsch Positiver ginn <del>duerchgestrach</del>. Zousätzlech gi Säiten an deene Fichieren dra sinn déi et net gëtt op [[:$1]] gewisen.',
 'wantedfiletext-nocat' => 'Dës Fichiere gi benotzt existéieren awer net. Fichieren aus frieme Repertoiren kënnen trotzdeem opgelëscht ginn. All dës positiv Fichiere ginn <del>duergestrach</del>.',
 'wantedtemplates' => 'Gewënscht Schablounen',
-'mostlinked' => 'Dacks verlinkte Säiten',
-'mostlinkedcategories' => 'Dacks benotzte Kategorien',
-'mostlinkedtemplates' => 'Dacks benotzte Schablounen',
+'mostlinked' => 'Dacks verlinkt Säiten',
+'mostlinkedcategories' => 'Dacks benotzt Kategorien',
+'mostlinkedtemplates' => 'Dacks benotzt Schablounen',
 'mostcategories' => 'Säite mat de meeschte Kategorien',
-'mostimages' => 'Dacks benotzte Biller',
+'mostimages' => 'Dacks benotzt Biller',
 'mostinterwikis' => 'Säite mat de meeschten Interwikilinken',
 'mostrevisions' => 'Säite mat de meeschte Versiounen',
 'prefixindex' => 'All Säite mat Prefix',
@@ -2074,7 +2074,7 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi d\'Zil vun d
 'longpages' => 'Laang Säiten',
 'deadendpages' => 'Sakgaasse-Säiten',
 'deadendpagestext' => 'Dës Säite si mat kenger anerer Säit op {{SITENAME}} verlinkt.',
-'protectedpages' => 'Gespaarte Säiten',
+'protectedpages' => 'Gespaart Säiten',
 'protectedpages-indef' => 'Nëmme onbegrenzt-gespaarte Säite weisen',
 'protectedpages-cascade' => 'Nëmme Säiten déi duerch Kaskade gespaart sinn',
 'protectedpagestext' => 'Dës Säite si gespaart esou datt si weder geännert nach geréckelt kënne ginn',
@@ -2430,8 +2430,8 @@ Hei sinn déi aktuell Astellunge fir d'Säit '''$1''':",
 'protect-dropdown' => '*Déi heefegst Grënn fir eng Säit ze spären
 ** Weblink-Spam
 ** Permanenten Ännerungskonflikt
-** Dacks benotzte Schablounen
-** Säit déi dacks besicht gëtt',
+** Dacks benotzt Schablounen
+** Säit déi dacks gekuckt gëtt',
 'protect-edit-reasonlist' => 'Grënn vun der Protectioun änneren',
 'protect-expiry-options' => '1 Stonn:1 hour,1 Dag:1 day,1 Woch:1 week,2 Wochen:2 weeks,1 Mount:1 month,3 Méint:3 months,6 Méint:6 months,1 Joer:1 year,onbegrenzt:infinite',
 'restriction-type' => 'Berechtigung:',

@@ -3848,6 +3848,13 @@ $messages['csb'] = array(
 	'mainpagetext' => "'''MediaWiki òsta zainstalowónô.'''",
 );
 
+/** Church Slavic (словѣ́ньскъ / ⰔⰎⰑⰂⰡⰐⰠⰔⰍⰟ)
+ * @author ОйЛ
+ */
+$messages['cu'] = array(
+	'config-help' => 'помощь',
+);
+
 /** Chuvash (Чӑвашла)
  */
 $messages['cv'] = array(
@@ -16300,7 +16307,7 @@ As sessões estão configuradas para uma duração de $1.
 Pode aumentar esta duração configurando <code>session.gc_maxlifetime</code> no php.ini.
 Reinicie o processo de instalação.',
 	'config-no-session' => 'Os seus dados de sessão foram perdidos!
-Verifique o seu php.ini e certifique-se de que em <code>session.save_path</code> está definido um directório apropriado.',
+Verifique o seu php.ini e certifique-se de que em <code>session.save_path</code> está definido um diretório apropriado.',
 	'config-your-language' => 'A sua língua:',
 	'config-your-language-help' => 'Seleccione a língua que será usada durante o processo de instalação.',
 	'config-wiki-language' => 'Língua da wiki:',
@@ -16414,9 +16421,9 @@ A instalação foi abortada.",
 	'config-no-cli-uri' => "'''Aviso''':  Não foi especificado um --scriptpath; por omissão, será usado: <code>$1</code>.",
 	'config-using-server' => 'Será usado o nome do servidor "<nowiki>$1</nowiki>".',
 	'config-using-uri' => 'Será usada a URL do servidor "<nowiki>$1$2</nowiki>".',
-	'config-uploads-not-safe' => "'''Aviso:''' O directório por omissão para uploads <code>$1</code>, está vulnerável à execução arbitrária de scripts.
+	'config-uploads-not-safe' => "'''Aviso:''' O diretório por omissão para uploads <code>$1</code>, está vulnerável à execução arbitrária de scripts.
 Embora o MediaWiki verifique a existência de ameaças de segurança em todos os ficheiros enviados, é altamente recomendado que [//www.mediawiki.org/wiki/Manual:Security#Upload_security vede esta vulnerabilidade de segurança] antes de possibilitar uploads.",
-	'config-no-cli-uploads-check' => "'''Aviso:''' O directório por omissão para uploads, <code>\$1</code>, não é verificado para determinar se é vulnerável à execução de código arbitrário durante a instalação por CLI (\"Command-line Interface\").",
+	'config-no-cli-uploads-check' => "'''Aviso:''' O diretório por omissão para uploads, <code>\$1</code>, não é verificado para determinar se é vulnerável à execução de código arbitrário durante a instalação por CLI (\"Command-line Interface\").",
 	'config-brokenlibxml' => 'O seu sistema tem uma combinação de versões de PHP e libxml2 conhecida por ser problemática, podendo causar corrupção de dados no MediaWiki e outras aplicações da internet.
 Actualize para o PHP versão 5.2.9 ou posterior e libxml2 versão 2.7.3 ou posterior ([//bugs.php.net/bug.php?id=45996 incidência reportada no PHP]).
 Instalação interrompida.',
@@ -16444,9 +16451,9 @@ Se estiver a usar um servidor partilhado, o fornecedor do alojamento deve poder 
 	'config-db-name-oracle' => "Esquema ''(schema)'' da base de dados:",
 	'config-db-account-oracle-warn' => "Há três cenários suportados na instalação do servidor de base de dados Oracle:
 
-Se pretende criar a conta de acesso pela internet na base de dados durante o processo de instalação, forneça como conta para a instalação uma conta com o papel de SYSDBA na base de dados e especifique as credenciais desejadas para a conta de acesso pela internet. Se não pretende criar a conta de acesso pela internet durante a instalação, pode criá-la manualmente e fornecer só essa conta para a instalação (se ela tiver as permissões necessárias para criar os objectos do esquema ''(schema)''). A terceira alternativa é fornecer duas contas diferentes; uma com privilégios de criação e outra com privilégios limitados para o acesso pela internet.
+Se pretende criar a conta de acesso pela internet na base de dados durante o processo de instalação, forneça como conta para a instalação uma conta com o papel de SYSDBA na base de dados e especifique as credenciais desejadas para a conta de acesso pela internet. Se não pretende criar a conta de acesso pela internet durante a instalação, pode criá-la manualmente e fornecer só essa conta para a instalação (se ela tiver as permissões necessárias para criar os objetos do esquema ''(schema)''). A terceira alternativa é fornecer duas contas diferentes; uma com privilégios de criação e outra com privilégios limitados para o acesso pela internet.
 
-Existe um script para criação de uma conta com os privilégios necessários no directório \"maintenance/oracle/\" desta instalação. Mantenha em mente que usar uma conta com privilégios limitados impossibilita todas as operações de manutenção com a conta padrão.",
+Existe um script para criação de uma conta com os privilégios necessários no diretório \"maintenance/oracle/\" desta instalação. Mantenha em mente que usar uma conta com privilégios limitados impossibilita todas as operações de manutenção com a conta padrão.",
 	'config-db-install-account' => 'Conta do utilizador para a instalação',
 	'config-db-username' => 'Nome do utilizador da base de dados:',
 	'config-db-password' => 'Palavra-chave do utilizador da base de dados:',
@@ -16480,15 +16487,15 @@ mas não lhe permitirá armazenar caracteres acima do [//en.wikipedia.org/wiki/M
 	'config-db-schema-help' => 'Normalmente, este esquema ("schema") estará correcto.
 Altere-o só se souber que precisa de o fazer.',
 	'config-pg-test-error' => "Não foi possível criar uma ligação à base de dados '''$1''': $2",
-	'config-sqlite-dir' => 'Directório de dados do SQLite:',
+	'config-sqlite-dir' => 'Diretório de dados do SQLite:',
 	'config-sqlite-dir-help' => "O SQLite armazena todos os dados num único ficheiro.
 
-Durante a instalação, o servidor de internet precisa de ter permissão de escrita no directório que especificar.
+Durante a instalação, o servidor de internet precisa de ter permissão de escrita no diretório que especificar.
 
-Este directório '''não''' deve poder ser acedido directamente da internet, por isso está a ser colocado onde estão os seus ficheiros PHP.
+Este diretório '''não''' deve poder ser acedido diretamente da internet, por isso está a ser colocado onde estão os seus ficheiros PHP.
 
-Juntamente com o directório, o instalador irá criar um ficheiro <code>.htaccess</code>, mas se esta operação falhar é possível que alguém venha a ter acesso directo à base de dados.
-Isto inclui acesso aos dados dos utilizadores (endereços de correio electrónico, palavras-chave encriptadas), às revisões eliminadas e a outros dados de acesso restrito na wiki.
+Juntamente com o diretório, o instalador irá criar um ficheiro <code>.htaccess</code>, mas se esta operação falhar é possível que alguém venha a ter acesso direto à base de dados.
+Isto inclui acesso aos dados dos utilizadores (endereços de correio eletrónico, palavras-chave encriptadas), às revisões eliminadas e a outros dados de acesso restrito na wiki.
 
 Considere colocar a base de dados num local completamente diferente, como, por exemplo, em <code>/var/lib/mediawiki/asuawiki</code>.",
 	'config-oracle-def-ts' => 'Tablespace padrão:',
@@ -16531,32 +16538,32 @@ Use só letras (a-z, A-Z), algarismos (0-9) e sublinhados (_) dos caracteres ASC
 	'config-sqlite-name-help' => 'Escolha o nome que identificará a sua wiki.
 Não use espaços ou hífens.
 Este nome será usado como nome do ficheiro de dados do SQLite.',
-	'config-sqlite-parent-unwritable-group' => 'Não é possível criar o directório de dados <code><nowiki>$1</nowiki></code>, porque o servidor de internet não tem permissão de escrita no directório que o contém <code><nowiki>$2</nowiki></code>.
+	'config-sqlite-parent-unwritable-group' => 'Não é possível criar o diretório de dados <code><nowiki>$1</nowiki></code>, porque o servidor de internet não tem permissão de escrita no diretório que o contém <code><nowiki>$2</nowiki></code>.
 
 O instalador determinou em que nome de utilizador o seu servidor de internet está a correr.
-Para continuar, configure o directório <code><nowiki>$3</nowiki></code> para poder ser escrito por este utilizador.
+Para continuar, configure o diretório <code><nowiki>$3</nowiki></code> para poder ser escrito por este utilizador.
 Para fazê-lo em sistemas Unix ou Linux, use:
 
 <pre>cd $2
 mkdir $3
 chgrp $4 $3
 chmod g+w $3</pre>',
-	'config-sqlite-parent-unwritable-nogroup' => 'Não é possível criar o directório de dados <code><nowiki>$1</nowiki></code>, porque o servidor de internet não tem permissão de escrita no directório que o contém <code><nowiki>$2</nowiki></code>.
+	'config-sqlite-parent-unwritable-nogroup' => 'Não é possível criar o diretório de dados <code><nowiki>$1</nowiki></code>, porque o servidor de internet não tem permissão de escrita no diretório que o contém <code><nowiki>$2</nowiki></code>.
 
 Não foi possível determinar em que nome de utilizador o seu servidor de internet está a correr.
-Para continuar, configure o directório <code><nowiki>$3</nowiki></code> para que este possa ser globalmente escrito por esse utilizador (e por outros!).
+Para continuar, configure o diretório <code><nowiki>$3</nowiki></code> para que este possa ser globalmente escrito por esse utilizador (e por outros!).
 Para fazê-lo em sistemas Unix ou Linux, use:
 
 <pre>cd $2
 mkdir $3
 chmod a+w $3</pre>',
-	'config-sqlite-mkdir-error' => 'Ocorreu um erro ao criar o directório de dados "$1".
+	'config-sqlite-mkdir-error' => 'Ocorreu um erro ao criar o diretório de dados "$1".
 Verifique a localização e tente novamente.',
-	'config-sqlite-dir-unwritable' => 'Não foi possível escrever no directório "$1".
+	'config-sqlite-dir-unwritable' => 'Não foi possível escrever no diretório "$1".
 Altere as permissões para que ele possa ser escrito pelo servidor de internet e tente novamente.',
 	'config-sqlite-connection-error' => '$1.
 
-Verifique o directório de dados e o nome da base de dados abaixo e tente novamente.',
+Verifique o diretório de dados e o nome da base de dados abaixo e tente novamente.',
 	'config-sqlite-readonly' => 'Não é possivel escrever no ficheiro <code>$1</code>.',
 	'config-sqlite-cant-create-db' => 'Não foi possível criar o ficheiro da base de dados <code>$1</code>.',
 	'config-sqlite-fts3-downgrade' => 'O PHP não tem suporte FTS3; a reverter o esquema das tabelas para o anterior',
@@ -16702,11 +16709,11 @@ Muitos servidores de correio electrónico exigem que pelo menos a parte do nome 
 	'config-upload-help' => 'O upload de ficheiros expõe o seu servidor a riscos de segurança.
 Para mais informações, leia a [//www.mediawiki.org/wiki/Manual:Security secção sobre segurança] do Manual Técnico.
 
-Para permitir o upload de ficheiros, altere as permissões do subdirectório <code>images</code> no directório de raiz do MediaWik para que o servidor de internet possa escrever nele.
-Depois active esta opção.',
-	'config-upload-deleted' => 'Directório para os ficheiros apagados:',
-	'config-upload-deleted-help' => 'Escolha um directório onde serão arquivados os ficheiros apagados.
-O ideal é que este directório não possa ser directamente acedido a partir da internet.',
+Para permitir o upload de ficheiros, altere as permissões do subdiretório <code>images</code> no diretório de raiz do MediaWiki para que o servidor de internet possa escrever nele.
+Depois ative esta opção.',
+	'config-upload-deleted' => 'Diretório para os ficheiros apagados:',
+	'config-upload-deleted-help' => 'Escolha um diretório onde serão arquivados os ficheiros apagados.
+O ideal é que este diretório não possa ser diretamente acedido a partir da internet.',
 	'config-logo' => 'URL do logótipo:',
 	'config-logo-help' => 'O tema padrão do MediaWiki inclui espaço para um logótipo de 135x160 pixels acima do menu da barra lateral.
 Coloque na wiki uma imagem com estas dimensões e introduza aqui a URL dessa imagem.
@@ -16739,9 +16746,9 @@ Deve-se colocar um por linha e indicar a porta a utilizar. Por exemplo:
 Se não sabe qual é a porta, a predefinida é a 11211.',
 	'config-memcache-badport' => 'Os números das portas do Memcached devem estar entre $1 e $2.',
 	'config-extensions' => 'Extensões',
-	'config-extensions-help' => 'Foi detectada a existência das extensões listadas acima, no seu directório <code>./extensions</code>.
+	'config-extensions-help' => 'Foi detectada a existência das extensões listadas acima, no seu diretório <code>./extensions</code>.
 
-Estas talvez necessitem de configurações adicionais, mas pode activá-las agora',
+Estas talvez necessitem de configurações adicionais, mas pode ativá-las agora',
 	'config-install-alreadydone' => "'''Aviso:''' Parece que já instalou o MediaWiki e está a tentar instalá-lo novamente.
 Passe para a próxima página, por favor.",
 	'config-install-begin' => 'Ao clicar "{{int:config-continue}}", vai iniciar a instalação do MediaWiki.
@@ -16792,7 +16799,7 @@ Terminou a instalação do MediaWiki.
 O instalador gerou um ficheiro <code>LocalSettings.php</code>.
 Este ficheiro contém todas as configurações.
 
-Precisa de fazer o download do ficheiro e colocá-lo no directório de raiz da sua instalação (o mesmo directório onde está o ficheiro index.php). Este download deverá ter sido iniciado automaticamente.
+Precisa de fazer o download do ficheiro e colocá-lo no diretório de raiz da sua instalação (o mesmo diretório onde está o ficheiro index.php). Este download deverá ter sido iniciado automaticamente.
 
 Se o download não foi iniciado, ou se o cancelou, pode recomeçá-lo clicando o link abaixo:
 

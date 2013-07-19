@@ -899,7 +899,7 @@ Você pode já ter alterado com sucesso a sua senha, ou solicitado uma nova senh
 # Special:PasswordReset
 'passwordreset' => 'Redefinir senha',
 'passwordreset-text-one' => 'Complete este formulário para trocar sua senha.',
-'passwordreset-text-many' => '{{PLURAL:$1|Entre com uma das partes dos dados para trocar sua senha.}}',
+'passwordreset-text-many' => '{{PLURAL:$1|Preencha um dos campos para trocar sua senha.}}',
 'passwordreset-legend' => 'Reiniciar a senha',
 'passwordreset-disabled' => 'Redefinições de senha foram desabilitadas nesta wiki.',
 'passwordreset-emaildisabled' => 'Os recursos de e-mail foram desativados nesta wiki.',
@@ -1127,7 +1127,7 @@ Volte à tela anterior e edite uma página já existente, ou [[Special:UserLogin
 'nocreate-loggedin' => 'Você não possui permissão para criar novas páginas.',
 'sectioneditnotsupported-title' => 'Edição por seções não suportada',
 'sectioneditnotsupported-text' => 'Edição por seções não suportada nesta página.',
-'permissionserrors' => 'Erros de permissões',
+'permissionserrors' => 'Erro de permissão',
 'permissionserrorstext' => 'Você não possui permissão de fazer isso, {{PLURAL:$1|pelo seguinte motivo|pelos seguintes motivos}}:',
 'permissionserrorstext-withaction' => 'Você não possui permissão para $2, {{PLURAL:$1|pelo seguinte motivo|pelos motivos a seguir}}:',
 'recreate-moveddeleted-warn' => "'''Atenção: Você está recriando uma página já eliminada em outra ocasião.'''
@@ -1186,6 +1186,7 @@ Estes argumentos foram omitidos.',
 'undo-failure' => 'A edição não pôde ser desfeita devido a alterações intermediárias conflitantes.',
 'undo-norev' => 'A edição não pôde ser desfeita porque não existe ou foi apagada.',
 'undo-summary' => 'Desfeita a edição $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussão]])',
+'undo-summary-username-hidden' => 'Desfazer a revisão $1 de um usuário oculto',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Não é possível criar uma conta',
@@ -1620,7 +1621,7 @@ Caso decida fornecê-lo, este será utilizado para dar-lhe crédito pelo seu tra
 'right-reupload-shared' => 'Sobrescrever localmente arquivos no repositório partilhado de mídias',
 'right-upload_by_url' => 'Enviar um arquivo por um URL',
 'right-purge' => 'Carregar a cache de uma página no site sem página de confirmação',
-'right-autoconfirmed' => 'Editar páginas semi-protegidas',
+'right-autoconfirmed' => 'Não ser afetado pelos limites de frequência baseados no número de IP',
 'right-bot' => 'Ser tratado como um processo automatizado',
 'right-nominornewtalk' => 'Não ter o aviso de novas mensagens despoletado quando são feitas edições menores a páginas de discussão',
 'right-apihighlimits' => 'Usar limites superiores em consultas (queries) via API',
@@ -1641,7 +1642,7 @@ Caso decida fornecê-lo, este será utilizado para dar-lhe crédito pelo seu tra
 'right-ipblock-exempt' => 'Contornar bloqueios de IP, automáticos e de intervalo',
 'right-proxyunbannable' => 'Contornar bloqueios automáticos de proxies',
 'right-unblockself' => 'Desbloquearem-se a si próprios',
-'right-protect' => 'Mudar níveis de proteção e editar páginas protegidas',
+'right-protect' => 'Mudar níveis de proteção e editar páginas protegidas em cascata',
 'right-editprotected' => 'Editar páginas protegidas (sem proteção em cascata)',
 'right-editinterface' => 'Editar a interface de usuário',
 'right-editusercssjs' => 'Editar os arquivos CSS e JS de outros usuários',

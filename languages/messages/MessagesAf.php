@@ -1597,7 +1597,7 @@ As u dit verskaf, sal dit gebruik word om erkenning vir u werk te gee.',
 'action-suppressionlog' => 'na die privaat logboek te kyk nie',
 'action-block' => 'blokkeer die gebruiker om wysigings te maak',
 'action-protect' => 'verander veiligheidsvlak van die bladsy',
-'action-rollback' => "rol die wysigings van die laatste gebruiker wat 'n bladsy gewysig het vinnig terug",
+'action-rollback' => "rol die wysigings van die laaste gebruiker wat 'n bladsy gewysig het vinnig terug",
 'action-import' => "hierdie bladsy van 'n ander wiki te importeer nie",
 'action-importupload' => "die bladsy van 'n opgelaaide lêer te importeer nie",
 'action-patrol' => 'wysigings van andere as gekontroleer te merk nie',
@@ -2226,7 +2226,7 @@ Benodig ten minste een topvlakdomein, soos byvoorbeeld "*.org".<br />
 # Special:ActiveUsers
 'activeusers' => 'Aktiewe gebruikers',
 'activeusers-intro' => "Hierdie is 'n lys van gebruikers wat die laaste {{PLURAL:$1|dag|$1 dae}} enige aktiwiteit getoon het.",
-'activeusers-count' => '$1 onlangse {{PLURAL:$1|wysiging|wysigings}} in die {{PLURAL:$3|afgelope dag|laatste $3 dae}}',
+'activeusers-count' => '$1 onlangse {{PLURAL:$1|wysiging|wysigings}} in die {{PLURAL:$3|afgelope dag|laaste $3 dae}}',
 'activeusers-from' => 'Wys gebruikers, beginnende by:',
 'activeusers-hidebots' => 'Versteek bots',
 'activeusers-hidesysops' => 'Versteek administrateurs',
@@ -2562,7 +2562,7 @@ $1',
 'mycontris' => 'Bydraes',
 'contribsub2' => 'Vir $1 ($2)',
 'nocontribs' => 'Geen veranderinge wat by hierdie kriteria pas, is gevind nie.',
-'uctop' => '(laatste wysiging)',
+'uctop' => '(laaste wysiging)',
 'month' => 'Vanaf maand (en vroeër):',
 'year' => 'Vanaf jaar (en vroeër):',
 
@@ -2850,11 +2850,11 @@ Kies asseblief 'n andere lêernaam.",
 # Export
 'export' => 'Eksporteer bladsye',
 'exporttext' => 'U kan die teks en geskiedenis van \'n bladsy of bladsye na XML-formaat eksporteer.
-Die eksportlêer kan daarna geïmporteer word na enige ander MediaWiki webwerf via die [[Special:Import|importeer bladsy]] skakel.
+Die eksportlêer kan daarna op enige ander MediaWiki-webwerf via die [[Special:Import|importeer bladsy]] skakel gelaai word.
 
 Verskaf die name van die bladsye wat geëksporteer moet word in die onderstaande veld, een bladsy per lyn, en kies of u alle weergawes (met geskiedenis) of slegs die nuutste weergawe soek.
 
-In die laatste geval kan u ook \'n verwysing gebruik, byvoorbeeld [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] vir die bladsy "{{MediaWiki:Mainpage}}".',
+In die laaste geval kan u ook \'n verwysing gebruik, byvoorbeeld [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] vir die bladsy "[[{{MediaWiki:Mainpage}}]]".',
 'exportall' => 'Eksporteer alle bladsye',
 'exportcuronly' => 'Slegs die nuutste weergawes, sonder volledige geskiedenis',
 'exportnohistory' => "----
@@ -3093,8 +3093,8 @@ Hierdie situasie was waarskynlik deur 'n skakel na 'n eksterne webtuiste op ons 
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|aanstuur|aansture}}; $3 {{PLURAL:$3|nie-aanstuur|nie-aansture}})',
 'pageinfo-firstuser' => 'Gebruiker wat die bladsy geskep het',
 'pageinfo-firsttime' => 'Datum waarop die bladsy geskep is',
-'pageinfo-lastuser' => 'Laatste wysiger',
-'pageinfo-lasttime' => 'Datum van laatste wysiging',
+'pageinfo-lastuser' => 'Laaste outeur',
+'pageinfo-lasttime' => 'Datum van laaste wysiging',
 'pageinfo-edits' => 'Totale aantal wysigings',
 'pageinfo-authors' => 'Totale aantal verskillende outeurs',
 'pageinfo-recent-edits' => 'Aantal onlangse wysigings (binne die afgelope $1)',

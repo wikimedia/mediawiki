@@ -3900,6 +3900,7 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'tags' => '有效標籤',
 'tag-filter' => '[[Special:Tags|標籤]]過濾器:',
 'tag-filter-submit' => '過濾器',
+'tag-list-wrapper' => '（[[Special:Tags|$1個標籤]]：$2）',
 'tags-title' => '標籤',
 'tags-intro' => '這個頁面列示出在軟件中已標示的編輯，以及它們的解釋。',
 'tags-tag' => '標籤名稱',

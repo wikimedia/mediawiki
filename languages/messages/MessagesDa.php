@@ -3690,7 +3690,7 @@ Bekræft venligst, at du virkelig vil oprette denne side igen.",
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => 'Ændringer som er nyere end {{PLURAL:$1|et sekund|$1 sekunder}}, vises muligvis ikke i denne liste.',
-'lag-warn-high' => 'Grundet stor belastning af databaseserveren, vil ændringer der er nyere end {{PLURAL:$1|et sekund|$1 sekunder}} måske ikke blive vist i denne liste.',
+'lag-warn-high' => 'Grundet stor belastning af databaseserveren vil ændringer der er nyere end {{PLURAL:$1|et sekund|$1 sekunder}} måske ikke blive vist i denne liste.',
 
 # Watchlist editor
 'watchlistedit-numitems' => 'Din overvågningsliste indeholder {{PLURAL:$1|1 side|$1 sider}}, diskussionssider fraregnet.',

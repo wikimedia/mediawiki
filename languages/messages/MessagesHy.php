@@ -413,7 +413,7 @@ $messages = array(
 'noindex-category' => 'Ինդեքսավորված էջեր չկան',
 'broken-file-category' => 'Կոտրված ֆայլի հղումով էջեր',
 
-'about' => 'Էությունը',
+'about' => 'Նախագծի մասին',
 'article' => 'Հոդված',
 'newwindow' => '(բացվելու է նոր պատուհանի մեջ)',
 'cancel' => 'Բեկանել',

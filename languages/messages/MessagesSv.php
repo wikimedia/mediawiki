@@ -28,6 +28,7 @@
  * @author LPfi
  * @author Lejonel
  * @author Leo Johannes
+ * @author Liftarn
  * @author Lokal Profil
  * @author M.M.S.
  * @author MagnusA
@@ -754,6 +755,7 @@ Glöm inte att justera dina [[Special:Preferences|{{SITENAME}}-inställningar]].
 'yourname' => 'Användarnamn:',
 'userlogin-yourname' => 'Användarnamn',
 'userlogin-yourname-ph' => 'Ange ditt användarnamn',
+'createacct-another-username-ph' => 'Skriv in användarnamnet',
 'yourpassword' => 'Lösenord:',
 'userlogin-yourpassword' => 'Lösenord',
 'userlogin-yourpassword-ph' => 'Ange ditt lösenord',
@@ -788,9 +790,11 @@ Glöm inte att justera dina [[Special:Preferences|{{SITENAME}}-inställningar]].
 'helplogin-url' => 'Help:Logga in',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Hjälp med inloggning]]',
 'createacct-join' => 'Ange din information nedan.',
+'createacct-another-join' => 'Ange information för det nya kontot nedan.',
 'createacct-emailrequired' => 'E-postadress',
 'createacct-emailoptional' => 'E-postadress (valfritt)',
 'createacct-email-ph' => 'Bekräfta din e-postadress',
+'createacct-another-email-ph' => 'Skriv in e-postadress',
 'createaccountmail' => 'Använd ett tillfälligt slumpvis valt lösenord och skicka det till e-postadressen som anges nedan',
 'createacct-realname' => 'Riktigt namn (valfritt)',
 'createaccountreason' => 'Orsak:',
@@ -799,6 +803,7 @@ Glöm inte att justera dina [[Special:Preferences|{{SITENAME}}-inställningar]].
 'createacct-captcha' => 'Säkerhetskontroll',
 'createacct-imgcaptcha-ph' => 'Fyll i texten du ser ovan',
 'createacct-submit' => 'Skapa ditt konto',
+'createacct-another-submit' => 'Skapa ett till konto',
 'createacct-benefit-heading' => '{{SITENAME}} är skapad av människor som dig.',
 'createacct-benefit-body1' => '{{PLURAL:$1|redigering|redigeringar}}',
 'createacct-benefit-body2' => '{{PLURAL:$1|sida|sidor}}',
@@ -1359,6 +1364,7 @@ Se till att sidhistorikens kontinuitet behålls när du sammanfogar historik.',
 'compareselectedversions' => 'Jämför angivna versioner',
 'showhideselectedversions' => 'Visa/dölj valda versioner',
 'editundo' => 'gör ogjord',
+'diff-empty' => '(Ingen skillnad)',
 'diff-multi' => '({{PLURAL:$1|En mellanliggande version|$1 mellanliggande versioner}} av {{PLURAL:$2|en användare|$2 användare}} visas inte)',
 'diff-multi-manyusers' => '({{PLURAL:$1|En mellanliggande version|$1 mellanliggande versioner}} av mer än $2 användare visas inte)',
 'difference-missing-revision' => '{{PLURAL:$2|En revision|$2 revisioner}} av denna skillnad ($1) kunde inte hittas.
@@ -4008,7 +4014,7 @@ Du bör ha fått [{{SERVER}}{{SCRIPTPATH}}/COPYING en kopia av GNU General Publi
 'tags' => 'Giltiga ändringsmärken',
 'tag-filter' => 'Filter för [[Special:Tags|märken]]:',
 'tag-filter-submit' => 'Filter',
-'tag-list-wrapper' => '([[Special:Tags|{{PLURAL:$1|Tagg|Taggar}}]]: $2)',
+'tag-list-wrapper' => '([[Special:Tags|{{PLURAL:$1|Märke|Märken}}]]: $2)',
 'tags-title' => 'Märken',
 'tags-intro' => 'Denna sida listar märkena som mjukvaran kan markera en redigering med, och deras betydelse.',
 'tags-tag' => 'Märkesnamn',
