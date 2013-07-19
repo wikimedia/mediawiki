@@ -1828,8 +1828,14 @@ class User {
 	}
 
 	/**
-	 * Return the revision and link for the oldest new talk page message for
-	 * this user.
+	 * Return the data needed to construct links for new page message alerts.
+	 * If there are new messages, this will return an associative array with the
+	 * following data:
+	 *     wiki: The database name of the wiki
+	 *     link: Root-relative link to the user's talk page
+	 *     rev: The last talk page revision that the user has seen or null. This
+	 *         is useful for building diff links.
+	 * If there is no new message, it returns an empty array.
 	 * @note This function was designed to accomodate multiple talk pages, but
 	 * currently only returns a single link and revision.
 	 * @return Array
@@ -1853,8 +1859,9 @@ class User {
 	}
 
 	/**
-	 * Get the revision ID for the oldest new talk page message for this user
-	 * @return int|null Revision id or null if there are no new messages
+	 * Get the revision ID for the last talk page revision viewed by the talk
+	 * page owner.
+	 * @return int|null Revision ID or null
 	 */
 	public function getNewMessageRevisionId() {
 		$newMessageRevisionId = null;
