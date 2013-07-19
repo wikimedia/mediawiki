@@ -6,7 +6,7 @@
 # Output to parent of build directory
 css_dir = ".."
 sass_dir = "scss"
-# (unused so far): images_dir = "modules/img"
+images_dir = "modules/img"
 # (unused so far): javascripts_dir = "modules/js"
 
 # You can select your preferred output style here (can be overridden via the command line):

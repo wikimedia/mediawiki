@@ -54,6 +54,7 @@ class SpecialPreferences extends SpecialPage {
 		}
 
 		$out->addModules( 'mediawiki.special.preferences' );
+		$out->addModuleStyles( 'mediawiki.ui' );
 
 		if ( $this->getRequest()->getCheck( 'success' ) ) {
 			$out->wrapWikiMsg(

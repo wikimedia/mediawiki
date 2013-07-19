@@ -1809,11 +1809,13 @@ class HTMLCheckField extends HTMLFormField {
 			$attr['disabled'] = 'disabled';
 		}
 
+		$attr['class']  = 'mw-ui-checkbox';
 		if ( $this->mClass !== '' ) {
-			$attr['class'] = $this->mClass;
+			$attr['class'] .= ' ' . $this->mClass;
 		}
 
 		return Xml::check( $this->mName, $value, $attr ) . '&#160;' .
+			Html::rawElement( 'label', array( 'for' => $this->mID, 'class' => 'mw-ui-check-label' ), '&#160;' ) .
 			Html::rawElement( 'label', array( 'for' => $this->mID ), $this->mLabel );
 	}
 
