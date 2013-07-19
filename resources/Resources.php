@@ -1091,6 +1091,9 @@ return array(
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 	),
 	'mediawiki.ui' => array(
+		'scripts' => array(
+			'resources/mediawiki.ui/mediawiki.ui.checkbox.js',
+		),
 		'skinStyles' => array(
 			'default' => 'resources/mediawiki.ui/mediawiki.ui.default.css',
 			'vector' => 'resources/mediawiki.ui/mediawiki.ui.vector.css',
