@@ -295,6 +295,10 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			$data[] = $item;
 		}
 
+		ksort($data, function( $a, $b ) {
+			return $a['id'] - $b['id'];
+		});
+
 		$this->getResult()->setIndexedTagName( $data, 'ns' );
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
