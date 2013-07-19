@@ -266,8 +266,8 @@ class GlobalTest extends MediaWikiTestCase {
 			array_unshift( $param_set, $sampleUTF );
 
 			$this->assertEquals(
-				MWFunction::callArray( 'mb_substr', $param_set ),
-				MWFunction::callArray( 'Fallback::mb_substr', $param_set ),
+				call_user_func_array( 'mb_substr', $param_set ),
+				call_user_func_array( 'Fallback::mb_substr', $param_set ),
 				'Fallback mb_substr with params ' . implode( ', ', $old_param_set )
 			);
 		}
@@ -294,14 +294,14 @@ class GlobalTest extends MediaWikiTestCase {
 			array_unshift( $param_set, $sampleUTF );
 
 			$this->assertEquals(
-				MWFunction::callArray( 'mb_strpos', $param_set ),
-				MWFunction::callArray( 'Fallback::mb_strpos', $param_set ),
+				call_user_func_array( 'mb_strpos', $param_set ),
+				call_user_func_array( 'Fallback::mb_strpos', $param_set ),
 				'Fallback mb_strpos with params ' . implode( ', ', $old_param_set )
 			);
 
 			$this->assertEquals(
-				MWFunction::callArray( 'mb_strrpos', $param_set ),
-				MWFunction::callArray( 'Fallback::mb_strrpos', $param_set ),
+				call_user_func_array( 'mb_strrpos', $param_set ),
+				call_user_func_array( 'Fallback::mb_strrpos', $param_set ),
 				'Fallback mb_strrpos with params ' . implode( ', ', $old_param_set )
 			);
 		}

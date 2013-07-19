@@ -121,7 +121,7 @@ if ( is_readable( "$IP/vendor/autoload.php" ) ) {
 
 if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 	# Use a callback function to configure MediaWiki
-	MWFunction::call( MW_CONFIG_CALLBACK );
+	call_user_func( MW_CONFIG_CALLBACK );
 } else {
 	if ( !defined( 'MW_CONFIG_FILE' ) ) {
 		define( 'MW_CONFIG_FILE', "$IP/LocalSettings.php" );

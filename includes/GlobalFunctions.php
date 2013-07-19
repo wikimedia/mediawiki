@@ -1351,7 +1351,7 @@ function wfMessage( $key /*...*/) {
  */
 function wfMessageFallback( /*...*/ ) {
 	$args = func_get_args();
-	return MWFunction::callArray( 'Message::newFallbackSequence', $args );
+	return call_user_func_array( 'Message::newFallbackSequence', $args );
 }
 
 /**

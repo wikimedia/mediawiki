@@ -1,26 +1,6 @@
 <?php
 
 class MWFunctionTest extends MediaWikiTestCase {
-	function testCallUserFuncWorkarounds() {
-		$this->assertEquals(
-			call_user_func( array( 'MWFunctionTest', 'someMethod' ) ),
-			MWFunction::call( 'MWFunctionTest::someMethod' )
-		);
-		$this->assertEquals(
-			call_user_func( array( 'MWFunctionTest', 'someMethod' ), 'foo', 'bar', 'baz' ),
-			MWFunction::call( 'MWFunctionTest::someMethod', 'foo', 'bar', 'baz' )
-		);
-
-		$this->assertEquals(
-			call_user_func_array( array( 'MWFunctionTest', 'someMethod' ), array() ),
-			MWFunction::callArray( 'MWFunctionTest::someMethod', array() )
-		);
-		$this->assertEquals(
-			call_user_func_array( array( 'MWFunctionTest', 'someMethod' ), array( 'foo', 'bar', 'baz' ) ),
-			MWFunction::callArray( 'MWFunctionTest::someMethod', array( 'foo', 'bar', 'baz' ) )
-		);
-	}
-
 	function testNewObjFunction() {
 		$arg1 = 'Foo';
 		$arg2 = 'Bar';
@@ -34,30 +14,6 @@ class MWFunctionTest extends MediaWikiTestCase {
 			MWFunction::newObj( 'MWBlankClass', $args )->args,
 			$newObject->args
 		);
-
-		$this->assertEquals(
-			MWFunction::newObj( 'MWBlankClass', $args, true )->args,
-			$newObject->args,
-			'Works even with PHP version < 5.1.3'
-		);
-	}
-
-	/**
-	 * @expectedException MWException
-	 */
-	function testCallingParentFails() {
-		MWFunction::call( 'parent::foo' );
-	}
-
-	/**
-	 * @expectedException MWException
-	 */
-	function testCallingSelfFails() {
-		MWFunction::call( 'self::foo' );
-	}
-
-	public static function someMethod() {
-		return func_get_args();
 	}
 }
 
