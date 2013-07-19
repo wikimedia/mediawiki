@@ -74,14 +74,14 @@ class SpecialLog extends SpecialPage {
 			$opts->setValue( 'month', '' );
 		}
 
-		// Reset the log type to default (nothing) if it's invalid or if the
-		// user does not possess the right to view it
+		// If the user doesn't have the right permission to view the specific
+		// log type, throw a PermissionsError
+		// If the log type is invalid, just show all public logs
 		$type = $opts->getValue( 'type' );
-		if ( !LogPage::isLogType( $type )
-			|| ( isset( $wgLogRestrictions[$type] )
-				&& !$this->getUser()->isAllowed( $wgLogRestrictions[$type] ) )
-		) {
+		if ( !LogPage::isLogType( $type ) ) {
 			$opts->setValue( 'type', '' );
+		} elseif ( isset( $wgLogRestrictions[$type] ) && !$this->getUser()->isAllowed( $wgLogRestrictions[$type] ) ) {
+			throw new PermissionsError( $wgLogRestrictions[$type] );
 		}
 
 		# Handle type-specific inputs
