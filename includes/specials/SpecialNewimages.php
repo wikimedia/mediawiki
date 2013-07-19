@@ -37,9 +37,12 @@ class SpecialNewFiles extends IncludableSpecialPage {
 			$form->displayForm( '' );
 		}
 
-		$this->getOutput()->addHTML( $pager->getBody() );
+		$out = $this->getOutput();
+		$out->addModuleStyles( 'mediawiki.ui' );
+		$out->addHTML( $pager->getBody() );
+
 		if ( !$this->including() ) {
-			$this->getOutput()->addHTML( $pager->getNavigationBar() );
+			$out->addHTML( $pager->getNavigationBar() );
 		}
 	}
 

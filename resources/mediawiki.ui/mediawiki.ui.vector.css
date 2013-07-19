@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /**
  * Provide Agora appearance for mw-ui-* classes when using the Vector skin.
  * Compass builds these Agora styles from source Sass files in
@@ -262,21 +263,26 @@ a.mw-ui-button {
   text-shadow: none;
 }
 
-/* line 14, sourcefiles/scss/components/default/_forms.scss */
+/* line 42, form-icon/*.png */
+.form-icon-sprite, .mw-ui-checkbox:checked + .mw-ui-check-label {
+  background: url('sourcefiles/modules/img/form-icon-s99fef9ea93.png') no-repeat;
+}
+
+/* line 16, sourcefiles/scss/components/default/_forms.scss */
 .mw-ui-vform {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   width: 290px;
 }
-/* line 19, sourcefiles/scss/components/default/_forms.scss */
+/* line 21, sourcefiles/scss/components/default/_forms.scss */
 .mw-ui-vform > div {
   display: block;
   margin: 0 0 15px 0;
   padding: 0;
   width: 100%;
 }
-/* line 27, sourcefiles/scss/components/default/_forms.scss */
+/* line 29, sourcefiles/scss/components/default/_forms.scss */
 .mw-ui-vform > div input,
 .mw-ui-vform > div .mw-ui-button {
   display: block;
@@ -286,7 +292,7 @@ a.mw-ui-button {
   margin: 0;
   width: 100%;
 }
-/* line 36, sourcefiles/scss/components/default/_forms.scss */
+/* line 38, sourcefiles/scss/components/default/_forms.scss */
 .mw-ui-vform > div input:not([type=button]):not([type=submit]):not([type=file]) {
   outline: 0;
   border-style: solid;
@@ -300,7 +306,7 @@ a.mw-ui-button {
   box-shadow: #4091ed 0px 0px 5px;
   border-color: #4091ed;
 }
-/* line 38, sourcefiles/scss/components/default/_forms.scss */
+/* line 42, sourcefiles/scss/components/default/_forms.scss */
 .mw-ui-vform > div label {
   display: block;
   -webkit-box-sizing: border-box;
@@ -316,7 +322,7 @@ a.mw-ui-button {
 .mw-ui-vform > div label * {
   font-weight: normal;
 }
-/* line 49, sourcefiles/scss/components/default/_forms.scss */
+/* line 53, sourcefiles/scss/components/default/_forms.scss */
 .mw-ui-vform > div input[type="checkbox"],
 .mw-ui-vform > div input[type="radio"] {
   display: inline;
@@ -326,7 +332,7 @@ a.mw-ui-button {
   width: auto;
 }
 
-/* line 65, sourcefiles/scss/components/default/_forms.scss */
+/* line 69, sourcefiles/scss/components/default/_forms.scss */
 .mw-ui-input {
   outline: 0;
   border-style: solid;
@@ -341,7 +347,7 @@ a.mw-ui-button {
   border-color: #4091ed;
 }
 
-/* line 72, sourcefiles/scss/components/default/_forms.scss */
+/* line 76, sourcefiles/scss/components/default/_forms.scss */
 .mw-ui-label {
   font-size: 0.9em;
   color: #4a4a4a;
@@ -351,7 +357,7 @@ a.mw-ui-button {
   font-weight: normal;
 }
 
-/* line 81, sourcefiles/scss/components/default/_forms.scss */
+/* line 85, sourcefiles/scss/components/default/_forms.scss */
 .mw-ui-checkbox-label, .mw-ui-radio-label {
   margin-bottom: 0.5em;
   cursor: pointer;
@@ -369,6 +375,39 @@ a.mw-ui-button {
   border-width: 1px;
   border-color: #c9c9c9;
   cursor: pointer;
+}
+
+/* line 89, sourcefiles/scss/components/default/_forms.scss */
+.mw-ui-checkbox {
+  display: none;
+}
+
+/* line 93, sourcefiles/scss/components/default/_forms.scss */
+.mw-ui-check-label {
+  padding: 3px 9px;
+  border: 1px solid grey;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+  margin-right: 3px;
+}
+
+/* line 100, sourcefiles/scss/components/default/_forms.scss */
+.mw-ui-checkbox:checked + .mw-ui-check-label {
+  background-position: 0 0;
+}
+
+/* line 104, sourcefiles/scss/components/default/_forms.scss */
+.mw-ui-checkbox:disabled + .mw-ui-check-label {
+  background-color: lightgrey;
+}
+
+/* line 109, sourcefiles/scss/components/default/_forms.scss */
+table.mw-htmlform-container {
+  border-collapse: separate;
+  border-spacing: 0px 4px;
 }
 
 /* line 5, sourcefiles/scss/components/vector/_forms.scss */

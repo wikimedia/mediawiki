@@ -1028,6 +1028,9 @@ abstract class FormSpecialPage extends SpecialPage {
 		$this->setParameter( $par );
 		$this->setHeaders();
 
+		$out = $this->getOutput();
+		$out->addModuleStyles( 'mediawiki.ui' );
+
 		// This will throw exceptions if there's a problem
 		$this->checkExecutePermissions( $this->getUser() );
 

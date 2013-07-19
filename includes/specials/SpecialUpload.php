@@ -196,10 +196,13 @@ class SpecialUpload extends SpecialPage {
 			$this->showViewDeletedLinks();
 		}
 
+		$out = $this->getOutput();
+		$out->addModuleStyles( 'mediawiki.ui' );
+
 		if ( $form instanceof HTMLForm ) {
 			$form->show();
 		} else {
-			$this->getOutput()->addHTML( $form );
+			$out->addHTML( $form );
 		}
 
 	}
