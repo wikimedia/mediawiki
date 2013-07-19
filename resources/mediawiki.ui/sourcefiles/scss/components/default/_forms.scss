@@ -1,5 +1,7 @@
 // Form elements and layouts
 
+@import 'form-icon/*.png';
+
 // --------------------------------------------------------------------------
 // Layouts
 // --------------------------------------------------------------------------
@@ -82,4 +84,23 @@ $defaultFormWidth: $captchaContainerWidth;
 //   </label>
 .mw-ui-checkbox-label, .mw-ui-radio-label {
     @include agora-inline-label-styling;
+}
+
+.mw-ui-checkbox {
+	display: none;
+}
+
+.mw-ui-check-label {
+	padding: 0px 6px;
+	border: 1px solid grey;
+	@include border-radius(2px);
+	margin-right: 3px;
+}
+
+.mw-ui-checkbox:checked + .mw-ui-check-label {
+	@include form-icon-sprite( checked );
+}
+
+.mw-ui-checkbox:disabled + .mw-ui-check-label {
+	background-color: lightgrey;
 }
