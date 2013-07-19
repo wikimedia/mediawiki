@@ -165,6 +165,9 @@ class LoginForm extends SpecialPage {
 		}
 		$this->setHeaders();
 
+		// For fancy checkboxes
+		$this->getOutput()->addModuleScripts( 'mediawiki.ui.js' );
+
 		// If logging in and not on HTTPS, either redirect to it or offer a link.
 		global $wgSecureLogin;
 		if (
