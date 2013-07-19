@@ -50,6 +50,8 @@ class SpecialListGroupRights extends SpecialPage {
 		$out = $this->getOutput();
 		$out->addModuleStyles( 'mediawiki.special' );
 
+		$out->wrapWikiMsg( "<div class=\"mw-listgrouprights-key\">\n$1\n</div>", 'listgrouprights-key' );
+
 		$out->addHTML(
 			Xml::openElement( 'table', array( 'class' => 'wikitable mw-listgrouprights-table' ) ) .
 				'<tr>' .
@@ -129,10 +131,7 @@ class SpecialListGroupRights extends SpecialPage {
 				'
 			) );
 		}
-		$out->addHTML(
-			Xml::closeElement( 'table' ) . "\n<br /><hr />\n"
-		);
-		$out->wrapWikiMsg( "<div class=\"mw-listgrouprights-key\">\n$1\n</div>", 'listgrouprights-key' );
+		$out->addHTML( Xml::closeElement( 'table' ) );
 	}
 
 	/**
