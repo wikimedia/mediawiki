@@ -394,6 +394,11 @@ class CSSJanusTest extends MediaWikiTestCase {
 				'/* @noflip */ div { float: left; } .foo { float: right; }'
 			),
 			array(
+				// support paranthesis on selector
+				'/* @noflip */ .test:not(:first) { margin-right: -0.25em; margin-left: 0.25em; }',
+				'/* @noflip */ .test:not(:first) { margin-right: -0.25em; margin-left: 0.25em; }'
+			),
+			array(
 				// after multiple rules
 				'.foo { float: left; } /* @noflip */ div { float: left; }',
 				'.foo { float: right; } /* @noflip */ div { float: left; }'
