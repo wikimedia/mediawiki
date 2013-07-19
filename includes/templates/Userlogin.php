@@ -137,19 +137,21 @@ class UserloginTemplate extends BaseTemplate {
 		echo $this->data['extrafields'];
 	} ?>
 
-		<div>
-
+	<div>
 	<?php if ( $this->data['canremember'] ) { ?>
-		<label class="mw-ui-checkbox-label">
+		<label class="mw-ui-styled-checkbox-label<?php if ( $this->data['remember'] ) { echo ' checked'; } ?>">
 			<input name="wpRemember" type="checkbox" value="1" id="wpRemember" tabindex="4"
 				<?php if ( $this->data['remember'] ) {
 					echo 'checked="checked"';
 				} ?>
-			>
+			>&nbsp;
+		</label>
+
+		<label class="mw-ui-checkbox-label" for="wpRemember">
 			<?php echo $this->getMsg( 'userlogin-remembermypassword' )->numParams( $expirationDays )->escaped(); ?>
 		</label>
 	<?php } ?>
-		</div>
+	</div>
 
 	<?php if ( $this->data['cansecurelogin'] ) { ?>
 		<div>
