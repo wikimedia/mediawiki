@@ -1008,7 +1008,7 @@ class HTMLForm extends ContextSource {
 		}
 
 		if ( $displayFormat !== 'raw' ) {
-			$classes = array();
+			$classes = array( 'mw-htmlform-container' );
 
 			if ( !$hasLabel ) { // Avoid strange spacing when no labels exist
 				$classes[] = 'mw-htmlform-nolabel';
@@ -1805,16 +1805,55 @@ class HTMLCheckField extends HTMLFormField {
 		$attr = $this->getTooltipAndAccessKey();
 		$attr['id'] = $this->mID;
 
-		if ( !empty( $this->mParams['disabled'] ) ) {
+		$disabled = array_key_exists( 'disabled', $this->mParams ) && $this->mParams['disabled'] === true;
+
+		if ( $disabled ) {
 			$attr['disabled'] = 'disabled';
 		}
 
+		$classes = array();
 		if ( $this->mClass !== '' ) {
-			$attr['class'] = $this->mClass;
+			$classes[] = $this->mClass;
 		}
 
-		return Xml::check( $this->mName, $value, $attr ) . '&#160;' .
-			Html::rawElement( 'label', array( 'for' => $this->mID ), $this->mLabel );
+		$html = '';
+
+		$useAgora = array_key_exists( 'mw-ui', $this->mParams ) && $this->mParams['mw-ui'] === true;
+
+		if ( $useAgora ) {
+			$classes[] = 'mw-ui-checkbox';
+
+			$labelClasses = array( 'mw-ui-styled-checkbox-label' );
+			$labelAttrs = array(
+				'for' => $this->mID,
+				'role' => 'checkbox',
+			);
+
+			if ( $disabled ) {
+				$labelClasses[] = 'mw-ui-disabled';
+			}
+
+			if ( $value ) {
+				$labelClasses[] = 'mw-ui-checked';
+				$labelAttrs['aria-checked'] = true;
+			}
+
+			$labelAttrs['class'] = $labelClasses;
+
+			$this->mParent->getOutput()->addModuleScripts( 'mediawiki.ui.js' );
+			$html .= Html::openElement( 'label', $labelAttrs );
+		}
+
+		$attr['class'] = implode( ' ', $classes );
+		$html .= Xml::check( $this->mName, $value, $attr ) . '&#160;';
+
+		if ( $useAgora ) {
+			$html .= Html::closeElement( 'label' );
+		}
+
+		$html .= Html::rawElement( 'label', array( 'for' => $this->mID ), $this->mLabel );
+
+		return $html;
 	}
 
 	/**

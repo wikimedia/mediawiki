@@ -1097,4 +1097,10 @@ return array(
 		),
 		'position' => 'top',
 	),
+	'mediawiki.ui.js' => array(
+		'scripts' => array(
+			'resources/mediawiki.ui/mediawiki.ui.checkbox.js',
+		),
+		'position' => 'top',
+	),
 );

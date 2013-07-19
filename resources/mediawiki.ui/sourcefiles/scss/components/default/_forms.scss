@@ -83,3 +83,53 @@ $defaultFormWidth: $captchaContainerWidth;
 .mw-ui-checkbox-label, .mw-ui-radio-label {
     @include agora-inline-label-styling;
 }
+
+// Below is styling for new-style checkboxes. These only work with JS enabled,
+// so we use the .client-js selector to gate.
+//
+// Try something like...
+// <label class="mw-ui-styled-checkbox-label">
+//   <input type="checkbox" />&nbsp;
+// </label>
+//
+// Make sure you include the 'mediawiki.ui.js' module in your page or this will
+// not work! See the jsduck documentation for jQuery.plugin.styledCheckbox for
+// more information and a better, more complete example.
+.client-js {
+	// We cannot use the existing .mw-ui-checkbox-label because that class
+	// is already in use on the new-style login form, and that form would
+	// break if we used the same class here.
+	.mw-ui-styled-checkbox-label {
+		input[type=checkbox] {
+			display: none;
+		}
+
+		cursor: pointer;
+		display: inline-block;
+		float: left;
+		width: 24px;
+		height: 24px;
+		border: 1px solid grey;
+		@include border-radius(2px);
+		margin-right: 3px;
+	}
+
+	.mw-ui-styled-checkbox-label.mw-ui-checked {
+		background: url( 'img/form-icon/checked.png' ) no-repeat;
+	}
+
+	.mw-ui-styled-checkbox-label.mw-ui-disabled {
+		background-color: lightgrey;
+	}
+
+	// Line the text label up with the center of the new checkbox
+	.mw-ui-checkbox-label {
+		padding-top: 5px;
+	}
+}
+
+// If two checkboxes are stacked, they're a little squished, so let's marginalize.
+table.mw-htmlform-container {
+	border-collapse: separate;
+	border-spacing: 0px 4px;
+}
