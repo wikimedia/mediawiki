@@ -611,11 +611,13 @@ class ResourceLoader {
 				// no matter how often we call ob_get_clean(), so instead of doing
 				// the more intuitive while ( ob_get_level() > 0 ) ob_get_clean();
 				// we have to be safe here and avoid an infinite loop.
-				// Caching the level is not an option, need to allow it to
-				// shorten the loop on-the-fly (bug 46836)
-				for ( $i = 0; $i < ob_get_level(); $i++ ) {
+				// It is necessary to suppress notices as these may be thrown on
+				// some setups. (bug 46836)
+				wfSuppressWarnings();
+				for ( $i = 0, $len = ob_get_level(); $i < $len; $i++ ) {
 					ob_end_clean();
 				}
+				wfRestoreWarnings();
 
 				header( 'HTTP/1.0 304 Not Modified' );
 				header( 'Status: 304 Not Modified' );
