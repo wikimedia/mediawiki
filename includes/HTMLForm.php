@@ -1008,7 +1008,7 @@ class HTMLForm extends ContextSource {
 		}
 
 		if ( $displayFormat !== 'raw' ) {
-			$classes = array();
+			$classes = array( 'mw-htmlform-container' );
 
 			if ( !$hasLabel ) { // Avoid strange spacing when no labels exist
 				$classes[] = 'mw-htmlform-nolabel';
@@ -1809,12 +1809,45 @@ class HTMLCheckField extends HTMLFormField {
 			$attr['disabled'] = 'disabled';
 		}
 
+		$classes = array();
 		if ( $this->mClass !== '' ) {
-			$attr['class'] = $this->mClass;
+			$classes[] = $this->mClass;
 		}
 
-		return Xml::check( $this->mName, $value, $attr ) . '&#160;' .
-			Html::rawElement( 'label', array( 'for' => $this->mID ), $this->mLabel );
+		$htmls = array();
+
+		$useAgora = !empty( $this->mParams['agora'] );
+
+		if ( $useAgora ) {
+			$classes[] = 'mw-ui-checkbox';
+
+			$labelClasses = array( 'mw-ui-check-label' );
+			$labelAttrs = array( 'for' => $this->mID );
+
+			if ( !empty( $attr['disabled'] ) ) {
+				$labelClasses[] = 'mw-ui-disabled';
+			}
+
+			if ( $value ) {
+				$labelClasses[] = 'mw-ui-checked';
+			}
+
+			$labelAttrs['class'] = implode( ' ', $labelClasses );
+
+			$this->mParent->getOutput()->addModules( 'mediawiki.ui' );
+			$htmls[] = Html::openElement( 'label', $labelAttrs );
+		}
+
+		$attr['class'] = implode( ' ', $classes );
+		$htmls[] = Xml::check( $this->mName, $value, $attr ) . '&#160;';
+
+		if ( $useAgora ) {
+			$htmls[] = Html::closeElement( 'label' );
+		}
+
+		$htmls[] = Html::rawElement( 'label', array( 'for' => $this->mID ), $this->mLabel );
+
+		return implode( '', $htmls );
 	}
 
 	/**
