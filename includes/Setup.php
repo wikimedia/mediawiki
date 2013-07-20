@@ -583,6 +583,9 @@ foreach ( $wgExtensionFunctions as $func ) {
 
 # Fix for bug 45031, to force re-cache of Canonical namespaces
 MWNamespace::getCanonicalNamespaces( true );
+foreach ( Language::$mLangObjCache as $lang ) {
+    $lang->resetNamespaces();
+}
 
 wfDebug( "Fully initialised\n" );
 $wgFullyInitialised = true;
