@@ -297,50 +297,56 @@ class SiteStatsUpdate implements DeferrableUpdate {
 		if ( $rate && ( $rate < 0 || mt_rand( 0, $rate - 1 ) != 0 ) ) {
 			$this->doUpdatePendingDeltas();
 		} else {
-			$dbw = wfGetDB( DB_MASTER );
-
-			$lockKey = wfMemcKey( 'site_stats' ); // prepend wiki ID
-			if ( $rate ) {
-				// Lock the table so we don't have double DB/memcached updates
-				if ( !$dbw->lockIsFree( $lockKey, __METHOD__ )
-					|| !$dbw->lock( $lockKey, __METHOD__, 1 ) // 1 sec timeout
-				) {
-					$this->doUpdatePendingDeltas();
-					return;
-				}
-				$pd = $this->getPendingDeltas();
-				// Piggy-back the async deltas onto those of this stats update....
-				$this->views += ( $pd['ss_total_views']['+'] - $pd['ss_total_views']['-'] );
-				$this->edits += ( $pd['ss_total_edits']['+'] - $pd['ss_total_edits']['-'] );
-				$this->articles += ( $pd['ss_good_articles']['+'] - $pd['ss_good_articles']['-'] );
-				$this->pages += ( $pd['ss_total_pages']['+'] - $pd['ss_total_pages']['-'] );
-				$this->users += ( $pd['ss_users']['+'] - $pd['ss_users']['-'] );
-				$this->images += ( $pd['ss_images']['+'] - $pd['ss_images']['-'] );
-			}
-
 			// Need a separate transaction because this a global lock
-			$dbw->begin( __METHOD__ );
+			wfGetDB( DB_MASTER )->onTransactionIdle( array( $this, 'tryDBUpdateInternal' ) );
+		}
+	}
 
-			// Build up an SQL query of deltas and apply them...
-			$updates = '';
-			$this->appendUpdate( $updates, 'ss_total_views', $this->views );
-			$this->appendUpdate( $updates, 'ss_total_edits', $this->edits );
-			$this->appendUpdate( $updates, 'ss_good_articles', $this->articles );
-			$this->appendUpdate( $updates, 'ss_total_pages', $this->pages );
-			$this->appendUpdate( $updates, 'ss_users', $this->users );
-			$this->appendUpdate( $updates, 'ss_images', $this->images );
-			if ( $updates != '' ) {
-				$dbw->update( 'site_stats', array( $updates ), array(), __METHOD__ );
+	/**
+	 * Do not call this outside of SiteStatsUpdate
+	 *
+	 * @return void
+	 */
+	public function tryDBUpdateInternal() {
+		global $wgSiteStatsAsyncFactor;
+
+		$dbw = wfGetDB( DB_MASTER );
+		$lockKey = wfMemcKey( 'site_stats' ); // prepend wiki ID
+		if ( $wgSiteStatsAsyncFactor ) {
+			// Lock the table so we don't have double DB/memcached updates
+			if ( !$dbw->lockIsFree( $lockKey, __METHOD__ )
+				|| !$dbw->lock( $lockKey, __METHOD__, 1 ) // 1 sec timeout
+			) {
+				$this->doUpdatePendingDeltas();
+				return;
 			}
+			$pd = $this->getPendingDeltas();
+			// Piggy-back the async deltas onto those of this stats update....
+			$this->views += ( $pd['ss_total_views']['+'] - $pd['ss_total_views']['-'] );
+			$this->edits += ( $pd['ss_total_edits']['+'] - $pd['ss_total_edits']['-'] );
+			$this->articles += ( $pd['ss_good_articles']['+'] - $pd['ss_good_articles']['-'] );
+			$this->pages += ( $pd['ss_total_pages']['+'] - $pd['ss_total_pages']['-'] );
+			$this->users += ( $pd['ss_users']['+'] - $pd['ss_users']['-'] );
+			$this->images += ( $pd['ss_images']['+'] - $pd['ss_images']['-'] );
+		}
 
-			if ( $rate ) {
-				// Decrement the async deltas now that we applied them
-				$this->removePendingDeltas( $pd );
-				// Commit the updates and unlock the table
-				$dbw->unlock( $lockKey, __METHOD__ );
-			}
+		// Build up an SQL query of deltas and apply them...
+		$updates = '';
+		$this->appendUpdate( $updates, 'ss_total_views', $this->views );
+		$this->appendUpdate( $updates, 'ss_total_edits', $this->edits );
+		$this->appendUpdate( $updates, 'ss_good_articles', $this->articles );
+		$this->appendUpdate( $updates, 'ss_total_pages', $this->pages );
+		$this->appendUpdate( $updates, 'ss_users', $this->users );
+		$this->appendUpdate( $updates, 'ss_images', $this->images );
+		if ( $updates != '' ) {
+			$dbw->update( 'site_stats', array( $updates ), array(), __METHOD__ );
+		}
 
-			$dbw->commit( __METHOD__ );
+		if ( $wgSiteStatsAsyncFactor ) {
+			// Decrement the async deltas now that we applied them
+			$this->removePendingDeltas( $pd );
+			// Commit the updates and unlock the table
+			$dbw->unlock( $lockKey, __METHOD__ );
 		}
 	}
 
