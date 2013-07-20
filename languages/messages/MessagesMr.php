@@ -751,6 +751,7 @@ $2',
 'yourname' => 'तुमचे नाव',
 'userlogin-yourname' => 'सदस्यनाम',
 'userlogin-yourname-ph' => 'आपले सदस्यनाव टाका',
+'createacct-another-username-ph' => 'आपले सदस्यनाव टाका',
 'yourpassword' => 'तुमचा परवलीचा शब्द',
 'userlogin-yourpassword' => 'परवलीचा शब्द(पासवर्ड)',
 'userlogin-yourpassword-ph' => 'आपला परवलीचा शब्द टाका',
@@ -785,9 +786,11 @@ $2',
 'helplogin-url' => 'Help:प्रवेश नोंदीसाठी(लॉगिंग-ईन)',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|प्रवेश  नोंदीसाठी सहाय्य(लॉग ईन)]]',
 'createacct-join' => 'खाली आपली माहिती भरा',
+'createacct-another-join' => 'नविन खात्याबाबतची माहिती येथे खाली टाका.',
 'createacct-emailrequired' => 'विपत्र पत्ता(ई-मेल)',
 'createacct-emailoptional' => 'विपत्र पत्ता(ई-मेल)(ऐच्छिक)',
 'createacct-email-ph' => 'आपला विपत्र पत्ता(ई-मेल) टाका',
+'createacct-another-email-ph' => 'आपला विपत्रपत्ता (ई-मेल) टाका',
 'createaccountmail' => 'तात्पुरता अनियत (रॅन्डम) परवलीचा शब्द तयार करून तो खाली नमूद विपत्रपत्त्यावर पाठवा',
 'createacct-realname' => 'खरे नाव (ऐच्छिक)',
 'createaccountreason' => 'कारण:',
@@ -1106,6 +1109,7 @@ $2',
 'edit-already-exists' => 'नवीन पान तयार करता येऊ शकले नाही.
 या नावाचे पान आधीच अस्तित्वात आहे.',
 'defaultmessagetext' => 'कसूर पाठ्य मजकूर',
+'content-failed-to-parse' => '$2 चा आशय(कंटेंट) $1 साठी पार्स करण्यात असफलता - नमुना: $3',
 'invalid-content-data' => 'अवैध माहिती',
 'content-not-allowed-here' => '"$1" हा आशय [[$2]] लेखावर टाकण्याची अनुमती नाही.',
 'editwarning-warning' => "या पानावरुन दुसर्‍या पानावर गेल्यास, तुम्ही येथे केलेले बदल जतन होणार नाहीत.
@@ -1135,6 +1139,8 @@ $2',
 'node-count-exceeded-warning' => 'लेखाची पर्वसंधि-गणना(नोड-काऊंट) पार झाली',
 'expansion-depth-exceeded-category' => 'लेख जेथे विस्तार-तळ(एक्सपांशन डेप्थ) पार केल्या गेली',
 'expansion-depth-exceeded-warning' => 'लेखाने विस्तार-तळ(एक्सपांशन डेप्थ) पार केला',
+'parser-unstrip-loop-warning' => "'अनस्ट्रिप'(अरोखीत) वलय(लुप) आढळले",
+'parser-unstrip-recursion-limit' => "'अनस्ट्रिप'(अरोखीत) आवर्तन मर्यादा पार झाली",
 'converter-manual-rule-error' => 'निदेशपुस्तिकेच्या भाषा अनुरुपण नियमामध्ये त्रुटी आढळली',
 
 # "Undo" feature
@@ -2086,6 +2092,9 @@ Input:contenttype/subtype, e.g. <code>image/jpeg</code>.',
 ऐवजी, ती सुयोग्य विषयाशी जोडली जावयास हवीत.<br /> जर एखादे पान [[MediaWiki:Disambiguationspage]]पासून जोडलेला साचा वापरत असेल तर त्या पानास, '''नि:संदिग्धिकरण पृष्ठ''' असे गृहीत धरले जाते.",
 
 'pageswithprop' => "'पृष्ठ गुणधर्म' असणारी पाने",
+'pageswithprop-legend' => 'पृष्ठ गुणधर्म असणारी पाने',
+'pageswithprop-text' => "या पानावर अश्या पानांची यादी आहे जे एक विशिष्ट 'पृष्ठ गुणधर्म' वापरतात.",
+'pageswithprop-prop' => 'गुणधर्माचे नाव:',
 'pageswithprop-submit' => 'चला',
 
 'doubleredirects' => 'दुहेरी-पुनर्निर्देशने',
@@ -2355,31 +2364,36 @@ Input:contenttype/subtype, e.g. <code>image/jpeg</code>.',
 'enotif_subject_moved' => '{{SITENAME}}पान $1  {{gender:$2|$2}} ने हलविले',
 'enotif_subject_restored' => '{{SITENAME}} पान $1  {{gender:$2|$2}} ने पुनर्स्थापित केले',
 'enotif_subject_changed' => '{{SITENAME}} पान $1  {{gender:$2|$2}} ने बदलले',
+'enotif_body_intro_deleted' => '{{SITENAME}} हे $1 या लेखनामाचे पान या $PAGEEDITDATE (या संपादनाच्या तारखेस)$2 ने {{GENDER:$2|गाळले.}} कृपया $3 बघा.',
+'enotif_body_intro_created' => '{{SITENAME}} हे $1 या लेखनामाचे पान या $PAGEEDITDATE (या संपादनाच्या तारखेस)$2 ने {{GENDER:$2|तयार केले.}}अद्यतन आवृत्तीसाठी कृपया $3 बघा.',
+'enotif_body_intro_moved' => '{{SITENAME}} हे $1 या लेखनामाचे पान या $PAGEEDITDATE (या संपादनाच्या तारखेस)$2 ने {{GENDER:$2|हलविले.}} अद्यतन आवृत्तीसाठी कृपया $3 बघा.',
+'enotif_body_intro_restored' => '{{SITENAME}} हे $1 या लेखनामाचे पान या $PAGEEDITDATE (या संपादनाच्या तारखेस)$2 ने {{GENDER:$2|पुनर्स्थापित केले.}}अद्यतन आवृत्तीसाठी कृपया $3 बघा.',
+'enotif_body_intro_changed' => '{{SITENAME}} हे $1 या लेखनामाचे पान या $PAGEEDITDATE (या संपादनाच्या तारखेस)$2 ने {{GENDER:$2|बदलविले.}} अद्यतन आवृत्तीसाठी कृपया $3 बघा.',
 'enotif_lastvisited' => 'तुमच्या शेवटच्या भेटीनंतरचे बदल बघणयासाठी पहा - $1.',
 'enotif_lastdiff' => 'हा बदल पहाण्याकरिता $1 पहा.',
 'enotif_anon_editor' => 'अनामिक उपयोगकर्ता $1',
 'enotif_body' => 'प्रिय $WATCHINGUSERNAME,
 
-The {{SITENAME}}चे $PAGETITLE पान $PAGEEDITORने $PAGEEDITDATE तारखेस $CHANGEDORCREATED आहे, सध्याची आवृत्ती पाहण्यासाठी खलील दुव्यावर टिचकी मारा.
+{{SITENAME}}या लेखनावाचे $PAGETITLE (या मथळ्याचे) पान $PAGEEDITOR ने $PAGEEDITDATE ( या तारखेस) $CHANGEDORCREATED तयार केले किंवा बदलले आहे. सध्याची आवृत्ती पाहण्यासाठी खालील दुव्यावर टिचकी मारा.
 $PAGETITLE_URL
 
 $NEWPAGE
 
 संपादकाचा आढावा : $PAGESUMMARY $PAGEMINOREDIT
 
-संपादकास संपर्क करा :
+या संपादकास संपर्क करा :
 विपत्र: $PAGEEDITOR_EMAIL
 विकि: $PAGEEDITOR_WIKI
 
-तुम्ही पानास भेट देत नाही तोपर्यंत पुढे होणाऱ्या बदलांची इतर कोणतीही वेगळी सूचना नसेल. तुमच्या नित्य पहाण्याच्या सूचीमधील असलेल्या पानांकरिताच्या सूचना पताकांचे पुर्नयोजन करु शकता.
+तुम्ही पानास भेट देत नाही तोपर्यंत,या पानावर पुढे होणाऱ्या कोणत्याही क्रियांची इतर कोणतीही वेगळी सूचना तुम्हाला देण्यात येणार नाही. तुमच्या निरीक्षणसूचीमध्ये असलेल्या पानांच्या सूचना-पताकांचे तुम्ही पुर्नयोजन करु शकता.
 
 तुमची मैत्रीपूर्ण {{SITENAME}} सूचना प्रणाली
 
 --
 
-तुमच्या नित्य पहाण्याच्या पानांची मांडणावळ (कोंदण) बदलू शकता, {{canonicalurl:{{#special:EditWatchlist}}}} ला भेट द्या
+तुमच्या निरीक्षणसूचीमध्ये पानांची मांडणावळ (कोंदण)तुम्ही बदलू शकता, त्यासाठी {{canonicalurl:{{#special:EditWatchlist}}}} या पानावर जा.
 
-हे पान तुमच्या नित्य पहाण्याच्या सूचीतुन काढून टाकण्यासाठी खालील दुव्यावर टिचकी मारा.
+हे पान तुमच्या निरीक्षणसूचीमधून काढून टाकण्यासाठी खालील दुव्यावर टिचकी मारा.
 $UNWATCHURL
 
 पुढील साहाय्य आणि प्रतिक्रिया:
@@ -2835,6 +2849,7 @@ $1',
 'immobile-target-namespace-iw' => 'पुढे चाल करण्यासाठी हा विकिअंतर्गत दुवा योग्य लक्ष नाही',
 'immobile-source-page' => 'हे पान हलवता येत नाही',
 'immobile-target-page' => 'लक्ष्य मथळा हलवता येत नाही.',
+'bad-target-model' => 'तुमचे ईच्छित स्थानक हे वेगळे आशय नमुना (कंटेंट मॉडेल) वापरते.  $1 चे $2 मध्ये रुपांतर करु शकत नाही.',
 'imagenocrossnamespace' => 'ज्या नामविश्वात संचिका साठविता येत नाहीत, त्या नामविश्वात संचिकांचे स्थानांतरण करता येत नाही',
 'nonfile-cannot-move-to-file' => 'संचिका स्वरूपाची नसलेली माहिती आपणास संचिका नामविश्वात वळती करता येणार नाही',
 'imagetypemismatch' => 'दिलेले संचिकेचे एक्सटेंशन त्या संचिकेच्या प्रकाराशी जुळत नाही',
@@ -2889,6 +2904,7 @@ $1',
 'thumbnail-more' => 'मोठे करा',
 'filemissing' => 'संचिका अस्तित्वात नाही',
 'thumbnail_error' => 'इवलेसे चित्र बनविण्यात अडथळा आलेला आहे: $1',
+'thumbnail_error_remote' => '$1 कडून त्रुटी-संदेश:$2',
 'djvu_page_error' => 'टप्प्याच्या बाहेरचे DjVu पान',
 'djvu_no_xml' => 'DjVu संचिकेकरिता XML ओढण्यात असमर्थ',
 'thumbnail-temp-create' => 'तात्पुरती इवलीशी संचिका बनविता आली नाही',
@@ -2910,6 +2926,7 @@ $1',
 'import-interwiki-templates' => 'साचे आंतरभूत करा',
 'import-interwiki-submit' => 'आयात',
 'import-interwiki-namespace' => 'पाने नामविश्वात स्थानांतरीत करा:',
+'import-interwiki-rootpage' => 'स्थानकाचे मुळ-पृष्ठ (वैकल्पिक):',
 'import-upload-filename' => 'संचिकानाव:',
 'import-comment' => 'प्रतिक्रीया:',
 'importtext' => 'कृपया [[Special:Export|निर्यात सुविधा]] वापरून स्रोत विकिकडून संचिका निर्यात करा,ती तुमच्या तबकडीवर जतन करा आणि येथे चढवा.',
@@ -3061,28 +3078,43 @@ $1',
 'pageinfo-title' => '"$1" च्याबद्दल माहिती',
 'pageinfo-not-current' => 'माफ करा, जुन्या अवृतिला माहिती देणे अक्षक्य आहे|',
 'pageinfo-header-basic' => 'मूलभूत माहिती',
-'pageinfo-header-edits' => 'संपादने',
+'pageinfo-header-edits' => 'संपादनांचा इतिहास',
 'pageinfo-header-restrictions' => 'पान सुरक्षा',
 'pageinfo-header-properties' => 'पानाची माहिती',
 'pageinfo-display-title' => 'दृश्य शीर्षक',
+'pageinfo-default-sort' => 'डिफॉल्ट निवड-कळ (सॉर्ट कि)',
 'pageinfo-length' => 'पानाचा आकार (बाइट्समध्ये)',
+'pageinfo-article-id' => 'पृष्ठ-परिचय',
 'pageinfo-language' => 'पानाच्या मजकूराची भाषा',
+'pageinfo-robot-policy' => 'शोध-इंजिनची स्थिती',
 'pageinfo-robot-index' => 'आनुक्रमानीत',
 'pageinfo-robot-noindex' => 'आनुक्रमानीत करू शकत नाही',
 'pageinfo-views' => 'अभिप्रायांची संख्या',
-'pageinfo-watchers' => 'पाहणाऱ्यांची संख्या',
+'pageinfo-watchers' => 'पानावर पहारा देणाऱ्यांची संख्या',
 'pageinfo-few-watchers' => '$1 पेक्षा कमी {{PLURAL:$1|पहारेदार}}',
 'pageinfo-redirects-name' => 'या पानाकडील पुनर्निर्देशने',
+'pageinfo-subpages-name' => 'या पानाचे उप-पान',
+'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|पुनर्निर्देशन|पुनर्निर्देशने}}; $3 {{PLURAL:$3|अ-पुनर्निर्देशन|अ-पुनर्निर्देशने}})',
 'pageinfo-firstuser' => 'पृष्ठ निर्मानक',
 'pageinfo-firsttime' => 'पान निर्मितीचा दिनांक',
 'pageinfo-lastuser' => 'अलीकडील संपादक',
 'pageinfo-lasttime' => 'अलीकडिल संपादनाचा दिनांक',
 'pageinfo-edits' => 'एकूण संपादने',
-'pageinfo-authors' => 'वेगळ्या लेखकांची संख्या',
+'pageinfo-authors' => 'सुस्पष्ट-लेखकांची एकुण संख्या',
+'pageinfo-recent-edits' => 'सध्याची संपादनसंख्या (मागील $1 मध्ये)',
+'pageinfo-recent-authors' => 'सुस्पष्ट लेखकांची सध्या असलेली संख्या',
+'pageinfo-magic-words' => 'जादुई {{PLURAL:$1|शब्द}} ($1)',
+'pageinfo-hidden-categories' => 'लपविलेले {{PLURAL:$1|वर्ग}} ($1)',
+'pageinfo-templates' => 'भाषांतर्भावित {{PLURAL:$1|साचा|साचे}} ($1)',
+'pageinfo-transclusions' => '($1) वरील भाषांतर्भावित {{PLURAL:$1|पान|पाने}}',
 'pageinfo-toolboxlink' => 'पानाची माहिती',
+'pageinfo-redirectsto' => 'पुनर्निर्देशन लक्ष्यपान',
 'pageinfo-redirectsto-info' => 'माहिती',
+'pageinfo-contentpage' => 'हे आशय-पान म्हणून मोजण्यात येते',
 'pageinfo-contentpage-yes' => 'होय',
+'pageinfo-protect-cascading' => 'रखणे(प्रोटक्शन्स) येथून प्रपातीत होतात (कॅस्केडिंग)',
 'pageinfo-protect-cascading-yes' => 'होय',
+'pageinfo-protect-cascading-from' => 'रखणे(प्रोटक्शन्स) प्रपातीत होतात (कॅस्केडिंग) येथून',
 'pageinfo-category-info' => 'वर्ग माहिती',
 'pageinfo-category-pages' => 'पानांची संख्या',
 'pageinfo-category-subcats' => 'उपवर्गांची संख्या',
@@ -3104,6 +3136,8 @@ $1',
 'markedaspatrollederror' => 'गस्तीची खूण करता येत नाही',
 'markedaspatrollederrortext' => 'गस्त घातल्याची खूण करण्याकरिता तुम्हाला एक आवर्तन नमूद करावे लागेल.',
 'markedaspatrollederror-noautopatrol' => 'तुम्हाला स्वत:च्याच बदलांवर गस्त घातल्याची खूण करण्याची परवानगी नाही.',
+'markedaspatrollednotify' => "$1 वरील बदल 'पहारा दिला' म्हणून अंकित केले आहेत.",
+'markedaspatrollederrornotify' => "'पहारा दिला' म्हणून अंकित करणे विफल झाले.",
 
 # Patrol log
 'patrol-log-page' => 'टेहळणीतील नोंदी',
@@ -3145,6 +3179,8 @@ $1',
 'file-info-png-looped' => 'विळख्यात सापडलेले',
 'file-info-png-repeat' => '$1 {{PLURAL:$1|वेळा दाखवले|वेळा दाखवले}}',
 'file-info-png-frames' => '$1 {{PLURAL:$1|चौकट|चौकटी}}',
+'file-no-thumb-animation' => 'नोंद घ्या:तांत्रीक मर्यादेमुळे या संचिकेच्या नखुल्यागत-आवृत्तीचे (थंबनेल ) सचेतनीकरण(अॅनिमेशन) करता येउ शकणार नाही.',
+'file-no-thumb-animation-gif' => 'नोंद घ्या:तांत्रीक मर्यादेमुळे या संचिकेच्या, यासारख्या उच्च-विभेदनाच्या(हाय-रिझोल्युशन)  जीआयएफ प्रतिमेचे सचेतनीकरण(अॅनिमेशन) करता येउ शकणार नाही.',
 
 # Special:NewFiles
 'newimages' => 'नवीन संचिकांची यादी',
@@ -3167,10 +3203,24 @@ $1',
 'minutes' => '{{PLURAL:$1|$1 मिनिट|$1 मिनिट}}',
 'hours' => '{{PLURAL:$1|$1 तास|$1 तास}}',
 'days' => '{{PLURAL:$1|$1 दिवस|$1 दिवस}}',
+'weeks' => '{{PLURAL:$1|$1 आठवडा|$1 आठवडे}}',
 'months' => '{{PLURAL:$1|$1 महिना|$1 महिने}}',
 'years' => '{{PLURAL:$1|$1 वर्ष|$1 वर्षे}}',
 'ago' => '$1 पूर्वी',
 'just-now' => 'लगेच',
+
+# Human-readable timestamps
+'hours-ago' => '$1 {{PLURAL:$1|तास}} पूर्वी',
+'minutes-ago' => '$1 {{PLURAL:$1|मिनिट|मिनिटे}} पूर्वी',
+'seconds-ago' => '$1 {{PLURAL:$1|सेकंद|सेकंदां}}पूर्वी',
+'monday-at' => 'सोमवारी $1 वर',
+'tuesday-at' => 'मंगळवारी $1 वर',
+'wednesday-at' => 'बुधवारी $1 वर',
+'thursday-at' => 'गुरुवारी $1 वर',
+'friday-at' => 'शुक्रवारी $1 वर',
+'saturday-at' => 'शनिवारी $1 वर',
+'sunday-at' => 'रविवारी $1 वर',
+'yesterday-at' => 'काल $1 वर',
 
 # Bad image list
 'bad_image_list' => 'रूपरेषा खालीलप्रमाणे आहे:
@@ -3769,6 +3819,7 @@ $5
 'version-license' => 'परवाना',
 'version-poweredby-credits' => "हा विकी '''[//www.mediawiki.org/ मीडियाविकी]'''द्वारे संचालित आहे, प्रताधिकारित © २००१-$1 $2.",
 'version-poweredby-others' => 'इतर',
+'version-credits-summary' => 'आम्ही खालील व्यक्तींना, [[Special:Version|मिडियाविकि]]वर त्यांनी दिलेल्या योगदानामुळे, मान्यता देऊ ईच्छितो.',
 'version-license-info' => 'मिडियाविकि हे  मुक्त संगणक प्रणाली विकि पॅकेज आहे.Free Software Foundation प्रकाशित  GNU General Public परवान्याच्या अटीस अनुसरून तुम्ही त्यात बदल आणि/अथवा त्याचे  पुर्नवितरण  करू शकता.
 
 मिडियाविकि  संगणक प्रणाली उपयुक्त ठरेल या आशेने वितरित केली जात असली तरी;कोणत्याही वितरणास अथवा विशिष्ट उद्देशाकरिता योग्यतेची अगदी कोणतीही अप्रत्यक्ष अथवा उपलक्षित   अथवा  निहित अशा अथवा कोणत्याही प्रकारच्या केवळ  कोणत्याही प्राश्वासनाशिवायच (WITHOUT ANY WARRANTY) उपलब्ध आहे.अधिक माहिती करिता   GNU General Public License पहावे.
@@ -3780,6 +3831,17 @@ $5
 'version-entrypoints' => 'आत येणारी यू॰आर॰एल',
 'version-entrypoints-header-entrypoint' => 'आत येण्याचा मार्ग',
 'version-entrypoints-header-url' => 'यू॰आर॰एल',
+
+# Special:Redirect
+'redirect' => 'संचिका,सदस्य किंवा आवृत्ती या ओळखणीनुसार पुनर्निर्देशन',
+'redirect-legend' => 'संचिका अथवा पानास पुनर्निर्देशन',
+'redirect-submit' => 'जा',
+'redirect-lookup' => 'बघा:',
+'redirect-value' => 'मुल्य:',
+'redirect-user' => 'सदस्यनाम',
+'redirect-revision' => 'पानाची आवृत्ती',
+'redirect-file' => 'संचिकानाम',
+'redirect-not-exists' => '(योग्य)मुल्य (व्हॅल्यु) सापडले नाही',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'जुळ्या संचिका शोधा',
@@ -3875,12 +3937,12 @@ $5
 'sqlite-no-fts' => 'पूर्ण-मजकूर शोध समर्थनाविरहित $1',
 
 # New logging system
-'logentry-delete-delete' => '$1 वगळलेले पान $3',
-'logentry-delete-restore' => '$1 restored पृष्ठ  $3',
-'logentry-delete-event' => ' $3: $4 वरील  {{PLURAL:$5|एका नोंद घटने |$5 lनोंद घटनां}} ची दृष्यता $1 बदलली',
-'logentry-delete-revision' => '$3: $4 पानावरील  {{PLURAL:$5|एका आवृत्ती |$5 lआवृत्यां}} ची दृष्यता $1 बदलली',
-'logentry-delete-event-legacy' => '$3 वरील नोंदींची दृष्यता $1 बदलली',
-'logentry-delete-revision-legacy' => '$3 वरील आवृत्त्यांची दृष्यता $1 बदलली',
+'logentry-delete-delete' => '$1 {{GENDER:$2|वगळलेले पान}} $3',
+'logentry-delete-restore' => '$1 {{GENDER:$2|पुनर्स्थापित पृष्ठ}} $3',
+'logentry-delete-event' => '$1 ने $3 वर{{PLURAL:$5|नोंद-प्रसंग|$5 नोंद प्रसंगांची}} दृष्यता{{GENDER:$2|बदलली}}:$4',
+'logentry-delete-revision' => '$1 ने $3 पानावर{{PLURAL:$5|आवृत्ती|$5 आवृत्यांची}} दृष्यता{{GENDER:$2|बदलली}}:$4',
+'logentry-delete-event-legacy' => '$1 ने $3 वर नोंद प्रसंगांची {{GENDER:$2|बदलली}}',
+'logentry-delete-revision-legacy' => '$1 ने $3 पानावर आवृत्त्यांची दृष्यता {{GENDER:$2|बदलली}}',
 'logentry-suppress-delete' => '$1 लपवले  पान $3',
 'logentry-suppress-event' => ' $3: $4 वरील  {{PLURAL:$5|एका नोंद घटने |$5 lनोंद घटनां}} ची दृष्यता $1 ने गुप्ततेने  बदलली',
 'logentry-suppress-revision' => '$3: $4 वरील  {{PLURAL:$5|आवृत्ती|$5 lआवृत्यां}} ची दृष्यता $1 ने गुप्ततेने  बदलली',

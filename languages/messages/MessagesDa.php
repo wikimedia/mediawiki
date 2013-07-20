@@ -42,6 +42,7 @@
  * @author Qaqqalik
  * @author Remember the dot
  * @author Sarrus
+ * @author Simeondahl
  * @author Sir48
  * @author Slomox
  * @author Steenth
@@ -594,6 +595,8 @@ $2',
 'customjsprotected' => 'Du har ikke tilladelse til at redigere denne JavaScript-side, da den indeholder en anden brugers personlige indstillinger.',
 'mycustomcssprotected' => 'Du har ikke rettigheder til at redigere denne CSS-side.',
 'mycustomjsprotected' => 'Du har ikke rettigheder til at redigere denne JavaScript-side.',
+'myprivateinfoprotected' => 'Du har ikke tilladelse til at redigere dine private oplysninger.',
+'mypreferencesprotected' => 'Du har ikke tilladelse til at redigere dine præferencer.',
 'ns-specialprotected' => 'Sider i navnerummet {{ns:special}} kan ikke redigeres.',
 'titleprotected' => "Dette sidenavn er beskyttet mod oprettelse af [[User:$1|$1]]. Begrundelsen for beskyttelsen er ''$2''.",
 'filereadonlyerror' => 'Ude af stand til at redigere filen "$1", fordi fildatabasen "$2" er skrivebeskyttet.
@@ -620,6 +623,7 @@ Glem ikke at ændre dine [[Special:Preferences|{{SITENAME}} indstillinger]].',
 'yourname' => 'Dit brugernavn:',
 'userlogin-yourname' => 'Brugernavn',
 'userlogin-yourname-ph' => 'Indtast dit brugernavn',
+'createacct-another-username-ph' => 'Indtast Brugernavn',
 'yourpassword' => 'Din adgangskode:',
 'userlogin-yourpassword' => 'Adgangskode',
 'userlogin-yourpassword-ph' => 'Indtast din adgangskode',
@@ -654,9 +658,11 @@ Glem ikke at ændre dine [[Special:Preferences|{{SITENAME}} indstillinger]].',
 'helplogin-url' => 'Help:Logge på',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Hjælp til at logge på]]',
 'createacct-join' => 'Indtast dine oplysninger nedenfor.',
+'createacct-another-join' => 'Angiv den nye kontos oplysninger nedenfor.',
 'createacct-emailrequired' => 'Mailadresse',
 'createacct-emailoptional' => 'Mailadresse (valgfri)',
 'createacct-email-ph' => 'Indtast din mailadresse',
+'createacct-another-email-ph' => 'Indtast e-mail-adresse',
 'createaccountmail' => 'Brug en midlertidig tilfældig adgangskode og send den til e-mailadressen angivet nedenfor',
 'createacct-realname' => 'Dit rigtige navn',
 'createaccountreason' => 'Begrundelse:',
@@ -665,6 +671,7 @@ Glem ikke at ændre dine [[Special:Preferences|{{SITENAME}} indstillinger]].',
 'createacct-captcha' => 'Sikkerhedskontrol',
 'createacct-imgcaptcha-ph' => 'Indtast venligst ovenstående tekst',
 'createacct-submit' => 'Opret din konto',
+'createacct-another-submit' => 'Oprette en anden konto',
 'createacct-benefit-heading' => '{{SITENAME}} laves af mennesker som dig.',
 'createacct-benefit-body1' => '{{PLURAL:$1|redigering|redigeringer}}',
 'createacct-benefit-body2' => '{{PLURAL:$1|side|sider}}',

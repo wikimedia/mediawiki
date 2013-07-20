@@ -644,8 +644,8 @@ $1',
 
 # Main script and global functions
 'nosuchaction' => 'Ишта дийриг дац',
-'nosuchspecialpage' => 'Ишта белха агlо йац',
-'nospecialpagetext' => '<strong>Ишта белхан агӀо яц.</strong>
+'nosuchspecialpage' => 'Иштта белхан агӀо яц',
+'nospecialpagetext' => '<strong>Иштта белхан агӀо яц.</strong>
 
 Белхан агӀонашан могӀам: [[Special:SpecialPages|{{int:specialpages}}]].',
 
@@ -802,7 +802,7 @@ $1',
 # Special:PasswordReset
 'passwordreset' => 'Пароль кхоссар',
 'passwordreset-legend' => 'Пароль кхоссар',
-'passwordreset-username' => 'Декъашхочун цӀе:',
+'passwordreset-username' => 'Декъашхон цӀе:',
 'passwordreset-domain' => 'Домен:',
 'passwordreset-email' => 'Электронни почтан адрес:',
 

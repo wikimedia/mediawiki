@@ -4027,7 +4027,7 @@ Trebali ste primiti [{{SERVER}}{{SCRIPTPATH}}/COPYING kopiju GNU opće javne lic
 'logentry-newusers-create' => '$1 je {{GENDER:$2|stvorio|stvorila}} suradnički račun.',
 'logentry-newusers-create2' => '$1 je {{GENDER:$2|otvorio|otvorila}} suradnički račun $3',
 'logentry-newusers-byemail' => '$1 je {{GENDER:$2|otvorio|otvorila}} suradnički račun $3 i zaporka je poslana e-porukom.',
-'logentry-newusers-autocreate' => 'Suradnički je račun $1 automatski {{GENDER:$2|stvorio|stvorila}}.',
+'logentry-newusers-autocreate' => 'Suradnički je račun $1 automatski {{GENDER:$2|stvoren|stvorila}}.',
 'logentry-rights-rights' => '$1 {{GENDER:$2|je promijenio|je promijenila}} suradnička prava računa $3 iz $4 u $5',
 'logentry-rights-rights-legacy' => '$1 {{GENDER:$2|je promijenio|je promijenila}} članstvo skupine suradničkog računa $3',
 'logentry-rights-autopromote' => 'Suradničkom računu $1 {{GENDER:$1| automatski je promijenjeno članstvo|automatski su promijenjena članstva}} iz $4 u $5',

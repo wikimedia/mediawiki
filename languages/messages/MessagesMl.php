@@ -2058,7 +2058,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization കാണുക.',
 # File reversion
 'filerevert' => '$1 തിരസ്ക്കരിക്കുക',
 'filerevert-legend' => 'പ്രമാണം തിരസ്ക്കരിക്കുക',
-'filerevert-intro' => "താങ്കൾ '''[[Media:$1|$1]]''' യെ, [$3, $2 ഉണ്ടായിരുന്ന $4 പതിപ്പിലേക്കു സേവ് ചെയ്യുകയാണ്‌].",
+'filerevert-intro' => "താങ്കൾ '''[[Media:$1|$1]]''' എന്ന പ്രമാണത്തെ, [$4 $2, $3-ന് ഉണ്ടായിരുന്ന പതിപ്പിലേക്ക്] സേവ് ചെയ്യുകയാണ്‌.",
 'filerevert-comment' => 'കാരണം:',
 'filerevert-defaultcomment' => '$2 ൽ ഉണ്ടായിരുന്ന $1 പതിപ്പിലേക്കു സേവ് ചെയ്തിരിക്കുന്നു',
 'filerevert-submit' => 'പുനഃസ്ഥാപിക്കുക',

@@ -855,7 +855,7 @@ N'oubliez pas de modifier [[Special:Preferences|vos préférences pour {{SITENAM
 'helplogin-url' => 'Help:Connexion',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Aide à la connexion]]',
 'createacct-join' => 'Entrez vos informations ci-dessous.',
-'createacct-another-join' => 'Saisir les informations sur le nouveau compte ci-dessous.',
+'createacct-another-join' => 'Saisir les informations du nouveau compte ci-dessous.',
 'createacct-emailrequired' => 'Adresse de courriel',
 'createacct-emailoptional' => 'Adresse de courriel (facultative)',
 'createacct-email-ph' => 'Entrez votre adresse de courriel',

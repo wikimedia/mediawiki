@@ -338,7 +338,7 @@ $messages = array(
 'tog-minordefault' => 'Por omissão, marcar todas as edições como menores',
 'tog-previewontop' => 'Mostrar a antevisão antes da caixa de edição',
 'tog-previewonfirst' => 'Mostrar a antevisão na primeira edição',
-'tog-nocache' => 'Desactivar a cache de páginas do browser',
+'tog-nocache' => 'Desativar a cache de páginas do browser',
 'tog-enotifwatchlistpages' => 'Notificar-me por correio electrónico quando uma página ou ficheiro vigiado for alterado',
 'tog-enotifusertalkpages' => 'Notificar-me por correio electrónico quando a minha página de discussão é editada',
 'tog-enotifminoredits' => 'Notificar-me por correio electrónico também sobre edições menores de páginas ou ficheiros',
@@ -485,7 +485,7 @@ $messages = array(
 'vector-action-protect' => 'Proteger',
 'vector-action-undelete' => 'Restaurar',
 'vector-action-unprotect' => 'Alterar protecção',
-'vector-simplesearch-preference' => 'Activar barra de buscas simplificada (apenas no tema Vector)',
+'vector-simplesearch-preference' => 'Ativar barra de buscas simplificada (apenas no tema Vector)',
 'vector-view-create' => 'Criar',
 'vector-view-edit' => 'Editar',
 'vector-view-history' => 'Ver histórico',
@@ -847,7 +847,7 @@ Em resultado, visitantes com este endereço IP não podem criar mais nenhuma con
 'emailauthenticated' => 'O seu endereço de correio electrónico foi autenticado a $2 às $3.',
 'emailnotauthenticated' => 'O seu endereço de correio electrónico ainda não foi autenticado.
 Não serão enviados correios de nenhuma das seguintes funcionalidades.',
-'noemailprefs' => 'Especifique um endereço de correio electrónico nas suas preferências para activar estas funcionalidades.',
+'noemailprefs' => 'Especifique um endereço de correio eletrónico nas suas preferências para ativar estas funcionalidades.',
 'emailconfirmlink' => 'Confirme o seu endereço de correio electrónico',
 'invalidemailaddress' => 'O endereço de correio electrónico não pode ser aceite porque parece ter um formato inválido.
 Introduza um endereço formatado correctamente ou deixe o campo vazio.',
@@ -1209,9 +1209,9 @@ O motivo apresentado por $3 foi ''$2''",
 'last' => 'ant',
 'page_first' => 'primeira',
 'page_last' => 'última',
-'histlegend' => "Selecção de diferenças: use os botões de opção para marcar as versões que deseja comparar.
+'histlegend' => "Seleção de diferenças: use os botões de opção para marcar as versões que deseja comparar.
 Pressione 'Enter' ou clique o botão \"{{int:compareselectedversions}}\".<br />
-Legenda: '''({{int:cur}})''' = diferenças para a versão actual,
+Legenda: '''({{int:cur}})''' = diferenças para a versão atual,
 '''({{int:last}})''' = diferenças para a versão anterior,
 '''{{int:minoreditletter}}''' = edição menor",
 'history-fieldset-title' => 'Navegar pelo histórico',
@@ -1419,7 +1419,7 @@ Os detalhes podem ser encontrados no [{{fullurl:{{#Special:Log}}/delete|page={{F
 'search-interwiki-default' => 'Resultados de $1:',
 'search-interwiki-more' => '(mais)',
 'search-relatedarticle' => 'Relacionado',
-'mwsuggest-disable' => 'Desactivar sugestões de pesquisa',
+'mwsuggest-disable' => 'Desativar sugestões de pesquisa',
 'searcheverything-enable' => 'Pesquisar em todos os espaços nominais',
 'searchrelated' => 'relacionados',
 'searchall' => 'todos',
@@ -1574,8 +1574,8 @@ Esta informação será pública.',
 'userrights-groupsmember' => 'Membro de:',
 'userrights-groupsmember-auto' => 'Membro implícito de:',
 'userrights-groups-help' => 'É possível alterar os grupos a que este utilizador pertence:
-* Uma caixa de selecção marcada significa que o utilizador se encontra no grupo.
-* Uma caixa de selecção desmarcada significa que o utilizador não se encontra no grupo.
+* Uma caixa de seleção marcada significa que o utilizador se encontra no grupo.
+* Uma caixa de seleção desmarcada significa que o utilizador não se encontra no grupo.
 * Um asterisco (*) indica que não pode remover o grupo depois de o adicionar, ou vice-versa.',
 'userrights-reason' => 'Motivo:',
 'userrights-no-interwiki' => 'Não tem permissões para alterar os privilégios de utilizadores noutras wikis.',
@@ -2611,8 +2611,8 @@ Pode alterar o nível de protecção desta página, mas isso não afectará a pr
 'viewdeletedpage' => 'Ver páginas eliminadas',
 'undeletepagetext' => '{{PLURAL:$1|A seguinte página foi eliminada|As seguintes páginas foram eliminadas}}, mas ainda {{PLURAL:$1|permanece|permanecem}} em arquivo e podem ser restauradas. O arquivo pode ser limpo periodicamente.',
 'undelete-fieldset-title' => 'Restaurar edições',
-'undeleteextrahelp' => "Para restaurar o histórico de edições completo desta página, desmarque todas as caixas de selecção e clique '''''{{int:undeletebtn}}'''''.
-Para efectuar uma restauração selectiva, marque as caixas correspondentes às edições que pretende restaurar e clique '''''{{int:undeletebtn}}'''''.",
+'undeleteextrahelp' => "Para restaurar o histórico de edições completo desta página, desmarque todas as caixas de seleção e clique '''''{{int:undeletebtn}}'''''.
+Para efetuar uma restauração seletiva, marque as caixas correspondentes às edições que pretende restaurar e clique '''''{{int:undeletebtn}}'''''.",
 'undeleterevisions' => '$1 {{PLURAL:$1|edição disponível|edições disponíveis}}',
 'undeletehistory' => 'Se restaurar uma página, todas as edições serão restauradas para o histórico.
 Se uma nova página foi criada com o mesmo nome desde a eliminação, as edições restauradas aparecerão no histórico anterior.',
@@ -2660,7 +2660,7 @@ $1',
 'invert' => 'Inverter seleção',
 'tooltip-invert' => 'Marque esta caixa para esconder as alterações a páginas no espaço nominal selecionado (e no espaço nominal associado, se escolheu fazê-lo)',
 'namespace_association' => 'Espaço nominal associado',
-'tooltip-namespace_association' => 'Marque esta caixa para incluir também o espaço nominal de conteúdo ou de discussão associado à sua selecção',
+'tooltip-namespace_association' => 'Marque esta caixa para incluir também o espaço nominal de conteúdo ou de discussão associado à sua seleção',
 'blanknamespace' => '(Principal)',
 
 # Contributions
@@ -2887,7 +2887,7 @@ Para páginas populares, esta operação pode representar uma mudança drástica
 certifique-se de que compreende as consequências da operação antes de continuar.",
 'movepagetalktext' => "Se existir uma página de discussão associada, ela será automaticamente movida, '''a não ser que:'''
 *já exista uma página de discussão com o novo título que não esteja vazia, ou
-*desmarque a correspondente caixa de selecção abaixo.
+*desmarque a correspondente caixa de seleção abaixo.
 
 Nestes casos, terá de mover a página de discussão manualmente, ou fundi-la com a existente, se assim desejar.",
 'movearticle' => 'Mover página',
@@ -3772,8 +3772,8 @@ insira a URL no seu browser para confirmar que o seu endereço de correio electr
 caso tenha criado a conta recentemente, é recomendado que aguarde alguns minutos até o receber antes de tentar pedir um novo código.',
 'confirmemail_send' => 'Enviar código de confirmação',
 'confirmemail_sent' => 'Correio de confirmação enviado.',
-'confirmemail_oncreate' => 'Foi enviado um código de confirmação para o seu endereço de correio electrónico.
-Este código não é necessário para se autenticar no sistema, mas será necessário para activar qualquer funcionalidade baseada no uso de correio na wiki.',
+'confirmemail_oncreate' => 'Foi enviado um código de confirmação para o seu endereço de correio eletrónico.
+Este código não é necessário para se autenticar no sistema, mas será necessário para ativar qualquer funcionalidade baseada no uso de correio na wiki.',
 'confirmemail_sendfailed' => 'A {{SITENAME}} não conseguiu enviar a mensagem de confirmação.
 Verifique se o seu endereço de correio electrónico tem caracteres inválidos.
 
@@ -3786,16 +3786,16 @@ Pode agora [[Special:UserLogin|autenticar-se]] e desfrutar da wiki.',
 'confirmemail_error' => 'Alguma coisa correu mal ao gravar a sua confirmação.',
 'confirmemail_subject' => 'Confirmação de endereço de correio electrónico da {{SITENAME}}',
 'confirmemail_body' => 'Alguém, provavelmente você a partir do endereço IP $1,
-registou uma conta "$2" com este endereço de correio electrónico na {{SITENAME}}.
+registrou uma conta "$2" com este endereço de correio eletrónico na {{SITENAME}}.
 
-Para confirmar que esta conta é realmente sua e activar
-as funcionalidades de correio electrónico na {{SITENAME}},
+Para confirmar que esta conta é realmente sua e ativar
+as funcionalidades de correio eletrónico na {{SITENAME}},
 abra o seguinte link no seu browser:
 
 $3
 
 Se a conta *não* é sua, abra o seguinte link para cancelar
-a confirmação do endereço de correio electrónico:
+a confirmação do endereço de correio eletrónico:
 
 $5
 
@@ -3900,7 +3900,7 @@ Tente a antevisão normal.',
 'watchlistedit-normal-title' => 'Editar lista de páginas vigiadas',
 'watchlistedit-normal-legend' => 'Remover páginas da lista de páginas vigiadas',
 'watchlistedit-normal-explain' => 'As suas páginas vigiadas são listadas abaixo.
-Para remover uma página, marque a caixa de selecção correspondente e clique o botão "{{int:Watchlistedit-normal-submit}}".
+Para remover uma página, marque a caixa de seleção correspondente e clique o botão "{{int:Watchlistedit-normal-submit}}".
 Também pode [[Special:EditWatchlist/raw|editar a lista de páginas vigiadas em forma de texto]].',
 'watchlistedit-normal-submit' => 'Remover páginas',
 'watchlistedit-normal-done' => '{{PLURAL:$1|Foi removida uma página|Foram removidas $1 páginas}} da sua lista de páginas vigiadas:',

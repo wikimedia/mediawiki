@@ -3852,6 +3852,7 @@ $messages['csb'] = array(
  * @author ОйЛ
  */
 $messages['cu'] = array(
+	'config-page-language' => 'ѩꙁꙑкъ',
 	'config-help' => 'помощь',
 );
 
@@ -16508,7 +16509,7 @@ Considere colocar a base de dados num local completamente diferente, como, por e
 
 $1
 
-Se a plataforma que pretende usar não está listada abaixo, siga as instruções nos links acima para activar o suporte.',
+Se a plataforma que pretende usar não está listada abaixo, siga as instruções nos links acima para ativar o suporte.',
 	'config-support-mysql' => '* $1 é a plataforma primária do MediaWiki e a melhor suportada ([http://www.php.net/manual/en/mysql.installation.php como compilar PHP com suporte MySQL])',
 	'config-support-postgres' => '* $1 é uma plataforma de base de dados comum, de fonte aberta, alternativa ao MySQL ([http://www.php.net/manual/en/pgsql.installation.php como compilar PHP com suporte PostgreSQL]). Poderão existir alguns pequenos problemas e não é recomendado o seu uso em ambientes de exploração/produção.',
 	'config-support-sqlite' => '* $1 é uma plataforma de base de dados ligeira muito bem suportada. ([http://www.php.net/manual/en/pdo.installation.php Como compilar PHP com suporte SQLite], usa PDO)',
@@ -16590,7 +16591,7 @@ A conta que especificar aqui já tem de existir.',
 	'config-mysql-engine' => 'Motor de armazenamento:',
 	'config-mysql-innodb' => 'InnoDB',
 	'config-mysql-myisam' => 'MyISAM',
-	'config-mysql-myisam-dep' => "'''Aviso''': Seleccionou o MyISAM para motor de armazenamento do MySQL, uma combinação desaconselhada para usar com o MediaWiki porque:
+	'config-mysql-myisam-dep' => "'''Aviso''': Selecionou o MyISAM para motor de armazenamento do MySQL, uma combinação desaconselhada para usar com o MediaWiki porque:
 * praticamente não permite acessos simultâneos, devido aos bloqueios de tabelas
 * o MyISAM é mais suscetível a perdas da integridade dos dados do que outros motores
 * o código do MediaWiki não trabalha devidamente com o MyISAM
@@ -16612,7 +16613,7 @@ mas não lhe permitirá armazenar caracteres acima do [//en.wikipedia.org/wiki/M
 	'config-site-name' => 'Nome da wiki:',
 	'config-site-name-help' => 'Este nome aparecerá no título da janela do seu browser e em vários outros sítios.',
 	'config-site-name-blank' => 'Introduza o nome do site.',
-	'config-project-namespace' => 'Espaço nominal do projecto:',
+	'config-project-namespace' => 'Espaço nominal do projeto:',
 	'config-ns-generic' => 'Projeto',
 	'config-ns-site-name' => 'O mesmo que o nome da wiki: $1',
 	'config-ns-other' => 'Outro (especifique)',
@@ -16687,16 +16688,16 @@ A licença anterior da Wikipédia era a licença GNU Free Documentation License.
 A GFDL é uma licença válida, mas de difícil compreensão.
 Também é difícil reutilizar conteúdos licenciados com a GFDL.',
 	'config-email-settings' => 'Definições do correio electrónico',
-	'config-enable-email' => 'Activar mensagens electrónicas de saída',
+	'config-enable-email' => 'Ativar mensagens eletrónicas de saída',
 	'config-enable-email-help' => 'Se quer que o correio electrónico funcione, as [http://www.php.net/manual/en/mail.configuration.php definições de correio electrónico do PHP] têm de estar configuradas correctamente.
 Se não pretende viabilizar qualquer funcionalidade de correio electrónico, pode desactivá-lo aqui.',
-	'config-email-user' => 'Activar mensagens electrónicas entre utilizadores',
+	'config-email-user' => 'Ativar mensagens eletrónicas entre utilizadores',
 	'config-email-user-help' => 'Permitir que todos os utilizadores troquem entre si mensagens de correio electrónico, se tiverem activado esta funcionalidade nas suas preferências.',
-	'config-email-usertalk' => 'Activar notificações de alterações à página de discussão dos utilizadores',
+	'config-email-usertalk' => 'Ativar notificações de alterações à página de discussão dos utilizadores',
 	'config-email-usertalk-help' => 'Permitir que os utilizadores recebam notificações de alterações à sua página de discussão, se tiverem activado esta funcionalidade nas suas preferências.',
-	'config-email-watchlist' => 'Activar notificação de alterações às páginas vigiadas',
+	'config-email-watchlist' => 'Ativar notificação de alterações às páginas vigiadas',
 	'config-email-watchlist-help' => 'Permitir que os utilizadores recebam notificações de alterações às suas páginas vigiadas, se tiverem activado esta funcionalidade nas suas preferências.',
-	'config-email-auth' => 'Activar autenticação do correio electrónico',
+	'config-email-auth' => 'Ativar autenticação do correio eletrónico',
 	'config-email-auth-help' => "Se esta opção for activada, os utilizadores têm de confirmar o seu endereço de correio electrónico usando um link que lhes é enviado sempre que o definirem ou alterarem.
 Só os endereços de correio electrónico autenticados podem receber mensagens electrónicas dos outros utilizadores ou alterar as mensagens de notificação.
 É '''recomendado''' que esta opção seja activada nas wikis de acesso público para impedir o uso abusivo das funcionalidades de correio electrónico.",
@@ -16719,7 +16720,7 @@ O ideal é que este diretório não possa ser diretamente acedido a partir da in
 Coloque na wiki uma imagem com estas dimensões e introduza aqui a URL dessa imagem.
 
 Se não pretende usar um logótipo, deixe este campo em branco.', # Fuzzy
-	'config-instantcommons' => 'Activar a funcionalidade Instant Commons',
+	'config-instantcommons' => 'Ativar Instant Commons',
 	'config-instantcommons-help' => 'O [//www.mediawiki.org/wiki/InstantCommons Instant Commons] é uma funcionalidade que permite que as wikis usem imagens, áudio e outros ficheiros multimédia disponíveis no site [//commons.wikimedia.org/ Wikimedia Commons].
 Para poder usá-los, o MediaWiki necessita de acesso à internet.
 
@@ -16730,8 +16731,8 @@ Introduza o nome da licença manualmente.',
 	'config-cc-not-chosen' => 'Escolha a licença da Creative Commons que pretende e clique "continuar".',
 	'config-advanced-settings' => 'Configuração avançada',
 	'config-cache-options' => 'Definições da cache de objectos:',
-	'config-cache-help' => 'A cache de objectos é usada para melhorar o desempenho do MediaWiki. Armazena dados usados com frequência.
-Sites de tamanho médio ou grande são altamente encorajados a activar esta funcionalidade e os sites pequenos também terão alguns benefícios em fazê-lo.',
+	'config-cache-help' => 'A cache de objetos é usada para melhorar o desempenho do MediaWiki. Armazena dados usados com frequência.
+Sites de tamanho médio ou grande são altamente encorajados a ativar esta funcionalidade e os sites pequenos também terão alguns benefícios em fazê-lo.',
 	'config-cache-none' => 'Sem cache (não é removida nenhuma funcionalidade, mas a velocidade de operação pode ser afectada nas wikis grandes)',
 	'config-cache-accel' => 'Cache de objectos do PHP (APC, XCache ou WinCache)',
 	'config-cache-memcached' => 'Usar Memcached (requer instalação e configurações adicionais)',
@@ -16740,7 +16741,7 @@ Sites de tamanho médio ou grande são altamente encorajados a activar esta func
 Deve-se colocar um por linha e indicar a porta a utilizar. Por exemplo:
  127.0.0.1:11211
  192.168.1.25:1234',
-	'config-memcache-needservers' => 'Seleccionou o Memcached como tipo de chache, mas não especificou nenhum servidor.',
+	'config-memcache-needservers' => 'Selecionou o Memcached como tipo de chache, mas não especificou nenhum servidor.',
 	'config-memcache-badip' => 'Introduziu um endereço IP inválido para o Memcached: $1.',
 	'config-memcache-noport' => 'Não especificou a porta a usar para o servidor Memcached: $1.
 Se não sabe qual é a porta, a predefinida é a 11211.',
@@ -16775,7 +16776,7 @@ O MediaWiki necessita que as tabelas pertençam ao utilizador da internet. Espec
 	'config-install-user-grant-failed' => 'A atribuição das permissões ao utilizador "$1" falhou: $2',
 	'config-install-user-missing' => 'O utilizador especificado, "$1", não existe.',
 	'config-install-user-missing-create' => 'O utilizador especificado, "$1", não existe.
-Marque a caixa de selecção "criar conta" abaixo se pretende criá-la, por favor.',
+Marque a caixa de seleção "criar conta" abaixo se pretende criá-la, por favor.',
 	'config-install-tables' => 'A criar as tabelas',
 	'config-install-tables-exist' => "'''Aviso''': As tabelas do MediaWiki parecem já existir.
 A criação das tabelas será saltada.",

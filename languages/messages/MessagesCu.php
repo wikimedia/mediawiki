@@ -193,10 +193,10 @@ $messages = array(
 
 # Cologne Blue skin
 'qbedit' => 'исправи',
-'qbpageoptions' => 'си страни́ца',
+'qbpageoptions' => 'сꙗ страница',
 'qbmyoptions' => 'моꙗ страницѧ',
 'qbspecialpages' => 'нарочьнꙑ страницѧ',
-'faq' => 'чѧстꙑ въпросꙑ',
+'faq' => 'чѧстꙑ въпроси',
 'faqpage' => 'Project:Чѧстꙑ въпроси',
 
 # Vector skin
@@ -643,7 +643,7 @@ $messages = array(
 
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|баитъ|баита|баитъ}}',
-'ncategories' => '{{PLURAL:$1|катигорїꙗ|катигорїи|катигорїѩ|катигорїѩ}}',
+'ncategories' => '$1 {{PLURAL:$1|катигорїꙗ|катигорїи|катигорїѩ|катигорїѩ}}',
 'nlinks' => '$1 {{PLURAL:$1|съвѧꙁь|съвѧꙁи|съвѧꙁии}}',
 'nmembers' => '$1 {{PLURAL:$1|члѣнъ|члѣна|члѣни|члѣнъ}}',
 'shortpages' => 'кратъкꙑ страницѧ',
@@ -660,7 +660,7 @@ $messages = array(
 'booksources-go' => 'прѣиди',
 
 # Special:Log
-'specialloguserlabel' => 'польꙃєватєл҄ь:',
+'specialloguserlabel' => 'испльнитєл҄ь :',
 'speciallogtitlelabel' => 'страницѧ или польꙃєватєлꙗ имѧ :',
 'log' => 'їсторїѩ',
 'all-logs-page' => 'вьсѩ обьщѧ їсторїѩ',
@@ -959,6 +959,10 @@ $messages = array(
 
 # Database error messages
 'dberr-header' => 'Вики тєхнїчьнꙑ отѧжєниꙗ имѣтъ',
+
+# HTML forms
+'htmlform-no' => 'нѣтъ',
+'htmlform-yes' => 'да',
 
 # New logging system
 'logentry-delete-delete' => '$1 {{GENDER:$2|поничьжилъ|поничьжила}} страницѫ ⁖ $3 ⁖',
