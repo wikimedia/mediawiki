@@ -416,12 +416,13 @@ class DifferenceEngine extends ContextSource {
 	 */
 	protected function markPatrolledLink() {
 		global $wgUseRCPatrol, $wgEnableAPI, $wgEnableWriteAPI;
+		$user = $this->getUser();
 
 		if ( $this->mMarkPatrolledLink === null ) {
 			// Prepare a change patrol link, if applicable
 			if (
 				// Is patrolling enabled and the user allowed to?
-				$wgUseRCPatrol && $this->mNewPage->quickUserCan( 'patrol', $this->getUser() ) &&
+				$wgUseRCPatrol && $this->mNewPage->quickUserCan( 'patrol', $user ) &&
 				// Only do this if the revision isn't more than 6 hours older
 				// than the Max RC age (6h because the RC might not be cleaned out regularly)
 				RecentChange::isInRCLifespan( $this->mNewRev->getTimestamp(), 21600 )
@@ -439,22 +440,23 @@ class DifferenceEngine extends ContextSource {
 					array( 'USE INDEX' => 'rc_timestamp' )
 				);
 
-				if ( $change ) {
+				if ( $change && $change->getPerformer()->getName() !== $user->getName() ) {
 					$rcid = $change->getAttribute( 'rc_id' );
 				} else {
-					// None found
+					// None found or the page has been created by the current user.
+					// If the user could patrol this it already would be patrolled
 					$rcid = 0;
 				}
 				// Build the link
 				if ( $rcid ) {
 					$this->getOutput()->preventClickjacking();
 					if ( $wgEnableAPI && $wgEnableWriteAPI
-						&& $this->getUser()->isAllowed( 'writeapi' )
+						&& $user->isAllowed( 'writeapi' )
 					) {
 						$this->getOutput()->addModules( 'mediawiki.page.patrol.ajax' );
 					}
 
-					$token = $this->getUser()->getEditToken( $rcid );
+					$token = $user->getEditToken( $rcid );
 					$this->mMarkPatrolledLink = ' <span class="patrollink">[' . Linker::linkKnown(
 						$this->mNewPage,
 						$this->msg( 'markaspatrolleddiff' )->escaped(),
