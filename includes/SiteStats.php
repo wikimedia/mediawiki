@@ -296,9 +296,12 @@ class SiteStatsUpdate implements DeferrableUpdate {
 		// The other times, just update "pending delta" values in memcached.
 		if ( $rate && ( $rate < 0 || mt_rand( 0, $rate - 1 ) != 0 ) ) {
 			$this->doUpdatePendingDeltas();
-		} else {
-			$dbw = wfGetDB( DB_MASTER );
+			return;
+		}
 
+		$dbw = wfGetDB( DB_MASTER );
+		// Need a separate transaction because this a global lock
+		$dbw->onTransactionIdle( function() use ( $dbw, $rate ) {
 			$lockKey = wfMemcKey( 'site_stats' ); // prepend wiki ID
 			if ( $rate ) {
 				// Lock the table so we don't have double DB/memcached updates
@@ -318,9 +321,6 @@ class SiteStatsUpdate implements DeferrableUpdate {
 				$this->images += ( $pd['ss_images']['+'] - $pd['ss_images']['-'] );
 			}
 
-			// Need a separate transaction because this a global lock
-			$dbw->begin( __METHOD__ );
-
 			// Build up an SQL query of deltas and apply them...
 			$updates = '';
 			$this->appendUpdate( $updates, 'ss_total_views', $this->views );
@@ -339,9 +339,7 @@ class SiteStatsUpdate implements DeferrableUpdate {
 				// Commit the updates and unlock the table
 				$dbw->unlock( $lockKey, __METHOD__ );
 			}
-
-			$dbw->commit( __METHOD__ );
-		}
+		} );
 	}
 
 	/**
