@@ -262,7 +262,7 @@ class LogPage {
 					// User suppression
 					if ( preg_match( '/^(block|suppress)\/(block|reblock)$/', $key ) ) {
 						if ( $skin ) {
-							$params[1] = '<span class="blockExpiry" dir="ltr" title="' . htmlspecialchars( $params[1] ) . '">' .
+							$params[1] = '<span class="blockExpiry" title="&lrm;' . htmlspecialchars( $params[1] ) . '">' .
 								$wgLang->translateBlockExpiry( $params[1] ) . '</span>';
 						} else {
 							$params[1] = $wgContLang->translateBlockExpiry( $params[1] );
