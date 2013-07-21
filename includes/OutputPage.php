@@ -1556,14 +1556,20 @@ class OutputPage extends ContextSource {
 	public function addParserOutputNoText( &$parserOutput ) {
 		$this->mLanguageLinks += $parserOutput->getLanguageLinks();
 		$this->addCategoryLinks( $parserOutput->getCategories() );
-		$this->mNewSectionLink = $parserOutput->getNewSection();
-		$this->mHideNewSectionLink = $parserOutput->getHideNewSection();
+		if ( $parserOutput->getNewSection() ) {
+			$this->mNewSectionLink = true;
+		}
+		if ( $parserOutput->getHideNewSection() ) {
+			$this->mHideNewSectionLink = true;
+		}
 
-		$this->mParseWarnings = $parserOutput->getWarnings();
+		$this->mParseWarnings = array_merge( $this->mParseWarnings, $parserOutput->getWarnings() );
 		if ( !$parserOutput->isCacheable() ) {
 			$this->enableClientCache( false );
 		}
-		$this->mNoGallery = $parserOutput->getNoGallery();
+		if ( $parserOutput->getNoGallery() ) {
+			$this->mNoGallery = true;
+		}
 		$this->mHeadItems = array_merge( $this->mHeadItems, $parserOutput->getHeadItems() );
 		$this->addModules( $parserOutput->getModules() );
 		$this->addModuleScripts( $parserOutput->getModuleScripts() );
