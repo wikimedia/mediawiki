@@ -5,7 +5,7 @@
  * (with JS disabled, user will see all items)
  */
 ( function ( mw, $ ) {
-	$( function () {
+	$( document ).ready( function () {
 		var $row, $col, $link,
 			showText = mw.msg( 'metadata-expand' ),
 			hideText = mw.msg( 'metadata-collapse' ),

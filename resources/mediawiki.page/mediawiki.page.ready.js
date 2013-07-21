@@ -1,5 +1,5 @@
 ( function ( mw, $ ) {
-	$( function () {
+	$( document ).ready( function () {
 		var $sortableTables;
 
 		/* Emulate placeholder if not supported by browser */
