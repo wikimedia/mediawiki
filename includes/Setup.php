@@ -581,6 +581,18 @@ foreach ( $wgExtensionFunctions as $func ) {
 	wfProfileOut( $profName );
 }
 
+# Fix for bug 45031, to force re-cache of Canonical namespaces
+# If an extension does something seemingly innocuous like calling
+# Title::getPrefixedText in a hook called before the end of
+# includes/Setup.php, it causes the list of canonical namespaces to be
+# cached early and breaks extensions that try to add namespaces from a
+# $wgExtensionFunctions callback.
+# Also clears the cache held by the language objects
+MWNamespace::getCanonicalNamespaces( true );
+foreach ( Language::$mLangObjCache as $lang ) {
+    $lang->resetNamespaces();
+}
+
 wfDebug( "Fully initialised\n" );
 $wgFullyInitialised = true;
 
