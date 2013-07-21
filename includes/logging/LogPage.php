@@ -262,7 +262,12 @@ class LogPage {
 					// User suppression
 					if ( preg_match( '/^(block|suppress)\/(block|reblock)$/', $key ) ) {
 						if ( $skin ) {
-							$params[1] = '<span class="blockExpiry" title="&lrm;' . htmlspecialchars( $params[1] ) . '">' .
+							// Localize the duration, and add a tooltip
+							// in English to help visitors from other wikis.
+							// The lrm is needed to make sure that the number
+							// is shown on the correct side of the tooltip text.
+							$durationTooltip = '&lrm;' . htmlspecialchars( $params[1] );
+							$params[1] = "<span class='blockExpiry' title='$durationTooltip'>" .
 								$wgLang->translateBlockExpiry( $params[1] ) . '</span>';
 						} else {
 							$params[1] = $wgContLang->translateBlockExpiry( $params[1] );
