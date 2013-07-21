@@ -137,4 +137,41 @@
 		assert.assertTrue( $content.is( ':hidden' ), 'click event on non-link inside toggle toggles content' );
 	} );
 
+	QUnit.asyncTest( 'collapse/expand text (data-collapsetext, data-expandtext)', 2, function ( assert ) {
+		var $collapsible, $toggleLink;
+		$collapsible = prepareCollapsible(
+			'<div class="mw-collapsible" data-collapsetext="Collapse me!" data-expandtext="Expand me!">' +
+				loremIpsum +
+			'</div>'
+		);
+		$toggleLink = $collapsible.find( '.mw-collapsible-toggle a' );
+
+		assert.equal( $toggleLink.text(), 'Collapse me!', 'data-collapsetext is respected' );
+
+		$collapsible.on( 'afterCollapse.mw-collapsible', function () {
+			assert.equal( $toggleLink.text(), 'Expand me!', 'data-expandtext is respected' );
+			QUnit.start();
+		} );
+
+		$collapsible.find( '.mw-collapsible-toggle' ).trigger( 'click' );
+	} );
+
+	QUnit.asyncTest( 'collapse/expand text (options.collapseText, options.expandText)', 2, function ( assert ) {
+		var $collapsible, $toggleLink;
+		$collapsible = prepareCollapsible(
+			'<div class="mw-collapsible">' + loremIpsum + '</div>',
+			{ collapseText: 'Collapse me!', expandText: 'Expand me!' }
+		);
+		$toggleLink = $collapsible.find( '.mw-collapsible-toggle a' );
+
+		assert.equal( $toggleLink.text(), 'Collapse me!', 'options.collapseText is respected' );
+
+		$collapsible.on( 'afterCollapse.mw-collapsible', function () {
+			assert.equal( $toggleLink.text(), 'Expand me!', 'options.expandText is respected' );
+			QUnit.start();
+		} );
+
+		$collapsible.find( '.mw-collapsible-toggle' ).trigger( 'click' );
+	} );
+
 }( mediaWiki, jQuery ) );
