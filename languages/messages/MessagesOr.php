@@ -18,6 +18,7 @@
  * @author Shijualex
  * @author Shisir 1945
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
+ * @author ଶିତିକଣ୍ଠ ଦାଶ
  */
 
 $digitTransformTable = array(

@@ -3211,6 +3211,7 @@ $messages['ce'] = array(
 	'config-no-fts3' => "'''Тергам бе''': SQLite гулйина хуттург йоцуш [//sqlite.org/fts3.html FTS3] — лахар болхбеш хир дац оцу бухца.",
 	'config-license' => 'Авторан бакъонаш а лицензи а:',
 	'config-license-pd' => 'Юкъараллин хьал',
+	'config-help' => 'гӀо',
 	'mainpagetext' => "'''Вики-белха гlирс «MediaWiki» кхочуш дика дlахlоттийна.'''",
 	'mainpagedocfooter' => 'Викийца болх бан хаамаш карор бу хlокху чохь [//meta.wikimedia.org/wiki/%D0%9F%D0%BE%D0%BC%D0%BE%D1%89%D1%8C:%D0%A1%D0%BE%D0%B4%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D0%B8%D0%B5 нисвохааман куьйгаллица].
 
@@ -3853,6 +3854,7 @@ $messages['csb'] = array(
  */
 $messages['cu'] = array(
 	'config-page-language' => 'ѩꙁꙑкъ',
+	'config-page-name' => 'имѧ',
 	'config-help' => 'помощь',
 );
 
@@ -14134,7 +14136,8 @@ $messages['nds-nl'] = array(
 == Meer hulpe ==
 * [//www.mediawiki.org/wiki/Help:Configuration_settings Lieste mit instellingen]
 * [//www.mediawiki.org/wiki/Help:FAQ MediaWiki-vragen die vake esteld wörden]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-postlieste veur nieje versies]', # Fuzzy
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-postlieste veur nieje versies]
+* [//www.mediawiki.org/wiki/Localisation#Translation_resources Maak MediaWiki beschikbaor in joew taal]',
 );
 
 /** Nepali (नेपाली)

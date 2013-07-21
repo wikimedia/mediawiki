@@ -708,7 +708,7 @@ $1',
 Хьан йиш ю {{grammar:genitive|{{SITENAME}}}} чохь хьой ца вовзийташ/йовзийташ болх бан я <span class='plainlinks'>[$1 кхин чувала/яла ]</span> хьой чохь хила цӀарца я кхин цӀарца.
 Цхьа йолу агӀонаш чохь хьо хьай цӀарца болх беш сана хила тарло ишта ца хилийта керлаякха браузеран кэш.",
 'welcomeuser' => 'Марша ДогӀийла, $1!',
-'yourname' => 'Декъашхон цlе:',
+'yourname' => 'Декъашхочун цӀе:',
 'userlogin-yourname' => 'Декъашхон цӀе',
 'userlogin-yourname-ph' => 'Язъе декъашхон цӀе',
 'yourpassword' => 'Пароль:',
@@ -726,16 +726,16 @@ $1',
 'login' => 'Системин чугӀо',
 'nav-login-createaccount' => 'Вовзийта/Йовзийта хьой / дӀавазло/дӀаязло',
 'loginprompt' => 'Ахьа бакъо йала йеза оцу «cookies» хьайна вовзийта лаахь гlирсан.',
-'userlogin' => 'Довзийтар я декъашхон дӀаяздар кхоллар',
+'userlogin' => 'Довзийтар я декъашхочун дӀаяздар кхоллар',
 'userloginnocreate' => 'Довзийта',
 'logout' => 'Болх дӀаберзор',
 'userlogout' => 'Болх дӀаберзор',
 'notloggedin' => 'Хьо вовзийта/йовзийта гlирсан',
 'userlogin-noaccount' => 'Декъашхон дӀаяздар дац хьа?',
 'userlogin-joinproject' => '{{grammar:genitive|{{SITENAME}}}} юкъахӀотта',
-'nologin' => "Декъашхон дӀаяздар дац хьа? '''$1'''.",
-'nologinlink' => 'Кхолла декъашхон дӀаяздар',
-'createaccount' => 'Кхолла декъашхон дӀаяздар',
+'nologin' => "Декъашхочун дӀаяздар дац хьа? '''$1'''.",
+'nologinlink' => 'Кхолла декъашхочун дӀаяздар',
+'createaccount' => 'Кхолла декъашхочун дӀаяздар',
 'gotaccount' => "Дlавазвелла вуй хьо? '''$1'''.",
 'gotaccountlink' => 'Довзийта',
 'userlogin-resetlink' => 'Чуволу/йолу хаам биц бела?',
@@ -843,7 +843,7 @@ $1',
 'showdiff' => 'Хlоттина болу хийцам',
 'anoneditwarning' => "'''Тергам бе''': Ахьа хьай цӀарца тадарш деш дац. Хьан IP-адрес дӀаяздина хира ду хӀокху агӀон истори чу.",
 'summary-preview' => 'Цуьнах лаьцна хирду:',
-'blockedtitle' => 'Декъашхон блоктоьхана',
+'blockedtitle' => 'Декъашхочун блоктоьхана',
 'loginreqtitle' => 'Хьай цӀарца чугӀо',
 'loginreqlink' => 'Логин',
 'accmailtitle' => 'Пароль дlаяхьийтина.',
@@ -907,6 +907,7 @@ $1',
 'template-semiprotected' => '(дуьззина доцуш гlаролла)',
 'hiddencategories' => 'Хlара агlо чуйогlуш ю оцу $1 {{PLURAL:$1|къайлаха кадегарчу|къайлаха кадегаршчу|къайлаха кадегаршчу}}:',
 'edittools' => '<!-- Кхузе буха диллина йоза гуш хир ду редоккхуче бухахь а хlума чуйоккхуче бухахь. -->',
+'permissionserrors' => 'ТӀекхачарехь гӀалат',
 'permissionserrorstext' => 'Хьан бакъо яц кхочуш хилийта хийцам оцу {{PLURAL:$1|шолгlа бахьанца|шолгlа бахьанашца}}:',
 'permissionserrorstext-withaction' => "Хьан бакъо яц хlумда «'''$2'''» оцу {{PLURAL:$1|шолгlа бахьанца|шолгlа бахьанашца}}:",
 'recreate-moveddeleted-warn' => "'''Тидам бе. Ахьа кхуллуш ю, хьалхо дӀаяккхина йолу агӀо.'''
@@ -971,6 +972,8 @@ $1',
 
 # History merging
 'mergehistory-from' => 'Дуьххьарлера агӀоно',
+'mergehistory-invalid-source' => 'Хьостан нийса корта хила еза.',
+'mergehistory-invalid-destination' => 'Юзийна агӀона нийса корта хила еза.',
 'mergehistory-reason' => 'Бахьан:',
 
 # Merge log
@@ -1194,11 +1197,12 @@ $1',
 'newuserlogpage' => 'Декъашхой дlабазбина тептар',
 
 # User rights log
-'rightslog' => 'Декъашхон бакъона тéптар',
+'rightslog' => 'Декъашхочун бакъона тéптар',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'нисйа хlара агlо',
 'action-delete' => 'дӀаяккха хӀара агӀо',
+'action-deletedhistory' => 'хӀокху агӀона дӀаяккхинцу исторега хьажар',
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|хийцам|хийцамаш|хийцамаш}}',
@@ -1455,8 +1459,8 @@ PICT # тайп тайпан
 'speciallogtitlelabel' => 'Ӏалашо (цӀе я декъашхо):',
 'log' => 'Тéптарш',
 'all-logs-page' => 'Деригге тléкхочучéхь долу тéптарш',
-'alllogstext' => 'Массо тéптар могlам. {{SITENAME}}.
-Шуьга харжалур бу хилам оцу тептаре хьаьжжина, декъашхон цlе (дlаязвар диц а цадеш) йа иза хьакхавелла агlонаш (ишта дlаязвар а диц цадеш).',
+'alllogstext' => 'Массо тéптар могӀам. {{SITENAME}}.
+Шуьга харжалур бу хилам оцу тептаре хьаьжжина, декъашхочун цӀе (дӀаяздар диц а цадеш) я цо хьейина агӀонаш (ишта дӀаяздар а диц цадеш).',
 'logempty' => 'Тептарш чохь хӀокху агӀона дӀаяздарш дац.',
 
 # Special:AllPages
@@ -1663,8 +1667,8 @@ PICT # тайп тайпан
 'blanknamespace' => '(Коьрта)',
 
 # Contributions
-'contributions' => 'Декъашхон къинхьегам',
-'contributions-title' => 'Декъашхон къинхьегам $1',
+'contributions' => '{{GENDER:$1|Декъашхочун}} къинхьегам',
+'contributions-title' => '{{GENDER:$1|Декъашхочун}} къинхьегам $1',
 'mycontris' => 'Сан къинхьегам',
 'contribsub2' => 'Къинхьегам $1 ($2)',
 'uctop' => ' (тlаьхьара)',
@@ -1679,7 +1683,7 @@ PICT # тайп тайпан
 'sp-contributions-talk' => 'дийцаре',
 'sp-contributions-userrights' => 'декъашхочуьн бакъона урхалладар',
 'sp-contributions-search' => 'Къинхьегам лахар',
-'sp-contributions-username' => 'IP-долу меттиг йа декъашхон цlе:',
+'sp-contributions-username' => 'IP-адрес я декъашхочун цӀе:',
 'sp-contributions-toponly' => 'ТӀаьхьара бина хийцамаш гайта',
 'sp-contributions-submit' => 'Лаха',
 
@@ -1709,7 +1713,7 @@ PICT # тайп тайпан
 'blockiptext' => 'Бухахь йолу форманца блоктоха IP-адресна цунтӏера дӏаяздарш ца дайта.
 Блоктоха магийна цо зенаш деш делахь кхин хӏокху [[{{MediaWiki:Policy-url}}|низам ца]].
 Лахахь билгалде блоктохарна бахьна.',
-'ipadressorusername' => 'IP-долу меттиг йа декъашхон цlе:',
+'ipadressorusername' => 'IP-адрес я декъашхочун цӀе:',
 'ipbexpiry' => 'Хан чекхйолу:',
 'ipbreason' => 'Бахьан:',
 'ipbreasonotherlist' => 'Кхин бахьан',
@@ -1729,7 +1733,7 @@ PICT # тайп тайпан
 'ipbother' => 'Кхин хан:',
 'ipboptions' => '2 сахьат:2 hours,1 де:1 day,3 де:3 days,1 кlиран:1 week,2 кlиран:2 weeks,1 бутт:1 month,3 бутт:3 months,6 бутт:6 months,1 шо:1 year,цlкъа:infinite',
 'ipbwatchuser' => 'ТӀетоха тергаме могӀам юкъа цуьнан долахь йолу агӀо а цуьнан дийцаре агӀо а',
-'ipb-disableusertalk' => 'Цамагдо шин дийцаре агӀо та я блоктоьхна волучу хенахь',
+'ipb-disableusertalk' => 'Цамагдо шин дийцаре агӀо та я блоктоьхна хан чекхъяллалц',
 'ipb-change-block' => 'Юхаблоктоха декъашхон оьцу хийцамашца',
 'ipb-confirm' => 'Бакъде блоктохар',
 'blockipsuccesssub' => 'Блоктохар чакхдели',
@@ -1755,11 +1759,12 @@ PICT # тайп тайпан
 'blocklist-target' => 'Ӏалашо',
 'blocklist-expiry' => 'Чекхйолу',
 'blocklist-by' => 'Цунна блоктоьхана куьйгалхо',
-'blocklist-params' => 'Блоктохаран параметрш',
+'blocklist-params' => 'Блоктохаран параметраш',
 'blocklist-reason' => 'Бахьан:',
 'ipblocklist-submit' => 'Лаха',
 'infiniteblock' => 'хан чаккхе йоцуш',
 'noautoblockblock' => 'ша блоктухарг дӏаяйина',
+'createaccountblock' => 'цамагдо керла дӀаяздарш кхоллар',
 'blocklink' => 'блоктоха',
 'unblocklink' => 'дӀаякхаблок',
 'change-blocklink' => 'хийцам бе блоктохарна',
@@ -1774,7 +1779,7 @@ PICT # тайп тайпан
 'block-log-flags-anononly' => 'Къайлаха берш',
 'block-log-flags-nocreate' => 'цамагдо керла дӏаяздарш кхоллар',
 'block-log-flags-noautoblock' => 'ша блоктухарг дӏаяйина',
-'ipb-needreblock' => 'ХӀара $1 {{GENDER:$1|блоктоьхна ву|блоктоьхна ю}}. Лаьий хьуна блоктохаран параметрш хийца?',
+'ipb-needreblock' => 'ХӀара $1 {{GENDER:$1|блоктоьхна ву|блоктоьхна ю}}. Лаьий хьуна блоктохаран параметраш хийца?',
 
 # Move page
 'move-page' => '$1 — цlе хийцар',
@@ -1919,7 +1924,7 @@ PICT # тайп тайпан
 'tooltip-t-print' => 'Хlокху агlонна зорба туху башхо',
 'tooltip-t-permalink' => 'Даимна йолу хьажориг хlокху башха агlонна',
 'tooltip-ca-nstab-main' => 'Яззамна чулацам',
-'tooltip-ca-nstab-user' => 'Хlора декъашхон долахь йолу агlо',
+'tooltip-ca-nstab-user' => 'ХӀора декъашхочун долахь йолу агӀо ю',
 'tooltip-ca-nstab-media' => 'Медиа-файл',
 'tooltip-ca-nstab-special' => 'Хlара белха агlо йу, хlара рéдаккхалуш яц',
 'tooltip-ca-nstab-project' => 'Кхолламан дакъа',
@@ -2039,6 +2044,7 @@ PICT # тайп тайпан
 'exif-gpsaltitude' => 'Локхалла',
 'exif-gpsdestlatitude' => 'Объектан дохалла',
 'exif-gpsdatestamp' => 'Терахь',
+'exif-headline' => 'Корта',
 'exif-source' => 'Хьост',
 'exif-languagecode' => 'Мотт',
 'exif-datetimemetadata' => 'ТӀехьара метахаамаш хийцина терахь',
@@ -2053,6 +2059,8 @@ PICT # тайп тайпан
 'exif-xyresolution-i' => '$1 тӏадамаш дюйман',
 
 'exif-scenetype-1' => 'Сурт даьккхина нис дуьххьал',
+
+'exif-gaincontrol-0' => 'Яц',
 
 'exif-contrast-0' => 'Лартӏахь',
 
@@ -2126,6 +2134,9 @@ PICT # тайп тайпан
 'version-other' => 'Кхин',
 'version-license' => 'Бакъо',
 
+# Special:Redirect
+'redirect-user' => 'Декъашхон ID',
+
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Лаха цхьатера йолу хIумнаш',
 'fileduplicatesearch-filename' => 'Файлан цӀе:',
@@ -2184,6 +2195,7 @@ PICT # тайп тайпан
 'logentry-newusers-newusers' => '{{GENDER:$2|ДӀавазвелла|ДӀаязелла}} керла декъашхо $1',
 'logentry-newusers-create' => '{{GENDER:$2|ДӀавазвелла|ДӀаязелла}} керла декъашхо $1',
 'logentry-rights-rights-legacy' => '$1 {{GENDER:$2|хийцина}} хӏокхуна $3 бакъо',
+'rightsnone' => '(яц)',
 
 # Feedback
 'feedback-cancel' => 'Цаоьшу',

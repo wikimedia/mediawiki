@@ -2775,6 +2775,7 @@ De blokkering is onderdeel van de reeks $2, waorvan de blokkering wel op-eheven 
 'sorbsreason' => "Joew IP-adres is op-eneumen as open proxyserver in de zwarte lieste van DNS die'w veur {{SITENAME}} gebruken.",
 'sorbs_create_account_reason' => "Joew IP-adres is op-eneumen as open proxyserver in de zwarte lieste van DNS, die'w veur {{SITENAME}} gebruken.
 Je kunnen gien gebrukerszied anmaken.",
+'xffblockreason' => "n IP-adres dat jie gebruken is eblokkeerd. Dit steet in de kop 'X-Forwarded-For'. De oorspronkelike reden veur de blokkerings is: $1",
 'cant-block-while-blocked' => "Je kunnen aandere gebrukers niet blokkeren a'j zelf oek eblokkeerd bin.",
 'cant-see-hidden-user' => "De gebruker die'j proberen te blokkeren is al eblokkeerd en verbörgen.
 Umda'j gien rech hebben um gebrukers te verbargen, ku'j de blokkering van de gebruker niet bekieken of bewarken.",
@@ -3868,6 +3869,8 @@ Samen mit dit programma heur je n [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van de
 
 # Special:Redirect
 'redirect' => 'Deurverwiezen op bestaandsnaam, gebrukersnummer of versienummer',
+'redirect-legend' => 'Deurverwiezen naor n bestaand of zied',
+'redirect-summary' => 'Disse spesiale zied verwis deur naor n bestaand (as n bestaandsnaam op-egeven wörden), n zied (as n versienummer op-egeven wörden) of n gebrukerszied (as t gebrukersnummer op-egeven wörden).',
 'redirect-submit' => 'Zeuk',
 'redirect-lookup' => 'Opzeuken:',
 'redirect-value' => 'Weerde:',
@@ -3924,6 +3927,7 @@ Samen mit dit programma heur je n [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van de
 'tags' => 'Geldige wiezigingsetiketten',
 'tag-filter' => '[[Special:Tags|Etiketfilter]]:',
 'tag-filter-submit' => 'Filtreren',
+'tag-list-wrapper' => '([[Special:Tags|Etiket{{PLURAL:$1||ten}}]]: $2)',
 'tags-title' => 'Etiket',
 'tags-intro' => 'Op disse zied staon de etiketten waormee de programmatuur elke bewarking kan markeren, en de betekenisse dervan.',
 'tags-tag' => 'Etiketnaam',

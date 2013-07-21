@@ -114,6 +114,7 @@
  * @author SPQRobin
  * @author Sanbec
  * @author Sborsody
+ * @author Se4598
  * @author Seb35
  * @author Sherbrooke
  * @author Shirayuki
@@ -1015,6 +1016,9 @@ See also:
 'actionthrottledtext' => 'Used as error message. Read it in combination with {{msg-mw|actionthrottled}}.',
 'protectedpagetext' => "This message is displayed when trying to edit a page you can't edit because it has been protected.
 
+Parameters:
+* $1 - the raw name of the right which is needed to edit the page
+
 The title for this message is {{msg-mw|protectedpage}}.",
 'viewsourcetext' => 'The text shown when displaying the source of a page that the user has no permission to edit',
 'viewyourtext' => 'Same as {{msg-mw|viewsourcetext}} but when showing the text submitted by the user, this happens e.g. when the user was blocked while he is editing the page',
@@ -1708,7 +1712,7 @@ See also:
 * $1 is the number of reasons that were found why the action cannot be performed.
 * $2 is one of the action-* messages (for example {{msg|action-edit}}) or other such messages tagged with {{tl|doc-action}} in their documentation.
 
-Please report at [[Support]] if you are unable to properly translate this message. Also see [[bugzilla:14246]]',
+Please report at [[Support]] if you are unable to properly translate this message. Also see [[bugzilla:14246]] (now closed) for background.',
 'recreate-moveddeleted-warn' => 'Warning shown when creating a page which has already been deleted. See for example [[Test]].',
 'moveddeleted-notice' => 'Shown on top of a deleted page in normal view modus ([{{canonicalurl:Test}} example]).',
 'log-fulllog' => 'Used as link text.',

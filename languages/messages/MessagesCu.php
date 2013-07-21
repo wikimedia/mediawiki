@@ -643,7 +643,7 @@ $messages = array(
 
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|баитъ|баита|баитъ}}',
-'ncategories' => '$1 {{PLURAL:$1|катигорїꙗ|катигорїи|катигорїѩ|катигорїѩ}}',
+'ncategories' => '$1 {{PLURAL:$1|катигорїꙗ|катигорїи|катигорїѩ}}',
 'nlinks' => '$1 {{PLURAL:$1|съвѧꙁь|съвѧꙁи|съвѧꙁии}}',
 'nmembers' => '$1 {{PLURAL:$1|члѣнъ|члѣна|члѣни|члѣнъ}}',
 'shortpages' => 'кратъкꙑ страницѧ',

@@ -714,7 +714,7 @@ Also see [[Special:WantedCategories|wanted categories]].",
 'others' => 'ate',
 
 # Browsing diffs
-'nextdiff' => 'Cagnamiénte successivo',
+'nextdiff' => 'Cagnamiénte successivo →',
 
 # Media information
 'file-info-size' => '$1 × $2 pixel, dimenzione ddo file: $3, tipo MIME: $4',

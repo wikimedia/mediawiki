@@ -396,10 +396,10 @@ Për piasì, ch'a lo signala a n'[[Special:ListUsers/sysop|aministrator]], sensa
 'directorycreateerror' => "A l'é pa podusse creé ël dossié «$1».",
 'filenotfound' => "A l'é pa trovasse l'archivi «$1».",
 'fileexistserror' => "As peul pa scriv-se l'archivi «$1»: a-i é già.",
-'unexpected' => 'Valor che i së spitavo pa: "$1"="$2".',
-'formerror' => "Eror: la domanda a l'é stàita mandà mal",
+'unexpected' => 'Valor che i së spetavo pa: «$1»=«$2».',
+'formerror' => "Eror: A l'é nen podusse mandé ël formolari.",
 'badarticleerror' => "N'operassion parèj as peul pa fesse ansima a sta pàgina-sì.",
-'cannotdelete' => "La pàgina o l'archivi \"\$1\" a peul pa esse scancelà.
+'cannotdelete' => "La pàgina o l'archivi «$1» a l'ha pa podù esse scancelà.
 Peul desse ch'a l'é già stàit ëscancelà da cheidun d'àutr.",
 'cannotdelete-title' => 'A peul pa scancelesse la pàgina «$1»',
 'delete-hook-aborted' => "Modìfica anulà da n'estension.

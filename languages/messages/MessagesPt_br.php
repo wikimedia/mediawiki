@@ -19,6 +19,7 @@
  * @author Crazymadlover
  * @author Daemorris
  * @author Danielsouzat
+ * @author Dianakc
  * @author Dicionarista
  * @author Diego Queiroz
  * @author Eduardo.mps
@@ -1543,6 +1544,7 @@ Caso decida fornecê-lo, este será utilizado para dar-lhe crédito pelo seu tra
 'prefs-dateformat' => 'Formato de data',
 'prefs-timeoffset' => 'Desvio horário',
 'prefs-advancedediting' => 'Gerais',
+'prefs-preview' => 'Pré-visualizar',
 'prefs-advancedrc' => 'Opções avançadas',
 'prefs-advancedrendering' => 'Opções avançadas',
 'prefs-advancedsearchoptions' => 'Opções avançadas',
