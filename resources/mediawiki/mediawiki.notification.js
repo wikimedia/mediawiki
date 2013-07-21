@@ -469,7 +469,7 @@
 		autoHideLimit: 3
 	};
 
-	$( function () {
+	$( document ).ready( function () {
 		var notif;
 
 		init();
