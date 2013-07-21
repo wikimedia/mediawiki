@@ -3312,7 +3312,7 @@ HTML
 		// ended up causing race conditions with the setup code above.
 		$script .= "\n" .
 			"// Create button bar\n" .
-			"$(function() { mw.toolbar.init(); } );\n";
+			"$( document ).ready( function() { mw.toolbar.init(); } );\n";
 
 		$script .= '});';
 		$wgOut->addScript( Html::inlineScript( ResourceLoader::makeLoaderConditionalScript( $script ) ) );

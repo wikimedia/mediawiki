@@ -385,7 +385,7 @@ window.redirectToFragment = function( fragment ) {
 		// better twice than not at all, so make the fix hit future versions as
 		// well.
 		if ( isGecko ) {
-			$( function () {
+			$( document ).ready( function () {
 				if ( window.location.hash === fragment ) {
 					window.location.hash = fragment;
 				}

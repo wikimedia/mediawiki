@@ -46,7 +46,7 @@ $.fn.cycle = function(options, arg2) {
 	if (this.length === 0 && options != 'stop') {
 		if (!$.isReady && o.s) {
 			log('DOM not ready, queuing slideshow');
-			$(function() {
+			$(document).ready(function() {
 				$(o.s,o.c).cycle(options,arg2);
 			});
 			return this;

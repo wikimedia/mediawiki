@@ -2,7 +2,7 @@
  * JavaScript for Special:JavaScriptTest
  */
 ( function ( mw, $ ) {
-	$( function () {
+	$( document ).ready( function () {
 
 		// Create useskin dropdown menu and reload onchange to the selected skin
 		// (only if a framework was found, not on error pages).

@@ -698,7 +698,7 @@ $.fn.ajaxForm = function(options) {
         var o = { s: this.selector, c: this.context };
         if (!$.isReady && o.s) {
             log('DOM not ready, queuing ajaxForm');
-            $(function() {
+            $( document ).ready( function() {
                 $(o.s,o.c).ajaxForm(options);
             });
             return this;
