@@ -408,16 +408,20 @@ abstract class ApiQueryBase extends ApiBase {
 	/**
 	 * Convert a title to a DB key
 	 * @param string $title Page title with spaces
+	 * @param string $rawTitle Page title to display in error messages, defaults to $title
 	 * @return string Page title with underscores
 	 */
-	public function titleToKey( $title ) {
+	public function titleToKey( $title, $rawTitle = null ) {
 		// Don't throw an error if we got an empty string
 		if ( trim( $title ) == '' ) {
 			return '';
 		}
 		$t = Title::newFromText( $title );
 		if ( !$t ) {
-			$this->dieUsageMsg( array( 'invalidtitle', $title ) );
+			if ( $rawTitle === null ) {
+				$rawTitle = $title;
+			}
+			$this->dieUsageMsg( array( 'invalidtitle', $rawTitle ) );
 		}
 		return $t->getPrefixedDBkey();
 	}
@@ -425,9 +429,10 @@ abstract class ApiQueryBase extends ApiBase {
 	/**
 	 * The inverse of titleToKey()
 	 * @param string $key Page title with underscores
+	 * @param string $rawKey Page title to display in error messages, defaults to $key
 	 * @return string Page title with spaces
 	 */
-	public function keyToTitle( $key ) {
+	public function keyToTitle( $key, $rawKey = null ) {
 		// Don't throw an error if we got an empty string
 		if ( trim( $key ) == '' ) {
 			return '';
@@ -435,7 +440,10 @@ abstract class ApiQueryBase extends ApiBase {
 		$t = Title::newFromDBkey( $key );
 		// This really shouldn't happen but we gotta check anyway
 		if ( !$t ) {
-			$this->dieUsageMsg( array( 'invalidtitle', $key ) );
+			if ( $rawKey === null ) {
+				$rawKey = $key;
+			}
+			$this->dieUsageMsg( array( 'invalidtitle', $rawKey ) );
 		}
 		return $t->getPrefixedText();
 	}
@@ -446,7 +454,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @return string Title part with underscores
 	 */
 	public function titlePartToKey( $titlePart ) {
-		return substr( $this->titleToKey( $titlePart . 'x' ), 0, - 1 );
+		return substr( $this->titleToKey( $titlePart . 'x', $titlePart ), 0, - 1 );
 	}
 
 	/**
@@ -455,7 +463,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @return string Key part with underscores
 	 */
 	public function keyPartToTitle( $keyPart ) {
-		return substr( $this->keyToTitle( $keyPart . 'x' ), 0, - 1 );
+		return substr( $this->keyToTitle( $keyPart . 'x', $keyPart ), 0, - 1 );
 	}
 
 	/**
