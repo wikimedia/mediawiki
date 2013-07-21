@@ -35,7 +35,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		$fld_subjectid = false, $fld_url = false,
 		$fld_readable = false, $fld_watched = false, $fld_watchers = false,
 		$fld_notificationtimestamp = false,
-		$fld_preload = false, $fld_displaytitle = false;
+		$fld_preload = false, $fld_editnotices = false, $fld_displaytitle = false;
 
 	private $params, $titles, $missing, $everything, $pageCounter;
 
@@ -260,6 +260,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			$this->fld_url = isset( $prop['url'] );
 			$this->fld_readable = isset( $prop['readable'] );
 			$this->fld_preload = isset( $prop['preload'] );
+			$this->fld_editnotices = isset( $prop['editnotices'] );
 			$this->fld_displaytitle = isset( $prop['displaytitle'] );
 		}
 
@@ -439,6 +440,16 @@ class ApiQueryInfo extends ApiQueryBase {
 
 				$pageInfo['preload'] = $text;
 			}
+		}
+
+		if ( $this->fld_editnotices ) {
+			$editNotices = $title->getEditNotices( 'keys' );
+			$data = array();
+			foreach ( $editNotices as $msgKey => $unused ) {
+				$data[] = array( 'message' => $msgKey );
+			}
+			$this->getResult()->setIndexedTagName( $data, 'editnotice' );
+			$pageInfo['editnotices'] = $data;
 		}
 
 		if ( $this->fld_displaytitle ) {
@@ -749,6 +760,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			'subjectid',
 			'url',
 			'preload',
+			'editnotices',
 			'displaytitle',
 		);
 		if ( !is_null( $params['prop'] ) ) {
@@ -779,6 +791,7 @@ class ApiQueryInfo extends ApiQueryBase {
 					'url',
 					'readable', # private
 					'preload',
+					'editnotices',
 					'displaytitle',
 					// If you add more properties here, please consider whether they
 					// need to be added to getCacheMode()
@@ -805,6 +818,7 @@ class ApiQueryInfo extends ApiQueryBase {
 				' url                   - Gives a full URL to the page, and also an edit URL',
 				' readable              - Whether the user can read this page',
 				' preload               - Gives the text returned by EditFormPreloadText',
+				' editnotices           - Gives the message keys for edit notices for each page',
 				' displaytitle          - Gives the way the page title is actually displayed',
 			),
 			'token' => 'Request a token to perform a data-modifying action on a page',

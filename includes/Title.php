@@ -4751,16 +4751,18 @@ class Title {
 	 * they will already be wrapped in paragraphs.
 	 *
 	 * @since 1.21
+	 * @param bool $keys Return only the keys of the messages
 	 * @return Array
 	 */
-	public function getEditNotices() {
+	public function getEditNotices( $keys = false ) {
 		$notices = array();
 
 		# Optional notices on a per-namespace and per-page basis
 		$editnotice_ns = 'editnotice-' . $this->getNamespace();
 		$editnotice_ns_message = wfMessage( $editnotice_ns );
 		if ( $editnotice_ns_message->exists() ) {
-			$notices[$editnotice_ns] = $editnotice_ns_message->parseAsBlock();
+			$notices[$editnotice_ns] =
+				!$keys ? $editnotice_ns_message->parseAsBlock() : '';
 		}
 		if ( MWNamespace::hasSubpages( $this->getNamespace() ) ) {
 			$parts = explode( '/', $this->getDBkey() );
@@ -4769,7 +4771,7 @@ class Title {
 				$editnotice_base .= '-' . array_shift( $parts );
 				$editnotice_base_msg = wfMessage( $editnotice_base );
 				if ( $editnotice_base_msg->exists() ) {
-					$notices[$editnotice_base] = $editnotice_base_msg->parseAsBlock();
+					$notices[$editnotice_base] = !$keys ? $editnotice_base_msg->parseAsBlock() : '';
 				}
 			}
 		} else {
@@ -4777,7 +4779,7 @@ class Title {
 			$editnoticeText = $editnotice_ns . '-' . str_replace( '/', '-', $this->getDBkey() );
 			$editnoticeMsg = wfMessage( $editnoticeText );
 			if ( $editnoticeMsg->exists() ) {
-				$notices[$editnoticeText] = $editnoticeMsg->parseAsBlock();
+				$notices[$editnoticeText] = !$keys ? $editnoticeMsg->parseAsBlock() : '';
 			}
 		}
 		return $notices;
