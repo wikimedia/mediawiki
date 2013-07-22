@@ -24,6 +24,7 @@ resources/jquery.tipsy/
 resources/jquery.ui/
 resources/mediawiki.libs/
 resources/jquery.chosen/chosen.jquery.js
+tests/externals
 
 # legacy scripts
 skins/common/IEFixes.js
