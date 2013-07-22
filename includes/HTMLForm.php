@@ -112,6 +112,7 @@ class HTMLForm extends ContextSource {
 		'hidden' => 'HTMLHiddenField',
 		'edittools' => 'HTMLEditTools',
 		'checkmatrix' => 'HTMLCheckMatrix',
+		'feature' => 'HTMLFeatureField',
 
 		// HTMLTextField will output the correct type="" attribute automagically.
 		// There are about four zillion other HTML5 input types, like url, but
@@ -1797,22 +1798,32 @@ class HTMLIntField extends HTMLFloatField {
  * A checkbox field
  */
 class HTMLCheckField extends HTMLFormField {
-	function getInputHTML( $value ) {
+	function getInputHTML( $value, $attr = null ) {
 		if ( !empty( $this->mParams['invert'] ) ) {
 			$value = !$value;
 		}
 
-		$attr = $this->getTooltipAndAccessKey();
+		if ( $attr === null ) {
+			$attr = $this->getTooltipAndAccessKey();
+		}
+
 		$attr['id'] = $this->mID;
 
 		if ( !empty( $this->mParams['disabled'] ) ) {
 			$attr['disabled'] = 'disabled';
 		}
 
-		$attr['class']  = 'mw-ui-checkbox';
-		if ( $this->mClass !== '' ) {
-			$attr['class'] .= ' ' . $this->mClass;
+		$classes = array();
+		if ( array_key_exists( 'class', $attr ) ) {
+			$classes[] = $attr['class'];
 		}
+		$classes[] = 'mw-ui-checkbox';
+
+		if ( $this->mClass !== '' ) {
+			$classes[] = $this->mClass;
+		}
+
+		$attr['class'] = implode( ' ', $classes );
 
 		return Xml::check( $this->mName, $value, $attr ) . '&#160;' .
 			Html::rawElement( 'label', array( 'for' => $this->mID, 'class' => 'mw-ui-check-label' ), '&#160;' ) .
@@ -2792,6 +2803,93 @@ class HTMLApiField extends HTMLFormField {
 
 	public function getInputHTML( $value ) {
 		return '';
+	}
+}
+
+class HTMLFeatureField extends HTMLCheckField {
+
+	function getInputHTML( $value ) {
+		global $wgExtensionAssetsPath;
+
+		$parent = $this->mParent;
+		$htmls = array();
+		$id = $this->mID;
+		$hasImage = false;
+
+		$attrs = $this->getTooltipAndAccessKey();
+		$attrs['id'] = $id;
+		$attrs['class'] = 'mw-ui-feature-toggle';
+
+		$divClasses = array(
+			'beta-feature-field',
+		);
+
+		if ( array_key_exists( 'htmlclass', $this->mParams ) ) {
+			$divClasses[] = $this->mParams['htmlclass'];
+		}
+
+		if ( array_key_exists( 'disabled', $this->mParams ) &&
+				$this->mParams['disabled'] === true ) {
+			$attrs['disabled'] = true;
+		}
+
+		$htmls[] = Html::openElement( 'div', array(
+			'class' => implode( ' ', $divClasses ),
+		) );
+
+		$hasImage = array_key_exists( 'screenshot', $this->mParams );
+
+		$htmls[] = Html::openElement( 'div', array(
+			'class' => 'mw-ui-feature-contain',
+		) );
+
+		$htmls[] = Html::openElement( 'div', array(
+			'class' => 'mw-ui-feature-main',
+		) );
+
+		if ( array_key_exists( 'userCount', $this->mParams ) ) {
+			$htmls[] = Html::rawElement(
+				'p',
+				array( 'class' => 'mw-ui-feature-user-count' ),
+				$this->mParams['userCount']
+			);
+
+			if ( array_key_exists( 'userCountNumber', $this->mParams ) ) {
+				$attrs['data-count'] = $this->mParams['userCountNumber'];
+			}
+		}
+
+		$htmls[] = Html::openElement( 'p', array(
+			'class' => 'mw-ui-feature-title',
+		) );
+		$htmls[] = parent::getInputHTML( $value, $attrs );
+		$htmls[] = Html::closeElement( 'p' );
+
+		if ( array_key_exists( 'desc-message', $this->mParams ) ) {
+			$htmls[] = Html::rawElement(
+				'p',
+				array(
+					'class' => 'mw-ui-feature-description',
+				),
+				$parent->msg( $this->mParams['desc-message'] ) );
+		}
+
+		$htmls[] = Html::openElement( 'div', array(
+			'class' => 'mw-ui-feature-screenshot',
+		) );
+
+		if ( $hasImage ) {
+			$htmls[] = Html::rawElement( 'img', array(
+				'src' => $this->mParams['screenshot'],
+			) );
+		}
+
+		$htmls[] = Html::closeElement( 'div' );
+		$htmls[] = Html::closeElement( 'div' );
+		$htmls[] = Html::closeElement( 'div' );
+		$htmls[] = Html::closeElement( 'div' );
+
+		return implode( '', $htmls );
 	}
 }
 
