@@ -247,16 +247,18 @@ class HTMLCacheUpdateJob extends Job {
 			);
 		}
 
-		# Update squid
-		if ( $wgUseSquid ) {
-			$u = SquidUpdate::newFromTitles( $titleArray );
-			$u->doUpdate();
-		}
+		if ( wfRunHooks('BulkInvalidateHTMLCache', array( $this->getTitle(), $titleArray ) ) ) {
+			# Update squid
+			if ( $wgUseSquid ) {
+				$u = SquidUpdate::newFromTitles( $titleArray );
+				$u->doUpdate();
+			}
 
-		# Update file cache
-		if ( $wgUseFileCache ) {
-			foreach ( $titleArray as $title ) {
-				HTMLFileCache::clearFileCache( $title );
+			# Update file cache
+			if ( $wgUseFileCache ) {
+				foreach ( $titleArray as $title ) {
+					HTMLFileCache::clearFileCache( $title );
+				}
 			}
 		}
 	}

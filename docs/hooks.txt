@@ -758,6 +758,11 @@ $user: the user who did the block (not the one being blocked)
 $isbn: ISBN to show information for
 $output: OutputPage object in use
 
+'BulkInvalidateHTMLCache': Called when we need to invalidate the HTML cache for
+a list of title.  Not triggered for a single page.
+$title: the title that changed that forced the invalidation
+$titles: array (or iterator) of Title objects that need invalidation
+
 'CanonicalNamespaces': For extensions adding their own namespaces or altering
 the defaults.
 &$namespaces: Array of namespace numbers with corresponding canonical names
