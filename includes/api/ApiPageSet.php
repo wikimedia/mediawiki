@@ -152,7 +152,6 @@ class ApiPageSet extends ApiBase {
 			if ( !$isDryRun ) {
 				$generator->executeGenerator( $this );
 				wfRunHooks( 'APIQueryGeneratorAfterExecute', array( &$generator, &$this ) );
-				$this->resolvePendingRedirects();
 			} else {
 				// Prevent warnings from being reported on these parameters
 				$main = $this->getMain();
@@ -162,6 +161,10 @@ class ApiPageSet extends ApiBase {
 			}
 			$generator->profileOut();
 			$this->profileIn();
+
+			if ( !$isDryRun ) {
+				$this->resolvePendingRedirects();
+			}
 
 			if ( !$isQuery ) {
 				// If this pageset is not part of the query, we called profileIn() above
