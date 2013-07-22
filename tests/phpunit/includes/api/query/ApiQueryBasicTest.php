@@ -321,6 +321,32 @@ class ApiQueryBasicTest extends ApiQueryTestBase {
 	}
 
 	/**
+	 * Test bug 51821
+	 */
+	public function testGeneratorRedirects() {
+		$this->editPage( 'AQBT-Target', 'test' );
+		$this->editPage( 'AQBT-Redir', '#REDIRECT [[AQBT-Target]]' );
+		$this->check( array(
+			array( 'generator' => 'backlinks', 'gbltitle' => 'AQBT-Target', 'redirects' => '1' ),
+			array(
+				'redirects' => array(
+					array(
+						'from' => 'AQBT-Redir',
+						'to' => 'AQBT-Target',
+					)
+				),
+				'pages' => array(
+					'6' => array(
+						'pageid' => 6,
+						'ns' => 0,
+						'title' => 'AQBT-Target',
+					)
+				),
+			)
+		) );
+	}
+
+	/**
 	 * Recursively merges the expected values in the $item into the $all
 	 */
 	private function mergeExpected( &$all, $item ) {
