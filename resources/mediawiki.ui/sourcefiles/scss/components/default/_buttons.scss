@@ -53,6 +53,10 @@ a.mw-ui-button {
 }
 
 // Button groups
+.mw-ui-button-group {
+  @include inline-block;
+}
+
 .mw-ui-button-group > * {
   @include border-radius(0);
   float: left;

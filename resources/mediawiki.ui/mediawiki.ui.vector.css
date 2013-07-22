@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /**
  * Provide Agora appearance for mw-ui-* classes when using the Vector skin.
  * Compass builds these Agora styles from source Sass files in
@@ -105,6 +106,16 @@ a.mw-ui-button {
 }
 
 /* line 56, sourcefiles/scss/components/default/_buttons.scss */
+.mw-ui-button-group {
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  zoom: 1;
+  *display: inline;
+}
+
+/* line 60, sourcefiles/scss/components/default/_buttons.scss */
 .mw-ui-button-group > * {
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
@@ -113,7 +124,7 @@ a.mw-ui-button {
   border-radius: 0;
   float: left;
 }
-/* line 60, sourcefiles/scss/components/default/_buttons.scss */
+/* line 64, sourcefiles/scss/components/default/_buttons.scss */
 .mw-ui-button-group > *:first-child {
   -moz-border-radius-topleft: 3px;
   -webkit-border-top-left-radius: 3px;
@@ -122,7 +133,7 @@ a.mw-ui-button {
   -webkit-border-bottom-left-radius: 3px;
   border-bottom-left-radius: 3px;
 }
-/* line 65, sourcefiles/scss/components/default/_buttons.scss */
+/* line 69, sourcefiles/scss/components/default/_buttons.scss */
 .mw-ui-button-group > *:last-child {
   -moz-border-radius-topright: 3px;
   -webkit-border-top-right-radius: 3px;
@@ -300,7 +311,7 @@ a.mw-ui-button {
   box-shadow: #4091ed 0px 0px 5px;
   border-color: #4091ed;
 }
-/* line 38, sourcefiles/scss/components/default/_forms.scss */
+/* line 40, sourcefiles/scss/components/default/_forms.scss */
 .mw-ui-vform > div label {
   display: block;
   -webkit-box-sizing: border-box;
@@ -316,7 +327,7 @@ a.mw-ui-button {
 .mw-ui-vform > div label * {
   font-weight: normal;
 }
-/* line 49, sourcefiles/scss/components/default/_forms.scss */
+/* line 51, sourcefiles/scss/components/default/_forms.scss */
 .mw-ui-vform > div input[type="checkbox"],
 .mw-ui-vform > div input[type="radio"] {
   display: inline;
@@ -326,7 +337,7 @@ a.mw-ui-button {
   width: auto;
 }
 
-/* line 65, sourcefiles/scss/components/default/_forms.scss */
+/* line 67, sourcefiles/scss/components/default/_forms.scss */
 .mw-ui-input {
   outline: 0;
   border-style: solid;
@@ -341,7 +352,7 @@ a.mw-ui-button {
   border-color: #4091ed;
 }
 
-/* line 72, sourcefiles/scss/components/default/_forms.scss */
+/* line 74, sourcefiles/scss/components/default/_forms.scss */
 .mw-ui-label {
   font-size: 0.9em;
   color: #4a4a4a;
@@ -351,7 +362,7 @@ a.mw-ui-button {
   font-weight: normal;
 }
 
-/* line 81, sourcefiles/scss/components/default/_forms.scss */
+/* line 83, sourcefiles/scss/components/default/_forms.scss */
 .mw-ui-checkbox-label, .mw-ui-radio-label {
   margin-bottom: 0.5em;
   cursor: pointer;
