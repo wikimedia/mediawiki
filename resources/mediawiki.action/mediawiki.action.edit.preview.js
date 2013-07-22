@@ -101,7 +101,7 @@
 		} );
 	}
 
-	$( document ).ready( function () {
+	$( function () {
 		// Do not enable on user .js/.css pages, as there's no sane way of "previewing"
 		// the scripts or styles without reloading the page.
 		if ( $( '#mw-userjsyoucanpreview' ).length || $( '#mw-usercssyoucanpreview' ).length ) {

@@ -1,7 +1,7 @@
 /**
  * JavaScript for History action
  */
-jQuery( document ).ready( function ( $ ) {
+jQuery( function ( $ ) {
 	var	$historyCompareForm = $( '#mw-history-compare' ),
 		$historySubmitter,
 		$lis = $( '#pagehistory > li' );

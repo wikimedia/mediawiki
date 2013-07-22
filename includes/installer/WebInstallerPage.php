@@ -1254,8 +1254,8 @@ class WebInstaller_Complete extends WebInstallerPage {
 		$lsUrl = $this->getVar( 'wgServer' ) . $this->parent->getURL( array( 'localsettings' => 1 ) );
 		if ( isset( $_SERVER['HTTP_USER_AGENT'] ) &&
 			 strpos( $_SERVER['HTTP_USER_AGENT'], 'MSIE' ) !== false ) {
-			// JS appears the only method that works consistently with IE7+
-			$this->addHtml( "\n<script>jQuery( document ).ready( function () { document.location = " .
+			// JS appears to be the only method that works consistently with IE7+
+			$this->addHtml( "\n<script>jQuery( function () { document.location = " .
 				Xml::encodeJsVar( $lsUrl ) . "; } );</script>\n" );
 		} else {
 			$this->parent->request->response()->header( "Refresh: 0;url=$lsUrl" );

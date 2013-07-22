@@ -5,7 +5,7 @@
 
 	// When sending password by email, hide the password input fields.
 	// This function doesn't need to be loaded early by ResourceLoader, but is tiny.
-	function hidePasswordOnEmail( $ ) {
+	function hidePasswordOnEmail() {
 		// Always required if checked, otherwise it depends, so we use the original
 		var $emailLabel = $( 'label[for="wpEmail"]' ),
 			originalText = $emailLabel.text(),
@@ -34,7 +34,7 @@
 
 	// Move the FancyCaptcha image into a more attractive container.
 	// This function does need to be run early by ResourceLoader.
-	function adjustFancyCaptcha( $, mw ) {
+	function adjustFancyCaptcha() {
 		var $content = $( '#mw-content-text' ),
 			$submit = $content.find( '#wpCreateaccount' ),
 			tabIndex,
@@ -104,9 +104,9 @@
 		}
 	}
 
-	$( document ).ready( function( $ ) {
-		adjustFancyCaptcha( $, mw);
-		hidePasswordOnEmail( $ );
+	$( function () {
+		adjustFancyCaptcha();
+		hidePasswordOnEmail();
 	} );
 
 }( mediaWiki, jQuery ) );

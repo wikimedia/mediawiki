@@ -6,7 +6,7 @@
 	/**
 	 * Add a preview to the upload form
 	 */
-	$( document ).ready( function () {
+	$( function () {
 		/**
 		 * Is the FileAPI available with sufficient functionality?
 		 */
@@ -290,7 +290,7 @@
 	/**
 	 * Disable all upload source fields except the selected one
 	 */
-	$( document ).ready( function () {
+	$( function () {
 		var i, $row,
 			$rows = $( '.mw-htmlform-field-UploadSourceField' );
 
