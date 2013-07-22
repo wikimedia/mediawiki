@@ -250,7 +250,7 @@ class ApiCreateAccount extends ApiBase {
 		$errors = parent::getPossibleErrors();
 		// All local errors are from LoginForm, which means they're actually message keys.
 		foreach ( $localErrors as $error ) {
-			$errors[] = array( 'code' => $error, 'info' => wfMessage( $error )->parse() );
+			$errors[] = array( 'code' => $error, 'info' => wfMessage( $error )->inLanguage( 'en' )->useDatabase( false )->parse() );
 		}
 
 		$errors[] = array(
@@ -274,7 +274,7 @@ class ApiCreateAccount extends ApiBase {
 		global $wgMinimalPasswordLength;
 		$errors[] = array(
 			'code' => 'passwordtooshort',
-			'info' => wfMessage( 'passwordtooshort', $wgMinimalPasswordLength )->parse()
+			'info' => wfMessage( 'passwordtooshort', $wgMinimalPasswordLength )->inLanguage( 'en' )->useDatabase( false )->parse()
 		);
 		return $errors;
 	}
