@@ -98,6 +98,7 @@ $defaultFormWidth: $captchaContainerWidth;
 	border: 1px solid grey;
 	@include border-radius(2px);
 	margin-right: 3px;
+	vertical-align: top;
 }
 
 .mw-ui-check-label.agora.mw-ui-checked {
@@ -112,4 +113,16 @@ $defaultFormWidth: $captchaContainerWidth;
 table.mw-htmlform-container {
 	border-collapse: separate;
 	border-spacing: 0px 4px;
+}
+
+.mw-htmlform-field-HTMLFeatureField .mw-input {
+	padding-top: 10px;
+}
+
+.mw-ui-feature-toggle + label + label {
+	font-size: 24px;
+}
+
+.mw-ui-feature-title {
+	border-bottom: 1px solid #e5e5e5;
 }

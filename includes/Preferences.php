@@ -830,9 +830,10 @@ class Preferences {
 			'label-message' => 'tog-previewontop',
 		);
 		$defaultPreferences['uselivepreview'] = array(
-			'type' => 'toggle',
+			'type' => 'feature',
 			'section' => 'editing/preview',
-			'label-message' => 'tog-uselivepreview',
+			'desc-message' => 'tog-uselivepreview',
+			'label-message' => 'tog-uselivepreview-title',
 		);
 
 	}

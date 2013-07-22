@@ -258,6 +258,7 @@ a.mw-ui-button {
   -o-border-radius: 2px;
   border-radius: 2px;
   margin-right: 3px;
+  vertical-align: top;
 }
 /* line 93, sourcefiles/scss/components/default/_forms.scss */
 .mw-ui-check-label.agora .mw-ui-checkbox {
@@ -278,4 +279,19 @@ a.mw-ui-button {
 table.mw-htmlform-container {
   border-collapse: separate;
   border-spacing: 0px 4px;
+}
+
+/* line 115, sourcefiles/scss/components/default/_forms.scss */
+.mw-htmlform-field-HTMLFeatureField .mw-input {
+  padding-top: 10px;
+}
+
+/* line 119, sourcefiles/scss/components/default/_forms.scss */
+.mw-ui-feature-toggle + label + label {
+  font-size: 24px;
+}
+
+/* line 123, sourcefiles/scss/components/default/_forms.scss */
+.mw-ui-feature-title {
+  border-bottom: 1px solid #e5e5e5;
 }
