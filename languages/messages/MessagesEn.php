@@ -675,7 +675,8 @@ future releases. Also note that since each list value is wrapped in a unique
 'tog-oldsig'                  => 'Existing signature:',
 'tog-fancysig'                => 'Treat signature as wikitext (without an automatic link)',
 'tog-showjumplinks'           => 'Enable "jump to" accessibility links',
-'tog-uselivepreview'          => 'Use live preview (requires JavaScript) (experimental)',
+'tog-uselivepreview'          => 'Enables an experimental JavaScript-based live preview function on page edit forms.',
+'tog-uselivepreview-title'    => 'Use live preview',
 'tog-forceeditsummary'        => 'Prompt me when entering a blank edit summary',
 'tog-watchlisthideown'        => 'Hide my edits from the watchlist',
 'tog-watchlisthidebots'       => 'Hide bot edits from the watchlist',
@@ -1998,6 +1999,10 @@ Your email address is not revealed when other users contact you.',
 'prefs-displaysearchoptions'    => 'Display options',
 'prefs-displaywatchlist'        => 'Display options',
 'prefs-diffs'                   => 'Diffs',
+
+# Feature field messages
+'mw-ui-feature-discuss'         => 'discussion',
+'mw-ui-feature-user-count'      => '{{PLURAL:$1|One user has|$2 users have}} enabled this feature.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid'   => 'Email address appears valid',
