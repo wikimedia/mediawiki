@@ -3208,7 +3208,10 @@ $messages['ca'] = array(
 $messages['ce'] = array(
 	'config-your-language' => 'Хьан мотт:',
 	'config-page-language' => 'Мотт',
+	'config-page-name' => 'ЦӀе',
 	'config-no-fts3' => "'''Тергам бе''': SQLite гулйина хуттург йоцуш [//sqlite.org/fts3.html FTS3] — лахар болхбеш хир дац оцу бухца.",
+	'config-site-name' => 'Викин цӀе:',
+	'config-site-name-blank' => 'Язъе сайтан цӀе.',
 	'config-license' => 'Авторан бакъонаш а лицензи а:',
 	'config-license-pd' => 'Юкъараллин хьал',
 	'config-help' => 'гӀо',
@@ -15109,6 +15112,7 @@ $messages['pdc'] = array(
  * @author Chrumps
  * @author Holek
  * @author Matma Rex
+ * @author Michał Roszka
  * @author Saper
  * @author Sp5uhe
  * @author Woytecr
@@ -15248,7 +15252,7 @@ Sprawdź w [http://modsecurity.org/documentation/ dokumentacji mod_security] lub
 	'config-git' => 'Znaleziono oprogramowanie kontroli wersji Git: <code>$1</code>.',
 	'config-git-bad' => 'Oprogramowanie systemu kontroli wersji Git nie zostało znalezione.',
 	'config-imagemagick' => 'Mamy zainstalowany ImageMagick <code>$1</code>, dzięki czemu będzie można pomniejszać załadowane grafiki.',
-	'config-gd' => 'Mamy wbudowaną bibliotekę graficzną GD, dzięki ceymu będzie można pomniejszać załadowane grafiki.',
+	'config-gd' => 'Mamy wbudowaną bibliotekę graficzną GD, dzięki czemu będzie można pomniejszać załadowane grafiki.',
 	'config-no-scaling' => 'Nie można odnaleźć biblioteki GD lub ImageMagick. Nie będzie działać pomniejszanie załadowane grafiki.',
 	'config-no-uri' => "'''Błąd.''' Nie można określić aktualnego URI.
 Instalacja została przerwana.",
@@ -16292,11 +16296,11 @@ $messages['pt'] = array(
 Para atualizar esta instalação, por favor introduza o valor de <code>$wgUpgradeKey</code> na caixa abaixo.
 Encontra este valor no <code>LocalSettings.php</code>.',
 	'config-localsettings-cli-upgrade' => 'Foi detectada a existência de um ficheiro <code>LocalSettings.php</code>.
-Para actualizar esta instalação execute o <code>update.php</code>, por favor.',
+Para atualizar esta instalação execute o <code>update.php</code>, por favor.',
 	'config-localsettings-key' => 'Chave de atualização:',
 	'config-localsettings-badkey' => 'A chave que forneceu está incorreta.',
 	'config-upgrade-key-missing' => 'Foi detectada uma instalação existente do MediaWiki.
-Para actualizar esta instalação, por favor coloque a seguinte linha no final do seu <code>LocalSettings.php</code>:
+Para atualizar esta instalação, por favor coloque a seguinte linha no final do seu <code>LocalSettings.php</code>:
 
 $1',
 	'config-localsettings-incomplete' => 'O ficheiro <code>LocalSettings.php</code> existente parece estar incompleto.
@@ -16373,7 +16377,7 @@ Devia [//www.mediawiki.org/wiki/Unicode_normalization_considerations actualizá-
 	'config-no-db' => "Não foi possível encontrar um controlador ''(driver)'' apropriado para a base de dados! Precisa de instalar um controlador para o PHP. São aceites os seguintes tipos de base de dados: $1.
 
 Se usa alojamento partilhado, peça ao fornecedor do alojamento para instalar um controlador apropriado.
-Se foi você quem compilou o PHP, reconfigure-o com um cliente de base de dados activado; por exemplo, usando <code>./configure --with-mysql</code>.
+Se foi você quem compilou o PHP, reconfigure-o com um cliente de base de dados ativado; por exemplo, usando <code>./configure --with-mysql</code>.
 Se instalou o PHP a partir de um pacote Debian ou Ubuntu, então precisa de instalar também o módulo php5-mysql.",
 	'config-outdated-sqlite' => "'''Aviso''': Tem a versão $1 do SQLite, que é anterior à versão mínima necessária, a $2. O SQLite não estará disponível.",
 	'config-no-fts3' => "'''Aviso''': O SQLite foi compilado sem o módulo [//sqlite.org/fts3.html FTS3]; as funcionalidades de pesquisa não estarão disponíveis nesta instalação.",
@@ -16573,7 +16577,7 @@ Verifique o diretório de dados e o nome da base de dados abaixo e tente novamen
 	'config-sqlite-fts3-downgrade' => 'O PHP não tem suporte FTS3; a reverter o esquema das tabelas para o anterior',
 	'config-can-upgrade' => "Esta base de dados contém tabelas do MediaWiki.
 Para actualizá-las para o MediaWiki $1, clique '''Continuar'''.",
-	'config-upgrade-done' => "Actualização terminada.
+	'config-upgrade-done' => "Atualização terminada.
 
 Agora pode [$1 começar a usar a sua wiki].
 

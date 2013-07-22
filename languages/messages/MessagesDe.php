@@ -2424,7 +2424,8 @@ Siehe auch die Liste der [[Special:WantedCategories|gewünschten Kategorien]].',
 'listgrouprights' => 'Benutzergruppenrechte',
 'listgrouprights-summary' => 'Dies ist eine Liste der in diesem Wiki definierten Benutzergruppen und der damit verbundenen Rechte.
 Zusätzliche Informationen über einzelne Rechte können [[{{MediaWiki:Listgrouprights-helppage}}|hier]] gefunden werden.',
-'listgrouprights-key' => '* <span class="listgrouprights-granted">Gewährtes Recht</span>
+'listgrouprights-key' => 'Legende:
+* <span class="listgrouprights-granted">Gewährtes Recht</span>
 * <span class="listgrouprights-revoked">Entzogenes Recht</span>',
 'listgrouprights-group' => 'Gruppe',
 'listgrouprights-rights' => 'Rechte',

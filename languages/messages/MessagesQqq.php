@@ -420,9 +420,12 @@ This can also appear in the credits page if the credits feature is enabled,for e
 # Cologne Blue skin
 'qbfind' => 'Alternative for "search" as used in Cologne Blue skin.
 {{Identical|Find}}',
-'qbbrowse' => '{{Identical|Browse}}',
-'qbedit' => '{{Identical|Edit}}',
-'qbpageoptions' => '{{Identical|This page}}',
+'qbbrowse' => 'Heading in sidebar menu in CologneBlue skin as seen in http://i.imgur.com/I08Y3jW.png
+{{Identical|Browse}}',
+'qbedit' => 'Heading in sidebar menu in CologneBlue skin as seen in http://i.imgur.com/I08Y3jW.png
+{{Identical|Edit}}',
+'qbpageoptions' => 'Heading in sidebar menu in CologneBlue skin as seen in http://i.imgur.com/I08Y3jW.png
+{{Identical|This page}}',
 'qbmyoptions' => 'Heading in the Cologne Blue skin user menu containing links to user (talk) page, preferences, watchlist, etc.
 {{Identical|My pages}}',
 'qbspecialpages' => '{{Identical|Special page}}',

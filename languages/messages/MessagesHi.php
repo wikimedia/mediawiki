@@ -340,7 +340,7 @@ $messages = array(
 # Cologne Blue skin
 'qbfind' => 'खोज',
 'qbbrowse' => 'ब्राउज़',
-'qbedit' => 'बदलें',
+'qbedit' => 'सम्पादन',
 'qbpageoptions' => 'यह पृष्ठ',
 'qbmyoptions' => 'मेरे पृष्ठ',
 'qbspecialpages' => 'विशेष पृष्ठ',

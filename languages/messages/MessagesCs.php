@@ -2364,7 +2364,8 @@ Povinná je přinejmenším doména nejvyššího řádu, např. „*.org“.<br
 'listgrouprights-summary' => 'Toto je seznam uživatelských skupin definovaných na této wiki a&nbsp;jejich přístupových práv.
 
 [[{{MediaWiki:Listgrouprights-helppage}}|Podrobné informace o&nbsp;jednotlivých právech]]',
-'listgrouprights-key' => '* <span class="listgrouprights-granted">Udělená práva</span>
+'listgrouprights-key' => 'Legenda:
+* <span class="listgrouprights-granted">Udělená práva</span>
 * <span class="listgrouprights-revoked">Odebraná práva</span>',
 'listgrouprights-group' => 'Skupina',
 'listgrouprights-rights' => 'Práva',

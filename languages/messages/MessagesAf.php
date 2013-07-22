@@ -639,6 +639,7 @@ Moenie vergeet om u [[Special:Preferences|voorkeure vir {{SITENAME}}]] te stel n
 'yourname' => 'Gebruikersnaam:',
 'userlogin-yourname' => 'Gebruikersnaam',
 'userlogin-yourname-ph' => 'Sleutel u gebruikersnaam in',
+'createacct-another-username-ph' => 'Verskaf gebruikersnaam',
 'yourpassword' => 'Wagwoord:',
 'userlogin-yourpassword' => 'Wagwoord',
 'userlogin-yourpassword-ph' => 'Sleutel u wagwoord in',
@@ -673,9 +674,11 @@ Moenie vergeet om u [[Special:Preferences|voorkeure vir {{SITENAME}}]] te stel n
 'helplogin-url' => 'Help:Aanmelding',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Hulp met aanmelding]]',
 'createacct-join' => 'Verskaf u gegewens hieronder.',
+'createacct-another-join' => 'Sleutel die nuwe rekening se inligting hier onder in:',
 'createacct-emailrequired' => 'E-posadres',
 'createacct-emailoptional' => 'E-posadres (opsioneel)',
 'createacct-email-ph' => 'Sleutel u e-posadres in',
+'createacct-another-email-ph' => 'Verskaf e-posadres',
 'createaccountmail' => "Gebruik 'n tydelike lukrake wagwoord en stuur dit na die e-posadres hier onder",
 'createacct-realname' => 'Regte naam (opsioneel)',
 'createaccountreason' => 'Rede:',
@@ -684,6 +687,7 @@ Moenie vergeet om u [[Special:Preferences|voorkeure vir {{SITENAME}}]] te stel n
 'createacct-captcha' => 'Veiligheidskontrole',
 'createacct-imgcaptcha-ph' => 'Sleutel die teks hierbo in',
 'createacct-submit' => 'Skep u rekening',
+'createacct-another-submit' => "Skep nog 'n rekening",
 'createacct-benefit-heading' => '{{SITENAME}} word deur mense soos u geskep.',
 'createacct-benefit-body1' => '{{PLURAL:$1|wysiging|wysigings}}',
 'createacct-benefit-body2' => '{{PLURAL:$1|bladsy|bladsye}}',
@@ -1252,6 +1256,7 @@ Let op dat die gebruik van navigasieskakels hierdie kolom se waardes sal herstel
 'compareselectedversions' => 'Vergelyk gekose weergawes',
 'showhideselectedversions' => 'Wys/versteek gekose weergawes',
 'editundo' => 'maak ongedaan',
+'diff-empty' => '(Geen verskil)',
 'diff-multi' => '({{PLURAL:$1|Een tussenin wysiging|$1 tussenin wysigings}} deur {{PLURAL:$2|een gebruiker|$2 gebruikers}} word nie gewys nie)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Een tussenin wysiging|$1 tussenin wysigings}} deur meer as $2 {{PLURAL:$2|gebruiker|gebruikers}} nie gewys nie)',
 'difference-missing-revision' => "{{PLURAL:$2|'n Weergawe|$2 weergawes}} van die verskil ($1) {{PLURAL:$2|is|is}} nie gevind nie.
@@ -2236,7 +2241,8 @@ Benodig ten minste een topvlakdomein, soos byvoorbeeld "*.org".<br />
 'listgrouprights' => 'Gebruikersgroepregte',
 'listgrouprights-summary' => "Hier volg 'n lys van gebruikersgroepe met hulle ooreenstemmende regte wat op die wiki gedefinieer is.
 Daar kan [[{{MediaWiki:Listgrouprights-helppage}}|extra inligting]] oor individuele regte aanwesig wees.",
-'listgrouprights-key' => '* <span class="listgrouprights-granted">Toegekende regte</span>
+'listgrouprights-key' => 'Sleutel:
+* <span class="listgrouprights-granted">Toegekende regte</span>
 * <span class="listgrouprights-revoked">Teruggetrekte regte</span>',
 'listgrouprights-group' => 'Groep',
 'listgrouprights-rights' => 'Regte',

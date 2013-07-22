@@ -484,7 +484,7 @@ $messages = array(
 'vector-action-move' => 'Mover',
 'vector-action-protect' => 'Proteger',
 'vector-action-undelete' => 'Restaurar',
-'vector-action-unprotect' => 'Alterar protecção',
+'vector-action-unprotect' => 'Alterar proteção',
 'vector-simplesearch-preference' => 'Ativar barra de buscas simplificada (apenas no tema Vector)',
 'vector-view-create' => 'Criar',
 'vector-view-edit' => 'Editar',
@@ -523,8 +523,8 @@ $messages = array(
 'protect' => 'Proteger',
 'protect_change' => 'alterar',
 'protectthispage' => 'Proteger esta página',
-'unprotect' => 'Alterar protecção',
-'unprotectthispage' => 'Alterar a protecção desta página',
+'unprotect' => 'Alterar proteção',
+'unprotectthispage' => 'Alterar a proteção desta página',
 'newpage' => 'Nova página',
 'talkpage' => 'Discutir esta página',
 'talkpagelinktext' => 'discussão',
@@ -659,7 +659,7 @@ A última tentativa de consulta à base de dados foi:
 "$1"
 na função "$2".
 A base de dados devolveu o erro "$3: $4"',
-'laggedslavemode' => "'''Aviso:''' A página pode não conter as actualizações mais recentes.",
+'laggedslavemode' => "'''Aviso:''' A página pode não conter as atualizações mais recentes.",
 'readonly' => 'Base de dados bloqueada (limitada a leituras)',
 'enterlockreason' => 'Introduza um motivo para bloquear, incluindo uma estimativa de quando será desbloqueada',
 'readonlytext' => 'A base de dados está bloqueada para impedir a inserção e modificação de dados, provavelmente para uma manutenção de rotina, após a qual a situação será normalizada.
@@ -695,10 +695,10 @@ Não foi dada nenhuma explicação.',
 'badtitle' => 'Título inválido',
 'badtitletext' => 'O título de página solicitado era inválido, vazio, ou um link interlínguas ou interwikis incorrecto.
 Talvez contenha um ou mais caracteres que não podem ser usados em títulos.',
-'perfcached' => "Os seguintes dados encontram-se armazenados na ''cache'' e podem não estar actualizados. No máximo {{PLURAL:$1|um resultado é disponível|$1 resultados são disponíveis}} na ''cache''.",
-'perfcachedts' => "Os seguintes dados encontram-se armazenados na ''cache'' e foram actualizados pela última vez a $1. No máximo {{PLURAL:$4|um resultado está disponível|$4 resultados estão disponíveis}} na ''cache''.",
-'querypage-no-updates' => 'As actualizações estão presentemente desactivadas para esta página.
-Por enquanto, os dados aqui presentes não poderão ser actualizados.',
+'perfcached' => "Os seguintes dados encontram-se armazenados na ''cache'' e podem não estar atualizados. No máximo {{PLURAL:$1|um resultado é disponível|$1 resultados são disponíveis}} na ''cache''.",
+'perfcachedts' => "Os seguintes dados encontram-se armazenados na ''cache'' e foram atualizados pela última vez a $1. No máximo {{PLURAL:$4|um resultado está disponível|$4 resultados estão disponíveis}} na ''cache''.",
+'querypage-no-updates' => 'As atualizações estão presentemente desativadas para esta página.
+Por enquanto, os dados aqui presentes não poderão ser atualizados.',
 'wrong_wfQuery_params' => 'Parâmetros incorrectos para wfQuery()<br />
 Função: $1<br />
 Consulta: $2',
@@ -712,7 +712,7 @@ Consulta: $2',
 'protectedinterface' => 'Esta página fornece o texto da interface ao software, e está protegida para prevenir abusos.',
 'editinginterface' => "'''Aviso:''' Está a editar uma página usada para fornecer texto de interface ao software. Alterações a esta página afectarão a aparência da interface de utilizador para os outros utilizadores. Para traduções, considere utilizar a [//translatewiki.net/wiki/Main_Page?setlang=pt translatewiki.net], um projecto destinado à tradução do MediaWiki.",
 'sqlhidden' => '(Consulta SQL em segundo-plano)',
-'cascadeprotected' => 'Esta página foi protegida contra edições por estar incluída {{PLURAL:$1|na página listada|nas páginas listadas}} a seguir, ({{PLURAL:$1|página essa que está protegida|páginas essas que estão protegidas}} com a opção de protecção "em cascata" activada):
+'cascadeprotected' => 'Esta página foi protegida contra edições por estar incluída {{PLURAL:$1|na página listada|nas páginas listadas}} a seguir, ({{PLURAL:$1|página essa que está protegida|páginas essas que estão protegidas}} com a opção de proteção "em cascata" ativada):
 $2',
 'namespaceprotected' => "Não possui permissão para editar páginas no espaço nominal '''$1'''.",
 'customcssprotected' => 'Não tem permissões para editar esta página de CSS porque ela contém as configurações pessoais de outro utilizador.',
@@ -759,7 +759,7 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências]].'
 'securelogin-stick-https' => 'Manter a ligação HTTPS após a autenticação',
 'yourdomainname' => 'O seu domínio:',
 'password-change-forbidden' => 'Não podes alterar senhas nesta wiki.',
-'externaldberror' => 'Ocorreu um erro externo à base de dados durante a autenticação ou não lhe é permitido actualizar a sua conta externa.',
+'externaldberror' => 'Ocorreu um erro externo à base de dados durante a autenticação ou não lhe é permitido atualizar a sua conta externa.',
 'login' => 'Autenticação',
 'nav-login-createaccount' => 'Entrar / criar conta',
 'loginprompt' => "É necessário ter os ''cookies'' activados no seu browser para poder autenticar-se na {{SITENAME}}.",
@@ -803,11 +803,11 @@ Por favor escolha um nome diferente.',
 'createaccounterror' => 'Não foi possível criar a conta: $1',
 'nocookiesnew' => "A conta de utilizador foi criada, mas neste momento não está autenticado.
 A {{SITENAME}} utiliza ''cookies'' para autenticar os utilizadores.
-Os ''cookies'' estão desactivados no seu browser.
-Active-os e autentique-se com o seu nome de utilizador e a sua palavra-chave, por favor.",
+Os ''cookies'' estão desativados no seu browser.
+Ative-os e autentique-se com o seu nome de utilizador e a sua palavra-chave, por favor.",
 'nocookieslogin' => "A {{SITENAME}} utiliza ''cookies'' para autenticar os utilizadores.
-Os ''cookies'' estão desactivados no seu browser.
-Active-os e tente novamente, por favor.",
+Os ''cookies'' estão desativados no seu browser.
+Ative-os e tente novamente, por favor.",
 'nocookiesfornew' => 'A conta de utilizador não foi criada, porque não foi possível confirmar a sua origem.
 Certifique-se de que tem os cookies activados, recarregue esta página e tente novamente.',
 'noname' => 'Não especificou um nome de utilizador válido.',
@@ -898,7 +898,7 @@ Pode ter já alterado com sucesso a sua palavra-chave ou solicitado uma nova pal
 'passwordreset-text-many' => '{{PLURAL:$1|Digite uma parte dos dados para redefinir sua senha.}}',
 'passwordreset-legend' => 'Reiniciar a palavra-chave',
 'passwordreset-disabled' => 'O reinício da palavra-chave foi impossibilitado nesta wiki.',
-'passwordreset-emaildisabled' => 'Recursos de e-mail foram desactivados neste wiki.',
+'passwordreset-emaildisabled' => 'Recursos de e-mail foram desativados neste wiki.',
 'passwordreset-username' => 'Nome de utilizador:',
 'passwordreset-domain' => 'Domínio:',
 'passwordreset-capture' => 'Ver o email resultante?',
@@ -1090,7 +1090,7 @@ Terá de reintegrar as suas mudanças no texto da caixa abaixo.
 'yourtext' => 'O seu texto',
 'storedversion' => 'Versão guardada',
 'nonunicodebrowser' => "'''Aviso: O seu browser não é compatível com as especificações Unicode.
-Foi activado um sistema de edição alternativo que lhe permite editar as páginas com segurança: os caracteres não-ASCII aparecerão na caixa de edição no formato de códigos hexadecimais.'''",
+Foi ativado um sistema de edição alternativo que lhe permite editar as páginas com segurança: os caracteres não-ASCII aparecerão na caixa de edição no formato de códigos hexadecimais.'''",
 'editingold' => "'''Aviso: Está a editar uma revisão desactualizada desta página.'''
 Se gravar, todas as mudanças feitas a partir desta revisão serão perdidas.",
 'yourdiff' => 'Diferenças',
@@ -1198,7 +1198,7 @@ O motivo apresentado por $3 foi ''$2''",
 'viewpagelogs' => 'Ver registos para esta página',
 'nohistory' => 'Não há histórico de edições para esta página.',
 'currentrev' => 'Revisão atual',
-'currentrev-asof' => 'Edição actual desde as $1',
+'currentrev-asof' => 'Edição atual desde as $1',
 'revisionasof' => 'Revisão das $1',
 'revision-info' => 'Revisão das $1 por $2',
 'previousrevision' => '← Revisão anterior',
@@ -1263,7 +1263,7 @@ Você pode ver a diferença entre revisões; podem existir mais detalhes no [{{f
 'rev-showdeleted' => 'mostrar',
 'revisiondelete' => 'Eliminar/restaurar edições',
 'revdelete-nooldid-title' => 'Edição de destino inválida',
-'revdelete-nooldid-text' => 'Ocorreu uma das seguintes: não especificou a revisão (ou revisões) de destino para realizar esta função, a revisão que especificou não existe, ou está tentando ocultar a revisão actual.',
+'revdelete-nooldid-text' => 'Ocorreu uma das seguintes: não especificou a revisão (ou revisões) de destino para realizar esta função, a revisão que especificou não existe, ou está tentando ocultar a revisão atual.',
 'revdelete-nologtype-title' => 'Tipo de registo não especificado',
 'revdelete-nologtype-text' => 'Não especificou um tipo de registo sobre o qual será executada esta operação.',
 'revdelete-nologid-title' => 'Entrada de registo inválida',
@@ -1294,8 +1294,8 @@ Outros administradores da {{SITENAME}} continuarão a poder aceder ao conteúdo 
 'revdelete-unsuppress' => 'Remover restrições das revisões restauradas',
 'revdelete-log' => 'Motivo:',
 'revdelete-submit' => 'Aplicar {{PLURAL:$1|à revisão selecionada|às revisões selecionadas}}',
-'revdelete-success' => "'''A visibilidade da revisão foi actualizada.'''",
-'revdelete-failure' => "'''A visibilidade da revisão não foi actualizada:'''
+'revdelete-success' => "'''A visibilidade da revisão foi atualizada.'''",
+'revdelete-failure' => "'''A visibilidade da revisão não foi atualizada:'''
 $1",
 'logdelete-success' => "'''A visibilidade da entrada do registo foi definida.'''",
 'logdelete-failure' => "'''Não foi possível definir a visibilidade da entrada do registo:'''
@@ -1650,8 +1650,8 @@ Esta informação será pública.',
 'right-ipblock-exempt' => 'Contornar bloqueios de IP, bloqueios automáticos e bloqueios de gamas de IPs',
 'right-proxyunbannable' => 'Contornar bloqueios automáticos de proxies',
 'right-unblockself' => 'Desbloquearem-se a si próprios',
-'right-protect' => 'Mudar níveis de protecção e editar páginas protegidas',
-'right-editprotected' => 'Editar páginas protegidas (sem protecção em cascata)',
+'right-protect' => 'Mudar níveis de proteção e editar páginas protegidas em cascata',
+'right-editprotected' => 'Editar páginas protegidas como "{{int:protect-level-sysop}}"',
 'right-editinterface' => 'Editar a interface de utilizador',
 'right-editusercssjs' => 'Editar os ficheiros CSS e JS de outros utilizadores',
 'right-editusercss' => 'Editar os ficheiros CSS de outros utilizadores',
@@ -1707,7 +1707,7 @@ Esta informação será pública.',
 'action-suppressrevision' => 'rever e restaurar esta edição oculta',
 'action-suppressionlog' => 'ver este registo privado',
 'action-block' => 'impedir este utilizador de editar',
-'action-protect' => 'alterar os níveis de protecção desta página',
+'action-protect' => 'alterar os níveis de proteção desta página',
 'action-rollback' => 'reverter rapidamente as edições do último utilizador que editou uma dada página',
 'action-import' => 'importar esta página a partir de outra wiki',
 'action-importupload' => 'importar esta página a partir de um ficheiro xml',
@@ -1835,7 +1835,7 @@ Isto pode dever-se a um erro no nome do ficheiro.
 Verifique se é realmente este o ficheiro que deseja carregar, por favor.',
 'windows-nonascii-filename' => 'A wiki não aceita nomes de ficheiros com caracteres especiais.',
 'fileexists' => 'Já existe um ficheiro com este nome.
-Verifique <strong>[[:$1]]</strong> caso não tenha a certeza de que quer alterar o ficheiro actual, por favor.
+Verifique <strong>[[:$1]]</strong> caso não tenha a certeza de que quer alterar o ficheiro atual, por favor.
 [[$1|thumb]]',
 'filepageexists' => 'A página de descrição deste ficheiro já foi criada em <strong>[[:$1]]</strong>, mas neste momento não existe nenhum ficheiro com este nome.
 O resumo que introduzir não aparecerá na página de descrição.
@@ -1979,7 +1979,7 @@ A sua segurança não pode ser devidamente verificada.',
 'uploadstash-nofiles' => 'Não tem ficheiros escondidos.',
 'uploadstash-badtoken' => 'Não foi possível executar essa operação, talvez porque as suas credenciais de edição expiraram. Tente novamente.',
 'uploadstash-errclear' => 'Não foi possível apagar os ficheiros.',
-'uploadstash-refresh' => 'Actualizar a lista de ficheiros',
+'uploadstash-refresh' => 'Atualizar a lista de ficheiros',
 'invalid-chunk-offset' => 'Deslocamento de fragmento inválido',
 
 # img_auth script messages
@@ -2230,8 +2230,8 @@ Agora redirecciona para [[$2]].',
 'deadendpages' => 'Páginas sem saída',
 'deadendpagestext' => 'As seguintes páginas não contêm links para outras páginas na {{SITENAME}}.',
 'protectedpages' => 'Páginas protegidas',
-'protectedpages-indef' => 'Apenas protecções infinitas',
-'protectedpages-cascade' => 'Apenas protecções em cascata',
+'protectedpages-indef' => 'Apenas proteções indefinidas',
+'protectedpages-cascade' => 'Apenas proteções em cascata',
 'protectedpagestext' => 'As seguintes páginas estão protegidas contra edição ou movimentação',
 'protectedpagesempty' => 'Neste momento, nenhuma das páginas está protegida com estes parâmetros.',
 'protectedtitles' => 'Títulos protegidos',
@@ -2371,7 +2371,7 @@ Encontram-se disponíveis [[{{MediaWiki:Listgrouprights-helppage}}|informações
 O endereço de correio que introduziu nas [[Special:Preferences|suas preferências]] irá aparecer no campo do remetente da mensagem "De:", para que o destinatário lhe possa responder diretamente.',
 'usermailererror' => 'O sistema de correio devolveu o erro:',
 'defemailsubject' => 'Correio electrónico da {{SITENAME}}, do utilizador "$1"',
-'usermaildisabled' => 'Correio electrónico do utilizador foi desactivado',
+'usermaildisabled' => 'Correio eletrónico do utilizador foi desativado',
 'usermaildisabledtext' => 'Não pode enviar correio electrónico aos outros utilizadores desta wiki',
 'noemailtitle' => 'Sem endereço de correio electrónico',
 'noemailtext' => 'Este utilizador não especificou um endereço de correio electrónico válido.',
@@ -2532,39 +2532,39 @@ A última edição foi de [[User:$3|$3]] ([[User talk:$3|discussão]]{{int:pipe-
 # Edit tokens
 'sessionfailure-title' => 'Erro de sessão',
 'sessionfailure' => 'Foram detectados problemas com a sua sessão;
-a operação foi cancelada como medida de protecção contra a interceptação de sessões.
+a operação foi cancelada como medida de proteção contra a interceptação de sessões.
 Volte à página anterior, refresque-a e tente novamente.',
 
 # Protect
-'protectlogpage' => 'Registo de protecção',
-'protectlogtext' => 'Encontra abaixo o registo de protecção e desprotecção de páginas.
+'protectlogpage' => 'Registo de proteção',
+'protectlogtext' => 'Encontra abaixo o registo de proteção e desproteção de páginas.
 Consulte a [[Special:ProtectedPages|lista de páginas protegidas]] para ver as páginas que se encontram protegidas neste momento.',
 'protectedarticle' => 'protegeu "[[$1]]"',
-'modifiedarticleprotection' => 'alterou o nível de protecção para "[[$1]]"',
+'modifiedarticleprotection' => 'alterou o nível de proteção para "[[$1]]"',
 'unprotectedarticle' => 'desprotegeu "[[$1]]"',
-'movedarticleprotection' => 'moveu as configurações de protecção de "[[$2]]" para "[[$1]]"',
-'protect-title' => 'Alterar o nível de protecção de "$1"',
+'movedarticleprotection' => 'moveu as configurações de proteção de "[[$2]]" para "[[$1]]"',
+'protect-title' => 'Alterar o nível de proteção de "$1"',
 'protect-title-notallowed' => 'Ver o nível de proteção de "$1"',
 'prot_1movedto2' => 'moveu [[$1]] para [[$2]]',
-'protect-badnamespace-title' => 'Espaço nominal não passível de protecção',
+'protect-badnamespace-title' => 'Espaço nominal não passível de proteção',
 'protect-badnamespace-text' => 'Páginas neste espaço nominal não podem ser protegidas.',
 'protect-norestrictiontypes-text' => 'Esta página não pode ser protegida porque não há nenhum tipo de restrição disponível.',
-'protect-norestrictiontypes-title' => 'Página não passível de protecção',
-'protect-legend' => 'Confirmar protecção',
+'protect-norestrictiontypes-title' => 'Página não passível de proteção',
+'protect-legend' => 'Confirmar proteção',
 'protectcomment' => 'Motivo:',
 'protectexpiry' => 'Expiração:',
 'protect_expiry_invalid' => 'O tempo de expiração fornecido é inválido.',
 'protect_expiry_old' => 'O tempo de expiração fornecido situa-se no passado.',
-'protect-unchain-permissions' => 'Desbloquear outras opções de protecção',
-'protect-text' => "Pode ver e alterar aqui o nível de protecção da página '''$1'''.",
-'protect-locked-blocked' => "Não pode alterar níveis de protecção enquanto estiver bloqueado.
+'protect-unchain-permissions' => 'Desbloquear outras opções de proteção',
+'protect-text' => "Pode ver e alterar aqui o nível de proteção da página '''$1'''.",
+'protect-locked-blocked' => "Não pode alterar níveis de proteção enquanto estiver bloqueado.
 Esta é a configuração presente para a página '''$1''':",
-'protect-locked-dblock' => "Não é possível alterar os níveis de protecção, porque a base de dados está bloqueada.
-Esta é a configuração actual para a página '''$1''':",
-'protect-locked-access' => "A sua conta não tem permissões para alterar os níveis de protecção de uma página.
-Esta é a configuração actual da página '''$1''':",
-'protect-cascadeon' => 'Esta página está protegida porque se encontra incluída {{PLURAL:$1|na página listada a seguir, protegida|nas páginas listadas a seguir, protegidas}} com protecção em cascata.
-Pode alterar o nível de protecção desta página, mas isso não afectará a protecção em cascata.',
+'protect-locked-dblock' => "Não é possível alterar os níveis de proteção, porque a base de dados está bloqueada.
+Esta é a configuração atual para a página '''$1''':",
+'protect-locked-access' => "A sua conta não tem permissões para alterar os níveis de proteção de uma página.
+Esta é a configuração atual da página '''$1''':",
+'protect-cascadeon' => 'Esta página está protegida porque se encontra incluída {{PLURAL:$1|na página listada a seguir, protegida|nas páginas listadas a seguir, protegidas}} com proteção em cascata.
+Pode alterar o nível de proteção desta página, mas isso não afetará a proteção em cascata.',
 'protect-default' => 'Permitir todos os utilizadores',
 'protect-fallback' => 'Permitir apenas utilizadores com o privilégio de "$1"',
 'protect-level-autoconfirmed' => 'Permitir apenas utilizadores auto-confirmados',
@@ -2573,19 +2573,19 @@ Pode alterar o nível de protecção desta página, mas isso não afectará a pr
 'protect-expiring' => 'expira a $1 (UTC)',
 'protect-expiring-local' => 'expira a $1',
 'protect-expiry-indefinite' => 'indefinidamente',
-'protect-cascade' => 'Proteja quaisquer páginas que estejam incluídas nesta (protecção em cascata)',
-'protect-cantedit' => 'Não pode alterar o nível de protecção desta página, porque não tem permissão para editá-la.',
+'protect-cascade' => 'Proteja quaisquer páginas que estejam incluídas nesta (proteção em cascata)',
+'protect-cantedit' => 'Não pode alterar o nível de proteção desta página, porque não tem permissão para editá-la.',
 'protect-othertime' => 'Outra duração:',
 'protect-othertime-op' => 'outra duração',
-'protect-existing-expiry' => 'A protecção actual expirará às $3 de $2',
+'protect-existing-expiry' => 'A proteção atual expirará às $3 de $2',
 'protect-otherreason' => 'Outro motivo/motivo adicional:',
 'protect-otherreason-op' => 'Outro motivo',
-'protect-dropdown' => "*Motivos comuns para protecção
+'protect-dropdown' => "*Motivos comuns para proteção
 ** Vandalismo excessivo
 ** ''Spam'' excessivo
 ** Guerra de edições improdutiva
 ** Página muito visitada",
-'protect-edit-reasonlist' => 'Editar motivos de protecção',
+'protect-edit-reasonlist' => 'Editar motivos de proteção',
 'protect-expiry-options' => '1 hora:1 hour,1 dia:1 day,1 semana:1 week,2 semanas:2 weeks,1 mês:1 month,3 meses:3 months,6 meses:6 months,1 ano:1 year,indefinido:infinite',
 'restriction-type' => 'Permissão:',
 'restriction-level' => 'Nível de restrição:',
@@ -2618,7 +2618,7 @@ Para efetuar uma restauração seletiva, marque as caixas correspondentes às ed
 Se uma nova página foi criada com o mesmo nome desde a eliminação, as edições restauradas aparecerão no histórico anterior.',
 'undeleterevdel' => 'O restauro não será efectuado se resulta na remoção parcial da versão mais recente da página ou ficheiro.
 Nestes casos, deverá desmarcar ou revelar a versão eliminada mais recente.',
-'undeletehistorynoadmin' => 'Esta página foi eliminada. O motivo de eliminação é apresentado no súmario abaixo, junto dos detalhes do utilizador que editou esta página antes de eliminar. O texto actual destas edições eliminadas encontra-se agora apenas disponível para administradores.',
+'undeletehistorynoadmin' => 'Esta página foi eliminada. O motivo de eliminação é apresentado no sumário abaixo, junto dos detalhes do utilizador que editou esta página antes de eliminar. O texto atual destas edições eliminadas encontra-se agora apenas disponível para administradores.',
 'undelete-revision' => 'Edição eliminada da página $1 (das $5 de $4), por $3:',
 'undeleterevision-missing' => 'Edição inválida ou não encontrada.
 Pode ter usado um link incorrecto ou talvez a revisão tenha sido restaurada ou removida do arquivo.',
@@ -2809,7 +2809,7 @@ Consulte a [[Special:BlockList|lista de bloqueios]] para obter a lista de bloque
 'block-log-flags-noautoblock' => 'bloqueio automático desativado',
 'block-log-flags-noemail' => 'correio electrónico bloqueado',
 'block-log-flags-nousertalk' => 'impossibilitado de editar a própria página de discussão',
-'block-log-flags-angry-autoblock' => 'activado o bloqueio automático melhorado',
+'block-log-flags-angry-autoblock' => 'ativado o bloqueio automático melhorado',
 'block-log-flags-hiddenname' => 'nome de utilizador ocultado',
 'range_block_disabled' => 'A funcionalidade de administrador para o bloqueio de gamas de IPs está desativada.',
 'ipb_expiry_invalid' => 'Tempo de expiração inválido.',
@@ -2961,7 +2961,7 @@ Para exportar páginas, introduza os títulos na caixa de texto abaixo (um títu
 
 Se desejar, pode utilizar um link (por exemplo, [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] para a [[{{MediaWiki:Mainpage}}]]).',
 'exportall' => 'Exportar todas as páginas',
-'exportcuronly' => 'Incluir apenas a edição actual, não o histórico completo',
+'exportcuronly' => 'Incluir apenas a edição atual, não o histórico completo',
 'exportnohistory' => "----
 '''Nota:''' a exportação do histórico completo de páginas através deste formulário foi desativada por afetar o desempenho do sistema.",
 'exportlistauthors' => 'Incluir uma lista completa de colaboradores para cada página',
@@ -3095,7 +3095,7 @@ Utilize o botão "Antever resultado" antes de gravar, por favor.',
 'tooltip-ca-viewsource' => 'Esta página está protegida; só pode ver o conteúdo.',
 'tooltip-ca-history' => 'Edições anteriores desta página.',
 'tooltip-ca-protect' => 'Proteger esta página',
-'tooltip-ca-unprotect' => 'Alterar a protecção desta página',
+'tooltip-ca-unprotect' => 'Alterar a proteção desta página',
 'tooltip-ca-delete' => 'Apagar esta página',
 'tooltip-ca-undelete' => 'Restaurar edições feitas a esta página antes da eliminação',
 'tooltip-ca-move' => 'Mover esta página',
@@ -3228,7 +3228,7 @@ Este bloqueio foi provavelmente causado por um link para um site externo que con
 'pageinfo-contentpage-yes' => 'Sim',
 'pageinfo-protect-cascading' => 'A protecção é em cascata a partir daqui',
 'pageinfo-protect-cascading-yes' => 'Sim',
-'pageinfo-protect-cascading-from' => 'As protecções são em cascata a partir de',
+'pageinfo-protect-cascading-from' => 'As proteções são em cascata a partir de',
 'pageinfo-category-info' => 'Informações da categoria',
 'pageinfo-category-pages' => 'Número de páginas',
 'pageinfo-category-subcats' => 'Número de subcategorias',
@@ -3245,7 +3245,7 @@ Este bloqueio foi provavelmente causado por um link para um site externo que con
 'markaspatrolledtext' => 'Marcar esta página como patrulhada',
 'markedaspatrolled' => 'Marcada como patrulhada',
 'markedaspatrolledtext' => 'A edição selecionada de [[:$1]] foi marcada como patrulhada.',
-'rcpatroldisabled' => 'Edições patrulhadas nas Mudanças Recentes desactivadas',
+'rcpatroldisabled' => 'Edições patrulhadas nas Mudanças Recentes desativadas',
 'rcpatroldisabledtext' => 'A funcionalidade de edições patrulhadas nas Mudanças Recentes está atualmente desativada.',
 'markedaspatrollederror' => 'Não é possível marcar como patrulhada',
 'markedaspatrollederrortext' => 'É necessário especificar uma edição a ser marcada como patrulhada.',
@@ -3913,7 +3913,7 @@ Quando terminar, clique "{{int:Watchlistedit-raw-submit}}".
 Também pode [[Special:EditWatchlist|editar a lista da maneira convencional]].',
 'watchlistedit-raw-titles' => 'Páginas:',
 'watchlistedit-raw-submit' => 'Atualizar a lista de páginas vigiadas',
-'watchlistedit-raw-done' => 'A sua lista de páginas vigiadas foi actualizada.',
+'watchlistedit-raw-done' => 'A sua lista de páginas vigiadas foi atualizada.',
 'watchlistedit-raw-added' => '{{PLURAL:$1|Foi adicionada uma página|Foram adicionadas $1 páginas}}:',
 'watchlistedit-raw-removed' => '{{PLURAL:$1|Foi removida uma página|Foram removidas $1 páginas}}:',
 
@@ -4049,7 +4049,7 @@ Em conjunto com este programa deve ter recebido [{{SERVER}}{{SCRIPTPATH}}/COPYIN
 'dberr-info' => '(Não foi possível contactar o servidor da base de dados: $1)',
 'dberr-usegoogle' => 'Pode tentar pesquisar no Google entretanto.',
 'dberr-outofdate' => 'Note que os seus índices relativos ao nosso conteúdo podem estar desactualizados.',
-'dberr-cachederror' => 'A seguinte página é uma cópia em cache da página pedida e pode não estar actualizada.',
+'dberr-cachederror' => 'A seguinte página é uma cópia em cache da página pedida e pode não estar atualizada.',
 
 # HTML forms
 'htmlform-invalid-input' => 'Existem problemas com alguns dos dados introduzidos',

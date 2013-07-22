@@ -615,9 +615,9 @@ Cubo pariso baliak ejaan Sanak.',
 'password-login-forbidden' => 'Panggunoan namo pangguno dan sandi ko alah dilarang.',
 'mailmypassword' => 'Kirim kato sandi baru',
 'passwordremindertitle' => 'Kato sandi samantaro untuak {{SITENAME}}',
-'passwordremindertext' => 'Sasaurang (mungkin Sanak, dari alamaik IP $1) maminta kato sandi baharu untuak {{SITENAME}} ($4). Kato sandi samantaro untuak pangguno "$2" alah dibuekan dan diset manjadi "$3". Jikok memang Sanak nan mangajukan pamintaan ini, Sanak paralu masuak log dan mamilih kato sandi baharu kini. Kato sandi samantaro Sanak akan kadaluwarsa dalam wakatu {{PLURAL:$5|sahari|$5 hari}}.
+'passwordremindertext' => 'Sasaurang (mungkin Sanak, dari alamaik IP $1) mamintak kato sandi baru untuak {{SITENAME}} ($4). Kato sandi samantaro untuak pangguno "$2" alah dibuekan dan diset manjadi "$3". Jikok memang Sanak nan mangajuan pamintaan ko, Sanak paralu masuak log dan mamilih kato sandi baru. Kato sandi samantaro Sanak akan habih maso dalam wakatu {{PLURAL:$5|$5 hari}}.
 
-Jikok urang lain nan malakukan pamintaan iko, atau jikok Sanak alah mangingek kato sandi Sanak dan akan tetap manggunokan kato sandi tasabuik, sila abaikan pasan iko dan tatap gunokan kato sandi lamo Sanak.',
+Jikok urang lain nan malakuan pamintaan ko, atau jikok Sanak alah maingek kato sandi Sanak dan ka manggunoan kato sandi tasabuik, abaikan sajo pasan ko dan gunoan kato sandi lamo tu.',
 'noemail' => 'Indak ado alamaik surel nan tacatat untuak pangguno "$1".',
 'noemailcreate' => 'Sanak paralu manyadiokan alamaik surel nan sah',
 'passwordsent' => 'Kato sandi baru alah dikiriman ka alamaik surel nan didaftakan untuak "$1".
@@ -751,7 +751,7 @@ Sandi samantaro: $2',
 Alamat IP sanak tacatat pado riwayaik suntiangan laman ko.",
 'anonpreviewwarning' => "''Sanak alun masuak log. Manyimpan laman akan manyababkan alamaik IP Sanak tacatat pado riwayat suntiangan laman iko.''",
 'missingsummary' => "'''Paringatan:''' Sanak indak mamasuakan ringkasan panyuntiangan. Jikok Sanak baliak manakan tombol Simpan, suntiangan Sanak akan disimpan tanpa ringkasan panyuntiangan.",
-'missingcommenttext' => 'Sila masuakan komenta di bawah iko.',
+'missingcommenttext' => 'Masuakan komentar Sanak di bawah ko.',
 'missingcommentheader' => "'''Paringatan:''' Sanak alun maagihan subjek atau judul untuak komenta Sanak. Jikok Sanak baliak manakan \"{{int:savearticle}}\", suntiangan Sanak akan disimpan tanpa komenta tasabuik.",
 'summary-preview' => 'Ringkasan pratayang:',
 'subject-preview' => 'Pratayang subyek/judul:',
@@ -840,9 +840,9 @@ Pratayang iko alun disimpan!'''",
 Parubahan Sanak alun disimpan!",
 'continue-editing' => 'Pai ka kotak panyuntiangan',
 'previewconflict' => 'Pratayang iko mancaminan teks pado bagian ateh kotak suntiangan teks sabagaimano akan taliek bilo Sanak manyimpannyo.',
-'session_fail_preview' => "'''Maaf, kami ndak dapek mangolah suntiangan Sanak akibat tahapuihnyo data sesi.
-Sila cubo sakali lai.
-Jikok masih indak barhasil, cubolah [[Special:UserLogout|kalua log]] dan masuak log baliak.'''",
+'session_fail_preview' => "'''Maaf, kami indak dapek mangolah suntiangan Sanak dek tahapuihnyo data sesi.
+Cubolah sakali lai.
+Jikok masih indak barasil, cubolah [[Special:UserLogout|kalua log]] dan masuak log baliak.'''",
 'session_fail_preview_html' => "'''Kami indak dapek mamproses suntiangan Sanak karano hilangnyo sesi data.'''
 
 ''Dek {{SITENAME}} mangizinan panggunoan HTML mantah, pratonton alah disuruakan sabagai pancagahan terhadok sarangan JavaScript.''

@@ -2456,7 +2456,8 @@ contenttype/subtypeの形式で入力してください (例: <code>image/jpeg</
 'listgrouprights' => '利用者グループの権限',
 'listgrouprights-summary' => '以下は、このウィキに登録されている利用者グループと、それぞれに割り当てられている権限の一覧です。
 個々の権限に関する更なる情報は[[{{MediaWiki:Listgrouprights-helppage}}|追加情報]]を見てください。',
-'listgrouprights-key' => '* <span class="listgrouprights-granted">与えられた権限</span>
+'listgrouprights-key' => '凡例:
+* <span class="listgrouprights-granted">与えられた権限</span>
 * <span class="listgrouprights-revoked">取り消された権限</span>',
 'listgrouprights-group' => 'グループ',
 'listgrouprights-rights' => '権限',

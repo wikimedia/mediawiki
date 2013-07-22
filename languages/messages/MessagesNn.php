@@ -1322,9 +1322,9 @@ Pass på at den nye sida også har innhald frå den innfletta sida.',
 'diff-empty' => '(Ingen skilnad)',
 'diff-multi' => '({{PLURAL:$1|Éin mellomversjon|$1 mellomversjonar}} frå {{PLURAL:$2|éin brukar|$2 brukarar}} er ikkje {{PLURAL:$1|vist|viste}})',
 'diff-multi-manyusers' => '({{PLURAL:$1|Ein mellomversjon|$1 mellomversjonar}} av meir enn $2 {{PLURAL:$2|brukar|brukarar}}  er ikkje {{PLURAL:$1|vist|viste}})',
-'difference-missing-revision' => '{{PLURAL:$2|Éin versjon|$2 versjonar}} av skilnaden ($1) vart ikkje funne.
+'difference-missing-revision' => '{{PLURAL:$2|Éin versjon|$2 versjonar}} av skilnaden ($1) vart ikkje {{PLURAL:$2|funnen|funne}}.
 
-Dette skriv seg som oftast frå at ein har fylgd ei forelda versjonslenkje til ei side som er sletta.
+Dette skriv seg som oftast frå at ein har fylgt ei forelda versjonslenkje til ei side som er sletta.
 Detaljar kan ein finna i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sletteloggen].',
 
 # Search results
