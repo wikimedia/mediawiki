@@ -336,6 +336,8 @@ $magicWords = array(
 	'pagesincategory_files'     => array( '0', 'പ്രമാണങ്ങൾ', 'files' ),
 );
 
+$linkTrail = "/^([a-z\x{0D02}-\x{0D7F}]+)(.*)$/sDu";
+
 $digitGroupingPattern = "##,##,###";
 
 $messages = array(
