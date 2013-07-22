@@ -263,9 +263,9 @@ a.mw-ui-button {
   text-shadow: none;
 }
 
-/* line 42, form-icon/*.png */
-.form-icon-sprite, .mw-ui-check-label.agora.mw-ui-checked {
-  background: url('img/form-icon-s99fef9ea93.png') no-repeat;
+/* line 58, form-icon/*.png */
+.form-icon-sprite, .mw-ui-check-label.agora.mw-ui-checked, .mw-ui-feature-info-link, .mw-ui-feature-discussion-link-icon {
+  background: url('img/form-icon-s98cea35dda.png') no-repeat;
 }
 
 /* line 16, sourcefiles/scss/components/default/_forms.scss */
@@ -387,26 +387,131 @@ a.mw-ui-button {
   -o-border-radius: 2px;
   border-radius: 2px;
   margin-right: 3px;
+  vertical-align: top;
 }
 /* line 93, sourcefiles/scss/components/default/_forms.scss */
 .mw-ui-check-label.agora .mw-ui-checkbox {
   display: none;
 }
 
-/* line 103, sourcefiles/scss/components/default/_forms.scss */
+/* line 104, sourcefiles/scss/components/default/_forms.scss */
 .mw-ui-check-label.agora.mw-ui-checked {
   background-position: 0 0;
 }
 
-/* line 107, sourcefiles/scss/components/default/_forms.scss */
+/* line 108, sourcefiles/scss/components/default/_forms.scss */
 .mw-ui-check-label.agora.mw-ui-disabled {
   background-color: lightgrey;
 }
 
-/* line 112, sourcefiles/scss/components/default/_forms.scss */
+/* line 113, sourcefiles/scss/components/default/_forms.scss */
 table.mw-htmlform-container {
   border-collapse: separate;
   border-spacing: 0px 4px;
+}
+
+/* line 118, sourcefiles/scss/components/default/_forms.scss */
+.mw-htmlform-field-HTMLFeatureField .mw-input {
+  padding-top: 10px;
+}
+
+/* line 122, sourcefiles/scss/components/default/_forms.scss */
+.mw-ui-feature-title .mw-ui-text-check-label {
+  font-size: 24px;
+}
+
+/* line 127, sourcefiles/scss/components/default/_forms.scss */
+.mw-ui-feature-title,
+.mw-ui-feature-info-links.filled {
+  width: 100%;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+/* line 137, sourcefiles/scss/components/default/_forms.scss */
+.mw-ui-feature-info-link-contain,
+.mw-ui-feature-discussion-link-contain,
+.mw-ui-feature-checkbox,
+.mw-ui-feature-contain,
+.mw-ui-feature-main,
+.mw-ui-feature-meta {
+  display: inline-block;
+}
+
+/* line 142, sourcefiles/scss/components/default/_forms.scss */
+.mw-ui-feature-field,
+.mw-ui-feature-meta {
+  position: relative;
+}
+
+/* line 146, sourcefiles/scss/components/default/_forms.scss */
+.mw-ui-feature-checkbox {
+  position: absolute;
+  top: 5px;
+}
+
+/* line 151, sourcefiles/scss/components/default/_forms.scss */
+.mw-ui-feature-contain {
+  margin-left: 42px;
+  width: 80%;
+}
+
+/* line 157, sourcefiles/scss/components/default/_forms.scss */
+.mw-ui-feature-main,
+.mw-ui-feature-meta {
+  width: 50%;
+  vertical-align: top;
+}
+
+/* line 163, sourcefiles/scss/components/default/_forms.scss */
+.mw-ui-feature-info-link-contain,
+.mw-ui-feature-discussion-link-contain {
+  border-left: 1px solid #e5e5e5;
+  padding: 5px 18px 4px 18px;
+}
+
+/* line 172, sourcefiles/scss/components/default/_forms.scss */
+.mw-ui-feature-discussion-link,
+.mw-ui-feature-discussion-link:visited,
+.mw-ui-feature-discussion-link:hover,
+.mw-ui-feature-discussion-link:active,
+.mw-ui-feature-discussion-link:focus {
+  color: #888888;
+  text-decoration: none;
+}
+
+/* line 177, sourcefiles/scss/components/default/_forms.scss */
+.mw-ui-feature-info-link {
+  padding: 2px 8px;
+  background-position: 0 -44px;
+}
+
+/* line 182, sourcefiles/scss/components/default/_forms.scss */
+.mw-ui-feature-discussion-link-icon {
+  padding: 2px 12px 2px 13px;
+  background-position: 0 -24px;
+}
+
+/* line 187, sourcefiles/scss/components/default/_forms.scss */
+.mw-ui-feature-discussion-link-text {
+  padding: 2px 8px;
+}
+
+/* line 191, sourcefiles/scss/components/default/_forms.scss */
+.mw-ui-feature-screenshot-contain {
+  margin: 10px 0px 0px 0px;
+  width: 100%;
+}
+
+/* line 196, sourcefiles/scss/components/default/_forms.scss */
+.mw-ui-feature-screenshot {
+  border: 1px solid #e5e5e5;
+  max-height: 150px;
+  max-width: 100%;
+}
+
+/* line 202, sourcefiles/scss/components/default/_forms.scss */
+.mw-ui-feature-user-count {
+  color: #00b08a;
 }
 
 /* line 5, sourcefiles/scss/components/vector/_forms.scss */
