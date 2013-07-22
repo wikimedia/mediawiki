@@ -146,9 +146,7 @@ class ApiPageSet extends ApiBase {
 			$tmpPageSet->executeInternal( $isDryRun );
 
 			// populate this pageset with the generator output
-			$this->profileOut();
 			$generator->profileIn();
-
 			if ( !$isDryRun ) {
 				$generator->executeGenerator( $this );
 				wfRunHooks( 'APIQueryGeneratorAfterExecute', array( &$generator, &$this ) );
@@ -161,7 +159,6 @@ class ApiPageSet extends ApiBase {
 				}
 			}
 			$generator->profileOut();
-			$this->profileIn();
 
 			if ( !$isQuery ) {
 				// If this pageset is not part of the query, we called profileIn() above
