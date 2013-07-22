@@ -1,0 +1,8 @@
+{
+	"name": "MediaWiki-dependencies",
+	"description": "Node.js dependencies used in MediaWiki",
+	"version": "0.0.1",
+	"dependencies": {
+		"jshint": ">=1.1.0"
+	}
+}
