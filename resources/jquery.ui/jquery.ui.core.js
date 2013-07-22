@@ -231,7 +231,7 @@ $.extend( $.expr[ ":" ], {
 });
 
 // support
-$(function() {
+$( document ).ready( function() {
 	var body = document.body,
 		div = body.appendChild( div = document.createElement( "div" ) );
 

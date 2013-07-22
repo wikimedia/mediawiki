@@ -43,7 +43,7 @@
 			} );
 	};
 
-	$( function () {
+	$( document ).ready( function () {
 
 		// Animate the SelectOrOther fields, to only show the text field when
 		// 'other' is selected.
