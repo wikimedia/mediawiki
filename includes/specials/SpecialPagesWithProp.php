@@ -127,9 +127,22 @@ class SpecialPagesWithProp extends QueryPage {
 		$title = Title::newFromRow( $result );
 		$ret = Linker::link( $title, null, array(), array(), array( 'known' ) );
 		if ( $result->pp_value !== '' ) {
-			$propValue = Html::element( 'span', array( 'class' => 'prop-value' ), $result->pp_value );
-			$value = $this->msg( 'parentheses' )->rawParams( $propValue )->escaped();
-			$ret .= " $value";
+			// Do not show very long or binary values on the special page
+			$value_length = strlen( $result->pp_value );
+			$is_binary = strpos( $result->pp_value, "\0" ) !== false;
+			$is_too_long = $value_length > 1024;
+
+			if ( $is_binary || $is_too_long ) {
+				$message = $this
+					->msg( $is_binary ? 'pageswithprop-prophidden-binary' : 'pageswithprop-prophidden-long' )
+					->numParams( $value_length / 1024 );
+
+				$propValue = Html::element( 'span', array( 'class' => 'prop-value-hidden' ), $message->text() );
+			} else {
+				$propValue = Html::element( 'span', array( 'class' => 'prop-value' ), $result->pp_value );
+			}
+
+			$ret .= $this->msg( 'colon-separator' )->escaped() . $propValue;
 		}
 
 		return $ret;
