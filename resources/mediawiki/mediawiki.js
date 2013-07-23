@@ -1026,30 +1026,37 @@ var mw = ( function ( $, undefined ) {
 					mw.messages.set( registry[module].messages );
 				}
 
-				// Make sure we don't run the scripts until all (potentially asynchronous)
-				// stylesheet insertions have completed.
-				( function () {
-					var pending = 0;
-					checkCssHandles = function () {
-						// cssHandlesRegistered ensures we don't take off too soon, e.g. when
-						// one of the cssHandles is fired while we're still creating more handles.
-						if ( cssHandlesRegistered && pending === 0 && runScript ) {
-							runScript();
-							runScript = undefined; // Revoke
-						}
-					};
-					cssHandle = function () {
-						var check = checkCssHandles;
-						pending++;
-						return function () {
-							if (check) {
-								pending--;
-								check();
-								check = undefined; // Revoke
+				if ( $.isReady || registry[module].async ) {
+					// Make sure we don't run the scripts until all (potentially asynchronous)
+					// stylesheet insertions have completed.
+					( function () {
+						var pending = 0;
+						checkCssHandles = function () {
+							// cssHandlesRegistered ensures we don't take off too soon, e.g. when
+							// one of the cssHandles is fired while we're still creating more handles.
+							if ( cssHandlesRegistered && pending === 0 && runScript ) {
+								runScript();
+								runScript = undefined; // Revoke
 							}
 						};
-					};
-				}() );
+						cssHandle = function () {
+							var check = checkCssHandles;
+							pending++;
+							return function () {
+								if (check) {
+									pending--;
+									check();
+									check = undefined; // Revoke
+								}
+							};
+						};
+					}() );
+				} else {
+					// We are in blocking mode, and so we can't afford to wait for CSS
+					cssHandle = function () {};
+					// Run immediately
+					checkCssHandles = runScript;
+				}
 
 				// Process styles (see also mw.loader.implement)
 				// * back-compat: { <media>: css }
