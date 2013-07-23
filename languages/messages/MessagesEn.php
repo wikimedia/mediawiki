@@ -2641,12 +2641,14 @@ Remember to check for other links to the templates before deleting them.',
 They may have to link to a more appropriate page instead.<br />
 A page is treated as a disambiguation page if it uses a template that is linked from [[MediaWiki:Disambiguationspage]].",
 
-'pageswithprop'         => 'Pages with a page property',
-'pageswithprop-summary' => '', # do not translate or duplicate this message to other languages
-'pageswithprop-legend'  => 'Pages with a page property',
-'pageswithprop-text'    => 'This page lists pages that use a particular page property.',
-'pageswithprop-prop'    => 'Property name:',
-'pageswithprop-submit'  => 'Go',
+'pageswithprop'                   => 'Pages with a page property',
+'pageswithprop-summary'           => '', # do not translate or duplicate this message to other languages
+'pageswithprop-legend'            => 'Pages with a page property',
+'pageswithprop-text'              => 'This page lists pages that use a particular page property.',
+'pageswithprop-prop'              => 'Property name:',
+'pageswithprop-submit'            => 'Go',
+'pageswithprop-prophidden-long'   => 'long text property value hidden ($1 kilobytes)',
+'pageswithprop-prophidden-binary' => 'binary property value hidden ($1 kilobytes)',
 
 'doubleredirects'                   => 'Double redirects',
 'doubleredirects-summary'           => '', # do not translate or duplicate this message to other languages

@@ -4115,6 +4115,14 @@ This block of text is shown on [[:Special:Disambiguations]].
 {{Identical|Property name}}',
 'pageswithprop-submit' => 'Label for the submit button on [[Special:PagesWithProp]].
 {{Identical|Go}}',
+'pageswithprop-prophidden-long' => 'Information shown on [[Special:PagesWithProp]] when property value is longer than 1 kilobyte.
+See also {{msg-mw|pageswithprop-prophidden-binary}}.
+Parameters:
+* $1 - size of property value in kilobytes',
+'pageswithprop-prophidden-binary' => 'Information shown on [[Special:PagesWithProp]] when property value contains binary data.
+See also {{msg-mw|pageswithprop-prophidden-long}}.
+Parameters:
+* $1 - size of property value in kilobytes',
 
 'doubleredirects' => '{{doc-special|DoubleRedirects}}',
 'doubleredirectstext' => 'Shown on top of [[Special:Doubleredirects]]',
