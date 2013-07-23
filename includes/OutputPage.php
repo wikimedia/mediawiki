@@ -3024,6 +3024,7 @@ $templates
 			'wgCurRevisionId' => $latestRevID,
 			'wgArticleId' => $pageID,
 			'wgIsArticle' => $this->isArticle(),
+			'wgIsRedirect' => $title->isRedirect(),
 			'wgAction' => Action::getActionName( $this->getContext() ),
 			'wgUserName' => $user->isAnon() ? null : $user->getName(),
 			'wgUserGroups' => $user->getEffectiveGroups(),
