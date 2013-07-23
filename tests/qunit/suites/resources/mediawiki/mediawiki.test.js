@@ -388,6 +388,32 @@
 		} );
 	} );
 
+	QUnit.asyncTest( 'mw.loader.using( .. ).done( .. )', 2, function ( assert ) {
+		var isAwesomeDone;
+
+		mw.loader.testCallback = function () {
+			QUnit.start();
+			assert.strictEqual( isAwesomeDone, undefined, 'Implementing module is.awesome: isAwesomeDone should still be undefined' );
+			isAwesomeDone = true;
+		};
+
+		mw.loader.implement( 'test.promise', [QUnit.fixurl( mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/callMwLoaderTestCallback.js' )], {}, {} );
+
+		mw.loader.using( 'test.promise' )
+		.done( function () {
+
+			// /sample/awesome.js declares the "mw.loader.testCallback" function
+			// which contains a call to start() and ok()
+			assert.strictEqual( isAwesomeDone, true, 'test.promise module should\'ve caused isAwesomeDone to be true' );
+			delete mw.loader.testCallback;
+
+		} )
+		.fail( function () {
+			QUnit.start();
+			assert.ok( false, 'Error callback fired while loader.using "test.promise" module' );
+		} );
+	} );
+
 	QUnit.asyncTest( 'mw.loader.implement( styles={ "css": [text, ..] } )', 2, function ( assert ) {
 		var $element = $( '<div class="mw-test-implement-a"></div>' ).appendTo( '#qunit-fixture' );
 
