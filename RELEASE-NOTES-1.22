@@ -206,6 +206,7 @@ production.
   instead of just Parent/name).
 * Added $wgAPIUselessQueryPages to allow extensions to flag their query pages
   for non-inclusion in ApiQueryQueryPages.
+* (bug 51542) "Special:FilePath?file=.." works again
 
 === API changes in 1.22 ===
 * (bug 25553) The JSON output formatter now leaves forward slashes unescaped
