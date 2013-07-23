@@ -206,6 +206,8 @@ production.
   instead of just Parent/name).
 * Added $wgAPIUselessQueryPages to allow extensions to flag their query pages
   for non-inclusion in ApiQueryQueryPages.
+* (bug 50870) mediawiki.notification: Notification area should remain visible
+  when scrolled down.
 
 === API changes in 1.22 ===
 * (bug 25553) The JSON output formatter now leaves forward slashes unescaped
