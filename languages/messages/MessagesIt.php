@@ -2270,7 +2270,8 @@ Vedi anche le [[Special:WantedCategories|categorie richieste]].',
 'listgrouprights' => 'Diritti del gruppo utente',
 'listgrouprights-summary' => "Di seguito sono elencati i gruppi utente definiti per questo sito, con i diritti d'accesso loro associati.
 Potrebbero esserci [[{{MediaWiki:Listgrouprights-helppage}}|ulteriori informazioni]] sui diritti individuali.",
-'listgrouprights-key' => '* <span class="listgrouprights-granted">Diritto assegnato</span>
+'listgrouprights-key' => 'Legenda:
+* <span class="listgrouprights-granted">Diritto assegnato</span>
 * <span class="listgrouprights-revoked">Diritto revocato</span>',
 'listgrouprights-group' => 'Gruppo',
 'listgrouprights-rights' => 'Diritti',

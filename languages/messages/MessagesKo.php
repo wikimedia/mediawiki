@@ -2418,7 +2418,8 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'listgrouprights' => '사용자 권한 목록',
 'listgrouprights-summary' => '다음은 이 위키에 있는 사용자 권한 그룹의 목록입니다.
 각각의 권한에 대해서는 [[{{MediaWiki:Listgrouprights-helppage}}|추가 정보]]를 참고하세요.',
-'listgrouprights-key' => '* <span class="listgrouprights-granted">부여된 권한</span>
+'listgrouprights-key' => '범례:
+* <span class="listgrouprights-granted">부여된 권한</span>
 * <span class="listgrouprights-revoked">해제된 권한</span>',
 'listgrouprights-group' => '그룹',
 'listgrouprights-rights' => '권한',

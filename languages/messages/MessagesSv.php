@@ -21,6 +21,7 @@
  * @author Grillo
  * @author Habj
  * @author Habjchen
+ * @author Hangsna
  * @author Hannibal
  * @author Jon Harald Søby
  * @author Jopparn
@@ -2341,7 +2342,8 @@ Det krävs åtminstone en toppdomän, t.ex. "*.org".<br />
 'listgrouprights' => 'Behörigheter för användargrupper',
 'listgrouprights-summary' => 'Följande lista visar vilka användargrupper som är definierade på den här wikin och vilka behörigheter grupperna har.
 Det kan finnas [[{{MediaWiki:Listgrouprights-helppage}}|ytterligare information]] om de olika behörigheterna.',
-'listgrouprights-key' => '* <span class="listgrouprights-granted">Given rättighet</span>
+'listgrouprights-key' => 'Teckenförklaring:
+* <span class="listgrouprights-granted">Beviljad rättighet</span>
 * <span class="listgrouprights-revoked">Tillbakatagen rättighet</span>',
 'listgrouprights-group' => 'Grupp',
 'listgrouprights-rights' => 'Behörigheter',
@@ -2435,7 +2437,7 @@ Framtida ändringar av den här sidan och dess diskussionssida kommer att listas
 'enotif_subject_created' => '{{SITENAME}}sidan $1 har skapats av {{gender:$2|$2}}',
 'enotif_subject_moved' => '{{SITENAME}}sidan $1 har flyttats av {{gender:$2|$2}}',
 'enotif_subject_restored' => '{{SITENAME}}sidan $1 har återställts av {{gender:$2|$2}}',
-'enotif_subject_changed' => '{{SITENAME}}sidan $1 har ändrats {{gender:$2|$2}}',
+'enotif_subject_changed' => '{{SITENAME}}sidan $1 har ändrats av {{gender:$2|$2}}',
 'enotif_body_intro_deleted' => 'Sidan $1 på {{SITENAME}} raderades den $PAGEEDITDATE av {{gender:$2|$2}}, se $3.',
 'enotif_body_intro_created' => '{{SITENAME}}sidan $1 skapades den $PAGEEDITDATE av {{gender:$2|$2}}, se $3 för den aktuella versionen.',
 'enotif_body_intro_moved' => '{{SITENAME}}sidan $1 flyttades den $PAGEEDITDATE av {{gender:$2|$2}}, se $3 för den aktuella versionen.',

@@ -2265,7 +2265,8 @@ $1',
 'listgrouprights' => '用户组权限',
 'listgrouprights-summary' => '以下面是一个在这个维基中所定义出来的用户权限列表，以及它们的访问权。
 更多有关个别权限的细节可以在[[{{MediaWiki:Listgrouprights-helppage}}|这里]]找到。',
-'listgrouprights-key' => '* <span class="listgrouprights-granted">被授予的权限</span>
+'listgrouprights-key' => '说明：
+* <span class="listgrouprights-granted">被授予的权限</span>
 * <span class="listgrouprights-revoked">被取消的权限</span>',
 'listgrouprights-group' => '用户组',
 'listgrouprights-rights' => '权限',

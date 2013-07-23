@@ -16629,9 +16629,9 @@ mas não lhe permitirá armazenar caracteres acima do [//en.wikipedia.org/wiki/M
 Todos os nomes das páginas neste espaço nominal começam com um determinado prefixo, que pode especificar aqui.
 Tradicionalmente, este prefixo deriva do nome da wiki, mas não pode conter caracteres de pontuação, como "#" ou ":".',
 	'config-ns-invalid' => 'O espaço nominal especificado "<nowiki>$1</nowiki>" é inválido.
-Introduza um espaço nominal de projecto diferente.',
+Introduza um espaço nominal de projeto diferente.',
 	'config-ns-conflict' => 'O espaço nominal que especificou, "<nowiki>$1</nowiki>", cria um conflito com um dos espaços nominais padrão do MediaWiki.
-Especifique um espaço nominal do projecto diferente.',
+Especifique um espaço nominal do projeto diferente.',
 	'config-admin-box' => 'Conta de administrador',
 	'config-admin-name' => 'O seu nome:',
 	'config-admin-password' => 'Palavra-chave:',
@@ -16699,11 +16699,11 @@ Também é difícil reutilizar conteúdos licenciados com a GFDL.',
 	'config-enable-email-help' => 'Se quer que o correio electrónico funcione, as [http://www.php.net/manual/en/mail.configuration.php definições de correio electrónico do PHP] têm de estar configuradas correctamente.
 Se não pretende viabilizar qualquer funcionalidade de correio electrónico, pode desactivá-lo aqui.',
 	'config-email-user' => 'Ativar mensagens eletrónicas entre utilizadores',
-	'config-email-user-help' => 'Permitir que todos os utilizadores troquem entre si mensagens de correio electrónico, se tiverem activado esta funcionalidade nas suas preferências.',
+	'config-email-user-help' => 'Permitir que todos os utilizadores troquem entre si mensagens de correio eletrónico, se tiverem ativado esta funcionalidade nas suas preferências.',
 	'config-email-usertalk' => 'Ativar notificações de alterações à página de discussão dos utilizadores',
-	'config-email-usertalk-help' => 'Permitir que os utilizadores recebam notificações de alterações à sua página de discussão, se tiverem activado esta funcionalidade nas suas preferências.',
+	'config-email-usertalk-help' => 'Permitir que os utilizadores recebam notificações de alterações à sua página de discussão, se tiverem ativado esta funcionalidade nas suas preferências.',
 	'config-email-watchlist' => 'Ativar notificação de alterações às páginas vigiadas',
-	'config-email-watchlist-help' => 'Permitir que os utilizadores recebam notificações de alterações às suas páginas vigiadas, se tiverem activado esta funcionalidade nas suas preferências.',
+	'config-email-watchlist-help' => 'Permitir que os utilizadores recebam notificações de alterações às suas páginas vigiadas, se tiverem ativado esta funcionalidade nas suas preferências.',
 	'config-email-auth' => 'Ativar autenticação do correio eletrónico',
 	'config-email-auth-help' => "Se esta opção for activada, os utilizadores têm de confirmar o seu endereço de correio electrónico usando um link que lhes é enviado sempre que o definirem ou alterarem.
 Só os endereços de correio electrónico autenticados podem receber mensagens electrónicas dos outros utilizadores ou alterar as mensagens de notificação.

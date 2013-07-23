@@ -2411,7 +2411,8 @@ $1',
 'listgrouprights' => 'Права на кориснички групи',
 'listgrouprights-summary' => 'Следи список на кориснички групи утврдени на ова вики, заедно со нивните придружни права на пристап.
 Можно е да има [[{{MediaWiki:Listgrouprights-helppage}}|дополнителни информации]] за некои права.',
-'listgrouprights-key' => '* <span class="listgrouprights-granted">Доделено право</span>
+'listgrouprights-key' => 'Легенда:
+* <span class="listgrouprights-granted">Доделено право</span>
 * <span class="listgrouprights-revoked">Одземено право</span>',
 'listgrouprights-group' => 'Група',
 'listgrouprights-rights' => 'Права',

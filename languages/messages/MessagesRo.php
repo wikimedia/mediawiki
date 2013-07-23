@@ -2326,7 +2326,8 @@ Necesită cel puțin un domeniu de nivel superior, cum ar fi „*.org”.<br />
 'listgrouprights' => 'Permisiuni grupuri de utilizatori',
 'listgrouprights-summary' => 'Mai jos se află o listă a grupurilor de utilizatori definite în acest wiki, împreună cu permisiunile de acces asociate.
 Pot exista [[{{MediaWiki:Listgrouprights-helppage}}|informații suplimentare]] despre permisiuni individuale.',
-'listgrouprights-key' => '* <span class="listgrouprights-granted">Drept acordat</span>
+'listgrouprights-key' => 'Legendă:
+* <span class="listgrouprights-granted">Drept acordat</span>
 * <span class="listgrouprights-revoked">Drept revocat</span>',
 'listgrouprights-group' => 'Grup',
 'listgrouprights-rights' => 'Permisiuni',

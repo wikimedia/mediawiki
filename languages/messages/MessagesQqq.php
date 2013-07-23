@@ -3967,7 +3967,7 @@ $1 is the name of the shared repository. On wikimedia sites, $1 is {{msg-mw|shar
 'filerevert-intro' => 'Message displayed when you try to revert a version of a file.
 * $1 is the name of the media
 * $2 is a date
-* $3 is a hour
+* $3 is a time
 * $4 is a URL and must follow square bracket: [$4
 {{Identical|Revert}}',
 'filerevert-comment' => '{{Identical|Reason}}',
@@ -3978,7 +3978,7 @@ $1 is the name of the shared repository. On wikimedia sites, $1 is {{msg-mw|shar
 'filerevert-success' => 'Message displayed when you succeed in reverting a version of a file.
 * $1 is the name of the media
 * $2 is a date
-* $3 is a hour
+* $3 is a time
 * $4 is an URL and must follow square bracket: [$4
 {{Identical|Revert}}',
 'filerevert-badversion' => 'Used as error message.',
@@ -3996,7 +3996,7 @@ See also:
 'filedelete-intro-old' => 'Message displayed when you try to delete a version of a file.
 * $1 is the name of the media
 * $2 is a date
-* $3 is a hour
+* $3 is a time
 * $4 is a URL and must follow square bracket: [$4',
 'filedelete-comment' => '{{Identical|Reason}}',
 'filedelete-submit' => 'Delete button when deleting a file for admins
@@ -4006,7 +4006,7 @@ See also:
 'filedelete-success-old' => 'Message displayed when you succeed in deleting a version of a file.
 * $1 is the name of the media
 * $2 is a date
-* $3 is a hour',
+* $3 is a time',
 'filedelete-nofile' => '* $1 - filename',
 'filedelete-nofile-old' => '* $1 - filename',
 'filedelete-otherreason' => 'Message used when deleting a file. This is the description field for "Other/additional reason" for deletion.

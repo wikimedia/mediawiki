@@ -442,7 +442,7 @@ $messages = array(
 'category_header' => 'Páginas na categoria "$1"',
 'subcategories' => 'Subcategorias',
 'category-media-header' => 'Multimédia na categoria "$1"',
-'category-empty' => "''Esta categoria não contém actualmente nenhuma página ou ficheiro multimédia.''",
+'category-empty' => "''Esta categoria não contém atualmente nenhuma página ou ficheiro multimídia.''",
 'hidden-categories' => '{{PLURAL:$1|Categoria oculta|Categorias ocultas}}',
 'hidden-category-category' => 'Categorias ocultas',
 'category-subcat-count' => '{{PLURAL:$2|Esta categoria só contém a seguinte subcategoria.|Esta categoria contém {{PLURAL:$1|a seguinte subcategoria|as seguintes $1 subcategorias}} (de um total de $2).}}',
@@ -710,7 +710,7 @@ Consulta: $2',
 'viewsourcetext' => 'Pode ver e copiar o conteúdo desta página:',
 'viewyourtext' => "Pode ver e copiar o código-fonte das '''suas edições''' desta página:",
 'protectedinterface' => 'Esta página fornece o texto da interface ao software, e está protegida para prevenir abusos.',
-'editinginterface' => "'''Aviso:''' Está a editar uma página usada para fornecer texto de interface ao software. Alterações a esta página afectarão a aparência da interface de utilizador para os outros utilizadores. Para traduções, considere utilizar a [//translatewiki.net/wiki/Main_Page?setlang=pt translatewiki.net], um projecto destinado à tradução do MediaWiki.",
+'editinginterface' => "'''Aviso:''' Está a editar uma página usada para fornecer texto de interface ao software. Alterações a esta página afetarão a aparência da interface de utilizador para os outros utilizadores. Para traduções, considere utilizar a [//translatewiki.net/wiki/Main_Page?setlang=pt translatewiki.net], um projeto destinado à tradução do MediaWiki.",
 'sqlhidden' => '(Consulta SQL em segundo-plano)',
 'cascadeprotected' => 'Esta página foi protegida contra edições por estar incluída {{PLURAL:$1|na página listada|nas páginas listadas}} a seguir, ({{PLURAL:$1|página essa que está protegida|páginas essas que estão protegidas}} com a opção de proteção "em cascata" ativada):
 $2',
@@ -1040,8 +1040,8 @@ Os detalhes podem ser encontrados no [{{fullurl:{{#Special:Log}}/delete|page={{F
 'userpage-userdoesnotexist' => 'A conta "<nowiki>$1</nowiki>" não se encontra registada.
 Verifique se deseja realmente criar ou editar esta página, por favor.',
 'userpage-userdoesnotexist-view' => 'A conta de utilizador "$1" não está registada.',
-'blocked-notice-logextract' => 'Este utilizador encontra-se actualmente bloqueado.
-Para referência, o último registo de bloqueio é apresentado abaixo:',
+'blocked-notice-logextract' => 'Este utilizador encontra-se atualmente bloqueado.
+Para referência, o último registro de bloqueio é apresentado abaixo:',
 'clearyourcache' => "'''Nota:''' Após gravar, terá de limpar a ''cache'' do seu browser para ver as alterações.
 *'''Firefox / Safari:''' Pressione ''Shift'' enquanto clica ''Recarregar'', ou pressione ''Ctrl-F5'' ou ''Ctrl-R'' (''⌘-R'' no Mac)
 *'''Google Chrome:''' Pressione ''Ctrl-Shift-R'' (''⌘-Shift-R'' no Mac)
@@ -1400,7 +1400,7 @@ Os detalhes podem ser encontrados no [{{fullurl:{{#Special:Log}}/delete|page={{F
 'searchmenu-new' => "'''Crie a página \"[[:\$1]]\" nesta wiki!'''",
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Navegar as páginas com este prefixo]]',
 'searchprofile-articles' => 'Páginas de conteúdo',
-'searchprofile-project' => 'Páginas de Ajuda e de Projecto',
+'searchprofile-project' => 'Páginas de ajuda e de projeto',
 'searchprofile-images' => 'Multimédia',
 'searchprofile-everything' => 'Todas',
 'searchprofile-advanced' => 'Personalizar',
@@ -1415,7 +1415,7 @@ Os detalhes podem ser encontrados no [{{fullurl:{{#Special:Log}}/delete|page={{F
 'search-redirect' => '(redirecionamento de $1)',
 'search-section' => '(seção $1)',
 'search-suggest' => 'Será que queria dizer: $1',
-'search-interwiki-caption' => 'Projectos associados',
+'search-interwiki-caption' => 'Projetos irmãos',
 'search-interwiki-default' => 'Resultados de $1:',
 'search-interwiki-more' => '(mais)',
 'search-relatedarticle' => 'Relacionado',
@@ -1432,7 +1432,7 @@ Tente usar o prefixo ''all:'' para pesquisar todo o conteúdo (incluindo página
 'powersearch' => 'Pesquisa avançada',
 'powersearch-legend' => 'Pesquisa avançada',
 'powersearch-ns' => 'Pesquisar nos espaços nominais:',
-'powersearch-redir' => 'Listar redireccionamentos',
+'powersearch-redir' => 'Listar redirecionamentos',
 'powersearch-field' => 'Pesquisar',
 'powersearch-togglelabel' => 'Marcar:',
 'powersearch-toggleall' => 'Todos',
@@ -1916,7 +1916,7 @@ Contacte um [[Special:ListUsers/sysop|administrador]], por favor.',
 'upload-misc-error-text' => 'Ocorreu um erro desconhecido durante o envio.
 Verifique se o endereço (URL) é válido e acessível e tente novamente.
 Caso o problema persista, contacte um [[Special:ListUsers/sysop|administrador]].',
-'upload-too-many-redirects' => 'A URL continha demasiados redireccionamentos',
+'upload-too-many-redirects' => 'A URL continha demasiados redirecionamentos',
 'upload-unknown-size' => 'Tamanho desconhecido',
 'upload-http-error' => 'Ocorreu um erro HTTP: $1',
 'upload-copy-upload-invalid-domain' => 'Não é possível realizar carregamentos remotos neste domínio.',
@@ -1940,7 +1940,7 @@ Caso o problema persista, contacte um [[Special:ListUsers/sysop|administrador]].
 'backend-fail-read' => 'Não foi possível ler o ficheiro $1.',
 'backend-fail-create' => 'Não foi possível gravar o ficheiro $1.',
 'backend-fail-maxsize' => 'Não foi possível gravar o ficheiro $1 porque tem mais do que {{PLURAL:$2|um byte|$2 bytes}}.',
-'backend-fail-readonly' => 'O servidor de armazenamento "$1" está actualmente no modo "somente leitura". A razão dada foi: "$2"',
+'backend-fail-readonly' => 'O servidor de armazenamento "$1" está atualmente no modo "somente leitura". A razão dada foi: "$2"',
 'backend-fail-synced' => 'O ficheiro "$1" está num estado inconsistente nos servidores de armazenamento interno',
 'backend-fail-connect' => 'Não foi possível estabelecer ligação com o servidor de armazenamento "$1".',
 'backend-fail-internal' => 'Ocorreu um erro desconhecido no servidor de armazenamento "$1".',
@@ -2120,7 +2120,7 @@ Talvez queira editar a descrição na [$2 página original de descrição do fic
 'unwatchedpages' => 'Páginas não vigiadas',
 
 # List redirects
-'listredirects' => 'Redireccionamentos',
+'listredirects' => 'Lista de redirecionamentos',
 
 # Unused templates
 'unusedtemplates' => 'Predefinições não utilizadas',
@@ -2133,7 +2133,7 @@ Talvez queira editar a descrição na [$2 página original de descrição do fic
 
 # Random redirect
 'randomredirect' => 'Redirecionamento aleatório',
-'randomredirect-nopages' => 'Não há redireccionamentos no espaço nominal "$1".',
+'randomredirect-nopages' => 'Não há redirecionamentos no espaço nominal "$1".',
 
 # Statistics
 'statistics' => 'Estatísticas',
@@ -2144,7 +2144,7 @@ Talvez queira editar a descrição na [$2 página original de descrição do fic
 'statistics-header-hooks' => 'Outras estatísticas',
 'statistics-articles' => 'Páginas de conteúdo',
 'statistics-pages' => 'Páginas',
-'statistics-pages-desc' => 'Todas as páginas da wiki, incluindo páginas de discussão, redireccionamentos, etc.',
+'statistics-pages-desc' => 'Todas as páginas da wiki, incluindo páginas de discussão, redirecionamentos, etc.',
 'statistics-files' => 'Ficheiros carregados',
 'statistics-edits' => 'Edições de páginas desde que a {{SITENAME}} foi instalada',
 'statistics-edits-average' => 'Média de edições por página',
@@ -2168,17 +2168,17 @@ Considera-se que uma página é de desambiguação se nela for utilizada uma pre
 'pageswithprop-prop' => 'Nome da propriedade:',
 'pageswithprop-submit' => 'Avançar',
 
-'doubleredirects' => 'Redireccionamentos duplos',
+'doubleredirects' => 'Redirecionamentos duplos',
 'doubleredirectstext' => 'Esta página lista todas as páginas que redirecionam para outras páginas de redirecionamento.
 Cada linha contém links para o primeiro e segundo redirecionamentos, bem como o destino do segundo redirecionamento, geralmente contendo a verdadeira página de destino, que devia ser o destino do primeiro redirecionamento.
 <del>Entradas cortadas</del> já foram solucionadas.',
 'double-redirect-fixed-move' => '[[$1]] foi movido.
 Agora redirecciona para [[$2]].',
 'double-redirect-fixed-maintenance' => 'A corrigir redirecionamento duplo de [[$1]] para [[$2]].',
-'double-redirect-fixer' => 'Corrector de redireccionamentos',
+'double-redirect-fixer' => 'Corretor de redirecionamentos',
 
-'brokenredirects' => 'Redireccionamentos quebrados',
-'brokenredirectstext' => 'Os seguintes redireccionamentos ligam para páginas inexistentes:',
+'brokenredirects' => 'Redirecionamentos quebrados',
+'brokenredirectstext' => 'Os seguintes redirecionamentos ligam para páginas inexistentes:',
 'brokenredirects-edit' => 'editar',
 'brokenredirects-delete' => 'eliminar',
 
@@ -2489,7 +2489,7 @@ Para comentários e pedidos de ajuda:
 'delete-legend' => 'Eliminar',
 'historywarning' => "'''Aviso:''' A página que está prestes a eliminar tem um histórico com aproximadamente $1 {{PLURAL:$1|revisão|revisões}}:",
 'confirmdeletetext' => 'Está prestes a eliminar permanentemente uma página ou uma imagem e todo o seu histórico.
-Confirme que é realmente esta a sua intenção, que compreende as consequências e que o faz de acordo com as [[{{MediaWiki:Policy-url}}|políticas e recomendações]] do projecto, por favor.',
+Confirme que é realmente esta a sua intenção, que compreende as consequências e que o faz de acordo com as [[{{MediaWiki:Policy-url}}|políticas e recomendações]] do projeto, por favor.',
 'actioncomplete' => 'Operação executada',
 'actionfailed' => 'Operação falhou',
 'deletedtext' => '"$1" foi eliminada.
@@ -2704,7 +2704,7 @@ Para referência é apresentado abaixo o último registo de bloqueio:',
 'whatlinkshere-prev' => '{{PLURAL:$1|anterior|$1 anteriores}}',
 'whatlinkshere-next' => '{{PLURAL:$1|próximo|próximos $1}}',
 'whatlinkshere-links' => '← links',
-'whatlinkshere-hideredirs' => '$1 redireccionamentos',
+'whatlinkshere-hideredirs' => '$1 redirecionamentos',
 'whatlinkshere-hidetrans' => '$1 transclusões',
 'whatlinkshere-hidelinks' => '$1 links',
 'whatlinkshere-hideimages' => '$1 links para ficheiros',
@@ -2750,7 +2750,7 @@ Isto só deve ser feito para prevenir vandalismo e de acordo com a [[{{MediaWiki
 'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] foi {{GENDER:$1|bloqueado|bloqueada}}.<br />
 Consulte a [[Special:BlockList|lista de bloqueios]] para rever os bloqueios.',
 'ipb-blockingself' => 'Está prestes a bloquear-se a si próprio. Tem a certeza de que pretende fazê-lo?',
-'ipb-confirmhideuser' => 'Está prestes a bloquear um utilizador com "Ocultar nome de utilizador/IP" activado. Isto irá suprimir o nome do utilizador de todas as listas e entradas dos registos. Tem a certeza de que pretende fazê-lo?',
+'ipb-confirmhideuser' => 'Está prestes a bloquear um utilizador com "Ocultar nome de utilizador/IP" ativado. Isto irá suprimir o nome do utilizador de todas as listas e entradas dos registros. Tem a certeza de que pretende fazê-lo?',
 'ipb-edit-dropdown' => 'Editar motivos de bloqueio',
 'ipb-unblock-addr' => 'Desbloquear $1',
 'ipb-unblock' => 'Desbloquear um utilizador ou endereço IP',
@@ -2863,12 +2863,12 @@ Para bloquear ou desbloquear a base de dados, este precisa de poder ser escrito 
 'move-page' => 'Mover $1',
 'move-page-legend' => 'Mover página',
 'movepagetext' => "Usando o formulário abaixo pode mover esta página e todo o seu histórico de edições para uma página nova com outro nome.
-A página original será transformada num redireccionamento para a página nova.
-Pode corrigir de forma automática os redireccionamentos existentes que apontam para a página original.
-Caso escolha não o fazer, após a operação certifique-se de que dela não resultaram  [[Special:DoubleRedirects|redireccionamentos duplos]] ou [[Special:BrokenRedirects|quebrados]].
+A página original será transformada num redirecionamento para a página nova.
+Pode corrigir de forma automática os redirecionamentos existentes que apontam para a página original.
+Caso escolha não o fazer, após a operação certifique-se de que dela não resultaram  [[Special:DoubleRedirects|redirecionamentos duplos]] ou [[Special:BrokenRedirects|quebrados]].
 É da sua responsabilidade verificar que os links continuam a apontar para onde é suposto que apontem.
 
-Note que a página '''não''' será movida se já existir uma página com o novo título, a menos que esta última seja um redireccionamento sem qualquer histórico de edições.
+Note que a página '''não''' será movida se já existir uma página com o novo título, a menos que esta última seja um redirecionamento sem qualquer histórico de edições.
 Isto significa que pode mover uma página de volta para o seu nome original se a tiver movido por engano e que não pode mover uma página para cima de outra já existente.
 
 '''CUIDADO!'''
@@ -3010,9 +3010,9 @@ $2',
 # Special:Import
 'import' => 'Importar páginas',
 'importinterwiki' => 'Importação transwikis',
-'import-interwiki-text' => 'Seleccione uma wiki e um título de página a importar.
+'import-interwiki-text' => 'Selecione uma wiki e um título de página a importar.
 As datas das edições e os seus editores serão mantidos.
-Todas as acções de importação transwikis são registadas no [[Special:Log/import|Registo de importações]].',
+Todas as ações de importação transwikis são registadas no [[Special:Log/import|Registo de importações]].',
 'import-interwiki-source' => 'Wiki ou página de origem:',
 'import-interwiki-history' => 'Copiar todo o histórico de revisões desta página',
 'import-interwiki-templates' => 'Incluir todas as predefinições',
@@ -3108,7 +3108,7 @@ Utilize o botão "Antever resultado" antes de gravar, por favor.',
 'tooltip-n-mainpage' => 'Visitar a página principal',
 'tooltip-n-mainpage-description' => 'Visitar a página principal',
 'tooltip-n-portal' => 'Sobre o projecto',
-'tooltip-n-currentevents' => 'Informação temática sobre acontecimentos actuais',
+'tooltip-n-currentevents' => 'Informação temática sobre acontecimentos atuais',
 'tooltip-n-recentchanges' => 'A lista de mudanças recentes nesta wiki.',
 'tooltip-n-randompage' => 'Carregar página aleatória',
 'tooltip-n-help' => 'Um local reservado para auxílio.',
@@ -3962,7 +3962,7 @@ Em conjunto com este programa deve ter recebido [{{SERVER}}{{SCRIPTPATH}}/COPYIN
 'version-entrypoints-header-url' => 'URL',
 
 # Special:Redirect
-'redirect' => 'Redireccionar pelo ID do ficheiro, utilizador ou revisão',
+'redirect' => 'Redirecionar pelo ID do ficheiro, utilizador ou revisão',
 'redirect-legend' => 'Redirecionar para um ficheiro ou página',
 'redirect-summary' => 'Esta página especial redireciona a um ficheiro (dado o nome do ficheiro), a uma página (dado um ID de revisão) ou a uma página de utilizador (dado o ID do utilizador).',
 'redirect-submit' => 'Ir',
@@ -4091,9 +4091,9 @@ Em conjunto com este programa deve ter recebido [{{SERVER}}{{SCRIPTPATH}}/COPYIN
 'revdelete-restricted' => 'restrições a administradores aplicadas',
 'revdelete-unrestricted' => 'restrições a administradores removidas',
 'logentry-move-move' => '$1 moveu a página $3 para $4',
-'logentry-move-move-noredirect' => '$1 moveu a página $3 para $4 sem deixar um redireccionamento',
-'logentry-move-move_redir' => '$1 moveu a página $3 para $4 sobre um redireccionamento',
-'logentry-move-move_redir-noredirect' => '$1 moveu a página $3 para $4 sobre um redireccionamento sem deixar um redireccionamento',
+'logentry-move-move-noredirect' => '$1 moveu a página $3 para $4 sem deixar um redirecionamento',
+'logentry-move-move_redir' => '$1 moveu a página $3 para $4 sobre um redirecionamento',
+'logentry-move-move_redir-noredirect' => '$1 moveu a página $3 para $4 sobre um redirecionamento sem deixar um redirecionamento',
 'logentry-patrol-patrol' => '$1 {{GENDER:$2|marcou}} a revisão $4 da página $3 como patrulhada',
 'logentry-patrol-patrol-auto' => '$1 {{GENDER:$2|marcou}} automaticamente a revisão $4 da página $3 como patrulhada',
 'logentry-newusers-newusers' => 'A conta de utilizador $1 foi {{GENDER:$2|criada}}',

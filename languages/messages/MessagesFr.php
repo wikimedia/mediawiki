@@ -1034,7 +1034,7 @@ Mot de passe temporaire : $2",
 'preview' => 'Prévisualisation',
 'showpreview' => 'Prévisualiser',
 'showlivepreview' => 'Aperçu rapide',
-'showdiff' => 'Modifications en cours',
+'showdiff' => 'Voir les modifications',
 'anoneditwarning' => "'''Attention :''' vous n'êtes pas identifié(e). Votre adresse IP sera enregistrée dans l'historique de cette page.",
 'anonpreviewwarning' => "''Vous n'êtes pas identifié. Sauvegarder enregistrera votre adresse IP dans l'historique des modifications de la page.''",
 'missingsummary' => "'''Rappel :''' vous n'avez pas encore fourni le résumé de votre modification.
@@ -1266,8 +1266,8 @@ La raison donnée était ''$2''.",
 'histlegend' => 'Légende : ({{int:cur}}) = différence avec la version actuelle, ({{int:last}}) = différence avec la version précédente, <b>{{int:minoreditletter}}</b> = modification mineure',
 'history-fieldset-title' => "Naviguer dans l'historique",
 'history-show-deleted' => 'Masqués seulement',
-'histfirst' => 'la plus ancienne',
-'histlast' => 'la plus récente',
+'histfirst' => 'la plus ancienne en premier',
+'histlast' => 'la plus récente en premier',
 'historysize' => '($1 octet{{PLURAL:$1||s}})',
 'historyempty' => '(vide)',
 
@@ -2396,7 +2396,8 @@ Ils nécessitent au moins un domaine de niveau supérieur, par exemple « *.org 
 'listgrouprights' => "Droits des groupes d'utilisateurs",
 'listgrouprights-summary' => "Cette page contient une liste des groupes définis sur ce wiki ainsi que les droits d'accès qui leur sont associés.
 Des [[{{MediaWiki:Listgrouprights-helppage}}|informations additionnelles]] peuvent exister au sujet des droits individuels.",
-'listgrouprights-key' => '*<span class="listgrouprights-granted">Droit octroyé</span>
+'listgrouprights-key' => 'Légende :
+*<span class="listgrouprights-granted">Droit octroyé</span>
 *<span class="listgrouprights-revoked">Droit révoqué</span>',
 'listgrouprights-group' => 'Groupe',
 'listgrouprights-rights' => 'Droits associés',
@@ -3184,7 +3185,7 @@ Vous pouvez toutefois en visualiser la source.',
 'tooltip-minoredit' => 'Marquer mes modifications comme mineures',
 'tooltip-save' => 'Enregister vos modifications',
 'tooltip-preview' => 'Merci de prévisualiser vos modifications avant de les publier',
-'tooltip-diff' => 'Permet de visualiser les changements que vous avez effectués',
+'tooltip-diff' => 'Affiche les modifications que vous avez apportées au texte',
 'tooltip-compareselectedversions' => 'Afficher les différences entre deux versions de cette page',
 'tooltip-watch' => 'Ajouter cette page à votre liste de suivi',
 'tooltip-watchlistedit-normal-submit' => 'Enlever les titres',

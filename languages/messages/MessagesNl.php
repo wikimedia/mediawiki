@@ -48,6 +48,7 @@
  * @author User555
  * @author WTM
  * @author Wiki13
+ * @author Wikiklaas
  * @author לערי ריינהארט
  */
 
@@ -1130,13 +1131,13 @@ Uw tekst is niet opgeslagen!",
 'previewconflict' => 'Deze voorvertoning geeft aan hoe de tekst in het bovenste veld eruit ziet als u deze opslaat.',
 'session_fail_preview' => "'''Uw bewerking is niet verwerkt, omdat de sessiegegevens verloren zijn gegaan.
 Probeer het opnieuw.
-Als het dan nog niet lukt, [[Special:UserLogout|meld u zich dan af]] en weer aan.'''",
+Als het dan nog niet lukt, [[Special:UserLogout|meld uzelf dan af]] en vervolgens weer aan.'''",
 'session_fail_preview_html' => "'''Uw bewerking is niet verwerkt, omdat de sessiegegevens verloren zijn gegaan.'''
 
 ''Omdat in {{SITENAME}} ruwe HTML is ingeschakeld, is een voorvertoning niet mogelijk als bescherming tegen aanvallen met JavaScript.''
 
 '''Als dit een legitieme bewerking is, probeer het dan opnieuw.'''
-Als het dan nog niet lukt, [[Special:UserLogout|meld u zich dan af]] en weer aan.",
+Als het dan nog niet lukt, [[Special:UserLogout|meld uzelf dan af]] en vervolgens weer aan.",
 'token_suffix_mismatch' => "'''Uw bewerking is geweigerd, omdat uw browser de leestekens in het bewerkingstoken onjuist heeft behandeld.'''
 De bewerking is geweigerd om verminking van de paginatekst te voorkomen.
 Dit gebeurt soms als er een webgebaseerde proxydienst wordt gebruikt die fouten bevat.",

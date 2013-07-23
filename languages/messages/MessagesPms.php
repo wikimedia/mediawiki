@@ -401,8 +401,8 @@ Për piasì, ch'a lo signala a n'[[Special:ListUsers/sysop|aministrator]], sensa
 'badarticleerror' => "N'operassion parèj as peul pa fesse ansima a sta pàgina-sì.",
 'cannotdelete' => "La pàgina o l'archivi «$1» a l'ha pa podù esse scancelà.
 Peul desse ch'a l'é già stàit ëscancelà da cheidun d'àutr.",
-'cannotdelete-title' => 'A peul pa scancelesse la pàgina «$1»',
-'delete-hook-aborted' => "Modìfica anulà da n'estension.
+'cannotdelete-title' => 'As peul pa scancelesse la pàgina «$1»',
+'delete-hook-aborted' => "Scancelassion anulà da n'estension.
 A l'ha smonù gnun-e spiegassion.",
 'badtitle' => 'Tìtol nen giust',
 'badtitletext' => "La pàgina che a l'ha ciamà a peul pa esse mostrà. A podrìa tratesse ëd na pàgina nen bon-a, veujda, ò pura a podrìa ëdcò esse n'eror ant n'anliura antra lenghe diferente ò tra diferente version ëd {{SITENAME}}.",
