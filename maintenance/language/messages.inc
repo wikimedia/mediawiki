@@ -1709,6 +1709,8 @@ $wgMessageStructure = array(
 		'pageswithprop-text',
 		'pageswithprop-prop',
 		'pageswithprop-submit',
+		'pageswithprop-prophidden-long',
+		'pageswithprop-prophidden-binary',
 	),
 	'doubleredirects' => array(
 		'doubleredirects',
