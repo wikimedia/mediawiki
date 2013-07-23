@@ -933,6 +933,9 @@ return array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.movePage.js',
 		'dependencies' => 'jquery.byteLimit',
 	),
+	'mediawiki.special.pagesWithProp' => array(
+		'styles' => 'resources/mediawiki.special/mediawiki.special.pagesWithProp.css',
+	),
 	'mediawiki.special.preferences' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.preferences.js',
 		'styles' => 'resources/mediawiki.special/mediawiki.special.preferences.css',
