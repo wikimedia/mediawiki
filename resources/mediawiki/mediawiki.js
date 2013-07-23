@@ -1732,36 +1732,45 @@ var mw = ( function ( $, undefined ) {
 				 *
 				 * @param {string|Array} dependencies Module name or array of modules names the callback
 				 *  dependends on to be ready before executing
-				 * @param {Function} [ready] callback to execute when all dependencies are ready
-				 * @param {Function} [error] callback to execute when if dependencies have a errors
+				 * @param {Function} [ready] Callback to execute when all dependencies are ready
+				 * @param {Function} [error] Callback to execute if one or more dependencies failed
+				 * @return {jQuery.Promise}
 				 */
 				using: function ( dependencies, ready, error ) {
-					var tod = typeof dependencies;
-					// Validate input
-					if ( tod !== 'object' && tod !== 'string' ) {
-						throw new Error( 'dependencies must be a string or an array, not a ' + tod );
-					}
+					var deferred = $.Deferred();
+
 					// Allow calling with a single dependency as a string
-					if ( tod === 'string' ) {
+					if ( typeof dependencies === 'string' ) {
 						dependencies = [ dependencies ];
+					} else if ( !$.isArray( dependencies ) ) {
+						// Invalid input
+						throw new Error( 'Dependencies must be a string or an array' );
 					}
+
+					if ( ready ) {
+						deferred.done( ready );
+					}
+					if ( error ) {
+						deferred.fail( error );
+					}
+
 					// Resolve entire dependency map
 					dependencies = resolve( dependencies );
 					if ( allReady( dependencies ) ) {
 						// Run ready immediately
-						if ( $.isFunction( ready ) ) {
-							ready();
-						}
+						deferred.resolve();
 					} else if ( filter( ['error', 'missing'], dependencies ).length ) {
 						// Execute error immediately if any dependencies have errors
-						if ( $.isFunction( error ) ) {
-							error( new Error( 'one or more dependencies have state "error" or "missing"' ),
-								dependencies );
-						}
+						deferred.reject(
+							new Error( 'One or more dependencies failed to load' ),
+							dependencies
+						);
 					} else {
 						// Not all dependencies are ready: queue up a request
-						request( dependencies, ready, error );
+						request( dependencies, deferred.resolve, deferred.reject );
 					}
+
+					return deferred.promise();
 				},
 
 				/**

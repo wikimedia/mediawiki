@@ -134,6 +134,7 @@ production.
   installer has been updated to use it.
 * Changes to content typography (fonts, line-height, etc.). See
   https://www.mediawiki.org/wiki/Typography_refresh for further information.
+* ResourceLoader: mw.loader.using() now implements a Promise interface.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
