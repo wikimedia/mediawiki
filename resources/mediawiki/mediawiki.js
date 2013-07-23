@@ -1483,32 +1483,40 @@ var mw = ( function ( $, undefined ) {
 				 * @param {Function} [error] callback to execute when if dependencies have a errors
 				 */
 				using: function ( dependencies, ready, error ) {
-					var tod = typeof dependencies;
-					// Validate input
-					if ( tod !== 'object' && tod !== 'string' ) {
-						throw new Error( 'dependencies must be a string or an array, not a ' + tod );
-					}
+					var tod = typeof dependencies,
+						loaderDeferred = $.Deferred();
 					// Allow calling with a single dependency as a string
 					if ( tod === 'string' ) {
 						dependencies = [ dependencies ];
+					} else if ( !$.isArray( dependencies ) ){
+						// Invalid input
+						throw new Error( 'dependencies must be a string or an array, not a ' + tod );
+					}
+					if ( ready ){
+						if ( $.isFunction( ready ) ) {
+							loaderDeferred.done( ready );
+						}
+					}
+					if ( error ){
+						if ( $.isFunction( error ) ) {
+							loaderDeferred.fail( error );
+						}
 					}
 					// Resolve entire dependency map
 					dependencies = resolve( dependencies );
 					if ( allReady( dependencies ) ) {
 						// Run ready immediately
-						if ( $.isFunction( ready ) ) {
-							ready();
-						}
+						loaderDeferred.resolve();
 					} else if ( filter( ['error', 'missing'], dependencies ).length ) {
 						// Execute error immediately if any dependencies have errors
-						if ( $.isFunction( error ) ) {
-							error( new Error( 'one or more dependencies have state "error" or "missing"' ),
+						loaderDeferred.reject( new Error( 'one or more dependencies have state "error" or "missing"' ),
 								dependencies );
-						}
 					} else {
 						// Not all dependencies are ready: queue up a request
-						request( dependencies, ready, error );
+						request( dependencies, loaderDeferred.resolve, loaderDeferred.reject );
 					}
+					// Return the Promise
+					return loaderDeferred.promise();
 				},
 
 				/**
