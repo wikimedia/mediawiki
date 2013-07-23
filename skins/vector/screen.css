@@ -804,9 +804,11 @@ div#bodyContent {
 }
 
 /* mediawiki.notification */
-.skin-vector #mw-notification-area {
-	top: 7em;
+.skin-vector .mw-notification-area {
 	font-size: 0.8em;
+}
+.skin-vector .mw-notification-area-layout {
+	top: 7em;
 }
 .skin-vector .mw-notification {
 	background-color: #fff;
