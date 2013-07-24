@@ -5014,8 +5014,9 @@ This site is experiencing technical difficulties.',
 'rightslogentry-autopromote'  => 'was automatically promoted from $2 to $3', # do not translate or duplicate this message to other languages
 
 # Feedback
-'feedback-bugornote' => 'If you are ready to describe a technical problem in detail please [$1 report a bug].
-Otherwise, you can use the easy form below. Your comment will be added to the page "[$3 $2]", along with your username.',
+'feedback-bugornote' => 'If you can describe a technical problem in detail, please [$1 report a bug].
+Otherwise, you can use the easy form below. Your comment will be added to the page "[$3 $2]", along with your username.
+Please indicate the browser version that you are using.',
 'feedback-subject'   => 'Subject:',
 'feedback-message'   => 'Message:',
 'feedback-cancel'    => 'Cancel',
