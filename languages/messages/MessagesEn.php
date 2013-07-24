@@ -1999,6 +1999,10 @@ Your email address is not revealed when other users contact you.',
 'prefs-displaywatchlist'        => 'Display options',
 'prefs-diffs'                   => 'Diffs',
 
+# Feature field messages
+'mw-ui-feature-discuss'         => 'discussion',
+'mw-ui-feature-user-count'      => '{{PLURAL:$1|One user has|$1 users have}} enabled this feature.',
+
 # User preference: email validation using jQuery
 'email-address-validity-valid'   => 'Email address appears valid',
 'email-address-validity-invalid' => 'Enter a valid email address',
