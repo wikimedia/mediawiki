@@ -1402,6 +1402,13 @@ class EditPage {
 
 		# Check for spam
 		$match = self::matchSummarySpamRegex( $this->summary );
+		if ( $match === false && $this->section == 'new' ) {
+			if ( $this->sectiontitle !== '' ) {
+				$match = self::matchSpamRegex( $this->sectiontitle );
+			} else {
+				$match = self::matchSpamRegex( $this->summary );
+			}
+		}
 		if ( $match === false ) {
 			$match = self::matchSpamRegex( $this->textbox1 );
 		}
