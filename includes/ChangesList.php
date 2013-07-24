@@ -122,7 +122,7 @@ class ChangesList extends ContextSource {
 	private function preCacheMessages() {
 		if ( !isset( $this->message ) ) {
 			foreach ( array(
-				'cur', 'diff', 'hist', 'last', 'blocklink', 'history',
+				'cur', 'diff', 'hist', 'enhancedrc-history', 'last', 'blocklink', 'history',
 				'semicolon-separator', 'pipe-separator' ) as $msg
 			) {
 				$this->message[$msg] = $this->msg( $msg )->escaped();
@@ -976,12 +976,30 @@ class EnhancedChangesList extends ChangesList {
 		$r .= $this->getLanguage()->getDirMark();
 
 		$queryParams['curid'] = $curId;
+
 		# Changes message
-		$n = count( $block );
 		static $nchanges = array();
+		static $sinceLastVisitMsg = array();
+
+		$n = count( $block );
 		if ( !isset( $nchanges[$n] ) ) {
 			$nchanges[$n] = $this->msg( 'nchanges' )->numParams( $n )->escaped();
 		}
+
+		$sinceLast = 0;
+		$unvisitedOldid = null;
+		foreach ( $block as $rcObj ) {
+			// Same logic as below inside main foreach
+			if ( $rcObj->watched && $rcObj->mAttribs['rc_timestamp'] >= $rcObj->watched ) {
+				$sinceLast++;
+				$unvisitedOldid = $rcObj->mAttribs['rc_last_oldid'];
+			}
+		}
+		if ( !isset( $sinceLastVisitMsg[$sinceLast] ) ) {
+			$sinceLastVisitMsg[$sinceLast] =
+				$this->msg( 'enhancedrc-since-last-visit' )->numParams( $sinceLast )->escaped();
+		}
+
 		# Total change link
 		$r .= ' ';
 		$logtext = '';
@@ -991,17 +1009,28 @@ class EnhancedChangesList extends ChangesList {
 			} elseif ( $isnew ) {
 				$logtext .= $nchanges[$n];
 			} else {
-				$params = $queryParams;
-				$params['diff'] = $currentRevision;
-				$params['oldid'] = $oldid;
-
 				$logtext .= Linker::link(
 					$block[0]->getTitle(),
 					$nchanges[$n],
 					array(),
-					$params,
+					$queryParams + array(
+						'diff' => $currentRevision,
+						'oldid' => $oldid,
+					),
 					array( 'known', 'noclasses' )
 				);
+				if ( $sinceLast > 0 && $sinceLast < $n ) {
+					$logtext .= $this->message['pipe-separator'] . Linker::link(
+						$block[0]->getTitle(),
+						$sinceLastVisitMsg[$sinceLast],
+						array(),
+						$queryParams + array(
+							'diff' => $currentRevision,
+							'oldid' => $unvisitedOldid,
+						),
+						array( 'known', 'noclasses' )
+					);
+				}
 			}
 		}
 
@@ -1009,7 +1038,7 @@ class EnhancedChangesList extends ChangesList {
 		if ( $allLogs ) {
 			// don't show history link for logs
 		} elseif ( $namehidden || !$block[0]->getTitle()->exists() ) {
-			$logtext .= $this->message['pipe-separator'] . $this->message['hist'];
+			$logtext .= $this->message['pipe-separator'] . $this->message['enhancedrc-history'];
 		} else {
 			$params = $queryParams;
 			$params['action'] = 'history';
@@ -1017,7 +1046,7 @@ class EnhancedChangesList extends ChangesList {
 			$logtext .= $this->message['pipe-separator'] .
 				Linker::linkKnown(
 					$block[0]->getTitle(),
-					$this->message['hist'],
+					$this->message['enhancedrc-history'],
 					array(),
 					$params
 				);
