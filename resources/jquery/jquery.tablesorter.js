@@ -717,10 +717,11 @@
 					// Build headers
 					$headers = buildHeaders( table, sortMsg );
 
-					// Grab and process locale settings
+					// Grab and process locale settings.
+					// buildCollationTable() needs to be below because it's
+					// intended to be set in common.js, after document-ready.
 					buildTransformTable();
 					buildDateTable();
-					buildCollationTable();
 
 					// Precaching regexps can bring 10 fold
 					// performance improvements in some browsers.
@@ -728,6 +729,8 @@
 
 					function setupForFirstSort() {
 						firstTime = false;
+
+						buildCollationTable();
 
 						// Legacy fix of .sortbottoms
 						// Wrap them inside inside a tfoot (because that's what they actually want to be) &
