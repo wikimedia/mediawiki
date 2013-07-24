@@ -293,6 +293,10 @@ class ApiEditPage extends ApiBase {
 			$requestArray['wpWatchthis'] = '';
 		}
 
+		// Pass through anything else we might have been given, to support extensions
+		// This is kind of a hack but it's the best we can do to make extensions work
+		$requestArray += $this->getRequest()->getValues();
+
 		global $wgTitle, $wgRequest;
 
 		$req = new DerivativeRequest( $this->getRequest(), $requestArray, true );
