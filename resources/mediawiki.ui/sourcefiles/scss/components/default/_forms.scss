@@ -121,3 +121,91 @@ table.mw-htmlform-container {
 	border-collapse: separate;
 	border-spacing: 0px 4px;
 }
+
+.mw-htmlform-field-HTMLFeatureField .mw-input {
+	padding-top: 10px;
+}
+
+.mw-ui-feature-title .mw-ui-text-check-label {
+	font-size: 24px;
+}
+
+.mw-ui-feature-title,
+.mw-ui-feature-info-links.filled {
+	width: 100%;
+	border-bottom: 1px solid #e5e5e5;
+}
+
+.mw-ui-feature-info-link-contain,
+.mw-ui-feature-discussion-link-contain,
+.mw-ui-feature-checkbox,
+.mw-ui-feature-contain,
+.mw-ui-feature-main,
+.mw-ui-feature-meta {
+	display: inline-block;
+}
+
+.mw-ui-feature-field,
+.mw-ui-feature-meta {
+	position: relative;
+}
+
+.mw-ui-feature-checkbox {
+	position: absolute;
+	top: 5px;
+}
+
+.mw-ui-feature-contain {
+	margin-left: 42px;
+	width: 80%;
+}
+
+.mw-ui-feature-main,
+.mw-ui-feature-meta {
+	width: 50%;
+	vertical-align: top;
+}
+
+.mw-ui-feature-info-link-contain,
+.mw-ui-feature-discussion-link-contain {
+	border-left: 1px solid #e5e5e5;
+	padding: 5px 18px 4px 18px;
+}
+
+.mw-ui-feature-discussion-link,
+.mw-ui-feature-discussion-link:visited,
+.mw-ui-feature-discussion-link:hover,
+.mw-ui-feature-discussion-link:active,
+.mw-ui-feature-discussion-link:focus {
+	color: #888888;
+	text-decoration: none;
+}
+
+.mw-ui-feature-info-link {
+	padding: 2px 8px;
+	background: url( 'img/form-icon/feature-information.png' ) no-repeat;
+}
+
+.mw-ui-feature-discussion-link-icon {
+	padding: 2px 12px 2px 13px;
+	background: url( 'img/form-icon/feature-discussion.svg' ) no-repeat;
+}
+
+.mw-ui-feature-discussion-link-text {
+	padding: 2px 8px;
+}
+
+.mw-ui-feature-screenshot-contain {
+	margin: 10px 0px 0px 0px;
+	width: 100%;
+}
+
+.mw-ui-feature-screenshot {
+	border: 1px solid #e5e5e5;
+	max-height: 150px;
+	max-width: 100%;
+}
+
+.mw-ui-feature-user-count {
+	color: #00b08a;
+}

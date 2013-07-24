@@ -112,6 +112,7 @@ class HTMLForm extends ContextSource {
 		'hidden' => 'HTMLHiddenField',
 		'edittools' => 'HTMLEditTools',
 		'checkmatrix' => 'HTMLCheckMatrix',
+		'feature' => 'HTMLFeatureField',
 
 		// HTMLTextField will output the correct type="" attribute automagically.
 		// There are about four zillion other HTML5 input types, like url, but
@@ -1797,36 +1798,50 @@ class HTMLIntField extends HTMLFloatField {
  * A checkbox field
  */
 class HTMLCheckField extends HTMLFormField {
-	function getInputHTML( $value ) {
+
+	// Protected internal methods for getting the bits of the field
+	// Override these in subclasses (see HTMLFeatureField, e.g.)
+	protected function getCheckboxHTML( $value, $attr ) {
 		if ( !empty( $this->mParams['invert'] ) ) {
 			$value = !$value;
 		}
 
-		$attr = $this->getTooltipAndAccessKey();
+		if ( $attr === null ) {
+			$attr = $this->getTooltipAndAccessKey();
+		}
+
 		$attr['id'] = $this->mID;
 
-		$disabled = array_key_exists( 'disabled', $this->mParams ) && $this->mParams['disabled'] === true;
+		$classes = array();
 
-		if ( $disabled ) {
+		if ( array_key_exists( 'class', $attr ) ) {
+			$classes[] = $attr['class'];
+		}
+
+		if ( array_key_exists( 'disabled', $this->mParams ) && $this->mParams['disabled'] === true ) {
 			$attr['disabled'] = 'disabled';
 		}
 
-		$classes = array();
 		if ( $this->mClass !== '' ) {
 			$classes[] = $this->mClass;
 		}
 
-		$html = '';
-
 		$useAgora = array_key_exists( 'mw-ui', $this->mParams ) && $this->mParams['mw-ui'] === true;
+		$attr['class'] = implode( ' ', $classes );
 
-		if ( $useAgora ) {
-			$classes[] = 'mw-ui-checkbox';
+		return Xml::check( $this->mName, $value, $attr ) . '&#160;';
+	}
 
+	protected function getPreCheckboxLabelHTML( $value ) {
+		if ( !empty( $this->mParams['invert'] ) ) {
+			$value = !$value;
+		}
+
+		if ( array_key_exists( 'mw-ui', $this->mParams ) && $this->mParams['mw-ui'] === true ) {
 			$labelClasses = array( 'mw-ui-checkbox-label' );
 			$labelAttrs = array( 'for' => $this->mID );
 
-			if ( $disabled ) {
+			if ( array_key_exists( 'disabled', $this->mParams ) && $this->mParams['disabled'] === true ) {
 				$labelClasses[] = 'mw-ui-disabled';
 			}
 
@@ -1837,19 +1852,28 @@ class HTMLCheckField extends HTMLFormField {
 			$labelAttrs['class'] = $labelClasses;
 
 			$this->mParent->getOutput()->addModules( 'mediawiki.ui.js' );
-			$html .= Html::openElement( 'label', $labelAttrs );
+			return Html::openElement( 'label', $labelAttrs );
 		}
 
-		$attr['class'] = implode( ' ', $classes );
-		$html .= Xml::check( $this->mName, $value, $attr ) . '&#160;';
+		return '';
+	}
 
-		if ( $useAgora ) {
+	protected function getPostCheckboxLabelHTML() {
+		$html = '';
+
+		if ( array_key_exists( 'mw-ui', $this->mParams ) && $this->mParams['mw-ui'] === true ) {
 			$html .= Html::closeElement( 'label' );
 		}
 
-		$html .= Html::rawElement( 'label', array( 'for' => $this->mID ), $this->mLabel );
+		$html .= Html::rawElement( 'label', array( 'for' => $this->mID, 'class' => 'mw-ui-text-check-label' ), $this->mLabel );
 
 		return $html;
+	}
+
+	function getInputHTML( $value, $attr = null ) {
+		return $this->getPreCheckboxLabelHTML( $value, $attr ) .
+			$this->getCheckboxHTML( $value, $attr ) .
+			$this->getPostCheckboxLabelHTML();
 	}
 
 	/**
@@ -2825,6 +2849,173 @@ class HTMLApiField extends HTMLFormField {
 
 	public function getInputHTML( $value ) {
 		return '';
+	}
+}
+
+class HTMLFeatureField extends HTMLCheckField {
+
+	function __construct( $options ) {
+		// All feature fields should use the new agora style
+		$options['agora'] = true;
+		parent::__construct( $options );
+	}
+
+	function getInputHTML( $value ) {
+		global $wgExtensionAssetsPath;
+
+		$parent = $this->mParent;
+		$htmls = array();
+		$id = $this->mID;
+		$hasImage = false;
+
+		$attrs = $this->getTooltipAndAccessKey();
+		$attrs['id'] = $id;
+		$attrs['class'] = 'mw-ui-feature-toggle';
+
+		$divClasses = array(
+			'mw-ui-feature-field',
+		);
+
+		if ( array_key_exists( 'htmlclass', $this->mParams ) ) {
+			$divClasses[] = $this->mParams['htmlclass'];
+		}
+
+		if ( array_key_exists( 'disabled', $this->mParams ) &&
+				$this->mParams['disabled'] === true ) {
+			$attrs['disabled'] = true;
+		}
+
+		$htmls[] = Html::openElement( 'div', array(
+			'class' => implode( ' ', $divClasses ),
+		) );
+
+		$hasImage = array_key_exists( 'screenshot', $this->mParams );
+
+		$htmls[] = Html::rawElement( 'div', array(
+			'class' => 'mw-ui-feature-checkbox',
+		), $this->getPreCheckboxLabelHTML( $value ) . $this->getCheckboxHtml( $value, $attrs ) );
+
+		$htmls[] = Html::openElement( 'div', array(
+			'class' => 'mw-ui-feature-contain',
+		) );
+
+		$htmls[] = Html::openElement( 'div', array(
+			'class' => 'mw-ui-feature-main',
+		) );
+
+		$htmls[] = Html::openElement( 'p', array(
+			'class' => 'mw-ui-feature-title',
+		) );
+		$htmls[] = $this->getPostCheckboxLabelHTML();
+		$htmls[] = Html::closeElement( 'p' );
+
+		if ( array_key_exists( 'user-count', $this->mParams ) ) {
+			$userCountMsg = 'mw-ui-feature-user-count';
+
+			if ( array_key_exists( 'user-count-msg', $this->mParams ) ) {
+				$userCountMsg = $this->mParams['user-count-msg'];
+			}
+
+			$htmls[] = Html::rawElement(
+				'p',
+				array( 'class' => 'mw-ui-feature-user-count' ),
+				$this->mParent->msg(
+					$userCountMsg,
+					$this->mParams['user-count'],
+					$this->mParent->getLang()->commafy( $this->mParams['user-count'] )
+				)->escaped()
+			);
+
+			$attrs['data-count'] = $this->mParams['user-count'];
+		}
+
+		if ( array_key_exists( 'desc-message', $this->mParams ) ) {
+			$htmls[] = Html::rawElement(
+				'p',
+				array(
+					'class' => 'mw-ui-feature-description',
+				),
+				$parent->msg( $this->mParams['desc-message'] ) );
+		}
+
+		// mw-ui-feature-main
+		$htmls[] = Html::closeElement( 'div' );
+
+		$htmls[] = Html::openElement( 'div', array(
+			'class' => 'mw-ui-feature-meta',
+		) );
+
+		$hasInfoLink = array_key_exists( 'info-link', $this->mParams );
+		$hasDiscussionLink = array_key_exists( 'discussion-link', $this->mParams );
+
+		$infoLinkClasses = array(
+			'mw-ui-feature-info-links',
+		);
+
+		if ( $hasInfoLink || $hasDiscussionLink ) {
+			$infoLinkClasses[] = 'filled';
+		}
+
+		$htmls[] = Html::openElement( 'div', array(
+			'class' => implode( ' ', $infoLinkClasses ),
+		) );
+
+		if ( $hasInfoLink ) {
+			$infoLink = Html::rawElement( 'a', array(
+				'href' => $this->mParams['info-link'],
+				'class' => 'mw-ui-feature-info-link',
+			), '&#160;' );
+
+			$htmls[] = Html::rawElement( 'div', array(
+				'class' => 'mw-ui-feature-info-link-contain',
+			), $infoLink );
+		}
+
+		if ( $hasDiscussionLink ) {
+			$discussLinkContent = Html::rawElement( 'span', array(
+				'class' => 'mw-ui-feature-discussion-link-icon',
+			), '&#160;' );
+			$discussLinkContent .= Html::rawElement( 'span', array(
+				'class' => 'mw-ui-feature-discussion-link-text',
+			), $this->mParent->msg( 'mw-ui-feature-discuss' ) );
+
+			$discussLink = Html::rawElement( 'a', array(
+				'href' => $this->mParams['discussion-link'],
+				'class' => 'mw-ui-feature-discussion-link',
+			), $discussLinkContent );
+
+			$htmls[] = Html::rawElement( 'div', array(
+				'class' => 'mw-ui-feature-discussion-link-contain',
+			), $discussLink );
+		}
+
+		// mw-ui-feature-info-links
+		$htmls[] = Html::closeElement( 'div' );
+
+		$htmls[] = Html::openElement( 'div', array(
+			'class' => 'mw-ui-feature-screenshot-contain',
+		) );
+
+		if ( $hasImage ) {
+			$htmls[] = Html::rawElement( 'img', array(
+				'src' => $this->mParams['screenshot'],
+				'class' => 'mw-ui-feature-screenshot',
+			) );
+		}
+
+		// mw-ui-feature-screenshot
+		$htmls[] = Html::closeElement( 'div' );
+
+		// mw-ui-feature-meta
+		$htmls[] = Html::closeElement( 'div' );
+
+		// mw-ui-feature-contain
+		$htmls[] = Html::closeElement( 'div' );
+
+		// mw-ui-feature-field
+		$htmls[] = Html::closeElement( 'div' );
+
+		return implode( '', $htmls );
 	}
 }
 
