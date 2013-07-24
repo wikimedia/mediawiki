@@ -352,7 +352,7 @@
 	function init() {
 		var offset, $window = $( window );
 
-		$area = $( '<div id="mw-notification-area" class="mw-notification-area"></div>' )
+		$area = $( '<div id="mw-notification-area" class="mw-notification-area mw-notification-area-layout"></div>' )
 			// Pause auto-hide timers when the mouse is in the notification area.
 			.on( {
 				mouseenter: notification.pause,
