@@ -1,6 +1,5 @@
 @mixin vector-type {
     font: {
-        family: $baseFontFamily;
         size: $baseFontSize;
     }
     line-height: $baseLineHeight;
