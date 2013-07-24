@@ -208,6 +208,8 @@ production.
   for non-inclusion in ApiQueryQueryPages.
 * (bug 50870) mediawiki.notification: Notification area should remain visible
   when scrolled down.
+* (bug 49694) $wgSpamRegex is now also applied on the new section headline text
+  adding a new topic on a page
 
 === API changes in 1.22 ===
 * (bug 25553) The JSON output formatter now leaves forward slashes unescaped
