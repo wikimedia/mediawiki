@@ -829,10 +829,30 @@ class Preferences {
 			'section' => 'editing/preview',
 			'label-message' => 'tog-previewontop',
 		);
+
+		$dbr = wfGetDB( DB_SLAVE );
+		$res = $dbr->selectRow(
+			'user_properties',
+			array( 'up_property', 'count(up_user) AS number' ),
+			"up_value = 1 AND up_property = 'uselivepreview'",
+			__METHOD__,
+			array( 'GROUP BY' => 'up_property' )
+		);
+		$numberOfLivePreviewers = 0;
+
+		if ( $res !== false ) {
+			$numberOfLivePreviewers = $res->number;
+		}
+
 		$defaultPreferences['uselivepreview'] = array(
-			'type' => 'toggle',
+			'type' => 'feature',
 			'section' => 'editing/preview',
-			'label-message' => 'tog-uselivepreview',
+			'desc-message' => 'tog-uselivepreview',
+			'label-message' => 'tog-uselivepreview-title',
+			'info-link' => 'https://www.mediawiki.org/wiki/Manual:Live_preview',
+			'discussion-link' => 'https://www.mediawiki.org/wiki/Manual_talk:Live_preview',
+			'screenshot' => 'http://upload.wikimedia.org/wikipedia/en/a/ae/Live_Preview.png',
+			'user-count' => $numberOfLivePreviewers,
 		);
 
 	}
