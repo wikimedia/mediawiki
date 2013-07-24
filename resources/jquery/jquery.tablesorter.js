@@ -717,10 +717,9 @@
 					// Build headers
 					$headers = buildHeaders( table, sortMsg );
 
-					// Grab and process locale settings
+					// Grab and process locale settings.
 					buildTransformTable();
 					buildDateTable();
-					buildCollationTable();
 
 					// Precaching regexps can bring 10 fold
 					// performance improvements in some browsers.
@@ -728,6 +727,12 @@
 
 					function setupForFirstSort() {
 						firstTime = false;
+
+						// Defer buildCollationTable to first sort. As user and site scripts
+						// may customize tableSorterCollation but load after $.ready(), other
+						// scripts may call .tablesorter() before they have done the
+						// tableSorterCollation customizations.
+						buildCollationTable();
 
 						// Legacy fix of .sortbottoms
 						// Wrap them inside inside a tfoot (because that's what they actually want to be) &
