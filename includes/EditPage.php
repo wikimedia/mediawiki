@@ -2313,7 +2313,7 @@ class EditPage {
 		}
 
 		// Add edit notices
-		$wgOut->addHTML( implode( "\n", $this->mTitle->getEditNotices() ) );
+		$wgOut->addHTML( implode( "\n", $this->mTitle->getEditNotices( $this->oldid ) ) );
 
 		if ( $this->isConflict ) {
 			$wgOut->wrapWikiMsg( "<div class='mw-explainconflict'>\n$1\n</div>", 'explainconflict' );

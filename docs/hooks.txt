@@ -2335,6 +2335,11 @@ $action: Action being performed
 $doExpensiveQueries: Whether to do expensive DB queries
 $short: Whether to return immediately on first error
 
+'TitleGetEditNotices': Allows extensions to add edit notices
+$title: The Title object for the page the edit notices are for
+$oldid: Revision ID that the edit notices are for (or 0 for latest)
+&$notices: Array of notices. Keys are i18n message keys, values are parseAsBlock()ed messages.
+
 'TitleGetRestrictionTypes': Allows extensions to modify the types of protection
 that can be applied.
 $title: The title in question.
