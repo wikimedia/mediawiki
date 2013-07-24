@@ -4775,9 +4775,10 @@ class Title {
 	 * they will already be wrapped in paragraphs.
 	 *
 	 * @since 1.21
+	 * @param int oldid Revision ID that's being edited
 	 * @return Array
 	 */
-	public function getEditNotices() {
+	public function getEditNotices( $oldid = 0 ) {
 		$notices = array();
 
 		# Optional notices on a per-namespace and per-page basis
@@ -4804,6 +4805,8 @@ class Title {
 				$notices[$editnoticeText] = $editnoticeMsg->parseAsBlock();
 			}
 		}
+
+		wfRunHooks( 'TitleGetEditNotices', array( $this, $oldid, &$notices ) );
 		return $notices;
 	}
 }
