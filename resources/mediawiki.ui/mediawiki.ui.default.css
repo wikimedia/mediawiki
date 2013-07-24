@@ -243,7 +243,7 @@ a.mw-ui-button {
   cursor: pointer;
 }
 
-/* line 99, sourcefiles/scss/components/default/_forms.scss */
+/* line 102, sourcefiles/scss/components/default/_forms.scss */
 .client-js .mw-ui-styled-checkbox-label {
   padding: 3px 9px;
   border: 1px solid grey;
@@ -254,21 +254,130 @@ a.mw-ui-button {
   border-radius: 2px;
   margin-right: 3px;
 }
-/* line 100, sourcefiles/scss/components/default/_forms.scss */
+/* line 103, sourcefiles/scss/components/default/_forms.scss */
 .client-js .mw-ui-styled-checkbox-label input[type=checkbox] {
   display: none;
 }
-/* line 110, sourcefiles/scss/components/default/_forms.scss */
+/* line 113, sourcefiles/scss/components/default/_forms.scss */
 .client-js .mw-ui-styled-checkbox-label.mw-ui-checked {
   background: url("img/form-icon/checked.png") no-repeat;
 }
-/* line 114, sourcefiles/scss/components/default/_forms.scss */
+/* line 117, sourcefiles/scss/components/default/_forms.scss */
 .client-js .mw-ui-styled-checkbox-label.mw-ui-disabled {
   background-color: lightgrey;
 }
 
-/* line 120, sourcefiles/scss/components/default/_forms.scss */
+/* line 123, sourcefiles/scss/components/default/_forms.scss */
 table.mw-htmlform-container {
   border-collapse: separate;
   border-spacing: 0px 4px;
+}
+
+/* line 128, sourcefiles/scss/components/default/_forms.scss */
+.mw-htmlform-field-HTMLFeatureField .mw-input {
+  padding-top: 10px;
+}
+
+/* line 132, sourcefiles/scss/components/default/_forms.scss */
+.mw-ui-feature-title .mw-ui-text-check-label {
+  font-size: 24px;
+}
+
+/* line 137, sourcefiles/scss/components/default/_forms.scss */
+.mw-ui-feature-title,
+.mw-ui-feature-info-links.filled {
+  width: 100%;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+/* line 147, sourcefiles/scss/components/default/_forms.scss */
+.mw-ui-feature-info-link-contain,
+.mw-ui-feature-discussion-link-contain,
+.mw-ui-feature-checkbox,
+.mw-ui-feature-contain,
+.mw-ui-feature-main,
+.mw-ui-feature-meta {
+  display: inline-block;
+}
+
+/* line 152, sourcefiles/scss/components/default/_forms.scss */
+.mw-ui-feature-field,
+.mw-ui-feature-meta {
+  position: relative;
+}
+
+/* line 156, sourcefiles/scss/components/default/_forms.scss */
+.mw-ui-feature-checkbox {
+  position: absolute;
+  top: 5px;
+}
+
+/* line 161, sourcefiles/scss/components/default/_forms.scss */
+.mw-ui-feature-contain {
+  margin-left: 42px;
+  width: 80%;
+}
+
+/* line 166, sourcefiles/scss/components/default/_forms.scss */
+.mw-ui-feature-description {
+  padding-right: 10px;
+}
+
+/* line 171, sourcefiles/scss/components/default/_forms.scss */
+.mw-ui-feature-main,
+.mw-ui-feature-meta {
+  width: 50%;
+  vertical-align: top;
+}
+
+/* line 177, sourcefiles/scss/components/default/_forms.scss */
+.mw-ui-feature-info-link-contain,
+.mw-ui-feature-discussion-link-contain {
+  border-left: 1px solid #e5e5e5;
+  padding: 5px 18px 4px 18px;
+}
+
+/* line 186, sourcefiles/scss/components/default/_forms.scss */
+.mw-ui-feature-discussion-link,
+.mw-ui-feature-discussion-link:visited,
+.mw-ui-feature-discussion-link:hover,
+.mw-ui-feature-discussion-link:active,
+.mw-ui-feature-discussion-link:focus {
+  color: #888888;
+  text-decoration: none;
+}
+
+/* line 191, sourcefiles/scss/components/default/_forms.scss */
+.mw-ui-feature-info-link {
+  padding: 2px 8px;
+  background: url("img/form-icon/feature-information.png") no-repeat;
+}
+
+/* line 196, sourcefiles/scss/components/default/_forms.scss */
+.mw-ui-feature-discussion-link-icon {
+  padding: 2px 12px 2px 13px;
+  background: url("img/form-icon/feature-discussion.svg") no-repeat;
+}
+
+/* line 201, sourcefiles/scss/components/default/_forms.scss */
+.mw-ui-feature-discussion-link-text {
+  padding: 2px 8px;
+}
+
+/* line 205, sourcefiles/scss/components/default/_forms.scss */
+.mw-ui-feature-screenshot-contain {
+  margin: 10px 0px 0px 0px;
+  width: 100%;
+}
+
+/* line 210, sourcefiles/scss/components/default/_forms.scss */
+.mw-ui-feature-screenshot {
+  border: 1px solid #e5e5e5;
+  max-height: 150px;
+  max-width: 100%;
+}
+
+/* line 216, sourcefiles/scss/components/default/_forms.scss */
+.mw-ui-feature-user-count {
+  color: #00b08a;
 }
