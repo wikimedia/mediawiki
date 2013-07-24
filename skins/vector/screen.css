@@ -12,29 +12,73 @@
  */
 
 /* Framework */
+html {
+	font-size: 90%;
+}
 html,
 body {
 	height: 100%;
 	margin: 0;
 	padding: 0;
-	font-family: sans-serif;
-	font-size: 1em;
 }
 body {
 	background-color: #f6f6f6;
+	font-family: "Helvetica Neue", "Helvetica", "Nimbus Sans L", "Arial", "Liberation Sans", sans-serif;
+	color: #252525;
+}
+h1,
+#firstHeading {
+	font-size: 1.833em;
+	line-height: 22pt;
+	padding: 0;
+	/* FIXME: provide support for free alternative to Georgia ? */
+	font-family: Georgia, serif;
+	margin-bottom: 4pt;
 }
 /* Content */
-div#content {
+#content {
+	line-height: 1.5em;
 	margin-left: 10em;
-	padding: 1em;
+	padding: 1.5em 1.5em 1.5em 1.75em;
 	/* Border on top, left, and bottom side */
 	border: 1px solid #a7d7f9;
 	border-right-width: 0;
 	/* Merge the border with tabs' one (in their background image) */
 	margin-top: -1px;
 	background-color: white;
-	color: black;
 	direction: ltr;
+}
+#content h2 {
+	font-size: 1.5em;
+	line-height: 22pt;
+}
+/* FIXME: this is hacky */
+#content #toc h2 {
+	font-size: 100%;
+}
+#content h2,
+#content h3,
+#content h4,
+#content h5,
+#content h6 {
+	padding: 0;
+	font-family: Georgia, serif;
+	margin-bottom: 4pt;
+	margin-top: 14pt;
+}
+#content h3 {
+	font-size: 1.17em;
+	line-height: 22pt;
+	font-weight: bold;
+}
+#content h4,
+#content h5,
+#content h6 {
+	font-weight: bold;
+	font-size: 100%; /* (reset) */
+}
+#content p {
+	margin-bottom: 8pt;
 }
 /* Hide, but keep accessible for screen-readers */
 #mw-navigation h2 {
@@ -76,6 +120,9 @@ div.emptyPortlet {
 	right: 0.75em;
 	/* Display on top of page tabs - bugs 37158, 48078 */
 	z-index: 100;
+}
+#p-personal a {
+	color: #555;
 }
 #p-personal h3 {
 	display: none;
@@ -476,55 +523,54 @@ div#simpleSearch button#searchButton > img {
 	margin: 0;
 }
 /* Panel */
-div#mw-panel {
+#mw-panel {
+	font-size: 0.82em;
 	position: absolute;
 	top: 160px;
 	padding-top: 1em;
 	width: 10em;
 	left: 0;
 }
-div#mw-panel div.portal {
-	padding-bottom: 1.5em;
+#mw-panel div.portal {
 	direction: ltr;
+	margin-left: 1.25em;
 }
-div#mw-panel div.portal h3 {
+#mw-panel .portal a {
+	color: #555;
+}
+#mw-panel .portal h3 {
 	font-weight: normal;
 	color: #444;
-	padding: 0.25em;
-	padding-top: 0;
-	padding-left: 1.75em;
 	cursor: default;
-	border: none;
-	font-size: 0.75em;
+	margin: 0;
+	padding: 5px 0;
+	line-height: 1;
+	font-size: 100%;
 }
-div#mw-panel div.portal div.body {
+/* FIXME:  update collapsible nav gadget */
+#mw-panel.collapsible-nav .portal h3 {
+	padding: 5px 0 5px 0.5em;
+}
+#mw-panel .portal .body {
 	margin: 0;
 	padding-top: 0.5em;
-	margin-left: 1.25em;
 	/* @embed */
 	background-image: url(images/portal-break.png);
 	background-repeat: no-repeat;
 	background-position: top left;
 }
-div#mw-panel div.portal div.body ul {
+#mw-panel .portal .body ul {
 	list-style-type: none;
 	list-style-image: none;
-	padding: 0;
+	padding: 0 0 10px;
 	margin: 0;
 }
-div#mw-panel div.portal div.body ul li {
+#mw-panel .portal .body ul li {
 	line-height: 1.125em;
 	padding: 0;
 	padding-bottom: 0.5em;
 	margin: 0;
-	font-size: 0.75em;
 	word-wrap: break-word;
-}
-div#mw-panel div.portal div.body ul li a {
-	color: #0645ad;
-}
-div#mw-panel div.portal div.body ul li a:visited {
-	color: #0b0080;
 }
 /* Footer */
 div#footer {
@@ -686,16 +732,6 @@ div#footer #footer-places li {
 	margin-right: 0.25em;
 }
 
-/**
- * The following code is slightly modified from monobook
- */
-div#content {
-	line-height: 1.5em;
-}
-#bodyContent {
-	font-size: 0.8em;
-}
-
 ul {
 	list-style-type: disc;
 	/* @embed */
@@ -709,11 +745,6 @@ pre, .mw-code {
 /* Site Notice (includes notices from CentralNotice extension) */
 #siteNotice {
 	font-size: 0.8em;
-}
-#firstHeading {
-	padding-top: 0;
-	margin-top: 0;
-	font-size: 1.6em;
 }
 div#content a.external,
 div#content a.external[href ^="gopher://"] {
@@ -806,9 +837,8 @@ div#content a.external[href *=".pdf?"], div#content a.external[href *=".PDF?"],
 #bodyContent {
 	position: relative;
 	width: 100%;
-}
-div#bodyContent {
 	line-height: 1.5em;
+	font-size: 0.9em;
 }
 
 /* mediawiki.notification */
