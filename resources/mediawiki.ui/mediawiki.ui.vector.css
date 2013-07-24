@@ -410,6 +410,115 @@ table.mw-htmlform-container {
   border-spacing: 0px 4px;
 }
 
+/* line 137, sourcefiles/scss/components/default/_forms.scss */
+.mw-htmlform-field-HTMLFeatureField .mw-input {
+  padding-top: 10px;
+}
+
+/* line 141, sourcefiles/scss/components/default/_forms.scss */
+.mw-ui-feature-title .mw-ui-text-check-label {
+  font-size: 24px;
+}
+
+/* line 146, sourcefiles/scss/components/default/_forms.scss */
+.mw-ui-feature-title,
+.mw-ui-feature-info-links.filled {
+  width: 100%;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+/* line 156, sourcefiles/scss/components/default/_forms.scss */
+.mw-ui-feature-info-link-contain,
+.mw-ui-feature-discussion-link-contain,
+.mw-ui-feature-checkbox,
+.mw-ui-feature-contain,
+.mw-ui-feature-main,
+.mw-ui-feature-meta {
+  display: inline-block;
+}
+
+/* line 161, sourcefiles/scss/components/default/_forms.scss */
+.mw-ui-feature-field,
+.mw-ui-feature-meta {
+  position: relative;
+}
+
+/* line 165, sourcefiles/scss/components/default/_forms.scss */
+.mw-ui-feature-checkbox {
+  position: absolute;
+  top: 5px;
+}
+
+/* line 170, sourcefiles/scss/components/default/_forms.scss */
+.mw-ui-feature-contain {
+  margin-left: 42px;
+  width: 80%;
+}
+
+/* line 175, sourcefiles/scss/components/default/_forms.scss */
+.mw-ui-feature-description {
+  padding-right: 10px;
+}
+
+/* line 180, sourcefiles/scss/components/default/_forms.scss */
+.mw-ui-feature-main,
+.mw-ui-feature-meta {
+  width: 50%;
+  vertical-align: top;
+}
+
+/* line 186, sourcefiles/scss/components/default/_forms.scss */
+.mw-ui-feature-info-link-contain,
+.mw-ui-feature-discussion-link-contain {
+  border-left: 1px solid #e5e5e5;
+  padding: 5px 18px 4px 18px;
+}
+
+/* line 195, sourcefiles/scss/components/default/_forms.scss */
+.mw-ui-feature-discussion-link,
+.mw-ui-feature-discussion-link:visited,
+.mw-ui-feature-discussion-link:hover,
+.mw-ui-feature-discussion-link:active,
+.mw-ui-feature-discussion-link:focus {
+  color: #888888;
+  text-decoration: none;
+}
+
+/* line 200, sourcefiles/scss/components/default/_forms.scss */
+.mw-ui-feature-info-link {
+  padding: 2px 8px;
+  background: url("img/form-icon/feature-information.png") no-repeat;
+}
+
+/* line 205, sourcefiles/scss/components/default/_forms.scss */
+.mw-ui-feature-discussion-link-icon {
+  padding: 2px 12px 2px 13px;
+  background: url("img/form-icon/feature-discussion.svg") no-repeat;
+}
+
+/* line 210, sourcefiles/scss/components/default/_forms.scss */
+.mw-ui-feature-discussion-link-text {
+  padding: 2px 8px;
+}
+
+/* line 214, sourcefiles/scss/components/default/_forms.scss */
+.mw-ui-feature-screenshot-contain {
+  margin: 10px 0px 0px 0px;
+  width: 100%;
+}
+
+/* line 219, sourcefiles/scss/components/default/_forms.scss */
+.mw-ui-feature-screenshot {
+  border: 1px solid #e5e5e5;
+  max-height: 150px;
+  max-width: 100%;
+}
+
+/* line 225, sourcefiles/scss/components/default/_forms.scss */
+.mw-ui-feature-user-count {
+  color: #00b08a;
+}
+
 /* line 5, sourcefiles/scss/components/vector/_forms.scss */
 .mw-ui-vform,
 .mw-ui-vform > div input,
