@@ -87,13 +87,9 @@ acronym,
 	font-style: italic;
 }
 
-/* Comment and username portions of RC entries */
+/* Comment portion of RC entries */
 span.comment {
 	font-style: italic;
-}
-
-span.changedby {
-	font-size: 95%;
 }
 
 /* Math */
