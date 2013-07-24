@@ -344,6 +344,9 @@ changes to languages because of Bugzilla reports.
 * (bug 50785) A "null edit", that is, a save action in which no changes to the
   page text are made and no revision recorded, will no longer send refreshLinks
   jobs to the job table to update pages which use the edited page as a template.
+* SpecialPrefixindex methods namespacePrefixForm() and showPrefixChunk() have
+  been made protected. They were accepting form variance arguments, this is now
+  using properties in the SpecialPrefixindex class.
 
 == Compatibility ==
 
