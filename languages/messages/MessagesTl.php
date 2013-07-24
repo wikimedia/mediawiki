@@ -36,8 +36,6 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
-	'Talaksan'         => NS_FILE,
-	'Usapang talaksan' => NS_FILE_TALK,
 	'Suleras'          => NS_TEMPLATE,
 	'Usapang_suleras'  => NS_TEMPLATE_TALK,
 	'Kaurian'          => NS_CATEGORY,
