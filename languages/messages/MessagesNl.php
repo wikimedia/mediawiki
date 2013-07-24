@@ -800,6 +800,7 @@ Vergeet niet uw [[Special:Preferences|voorkeuren voor {{SITENAME}}]] aan te pass
 'yourname' => 'Gebruikersnaam:',
 'userlogin-yourname' => 'Gebruikersnaam',
 'userlogin-yourname-ph' => 'Geef uw gebruikersnaam op',
+'createacct-another-username-ph' => 'Geef de gebruikersnaam op',
 'yourpassword' => 'Wachtwoord:',
 'userlogin-yourpassword' => 'Wachtwoord',
 'userlogin-yourpassword-ph' => 'Geef uw wachtwoord op',
@@ -834,9 +835,11 @@ Vergeet niet uw [[Special:Preferences|voorkeuren voor {{SITENAME}}]] aan te pass
 'helplogin-url' => 'Help:Aanmelden',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Hulp bij aanmelden]]',
 'createacct-join' => 'Geef uw gegevens hieronder op.',
+'createacct-another-join' => 'Geef hieronder de informatie voor de nieuwe gebruiker op.',
 'createacct-emailrequired' => 'E-mailadres',
 'createacct-emailoptional' => 'E-mailadres (optioneel)',
 'createacct-email-ph' => 'Geef uw e-mailadres op',
+'createacct-another-email-ph' => 'Geef een e-mailadres op',
 'createaccountmail' => 'Gebruik een tijdelijk willekeurig wachtwoord en stuur het naar het e-mailadres dat hieronder is vermeld',
 'createacct-realname' => 'Echte naam (optioneel)',
 'createaccountreason' => 'Reden:',
@@ -845,6 +848,7 @@ Vergeet niet uw [[Special:Preferences|voorkeuren voor {{SITENAME}}]] aan te pass
 'createacct-captcha' => 'Veiligheidscontrole',
 'createacct-imgcaptcha-ph' => 'Geef de tekst in die u hierboven ziet',
 'createacct-submit' => 'Gebruiker aanmaken',
+'createacct-another-submit' => 'Nog een gebruiker aanmaken',
 'createacct-benefit-heading' => '{{SITENAME}} wordt gemaakt door mensen zoals u.',
 'createacct-benefit-body1' => 'bewerking{{PLURAL:$1||en}}',
 'createacct-benefit-body2' => "pagina{{PLURAL:$1||'s}}",
@@ -1434,6 +1438,7 @@ Let op dat het gebruiken van de navigatiekoppelingen deze kolom opnieuw instelt.
 'compareselectedversions' => 'Geselecteerde versies vergelijken',
 'showhideselectedversions' => 'Geselecteerde versies weergeven/verbergen',
 'editundo' => 'ongedaan maken',
+'diff-empty' => '(geen verschil)',
 'diff-multi' => '({{PLURAL:$1|Eén tussenliggende versie|$1 tussenliggende versies}} door {{PLURAL:$2|één gebruiker|$2 gebruikers}} {{PLURAL:$1|wordt|worden}} niet weergegeven)',
 'diff-multi-manyusers' => '($1 tussenliggende {{PLURAL:$1|versie|versies}} door meer dan $2 {{PLURAL:$2|gebruiker|gebruikers}}  worden niet weergegeven)',
 'difference-missing-revision' => '{{PLURAL:$2|Eén versie|$2 versies}} van deze verschillen ($1) {{PLURAL:$2|is|zijn}} niet aangetroffen.
@@ -2257,6 +2262,8 @@ Een pagina wordt gezien als doorverwijspagina als er een sjabloon op staat dat o
 'pageswithprop-text' => "Op deze pagina worden pagina's weergegeven met een bepaalde pagina-eigenschap.",
 'pageswithprop-prop' => 'Naam van de eigenschap:',
 'pageswithprop-submit' => 'OK',
+'pageswithprop-prophidden-long' => 'lange teksteigenschapswaarde verborgen ({{PLURAL:$1|$1 kilobyte}})',
+'pageswithprop-prophidden-binary' => 'binaire eigenschapswaarde verborgen ({{PLURAL:$1|$1 kilobyte}})',
 
 'doubleredirects' => 'Dubbele doorverwijzingen',
 'doubleredirectstext' => "Deze lijst bevat pagina's die doorverwijzen naar andere doorverwijspagina's.
@@ -2438,7 +2445,8 @@ Heeft tenminste een topleveldomein nodig, zoals bijvoorbeeld "*.org".<br />
 'listgrouprights' => 'Rechten van gebruikersgroepen',
 'listgrouprights-summary' => 'Op deze pagina staan de gebruikersgroepen in deze wiki beschreven, met hun bijbehorende rechten.
 Er kan [[{{MediaWiki:Listgrouprights-helppage}}|extra informatie]] over individuele rechten aanwezig zijn.',
-'listgrouprights-key' => '* <span class="listgrouprights-granted">Toegewezen recht</span>
+'listgrouprights-key' => 'Leganda:
+* <span class="listgrouprights-granted">Toegewezen recht</span>
 * <span class="listgrouprights-revoked">Ingetrokken recht</span>',
 'listgrouprights-group' => 'Groep',
 'listgrouprights-rights' => 'Rechten',

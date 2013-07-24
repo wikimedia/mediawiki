@@ -16715,7 +16715,7 @@ Muitos servidores de correio electrónico exigem que pelo menos a parte do nome 
 	'config-upload-settings' => 'Upload de imagens e ficheiros',
 	'config-upload-enable' => 'Possibilitar o upload de ficheiros',
 	'config-upload-help' => 'O upload de ficheiros expõe o seu servidor a riscos de segurança.
-Para mais informações, leia a [//www.mediawiki.org/wiki/Manual:Security secção sobre segurança] do Manual Técnico.
+Para mais informações, leia a [//www.mediawiki.org/wiki/Manual:Security seção sobre segurança] do Manual Técnico.
 
 Para permitir o upload de ficheiros, altere as permissões do subdiretório <code>images</code> no diretório de raiz do MediaWiki para que o servidor de internet possa escrever nele.
 Depois ative esta opção.',
@@ -18490,8 +18490,14 @@ Installationen avbröts.",
 	'config-db-install-account' => 'Användarkonto för installation',
 	'config-db-username' => 'Databas-användarnamn:',
 	'config-db-password' => 'Databas-lösenord:',
+	'config-db-password-empty' => 'Ange ett lösenord för den nya databasanvändaren: $1.
+Även om det kan vara möjligt att skapa användare utan lösenord är det inte säkert.',
+	'config-db-account-lock' => 'Använda samma användarnamn och lösenord under normal drift',
 	'config-db-wiki-account' => 'Användarkonto för normal drift',
 	'config-db-prefix' => 'Prefix för tabellerna i databasen:',
+	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0 binär',
+	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
+	'config-charset-mysql4' => 'MySQL 4.0 bakåtkompatibel UTF-8',
 	'config-db-port' => 'Databasport:',
 	'config-db-schema' => 'Schema för MediaWiki',
 	'config-pg-test-error' => "Kan inte ansluta till databas '''$1''': $2",
@@ -18516,6 +18522,9 @@ Använd bara ASCII-bokstäver (a-z, A-Z), siffror (0-9), understreck (_) och bin
 	'config-db-sys-create-oracle' => 'Installationsprogrammet stöder endast med ett SYSDBA-konto för att skapa ett nytt konto.',
 	'config-db-sys-user-exists-oracle' => 'Användarkontot "$1" finns redan. SYSDBA kan endast användas för att skapa ett nytt konto!',
 	'config-postgres-old' => 'PostgreSQL $1 eller senare krävs, du har $2.',
+	'config-sqlite-name-help' => 'Välja ett namn som identifierar din wiki.
+Använd inte mellanslag eller bindestreck.
+Detta kommer att användas för SQLite-data filnamnet.',
 	'config-sqlite-readonly' => 'Filen <code>$1</code> är inte skrivbar.',
 	'config-sqlite-cant-create-db' => 'Kunde inte skapa databasfilen <code>$1</code>.',
 	'config-sqlite-fts3-downgrade' => 'PHP saknar stöd för FTS3, nedgraderar tabeller',
@@ -18559,8 +18568,10 @@ Ange ett annat användarnamn.',
 	'config-admin-password-same' => 'Lösenordet får inte vara samma som användarnamnet.',
 	'config-admin-password-mismatch' => 'De två lösenord du uppgett överensstämmer inte med varandra.',
 	'config-admin-email' => 'E-postadress:',
+	'config-admin-error-user' => 'Internt fel när du skapar en administratör med namnet "<nowiki>$1</nowiki>".',
+	'config-admin-error-password' => 'Internt fel när du väljer ett lösenord för administratören "<nowiki>$1</nowiki>": <pre>$2</pre>',
 	'config-admin-error-bademail' => 'Du har angivit en felaktigt e-postadress.',
-	'config-subscribe' => 'Prenumerera på [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce e-postlistan för utgivningsmeddelanden].',
+	'config-subscribe' => 'Prenumerera på [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce e-postlistan för tillkännagivanden].',
 	'config-almost-done' => 'Du är nästan färdig!
 Du kan nu hoppa över återstående konfigurationer och installera wikin nu.',
 	'config-optional-continue' => 'Ställ fler frågor till mig.',
@@ -18590,26 +18601,43 @@ Du kan nu hoppa över återstående konfigurationer och installera wikin nu.',
 	'config-upload-deleted' => 'Mapp för raderade filer:',
 	'config-logo' => 'Logotyp-URL:',
 	'config-instantcommons' => 'Aktivera Instant Commons',
+	'config-cc-error' => 'Creative Commons-licens-väljaren gav inget resultat.
+Ange licensnamnet manuellt.',
 	'config-cc-again' => 'Välj igen...',
+	'config-cc-not-chosen' => 'Välj vilken Creative Commons-licens du vill ha och klicka på "gå vidare".',
 	'config-advanced-settings' => 'Avancerad konfiguration',
 	'config-extensions' => 'Tillägg',
+	'config-install-alreadydone' => "''' Varning:''' Du verkar redan ha installerat MediaWiki och försöker installera det igen.
+Vänligen fortsätt till nästa sida.",
+	'config-install-begin' => 'Genom att trycka på "{{int:config-continue}}", påbörjar du installationen av MediaWiki.
+Om du fortfarande vill göra ändringar trycker du på "{{int:config-back}}".',
 	'config-install-step-done' => 'klar',
 	'config-install-step-failed' => 'misslyckades',
 	'config-install-database' => 'Konfigurerar databas',
 	'config-install-schema' => 'Skapar schema',
+	'config-pg-no-plpgsql' => 'Du måste installera språket PL/pgSQL i databasen $1',
 	'config-install-user' => 'Skapar databasanvändare',
 	'config-install-user-alreadyexists' => 'Användaren "$1" finns redan',
 	'config-install-user-create-failed' => 'Misslyckades att skapa användare "$1": $2',
+	'config-install-user-grant-failed' => 'Beviljandet av behörighet till användaren "$1" misslyckades: $2',
 	'config-install-user-missing' => 'Den angivna användaren "$1" existerar inte.',
+	'config-install-user-missing-create' => 'Den angivna användaren "$1" existerar inte.
+Vänligen klicka på kryssrutan "skapa konto" nedan om du vill skapa den.',
 	'config-install-tables' => 'Skapar tabeller',
+	'config-install-tables-exist' => "''' Varning:''' MediaWiki-tabeller verkar redan finnas.
+Hoppar över skapandet.",
+	'config-install-tables-failed' => "''' Fel:''' Skapandet av tabell misslyckades med följande fel: $1",
 	'config-install-interwiki' => 'Lägger till standardtabell för interwiki',
 	'config-install-interwiki-list' => 'Kunde inte läsa filen <code>interwiki.list</code>.',
 	'config-install-stats' => 'Initierar statistik',
 	'config-install-keys' => 'Genererar hemliga nycklar',
 	'config-insecure-keys' => "'''Varning:''' {{PLURAL:$2|En säkerhetsnyckel|Säkerhetsnycklar}} ($1) som generades under installationen är inte helt {{PLURAL:$2|säker|säkra}} . Överväg att ändra {{PLURAL:$2|den|dem}} manuellt.",
 	'config-install-sysop' => 'Skapar administratörskonto',
+	'config-install-subscribe-fail' => 'Det gick inte att prenumerera på mediawiki-announce: $1',
+	'config-install-subscribe-notpossible' => 'cURL är inte installerad och allow_url_fopen är inte tillgänglig.',
 	'config-install-mainpage' => 'Skapa huvudsida med standardinnehåll',
 	'config-install-extension-tables' => 'Skapar tabeller för aktiverade tillägg',
+	'config-install-mainpage-failed' => 'Kunde inte infoga huvudsidan: $1',
 	'config-install-done' => "'''Grattis!'''
 Du har installerat MediaWiki.
 

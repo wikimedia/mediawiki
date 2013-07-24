@@ -2277,6 +2277,8 @@ contenttype/subtypeの形式で入力してください (例: <code>image/jpeg</
 'pageswithprop-text' => 'このページでは、特定のページプロパティを持つページを列挙します。',
 'pageswithprop-prop' => 'プロパティ名:',
 'pageswithprop-submit' => '実行',
+'pageswithprop-prophidden-long' => 'プロパティ値のテキストが長いため非表示 ($1 キロバイト)',
+'pageswithprop-prophidden-binary' => 'プロパティ値のバイナリが長いため非表示 ($1キロバイト)',
 
 'doubleredirects' => '二重転送',
 'doubleredirectstext' => 'このページでは、転送ページへの転送ページを列挙します。

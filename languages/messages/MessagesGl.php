@@ -262,7 +262,7 @@ $messages = array(
 'tog-extendwatchlist' => 'Expandir a lista de vixilancia para mostrar todos os cambios e non só os máis recentes',
 'tog-usenewrc' => 'Agrupar as modificacións por páxina nos cambios recentes e na lista de vixilancia (cómpre JavaScript)',
 'tog-numberheadings' => 'Numerar automaticamente as cabeceiras',
-'tog-showtoolbar' => 'Mostrar a caixa de ferramentas de edición (cómpre JavaScript)',
+'tog-showtoolbar' => 'Mostrar a barra de ferramentas de edición (cómpre JavaScript)',
 'tog-editondblclick' => 'Editar as páxinas logo de facer dobre clic (cómpre JavaScript)',
 'tog-editsection' => 'Permitir a edición de seccións mediante as ligazóns "[editar]"',
 'tog-editsectiononrightclick' => 'Permitir a edición de seccións premendo co botón dereito nos títulos das seccións (cómpre JavaScript)',
@@ -2128,6 +2128,8 @@ Unha páxina trátase como páxina de homónimos cando nela se usa un modelo que
 'pageswithprop-text' => 'Esta páxina lista aquelas páxinas que utilizan unha propiedade de páxina determinada.',
 'pageswithprop-prop' => 'Nome da propiedade:',
 'pageswithprop-submit' => 'Mostrar',
+'pageswithprop-prophidden-long' => 'agochouse o valor de propiedade de texto longo ($1 kilobytes)',
+'pageswithprop-prophidden-binary' => 'agochouse o valor de propiedade binaria ($1 kilobytes)',
 
 'doubleredirects' => 'Redireccións dobres',
 'doubleredirectstext' => 'Esta lista contén as páxinas que redirixen cara a outras páxinas de redirección.
@@ -2305,7 +2307,8 @@ Cómpre, polo menos, un dominio de nivel superior; por exemplo, "*.org".<br />
 'listgrouprights' => 'Dereitos dun usuario segundo o seu grupo',
 'listgrouprights-summary' => 'A seguinte lista mostra os grupos de usuario definidos neste wiki, cos seus dereitos de acceso asociados.
 Se quere máis información acerca dos dereitos individuais, pode atopala [[{{MediaWiki:Listgrouprights-helppage}}|aquí]].',
-'listgrouprights-key' => '* <span class="listgrouprights-granted">Dereito concedido</span>
+'listgrouprights-key' => 'Lenda:
+* <span class="listgrouprights-granted">Dereito concedido</span>
 * <span class="listgrouprights-revoked">Dereito revogado</span>',
 'listgrouprights-group' => 'Grupo',
 'listgrouprights-rights' => 'Dereitos',

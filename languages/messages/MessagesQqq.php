@@ -1778,7 +1778,8 @@ This message is substituted in:
 
 This message is substituted in:
 *{{msg-mw|Bad-target-model}}
-*{{msg-mw|Content-not-allowed-here}}',
+*{{msg-mw|Content-not-allowed-here}}
+{{Identical|Plain text}}',
 'content-model-javascript' => 'Name for the JavaScript content model, used when decribing what type of content a page contains.
 
 This message is substituted in:
@@ -4116,13 +4117,17 @@ This block of text is shown on [[:Special:Disambiguations]].
 'pageswithprop-submit' => 'Label for the submit button on [[Special:PagesWithProp]].
 {{Identical|Go}}',
 'pageswithprop-prophidden-long' => 'Information shown on [[Special:PagesWithProp]] when property value is longer than 1 kilobyte.
-See also {{msg-mw|pageswithprop-prophidden-binary}}.
+
 Parameters:
-* $1 - size of property value in kilobytes',
+* $1 - size of property value in kilobytes
+See also:
+* {{msg-mw|pageswithprop-prophidden-binary}}',
 'pageswithprop-prophidden-binary' => 'Information shown on [[Special:PagesWithProp]] when property value contains binary data.
-See also {{msg-mw|pageswithprop-prophidden-long}}.
+
 Parameters:
-* $1 - size of property value in kilobytes',
+* $1 - size of property value in kilobytes
+See also:
+* {{msg-mw|pageswithprop-prophidden-long}}',
 
 'doubleredirects' => '{{doc-special|DoubleRedirects}}',
 'doubleredirectstext' => 'Shown on top of [[Special:Doubleredirects]]',

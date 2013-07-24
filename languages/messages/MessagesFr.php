@@ -1266,8 +1266,8 @@ La raison donnée était ''$2''.",
 'histlegend' => 'Légende : ({{int:cur}}) = différence avec la version actuelle, ({{int:last}}) = différence avec la version précédente, <b>{{int:minoreditletter}}</b> = modification mineure',
 'history-fieldset-title' => "Naviguer dans l'historique",
 'history-show-deleted' => 'Masqués seulement',
-'histfirst' => 'la plus ancienne en premier',
-'histlast' => 'la plus récente en premier',
+'histfirst' => 'plus ancienne à plus récente',
+'histlast' => 'plus récente à plus ancienne',
 'historysize' => '($1 octet{{PLURAL:$1||s}})',
 'historyempty' => '(vide)',
 
@@ -2219,6 +2219,8 @@ Une page est considérée comme une page d'homonymie si elle utilise un modèle 
 'pageswithprop-text' => 'Cette page liste les pages qui utilisent une propriété de page particulière.',
 'pageswithprop-prop' => 'Nom de la propriété:',
 'pageswithprop-submit' => 'Aller',
+'pageswithprop-prophidden-long' => 'valeur de propriété de texte long masquée ($1 ko)',
+'pageswithprop-prophidden-binary' => 'valeur de propriété binaire masquée ($1 ko)',
 
 'doubleredirects' => 'Doubles redirections',
 'doubleredirectstext' => 'Voici une liste des pages qui redirigent vers des pages qui sont elles-mêmes des pages de redirection.

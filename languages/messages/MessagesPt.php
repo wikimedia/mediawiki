@@ -327,9 +327,9 @@ $messages = array(
 'tog-numberheadings' => 'Auto-numerar cabeçalhos',
 'tog-showtoolbar' => 'Mostrar barra de edição (JavaScript)',
 'tog-editondblclick' => 'Editar páginas quando houver um clique duplo (JavaScript)',
-'tog-editsection' => 'Possibilitar a edição de secções com links [editar]',
-'tog-editsectiononrightclick' => 'Possibilitar a edição de secções por clique com o botão direito no título da secção (JavaScript)',
-'tog-showtoc' => 'Mostrar índice (para páginas com mais de três secções)',
+'tog-editsection' => 'Possibilitar a edição de seções com links [editar]',
+'tog-editsectiononrightclick' => 'Possibilitar a edição de seções por clique com o botão direito no título da seção (JavaScript)',
+'tog-showtoc' => 'Mostrar índice (para páginas com mais de três seções)',
 'tog-rememberpassword' => 'Recordar os meus dados neste browser (no máximo, durante $1 {{PLURAL:$1|dia|dias}})',
 'tog-watchcreations' => 'Adicionar as páginas e ficheiros que eu criar às minhas páginas vigiadas',
 'tog-watchdefault' => 'Adicionar as páginas e ficheiros que eu editar às minhas páginas vigiadas',
@@ -1011,7 +1011,7 @@ Inclua todos os detalhes acima em quaisquer contactos relacionados com este bloq
 'confirmedittext' => 'Precisa de confirmar o seu endereço de correio electrónico antes de começar a editar páginas.
 Introduza e valide o endereço através das [[Special:Preferences|preferências do utilizador]], por favor.',
 'nosuchsectiontitle' => 'Não foi possível encontrar a seção',
-'nosuchsectiontext' => 'Tentou editar uma secção que não existe.
+'nosuchsectiontext' => 'Tentou editar uma seção que não existe.
 Ela pode ter sido movida ou removida enquanto estava a ver a página.',
 'loginreqtitle' => 'Autenticação necessária',
 'loginreqlink' => 'autenticar-se',
@@ -1125,8 +1125,8 @@ Para referência, é apresentada abaixo a última entrada do registo:",
 'nocreatetext' => 'A {{SITENAME}} restringe a criação de páginas novas por utilizadores anónimos.
 Pode voltar atrás e editar uma página já existente, ou [[Special:UserLogin|autenticar-se ou criar uma conta]].',
 'nocreate-loggedin' => 'Não possui permissão para criar novas páginas.',
-'sectioneditnotsupported-title' => 'Edição de secções não é suportada',
-'sectioneditnotsupported-text' => 'A edição de secções não é suportada nesta página de edição.',
+'sectioneditnotsupported-title' => 'Edição de seções não é suportada',
+'sectioneditnotsupported-text' => 'A edição de seções não é suportada nesta página de edição.',
 'permissionserrors' => 'Erros de permissões',
 'permissionserrorstext' => 'Não possui permissão para fazer isso, {{PLURAL:$1|pelo seguinte motivo|pelos seguintes motivos}}:',
 'permissionserrorstext-withaction' => 'Não possui permissão para $2, {{PLURAL:$1|pelo seguinte motivo|pelos seguintes motivos}}:',
@@ -1151,7 +1151,7 @@ Ela já existia.',
 'invalid-content-data' => 'Dados de conteúdo inválidos',
 'content-not-allowed-here' => 'Conteúdo do tipo "$1" não é permitido na página [[$2]]',
 'editwarning-warning' => 'Sair desta página fará com que você perca quaisquer alterações feitas por você.
-Se você se autenticou, pode desabilitar este aviso na secção "Edição" das suas preferências.',
+Se você se autenticou, pode desabilitar este aviso na seção "Edição" das suas preferências.',
 
 # Content models
 'content-model-wikitext' => 'wikitexto',

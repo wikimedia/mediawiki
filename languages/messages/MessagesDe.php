@@ -2250,6 +2250,8 @@ Eine Seite gilt als Begriffsklärungsseite, wenn sie mindestens eine der auf der
 'pageswithprop-text' => 'Diese Spezialseite listet Seiten auf, die eine bestimmte Seiteneigenschaft verwenden.',
 'pageswithprop-prop' => 'Eigenschaftsname:',
 'pageswithprop-submit' => 'Los',
+'pageswithprop-prophidden-long' => 'Langtexteigenschaftswert versteckt ($1 Kilobyte)',
+'pageswithprop-prophidden-binary' => 'Binäreigenschaftswert versteckt ($1 Kilobyte)',
 
 'doubleredirects' => 'Doppelte Weiterleitungen',
 'doubleredirectstext' => 'Diese Liste enthält Weiterleitungen, die auf Weiterleitungen verlinken.

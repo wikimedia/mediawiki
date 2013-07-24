@@ -694,6 +694,8 @@ $2',
 'customjsprotected' => 'Sul pole õigust seda JavaScripti lehekülge redigeerida, sest see sisaldab teise kasutaja isiklikke sätteid.',
 'mycustomcssprotected' => 'Sul pole õigust redigeerida seda CSS-lehekülge.',
 'mycustomjsprotected' => 'Sul pole õigust redigeerida seda JavaScript-lehekülge.',
+'myprivateinfoprotected' => 'Sul pole lubatud oma eraandmeid redigeerida.',
+'mypreferencesprotected' => 'Sul pole lubatud oma eelistusi muuta.',
 'ns-specialprotected' => 'Erilehekülgi ei saa redigeerida.',
 'titleprotected' => "Kasutaja [[User:$1|$1]] on selle pealkirjaga lehe loomise keelanud esitades järgmise põhjenduse: ''$2''.",
 'filereadonlyerror' => 'Faili "$1" ei saa muuta, sest hoidla "$2" on kirjutuskaitstud.
@@ -720,6 +722,7 @@ Pane tähele, et seni kuni sa pole oma võrgulehitseja puhvrit tühjendanud, võ
 'yourname' => 'Kasutajanimi:',
 'userlogin-yourname' => 'Kasutajanimi',
 'userlogin-yourname-ph' => 'Sisesta oma kasutajanimi',
+'createacct-another-username-ph' => 'Sisesta kasutajanimi',
 'yourpassword' => 'Parool:',
 'userlogin-yourpassword' => 'Parool',
 'userlogin-yourpassword-ph' => 'Sisesta oma parool',
@@ -754,9 +757,11 @@ Pane tähele, et seni kuni sa pole oma võrgulehitseja puhvrit tühjendanud, võ
 'helplogin-url' => 'Help:Sisselogimine',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Sisselogimisabi]]',
 'createacct-join' => 'Sisesta allapoole oma andmed.',
+'createacct-another-join' => 'Sisesta allpool uue konto andmed.',
 'createacct-emailrequired' => 'E-posti aadress',
 'createacct-emailoptional' => 'E-posti aadress (valikuline)',
 'createacct-email-ph' => 'Sisesta oma e-posti aadress',
+'createacct-another-email-ph' => 'Sisesta e-posti aadress',
 'createaccountmail' => 'Kasuta juhuslikku parooli ja saada see allpool määratud e-posti aadressile',
 'createacct-realname' => 'Pärisnimi (valikuline)',
 'createaccountreason' => 'Põhjus:',
@@ -765,6 +770,7 @@ Pane tähele, et seni kuni sa pole oma võrgulehitseja puhvrit tühjendanud, võ
 'createacct-captcha' => 'Turvakontroll',
 'createacct-imgcaptcha-ph' => 'Sisesta ülalnähtav tekst',
 'createacct-submit' => 'Loo oma konto',
+'createacct-another-submit' => 'Loo teine konto',
 'createacct-benefit-heading' => '{{SITENAME}} on sinusuguste inimeste tehtud.',
 'createacct-benefit-body1' => '{{PLURAL:$1|muudatus|muudatust}}',
 'createacct-benefit-body2' => '{{PLURAL:$1|lehekülg|lehekülge}}',
@@ -1311,6 +1317,7 @@ Pane tähele, et navigeerimislinkide kasutamine lähtestab redaktsioonide valiku
 'compareselectedversions' => 'Võrdle valitud redaktsioone',
 'showhideselectedversions' => 'Näita/peida valitud versioonid',
 'editundo' => 'eemalda',
+'diff-empty' => '(Erinevus puudub)',
 'diff-multi' => '({{PLURAL:$1|Ühte|$1}} vahepealset {{PLURAL:$2|ühe|$2}} kasutaja redaktsiooni ei näidata.)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Ühte|$1}} vahepealset rohkem kui {{PLURAL:$2|ühe|$2}} kasutaja redaktsiooni ei näidata.)',
 'difference-missing-revision' => 'Selle erinevuste vaate {{PLURAL:$2|üht|$2}} redaktsiooni ($1) ei leitud.
@@ -2265,7 +2272,8 @@ Toetatud {{PLURAL:$2|protokoll|protokollid}}: <code>$1</code> (määramata proto
 'listgrouprights' => 'Kasutajarühma õigused',
 'listgrouprights-summary' => 'Siin on loetletud selle viki kasutajarühmad ja rühmaga seotud õigused.
 Üksikute õiguste kohta võib olla [[{{MediaWiki:Listgrouprights-helppage}}|täiendavat teavet]].',
-'listgrouprights-key' => '* <span class="listgrouprights-granted">Väljaantud õigus</span>
+'listgrouprights-key' => 'Legend:
+* <span class="listgrouprights-granted">Väljaantud õigus</span>
 * <span class="listgrouprights-revoked">Äravõetud õigus</span>',
 'listgrouprights-group' => 'Rühm',
 'listgrouprights-rights' => 'Õigused',
@@ -2441,7 +2449,7 @@ Ettevaatust, selle kustutamine võib esile kutsuda häireid {{GRAMMAR:genitive|{
 Lehte muutis viimasena [[User:$3|$3]] ([[User talk:$3|arutelu]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment' => "Redaktsiooni resümee oli: \"''\$1''\".",
 'revertpage' => 'Tühistati kasutaja [[Special:Contributions/$2|$2]] ([[User talk:$2|arutelu]]) tehtud muudatused ja pöörduti tagasi viimasele muudatusele, mille tegi [[User:$1|$1]].',
-'revertpage-nouser' => 'Tühistati eemaldatud nimega kasutaja tehtud muudatused ja pöörduti tagasi viimasele muudatusele, mille tegi [[User:$1|$1]].',
+'revertpage-nouser' => 'Tühistati peidetud kasutaja muudatused ja pöörduti tagasi viimasele muudatusele, mille tegi [[User:$1|$1]].',
 'rollback-success' => 'Tühistati muudatused, mille tegi $1;
 pöörduti tagasi viimasele muudatusele, mille tegi $2.',
 

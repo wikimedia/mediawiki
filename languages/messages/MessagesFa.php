@@ -4268,7 +4268,7 @@ $5
 'sqlite-no-fts' => '$1 بدون پشتیبانی از جستجو در متن کامل',
 
 # New logging system
-'logentry-delete-delete' => '$1 صفحهٔ $3 {{GENDER:$2|حذف کرد}}',
+'logentry-delete-delete' => '$1 صفحهٔ $3 را {{GENDER:$2|حذف کرد}}',
 'logentry-delete-restore' => '$1 صفحهٔ $3 را {{GENDER:$2|احیا کرد}}',
 'logentry-delete-event' => '$1 پیدایی {{PLURAL:$5|یک مورد سیاهه|$5 مورد سیاهه}} را در $3 {{GENDER:$2|تغییر داد}} : $4',
 'logentry-delete-revision' => '$1 پیدایی {{PLURAL:$5|یک نسخه|$5 نسخه}} صفحه $3 را {{GENDER:$2|تغییر داد}}: $4',
