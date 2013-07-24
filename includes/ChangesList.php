@@ -882,8 +882,6 @@ class EnhancedChangesList extends ChangesList {
 		$r = Html::openElement( 'table', array( 'class' => $classes ) ) .
 			Html::openElement( 'tr' );
 
-		# Collate list of users
-		$userlinks = array();
 		# Other properties
 		$unpatrolled = false;
 		$isnew = false;
@@ -904,9 +902,6 @@ class EnhancedChangesList extends ChangesList {
 				$namehidden = false;
 			}
 			$u = $rcObj->userlink;
-			if ( !isset( $userlinks[$u] ) ) {
-				$userlinks[$u] = 0;
-			}
 			if ( $rcObj->unpatrolled ) {
 				$unpatrolled = true;
 			}
@@ -928,27 +923,7 @@ class EnhancedChangesList extends ChangesList {
 			if ( !$rcObj->mAttribs['rc_minor'] ) {
 				$allMinors = false;
 			}
-
-			$userlinks[$u]++;
 		}
-
-		# Sort the list and convert to text
-		krsort( $userlinks );
-		asort( $userlinks );
-		$users = array();
-		foreach ( $userlinks as $userlink => $count ) {
-			$text = $userlink;
-			$text .= $this->getLanguage()->getDirMark();
-			if ( $count > 1 ) {
-				$text .= ' ' . $this->msg( 'parentheses' )->rawParams( $this->getLanguage()->formatNum( $count ) . '×' )->escaped();
-			}
-			array_push( $users, $text );
-		}
-
-		$users = ' <span class="changedby">'
-			. $this->msg( 'brackets' )->rawParams(
-				implode( $this->message['semicolon-separator'], $users )
-			)->escaped() . '</span>';
 
 		$tl = '<span class="mw-collapsible-toggle mw-collapsible-arrow mw-enhancedchanges-arrow mw-enhancedchanges-arrow-space"></span>';
 		$r .= "<td>$tl</td>";
@@ -1055,8 +1030,6 @@ class EnhancedChangesList extends ChangesList {
 			$r .= $this->msg( 'parentheses' )->rawParams( $logtext )->escaped();
 		}
 
-		$r .= ' <span class="mw-changeslist-separator">. .</span> ';
-
 		# Character difference (does not apply if only log items)
 		if ( $wgRCShowChangedSize && !$allLogs ) {
 			$last = 0;
@@ -1071,15 +1044,18 @@ class EnhancedChangesList extends ChangesList {
 			# Get net change
 			$chardiff = $this->formatCharacterDifference( $block[$first], $block[$last] );
 
-			if ( $chardiff == '' ) {
-				$r .= ' ';
-			} else {
-				$r .= ' ' . $chardiff . ' <span class="mw-changeslist-separator">. .</span> ';
+			if ( $chardiff ) {
+				$r .= ' <span class="mw-changeslist-separator">. .</span> ' . $chardiff;
 			}
 		}
 
-		$r .= $users;
-		$r .= $this->numberofWatchingusers( $block[0]->numberofWatchingusers );
+		# This is not shown by default, see $wgRCShowWatchingUsers
+		$watchingUsers = $this->numberofWatchingusers( $block[0]->numberofWatchingusers );
+		if ( $watchingUsers ) {
+			$r .= ' <span class="mw-changeslist-separator">. .</span> ' . $watchingUsers;
+		}
+
+		$r .= '</td></tr>';
 
 		# Sub-entries
 		foreach ( $block as $rcObj ) {
