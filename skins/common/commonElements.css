@@ -178,7 +178,7 @@ code {
 }
 pre, .mw-code {
 	padding: 1em;
-	border: 1px dashed #2f6fab;
+	border: 1px solid #ddd;
 	color: black;
 	background-color: #f9f9f9;
 }
