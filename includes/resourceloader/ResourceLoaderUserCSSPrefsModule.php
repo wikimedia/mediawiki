@@ -71,7 +71,7 @@ class ResourceLoaderUserCSSPrefsModule extends ResourceLoaderModule {
 				( $options['underline'] ? 'underline' : 'none' ) . "; }";
 		} else {
 			# The scripts of these languages are very hard to read with underlines
-			$rules[] = 'a:lang(ar), a:lang(ckb), a:lang(fa),a:lang(kk-arab), ' .
+			$rules[] = 'a:lang(ar), a:lang(ckb), a:lang(kk-arab), ' .
 			'a:lang(mzn), a:lang(ps), a:lang(ur) { text-decoration: none; }';
 		}
 		if ( $options['justify'] ) {
