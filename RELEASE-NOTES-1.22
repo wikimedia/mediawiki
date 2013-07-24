@@ -421,6 +421,9 @@ changes to languages because of Bugzilla reports.
   responsibility of classes implementing the RCFeedFormatter and RCFeedEngine
   interfaces to implement the formatting and delivery for recent change
   notifications.
+* SpecialPrefixindex methods namespacePrefixForm() and showPrefixChunk() have
+  been made protected. They were accepting form variance arguments, this is now
+  using properties in the SpecialPrefixindex class.
 
 == Compatibility ==
 
