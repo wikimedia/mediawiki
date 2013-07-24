@@ -1303,6 +1303,8 @@ $wgMessageStructure = array(
 	),
 	'recentchanges' => array(
 		'nchanges',
+		'enhancedrc-since-last-visit',
+		'enhancedrc-history',
 		'recentchanges',
 		'recentchanges-url',
 		'recentchanges-legend',
