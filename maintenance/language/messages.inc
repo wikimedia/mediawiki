@@ -1302,7 +1302,9 @@ $wgMessageStructure = array(
 		'action-editmyprivateinfo',
 	),
 	'recentchanges' => array(
-		'nchanges',
+		'enhancedrc-changes-count',
+		'enhancedrc-since-last-visit',
+		'enhancedrc-history',
 		'recentchanges',
 		'recentchanges-url',
 		'recentchanges-legend',

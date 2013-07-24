@@ -3042,7 +3042,16 @@ This action allows editing of all of the "user rights", not just the rights of t
 'action-editmyprivateinfo' => '{{doc-action|editmyprivateinfo}}',
 
 # Recent changes
-'nchanges' => 'Appears on the [[Special:RecentChanges]] special page in brackets after pages having more than one change on that date. $1 is the number of changes on that day.',
+'enhancedrc-changes-count' => 'Appears on enhanced watchlist and recent changes when page has more than one change on given date, linking to a diff of the changes.
+$1 is the number of changes on that day (2 or more).
+Three messages are shown side-by-side: ({{msg-mw|enhancedrc-changes-count}} | {{msg-mw|enhancedrc-since-last-visit}} | {{msg-mw|enhancedrc-history}}).',
+
+'enhancedrc-since-last-visit' => 'Appears on enhanced watchlist and recent changes when page has more than one change on given date and at least one that the user hasn\'t seen yet, linking to a diff of the unviewed changes.
+$1 is the number of unviewed changes (1 or more).
+Three messages are shown side-by-side: ({{msg-mw|enhancedrc-changes-count}} | {{msg-mw|enhancedrc-since-last-visit}} | {{msg-mw|enhancedrc-history}}).',
+'enhancedrc-history' => 'Appears on enhanced watchlist and recent changes when page has more than one change on given date, linking to its history.
+This is the same as {{msg-mw|hist}}, but not abbreviated.
+Three messages are shown side-by-side: ({{msg-mw|enhancedrc-changes-count}} | {{msg-mw|enhancedrc-since-last-visit}} | {{msg-mw|enhancedrc-history}}).',,
 'recentchanges' => 'The text of the link in sidebar going to the special page [[Special:RecentChanges]]. Also the page title of that special page.
 
 See also:

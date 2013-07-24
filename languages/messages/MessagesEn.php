@@ -2174,7 +2174,9 @@ Your email address is not revealed when other users contact you.',
 'action-editmyprivateinfo'    => 'edit your private information',
 
 # Recent changes
-'nchanges'                          => '$1 {{PLURAL:$1|change|changes}}',
+'enhancedrc-changes-count'          => '$1 {{PLURAL:$1|change|changes}}',
+'enhancedrc-since-last-visit'       => '$1 {{PLURAL:$1|since last visit}}',
+'enhancedrc-history'                => 'history',
 'recentchanges'                     => 'Recent changes',
 'recentchanges-url'                 => 'Special:RecentChanges', # do not translate or duplicate this message to other languages
 'recentchanges-legend'              => 'Recent changes options',
