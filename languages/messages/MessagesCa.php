@@ -1318,9 +1318,6 @@ Es pot trobar més informació en el [{{fullurl:{{#Special:Log}}/delete|page={{F
 'recentchangesdays-max' => '(màxim $1 {{PLURAL:$1|dia|dies}})',
 'recentchangescount' => "Nombre d'edicions a mostrar per defecte:",
 'prefs-help-recentchangescount' => 'Inclou els canvis recents, els historials de pàgines i els registres.',
-'prefs-help-watchlist-token' => 'Si ompliu aquest camp amb una clau secreta es generarà un fil RSS per a la vostra llista de seguiment.
-Aquell qui conegui aquesta clau serà capaç de llegir la vostra llista de seguiment, per tant esculliu un valor segur.
-A continuació es mostra un valor generat de forma aleatòria que podeu fer servir: $1',
 'savedprefs' => "S'han desat les vostres preferències",
 'timezonelegend' => 'Fus horari:',
 'localtime' => 'Hora local:',

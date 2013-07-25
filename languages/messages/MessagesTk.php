@@ -1048,9 +1048,6 @@ Emma olaryň {{SITENAME}} indeksleriniň möwriti geçen bolmagy mümkindir.',
 'recentchangesdays-max' => '(maksimum $1 {{PLURAL:$1|gün|gün}})',
 'recentchangescount' => 'Gaýybana görkeziljek özgerdiş sany:',
 'prefs-help-recentchangescount' => 'Muňa soňky üýtgeşmeler, sahypa geçmişleri hem-de gündelikler girýär.',
-'prefs-help-watchlist-token' => 'Bu meýdança gizlin açar ýazmagyňyz gözegçilik sanawyňyz üçin RSS translýasiýasyny döredýär.
-Bu meýdançadaky açary bilen adam gözegçilik sanawyňyzy okap biler, şonuň üçin hem başga bir howpsuz baha saýlaň.
-Gabat gelşine görä döredilen şu bahany ulanyp bilersiňiz: $1',
 'savedprefs' => 'Ileri tutmalaryňyz ýazdyryldy.',
 'timezonelegend' => 'Sagat guşaklygy',
 'localtime' => 'Ýerli wagt:',

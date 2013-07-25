@@ -1341,9 +1341,6 @@ Detailer fannt Dir am [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}
 'recentchangesdays-max' => '(Maximal $1 {{PLURAL:$1|Dag|Deeg}})',
 'recentchangescount' => 'Zuel vun den Ännerungen déi als Standard gewise ginn:',
 'prefs-help-recentchangescount' => 'Inklusiv Rezent Ännerungen, Versiounshistoriquen a Logbicher.',
-'prefs-help-watchlist-token' => 'Wann dir dëst Feld mat engem Geheimcode ausfëllt gëtt en RSS-Feed fir Är Iwwerwaachungslëscht generéiert.
-Jiddereen deen de Geheimcode aus dësem Feld kennt kann Är Iwwerwaachungslëscht liesen, wielt dofir e séchere Wäert.
-Hei ass een zoufälleg generéierte Wäert deen Dir benotze kënnt: $1',
 'savedprefs' => 'Är Astellunge goufe gespäichert.',
 'timezonelegend' => 'Zäitzon:',
 'localtime' => 'Lokalzäit:',

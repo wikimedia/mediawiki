@@ -1315,9 +1315,6 @@ Prašome patikrinti sąrašus.',
 'recentchangesdays-max' => '(daugiausiai $1 {{PLURAL:$1|diena|dienos|dienų}})',
 'recentchangescount' => 'Numatytasis rodomas keitimų skaičius:',
 'prefs-help-recentchangescount' => 'Į tai įeina naujausi keitimai, puslapių istorijos ir specialiųjų veiksmų sąrašai.',
-'prefs-help-watchlist-token' => 'Įrašius slaptą raktą į šį laukelį, bus sugeneruotas RSS srautas su jūsų stebimųjų sąrašu.
-Bet kas, žinantis šio lauko raktą, galės matyti jūsų stebimų sąrašą, todėl pasirinkite saugią reikšmę.
-Galite panaudoti šią atsitiktinai sugeneruotą reikšmę: $1',
 'savedprefs' => 'Nustatymai sėkmingai išsaugoti.',
 'timezonelegend' => 'Laiko juosta:',
 'localtime' => 'Vietinis laikas:',

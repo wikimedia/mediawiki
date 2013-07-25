@@ -1097,9 +1097,6 @@ Tzemreḍ ad affeḍ tilɣa deg [{{fullurl:{{#Special:Log}}/delete|page={{FULLPA
 'recentchangesdays-max' => 'Afellay $1 {{PLURAL:$1|ass|ussan}}',
 'recentchangescount' => 'Amḍan n ibeddilen i ubeqqeḍ s lexṣas :',
 'prefs-help-recentchangescount' => 'Wagi yesɛa deg-es ibeddilen ineggura, isebtar n umezruy d iɣmisen.',
-'prefs-help-watchlist-token' => 'Ččuṛ taɣzut agi s azal lbaḍna dɣa asuddem RSS ad yetwarew i umuɣ inek/inem n uɛassi.
-Akkw amdan yesnen tiddest agi ad yezmer ad i ɣeṛ umuɣ inek/inem n uɛassi, ihi ilaq ad xtiṛeḍ azal yegdelen.
-Ha-t-an azal agacuran i tzemreḍ ad seqdeceḍ : $1',
 'savedprefs' => 'Isemyifiyen inek yettusmektan.',
 'timezonelegend' => 'Iẓḍi n ukud :',
 'localtime' => 'Asrag adigan :',

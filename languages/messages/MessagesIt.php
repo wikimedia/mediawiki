@@ -906,6 +906,19 @@ Password temporanea: $2',
 'changeemail-submit' => 'Modifica e-mail',
 'changeemail-cancel' => 'Annulla',
 
+# Special:ResetTokens
+'resettokens' => 'Reset token',
+'resettokens-text' => "È possibile reimpostare i token che permettono l'accesso a determinati dati privati associati al tuo account qui.
+
+Dovresti farlo se li hai accidentalmente condivisi con qualcuno o se il tuo account è stato compromesso.",
+'resettokens-no-tokens' => 'Non ci sono token da reimpostare.',
+'resettokens-legend' => 'Reset token',
+'resettokens-tokens' => 'Token:',
+'resettokens-token-label' => '$1 (valore attuale: $2)',
+'resettokens-watchlist-token' => 'Token per il feed web dei tuoi osservati speciali',
+'resettokens-done' => 'Token reimpostati.',
+'resettokens-resetbutton' => 'Reset token selezionati',
+
 # Edit page toolbar
 'bold_sample' => 'Grassetto',
 'bold_tip' => 'Grassetto',
@@ -1422,7 +1435,8 @@ I dettagli possono essere trovati nel [{{fullurl:{{#Special:Log}}/delete|page={{
 'recentchangesdays-max' => '(massimo $1 {{PLURAL:$1|giorno|giorni}})',
 'recentchangescount' => 'Numero di modifiche da mostrare per default:',
 'prefs-help-recentchangescount' => 'Comprende ultime modifiche, cronologie e registri.',
-'prefs-help-watchlist-token' => "Compilando questo campo con una chiave segreta verrà generato un feed RSS per i propri osservati speciali. Chiunque conosca la chiave in questo campo potrà leggere gli osservati speciali, quindi assicurasi di inserire un valore sicuro. Qui c'è un valore generato casualmente che si può usare: $1",
+'prefs-help-watchlist-token2' => 'Questa è la chiave segreta per il feed web dei tuoi osservati speciali.
+Chiunque la conosce sarà in grado di leggere i tuoi osservati speciali, per cui non condividerla. [[Special:ResetTokens|Clicca qui se hai bisogno di reimpostarla]].',
 'savedprefs' => 'Le preferenze sono state salvate.',
 'timezonelegend' => 'Fuso orario:',
 'localtime' => 'Ora locale:',

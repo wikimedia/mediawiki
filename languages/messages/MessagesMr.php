@@ -928,6 +928,17 @@ $2',
 'changeemail-submit' => 'ईमेल बदला',
 'changeemail-cancel' => 'रद्द करा',
 
+# Special:ResetTokens
+'resettokens' => 'ओळखचिन्ह(टोकन) पुनर्स्थापित करा',
+'resettokens-text' => 'येथे आपल्या खात्यात असलेला व्यक्तिगत मजकूरापर्यंत पोचण्यासाठी आपण ओळखचिन्ह(टोकन) पुनर्स्थापित करू शकता.
+आपण जर तो अपघाताने कोणासमवेत सहभागीला असेल किंवा आपले खात्याची आपण तडजोड केली असल्यास, हे करावयास हवे.',
+'resettokens-no-tokens' => 'पुनर्स्थापित करण्यासाठी कोणतीही ओळखचिन्हे नाहीत.',
+'resettokens-legend' => 'ओळखचिन्ह(टोकन) पुनर्स्थापित करा',
+'resettokens-tokens' => 'ओळखचिन्हे:',
+'resettokens-token-label' => '$1 (सद्य मुल्य: $2)',
+'resettokens-done' => 'ओळखचिन्हे पुनर्स्थापन.',
+'resettokens-resetbutton' => 'निवडलेली ओळखचिन्हे पुनर्स्थापित करा',
+
 # Edit page toolbar
 'bold_sample' => 'ठळक मजकूर',
 'bold_tip' => 'ठळक',
@@ -1442,9 +1453,7 @@ $1",
 'recentchangesdays-max' => 'जास्तीतजास्त $1 {{PLURAL:$1|दिवस|दिवस}}',
 'recentchangescount' => 'अलीकडील बदल, इतिहास व नोंद पानांमध्ये दाखवायाच्या संपादनांची संख्या:',
 'prefs-help-recentchangescount' => 'यात नुकतेच झालेले बदल, पानांचे इतिहास व याद्या या गोष्टी असतात.',
-'prefs-help-watchlist-token' => 'या क्षेत्रत गुपित किल्ली प्रदान केल्यस तुमच्या निरीक्षणयादीसाठी एक आरएसएस फीड उत्पन्न होईल.
-कोणीही ज्याला या क्षेत्रातील किल्ली माहीत असेल तुमची निरीक्षणयादी वाचू शकतो, त्यमुळे कोणतीही सुरक्षित किल्ली निवडा.
-येथे एक यंत्रजनित किल्ली दिलेली आहे गरज असल्यस तुम्ही ती वपरु शकता: $1',
+'prefs-help-watchlist-token2' => "ही आपल्या निरिक्षणसूचीच्या 'वेब फिड'ची गुप्त चाबी आहे.ज्या कोणास त्याची माहिती होईल तो आपली निरिक्षणसूची बघू शकेल,म्हणुन कोणास यात सहभागी करून घेउ नका.[[Special:ResetTokens|पुनर्स्थापनाची आपणास गरज असल्यास येथे टिचकी द्या]].",
 'savedprefs' => 'तुमच्या पसंती जतन केल्या आहेत.',
 'timezonelegend' => 'वेळक्षेत्र',
 'localtime' => 'स्थानिक वेळ:',
@@ -1513,6 +1522,7 @@ $1",
 'prefs-displayrc' => 'दर्शन पर्याय',
 'prefs-displaysearchoptions' => 'दर्शन पर्याय',
 'prefs-displaywatchlist' => 'दर्शन पर्याय',
+'prefs-tokenwatchlist' => 'ओळखचिन्ह',
 'prefs-diffs' => 'फरक',
 
 # User preference: email validation using jQuery
@@ -2269,7 +2279,8 @@ Input:contenttype/subtype, e.g. <code>image/jpeg</code>.',
 # Special:ListGroupRights
 'listgrouprights' => 'सदस्य गट अधिकार',
 'listgrouprights-summary' => 'खाली या विकिवर दिलेली सदस्य गटांची यादी त्यांच्या अधिकारांसकट दर्शविलेली आहे. प्रत्येकाच्या अधिकारांची अधिक माहिती [[{{MediaWiki:Listgrouprights-helppage}}|इथे]] दिलेली आहे.',
-'listgrouprights-key' => '* <span class="listgrouprights-granted">दिलेले अधिकार</span>
+'listgrouprights-key' => 'विवरण:
+* <span class="listgrouprights-granted">प्रदत्त अधिकार</span>
 * <span class="listgrouprights-revoked">रद्द अधिकार</span>',
 'listgrouprights-group' => 'गट',
 'listgrouprights-rights' => 'अधिकार',
@@ -3960,7 +3971,7 @@ $5
 'revdelete-unrestricted' => 'प्रबंधकांची बंधने काढली',
 'logentry-move-move' => '$1 ने लेख $3 वरुन $4 ला{{GENDER:$2|हलविला}}',
 'logentry-move-move-noredirect' => '$1 ने मागे पुनर्निर्देशन न ठेवता लेख $3 वरुन $4 ला {{GENDER:$2|हलविला}}',
-'logentry-move-move_redir' => '$1 ने मागे पुनर्निर्देशन ठेउन लेख $3 वरुन $4 ला {{GENDER:$2|हलविला}',
+'logentry-move-move_redir' => '$1 ने मागे पुनर्निर्देशन ठेउन लेख $3 वरुन $4 ला {{GENDER:$2|हलविला}}',
 'logentry-move-move_redir-noredirect' => '$1 ने $3 हे पान $4 येथे, पुनर्निर्देशन करुन,  पुनर्निर्देशनाची खूण न ठेवता  स्थानांतरीत केले',
 'logentry-patrol-patrol' => '$1 ने $3 या पानाचे  संस्करण $4 वर गस्त घातल्याची{{GENDER:$2| खूण  केली}}',
 'logentry-patrol-patrol-auto' => '$1 ने स्वयंचलितरित्या $3 या पानाचे  संस्करण $4 वर गस्त घातल्याची {{GENDER:$2|खूण  केली}}',

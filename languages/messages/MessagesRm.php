@@ -1149,9 +1149,6 @@ Considerescha che lur index da {{SITENAME}} po cuntegnair datas ch'èn betg pli 
 'recentchangesdays-max' => 'Maximalmain $1 {{PLURAL:$1|di|dis}}',
 'recentchangescount' => 'Dumber da modificaziuns che duai vegnir mussà sco standard:',
 'prefs-help-recentchangescount' => 'Quai cumpiglia las ultimas midadas, la cronologia da paginas ed ils protocols.',
-'prefs-help-watchlist-token' => "Emplenir quest champ cun ina clav secreta vegn a generar in feed RSS per tia glista d'observaziun.
-Mintgin che enconuscha questa clav vegn ad esser abel da leger tia glista d'observaziun, tscherna pia ina clav segira.
-Qua è ina valur casuali che ti pos utilisar: $1",
 'savedprefs' => 'Tias preferenzas èn vegnidas memorisadas.',
 'timezonelegend' => "Zona d'urari:",
 'localtime' => 'Temp local:',

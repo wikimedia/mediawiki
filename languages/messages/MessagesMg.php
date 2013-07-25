@@ -1358,10 +1358,6 @@ ihany no miseho amin'ny vokatry ny karoka).",
 'recentchangesdays-max' => '($1 andro{{PLURAL:$1||}} fara-faha betsany)',
 'recentchangescount' => "Isan'ny fanovana haseho (tsipalotra) :",
 'prefs-help-recentchangescount' => 'Misy ny fanovana farany, ny tantaram-pejy ary ny laogy',
-'prefs-help-watchlist-token' => "Ny famenoana ity fampidiran-teny ity amina soramiafina iray dia hamoaka topaka RSS ho an'ny pejy arahinao.
-Afaka mamaky ny lisitry ny pejy arahinao izay olona mahalala io soramiafina io, mifidiana sanda sarotra hita ianao noho izany.
-Ity misy soramiafina navoaka amin'ny fomba kisendra afaka ampiasainao :
-$1",
 'savedprefs' => 'Voatahiry ny mombamomba anao.',
 'timezonelegend' => "Faritr'ora :",
 'localtime' => 'Ora an-toerana',

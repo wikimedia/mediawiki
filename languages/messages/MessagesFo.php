@@ -1240,9 +1240,6 @@ Legg til merkis, at teirra innihaldsyvirlit av {{SITENAME}} kann vera gamalt og 
 'recentchangesdays-max' => 'Í mesta lagi $1 {{PLURAL:$1|dagur|dagar}}',
 'recentchangescount' => 'Tal av rættingum at vísa í standard:',
 'prefs-help-recentchangescount' => 'Íroknað seinastu broytingar, søgur hjá síðum og loggar.',
-'prefs-help-watchlist-token' => 'Um tú fyllir út henda teigin við einum tryggum lykli, so verður ein RSS feed upprættaður til tín eftirlitslista.
-Ein og hvør ið kennir lykilin í hesum teiginum, hevur møguleika fyri at lesa tín eftirlitslista, so vel ein trygt virði.
-Her er eitt tilvildarliga valdt virði, sum tú kanst brúka: $1',
 'savedprefs' => 'Tínar innstillingar eru goymdar.',
 'timezonelegend' => 'Tíðar sona:',
 'localtime' => 'Lokal tíð:',

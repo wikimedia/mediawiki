@@ -1415,9 +1415,6 @@ Atencion, lor indexacion de contengut {{SITENAME}} benlèu es pas a jorn.',
 'recentchangesdays-max' => '(maximum $1 {{PLURAL:$1|jorn|jorns}})',
 'recentchangescount' => "Nombre de modificacions d'afichar per defaut :",
 'prefs-help-recentchangescount' => 'Aquò inclutz las modificacions recentas, las paginas d’istorics e los jornals.',
-'prefs-help-watchlist-token' => 'Emplenar aquò amb una valor secreta generarà un flux RSS per vòstra lista de seguiment.
-Tota persona que coneis aqueste geton poirà legir vòstra lista de seguiment, causissètz doncas una valor securizada.
-Vaquí una valor generada aleatòriament que podètz utilizar : $1',
 'savedprefs' => 'Las preferéncias son estadas salvadas.',
 'timezonelegend' => 'Fus orari :',
 'localtime' => 'Ora locala :',

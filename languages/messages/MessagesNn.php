@@ -1434,9 +1434,6 @@ Ver merksam på at registra deira kan vera utdaterte.',
 'recentchangesdays-max' => '(høgst $1 {{PLURAL:$1|dag|dagar}})',
 'recentchangescount' => 'Tal på endringar som viser som standard:',
 'prefs-help-recentchangescount' => 'Dette inkluderer nylege endringar, sidehistorikk og loggar.',
-'prefs-help-watchlist-token' => 'Om du fyller ut dette feltet med eit hemmeleg tal, vil det opprettast ei RSS opplisting for overvakingslista di.
-Alle som veit det rette talet vil vera i stand til å lesa overvakingslista di, så vél gjerne ein trygg verdi.
-Her er det framlegg til eit tal som kan nyttast, tilfelleleg henta fram: $1',
 'savedprefs' => 'Brukarinnstillingane er lagra.',
 'timezonelegend' => 'Tidssone:',
 'localtime' => 'Lokaltid:',

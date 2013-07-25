@@ -414,8 +414,8 @@ Funsion: $1<br />
 Arcesta: $2',
 'viewsource' => 'Vardé la sorgiss',
 'viewsource-title' => 'Vëdde la sorgiss ëd $1',
-'actionthrottled' => 'Assion frenà',
-'actionthrottledtext' => "Për evité che gent ò màchine an carìo dla rumenta, st'assion-sì as peul nen fesse tròp ëd soèns, e chiel/chila a l'ha arpetula tròpe vire. Ch'a sia gentil, ch'a preuva torna antra dontre minute.",
+'actionthrottled' => 'Assion limità',
+'actionthrottledtext' => "Për evité che gent ò màchine an carìo dla rumenta, st'assion-sì as peul nen fesse tròp ëd soèns, e chiel a l'ha arpetula tròpe vire. Ch'a sia gentil, ch'a preuva torna antra dontré minute.",
 'protectedpagetext' => "Sta pàgina-sì a l'è stàita blocà për evité 'd modìfiche o d'àutre assion.",
 'viewsourcetext' => 'A peul vardé e copié la sorgiss dë sta pàgina:',
 'viewyourtext' => "A peule vëdde e copié la sorziss ëd '''soe modìfiche''' a costa pàgina-sì:",
@@ -1136,9 +1136,6 @@ Ch'a preuva a gionté dnans a soa arserca ël prefiss ''all:'' për sërché an 
 'recentchangesdays-max' => '(al pì $1 {{PLURAL:$1|di|di}})',
 'recentchangescount' => 'Nùmer ëd modìfiche da smon-e për stàndard:',
 'prefs-help-recentchangescount' => "Sòn a comprend j'ùltime modìfiche, le stòrie dle pàgine e ij registr.",
-'prefs-help-watchlist-token' => "An ampinend sto camp-sì con na ciav segreta as genererà un fluss RSS për la ròba che as ten sot euj.
-Chicassìa che a conossa la ciav an sto camp-sì a podrà lese la ròba ch'a ten sot euj, parèj ch'a serna un valor sigur.
-Ambelessì a-i é un valor generà a asar che a peul dovré: $1",
 'savedprefs' => 'Ij sò gust a son ëstàit salvà.',
 'timezonelegend' => 'Fus orari:',
 'localtime' => 'Ora local:',

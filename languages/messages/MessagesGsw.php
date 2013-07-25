@@ -1210,9 +1210,6 @@ Einzelheite chasch im [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}
 'recentchangesdays-max' => '(Maximal $1 {{PLURAL:$1|Tag|Täg}})',
 'recentchangescount' => 'Aazahl vu Bearbeitige, wu standardmässig aazeigt wäre:',
 'prefs-help-recentchangescount' => 'Des umfasst d Lischt vu dr letschte Änderige, d Versionsgschicht un d Logbiecher.',
-'prefs-help-watchlist-token' => 'S Uusfille vu däm Fäld mit eme gheime Schlissel generiert e RSS-Feed fir Dyy Beobachtigslischt.
-E jede, wu dää Schlissel chännt, chaa Dyy Beobachtigslischt bschaue. Wehl wäge däm e sichere Wärt.
-Do het s e zuefellig generierte Wärt, wu du chasch bruche: $1',
 'savedprefs' => 'Dyni Ystellige sy gspycheret worde.',
 'timezonelegend' => 'Zytzone:',
 'localtime' => 'Ortszyt:',

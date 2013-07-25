@@ -578,6 +578,7 @@ Non oblida personalisar tu [[Special:Preferences|preferentias in {{SITENAME}}]].
 'yourname' => 'Nomine de usator:',
 'userlogin-yourname' => 'Nomine de usator�',
 'userlogin-yourname-ph' => 'Entra tu nomine de usator',
+'createacct-another-username-ph' => 'Entra le nomine de usator',
 'yourpassword' => 'Contrasigno:',
 'userlogin-yourpassword' => 'Contrasigno',
 'userlogin-yourpassword-ph' => 'Entra tu contrasigno',
@@ -612,9 +613,11 @@ Non oblida personalisar tu [[Special:Preferences|preferentias in {{SITENAME}}]].
 'helplogin-url' => 'Help:Aperir session',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Adjuta a aperir session]]',
 'createacct-join' => 'Specifica tu information hic infra.',
+'createacct-another-join' => 'Specifica le informationes del nove conto ci infra.',
 'createacct-emailrequired' => 'Adresse de e-mail',
 'createacct-emailoptional' => 'Adresse de e-mail (optional)',
 'createacct-email-ph' => 'Entra tu adresse de e-mail',
+'createacct-another-email-ph' => 'Entra adresse de e-mail',
 'createaccountmail' => 'Usar un contrasigno aleatori temporari e inviar lo al adresse de e-mail specificate hic infra',
 'createacct-realname' => 'Nomine real (optional)',
 'createaccountreason' => 'Motivo:',
@@ -623,6 +626,7 @@ Non oblida personalisar tu [[Special:Preferences|preferentias in {{SITENAME}}]].
 'createacct-captcha' => 'Controlo de securitate',
 'createacct-imgcaptcha-ph' => 'Scribe le texto que tu vide hic supra',
 'createacct-submit' => 'Crear tu conto',
+'createacct-another-submit' => 'Crear un altere conto',
 'createacct-benefit-heading' => '{{SITENAME}} es facite per gente como tu.',
 'createacct-benefit-body1' => '{{PLURAL:$1|modification|modificationes}}',
 'createacct-benefit-body2' => '{{PLURAL:$1|pagina|paginas}}',
@@ -780,6 +784,19 @@ Contrasigno temporari: $2',
 'changeemail-password' => 'Contrasigno de {{SITENAME}}:',
 'changeemail-submit' => 'Cambiar e-mail',
 'changeemail-cancel' => 'Cancellar',
+
+# Special:ResetTokens
+'resettokens' => 'Reinitialisar indicios',
+'resettokens-text' => 'Hic tu pote reinitialisar le indicios que permitte le accesso a certe datos private associate a tu conto.
+
+Tu deberea facer lo si tu los ha accidentalmente dividite con un altere persona o si tu conto ha essite compromittite.',
+'resettokens-no-tokens' => 'Il non ha indicios a reinitialisar.',
+'resettokens-legend' => 'Reinitialisar indicios',
+'resettokens-tokens' => 'Indicios:',
+'resettokens-token-label' => '$1 (valor actual: $2)',
+'resettokens-watchlist-token' => 'Indicio pro syndication web del observatorio',
+'resettokens-done' => 'Indicios reinitialisate.',
+'resettokens-resetbutton' => 'Reinitialisar le indicios seligite',
 
 # Edit page toolbar
 'bold_sample' => 'Texto grasse',
@@ -1331,9 +1348,9 @@ Nota que lor indices del contento de {{SITENAME}} pote esser obsolete.',
 'recentchangesdays-max' => '(non plus de $1 {{PLURAL:$1|die|dies}})',
 'recentchangescount' => 'Numero de modificationes a monstrar per predefinition:',
 'prefs-help-recentchangescount' => 'Isto include modificationes recente, historias de paginas, e registros.',
-'prefs-help-watchlist-token' => 'Le insertion de un clave secrete in iste campo generara un syndication RSS de tu observatorio.
-Omnes persona cognoscente le clave in iste campo potera leger tu observatorio. Selige ergo un valor secur!
-Ecce un valor aleatorimente generate que tu pote usar: $1',
+'prefs-help-watchlist-token2' => 'Isto es le clave secrete pro le syndication web de tu observatorio.
+Omne persona qui lo cognosce pote leger tu observatorio, dunque, non divide lo.
+[[Special:ResetTokens|Clicca hic pro reinitialisar lo]].',
 'savedprefs' => 'Tu preferentias ha essite confirmate.',
 'timezonelegend' => 'Fuso horari:',
 'localtime' => 'Hora local:',
@@ -1404,6 +1421,7 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'prefs-displayrc' => 'Optiones de presentation',
 'prefs-displaysearchoptions' => 'Optiones de presentation',
 'prefs-displaywatchlist' => 'Optiones de presentation',
+'prefs-tokenwatchlist' => 'Indicio',
 'prefs-diffs' => 'Differentias',
 
 # User preference: email validation using jQuery
@@ -2028,6 +2046,8 @@ Un pagina se tracta como pagina de disambiguation si illo usa un patrono que es 
 'pageswithprop-text' => 'Iste pagina lista le paginas que usa un certe proprietate de pagina.',
 'pageswithprop-prop' => 'Nomine del proprietate:',
 'pageswithprop-submit' => 'Va',
+'pageswithprop-prophidden-long' => 'valor de proprietate de texto longe celate ($1 kilobytes)',
+'pageswithprop-prophidden-binary' => 'valor de proprietate binari celate ($1 kilobytes)',
 
 'doubleredirects' => 'Redirectiones duple',
 'doubleredirectstext' => 'Iste pagina lista paginas de redirection verso altere paginas de redirection.
@@ -2085,6 +2105,7 @@ Le entratas <del>cancellate</del> ha essite resolvite.',
 'mostrevisions' => 'Paginas le plus modificate',
 'prefixindex' => 'Tote le paginas con prefixo',
 'prefixindex-namespace' => 'Tote le paginas con prefixo (spatio de nomines $1)',
+'prefixindex-strip' => 'Remover prefixo in lista',
 'shortpages' => 'Paginas curte',
 'longpages' => 'Paginas longe',
 'deadendpages' => 'Paginas sin exito',
@@ -2206,7 +2227,8 @@ Isto necessita specificar al minus le dominio de nivello superior, per exemplo "
 'listgrouprights' => 'Derectos del gruppos de usatores',
 'listgrouprights-summary' => 'Lo sequente es un lista de gruppos de usatores definite in iste wiki, con lor derectos de accesso associate.
 Il pote haber [[{{MediaWiki:Listgrouprights-helppage}}|informationes additional]] super derectos individual.',
-'listgrouprights-key' => '* <span class="listgrouprights-granted">Derecto concedite</span>
+'listgrouprights-key' => 'Legenda:
+* <span class="listgrouprights-granted">Derecto concedite</span>
 * <span class="listgrouprights-revoked">Derecto revocate</span>',
 'listgrouprights-group' => 'Gruppo',
 'listgrouprights-rights' => 'Derectos',

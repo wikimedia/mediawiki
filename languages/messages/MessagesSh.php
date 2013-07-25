@@ -1383,9 +1383,6 @@ Uzmite u obzir da njegovi indeksi za ovu Wiki ne moraju biti ažurirani.',
 'recentchangesdays-max' => '(najviše $1 {{PLURAL:$1|dan|dana}})',
 'recentchangescount' => 'Broj uređivanja za prikaz po pretpostavkama:',
 'prefs-help-recentchangescount' => 'Ovo uključuje nedavne izmjene, historije stranice i registre.',
-'prefs-help-watchlist-token' => 'Popunjavanjem ovog polja tajnim ključem će generisati RSS feed za Vaš spisak praćenja.
-Svako ko zna ključ u ovom polju će biti u mogućnosti da pročita Vaš spisak praćenja, tako da trebate izabrati sigurnu vrijednost.
-Ovdje su navedene neke nasumično odabrane vrijednosti koje možete koristiti: $1',
 'savedprefs' => 'Vaša postavke su snimljene.',
 'timezonelegend' => 'Vremenska zona:',
 'localtime' => 'Lokalno vrijeme:',

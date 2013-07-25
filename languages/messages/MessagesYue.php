@@ -1203,9 +1203,6 @@ $1",
 'recentchangesdays-max' => '最多 $1 日',
 'recentchangescount' => '預設顯示嘅編輯數：',
 'prefs-help-recentchangescount' => '呢個包埋最近修改、頁歷史同埋日誌紀錄。',
-'prefs-help-watchlist-token' => '響呢欄加入一個秘密匙會生成一個對你監視清單嘅RSS源。
-任何一位知道響呢個欄位嘅匙會睇到你嘅監視清單，請揀一個安全嘅值。
-呢度有一個任意生成嘅值，你係可以去揀嘅: $1',
 'savedprefs' => '你嘅喜好設定已經儲存。',
 'timezonelegend' => '時區:',
 'localtime' => '本地時間:',

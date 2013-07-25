@@ -1466,9 +1466,6 @@ Xem chi tiết trong [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}
 'recentchangesdays-max' => '(tối đa $1 {{PLURAL:$1|ngày|ngày}})',
 'recentchangescount' => 'Số sửa đổi hiển thị mặc định:',
 'prefs-help-recentchangescount' => 'Số này bao gồm các thay đổi gần đây, lịch sử trang, và nhật trình.',
-'prefs-help-watchlist-token' => 'Điền vào ô này một khóa bí mật để tạo ra bản tin RSS cho danh sách theo dõi của bạn.
-Bất cứ ai biết được khóa trong ô này cũng có thể đọc được danh sách theo dõi của bạn, vì vậy hãy chọn một giá trị an toàn.
-Đây là giá trị được tạo ngẫu nhiên mà bạn có thể sử dụng: $1',
 'savedprefs' => 'Đã lưu các tùy chọn cá nhân.',
 'timezonelegend' => 'Múi giờ:',
 'localtime' => 'Giờ hiện tại:',

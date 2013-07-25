@@ -10,6 +10,7 @@
  * @author AnakngAraw
  * @author Dosmiin Barsbold
  * @author Felipe Aira
+ * @author Jojit fb
  * @author Kaganer
  * @author Sky Harbor
  * @author tl.wikipedia.org sysops
@@ -600,7 +601,7 @@ Huwag kalimutang baguhin ang iyong [[Special:Preferences|mga kagustuhan sa {{SIT
 'logout' => 'Umalis sa pagkakalagda',
 'userlogout' => 'Umalis sa pagkakalagda',
 'notloggedin' => 'Hindi nakalagda',
-'userlogin-noaccount' => 'Wala ka pa bang kuwenta?',
+'userlogin-noaccount' => 'Wala ka pa bang akawnt?',
 'userlogin-joinproject' => 'Sumali sa {{SITENAME}}',
 'nologin' => 'Wala ka pang kuwenta? $1.',
 'nologinlink' => 'Lumikha ng kuwenta',
@@ -618,15 +619,12 @@ Huwag kalimutang baguhin ang iyong [[Special:Preferences|mga kagustuhan sa {{SIT
 Pumili po ng ibang pangalan.',
 'loginerror' => 'Kamalian sa paglagda',
 'createaccounterror' => 'Hindi mailikha ang kuwenta: $1',
-'nocookiesnew' => "Nilikha na ang kuwentang pantagagamit, ngunit hindi ka nakalagda.
-Gumagamit ang {{SITENAME}} ng mga kuki (''cookies'') para mailagda ang mga tagagamit.
-Hindi mo pinagagana ang mga kuki.
-Paki-andar mo po ang mga ito, pagkatapos ay lumagda na gamit ang bago mong pangalan ng tagagamit at hudyat.",
+'nocookiesnew' => 'Nalikha ang akawnt ng tagagamit, ngunit hindi ka naka-login.  Gumagamit ang {{SITENAME}} ng cookies upang makalagda ang mga tagagamit. Hindi naka-on ang cookies ng browser mo. Paki-on ito ang subukang lumagda na kasama ang bagong bansag (username) at hudyat (password).',
 'nocookieslogin' => "Gumagamit ang {{SITENAME}} ng mga kuki (''cookies'') para mailagda ang mga tagagamit.
 Hindi mo pinagagana ang mga kuki.
 Paki-andar mo ang mga ito at sumubok uli.",
-'nocookiesfornew' => 'Hindi nalikha ang kuwenta ng tagagamit, dahil hindi namin matiyak ang pinagmulan nito.
-Tiyaking mayroon kang pinagaganang mga kuki, ikarga muli ang pahinang ito at subukan muli.',
+'nocookiesfornew' => 'Hindi nalikha ang akawnt ng tagagamit (user), dahil hindi namin matiyak ang pinagmulan nito. 
+Tiyaking mayroon kang pinagaganang mga cookies, ikarga muli ang pahinang ito at subukan muli.',
 'nocookiesforlogin' => '{{int:nocookieslogin}}',
 'noname' => 'Hindi mo tinukoy ang isang tanggap na pangalan ng tagagamit.',
 'loginsuccesstitle' => 'Matagumpay ang paglagda',
@@ -1291,7 +1289,6 @@ Subuking lagyan ng unlapi/paunang ''all:'' upang hanapin ang lahat ng mga nialal
 'recentchangesdays-max' => '(pinakamataas na ang $1 {{PLURAL:$1|araw|mga araw}})',
 'recentchangescount' => 'Bilang ng mga pagbabagong ipapakita sa pamamagitan ng likas na katakdaan:',
 'prefs-help-recentchangescount' => 'Kasama nito ang mga huling binago, kasaysayan ng mga pahina, at mga tala.',
-'prefs-help-watchlist-token' => "Ang pagpupuno sa lugar na ito na ginagamitan ng lihim na susi ay lilikha ng pakaing RSS para sa iyong talaan ng mga binabantayan.  Ang sinumang nakakaalam ng susi sa loob ng lugar na ito ay makababasa ng iyong talaan ng mga binabantayan, kaya't pumili ng ligtas na halaga.  Narito ang magagamit mong isang halagang nilikha ng pagkakataon: $1",
 'savedprefs' => 'Nasagip na ang mga kagustuhan mo.',
 'timezonelegend' => 'Sona ng oras:',
 'localtime' => 'Lokal na oras:',

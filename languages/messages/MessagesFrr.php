@@ -1171,7 +1171,6 @@ Dü könst det uun't [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}
 'recentchangesdays-max' => 'Ei muar üs {{PLURAL:$1|ään dai|$1 daar}}',
 'recentchangescount' => 'Soföl feranrangen skel uunwiset wurd:',
 'prefs-help-recentchangescount' => 'Det san a leetst feranrangen, werjuunen an logbuken.',
-'prefs-help-watchlist-token' => "Wan dü detdiar fial mä en hiamelken code ütjfalst, woort en RSS-feed iinracht. Arken mä didiar code koon do sä, wat dü uun't uug behual wel. Diaram skul hi ei so ianfach wees, nem dach didiar: $1",
 'savedprefs' => 'Din iinstelangen san seekert wurden.',
 'timezonelegend' => 'Tidjsoon:',
 'localtime' => 'Lokaal tidj:',

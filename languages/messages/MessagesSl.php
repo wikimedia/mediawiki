@@ -11,6 +11,7 @@
  * @author Eleassar
  * @author Freakolowsky
  * @author Irena Plahuta
+ * @author Matej1234
  * @author McDutchie
  * @author Nemo bis
  * @author Smihael
@@ -828,6 +829,13 @@ Začasno geslo: $2',
 'changeemail-submit' => 'Spremeni e-naslov',
 'changeemail-cancel' => 'Prekliči',
 
+# Special:ResetTokens
+'resettokens' => 'Ponastavitev žetonov',
+'resettokens-text' => 'Žetone lahko ponastavite, kar omogoča dostop do nekaterih zasebnih podatkov, povezanih z vašim računom.
+
+To storite, če ste po nesreči žetone z nekom delili, ali če je bil vaš račun ogrožen.',
+'resettokens-no-tokens' => 'Ni nobenih žetonov za ponastavitev.',
+
 # Edit page toolbar
 'bold_sample' => 'Krepko besedilo',
 'bold_tip' => 'Krepko besedilo',
@@ -1362,9 +1370,6 @@ Upoštevajte, da so njihovi podatki vsebine {{GRAMMAR:rodilnik|{{SITENAME}}}} mo
 'recentchangesdays-max' => 'Največ $1 {{PLURAL:$1|dan|dneva|dnevi|dni}}',
 'recentchangescount' => 'Privzeto število prikazanih urejanj:',
 'prefs-help-recentchangescount' => 'Vključuje zadnje spremembe, zgodovine strani in dnevniške zapise.',
-'prefs-help-watchlist-token' => 'Izpolnjevanje tega polja s skrivnim ključem bo ustvarilo vir RSS za vaš spisek nadzorov.
-Kdorkoli pozna ta ključ bo lahko bral vaš spisek nadzorov, zato izbrite varen in čim daljši ključ.
-Tukaj je naključno ustvarjena vrednost, ki jo lahko uporabite: $1',
 'savedprefs' => 'Spremembe so bile uspešno shranjene.',
 'timezonelegend' => 'Časovni pas',
 'localtime' => 'Krajevni čas:',

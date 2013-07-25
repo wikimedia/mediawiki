@@ -455,7 +455,7 @@ $messages = array(
 'search-interwiki-more' => '(вѧщє)',
 'searchall' => 'вьсꙗ',
 'search-nonefound' => 'исканиѥ сꙗ слова ничєсо жє нє авило ѥстъ',
-'powersearch' => 'ищи',
+'powersearch' => 'вѧщєѥ исканиѥ',
 'powersearch-redir' => 'прѣнаправлѥниꙗ',
 
 # Preferences page
@@ -471,6 +471,7 @@ $messages = array(
 'prefs-editing' => 'исправлѥниѥ',
 'rows' => 'рѧдꙑ :',
 'searchresultshead' => 'исканиѥ',
+'savedprefs' => 'твои строи иꙁмѣнєнъ ѥстъ',
 'timezoneregion-africa' => 'Афрїка',
 'timezoneregion-america' => 'Амєрїка',
 'timezoneregion-antarctica' => 'Антарктїка',
@@ -489,7 +490,7 @@ $messages = array(
 'prefs-memberingroups' => '{{GENDER:$2|польꙃєватєлꙗ}} {{PLURAL:$1|чинъ|чина|чинꙑ}} :',
 'yourrealname' => 'истиньно имѧ :',
 'yourlanguage' => 'ѩꙁꙑкъ :',
-'yournick' => 'аѵтографъ :',
+'yournick' => 'новъ аѵтографъ :',
 'yourgender' => 'полъ :',
 'gender-male' => 'мѫжъ',
 'gender-female' => 'жєна',
@@ -938,6 +939,7 @@ $messages = array(
 
 # Special:Version
 'version' => 'MediaWiki обраꙁъ',
+'version-specialpages' => 'нарочьнꙑ страницѧ',
 'version-version' => '(обраꙁъ $1)',
 'version-license' => 'прощєниѥ',
 'version-software-version' => 'обраꙁъ',

@@ -1164,9 +1164,6 @@ de aver nich jümmer den aktuellsten Stand weerspegelt.<p>',
 'recentchangesdays-max' => '(Maximal $1 {{PLURAL:$1|Dag|Daag}})',
 'recentchangescount' => 'Antall Ännern, de wiest warrt:',
 'prefs-help-recentchangescount' => 'Dor höört de Ne’esten Ännern, Versionsgeschichten un Logböker to.',
-'prefs-help-watchlist-token' => 'Wenn du in dit Feld in gehemen Slötel ingiffst, denn warrt för dien Oppasslist en RSS-Feed opstellt.
-Elkeen, de den Slötel kennt, kann denn dien Oppasslist ankieken. Söök di also en good Slötel ut.
-Hier is en Tofalls-Slötel, den du bruken kannst: $1',
 'savedprefs' => 'Allens spiekert.',
 'timezonelegend' => 'Tiedrebeed:',
 'localtime' => 'Oortstied:',

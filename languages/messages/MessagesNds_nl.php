@@ -1444,9 +1444,6 @@ Waorschienlik ku'j der meer gegevens over vienen in t [{{fullurl:{{#Special:Log}
 'recentchangesdays-max' => '(hooguut $1 {{PLURAL:$1|dag|dagen}})',
 'recentchangescount' => 'Standard antal bewarkingen um te laoten zien:',
 'prefs-help-recentchangescount' => 'Dit geldt veur leste wiezigingen, ziedgeschiedenisse en logboekziejen',
-'prefs-help-watchlist-token' => "A'j in dit veld n geheime kode invullen, dan maakt t RSS-voer an veur joew volglieste.
-Iederene die disse kode weet kan joew volglieste bekieken, kies dus n veilige kode.
-Je kunnen oek disse egenereren standardkode gebruken: $1",
 'savedprefs' => 'Veurkeuren bin op-esleugen.',
 'timezonelegend' => 'Tiedzone:',
 'localtime' => 'Plaotselike tied:',

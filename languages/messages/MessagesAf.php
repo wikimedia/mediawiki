@@ -1370,9 +1370,6 @@ U kan ook 'n naamruimte as voorvoegsel gebruik.",
 'recentchangesdays-max' => 'Maksimum $1 {{PLURAL:$1|dag|dae}}',
 'recentchangescount' => 'Aantal wysigings om by verstek te vertoon:',
 'prefs-help-recentchangescount' => 'Dit geld vir onlangse wysigings, bladsygeskiedenis en logboekbladsye.',
-'prefs-help-watchlist-token' => "Deur 'n geheime sleutel hier in te sleutel word 'n RSS-voer vir u dophoulys geskep.
-Enige een wat die sleutel ken sal u dophoulys kan lees. Kies dus 'n veilige sleutel.
-Hier volg 'n lukraak gegenereerde waarde wat u kan gebruik: $1",
 'savedprefs' => 'U voorkeure is gestoor.',
 'timezonelegend' => 'Tydsone:',
 'localtime' => 'Plaaslike tyd:',

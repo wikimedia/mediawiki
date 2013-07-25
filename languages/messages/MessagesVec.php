@@ -1267,7 +1267,6 @@ Prova a métarghe \"all:\" davanti al testo che te serchi par vardar in tuti i n
 'recentchangesdays-max' => '($1 {{PLURAL:$1|zorno|zorni}} massimo)',
 'recentchangescount' => 'Nùmaro de modìfeghe da far védar (valor predefinìo):',
 'prefs-help-recentchangescount' => 'Questo include i ùltimi canbiamenti, el stòrico de le pàxene e i registri.',
-'prefs-help-watchlist-token' => 'Conpilando sto canpo co na ciave segreta vegnarà generà un feed RSS par i propri osservati speciali. Chiunque conossa la ciave in sto canpo el podarà lèzar i osservati speciali, quindi se racomanda de inserir un valore sicuro. Qua ghe xe un valore generà casualmente che se pol doparar: $1',
 'savedprefs' => 'Le to preferense łe xè stà salvae.',
 'timezonelegend' => 'Fuso orario:',
 'localtime' => 'Ora locale:',

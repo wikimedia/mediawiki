@@ -924,6 +924,19 @@ Parolă temporară: $2',
 'changeemail-submit' => 'Modifică adresa de e-mail',
 'changeemail-cancel' => 'Revocare',
 
+# Special:ResetTokens
+'resettokens' => 'Resetare jetoane',
+'resettokens-text' => 'Puteți reseta, aici, jetoanele care permit accesul la anumite date asociate contului dumneavoastră.
+
+Ar trebui să faceți acest lucru numai dacă le-ați partajat accidental cu altcineva ori contul dumneavoastră a fost compromis.',
+'resettokens-no-tokens' => 'Nu există jetoane de resetat.',
+'resettokens-legend' => 'Resetare jetoane',
+'resettokens-tokens' => 'Jetoane:',
+'resettokens-token-label' => '$1 (valoare actuală: $2)',
+'resettokens-watchlist-token' => 'Jeton pentru fluxul web al listei de pagini urmărite',
+'resettokens-done' => 'Jetoane resetate.',
+'resettokens-resetbutton' => 'Resetează jetoanele selectate',
+
 # Edit page toolbar
 'bold_sample' => 'Text aldin',
 'bold_tip' => 'Text aldin',
@@ -1460,9 +1473,9 @@ Detalii se pot găsi în [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE
 'recentchangesdays-max' => '(maxim {{PLURAL:$1|o zi|$1 zile}})',
 'recentchangescount' => 'Numărul modificărilor afișate implicit:',
 'prefs-help-recentchangescount' => 'Sunt incluse schimbările recente, istoricul paginilor și jurnalele.',
-'prefs-help-watchlist-token' => 'Completând această căsuță cu o cheie secretă se va genera un flux RSS pentru lista dumneavoastră de pagini urmărite.
-Oricine cunoaște cheia din această căsuță va putea citi această listă, așa că alegeți o combinație sigură.
-Aici se află o combinație generată întâmplător pe care o puteți folosi: $1',
+'prefs-help-watchlist-token2' => 'Aceasta este cheia secretă pentru fluxul web al listei dumneavoastră de pagini urmărite.
+Oricine o cunoaște vă va putea citi lista de pagini urmărite, așa că n-o partajați cu nimeni.
+[[Special:ResetTokens|Faceți clic aici dacă doriți să o resetați]].',
 'savedprefs' => 'Preferințele dumneavoastră au fost salvate.',
 'timezonelegend' => 'Fus orar:',
 'localtime' => 'Ora locală:',
@@ -1534,6 +1547,7 @@ Dacă decideți furnizarea sa, acesta va fi folosit pentru a vă atribui munca.'
 'prefs-displayrc' => 'Opțiuni de afișare',
 'prefs-displaysearchoptions' => 'Opțiuni de afișare',
 'prefs-displaywatchlist' => 'Opțiuni de afișare',
+'prefs-tokenwatchlist' => 'Jeton',
 'prefs-diffs' => 'Diferențe',
 
 # User preference: email validation using jQuery
@@ -2150,6 +2164,8 @@ O pagină este considerată o pagină de dezambiguizare dacă folosește formate
 'pageswithprop-text' => 'Această pagină listează paginile care utilizează o anumită proprietate de pagină.',
 'pageswithprop-prop' => 'Numele proprietății:',
 'pageswithprop-submit' => 'Du-te',
+'pageswithprop-prophidden-long' => 'valoarea proprietății de text lung ascunsă ($1 kiloocteți)',
+'pageswithprop-prophidden-binary' => 'valoarea proprietății binare ascunsă ($1 kiloocteți)',
 
 'doubleredirects' => 'Redirecționări duble',
 'doubleredirectstext' => 'Această listă conține pagini care redirecționează la alte pagini de redirecționare.
@@ -2207,6 +2223,7 @@ Intrările <del>tăiate</del> au fost rezolvate.',
 'mostrevisions' => 'Articole cu cele mai multe revizuiri',
 'prefixindex' => 'Toate paginile cu prefix',
 'prefixindex-namespace' => 'Toate paginile cu prefix (spațiul de nume $1)',
+'prefixindex-strip' => 'Înlătură prefixul din cadrul listei',
 'shortpages' => 'Pagini scurte',
 'longpages' => 'Pagini lungi',
 'deadendpages' => 'Pagini fără legături',

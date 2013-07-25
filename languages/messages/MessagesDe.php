@@ -1039,6 +1039,19 @@ Temporäres Passwort: $2',
 'changeemail-submit' => 'E-Mail-Adresse ändern',
 'changeemail-cancel' => 'Abbrechen',
 
+# Special:ResetTokens
+'resettokens' => 'Tokens zurücksetzen',
+'resettokens-text' => 'Du kannst Tokens zurücksetzen, die dir den Zugriff auf bestimmte private Daten ermöglichen, die mit deinem Benutzerkonto hier verknüpft sind.
+
+Du solltest dies nur machen, wenn du die Tokens versehentlich mit jemandem geteilt hast oder dein Konto gefährdet ist.',
+'resettokens-no-tokens' => 'Es gibt keine Tokens zum Zurücksetzen.',
+'resettokens-legend' => 'Tokens zurücksetzen',
+'resettokens-tokens' => 'Tokens:',
+'resettokens-token-label' => '$1 (aktueller Wert: $2)',
+'resettokens-watchlist-token' => 'Beobachtungslisten-Webfeed-Token',
+'resettokens-done' => 'Tokens zurückgesetzt.',
+'resettokens-resetbutton' => 'Ausgewählte Tokens zurücksetzen',
+
 # Edit page toolbar
 'bold_sample' => 'Fetter Text',
 'bold_tip' => 'Fetter Text',
@@ -1564,9 +1577,9 @@ Einzelheiten sind im [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}
 'recentchangesdays-max' => 'Maximal $1 {{PLURAL:$1|Tag|Tage}}',
 'recentchangescount' => 'Anzahl der standardmäßig angezeigten Bearbeitungen:',
 'prefs-help-recentchangescount' => 'Dies umfasst die Liste der letzten Änderungen, die Versionsgeschichte und die Logbücher.',
-'prefs-help-watchlist-token' => 'Das Ausfüllen dieses Feldes mit einem geheimen Schlüssel generiert einen RSS-Feed für deine Beobachtungsliste.
-Jeder, der diesen Schlüssel kennt, kann deine Beobachtungsliste einsehen. Wähle also einen sicheren Wert.
-Hier ein zufällig generierter Wert, den du verwenden kannst: $1',
+'prefs-help-watchlist-token2' => 'Dies ist der geheime Schlüssel zum Webfeed deiner Beobachtungsliste.
+Jeder, der ihn kennt, kann deine Beobachtungsliste lesen. Teile ihn deshalb nicht.
+[[Special:ResetTokens|Klicke hier, wenn du ihn zurücksetzen musst]].',
 'savedprefs' => 'Deine Einstellungen wurden gespeichert.',
 'timezonelegend' => 'Zeitzone:',
 'localtime' => 'Ortszeit:',
@@ -1637,6 +1650,7 @@ Dies kann nicht mehr rückgängig gemacht werden.',
 'prefs-displayrc' => 'Anzeigeoptionen',
 'prefs-displaysearchoptions' => 'Anzeigeoptionen',
 'prefs-displaywatchlist' => 'Anzeigeoptionen',
+'prefs-tokenwatchlist' => 'Token',
 'prefs-diffs' => 'Versionsvergleich',
 
 # User preference: email validation using jQuery
@@ -2309,6 +2323,7 @@ Jede Zeile enthält Links zur ersten und zweiten Weiterleitung sowie dem Ziel de
 'mostrevisions' => 'Seiten mit den meisten Versionen',
 'prefixindex' => 'Alle Seiten (mit Präfix)',
 'prefixindex-namespace' => 'Alle Seiten mit Präfix (Namensraum $1)',
+'prefixindex-strip' => 'Präfix in der Liste abschneiden',
 'shortpages' => 'Kurze Seiten',
 'longpages' => 'Lange Seiten',
 'deadendpages' => 'Nicht verlinkende Seiten',

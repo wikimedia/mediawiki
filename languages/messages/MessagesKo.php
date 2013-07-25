@@ -1535,9 +1535,6 @@ $1",
 'recentchangesdays-max' => '최대 $1{{PLURAL:$1|일}}',
 'recentchangescount' => '기본으로 보여줄 편집 수:',
 'prefs-help-recentchangescount' => '이 설정은 최근 바뀜, 문서 역사와 기록에 적용됩니다.',
-'prefs-help-watchlist-token' => '아래에 비밀 값을 넣으면 주시문서 목록에 대한 RSS 피드가 만들어집니다.
-비밀 값을 알고 있는 사람이라면 누구나 피드를 읽을 수 있으므로 안전한 값을 입력해주세요.
-임의로 만들어진 다음 값을 사용할 수도 있습니다: $1',
 'savedprefs' => '설정을 저장했습니다.',
 'timezonelegend' => '시간대:',
 'localtime' => '현지 시각:',

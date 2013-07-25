@@ -1250,9 +1250,6 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'recentchangesdays-max' => '(hyd at $1 {{PLURAL:$1||diwrnod|ddiwrnod|diwrnod|diwrnod|diwrnod}})',
 'recentchangescount' => "Nifer y golygiadau i'w dangos yn ddiofyn:",
 'prefs-help-recentchangescount' => 'Mae hwn yn cynnwys newidiadau diweddar, hanesion tudalennau, a logiau.',
-'prefs-help-watchlist-token' => "Gallwch gynhyrchu porthiant RSS ar gyfer eich rhestr wylio drwy osod allwedd gudd yn y blwch hwn.
-Gall unrhywun sy'n gwybod yr allwedd ddarllen eich rhestr wylio, felly gofalwch ddewis allwedd ddiogel.
-Dyma allwedd wedi ei chreu ar hap y gallwch ei defnyddio: $1",
 'savedprefs' => 'Mae eich dewisiadau wedi cael eu cadw.',
 'timezonelegend' => 'Ardal amser:',
 'localtime' => 'Amser lleol:',

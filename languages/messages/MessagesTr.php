@@ -1467,9 +1467,6 @@ Aramanızın başına '''all:''' önekini ekleyerek tüm içeriği aramayı (tar
 'recentchangesdays-max' => '(en fazla $1 {{PLURAL:$1|gün|gün}})',
 'recentchangescount' => 'Varsayılan olarak gösterilecek değişiklik sayısı:',
 'prefs-help-recentchangescount' => 'Bu, son değişiklikleri, sayfa geçmişlerini ve günlükleri içerir.',
-'prefs-help-watchlist-token' => 'Bu alanı gizli bir anahtarla doldurmak, izleme listeniz için bir RSS beslemesi oluşturur.
-Bu alandaki anahtarı bilen herkes izleme listenizi okuyabilir, bu yüzden güvenli bir değer seçin.
-Kullanabileceğiniz rastgele-üretilmiş bir değer: $1',
 'savedprefs' => 'Tercihleriniz kaydedildi.',
 'timezonelegend' => 'Zaman dilimi:',
 'localtime' => 'Yerel saat:',

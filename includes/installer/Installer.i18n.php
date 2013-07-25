@@ -16370,7 +16370,7 @@ Não pode instalar o MediaWiki.',
 No entanto, o MediaWiki requer o PHP $2 ou superior.',
 	'config-unicode-using-utf8' => 'A usar o utf8_normalize.so, por Brian Viper, para a normalização Unicode.',
 	'config-unicode-using-intl' => 'A usar a [http://pecl.php.net/intl extensão intl PECL] para a normalização Unicode.',
-	'config-unicode-pure-php-warning' => "'''Aviso''': A [http://pecl.php.net/intl extensão intl PECL] não está disponível para efectuar a normalização Unicode. Irá recorrer-se à implementação em PHP puro, que é mais lenta.
+	'config-unicode-pure-php-warning' => "'''Aviso''': A [http://pecl.php.net/intl extensão intl PECL] não está disponível para efetuar a normalização Unicode. Irá recorrer-se à implementação em PHP puro, que é mais lenta.
 Se o seu site tem alto volume de tráfego, devia informar-se um pouco sobre a [//www.mediawiki.org/wiki/Unicode_normalization_considerations/pt normalização Unicode].",
 	'config-unicode-update-warning' => "'''Aviso''': A versão instalada do wrapper de normalização Unicode usa uma versão mais antiga da biblioteca do [http://site.icu-project.org/ projecto ICU].
 Devia [//www.mediawiki.org/wiki/Unicode_normalization_considerations actualizá-la] se tem quaisquer preocupações sobre o uso do Unicode.",
@@ -16381,8 +16381,8 @@ Se foi você quem compilou o PHP, reconfigure-o com um cliente de base de dados 
 Se instalou o PHP a partir de um pacote Debian ou Ubuntu, então precisa de instalar também o módulo php5-mysql.",
 	'config-outdated-sqlite' => "'''Aviso''': Tem a versão $1 do SQLite, que é anterior à versão mínima necessária, a $2. O SQLite não estará disponível.",
 	'config-no-fts3' => "'''Aviso''': O SQLite foi compilado sem o módulo [//sqlite.org/fts3.html FTS3]; as funcionalidades de pesquisa não estarão disponíveis nesta instalação.",
-	'config-register-globals' => "'''Aviso: A opção <code>[http://php.net/register_globals register_globals]</code> do PHP está activada.'''
-'''Desactive-a, se puder.'''
+	'config-register-globals' => "'''Aviso: A opção <code>[http://php.net/register_globals register_globals]</code> do PHP está ativada.'''
+'''Desative-a, se puder.'''
 O MediaWiki funciona mesmo assim, mas o seu servidor está exposto a potenciais vulnerabilidades de segurança.",
 	'config-magic-quotes-runtime' => "'''Fatal: A opção [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime magic_quotes_runtime] está ativada!'''
 Esta opção causa corrupção dos dados de entrada, de uma forma imprevisível.
@@ -16396,7 +16396,7 @@ Não pode instalar ou usar o MediaWiki a menos que esta opção seja desativada.
 	'config-ze1' => "'''Fatal: A opção [http://www.php.net/manual/en/ini.core.php zend.ze1_compatibility_mode] está ativada!'''
 Esta opção causa problemas significativos no MediaWiki.
 Não pode instalar ou usar o MediaWiki a menos que esta opção seja desativada.",
-	'config-safe-mode' => "'''Aviso:''' O [http://www.php.net/features.safe-mode safe mode] do PHP está activo.
+	'config-safe-mode' => "'''Aviso:''' O [http://www.php.net/features.safe-mode safe mode] do PHP está ativo.
 Este modo pode causar problemas, especialmente no upload de ficheiros e no suporte a <code>math</code>.",
 	'config-xml-bad' => 'Falta o módulo XML do PHP.
 O MediaWiki necessita de funções deste módulo e não funcionará com esta configuração.
@@ -16414,14 +16414,14 @@ A instalação poderá falhar!",
 	'config-apc' => '[http://www.php.net/apc APC] instalada',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] instalada',
 	'config-no-cache' => "'''Aviso:''' Não foi possível encontrar: [http://www.php.net/apc APC], [http://xcache.lighttpd.net/ XCache], nem [http://www.iis.net/download/WinCacheForPhp WinCache].
-A cache de objectos não será activada.",
+A cache de objetos não está ativada.",
 	'config-mod-security' => "'''Aviso''': O seu servidor de internet tem o [http://modsecurity.org/ mod_security] ativado. Se este estiver mal configurado, pode causar problemas ao MediaWiki ou a outros programas, permitindo que os utilizadores publiquem conteúdos arbitrários.
 Consulte a [http://modsecurity.org/documentation/ mod_security documentação] ou peça apoio ao fornecedor do alojamento do seu servidor se encontrar erros aleatórios.",
 	'config-diff3-bad' => 'O GNU diff3 não foi encontrado.',
 	'config-imagemagick' => 'Foi encontrado o ImageMagick: <code>$1</code>.
-Se possibilitar uploads, a miniaturização de imagens será activada.',
+Se possibilitar uploads, a miniaturização de imagens será ativada.',
 	'config-gd' => 'Foi encontrada a biblioteca gráfica GD.
-Se possibilitar uploads, a miniaturização de imagens será activada.',
+Se possibilitar uploads, a miniaturização de imagens será ativada.',
 	'config-no-scaling' => 'Não foi encontrada a biblioteca gráfica GD nem o ImageMagick.
 A miniaturização de imagens será desativada.',
 	'config-no-uri' => "'''Erro:''' Não foi possível determinar a URI actual.
@@ -16705,9 +16705,9 @@ Se não pretende viabilizar qualquer funcionalidade de correio electrónico, pod
 	'config-email-watchlist' => 'Ativar notificação de alterações às páginas vigiadas',
 	'config-email-watchlist-help' => 'Permitir que os utilizadores recebam notificações de alterações às suas páginas vigiadas, se tiverem ativado esta funcionalidade nas suas preferências.',
 	'config-email-auth' => 'Ativar autenticação do correio eletrónico',
-	'config-email-auth-help' => "Se esta opção for activada, os utilizadores têm de confirmar o seu endereço de correio electrónico usando um link que lhes é enviado sempre que o definirem ou alterarem.
-Só os endereços de correio electrónico autenticados podem receber mensagens electrónicas dos outros utilizadores ou alterar as mensagens de notificação.
-É '''recomendado''' que esta opção seja activada nas wikis de acesso público para impedir o uso abusivo das funcionalidades de correio electrónico.",
+	'config-email-auth-help' => "Se esta opção for ativada, os utilizadores têm de confirmar o seu endereço de correio eletrónico usando um link que lhes é enviado sempre que o definirem ou alterarem.
+Só os endereços de correio eletrónico autenticados podem receber mensagens eletrónicas dos outros utilizadores ou alterar as mensagens de notificação.
+É '''recomendado''' que esta opção seja ativada nas wikis de acesso público para impedir o uso abusivo das funcionalidades de correio eletrónico.",
 	'config-email-sender' => 'Endereço de correio electrónico de retorno:',
 	'config-email-sender-help' => 'Introduza o endereço de correio electrónico que será usado como endereço de retorno nas mensagens electrónicas de saída.
 É para este endereço que serão enviadas as mensagens que não podem ser entregues.
@@ -16737,11 +16737,11 @@ Introduza o nome da licença manualmente.',
 	'config-cc-again' => 'Escolha outra vez...',
 	'config-cc-not-chosen' => 'Escolha a licença da Creative Commons que pretende e clique "continuar".',
 	'config-advanced-settings' => 'Configuração avançada',
-	'config-cache-options' => 'Definições da cache de objectos:',
+	'config-cache-options' => 'Configuração da cache de objetos:',
 	'config-cache-help' => 'A cache de objetos é usada para melhorar o desempenho do MediaWiki. Armazena dados usados com frequência.
 Sites de tamanho médio ou grande são altamente encorajados a ativar esta funcionalidade e os sites pequenos também terão alguns benefícios em fazê-lo.',
 	'config-cache-none' => 'Sem cache (não é removida nenhuma funcionalidade, mas a velocidade de operação pode ser afectada nas wikis grandes)',
-	'config-cache-accel' => 'Cache de objectos do PHP (APC, XCache ou WinCache)',
+	'config-cache-accel' => 'Cache de objetos do PHP (APC, XCache ou WinCache)',
 	'config-cache-memcached' => 'Usar Memcached (requer instalação e configurações adicionais)',
 	'config-memcached-servers' => 'Servidores Memcached:',
 	'config-memcached-help' => 'Lista de endereços IP que serão usados para o Memcached.
@@ -16774,7 +16774,7 @@ Certifique-se de que o utilizador "$1" pode escrever no esquema \'\'(schema)\'\'
 	'config-pg-no-plpgsql' => 'É preciso instalar a linguagem PL/pgSQL na base de dados $1',
 	'config-pg-no-create-privs' => 'A conta que especificou para a instalação não tem privilégios suficientes para criar uma conta.',
 	'config-pg-not-in-role' => 'A conta que especificou para o utilizador da internet já existe.
-A conta que especificou para a instalação não é a de um super-utilizador e não pertence ao grupo de utilizadores de acesso pela internet, por isso não pode criar objectos que pertencem ao utilizador da internet.
+A conta que especificou para a instalação não é a de um super-utilizador e não pertence ao grupo de utilizadores de acesso pela internet, por isso não pode criar objetos que pertencem ao utilizador da internet.
 
 O MediaWiki necessita que as tabelas pertençam ao utilizador da internet. Especifique outra conta de internet, ou clique "voltar" e especifique um utilizador com os privilégios necessários para a instalação.',
 	'config-install-user' => 'A criar o utilizador da base de dados',
@@ -16799,7 +16799,7 @@ O preenchimento padrão desta tabela será saltado.",
 	'config-install-subscribe-fail' => 'Não foi possível subscrever a lista mediawiki-announce: $1',
 	'config-install-subscribe-notpossible' => 'cURL não está instalado e allow_url_fopen não está disponível.',
 	'config-install-mainpage' => 'A criar a página principal com o conteúdo padrão.',
-	'config-install-extension-tables' => 'A criar as tabelas das extensões activadas',
+	'config-install-extension-tables' => 'A criar as tabelas das extensões ativadas',
 	'config-install-mainpage-failed' => 'Não foi possível inserir a página principal: $1',
 	'config-install-done' => "'''Parabéns!'''
 Terminou a instalação do MediaWiki.

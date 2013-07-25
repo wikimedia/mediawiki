@@ -1015,6 +1015,19 @@ $2
 'changeemail-submit' => 'メールアドレスを変更',
 'changeemail-cancel' => '中止',
 
+# Special:ResetTokens
+'resettokens' => 'トークンの再設定',
+'resettokens-text' => 'ここでは、アカウントに関連付けられた特定の非公開データにアクセスするためのトークンを再設定できます。
+
+トークンを誤って他人に教えてしまった場合やあなたのアカウントが侵害された場合は、必ず再設定してください。',
+'resettokens-no-tokens' => '再設定できるトークンはありません。',
+'resettokens-legend' => 'トークンの再設定',
+'resettokens-tokens' => 'トークン:',
+'resettokens-token-label' => '$1 (現在の値: $2)',
+'resettokens-watchlist-token' => 'ウォッチリストのフィード トークン',
+'resettokens-done' => 'トークンを再設定しました。',
+'resettokens-resetbutton' => '選択したトークンを再設定',
+
 # Edit page toolbar
 'bold_sample' => '太字',
 'bold_tip' => '太字',
@@ -1564,9 +1577,9 @@ $1",
 'recentchangesdays-max' => '(最大 $1 {{PLURAL:$1|日|日間}})',
 'recentchangescount' => '既定で表示する件数:',
 'prefs-help-recentchangescount' => 'この設定は最近の更新、ページの履歴、および記録に適用されます。',
-'prefs-help-watchlist-token' => 'この欄に秘密鍵を入力すると、あなたのウォッチリストのRSSフィードが生成されます。
-この欄に入力されている鍵を知っている人は誰でもこのウォッチリストを閲覧できるようになるため、他人に分からない値を選んでください。
-乱数によって生成された次の値を使うこともできます: $1',
+'prefs-help-watchlist-token2' => 'これはあなたのウォッチリスト フィードの秘密のコードです。
+このトークンを知っている人は誰でもあなたのウォッチリストを読めてしまうため、他の人に教えないでください。
+[[Special:ResetTokens|トークンを再設定する必要がある場合はここをクリックしてください]]。',
 'savedprefs' => '個人設定を保存しました。',
 'timezonelegend' => 'タイムゾーン:',
 'localtime' => 'ローカルの時刻:',
@@ -1642,6 +1655,7 @@ $1 {{PLURAL:$1|文字}}以下である必要があります。',
 'prefs-displayrc' => '表示の設定',
 'prefs-displaysearchoptions' => '表示の設定',
 'prefs-displaywatchlist' => '表示の設定',
+'prefs-tokenwatchlist' => 'トークン',
 'prefs-diffs' => '差分',
 
 # User preference: email validation using jQuery
@@ -2337,6 +2351,7 @@ contenttype/subtypeの形式で入力してください (例: <code>image/jpeg</
 'mostrevisions' => '版の多いページ',
 'prefixindex' => '先頭が同じ全ページ',
 'prefixindex-namespace' => '先頭が同じ全ページ ($1名前空間)',
+'prefixindex-strip' => '一覧で接頭辞を省略',
 'shortpages' => '短いページ',
 'longpages' => '長いページ',
 'deadendpages' => '行き止まりページ',

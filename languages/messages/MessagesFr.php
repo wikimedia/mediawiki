@@ -1005,6 +1005,19 @@ Mot de passe temporaire : $2",
 'changeemail-submit' => "Changer l'adresse de courriel",
 'changeemail-cancel' => 'Annuler',
 
+# Special:ResetTokens
+'resettokens' => 'Réinitialiser les jetons',
+'resettokens-text' => "Ici, vous pouvez réinitialiser les jetons qui permettent d’accéder à certaines données privées associées à votre compte.
+
+Vous devriez le faire si vous les avez partagés accidentellement avec quelqu'un ou si votre compte a été compromis.",
+'resettokens-no-tokens' => 'Il n’y a aucun jeton à réinitialiser.',
+'resettokens-legend' => 'Réinitialiser les jetons',
+'resettokens-tokens' => 'Jetons :',
+'resettokens-token-label' => '$1 (valeur actuelle : $2)',
+'resettokens-watchlist-token' => 'Jeton de flux Web liste de suivi',
+'resettokens-done' => 'Jetons réinitialisés.',
+'resettokens-resetbutton' => 'Réinitialiser les jetons sélectionnés',
+
 # Edit page toolbar
 'bold_sample' => 'Texte gras',
 'bold_tip' => 'Texte gras',
@@ -1266,8 +1279,8 @@ La raison donnée était ''$2''.",
 'histlegend' => 'Légende : ({{int:cur}}) = différence avec la version actuelle, ({{int:last}}) = différence avec la version précédente, <b>{{int:minoreditletter}}</b> = modification mineure',
 'history-fieldset-title' => "Naviguer dans l'historique",
 'history-show-deleted' => 'Masqués seulement',
-'histfirst' => 'plus ancienne à plus récente',
-'histlast' => 'plus récente à plus ancienne',
+'histfirst' => 'le plus ancien',
+'histlast' => 'le plus récent',
 'historysize' => '($1 octet{{PLURAL:$1||s}})',
 'historyempty' => '(vide)',
 
@@ -1530,9 +1543,9 @@ Essayez en utilisant le préfixe ''all:'' pour rechercher dans tout le contenu (
 'recentchangesdays-max' => '(maximum $1 jour{{PLURAL:$1||s}})',
 'recentchangescount' => 'Nombre de modifications à afficher par défaut :',
 'prefs-help-recentchangescount' => "Ceci inclut les modifications récentes, les pages d'historiques et les journaux.",
-'prefs-help-watchlist-token' => 'Remplissez ce champ avec une valeur secrète et un flux RSS sera généré pour votre liste de suivi.
-Toute personne connaissant ce jeton pourra lire votre liste de suivi, choisissez donc une valeur sécurisée.
-Voici une valeur générée aléatoirement que vous pouvez utiliser : $1',
+'prefs-help-watchlist-token2' => 'Voici la clé secrète du flux Web de votre liste de suivi.
+Toute personne la connaissant pourra lire votre liste de suivi, ne la communiquez donc pas.
+[[Special:ResetTokens|Cliquez ici si vous devez la réinitialiser]].',
 'savedprefs' => 'Les préférences ont été sauvegardées.',
 'timezonelegend' => 'Fuseau horaire :',
 'localtime' => 'Heure locale :',
@@ -1602,6 +1615,7 @@ Elle ne doit pas dépasser $1 caractère{{PLURAL:$1||s}}.',
 'prefs-displayrc' => "Options d'affichage",
 'prefs-displaysearchoptions' => "Options d'affichage",
 'prefs-displaywatchlist' => "Options d'affichage",
+'prefs-tokenwatchlist' => 'Jeton',
 'prefs-diffs' => 'Différences',
 
 # User preference: email validation using jQuery
@@ -2278,6 +2292,7 @@ Les entrées <del>barrées</del> ont été résolues.',
 'mostrevisions' => 'Pages les plus modifiées',
 'prefixindex' => 'Toutes les pages commençant par…',
 'prefixindex-namespace' => 'Toutes les pages avec préfixe (espace de noms $1)',
+'prefixindex-strip' => 'Enlever le préfixe dans la liste',
 'shortpages' => 'Pages courtes',
 'longpages' => 'Pages longues',
 'deadendpages' => 'Pages en impasse',

@@ -1440,9 +1440,6 @@ Ezt általában egy elavult, törölt oldalra mutató laptörténeti hivatkozás
 'recentchangesdays-max' => '(maximum {{PLURAL:$1|egy|$1}} nap)',
 'recentchangescount' => 'Az alapértelmezettként mutatott szerkesztések száma:',
 'prefs-help-recentchangescount' => 'Ez vonatkozik a friss változtatásokra, laptörténetekre és naplókra is.',
-'prefs-help-watchlist-token' => 'Ha ebbe a mezőbe beírsz egy titkos kulcsot, RSS feed fog készülni a figyelőlistádról.
-Bárki, aki tudja a fenti mezőbe beírt kulcsot, látni fogja a figyelőlistádat, így válassz egy titkos értéket.
-Itt van egy véletlenszerűen generált érték, amit használhatsz: $1',
 'savedprefs' => 'Az új beállításaid érvénybe léptek.',
 'timezonelegend' => 'Időzóna:',
 'localtime' => 'Helyi idő:',

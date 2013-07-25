@@ -1500,9 +1500,6 @@ Notâd que lor endèxacion du contegnu de {{SITENAME}} pôt pas étre a jorn.',
 'recentchangesdays-max' => 'Por lo més $1 jorn{{PLURAL:$1||s}}',
 'recentchangescount' => 'Nombro de changements a montrar per dèfôt :',
 'prefs-help-recentchangescount' => 'Los dèrriérs changements, los historicos de pâges et los jornals avouéc.',
-'prefs-help-watchlist-token' => 'Rempléd ceti champ avouéc na cllâf secrèta et pués un flux RSS serat fêt por voutra lista de siuvu.
-Tôs celos que cognessont cela cllâf porront liére voutra lista de siuvu, chouèsésséd vêr na valor sècurisâye.
-Vê-que na valor fêta per hasârd que vos pouede empleyér : $1',
 'savedprefs' => 'Voutres prèferences sont étâyes encartâyes.',
 'timezonelegend' => 'Fus horèro :',
 'localtime' => 'Hora locâla :',

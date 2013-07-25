@@ -1242,9 +1242,6 @@ Se puen alcontrar más detalles nel [{{fullurl:{{#Special:Log}}/delete|page={{FU
 'recentchangesdays-max' => '(máximo $1 {{PLURAL:$1|día|díes}})',
 'recentchangescount' => "Númberu d'ediciones p'amosar de mou predetermináu:",
 'prefs-help-recentchangescount' => 'Incluye los cambios recientes, los historiales de páxines y los rexistros.',
-'prefs-help-watchlist-token' => "Rellenando esti campu con una clave secreta se xenerará una canal RSS pa la to llista de vixilancia.
-Quien sepa la clave d'esti campu podrá lleer la to llista de vixilancia, poro, escueyi un valor seguru.
-Equí tienes un valor al debalu que pues usar: $1",
 'savedprefs' => 'Les tos preferencies quedaron grabaes.',
 'timezonelegend' => 'Estaya horaria:',
 'localtime' => 'Hora llocal:',

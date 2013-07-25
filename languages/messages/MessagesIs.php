@@ -1386,8 +1386,6 @@ Athugaðu að skrár þeirra yfir {{SITENAME}}-efni kunna að vera úreltar.',
 'recentchangesdays-max' => '(hámark $1 {{PLURAL:$1|dag|daga}})',
 'recentchangescount' => 'Fjöldi síðna:',
 'prefs-help-recentchangescount' => 'Taldar eru með nýlegar breytingar, breytingarskrár og aðgerðarskrár.',
-'prefs-help-watchlist-token' => 'Með því að fylla út þennan reit með leynilegum lykli býr til RSS-efnistraum fyrir vaktlistann þinn. Allir sem vita hver lykillinn er geta lesið vaktlistann þinn, svo veldu öruggt eigindargildi.
-Hér er gildi sem var valið af handahófi sem þú getur notað: $1',
 'savedprefs' => 'Stillingarnar þínar hafa verið vistaðar.',
 'timezonelegend' => 'Tímabelti:',
 'localtime' => 'Staðartími:',

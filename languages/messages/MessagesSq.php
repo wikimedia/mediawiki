@@ -1288,9 +1288,6 @@ Kini kujdes se përdorimi i lidhjeve të shfletimit do të ndryshojë përzgjedh
 'recentchangesdays-max' => '(maksimum $1 {{PLURAL:$1|dit|ditë}})',
 'recentchangescount' => 'Numri i redaktimeve për të treguar:',
 'prefs-help-recentchangescount' => 'Kjo përfshin ndryshimet e freskëta, historikun e faqes dhe regjistrat.',
-'prefs-help-watchlist-token' => 'Plotësimi në këtë fushë me një kyç të fshehtë do të gjenerojë një RSS për të listës mbikqyrëse tuaj. 
- Kushdo që e di të rëndësishme në këtë fushë do të jetë në gjendje për të lexuar lista mbikqyrëse e juaj, kështu që zgjidhni një vlerë të sigurt. 
- Këtu ka një vlerë të rastësishme-generated ju mund të përdorni: $1',
 'savedprefs' => 'Parapëlqimet tuaja janë ruajtur.',
 'timezonelegend' => 'Zona kohore:',
 'localtime' => 'Ora lokale:',

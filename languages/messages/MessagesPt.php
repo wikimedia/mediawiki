@@ -762,7 +762,7 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências]].'
 'externaldberror' => 'Ocorreu um erro externo à base de dados durante a autenticação ou não lhe é permitido atualizar a sua conta externa.',
 'login' => 'Autenticação',
 'nav-login-createaccount' => 'Entrar / criar conta',
-'loginprompt' => "É necessário ter os ''cookies'' activados no seu browser para poder autenticar-se na {{SITENAME}}.",
+'loginprompt' => "É necessário ter os ''cookies'' ativados no seu browser para poder autenticar-se na {{SITENAME}}.",
 'userlogin' => 'Criar uma conta ou entrar',
 'userloginnocreate' => 'Autenticação',
 'logout' => 'Sair',
@@ -809,7 +809,7 @@ Ative-os e autentique-se com o seu nome de utilizador e a sua palavra-chave, por
 Os ''cookies'' estão desativados no seu browser.
 Ative-os e tente novamente, por favor.",
 'nocookiesfornew' => 'A conta de utilizador não foi criada, porque não foi possível confirmar a sua origem.
-Certifique-se de que tem os cookies activados, recarregue esta página e tente novamente.',
+Certifique-se de que tem os cookies ativados, recarregue esta página e tente novamente.',
 'noname' => 'Não especificou um nome de utilizador válido.',
 'loginsuccesstitle' => 'Login bem sucedido',
 'loginsuccess' => "'''Encontra-se agora ligado à {{SITENAME}} como \"\$1\"'''.",
@@ -1091,7 +1091,7 @@ Terá de reintegrar as suas mudanças no texto da caixa abaixo.
 'storedversion' => 'Versão guardada',
 'nonunicodebrowser' => "'''Aviso: O seu browser não é compatível com as especificações Unicode.
 Foi ativado um sistema de edição alternativo que lhe permite editar as páginas com segurança: os caracteres não-ASCII aparecerão na caixa de edição no formato de códigos hexadecimais.'''",
-'editingold' => "'''Aviso: Está a editar uma revisão desactualizada desta página.'''
+'editingold' => "'''Aviso: Está a editar uma revisão desatualizada desta página.'''
 Se gravar, todas as mudanças feitas a partir desta revisão serão perdidas.",
 'yourdiff' => 'Diferenças',
 'copyrightwarning' => "Note, por favor, que todas as suas contribuições na {{SITENAME}} são consideradas publicadas nos termos da licença $2 (consulte $1 para mais detalhes).
@@ -1160,9 +1160,9 @@ Se você se autenticou, pode desabilitar este aviso na seção "Edição" das su
 'content-model-css' => 'CSS',
 
 # Parser/template warnings
-'expensive-parserfunction-warning' => 'Aviso: Esta página contém demasiadas chamadas de funções exigentes do analisador sintáctico.
+'expensive-parserfunction-warning' => "'''Aviso:''' Esta página contém demasiadas chamadas de funções exigentes do analisador sintático.
 
-Devia ter menos de $2 {{PLURAL:$2|chamada|chamadas}}. Neste momento tem $1 {{PLURAL:$1|chamada|chamadas}}.',
+Devia ter menos de $2 {{PLURAL:$2|chamada|chamadas}}. Neste momento tem $1 {{PLURAL:$1|chamada|chamadas}}.",
 'expensive-parserfunction-category' => 'Páginas com demasiadas chamadas a funções exigentes',
 'post-expand-template-inclusion-warning' => 'Aviso: O tamanho de inclusão de predefinições é demasiado grande, algumas predefinições não serão incluídas.',
 'post-expand-template-inclusion-category' => 'Páginas onde o tamanho de inclusão de predefinições é excedido',
@@ -1440,7 +1440,7 @@ Tente usar o prefixo ''all:'' para pesquisar todo o conteúdo (incluindo página
 'search-external' => 'Pesquisa externa',
 'searchdisabled' => 'Foi impossibilitada a realização de pesquisas na {{SITENAME}}.
 Entretanto, pode realizar pesquisas através do Google.
-Note, no entanto, que a indexação da {{SITENAME}} neste motor de busca pode estar desactualizada.',
+Note, no entanto, que a indexação da {{SITENAME}} neste motor de busca pode estar desatualizada.',
 'search-error' => 'Um erro ocorreu enquanto se efectuava a busca: $1',
 
 # Preferences page
@@ -1485,9 +1485,6 @@ Note, no entanto, que a indexação da {{SITENAME}} neste motor de busca pode es
 'recentchangesdays-max' => 'Máximo: $1 {{PLURAL:$1|dia|dias}}',
 'recentchangescount' => 'Número de edições a apresentar por omissão:',
 'prefs-help-recentchangescount' => 'Inclui mudanças recentes, histórico de páginas e registos.',
-'prefs-help-watchlist-token' => "Preencher este campo com uma senha secreta gera um ''feed'' RSS para a sua lista de páginas vigiadas.
-Qualquer pessoa que conheça esta senha será capaz de ler a sua lista de páginas vigiadas, por isso escolha um valor seguro.
-Eis um valor gerado aleatoriamente, que pode usar: $1",
 'savedprefs' => 'As suas preferências foram gravadas.',
 'timezonelegend' => 'Fuso horário:',
 'localtime' => 'Hora local:',
@@ -1898,7 +1895,7 @@ JD # Jenoptik
 MGP # Pentax
 PICT # misc.
  #</pre> <!-- deixe esta linha exactamente como está -->',
-'upload-success-subj' => 'Envio efectuado com sucesso',
+'upload-success-subj' => 'Envio efetuado com sucesso',
 'upload-success-msg' => 'O seu upload de [$2] foi bem sucedido. Está disponível aqui: [[:{{ns:file}}:$1]]',
 'upload-failure-subj' => 'Problema no upload',
 'upload-failure-msg' => 'Ocorreu um problema com o seu upload de [$2]:
@@ -1974,7 +1971,7 @@ A sua segurança não pode ser devidamente verificada.',
 
 # Special:UploadStash
 'uploadstash' => 'Ficheiros escondidos',
-'uploadstash-summary' => 'Esta página dá acesso aos ficheiros enviados (ou que estão no processo de envio) mas que ainda não foram publicados na wiki. Estes ficheiros não são visíveis para ninguém, excepto para o utilizador que os enviou.',
+'uploadstash-summary' => 'Esta página dá acesso aos ficheiros enviados (ou que estão no processo de envio) mas que ainda não foram publicados na wiki. Estes ficheiros não são visíveis para ninguém, exceto para o utilizador que os enviou.',
 'uploadstash-clear' => 'Apagar os ficheiros escondidos',
 'uploadstash-nofiles' => 'Não tem ficheiros escondidos.',
 'uploadstash-badtoken' => 'Não foi possível executar essa operação, talvez porque as suas credenciais de edição expiraram. Tente novamente.',
@@ -2152,7 +2149,7 @@ Talvez queira editar a descrição na [$2 página original de descrição do fic
 'statistics-views-total-desc' => 'Não estão incluídos os visionamentos de páginas inexistentes e páginas especiais',
 'statistics-views-peredit' => 'Visionamentos por edição',
 'statistics-users' => '[[Special:ListUsers|Utilizadores]] registados',
-'statistics-users-active' => 'Utilizadores activos',
+'statistics-users-active' => 'Utilizadores ativos',
 'statistics-users-active-desc' => 'Utilizadores que efectuaram uma operação {{PLURAL:$1|no último dia|nos últimos $1 dias}}',
 'statistics-mostpopular' => 'Páginas mais vistas',
 
@@ -2286,7 +2283,7 @@ Pode reduzir a lista escolhendo um tipo de registo, um nome de utilizador ou um 
 'allpagesto' => 'Apresentar páginas até:',
 'allarticles' => 'Todas as páginas',
 'allinnamespace' => 'Todas as páginas (espaço nominal $1)',
-'allnotinnamespace' => 'Todas as páginas (excepto as do espaço nominal $1)',
+'allnotinnamespace' => 'Todas as páginas (exceto as do espaço nominal $1)',
 'allpagesprev' => 'Anterior',
 'allpagesnext' => 'Próximo',
 'allpagessubmit' => 'Ver',
@@ -2333,8 +2330,8 @@ Veja também as [[Special:WantedCategories|categorias desejadas]].',
 'listusers-blocked' => '(bloqueado)',
 
 # Special:ActiveUsers
-'activeusers' => 'Utilizadores activos',
-'activeusers-intro' => 'Esta é uma lista dos utilizadores com qualquer tipo de actividade {{PLURAL:$1|no último dia|nos últimos $1 dias}}.',
+'activeusers' => 'Lista de utilizadores ativos',
+'activeusers-intro' => 'Esta é uma lista dos utilizadores com qualquer tipo de atividade {{PLURAL:$1|no último dia|nos últimos $1 dias}}.',
 'activeusers-count' => '$1 {{PLURAL:$1|ação|ações}} {{PLURAL:$3|no último dia|nos últimos $3 dias}}',
 'activeusers-from' => 'Mostrar utilizadores começando por:',
 'activeusers-hidebots' => 'Esconder robôs',
@@ -2445,7 +2442,7 @@ Modificações futuras desta página e da respetiva página de discussão serão
 'enotif_body_intro_moved' => 'A página $1 em {{SITENAME}} foi {{GENDER:$2|movida}} em $PAGEEDITDATE por $2, ver $3 para a versão actual.',
 'enotif_body_intro_restored' => 'A página $1 em {{SITENAME}} foi {{GENDER:$2|restaurada}} em $PAGEEDITDATE por $2, ver $3 para a versão actual.',
 'enotif_body_intro_changed' => 'A página $1 em {{SITENAME}} foi {{GENDER:$2|alterada}} em $PAGEEDITDATE por $2, ver $3 para a versão actual.',
-'enotif_lastvisited' => 'Consulte $1 para todas as alterações efectuadas desde a sua última visita.',
+'enotif_lastvisited' => 'Consulte $1 para todas as alterações efetuadas desde a sua última visita.',
 'enotif_lastdiff' => 'Consulte $1 para ver esta alteração.',
 'enotif_anon_editor' => 'utilizador anónimo $1',
 'enotif_body' => '{{GENDER:$WATCHINGUSERNAME|Caro|Cara|Caro(a)}},
@@ -2616,7 +2613,7 @@ Para efetuar uma restauração seletiva, marque as caixas correspondentes às ed
 'undeleterevisions' => '$1 {{PLURAL:$1|edição disponível|edições disponíveis}}',
 'undeletehistory' => 'Se restaurar uma página, todas as edições serão restauradas para o histórico.
 Se uma nova página foi criada com o mesmo nome desde a eliminação, as edições restauradas aparecerão no histórico anterior.',
-'undeleterevdel' => 'O restauro não será efectuado se resulta na remoção parcial da versão mais recente da página ou ficheiro.
+'undeleterevdel' => 'O restauro não será efetuado se resulta na remoção parcial da versão mais recente da página ou ficheiro.
 Nestes casos, deverá desmarcar ou revelar a versão eliminada mais recente.',
 'undeletehistorynoadmin' => 'Esta página foi eliminada. O motivo de eliminação é apresentado no sumário abaixo, junto dos detalhes do utilizador que editou esta página antes de eliminar. O texto atual destas edições eliminadas encontra-se agora apenas disponível para administradores.',
 'undelete-revision' => 'Edição eliminada da página $1 (das $5 de $4), por $3:',
@@ -3344,7 +3341,7 @@ Quaisquer outros links nessa mesma linha são considerados excepções (ou seja,
 # Metadata
 'metadata' => 'Metadados',
 'metadata-help' => 'Este ficheiro contém informação adicional, provavelmente acrescentada pela câmara digital ou pelo digitalizador usados para criá-lo.
-Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns detalhes poderão não reflectir completamente as mudanças efectuadas.',
+Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns detalhes poderão não refletir completamente as mudanças efetuadas.',
 'metadata-expand' => 'Mostrar detalhes adicionais',
 'metadata-collapse' => 'Esconder detalhes adicionais',
 'metadata-fields' => 'Os campos de metadados de imagens listados nesta mensagem serão incluídos na página de descrição da imagem quando a tabela de metadados estiver recolhida. Por omissão, outros campos estarão ocultos.
@@ -3933,15 +3930,15 @@ Também pode [[Special:EditWatchlist|editar a lista da maneira convencional]].',
 'version' => 'Versão',
 'version-extensions' => 'Extensões instaladas',
 'version-specialpages' => 'Páginas especiais',
-'version-parserhooks' => "''Hooks'' do analisador sintáctico",
+'version-parserhooks' => "''Hooks'' do analisador sintático",
 'version-variables' => 'Variáveis',
 'version-antispam' => 'Prevenção contra spam',
 'version-skins' => 'Temas',
 'version-other' => 'Diversos',
 'version-mediahandlers' => 'Leitura e tratamento de multimédia',
 'version-hooks' => 'Hooks',
-'version-parser-extensiontags' => 'Extensões do analisador sintáctico',
-'version-parser-function-hooks' => "''Hooks'' das funções do analisador sintáctico",
+'version-parser-extensiontags' => 'Extensões do analisador sintático',
+'version-parser-function-hooks' => "''Hooks'' das funções do analisador sintático",
 'version-hook-name' => 'Nome do hook',
 'version-hook-subscribedby' => 'Subscrito por',
 'version-version' => '(Versão $1)',
@@ -4048,7 +4045,7 @@ Em conjunto com este programa deve ter recebido [{{SERVER}}{{SCRIPTPATH}}/COPYIN
 'dberr-again' => 'Experimente esperar alguns minutos e atualizar.',
 'dberr-info' => '(Não foi possível contactar o servidor da base de dados: $1)',
 'dberr-usegoogle' => 'Pode tentar pesquisar no Google entretanto.',
-'dberr-outofdate' => 'Note que os seus índices relativos ao nosso conteúdo podem estar desactualizados.',
+'dberr-outofdate' => 'Note que os seus índices relativos ao nosso conteúdo podem estar desatualizados.',
 'dberr-cachederror' => 'A seguinte página é uma cópia em cache da página pedida e pode não estar atualizada.',
 
 # HTML forms

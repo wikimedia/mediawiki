@@ -1251,9 +1251,6 @@ Prubaran na panigmitan an saimong kahaputan nin ''all:'' sa paghanap kan gabos n
 'recentchangesdays-max' => 'Maksimum $1 {{PLURAL:$1|aldaw|mga aldaw}}',
 'recentchangescount' => 'Numero kan mga pagliliwat na ipapahiling na pirmihan:',
 'prefs-help-recentchangescount' => 'Kabali kaini an dae pa nahaloy na mga kaliwatan, mga historiyang pahina, asin mga talaan.',
-'prefs-help-watchlist-token' => 'An pagpapano sa parteng ini nin sarong sekretong susi magbubuswang nin RSS feed para sa saimong bantay-listahan.
-Siisay man na nakakaaram kan suri sa parteng ini makakabasa kan saimong bantay-listahan, kaya magpili nin sarong seguradong halaga.
-Uya an halaga sa random na pagbuswang na puwede mong magamit: $1',
 'savedprefs' => 'Itinagama na an mga kabôtan mo.',
 'timezonelegend' => 'Pan-oras na sona:',
 'localtime' => 'Panlokal na oras:',

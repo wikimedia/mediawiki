@@ -1467,9 +1467,6 @@ Upamtite da njegovi popisi ovog vikija mogu biti zastareli.',
 'recentchangesdays-max' => '(najviše $1 {{PLURAL:$1|dan|dana|dana}})',
 'recentchangescount' => 'Broj izmena za prikaz:',
 'prefs-help-recentchangescount' => 'Podrazumeva skorašnje izmene, istorije stranica i dnevnike.',
-'prefs-help-watchlist-token' => 'Popunjavanjem ovog polja s tajnom šifrom napraviće RSS dovod vašeg spiska nadgledanja.
-Svako ko zna tu šifru biće u mogućnosti da vidi vaša nadgledanja, zato izaberite bezbednu.
-Na primer: $1',
 'savedprefs' => 'Vaša podešavanja su sačuvana.',
 'timezonelegend' => 'Vremenska zona:',
 'localtime' => 'Lokalno vreme:',

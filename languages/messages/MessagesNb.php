@@ -1473,9 +1473,6 @@ For å søke i alle, bruk prefikset ''all:'' (inkluderer diskusjonssider, maler,
 'recentchangesdays-max' => 'Maks $1 {{PLURAL:$1|dag|dager}}',
 'recentchangescount' => 'Antall redigeringer som skal vises som standard:',
 'prefs-help-recentchangescount' => 'Dette inkluderer nylige endringer, sidehistorikk og logger.',
-'prefs-help-watchlist-token' => 'Om du fyller ut dette feltet med et hemmelig tall, vil det lages en RSS-liste for overvåkningslisten din.
-Alle som vet det rette tallet vil være i stand til å lese overvåkningslisten din, så velg en sikker verdi.
-Her er et tilfeldig tall du kan bruke: $1',
 'savedprefs' => 'Innstillingene ble lagret.',
 'timezonelegend' => 'Tidssone:',
 'localtime' => 'Lokaltid:',

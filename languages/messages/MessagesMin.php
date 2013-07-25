@@ -1209,8 +1209,6 @@ Ingek indeks Google untuak {{SITENAME}} mungkin lah kadaluarsa.',
 'recentchangesdays-max' => 'Maksimum $1 {{PLURAL:$1|hari}}',
 'recentchangescount' => 'Jumlah suntiangan nan ditunjuakan:',
 'prefs-help-recentchangescount' => 'Iko untuak parubahan tabaru, riwayaik laman nan lalu, sarato log.',
-'prefs-help-watchlist-token' => 'Mangisi kotak ko jo kunci rasio (PIN) akan manghasilkan sindikasi RSS untuak daftar pantau Sanak. Sia juo nan tau jo kunci ko dapek mambaco daftar pantau Sanak, jadi hati-hatilah mamiliah nilainyo. 
-Barikuik ko nilai acak nan dapek Sanak gunoan: $1',
 'savedprefs' => 'Pangaturan lah tasimpan',
 'timezonelegend' => 'Zona wakatu:',
 'localtime' => 'Wakatu satampaik:',

@@ -1217,9 +1217,6 @@ Ní báyìí ná ẹ le ṣàwárí lọ́dọ̀ Google.
 'recentchangesdays-max' => '{{PLURAL:$1|Ọjọ́|Ọjọ́}} $1 púpọ̀jùlọ',
 'recentchangescount' => 'Iye àtúnṣe láti fihàn látìbẹ̀rẹ̀:',
 'prefs-help-recentchangescount' => 'Àwọn àtúnṣe tuntun, ìtàn ojúewé, àti àkọọ́lẹ̀ wà nínú èyí.',
-'prefs-help-watchlist-token' => 'Tí ẹ bá fílì fọ́ọ̀mù yìí pẹ̀lú kọ́kọ́rọ́ àmìọ̀rọ̀ àsírí yíò dá feed RSS fún ìmójútó yín.
-Ẹnikẹ́ni tó bá mọ kọ́kọ́rọ́ àmìọ̀rọ̀ náà nínú fọ́ọ̀mù yìí yíò le ka ìmójútó yín, nítoríẹ̀ ẹ mú nọ́mbà tó pamọ́.
-Nọ́mbà àrìnnàkò kan nìyí tí ẹ le lò: $1',
 'savedprefs' => 'Àwọn ìfẹ́ràn yín ti jẹ́mímúpapọ́.',
 'timezonelegend' => 'Àsìkò ilẹ̀àmùrè:',
 'localtime' => 'Àkókò ìbílẹ̀:',

@@ -1433,9 +1433,6 @@ Pane tähele, et Google'is talletatud {{GRAMMAR:genitive|{{SITENAME}}}} sisu võ
 'recentchangesdays-max' => 'Ülemmäär $1 {{PLURAL:$1|päev|päeva}}',
 'recentchangescount' => 'Mitut redaktsiooni vaikimisi näidata:',
 'prefs-help-recentchangescount' => 'See käib viimaste muudatuste, lehekülgede ajalugude ja logide kohta.',
-'prefs-help-watchlist-token' => 'Selle välja täitmine tekitab sinu jälgimisloendile RSS-toite.
-Igaüks, kes teab sellel väljal olevat võtit, saab lugeda sinu jälgimisloendit, seega vali turvaline väärtus.
-Siin on juhuslik väärtus, mida saad kasutada: $1',
 'savedprefs' => 'Sinu eelistused on salvestatud.',
 'timezonelegend' => 'Ajavöönd:',
 'localtime' => 'Kohalik aeg:',

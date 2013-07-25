@@ -1485,8 +1485,6 @@ Perlu diingat bahwa indeks Google untuk konten {{SITENAME}} mungkin belum mencak
 'recentchangesdays-max' => '(maksimum $1 {{PLURAL:$1|hari|hari}})',
 'recentchangescount' => 'Standar jumlah suntingan yang ditampilkan:',
 'prefs-help-recentchangescount' => 'Opsi ini berlaku untuk perubahan terbaru, versi terdahulu halaman, dan log.',
-'prefs-help-watchlist-token' => 'Mengisi kotak ini dengan kunci rahasia (PIN) akan menghasilkan sindikasi RSS untuk daftar pantauan Anda. Siapa pun yang mengetahui kunci ini dapat membaca daftar pantauan Anda, jadi pilihlah nilainya dengan hati-hati
-Berikut ini adalah nilai acak yang dapat Anda gunakan: $1',
 'savedprefs' => 'Preferensi Anda telah disimpan',
 'timezonelegend' => 'Zona waktu:',
 'localtime' => 'Waktu setempat:',

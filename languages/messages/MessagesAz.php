@@ -987,9 +987,6 @@ $1",
 'recentchangesdays-max' => 'Maksimum $1 {{PLURAL:$1|gün|gün}}',
 'recentchangescount' => 'Son dəyişikliklərdə başlıq sayı:',
 'prefs-help-recentchangescount' => 'Buraya yeni dəyişikliklər, səhifələrin və jurnalların tarixçəsi daxildir.',
-'prefs-help-watchlist-token' => 'Bu sahəni gizli parolla doldurmağınız sizin izləmə siyahınız üçün RSS yayım kanalı yaradacaqdır.
-Bu parolu bilən hər kəs izləmə siyahınızı oxuya bilər, bu səbəbdən etibarlı parol seçin.
-Təsadüfi yolla seçilmiş bu paroldan istifadə edə bilərsiniz: $1',
 'savedprefs' => 'Seçiminiz qeyd edildi.',
 'timezonelegend' => 'Vaxt zonası:',
 'localtime' => 'Yerli vaxt:',

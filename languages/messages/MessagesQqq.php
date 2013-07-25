@@ -1440,15 +1440,19 @@ See also:
 {{Identical|Cancel}}',
 
 # Special:ResetTokens
-'resettokens' => 'Title of [[Special:ResetTokens|special page]].',
+'resettokens' => '{{doc-special|ResetTokens}}
+{{Identical|Reset token}}',
 'resettokens-text' => 'Text on [[Special:ResetTokens]].',
 'resettokens-no-tokens' => 'Additional text on [[Special:ResetTokens]] if the user has no tokens.',
-'resettokens-legend' => 'Form legend on [[Special:ResetTokens]].',
-'resettokens-tokens' => 'Form label on [[Special:ResetTokens]].',
-'resettokens-token-label' => 'Label for each checkbox on [[Special:ResetTokens]].
-$1 is short information about the token (for example {{msg-mw|resettokens-watchlist-token}}), $2 is its current value.',
-'resettokens-watchlist-token' => 'Label for watchlist token checkbox on [[Special:ResetTokens]].',
-'resettokens-done' => 'Message shown on [[Special:ResetTokens]] after the tokens are reset.',
+'resettokens-legend' => 'Form legend on [[Special:ResetTokens]].
+{{Identical|Reset token}}',
+'resettokens-tokens' => 'Form label on [[Special:ResetTokens]].
+{{Identical|Token}}',
+'resettokens-token-label' => 'Label for each checkbox on [[Special:ResetTokens]]. Parameters:
+* $1 - short information about the token (for example {{msg-mw|resettokens-watchlist-token}})
+* $2 - its current value',
+'resettokens-watchlist-token' => 'Label for watchlist token checkbox on [[Special:ResetTokens]] (see {{msg-mw|prefs-watchlist-token}} at [[Special:Preferences#mw-prefsection-watchlist]]).',
+'resettokens-done' => 'Message shown on [[Special:ResetTokens]] after the tokens have been reset successfully.',
 'resettokens-resetbutton' => 'Form submit button on [[Special:ResetTokens]].',
 
 # Edit page toolbar
@@ -2599,7 +2603,7 @@ When changing this message, please also update {{msg-mw|vector-editwarning-warni
 'recentchangesdays-max' => 'Shown as hint in [[Special:Preferences]], tab "Recent changes"',
 'recentchangescount' => 'Used in [[Special:Preferences]], tab "Recent changes".',
 'prefs-help-recentchangescount' => 'Used in [[Special:Preferences]], tab "Recent changes".',
-'prefs-help-watchlist-token2' => 'Used in [[Special:Preferences]], tab Watchlist.',
+'prefs-help-watchlist-token2' => 'Used in [[Special:Preferences]], tab Watchlist. (Formerly in {{msg-mw|prefs-help-watchlist-token}}.)',
 'savedprefs' => 'This message appears after saving changes to your user preferences.',
 'timezonelegend' => '{{Identical|Time zone}}',
 'localtime' => 'Used as label in [[Special:Preferences#mw-prefsection-datetime|preferences]].',
@@ -2740,8 +2744,14 @@ Used in [[Special:Preferences]], tab "Recent changes". The display options refer
 
 Used in [[Special:Preferences]], tab "Search options". The display options refer to:
 * {{msg-mw|Vector-simplesearch-preference}}',
+'prefs-displaywatchlist' => '"Display" is a noun that specifies the kind of "options". So translate as "options about display", not as "display the options".
+
+Used in [[Special:Preferences]], tab "Watchlist". The display options refer to:
+* {{msg-mw|Prefs-watchlist-days}}
+* {{msg-mw|Prefs-watchlist-edits}}',
 'prefs-tokenwatchlist' => 'Section heading.
-Used in [[Special:Preferences]], tab "Watchlist".',
+Used in [[Special:Preferences]], tab "Watchlist".
+{{Identical|Token}}',
 'prefs-diffs' => 'Used in [[Special:Preferences]], tab "Misc".',
 
 # User preference: email validation using jQuery
@@ -4200,7 +4210,11 @@ $1 is a page title",
 'prefixindex' => '{{doc-special|PrefixIndex}}
 When the user limits the list to a certain namespace, {{msg-mw|allinnamespace}} is used instead.',
 'prefixindex-namespace' => 'The page title of [[Special:PrefixIndex]] limited to a specific namespace. Similar to {{msg-mw|allinnamespace}}. $1 is the name of the namespace',
-'prefixindex-strip' => 'Label for a checkbox. If the checkbox is checked, the prefix searched will be removed from the title displayed in the list. Used in [[Special:PrefixIndex]].',
+'prefixindex-strip' => 'Label for a checkbox. If the checkbox is checked, the prefix searched will be removed from the title displayed in the list. Used in [[Special:PrefixIndex]].
+
+See the following search results:
+* [{{canonicalurl:Special:PrefixIndex|prefix=Doc&namespace=10}} Special:PrefixIndex?prefix=Doc&namespace=10] (prefix NOT stripped)
+* [{{canonicalurl:Special:PrefixIndex|prefix=Doc&namespace=10&stripprefix=1}} Special:PrefixIndex?prefix=Doc&namespace=10&stripprefix=1] (prefix stripped)',
 'shortpages' => '{{doc-special|ShortPages}}',
 'longpages' => '{{doc-special|LongPages}}',
 'deadendpages' => '{{doc-special|DeadendPages}}',

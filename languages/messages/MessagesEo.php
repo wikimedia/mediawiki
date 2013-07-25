@@ -1464,9 +1464,6 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 'recentchangesdays-max' => '(maksimume $1 {{PLURAL:$1|tago|tagoj}})',
 'recentchangescount' => 'Nombro de redaktoj por montri defaŭlte:',
 'prefs-help-recentchangescount' => 'Ĉi tiu inkluzivas lastajn ŝanĝojn, paĝajn historiojn, kaj protokolojn.',
-'prefs-help-watchlist-token' => 'Plenigo de ĉi tiu kampo kun sekreta ŝlosilo generos RSS-fonton por via atentaro.
-Iu kiu konas la ŝlosilon en ĉi tiu kampo povos legi vian atentaron, do bonvolu elekti sekuran valoron.
-Jen hazarde generita valoro por via uzo: $1',
 'savedprefs' => 'Viaj preferoj estas konservitaj.',
 'timezonelegend' => 'Horzono:',
 'localtime' => 'Loka tempo:',

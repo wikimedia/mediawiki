@@ -1206,9 +1206,6 @@ Mèrk op dat hun indexe van {{SITENAME}} content e bietje gedatierd kint zien.',
 'recentchangesdays-max' => '(maximaal $1 {{PLURAL:$1|daag|daag}})',
 'recentchangescount' => 'Standerd aantal waer te gaeve bewèrkinge:',
 'prefs-help-recentchangescount' => "Dit gelt veur recente wieziginge, paginagesjiedenis en logbookpagina's.",
-'prefs-help-watchlist-token' => 'Door hie ne geheime sleutel in te vulle wurt nen RSS-feed veur dien volglies aangemaak.
-Ederein dae deze sleutel kint kin dien volglies laeze, dus kees ne veilige sleutel.
-Hie volg n willekäörig gegenereerde waerde die se kins gebroeke: $1',
 'savedprefs' => 'Dien veurkäöre zint opgesjlage.',
 'timezonelegend' => 'Tiedzone:',
 'localtime' => 'Plaatselike tied',

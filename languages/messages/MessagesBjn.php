@@ -1230,8 +1230,6 @@ Catatan nang dihaharnya matan isi {{SITENAME}} kawa-ai sudah kadaluarsa.',
 'recentchangesdays-max' => 'Paling lawas $1 {{PLURAL:$1|hari|hahari}}',
 'recentchangescount' => 'Rikinan babakan nang ditampaiakan default:',
 'prefs-help-recentchangescount' => 'Ngini tamasuk paubahan pahanyarnya, sajarah halam tungkaran, wan log-log.',
-'prefs-help-watchlist-token' => 'Maisi kutak ngini lawan kunci rahasia (PIN) akan mahasilakan sindikasi RSS hagan daptar pantauan Anda. Siapa gin nang tahu kunci ngini kawa mambaca daptar itihan Pian, jadi pilihi nilainya bahati-hati
-Barikut ngini adalah nilai acak nang kawa Pian puruk: $1',
 'savedprefs' => 'Kakatujuan Pian sudah ham disimpan.',
 'timezonelegend' => 'Waktu banua:',
 'localtime' => 'Waktu damintu:',

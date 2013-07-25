@@ -1432,9 +1432,6 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 'recentchangesdays-max' => 'Máximo: $1 {{PLURAL:$1|día|días}}',
 'recentchangescount' => 'Número de edicións a mostrar por defecto:',
 'prefs-help-recentchangescount' => 'Isto inclúe os cambios recentes, os historiais e mais os rexistros.',
-'prefs-help-watchlist-token' => 'Ao encher este campo cunha clave secreta xerarase unha fonte de novas RSS para a súa lista de vixilancia.
-Calquera que saiba esta clave poderá ler a súa lista de vixilancia, así que escolla un valor seguro.
-Velaquí un valor xerado ao chou que pode usar: $1',
 'savedprefs' => 'Gardáronse as súas preferencias.',
 'timezonelegend' => 'Zona horaria:',
 'localtime' => 'Hora local:',

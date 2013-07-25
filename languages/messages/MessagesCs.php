@@ -983,6 +983,19 @@ Dočasné heslo: $2',
 'changeemail-submit' => 'Změnit e-mail',
 'changeemail-cancel' => 'Storno',
 
+# Special:ResetTokens
+'resettokens' => 'Reinicializace klíčů',
+'resettokens-text' => 'Na této stránce můžete reinicializovat klíče, které umožňují přístup k jistým soukromým údajům spojeným s vaším účtem.
+
+{{GENDER:|Měl|Měla|Měli}} byste to provést v případě, že jste je omylem někomu {{GENDER:|prozradil|prozradila|prozradili}}, nebo byl váš účet narušen.',
+'resettokens-no-tokens' => 'Neexistují žádné klíče, které by bylo možno reinicializovat.',
+'resettokens-legend' => 'Reinicializace klíčů',
+'resettokens-tokens' => 'Klíče:',
+'resettokens-token-label' => '$1 (aktuální hodnota: $2)',
+'resettokens-watchlist-token' => 'Klíč k webovému kanálu sledovaných stránek',
+'resettokens-done' => 'Klíče reinicializovány',
+'resettokens-resetbutton' => 'Reinicializovat vybrané klíče',
+
 # Edit page toolbar
 'bold_sample' => 'Tučný text',
 'bold_tip' => 'Tučný text',
@@ -1508,9 +1521,8 @@ Pokud na začátek dotazu přidáte ''all:'', bude se hledat všude (včetně di
 'recentchangesdays-max' => 'Maximálně $1 {{PLURAL:$1|den|dny|dní}}',
 'recentchangescount' => 'Počet implicitně zobrazovaných záznamů:',
 'prefs-help-recentchangescount' => 'Týká se posledních změn, historie stránek a protokolovacích záznamů.',
-'prefs-help-watchlist-token' => 'Pokud do tohoto pole vyplníte tajný klíč, bude vytvořen RSS kanál vašich sledovaných stránek.
-Kdokoli, kdo bude tento klíč znát, pak bude moci váš seznam sledovaných stránek číst, takže dbejte na bezpečnost.
-Můžete použít tuto náhodně vygenerovanou hodnotu: $1',
+'prefs-help-watchlist-token2' => 'Toto je tajný klíč k webovému kanálu vašich sledovaných stránek. Kdokoli, kdo bude tento klíč znát, bude moci váš seznam sledovaných stránek číst, takže ho nešiřte.
+[[Special:ResetTokens|Kliknutím sem ho můžete reinicializovat.]]',
 'savedprefs' => 'Vaše nastavení bylo uloženo.',
 'timezonelegend' => 'Časové pásmo:',
 'localtime' => 'Místní čas:',
@@ -1580,6 +1592,7 @@ Vaše adresa v takovém případě není prozrazena.',
 'prefs-displayrc' => 'Možnosti zobrazení',
 'prefs-displaysearchoptions' => 'Možnosti zobrazení',
 'prefs-displaywatchlist' => 'Možnosti zobrazení',
+'prefs-tokenwatchlist' => 'Klíč',
 'prefs-diffs' => 'Porovnání verzí',
 
 # User preference: email validation using jQuery
@@ -2246,6 +2259,7 @@ Každý řádek obsahuje odkaz na první a druhé přesměrování a k tomu cíl
 'mostrevisions' => 'Stránky s nejvíce revizemi',
 'prefixindex' => 'Seznam stránek dle začátku názvu',
 'prefixindex-namespace' => 'Seznam stránek dle začátku názvu (jmenný prostor $1)',
+'prefixindex-strip' => 'Začátek názvu v seznamu odříznout',
 'shortpages' => 'Nejkratší stránky',
 'longpages' => 'Nejdelší stránky',
 'deadendpages' => 'Slepé stránky',

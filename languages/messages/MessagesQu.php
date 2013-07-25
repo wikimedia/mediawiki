@@ -1388,8 +1388,6 @@ Imaymanata [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} qulluy ha
 'recentchangesdays-max' => "(ama $1-manta aswan {{PLURAL:$1|p'unchaw|p'unchaw}} kachunchu)",
 'recentchangescount' => 'Rikuchina hukchasqakunap yupaynin, kikinmanta:',
 'prefs-help-recentchangescount' => "Kaypiqa ñaqha hukchasqakunam, p'anqap wiñay kawsayninkunam, hallch'akunapas.",
-'prefs-help-watchlist-token' => "Kay k'itichata pakasqa llawiwan hunt'aspaykiqa, watiqasqaykikunapaq RSS mikhuchinatam kamarinki.
-Pi kay k'itichapi llawiykita riqsiqpas watiqasqaykikunata ñawiriytam atinqa. Chayrayku takyaq chanita akllay. Kaypiqa kikinmanta kamarisqa akllanallayki chanitam rikunki: $1",
 'savedprefs' => "Allinkachinaykikunaqa hallch'asqañam.",
 'timezonelegend' => "Pacha t'urpi:",
 'localtime' => 'Tiyaylla pacha:',

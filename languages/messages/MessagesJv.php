@@ -1115,9 +1115,6 @@ Rinciané bisa ditemokaké nèng [{{fullurl:{{#Special:Log}}/delete|page={{FULLP
 'recentchangesdays-max' => '(maksimum $1 {{PLURAL:$1|dina|dina}})',
 'recentchangescount' => 'Cacahé suntingan sing ditampilaké:',
 'prefs-help-recentchangescount' => 'Iki klebu owah-owahan pungkasan, kaca sajarah, lan log.',
-'prefs-help-watchlist-token' => 'Ngisi kothak iki nganggo kunci wadi (PIN) bakal ngasilaké sindikasi RSS kanggo daftar pantauan panjenengan.
-Sapa waé sing meruhi kunci iki bisa maca daftar pantauan panjenengan, mula pilihen isi sing aman.
-Iki aji acak sing bisa panjenengan gunakaké: $1',
 'savedprefs' => 'Préferènsi Panjenengan wis disimpen',
 'timezonelegend' => 'Zona wektu:',
 'localtime' => 'Wektu saenggon:',

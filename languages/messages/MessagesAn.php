@@ -1138,9 +1138,6 @@ Asegure-se que iste cambio no trencará a continidat de l'historial d'a pachina.
 'recentchangesdays-max' => '(masimo $1 {{PLURAL:$1|día|días}})',
 'recentchangescount' => "Numero d'edicions a amostrar, por defecto:",
 'prefs-help-recentchangescount' => 'Inclui os zaguers cambeos, historials de pachina y rechistros.',
-'prefs-help-watchlist-token' => "Si plena iste campo con una clau secreta se chenerará n filo RSS t'a suya lista de seguimeinto.
-Qui conoixca ista clau podrá leyer a suya lista de seguimiento, asinas que esliya una clau segura.
-Contino se i amuestra una calu chenerata de traza aleatoria que puede fer servir si quiere: $1",
 'savedprefs' => "S'han alzato as suyas preferencias.",
 'timezonelegend' => 'Fuso horario:',
 'localtime' => 'Hora local:',

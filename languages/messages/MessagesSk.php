@@ -1427,8 +1427,6 @@ Podrobnosti nájdete v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}
 'recentchangesdays-max' => '(maximálne $1 {{PLURAL:$1|deň|dni|dní}})',
 'recentchangescount' => 'Štandardne zobrazovaný počet úprav:',
 'prefs-help-recentchangescount' => 'Toto sa týka posledných úprav, histórií stránok a záznamov.',
-'prefs-help-watchlist-token' => 'Ak vyplníte toto pole tajným kľúčom, bude sa tvoriť RSS kanál vášho zoznamu sledovaných. Ktokoľvek, kto pozná tajný kľúč v tomto poli bude môcť čítať váš zoznam sledovaných, preto dbajte na to, aby bol bezpečený.
-Tu je náhodne vytvorená hodnota, ktorú môžete použiť: $1',
 'savedprefs' => 'Vaše nastavenia boli uložené.',
 'timezonelegend' => 'Časové pásmo:',
 'localtime' => 'Miestny čas:',

@@ -465,6 +465,7 @@ Aapan [[Special:Preferences|{{SITENAME}} pasand]]  ke badle nai bhulna.',
 'yourname' => 'Username:',
 'userlogin-yourname' => 'Aapan username ke likho',
 'userlogin-yourname-ph' => 'Password',
+'createacct-another-username-ph' => 'Username ke likho',
 'yourpassword' => 'Password:',
 'userlogin-yourpassword' => 'Aapan password ke likho',
 'userlogin-yourpassword-ph' => 'Aapan password ke likho',
@@ -499,9 +500,11 @@ Aapan [[Special:Preferences|{{SITENAME}} pasand]]  ke badle nai bhulna.',
 'helplogin-url' => 'Help:Logging in',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Aap ke login khatir madat]]',
 'createacct-join' => 'Aapan jankari niche likho',
+'createacct-another-join' => 'Account ke baare me jaankari niche likho',
 'createacct-emailrequired' => 'Email address',
 'createacct-emailoptional' => 'Email address (jaruri nai hae)',
 'createacct-email-ph' => 'Aapan mail address ke likho',
+'createacct-another-email-ph' => 'Email address ke likho',
 'createaccountmail' => 'Ek temporary password ke kaam me laao aur iske niche dekhawa gais Email pe bhej do',
 'createacct-realname' => 'Aslii naam (jaruri nai hae)',
 'createaccountreason' => 'Kaaran:',
@@ -510,6 +513,7 @@ Aapan [[Special:Preferences|{{SITENAME}} pasand]]  ke badle nai bhulna.',
 'createacct-captcha' => 'Security check',
 'createacct-imgcaptcha-ph' => 'Niche dekhae waala text ke likho',
 'createacct-submit' => 'Aapan account banao',
+'createacct-another-submit' => 'Duusra account banao',
 'createacct-benefit-heading' => 'Aap ke rakam log {{SITENAME}} ke banain hae.',
 'createacct-benefit-body1' => '{{PLURAL:$1|badlao}}',
 'createacct-benefit-body2' => '{{PLURAL:$1|panna}}',
@@ -1081,6 +1085,7 @@ Ii baat ke dhyan me rakhna ki navigation jorr ke kaam me laae se ii column reset
 'compareselectedversions' => 'Chuna gae version ke compare karo',
 'showhideselectedversions' => 'Chuna gae versions ke dekhao/lukao',
 'editundo' => 'Pahile jaise kar do',
+'diff-empty' => '(ek rakam)',
 'diff-multi' => '({{PLURAL:$1|Ek biich waala badlao|$1 biich waala badlao}} jiske {{PLURAL:$2|sadasya|$2 sadasya}} karis hae, ke  nai dekhawa jae hai.)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Ek biich waala badlao|$1 biich waala badlao}} jiske {{PLURAL:$2|sadasya|$2 sadasya}} se jaada log karin hae, ke  nai dekhawa jae hai.)',
 'difference-missing-revision' => 'Ii badlao ($1) {{PLURAL:$2|was|were}} pe {{PLURAL:$2|One revision|$2 revisions}} nai pawa gais hae
@@ -1194,9 +1199,6 @@ Yaad rakhna ki uu log ke {{SITENAME}} ke index saait purana hoi.',
 'recentchangesdays-max' => '(sab se jaada $1 {{PLURAL:$1|din|din}})',
 'recentchangescount' => 'Default se ketnaa badlao ke dekhae ke chaahi:',
 'prefs-help-recentchangescount' => 'Isme hai haali ke badlao, panna ke itihaas aur loga.',
-'prefs-help-watchlist-token' => 'Ii jaankari me gupt sabd bhare se aap ke dhyan suchi ke khatir ek RSS feed ban jaai.
-Koi bhi jan, jon ki ii gupt sabd ke jaanat hoi, aap ke dhyan suchi ke parre saki, tab aap achchha se gupt sabd ke sochna.
-Hian pe ek, apne se banaa sabd hae, jiske aap kaam me laae saktaa hae: $1',
 'savedprefs' => 'Aap ke pasand ke save kar lewa gais hai.',
 'timezonelegend' => 'Time ke zone:',
 'localtime' => 'Sthaniye samay:',
@@ -1873,6 +1875,8 @@ Ek panna ke disambiguation panna maana jaae hae jab ki ii ek template ke kaam me
 'pageswithprop-text' => 'Ii panaa, uu panna ke list kare hae jon ki koi khaas panna ke property ke use kare hae.',
 'pageswithprop-prop' => 'Property ke naam:',
 'pageswithprop-submit' => 'Jaao',
+'pageswithprop-prophidden-long' => 'lamba text property value hidden ($1 kilobytes)',
+'pageswithprop-prophidden-binary' => 'binary property ke hidden value ($1 kilobytes)',
 
 'doubleredirects' => 'Dugna redirects',
 'doubleredirectstext' => 'Ii panna uu panna ke suchi de hai jon ki duusra redirect panna pe redirect kare hai.
@@ -2236,7 +2240,7 @@ aur koi ii panna ke badal nai to pahile jaise kar diis hai.
 Ii panna ke pichla badla [[User:$3|$3]] ([[User talk:$3|Talk]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) se rahaa',
 'editcomment' => "Badlao ke summary rahaa: \"''\$1''\".",
 'revertpage' => '[[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) ke badlao ke [[User:$1|$1]] ke aakhri badlao ke jaise kar dewa gais hai.',
-'revertpage-nouser' => '(sadasya ke namm ke hatae dewa gais hae) se karaa gais badlao ke  [[User:$1|$1]] ke badlao ke rakam kar dewa gais hae.',
+'revertpage-nouser' => 'badlao ke  [[User:$1|$1]] ke badlao ke rakam kar dewa gais hae.',
 'rollback-success' => '$1 ke badlao ke pahile jaise kar dewa gais hai;
 badal ke $2 ke aakhri version kar dewa gais hai.',
 
@@ -3466,13 +3470,79 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 # Email address confirmation
 'confirmemail' => 'E-mail address ke pakka karo',
 'confirmemail_noemail' => 'Aap ke lage ek valid email address [[Special:Preferences|user preferences]] me set nai hae.',
+'confirmemail_text' => '{{SITENAME}} ii maange hae ki aap email ke features ke kaam me laae se pahile aapan email ke validate karo. 
+Aapan address me confirmation email bheje ke khatir, niche ke button ke activate karo.
+Ii email me ek link rahi jisme ek code hae;
+ii email ke aapan browser me upload kar ke ii confirm karo ki aap ke email thiik hae.',
+'confirmemail_pending' => 'Confirmation code ke aap ke lage email kar dewa gais hae;
+agar aap abhi haali aapan account banaya hae, tab aap ke thorraa deri wait kare ke chaahi, nawaa code ke maange se pahile.',
+'confirmemail_send' => 'Confirmation code ke mail karo',
+'confirmemail_sent' => 'Confirmation email ke bhej dewa gais hae.',
+'confirmemail_oncreate' => 'Ek confirmation code ke aap ke email email address pe bhej dewa gais hae.
+Log in kare ke khatir, ii code ke jaruri nai hae, lekin ii wiki me koi email-based features ke enable kare ke khatir aap ke ii code ke de ke parri.',
+'confirmemail_sendfailed' => '{{SITENAME}} confirmation mail ke nai bheje sakis hae.
+Aap aapan email address me dekho ki koi invalid characters to nai hae.
+
+Mailer returned: $1',
+'confirmemail_invalid' => 'Confirmation code valid nai hae.
+Ii code saait expire hoe gais hae.',
+'confirmemail_needlogin' => 'Aap ke email confirm kare ke khatir $1 kare ke chaahi.',
+'confirmemail_success' => 'Aap ke email address ke confirm kar dewa gais hae.
+Aap [[Special:UserLogin|log in]] kar ke ii wiki ke majaa le saktaa hae.',
+'confirmemail_loggedin' => 'Aap ke email address ke ap confirm kar dewa gais hae.',
+'confirmemail_error' => 'Aap ke confirmation me kuchh garrbarri hoe gais hae.',
+'confirmemail_body' => 'Koi, hoe sake aap IP address $1 se, ek account "$2" with this email address on {{SITENAME}} ke register karis hae.
+
+Ii confirm kare ke khatir ki asliyat me ii acount aap ke hae, {{SITENAME}} me email features ke activate karo, aur aapan browser me ii link ke kholo:
+
+$3
+
+Agar aapa ii account ke nai register karaa hae, ii link ke follow karo aur email address confirmation ke cancel karo:
+
+$5
+
+Ii confirmation code $4 ke expire hoi.',
+'confirmemail_body_changed' => 'Koi, hoe sake aap IP address $1 se, ek account "$2" with this email address on {{SITENAME}} ke badlis hae.
+
+Ii confirm kare ke khatir ki asliyat me ii acount aap ke hae, {{SITENAME}} me email features ke activate karo, aur aapan browser me ii link ke kholo:
+
+$3
+
+Agar aapa ii account ke nai register karaa hae, ii link ke follow karo aur email address confirmation ke cancel karo:
+
+$5
+
+Ii confirmation code $4 ke expire hoi.',
+'confirmemail_body_set' => 'Koi, hoe sake aap IP address $1 se, ek account "$2" with this email address on {{SITENAME}} ke set karis hae.
+
+Ii confirm kare ke khatir ki asliyat me ii acount aap ke hae, {{SITENAME}} me email features ke activate karo, aur aapan browser me ii link ke kholo:
+
+$3
+
+Agar aapa ii account ke nai register karaa hae, ii link ke follow karo aur email address confirmation ke cancel karo:
+
+$5
+
+Ii confirmation code $4 ke expire hoi.',
+'invalidateemail' => 'Email confirmation ke cancel karo',
+
+# Scary transclusion
+'scarytranscludedisabled' => '[Interwiki transcluding ke disable kar dewa gais hae]',
+'scarytranscludefailed' => '[Template fetch $1 ke khatir fail hoe gais hae]',
+'scarytranscludefailed-httpstatus' => '[$1: HTTP $2 ke khatir template fetch fail hoe gais hae]',
+'scarytranscludetoolong' => '[URL bahut lambaa hae]',
 
 # Delete conflict
+'deletedwhileediting' => "'''Chetauni:''' Aap ke editing suruu kare ke baad ii panna ke delete kar dewa gais hae!",
 'recreate' => 'Fir se banao',
 
 # action=purge
 'confirm_purge_button' => 'Thik hae',
 'confirm-purge-top' => 'Ii panna ke cache ke mitao',
+
+# action=watch/unwatch
+'confirm-watch-button' => 'Thiik hae',
+'confirm-unwatch-button' => 'Thiik hae',
 
 # Multipage image navigation
 'imgmultipageprev' => '← pahile waala panna',
@@ -3481,6 +3551,8 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'imgmultigoto' => '$1 panna pe jaao',
 
 # Table pager
+'ascending_abbrev' => 'chhota se barraa',
+'descending_abbrev' => 'barraa se chhota',
 'table_pager_next' => 'Aage waala panna',
 'table_pager_prev' => 'Pahile waala panna',
 'table_pager_first' => 'Pahila panna',
@@ -3488,9 +3560,21 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'table_pager_limit' => 'Ek panna pe $1 chij dekhao',
 'table_pager_limit_label' => 'Ek panna me etna chij rahe hae:',
 'table_pager_limit_submit' => 'Jaao',
+'table_pager_empty' => 'koi result nai',
 
 # Auto-summaries
 'autosumm-blank' => 'Panna ke mitae dia hae',
+'autosumm-replace' => 'Contwnt ke "$1" se replace kar dewa gais hae',
+'autoredircomment' => 'Panna ke [[$1]] pe redirect kar dewa gais hae',
+'autosumm-new' => 'Panna jisme "$1" hae ke banae dewa gais hae.',
+
+# Live preview
+'livepreview-loading' => 'load karaa jaae hae...',
+'livepreview-ready' => 'Load karaa jaae hae... Ready!',
+'livepreview-failed' => 'Live preview fail hoe gais hae!
+Normal preview try karo.',
+'livepreview-error' => 'Connect nai kare sakaa hae: $1 "$2".
+Normal preview ke try karo.',
 
 # Watchlist editor
 'watchlistedit-noitems' => 'Aap ke dhyan suchi me koi naam nai hae',

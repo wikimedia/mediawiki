@@ -1479,9 +1479,6 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 'recentchangesdays-max' => '(maximalt $1 {{PLURAL:$1|dygn|dygn}})',
 'recentchangescount' => 'Antal redigeringar som visas som standard:',
 'prefs-help-recentchangescount' => 'Detta inkluderar senaste ändringarna, sidhistorik och loggar.',
-'prefs-help-watchlist-token' => 'Om du fyller i detta fält med en hemlig nyckel så skapas ett RSS-flöde för din bevakningslista.
-Alla som kan nyckeln kan också läsa din bevakningslista, så välj ett säkert värde.
-Här är ett slumpmässigt genererat värde som du kan använda: $1',
 'savedprefs' => 'Dina inställningar har sparats',
 'timezonelegend' => 'Tidszon:',
 'localtime' => 'Lokal tid:',

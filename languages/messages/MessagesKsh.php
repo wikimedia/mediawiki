@@ -1472,9 +1472,6 @@ dat dänne ehr Daate topaktoell sin,
 'recentchangesdays-max' => '(Nit mieh wie {{PLURAL:$1|eine Daach|$1 Dääsh|keine Daach}})',
 'recentchangescount' => 'Aanzahl Änderunge en de Leß, als Shtandad:',
 'prefs-help-recentchangescount' => 'Dat ömfaß de „{{int:recentchanges}}“, de Versione uß de Fojangeheit, un de Logbööcher.',
-'prefs-help-watchlist-token' => 'Wann dat Feld met enem jeheime Schlößel ußjeföllt es, määt et Wiki ene <i lang="en">RSS</i>-Enspeisung en et Näz för Ding Oppaßleß op.
-Wä dä Schlößel weiß, kann ding Oppaßleß lesse. Donn alsu ene seschere un jeheime Wäät doför nämme.
-Ene zohfällesch ußjewörfelte Schlößel, dää De nämme künnß, wöhr: <code>$1</code>',
 'savedprefs' => 'Ding Enstellunge sin jetz jesechert.',
 'timezonelegend' => 'Ziggzohn:',
 'localtime' => 'De Zigg op Dingem Kompjuter:',

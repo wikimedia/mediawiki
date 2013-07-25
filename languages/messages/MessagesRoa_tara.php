@@ -668,6 +668,19 @@ Passuord temboranèe: $2',
 'changeemail-submit' => 'Cange e-mail',
 'changeemail-cancel' => 'Annulle',
 
+# Special:ResetTokens
+'resettokens' => 'Azzere le gettone',
+'resettokens-text' => "Tu puè azzerà le gettone le quale te donne l'accesse a certe date private collegate cu 'u cunde tune aqquà.
+
+Tu avissa farle ce pe sbaglie l'è condivise cu otre o ce 'u cunde tune ha state combromesse.",
+'resettokens-no-tokens' => 'Non ge stonne gettone de azzerà.',
+'resettokens-legend' => 'Azzere le gettone',
+'resettokens-tokens' => 'Gettone:',
+'resettokens-token-label' => '$1 (valore de mò: $2)',
+'resettokens-watchlist-token' => "Gettone de le feed de le pàggene condrollate cu 'u web",
+'resettokens-done' => 'Gettone azzerate.',
+'resettokens-resetbutton' => 'Azzere le gettone scacchiate',
+
 # Edit page toolbar
 'bold_sample' => 'Teste grascette',
 'bold_tip' => 'Teste grascette',
@@ -1219,9 +1232,9 @@ Però fa attenzione purcè l'indice lore sus a {{SITENAME}} ponne condenè pàgg
 'recentchangesdays-max' => '(massime $1 {{PLURAL:$1|sciurne|sciurne}})',
 'recentchangescount' => 'Numere de cangiaminde da fà vedè pe default:',
 'prefs-help-recentchangescount' => "Quiste 'nglude le urteme cangiaminde, le storie de le pàggene e le archivije.",
-'prefs-help-watchlist-token' => "Anghienne stu cambe cu le chiave segrete avène generate 'nu RSS feed pa liste de le pàggene condrollate.<br />
-Ogneune ca canosce 'a chiave de stu cambe se pò leggere 'a liste de le pàggene condrollate tue, accussì scacchie 'nu valore secure.<br />
-Aqquà ste 'nu valore generate a uecchije ca tu puè ausà: $1",
+'prefs-help-watchlist-token2' => "Queste jè 'a chiave segrete a le feed d'u web de l'elenghe de le pàggene condrollate tune.
+Cengate vò ccu canosce ce pò leggere l'elenghe de le pàggene condrollate tune, accussì non g'ù pò condividere.
+[[Special:ResetTokens|Cazze aqquà ce tìne abbesogne de azzerarle]].",
 'savedprefs' => 'Le preferenze tue onne state aggiornete.',
 'timezonelegend' => "Orarie d'a zone:",
 'localtime' => 'Orarie lochele:',
@@ -1295,6 +1308,7 @@ Ce tu 'u mitte, a fatje ca è fatte t'avène ricanusciute.",
 'prefs-displayrc' => "Fà vedè l'opzione",
 'prefs-displaysearchoptions' => "Fà vedè l'opzione",
 'prefs-displaywatchlist' => "Fà vedè l'opzione",
+'prefs-tokenwatchlist' => 'Gettone',
 'prefs-diffs' => 'Diff',
 
 # User preference: email validation using jQuery
@@ -1984,6 +1998,7 @@ Mò s'avène redirette a [[$2]].",
 'mostrevisions' => 'Pàggene cchiù cangete',
 'prefixindex' => "Tutte le pàggene cu 'u prefisse",
 'prefixindex-namespace' => "Tutte le pàggene cu 'u prefisse ($1 namespace)",
+'prefixindex-strip' => "Strisce d'u prefisse jndr'à l'elenghe",
 'shortpages' => 'Pàggene corte',
 'longpages' => 'Pàggene longhe',
 'deadendpages' => 'Pàggene senza collegamende',

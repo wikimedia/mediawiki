@@ -1346,9 +1346,6 @@ Cuba berikan awalan ''all:'' untuk mencari semua kandungan (termasuk laman perbi
 'recentchangesdays-max' => '(had $1 hari)',
 'recentchangescount' => 'Bilangan suntingan yang dipaparkan mengikut tetapan asali:',
 'prefs-help-recentchangescount' => 'Ini termasuklah perubahan terkini, sejarah laman dan log.',
-'prefs-help-watchlist-token' => 'Mengisi medan ini dengan kunci rahsia akan menghasilkan suapan RSS untuk senarai pantau anda.
-Sesiapa yang mengetahui kunci dalam medan ini akan dapat membaca senarai pantau anda, jadi pilihlah nilai selamat.
-Di sini ada nilai yang dihasilkan secara rawak yang boleh anda guna: $1',
 'savedprefs' => 'Keutamaan anda disimpan.',
 'timezonelegend' => 'Zon waktu:',
 'localtime' => 'Waktu tempatan:',
