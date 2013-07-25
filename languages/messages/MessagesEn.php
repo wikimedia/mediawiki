@@ -1137,7 +1137,7 @@ Do not forget to change your [[Special:Preferences|{{SITENAME}} preferences]].',
 'helplogin-url'                   => 'Help:Logging in',
 'userlogin-helplink'              => '[[{{MediaWiki:helplogin-url}}|Help with logging in]]',
 'createacct-join'                 => 'Enter your information below.',
-'createacct-another-join'         => 'Enter the new account\'s information below.',
+'createacct-another-join'         => "Enter the new account's information below.",
 'createacct-emailrequired'        => 'Email address',
 'createacct-emailoptional'        => 'Email address (optional)',
 'createacct-email-ph'             => 'Enter your email address',
@@ -1606,11 +1606,11 @@ These arguments have been omitted.",
 'converter-manual-rule-error'             => 'Error detected in manual language conversion rule',
 
 # "Undo" feature
-'undo-success' => 'The edit can be undone.
+'undo-success'                 => 'The edit can be undone.
 Please check the comparison below to verify that this is what you want to do, and then save the changes below to finish undoing the edit.',
-'undo-failure' => 'The edit could not be undone due to conflicting intermediate edits.',
-'undo-norev'   => 'The edit could not be undone because it does not exist or was deleted.',
-'undo-summary' => 'Undo revision $1 by [[Special:Contributions/$2|$2]] ([[User talk:$2|talk]])',
+'undo-failure'                 => 'The edit could not be undone due to conflicting intermediate edits.',
+'undo-norev'                   => 'The edit could not be undone because it does not exist or was deleted.',
+'undo-summary'                 => 'Undo revision $1 by [[Special:Contributions/$2|$2]] ([[User talk:$2|talk]])',
 'undo-summary-username-hidden' => 'Undo revision $1 by a hidden user',
 
 # Account creation failure
@@ -1934,9 +1934,9 @@ Note that their indexes of {{SITENAME}} content may be out of date.',
 'recentchangesdays-max'         => 'Maximum $1 {{PLURAL:$1|day|days}}',
 'recentchangescount'            => 'Number of edits to show by default:',
 'prefs-help-recentchangescount' => 'This includes recent changes, page histories, and logs.',
-'prefs-help-watchlist-token2'   => "This is the secret key to the web feed of your watchlist.
+'prefs-help-watchlist-token2'   => 'This is the secret key to the web feed of your watchlist.
 Anyone who knows it will be able to read your watchlist, so do not share it.
-[[Special:ResetTokens|Click here if you need to reset it]].",
+[[Special:ResetTokens|Click here if you need to reset it]].',
 'savedprefs'                    => 'Your preferences have been saved.',
 'timezonelegend'                => 'Time zone:',
 'localtime'                     => 'Local time:',
@@ -2184,8 +2184,8 @@ Your email address is not revealed when other users contact you.',
 'action-userrights-interwiki' => 'edit user rights of users on other wikis',
 'action-siteadmin'            => 'lock or unlock the database',
 'action-sendemail'            => 'send emails',
-'action-viewmywatchlist'      => 'view your watchlist',
 'action-editmywatchlist'      => 'edit your watchlist',
+'action-viewmywatchlist'      => 'view your watchlist',
 'action-viewmyprivateinfo'    => 'view your private information',
 'action-editmyprivateinfo'    => 'edit your private information',
 
@@ -2232,14 +2232,14 @@ Your email address is not revealed when other users contact you.',
 'rc-old-title'                      => 'originally created as "$1"',
 
 # Recent changes linked
-'recentchangeslinked'          => 'Related changes',
-'recentchangeslinked-feed'     => 'Related changes',
-'recentchangeslinked-toolbox'  => 'Related changes',
-'recentchangeslinked-title'    => 'Changes related to "$1"',
-'recentchangeslinked-summary'  => "This is a list of changes made recently to pages linked from a specified page (or to members of a specified category).
+'recentchangeslinked'         => 'Related changes',
+'recentchangeslinked-feed'    => 'Related changes',
+'recentchangeslinked-toolbox' => 'Related changes',
+'recentchangeslinked-title'   => 'Changes related to "$1"',
+'recentchangeslinked-summary' => "This is a list of changes made recently to pages linked from a specified page (or to members of a specified category).
 Pages on [[Special:Watchlist|your watchlist]] are '''bold'''.",
-'recentchangeslinked-page'     => 'Page name:',
-'recentchangeslinked-to'       => 'Show changes to pages linked to the given page instead',
+'recentchangeslinked-page'    => 'Page name:',
+'recentchangeslinked-to'      => 'Show changes to pages linked to the given page instead',
 
 # Upload
 'upload'                      => 'Upload file',
@@ -2745,8 +2745,8 @@ It now redirects to [[$2]].',
 'mostrevisions-summary'           => '', # do not translate or duplicate this message to other languages
 'prefixindex'                     => 'All pages with prefix',
 'prefixindex-namespace'           => 'All pages with prefix ($1 namespace)',
-'prefixindex-strip'               => 'Strip prefix in list',
 'prefixindex-summary'             => '', # do not translate or duplicate this message to other languages
+'prefixindex-strip'               => 'Strip prefix in list',
 'shortpages'                      => 'Short pages',
 'shortpages-summary'              => '', # do not translate or duplicate this message to other languages
 'longpages'                       => 'Long pages',

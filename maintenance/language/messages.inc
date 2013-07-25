@@ -3980,6 +3980,7 @@ future releases. Also note that since each list value is wrapped in a unique
 	'resetpass'           => 'Change password dialog',
 	'passwordreset'       => 'Special:PasswordReset',
 	'changeemail'         => 'Special:ChangeEmail',
+	'resettokens'         => 'Special:ResetTokens',
 	'toolbar'             => 'Edit page toolbar',
 	'edit'                => 'Edit pages',
 	'parserwarnings'      => 'Parser/template warnings',
