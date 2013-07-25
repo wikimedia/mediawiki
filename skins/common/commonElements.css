@@ -178,9 +178,9 @@ code {
 }
 pre, .mw-code {
 	padding: 1em;
-	border: 1px dashed #2f6fab;
+	border: 1px solid #ebebeb;
+	background-color: #f7f7f7;
 	color: black;
-	background-color: #f9f9f9;
 }
 
 /* Tables */
