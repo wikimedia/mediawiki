@@ -397,30 +397,30 @@ class Preferences {
 		## Email stuff
 
 		if ( $wgEnableEmail ) {
-			$helpMessages[] = $wgEmailConfirmToEdit
-					? 'prefs-help-email-required'
-					: 'prefs-help-email';
-
-			if ( $wgEnableUserEmail ) {
-				// additional messages when users can send email to each other
-				$helpMessages[] = 'prefs-help-email-others';
-			}
-
-			$link = Linker::link(
-				SpecialPage::getTitleFor( 'ChangeEmail' ),
-				$context->msg( $user->getEmail() ? 'prefs-changeemail' : 'prefs-setemail' )->escaped(),
-				array(),
-				array( 'returnto' => SpecialPage::getTitleFor( 'Preferences' )->getPrefixedText() ) );
-
-			$emailAddress = $user->getEmail() ? htmlspecialchars( $user->getEmail() ) : '';
-			if ( $canEditPrivateInfo && $wgAuth->allowPropChange( 'emailaddress' ) ) {
-				$emailAddress .= $emailAddress == '' ? $link : (
-					$context->msg( 'word-separator' )->plain()
-					. $context->msg( 'parentheses' )->rawParams( $link )->plain()
-				);
-			}
-
 			if ( $canViewPrivateInfo ) {
+				$helpMessages[] = $wgEmailConfirmToEdit
+						? 'prefs-help-email-required'
+						: 'prefs-help-email';
+
+				if ( $wgEnableUserEmail ) {
+					// additional messages when users can send email to each other
+					$helpMessages[] = 'prefs-help-email-others';
+				}
+
+				$link = Linker::link(
+					SpecialPage::getTitleFor( 'ChangeEmail' ),
+					$context->msg( $user->getEmail() ? 'prefs-changeemail' : 'prefs-setemail' )->escaped(),
+					array(),
+					array( 'returnto' => SpecialPage::getTitleFor( 'Preferences' )->getPrefixedText() ) );
+
+				$emailAddress = $user->getEmail() ? htmlspecialchars( $user->getEmail() ) : '';
+				if ( $wgAuth->allowPropChange( 'emailaddress' ) ) {
+					$emailAddress .= $emailAddress == '' ? $link : (
+						$context->msg( 'word-separator' )->plain()
+						. $context->msg( 'parentheses' )->rawParams( $link )->plain()
+					);
+				}
+
 				$defaultPreferences['emailaddress'] = array(
 					'type' => 'info',
 					'raw' => true,
