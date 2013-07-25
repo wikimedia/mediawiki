@@ -68,6 +68,15 @@
 		},
 
 		/**
+		 * Gets the current user's id
+		 *
+		 * @return {number} current user's id, or 0 if they are anonymous
+		 */
+		getId: function () {
+			return mw.config.get( 'wgUserId' );
+		},
+
+		/**
 		 * Gets the current user's name.
 		 *
 		 * @return {string|null} User name string or null if users is anonymous
