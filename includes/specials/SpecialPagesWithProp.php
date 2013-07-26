@@ -54,6 +54,7 @@ class SpecialPagesWithProp extends QueryPage {
 			__METHOD__,
 			array( 'DISTINCT', 'ORDER BY' => 'pp_propname' )
 		);
+		$propnames = array();
 		foreach ( $res as $row ) {
 			$propnames[$row->pp_propname] = $row->pp_propname;
 		}
