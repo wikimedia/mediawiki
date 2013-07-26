@@ -320,11 +320,34 @@ class ApiEditPage extends ApiBase {
 
 		$ep->setContextTitle( $titleObj );
 		$ep->importFormData( $req );
+		$content = $params['text'];
+
+		// The following is needed to give the hook the full content of the
+		// new revision rather than just the current section. (Bug 52077)
+		if ( !is_null( $params['section'] ) ) {
+
+			$sectionTitle = '';
+			// If sectiontitle is set, use it, otherwise use the summary as the section title (for
+			// backwards compatibility with old forms/bots).
+			if ( $this->sectiontitle !== '' ) {
+				$sectionTitle = $ep->sectiontitle;
+			} else {
+				$sectionTitle = $ep->summary;
+			}
+
+			$contentObj = ContentHandler::makeContent( $params['text'], $titleObj,
+				$contentHandler->getModelID(), $contentFormat );
+
+			if ( $contentHandler->supportsSections() ) {
+				$content = $articleObject->replaceSectionContent( $params['section'], $contentObj, $sectionTitle );
+				$content = $content->getNativeData();
+			}
+		}
 
 		// Run hooks
 		// Handle APIEditBeforeSave parameters
 		$r = array();
-		if ( !wfRunHooks( 'APIEditBeforeSave', array( $ep, $ep->textbox1, &$r ) ) ) {
+		if ( !wfRunHooks( 'APIEditBeforeSave', array( $ep, $content, &$r ) ) ) {
 			if ( count( $r ) ) {
 				$r['result'] = 'Failure';
 				$apiResult->addValue( null, $this->getModuleName(), $r );
