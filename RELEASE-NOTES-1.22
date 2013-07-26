@@ -227,6 +227,8 @@ production.
   the function apache_request_headers() function is not available.
 * (bug 33399) LivePreview: Re-run wikipage content handlers
   (jquery.makeCollapsible, jquery.tablesorter) after preview content is loaded.
+* (bug 51891) Fixed PHP notice on Special:PagesWithProp when no properties
+  are defined.
 
 === API changes in 1.22 ===
 * (bug 25553) The JSON output formatter now leaves forward slashes unescaped
