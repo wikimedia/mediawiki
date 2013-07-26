@@ -229,6 +229,7 @@ production.
   (jquery.makeCollapsible, jquery.tablesorter) after preview content is loaded.
 * (bug 51891) Fixed PHP notice on Special:PagesWithProp when no properties
   are defined.
+* (bug 52006) Corrected documentation of $wgTranscludeCacheExpiry.
 
 === API changes in 1.22 ===
 * (bug 25553) The JSON output formatter now leaves forward slashes unescaped
