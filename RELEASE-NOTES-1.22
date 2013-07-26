@@ -230,6 +230,8 @@ production.
 * (bug 51891) Fixed PHP notice on Special:PagesWithProp when no properties
   are defined.
 * (bug 52006) Corrected documentation of $wgTranscludeCacheExpiry.
+* (bug 52077) The APIEditBeforeSave hook is giving the content of the whole
+  revision as second argument now, rather than just the current section.
 
 === API changes in 1.22 ===
 * (bug 25553) The JSON output formatter now leaves forward slashes unescaped
