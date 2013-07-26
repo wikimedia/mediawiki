@@ -719,10 +719,15 @@ return array(
 	'mediawiki.action.edit' => array(
 		'scripts' => 'resources/mediawiki.action/mediawiki.action.edit.js',
 		'dependencies' => array(
+			'mediawiki.action.edit.styles',
 			'mediawiki.legacy.wikibits',
 			'jquery.textSelection',
 			'jquery.byteLimit',
 		),
+		'position' => 'top',
+	),
+	'mediawiki.action.edit.styles' => array(
+		'styles' => 'resources/mediawiki.action/mediawiki.action.edit.styles.css',
 		'position' => 'top',
 	),
 	'mediawiki.action.edit.collapsibleFooter' => array(
