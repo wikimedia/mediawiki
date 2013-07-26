@@ -93,7 +93,7 @@ class RawAction extends FormlessAction {
 		$response->header( 'Content-type: ' . $contentType . '; charset=UTF-8' );
 		# Output may contain user-specific data;
 		# vary generated content for open sessions on private wikis
-		$privateCache = !User::groupHasPermission( '*', 'read' ) && ( $smaxage == 0 || session_id() != '' );
+		$privateCache = !User::isEveryoneAllowed( 'read' ) && ( $smaxage == 0 || session_id() != '' );
 		# allow the client to cache this for 24 hours
 		$mode = $privateCache ? 'private' : 'public';
 		$response->header( 'Cache-Control: ' . $mode . ', s-maxage=' . $smaxage . ', max-age=' . $maxage );
