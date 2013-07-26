@@ -7273,7 +7273,8 @@ Abbreviation for "days". $1 is the number of days.
 See also {{msg-mw|days}}',
 'seconds' => 'Full word for "seconds". $1 is the number of seconds.
 
-See also {{msg-mw|seconds-abbrev}}, {{msg-mw|seconds-ago}}.',
+See also {{msg-mw|seconds-abbrev}}, {{msg-mw|seconds-ago}}.
+{{Identical|Second}}',
 'minutes' => 'Full word for "minutes". $1 is the number of minutes.
 
 See also {{msg-mw|minutes-abbrev}}, {{msg-mw|minutes-ago}}.
@@ -7295,7 +7296,8 @@ See also {{msg-mw|Days-abbrev}}
 Parameters:
 * $1 - the number of years',
 'ago' => 'Phrase for indicating how long ago something happened. Parameters:
-* $1 - some kind of timestamp',
+* $1 - some kind of timestamp
+{{Identical|$1 ago}}',
 'just-now' => 'Phrase for indicating something happened just now.',
 
 # Human-readable timestamps
@@ -9170,7 +9172,8 @@ Parameters:
 'api-error-verification-error' => 'The word "extension" refers to the part behind the last dot in a file name, that by convention gives a hint about the kind of data format which a files contents are in.',
 
 # Durations
-'duration-seconds' => '{{Related|Duration}}',
+'duration-seconds' => '{{Related|Duration}}
+{{Identical|Second}}',
 'duration-minutes' => '{{Related|Duration}}
 {{Identical|Minute}}',
 'duration-hours' => '{{Related|Duration}}',

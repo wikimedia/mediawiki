@@ -835,6 +835,11 @@ Začasno geslo: $2',
 
 To storite, če ste po nesreči žetone z nekom delili, ali če je bil vaš račun ogrožen.',
 'resettokens-no-tokens' => 'Ni nobenih žetonov za ponastavitev.',
+'resettokens-legend' => 'Ponastavitev žetonov',
+'resettokens-tokens' => 'Žetoni:',
+'resettokens-token-label' => '$1 (trenutna vrednost: $2)',
+'resettokens-done' => 'Žetone sem ponastavil.',
+'resettokens-resetbutton' => 'Ponastavi izbrane žetone',
 
 # Edit page toolbar
 'bold_sample' => 'Krepko besedilo',
@@ -1443,6 +1448,7 @@ Ko vas drugi uporabniki kontaktirajo, jim vašega e-poštnega naslova ne bomo ra
 'prefs-displayrc' => 'Možnosti prikaza',
 'prefs-displaysearchoptions' => 'Možnosti prikaza',
 'prefs-displaywatchlist' => 'Možnosti prikaza',
+'prefs-tokenwatchlist' => 'Žeton',
 'prefs-diffs' => 'Primerjave',
 
 # User preference: email validation using jQuery
@@ -2126,6 +2132,7 @@ Sedaj je preusmeritev na [[$2]].',
 'mostrevisions' => 'Največkrat urejane strani',
 'prefixindex' => 'Vse strani s predpono',
 'prefixindex-namespace' => 'Vse strani s predpono (imenski prostor $1)',
+'prefixindex-strip' => 'Na seznamu odreži predpono',
 'shortpages' => 'Kratke strani',
 'longpages' => 'Dolge strani',
 'deadendpages' => 'Članki brez delujočih povezav',
@@ -2245,7 +2252,8 @@ Zahtevana je vsaj najvišja domena, na primer »*.org«.<br />
 'listgrouprights' => 'Pravice uporabniških skupin',
 'listgrouprights-summary' => 'Tu je na razpolago seznam uporabniških skupin na tem wikiju z navedbo dodeljenih pravic dostopa.
 Morda so na razpolago tudi [[{{MediaWiki:Listgrouprights-helppage}}|dodatne informacije]] o posameznih skupinah.',
-'listgrouprights-key' => '* <span class="listgrouprights-granted">Dodeljena pravica</span>
+'listgrouprights-key' => 'Legenda:
+* <span class="listgrouprights-granted">Dodeljena pravica</span>
 * <span class="listgrouprights-revoked">Odvzeta pravica</span>',
 'listgrouprights-group' => 'Skupina',
 'listgrouprights-rights' => 'Pravice',

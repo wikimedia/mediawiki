@@ -482,16 +482,16 @@ $messages = array(
 'december-date' => 'Желтоқсан $1',
 
 # Categories related messages
-'pagecategories' => '{{PLURAL:$1|Санат|Санаттар}}',
+'pagecategories' => '{{PLURAL:$1|Санат|Санат}}',
 'category_header' => '"$1" санатындағы беттер',
 'subcategories' => 'Санатшалар',
 'category-media-header' => '"$1" санатындағы медиа',
 'category-empty' => "''Бұл санатта ағымда еш бет немесе медиа жоқ.''",
 'hidden-categories' => '{{PLURAL:$1|Жасырын санат|Жасырын санаттар}}',
 'hidden-category-category' => 'Жасырын санаттар',
-'category-subcat-count' => '{{PLURAL:$2|Бұл санатта тек келесі санатша бар.|Бұл санатта келесі $1 санатша бар (не барлығы $2).}}',
+'category-subcat-count' => '{{PLURAL:$2|Бұл санатта тек келесі санатша бар.|Бұл санатта келесі {{PLURAL:$1|санатша|$1 санатша}} бар (не барлығы $2).}}',
 'category-subcat-count-limited' => 'Бұл санатта келесі $1 санатша бар.',
-'category-article-count' => '{{PLURAL:$2|Бұл санатта тек келесі бет бар.|Бұл санатта келесі {{PLURAL:$1|бет|$1 беттер}} бар, барлығы $2 сыртында.}}',
+'category-article-count' => '{{PLURAL:$2|Бұл санатта тек келесі бет бар.|Бұл санатта келесі {{PLURAL:$1|бет|$1 бет}} бар, барлығы $2 сыртында.}}',
 'category-article-count-limited' => 'Ағымдағы санатта келесі $1 бет бар.',
 'category-file-count' => '{{PLURAL:$2|Бұл санатта тек келесі файл бар.|Бұл санатта келесі {{PLURAL:$1|файл|$1 файл}} бар, барлығы $2 сыртында.}}',
 'category-file-count-limited' => 'Ағымдағы санатта келесі $1 файл бар.',
@@ -502,7 +502,7 @@ $messages = array(
 
 'about' => 'Жоба туралы',
 'article' => 'Мағлұмат беті',
-'newwindow' => '(жаңа терезеде)',
+'newwindow' => '(жаңа терезеде ашу)',
 'cancel' => 'Болдырмау',
 'moredotdotdot' => 'Көбірек…',
 'morenotlisted' => 'Басқасы көрсетілмеген...',

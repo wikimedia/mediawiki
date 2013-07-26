@@ -309,8 +309,8 @@ $messages = array(
 # User preference toggles
 'tog-underline' => 'Verwiezingen onderstrepen',
 'tog-justify' => "Alinea's uutvullen",
-'tog-hideminor' => 'Kleine wiezigingen verbargen in leste wiezigingen',
-'tog-hidepatrolled' => 'Wiezigingen die emarkeerd bin verbargen in leste wiezigingen',
+'tog-hideminor' => 'Kleine wiezigingen verbargen in "Leste wiezigingen"',
+'tog-hidepatrolled' => 'Wiezigingen die emarkeerd bin verbargen in "Leste wiezigingen"',
 'tog-newpageshidepatrolled' => 'Ziejen die emarkeerd bin, verbargen in de lieste mit nieje artikels',
 'tog-extendwatchlist' => 'Volglieste uutbreien, zodat alle wiezigingen zichtbaor bin, en niet allinnig de leste wieziging',
 'tog-usenewrc' => 'Groepeer wiezigingen per zied in "Leste wiezigingen" en "Mien volglieste" (hierveur he\'j JavaScript neudig)',

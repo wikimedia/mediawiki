@@ -57,6 +57,7 @@
  * @author S.Örvarr.S
  * @author SabineCretella
  * @author Sannita
+ * @author Shirayuki
  * @author Stefano-c
  * @author Tonyfroio
  * @author Trixt
@@ -1506,6 +1507,7 @@ Il tuo indirizzo non viene rivelato quando gli altri utenti ti contattano.',
 'prefs-displayrc' => 'Opzioni di visualizzazione',
 'prefs-displaysearchoptions' => 'Opzioni di visualizzazione',
 'prefs-displaywatchlist' => 'Opzioni di visualizzazione',
+'prefs-tokenwatchlist' => 'Token',
 'prefs-diffs' => 'Differenze',
 
 # User preference: email validation using jQuery

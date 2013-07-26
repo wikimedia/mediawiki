@@ -16317,9 +16317,9 @@ Reinicie o processo de instalação.',
 	'config-no-session' => 'Os seus dados de sessão foram perdidos!
 Verifique o seu php.ini e certifique-se de que em <code>session.save_path</code> está definido um diretório apropriado.',
 	'config-your-language' => 'A sua língua:',
-	'config-your-language-help' => 'Seleccione a língua que será usada durante o processo de instalação.',
+	'config-your-language-help' => 'Selecione a língua que será usada durante o processo de instalação.',
 	'config-wiki-language' => 'Língua da wiki:',
-	'config-wiki-language-help' => 'Seleccione a língua que será predominante na wiki.',
+	'config-wiki-language-help' => 'Selecione a língua que será predominante na wiki.',
 	'config-back' => '← Voltar',
 	'config-continue' => 'Continuar →',
 	'config-page-language' => 'Língua',
@@ -16590,7 +16590,7 @@ Agora pode [$1 começar a usar a sua wiki].',
 	'config-show-table-status' => 'A consulta <code>SHOW TABLE STATUS</code> falhou!',
 	'config-unknown-collation' => "'''Aviso:''' A base de dados está a utilizar uma colação ''(collation)'' desconhecida.",
 	'config-db-web-account' => 'Conta na base de dados para acesso pela internet',
-	'config-db-web-help' => 'Seleccione o nome de utilizador e a palavra-chave que o servidor de internet irá utilizar para aceder ao servidor da base de dados, durante a operação normal da wiki.',
+	'config-db-web-help' => 'Selecione o nome de utilizador e a palavra-chave que o servidor de internet irá utilizar para aceder ao servidor da base de dados, durante a operação normal da wiki.',
 	'config-db-web-account-same' => 'Usar a mesma conta usada na instalação',
 	'config-db-web-create' => 'Criar a conta se ainda não existir',
 	'config-db-web-no-create-privs' => 'A conta que especificou para a instalação não tem privilégios suficientes para criar uma conta.
@@ -16684,7 +16684,7 @@ Após a instalação, estarão disponíveis mais configurações de privilégios
 	'config-license-cc-0' => 'Creative Commons Zero (Domínio Público)',
 	'config-license-gfdl' => 'GNU Free Documentation License 1.3 ou posterior',
 	'config-license-pd' => 'Domínio Público',
-	'config-license-cc-choose' => 'Seleccione uma licença personalizada da Creative Commons',
+	'config-license-cc-choose' => 'Selecione uma licença personalizada Creative Commons',
 	'config-license-help' => 'Muitas wikis de acesso público licenciam todas as colaborações com uma [http://freedomdefined.org/Definition licença livre].
 Isto ajuda a criar um sentido de propriedade da comunidade e encoraja as colaborações a longo prazo.
 Tal não é geralmente necessário nas wikis privadas ou corporativas.
@@ -17195,6 +17195,7 @@ $messages['roa-tara'] = array(
  * @author DCamer
  * @author Eleferen
  * @author Express2000
+ * @author KPu3uC B Poccuu
  * @author Kaganer
  * @author Krinkle
  * @author Lockal
@@ -17353,7 +17354,7 @@ MediaWiki требует поддержки UTF-8 для корректной р
 	'config-using531' => 'PHP $1 не совместим с MediaWiki из-за ошибки с параметрами-ссылками при вызовах <code>__call()</code>.
 Обновитесь до PHP 5.3.2 и выше, или откатитесь до PHP 5.3.0, чтобы избежать этой проблемы.
 Установка прервана.',
-	'config-suhosin-max-value-length' => 'Suhosin установлен и ограничивает длину параметра GET до $1 байт. Компонент MediaWiki ResourceLoader будет обходить это ограничение, но это снизит производительность. Если это возможно, следует установить <code>suhosin.get.max_value_length</code> 1024 или выше в <code>php.ini</code>, а также установить для <code>$wgResourceLoaderMaxQueryLength</code> такое же значение в LocalSettings.php.', # Fuzzy
+	'config-suhosin-max-value-length' => 'Suhosin установлен и ограничивает параметр GET <code>length</code> до $1 байт. Компонент MediaWiki ResourceLoader будет обходить это ограничение, но это снизит производительность. Если это возможно, следует установить <code>suhosin.get.max_value_length</code> в значение 1024 или выше в <code>php.ini</code>, а также установить для <code>$wgResourceLoaderMaxQueryLength</code> такое же значение в LocalSettings.php.',
 	'config-db-type' => 'Тип базы данных:',
 	'config-db-host' => 'Хост базы данных:',
 	'config-db-host-help' => 'Если сервер базы данных находится на другом сервере, введите здесь его имя хоста или IP-адрес.
@@ -17446,8 +17447,8 @@ $1
 	'config-missing-db-name' => 'Вы должны ввести значение параметра «Имя базы данных»',
 	'config-missing-db-host' => 'Необходимо ввести значение параметра «Сервер базы данных»',
 	'config-missing-db-server-oracle' => 'Вы должны заполнить поле «TNS базы данных»',
-	'config-invalid-db-server-oracle' => 'Неверное имя TNS базы данных «$1».
-Используйте только символы ASCII (a-z, A-Z), цифры (0-9), знаки подчёркивания (_) и точки (.).',
+	'config-invalid-db-server-oracle' => 'Неверное TNS базы данных «$1».
+Используйте либо «TNS Name», либо строку «Easy Connect» ([http://docs.oracle.com/cd/E11882_01/network.112/e10836/naming.htm Методы наименования Oracle])',
 	'config-invalid-db-name' => 'Неверное имя базы данных «$1».
 Используйте только ASCII-символы (a-z, A-Z), цифры (0-9), знак подчёркивания (_) и дефис(-).',
 	'config-invalid-db-prefix' => 'Неверный префикс базы данных «$1».
@@ -17638,7 +17639,9 @@ GFDL может быть использована, но она сложна дл
 	'config-logo-help' => 'Стандартная тема оформления MediaWiki содержит над боковой панелью пространство для логотипа размером 135x160 пикселей.
 Загрузите изображение соответствующего размера, и введите его URL здесь.
 
-Если вам не нужен логотип, оставьте это поле пустым.', # Fuzzy
+Вы можете использовать <code>$wgStylePath</code> или <code>$wgScriptPath</code>, если ваш логотип находится относительно к этим путям.
+
+Если вам не нужен логотип, оставьте это поле пустым.',
 	'config-instantcommons' => 'Включить Instant Commons',
 	'config-instantcommons-help' => '[//www.mediawiki.org/wiki/InstantCommons Instant Commons] — это функция, позволяющая использовать изображения, звуки и другие медиафайлы с Викисклада ([//commons.wikimedia.org/ Wikimedia Commons]).
 Для работы этой функции MediaWiki необходим доступ к Интернету.

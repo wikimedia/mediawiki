@@ -906,6 +906,19 @@ Ajutine parool: $2',
 'changeemail-submit' => 'Muuda e-posti aadress',
 'changeemail-cancel' => 'Loobu',
 
+# Special:ResetTokens
+'resettokens' => 'Lubade lähtestamine',
+'resettokens-text' => 'Saad lähtestada load, mida on vaja siin sinu kontoga seotud kindlatele eraandmetele ligipääsuks.
+
+Peaksid load lähtestama, kui jagasid neid kogemata või kui su konto on kellegi teise võimusesse sattunud.',
+'resettokens-no-tokens' => 'Lähtestatavad load puuduvad.',
+'resettokens-legend' => 'Lubade lähtestamine',
+'resettokens-tokens' => 'Load:',
+'resettokens-token-label' => '$1 (praegune väärtus: $2)',
+'resettokens-watchlist-token' => 'Jälgimisloendi võrgutoite luba:',
+'resettokens-done' => 'Load lähtestatud.',
+'resettokens-resetbutton' => 'Lähtesta valitud load',
+
 # Edit page toolbar
 'bold_sample' => 'Rasvane kiri',
 'bold_tip' => 'Rasvane kiri',
@@ -1412,7 +1425,7 @@ Pane tähele, et Google'is talletatud {{GRAMMAR:genitive|{{SITENAME}}}} sisu võ
 'prefs-watchlist-days-max' => 'Ülemmäär $1 {{PLURAL:$1|päev|päeva}}',
 'prefs-watchlist-edits' => 'Mitu muudatust näidatakse laiendatud jälgimisloendis:',
 'prefs-watchlist-edits-max' => 'Ülemmäär: 1000',
-'prefs-watchlist-token' => 'Jälgimisloendi tunnus:',
+'prefs-watchlist-token' => 'Jälgimisloendi luba:',
 'prefs-misc' => 'Muu',
 'prefs-resetpass' => 'Muuda parooli',
 'prefs-changeemail' => 'Muuda e-posti aadressi',
@@ -1433,6 +1446,9 @@ Pane tähele, et Google'is talletatud {{GRAMMAR:genitive|{{SITENAME}}}} sisu võ
 'recentchangesdays-max' => 'Ülemmäär $1 {{PLURAL:$1|päev|päeva}}',
 'recentchangescount' => 'Mitut redaktsiooni vaikimisi näidata:',
 'prefs-help-recentchangescount' => 'See käib viimaste muudatuste, lehekülgede ajalugude ja logide kohta.',
+'prefs-help-watchlist-token2' => 'See on sinu jälgimisloendi võrgutoite salavõti.
+Igaüks, kes seda teab, saab lugeda sinu jälgimisloendit. Seega ära jaga seda.
+[[Special:ResetTokens|Klõpsa siia, kui sul on vaja see lähtestada]].',
 'savedprefs' => 'Sinu eelistused on salvestatud.',
 'timezonelegend' => 'Ajavöönd:',
 'localtime' => 'Kohalik aeg:',
@@ -1503,6 +1519,7 @@ See ei tohi olla pikem kui {{PLURAL:$1|üks märk|$1 märki}}.',
 'prefs-displayrc' => 'Kuvasätted',
 'prefs-displaysearchoptions' => 'Kuvasätted',
 'prefs-displaywatchlist' => 'Kuvasätted',
+'prefs-tokenwatchlist' => 'Luba',
 'prefs-diffs' => 'Erinevused',
 
 # User preference: email validation using jQuery

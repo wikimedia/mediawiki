@@ -960,6 +960,19 @@ $2
 'changeemail-submit' => '更改电子邮件地址',
 'changeemail-cancel' => '取消',
 
+# Special:ResetTokens
+'resettokens' => '重置权标',
+'resettokens-text' => '您可以重置权标，其允许访问某些与您的帐户相关联的私人数据。
+
+如果您意外地与他人共享权标，或您的帐户已遭到破坏，您应该重置权标。',
+'resettokens-no-tokens' => '没有可重置得权标。',
+'resettokens-legend' => '重置权标',
+'resettokens-tokens' => '权标：',
+'resettokens-token-label' => '$1（当前值：$2）',
+'resettokens-watchlist-token' => '监视列表网络订阅源权标',
+'resettokens-done' => '权标已重置。',
+'resettokens-resetbutton' => '重置所选的权标',
+
 # Edit page toolbar
 'bold_sample' => '粗体文字',
 'bold_tip' => '粗体文字',
@@ -1441,6 +1454,9 @@ $1",
 'recentchangesdays-max' => '最多$1天',
 'recentchangescount' => '默认显示的编辑数：',
 'prefs-help-recentchangescount' => '该项包含最近更改、页面历史和日志。',
+'prefs-help-watchlist-token2' => '这是您的监视列表网络订阅源密钥的关键。
+知道它的人将能够读取您的监视列表，所以不应分享它。
+[[Special:ResetTokens|点击这里以重置它]]。',
 'savedprefs' => '你的系统设置已保存。',
 'timezonelegend' => '时区：',
 'localtime' => '当地时间：',
@@ -1508,6 +1524,7 @@ $1",
 'prefs-displayrc' => '显示',
 'prefs-displaysearchoptions' => '显示',
 'prefs-displaywatchlist' => '显示',
+'prefs-tokenwatchlist' => '权标',
 'prefs-diffs' => '差异对比',
 
 # User preference: email validation using jQuery
@@ -2148,6 +2165,7 @@ $1',
 'mostrevisions' => '最多版本页面',
 'prefixindex' => '所有有前缀的页面',
 'prefixindex-namespace' => '所有有前缀的页面（$1名字空间）',
+'prefixindex-strip' => '在列表中省略前缀',
 'shortpages' => '短页面',
 'longpages' => '长页面',
 'deadendpages' => '断链页面',

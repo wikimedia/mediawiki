@@ -1764,7 +1764,7 @@ PICT # тайп тайпан
 ** Масийтта лараман яздар зуламан лелаяр
 ** Магитина йоцу декъашхочун цӀе',
 'ipb-hardblock' => 'Шаш довзийтина болу декъашхошна бехкам бе хӀокху IP-адресца тадарш дан',
-'ipbcreateaccount' => 'Цамагдо дӀаязвалар/ялар',
+'ipbcreateaccount' => 'Цамагдо чудалар',
 'ipbemailban' => 'Цамагдо декъашхошка хааман кехаташ кхехьийта',
 'ipbenableautoblock' => 'Блоктоха декъашхочо лелош йолу IP-адресашна',
 'ipbsubmit' => 'Блоктоха хӀокху декъашхочун/адресна',
@@ -2046,6 +2046,7 @@ PICT # тайп тайпан
 'newimages-summary' => 'ХӀокху белхан агӀона чохь гойтуш ю дукха хан йоццуш чуйаьхна файлаш.',
 'newimages-legend' => 'Литтар',
 'ilsubmit' => 'Лаха',
+'sp-newimages-showfrom' => 'Гайта керла файлаш $2, $1 тӀера дуьйна',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'seconds-abbrev' => '$1оцу',

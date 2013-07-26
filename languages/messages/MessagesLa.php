@@ -10,6 +10,7 @@
  * @author Amahoney
  * @author Andrew Dalby
  * @author Autokrator
+ * @author Candalua
  * @author Dferg
  * @author Esteban97
  * @author Geitost
@@ -773,8 +774,8 @@ Titulus: '''({{int:cur}})''' = dissimilis ab emendatione novissima,
 '''({{int:last}})''' = dissimilis ab emendatione proxima, '''{{int:minoreditletter}}''' = recensio minor.",
 'history-fieldset-title' => 'Quaerere in paginae historia',
 'history-show-deleted' => 'Solum recensiones deletas monstrare',
-'histfirst' => 'Veterrimus',
-'histlast' => 'Novissimus',
+'histfirst' => 'veterrimus',
+'histlast' => 'novissimus',
 'historysize' => '({{PLURAL:$1|1 octetus|$1 octeti}})',
 'historyempty' => '(vacua)',
 

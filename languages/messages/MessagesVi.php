@@ -9,6 +9,7 @@
  *
  * @author Apple
  * @author Arisa
+ * @author Baonguyen21022003
  * @author Cheers!
  * @author DHN
  * @author Kaganer
@@ -1024,9 +1025,13 @@ Có thể đổi mật khẩu cho tài khoản mới này tại trang ''[[Specia
 Do đó chúng ta phải dùng một dãy số gọi là địa chỉ IP để xác định anh/chị ta.
 Một địa chỉ IP như vậy có thể có nhiều người cùng dùng chung.
 Nếu bạn là một thành viên vô danh và cảm thấy rằng có những lời bàn luận không thích hợp đang nhắm vào bạn, xin hãy [[Special:UserLogin/signup|tạo tài khoản]] hoặc [[Special:UserLogin|đăng nhập]] để tránh sự nhầm lẫn về sau với những thành viên vô danh khác.''",
-'noarticletext' => 'Trang này hiện chưa có nội dung.
-Bạn có thể [[Special:Search/{{PAGENAME}}|tìm kiếm tựa trang này]] trong các trang khác, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} tìm trong các nhật trình liên quan],
-hoặc [{{fullurl:{{FULLPAGENAME}}|action=edit}} sửa đổi trang này]</span>.',
+'noarticletext' => "'''Rất tiếc! ''{{TÊNMẠNG}}'' hiện chưa có bài viết nào với tựa đề là \"{{FULLPAGENAME}}\" hết cả.'''<span style=\"float:right\"></span>
+
+'''Bạn có thể''':
+*Nhấn vào [{{fullurl:{{FULLPAGENAME}}|action=edit}} '''đây'''] để tạo trang '''{{FULLPAGENAME}}'''
+*'''[[Special:Search/{{FULLPAGENAME}}|Tìm kiếm tựa trang này]]''' trong các trang khác.
+*'''[[Đặc biệt:Mọi bài|Xuất các trang]]''' đã có sẵn và tìm với tựa đề này.
+*Tìm kiếm <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} '''trong các nhật trình liên quan'''].</span>",
 'noarticletext-nopermission' => 'Trang này hiện đang trống.
 Bạn có thể [[Special:Search/{{PAGENAME}}|tìm kiếm tựa trang này]] tại các trang khác, hoặc <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} tìm kiếm các nhật trình liên quan]</span>, nhưng bạn không có phép tạo trang này.',
 'missing-revision' => 'Phiên bản #$1 của trang có tên “{{PAGENAME}}” không tồn tại.
