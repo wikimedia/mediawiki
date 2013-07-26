@@ -2873,7 +2873,9 @@ HTML
 
 		$cancel = $this->getCancelLink();
 		if ( $cancel !== '' ) {
-			$cancel .= wfMessage( 'pipe-separator' )->text();
+			$cancel .= Html::element( 'span',
+				array( 'class' => 'mw-editButtons-pipe-separator' ),
+				wfMessage( 'pipe-separator' )->text() );
 		}
 		$edithelpurl = Skin::makeInternalOrExternalUrl( wfMessage( 'edithelppage' )->inContentLanguage()->text() );
 		$edithelp = '<a target="helpwindow" href="' . $edithelpurl . '">' .
