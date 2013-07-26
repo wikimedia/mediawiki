@@ -3516,12 +3516,13 @@ $wgExpensiveParserFunctionLimit = 100;
 $wgPreprocessorCacheThreshold = 1000;
 
 /**
- * Enable interwiki transcluding.  Only when iw_trans=1.
+ * Enable interwiki transcluding.  Only when iw_trans=1 in the interwiki table.
  */
 $wgEnableScaryTranscluding = false;
 
 /**
- * (see next option $wgGlobalDatabase).
+ * Expiry time for transcluded templates cached in transcache database table.
+ * Only used $wgEnableInterwikiTranscluding is set to true.
  */
 $wgTranscludeCacheExpiry = 3600;
 
