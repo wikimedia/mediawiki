@@ -114,6 +114,7 @@ HHVM 3.1. Additionally, the following PHP extensions are required:
   module should express a dependency on it.
 * Removed configuration option $wgCopyrightIcon (deprecated since 1.18). Use
   $wgFooterIcons['copyright']['copyright'] instead.
+* (T45547) $wgUsePigLatinVariant added (off by default).
 
 === New features in 1.27 ===
 * $wgDataCenterUpdateStickTTL was also added. This decides how long a user
@@ -188,6 +189,9 @@ HHVM 3.1. Additionally, the following PHP extensions are required:
   and error messages. It is available client-side via mw.config.get( 'wgRequestId' ).
   The request ID supplants exception IDs. Accordingly, MWExceptionHandler::getLogId()
   is deprecated.
+* (T45547) Included a fictitious English variant - pig latin - for easier
+  variant development and testing. It can be enabled by setting
+  $wgUsePigLatinVariant to true.
 
 === External library changes in 1.27 ===
 
@@ -270,6 +274,9 @@ changes to languages because of Phabricator reports.
 
 * (T113688) Change default numerals from Gurmukhi to Arabic for Punjabi locale.
 * (T116020) Aliases of magic words in MessagesXx.php are sorted by usage.
+* (T45547) Added a fictitious English variant - pig latin (en-x-piglatin)
+  - for easier variant development and testing. Disabled by default, can be
+  enabled by setting $wgUsePigLatinVariant to true.
 
 === Other changes in 1.27 ===
 * Added dependency injection (DI) infrastructure, see docs/injection.txt for details.
