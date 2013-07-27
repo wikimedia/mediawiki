@@ -33,6 +33,7 @@ production.
   instead of just administrators ('sysop'). Documentation for this feature is
   available at <https://www.mediawiki.org/wiki/Help:ChangeContentModel>.
 * $wgRevisionCacheExpiry is now set to one week by default instead of being disabled.
+* (T45547) $wgUsePigLatinVariant added (off by default).
 
 === New features in 1.28 ===
 * User::isBot() method for checking if an account is a bot role account.
@@ -60,6 +61,9 @@ production.
   on the wiki farm with a different domain, MediaWiki will instead alter the redirect
   URL to include a ?cpPosTime parameter that triggers the database synchronization when
   the URL is followed by the client. The same-domain case uses a new cpPosTime cookie.
+* (T45547) Included a fictitious English variant - pig latin - for easier
+  variant development and testing. It can be enabled by setting
+  $wgUsePigLatinVariant to true.
 
 === External library changes in 1.28 ===
 
@@ -126,6 +130,9 @@ changes to languages because of Phabricator reports.
 * (T135867) shn (Shan), thanks to translators Khun Sar, Piangpha,
   Saiddzone Saimawnkham, Saosukham, and Sengwan.
 * Czech (cs) and Slovak (sk) set as reciprocal fallbacks
+* (T45547) Added a fictitious English variant - pig latin (en-x-piglatin)
+  - for easier variant development and testing. Disabled by default, can be
+  enabled by setting $wgUsePigLatinVariant to true.
 
 === Other changes in 1.28 ===
 * (T128697) Improved handling of large diffs.

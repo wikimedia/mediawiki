@@ -195,10 +195,11 @@ class Language {
 	/**
 	 * Create a language object for a given language code
 	 * @param string $code
+	 * @param $fallback boolean Whether we're going through language fallback chain
 	 * @throws MWException
 	 * @return Language
 	 */
-	protected static function newFromCode( $code ) {
+	protected static function newFromCode( $code, $fallback = false ) {
 		if ( !Language::isValidCode( $code ) ) {
 			throw new MWException( "Invalid language code \"$code\"" );
 		}
@@ -212,7 +213,7 @@ class Language {
 		}
 
 		// Check if there is a language class for the code
-		$class = self::classFromCode( $code );
+		$class = self::classFromCode( $code, $fallback );
 		if ( class_exists( $class ) ) {
 			$lang = new $class;
 			return $lang;
@@ -4253,10 +4254,11 @@ class Language {
 
 	/**
 	 * @param string $code
+	 * @param boolean $fallback Whether we're going through language fallback chain
 	 * @return string Name of the language class
 	 */
-	public static function classFromCode( $code ) {
-		if ( $code == 'en' ) {
+	public static function classFromCode( $code, $fallback = true ) {
+		if ( $fallback && $code == 'en' ) {
 			return 'Language';
 		} else {
 			return 'Language' . str_replace( '-', '_', ucfirst( $code ) );
