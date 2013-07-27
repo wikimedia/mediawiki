@@ -271,7 +271,7 @@
 	'na' => 'Dorerin Naoero',		# Nauruan
 	'nah' => 'Nāhuatl',		# Nahuatl, en:Wikipedia writes Nahuatlahtolli, while another form is Náhuatl
 	'nan' => 'Bân-lâm-gú', # Min-nan -- (bug 8217) nan instead of zh-min-nan, http://www.sil.org/iso639-3/codes.asp?order=639_3&letter=n
-	'nap' => 'Nnapulitano',	# Neapolitan
+	'nap' => 'Napulitano',	# Neapolitan, bug 43793
 	'nb' => "norsk bokmål",		# Norwegian (Bokmal)
 	'nds' => 'Plattdüütsch',	# Low German ''or'' Low Saxon
 	'nds-nl' => 'Nedersaksies',	# aka Nedersaksisch: Dutch Low Saxon
