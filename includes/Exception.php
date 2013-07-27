@@ -183,29 +183,58 @@ class MWException extends Exception {
 	}
 
 	/**
-	 * Return the requested URL and point to file and line number from which the
-	 * exception occurred
+	 * If the exception occurred in the course of responding to a request,
+	 * returns the requested URL. Otherwise, returns false.
+	 *
+	 * @since 1.22
+	 * @return string|bool
+	 */
+	function getURL() {
+		global $wgRequest;
+		if ( !isset( $wgRequest ) || $wgRequest instanceof FauxRequest ) {
+			return false;
+		}
+		return $wgRequest->getRequestURL();
+	}
+
+	/**
+	 * Prepare a string representation of this exception suitable for logging.
 	 *
 	 * @return string
 	 */
 	function getLogMessage() {
-		global $wgRequest;
+		global $wgLogExceptionBacktrace, $wgExceptionLogFormat;
 
 		$id = $this->getLogId();
 		$file = $this->getFile();
 		$line = $this->getLine();
 		$message = $this->getMessage();
+		$url = $this->getURL();
 
-		if ( isset( $wgRequest ) && !$wgRequest instanceof FauxRequest ) {
-			$url = $wgRequest->getRequestURL();
-			if ( !$url ) {
-				$url = '[no URL]';
+		if ( $wgExceptionLogFormat === 'JSON' ) {
+			$ex = compact( 'id', 'file', 'line', 'message', 'url' );
+			if ( $wgLogExceptionBacktrace ) {
+				$ex['backtrace'] = array();
+				// Strip 'args' and 'object' fields, since they can contain
+				// complex objects and are thus dangerous to serialize.
+				foreach ( $this->getTrace() as $frame ) {
+					unset( $frame['args'] );
+					unset( $frame['object'] );
+					$ex['backtrace'][] = $frame;
+				}
 			}
+			return json_encode( $ex );
 		} else {
-			$url = '[no req]';
+			// Format as plain text.
+			if ( $url === false ) {
+				$url = '[no req]';
+			}
+			$log = "[$id] $url   Exception from line $line of $file: $message";
+			if ( $wgLogExceptionBacktrace ) {
+				$log .= "\n" . $this->getTraceAsString() . "\n";
+			}
+			return $log;
 		}
-
-		return "[$id] $url   Exception from line $line of $file: $message";
 	}
 
 	/**
@@ -247,16 +276,9 @@ class MWException extends Exception {
 	 * It will be either HTML or plain text based on isCommandLine().
 	 */
 	function report() {
-		global $wgLogExceptionBacktrace, $wgMimeType;
-		$log = $this->getLogMessage();
+		global $wgMimeType;
 
-		if ( $log ) {
-			if ( $wgLogExceptionBacktrace ) {
-				wfDebugLog( 'exception', $log . "\n" . $this->getTraceAsString() . "\n" );
-			} else {
-				wfDebugLog( 'exception', $log );
-			}
-		}
+		wfDebugLog( 'exception', $this->getLogMessage() );
 
 		if ( defined( 'MW_API' ) ) {
 			// Unhandled API exception, we can't be sure that format printer is alive
