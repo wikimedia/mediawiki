@@ -46,7 +46,6 @@ var language = {
 	convertPlural: function ( count, forms ) {
 		var pluralRules,
 			formCount,
-			explicitPluralPattern = new RegExp( '\\d+=', 'i' ),
 			form,
 			index,
 			equalsPosition,
@@ -59,7 +58,7 @@ var language = {
 		// Handle for explicit n= forms
 		for ( index = 0; index < forms.length; index++ ) {
 			form = forms[index];
-			if ( explicitPluralPattern.test( form ) ) {
+			if ( /^\d+=/.test( form ) ) {
 				equalsPosition = form.indexOf( '=' );
 				formCount = parseInt( form.substring( 0, equalsPosition ), 10 );
 				if ( formCount === count ) {

@@ -3616,7 +3616,7 @@ class Language {
 	function convertPlural( $count, $forms ) {
 		// Handle explicit n=pluralform cases
 		foreach ( $forms as $index => $form ) {
-			if ( preg_match( '/\d+=/i', $form ) ) {
+			if ( preg_match( '/^\d+=/i', $form ) ) {
 				$pos = strpos( $form, '=' );
 				if ( substr( $form, 0, $pos ) === (string) $count ) {
 					return substr( $form, $pos + 1 );
