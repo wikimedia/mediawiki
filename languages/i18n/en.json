@@ -1523,7 +1523,7 @@
 	"mimetype": "MIME type:",
 	"download": "download",
 	"unwatchedpages": "Unwatched pages",
-	"unwatchedpages-summary": "",
+	"unwatchedpages-summary": "For a list of recent changes to unwatched pages, see [[{{#special:UnwatchedChanges}}]].",
 	"listredirects": "List of redirects",
 	"listredirects-summary": "",
 	"listduplicatedfiles": "List of files with duplicates",
@@ -3667,5 +3667,8 @@
 	"json-error-inf-or-nan": "One or more NAN or INF values in the value to be encoded",
 	"json-error-unsupported-type": "A value of a type that cannot be encoded was given",
 	"headline-anchor-title": "Link to this section",
-	"section-symbol": "§"
+	"section-symbol": "§",
+	"unwatchedchanges": "Unwatched changes",
+	"unwatchedchanges-feed": "Recent changes to pages that are not watched.",
+	"unwatchedchanges-summary": "This is a list of changes made recently to [[{{#special:UnwatchedPages}}|pages that have nobody watching them]]."
 }

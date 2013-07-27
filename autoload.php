@@ -1138,6 +1138,7 @@ $wgAutoloadLocalClasses = array(
 	'SpecialUnblock' => __DIR__ . '/includes/specials/SpecialUnblock.php',
 	'SpecialUndelete' => __DIR__ . '/includes/specials/SpecialUndelete.php',
 	'SpecialUnlockdb' => __DIR__ . '/includes/specials/SpecialUnlockdb.php',
+	'SpecialUnwatchedChanges' => __DIR__ . '/includes/specials/SpecialUnwatchedChanges.php',
 	'SpecialUpload' => __DIR__ . '/includes/specials/SpecialUpload.php',
 	'SpecialUploadStash' => __DIR__ . '/includes/specials/SpecialUploadStash.php',
 	'SpecialUploadStashTooLargeException' => __DIR__ . '/includes/specials/SpecialUploadStash.php',
