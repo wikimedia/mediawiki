@@ -468,6 +468,7 @@ $specialPageAliases = array(
 	'Unusedimages'              => array( 'UnusedFiles', 'UnusedImages' ),
 	'Unusedtemplates'           => array( 'UnusedTemplates' ),
 	'Unwatchedpages'            => array( 'UnwatchedPages' ),
+	'UnwatchedChanges'          => array( 'UnwatchedChanges' ),
 	'Upload'                    => array( 'Upload' ),
 	'UploadStash'               => array( 'UploadStash' ),
 	'Userlogin'                 => array( 'UserLogin', 'Login' ),
@@ -5106,4 +5107,8 @@ Otherwise, you can use the easy form below. Your comment will be added to the pa
 # Image rotation
 'rotate-comment' => 'Image rotated by $1 {{PLURAL:$1|degree|degrees}} clockwise',
 
+# Special:UnwatchedChanges
+'unwatchedchanges'         => 'Unwatched changes',
+'unwatchedchanges-feed'    => 'Recent changes to pages that are not watched.',
+'unwatchedchanges-summary' => "This is a list of changes made recently to pages that have nobody watching them.",
 );

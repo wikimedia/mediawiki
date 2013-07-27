@@ -30,8 +30,8 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	var $rcOptions, $rcSubpage;
 	protected $customFilters;
 
-	public function __construct( $name = 'Recentchanges' ) {
-		parent::__construct( $name );
+	public function __construct( $name = 'Recentchanges', $restriction = '' ) {
+		parent::__construct( $name, $restriction );
 	}
 
 	/**
@@ -140,6 +140,9 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	 * @param string $subpage
 	 */
 	public function execute( $subpage ) {
+		// For subclasses.
+		$this->checkPermissions();
+
 		$this->rcSubpage = $subpage;
 		$feedFormat = $this->including() ? null : $this->getRequest()->getVal( 'feed' );
 

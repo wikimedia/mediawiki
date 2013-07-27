@@ -3946,6 +3946,11 @@ $wgMessageStructure = array(
 	'rotation' => array(
 		'rotate-comment',
 	),
+	'unwatchedchanges' => array(
+		'unwatchedchanges',
+		'unwatchedchanges-feed',
+		'unwatchedchanges-summary',
+	),
 );
 
 /** Comments for each block */
@@ -4189,4 +4194,5 @@ Variants for Chinese language",
 	'duration'              => 'Durations',
 	'cachedspecial'         => 'SpecialCachedPage',
 	'rotation'              => 'Image rotation',
+	'unwatchedchanges'      => 'Special:UnwatchedChanges',
 );
