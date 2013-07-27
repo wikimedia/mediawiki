@@ -3935,5 +3935,8 @@
 	"special-characters-group-khmer": "{{Identical|Khmer}}",
 	"special-characters-title-endash": "Title tooltip for the en dash character (–); See https://en.wikipedia.org/wiki/Dash",
 	"special-characters-title-emdash": "Title tooltip for the em dash character (—); See https://en.wikipedia.org/wiki/Dash",
-	"special-characters-title-minus": "Title tooltip for the minus sign character (−), not to be confused with a hyphen"
+	"special-characters-title-minus": "Title tooltip for the minus sign character (−), not to be confused with a hyphen",
+	"unwatchedchanges": "{{doc-special|UnwatchedChanges}}\nTitle of Unwatched changes page",
+	"unwatchedchanges-feed": "Description of RSS feed for Special:UnwatchedChanges",
+	"unwatchedchanges-summary": "Summary text for [[Special:UnwatchedChangs]]"
 }

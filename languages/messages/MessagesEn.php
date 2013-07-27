@@ -481,6 +481,7 @@ $specialPageAliases = array(
 	'Unusedcategories'          => array( 'UnusedCategories' ),
 	'Unusedimages'              => array( 'UnusedFiles', 'UnusedImages' ),
 	'Unusedtemplates'           => array( 'UnusedTemplates' ),
+	'UnwatchedChanges'          => array( 'UnwatchedChanges' ),
 	'Unwatchedpages'            => array( 'UnwatchedPages' ),
 	'Upload'                    => array( 'Upload' ),
 	'UploadStash'               => array( 'UploadStash' ),
