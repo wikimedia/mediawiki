@@ -449,6 +449,10 @@ if ( $wgCookieSecure === 'detect' ) {
 	$wgCookieSecure = ( WebRequest::detectProtocol() === 'https' );
 }
 
+if ( !$wgUsePigLatinVariant ) {
+	$wgDisabledVariants[] = 'en-x-piglatin';
+}
+
 if ( $wgProfileOnly ) {
 	$wgDebugLogGroups['profileoutput'] = $wgDebugLogFile;
 	$wgDebugLogFile = '';
