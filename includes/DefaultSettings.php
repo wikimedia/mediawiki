@@ -4596,6 +4596,13 @@ $wgShowExceptionDetails = false;
 $wgShowDBErrorBacktrace = false;
 
 /**
+ * If set to 'JSON', exceptions in the debug log will be JSON-encoded.
+ * If false, exceptions will be logged as plain text.
+ * @since 1.22
+ */
+$wgExceptionLogFormat = false;
+
+/**
  * If true, send the exception backtrace to the error log
  */
 $wgLogExceptionBacktrace = true;

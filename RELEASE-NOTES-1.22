@@ -39,6 +39,8 @@ production.
   page protection levels. The rights 'editprotected' and 'editsemiprotected'
   are now used for this purpose instead.
 * (bug 40866) wgOldChangeTagsIndex removed.
+* $wgExceptionLogFormat controls the output format for exception logging.
+  If set to 'JSON', MediaWiki will emit JSON representations of exceptions.
 
 === New features in 1.22 ===
 * (bug 44525) mediawiki.jqueryMsg can now parse (whitelisted) HTML elements and attributes.
