@@ -17,7 +17,7 @@
 		mw.util.init();
 
 		/**
-		 * @event wikpage_content
+		 * @event wikipage_content
 		 * @member mw.hook
 		 * @param {jQuery} $content
 		 */
