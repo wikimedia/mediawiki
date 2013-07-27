@@ -4296,7 +4296,7 @@ $8', # only translate this message to other languages if you have to change it
 'exif-compression-34712' => 'JPEG2000', # only translate this message to other languages if you have to change it
 
 'exif-copyrighted-true'  => 'Copyrighted',
-'exif-copyrighted-false' => 'Public domain',
+'exif-copyrighted-false' => 'Copyright status not set',
 
 'exif-photometricinterpretation-2' => 'RGB', # only translate this message to other languages if you have to change it
 'exif-photometricinterpretation-6' => 'YCbCr', # only translate this message to other languages if you have to change it
