@@ -385,6 +385,10 @@ if ( $wgCookieSecure === 'detect' ) {
 	$wgCookieSecure = ( WebRequest::detectProtocol() === 'https' );
 }
 
+if ( !$wgUsePigLatinVariant ) {
+	$wgDisabledVariants[] = 'en-x-piglatin';
+}
+
 if ( $wgRC2UDPAddress ) {
 	$wgRCFeeds['default'] = array(
 		'formatter' => 'IRCColourfulRCFeedFormatter',

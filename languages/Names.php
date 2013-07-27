@@ -123,6 +123,7 @@
 	'el' => 'Ελληνικά',	# Greek
 	'eml' => 'emiliàn e rumagnòl',	# Emiliano-Romagnolo / Sammarinese
 	'en' => 'English',		# English
+	'en-x-piglatin' => 'Igpay Atinlay',	# Pig Latin (for variant development)
 	'en-ca' => 'Canadian English',	# Canadian English
 	'en-gb' => 'British English',	# British English
 	'eo' => 'Esperanto',	# Esperanto

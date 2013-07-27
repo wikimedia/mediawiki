@@ -9,8 +9,12 @@ MediaWiki 1.24 is an alpha-quality branch and is not recommended for use in
 production.
 
 === Configuration changes in 1.24 ===
+* (bug 43547) $wgUsePigLatinVariant added (off by default).
 
 === New features in 1.24 ===
+* (bug 43547) Included a fictitious English variant - pig latin - for easier
+  variant development and testing. It can be enabled by setting
+  $wgUsePigLatinVariant to true.
 
 === Bug fixes in 1.24 ===
 * (bug 62258) A bug was fixed in File::getUnscaledThumb when a height
@@ -26,6 +30,10 @@ production.
 MediaWiki supports over 350 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Bugzilla reports.
+
+* (bug 43547) Added a fictitious English variant - pig latin (en-x-piglatin)
+  - for easier variant development and testing. Disabled by default, can be
+  enabled by setting $wgUsePigLatinVariant to true.
 
 === Other changes in 1.24 ===
 * The deprecated jquery.delayedBind ResourceLoader module was removed.
