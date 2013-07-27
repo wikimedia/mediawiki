@@ -39,6 +39,7 @@ production.
   page protection levels. The rights 'editprotected' and 'editsemiprotected'
   are now used for this purpose instead.
 * (bug 40866) wgOldChangeTagsIndex removed.
+* (bug 43547) $wgUsePigLatinVariant added (off by default).
 
 === New features in 1.22 ===
 * (bug 44525) mediawiki.jqueryMsg can now parse (whitelisted) HTML elements and attributes.
@@ -165,6 +166,9 @@ production.
 * (bug 30713) New mw.hook "wikipage.content".
 * (bug 40430) jquery.placeholder gets a new parameter to set the attribute value
   to be used.
+* (bug 43547) Included a fictitious English variant - pig latin - for easier
+  variant development and testing. It can be enabled by setting
+  $wgUsePigLatinVariant to true.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
@@ -292,6 +296,8 @@ changes to languages because of Bugzilla reports.
 
 * Batak Toba (bbc-latn) added.
 * (bug 46751) Made Buryat (Russia) (буряад) (bxr) fallback to Russian.
+* (bug 43547) Added a fictitious English variant - pig latin (en-x-piglatin).
+  Disabled by default, can be enabled by setting $wgUsePigLatinVariant to true.
 
 === Other changes in 1.22 ===
 * BREAKING CHANGE: Implementation of MediaWiki's JS and JSON value encoding

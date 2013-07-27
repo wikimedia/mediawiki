@@ -1501,7 +1501,6 @@ class LanguageTest extends LanguageClassesTestCase {
 			array( 'zh', 'zh', 'zh is defined as the parent language of zh, because zh converter can convert zh-cn to zh' ),
 			array( 'zh-invalid', null, 'do not be fooled by arbitrarily composed language codes' ),
 			array( 'en-gb', null, 'en does not have converter' ),
-			array( 'en', null, 'en does not have converter. Although FakeConverter handles en -> en conversion but it is useless' ),
 		);
 	}
 }
