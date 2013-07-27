@@ -39,6 +39,9 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 * @param string $subpage
 	 */
 	public function execute( $subpage ) {
+		// For subclasses which might have restrictions.
+		$this->checkPermissions();
+
 		// Backwards-compatibility: redirect to new feed URLs
 		$feedFormat = $this->getRequest()->getVal( 'feed' );
 		if ( !$this->including() && $feedFormat ) {
