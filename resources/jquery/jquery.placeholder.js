@@ -11,11 +11,12 @@
 ( function ( $ ) {
 
 	$.fn.placeholder = function ( text ) {
+		var hasArg = arguments.length;
 
 		return this.each( function () {
 			var placeholder, $input;
 
-			if ( arguments.length ) {
+			if ( hasArg ) {
 				this.setAttribute( 'placeholder', text );
 			}
 
@@ -24,7 +25,7 @@
 				return;
 			}
 
-			placeholder = arguments.length ? text : this.getAttribute( 'placeholder' );
+			placeholder = hasArg ? text : this.getAttribute( 'placeholder' );
 			$input = $(this);
 
 			// Show initially, if empty
