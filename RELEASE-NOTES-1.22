@@ -41,6 +41,8 @@ production.
 * (bug 40866) wgOldChangeTagsIndex removed.
 * $wgNoFollowDomainExceptions now only matches entire domains. For example,
   an entry for 'bar.com' will still match 'foo.bar.com' but not 'foobar.com'.
+* $wgExceptionLogFormat controls the output format for exception logging.
+  If set to 'JSON', MediaWiki will emit JSON representations of exceptions.
 
 === New features in 1.22 ===
 * (bug 44525) mediawiki.jqueryMsg can now parse (whitelisted) HTML elements and attributes.
