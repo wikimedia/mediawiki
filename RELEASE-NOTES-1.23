@@ -9,6 +9,10 @@ MediaWiki 1.23 is an alpha-quality branch and is not recommended for use in
 production.
 
 === Configuration changes in 1.23 ===
+* In addition to the current exception log format, MediaWiki now serializes
+  exception metadata to JSON and logs it to the 'exception-json' log group.
+  This makes MediaWiki easier to integrate with log aggregation and analysis
+  tools.
 
 === New features in 1.23 ===
 * ResourceLoader can utilize the Web Storage API to cache modules client-side.
