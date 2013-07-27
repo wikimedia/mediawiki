@@ -608,7 +608,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		$this->assertSame( 'de', $user->getOption( 'language' ) );
 		$this->assertSame( 'zh', $user->getOption( 'variant' ) );
 
-		$this->setMwGlobals( 'wgContLang', \Language::factory( 'en' ) );
+		$this->setMwGlobals( 'wgContLang', \Language::factory( 'fr' ) );
 
 		$user = \User::newFromName( self::usernameForCreation() );
 		$user->addToDatabase();
