@@ -3031,6 +3031,12 @@ $wgDisableTitleConversion = false;
 $wgDefaultLanguageVariant = false;
 
 /**
+ * Whether to enable the pig latin variant of English (en-x-piglatin),
+ * used to ease variant development work.
+ */
+$wgUsePigLatinVariant = false;
+
+/**
  * Disabled variants array of language variant conversion.
  *
  * @par Example:
