@@ -23,6 +23,7 @@ production.
 * $wgExceptionHooks has been removed.
 * $wgShellLocale is now applied for all requests. wfInitShellLocale() is
   deprecated and a no-op, as it is no longer needed.
+* (T45547) $wgUsePigLatinVariant added (off by default).
 
 === New features in 1.30 ===
 * (T37247) Output from Parser::parse() will now be wrapped in a div with
@@ -33,6 +34,10 @@ production.
 * File storage backends that supports headers (eg. Swift) now store an
   X-Content-Dimensions header for originals that contain the media's dimensions
   as page ranges keyed by dimensions.
+* (T45547) Included Pig Latin, a language game in English, as a
+  LanguageConverter variant.  This allows English-speaking developers
+  to develop and test LanguageConverter more easily.  Pig Latin can be
+  enabled by setting $wgUsePigLatinVariant to true.
 
 === Languages updated in 1.30 ===
 
@@ -70,6 +75,11 @@ regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Phabricator reports.
 
 * …
+
+==== Pig Latin added ====
+* (T45547) Added Pig Latin, a made-up English variant (en-x-piglatin),
+  for easier variant development and testing. Disabled by default. It can be
+  enabled by setting $wgUsePigLatinVariant to true.
 
 === Other changes in 1.30 ===
 * The use of an associative array for $wgProxyList, where the IP address is in
