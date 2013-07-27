@@ -618,6 +618,7 @@ class MWExceptionHandler {
 				}
 			}
 		} else {
+			self::logException( $e );
 			$message = "Unexpected non-MediaWiki exception encountered, of type \"" . get_class( $e ) . "\"";
 
 			if ( $wgShowExceptionDetails ) {
@@ -755,6 +756,21 @@ class MWExceptionHandler {
 	}
 
 	/**
+	 * If the exception occurred in the course of responding to a request,
+	 * returns the requested URL. Otherwise, returns false.
+	 *
+	 * @since 1.22
+	 * @return string|bool
+	 */
+	public static function getURL() {
+		global $wgRequest;
+		if ( !isset( $wgRequest ) || $wgRequest instanceof FauxRequest ) {
+			return false;
+		}
+		return $wgRequest->getRequestURL();
+	}
+
+	/**
 	 * Return the requested URL and point to file and line number from which the
 	 * exception occurred.
 	 *
@@ -763,23 +779,73 @@ class MWExceptionHandler {
 	 * @return string
 	 */
 	public static function getLogMessage( Exception $e ) {
-		global $wgRequest;
-
 		$id = self::getLogId( $e );
 		$file = $e->getFile();
 		$line = $e->getLine();
 		$message = $e->getMessage();
-
-		if ( isset( $wgRequest ) && !$wgRequest instanceof FauxRequest ) {
-			$url = $wgRequest->getRequestURL();
-			if ( !$url ) {
-				$url = '[no URL]';
-			}
-		} else {
-			$url = '[no req]';
-		}
+		$url = self::getURL() ?: '[no req]';
 
 		return "[$id] $url   Exception from line $line of $file: $message";
+	}
+
+	/**
+	 * Serialize an Exception object to JSON.
+	 *
+	 * The JSON object will have keys 'id', 'file', 'line', 'message', and
+	 * 'url'. These keys map to string values, with the exception of 'line',
+	 * which is a number, and 'url', which may be either a string URL or or
+	 * null if the exception did not occur in the context of serving a web
+	 * request.
+	 *
+	 * If $wgLogExceptionBacktrace is true, it will also have a 'backtrace'
+	 * key, mapped to the array return value of Exception::getTrace, but with
+	 * the 'args' and 'object' keys unset from each frame, since they are not
+	 * safe to serialize.
+	 *
+	 * @par Sample JSON record ($wgLogExceptionBacktrace = false):
+	 * @code
+	 *  {
+	 *    "id": "c41fb419",
+	 *    "file": "/var/www/mediawiki/includes/MessageCache.php",
+	 *    "line": 704,
+	 *    "message": "Non-string key given",
+	 *    "url": "/wiki/Main_Page"
+	 *  }
+	 * @endcode
+	 *
+	 * @since 1.22
+	 * @param Exception $e
+	 * @param bool $pretty Add non-significant whitespace to improve readability (default: false).
+	 * @param int $escaping Bitfield consisting of FormatJson::.*_OK class constants.
+	 * @return string|bool: JSON string if successful; false upon failure
+	 */
+	public static function jsonSerializeException( Exception $e, $pretty = false, $escaping = 0 ) {
+		global $wgLogExceptionBacktrace;
+
+		$exception_data = array(
+			'id' => self::getLogId( $e ),
+			'file' => $e->getFile(),
+			'line' => $e->getLine(),
+			'message' => $e->getMessage(),
+		);
+
+		// Because MediaWiki is first and foremost a web application, we set a
+		// 'url' key unconditionally, but set it to null if the exception does
+		// not occur in the context of a web request, as a way of making that
+		// fact visible and explicit.
+		$exception_data['url'] = self::getURL();
+
+		if ( $wgLogExceptionBacktrace ) {
+			// Strip 'args' and 'object' fields from each frame in the trace, since
+			// they can contain complex objects and are thus dangerous to serialize.
+			$exception_data['backtrace'] = array_map( function ( $frame ) {
+				unset( $frame['args'] );
+				unset( $frame['object'] );
+				return $frame;
+			}, $e->getTrace() );
+		}
+
+		return FormatJson::encode( $exception_data, $pretty, $escaping );
 	}
 
 	/**
@@ -801,6 +867,11 @@ class MWExceptionHandler {
 			} else {
 				wfDebugLog( 'exception', $log );
 			}
+		}
+
+		$json = self::jsonSerializeException( $e, false, FormatJson::ALL_OK );
+		if ( $json !== false ) {
+			wfDebugLog( 'exception-json', $json );
 		}
 	}
 
