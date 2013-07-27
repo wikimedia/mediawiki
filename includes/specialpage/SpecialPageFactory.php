@@ -68,6 +68,7 @@ class SpecialPageFactory {
 		'Unusedimages'              => 'UnusedimagesPage',
 		'Unusedtemplates'           => 'UnusedtemplatesPage',
 		'Unwatchedpages'            => 'UnwatchedpagesPage',
+		'UnwatchedChanges'          => 'SpecialUnwatchedChanges',
 		'Wantedcategories'          => 'WantedcategoriesPage',
 		'Wantedfiles'               => 'WantedfilesPage',
 		'Wantedpages'               => 'WantedpagesPage',

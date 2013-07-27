@@ -475,6 +475,7 @@ $specialPageAliases = array(
 	'Unusedimages'              => array( 'UnusedFiles', 'UnusedImages' ),
 	'Unusedtemplates'           => array( 'UnusedTemplates' ),
 	'Unwatchedpages'            => array( 'UnwatchedPages' ),
+	'UnwatchedChanges'          => array( 'UnwatchedChanges' ),
 	'Upload'                    => array( 'Upload' ),
 	'UploadStash'               => array( 'UploadStash' ),
 	'Userlogin'                 => array( 'UserLogin', 'Login' ),
@@ -5165,4 +5166,8 @@ In fact, it expands pretty much everything in double-braces.',
 'expand_templates_generate_xml'     => 'Show XML parse tree',
 'expand_templates_generate_rawhtml' => 'Show raw HTML',
 'expand_templates_preview'          => 'Preview',
+# Special:UnwatchedChanges
+'unwatchedchanges'         => 'Unwatched changes',
+'unwatchedchanges-feed'    => 'Recent changes to pages that are not watched.',
+'unwatchedchanges-summary' => "This is a list of changes made recently to pages that have nobody watching them.",
 );

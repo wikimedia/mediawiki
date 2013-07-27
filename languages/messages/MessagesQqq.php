@@ -10674,4 +10674,9 @@ test
 
 # Unknown messages
 'uploadinvalidxml' => 'Error message displayed when the uploaded file contains XML that cannot be properly parsed and checked.',
+# Special:UnwatchedChanges
+'unwatchedchanges'         => '{{doc-special|UnwatchedChanges}}
+Title of Unwatched changes page',
+'unwatchedchanges-feed'    => 'Description of RSS feed for Special:UnwatchedChanges',
+'unwatchedchanges-summary' => "Summary text for [[Special:UnwatchedChangs]]",
 );
