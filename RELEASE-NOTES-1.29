@@ -39,6 +39,7 @@ production.
   fallback chain when trying to work out where to write the cache.
 * The user right 'editusercssjs' (deprecated in 1.16) was removed. Use
   'editusercss' and 'edituserjs' in $wgGroupPermissions and elsewhere instead.
+* (T45547) $wgUsePigLatinVariant added (off by default).
 
 === New features in 1.29 ===
 * (T5233) A cookie can now be set when a user is autoblocked, to track that user
@@ -70,6 +71,10 @@ production.
   This will be removed later and OOjs UI will become the only option.
   To make testing easier, users can also force either mode by adding
   &ooui=true or &ooui=false to the action=edit URL.
+* (T45547) Included Pig Latin, a language game in English, as a
+  LanguageConverter variant.  This allows English-speaking developers
+  to develop and test LanguageConverter more easily.  Pig Latin can be
+  enabled by setting $wgUsePigLatinVariant to true.
 
 === External library changes in 1.29 ===
 
@@ -200,6 +205,11 @@ changes to languages because of Phabricator reports.
 * (T39314) The fallback from Ukrainian to Russian was removed. The Ukrainian
   language will now use the default fallback language: English. When a translation
   to Ukrainian is not available, an English string will be shown.
+
+==== Pig Latin added ====
+* (T45547) Added Pig Latin, a made-up English variant (en-x-piglatin),
+  for easier variant development and testing. Disabled by default. It can be
+  enabled by setting $wgUsePigLatinVariant to true.
 
 === Other changes in 1.29 ===
 * Database::getSearchEngine() (deprecated in 1.28) was removed. Use
