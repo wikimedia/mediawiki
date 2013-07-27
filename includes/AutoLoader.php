@@ -999,6 +999,7 @@ $wgAutoloadLocalClasses = array(
 	'SpecialUnblock' => 'includes/specials/SpecialUnblock.php',
 	'SpecialUndelete' => 'includes/specials/SpecialUndelete.php',
 	'SpecialUnlockdb' => 'includes/specials/SpecialUnlockdb.php',
+	'SpecialUnwatchedChanges' => 'includes/specials/SpecialUnwatchedChanges.php',
 	'SpecialUpload' => 'includes/specials/SpecialUpload.php',
 	'SpecialUploadStash' => 'includes/specials/SpecialUploadStash.php',
 	'SpecialUploadStashTooLargeException' => 'includes/specials/SpecialUploadStash.php',

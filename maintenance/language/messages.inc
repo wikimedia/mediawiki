@@ -3985,6 +3985,10 @@ $wgMessageStructure = array(
 		'expand_templates_generate_xml',
 		'expand_templates_generate_rawhtml',
 		'expand_templates_preview',
+	'unwatchedchanges' => array(
+		'unwatchedchanges',
+		'unwatchedchanges-feed',
+		'unwatchedchanges-summary',
 	),
 );
 
@@ -4234,4 +4238,5 @@ Variants for Chinese language",
 	'rotation' => 'Image rotation',
 	'limitreport' => 'Limit report',
 	'expandtemplates' => 'Special:ExpandTemplates'
+	'unwatchedchanges' => 'Special:UnwatchedChanges',
 );

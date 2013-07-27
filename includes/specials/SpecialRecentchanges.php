@@ -147,6 +147,9 @@ class SpecialRecentChanges extends SpecialPage {
 	 * @param string $subpage
 	 */
 	public function execute( $subpage ) {
+		// For subclasses.
+		$this->checkPermissions();
+
 		$this->rcSubpage = $subpage;
 		$this->feedFormat = $this->including() ? null : $this->getRequest()->getVal( 'feed' );
 
