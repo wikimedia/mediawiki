@@ -319,7 +319,7 @@ abstract class ContentHandler {
 			wfRunHooks( 'ContentHandlerForModelID', array( $modelId, &$handler ) );
 
 			if ( $handler === null ) {
-				throw new MWException( "No handler for model '$modelId'' registered in \$wgContentHandlers" );
+				throw new MWException( "No handler for model '$modelId' registered in \$wgContentHandlers" );
 			}
 
 			if ( !( $handler instanceof ContentHandler ) ) {
