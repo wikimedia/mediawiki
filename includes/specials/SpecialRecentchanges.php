@@ -30,8 +30,8 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	var $rcOptions, $rcSubpage;
 	protected $customFilters;
 
-	public function __construct( $name = 'Recentchanges' ) {
-		parent::__construct( $name );
+	public function __construct( $name = 'Recentchanges', $restriction = '' ) {
+		parent::__construct( $name, $restriction );
 	}
 
 	/**

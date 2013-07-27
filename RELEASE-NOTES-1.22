@@ -165,6 +165,8 @@ production.
 * (bug 30713) New mw.hook "wikipage.content".
 * (bug 40430) jquery.placeholder gets a new parameter to set the attribute value
   to be used.
+* (bug 13063) Special:UnwatchedChanges added to list recent changes to pages
+  with no watchers.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
