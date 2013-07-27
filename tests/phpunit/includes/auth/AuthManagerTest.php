@@ -34,6 +34,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		parent::setUp();
 
 		$this->setMwGlobals( [ 'wgAuth' => null ] );
+		$this->setMwGlobals( [ 'wgUsePigLatinVariant' => false ] );
 		$this->stashMwGlobals( [ 'wgHooks' ] );
 	}
 
