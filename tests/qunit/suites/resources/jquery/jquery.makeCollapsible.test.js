@@ -10,7 +10,8 @@
 			.makeCollapsible( options );
 	}
 
-	QUnit.asyncTest( 'testing hooks (triggers)', 4, function ( assert ) {
+	// This test is first because if it fails, then almost all of the latter tests are meaningless.
+	QUnit.asyncTest( 'testing hooks/triggers', 4, function ( assert ) {
 		var $collapsible, $content, $toggle;
 		$collapsible = prepareCollapsible(
 			'<div class="mw-collapsible">' + loremIpsum + '</div>'
@@ -45,7 +46,7 @@
 		$toggle.trigger( 'click' );
 	} );
 
-	QUnit.asyncTest( 'basic operation', 3, function ( assert ) {
+	QUnit.asyncTest( 'basic operation (<div>)', 3, function ( assert ) {
 		var $collapsible, $content;
 		$collapsible = prepareCollapsible(
 			'<div class="mw-collapsible">' + loremIpsum + '</div>'
@@ -63,7 +64,7 @@
 		$collapsible.find( '.mw-collapsible-toggle' ).trigger( 'click' );
 	} );
 
-	QUnit.test( 'basic operation with instantHide (synchronous test)', 2, function ( assert ) {
+	QUnit.test( 'basic operation when synchronous (options.instantHide)', 2, function ( assert ) {
 		var $collapsible, $content;
 		$collapsible = prepareCollapsible(
 			'<div class="mw-collapsible">' + loremIpsum + '</div>',
@@ -78,7 +79,7 @@
 		assert.assertTrue( $content.is( ':hidden' ), 'after collapsing: content is hidden' );
 	} );
 
-	QUnit.asyncTest( 'initially collapsed - mw-collapsed class', 2, function ( assert ) {
+	QUnit.asyncTest( 'initial collapse (mw-collapsed class)', 2, function ( assert ) {
 		var $collapsible, $content;
 		$collapsible = prepareCollapsible(
 			'<div class="mw-collapsible mw-collapsed">' + loremIpsum + '</div>'
@@ -96,7 +97,7 @@
 		$collapsible.find( '.mw-collapsible-toggle' ).trigger( 'click' );
 	} );
 
-	QUnit.asyncTest( 'initially collapsed - options', 2, function ( assert ) {
+	QUnit.asyncTest( 'initial collapse (options.collapsed)', 2, function ( assert ) {
 		var $collapsible, $content;
 		$collapsible = prepareCollapsible(
 			'<div class="mw-collapsible">' + loremIpsum + '</div>',
@@ -115,7 +116,7 @@
 		$collapsible.find( '.mw-collapsible-toggle' ).trigger( 'click' );
 	} );
 
-	QUnit.test( 'premade toggler - options.linksPassthru' , 2, function ( assert ) {
+	QUnit.test( 'clicks on links inside toggler pass through (options.linksPassthru)' , 2, function ( assert ) {
 		var $collapsible, $content;
 
 		$collapsible = prepareCollapsible(
@@ -135,6 +136,43 @@
 
 		$collapsible.find( '.mw-collapsible-toggle b' ).trigger( 'click' );
 		assert.assertTrue( $content.is( ':hidden' ), 'click event on non-link inside toggle toggles content' );
+	} );
+
+	QUnit.asyncTest( 'collapse/expand text (data-collapsetext, data-expandtext)', 2, function ( assert ) {
+		var $collapsible, $toggleLink;
+		$collapsible = prepareCollapsible(
+			'<div class="mw-collapsible" data-collapsetext="Collapse me!" data-expandtext="Expand me!">' +
+				loremIpsum +
+			'</div>'
+		);
+		$toggleLink = $collapsible.find( '.mw-collapsible-toggle a' );
+
+		assert.equal( $toggleLink.text(), 'Collapse me!', 'data-collapsetext is respected' );
+
+		$collapsible.on( 'afterCollapse.mw-collapsible', function () {
+			assert.equal( $toggleLink.text(), 'Expand me!', 'data-expandtext is respected' );
+			QUnit.start();
+		} );
+
+		$collapsible.find( '.mw-collapsible-toggle' ).trigger( 'click' );
+	} );
+
+	QUnit.asyncTest( 'collapse/expand text (options.collapseText, options.expandText)', 2, function ( assert ) {
+		var $collapsible, $toggleLink;
+		$collapsible = prepareCollapsible(
+			'<div class="mw-collapsible">' + loremIpsum + '</div>',
+			{ collapseText: 'Collapse me!', expandText: 'Expand me!' }
+		);
+		$toggleLink = $collapsible.find( '.mw-collapsible-toggle a' );
+
+		assert.equal( $toggleLink.text(), 'Collapse me!', 'options.collapseText is respected' );
+
+		$collapsible.on( 'afterCollapse.mw-collapsible', function () {
+			assert.equal( $toggleLink.text(), 'Expand me!', 'options.expandText is respected' );
+			QUnit.start();
+		} );
+
+		$collapsible.find( '.mw-collapsible-toggle' ).trigger( 'click' );
 	} );
 
 }( mediaWiki, jQuery ) );
