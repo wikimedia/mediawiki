@@ -370,15 +370,14 @@ class LanguageConverter {
 		$scriptfix = '<script.*?>.*?<\/script>|';
 		// disable conversion of <pre> tags
 		$prefix = '<pre.*?>.*?<\/pre>|';
+		// Guard against delimiter nulls in the input
+		$nulfix = '\000|';
 
-		$reg = '/' . $codefix . $scriptfix . $prefix .
+		$reg = '/' . $codefix . $scriptfix . $prefix . $nulfix .
 			'<[^>]+>|&[a-zA-Z#][a-z0-9]+;' . $marker . $htmlfix . '/s';
 		$startPos = 0;
 		$sourceBlob = '';
 		$literalBlob = '';
-
-		// Guard against delimiter nulls in the input
-		$text = str_replace( "\000", '', $text );
 
 		$markupMatches = null;
 		$elementMatches = null;
