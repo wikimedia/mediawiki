@@ -353,12 +353,16 @@ class LanguageConverter {
 		   1. HTML markups (anything between < and >)
 		   2. HTML entities
 		   3. placeholders created by the parser
+		   4. the replacement string we use ourselves for null bytes
 		*/
 		global $wgParser;
 		if ( isset( $wgParser ) && $wgParser->UniqPrefix() != '' ) {
-			$marker = '|' . $wgParser->UniqPrefix() . '[\-a-zA-Z0-9]+';
+			$nullReplacement = $wgParser->uniqPrefix() . wfRandomString( 16 );
+			$marker = '|' . $wgParser->UniqPrefix() . '[\-a-zA-Z0-9]+'
+				. '|' . $nullReplacement;
 		} else {
-			$marker = '';
+			$nullReplacement = "\x7f" . wfRandomString( 32 );
+			$marker = '|' . $nullReplacement;
 		}
 
 		// this one is needed when the text is inside an HTML markup
@@ -378,7 +382,7 @@ class LanguageConverter {
 		$literalBlob = '';
 
 		// Guard against delimiter nulls in the input
-		$text = str_replace( "\000", '', $text );
+		$text = str_replace( "\000", $nullReplacement, $text );
 
 		$markupMatches = null;
 		$elementMatches = null;
@@ -441,6 +445,7 @@ class LanguageConverter {
 			$translatedIter->next();
 			$literalIter->next();
 		}
+		$output = str_replace( $nullReplacement, "\000", $output );
 
 		wfProfileOut( __METHOD__ );
 		return $output;
