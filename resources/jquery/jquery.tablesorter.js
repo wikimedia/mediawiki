@@ -345,8 +345,11 @@
 			if ( !this.sortDisabled ) {
 				$( this )
 					.addClass( table.config.cssHeader )
-					.attr( 'title', msg[1] )
-					.prop( 'tabIndex', 0 ).attr( 'role', 'button' );
+					.prop( 'tabIndex', 0 )
+					.attr( {
+						role: 'button',
+						title: msg[1]
+						} );
 			}
 
 			// add cell to headerList
