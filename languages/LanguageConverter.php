@@ -360,8 +360,11 @@ class LanguageConverter {
 		   1. HTML markups (anything between < and >)
 		   2. HTML entities
 		   3. placeholders created by the parser
+		   4. the replacement string we use ourselves for null bytes
 		*/
-		$marker = '|' . Parser::MARKER_PREFIX . '[\-a-zA-Z0-9]+';
+		$nullReplacement = Parser::MARKER_PREFIX . wfRandomString( 16 );
+		$marker = '|' . Parser::MARKER_PREFIX . '[\-a-zA-Z0-9]+'
+			. '|' . $nullReplacement;
 
 		// this one is needed when the text is inside an HTML markup
 		$htmlfix = '|<[^>]+$|^[^<>]*>';
@@ -380,7 +383,7 @@ class LanguageConverter {
 		$literalBlob = '';
 
 		// Guard against delimiter nulls in the input
-		$text = str_replace( "\000", '', $text );
+		$text = str_replace( "\000", $nullReplacement, $text );
 
 		$markupMatches = null;
 		$elementMatches = null;
@@ -415,8 +418,6 @@ class LanguageConverter {
 						$attr = $this->recursiveConvertTopLevel( $attr, $toVariant );
 					}
 
-					// Remove HTML tags to avoid disrupting the layout
-					$attr = preg_replace( '/<[^>]+>/', '', $attr );
 					if ( $attr !== $attrs[$attrName] ) {
 						$attrs[$attrName] = $attr;
 						$changed = true;
@@ -443,6 +444,7 @@ class LanguageConverter {
 			$translatedIter->next();
 			$literalIter->next();
 		}
+		$output = str_replace( $nullReplacement, "\000", $output );
 
 		return $output;
 	}
