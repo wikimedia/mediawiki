@@ -5497,11 +5497,18 @@ $wgAuth = null;
  * @code
  *     $wgHooks['event_name'][] = array($object, 'method');
  * @endcode
+ * - A closure:
+ * @core
+ *     $wgHooks['event_name'][] = function ($hookParam) {
+ *         // Handler code goes here.
+ *     };
+ * @endcore
  *
  * @warning You should always append to an event array or you will end up
  * deleting a previous registered hook.
  *
- * @todo Does it support PHP closures?
+ * @warning Hook handlers should be registered at file scope. Registering
+ * handlers after file scope can lead to unexpected results due to caching.
  */
 $wgHooks = array();
 
