@@ -657,6 +657,19 @@ Kuchh din ke khatir password: $2',
 'changeemail-submit' => 'E-mail badlo',
 'changeemail-cancel' => 'Kaat do',
 
+# Special:ResetTokens
+'resettokens' => 'Token ke reset karo',
+'resettokens-text' => 'Aap aapan private data pe access roke ke khatir token ke reset kare saktaa hae.
+
+Aap ke ii kare ke chaahi agar aap galti se ii jaankari ke aur koi ke de diya hae nai to aap ke account ke bare me aur koi ke pataa hae.',
+'resettokens-no-tokens' => 'Reset kare ke jhatir koi token nai hae.',
+'resettokens-legend' => 'Token ke reset karo',
+'resettokens-tokens' => 'Chinh (token)',
+'resettokens-token-label' => '$1 (abhi ke value: $2)',
+'resettokens-watchlist-token' => 'Dhyan suchi ke web feed token',
+'resettokens-done' => 'Token ke reset kar dewa gais hae.',
+'resettokens-resetbutton' => 'Chuna gais token ke reset karo',
+
 # Edit page toolbar
 'bold_sample' => 'Motaa text',
 'bold_tip' => 'Motaa text',
@@ -1199,6 +1212,9 @@ Yaad rakhna ki uu log ke {{SITENAME}} ke index saait purana hoi.',
 'recentchangesdays-max' => '(sab se jaada $1 {{PLURAL:$1|din|din}})',
 'recentchangescount' => 'Default se ketnaa badlao ke dekhae ke chaahi:',
 'prefs-help-recentchangescount' => 'Isme hai haali ke badlao, panna ke itihaas aur loga.',
+'prefs-help-watchlist-token2' => 'Aap ke dhyan suchi ke web feed ke ii secret key hae.
+Aur koi agar iske bare me jaane hae aap ke dhyan suchi ke parrhae sake hae, tab iske aur ki ke nai dena.
+[[Special:ResetTokens|Agar aap iske reset kare mangtaa hae tab hian pe click karo]].',
 'savedprefs' => 'Aap ke pasand ke save kar lewa gais hai.',
 'timezonelegend' => 'Time ke zone:',
 'localtime' => 'Sthaniye samay:',
@@ -1268,6 +1284,7 @@ Iske $1 {{PLURAL:$1|character|characters}} se kamti rahe ke chaahi.',
 'prefs-displayrc' => 'Choice dekhao',
 'prefs-displaysearchoptions' => 'Choice dekhao',
 'prefs-displaywatchlist' => 'Choice dekhao',
+'prefs-tokenwatchlist' => 'Chinh (token)',
 'prefs-diffs' => 'Farka',
 
 # User preference: email validation using jQuery
@@ -1934,6 +1951,7 @@ Sab row me pahila aur duusra redirect ke jorr hae, aur isme duusra redirect ke n
 'mostrevisions' => 'Sab se jaada badlao waala panna',
 'prefixindex' => 'Sab panna jisme prefix index hai',
 'prefixindex-namespace' => 'Sab panna jisme prefix ($1 namespace)hae',
+'prefixindex-strip' => 'List me se prefix ke strip karo',
 'shortpages' => 'Chhota panna',
 'longpages' => 'Lamba panna',
 'deadendpages' => 'Jon panna se koi jurre nai hai',
@@ -3491,6 +3509,7 @@ Ii code saait expire hoe gais hae.',
 Aap [[Special:UserLogin|log in]] kar ke ii wiki ke majaa le saktaa hae.',
 'confirmemail_loggedin' => 'Aap ke email address ke ap confirm kar dewa gais hae.',
 'confirmemail_error' => 'Aap ke confirmation me kuchh garrbarri hoe gais hae.',
+'confirmemail_subject' => '{{SITENAME}} email address ke confirmation',
 'confirmemail_body' => 'Koi, hoe sake aap IP address $1 se, ek account "$2" with this email address on {{SITENAME}} ke register karis hae.
 
 Ii confirm kare ke khatir ki asliyat me ii acount aap ke hae, {{SITENAME}} me email features ke activate karo, aur aapan browser me ii link ke kholo:
@@ -3524,6 +3543,7 @@ Agar aapa ii account ke nai register karaa hae, ii link ke follow karo aur email
 $5
 
 Ii confirmation code $4 ke expire hoi.',
+'confirmemail_invalidated' => 'Email address confirmation ke cancel kae dewa gais hae',
 'invalidateemail' => 'Email confirmation ke cancel karo',
 
 # Scary transclusion
@@ -3534,15 +3554,22 @@ Ii confirmation code $4 ke expire hoi.',
 
 # Delete conflict
 'deletedwhileediting' => "'''Chetauni:''' Aap ke editing suruu kare ke baad ii panna ke delete kar dewa gais hae!",
+'confirmrecreate' => "User [[User:$1|$1]] ([[User talk:$1|talk]]) mitae dewa gais ii pannaa aap ke badlao suruu kare ke baad, ii kaaran se: ''$2''
+Meharbaani kar ke confirm karo ki aap ii panna ke fir banae mangtaa hae.",
+'confirmrecreate-noreason' => 'User [[User:$1|$1]] ([[User talk:$1|talk]]) mitae dewa gais ii pannaa aap ke badlao suruu kare ke baad.
+Meharbaani kar ke confirm karo ki aap ii panna ke fir banae mangtaa hae.',
 'recreate' => 'Fir se banao',
 
 # action=purge
 'confirm_purge_button' => 'Thik hae',
 'confirm-purge-top' => 'Ii panna ke cache ke mitao',
+'confirm-purge-bottom' => 'Ek panna ke purge kare se cache khaali hoe jaae hae aur sab se naaa balao ke dekhae hae.',
 
 # action=watch/unwatch
 'confirm-watch-button' => 'Thiik hae',
+'confirm-watch-top' => 'Ii panna ke aap ke dhyan suchi me jorro?',
 'confirm-unwatch-button' => 'Thiik hae',
+'confirm-unwatch-top' => 'Ii panna ke aap ke dhyan suchi se hatao?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← pahile waala panna',
@@ -3576,9 +3603,22 @@ Normal preview try karo.',
 'livepreview-error' => 'Connect nai kare sakaa hae: $1 "$2".
 Normal preview ke try karo.',
 
+# Friendlier slave lag warnings
+'lag-warn-normal' => '$1 {{PLURAL:$1|second|seconds}} se nawaa badlao, saait ii suchi me nai dekhai.',
+'lag-warn-high' => 'Jaada database server lag ke kaaran $1 {{PLURAL:$1|second|seconds}} se nawaa badlao suchi me saait nai dekhaai.',
+
 # Watchlist editor
+'watchlistedit-numitems' => 'Aap ke dhyan suchi me, baat aala panna ke chhorr ke,  {{PLURAL:$1|1 title|$1 titles}} hae.',
 'watchlistedit-noitems' => 'Aap ke dhyan suchi me koi naam nai hae',
 'watchlistedit-normal-title' => 'Dhyan suchi ke badlo',
+'watchlistedit-normal-legend' => 'Titles ke dhyan suchi se hatao',
+'watchlistedit-normal-explain' => 'Aap ke dhyan suchi ke title ke niche dekaa jaae hae.
+Ek title ke hatae ke khatir, uske bagal ke box ke check karo, aur "{{int:Watchlistedit-normal-submit}}" ke click karo.
+You can also [[Special:EditWatchlist/raw|edit the raw list]].',
+'watchlistedit-normal-submit' => 'Titles ke hatao',
+'watchlistedit-normal-done' => '{{PLURAL:$1|1 title was|$1 titles were}} dhyan suchi me se hataa gais:',
+'watchlistedit-raw-title' => 'Raw dhyan suchi ke badlo',
+'watchlistedit-raw-legend' => 'Raw dhyan suchi ke badlo',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Jaruri badlao dekho',

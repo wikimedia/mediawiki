@@ -817,6 +817,19 @@ Kata laluan sementara: $2',
 'changeemail-submit' => 'Tukar E-mel',
 'changeemail-cancel' => 'Batalkan',
 
+# Special:ResetTokens
+'resettokens' => 'Set semula token',
+'resettokens-text' => 'Anda boleh mengeset semula token yang membolehkan akses kepada data peribadi tertentu yang berkaitan dengan akaun anda di sini.
+
+Anda harus melakukannya jika anda tanpa sengaja mengongsinya dengan sesiapa ataupun akaun anda telah dikompromi.',
+'resettokens-no-tokens' => 'Tiada token untuk diset semula.',
+'resettokens-legend' => 'Set semula token',
+'resettokens-tokens' => 'Token:',
+'resettokens-token-label' => '$1 (nilai semasa: $2)',
+'resettokens-watchlist-token' => 'Token suapan web senarai pantau',
+'resettokens-done' => 'Token diset semula.',
+'resettokens-resetbutton' => 'Set semula token terpilih',
+
 # Edit page toolbar
 'bold_sample' => 'Teks tebal',
 'bold_tip' => 'Teks tebal',
@@ -1346,6 +1359,9 @@ Cuba berikan awalan ''all:'' untuk mencari semua kandungan (termasuk laman perbi
 'recentchangesdays-max' => '(had $1 hari)',
 'recentchangescount' => 'Bilangan suntingan yang dipaparkan mengikut tetapan asali:',
 'prefs-help-recentchangescount' => 'Ini termasuklah perubahan terkini, sejarah laman dan log.',
+'prefs-help-watchlist-token2' => 'Inilah kunci rahsia kepada suapan web senarai pantau anda.
+Sesiapa yang mengetahuinya akan boleh membaca senarai pantau anda, jadi jangan kongsinya.
+[[Special:ResetTokens|Klik di sini jika anda perlu mengesetnya semula]].',
 'savedprefs' => 'Keutamaan anda disimpan.',
 'timezonelegend' => 'Zon waktu:',
 'localtime' => 'Waktu tempatan:',
@@ -2024,6 +2040,8 @@ Sesebuah laman dianggap sebagai laman penyahkekaburan jika ia menggunakan templa
 'pageswithprop-text' => 'Halaman ini menyenaraikan halaman-halaman yang menggunakan sifat halaman yang tertentu.',
 'pageswithprop-prop' => 'Nama sifat:',
 'pageswithprop-submit' => 'Pergi',
+'pageswithprop-prophidden-long' => 'nilai sifat teks panjang tersorok ($1 kilobait)',
+'pageswithprop-prophidden-binary' => 'nilai sifat binari tersorok ($1 kilobait)',
 
 'doubleredirects' => 'Lencongan berganda',
 'doubleredirectstext' => 'Yang berikut ialah senarai laman yang melencong ke laman lencongan lain. Setiap baris mengandungi pautan ke laman lencongan pertama dan kedua, serta baris pertama bagi teks lencongan kedua, lazimnya merupakan laman sasaran "sebenar", yang sepatutnya ditujui oleh lencongan pertama.
@@ -2080,6 +2098,7 @@ Masukan yang <del>dipotong</del> telah diselesaikan.',
 'mostrevisions' => 'Rencana dengan semakan terbanyak',
 'prefixindex' => 'Indeks awalan',
 'prefixindex-namespace' => 'Semua laman dengan awalan (ruang nama $1)',
+'prefixindex-strip' => 'Gugurkan awalan dalam senarai',
 'shortpages' => 'Laman pendek',
 'longpages' => 'Laman panjang',
 'deadendpages' => 'Laman buntu',
@@ -2199,7 +2218,8 @@ Memerlukan sekurang-kurangnya satu domain peringkat tinggi, cth. "*.org".<br />
 'listgrouprights' => 'Hak kumpulan pengguna',
 'listgrouprights-summary' => 'Yang berikut ialah senarai kumpulan pengguna yang ditubuhkan di wiki ini dengan hak-hak masing-masing.
 Anda boleh mengetahui [[{{MediaWiki:Listgrouprights-helppage}}|maklumat tambahan]] mengenai setiap hak.',
-'listgrouprights-key' => '* <span class="listgrouprights-granted">Hak ditunaikan</span>
+'listgrouprights-key' => 'Petunjuk:
+* <span class="listgrouprights-granted">Hak ditunaikan</span>
 * <span class="listgrouprights-revoked">Hak dibatalkan</span>',
 'listgrouprights-group' => 'Kumpulan',
 'listgrouprights-rights' => 'Hak',

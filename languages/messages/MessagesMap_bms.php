@@ -944,9 +944,6 @@ Ningen Rika kudu eling nek indeks Google kanggo {{SITENAME}} bisa baen isine anu
 'recentchangesdays-max' => 'Maksimum $1 {{PLURAL:$1|dina|dina}}',
 'recentchangescount' => 'Standar jumlah suntingan sing ditampilna:',
 'prefs-help-recentchangescount' => 'Kiye klebu owahan anyar, sajarah kaca, lan log.',
-'prefs-help-watchlist-token' => 'Ngisi kotak kiye ngannggo tembung wadi (PIN) bakal ngasilna sindikasi RSS kanggo daftar pantauane Rika.
-Sapa baen sing weruh PIN kiye bakal teyeng maca daftar pantauane Rika, mulane kuwe pilih sing aman.
-Kiye PIN acak sing teyeng digunakna Rika: $1',
 'savedprefs' => 'Preferensine Rika wis disimpen.',
 'timezonelegend' => 'Zona wektu:',
 'localtime' => 'Wektu lokal:',

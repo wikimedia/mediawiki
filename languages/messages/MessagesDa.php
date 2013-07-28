@@ -1226,6 +1226,7 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'compareselectedversions' => 'Sammenlign valgte versioner',
 'showhideselectedversions' => 'Vis/skjul udvalgte versioner',
 'editundo' => 'fjern redigering',
+'diff-empty' => '(Ingen forskel)',
 'diff-multi' => '({{PLURAL:$1|En mellemliggende version|$1 mellemliggende versioner}} af {{PLURAL:$2|en bruger|$2 brugere}} ikke vist)',
 'diff-multi-manyusers' => '({{PLURAL:$1|En mellemliggende version|$1 mellemliggende versioner}} af mere end $2 {{PLURAL:$2|bruger|brugere}} ikke vist)',
 'difference-missing-revision' => '{{PLURAL:$2|En revision|$2 revisioner}} af denne forskel ($1) {{PLURAL:$2|blev|blev}} ikke fundet.
@@ -1578,6 +1579,7 @@ Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit
 'recentchanges' => 'Seneste ændringer',
 'recentchanges-legend' => 'Indstillinger for seneste ændringer',
 'recentchanges-summary' => "På denne side kan du følge de seneste ændringer på '''{{SITENAME}}'''.",
+'recentchanges-noresult' => 'Ingen ændringer i den angivne periode matcher disse kriterier.',
 'recentchanges-feed-description' => 'Med dette feed kan du følge de seneste ændringer på {{SITENAME}}.',
 'recentchanges-label-newpage' => 'Denne redigering oprettede en ny side',
 'recentchanges-label-minor' => 'Dette er en mindre ændring',

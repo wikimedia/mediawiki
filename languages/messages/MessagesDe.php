@@ -1640,7 +1640,7 @@ Dies kann nicht mehr rückgängig gemacht werden.',
 'prefs-signature' => 'Signatur',
 'prefs-dateformat' => 'Datumsformat',
 'prefs-timeoffset' => 'Zeitunterschied',
-'prefs-advancedediting' => 'Allgemein',
+'prefs-advancedediting' => 'Allgemeine Optionen',
 'prefs-editor' => 'Bearbeitungsprogramm',
 'prefs-preview' => 'Vorschau',
 'prefs-advancedrc' => 'Erweiterte Optionen',
@@ -3632,7 +3632,7 @@ Weitere werden standardmäßig nicht angezeigt.
 'exif-compression-4' => 'CCITT Gruppe 4 Faxcodierung',
 
 'exif-copyrighted-true' => 'Geschützt',
-'exif-copyrighted-false' => 'Copyright Flag nicht gesetzt',
+'exif-copyrighted-false' => 'Urheberrechtsstatus nicht festgelegt',
 
 'exif-unknowndate' => 'Unbekanntes Datum',
 

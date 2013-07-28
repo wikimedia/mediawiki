@@ -2951,7 +2951,7 @@ se vi volus kontribui al la komuna MediaWiki-asimilado.',
 'thumbnail_image-missing' => 'Dosiero verŝajne estas foriga: $1',
 
 # Special:Import
-'import' => 'Importitaj paĝoj',
+'import' => 'Importi paĝojn',
 'importinterwiki' => 'Transvikia importo',
 'import-interwiki-text' => 'Elektu vikion kaj paĝan titolon por importi.
 Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.

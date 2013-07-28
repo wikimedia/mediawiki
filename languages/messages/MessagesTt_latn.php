@@ -972,7 +972,6 @@ Barlıq alannarda (bäxäs bitläre, ürnäklär, h.b.) ezläw öçen ''all'' s�
 'recentchangesdays-max' => '( $1 {{PLURAL:$1|könnän}} dä artıq bulmasqa tieş)',
 'recentchangescount' => 'Töp bularaq qullanuçı üzgärtülär sanı:',
 'prefs-help-recentchangescount' => 'Üz öçenä üzgärtülärne, bitlärneñ tarixın häm yazlu köndälegen dä kertä.',
-'prefs-help-watchlist-token' => 'Älege yulnı sersüz belän tutıru sezneñ küzätü isemlegegezneñ RSS-tasmasın barlıqqa kiteräçäk. Mondağı sersüzne belüçe härber keşe sezneñ küzätü isemlegegezne qarıy ala, şuña kürä avtomatik räweştä yasalğan sersüzne qullanığız: $1',
 'savedprefs' => 'Köylänmäläregez saqlandı.',
 'timezonelegend' => 'Säğät poyası:',
 'localtime' => 'Cirle waqıt',

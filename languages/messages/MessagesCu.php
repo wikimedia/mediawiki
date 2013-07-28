@@ -347,12 +347,15 @@ $messages = array(
 'loginsuccess' => "'''нꙑнѣ тꙑ {{GENDER|въшьлъ|въшьла}} въ {{grammar:locative|{{SITENAME}}}} подь имьньмъ ⁖ $1 ⁖.'''",
 'mailmypassword' => 'посъли ново таино слово',
 'accountcreated' => 'мѣсто сътворєно ѥстъ',
+'accountcreatedtext' => 'польꙃєватєльско мѣсто [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|бєсѣда]]) сътворєно бѣ',
 'loginlanguagelabel' => 'ѩꙁꙑкъ : $1',
 
 # Change password dialog
 'resetpass' => 'таина словєсє иꙁмѣнѥниѥ',
+'resetpass_header' => 'таина слова иꙁмѣнѥниѥ',
 'oldpassword' => 'старо таино слово :',
 'newpassword' => 'ново таино слово :',
+'retypenew' => 'опакꙑ ново таиноѥ слово напиши :',
 'resetpass-submit-loggedin' => 'таина словєсє иꙁмѣнѥниѥ',
 
 # Special:PasswordReset
@@ -387,16 +390,19 @@ $messages = array(
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} съвѧꙁанꙑ їсторїѩ видѣти]</span> можєши ⁙ сътворити жє си страницѧ нє можєши',
 'userpage-userdoesnotexist' => 'польꙃєватєльска мѣста ⁖ $1 ⁖ нꙑнѣ нѣстъ ⁙
 прѣдъ сътворѥниѥмь или исправлѥниѥмь си страницѧ помꙑсли жє ащє исто тъ дѣиство ноуждьно ли',
+'userpage-userdoesnotexist-view' => 'польꙃєватєльско мѣсто ⁖ $1 ⁖ сътворєно нѣстъ',
 'clearyourcache' => "'''НАРОЧИТО''': По съхранѥнии можєши обити своѥго съмотрила съхранъ да видѣлъ би мѣнꙑ
 * '''Mozilla ли Firefox ли Safari''' ли жьмꙑи ''Shift'' а мꙑшиѭ жьми ''Reload'' или жьми ''Ctrl-F5'' ꙗко жє ''Ctrl-R'' (⌘-R вън Apple Mac)
 * '''Google Chrome:''' ли жьмꙑи ''Ctrl-Shift-R'' (⌘-Shift-R въ Mac)
 * '''Internet Explorer''' ли жьмꙑи ''Ctrl'' а мꙑшиѭ жьми ''Refresh'' или жьми ''Ctrl-F5'' 
 * '''Опєрꙑ''' польꙃєватєльмъ можєть бꙑти ноужда пльнѣ поничьжити ихъ съмотрила съхранъ въ ''Tools → Preferences'' ⁙",
+'updated' => '(оновлѥно ѥстъ)',
 'note' => "'''НАРОЧИТО:'''",
 'editing' => 'исправлѥниѥ: $1',
 'creating' => 'сътворѥниѥ ⁖ $1 ⁖',
 'editingsection' => 'исправлѥниѥ ⁖ $1 ⁖ (чѧсть)',
 'editingcomment' => 'исправлѥниѥ ⁖ $1 ⁖ (нова чѧсть)',
+'yourtext' => 'твоѥ напьсаниѥ',
 'templatesused' => 'сѥѩ страницѧ {{PLURAL:$1|сь обраꙁьць польꙃоуѥтъ сѧ ѥстъ|с҄и обраꙁьца польꙃоуѭтъ сѧ ѥстє|с҄и обраꙁьци польꙃоуѭтъ сѧ сѫтъ}} :',
 'template-protected' => '(ꙁабранєно ѥстъ)',
 'template-semiprotected' => '(чѧстьно ꙁабранѥно)',

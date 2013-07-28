@@ -720,6 +720,8 @@ Checkyewgh mar pleg mara\'gas beus hwans dhe wruthyl/dhe janjya an folen-ma.',
 'editingcomment' => 'Ow chanjya $1 (tregh nowyth)',
 'yourtext' => 'Agas tekst',
 'yourdiff' => 'Dyffransow',
+'protectedpagewarning' => "'''Gwarnyans: An folen-ma re beu difresys rag ma nag allo marnas devnydhyoryon gans gwiryow menystrer hy chanjya.'''
+Res yw an diwettha kovnoten a-woles rag godhvos:",
 'templatesused' => '{{PLURAL:$1|An skantlyn|Skantlyns}} devnydhys war an folen-ma:',
 'templatesusedpreview' => "{{PLURAL:$1|An skantlyn|Skantlyns}} devnydhys y'n ragwel-ma:",
 'template-protected' => '(difresys)',

@@ -490,7 +490,7 @@ $messages = array(
 'viewtalkpage' => '檢視討論頁面',
 'otherlanguages' => '其他語言',
 'redirectedfrom' => '（重定向自$1）',
-'redirectpagesub' => '重定向頁',
+'redirectpagesub' => '重定向頁面',
 'lastmodifiedat' => '此頁面最後修訂於 $1 $2。',
 'viewcount' => '本頁面已經被瀏覽$1次。',
 'protectedpage' => '受保護頁面',
@@ -1991,7 +1991,7 @@ $1',
 'unwatchedpages' => '未被監視的頁面',
 
 # List redirects
-'listredirects' => '重定向頁面清單',
+'listredirects' => '重定向清單',
 
 # Unused templates
 'unusedtemplates' => '未使用的模板',
@@ -2003,7 +2003,7 @@ $1',
 'randompage-nopages' => '在以下的{{PLURAL:$2|名字空間}}中沒有頁面：$1',
 
 # Random redirect
-'randomredirect' => '隨機重定向頁面',
+'randomredirect' => '隨機重定向',
 'randomredirect-nopages' => '在「$1」名字空間中沒有重定向頁面。',
 
 # Statistics
@@ -2043,14 +2043,14 @@ Template:消除歧義',
 'pageswithprop-prop' => '屬性名稱：',
 'pageswithprop-submit' => '進入',
 
-'doubleredirects' => '雙重重定向頁面',
+'doubleredirects' => '雙重重定向',
 'doubleredirectstext' => '這一頁列出所有重定向頁面重定向到另一個重定向頁的頁面。每一行都包含到第一和第二個重定向頁面的連結，以及第二個重定向頁面的目標，通常顯示的都會是"真正"的目標頁面，也就是第一個重定向頁面應該指向的頁面。
 <del>已劃去</del>的為已經解決之項目。',
 'double-redirect-fixed-move' => '[[$1]]已經完成移動，它現在重新定向到[[$2]]。',
 'double-redirect-fixed-maintenance' => '修復從[[$1]]到[[$2]]的雙重重定向。',
 'double-redirect-fixer' => '重新定向修正器',
 
-'brokenredirects' => '受損重定向頁',
+'brokenredirects' => '受損重定向',
 'brokenredirectstext' => '以下的重定向頁指向的是不存在的頁面:',
 'brokenredirects-edit' => '編輯',
 'brokenredirects-delete' => '刪除',
@@ -2563,7 +2563,7 @@ $1',
 'linkshere' => '以下頁面連結到[[:$1]]：',
 'nolinkshere' => '沒有頁面連結到[[:$1]]。',
 'nolinkshere-ns' => '在所選的名字空間內沒有頁面連結到[[:$1]]。',
-'isredirect' => '重定向頁',
+'isredirect' => '重定向頁面',
 'istemplate' => '包含',
 'isimage' => '檔案連結',
 'whatlinkshere-prev' => '前$1個',

@@ -783,7 +783,7 @@ Imajte na umu da neke stranice mogu nastaviti da se prikazuju kao da ste još pr
 'createacct-reason-ph' => 'Zašto pravite još jedan nalog?',
 'createacct-captcha' => 'Sigurnosna provera',
 'createacct-imgcaptcha-ph' => 'Unesite tekst koji vidite iznad',
-'createacct-submit' => 'Otvorite nalog',
+'createacct-submit' => 'Otvori nalog',
 'createacct-benefit-heading' => '{{SITENAME}} je napravljen od strane ljudi kao što ste vi.',
 'createacct-benefit-body3' => 'skorašnjih {{PLURAL:$1|doprinosa}}',
 'badretype' => 'Unete lozinke se ne poklapaju.',

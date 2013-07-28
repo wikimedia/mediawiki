@@ -28,6 +28,7 @@
  * @author Olli
  * @author Pxos
  * @author Silvonen
+ * @author Snidata
  * @author Str4nd
  * @author Stryn
  * @author Tarmo
@@ -874,7 +875,7 @@ Olet saattanut jo onnistuneesti vaihtaa salasanasi tai pyytää uutta väliaikai
 # Special:PasswordReset
 'passwordreset' => 'Salasanan alustus',
 'passwordreset-text-one' => 'Täytä tämä lomake vaihtaaksesi salasanasi.',
-'passwordreset-text-many' => '{{PLURAL:$1|Täytä yksi datakentistä alustaaksesi salasanasi.}}',
+'passwordreset-text-many' => '{{PLURAL:$1|Täytä yksi kentistä nollataksesi salasanasi.}}',
 'passwordreset-legend' => 'Salasanan vaihto',
 'passwordreset-disabled' => 'Salasanojen alustus ei ole mahdollista tässä wikissä.',
 'passwordreset-emaildisabled' => 'Sähköpostitoiminnot on poistettu käytöstä tässä wikissä.',
@@ -920,6 +921,19 @@ Väliaikainen salasana: $2',
 'changeemail-password' => 'Salasanasi sivustolla {{SITENAME}}',
 'changeemail-submit' => 'Muuta sähköpostiosoite',
 'changeemail-cancel' => 'Peruuta',
+
+# Special:ResetTokens
+'resettokens' => 'Uudista tunnisteet.',
+'resettokens-text' => 'Tällä sivulla voit uudistaa tunnisteesi, joiden avulla hallitaan pääsyä käyttäjätiliisi liittyviin yksityisiin tietoihin.
+
+Sinun pitää tehdä tämä jos olet vahingossa jakanut ne jonkun kanssa tai käyttäjätiliisi on saatettu kajota.',
+'resettokens-no-tokens' => 'Tunnisteita ei löydy uudistettavaksi.',
+'resettokens-legend' => 'Uudista tunnisteet.',
+'resettokens-tokens' => 'Tunnisteet:',
+'resettokens-token-label' => '$1 (nykyinen arvo: $2)',
+'resettokens-watchlist-token' => 'Tarkkailulistan verkkosyötteen tunniste',
+'resettokens-done' => 'Tunnisteiden uudistaminen',
+'resettokens-resetbutton' => 'Uudista valitut tunnisteet',
 
 # Edit page toolbar
 'bold_sample' => 'Lihavoitu teksti',
@@ -1433,6 +1447,7 @@ Kokeile lisätä haun alkuun ''all:'', niin haku kohdistuu kaikkeen sisältöön
 'recentchangesdays-max' => 'Enintään $1 {{PLURAL:$1|päivä|päivää}}',
 'recentchangescount' => 'Näytettävien muutoksien määrä oletuksena',
 'prefs-help-recentchangescount' => 'Tämä sisältää tuoreet muutokset, muutoshistoriat ja lokit.',
+'prefs-help-watchlist-token2' => 'Tämä on salainen avain tarkkailulistasi verkkosyötteeseen. Kuka tahansa joka tietää sen voi lukea tarkkailulistaasi, joten älä paljasta sitä. [[Special:ResetTokens|Napsauta tästä jos sinun pitää uudistaa se]].',
 'savedprefs' => 'Asetuksesi tallennettiin onnistuneesti.',
 'timezonelegend' => 'Aikavyöhyke',
 'localtime' => 'Paikallinen aika',
@@ -1500,6 +1515,7 @@ Kokeile lisätä haun alkuun ''all:'', niin haku kohdistuu kaikkeen sisältöön
 'prefs-displayrc' => 'Perusasetukset',
 'prefs-displaysearchoptions' => 'Näyttöasetukset',
 'prefs-displaywatchlist' => 'Näyttöasetukset',
+'prefs-tokenwatchlist' => 'Tunniste',
 'prefs-diffs' => 'Erot',
 
 # User preference: email validation using jQuery
@@ -2098,6 +2114,7 @@ Sivua kohdellaan täsmennyssivuna, jos se käyttää mallinetta, johon on linkki
 'pageswithprop-text' => 'Tällä sivulla on lueteltu sivut, jotka käyttävät erityistä sivun ominaisuutta.',
 'pageswithprop-prop' => 'Ominaisuuden nimi',
 'pageswithprop-submit' => 'Siirry',
+'pageswithprop-prophidden-binary' => 'ominaisuuden binääriarvo on piilotettu ($1 kilotavua)',
 
 'doubleredirects' => 'Kaksinkertaiset ohjaukset',
 'doubleredirectstext' => 'Tässä listassa on ohjaussivut, jotka ohjaavat toiseen ohjaussivuun.
@@ -2155,6 +2172,7 @@ Jokaisella rivillä on linkit ensimmäiseen ja toiseen ohjaukseen sekä toisen o
 'mostrevisions' => 'Muokatuimmat sivut',
 'prefixindex' => 'Kaikki sivut katkaisuhaulla',
 'prefixindex-namespace' => 'Kaikki sivut etuliitteellä (nimiavaruus $1)',
+'prefixindex-strip' => 'Älä näytä etuliitteitä listauksessa',
 'shortpages' => 'Lyhyet sivut',
 'longpages' => 'Pitkät sivut',
 'deadendpages' => 'Sivut, joilla ei ole linkkejä',
@@ -2741,6 +2759,7 @@ Alla on ote häivytyslokista.',
 'proxyblocksuccess' => 'Valmis.',
 'sorbsreason' => 'IP-osoitteesi on listattu avoimena välityspalvelimena DNSBLin mustalla listalla.',
 'sorbs_create_account_reason' => 'IP-osoitteesi on listattu avoimena välityspalvelimena DNSBLin mustalla listalla. Et voi luoda käyttäjätunnusta.',
+'xffblockreason' => 'Yhteydet IP-osoitteesta, joka löytyy sinun tai käyttämäsi välipalvelimen X-Forwarded-For-otsakkeesta, on estetty. Alkuperäinen estämisen syy oli: $1',
 'cant-block-while-blocked' => 'Et voi estää muita käyttäjiä ollessasi estetty.',
 'cant-see-hidden-user' => 'Käyttäjä, jota yrität estää on jo estetty ja piilotettu. Koska sinulla ei ole hideuser-oikeutta, et voi nähdä tai muokata käyttäjän estoa.',
 'ipbblocked' => 'Et voi estää tai poistaa estoja muilta käyttäjiltä, koska itse olet estettynä',
@@ -2949,6 +2968,7 @@ Tallenna tiedot koneellesi ja tuo ne tällä sivulla.',
 'import-error-interwiki' => 'Sivua $1 ei voitu tuoda, koska sen nimi on varattu ulkoisen linkittämisen (interwiki).',
 'import-error-special' => 'Sivua $1 ei tuoda, koska se kuuluu nimitilaan, joka ei salli sivuja.',
 'import-error-invalid' => 'Sivua $1 ei tuoda, koska sen nimi ei kelpaa.',
+'import-error-unserialize' => 'Revisiota $2 sivusta "$1" ei voida jakaa osiin. Revision kerrottiin käyttävän sisältömallia $3 ja sarjoitusmuotoilua $4.',
 'import-options-wrong' => '{{PLURAL:$2|Väärä asetus|Väärät asetukset}}: <nowiki>$1</nowiki>',
 'import-rootpage-invalid' => 'Annettu sivun nimi ei kelpaa.',
 'import-rootpage-nosubpage' => 'Annetun sivun nimiavaruus $1 ei salli alasivuja.',

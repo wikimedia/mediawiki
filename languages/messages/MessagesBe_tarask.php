@@ -886,6 +886,19 @@ $2
 'changeemail-submit' => 'Зьмяніць адрас электроннай пошты',
 'changeemail-cancel' => 'Скасаваць',
 
+# Special:ResetTokens
+'resettokens' => 'Скідваньне токенаў',
+'resettokens-text' => 'Тут вы можаце скінуць токены, якія даюць вамд доступ да пэўных прыватных зьвестак, асацыяваных з вашым рахункам.
+
+Калі вы выпадкова падзяліліся токенамі зь іншымі, або калі ваш рахунак быў скампрамэтаваны, скарыстайцеся гэтай магчымасьцю і скіньце токены.',
+'resettokens-no-tokens' => 'Няма што скідаць.',
+'resettokens-legend' => 'Скінуць токены',
+'resettokens-tokens' => 'Токены:',
+'resettokens-token-label' => '$1 (бягучае значэньне: $2)',
+'resettokens-watchlist-token' => 'Токен стужкі сьпісу назіраньня',
+'resettokens-done' => 'Токены скінутыя.',
+'resettokens-resetbutton' => 'Скінуць вылучаныя токены',
+
 # Edit page toolbar
 'bold_sample' => 'Тоўсты тэкст',
 'bold_tip' => 'Тоўсты тэкст',
@@ -1417,6 +1430,9 @@ $1",
 'recentchangesdays-max' => '(максымальна $1 {{PLURAL:$1|дзень|дні|дзён}})',
 'recentchangescount' => 'Колькасьць рэдагаваньняў для паказу па змоўчваньні:',
 'prefs-help-recentchangescount' => 'Гэта датычыцца апошніх зьменах, гісторый старонак і журналаў.',
+'prefs-help-watchlist-token2' => 'Гэта сакрэтны ключ да стужкі вашага сьпісу назіраньня.
+Кожны, хто ведае яго, можа набыць доступ да вашага сьпісу назіраньня, таму не дзяліцеся ім.
+[[Special:ResetTokens|Пстрыкніце тут, калі вам трэба скінуць яго]].',
 'savedprefs' => 'Вашыя налады былі захаваныя.',
 'timezonelegend' => 'Часавы пояс:',
 'localtime' => 'Мясцовы час:',
@@ -1487,6 +1503,7 @@ $1",
 'prefs-displayrc' => 'Налады паказу',
 'prefs-displaysearchoptions' => 'Налады паказу',
 'prefs-displaywatchlist' => 'Налады паказу',
+'prefs-tokenwatchlist' => 'Токен',
 'prefs-diffs' => 'Розьніцы вэрсіяў',
 
 # User preference: email validation using jQuery
@@ -2091,6 +2108,8 @@ $1',
 'pageswithprop-text' => 'На гэтай старонцы адлюстроўваюцца старонкі, якія ўжываюць пэўныя ўласьцівасьці старонак',
 'pageswithprop-prop' => 'Імя ўласьцівасьці:',
 'pageswithprop-submit' => 'Паказаць',
+'pageswithprop-prophidden-long' => 'доўгае тэкставае значэньне ўласьцівасьці схавана ($1 кілябайт)',
+'pageswithprop-prophidden-binary' => 'двайковае значэньне ўласьцівасьці схавана ($1 кілябайт)',
 
 'doubleredirects' => 'Двайныя перанакіраваньні',
 'doubleredirectstext' => 'На гэтай старонцы пададзены сьпіс перанакіраваньняў на іншыя перанакіраваньні. Кожны радок утрымлівае спасылкі на першае і другое перанакіраваньне, а таксама мэтавую старонку другога перанакіраваньня, якая звычайна зьяўляецца «сапраўднай» мэтавай старонкай, куды павіннае спасылацца першае перанакіраваньне.
@@ -2147,6 +2166,7 @@ $1',
 'mostrevisions' => 'Старонкі з найбольшай колькасьцю рэдагаваньняў',
 'prefixindex' => 'Усе старонкі з пачаткам назваў',
 'prefixindex-namespace' => 'Усе старонкі з прэфіксам (прастора назваў $1)',
+'prefixindex-strip' => 'Прыбраць прэфікс у сьпісе',
 'shortpages' => 'Кароткія старонкі',
 'longpages' => 'Доўгія старонкі',
 'deadendpages' => 'Тупіковыя старонкі',
@@ -2267,7 +2287,8 @@ $1',
 'listgrouprights' => 'Правы групаў удзельнікаў',
 'listgrouprights-summary' => 'Ніжэй пададзены сьпіс групаў удзельнікаў {{GRAMMAR:родны|{{SITENAME}}}}, разам зь іх правамі.
 Таксама можна паглядзець [[{{MediaWiki:Listgrouprights-helppage}}|дадатковую інфармацыю]] пра асабістыя правы.',
-'listgrouprights-key' => '* <span class="listgrouprights-granted">Прызначаныя правы</span>
+'listgrouprights-key' => 'Легенда:
+* <span class="listgrouprights-granted">Прызначаныя правы</span>
 * <span class="listgrouprights-revoked">Адабраныя правы</span>',
 'listgrouprights-group' => 'Група',
 'listgrouprights-rights' => 'Правы',

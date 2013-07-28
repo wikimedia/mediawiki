@@ -588,7 +588,7 @@ $messages = array(
 'viewtalkpage' => '查看讨论',
 'otherlanguages' => '其他语言',
 'redirectedfrom' => '（重定向自$1）',
-'redirectpagesub' => '重定向页',
+'redirectpagesub' => '重定向页面',
 'lastmodifiedat' => '本页面最后修改于$1 $2。',
 'viewcount' => '此页面已被浏览过$1次。',
 'protectedpage' => '受保护页面',
@@ -1003,9 +1003,8 @@ $2
 'showpreview' => '显示预览',
 'showlivepreview' => '实时预览',
 'showdiff' => '显示差异',
-'anoneditwarning' => "'''警告：'''您没有登录。
-您的IP地址将记录在此页的编辑历史中。",
-'anonpreviewwarning' => "''您没有登录。保存页面将会把您的IP地址记录在此页的编辑历史中。''",
+'anoneditwarning' => "'''警告：'''你没有登录。你的IP地址将被记录在该页面的编辑历史中。",
+'anonpreviewwarning' => "''你没有登录。保存会记录你的IP地址于该页面的编辑历史中。''",
 'missingsummary' => "'''提示：'''你没有提供编辑摘要。如果你再次点击“{{int:savearticle}}”，你的编辑将不带编辑摘要保存。",
 'missingcommenttext' => '请在下面输入评论。',
 'missingcommentheader' => "'''提示：''' 您还没有为此评论提供一个标题。如果您再次点击“{{int:savearticle}}”，您的编辑将不带标题保存。",
@@ -1208,7 +1207,7 @@ $3的理由是''$2''",
 说明：'''（{{int:cur}}）'''=与最后版本之间的差异，'''（{{int:last}}）'''=与上一版本之间的差异，'''{{int:minoreditletter}}'''=小编辑。",
 'history-fieldset-title' => '浏览历史',
 'history-show-deleted' => '仅被删除的',
-'histfirst' => '最旧',
+'histfirst' => '最早',
 'histlast' => '最新',
 'historysize' => '（$1字节）',
 'historyempty' => '（空）',
@@ -2063,7 +2062,7 @@ $1',
 'unwatchedpages' => '未被监视的页面',
 
 # List redirects
-'listredirects' => '重定向页列表',
+'listredirects' => '重定向列表',
 
 # Unused templates
 'unusedtemplates' => '未使用模板',
@@ -2075,7 +2074,7 @@ $1',
 'randompage-nopages' => '在以下{{PLURAL:$2|名字空间|名字空间}}中没有页面：$1。',
 
 # Random redirect
-'randomredirect' => '随机重定向页',
+'randomredirect' => '随机重定向',
 'randomredirect-nopages' => '在 "$1" 名字空间中没有重定向页面。',
 
 # Statistics
@@ -2111,13 +2110,13 @@ $1',
 'pageswithprop-prophidden-long' => '长文本属性值已隐藏( $1 千字节)',
 'pageswithprop-prophidden-binary' => '已隐藏二进制属性值($1千字节)',
 
-'doubleredirects' => '双重重定向页',
+'doubleredirects' => '双重重定向',
 'doubleredirectstext' => '本页面列出重定向至其他重定向页的页面。每行含有第一及第二重定向的链接和第二重定向的目标（通常是第一重定向应该指向的“真实”目标页面）。<del>带删除线的</del>条目已被解决。',
 'double-redirect-fixed-move' => '[[$1]]已被移动。它现在重定向至[[$2]]。',
 'double-redirect-fixed-maintenance' => '修复双重重定向自[[$1]]至[[$2]]。',
 'double-redirect-fixer' => '重定向页修复器',
 
-'brokenredirects' => '受损重定向页',
+'brokenredirects' => '受损重定向',
 'brokenredirectstext' => '以下的重定向页面指向的是不存在的页面：',
 'brokenredirects-edit' => '编辑',
 'brokenredirects-delete' => '删除',
@@ -3896,7 +3895,7 @@ MediaWiki发表时预期有用，但对此'''无任何保证'''，亦无隐含�
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath 脚本路径]',
 
 # Special:Redirect
-'redirect' => '重定向',
+'redirect' => '重定向（按文件、用户或版本ID）',
 'redirect-legend' => '重定向至文件或页面',
 'redirect-summary' => '本特殊页面会重定向到一个文件（给予文件名），一个页面（给予修订版本ID），或一个用户页面（给予用户数字ID）。',
 'redirect-submit' => '提交',

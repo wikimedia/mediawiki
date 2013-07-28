@@ -1146,9 +1146,6 @@ Tandai nga ang ila nga palasulundan sang mga unod sang {{SITENAME}} mahimo nga m
 'recentchangesdays-max' => 'Indi magtaas sa $1 {{PLURAL:$1|ka adlaw|ka mga adlaw}}',
 'recentchangescount' => 'Numero sang mga pag-ilis nga ipakita by default:',
 'prefs-help-recentchangescount' => 'Nadala diri ang mga bag-o nga gin-ilisan, kasaysayan sang mga panid, kag mga log.',
-'prefs-help-watchlist-token' => 'Ang pagsulat sa sini nga lugar gamit ang sekreto nga yabi magatuga sang RSS feed para sa lista sang imo ginabantayn.
-Ang bisan sin-o nga nakahibalo sang sini nga yabi sa sini nga lugar mahimo nga makabasa sang imo lista, gani magpili sang segurado nga balor.
-Ini isa ka wala pinilian nga balor nga imo mahimo gamiton: $1',
 'savedprefs' => 'Ang imo mga pagpalabi gintipon na.',
 'timezonelegend' => 'Sona sang oras:',
 'localtime' => 'Lokal nga oras:',

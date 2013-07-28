@@ -967,7 +967,7 @@ Razlog blokiranja je sljedeći: \'\'$2\'\'.
 
 Možete kontaktirati $1 ili jednog od [[{{MediaWiki:Grouppage-sysop}}|administratora]] kako bi Vam pojasnili razlog blokiranja.
 
-Primijetite da ne možete koristiti opciju "Pošalji mu e-mail" ukoliko niste upisali valjanu e-mail adresu u Vašim [[Special:Preferences|suradničkim postavkama]] i ako niste u tome onemogućeni prilikom blokiranja.
+Primijetite da ne možete koristiti opciju "Pošalji mu e-poruku" ako niste upisali valjanu adresu e-pošte u Vašim [[Special:Preferences|suradničkim postavkama]] i ako niste u tome onemogućeni prilikom blokiranja.
 
 Vaša trenutačna IP adresa je $3, a oznaka bloka #$5. Molimo navedite ovaj broj kod svakog upita vezano za razlog blokiranja.',
 'autoblockedtext' => 'Vaša IP adresa automatski je blokirana zbog toga što ju je koristio drugi suradnik, kojeg je blokirao $1.
@@ -981,7 +981,7 @@ Razlog blokiranja je sljedeći:
 
 Možete kontaktirati $1 ili jednog od [[{{MediaWiki:Grouppage-sysop}}|administratora]] kako bi Vam pojasnili razlog blokiranja.
 
-Primijetite da ne možete koristiti opciju "Pošalji mu e-mail" ukoliko niste upisali valjanu e-mail adresu u Vašim [[Special:Preferences|suradničkim postavkama]] i ako niste u tome onemogućeni prilikom blokiranja.
+Primijetite da ne možete rabiti opciju "Pošalji mu e-poruku" ako niste upisali valjanu adresu e-pošte u Vašim [[Special:Preferences|suradničkim postavkama]] i ako niste u tome onemogućeni prilikom blokiranja.
 
 Vaša trenutačna IP adresa je $3, a oznaka bloka #$5. Molimo navedite ovaj broj kod svakog upita vezano za razlog blokiranja.',
 'blockednoreason' => 'bez obrazloženja',
@@ -1620,7 +1620,7 @@ Ne smije biti duži od $1 {{PLURAL:$1|znaka|znaka|znakova}}.',
 'right-userrights-interwiki' => 'Uređivanje suradničkih prava na drugim Wikijima',
 'right-siteadmin' => 'Zaključavanje i otključavanje baze podataka',
 'right-override-export-depth' => 'Izvezi stranice uključujući i povezane stranice do dubine od 5',
-'right-sendemail' => 'Slanje e-maila drugim korisnicima',
+'right-sendemail' => 'Slanje e-pošte drugim suradnicima',
 'right-passwordreset' => 'Vidi poruku e-pošte o ponovnom postavljanju lozinke',
 
 # Special:Log/newusers
@@ -2283,7 +2283,7 @@ Dodatne informacije o pojedinim pravim se mogu pronaći [[{{MediaWiki:Listgroupr
 'mailnologintext' => 'Morate biti [[Special:UserLogin|prijavljeni]]
 i imati valjanu adresu e-pošte u svojim [[Special:Preferences|postavkama]]
 da bi mogli slati poštu drugim suradnicima.',
-'emailuser' => 'Pošalji e-poštu ovom suradniku',
+'emailuser' => 'Pošalji mu e-poruku',
 'emailuser-title-target' => 'Pošalji poruku {{GENDER:$1|suradniku|suradnici|suradniku}}',
 'emailuser-title-notarget' => 'Pošalji e-poštu suradniku',
 'emailpage' => 'Pošalji e-poštu suradniku',
@@ -2649,7 +2649,7 @@ vandalizirane).',
 ** Neprihvatljivo suradničko ime",
 'ipb-hardblock' => 'Onemogući prijavljene suradnike uređivati s ove IP adrese',
 'ipbcreateaccount' => 'Spriječi otvaranje suradničkih računa',
-'ipbemailban' => 'Onemogući blokiranom suradniku slanje e-mailova',
+'ipbemailban' => 'Onemogući blokiranom suradniku slanje e-pošte',
 'ipbenableautoblock' => 'Automatski blokiraj IP adrese koje koristi ovaj suradnik',
 'ipbsubmit' => 'Blokiraj ovog suradnika',
 'ipbother' => 'Neki drugi rok (na engleskom, npr. 6 days):',
@@ -2723,7 +2723,7 @@ Za popis trenutačnih zabrana i blokiranja vidi [[Special:BlockList|popis blokir
 'block-log-flags-anononly' => 'samo za neprijavljene suradnike',
 'block-log-flags-nocreate' => 'otvaranje novih suradničkih imena nije moguće',
 'block-log-flags-noautoblock' => 'autoblok je onemogućen',
-'block-log-flags-noemail' => 'e-mail je blokiran',
+'block-log-flags-noemail' => 'e-pošta je blokirana',
 'block-log-flags-nousertalk' => 'bez uređivanja vlastite stranice za razgovor',
 'block-log-flags-angry-autoblock' => 'Poboljšan autoblok uključen',
 'block-log-flags-hiddenname' => 'suradničko ime skriveno',

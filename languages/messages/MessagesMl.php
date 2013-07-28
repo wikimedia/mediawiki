@@ -955,6 +955,19 @@ $2
 'changeemail-submit' => 'ഇമെയിലിൽ മാറ്റംവരുത്തുക',
 'changeemail-cancel' => 'റദ്ദാക്കുക',
 
+# Special:ResetTokens
+'resettokens' => 'ചീട്ടുകൾ പുനഃസജ്ജീകരിക്കുക',
+'resettokens-text' => 'താങ്കളുടെ അംഗത്വവുമായി ബന്ധപ്പെട്ടുള്ള ചില സ്വകാര്യവിവരങ്ങളിലേയ്ക്ക് ഇവിടെ ലഭ്യത സാദ്ധ്യമാക്കുന്ന ചീട്ടുകൾ താങ്കൾക്ക് പുനഃസജ്ജീകരിക്കാവുന്നതാണ്.
+
+താങ്കളുടെ അംഗത്വവിവരങ്ങൾ മറ്റാർക്കെങ്കിലും അറിയാതെ കൈമാറിയിട്ടുണ്ടെങ്കിലോ താങ്കളുടെ അംഗത്വം അപഹരിക്കപ്പെട്ടുവെങ്കിലോ താങ്കളിത്  ചെയ്യേണ്ടതാണ്.',
+'resettokens-no-tokens' => 'ചീട്ടുകളൊന്നും പുനഃസജ്ജീകരിക്കാനില്ല.',
+'resettokens-legend' => 'ചീട്ടുകൾ പുനഃസജ്ജീകരിക്കുക',
+'resettokens-tokens' => 'ചീട്ടുകൾ:',
+'resettokens-token-label' => '$1 (ഇപ്പോഴത്തെ വില: $2)',
+'resettokens-watchlist-token' => 'ശ്രദ്ധിക്കുന്നവയുടെ വെബ് ഫീഡ് ചീട്ട്',
+'resettokens-done' => 'ചീട്ടുകൾ പുനഃസജ്ജീകരിക്കപ്പെട്ടു.',
+'resettokens-resetbutton' => 'തിരഞ്ഞെടുത്ത ചീട്ടുകൾ പുനഃസജ്ജീകരിക്കുക',
+
 # Edit page toolbar
 'bold_sample' => 'കടുപ്പിച്ച എഴുത്ത്',
 'bold_tip' => 'കടുപ്പിച്ചെഴുതുവാൻ',
@@ -1544,6 +1557,7 @@ $1",
 'prefs-displayrc' => 'പ്രദർശന ഐച്ഛികങ്ങൾ',
 'prefs-displaysearchoptions' => 'പ്രദർശന ഐച്ഛികങ്ങൾ',
 'prefs-displaywatchlist' => 'പ്രദർശന ഐച്ഛികങ്ങൾ',
+'prefs-tokenwatchlist' => 'ചീട്ട്',
 'prefs-diffs' => 'വ്യത്യാസങ്ങൾ',
 
 # User preference: email validation using jQuery
@@ -2203,6 +2217,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization കാണുക.',
 'mostrevisions' => 'ഏറ്റവുമധികം തിരുത്തപ്പെട്ട താളുകൾ',
 'prefixindex' => 'പൂർവ്വപദത്തോടു കൂടിയ എല്ലാ താളുകളും',
 'prefixindex-namespace' => 'പൂർവ്വപദമുള്ള എല്ലാ താളുകളും (നാമമേഖല $1)',
+'prefixindex-strip' => 'പട്ടികയിൽ നിന്ന് പൂർവ്വപദം ഒഴിവാക്കുക',
 'shortpages' => 'വിവരം ഏറ്റവും കുറവുള്ള താളുകൾ',
 'longpages' => 'വലിയ താളുകളുടെ പട്ടിക',
 'deadendpages' => 'അന്തർ വിക്കി കണ്ണിയാൽ ബന്ധിപ്പിക്കപ്പെടാത്ത താളുകൾ',
@@ -2323,7 +2338,8 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization കാണുക.',
 'listgrouprights' => 'ഉപയോക്തൃവിഭാഗത്തിന്റെ അവകാശങ്ങൾ',
 'listgrouprights-summary' => 'ഈ വിക്കിയിൽ നിർവ്വചിക്കപ്പെട്ടിരിക്കുന്ന ഉപയോക്തൃസംഘങ്ങളെയും, ആ സംഘങ്ങൾക്ക് പ്രാപ്തമായിട്ടുള്ള അവകാശങ്ങളേയും താഴെ കുറിച്ചിരിക്കുന്നു.
 വ്യക്തിപരമായ അവകാശങ്ങളെ കുറിച്ച് [[{{MediaWiki:Listgrouprights-helppage}}|കൂടുതൽ വിവരങ്ങൾ]] ഉണ്ടാകാനിടയുണ്ട്.',
-'listgrouprights-key' => '* <span class="listgrouprights-granted">അവകാശം നൽകിയിരിക്കുന്നു</span>
+'listgrouprights-key' => 'സൂചന:
+* <span class="listgrouprights-granted">അവകാശം നൽകിയിരിക്കുന്നു</span>
 * <span class="listgrouprights-revoked">അവകാശം നീക്കിയിരിക്കുന്നു</span>',
 'listgrouprights-group' => 'സംഘം',
 'listgrouprights-rights' => 'അവകാശങ്ങൾ',

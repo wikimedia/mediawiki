@@ -11559,6 +11559,9 @@ $3
 	'config-download-localsettings' => '<code>LocalSettings.php</code> 다운로드',
 	'config-help' => '도움말',
 	'config-nofile' => '"$1" 파일을 찾을 수 없습니다. 이미 삭제되었나요?',
+	'config-extension-link' => '당신의 위키가 [//www.mediawiki.org/wiki/Manual:Extensions 확장 기능]을 지원한다는 것을 알고 계십니까?
+
+전체 확장 기능의 목록을 확인하려면 [//www.mediawiki.org/wiki/Category:Extensions_by_category 분류별 확장 기능]이나 [//www.mediawiki.org/wiki/Extension_Matrix 확장 기능 표]를 찾아보실 수 있습니다.',
 	'mainpagetext' => "'''미디어위키가 성공적으로 설치되었습니다.'''",
 	'mainpagedocfooter' => '[//meta.wikimedia.org/wiki/Help:Contents 이곳]에서 위키 소프트웨어에 대한 정보를 얻을 수 있습니다.
 
@@ -16404,7 +16407,7 @@ Se está a executar o Mandrake, instale o pacote php-xml.',
 	'config-pcre' => 'Parece faltar o módulo de suporte PCRE.
 Para funcionar, o MediaWiki necessita das funções de expressões regulares compatíveis com Perl.',
 	'config-pcre-no-utf8' => "'''Fatal''': O módulo PCRE do PHP parece ter sido compilado sem suporte PCRE_UTF8.
-O MediaWiki necessita do suporte UTF-8 para funcionar correctamente.",
+O MediaWiki necessita do suporte UTF-8 para funcionar corretamente.",
 	'config-memory-raised' => 'A configuração <code>memory_limit</code> do PHP era $1; foi aumentada para $2.',
 	'config-memory-bad' => "'''Aviso:''' A configuração <code>memory_limit</code> do PHP é $1.
 Isto é provavelmente demasiado baixo.
@@ -16424,7 +16427,7 @@ Se possibilitar uploads, a miniaturização de imagens será ativada.',
 Se possibilitar uploads, a miniaturização de imagens será ativada.',
 	'config-no-scaling' => 'Não foi encontrada a biblioteca gráfica GD nem o ImageMagick.
 A miniaturização de imagens será desativada.',
-	'config-no-uri' => "'''Erro:''' Não foi possível determinar a URI actual.
+	'config-no-uri' => "'''Erro:''' Não foi possível determinar a URI atual.
 A instalação foi abortada.",
 	'config-no-cli-uri' => "'''Aviso''':  Não foi especificado um --scriptpath; por omissão, será usado: <code>$1</code>.",
 	'config-using-server' => 'Será usado o nome do servidor "<nowiki>$1</nowiki>".',
@@ -16433,10 +16436,10 @@ A instalação foi abortada.",
 Embora o MediaWiki verifique a existência de ameaças de segurança em todos os ficheiros enviados, é altamente recomendado que [//www.mediawiki.org/wiki/Manual:Security#Upload_security vede esta vulnerabilidade de segurança] antes de possibilitar uploads.",
 	'config-no-cli-uploads-check' => "'''Aviso:''' O diretório por omissão para uploads, <code>\$1</code>, não é verificado para determinar se é vulnerável à execução de código arbitrário durante a instalação por CLI (\"Command-line Interface\").",
 	'config-brokenlibxml' => 'O seu sistema tem uma combinação de versões de PHP e libxml2 conhecida por ser problemática, podendo causar corrupção de dados no MediaWiki e outras aplicações da internet.
-Actualize para o PHP versão 5.2.9 ou posterior e libxml2 versão 2.7.3 ou posterior ([//bugs.php.net/bug.php?id=45996 incidência reportada no PHP]).
+Atualize para o PHP versão 5.2.9 ou posterior e libxml2 versão 2.7.3 ou posterior ([//bugs.php.net/bug.php?id=45996 incidência reportada no PHP]).
 Instalação interrompida.',
 	'config-using531' => 'O MediaWiki não pode ser usado com o PHP $1 devido a um problema que envolve parâmetros de referência para <code>__call()</code>.
-Para resolver este problema, actualize o PHP para a versão 5.3.2 ou posterior, ou reverta-o para a 5.3.0.
+Para resolver este problema, atualize o PHP para a versão 5.3.2 ou posterior, ou reverta-o para a 5.3.0.
 Instalação interrompida.',
 	'config-suhosin-max-value-length' => 'O Suhosin está instalado e limita a $1 bytes o comprimento do parâmetro GET. O componente ResourceLoader do MediaWiki pode tornear este limite, mas prejudicando o desempenho. Se lhe for possível, deve atribuir o valor 1024 ou maior ao parâmetro <code>suhosin.get.max_value_length</code> no ficheiro <code>php.ini</code>, e definir o mesmo valor para <code>$wgResourceLoaderMaxQueryLength</code> no ficheiro LocalSettings.php.', # Fuzzy
 	'config-db-type' => 'Tipo da base de dados:',
@@ -16492,7 +16495,7 @@ mas não lhe permitirá armazenar caracteres acima do [//en.wikipedia.org/wiki/M
 	'config-mysql-old' => 'É necessário o MySQL $1 ou posterior; tem a versão $2.',
 	'config-db-port' => 'Porta da base de dados:',
 	'config-db-schema' => "Esquema ''(schema)'' do MediaWiki",
-	'config-db-schema-help' => 'Normalmente, este esquema ("schema") estará correcto.
+	'config-db-schema-help' => 'Normalmente, este esquema estará correto.
 Altere-o só se souber que precisa de o fazer.',
 	'config-pg-test-error' => "Não foi possível criar uma ligação à base de dados '''$1''': $2",
 	'config-sqlite-dir' => 'Diretório de dados do SQLite:',
@@ -16696,8 +16699,8 @@ A GFDL é uma licença válida, mas de difícil compreensão.
 Também é difícil reutilizar conteúdos licenciados com a GFDL.',
 	'config-email-settings' => 'Definições do correio electrónico',
 	'config-enable-email' => 'Ativar mensagens eletrónicas de saída',
-	'config-enable-email-help' => 'Se quer que o correio electrónico funcione, as [http://www.php.net/manual/en/mail.configuration.php definições de correio electrónico do PHP] têm de estar configuradas correctamente.
-Se não pretende viabilizar qualquer funcionalidade de correio electrónico, pode desactivá-lo aqui.',
+	'config-enable-email-help' => 'Se quer que o correio eletrónico funcione, as [http://www.php.net/manual/en/mail.configuration.php definições de correio eletrónico do PHP] têm de estar configuradas corretamente.
+Se não pretende viabilizar qualquer funcionalidade de correio eletrónico, pode desativá-lo aqui.',
 	'config-email-user' => 'Ativar mensagens eletrónicas entre utilizadores',
 	'config-email-user-help' => 'Permitir que todos os utilizadores troquem entre si mensagens de correio eletrónico, se tiverem ativado esta funcionalidade nas suas preferências.',
 	'config-email-usertalk' => 'Ativar notificações de alterações à página de discussão dos utilizadores',

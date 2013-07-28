@@ -893,6 +893,19 @@ Contrasinal temporal: $2',
 'changeemail-submit' => 'Cambiar o correo electrónico',
 'changeemail-cancel' => 'Cancelar',
 
+# Special:ResetTokens
+'resettokens' => 'Restablecer os pases',
+'resettokens-text' => 'Aquí pode restablecer os pases que permiten acceder a certos datos privados asociados á súa conta.
+
+Debería facelo se os compartiu accidentalmente con alguén ou se a súa conta foi comprometida.',
+'resettokens-no-tokens' => 'Non hai ningún pase que restablecer.',
+'resettokens-legend' => 'Restablecer os pases',
+'resettokens-tokens' => 'Pases:',
+'resettokens-token-label' => '$1 (valor actual: $2)',
+'resettokens-watchlist-token' => 'Pase da fonte de novas web para a lista de vixilancia',
+'resettokens-done' => 'Restablecéronse os pases.',
+'resettokens-resetbutton' => 'Restablecer os pases seleccionados',
+
 # Edit page toolbar
 'bold_sample' => 'Texto en negra',
 'bold_tip' => 'Texto en negra',
@@ -1432,6 +1445,9 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 'recentchangesdays-max' => 'Máximo: $1 {{PLURAL:$1|día|días}}',
 'recentchangescount' => 'Número de edicións a mostrar por defecto:',
 'prefs-help-recentchangescount' => 'Isto inclúe os cambios recentes, os historiais e mais os rexistros.',
+'prefs-help-watchlist-token2' => 'Esta é a clave secreta da fonte de novas web para a súa lista de vixilancia.
+Calquera persoa que a saiba poderá ler a súa lista de vixilancia; non comparta esta clave.
+[[Special:ResetTokens|Prema aquí se necesita restablecela]].',
 'savedprefs' => 'Gardáronse as súas preferencias.',
 'timezonelegend' => 'Zona horaria:',
 'localtime' => 'Hora local:',
@@ -1501,6 +1517,7 @@ Ha de ter menos {{PLURAL:$1|dun carácter|de $1 caracteres}}.',
 'prefs-displayrc' => 'Opcións de visualización',
 'prefs-displaysearchoptions' => 'Opcións de visualización',
 'prefs-displaywatchlist' => 'Opcións de visualización',
+'prefs-tokenwatchlist' => 'Pase',
 'prefs-diffs' => 'Diferenzas',
 
 # User preference: email validation using jQuery
@@ -1818,7 +1835,7 @@ Se aínda quere cargar o seu ficheiro, volva atrás e use outro nome.
 'overwroteimage' => 'enviou unha nova versión de "[[$1]]"',
 'uploaddisabled' => 'Sentímolo, a subida de ficheiros está desactivada.',
 'copyuploaddisabled' => 'A carga mediante URL está desactivada.',
-'uploadfromurl-queued' => 'A súa carga púxese á cola.',
+'uploadfromurl-queued' => 'A súa carga púxose á cola.',
 'uploaddisabledtext' => 'A carga de ficheiros está desactivada.',
 'php-uploaddisabledtext' => 'As cargas de ficheiros PHP están desactivadas. Por favor, comprobe a característica file_uploads.',
 'uploadscripted' => 'Este ficheiro contén código HTML ou script que pode producir erros ao ser interpretado polo navegador.',
@@ -2184,6 +2201,7 @@ As entradas <del>riscadas</del> xa foron resoltas.',
 'mostrevisions' => 'Páxinas con máis revisións',
 'prefixindex' => 'Todas as páxinas con prefixo',
 'prefixindex-namespace' => 'Todas as páxinas con prefixo (espazo de nomes $1)',
+'prefixindex-strip' => 'Quitar o prefixo na lista',
 'shortpages' => 'Páxinas curtas',
 'longpages' => 'Páxinas longas',
 'deadendpages' => 'Páxinas sen ligazóns cara a outras',

@@ -638,7 +638,7 @@ Consulte a página da [[Special:Version|versão do sistema]].',
 # Main script and global functions
 'nosuchaction' => 'Operação não existe',
 'nosuchactiontext' => 'A operação especificada pela URL é inválida.
-É possível que tenha escrito mal a URL ou seguido um link incorrecto.
+É possível que tenha escrito mal a URL ou seguido um link incorreto.
 Isto pode também indicar um defeito no software da {{SITENAME}}.',
 'nosuchspecialpage' => 'Esta página especial não existe',
 'nospecialpagetext' => '<strong>Solicitou uma página especial inválida.</strong>
@@ -699,7 +699,7 @@ Talvez contenha um ou mais caracteres que não podem ser usados em títulos.',
 'perfcachedts' => "Os seguintes dados encontram-se armazenados na ''cache'' e foram atualizados pela última vez a $1. No máximo {{PLURAL:$4|um resultado está disponível|$4 resultados estão disponíveis}} na ''cache''.",
 'querypage-no-updates' => 'As atualizações estão presentemente desativadas para esta página.
 Por enquanto, os dados aqui presentes não poderão ser atualizados.',
-'wrong_wfQuery_params' => 'Parâmetros incorrectos para wfQuery()<br />
+'wrong_wfQuery_params' => 'Parâmetros incorretos para wfQuery()<br />
 Função: $1<br />
 Consulta: $2',
 'viewsource' => 'Ver código-fonte',
@@ -849,8 +849,8 @@ Em resultado, visitantes com este endereço IP não podem criar mais nenhuma con
 Não serão enviados correios de nenhuma das seguintes funcionalidades.',
 'noemailprefs' => 'Especifique um endereço de correio eletrónico nas suas preferências para ativar estas funcionalidades.',
 'emailconfirmlink' => 'Confirme o seu endereço de correio electrónico',
-'invalidemailaddress' => 'O endereço de correio electrónico não pode ser aceite porque parece ter um formato inválido.
-Introduza um endereço formatado correctamente ou deixe o campo vazio.',
+'invalidemailaddress' => 'O endereço de correio eletrónico não pode ser aceite porque parece ter um formato inválido.
+Introduza um endereço formatado corretamente ou deixe o campo vazio.',
 'cannotchangeemail' => 'Os endereços de correio electrónico das contas não podem ser alterados nesta wiki.',
 'emaildisabled' => 'Este site não consegue enviar e-mails.',
 'accountcreated' => 'Conta criada',
@@ -884,10 +884,10 @@ Para prosseguir, será necessário definir uma nova palavra-chave.',
 'resetpass_submit' => 'Definir palavra-chave e entrar',
 'resetpass_success' => 'A sua palavra-chave foi alterada! Autenticação em curso...',
 'resetpass_forbidden' => 'Não é possível alterar palavras-chave',
-'resetpass-no-info' => 'Precisa estar autenticado para aceder directamente a esta página.',
+'resetpass-no-info' => 'Precisa estar autenticado para aceder diretamente a esta página.',
 'resetpass-submit-loggedin' => 'Alterar palavra-chave',
 'resetpass-submit-cancel' => 'Cancelar',
-'resetpass-wrong-oldpass' => 'Palavra-chave temporária ou actual inválida.
+'resetpass-wrong-oldpass' => 'Palavra-chave temporária ou atual inválida.
 Pode ter já alterado com sucesso a sua palavra-chave ou solicitado uma nova palavra-chave temporária.',
 'resetpass-temp-password' => 'Palavra-chave temporária:',
 'resetpass-abort-generic' => 'Alteração de senha foi cancelada por uma extensão.',
@@ -927,7 +927,7 @@ Palavra-chave temporária: $2',
 'changeemail' => 'Alterar o endereço de correio electrónico',
 'changeemail-header' => 'Alterar o endereço de correio electrónico da conta',
 'changeemail-text' => 'Preencha este formulário para alterar o endereço de correio electrónico. Para confirmar esta alteração terá de introduzir a sua palavra-chave.',
-'changeemail-no-info' => 'Para aceder directamente a esta página tem de estar autenticado.',
+'changeemail-no-info' => 'Para aceder diretamente a esta página tem de estar autenticado.',
 'changeemail-oldemail' => 'Correio electrónico actual:',
 'changeemail-newemail' => 'Correio electrónico novo:',
 'changeemail-none' => '(nenhum)',
@@ -1305,7 +1305,7 @@ $1",
 'revdel-restore-visible' => 'revisões visíveis',
 'pagehist' => 'Histórico da página',
 'deletedhist' => 'Histórico de eliminações',
-'revdelete-hide-current' => 'Erro ao ocultar o item datado de $2, $1: esta é a revisão actual.
+'revdelete-hide-current' => 'Erro ao ocultar o item datado de $2, $1: esta é a revisão atual.
 Não pode ser ocultada.',
 'revdelete-show-no-access' => 'Erro ao mostrar o item datado de $2, $1: este item foi marcado como "restrito".
 Não tem acesso.',
@@ -1778,12 +1778,12 @@ As suas [[Special:Watchlist|páginas vigiadas]] aparecem a '''negrito'''.",
 Para sua conveniência, é apresentado de seguida o registo de eliminação e de movimento da página:",
 'uploadtext' => "Utilize o formulário abaixo para fazer upload de ficheiros novos.
 Para ver ou pesquisar ficheiros anteriormente enviados, consulte a [[Special:FileList|lista de ficheiros]].
-Os reenvios de um ficheiro são também registados no [[Special:Log/upload|registo de uploads]] e as eliminações no [[Special:Log/delete|registo de eliminações]].
+Os reenvios de um ficheiro são também registrados no [[Special:Log/upload|registro de uploads]] e as eliminações no [[Special:Log/delete|registro de eliminações]].
 
 Para utilizar um ficheiro numa página, depois de ter feito o upload, insira um link com um dos seguintes formatos:
 * '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:ficheiro.jpg]]</nowiki></code>''' para mostrar uma imagem nas suas dimensões originais;
 * '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:ficheiro.png|200px|thumb|left|texto]]</nowiki></code>''' para mostrar uma imagem com a dimensão horizontal de 200 pixels, dentro de uma caixa, na margem esquerda, contendo 'texto' como descrição (pode usar subconjuntos destas características);
-* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:ficheiro.ogg]]</nowiki></code>''' para apresentar um link directo para o ficheiro em vez de mostrá-lo, quer este tenha por conteúdo uma imagem ou outros dados.",
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:ficheiro.ogg]]</nowiki></code>''' para apresentar um link direto para o ficheiro em vez de mostrá-lo, quer este tenha por conteúdo uma imagem ou outros dados.",
 'upload-permitted' => 'Tipos de ficheiros permitidos: $1.',
 'upload-preferred' => 'Tipos de ficheiros preferidos: $1.',
 'upload-prohibited' => 'Tipos de ficheiro proibidos: $1.',
@@ -1904,7 +1904,7 @@ $1',
 'upload-warning-subj' => 'Aviso de upload',
 'upload-warning-msg' => 'Ocorreu um problema no seu upload de [$2]. Pode voltar ao [[Special:Upload/stash/$1|formulário de upload]] para resolver o problema.',
 
-'upload-proto-error' => 'Protocolo incorrecto',
+'upload-proto-error' => 'Protocolo incorreto',
 'upload-proto-error-text' => 'O carregamento remoto de ficheiros requer endereços URL começados por <code>http://</code> ou <code>ftp://</code>.',
 'upload-file-error' => 'Erro interno',
 'upload-file-error-text' => 'Ocorreu um erro interno ao tentar criar um ficheiro temporário no servidor.
@@ -1943,7 +1943,7 @@ Caso o problema persista, contacte um [[Special:ListUsers/sysop|administrador]].
 'backend-fail-internal' => 'Ocorreu um erro desconhecido no servidor de armazenamento "$1".',
 'backend-fail-contenttype' => 'Não foi possível determinar o tipo de conteúdo do ficheiro para armazenar em "$1".',
 'backend-fail-batchsize' => 'Foi fornecido um bloco de $1 {{PLURAL:$1|operação|operações}} sobre ficheiros ao servidor de armazenamento; o limite é de $2 {{PLURAL:$2|operação|operações}}.',
-'backend-fail-usable' => 'Não foi possível ler ou gravar o ficheiro "$1" devido a permissões insuficientes ou a directórios/repositórios inexistentes.',
+'backend-fail-usable' => 'Não foi possível ler ou gravar o ficheiro "$1" devido a permissões insuficientes ou a diretórios/repositórios inexistentes.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Não foi possível estabelecer ligação à base de dados de registos no servidor de armazenamento "$1".',
@@ -2010,7 +2010,7 @@ Para optimizar a segurança, o img_auth.php está impossibilitado de executar.',
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'Não foi possível aceder à URL',
 'upload-curl-error6-text' => 'Não foi possível aceder à URL.
-Verifique se o endereço está correcto e o site disponível, por favor.',
+Verifique se o endereço está correto e o site disponível, por favor.',
 'upload-curl-error28' => 'Tempo limite para o envio do ficheiro excedido',
 'upload-curl-error28-text' => 'O site demorou muito tempo a responder. Verifique que o site está disponível, aguarde alguns momentos e tente novamente, por favor. Talvez queira tentar num horário menos congestionado.',
 
@@ -2245,7 +2245,7 @@ Agora redirecciona para [[$2]].',
 'move' => 'Mover',
 'movethispage' => 'Mover esta página',
 'unusedimagestext' => 'Os seguintes ficheiros existem mas não são usados na wiki.
-No entanto, outros sites na internet podem ter links para um ficheiro através de uma URL directa e, por isso, podem estar listados ficheiros que estão a ser activamente usados por entidades externas.',
+No entanto, outros sites na internet podem ter links para um ficheiro através de uma URL direta e, por isso, podem estar listados ficheiros que estão a ser ativamente usados por entidades externas.',
 'unusedcategoriestext' => 'As seguintes categorias existem, embora nenhuma página ou categoria faça uso delas.',
 'notargettitle' => 'Sem alvo',
 'notargettext' => 'Especifique sobre que página alvo ou utilizador pretende executar esta função.',
@@ -2438,10 +2438,10 @@ Modificações futuras desta página e da respetiva página de discussão serão
 'enotif_subject_restored' => 'A página $1 de {{SITENAME}} foi {{GENDER:$2|restaurada}} por $2',
 'enotif_subject_changed' => 'A página $1 de {{SITENAME}} foi {{GENDER:$2|alterada}} por $2',
 'enotif_body_intro_deleted' => 'A página $1 de {{SITENAME}} foi {{GENDER:$2|eliminada}} em $PAGEEDITDATE por $2, ver $3.',
-'enotif_body_intro_created' => 'A página $1 em {{SITENAME}} foi {{GENDER:$2| criada}} em $PAGEEDITDATE por $2, ver $3 para a versão actual.',
-'enotif_body_intro_moved' => 'A página $1 em {{SITENAME}} foi {{GENDER:$2|movida}} em $PAGEEDITDATE por $2, ver $3 para a versão actual.',
-'enotif_body_intro_restored' => 'A página $1 em {{SITENAME}} foi {{GENDER:$2|restaurada}} em $PAGEEDITDATE por $2, ver $3 para a versão actual.',
-'enotif_body_intro_changed' => 'A página $1 em {{SITENAME}} foi {{GENDER:$2|alterada}} em $PAGEEDITDATE por $2, ver $3 para a versão actual.',
+'enotif_body_intro_created' => 'A página $1 em {{SITENAME}} foi {{GENDER:$2| criada}} em $PAGEEDITDATE por $2, ver $3 para a versão atual.',
+'enotif_body_intro_moved' => 'A página $1 em {{SITENAME}} foi {{GENDER:$2|movida}} em $PAGEEDITDATE por $2, ver $3 para a versão atual.',
+'enotif_body_intro_restored' => 'A página $1 em {{SITENAME}} foi {{GENDER:$2|restaurada}} em $PAGEEDITDATE por $2, ver $3 para a versão atual.',
+'enotif_body_intro_changed' => 'A página $1 em {{SITENAME}} foi {{GENDER:$2|alterada}} em $PAGEEDITDATE por $2, ver $3 para a versão atual.',
 'enotif_lastvisited' => 'Consulte $1 para todas as alterações efetuadas desde a sua última visita.',
 'enotif_lastdiff' => 'Consulte $1 para ver esta alteração.',
 'enotif_anon_editor' => 'utilizador anónimo $1',
@@ -2618,7 +2618,7 @@ Nestes casos, deverá desmarcar ou revelar a versão eliminada mais recente.',
 'undeletehistorynoadmin' => 'Esta página foi eliminada. O motivo de eliminação é apresentado no sumário abaixo, junto dos detalhes do utilizador que editou esta página antes de eliminar. O texto atual destas edições eliminadas encontra-se agora apenas disponível para administradores.',
 'undelete-revision' => 'Edição eliminada da página $1 (das $5 de $4), por $3:',
 'undeleterevision-missing' => 'Edição inválida ou não encontrada.
-Pode ter usado um link incorrecto ou talvez a revisão tenha sido restaurada ou removida do arquivo.',
+Pode ter usado um link incorreto ou talvez a revisão tenha sido restaurada ou removida do arquivo.',
 'undelete-nodiff' => 'Não foram encontradas edições anteriores.',
 'undeletebtn' => 'Restaurar',
 'undeletelink' => 'ver/restaurar',
@@ -2817,7 +2817,7 @@ Consulte a [[Special:BlockList|lista de bloqueios]] para obter a lista de bloque
 'ipb-otherblocks-header' => '{{PLURAL:$1|Outro bloqueio|Outros bloqueios}}',
 'unblock-hideuser' => 'Não pode desbloquear o utilizador, porque o nome deste utilizador foi ocultado.',
 'ipb_cant_unblock' => 'Erro: O bloqueio com ID $1 não foi encontrado. Pode já ter sido desbloqueado.',
-'ipb_blocked_as_range' => 'Erro: O IP $1 não se encontra bloqueado de forma directa e não pode ser desbloqueado deste modo. No entanto, está bloqueado como parte da gama $2, a qual pode ser desbloqueada.',
+'ipb_blocked_as_range' => 'Erro: O IP $1 não se encontra bloqueado de forma direta e não pode ser desbloqueado deste modo. No entanto, está bloqueado como parte da gama $2, a qual pode ser desbloqueada.',
 'ip_range_invalid' => 'Gama de IPs inválida.',
 'ip_range_toolarge' => 'Não são permitidas gamas de IPs maiores do que /$1.',
 'blockme' => 'Bloquear-me',
@@ -3455,10 +3455,10 @@ Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns de
 'exif-gpsdop' => 'Precisão da medição',
 'exif-gpsspeedref' => 'Unidade da velocidade',
 'exif-gpsspeed' => 'Velocidade do receptor GPS',
-'exif-gpstrackref' => 'Referência para a direcção do movimento',
-'exif-gpstrack' => 'Direcção do movimento',
-'exif-gpsimgdirectionref' => 'Referência para a direcção da imagem',
-'exif-gpsimgdirection' => 'Direcção da imagem',
+'exif-gpstrackref' => 'Referência para a direção do movimento',
+'exif-gpstrack' => 'Direção do movimento',
+'exif-gpsimgdirectionref' => 'Referência para a direção da imagem',
+'exif-gpsimgdirection' => 'Direção da imagem',
 'exif-gpsmapdatum' => 'Utilizados dados do estudo Geodetic',
 'exif-gpsdestlatituderef' => 'Referência para a latitude do destino',
 'exif-gpsdestlatitude' => 'Latitude do destino',
@@ -3627,7 +3627,7 @@ Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns de
 
 'exif-filesource-3' => 'Câmara fotográfica digital',
 
-'exif-scenetype-1' => 'Imagem fotografada directamente',
+'exif-scenetype-1' => 'Imagem fotografada diretamente',
 
 'exif-customrendered-0' => 'Processo normal',
 'exif-customrendered-1' => 'Processo personalizado',
@@ -3706,8 +3706,8 @@ Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns de
 'exif-objectcycle-b' => 'De manhã e à tarde/noite',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
-'exif-gpsdirection-t' => 'Direcção real',
-'exif-gpsdirection-m' => 'Direcção magnética',
+'exif-gpsdirection-t' => 'Direção real',
+'exif-gpsdirection-m' => 'Direção magnética',
 
 'exif-ycbcrpositioning-1' => 'Centradas',
 'exif-ycbcrpositioning-2' => 'Co-localizadas',
@@ -4006,7 +4006,7 @@ Em conjunto com este programa deve ter recebido [{{SERVER}}{{SCRIPTPATH}}/COPYIN
 # External image whitelist
 'external_image_whitelist' => ' # Deixe esta linha exatamente como ela está<pre>
 # Coloque fragmentos de expressões regulares (apenas a parte entre //) abaixo
-# Estas serão comparadas com as URLs das imagens externas (com link directo)
+# Estas serão comparadas com as URLs das imagens externas (com link direto)
 # As que corresponderem serão apresentadas como imagens, caso contrário apenas será apresentado um link para a imagem
 # As linhas que começam com um símbolo de cardinal (#) são tratadas como comentários
 # Esta lista não distingue maiúsculas de minúsculas

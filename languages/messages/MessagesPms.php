@@ -425,17 +425,21 @@ Për gionté o modifiché dle tradussion për tute le wiki, për piasì ch'a deu
 Le modìfiche a sta pàgina a toco l'aparensa ëd l'antërfacia utent a tuti j'utent dzora a sta wiki. 
 Për gionté o cangé dle tradussion për tute le wiki, për piasì ch'a deuvra [//translatewiki.net/translatewiki.net], ël proget ëd localisassion ëd MediaWiki.",
 'sqlhidden' => "(l'anterogassion SQL a l'é stërmà)",
-'cascadeprotected' => 'Ant sta pàgina-sì as peulo pa fé ëd modìfiche, përché a-i intra ant {{PLURAL:$1|la pàgina|le pàgine}} butà sot a protession con la fonsion "a tombé" viscà ansima a: $2',
+'cascadeprotected' => 'Ant sta pàgina-sì as peulo pa fé ëd modìfiche, përché a-i intra ant {{PLURAL:$1|la pàgina|le pàgine}} butà sot a protession con la fonsion «a tombé» viscà ansima a: $2',
 'namespaceprotected' => "A l'ha nen ël përmess dë feje dle modìfiche a le pàgine dlë spassi nominal '''$1'''.",
 'customcssprotected' => "Ch'a varda ch'a l'ha pa ël përmess ëd modifiché sta pàgina ëd CSS, për via ch'a l'ha andrinta ij gust ëd n'àutr utent.",
 'customjsprotected' => "Ch'a varda ch'a l'ha pa ël përmess ëd modifiché sta pàgina ëd JavaScript, për via ch'a l'ha andrinta ij gust ëd n'àutr utent.",
-'ns-specialprotected' => 'As peulo nen modifichesse le pàgine dlë spassi nominal {{ns:special}}.',
+'mycustomcssprotected' => "A l'ha pa ël përmess ëd modifiché costa pàgina CSS.",
+'mycustomjsprotected' => "A l'ha pa ël përmess ëd modifiché costa pàgina JavaScript.",
+'myprivateinfoprotected' => "A l'ha pa ël përmess ëd modifiché soe anformassion privà.",
+'mypreferencesprotected' => "A l'ha pa ël përmess ëd modifiché ij sò gust.",
+'ns-specialprotected' => 'As peulo nen modifichesse le pàgine speciaj.',
 'titleprotected' => "La creassion ëd pàgine con ës tìtol-sì a l'é stàita proibìa da [[User:$1|$1]].
-Coma rason a l'ha butà: ''$2''.",
+Coma rason a l'ha butà: «''$2''».",
 'filereadonlyerror' => "As peul pa modifichesse l'archivi «$1» përchè ël depòsit d'archivi «$2» a l'é an sola letura.
 
 L'aministrator ch'a l'ha blocalo a l'ha lassà sta spiegassion: «$3».",
-'invalidtitle-knownnamespace' => 'Tìtol pa bon con spassi nominal "$2" e test "$3"',
+'invalidtitle-knownnamespace' => "Tìtol ch'a va nen bin con lë spassi nominal «$2» e ël test «$3»",
 'invalidtitle-unknownnamespace' => 'Tìtol pa bon con spassi nominal sconossù nùmer $1 e test "$2"',
 'exception-nologin' => 'Nen rintrà ant ël sistema',
 'exception-nologin-text' => "Costa pàgina o assion a ciama ch'a sia rintrà an costa wiki.",
