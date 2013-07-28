@@ -8223,6 +8223,17 @@ Escape HTML special chars in image alt text
 !! end
 
 !! test
+Escape HTML special chars in image alt text with LanguageConverter
+!! options
+language=zh
+!! input
+[[Image:foobar.jpg|& < > "]]
+!! result
+<p><a href="/wiki/File:Foobar.jpg" class="image" title="&amp; &lt; &gt; &quot;"><img alt="&amp; &lt; &gt; &quot;" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a>
+</p>
+!! end
+
+!! test
 BUG 499: Alt text should have &#1234;, not &amp;1234;
 !! input
 [[Image:foobar.jpg|&#9792;]]
@@ -14456,6 +14467,27 @@ File:foobar.jpg|caption|alt=galleryalt|link=InterWikiLink
 
 !!test
 Gallery override link with absolute external link (bug 34852)
+!! input
+<gallery>
+File:foobar.jpg|caption|alt=galleryalt|link=http://www.example.org
+</gallery>
+!! result
+<ul class="gallery">
+		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
+			<div class="thumb" style="width: 150px;"><div style="margin:68px auto;"><a href="http://www.example.org"><img alt="galleryalt" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" width="120" height="14" /></a></div></div>
+			<div class="gallerytext">
+<p>caption
+</p>
+			</div>
+		</div></li>
+</ul>
+
+!! end
+
+!! test
+Gallery override link with absolute external link with LanguageConverter
+!! options
+language=zh
 !! input
 <gallery>
 File:foobar.jpg|caption|alt=galleryalt|link=http://www.example.org
