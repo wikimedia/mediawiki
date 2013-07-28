@@ -5087,10 +5087,6 @@ class Parser {
 				// look for an |alt= definition while trying not to break existing
 				// captions with multiple pipes (|) in it, until a more sensible grammar
 				// is defined for images in galleries
-
-				// FIXME: Doing recursiveTagParse at this stage, and the trim before
-				// splitting on '|' is a bit odd, and different from makeImage.
-				$matches[3] = $this->recursiveTagParse( trim( $matches[3] ) );
 				$parameterMatches = StringUtils::explode( '|', $matches[3] );
 
 				foreach ( $parameterMatches as $parameterMatch ) {
@@ -5103,14 +5099,13 @@ class Parser {
 							$alt = $this->stripAltText( $match, false );
 							break;
 						case 'gallery-internal-link':
-							$linkValue = strip_tags( $this->replaceLinkHoldersText( $match ) );
 							$chars = self::EXT_LINK_URL_CLASS;
 							$prots = $this->mUrlProtocols;
 							//check to see if link matches an absolute url, if not then it must be a wiki link.
-							if ( preg_match( "/^($prots)$chars+$/u", $linkValue ) ) {
-								$link = $linkValue;
+							if ( preg_match( "/^($prots)$chars+$/u", $match ) ) {
+								$link = $match;
 							} else {
-								$localLinkTitle = Title::newFromText( $linkValue );
+								$localLinkTitle = Title::newFromText( $match );
 								if ( $localLinkTitle !== null ) {
 									$link = $localLinkTitle->getLocalURL();
 								}
@@ -5134,6 +5129,10 @@ class Parser {
 				}
 				// remove the first pipe
 				$label = substr( $label, 1 );
+
+				// recursiveTagParse was moved to this stage, to prevent parser-inserted
+				// pipes disrupting the parameter extracting process. (bug 52190, bug 52192)
+				$label = $this->recursiveTagParse( trim( $label ) );
 			}
 
 			$ig->add( $title, $label, $alt, $link, $handlerOptions );
