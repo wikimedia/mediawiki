@@ -569,6 +569,15 @@ class LocalisationCache {
 	 */
 	protected function loadPluralFiles() {
 		global $IP;
+		$serializedPlural = "$IP/serialized/plurals.ser";
+		if( file_exists( $serializedPlural ) ) {
+			$rules = unserialize( file_get_contents( $serializedPlural ) );
+			if( is_array( $rules ) && count( $rules ) === 2) {
+				$this->pluralRules = $rules[0];
+				$this->pluralRuleTypes = $rules[1];
+				return;
+			}
+		}
 		$cldrPlural = "$IP/languages/data/plurals.xml";
 		$mwPlural = "$IP/languages/data/plurals-mediawiki.xml";
 		// Load CLDR plural rules
