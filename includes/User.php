@@ -4093,8 +4093,8 @@ class User implements IDBAccessObject {
 	 * @return string
 	 */
 	private function getEditTokenAtTimestamp( $salt, $request, $timestamp ) {
-		if ( $this->isAnon() ) {
-			return self::EDIT_TOKEN_SUFFIX;
+		if ( $this->isAnon() && !$request->checkSessionCookie() ) {
+			return EDIT_TOKEN_SUFFIX;
 		} else {
 			$token = $request->getSessionData( 'wsEditToken' );
 			if ( $token === null ) {
