@@ -100,6 +100,15 @@ class CoreParserFunctions {
 		$parser->setFunctionHook( 'subjectpagenamee', array( __CLASS__, 'subjectpagenamee' ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'tag',              array( __CLASS__, 'tagObj'           ), SFH_OBJECT_ARGS );
 		$parser->setFunctionHook( 'formatdate',       array( __CLASS__, 'formatDate'       ) );
+		$parser->setFunctionHook( 'pageid',           array( __CLASS__, 'pageid'           ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'revisionid',       array( __CLASS__, 'revisionid'       ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'revisionday',      array( __CLASS__, 'revisionday'      ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'revisionday2',     array( __CLASS__, 'revisionday2'     ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'revisionmonth',    array( __CLASS__, 'revisionmonth'    ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'revisionmonth1',   array( __CLASS__, 'revisionmonth1'   ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'revisionyear',     array( __CLASS__, 'revisionyear'     ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'revisiontimestamp', array( __CLASS__, 'revisiontimestamp' ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'revisionuser',     array( __CLASS__, 'revisionuser'     ), SFH_NO_HASH );
 
 		if ( $wgAllowDisplayTitle ) {
 			$parser->setFunctionHook( 'displaytitle', array( __CLASS__, 'displaytitle' ), SFH_NO_HASH );
@@ -705,16 +714,11 @@ class CoreParserFunctions {
 	 * @return string
 	 */
 	static function pagesize( $parser, $page = '', $raw = null ) {
-		static $cache = array();
 		$title = Title::newFromText( $page );
 
 		if ( !is_object( $title ) ) {
-			$cache[$page] = 0;
 			return self::formatRaw( 0, $raw );
 		}
-
-		# Normalize name for cache
-		$page = $title->getPrefixedText();
 
 		$length = 0;
 		if ( $title->equals( $parser->getTitle() )
@@ -723,16 +727,9 @@ class CoreParserFunctions {
 			# We are on current page (and not in PST), so
 			# take length of input to parser.
 			$length = $parser->mInputSize;
-		} elseif ( isset( $cache[$page] ) ) {
-			$length = $cache[$page];
-		} elseif ( $parser->incrementExpensiveFunctionCount() ) {
-			$rev = Revision::newFromTitle( $title, false, Revision::READ_NORMAL );
-			$pageID = $rev ? $rev->getPage() : 0;
-			$revID = $rev ? $rev->getId() : 0;
-			$length = $cache[$page] = $rev ? $rev->getSize() : 0;
-
-			// Register dependency in templatelinks
-			$parser->mOutput->addTemplate( $title, $pageID, $revID );
+		} else {
+			$rev = self::getCachedRevisionObject( $parser, $title );
+			$length = $rev ? $rev->getSize() : 0;
 		}
 		return self::formatRaw( $length, $raw );
 	}
@@ -952,5 +949,160 @@ class CoreParserFunctions {
 			'close' => "</$tagName>",
 		);
 		return $parser->extensionSubstitution( $params, $frame );
+	}
+
+	/**
+	 * Fetched the current revision of the given title and return this.
+	 * Will increment the expensive function count and
+	 * add a template link to get the value refreshed on changes
+	 *
+	 * @param $parser Parser
+	 * @param $title Title
+	 * @return Revision
+	 */
+	private static function getCachedRevisionObject( $parser, $title = null ) {
+		static $cache = array();
+
+		if ( is_null( $title ) ) {
+			return null;
+		}
+
+		// Normalize name for cache
+		$page = $title->getPrefixedDBkey();
+
+		if ( array_key_exists( $page, $cache ) ) { // cache contains null values
+			return $cache[$page];
+		}
+		if ( $parser->incrementExpensiveFunctionCount() ) {
+			$rev = Revision::newFromTitle( $title, false, Revision::READ_NORMAL );
+			$pageID = $rev ? $rev->getPage() : 0;
+			$revID = $rev ? $rev->getId() : 0;
+			$cache[$page] = $rev; // maybe null
+
+			// Register dependency in templatelinks
+			$parser->getOutput()->addTemplate( $title, $pageID, $revID );
+
+			return $rev;
+		}
+		$cache[$page] = null;
+		return null;
+	}
+
+	static function pageid( $parser, $title = null ) {
+		$t = Title::newFromText( $title );
+		if ( is_null( $t ) ) {
+			return '';
+		}
+		// when the param is equal to the current title, process as variable
+		if ( $t->equals( $parser->getTitle() ) ) {
+			return CoreVariables::pageid( $parser );
+		}
+		// fetch pageid from cache/database and return the value
+		$pageid = $t->getArticleID();
+		return $pageid ? $pageid : '';
+	}
+	static function revisionid( $parser, $title = null ) {
+		$t = Title::newFromText( $title );
+		if ( is_null( $t ) ) {
+			return '';
+		}
+		// when the param is equal to the current title, process as variable
+		if ( $t->equals( $parser->getTitle() ) ) {
+			return CoreVariables::revisionid( $parser );
+		}
+		// fetch revision from cache/database and return the value
+		$rev = self::getCachedRevisionObject( $parser, $t );
+		return $rev ? $rev->getId() : '';
+	}
+	static function revisionday( $parser, $title = null ) {
+		$t = Title::newFromText( $title );
+		if ( is_null( $t ) ) {
+			return '';
+		}
+		// when the param is equal to the current title, process as variable
+		if ( $t->equals( $parser->getTitle() ) ) {
+			return CoreVariables::revisionday( $parser );
+		}
+		// fetch revision from cache/database and return the value
+		$rev = self::getCachedRevisionObject( $parser, $t );
+		return $rev ? intval( substr( $rev->getTimestamp(), 6, 2 ) ) : '';
+	}
+	static function revisionday2( $parser, $title = null ) {
+		$t = Title::newFromText( $title );
+		if ( is_null( $t ) ) {
+			return '';
+		}
+		// when the param is equal to the current title, process as variable
+		if ( $t->equals( $parser->getTitle() ) ) {
+			return CoreVariables::revisionday2( $parser );
+		}
+		// fetch revision from cache/database and return the value
+		$rev = self::getCachedRevisionObject( $parser, $t );
+		return $rev ? substr( $rev->getTimestamp(), 6, 2 ) : '';
+	}
+	static function revisionmonth( $parser, $title = null ) {
+		$t = Title::newFromText( $title );
+		if ( is_null( $t ) ) {
+			return '';
+		}
+		// when the param is equal to the current title, process as variable
+		if ( $t->equals( $parser->getTitle() ) ) {
+			return CoreVariables::revisionmonth( $parser );
+		}
+		// fetch revision from cache/database and return the value
+		$rev = self::getCachedRevisionObject( $parser, $t );
+		return $rev ? substr( $rev->getTimestamp(), 4, 2 ) : '';
+	}
+	static function revisionmonth1( $parser, $title = null ) {
+		$t = Title::newFromText( $title );
+		if ( is_null( $t ) ) {
+			return '';
+		}
+		// when the param is equal to the current title, process as variable
+		if ( $t->equals( $parser->getTitle() ) ) {
+			return CoreVariables::revisionmonth1( $parser );
+		}
+		// fetch revision from cache/database and return the value
+		$rev = self::getCachedRevisionObject( $parser, $t );
+		return $rev ? intval( substr( $rev->getTimestamp(), 4, 2 ) ) : '';
+	}
+	static function revisionyear( $parser, $title = null ) {
+		$t = Title::newFromText( $title );
+		if ( is_null( $t ) ) {
+			return '';
+		}
+		// when the param is equal to the current title, process as variable
+		if ( $t->equals( $parser->getTitle() ) ) {
+			return CoreVariables::revisionyear( $parser );
+		}
+		// fetch revision from cache/database and return the value
+		$rev = self::getCachedRevisionObject( $parser, $t );
+		return $rev ? substr( $rev->getTimestamp(), 0, 4 ) : '';
+	}
+	static function revisiontimestamp( $parser, $title = null ) {
+		$t = Title::newFromText( $title );
+		if ( is_null( $t ) ) {
+			return '';
+		}
+		// when the param is equal to the current title, process as variable
+		if ( $t->equals( $parser->getTitle() ) ) {
+			return CoreVariables::revisiontimestamp( $parser );
+		}
+		// fetch revision from cache/database and return the value
+		$rev = self::getCachedRevisionObject( $parser, $t );
+		return $rev ? $rev->getTimestamp() : '';
+	}
+	static function revisionuser( $parser, $title = null ) {
+		$t = Title::newFromText( $title );
+		if ( is_null( $t ) ) {
+			return '';
+		}
+		// when the param is equal to the current title, process as variable
+		if ( $t->equals( $parser->getTitle() ) ) {
+			return CoreVariables::revisionuser( $parser );
+		}
+		// fetch revision from cache/database and return the value
+		$rev = self::getCachedRevisionObject( $parser, $t );
+		return $rev ? $rev->getUserText() : '';
 	}
 }
