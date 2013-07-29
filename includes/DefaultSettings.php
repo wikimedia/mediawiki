@@ -5225,11 +5225,18 @@ $wgUseTagFilter = true;
 $wgUnwatchedPageThreshold = false;
 
 /**
- * Recent changes flag, shown in Recentchanges and watchlist
+ * Flags (letter symbols) shown in recent changes and watchlist to indicate
+ * certain types of edits.
  *
- * Adding a new one:
- *   $wgRecentChangesFlags['flag'] => array( 'letter-msg', 'tooltip-msg' );
- * 'class' allows to set a css class different than the flag name
+ * To register a new one:
+ * @code
+ * $wgRecentChangesFlags['flag'] => array(
+ *   'letter' => 'letter-msg',
+ *   'title' => 'tooltip-msg'
+ * );
+ * @endcode
+ *
+ * Optional 'class' allows to set a css class different than the flag name.
  *
  * @since 1.22
  */
