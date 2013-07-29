@@ -3672,7 +3672,7 @@ class User {
 			$request = $this->getRequest();
 		}
 
-		if ( $this->isAnon() ) {
+		if ( !isset( $_SESSION ) ) {
 			return EDIT_TOKEN_SUFFIX;
 		} else {
 			$token = $request->getSessionData( 'wsEditToken' );
