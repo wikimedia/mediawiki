@@ -1090,6 +1090,7 @@ class LoginForm extends SpecialPage {
 				'mediawiki.ui',
 				'mediawiki.special.userlogin'
 			) );
+			$out->addModules( 'mediawiki.ui.js' );
 
 			$q = 'action=submitlogin&type=login';
 			$linkq = 'type=signup';

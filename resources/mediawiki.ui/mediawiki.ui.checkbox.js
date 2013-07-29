@@ -5,13 +5,13 @@
 		 */
 
 		/**
-		 * Adds appropriate onchange event handlers to a checkbox field
-		 * that is styled by hiding it and styling a label wrapper.
+		 * Adds appropriate onchange event handler to a checkbox field
+		 * that is styled by hiding it and styling a wrapper around it.
 		 *
 		 * Example HTML:
-		 *     <label class="pretty-checkbox">
+		 *     <span class="pretty-checkbox">
 		 *       <input type="checkbox" />&nbsp;
-		 *     </label>
+		 *     </span>
 		 * CSS:
 		 *     .pretty-checkbox {
 		 *         padding: 2px 8px;
@@ -29,27 +29,25 @@
 		 *     $( '.pretty-checkbox input[type=checkbox]' ).styledCheckbox( '.pretty-checkbox' );
 		 *
 		 * @method
-		 * @param {string} [selector='.mw-ui-styled-checkbox-label'] How to select the label (will be passed to $.closest)
-		 * @param {string} [checkedClass='mw-ui-checked'] Class to toggle on the label element on change events
+		 * @param {string} [selector='.mw-ui-styled-checkbox-label'] How to select the wrapper element
+		 * @param {string} [checkedClass='mw-ui-checked'] Class to toggle on the wrapper on change events
 		 * @chainable
 		 * @return {jQuery}
 		 */
 		$.fn.styledCheckbox = function ( selector, checkedClass ) {
-			function handleCheckboxChangeEvent() {
-				var $check = $( this ),
-					enabled = $check.prop( 'checked' ),
-					$label = $check.closest( selector );
-
-				$label.toggleClass( checkedClass, enabled );
-			}
-
 			selector = selector || '.mw-ui-styled-checkbox-label';
 			checkedClass = checkedClass || 'mw-ui-checked';
+
+			function handleCheckboxChangeEvent() {
+				var $box = $( this );
+
+				$( this ).toggleClass( checkedClass );
+			}
 
 			this.change( handleCheckboxChangeEvent );
 			return this;
 		};
 
-		$( '.mw-ui-checkbox' ).styledCheckbox();
+		$( '.mw-ui-styled-checkbox-label' ).styledCheckbox();
 	} );
 }( mediaWiki, jQuery ) );

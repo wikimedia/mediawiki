@@ -140,25 +140,34 @@ class UserloginTemplate extends BaseTemplate {
 		<div>
 
 	<?php if ( $this->data['canremember'] ) { ?>
-		<label class="mw-ui-checkbox-label">
-			<input name="wpRemember" type="checkbox" value="1" id="wpRemember" tabindex="4"
-				<?php if ( $this->data['remember'] ) {
-					echo 'checked="checked"';
-				} ?>
-			>
+		<!--
+		New Agora style of checkbox with image, see gerrit 74662.
+		Input field doesn't need a class with JS fix, bu it does it need its
+		own span to get the surrounding box.
+		-->
+		<label>
+			<span class="mw-ui-styled-checkbox-label">
+				<input name="wpRemember" type="checkbox" value="1" id="wpRemember" tabindex="4"
+					<?php if ( $this->data['remember'] ) {
+						echo 'checked="checked"';
+					} ?>
+				>&nbsp;
+			</span>
 			<?php echo $this->getMsg( 'userlogin-remembermypassword' )->numParams( $expirationDays )->escaped(); ?>
 		</label>
 	<?php } ?>
 		</div>
 
-	<?php if ( $this->data['cansecurelogin'] ) { ?>
+	<?php if ( $this->data['cansecurelogin'] || TRUE ) { // TEMP TEMP DEBUG ?>
 		<div>
-			<label class="mw-ui-checkbox-label">
-				<input name="wpStickHTTPS" type="checkbox" value="1" id="wpStickHTTPS" tabindex="5"
-					<?php if ( $this->data['stickHTTPS'] ) {
-						echo 'checked="checked"';
-					} ?>
-				>
+			<label>
+				<span class="mw-ui-styled-checkbox-label">
+					<input name="wpStickHTTPS" type="checkbox" value="1" id="wpStickHTTPS" tabindex="5"
+						<?php if ( $this->data['stickHTTPS'] ) {
+							echo 'checked="checked"';
+						} ?>
+					>
+				</span>
 				<?php $this->msg( 'securelogin-stick-https' ); ?>
 			</label>
 		</div>
