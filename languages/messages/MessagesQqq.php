@@ -5746,7 +5746,7 @@ See also:
 * $1 is the original block reason for the IP address matched in the X-Forwarded-For header",
 'cant-see-hidden-user' => 'Used as (red) error message on [[Special:Block]] when you try to change (as sysop without the hideuser right) the block of a hidden user.',
 'ipbblocked' => 'Error message shown when a user tries to alter block settings when they are themselves blocked.',
-'ipbnounblockself' => 'Error message shown when a user without the <tt>unblockself</tt> right tries to unblock themselves.',
+'ipbnounblockself' => 'Error message shown when a user without the <tt>unblockself</tt> right tries to unblock themself.',
 
 # Developer tools
 'lockdb' => 'The title of the special page [[Special:LockDB]].
@@ -7875,7 +7875,9 @@ Lempel-Ziv & Welch algorithm',
 'exif-compression-34712' => '{{optional}}',
 
 'exif-copyrighted-true' => 'The image is under copyright (including if its copyrighted but freely licensed)',
-'exif-copyrighted-false' => 'The image is Public domain',
+'exif-copyrighted-false' => 'Copyright status is not set in the file.
+
+Compare: {{msg-mw|exif-copyrighted-true}}.',
 
 'exif-photometricinterpretation-2' => '{{optional}}',
 'exif-photometricinterpretation-6' => '{{optional}}',
@@ -9049,7 +9051,9 @@ Parameter $4, the target page, is also not visible to parser functions.',
 'logentry-patrol-patrol-auto' => '{{Logentry|[[Special:Log/patrol]]}}
 * $4 - a formatted revision number, maybe linked to the diff.
 "Automatically" refers to users with autopatrol right who mark revisions automatically patrolled when editing.',
-'logentry-newusers-newusers' => '{{Logentry|[[Special:Log/newusers]]}}',
+'logentry-newusers-newusers' => 'The user (previously unregistered) has registered on the wiki, creating an account for self.
+----
+{{Logentry|[[Special:Log/newusers]]}}',
 'logentry-newusers-create' => '{{Logentry|[[Special:Log/newusers]]}}
 
 $4 is the gender of the target user.',

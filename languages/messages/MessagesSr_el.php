@@ -4246,7 +4246,7 @@ Trebalo bi da ste primili [{{SERVER}}{{SCRIPTPATH}}/COPYING primerak GNU-ove op�
 'logentry-newusers-newusers' => '$1 {{GENDER:|je otvorio|je otvorila|je otvorio}} korisnički nalog',
 'logentry-newusers-create' => '$1 {{GENDER:|je otvorio|je otvorila|je otvorio}} korisnički nalog',
 'logentry-newusers-create2' => '$1 {{GENDER:|je otvorio|je otvorila|je otvorio}} korisnički nalog $3',
-'logentry-newusers-autocreate' => 'Nalog $1 je samostalno otvoren',
+'logentry-newusers-autocreate' => 'Korisnički nalog $1 je automatski {{GENDER:$2|otvoren}}',
 'logentry-rights-rights' => '$1 {{GENDER:$1|je promenio|je promenila|je promenio}} članstvo grupe za $3 iz $4 u $5',
 'logentry-rights-rights-legacy' => '$1 {{GENDER:$1|je promenio|je promenila|je promenio}} članstvo grupe za $3',
 'logentry-rights-autopromote' => '$1 je automatski {{GENDER:$1|unapređen|unapređena|unapređen}} iz $4 u $5',

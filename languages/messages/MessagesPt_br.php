@@ -803,6 +803,7 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências no 
 'createacct-captcha' => 'Verificação de segurança',
 'createacct-imgcaptcha-ph' => 'Digite o texto acima',
 'createacct-submit' => 'Crie sua conta',
+'createacct-another-submit' => 'Criar outra conta',
 'createacct-benefit-heading' => '{{SITENAME}} é feita por pessoas como você.',
 'createacct-benefit-body1' => '{{PLURAL:$1|edição|edições}}',
 'createacct-benefit-body2' => '{{PLURAL:$1|página|páginas}}',

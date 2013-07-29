@@ -3075,7 +3075,7 @@ $1',
 'exif-compression-1' => 'కుదించని',
 
 'exif-copyrighted-true' => 'నకలుహక్కులుకలది',
-'exif-copyrighted-false' => 'సార్వజనీనం',
+'exif-copyrighted-false' => 'కాపీహక్కుల స్థితి అమర్చలేదు',
 
 'exif-unknowndate' => 'అజ్ఞాత తేదీ',
 

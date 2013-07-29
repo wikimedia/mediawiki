@@ -440,9 +440,9 @@ Coma rason a l'ha butà: «''$2''».",
 
 L'aministrator ch'a l'ha blocalo a l'ha lassà sta spiegassion: «$3».",
 'invalidtitle-knownnamespace' => "Tìtol ch'a va nen bin con lë spassi nominal «$2» e ël test «$3»",
-'invalidtitle-unknownnamespace' => 'Tìtol pa bon con spassi nominal sconossù nùmer $1 e test "$2"',
+'invalidtitle-unknownnamespace' => 'Tìtol pa bon con nùmer dë spassi nominal $1 e test «$2» sconossù',
 'exception-nologin' => 'Nen rintrà ant ël sistema',
-'exception-nologin-text' => "Costa pàgina o assion a ciama ch'a sia rintrà an costa wiki.",
+'exception-nologin-text' => "Costa pàgina o assion a l'ha damanca ch'a sia rintrà an costa wiki.",
 
 # Virus scanner
 'virus-badscanner' => "Configurassion falà: antivìrus nen conossù: ''$1''",

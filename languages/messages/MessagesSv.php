@@ -942,6 +942,9 @@ Tillfälligt lösenord: $2',
 'changeemail-submit' => 'Ändra e-post',
 'changeemail-cancel' => 'Avbryt',
 
+# Special:ResetTokens
+'resettokens-token-label' => '$1 (aktuellt värde: $2)',
+
 # Edit page toolbar
 'bold_sample' => 'Fet text',
 'bold_tip' => 'Fet stil',
@@ -1539,7 +1542,7 @@ Om du väljer att ange ditt riktiga namn, kommer det att användas för att till
 'prefs-signature' => 'Signatur',
 'prefs-dateformat' => 'Datumformat',
 'prefs-timeoffset' => 'Tidsförskjutning',
-'prefs-advancedediting' => 'Allmänt',
+'prefs-advancedediting' => 'Allmänna alternativ',
 'prefs-editor' => 'Redigerare',
 'prefs-preview' => 'Förhandsvisa',
 'prefs-advancedrc' => 'Avancerade alternativ',
@@ -3546,7 +3549,7 @@ Andra kommer att gömmas som standard
 'exif-compression-6' => 'JPEG (gammal)',
 
 'exif-copyrighted-true' => 'Upphovsrättsskyddat',
-'exif-copyrighted-false' => 'Allmän egendom',
+'exif-copyrighted-false' => 'Upphovsrättsstatus inte angivet',
 
 'exif-unknowndate' => 'Okänt datum',
 

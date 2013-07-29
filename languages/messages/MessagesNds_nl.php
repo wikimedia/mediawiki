@@ -920,6 +920,14 @@ Tiedelik wachtwoord: $2',
 'changeemail-submit' => 'Netpostadres wiezigen',
 'changeemail-cancel' => 'Aofbreken',
 
+# Special:ResetTokens
+'resettokens' => 'Tokens ongedaonmaken',
+'resettokens-no-tokens' => 'Der bin gien tokens um ongedaon te maken.',
+'resettokens-legend' => 'Tokens ongedaonmaken',
+'resettokens-token-label' => '$1 (aktuele weerde: $2)',
+'resettokens-done' => 'Tokens ongedaonmaken.',
+'resettokens-resetbutton' => 'Ekeuzen tokens ongedaonmaken',
+
 # Edit page toolbar
 'bold_sample' => 'Vet-edrokten tekste',
 'bold_tip' => 'Vet-edrokten tekste',
@@ -1504,7 +1512,7 @@ Disse informasie is zichtbaor veur aandere gebrukers.',
 'prefs-signature' => 'Ondertekening',
 'prefs-dateformat' => 'Daotumopmaak:',
 'prefs-timeoffset' => 'Tiedsverschil',
-'prefs-advancedediting' => 'Algemeen',
+'prefs-advancedediting' => 'Algemene opsies',
 'prefs-editor' => 'Bewarkingsprogramma',
 'prefs-preview' => 'Naokieken',
 'prefs-advancedrc' => 'Aandere instellingen',
@@ -2112,6 +2120,8 @@ Ziejen wörden ezien as n deurverwieszied, as de mal gebruukt wörden die vermel
 'pageswithprop-legend' => 'Ziejen mit n zied-eigenschap',
 'pageswithprop-text' => 'Op disse zied staon ziejen mit n bepaolde ziedeigenschap.',
 'pageswithprop-submit' => 'Zeuk',
+'pageswithprop-prophidden-long' => 'lange tekste-eigenschapsweerde verbörgen ({{PLURAL:$1|$1 kilobyte}})',
+'pageswithprop-prophidden-binary' => 'binaere eigenschapsweerde verbörgen ({{PLURAL:$1|$1 kilobyte}})',
 
 'doubleredirects' => 'Dubbele deurverwiezingen',
 'doubleredirectstext' => 'Op disse lieste staon alle ziejen die deurverwiezen naor aandere deurverwiezingen.
@@ -2291,8 +2301,9 @@ Hef tenminsten n topdomein, zo as "*.org".<br />
 'listgrouprights' => 'Rechten van gebrukersgroepen',
 'listgrouprights-summary' => "Op disse zied staon de gebrukersgroepen van disse wiki beschreven, mit de biebeheurende rechten.
 Meer informasie over de rechten ku'j [[{{MediaWiki:Listgrouprights-helppage}}|hier vienen]].",
-'listgrouprights-key' => '* <span class="listgrouprights-granted">Rech toe-ewezen</span>
-* <span class="listgrouprights-revoked">Rech in-etrökken</span>',
+'listgrouprights-key' => 'Leganda:
+* <span class="listgrouprights-granted">Toe-ewezen recht</span>
+* <span class="listgrouprights-revoked">In-etrökken recht</span>',
 'listgrouprights-group' => 'Groep',
 'listgrouprights-rights' => 'Rechten',
 'listgrouprights-helppage' => 'Help:Gebrukersrechten',
@@ -3463,7 +3474,7 @@ Aandere velden wörden verbörgen.
 'exif-compression-4' => 'CCITT-groep 4 faxcodering',
 
 'exif-copyrighted-true' => 'Auteursrechtelik bescharmp',
-'exif-copyrighted-false' => 'Publiek domein',
+'exif-copyrighted-false' => 'Auteursrechtenstaotus niet vasteleegd',
 
 'exif-unknowndate' => 'Onbekende daotum',
 

@@ -1645,7 +1645,7 @@ $1 {{PLURAL:$1|文字}}以下である必要があります。',
 'prefs-signature' => '署名',
 'prefs-dateformat' => '日付と時刻の形式',
 'prefs-timeoffset' => '時差',
-'prefs-advancedediting' => '全般',
+'prefs-advancedediting' => '全般オプション',
 'prefs-editor' => 'エディター',
 'prefs-preview' => 'プレビュー',
 'prefs-advancedrc' => '詳細設定',
@@ -3763,7 +3763,7 @@ Variants for Chinese language
 'exif-compression-6' => 'JPEG (旧式)',
 
 'exif-copyrighted-true' => '著作権あり',
-'exif-copyrighted-false' => 'パブリックドメイン',
+'exif-copyrighted-false' => '著作権情報未設定',
 
 'exif-unknowndate' => '不明な日付',
 

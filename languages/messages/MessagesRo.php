@@ -1537,7 +1537,7 @@ Dacă decideți furnizarea sa, acesta va fi folosit pentru a vă atribui munca.'
 'prefs-signature' => 'Semnătură',
 'prefs-dateformat' => 'Format dată',
 'prefs-timeoffset' => 'Decalaj orar',
-'prefs-advancedediting' => 'General',
+'prefs-advancedediting' => 'Opțiuni generale',
 'prefs-editor' => 'Editor',
 'prefs-preview' => 'Previzualizare',
 'prefs-advancedrc' => 'Opțiuni avansate',
@@ -3542,7 +3542,7 @@ Altele vor fi ascunse implicit.
 'exif-compression-6' => 'JPEG (vechi)',
 
 'exif-copyrighted-true' => 'Sub incidența drepturilor de autor',
-'exif-copyrighted-false' => 'Domeniu public',
+'exif-copyrighted-false' => 'Statutul drepturilor de autor nu este definit',
 
 'exif-unknowndate' => 'Dată necunoscută',
 

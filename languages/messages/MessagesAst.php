@@ -701,6 +701,19 @@ Contraseña temporal: $2",
 'changeemail-submit' => 'Camudar el corréu electrónicu',
 'changeemail-cancel' => 'Encaboxar',
 
+# Special:ResetTokens
+'resettokens' => 'Reaniciar los pases',
+'resettokens-text' => "Equí pue reaniciar los pases que permiten l'accesu a ciertos datos privaos asociaos cola so cuenta.
+
+Tendría de facelo si los compartió con alguién de mou accidental o si la so cuenta quedó comprometida.",
+'resettokens-no-tokens' => 'Nun hai dengún pase que reaniciar.',
+'resettokens-legend' => 'Reaniciar los pases',
+'resettokens-tokens' => 'Pases:',
+'resettokens-token-label' => '$1 (valor actual: $2)',
+'resettokens-watchlist-token' => 'Pase de la canal de noticies web de la llista de vixilancia',
+'resettokens-done' => 'Reaniciaronse los pases.',
+'resettokens-resetbutton' => 'Reaniciar los pases seleicionaos',
+
 # Edit page toolbar
 'bold_sample' => 'Testu en negrina',
 'bold_tip' => 'Testu en negrina',
@@ -1312,6 +1325,7 @@ Esta información sedrá pública.",
 'prefs-displayrc' => 'Opciones de vista',
 'prefs-displaysearchoptions' => 'Opciones de vista',
 'prefs-displaywatchlist' => 'Opciones de vista',
+'prefs-tokenwatchlist' => 'Pase',
 'prefs-diffs' => 'Diferencies',
 
 # User preference: email validation using jQuery
@@ -2110,7 +2124,8 @@ Necesita polo menos un dominiu de primer nivel, como "*.org".<br />
 'listgrouprights' => "Drechos de los grupos d'usuariu",
 'listgrouprights-summary' => "La siguiente ye una llista de grupos d'usuariu definíos nesta wiki, colos sos drechos d'accesu asociaos.
 Pue haber [[{{MediaWiki:Listgrouprights-helppage}}|información adicional]] tocante a drechos individuales.",
-'listgrouprights-key' => '* <span class="listgrouprights-granted">Permisu concedíu</span>
+'listgrouprights-key' => 'Lleenda:
+* <span class="listgrouprights-granted">Permisu concedíu</span>
 * <span class="listgrouprights-revoked">Permisu retiráu</span>',
 'listgrouprights-group' => 'Grupu',
 'listgrouprights-rights' => 'Drechos',
@@ -3316,7 +3331,7 @@ Los demás tarán anubríos de mou predetermináu.
 'exif-compression-6' => 'JPEG (antiguu)',
 
 'exif-copyrighted-true' => "Con drechos d'autor",
-'exif-copyrighted-false' => 'Dominiu públicu',
+'exif-copyrighted-false' => "Drechos d'autor ensin configurar",
 
 'exif-unknowndate' => 'Fecha desconocida',
 

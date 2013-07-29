@@ -773,6 +773,7 @@ Nie zapomnij dostosować [[Special:Preferences|preferencji]].',
 'createacct-emailrequired' => 'Adres e‐mail',
 'createacct-emailoptional' => 'Adres e-mail (opcjonalnie)',
 'createacct-email-ph' => 'Wpisz swój adres e-mail',
+'createacct-another-email-ph' => 'Podal adres e-mail',
 'createaccountmail' => 'Użyj tymczasowego hasła wygenerowanego losowo i wyślij je na podany poniżej adres e-mail',
 'createacct-realname' => 'Prawdziwe imię i nazwisko (opcjonalnie)',
 'createaccountreason' => 'Powód',
@@ -781,6 +782,7 @@ Nie zapomnij dostosować [[Special:Preferences|preferencji]].',
 'createacct-captcha' => 'Kontrola bezpieczeństwa',
 'createacct-imgcaptcha-ph' => 'Wpisz tekst widoczny powyżej',
 'createacct-submit' => 'Utwórz konto',
+'createacct-another-submit' => 'Utwórz kolejne konto',
 'createacct-benefit-heading' => '{{grammar:B.lp|{{SITENAME}}}} tworzą ludzie tacy jak Ty.',
 'createacct-benefit-body1' => '{{PLURAL:$1|edycja|edycje|edycji}}',
 'createacct-benefit-body2' => '{{PLURAL:$1|strona|strony|stron}}',
@@ -926,6 +928,19 @@ Tymczasowe hasło – $2',
 'changeemail-password' => 'Hasło {{SITENAME}}:',
 'changeemail-submit' => 'Zapisz nowy',
 'changeemail-cancel' => 'Anuluj',
+
+# Special:ResetTokens
+'resettokens' => 'Resetuj tokeny',
+'resettokens-text' => 'Na tej stronie możesz zresetować tokeny, które umożliwiają dostęp do pewnych prywatnych danych związanych z Twoim kontem.
+
+Należy to zrobić, jeśli ktoś je poznał lub zdobył hasło do Twojego konta.',
+'resettokens-no-tokens' => 'Brak tokenów do zresetowania.',
+'resettokens-legend' => 'Resetuj tokeny',
+'resettokens-tokens' => 'Tokeny:',
+'resettokens-token-label' => '$1 (obecna wartość: $2)',
+'resettokens-watchlist-token' => 'Token kanału internetowego (Atom/RSS) zmian w obserwowanych stronach',
+'resettokens-done' => 'Tokeny zresetowane.',
+'resettokens-resetbutton' => 'Zresetuj wybrane tokeny',
 
 # Edit page toolbar
 'bold_sample' => 'Tekst tłustą czcionką',
@@ -1465,6 +1480,9 @@ Jednak informacje o treści {{GRAMMAR:D.lp|{{SITENAME}}}} mogą być w Google ni
 'recentchangesdays-max' => '(maksymalnie $1 {{PLURAL:$1|dzień|dni}})',
 'recentchangescount' => 'Domyślna liczba wyświetlanych edycji',
 'prefs-help-recentchangescount' => 'Uwzględnia ostatnie zmiany, historię stron i rejestry.',
+'prefs-help-watchlist-token2' => 'To jest tajny klucz umożliwiający dostęp do kanału internetowego zmian w obserwowanych przez ciebie stronach.
+Każdy, kto go zna, będzie mógł je zobaczyć, więc zachowaj go dla siebie.
+[[Special:ResetTokens|Kliknij tu, jeśli musisz go zresetować]].',
 'savedprefs' => 'Twoje preferencje zostały zapisane.',
 'timezonelegend' => 'Strefa czasowa',
 'localtime' => 'Czas lokalny',
@@ -1525,7 +1543,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'prefs-signature' => 'Podpis',
 'prefs-dateformat' => 'Format daty',
 'prefs-timeoffset' => 'Różnica czasu',
-'prefs-advancedediting' => 'Ogólne',
+'prefs-advancedediting' => 'Opcje ogólne',
 'prefs-editor' => 'Edytor',
 'prefs-preview' => 'Podgląd',
 'prefs-advancedrc' => 'Zaawansowane',
@@ -1607,7 +1625,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'right-reupload-shared' => 'Lokalne nadpisywanie pliku istniejącego we współdzielonych zasobach',
 'right-upload_by_url' => 'Przesyłanie plików z adresu URL',
 'right-purge' => 'Czyszczenie pamięci podręcznej stron bez pytania o potwierdzenie',
-'right-autoconfirmed' => 'Edycja stron częściowo zabezpieczonych',
+'right-autoconfirmed' => 'Wyłączenie z ograniczeń dla użytkowników niezarejestrowanych',
 'right-bot' => 'Oznaczanie edycji jako wykonanych automatycznie',
 'right-nominornewtalk' => 'Drobne zmiany na stronach dyskusji użytkowników nie włączają powiadomienia o nowej wiadomości',
 'right-apihighlimits' => 'Zwiększony limit w zapytaniach wykonywanych poprzez interfejs API',
@@ -1620,7 +1638,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'right-deletedtext' => 'Podgląd usuniętego tekstu i zmian pomiędzy usuniętymi wersjami',
 'right-browsearchive' => 'Przeszukiwanie usuniętych stron',
 'right-undelete' => 'Odtwarzanie usuniętych stron',
-'right-suppressrevision' => 'Podgląd i odtwarzanie wersji ukrytych przed Administratorami',
+'right-suppressrevision' => 'Podgląd i odtwarzanie wersji ukrytych przed administratorami',
 'right-suppressionlog' => 'Podgląd rejestru ukrywania',
 'right-block' => 'Blokowanie użytkownikom możliwości edycji',
 'right-blockemail' => 'Blokowanie użytkownikom możliwości wysyłania wiadomości',
@@ -2156,6 +2174,8 @@ Strona uznawana jest za ujednoznaczniającą, jeśli zawiera szablon linkowany p
 'pageswithprop-text' => 'Ta strona zawiera listę stron korzystających z właściwości.',
 'pageswithprop-prop' => 'Nazwa właściwości:',
 'pageswithprop-submit' => 'Pokaż',
+'pageswithprop-prophidden-long' => 'długa wartość własności ukryta ($1 kilobajta)',
+'pageswithprop-prophidden-binary' => 'binarna wartość własności ukryta ($1 kilobajta)',
 
 'doubleredirects' => 'Podwójne przekierowania',
 'doubleredirectstext' => 'Lista zawiera strony z przekierowaniami do stron, które przekierowują do innej strony.
@@ -3543,7 +3563,7 @@ Pozostałe pola zostaną domyślnie ukryte.
 'exif-compression-4' => 'CCITT Grupa 4 kodowanie faksowe',
 
 'exif-copyrighted-true' => 'Chronione prawem autorskim',
-'exif-copyrighted-false' => 'Domena publiczna',
+'exif-copyrighted-false' => 'Status praw autorskich nieznany',
 
 'exif-unknowndate' => 'nieznana data',
 

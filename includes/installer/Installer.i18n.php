@@ -10252,6 +10252,7 @@ I seguenti collegamenti sono in lingua inglese:
  * @author Whym
  * @author Yanajin66
  * @author 青子守歌
+ * @author 아라
  */
 $messages['ja'] = array(
 	'config-desc' => 'MediaWiki のインストーラー',
@@ -10493,7 +10494,7 @@ $1
 	'config-missing-db-host' => '「データベースのホスト」を入力してください',
 	'config-missing-db-server-oracle' => '「データベース TNS」の値を入力してください',
 	'config-invalid-db-server-oracle' => '「$1」は無効なデータベース TNS です。
-「TNS 名」「Easy Connect」文字列のいずれかを使用してください ([http://docs.oracle.com/cd/E11882_01/network.112/e10836/naming.htm Oracle Naming Methods])',
+「TNS Name」「Easy Connect」文字列のいずれかを使用してください ([http://docs.oracle.com/cd/E11882_01/network.112/e10836/naming.htm Oracle Naming Methods])',
 	'config-invalid-db-name' => '「$1」は無効なデータベース名です。
 半角の英数字 (a-z、A-Z、0-9)、アンダースコア (_)、ハイフン (-) のみを使用してください。',
 	'config-invalid-db-prefix' => '「$1」は無効なデータベース接頭辞です。
@@ -11156,6 +11157,8 @@ Mandrake를 실행하고 있다면 php-xml 패키지를 설치하세요.',
 	'config-mod-security' => "'''경고''': 웹 서버에 [http://modsecurity.org/ mod_security]가 허용되었습니다. 잘못 설정된 경우 미디어위키나 사용자가 임의의 콘텐츠를 게시할 수 있는 다른 소프트웨어에 대한 문제를 일으킬 수 있습니다.
 [http://modsecurity.org/documentation/ mod_security] 문서를 참고하거나 임의의 오류가 발생할 경우 호스트의 지원 요청에 문의하십시오.",
 	'config-diff3-bad' => 'GNU diff3를 찾을 수 없습니다.',
+	'config-git' => 'Git 버전 관리 소프트웨어를 찾았습니다: <code>$1</code>.',
+	'config-git-bad' => 'Git 버전 관리 소프트웨어를 찾을 수 없습니다.',
 	'config-imagemagick' => 'ImageMagick를 찾았습니다: <code>$1</code>.
 올리기를 활성화할 경우 그림 섬네일이 활성화됩니다.',
 	'config-gd' => '내장된 GD 그래픽 라이브러리를 찾았습니다.
@@ -11269,7 +11272,7 @@ $1
 	'config-missing-db-host' => '"데이터베이스 호스트"에 대한 값을 입력해야 합니다',
 	'config-missing-db-server-oracle' => '"데이터베이스 TNS"에 대한 값을 입력해야 합니다',
 	'config-invalid-db-server-oracle' => '"$1" 데이터베이스 TNS가 잘못됐습니다.
-ASCII 글자 (a-z, A-Z), 숫자 (0-9), 밑줄 (_)과 하이픈 (-)만 사용하세요.', # Fuzzy
+"TNS Name"이나 "Easy Connect" 문자열 중 하나를 사용하세요 ([http://docs.oracle.com/cd/E11882_01/network.112/e10836/naming.htm Oracle 네이밍 메서드])',
 	'config-invalid-db-name' => '"$1" 데이터베이스 이름이 잘못되었습니다.
 ASCII 글자 (a-z, A-Z), 숫자 (0-9), 밑줄 (_)과 하이픈 (-)만 사용하세요.',
 	'config-invalid-db-prefix' => '"$1" 데이터베이스 접두어가 잘못됐습니다.
@@ -11337,13 +11340,19 @@ chmod a+w $3</pre>',
 	'config-mysql-engine' => '스토리지 엔진:',
 	'config-mysql-innodb' => 'InnoDB',
 	'config-mysql-myisam' => 'MyISAM',
-	'config-mysql-myisam-dep' => "'''경고''': 미디어위키와 함께 사용하도록 권장하지 않는 MySQL에 대한 스토리지 엔진으로 MyISAM을 선택하였습니다. 이유는:
-* 테이블이 잠겨있어 동시성을 거의 지원하지 않습니다
-* 다른 엔진보다 손상이 더 자주 발생합니다
-* 미디어위키 바탕 코드가 항상 정상적으로 MyISAM을 처리하지 않습니다
+	'config-mysql-myisam-dep' => "'''경고''': 미디어위키에 사용하지 않는 것이 좋은 MySQL에 대한 스토리지 엔진으로 MyISAM을 선택하였습니다. 이유는:
+* 테이블 잠금에 의해 간신히 동시성을 지원합니다
+* 다른 엔진보다 손상하는 경향이 있습니다
+* 미디어위키 코드베이스가 항상 정상적으로 MyISAM을 처리하지 않습니다
 
-MySQL 설치가 InnoDB를 지원한다면 그 선택 대신에 InnoDB를 선택할 것을 매우 권장합니다.
-MySQL 설치가 InnoDB를 지원하지 않는다면 아마도 업그레이드를 해야 할 수도 있습니다.",
+MySQL 설치가 InnoDB를 지원한다면, 그 선택 대신에 InnoDB를 선택할 것을 매우 권장합니다.
+MySQL 설치가 InnoDB를 지원하지 않는다면, 아마도 업그레이드를 할 시간입니다.",
+	'config-mysql-only-myisam-dep' => "'''경고''': 미디어위키에 사용하지 않는 것이 좋은 MySQL에 대한 유일하게 사용할 수 있는 스토리지 엔진입니다. 이유는:
+* 테이블 잠금에 의해 간신히 동시성을 지원합니다
+* 다른 엔진보다 손상하는 경향이 있습니다
+* 미디어위키 코드베이스가 항상 정상적으로 MyISAM을 처리하지 않습니다
+
+MySQL 설치가 InnoDB를 지원하지 않으며, 아마도 업그레이드를 할 시간입니다.",
 	'config-mysql-engine-help' => "'''InnoDB'''는 동시적인 지원에 좋기 때문에 대부분 최고의 옵션입니다.
 
 '''MyISAM'''은 단일 사용자 또는 읽기 전용 설치에 빠를 수 있습니다.
@@ -16375,8 +16384,8 @@ No entanto, o MediaWiki requer o PHP $2 ou superior.',
 	'config-unicode-using-intl' => 'A usar a [http://pecl.php.net/intl extensão intl PECL] para a normalização Unicode.',
 	'config-unicode-pure-php-warning' => "'''Aviso''': A [http://pecl.php.net/intl extensão intl PECL] não está disponível para efetuar a normalização Unicode. Irá recorrer-se à implementação em PHP puro, que é mais lenta.
 Se o seu site tem alto volume de tráfego, devia informar-se um pouco sobre a [//www.mediawiki.org/wiki/Unicode_normalization_considerations/pt normalização Unicode].",
-	'config-unicode-update-warning' => "'''Aviso''': A versão instalada do wrapper de normalização Unicode usa uma versão mais antiga da biblioteca do [http://site.icu-project.org/ projecto ICU].
-Devia [//www.mediawiki.org/wiki/Unicode_normalization_considerations actualizá-la] se tem quaisquer preocupações sobre o uso do Unicode.",
+	'config-unicode-update-warning' => "'''Aviso''': A versão instalada do wrapper de normalização Unicode usa uma versão mais antiga da biblioteca do [http://site.icu-project.org/ projeto ICU].
+Devia [//www.mediawiki.org/wiki/Unicode_normalization_considerations atualizá-la] se tem quaisquer preocupações sobre o uso do Unicode.",
 	'config-no-db' => "Não foi possível encontrar um controlador ''(driver)'' apropriado para a base de dados! Precisa de instalar um controlador para o PHP. São aceites os seguintes tipos de base de dados: $1.
 
 Se usa alojamento partilhado, peça ao fornecedor do alojamento para instalar um controlador apropriado.
@@ -16579,7 +16588,7 @@ Verifique o diretório de dados e o nome da base de dados abaixo e tente novamen
 	'config-sqlite-cant-create-db' => 'Não foi possível criar o ficheiro da base de dados <code>$1</code>.',
 	'config-sqlite-fts3-downgrade' => 'O PHP não tem suporte FTS3; a reverter o esquema das tabelas para o anterior',
 	'config-can-upgrade' => "Esta base de dados contém tabelas do MediaWiki.
-Para actualizá-las para o MediaWiki $1, clique '''Continuar'''.",
+Para atualizá-las para o MediaWiki $1, clique '''Continuar'''.",
 	'config-upgrade-done' => "Atualização terminada.
 
 Agora pode [$1 começar a usar a sua wiki].
@@ -16628,7 +16637,7 @@ mas não lhe permitirá armazenar caracteres acima do [//en.wikipedia.org/wiki/M
 	'config-ns-site-name' => 'O mesmo que o nome da wiki: $1',
 	'config-ns-other' => 'Outro (especifique)',
 	'config-ns-other-default' => 'AMinhaWiki',
-	'config-project-namespace-help' => 'Seguindo o exemplo da Wikipedia, muitas wikis mantêm as páginas das suas normas e políticas, separadas das páginas de conteúdo, num "\'\'\'espaço nominal do projecto\'\'\'".
+	'config-project-namespace-help' => 'Seguindo o exemplo da Wikipedia, muitas wikis mantêm as páginas das suas normas e políticas, separadas das páginas de conteúdo, num "\'\'\'espaço nominal do projeto\'\'\'".
 Todos os nomes das páginas neste espaço nominal começam com um determinado prefixo, que pode especificar aqui.
 Tradicionalmente, este prefixo deriva do nome da wiki, mas não pode conter caracteres de pontuação, como "#" ou ":".',
 	'config-ns-invalid' => 'O espaço nominal especificado "<nowiki>$1</nowiki>" é inválido.

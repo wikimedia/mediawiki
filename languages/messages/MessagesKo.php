@@ -1614,7 +1614,7 @@ HTML 태그를 확인하세요.',
 'prefs-signature' => '서명',
 'prefs-dateformat' => '날짜 형식',
 'prefs-timeoffset' => '시차 설정',
-'prefs-advancedediting' => '일반',
+'prefs-advancedediting' => '일반 설정',
 'prefs-editor' => '편집자',
 'prefs-preview' => '미리 보기',
 'prefs-advancedrc' => '고급 설정',
@@ -3671,7 +3671,7 @@ Variants for Chinese language
 'exif-compression-32946' => '수축 (PKZIP)',
 
 'exif-copyrighted-true' => '저작권의 보호를 받음',
-'exif-copyrighted-false' => '퍼블릭 도메인',
+'exif-copyrighted-false' => '저작권 상태를 설정하지 않음',
 
 'exif-unknowndate' => '날짜를 알 수 없음',
 

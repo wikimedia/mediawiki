@@ -1497,7 +1497,7 @@ Il tuo indirizzo non viene rivelato quando gli altri utenti ti contattano.',
 'prefs-signature' => 'Firma',
 'prefs-dateformat' => 'Formato data',
 'prefs-timeoffset' => 'Ore di differenza',
-'prefs-advancedediting' => 'Generale',
+'prefs-advancedediting' => 'Opzioni generali',
 'prefs-editor' => 'Editore',
 'prefs-preview' => 'Anteprima',
 'prefs-advancedrc' => 'Opzioni avanzate',
@@ -2109,6 +2109,8 @@ Vengono considerate pagine di disambiguazione tutte quelle che contengono i temp
 'pageswithprop-text' => 'Questa pagina elenca le pagine che utilizzano una particolare proprietà di pagina.',
 'pageswithprop-prop' => 'Nome proprietà:',
 'pageswithprop-submit' => 'Vai',
+'pageswithprop-prophidden-long' => 'valore testuale lungo della proprietà nascosto ($1 kilobyte)',
+'pageswithprop-prophidden-binary' => 'valore binario della proprietà nascosto ($1 kilobyte)',
 
 'doubleredirects' => 'Redirect doppi',
 'doubleredirectstext' => 'In questa pagina sono elencate pagine che reindirizzano ad altre pagine di redirect.
@@ -2166,6 +2168,7 @@ I redirect <del>cancellati</del> sono stati corretti.',
 'mostrevisions' => 'Pagine con più versioni',
 'prefixindex' => 'Indice delle pagine per lettere iniziali',
 'prefixindex-namespace' => 'Tutte le pagine con il prefisso del namespace $1',
+'prefixindex-strip' => "Nascondi prefisso nell'elenco",
 'shortpages' => 'Pagine più corte',
 'longpages' => 'Pagine più lunghe',
 'deadendpages' => 'Pagine senza uscita',
@@ -3462,7 +3465,7 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 'exif-compression-6' => 'JPEG (vecchio)',
 
 'exif-copyrighted-true' => 'Protetto da copyright',
-'exif-copyrighted-false' => 'Pubblico dominio',
+'exif-copyrighted-false' => 'Status del copyright non impostato',
 
 'exif-unknowndate' => 'Data sconosciuta',
 

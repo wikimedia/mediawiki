@@ -1605,7 +1605,7 @@ Elle ne doit pas dépasser $1 caractère{{PLURAL:$1||s}}.',
 'prefs-signature' => 'Signature',
 'prefs-dateformat' => 'Format des dates',
 'prefs-timeoffset' => 'Décalage horaire',
-'prefs-advancedediting' => 'Général',
+'prefs-advancedediting' => 'Options générales',
 'prefs-editor' => 'Éditeur',
 'prefs-preview' => 'Aperçu',
 'prefs-advancedrc' => 'Options avancées',
@@ -3623,7 +3623,7 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-compression-6' => 'JPEG (ancien)',
 
 'exif-copyrighted-true' => "Soumis au droit d'auteur",
-'exif-copyrighted-false' => 'Domaine public',
+'exif-copyrighted-false' => 'État des droits d’auteur non défini',
 
 'exif-unknowndate' => 'Date inconnue',
 

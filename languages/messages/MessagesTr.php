@@ -1526,7 +1526,7 @@ Diğer kullanıcılar sizinle bu yolla iletişime geçtiğinde e-posta adresiniz
 'prefs-signature' => 'İmza',
 'prefs-dateformat' => 'Tarih biçemi',
 'prefs-timeoffset' => 'Zaman ofseti',
-'prefs-advancedediting' => 'Gelişmiş seçenekler',
+'prefs-advancedediting' => 'Genel seçenekler',
 'prefs-advancedrc' => 'Gelişmiş seçenekler',
 'prefs-advancedrendering' => 'Gelişmiş seçenekler',
 'prefs-advancedsearchoptions' => 'Gelişmiş seçenekler',
@@ -1604,7 +1604,7 @@ Diğer kullanıcılar sizinle bu yolla iletişime geçtiğinde e-posta adresiniz
 'right-reupload-shared' => 'Paylaşılan ortam deposundaki dosyaları yerel olarak geçersiz kıl',
 'right-upload_by_url' => 'Bir URL adresinden dosya yükle',
 'right-purge' => 'Doğrulama yapmadan bir sayfa için site belleğini temizle',
-'right-autoconfirmed' => 'Yarı-korunumlu sayfaları değiştir',
+'right-autoconfirmed' => 'IP-tabanlı hız limitleri etkilenmeyecektir',
 'right-bot' => 'Otomatik bir işlem gibi muamele gör',
 'right-nominornewtalk' => 'Kullanıcı tartışma sayfalarında yaptığı küçük değişiklikler kullanıcıya yeni mesaj bildirimiyle bildirilmez',
 'right-apihighlimits' => 'API sorgularında yüksek sınır kullan',
@@ -1624,7 +1624,7 @@ Diğer kullanıcılar sizinle bu yolla iletişime geçtiğinde e-posta adresiniz
 'right-ipblock-exempt' => 'IP engellemelerini atla, otomatik engelle ve aralık engellemeleri',
 'right-proxyunbannable' => 'Proxylerin otomatik engellemelerini atla',
 'right-unblockself' => 'Kendi engellemesini kaldır',
-'right-protect' => 'Koruma seviyelerini değiştir ve korumalı sayfalarda değişiklik yap',
+'right-protect' => 'Koruma düzeylerini değiştir ve kademeli korumalı sayfaları düzenle',
 'right-editprotected' => 'Korumalı sayfalarda değişiklik yap (korumayı basamaklamadan)',
 'right-editinterface' => 'Kullanıcı arayüzünü değiştirmek',
 'right-editusercssjs' => 'Diğer kullanıcıların CSS ve JS dosyalarında değişiklik yap',
@@ -2263,8 +2263,9 @@ Desteklenen {{PLURAL:$2|iletişim kuralı|iletişim kuralları}}: <code>$1</code
 'listgrouprights' => 'Kullanıcı grubu hakları',
 'listgrouprights-summary' => 'Aşağıdaki bu vikide tanımlanan kullanıcı gruplarının, ilgili erişim haklarıyla birlikte listesidir.
 Bireysel haklarla ilgili [[{{MediaWiki:Listgrouprights-helppage}}|daha fazla bilgi]] olabilir.',
-'listgrouprights-key' => '* <span class="listgrouprights-granted">Verilen hak</span>
-* <span class="listgrouprights-revoked">Geri alınan hak</span>',
+'listgrouprights-key' => 'Yetki:
+* <span class="listgrouprights-granted">Verilen yetki</span>
+* <span class="listgrouprights-revoked">Alınan yetki</span>',
 'listgrouprights-group' => 'grup',
 'listgrouprights-rights' => 'Haklar',
 'listgrouprights-helppage' => 'Help:Grup hakları',
@@ -3403,7 +3404,7 @@ Diğerleri varsayılan olarak gizlenecektir.
 'exif-compression-6' => 'JPEG',
 
 'exif-copyrighted-true' => 'Telif hakkı',
-'exif-copyrighted-false' => 'Kamu malı',
+'exif-copyrighted-false' => 'Telif Hakkı durumu belirtilmemiş',
 
 'exif-photometricinterpretation-2' => 'RGB',
 'exif-photometricinterpretation-6' => 'YCbCr',

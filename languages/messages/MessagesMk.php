@@ -1609,7 +1609,7 @@ $1",
 'prefs-signature' => 'Потпис',
 'prefs-dateformat' => 'Формат на датумот',
 'prefs-timeoffset' => 'Временско отстапување',
-'prefs-advancedediting' => 'Општи',
+'prefs-advancedediting' => 'Општи можности',
 'prefs-editor' => 'Уредник',
 'prefs-preview' => 'Преглед',
 'prefs-advancedrc' => 'Напредни нагодувања',
@@ -3705,7 +3705,7 @@ Variants for Chinese language
 'exif-compression-6' => 'JPEG (стар)',
 
 'exif-copyrighted-true' => 'Заштитена',
-'exif-copyrighted-false' => 'Јавна сопственост',
+'exif-copyrighted-false' => 'Авторскоправниот статус не е зададен',
 
 'exif-photometricinterpretation-2' => 'RGB',
 'exif-photometricinterpretation-6' => 'YCbCr',

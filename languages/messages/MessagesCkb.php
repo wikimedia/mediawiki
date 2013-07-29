@@ -2833,7 +2833,7 @@ $1',
 'skinname-vector' => 'ڤێکتۆر',
 
 # Patrolling
-'markaspatrolleddiff' => 'وەک پاس دراو نشان بکە',
+'markaspatrolleddiff' => 'وەک پاس دراو نیشان بکە',
 'markaspatrolledtext' => 'ئەم پەڕەیە وەک پاس دراو نیشان بکە',
 'markedaspatrolled' => 'وەک پاس دراو نیشان کرا',
 'markedaspatrolledtext' => 'پێداچوونەوەی هەڵبژێردراوی [[:$1]] وەک پاس دراو نیشان کرا.',

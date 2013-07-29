@@ -1411,7 +1411,7 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'prefs-signature' => 'Signatura',
 'prefs-dateformat' => 'Formato de data',
 'prefs-timeoffset' => 'Differentia de tempore',
-'prefs-advancedediting' => 'General',
+'prefs-advancedediting' => 'Optiones general',
 'prefs-editor' => 'Editor',
 'prefs-preview' => 'Previsualisation',
 'prefs-advancedrc' => 'Optiones avantiate',
@@ -3447,7 +3447,7 @@ Le alteres essera initialmente celate.
 'exif-compression-4' => 'CCITT Group 4 codification fax',
 
 'exif-copyrighted-true' => 'Sub copyright',
-'exif-copyrighted-false' => 'Dominio public',
+'exif-copyrighted-false' => 'Stato de copyright non definite',
 
 'exif-unknowndate' => 'Data incognite',
 

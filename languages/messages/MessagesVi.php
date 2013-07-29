@@ -649,7 +649,7 @@ $1',
 Có thể bạn đã gõ nhầm địa chỉ URL, hoặc nhấn vào một liên kết sai.
 Nó cũng có thể là dấu hiệu của một lỗi trong phần mềm mà {{SITENAME}} sử dụng.',
 'nosuchspecialpage' => 'Không có trang đặc biệt nào có tên này',
-'nospecialpagetext' => '<strong>Bạn đã yêu cầu một trang đặc biệt không tồn tại.</strong>
+'nospecialpagetext' => '<strong>Bạn đã đi đến một liên kết trang đặc biệt không tồn tại.</strong>
 
 Có danh sách trang đặc biệt tại [[Special:SpecialPages|{{int:specialpages}}]].',
 
@@ -1025,13 +1025,7 @@ Có thể đổi mật khẩu cho tài khoản mới này tại trang ''[[Specia
 Do đó chúng ta phải dùng một dãy số gọi là địa chỉ IP để xác định anh/chị ta.
 Một địa chỉ IP như vậy có thể có nhiều người cùng dùng chung.
 Nếu bạn là một thành viên vô danh và cảm thấy rằng có những lời bàn luận không thích hợp đang nhắm vào bạn, xin hãy [[Special:UserLogin/signup|tạo tài khoản]] hoặc [[Special:UserLogin|đăng nhập]] để tránh sự nhầm lẫn về sau với những thành viên vô danh khác.''",
-'noarticletext' => "'''Rất tiếc! ''{{TÊNMẠNG}}'' hiện chưa có bài viết nào với tựa đề là \"{{FULLPAGENAME}}\" hết cả.'''<span style=\"float:right\"></span>
-
-'''Bạn có thể''':
-*Nhấn vào [{{fullurl:{{FULLPAGENAME}}|action=edit}} '''đây'''] để tạo trang '''{{FULLPAGENAME}}'''
-*'''[[Special:Search/{{FULLPAGENAME}}|Tìm kiếm tựa trang này]]''' trong các trang khác.
-*'''[[Đặc biệt:Mọi bài|Xuất các trang]]''' đã có sẵn và tìm với tựa đề này.
-*Tìm kiếm <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} '''trong các nhật trình liên quan'''].</span>",
+'noarticletext' => 'Trang này không tồn tại. Bạn có thể [[Special:Search/{{PAGENAME}}|tìm kiếm tựa trang này]] trong các trang khác, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} tìm trong các nhật trình liên quan], hoặc [{{fullurl:{{FULLPAGENAME}}|action=edit}} sửa đổi trang này]</span>.',
 'noarticletext-nopermission' => 'Trang này hiện đang trống.
 Bạn có thể [[Special:Search/{{PAGENAME}}|tìm kiếm tựa trang này]] tại các trang khác, hoặc <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} tìm kiếm các nhật trình liên quan]</span>, nhưng bạn không có phép tạo trang này.',
 'missing-revision' => 'Phiên bản #$1 của trang có tên “{{PAGENAME}}” không tồn tại.
@@ -1471,6 +1465,9 @@ Xem chi tiết trong [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}
 'recentchangesdays-max' => '(tối đa $1 {{PLURAL:$1|ngày|ngày}})',
 'recentchangescount' => 'Số sửa đổi hiển thị mặc định:',
 'prefs-help-recentchangescount' => 'Số này bao gồm các thay đổi gần đây, lịch sử trang, và nhật trình.',
+'prefs-help-watchlist-token2' => 'Đây là chìa khóa bí mật cho nguồn cấp dữ liệu web của watchlist của bạn.
+Bất cứ ai biết nó sẽ có thể để đọc watchlist của bạn, vì vậy không chia sẻ nó.
+[[Special:ResetTokens|Click vào đây nếu bạn cần phải thiết lập lại nó]].',
 'savedprefs' => 'Đã lưu các tùy chọn cá nhân.',
 'timezonelegend' => 'Múi giờ:',
 'localtime' => 'Giờ hiện tại:',
@@ -1532,7 +1529,7 @@ Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao c�
 'prefs-signature' => 'Chữ ký',
 'prefs-dateformat' => 'Kiểu ngày tháng',
 'prefs-timeoffset' => 'Chênh giờ',
-'prefs-advancedediting' => 'Tổng quát',
+'prefs-advancedediting' => 'Tùy chọn chung',
 'prefs-editor' => 'Trình soạn',
 'prefs-preview' => 'Xem trước',
 'prefs-advancedrc' => 'Tùy chọn nâng cao',
@@ -1542,6 +1539,7 @@ Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao c�
 'prefs-displayrc' => 'Tùy chọn hiển thị',
 'prefs-displaysearchoptions' => 'Tùy chọn hiển thị',
 'prefs-displaywatchlist' => 'Tùy chọn hiển thị',
+'prefs-tokenwatchlist' => 'Mã thông báo',
 'prefs-diffs' => 'Khác biệt',
 
 # User preference: email validation using jQuery

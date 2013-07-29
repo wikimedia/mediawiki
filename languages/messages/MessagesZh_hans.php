@@ -1513,7 +1513,7 @@ $1",
 'prefs-signature' => '签名',
 'prefs-dateformat' => '日期格式',
 'prefs-timeoffset' => '时差',
-'prefs-advancedediting' => '通用',
+'prefs-advancedediting' => '一般选项',
 'prefs-editor' => '编辑',
 'prefs-preview' => '预览',
 'prefs-advancedrc' => '高级选项',
@@ -3487,7 +3487,7 @@ Variants for Chinese language
 'exif-compression-6' => 'JPEG（旧）',
 
 'exif-copyrighted-true' => '受版权保护',
-'exif-copyrighted-false' => '公共领域',
+'exif-copyrighted-false' => '版权状态未设定',
 
 'exif-unknowndate' => '未知日期',
 

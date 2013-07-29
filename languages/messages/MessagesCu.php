@@ -427,6 +427,8 @@ $messages = array(
 'history-feed-item-nocomment' => '$1 при $2',
 
 # Revision deletion
+'rev-deleted-comment' => '(мѣнꙑ опьсаниѥ съкрꙑто ѥстъ)',
+'rev-deleted-user' => '(польꙃєватєлꙗ имѧ съкрꙑто ѥстъ)',
 'rev-delundel' => 'каꙁаниѥ / съкрꙑтиѥ',
 'rev-showdeleted' => 'виждь',
 'revdelete-show-file-submit' => 'да',
@@ -478,6 +480,8 @@ $messages = array(
 'rows' => 'рѧдꙑ :',
 'searchresultshead' => 'исканиѥ',
 'savedprefs' => 'твои строи иꙁмѣнєнъ ѥстъ',
+'localtime' => 'мѣстьно врѣмѧ :',
+'guesstimezone' => 'иꙁ твоѥго жє съмотрила врѣмєни обраꙁа поѩтиѥ',
 'timezoneregion-africa' => 'Афрїка',
 'timezoneregion-america' => 'Амєрїка',
 'timezoneregion-antarctica' => 'Антарктїка',
@@ -781,7 +785,7 @@ $messages = array(
 'sp-contributions-submit' => 'ищи',
 
 # What links here
-'whatlinkshere' => 'дос̑ьдєщьнѩ съвѧꙁи',
+'whatlinkshere' => 'дос҄ьдєщьнѩ съвѧꙁи',
 'whatlinkshere-title' => 'страницѧ ижє съ ⁖ $1 ⁖ съвѧꙁи имѫтъ',
 'whatlinkshere-page' => 'страница :',
 'isredirect' => 'прѣнаправлѥниѥ',

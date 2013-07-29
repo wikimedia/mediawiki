@@ -2061,10 +2061,10 @@ Encontra-se disponível uma [[Special:WhatLinksHere/$2|lista completa]].',
 'morelinkstoimage' => 'Ver a [[Special:WhatLinksHere/$1|lista completa]] de páginas que contêm links para este ficheiro.',
 'linkstoimage-redirect' => '$1 (redirecionamento de ficheiro) $2',
 'duplicatesoffile' => '{{PLURAL:$1|O seguinte ficheiro é duplicado|Os seguintes $1 ficheiros são duplicados}} deste ficheiro ([[Special:FileDuplicateSearch/$2|mais detalhes]]):',
-'sharedupload' => 'Este ficheiro provém de $1 e pode ser usado por outros projectos.',
-'sharedupload-desc-there' => 'Este ficheiro provém de $1 e pode ser usado por outros projectos.
+'sharedupload' => 'Este ficheiro provém de $1 e pode ser usado por outros projetos.',
+'sharedupload-desc-there' => 'Este ficheiro provém de $1 e pode ser usado por outros projetos.
 Consulte a [$2 página de descrição do ficheiro] para mais informações, por favor.',
-'sharedupload-desc-here' => 'Este ficheiro provém de $1 e pode ser usado por outros projectos.
+'sharedupload-desc-here' => 'Este ficheiro provém de $1 e pode ser usado por outros projetos.
 A descrição na [$2 página original de descrição do ficheiro] é mostrada abaixo.',
 'sharedupload-desc-edit' => 'Este ficheiro provém de $1 e pode ser utilizado por outros projetos.
 Talvez queira editar a descrição na [$2 página original de descrição do ficheiro].',
@@ -3104,7 +3104,7 @@ Utilize o botão "Antever resultado" antes de gravar, por favor.',
 'tooltip-p-logo' => 'Visite a página principal',
 'tooltip-n-mainpage' => 'Visitar a página principal',
 'tooltip-n-mainpage-description' => 'Visitar a página principal',
-'tooltip-n-portal' => 'Sobre o projecto',
+'tooltip-n-portal' => 'Sobre o projeto, o que se pode fazer e onde achar as coisas',
 'tooltip-n-currentevents' => 'Informação temática sobre acontecimentos atuais',
 'tooltip-n-recentchanges' => 'A lista de mudanças recentes nesta wiki.',
 'tooltip-n-randompage' => 'Carregar página aleatória',

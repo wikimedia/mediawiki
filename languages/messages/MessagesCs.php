@@ -2556,7 +2556,7 @@ Poslední editaci této stránky provedl(a) [[User:$3|$3]] ([[User talk:$3|disku
 'editcomment' => "Shrnutí editace bylo: ''„$1“''.",
 'revertpage' => 'Editace uživatele „[[Special:Contributions/$2|$2]]“ ([[User talk:$2|diskuse]]) vráceny do předchozího stavu, jehož autorem je „[[User:$1|$1]]“',
 'revertpage-nouser' => 'Editace skrytého uživatele vráceny do předchozího stavu, jehož autorem je „[[User:$1|$1]]“',
-'rollback-success' => 'Editace uživatele $1 byla vrácena na poslední verzi od uživatele $2.',
+'rollback-success' => 'Editace uživatele $1 byly vráceny na poslední verzi od uživatele $2.',
 
 # Edit tokens
 'sessionfailure-title' => 'Chyba sezení',
