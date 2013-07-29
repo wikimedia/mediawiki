@@ -1345,7 +1345,7 @@ You should do it if you accidentally shared them with someone or if your account
 'resettokens-legend'          => 'Reset tokens',
 'resettokens-tokens'          => 'Tokens:',
 'resettokens-token-label'     => '$1 (current value: $2)',
-'resettokens-watchlist-token' => 'Watchlist web feed token',
+'resettokens-watchlist-token' => 'Token for the web feed (Atom/RSS) of [[Special:Watchlist|changes to pages on your watchlist]]',
 'resettokens-done'            => 'Tokens reset.',
 'resettokens-resetbutton'     => 'Reset selected tokens',
 
