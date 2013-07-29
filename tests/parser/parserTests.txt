@@ -5451,6 +5451,15 @@ Magic Word: {{CURRENTMONTH}}
 !! end
 
 !! test
+Magic Word: {{CURRENTMONTH1}}
+!! input
+{{CURRENTMONTH1}}
+!! result
+<p>1
+</p>
+!! end
+
+!! test
 Magic Word: {{CURRENTMONTHABBREV}}
 !! input
 {{CURRENTMONTHABBREV}}
@@ -5487,6 +5496,15 @@ Magic Word: {{CURRENTTIME}}
 !! end
 
 !! test
+Magic Word: {{CURRENTHOUR}}
+!! input
+{{CURRENTHOUR}}
+!! result
+<p>00
+</p>
+!! end
+
+!! test
 Magic Word: {{CURRENTWEEK}} (@bug 4594)
 !! input
 {{CURRENTWEEK}}
@@ -5502,6 +5520,51 @@ Magic Word: {{CURRENTYEAR}}
 !! result
 <p>1970
 </p>
+!! end
+
+!! test
+Magic Word: {{CURRENTTIMESTAMP}}
+!! input
+{{CURRENTTIMESTAMP}}
+!! result
+<p>19700101000203
+</p>
+!! end
+
+!! test
+Magic Words LOCAL (UTC)
+!! input
+* {{LOCALMONTH}}
+* {{LOCALMONTH1}}
+* {{LOCALMONTHNAME}}
+* {{LOCALMONTHNAMEGEN}}
+* {{LOCALMONTHABBREV}}
+* {{LOCALDAY}}
+* {{LOCALDAY2}}
+* {{LOCALDAYNAME}}
+* {{LOCALYEAR}}
+* {{LOCALTIME}}
+* {{LOCALHOUR}}
+* {{LOCALWEEK}}
+* {{LOCALDOW}}
+* {{LOCALTIMESTAMP}}
+!! result
+<ul><li> 01
+</li><li> 1
+</li><li> January
+</li><li> January
+</li><li> Jan
+</li><li> 1
+</li><li> 01
+</li><li> Thursday
+</li><li> 1970
+</li><li> 00:02
+</li><li> 00
+</li><li> 1
+</li><li> 4
+</li><li> 19700101000203
+</li></ul>
+
 !! end
 
 !! test
@@ -5523,6 +5586,72 @@ title=[[User:Ævar Arnfjörð Bjarmason]]
 {{FULLPAGENAMEE}}
 !! result
 <p>User:%C3%86var_Arnfj%C3%B6r%C3%B0_Bjarmason
+</p>
+!! end
+
+!! test
+Magic Word: {{TALKSPACE}}
+!! options
+title=[[User:Ævar Arnfjörð Bjarmason]]
+!! input
+{{TALKSPACE}}
+!! result
+<p>User talk
+</p>
+!! end
+
+!! test
+Magic Word: {{TALKSPACE}}, same namespace
+!! options
+title=[[User talk:Ævar Arnfjörð Bjarmason]]
+!! input
+{{TALKSPACE}}
+!! result
+<p>User talk
+</p>
+!! end
+
+!! test
+Magic Word: {{TALKSPACEE}}
+!! options
+title=[[User:Ævar Arnfjörð Bjarmason]]
+!! input
+{{TALKSPACEE}}
+!! result
+<p>User_talk
+</p>
+!! end
+
+!! test
+Magic Word: {{SUBJECTSPACE}}
+!! options
+title=[[User talk:Ævar Arnfjörð Bjarmason]]
+!! input
+{{SUBJECTSPACE}}
+!! result
+<p>User
+</p>
+!! end
+
+!! test
+Magic Word: {{SUBJECTSPACE}}, same namespace
+!! options
+title=[[User:Ævar Arnfjörð Bjarmason]]
+!! input
+{{SUBJECTSPACE}}
+!! result
+<p>User
+</p>
+!! end
+
+!! test
+Magic Word: {{SUBJECTSPACEE}}
+!! options
+title=[[User talk:Ævar Arnfjörð Bjarmason]]
+!! input
+{{SUBJECTSPACEE}}
+!! result
+<p>User
 </p>
 !! end
 
@@ -5556,6 +5685,116 @@ title=[[User:Ævar Arnfjörð Bjarmason]]
 {{NAMESPACENUMBER}}
 !! result
 <p>2
+</p>
+!! end
+
+!! test
+Magic Word: {{SUBPAGENAME}}
+!! options
+title=[[Ævar Arnfjörð Bjarmason/sub ö]] subpage
+!! input
+{{SUBPAGENAME}}
+!! result
+<p>sub ö
+</p>
+!! end
+
+!! test
+Magic Word: {{SUBPAGENAMEE}}
+!! options
+title=[[Ævar Arnfjörð Bjarmason/sub ö]] subpage
+!! input
+{{SUBPAGENAMEE}}
+!! result
+<p>sub_%C3%B6
+</p>
+!! end
+
+!! test
+Magic Word: {{ROOTPAGENAME}}
+!! options
+title=[[Ævar Arnfjörð Bjarmason/sub/sub2]] subpage
+!! input
+{{ROOTPAGENAME}}
+!! result
+<p>Ævar Arnfjörð Bjarmason
+</p>
+!! end
+
+!! test
+Magic Word: {{ROOTPAGENAMEE}}
+!! options
+title=[[Ævar Arnfjörð Bjarmason/sub/sub2]] subpage
+!! input
+{{ROOTPAGENAMEE}}
+!! result
+<p>%C3%86var_Arnfj%C3%B6r%C3%B0_Bjarmason
+</p>
+!! end
+
+!! test
+Magic Word: {{BASEPAGENAME}}
+!! options
+title=[[Ævar Arnfjörð Bjarmason/sub]] subpage
+!! input
+{{BASEPAGENAME}}
+!! result
+<p>Ævar Arnfjörð Bjarmason
+</p>
+!! end
+
+!! test
+Magic Word: {{BASEPAGENAMEE}}
+!! options
+title=[[Ævar Arnfjörð Bjarmason/sub]] subpage
+!! input
+{{BASEPAGENAMEE}}
+!! result
+<p>%C3%86var_Arnfj%C3%B6r%C3%B0_Bjarmason
+</p>
+!! end
+
+!! test
+Magic Word: {{TALKPAGENAME}}
+!! options
+title=[[User:Ævar Arnfjörð Bjarmason]]
+!! input
+{{TALKPAGENAME}}
+!! result
+<p>User talk:Ævar Arnfjörð Bjarmason
+</p>
+!! end
+
+!! test
+Magic Word: {{TALKPAGENAMEE}}
+!! options
+title=[[User:Ævar Arnfjörð Bjarmason]]
+!! input
+{{TALKPAGENAMEE}}
+!! result
+<p>User_talk:%C3%86var_Arnfj%C3%B6r%C3%B0_Bjarmason
+</p>
+!! end
+
+!! test
+Magic Word: {{SUBJECTPAGENAME}}
+!! options
+title=[[User talk:Ævar Arnfjörð Bjarmason]]
+!! input
+{{SUBJECTPAGENAME}}
+!! result
+<p>User:Ævar Arnfjörð Bjarmason
+</p>
+!! end
+
+!! test
+Magic Word: {{SUBJECTPAGENAMEE}}
+!! options
+title=[[User talk:Ævar Arnfjörð Bjarmason]]
+!! input
+{{SUBJECTPAGENAMEE}}
+!! result
+<p>User:%C3%86var_Arnfj%C3%B6r%C3%B0_Bjarmason
 </p>
 !! end
 
@@ -5638,6 +5877,15 @@ Magic Word: {{SCRIPTPATH}}
 {{SCRIPTPATH}}
 !! result
 <p>/
+</p>
+!! end
+
+!! test
+Magic Word: {{STYLEPATH}}
+!! input
+{{STYLEPATH}}
+!! result
+<p>/skins
 </p>
 !! end
 
@@ -6176,7 +6424,6 @@ Template as link source
 </p><p><a href="/wiki/Main_Page" title="Main Page">Main Page</a>Page
 </p>
 !! end
-
 
 !! article
 Template:loop1
@@ -11889,19 +12136,22 @@ Special:Search page linking.
 Say the magic word
 !! input
 * {{PAGENAME}}
+* {{PAGENAMEE}}
+* {{FULLPAGENAME}}
+* {{FULLPAGENAMEE}}
 * {{BASEPAGENAME}}
+* {{BASEPAGENAMEE}}
 * {{SUBPAGENAME}}
 * {{SUBPAGENAMEE}}
 * {{ROOTPAGENAME}}
 * {{ROOTPAGENAMEE}}
-* {{BASEPAGENAME}}
-* {{BASEPAGENAMEE}}
 * {{TALKPAGENAME}}
 * {{TALKPAGENAMEE}}
 * {{SUBJECTPAGENAME}}
 * {{SUBJECTPAGENAMEE}}
 * {{NAMESPACEE}}
 * {{NAMESPACE}}
+* {{NAMESPACENUMBER}}
 * {{TALKSPACE}}
 * {{TALKSPACEE}}
 * {{SUBJECTSPACE}}
@@ -11909,7 +12159,9 @@ Say the magic word
 * {{Dynamic|{{NUMBEROFUSERS}}|{{NUMBEROFPAGES}}|{{CURRENTVERSION}}|{{CONTENTLANGUAGE}}|{{DIRECTIONMARK}}|{{CURRENTTIMESTAMP}}|{{NUMBEROFARTICLES}}}}
 !! result
 <ul><li> Parser test
+</li><li> Parser_test
 </li><li> Parser test
+</li><li> Parser_test
 </li><li> Parser test
 </li><li> Parser_test
 </li><li> Parser test
@@ -11922,6 +12174,7 @@ Say the magic word
 </li><li> Parser_test
 </li><li> 
 </li><li> 
+</li><li> 0
 </li><li> Talk
 </li><li> Talk
 </li><li> 
