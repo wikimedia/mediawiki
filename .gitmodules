@@ -466,3 +466,6 @@
 [submodule "extensions/DataTypes"]
 	path = extensions/DataTypes
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/DataTypes.git
+[submodule "extensions/CirrusSearch"]
+	path = extensions/CirrusSearch
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/CirrusSearch.git
