@@ -1,3 +1,41 @@
+== License and copyright information ==
+
+=== License ===
+
+MediaWiki is licensed under the terms of the GNU General Public License,
+version 2 or later. Derivative works and later versions of the code must be
+free software licensed under the same or a compatible license. This includes
+"extensions" that use MediaWiki functions or variables; see
+http://www.gnu.org/licenses/gpl-faq.html#GPLAndPlugins for details.
+
+For the full text of version 2 of the license, see
+https://www.gnu.org/licenses/gpl-2.0.html or '''GNU General Public License'''
+below.
+
+=== Copyright owners ===
+
+MediaWiki contributors, including those listed in the CREDITS file, hold the
+copyright to this work.
+
+=== Additional license information ===
+
+Some components of MediaWiki imported from other projects may be under other
+Free and Open Source, or Free Culture, licenses. Specific details of their
+licensing information can be found in those components.
+
+Sections of code written exclusively by Lee Crocker or Erik Moeller are also
+released into the public domain, which does not impair the obligations of users
+under the GPL for use of the whole code or other sections thereof.
+
+MediaWiki uses the following Creative Commons icons to illustrate links to the
+CC licenses:
+
+* skins/common/images/cc-by-nc-sa.png
+* skins/common/images/cc-by-sa.png
+
+These icons are trademarked, and used subject to the CC trademark license,
+available at http://creativecommons.org/policies#trademark
+
 == GNU GENERAL PUBLIC LICENSE ==
 
 Version 2, June 1991
