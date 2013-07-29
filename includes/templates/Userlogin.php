@@ -140,8 +140,12 @@ class UserloginTemplate extends BaseTemplate {
 		<div>
 
 	<?php if ( $this->data['canremember'] ) { ?>
-		<label class="mw-ui-checkbox-label">
-			<input name="wpRemember" type="checkbox" value="1" id="wpRemember" tabindex="4"
+		<!--
+		New Agora style of checkbox with image, see gerrit 74662.
+		Does the input field need a class? Does it need its own div to get the box?
+		-->
+		<label class="mw-ui-styled-checkbox-label">
+			<input name="wpRemember" type="checkbox" value="1" id="wpRemember" tabindex="4" class="mw-ui-checkbox"
 				<?php if ( $this->data['remember'] ) {
 					echo 'checked="checked"';
 				} ?>
@@ -153,7 +157,7 @@ class UserloginTemplate extends BaseTemplate {
 
 	<?php if ( $this->data['cansecurelogin'] ) { ?>
 		<div>
-			<label class="mw-ui-checkbox-label">
+			<label class="mw-ui-styled-checkbox-label">
 				<input name="wpStickHTTPS" type="checkbox" value="1" id="wpStickHTTPS" tabindex="5"
 					<?php if ( $this->data['stickHTTPS'] ) {
 						echo 'checked="checked"';
