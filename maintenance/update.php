@@ -159,7 +159,6 @@ class UpdateMediaWiki extends Maintenance {
 				continue;
 			}
 
-			$child = $this->runChild( $maint );
 			$child->execute();
 			if ( !$isLoggedUpdate ) {
 				$updater->insertUpdateRow( $maint );
