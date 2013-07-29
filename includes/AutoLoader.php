@@ -781,6 +781,7 @@ $wgAutoloadLocalClasses = array(
 	'CacheTime' => 'includes/parser/CacheTime.php',
 	'CoreParserFunctions' => 'includes/parser/CoreParserFunctions.php',
 	'CoreTagHooks' => 'includes/parser/CoreTagHooks.php',
+	'CoreVariables' => 'includes/parser/CoreVariables.php',
 	'DateFormatter' => 'includes/parser/DateFormatter.php',
 	'LinkHolderArray' => 'includes/parser/LinkHolderArray.php',
 	'MWTidy' => 'includes/parser/Tidy.php',
