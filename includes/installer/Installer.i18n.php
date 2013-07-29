@@ -124,7 +124,7 @@ You cannot install or use MediaWiki unless this option is disabled.",
 It may cause problems, particularly if using file uploads and <code>math</code> support.",
 	'config-xml-bad'                  => "PHP's XML module is missing.
 MediaWiki requires functions in this module and will not work in this configuration.
-If you're running Mandrake, install the php-xml package.",
+If you're running a Linux distribution that uses RPMs such as Red Hat or CentOS, install the php-xml or php53-xml package.",
 	'config-pcre'                     => 'The PCRE support module appears to be missing.
 MediaWiki requires the Perl-compatible regular expression functions to work.',
 	'config-pcre-no-utf8'             => "'''Fatal:''' PHP's PCRE module seems to be compiled without PCRE_UTF8 support.
