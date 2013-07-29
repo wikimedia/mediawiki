@@ -176,6 +176,8 @@ class LocalisationCache {
 
 	var $mergeableKeys = null;
 
+	var $serializedPlural;
+
 	/**
 	 * Constructor.
 	 * For constructor parameters, see the documentation in DefaultSettings.php
@@ -185,8 +187,9 @@ class LocalisationCache {
 	 * @throws MWException
 	 */
 	function __construct( $conf ) {
-		global $wgCacheDirectory;
+		global $wgCacheDirectory, $IP;
 
+		$this->serializedPlural = "$IP/serialized/plurals.ser";
 		$this->conf = $conf;
 		$storeConf = array();
 		if ( !empty( $conf['storeClass'] ) ) {
@@ -564,11 +567,34 @@ class LocalisationCache {
 		}
 	}
 
+	public function savePluralFiles( $regen = null ) {
+		if ( file_exists( $this->serializedPlural ) && $regen !== 'regenerate' ) {
+			return "Already serialized!";
+		}
+		$this->loadPluralFiles();
+		$ret = file_put_contents( $this->serializedPlural,
+			serialize( array( $this->pluralRules, $this->pluralRuleTypes ) ) );
+		if ( $ret !== false ) {
+			return true;
+		}
+		$e = error_get_last();
+		return $e['message'];
+	}
+
 	/**
 	 * Load the plural XML files.
 	 */
 	protected function loadPluralFiles() {
 		global $IP;
+
+		if ( file_exists( $this->serializedPlural ) ) {
+			$rules = unserialize( file_get_contents( $this->serializedPlural ) );
+			if ( is_array( $rules ) && count( $rules ) === 2 ) {
+				$this->pluralRules = $rules[0];
+				$this->pluralRuleTypes = $rules[1];
+				return;
+			}
+		}
 		$cldrPlural = "$IP/languages/data/plurals.xml";
 		$mwPlural = "$IP/languages/data/plurals-mediawiki.xml";
 		// Load CLDR plural rules
