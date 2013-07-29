@@ -88,6 +88,10 @@ class Preferences {
 
 		wfRunHooks( 'GetPreferences', array( $user, &$defaultPreferences ) );
 
+		// The hooks may have changed user preferences, so invalidate the
+		// cache to force database lookups on the next getOption call
+		$user->clearInstanceCache();
+
 		## Remove preferences that wikis don't want to use
 		global $wgHiddenPrefs;
 		foreach ( $wgHiddenPrefs as $pref ) {
