@@ -2772,7 +2772,10 @@ $templates
 		// Load config before anything else
 		$scripts .= Html::inlineScript(
 			ResourceLoader::makeLoaderConditionalScript(
-				ResourceLoader::makeConfigSetScript( $this->getJSVars() )
+				ResourceLoader::makeConfigSetScript( $this->getJSVars() ) .
+				// Config deprecations
+				ResourceLoader::makeConfigDeprecateScript( 'wgMonthNames', 'Use mediawiki.language.months module instead.' ) .
+				ResourceLoader::makeConfigDeprecateScript( 'wgMonthNamesShort', 'Use mediawiki.language.months module instead.' )
 			)
 		);
 

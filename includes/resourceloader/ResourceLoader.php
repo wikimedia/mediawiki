@@ -1066,6 +1066,24 @@ class ResourceLoader {
 	}
 
 	/**
+	 * Returns JS code which will deprecate selected key in the MediaWiki configuration (using
+	 * mw.log.deprecate) array while leaving its value intact.
+	 *
+	 * @param string $key Configuration key, e.g. 'wgMonthNames'
+	 * @param string $msg Additional message to be displayed (optional)
+	 *
+	 * @return string
+	 */
+	public static function makeConfigDeprecateScript( $key, $msg = '' ) {
+		return Xml::encodeJsCall( 'mw.log.deprecate', array(
+			new XmlJsCode( 'mw.config.values' ),
+			$key,
+			new XmlJsCode( 'mw.config.values[' . Xml::encodeJsVar( $key ) . ']' ),
+			$msg
+		) );
+	}
+
+	/**
 	 * Convert an array of module names to a packed query string.
 	 *
 	 * For example, array( 'foo.bar', 'foo.baz', 'bar.baz', 'bar.quux' )
