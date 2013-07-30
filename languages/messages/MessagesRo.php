@@ -676,6 +676,7 @@ S-ar putea ca acesta să fi fost deja șters de altcineva.',
 'cannotdelete-title' => 'Imposibil de șters pagina „$1”',
 'delete-hook-aborted' => 'Ștergerea a fost abandonată din cauza unui hook.
 Nicio explicație furnizată.',
+'no-null-revision' => 'Nu s-a putut crea o nouă versiune nulă pentru pagina „$1”',
 'badtitle' => 'Titlu incorect',
 'badtitletext' => 'Titlul paginii căutate este incorect, gol sau este o legătură interlinguală sau interwiki incorectă.
 Poate conține unul sau mai multe caractere ce nu pot fi folosite în titluri.',

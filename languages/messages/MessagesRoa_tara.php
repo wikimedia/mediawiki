@@ -408,6 +408,7 @@ Pò essere ca ggià ha state scangellete da quacche otre.',
 'cannotdelete-title' => 'Non ge puè scangellà \'a pàgene "$1"',
 'delete-hook-aborted' => "Cangiamende annullete da  'nu ''hook''.
 Non g'à date nisciune mutive.",
+'no-null-revision' => 'Non ge se pò ccrejà \'na revisiona nove vacande pa pàgene "$1"',
 'badtitle' => 'Titele sbagliete',
 'badtitletext' => "'A pàgene ca è cerchete tène 'nu titele errete, vacande, o jè 'nu collegamende inter-lènghe o inter-uicchi errete.
 Pò essere ca tène une o cchiù carattere ca non ge ponne essere ausete jndr'à le titele.",

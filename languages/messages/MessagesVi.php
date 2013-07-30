@@ -3908,8 +3908,8 @@ Xin hãy xác nhận bạn thực sự muốn tạo lại trang này.",
 'table_pager_empty' => 'Không tìm thấy kết quả',
 
 # Auto-summaries
-'autosumm-blank' => 'Tẩy trống trang',
-'autosumm-replace' => 'Thay cả nội dung bằng “$1”',
+'autosumm-blank' => 'Xoá trắng hết nội dung của trang.',
+'autosumm-replace' => 'Thay thế cả nội dung là “$1”',
 'autoredircomment' => 'Đổi hướng đến [[$1]]',
 'autosumm-new' => 'Tạo trang mới với nội dung “$1”',
 

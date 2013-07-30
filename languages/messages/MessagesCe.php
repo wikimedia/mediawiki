@@ -765,6 +765,7 @@ $1',
 'loginerror' => 'Гlалат ду декъашхо вовзарехь/йовзарехь',
 'createacct-error' => 'ДӀаяздар кхуллуш гӀалат ду',
 'createaccounterror' => 'Декъашхочун дӀаяздар кхолла йиш яц: $1',
+'nocookieslogin' => '{{SITENAME}} лелош ю «cookies» декъашхой системин  чуболучу хенахь. Ахьа иш дӀайаьйина.',
 'nocookiesforlogin' => '{{int:nocookieslogin}}',
 'noname' => 'Ахьа магийтина йолу декъашхочун цӀе билгал йина яц.',
 'loginsuccesstitle' => 'Хьан пароль тӀеэца, марша догӀила Википеди чу!',
@@ -871,6 +872,10 @@ $1',
 'noarticletext-nopermission' => 'ХӀокх хан чохь кху агӀонца йоза дац.
 Шуьга далундерг [[Special:Search/{{PAGENAME}}|лахар ишта хьехош йолу цӀе]] кхечу яззамашкахь,
 йа <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} лаха оцуьнах терадерг кхечу тептаршкахь].</span>',
+'missing-revision' => 'АгӀона «{{PAGENAME}}» верси $1 яц.
+
+Ишта хуьйла ширелла дӀайаьккхина агӀонан хьажориган дихьа делча.
+Ма-дара хила мега [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} дӀайаьхарш йолу тептар] чохь.',
 'userpage-userdoesnotexist' => 'Ишта дlайазвар «<nowiki>$1</nowiki>» хlинца дац. Хьажа билгал, хьуна бакъалла лаьи кхолла йа хийцам ба хlокху агlон.',
 'sitecsspreview' => "'''ХӀара хьалх хьажар ду, хӀара CSS.'''
 '''хӀинца Ӏалашдина дац!'''",

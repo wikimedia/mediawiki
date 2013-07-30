@@ -790,6 +790,7 @@ Möglicherweise wurde sie bereits von jemand anderem gelöscht.',
 'cannotdelete-title' => 'Seite „$1“ kann nicht gelöscht werden',
 'delete-hook-aborted' => 'Die Löschung wurde von einer Programmerweiterung zu MediaWiki verhindert.
 Es ist hierzu keine Erklärung verfügbar.',
+'no-null-revision' => 'Die neue Nullversion für die Seite „$1“ konnte nicht erstellt werden',
 'badtitle' => 'Ungültiger Titel',
 'badtitletext' => 'Der Titel der angeforderten Seite ist ungültig, leer oder ein ungültiger Sprachlink von einem anderen Wiki.',
 'perfcached' => 'Die folgenden Daten stammen aus dem Cache und sind möglicherweise nicht aktuell. Maximal {{PLURAL:$1|ein Ergebnis ist|$1 Ergebnisse sind}} im Cache verfügbar.',

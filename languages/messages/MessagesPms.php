@@ -452,11 +452,11 @@ L'aministrator ch'a l'ha blocalo a l'ha lassà sta spiegassion: «$3».",
 # Login and logout pages
 'logouttext' => "'''A l'é surtì da 'nt ël sistema.'''
 
-A peul tiré anans a dovré {{SITENAME}} coma Utent anònim, ò pura a peul <span class='plainlinks'>[$1 rintré torna ant ël sistema]</span> con l'istess stranòm che a dovrava prima, ò con un diferent.
+A peul tiré anans a dovré {{SITENAME}} coma utent anònim, ò pura a peul <span class='plainlinks'>[$1 rintré torna ant ël sistema]</span> con l'istess stranòm che a dovrava prima, ò con un diferent.
 Ch'a nòta che chèiche pàgine a peulo continué a esse visualisà com s'a fussa ancor ant ël sistema, fin ch'a scancela nen la memòria local ëd sò navigador.",
 'welcomeuser' => 'Bin ëvnù, $1!',
-'welcomecreation-msg' => 'Sò cont a l\'é stàit creà.
-Che as dësmentia pa ëd cambié ij [[Special:Preferences|"sò gust" an {{SITENAME}}]].',
+'welcomecreation-msg' => "Sò cont a l'é stàit creà.
+Che a dësmentia pa ëd cambié ij [[Special:Preferences|sò gust oër {{SITENAME}}]].",
 'yourname' => 'Sò stranòm',
 'yourpassword' => 'Soa ciav',
 'yourpasswordagain' => 'Che a bata torna soa ciav',

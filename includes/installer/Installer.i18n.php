@@ -682,6 +682,8 @@ Add dir="ltr" to the <nowiki><code></nowiki> for right-to-left languages.',
 Message shown when PHP parameter <code>suhosin.get.max_value_length</code> is between 0 and 1023 (that max value is hard set in MediaWiki software).',
 	'config-db-host-help' => '{{doc-singularthey}}',
 	'config-db-host-oracle' => 'TNS = [[:wikipedia:Transparent Network Substrate|Transparent Network Substrate]] (<== wikipedia link)',
+	'config-db-host-oracle-help' => 'See also:
+* {{msg-mw|Config-invalid-db-server-oracle}}',
 	'config-db-wiki-settings' => 'This is more acurate: "Enter identifying or distinguishing data for this wiki" since a MySQL database can host tables of several wikis.',
 	'config-db-account-oracle-warn' => 'A "[[:wikipedia:Front and back ends|backend]]" is a system or component that ordinary users don\'t interact with directly and don\'t need to know about, and that is responsible for a distinct task or service - for example, a storage back-end is a generic system for storing data which other applications can use. Possible alternatives for back-end are "system" or "service", or (depending on context and language) even leave it untranslated.',
 	'config-db-password-empty' => 'Used as error message. Parameters:
@@ -711,17 +713,14 @@ Used in help box.',
 	'config-invalid-db-server-oracle' => 'Used as error message. Parameters:
 * $1 - database server name
 See also:
-* {{msg-mw|Config-invalid-db-name}}
-* {{msg-mw|Config-invalid-db-prefix}}',
+* {{msg-mw|Config-db-host-oracle-help}}',
 	'config-invalid-db-name' => 'Used as error message. Parameters:
 * $1 - database name
 See also:
-* {{msg-mw|Config-invalid-db-server-oracle}}
 * {{msg-mw|Config-invalid-db-prefix}}',
 	'config-invalid-db-prefix' => 'Used as error message. Parameters:
 * $1 - database prefix
 See also:
-* {{msg-mw|Config-invalid-db-server-oracle}}
 * {{msg-mw|Config-invalid-db-name}}',
 	'config-connection-error' => '$1 is the external error from the database, such as "DB connection error: Access denied for user \'dba\'@\'localhost\' (using password: YES) (localhost)."
 
@@ -10416,7 +10415,7 @@ WindowsでMySQLを使用している場合に、「localhost」は、サーバ�
 
 PostgreSQLを使用している場合、UNIXソケットで接続するにはこの欄を空欄のままにしてください。',
 	'config-db-host-oracle' => 'データベース TNS:',
-	'config-db-host-oracle-help' => '有効な[http://download.oracle.com/docs/cd/B28359_01/network.111/b28317/tnsnames.htm ローカル接続名]を入力してください。tnsnames.oraファイルは、このインストールに対して表示されてなければなりません、<br />もしクライアントライブラリ10gもしくはそれ以上を使用している場合、メソッドの名前を[http://download.oracle.com/docs/cd/E11882_01/network.112/e10836/naming.htm 簡易接続]で利用できます。',
+	'config-db-host-oracle-help' => '有効な[http://download.oracle.com/docs/cd/B28359_01/network.111/b28317/tnsnames.htm ローカル接続名]を入力してください。tnsnames.ora ファイルは、このインストール先から参照できる場所に置いてください。<br />ご使用中のクライアント ライブラリが 10g 以降の場合、[http://download.oracle.com/docs/cd/E11882_01/network.112/e10836/naming.htm Easy Connect] ネーミング メソッドを使用できます。',
 	'config-db-wiki-settings' => 'このウィキの識別情報',
 	'config-db-name' => 'データベース名:',
 	'config-db-name-help' => 'このウィキを識別する名前を入力してください。
@@ -10494,7 +10493,7 @@ $1
 	'config-missing-db-host' => '「データベースのホスト」を入力してください',
 	'config-missing-db-server-oracle' => '「データベース TNS」の値を入力してください',
 	'config-invalid-db-server-oracle' => '「$1」は無効なデータベース TNS です。
-「TNS Name」「Easy Connect」文字列のいずれかを使用してください ([http://docs.oracle.com/cd/E11882_01/network.112/e10836/naming.htm Oracle Naming Methods])',
+「TNS 名」「Easy Connect」文字列のいずれかを使用してください ([http://docs.oracle.com/cd/E11882_01/network.112/e10836/naming.htm Oracle ネーミング メソッド])',
 	'config-invalid-db-name' => '「$1」は無効なデータベース名です。
 半角の英数字 (a-z、A-Z、0-9)、アンダースコア (_)、ハイフン (-) のみを使用してください。',
 	'config-invalid-db-prefix' => '「$1」は無効なデータベース接頭辞です。

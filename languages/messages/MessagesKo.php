@@ -725,6 +725,7 @@ URL을 잘못 입력하였거나, 잘못된 링크를 따라갔을 수 있습니
 'cannotdelete-title' => '"$1" 문서를 삭제할 수 없습니다.',
 'delete-hook-aborted' => '훅에 의해 삭제가 중단되었습니다.
 아무런 설명도 주어지지 않았습니다.',
+'no-null-revision' => '"$1" 문서에 대한 새 빈 판을 만들 수 없습니다',
 'badtitle' => '잘못된 제목',
 'badtitletext' => '요청한 문서 제목이 잘못되었거나, 비어있거나, 잘못된 인터위키 제목으로 링크했습니다.
 문서 제목에 사용할 수 없는 문자를 사용했을 수 있습니다.',
@@ -3070,7 +3071,7 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 'export-submit' => '내보내기',
 'export-addcattext' => '분류에 있는 문서 추가:',
 'export-addcat' => '추가',
-'export-addnstext' => '다음 이름공간을 가진 문서를 추가:',
+'export-addnstext' => '다음 이름공간에서 문서 추가:',
 'export-addns' => '추가',
 'export-download' => '파일로 저장',
 'export-templates' => '틀 포함하기',

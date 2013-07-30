@@ -987,7 +987,11 @@ See also:
 'cannotdelete-title' => 'Title of error page when the user cannot delete a page. Parameters:
 * $1 - the page name',
 'delete-hook-aborted' => 'Error message shown when an extension hook prevents a page deletion, but does not provide an error message.',
-'no-null-revision' => 'Error message shown when no null revision could be created to reflect a protection level change.',
+'no-null-revision' => 'Error message shown when no null revision could be created to reflect a protection level change.
+
+About "null revision":
+* Create a new null-revision for insertion into a page\'s history. This will not re-save the text, but simply refer to the text from the previous version.
+* Such revisions can for instance identify page rename operations and other such meta-modifications.',
 'badtitle' => 'The page title when a user requested a page with invalid page name. The content will be {{msg-mw|badtitletext}}.',
 'badtitletext' => 'The message shown when a user requested a page with invalid page name. The page title will be {{msg-mw|badtitle}}.
 
@@ -3057,8 +3061,10 @@ This action allows editing of all of the "user rights", not just the rights of t
 'action-userrights-interwiki' => '{{Doc-action|userrights-interwiki}}',
 'action-siteadmin' => '{{Doc-action|siteadmin}}',
 'action-sendemail' => '{{doc-action|sendemail}}',
-'action-editmywatchlist' => '{{doc-action|editmywatchlist}}',
-'action-viewmywatchlist' => '{{doc-action|viewmywatchlist}}',
+'action-editmywatchlist' => '{{doc-action|editmywatchlist}}
+{{Identical|Edit your watchlist}}',
+'action-viewmywatchlist' => '{{doc-action|viewmywatchlist}}
+{{Identical|View your watchlist}}',
 'action-viewmyprivateinfo' => '{{doc-action|viewmyprivateinfo}}',
 'action-editmyprivateinfo' => '{{doc-action|editmyprivateinfo}}',
 
@@ -5340,7 +5346,8 @@ See also:
 # Block/unblock
 'autoblockid' => 'Used as name of autoblock, instead of autoblocked IPs. Parameters:
 * $1 - autoblock ID',
-'block' => '{{doc-special|Block}}',
+'block' => '{{doc-special|Block}}
+{{Identical|Block user}}',
 'unblock' => '{{doc-special|Unblock}}',
 'blockip' => 'The title of the special page [[Special:BlockIP]].
 

@@ -663,6 +663,7 @@ Potrebbe essere stato già cancellato da qualcun altro.',
 'cannotdelete-title' => 'Impossibile eliminare la pagina "$1"',
 'delete-hook-aborted' => "La cancellazione è stata annullata dall'hook.
 Non è stata restituita alcuna spiegazione.",
+'no-null-revision' => 'Non può essere creata una versione nulla per la pagina "$1"',
 'badtitle' => 'Titolo non corretto',
 'badtitletext' => 'Il titolo della pagina richiesta è vuoto, errato oppure deriva da un errore nei collegamenti interlingua o interwiki.
 Potrebbe inoltre contenere uno o più caratteri il cui uso non è ammesso nei titoli.',

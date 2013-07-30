@@ -1360,6 +1360,7 @@ Gezinti bağlantılarının bu sütunu sıfırlayacağını unutmayın.',
 'compareselectedversions' => 'Seçilen sürümleri karşılaştır',
 'showhideselectedversions' => 'Seçili sürümleri göster/gizle',
 'editundo' => 'geri al',
+'diff-empty' => '(Fark yok)',
 'diff-multi' => '({{PLURAL:$2|Bir kullanıcı|$2 kullanıcı}} tarafından yapılan {{PLURAL:$1|bir ara revizyon|$1 ara revizyon}} gösterilmiyor)',
 'diff-multi-manyusers' => '($2 kullancıdan fazla {{PLURAL:$2|kullanıcı|kullanıcı}} tarafından yapılan {{PLURAL:$1|bir ara revizyon|$1 ara revizyon}} gösterilmiyor)',
 
