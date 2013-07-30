@@ -1103,7 +1103,7 @@ HTML;
 			# unless the address is not sensible (e.g. private). However, prefer private
 			# IP addresses over proxy servers controlled by this site (more sensible).
 			foreach ( $ipchain as $i => $curIP ) {
-				$curIP = IP::canonicalize( $curIP );
+				$curIP = IP::sanitizeIP( IP::canonicalize( $curIP ) );
 				if ( wfIsTrustedProxy( $curIP ) && isset( $ipchain[$i + 1] ) ) {
 					if ( wfIsConfiguredProxy( $curIP ) || // bug 48919
 						( IP::isPublic( $ipchain[$i + 1] ) || $wgUsePrivateIPs )
