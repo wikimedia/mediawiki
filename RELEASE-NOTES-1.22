@@ -171,6 +171,8 @@ production.
 * $wgHTCPRouting rules can now be passed an array of hosts/ports to send purge
   too. Can be used whenever several multicast group could be interested by a
   specific purge.
+* IPv6 addresses in X-Forwarded-For headers are now normalised before checking
+  against allowed proxy lists.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
