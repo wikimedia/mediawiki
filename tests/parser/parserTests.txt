@@ -6534,6 +6534,34 @@ Un-closed <includeonly>
 !! result
 !! end
 
+# TODO: test with DOM fragment reuse!
+!! test
+Parsoid: DOM fragment reuse
+!! options
+parsoid=wt2wt,wt2html
+!! input
+a{{echo|b<table></table>c}}d
+
+a{{echo|b
+<table></table>
+c}}d
+
+{{echo|a
+
+<table></table>
+
+b}}
+!! result
+a<span typeof="mw:Transclusion">b</span>
+<table></table><span>c</span>d
+<p typeof="mw:Transclusion">ab</p>
+<table></table>
+<p>cd</p>
+<p typeof="mw:Transclusion">a</p>
+<table></table>
+<p>b</p>
+!! end
+
 ###
 ### <includeonly> and <noinclude> in attributes
 ###
@@ -7735,6 +7763,62 @@ As well as inside noinclude/onlyinclude
 
 But not inside includeonly
 <includeonly>{{subst:Foo}}</includeonly>
+!! end
+
+!! test
+Parsoid: Recognize nowiki with trailing space in tags
+!! options
+parsoid=wt2html
+!! input
+<nowiki ><div>[[foo]]</nowiki >
+
+a<nowiki / >b
+
+c<nowiki />d
+
+e<nowiki/ >f
+!! result
+<p><span typeof="mw:Nowiki">&lt;div&gt;[[foo]]</span></p>
+<p>ab</p>
+<p>cd</p>
+<p>ef</p>
+!! end
+
+!! test
+Parsoid: Recognize nowiki with odd capitalization
+!! options
+parsoid=wt2html
+!! input
+<noWikI ><div>[[foo]]</Nowiki >
+!! result
+<p><span typeof="mw:Nowiki">&lt;div&gt;[[foo]]</span></p>
+!! end
+
+
+!! test
+Parsoid: Escape nowiki with trailing space in tags
+!! options
+parsoid=html2wt
+!! input
+&lt;nowiki &gt; foo &lt;/nowiki &gt;
+
+a&lt;nowiki /&gt;b
+
+c&lt;nowiki/ &gt;d
+!! result
+<p>&lt;nowiki &gt; foo &lt/nowiki ></p>
+<p>a&lt;nowiki /&gt;b</p>
+<p>c&lt;nowiki/ &gt;d</p>
+!! end
+
+!! test
+Parsoid: Escape weird noWikI capitalizations
+!! options
+parsoid=html2wt
+!! input
+&lt;noWikI &gt; foo &lt;/NoWikI &gt;
+!! result
+<p>&lt;noWikI &gt; foo &lt/NoWikI ></p>
 !! end
 
 ###
@@ -14987,7 +15071,7 @@ This should just get lost.
 <p>A <span about="#mwt2" class="reference" data-mw='{"name":"ref","attrs":{"name":"a"}}' id="cite_ref-a-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-a-1">[1]</a></span>
 B <span about="#mwt4" class="reference" data-mw='{"name":"ref","body":{"html":"bar"},"attrs":{"name":"b"}}' id="cite_ref-b-2-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-b-2">[2]</a></span></p>
 
-<ol about="#mwt7" class="references" data-mw='{"name":"references","body":{"extsrc":"<ref name=\"a\">foo</ref>\nThis should just get lost."},"attrs":{}}' typeof="mw:Extension/references"><li about="#cite_note-a-1" id="cite_note-a-1"><span rel="mw:referencedBy"><a href="#cite_ref-a-1-0">↑</a></span> foo</li><li about="#cite_note-b-2" id="cite_note-b-2"><span rel="mw:referencedBy"><a href="#cite_ref-b-2-0">↑</a></span> bar</li></ol>
+<ol class="references" typeof="mw:Extension/references" about="#mwt6" data-mw='{"name":"references","body":{"extsrc":"<ref name=\"a\">foo</ref>\nThis should just get lost.","html":"<span about=\"#mwt8\" class=\"reference\" data-mw=\"{&amp;quot;name&amp;quot;:&amp;quot;ref&amp;quot;,&amp;quot;body&amp;quot;:{&amp;quot;html&amp;quot;:&amp;quot;foo&amp;quot;},&amp;quot;attrs&amp;quot;:{&amp;quot;name&amp;quot;:&amp;quot;a&amp;quot;}}\" rel=\"dc:references\" typeof=\"mw:Extension/ref\"><a href=\"#cite_note-a-1\">[1]</a></span>"},"attrs":{}}'><li about="#cite_note-a-1" id="cite_note-a-1"><span rel="mw:referencedBy"><a href="#cite_ref-a-1-0">↑</a></span> foo</li><li about="#cite_note-b-2" id="cite_note-b-2"><span rel="mw:referencedBy"><a href="#cite_ref-b-2-0">↑</a></span> bar</li></ol>
 !!end
 
 !!test
@@ -14999,6 +15083,29 @@ parsoid
 !!result
 <ol class="references" about="#mwt2" typeof="mw:Transclusion" data-mw='{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"<references />"}},"i":0}'></ol>
 !!end
+
+!! test
+References: 7. Multiple references tags (one without and one with nested refs) should be correctly handled
+!! options
+parsoid
+!! input
+A <ref>foo bar for a</ref>
+B <ref name="b" />
+
+<references />
+
+<references>
+<ref name="b">foo</ref>
+</references>
+!! result
+<p>A <span about="#mwt2" class="reference" data-mw='{"name":"ref","body":{"html":"foo bar for a"},"attrs":{}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-1">[1]</a></span>
+B <span about="#mwt4" class="reference" data-mw='{"name":"ref","attrs":{"name":"b"}}' id="cite_ref-b-2-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-b-2">[2]</a></span></p>
+
+<ol class="references" typeof="mw:Extension/references" about="#mwt6" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> foo bar for a</li><li about="#cite_note-b-2" id="cite_note-b-2"><span rel="mw:referencedBy"><a href="#cite_ref-b-2-0">↑</a></span> </li></ol>
+
+<ol class="references" typeof="mw:Extension/references" about="#mwt8" data-mw='{"name":"references","body":{"extsrc":"<ref name=\"b\">foo</ref>","html":"\n<span about=\"#mwt10\" class=\"reference\" data-mw=\"{&amp;quot;name&amp;quot;:&amp;quot;ref&amp;quot;,&amp;quot;body&amp;quot;:{&amp;quot;html&amp;quot;:&amp;quot;foo&amp;quot;},&amp;quot;attrs&amp;quot;:{&amp;quot;name&amp;quot;:&amp;quot;b&amp;quot;}}\" rel=\"dc:references\" typeof=\"mw:Extension/ref\"><a href=\"#cite_note-b-1\">[1]</a></span>\n"},"attrs":{}}'><li about="#cite_note-b-1" id="cite_note-b-1"><span rel="mw:referencedBy">↑</span> foo</li></ol>
+
+!! end
 
 #### ----------------------------------------------------------------
 #### The following section of tests are primarily to test
@@ -15626,11 +15733,20 @@ parsoid
 |-
 |''foo''-bar
 |''foo''+bar
+|-
+|foo
+bar|baz
++bar
+-bar
 |}
 !! result
 <table><tbody>
 <tr><td>foo-bar</td><td>foo+bar</td></tr>
 <tr><td><i>foo</i>-bar</td><td><i>foo</i>+bar</td></tr>
+<tr><td>foo
+<p>bar|baz
++bar
+-bar</p></td></tr>
 </tbody></table>
 !! end
 
@@ -15742,19 +15858,28 @@ parsoid
 #### 1. Quotes inside <b> and <i>
 #### 2. Link fragments separated by <i> and <b> tags
 #### 3. Link fragments inside <i> and <b>
+#### 4. No escaping needed
 #### --------------------------------------
 !! test
 1. Quotes inside <b> and <i>
+!! options
+parsoid=html2wt,wt2wt
 !! input
 ''<nowiki>'foo'</nowiki>''
 ''<nowiki>''foo''</nowiki>''
 ''<nowiki>'''foo'''</nowiki>''
-''foo''<nowiki>'s</nowiki>
+''foo''<nowiki/>'s
 '''<nowiki>'foo'</nowiki>'''
 '''<nowiki>''foo''</nowiki>'''
 '''<nowiki>'''foo'''</nowiki>'''
 '''<nowiki>foo'</nowiki>''<nowiki>bar'</nowiki>''baz'''
-'''foo'''<nowiki>'s</nowiki>
+'''foo'''<nowiki/>'s
+'''foo''
+''foo''<nowiki/>'
+'<nowiki/>''foo''<nowiki/>'
+''''foo'''
+'''foo'''<nowiki/>'
+'<nowiki/>'''foo'''<nowiki/>'
 !! result
 <p><i>'foo'</i>
 <i>''foo''</i>
@@ -15765,7 +15890,12 @@ parsoid
 <b>'''foo'''</b>
 <b>foo'<i>bar'</i>baz</b>
 <b>foo</b>'s
-</p>
+'<i>foo</i>
+<i>foo</i>'
+'<i>foo</i>'
+'<b>foo</b>
+<b>foo</b>'
+'<b>foo</b>'</p>
 !! end
 
 !! test
@@ -15781,7 +15911,7 @@ parsoid
 !! end
 
 !! test
-2. Link fragments inside <i> and <b>
+3. Link fragments inside <i> and <b>
 (FIXME: Escaping one or both of [[ and ]] is also acceptable --
  this is one of the shortcomings of this format)
 !! input
@@ -15791,6 +15921,17 @@ parsoid
 !! result
 <p><i>[[foo</i>]]
 </p><p><b>[[foo</b>]]
+</p>
+!! end
+
+!! test
+4. No escaping needed
+!! input
+'<span>''bar''</span>'
+'<span>'''bar'''</span>'
+!! result
+<p>'<span><i>bar</i></span>'
+'<span><b>bar</b></span>'
 </p>
 !! end
 
@@ -15916,6 +16057,18 @@ Escaping nowikis
 <p>&lt;nowiki&gt;foo&lt;/nowiki&gt;
 </p>
 !! end
+
+## The quote-char in the input is necessary for triggering the bug
+!! test
+(Bug 52035) Nowiki-escaping should not get tripped by " :" in text
+!! options
+parsoid=wt2wt,html2wt
+!! input
+foo's bar :
+!! result
+<p>foo's bar :</p>
+!! end
+
 !! test
 
 Tag-like HTML structures are passed through as text
@@ -16273,6 +16426,17 @@ parsoid
 <p><span> <s>x</s></span><s> </s>
 <b> <i>x</i></b><i> </i>
 </p>
+!!end
+
+!!test
+Encapsulate protected attributes from wt
+!!options
+parsoid
+!!input
+<div typeof="mw:placeholder stuff" data-parsoid="weird" data-parsoid-other="no" about="time" rel="mw:true">foo</div>
+!!result
+<body><div data-x-typeof="mw:placeholder stuff" data-x-data-parsoid="weird" data-x-data-parsoid-other="no" data-x-about="time" data-x-rel="mw:true">foo</div>
+</body>
 !!end
 
 # -----------------------------------------------------------------
