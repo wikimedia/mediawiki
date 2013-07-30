@@ -121,6 +121,12 @@ Template:table_attribs
 !! endarticle
 
 !! article
+Template:table_cells
+!! text
+{{table_attribs}} || Bar || Baz
+!! endarticle
+
+!! article
 A?b
 !! text
 Weirdo titles!
@@ -3851,6 +3857,36 @@ Template-generated table cell attributes and cell content
 <table>
 <tr>
 <td style="color: red"> Foo
+</td></tr></table>
+
+!! end
+
+!! test
+Template-generated table cell attributes and cell content (2)
+!! input
+{|
+|align=center {{table_attribs}}
+|}
+!! result
+<table>
+<tr>
+<td align="center" style="color: red"> Foo
+</td></tr></table>
+
+!! end
+
+!! test
+Template-generated table cell attributes and cell content (3)
+!! input
+{|
+|align=center {{table_cells}}
+|}
+!! result
+<table>
+<tr>
+<td align="center" style="color: red"> Foo </td>
+<td> Bar </td>
+<td> Baz
 </td></tr></table>
 
 !! end
