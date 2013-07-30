@@ -989,6 +989,7 @@ class ContribsPager extends ReverseChronologicalPager {
 				$userlink = ' . . ' . Linker::userLink( $rev->getUser(), $rev->getUserText() );
 				$userlink .= ' ' . $this->msg( 'parentheses' )->rawParams(
 					Linker::userTalkLink( $rev->getUser(), $rev->getUserText() ) )->escaped() . ' ';
+				$userlink = '<bdi>' + $userlink + '</bdi>';
 			} else {
 				$userlink = '';
 			}
