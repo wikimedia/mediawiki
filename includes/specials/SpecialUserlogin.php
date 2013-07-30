@@ -46,7 +46,7 @@ class LoginForm extends SpecialPage {
 	var $mUsername, $mPassword, $mRetype, $mReturnTo, $mCookieCheck, $mPosted;
 	var $mAction, $mCreateaccount, $mCreateaccountMail;
 	var $mLoginattempt, $mRemember, $mEmail, $mDomain, $mLanguage;
-	var $mSkipCookieCheck, $mReturnToQuery, $mToken, $mStickHTTPS;
+	var $mSkipCookieCheck, $mReturnToQuery, $mToken;
 	var $mType, $mReason, $mRealName;
 	var $mAbortLoginErrorMsg = 'login-abort-generic';
 	private $mLoaded = false;
@@ -105,7 +105,6 @@ class LoginForm extends SpecialPage {
 		$this->mLoginattempt = $request->getCheck( 'wpLoginattempt' );
 		$this->mAction = $request->getVal( 'action' );
 		$this->mRemember = $request->getCheck( 'wpRemember' );
-		$this->mStickHTTPS = $request->getCheck( 'wpStickHTTPS' );
 		$this->mLanguage = $request->getText( 'uselang' );
 		$this->mSkipCookieCheck = $request->getCheck( 'wpSkipCookieCheck' );
 		$this->mToken = ( $this->mType == 'signup' ) ? $request->getVal( 'wpCreateaccountToken' ) : $request->getVal( 'wpLoginToken' );
@@ -174,8 +173,7 @@ class LoginForm extends SpecialPage {
 			$title = $this->getFullTitle();
 			$query = array(
 				'returnto' => $this->mReturnTo,
-				'returntoquery' => $this->mReturnToQuery,
-				'wpStickHTTPS' => $this->mStickHTTPS
+				'returntoquery' => $this->mReturnToQuery
 			);
 			$url = $title->getFullURL( $query, false, PROTO_HTTPS );
 			if ( $wgSecureLogin ) {
@@ -747,7 +745,7 @@ class LoginForm extends SpecialPage {
 					$user->invalidateCache();
 				}
 
-				if ( $wgSecureLogin && !$this->mStickHTTPS ) {
+				if ( $wgSecureLogin ) {
 					$user->setCookies( null, false );
 				} else {
 					$user->setCookies();
@@ -972,15 +970,11 @@ class LoginForm extends SpecialPage {
 	 *    - successredirect: send an HTTP redirect using $wgRedirectOnLogin if needed
 	 * @param string $returnTo
 	 * @param array|string $returnToQuery
-	 * @param bool $stickHTTPs Keep redirect link on HTTPs
 	 * @since 1.22
 	 */
-	public function showReturnToPage(
-		$type, $returnTo = '', $returnToQuery = '', $stickHTTPs = false
-	) {
+	public function showReturnToPage( $type, $returnTo = '', $returnToQuery = '' ) {
 		$this->mReturnTo = $returnTo;
 		$this->mReturnToQuery = $returnToQuery;
-		$this->mStickHTTPS = $stickHTTPs;
 		$this->executeReturnTo( $type );
 	}
 
@@ -1008,10 +1002,7 @@ class LoginForm extends SpecialPage {
 			$returnToTitle = Title::newMainPage();
 		}
 
-		if ( $wgSecureLogin && !$this->mStickHTTPS ) {
-			$options = array( 'http' );
-			$proto = PROTO_HTTP;
-		} elseif ( $wgSecureLogin ) {
+		if ( $wgSecureLogin ) {
 			$options = array( 'https' );
 			$proto = PROTO_HTTPS;
 		} else {
@@ -1117,11 +1108,6 @@ class LoginForm extends SpecialPage {
 			$template->set( 'link', '' );
 		}
 
-		// Decide if we default stickHTTPS on
-		if ( $wgSecureLoginDefaultHTTPS && $this->mAction != 'submitlogin' && !$this->mLoginattempt ) {
-			$this->mStickHTTPS = true;
-		}
-
 		$resetLink = $this->mType == 'signup'
 			? null
 			: is_array( $wgPasswordResetRoutes ) && in_array( true, array_values( $wgPasswordResetRoutes ) );
@@ -1151,7 +1137,6 @@ class LoginForm extends SpecialPage {
 		$template->set( 'usereason', $user->isLoggedIn() );
 		$template->set( 'remember', $user->getOption( 'rememberpassword' ) || $this->mRemember );
 		$template->set( 'cansecurelogin', ( $wgSecureLogin === true ) );
-		$template->set( 'stickHTTPS', $this->mStickHTTPS );
 
 		if ( $this->mType === 'signup' && $user->isLoggedIn() ) {
 			$template->set( 'createAnother', true );
@@ -1297,9 +1282,6 @@ class LoginForm extends SpecialPage {
 	 */
 	private function renewSessionId() {
 		global $wgSecureLogin, $wgCookieSecure;
-		if ( $wgSecureLogin && !$this->mStickHTTPS ) {
-			$wgCookieSecure = false;
-		}
 
 		// If either we don't trust PHP's entropy, or if we need
 		// to change cookie settings when logging in because of
