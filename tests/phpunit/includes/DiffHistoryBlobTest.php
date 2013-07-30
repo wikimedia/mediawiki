@@ -2,6 +2,7 @@
 
 class DiffHistoryBlobTest extends MediaWikiTestCase {
 	protected function setUp() {
+		parent::setUp();
 		if ( !extension_loaded( 'xdiff' ) ) {
 			$this->markTestSkipped( 'The xdiff extension is not available' );
 
@@ -17,7 +18,6 @@ class DiffHistoryBlobTest extends MediaWikiTestCase {
 
 			return;
 		}
-		parent::setUp();
 	}
 
 	/**
