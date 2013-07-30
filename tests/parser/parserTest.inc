@@ -434,7 +434,12 @@ class ParserTest {
 	 */
 	public function runTestsFromFiles( $filenames ) {
 		$ok = false;
+
+		// be sure, ParserTest::addArticle has correct language set,
+		// so that system messages gets into the right language cache
+		$GLOBALS['wgLanguageCode'] = 'en';
 		$GLOBALS['wgContLang'] = Language::factory( 'en' );
+
 		$this->recorder->start();
 		try {
 			$this->setupDatabase();
