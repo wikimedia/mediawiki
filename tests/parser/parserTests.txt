@@ -127,6 +127,13 @@ Template:table_cells
 !! endarticle
 
 !! article
+Template:image_attribs
+!! text
+<noinclude>
+[[File:foobar.jpg|</noinclude>right||Caption text<noinclude>]]</noinclude>
+!! endarticle
+
+!! article
 A?b
 !! text
 Weirdo titles!
@@ -7876,6 +7883,15 @@ Image with caption
 Image with empty attribute
 !! input
 [[Image:foobar.jpg|right||Caption text]]
+!! result
+<div class="floatright"><a href="/wiki/File:Foobar.jpg" class="image" title="Caption text"><img alt="Caption text" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a></div>
+
+!! end
+
+!! test
+Image with attributes from template.
+!! input
+[[Image:foobar.jpg|{{image_attribs}}]]
 !! result
 <div class="floatright"><a href="/wiki/File:Foobar.jpg" class="image" title="Caption text"><img alt="Caption text" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a></div>
 
