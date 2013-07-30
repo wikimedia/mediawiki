@@ -12,8 +12,8 @@ class DiffHistoryBlobTest extends MediaWikiTestCase {
 
 			return;
 		}
-		if ( !extension_loaded( 'hash' ) && !extension_loaded( 'mhash' ) ) {
-			$this->markTestSkipped( 'Neither the hash nor mhash extension is available' );
+		if ( !extension_loaded( 'hash' ) ) {
+			$this->markTestSkipped( 'The hash extension is not available' );
 
 			return;
 		}

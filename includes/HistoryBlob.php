@@ -530,7 +530,7 @@ class DiffHistoryBlob implements HistoryBlob {
 
 		$header = unpack( 'Vofp/Vcsize', substr( $diff, 0, 8 ) );
 
-		# Check the checksum if hash/mhash is available
+		# Check the checksum if hash extension is available
 		$ofp = $this->xdiffAdler32( $base );
 		if ( $ofp !== false && $ofp !== substr( $diff, 0, 4 ) ) {
 			wfDebug( __METHOD__ . ": incorrect base checksum\n" );
@@ -577,24 +577,23 @@ class DiffHistoryBlob implements HistoryBlob {
 	 * Compute a binary "Adler-32" checksum as defined by LibXDiff, i.e. with
 	 * the bytes backwards and initialised with 0 instead of 1. See bug 34428.
 	 *
-	 * Returns false if no hashing library is available
+	 * @param string $s
+	 * @return string|bool: false if the hash extension is not available
 	 */
 	function xdiffAdler32( $s ) {
+		if ( !function_exists( 'hash' ) ) {
+			return false;
+		}
+
 		static $init;
 		if ( $init === null ) {
 			$init = str_repeat( "\xf0", 205 ) . "\xee" . str_repeat( "\xf0", 67 ) . "\x02";
 		}
+
 		// The real Adler-32 checksum of $init is zero, so it initialises the
 		// state to zero, as it is at the start of LibXDiff's checksum
 		// algorithm. Appending the subject string then simulates LibXDiff.
-		if ( function_exists( 'hash' ) ) {
-			$hash = hash( 'adler32', $init . $s, true );
-		} elseif ( function_exists( 'mhash' ) ) {
-			$hash = mhash( MHASH_ADLER32, $init . $s );
-		} else {
-			return false;
-		}
-		return strrev( $hash );
+		return strrev( hash( 'adler32', $init . $s, true ) );
 	}
 
 	function uncompress() {
