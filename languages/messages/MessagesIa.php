@@ -520,6 +520,7 @@ Es possibile que un altere persona lo ha ja delite.',
 'cannotdelete-title' => 'Non pote deler le pagina "$1"',
 'delete-hook-aborted' => 'Le deletion ha essite abortate per un extension.
 Nulle explication es disponibile.',
+'no-null-revision' => 'Non ha potite crear un nove version vacue del le pagina "$1"',
 'badtitle' => 'Titulo invalide',
 'badtitletext' => 'Le titulo de pagina requestate es invalide, vacue, o un titulo interlingual o interwiki incorrectemente ligate.
 Es possibile que illo contine un o plure characteres que non pote esser usate in titulos.',

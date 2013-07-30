@@ -763,6 +763,7 @@ La suppression a peut-être déjà été effectuée par quelqu'un d'autre.",
 'cannotdelete-title' => 'Impossible de supprimer la page « $1 »',
 'delete-hook-aborted' => "Suppression annulée par une extension.
 Aucune explication n'a été fournie.",
+'no-null-revision' => 'Impossible de créer une nouvelle révision vide pour la page « $1 »',
 'badtitle' => 'Mauvais titre',
 'badtitletext' => "Le titre de la page demandée est invalide, vide, ou il s'agit d'un titre inter-langue ou inter-projet mal lié. Il contient peut-être un ou plusieurs caractères qui ne peuvent pas être utilisés dans les titres.",
 'perfcached' => 'Les données suivantes sont en cache et peuvent ne pas être à jour. Un maximum de {{PLURAL:$1|un résultat|$1 résultats}} est disponible dans le cache.',

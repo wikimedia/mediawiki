@@ -739,6 +739,7 @@ Mogelijk is deze al door iemand anders verwijderd.',
 'cannotdelete-title' => 'Pagina "$1" kan niet verwijderd worden',
 'delete-hook-aborted' => 'Het verwijderen is afgebroken door een hook.
 Er is geen toelichting beschikbaar.',
+'no-null-revision' => 'Het was niet mogelijk een lege nieuwe versie te maken voor de pagina "$1"',
 'badtitle' => 'Ongeldige paginanaam',
 'badtitletext' => 'De naam van de opgegeven pagina was ongeldig, leeg of bevatte een verkeerde intertaal- of interwikikoppeling.
 Wellicht bevat de paginanaam niet toegestane tekens.',
@@ -1002,6 +1003,19 @@ Tijdelijk wachtwoord: $2',
 'changeemail-password' => 'Uw wachtwoord voor {{SITENAME}}:',
 'changeemail-submit' => 'E-mailadres wijzigen',
 'changeemail-cancel' => 'Annuleren',
+
+# Special:ResetTokens
+'resettokens' => 'Tokens opnieuw instellen',
+'resettokens-text' => 'U kunt hier tokens opnieuw instellen die toegang tot bepaalde persoonlijke gegevens die zijn gekoppeld aan uw gebruiker.
+
+Doe dit als u ze per ongeluk met iemand hebt gedeeld of als uw onbevoegden toegang hebben gekregen tot uw gebruiker.',
+'resettokens-no-tokens' => 'Er zijn geen tokens om opnieuw in te stellen.',
+'resettokens-legend' => 'Tokens opnieuw instellen',
+'resettokens-tokens' => 'Tokens:',
+'resettokens-token-label' => '$1 (huidige waarde: $2)',
+'resettokens-watchlist-token' => 'Token voor webfeed van volglijst',
+'resettokens-done' => 'De tokens zijn opnieuw ingesteld.',
+'resettokens-resetbutton' => 'Geselecteerde tokens opnieuw instellen',
 
 # Edit page toolbar
 'bold_sample' => 'Vetgedrukte tekst',
@@ -1555,6 +1569,9 @@ De gegevens over {{SITENAME}} zijn mogelijk niet bijgewerkt.',
 'recentchangesdays-max' => '(maximaal $1 {{PLURAL:$1|dag|dagen}})',
 'recentchangescount' => 'Standaard aantal weer te geven bewerkingen:',
 'prefs-help-recentchangescount' => "Dit geldt voor recente wijzigingen, paginageschiedenis en logboekpagina's.",
+'prefs-help-watchlist-token2' => 'Dit is de geheime sleutel voor de webfeed van uw volglijst.
+Iedereen die het token kent, kan uw volglijst bekijken, dus deel dit token niet.
+U kunt de [[Special:ResetTokens|tokens opnieuw instellen]] als u dat wilt.',
 'savedprefs' => 'Uw voorkeuren zijn opgeslagen.',
 'timezonelegend' => 'Tijdzone:',
 'localtime' => 'Plaatselijke tijd:',
@@ -1617,7 +1634,7 @@ Als u deze opgeeft, kan deze naam gebruikt worden om u erkenning te geven voor u
 'prefs-signature' => 'Ondertekening',
 'prefs-dateformat' => 'Datumopmaak:',
 'prefs-timeoffset' => 'Tijdverschil',
-'prefs-advancedediting' => 'Algemeen',
+'prefs-advancedediting' => 'Algemene opties',
 'prefs-editor' => 'Tekstverwerker',
 'prefs-preview' => 'Voorvertoning',
 'prefs-advancedrc' => 'Gevorderde instellingen',
@@ -1627,6 +1644,7 @@ Als u deze opgeeft, kan deze naam gebruikt worden om u erkenning te geven voor u
 'prefs-displayrc' => 'Weergaveopties',
 'prefs-displaysearchoptions' => 'Weergaveopties',
 'prefs-displaywatchlist' => 'Weergaveopties',
+'prefs-tokenwatchlist' => 'Token',
 'prefs-diffs' => 'Verschillen',
 
 # User preference: email validation using jQuery
@@ -2320,6 +2338,7 @@ De pagina's zijn ook niet als sjabloon opgenomen.",
 'mostrevisions' => "Pagina's met de meeste bewerkingen",
 'prefixindex' => "Alle pagina's op voorvoegsel",
 'prefixindex-namespace' => "Alle pagina's met het voorvoegsel (naamruimte $1)",
+'prefixindex-strip' => 'Voorvoegsel in lijst verwijderen',
 'shortpages' => "Korte pagina's",
 'longpages' => "Lange pagina's",
 'deadendpages' => "Pagina's zonder koppelingen",
@@ -3667,7 +3686,7 @@ Andere velden worden verborgen.
 'exif-compression-4' => 'CCITT Groep 4 faxcodering',
 
 'exif-copyrighted-true' => 'Auteursrechtelijk beschermd',
-'exif-copyrighted-false' => 'Publiek domein',
+'exif-copyrighted-false' => 'Auteursrechtelijke status niet ingesteld',
 
 'exif-unknowndate' => 'Datum onbekend',
 

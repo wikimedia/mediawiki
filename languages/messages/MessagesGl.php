@@ -628,6 +628,7 @@ Se cadra, xa a borrou alguén.',
 'cannotdelete-title' => 'Non se pode borrar a páxina "$1"',
 'delete-hook-aborted' => 'O borrado foi abortado polo asociador.
 Este non deu ningunha explicación.',
+'no-null-revision' => 'Non se puido crear a nova revisión nula para a páxina "$1"',
 'badtitle' => 'Título incorrecto',
 'badtitletext' => 'O título da páxina pedida non era válido, estaba baleiro ou proviña dunha ligazón interlingüística ou interwiki incorrecta.
 Poida que conteña un ou máis caracteres dos que non se poden empregar nos títulos.',
@@ -1507,7 +1508,7 @@ Ha de ter menos {{PLURAL:$1|dun carácter|de $1 caracteres}}.',
 'prefs-signature' => 'Sinatura',
 'prefs-dateformat' => 'Formato da data',
 'prefs-timeoffset' => 'Desprazamento horario',
-'prefs-advancedediting' => 'Xeral',
+'prefs-advancedediting' => 'Opcións xerais',
 'prefs-editor' => 'Editor',
 'prefs-preview' => 'Vista previa',
 'prefs-advancedrc' => 'Opcións avanzadas',
@@ -3531,8 +3532,8 @@ Os demais agocharanse por omisión.
 'exif-compression-4' => 'CCITT Grupo 4 codificación de fax',
 'exif-compression-6' => 'JPEG (vello)',
 
-'exif-copyrighted-true' => 'Con dereitos de autor',
-'exif-copyrighted-false' => 'Dominio público',
+'exif-copyrighted-true' => 'Con dereitos de autoría',
+'exif-copyrighted-false' => 'Dereitos de autoría non definidos',
 
 'exif-unknowndate' => 'Data descoñecida',
 

@@ -735,6 +735,7 @@ $1',
 'cannotdelete-title' => 'לא ניתן למחוק את הדף "$1"',
 'delete-hook-aborted' => 'המחיקה הופסקה על־ידי מבנה Hook.
 לא ניתן הסבר.',
+'no-null-revision' => 'לא התאפשרה יצירת גרסת־דמה לדף "$1"',
 'badtitle' => 'כותרת שגויה',
 'badtitletext' => 'כותרת הדף המבוקש הייתה בלתי־תקינה, ריקה, או קישור שגוי לשפה אחרת או למיזם אחר.
 ייתכן שהיא מכילה תו אחד או יותר שאינו יכול לשמש בכותרות.',
@@ -994,6 +995,19 @@ $2
 'changeemail-password' => 'סיסמה ב{{grammar:תחילית|{{SITENAME}}}}:',
 'changeemail-submit' => 'שינוי כתובת הדוא"ל',
 'changeemail-cancel' => 'ביטול',
+
+# Special:ResetTokens
+'resettokens' => 'איפוס אסימונים',
+'resettokens-text' => 'באפשרותך לאפס אסימונים שמאפשרים גישה לנתונים פרטיים עם החשבון שלך כאן.
+
+כדאי לך לעשות את זה אם בטעות שיתפת אותם עם מישהו או אם חשבונך נפרץ.',
+'resettokens-no-tokens' => 'אין אסימונים לאיפוס.',
+'resettokens-legend' => 'איפוס אסימונים',
+'resettokens-tokens' => 'אסימונים:',
+'resettokens-token-label' => '$1 (ערך נוכחי: $2)',
+'resettokens-watchlist-token' => 'אסימון הזנה של רשימת המעקב',
+'resettokens-done' => 'האסימונים אופסו.',
+'resettokens-resetbutton' => 'איפוס אסימונים נבחרים',
 
 # Edit page toolbar
 'bold_sample' => 'טקסט מודגש',
@@ -1526,6 +1540,9 @@ $1",
 'recentchangesdays-max' => 'לכל היותר {{PLURAL:$1|יום אחד|יומיים|$1 ימים}}',
 'recentchangescount' => 'מספר העריכות שיוצגו כברירת מחדל:',
 'prefs-help-recentchangescount' => 'כולל שינויים אחרונים, היסטוריית הדף ויומנים.',
+'prefs-help-watchlist-token2' => 'זה המפתח הסודי להזנה של רשימת המעקב שלך.
+כל מי שיודע אותו יוכל לקרוא את רשימת המעקב שלך, אז אין לשתף אותו.
+[[Special:ResetTokens|אם יש בכך צורך, אפשר לאפס אותו כאן]].',
 'savedprefs' => 'העדפותיך נשמרו.',
 'timezonelegend' => 'אזור זמן:',
 'localtime' => 'זמן מקומי:',
@@ -1588,7 +1605,7 @@ $1",
 'prefs-signature' => 'חתימה',
 'prefs-dateformat' => 'מבנה תאריך',
 'prefs-timeoffset' => 'הפרש זמנים',
-'prefs-advancedediting' => 'כללי',
+'prefs-advancedediting' => 'אפשרויות כלליות',
 'prefs-editor' => 'חלון העריכה',
 'prefs-preview' => 'תצוגה מקדימה',
 'prefs-advancedrc' => 'אפשרויות מתקדמות',
@@ -1598,6 +1615,7 @@ $1",
 'prefs-displayrc' => 'אפשרויות תצוגה',
 'prefs-displaysearchoptions' => 'אפשרויות תצוגה',
 'prefs-displaywatchlist' => 'אפשרויות תצוגה',
+'prefs-tokenwatchlist' => 'אסימון',
 'prefs-diffs' => 'הבדלים בין גרסאות',
 
 # User preference: email validation using jQuery
@@ -2216,6 +2234,8 @@ $1',
 'pageswithprop-text' => 'בדף זה מופיעה רשימת דפים שמשתמשים במאפיין דף מסוים.',
 'pageswithprop-prop' => 'שם המאפיין:',
 'pageswithprop-submit' => 'הצגה',
+'pageswithprop-prophidden-long' => 'ערך ארוך של מאפיין טקסטואלי הוסתר ($1 קילו־בתים)',
+'pageswithprop-prophidden-binary' => 'ערך של מאפיין בינארי הוסתר ($1 קילו־בתים)',
 
 'doubleredirects' => 'הפניות כפולות',
 'doubleredirectstext' => 'בדף הזה מופיעה רשימת דפי הפניה שמפנים לדפי הפניה אחרים.
@@ -2273,6 +2293,7 @@ $1',
 'mostrevisions' => 'הדפים בעלי מספר העריכות הגבוה ביותר',
 'prefixindex' => 'רשימת הדפים המתחילים ב…',
 'prefixindex-namespace' => 'רשימת הדפים המתחילים ב… (במרחב השם $1)',
+'prefixindex-strip' => 'חיתוך התחילית ברשימה',
 'shortpages' => 'דפים קצרים',
 'longpages' => 'דפים ארוכים',
 'deadendpages' => 'דפים ללא קישורים',
@@ -2394,7 +2415,8 @@ $1',
 'listgrouprights' => 'רשימת הרשאות לקבוצה',
 'listgrouprights-summary' => 'זוהי רשימה של קבוצות המשתמש המוגדרות באתר זה, עם ההרשאות של כל אחת.
 מידע נוסף על ההרשאות ניתן למצוא [[{{MediaWiki:Listgrouprights-helppage}}|כאן]].',
-'listgrouprights-key' => '* <span class="listgrouprights-granted">הרשאה שהוענקה</span>
+'listgrouprights-key' => 'מקרא:
+* <span class="listgrouprights-granted">הרשאה שהוענקה</span>
 * <span class="listgrouprights-revoked">הרשאה שהוסרה</span>',
 'listgrouprights-group' => 'קבוצה',
 'listgrouprights-rights' => 'הרשאות',
@@ -3605,7 +3627,7 @@ $1',
 'exif-compression-4' => 'קידוד פקס CCITT קבוצה 4',
 
 'exif-copyrighted-true' => 'מוגן בזכויות יוצרים',
-'exif-copyrighted-false' => 'נחלת הכלל',
+'exif-copyrighted-false' => 'מצב זכויות היוצרים לא הוגדר',
 
 'exif-unknowndate' => 'תאריך בלתי ידוע',
 

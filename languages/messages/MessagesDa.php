@@ -771,7 +771,7 @@ Du har muligvis allerede skiftet din adgangskode eller anmodet om en ny midlerti
 # Special:PasswordReset
 'passwordreset' => 'Nulstil adgangskode',
 'passwordreset-text-one' => 'Udfyld denne formular for at nulstille din adgangskode.',
-'passwordreset-text-many' => '{{PLURAL:$1|Udfyld en af oplysningerne nedenfor for at nulstille din adgangskode.}}',
+'passwordreset-text-many' => '{{PLURAL:$1|Udfyld en af felterne nedenfor for at nulstille din adgangskode.}}',
 'passwordreset-legend' => 'Nulstil adgangskode',
 'passwordreset-disabled' => 'Nulstilling af kodeord er slået fra på denne wiki.',
 'passwordreset-emaildisabled' => 'E-mailfunktioner er slået fra på denne wiki.',
@@ -810,6 +810,9 @@ Midlertidig adgangskode: $2',
 'changeemail-password' => 'Din adgangskode til {{SITENAME}}:',
 'changeemail-submit' => 'Ændr email',
 'changeemail-cancel' => 'Afbryd',
+
+# Special:ResetTokens
+'resettokens-token-label' => '$1(aktuel værdi: $2)',
 
 # Edit page toolbar
 'bold_sample' => 'Fed tekst',
@@ -995,7 +998,7 @@ Den seneste logpost vises nedenfor:",
 'nocreate-loggedin' => 'Du har ikke rettigheder til at oprette nye sider.',
 'sectioneditnotsupported-title' => 'Afsnitsredigering understøttes ikke',
 'sectioneditnotsupported-text' => 'Afsnitsredigering understøttes ikke på denne side.',
-'permissionserrors' => 'Rettighedskonflikt',
+'permissionserrors' => 'Manglende rettigheder',
 'permissionserrorstext' => 'Du har ikke rettigheder til at gennemføre denne handling, {{PLURAL:$1|årsagen|årsagerne}} er:',
 'permissionserrorstext-withaction' => 'Du har ikke rettigheder til at $2 af følgende {{PLURAL:$1|grund|grunde}}:',
 'recreate-moveddeleted-warn' => "'''Advarsel: Du er ved at genskabe en tidligere slettet side.'''
@@ -1050,6 +1053,7 @@ Kontroller venligst sammenligningen herunder for at bekræfte at det er hvad du 
 'undo-failure' => 'Redigeringen kunne ikke fjernes på grund af konflikter med efterfølgende redigeringer.',
 'undo-norev' => 'Redigeringen kunne ikke fjernes fordi den ikke findes eller er blevet slettet.',
 'undo-summary' => 'Fjerner version $1 af [[Special:Contributions/$2|$2]] ([[User talk:$2|diskussion]])',
+'undo-summary-username-hidden' => 'Fortryde revision $1 af en skjult bruger',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Brugerkontoen kan ikke oprettes.',
@@ -1398,7 +1402,8 @@ Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit
 'prefs-signature' => 'Signatur',
 'prefs-dateformat' => 'Formatering af datoer',
 'prefs-timeoffset' => 'Tidsforskel',
-'prefs-advancedediting' => 'Generelle',
+'prefs-advancedediting' => 'Generelle indstillinger',
+'prefs-editor' => 'Redaktør',
 'prefs-preview' => 'Forhåndsvisning',
 'prefs-advancedrc' => 'Avancerede indstillinger',
 'prefs-advancedrendering' => 'Avancerede indstillinger',
@@ -1479,7 +1484,7 @@ Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit
 'right-reupload-shared' => 'Lægge en lokal fil op, selvom den allerede findes centralt',
 'right-upload_by_url' => 'Lægge en fil op fra en URL',
 'right-purge' => 'Nulstille sidens cache uden bekræftelse',
-'right-autoconfirmed' => 'Redigere semibeskyttede sider',
+'right-autoconfirmed' => 'Påvirkes ikke af IP-baseret hastighedsgrænser',
 'right-bot' => 'Redigeringer markeres som robot',
 'right-nominornewtalk' => 'Mindre ændringer på diskussionssider markerer ikke disse med nyt indhold',
 'right-apihighlimits' => 'Bruge højere grænser i API',
@@ -1500,8 +1505,9 @@ Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit
 'right-ipblock-exempt' => 'Redigere fra blokerede IP-adresser',
 'right-proxyunbannable' => 'Redigere gennem automatisk blokeret proxy',
 'right-unblockself' => 'Fjerne blokering af dem selv',
-'right-protect' => 'Ændre beskyttelse og redigere beskyttede sider',
-'right-editprotected' => 'Ændre beskyttede sider (uden nedarvet sidebeskyttelse)',
+'right-protect' => 'Ændre beskyttelsesniveauer og redigere cascade-beskyttede sider',
+'right-editprotected' => 'Redigere sider beskyttet som "{{int:protect-level-sysop}}"',
+'right-editsemiprotected' => 'Rediger sider, der er beskyttet som "{{int:protect-level-autoconfirmed}}"',
 'right-editinterface' => 'Ændre brugergrænsefladens tekster',
 'right-editusercssjs' => 'Ændre andre brugeres JS og CSS filer',
 'right-editusercss' => 'Ændre andre brugeres CSS filer',
@@ -1509,6 +1515,8 @@ Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit
 'right-editmyusercss' => 'Redigere dine egne CSS-filer',
 'right-editmyuserjs' => 'Redigere dine egne JavaScript-filer',
 'right-viewmywatchlist' => 'Se din egen overvågningsliste',
+'right-editmywatchlist' => 'Redigere din egen overvågningsliste. Bemærk nogle handlinger tilføjer sider selv uden denne rettelse.',
+'right-viewmyprivateinfo' => 'Vis din egen private data (f.eks. e-mail-adresse, rigtige navn)',
 'right-rollback' => 'Hurtig gendannelse af alle redigeringer foretaget af den seneste bruger',
 'right-markbotedits' => 'Markere gendannelser som ændringer foretaget af en robot',
 'right-noratelimit' => 'Upåvirket af hastighedsgrænser',
@@ -1627,7 +1635,7 @@ Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit
 'reuploaddesc' => 'Tilbage til formularen til at lægge filer op.',
 'upload-tryagain' => 'Gem modificeret filbeskrivelse',
 'uploadnologin' => 'Ikke logget på',
-'uploadnologintext' => 'Du skal være [[Special:UserLogin|logget på]] for at kunne lægge filer op.',
+'uploadnologintext' => 'Du skal være $1 for at kunne lægge filer op.',
 'upload_directory_missing' => 'upload-kataloget ($1) findes ikke. Webserveren har ikke mulighed for at oprette kataloget.',
 'upload_directory_read_only' => 'Webserveren har ingen skriverettigheder for upload-kataloget ($1).',
 'uploaderror' => 'Fejl under oplægning af fil',
@@ -2188,7 +2196,7 @@ Der skal som minimum angives et topniveau-domæne som f. eks. "*.org".<br />
 'listgrouprights-summary' => 'Denne side viser de brugergrupper der er defineret på denne wiki og de enkelte gruppers rettigheder.
 
 Der findes muligvis [[{{MediaWiki:Listgrouprights-helppage}}|yderligere information]] om de enkelte rettigheder.',
-'listgrouprights-key' => '* <span class="listgrouprights-granted">Given rettighed</span>
+'listgrouprights-key' => '* <span class="listgrouprights-granted">Givet rettighed</span>
 * <span class="listgrouprights-revoked">Tilbagetrukken rettighed</span>',
 'listgrouprights-group' => 'Gruppe',
 'listgrouprights-rights' => 'Rettigheder',
@@ -2365,7 +2373,7 @@ en anden har allerede redigeret siden eller fjernet redigeringen.
 Den seneste redigering er foretaget af [[User:$3|$3]] ([[User talk:$3|diskussion]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment' => "Redigeringsbeskrivelsen var: \"''\$1''\".",
 'revertpage' => 'Gendannelse til seneste version ved [[User:$1|$1]], fjerner ændringer fra [[Special:Contributions/$2|$2]] ([[User talk:$2|diskussion]])',
-'revertpage-nouser' => 'Gendannet til seneste version af [[User:$1|$1]], ændringer fra (brugernavn fjernet) fjernet',
+'revertpage-nouser' => 'Gendannet af en skjult bruger til seneste version af [[User:$1|$1]]',
 'rollback-success' => 'Ændringerne fra $1 er fjernet,
 og den seneste version af $2 er gendannet.',
 
@@ -3366,7 +3374,7 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 'exif-compression-6' => 'JPEG (gammel)',
 
 'exif-copyrighted-true' => 'Ophavsretligt beskyttet',
-'exif-copyrighted-false' => 'Offentlig ejendom',
+'exif-copyrighted-false' => 'Ophavsrettighedsstatus er ikke sat',
 
 'exif-unknowndate' => 'Ukendt dato',
 

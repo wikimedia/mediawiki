@@ -757,6 +757,7 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências no 
 'yourname' => 'Nome de usuário:',
 'userlogin-yourname' => 'Nome de usuário',
 'userlogin-yourname-ph' => 'Escreva seu nome de usuário',
+'createacct-another-username-ph' => 'Forneça o nome de usuário',
 'yourpassword' => 'Senha:',
 'userlogin-yourpassword' => 'Senha',
 'userlogin-yourpassword-ph' => 'Digite sua senha',
@@ -795,6 +796,7 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências no 
 'createacct-emailrequired' => 'Endereço de e-mail',
 'createacct-emailoptional' => 'Endereço de e-mail (opcional)',
 'createacct-email-ph' => 'Confirme seu endereço de e-mail',
+'createacct-another-email-ph' => 'Forneça o endereço de e-mail',
 'createaccountmail' => 'Usar uma senha aleatória e temporária que será enviada ao endereço de e-mail especificado a seguir',
 'createacct-realname' => 'Nome real (opcional)',
 'createaccountreason' => 'Razão:',
@@ -945,6 +947,9 @@ Senha temporária: $2',
 'changeemail-password' => 'Sua senha para o wiki {{SITENAME}}:',
 'changeemail-submit' => 'Alterar e-mail',
 'changeemail-cancel' => 'Cancelar',
+
+# Special:ResetTokens
+'resettokens' => 'Reiniciar os tokens',
 
 # Edit page toolbar
 'bold_sample' => 'Texto em negrito',
@@ -1652,6 +1657,7 @@ Caso decida fornecê-lo, este será utilizado para dar-lhe crédito pelo seu tra
 'right-edituserjs' => 'Editar os arquivos JS de outros usuários',
 'right-editmyusercss' => 'Edite seu próprio arquivo CSS de usuário',
 'right-editmyuserjs' => 'Edite seu próprio arquivo JavaScript de usuário',
+'right-editmyoptions' => 'Modifique suas preferências.',
 'right-rollback' => 'Reverter rapidamente o último usuário que editou uma página em particular',
 'right-markbotedits' => 'Marcar edições revertidas como edições de bot',
 'right-noratelimit' => 'Não afetado pelos limites de velocidade de operação',
@@ -1713,12 +1719,17 @@ Caso decida fornecê-lo, este será utilizado para dar-lhe crédito pelo seu tra
 'action-userrights-interwiki' => 'editar privilégios de usuários de outros wikis',
 'action-siteadmin' => 'bloquear ou desbloquear o banco de dados',
 'action-sendemail' => 'enviar e-mails',
+'action-editmywatchlist' => 'modifique sua lista de páginas vigiadas',
+'action-viewmywatchlist' => 'veja sua lista de páginas vigiadas',
+'action-viewmyprivateinfo' => 'veja suas informações privadas',
+'action-editmyprivateinfo' => 'modifique suas informações privadas',
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|alteração|alterações}}',
 'recentchanges' => 'Mudanças recentes',
 'recentchanges-legend' => 'Opções das mudanças recentes',
 'recentchanges-summary' => 'Acompanhe nesta página as mudanças mais recentes deste wiki.',
+'recentchanges-noresult' => 'Nenhuma alteração correspondente a esses critérios foi realizada durante o período selecionado.',
 'recentchanges-feed-description' => 'Acompanhe neste feed as mudanças mais recentes do wiki.',
 'recentchanges-label-newpage' => 'Esta edição criou uma nova página',
 'recentchanges-label-minor' => 'Esta é uma edição menor',
@@ -3531,7 +3542,7 @@ Por padrão, outros campos estarão ocultos.
 'exif-compression-4' => 'CCITT Grupo 4 codificação de fax',
 
 'exif-copyrighted-true' => 'Direitos autorais reservados',
-'exif-copyrighted-false' => 'Domínio público',
+'exif-copyrighted-false' => 'Situação de direitos autorais não definido',
 
 'exif-unknowndate' => 'Data desconhecida',
 
