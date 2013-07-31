@@ -301,7 +301,7 @@ class SpecialStatistics extends SpecialPage {
 					$name = $this->msg( $key )->parse();
 					$number = htmlspecialchars( $value );
 
-					$return .= $this->formatRow( $name, $this->getLanguage()->formatNum( $number ), array( 'class' => 'mw-statistics-hook' ) );
+					$return .= $this->formatRow( $name, $this->getLanguage()->formatNum( $number ), array( 'class' => 'mw-statistics-hook', 'id' => 'mw-' . $key ) );
 				}
 			} else {
 				// Create the legacy header only once
