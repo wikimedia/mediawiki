@@ -457,6 +457,8 @@ if ( !$wgHTCPRouting && $wgHTCPMulticastAddress ) {
 	);
 }
 
+Password::initFromGlobals();
+
 wfProfileOut( $fname . '-defaults2' );
 wfProfileIn( $fname . '-misc1' );
 
