@@ -291,6 +291,8 @@ production.
   with the content.
 * (bug 51342) prop=imageinfo iicontinue now contains the dbkey, not the text
   version of the title.
+* list=allimages aimime now works in miser mode,
+  but now only supports aisort=name.
 
 === Languages updated in 1.22===
 

@@ -70,18 +70,7 @@ class MIMEsearchPage extends QueryPage {
 				'img_minor_mime' => $this->minor,
 				// This is in order to trigger using
 				// the img_media_mime index in "range" mode.
-				'img_media_type' => array(
-					MEDIATYPE_BITMAP,
-					MEDIATYPE_DRAWING,
-					MEDIATYPE_AUDIO,
-					MEDIATYPE_VIDEO,
-					MEDIATYPE_MULTIMEDIA,
-					MEDIATYPE_UNKNOWN,
-					MEDIATYPE_OFFICE,
-					MEDIATYPE_TEXT,
-					MEDIATYPE_EXECUTABLE,
-					MEDIATYPE_ARCHIVE,
-				),
+				'img_media_type' => MimeMagic::getAllMediaTypes(),
 			),
 		);
 		return $qi;

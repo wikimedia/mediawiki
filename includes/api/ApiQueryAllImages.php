@@ -129,7 +129,7 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 			}
 		} else {
 			// Check mutually exclusive params
-			$disallowed = array( 'from', 'to', 'prefix' );
+			$disallowed = array( 'from', 'to', 'prefix', 'mime' );
 			foreach ( $disallowed as $pname ) {
 				if ( isset( $params[$pname] ) ) {
 					$this->dieUsage( "Parameter '{$prefix}{$pname}' can only be used with {$prefix}sort=name", 'badparams' );
@@ -188,15 +188,13 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 		}
 
 		if ( !is_null( $params['mime'] ) ) {
-			global $wgMiserMode;
-			if ( $wgMiserMode ) {
-				$this->dieUsage( 'MIME search disabled in Miser Mode', 'mimesearchdisabled' );
-			}
-
 			list( $major, $minor ) = File::splitMime( $params['mime'] );
 
 			$this->addWhereFld( 'img_major_mime', $major );
 			$this->addWhereFld( 'img_minor_mime', $minor );
+			// This is in order to trigger using
+			// the img_media_mime index in "range" mode.
+			$this->addWhereFld( 'img_media_type', MimeMagic::getAllMediaTypes() );
 		}
 
 		$limit = $params['limit'];
@@ -342,7 +340,7 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 			'sha1base36' => 'SHA1 hash of image in base 36 (used in MediaWiki)',
 			'user' => "Only return files uploaded by this user. Can only be used with {$p}sort=timestamp. Cannot be used together with {$p}filterbots",
 			'filterbots' => "How to filter files uploaded by bots. Can only be used with {$p}sort=timestamp. Cannot be used together with {$p}user",
-			'mime' => 'What MIME type to search for. e.g. image/jpeg. Disabled in Miser Mode',
+			'mime' => 'What MIME type to search for. e.g. image/jpeg',
 			'limit' => 'How many images in total to return',
 		);
 	}
