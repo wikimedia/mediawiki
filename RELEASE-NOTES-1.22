@@ -64,6 +64,8 @@ production.
 * (bug 54597) $wgBlockOpenProxies, $wgProxyPorts, $wgProxyScriptPath, and
   $wgProxyMemcExpiry have been removed, along with the open proxy scanner
   script they were added for.
+* The UserCryptPassword and UserComparePassword hooks are no longer called. Any extensions
+  using them must be updated to use the Password Hashing API.
 
 === New features in 1.22 ===
 * (bug 44525) mediawiki.jqueryMsg can now parse (whitelisted) HTML elements and attributes.
