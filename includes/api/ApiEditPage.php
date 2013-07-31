@@ -335,7 +335,7 @@ class ApiEditPage extends ApiBase {
 				$sectionTitle = $ep->summary;
 			}
 
-			$contentObj = $contentHandler->unserializeContent( $content );
+			$contentObj = $contentHandler->unserializeContent( $content, $contentFormat );
 
 			$fullContentObj = $articleObject->replaceSectionContent( $params['section'], $contentObj, $sectionTitle );
 			if ( $fullContentObj ) {
