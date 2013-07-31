@@ -30,7 +30,7 @@ define( 'USER_TOKEN_LENGTH', 32 );
  * Int Serialized record version.
  * @ingroup Constants
  */
-define( 'MW_USER_VERSION', 9 );
+define( 'MW_USER_VERSION', 10 );
 
 /**
  * String Some punctuation to prevent editing from broken text-mangling proxies.
@@ -71,6 +71,11 @@ class User {
 	const MAX_WATCHED_ITEMS_CACHE = 100;
 
 	/**
+	 * @var PasswordFactory Lazily loaded factory object for passwords
+	 */
+	static $mPasswordFactory = null;
+
+	/**
 	 * Array of Strings List of member variables which are saved to the
 	 * shared cache (memcached). Any operation which changes the
 	 * corresponding database fields must call a cache-clearing function.
@@ -81,8 +86,6 @@ class User {
 		'mId',
 		'mName',
 		'mRealName',
-		'mPassword',
-		'mNewpassword',
 		'mNewpassTime',
 		'mEmail',
 		'mTouched',
@@ -976,10 +979,13 @@ class User {
 	public function loadDefaults( $name = false ) {
 		wfProfileIn( __METHOD__ );
 
+		$passwordFactory = self::getPasswordFactory();
+
 		$this->mId = 0;
 		$this->mName = $name;
 		$this->mRealName = '';
-		$this->mPassword = $this->mNewpassword = '';
+		$this->mPassword = $passwordFactory->newFromCiphertext( null );
+		$this->mNewpassword = $passwordFactory->newFromCiphertext( null );
 		$this->mNewpassTime = null;
 		$this->mEmail = '';
 		$this->mOptionOverrides = null;
@@ -1177,6 +1183,7 @@ class User {
 	 */
 	public function loadFromRow( $row, $data = null ) {
 		$all = true;
+		$passwordFactory = self::getPasswordFactory();
 
 		$this->mGroups = null; // deferred
 
@@ -1210,8 +1217,26 @@ class User {
 		}
 
 		if ( isset( $row->user_password ) ) {
-			$this->mPassword = $row->user_password;
-			$this->mNewpassword = $row->user_newpassword;
+			// Check for *really* old password hashes that don't even have a type
+			// The old hash format was just an md5 hex hash, with no type information
+			if ( preg_match( '/^[0-9a-f]{32}$/', $row->user_password ) ) {
+				$row->user_password = ":A:{$this->mId}:{$row->user_password}";
+			}
+
+			try {
+				$this->mPassword = $passwordFactory->newFromCiphertext( $row->user_password );
+			} catch ( PasswordError $e ) {
+				wfDebug( 'Invalid password hash found in database.' );
+				$this->mPassword = $passwordFactory->newFromCiphertext( null );
+			}
+
+			try {
+				$this->mNewpassword = $passwordFactory->newFromCiphertext( $row->user_newpassword );
+			} catch ( PasswordError $e ) {
+				wfDebug( 'Invalid password hash found in database.' );
+				$this->mNewpassword = $passwordFactory->newFromCiphertext( null );
+			}
+
 			$this->mNewpassTime = wfTimestampOrNull( TS_MW, $row->user_newpass_time );
 			$this->mEmail = $row->user_email;
 			if ( isset( $row->user_options ) ) {
@@ -1273,6 +1298,25 @@ class User {
 			foreach ( $res as $row ) {
 				$this->mGroups[] = $row->ug_group;
 			}
+		}
+	}
+
+	/**
+	 * Load the user's password hashes from the database
+	 *
+	 * This is usually called in a scenario where the actual User object was
+	 * loaded from the cache, and then password comparison needs to be performed.
+	 * Password hashes are not stored in memcached.
+	 *
+	 * @since 1.23
+	 */
+	private function loadPasswords() {
+		if ( $this->getId() !== 0 && $this->mPassword === null || $this->mNewpassword === null ) {
+			$this->loadFromRow( wfGetDB( DB_MASTER )->select(
+					'user',
+					array( 'user_password', 'user_newpassword' ),
+					array( 'user_id' => $this->getId() )
+				) );
 		}
 	}
 
@@ -1913,6 +1957,30 @@ class User {
 	}
 
 	/**
+	 * Get the user's password hash
+	 *
+	 * @since 1.23
+	 * @return string
+	 */
+	private function getPasswordHash() {
+		$this->loadPasswords();
+
+		return $this->mPassword;
+	}
+
+	/**
+	 * Get the user's temporary password hash
+	 *
+	 * @since 1.23
+	 * @return string
+	 */
+	private function getNewpasswordHash() {
+		$this->loadPasswords();
+
+		return $this->mNewpassword;
+	}
+
+	/**
 	 * Get the user's name escaped by underscores.
 	 * @return string Username escaped by underscores.
 	 */
@@ -2135,7 +2203,7 @@ class User {
 	 *
 	 * Called implicitly from invalidateCache() and saveSettings().
 	 */
-	private function clearSharedCache() {
+	public function clearSharedCache() {
 		$this->load();
 		if ( $this->mId ) {
 			global $wgMemc;
@@ -2251,16 +2319,16 @@ class User {
 	 *  through the web interface.
 	 */
 	public function setInternalPassword( $str ) {
-		$this->load();
 		$this->setToken();
 
+		$passwordFactory = self::getPasswordFactory();
 		if ( $str === null ) {
-			// Save an invalid hash...
-			$this->mPassword = '';
+			$this->mPassword = $passwordFactory->newFromCiphertext( null );
 		} else {
-			$this->mPassword = self::crypt( $str );
+			$this->mPassword = $passwordFactory->newFromPlaintext( $str );
 		}
-		$this->mNewpassword = '';
+
+		$this->mNewpassword = $passwordFactory->newFromCiphertext( null );
 		$this->mNewpassTime = null;
 	}
 
@@ -2306,7 +2374,7 @@ class User {
 			$this->mNewpassword = '';
 			$this->mNewpassTime = null;
 		} else {
-			$this->mNewpassword = self::crypt( $str );
+			$this->mNewpassword = self::getPasswordFactory()->newFromPlaintext( $str );
 			if ( $throttle ) {
 				$this->mNewpassTime = wfTimestampNow();
 			}
@@ -3417,6 +3485,7 @@ class User {
 		global $wgAuth;
 
 		$this->load();
+		$this->loadPasswords();
 		if ( wfReadOnly() ) {
 			return;
 		}
@@ -3426,15 +3495,15 @@ class User {
 
 		$this->mTouched = self::newTouchedTimestamp();
 		if ( !$wgAuth->allowSetLocalPassword() ) {
-			$this->mPassword = '';
+			$this->mPassword = self::getPasswordFactory()->newFromCiphertext( null );
 		}
 
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->update( 'user',
 			array( /* SET */
 				'user_name' => $this->mName,
-				'user_password' => $this->mPassword,
-				'user_newpassword' => $this->mNewpassword,
+				'user_password' => $this->mPassword->toString(),
+				'user_newpassword' => $this->mNewpassword->toString(),
 				'user_newpass_time' => $dbw->timestampOrNull( $this->mNewpassTime ),
 				'user_real_name' => $this->mRealName,
 				'user_email' => $this->mEmail,
@@ -3493,6 +3562,7 @@ class User {
 	public static function createNew( $name, $params = array() ) {
 		$user = new User;
 		$user->load();
+		$user->loadPasswords();
 		$user->setToken(); // init token
 		if ( isset( $params['options'] ) ) {
 			$user->mOptions = $params['options'] + (array)$user->mOptions;
@@ -3504,8 +3574,8 @@ class User {
 		$fields = array(
 			'user_id' => $seqVal,
 			'user_name' => $name,
-			'user_password' => $user->mPassword,
-			'user_newpassword' => $user->mNewpassword,
+			'user_password' => $user->mPassword->toString(),
+			'user_newpassword' => $user->mNewpassword->toString(),
 			'user_newpass_time' => $dbw->timestampOrNull( $user->mNewpassTime ),
 			'user_email' => $user->mEmail,
 			'user_email_authenticated' => $dbw->timestampOrNull( $user->mEmailAuthenticated ),
@@ -3555,6 +3625,7 @@ class User {
 	 */
 	public function addToDatabase() {
 		$this->load();
+		$this->loadPasswords();
 		if ( !$this->mToken ) {
 			$this->setToken(); // init token
 		}
@@ -3568,8 +3639,8 @@ class User {
 			array(
 				'user_id' => $seqVal,
 				'user_name' => $this->mName,
-				'user_password' => $this->mPassword,
-				'user_newpassword' => $this->mNewpassword,
+				'user_password' => $this->mPassword->toString(),
+				'user_newpassword' => $this->mNewpassword->toString(),
 				'user_newpass_time' => $dbw->timestampOrNull( $this->mNewpassTime ),
 				'user_email' => $this->mEmail,
 				'user_email_authenticated' => $dbw->timestampOrNull( $this->mEmailAuthenticated ),
@@ -3716,7 +3787,7 @@ class User {
 	 */
 	public function checkPassword( $password ) {
 		global $wgAuth, $wgLegacyEncoding;
-		$this->load();
+		$this->loadPasswords();
 
 		// Certain authentication plugins do NOT want to save
 		// domain passwords in a mysql database, so we should
@@ -3731,19 +3802,28 @@ class User {
 			// Auth plugin doesn't allow local authentication for this user name
 			return false;
 		}
-		if ( self::comparePasswords( $this->mPassword, $password, $this->mId ) ) {
-			return true;
-		} elseif ( $wgLegacyEncoding ) {
-			// Some wikis were converted from ISO 8859-1 to UTF-8, the passwords can't be converted
-			// Check for this with iconv
-			$cp1252Password = iconv( 'UTF-8', 'WINDOWS-1252//TRANSLIT', $password );
-			if ( $cp1252Password != $password
-				&& self::comparePasswords( $this->mPassword, $cp1252Password, $this->mId )
-			) {
-				return true;
+
+		$passwordFactory = self::getPasswordFactory();
+
+		if ( !$this->mPassword->equals( $password ) ) {
+			if ( $wgLegacyEncoding ) {
+				// Some wikis were converted from ISO 8859-1 to UTF-8, the passwords can't be converted
+				// Check for this with iconv
+				$cp1252Password = iconv( 'UTF-8', 'WINDOWS-1252//TRANSLIT', $password );
+				if ( $cp1252Password === $password || !$this->mPassword->equals( $cp1252Password ) ) {
+					return false;
+				}
+			} else {
+				return false;
 			}
 		}
-		return false;
+
+		if ( $passwordFactory->needsUpdate( $this->mPassword ) ) {
+			$this->mPassword = $passwordFactory->newFromPlaintext( $password );
+			$this->saveSettings();
+		}
+
+		return true;
 	}
 
 	/**
@@ -3758,7 +3838,7 @@ class User {
 		global $wgNewPasswordExpiry;
 
 		$this->load();
-		if ( self::comparePasswords( $this->mNewpassword, $plaintext, $this->getId() ) ) {
+		if ( $this->mNewpassword->equals( $plaintext ) ) {
 			if ( is_null( $this->mNewpassTime ) ) {
 				return true;
 			}
@@ -4533,45 +4613,18 @@ class User {
 	}
 
 	/**
-	 * Make an old-style password hash
-	 *
-	 * @param string $password Plain-text password
-	 * @param string $userId User ID
-	 * @return string Password hash
-	 */
-	public static function oldCrypt( $password, $userId ) {
-		global $wgPasswordSalt;
-		if ( $wgPasswordSalt ) {
-			return md5( $userId . '-' . md5( $password ) );
-		} else {
-			return md5( $password );
-		}
-	}
-
-	/**
 	 * Make a new-style password hash
 	 *
 	 * @param string $password Plain-text password
 	 * @param bool|string $salt Optional salt, may be random or the user ID.
 	 *  If unspecified or false, will generate one automatically
 	 * @return string Password hash
+	 * @deprecated since 1.23, use Password class
 	 */
 	public static function crypt( $password, $salt = false ) {
-		global $wgPasswordSalt;
-
-		$hash = '';
-		if ( !wfRunHooks( 'UserCryptPassword', array( &$password, &$salt, &$wgPasswordSalt, &$hash ) ) ) {
-			return $hash;
-		}
-
-		if ( $wgPasswordSalt ) {
-			if ( $salt === false ) {
-				$salt = MWCryptRand::generateHex( 8 );
-			}
-			return ':B:' . $salt . ':' . md5( $salt . '-' . md5( $password ) );
-		} else {
-			return ':A:' . md5( $password );
-		}
+		wfDeprecated( __METHOD__, '1.23' );
+		$hash = self::getPasswordFactory()->newFromPlaintext( $password );
+		return $hash->toString();
 	}
 
 	/**
@@ -4583,26 +4636,24 @@ class User {
 	 * @param string|bool $userId User ID for old-style password salt
 	 *
 	 * @return bool
+	 * @deprecated since 1.23, use Password class
 	 */
 	public static function comparePasswords( $hash, $password, $userId = false ) {
-		$type = substr( $hash, 0, 3 );
+		wfDeprecated( __METHOD__, '1.23' );
 
-		$result = false;
-		if ( !wfRunHooks( 'UserComparePasswords', array( &$hash, &$password, &$userId, &$result ) ) ) {
-			return $result;
+		// Check for *really* old password hashes that don't even have a type
+		// The old hash format was just an md5 hex hash, with no type information
+		if ( preg_match( '/^[0-9a-f]{32}$/', $hash ) ) {
+			global $wgPasswordSalt;
+			if ( $wgPasswordSalt ) {
+				$password = ":B:{$userId}:{$hash}";
+			} else {
+				$password = ":A:{$hash}";
+			}
 		}
 
-		if ( $type == ':A:' ) {
-			// Unsalted
-			return md5( $password ) === substr( $hash, 3 );
-		} elseif ( $type == ':B:' ) {
-			// Salted
-			list( $salt, $realHash ) = explode( ':', substr( $hash, 3 ), 2 );
-			return md5( $salt . '-' . md5( $password ) ) === $realHash;
-		} else {
-			// Old-style
-			return self::oldCrypt( $password, $userId ) === $hash;
-		}
+		$hash = self::getPasswordFactory()->newFromCiphertext( $hash );
+		return $hash->equals( $password );
 	}
 
 	/**
@@ -4797,6 +4848,20 @@ class User {
 	}
 
 	/**
+	 * Lazily instantiate and return a factory object for making passwords
+	 *
+	 * @return PasswordFactory
+	 */
+	public static function getPasswordFactory() {
+		if ( self::$mPasswordFactory === null ) {
+			self::$mPasswordFactory = new PasswordFactory();
+			self::$mPasswordFactory->init( RequestContext::getMain()->getConfig() );
+		}
+
+		return self::$mPasswordFactory;
+	}
+
+	/**
 	 * Provide an array of HTML5 attributes to put on an input element
 	 * intended for the user to enter a new password.  This may include
 	 * required, title, and/or pattern, depending on $wgMinimalPasswordLength.
@@ -4864,8 +4929,6 @@ class User {
 			'user_id',
 			'user_name',
 			'user_real_name',
-			'user_password',
-			'user_newpassword',
 			'user_newpass_time',
 			'user_email',
 			'user_touched',
