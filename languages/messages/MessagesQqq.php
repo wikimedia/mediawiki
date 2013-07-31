@@ -300,19 +300,46 @@ This option means "underline links as in your user skin or your browser", there 
 {{Identical|November}}',
 'december-gen' => 'The twelfth month of the Gregorian calendar. Must be in genitive, if the language has a genitive case.
 {{Identical|December}}',
-'jan' => 'Abbreviation of January, the first month of the Gregorian calendar',
-'feb' => 'Abbreviation of February, the second month of the Gregorian calendar',
-'mar' => 'Abbreviation of March, the third month of the Gregorian calendar',
-'apr' => 'Abbreviation of April, the fourth month of the Gregorian calendar',
-'may' => 'Abbreviation of May, the fifth month of the Gregorian calendar.
-{{Identical|May}}',
-'jun' => 'Abbreviation of June, the sixth month of the Gregorian calendar',
-'jul' => 'Abbreviation of July, the seventh month of the Gregorian calendar',
-'aug' => 'Abbreviation of August, the eighth month of the Gregorian calendar',
-'sep' => 'Abbreviation of September, the ninth month of the Gregorian calendar',
-'oct' => 'Abbreviation of October, the tenth month of the Gregorian calendar',
-'nov' => 'Abbreviation of November, the eleventh month of the Gregorian calendar',
-'dec' => 'Abbreviation of December, the twelfth month of the Gregorian calendar',
+'jan' => 'Abbreviation of January, the first month of the Gregorian calendar
+
+One of the set: {{msg-mw|Jan}}, {{msg-mw|Feb}}, {{msg-mw|Mar}}, {{msg-mw|Apr}}, {{msg-mw|May}}, {{msg-mw|Jun}}, {{msg-mw|Jul}}, {{msg-mw|Aug}}, {{msg-mw|Sep}}, {{msg-mw|Oct}}, {{msg-mw|Nov}}, {{msg-mw|Dec}}.',
+'feb' => 'Abbreviation of February, the second month of the Gregorian calendar
+
+One of the set: {{msg-mw|Jan}}, {{msg-mw|Feb}}, {{msg-mw|Mar}}, {{msg-mw|Apr}}, {{msg-mw|May}}, {{msg-mw|Jun}}, {{msg-mw|Jul}}, {{msg-mw|Aug}}, {{msg-mw|Sep}}, {{msg-mw|Oct}}, {{msg-mw|Nov}}, {{msg-mw|Dec}}.',
+'mar' => 'Abbreviation of March, the third month of the Gregorian calendar
+
+One of the set: {{msg-mw|Jan}}, {{msg-mw|Feb}}, {{msg-mw|Mar}}, {{msg-mw|Apr}}, {{msg-mw|May}}, {{msg-mw|Jun}}, {{msg-mw|Jul}}, {{msg-mw|Aug}}, {{msg-mw|Sep}}, {{msg-mw|Oct}}, {{msg-mw|Nov}}, {{msg-mw|Dec}}.',
+'apr' => 'Abbreviation of April, the fourth month of the Gregorian calendar
+
+One of the set: {{msg-mw|Jan}}, {{msg-mw|Feb}}, {{msg-mw|Mar}}, {{msg-mw|Apr}}, {{msg-mw|May}}, {{msg-mw|Jun}}, {{msg-mw|Jul}}, {{msg-mw|Aug}}, {{msg-mw|Sep}}, {{msg-mw|Oct}}, {{msg-mw|Nov}}, {{msg-mw|Dec}}.',
+'may' => "''Abbreviation'' of May, the fifth month of the Gregorian calendar.
+
+One of the set: {{msg-mw|Jan}}, {{msg-mw|Feb}}, {{msg-mw|Mar}}, {{msg-mw|Apr}}, {{msg-mw|May}}, {{msg-mw|Jun}}, {{msg-mw|Jul}}, {{msg-mw|Aug}}, {{msg-mw|Sep}}, {{msg-mw|Oct}}, {{msg-mw|Nov}}, {{msg-mw|Dec}}.
+
+{{doc-important|This is not the full name of May, which resides at {{msg-mw|May long}}}}
+
+{{Identical|May}}",
+'jun' => 'Abbreviation of June, the sixth month of the Gregorian calendar
+
+One of the set: {{msg-mw|Jan}}, {{msg-mw|Feb}}, {{msg-mw|Mar}}, {{msg-mw|Apr}}, {{msg-mw|May}}, {{msg-mw|Jun}}, {{msg-mw|Jul}}, {{msg-mw|Aug}}, {{msg-mw|Sep}}, {{msg-mw|Oct}}, {{msg-mw|Nov}}, {{msg-mw|Dec}}.',
+'jul' => 'Abbreviation of July, the seventh month of the Gregorian calendar
+
+One of the set: {{msg-mw|Jan}}, {{msg-mw|Feb}}, {{msg-mw|Mar}}, {{msg-mw|Apr}}, {{msg-mw|May}}, {{msg-mw|Jun}}, {{msg-mw|Jul}}, {{msg-mw|Aug}}, {{msg-mw|Sep}}, {{msg-mw|Oct}}, {{msg-mw|Nov}}, {{msg-mw|Dec}}.',
+'aug' => 'Abbreviation of August, the eighth month of the Gregorian calendar
+
+One of the set: {{msg-mw|Jan}}, {{msg-mw|Feb}}, {{msg-mw|Mar}}, {{msg-mw|Apr}}, {{msg-mw|May}}, {{msg-mw|Jun}}, {{msg-mw|Jul}}, {{msg-mw|Aug}}, {{msg-mw|Sep}}, {{msg-mw|Oct}}, {{msg-mw|Nov}}, {{msg-mw|Dec}}.',
+'sep' => 'Abbreviation of September, the ninth month of the Gregorian calendar
+
+One of the set: {{msg-mw|Jan}}, {{msg-mw|Feb}}, {{msg-mw|Mar}}, {{msg-mw|Apr}}, {{msg-mw|May}}, {{msg-mw|Jun}}, {{msg-mw|Jul}}, {{msg-mw|Aug}}, {{msg-mw|Sep}}, {{msg-mw|Oct}}, {{msg-mw|Nov}}, {{msg-mw|Dec}}.',
+'oct' => 'Abbreviation of October, the tenth month of the Gregorian calendar
+
+One of the set: {{msg-mw|Jan}}, {{msg-mw|Feb}}, {{msg-mw|Mar}}, {{msg-mw|Apr}}, {{msg-mw|May}}, {{msg-mw|Jun}}, {{msg-mw|Jul}}, {{msg-mw|Aug}}, {{msg-mw|Sep}}, {{msg-mw|Oct}}, {{msg-mw|Nov}}, {{msg-mw|Dec}}.',
+'nov' => 'Abbreviation of November, the eleventh month of the Gregorian calendar
+
+One of the set: {{msg-mw|Jan}}, {{msg-mw|Feb}}, {{msg-mw|Mar}}, {{msg-mw|Apr}}, {{msg-mw|May}}, {{msg-mw|Jun}}, {{msg-mw|Jul}}, {{msg-mw|Aug}}, {{msg-mw|Sep}}, {{msg-mw|Oct}}, {{msg-mw|Nov}}, {{msg-mw|Dec}}.',
+'dec' => 'Abbreviation of December, the twelfth month of the Gregorian calendar
+
+One of the set: {{msg-mw|Jan}}, {{msg-mw|Feb}}, {{msg-mw|Mar}}, {{msg-mw|Apr}}, {{msg-mw|May}}, {{msg-mw|Jun}}, {{msg-mw|Jul}}, {{msg-mw|Aug}}, {{msg-mw|Sep}}, {{msg-mw|Oct}}, {{msg-mw|Nov}}, {{msg-mw|Dec}}.',
 'january-date' => 'A date in the Gregorian month of January. $1 is the numerical date, for example "23".',
 'february-date' => 'A date in the Gregorian month of February. $1 is the numerical date, for example "23".',
 'march-date' => 'A date in the Gregorian month of March. $1 is the numerical date, for example "23".',
@@ -2960,8 +2987,7 @@ See also
 'right-ipblock-exempt' => '{{doc-right|ipblock-exempt}}
 This user automatically bypasses IP blocks, auto-blocks and range blocks - so I presume - but I am uncertain',
 'right-proxyunbannable' => '{{doc-right|proxyunbannable}}',
-'right-unblockself' => '{{doc-right|unblockself}}
-{{doc-singularthey}}',
+'right-unblockself' => '{{doc-right|unblockself}}',
 'right-protect' => '{{doc-right|protect}}',
 'right-editprotected' => '{{doc-right|editprotected}}
 See also:

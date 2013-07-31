@@ -417,7 +417,14 @@ $messages = array(
 'january-date' => '$1 jannewaori',
 'february-date' => '$1 febrewaori',
 'march-date' => '$1 meert',
+'april-date' => '$1 april',
+'may-date' => '$1 mei',
+'june-date' => '$1 juni',
+'july-date' => '$1 juli',
+'august-date' => '$1 augustus',
 'september-date' => '$1 september',
+'october-date' => '$1 oktober',
+'november-date' => '$1 november',
 'december-date' => '$1 desember',
 
 # Categories related messages
@@ -674,6 +681,7 @@ t Kan ween dat n aander t al vortedaon hef.',
 'cannotdelete-title' => 'Zied "$1" kan niet vortedaon wörden',
 'delete-hook-aborted' => 't Vortdoon wörden in t wiere eschopt deur n MediaWiki-programmatuuruutbreiding.
 Der is gien veerdere informasie beschikbaor.',
+'no-null-revision' => 'Kon gien lege nieje versie maken veur de zied "$1"',
 'badtitle' => 'Ongeldige naam',
 'badtitletext' => 'De naam van de op-evreugen zied is niet geldig, leeg, of n interwiki-verwiezing naor n onbekende of ongeldige wiki.',
 'perfcached' => 'Disse gegevens koemen uut t tussengeheugen en bin misschien niet aktueel. Der {{PLURAL:$1|is hooguut een resultaot|bin hooguut $1 resultaoten}} beschikbaor in t tussengeheugen.',
@@ -772,6 +780,7 @@ Vergeet niet joew [[Special:Preferences|veurkeuren veur {{SITENAME}}]] an te pas
 'createaccountmail' => 'Gebruuk n tiejelik wachtwoord dat joe netzelde is en stuur t naor t netpostadres dat hieronder steet',
 'createacct-realname' => 'Echte naam (niet verplicht)',
 'createaccountreason' => 'Reden:',
+'createacct-reason' => 'Reden',
 'createacct-reason-ph' => 'Waorumme jie n aandere gebruker anmaken',
 'createacct-captcha' => 'Veiligheidskontraole',
 'createacct-imgcaptcha-ph' => "Voer de tekste in die'j hierboven zien",
@@ -922,9 +931,14 @@ Tiedelik wachtwoord: $2',
 
 # Special:ResetTokens
 'resettokens' => 'Tokens ongedaonmaken',
+'resettokens-text' => "Je kunnen hier tokens opniej instellen die toegang geven tot bepaolde persoonlike gegevens die ekoppeld bin an joew gebruker.
+
+Do dit a'j ze per ongelok mit ene edeeld hebben of as onbevoegden toegang ekregen hebben tot joew gebruker.",
 'resettokens-no-tokens' => 'Der bin gien tokens um ongedaon te maken.',
 'resettokens-legend' => 'Tokens ongedaonmaken',
+'resettokens-tokens' => 'Tokens:',
 'resettokens-token-label' => '$1 (aktuele weerde: $2)',
+'resettokens-watchlist-token' => 'Token veur webvoer van volglieste',
 'resettokens-done' => 'Tokens ongedaonmaken.',
 'resettokens-resetbutton' => 'Ekeuzen tokens ongedaonmaken',
 
@@ -1129,6 +1143,7 @@ t Schient dat t vortedaon is.',
 t Besteet al.',
 'defaultmessagetext' => 'Standardtekste',
 'content-failed-to-parse' => 'Kon de inhoud van t MIME-type $2 veur t model $1 niet verwarken: $3.',
+'invalid-content-data' => 'Ongeldige inhoudsgegevens',
 'content-not-allowed-here' => 'De inhoud "$1" is niet toe-estaan op de zied [[$2]].',
 'editwarning-warning' => "A'j disse zied aofsluten dan kan t ween dat der wieziging die'j emaakt hebben kwiet raken.
 A'j an-emeld bin, dan ku'j disse waorschuwing uutzetten in t tabblad \"Bewarken\" in joew veurkeuren.",
@@ -1452,6 +1467,9 @@ Waorschienlik ku'j der meer gegevens over vienen in t [{{fullurl:{{#Special:Log}
 'recentchangesdays-max' => '(hooguut $1 {{PLURAL:$1|dag|dagen}})',
 'recentchangescount' => 'Standard antal bewarkingen um te laoten zien:',
 'prefs-help-recentchangescount' => 'Dit geldt veur leste wiezigingen, ziedgeschiedenisse en logboekziejen',
+'prefs-help-watchlist-token2' => "Dit is de geheime sleutel veur de webvoer van joew volglieste.
+Iederene die t token kent, kan joew volglieste bekieken, dus deel dit token niet.
+Je kunnen de [[Special:ResetTokens|tokens opniej instellen]] a'j dat willen.",
 'savedprefs' => 'Veurkeuren bin op-esleugen.',
 'timezonelegend' => 'Tiedzone:',
 'localtime' => 'Plaotselike tied:',
@@ -1522,6 +1540,7 @@ Disse informasie is zichtbaor veur aandere gebrukers.',
 'prefs-displayrc' => 'Weergave-instellingen',
 'prefs-displaysearchoptions' => 'Weergave-instellingen',
 'prefs-displaywatchlist' => 'Weergave-instellingen',
+'prefs-tokenwatchlist' => 'Token',
 'prefs-diffs' => 'Verschillen',
 
 # User preference: email validation using jQuery
@@ -2119,6 +2138,7 @@ Ziejen wörden ezien as n deurverwieszied, as de mal gebruukt wörden die vermel
 'pageswithprop' => 'Ziejen mit n ziedeigenschap',
 'pageswithprop-legend' => 'Ziejen mit n zied-eigenschap',
 'pageswithprop-text' => 'Op disse zied staon ziejen mit n bepaolde ziedeigenschap.',
+'pageswithprop-prop' => 'Naam van de eigenschap:',
 'pageswithprop-submit' => 'Zeuk',
 'pageswithprop-prophidden-long' => 'lange tekste-eigenschapsweerde verbörgen ({{PLURAL:$1|$1 kilobyte}})',
 'pageswithprop-prophidden-binary' => 'binaere eigenschapsweerde verbörgen ({{PLURAL:$1|$1 kilobyte}})',
@@ -2179,6 +2199,7 @@ Meestentieds is leste zied de gewunste doelzied, waor oek de eerste zied heer zo
 'mostrevisions' => 'Artikels mit de meeste bewarkingen',
 'prefixindex' => 'Alle ziejen op veurvoegsel',
 'prefixindex-namespace' => 'Alle ziejen mit t veurvoegsel (naamruumte $1)',
+'prefixindex-strip' => 'Veurvoegsel in lieste vortdoon',
 'shortpages' => 'Korte artikels',
 'longpages' => 'Lange artikels',
 'deadendpages' => 'Ziejen zonder verwiezingen',
@@ -2942,6 +2963,8 @@ Kiek oek effen bie [//www.mediawiki.org/wiki/Localisation MediaWiki-lokalisasie]
 'thumbnail-more' => 'vergroten',
 'filemissing' => 'Bestaand ontbrik',
 'thumbnail_error' => 'Fout bie t laojen van de miniatuuraofbeelding: $1',
+'thumbnail_error_remote' => 'Foutmelding van $1:
+$2',
 'djvu_page_error' => 'DjVu-zied buten bereik',
 'djvu_no_xml' => 'Kon de XML-gegevens veur t DjVu-bestaand niet oproepen',
 'thumbnail-temp-create' => 'Kon gien tiedelik miniatuurbestaand anmaken.',
@@ -3156,6 +3179,7 @@ Meestentieds kömp dit deur n uutgaonde verwiezing die op de zwarte lieste steet
 'pageinfo-contentpage' => 'Eteld as zied mit inhoud',
 'pageinfo-contentpage-yes' => 'Ja',
 'pageinfo-protect-cascading' => 'Beveiligingen warken vanaof hier deur',
+'pageinfo-protect-cascading-yes' => 'Ja',
 'pageinfo-protect-cascading-from' => 'Zied is beveiligd vanuut n aandere zied',
 'pageinfo-category-info' => 'Kategorie-informasie',
 'pageinfo-category-pages' => 'Antal ziejen',

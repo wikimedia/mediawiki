@@ -22,6 +22,7 @@
  * @author GerardM
  * @author Hamaryns
  * @author Jens Liebenau
+ * @author JurgenNL
  * @author Kaganer
  * @author Kippenvlees1
  * @author Krinkle
@@ -1147,9 +1148,9 @@ Uw eigen .css- en .js-pagina's beginnen met een kleine letter, bijvoorbeeld {{ns
 Uw tekst is niet opgeslagen!",
 'continue-editing' => 'Naar het bewerkingsvenster gaan',
 'previewconflict' => 'Deze voorvertoning geeft aan hoe de tekst in het bovenste veld eruit ziet als u deze opslaat.',
-'session_fail_preview' => "'''Uw bewerking is niet verwerkt, omdat de sessiegegevens verloren zijn gegaan.
+'session_fail_preview' => "'''Uw bewerking is niet verwerkt, omdat de sessiegegevens verloren zijn gegaan.'''
 Probeer het opnieuw.
-Als het dan nog niet lukt, [[Special:UserLogout|meld uzelf dan af]] en vervolgens weer aan.'''",
+Als het dan nog niet lukt, [[Special:UserLogout|meld uzelf dan af]] en vervolgens weer aan.",
 'session_fail_preview_html' => "'''Uw bewerking is niet verwerkt, omdat de sessiegegevens verloren zijn gegaan.'''
 
 ''Omdat in {{SITENAME}} ruwe HTML is ingeschakeld, is een voorvertoning niet mogelijk als bescherming tegen aanvallen met JavaScript.''
@@ -2449,7 +2450,7 @@ Heeft tenminste een topleveldomein nodig, zoals bijvoorbeeld "*.org".<br />
 'listusers-blocked' => '(geblokkeerd)',
 
 # Special:ActiveUsers
-'activeusers' => 'Aanwezige gebruikers',
+'activeusers' => 'Actieve gebruikers',
 'activeusers-intro' => 'Dit is een lijst met gebruikers die enige activiteit hebben laten zien in de afgelopen {{PLURAL:$1|dag|$1 dagen}}.',
 'activeusers-count' => '$1 recente {{PLURAL:$1|handeling|handelingen}} in de {{PLURAL:$3|afgelopen dag|laatste $3 dagen}}',
 'activeusers-from' => 'Gebruikers worden weergegeven vanaf:',

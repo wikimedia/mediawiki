@@ -812,6 +812,9 @@ Temporärt Passwuert: $2',
 'changeemail-submit' => 'Mailadress änneren',
 'changeemail-cancel' => 'Ofbriechen',
 
+# Special:ResetTokens
+'resettokens-token-label' => '$1 (aktuelle Wäert: $2)',
+
 # Edit page toolbar
 'bold_sample' => 'Fettgedréckten Text',
 'bold_tip' => 'Fettgedréckten Text',
@@ -1400,7 +1403,7 @@ Si muss manner wéi $1 {{PLURAL:$1|Zeechen|Zeechen}} hunn.',
 'prefs-signature' => 'Ënnerschrëft',
 'prefs-dateformat' => 'Format vum Datum',
 'prefs-timeoffset' => 'Zäitënnerscheed',
-'prefs-advancedediting' => 'Allgemeng',
+'prefs-advancedediting' => 'Allgemeng Optiounen',
 'prefs-editor' => 'Editeur',
 'prefs-preview' => 'Kucken ouni ofzespäicheren',
 'prefs-advancedrc' => 'Méi Optiounen',
@@ -3370,7 +3373,7 @@ Déi aner sinn am Standard verstoppt.
 'exif-compression-1' => 'Onkompriméiert',
 
 'exif-copyrighted-true' => 'Duerch Copyright geschützt',
-'exif-copyrighted-false' => 'Ëffentlechen Domaine',
+'exif-copyrighted-false' => 'Copyright status net agestallt',
 
 'exif-unknowndate' => 'Onbekannten Datum',
 

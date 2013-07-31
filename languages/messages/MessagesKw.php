@@ -730,7 +730,7 @@ Res yw an diwettha kovnoten a-woles rag godhvos:",
 'permissionserrorstext-withaction' => "Ny'gas beus kummyes dhe $2, rag an {{PLURAL:$1|acheson|achesonys}} a syw:",
 'moveddeleted-notice' => 'An folen-ma re beu diles.
 Yma kovnoten dhilea ha gwaya an folen res a-woles.',
-'log-fulllog' => 'Gweles an govnoten dien',
+'log-fulllog' => 'Gweles an govnoten dhien',
 'editwarning-warning' => 'Mar kasowgh an folen-ma, y halser kelli chanjyow gwrys genowgh.
 Mars owgh omgelmys, hwi a yll dialosegi an gwarnyans-ma yn tregh "Chanjya" agas dewisyansow.',
 

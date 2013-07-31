@@ -1173,7 +1173,7 @@ Mae manylion pellach i'w cael yn [{{fullurl:{{#Special:Log}}/delete|page={{FULLP
 'searchprofile-articles-tooltip' => 'Chwilio drwy $1',
 'searchprofile-project-tooltip' => 'Chwilio drwy $1',
 'searchprofile-images-tooltip' => 'Chwilio am ffeiliau',
-'searchprofile-everything-tooltip' => "Chwilio'r cynnwys gyfan (gan gynnwys tudalennau sgwrs)",
+'searchprofile-everything-tooltip' => "Chwilio'r cynnwys cyfan (gan gynnwys tudalennau sgwrs)",
 'searchprofile-advanced-tooltip' => 'Chwilio drwy parthau dewisol',
 'search-result-size' => '$1 ({{PLURAL:$2|dim geiriau|$2 gair|$2 air|$2 gair|$2 gair|$2 gair|}})',
 'search-result-category-size' => '{{PLURAL:$1|$1 aelod}} ({{PLURAL:$2|$2 is-gategori}}, {{PLURAL:$3|$3 ffeil}})',
@@ -2044,7 +2044,7 @@ Sylwer bod llythrennau mawr neu fach o bwys i'r chwiliad.",
 'allnotinnamespace' => 'Pob tudalen (heblaw am y parth $1)',
 'allpagesprev' => 'Gynt',
 'allpagesnext' => 'Nesaf',
-'allpagessubmit' => 'Eler',
+'allpagessubmit' => 'Ewch',
 'allpagesprefix' => 'Dangos pob tudalen mewn parth gan ddechrau o:',
 'allpagesbadtitle' => 'Roedd y darpar deitl yn annilys oherwydd bod ynddo naill ai:<p> - rhagddodiad rhyngwici neu ryngieithol, neu </p>- nod neu nodau na ellir eu defnyddio mewn teitlau.',
 'allpages-bad-ns' => 'Nid oes gan {{SITENAME}} barth o\'r enw "$1".',
@@ -2878,7 +2878,7 @@ Mae ffolder dros dro yn eisiau.',
 'tooltip-ca-nstab-main' => 'Gweld y dudalen bwnc',
 'tooltip-ca-nstab-user' => 'Gweld tudalen y defnyddiwr',
 'tooltip-ca-nstab-media' => 'Gweld y dudalen gyfrwng',
-'tooltip-ca-nstab-special' => "Mae hwn yn dudalen arbennig; ni allwch olygu'r dudalen ei hun",
+'tooltip-ca-nstab-special' => "Mae hon yn dudalen arbennig; ni allwch olygu'r dudalen ei hun",
 'tooltip-ca-nstab-project' => 'Gweld tudalen y wici',
 'tooltip-ca-nstab-image' => 'Gweld tudalen y ffeil',
 'tooltip-ca-nstab-mediawiki' => 'Gweld neges y system',
@@ -3726,7 +3726,7 @@ Dylech fod wedi derbyn [{{SERVER}}{{SCRIPTPATH}}/COPYING gopi o GNU General Publ
 
 # External image whitelist
 'external_image_whitelist' => " #Leave this line exactly as it is<pre>
-#Gosodwch darnau o ymadroddion rheolaidd (y rhan sy'n cael ei osod rhwng y //) isod
+#Gosodwch ddarnau o ymadroddion rheolaidd (y rhan sy'n cael ei osod rhwng y //) isod
 #Caiff y rhain eu cysefeillio gyda URL y delweddau allanol (a chyswllt poeth atynt)
 #Dangosir y rhai sy'n cysefeillio fel delweddau; dangosir cyswllt at y ddelwedd yn unig ar gyfer y lleill
 #Caiff y llinellau sy'n dechrau gyda # eu trin fel sylwadau

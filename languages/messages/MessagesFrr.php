@@ -397,6 +397,7 @@ Wan't det ei as, do heest dü ferlicht en feeler uun't software fünjen. Wees so
 Det as ferlicht al faan hoker ööders stregen wurden.',
 'cannotdelete-title' => 'Sidj „$1“ koon ei stregen wurd.',
 'delete-hook-aborted' => 'Det striken as faan en software-feranrang faan MediaWiki ferhanert wurden. Di grünj as ei bekäänd.',
+'no-null-revision' => 'Det nul-werjuun för det sidj "$1" küd ei skrewen wurd.',
 'badtitle' => 'Ferkiard tiitel',
 'badtitletext' => 'Didiar sidjennööm gongt ei. Hi as ferlicht leesag of as en ferkiard ferwisang faan en ööder projekt.',
 'perfcached' => 'Jodiar dooten kem faan a cache an san ferlicht ei muar aktuel. Ei muar üs {{PLURAL:$1|ian resultoot as|$1 resultooten san}} uun a cache.',
@@ -646,6 +647,17 @@ Tidwis paasuurd: $2',
 'changeemail-password' => 'Din {{SITENAME}} paaswurd:',
 'changeemail-submit' => 'E-mail adres feranre',
 'changeemail-cancel' => 'Ufbreeg',
+
+# Special:ResetTokens
+'resettokens' => 'Tokens turagsaat',
+'resettokens-text' => "Dü könst 'tokens' turagsaat, am priwoot dooten tu bewerkin, diar mä din brükerkonto ferbünjen san.",
+'resettokens-no-tokens' => 'Diar san nian tokens turagtusaaten.',
+'resettokens-legend' => 'Tokens turagsaat',
+'resettokens-tokens' => 'Tokens:',
+'resettokens-token-label' => '$1 (aktuel wäärs: $2)',
+'resettokens-watchlist-token' => "Token för webfeed mä sidjen, diar dü uun't uug behual wel",
+'resettokens-done' => 'Tokems san turagsaat wurden.',
+'resettokens-resetbutton' => 'Enkelt tokens turagsaat',
 
 # Edit page toolbar
 'bold_sample' => 'Fäät buksteewen',
@@ -1171,6 +1183,9 @@ Dü könst det uun't [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}
 'recentchangesdays-max' => 'Ei muar üs {{PLURAL:$1|ään dai|$1 daar}}',
 'recentchangescount' => 'Soföl feranrangen skel uunwiset wurd:',
 'prefs-help-recentchangescount' => 'Det san a leetst feranrangen, werjuunen an logbuken.',
+'prefs-help-watchlist-token2' => "Detdiar as di hiamelk kai för't webfeed mä sidjen, diar dü uun't uug behual wel.
+Mä didiar kai koon arken jodiar sidjen beluke, diaram skulst dü ham ei widjerdu.
+[[Special:ResetTokens|Trak diar]], wan dü ham turagsaat wel.",
 'savedprefs' => 'Din iinstelangen san seekert wurden.',
 'timezonelegend' => 'Tidjsoon:',
 'localtime' => 'Lokaal tidj:',
@@ -1239,6 +1254,7 @@ Do san jo ual iinstelangen wech.',
 'prefs-displayrc' => "Mögelkhaiden för't uunwisin",
 'prefs-displaysearchoptions' => "Mögelkhaiden för't uunwisin",
 'prefs-displaywatchlist' => "Mögelkhaiden för't uunwisin",
+'prefs-tokenwatchlist' => 'Token',
 'prefs-diffs' => 'Ferskeel',
 
 # User preference: email validation using jQuery
@@ -1830,6 +1846,8 @@ En sidj täält üs '''muardüüdag artiikel''', wan hat tumanst ian föörlaag 
 'pageswithprop-text' => 'Detheer Spezial-sidj feert sidjen mä was sidjeneegenoorten ap.',
 'pageswithprop-prop' => 'Sidjeneegenoort:',
 'pageswithprop-submit' => 'Widjer',
+'pageswithprop-prophidden-long' => 'Eegenskapswäärs för lung tekster ferbürgen ($1 kilobyte)',
+'pageswithprop-prophidden-binary' => 'Binär eegenskapswäärs ferbürgen ($1 kilobyte)',
 
 'doubleredirects' => 'Dobelt widjerfeerangen',
 'doubleredirectstext' => "Detheer list feert widjerfeerangen ap, diar üüb widjerfeerangen widjer feer.
@@ -1886,6 +1904,7 @@ Uun arke rä stun ferwisangen tu't iarst an ööder widjerfeerang an uk tu det s
 'mostrevisions' => 'Sidjen mä miast feranrangen',
 'prefixindex' => 'Aal a sidjen (mä prefix)',
 'prefixindex-namespace' => 'Aal a sidjen mä prefix (nöömrüm $1)',
+'prefixindex-strip' => 'Prefix uun det list ei uunwise',
 'shortpages' => 'Kurt sidjen',
 'longpages' => 'Lung sidjen',
 'deadendpages' => 'Sidjen saner ferwisangen',
@@ -2002,7 +2021,8 @@ Luke uk bi det list faan [[Special:WantedCategories|nuadag kategoriin]].',
 'listgrouprights' => 'Brükersköölrochten',
 'listgrouprights-summary' => 'Jodiar brükersköölen an hör rochten san uun detheer Wiki fäästlaanj wurden.
 Muar diartu fanjst dü üüb  [[{{MediaWiki:Listgrouprights-helppage}}|detdiar sidj]].',
-'listgrouprights-key' => '* <span class="listgrouprights-granted">Tugestenen rocht</span>
+'listgrouprights-key' => 'Bedüüdang:
+* <span class="listgrouprights-granted">Tugestenen rocht</span>
 * <span class="listgrouprights-revoked">Wechnimen rocht</span>',
 'listgrouprights-group' => 'Skööl',
 'listgrouprights-rights' => 'Rochten',
@@ -3153,7 +3173,7 @@ Ferwisangen uun det salew rä wurd üs ütjnoomen uunsen, huar det datei dach uu
 'exif-compression-4' => 'CCITT Group 4 fax encoding',
 
 'exif-copyrighted-true' => 'Mä kopiarrocht',
-'exif-copyrighted-false' => 'Saner kopiarrocht',
+'exif-copyrighted-false' => 'Kopiarrochten noch ei fäästlaanj',
 
 'exif-unknowndate' => 'Ünbekäänd dootem',
 

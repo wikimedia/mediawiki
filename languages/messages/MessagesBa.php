@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author AiseluRB
  * @author Assele
  * @author Comp1089
  * @author Haqmar
@@ -601,6 +602,7 @@ $2',
 'userlogin-resetlink' => 'Танылыу мәғлүмәттәрен оноттоғоҙмо?',
 'createaccountmail' => 'эл. почта буйынса',
 'createaccountreason' => 'Сәбәп:',
+'createacct-captcha' => 'Һаҡлылыҡты тикшереү',
 'badretype' => 'Һеҙ кереткән серһүҙҙәр тап килмәй.',
 'userexists' => 'Керетелгән исем ҡулланыла инде.
 Зинһар, башҡа исем һайлағыҙ.',

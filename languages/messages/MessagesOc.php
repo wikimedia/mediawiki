@@ -3345,7 +3345,7 @@ Los autres ligams sus la meteissa linha son considerats coma d'excepcions, per e
 'exif-compression-4' => 'CCITT Grop 4 encodatge del fax',
 
 'exif-copyrighted-true' => "Somés al drech d'autor",
-'exif-copyrighted-false' => 'Domeni public',
+'exif-copyrighted-false' => 'Estat dels dreches d’autor pas definit',
 
 'exif-unknowndate' => 'Data desconeguda',
 

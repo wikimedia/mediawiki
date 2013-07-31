@@ -699,6 +699,7 @@ Xin hãy báo nó cho một [[Special:ListUsers/sysop|bảo quản viên]], tron
 'cannotdelete-title' => 'Không thể xóa trang “$1”',
 'delete-hook-aborted' => 'Một phần bổ trợ phần mềm đã bỏ qua việc xóa này.
 Không có lý do nào được đưa ra.',
+'no-null-revision' => 'Không thể tạo phiên bản không nội dung mới cho trang “$1”',
 'badtitle' => 'Tựa trang sai',
 'badtitletext' => 'Tựa trang yêu cầu không đúng, rỗng, hoặc là một liên kết ngôn ngữ hoặc liên kết wiki sai. Nó có thể chứa một hoặc nhiều ký tự mà tựa trang không thể sử dụng.',
 'perfcached' => 'Dữ liệu sau được lấy từ bộ nhớ đệm và có thể đã lỗi thời. Tối đa có sẵn {{PLURAL:$1|một kết quả|$1 kết quả}} trong bộ nhớ đệm.',
@@ -938,6 +939,19 @@ Mật khẩu tạm: $2',
 'changeemail-submit' => 'Đổi địa chỉ',
 'changeemail-cancel' => 'Hủy bỏ',
 
+# Special:ResetTokens
+'resettokens' => 'Đặt lại dấu hiệu',
+'resettokens-text' => 'Bạn có thể đặt lại các dấu hiệu cho phép truy cập những dữ liệu cá nhân của tài khoản của bạn tại đây.
+
+Bạn nên sử dụng chức năng này nếu bạn đã vô tình chia sẻ các dấu hiệu với người khác hoặc tài khoản của bạn đã bị xâm phạm.',
+'resettokens-no-tokens' => 'Không có dấu hiệu để đặt lại.',
+'resettokens-legend' => 'Đặt lại dấu hiệu',
+'resettokens-tokens' => 'Dấu hiệu:',
+'resettokens-token-label' => '$1 (giá trị hiện tại: $2)',
+'resettokens-watchlist-token' => 'Dấu hiệu cho nguồn cấp dữ liệu danh sách theo dõi',
+'resettokens-done' => 'Đã đặt lại các dấu hiệu.',
+'resettokens-resetbutton' => 'Đặt lại các dấu hiệu được chọn',
+
 # Edit page toolbar
 'bold_sample' => 'Chữ đậm',
 'bold_tip' => 'Chữ đậm',
@@ -1025,7 +1039,9 @@ Có thể đổi mật khẩu cho tài khoản mới này tại trang ''[[Specia
 Do đó chúng ta phải dùng một dãy số gọi là địa chỉ IP để xác định anh/chị ta.
 Một địa chỉ IP như vậy có thể có nhiều người cùng dùng chung.
 Nếu bạn là một thành viên vô danh và cảm thấy rằng có những lời bàn luận không thích hợp đang nhắm vào bạn, xin hãy [[Special:UserLogin/signup|tạo tài khoản]] hoặc [[Special:UserLogin|đăng nhập]] để tránh sự nhầm lẫn về sau với những thành viên vô danh khác.''",
-'noarticletext' => 'Trang này không tồn tại. Bạn có thể [[Special:Search/{{PAGENAME}}|tìm kiếm tựa trang này]] trong các trang khác, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} tìm trong các nhật trình liên quan], hoặc [{{fullurl:{{FULLPAGENAME}}|action=edit}} sửa đổi trang này]</span>.',
+'noarticletext' => 'Trang này hiện chưa có nội dung.
+Bạn có thể [[Special:Search/{{PAGENAME}}|tìm kiếm tựa trang này]] trong các trang khác, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} tìm trong các nhật trình liên quan],
+hoặc [{{fullurl:{{FULLPAGENAME}}|action=edit}} sửa đổi trang này]</span>.',
 'noarticletext-nopermission' => 'Trang này hiện đang trống.
 Bạn có thể [[Special:Search/{{PAGENAME}}|tìm kiếm tựa trang này]] tại các trang khác, hoặc <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} tìm kiếm các nhật trình liên quan]</span>, nhưng bạn không có phép tạo trang này.',
 'missing-revision' => 'Phiên bản #$1 của trang có tên “{{PAGENAME}}” không tồn tại.
@@ -1465,9 +1481,9 @@ Xem chi tiết trong [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}
 'recentchangesdays-max' => '(tối đa $1 {{PLURAL:$1|ngày|ngày}})',
 'recentchangescount' => 'Số sửa đổi hiển thị mặc định:',
 'prefs-help-recentchangescount' => 'Số này bao gồm các thay đổi gần đây, lịch sử trang, và nhật trình.',
-'prefs-help-watchlist-token2' => 'Đây là chìa khóa bí mật cho nguồn cấp dữ liệu web của watchlist của bạn.
-Bất cứ ai biết nó sẽ có thể để đọc watchlist của bạn, vì vậy không chia sẻ nó.
-[[Special:ResetTokens|Click vào đây nếu bạn cần phải thiết lập lại nó]].',
+'prefs-help-watchlist-token2' => 'Đây là chìa khóa bí mật cho nguồn cấp dữ liệu danh sách theo dõi của bạn.
+Bất cứ ai biết nó sẽ có thể để đọc danh sách theo dõi của bạn, vì vậy đừng chia sẻ nó.
+[[Special:ResetTokens|Nhấn chuột vào đây nếu bạn cần phải thiết lập lại nó]].',
 'savedprefs' => 'Đã lưu các tùy chọn cá nhân.',
 'timezonelegend' => 'Múi giờ:',
 'localtime' => 'Giờ hiện tại:',
@@ -1539,7 +1555,7 @@ Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao c�
 'prefs-displayrc' => 'Tùy chọn hiển thị',
 'prefs-displaysearchoptions' => 'Tùy chọn hiển thị',
 'prefs-displaywatchlist' => 'Tùy chọn hiển thị',
-'prefs-tokenwatchlist' => 'Mã thông báo',
+'prefs-tokenwatchlist' => 'Dấu hiệu',
 'prefs-diffs' => 'Khác biệt',
 
 # User preference: email validation using jQuery
@@ -2153,6 +2169,8 @@ Hãy nhớ kiểm tra các liên kết khác đến bản mẫu trước khi xó
 'pageswithprop-text' => 'Trang này liệt kê các trang sử dụng một thuộc tính trang nào đó.',
 'pageswithprop-prop' => 'Tên thuộc tính:',
 'pageswithprop-submit' => 'Xem',
+'pageswithprop-prophidden-long' => 'giá trị thuộc tính văn bản dài dòng bị ẩn ($1 kilôbyte)',
+'pageswithprop-prophidden-binary' => 'giá trị thuộc tính nhị phân bị ẩn ($1 kilôbyte)',
 
 'doubleredirects' => 'Đổi hướng kép',
 'doubleredirectstext' => 'Trang này liệt kê các trang đổi hướng đến một trang đổi hướng khác.
@@ -2210,6 +2228,7 @@ Các mục <del>bị gạch bỏ</del> là các trang đã được sửa.',
 'mostrevisions' => 'Trang được sửa đổi nhiều lần nhất',
 'prefixindex' => 'Tất cả các trang trùng với tiền tố',
 'prefixindex-namespace' => 'Tất cả các trang trùng với tiền tố (không gian $1)',
+'prefixindex-strip' => 'Ẩn tiền tố trong danh sách',
 'shortpages' => 'Trang ngắn nhất',
 'longpages' => 'Trang dài nhất',
 'deadendpages' => 'Trang đường cùng',
@@ -2327,7 +2346,8 @@ Xem thêm [[Special:WantedCategories|thể loại cần thiết]].',
 'listgrouprights' => 'Nhóm thành viên',
 'listgrouprights-summary' => 'Dưới đây là danh sách nhóm thành viên được định nghĩa tại wiki này, với mức độ truy cập của từng nhóm.
 Có [[{{MediaWiki:Listgrouprights-helppage}}|thông tin thêm]] về từng nhóm riêng biệt.',
-'listgrouprights-key' => '* <span class="listgrouprights-granted">Quyền được trao</span>
+'listgrouprights-key' => 'Chú giải:
+* <span class="listgrouprights-granted">Quyền được trao</span>
 * <span class="listgrouprights-revoked">Quyền bị tước</span>',
 'listgrouprights-group' => 'Nhóm',
 'listgrouprights-rights' => 'Khả năng',
@@ -3577,7 +3597,7 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 'exif-compression-34712' => 'JPEG 2000',
 
 'exif-copyrighted-true' => 'Dưới bản quyền',
-'exif-copyrighted-false' => 'Phạm vi công cộng',
+'exif-copyrighted-false' => 'Cờ bản quyền không được đặt',
 
 'exif-photometricinterpretation-2' => 'RGB',
 
@@ -3908,8 +3928,8 @@ Xin hãy xác nhận bạn thực sự muốn tạo lại trang này.",
 'table_pager_empty' => 'Không tìm thấy kết quả',
 
 # Auto-summaries
-'autosumm-blank' => 'Xoá trắng hết nội dung của trang.',
-'autosumm-replace' => 'Thay thế cả nội dung là “$1”',
+'autosumm-blank' => 'Đã tẩy trống trang',
+'autosumm-replace' => 'Đã thay thế cả nội dung bằng “$1”',
 'autoredircomment' => 'Đổi hướng đến [[$1]]',
 'autosumm-new' => 'Tạo trang mới với nội dung “$1”',
 
