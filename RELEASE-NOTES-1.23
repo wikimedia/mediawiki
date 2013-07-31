@@ -50,6 +50,14 @@ production.
   prepended to the start of this array.
 * $wgQueryPages has been removed. Query Pages should be added to by using the
   wgQueryPages hook.
+* The UserCryptPassword and UserComparePassword hooks are no longer called. Any extensions
+  using them must be updated to use the Password Hashing API.
+* The default password type for MediaWiki has been changed from MD5 to PBKDF2.
+  Password hashes will automatically be updated as users log in. If necessary, the
+  old MD5 hashing can be restored by changing $wgPasswordDefault to 'B'. In addition,
+  there is a maintenance script wrapOldPassword.php that can wrap all passwords in
+  PBKDF2 (or the hashing algorithm of your choice) if you don't want to wait for your
+  users to log in.
 
 === New features in 1.23 ===
 * ResourceLoader can utilize the Web Storage API to cache modules client-side.
@@ -128,6 +136,9 @@ production.
 * Special:UserLogin/signup now does AJAX checks for invalid and taken usernames,
   displaying the error live.
 * Added BaseTemplateAfterPortlet hook to allow injecting html after portlets in skins.
+* MediaWiki now supports multiple password types, including bcrypt and PBKDF2.
+  The default type can be changed with $wgPasswordDefault and the type
+  configurations can be changed with $wgPasswordConfig.
 * Support has been added for a JSON based localisation file format. The
   installer has been updated to use it.
 
