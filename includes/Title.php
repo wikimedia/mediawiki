@@ -3098,7 +3098,7 @@ class Title {
 			return false;
 		}
 
-		if ( false !== strpos( $dbkey, UTF8_REPLACEMENT ) ) {
+		if ( strpos( $dbkey, UTF8_REPLACEMENT ) !== false ) {
 			# Contained illegal UTF-8 sequences or forbidden Unicode chars.
 			return false;
 		}
