@@ -42,6 +42,9 @@ class SpecialSearch extends SpecialPage {
 	/// Search engine
 	protected $searchEngine;
 
+	/// Search engine type, if not default
+	protected $searchEngineType;
+
 	/// For links
 	protected $extraParams = array();
 
@@ -97,6 +100,11 @@ class SpecialSearch extends SpecialPage {
 		$search = str_replace( "\n", " ", $request->getText( 'search', $titleParam ) );
 
 		$this->load();
+
+		$backend = $request->getVal( 'backend' );
+		if ( $backend ) {
+			$this->searchEngineType = $backend;
+		}
 
 		if ( $request->getVal( 'fulltext' )
 			|| !is_null( $request->getVal( 'offset' ) )
@@ -1164,7 +1172,8 @@ class SpecialSearch extends SpecialPage {
 	 */
 	public function getSearchEngine() {
 		if ( $this->searchEngine === null ) {
-			$this->searchEngine = SearchEngine::create();
+			$this->searchEngine = $this->searchEngineType ?
+				SearchEngine::create( $this->searchEngineType ) : SearchEngine::create();
 		}
 		return $this->searchEngine;
 	}

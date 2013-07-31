@@ -453,12 +453,17 @@ class SearchEngine {
 	 * Load up the appropriate search engine class for the currently
 	 * active database backend, and return a configured instance.
 	 *
+	 * @param String $type Type of search backend, if not the default
 	 * @return SearchEngine
 	 */
-	public static function create() {
+	public static function create( $type = null ) {
 		global $wgSearchType;
 		$dbr = null;
-		if ( $wgSearchType ) {
+
+		$alternatives = self::getSearchTypeAlternatives();
+		if ( $type && $alternatives && in_array( $type, $alternatives ) ) {
+			$class = $type;
+		} elseif ( $wgSearchType ) {
 			$class = $wgSearchType;
 		} else {
 			$dbr = wfGetDB( DB_SLAVE );
@@ -467,6 +472,26 @@ class SearchEngine {
 		$search = new $class( $dbr );
 		$search->setLimitOffset( 0, 0 );
 		return $search;
+	}
+
+	/**
+	 * Return the alternative search engines we support.
+	 *
+	 * @return array|null If $wgSearchTypeAlternatives is unused, we only return
+	 * null, otherwise return $wgSearchTypeAlternatives + $wgSearchType (if sane)
+	 */
+	public static function getSearchTypeAlternatives() {
+		global $wgSearchType, $wgSearchTypeAlternatives;
+		$alternatives = null;
+		if ( $wgSearchTypeAlternatives ) {
+			$alternatives = $wgSearchTypeAlternatives;
+			// If defined push $wgSearchType to the front of $paramType
+			if ( $wgSearchType ) {
+				$alternatives = array_merge(
+					array( $wgSearchType ), $alternatives );
+			}
+		}
+		return $alternatives;
 	}
 
 	/**
