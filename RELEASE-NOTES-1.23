@@ -9,8 +9,13 @@ MediaWiki 1.23 is an alpha-quality branch and is not recommended for use in
 production.
 
 === Configuration changes in 1.23 ===
+* The UserCryptPassword and UserComparePassword hooks are no longer called. Any extensions
+  using them must be updated to use the Password Hashing API.
 
 === New features in 1.23 ===
+* MediaWiki now supports multiple password types, including bcrypt and PBKDF2. The default
+  type can be changed with $wgPasswordDefault and the type configurations can be changed with
+  $wgPasswordConfig.
 
 === Bug fixes in 1.23 ===
 
