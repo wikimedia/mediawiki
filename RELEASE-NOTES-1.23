@@ -43,11 +43,22 @@ production.
 * Removed deprecated $wgDisabledActions as it is hardly used anywhere.
 * $wgRateLimitLog has been deprecated and replaced by
   $wgDebugLogGroup['ratelimit'].
+<<<<<<< HEAD
 * $wgLocalInterwikis is an array containing multiple local interwiki prefixes
   (interwiki prefixes that point back to the current wiki). This effectively
   allows more than one value of $wgLocalInterwiki to be specified and
   understood by the parser. The value of $wgLocalInterwiki is automatically
   prepended to the start of this array.
+=======
+* The UserCryptPassword and UserComparePassword hooks are no longer called. Any extensions
+  using them must be updated to use the Password Hashing API.
+* The default password type for MediaWiki has been changed from MD5 to PBKDF2.
+  Password hashes will automatically be updated as users log in. If necessary, the
+  old MD5 hashing can be restored by changing $wgPasswordDefault to 'B'. In addition,
+  there is a maintenance script wrapOldPassword.php that can wrap all passwords in
+  PBKDF2 (or the hashing algorithm of your choice) if you don't want to wait for your
+  users to log in.
+>>>>>>> ignore this (was: Added password hashing API)
 
 === New features in 1.23 ===
 * ResourceLoader can utilize the Web Storage API to cache modules client-side.
@@ -126,6 +137,9 @@ production.
 * Special:UserLogin/signup now does AJAX checks for invalid and taken usernames,
   displaying the error live.
 * Added BaseTemplateAfterPortlet hook to allow injecting html after portlets in skins.
+* MediaWiki now supports multiple password types, including bcrypt and PBKDF2. The default
+  type can be changed with $wgPasswordDefault and the type configurations can be changed with
+  $wgPasswordConfig.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
