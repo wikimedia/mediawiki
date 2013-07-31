@@ -61,8 +61,17 @@ class mcTest extends Maintenance {
 			$this->error( "MediaWiki isn't configured for Memcached usage", 1 );
 		}
 
+		# find out the longest server string to nicely align output later on
+		$maxSrvLen = array_reduce( $servers, function ( $size, $server ) {
+			return max( $size, strlen( $server ) );
+		});
+
 		foreach ( $servers as $server ) {
-			$this->output( $server . " ", $server );
+			$this->output(
+				sprintf( "%-{$maxSrvLen}s ", $server ),
+				$server  # output channel
+			);
+
 			$mcc = new MemCachedClientforWiki( array(
 				'persistant' => true,
 				'timeout' => $wgMemCachedTimeout
