@@ -67,6 +67,14 @@ production.
   $wgDebugLogGroups['profileoutput'] to replace it.
 * $wgMaxBacklinksInvalidate was removed; use $wgJobBackoffThrottling instead
 * Deprecated ResourceLoaderGetStartupModules hook.
+* The UserCryptPassword and UserComparePassword hooks are no longer called. Any extensions
+  using them must be updated to use the Password Hashing API.
+* The default password type for MediaWiki has been changed from MD5 to PBKDF2.
+  Password hashes will automatically be updated as users log in. If necessary, the
+  old MD5 hashing can be restored by changing $wgPasswordDefault to 'B'. In addition,
+  there is a maintenance script wrapOldPassword.php that can wrap all passwords in
+  PBKDF2 (or the hashing algorithm of your choice) if you don't want to wait for your
+  users to log in.
 
 === New features in 1.23 ===
 * ResourceLoader can utilize the Web Storage API to cache modules client-side.
@@ -162,6 +170,9 @@ production.
   in StartProfiler.php instead of using this.
 * (bug 63444) Made it possible to change the indent string (default: 4 spaces)
   used by FormatJson::encode().
+* MediaWiki now supports multiple password types, including bcrypt and PBKDF2.
+  The default type can be changed with $wgPasswordDefault and the type
+  configurations can be changed with $wgPasswordConfig.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent

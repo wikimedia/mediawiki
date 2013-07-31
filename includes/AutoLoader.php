@@ -831,6 +831,18 @@ $wgAutoloadLocalClasses = array(
 	'Preprocessor_Hash' => 'includes/parser/Preprocessor_Hash.php',
 	'StripState' => 'includes/parser/StripState.php',
 
+	# includes/password
+	'BcryptPassword' => 'includes/password/BcryptPassword.php',
+	'InvalidPassword' => 'includes/password/InvalidPassword.php',
+	'LayeredParameterizedPassword' => 'includes/password/LayeredParameterizedPassword.php',
+	'MWSaltedPassword' => 'includes/password/MWSaltedPassword.php',
+	'MWOldPassword' => 'includes/password/MWOldPassword.php',
+	'ParameterizedPassword' => 'includes/password/ParameterizedPassword.php',
+	'Password' => 'includes/password/Password.php',
+	'PasswordFactory' => 'includes/password/PasswordFactory.php',
+	'Pbkdf2Password' => 'includes/password/Pbkdf2Password.php',
+	'EncryptedPassword' => 'includes/password/EncryptedPassword.php',
+
 	# includes/profiler
 	'Profiler' => 'includes/profiler/Profiler.php',
 	'ProfilerMwprof' => 'includes/profiler/ProfilerMwprof.php',
