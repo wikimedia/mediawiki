@@ -28,6 +28,8 @@ production.
   should be updated if LBFactory_Simple or LBFactory_Multi is configured.
 * $wgPasswordSenderName has been deprecated. To set a custom mailer name,
   the system message 'emailsender' should be modified (default: "{{SITENAME}}").
+* The UserCryptPassword and UserComparePassword hooks are no longer called. Any extensions
+  using them must be updated to use the Password Hashing API.
 
 === New features in 1.23 ===
 * ResourceLoader can utilize the Web Storage API to cache modules client-side.
@@ -65,6 +67,9 @@ production.
   its #test method when strings are used in the browser map: version '1.10' is
   now correctly considered larger than '1.2'. Using numbers in the version map
   is not affected.
+* MediaWiki now supports multiple password types, including bcrypt and PBKDF2. The default
+  type can be changed with $wgPasswordDefault and the type configurations can be changed with
+  $wgPasswordConfig.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
