@@ -3098,7 +3098,7 @@ class Title {
 			return false;
 		}
 
-		if ( false !== strpos( $dbkey, UTF8_REPLACEMENT ) ) {
+		if ( strpos( $dbkey, UTF8_REPLACEMENT ) !== false ) {
 			# Contained illegal UTF-8 sequences or forbidden Unicode chars.
 			return false;
 		}
@@ -3235,6 +3235,7 @@ class Title {
 
 		# Can't make a link to a namespace alone... "empty" local links can only be
 		# self-links with a fragment identifier.
+		# TODO: Why do we exclude NS_MAIN (bug 54044)
 		if ( $dbkey == '' && $this->mInterwiki == '' && $this->mNamespace != NS_MAIN ) {
 			return false;
 		}
