@@ -552,6 +552,8 @@ $wgOut = RequestContext::getMain()->getOutput(); # BackCompat
  */
 $wgParser = new StubObject( 'wgParser', $wgParserConf['class'], array( $wgParserConf ) );
 
+Password::initFromGlobals();
+
 if ( !is_object( $wgAuth ) ) {
 	$wgAuth = new StubObject( 'wgAuth', 'AuthPlugin' );
 	wfRunHooks( 'AuthPluginSetup', array( &$wgAuth ) );
