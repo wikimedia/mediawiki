@@ -9,6 +9,7 @@ $form_dirs = array(
 	'default' => $wgDonationInterfaceHtmlFormDir,
 	'gc' => $wgGlobalCollectGatewayHtmlFormDir,
 	'paypal' => $wgPaypalGatewayHtmlFormDir,
+	'amazon' => $wgAmazonGatewayHtmlFormDir,
 //	'pfp' => $wgPayflowProGatewayHtmlFormDir,
 );
 
@@ -21,11 +22,22 @@ if ( $wgDonationInterfaceEnableAdyen === true ) {
  * Amazon *
  **********/
 $forms_whitelist['amazon'] = array(
+	'file' => $form_dirs['amazon'] . '/amazon.html',
 	'gateway' => 'amazon',
 	'countries' => array( '+' => 'US',),
 	'currencies' => array( '+' => 'USD',),
 	'payment_methods' => array('amazon' => 'ALL'),
 	'redirect',
+);
+
+$forms_whitelist['amazon-recurring'] = array(
+	'file' => $form_dirs['amazon'] . '/amazon-recurring.html',
+	'gateway' => 'amazon',
+	'countries' => array( '+' => 'US',),
+	'currencies' => array( '+' => 'USD',),
+	'payment_methods' => array('amazon' => 'ALL'),
+	'redirect',
+	'recurring',
 );
 
 /****************************
