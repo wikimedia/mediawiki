@@ -459,6 +459,8 @@ if ( !$wgHTCPRouting && $wgHTCPMulticastAddress ) {
 
 $wgDeferredUpdateList = array(); // b/c
 
+Password::initFromGlobals();
+
 wfProfileOut( $fname . '-defaults2' );
 wfProfileIn( $fname . '-misc1' );
 

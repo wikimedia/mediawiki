@@ -3923,6 +3923,7 @@ $wgActiveUserDays = 30;
 
 /**
  * For compatibility with old installations set to false
+ * @deprecated since 1.22 will be removed in future
  */
 $wgPasswordSalt = true;
 
@@ -3931,6 +3932,65 @@ $wgPasswordSalt = true;
  * words are allowed.
  */
 $wgMinimalPasswordLength = 1;
+
+/**
+ * Default password type to use when hashing user passwords
+ *
+ * @since 1.23
+ */
+$wgPasswordDefault = 'bcrypt';
+
+/**
+ * Configuration for built-in password types. Maps the password type
+ * to an array of options. The 'class' option is the Password class to
+ * use. All other options are class-dependent.
+ *
+ * An advanced example:
+ * @code
+ * $wgPasswordConfig['bcrypt-peppered'] = array(
+ *     'class' => 'PepperedPassword',
+ *     'underlying' => 'bcrypt',
+ *     'secrets' => array(),
+ *     'cipher' => MCRYPT_RIJNDAEL_256,
+ *     'mode' => MCRYPT_MODE_CBC,
+ *     'cost' => 5,
+ * );
+ * @endcode
+ *
+ * @since 1.23
+ */
+$wgPasswordConfig = array(
+	'A' => array(
+		'class' => 'MWOldPassword',
+	),
+	'B' => array(
+		'class' => 'MWSaltedPassword',
+	),
+	'C' => array(
+		'class' => 'LayeredParameterizedPassword',
+		'types' => array(
+			'A',
+			'bcrypt',
+		),
+	),
+	'D' => array(
+		'class' => 'LayeredParameterizedPassword',
+		'types' => array(
+			'B',
+			'bcrypt',
+		),
+	),
+	'bcrypt' => array(
+		'class' => 'BcryptPassword',
+		'cost' => 5,
+	),
+	'pbkdf2' => array(
+		'class' => 'Pbkdf2Password',
+		'algo' => 'sha256',
+		'cost' => '10000',
+		'length' => '224',
+	),
+);
 
 /**
  * Whether to allow password resets ("enter some identifying data, and we'll send an email

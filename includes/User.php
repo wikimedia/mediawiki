@@ -30,7 +30,7 @@ define( 'USER_TOKEN_LENGTH', 32 );
  * Int Serialized record version.
  * @ingroup Constants
  */
-define( 'MW_USER_VERSION', 8 );
+define( 'MW_USER_VERSION', 9 );
 
 /**
  * String Some punctuation to prevent editing from broken text-mangling proxies.
@@ -873,7 +873,8 @@ class User {
 		$this->mId = 0;
 		$this->mName = $name;
 		$this->mRealName = '';
-		$this->mPassword = $this->mNewpassword = '';
+		$this->mPassword = Password::newFromCiphertext( null );
+		$this->mNewpassword = Password::newFromCiphertext( null );
 		$this->mNewpassTime = null;
 		$this->mEmail = '';
 		$this->mOptionOverrides = null;
@@ -1082,8 +1083,24 @@ class User {
 		}
 
 		if ( isset( $row->user_password ) ) {
-			$this->mPassword = $row->user_password;
-			$this->mNewpassword = $row->user_newpassword;
+			if ( preg_match( '/^[0-9a-f]{32}$/', $row->user_password ) ) {
+				$row->user_password = ":A:{$this->mId}:{$row->user_password}";
+			}
+
+			try {
+				$this->mPassword = Password::newFromCiphertext( $row->user_password );
+			} catch ( PasswordError $e ) {
+				wfDebug( 'Invalid password hash found in database.' );
+				$this->mPassword = Password::newFromCiphertext( null );
+			}
+
+			try {
+				$this->mNewpassword = Password::newFromCiphertext( $row->user_newpassword );
+			} catch ( PasswordError $e ) {
+				wfDebug( 'Invalid password hash found in database.' );
+				$this->mNewpassword = Password::newFromCiphertext( null );
+			}
+
 			$this->mNewpassTime = wfTimestampOrNull( TS_MW, $row->user_newpass_time );
 			$this->mEmail = $row->user_email;
 			if ( isset( $row->user_options ) ) {
@@ -2013,7 +2030,7 @@ class User {
 	 *
 	 * Called implicitly from invalidateCache() and saveSettings().
 	 */
-	private function clearSharedCache() {
+	public function clearSharedCache() {
 		$this->load();
 		if ( $this->mId ) {
 			global $wgMemc;
@@ -2132,13 +2149,8 @@ class User {
 		$this->load();
 		$this->setToken();
 
-		if ( $str === null ) {
-			// Save an invalid hash...
-			$this->mPassword = '';
-		} else {
-			$this->mPassword = self::crypt( $str );
-		}
-		$this->mNewpassword = '';
+		$this->mPassword = Password::newFromPlaintext( $str );
+		$this->mNewpassword = Password::newFromCiphertext( null );
 		$this->mNewpassTime = null;
 	}
 
@@ -2184,7 +2196,7 @@ class User {
 			$this->mNewpassword = '';
 			$this->mNewpassTime = null;
 		} else {
-			$this->mNewpassword = self::crypt( $str );
+			$this->mNewpassword = Password::newFromPlaintext( $str );
 			if ( $throttle ) {
 				$this->mNewpassTime = wfTimestampNow();
 			}
@@ -3295,15 +3307,15 @@ class User {
 
 		$this->mTouched = self::newTouchedTimestamp();
 		if ( !$wgAuth->allowSetLocalPassword() ) {
-			$this->mPassword = '';
+			$this->mPassword = Password::newFromCiphertext( null );
 		}
 
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->update( 'user',
 			array( /* SET */
 				'user_name' => $this->mName,
-				'user_password' => $this->mPassword,
-				'user_newpassword' => $this->mNewpassword,
+				'user_password' => $this->mPassword->toString(),
+				'user_newpassword' => $this->mNewpassword->toString(),
 				'user_newpass_time' => $dbw->timestampOrNull( $this->mNewpassTime ),
 				'user_real_name' => $this->mRealName,
 				'user_email' => $this->mEmail,
@@ -3372,8 +3384,8 @@ class User {
 		$fields = array(
 			'user_id' => $seqVal,
 			'user_name' => $name,
-			'user_password' => $user->mPassword,
-			'user_newpassword' => $user->mNewpassword,
+			'user_password' => $user->mPassword->toString(),
+			'user_newpassword' => $user->mNewpassword->toString(),
 			'user_newpass_time' => $dbw->timestampOrNull( $user->mNewpassTime ),
 			'user_email' => $user->mEmail,
 			'user_email_authenticated' => $dbw->timestampOrNull( $user->mEmailAuthenticated ),
@@ -3436,8 +3448,8 @@ class User {
 			array(
 				'user_id' => $seqVal,
 				'user_name' => $this->mName,
-				'user_password' => $this->mPassword,
-				'user_newpassword' => $this->mNewpassword,
+				'user_password' => $this->mPassword->toString(),
+				'user_newpassword' => $this->mNewpassword->toString(),
 				'user_newpass_time' => $dbw->timestampOrNull( $this->mNewpassTime ),
 				'user_email' => $this->mEmail,
 				'user_email_authenticated' => $dbw->timestampOrNull( $this->mEmailAuthenticated ),
@@ -3604,19 +3616,26 @@ class User {
 			// Auth plugin doesn't allow local authentication for this user name
 			return false;
 		}
-		if ( self::comparePasswords( $this->mPassword, $password, $this->mId ) ) {
-			return true;
-		} elseif ( $wgLegacyEncoding ) {
-			// Some wikis were converted from ISO 8859-1 to UTF-8, the passwords can't be converted
-			// Check for this with iconv
-			$cp1252Password = iconv( 'UTF-8', 'WINDOWS-1252//TRANSLIT', $password );
-			if ( $cp1252Password != $password
-				&& self::comparePasswords( $this->mPassword, $cp1252Password, $this->mId )
-			) {
-				return true;
+
+		if ( !$this->mPassword->equals( $password ) ) {
+			if ( $wgLegacyEncoding ) {
+				// Some wikis were converted from ISO 8859-1 to UTF-8, the passwords can't be converted
+				// Check for this with iconv
+				$cp1252Password = iconv( 'UTF-8', 'WINDOWS-1252//TRANSLIT', $password );
+				if ( $cp1252Password === $password || !$this->mPassword->equals( $cp1252Password ) ) {
+					return false;
+				}
+			} else {
+				return false;
 			}
 		}
-		return false;
+
+		if ( $this->mPassword->needsUpdate() ) {
+			$this->mPassword = Password::newFromPlaintext( $password );
+			$this->saveSettings();
+		}
+
+		return true;
 	}
 
 	/**
@@ -3631,7 +3650,7 @@ class User {
 		global $wgNewPasswordExpiry;
 
 		$this->load();
-		if ( self::comparePasswords( $this->mNewpassword, $plaintext, $this->getId() ) ) {
+		if ( $this->mNewpassword->equals( $plaintext ) ) {
 			if ( is_null( $this->mNewpassTime ) ) {
 				return true;
 			}
@@ -4406,45 +4425,18 @@ class User {
 	}
 
 	/**
-	 * Make an old-style password hash
-	 *
-	 * @param string $password Plain-text password
-	 * @param string $userId User ID
-	 * @return string Password hash
-	 */
-	public static function oldCrypt( $password, $userId ) {
-		global $wgPasswordSalt;
-		if ( $wgPasswordSalt ) {
-			return md5( $userId . '-' . md5( $password ) );
-		} else {
-			return md5( $password );
-		}
-	}
-
-	/**
 	 * Make a new-style password hash
 	 *
 	 * @param string $password Plain-text password
 	 * @param bool|string $salt Optional salt, may be random or the user ID.
 	 *  If unspecified or false, will generate one automatically
 	 * @return string Password hash
+	 * @deprecated since 1.23, use Password class
 	 */
 	public static function crypt( $password, $salt = false ) {
-		global $wgPasswordSalt;
-
-		$hash = '';
-		if ( !wfRunHooks( 'UserCryptPassword', array( &$password, &$salt, &$wgPasswordSalt, &$hash ) ) ) {
-			return $hash;
-		}
-
-		if ( $wgPasswordSalt ) {
-			if ( $salt === false ) {
-				$salt = MWCryptRand::generateHex( 8 );
-			}
-			return ':B:' . $salt . ':' . md5( $salt . '-' . md5( $password ) );
-		} else {
-			return ':A:' . md5( $password );
-		}
+		wfDeprecated( 'Use the Password class instead.', '1.23' );
+		$hash = Password::newFromPlaintext( $password );
+		return $hash->toString();
 	}
 
 	/**
@@ -4456,26 +4448,22 @@ class User {
 	 * @param string|bool $userId User ID for old-style password salt
 	 *
 	 * @return boolean
+	 * @deprecated since 1.23, use Password class
 	 */
 	public static function comparePasswords( $hash, $password, $userId = false ) {
-		$type = substr( $hash, 0, 3 );
+		wfDeprecated( 'Use the Password class instead.', '1.22' );
 
-		$result = false;
-		if ( !wfRunHooks( 'UserComparePasswords', array( &$hash, &$password, &$userId, &$result ) ) ) {
-			return $result;
+		if ( preg_match( '/^[0-9a-f]{32}$/', $hash ) ) {
+			global $wgPasswordSalt;
+			if ( $wgPasswordSalt ) {
+				$password = ":B:{$userId}:{$hash}";
+			} else {
+				$password = ":A:{$hash}";
+			}
 		}
 
-		if ( $type == ':A:' ) {
-			// Unsalted
-			return md5( $password ) === substr( $hash, 3 );
-		} elseif ( $type == ':B:' ) {
-			// Salted
-			list( $salt, $realHash ) = explode( ':', substr( $hash, 3 ), 2 );
-			return md5( $salt . '-' . md5( $password ) ) === $realHash;
-		} else {
-			// Old-style
-			return self::oldCrypt( $password, $userId ) === $hash;
-		}
+		$hash = Password::newFromCiphertext( $hash );
+		return $hash->equals( $password );
 	}
 
 	/**
