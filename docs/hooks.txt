@@ -2695,7 +2695,7 @@ $user: User (object) that will clear the message
 $oldid: ID of the talk page revision being viewed (0 means the most recent one)
 
 'UserComparePasswords': Called when checking passwords, return false to
-override the default password checks.
+override the default password checks. REMOVED since 1.23, use Password class instead.
 &$hash: String of the password hash (from the database)
 &$password: String of the plaintext password the user entered
 &$userId: Integer of the user's ID or Boolean false if the user ID was not
@@ -2707,7 +2707,7 @@ override the default password checks.
 $template: SimpleTemplate instance for the form
 
 'UserCryptPassword': Called when hashing a password, return false to implement
-your own hashing method.
+your own hashing method. REMOVED since 1.23, use Password class instead.
 &$password: String of the plaintext password to encrypt
 &$salt: String of the password salt or Boolean false if no salt is provided
 &$wgPasswordSalt: Boolean of whether the salt is used in the default hashing
