@@ -34,6 +34,8 @@ production.
 * The 'max threads' setting was removed from $wgDBservers.
 * Support for AdminSettings.php has been completely removed. All configuration
   belongs in LocalSettings.php.
+* The UserCryptPassword and UserComparePassword hooks are no longer called. Any extensions
+  using them must be updated to use the Password Hashing API.
 
 === New features in 1.23 ===
 * ResourceLoader can utilize the Web Storage API to cache modules client-side.
@@ -88,6 +90,9 @@ production.
   links.
 * Added MessageCache::get hook as a new way to customize messages across
   multiple sites.
+* MediaWiki now supports multiple password types, including bcrypt and PBKDF2. The default
+  type can be changed with $wgPasswordDefault and the type configurations can be changed with
+  $wgPasswordConfig.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
