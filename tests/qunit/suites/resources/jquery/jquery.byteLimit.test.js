@@ -125,13 +125,9 @@
 		description: 'Pass the limit and a callback as input filter',
 		$input: $( '<input type="text"/>' )
 			.byteLimit( 6, function ( val ) {
-				// Invalid title
-				if ( val === '' ) {
-					return '';
-				}
-
+				var title = mw.Title.newFromText( String( val ) );
 				// Return without namespace prefix
-				return new mw.Title( String( val ) ).getMain();
+				return title ? title.getMain() : '';
 			} ),
 		sample: 'User:Sample',
 		expected: 'User:Sample'
@@ -142,13 +138,9 @@
 		$input: $( '<input type="text"/>' )
 			.attr( 'maxlength', '6' )
 			.byteLimit( function ( val ) {
-				// Invalid title
-				if ( val === '' ) {
-					return '';
-				}
-
+				var title = mw.Title.newFromText( String( val ) );
 				// Return without namespace prefix
-				return new mw.Title( String( val ) ).getMain();
+				return title ? title.getMain() : '';
 			} ),
 		sample: 'User:Sample',
 		expected: 'User:Sample'
@@ -158,13 +150,9 @@
 		description: 'Pass the limit and a callback as input filter',
 		$input: $( '<input type="text"/>' )
 			.byteLimit( 6, function ( val ) {
-				// Invalid title
-				if ( val === '' ) {
-					return '';
-				}
-
+				var title = mw.Title.newFromText( String( val ) );
 				// Return without namespace prefix
-				return new mw.Title( String( val ) ).getMain();
+				return title ? title.getMain() : '';
 			} ),
 		sample: 'User:Example',
 		// The callback alters the value to be used to calculeate
