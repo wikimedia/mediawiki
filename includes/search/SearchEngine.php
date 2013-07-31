@@ -455,10 +455,12 @@ class SearchEngine {
 	 *
 	 * @return SearchEngine
 	 */
-	public static function create() {
-		global $wgSearchType;
+	public static function create( $type = null ) {
+		global $wgSearchType, $wgSearchTypeAlternatives;
 		$dbr = null;
-		if ( $wgSearchType ) {
+		if ( $type && $wgSearchTypeAlternatives && in_array( $type, $wgSearchTypeAlternatives ) ) {
+			$class = $type;
+		} elseif ( $wgSearchType ) {
 			$class = $wgSearchType;
 		} else {
 			$dbr = wfGetDB( DB_SLAVE );
