@@ -57,9 +57,10 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		$what = $params['what'];
 		$searchInfo = array_flip( $params['info'] );
 		$prop = array_flip( $params['prop'] );
+		$backend = $params['backend'];
 
 		// Create search engine instance and set options
-		$search = SearchEngine::create();
+		$search = $backend ? SearchEngine::create( $backend ) : SearchEngine::create();
 		$search->setLimitOffset( $limit + 1, $params['offset'] );
 		$search->setNamespaces( $params['namespace'] );
 		$search->showRedirects = $params['redirects'];
@@ -201,7 +202,9 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 	}
 
 	public function getAllowedParams() {
-		return array(
+		global $wgSearchType, $wgSearchTypeAlternatives;
+
+		$params = array(
 			'search' => array(
 				ApiBase::PARAM_TYPE => 'string',
 				ApiBase::PARAM_REQUIRED => true
@@ -254,10 +257,26 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_SML2
 			)
 		);
+
+		if( $wgSearchTypeAlternatives ) {
+			$paramType = $wgSearchTypeAlternatives;
+			// If defined push $wgSearchType to the front of $paramType
+			if ( $wgSearchType ) {
+				$paramType = array_merge( array( $wgSearchType ), $paramType );
+			}
+			$params['backend'] = array(
+				ApiBase::PARAM_DFLT => $wgSearchType,
+				ApiBase::PARAM_TYPE => $paramType,
+			);
+		}
+
+		return $params;
 	}
 
 	public function getParamDescription() {
-		return array(
+		global $wgSearchTypeAlternatives;
+
+		$descriptions = array(
 			'search' => 'Search for all page titles (or content) that has this value',
 			'namespace' => 'The namespace(s) to enumerate',
 			'what' => 'Search inside the text or titles',
@@ -280,6 +299,12 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 			'offset' => 'Use this value to continue paging (return by query)',
 			'limit' => 'How many total pages to return'
 		);
+
+		if( $wgSearchTypeAlternatives ) {
+			$descriptions['backend'] = 'Which search backend to use, if not the default';
+		}
+
+		return $descriptions;
 	}
 
 	public function getResultProperties() {
