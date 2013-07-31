@@ -32,6 +32,66 @@ class TitleTest extends MediaWikiTestCase {
 		}
 	}
 
+	/**
+	 * See also mediawiki.Title.test.js
+	 */
+	function testSecureAndSplit() {
+		// Valid
+		foreach ( array(
+			'Sandbox',
+			'A "B"',
+			'A \'B\'',
+			'.com',
+			'~',
+			'"',
+			'\'',
+			'Talk:Sandbox',
+			'File:Example.svg',
+			'File_talk:Example.svg',
+			'Foo/.../Sandbox',
+			'Sandbox/...',
+			'A~~',
+			// Length is 256 total, but only title part matters
+			'Category:' . str_repeat( 'x', 248 ),
+			str_repeat( 'x', 252 )
+		) as $text ) {
+			$this->assertInstanceOf( 'Title', Title::newFromText( $text ), "Valid: $text" );
+		}
+
+		// Invalid
+		foreach ( array(
+			'',
+			'__  __',
+			'  __  ',
+			// Bad characters forbidden regardless of wgLegalTitleChars
+			'A [ B',
+			'A ] B',
+			'A { B',
+			'A } B',
+			'A < B',
+			'A > B',
+			'A | B',
+			// Subject of NS_TALK does not roundtrip to NS_MAIN
+			'Talk:File:Example.svg',
+			// Directory navigation
+			'.',
+			'..',
+			'./Sandbox',
+			'../Sandbox',
+			'Foo/./Sandbox',
+			'Foo/../Sandbox',
+			'Sandbox/.',
+			'Sandbox/..',
+			// Tilde
+			'A ~~~ Name',
+			'A ~~~~ Signature',
+			'A ~~~~~ Timestamp',
+			str_repeat( 'x', 256 )
+		) as $text ) {
+			$this->assertNull( Title::newFromText( $text ), "Invalid: $text" );
+		}
+	}
+
 	public static function provideConvertByteClassToUnicodeClass() {
 		return array(
 			array(
