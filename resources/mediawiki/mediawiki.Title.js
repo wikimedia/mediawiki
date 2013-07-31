@@ -1,52 +1,224 @@
 /*!
  * @author Neil Kandalgaonkar, 2010
- * @author Timo Tijhof, 2011
+ * @author Timo Tijhof, 2011-2013
  * @since 1.18
- *
- * Relies on: mw.config (wgFormattedNamespaces, wgNamespaceIds, wgCaseSensitiveNamespaces), mw.util.wikiGetlink
  */
 ( function ( mw, $ ) {
-
-	/* Local space */
 
 	/**
 	 * @class mw.Title
 	 *
 	 * @constructor
 	 * @param {string} title Title of the page. If no second argument given,
-	 * this will be searched for a namespace.
+	 *  this will be searched for a namespace.
 	 * @param {number} [namespace] Namespace id. If given, title will be taken as-is.
 	 */
 	function Title( title, namespace ) {
-		this.ns = 0; // integer namespace id
-		this.name = null; // name in canonical 'database' form
-		this.ext = null; // extension
-
-		if ( arguments.length === 2 ) {
-			setNameAndExtension( this, title );
-			this.ns = fixNsId( namespace );
-		} else if ( arguments.length === 1 ) {
-			setAll( this, title );
+		var parsed = parse( title, namespace );
+		if ( !parsed ) {
+			throw new Error( 'Unable to parse title' );
 		}
+
+		this.namespace = parsed.namespace;
+		this.title = parsed.title;
+		this.ext = parsed.ext;
+		this.fragment = parsed.fragment;
+
 		return this;
 	}
 
-var
-	/* Public methods (defined later) */
-	fn,
+	/* Private members */
+
+	var
 
 	/**
-	 * Strip some illegal chars: control chars, colon, less than, greater than,
-	 * brackets, braces, pipe, whitespace and normal spaces. This still leaves some insanity
-	 * intact, like unicode bidi chars, but it's a good start..
-	 * @ignore
-	 * @param {string} s
-	 * @return {string}
+	 * @private
+	 * @static
+	 * @property
 	 */
-	clean = function ( s ) {
-		if ( s !== undefined ) {
-			return s.replace( /[\x00-\x1f\x23\x3c\x3e\x5b\x5d\x7b\x7c\x7d\x7f\s]+/g, '_' );
+	NS_MAIN = 0,
+
+	/**
+	 * @private
+	 * @static
+	 * @property
+	 */
+	NS_TALK = 1,
+
+	/**
+	 * Get namespace id from namespace name by any known namespace/id pair (localized, canonical or alias).
+	 * Example: On a German wiki this would return 6 for any of 'File', 'Datei', 'Image' or even 'Bild'.
+	 *
+	 * @private
+	 * @param ns {string} Namespace name (case insensitive, leading/trailing space ignored).
+	 * @return {number|boolean} Namespace id or boolean false.
+	 */
+	getNsIdByName = function ( ns ) {
+		var id;
+		// Don't cast non-strings to strings, because null or undefined should not result in
+		// returning the id of a potential namespace called "Null:" (e.g. on null.example.org/wiki)
+		// Also, toLowerCase throws exception on null/undefined, because it is a String method.
+		if ( typeof ns !== 'string' ) {
+			return false;
 		}
+		ns = ns.toLowerCase();
+		id = mw.config.get( 'wgNamespaceIds' )[ns];
+		if ( id === undefined ) {
+			return false;
+		}
+		return id;
+	},
+
+	rUnderscoreTrim = /^_+|_+$/g,
+
+	rUnderscoreTrimRight = /_+$/,
+
+	rSplit = /^(.+?)_*:_*(.*)$/,
+
+	// See Title.php#getTitleInvalidRegex
+	rInvalid = ( function () {
+		var legalClass = mw.config.get( 'wgLegalTitleChars' );
+
+		return new RegExp(
+			'[^' + legalClass + ']' +
+			// URL percent encoding sequences interfere with the ability
+			// to round-trip titles -- you can't link to them consistently.
+			'|%[0-9A-Fa-f]{2}' +
+			// XML/HTML character references produce similar issues.
+			'|&[A-Za-z0-9\x80-\xff]+;' +
+			'|&#[0-9]+;' +
+			'|&#x[0-9A-Fa-f]+;'
+		);
+	}() ),
+
+	/**
+	 * Internal helper for #constructor and #newFromtext.
+	 *
+	 * Based on Title.php#secureAndSplit
+	 *
+	 * @private
+	 * @param {string} title
+	 * @param {number} [defaultNamespace=NS_MAIN] If given, will used as default namespace for the given title.
+	 * @return {Object|false}
+	 */
+	parse = function ( title, defaultNamespace ) {
+		var namespace, m, id, i, fragment, ext;
+
+		namespace = defaultNamespace === undefined ? NS_MAIN : defaultNamespace;
+
+		title = title
+			// Normalise whitespace to underscores and remove duplicates
+			.replace( /[ _\s]+/g, '_' )
+			// Trim underscores
+			.replace( rUnderscoreTrim, '' );
+
+		if ( title === '' ) {
+			return false;
+		}
+
+		// Process initial colon
+		if ( title.charAt( 0 ) === ':' ) {
+			// Initial colon means main namespace instead of specified default
+			namespace = NS_MAIN;
+			title = title
+				// Strip colon
+				.substr( 1 )
+				// Trim underscores
+				.replace( rUnderscoreTrim, '' );
+		}
+
+		// Process namespace prefix (if any)
+		m = title.match( rSplit );
+		if ( m ) {
+			id = getNsIdByName( m[1] );
+			if ( id !== false ) {
+				// Ordinary namespace
+				namespace = id;
+				title = m[2];
+
+				// For Talk:X pages, make sure X has no "namespace" prefix
+				if ( namespace === NS_TALK && title.match( rSplit ) ) {
+					// Disallow titles like Talk:File:x (subject should roundtrip: talk:file:x -> file:x -> file_talk:x)
+					return false;
+				}
+
+				// TODO: Disallow titles like Talk:some-interwiki:x
+			}
+		}
+
+		// Process fragment
+		i = title.indexOf( '#' );
+		if ( i === -1 ) {
+			fragment = null;
+		} else {
+			fragment = title
+				// Get segment starting after the hash
+				.substr( i + 1 )
+				// Convert to text
+				// NB: Must not be trimmed ("Example#_foo" is not the same as "Example#foo")
+				.replace( /_/g, ' ' );
+
+			title = title
+				// Strip hash
+				.substr( 0, i )
+				// Trim underscores, again (strips "_" from "bar" in "Foo_bar_#quux")
+				.replace( rUnderscoreTrimRight, '' );
+		}
+
+
+		// Reject illegal characters
+		if ( title.match( rInvalid ) ) {
+			return false;
+		}
+
+		// Disallow titles that browsers or servers might resolve as directory navigation
+		if (
+			title.indexOf( '.' ) !== -1 && (
+				title === '.' || title === '..' ||
+				title.indexOf( './' ) === 0 ||
+				title.indexOf( '../' ) === 0 ||
+				title.indexOf( '/./' ) !== -1 ||
+				title.indexOf( '/../' ) !== -1 ||
+				title.substr( -2 ) === '/.' ||
+				title.substr( -3 ) === '/..'
+			)
+		) {
+			return false;
+		}
+
+		// Disallow magic tilde sequence
+		if ( title.indexOf( '~~~' ) !== -1 ) {
+			return false;
+		}
+
+/*
+		TODO:
+
+		- Check title against size limit of 255 bytes (size of underlying database field)
+		  Except for special pages, e.g. [[Special:Block/Long name]].
+*/
+		// Any remaining initial :s are illegal.
+		if ( title.charAt( 0 ) === ':' ) {
+			return false;
+		}
+
+		// For backwards-compatibility with old mw.Title, we separate the extension from the
+		// rest of the title.
+		i = title.lastIndexOf( '.' );
+		if ( i === -1 || title.length <= i + 1 ) {
+			// Extensions are the non-empty segment after the last dot
+			ext = null;
+		} else {
+			ext = title.substr( i + 1 );
+			title = title.substr( 0, i );
+		}
+
+		return {
+			namespace: namespace,
+			title: title,
+			ext: ext,
+			fragment: fragment
+		};
 	},
 
 	/**
@@ -61,123 +233,32 @@ var
 		} else {
 			return '';
 		}
-	},
-
-	/**
-	 * Sanitize name.
-	 * @ignore
-	 */
-	fixName = function ( s ) {
-		return clean( $.trim( s ) );
-	},
-
-	/**
-	 * Sanitize extension.
-	 * @ignore
-	 */
-	fixExt = function ( s ) {
-		return clean( s );
-	},
-
-	/**
-	 * Sanitize namespace id.
-	 * @ignore
-	 * @param id {Number} Namespace id.
-	 * @return {Number|Boolean} The id as-is or boolean false if invalid.
-	 */
-	fixNsId = function ( id ) {
-		// wgFormattedNamespaces is an object of *string* key-vals (ie. arr["0"] not arr[0] )
-		var ns = mw.config.get( 'wgFormattedNamespaces' )[id.toString()];
-
-		// Check only undefined (may be false-y, such as '' (main namespace) ).
-		if ( ns === undefined ) {
-			return false;
-		} else {
-			return Number( id );
-		}
-	},
-
-	/**
-	 * Get namespace id from namespace name by any known namespace/id pair (localized, canonical or alias).
-	 * Example: On a German wiki this would return 6 for any of 'File', 'Datei', 'Image' or even 'Bild'.
-	 * @ignore
-	 * @param ns {String} Namespace name (case insensitive, leading/trailing space ignored).
-	 * @return {Number|Boolean} Namespace id or boolean false if unrecognized.
-	 */
-	getNsIdByName = function ( ns ) {
-		// Don't cast non-strings to strings, because null or undefined
-		// should not result in returning the id of a potential namespace
-		// called "Null:" (e.g. on nullwiki.example.org)
-		// Also, toLowerCase throws exception on null/undefined, because
-		// it is a String.prototype method.
-		if ( typeof ns !== 'string' ) {
-			return false;
-		}
-		ns = clean( $.trim( ns.toLowerCase() ) ); // Normalize
-		var id = mw.config.get( 'wgNamespaceIds' )[ns];
-		if ( id === undefined ) {
-			mw.log( 'mw.Title: Unrecognized namespace: ' + ns );
-			return false;
-		}
-		return fixNsId( id );
-	},
-
-	/**
-	 * Helper to extract namespace, name and extension from a string.
-	 *
-	 * @ignore
-	 * @param {mw.Title} title
-	 * @param {string} raw
-	 * @return {mw.Title}
-	 */
-	setAll = function ( title, s ) {
-		// In normal browsers the match-array contains null/undefined if there's no match,
-		// IE returns an empty string.
-		var matches = s.match( /^(?:([^:]+):)?(.*?)(?:\.(\w+))?$/ ),
-			nsMatch = getNsIdByName( matches[1] );
-
-		// Namespace must be valid, and title must be a non-empty string.
-		if ( nsMatch && typeof matches[2] === 'string' && matches[2] !== '' ) {
-			title.ns = nsMatch;
-			title.name = fixName( matches[2] );
-			if ( typeof matches[3] === 'string' && matches[3] !== '' ) {
-				title.ext = fixExt( matches[3] );
-			}
-		} else {
-			// Consistency with MediaWiki PHP: Unknown namespace -> fallback to main namespace.
-			title.ns = 0;
-			setNameAndExtension( title, s );
-		}
-		return title;
-	},
-
-	/**
-	 * Helper to extract name and extension from a string.
-	 *
-	 * @ignore
-	 * @param {mw.Title} title
-	 * @param {string} raw
-	 * @return {mw.Title}
-	 */
-	setNameAndExtension = function ( title, raw ) {
-		// In normal browsers the match-array contains null/undefined if there's no match,
-		// IE returns an empty string.
-		var matches = raw.match( /^(?:)?(.*?)(?:\.(\w+))?$/ );
-
-		// Title must be a non-empty string.
-		if ( typeof matches[1] === 'string' && matches[1] !== '' ) {
-			title.name = fixName( matches[1] );
-			if ( typeof matches[2] === 'string' && matches[2] !== '' ) {
-				title.ext = fixExt( matches[2] );
-			}
-		} else {
-			throw new Error( 'mw.Title: Could not parse title "' + raw + '"' );
-		}
-		return title;
 	};
 
 
-	/* Static space */
+	/* Static members */
+
+	/**
+	 * @static
+	 * @method
+	 * @param {string} title
+	 * @param {number} [namespace]
+	 * @return {mw.Title|null}
+	 */
+	Title.newFromText = function ( title, namespace ) {
+		var t, parsed = parse( title, namespace );
+		if ( !parsed ) {
+			return null;
+		}
+
+		t = Object.create( Title.prototype );
+		t.namespace = parsed.namespace;
+		t.title = parsed.title;
+		t.ext = parsed.ext;
+		t.fragment = parsed.fragment;
+
+		return t;
+	};
 
 	/**
 	 * Whether this title exists on the wiki.
@@ -200,17 +281,15 @@ var
 		return null;
 	};
 
-	/**
-	 * @static
-	 * @property
-	 */
 	Title.exist = {
 		/**
+		 * Boolean true value indicates page does exist.
+		 *
 		 * @static
 		 * @property {Object} exist.pages Keyed by PrefixedDb title.
-		 * Boolean true value indicates page does exist.
 		 */
 		pages: {},
+
 		/**
 		 * Example to declare existing titles:
 		 *     Title.exist.set(['User:John_Doe', ...]);
@@ -234,42 +313,60 @@ var
 		}
 	};
 
-	/* Public methods */
+	/* Public members */
 
-	fn = {
+	Title.prototype = {
 		constructor: Title,
 
 		/**
-		 * Get the namespace number.
+		 * Get the namespace number
+		 *
+		 * Example: 6 for "File:Example_image.svg".
+		 *
 		 * @return {number}
 		 */
-		getNamespaceId: function (){
-			return this.ns;
+		getNamespaceId: function () {
+			return this.namespace;
 		},
 
 		/**
-		 * Get the namespace prefix (in the content-language).
+		 * Get the namespace prefix (in the content language)
+		 *
+		 * Example: "File:" for "File:Example_image.svg".
 		 * In NS_MAIN this is '', otherwise namespace name plus ':'
+		 *
 		 * @return {string}
 		 */
-		getNamespacePrefix: function (){
-			return mw.config.get( 'wgFormattedNamespaces' )[this.ns].replace( / /g, '_' ) + (this.ns === 0 ? '' : ':');
+		getNamespacePrefix: function () {
+			return this.namespace === NS_MAIN ?
+				'' :
+				( mw.config.get( 'wgFormattedNamespaces' )[ this.namespace ].replace( / /g, '_' ) + ':' );
 		},
 
 		/**
-		 * The name, like "Foo_bar"
+		 * Get the page name without extension or namespace prefix
+		 *
+		 * Example: "Example_image" for "File:Example_image.svg".
+		 *
+		 * For the page title (full page name without namespace prefix), see #getMain.
+		 *
 		 * @return {string}
 		 */
 		getName: function () {
-			if ( $.inArray( this.ns, mw.config.get( 'wgCaseSensitiveNamespaces' ) ) !== -1 ) {
-				return this.name;
+			if ( $.inArray( this.namespace, mw.config.get( 'wgCaseSensitiveNamespaces' ) ) !== -1 ) {
+				return this.title;
 			} else {
-				return $.ucFirst( this.name );
+				return $.ucFirst( this.title );
 			}
 		},
 
 		/**
-		 * The name, like "Foo bar"
+		 * Get the page name (transformed by #text)
+		 *
+		 * Example: "Example image" for "File:Example_image.svg".
+		 *
+		 * For the page title (full page name without namespace prefix), see #getMainText.
+		 *
 		 * @return {string}
 		 */
 		getNameText: function () {
@@ -277,48 +374,19 @@ var
 		},
 
 		/**
-		 * Get full name in prefixed DB form, like File:Foo_bar.jpg,
-		 * most useful for API calls, anything that must identify the "title".
-		 * @return {string}
-		 */
-		getPrefixedDb: function () {
-			return this.getNamespacePrefix() + this.getMain();
-		},
-
-		/**
-		 * Get full name in text form, like "File:Foo bar.jpg".
-		 * @return {string}
-		 */
-		getPrefixedText: function () {
-			return text( this.getPrefixedDb() );
-		},
-
-		/**
-		 * The main title (without namespace), like "Foo_bar.jpg"
-		 * @return {string}
-		 */
-		getMain: function () {
-			return this.getName() + this.getDotExtension();
-		},
-
-		/**
-		 * The "text" form, like "Foo bar.jpg"
-		 * @return {string}
-		 */
-		getMainText: function () {
-			return text( this.getMain() );
-		},
-
-		/**
-		 * Get the extension (returns null if there was none)
-		 * @return {string|null}
+		 * Get the extension of the page name (if any)
+		 *
+		 * @return {string|null} Name extension or null if there is none
 		 */
 		getExtension: function () {
 			return this.ext;
 		},
 
 		/**
-		 * Convenience method: return string like ".jpg", or "" if no extension
+		 * Shortcut for appendable string to form the main page name.
+		 *
+		 * Returns a string like ".json", or "" if no extension.
+		 *
 		 * @return {string}
 		 */
 		getDotExtension: function () {
@@ -326,7 +394,65 @@ var
 		},
 
 		/**
-		 * Return the URL to this title
+		 * Get the main page name (transformed by #text)
+		 *
+		 * Example: "Example_image.svg" for "File:Example_image.svg".
+		 *
+		 * @return {string}
+		 */
+		getMain: function () {
+			return this.getName() + this.getDotExtension();
+		},
+
+		/**
+		 * Get the main page name (transformed by #text)
+		 *
+		 * Example: "Example image.svg" for "File:Example_image.svg".
+		 *
+		 * @return {string}
+		 */
+		getMainText: function () {
+			return text( this.getMain() );
+		},
+
+		/**
+		 * Get the full page name
+		 *
+		 * Eaxample: "File:Example_image.svg".
+		 * Most useful for API calls, anything that must identify the "title".
+		 *
+		 * @return {string}
+		 */
+		getPrefixedDb: function () {
+			return this.getNamespacePrefix() + this.getMain();
+		},
+
+		/**
+		 * Get the full page name (transformed by #text)
+		 *
+		 * Example: "File:Example image.svg" for "File:Example_image.svg".
+		 *
+		 * @return {string}
+		 */
+		getPrefixedText: function () {
+			return text( this.getPrefixedDb() );
+		},
+
+		/**
+		 * Get the fragment (if any).
+		 *
+		 * Note that this method (by design) does not include the hash character and
+		 * the value is not url encoded.
+		 *
+		 * @return {string|null}
+		 */
+		getFragment: function () {
+			return this.fragment;
+		},
+
+		/**
+		 * Get the URL to this title
+		 *
 		 * @see mw.util#wikiGetlink
 		 * @return {string}
 		 */
@@ -336,6 +462,7 @@ var
 
 		/**
 		 * Whether this title exists on the wiki.
+		 *
 		 * @see #static-method-exists
 		 * @return {boolean|null} If the information is available. Otherwise null.
 		 */
@@ -344,12 +471,18 @@ var
 		}
 	};
 
-	// Alias
-	fn.toString = fn.getPrefixedDb;
-	fn.toText = fn.getPrefixedText;
+	/**
+	 * @alias #getPrefixedDb
+	 * @method
+	 */
+	Title.prototype.toString = Title.prototype.getPrefixedDb;
 
-	// Assign
-	Title.prototype = fn;
+
+	/**
+	 * @alias #getPrefixedText
+	 * @method
+	 */
+	Title.prototype.toText = Title.prototype.getPrefixedText;
 
 	// Expose
 	mw.Title = Title;
