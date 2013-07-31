@@ -1082,6 +1082,26 @@ class MimeMagic {
 	}
 
 	/**
+	 * Get all defines constants for Media types
+	 * @return array
+	 * @since 1.22
+	 */
+	public static function getAllMediaTypes() {
+		return array(
+			MEDIATYPE_BITMAP,
+			MEDIATYPE_DRAWING,
+			MEDIATYPE_AUDIO,
+			MEDIATYPE_VIDEO,
+			MEDIATYPE_MULTIMEDIA,
+			MEDIATYPE_UNKNOWN,
+			MEDIATYPE_OFFICE,
+			MEDIATYPE_TEXT,
+			MEDIATYPE_EXECUTABLE,
+			MEDIATYPE_ARCHIVE,
+		);
+	}
+
+	/**
 	 * Get the MIME types that various versions of Internet Explorer would
 	 * detect from a chunk of the content.
 	 *
