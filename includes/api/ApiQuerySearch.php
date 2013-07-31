@@ -59,7 +59,8 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		$prop = array_flip( $params['prop'] );
 
 		// Create search engine instance and set options
-		$search = SearchEngine::create();
+		$search = isset( $params['backend'] ) ?
+			SearchEngine::create( $params['backend'] ) : SearchEngine::create();
 		$search->setLimitOffset( $limit + 1, $params['offset'] );
 		$search->setNamespaces( $params['namespace'] );
 		$search->showRedirects = $params['redirects'];
@@ -201,7 +202,9 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 	}
 
 	public function getAllowedParams() {
-		return array(
+		global $wgSearchType;
+
+		$params = array(
 			'search' => array(
 				ApiBase::PARAM_TYPE => 'string',
 				ApiBase::PARAM_REQUIRED => true
@@ -254,10 +257,20 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_SML2
 			)
 		);
+
+		$alternatives = SearchEngine::getSearchTypeAlternatives();
+		if ( count( $alternatives ) > 1 ) {
+			$params['backend'] = array(
+				ApiBase::PARAM_DFLT => $wgSearchType,
+				ApiBase::PARAM_TYPE => $alternatives,
+			);
+		}
+
+		return $params;
 	}
 
 	public function getParamDescription() {
-		return array(
+		$descriptions = array(
 			'search' => 'Search for all page titles (or content) that has this value',
 			'namespace' => 'The namespace(s) to enumerate',
 			'what' => 'Search inside the text or titles',
@@ -280,6 +293,12 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 			'offset' => 'Use this value to continue paging (return by query)',
 			'limit' => 'How many total pages to return'
 		);
+
+		if ( count( SearchEngine::getSearchTypeAlternatives() ) > 1 ) {
+			$descriptions['backend'] = 'Which search backend to use, if not the default';
+		}
+
+		return $descriptions;
 	}
 
 	public function getResultProperties() {
