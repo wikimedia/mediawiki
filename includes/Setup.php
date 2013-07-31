@@ -557,6 +557,16 @@ if ( !is_object( $wgAuth ) ) {
 	wfRunHooks( 'AuthPluginSetup', array( &$wgAuth ) );
 }
 
+Password::register( 'A', 'MWUnsaltedPassword' );
+Password::register( 'B', 'MWSaltedPassword' );
+Password::register( 'bcrypt', 'BcryptPassword' );
+if ( function_exists( 'password_hash' ) ){
+	Password::register( 'phpapi', 'PhpApiPassword' );
+	Password::setDefault( 'phpapi' );
+} else {
+	Password::setDefault( 'bcrypt' );
+}
+
 # Placeholders in case of DB error
 $wgTitle = null;
 

@@ -3632,6 +3632,11 @@ $wgPasswordSalt = true;
 $wgMinimalPasswordLength = 1;
 
 /**
+ * Number of rounds to use in bcrypt if used.
+ */
+$wgPasswordCost = 5;
+
+/**
  * Whether to allow password resets ("enter some identifying data, and we'll send an email
  * with a temporary password you can use to get back into the account") identified by
  * various bits of data.  Setting all of these to false (or the whole variable to false)
