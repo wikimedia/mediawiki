@@ -32,6 +32,79 @@ class TitleTest extends MediaWikiTestCase {
 		}
 	}
 
+	/**
+	 * See also mediawiki.Title.test.js
+	 */
+	function testSecureAndSplit() {
+		// Valid
+		foreach ( array(
+			'Sandbox',
+			'A "B"',
+			'A \'B\'',
+			'.com',
+			'~',
+			'"',
+			'\'',
+			'Talk:Sandbox',
+			'File:Example.svg',
+			'File_talk:Example.svg',
+			'Foo/.../Sandbox',
+			'Sandbox/...',
+			'A~~',
+			// Length is 256 total, but only title part matters
+			'Category:' . str_repeat( 'x', 248 ),
+			str_repeat( 'x', 252 )
+		) as $text ) {
+			$this->assertInstanceOf( 'Title', Title::newFromText( $text ), "Valid: $text" );
+		}
+
+		// Invalid
+		foreach ( array(
+			'',
+			'__  __',
+			'  __  ',
+			// Bad characters forbidden regardless of wgLegalTitleChars
+			'A [ B',
+			'A ] B',
+			'A { B',
+			'A } B',
+			'A < B',
+			'A > B',
+			'A | B',
+			// URL encoding
+			'A%20B',
+			// XML/HTML character entity references
+			// Note: Commented out because they are not marked invalid by the PHP test as
+			// Title::newFromText runs Sanitizer::decodeCharReferencesAndNormalize first.
+			//'A &eacute; B',
+			//'A &#233; B',
+			//'A &#x00E9; B',
+			// Subject of NS_TALK does not roundtrip to NS_MAIN
+			'Talk:File:Example.svg',
+			// Directory navigation
+			'.',
+			'..',
+			'./Sandbox',
+			'../Sandbox',
+			'Foo/./Sandbox',
+			'Foo/../Sandbox',
+			'Sandbox/.',
+			'Sandbox/..',
+			// Tilde
+			'A ~~~ Name',
+			'A ~~~~ Signature',
+			'A ~~~~~ Timestamp',
+			str_repeat( 'x', 256 ),
+			// Namespace prefix without actual title
+			// ':', // bug 54044
+			'Talk:',
+			'Category: ',
+			'Category: #bar'
+		) as $text ) {
+			$this->assertNull( Title::newFromText( $text ), "Invalid: $text" );
+		}
+	}
+
 	public static function provideConvertByteClassToUnicodeClass() {
 		return array(
 			array(
