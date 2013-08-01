@@ -55,6 +55,7 @@
  * @author Rafael Vargas
  * @author Raylton P. Sousa
  * @author Rodrigo Calanca Nishino
+ * @author Rodrigo Padula
  * @author Sir Lestaty de Lioncourt
  * @author Teles
  * @author TheGabrielZaum
@@ -2535,7 +2536,7 @@ alguém já editou ou reverteu a página.
 A última edição da página foi feita por [[User:$3|$3]] ([[User talk:$3|discussão]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment' => "O sumário de edição era: \"''\$1''\".",
 'revertpage' => 'Foram revertidas as edições de [[Special:Contributions/$2|$2]] ([[User talk:$2|disc]]) para a última versão por [[User:$1|$1]]',
-'revertpage-nouser' => 'Revertidas as edições de (nome de usuário removido) para a última revisão por [[User:$1|$1]]',
+'revertpage-nouser' => 'Revertidas as edições por um usuário oculto para a última revisão por [[User:$1|$1]]',
 'rollback-success' => 'Foram revertidas as edições de $1, com o conteúdo passando a estar como na última edição de $2.',
 
 # Edit tokens

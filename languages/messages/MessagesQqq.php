@@ -4114,10 +4114,11 @@ See also:
 'randompage-nopages' => '* $1 - list of namespaces
 * $2 - number of namespaces',
 
-'randomincategory'                  => '{{doc-special|RandomInCategory}}',
-'randomincategory-invalidcategory'  => 'Message shown if an invalid category is specified. (Note, if the category is simply empty, but could possibly exist, {{msg-mw|randomincategory-nopages}} is shown instead). $1 is the invalid category name given.',
-'randomincategory-nopages'          => 'Message shown from Special:RandomInCategory if the category is empty. $1 is the category name (without the namespace prefix)',
-'randomincategory-selectcategory'   => 'Shown on Special:RandomInCategory if no category is selected. Displays a form allowing the user to input a category name. $1 is the text field input box, $2 is the go button. The text content of the button comes from {{msg-mw|randomcategory-selectcategory}}.',
+# Special:RandomInCategory
+'randomincategory' => '{{doc-special|RandomInCategory}}',
+'randomincategory-invalidcategory' => 'Message shown if an invalid category is specified. (Note, if the category is simply empty, but could possibly exist, {{msg-mw|randomincategory-nopages}} is shown instead). $1 is the invalid category name given.',
+'randomincategory-nopages' => 'Message shown from Special:RandomInCategory if the category is empty. $1 is the category name (without the namespace prefix)',
+'randomincategory-selectcategory' => 'Shown on Special:RandomInCategory if no category is selected. Displays a form allowing the user to input a category name. $1 is the text field input box, $2 is the go button. The text content of the button comes from {{msg-mw|randomcategory-selectcategory}}.',
 'randomincategory-selectcategory-submit' => 'Text of button used in {{msg-mw|randomcategory-selectcategory}}',
 
 # Random redirect
@@ -5099,7 +5100,8 @@ Example:
 
 {{Identical|View}}
 {{Identical|Restore}}',
-'undeleteviewlink' => 'First part of {{msg-mw|undeletelink}}',
+'undeleteviewlink' => 'First part of {{msg-mw|undeletelink}}.
+{{Identical|View}}',
 'undeletereset' => 'Shown on [[Special:Undelete]] as button caption.
 {{Identical|Reset}}',
 'undeleteinvert' => '{{Identical|Invert selection}}',
@@ -8772,7 +8774,7 @@ This is being used in [[Special:Version]], preceeding the subversion revision nu
 'version-poweredby-credits' => 'Message shown on [[Special:Version]]. Parameters:
 * $1 - the current year
 * $2 - a list of selected MediaWiki authors',
-'version-poweredby-others' => 'Used at the end of {{msg-mw|version-poweredby-credits}} on [[Special:Version]]. First, there\'s a long list of selected MediaWiki authors, then a comma and then this translation, which is supposed to credit the many other people than developer helping with MediaWiki.',
+'version-poweredby-others' => "Used at the end of {{msg-mw|version-poweredby-credits}} on [[Special:Version]]. First, there's a long list of selected MediaWiki authors, then a comma and then this translation, which is supposed to credit the many other people than developer helping with MediaWiki.",
 'version-poweredby-translators' => 'Label for a link to [[Translating:MediaWiki/Credits]], which follows {{msg-mw|version-poweredby-others}} and an "and" (from {{msg-mw|and}}), at the end of {{msg-mw|version-poweredby-credits}} on [[Special:Version]].',
 'version-credits-summary' => 'Summary of the [[Special:Version/Credits]] sub page, which lists all developers etc. who contributed to MediaWiki. Shown at the top.',
 'version-license-info' => '[[wikipedia:GNU GPL|GNU GPL]] notice shown at [[Special:Version]]. See //www.gnu.org/licenses/old-licenses/gpl-2.0-translations.html for available translations.',

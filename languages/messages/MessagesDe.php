@@ -898,7 +898,7 @@ Vergiss nicht, deine [[Special:Preferences|{{SITENAME}}-Einstellungen]] zu ände
 'createacct-captcha' => 'Sicherheitsprüfung',
 'createacct-imgcaptcha-ph' => 'Gib den Text ein, den du oben siehst.',
 'createacct-submit' => 'Dein Benutzerkonto erstellen',
-'createacct-another-submit' => 'Ein anderes Benutzerkonto erstellen',
+'createacct-another-submit' => 'Anderes Benutzerkonto erstellen',
 'createacct-benefit-heading' => '{{SITENAME}} wird von Leuten wie dir erstellt.',
 'createacct-benefit-body1' => '{{PLURAL:$1|Bearbeitung|Bearbeitungen}}',
 'createacct-benefit-body2' => '{{PLURAL:$1|Seite|Seiten}}',
