@@ -143,8 +143,12 @@ var mw = ( function ( $, undefined ) {
 	};
 
 	/**
-	 * Object constructor for messages,
-	 * similar to the Message class in MediaWiki PHP.
+	 * Object constructor for messages.
+	 *
+	 * Similar to the Message class in MediaWiki PHP.
+	 *
+	 * Format defaults to 'text'.
+	 *
 	 * @class mw.Message
 	 *
 	 * @constructor
@@ -357,7 +361,9 @@ var mw = ( function ( $, undefined ) {
 		/* Public Methods */
 
 		/**
-		 * Gets a message object, similar to wfMessage().
+		 * Get a message object.
+		 *
+		 * Similar to wfMessage() in MediaWiki PHP.
 		 *
 		 * @param {string} key Key of message to get
 		 * @param {Mixed...} parameters Parameters for the $N replacements in messages.
@@ -370,14 +376,16 @@ var mw = ( function ( $, undefined ) {
 		},
 
 		/**
-		 * Gets a message string, similar to wfMessage()
+		 * Get a message string using 'text' format.
 		 *
-		 * @see mw.Message#toString
+		 * Similar to wfMsg() in MediaWiki PHP.
+		 *
+		 * @see mw.Message
 		 * @param {string} key Key of message to get
 		 * @param {Mixed...} parameters Parameters for the $N replacements in messages.
 		 * @return {string}
 		 */
-		msg: function ( /* key, parameters... */ ) {
+		msg: function () {
 			return mw.message.apply( mw.message, arguments ).toString();
 		},
 
