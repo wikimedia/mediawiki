@@ -2631,7 +2631,7 @@ Remember to check for other links to the templates before deleting them.',
 'randomincategory-nopages'          => 'There are no pages in [[:Category:$1]].',
 'randomincategory-selectcategory'   => 'Get random page from category: $1 $2.
 
-<small>The selection process of this page may be biased towards certain articles and should not be used for statistical purposes.</small>',
+<small>The selection process of this page may be biased towards certain pages and should not be used for statistical purposes.</small>',
 'randomincategory-selectcategory-submit' => 'Go',
 
 # Random redirect
