@@ -567,6 +567,7 @@ Den kan være blevet slettet af en anden.',
 'cannotdelete-title' => 'Kan ikke slette siden "$1"',
 'delete-hook-aborted' => 'Sletningen blev afbrudt af en programfunktion.
 Der var ikke nogen forklaring.',
+'no-null-revision' => 'Kunne ikke oprette nye tom revision for side "$1"',
 'badtitle' => 'Forkert titel',
 'badtitletext' => 'Den ønskede sides titel var ikke tilladt, tom eller siden er forkert henvist fra en {{SITENAME}} på et andet sprog.
 Den kan indeholde et eller flere tegn, som ikke kan anvendes i titler.',
@@ -1343,6 +1344,9 @@ Du kan prøve at bruge \"all:\" som præfiks for at søge i alt indhold (inkl. d
 'recentchangesdays-max' => '(maks. $1 {{PLURAL:$1|dag|dage}})',
 'recentchangescount' => 'Antal redigeringer som skal vises som standard:',
 'prefs-help-recentchangescount' => 'Det gælder for seneste ændringer, historikker og logger.',
+'prefs-help-watchlist-token2' => 'Dette er den hemmelige nøgle til web-feed af din overvågningsliste.
+Hvis andre kender den, man vil være i stand til at læse din overvågningsliste, så del den ikke.
+[[Special:ResetTokens|Klik her hvis du har brug at nulstille den]].',
 'savedprefs' => 'Dine indstillinger er blevet gemt.',
 'timezonelegend' => 'Tidszone:',
 'localtime' => 'Lokaltid:',
@@ -1484,7 +1488,7 @@ Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit
 'right-reupload-shared' => 'Lægge en lokal fil op, selvom den allerede findes centralt',
 'right-upload_by_url' => 'Lægge en fil op fra en URL',
 'right-purge' => 'Nulstille sidens cache uden bekræftelse',
-'right-autoconfirmed' => 'Påvirkes ikke af IP-baseret hastighedsgrænser',
+'right-autoconfirmed' => 'Påvirkes ikke af IP-baserede hastighedsgrænser',
 'right-bot' => 'Redigeringer markeres som robot',
 'right-nominornewtalk' => 'Mindre ændringer på diskussionssider markerer ikke disse med nyt indhold',
 'right-apihighlimits' => 'Bruge højere grænser i API',
@@ -1504,7 +1508,7 @@ Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit
 'right-hideuser' => 'Blokere et brugernavn og skjule navnet',
 'right-ipblock-exempt' => 'Redigere fra blokerede IP-adresser',
 'right-proxyunbannable' => 'Redigere gennem automatisk blokeret proxy',
-'right-unblockself' => 'Fjerne blokering af dem selv',
+'right-unblockself' => 'Fjerne blokering af dig selv',
 'right-protect' => 'Ændre beskyttelsesniveauer og redigere cascade-beskyttede sider',
 'right-editprotected' => 'Redigere sider beskyttet som "{{int:protect-level-sysop}}"',
 'right-editsemiprotected' => 'Rediger sider, der er beskyttet som "{{int:protect-level-autoconfirmed}}"',
@@ -1516,7 +1520,9 @@ Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit
 'right-editmyuserjs' => 'Redigere dine egne JavaScript-filer',
 'right-viewmywatchlist' => 'Se din egen overvågningsliste',
 'right-editmywatchlist' => 'Redigere din egen overvågningsliste. Bemærk nogle handlinger tilføjer sider selv uden denne rettelse.',
-'right-viewmyprivateinfo' => 'Vis din egen private data (f.eks. e-mail-adresse, rigtige navn)',
+'right-viewmyprivateinfo' => 'Se dine egen private data (f.eks. e-mail-adresse, rigtige navn)',
+'right-editmyprivateinfo' => 'Redigere din egen private data (f.eks. e-mail-adresse, rigtige navn)',
+'right-editmyoptions' => 'Redigere dine egne indstillinger',
 'right-rollback' => 'Hurtig gendannelse af alle redigeringer foretaget af den seneste bruger',
 'right-markbotedits' => 'Markere gendannelser som ændringer foretaget af en robot',
 'right-noratelimit' => 'Upåvirket af hastighedsgrænser',
@@ -1581,6 +1587,7 @@ Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit
 'action-editmywatchlist' => 'rediger din overvågningsliste',
 'action-viewmywatchlist' => 'se din overvågningsliste',
 'action-viewmyprivateinfo' => 'se din private information',
+'action-editmyprivateinfo' => 'rediger dine private oplysninger',
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|ændring|ændringer}}',
@@ -1635,7 +1642,7 @@ Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit
 'reuploaddesc' => 'Tilbage til formularen til at lægge filer op.',
 'upload-tryagain' => 'Gem modificeret filbeskrivelse',
 'uploadnologin' => 'Ikke logget på',
-'uploadnologintext' => 'Du skal være $1 for at kunne lægge filer op.',
+'uploadnologintext' => 'Du skal $1 for at kunne lægge filer op.',
 'upload_directory_missing' => 'upload-kataloget ($1) findes ikke. Webserveren har ikke mulighed for at oprette kataloget.',
 'upload_directory_read_only' => 'Webserveren har ingen skriverettigheder for upload-kataloget ($1).',
 'uploaderror' => 'Fejl under oplægning af fil',
@@ -2019,6 +2026,7 @@ En side behandles som en side med en flertydig titel hvis den bruger en skabelon
 'pageswithprop-text' => 'Denne side viser en liste over sider, der har en bestemt sideegenskab.',
 'pageswithprop-prop' => 'Egenskabsnavn:',
 'pageswithprop-submit' => 'Vis',
+'pageswithprop-prophidden-binary' => 'binære egenskabsværdien skjult ($1 KB)',
 
 'doubleredirects' => 'Dobbelte omdirigeringer',
 'doubleredirectstext' => 'Dette er en liste over sider som omdirigerer til andre omdirigeringssider.
@@ -2076,6 +2084,7 @@ Hver linje indeholder henvisninger til den første og den anden omdirigering, s�
 'mostrevisions' => 'Sider med de fleste ændringer',
 'prefixindex' => 'Alle sider med præfiks',
 'prefixindex-namespace' => 'Alle sider med præfiks (navnerummet $1)',
+'prefixindex-strip' => 'Strip præfiks i listen',
 'shortpages' => 'Korte sider',
 'longpages' => 'Lange sider',
 'deadendpages' => 'Blindgydesider',
@@ -2196,8 +2205,9 @@ Der skal som minimum angives et topniveau-domæne som f. eks. "*.org".<br />
 'listgrouprights-summary' => 'Denne side viser de brugergrupper der er defineret på denne wiki og de enkelte gruppers rettigheder.
 
 Der findes muligvis [[{{MediaWiki:Listgrouprights-helppage}}|yderligere information]] om de enkelte rettigheder.',
-'listgrouprights-key' => '* <span class="listgrouprights-granted">Givet rettighed</span>
-* <span class="listgrouprights-revoked">Tilbagetrukken rettighed</span>',
+'listgrouprights-key' => 'Forklaring:
+* <span class="listgrouprights-granted">Bevilget rettighed</span>
+* <span class="listgrouprights-revoked">Tilbagetrukket rettighed</span>',
 'listgrouprights-group' => 'Gruppe',
 'listgrouprights-rights' => 'Rettigheder',
 'listgrouprights-helppage' => 'Help:Grupperettigheder',
@@ -2372,8 +2382,8 @@ en anden har allerede redigeret siden eller fjernet redigeringen.
 
 Den seneste redigering er foretaget af [[User:$3|$3]] ([[User talk:$3|diskussion]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment' => "Redigeringsbeskrivelsen var: \"''\$1''\".",
-'revertpage' => 'Gendannelse til seneste version ved [[User:$1|$1]], fjerner ændringer fra [[Special:Contributions/$2|$2]] ([[User talk:$2|diskussion]])',
-'revertpage-nouser' => 'Gendannet af en skjult bruger til seneste version af [[User:$1|$1]]',
+'revertpage' => 'Gendannet til seneste version af [[User:$1|$1]], fjerner ændringer fra [[Special:Contributions/$2|$2]] ([[User talk:$2|diskussion]])',
+'revertpage-nouser' => 'Gendannet til seneste version af [[User:$1|$1]], fjerner ændringer fra en skjult bruger',
 'rollback-success' => 'Ændringerne fra $1 er fjernet,
 og den seneste version af $2 er gendannet.',
 
@@ -3374,7 +3384,7 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 'exif-compression-6' => 'JPEG (gammel)',
 
 'exif-copyrighted-true' => 'Ophavsretligt beskyttet',
-'exif-copyrighted-false' => 'Ophavsrettighedsstatus er ikke sat',
+'exif-copyrighted-false' => 'Status for ophavsret er ikke angivet',
 
 'exif-unknowndate' => 'Ukendt dato',
 

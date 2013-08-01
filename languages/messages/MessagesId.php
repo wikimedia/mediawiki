@@ -1547,7 +1547,7 @@ Jika Anda memberikannya, nama asli Anda akan digunakan untuk memberi pengenalan 
 'prefs-signature' => 'Tanda tangan',
 'prefs-dateformat' => 'Format tanggal',
 'prefs-timeoffset' => 'Format waktu',
-'prefs-advancedediting' => 'Umum',
+'prefs-advancedediting' => 'Pilihan umum',
 'prefs-editor' => 'Penyunting',
 'prefs-preview' => 'Pratayang',
 'prefs-advancedrc' => 'Opsi lanjutan',
@@ -1651,7 +1651,7 @@ Jika Anda memberikannya, nama asli Anda akan digunakan untuk memberi pengenalan 
 'right-hideuser' => 'Memblokir nama pengguna dan menyembunyikannya dari publik',
 'right-ipblock-exempt' => 'Mengabaikan pemblokiran IP, pemblokiran otomatis, dan rentang pemblokiran',
 'right-proxyunbannable' => 'Mengabaikan pemblokiran otomatis atas proksi',
-'right-unblockself' => 'Melepaskan blokir diri sendiri',
+'right-unblockself' => 'Lepaskan blokir sendiri',
 'right-protect' => 'Ubah tingkat pelindungan dan sunting halaman yang dilindungi beruntun',
 'right-editprotected' => 'Sunting halaman yang dilindungi sebagai "{{int:protect-level-sysop}}"',
 'right-editsemiprotected' => 'Sunting halaman yang dilindungi sebagai "{{int:protect-level-autoconfirmed}}"',
@@ -2347,7 +2347,7 @@ Perlu sedikitnya satu domain tingkat atas, misalnya "*.org".<br />
 # Special:ListGroupRights
 'listgrouprights' => 'Daftar kelompok pengguna',
 'listgrouprights-summary' => 'Berikut adalah daftar kelompok pengguna yang terdapat di wiki ini, dengan daftar hak akses mereka masing-masing. Informasi lebih lanjut mengenai hak masing-masing dapat ditemukan di [[{{MediaWiki:Listgrouprights-helppage}}|halaman bantuan hak pengguna]].',
-'listgrouprights-key' => '* <span class="listgrouprights-granted">Hak yang berlaku</span>
+'listgrouprights-key' => '* <span class="listgrouprights-granted">Hak yang diberikan</span>
 * <span class="listgrouprights-revoked">Hak yang dicabut</span>',
 'listgrouprights-group' => 'Kelompok',
 'listgrouprights-rights' => 'Hak',
@@ -3606,7 +3606,7 @@ $8',
 'exif-compression-34712' => 'JPEG2000',
 
 'exif-copyrighted-true' => 'Berhak cipta',
-'exif-copyrighted-false' => 'Domain publik',
+'exif-copyrighted-false' => 'Status hak cipta belum diatur',
 
 'exif-photometricinterpretation-2' => 'RGB',
 'exif-photometricinterpretation-6' => 'YCbCr',

@@ -2220,7 +2220,7 @@ PICT # тайп тайпан
 'redirect-user' => 'Декъашхочун ID',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch' => 'Лаха цхьатера йолу хIумнаш',
+'fileduplicatesearch' => 'Лаха цхьатера йолу файлаш',
 'fileduplicatesearch-filename' => 'Файлан цӀе:',
 'fileduplicatesearch-submit' => 'Лаха',
 'fileduplicatesearch-info' => '$1 × $2 {{PLURAL:$2|пиксель|пикселш|пикселш}}<br />Файлан барам: $3<br />MIME-тайп: $4',

@@ -71,6 +71,7 @@
  * @author Peter17
  * @author PieRRoMaN
  * @author Quentinv57
+ * @author Rastus Vernon
  * @author Remember the dot
  * @author Robby
  * @author Sandji
@@ -393,14 +394,14 @@ $messages = array(
 'tog-justify' => 'Justifier les paragraphes',
 'tog-hideminor' => 'Masquer les modifications mineures dans les changements récents',
 'tog-hidepatrolled' => 'Masquer les modifications surveillées dans les modifications récentes',
-'tog-newpageshidepatrolled' => 'Masquer les pages surveillées parmi la liste des nouvelles pages',
+'tog-newpageshidepatrolled' => 'Masquer les pages surveillées dans la liste des nouvelles pages',
 'tog-extendwatchlist' => 'Étendre la liste de suivi pour afficher toutes les modifications et pas uniquement les plus récentes',
 'tog-usenewrc' => 'Grouper les changements dans les modifications récentes et la liste de suivi (nécessite JavaScript)',
 'tog-numberheadings' => 'Numéroter automatiquement les titres de section',
 'tog-showtoolbar' => "Montrer la barre d'outils de modification (nécessite JavaScript)",
 'tog-editondblclick' => 'Modifier des pages sur double-clic (nécessite JavaScript)',
 'tog-editsection' => 'Activer les modifications de sections grâce aux liens « [modifier] »',
-'tog-editsectiononrightclick' => 'Activer la modification de sections par clic droit sur leurs titres (nécessite JavaScript)',
+'tog-editsectiononrightclick' => 'Activer la modification de sections par clic droit sur les titres (nécessite JavaScript)',
 'tog-showtoc' => 'Afficher la table des matières (pour les pages ayant plus de 3 sections)',
 'tog-rememberpassword' => 'Se souvenir de mon identification avec ce navigateur (au maximum $1 {{PLURAL:$1|jour|jours}})',
 'tog-watchcreations' => "Ajouter les pages que je crée et les fichiers que j'importe à ma liste de suivi",
@@ -413,9 +414,9 @@ $messages = array(
 'tog-nocache' => 'Désactiver le cache des pages par le navigateur',
 'tog-enotifwatchlistpages' => "M'avertir par courriel lorsqu'une page ou un fichier de ma liste de suivi est modifiée",
 'tog-enotifusertalkpages' => "M'avertir par courriel si ma page de discussion est modifiée",
-'tog-enotifminoredits' => "M'avertir par courriel même en cas de modifications mineures des pages ou des fichiers",
+'tog-enotifminoredits' => "M'avertir par courriel pour les modifications mineures de pages ou de fichiers également",
 'tog-enotifrevealaddr' => 'Afficher mon adresse de courriel dans les courriels de notification',
-'tog-shownumberswatching' => "Afficher le nombre d'utilisateurs qui suivent cette page",
+'tog-shownumberswatching' => "Afficher le nombre d'utilisateurs qui suivent la page",
 'tog-oldsig' => 'Signature existante :',
 'tog-fancysig' => 'Traiter la signature comme du wikitexte (sans lien automatique)',
 'tog-showjumplinks' => 'Activer les liens « navigation » et « recherche » en haut de page',
@@ -440,8 +441,8 @@ $messages = array(
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Style de police de la zone de modification :',
-'editfont-default' => 'Police du navigateur par défaut',
-'editfont-monospace' => 'Police de chasse fixe',
+'editfont-default' => 'Police par défaut du navigateur',
+'editfont-monospace' => 'Police à chasse fixe',
 'editfont-sansserif' => 'Police sans empattement',
 'editfont-serif' => 'Police avec empattement',
 
@@ -636,7 +637,7 @@ $1",
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite' => 'À propos de {{SITENAME}}',
 'aboutpage' => 'Project:À propos',
-'copyright' => 'Sous licence $1',
+'copyright' => 'Le contenu est disponible sous licence $1 .',
 'copyrightpage' => '{{ns:project}}:Copyrights',
 'currentevents' => 'Actualités',
 'currentevents-url' => 'Project:Actualités',

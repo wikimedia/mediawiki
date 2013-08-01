@@ -4047,16 +4047,16 @@ Samen mit dit programma heur je n [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van de
 
 # Feedback
 'feedback-bugornote' => 'A\'j zovere bin um n technies probleem nauwkeurig te beschrieven, [$1 meld dan n programmafout].
-Aanders ku\'j oek t eenvoudige formulier hieronder gebruken. Joew opmarkingen zullen op de zied "[$3 $2]" ezet wörden, samen mit joew gebrukersnaam en de webkieker die\'j gebruken.',
+Aanders ku\'j oek t eenvoudige formulier hieronder gebruken. Joew kommentaar zal op de zied "[$3 $2]" ezet wörden, samen mit joew gebrukersnaam en de webkieker die\'j gebruken.',
 'feedback-subject' => 'Onderwarp:',
 'feedback-message' => 'Bericht:',
 'feedback-cancel' => 'Aofbreken',
-'feedback-submit' => 'Troegkoppeling opslaon',
-'feedback-adding' => 'Joew troegkoppeling wörden op de zied ezet...',
+'feedback-submit' => 'Kommentaar geven',
+'feedback-adding' => 'Joew kommentaar wörden op de zied ezet...',
 'feedback-error1' => 'Fout: onbekend resultaot uut de API',
 'feedback-error2' => 'Fout: de bewarking is mislokt',
 'feedback-error3' => 'Fout: gien reaksie van de API',
-'feedback-thanks' => 'Bedankt! Joew troegkoppeling is op de zied "[$2 $1]" ezet.',
+'feedback-thanks' => 'Bedankt! Joew kommentaar is op de zied "[$2 $1]" ezet.',
 'feedback-close' => 'Ree',
 'feedback-bugcheck' => 'Mooi! Kiek nao of t niet al één van de [$1 bekende problemen] is.',
 'feedback-bugnew' => 'Ik heb t nao-ekeken. Meld n nieje programmafout',

@@ -332,7 +332,7 @@ Luke efter bi't [[Special:Version|werjuunssidj]]",
 'sort-ascending' => 'Sortiare faan onern tu boowen',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main' => 'Sid',
+'nstab-main' => 'Sidj',
 'nstab-user' => 'Brükersidj',
 'nstab-media' => 'Meediensidj',
 'nstab-special' => 'Spezial-sidj',
@@ -1343,7 +1343,7 @@ Do san jo ual iinstelangen wech.',
 'right-suppressrevision' => 'Werjuunen uunluke an turaghaale, diar uk för administratooren ei tu sen san',
 'right-suppressionlog' => 'Priwoot logbuken uunluke',
 'right-block' => "Brükern spere (för't skriiwen)",
-'right-blockemail' => "Brüker spere för't E-Mail sjüüren",
+'right-blockemail' => "Brüker spere för't e-mail schüüren",
 'right-hideuser' => 'Brükernööm spere an fersteeg',
 'right-ipblock-exempt' => 'Ütjnoom faan IP-speren, automaatisk speren an range-speren',
 'right-proxyunbannable' => 'Ütjnoom faan automaatisk proxy-speren',
@@ -1477,7 +1477,7 @@ Do san jo ual iinstelangen wech.',
 # Upload
 'upload' => 'Datei huuchschüür',
 'uploadbtn' => 'Datei huuchsjüür',
-'reuploaddesc' => "Ufbreeg an turag tu't sidj för't huuchsjüüren",
+'reuploaddesc' => "Ufbreeg an turag tu't sidj för't huuchschüüren",
 'upload-tryagain' => 'Feranert dateibeskriiwang ufsjüür',
 'uploadnologin' => 'Ei uunmeldet',
 'uploadnologintext' => 'Dü skel di $1, amdat dü datein huuchschüür könst.',
@@ -1538,7 +1538,7 @@ Am en '''bil''' uun en artiikel tu brüken, brük en link faan det furem:
 'windows-nonascii-filename' => 'Detheer Wiki läät nian dateinöömer mä sondertiaken tu.',
 'fileexists' => 'En datei mä didiar nööm jaft at al. Luke noch ans efter <strong>[[:$1]]</strong>, wan dü ei gans seeker beest, of dü det anre wel.
 [[$1|thumb]]',
-'filepageexists' => "En beskriiwangssidj för <strong>[[:$1]]</strong> as al diar, oober nian datei. Din beskriiwang woort ei apnimen. Det beskriiwangssidj mut do man efter't huuchsjüüren noch ans efterluket wurd.
+'filepageexists' => "En beskriiwangssidj för <strong>[[:$1]]</strong> as al diar, oober nian datei. Din beskriiwang woort ei apnimen. Det beskriiwangssidj mut do man efter't huuchschüüren noch ans efterluket wurd.
 [[$1|thumb]]",
 'fileexists-extension' => 'Diar as al en datei mä di nööm: [[$2|thumb]]
 * Nööm faan det nei datei: <strong>[[:$1]]</strong>
@@ -1561,8 +1561,8 @@ Gung noch ans turag an schüür det datei mä en öödern nööm huuch.
 'savefile' => 'Datei seekre',
 'uploadedimage' => 'hää "[[$1]]" huuchschüürd',
 'overwroteimage' => 'hää en nei werjuun faan „[[$1]]“ huuchsjüürd',
-'uploaddisabled' => 'Huuchsjüüren as ei aktiwiaret',
-'copyuploaddisabled' => 'Huuchsjüüren faan URLs as ei aktiwiaret.',
+'uploaddisabled' => 'Huuchschüüren as ei aktiwiaret',
+'copyuploaddisabled' => 'Huuchschüüren faan URLs as ei aktiwiaret.',
 'uploadfromurl-queued' => 'Din huuchsjüürd datei teewt.',
 'uploaddisabledtext' => 'Det huuchschüüren faan datein as ei aktiwiaret.',
 'php-uploaddisabledtext' => 'Det huuchschüüren faan datein as uun PHP ei aktiwiaret.
@@ -1577,26 +1577,26 @@ Java-datein kön ei tuläät wurd, auer jo det seekerhaid uun fraag stel küd.',
 'destfilename' => 'Nei dateinööm:',
 'upload-maxfilesize' => 'Datei ei grater üs: $1',
 'upload-description' => 'Dateibeskriiwang',
-'upload-options' => "Mögelkhaiden för't huuchsjüüren",
+'upload-options' => "Iinstelangen för't huuchschüüren",
 'watchthisupload' => 'Luke efter detdiar datei',
 'filewasdeleted' => 'En datei mä didiar nööm as al ans huuchsjüürd an leederhen weder stregen wurden. Luke iarst ans iin uun $1, iar dü det datei würelk seekerst.',
 'filename-bad-prefix' => "Di dateinööm begant mä '''„$1“'''. Sok nöömer kem miast faan digitaalkameras an sai ei föl ütj.
 Nem en beedern nööm för det datei.",
-'upload-success-subj' => 'Det huuchsjüüren hää loket.',
-'upload-success-msg' => 'Det huuchsjüüren faan [$2] hää loket an stäänt nü diar: [[:{{ns:file}}:$1]]',
-'upload-failure-subj' => "Bi't huuchsjüüren as wat skiaf gingen.",
-'upload-failure-msg' => "Diar as wat skiaf gingen bi't huuchsjüüren faan [$2]:
+'upload-success-subj' => 'Det huuchschüüren hää loket.',
+'upload-success-msg' => 'Det huuchschüüren faan [$2] hää loket an stäänt nü diar: [[:{{ns:file}}:$1]]',
+'upload-failure-subj' => "Bi't huuchschüüren as wat skiaf gingen.",
+'upload-failure-msg' => "Diar as wat skiaf gingen bi't huuchschüüren faan [$2]:
 
 $1",
 'upload-warning-subj' => 'Wäärnang',
-'upload-warning-msg' => "Diar as wat skiaf gingen bi't huuchsjüüren faan [$2]. Gung turag tu't  [[Special:Upload/stash/$1|sidj för't huuchsjüüren]], am det üüb a rä tu fun.",
+'upload-warning-msg' => "Diar as wat skiaf gingen bi't huuchschüüren faan [$2]. Gung turag tu't  [[Special:Upload/stash/$1|sidj för't huuchschüüren]], am det üüb a rä tu fun.",
 
 'upload-proto-error' => 'Ferkiard protokol',
 'upload-proto-error-text' => 'Det URL skal mä <code>http://</code> of <code>ftp://</code> began.',
 'upload-file-error' => 'Diar as wat skiaf gingen',
 'upload-file-error-text' => "Bi't maagin faan det tidjwiis datei as wat skiaf gingen. Wees so gud an skriiw det tu en [[Special:ListUsers/sysop|administraator]].",
-'upload-misc-error' => "Bi't huuchsjüüren as wat skiaf gingen.",
-'upload-misc-error-text' => "Bi't huuchsjüüren as wat skiaf gingen. Luke di det URL noch ans uun, an of det sidj uk würelk diar as.
+'upload-misc-error' => "Bi't huuchschüüren as wat skiaf gingen.",
+'upload-misc-error-text' => "Bi't huuchschüüren as wat skiaf gingen. Luke di det URL noch ans uun, an of det sidj uk würelk diar as.
 Wan det goorei wal, do skriiw tu en [[Special:ListUsers/sysop|administraator]].",
 'upload-too-many-redirects' => 'Det URL hää tuföl widjerfeerangen.',
 'upload-unknown-size' => 'Ünbekäänd grate',
@@ -1653,7 +1653,7 @@ Wan det goorei wal, do skriiw tu en [[Special:ListUsers/sysop|administraator]]."
 'zip-unsupported' => 'Detdiar ZIP-datei as faan en slach, diar MediaWiki ei lees koon. Diaram koon det uk ei üüb seekerhaid preewet wurd.',
 
 # Special:UploadStash
-'uploadstash' => "Teskenseekerang bi't huuchsjüüren",
+'uploadstash' => "Teskenseekerang bi't huuchschüüren",
 'uploadstash-summary' => 'Üüb detdiar sidj kem datein föör, diar man jüst huuchschüürd wurden san. Bluas, hoker jo huuchschüürd hää, koon jo sä.',
 'uploadstash-clear' => 'Teskenseekert datein wechnem',
 'uploadstash-nofiles' => 'Diar san nian teskenseekert datein.',
@@ -1668,7 +1668,7 @@ Wan det goorei wal, do skriiw tu en [[Special:ListUsers/sysop|administraator]]."
 Di server koon detdiar informatjuun ei widjerdu.
 Ferlicht as det uun CGI iinbünjen an komt diaram uk ei mä „img_auth“ turocht.
 Üüb det sidj https://www.mediawiki.org/wiki/Manual:Image_Authorization (ingelsk) stäänt diar muar auer.',
-'img-auth-notindir' => 'Detdiar fertiaknis as ei föörsen tu huuchsjüüren.',
+'img-auth-notindir' => 'Detdiar fertiaknis as ei föörsen tu huuchschüüren.',
 'img-auth-badtitle' => 'Mä „$1“ küd nään tiitel maaget wurd.',
 'img-auth-nologinnWL' => "Dü beest ei uunmeldet, an „$1“ stäänt ei uun't whitelist.",
 'img-auth-nofile' => 'Diar as nään datei „$1“.',
@@ -1692,7 +1692,7 @@ För a seekerhaid as img_auth.php ei aktiwiaret.',
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'URL küd ei fünjen wurd',
 'upload-curl-error6-text' => 'Det URL küd ei fünjen wurd. Luke di det URL noch ans uun, an of det sidj uk würelk diar as.',
-'upload-curl-error28' => 'Det huuchsjüüren hää tu loong düüret (time-out).',
+'upload-curl-error28' => 'Det huuchschüüren hää tu loong düüret (time-out).',
 'upload-curl-error28-text' => 'Det sidj hää tu loong ei swaaret (time-out). Luke noch ans efter, of det sidj uk würelk diar as. Fersjük det beeder leeder noch ans weder.',
 
 'license' => 'Lisens:',
@@ -2792,7 +2792,7 @@ Dü könst di kweltekst uunluke.',
 'tooltip-watchlistedit-normal-submit' => 'Iindracher wechnem',
 'tooltip-watchlistedit-raw-submit' => "List mä sidjen, diar dü uun't uug behual wel, aktualisiare",
 'tooltip-recreate' => 'Sidj nei maage, likes dat det al ans stregen wurden as',
-'tooltip-upload' => 'Huuchsjüüren began',
+'tooltip-upload' => 'Huuchschüüren began',
 'tooltip-rollback' => 'Saat aal a leetst feranrangen faan disalew brüker mä ään klik turag.',
 'tooltip-undo' => 'Saat bluas det leetst feranrang turag an wiset det resultoot uun en föörskau uun. Uun det tuupfaadet beskriiwang skul en grünj för det turagsaaten uunden wurd.',
 'tooltip-preferences-save' => 'Iinstelangen seekre',
@@ -3765,7 +3765,7 @@ You should have received [{{SERVER}}{{SCRIPTPATH}}/COPYING a copy of the GNU Gen
 'api-error-mustbeloggedin' => 'Dü skel di uunmelde, am datein huuchtuschüüren.',
 'api-error-mustbeposted' => 'Intern feeler: Ferkiard HTTP-muude.',
 'api-error-noimageinfo' => 'Det huuchschüüren hää loket, oober di server hää nian datei-dooten.',
-'api-error-nomodule' => 'Intern feeler: Diar as nian modul tu huuchsjüüren fäästlaanj wurden.',
+'api-error-nomodule' => 'Intern feeler: Diar as nian modul tu huuchschüüren fäästlaanj wurden.',
 'api-error-ok-but-empty' => 'Intern feeler: Di server sait niks.',
 'api-error-overwrite' => 'Dü könst nian datei auerskriiw, wat al diar as.',
 'api-error-stashfailed' => 'Intern feeler: Di server küd nian tidjwiis datei seekre.',
