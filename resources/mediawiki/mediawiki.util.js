@@ -434,7 +434,8 @@
 
 			// Where to put our node ?
 			// - nextnode is a DOM element (was the only option before MW 1.17, in wikibits.js)
-			if ( nextnode && nextnode.parentNode === $ul[0] ) {
+			// - or nextnode is already a jQuery object that represents exactly one element
+			if ( nextnode && $( nextnode ).parent()[0] === $ul[0] && $( nextnode ).length === 1 ) {
 				$( nextnode ).before( $item );
 
 			// - nextnode is a CSS selector for jQuery
