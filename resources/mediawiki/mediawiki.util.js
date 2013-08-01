@@ -432,10 +432,16 @@
 				$link.attr( 'accesskey', accesskey );
 			}
 
+			// nextnode is a DOM element (was the only option before MW 1.17, in wikibits.js)
+			// so we make it a jQuery object!
+			if ( nextnode && nextnode.nodeType ) {
+				nextnode = $( nextnode );
+			}
+
 			// Where to put our node ?
-			// - nextnode is a DOM element (was the only option before MW 1.17, in wikibits.js)
-			if ( nextnode && nextnode.parentNode === $ul[0] ) {
-				$( nextnode ).before( $item );
+			// - nextnode is a jQuery object that represents exactly one element
+			if ( nextnode && nextnode.jquery && nextnode.length === 1 && nextnode[0].parentNode === $ul[0] ) {
+				nextnode.before( $item );
 
 			// - nextnode is a CSS selector for jQuery
 			} else if ( typeof nextnode === 'string' && $ul.find( nextnode ).length !== 0 ) {
