@@ -137,8 +137,8 @@
 	 * Previously, test elements where invisible to the selector since only
 	 * one element can have a given id.
 	 */
-	QUnit.test( 'addPortletLink', 10, function ( assert ) {
-		var pTestTb, pCustom, vectorTabs, tbRL, cuQuux, $cuQuux, tbMW, $tbMW, tbRLDM, caFoo;
+	QUnit.test( 'addPortletLink', 11, function ( assert ) {
+		var pTestTb, pCustom, vectorTabs, tbRL, cuQuux, $cuQuux, tbMW, $tbMW, tbRLDM, caFoo, addedAfter;
 
 		pTestTb = '\
 		<div class="portlet" id="p-test-tb">\
@@ -216,6 +216,9 @@
 
 		assert.strictEqual( $tbMW.find( 'span' ).length, 0, 'No <span> element should be added for porlets without vectorTabs class.' );
 		assert.strictEqual( $( caFoo ).find( 'span' ).length, 1, 'A <span> element should be added for porlets with vectorTabs class.' );
+
+		addedAfter = mw.util.addPortletLink( 'p-test-custom', '#', 'After foo', 'post-foo', 'After foo', null, $( '#c-foo' ).next() );
+		assert.strictEqual( $( '#c-foo' ).next()[0], addedAfter, 'Passing a jQuery object into addPortletLink as nextnode should put the link immediately before that DOM element.' );
 	} );
 
 	QUnit.test( 'jsMessage', 1, function ( assert ) {
