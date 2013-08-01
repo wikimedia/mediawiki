@@ -441,6 +441,10 @@
 			} else if ( typeof nextnode === 'string' && $ul.find( nextnode ).length !== 0 ) {
 				$ul.find( nextnode ).eq( 0 ).before( $item );
 
+			// - or nextnode is already a jQuery object that represents exactly one element
+			} else if ( nextnode.jquery && nextnode.length === 1 ) {
+				nextnode.before( $item );
+
 			// If the jQuery selector isn't found within the <ul>,
 			// or if nextnode was invalid or not passed at all,
 			// then just append it at the end of the <ul> (this is the default behavior)
