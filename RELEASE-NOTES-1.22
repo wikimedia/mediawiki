@@ -172,6 +172,7 @@ production.
   too. Can be used whenever several multicast group could be interested by a
   specific purge.
 * (bug 25931) Add Special:RandomInCategory.
+* mediawiki.util: addPortletLink now supports passing a jQuery object as nextnode.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
