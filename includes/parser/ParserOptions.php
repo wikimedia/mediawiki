@@ -280,9 +280,17 @@ class ParserOptions {
 	}
 
 	/**
+	 * Get the user language used by the parser for this page.
+	 *
 	 * You shouldn't use this. Really. $parser->getFunctionLang() is all you need.
-	 * Using this fragments the cache and is discouraged. Yes, {{int: }} uses this,
-	 * producing inconsistent tables (Bug 14404).
+	 *
+	 * To avoid side-effects where the page will be rendered based on the language
+	 * of the user who last saved, this function will triger a cache fragmentation.
+	 * Usage of this method is discouraged for that reason.
+	 *
+	 * When saving, this will return the default language instead of the user's.
+	 *
+	 * {{int: }} uses this which used to produce inconsistent link tables (bug 14404).
 	 *
 	 * @return Language object
 	 * @since 1.19
