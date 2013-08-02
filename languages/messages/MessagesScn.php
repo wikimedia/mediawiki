@@ -182,7 +182,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Ammustra lu nùmmiru di utenti ca sèquinu la pàggina',
 'tog-oldsig' => 'Firma attuali:',
 'tog-fancysig' => 'Interpitra li cumanna wiki nâ firma (senza liami automaticu)',
-'tog-showjumplinks' => "Attiva li culligamenti accissìbbili 'và a'",
 'tog-uselivepreview' => "Attiva la funzioni ''Live preview'' (richiedi JavaScript; spirimintali)",
 'tog-forceeditsummary' => "Chiedi cunferma siddu l'uggettu dû canciamentu è vacanti",
 'tog-watchlisthideown' => "Ammuccia li mè canciamenti nta l'ossirvati spiciali",

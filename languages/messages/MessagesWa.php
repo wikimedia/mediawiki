@@ -113,7 +113,6 @@ $messages = array(
 'tog-shownumberswatching' => "Mostrer l' nombe d' uzeus ki shuvèt l' pådje",
 'tog-oldsig' => 'Siné pol moumint:',
 'tog-fancysig' => 'Sinateure avou do tecse wiki (sins loyén otomatike)',
-'tog-showjumplinks' => 'Mete en alaedje les loyéns di naiviaedje «potchî a» å dzeu del pådje (pol pea «Myskin» et ds ôtes)',
 'tog-uselivepreview' => "Eployî l' prévoeyaedje abeye (JavaScript) (Esperimintå)",
 'tog-forceeditsummary' => "M' advierti cwand dji lai vude on rascourti",
 'tog-watchlisthideown' => 'Èn nén mostrer les candjmints da minne',

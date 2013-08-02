@@ -21,6 +21,7 @@
  * @author Geitost
  * @author GerardM
  * @author Hamaryns
+ * @author Hansmuller
  * @author Jens Liebenau
  * @author JurgenNL
  * @author Kaganer
@@ -394,7 +395,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Het aantal gebruikers weergeven dat deze pagina volgt',
 'tog-oldsig' => 'Bestaande ondertekening:',
 'tog-fancysig' => 'Als wikitekst behandelen (zonder automatische koppeling)',
-'tog-showjumplinks' => '"ga naar"-toegankelijkheidskoppelingen inschakelen',
 'tog-uselivepreview' => '"live voorvertoning" gebruiken (vereist JavaScript – experimenteel)',
 'tog-forceeditsummary' => 'Een melding geven bij een lege bewerkingssamenvatting',
 'tog-watchlisthideown' => 'Eigen bewerkingen op mijn volglijst verbergen',
@@ -1148,8 +1148,8 @@ Uw eigen .css- en .js-pagina's beginnen met een kleine letter, bijvoorbeeld {{ns
 Uw tekst is niet opgeslagen!",
 'continue-editing' => 'Naar het bewerkingsvenster gaan',
 'previewconflict' => 'Deze voorvertoning geeft aan hoe de tekst in het bovenste veld eruit ziet als u deze opslaat.',
-'session_fail_preview' => "'''Uw bewerking is niet verwerkt, omdat de sessiegegevens verloren zijn gegaan.'''
-Probeer het opnieuw.
+'session_fail_preview' => "'''Excuses, uw bewerking is niet opgeslagen, omdat de sessiegegevens verloren zijn gegaan.'''
+Probeert U het opnieuw.
 Als het dan nog niet lukt, [[Special:UserLogout|meld uzelf dan af]] en vervolgens weer aan.",
 'session_fail_preview_html' => "'''Uw bewerking is niet verwerkt, omdat de sessiegegevens verloren zijn gegaan.'''
 

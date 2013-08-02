@@ -173,7 +173,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Tampaiakan barapa pamakai nang maitihi',
 'tog-oldsig' => 'Tandateken nang sudah ada:',
 'tog-fancysig' => 'Tapsirakan tandatangan sawagai naskah wiki (kada batautan utumatis)',
-'tog-showjumplinks' => 'Kawa\'akan "lacung ka" tautan kakawaan-masuk',
 'tog-uselivepreview' => 'Puruk titilikan langsung (parlu ada JavaScript) (cacubaan)',
 'tog-forceeditsummary' => 'Ingatakan ulun wayah babuat sabuting kasimpulan babakan puang',
 'tog-watchlisthideown' => 'Sungkupakan babakan ulun di daptar itihan',

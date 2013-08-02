@@ -344,7 +344,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Näytä sivua tarkkailevien käyttäjien määrä',
 'tog-oldsig' => 'Nykyinen allekirjoitus',
 'tog-fancysig' => 'Muotoilematon allekirjoitus ilman automaattista linkkiä',
-'tog-showjumplinks' => 'Lisää loikkaa-käytettävyyslinkit sivun alkuun',
 'tog-uselivepreview' => 'Käytä pikaesikatselua (JavaScript) (kokeellinen)',
 'tog-forceeditsummary' => 'Huomauta, jos yhteenvetoa ei ole annettu',
 'tog-watchlisthideown' => 'Piilota omat muokkaukset',

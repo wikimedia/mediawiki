@@ -171,7 +171,6 @@ $messages = array(
 'tog-enotifrevealaddr' => 'منی ایمیل پیش دار ته ایمیل أن هوژاری',
 'tog-shownumberswatching' => 'پیش دار تعداد کاربرانی که چارگتن',
 'tog-fancysig' => 'امضاءَ په داب ویکی متنی بزان(بی اتوماتیکی لینک)',
-'tog-showjumplinks' => 'فعال کن "jump to" لینکان دست رسی آ',
 'tog-uselivepreview' => 'چه زنده این بازبین استفاده کن(جاوا)(تجربی)',
 'tog-forceeditsummary' => 'من آ هال دی وهدی وارد کتن یک هالیکین خلاصه ی اصلاح',
 'tog-watchlisthideown' => 'منی اصلاحات آ چه لیست چارگ پناه کن',

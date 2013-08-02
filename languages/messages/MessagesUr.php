@@ -197,7 +197,6 @@ $messages = array(
 'tog-shownumberswatching' => 'دیکھنے والے صارفین کی تعداد دکھاؤ',
 'tog-oldsig' => 'موجودہ دستخط:',
 'tog-fancysig' => '(سادہ دستخط بلا خودکار ربط)',
-'tog-showjumplinks' => 'Enable "jump to" accessibility links',
 'tog-uselivepreview' => 'براہِ راست نمائش استعمال کرو (JavaScript چاہئے نیز تجرباتی)',
 'tog-forceeditsummary' => 'جب میں ترمیمی خلاصہ خالی چھوڑوں تو مجھے آگاہ کرو',
 'tog-watchlisthideown' => 'زیرِنظرفہرست سے میری ترمیمات چھپاؤ',

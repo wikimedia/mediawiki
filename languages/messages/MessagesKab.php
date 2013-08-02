@@ -73,7 +73,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Ssken geddac yellan n yimseqdacen iɛessasen',
 'tog-oldsig' => 'Azmul yellan :',
 'tog-fancysig' => 'ǧǧ azmul am yettili (war azday awurman)',
-'tog-showjumplinks' => 'Eǧǧ izdayen "neggez ar"',
 'tog-uselivepreview' => 'Sseqdec pre-timeẓriwt taǧiḥbuṭ (JavaScript) (Experimental)',
 'tog-forceeditsummary' => 'Ini-iyi-d mi sskecmeɣ agzul amecluc',
 'tog-watchlisthideown' => 'Ffer ibeddlen inu seg wumuɣ n uɛessi inu',

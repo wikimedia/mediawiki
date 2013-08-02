@@ -65,7 +65,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Ketna sadasya dekhe hai ke number dekhao',
 'tog-oldsig' => 'Abhi ke signature:',
 'tog-fancysig' => 'Signature ke wikitext ke rakam dekho (binaa automatic jorr se)',
-'tog-showjumplinks' => '"jump to" accessibility jorr ke laabu karo',
 'tog-uselivepreview' => 'Jinda jhalak ke kaam me lao (JavaScript) (Experimental)',
 'tog-forceeditsummary' => 'Ek khali badlao waala summary ke likhe ke time hamse puchho',
 'tog-watchlisthideown' => 'Hamaar badlao ke hamaar dhyaan suchi se lukao',

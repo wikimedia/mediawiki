@@ -354,7 +354,6 @@ $messages = array(
 'tog-shownumberswatching' => 'पहारा देणारे सदस्य दाखवा',
 'tog-oldsig' => 'सध्याची सही:',
 'tog-fancysig' => 'सही विकिसंज्ञा म्हणून वापरा (आपोआप दुव्याशिवाय)',
-'tog-showjumplinks' => '"कडे जा" सुगम दुवे, उपलब्ध करा.',
 'tog-uselivepreview' => 'संपादन करता करताच झलक दाखवा (जावास्क्रीप्ट)(प्रयोगक्षम)',
 'tog-forceeditsummary' => 'जर ’बदलांचा आढावा’ दिला नसेल तर मला सूचित करा',
 'tog-watchlisthideown' => 'पहाऱ्याच्या सूचीतून माझे बदल लपवा',
@@ -2128,7 +2127,7 @@ Input:contenttype/subtype, e.g. <code>image/jpeg</code>.',
 'fewestrevisions' => 'सगळ्यात कमी बदल असलेले लेख',
 
 # Miscellaneous special pages
-'nbytes' => '$1 {{PLURAL:$1|बाइट|बाइट}}',
+'nbytes' => '$1 {{PLURAL:$1|बाइट}}',
 'ncategories' => '$1 {{PLURAL:$1|वर्ग|वर्ग}}',
 'ninterwikis' => '$1 {{PLURAL:$1|आंतरविकि|आंतरविकि दुवे}}',
 'nlinks' => '$1 {{PLURAL:$1|दुवा|दुवे}}',

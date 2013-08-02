@@ -138,7 +138,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Nîşan bide, çiqas bikarhêner dişopînin',
 'tog-oldsig' => 'Pêşdîtina îmzeya heye:',
 'tog-fancysig' => 'Di îmzeyê de girêdana otomatîk a bikarhêner betal bike',
-'tog-showjumplinks' => 'Girêdanên "Here-berve" qebûlbike',
 'tog-uselivepreview' => 'Pêşdîtina "zindî" bi kar bîne (JavaScript pêwîst e) (ceribandinî)',
 'tog-forceeditsummary' => 'Hinga kurteyeke vala hate tomarkirin min agahdar bike',
 'tog-watchlisthideown' => 'Guherandinên min ji lîsteya şopandinê veşêre',

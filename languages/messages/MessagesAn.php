@@ -161,7 +161,6 @@ $messages = array(
 'tog-shownumberswatching' => "Amostrar o numero d'usuarios que cosiran un articlo",
 'tog-oldsig' => 'Sinyadura actual',
 'tog-fancysig' => 'Tratar as sinyaduras como wikitexto (sin de vinclo automatico)',
-'tog-showjumplinks' => 'Activar vinclos d\'accesibilidat "blincar enta"',
 'tog-uselivepreview' => 'Activar previsualización automatica (cal JavaScript) (Esperimental)',
 'tog-forceeditsummary' => 'Avisar-me quan o campo de resumen siga buedo.',
 'tog-watchlisthideown' => 'Amagar as mías edicions en a lista de seguimiento',

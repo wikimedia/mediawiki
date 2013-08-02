@@ -346,7 +346,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Mostrar o número de utilizadores a vigiar',
 'tog-oldsig' => 'Assinatura existente:',
 'tog-fancysig' => 'Tratar assinatura como texto wiki (sem link automático)',
-'tog-showjumplinks' => 'Possibilitar links de acessibilidade "{{int:jumpto}}"',
 'tog-uselivepreview' => 'Usar a antevisão ao vivo (requer JavaScript; é experimental)',
 'tog-forceeditsummary' => 'Avisar-me se deixar o resumo da edição vazio',
 'tog-watchlisthideown' => 'Esconder as minhas edições ao listar mudanças às páginas vigiadas',

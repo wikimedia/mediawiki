@@ -65,7 +65,6 @@ $messages = array(
 'tog-shownumberswatching' => "Nochd àireamh nan cleachdaichean a tha a' cumail sùil air",
 'tog-oldsig' => 'An t-earr-sgrìobhadh làithreach:',
 'tog-fancysig' => 'Làimhsich an t-earr-sgrìobhadh mar wikitext (gun cheangal leis fhèin)',
-'tog-showjumplinks' => 'Cuir an comas ceanglaichean so-inntrigeachd "gearr leum gu"',
 'tog-uselivepreview' => 'Cleachd an ro-shealladh beò (feumaidh seo JavaScript) (deuchainneach)',
 'tog-forceeditsummary' => "Cuir ceist nuair a dh'fhàgas mi gearr-chunntas an deasachaidh bàn",
 'tog-watchlisthideown' => 'Falaich mo mhùthaidhean fhèin air mo chlàr-faire',

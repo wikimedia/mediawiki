@@ -238,7 +238,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Wys die aantal gebruikers wat dophou',
 'tog-oldsig' => 'Bestaande handtekening:',
 'tog-fancysig' => 'Doodgewone handtekening (sonder outomatiese skakel)',
-'tog-showjumplinks' => 'Wys "spring na"-skakels vir toeganklikheid',
 'tog-uselivepreview' => 'Gebruik lewendige voorskou (JavaScript) (eksperimenteel)',
 'tog-forceeditsummary' => "Let my daarop as ek nie 'n opsomming van my wysiging gee nie",
 'tog-watchlisthideown' => 'Versteek my wysigings in dophoulys',

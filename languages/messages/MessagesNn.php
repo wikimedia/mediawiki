@@ -347,7 +347,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Vis kor mange som overvakar sida',
 'tog-oldsig' => 'Noverande signatur:',
 'tog-fancysig' => 'Handsam signaturar som wikitekst (utan automatisk lenking)',
-'tog-showjumplinks' => 'Slå på «gå til»-lenkjer',
 'tog-uselivepreview' => 'Bruk levande førehandsvising (eksperimentelt JavaScript)',
 'tog-forceeditsummary' => 'Spør meg når eg ikkje har skrive noko i endringssamandraget',
 'tog-watchlisthideown' => 'Gøym endringane mine i overvakingslista',

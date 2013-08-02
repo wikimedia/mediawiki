@@ -129,7 +129,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Közetken qullanıcı sayısını köster',
 'tog-oldsig' => 'Şimdiki imza:',
 'tog-fancysig' => 'İmza vikimetin kibi olsun (avtomatik bağlantı olmaz)',
-'tog-showjumplinks' => '"Bar" bağlantısını faalleştir',
 'tog-uselivepreview' => 'Canlı baqıp çıquv hususiyetini qullan (JavaScript) (daa deñeme alında)',
 'tog-forceeditsummary' => 'Deñiştirmeniñ qısqa tarifini boş taşlasam meni tenbile',
 'tog-watchlisthideown' => 'Közetüv cedvelimden menim deñiştirmelerimni gizle',

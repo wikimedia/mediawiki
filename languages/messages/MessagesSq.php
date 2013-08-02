@@ -246,7 +246,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Trego numrin e përdoruesve që vëzhgojnë këtë faqe',
 'tog-oldsig' => 'Nënshkrimi ekzistues:',
 'tog-fancysig' => 'Mbaje nënshkrimin si wikitekst (pa lidhje automatike)',
-'tog-showjumplinks' => 'Lejo lidhje "shko tek"',
 'tog-uselivepreview' => 'Trego bocetin në mënyrë të drejtëpërdrejtë (kërkon JavaScript) (eksperimentale)',
 'tog-forceeditsummary' => 'Më njofto kur e lë përmbledhjen e redaktimit bosh',
 'tog-watchlisthideown' => 'Fshih redaktimet e mia nga lista e faqeve të vëzhguara',

@@ -402,7 +402,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Mostrar el número de usuarios que la vigilan',
 'tog-oldsig' => 'Firma actual:',
 'tog-fancysig' => 'Tratar la firma como wikitexto (sin un enlace automático)',
-'tog-showjumplinks' => 'Habilitar los enlaces de accesibilidad «saltar a»',
 'tog-uselivepreview' => 'Usar previsualización en vivo (requiere JavaScript) (experimental)',
 'tog-forceeditsummary' => 'Avisarme cuando grabe la página sin introducir un resumen de edición',
 'tog-watchlisthideown' => 'Ocultar mis ediciones en la lista de seguimiento',
@@ -1000,6 +999,9 @@ Contraseña temporal: $2',
 'changeemail-password' => 'Tu contraseña en {{SITENAME}}:',
 'changeemail-submit' => 'Cambiar correo electrónico',
 'changeemail-cancel' => 'Cancelar',
+
+# Special:ResetTokens
+'resettokens-token-label' => '$1 (valor actual: $2)',
 
 # Edit page toolbar
 'bold_sample' => 'Texto en negrita',
@@ -2179,6 +2181,9 @@ Entrada: contenttype/subtype, p. ej. <code>image/jpeg</code>.',
 # Random page
 'randompage' => 'Página aleatoria',
 'randompage-nopages' => 'No hay páginas en los siguientes {{PLURAL:$2|espacio de nombre|espacios de nombre}}: $1.',
+
+# Special:RandomInCategory
+'randomincategory-selectcategory-submit' => 'Ir',
 
 # Random redirect
 'randomredirect' => 'Ir a una redirección cualquiera',
@@ -3596,7 +3601,7 @@ Existen otros campos que se mantendrán ocultos por defecto.
 'exif-compression-4' => 'Codificación de fax CCITT grupo 4',
 
 'exif-copyrighted-true' => 'Con derechos de autor',
-'exif-copyrighted-false' => 'Dominio público',
+'exif-copyrighted-false' => 'No se ha definido el estado del copyright',
 
 'exif-unknowndate' => 'Fecha desconocida',
 
@@ -3985,6 +3990,7 @@ También puedes [[Special:EditWatchlist|usar el editor estándar]].',
 'version-license' => 'Licencia',
 'version-poweredby-credits' => "Este wiki funciona gracias a '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'otros',
+'version-poweredby-translators' => 'Traductores de translatewiki.net',
 'version-credits-summary' => 'Queremos reconocer a las siguientes personas por su contribución a [[Special:Version|MediaWiki]].',
 'version-license-info' => 'MediaWiki es software libre; puedes redistribuirlo y/o modificarlo bajo los términos de la Licencia General Pública de GNU como la publica la Free Software Foundation; ya sea la versión 2 de la licencia, o (a tu elección) cualquier versión posterior.
 
@@ -4007,7 +4013,7 @@ Has recibido [{{SERVER}}{{SCRIPTPATH}}/COPYING una copia de la Licencia Pública
 'redirect-submit' => 'Ir',
 'redirect-lookup' => 'Buscar:',
 'redirect-value' => 'Valor:',
-'redirect-user' => 'ID del usuario',
+'redirect-user' => 'Id. del usuario',
 'redirect-revision' => 'Revisión de página',
 'redirect-file' => 'Nombre de fichero',
 'redirect-not-exists' => 'No se encontró el valor',

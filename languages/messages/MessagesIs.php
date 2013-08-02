@@ -263,7 +263,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Sýna fjölda vaktandi notenda',
 'tog-oldsig' => 'Núverandi undirskrift:',
 'tog-fancysig' => 'Meðhöndla undirskrift sem wikimál (án sjálfvirks tengils)',
-'tog-showjumplinks' => 'Virkja „stökkva á“ aðgengitengla',
 'tog-uselivepreview' => 'Nota beina forskoðun (JavaScript) (Á tilraunastigi)',
 'tog-forceeditsummary' => 'Birta áminningu þegar breytingarágripið er tómt',
 'tog-watchlisthideown' => 'Ekki sýna mínar breytingar á vaktlistanum',

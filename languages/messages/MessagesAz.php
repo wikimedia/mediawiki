@@ -111,7 +111,6 @@ $messages = array(
 'tog-shownumberswatching' => 'İzləyən istifadəçilərin sayını göstər',
 'tog-oldsig' => 'Hazırkı imza:',
 'tog-fancysig' => 'Vikimətn şəklində imza (avtomatik keçid yaratmadan)',
-'tog-showjumplinks' => '"Keçid et:" linklərini aktivləşdir',
 'tog-uselivepreview' => 'Canlı sınaq baxışı xüsusiyyətindən istifadə et (JavaScript tələb edir, sınaq mərhələsindədir)',
 'tog-forceeditsummary' => 'Qısa məzmunu boş saxladıqda mənə bildir',
 'tog-watchlisthideown' => 'Mənim redaktələrimi izləmə siyahısında gizlət',

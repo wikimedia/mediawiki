@@ -42,7 +42,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Ralvèngtu zât tilang rawh',
 'tog-oldsig' => 'Khàrna hming hman mék:',
 'tog-fancysig' => 'Khàrna hming wikithu angah ngai rawh (zawmna insiam ţül lovin)',
-'tog-showjumplinks' => '"Zuan kahlên rawh" tih zawmna awmtir rawh',
 'tog-uselivepreview' => 'Endikna nung hmang rawh (JavaScript a ngai) (hei hi chhinna chauh a la ni)',
 'tog-forceeditsummary' => 'Siamţhatna ruak ka dahluh palhin min hrilh rawh',
 'tog-watchlisthideown' => 'Ka siamţhatho ka ralvènah telh suh',

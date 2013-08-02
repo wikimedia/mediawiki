@@ -346,7 +346,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Prikaži broj suradnika koji prate stranicu (u nedavnim izmjenama, popisu praćenja i samim člancima)',
 'tog-oldsig' => 'Pregled postojećeg potpisa:',
 'tog-fancysig' => 'Običan potpis kao wikitekst (bez automatske poveznice)',
-'tog-showjumplinks' => 'Uključi pomoćne poveznice "Skoči na"',
 'tog-uselivepreview' => 'Uključi trenutačni pretpregled (JavaScript) (eksperimentalno)',
 'tog-forceeditsummary' => 'Podsjeti me ako sažetak uređivanja ostavljam praznim',
 'tog-watchlisthideown' => 'Sakrij moja uređivanja s popisa praćenja',

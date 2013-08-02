@@ -147,7 +147,6 @@ $messages = array(
 'tog-shownumberswatching' => "Dangos y nifer o ddefnyddwyr sy'n gwylio",
 'tog-oldsig' => 'Y llofnod cyfredol:',
 'tog-fancysig' => 'Trin y llofnod fel testun wici (heb gyswllt wici awtomatig)',
-'tog-showjumplinks' => 'Galluogi dolenni hygyrchedd "neidio i"',
 'tog-uselivepreview' => 'Defnyddio rhagolwg byw (JavaScript) (Arbrofol)',
 'tog-forceeditsummary' => 'Tynnu fy sylw pan adawaf flwch crynodeb golygu yn wag',
 'tog-watchlisthideown' => 'Cuddio fy ngolygiadau fy hunan yn fy rhestr wylio',

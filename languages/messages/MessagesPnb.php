@@ -51,7 +51,6 @@ $messages = array(
 'tog-shownumberswatching' => 'ویکھن آلے لوکاں دی گنتی وکھاؤ۔',
 'tog-oldsig' => 'ہن والے دسخط:',
 'tog-fancysig' => 'دستخط نوں وکی ٹیکسڈ ونگوں؎ ورتو(without an automatic link)',
-'tog-showjumplinks' => '"ایدر چلو" نوں رلن والے جوڑان نال جوڑو',
 'tog-uselivepreview' => 'لائیو پریویو ورتو',
 'tog-forceeditsummary' => 'مینون اوسے ویلے دسو جدوں خالی سمری تے آؤ۔',
 'tog-watchlisthideown' => 'میری اپنی لکھائی نوں اکھ تھلیوں لکاؤ',

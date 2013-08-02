@@ -397,7 +397,6 @@ $messages = array(
 'tog-shownumberswatching' => 'ページをウォッチしている利用者数を表示',
 'tog-oldsig' => '既存の署名:',
 'tog-fancysig' => '署名をウィキ文として扱う (自動リンクなし)',
-'tog-showjumplinks' => '利用しやすさ向上のための「{{int:jumpto}}」リンクを有効にする',
 'tog-uselivepreview' => 'ライブプレビューを使用 (JavaScriptが必要) (開発中)',
 'tog-forceeditsummary' => '要約欄が空欄の場合に確認を促す',
 'tog-watchlisthideown' => 'ウォッチリストに自分の編集を表示しない',
@@ -2255,6 +2254,13 @@ contenttype/subtypeの形式で入力してください (例: <code>image/jpeg</
 # Random page
 'randompage' => 'おまかせ表示',
 'randompage-nopages' => '以下の{{PLURAL:$2|名前空間}}にはページがありません: $1',
+
+# Special:RandomInCategory
+'randomincategory' => 'カテゴリ内でおまかせ表示',
+'randomincategory-invalidcategory' => '「$1」は有効なカテゴリ名ではありません。',
+'randomincategory-nopages' => '[[:Category:$1]] にはページがありません。',
+'randomincategory-selectcategory' => '以下のカテゴリでおまかせ表示: $1 $2',
+'randomincategory-selectcategory-submit' => '表示',
 
 # Random redirect
 'randomredirect' => 'おまかせリダイレクト',
@@ -4237,8 +4243,9 @@ $5
 'version-hook-subscribedby' => '使用個所',
 'version-version' => '(バージョン $1)',
 'version-license' => 'ライセンス',
-'version-poweredby-credits' => "このウィキは、'''[//www.mediawiki.org/ MediaWiki]'''(copyright © 2001-$1 $2)で動作しています。",
+'version-poweredby-credits' => "このウィキは、'''[//www.mediawiki.org/ MediaWiki]''' (copyright © 2001-$1 $2) で動作しています。",
 'version-poweredby-others' => 'その他',
+'version-poweredby-translators' => 'translatewiki.net の翻訳者たち',
 'version-credits-summary' => '[[Special:Version|MediaWiki]] に貢献した以下の人たちに感謝します。',
 'version-license-info' => 'MediaWikiはフリーソフトウェアです。あなたは、フリーソフトウェア財団の発行するGNU一般公衆利用許諾書 (GNU General Public License) (バージョン2、またはそれ以降のライセンス) の規約に基づき、このライブラリを再配布および改変できます。
 

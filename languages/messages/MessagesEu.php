@@ -156,7 +156,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Jarraitzen duen erabiltzaile kopurua erakutsi',
 'tog-oldsig' => 'Egungo sinadura:',
 'tog-fancysig' => 'Sinadura wikitestu gisa tratatu (lotura automatikorik gabe)',
-'tog-showjumplinks' => '"Hona jo" irisgarritasun loturak gaitu',
 'tog-uselivepreview' => 'Zuzeneko aurrebista erakutsi (JavaScript) (Proba fasean)',
 'tog-forceeditsummary' => 'Aldaketaren laburpena zuri uzterakoan ohartarazi',
 'tog-watchlisthideown' => 'Segimendu zerrendan nire aldaketak ezkutatu',

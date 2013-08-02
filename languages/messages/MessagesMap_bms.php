@@ -46,7 +46,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Tidhokna jumlah pangawas',
 'tog-oldsig' => 'Tapak asma sekiye:',
 'tog-fancysig' => 'Tapak asma dianggep dadi teks wiki (ora nganggo pranala otomatis)',
-'tog-showjumplinks' => 'Aktifna pranala pitulung "mlumpat maring"',
 'tog-uselivepreview' => 'Gunakna pratayang langsung (mbutuhna JavaScript) (egin jajalan)',
 'tog-forceeditsummary' => 'Emutna inyong anggere durung ngisi kotak ringkesan suntingan',
 'tog-watchlisthideown' => 'Umpetna suntingane inyong sekang daftar pangawasan',

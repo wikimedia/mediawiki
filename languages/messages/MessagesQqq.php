@@ -191,7 +191,6 @@ Is only shown if {{msg-mw|tog-enotifusertalkpages}} or/and {{msg-mw|tog-enotifwa
 'tog-shownumberswatching' => 'Toggle option used in [[Special:Preferences]], in the section for recent changes. When this option is activated, the entries in recent changes includes the number of users who watch pages. {{Gender}}',
 'tog-oldsig' => 'Used in [[Special:Preferences]], tab User profile. {{Gender}}',
 'tog-fancysig' => 'In user preferences under the signature box.  {{Gender}}',
-'tog-showjumplinks' => 'Toggle option used in [[Special:Preferences]]. The "jump to" part should be the same with {{msg-mw|jumpto}} (or you can use <nowiki>{{int:jumpto}}</nowiki>). These links are shown in some of the older skins as "jump to: navigation, search" but they are hidden by default (you can enable them with this option). {{Gender}}',
 'tog-uselivepreview' => 'Toggle option used in [[Special:Preferences]]. Live preview is an experimental feature (unavailable by default) to use edit preview without loading the page again. {{Gender}}',
 'tog-forceeditsummary' => "Toggle option used in [[Special:Preferences]] to force an edit ''{{msg-mw|summary}}''. {{Gender}}",
 'tog-watchlisthideown' => "[[Special:Preferences]], tab 'Watchlist'. Offers user to hide own edits from watchlist. {{Gender}}",
@@ -4116,10 +4115,25 @@ See also:
 
 # Special:RandomInCategory
 'randomincategory' => '{{doc-special|RandomInCategory}}',
-'randomincategory-invalidcategory' => 'Message shown if an invalid category is specified. (Note, if the category is simply empty, but could possibly exist, {{msg-mw|randomincategory-nopages}} is shown instead). $1 is the invalid category name given.',
-'randomincategory-nopages' => 'Message shown from Special:RandomInCategory if the category is empty. $1 is the category name (without the namespace prefix)',
-'randomincategory-selectcategory' => 'Shown on Special:RandomInCategory if no category is selected. Displays a form allowing the user to input a category name. $1 is the text field input box, $2 is the go button. The text content of the button comes from {{msg-mw|randomcategory-selectcategory}}.',
-'randomincategory-selectcategory-submit' => 'Text of button used in {{msg-mw|randomcategory-selectcategory}}',
+'randomincategory-invalidcategory' => 'Message shown if an invalid category is specified.
+
+Parameters:
+* $1 - the invalid category name given
+
+(Note, if the category is simply empty, but could possibly exist, {{msg-mw|randomincategory-nopages}} is shown instead)',
+'randomincategory-nopages' => 'Message shown from [[Special:RandomInCategory]] if the category is empty.
+
+Parameters:
+* $1 - the category name (without the namespace prefix)',
+'randomincategory-selectcategory' => 'Shown on [[Special:RandomInCategory]] if no category is selected.
+
+Displays a form allowing the user to input a category name.
+
+Parameters:
+* $1 - the text field input box
+* $2 - the go button which has the label {{msg-mw|randomincategory-selectcategory-submit}}.',
+'randomincategory-selectcategory-submit' => 'Used as label for the Submit button which is used as <code>$2</code> in {{msg-mw|Randomincategory-selectcategory}}.
+{{Identical|Go}}',
 
 # Random redirect
 'randomredirect' => '{{doc-special|RandomRedirect}}',
@@ -8775,7 +8789,11 @@ This is being used in [[Special:Version]], preceeding the subversion revision nu
 * $1 - the current year
 * $2 - a list of selected MediaWiki authors',
 'version-poweredby-others' => "Used at the end of {{msg-mw|version-poweredby-credits}} on [[Special:Version]]. First, there's a long list of selected MediaWiki authors, then a comma and then this translation, which is supposed to credit the many other people than developer helping with MediaWiki.",
-'version-poweredby-translators' => 'Label for a link to [[Translating:MediaWiki/Credits]], which follows {{msg-mw|version-poweredby-others}} and an "and" (from {{msg-mw|and}}), at the end of {{msg-mw|version-poweredby-credits}} on [[Special:Version]].',
+'version-poweredby-translators' => 'Used as label for a link to [[Translating:MediaWiki/Credits]].
+
+Preceded by {{msg-mw|version-poweredby-others}} and {{msg-mw|and}}.
+
+Used at the end of {{msg-mw|version-poweredby-credits}} on [[Special:Version]].',
 'version-credits-summary' => 'Summary of the [[Special:Version/Credits]] sub page, which lists all developers etc. who contributed to MediaWiki. Shown at the top.',
 'version-license-info' => '[[wikipedia:GNU GPL|GNU GPL]] notice shown at [[Special:Version]]. See //www.gnu.org/licenses/old-licenses/gpl-2.0-translations.html for available translations.',
 'version-software' => 'Message shown on [[Special:Version]].

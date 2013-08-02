@@ -72,7 +72,6 @@ $messages = array(
 'tog-shownumberswatching' => "Mussar il dumber d'utilisaders che obervan questa pagina",
 'tog-oldsig' => 'Signatura actuala:',
 'tog-fancysig' => "Suttascripziun senza link automatic tar la pagina da l'utilisader.",
-'tog-showjumplinks' => 'Activar las colliaziuns "seglir a"',
 'tog-uselivepreview' => 'Utilisar la prevista dinamica (basegna JavaScript) (experiment!)',
 'tog-forceeditsummary' => 'Avertir durant memoriar sche la resumaziun manca',
 'tog-watchlisthideown' => "Zuppentar mias modificaziuns en la glista d'observaziun",

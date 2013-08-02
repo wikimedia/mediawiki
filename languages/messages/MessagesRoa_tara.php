@@ -54,7 +54,6 @@ $messages = array(
 'tog-shownumberswatching' => "Fa vedè 'u numere de le utinde ca uardene",
 'tog-oldsig' => 'Firme esistende:',
 'tog-fancysig' => "Firma grezze cumme a 'nu teste de Uicchi (senza collegamende automatiche)",
-'tog-showjumplinks' => 'Abbilite "zumbe a" pe scè sus a le collegaminde',
 'tog-uselivepreview' => "Ause l'andeprime da 'u vive (JavaScript) (Sperimendale)",
 'tog-forceeditsummary' => "Ciércame conferme quanne stoche a 'nzerische 'nu riepighe vianghe",
 'tog-watchlisthideown' => "Scunne le cangiaminde mije da l'elenghe de le pàggene condrollate",
@@ -1902,6 +1901,13 @@ Arrecuèrdete de condrollà pe otre collegaminde a le template apprime de scange
 # Random page
 'randompage' => 'Pàgene a uecchie',
 'randompage-nopages' => "Non ge stonne pàggene jndr'à {{PLURAL:$2|'u seguende namespace|le seguende namespace}}: $1.",
+
+# Special:RandomInCategory
+'randomincategory' => "Pàggene a uecchije jndr'à categorije",
+'randomincategory-invalidcategory' => '"$1" non g\'è \'nu nome d\'a categorije valide.',
+'randomincategory-nopages' => "Non ge stonne pàggene jndr'à [[:Category:$1]].",
+'randomincategory-selectcategory' => "Pigghie pàggene a uecchije da 'a categorije: $1 $2.",
+'randomincategory-selectcategory-submit' => 'Véje',
 
 # Random redirect
 'randomredirect' => 'Redirezionamende a uecchie',
@@ -3943,6 +3949,7 @@ Tu puè pure [[Special:EditWatchlist|ausà 'u cangiatore standàrd]].",
 'version-license' => 'Licenze',
 'version-poweredby-credits' => "Sta Uicchi jè fatte da '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'otre',
+'version-poweredby-translators' => 'tradutture de translatewiki.net',
 'version-credits-summary' => 'Nuje vulesseme acchià le persone seguende pe le lore condrebbute a [[Special:Version|MediaUicchi]].',
 'version-license-info' => "MediaUicchi jè 'nu softuare libbere, tu 'u puè redestribbuì  e/o cangiarle sotte le termine d'a GNU (Licenze Pubbleche Generale) cumme pubblecate da 'a Free Software Foundation; endrambe le versiune 2 d'a Licenze, o (a scelta toje) 'le versiune cchiù nnove.
 

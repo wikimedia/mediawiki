@@ -159,7 +159,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Témbongkeun jumlah nu ngawaskeun',
 'tog-oldsig' => 'Paraf nu geus aya:',
 'tog-fancysig' => 'Témbongkeun paraf salaku wikitext (tanpa tumbu otomatis)',
-'tog-showjumplinks' => 'Aktifkeun tumbu panyambung "luncat ka"',
 'tog-uselivepreview' => 'Paké pramidang saharita (JavaScript) (ujicoba)',
 'tog-forceeditsummary' => 'Mun kotak ringkesan éditan masih kosong, béjaan!',
 'tog-watchlisthideown' => 'Sumputkeun éditan kuring dina daptar awaskeuneun',

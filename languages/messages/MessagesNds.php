@@ -246,7 +246,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Wies de Tall vun Brukers, de op disse Siet oppasst',
 'tog-oldsig' => 'Gellen Ünnerschrift',
 'tog-fancysig' => 'Signatur as Wikitext behanneln (ahn automaatsch Lenk)',
-'tog-showjumplinks' => '„Wesseln-na“-Lenken tolaten',
 'tog-uselivepreview' => 'Live-Vörschau bruken (JavaScript) (Experimental)',
 'tog-forceeditsummary' => 'Segg mi bescheid, wenn ik keen Tosamenfaten geven heff, wat ik allens ännert heff',
 'tog-watchlisthideown' => 'Ännern vun mi sülvs op de Oppasslist nich wiesen',

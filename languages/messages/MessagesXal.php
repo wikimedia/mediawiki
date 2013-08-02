@@ -86,7 +86,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Тер халх шинҗлдг демнчнрин то үзүлх',
 'tog-oldsig' => 'Бәәдг тәвсн һарна хәләвр:',
 'tog-fancysig' => 'Эврән тәвсн һарна бики темдлһн (авто заалһта уга)',
-'tog-showjumplinks' => 'Туслмҗ заалһуд «-д/-т һарх» йовулх',
 'tog-uselivepreview' => 'Шамдһа хәләвр олзлх (JavaScript кергтә, амслһн)',
 'tog-forceeditsummary' => 'Учр-утх хоосн бәәхлә медүлх',
 'tog-watchlisthideown' => 'Шинҗллһнә сеткүлд мини сольлһиг бултулх',

@@ -229,7 +229,6 @@ $messages = array(
 'tog-enotifusertalkpages' => 'Danvon ebost dhymm pan vo chanjyes ow folen geskows',
 'tog-oldsig' => 'Sinans a-lemmyn:',
 'tog-fancysig' => 'Dyghtya an sinans avel wikitekst (heb kevren awtomatek)',
-'tog-showjumplinks' => 'Galosegi kevrennow hedhadowder "lamma dhe"',
 'tog-watchlisthideown' => "Kudha ow chanjyow y'n rol golya",
 'tog-watchlisthidebots' => "Kudha chanjyow gans bottow y'n rol golya",
 'tog-watchlisthideminor' => "Kudha chanjyow byhian y'n rol golya",
@@ -397,7 +396,7 @@ $messages = array(
 'unprotectthispage' => 'Chanjya difresans an folen-ma',
 'newpage' => 'Folen nowyth',
 'talkpage' => "Dadhlow a'n folen-ma",
-'talkpagelinktext' => 'Keskows',
+'talkpagelinktext' => 'keskows',
 'specialpage' => 'Folen arbennek',
 'personaltools' => 'Toulys personel',
 'postcomment' => 'Tregh nowyth',
@@ -1143,7 +1142,15 @@ Diskwedhys a-woles yw an deskrifans war hy [$2 folen dheskrifans] ena.',
 'linksearch-line' => 'Y kevrennir $1 dhyworth $2',
 
 # Special:ListUsers
+'listusersfrom' => 'Diskwedhes devnydhyoryon yn unn dhalleth orth:',
 'listusers-submit' => 'Diskwedhes',
+
+# Special:ActiveUsers
+'activeusers' => 'Rol a dhevnydhyoryon vyw',
+'activeusers-intro' => "Hemm yw rol a dhevnydhyoryon re wrug gwrians war an wiki-ma y'n $1 {{PLURAL:$1|jydh|dydh}} diwettha.",
+'activeusers-count' => "$1 {{PLURAL:$1|wrians|gwrians}} y'n {{PLURAL:$3|jydh|$3 dydh}} diwettha",
+'activeusers-hidebots' => 'Kudha botow',
+'activeusers-hidesysops' => 'Kudha menystroryon',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(rol eseli)',

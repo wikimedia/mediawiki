@@ -379,7 +379,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Прикажи го бројот на корисници кои набљудуваат',
 'tog-oldsig' => 'Постоечки потпис:',
 'tog-fancysig' => 'Сметај го потписот за викитекст (без автоматска врска)',
-'tog-showjumplinks' => 'Овозможи врски на пристапност „скокни на“',
 'tog-uselivepreview' => 'Користи преглед во живо (бара JavaScript) (експериментално)',
 'tog-forceeditsummary' => 'Извести ме кога нема опис на промените',
 'tog-watchlisthideown' => 'Скриј мои уредувања од списокот на набљудувања',
@@ -2210,6 +2209,13 @@ $1',
 # Random page
 'randompage' => 'Случајна страница',
 'randompage-nopages' => 'Нема страници во {{PLURAL:$2|следниот именски простор|следниве именски простори}}: $1.',
+
+# Special:RandomInCategory
+'randomincategory' => 'Случајна страница во категоријата',
+'randomincategory-invalidcategory' => '„$1“ не претставува важечка категорија.',
+'randomincategory-nopages' => 'Нема страници во [[:Category:$1]].',
+'randomincategory-selectcategory' => 'Дај случајна страница од категоријата: $1 $2.',
+'randomincategory-selectcategory-submit' => 'Оди',
 
 # Random redirect
 'randomredirect' => 'Случајно пренасочување',
@@ -4203,6 +4209,7 @@ $5
 'version-license' => 'Лиценца',
 'version-poweredby-credits' => "Ова вики работи на '''[//www.mediawiki.org/ МедијаВики]''', авторски права © 2001-$1 $2.",
 'version-poweredby-others' => 'други',
+'version-poweredby-translators' => 'преведувачи на translatewiki.net',
 'version-credits-summary' => 'Би сакале да им се заблагодариме на следниве лица за нивните придонеси кон [[Special:Version|МедијаВики]].',
 'version-license-info' => 'МедијаВики е слободна програмска опрема; можете да ја редистрибуирате и/или менувате под условите на ГНУ-овата општа јавна лиценца на Фондацијата за слободна програмска опрема; или верзија 2 на Лиценцата, или некоја понова верзија (по ваш избор).
 

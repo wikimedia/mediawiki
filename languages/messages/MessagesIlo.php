@@ -65,7 +65,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Ipakita ti bilang dagiti agbuybuya nga agar-aramat',
 'tog-oldsig' => 'Ti adda a pirma:',
 'tog-fancysig' => 'Tratuen ti pirma a kas wikitext (nga awan ti automatiko a panagsilpo)',
-'tog-showjumplinks' => 'Pakabaelan a "lumaktaw kadagiti" naipalaka a pagserkan a silpo',
 'tog-uselivepreview' => 'Usaren ti agdama a panagpadas (masapul ti JavaScript) (eksperimento)',
 'tog-forceeditsummary' => 'Pakaammuannak no sumrek ti blanko a pakabuklan ti panag-urnos',
 'tog-watchlisthideown' => 'Ilemmeng dagiti inurnosko manipud ti listaan ti bambantayan',

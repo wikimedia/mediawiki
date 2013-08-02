@@ -185,7 +185,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Ličbu wobkedźbowacych wužiwarjow pokazać',
 'tog-oldsig' => 'Eksistowaca signatura:',
 'tog-fancysig' => 'Ze signaturu kaž z wikitekstom wobchadźeć  (bjez awtomatiskeho wotkaza)',
-'tog-showjumplinks' => 'Wotkazy typa „dźi do” zmóžnić',
 'tog-uselivepreview' => 'Live-přehlad wužiwać (wužaduje sej JavaScript) (eksperimentalny)',
 'tog-forceeditsummary' => 'Mje skedźbnić, jeli zabudu zjeće',
 'tog-watchlisthideown' => 'Moje změny we wobkedźbowankach schować',

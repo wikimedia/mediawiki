@@ -345,7 +345,6 @@ $messages = array(
 'tog-shownumberswatching' => 'A lapot figyelő szerkesztők számának megjelenítése',
 'tog-oldsig' => 'A jelenlegi aláírás:',
 'tog-fancysig' => 'Az aláírás wikiszöveg (nem lesz automatikusan hivatkozásba rakva)',
-'tog-showjumplinks' => 'Helyezzen el hivatkozást („Ugrás”) a beépített eszköztárra',
 'tog-uselivepreview' => 'Élő előnézet használata (JavaScript-alapú, kísérleti)',
 'tog-forceeditsummary' => 'Figyelmeztessen, ha nem adok meg szerkesztési összefoglalót',
 'tog-watchlisthideown' => 'Saját szerkesztések elrejtése',

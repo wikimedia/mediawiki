@@ -355,7 +355,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Visa antalet användare som bevakar',
 'tog-oldsig' => 'Nuvarande signatur:',
 'tog-fancysig' => 'Rå signatur som wikitext (utan en automatisk länk)',
-'tog-showjumplinks' => 'Aktivera "hoppa till"-tillgänglighetslänkar',
 'tog-uselivepreview' => 'Använd direktuppdaterad förhandsgranskning (Javascript, på försöksstadiet)',
 'tog-forceeditsummary' => 'Påminn mig om jag inte fyller i en redigeringskommentar',
 'tog-watchlisthideown' => 'Visa inte mina redigeringar i bevakningslistan',
@@ -700,6 +699,7 @@ Den kanske redan har raderats av någon annan.',
 'cannotdelete-title' => 'Sidan "$1" kan inte raderas',
 'delete-hook-aborted' => 'Borttagning avbruten av hook.
 Den gav ingen förklaring.',
+'no-null-revision' => 'Kunde inte skapa ny tom version för sidan "$1"',
 'badtitle' => 'Felaktig titel',
 'badtitletext' => 'Den begärda sidtiteln är antingen ogiltig eller tom, eller så är titeln felaktigt länkad från en annan wiki.
 Den kan innehålla ett eller flera tecken som inte får användas i sidtitlar.',
@@ -1644,7 +1644,7 @@ Om du väljer att ange ditt riktiga namn, kommer det att användas för att till
 'right-hideuser' => 'Blockera användarnamn och dölja det från blockeringsloggen',
 'right-ipblock-exempt' => 'Kan redigera från blockerade IP-adresser',
 'right-proxyunbannable' => 'Kan redigera från blockerade proxyer',
-'right-unblockself' => 'Avblockera sig själva',
+'right-unblockself' => 'Avblockera sig själv',
 'right-protect' => 'Ändra skyddsnivåer och redigera kaskadskyddade sidor',
 'right-editprotected' => 'Redigera skyddade sidor som "{{int:protect-level-sysop}}"',
 'right-editsemiprotected' => 'Redigera skyddade sidor som "{{int:protect-level-autoconfirmed}}"',
@@ -2129,6 +2129,13 @@ Innan mallarna raderas, kontrollera att det inte finns andra länkar till dem.',
 # Random page
 'randompage' => 'Slumpsida',
 'randompage-nopages' => 'Det finns inte några sidor i följande {{PLURAL:$2|namnrymd|namnrymder}}: $1.',
+
+# Special:RandomInCategory
+'randomincategory' => 'Slumpsida i kategori',
+'randomincategory-invalidcategory' => '"$1" är inte ett giltigt kategorinamn.',
+'randomincategory-nopages' => 'Det finns inga sidor i [[:Category:$1]].',
+'randomincategory-selectcategory' => 'Få slumpsida från kategori: $1 $2.',
+'randomincategory-selectcategory-submit' => 'Gå',
 
 # Random redirect
 'randomredirect' => 'Slumpvald omdirigering',
@@ -3944,6 +3951,7 @@ Du kan också [[Special:EditWatchlist|använda standardeditorn]].',
 'version-license' => 'Licens',
 'version-poweredby-credits' => "Den här wikin drivs av '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'andra',
+'version-poweredby-translators' => 'översättare från translatewiki.net',
 'version-credits-summary' => 'Vi skulle vilja tacka följande personer för deras bidrag till [[Special:Version|MediaWiki]].',
 'version-license-info' => 'MediaWiki är fri programvara; du kan distribuera det och/eller modifiera det under villkoren i GNU General Public License, publicerad av Free Software Foundation; antingen version 2 av licensen, eller (om du önskar) någon senare version. 
 

@@ -354,8 +354,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Montri la nombron da priatentaj uzantoj',
 'tog-oldsig' => 'Ekzistanta subskribo:',
 'tog-fancysig' => 'Trakti subskribon kiel vikitekston (sen aŭtomata ligo)',
-'tog-showjumplinks' => 'Ebligi alirligojn "salti al"
-<!-- Bonvolu kontroli ĉu ĝustas la traduko de : Enable "jump to" accessibility links -->',
 'tog-uselivepreview' => 'Uzi tujan antaŭrigardon (ĜavaSkripto) (Eksperimenta)',
 'tog-forceeditsummary' => 'Averti min kiam mi konservas malplenan redaktoresumon',
 'tog-watchlisthideown' => 'Kaŝi miajn redaktojn de la atentaro',

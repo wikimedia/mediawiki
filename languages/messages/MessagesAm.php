@@ -77,7 +77,6 @@ $messages = array(
 'tog-shownumberswatching' => 'የሚከታተሉ ተጠቃሚዎችን ቁጥር አሳይ',
 'tog-oldsig' => 'የቀድሞው ፊርማ ቅደመ እይታ',
 'tog-fancysig' => 'ጥሬ ፊርማ (ያለራስገዝ ማያያዣ)',
-'tog-showjumplinks' => 'የ"ዝለል" አቅላይ መያያዣዎችን አስችል',
 'tog-uselivepreview' => 'ቀጥታ ቅድመ-ዕይታን ይጠቀሙ (JavaScript) (የሙከራ)',
 'tog-forceeditsummary' => 'ማጠቃለያው ባዶ ከሆነ ማስታወሻ ይስጠኝ',
 'tog-watchlisthideown' => 'የራስዎ ለውጦች ከሚከታተሉት ገጾች ይደበቁ',

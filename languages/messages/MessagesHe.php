@@ -15,6 +15,7 @@
  * @author Inkbug
  * @author Ofekalef
  * @author Ofrahod
+ * @author Orsa
  * @author Rotem Dan (July 2003)
  * @author Rotem Liss (March 2006 on)
  * @author Rotemliss
@@ -388,7 +389,6 @@ $messages = array(
 'tog-shownumberswatching' => 'הצגת מספר המשתמשים העוקבים',
 'tog-oldsig' => 'החתימה הנוכחית:',
 'tog-fancysig' => 'פירוש החתימה כקוד ויקי (ללא קישור אוטומטי)',
-'tog-showjumplinks' => 'הצגת קישורי נגישות מסוג "{{int:jumpto}}"',
 'tog-uselivepreview' => 'שימוש בתצוגה מקדימה מהירה (דרוש JavaScript) (ניסיוני)',
 'tog-forceeditsummary' => 'הצגת אזהרה בעת הכנסת תקציר עריכה ריק',
 'tog-watchlisthideown' => 'הסתרת העריכות שלי ברשימת המעקב',
@@ -2197,6 +2197,9 @@ $1',
 # Random page
 'randompage' => 'דף אקראי',
 'randompage-nopages' => 'אין דפים {{PLURAL:$2|במרחב השם הבא|במרחבי השם הבאים}}: $1.',
+
+# Special:RandomInCategory
+'randomincategory' => 'דף אקראי בקטגוריה',
 
 # Random redirect
 'randomredirect' => 'הפניה אקראית',

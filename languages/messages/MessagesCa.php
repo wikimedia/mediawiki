@@ -230,7 +230,6 @@ $messages = array(
 'tog-shownumberswatching' => "Mostra el nombre d'usuaris que hi vigilen",
 'tog-oldsig' => 'Signatura actual:',
 'tog-fancysig' => 'Tractar la signatura com a text wiki (sense enllaç automàtic)',
-'tog-showjumplinks' => "Habilita els enllaços de dreceres d'accessibilitat",
 'tog-uselivepreview' => 'Utilitza la previsualització automàtica (cal JavaScript) (experimental)',
 'tog-forceeditsummary' => "Avisa'm en deixar el resum de la modificació en blanc",
 'tog-watchlisthideown' => 'Amaga les meues edicions de la llista de seguiment',

@@ -13,6 +13,7 @@
  * @author Brion
  * @author BrunaaAa
  * @author Brunoy Anastasiya Seryozhenko
+ * @author Cainamarques
  * @author Capmo
  * @author Carla404
  * @author Chicocvenancio
@@ -354,7 +355,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Mostrar o número de usuários que estão vigiando',
 'tog-oldsig' => 'Assinatura existente:',
 'tog-fancysig' => 'Tratar assinatura como wikitexto (sem link automático)',
-'tog-showjumplinks' => 'Ativar links de acessibilidade "ir para"',
 'tog-uselivepreview' => 'Utilizar pré-visualização em tempo real (JavaScript) (Experimental)',
 'tog-forceeditsummary' => 'Avisar-me ao introduzir um sumário de edição vazio',
 'tog-watchlisthideown' => 'Ocultar as minhas edições da lista de páginas vigiadas',
@@ -3498,7 +3498,7 @@ Por padrão, outros campos estarão ocultos.
 'exif-objectcycle' => 'Período do dia para a qual o conteúdo está direcionado',
 'exif-contact' => 'Informações para contato',
 'exif-writer' => 'Escritor',
-'exif-languagecode' => 'Língua',
+'exif-languagecode' => 'Idioma',
 'exif-iimversion' => 'Versão IIM',
 'exif-iimcategory' => 'Categoria',
 'exif-iimsupplementalcategory' => 'Categorias suplementares',

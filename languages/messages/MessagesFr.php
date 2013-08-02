@@ -419,7 +419,6 @@ $messages = array(
 'tog-shownumberswatching' => "Afficher le nombre d'utilisateurs qui suivent la page",
 'tog-oldsig' => 'Signature existante :',
 'tog-fancysig' => 'Traiter la signature comme du wikitexte (sans lien automatique)',
-'tog-showjumplinks' => 'Activer les liens « navigation » et « recherche » en haut de page',
 'tog-uselivepreview' => "Utiliser l'aperçu rapide (nécessite JavaScript) (expérimental)",
 'tog-forceeditsummary' => "M'avertir lorsque je n'ai pas spécifié de résumé de modification",
 'tog-watchlisthideown' => 'Masquer mes propres modifications dans la liste de suivi',
@@ -2198,6 +2197,13 @@ N'oubliez pas de vérifier s'il n'y a pas d'autres liens vers les modèles avant
 # Random page
 'randompage' => 'Page au hasard',
 'randompage-nopages' => "Il n'y a aucune page dans {{PLURAL:$2|l'espace de noms|les espaces de noms}} : $1.",
+
+# Special:RandomInCategory
+'randomincategory' => 'Page au hasard dans la catégorie',
+'randomincategory-invalidcategory' => '« $1 » n’est pas un nom de catégorie valide.',
+'randomincategory-nopages' => 'Il n’y a pas de page dans [[:Category:$1]].',
+'randomincategory-selectcategory' => 'Prendre une page au hasard dans la catégorie : $1 $2.',
+'randomincategory-selectcategory-submit' => 'Aller',
 
 # Random redirect
 'randomredirect' => 'Page de redirection au hasard',
@@ -4096,6 +4102,7 @@ Vous pouvez aussi [[Special:EditWatchlist|utiliser l'éditeur normal]].",
 'version-license' => 'Licence',
 'version-poweredby-credits' => "Ce wiki fonctionne grâce à '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'autres',
+'version-poweredby-translators' => 'traducteurs de translatewiki.net',
 'version-credits-summary' => 'Nous tenons à remercier les personnes suivantes pour leur contribution à  [[Special:Version|MediaWiki]].',
 'version-license-info' => "MediaWiki est un logiciel libre, vous pouvez le redistribuer ou le modifier selon les termes de la Licence Publique Générale GNU telle que publiée par la Free Software Foundation ; soit la version 2 de la Licence, ou (à votre choix) toute version ultérieure.
 

@@ -188,7 +188,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Mostra el numaro de utenti che i ga ła pajina en oservasion',
 'tog-oldsig' => 'Anteprima de ła firma:',
 'tog-fancysig' => 'Interpreta i comandi wiki in te la firma (sensa colegamento automatego)',
-'tog-showjumplinks' => 'Ativa i cołegamenti acesibiłi "va a"',
 'tog-uselivepreview' => 'Ativa ła funsion "Line preview" (el dimanda JavaScript; sperimentałe)',
 'tog-forceeditsummary' => "Chiedi conferma se l'ozeto de ła modifega el xé vodo",
 'tog-watchlisthideown' => 'Scondi łe me modifeghe ne i oservai spesałi',

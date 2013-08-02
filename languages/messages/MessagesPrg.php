@@ -43,7 +43,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Waidinnais gīrbin stēisan nadirīntin tērpautajan',
 'tog-oldsig' => 'Twājs tēntiskas papeisāsenis',
 'tog-fancysig' => 'Laikais papeisāsenin per wikitekstan (šlāit autōmatiskan sēisnan)',
-'tog-showjumplinks' => 'Enklaūjais autengīnsenins "sākais en"',
 'tog-uselivepreview' => 'Tērpaus dināmiskan pirmādiran (JavaScript) (eksperimentālin)',
 'tog-forceeditsummary' => 'Pawakēis mi nierpilninsenin stesse ebpeisāsenin stēisan kitawīdinsnan',
 'tog-watchlisthideown' => 'Kliptinais majjans redigīsenins en listei stēisan nadirītan',

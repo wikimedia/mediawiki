@@ -318,7 +318,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Mostra il numero di utenti che hanno la pagina in osservazione',
 'tog-oldsig' => 'Firma attuale:',
 'tog-fancysig' => 'Tratta la firma come wikitesto (senza un collegamento automatico)',
-'tog-showjumplinks' => 'Attiva i collegamenti accessibili "vai a"',
 'tog-uselivepreview' => "Abilita la funzione ''Live preview'' (anteprima in diretta - richiede JavaScript; sperimentale)",
 'tog-forceeditsummary' => 'Chiedi conferma se il campo oggetto è vuoto',
 'tog-watchlisthideown' => 'Nascondi le mie modifiche negli osservati speciali',
@@ -2073,6 +2072,13 @@ Probabilmente vuoi modificare la descrizione presente nella [$2 pagina di descri
 # Random page
 'randompage' => 'Una pagina a caso',
 'randompage-nopages' => 'Non ci sono pagine {{PLURAL:$2|nel seguente namespace|nei seguenti namespace}}: $1.',
+
+# Special:RandomInCategory
+'randomincategory' => 'Pagina casuale in una categoria',
+'randomincategory-invalidcategory' => '"$1" non è un nome di categoria valido.',
+'randomincategory-nopages' => 'Non ci sono pagine in [[:Category:$1]].',
+'randomincategory-selectcategory' => 'Ottieni una pagina casuale dalla categoria: $1 $2.',
+'randomincategory-selectcategory-submit' => 'Vai',
 
 # Random redirect
 'randomredirect' => 'Un redirect a caso',
@@ -3874,6 +3880,7 @@ Si noti che è anche possibile [[Special:EditWatchlist|modificare la lista con l
 'version-license' => 'Licenza',
 'version-poweredby-credits' => "Questo wiki è realizzato con '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'altri',
+'version-poweredby-translators' => 'traduttori di translatewiki.net',
 'version-credits-summary' => 'Siamo lieti di riconoscere le seguenti persone per aver contribuito a [[Special:Version|MediaWiki]].',
 'version-license-info' => 'MediaWiki è un software libero; puoi redistribuirlo e/o modificarlo secondo i termini della GNU General Public License, come pubblicata dalla Free Software Foundation; o la versione 2 della Licenza o (a propria scelta) qualunque versione successiva.
 

@@ -92,7 +92,6 @@ $messages = array(
 'tog-shownumberswatching' => "Amosar el númberu d'usuarios que tán vixilando la páxina",
 'tog-oldsig' => 'Firma esistente:',
 'tog-fancysig' => 'Tratar la firma como testu wiki (ensin enllaz automáticu)',
-'tog-showjumplinks' => 'Activar los enllaces d\'accesibilidá "saltar a"',
 'tog-uselivepreview' => 'Usar vista previa en tiempu real (necesita JavaScript) (en pruebes)',
 'tog-forceeditsummary' => "Avisame cuando grabe col resume d'edición en blanco",
 'tog-watchlisthideown' => 'Anubrir les mios ediciones na llista de vixilancia',
@@ -1917,6 +1916,13 @@ Alcuérdate de comprobar otros enllaces a les plantíes enantes d'esborrales.",
 'randompage' => 'Páxina al debalu',
 'randompage-nopages' => 'Nun hai páxines {{PLURAL:$2|nel espaciu|nos espacios}} de nomes darréu: "$1".',
 
+# Special:RandomInCategory
+'randomincategory' => 'Páxina al debalu de la categoría',
+'randomincategory-invalidcategory' => '"$1" nun ye un nome de categoría válidu.',
+'randomincategory-nopages' => 'Nun hai páxines en [[:Category:$1]].',
+'randomincategory-selectcategory' => 'Ver una páxina al debalu de la categoría: $1. $2',
+'randomincategory-selectcategory-submit' => 'Dir',
+
 # Random redirect
 'randomredirect' => 'Redireición al debalu',
 'randomredirect-nopages' => 'Nun hai redireiciones nel espaciu de nomes "$1".',
@@ -3736,6 +3742,7 @@ Tamién pues [[Special:EditWatchlist|usar l'editor estándar]].",
 'version-license' => 'Llicencia',
 'version-poweredby-credits' => "Esta wiki funciona con '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'otros',
+'version-poweredby-translators' => 'los traductores de translatewiki.net',
 'version-credits-summary' => 'Nos prestaría dar reconocimientu a les siguientes persones pola so contribución a [[Special:Version|MediaWiki]].',
 'version-license-info' => "MediaWiki ye software llibre; pue redistribuilu y/o camudalu baxo los términos de la Llicencia Pública Xeneral GNU tal como ta asoleyada pola Free Software Foundation; o la versión 2 de la Llicencia, o (como prefieras) cualesquier versión posterior.
 

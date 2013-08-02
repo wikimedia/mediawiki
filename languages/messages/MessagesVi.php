@@ -354,7 +354,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Hiển thị số người đang xem',
 'tog-oldsig' => 'Chữ ký hiện tại:',
 'tog-fancysig' => 'Xem chữ ký là mã wiki (không có liên kết tự động)',
-'tog-showjumplinks' => 'Bật liên kết “bước tới” trên đầu trang cho bộ trình duyệt thuần văn bản hay âm thanh',
 'tog-uselivepreview' => 'Xem trước trực tiếp (JavaScript; chưa ổn định)',
 'tog-forceeditsummary' => 'Nhắc tôi khi tôi quên tóm lược sửa đổi',
 'tog-watchlisthideown' => 'Ẩn các sửa đổi của tôi khỏi danh sách theo dõi',

@@ -446,7 +446,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Anzahl der beobachtenden Benutzer anzeigen',
 'tog-oldsig' => 'Vorhandene Signatur:',
 'tog-fancysig' => 'Signatur als Wikitext behandeln (ohne automatische Verlinkung)',
-'tog-showjumplinks' => '„Wechseln-zu“-Links aktivieren',
 'tog-uselivepreview' => 'Vorschau sofort anzeigen (benötigt JavaScript) (experimentell)',
 'tog-forceeditsummary' => 'Warnen, sofern beim Speichern die Zusammenfassung fehlt',
 'tog-watchlisthideown' => 'Eigene Bearbeitungen in der Beobachtungsliste ausblenden',
@@ -2228,6 +2227,13 @@ Vielleicht möchtest du die Beschreibung auf der dortigen [$2 Dateibeschreibungs
 # Random page
 'randompage' => 'Zufällige Seite',
 'randompage-nopages' => 'Es sind keine Seiten {{PLURAL:$2|im folgenden Namensraum|in den folgenden Namensräumen}} enthalten: „$1“',
+
+# Special:RandomInCategory
+'randomincategory' => 'Zufällige Seite einer Kategorie',
+'randomincategory-invalidcategory' => '„$1“ ist kein gültiger Kategorienname.',
+'randomincategory-nopages' => 'Es gibt keine Seiten in [[:Category:$1]].',
+'randomincategory-selectcategory' => 'Zufällige Seite aus der Kategorie: $1 $2',
+'randomincategory-selectcategory-submit' => 'Los',
 
 # Random redirect
 'randomredirect' => 'Zufällige Weiterleitung',
@@ -4044,6 +4050,7 @@ Du kannst auch die [[Special:EditWatchlist|Standardseite]] zum Bearbeiten benutz
 'version-license' => 'Lizenz',
 'version-poweredby-credits' => "Diese Website nutzt '''[//www.mediawiki.org/wiki/MediaWiki/de MediaWiki]''', Copyright © 2001–$1 $2.",
 'version-poweredby-others' => 'andere',
+'version-poweredby-translators' => 'Übersetzer von translatewiki.net',
 'version-credits-summary' => 'Wir danken folgenden Personen für ihre Beiträge zu [[Special:Version|MediaWiki]].',
 'version-license-info' => "MediaWiki ist eine Freie Software, d. h. sie kann, gemäß den Bedingungen der von der Free Software Foundation veröffentlichten ''GNU General Public License'', weiterverteilt und/oder modifiziert werden. Dabei kann die Version 2, oder nach eigenem Ermessen, jede neuere Version der Lizenz verwendet werden.
 

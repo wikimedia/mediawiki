@@ -68,7 +68,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Gözegçilikde saklaýan ulanyjylaryň sanyny görkez',
 'tog-oldsig' => 'Bar bolan gol:',
 'tog-fancysig' => 'Gola wikitekst hökmünde çemeleş (awtomatik çykgytsyz)',
-'tog-showjumplinks' => '"Git" çykgydyny işlet',
 'tog-uselivepreview' => 'Gönümel deslapky syny ulan (JavaScript) (Synag edilýär)',
 'tog-forceeditsummary' => 'Gysgaça mazmuny boş galdyran mahalym maňa ýatlat',
 'tog-watchlisthideown' => 'Gözegçilik sanawymdan öz özgerdişlerimi gizle',

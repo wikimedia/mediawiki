@@ -388,7 +388,6 @@ $messages = array(
 'tog-shownumberswatching' => '显示监视用户数',
 'tog-oldsig' => '当前签名：',
 'tog-fancysig' => '将签名视为维基代码（不自动生成链接）',
-'tog-showjumplinks' => '启用“跳转到”访问链接',
 'tog-uselivepreview' => '使用实时预览（需要JavaScript）（实验功能）',
 'tog-forceeditsummary' => '未输入编辑摘要时提醒我',
 'tog-watchlisthideown' => '在监视列表中隐藏我的编辑',

@@ -210,7 +210,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Diskouez an niver a lennerien',
 'tog-oldsig' => 'Ar sinadur zo evit poent :',
 'tog-fancysig' => 'Ober gant ar sinadur evel pa vefe wikitestenn (hep liamm emgefre)',
-'tog-showjumplinks' => 'Gweredekaat al liammoù moned "lammat da"',
 'tog-uselivepreview' => 'Implijout Rakwelet prim (JavaScript) (taol-arnod)',
 'tog-forceeditsummary' => 'Kemenn din pa ne skrivan netra er stern diverrañ',
 'tog-watchlisthideown' => "Kuzhat ma c'hemmoù er rollad evezhiañ",

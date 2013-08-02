@@ -332,7 +332,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Pokaż liczbę użytkowników obserwujących stronę',
 'tog-oldsig' => 'Twój obecny podpis',
 'tog-fancysig' => 'Traktuj podpis jako wikikod (nie linkuj automatycznie całości)',
-'tog-showjumplinks' => 'Włącz odnośniki „skocz do”',
 'tog-uselivepreview' => 'Używaj dynamicznego podglądu (JavaScript; eksperymentalny)',
 'tog-forceeditsummary' => 'Informuj o niewypełnieniu opisu zmian',
 'tog-watchlisthideown' => 'Ukryj moje edycje na liście obserwowanych',

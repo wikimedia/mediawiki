@@ -225,7 +225,6 @@ $messages = array(
 'tog-shownumberswatching' => 'ווייזן דעם נומער פון בלאט אויפֿפאסערס',
 'tog-oldsig' => 'איצטיגער אונטערשריפֿט:',
 'tog-fancysig' => 'באַהאַנדלן  אונטערשריפט אַלס וויקיטעקסט (אָן אויטאמאטישן לינק)',
-'tog-showjumplinks' => 'באמעגלעך צוטריט לינקס פון "שפרינג צו"',
 'tog-uselivepreview' => 'באניצט זיך מיט גיכע פאראויסדיגע ווייזונג (JavaScript) (עקספערימענטאל)',
 'tog-forceeditsummary' => 'ווארן מיך ווען איך לייג א ליידיג קורץ ווארט ענדערונג',
 'tog-watchlisthideown' => 'באהאלט מיינע ענדערונגען פון דער אויפפאסן ליסטע',
@@ -396,6 +395,7 @@ $messages = array(
 'create-this-page' => 'שאַפֿן דעם בלאַט',
 'delete' => 'אויסמעקן',
 'deletethispage' => 'אויסמעקן דעם בלאַט',
+'undeletethispage' => 'צוריקשטעלן דעם בלאט',
 'undelete_short' => 'צוריקשטעלן {{PLURAL:$1|איין רעדאַקטירונג|$1 רעדאַקטירונגען}}',
 'viewdeleted_short' => 'באַקוקן {{PLURAL:$1|איין געמעקטע ענדערונג|$1 געמעקטע ענדערונגען}}',
 'protect' => 'באשיצן',
@@ -602,6 +602,7 @@ $2',
 'customjsprotected' => 'איר האט נישט רשות צו רעדאַקטירן דעם JavaScript בלאַט, ווײַל ער אַנטהאַלט די פערזענלעכע באַשטימונגען פון אַן אַנדער באַניצער.',
 'mycustomcssprotected' => 'איר זענט נישט ערלויבט צו רעדאקטירן דעם CSS בלאט.',
 'mycustomjsprotected' => 'איר זענט נישט ערלויבט צו רעדאקטירן דעם JavaScript בלאט.',
+'mypreferencesprotected' => 'איר האט נישט קיין דערלויבניש צו רעדאקטירן אייערע פרעפערענצן.',
 'ns-specialprotected' => 'מען קען נישט רעדאגירן ספעציעלע בלעטער.',
 'titleprotected' => 'דער טיטל איז געשיצט פון ווערן געשאפֿן דורך  [[User:$1|$1]].
 די אורזאך איז  \'\'$2".',
@@ -1421,7 +1422,7 @@ $1",
 'prefs-signature' => 'אונטערשריפֿט',
 'prefs-dateformat' => 'דאַטע פֿארמאַט',
 'prefs-timeoffset' => 'צײַט אונטערשייד',
-'prefs-advancedediting' => 'אַלגעמיין',
+'prefs-advancedediting' => 'אַלגעמיינע ברירות',
 'prefs-advancedrc' => 'פֿארגעשריטענע אפציעס',
 'prefs-advancedrendering' => 'פֿארגעשריטענע אפציעס',
 'prefs-advancedsearchoptions' => 'פֿארגעשריטענע אפציעס',
@@ -2149,7 +2150,8 @@ $1",
 'listgrouprights' => 'באַניצער גרופע רעכטן',
 'listgrouprights-summary' => "פֿאלגנד איז א רשימה פֿון באַניצער גרופעס דעפֿינירט אויף דער דאָזיקער וויקי, מיט זײַערע אַסאציאירטע צוטריט רעכטן.
 ס'קען זײַן  [[{{MediaWiki:Listgrouprights-helppage}}|מער אינפֿארמאַציע]] וועגן איינציקע רעכטן.",
-'listgrouprights-key' => '* <span class="listgrouprights-granted">נאָכגעגעבן רעכט</span>
+'listgrouprights-key' => 'לעגענדע:
+* <span class="listgrouprights-granted">נאָכגעגעבן רעכט</span>
  * <span class="listgrouprights-revoked">אָפגערופֿן רעכט</span>',
 'listgrouprights-group' => 'גרופע',
 'listgrouprights-rights' => 'רעכטן',
@@ -3292,7 +3294,7 @@ $1',
 'exif-compression-1' => 'אומ-צאמגעקוועטשט',
 
 'exif-copyrighted-true' => 'געשיצט מיט קאפירעכט',
-'exif-copyrighted-false' => 'פובליקער געביט',
+'exif-copyrighted-false' => 'קאפירעכט סטאטוס נישט געשטעלט',
 
 'exif-unknowndate' => 'אומבאַוואוסטע דאַטע',
 

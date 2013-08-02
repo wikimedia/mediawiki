@@ -94,7 +94,6 @@ $messages = array(
 'tog-shownumberswatching' => 'ಪುಟವನ್ನು ವೀಕ್ಷಿಸುತ್ತಿರುವ ಸದಸ್ಯರ ಸಂಖ್ಯೆಯನ್ನು ತೋರಿಸು',
 'tog-oldsig' => 'ಪ್ರಸ್ತುತ ಸಹಿ',
 'tog-fancysig' => 'ಸರಳ ಸಹಿಗಳು (ಕೊಂಡಿ ಇಲ್ಲದಿರುವಂತೆ)',
-'tog-showjumplinks' => 'ಶಕ್ತಗೊಳಿಸಲು "ನೆಗೆ ಇಲ್ಲಿಗೆ" ಲಭ್ಯಕೆ ಕೊಡ',
 'tog-uselivepreview' => 'ನೇರ ಮುನ್ನೋಟವನ್ನು ಉಪಯೋಗಿಸು (JavaScript) (ಪ್ರಾಯೋಗಿಕ)',
 'tog-forceeditsummary' => 'ಸಂಪಾದನೆ ಸಾರಾಂಶವನ್ನು ಖಾಲಿ ಬಿಟ್ಟಲ್ಲಿ ನೆನಪಿಸು',
 'tog-watchlisthideown' => 'ವೀಕ್ಷಣಾ ಪಟ್ಟಿಯಲ್ಲಿ ನನ್ನ ಸಂಪಾದನೆಗಳನ್ನು ತೋರಿಸಬೇಡ',

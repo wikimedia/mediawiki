@@ -48,7 +48,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Ipakita ang numero sang mga nagalantaw nga manug-gamit',
 'tog-oldsig' => 'Nagapabilin nga pirma:',
 'tog-fancysig' => 'Tratoha ang pirma bilang wikitext (wala sang tabid nga dayon)',
-'tog-showjumplinks' => 'Sugtan ang "maglumpat sa" nga mga tabid sang paalagyan',
 'tog-uselivepreview' => 'Gamiton ang preview nga live (nagakinahanglan sang JavaScript) (experimentohanon)',
 'tog-forceeditsummary' => 'Sugidi ako kon magasulod ako sa blanko nga kabilogan sang pag-ilis',
 'tog-watchlisthideown' => 'Tagua ang akon mga pag-ilis sa akon ginabantayan',

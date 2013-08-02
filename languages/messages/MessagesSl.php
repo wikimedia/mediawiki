@@ -218,7 +218,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Prikaži število uporabnikov, ki spremljajo temo',
 'tog-oldsig' => 'Obstoječi podpis:',
 'tog-fancysig' => 'Obravnavaj podpis kot wikibesedilo (brez samodejne povezave)',
-'tog-showjumplinks' => 'Prikaži pomožni povezavi »Skoči na«',
 'tog-uselivepreview' => 'Uporabi hitri predogled (zahteva JavaScript) (preizkusno)',
 'tog-forceeditsummary' => 'Ob vpisu praznega povzetka urejanja me opozori',
 'tog-watchlisthideown' => 'Na spisku nadzorov skrij moja urejanja',
@@ -563,6 +562,7 @@ Morda jo je izbrisal že kdo drug.',
 'cannotdelete-title' => 'Ne morem izbrisati strani »$1«',
 'delete-hook-aborted' => 'Zanka je prekinila brisanje.
 Vrnila ni nobene razlage.',
+'no-null-revision' => 'Ne morem ustvariti nove ničelne redakcije strani »$1«',
 'badtitle' => 'Nepravilen naslov',
 'badtitletext' => 'Navedeni naslov strani je neveljaven, prazen, napačno povezan k drugim jezikom oziroma wikiprojektom.
 Morda vsebuje enega ali več nepodprtih znakov.',
@@ -838,6 +838,7 @@ To storite, če ste po nesreči žetone z nekom delili, ali če je bil vaš rač
 'resettokens-legend' => 'Ponastavitev žetonov',
 'resettokens-tokens' => 'Žetoni:',
 'resettokens-token-label' => '$1 (trenutna vrednost: $2)',
+'resettokens-watchlist-token' => 'Žeton spletnega vira spiska nadzorov',
 'resettokens-done' => 'Žetone sem ponastavil.',
 'resettokens-resetbutton' => 'Ponastavi izbrane žetone',
 
@@ -1375,6 +1376,7 @@ Upoštevajte, da so njihovi podatki vsebine {{GRAMMAR:rodilnik|{{SITENAME}}}} mo
 'recentchangesdays-max' => 'Največ $1 {{PLURAL:$1|dan|dneva|dnevi|dni}}',
 'recentchangescount' => 'Privzeto število prikazanih urejanj:',
 'prefs-help-recentchangescount' => 'Vključuje zadnje spremembe, zgodovine strani in dnevniške zapise.',
+'prefs-help-watchlist-token2' => 'To je skrivni ključ do spletnega vira vašega spiska nadzorov. Kdor ve zanj, lahko bere vaš spisek nadzorov, zato ključa ne delite. [[Special:ResetTokens|Kliknite tukaj, če ga želite ponastaviti]].',
 'savedprefs' => 'Spremembe so bile uspešno shranjene.',
 'timezonelegend' => 'Časovni pas',
 'localtime' => 'Krajevni čas:',
@@ -1438,7 +1440,7 @@ Ko vas drugi uporabniki kontaktirajo, jim vašega e-poštnega naslova ne bomo ra
 'prefs-signature' => 'Podpis',
 'prefs-dateformat' => 'Zapis datuma',
 'prefs-timeoffset' => 'Časovni odmik',
-'prefs-advancedediting' => 'Splošno',
+'prefs-advancedediting' => 'Splošne možnosti',
 'prefs-editor' => 'Urejevalnik',
 'prefs-preview' => 'Predogled',
 'prefs-advancedrc' => 'Napredne možnosti',
@@ -1541,7 +1543,7 @@ Ko vas drugi uporabniki kontaktirajo, jim vašega e-poštnega naslova ne bomo ra
 'right-hideuser' => 'Blokiranje uporabnika, in skritje pred javnostjo',
 'right-ipblock-exempt' => 'Izogne se blokadam IP-naslova, samodejnim blokadam in blokadam območij',
 'right-proxyunbannable' => 'Izogne se samodejnim blokadam proxyjev',
-'right-unblockself' => 'Deblokiraj samega sebe',
+'right-unblockself' => 'Odblokiraj se',
 'right-protect' => 'Spreminjanje stopenj zaščite in urejanje kaskadno zaščitenih strani',
 'right-editprotected' => 'Urejanje strani, zaščitenih kot »{{int:protect-level-sysop}}«',
 'right-editsemiprotected' => 'Urejanje strani, zaščitenih kot »{{int:protect-level-autoconfirmed}}«',
@@ -2038,6 +2040,13 @@ Preden jih izbrišete, preverite še druge povezave nanje.',
 'randompage' => 'Naključni članek',
 'randompage-nopages' => 'V {{PLURAL:$2|naslednjem imenskem prostoru|naslednjih imenskih prostorih}} ni strani: $1.',
 
+# Special:RandomInCategory
+'randomincategory' => 'Naključna stran v kategoriji',
+'randomincategory-invalidcategory' => '»$1« ni veljavno ime kategorije.',
+'randomincategory-nopages' => 'V kategoriji [[:Category:$1]] ni nobene strani.',
+'randomincategory-selectcategory' => 'Dobi naključno stran iz kategorije: $1 $2.',
+'randomincategory-selectcategory-submit' => 'Pojdi',
+
 # Random redirect
 'randomredirect' => 'Naključna preusmeritev',
 'randomredirect-nopages' => 'V imenskem prostoru »$1« ni preusmeritev.',
@@ -2074,6 +2083,8 @@ Stran se obravnava kot razločitvena, če uporablja predloge, povezane z [[Media
 'pageswithprop-text' => 'Stran navaja vse strani, ki uporabljajo določene lastnosti strani.',
 'pageswithprop-prop' => 'Ime lastnosti:',
 'pageswithprop-submit' => 'Pojdi',
+'pageswithprop-prophidden-long' => 'dolga besedilna vrednost lastnosti je skrita ($1 kilobajtov)',
+'pageswithprop-prophidden-binary' => 'dvojiška vrednost lastnosti je skrita ($1 kilobajtov)',
 
 'doubleredirects' => 'Dvojne preusmeritve',
 'doubleredirectstext' => 'Ta stran navaja strani, ki se preusmerjajo na druge preusmeritvene strani.
@@ -3447,7 +3458,7 @@ Druga bodo po privzetem skrita.
 'exif-compression-4' => 'Kodiranje CCITT skupina 4 faks',
 
 'exif-copyrighted-true' => 'Avtorsko zaščiteno',
-'exif-copyrighted-false' => 'Javna last',
+'exif-copyrighted-false' => 'Stanje avtorske pravice ni določeno',
 
 'exif-unknowndate' => 'neznan datum',
 
@@ -3848,6 +3859,7 @@ Uporabite lahko tudi [[Special:EditWatchlist|standardni urejevalnik]].',
 'version-license' => 'Licenca',
 'version-poweredby-credits' => "Ta wiki poganja '''[//www.mediawiki.org/ MediaWiki]''', vse pravice pridržave © 2001-$1 $2.",
 'version-poweredby-others' => 'drugi',
+'version-poweredby-translators' => 'Prevajalci translatewiki.net',
 'version-credits-summary' => 'Radi bi priznali prispevek naslednjih oseb k [[Special:Version|MediaWiki]].',
 'version-license-info' => 'MediaWiki je prosto programje; lahko ga razširjate in / ali spreminjate pod pogoji GNU General Public License, kot ga je objavila Free Software Foundation; bodisi License različice 2 ali (po vaši izbiri) katere koli poznejše različice.
 

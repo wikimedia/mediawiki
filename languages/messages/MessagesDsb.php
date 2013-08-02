@@ -190,7 +190,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Licbu wobglědujucych wužywarjow pokazaś',
 'tog-oldsig' => 'Eksistěrujuca signatura:',
 'tog-fancysig' => 'Ze signaturu kaž z wikitekstom wobchadaś (bźez awtomatiskego wótkaza)',
-'tog-showjumplinks' => 'Wótkaze typa „źi do” zmóžniś',
 'tog-uselivepreview' => 'Live-pśeglěd wužywaś (JavaScript) (eksperimentelnje)',
 'tog-forceeditsummary' => 'Warnowaś, gaž pśi składowanju zespominanje felujo',
 'tog-watchlisthideown' => 'Móje změny na wobglědowańskej lisćinje schowaś',

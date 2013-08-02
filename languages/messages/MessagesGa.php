@@ -124,7 +124,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Taispeán an méid úsáideoirí atá ag faire',
 'tog-oldsig' => 'Réamhamharc ar an síniú atá ann:',
 'tog-fancysig' => 'Sínithe bunúsacha mar vicítéacs (gan nasc uathoibríoch)',
-'tog-showjumplinks' => 'Cumasaigh naisc insroichteachta “léim go dtí”',
 'tog-uselivepreview' => 'Bain úsáid as réamhamharc beo (JavaScript) (Turgnamhach)',
 'tog-forceeditsummary' => 'Cuir in iúl dom nuair a chuirim isteach achoimre eagair folamh',
 'tog-watchlisthideown' => 'Folaigh mo chuid athruithe ón liosta faire',

@@ -118,7 +118,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Ozutada niiden kävutajiden lugu, kudambad oma mülütanuded lehtpolen ičeze kaclendnimikirjutesihe',
 'tog-oldsig' => 'Nügüdläine allekirjutez',
 'tog-fancysig' => 'Ičeze allekirjutesen wiki-znamišt (avtomatižeta kosketuseta)',
-'tog-showjumplinks' => 'Ližata "hüpähtada..."-abukosketused',
 'tog-uselivepreview' => 'Kävutada hered ezikacund (JavaScript) (Eksperimentaline)',
 'tog-forceeditsummary' => 'Varutada, kunz toižetusen ümbrikirjutandan pöud ei ole täuttud',
 'tog-watchlisthideown' => 'Peitta minun redakcijad kaclendnimikirjutesespäi',

@@ -392,7 +392,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Zobrazovat počet sledujících uživatelů',
 'tog-oldsig' => 'Stávající podpis:',
 'tog-fancysig' => 'Používat v podpisu wikitext (bez automatického odkazu)',
-'tog-showjumplinks' => 'Používat odkazy „skočit na“ pro vyšší přístupnost',
 'tog-uselivepreview' => 'Používat rychlý náhled (JavaScript) (Experimentální)',
 'tog-forceeditsummary' => 'Upozornit, když nevyplním shrnutí editace',
 'tog-watchlisthideown' => 'Na seznamu sledovaných stránek skrýt moje editace',
@@ -2164,6 +2163,13 @@ Vstup: <code>typ obsahu/podtyp</code>, např. <code>image/jpeg</code>.',
 # Random page
 'randompage' => 'Náhodná stránka',
 'randompage-nopages' => 'V {{PLURAL:$2|následujícím jmenném prostoru|následujících jmenných prostorech}} nejsou žádné stránky: $1.',
+
+# Special:RandomInCategory
+'randomincategory' => 'Náhodná stránka z kategorie',
+'randomincategory-invalidcategory' => '„$1“ není platný název kategorie.',
+'randomincategory-nopages' => 'V [[:Category:$1|kategorii $1]] žádné stránky nejsou.',
+'randomincategory-selectcategory' => 'Získat náhodnou stránku z kategorie: $1 $2',
+'randomincategory-selectcategory-submit' => 'Přejít',
 
 # Random redirect
 'randomredirect' => 'Náhodné přesměrování',
@@ -4017,6 +4023,7 @@ Seznam editovaných stránek můžete také [[Special:EditWatchlist|editovat ve 
 'version-license' => 'Licence',
 'version-poweredby-credits' => "Tato wiki běží na '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001–$1 $2.",
 'version-poweredby-others' => 'další',
+'version-poweredby-translators' => 'překladatelé na translatewiki.net',
 'version-credits-summary' => 'Následujícím lidem bychom rádi poděkovali za jejich příspěvky [[Special:Version|MediaWiki]].',
 'version-license-info' => 'MediaWiki je svobodný software; můžete jej šířit nebo modifikovat podle podmínek GNU General Public License, vydávané Free Software Foundation; buď verze 2 této licence anebo (podle vašeho uvážení) kterékoli pozdější verze.
 

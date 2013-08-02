@@ -314,7 +314,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Zobraziť počet používateľov sledujúcich stránku',
 'tog-oldsig' => 'Súčasný podpis:',
 'tog-fancysig' => 'Považovať podpisy za wikitext (bez automatických odkazov)',
-'tog-showjumplinks' => 'Používať odkazy „skočiť na“ pre lepšiu dostupnosť',
 'tog-uselivepreview' => 'Používať živý náhľad (JavaScript) (experimentálna funkcia)',
 'tog-forceeditsummary' => 'Upozoriť ma, keď nevyplním zhrnutie úprav',
 'tog-watchlisthideown' => 'Skryť moje úpravy zo zoznamu sledovaných',

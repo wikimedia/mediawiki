@@ -302,7 +302,6 @@ $messages = array(
 'tog-shownumberswatching' => "Uri n-numru ta' utenti li qegħdin isegwu din il-paġna",
 'tog-oldsig' => 'Firma attwali:',
 'tog-fancysig' => 'Interpreta l-firma bħala test tal-wiki (mingħajr ħolqa awtomatika)',
-'tog-showjumplinks' => 'Attiva l-ħoloq aċċessibbli "aqbeż għal"',
 'tog-uselivepreview' => "Attiva l-funzjoni ''Live preview'' (bżonn tal-JavaScript; sperimentali)",
 'tog-forceeditsummary' => 'Nebbaħni meta ndaħħal taqsira tal-modifika vojta',
 'tog-watchlisthideown' => "Aħbi l-modifiki tiegħi mil-lista ta' osservazzjoni",

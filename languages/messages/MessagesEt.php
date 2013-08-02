@@ -323,7 +323,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Näita jälgivate kasutajate hulka',
 'tog-oldsig' => 'Praegune allkiri:',
 'tog-fancysig' => 'Kasuta vikiteksti vormingus allkirja (ilma automaatse lingita kasutajalehele)',
-'tog-showjumplinks' => 'Kuva lehekülje ülaservas "mine"-lingid',
 'tog-uselivepreview' => 'Kasuta elavat eelvaadet (vaja JavaScripti) (katseline)',
 'tog-forceeditsummary' => 'Nõua redigeerimisel resümee välja täitmist',
 'tog-watchlisthideown' => 'Peida minu redaktsioonid jälgimisloendist',

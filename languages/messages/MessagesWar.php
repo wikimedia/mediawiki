@@ -94,7 +94,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Igpakita an ihap han mga nangingita nga mga nagamit',
 'tog-oldsig' => 'Aada nga pirma:',
 'tog-fancysig' => 'Tratuha it pirma komo uska wikitext (nga waray automatiko nga sumpay)',
-'tog-showjumplinks' => 'Enable "jump to" accessibility links',
 'tog-uselivepreview' => 'Gamita an buhi nga pahiuna nga pagawas (nagkikinahanglan hin JavaScript) (eksperimental)',
 'tog-forceeditsummary' => 'Pasabti ako kun waray ko ginsurat ha dalikyat-nga-tigaman han pagliwat (edit summary)',
 'tog-watchlisthideown' => 'Tago-a an akon mga ginliwat tikang han angay timan-an',

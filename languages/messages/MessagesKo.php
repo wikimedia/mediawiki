@@ -380,7 +380,6 @@ $messages = array(
 'tog-shownumberswatching' => '주시 사용자 수 보기',
 'tog-oldsig' => '현재 서명:',
 'tog-fancysig' => '서명을 위키텍스트로 취급 (자동으로 링크를 걸지 않음)',
-'tog-showjumplinks' => '접근성을 위한 "이동" 링크 쓰기 (일부 스킨에서만 작동)',
 'tog-uselivepreview' => '실시간 미리 보기 사용하기 (자바스크립트 필요) (실험 기능)',
 'tog-forceeditsummary' => '편집 요약을 쓰지 않았을 때 알려주기',
 'tog-watchlisthideown' => '주시문서 목록에서 내 편집을 숨기기',
@@ -581,7 +580,7 @@ $messages = array(
 'redirectedfrom' => '($1에서 넘어옴)',
 'redirectpagesub' => '넘겨주기 문서',
 'lastmodifiedat' => '이 문서는 $1 $2에 마지막으로 바뀌었습니다.',
-'viewcount' => '이 문서는 {{PLURAL:$1|$1번}} 읽혔습니다.',
+'viewcount' => '이 문서는 {{PLURAL:$1|한 번|$1번}} 읽혔습니다.',
 'protectedpage' => '보호된 문서',
 'jumpto' => '이동:',
 'jumptonavigation' => '둘러보기',
@@ -2218,6 +2217,13 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'randompage' => '임의 문서로',
 'randompage-nopages' => '{{PLURAL:$2|다음}} 이름공간에는 문서가 없습니다: $1',
 
+# Special:RandomInCategory
+'randomincategory' => '분류에서 임의 문서',
+'randomincategory-invalidcategory' => '"$1"(은)는 올바른 분류 이름이 아닙니다.',
+'randomincategory-nopages' => '[[:Category:$1]]에 문서가 없습니다.',
+'randomincategory-selectcategory' => '분류에서 임의 문서 얻기: $1 $2',
+'randomincategory-selectcategory-submit' => '보기',
+
 # Random redirect
 'randomredirect' => '임의 넘겨주기 문서로',
 'randomredirect-nopages' => '"$1" 이름공간에서 해당하는 넘겨주기 문서가 없습니다.',
@@ -2702,7 +2708,7 @@ $UNWATCHURL
 'undeletepage' => '삭제된 문서를 보거나 되살리기',
 'undeletepagetitle' => "'''아래는 [[:$1|$1]]의 삭제된 판입니다'''.",
 'viewdeletedpage' => '삭제된 문서 보기',
-'undeletepagetext' => '다음 {{PLURAL:$1|문서는|문서 $1개는}} 삭제되었지만 아직 보관되어 있고 되살릴 수 있습니다.
+'undeletepagetext' => '다음 {{PLURAL:$1|문서는 삭제되었지만|문서 $1개는 삭제되었지만}} 아직 보관되어 있고 되살릴 수 있습니다.
 보관된 문서는 주기적으로 삭제될 것입니다.',
 'undelete-fieldset-title' => '문서 되살리기',
 'undeleteextrahelp' => "문서 역사 전체를 되살리려면 모든 체크박스의 선택을 해제하고 '''{{int:undeletebtn}}'''를 누르세요.
@@ -4026,7 +4032,7 @@ $5
 주시문서 목록에서 제거하려는 문서가 있으면 각 항목의 확인 상자를 선택한 다음 "{{int:Watchlistedit-normal-submit}}"를 클릭해주세요.
 또는 [[Special:EditWatchlist/raw|목록을 직접 편집]]할 수도 있습니다.',
 'watchlistedit-normal-submit' => '항목 삭제',
-'watchlistedit-normal-done' => '주시문서 목록에서 다음 {{PLURAL:$1|항목 $1개}}를 제거했습니다:',
+'watchlistedit-normal-done' => '주시문서 목록에서 다음 {{PLURAL:$1|항목 1개|항목 $1개}}를 제거했습니다:',
 'watchlistedit-raw-title' => '주시문서 목록 직접 편집하기',
 'watchlistedit-raw-legend' => '주시문서 목록 직접 편집하기',
 'watchlistedit-raw-explain' => '주시문서 목록의 각 항목이 나와 있습니다. 필요한 항목을 직접 추가하거나 제거할 수 있습니다.
@@ -4070,6 +4076,7 @@ $5
 'version-license' => '라이선스',
 'version-poweredby-credits' => "이 위키는 '''[//www.mediawiki.org/ MediaWiki]'''를 기반으로 작동합니다. Copyright © 2001-$1 $2.",
 'version-poweredby-others' => '그 외 다른 개발자',
+'version-poweredby-translators' => 'translatewiki.net 번역자',
 'version-credits-summary' => '[[Special:Version|미디어위키]]에 기여한 다음 사람한테 감사드립니다.',
 'version-license-info' => "미디어위키는 자유 소프트웨어입니다. 당신은 자유 소프트웨어 재단이 발표한 GNU 일반 공중 사용 허가서 버전 2나 그 이후 버전에 따라 이 파일을 재배포하거나 수정할 수 있습니다.
 

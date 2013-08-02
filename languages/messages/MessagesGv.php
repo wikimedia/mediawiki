@@ -59,7 +59,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Taishbyn earroo ny h-ymmydeyryn ta freill arrey',
 'tog-oldsig' => "Roie-haishbynys jeh'n screeuys t'ayn hannah:",
 'tog-fancysig' => 'Stiur y screeuys myr wikiteks (gyn kiangley seyr-obbragh)',
-'tog-showjumplinks' => 'Doostey kianglaghyn roshtynagh "lheim dys"',
 'tog-watchlisthideown' => 'Follee my arraghyn hene er my rolley arrey',
 'tog-watchlisthidebots' => 'Follee arraghyn botyn er my rolley arrey',
 'tog-watchlisthideminor' => 'Follee myn-arraghyn er my rolley arrey',

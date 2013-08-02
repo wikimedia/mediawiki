@@ -243,7 +243,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Zeich de Aanzahl Metmaacher, die op die Sigg am oppasse sin',
 'tog-oldsig' => 'Esu&nbsp;süht&nbsp;Ding „Ongerschreff“&nbsp;us:',
 'tog-fancysig' => 'Donn de „Ungerschreff“ als Wiki-Tex behandelle (ohne enne automattesche Lengk)',
-'tog-showjumplinks' => '„Jangk-noh“-Links usjevve, die bei em „Zojang ohne Barrikad“ helfe dun',
 'tog-uselivepreview' => 'Dun de „Lebendije Vör-Aansich“ zeije (bruch Java_Skripp)',
 'tog-forceeditsummary' => 'Froch noh, wann en däm Feld „Koot zosammejefass, Quell“ beim Avspeichere nix dren steiht',
 'tog-watchlisthideown' => 'Dun ming eije Änderunge <strong>nit</strong> en minger Oppassliss aanzeije',

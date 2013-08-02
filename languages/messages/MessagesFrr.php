@@ -50,7 +50,6 @@ $messages = array(
 'tog-shownumberswatching' => "Taal faan brükern uunwise, diar det sidj uun't uug haa",
 'tog-oldsig' => 'Aktuel signatuur:',
 'tog-fancysig' => 'Signatuur üs wikitekst uunsä (saner ferwisangen)',
-'tog-showjumplinks' => '"Waksle tu"-ferwisangen aktiwiare',
 'tog-uselivepreview' => 'Live-"iarst ans luke" funktjuun brük (brükt JavaScript, eksperimentel)',
 'tog-forceeditsummary' => "Wäärne, wan bi't seekrin nian tuupfaadang uunden woort",
 'tog-watchlisthideown' => "Aanj feranrangen bi a sidjen, diar ik uun't uug behual wal, fersteeg",
@@ -253,7 +252,7 @@ $messages = array(
 'viewcount' => 'Aw jüdeer sid as  {{PLURAL:$1|iinjsen|$1 tunge}} tugram wörden.',
 'protectedpage' => 'Sääkerd sid',
 'jumpto' => 'Waksle tu:',
-'jumptonavigation' => 'Navigatsjuun',
+'jumptonavigation' => 'Nawigatjuun',
 'jumptosearch' => 'Schük',
 'view-pool-error' => 'Det dää üs iarag, a servers san auerläästet.
 Tuföl brükern ferschük, det sidj tu beschüken.

@@ -46,7 +46,6 @@ $messages = array(
 'tog-shownumberswatching' => 'biyn aadad lmostakhdimin lmoraqibin',
 'tog-oldsig' => 'moaayana litawqia lmawjod',
 'tog-fancysig' => 'aaml nass bhal nass wiki (bla wsla otomatikia)',
-'tog-showjumplinks' => 'mkkn wassalat "sir l" lmossaaida',
 'tog-uselivepreview' => 'staml listiarad saria (khasso javascipt) (tjribi)',
 'tog-forceeditsummary' => 'nbhni ila kandkhl molkhass taadil khawi',
 'tog-watchlisthideown' => 'khbi tadilat dyali mn qaaimat lmoraqaba',

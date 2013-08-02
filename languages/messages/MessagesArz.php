@@ -333,7 +333,6 @@ $messages = array(
 'tog-shownumberswatching' => 'بين عدد اليوزرز المراقبين',
 'tog-oldsig' => 'الامضا دلوقتى:',
 'tog-fancysig' => 'امضا خام (من غير لينك أوتوماتيك)',
-'tog-showjumplinks' => 'خلى وصلات "روح لـ" تكون شغالة.',
 'tog-uselivepreview' => 'استخدم البروفة السريعة (جافاسكريبت) (تجريبي)',
 'tog-forceeditsummary' => 'نبهنى عند تدخيل ملخص للتعديل  فاضي',
 'tog-watchlisthideown' => 'خبى التعديلات بتاعتى من لستة المراقبة',

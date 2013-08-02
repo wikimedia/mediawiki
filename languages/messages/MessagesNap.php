@@ -1,5 +1,5 @@
 <?php
-/** Neapolitan (Nnapulitano)
+/** Neapolitan (Napulitano)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -302,10 +302,13 @@ $messages = array(
 
 # General errors
 'missingarticle-rev' => "(nummero 'e verzione: $1)",
+'internalerror' => "Errore 'nterno",
+'internalerror_info' => "Errore 'nterno: $1",
 'filedeleteerror' => 'Nun se pô scancellà \'o file "$1"',
 'cannotdelete' => "Nun è possibbele scassà 'a paggena o 'a fiura addamannata. (Putria éssere stato già scancellato.)",
 'badtitle' => "'O nnomme nun è jùsto",
 'viewsource' => 'Vere sorgente',
+'viewsource-title' => "Vere surgente 'e $1",
 'exception-nologin' => 'Acciesso nun affettuato',
 
 # Login and logout pages
@@ -314,8 +317,18 @@ $messages = array(
 Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putite trasì n'ata vota, cu 'o stesso nomme o cu n'ato nomme.",
 'welcomeuser' => 'Bemmenuto, $1!',
 'yourname' => 'Nomme utente',
+'userlogin-yourname' => 'Nomme utente',
+'userlogin-yourname-ph' => "'Nserisce 'o tujo nomme utente",
+'createacct-another-username-ph' => "'Nserisce 'o nomme utente",
 'yourpassword' => 'Password:',
+'userlogin-yourpassword' => 'Password',
+'userlogin-yourpassword-ph' => "'Nserisce 'a toja password",
+'createacct-yourpassword-ph' => "'Nserisce 'na password",
+'yourpasswordagain' => "Ripete 'a password:",
+'createacct-yourpasswordagain' => 'Cunferma password',
+'createacct-yourpasswordagain-ph' => "'Nserisce 'e novo 'a password",
 'remembermypassword' => 'Allicuordate d"a password (for a maximum of $1 {{PLURAL:$1|day|days}})',
+'userlogin-remembermypassword' => 'Mantienime cullegato',
 'yourdomainname' => "Spiecà 'o dumminio",
 'login' => 'Tràse',
 'nav-login-createaccount' => "Tràse o cria n'acciesso novo",
@@ -330,6 +343,11 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 'gotaccount' => "Tiene già nu cunto? '''$1'''.",
 'gotaccountlink' => 'Tràse',
 'userlogin-resetlink' => "Haje dimenticato 'e toje date 'e acciesso?",
+'createacct-submit' => "Cria 'a toja utenza",
+'createacct-another-submit' => "Cria 'n atro account",
+'createacct-benefit-heading' => "{{SITENAME}} è fatta 'e persone comme te.",
+'createacct-benefit-body1' => '{{PLURAL:$1|càgnamiento|càgnamiente}}',
+'createacct-benefit-body2' => '{{PLURAL:$1|paggena|paggene}}',
 'loginerror' => "Probblema 'e accièsso",
 'loginsuccesstitle' => 'Acciesso affettuato',
 'nosuchusershort' => 'Nun ce stanno utente cu o nòmme "$1". Cuntrolla si scrivìste buòno.',
@@ -340,6 +358,15 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 
 # Change password dialog
 'resetpass' => 'Càgna password',
+'resetpass-submit-cancel' => 'Canciella',
+
+# Special:PasswordReset
+'passwordreset-username' => 'Nomme utente:',
+'passwordreset-domain' => 'Duminio:',
+
+# Special:ChangeEmail
+'changeemail-none' => '(nisciuno)',
+'changeemail-cancel' => 'Canciella',
 
 # Edit page toolbar
 'italic_sample' => 'Corsivo',

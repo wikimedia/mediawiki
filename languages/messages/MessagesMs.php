@@ -227,7 +227,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Tunjukkan bilangan pemantau',
 'tog-oldsig' => 'Tanda tangan yang sedia ada:',
 'tog-fancysig' => 'Anggap tandatangan sebagai teks wiki (tanpa pautan automatik)',
-'tog-showjumplinks' => 'Bolehkan pautan ketercapaian "lompat ke"',
 'tog-uselivepreview' => 'Gunakan pralihat langsung (JavaScript) (dalam percubaan)',
 'tog-forceeditsummary' => 'Tanya saya jika ringkasan suntingan kosong',
 'tog-watchlisthideown' => 'Sembunyikan suntingan saya daripada senarai pantau',

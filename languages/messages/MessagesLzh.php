@@ -180,7 +180,6 @@ $messages = array(
 'tog-shownumberswatching' => '放哨有',
 'tog-oldsig' => '覽原署名：',
 'tog-fancysig' => '署以本碼待之（免自連）',
-'tog-showjumplinks' => '鏈往字',
 'tog-uselivepreview' => '即覽嚐鮮（JavaScript）',
 'tog-forceeditsummary' => '漏概醒之',
 'tog-watchlisthideown' => '不哨己文',

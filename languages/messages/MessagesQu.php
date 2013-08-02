@@ -295,7 +295,6 @@ $messages = array(
 'tog-shownumberswatching' => "Rikuchiy hayk'a watiqaq ruraqkuna",
 'tog-oldsig' => "Kachkaqña silq'uy:",
 'tog-fancysig' => "Silq'uyta wiki qillqa hinata llamk'achiy (mana kikinmanta t'inkichaq silq'uy)",
-'tog-showjumplinks' => "«Chayman phinkiy» aypanalla t'inkikunata saqillay",
 'tog-uselivepreview' => "''Live preview'' nisqa ñawpaq qhawayta llamk'achiy (JavaScript) (llamiy aknaraq)",
 'tog-forceeditsummary' => "Ch'usaq llamk'apuy waqaychasqa kachkaptinqa ch'itiyay.",
 'tog-watchlisthideown' => "Watiqasqaykunapiqa ñuqap llamk'apusqaykunata pakay",

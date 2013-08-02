@@ -291,7 +291,6 @@ $messages = array(
 'tog-shownumberswatching' => '顯示正在監視的使用者數目',
 'tog-oldsig' => '原有簽名：',
 'tog-fancysig' => '將簽名視為維基文字（不會自動產生連結）',
-'tog-showjumplinks' => '啟用「跳轉到」訪問連結',
 'tog-uselivepreview' => '使用即時預覽（需要 JavaScript）（實驗中）',
 'tog-forceeditsummary' => '未輸入編輯摘要時提醒我',
 'tog-watchlisthideown' => '監視列表中隱藏我的編輯',

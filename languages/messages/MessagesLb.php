@@ -213,7 +213,6 @@ $messages = array(
 'tog-shownumberswatching' => "D'Zuel vun de Benotzer déi dës Säit iwwerwaache weisen",
 'tog-oldsig' => 'Aktuell Ënnerschrëft:',
 'tog-fancysig' => 'Ënnerschrëft als Wiki-Text behandelen (Ouni automatesche Link)',
-'tog-showjumplinks' => 'Aktivéiere vun de "Sprang op"-Linken',
 'tog-uselivepreview' => 'Live-Preview benotzen (JavaScript) (experimentell)',
 'tog-forceeditsummary' => 'Warnen, wa beim Späicheren de Resumé feelt',
 'tog-watchlisthideown' => 'Meng Ännerungen op menger Iwwerwaachungslëscht verstoppen',

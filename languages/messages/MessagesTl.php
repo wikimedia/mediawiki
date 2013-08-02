@@ -175,7 +175,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Ipakita ang bilang ng mga nagbabantay na tagagamit',
 'tog-oldsig' => 'Umiiral na lagda:',
 'tog-fancysig' => 'Ituring ang lagda bilang teksto ng wiki (walang automatikong pagkawing)',
-'tog-showjumplinks' => 'Payagan ang mga "tumalon sa" na kawing pampagamit',
 'tog-uselivepreview' => 'Gamitin ang buhay na paunang tingin (JavaScript) (Eksperimental)',
 'tog-forceeditsummary' => 'Pagsabihan ako kapag nagpapasok ng walang-lamang buod ng pagbabago',
 'tog-watchlisthideown' => 'Itago ang aking mga pagbabago mula sa tala ng mga binabantayan',

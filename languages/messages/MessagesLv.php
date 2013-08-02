@@ -82,7 +82,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Rādīt uzraudzītāju skaitu',
 'tog-oldsig' => 'Pašreizējais paraksts:',
 'tog-fancysig' => 'Vienkāršs paraksts (bez automātiskās saites)',
-'tog-showjumplinks' => 'Rādīt pārlēkšanas saites',
 'tog-uselivepreview' => "Lietot tūlītējo priekšskatījumu (izmanto ''JavaScript''; eksperimentāla iespēja)",
 'tog-forceeditsummary' => 'Atgādināt man, ja kopsavilkuma ailīte ir tukša',
 'tog-watchlisthideown' => 'Paslēpt manus labojumus uzraugāmo lapu sarakstā',

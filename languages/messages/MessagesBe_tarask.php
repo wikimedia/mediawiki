@@ -292,7 +292,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Паказваць колькасьць назіральнікаў',
 'tog-oldsig' => 'Цяперашні подпіс:',
 'tog-fancysig' => 'Апрацоўваць подпіс як вікі-тэкст (без аўтаматычнай спасылкі)',
-'tog-showjumplinks' => 'Актываваць дапаможныя спасылкі «перайсьці да»',
 'tog-uselivepreview' => 'Выкарыстоўваць хуткі папярэдні прагляд (патрабуе JavaScript) (экспэрымэнтальна)',
 'tog-forceeditsummary' => 'Папярэджваць пра адсутнасьць кароткага апісаньня зьменаў',
 'tog-watchlisthideown' => 'Хаваць мае праўкі ў сьпісе назіраньня',
@@ -2072,6 +2071,13 @@ $1',
 # Random page
 'randompage' => 'Выпадковая старонка',
 'randompage-nopages' => 'Няма старонак у {{PLURAL:$2|наступнай прасторы|наступных прасторах}} назваў: $1.',
+
+# Special:RandomInCategory
+'randomincategory' => 'Выпадковая старонка ў катэгорыі',
+'randomincategory-invalidcategory' => '«$1» — ня слушная назва катэгорыі.',
+'randomincategory-nopages' => 'У катэгорыі «[[:Category:$1|$1]]» старонак няма.',
+'randomincategory-selectcategory' => 'Узяць адвольную старонку з катэгорыі: $1 $2.',
+'randomincategory-selectcategory-submit' => 'Паказаць',
 
 # Random redirect
 'randomredirect' => 'Выпадковае перанакіраваньне',
@@ -3882,6 +3888,7 @@ $5
 'version-license' => 'Ліцэнзія',
 'version-poweredby-credits' => "{{SITENAME}} працуе на праграмным забесьпячэньні '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'іншыя',
+'version-poweredby-translators' => 'перакладчыкі з translatewiki.net',
 'version-credits-summary' => 'Нам вельмі хацелася б адзначыць наступных асобаў, што зрабілі ўнёсак у [[Special:Version|MediaWiki]].',
 'version-license-info' => 'MediaWiki зьяўляецца вольным праграмным забесьпячэньнем, якое Вы можаце распаўсюджваць і/ці зьмяняць на ўмовах ліцэнзіі GNU General Public License вэрсіі 2 ці болей позьняй, апублікаванай Фундацыяй вольнага праграмнага забесьпячэньня (Free Software Foundation).
 

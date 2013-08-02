@@ -155,7 +155,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Onyesha idadi ya watumiaji waangalizi',
 'tog-oldsig' => 'Sahihi iliyopo:',
 'tog-fancysig' => 'Weka sahihi tu (bila kujiweka kiungo yenyewe)',
-'tog-showjumplinks' => 'Wezesha "ruka hadi" viungo vya mafikio',
 'tog-uselivepreview' => 'Tumia kihakikio cha papohapo (JavaScript) (Experimental)',
 'tog-forceeditsummary' => 'Nishtue pale ninapoingiza muhtasari mtupu wa kuhariri',
 'tog-watchlisthideown' => 'Ficha kuhariri kwangu kwenye orodha ya maangalizi',

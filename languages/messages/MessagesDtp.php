@@ -44,7 +44,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Pokitono ginumu do momomoguno minongintong',
 'tog-oldsig' => 'Sain poinsandad:',
 'tog-fancysig' => 'Pokitono sain sobaagi do tikwiki (ingaa oporian toput )',
-'tog-showjumplinks' => 'Pasagao "tumopik hilo" noputan awayaan',
 'tog-uselivepreview' => 'Momoguno pongingintong poimpasi (momoguno JawaSikrip) (pogumbalan)',
 'tog-forceeditsummary' => 'Posoroho oku no nung awu nosuangan kutak koinibaan niditan',
 'tog-watchlisthideown' => 'Polisoko niditanku mantad do lis piintangan',

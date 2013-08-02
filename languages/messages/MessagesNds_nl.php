@@ -336,7 +336,6 @@ $messages = array(
 'tog-shownumberswatching' => 't Antal gebrukers bekieken die disse zied volgt',
 'tog-oldsig' => 'Bestaonde haandtekening:',
 'tog-fancysig' => 'Ondertekening zien as wikitekste (zonder automatiese verwiezing)',
-'tog-showjumplinks' => '"Gao naor"-verwiezingen toelaoten',
 'tog-uselivepreview' => 'Gebruuk "rechtstreeks naokieken" (mu\'j JavaScript veur hebben - experimenteel)',
 'tog-forceeditsummary' => 'Geef n melding bie n lege samenvatting',
 'tog-watchlisthideown' => 'Verbarg mien eigen bewarkingen',
@@ -2103,6 +2102,13 @@ Vergeet niet de verwiezingen nao te kieken veurda\'j de mal vortdoon.',
 # Random page
 'randompage' => 'Netzelde welk artikel',
 'randompage-nopages' => 'Der staon gien ziejen in de {{PLURAL:$2|naamruumte|naamruumtes}}: $1.',
+
+# Special:RandomInCategory
+'randomincategory' => 'Netzelde welke zied in n kategorie',
+'randomincategory-invalidcategory' => '"$1" is gien geldige kategorienaam.',
+'randomincategory-nopages' => 'Der bin gien ziejen in [[:Category:$1]].',
+'randomincategory-selectcategory' => 'Netzelde welke zied uut de kategorie: $1 $2',
+'randomincategory-selectcategory-submit' => 'Laot kulen',
 
 # Random redirect
 'randomredirect' => 'Netzelde welke deurverwiezing',
@@ -3886,6 +3892,7 @@ Je kunnen oek [[Special:EditWatchlist|t standardbewarkingsscharm gebruken]].',
 'version-license' => 'Lisensie',
 'version-poweredby-credits' => "Disse wiki wörden an-estuurd deur '''[//www.mediawiki.org/ MediaWiki]''', auteursrecht © 2001-$1 $2.",
 'version-poweredby-others' => 'aanderen',
+'version-poweredby-translators' => 'vertalers van translatewiki.net',
 'version-credits-summary' => 'Wulen erkennen grege de volgende personen veur der biedrage an [[Special:Version|MediaWiki]].',
 'version-license-info' => 'MediaWiki is vrieje programmatuur; je kunnen MediaWiki verspreien en/of anpassen onder de veurweerden van de GNU General Public License zo as epubliceerd deur de Free Software Foundation; of versie 2 van de Lisensie, of - naor eigen wuns - n laotere versie.
 

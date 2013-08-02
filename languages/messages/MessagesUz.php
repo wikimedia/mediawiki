@@ -139,7 +139,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Sahifani kuzatuv roʻyxatiga olgan foydalanuvchilar sonini koʻrsatish',
 'tog-oldsig' => 'Joriy imzo:',
 'tog-fancysig' => 'Imzoni viki-belgi qilib koʻrsatish (avtomatik ishoratsiz)',
-'tog-showjumplinks' => 'Yordamchi «tez oʻtish» havolalarini yoqish',
 'tog-uselivepreview' => 'Tez koʻrib chiqish (JavaScript orqali) (sinovda)',
 'tog-forceeditsummary' => 'Qisqa tavsif oynasi toʻldirilmagani haqida ogohlantirish koʻrsatilsin',
 'tog-watchlisthideown' => 'Oʻz tahrirlarim kuzatuv roʻyxatimda koʻrsatilmasin',

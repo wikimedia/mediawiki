@@ -322,7 +322,6 @@ $messages = array(
 'tog-shownumberswatching' => "Afichar lo nombre d'utilizaires que seguisson aquesta pagina",
 'tog-oldsig' => 'Apercebut de la signatura existenta :',
 'tog-fancysig' => 'Tractar la signatura coma de wikitèxte (sens ligam automatic)',
-'tog-showjumplinks' => 'Activar los ligams « navigacion » e « recèrca » en naut de pagina (aparéncias Myskin e autres)',
 'tog-uselivepreview' => 'Utilizar l’apercebut rapid (JavaScript) (experimental)',
 'tog-forceeditsummary' => "M'avertir quand ai pas completat lo contengut de la bóstia de comentaris",
 'tog-watchlisthideown' => 'Amagar mas pròprias modificacions dins la lista de seguiment',

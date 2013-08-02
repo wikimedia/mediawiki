@@ -223,7 +223,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Vis antal brugere, der overvåger',
 'tog-oldsig' => 'Nuværende signatur:',
 'tog-fancysig' => 'Behandl signatur som wikitekst uden automatisk henvisning',
-'tog-showjumplinks' => 'Vis tilgængeligheds-henvisninger',
 'tog-uselivepreview' => 'Brug automatisk forhåndsvisning (kræver JavaScript og er på forsøgsstadiet)',
 'tog-forceeditsummary' => 'Advar mig hvis jeg ikke udfylder beskrivelsesfeltet',
 'tog-watchlisthideown' => 'Skjul egne ændringer i overvågningslisten',

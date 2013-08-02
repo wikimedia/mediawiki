@@ -382,7 +382,6 @@ $messages = array(
 'tog-shownumberswatching' => 'İzleyen kullanıcı sayısını göster',
 'tog-oldsig' => 'Mevcut imza:',
 'tog-fancysig' => 'İmzaya vikimetin muamelesi yap (otomatik bir bağlantı olmadan)',
-'tog-showjumplinks' => '"{{int:jumpto}}" erişilebilirlik bağlantısı etkinleştir',
 'tog-uselivepreview' => 'Canlı ön izlemeyi kullan (JavaScript gerektirir ve özellik deneme aşamasındadır)',
 'tog-forceeditsummary' => 'Özeti boş bıraktığımda beni uyar',
 'tog-watchlisthideown' => 'İzleme listemden düzenlemelerimi gizle',

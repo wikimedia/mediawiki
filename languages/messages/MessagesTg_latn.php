@@ -42,7 +42,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Nişon dodani şumorai korbaroni pajgir',
 'tog-oldsig' => 'Peşnamoişi imzoi vuçuddoşta:',
 'tog-fancysig' => 'Imzoro ba surati vikimatn ba nazar bigir (be pajvandi xudkor)',
-'tog-showjumplinks' => 'Namoişi pajvandhoi dastrasiji "çahiş ba" dar fehristi mundariçot',
 'tog-uselivepreview' => 'Istifoda az peşnamoişi zinda (ÇavaSkript) (Ozmoişī)',
 'tog-forceeditsummary' => 'Hangome ki xulosai viroiş nanaviştaam jua man isloh bideh',
 'tog-watchlisthideown' => 'Pinhon namudani viroişhoi man dar fehristi nazarot',

@@ -126,7 +126,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Ihayag an numero kan nagbabantay na mga parágamit',
 'tog-oldsig' => 'Tugmadong pirma',
 'tog-fancysig' => 'Trataron an pirma na wiki-teksto (mayo nin awtomatikong kilyaw)',
-'tog-showjumplinks' => 'Paganaha an "luksó sa" kilyaw nin kalangkayan',
 'tog-uselivepreview' => 'Gamíta an buhay na patànaw (minakaipo nin JavaScript) (eksperimental)',
 'tog-forceeditsummary' => 'Ibunyaw sako kun maglalaog sa blangkong kalanyang nin paghirá',
 'tog-watchlisthideown' => 'Tagóa an sakong mga pagliwat gikan sa bantay-listahan',

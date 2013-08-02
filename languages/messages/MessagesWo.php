@@ -110,7 +110,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Wone limu jëfandikukat yiy topp wii xët',
 'tog-oldsig' => 'Wonendig xaatim gi teew:',
 'tog-fancysig' => 'Soppi sa xaatim (du am lëkkalekaay bu boppu)',
-'tog-showjumplinks' => 'Doxalal lëkkalekaay yii di « joowin » ak « seet »',
 'tog-uselivepreview' => 'Jëfandikul wonendi gu gaaw gi (JavaScript)',
 'tog-forceeditsummary' => 'Wax ma ko suma mottaliwul koju coppite bi',
 'tog-watchlisthideown' => 'Nëbb samay coppite ci limu toppte bi',

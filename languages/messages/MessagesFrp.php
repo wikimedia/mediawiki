@@ -338,7 +338,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Montrar lo nombro d’utilisators que siuvont na pâge',
 'tog-oldsig' => 'Signatura ègzistenta :',
 'tog-fancysig' => 'Trètar la signatura coment de vouiquitèxto (sen lim ôtomatico)',
-'tog-showjumplinks' => 'Activar los lims d’accèssibilitât « {{int:jumpto}} »',
 'tog-uselivepreview' => 'Empleyér l’apèrçu rapido (at fôta de JavaScript) (èxpèrimentâl)',
 'tog-forceeditsummary' => 'Mè balyér na semonce quand j’é pas buchiê de rèsumâ de changement',
 'tog-watchlisthideown' => 'Cachiér los mins changements dedens la lista de siuvu',

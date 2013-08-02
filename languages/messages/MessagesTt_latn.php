@@ -122,7 +122,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Bitne küzätü isemleklärenä östägän qullanuçılar sanın kürsätelsen',
 'tog-oldsig' => 'Xäzerge imzanı aldan qaraw:',
 'tog-fancysig' => 'İmzanıñ şäxsi wiki-bilgelämäse (avtomatik sıltamasız)',
-'tog-showjumplinks' => '«Küçü» yärdämçe sıltamaları yalğansın',
 'tog-uselivepreview' => 'Tiz qarap alu qullanılsın (JavaScript, eksperimental)',
 'tog-forceeditsummary' => 'Üzgärtülärne taswirlaw yulı tutırılmağan bulsa, kisätü',
 'tog-watchlisthideown' => 'Minem üzgärtülärem küzätü isemlegennän yäşerelsen',

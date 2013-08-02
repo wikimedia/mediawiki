@@ -283,7 +283,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Mostrar o número de usuarios que están a vixiar',
 'tog-oldsig' => 'Sinatura actual:',
 'tog-fancysig' => 'Tratar a sinatura como se fose texto wiki (sen ligazón automática)',
-'tog-showjumplinks' => 'Permitir as ligazóns de accesibilidade "ir a"',
 'tog-uselivepreview' => 'Usar a vista previa en tempo real (cómpre JavaScript) (experimental)',
 'tog-forceeditsummary' => 'Avisádeme cando o campo resumo estea baleiro',
 'tog-watchlisthideown' => 'Agochar as edicións propias na lista de vixilancia',
@@ -2106,6 +2105,13 @@ Lembre verificar outras ligazóns cara aos modelos antes de borralos.',
 # Random page
 'randompage' => 'Páxina aleatoria',
 'randompage-nopages' => 'Non hai páxinas {{PLURAL:$2|no seguinte espazo de nomes|nos seguintes espazos de nomes}}: $1.',
+
+# Special:RandomInCategory
+'randomincategory' => 'Páxina aleatoria na categoría',
+'randomincategory-invalidcategory' => '"$1" non é un nome de categoría válido.',
+'randomincategory-nopages' => 'Non hai páxinas na [[:Category:$1]].',
+'randomincategory-selectcategory' => 'Ir a unha páxina ao chou da categoría: $1 $2.',
+'randomincategory-selectcategory-submit' => 'Ir',
 
 # Random redirect
 'randomredirect' => 'Redirección aleatoria',
@@ -3933,6 +3939,7 @@ Tamén pode [[Special:EditWatchlist|empregar o editor normal]].',
 'version-license' => 'Licenza',
 'version-poweredby-credits' => "Este wiki está desenvolvido por '''[//www.mediawiki.org/wiki/MediaWiki/gl MediaWiki]''', dereitos de autor © 2001-$1 $2.",
 'version-poweredby-others' => 'outros',
+'version-poweredby-translators' => 'os tradutores de translatewiki.net',
 'version-credits-summary' => 'Queremos recoñecer as seguintes persoas polas súas achegas a [[Special:Version|MediaWiki]].',
 'version-license-info' => 'MediaWiki é software libre; pode redistribuílo e/ou modificalo segundo os termos da licenza pública xeral GNU publicada pola Free Software Foundation; versión 2 ou (na súa escolla) calquera outra posterior.
 

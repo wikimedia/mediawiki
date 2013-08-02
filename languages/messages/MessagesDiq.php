@@ -347,7 +347,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Amarê karberanê seyrkerdoğan bımocne',
 'tog-oldsig' => 'İmzaya mewcude:',
 'tog-fancysig' => 'İmza rê mameleyê wikimeqaley bıke (bê gıreyo otomatik)',
-'tog-showjumplinks' => 'Gıreyê "şo"y aktif ke',
 'tog-uselivepreview' => 'Verqayto cınde bıxebetne (JavaScript lazımo) (hewna cerrebnayış dero)',
 'tog-forceeditsummary' => 'Mı ke xulasa kerde cı vira, hay be mı ser de',
 'tog-watchlisthideown' => 'Vurnayışanê mı lista mına seyrkerdışi de bınımne',

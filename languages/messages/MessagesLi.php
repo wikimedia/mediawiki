@@ -187,7 +187,6 @@ $messages = array(
 'tog-shownumberswatching' => "'t Aantal gebroekers tuine die dees pagina volg",
 'tog-oldsig' => 'Bestaonde ongerteikening:',
 'tog-fancysig' => 'Es wikiteks behanjele (zonder autematische verwiezing)',
-'tog-showjumplinks' => '"gank nao"-toegankelikheidslinks mäögelik make',
 'tog-uselivepreview' => '"live veurbesjouwing" gebroeke (vereis JavaScript - experimenteel)',
 'tog-forceeditsummary' => "'n Melding gaeve bie 'n laeg samevatting",
 'tog-watchlisthideown' => 'Eige bewirkinge verberge op mien volglies',

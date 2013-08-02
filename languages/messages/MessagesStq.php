@@ -74,7 +74,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Antaal fon do beooboachtjende Benutsere anwiese',
 'tog-oldsig' => 'Aktuälle Signatuur:',
 'tog-fancysig' => 'Unnerskrift as Wikitext behonnelje (sunner automatiske Ferlinkenge)',
-'tog-showjumplinks' => '"Wikselje tou"-Links muugelk moakje',
 'tog-uselivepreview' => 'Live-Foarbekiek nutsje (JavaScript) (experimentell)',
 'tog-forceeditsummary' => 'Woarskauje, wan bie dät Spiekerjen ju Touhoopefoatenge failt',
 'tog-watchlisthideown' => 'Oaine Biedraage in ju Beooboachtengslieste ferbierge',

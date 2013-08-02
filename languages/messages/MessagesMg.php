@@ -247,7 +247,6 @@ $messages = array(
 'tog-shownumberswatching' => "Asehoy ny isan'ny mpikambana manara-maso ny pejy",
 'tog-oldsig' => "Topi-mason'ny sonia :",
 'tog-fancysig' => 'Sonia tsotra (tsy misy rohy)',
-'tog-showjumplinks' => 'Ampiasao ny rohy "handeha eto"',
 'tog-uselivepreview' => 'Ampesao ny topi-maso maikamaika (mila Javascript) (mbola am-panandramana)',
 'tog-forceeditsummary' => 'Teneno ahy ra tsy nametraka ny ambangovangony',
 'tog-watchlisthideown' => "Tsy ampiseho anatin'ny pejy fanaraha-maso ny zavatra nosoratako",

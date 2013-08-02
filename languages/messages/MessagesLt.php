@@ -215,7 +215,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Rodyti stebinčių naudotojų skaičių',
 'tog-oldsig' => 'Esamo parašo peržiūra:',
 'tog-fancysig' => 'Laikyti parašą vikitekstu (be automatinių nuorodų)',
-'tog-showjumplinks' => 'Įjungti „peršokti į“ pasiekiamumo nuorodas',
 'tog-uselivepreview' => 'Naudoti tiesioginę peržiūrą (JavaScript) (Eksperimentinis)',
 'tog-forceeditsummary' => 'Klausti, kai palieku tuščią keitimo komentarą',
 'tog-watchlisthideown' => 'Slėpti mano keitimus stebimų sąraše',

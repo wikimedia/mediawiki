@@ -142,7 +142,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Vís tal av brúkarum sum fylgja við',
 'tog-oldsig' => 'Verandi undirskrift:',
 'tog-fancysig' => 'Viðgerð undirskriftina sum wikitekstur (uttan sjálvvirkandi leinkju)',
-'tog-showjumplinks' => 'Ger leinkuna "far til" virknað',
 'tog-uselivepreview' => 'Nýt "live preview" (tørvar JavaScript) (á royndarstøði)',
 'tog-forceeditsummary' => 'Gev mær boð, um eg ikki havi skrivað ein samandrátt um mína rætting',
 'tog-watchlisthideown' => 'Fjal mínar rættingar frá eftirliti',

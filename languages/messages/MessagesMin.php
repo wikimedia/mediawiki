@@ -142,7 +142,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Tunjuakan jumlah pamantau',
 'tog-oldsig' => 'Tando tangan kini:',
 'tog-fancysig' => 'Jadikan tando tangan manjadi teks wiki (indak jo tautan otomatis)',
-'tog-showjumplinks' => 'Aktifkan pautan bantuan "langsuang ka"',
 'tog-uselivepreview' => 'Gunoan pratonton langsuang (paralu JavaScript) (uji-cubo)',
 'tog-forceeditsummary' => 'Ingekan ambo bilo kotak ikhtisar suntiangan kosong',
 'tog-watchlisthideown' => 'Suruakan suntiangan surang pado daftar pantau',

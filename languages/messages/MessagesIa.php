@@ -174,7 +174,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Monstrar le numero de usatores que observa le pagina',
 'tog-oldsig' => 'Signatura existente:',
 'tog-fancysig' => 'Tractar signatura como wikitexto (sin ligamine automatic)',
-'tog-showjumplinks' => 'Activar ligamines de accessibilitate "saltar a"',
 'tog-uselivepreview' => 'Usar previsualisation in directo (require JavaScript) (experimental)',
 'tog-forceeditsummary' => 'Avisar me si io non entra un summario de modification',
 'tog-watchlisthideown' => 'Celar mi proprie modificationes in le observatorio',

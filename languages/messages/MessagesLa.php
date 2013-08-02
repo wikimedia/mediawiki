@@ -192,7 +192,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Numerum usorum custodientium monstrare',
 'tog-oldsig' => 'Subscriptio ad tempus adhibita:',
 'tog-fancysig' => 'Subscriptio vicitext (sine nexu automatico)',
-'tog-showjumplinks' => 'Sinere nexus ostendi forma "salire ad" monstrata',
 'tog-uselivepreview' => 'Praevisum viventem adhibere (JavaScript)',
 'tog-forceeditsummary' => 'Si recensionem non summatim descripsero, me roga si continuare velim',
 'tog-watchlisthideown' => 'Celare recensiones meas in paginarum custoditarum indice',

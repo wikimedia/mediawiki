@@ -216,7 +216,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Цал архайæджы фарсмæ сæ цæст дарынц, уый равдис',
 'tog-oldsig' => 'Ныры къухæрфыст:',
 'tog-fancysig' => 'Сæвæрын къухæрфыст викитекстæй (æнæ хæдæвзæргæ æрвитæнæй)',
-'tog-showjumplinks' => 'Тагъд æрвитæнтæй пайда кæн',
 'tog-uselivepreview' => 'Архайын тагъд разбакастæй (домы JavaScript) (эксперименталон)',
 'tog-forceeditsummary' => 'Фæдзæхсæд иу мæ, кæд ивды афыст афтид уа',
 'tog-watchlisthideown' => 'Айсын мæ ивдтытæ цæстдардæй',

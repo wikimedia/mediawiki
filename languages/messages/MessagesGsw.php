@@ -163,7 +163,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Aazahl Benutzer aazeige, wo ne Syten am Aaluege sy (i den Artikelsyte, i de «letschten Änderigen» und i der Beobachtigslischte)',
 'tog-oldsig' => 'Vorschau vu dr Unterschrift:',
 'tog-fancysig' => 'Signatur as Wikitext behandle (ohni automatischi Vergleichig)',
-'tog-showjumplinks' => '«Wächsle-zu»-Links ermügleche',
 'tog-uselivepreview' => 'Live-Vorschau bruche (JavaScript) (experimentell)',
 'tog-forceeditsummary' => 'Sag mer s, wänn i s Zämmefassigsfeld läär loss',
 'tog-watchlisthideown' => 'Eigeni Änderige uf d Beobachtigslischt usblände',
