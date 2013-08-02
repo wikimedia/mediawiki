@@ -324,7 +324,7 @@ class Profiler {
 					list( $method, $realtime ) = $info;
 					$msg .= sprintf( "%d\t%.6f\t%s\n", $i, $realtime, $method );
 				}
-				wfDebugLog( 'DBPerfomance', $msg );
+				wfDebugLog( 'DBPerformance', $msg );
 			}
 			unset( $this->mDBTrxHoldingLocks[$name] );
 			unset( $this->mDBTrxMethodTimes[$name] );
