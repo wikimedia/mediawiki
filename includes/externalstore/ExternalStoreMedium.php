@@ -49,6 +49,25 @@ abstract class ExternalStoreMedium {
 	abstract public function fetchFromURL( $url );
 
 	/**
+	 * Fetch data from given external store URLs.
+	 *
+	 * @param array $urls A list of external store URLs
+	 * @return array Map from the url to the text stored. Unfound data is not represented
+	 */
+	public function batchFetchFromURLs( array $urls ) {
+		$retval = array();
+		foreach ( $urls as $url ) {
+			$data = $this->fetchFromURL( $url );
+			// Dont return when false to allow for simpler implementations.
+			// errored urls are handled in ExternalStore::batchFetchFromURLs
+			if ( $data !== false ) {
+				$retval[$urls] = $data;
+			}
+		}
+		return $retval;
+	}
+
+	/**
 	 * Insert a data item into a given location
 	 *
 	 * @param string $location the location name
