@@ -8,15 +8,9 @@
  * See the README, INSTALL, and UPGRADE files for basic setup instructions
  * and pointers to the online documentation.
  *
- * http://www.mediawiki.org/
+ * https://www.mediawiki.org/
  *
  * ----------
- *
- * Copyright (C) 2001-2011 Magnus Manske, Brion Vibber, Lee Daniel Crocker,
- * Tim Starling, Erik Möller, Gabriel Wicke, Ævar Arnfjörð Bjarmason,
- * Niklas Laxström, Domas Mituzas, Rob Church, Yuri Astrakhan, Aryeh Gregor,
- * Aaron Schulz, Andrew Garrett, Raimond Spekking, Alexandre Emsenhuber
- * Siebrand Mazeland, Chad Horohoe, Roan Kattouw and others.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
