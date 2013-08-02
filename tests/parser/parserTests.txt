@@ -865,6 +865,37 @@ Non-html5 tags should be accepted
 </p>
 !! end
 
+!! test
+<wbr> isn't (yet) valid wikitext (bug 52468)
+!! input
+<wbr>
+!! result
+<p>&lt;wbr&gt;
+</p>
+!! end
+
+###
+### Special characters
+###
+
+!! test
+Bare pipe character (bug 52363)
+!! input
+|
+!! result
+<p>|
+</p>
+!! end
+
+!! test
+Bare pipe character from a template (bug 52363)
+!! input
+{{pipe}}
+!! result
+<p>|
+</p>
+!! end
+
 ###
 ### <nowiki> test cases
 ###
