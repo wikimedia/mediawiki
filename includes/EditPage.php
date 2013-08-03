@@ -1404,9 +1404,14 @@ class EditPage {
 		# Check for spam
 		$match = self::matchSummarySpamRegex( $this->summary );
 		if ( $match === false && $this->section == 'new' ) {
+			# $wgSpamRegex is enforced on this new heading/summary because, unlike
+			# regular summaries, it is added to the actual wikitext.
 			if ( $this->sectiontitle !== '' ) {
+				# This branch is taken when the API is used with the 'sectiontitle' parameter.
 				$match = self::matchSpamRegex( $this->sectiontitle );
 			} else {
+				# This branch is taken when the "Add Topic" user interface is used, or the API
+				# is used with the 'summary' parameter.
 				$match = self::matchSpamRegex( $this->summary );
 			}
 		}
@@ -1604,8 +1609,7 @@ class EditPage {
 				}
 			}
 
-			// If sectiontitle is set, use it, otherwise use the summary as the section title (for
-			// backwards compatibility with old forms/bots).
+			// If sectiontitle is set, use it, otherwise use the summary as the section title.
 			if ( $this->sectiontitle !== '' ) {
 				$sectionTitle = $this->sectiontitle;
 			} else {
@@ -1890,11 +1894,11 @@ class EditPage {
 	}
 
 	/**
-	 * Check given input text against $wgSpamRegex, and return the text of the first match.
+	 * Check given input text against $wgSummarySpamRegex, and return the text of the first match.
 	 *
 	 * @param $text string
 	 *
-	 * @return string|bool  matching string or false
+	 * @return string|bool matching string or false
 	 */
 	public static function matchSummarySpamRegex( $text ) {
 		global $wgSummarySpamRegex;
