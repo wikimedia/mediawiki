@@ -796,6 +796,7 @@ Mety efa nanova tenimiafina na nanontany tenimiafina miserana angamba ianao.',
 # Special:PasswordReset
 'passwordreset' => 'Famafana ary famerenana ny tenimiafina',
 'passwordreset-text-one' => 'Fenoy ity fôrmiolera ity mba hamerenana ny tenimiafinao',
+'passwordreset-text-many' => "Fenoy ny iray amin'ireo saha ireo mba hamerenana ny tenimiafinao{{PLURAL:}}",
 'passwordreset-legend' => 'Famafana ary famerenana ny tenimiafina',
 'passwordreset-disabled' => "Tsy nalefa ny fanovana tenimiafina adino eto amin'ity wiki ity.",
 'passwordreset-emaildisabled' => "Tsy avela ny fampiasana mailaka eto amin'ity wiki ity.",
@@ -820,7 +821,7 @@ Hitsahatra afaka {{PLURAL:$5|iray|$5}} andro {{PLURAL:$3|io|ireo}} tenimiafina {
 Tenimiafina miserana : $2',
 'passwordreset-emailsent' => 'Lasa ny mailaka famerenana tenimiafina.',
 'passwordreset-emailsent-capture' => 'Lasa ilay mailaka famerenana tenimiafina, izay aseho eo ambany.',
-'passwordreset-emailerror-capture' => "Nosoratana ilay mailaka famerenana tenimiafina, izay aseho eo ambany, fa tsy lasa any amin'ilay mpikambana ilay izy : $1",
+'passwordreset-emailerror-capture' => "Nosoratana ilay mailaka famerenana tenimiafina, izay aseho eo ambany, fa tsy tafalefa tany amin'ilay mpikambana ilay izy : $1",
 
 # Special:ChangeEmail
 'changeemail' => 'Hanova ny adiresy imailaka',
@@ -833,6 +834,14 @@ Tenimiafina miserana : $2',
 'changeemail-password' => "Tenimiafinao eo amin'i {{SITENAME}}:",
 'changeemail-submit' => 'Hanova ny adiresy imailaka',
 'changeemail-cancel' => 'Adinoy',
+
+# Special:ResetTokens
+'resettokens' => 'Hamerina ny token',
+'resettokens-text' => "Azonao averina eto ny token izay hahafahana mitsidika ny fampahalalana tsy sarababem-bahoaka ao amin'ny kaontinao. Tokony ataonao izany raha voazara tsy fanahy iniana na raha nisy nangalatra ny kaontinao.",
+'resettokens-no-tokens' => 'Tsy misy token ho averina',
+'resettokens-legend' => 'Famerenana ny token',
+'resettokens-tokens' => 'Token:',
+'resettokens-token-label' => '$1 (sanda ankehitriny: $2)',
 
 # Edit page toolbar
 'bold_sample' => 'Soratra matavy',
@@ -1013,7 +1022,7 @@ Ny mpandrindra nanidy ny banky angona dia nanome ny antony : <br />$1",
 'nocreate-loggedin' => 'Tsy mahazo ataonao no manamboatra pejy vao.',
 'sectioneditnotsupported-title' => 'Fanovana fizarana tsy zaka',
 'sectioneditnotsupported-text' => "Ny fanovana fizarana iray dia tsy zaka ao anatin'ity pejy fanovana ity.",
-'permissionserrors' => 'Tsy azonao atao',
+'permissionserrors' => "Hadisoan'alàlana",
 'permissionserrorstext' => 'Tsy afaka manao ilay aza nangatahanao ianao noho ny antony {{PLURAL:$1||maro}} manaraka :',
 'permissionserrorstext-withaction' => '{{PLURAL:$1|Tsy manana alalàna ianao|Tsy manana alalàna ianao}} $2. Io ny antony ($2):',
 'recreate-moveddeleted-warn' => "'''Tandremo''' : Mamerina pejy efa voafafa ianareo.'''
@@ -1035,6 +1044,8 @@ Efa misy izy.',
 'content-failed-to-parse' => "Tsy naha-parse ny votoatin'i $2 ho an'ny modely $1 : $3",
 'invalid-content-data' => "Data anaty votoatiny tsy miady amin'ny fepetra",
 'content-not-allowed-here' => "Votoatiny ''$1'' voarara eo amin'ny pejy [[$2]]",
+'editwarning-warning' => "Mety hahavery ny fanovana nataonao ny fialanao amin'ity pejy ity.
+Raha tafiditra ianao dia azonao esorina ity fampitandremana ity ao amin'ny fizarana \"Fanovàna\" ao amin'ny safidinao",
 
 # Content models
 'content-model-wikitext' => 'wiki-soratra',
@@ -1095,8 +1106,8 @@ Tadidio: (ank) = fampitahana amin'ny votoatin'ny pejy ankehitriny,
 (farany) = fampitahana amin'ny version talohan'ity, M = fanovana madinika",
 'history-fieldset-title' => 'Karohy ny tantara',
 'history-show-deleted' => 'Voafafa ihany',
-'histfirst' => 'Ny vao indrindra',
-'histlast' => 'Antintra indrindra',
+'histfirst' => 'antitra indrindra',
+'histlast' => 'vaovao indrindra',
 'historysize' => '($1 {{PLURAL:$1|oktety|oktety}})',
 'historyempty' => '(tsy misy)',
 
@@ -1248,6 +1259,7 @@ $3 santiôna{{PLURAL:}} natsonika tamin'ny [[:$2]]",
 'compareselectedversions' => 'Ampitahao ireo version voafidy',
 'showhideselectedversions' => 'Aseho/asitrika ireo ny santiôna nofidiana',
 'editundo' => 'esory',
+'diff-empty' => '(Tsy misy mahasamihafa)',
 'diff-multi' => "({{PLURAL:$1|Famerenana tokana|Famerenana $1}} nataon'ny {{PLURAL:$2|mpikambana iray|mpikambana $2}} tsy miseho)",
 'diff-multi-manyusers' => "Tsy naseho ny antiôna $1{{PLURAL:}} nataon'ny mpikambana $2.",
 
@@ -1918,6 +1930,7 @@ Aseho eo ambany ny [$2 famisavisana ilay rakitra].",
 'uploadnewversion-linktext' => "Andefa version vaovao n'ity rakitra ity",
 'shared-repo-from' => "avy amin'ny $1",
 'shared-repo' => 'petra-drakitra iraisana',
+'upload-disallowed-here' => 'Tsy azonao itsahina ity rakitra ity.',
 
 # File reversion
 'filerevert' => "Hamerinan'i $1",
@@ -1973,6 +1986,13 @@ Aza manadino manamarina raha tsy misy rohy makany amin'ny endrika hafa alohan'ny
 'randompage' => 'Takelaka kisendra',
 'randompage-nopages' => "Tsy misy pejy ao amin'ny anaran-tsehatra {{PLURAL:$2}} : $1.",
 
+# Special:RandomInCategory
+'randomincategory' => "Pejy kisendra ao amin'ny sokajy",
+'randomincategory-invalidcategory' => 'Tsy anaran-tsokajy azo raisina "$1"',
+'randomincategory-nopages' => "Tsy misy pejy ao amin'i [[:Category:$1]]",
+'randomincategory-selectcategory' => "Haka pejy kisendra ao amin'ny sokajy: $1 $2",
+'randomincategory-selectcategory-submit' => 'Alefa',
+
 # Random redirect
 'randomredirect' => 'Pejy fihodinana kisendra',
 'randomredirect-nopages' => "Tsy misy pejy fihodinana eo amin'ny anaran-tsehatra «$1»",
@@ -2000,6 +2020,7 @@ Aza manadino manamarina raha tsy misy rohy makany amin'ny endrika hafa alohan'ny
 'disambiguations' => 'Pejy misy rohy amina pejy fanalana ny fisalasalana',
 'disambiguationspage' => 'Template:homonimia',
 
+'pageswithprop-prop' => "Anaran'ilay tondro",
 'pageswithprop-submit' => 'Alefa',
 
 'doubleredirects' => 'Fihodinana roa',

@@ -2009,6 +2009,13 @@ Memora verificar que non existe altere ligamines al patronos ante que tu los del
 'randompage' => 'Pagina aleatori',
 'randompage-nopages' => 'Il non ha paginas in le sequente {{PLURAL:$2|spatio|spatios}} de nomines: $1.',
 
+# Special:RandomInCategory
+'randomincategory' => 'Pagina aleatori in categoria',
+'randomincategory-invalidcategory' => '"$1" non es un nomine de categoria valide.',
+'randomincategory-nopages' => 'Il non ha paginas in [[:Category:$1]].',
+'randomincategory-selectcategory' => 'Prender un pagina qualcunque del categoria: $1 $2.',
+'randomincategory-selectcategory-submit' => 'Va',
+
 # Random redirect
 'randomredirect' => 'Redirection aleatori',
 'randomredirect-nopages' => 'Il non ha redirectiones in le spatio de nomines "$1".',
@@ -3843,6 +3850,7 @@ Tu pote etiam [[Special:EditWatchlist|usar le editor standard]].',
 'version-license' => 'Licentia',
 'version-poweredby-credits' => "Iste wiki es actionate per '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'alteres',
+'version-poweredby-translators' => 'Traductores de translatewiki.net',
 'version-credits-summary' => 'Nos vole recognoscer le sequente personas pro lor contribution a [[Special:Version|MediaWiki]].',
 'version-license-info' => 'MediaWiki es software libere; vos pote redistribuer lo e/o modificar lo sub le conditiones del Licentia Public General de GNU publicate per le Free Software Foundation; version 2 del Licentia, o (a vostre option) qualcunque version posterior.
 

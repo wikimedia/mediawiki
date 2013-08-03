@@ -2200,6 +2200,7 @@ $1',
 
 # Special:RandomInCategory
 'randomincategory' => 'דף אקראי בקטגוריה',
+'randomincategory-selectcategory-submit' => 'מעבר',
 
 # Random redirect
 'randomredirect' => 'הפניה אקראית',

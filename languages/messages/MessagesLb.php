@@ -558,6 +558,7 @@ Et ka sinn datt et scho vun engem Anere geläscht gouf.',
 'cannotdelete-title' => 'D\'Säit "$1" kann net geläscht ginn',
 'delete-hook-aborted' => "D'Läsche gouf vun enger Schnëttstell (hook) ofgebrach.
 Eng Erklärung gouf net ginn.",
+'no-null-revision' => 'Déi nei Nullversioun fir d\'Säit "$1" konnt net ugeluecht ginn',
 'badtitle' => 'Schlechten Titel',
 'badtitletext' => 'De gewënschten Titel ass net valabel, eidel, oder een net korrekten Interwiki Link.',
 'perfcached' => 'Dës Date kommen aus dem Tëschespäicher a si méiglecherweis net aktuell. Maximal {{PLURAL:$1|ee Resultat ass|$1 Resultater sinn}} am Tësche späicher disponibel.',
@@ -1975,6 +1976,13 @@ Dir musst ëmmer de Medien- a Subtyp aginn: z. Bsp. <code>image/jpeg</code>.",
 # Random page
 'randompage' => 'Zoufallssäit',
 'randompage-nopages' => 'Et gëtt keng Säiten {{PLURAL:$2|am Nummraum|an den Nummraim}}: $1.',
+
+# Special:RandomInCategory
+'randomincategory' => 'Zoufälleg Säit an der Kategorie',
+'randomincategory-invalidcategory' => '"$1" ass kee valabelen Numm fir eng Kategorie.',
+'randomincategory-nopages' => 'Et gëtt keng Säiten an der [[:Category:$1]].',
+'randomincategory-selectcategory' => 'Eng zoufälleg Säit aus der Kategorie: $1 $2 opruffen',
+'randomincategory-selectcategory-submit' => 'Lass',
 
 # Random redirect
 'randomredirect' => 'Zoufälleg Viruleedung',
@@ -3750,6 +3758,7 @@ Dir kënnt och [[Special:EditWatchlist|de Standard Editeur benotzen]].",
 'version-license' => 'Lizenz',
 'version-poweredby-credits' => "Dës Wiki fonctionnéiert mat '''[//www.mediawiki.org/ MediaWiki]''', Copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'anerer',
+'version-poweredby-translators' => 'translatewiki.net Iwwersetzer',
 'version-credits-summary' => "Mir soen dëse Persoune 'Merci' fir hir Mataarbecht u [[Special:Version|MediaWiki]].",
 'version-license-info' => "MediaWiki ass fräi Software; Dir kënnt se weiderginn an/oder s'änneren ënnert de Bedingungen vun der GNU-General Public License esou wéi se vun der Free Softare Foundation publizéiert ass; entweder ënner der Versioun 2 vun der Lizenz, oder (no Ärem Choix) enger spéiderer Versioun.
 

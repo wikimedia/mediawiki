@@ -2200,6 +2200,10 @@ $1',
 'randompage' => 'Випадкова стаття',
 'randompage-nopages' => 'Нема сторінок в {{PLURAL:$2|просторі назв|просторах назв}} $1.',
 
+# Special:RandomInCategory
+'randomincategory' => 'Випадкова сторінка у категорії',
+'randomincategory-invalidcategory' => '" $1 " не є дійсним іменем категорії.',
+
 # Random redirect
 'randomredirect' => 'Випадкове перенаправлення',
 'randomredirect-nopages' => 'Простір назв «$1» не містить перенаправлень.',

@@ -2077,6 +2077,13 @@ Syöte: sisältötyyppi/alatyyppi, esimerkiksi <code>image/jpeg</code>.',
 'randompage' => 'Satunnainen sivu',
 'randompage-nopages' => '{{PLURAL:$2|Nimiavaruudessa|Nimiavaruuksissa}} $1 ei ole sivuja.',
 
+# Special:RandomInCategory
+'randomincategory' => 'Satunnainen sivu, joka kuuluu luokkaan',
+'randomincategory-invalidcategory' => '" $1 " ei ole kelvollinen luokan nimi.',
+'randomincategory-nopages' => 'Luokassa [[:Category:$1]] ei ole sivuja.',
+'randomincategory-selectcategory' => 'Etsi satunnainen sivu luokasta: $1 $2.',
+'randomincategory-selectcategory-submit' => 'Etsi',
+
 # Random redirect
 'randomredirect' => 'Satunnainen ohjaus',
 'randomredirect-nopages' => 'Nimiavaruudessa ”$1” ei ole ohjaussivuja.',
@@ -2113,6 +2120,7 @@ Sivua kohdellaan täsmennyssivuna, jos se käyttää mallinetta, johon on linkki
 'pageswithprop-text' => 'Tällä sivulla on lueteltu sivut, jotka käyttävät erityistä sivun ominaisuutta.',
 'pageswithprop-prop' => 'Ominaisuuden nimi',
 'pageswithprop-submit' => 'Siirry',
+'pageswithprop-prophidden-long' => 'Pitkä tekstimuotoinen ominaisuuden arvo piilotettu ($1 kilobytes)',
 'pageswithprop-prophidden-binary' => 'ominaisuuden binääriarvo on piilotettu ($1 kilotavua)',
 
 'doubleredirects' => 'Kaksinkertaiset ohjaukset',
@@ -3465,7 +3473,7 @@ Kaikki muut linkit ovat poikkeuksia eli toisin sanoen sivuja, joissa tiedostoa s
 'exif-compression-6' => 'JPEG (vanha)',
 
 'exif-copyrighted-true' => 'Tekijänoikeuksien alainen',
-'exif-copyrighted-false' => 'Vapaasti käytettävä',
+'exif-copyrighted-false' => 'Tekijänoikeustiedot puuttuvat',
 
 'exif-unknowndate' => 'Tuntematon päiväys',
 
@@ -3855,6 +3863,7 @@ Voit myös muokata listaa [[Special:EditWatchlist|tavalliseen tapaan]].',
 'version-license' => 'Lisenssi',
 'version-poweredby-credits' => "Tämä wiki käyttää '''[//www.mediawiki.org/ MediaWikiä]'''. Copyright © 2001–$1 $2.",
 'version-poweredby-others' => 'muut',
+'version-poweredby-translators' => 'translatewiki.net kääntäjät',
 'version-credits-summary' => 'Haluaisimme kiittää seuraavia henkilöitä heidän panoksestaan [[Special:Version|MediaWiki-ohjelmistoon]].',
 'version-license-info' => 'MediaWiki on vapaa ohjelmisto – voit levittää sitä ja/tai muokata sitä Free Software Foundationin GNU General Public Licensen ehdoilla, joko version 2 tai halutessasi minkä tahansa myöhemmän version mukaisesti.
 
