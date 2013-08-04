@@ -2475,7 +2475,7 @@ Axuda:
 'historywarning' => "'''Atención:''' A páxina que está a piques de borrar ten un historial con aproximadamente $1 {{PLURAL:$1|revisión|revisións}}:",
 'confirmdeletetext' => 'Está a piques de borrar de xeito permanente unha páxina ou imaxe con todo o seu historial na base de datos.
 Por favor, confirme que é realmente a súa intención, que comprende as consecuencias e que está obrando de acordo coas regras [[{{MediaWiki:Policy-url}}|da política e normas]].',
-'actioncomplete' => 'A acción foi completada',
+'actioncomplete' => 'Completouse a acción',
 'actionfailed' => 'Fallou a acción',
 'deletedtext' => 'Borrouse a páxina "$1".
 No $2 pode ver unha lista cos borrados máis recentes.',

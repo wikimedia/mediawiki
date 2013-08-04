@@ -2452,16 +2452,16 @@ $PAGEINTRO $NEWPAGE
 Resumo da edição: $PAGESUMMARY $PAGEMINOREDIT
 
 Contacte o editor:
-correio electrónico: $PAGEEDITOR_EMAIL
+correio eletrónico: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
 Até que visite esta página, não receberá mais notificações das alterações futuras.
-Pode também reactivar as notificações para todas páginas na sua lista de páginas vigiadas.
+Pode também reativar as notificações para todas páginas na sua lista de páginas vigiadas.
 
              O seu sistema de notificação amigável da {{SITENAME}}
 
 --
-Para alterar as suas preferências das notificações por correio electrónico, visite
+Para alterar as suas preferências das notificações por correio eletrónico, visite
 {{canonicalurl:{{#special:Preferences}}}}
 
 Para alterar as suas preferências das páginas vigiadas, visite
@@ -3798,31 +3798,31 @@ $5
 
 Este código de confirmação expira a $4.',
 'confirmemail_body_changed' => 'Alguém, provavelmente você a partir do endereço IP $1,
-alterou o endereço de correio electrónico da conta "$2" para este na {{SITENAME}}.
+alterou o endereço de correio eletrónico da conta "$2" para este na {{SITENAME}}.
 
-Para confirmar que esta conta é realmente sua e reactivar
-as funcionalidades de correio electrónico na {{SITENAME}},
+Para confirmar que esta conta é realmente sua e reativar
+as funcionalidades de correio eletrónico na {{SITENAME}},
 abra o seguinte link no seu browser:
 
 $3
 
 Caso a conta *não* lhe pertença, abra o seguinte link
-para cancelar a confirmação do endereço de correio electrónico:
+para cancelar a confirmação do endereço de correio eletrónico:
 
 $5
 
 Este código de confirmação expira a $4.',
 'confirmemail_body_set' => 'Alguém, provavelmente você a partir do endereço IP $1,
-definiu o seu endereço de correio electrónico como correio da conta "$2" na {{SITENAME}}.
+definiu o seu endereço de correio eletrónico como correio da conta "$2" na {{SITENAME}}.
 
-Para confirmar que esta conta é realmente sua e reactivar
-as funcionalidades de correio electrónico na {{SITENAME}},
+Para confirmar que esta conta é realmente sua e reativar
+as funcionalidades de correio eletrónico na {{SITENAME}},
 abra o seguinte link no seu browser:
 
 $3
 
 Caso a conta *não* lhe pertença, abra o seguinte link
-para cancelar a confirmação do endereço de correio electrónico:
+para cancelar a confirmação do endereço de correio eletrónico:
 
 $5
 

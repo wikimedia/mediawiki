@@ -3129,7 +3129,7 @@ $2',
 'import-interwiki-namespace' => '새 이름공간:',
 'import-interwiki-rootpage' => '대상 루트 문서 (선택 사항):',
 'import-upload-filename' => '파일 이름:',
-'import-comment' => '이유:',
+'import-comment' => '요약:',
 'importtext' => '원본 위키에서 [[Special:Export|내보내기]] 기능을 사용해 파일을 내려받으세요.
 그리고 당신의 컴퓨터에 저장해 둔 후 여기에 올려주세요.',
 'importstart' => '문서를 가져오는 중...',

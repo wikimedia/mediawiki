@@ -658,7 +658,7 @@ Na zisoñjit ket resisaat ho [[Special:Preferences|penndibaboù evit {{SITENAME}
 'createacct-another-submit' => 'Krouiñ ur gont all',
 'createacct-benefit-heading' => "{{SITENAME}} zo graet gant tud eveldoc'h.",
 'createacct-benefit-body1' => '$1 {{PLURAL:$1|kemm}}',
-'createacct-benefit-body2' => '{{PLURAL:$1|pajenn|pajenn}}',
+'createacct-benefit-body2' => 'pajenn{{PLURAL:$1|}}',
 'badretype' => 'Ne glot ket ar gerioù-tremen an eil gant egile.',
 'userexists' => "Implijet eo an anv implijer lakaet ganeoc'h dija.
 Dibabit un anv all mar plij.",
@@ -712,7 +712,7 @@ Merkit ur chomlec'h reizh pe goullonderit ar vaezienn-mañ.",
 'cannotchangeemail' => "N'haller ket cheñch chomlec'hioù postel ar c'hontoù war ar wiki-mañ.",
 'emaildisabled' => "N'haller ket kas posteloù dre al lec'hienn-mañ.",
 'accountcreated' => 'Kont krouet',
-'accountcreatedtext' => 'Krouet eo bet kont implijer $1.',
+'accountcreatedtext' => 'Krouet eo bet kont implijer [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|kaozeal]]).',
 'createaccount-title' => 'Krouiñ ur gont war {{SITENAME}}',
 'createaccount-text' => 'Unan bennak en deus krouet ur gont gant ho chomlec\'h postel war {{SITENAME}} ($4) zo e anv "$2" hag a ra gant ar ger-tremen "$3".
 Mat e vefe deoc\'h kevreañ ha cheñch ho ker-tremen bremañ.
@@ -815,7 +815,7 @@ Ger-tremen da c'hortoz : $2",
 'subject' => 'Danvez/titl:',
 'minoredit' => 'Kemm dister',
 'watchthis' => 'Evezhiañ ar pennad-mañ',
-'savearticle' => 'Enrollañ',
+'savearticle' => 'Enrollañ ar bajenn',
 'preview' => 'Rakwelet',
 'showpreview' => 'Rakwelet',
 'showlivepreview' => 'Rakwelet prim',
@@ -971,7 +971,7 @@ Gallout a rit mont war-gil ha lakaat kemmañ ur bajenn zo anezhi dija, pe [[Spec
 'nocreate-loggedin' => "N'oc'h ket aotreet da grouiñ pajennoù nevez.",
 'sectioneditnotsupported-title' => "N'eo ket skoret ar c'hemmañ rannoù",
 'sectioneditnotsupported-text' => "N'eo ket skoret ar c'hemmañ rannoù evit ar bajenn-mañ",
-'permissionserrors' => 'Fazioù Aotre',
+'permissionserrors' => 'Fazi aotre',
 'permissionserrorstext' => "N'oc'h ket aotreet d'ober kement-mañ evit {{PLURAL:$1|an abeg-mañ|an abegoù-mañ}} :",
 'permissionserrorstext-withaction' => "N'oc'h ket aotreet da $2, evit an {{PLURAL:$1|abeg-mañ|abeg-mañ}} :",
 'recreate-moveddeleted-warn' => "'''Diwallit : Emaoc'h o krouiñ ur bajenn zo bet diverket c'hoazh.'''
@@ -1350,7 +1350,7 @@ Gallout a reot kavout munudoù e [{{fullurl:{{#Special:Log}}/delete|page={{FULLP
 'youremail' => 'Postel :',
 'username' => '{{GENDER:$1|Anv implijer|Anv implijerez}}:',
 'uid' => '{{GENDER:$1|Niv. identelezh an implijer|Niv. identelezh an implijerez}}:',
-'prefs-memberingroups' => 'Ezel eus {{PLURAL:$1|ar strollad|ar strolladoù}}:',
+'prefs-memberingroups' => '{{GENDER:$2|Ezel}} eus {{PLURAL:$1|ar strollad|ar strolladoù}} :',
 'prefs-registration' => 'Deiziad enskrivañ :',
 'yourrealname' => 'Anv gwir*',
 'yourlanguage' => 'Yezh an etrefas&nbsp;',
@@ -1487,6 +1487,7 @@ Ma skrivit anezhañ e vo implijet evit lakaat war wel ar pezh a vo bet degaset g
 'right-edituserjs' => 'Kemmañ restroù JS implijerien all',
 'right-viewmyprivateinfo' => "Gwelet ho roadennoù prevez deoc'h-c'hwi (da sk. chomlec'h postel, anv gwirion)",
 'right-editmyprivateinfo' => "Aozañ ho roadennoù prevez deoc'h-c'hwi (da sk. chomlec'h postel, anv gwirion)",
+'right-editmyoptions' => 'Kemmañ ho penndibaboù',
 'right-rollback' => 'Disteuler prim kemmoù an implijer diwezhañ kemmet gantañ ur bajenn resis',
 'right-markbotedits' => "Merkañ ar c'hemmoù distaolet evel kemmoù bet graet gant robotoù.",
 'right-noratelimit' => 'Na sell ket ar bevennoù feurioù outañ',
@@ -1548,6 +1549,8 @@ Ma skrivit anezhañ e vo implijet evit lakaat war wel ar pezh a vo bet degaset g
 'action-userrights-interwiki' => 'Kemmañ gwirioù an implijerien war wikioù all',
 'action-siteadmin' => 'Prennañ pe dibrennañ ar bank roadennoù',
 'action-sendemail' => 'Kas posteloù',
+'action-editmywatchlist' => 'kemmañ ho roll evezhiañ',
+'action-viewmywatchlist' => 'gwelet ho roll evezhiañ',
 'action-viewmyprivateinfo' => 'Gwelet ho titouroù prevez',
 'action-editmyprivateinfo' => 'aozañ ho titouroù prevez',
 
@@ -1951,6 +1954,9 @@ Marteze a-walc'h e fell deoc'h kemmañ an deskrivadur anezhi war ar [$2 bajenn d
 # Random page
 'randompage' => 'Ur bajenn dre zegouezh',
 'randompage-nopages' => 'N\'eus pajenn ebet en {{PLURAL:$2|esaouennn anv|esaouennoù anv}} da-heul : "$1".',
+
+# Special:RandomInCategory
+'randomincategory-selectcategory-submit' => 'Mont',
 
 # Random redirect
 'randomredirect' => 'Ur bajenn adkas dre zegouezh',
@@ -2478,7 +2484,7 @@ $1',
 'mycontris' => 'Ma degasadennoù',
 'contribsub2' => 'Evit $1 ($2)',
 'nocontribs' => "N'eus bet kavet kemm ebet o klotañ gant an dezverkoù-se.",
-'uctop' => ' (diwezhañ)',
+'uctop' => '(red)',
 'month' => 'Abaoe miz (hag a-raok) :',
 'year' => 'Abaoe bloaz (hag a-raok) :',
 
@@ -3121,6 +3127,14 @@ Ma vez erounezet ganeoc'h e c'hallje tagañ ho reizhiad.",
 'hours-ago' => '$1 {{PLURAL:$1|eur|eur}} zo',
 'minutes-ago' => '$1 {{PLURAL:$1|vunutenn|munut}} zo',
 'seconds-ago' => '$1 {{PLURAL:$1|eiladenn|eiladenn}} zo',
+'monday-at' => 'Dilun da $1',
+'tuesday-at' => 'Dimeurzh da $1',
+'wednesday-at' => "Dimerc'her da $1",
+'thursday-at' => 'Diriaou da $1',
+'friday-at' => 'Digwener da $1',
+'saturday-at' => 'Disadorn da $1',
+'sunday-at' => 'Disul da $1',
+'yesterday-at' => "Dec'h da $1",
 
 # Bad image list
 'bad_image_list' => "Setu doare ar furmad :
@@ -3745,6 +3759,7 @@ Gallout a rit [[Special:EditWatchlist|implijout an aozer boutin ivez]].',
 'version-license' => 'Aotre-implijout',
 'version-poweredby-credits' => "Mont a ra ar wiki-mañ en-dro a-drugarez da '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 're all',
+'version-poweredby-translators' => 'troerien translatewiki.net',
 'version-license-info' => "Ur meziant frank eo MediaWiki; gallout a rit skignañ anezhañ ha/pe kemmañ anezhañ dindan termenoù ar GNU Aotre-implijout Foran Hollek evel m'emañ embannet gant Diazezadur ar Meziantoù Frank; pe diouzh stumm 2 an aotre-implijout, pe (evel mar karit) ne vern pe stumm nevesoc'h.
 
 Ingalet eo MediaWiki gant ar spi e vo talvoudus met n'eus TAMM GWARANT EBET; hep zoken gwarant empleg ar VARC'HADUSTED pe an AZASTER OUZH UR PAL BENNAK. Gwelet ar GNU Aotre-Implijout Foran Hollek evit muioc'h a ditouroù.
@@ -3760,6 +3775,7 @@ Sañset oc'h bezañ resevet [{{SERVER}}{{SCRIPTPATH}}/COPYING un eilskrid eus ar
 # Special:Redirect
 'redirect-legend' => "Adkas d'ur restr pe d'ur bajenn",
 'redirect-submit' => 'Mont',
+'redirect-lookup' => 'Klask :',
 'redirect-value' => 'Talvoud :',
 'redirect-user' => 'ID an implijer',
 'redirect-file' => 'Anv ar restr',
@@ -3868,7 +3884,7 @@ Sañset oc'h bezañ resevet [{{SERVER}}{{SCRIPTPATH}}/COPYING un eilskrid eus ar
 'logentry-delete-revision' => 'Kemmet eo bet gwelusted {{PLURAL:$5|ur reizhadenn|$5 reizhadenn}} war ar bajenn $3 gant $1 : $4',
 'logentry-delete-event-legacy' => 'Kemmet eo bet gwelusted darvoudoù ar marilh $3 gant $1',
 'logentry-delete-revision-legacy' => 'Kemmet eo bet gwelusted ar reizhadennoù war ar bajenn $3 gant $1',
-'logentry-suppress-delete' => 'Diverket eo bet ar bajenn $3 gant $1',
+'logentry-suppress-delete' => '$1 {{GENDER:$2|en deus dilamet}} ar bajenn $3',
 'logentry-suppress-event' => "Kemmet eo bet dre guzh gwelusted {{PLURAL:$5|un darvoud eus ar marilh|$5 darvoud eus ar marilh}} d'an $3 gant $1 : $4",
 'logentry-suppress-revision' => 'Kemmet eo bet dre guzh gwelusted {{PLURAL:$5|ur reizhadenn|$5 reizhadenn}} war ar bajenn $3 gant $1 : $4',
 'logentry-suppress-event-legacy' => 'Kemmet eo bet dre guzh gwelusted darvoudoù ar marilh $3 gant $1',
@@ -3890,8 +3906,8 @@ Sañset oc'h bezañ resevet [{{SERVER}}{{SCRIPTPATH}}/COPYING un eilskrid eus ar
 'logentry-newusers-newusers' => 'Krouet eo bet ar gont implijer $1',
 'logentry-newusers-create' => 'Krouet eo bet ar gont implijer $1',
 'logentry-newusers-create2' => 'Gant $1 eo bet krouet ar gont implijer $3',
-'logentry-newusers-autocreate' => 'Krouet eo bet kont $1 ent emgefre',
-'logentry-rights-autopromote' => '$1 zo bet anvet ent emgefre a $4 da $5',
+'logentry-newusers-autocreate' => '{{GENDER:$2|Krouet}} eo bet kont $1 ent emgefre',
+'logentry-rights-autopromote' => '$1 zo bet {{GENDER:$2|anvet}} ent emgefre a $4 da $5',
 'rightsnone' => '(netra)',
 
 # Feedback

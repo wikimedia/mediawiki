@@ -2595,7 +2595,7 @@ $1',
 'sp-contributions-blocked-notice-anon' => 'Denne IP-adressa er for tida blokkert. Den siste oppføringa i blokkeringsloggen er synt nedanfor:',
 'sp-contributions-search' => 'Søk etter bidrag',
 'sp-contributions-username' => 'IP-adresse eller brukarnamn:',
-'sp-contributions-toponly' => 'Einast vis endringar som er dei siste på sida.',
+'sp-contributions-toponly' => 'Vis berre endringar som er gjeldande versjonar',
 'sp-contributions-submit' => 'Søk',
 
 # What links here

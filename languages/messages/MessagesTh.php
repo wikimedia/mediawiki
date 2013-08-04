@@ -806,6 +806,19 @@ $2
 'changeemail-submit' => 'เปลี่ยนอีเมล',
 'changeemail-cancel' => 'ยกเลิก',
 
+# Special:ResetTokens
+'resettokens' => 'ตั้งโทเค็นใหม่',
+'resettokens-text' => 'คุณสามารถตั้งโทเค็นใหม่ ซึ่งให้การเข้าถึงข้อมูลส่วนตัวบางอย่างที่เกี่ยวข้องกับบัญชีของคุณที่นี่
+
+คุณควรตั้งโทเค็นใหม่ หากคุณบอกผู้อื่นโดยมิได้ตั้งใจหรือบัญชีของคุณถูกเจาะ',
+'resettokens-no-tokens' => 'ไม่มีโทเค็นให้ตั้งใหม่',
+'resettokens-legend' => 'ตั้งโทเค็นใหม่',
+'resettokens-tokens' => 'โทเค็น:',
+'resettokens-token-label' => '$1 (ค่าปัจจุบัน: $2)',
+'resettokens-watchlist-token' => 'โทเค็นการป้อนเว็บรายการเฝ้าดู',
+'resettokens-done' => 'ตั้งโทเค็นใหม่แล้ว',
+'resettokens-resetbutton' => 'ตั้งโทเค็นที่เลือกใหม่',
+
 # Edit page toolbar
 'bold_sample' => 'ข้อความตัวหนา',
 'bold_tip' => 'ทำตัวหนา',
@@ -1033,6 +1046,7 @@ $2
 'undo-failure' => 'การแก้ไขนี้ไม่สามารถย้อนกลับได้ เนื่องจากขัดแย้งกับการแก้ไขปัจจุบัน',
 'undo-norev' => 'ไม่สามารถย้อนการแก้ไขนี้ เพราะไม่มีหรือถูกลบไปแล้ว',
 'undo-summary' => 'ย้อนการแก้ไขรุ่น $1 โดย [[Special:Contributions/$2|$2]] ([[User talk:$2|พูดคุย]])',
+'undo-summary-username-hidden' => 'ย้อนรุ่น $1 โดยผู้ใช้ไม่ระบุชื่อ',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'ไม่สามารถสร้างบัญชีได้',
@@ -1325,6 +1339,9 @@ $1",
 'recentchangesdays-max' => 'มากสุด $1 วัน',
 'recentchangescount' => 'จำนวนการแก้ไขที่แสดงโดยปริยาย:',
 'prefs-help-recentchangescount' => 'นี่รวมถึงการปรับปรุงล่าสุด ประวิติหน้า และปูม',
+'prefs-help-watchlist-token2' => 'นี่คือแป้นลับสำหรับเข้าการป้อนเว็บรายการเฝ้าดูของคุณ
+ใครก็ตามที่ทราบจะสามารถอ่านรายการเฝ้าดูของคุณได้ ฉะนั้นอย่าบอกผู้อื่น
+[[Special:ResetTokens|คลิกที่นี่หากคุณต้องการตั้งใหม่]]',
 'savedprefs' => 'การตั้งค่าของคุณได้ถูกบันทึกแล้ว',
 'timezonelegend' => 'เขตเวลา:',
 'localtime' => 'เวลาท้องถิ่น',
@@ -1392,6 +1409,7 @@ $1",
 'prefs-displayrc' => 'ตัวเลือกผลแสดง',
 'prefs-displaysearchoptions' => 'ตัวเลือกผลแสดง',
 'prefs-displaywatchlist' => 'ตัวเลือกผลแสดง',
+'prefs-tokenwatchlist' => 'โทเค็น',
 'prefs-diffs' => 'ผลต่าง',
 
 # User preference: email validation using jQuery
@@ -1961,6 +1979,12 @@ $1',
 'disambiguations-text' => "หน้าต่อไปนี้มีการเชื่อมโยงไปยัง'''หน้าความกำกวม'''อย่างน้อยหนึ่งแห่ง
 ซึ่งอาจต้องเชื่อมโยงไปยังหน้าที่เหมาะสมกว่าแทน<br />
 หน้าใดที่ใช้แม่แบบที่เชื่อมโยงมาจาก [[MediaWiki:Disambiguationspage]] จะถูกนับเป็นหน้าความกำกวม",
+
+'pageswithprop' => 'หน้าพร้อมคุณสมบัติหน้า',
+'pageswithprop-legend' => 'หน้าพร้อมคุณสมบัติหน้า',
+'pageswithprop-text' => 'หน้านี้แสดงรายการหน้าที่ใช้คุณสมบัติหน้าอย่างใดอย่างหนึ่งโดยเฉพาะ',
+'pageswithprop-prop' => 'ชื่อคุณสมบัติ:',
+'pageswithprop-submit' => 'ไป',
 
 'doubleredirects' => 'หน้าเปลี่ยนทางซ้ำซ้อน',
 'doubleredirectstext' => 'หน้านี้แสดงรายการหน้าที่เปลี่ยนทางไปยังหน้าเปลี่ยนทางอื่น

@@ -990,7 +990,16 @@ $2
 'changeemail-cancel' => 'Скасувати',
 
 # Special:ResetTokens
+'resettokens' => 'Скидання жетонів',
+'resettokens-text' => "Ви можете скинути жетони, що забезпечують доступ до певних особистих даних, пов'язаних тут із Вашим обліковим записом.
+Вам слід це зробити, якщо Ви випадково поділились жетонами з кимось, або якщо Ваш обліковий запис було зламано.",
+'resettokens-no-tokens' => 'Немає жетонів до скидання.',
+'resettokens-legend' => 'Скинути жетони',
+'resettokens-tokens' => 'Жетони:',
 'resettokens-token-label' => '$1 (поточне значення: $2)',
+'resettokens-watchlist-token' => 'Жетон стрічки новин списку спостереження',
+'resettokens-done' => 'Жетони скинуто.',
+'resettokens-resetbutton' => 'Скинути обрані жетони',
 
 # Edit page toolbar
 'bold_sample' => 'Жирний текст',
@@ -1611,6 +1620,7 @@ $1",
 'prefs-displayrc' => 'Налаштування показу',
 'prefs-displaysearchoptions' => 'Налаштування показу',
 'prefs-displaywatchlist' => 'Налаштування показу',
+'prefs-tokenwatchlist' => 'Жетон',
 'prefs-diffs' => 'Різниці версій',
 
 # User preference: email validation using jQuery
@@ -2203,6 +2213,9 @@ $1',
 # Special:RandomInCategory
 'randomincategory' => 'Випадкова сторінка у категорії',
 'randomincategory-invalidcategory' => '" $1 " не є дійсним іменем категорії.',
+'randomincategory-nopages' => 'У [[:Category:$1]] немає сторінок.',
+'randomincategory-selectcategory' => 'Перейти на випадкову сторінку з категорії: $1 $2.',
+'randomincategory-selectcategory-submit' => 'Перейти',
 
 # Random redirect
 'randomredirect' => 'Випадкове перенаправлення',
@@ -4196,6 +4209,7 @@ $5
 'version-license' => 'Ліцензія',
 'version-poweredby-credits' => "Ця Вікі працює на системі управління вмістом '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'інші',
+'version-poweredby-translators' => 'перекладачі translatewiki.net',
 'version-credits-summary' => 'Нам хотілося б відзначити наступних осіб, що зробили внесок у [[Special:Version|MediaWiki]].',
 'version-license-info' => 'MediaWiki є вільним програмним забезпеченням, ви можете розповсюджувати та/або модифікувати його відповідно до умов GNU General Public License, яка опублікованя фондом вільного програмного забезпечення; або версії 2 Ліцензії, або (на Ваш розсуд) будь-якої наступної версії. 
 

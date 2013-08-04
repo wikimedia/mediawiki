@@ -8991,7 +8991,9 @@ Installation abortate.',
 	'config-using531' => 'MediaWiki non pote esser usate con PHP $1 a causa de un defecto concernente parametros de referentia a <code>__call()</code>.
 Actualisa a PHP 5.3.2 o plus recente, o retrograda a PHP 5.3.0 pro remediar isto.
 Installation abortate.',
-	'config-suhosin-max-value-length' => 'Suhosin es installate e limita le longitude del parametro GET a $1 bytes. Le componente ResourceLoader de MediaWiki pote contornar iste limite, ma isto degradara le rendimento. Si possibile, tu deberea mitter <code>suhosin.get.max_value_length</code> a 1024 o plus in <code>php.ini</code> , e mitter <code>$wgResourceLoaderMaxQueryLength</code> al mesme valor in LocalSettings.php .', # Fuzzy
+	'config-suhosin-max-value-length' => 'Suhosin es installate e limita parametro <code>length</code> de GET a $1 bytes.
+Le componente ResourceLoader de MediaWiki va contornar iste limite, ma isto prejudicara le rendimento.
+Si possibile, tu deberea mitter <code>suhosin.get.max_value_length</code> a 1024 o superior in <code>php.ini</code>, e mitter <code>$wgResourceLoaderMaxQueryLength</code> al mesme valor in <code>LocalSettings.php</code>.',
 	'config-db-type' => 'Typo de base de datos:',
 	'config-db-host' => 'Servitor de base de datos:',
 	'config-db-host-help' => 'Si tu servitor de base de datos es in un altere servitor, entra hic le nomine o adresse IP del servitor.
@@ -9083,7 +9085,7 @@ Si tu non vide hic infra le systema de base de datos que tu tenta usar, alora se
 	'config-missing-db-host' => 'Tu debe entrar un valor pro "Host del base de datos"',
 	'config-missing-db-server-oracle' => 'You must enter a value for "TNS del base de datos"',
 	'config-invalid-db-server-oracle' => 'TNS de base de datos "$1" invalide.
-Usa solmente litteras ASCII (a-z, A-Z), numeros (0-9), characteres de sublineamento (_) e punctos (.).',
+Usa o "TNS Name" o un catena "Easy Connect". ([http://docs.oracle.com/cd/E11882_01/network.112/e10836/naming.htm Methodos de nomenclatura de Oracle])',
 	'config-invalid-db-name' => 'Nomine de base de datos "$1" invalide.
 Usa solmente litteras ASCII (a-z, A-Z), numeros (0-9), characteres de sublineamento (_) e tractos de union (-).',
 	'config-invalid-db-prefix' => 'Prefixo de base de datos "$1" invalide.
@@ -9211,7 +9213,7 @@ Tu pote ora saltar le configuration remanente e installar le wiki immediatemente
 	'config-optional-continue' => 'Pone me plus questiones.',
 	'config-optional-skip' => 'Isto me es jam tediose. Simplemente installa le wiki.',
 	'config-profile' => 'Profilo de derectos de usator:',
-	'config-profile-wiki' => 'Wiki traditional', # Fuzzy
+	'config-profile-wiki' => 'Wiki aperte',
 	'config-profile-no-anon' => 'Creation de conto obligatori',
 	'config-profile-fishbowl' => 'Modificatores autorisate solmente',
 	'config-profile-private' => 'Wiki private',
@@ -9221,13 +9223,13 @@ In MediaWiki, il es facile revider le modificationes recente, e reverter omne da
 Nonobstante, multes ha trovate MediaWiki utile in un grande varietate de rolos, e alcun vices il non es facile convincer omnes del beneficios del principio wiki.
 Dunque, a te le option.
 
-Un '''{{int:config-profile-wiki}}''' permitte a omnes de modificar, sin mesmo aperir un session.
+Le modello '''{{int:config-profile-wiki}}''' permitte a omnes de modificar, sin mesmo aperir un session.
 Un wiki con '''{{int:config-profile-no-anon}}''' attribue additional responsabilitate, ma pote dissuader contributores occasional.
 
 Le scenario '''{{int:config-profile-fishbowl}}''' permitte al usatores approbate de modificar, ma le publico pote vider le paginas, includente lor historia.
 Un '''{{int:config-profile-private}}''' permitte solmente al usatores approbate de vider le paginas e de modificar los.
 
-Configurationes de derectos de usator plus complexe es disponibile post installation, vide le [//www.mediawiki.org/wiki/Manual:User_rights pertinente section del manual].", # Fuzzy
+Configurationes de derectos de usator plus complexe es disponibile post installation, vide le [//www.mediawiki.org/wiki/Manual:User_rights pertinente section del manual].",
 	'config-license' => 'Copyright e licentia:',
 	'config-license-none' => 'Nulle licentia in pede de paginas',
 	'config-license-cc-by-sa' => 'Creative Commons Attribution Share Alike',
@@ -9278,7 +9280,9 @@ Idealmente, isto non debe esser accessibile ab le web.',
 	'config-logo-help' => 'Le apparentia predefinite de MediaWiki include spatio pro un logotypo de 135×160 pixels supra le menu del barra lateral.
 Incarga un imagine con le dimensiones appropriate, e entra le URL hic.
 
-Si tu non vole un logotypo, lassa iste quadro vacue.', # Fuzzy
+Tu pote usar <code>$wgStylePath</code> o <code>$wgScriptPath</code> si le loco de tu logotypo es relative a iste camminos.
+
+Si tu non vole un logotypo, lassa iste quadro vacue.',
 	'config-instantcommons' => 'Activar "Instant Commons"',
 	'config-instantcommons-help' => '[//www.mediawiki.org/wiki/InstantCommons Instant Commons] es un function que permitte a wikis de usar imagines, sonos e altere multimedia trovate in le sito [//commons.wikimedia.org/ Wikimedia Commons].
 Pro poter facer isto, MediaWiki require accesso a Internet.
@@ -9312,7 +9316,7 @@ Istes pote requirer additional configuration, ma tu pote activar los ora.',
 	'config-install-alreadydone' => "'''Aviso:''' Il pare que tu ha jam installate MediaWiki e tenta installar lo de novo.
 Per favor continua al proxime pagina.",
 	'config-install-begin' => 'Un clic sur "{{int:config-continue}}" comencia le installation de MediaWiki.
-Pro facer alterationes, clicca sur "Retro".', # Fuzzy
+Pro facer alterationes, clicca sur "{{int:config-back}}".',
 	'config-install-step-done' => 'finite',
 	'config-install-step-failed' => 'fallite',
 	'config-install-extensions' => 'Include le extensiones',
@@ -9378,7 +9382,8 @@ Post facer isto, tu pote '''[$2 entrar in tu wiki]'''.",
 == Pro initiar ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Lista de configurationes]
 * [//www.mediawiki.org/wiki/Manual:FAQ FAQ a proposito de MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de diffusion pro annuncios de nove versiones de MediaWiki]', # Fuzzy
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de diffusion pro annuncios de nove versiones de MediaWiki]
+* [//www.mediawiki.org/wiki/Localisation#Translation_resources Traducer MediaWiki in tu lingua]',
 );
 
 /** Indonesian (Bahasa Indonesia)

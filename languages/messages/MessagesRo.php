@@ -2128,6 +2128,13 @@ Lista tipurilor MIME recunoscute de MediaWiki poate fi găsită la [http://svn.w
 'randompage' => 'Pagină aleatorie',
 'randompage-nopages' => 'Nu există pagini în {{PLURAL:$2|spațiul|spațiile}} de nume: $1.',
 
+# Special:RandomInCategory
+'randomincategory' => 'Pagină aleatorie din categorie',
+'randomincategory-invalidcategory' => '„$1” nu este un nume de categorie valid.',
+'randomincategory-nopages' => 'Nu există pagini în [[:Category:$1]].',
+'randomincategory-selectcategory' => 'Obțineți, aleatoriu, o pagină din categoria: $1 $2.',
+'randomincategory-selectcategory-submit' => 'Du-te',
+
 # Random redirect
 'randomredirect' => 'Redirecționare aleatorie',
 'randomredirect-nopages' => 'Nu există redirecționări în spațiul de nume "$1".',
@@ -3926,6 +3933,7 @@ Puteți folosi în schimb [[Special:EditWatchlist|editorul standard]].',
 'version-license' => 'Licență',
 'version-poweredby-credits' => "Acest wiki este dezvoltat de '''[//www.mediawiki.org/ MediaWiki]''', drepturi de autor © 2001-$1 $2.",
 'version-poweredby-others' => 'alții',
+'version-poweredby-translators' => 'traducătorii de la translatewiki.net',
 'version-credits-summary' => 'Am dori să amintim următoarele persoane pentru contribuțiile aduse proiectului [[Special:Version|MediaWiki]].',
 'version-license-info' => 'MediaWiki este un software liber pe care îl puteți redistribui și/sau modifica sub termenii Licenței Publice Generale GNU publicată de Free Software Foundation – fie a doua versiune a acesteia, fie, la alegerea dumneavoastră, orice altă versiune ulterioară. 
 

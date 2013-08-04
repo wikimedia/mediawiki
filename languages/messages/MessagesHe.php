@@ -2200,6 +2200,9 @@ $1',
 
 # Special:RandomInCategory
 'randomincategory' => 'דף אקראי בקטגוריה',
+'randomincategory-invalidcategory' => '"$1" אינו שם תקין לקטגוריה.',
+'randomincategory-nopages' => 'אין דפים בקטגוריה [[:Category:$1|$1]].',
+'randomincategory-selectcategory' => 'קבלת דף אקראי מהקטגוריה: $1 $2.',
 'randomincategory-selectcategory-submit' => 'מעבר',
 
 # Random redirect
@@ -4085,6 +4088,7 @@ $5
 'version-license' => 'רישיון',
 'version-poweredby-credits' => "אתר הוויקי הזה מופעל על ידי '''[//www.mediawiki.org/ מדיה־ויקי]''', © 2001–$1 $2.",
 'version-poweredby-others' => 'אחרים',
+'version-poweredby-translators' => 'מתרגמי translatewiki.net',
 'version-credits-summary' => 'אנו רוצים להודות לאנשים הבאים על תרומתם ל[[Special:Version|מדיה־ויקי]].',
 'version-license-info' => "מדיה־ויקי היא תוכנה חופשית; באפשרותכם להפיץ אותה מחדש ו/או לשנות אותה לפי תנאי הרישיון הציבורי הכללי של גנו המפורסם על ידי המוסד לתוכנה חופשית: גרסה 2 של רישיון זה, או (לפי בחירתכם) כל גרסה מאוחרת יותר.
 

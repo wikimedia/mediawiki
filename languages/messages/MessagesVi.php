@@ -2134,6 +2134,13 @@ Hãy nhớ kiểm tra các liên kết khác đến bản mẫu trước khi xó
 'randompage' => 'Trang ngẫu nhiên',
 'randompage-nopages' => 'Hiện chưa có trang nào trong {{PLURAL:$2||các}} không gian tên: $1.',
 
+# Special:RandomInCategory
+'randomincategory' => 'Trang ngẫu nhiên trong thể loại',
+'randomincategory-invalidcategory' => '"$1" không phải tên thể loại hợp lệ.',
+'randomincategory-nopages' => 'Không có trang nào trong [[:Category:$1]].',
+'randomincategory-selectcategory' => 'Tải trang ngẫu nhiên trong thể loại: $1 $2.',
+'randomincategory-selectcategory-submit' => 'Tiếp tục',
+
 # Random redirect
 'randomredirect' => 'Trang đổi hướng ngẫu nhiên',
 'randomredirect-nopages' => 'Không có trang đổi hướng nào trong không gian tên “$1”.',
@@ -4050,6 +4057,7 @@ Bạn cũng có thể [[Special:EditWatchlist|dùng trang sửa đổi bình th�
 'version-license' => 'Giấy phép bản quyền',
 'version-poweredby-credits' => "Wiki này chạy trên '''[//www.mediawiki.org/ MediaWiki]''', bản quyền © 2001–$1 $2.",
 'version-poweredby-others' => 'những người khác',
+'version-poweredby-translators' => 'Biên dịch viên translatewiki.net',
 'version-credits-summary' => 'Chúng tôi muốn công nhận những người sau đã đóng góp vào [[Special:Version|MediaWiki]].',
 'version-license-info' => "MediaWiki là phần mềm tự do; bạn được phép tái phân phối và/hoặc sửa đổi nó theo những điều khoản của Giấy phép Công cộng GNU do Quỹ Phần mềm Tự do xuất bản; phiên bản 2 hay bất kỳ phiên bản nào mới hơn nào của Giấy phép.
 

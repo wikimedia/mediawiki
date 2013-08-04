@@ -1508,7 +1508,7 @@ See ei tohi olla pikem kui {{PLURAL:$1|üks märk|$1 märki}}.',
 'prefs-signature' => 'Allkiri',
 'prefs-dateformat' => 'Kuupäeva vorming',
 'prefs-timeoffset' => 'Ajavahe',
-'prefs-advancedediting' => 'Üldine',
+'prefs-advancedediting' => 'Üldsuvandid',
 'prefs-editor' => 'Redaktor',
 'prefs-preview' => 'Eelvaade',
 'prefs-advancedrc' => 'Täpsemad eelistused',
@@ -1611,7 +1611,7 @@ See ei tohi olla pikem kui {{PLURAL:$1|üks märk|$1 märki}}.',
 'right-hideuser' => 'Blokeerida kasutajanimi, peites selle avalikkuse eest',
 'right-ipblock-exempt' => 'Mööduda automaatsetest blokeeringutest ning aadressivahemiku- ja IP-blokeeringutest',
 'right-proxyunbannable' => 'Mööduda automaatsetest puhverserveri blokeeringutest',
-'right-unblockself' => 'Enda blokeeringut eemaldada',
+'right-unblockself' => 'Eemaldada enda blokeeringut',
 'right-protect' => 'Muuta kaitsetasemeid ja redigeerida kaskaadkaitsega lehekülgi',
 'right-editprotected' => 'Muuta lehekülgi kaitsetasemega "{{int:protect-level-sysop}}"',
 'right-editsemiprotected' => 'Muuta lehekülgi kaitsetasemega "{{int:protect-level-autoconfirmed}}"',
@@ -2072,6 +2072,13 @@ Sisesta kujul tüüp/alamtüüp, näiteks <code>image/jpeg</code>.',
 'randompage' => 'Juhuslik artikkel',
 'randompage-nopages' => '{{PLURAL:$2|Järgmises nimeruumis|Järgmistes nimeruumides}} ei ole ühtegi lehekülge: $1.',
 
+# Special:RandomInCategory
+'randomincategory' => 'Juhuslik lehekülg kategoorias',
+'randomincategory-invalidcategory' => '"$1" pole sobiv kategooria nimi.',
+'randomincategory-nopages' => 'Kategoorias "[[:Category:$1|$1]]" puuduvad leheküljed.',
+'randomincategory-selectcategory' => 'Hangi juhuslik lehekülg kategooriast: $1 $2.',
+'randomincategory-selectcategory-submit' => 'Mine',
+
 # Random redirect
 'randomredirect' => 'Juhuslik ümbersuunamine',
 'randomredirect-nopages' => 'Nimeruumis "$1" ei ole ümbersuunamislehekülgi.',
@@ -2165,6 +2172,7 @@ Igal real on ära toodud esimene ja teine ümbersuunamisleht ning samuti teise �
 'mostrevisions' => 'Kõige pikema redigeerimislooga leheküljed',
 'prefixindex' => 'Kõik pealkirjad eesliitega',
 'prefixindex-namespace' => 'Kõik pealkirjad eesliitega (nimeruumis $1)',
+'prefixindex-strip' => 'Ära näita loendis eesliidet',
 'shortpages' => 'Lühikesed leheküljed',
 'longpages' => 'Pikad leheküljed',
 'deadendpages' => 'Edasipääsuta leheküljed',
@@ -3460,7 +3468,7 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-compression-1' => 'Pakkimata',
 
 'exif-copyrighted-true' => 'Kaitstud',
-'exif-copyrighted-false' => 'Avalikus omandis',
+'exif-copyrighted-false' => 'Autoriõiguslik seisund määramata',
 
 'exif-unknowndate' => 'Kuupäev teadmata',
 

@@ -576,6 +576,7 @@ Ia mungkin telah pun dihapuskan oleh orang lain.',
 'cannotdelete-title' => 'Laman "$1" tidak dapat dihapuskan',
 'delete-hook-aborted' => 'Penghapusan dibatalkan oleh penyangkuk.
 Tiada sebab diberikan.',
+'no-null-revision' => 'Semakan nol baru untuk "$1" tidak dapat diwujudkan',
 'badtitle' => 'Tajuk tidak sah',
 'badtitletext' => 'Tajuk laman yang diminta tidak sah, kosong, ataupun tajuk antara bahasa atau tajuk antara wiki yang salah dipaut. Ia mungkin mengandungi aksara yang tidak dibenarkan.',
 'perfcached' => 'Data yang berikut disimpan dalam cache dan mungkin tidak terkemas kini. Semaksimum {{PLURAL:$1|satu hasil|$1 hasil}} terdapat dalam cache.',
@@ -1421,7 +1422,7 @@ Tindakan ini tidak boleh dibatalkan.',
 'prefs-signature' => 'Tandatangan',
 'prefs-dateformat' => 'Format tarikh',
 'prefs-timeoffset' => 'Imbangan masa',
-'prefs-advancedediting' => 'Am',
+'prefs-advancedediting' => 'Pilihan am',
 'prefs-editor' => 'Penyunting',
 'prefs-preview' => 'Pralihat',
 'prefs-advancedrc' => 'Pilihan lanjutan',
@@ -2002,6 +2003,13 @@ Mungkin anda ingin menyunting keterangan pada [$2 laman penerangan failnya] di s
 # Random page
 'randompage' => 'Laman rawak',
 'randompage-nopages' => 'Tiada laman dalam {{PLURAL:$2|ruang|ruang-ruang}} nama berikut: $1.',
+
+# Special:RandomInCategory
+'randomincategory' => 'Halaman pilihan rawak dalam kategori',
+'randomincategory-invalidcategory' => '"$1" bukan nama kategori yang sah.',
+'randomincategory-nopages' => 'Tiada halaman di [[:Category:$1]].',
+'randomincategory-selectcategory' => 'Dapatkan halaman pilihan rawak dari kategori: $1 $2.',
+'randomincategory-selectcategory-submit' => 'Pergi',
 
 # Random redirect
 'randomredirect' => 'Lencongan rawak',
@@ -3412,7 +3420,7 @@ Ruangan-ruangan yang lain pula akan disembunyikan pada asali.
 'exif-compression-4' => 'Pengekodan faks Kumpulan 4 CCITT',
 
 'exif-copyrighted-true' => 'Berhak cipta',
-'exif-copyrighted-false' => 'Domain awam',
+'exif-copyrighted-false' => 'Status hak cipta tidak ditetapkan',
 
 'exif-unknowndate' => 'Tarikh tidak diketahui',
 
@@ -3811,6 +3819,7 @@ Anda juga boleh [[Special:EditWatchlist|menggunakan penyunting piawai]].',
 'version-license' => 'Lesen',
 'version-poweredby-credits' => "Wiki ini dikuasakan oleh '''[//www.mediawiki.org/ MediaWiki]''', hak cipta © 2001-$1 $2.",
 'version-poweredby-others' => 'penyumbang-penyumbang lain',
+'version-poweredby-translators' => 'para penterjemah translatewiki.net',
 'version-credits-summary' => 'Kami ingin mengucapkan sekalung budi kepada mereka yang berikut atas sumbangan mereka keada [[Special:Version|MediaWiki]].',
 'version-license-info' => 'MediaWiki adalah perisian bebas; anda boleh mengedarkannya semula dan/atau mengubah suainya di bawah terma-terma Lesen Awam GNU sebagai mana yang telah diterbitkan oleh Yayasan Perisian Bebas, sama ada versi 2 bagi Lesen tersebut, atau (berdasarkan pilihan anda) mana-mana versi selepasnya.
 
