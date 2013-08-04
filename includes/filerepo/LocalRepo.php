@@ -340,6 +340,7 @@ class LocalRepo extends FileRepo {
 	/**
 	 * Invalidates image redirect cache related to that image
 	 *
+	 * @note May suffer problems with lagged slaves. See imageRedirectSetCache
 	 * @param $title Title of page
 	 * @return void
 	 */
@@ -348,6 +349,27 @@ class LocalRepo extends FileRepo {
 		$memcKey = $this->getSharedCacheKey( 'image_redirect', md5( $title->getDBkey() ) );
 		if ( $memcKey ) {
 			$wgMemc->delete( $memcKey );
+		}
+	}
+
+	/**
+	 * Sets the image redirect cache to a specific value
+	 *
+	 * Used instead of invalidateImageRedirect to avoid issues
+	 * with lagged db slaves.
+	 *
+	 * @param $old Title The image that is the redirect
+	 * @param $target Title The target of the redirect
+	 * @return void
+	 */
+	function imageRedirectSetCache( Title $old, Title $target ) {
+		global $wgMemc;
+		$old = File::normalizeTitle( $old, 'exception' );
+		$target = File::normalizeTitle( $target, 'exception' );
+
+		$memcKey = $this->getSharedCacheKey( 'image_redirect', md5( $old->getDBkey() ) );
+		if ( $memcKey ) {
+			$wgMemc->set( $memcKey, $target->getDBkey(), 86400 );
 		}
 	}
 }

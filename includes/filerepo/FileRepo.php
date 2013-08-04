@@ -1599,6 +1599,21 @@ class FileRepo {
 	public function invalidateImageRedirect( Title $title ) {}
 
 	/**
+	 * Sets the image redirect cache to a specific value
+	 *
+	 * Used instead of invalidateImageRedirect to avoid issues
+	 * with lagged db slaves. As a fallback, will invalidate
+	 * the cache, if setting to a specific value is not
+	 * supported.
+	 *
+	 * @param $old Title The image that is the redirect
+	 * @param $target Title The target of the redirect
+	 */
+	function imageRedirectSetCache( Title $old, Title $target ) {
+		$this->invalidateImageRedirect( $old );
+	}
+
+	/**
 	 * Get the human-readable name of the repo
 	 *
 	 * @return string

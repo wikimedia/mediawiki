@@ -1332,7 +1332,11 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		if ( $this->getTitle()->getNamespace() == NS_FILE ) {
-			RepoGroup::singleton()->getLocalRepo()->invalidateImageRedirect( $this->getTitle() );
+			if ( $isRedirect && $redirectTitle->getNamespace() === NS_FILE ) {
+				RepoGroup::singleton()->getLocalRepo()->imageRedirectSetCache( $this->getTitle(), $redirectTitle );
+			} else {
+				RepoGroup::singleton()->getLocalRepo()->invalidateImageRedirect( $this->getTitle() );
+			}
 		}
 		wfProfileOut( __METHOD__ );
 
