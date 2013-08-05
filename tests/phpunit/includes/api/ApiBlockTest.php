@@ -35,7 +35,7 @@ class ApiBlockTest extends ApiTestCase {
 	 * previously always considered valid (bug 34212).
 	 */
 	function testMakeNormalBlock() {
-		$data = $this->getTokens();
+		$tokens = $this->getTokens();
 
 		$user = User::newFromName( 'UTApiBlockee' );
 
@@ -43,19 +43,15 @@ class ApiBlockTest extends ApiTestCase {
 			$this->markTestIncomplete( "The user UTApiBlockee does not exist" );
 		}
 
-		if ( !isset( $data[0]['query']['pages'] ) ) {
+		if ( !array_key_exists( 'blocktoken', $tokens ) ) {
 			$this->markTestIncomplete( "No block token found" );
 		}
-
-		$keys = array_keys( $data[0]['query']['pages'] );
-		$key = array_pop( $keys );
-		$pageinfo = $data[0]['query']['pages'][$key];
 
 		$this->doApiRequest( array(
 			'action' => 'block',
 			'user' => 'UTApiBlockee',
 			'reason' => 'Some reason',
-			'token' => $pageinfo['blocktoken'] ), null, false, self::$users['sysop']->user );
+			'token' => $tokens['blocktoken'] ), null, false, self::$users['sysop']->user );
 
 		$block = Block::newFromTarget( 'UTApiBlockee' );
 

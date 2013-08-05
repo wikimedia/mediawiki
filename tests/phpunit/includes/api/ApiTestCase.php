@@ -166,12 +166,15 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 
 	protected function getTokenList( $user, $session = null ) {
 		$data = $this->doApiRequest( array(
-			'action' => 'query',
-			'titles' => 'Main Page',
-			'intoken' => 'edit|delete|protect|move|block|unblock|watch',
-			'prop' => 'info' ), $session, false, $user->user );
+			'action' => 'tokens',
+			'type' => 'edit|delete|protect|move|block|unblock|watch'
+		), $session, false, $user->user );
 
-		return $data;
+		if( !array_key_exists( 'tokens', $data[0] ) ){
+			throw new MWException( 'Api failed to return a token list' );
+		}
+
+		return $data[0]['tokens'];
 	}
 
 	public function testApiTestGroup() {
