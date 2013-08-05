@@ -159,12 +159,17 @@ class ApiEditPage extends ApiBase {
 					$this->dieUsage( "Sections are not supported for this content model: $modelName.", 'sectionsnotsupported' );
 				}
 
-				// Process the content for section edits
-				$section = intval( $params['section'] );
-				$content = $content->getSection( $section );
+				if ( $params['section'] == 'new' ) {
+					// DWIM if they're trying to prepend/append to a new section.
+					$content = null;
+				} else {
+					// Process the content for section edits
+					$section = intval( $params['section'] );
+					$content = $content->getSection( $section );
 
-				if ( !$content ) {
-					$this->dieUsage( "There is no section {$section}.", 'nosuchsection' );
+					if ( !$content ) {
+						$this->dieUsage( "There is no section {$section}.", 'nosuchsection' );
+					}
 				}
 			}
 
