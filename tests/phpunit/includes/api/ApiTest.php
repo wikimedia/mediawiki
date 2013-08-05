@@ -234,7 +234,7 @@ class ApiTest extends ApiTestCase {
 	}
 
 	function runTokenTest( $user ) {
-		$tokens = $this->getTokenList( $user );
+		$tokens = $this->getTokens( null, $user );
 
 		$rights = $user->user->getRights();
 

@@ -164,7 +164,15 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		return $data;
 	}
 
-	protected function getTokenList( $user, $session = null ) {
+	/**
+	 * Returns the requested token or list of tokens
+	 * @param string $type of token to fetch (null will result in an array of all tokens)
+	 * @param null $user to fetch token for (null will result in the current $wgUser)
+	 * @param null $session
+	 * @return array|string
+	 * @throws MWException
+	 */
+	protected function getTokens( $type = null, $user = null, $session = null ) {
 		$data = $this->doApiRequest( array(
 			'action' => 'tokens',
 			'type' => 'edit|delete|protect|move|block|unblock|watch'
@@ -173,8 +181,17 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		if( !array_key_exists( 'tokens', $data[0] ) ){
 			throw new MWException( 'Api failed to return a token list' );
 		}
+		$tokens = $data[0]['tokens'];
 
-		return $data[0]['tokens'];
+		if( $type ){
+			if( array_key_exists( $type, $tokens ) ){
+				return $tokens[ $type ];
+			} else {
+				throw new MWException( 'Api failed to return expected token' );
+			}
+		}
+
+		return $tokens;
 	}
 
 	public function testApiTestGroup() {

@@ -11,10 +11,6 @@ class ApiBlockTest extends ApiTestCase {
 		$this->doLogin();
 	}
 
-	function getTokens() {
-		return $this->getTokenList( self::$users['sysop'] );
-	}
-
 	function addDBData() {
 		$user = User::newFromName( 'UTApiBlockee' );
 
