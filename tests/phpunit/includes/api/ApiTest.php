@@ -234,32 +234,26 @@ class ApiTest extends ApiTestCase {
 	}
 
 	function runTokenTest( $user ) {
-		$data = $this->getTokenList( $user );
-
-		$this->assertArrayHasKey( 'query', $data[0] );
-		$this->assertArrayHasKey( 'pages', $data[0]['query'] );
-		$keys = array_keys( $data[0]['query']['pages'] );
-		$key = array_pop( $keys );
+		$tokens = $this->getTokenList( $user );
 
 		$rights = $user->user->getRights();
 
-		$this->assertArrayHasKey( $key, $data[0]['query']['pages'] );
-		$this->assertArrayHasKey( 'edittoken', $data[0]['query']['pages'][$key] );
-		$this->assertArrayHasKey( 'movetoken', $data[0]['query']['pages'][$key] );
+		$this->assertArrayHasKey( 'edittoken', $tokens );
+		$this->assertArrayHasKey( 'movetoken', $tokens );
 
 		if ( isset( $rights['delete'] ) ) {
-			$this->assertArrayHasKey( 'deletetoken', $data[0]['query']['pages'][$key] );
+			$this->assertArrayHasKey( 'deletetoken', $tokens );
 		}
 
 		if ( isset( $rights['block'] ) ) {
-			$this->assertArrayHasKey( 'blocktoken', $data[0]['query']['pages'][$key] );
-			$this->assertArrayHasKey( 'unblocktoken', $data[0]['query']['pages'][$key] );
+			$this->assertArrayHasKey( 'blocktoken', $tokens );
+			$this->assertArrayHasKey( 'unblocktoken', $tokens );
 		}
 
 		if ( isset( $rights['protect'] ) ) {
-			$this->assertArrayHasKey( 'protecttoken', $data[0]['query']['pages'][$key] );
+			$this->assertArrayHasKey( 'protecttoken', $tokens  );
 		}
 
-		return $data;
+		return $tokens;
 	}
 }
