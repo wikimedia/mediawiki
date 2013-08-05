@@ -34,6 +34,7 @@ function wfProfileIn( $functionname ) {
 	if ( Profiler::$__instance === null ) { // use this directly to reduce overhead
 		Profiler::instance();
 	}
+
 	if ( Profiler::$__instance && !( Profiler::$__instance instanceof ProfilerStub ) ) {
 		Profiler::instance()->profileIn( $functionname );
 	}
@@ -140,6 +141,7 @@ class Profiler {
 				self::$__instance = new ProfilerStub( $wgProfiler );
 			}
 		}
+
 		return self::$__instance;
 	}
 
@@ -203,11 +205,18 @@ class Profiler {
 	 */
 	public function profileIn( $functionname ) {
 		global $wgDebugFunctionEntry;
+
 		if ( $wgDebugFunctionEntry ) {
-			$this->debug( str_repeat( ' ', count( $this->mWorkStack ) ) . 'Entering ' . $functionname . "\n" );
+			$this->debug( str_repeat( ' ', count( $this->mWorkStack ) ) .
+				'Entering ' . $functionname . "\n" );
 		}
 
-		$this->mWorkStack[] = array( $functionname, count( $this->mWorkStack ), $this->getTime(), memory_get_usage() );
+		$this->mWorkStack[] = array(
+			$functionname,
+			count( $this->mWorkStack ),
+			$this->getTime(),
+			memory_get_usage()
+		);
 	}
 
 	/**
@@ -217,11 +226,13 @@ class Profiler {
 	 */
 	public function profileOut( $functionname ) {
 		global $wgDebugFunctionEntry;
+
 		$memory = memory_get_usage();
 		$time = $this->getTime();
 
 		if ( $wgDebugFunctionEntry ) {
-			$this->debug( str_repeat( ' ', count( $this->mWorkStack ) - 1 ) . 'Exiting ' . $functionname . "\n" );
+			$this->debug( str_repeat( ' ', count( $this->mWorkStack ) - 1 ) .
+				'Exiting ' . $functionname . "\n" );
 		}
 
 		$bit = array_pop( $this->mWorkStack );
@@ -281,10 +292,10 @@ class Profiler {
 	protected function updateTrxProfiling( $method, $realtime ) {
 		if ( !$this->mDBTrxHoldingLocks ) {
 			return; // short-circuit
-		// @TODO: hardcoded check is a tad janky (what about FOR UPDATE?)
+			// @TODO: hardcoded check is a tad janky (what about FOR UPDATE?)
 		} elseif ( !preg_match( '/^query-m: (?!SELECT)/', $method )
-			&& $realtime < $this->mDBLockThreshold )
-		{
+			&& $realtime < $this->mDBLockThreshold
+		) {
 			return; // not a DB master query nor slow enough
 		}
 		$now = microtime( true );
@@ -324,7 +335,7 @@ class Profiler {
 					list( $method, $realtime ) = $info;
 					$msg .= sprintf( "%d\t%.6f\t%s\n", $i, $realtime, $method );
 				}
-				wfDebugLog( 'DBPerfomance', $msg );
+				wfDebugLog( 'DBPerformance', $msg );
 			}
 			unset( $this->mDBTrxHoldingLocks[$name] );
 			unset( $this->mDBTrxMethodTimes[$name] );
@@ -365,7 +376,13 @@ class Profiler {
 	 * @return string
 	 */
 	function getCallTree() {
-		return implode( '', array_map( array( &$this, 'getCallTreeLine' ), $this->remapCallTree( $this->mStack ) ) );
+		return implode(
+			'',
+			array_map(
+				array( &$this, 'getCallTreeLine' ),
+				$this->remapCallTree( $this->mStack )
+			)
+		);
 	}
 
 	/**
@@ -383,7 +400,7 @@ class Profiler {
 			/* Find all items under this entry */
 			$level = $stack[$max][1];
 			$working = array();
-			for ( $i = $max -1; $i >= 0; $i-- ) {
+			for ( $i = $max - 1; $i >= 0; $i-- ) {
 				if ( $stack[$i][1] > $level ) {
 					$working[] = $stack[$i];
 				} else {
@@ -406,6 +423,7 @@ class Profiler {
 				$final[] = $item;
 			}
 		}
+
 		return $final;
 	}
 
@@ -417,6 +435,7 @@ class Profiler {
 		list( $fname, $level, $start, /* $x */, $end ) = $entry;
 		$delta = $end - $start;
 		$space = str_repeat( ' ', $level );
+
 		# The ugly double sprintf is to work around a PHP bug,
 		# which has been fixed in recent releases.
 		return sprintf( "%10s %s %s\n", trim( sprintf( "%7.3f", $delta * 1000.0 ) ), $space, $fname );
@@ -449,6 +468,7 @@ class Profiler {
 				# it gives the total CPU time
 				$time += $ru['ru_stime.tv_sec'] + $ru['ru_stime.tv_usec'] / 1e6;
 			}
+
 			return $time;
 		} else {
 			return microtime( true );
@@ -484,6 +504,7 @@ class Profiler {
 				# it gives the total CPU time
 				$time += $wgRUstart['ru_stime.tv_sec'] + $wgRUstart['ru_stime.tv_usec'] / 1e6;
 			}
+
 			return $time;
 		} else {
 			if ( empty( $wgRequestTime ) ) {
@@ -526,9 +547,15 @@ class Profiler {
 				$overheadInternal[] = $elapsed;
 			}
 		}
-		$overheadTotal = $overheadTotal ? array_sum( $overheadTotal ) / count( $overheadInternal ) : 0;
-		$overheadMemory = $overheadMemory ? array_sum( $overheadMemory ) / count( $overheadInternal ) : 0;
-		$overheadInternal = $overheadInternal ? array_sum( $overheadInternal ) / count( $overheadInternal ) : 0;
+		$overheadTotal = $overheadTotal ?
+			array_sum( $overheadTotal ) / count( $overheadInternal ) :
+			0;
+		$overheadMemory = $overheadMemory ?
+			array_sum( $overheadMemory ) / count( $overheadInternal ) :
+			0;
+		$overheadInternal = $overheadInternal ?
+			array_sum( $overheadInternal ) / count( $overheadInternal ) :
+			0;
 
 		# Collate
 		foreach ( $this->mStack as $index => $entry ) {
@@ -594,8 +621,8 @@ class Profiler {
 			$prof .= sprintf( $format,
 				substr( $fname, 0, $nameWidth ),
 				$calls,
-				(float) ( $elapsed * 1000 ),
-				(float) ( $elapsed * 1000 ) / $calls,
+				(float)( $elapsed * 1000 ),
+				(float)( $elapsed * 1000 ) / $calls,
 				$percent,
 				$memory,
 				( $this->mMin[$fname] * 1000.0 ),
@@ -632,9 +659,10 @@ class Profiler {
 	function calltreeCount( $stack, $start ) {
 		$level = $stack[$start][1];
 		$count = 0;
-		for ( $i = $start -1; $i >= 0 && $stack[$i][1] > $level; $i-- ) {
-			$count ++;
+		for ( $i = $start - 1; $i >= 0 && $stack[$i][1] > $level; $i-- ) {
+			$count++;
 		}
+
 		return $count;
 	}
 
@@ -665,7 +693,7 @@ class Profiler {
 
 			foreach ( $this->mCollated as $name => $elapsed ) {
 				$eventCount = $this->mCalls[$name];
-				$timeSum = (float) ( $elapsed * 1000 );
+				$timeSum = (float)( $elapsed * 1000 );
 				$memorySum = (float)$this->mMemory[$name];
 				$name = substr( $name, 0, 255 );
 
@@ -688,7 +716,7 @@ class Profiler {
 				$rc = $dbw->affectedRows();
 				if ( $rc == 0 ) {
 					$dbw->insert( 'profiling', array( 'pf_name' => $name, 'pf_count' => $eventCount,
-						'pf_time' => $timeSum, 'pf_memory' => $memorySum, 'pf_server' => $pfhost ),
+							'pf_time' => $timeSum, 'pf_memory' => $memorySum, 'pf_server' => $pfhost ),
 						__METHOD__, array( 'IGNORE' ) );
 				}
 				// When we upgrade to mysql 4.1, the insert+update
@@ -697,7 +725,8 @@ class Profiler {
 				//     "pf_count=pf_count + VALUES(pf_count), ".
 				//     "pf_time=pf_time + VALUES(pf_time)";
 			}
-		} catch ( DBError $e ) {}
+		} catch ( DBError $e ) {
+		}
 	}
 
 	/**
@@ -706,6 +735,7 @@ class Profiler {
 	 */
 	function getCurrentSection() {
 		$elt = end( $this->mWorkStack );
+
 		return $elt[0];
 	}
 
@@ -731,6 +761,7 @@ class Profiler {
 				return $m[1];
 			}
 		}
+
 		return null;
 	}
 }

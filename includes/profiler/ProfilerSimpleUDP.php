@@ -36,7 +36,9 @@ class ProfilerSimpleUDP extends ProfilerSimple {
 
 		$this->close();
 
-		if ( isset( $this->mCollated['-total'] ) && $this->mCollated['-total']['real'] < $this->mMinimumTime ) {
+		if ( isset( $this->mCollated['-total'] ) &&
+			$this->mCollated['-total']['real'] < $this->mMinimumTime
+		) {
 			# Less than minimum, ignore
 			return;
 		}
@@ -54,7 +56,8 @@ class ProfilerSimpleUDP extends ProfilerSimple {
 				|| !isset( $pfdata['cpu'] )
 				|| !isset( $pfdata['cpu_sq'] )
 				|| !isset( $pfdata['real'] )
-				|| !isset( $pfdata['real_sq'] ) ) {
+				|| !isset( $pfdata['real_sq'] )
+			) {
 				continue;
 			}
 			$pfline = sprintf( "%s %s %d %f %f %f %f %s\n", $this->getProfileID(), "-", $pfdata['count'],

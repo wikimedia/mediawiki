@@ -27,10 +27,17 @@
  * @ingroup Profiler
  */
 class ProfilerSimple extends Profiler {
-	var $mMinimumTime = 0;
+	protected $mMinimumTime = 0;
 
-	var $zeroEntry = array( 'cpu' => 0.0, 'cpu_sq' => 0.0, 'real' => 0.0, 'real_sq' => 0.0, 'count' => 0 );
-	var $errorEntry;
+	protected $zeroEntry = array(
+		'cpu' => 0.0,
+		'cpu_sq' => 0.0,
+		'real' => 0.0,
+		'real_sq' => 0.0,
+		'count' => 0
+	);
+
+	protected $errorEntry;
 
 	public function isPersistent() {
 		/* Implement in output subclasses */
@@ -59,17 +66,26 @@ class ProfilerSimple extends Profiler {
 
 	function profileIn( $functionname ) {
 		global $wgDebugFunctionEntry;
+
 		if ( $wgDebugFunctionEntry ) {
-			$this->debug( str_repeat( ' ', count( $this->mWorkStack ) ) . 'Entering ' . $functionname . "\n" );
+			$this->debug( str_repeat( ' ', count( $this->mWorkStack ) ) .
+				'Entering ' . $functionname . "\n" );
 		}
-		$this->mWorkStack[] = array( $functionname, count( $this->mWorkStack ), $this->getTime(), $this->getTime( 'cpu' ) );
+
+		$this->mWorkStack[] = array(
+			$functionname,
+			count( $this->mWorkStack ),
+			$this->getTime(),
+			$this->getTime( 'cpu' )
+		);
 	}
 
 	function profileOut( $functionname ) {
 		global $wgDebugFunctionEntry;
 
 		if ( $wgDebugFunctionEntry ) {
-			$this->debug( str_repeat( ' ', count( $this->mWorkStack ) - 1 ) . 'Exiting ' . $functionname . "\n" );
+			$this->debug( str_repeat( ' ', count( $this->mWorkStack ) - 1 ) .
+				'Exiting ' . $functionname . "\n" );
 		}
 
 		list( $ofname, /* $ocount */, $ortime, $octime ) = array_pop( $this->mWorkStack );
@@ -82,8 +98,7 @@ class ProfilerSimple extends Profiler {
 				$functionname = $ofname;
 				$this->debug( "$message\n" );
 				$this->mCollated[$message] = $this->errorEntry;
-			}
-			elseif ( $ofname != $functionname ) {
+			} elseif ( $ofname != $functionname ) {
 				$message = "Profiling error: in({$ofname}), out($functionname)";
 				$this->debug( "$message\n" );
 				$this->mCollated[$message] = $this->errorEntry;

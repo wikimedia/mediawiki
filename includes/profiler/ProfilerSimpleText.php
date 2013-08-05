@@ -45,9 +45,9 @@ class ProfilerSimpleText extends ProfilerSimple {
 	public function logData() {
 		if ( $this->mTemplated ) {
 			$this->close();
-			$totalReal = isset( $this->mCollated['-total'] )
-				? $this->mCollated['-total']['real']
-				: 0; // profiling mismatch error?
+			$totalReal = isset( $this->mCollated['-total'] ) ?
+				$this->mCollated['-total']['real'] :
+				0; // profiling mismatch error?
 			uasort( $this->mCollated, array( 'self', 'sort' ) );
 			array_walk( $this->mCollated, array( 'self', 'format' ), $totalReal );
 			if ( PHP_SAPI === 'cli' ) {

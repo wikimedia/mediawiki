@@ -27,20 +27,21 @@
  * @ingroup Profiler
  */
 class ProfilerSimpleTrace extends ProfilerSimple {
-	var $trace = "Beginning trace: \n";
-	var $memory = 0;
+	protected $trace = "Beginning trace: \n";
+	protected $memory = 0;
 
 	function profileIn( $functionname ) {
 		parent::profileIn( $functionname );
 		$this->trace .= "         " . sprintf( "%6.1f", $this->memoryDiff() ) .
-				str_repeat( " ", count( $this->mWorkStack ) ) . " > " . $functionname . "\n";
+			str_repeat( " ", count( $this->mWorkStack ) ) . " > " . $functionname . "\n";
 	}
 
 	function profileOut( $functionname ) {
 		global $wgDebugFunctionEntry;
 
 		if ( $wgDebugFunctionEntry ) {
-			$this->debug( str_repeat( ' ', count( $this->mWorkStack ) - 1 ) . 'Exiting ' . $functionname . "\n" );
+			$this->debug( str_repeat( ' ', count( $this->mWorkStack ) - 1 ) .
+				'Exiting ' . $functionname . "\n" );
 		}
 
 		list( $ofname, /* $ocount */, $ortime ) = array_pop( $this->mWorkStack );
@@ -52,13 +53,12 @@ class ProfilerSimpleTrace extends ProfilerSimple {
 				$message = "Profile section ended by close(): {$ofname}";
 				$functionname = $ofname;
 				$this->trace .= $message . "\n";
-			}
-			elseif ( $ofname != $functionname ) {
+			} elseif ( $ofname != $functionname ) {
 				$this->trace .= "Profiling error: in({$ofname}), out($functionname)";
 			}
 			$elapsedreal = $this->getTime() - $ortime;
 			$this->trace .= sprintf( "%03.6f %6.1f", $elapsedreal, $this->memoryDiff() ) .
-					str_repeat( " ", count( $this->mWorkStack ) + 1 ) . " < " . $functionname . "\n";
+				str_repeat( " ", count( $this->mWorkStack ) + 1 ) . " < " . $functionname . "\n";
 
 			$this->updateTrxProfiling( $functionname, $elapsedreal );
 		}
@@ -67,6 +67,7 @@ class ProfilerSimpleTrace extends ProfilerSimple {
 	function memoryDiff() {
 		$diff = memory_get_usage() - $this->memory;
 		$this->memory = memory_get_usage();
+
 		return $diff / 1024;
 	}
 
