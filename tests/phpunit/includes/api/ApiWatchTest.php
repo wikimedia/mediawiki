@@ -13,25 +13,19 @@ class ApiWatchTest extends ApiTestCase {
 	}
 
 	function getTokens() {
-		$data = $this->getTokenList( self::$users['sysop'] );
-
-		$keys = array_keys( $data[0]['query']['pages'] );
-		$key = array_pop( $keys );
-		$pageinfo = $data[0]['query']['pages'][$key];
-
-		return $pageinfo;
+		return $this->getTokenList( self::$users['sysop'] );
 	}
 
 	/**
 	 */
 	function testWatchEdit() {
-		$pageinfo = $this->getTokens();
+		$tokens = $this->getTokens();
 
 		$data = $this->doApiRequest( array(
 			'action' => 'edit',
 			'title' => 'Help:UTPage', // Help namespace is hopefully wikitext
 			'text' => 'new text',
-			'token' => $pageinfo['edittoken'],
+			'token' => $tokens['edittoken'],
 			'watchlist' => 'watch' ) );
 		$this->assertArrayHasKey( 'edit', $data[0] );
 		$this->assertArrayHasKey( 'result', $data[0]['edit'] );
@@ -44,8 +38,7 @@ class ApiWatchTest extends ApiTestCase {
 	 * @depends testWatchEdit
 	 */
 	function testWatchClear() {
-
-		$pageinfo = $this->getTokens();
+		$tokens = $this->getTokens();
 
 		$data = $this->doApiRequest( array(
 			'action' => 'query',
@@ -59,7 +52,7 @@ class ApiWatchTest extends ApiTestCase {
 					'action' => 'watch',
 					'title' => $page['title'],
 					'unwatch' => true,
-					'token' => $pageinfo['watchtoken'] ) );
+					'token' => $tokens['watchtoken'] ) );
 			}
 		}
 		$data = $this->doApiRequest( array(
@@ -75,12 +68,11 @@ class ApiWatchTest extends ApiTestCase {
 	/**
 	 */
 	function testWatchProtect() {
-
-		$pageinfo = $this->getTokens();
+		$tokens = $this->getTokens();
 
 		$data = $this->doApiRequest( array(
 			'action' => 'protect',
-			'token' => $pageinfo['protecttoken'],
+			'token' => $tokens['protecttoken'],
 			'title' => 'Help:UTPage',
 			'protections' => 'edit=sysop',
 			'watchlist' => 'unwatch' ) );
@@ -157,11 +149,11 @@ class ApiWatchTest extends ApiTestCase {
 	/**
 	 */
 	function testWatchDelete() {
-		$pageinfo = $this->getTokens();
+		$tokens = $this->getTokens();
 
 		$data = $this->doApiRequest( array(
 			'action' => 'delete',
-			'token' => $pageinfo['deletetoken'],
+			'token' => $tokens['deletetoken'],
 			'title' => 'Help:UTPage' ) );
 		$this->assertArrayHasKey( 'delete', $data[0] );
 		$this->assertArrayHasKey( 'title', $data[0]['delete'] );
