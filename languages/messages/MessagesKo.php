@@ -4069,7 +4069,7 @@ $5
 'version-mediahandlers' => '미디어 핸들러',
 'version-hooks' => '훅',
 'version-parser-extensiontags' => '파서 확장 태그',
-'version-parser-function-hooks' => '파서 기능 훅',
+'version-parser-function-hooks' => '파서 함수 훅',
 'version-hook-name' => '훅 이름',
 'version-hook-subscribedby' => '훅이 사용된 위치',
 'version-version' => '(버전 $1)',

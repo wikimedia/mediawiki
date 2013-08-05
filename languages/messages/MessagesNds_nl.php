@@ -3806,8 +3806,8 @@ De bevestigingskode zal verlopen op $4.',
 'imgmultigoto' => 'Gao naor de zied $1',
 
 # Table pager
-'ascending_abbrev' => 'aofl.',
-'descending_abbrev' => 'opl.',
+'ascending_abbrev' => 'opl.',
+'descending_abbrev' => 'aofl.',
 'table_pager_next' => 'Volgende',
 'table_pager_prev' => 'Veurige',
 'table_pager_first' => 'Eerste zied',

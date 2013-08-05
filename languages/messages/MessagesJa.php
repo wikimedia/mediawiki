@@ -496,11 +496,11 @@ $messages = array(
 'hidden-categories' => '{{PLURAL:$1|隠しカテゴリ}}',
 'hidden-category-category' => '隠しカテゴリ',
 'category-subcat-count' => '{{PLURAL:$2|このカテゴリには以下の下位カテゴリのみが含まれています。|このカテゴリには $2 下位カテゴリが含まれており、そのうち以下の {{PLURAL:$1|$1 下位カテゴリ}}を表示しています。}}',
-'category-subcat-count-limited' => 'このカテゴリには以下の{{PLURAL:$1|下位カテゴリ|&#32;$1 下位カテゴリ}}が含まれています。',
+'category-subcat-count-limited' => 'このカテゴリには以下の{{PLURAL:$1|下位カテゴリ|​&#32;$1 下位カテゴリ}}が含まれています。',
 'category-article-count' => '{{PLURAL:$2|このカテゴリには以下のページのみが含まれています。|このカテゴリには $2 ページが含まれており、そのうち以下の $1 ページを表示しています。}}',
-'category-article-count-limited' => '現在のカテゴリには以下の{{PLURAL:$1|ページ|&#32;$1 ページ}}が含まれています。',
+'category-article-count-limited' => '現在のカテゴリには以下の{{PLURAL:$1|ページ|​&#32;$1 ページ}}が含まれています。',
 'category-file-count' => '{{PLURAL:$2|このカテゴリには以下のファイルのみが含まれています。|このカテゴリには $2 ファイルが含まれており、そのうち以下の {{PLURAL:$1|$1 ファイル}}を表示しています。}}',
-'category-file-count-limited' => '現在のカテゴリには以下の{{PLURAL:$1|ファイル|&#32;$1 ファイル}}が含まれています。',
+'category-file-count-limited' => '現在のカテゴリには以下の{{PLURAL:$1|ファイル|​&#32;$1 ファイル}}が含まれています。',
 'listingcontinuesabbrev' => 'の続き',
 'index-category' => '検索エンジンに収集されるページ',
 'noindex-category' => '検索エンジンに収集されないページ',
@@ -2176,7 +2176,7 @@ URLが正しいものであり、ウェブサイトが稼働していること�
 'filehist-comment' => 'コメント',
 'filehist-missing' => 'ファイルがありません',
 'imagelinks' => 'ファイルの使用状況',
-'linkstoimage' => '以下の{{PLURAL:$1|ページ|&#32;$1 ページ}}がこのファイルにリンクしています:',
+'linkstoimage' => '以下の{{PLURAL:$1|ページ|​&#32;$1 ページ}}がこのファイルにリンクしています:',
 'linkstoimage-more' => 'このファイルへは $1 を超える数のページからリンクがあります。
 以下の一覧ではこのファイルにリンクしている最初の $1 ページのみを表示しています。
 [[Special:WhatLinksHere/$2|完全な一覧]]も参照してください。',
@@ -2749,7 +2749,7 @@ $2による直前の版へ変更されました。',
 'undeletepage' => '削除されたページの表示と復元',
 'undeletepagetitle' => "'''以下は[[:$1|$1]]の削除された版です'''。",
 'viewdeletedpage' => '削除されたページを表示',
-'undeletepagetext' => '以下の{{PLURAL:$1|削除されたページ|&#32;$1 件の削除されたページ}}は、保存版に残っているため復元できます。
+'undeletepagetext' => '以下の{{PLURAL:$1|削除されたページ|​&#32;$1 件の削除されたページ}}は、保存版に残っているため復元できます。
 保存版は定期的に消去される可能性があります。',
 'undelete-fieldset-title' => '削除された版の復元',
 'undeleteextrahelp' => "すべての版を復元する場合は、どのボックスにもチェックを入れていない状態で'''''{{int:undeletebtn}}'''''をクリックしてください。

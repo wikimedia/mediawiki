@@ -862,6 +862,8 @@ Je možné, že sa vám už podarilo úspešne zmeniť svoje heslo alebo ste si 
 
 # Special:PasswordReset
 'passwordreset' => 'Reset hesla',
+'passwordreset-text-one' => 'Pre získanie nového hesla vyplňte tento formulár.',
+'passwordreset-text-many' => '{{PLURAL:$1|Pre získanie nového hesla zadajte jeden z údajov.}}',
 'passwordreset-legend' => 'Obnoviť heslo',
 'passwordreset-disabled' => 'Obnovenie hesla bolo na tejto wiki zakázané.',
 'passwordreset-emaildisabled' => 'E-mailové funkcie boli na tejto wiki vypnuté.',
