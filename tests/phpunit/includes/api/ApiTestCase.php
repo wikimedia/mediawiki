@@ -139,11 +139,11 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		}
 	}
 
-	protected function doLogin() {
+	protected function doLogin( $user = 'sysop' ) {
 		$data = $this->doApiRequest( array(
 			'action' => 'login',
-			'lgname' => self::$users['sysop']->username,
-			'lgpassword' => self::$users['sysop']->password ) );
+			'lgname' => self::$users[ $user ]->username,
+			'lgpassword' => self::$users[ $user ]->password ) );
 
 		$token = $data[0]['login']['token'];
 
@@ -151,8 +151,8 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 			array(
 				'action' => 'login',
 				'lgtoken' => $token,
-				'lgname' => self::$users['sysop']->username,
-				'lgpassword' => self::$users['sysop']->password,
+				'lgname' => self::$users[ $user ]->username,
+				'lgpassword' => self::$users[ $user ]->password,
 			),
 			$data[2]
 		);
