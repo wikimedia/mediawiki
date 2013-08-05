@@ -12,20 +12,14 @@ class ApiWatchTest extends ApiTestCase {
 		$this->doLogin();
 	}
 
-	function getTokens() {
-		return $this->getTokenList( self::$users['sysop'] );
-	}
-
 	/**
 	 */
 	function testWatchEdit() {
-		$tokens = $this->getTokens();
-
 		$data = $this->doApiRequest( array(
 			'action' => 'edit',
 			'title' => 'Help:UTPage', // Help namespace is hopefully wikitext
 			'text' => 'new text',
-			'token' => $tokens['edittoken'],
+			'token' => self::getToken( 'edittoken' ),
 			'watchlist' => 'watch' ) );
 		$this->assertArrayHasKey( 'edit', $data[0] );
 		$this->assertArrayHasKey( 'result', $data[0]['edit'] );
@@ -38,8 +32,6 @@ class ApiWatchTest extends ApiTestCase {
 	 * @depends testWatchEdit
 	 */
 	function testWatchClear() {
-		$tokens = $this->getTokens();
-
 		$data = $this->doApiRequest( array(
 			'action' => 'query',
 			'list' => 'watchlist' ) );
@@ -52,7 +44,7 @@ class ApiWatchTest extends ApiTestCase {
 					'action' => 'watch',
 					'title' => $page['title'],
 					'unwatch' => true,
-					'token' => $tokens['watchtoken'] ) );
+					'token' => self::getToken( 'watchtoken' ), ) );
 			}
 		}
 		$data = $this->doApiRequest( array(
@@ -68,11 +60,9 @@ class ApiWatchTest extends ApiTestCase {
 	/**
 	 */
 	function testWatchProtect() {
-		$tokens = $this->getTokens();
-
 		$data = $this->doApiRequest( array(
 			'action' => 'protect',
-			'token' => $tokens['protecttoken'],
+			'token' => self::getToken( 'protecttoken' ),
 			'title' => 'Help:UTPage',
 			'protections' => 'edit=sysop',
 			'watchlist' => 'unwatch' ) );
@@ -86,7 +76,7 @@ class ApiWatchTest extends ApiTestCase {
 	/**
 	 */
 	function testGetRollbackToken() {
-		$this->getTokens();
+		parent::getTokens();
 
 		if ( !Title::newFromText( 'Help:UTPage' )->exists() ) {
 			$this->markTestSkipped( "The article [[Help:UTPage]] does not exist" ); //TODO: just create it?
@@ -149,11 +139,9 @@ class ApiWatchTest extends ApiTestCase {
 	/**
 	 */
 	function testWatchDelete() {
-		$tokens = $this->getTokens();
-
 		$data = $this->doApiRequest( array(
 			'action' => 'delete',
-			'token' => $tokens['deletetoken'],
+			'token' => self::getToken( 'deletetoken' ),
 			'title' => 'Help:UTPage' ) );
 		$this->assertArrayHasKey( 'delete', $data[0] );
 		$this->assertArrayHasKey( 'title', $data[0]['delete'] );
