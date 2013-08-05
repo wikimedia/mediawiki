@@ -50,7 +50,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Ńelok laṛcaṛkoaḱ songkha uduḱme',
 'tog-oldsig' => 'Menaḱ signạtar',
 'tog-fancysig' => 'Signạcar do wikiṭesk hisạbte moneyemẽ (jahan acte hoyoḱ joṛao bạgikate)',
-'tog-showjumplinks' => '"Calaḱmẽ" beohar joṛao ehop hoyoḱma',
 'tog-uselivepreview' => 'Jewet́ ńeloḱ beoharme (JavaScript jaruṛ menaḱa)',
 'tog-forceeditsummary' => 'Khạli sompadon guṭkatha em oktere iń baḍae ocoyiń hoyoḱma',
 'tog-watchlisthideown' => 'Ńeloḱ talikare ińaḱ joṛao kamiko danaṅme',
@@ -394,7 +393,10 @@ $2',
 'virus-unknownscanner' => 'Baṅ urum anṭvayras:',
 
 # Login and logout pages
+'welcomeuser' => 'Johar',
+'welcomecreation-msg' => 'Amaḱ ekaunṭ do̠ jhićena. Amaḱ pạsindko bodol alom hiṛińa.',
 'yourname' => 'Beoboharicaḱ ńutum',
+'userlogin-yourname-ph' => 'Amaḱ beohar ńutum emme.',
 'yourpassword' => 'Uku namber',
 'yourpasswordagain' => 'Arhõ oku namber olme',
 'remembermypassword' => 'Mitṭen khon bạṛti khata reaḱ cạbi disạ dohoḱma (Jạsti $1 {{PLURAL:$1 din reaḱ din reaḱ}} lạgit)',

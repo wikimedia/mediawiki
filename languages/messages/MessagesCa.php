@@ -40,6 +40,7 @@
  * @author Ssola
  * @author Toniher
  * @author Vriullop
+ * @author XVEC
  * @author Àlex
  * @author לערי ריינהארט
  */
@@ -307,6 +308,18 @@ $messages = array(
 'oct' => 'oct',
 'nov' => 'nov',
 'dec' => 'des',
+'january-date' => '$1 de gener',
+'february-date' => '$1 de febrer',
+'march-date' => '$1 de març',
+'april-date' => "$1 d'abril",
+'may-date' => '$1 de maig',
+'june-date' => '$1 de juny',
+'july-date' => '$1 de juliol',
+'august-date' => "$1 d'agost",
+'september-date' => '$1 de setembre',
+'october-date' => "$1 d'octubre",
+'november-date' => '$1 de novembre',
+'december-date' => '$1 de desembre',
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Categoria|Categories}}',
@@ -389,6 +402,7 @@ $messages = array(
 'create-this-page' => 'Crea aquesta pàgina',
 'delete' => 'Elimina',
 'deletethispage' => 'Elimina la pàgina',
+'undeletethispage' => "Desfés l'eliminació d'aquesta pàgina",
 'undelete_short' => "Restaura {{PLURAL:$1|l'edició eliminada|$1 edicions eliminades}}",
 'viewdeleted_short' => 'Mostra {{PLURAL:$1|una edició eliminada|$1 edicions eliminades}}',
 'protect' => 'Protecció',
@@ -586,6 +600,10 @@ $2",
 'namespaceprotected' => "No teniu permís per a modificar pàgines en l'espai de noms '''$1'''.",
 'customcssprotected' => "No teniu permisos per editar la pàgina CSS perquè conté els paràmetres personals d'un altre usuari.",
 'customjsprotected' => "No teniu permisos per editar la pàgina JavaScript perquè conté els paràmetres personals d'un altre usuari.",
+'mycustomcssprotected' => 'No tens permís per editar aquesta pàgina CSS.',
+'mycustomjsprotected' => 'No tens permís per editar aquesta pàgina JavaScript.',
+'myprivateinfoprotected' => 'No tens permís per editar la teva informació privada.',
+'mypreferencesprotected' => 'No tens permís per editar les teves preferències.',
 'ns-specialprotected' => 'No es poden modificar les pàgines especials.',
 'titleprotected' => "La creació d'aquesta pàgina està protegida per [[User:$1|$1]].
 Els seus motius han estat: «''$2''».",
@@ -612,6 +630,7 @@ No oblideu de canviar les vostres [[Special:Preferences|preferències de {{SITEN
 'yourname' => "Nom d'usuari",
 'userlogin-yourname' => 'Usuari',
 'userlogin-yourname-ph' => "Introduïu el vostre nom d'usuari",
+'createacct-another-username-ph' => "Introdueix el nom d'usuari",
 'yourpassword' => 'Contrasenya',
 'userlogin-yourpassword' => 'Contrasenya',
 'userlogin-yourpassword-ph' => 'Introduïu la vostra contrasenya',
@@ -646,9 +665,11 @@ No oblideu de canviar les vostres [[Special:Preferences|preferències de {{SITEN
 'helplogin-url' => 'Help:Registrar-se',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Ajuda]]',
 'createacct-join' => 'Introduïu les vostres dades.',
+'createacct-another-join' => 'Introdueix la informació del nou compte a continuació:',
 'createacct-emailrequired' => 'Adreça de correu electrònic',
 'createacct-emailoptional' => 'Adreça de correu electrònic (opcional)',
 'createacct-email-ph' => 'Introduïu la vostra adreça de correu electrònic',
+'createacct-another-email-ph' => 'Introdueix una adreça de correu electrònic',
 'createaccountmail' => "Utilitza una contrasenya aleatòria temporal i envia-la a l'adreça de correu  especificada a continuació.",
 'createacct-realname' => 'Nom real (opcional)',
 'createaccountreason' => 'Motiu:',
@@ -657,6 +678,7 @@ No oblideu de canviar les vostres [[Special:Preferences|preferències de {{SITEN
 'createacct-captcha' => 'Control de seguretat',
 'createacct-imgcaptcha-ph' => 'Introduïu el text que apareix a dalt',
 'createacct-submit' => 'Crea el meu compte',
+'createacct-another-submit' => 'Crea un altre compte',
 'createacct-benefit-heading' => '{{SITENAME}} és feta per gent com tu.',
 'createacct-benefit-body1' => '{{PLURAL:$1|edició|edicions}}',
 'createacct-benefit-body2' => '{{PLURAL:$1|pàgina|pàgines}}',
@@ -751,6 +773,7 @@ Deveu haver canviat la vostra contrasenya o demanat una nova contrasenya tempora
 
 # Special:PasswordReset
 'passwordreset' => 'Restablir contrasenya',
+'passwordreset-text-one' => 'Cal completar aquest formulari per reiniciar la contrasenya',
 'passwordreset-legend' => 'Restablir contrasenya',
 'passwordreset-disabled' => "S'ha desactivat el restabliment de contranyes en aquest wiki.",
 'passwordreset-emaildisabled' => 'Les opcions de correu electrònic no estan habilitades en aquest wiki.',
@@ -3715,6 +3738,7 @@ També podeu [[Special:EditWatchlist|utilitzar l'editor estàndard]].",
 'version-license' => 'Llicència',
 'version-poweredby-credits' => "El wiki funciona gràcies a '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'altres',
+'version-poweredby-translators' => 'Traductors de translatewiki.net',
 'version-credits-summary' => 'El nostre reconeixement a les següents persones per la seva aportació a [[Special:Version|MediaWiki]]',
 'version-license-info' => "MediaWiki és programari lliure, podeu redistribuir-lo i/o modificar-lo sota els termes de la Llicència Pública General GNU publicada per la Free Software Foundation, ja sigui de la seva versió 2 o (a elecció vostra) qualsevol versió posterior. 
 

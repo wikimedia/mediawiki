@@ -1850,6 +1850,11 @@ $1',
 'randompage' => 'Түбэспиччэ сирэй',
 'randompage-nopages' => 'Бу {{PLURAL:$2|аат дала кураана|аат далларыгар сирэйдэр суохтар}}: $1.',
 
+# Special:RandomInCategory
+'randomincategory' => 'Категория хайа баҕарар ыстатыйата',
+'randomincategory-invalidcategory' => '"$1" аат категорияҕа туттуллубат.',
+'randomincategory-nopages' => '[[:Category:$1|$1 категорияҕа]] маннык ыстатыйа суох.',
+
 # Random redirect
 'randomredirect' => 'Түбэспиччэ утаарыы',
 'randomredirect-nopages' => 'Бу аат далыгар($1) көһөрөр ыйынньыктар суохтар.',

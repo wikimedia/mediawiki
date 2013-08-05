@@ -715,6 +715,7 @@ Mungkin telah dihapus oleh orang lain.',
 'cannotdelete-title' => 'Tidak dapat menghapus halaman "$1"',
 'delete-hook-aborted' => 'Penghapusan dibatalkan oleh kait parser.
 Tidak ada keterangan.',
+'no-null-revision' => 'Tidak dapat membuat revisi null baru untuk halaman "$1"',
 'badtitle' => 'Judul tidak sah',
 'badtitletext' => 'Judul halaman yang diminta tidak sah, kosong, atau judul antarbahasa atau antarwiki yang salah sambung.',
 'perfcached' => 'Data berikut ini diambil dari singgahan dan mungkin bukan data mutakhir. {{PLURAL:$1||}}$1 hasil maksimal tersedia di tembolok.',
@@ -767,6 +768,7 @@ Perhatikan bahwa beberapa halaman mungkin masih terus menunjukkan bahwa Anda mas
 'yourname' => 'Nama pengguna:',
 'userlogin-yourname' => 'Nama pengguna',
 'userlogin-yourname-ph' => 'Masukkan nama pengguna Anda',
+'createacct-another-username-ph' => 'Masukkan nama pengguna',
 'yourpassword' => 'Kata sandi:',
 'userlogin-yourpassword' => 'Kata sandi',
 'userlogin-yourpassword-ph' => 'Masukkan kata sandi',
@@ -801,9 +803,11 @@ Perhatikan bahwa beberapa halaman mungkin masih terus menunjukkan bahwa Anda mas
 'helplogin-url' => 'Help:Masuk log',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Bantuan masuk log]]',
 'createacct-join' => 'Masukkan informasi Anda di bawah ini.',
+'createacct-another-join' => 'Masukkan informasi akun baru di bawah ini.',
 'createacct-emailrequired' => 'Alamat surel',
 'createacct-emailoptional' => 'Alamat surel (opsional)',
 'createacct-email-ph' => 'Masukkan alamat surel Anda',
+'createacct-another-email-ph' => 'Masukkan alamat surel',
 'createaccountmail' => 'Gunakan kata sandi acak sementara dan kirimkan ke surel yang tercantum di bawah',
 'createacct-realname' => 'Nama asli (opsional)',
 'createaccountreason' => 'Alasan:',
@@ -812,6 +816,7 @@ Perhatikan bahwa beberapa halaman mungkin masih terus menunjukkan bahwa Anda mas
 'createacct-captcha' => 'Pemeriksaan keamanan',
 'createacct-imgcaptcha-ph' => 'Masukkan teks yang Anda lihat di atas',
 'createacct-submit' => 'Buat akun Anda',
+'createacct-another-submit' => 'Buat akun lain',
 'createacct-benefit-heading' => '{{SITENAME}} dibuat oleh orang-orang seperti Anda.',
 'createacct-benefit-body1' => '{{PLURAL:$1|suntingan}}',
 'createacct-benefit-body2' => '{{PLURAL:$1|halaman}}',
@@ -953,6 +958,19 @@ Sandi sementara: $2',
 'changeemail-password' => 'Sandi {{SITENAME}} Anda:',
 'changeemail-submit' => 'Ubah surel',
 'changeemail-cancel' => 'Batalkan',
+
+# Special:ResetTokens
+'resettokens' => 'Reset token',
+'resettokens-text' => 'Anda dapat me-reset Token yang memungkinkan akses ke data pribadi tertentu yang terkait dengan akun Anda di sini.
+
+Anda harus melakukannya jika Anda secara tidak sengaja berbagi dengan seseorang atau jika akun Anda telah disusupi.',
+'resettokens-no-tokens' => 'Tidak ada token untuk di-reset.',
+'resettokens-legend' => 'Reset token',
+'resettokens-tokens' => 'Token:',
+'resettokens-token-label' => '$1 (nilai saat ini: $2)',
+'resettokens-watchlist-token' => 'Daftar pantauan token web feed',
+'resettokens-done' => 'Reset token.',
+'resettokens-resetbutton' => 'Reset token yang dipilih',
 
 # Edit page toolbar
 'bold_sample' => 'Teks ini akan dicetak tebal',
@@ -1484,6 +1502,9 @@ Perlu diingat bahwa indeks Google untuk konten {{SITENAME}} mungkin belum mencak
 'recentchangesdays-max' => '(maksimum $1 {{PLURAL:$1|hari|hari}})',
 'recentchangescount' => 'Standar jumlah suntingan yang ditampilkan:',
 'prefs-help-recentchangescount' => 'Opsi ini berlaku untuk perubahan terbaru, versi terdahulu halaman, dan log.',
+'prefs-help-watchlist-token2' => 'Ini adalah kunci rahasia (token) ke web feed dari daftar pantauan Anda.
+Siapa saja yang tahu akan dapat melihat daftar pantauan Anda, jadi jangan dibagikan.
+[[Special:ResetTokens|Klik di sini jika Anda perlu menyetel ulang]].',
 'savedprefs' => 'Preferensi Anda telah disimpan',
 'timezonelegend' => 'Zona waktu:',
 'localtime' => 'Waktu setempat:',
@@ -2134,6 +2155,13 @@ Cek dahulu pranala lain ke templat tersebut sebelum menghapusnya.',
 'randompage' => 'Halaman sembarang',
 'randompage-nopages' => 'Tidak ada halaman pada {{PLURAL:$2||}}ruang nama berikut: $1.',
 
+# Special:RandomInCategory
+'randomincategory' => 'Halaman acak dalam kategori',
+'randomincategory-invalidcategory' => '"$1" bukanlah nama kategori yang berlaku.',
+'randomincategory-nopages' => 'Tidak ada halaman dalam [[:Category:$1]].',
+'randomincategory-selectcategory' => 'Dapatkan halaman acak dari kategori: $1 $2.',
+'randomincategory-selectcategory-submit' => 'Lanjut',
+
 # Random redirect
 'randomredirect' => 'Pengalihan sembarang',
 'randomredirect-nopages' => 'Tak terdapat pengalihan pada ruang nama "$1".',
@@ -2170,6 +2198,8 @@ Suatu halaman dianggap sebagai halaman disambiguasi apabila halaman tersebut men
 'pageswithprop-text' => 'Halaman ini berisi daftar halaman yang menggunakan properti halaman tertentu.',
 'pageswithprop-prop' => 'Nama properti:',
 'pageswithprop-submit' => 'Lanjut',
+'pageswithprop-prophidden-long' => 'teks panjang nilai properti tersembunyi ($1 kilobita)',
+'pageswithprop-prophidden-binary' => 'nilai properti biner yang tersembunyi ($1 kilobita)',
 
 'doubleredirects' => 'Pengalihan ganda',
 'doubleredirectstext' => 'Halaman ini memuat daftar halaman yang dialihkan ke halaman pengalihan yang lain.
@@ -2227,6 +2257,7 @@ Nama yang telah <del>dicoret</del> berarti telah dibetulkan.',
 'mostrevisions' => 'Halaman dengan perubahan terbanyak',
 'prefixindex' => 'Semua halaman dengan awalan',
 'prefixindex-namespace' => 'Semua halaman dengan awalan (ruang nama $1)',
+'prefixindex-strip' => 'Strip awalan dalam daftar',
 'shortpages' => 'Halaman pendek',
 'longpages' => 'Halaman panjang',
 'deadendpages' => 'Halaman buntu',
@@ -4069,6 +4100,7 @@ Anda juga dapat [[Special:EditWatchlist|menggunakan penyunting standar Anda]].',
 'version-license' => 'Lisensi',
 'version-poweredby-credits' => "Wiki ini didukung oleh '''[//www.mediawiki.org/ MediaWiki]''', hak cipta © 2001-$1 $2.",
 'version-poweredby-others' => 'lainnya',
+'version-poweredby-translators' => 'penerjemah translatewiki.net',
 'version-credits-summary' => 'Kami ingin mengakui orang-orang berikut atas kontribusinya terhadap [[Special:Version|MediaWiki]].',
 'version-license-info' => 'MediaWiki adalah perangkat lunak bebas; Anda diperbolehkan untuk mendistribusikan dan/atau memodfikasinya dengan persyaratan Lisensi Publik Umum GNU yang diterbitkan oleh Free Software Foundation; versi 2 atau terbaru.
 

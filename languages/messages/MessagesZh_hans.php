@@ -42,6 +42,7 @@
  * @author Li3939108
  * @author Liangent
  * @author Linforest
+ * @author Liuxinyu970226
  * @author M13253
  * @author Makecat
  * @author Mark85296341
@@ -729,6 +730,7 @@ $1',
 它可能已被其他人删除了。',
 'cannotdelete-title' => '无法删除“$1”',
 'delete-hook-aborted' => '删除被扩展钩子取消。钩子并没有给出解释。',
+'no-null-revision' => '无法创建对"$1"页面新的空白修订',
 'badtitle' => '错误标题',
 'badtitletext' => '所请求页面的标题是无效的、不存在，跨语言或跨wiki链接的标题错误。它可能包含一个或更多的不能用于标题的字符。',
 'perfcached' => '下列数据已缓存，但可能已过时。最高{{PLURAL:$1|一个结果|$1个结果}}在缓存中可用。',
@@ -1615,7 +1617,7 @@ $1",
 'right-hideuser' => '封禁并隐藏用户名',
 'right-ipblock-exempt' => '避开IP封禁、自动封禁和IP段封禁',
 'right-proxyunbannable' => '避开代理服务器的自动封禁',
-'right-unblockself' => '自己解封',
+'right-unblockself' => '解封他们自己',
 'right-protect' => '更改保护级别和编辑受连锁保护的页面',
 'right-editprotected' => '编辑页面保护需要“{{int:protect-level-sysop}}”',
 'right-editsemiprotected' => '编辑页面保护需要“{{int:protect-level-autoconfirmed}}”',
@@ -2071,6 +2073,13 @@ $1',
 # Random page
 'randompage' => '随机页面',
 'randompage-nopages' => '在以下{{PLURAL:$2|名字空间|名字空间}}中没有页面：$1。',
+
+# Special:RandomInCategory
+'randomincategory' => '分类中的随机页面',
+'randomincategory-invalidcategory' => '“$1”不是一个有效的分类名称。',
+'randomincategory-nopages' => '[[:Category:$1]]中没有页面。',
+'randomincategory-selectcategory' => '从分类获取随机页面：$1 $2。',
+'randomincategory-selectcategory-submit' => '显示',
 
 # Random redirect
 'randomredirect' => '随机重定向',
@@ -3878,6 +3887,7 @@ $5
 'version-license' => '授权协议',
 'version-poweredby-credits' => "本Wiki由'''[//www.mediawiki.org/ MediaWiki]'''驱动，版权所有 © 2001-$1 $2。",
 'version-poweredby-others' => '其他',
+'version-poweredby-translators' => 'translatewiki.net上的翻译者',
 'version-credits-summary' => '我们感谢下列人士为[[Special:Version|MediaWiki]]作出的贡献。',
 'version-license-info' => "MediaWiki是自由软件，你可以依据自由软件基金会发行的'''GNU公众授权协议'''第2版或任意后续版本的条款，传播和/或修改本软件。
 

@@ -1472,6 +1472,7 @@ See also:
 
 # Special:ResetTokens
 'resettokens' => '{{doc-special|ResetTokens}}
+In this case "token" may be translated as "key", or similar.
 {{Identical|Reset token}}',
 'resettokens-text' => 'Text on [[Special:ResetTokens]].',
 'resettokens-no-tokens' => 'Additional text on [[Special:ResetTokens]] if the user has no tokens.',
