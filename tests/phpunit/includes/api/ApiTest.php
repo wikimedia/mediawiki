@@ -156,7 +156,8 @@ class ApiTest extends ApiTestCase {
 	 * @group Broken
 	 */
 	function testApiGotCookie() {
-		$this->markTestIncomplete( "The server can't do external HTTP requests, and the internal one won't give cookies" );
+		$this->markTestIncomplete(
+			"The server can't do external HTTP requests, and the internal one won't give cookies" );
 
 		global $wgServer, $wgScriptPath;
 
@@ -234,7 +235,7 @@ class ApiTest extends ApiTestCase {
 	}
 
 	function runTokenTest( $user ) {
-		$tokens = $this->getTokenList( $user );
+		$tokens = self::getTokens( $user );
 
 		$rights = $user->user->getRights();
 
