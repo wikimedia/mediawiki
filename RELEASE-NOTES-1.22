@@ -174,6 +174,9 @@ production.
 * (bug 25931) Add Special:RandomInCategory.
 * mediawiki.util: addPortletLink now supports passing a jQuery object as nextnode.
 * <wbr> can now be used inside WikiText.
+* WebResponse::setcookie is much more featureful. Callers using PHP's
+  setcookie() or setrawcookie() should begin using this instead.
+* New hook WebResponseSetCookie, called from WebResponse::setcookie().
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one

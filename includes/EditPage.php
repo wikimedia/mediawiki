@@ -1178,20 +1178,21 @@ class EditPage {
 	 * marked HttpOnly. The JavaScript code converts the cookie to a wgPostEdit config
 	 * variable.
 	 *
-	 * Since WebResponse::setcookie does not allow forcing HttpOnly for a single
-	 * cookie, we have to use PHP's setcookie() directly.
-	 *
 	 * We use a path of '/' since wgCookiePath is not exposed to JS
 	 *
 	 * If the variable were set on the server, it would be cached, which is unwanted
 	 * since the post-edit state should only apply to the load right after the save.
 	 */
 	protected function setPostEditCookie() {
-		global $wgCookiePrefix, $wgCookieDomain;
 		$revisionId = $this->mArticle->getLatest();
 		$postEditKey = self::POST_EDIT_COOKIE_KEY_PREFIX . $revisionId;
 
-		setcookie( $wgCookiePrefix . $postEditKey, '1', time() + self::POST_EDIT_COOKIE_DURATION, '/', $wgCookieDomain );
+		$response = RequestContext::getMain()->response();
+		$response->setcookie( $postEditKey, '1', time() + self::POST_EDIT_COOKIE_DURATION, array(
+				'path' => '/',
+				'httpOnly' => false,
+			)
+		);
 	}
 
 	/**
