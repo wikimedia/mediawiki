@@ -1543,7 +1543,7 @@ class Parser {
 	 * Replace external links (REL)
 	 *
 	 * Note: this is all very hackish and the order of execution matters a lot.
-	 * Make sure to run maintenance/parserTests.php if you change this code.
+	 * Make sure to run tests/parserTests.php if you change this code.
 	 *
 	 * @private
 	 *
