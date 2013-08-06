@@ -4597,7 +4597,7 @@ This confirmation code will expire at $4.',
 'confirmemail_body_set'     => 'Someone, probably you, from IP address $1,
 has set the email address of the account "$2" to this address on {{SITENAME}}.
 
-To confirm that this account really does belong to you and reactivate
+To confirm that this account really does belong to you and activate
 email features on {{SITENAME}}, open this link in your browser:
 
 $3
