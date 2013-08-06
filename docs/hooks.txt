@@ -2711,6 +2711,13 @@ $skin: Skin object
 REQUEST_URI.
 $router: The PathRouter instance
 
+'WebResponseSetCookie': when setting a cookie in WebResponse::setcookie().
+Return false to prevent setting of the cookie.
+&$name: Cookie name passed to WebResponse::setcookie()
+&$value: Cookie value passed to WebResponse::setcookie()
+&$expire: Cookie expiration, as for PHP's setcookie()
+$options: Options passed to WebResponse::setcookie()
+
 'WikiExporter::dumpStableQuery': Get the SELECT query for "stable" revisions
 dumps. One, and only one hook should set this, and return false.
 &$tables: Database tables to use in the SELECT query

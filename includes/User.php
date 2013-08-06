@@ -3113,7 +3113,9 @@ class User {
 	 *  null (default): Use the default ($wgCookieSecure) to set the secure attribute
 	 */
 	protected function setCookie( $name, $value, $exp = 0, $secure = null ) {
-		$this->getRequest()->response()->setcookie( $name, $value, $exp, null, null, $secure );
+		$this->getRequest()->response()->setcookie( $name, $value, $exp, array(
+			'secure' => $secure,
+		) );
 	}
 
 	/**
