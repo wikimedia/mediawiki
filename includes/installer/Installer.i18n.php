@@ -11183,7 +11183,7 @@ PHP 5.2.9 이후와 libxml2 2.7.3 이후로 업그레이드하세요. ([//bugs.p
 	'config-using531' => '미디어위키는 <code>__call()</code>을 참고로 매개 변수를 포함하는 버그로 인해 PHP $1(와)과 함께 사용할 수 없습니다.
 문제를 해결하려면 PHP 5.3.2 이상로 업그레이드하거나 PHP 5.3.0으로 다운그레이드를 하세요.
 설치가 중단되었습니다.',
-	'config-suhosin-max-value-length' => 'Suhosin이 설치되었고 $1 바이트로 GET 매개 변수인 <code>length</code>를 제한하고 있습니다.
+	'config-suhosin-max-value-length' => '수호신(Suhosin)이 설치되었고 $1 바이트로 GET 매개 변수인 <code>length</code>를 제한하고 있습니다.
 미디어위키의 ResourceLoader 구성 요소는 이 제한을 해결하지만 성능이 저하됩니다.
 가능하면 <code>php.ini</code>의 <code>suhosin.get.max_value_length</code>에 1024 이상으로 설정하고 <code>LocalSettings.php</code>의 <code>$wgResourceLoaderMaxQueryLength</code>에 같은 값을 설정해야 합니다.',
 	'config-db-type' => '데이터베이스 종류:',

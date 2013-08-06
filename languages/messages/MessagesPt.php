@@ -9,6 +9,7 @@
  *
  * @author Alchimista
  * @author Andresilvazito
+ * @author Cainamarques
  * @author Capmo
  * @author Crazymadlover
  * @author Daemorris
@@ -2222,6 +2223,7 @@ Agora redirecciona para [[$2]].',
 'mostrevisions' => 'Páginas com mais revisões',
 'prefixindex' => 'Todas as páginas iniciadas por',
 'prefixindex-namespace' => 'Todas as páginas com prefixo (domínio $1)',
+'prefixindex-strip' => 'Remover prefixo',
 'shortpages' => 'Páginas curtas',
 'longpages' => 'Páginas longas',
 'deadendpages' => 'Páginas sem saída',

@@ -54,7 +54,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Hián-sī tng leh khoàⁿ ê iōng-chiá sò͘-bo̍k',
 'tog-oldsig' => 'Chit-má ê chhiam-miâ:',
 'tog-fancysig' => 'Chhiam-miâ mài chò liân-kiat',
-'tog-showjumplinks' => 'Hō͘ "thiàu khì" chit ê liân-chiap ē-sái',
 'tog-uselivepreview' => 'Ēng sui khoàⁿ-māi (ài ū JavaScript) (chhì-giām--ê)',
 'tog-forceeditsummary' => 'Pian-chi̍p khài-iàu bô thiⁿ ê sî-chūn, kā goá thê-chhéⁿ',
 'tog-watchlisthideown' => 'Kàm-sī-toaⁿ bián hián-sī goá ê pian-chi̍p',

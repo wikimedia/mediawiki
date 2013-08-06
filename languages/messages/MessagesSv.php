@@ -943,7 +943,17 @@ Tillfälligt lösenord: $2',
 'changeemail-cancel' => 'Avbryt',
 
 # Special:ResetTokens
+'resettokens' => 'Återställ nycklar',
+'resettokens-text' => 'Du kan återställa nycklar som tillåter åtkomst till vissa privata uppgifter som är associerade till ditt konto här.
+
+Du bör återställa om du av misstag delade dem med någon eller om ditt konto har äventyrats.',
+'resettokens-no-tokens' => 'Det finns inga nycklar att återställa.',
+'resettokens-legend' => 'Återställ nycklar',
+'resettokens-tokens' => 'Nycklar:',
 'resettokens-token-label' => '$1 (aktuellt värde: $2)',
+'resettokens-watchlist-token' => 'Nyckel för bevakningslistans webbflöde',
+'resettokens-done' => 'Nycklarna är återställda.',
+'resettokens-resetbutton' => 'Återställ valda nycklar',
 
 # Edit page toolbar
 'bold_sample' => 'Fet text',
@@ -1482,6 +1492,9 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 'recentchangesdays-max' => '(maximalt $1 {{PLURAL:$1|dygn|dygn}})',
 'recentchangescount' => 'Antal redigeringar som visas som standard:',
 'prefs-help-recentchangescount' => 'Detta inkluderar senaste ändringarna, sidhistorik och loggar.',
+'prefs-help-watchlist-token2' => 'Detta är den hemliga nyckeln till webbflödet i din bevakningslista.
+Någon som vet den kommer att kunna läsa din bevakningslista, så inte dela ut den.
+[[Special:ResetTokens|Klicka här om du behöver återställa den]].',
 'savedprefs' => 'Dina inställningar har sparats',
 'timezonelegend' => 'Tidszon:',
 'localtime' => 'Lokal tid:',
@@ -1552,6 +1565,7 @@ Om du väljer att ange ditt riktiga namn, kommer det att användas för att till
 'prefs-displayrc' => 'Visningsalternativ',
 'prefs-displaysearchoptions' => 'Visningalternativ',
 'prefs-displaywatchlist' => 'Visningalternativ',
+'prefs-tokenwatchlist' => 'Nyckel',
 'prefs-diffs' => 'Skillnader',
 
 # User preference: email validation using jQuery

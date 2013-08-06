@@ -2319,7 +2319,7 @@ may iba na tabing nagliwat o nagbalik kan pahina.
 An huring pagliwat sa pahina ginibo ni [[User:$3|$3]] ([[User talk:$3|olay]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment' => "An sumaryo kan pagliwat: \"''\$1''\".",
 'revertpage' => 'Ibinalik na mga pagliwat ni [[Special:Contributions/$2|$2]] ([[User talk:$2|talk]]) sagkod sa huring rebisyon ni [[User:$1|$1]]',
-'revertpage-nouser' => 'Ibinalik na mga pagliwat ni (ngaran nin paragamit pinaghali) sagkod sa huring rebisyon ni [[User:$1|$1]]',
+'revertpage-nouser' => 'Binalikwat na mga pagliliwat kan sarong nakatagong paragamit sa huring rebisyon ni [[User:$1|$1]]',
 'rollback-success' => 'Binawî na mga paghirá ni $1; pigbalik sa dating bersyón ni $2.',
 
 # Edit tokens

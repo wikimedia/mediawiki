@@ -813,6 +813,7 @@ Temporärt Passwuert: $2',
 'changeemail-cancel' => 'Ofbriechen',
 
 # Special:ResetTokens
+'resettokens-tokens' => 'Token:',
 'resettokens-token-label' => '$1 (aktuelle Wäert: $2)',
 
 # Edit page toolbar
