@@ -146,6 +146,7 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 			$rev = ( $table === 'archive' )
 				? Revision::newFromArchiveRow( $row )
 				: new Revision( $row );
+			$rev->getContent( REVISION::RAW );
 			$text = $rev->getSerializedData();
 		} catch ( MWException $e ) {
 			$this->output( "Data of revision with {$idCol}={$row->$idCol} unavailable!\n" );
