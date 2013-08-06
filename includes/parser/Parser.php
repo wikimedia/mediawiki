@@ -2357,6 +2357,7 @@ class Parser {
 		$this->mDTopen = $inBlockElem = false;
 		$prefixLength = 0;
 		$paragraphStack = false;
+		$inBlockquote = false;
 
 		foreach ( $textLines as $oLine ) {
 			# Fix up $linestart
@@ -2450,10 +2451,10 @@ class Parser {
 				wfProfileIn( __METHOD__ . "-paragraph" );
 				# No prefix (not in list)--go to paragraph mode
 				# XXX: use a stack for nestable elements like span, table and div
-				$openmatch = preg_match( '/(?:<table|<blockquote|<h1|<h2|<h3|<h4|<h5|<h6|<pre|<tr|<p|<ul|<ol|<dl|<li|<\\/tr|<\\/td|<\\/th)/iS', $t );
+				$openmatch = preg_match( '/(?:<table|<h1|<h2|<h3|<h4|<h5|<h6|<pre|<tr|<p|<ul|<ol|<dl|<li|<\\/tr|<\\/td|<\\/th)/iS', $t );
 				$closematch = preg_match(
-					'/(?:<\\/table|<\\/blockquote|<\\/h1|<\\/h2|<\\/h3|<\\/h4|<\\/h5|<\\/h6|' .
-					'<td|<th|<\\/?div|<hr|<\\/pre|<\\/p|' . $this->mUniqPrefix . '-pre|<\\/li|<\\/ul|<\\/ol|<\\/dl|<\\/?center)/iS', $t );
+					'/(?:<\\/table|<\\/h1|<\\/h2|<\\/h3|<\\/h4|<\\/h5|<\\/h6|' .
+					'<td|<th|<\\/?blockquote|<\\/?div|<hr|<\\/pre|<\\/p|' . $this->mUniqPrefix . '-pre|<\\/li|<\\/ul|<\\/ol|<\\/dl|<\\/?center)/iS', $t );
 				if ( $openmatch or $closematch ) {
 					$paragraphStack = false;
 					# TODO bug 5718: paragraph closed
@@ -2461,9 +2462,14 @@ class Parser {
 					if ( $preOpenMatch and !$preCloseMatch ) {
 						$this->mInPre = true;
 					}
+					$bqOffset = 0;
+					while ( preg_match( '/<(\\/?)blockquote[\s>]/i', $t, $bqMatch, PREG_OFFSET_CAPTURE, $bqOffset ) ) {
+						$inBlockquote = !$bqMatch[1][0]; // is this a close tag?
+						$bqOffset = $bqMatch[0][1] + strlen( $bqMatch[0][0] );
+					}
 					$inBlockElem = !$closematch;
 				} elseif ( !$inBlockElem && !$this->mInPre ) {
-					if ( ' ' == substr( $t, 0, 1 ) and ( $this->mLastSection === 'pre' || trim( $t ) != '' ) ) {
+					if ( ' ' == substr( $t, 0, 1 ) and ( $this->mLastSection === 'pre' || trim( $t ) != '' ) and !$inBlockquote ) {
 						# pre
 						if ( $this->mLastSection !== 'pre' ) {
 							$paragraphStack = false;
