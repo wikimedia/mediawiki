@@ -996,6 +996,10 @@ class Revision implements IDBAccessObject {
 	 * @return String
 	 */
 	public function getSerializedData() {
+		if ( is_null( $this->mText ) ) {
+			$this->mText = $this->loadText();
+		}
+
 		return $this->mText;
 	}
 
