@@ -874,6 +874,43 @@ Non-html5 tags should be accepted
 </p>
 !! end
 
+# <strike> is HTML4, <s> is HTML4/5.
+!! test
+<s> or <strike> for strikethrough (bug 40670)
+!! input
+<strike>strike</strike>
+
+<s>s</s>
+!! result
+<p><strike>strike</strike>
+</p><p><s>s</s>
+</p>
+!! end
+
+!! test
+Non-word characters don't terminate tag names (bug 17663, 40670, 52022)
+!! input
+<b→> doesn't work! </b>
+
+<bä> doesn't work! </b>
+
+<boo> works fine </b>
+
+<s.foo>foo</s>
+
+<s.foo>s.foo</s.foo>
+
+<sub-ID#1>
+!! result
+<p>&lt;b→&gt; doesn't work! &lt;/b&gt;
+</p><p>&lt;bä&gt; doesn't work! &lt;/b&gt;
+</p><p>&lt;boo&gt; works fine &lt;/b&gt;
+</p><p>&lt;s.foo&gt;foo&lt;/s&gt;
+</p><p>&lt;s.foo&gt;s.foo&lt;/s.foo&gt;
+</p><p>&lt;sub-ID#1&gt;
+</p>
+!! end
+
 ###
 ### Special characters
 ###
@@ -16129,12 +16166,10 @@ a>b
 !! end
 
 
-# This fails in the PHP parser (see bug 40670,
-# https://bugzilla.wikimedia.org/show_bug.cgi?id=40670), so disabled for it.
+# This was a bug in the PHP parser (see bug 40670,
+# https://bugzilla.wikimedia.org/show_bug.cgi?id=40670)
 !! test
 Tag names followed by punctuation should not be recognized as tags
-!! options
-parsoid
 !! input
 <s.ome> text
 !! result
