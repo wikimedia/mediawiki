@@ -448,7 +448,7 @@ class Sanitizer {
 				# $params: String between element name and >
 				# $brace: Ending '>' or '/>'
 				# $rest: Everything until the next element of $bits
-				if ( preg_match( '!^(/?)(\\w+)([^>]*?)(/{0,1}>)([^<]*)$!', $x, $regs ) ) {
+				if ( preg_match( '!^(/?)([^\\s/>]+)([^>]*?)(/{0,1}>)([^<]*)$!', $x, $regs ) ) {
 					list( /* $qbar */, $slash, $t, $params, $brace, $rest ) = $regs;
 				} else {
 					$slash = $t = $params = $brace = $rest = null;
