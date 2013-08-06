@@ -79,6 +79,31 @@
 		assert.assertTrue( $content.is( ':hidden' ), 'after collapsing: content is hidden' );
 	} );
 
+	QUnit.test( 'mw-made-collapsible data added', 1, function ( assert ) {
+		var $collapsible;
+		$collapsible = prepareCollapsible(
+			'<div>' + loremIpsum + '</div>'
+		);
+		assert.equal( $collapsible.data( 'mw-made-collapsible' ), true, 'mw-made-collapsible data present' );
+	} );
+
+	QUnit.test( 'mw-collapsible added when missing', 1, function ( assert ) {
+		var $collapsible;
+		$collapsible = prepareCollapsible(
+			'<div>' + loremIpsum + '</div>'
+		);
+		assert.assertTrue( $collapsible.hasClass( 'mw-collapsible' ), 'mw-collapsible class present' );
+	} );
+
+	QUnit.test( 'mw-collapsed added when missing', 1, function ( assert ) {
+		var $collapsible;
+		$collapsible = prepareCollapsible(
+			'<div>' + loremIpsum + '</div>',
+			{ collapsed: true }
+		);
+		assert.assertTrue( $collapsible.hasClass( 'mw-collapsed' ), 'mw-collapsed class present' );
+	} );
+
 	QUnit.asyncTest( 'initial collapse (mw-collapsed class)', 2, function ( assert ) {
 		var $collapsible, $content;
 		$collapsible = prepareCollapsible(
