@@ -1825,7 +1825,7 @@ $section: the section number, zero-based, but section 0 is usually empty
 $showEditLinks: boolean describing whether this section has an edit link
 
 'ParserTestParser': Called when creating a new instance of Parser in
-maintenance/parserTests.inc.
+tests/parser/parserTest.inc.
 $parser: Parser object created
 
 'ParserTestGlobals': Allows to define globals for parser tests.
