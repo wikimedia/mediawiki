@@ -10292,7 +10292,7 @@ Expansion of multi-line templates in attribute values (bug 6255 sanity check 2)
 !! end
 
 ###
-### Parser hooks (see maintenance/parserTestsParserHook.php for the <tag> extension)
+### Parser hooks (see tests/parser/parserTestsParserHook.php for the <tag> extension)
 ###
 !! test
 Parser hook: empty input
@@ -10457,7 +10457,7 @@ array (
 !! end
 
 ###
-### (see maintenance/parserTestsStaticParserHook.php for the <statictag> extension)
+### (see tests/parser/parserTestsParserHook.php for the <statictag> extension)
 ###
 
 !! test
