@@ -156,9 +156,10 @@ class ExternalStore {
 	/**
 	 * Like insert() above, but does more of the work for us.
 	 * This function does not need a url param, it builds it by
-	 * itself. It also fails-over to the next possible clusters.
+	 * itself. It also fails-over to the next possible clusters
+	 * provided by $wgDefaultExternalStore.
 	 *
-	 * @param $data string
+	 * @param string $data
 	 * @param array $params Associative array of ExternalStoreMedium parameters
 	 * @return string|bool The URL of the stored data item, or false on error
 	 * @throws MWException
@@ -166,8 +167,23 @@ class ExternalStore {
 	public static function insertToDefault( $data, array $params = array() ) {
 		global $wgDefaultExternalStore;
 
+		return self::insertWithFallback( (array) $wgDefaultExternalStore, $data, $params );
+	}
+
+	/**
+	 * Like insert() above, but does more of the work for us.
+	 * This function does not need a url param, it builds it by
+	 * itself. It also fails-over to the next possible clusters
+	 * as provided in the first parameter.
+	 *
+	 * @param array $tryStores refer to $wgDefaultExternalStore
+	 * @param string $data
+	 * @param array $params Associative array of ExternalStoreMedium parameters
+	 * @return string|bool The URL of the stored data item, or false on error
+	 * @throws MWException
+	 */
+	public static function insertWithFallback( array $tryStores, $data, array $params = array() ) {
 		$error = false;
-		$tryStores = (array)$wgDefaultExternalStore;
 		while ( count( $tryStores ) > 0 ) {
 			$index = mt_rand( 0, count( $tryStores ) - 1 );
 			$storeUrl = $tryStores[$index];
