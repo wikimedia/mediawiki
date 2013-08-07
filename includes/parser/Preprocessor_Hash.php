@@ -287,9 +287,11 @@ class Preprocessor_Hash implements Preprocessor {
 				}
 				// Handle comments
 				if ( isset( $matches[2] ) && $matches[2] == '!--' ) {
-					// To avoid leaving blank lines, when a comment is both preceded
-					// and followed by a newline (ignoring spaces), trim leading and
-					// trailing spaces and one of the newlines.
+
+					// To avoid leaving blank lines, when a sequence of
+					// space-separated comments is both preceded and followed by
+					// a newline (ignoring spaces), then
+					// trim leading and trailing spaces and the trailing newline.
 
 					// Find the end
 					$endPos = strpos( $text, '-->', $i + 4 );
@@ -301,9 +303,24 @@ class Preprocessor_Hash implements Preprocessor {
 					} else {
 						// Search backwards for leading whitespace
 						$wsStart = $i ? ( $i - strspn( $revText, ' ', $lengthText - $i ) ) : 0;
+
 						// Search forwards for trailing whitespace
 						// $wsEnd will be the position of the last space (or the '>' if there's none)
 						$wsEnd = $endPos + 2 + strspn( $text, ' ', $endPos + 3 );
+
+						// Keep looking forward as long as we're finding more
+						// comments.
+						$comments = array( array( $wsStart, $wsEnd ) );
+						while ( substr( $text, $wsEnd + 1, 4 ) == '<!--' ) {
+							$c = strpos( $text, '-->', $wsEnd + 4 );
+							if ( $c === false ) {
+								break;
+							}
+							$c = $c + 2 + strspn( $text, ' ', $c + 3 );
+							$comments[] = array( $wsEnd + 1, $c );
+							$wsEnd = $c;
+						}
+
 						// Eat the line if possible
 						// TODO: This could theoretically be done if $wsStart == 0, i.e. for comments at
 						// the overall start. That's not how Sanitizer::removeHTMLcomments() did it, but
@@ -311,8 +328,6 @@ class Preprocessor_Hash implements Preprocessor {
 						if ( $wsStart > 0 && substr( $text, $wsStart - 1, 1 ) == "\n"
 							&& substr( $text, $wsEnd + 1, 1 ) == "\n" )
 						{
-							$startPos = $wsStart;
-							$endPos = $wsEnd + 1;
 							// Remove leading whitespace from the end of the accumulator
 							// Sanity check first though
 							$wsLength = $i - $wsStart;
@@ -322,6 +337,18 @@ class Preprocessor_Hash implements Preprocessor {
 							{
 								$accum->lastNode->value = substr( $accum->lastNode->value, 0, -$wsLength );
 							}
+
+							// Dump all but the last comment to the accumulator
+							foreach ( $comments as $j => $com ) {
+								$startPos = $com[0];
+								$endPos = $com[1] + 1;
+								if ( $j == ( count( $comments ) - 1) ) {
+									break;
+								}
+								$inner = substr( $text, $startPos, $endPos - $startPos);
+								$accum->addNodeWithText( 'comment', $inner );
+							}
+
 							// Do a line-start run next time to look for headings after the comment
 							$fakeLineStart = true;
 						} else {
