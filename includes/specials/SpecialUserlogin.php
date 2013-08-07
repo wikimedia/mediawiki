@@ -1301,18 +1301,7 @@ class LoginForm extends SpecialPage {
 			$wgCookieSecure = false;
 		}
 
-		// If either we don't trust PHP's entropy, or if we need
-		// to change cookie settings when logging in because of
-		// wpStickHTTPS, then change the session ID manually.
-		$cookieParams = session_get_cookie_params();
-		if ( wfCheckEntropy() && $wgCookieSecure == $cookieParams['secure'] ) {
-			session_regenerate_id( false );
-		} else {
-			$tmp = $_SESSION;
-			session_destroy();
-			wfSetupSession( MWCryptRand::generateHex( 32 ) );
-			$_SESSION = $tmp;
-		}
+		wfResetSessionID();
 	}
 
 	/**
