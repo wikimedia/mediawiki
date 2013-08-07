@@ -104,6 +104,7 @@ class PNGHandlerTest extends MediaWikiTestCase {
 	 * @param $filename String
 	 * @param $expected Array Expected standard metadata
 	 * @dataProvider provideGetIndependentMetaArray
+	 * @covers PNGHandler::getCommonMetaArray
 	 */
 	public function testGetIndependentMetaArray( $filename, $expected ) {
 		$file = $this->dataFile( $filename, 'image/png' );
