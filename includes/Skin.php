@@ -475,9 +475,10 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
+	 * @param bool $showHeading: Render the "Categories:" heading before a list of categories
 	 * @return string
 	 */
-	function getCategoryLinks() {
+	function getCategoryLinks( $showHeading = true ) {
 		global $wgUseCategoryBrowser;
 
 		$out = $this->getOutput();
@@ -498,9 +499,11 @@ abstract class Skin extends ContextSource {
 
 			$msg = $this->msg( 'pagecategories' )->numParams( count( $allCats['normal'] ) )->escaped();
 			$linkPage = wfMessage( 'pagecategorieslink' )->inContentLanguage()->text();
-			$s .= '<div id="mw-normal-catlinks" class="mw-normal-catlinks">' .
-				Linker::link( Title::newFromText( $linkPage ), $msg )
-				. $colon . '<ul>' . $t . '</ul>' . '</div>';
+			$s .= '<div id="mw-normal-catlinks" class="mw-normal-catlinks">';
+			if ( $showHeading ) {
+				$s .= Linker::link( Title::newFromText( $linkPage ), $msg ) . $colon;
+			}
+			$s .= '<ul>' . $t . '</ul>' . '</div>';
 		}
 
 		# Hidden categories
