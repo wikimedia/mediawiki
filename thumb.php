@@ -62,9 +62,15 @@ function wfThumbHandle404() {
 
 	# Set action base paths so that WebRequest::getPathInfo()
 	# recognizes the "X" as the 'title' in ../thumb_handler.php/X urls.
-	$wgArticlePath = false; # Don't let a "/*" article path clober our action path
+	# Note: If Custom per-extension repo paths are set, this may break.
+	$repo = RepoGroup::singleton()->getLocalRepo();
+	$oldArticlePath = $wgArticlePath;
+	$wgArticlePath = $repo->getZoneUrl( 'thumb' ) . '/$1';
 
 	$matches = WebRequest::getPathInfo();
+
+	$wgArticlePath = $oldArticlePath;
+
 	if ( !isset( $matches['title'] ) ) {
 		wfThumbError( 404, 'Could not determine the name of the requested thumbnail.' );
 		return;
