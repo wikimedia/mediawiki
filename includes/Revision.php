@@ -1205,35 +1205,7 @@ class Revision implements IDBAccessObject {
 
 		// If the text was fetched without an error, convert it
 		if ( $text !== false ) {
-			if ( in_array( 'gzip', $flags ) ) {
-				# Deal with optional compression of archived pages.
-				# This can be done periodically via maintenance/compressOld.php, and
-				# as pages are saved if $wgCompressRevisions is set.
-				$text = gzinflate( $text );
-			}
-
-			if ( in_array( 'object', $flags ) ) {
-				# Generic compressed storage
-				$obj = unserialize( $text );
-				if ( !is_object( $obj ) ) {
-					// Invalid object
-					wfProfileOut( __METHOD__ );
-					return false;
-				}
-				$text = $obj->getText();
-			}
-
-			global $wgLegacyEncoding;
-			if ( $text !== false && $wgLegacyEncoding
-				&& !in_array( 'utf-8', $flags ) && !in_array( 'utf8', $flags ) )
-			{
-				# Old revisions kept around in a legacy encoding?
-				# Upconvert on demand.
-				# ("utf8" checked for compatibility with some broken
-				#  conversion scripts 2008-12-30)
-				global $wgContLang;
-				$text = $wgContLang->iconv( $wgLegacyEncoding, 'UTF-8', $text );
-			}
+			$text = self::decompressRevisionText( $text, $flags );
 		}
 		wfProfileOut( __METHOD__ );
 		return $text;
@@ -1266,6 +1238,46 @@ class Revision implements IDBAccessObject {
 			}
 		}
 		return implode( ',', $flags );
+	}
+
+	/**
+	 * Re-converts revision text according to it's flags.
+	 *
+	 * @param $text Mixed: reference to a text
+	 * @param $flags array: compression flags
+	 * @return String|bool decompressed text, or false on failure
+	 */
+	public static function decompressRevisionText( $text, $flags ) {
+		if ( in_array( 'gzip', $flags ) ) {
+			# Deal with optional compression of archived pages.
+			# This can be done periodically via maintenance/compressOld.php, and
+			# as pages are saved if $wgCompressRevisions is set.
+			$text = gzinflate( $text );
+		}
+
+		if ( in_array( 'object', $flags ) ) {
+			# Generic compressed storage
+			$obj = unserialize( $text );
+			if ( !is_object( $obj ) ) {
+				// Invalid object
+				return false;
+			}
+			$text = $obj->getText();
+		}
+
+		global $wgLegacyEncoding;
+		if ( $text !== false && $wgLegacyEncoding
+			&& !in_array( 'utf-8', $flags ) && !in_array( 'utf8', $flags ) )
+		{
+			# Old revisions kept around in a legacy encoding?
+			# Upconvert on demand.
+			# ("utf8" checked for compatibility with some broken
+			#  conversion scripts 2008-12-30)
+			global $wgContLang;
+			$text = $wgContLang->iconv( $wgLegacyEncoding, 'UTF-8', $text );
+		}
+
+		return $text;
 	}
 
 	/**
