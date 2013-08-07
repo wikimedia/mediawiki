@@ -26,6 +26,7 @@ class SVGTest extends MediaWikiTestCase {
 	 * @param $filename String
 	 * @param $expected Array The expected independent metadata
 	 * @dataProvider providerGetIndependentMetaArray
+	 * @covers SvgHandler::getCommonMetaArray
 	 */
 	public function testGetIndependentMetaArray( $filename, $expected ) {
 		$file = $this->dataFile( $filename, 'image/svg+xml' );

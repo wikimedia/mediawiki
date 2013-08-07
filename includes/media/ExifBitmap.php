@@ -61,16 +61,18 @@ class ExifBitmapHandler extends BitmapHandler {
 				. $metadata['Software'][0][1] . ')';
 		}
 
+		$formatter = new FormatMetadata;
+
 		// ContactInfo also has to be dealt with specially
 		if ( isset( $metadata['Contact'] ) ) {
 			$metadata['Contact'] =
-				FormatMetadata::collapseContactInfo(
+				$formatter->collapseContactInfo(
 					$metadata['Contact'] );
 		}
 
 		foreach ( $metadata as &$val ) {
 			if ( is_array( $val ) ) {
-				$val = FormatMetadata::flattenArray( $val, 'ul', $avoidHtml );
+				$val = $formatter->flattenArrayReal( $val, 'ul', $avoidHtml );
 			}
 		}
 		$metadata['MEDIAWIKI_EXIF_VERSION'] = 1;
