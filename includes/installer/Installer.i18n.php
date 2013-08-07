@@ -12208,6 +12208,7 @@ $messages['lad'] = array(
 
 /** Luxembourgish (Lëtzebuergesch)
  * @author Robby
+ * @author Soued031
  * @author 아라
  */
 $messages['lb'] = array(
@@ -12361,10 +12362,10 @@ Spezifizéiert en anere Benotzernumm.',
 	'config-admin-password-blank' => 'Gitt e Passwuert fir den Adminstateur-Kont an.',
 	'config-admin-password-same' => "D'Passwuert däerf net dat selwecht si wéi de Benotzernumm.",
 	'config-admin-password-mismatch' => 'Déi zwee Passwierder Déi dir aginn stëmmen net iwwerteneen.',
-	'config-admin-email' => 'E-Mailadress:',
+	'config-admin-email' => 'E-Mail-Adress:',
 	'config-admin-error-user' => 'Interne Feeler beim uleeë vun engem Administrateur mam Numm "<nowiki>$1</nowiki>".',
 	'config-admin-error-password' => 'Interne Feeler beim Setze vum Passwuert fir den Admin "<nowiki>$1</nowiki>": <pre>$2</pre>',
-	'config-admin-error-bademail' => 'Dir hutt eng E-Mailadress aginn déi net valabel ass',
+	'config-admin-error-bademail' => 'Dir hutt eng E-Mail-Adress aginn déi net valabel ass',
 	'config-subscribe' => "Sech op d'[https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Ukënnegunge vun neie Versiounen] abonnéieren.",
 	'config-almost-done' => "Dir sidd bal fäerdeg!
 Dir kënnt elo déi Astellungen déi nach iwwreg sinn iwwersprangen an d'Wiki elo direkt installéieren.",

@@ -724,6 +724,12 @@ Y cyfrinair dros dro: $2",
 'changeemail-submit' => 'Newidier y cyfeiriad e-bost',
 'changeemail-cancel' => 'Dileer',
 
+# Special:ResetTokens
+'resettokens' => 'Ailosod tocynnau',
+'resettokens-legend' => 'Ailosod tocynnau',
+'resettokens-tokens' => 'Tocynnau:',
+'resettokens-token-label' => '$1 (gwerth presennol: $2)',
+
 # Edit page toolbar
 'bold_sample' => 'Testun cryf',
 'bold_tip' => 'Testun cryf',
@@ -1312,7 +1318,7 @@ Mae'r wybodaeth hon ar gael i'r cyhoedd.",
 'prefs-signature' => 'Llofnod',
 'prefs-dateformat' => 'Fformat dyddiad',
 'prefs-timeoffset' => 'Atred amser',
-'prefs-advancedediting' => 'Cyffredinol',
+'prefs-advancedediting' => 'Dewisiadau cyffredinol',
 'prefs-editor' => 'Golygydd',
 'prefs-preview' => 'Rhagolwg',
 'prefs-advancedrc' => 'Dewisiadau uwch',
@@ -1322,6 +1328,7 @@ Mae'r wybodaeth hon ar gael i'r cyhoedd.",
 'prefs-displayrc' => 'Dewisiadau arddangos',
 'prefs-displaysearchoptions' => 'Dewisiadau arddangos',
 'prefs-displaywatchlist' => 'Dewisiadau arddangos',
+'prefs-tokenwatchlist' => 'Tocyn',
 'prefs-diffs' => "Cymharu golygiadau ('gwahan')",
 
 # User preference: email validation using jQuery
@@ -1414,7 +1421,7 @@ Mae'r wybodaeth hon ar gael i'r cyhoedd.",
 'right-hideuser' => "Atal enw defnyddiwr rhag i'r cyhoedd ei weld",
 'right-ipblock-exempt' => 'Mynd heibio i flociau IP, blociau awtomatig a blociau amrediad',
 'right-proxyunbannable' => 'Mynd heibio i flociau awtomatig gan weinyddion dirprwyol',
-'right-unblockself' => 'Dad-flocio eu hunain',
+'right-unblockself' => 'Dad-flocio ei hunan',
 'right-protect' => 'Newid lefelau diogelu a golygu tudalennau a sgydol-ddiogelwyd',
 'right-editprotected' => 'Golygu tudalennau sydd wedi eu diogelu ond mai "{{int:protect-level-sysop}}"',
 'right-editsemiprotected' => 'Golygu tudalennau sydd wedi eu diogelu, ond "{{int:protect-level-autoconfirmed}}"',
@@ -1890,6 +1897,9 @@ Cofiwch chwilio am gysylltiadau eraill at nodyn a'u hystyried cyn ei ddileu.",
 'randompage' => 'Tudalen ar hap',
 'randompage-nopages' => 'Does dim tudalennau yn y {{PLURAL:$2|parth hwn|parth hwn|parthau hyn|parthau hyn|parthau hyn|parthau hyn}}: $1.',
 
+# Special:RandomInCategory
+'randomincategory' => "Tudalen ar hap o blith tudalennau'r categori",
+
 # Random redirect
 'randomredirect' => 'Tudalen ailgyfeirio ar hap',
 'randomredirect-nopages' => 'Does dim tudalennau ailgyfeirio yn y parth "$1".',
@@ -2100,8 +2110,9 @@ Mae angen parth lefel-uchaf o leiaf, er enghraifft "*.org".<br />
 # Special:ListGroupRights
 'listgrouprights' => 'Galluoedd grwpiau defnyddwyr',
 'listgrouprights-summary' => "Dyma restr o'r grwpiau defnyddwyr sydd i'w cael ar y wici hon, ynghyd â galluoedd aelodau'r gwahanol grwpiau. Cewch wybodaeth pellach am y gwahanol alluoedd ar y [[{{MediaWiki:Listgrouprights-helppage}}|dudalen gymorth]].",
-'listgrouprights-key' => '* <span class="listgrouprights-granted">Gallu sydd wedi ei roi</span>
-* <span class="listgrouprights-revoked">Gallu sydd wedi ei dynnu yn ei ôl</span>',
+'listgrouprights-key' => 'Allwedd:
+* <span class="listgrouprights-granted">Gallu sydd wedi ei roi</span>
+* <span class="listgrouprights-revoked">Gallu sydd wedi ei dynnu yn ôl</span>',
 'listgrouprights-group' => 'Grŵp',
 'listgrouprights-rights' => 'Galluoedd',
 'listgrouprights-helppage' => 'Help:Galluoedd yn ôl grŵp',
@@ -3287,7 +3298,7 @@ Cuddir y meysydd eraill trwy ragosodiad.
 'exif-compression-4' => 'Amgodio ffacs Grŵp 4 CCITT',
 
 'exif-copyrighted-true' => 'Hawlfraint',
-'exif-copyrighted-false' => 'Parth y cyhoedd',
+'exif-copyrighted-false' => 'Statws yr hawlfraint heb ei osod',
 
 'exif-unknowndate' => 'Dyddiad anhysbys',
 
@@ -3667,6 +3678,7 @@ Gallwch hefyd [[Special:EditWatchlist|ddefnyddio\'r rhestr arferol]].',
 'version-license' => 'Trwydded',
 'version-poweredby-credits' => "Mae'r wici hwn wedi'i nerthu gan '''[//www.mediawiki.org/ MediaWiki]''', hawlfraint © 2001 - $1 $2.",
 'version-poweredby-others' => 'eraill',
+'version-poweredby-translators' => 'cyfieithwyr translatewiki.net',
 'version-credits-summary' => 'Hoffem gydnabod cyfraniad y bobl canlynol i [[Special:Version|MediaWiki]].',
 'version-license-info' => "Meddalwedd rhydd yw MediaWiki; gallwch ei ddefnyddio a'i addasu yn ôl termau'r GNU General Public License a gyhoeddir gan Free Software Foundation; naill ai fersiwn 2 o'r Drwydded, neu unrhyw fersiwn diweddarach o'ch dewis.
 

@@ -3611,20 +3611,20 @@ la confirmación de les señes de corréu electrónicu:
 $5
 
 Esti códigu de confirmación caduca\'l $4.',
-'confirmemail_body_set' => 'Daquién, seique tu dende la IP $1, camudó les señes de corréu de
+'confirmemail_body_set' => 'Dalguién, vusté posiblemente, dende la IP $1, configuró el corréu de
 la cuenta "$2" a esta direición de corréu en {{SITENAME}}.
 
-Pa confirmar qu\'esta cuenta ye tuya daveres y reactivar les funciones
-de corréu en {{SITENAME}}, abri esti enllaz nel to navegador:
+Pa confirmar qu\'esta cuenta ye suya daveres y activar les funciones
+de corréu en {{SITENAME}}, abra esti enllaz nel navegador:
 
 $3
 
-Si la cuenta *nun* ye de to, calca nesti enllaz pa encaboxar
+Si la cuenta *nun* ye de so, siga esti enllaz pa encaboxar
 la confirmación de les señes de corréu electrónicu:
 
 $5
 
-Esti códigu de confirmación caduca\'l $4.',
+Esti códigu de confirmación caducará el $4.',
 'confirmemail_invalidated' => 'Confirmación de direición de corréu electrónicu encaboxada',
 'invalidateemail' => 'Encaboxar confirmación de corréu electrónicu',
 

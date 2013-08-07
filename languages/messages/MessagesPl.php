@@ -769,6 +769,7 @@ Nie zapomnij dostosować [[Special:Preferences|preferencji]].',
 'helplogin-url' => 'Help:Logowanie',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Pomoc z logowaniem]]',
 'createacct-join' => 'Wpisz poniżej swoje dane.',
+'createacct-another-join' => 'Wprowadź szczegóły nowego konta poniżej.',
 'createacct-emailrequired' => 'Adres e‐mail',
 'createacct-emailoptional' => 'Adres e-mail (opcjonalnie)',
 'createacct-email-ph' => 'Wpisz swój adres e-mail',
@@ -2137,6 +2138,13 @@ Sprawdź inne linki do szablonów, zanim usuniesz tę stronę.',
 'randompage' => 'Losowa strona',
 'randompage-nopages' => 'Brak stron w {{PLURAL:$2|przestrzeni nazw|przestrzeniach nazw:}} $1.',
 
+# Special:RandomInCategory
+'randomincategory' => 'Losowa strona w kategorii',
+'randomincategory-invalidcategory' => '"$1" nie jest prawidłową nazwą kategorii.',
+'randomincategory-nopages' => 'Nie ma żadnych stron w [[:Category:$1]].',
+'randomincategory-selectcategory' => 'Pobierz losową stronę z kategorii: $1 $2.',
+'randomincategory-selectcategory-submit' => 'Dalej',
+
 # Random redirect
 'randomredirect' => 'Losowe przekierowanie',
 'randomredirect-nopages' => 'Brak jakichkolwiek przekierowań w przestrzeni nazw „$1”.',
@@ -2150,7 +2158,7 @@ Sprawdź inne linki do szablonów, zanim usuniesz tę stronę.',
 'statistics-header-hooks' => 'Inne statystyki',
 'statistics-articles' => 'Strony',
 'statistics-pages' => 'Strony',
-'statistics-pages-desc' => 'Wszystkie strony na wiki, w tym strony dyskusji, przekierowania, itd.',
+'statistics-pages-desc' => 'Wszystkie strony na wiki, w tym strony dyskusji, przekierowania itd.',
 'statistics-files' => 'Przesłane pliki',
 'statistics-edits' => 'Edycje wykonane od powstania {{GRAMMAR:D.lp|{{SITENAME}}}}',
 'statistics-edits-average' => 'Średnia liczba edycji na stronę',
@@ -4008,6 +4016,7 @@ Możesz także użyć [[Special:EditWatchlist|standardowego edytora obserwowanyc
 'version-license' => 'Licencja',
 'version-poweredby-credits' => "Ta wiki korzysta z oprogramowania '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001‐$1 $2.",
 'version-poweredby-others' => 'inni',
+'version-poweredby-translators' => 'tłumacze translatewiki.net',
 'version-credits-summary' => 'Następujące osoby wniosły istotny wkład w rozwój oprogramowania [[Special:Version|MediaWiki]].',
 'version-license-info' => 'MediaWiki jest wolnym oprogramowaniem – możesz je dystrybuować i modyfikować zgodnie z warunkami licencji GNU General Public License opublikowanej przez Free Software Foundation w wersji 2 tej licencji lub (jeśli wolisz) dowolnej późniejszej.
 

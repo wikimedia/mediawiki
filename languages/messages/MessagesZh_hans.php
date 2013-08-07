@@ -2005,15 +2005,11 @@ $1',
 'morelinkstoimage' => '查看连接到这个文件的[[Special:WhatLinksHere/$1|更多链接]]。',
 'linkstoimage-redirect' => '$1（文件重定向）$2',
 'duplicatesoffile' => '以下{{PLURAL:$1|文件|$1个文件}}是本文件的副本（[[Special:FileDuplicateSearch/$2|更多细节]]）：',
-'sharedupload' => '该文件来自于$1，它可能在其它计划项目中被应用。',
-'sharedupload-desc-there' => '该文件来自于$1，它可能在其它计划项目中被应用。
-请参阅在[$2 文件描述页面]以了解其相关信息。',
-'sharedupload-desc-here' => '该文件来自于$1，它可能在其它计划项目中被应用。
-它在[$2 文件描述页面]那边上的描述于下面显示。',
-'sharedupload-desc-edit' => '该文件来自$1，它可能在其它计划项目中被使用。
-或许您可以在其[$2 文件描述页面]上编辑说明。',
-'sharedupload-desc-create' => '此文件来自$1并可能由其他项目使用。
-也许您想在其[$2 文件描述页面]编辑描述信息。',
+'sharedupload' => '本文件来自$1并可能被其它项目使用。',
+'sharedupload-desc-there' => '本文件来自$1并可能被其它项目使用。更多信息请见[$2 文件说明页面]。',
+'sharedupload-desc-here' => '本文件来自$1并可能被其它项目使用。其[$2 文件说明页面]上的说明显示在下面。',
+'sharedupload-desc-edit' => '本文件来自$1并可能被其它项目使用。也许你想要编辑其[$2 文件说明页面]上的说明。',
+'sharedupload-desc-create' => '本文件来自$1并可能被其他项目使用。也许你想要编辑其[$2 文件说明页面]上的说明。',
 'filepage-nofile' => '不存在此名称的文件。',
 'filepage-nofile-link' => '不存在此名称的文件，但您可以[$1 上传它]。',
 'uploadnewversion-linktext' => '上传该文件的新版本',
@@ -3753,10 +3749,9 @@ $3
 $5
 
 确认码会在$4过期。',
-'confirmemail_body_set' => '拥有IP地址$1的用户（可能是您）在{{SITENAME}}将账户“$2”的电子邮箱地址设置
-到了这个电子邮件地址。
+'confirmemail_body_set' => '拥有IP地址$1的用户（可能是您）在{{SITENAME}}将账户“$2”的电子邮箱地址设置为这个电子邮件地址。
 
-请确认这个账户是属于您的，并同时重新激活在{{SITENAME}}上的电子邮件功能。请
+请确认这个账户是属于您的，并同时激活在{{SITENAME}}上的电子邮件功能。请
 在浏览器中打开下面的链接：
 
 $3

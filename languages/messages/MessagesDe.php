@@ -3904,7 +3904,7 @@ Dieser Bestätigungscode ist gültig bis $4.',
 hat die E-Mail-Adresse des Benutzerkontos „$2“ auf {{SITENAME}} zu dieser E-Mail-Adresse abgeändert.
 
 Um zu bestätigen, dass dieses Benutzerkonto wirklich zu dir gehört
-und um die E-Mail-Funktionen auf {{SITENAME}} wieder zu aktivieren, öffne bitte den folgenden Link in deinem Browser:
+und um die E-Mail-Funktionen auf {{SITENAME}} zu aktivieren, öffne bitte den folgenden Link in deinem Browser:
 
 $3
 

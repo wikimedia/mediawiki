@@ -3741,15 +3741,15 @@ $5
 
 Questo codice di conferma scadrà automaticamente alle $4.',
 'confirmemail_body_set' => 'Qualcuno, probabilmente tu stesso dall\'indirizzo IP $1,
-ha impostato l\'indirizzo e-mail dell\'account "$2" su {{SITENAME}} indicando questo indirizzo e-mail.
+ha impostato l\'indirizzo email dell\'account "$2" su {{SITENAME}} indicando questo indirizzo email.
 
-Per confermare che l\'account ti appartiene veramente e riattivare le funzioni relative all\'invio
-di e-mail su {{SITENAME}}, apri il collegamento seguente con il tuo browser:
+Per confermare che l\'account ti appartiene veramente e attivare le funzioni relative all\'invio
+di email su {{SITENAME}}, apri il collegamento seguente con il tuo browser:
 
 $3
 
 Se l\'account *non* ti appartiene, segui questo collegamento
-per annullare la conferma dell\'indirizzo e-mail:
+per annullare la conferma dell\'indirizzo email:
 
 $5
 

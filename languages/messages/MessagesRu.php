@@ -16,6 +16,7 @@
  * @author Alexander Sigachov (alexander.sigachov@gmail.com)
  * @author Alexandr Efremov
  * @author Altai uul
+ * @author Am81
  * @author Amikeco
  * @author Amire80
  * @author Anonim.one
@@ -1061,6 +1062,9 @@ $2
 'changeemail-submit' => 'Изменить адрес',
 'changeemail-cancel' => 'Отмена',
 
+# Special:ResetTokens
+'resettokens' => 'Сбросить жетоны',
+
 # Edit page toolbar
 'bold_sample' => 'Полужирное начертание',
 'bold_tip' => 'Полужирное начертание',
@@ -1667,6 +1671,7 @@ $1",
 'prefs-displayrc' => 'Настройки отображения',
 'prefs-displaysearchoptions' => 'Настройки отображения',
 'prefs-displaywatchlist' => 'Настройки отображения',
+'prefs-tokenwatchlist' => 'Жетон',
 'prefs-diffs' => 'Разница версий',
 
 # User preference: email validation using jQuery

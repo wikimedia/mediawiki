@@ -1499,7 +1499,7 @@ $1",
 'powersearch-field' => '찾기',
 'powersearch-togglelabel' => '확인:',
 'powersearch-toggleall' => '모두',
-'powersearch-togglenone' => '없음',
+'powersearch-togglenone' => '모두 제외',
 'search-external' => '바깥 찾기',
 'searchdisabled' => '{{SITENAME}} 찾기 기능이 비활성화되어 있습니다.
 기능이 작동하지 않는 동안에는 구글(Google)을 이용해 찾을 수 있습니다.
@@ -3945,11 +3945,11 @@ $3
 $5
 
 인증 코드는 $4에 만료됩니다.',
-'confirmemail_body_set' => 'IP 주소 $1을 사용하는 사용자가
+'confirmemail_body_set' => '$1 IP 주소를 사용하는 사용자가
 {{SITENAME}}의 "$2" 계정의 이메일 주소를 지정하였습니다.
 
 이 계정이 당신의 계정이고 {{SITENAME}}에서 이메일 기능을
-다시 활성화하려면 아래 주소를 열어서 이메일 인증을 해 주세요:
+활성화하려면 아래 주소를 열어서 이메일 인증을 해 주세요:
 
 $3
 

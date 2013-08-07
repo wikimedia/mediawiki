@@ -3728,7 +3728,7 @@ Stu codece de conferme scade 'u \$4.",
 'confirmemail_body_set' => "Quacchedune, pò essere tu, da l'indirizze IP \$1,
 ha cangiate l'indirizze e-mail d'u cunde utende \"\$2\" cu st'indirizze e-mail sus a {{SITENAME}}.
 
-Pe confermà ca stu cunde ète avveramende 'u tune e pe reattivà 'a funzione email de {{SITENAME}}, iapre stu collegamende jndr'à 'u borwser tune:
+Pe confermà ca stu cunde ète avveramende 'u tune e pe attivà 'a funzione email de {{SITENAME}}, iapre stu collegamende jndr'à 'u browser tune:
 
 \$3
 
