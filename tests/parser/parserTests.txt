@@ -5443,6 +5443,7 @@ Magic Word: {{CURRENTDOW}}
 
 !! test
 Magic Word: {{CURRENTMONTH}}
+Current date is 1970-01-01T00:02:03Z
 !! input
 {{CURRENTMONTH}}
 !! result
@@ -5451,7 +5452,18 @@ Magic Word: {{CURRENTMONTH}}
 !! end
 
 !! test
+Magic Word: {{CURRENTMONTH1}}
+Current date is 1970-01-01T00:02:03Z
+!! input
+{{CURRENTMONTH1}}
+!! result
+<p>1
+</p>
+!! end
+
+!! test
 Magic Word: {{CURRENTMONTHABBREV}}
+Current date is 1970-01-01T00:02:03Z
 !! input
 {{CURRENTMONTHABBREV}}
 !! result
@@ -5461,6 +5473,7 @@ Magic Word: {{CURRENTMONTHABBREV}}
 
 !! test
 Magic Word: {{CURRENTMONTHNAME}}
+Current date is 1970-01-01T00:02:03Z
 !! input
 {{CURRENTMONTHNAME}}
 !! result
@@ -5470,6 +5483,7 @@ Magic Word: {{CURRENTMONTHNAME}}
 
 !! test
 Magic Word: {{CURRENTMONTHNAMEGEN}}
+Current date is 1970-01-01T00:02:03Z
 !! input
 {{CURRENTMONTHNAMEGEN}}
 !! result
@@ -5479,6 +5493,7 @@ Magic Word: {{CURRENTMONTHNAMEGEN}}
 
 !! test
 Magic Word: {{CURRENTTIME}}
+Current date is 1970-01-01T00:02:03Z
 !! input
 {{CURRENTTIME}}
 !! result
@@ -5487,7 +5502,18 @@ Magic Word: {{CURRENTTIME}}
 !! end
 
 !! test
+Magic Word: {{CURRENTHOUR}}
+Current date is 1970-01-01T00:02:03Z
+!! input
+{{CURRENTHOUR}}
+!! result
+<p>00
+</p>
+!! end
+
+!! test
 Magic Word: {{CURRENTWEEK}} (@bug 4594)
+Current date is 1970-01-01T00:02:03Z
 !! input
 {{CURRENTWEEK}}
 !! result
@@ -5497,11 +5523,59 @@ Magic Word: {{CURRENTWEEK}} (@bug 4594)
 
 !! test
 Magic Word: {{CURRENTYEAR}}
+Current date is 1970-01-01T00:02:03Z
 !! input
 {{CURRENTYEAR}}
 !! result
 <p>1970
 </p>
+!! end
+
+!! test
+Magic Word: {{CURRENTTIMESTAMP}}
+Current date is 1970-01-01T00:02:03Z
+!! input
+{{CURRENTTIMESTAMP}}
+!! result
+<p>19700101000203
+</p>
+!! end
+
+!! test
+Magic Words LOCAL (UTC)
+Local date is 1970-01-01T00:02:03Z
+!! input
+* {{LOCALMONTH}}
+* {{LOCALMONTH1}}
+* {{LOCALMONTHNAME}}
+* {{LOCALMONTHNAMEGEN}}
+* {{LOCALMONTHABBREV}}
+* {{LOCALDAY}}
+* {{LOCALDAY2}}
+* {{LOCALDAYNAME}}
+* {{LOCALYEAR}}
+* {{LOCALTIME}}
+* {{LOCALHOUR}}
+* {{LOCALWEEK}}
+* {{LOCALDOW}}
+* {{LOCALTIMESTAMP}}
+!! result
+<ul><li> 01
+</li><li> 1
+</li><li> January
+</li><li> January
+</li><li> Jan
+</li><li> 1
+</li><li> 01
+</li><li> Thursday
+</li><li> 1970
+</li><li> 00:02
+</li><li> 00
+</li><li> 1
+</li><li> 4
+</li><li> 19700101000203
+</li></ul>
+
 !! end
 
 !! test
@@ -5523,6 +5597,72 @@ title=[[User:Ævar Arnfjörð Bjarmason]]
 {{FULLPAGENAMEE}}
 !! result
 <p>User:%C3%86var_Arnfj%C3%B6r%C3%B0_Bjarmason
+</p>
+!! end
+
+!! test
+Magic Word: {{TALKSPACE}}
+!! options
+title=[[User:Ævar Arnfjörð Bjarmason]]
+!! input
+{{TALKSPACE}}
+!! result
+<p>User talk
+</p>
+!! end
+
+!! test
+Magic Word: {{TALKSPACE}}, same namespace
+!! options
+title=[[User talk:Ævar Arnfjörð Bjarmason]]
+!! input
+{{TALKSPACE}}
+!! result
+<p>User talk
+</p>
+!! end
+
+!! test
+Magic Word: {{TALKSPACEE}}
+!! options
+title=[[User:Ævar Arnfjörð Bjarmason]]
+!! input
+{{TALKSPACEE}}
+!! result
+<p>User_talk
+</p>
+!! end
+
+!! test
+Magic Word: {{SUBJECTSPACE}}
+!! options
+title=[[User talk:Ævar Arnfjörð Bjarmason]]
+!! input
+{{SUBJECTSPACE}}
+!! result
+<p>User
+</p>
+!! end
+
+!! test
+Magic Word: {{SUBJECTSPACE}}, same namespace
+!! options
+title=[[User:Ævar Arnfjörð Bjarmason]]
+!! input
+{{SUBJECTSPACE}}
+!! result
+<p>User
+</p>
+!! end
+
+!! test
+Magic Word: {{SUBJECTSPACEE}}
+!! options
+title=[[User talk:Ævar Arnfjörð Bjarmason]]
+!! input
+{{SUBJECTSPACEE}}
+!! result
+<p>User
 </p>
 !! end
 
@@ -5556,6 +5696,116 @@ title=[[User:Ævar Arnfjörð Bjarmason]]
 {{NAMESPACENUMBER}}
 !! result
 <p>2
+</p>
+!! end
+
+!! test
+Magic Word: {{SUBPAGENAME}}
+!! options
+title=[[Ævar Arnfjörð Bjarmason/sub ö]] subpage
+!! input
+{{SUBPAGENAME}}
+!! result
+<p>sub ö
+</p>
+!! end
+
+!! test
+Magic Word: {{SUBPAGENAMEE}}
+!! options
+title=[[Ævar Arnfjörð Bjarmason/sub ö]] subpage
+!! input
+{{SUBPAGENAMEE}}
+!! result
+<p>sub_%C3%B6
+</p>
+!! end
+
+!! test
+Magic Word: {{ROOTPAGENAME}}
+!! options
+title=[[Ævar Arnfjörð Bjarmason/sub/sub2]] subpage
+!! input
+{{ROOTPAGENAME}}
+!! result
+<p>Ævar Arnfjörð Bjarmason
+</p>
+!! end
+
+!! test
+Magic Word: {{ROOTPAGENAMEE}}
+!! options
+title=[[Ævar Arnfjörð Bjarmason/sub/sub2]] subpage
+!! input
+{{ROOTPAGENAMEE}}
+!! result
+<p>%C3%86var_Arnfj%C3%B6r%C3%B0_Bjarmason
+</p>
+!! end
+
+!! test
+Magic Word: {{BASEPAGENAME}}
+!! options
+title=[[Ævar Arnfjörð Bjarmason/sub]] subpage
+!! input
+{{BASEPAGENAME}}
+!! result
+<p>Ævar Arnfjörð Bjarmason
+</p>
+!! end
+
+!! test
+Magic Word: {{BASEPAGENAMEE}}
+!! options
+title=[[Ævar Arnfjörð Bjarmason/sub]] subpage
+!! input
+{{BASEPAGENAMEE}}
+!! result
+<p>%C3%86var_Arnfj%C3%B6r%C3%B0_Bjarmason
+</p>
+!! end
+
+!! test
+Magic Word: {{TALKPAGENAME}}
+!! options
+title=[[User:Ævar Arnfjörð Bjarmason]]
+!! input
+{{TALKPAGENAME}}
+!! result
+<p>User talk:Ævar Arnfjörð Bjarmason
+</p>
+!! end
+
+!! test
+Magic Word: {{TALKPAGENAMEE}}
+!! options
+title=[[User:Ævar Arnfjörð Bjarmason]]
+!! input
+{{TALKPAGENAMEE}}
+!! result
+<p>User_talk:%C3%86var_Arnfj%C3%B6r%C3%B0_Bjarmason
+</p>
+!! end
+
+!! test
+Magic Word: {{SUBJECTPAGENAME}}
+!! options
+title=[[User talk:Ævar Arnfjörð Bjarmason]]
+!! input
+{{SUBJECTPAGENAME}}
+!! result
+<p>User:Ævar Arnfjörð Bjarmason
+</p>
+!! end
+
+!! test
+Magic Word: {{SUBJECTPAGENAMEE}}
+!! options
+title=[[User talk:Ævar Arnfjörð Bjarmason]]
+!! input
+{{SUBJECTPAGENAMEE}}
+!! result
+<p>User:%C3%86var_Arnfj%C3%B6r%C3%B0_Bjarmason
 </p>
 !! end
 
@@ -5638,6 +5888,15 @@ Magic Word: {{SCRIPTPATH}}
 {{SCRIPTPATH}}
 !! result
 <p>/
+</p>
+!! end
+
+!! test
+Magic Word: {{STYLEPATH}}
+!! input
+{{STYLEPATH}}
+!! result
+<p>/skins
 </p>
 !! end
 
@@ -11886,22 +12145,25 @@ Special:Search page linking.
 !! end
 
 !! test
-Say the magic word
+Say the magic word of the default test title ('Parser test')
 !! input
 * {{PAGENAME}}
+* {{PAGENAMEE}}
+* {{FULLPAGENAME}}
+* {{FULLPAGENAMEE}}
 * {{BASEPAGENAME}}
+* {{BASEPAGENAMEE}}
 * {{SUBPAGENAME}}
 * {{SUBPAGENAMEE}}
 * {{ROOTPAGENAME}}
 * {{ROOTPAGENAMEE}}
-* {{BASEPAGENAME}}
-* {{BASEPAGENAMEE}}
 * {{TALKPAGENAME}}
 * {{TALKPAGENAMEE}}
 * {{SUBJECTPAGENAME}}
 * {{SUBJECTPAGENAMEE}}
 * {{NAMESPACEE}}
 * {{NAMESPACE}}
+* {{NAMESPACENUMBER}}
 * {{TALKSPACE}}
 * {{TALKSPACEE}}
 * {{SUBJECTSPACE}}
@@ -11909,7 +12171,9 @@ Say the magic word
 * {{Dynamic|{{NUMBEROFUSERS}}|{{NUMBEROFPAGES}}|{{CURRENTVERSION}}|{{CONTENTLANGUAGE}}|{{DIRECTIONMARK}}|{{CURRENTTIMESTAMP}}|{{NUMBEROFARTICLES}}}}
 !! result
 <ul><li> Parser test
+</li><li> Parser_test
 </li><li> Parser test
+</li><li> Parser_test
 </li><li> Parser test
 </li><li> Parser_test
 </li><li> Parser test
@@ -11922,6 +12186,7 @@ Say the magic word
 </li><li> Parser_test
 </li><li> 
 </li><li> 
+</li><li> 0
 </li><li> Talk
 </li><li> Talk
 </li><li> 
