@@ -1624,6 +1624,12 @@ Please check the comparison below to verify that this is what you want to do, an
 
 The reason given by $3 is ''$2''",
 
+# Login disabled
+'cantloginwhen'         => 'Cannot log in when $1',
+'cantlogoutwhen'        => 'Cannot log out when $1',
+'logouterror'           => 'Logout error',
+'autherrortitle'        => 'Authorization error',
+
 # History pages
 'viewpagelogs'           => 'View logs for this page',
 'nohistory'              => 'There is no edit history for this page.',

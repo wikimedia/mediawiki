@@ -46,6 +46,14 @@ class ApiLogin extends ApiBase {
 	 * is reached. The expiry is $this->mLoginThrottle.
 	 */
 	public function execute() {
+		$disableLogin = $this->getRequest()->getRequestData( 'disableLogin', false );
+		if ( $disableLogin !== false ) {
+			$reason = wfMessage( $disableLogin )->inLanguage( 'en' )->useDatabase( false )->plain();
+			$msg = wfMessage( 'cantloginwhen', array( $reason ) )
+				->inLanguage( 'en' )->useDatabase( false )->plain();
+			$this->dieUsage( $msg, 'Disabled' );
+		}
+
 		$params = $this->extractRequestParams();
 
 		$result = array();
@@ -266,6 +274,7 @@ class ApiLogin extends ApiBase {
 			array( 'code' => 'CreateBlocked', 'info' => 'The wiki tried to automatically create a new account for you, but your IP address has been blocked from account creation' ),
 			array( 'code' => 'Throttled', 'info' => 'You\'ve logged in too many times in a short time' ),
 			array( 'code' => 'Blocked', 'info' => 'User is blocked' ),
+			array( 'code' => 'Disabled', 'info' => 'Login is disabled for this request' ),
 		) );
 	}
 

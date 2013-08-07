@@ -42,6 +42,17 @@ class SpecialUserlogout extends UnlistedSpecialPage {
 			throw new HttpError( 400, $this->msg( 'suspicious-userlogout' ), $this->msg( 'loginerror' ) );
 		}
 
+		$disableLogin = $this->getRequest()->getRequestData( 'disableLogin', false );
+		if ( $disableLogin !== false ) {
+			throw new ErrorPageError(
+				'logouterror',
+				'cantlogoutwhen',
+				array(
+					$this->msg( $disableLogin )->plain(),
+				)
+			);
+		}
+
 		$this->setHeaders();
 		$this->outputHeader();
 

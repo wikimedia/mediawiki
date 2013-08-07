@@ -37,6 +37,7 @@
  */
 class WebRequest {
 	protected $data, $headers = array();
+	protected $extraData = array();
 
 	/**
 	 * Lazy-init response object
@@ -1174,6 +1175,64 @@ HTML;
 	public function setIP( $ip ) {
 		$this->ip = $ip;
 	}
+
+	/**
+	 * Fetch extra data associated with this request.
+	 * @param string $key
+	 * @param mixed $default
+	 * @return mixed|null
+	 * @since 1.22
+	 */
+	public function getRequestData( $key, $default = null ) {
+		return isset( $this->extraData[$key] ) ? $this->extraData[$key] : $default;
+	}
+
+	/**
+	 * Set extra data associated with this request.
+	 *
+	 * Data used by core includes:
+	 * - disableLogin: Prevent use of Special:Userlogin, Special:Userlogout, API action=login, etc.
+	 *     Value is a message key for a reason, e.g. "OAuth is in use". See the 'cantloginwhen' message.
+	 * - overrideSessionCookie: Override the session cookie, and set session.use_cookies off.
+	 *     Value is the session key that would be in the cookie.
+	 * - privateCookies: Store cookies in $wgMemc instead of giving them to the browser.
+	 *     Value is the memc key to use.
+	 *
+	 * @param string $key
+	 * @param mixed $value
+	 * @return void
+	 * @since 1.22
+	 */
+	public function setRequestData( $key, $value ) {
+		$this->extraData[$key] = $value;
+	}
+
+	/**
+	 * Sets the 'disableLogin' flag, and adds a hook to $wgExtensionFunctions
+	 * to make sure nothing else disabled logins too.
+	 * @param string $disableMsg Message key for 'disableLogin'
+	 * @param string $errorMsg Message key to use when logins are disabled by something else.
+	 * @return void
+	 * @since 1.22
+	 */
+	public function disableLogin( $disableMsg, $errorMsg ) {
+		global $wgExtensionFunctions;
+		$request = $this;
+		$wgExtensionFunctions[] = function () use ( $request, $errorMsg, $disableMsg ) {
+			$disableLogin = $request->getRequestData( 'disableLogin', $disableMsg );
+			if ( $disableLogin !== $disableMsg ) {
+				// Things die if this isn't set. Sigh.
+				global $wgTitle;
+				if ( !$wgTitle ) {
+					$wgTitle = SpecialPage::getTitleFor( 'Badtitle' );
+				}
+
+				$when = wfMessage( $disableLogin )->plain();
+				throw new ErrorPageError( 'autherrortitle', $errorMsg, $when );
+			}
+		};
+		$this->setRequestData( 'disableLogin', $disableMsg );
+	}
 }
 
 /**
@@ -1515,5 +1574,13 @@ class DerivativeRequest extends FauxRequest {
 
 	public function getIP() {
 		return $this->base->getIP();
+	}
+
+	public function getRequestData( $key ) {
+		return $this->base->getRequestData( $key );
+	}
+
+	public function setRequestData( $key, $data ) {
+		$this->base->setRequestData( $key, $data );
 	}
 }

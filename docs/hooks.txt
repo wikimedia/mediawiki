@@ -2001,6 +2001,9 @@ $title : Current Title object being displayed in search results.
 
 'SetupAfterCache': Called in Setup.php, after cache objects are set
 
+'SetupBeforeSetupSession': Called in Setup.php, after $wgContLang is set and
+before the session is created (if any).
+
 'ShowMissingArticle': Called when generating the output for a non-existent page.
 $article: The article object corresponding to the page
 
