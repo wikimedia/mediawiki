@@ -803,6 +803,12 @@ $wgMessageStructure = array(
 		'cantcreateaccounttitle',
 		'cantcreateaccount-text',
 	),
+	'logindisabled' => array(
+		'cantloginwhen',
+		'cantlogoutwhen',
+		'logouterror',
+		'autherrortitle',
+	),
 	'history' => array(
 		'viewpagelogs',
 		'nohistory',
@@ -3995,6 +4001,7 @@ future releases. Also note that since each list value is wrapped in a unique
 	'contentmodels'       => 'Content models',
 	'undo'                => '"Undo" feature',
 	'cantcreateaccount'   => 'Account creation failure',
+	'logindisabled'       => 'Per-request login disabling',
 	'history'             => 'History pages',
 	'history-feed'        => 'Revision feed',
 	'revdelete'           => 'Revision deletion',

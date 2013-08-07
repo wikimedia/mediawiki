@@ -33,6 +33,14 @@
 class ApiLogout extends ApiBase {
 
 	public function execute() {
+		$disableLogin = $this->getRequest()->getRequestData( 'disableLogin', false );
+		if ( $disableLogin !== false ) {
+			$reason = wfMessage( $disableLogin )->inLanguage( 'en' )->useDatabase( false )->plain();
+			$msg = wfMessage( 'cantlogoutwhen', array( $reason ) )
+				->inLanguage( 'en' )->useDatabase( false )->plain();
+			$this->dieUsage( $msg, 'Disabled' );
+		}
+
 		$user = $this->getUser();
 		$oldName = $user->getName();
 		$user->logout();
@@ -70,5 +78,11 @@ class ApiLogout extends ApiBase {
 
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/API:Logout';
+	}
+
+	public function getPossibleErrors() {
+		return array_merge( parent::getPossibleErrors(), array(
+			array( 'code' => 'Disabled', 'info' => 'Logout is disabled for this request' ),
+		) );
 	}
 }

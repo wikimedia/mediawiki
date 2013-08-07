@@ -152,11 +152,24 @@ class LoginForm extends SpecialPage {
 	 * @param $subPage string|null
 	 */
 	public function execute( $subPage ) {
+		$this->load();
+
+		if ( $this->mType !== 'signup' ) {
+			$disableLogin = $this->mRequest->getRequestData( 'disableLogin', false );
+			if ( $disableLogin !== false ) {
+				throw new ErrorPageError(
+					'loginerror',
+					'cantloginwhen',
+					array(
+						$this->msg( $disableLogin )->plain(),
+					)
+				);
+			}
+		}
+
 		if ( session_id() == '' ) {
 			wfSetupSession();
 		}
-
-		$this->load();
 
 		// Check for [[Special:Userlogin/signup]]. This affects form display and
 		// page title.

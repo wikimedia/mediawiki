@@ -1931,6 +1931,19 @@ See also:
 * $2 - reason or {{msg-mw|blockednoreason}}
 * $3 - username',
 
+# Login disabled
+'cantloginwhen' => 'Used as an error message when login is disabled for this request.
+* $1 - reason, e.g. "OAuth is in use"
+See also:
+* {{msg-mw|cantlogoutwhen}}',
+'cantlogoutwhen' => 'Used as an error message when logout is disabled for this request.
+* $1 - reason, e.g. "OAuth is in use"
+See also:
+* {{msg-mw|cantloginwhen}}
+* {{msg-mw|logouterror}}',
+'logouterror' => 'Used as the title of the error message {{msg-mw|cantlogoutwhen}}',
+'autherrortitle' => 'Used as the title of the error message when multiple extensions try to disable login',
+
 # History pages
 'viewpagelogs' => 'Link displayed in history of pages',
 'nohistory' => 'Message shown when there are no history to list. See [{{canonicalurl:x|action=history}} example history].

@@ -178,6 +178,12 @@ production.
   setcookie() or setrawcookie() should begin using this instead.
 * New hook WebResponseSetCookie, called from WebResponse::setcookie().
 * New hook ResetSessionID, called when the session id is reset.
+* New hook SetupBeforeSetupSession, called from Setup.php after $wgContLang is
+  initialized but before the session is loaded.
+* WebRequest has methods to store data on the request object. The intended use
+  is to have a place to store flags such as "override the session cookie" or
+  "disable login/logout because OAuth Authorization headers were used for this
+  request".
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one

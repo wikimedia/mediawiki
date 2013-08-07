@@ -510,6 +510,14 @@ wfProfileOut( $fname . '-memcached' );
 # # Most of the config is out, some might want to run hooks here.
 wfRunHooks( 'SetupAfterCache' );
 
+wfProfileIn( $fname . '-contLang' );
+
+$wgContLang = Language::factory( $wgLanguageCode );
+$wgContLang->initEncoding();
+$wgContLang->initContLang();
+
+wfProfileOut( $fname . '-contLang' );
+
 wfProfileIn( $fname . '-session' );
 
 # If session.auto_start is there, we can't touch session name
@@ -517,9 +525,60 @@ if ( !wfIniGetBool( 'session.auto_start' ) ) {
 	session_name( $wgSessionName ? $wgSessionName : $wgCookiePrefix . '_session' );
 }
 
+wfRunHooks( 'SetupBeforeSetupSession' );
+
+if ( $wgRequest->getRequestData( 'privateCookies', false ) !== false ) {
+	$_COOKIE = $wgMemc->get( $wgRequest->getRequestData( 'privateCookies' ) );
+	if ( !is_array( $_COOKIE ) ) {
+		$_COOKIE = array();
+	}
+
+	// Make sure a session 'cookie' is set
+	ini_set( 'session.use_cookies', 0 );
+	if ( !isset( $_COOKIE[session_name()] ) ) {
+		$_COOKIE[session_name()] = MWCryptRand::generateHex( 32 );
+		$wgMemc->set( $wgRequest->getRequestData( 'privateCookies' ), $cookies );
+	}
+
+	// Use hooks to update memc when cookies change
+	$wgHooks['WebResponseSetCookie'][] = function ( &$name, &$value, &$expiry, $options ) {
+		global $wgMemc, $wgRequest;
+		$key = $wgRequest->getRequestData( 'privateCookies' );
+		$cookies = $wgMemc->get( $key );
+		if ( !is_array( $cookies ) ) {
+			$cookies = array();
+		}
+		if ( $expiry === 0 || $expiry > time() ) {
+			$cookies[$options['prefix'] . $name] = $value;
+		} else {
+			unset( $cookies[$options['prefix'] . $name] );
+		}
+		$wgMemc->set( $key, $cookies );
+		return false;
+	};
+	$wgHooks['ResetSessionID'][] = function ( $old, $new ) {
+		global $wgRequest;
+		$params = session_get_cookie_params();
+		$wgRequest->response()->setcookie( session_name(), $new, $params['lifetime'], array(
+			'prefix' => '',
+			'path' => $params['path'],
+			'domain' => $params['domain'],
+			'secure' => $params['secure'],
+			'httpOnly' => $params['httponly'],
+		) );
+		return true;
+	};
+}
+
+if ( $wgRequest->getRequestData( 'overrideSessionCookie', false ) !== false ) {
+	ini_set( 'session.use_cookies', 0 );
+	$_COOKIE[session_name()] = $wgRequest->getRequestData( 'overrideSessionCookie' );
+}
+
 if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
 	if ( $wgRequest->checkSessionCookie() || isset( $_COOKIE[$wgCookiePrefix . 'Token'] ) ) {
-		wfSetupSession();
+		// The above may have disabled session cookies, so pull the value explicitly
+		wfSetupSession( isset( $_COOKIE[session_name()] ) ? $_COOKIE[session_name()] : null );
 		$wgSessionStarted = true;
 	} else {
 		$wgSessionStarted = false;
@@ -528,10 +587,6 @@ if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
 
 wfProfileOut( $fname . '-session' );
 wfProfileIn( $fname . '-globals' );
-
-$wgContLang = Language::factory( $wgLanguageCode );
-$wgContLang->initEncoding();
-$wgContLang->initContLang();
 
 // Now that variant lists may be available...
 $wgRequest->interpolateTitle();
