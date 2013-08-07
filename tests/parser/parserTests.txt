@@ -866,11 +866,11 @@ Non-html5 tags should be accepted
 !! end
 
 !! test
-<wbr> isn't (yet) valid wikitext (bug 52468)
+<wbr> is valid wikitext (bug 52468)
 !! input
 <wbr>
 !! result
-<p>&lt;wbr&gt;
+<p><wbr />
 </p>
 !! end
 
