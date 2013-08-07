@@ -177,6 +177,7 @@ production.
 * WebResponse::setcookie is much more featureful. Callers using PHP's
   setcookie() or setrawcookie() should begin using this instead.
 * New hook WebResponseSetCookie, called from WebResponse::setcookie().
+* New hook ResetSessionID, called when the session id is reset.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one

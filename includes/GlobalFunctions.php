@@ -3306,6 +3306,27 @@ function wfFixSessionID() {
 }
 
 /**
+ * Reset the session_id
+ * @since 1.22
+ */
+function wfResetSessionID() {
+	global $wgCookieSecure;
+	$oldSessionId = session_id();
+	$cookieParams = session_get_cookie_params();
+	if ( wfCheckEntropy() && $wgCookieSecure == $cookieParams['secure'] ) {
+		session_regenerate_id( false );
+	} else {
+		$tmp = $_SESSION;
+		session_destroy();
+		wfSetupSession( MWCryptRand::generateHex( 32 ) );
+		$_SESSION = $tmp;
+	}
+	$newSessionId = session_id();
+	wfRunHooks( 'ResetSessionID', array( $oldSessionId, $newSessionId ) );
+}
+
+
+/**
  * Initialise php session
  *
  * @param $sessionId Bool
