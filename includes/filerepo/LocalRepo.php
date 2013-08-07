@@ -171,13 +171,13 @@ class LocalRepo extends FileRepo {
 		if ( $cachedValue === ' ' || $cachedValue === '' ) {
 			// Does not exist
 			return false;
-		} elseif ( strval( $cachedValue ) !== '' ) {
+		} elseif ( strval( $cachedValue ) !== '' && $cachedValue !== ' PURGED' ) {
 			return Title::newFromText( $cachedValue, NS_FILE );
 		} // else $cachedValue is false or null: cache miss
 
 		$id = $this->getArticleID( $title );
 		if ( !$id ) {
-			$wgMemc->set( $memcKey, " ", $expiry );
+			$wgMemc->add( $memcKey, " ", $expiry );
 			return false;
 		}
 		$dbr = $this->getSlaveDB();
@@ -190,10 +190,10 @@ class LocalRepo extends FileRepo {
 
 		if ( $row && $row->rd_namespace == NS_FILE ) {
 			$targetTitle = Title::makeTitle( $row->rd_namespace, $row->rd_title );
-			$wgMemc->set( $memcKey, $targetTitle->getDBkey(), $expiry );
+			$wgMemc->add( $memcKey, $targetTitle->getDBkey(), $expiry );
 			return $targetTitle;
 		} else {
-			$wgMemc->set( $memcKey, '', $expiry );
+			$wgMemc->add( $memcKey, '', $expiry );
 			return false;
 		}
 	}
@@ -347,7 +347,11 @@ class LocalRepo extends FileRepo {
 		global $wgMemc;
 		$memcKey = $this->getSharedCacheKey( 'image_redirect', md5( $title->getDBkey() ) );
 		if ( $memcKey ) {
-			$wgMemc->delete( $memcKey );
+			// Set a temporary value for the cache key, to ensure
+			// that this value stays purged long enough so that
+			// it isn't refreshed with a stale value due to a
+			// lagged slave.
+			$wgMemc->set( $memcKey, ' PURGED', 12 );
 		}
 	}
 }
