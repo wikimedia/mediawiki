@@ -209,11 +209,11 @@ class PreprocessorTest extends MediaWikiTestCase {
 			array( "== h ==  <!--c1-->  <!--c2--><!--c3-->  ", "<root><h level=\"2\" i=\"1\">== h ==  <comment>&lt;!--c1--&gt;</comment>  <comment>&lt;!--c2--&gt;</comment><comment>&lt;!--c3--&gt;</comment>  </h></root>" ),
 			array( "== h ==  <!--c1--><!--c2-->  <!--c3-->  ", "<root><h level=\"2\" i=\"1\">== h ==  <comment>&lt;!--c1--&gt;</comment><comment>&lt;!--c2--&gt;</comment>  <comment>&lt;!--c3--&gt;</comment>  </h></root>" ),
 			array( "== h ==  <!--c1-->  <!--c2-->  <!--c3-->  ", "<root><h level=\"2\" i=\"1\">== h ==  <comment>&lt;!--c1--&gt;</comment>  <comment>&lt;!--c2--&gt;</comment>  <comment>&lt;!--c3--&gt;</comment>  </h></root>" ),
+			array( "== h ==<!--c1--> 	<!--c2-->", "<root><h level=\"2\" i=\"1\">== h ==<comment>&lt;!--c1--&gt;</comment> 	<comment>&lt;!--c2--&gt;</comment></h></root>" ),
+			array( "== h == 	<!--c1--> 	<!--c2-->", "<root><h level=\"2\" i=\"1\">== h == 	<comment>&lt;!--c1--&gt;</comment> 	<comment>&lt;!--c2--&gt;</comment></h></root>" ),
+			array( "== h ==<!--c1--> 	<!--c2--> 	", "<root><h level=\"2\" i=\"1\">== h ==<comment>&lt;!--c1--&gt;</comment> 	<comment>&lt;!--c2--&gt;</comment> 	</h></root>" ),
 
 			/* These are not working: */
-			array( "== h ==<!--c1--> 	<!--c2-->", "<root>== h ==<comment>&lt;!--c1--&gt;</comment> 	<comment>&lt;!--c2--&gt;</comment></root>" ),
-			array( "== h == 	<!--c1--> 	<!--c2-->", "<root>== h == 	<comment>&lt;!--c1--&gt;</comment> 	<comment>&lt;!--c2--&gt;</comment></root>" ),
-			array( "== h ==<!--c1--> 	<!--c2--> 	", "<root>== h ==<comment>&lt;!--c1--&gt;</comment> 	<comment>&lt;!--c2--&gt;</comment> 	</root>" ),
 			array( "== h == x <!--c1--><!--c2--><!--c3-->  ", "<root>== h == x <comment>&lt;!--c1--&gt;</comment><comment>&lt;!--c2--&gt;</comment><comment>&lt;!--c3--&gt;</comment>  </root>" ),
 			array( "== h ==<!--c1--> x <!--c2--><!--c3-->  ", "<root>== h ==<comment>&lt;!--c1--&gt;</comment> x <comment>&lt;!--c2--&gt;</comment><comment>&lt;!--c3--&gt;</comment>  </root>" ),
 			array( "== h ==<!--c1--><!--c2--><!--c3--> x ", "<root>== h ==<comment>&lt;!--c1--&gt;</comment><comment>&lt;!--c2--&gt;</comment><comment>&lt;!--c3--&gt;</comment> x </root>" ),
