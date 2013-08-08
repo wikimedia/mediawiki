@@ -112,16 +112,14 @@
 		mw.loader.using( 'jquery.chosen', function () {
 			var $toConvert,
 			$converted;
-			$toConvert = $( 'table .mw-chosen' );
-			if ( $toConvert.length ) {
+			$( 'table .mw-chosen' ).each( function () {
 				$converted = convertCheckboxesToMulti( $toConvert, 'table' );
 				$converted.find( '.htmlform-chzn-select' ).chosen( { width: 'auto' } );
-			}
-			$toConvert = $( 'div .mw-chosen' );
-			if ( $toConvert.length ) {
+			} );
+			$( 'div .mw-chosen' ).each( function () {
 				$converted = convertCheckboxesToMulti( $toConvert, 'div' );
 				$converted.find( '.htmlform-chzn-select' ).chosen( { width: 'auto' } );
-			}
+			} );
 		} );
 	}
 
