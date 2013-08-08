@@ -103,8 +103,7 @@
 		$fieldLabelText.text( $oldContainer.find( '.mw-label label' ).text() );
 		$fieldLabel.append( $fieldLabelText );
 		$container.prepend( $fieldLabel );
-		$oldContainer.parent().append( $container );
-		$oldContainer.remove();
+		$oldContainer.replaceWith( $container );
 		return $container;
 	}
 
