@@ -1989,6 +1989,13 @@ Husk at kontrollere for andre henvisninger til skabelonerne før de slettes.',
 'randompage' => 'Tilfældig side',
 'randompage-nopages' => 'Der er ingen sider i {{PLURAL:$2|navnerummet|disse navnerum:}} $1.',
 
+# Special:RandomInCategory
+'randomincategory' => 'Tilfældig side i kategori',
+'randomincategory-invalidcategory' => '"$1" er ikke et gyldigt kategorinavn.',
+'randomincategory-nopages' => 'Der er ingen sider i [[:Category:$1]].',
+'randomincategory-selectcategory' => 'Få tilfældig side fra kategori: $1 $2.',
+'randomincategory-selectcategory-submit' => 'Gå til',
+
 # Random redirect
 'randomredirect' => 'Tilfældige henvisninger',
 'randomredirect-nopages' => 'Der er ingen omdirigeringer i navnerummet $1.',
@@ -2025,6 +2032,7 @@ En side behandles som en side med en flertydig titel hvis den bruger en skabelon
 'pageswithprop-text' => 'Denne side viser en liste over sider, der har en bestemt sideegenskab.',
 'pageswithprop-prop' => 'Egenskabsnavn:',
 'pageswithprop-submit' => 'Vis',
+'pageswithprop-prophidden-long' => 'lang tekst egenskabsværdien skjult ($1 KB)',
 'pageswithprop-prophidden-binary' => 'binære egenskabsværdien skjult ($1 KB)',
 
 'doubleredirects' => 'Dobbelte omdirigeringer',
@@ -3638,15 +3646,15 @@ $5
 
 Denne bekræftelseskode udløber $4',
 'confirmemail_body_set' => 'En person, sandsynligvis dig, har fra IP-adressen $1,
-angivet denne e-mail-adresse til kontoen "$2" på {{SITENAME}}.
+angivet denne e-mailadresse til kontoen "$2" på {{SITENAME}}.
 
-For at bekræfte, at denne konto virkelig tilhører dig og genaktivere
-e-mail-funktioner på {{SITENAME}}, åbn dette link i din browser:
+For at bekræfte, at denne konto virkelig tilhører dig og aktivere
+e-mailfunktionerne på {{SITENAME}}, åbn dette link i din browser:
 
 $3
 
-Hvis kontoen ikke *ikke* tilhører dig, så følg dette link
-for at annullere e-mail-adressens bekræftelse:
+Hvis kontoen *ikke* tilhører dig, så følg dette link
+for at annullere e-mailadressens bekræftelse:
 
 $5
 
@@ -3768,6 +3776,7 @@ Du kan også [[Special:EditWatchlist|bruge standard editoren]].',
 'version-license' => 'Licens',
 'version-poweredby-credits' => "Denne wiki er drevet af '''[//www.mediawiki.org/ MediaWiki ]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'andre',
+'version-poweredby-translators' => 'translatewiki.net oversættere',
 'version-credits-summary' => 'Vi vil gerne anerkende følgende personer for deres bidrag til [[Special:Version|MediaWiki]].',
 'version-license-info' => 'MediaWiki er fri software; du kan redistribuere det og/eller ændre det under betingelserne i GNU General Public License som offentliggjort af Free Software Foundation; enten version 2 af licensen eller (efter eget valg) enhver senere version. 
 

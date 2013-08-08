@@ -4188,8 +4188,8 @@ W przeciwnym wypadku można użyć prostego formularza poniżej. Komentarz zosta
 'feedback-error3' => 'Błąd – brak odpowiedzi API',
 'feedback-thanks' => 'Dziękujemy! Twoja opinia została opublikowana na stronie "[$2 $1]".',
 'feedback-close' => 'Gotowe',
-'feedback-bugcheck' => 'Świetnie! Tylko sprawdź, czy nie jest już jednym ze [$1 znanych błędów].',
-'feedback-bugnew' => '{{GENDER:|Sprawdziłem|Sprawdziłam}}. Zgłoś nowy błąd',
+'feedback-bugcheck' => 'Świetnie! Tylko sprawdź, czy nie jest to jeden z już [$1 znanych błędów].',
+'feedback-bugnew' => 'Sprawdziłam(łem). Zgłoś nowy błąd',
 
 # Search suggestions
 'searchsuggest-search' => 'Szukaj',

@@ -19,6 +19,7 @@
  * @author Farras
  * @author Geitost
  * @author Gombang
+ * @author Ilham151096
  * @author Irwangatot
  * @author IvanLanin
  * @author Iwan Novirion
@@ -785,7 +786,7 @@ Perhatikan bahwa beberapa halaman mungkin masih terus menunjukkan bahwa Anda mas
 'externaldberror' => 'Telah terjadi kesalahan otentikasi basis data eksternal atau Anda tidak diizinkan melakukan kemaskini terhadap akun eksternal Anda.',
 'login' => 'Masuk log',
 'nav-login-createaccount' => 'Masuk log / buat akun',
-'loginprompt' => "Anda harus mengaktifkan ''cookies'' untuk dapat masuk log ke {{SITENAME}}.",
+'loginprompt' => 'Anda harus mengaktifkan kuki untuk dapat masuk log ke {{SITENAME}}.',
 'userlogin' => 'Masuk log / buat akun',
 'userloginnocreate' => 'Masuk log',
 'logout' => 'Keluar log',
@@ -827,8 +828,8 @@ Silakan tentukan nama yang lain.',
 'loginerror' => 'Kesalahan masuk log',
 'createacct-error' => 'Pembuatan akun gagal',
 'createaccounterror' => 'Tidak dapat membuat akun: $1',
-'nocookiesnew' => "Akun pengguna telah dibuat, tetapi Anda belum masuk log. {{SITENAME}} menggunakan ''cookies'' untuk log pengguna. ''Cookies'' pada penjelajah web Anda dimatikan. Silakan aktifkan dan masuk log kembali dengan nama pengguna dan kata sandi Anda.",
-'nocookieslogin' => "{{SITENAME}} menggunakan ''cookies'' untuk log penggunanya. ''Cookies'' pada penjelajah web Anda dimatikan. Silakan aktifkan dan coba lagi.",
+'nocookiesnew' => 'Akun pengguna telah dibuat, tetapi Anda belum masuk log. {{SITENAME}} menggunakan kuki untuk log pengguna. Kuki pada peramban web Anda dinonaktifkan. Silakan aktifkan dan masuk log kembali dengan nama pengguna dan kata sandi Anda.',
+'nocookieslogin' => '{{SITENAME}} menggunakan kuki untuk log penggunanya. Kuki pada peramban web Anda dimatikan. Silakan aktifkan dan coba lagi.',
 'nocookiesfornew' => 'Akun pengguna tidak dibuat karena kami tidak dapat memastikan sumbernya.
 Pastikan Anda telah mengaktifkan kuki, lalu muat ulang halaman ini dan coba lagi.',
 'nocookiesforlogin' => '{{int:nocookieslogin}}',

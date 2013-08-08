@@ -940,6 +940,14 @@ Midlertidig passord: $2',
 'changeemail-submit' => 'Endre e-post',
 'changeemail-cancel' => 'Avbryt',
 
+# Special:ResetTokens
+'resettokens' => 'Nullstill merker',
+'resettokens-no-tokens' => 'Det finnes ingen merker å nullstille.',
+'resettokens-legend' => 'Nullstill merker',
+'resettokens-tokens' => 'Merker:',
+'resettokens-done' => 'Nullstilling av merker.',
+'resettokens-resetbutton' => 'Nullstill valgte merker',
+
 # Edit page toolbar
 'bold_sample' => 'Fet tekst',
 'bold_tip' => 'Fet tekst',
@@ -1531,7 +1539,7 @@ Den kan maks inneholde $1 {{PLURAL:$1|tegn|tegn}}.',
 'prefs-signature' => 'Signatur',
 'prefs-dateformat' => 'Datoformat',
 'prefs-timeoffset' => 'Tidsforskyvning',
-'prefs-advancedediting' => 'Generelt',
+'prefs-advancedediting' => 'Generelle valg',
 'prefs-editor' => 'Tekstbehandling',
 'prefs-preview' => 'Forhåndsvisning',
 'prefs-advancedrc' => 'Avanserte alternativ',
@@ -1541,6 +1549,7 @@ Den kan maks inneholde $1 {{PLURAL:$1|tegn|tegn}}.',
 'prefs-displayrc' => 'Visningsalternativer',
 'prefs-displaysearchoptions' => 'Visningsalternativer',
 'prefs-displaywatchlist' => 'Visningsalternativer',
+'prefs-tokenwatchlist' => 'Merke',
 'prefs-diffs' => 'Forskjeller',
 
 # User preference: email validation using jQuery
