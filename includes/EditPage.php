@@ -3140,9 +3140,9 @@ HTML
 			'<h2 id="mw-previewheader">' . wfMessage( 'preview' )->escaped() . "</h2>" .
 			$wgOut->parse( $note, true, /* interface */true ) . $conflict . "</div>\n";
 
-		$pageLang = $this->mTitle->getPageLanguage();
-		$attribs = array( 'lang' => $pageLang->getCode(), 'dir' => $pageLang->getDir(),
-			'class' => 'mw-content-' . $pageLang->getDir() );
+		$pageViewLang = $this->mTitle->getPageViewLanguage();
+		$attribs = array( 'lang' => $pageViewLang->getHtmlCode(), 'dir' => $pageViewLang->getDir(),
+			'class' => 'mw-content-' . $pageViewLang->getDir() );
 		$previewHTML = Html::rawElement( 'div', $attribs, $previewHTML );
 
 		wfProfileOut( __METHOD__ );
