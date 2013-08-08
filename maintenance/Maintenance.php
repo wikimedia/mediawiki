@@ -453,11 +453,11 @@ abstract class Maintenance {
 	 */
 	public function runChild( $maintClass, $classFile = null ) {
 		// Make sure the class is loaded first
-		if ( !MWInit::classExists( $maintClass ) ) {
+		if ( !class_exists( $maintClass ) ) {
 			if ( $classFile ) {
 				require_once $classFile;
 			}
-			if ( !MWInit::classExists( $maintClass ) ) {
+			if ( !class_exists( $maintClass ) ) {
 				$this->error( "Cannot spawn child: $maintClass" );
 			}
 		}
@@ -1171,7 +1171,7 @@ abstract class Maintenance {
 	 * @return bool
 	 */
 	public static function posix_isatty( $fd ) {
-		if ( !MWInit::functionExists( 'posix_isatty' ) ) {
+		if ( !function_exists( 'posix_isatty' ) ) {
 			return !$fd;
 		} else {
 			return posix_isatty( $fd );

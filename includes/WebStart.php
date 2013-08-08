@@ -91,9 +91,6 @@ if ( $IP === false ) {
 	}
 }
 
-# Get MWInit class
-require_once "$IP/includes/Init.php";
-
 # Start the autoloader, so that extensions can derive classes from core files
 require_once "$IP/includes/AutoLoader.php";
 

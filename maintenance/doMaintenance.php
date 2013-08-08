@@ -53,8 +53,6 @@ $maintenance->setup();
 // to $maintenance->mSelf. Keep that here for b/c
 $self = $maintenance->getName();
 
-# Get the MWInit class
-require_once "$IP/includes/Init.php";
 # Start the autoloader, so that extensions can derive classes from core files
 require_once "$IP/includes/AutoLoader.php";
 # Stub the profiler
@@ -68,7 +66,7 @@ if ( file_exists( "$IP/StartProfiler.php" ) ) {
 
 // Some other requires
 require_once "$IP/includes/Defines.php";
-require_once MWInit::compiledPath( 'includes/DefaultSettings.php' );
+require_once "$IP/includes/DefaultSettings.php";
 
 # Load composer's autoloader if present
 if ( is_readable( "$IP/vendor/autoload.php" ) ) {
@@ -86,7 +84,7 @@ if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 		# Maybe a hook?
 		global $cluster;
 		$cluster = 'pmtpa';
-		require MWInit::interpretedPath( '../wmf-config/wgConf.php' );
+		require "$IP/../wmf-config/wgConf.php";
 	}
 	// Require the configuration (probably LocalSettings.php)
 	require $maintenance->loadSettings();
@@ -95,7 +93,7 @@ if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 if ( $maintenance->getDbType() === Maintenance::DB_ADMIN &&
 	is_readable( "$IP/AdminSettings.php" ) )
 {
-	require MWInit::interpretedPath( 'AdminSettings.php' );
+	require "$IP/AdminSettings.php";
 }
 
 if ( $maintenance->getDbType() === Maintenance::DB_NONE ) {
@@ -105,7 +103,7 @@ if ( $maintenance->getDbType() === Maintenance::DB_NONE ) {
 }
 $maintenance->finalSetup();
 // Some last includes
-require_once MWInit::compiledPath( 'includes/Setup.php' );
+require_once "$IP/includes/Setup.php";
 
 // Much much faster startup than creating a title object
 $wgTitle = null;
