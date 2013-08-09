@@ -4979,7 +4979,8 @@ Parameters:
 * $1 - target username
 * $2 - email subject',
 'emailsent' => 'Title of [[Special:EmailUser]] when it says you it sent an email',
-'emailsenttext' => 'When you send an e-mail, [[Special:EmailUser]] says you this (Your email has been sent).',
+'emailsenttext' => "Confirmation page: when you send an e-mail, [[Special:EmailUser]] says you this (Your email has been sent).
+The recipient's username is available as parameter $1 for local customisations.",
 'emailuserfooter' => 'This message is appended to every email sent through the "Email user" function. Parameters:
 * $1 - username of the sender
 * $2 - username of the recipient',
