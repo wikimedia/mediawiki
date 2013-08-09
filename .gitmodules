@@ -469,3 +469,6 @@
 [submodule "extensions/CirrusSearch"]
 	path = extensions/CirrusSearch
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/CirrusSearch.git
+[submodule "extensions/DPLforum"]
+	path = extensions/DPLforum
+	url = https://git.wikimedia.org/git/mediawiki/extensions/DPLforum.git
