@@ -38,6 +38,7 @@ sftp-config.json
 /AdminSettings.php
 /LocalSettings.php
 /StartProfiler.php
+*.dblist
 
 # Building & testing
 node_modules/
