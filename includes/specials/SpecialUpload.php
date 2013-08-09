@@ -93,7 +93,6 @@ class SpecialUpload extends SpecialPage {
 		if ( !$this->mDesiredDestName && $request->getFileName( 'wpUploadFile' ) !== null ) {
 			$this->mDesiredDestName = $request->getFileName( 'wpUploadFile' );
 		}
-		$this->mComment = $request->getText( 'wpUploadDescription' );
 		$this->mLicense = $request->getText( 'wpLicense' );
 
 		$this->mDestWarningAck = $request->getText( 'wpDestFileWarningAck' );
@@ -104,6 +103,14 @@ class SpecialUpload extends SpecialPage {
 		$this->mCopyrightSource = $request->getText( 'wpUploadSource' );
 
 		$this->mForReUpload = $request->getBool( 'wpForReUpload' ); // updating a file
+
+		$commentDefault = '';
+		$commentMsg = wfMessage( 'upload-default-description' )->inContentLanguage();
+		if ( !$this->mForReUpload && !$commentMsg->isDisabled() ) {
+			$commentDefault = $commentMsg->plain();
+		}
+		$this->mComment = $request->getText( 'wpUploadDescription', $commentDefault );
+
 		$this->mCancelUpload = $request->getCheck( 'wpCancelUpload' )
 			|| $request->getCheck( 'wpReUpload' ); // b/w compat
 

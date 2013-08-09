@@ -3256,6 +3256,7 @@ Text displayed when uploading a file using [[Special:Upload]].",
 'upload-permitted' => 'Used in [[Special:Upload]].',
 'upload-preferred' => 'Used in [[Special:Upload]].',
 'upload-prohibited' => 'Used in [[Special:Upload]].',
+'upload-default-description' => 'Do not translate. Default text for the description box on Special:Upload, or "-" to disable.',
 'uploadlogpage' => '{{doc-logpage}}
 
 Page title of [[Special:Log/upload]].',
