@@ -1918,6 +1918,21 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 		}
 		parent::__construct( $params );
 	}
+	
+	/**
+	 * Build a tag name for given column and row. By default it is of the form columnName-rowName, but
+	 * can be overriden using the 'custom' parameter.
+	 * @param string $columnName
+	 * @param string $rowName
+	 * @return string
+	 */
+	private function buildTag( $columnName, $rowName ) {
+		$tag = $columnName . '-' . $rowName;
+		if ( isset( $this->mParams['custom'][$tag] ) ) {
+			$tag = $this->mParams['custom'][$tag];
+		}
+		return $tag;
+	}
 
 	function validate( $value, $alldata ) {
 		$rows = $this->mParams['rows'];
@@ -1939,7 +1954,7 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 		$validOptions = array();
 		foreach ( $rows as $rowTag ) {
 			foreach ( $columns as $columnTag ) {
-				$validOptions[] = $columnTag . '-' . $rowTag;
+				$validOptions[] = $this->buildTag( $columnTag, $rowTag );
 			}
 		}
 		$validValues = array_intersect( $value, $validOptions );
@@ -1994,7 +2009,8 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 			}
 			$rowContents = Html::rawElement( 'td', array(), $rowLabel );
 			foreach ( $columns as $columnTag ) {
-				$thisTag = "$columnTag-$rowTag";
+				$thisTag = $this->buildTag( $columnTag, $rowTag );
+
 				// Construct the checkbox
 				$thisAttribs = array(
 					'id' => "{$this->mID}-$thisTag",
@@ -2106,7 +2122,7 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 		foreach ( $columns as $column ) {
 			foreach ( $rows as $row ) {
 				// Make sure option hasn't been forced
-				$thisTag = "$column-$row";
+				$thisTag = $this->buildTag( $column, $row );
 				if ( $this->isTagForcedOff( $thisTag ) ) {
 					$res[$thisTag] = false;
 				} elseif ( $this->isTagForcedOn( $thisTag ) ) {
