@@ -2979,6 +2979,34 @@ class WikiPage implements Page, IDBAccessObject {
 	/**#@-*/
 
 	/**
+	 * Returns a list of categories this page is a member of.
+	 * Results will include hidden categories
+	 *
+	 * @return array of Title objects
+	 */
+	public function getCategories() {
+		$result = array();
+		$id = $this->getId();
+		if ( $id == 0 ) {
+			return array();
+		}
+
+		$dbr = wfGetDB( DB_SLAVE );
+		$res = $dbr->select( 'categorylinks',
+			array( 'cl_to' ),
+			array( 'cl_from' => $id ),
+			__METHOD__ );
+
+		if ( $res !== false ) {
+			foreach ( $res as $row ) {
+				$result[] = Title::makeTitle( NS_CATEGORY, $row->cl_to );
+			}
+		}
+
+		return $result;
+	}
+
+	/**
 	 * Returns a list of hidden categories this page is a member of.
 	 * Uses the page_props and categorylinks tables.
 	 *
