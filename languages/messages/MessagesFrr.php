@@ -1958,7 +1958,7 @@ Det woort efter logbukslach, brüker of sidjennööm uunwiset. Grat- an letjskri
 # Special:AllPages
 'allpages' => 'Aal a sidjen',
 'alphaindexline' => '$1 bit $2',
-'nextpage' => 'Näist sid ($1)',
+'nextpage' => 'Naist sidj ($1)',
 'prevpage' => 'Leetst sidj ($1)',
 'allpagesfrom' => 'Sidjen wise sant:',
 'allpagesto' => 'Sidjen wise bit:',
@@ -1966,7 +1966,7 @@ Det woort efter logbukslach, brüker of sidjennööm uunwiset. Grat- an letjskri
 'allinnamespace' => 'Aal a sidjen (nöömrüm: $1)',
 'allnotinnamespace' => 'Aal a sidjen (saner nöömrüm $1)',
 'allpagesprev' => 'Leest',
-'allpagesnext' => 'Näist',
+'allpagesnext' => 'Naist',
 'allpagessubmit' => 'Widjer',
 'allpagesprefix' => 'Sidjen uunwise mä prefix:',
 'allpagesbadtitle' => 'Didiar sidjennööm gongt ei. Hi hed ferlicht en spriak-prefix of diar san ei tuläät tiakens uun.',
@@ -2898,7 +2898,7 @@ $1",
 
 # Browsing diffs
 'previousdiff' => '← Leetst feranrang',
-'nextdiff' => 'Tu di näist färsjoonsferschääl →',
+'nextdiff' => 'Naist werjuunsferskeel →',
 
 # Media information
 'mediawarning' => "'''Paase üüb:''' Son datei koon fülk programcode haa. Bi't deelloosin an eeben maagin koon dan reegner komer fu.",

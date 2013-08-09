@@ -1800,7 +1800,7 @@ $1',
 'download' => 'داگرتن',
 
 # Unwatched pages
-'unwatchedpages' => 'لاپەڕە چاودێری‌نەکراوەکان',
+'unwatchedpages' => 'پەڕە چاودێری‌نەکراوەکان',
 
 # List redirects
 'listredirects' => 'پێرستی ڕەوانەکەرەکان',
@@ -2269,7 +2269,7 @@ $UNWATCHURL
 
 # Restriction levels
 'restriction-level-sysop' => 'تەواو پارێزراو',
-'restriction-level-autoconfirmed' => 'نیوە پارێزراو',
+'restriction-level-autoconfirmed' => 'نیوەپارێزراو - ئاستی ١',
 'restriction-level-all' => 'هەر ئاستێک',
 
 # Undelete

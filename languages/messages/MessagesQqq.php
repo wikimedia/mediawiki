@@ -7076,18 +7076,20 @@ See also:
 'pageinfo-robot-index' => 'An indication that the page is indexable by search engines, that is listed in their search results.',
 'pageinfo-robot-noindex' => 'An indication that the page is not indexable (that is, is not listed on the results page of a search engine).',
 'pageinfo-views' => 'The number of times the page has been viewed.',
-'pageinfo-watchers' => 'The number of users watching the page.',
+'pageinfo-watchers' => 'Header of the row in the first table of the info action.',
 'pageinfo-few-watchers' => 'Message displayed when there are fewer than $wgUnwatchedPageThreshold watchers. $1 is the value of $wgUnwatchedPageThreshold.',
-'pageinfo-redirects-name' => 'Followed by the number of redirects to the page.
+'pageinfo-redirects-name' => 'Header of the row in the first table of the info action.
 
+Followed by the number of redirects to the page.
 Used as link text. The link points to "{{int:Whatlinkshere-title}}" page ([[Special:WhatLinksHere]]).
 
 See example: [{{canonicalurl:Main page|action=info}} Main page?action=info]',
 'pageinfo-redirects-value' => '{{Optional}}
 Parameters:
 * $1 - the number of redirects to the page',
-'pageinfo-subpages-name' => 'Followed by the number of subpages of the page.
+'pageinfo-subpages-name' => 'Header of the row in the first table of the info action.
 
+Followed by the number of subpages of the page.
 Used as link text. The link points to the "{{int:Prefixindex}}" page ([[Special:PrefixIndex]]).
 
 See example: [{{canonicalurl:Main page|action=info}} Main page?action=info]',

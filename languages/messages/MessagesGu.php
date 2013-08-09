@@ -635,6 +635,7 @@ $2',
 'createacct-captcha' => 'સલામતી ચકાસણી',
 'createacct-imgcaptcha-ph' => 'તમે જે લખાણ જુઓ છો તે દાખલ કરો',
 'createacct-submit' => 'તમારું ખાતું બનાવો',
+'createacct-another-submit' => 'બીજું ખાતું બનાવો',
 'createacct-benefit-heading' => '{{SITENAME}} એ તમારા જેવા લોકો વડે બનાવેલ છે.',
 'createacct-benefit-body1' => '{{PLURAL:$1|ફેરફાર|ફેરફારો}}',
 'createacct-benefit-body2' => '{{PLURAL:$1|પાનું|પાનાં}}',
@@ -781,6 +782,9 @@ $2
 'changeemail-password' => 'તમારો {{SITENAME}} પાસવર્ડ:',
 'changeemail-submit' => 'ઈ મેલ બદલો',
 'changeemail-cancel' => 'રદ કરો',
+
+# Special:ResetTokens
+'resettokens-token-label' => '$1 (હાલની કિંમત: $2)',
 
 # Edit page toolbar
 'bold_sample' => 'ઘાટા અક્ષર',
@@ -1477,6 +1481,8 @@ HTML નાકું ચકાસો',
 'right-editusercssjs' => 'અન્ય સભ્યોની CSS અને JavaScript ફાઇલમાં ફેરફાર કરો',
 'right-editusercss' => 'અન્ય સભ્યોની CSS ફાઇલમાં ફેરફાર કરો',
 'right-edituserjs' => 'અન્ય સભ્યોની JavaScript ફાઇલમાં ફેરફાર કરો',
+'right-viewmywatchlist' => 'તમારી પોતાની ધ્યાનસૂચી જુઓ',
+'right-editmyoptions' => 'તમારી પોતાની પ્રાથમિકતાઓમાં ફેરફાર કરો',
 'right-rollback' => 'ચોક્કસ પાનામાં જે છેલ્લા સભ્યએ ફેરફારો કર્યાં હોય તેને ઝડપથી ઉલટાવો',
 'right-markbotedits' => 'ઉલટાવનારા અને બોટ ફેરફારો નોંધો',
 'right-noratelimit' => 'ઝડપની સીમાને કારણે અસર ન થવી જોઇએ.',
@@ -1538,6 +1544,8 @@ HTML નાકું ચકાસો',
 'action-userrights-interwiki' => 'અન્ય વિકિ પરના સભ્યોના હક્કો સંપાદિત કરો.',
 'action-siteadmin' => 'માહિતી સંચયને ઉઘાડો અને વાસો.',
 'action-sendemail' => 'ઈ-મેલ મોકલો',
+'action-editmywatchlist' => 'તમારી ધ્યાનસૂચીમાં ફેરફાર કરો',
+'action-viewmywatchlist' => 'તમારી ધ્યાનસૂચી જુઓ',
 'action-viewmyprivateinfo' => 'તમારી અંગત માહિતી જુઓ',
 'action-editmyprivateinfo' => 'તમારી અંગત માહિતીમાં ફેરફાર કરો',
 
@@ -1929,6 +1937,9 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization. જુઓ',
 # Random page
 'randompage' => 'કોઈ પણ એક લેખ',
 'randompage-nopages' => 'આ {{PLURAL:$2|નામસ્થળ|નામસ્થળો}}માં કોઇ પાના નથી: $1.',
+
+# Special:RandomInCategory
+'randomincategory-selectcategory-submit' => 'જાઓ',
 
 # Random redirect
 'randomredirect' => 'દિશાહીન  નિર્દેશન',
@@ -3913,5 +3924,8 @@ $5
 'duration-decades' => '$1 {{PLURAL:$1|દાયકો|દાયકાઓ}}',
 'duration-centuries' => '$1 {{PLURAL:$1|શતાબ્દી|શતાબ્દીઓ}}',
 'duration-millennia' => '$1 {{PLURAL:$1|સહસ્ત્રાબ્દી|સહસ્ત્રાબ્દીઓ}}',
+
+# Image rotation
+'rotate-comment' => 'ચિત્ર $1 {{PLURAL:$1|ડિગ્રી|ડિગ્રીઓ}} ઘડિયાળની દિશામાં ફેરવવામાં આવ્યું',
 
 );

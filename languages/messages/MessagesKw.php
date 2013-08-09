@@ -966,6 +966,7 @@ Ny dhiskwedhir agas trigva ebost pan gestaffo devnydhyoryon erel dhywgh.',
 'recentchanges' => 'Chanjyow a-dhiwedhes',
 'recentchanges-legend' => 'Etholyow an chanjyow a-dhiwedhes',
 'recentchanges-summary' => "Y hyllir helerhi an chanjyow diwettha gwrys dhe'n wiki war an folen-ma.",
+'recentchanges-noresult' => 'Nyns eus chanj vyth dres an termyn res a omdhesedh orth an etholyow-ma.',
 'recentchanges-feed-description' => "Y hyllir helerhi an chanjyow diwettha gwrys dhe'n wiki y'n feed-ma.",
 'recentchanges-label-newpage' => 'Y feu gwruthys folen nowyth gans an chanj-ma',
 'recentchanges-label-minor' => 'Chanj byhan yw hemma',
@@ -1172,12 +1173,16 @@ Diskwedhys a-woles yw an deskrifans war hy [$2 folen dheskrifans] ena.',
 'watchthispage' => 'Golya an folen-ma',
 'unwatch' => 'Diswolya',
 'watchlist-details' => 'Yma {{PLURAL:$1|$1 folen}} war agas rol wolya, marnas folennow keskows.',
-'wlshowlast' => 'Diskwedhes an $1 our $2 dydh $3 diwettha',
+'wlheader-showupdated' => "Yn '''tew''' y tiskwedhir folennow re beu chanjyes a-dhia agas vysytyans diwettha.",
+'wlnote' => "A-woles yma an {{PLURAL:$1|chanj diwettha|'''$1''' chanj diwettha}} y'n {{PLURAL:$2|our|'''$2''' our}} diwettha, a-dhia $3, $4.",
+'wlshowlast' => 'Diskwedhes an $1 our diwettha, an $2 dydh diwettha, po $3',
 'watchlist-options' => 'Etholyow an rol wolya',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching' => 'Ow kolya...',
 'unwatching' => 'Ow tisgolya...',
+
+'enotif_reset' => 'Merkya pub folen avel vysytyes',
 
 # Delete
 'deletepage' => 'Dilea an folen',
@@ -1442,7 +1447,7 @@ Hwi a yll gweles hy fennfenten.',
 'edit-externally' => 'Chanjya an restren-ma dre dowlen a-ves',
 
 # 'all' in various places, this might be different for inflected languages
-'watchlistall2' => 'oll',
+'watchlistall2' => 'puptra',
 'namespacesall' => 'oll',
 'monthsall' => 'oll',
 'limitall' => 'oll',

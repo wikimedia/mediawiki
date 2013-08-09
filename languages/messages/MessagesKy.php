@@ -1604,7 +1604,7 @@ To include a file in a page, use a link in one of the following forms:
 'exif-compression-1' => 'Кыстырылбаган',
 
 'exif-copyrighted-true' => 'Автордук укук менен корголгон',
-'exif-copyrighted-false' => 'Коомдук мүлк',
+'exif-copyrighted-false' => 'Автордук укук абалы көрсөтүлгөн эмес',
 
 'exif-unknowndate' => 'Белгисиз дата',
 

@@ -33,6 +33,7 @@
  * @author Littletung
  * @author Mark85296341
  * @author Oapbtommy
+ * @author Openerror
  * @author Pbdragonwang
  * @author PhiLiP
  * @author Philip
@@ -691,6 +692,7 @@ $2',
 'yourname' => '用戶名：',
 'userlogin-yourname' => '用戶名',
 'userlogin-yourname-ph' => '輸入你的用戶名',
+'createacct-another-username-ph' => '輸入帳戶名稱',
 'yourpassword' => '您的密碼：',
 'userlogin-yourpassword' => '密碼',
 'userlogin-yourpassword-ph' => '輸入密碼',
@@ -725,9 +727,11 @@ $2',
 'helplogin-url' => 'Help:登入',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|登入説明]]',
 'createacct-join' => '輸入您的基本資料：',
+'createacct-another-join' => '在下面輸入新帳戶的資訊。',
 'createacct-emailrequired' => '電子郵件',
 'createacct-emailoptional' => '電子郵件（可選）',
 'createacct-email-ph' => '設置電郵地址',
+'createacct-another-email-ph' => '輸入電郵地址',
 'createaccountmail' => '使用一個臨時的隨機密碼，並將它發送到以下指定的電子郵件地址',
 'createacct-realname' => '真實姓名（可選）',
 'createaccountreason' => '理由：',
@@ -736,6 +740,7 @@ $2',
 'createacct-captcha' => '安全驗證',
 'createacct-imgcaptcha-ph' => '輸入您在上面看到的字符',
 'createacct-submit' => '建立帳戶',
+'createacct-another-submit' => '建立另一個使用者帳號',
 'createacct-benefit-heading' => '{{SITENAME}}是由像您一樣的人建立。',
 'createacct-benefit-body1' => '{{PLURAL:$1|次編輯|次編輯}}',
 'createacct-benefit-body2' => '{{PLURAL:$1|頁頁面|頁頁面}}',
@@ -3430,7 +3435,7 @@ Variants for Chinese language
 'exif-compression-6' => 'JPEG（舊）',
 
 'exif-copyrighted-true' => '受版權保護',
-'exif-copyrighted-false' => '公共領域',
+'exif-copyrighted-false' => '版權所屬者不明',
 
 'exif-unknowndate' => '未知的日期',
 
@@ -3690,9 +3695,9 @@ $3
 $5
 
 確認碼會在$4過期。',
-'confirmemail_body_set' => '有人，可能是您，來自IP地址$1，已設置的戶口"$2"這個地址{{SITENAME}}網站名稱電郵地址。
+'confirmemail_body_set' => '來自IP地址 $1 的人 (可能是你) 已將帳戶 "$2" 的電郵地址設定為 {{SITENAME}}。
 
-為了確認這個帳戶確實屬於自己的，重新確認電子郵件功能於{{SITENAME}}網站名稱，請在瀏覽器中打開這個鏈接：
+請用瀏覽器打開以下的連接，以確認你對這個帳戶的擁有權，並將上述電郵地址跟帳戶建立關聯。
 
 $3
 
@@ -3700,7 +3705,7 @@ $3
 
 $5
 
-這個確認碼會在$4時過期。',
+確認碼會在這個時間過期：$4',
 'confirmemail_invalidated' => '電郵地址確認已取消',
 'invalidateemail' => '取消電郵確認',
 
@@ -3822,6 +3827,7 @@ $5
 'version-license' => '授權',
 'version-poweredby-credits' => "此維基由'''[//www.mediawiki.org/ MediaWiki]'''驅動，版權所有 © 2001-$1 $2。",
 'version-poweredby-others' => '其他',
+'version-poweredby-translators' => 'translatewiki.net 上的翻譯者',
 'version-credits-summary' => '我們感謝以下人士為[[Special:Version|MediaWiki]]作出的貢獻。',
 'version-license-info' => 'MediaWiki為自由軟件；您可依據自由軟件基金會所發表的GNU通用公共授權條款規定，就本程式再為發佈與／或修改；無論您依據的是本授權的第二版或（您自行選擇的）任一日後發行的版本。
 
