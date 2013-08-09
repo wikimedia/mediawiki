@@ -2979,6 +2979,31 @@ class WikiPage implements Page, IDBAccessObject {
 	/**#@-*/
 
 	/**
+	 * Returns a list of categories this page is a member of.
+	 * Results will include hidden categories
+	 *
+	 * @return TitleArray|bool false if no results
+	 */
+	public function getCategories() {
+		$id = $this->getId();
+		if ( $id == 0 ) {
+			return false;
+		}
+
+		$dbr = wfGetDB( DB_SLAVE );
+		$res = $dbr->select( 'categorylinks',
+			array( 'cl_to AS page_title, ' . NS_CATEGORY . ' AS page_namespace' ),
+			// Have to do that since DatabaseBase::fieldNamesWithAlias treats numeric indexes
+			// as not being aliases, and NS_CATEGORY is numeric
+			array( 'cl_from' => $id ),
+			__METHOD__ );
+		if ( $res === false ) {
+			return false;
+		}
+		return TitleArray::newFromResult( $res );
+	}
+
+	/**
 	 * Returns a list of hidden categories this page is a member of.
 	 * Uses the page_props and categorylinks tables.
 	 *
