@@ -13675,6 +13675,30 @@ language=sr
 </p>
 !!end
 
+!! test
+Don't break link parsing if language converter markup is in the caption.
+!! options
+language=sr
+!! input
+[[Main Page|-{R|main page}-]]
+!! result
+<p><a href="/wiki/Main_Page" title="Main Page">main page</a>
+</p>
+!! end
+
+# This test is currently broken in the PHP parser (bug 52661)
+!! test
+Don't break image parsing if language converter markup is in the caption.
+!! options
+language=sr
+disabled
+!! input
+[[File:Foobar.jpg|-{R|caption}-]]
+!! result
+<p><a href="/wiki/File:Foobar.jpg" class="image" title="caption"><img alt="caption" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a>
+</p>
+!! end
+
 !!article
 Template:Bullet
 !!text
