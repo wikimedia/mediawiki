@@ -165,7 +165,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 
 		if ( $result === true || ( $result instanceof Status && $result->isGood() ) ) {
 			$out->setPageTitle( $this->msg( 'emailsent' ) );
-			$out->addWikiMsg( 'emailsenttext' );
+			$out->addWikiMsg( 'emailsenttext', $this->mTarget );
 			$out->returnToMain( false, $this->mTargetObj->getUserPage() );
 		}
 	}
