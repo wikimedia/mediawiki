@@ -2511,7 +2511,6 @@ $1 is the relevance of this result in per cent.
 'search-relatedarticle' => 'This is a search result (and I guess search engine) dependent messages. I do not know how to trigger the feature. The message is displayed if the search result contains information that related pages can also be provided from the search engine. I assume this is "More Like This" functionality. Microsoft glossary defines MLT as "A way to refine search by identifying the right set of documents and then locating similar documents. This allows the searcher to control the direction of the search and focus on the most fruitful lines of inquiry."[http://www.microsoft.com/enterprisesearch/en/us/search-glossary.aspx]
 {{Identical|Related}}',
 'mwsuggest-disable' => "The text of an option on the 'search options' tab of a user's Preferences.",
-'searcheverything-enable' => 'Used in [[Special:Preferences]], tab "Search".',
 'searchrelated' => 'This is a search result (and I guess search engine) dependent messages. I do not know how to trigger the feature. The message is displayed if the search result contains information that related pages can also be provided from the search engine. I assume this is "More Like This" functionality. Microsoft glossary defines MLT as "A way to refine search by identifying the right set of documents and then locating similar documents. This allows the searcher to control the direction of the search and focus on the most fruitful lines of inquiry."[http://www.microsoft.com/enterprisesearch/en/us/search-glossary.aspx]
 {{Identical|Related}}',
 'searchall' => '{{Identical|All}}',
@@ -2670,8 +2669,16 @@ This option lets your time zone setting use the one that is used on the wiki (of
 {{Related|Timezoneregion}}',
 'allowemail' => 'Used in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.',
 'prefs-searchoptions' => '{{Identical|Search}}',
-'prefs-namespaces' => "Shown as legend of the second fieldset of the tab 'Search' in [[Special:Preferences]]
+'prefs-searchnamespaces' => "Shown as legend of the second fieldset of the tab 'Search' in [[Special:Preferences]]
 {{Identical|Namespaces}}",
+'searcheverything-enable' => 'Used in [[Special:Preferences]], tab "Search".',
+'preferences-content-namespaces' => 'Used in [[Special:Preferences]], tab "Search".
+Header of a column with checkboxes for all content (non-talk) namespaces.
+See also {{msg-mw|preferences-talk-namespaces}},',
+'preferences-talk-namespaces' => 'Used in [[Special:Preferences]], tab "Search".
+Header of a column with checkboxes for all talk namespaces.
+See also {{msg-mw|preferences-content-namespaces}},',
+
 'defaultns' => 'Used in [[Special:Preferences]], tab "Search".',
 'default' => '{{Identical|Default}}',
 'prefs-files' => 'Title of a tab in [[Special:Preferences]].

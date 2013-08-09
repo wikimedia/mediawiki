@@ -1024,23 +1024,42 @@ class Preferences {
 		$defaultPreferences['searcheverything'] = array(
 			'type' => 'toggle',
 			'label-message' => 'searcheverything-enable',
-			'section' => 'searchoptions/advancedsearchoptions',
+			'section' => 'searchoptions/searchnamespaces',
 		);
 
-		$nsOptions = $wgContLang->getFormattedNamespaces();
-		$nsOptions[0] = $context->msg( 'blanknamespace' )->text();
-		foreach ( $nsOptions as $ns => $name ) {
-			if ( $ns < 0 ) {
-				unset( $nsOptions[$ns] );
+		$columns = array(
+			$context->msg( 'preferences-content-namespaces' )->escaped() => 0,
+			$context->msg( 'preferences-talk-namespaces' )->escaped() => 1,
+		);
+		$rows = array();
+		$custom = array();
+		foreach ( $wgContLang->getFormattedNamespaces() as $namespaceNumber => $namespace ) {
+			if ( $namespaceNumber === 0 ) {
+				$namespace = $context->msg( 'blanknamespace' )->text();
 			}
+
+			// Skip Special: and Media:
+			if ( $namespaceNumber < 0 ) {
+				continue;
+			}
+
+			// Add a new row when processing a content namespace;
+			// set up custom field for both content and talk ones.
+			$isTalk = $namespaceNumber % 2;
+			$correspondingContentNamespaceNumber = $namespaceNumber - $isTalk;
+			if ( !$isTalk ) {
+				$rows[$namespace] = $namespaceNumber;
+			}
+			$custom["$isTalk-$correspondingContentNamespaceNumber"] = $namespaceNumber;
 		}
 
 		$defaultPreferences['searchnamespaces'] = array(
-			'type' => 'multiselect',
-			'label-message' => 'defaultns',
-			'options' => array_flip( $nsOptions ),
-			'section' => 'searchoptions/advancedsearchoptions',
+			'type' => 'checkmatrix',
+			'rows' => $rows,
+			'columns' => $columns,
+			'custom' => $custom,
 			'prefix' => 'searchNs',
+			'section' => 'searchoptions/searchnamespaces',
 		);
 	}
 
