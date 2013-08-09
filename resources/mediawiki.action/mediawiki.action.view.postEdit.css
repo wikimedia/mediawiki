@@ -32,10 +32,6 @@
 	transition: all 0.25s ease-in-out;
 }
 
-.skin-vector .postedit {
-	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-}
-
 .skin-monobook .postedit {
 	top: 6em !important;
 }
