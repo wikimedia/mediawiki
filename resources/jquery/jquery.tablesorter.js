@@ -347,7 +347,7 @@
 					.addClass( table.config.cssHeader )
 					.prop( 'tabIndex', 0 )
 					.attr( {
-						role: 'button',
+						role: 'columnheader button',
 						title: msg[1]
 					} );
 			}
