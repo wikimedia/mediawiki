@@ -1097,7 +1097,6 @@ The administrator who locked it offered this explanation: "$3".',
 # Login and logout pages
 'logouttext'                      => "'''You are now logged out.'''
 
-You can continue to use {{SITENAME}} anonymously, or you can <span class='plainlinks'>[$1 log in again]</span> as the same or as a different user.
 Note that some pages may continue to be displayed as if you were still logged in, until you clear your browser cache.",
 'welcomeuser'                     => 'Welcome, $1!',
 'welcomecreation-msg'             => 'Your account has been created.
