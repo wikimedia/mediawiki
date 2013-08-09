@@ -139,6 +139,12 @@ A?b
 Weirdo titles!
 !! endarticle
 
+!!article
+Template:Bullet
+!!text
+* Bar
+!!endarticle
+
 ###
 ### Basic tests
 ###
@@ -1795,6 +1801,20 @@ c
 !!end
 
 !!test
+1d. Indent-Pre and Comments
+(Pre-handler currently cannot distinguish between comment/ws order and normalizes them to [comment,ws] order)
+!!input
+<!--a--> a
+
+ <!--b-->b
+!!result
+<pre>a
+</pre>
+<pre>b
+</pre>
+!!end
+
+!!test
 2a. Indent-Pre and tables
 !!input
  {|
@@ -1944,6 +1964,52 @@ NOTE: the white-space char on 2nd line is significant
 <pre>a<br />
 
 b
+</pre>
+!! end
+
+!! test
+6. Pre-blocks should extend across lines with leading WS even when there is no wrappable content
+!! input
+ a
+ 
+ <!-- continue -->
+ b
+
+ c
+ 
+d
+!! result
+<pre>a
+
+b
+</pre>
+<pre>c
+
+</pre>
+<p>d
+</p>
+!! end
+
+!! test
+7a. Indent-pre and category links
+!! options
+parsoid=wt2html,wt2wt
+!! input
+ [[Category:foo]] <!-- No pre-wrapping -->
+{{echo| [[Category:foo]]}} <!-- No pre-wrapping -->
+!! result
+  <span typeof="mw:Transclusion"> </span> 
+!! end
+
+!! test
+7b. Indent-pre and category links
+!! options
+parsoid=wt2html,wt2wt
+!! input
+ [[Category:foo]] a
+ [[Category:foo]] {{echo|b}}
+!! result
+<pre> a <span typeof="mw:Transclusion">b</span>
 </pre>
 !! end
 
@@ -4928,11 +4994,61 @@ parsoid
 !! end
 
 !! test
+Optional colon in #REDIRECT
+!! options
+# the colon is archaic syntax.  we support it for wt2html, but we
+# don't care that it roundtrips back to the modern syntax.
+parsoid=wt2html,html2html
+!! input
+#REDIRECT:[[Main Page]]
+!! result
+<link rel="mw:PageProp/redirect" href="./Main_Page">
+!! end
+
+!! test
+Whitespace in #REDIRECT with optional colon
+!! options
+# the colon and gratuitous whitespace is archaic syntax.  we support
+# it for wt2html, but we don't care that it roundtrips back to the
+# modern syntax (without extra whitespace)
+parsoid=wt2html,html2html
+!! input
+ 
+ #REDIRECT 
+: 
+[[Main Page]]
+!! result
+<link rel="mw:PageProp/redirect" href="./Main_Page">
+!! end
+
+!! test
+Piped link in #REDIRECT
+!! options
+# content after piped link is ignored.  we support this syntax,
+# but don't care that the piped link is lost when we roundtrip this.
+parsoid=wt2html
+!! input
+#REDIRECT [[Main Page|bar]]
+!! result
+<link rel="mw:PageProp/redirect" href="./Main_Page">
+!! end
+
+!! test
 Redirect to category
 !! options
 parsoid=wt2html
 !! input
 #REDIRECT [[Category:Foo]]
+!! result
+<link rel="mw:PageProp/redirect" href="./Category:Foo"><link rel="mw:WikiLink/Category" href="./Category:Foo">
+!! end
+
+!! test
+Redirect to category with URL encoding
+!! options
+parsoid=wt2html
+!! input
+#REDIRECT [[Category%3AFoo]]
 !! result
 <link rel="mw:PageProp/redirect" href="./Category:Foo"><link rel="mw:WikiLink/Category" href="./Category:Foo">
 !! end
@@ -4948,11 +5064,21 @@ parsoid=wt2html,html2html
 !! end
 
 !! test
-Redirect to image page
+Redirect to image page (1)
 !! options
 parsoid
 !! input
 #REDIRECT [[File:Wiki.png]]
+!! result
+<link rel="mw:PageProp/redirect" href="./File:Wiki.png">
+!! end
+
+!! test
+Redirect to image page (2)
+!! options
+parsoid
+!! input
+#REDIRECT [[Image:Wiki.png]]
 !! result
 <link rel="mw:PageProp/redirect" href="./File:Wiki.png">
 !! end
@@ -4975,6 +5101,17 @@ parsoid
 #REDIRECT [[meatball:File:Wiki.png]]
 !! result
 <link rel="mw:PageProp/redirect" href="File:Wiki.png">
+!! end
+
+!! test
+Non-English #REDIRECT
+!! options
+parsoid
+language=is
+!! input
+#TILVÍSUN [[Main Page]]
+!! result
+<link rel="mw:PageProp/redirect" href="./Main_Page">
 !! end
 
 ##
@@ -5490,6 +5627,18 @@ parsoid
 :: bar
 !! result
 <ol><li> foo<ol><li> bar</li></ol></li></ol><ul><li> foo<ul><li> bar</li></ul></li></ul><dl><dd> foo<dl><dd> bar</dd></dl></dd></dl>
+!! end
+
+!! test
+Parsoid: Test of whitespace serialization with Templated bullets
+!! options
+parsoid
+!! input
+* {{bullet}}
+!! result
+<ul>
+<li> </li><li about="#mwt1" typeof="mw:Transclusion" data-mw='{"target":{"wt":"bullet","href":"./Template:Bullet"},"params":{},"i":0}'> Bar</li>
+</ul>
 !! end
 
 # ------------------------------------------------------------------------
@@ -8321,8 +8470,13 @@ Special:Foobar_nonexistent
 ###
 ### Images
 ###
+### For Parsoid-specific tests, see
+#### http://www.mediawiki.org/wiki/Parsoid/MediaWiki_DOM_spec#Images
+
 !! test
-Simple image
+Simple image (php)
+!! options
+php
 !! input
 [[Image:foobar.jpg]]
 !! result
@@ -8331,16 +8485,20 @@ Simple image
 !! end
 
 !! test
-Right-aligned image
+Simple image (parsoid)
+!! options
+parsoid=wt2html
 !! input
-[[Image:foobar.jpg|right]]
+[[Image:foobar.jpg]]
 !! result
-<div class="floatright"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a></div>
-
+<p><span class="mw-default-size" typeof="mw:Image"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="220" width="1941"></a></span>
+</p>
 !! end
 
 !! test
-Simple image (using File: namespace, now canonical)
+Simple image (using File: namespace, now canonical) (php)
+!! options
+php
 !! input
 [[File:foobar.jpg]]
 !! result
@@ -8349,38 +8507,108 @@ Simple image (using File: namespace, now canonical)
 !! end
 
 !! test
-Image with caption
+Simple image (using File: namespace, now canonical) (parsoid)
+!! options
+parsoid
 !! input
-[[Image:foobar.jpg|right|Caption text]]
+[[File:Foobar.jpg]]
+!! result
+<p><span class="mw-default-size" typeof="mw:Image"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="220" width="1941"></a></span>
+</p>
+!! end
+
+!! test
+Right-aligned image (php)
+!! options
+php
+!! input
+[[Image:foobar.jpg|right]]
+!! result
+<div class="floatright"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a></div>
+
+!! end
+
+!! test
+Right-aligned image (parsoid)
+!! options
+parsoid
+!! input
+[[File:Foobar.jpg|right]]
+!! result
+<figure class="mw-default-size mw-halign-right" typeof="mw:Image"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="220" width="1941"></a></figure>
+!! end
+
+!! test
+Image with caption (php)
+!! options
+php
+!! input
+[[File:Foobar.jpg|right|Caption text]]
 !! result
 <div class="floatright"><a href="/wiki/File:Foobar.jpg" class="image" title="Caption text"><img alt="Caption text" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a></div>
 
 !! end
 
 !! test
-Image with empty attribute
+Image with caption (parsoid)
+!! options
+parsoid
 !! input
-[[Image:foobar.jpg|right||Caption text]]
+[[File:Foobar.jpg|right|Caption text]]
+!! result
+<figure class="mw-default-size mw-halign-right" typeof="mw:Image"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="220" width="1941"></a><figcaption>Caption text</figcaption></figure>
+!! end
+
+!! test
+Image with empty attribute (php)
+!! options
+php
+!! input
+[[File:Foobar.jpg|right||Caption text]]
 !! result
 <div class="floatright"><a href="/wiki/File:Foobar.jpg" class="image" title="Caption text"><img alt="Caption text" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a></div>
 
 !! end
 
 !! test
-Image with attributes from template.
+Image with empty attribute (parsoid)
+!! options
+parsoid=wt2html
 !! input
-[[Image:foobar.jpg|{{image_attribs}}]]
+[[File:Foobar.jpg|right||Caption text]]
+!! result
+<figure class="mw-default-size mw-halign-right" typeof="mw:Image"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="220" width="1941"></a><figcaption>Caption text</figcaption></figure>
+!! end
+
+!! test
+Image with attributes from template (php)
+!! options
+php
+!! input
+[[File:Foobar.jpg|{{image_attribs}}]]
 !! result
 <div class="floatright"><a href="/wiki/File:Foobar.jpg" class="image" title="Caption text"><img alt="Caption text" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a></div>
 
 !! end
 
 !! test
-Image with link tails
+Image with attributes from template (parsoid)
+!! options
+parsoid
 !! input
-123[[Image:foobar.jpg]]456
-123[[Image:foobar.jpg|right]]456
-123[[Image:foobar.jpg|thumb]]456
+[[File:Foobar.jpg|{{image_attribs}}]]
+!! result
+<figure class="mw-default-size mw-halign-right" typeof="mw:Image"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="220" width="1941"></a><figcaption>Caption text</figcaption></figure>
+!! end
+
+!! test
+Image with link tails (php)
+!! options
+php
+!! input
+123[[File:Foobar.jpg]]456
+123[[File:Foobar.jpg|right]]456
+123[[File:Foobar.jpg|thumb]]456
 !! result
 <p>123<a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a>456
 </p>
@@ -8390,20 +8618,48 @@ Image with link tails
 !! end
 
 !! test
-Image with multiple captions -- only last one is accepted
+Image with link tails (parsoid)
+!! options
+parsoid
 !! input
-[[Image:foobar.jpg|right|Caption1 - ignored|[[Caption2]] - ignored|Caption3 - accepted]]
+123[[File:Foobar.jpg]]456
+123[[File:Foobar.jpg|right]]456
+123[[File:Foobar.jpg|thumb]]456
+!! result
+<p>123<span class="mw-default-size" typeof="mw:Image"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="220" width="1941"></a></span>456</p>
+123<figure class="mw-default-size mw-halign-right" typeof="mw:Image"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="220" width="1941"></a></figure>456
+123<figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" height="20" width="180"></a></figure>456
+!! end
+
+!! test
+Image with multiple captions -- only last one is accepted (php)
+!! options
+php
+!! input
+[[File:Foobar.jpg|right|Caption1 - ignored|[[Caption2]] - ignored|Caption3 - accepted]]
 !! result
 <div class="floatright"><a href="/wiki/File:Foobar.jpg" class="image" title="Caption3 - accepted"><img alt="Caption3 - accepted" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a></div>
 
 !! end
 
 !! test
-Image with width attribute at different positions
+Image with multiple captions -- only last one is accepted (parsoid)
+!! options
+parsoid
 !! input
-[[Image:foobar.jpg|200px|right|Caption]]
-[[Image:foobar.jpg|right|200px|Caption]]
-[[Image:foobar.jpg|right|Caption|200px]]
+[[File:Foobar.jpg|right|Caption1 - ignored|[[Caption2]] - ignored|Caption3 - accepted]]
+!! result
+<figure class="mw-default-size mw-halign-right" typeof="mw:Image"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="220" width="1941"></a><figcaption>Caption3 - accepted</figcaption></figure>
+!! end
+
+!! test
+Image with width attribute at different positions (php)
+!! options
+php
+!! input
+[[File:Foobar.jpg|200px|right|Caption]]
+[[File:Foobar.jpg|right|200px|Caption]]
+[[File:Foobar.jpg|right|Caption|200px]]
 !! result
 <div class="floatright"><a href="/wiki/File:Foobar.jpg" class="image" title="Caption"><img alt="Caption" src="http://example.com/images/thumb/3/3a/Foobar.jpg/200px-Foobar.jpg" width="200" height="23" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/300px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/400px-Foobar.jpg 2x" /></a></div>
 <div class="floatright"><a href="/wiki/File:Foobar.jpg" class="image" title="Caption"><img alt="Caption" src="http://example.com/images/thumb/3/3a/Foobar.jpg/200px-Foobar.jpg" width="200" height="23" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/300px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/400px-Foobar.jpg 2x" /></a></div>
@@ -8412,21 +8668,82 @@ Image with width attribute at different positions
 !! end
 
 !! test
-Image with link parameter, wiki target
+Image with width attribute at different positions (parsoid)
+!! options
+parsoid
 !! input
-[[Image:foobar.jpg|link=Target page]]
+[[File:Foobar.jpg|200px|right|Caption]]
+[[File:Foobar.jpg|right|200px|Caption]]
+[[File:Foobar.jpg|right|Caption|200px]]
 !! result
-<p><a href="/wiki/Target_page" title="Target page"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a>
+<figure class="mw-halign-right" typeof="mw:Image"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/200px-Foobar.jpg" height="23" width="200"></a><figcaption>Caption</figcaption></figure>
+<figure class="mw-halign-right" typeof="mw:Image"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/200px-Foobar.jpg" height="23" width="200"></a><figcaption>Caption</figcaption></figure>
+<figure class="mw-halign-right" typeof="mw:Image"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/200px-Foobar.jpg" height="23" width="200"></a><figcaption>Caption</figcaption></figure>
+!! end
+
+!! test
+Image with link parameter, wiki target (php)
+!! options
+php
+!! input
+[[File:Foobar.jpg|link=Main Page]]
+!! result
+<p><a href="/wiki/Main_Page" title="Main Page"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a>
 </p>
 !! end
 
 !! test
-Image with link parameter, URL target
+Image with link parameter, wiki target (parsoid)
+!! options
+parsoid
 !! input
-[[Image:foobar.jpg|link=http://example.com/]]
+[[File:Foobar.jpg|link=Main Page]]
+!! result
+<p><span class="mw-default-size" typeof="mw:Image"><a href="Main_Page"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="220" width="1941"></a></span></p>
+!! end
+
+!! test
+Image with link parameter, URL target (php)
+!! options
+php
+!! input
+[[File:Foobar.jpg|link=http://example.com/]]
 !! result
 <p><a href="http://example.com/" rel="nofollow"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a>
 </p>
+!! end
+
+# parsoid bug 49293 (part 1)
+!! test
+Image with link parameter, URL target (parsoid)
+!! options
+parsoid
+!! input
+[[File:Foobar.jpg|link=http://example.com/]]
+!! result
+<p><span class="mw-default-size" typeof="mw:Image"><a href="http://example.com/"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="220" width="1941"></a></span></p>
+!! end
+
+!! test
+Image with link parameter, protocol-less URL target (php)
+!! options
+php
+!! input
+[[File:Foobar.jpg|link=//example.com/]]
+!! result
+<p><a href="//example.com/" rel="nofollow"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a>
+</p>
+!! end
+
+# parsoid bug 49293 (part 2)
+!! test
+Image with link parameter, protocol-less URL target (parsoid)
+!! options
+parsoid
+!! input
+[[File:Foobar.jpg|link=//example.com/]]
+!! result
+<p><span class="mw-default-size" typeof="mw:Image"><a href="//example.com/"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="220" width="1941"></a></span></p>
 !! end
 
 !! test
@@ -8474,30 +8791,66 @@ wgExternalLinkTarget='foobar'
 !! end
 
 !! test
-Image with empty link parameter
+Image with empty link parameter (php)
+!! options
+php
 !! input
-[[Image:foobar.jpg|link=]]
+[[File:Foobar.jpg|link=]]
 !! result
 <p><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" />
 </p>
 !! end
 
 !! test
-Image with link parameter (wiki target) and unnamed parameter
+Image with empty link parameter (parsoid)
+!! options
+parsoid
 !! input
-[[Image:foobar.jpg|link=Target page|Title]]
+[[File:Foobar.jpg|link=]]
 !! result
-<p><a href="/wiki/Target_page" title="Title"><img alt="Title" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a>
+<p><span class="mw-default-size" typeof="mw:Image"><span><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="220" width="1941"></span></span></p>
+!! end
+
+!! test
+Image with link parameter (wiki target) and unnamed parameter (php)
+!! options
+php
+!! input
+[[File:Foobar.jpg|link=Main Page|Title]]
+!! result
+<p><a href="/wiki/Main_Page" title="Title"><img alt="Title" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a>
 </p>
 !! end
 
 !! test
-Image with link parameter (URL target) and unnamed parameter
+Image with link parameter (wiki target) and unnamed parameter (parsoid)
+!! options
+parsoid
 !! input
-[[Image:foobar.jpg|link=http://example.com/|Title]]
+[[File:Foobar.jpg|link=Main Page|Title]]
+!! result
+<p><span class="mw-default-size" typeof="mw:Image" data-mw='{"caption":"Title"}'><a href="Main_Page"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="220" width="1941"></a></span></p>
+!! end
+
+!! test
+Image with link parameter (URL target) and unnamed parameter (php)
+!! options
+php
+!! input
+[[File:Foobar.jpg|link=http://example.com/|Title]]
 !! result
 <p><a href="http://example.com/" title="Title" rel="nofollow"><img alt="Title" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a>
 </p>
+!! end
+
+!! test
+Image with link parameter (URL target) and unnamed parameter (parsoid)
+!! options
+parsoid
+!! input
+[[File:Foobar.jpg|link=http://example.com/|Title]]
+!! result
+<p><span class="mw-default-size" typeof="mw:Image" data-mw='{"caption":"Title"}'><a href="http://example.com/"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="220" width="1941"></a></span></p>
 !! end
 
 !! test
@@ -8878,54 +9231,8 @@ wgEnableUploads=0
 # http://www.mediawiki.org/wiki/Parsoid/MediaWiki_DOM_spec#Images
 # Currently imperfect due to a flaw in the Parsoid testrunner
 # Work in progress
-
-!! test
-Parsoid-specific image handling - simple image
-!! options
-parsoid
-!! input
-[[Image:Foobar.jpg]]
-!! result
-<p>
-<span class="mw-default-size" typeof="mw:Image">
-<a href="File:Foobar.jpg">
-<img resource="./File:Foobar.jpg" src="//upload.wikimedia.org/wikipedia/commons/3/3a/Foobar.jpg" height="220" width="1941">
-</a>
-</span>
-</p>
-!! end
-
-!! test
-Parsoid-specific image handling - simple image without link
-!! options
-parsoid
-!! input
-[[Image:Foobar.jpg|link=]]
-!! result
-<p>
-<span class="mw-default-size" typeof="mw:Image">
-<span>
-<img resource="./File:Foobar.jpg" src="//upload.wikimedia.org/wikipedia/commons/3/3a/Foobar.jpg" height="220" width="1941">
-</span>
-</span>
-</p>
-!! end
-
-!! test
-Parsoid-specific image handling - simple image with specific link
-!! options
-parsoid
-!! input
-[[Image:Foobar.jpg|link=Main Page]]
-!! result
-<p>
-<span class="mw-default-size" typeof="mw:Image">
-<a href="Main_Page">
-<img resource="./File:Foobar.jpg" src="//upload.wikimedia.org/wikipedia/commons/3/3a/Foobar.jpg" height="220" width="1941">
-</a>
-</span>
-</p>
-!! end
+# THESE TESTS SHOULD BE MOVED UP and merged with the php-specific
+# image tests.
 
 !! test
 Parsoid-specific image handling - simple image with size and middle alignment
@@ -8937,7 +9244,7 @@ parsoid
 <p>
 <span class="mw-valign-middle" typeof="mw:Image">
 <a href="File:Foobar.jpg">
-<img resource="./File:Foobar.jpg" src="//upload.wikimedia.org/wikipedia/commons/3/3a/Foobar.jpg/50px-Foobar.jpg" height="6" width="50">
+<img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/50px-Foobar.jpg" height="6" width="50">
 </a>
 </span>
 </p>
@@ -8953,7 +9260,7 @@ parsoid
 <p>
 <span class="mw-valign-baseline" typeof="mw:Image" data-mw="{&quot;caption&quot;:&quot;caption&quot;}">
 <a href="File:Foobar.jpg">
-<img resource="./File:Foobar.jpg" src="//upload.wikimedia.org/wikipedia/commons/3/3a/Foobar.jpg/89px-Foobar.jpg" height="10" width="89">
+<img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/89px-Foobar.jpg" height="10" width="89">
 </a>
 </span>
 </p>
@@ -8969,7 +9276,7 @@ parsoid
 <p>
 <span class="mw-image-border" typeof="mw:Image" data-mw="{&quot;caption&quot;:&quot;caption&quot;}">
 <a href="File:Foobar.jpg">
-<img resource="./File:Foobar.jpg" src="//upload.wikimedia.org/wikipedia/commons/3/3a/Foobar.jpg/50px-Foobar.jpg" height="6" width="50">
+<img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/50px-Foobar.jpg" height="6" width="50">
 </a>
 </span>
 </p>
@@ -8984,7 +9291,7 @@ parsoid
 !! result
 <figure class="mw-default-size mw-halign-left mw-valign-baseline" typeof="mw:Image/Thumb">
 <a href="File:Foobar.jpg">
-<img resource="./File:Foobar.jpg" src="//upload.wikimedia.org/wikipedia/commons/3/3a/Foobar.jpg/180px-Foobar.jpg" height="21" width="180" />
+<img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" height="21" width="180" />
 </a>
 <figcaption>caption content</figcaption>
 </figure>
@@ -8999,7 +9306,7 @@ parsoid
 !! result
 <figure class="mw-halign-right mw-valign-middle" typeof="mw:Image/Thumb">
 <a href="File:Foobar.jpg">
-<img resource="./File:Foobar.jpg" src="//upload.wikimedia.org/wikipedia/commons/3/3a/Foobar.jpg/50px-Foobar.jpg" height="6" width="50" />
+<img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/50px-Foobar.jpg" height="6" width="50" />
 </a>
 <figcaption>caption</figcaption>
 </figure>
@@ -9014,7 +9321,7 @@ parsoid
 !! result
 <figure typeof="mw:Image/Frame">
 <a href="File:Foobar.jpg">
-<img resource="./File:Foobar.jpg" src="//upload.wikimedia.org/wikipedia/commons/3/3a/Foobar.jpg/442px-Foobar.jpg" height="50" width="442" />
+<img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/442px-Foobar.jpg" height="50" width="442" />
 </a>
 <figcaption>caption</figcaption>
 </figure>
@@ -9029,7 +9336,7 @@ parsoid
 !! result
 <figure class="mw-halign-left mw-valign-baseline" typeof="mw:Image/Frame">
 <a href="File:Foobar.jpg">
-<img resource="./File:Foobar.jpg" src="//upload.wikimedia.org/wikipedia/commons/3/3a/Foobar.jpg/442px-Foobar.jpg" height="50" width="442" />
+<img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/442px-Foobar.jpg" height="50" width="442" />
 </a>
 <figcaption>caption</figcaption>
 </figure>
@@ -9045,7 +9352,7 @@ parsoid
 <p>
 <span class="mw-image-border" typeof="mw:Image/Frameless" data-mw="{&quot;caption&quot;:&quot;caption&quot;}">
 <a href="File:Foobar.jpg">
-<img resource="./File:Foobar.jpg" src="//upload.wikimedia.org/wikipedia/commons/3/3a/Foobar.jpg/442px-Foobar.jpg" height="50" width="442" />
+<img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/442px-Foobar.jpg" height="50" width="442" />
 </a>
 </p>
 !! end
@@ -9060,7 +9367,7 @@ parsoid
 #<p>
 #<span typeof="mw:Image">
 #<a class="mw-default-size" href="Image:Foobar.jpg">
-#<img alt="Foobar.jpg" class="mw-default-size" src="http://upload.wikimedia.org/wikipedia/commons/3/3a/Foobar.jpg" height="220" width="1941">
+#<img alt="Foobar.jpg" class="mw-default-size" src="http://example.com/images/3/3a/Foobar.jpg" height="220" width="1941">
 #</a>
 #<span>abc</span>
 #</span>
@@ -13675,12 +13982,6 @@ language=sr
 </p>
 !!end
 
-!!article
-Template:Bullet
-!!text
-* Bar
-!!endarticle
-
 !! test
 Bug 529: Uncovered bullet
 !! input
@@ -15353,7 +15654,7 @@ parsoid
 
 <references />
 !!result
-<span about="#mwt1" class="reference" data-mw="{&quot;name&quot;:&quot;ref&quot;,&quot;body&quot;:{&quot;html&quot;:&quot;foo &amp;lt;ref&amp;gt;bar&amp;lt;/ref&amp;gt; baz&quot;},&quot;attrs&quot;:{}}" id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-1">[1]</a></span>
+<p><span about="#mwt1" class="reference" data-mw="{&quot;name&quot;:&quot;ref&quot;,&quot;body&quot;:{&quot;html&quot;:&quot;foo &amp;lt;ref&amp;gt;bar&amp;lt;/ref&amp;gt; baz&quot;},&quot;attrs&quot;:{}}" id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-1">[1]</a></span></p>
 
 <ol class="references" typeof="mw:Extension/references" about="#mwt2" data-mw="{&quot;name&quot;:&quot;references&quot;,&quot;attrs&quot;:{}}">
 <li about="#cite_note-1" id="cite_note-1" data-parsoid="{}"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> foo &lt;ref&gt;bar&lt;/ref&gt; baz</li></ol>
@@ -16858,6 +17159,10 @@ parsoid=html2wt
 <p>123</p><figure typeof="mw:Image/Thumb" class="mw-halign-right"><a href="./File:Wiki.png"><img src="http://192.168.142.128/mw/images/thumb/b/bc/Wiki.png/131px-Wiki.png" width="131" height="150" resource="./File:Wiki.png"></a></figure><p>456</p>
 !!end
 
+# Wacky -- the leading newline in input is required because
+# that is what the serializer emits. To be fixed. Not fixing
+# the test because this test is required to test serialization of
+# new content and preferred whitespace style.
 !! test
 Lists: Add space after bullets
 !! options
