@@ -363,7 +363,7 @@
 
 			// Attributes for accessibility. This isn't necessary when the toggler is already
 			// an <a> or a <button> etc., but it doesn't hurt either, and it's consistent.
-			$toggleLink.prop( 'tabIndex', 0 ).attr( 'role', 'button' );
+			$toggleLink.prop( 'tabIndex', 0 );
 
 			// Initial state
 			if ( options.collapsed || $collapsible.hasClass( 'mw-collapsed' ) ) {
