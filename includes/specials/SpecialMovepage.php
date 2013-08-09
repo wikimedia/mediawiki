@@ -692,13 +692,6 @@ class MovePageForm extends UnlistedSpecialPage {
 		# Deal with watches (we don't watch subpages)
 		WatchAction::doWatchOrUnwatch( $this->watch, $ot, $user );
 		WatchAction::doWatchOrUnwatch( $this->watch, $nt, $user );
-
-		# Re-clear the file redirect cache, which may have been polluted by
-		# parsing in messages above. See CR r56745.
-		# @todo FIXME: Needs a more robust solution inside FileRepo.
-		if ( $ot->getNamespace() == NS_FILE ) {
-			RepoGroup::singleton()->getLocalRepo()->invalidateImageRedirect( $ot );
-		}
 	}
 
 	function showLogFragment( $title ) {
