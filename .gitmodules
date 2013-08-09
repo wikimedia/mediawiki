@@ -472,3 +472,6 @@
 [submodule "extensions/DPLforum"]
 	path = extensions/DPLforum
 	url = https://git.wikimedia.org/git/mediawiki/extensions/DPLforum.git
+[submodule "extensions/OrainMessages"]
+	path = extensions/OrainMessages
+	url = https://github.com/Orain/OrainMessages.git
