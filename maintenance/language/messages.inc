@@ -1385,6 +1385,7 @@ $wgMessageStructure = array(
 		'upload-preferred',
 		'upload-prohibited',
 		'uploadfooter',
+		'upload-default-description',
 		'uploadlog',
 		'uploadlogpage',
 		'uploadlogpagetext',
