@@ -242,6 +242,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 
 	protected $mTablePrefix;
 	protected $mFlags;
+	protected $mForeign;
 	protected $mTrxLevel = 0;
 	protected $mErrorCount = 0;
 	protected $mLBInfo = array();
@@ -666,9 +667,10 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 * @param string $dbName database name
 	 * @param $flags
 	 * @param string $tablePrefix database table prefixes. By default use the prefix gave in LocalSettings.php
+	 * @param bool $foreign disable some operations specific to local databases
 	 */
 	function __construct( $server = false, $user = false, $password = false, $dbName = false,
-		$flags = 0, $tablePrefix = 'get from global'
+		$flags = 0, $tablePrefix = 'get from global', $foreign = false
 	) {
 		global $wgDBprefix, $wgCommandLineMode, $wgDebugDBTransactions;
 
@@ -694,6 +696,8 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		} else {
 			$this->mTablePrefix = $tablePrefix;
 		}
+
+		$this->mForeign = $foreign;
 
 		if ( $user ) {
 			$this->open( $server, $user, $password, $dbName );
@@ -744,7 +748,8 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 				isset( $p['password'] ) ? $p['password'] : false,
 				isset( $p['dbname'] ) ? $p['dbname'] : false,
 				isset( $p['flags'] ) ? $p['flags'] : 0,
-				isset( $p['tablePrefix'] ) ? $p['tablePrefix'] : 'get from global'
+				isset( $p['tablePrefix'] ) ? $p['tablePrefix'] : 'get from global',
+				isset( $p['foreign'] ) ? $p['foreign'] : false
 			);
 		} else {
 			return null;
@@ -2073,6 +2078,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		} else {
 			list( $table ) = $dbDetails;
 			if ( $wgSharedDB !== null # We have a shared database
+				&& $this->mForeign == false # We're not working on a foreign database
 				&& !$this->isQuotedIdentifier( $table ) # Paranoia check to prevent shared tables listing '`table`'
 				&& in_array( $table, $wgSharedTables ) # A shared table is selected
 			) {
