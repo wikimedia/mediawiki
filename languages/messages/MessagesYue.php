@@ -21,6 +21,8 @@
  * @author Yfdyh000
  */
 
+$fallback = 'yue-hant, yue-hans';
+
 $namespaceNames = [
 	NS_MEDIA            => '媒體',
 	NS_SPECIAL          => '特別',

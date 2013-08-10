@@ -534,6 +534,8 @@ class Names {
 		'yo' => 'Yorùbá', # Yoruba
 		'yrl' => 'Nhẽẽgatú', # Nheengatu
 		'yue' => '粵語', # Cantonese (multiple scripts - defaults to Traditional Han)
+		'yue-hans' => '粵语（简体）', # Cantonese (Simplified Han)
+		'yue-hant' => '粵語（繁體）', # Cantonese (Traditional Han)
 		'za' => 'Vahcuengh', # Zhuang
 		'zea' => 'Zeêuws', # Zeeuws / Zeaws
 		'zgh' => 'ⵜⴰⵎⴰⵣⵉⵖⵜ ⵜⴰⵏⴰⵡⴰⵢⵜ', # Moroccan Amazigh (multiple scripts - defaults to Neo-Tifinagh)
