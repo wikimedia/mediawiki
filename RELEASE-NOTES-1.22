@@ -304,6 +304,8 @@ production.
   version of the title.
 * (bug 52538) action=edit will now use empty text instead of the contents
   of section 0 when passed prependtext or appendtext with section=new.
+* (bug 52699) action=upload returns normalized file name on warning
+  "exists-normalized" instead of filename to be uploaded to.
 
 === Languages updated in 1.22===
 
