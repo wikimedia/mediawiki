@@ -167,6 +167,8 @@ production.
 * (bug 30713) New mw.hook "wikipage.content".
 * (bug 40430) jquery.placeholder gets a new parameter to set the attribute value
   to be used.
+* (bug 6092) Add expensive parser functions {{REVISIONID:}}, {{REVISIONUSER:}}
+  and {{REVISIONTIMESTAMP:}} (with friends)
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
