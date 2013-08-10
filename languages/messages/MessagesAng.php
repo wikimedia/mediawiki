@@ -61,7 +61,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Īwan þæt rīm behealdendra brūcenda',
 'tog-oldsig' => 'Genge selfmearc:',
 'tog-fancysig' => 'Dōn selfmearce tō wikitexte (lēas ǣr gedōnes hlencan)',
-'tog-showjumplinks' => 'Þafian "gān tō" gefērra hlencena',
 'tog-uselivepreview' => 'Notian rihte īwde fōrebysene (þearf JavaScript) (on costnunge)',
 'tog-forceeditsummary' => 'Cȳðan mē þǣr ic ne wrīte adihtunge sceortnesse',
 'tog-watchlisthideown' => 'Hȳdan mīna adihtunga wiþ þæt behealdungtæl',

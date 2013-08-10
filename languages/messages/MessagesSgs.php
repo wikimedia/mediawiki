@@ -87,7 +87,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Ruodītė keravuojantiu nauduotuoju skatliu',
 'tog-oldsig' => 'Esams parašos:',
 'tog-fancysig' => 'Parašos kāp wiki tekstos (ba autuomatėniu nūruodu)',
-'tog-showjumplinks' => 'Ijongtė „paršuoktė i“ pasėikiamoma nūruodas',
 'tog-uselivepreview' => 'Nauduotė tėisiogėne parvėiza (JavaScript) (Eksperimentėnis)',
 'tog-forceeditsummary' => 'Klaustė, kumet palėiku toščē pakeitėma kuomentara',
 'tog-watchlisthideown' => 'Kavuotė mona pakeitėmos keravuojamu sarašė',

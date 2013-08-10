@@ -1253,7 +1253,9 @@ See example: [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?t
 'createacct-submit' => 'Submit button on vertical-layout create account form.
 
 See example: [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]',
-'createacct-another-submit' => 'Submit button on create account form when one user creates an account for another.',
+'createacct-another-submit' => 'Submit button of  [[Special:UserLogin/signup]] ([[Special:CreateAccount]]) when accessed by a registered user.
+
+The original means "create an account in addition to the one you already have"; sometimes, but not always, it means you are going to "Create the account on behalf of somebody else" or "Create account for another".',
 'createacct-benefit-heading' => 'In vertical-layout create account form, the heading for the section describing the benefits of creating an account.
 
 See example: [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]',

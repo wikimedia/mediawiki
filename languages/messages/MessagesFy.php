@@ -172,7 +172,6 @@ $messages = array(
 'tog-shownumberswatching' => 'It tal brûkers sjen litte dat dizze side folget',
 'tog-oldsig' => 'Hûdige sinjatuerprintallyk:',
 'tog-fancysig' => 'Sinjatuer as wikitekst behannelje (sûnder automatyske keppeling)',
-'tog-showjumplinks' => '"gean nei"-tapaslikens-links ynskeakelje',
 'tog-uselivepreview' => '"live proefbyld" brûke (JavaScript nedich - eksperimenteel)',
 'tog-forceeditsummary' => 'Warskôgje at ik de gearfetting leech lit.',
 'tog-watchlisthideown' => 'Eigen bewurkings op myn folchlist ferbergje',

@@ -42,7 +42,6 @@ $messages = array(
 'tog-enotifrevealaddr' => 'Xuniim henadressade e-iitom notificacionde e-iitóm',
 'tog-shownumberswatching' => 'Cohuatlöx caitóm cáminotómde numberam',
 'tog-fancysig' => 'Signaturenám brazzinám (sans linkám automaticám)',
-'tog-showjumplinks' => 'Záj "jumpöx" accessibilitiit linkám',
 'tog-uselivepreview' => 'Usadad cuáxiit live (JavaScript) (Experimentam)',
 'tog-forceeditsummary' => 'Ixuniimticpatlöx he jan nenenterom abvuatlde ticpatlöx',
 'tog-watchlisthideown' => 'Cíiitám he ticpatlöxde listade cáminot zo',

@@ -44,7 +44,6 @@ $messages = array(
 'tog-shownumberswatching' => 'لوڑاک ممبرانن تعدادان پشاؤے',
 'tog-oldsig' => 'موجودہ دستخطو نمائش:',
 'tog-fancysig' => '(سادہ دسخط بلا خودکار ربط)',
-'tog-showjumplinks' => 'ھیہ ووشکی څروٹھاوے',
 'tog-uselivepreview' => 'براہِ راست نمائش استعمال کورے (JavaScript ضرورت بوی)',
 'tog-forceeditsummary' => 'کیاوتکی آوا ترمیمی خلاصو خالی پیڅھیتام تھے متے لو دیت',
 'tog-watchlisthideown' => 'زیرِنظرفہرستہ مہ ترمیماتن کھوشاوے',

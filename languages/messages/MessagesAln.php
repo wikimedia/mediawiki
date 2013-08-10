@@ -97,7 +97,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Shfaqe numrin e përdoruesve mbikëqyrës',
 'tog-oldsig' => 'Parapamja e nënshkrimit ekzistues:',
 'tog-fancysig' => 'Trajto nënshkrimin si tekst (pa vegëz automatike)',
-'tog-showjumplinks' => 'Lejo lidhjet é afrueshmerisë "kapërce tek"',
 'tog-uselivepreview' => 'Trego parapamjén meniheré (JavaScript) (Eksperimentale)',
 'tog-forceeditsummary' => 'Pyetem kur e le përmbledhjen e redaktimit zbrazt',
 'tog-watchlisthideown' => "M'sheh redaktimet e mia nga lista mbikqyrëse",

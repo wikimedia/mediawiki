@@ -94,7 +94,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Pokoż, wjela sprowjorzy dowo pozůr',
 'tog-oldsig' => 'Teroźni wyglůnd Twojygo szrajbowańo',
 'tog-fancysig' => 'Szrajbńij s kodůma wiki (bez autůmatycznygo linka)',
-'tog-showjumplinks' => 'Zapńij cajchnůndzki "przyńdź do"',
 'tog-uselivepreview' => 'Używej dynamiczne uobźyrańy (JavaScript) (eksperymentalny)',
 'tog-forceeditsummary' => 'Pedź, kejbych ńic ńy naszkryfloł we uopiśe pomjyńań',
 'tog-watchlisthideown' => 'Schow moje pomjyńańa we artiklach, na kere dowom pozůr',

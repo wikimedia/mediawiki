@@ -373,6 +373,8 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 'changeemail-cancel' => 'Canciella',
 
 # Edit page toolbar
+'bold_sample' => 'Grassetto',
+'bold_tip' => 'Grassetto',
 'italic_sample' => 'Corsivo',
 'italic_tip' => 'Corsivo',
 'link_sample' => 'Titulo ddo cullegamente',
@@ -420,6 +422,7 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 'currentrevisionlink' => "Verzione 'e mmo",
 'cur' => 'corr',
 'last' => 'prec',
+'history-show-deleted' => 'Solo chille canciellate',
 'histfirst' => 'primma',
 'histlast' => 'urdema',
 
@@ -556,6 +559,7 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 'nbytes' => '$1 {{PLURAL:$1|byte|byte}}',
 'ncategories' => '$1 {{PLURAL:$1|categoria|categorie}}',
 'nlinks' => '$1 {{PLURAL:$1|cullegamiento|cullegamiente}}',
+'nmembers' => '$1 {{PLURAL:$1|elemento|elemente}}',
 'popularpages' => "Paggene cchiù 'speziunate",
 'wantedpages' => 'Paggene cchiù addemannate',
 'shortpages' => 'Paggene curte',
@@ -588,6 +592,7 @@ Also see [[Special:WantedCategories|wanted categories]].",
 
 # Special:LinkSearch
 'linksearch-ok' => 'Truova',
+'linksearch-line' => "$1 presente dint'â paggena $2",
 
 # Email user
 'emailuser' => 'Email chisto utente',
@@ -637,6 +642,8 @@ Also see [[Special:WantedCategories|wanted categories]].",
 'mycontris' => "'E ffatiche d''e mmeje",
 'contribsub2' => 'Ppe $1 ($2)',
 'uctop' => '(attuale)',
+'month' => 'D"o mese (e primma):',
+'year' => "'E ll'anno (e primma):",
 
 'sp-contributions-newbies' => "Mosta solo 'e contribbute dde nove utente",
 'sp-contributions-blocklog' => 'blocche',

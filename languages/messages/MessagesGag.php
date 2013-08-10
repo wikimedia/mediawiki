@@ -124,7 +124,6 @@ $messages = array(
 'tog-enotifrevealaddr' => 'Bildirmää maillerinde e-mail adresimi göster.',
 'tog-shownumberswatching' => 'İzlään kullanıcı sayısın göster',
 'tog-fancysig' => 'Çii imza (İmzanız görüner nesoy onu yukarda belirttiniz. Sayfanıza avtomatik baalantı yaratılmaycêk)',
-'tog-showjumplinks' => '"Git" baalantısın işlet',
 'tog-uselivepreview' => 'Tez cannı ön siiri kullan (JavaScript) (êksperimental)',
 'tog-forceeditsummary' => 'Bana haber ver ne zaman ani kısa annatmanı boş braacam',
 'tog-watchlisthideown' => 'Bakmaa listamdan benim diişmäklerimi sakla',

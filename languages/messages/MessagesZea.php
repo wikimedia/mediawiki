@@ -73,7 +73,6 @@ $messages = array(
 'tog-shownumberswatching' => "'t Antal gebrukers weerheven 't a deêze pahina volg",
 'tog-oldsig' => 'Bestaende onderteêkenienge',
 'tog-fancysig' => "As wikitekst behandel'n (zonder automaotische verwiezienge ni de gebrukersbladzie)",
-'tog-showjumplinks' => '“hi nae”-toehankelijkeidslienks inschaokelen',
 'tog-uselivepreview' => '“live voevertoônienge” gebruken (JavaScript vereist – experimenteêl)',
 'tog-forceeditsummary' => 'Heef me een meldieng bie een lehe saemenvattieng',
 'tog-watchlisthideown' => 'Eihen bewerkiengen op men volglieste verberhen',

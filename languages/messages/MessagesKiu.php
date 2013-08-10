@@ -82,7 +82,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Amorê karberunê şêrkerdoğu bıasne',
 'tog-oldsig' => 'İmza mewcude:',
 'tog-fancysig' => 'İmza rê mamelê wikimeqaley bıke (bê girewo otomatik)',
-'tog-showjumplinks' => 'Girê "so"y feal ke',
 'tog-uselivepreview' => 'Verqayto cande bıgurene (JavaScript) (hona cerrebnayene dero)',
 'tog-forceeditsummary' => 'Mı ke xulasa kerde cı vira, hay be mı ser de',
 'tog-watchlisthideown' => 'Vurnayisunê mı lista mına şêrkerdişi de wedare',

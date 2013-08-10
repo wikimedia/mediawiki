@@ -49,7 +49,6 @@ $messages = array(
 'tog-enotifminoredits' => "E-mail yu' lokkue' ni mandikike' na tinilaika gi påhina siha.",
 'tog-enotifrevealaddr' => "Na'annok iyo-ku e-mail address gi notifikasion e-mail.",
 'tog-shownumberswatching' => "Na'annok i numirun muna'sesetbi siha ni mana'atan.",
-'tog-showjumplinks' => "Na'sedi i ina'chetton ni \"ta'yoki guatu\"",
 'tog-forceeditsummary' => "Na'tungo' yu' annai mamo'lu yu' summaria gueku",
 'tog-watchlisthideown' => "Nå'na' tinilaika-hu gi listan pinilan",
 'tog-watchlisthidebots' => "Nå'na' i tinilaikan bot gi listan pinilan",

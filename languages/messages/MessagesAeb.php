@@ -46,7 +46,6 @@ $messages = array(
 'tog-shownumberswatching' => 'اعرض عدد المستخدمين المراقبين',
 'tog-oldsig' => 'التوقيع الحالي:',
 'tog-fancysig' => 'عامل التوقيع كنص ويكي (بدون وصلة أوتوماتيكية)',
-'tog-showjumplinks' => 'مكن وصلات "اذهب إلى" المساعدة',
 'tog-uselivepreview' => 'استخدم الاستعراض السريع (جافاسكريبت) (تجريبي)',
 'tog-forceeditsummary' => 'نبهني عند إدخال ملخص تعديل فارغ',
 'tog-watchlisthideown' => 'أخف تعديلاتي من قائمة المراقبة',

@@ -55,7 +55,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Oazoahl derr beobachtenden Nutzer oazäan',
 'tog-oldsig' => 'Vorschau der aktuella Signatur:',
 'tog-fancysig' => 'Signatur ols Wikitext behandeln (ohne automatische Verlinkung)',
-'tog-showjumplinks' => '„Wechseln zu“-Verknipfunga aktiviern',
 'tog-uselivepreview' => 'Direkte Vurschau notza (beneetigt JavaScript) (vrsuchsweise)',
 'tog-forceeditsummary' => 'Warnen, wenn bem Speichern de Zsoammafassung fahln tutt',
 'tog-watchlisthideown' => 'Eigene Bearbeitungen ausblenden',

@@ -420,7 +420,6 @@ $messages = array(
 'tog-enotifrevealaddr' => 'ە-پوشتامنىڭ مەكەنجايىن ەسكەرتۋ حاتتاردا اش',
 'tog-shownumberswatching' => 'باقىلاپ تۇرعان قاتىسۋشىلاردىڭ سانىن كورسەت',
 'tog-fancysig' => 'قام قولتاڭبا (وزدىكتىك سىلتەمەسىز)',
-'tog-showjumplinks' => '«ٴوتىپ كەتۋ» قاتىناۋ سىلتەمەلەرىن قوس',
 'tog-uselivepreview' => 'تۋرا قاراپ شىعۋدى قولدانۋ (JavaScript) (سىناقتاما)',
 'tog-forceeditsummary' => 'وڭدەمەنىڭ قىسقاشا مازمۇنداماسى بوس قالعاندا ماعان ەسكەرت',
 'tog-watchlisthideown' => 'وڭدەمەلەرىمدى باقىلاۋ تىزىمنەن جاسىر',

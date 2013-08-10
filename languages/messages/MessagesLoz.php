@@ -35,7 +35,6 @@ $messages = array(
 'tog-enotifrevealaddr' => 'Kamukile zwa adress di meli di xete peson kwa melina notifikasyona',
 'tog-shownumberswatching' => 'Kamukile tali di kentezi sebelu',
 'tog-fancysig' => "Ro sebu e data (dicon ling'ki auto)",
-'tog-showjumplinks' => 'Nyembulisize "sinkumukezi" ling\'ki',
 'tog-uselivepreview' => 'Sebelize live PendiBe (bulukezi JavaScript) (yem nca)',
 'tog-watchlisthideown' => 'Cwankekile zwa afina di zwa mukoloko di kentezi',
 'tog-watchlisthidebots' => 'Cwankekile roboti di zwa mukoloko di kentezi',

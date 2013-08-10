@@ -592,6 +592,7 @@ Sylwer y bydd rhai tudalennau yn parhau i ymddangos fel ag yr oeddent pan oeddec
 'createacct-captcha' => 'Gwiriad diogelwch',
 'createacct-imgcaptcha-ph' => 'Nodwch y testun a welwch uchod',
 'createacct-submit' => 'Creer y cyfrif',
+'createacct-another-submit' => 'Creer y cyfrif ychwanegol',
 'createacct-benefit-heading' => 'Ffrwyth llafur pobl fel chi yw {{SITENAME}}.',
 'createacct-benefit-body1' => '{{PLURAL:$1|golygiad|golygiad|olygiad|golygiad}}',
 'createacct-benefit-body2' => '{{PLURAL:$1|tudalen|dudalen|dudalen|tudalen|thudalen|tudalen}}',
@@ -726,9 +727,12 @@ Y cyfrinair dros dro: $2",
 
 # Special:ResetTokens
 'resettokens' => 'Ailosod tocynnau',
+'resettokens-no-tokens' => "Nid oes unrhyw docynnau i'w hailosod.",
 'resettokens-legend' => 'Ailosod tocynnau',
 'resettokens-tokens' => 'Tocynnau:',
 'resettokens-token-label' => '$1 (gwerth presennol: $2)',
+'resettokens-done' => 'Ailosodwyd y tocynnau.',
+'resettokens-resetbutton' => 'Ailosoder y tocynnau a ddewiswyd',
 
 # Edit page toolbar
 'bold_sample' => 'Testun cryf',
@@ -1145,6 +1149,7 @@ Pan yn gwneud hyn dylid sicrhau nad yw dilyniant hanes tudalennau yn cael ei ddi
 'compareselectedversions' => 'Cymharer y fersiynau dewisedig',
 'showhideselectedversions' => 'Dangos/cuddio y diwygiadau dewisedig',
 'editundo' => 'dadwneud',
+'diff-empty' => '(Dim gwahaniaeth)',
 'diff-multi' => '(Ni ddangosir {{PLURAL:$1|yr $1 diwygiad|yr $1 diwygiad|y $1 ddiwygiad|y $1 diwygiad|y $1 diwygiad|y $1 diwygiad}} rhyngol gan {{PLURAL:$2||un defnyddiwr|$2 ddefnyddiwr|$2 defnyddiwr|$2 o ddefnyddwyr|$2 o ddefnyddwyr}}.)',
 'diff-multi-manyusers' => '(Ni ddangosir {{PLURAL:$1|yr $1 diwygiad|yr $1 diwygiad|y $1 ddiwygiad|y $1 diwygiad|y $1 diwygiad|y $1 diwygiad}} rhyngol gan mwy na $2 {{PLURAL:$2|o ddefnyddwyr}}.)',
 'difference-missing-revision' => "Ni chafwyd hyd i $1 {{PLURAL:$2|diwygiad|diwygiad|ddiwygiad|diwygiad}} o'r gwahaniaeth ($1) {{PLURAL:$2|hwn}}.
@@ -1899,6 +1904,9 @@ Cofiwch chwilio am gysylltiadau eraill at nodyn a'u hystyried cyn ei ddileu.",
 
 # Special:RandomInCategory
 'randomincategory' => "Tudalen ar hap o blith tudalennau'r categori",
+'randomincategory-nopages' => 'Nid oes unrhyw dudalennau yn y categori [[:Category:$1]].',
+'randomincategory-selectcategory' => "Nôl tudalen ar hap o'r categori: $1 $2.",
+'randomincategory-selectcategory-submit' => 'Gwneler',
 
 # Random redirect
 'randomredirect' => 'Tudalen ailgyfeirio ar hap',
@@ -3555,7 +3563,7 @@ $5
 Bydd y côd cadarnhau yn dod i ben am $4.',
 'confirmemail_body_set' => 'Mae rhywun (chi, yn fwy na thebyg, o\'r cyfeiriad IP $1) wedi gosod cyfeiriad e-bost y cyfrif "$2" ar {{SITENAME}} i\'r cyfeiriad e-bost hwn.
 
-I gadarnhau mai chi yn wir yw perchennog y cyfrif hwn, ac i ail-alluogi nodweddion e-bost ar {{SITENAME}}, agorwch y cyswllt hwn yn eich porwr:
+I gadarnhau mai chi yn wir yw perchennog y cyfrif hwn, ac i alluogi nodweddion e-bost ar {{SITENAME}}, agorwch y cyswllt hwn yn eich porwr:
 
 $3
 

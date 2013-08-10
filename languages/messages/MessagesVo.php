@@ -143,7 +143,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Jonön numi gebanas galädöl',
 'tog-oldsig' => 'Dispenäd dabinöl:',
 'tog-fancysig' => 'Dispenäd balugik (nen yüms lü gebanapad)',
-'tog-showjumplinks' => 'Dälön lügolovi me yüms „lübunöl“',
 'tog-uselivepreview' => 'Gebön büologedi itjäfidik (JavaScript) (Sperimäntik)',
 'tog-forceeditsummary' => 'Sagön obe, ven redakaplän brefik vagon',
 'tog-watchlisthideown' => 'Klänedön redakamis obik se galädalised',

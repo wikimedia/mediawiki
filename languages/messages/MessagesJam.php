@@ -43,7 +43,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Shuo di nomba a wachin yuuza',
 'tog-oldsig' => 'Priivyuu a egzisin signicha:',
 'tog-fancysig' => 'Chriit signicha az wikitex (widoutn aatamatik lingk)',
-'tog-showjumplinks' => 'Eniebl "jomp tu" aksesibiliti lingk',
 'tog-uselivepreview' => 'Yuuz laiv priivyuu (rikwaya JavaScript) (experimental)',
 'tog-forceeditsummary' => 'Pramp mi wen entarin blangk edit somari',
 'tog-watchlisthideown' => 'Aid mi editdem frahn di wachlis',

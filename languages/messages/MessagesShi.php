@@ -43,7 +43,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Ml uṭṭun n Midn lli swurn ɣ tasna yad',
 'tog-oldsig' => 'Asmmaql (Tiẓṛi) n ukrraj n ufus lli illan:',
 'tog-fancysig' => 'Skr akrrag n ufus s taɣarast  n  wikitext (bla azday utumatik)',
-'tog-showjumplinks' => 'Srɣ izdayn « Amuddu » d « acnubc » niḍ « Asiǧl » ɣ uflla n tasna',
 'tog-uselivepreview' => 'Skr s umẓri amaynu izrbn (ira JavaScript) (Arm)',
 'tog-forceeditsummary' => 'Ayyit tini iɣ ur iwiɣ imsmun n imbdln',
 'tog-watchlisthideown' => 'hbo ghayli bdlgh gh omdfor inu',

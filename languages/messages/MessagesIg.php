@@ -104,7 +104,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Zi onuogụgụ ndi na banife nke ne lé',
 'tog-oldsig' => 'Létu ntakiri ndẹlu ejị a ma gí:',
 'tog-fancysig' => 'Mesò ka nkábi nwéré édé wiki (nké énwéghị jikodo nke nọr na onwe)',
-'tog-showjumplinks' => 'Kwé ka njikodo "mani énū" I mé',
 'tog-uselivepreview' => 'Jí nlé ntàkírí dí ndụ (Í gí nwé JavaScript) (mmètú kanyí lé)',
 'tog-forceeditsummary' => 'Gwam mgbè okwu nsem màkà orüm rürü a díghị',
 'tog-watchlisthideown' => 'Zonari orüm fwuör ndetu ihem ne lé',

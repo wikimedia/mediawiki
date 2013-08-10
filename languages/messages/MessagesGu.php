@@ -784,7 +784,13 @@ $2
 'changeemail-cancel' => 'રદ કરો',
 
 # Special:ResetTokens
+'resettokens' => 'નિશાનીઓ ફરી ગોઠવો',
+'resettokens-legend' => 'નિશાનીઓ ફરી ગોઠવો',
+'resettokens-tokens' => 'નિશાનીઓ:',
 'resettokens-token-label' => '$1 (હાલની કિંમત: $2)',
+'resettokens-watchlist-token' => 'ધ્યાનસૂચિ વેબ ફીડ નિશાની',
+'resettokens-done' => 'નિશાનીઓ ફરી ગોઠવવામાં આવી.',
+'resettokens-resetbutton' => 'પસંદ કરેલ નિશાનીઓ ફરી ગોઠવો',
 
 # Edit page toolbar
 'bold_sample' => 'ઘાટા અક્ષર',
@@ -1385,6 +1391,7 @@ HTML નાકું ચકાસો',
 'prefs-displayrc' => 'પ્રદર્શન વિકલ્પો',
 'prefs-displaysearchoptions' => 'પ્રદર્શન વિકલ્પો',
 'prefs-displaywatchlist' => 'પ્રદર્શન વિકલ્પો',
+'prefs-tokenwatchlist' => 'નિશાની',
 'prefs-diffs' => 'ફરક',
 
 # User preference: email validation using jQuery
@@ -3089,10 +3096,16 @@ $1',
 'minutes' => '{{PLURAL:$1|$1 મિનિટ|$1 મિનિટો}}',
 'hours' => '{{PLURAL:$1|$1 કલાક|$1 કલાકો}}',
 'days' => '{{PLURAL:$1|$1 દિવસ|$1 દિવસો}}',
+'weeks' => '{{PLURAL:$1|$1 અઠવાડિયું|$1 અઠવાડિયાં}}',
+'months' => '{{PLURAL:$1|$1 મહિનો|$1 મહિનાઓ}}',
+'years' => '{{PLURAL:$1|$1 વર્ષ|$1 વર્ષો}}',
 'ago' => '$1 પહેલાં',
 'just-now' => 'હમણાં',
 
 # Human-readable timestamps
+'hours-ago' => '$1 {{PLURAL:$1|કલાક|કલાકો}} ago',
+'minutes-ago' => '$1 {{PLURAL:$1|મિનિટ|મિનિટો}} ago',
+'seconds-ago' => '$1 {{PLURAL:$1|સેકંડ|સેકંડો}} ago',
 'monday-at' => '$1 પર સોમવાર',
 'tuesday-at' => '$1 પર મંગળવાર',
 'wednesday-at' => '$1 પર બુધવાર',
@@ -3705,6 +3718,7 @@ $5
 'version-license' => 'પરવાનો',
 'version-poweredby-credits' => "આ વિકિ  '''[//www.mediawiki.org/ MediaWiki]''' દ્વારા ચાલે છે, પ્રકાશનાધિકાર © 2001-$1 $2.",
 'version-poweredby-others' => 'અન્યો',
+'version-poweredby-translators' => 'ટ્રાન્સલેટવિકિ.નેટ ભાષાંતરકર્તાઓ',
 'version-license-info' => 'મિડિયાવિકિ એક મુક્ત સોફ્ટવેર છે. તમે તેનું પુનઃવિતરણ કરી શકો છો અને/અથવા તેને the Free Software Foundation દ્વારા પ્રકાશિત  GNU General Public License હેઠળ તેના સંસ્કરણ 2 ને કે તે પછીના સંસ્કરણ   મઠારી શકો છો . 
 
 મિડિયા વિકિ ને તે આશાથી વિતરીત કરાયું છે કે તે લોકોને ઉપયોગિ થશે કોઇ વોરેંટી વિના અથવા કોઇ કાર્ય સંબધી વેચાણકે તેની યોગ્યતા બદ્દલ ખાત્રી સિવાય. વધારે  માહિતે માટે GNU General Public Licens જુઓ.
@@ -3717,6 +3731,7 @@ $5
 'version-entrypoints-header-url' => 'URL',
 
 # Special:Redirect
+'redirect-legend' => 'ફાઇલ અથવા પાનાં તરફ વાળો',
 'redirect-submit' => 'જાઓ',
 'redirect-value' => 'કિંમત:',
 'redirect-user' => 'સભ્ય નામ',
@@ -3771,6 +3786,7 @@ $5
 'tags' => 'વૈધ ફેરફાર પાના',
 'tag-filter' => '[[Special:Tags|ટૅગ]] ચાળણી',
 'tag-filter-submit' => 'ચાળણી',
+'tag-list-wrapper' => '([[Special:Tags|{{PLURAL:$1|ટેગ|ટેગ્સ}}]]: $2)',
 'tags-title' => 'ટૅગ્સ',
 'tags-intro' => 'આ પાના પર સૉફ્ટવૅર દ્વારા, સંપાદનને ચિહ્નિત કરાયેલાં ટૅગ્સની યાદી અને તેનાં અર્થ છે.',
 'tags-tag' => 'ટૅગનું નામ',

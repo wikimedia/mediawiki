@@ -171,7 +171,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Montre kantite itlizatè k’ap swiv',
 'tog-oldsig' => 'Gade pou wè siyati ki egziste deja:',
 'tog-fancysig' => 'Konsidere siyati sa tankou yon wikitèks (san lyen ki ta otomatik)',
-'tog-showjumplinks' => 'Pèmèt lyen aksesibilite « ale nan »',
 'tog-uselivepreview' => 'Itilize kout je an dirèk (sa mande JavaScrip) (Esperimantal)',
 'tog-forceeditsummary' => 'Notifye m lè m ap antre yon somè modifikasyon vid',
 'tog-watchlisthideown' => 'Kache modifikasyon m yo nan lis swivi mwen a',

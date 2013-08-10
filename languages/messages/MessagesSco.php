@@ -51,7 +51,6 @@ $messages = array(
 'tog-enotifrevealaddr' => 'Shaw ma email address in notification mails',
 'tog-shownumberswatching' => 'Shaw the nummer o watching uisers',
 'tog-fancysig' => 'Raw seignaturs (athoot automatic airtin)',
-'tog-showjumplinks' => 'Enable "loup til" accessibility airtins',
 'tog-uselivepreview' => 'Uise leeve preview (JavaScript) (Prattik)',
 'tog-forceeditsummary' => 'Gie me a jottin when A dinnae put in a edit summary',
 'tog-watchlisthideown' => 'Hide yer ain edits frae yer watchleet',

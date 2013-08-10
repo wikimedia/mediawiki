@@ -2187,6 +2187,8 @@ En sida anses vara en förgreningssida om den inkluderar en mall som länkas til
 'pageswithprop-text' => 'Denna sida listar sidor som använder en speciell sidegenskap.',
 'pageswithprop-prop' => 'Egenskapsnamn:',
 'pageswithprop-submit' => 'Gå',
+'pageswithprop-prophidden-long' => 'dold långt textegenskapsvärde ($1 kilobyte)',
+'pageswithprop-prophidden-binary' => 'dold binärt egenskapsvärde ($1 kilobyte)',
 
 'doubleredirects' => 'Dubbla omdirigeringar',
 'doubleredirectstext' => 'Det här är en lista över sidor som dirigerar om till andra omdirigeringssidor. 
@@ -2244,6 +2246,7 @@ Varje rad innehåller länkar till den första och andra omdirigeringsidan, samt
 'mostrevisions' => 'Sidor med flest ändringar',
 'prefixindex' => 'Alla sidor med prefix',
 'prefixindex-namespace' => 'Alla sidor med prefix ($1 namnrymder)',
+'prefixindex-strip' => 'Avlägsna prefix i lista',
 'shortpages' => 'Korta sidor',
 'longpages' => 'Långa sidor',
 'deadendpages' => 'Sidor utan länkar',

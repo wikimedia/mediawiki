@@ -49,7 +49,6 @@ $messages = array(
 'tog-shownumberswatching' => "Muestral el númeru d'usuárius que la vehilan",
 'tog-oldsig' => 'Firma dessistenti:',
 'tog-fancysig' => 'Tratal la firma cumu testu wiki (sin atiju automáticu)',
-'tog-showjumplinks' => 'Premitil los atihus d\'acesibiliá "sartal a"',
 'tog-uselivepreview' => 'Gastal "live preview" (JavaScript) (en prebas)',
 'tog-forceeditsummary' => 'Avisalmi cuandu nu escreba una síntesis dun chambu',
 'tog-watchlisthideown' => 'Açonchal las mis eicionis ena lista e seguimientu',

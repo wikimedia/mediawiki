@@ -453,9 +453,9 @@ $messages = array(
 'category-empty' => "''No momento esta categoria não possui nenhuma página ou arquivo multimídia.''",
 'hidden-categories' => '{{PLURAL:$1|Categoria oculta|Categorias ocultas}}',
 'hidden-category-category' => 'Categorias ocultas',
-'category-subcat-count' => '{{PLURAL:$2|Esta categoria possui apenas a seguinte subcategoria.|Esta categoria possui a(s) seguinte(s) {{PLURAL:$1|subcategoria|$1 subcategorias}}, de um total de $2.}}',
+'category-subcat-count' => '{{PLURAL:$2|Esta categoria possui apenas a seguinte subcategoria.|Esta categoria possui {{PLURAL:$1| a seguinte subcategoria|as seguintes $1 subcategorias}}, de um total de $2.}}',
 'category-subcat-count-limited' => 'Esta categoria possui {{PLURAL:$1|a seguinte sub-categoria|as $1 sub-categorias a seguir}}.',
-'category-article-count' => '{{PLURAL:$2|Esta categoria contém apenas a seguinte página.|A(s) seguinte(s) {{PLURAL:$1|página é|$1 páginas são}} nesta categoria, de um total de $2.}}',
+'category-article-count' => '{{PLURAL:$2|Esta categoria contém apenas a seguinte página.|{{PLURAL:$1|A seguinte página pertence|As seguintes $1 páginas pertencem}} a esta categoria, de um total de $2.}}',
 'category-article-count-limited' => 'Esta categoria possui {{PLURAL:$1|a seguinte página|as $1 páginas a seguir}}.',
 'category-file-count' => '{{PLURAL:$2|Esta categoria possui apenas o seguinte arquivo.|Esta categoria possui {{PLURAL:$1|o seguinte arquivo|os $1 arquivos a seguir}}, de um total de $2.}}',
 'category-file-count-limited' => 'Esta categoria possui {{PLURAL:$1|um arquivo|$1 arquivos}}.',
@@ -954,7 +954,15 @@ Senha temporária: $2',
 
 # Special:ResetTokens
 'resettokens' => 'Reiniciar os tokens',
+'resettokens-text' => 'Você pode reiniciar os tokens, que permitem o acesso a certos dados privados associados à sua conta, aqui.
+
+Você só deve reiniciá-los se compartilhou-os com alguém ou se a sua conta foi comprometida.',
+'resettokens-no-tokens' => 'Não existem tokens para reiniciar.',
+'resettokens-legend' => 'Reiniciar tokens',
 'resettokens-token-label' => '$1 (valor atual: $2)',
+'resettokens-watchlist-token' => 'Vigiar os tokens através de um feed da Web',
+'resettokens-done' => 'Tokens reiniciados.',
+'resettokens-resetbutton' => 'Reiniciar tokens selecionados',
 
 # Edit page toolbar
 'bold_sample' => 'Texto em negrito',
@@ -1493,6 +1501,9 @@ Note que os índices do sistema de busca externo poderão conter referências de
 'recentchangesdays-max' => '(máximo: $1 {{PLURAL:$1|dia|dias}})',
 'recentchangescount' => 'Número de edições a serem exibidas por padrão:',
 'prefs-help-recentchangescount' => 'Isto inclui mudanças recentes, histórico de páginas e registros.',
+'prefs-help-watchlist-token2' => 'Esta é a senha secreta para o feed da Web com sua lista de tokens vigiados.
+Qualquer pessoa que descobrir esta senha será capaz de ler sua lista, então não a compartilhe.
+[[Special:ResetTokens|Clique aqui para redefini-la]].',
 'savedprefs' => 'As suas preferências foram salvas.',
 'timezonelegend' => 'Fuso horário:',
 'localtime' => 'Horário local:',
@@ -1590,6 +1601,7 @@ Caso decida fornecê-lo, este será utilizado para dar-lhe crédito pelo seu tra
 'userrights-changeable-col' => 'Grupos que pode alterar',
 'userrights-unchangeable-col' => 'Grupos que não pode alterar',
 'userrights-conflict' => 'Há um comflito de permissões de usuário! Por favor, aplique as alterações novamente.',
+'userrights-removed-self' => 'Você removeu com sucesso seus direitos de usuário. Como tal, você agora está impossibilitado de acessar esta página.',
 
 # Groups
 'group' => 'Grupo:',
@@ -1656,12 +1668,17 @@ Caso decida fornecê-lo, este será utilizado para dar-lhe crédito pelo seu tra
 'right-unblockself' => 'Desbloquear a si mesmo',
 'right-protect' => 'Mudar níveis de proteção e editar páginas protegidas em cascata',
 'right-editprotected' => 'Editar páginas protegidas como "{{int:protect-level-sysop}}"',
+'right-editsemiprotected' => 'Editar páginas protegidas como "{{int:protect-level-autoconfirmed}}"',
 'right-editinterface' => 'Editar a interface de usuário',
 'right-editusercssjs' => 'Editar os arquivos CSS e JS de outros usuários',
 'right-editusercss' => 'Editar os arquivos CSS de outros usuários',
 'right-edituserjs' => 'Editar os arquivos JS de outros usuários',
 'right-editmyusercss' => 'Edite seu próprio arquivo CSS de usuário',
 'right-editmyuserjs' => 'Edite seu próprio arquivo JavaScript de usuário',
+'right-viewmywatchlist' => 'Ver sua lista de vigiados',
+'right-editmywatchlist' => 'Editar sua lista de vigiados. Observe que algumas ações seguirão adicionando páginas, mesmo sem este direito.',
+'right-viewmyprivateinfo' => 'Ver seus próprios dados privados (por exemplo: endereço de e-mail, nome real)',
+'right-editmyprivateinfo' => 'Editar seus próprios dados privados (exemplo: endereço de e-mail, nome real)',
 'right-editmyoptions' => 'Modifique suas preferências.',
 'right-rollback' => 'Reverter rapidamente o último usuário que editou uma página em particular',
 'right-markbotedits' => 'Marcar edições revertidas como edições de bot',
@@ -2147,8 +2164,10 @@ Talvez você deseje editar a descrição na sua [$2 página de descrição de ar
 'randompage-nopages' => 'Não há páginas {{PLURAL:$2|no seguinte espaço nominal|nos seguintes espaços nominais}}: $1.',
 
 # Special:RandomInCategory
+'randomincategory' => 'Página aleatória na categoria',
 'randomincategory-invalidcategory' => '"$1" não é um nome de categoria válido.',
-'randomincategory-nopages' => 'Não há paginas em [[:Categoria:$1]].',
+'randomincategory-nopages' => 'Não há paginas em [[:Category:$1]].',
+'randomincategory-selectcategory' => 'Obter página aleatória da categoria: $1 $2.',
 'randomincategory-selectcategory-submit' => 'Avançar',
 
 # Random redirect
@@ -3819,17 +3838,17 @@ para cancelar a confirmação do endereço de e-mail:
 $5
 
 Este código de confirmação irá expirar em $4.',
-'confirmemail_body_set' => 'Alguém, provavelmente você com o endereço IP $1,
-definiu o endereço de correio eletrónico da conta "$2" para este na {{SITENAME}}.
+'confirmemail_body_set' => 'Alguém, provavelmente você, com o endereço de IP $1,
+definiu o endereço de e-mail da conta "$2" para este em {{SITENAME}}.
 
 Para confirmar que esta conta é realmente sua e reativar
-as funcionalidades de correio electrónico na {{SITENAME}},
-abra o seguinte link no seu browser:
+as funcionalidades de email em {{SITENAME}},
+abra o seguinte link no seu navegador:
 
 $3
 
 Caso a conta *não* lhe pertença, siga o seguinte link
-para cancelar a confirmação do endereço de correio electrónico:
+para cancelar a confirmação do endereço de e-mail:
 
 $5
 
@@ -3950,6 +3969,7 @@ Você também pode [[Special:EditWatchlist|editar a lista da maneira convenciona
 'version-license' => 'Licença',
 'version-poweredby-credits' => "Este é um wiki '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'outros',
+'version-poweredby-translators' => 'tradutores da translatewiki.net',
 'version-credits-summary' => 'Gostaríamos de agradecer às seguintes pessoas por suas contribuições no [[Special:Version|MediaWiki]]',
 'version-license-info' => 'O MediaWiki é software livre; pode redistribuí-lo e/ou modificá-lo nos termos da licença GNU General Public License, tal como publicada pela Free Software Foundation; tanto a versão 2 da Licença, como (por opção sua) qualquer versão posterior.
 
@@ -4076,7 +4096,7 @@ Em conjunto com este programa deve ter recebido [{{SERVER}}{{SCRIPTPATH}}/COPYIN
 'logentry-delete-delete' => '$1 apagou a página $3',
 'logentry-delete-restore' => '$1 restaurou a página $3',
 'logentry-delete-event' => '$1 alterou a visibilidade {{PLURAL:$5|de uma entrada|de $5 entradas}} do registro $3: $4',
-'logentry-delete-revision' => '$1 alterou a visibilidade de {{PLURAL:$5|uma revisão|$5 revisões}} na página $3: $4',
+'logentry-delete-revision' => '$1 {{GENDER:$2|alterou}} a visibilidade de {{PLURAL:$5|uma revisão|$5 revisões}} na página $3: $4',
 'logentry-delete-event-legacy' => '$1 {{GENDER:$2|alterou}} a visibilidade de entradas de registo em $3',
 'logentry-delete-revision-legacy' => '$1 {{GENDER:$2|alterou}} a visibilidade de revisões na página $3',
 'logentry-suppress-delete' => '$1 {{GENDER:$2|suprimiu}} a página $3',

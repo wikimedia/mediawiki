@@ -179,7 +179,6 @@ $messages = array(
 'tog-enotifminoredits' => 'E-mail mi fu pikin kenki fu peprewoysi opo mi sirey',
 'tog-enotifrevealaddr' => 'Sori mi e-mail nen ini den e-mail boskopu',
 'tog-shownumberswatching' => 'Sori omeni kebroikiman e tan luku a papira disi',
-'tog-showjumplinks' => 'Sori den "go na" miti',
 'tog-uselivepreview' => 'Kebroiki "wanten sori-na-fesi" (JavaScript – ondrosuku fasi)',
 'tog-forceeditsummary' => 'Gi wan boskopu efu a "Syatu" boksu leygi',
 'tog-watchlisthideown' => 'Kibri mi eygi kenki ini mi Tan luku réy',

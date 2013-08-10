@@ -211,7 +211,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Àmostrar el kadhar de usadores que están akavidando las hojas',
 'tog-oldsig' => 'La firma presente',
 'tog-fancysig' => 'Tratar la firma como un vikiteksto (sin un atamiento otomatiko)',
-'tog-showjumplinks' => 'Aktivar los atamientos de ayudo "{{int:jumpto}}"',
 'tog-uselivepreview' => 'Usar el "previsteo bivo" (JavaScript es menester) (eksperimental)',
 'tog-forceeditsummary' => 'Avizarme cuando dexo el somaryo vazío',
 'tog-watchlisthideown' => 'Esconder mis trocamientos en mi lista de akavidamiento',

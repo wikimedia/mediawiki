@@ -68,7 +68,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Pòkażë lëczba ùzérającëch brëkòwników',
 'tog-oldsig' => 'Pòdzérk wëzdrzatkù twòjegò pòdpisënka',
 'tog-fancysig' => 'Wzérôj na pòdpisënk jakno na wikikòd (bez aùtomatnych lënków)',
-'tog-showjumplinks' => 'Włączë lënczi przëstãpù "òbaczë téż"',
 'tog-uselivepreview' => 'Brëkùjë wtimczasnegò pòdzérkù (JavaScript) (eksperimentalné)',
 'tog-forceeditsummary' => 'Pëtôj przed wéńdzenim do pùstégò pòdrechòwania edicëji',
 'tog-watchlisthideown' => 'Zatacë mòjé edicëje z lëstë ùzérónëch artiklów',

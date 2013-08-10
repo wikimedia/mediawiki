@@ -180,7 +180,6 @@ $messages = array(
 'tog-enotifrevealaddr' => "Eskertiw xatlarında e-mail adresimdi ko'rset",
 'tog-shownumberswatching' => "Baqlag'an paydalanıwshılar sanın ko'rset",
 'tog-fancysig' => 'İmzalardı wikitext dep qabıl etiw (avtomat siltewsiz)',
-'tog-showjumplinks' => "«O'tip ketiw» siltewlerin qos",
 'tog-uselivepreview' => "Janlı ko'rip shıg'ıwdı qollan (JavaScript) (Sınawda)",
 'tog-forceeditsummary' => "O'zgertiw juwmag'ı bos qalg'anda mag'an eskert",
 'tog-watchlisthideown' => "Baqlaw dizimindegi menin' o'zgertiwlerimdi jasır",

@@ -97,7 +97,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Ipakita ang gidaghanon sa mga gumagamit nga nagbantay usab',
 'tog-oldsig' => 'Paunang tan-aw sa eksisting nga pirma:',
 'tog-fancysig' => 'Hilaw nga pirma (walay awtomatikong sumpay)',
-'tog-showjumplinks' => 'I-enable ang "ambak sa" nga sumpay sa aksesibilidad',
 'tog-uselivepreview' => 'Gamita ang live nga paunang tan-aw (JavaScript kinahanglan) (Eksperimental)',
 'tog-forceeditsummary' => 'Pahibaloi ako kon blangko ang mubong sugid alang sa pag-usab',
 'tog-watchlisthideown' => 'Tagoa ang akong mga giusab',

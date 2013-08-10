@@ -13,6 +13,7 @@
  * @author PCode
  * @author Salam
  * @author Александр Сигачёв
+ * @author Блокнот
  */
 
 $fallback = 'ru';
@@ -71,7 +72,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Страницăна миçе хутшăнакан сăнав списокне кĕртнине кăтартмалла',
 'tog-oldsig' => 'Хальхи алӑ пусни:',
 'tog-fancysig' => 'Хăвăр тунă алă пуснин вики-паллисем',
-'tog-showjumplinks' => '«... патне куç» хушма каçăсене усă курмалла',
 'tog-uselivepreview' => 'Хăвăрт кăтартакан малтанхи курăнăва усă курмалла (JavaScript, экспериментлă)',
 'tog-forceeditsummary' => 'Тӳрлетӳсен кĕске ăнлантарăвне кăтартман чухне асăрхаттармалла',
 'tog-watchlisthideown' => 'Сăнав списокĕнче эпĕ тунă тӳрлетӳсене кăтартмалла мар',
@@ -231,7 +231,7 @@ $messages = array(
 'viewhelppage' => 'Справка страницине пăх',
 'categorypage' => 'Категори страницине пăх',
 'viewtalkpage' => 'Сӳтсе явнине тишкер',
-'otherlanguages' => 'Урăх чĕлхесем',
+'otherlanguages' => 'Урăхла чĕлхесем',
 'redirectedfrom' => '($1 çинчен куçарнă)',
 'redirectpagesub' => 'Куçаракан страница',
 'lastmodifiedat' => 'Ку страницăна юлашки улăштарнă вăхăт: $2, $1.',

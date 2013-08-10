@@ -383,7 +383,6 @@ $messages = array(
 'tog-enotifrevealaddr' => 'E-poştamnıñ mekenjaýın eskertw xattarda aş',
 'tog-shownumberswatching' => 'Baqılap turğan qatıswşılardıñ sanın körset',
 'tog-fancysig' => 'Qam qoltañba (özdiktik siltemesiz)',
-'tog-showjumplinks' => '«Ötip ketw» qatınaw siltemelerin qos',
 'tog-uselivepreview' => 'Twra qarap şığwdı qoldanw (JavaScript) (Sınaqtama)',
 'tog-forceeditsummary' => 'Öñdemeniñ qısqaşa mazmundaması bos qalğanda mağan eskert',
 'tog-watchlisthideown' => 'Öñdemelerimdi baqılaw tizimnen jasır',

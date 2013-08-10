@@ -89,7 +89,6 @@ $messages = array(
 'tog-shownumberswatching' => "D' Åzoi voh dé beówochterden Benutzer åzoang",
 'tog-oldsig' => 'Existente Unterschrift',
 'tog-fancysig' => 'Unterschrift ois Wikitext bhåndln (óne autómaatische Valinkung)',
-'tog-showjumplinks' => '„Wexeln zu“-Links aktivirn',
 'tog-uselivepreview' => 'Live-Vurschau nutzen (dodafyr braucht ma JavaScript) (experimentoy)',
 'tog-forceeditsummary' => 'Warnen, wånn ban Speichern dé Zåmmerfossung fööd',
 'tog-watchlisthideown' => 'Eigerne Beorweitungen in da Beówochtungslisten ausblenden',

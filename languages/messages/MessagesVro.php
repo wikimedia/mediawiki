@@ -72,7 +72,6 @@ $messages = array(
 'tog-shownumberswatching' => "Näütäq, ku pall'o pruukjit taa lehe perrä kaes",
 'tog-oldsig' => 'Parhillanõ alakirotus:',
 'tog-fancysig' => 'Pruugiq vikiteksti moodulist alakirotust (ilma automaatsõ lingildä)',
-'tog-showjumplinks' => 'Panõq lehe algustõ kipõqlingiq',
 'tog-uselivepreview' => 'Pruugiq kipõkaehust (JavaScript) (proomi)',
 'tog-forceeditsummary' => 'Annaq teedäq, ku olõ-i kirotõt kokkovõtõt',
 'tog-watchlisthideown' => 'Näüdäku-i perräkaemisnimekirän mu hindä toimõnduisi',

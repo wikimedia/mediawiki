@@ -46,7 +46,6 @@ $messages = array(
 'tog-shownumberswatching' => '展示監視中嘅使用人數目',
 'tog-oldsig' => '現有簽名：',
 'tog-fancysig' => '將簽名看做維基文字（毋會自動產生鏈接）',
-'tog-showjumplinks' => '啟用“跳轉到”訪問鏈接',
 'tog-uselivepreview' => '使用即時預覽（愛有 JavaScript）（實驗中）',
 'tog-forceeditsummary' => '還吂輸入編寫摘要時提醒亻厓',
 'tog-watchlisthideown' => '監視列表肚隱藏亻厓嘅編寫',

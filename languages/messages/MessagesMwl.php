@@ -107,7 +107,6 @@ $messages = array(
 'tog-enotifrevealaddr' => 'Rebelar l miu andereço de correio eiletrónico nas noteficaçones',
 'tog-shownumberswatching' => "Amostrar l númaro d'outelizadores a begiar",
 'tog-fancysig' => 'Tratar assinatura cumo wikitesto (sin lhigaçon outomática)',
-'tog-showjumplinks' => 'Posseblitar lhigaçones d\'acessibelidade "{{ant:jumpto}}"',
 'tog-uselivepreview' => "Ousar l'antebison an tiempo rial (JavaScrit) (Spurmental)",
 'tog-forceeditsummary' => 'Abisar-me al antroduzir un sumairo bazio',
 'tog-watchlisthideown' => 'Scunder las mies eidiçones al lhistar mudanças a las páiginas begiadas',

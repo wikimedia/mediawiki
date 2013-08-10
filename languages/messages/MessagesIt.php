@@ -743,7 +743,7 @@ Non dimenticare di personalizzare le [[Special:Preferences|preferenze di {{SITEN
 'logout' => 'Esci',
 'userlogout' => 'esci',
 'notloggedin' => 'Accesso non effettuato',
-'userlogin-noaccount' => 'Non hai un account?',
+'userlogin-noaccount' => 'Non hai ancora effettuato la registrazione?',
 'userlogin-joinproject' => 'Registrati su {{SITENAME}}',
 'nologin' => 'Non hai ancora un accesso? $1.',
 'nologinlink' => 'Registrati',
@@ -755,12 +755,12 @@ Non dimenticare di personalizzare le [[Special:Preferences|preferenze di {{SITEN
 'helplogin-url' => 'Help:Login',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Aiuto con il login]]',
 'createacct-join' => 'Inserisci i tuoi dati qui sotto.',
-'createacct-another-join' => 'Inserisci le informazioni per il nuovo account qui sotto.',
+'createacct-another-join' => 'Inserisci le informazioni per la registrazione qui sotto.',
 'createacct-emailrequired' => 'Indirizzo email',
 'createacct-emailoptional' => 'Indirizzo di posta elettronica (opzionale)',
 'createacct-email-ph' => 'Inserisci il tuo indirizzo email',
-'createacct-another-email-ph' => "Inserisci l'indirizzo email",
-'createaccountmail' => "Usa una password casuale temporanea e inviala all'indirizzo e-mail specificato sotto",
+'createacct-another-email-ph' => "Inserisci l'indirizzo di posta elettronica",
+'createaccountmail' => "Usa una password casuale temporanea e inviala all'indirizzo di posta elettronica specificato",
 'createacct-realname' => 'Nome reale (opzionale)',
 'createaccountreason' => 'Motivo:',
 'createacct-reason' => 'Motivo',
@@ -768,8 +768,8 @@ Non dimenticare di personalizzare le [[Special:Preferences|preferenze di {{SITEN
 'createacct-captcha' => 'Controllo di sicurezza',
 'createacct-imgcaptcha-ph' => 'Inserisci il testo che vedi sopra',
 'createacct-submit' => 'Crea la tua utenza',
-'createacct-another-submit' => 'Crea un altro account',
-'createacct-benefit-heading' => '{{SITENAME}} è fatta da persone come te.',
+'createacct-another-submit' => "Crea un'altra utenza",
+'createacct-benefit-heading' => '{{SITENAME}} cresce grazie a persone come te.',
 'createacct-benefit-body1' => '{{PLURAL:$1|modifica|modifiche}}',
 'createacct-benefit-body2' => '{{PLURAL:$1|pagina|pagine}}',
 'createacct-benefit-body3' => '{{PLURAL:$1|contributore recente|contributori recenti}}',
@@ -812,8 +812,8 @@ Per abilitare l'invio di messaggi e-mail per questo accesso è necessario seguir
 'throttled-mailpassword' => 'Una email di reimpostazione della password è già stata inviata da meno di {{PLURAL:$1|1 ora|$1 ore}}.
 Per prevenire abusi, la funzione di reimpostazione della password può essere usata solo una volta ogni {{PLURAL:$1|ora|$1 ore}}.',
 'mailerror' => "Errore nell'invio del messaggio: $1",
-'acct_creation_throttle_hit' => "I visitatori del sito che usano il tuo indirizzo IP hanno creato {{PLURAL:$1|1 account|$1 account}} nell'ultimo giorno, che è il massimo consentito in questo periodo di tempo.
-Perciò, gli utenti che usano questo indirizzo IP non possono creare altri account per il momento.",
+'acct_creation_throttle_hit' => "{{PLURAL:$1|1 registrazione è già stata effettuata|$1 registrazioni sono già state effettuate}} da qualcuno con il tuo stesso indirizzo IP nell'ultimo giorno: è il massimo consentito in questo periodo di tempo.
+Perciò, gli utenti che usano questo indirizzo IP non possono registrarsi per il momento.",
 'emailauthenticated' => "L'indirizzo email è stato confermato il $2 alle $3.",
 'emailnotauthenticated' => "L'indirizzo di posta elettronica non è stato ancora confermato.
 Non verranno inviati messaggi email per le funzioni elencate di seguito.",
@@ -872,7 +872,7 @@ La password potrebbe essere stata già cambiata, oppure potrebbe essere stata ri
 'passwordreset-capture' => 'Visualizzare il contenuto del messaggio e-mail?',
 'passwordreset-capture-help' => "Se si seleziona questa casella, l'indirizzo e-mail (con la password temporanea), verrà mostrato a voi, oltre ad essere inviato all'utente.",
 'passwordreset-email' => 'Indirizzo e-mail:',
-'passwordreset-emailtitle' => 'Dettagli account su {{SITENAME}}',
+'passwordreset-emailtitle' => "Dettagli dell'utente su {{SITENAME}}",
 'passwordreset-emailtext-ip' => "Qualcuno (probabilmente tu, con indirizzo IP $1) ha richiesto l'invio di una nuova password per l'accesso a {{SITENAME}} ($4). {{PLURAL:$3|L'utente associato|Gli utenti associati}} a questo indirizzo email sono:
 
 $2
@@ -909,9 +909,9 @@ Password temporanea: $2',
 
 # Special:ResetTokens
 'resettokens' => 'Reset token',
-'resettokens-text' => "È possibile reimpostare i token che permettono l'accesso a determinati dati privati associati al tuo account qui.
+'resettokens-text' => "Qui puoi reimpostare le chiavi che permettono l'accesso a determinati dati privati associati alla tua utenza.
 
-Dovresti farlo se li hai accidentalmente condivisi con qualcuno o se il tuo account è stato compromesso.",
+Dovresti farlo se le hai accidentalmente condivise con qualcuno o se la tua utenza è stato compromessa.",
 'resettokens-no-tokens' => 'Non ci sono token da reimpostare.',
 'resettokens-legend' => 'Reset token',
 'resettokens-tokens' => 'Token:',
@@ -999,7 +999,7 @@ Potrebbe essere stata spostata o eliminata mentre si stava visionando la pagina.
 'accmailtitle' => 'Password inviata.',
 'accmailtext' => "Una password generata casualmente per [[User talk:$1|$1]] è stata inviata a $2.
 
-La password per questo nuovo account può essere modificata all'accesso nella pagina per ''[[Special:ChangePassword|cambiare la password]]''.",
+Questa password può essere modificata nella pagina per ''[[Special:ChangePassword|cambiare la password]]'' subito dopo l'accesso.",
 'newarticle' => '(Nuovo)',
 'newarticletext' => "Il collegamento appena seguito corrisponde ad una pagina non ancora esistente.
 Se vuoi creare la pagina ora, basta cominciare a scrivere il testo nella casella qui sotto (vedi la [[{{MediaWiki:Helppage}}|pagina di aiuto]] per maggiori informazioni).
@@ -1154,7 +1154,7 @@ Controlla le differenze mostrate sotto fra le due versioni per essere certo che 
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Impossibile registrare un utente',
-'cantcreateaccount-text' => "La creazione di nuovi account a partire da questo indirizzo IP ('''$1''') è stata bloccata da [[User:$3|$3]].
+'cantcreateaccount-text' => "La registrazione è stata bloccata da [[User:$3|$3]] per questo indirizzo IP ('''$1''').
 
 La motivazione del blocco fornita da $3 è la seguente: ''$2''",
 
@@ -1532,7 +1532,7 @@ Il tuo indirizzo non viene rivelato quando gli altri utenti ti contattano.',
 'userrights-no-interwiki' => 'Non si dispone dei permessi necessari per modificare i diritti degli utenti su altri siti.',
 'userrights-nodatabase' => 'Il database $1 non esiste o non è un database locale.',
 'userrights-nologin' => "Per assegnare diritti agli utenti è necessario [[Special:UserLogin|effettuare l'accesso]] come amministratore.",
-'userrights-notallowed' => "Il tuo account non dispone dell'autorizzazione per aggiungere o rimuovere i permessi utente.",
+'userrights-notallowed' => "Non disponi dell'autorizzazione per aggiungere o rimuovere i permessi utente.",
 'userrights-changeable-col' => 'Gruppi modificabili',
 'userrights-unchangeable-col' => 'Gruppi non modificabili',
 'userrights-conflict' => 'Conflitto di diritti utente! Applica nuovamente le tue modifiche.',
@@ -1567,7 +1567,7 @@ Il tuo indirizzo non viene rivelato quando gli altri utenti ti contattano.',
 'right-edit' => 'Modifica pagine',
 'right-createpage' => 'Crea pagine (escluse le pagine di discussione)',
 'right-createtalk' => 'Crea pagine di discussione',
-'right-createaccount' => 'Crea nuovi account utente',
+'right-createaccount' => 'Crea nuove utenze',
 'right-minoredit' => 'Segna le modifiche come minori',
 'right-move' => 'Sposta le pagine',
 'right-move-subpages' => 'Sposta le pagine insieme alle relative sottopagine',
@@ -1645,7 +1645,7 @@ Il tuo indirizzo non viene rivelato quando gli altri utenti ti contattano.',
 'action-edit' => 'modificare questa pagina',
 'action-createpage' => 'creare pagine',
 'action-createtalk' => 'creare pagine di discussione',
-'action-createaccount' => 'creare questo account utente',
+'action-createaccount' => 'effettuare questa registrazione',
 'action-minoredit' => 'segnare questa modifica come minore',
 'action-move' => 'spostare questa pagina',
 'action-move-subpages' => 'spostare questa pagina e le relative sottopagine',
@@ -2670,10 +2670,10 @@ Indicare il motivo specifico per il quale si procede al blocco (per esempio, cit
 ** Collegamenti promozionali a siti esterni
 ** Inserimento di contenuti privi di senso
 ** Comportamenti intimidatori o molestie
-** Uso indebito di più account
+** Uso indebito di utenze multiple
 ** Nome utente non consono',
 'ipb-hardblock' => 'Impedisci agli utenti registrati di contribuire da questo indirizzo IP',
-'ipbcreateaccount' => 'Impedisci la creazione di altri account',
+'ipbcreateaccount' => 'Impedisci la registrazione',
 'ipbemailban' => "Impedisci all'utente l'invio di e-mail",
 'ipbenableautoblock' => "Blocca automaticamente l'ultimo indirizzo IP usato dall'utente e i successivi con cui vengono tentate modifiche",
 'ipbsubmit' => "Blocca l'utente",
@@ -2708,7 +2708,7 @@ Sei sicuro di voler continuare?',
 'blocklist' => 'Utenti bloccati',
 'ipblocklist' => 'Utenti bloccati',
 'ipblocklist-legend' => 'Trova un utente bloccato',
-'blocklist-userblocks' => 'Nascondi i blocchi degli account',
+'blocklist-userblocks' => 'Nascondi i blocchi degli utenti registrati',
 'blocklist-tempblocks' => 'Nascondi i blocchi temporanei',
 'blocklist-addressblocks' => 'Nascondi i blocchi di un solo IP',
 'blocklist-rangeblocks' => 'Nascondi i blocchi di range',
@@ -2725,7 +2725,7 @@ Sei sicuro di voler continuare?',
 'expiringblock' => 'scade il $1 alle $2',
 'anononlyblock' => 'solo anonimi',
 'noautoblockblock' => 'blocco automatico disabilitato',
-'createaccountblock' => 'creazione account bloccata',
+'createaccountblock' => 'registrazione bloccata',
 'emailblock' => 'e-mail bloccate',
 'blocklist-nousertalk' => 'non può modificare la propria pagina di discussione',
 'ipblocklist-empty' => "L'elenco dei blocchi è vuoto.",
@@ -2747,7 +2747,7 @@ Gli indirizzi IP bloccati automaticamente non sono elencati.
 Consultare l'[[Special:BlockList|elenco dei blocchi]] per l'elenco dei bandi o blocchi attualmente operativi.",
 'unblocklogentry' => 'ha sbloccato $1',
 'block-log-flags-anononly' => 'solo utenti anonimi',
-'block-log-flags-nocreate' => 'creazione account bloccata',
+'block-log-flags-nocreate' => 'registrazione bloccata',
 'block-log-flags-noautoblock' => 'blocco automatico disattivato',
 'block-log-flags-noemail' => 'e-mail bloccate',
 'block-log-flags-nousertalk' => 'non può modificare la propria pagina di discussione',

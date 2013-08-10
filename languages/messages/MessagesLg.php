@@ -41,7 +41,6 @@ $messages = array(
 'tog-shownumberswatching' => "Ndaganga obungi bw'abagoberera olupapula",
 'tog-oldsig' => 'Omukono gwo kakano:',
 'tog-fancysig' => 'Omukono gubemu obubonero bwa ki-wiki (naye nga tegufuuka nyunzi)',
-'tog-showjumplinks' => 'Wabeerewo enyunzi eza "Genda ku"',
 'tog-uselivepreview' => 'Enkyukakyuka ze nkoze zirabikirewo nga tekyetaagisiza kumala kunyiga ppeesa (kyetaagisa JavaScript)(Kikyagezesebwa)',
 'tog-forceeditsummary' => 'Ŋambaako bwe mba ŋenda okuleka nga sinnyonyodde bye nkyusizza',
 'tog-watchlisthideown' => "Nze bye nkyusizza bireme okulabikira mu lukalala lw'empapula ze ngoberera",

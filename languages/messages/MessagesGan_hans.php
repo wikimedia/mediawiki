@@ -63,7 +63,6 @@ $messages = array(
 'tog-shownumberswatching' => '显示有几多人监视',
 'tog-oldsig' => '现有𠮶签名：',
 'tog-fancysig' => '搦签名以维基字对待（冇自动连结）',
-'tog-showjumplinks' => '启用“跳到”访问链接',
 'tog-uselivepreview' => '使用即时预览（JavaScript）（实验中）',
 'tog-forceeditsummary' => '冇改动注解时要同偶话',
 'tog-watchlisthideown' => '监视列表弆到偶𠮶编辑',

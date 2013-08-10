@@ -133,7 +133,6 @@ $messages = array(
 'tog-enotifrevealaddr' => "Rivera lu me' indirizzu di postha erettrònica i' l'imbasciaddi d'avvisu",
 'tog-shownumberswatching' => "Musthra lu nùmaru d'utenti ch'àni la pàgina abbaidadda",
 'tog-fancysig' => "Interpreta i cumandi wiki i' la fimma (chena cullegaumentu otomatiggu)",
-'tog-showjumplinks' => "Attiba li cullegamenti atzessibili 'vai a'",
 'tog-uselivepreview' => "Attiba la funzioni ''Live preview'' (dumanda JavaScript; ippirimintari)",
 'tog-forceeditsummary' => "Dumanda cunfèimma si l'oggettu di la mudìfigga è bioddu",
 'tog-watchlisthideown' => "Cua li me' mudìfigghi i' l'abbaidaddi ippiziari",

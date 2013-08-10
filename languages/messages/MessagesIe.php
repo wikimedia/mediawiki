@@ -161,7 +161,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Monstrar li númere de usatores vigilant',
 'tog-oldsig' => 'Prevision de signature in existentie:',
 'tog-fancysig' => 'Tractar signature quam textu wiki (sin un catenun auto-crate)',
-'tog-showjumplinks' => 'Permisser catenunes de accessebilitá "saltar a"',
 'tog-uselivepreview' => 'Usar prevision in vivi (exige JavaScript) (experimental)',
 'tog-forceeditsummary' => 'Suggester me quande intrar un redaction che summarium in blanc',
 'tog-watchlisthideown' => 'Ocultar mi redactiones del liste de págines vigilat',
