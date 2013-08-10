@@ -2347,7 +2347,7 @@ class User {
 	}
 
 	/**
-	 * Get the user's current setting for a given option, as a boolean value.
+	 * Get the user's current setting for a given option, as an integer value.
 	 *
 	 * @param string $oname The option to check
 	 * @param int $defaultOverride A default value returned if the option does not exist
