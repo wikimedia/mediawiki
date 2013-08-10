@@ -1543,8 +1543,12 @@ abstract class HTMLFormField {
 		$html = '';
 
 		if ( $displayFormat === 'table' ) {
+			$htmlLabel = '';
+			if ( $hasLabel ) {
+				$htmlLabel = Html::rawElement( 'label', $for, $labelValue );
+			};
 			$html = Html::rawElement( 'td', array( 'class' => 'mw-label' ) + $cellAttributes,
-				Html::rawElement( 'label', $for, $labelValue )
+				$htmlLabel
 			);
 		} elseif ( $hasLabel || $this->mShowEmptyLabels ) {
 			if ( $displayFormat === 'div' ) {
@@ -1851,6 +1855,9 @@ class HTMLCheckField extends HTMLFormField {
 	 */
 	function getLabel() {
 		return '&#160;';
+	}
+	protected function needsLabel() {
+		return false;
 	}
 
 	/**
