@@ -1,6 +1,6 @@
 <?php
 /**
- * Cantonese (粵語) specific code.
+ * Cantonese specific code.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,18 +21,40 @@
  * @ingroup Language
  */
 
+require_once __DIR__ . '/../LanguageConverter.php';
+require_once __DIR__ . '/LanguageZh.php';
+
 /**
- * Cantonese (粵語)
- *
  * @ingroup Language
  */
-class LanguageYue extends Language {
+class YueConverter extends LanguageConverter {
 
 	/**
-	 * @return bool
+	 * @param $langobj Language
+	 * @param $maincode string
+	 * @param $variants array
+	 * @param $variantfallbacks array
+	 * @param $flags array
+	 * @param $manualLevel array
 	 */
-	function hasWordBreaks() {
-		return false;
+	function __construct( $langobj, $maincode,
+								$variants = array(),
+								$variantfallbacks = array(),
+								$flags = array(),
+								$manualLevel = array() ) {
+		$this->mDescCodeSep = '：';
+		$this->mDescVarSep = '；';
+		parent::__construct( $langobj, $maincode,
+									$variants,
+									$variantfallbacks,
+									$flags,
+									$manualLevel );
+		$names = array(
+			'yue' => '原文',
+			'yue-hans' => '简体',
+			'yue-hant' => '繁體',
+		);
+		$this->mVariantNames = array_merge( $this->mVariantNames, $names );
 	}
 
 	/**
@@ -49,17 +71,64 @@ class LanguageYue extends Language {
 		return $s;
 	}
 
-	/**
-	 * @param string $string
-	 * @return string
-	 */
-	function normalizeForSearch( $string ) {
-
-		// Double-width roman characters
-		$s = self::convertDoubleWidth( $string );
-		$s = trim( $s );
-		$s = parent::normalizeForSearch( $s );
-
-		return $s;
+	function loadDefaultTables() {
+		require __DIR__ . '/../../includes/ZhConversion.php';
+		$this->mTables = array(
+			'yue-hans' => new ReplacementArray( $zh2Hans ),
+			'yue-hant' => new ReplacementArray( $zh2Hant ),
+			'yue' => new ReplacementArray
+		);
 	}
+
+	/**
+	 * @param $key string
+	 * @return String
+	 */
+	function convertCategoryKey( $key ) {
+		return $this->autoConvert( $key, 'yue' );
+	}
+}
+
+/**
+ * class that handles both Traditional and Simplified Chinese
+ * right now it only distinguish yue_hans, yue_hant.
+ *
+ * @ingroup Language
+ */
+class LanguageYue extends LanguageZh {
+
+	function __construct() {
+		global $wgHooks;
+		parent::__construct();
+
+		$variants = array( 'yue', 'yue-hans', 'yue-hant' );
+		$variantfallbacks = array(
+			'yue' => array( 'yue-hans', 'yue-hant' ),
+			'yue-hans' => array( 'yue' ),
+			'yue-hant' => array( 'yue' ),
+		);
+		$ml = array(
+			'yue' => 'disable',
+		);
+
+		$this->mConverter = new YueConverter( $this, 'yue',
+								$variants, $variantfallbacks,
+								array(),
+								$ml );
+
+		$wgHooks['PageContentSaveComplete'][] = $this->mConverter;
+	}
+
+	/**
+	 * word segmentation
+	 *
+	 * @param $string string
+	 * @param $autoVariant string
+	 * @return String
+	 */
+	function normalizeForSearch( $string, $autoVariant = 'yue-hans' ) {
+		// LanguageZh::normalizeForSearch
+		return parent::normalizeForSearch( $string, $autoVariant );
+	}
+
 }
