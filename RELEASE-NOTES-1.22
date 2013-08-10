@@ -345,6 +345,8 @@ production.
 * Support for the 'gettoken' parameter to action=block and action=unblock,
   deprecated since 1.20, has been removed.
 * (bug 49090) Token-getting functions will fail when using jsonp callbacks.
+* (bug 52699) action=upload returns normalized file name on warning
+  "exists-normalized" instead of filename to be uploaded to.
 
 === Languages updated in 1.22===
 
