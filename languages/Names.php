@@ -418,6 +418,8 @@
 	'yi' => 'ייִדיש',	# Yiddish
 	'yo' => 'Yorùbá',	# Yoruba
 	'yue' => '粵語',	# Cantonese
+	'yue-hans' => "粵语（简体）\xE2\x80\x8E",	# Cantonese (Simplified Han)
+	'yue-hant' => "粵語（繁體）\xE2\x80\x8E",	# Cantonese (Traditional Han)
 	'za' => 'Vahcuengh',	# Zhuang
 	'zea' => 'Zeêuws',	# Zeeuws/Zeaws
 	'zh' => '中文',						# (Zhōng Wén) - Chinese
