@@ -412,6 +412,9 @@ abstract class ResourceLoaderModule {
 	private static $jsParser;
 	private static $parseCacheVersion = 1;
 
+	/** @var lessc lazy-initialized; use self::lessCompiler() */
+	private static $lessc;
+
 	/**
 	 * Validate a given script file; if valid returns the original source.
 	 * If invalid, returns replacement JS source that throws an exception.
@@ -457,6 +460,52 @@ abstract class ResourceLoaderModule {
 			self::$jsParser = new JSParser();
 		}
 		return self::$jsParser;
+	}
+
+	/**
+	 * Compile a LESS file into CSS.
+	 * If invalid, returns replacement CSS source consisting of the
+	 * compilation error message encoded as a comment.
+	 *
+	 * @param string $fileName
+	 * @param string $contents
+	 * @return string CSS source
+	 */
+	protected function compileLess( $fileName, $contents ) {
+		$key = wfMemcKey( 'resourceloader', 'lessc', self::$parseCacheVersion, md5( $contents ) );
+		$cache = wfGetCache( CACHE_ANYTHING );
+		$cacheEntry = $cache->get( $key );
+		if ( is_string( $cacheEntry ) ) {
+			return $cacheEntry;
+		}
+
+		$compiler = self::lessCompiler();
+		try {
+			$result = $compiler->compile( $contents, $fileName );
+		} catch ( Exception $e ) {
+			$err = $e->getMessage();
+			$result = ResourceLoader::makeComment( "LESS compilation error: $err" );
+		}
+		$cache->set( $key, $result );
+		return $result;
+	}
+
+	/**
+	 * Lazy-initializing getter for a LESS compiler instance.
+	 *
+	 * @return lessc
+	 */
+	protected static function lessCompiler() {
+		if ( !self::$lessc ) {
+			self::$lessc = new lessc();
+			// Support for @import is planned (ori-l, 11-Aug-13); it is
+			// disabled for now because generating a cache key based on the
+			// content of the top-level file (as we do) means that
+			// modifications to imported files will not trigger cache
+			// invalidation.
+			self::$lessc->importDisabled = true;
+		}
+		return self::$lessc;
 	}
 
 	/**

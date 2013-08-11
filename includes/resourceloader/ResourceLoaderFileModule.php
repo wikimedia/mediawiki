@@ -471,6 +471,16 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 
 	/**
+	 * Infer the stylesheet language from a stylesheet file path.
+	 *
+	 * @param $path string
+	 * @return string: 'less' or 'css'
+	 */
+	protected function getStyleSheetLang( $path ) {
+		return preg_match( '/\.less$/i', $path ) ? 'less' : 'css';
+	}
+
+	/**
 	 * Collates file paths by option (where provided).
 	 *
 	 * @param array $list List of file paths in any combination of index/path
@@ -632,7 +642,13 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			wfDebugLog( 'resourceloader', $msg );
 			throw new MWException( $msg );
 		}
+
 		$style = file_get_contents( $localPath );
+
+		if ( $this->getStyleSheetLang( $path ) === 'less' ) {
+			$style = $this->compileLess( $path, $style );
+		}
+
 		if ( $flip ) {
 			$style = CSSJanus::transform( $style, true, false );
 		}

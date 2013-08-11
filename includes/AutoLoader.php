@@ -701,6 +701,13 @@ $wgAutoloadLocalClasses = array(
 	'JSToken' => 'includes/libs/jsminplus.php',
 	'JSTokenizer' => 'includes/libs/jsminplus.php',
 
+	# includes/libs/lessphp
+	'lessc' => 'includes/libs/lessc.inc.php',
+	'lessc_parser' => 'includes/libs/lessc.inc.php',
+	'lessc_formatter_classic' => 'includes/libs/lessc.inc.php',
+	'lessc_formatter_compressed' => 'includes/libs/lessc.inc.php',
+	'lessc_formatter_lessjs' => 'includes/libs/lessc.inc.php',
+
 	# includes/logging
 	'DatabaseLogEntry' => 'includes/logging/LogEntry.php',
 	'DeleteLogFormatter' => 'includes/logging/DeleteLogFormatter.php',
