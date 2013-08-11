@@ -12,3 +12,9 @@
 .mw-sp-pref-successbox {
 	font-weight: bold;
 }
+
+.mw-navigation-hint {
+	overflow: hidden;
+	height: 0;
+	zoom: 1;
+}

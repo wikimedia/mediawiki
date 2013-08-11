@@ -2019,6 +2019,7 @@ Your email address is not revealed when other users contact you.',
 'prefs-displaywatchlist'        => 'Display options',
 'prefs-tokenwatchlist'          => 'Token',
 'prefs-diffs'                   => 'Diffs',
+'prefs-tabs-navigation-hint'	=> 'Tip: You can use your arrow keys to navigate between the tabs in the tabslist',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid'   => 'Email address appears valid',

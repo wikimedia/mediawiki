@@ -3,21 +3,40 @@
  */
 jQuery( function ( $ ) {
 	var $preftoc, $preferences, $fieldsets, $legends,
-		hash,
+		hash, labelFunc,
 		$tzSelect, $tzTextbox, $localtimeHolder, servertime;
 
-	$( '#prefsubmit' ).attr( 'id', 'prefcontrol' );
+	labelFunc = function () {
+		return this.id.replace( /^mw-prefsection/g, 'preftab' );
+        };
 
-	$preftoc = $('<ul id="preftoc"></ul>');
+	$( '#prefsubmit' ).attr( 'id', 'prefcontrol' );
+	$preftoc = $('<ul id="preftoc"></ul>')
+		.attr( 'role', 'tablist' );
 	$preferences = $( '#preferences' )
 		.addClass( 'jsprefs' )
 		.before( $preftoc );
 	$fieldsets = $preferences.children( 'fieldset' )
 		.hide()
+		.attr( {
+			role: 'tabpanel',
+			'aria-hidden': 'true',
+			'aria-labelledby': labelFunc
+		} )
 		.addClass( 'prefsection' );
 	$legends = $fieldsets
 		.children( 'legend' )
 		.addClass( 'mainLegend' );
+	$( '<div />' ).addClass( 'mw-navigation-hint' )
+		.text( mw.msg( 'prefs-tabs-navigation-hint' ) )
+		.attr( 'tabIndex', 0 )
+		.on( 'focus blur', function( e ) {
+			if ( e.type === "blur" || e.type === "focusout" ) {
+				$( this ).css({ height: '0' });
+			} else {
+				$( this ).css({ height: 'auto' });
+			}
+	} ).insertBefore( $preftoc );
 
 	/**
 	 * It uses document.getElementById for security reasons (HTML injections in $()).
@@ -36,12 +55,14 @@ jQuery( function ( $ ) {
 		}
 		$( window ).scrollTop( scrollTop );
 
-		$preftoc.find( 'li' ).removeClass( 'selected' );
+		$preftoc.find( 'li' ).removeClass( 'selected' )
+			.find( 'a' ).attr( 'tabIndex', -1 ).attr( 'aria-selected', 'false' );
 		$tab = $( document.getElementById( 'preftab-' + name ) );
 		if ( $tab.length ) {
-			$tab.parent().addClass( 'selected' );
-			$preferences.children( 'fieldset' ).hide();
-			$( document.getElementById( 'mw-prefsection-' + name ) ).show();
+			$tab.attr( 'tabIndex', 0 ).attr( 'aria-selected', 'true' ).focus()
+				.parent().addClass( 'selected' );
+			$preferences.children( 'fieldset' ).hide().attr( 'aria-hidden', 'true' );
+			$( document.getElementById( 'mw-prefsection-' + name ) ).show().attr( 'aria-hidden', 'false' );
 		}
 	}
 
@@ -55,15 +76,38 @@ jQuery( function ( $ ) {
 		ident = $legend.parent().attr( 'id' );
 
 		$li = $( '<li>' )
+			.attr( 'role', 'presentation' )
 			.addClass( i === 0 ? 'selected' : '' );
 		$a = $( '<a>' )
 			.attr( {
 				id: ident.replace( 'mw-prefsection', 'preftab' ),
-				href: '#' + ident
+				href: '#' + ident,
+				role: 'tab',
+				tabIndex: i === 0 ? 0 : -1,
+				'aria-selected': i === 0 ? 'true' : 'false',
+				'aria-controls': ident
 			} )
 			.text( $legend.text() );
 		$li.append( $a );
 		$preftoc.append( $li );
+	} );
+
+	// Enable keyboard users to use left and right keys to switch tabs
+	$preftoc.on( 'keydown', function( event ) {
+		var keyLeft = 37,
+			keyRight = 39,
+			$el;
+
+		if( event.keyCode === keyLeft ) {
+			$el = $('#preftoc li.selected').prev().find( 'a' );
+		} else if ( event.keyCode === keyRight ) {
+			$el = $('#preftoc li.selected').next().find( 'a' );
+		} else {
+			return;
+		}
+		if ( $el !== undefined && $el.length > 0 ) {
+			switchPrefTab( $el.attr( 'href' ).replace( '#mw-prefsection-', '' ) );
+		}
 	} );
 
 	// If we've reloaded the page or followed an open-in-new-window,

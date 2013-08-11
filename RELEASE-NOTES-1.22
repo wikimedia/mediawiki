@@ -190,6 +190,7 @@ production.
 * Add a mode parameter to <gallery> tag with potential options of "traditional",
   "nolines", "packed", "packed-overlay", or "packed-hover".
 * (bug 47399) A success message is now displayed after changing the password.
+* Improved the accessibility of the tabs in Special:Preferences
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
