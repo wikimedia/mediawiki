@@ -949,7 +949,7 @@ var mw = ( function ( $, undefined ) {
 			 * @param {string} module Module name to execute
 			 */
 			function execute( module ) {
-				var key, value, media, i, urls, cssHandle, checkCssHandles,
+				var key, value, media, i, urls, url, rel, cssHandle, checkCssHandles,
 					cssHandlesRegistered = false;
 
 				if ( registry[module] === undefined ) {
@@ -967,10 +967,10 @@ var mw = ( function ( $, undefined ) {
 				 * and to avoid re-using badly scoped variables.
 				 * @ignore
 				 */
-				function addLink( media, url ) {
+				function addLink( media, url, rel ) {
 					var el = document.createElement( 'link' );
 					getMarker().before( el ); // IE: Insert in dom before setting href
-					el.rel = 'stylesheet';
+					el.rel = rel || 'stylesheet';
 					if ( media && media !== 'all' ) {
 						el.media = media;
 					}
@@ -1096,7 +1096,9 @@ var mw = ( function ( $, undefined ) {
 							for ( media in value ) {
 								urls = value[media];
 								for ( i = 0; i < urls.length; i += 1 ) {
-									addLink( media, urls[i] );
+									url = urls[i];
+									rel = /\.less$/i.test( url ) ? 'stylesheet/less' : 'stylesheet';
+									addLink( media, url, rel );
 								}
 							}
 						}

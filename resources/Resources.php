@@ -611,7 +611,10 @@ return array(
 		'styles' => 'resources/mediawiki/mediawiki.icon.css',
 	),
 	'mediawiki.debug' => array(
-		'scripts' => 'resources/mediawiki/mediawiki.debug.js',
+		'scripts' => array(
+			'resources/mediawiki/mediawiki.debug.js',
+			'resources/mediawiki.libs/mediawiki.libs.less.js',
+		),
 		'styles' => 'resources/mediawiki/mediawiki.debug.css',
 		'dependencies' => 'jquery.footHovzer',
 		'position' => 'bottom',

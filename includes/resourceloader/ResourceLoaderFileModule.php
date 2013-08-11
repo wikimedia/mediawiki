@@ -471,6 +471,16 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 
 	/**
+	 * Infer the stylesheet language from a stylesheet file path.
+	 *
+	 * @param $path string
+	 * @return string: 'less' or 'css'
+	 */
+	protected function getStyleSheetLang( $path ) {
+		return preg_match( '/\.less$/i', $path ) ? 'less' : 'css';
+	}
+
+	/**
 	 * Collates file paths by option (where provided).
 	 *
 	 * @param array $list List of file paths in any combination of index/path
@@ -632,7 +642,13 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			wfDebugLog( 'resourceloader', $msg );
 			throw new MWException( $msg );
 		}
-		$style = file_get_contents( $localPath );
+
+		if ( $this->getStyleSheetLang( $path ) === 'less' ) {
+			$style = $this->compileLessFile( $localPath );
+		} else {
+			$style = file_get_contents( $localPath );
+		}
+
 		if ( $flip ) {
 			$style = CSSJanus::transform( $style, true, false );
 		}
@@ -671,4 +687,46 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		return $this->targets;
 	}
 
+	/**
+	 * Compile a LESS file into CSS.
+	 * If invalid, returns replacement CSS source consisting of the compilation
+	 * error message encoded as a comment. To save work, we cache a result object
+	 * which comprises the compiled CSS and the names & mtimes of the files
+	 * that were processed. lessphp compares the cached & current mtimes and
+	 * recompiles as necessary.
+	 *
+	 * @param string $fileName File path of LESS source
+	 * @return string CSS source
+	 */
+	protected function compileLessFile( $fileName ) {
+		$key = wfMemcKey( 'resourceloader', 'less', md5( $fileName ) );
+		$cache = wfGetCache( CACHE_ANYTHING );
+
+		// The input to lessc. Either an associative array representing the
+		// cached results of a previous compilation, or the string file name if
+		// no cache result exists.
+		$source = $cache->get( $key );
+		if ( !is_array( $source ) ) {
+			$source = $fileName;
+		}
+
+		$compiler = self::lessCompiler();
+		try {
+			$result = $compiler->cachedCompile( $source );
+		} catch ( Exception $e ) {
+			// Cache the failure as a compilation result.
+			// XXX: This means that the root LESS file will have be touched
+			// if one of its imports causes an exception to be thrown.
+			$err = $e->getMessage();
+			$result = array();
+			$result['root'] = $root;
+			$result['compiled'] = ResourceLoader::makeComment( 'LESS error: ' . $err );
+			$result['files'] = array( $fileName => self::safeFilemtime( $fileName ) );
+			$result['updated'] = time();
+		}
+
+		$this->localFileRefs += array_keys( $result['files'] );
+		$cache->set( $key, $result );
+		return $result['compiled'];
+	}
 }
