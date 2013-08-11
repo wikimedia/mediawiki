@@ -1365,7 +1365,8 @@ See also:
 *Parameter $2 is the name entered as username.
 *Parameter $3 is a password (randomly generated).
 *Parameter $4 is a URL to the wiki',
-'login-throttled' => 'Error message shown at [[Special:UserLogin]] after 5 wrong passwords. The hardcoded waiting time is 300 seconds.',
+'login-throttled' => 'Error message shown at [[Special:UserLogin]] after 5 wrong passwords. The hardcoded waiting time is 300 seconds. (These values are configured via [[mw:Manual:$wgPasswordAttemptThrottle|$wgPasswordAttemptThrottle]].)
+* $1 - the (maximum) time to wait before the next login attempt; automatically formatted using the [//www.mediawiki.org/w/index.php?title=Special%3AAllMessages&prefix=duration&filter=all duration-* messages]',
 'login-abort-generic' => 'The generic unsuccessful login message is used unless otherwise specified by hook writers',
 'loginlanguagelabel' => 'Used on [[Special:UserLogin]] if $wgLoginLanguageSelector is true. $1 is a pipe-separated list built from the names that appear in the message {{msg-mw|Loginlanguagelinks}}.
 {{Identical|Language}}',
