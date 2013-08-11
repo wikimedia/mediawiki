@@ -116,6 +116,12 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	protected $targets = array( 'desktop' );
 
 	/**
+	 * Boolean: Whether getStyleURLsForDebug should return raw file paths,
+	 * or return load.php urls
+	 */
+	protected $hasGeneratedStyles = false;
+
+	/**
 	 * Array: Cache for mtime
 	 * @par Usage:
 	 * @code
@@ -334,6 +340,13 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @return array
 	 */
 	public function getStyleURLsForDebug( ResourceLoaderContext $context ) {
+		if ( $this->hasGeneratedStyles ) {
+			// Do the default behaviour of returning a url back to load.php
+			// but with only=styles.
+			return parent::getStyleURLsForDebug( $context );
+		}
+		// Our module consists entirely of real css files,
+		// in debug mode we can load those directly.
 		$urls = array();
 		foreach ( $this->getStyleFiles( $context ) as $mediaType => $list ) {
 			$urls[$mediaType] = array();
@@ -468,6 +481,16 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 */
 	protected function getRemotePath( $path ) {
 		return "{$this->remoteBasePath}/$path";
+	}
+
+	/**
+	 * Infer the stylesheet language from a stylesheet file path.
+	 *
+	 * @param string $path
+	 * @return string: the stylesheet language name
+	 */
+	protected function getStyleSheetLang( $path ) {
+		return preg_match( '/\.less$/i', $path ) ? 'less' : 'css';
 	}
 
 	/**
@@ -632,7 +655,14 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			wfDebugLog( 'resourceloader', $msg );
 			throw new MWException( $msg );
 		}
-		$style = file_get_contents( $localPath );
+
+		if ( $this->getStyleSheetLang( $path ) === 'less' ) {
+			$style = $this->compileLESSFile( $localPath );
+			$this->hasGeneratedStyles = true;
+		} else {
+			$style = file_get_contents( $localPath );
+		}
+
 		if ( $flip ) {
 			$style = CSSJanus::transform( $style, true, false );
 		}
@@ -671,4 +701,82 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		return $this->targets;
 	}
 
+	/**
+	 * Generate a cache key for a LESS file.
+	 * The cache key varies on the file name, the names and values of global
+	 * LESS variables, and the value of $wgShowExceptionDetails. Varying on
+	 * $wgShowExceptionDetails ensures the CSS comment indicating compilation
+	 * failure shows the right level of detail.
+	 *
+	 * @param string $fileName File name of root LESS file.
+	 * @return string: Cache key
+	 */
+	protected static function getLESSCacheKey( $fileName ) {
+		global $wgShowExceptionDetails;
+
+		$vars = json_encode( self::getLESSVars() );
+		$hash = md5( $fileName . $vars );
+		return wfMemcKey( 'resourceloader', 'less', (string)$wgShowExceptionDetails, $hash );
+	}
+
+	/**
+	 * Compile a LESS file into CSS.
+	 *
+	 * If invalid, returns replacement CSS source consisting of the compilation
+	 * error message encoded as a comment. To save work, we cache a result object
+	 * which comprises the compiled CSS and the names & mtimes of the files
+	 * that were processed. lessphp compares the cached & current mtimes and
+	 * recompiles as necessary.
+	 *
+	 * @param string $fileName File path of LESS source
+	 * @return string: CSS source
+	 */
+	protected function compileLESSFile( $fileName ) {
+		global $wgShowExceptionDetails;
+
+		$key = self::getLESSCacheKey( $fileName );
+		$cache = wfGetCache( CACHE_ANYTHING );
+
+		// The input to lessc. Either an associative array representing the
+		// cached results of a previous compilation, or the string file name if
+		// no cache result exists.
+		$source = $cache->get( $key );
+		if ( !is_array( $source ) || !isset( $source['root'] ) ) {
+			$source = $fileName;
+		}
+
+		$compiler = self::lessCompiler();
+		$expire = 0;
+		try {
+			$result = $compiler->cachedCompile( $source );
+			if ( !is_array( $result ) ) {
+				throw new Exception( 'LESS compiler result has type ' . gettype( $result ) . '; array expected.' );
+			}
+		} catch ( Exception $e ) {
+			// The exception might have been caused by an imported file rather
+			// than the root node. But we don't know which files were imported,
+			// because compilation failed; we thus cannot rely on file mtime to
+			// know when to reattempt compilation. Expire in 5 mins. instead.
+			$expire = 300;
+			wfDebugLog( 'resourceloader', __METHOD__ . ": $e" );
+			$result = array();
+			$result['root'] = $fileName;
+
+			if ( $wgShowExceptionDetails ) {
+				$result['compiled'] = ResourceLoader::makeComment( 'LESS error: ' . $e->getMessage() );
+			} else {
+				$result['compiled'] = ResourceLoader::makeComment( 'LESS stylesheet compilation failed. ' .
+					'Set "$wgShowExceptionDetails = true;" to show detailed debugging information.' );
+			}
+
+			$result['files'] = array( $fileName => self::safeFilemtime( $fileName ) );
+			$result['updated'] = time();
+		}
+		// Tie cache expiry to the names and mtimes of image files that were
+		// embedded in the generated CSS source.
+		$result['files'] += $compiler->embeddedImages;
+		$this->localFileRefs += array_keys( $result['files'] );
+		$cache->set( $key, $result, $expire );
+		return $result['compiled'];
+	}
 }
