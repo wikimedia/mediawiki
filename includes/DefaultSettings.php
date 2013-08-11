@@ -3282,6 +3282,63 @@ $wgResourceLoaderValidateStaticJS = false;
  */
 $wgResourceLoaderExperimentalAsyncLoading = false;
 
+/**
+ * Global LESS variables. An associative array binding variable names
+ * to CSS string values.
+ *
+ * @par Example:
+ * @code
+ *   $wgResourceLoaderLESSVars = array(
+ *     'baseFontSize'  => '1em',
+ *     'smallFontSize' => '0.75em',
+ *     'WikimediaBlue' => '#006699',
+ *   );
+ * @endcode
+ * @since 1.22
+ */
+$wgResourceLoaderLESSVars = array();
+
+/**
+ * Custom LESS functions. An associative array mapping function name
+ * to PHP callable.
+ *
+ * @since 1.22
+ */
+$wgResourceLoaderLESSFunctions = array(
+	/**
+	 * Mark an image URI as embeddable. Expands a URL argument to a CSS
+	 * URL value with a a CSSMin @embed annotation prepended. This
+	 * exploits the fact that the return value of LESS functions is not
+	 * subject to further transformations by the LESS compiler to ensure
+	 * @embed comments are not munged or reordered.
+	 *
+	 * @par Example:
+	 * @code
+	 *   .fancy-button {
+	 *       background-image: embed('../images/button-bg.png');
+	 *   }
+	 * @endcode
+	 *
+	 * @todo: 'embed' should invoke CSSMin directly to generate data
+	 * URIs rather than generate comment directives.
+	 */
+	'embed' => function( $arg ) {
+		return '/* @embed */ url(' . $arg[2][0] . ')';
+	},
+);
+
+/**
+ * Default import paths for LESS modules. LESS files referenced in @import
+ * statements will be looked up here first, and relative to the importing file
+ * second. To avoid collisions, it's important for the LESS files in these
+ * directories to have a common, predictable file name prefix.
+ *
+ * @since 1.22
+ */
+$wgResourceLoaderLESSImportPaths = array(
+	"$IP/resources/mediawiki.less",
+);
+
 /** @} */ # End of resource loader settings }
 
 /*************************************************************************//**
@@ -6788,6 +6845,7 @@ $wgSiteTypes = array(
  * @deprecated since 1.22
  */
 $wgCompiledFiles = array();
+
 
 /**
  * For really cool vim folding this needs to be at the end:
