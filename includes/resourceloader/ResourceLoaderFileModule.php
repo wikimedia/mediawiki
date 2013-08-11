@@ -632,7 +632,12 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			wfDebugLog( 'resourceloader', $msg );
 			throw new MWException( $msg );
 		}
+
 		$style = file_get_contents( $localPath );
+		if ( preg_match( '/\.less$/i', $path ) ) {
+			$style = $this->compileLess( $path, $style );
+		}
+
 		if ( $flip ) {
 			$style = CSSJanus::transform( $style, true, false );
 		}
