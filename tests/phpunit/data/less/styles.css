@@ -1,0 +1,5 @@
+/* @noflip */
+.unit-tests {
+  color: green;
+  background-image: /* @embed */ url(background.png);
+}
