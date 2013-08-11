@@ -412,6 +412,9 @@ abstract class ResourceLoaderModule {
 	private static $jsParser;
 	private static $parseCacheVersion = 1;
 
+	/** @var lessc lazy-initialized; use self::lessCompiler() */
+	private static $lessc;
+
 	/**
 	 * Validate a given script file; if valid returns the original source.
 	 * If invalid, returns replacement JS source that throws an exception.
@@ -457,6 +460,18 @@ abstract class ResourceLoaderModule {
 			self::$jsParser = new JSParser();
 		}
 		return self::$jsParser;
+	}
+
+	/**
+	 * Lazy-initializing getter for a LESS compiler instance.
+	 *
+	 * @return lessc
+	 */
+	protected static function lessCompiler() {
+		if ( !self::$lessc ) {
+			self::$lessc = new lessc();
+		}
+		return self::$lessc;
 	}
 
 	/**
