@@ -3282,6 +3282,73 @@ $wgResourceLoaderValidateStaticJS = false;
  */
 $wgResourceLoaderExperimentalAsyncLoading = false;
 
+/**
+ * Global LESS variables. An associative array binding variable names
+ * to CSS string values.
+ *
+ * @par Example:
+ * @code
+ *   $wgResourceLoaderLESSVars = array(
+ *     'baseFontSize'  => '1em',
+ *     'smallFontSize' => '0.75em',
+ *     'WikimediaBlue' => '#006699',
+ *   );
+ * @endcode
+ * @since 1.22
+ */
+$wgResourceLoaderLESSVars = array();
+
+/**
+ * Custom LESS functions. An associative array mapping function name
+ * to PHP callable.
+ *
+ * @since 1.22
+ */
+$wgResourceLoaderLESSFunctions = array(
+	/**
+	 * Convert an image URI to a base64-encoded data URI.
+	 * embed(url [, prefix [, suffix ] ])
+	 *
+	 * @par Example:
+	 * @code
+	 *   .fancy-button {
+	 *       background-image: embed('../images/button-bg.png');
+	 *   }
+	 * @endcode
+	 */
+	'embed' => function( $frame, $less ) {
+		// Unpack string arguments from the frame.
+		$args = $frame[2];
+		$url = $args[0];
+		$pre = isset( $args[1] ) ? $args[1] : '';
+		$post = isset( $args[2] ) ? $args[2] : '';
+
+		$base = pathinfo( $less->parser->sourceName, PATHINFO_DIRNAME );
+		$file = $base . '/' . $url;
+
+		$plainUrl = trim( $pre . ' url(' . $url . ') ' . $post );
+		if ( file_exists( $file ) ) {
+			$data = CSSMin::encodeImageAsDataURI( $file );
+			if ( $data ) {
+				$less->embeddedImages[ realpath( $file ) ] = filemtime( $file );
+				$dataUrl = trim( $pre . ' url(' . $data . ') ' . $post );
+				return $dataUrl . ';' . $plainUrl . '!ie';
+			}
+		}
+		return $plainUrl;
+	},
+);
+
+/**
+ * Default import paths for LESS modules. LESS files referenced in @import
+ * statements will be looked up here first, and relative to the importing file
+ * second. To avoid collisions, it's important for the LESS files in these
+ * directories to have a common, predictable file name prefix.
+ *
+ * @since 1.22
+ */
+$wgResourceLoaderLESSImportPaths = array();
+
 /** @} */ # End of resource loader settings }
 
 /*************************************************************************//**
