@@ -1030,6 +1030,9 @@ return array(
 		'skinStyles' => array(
 			'vector' => 'skins/vector/special.preferences.less',
 		),
+		'messages' => array(
+			'prefs-tabs-navigation-hint',
+		),
 	),
 	'mediawiki.special.recentchanges' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.recentchanges.js',
