@@ -734,7 +734,7 @@ class LoginForm extends SpecialPage {
 	}
 
 	function processLogin() {
-		global $wgMemc, $wgLang, $wgSecureLogin;
+		global $wgMemc, $wgLang, $wgSecureLogin, $wgPasswordAttemptThrottle;
 
 		switch ( $this->authenticateUserData() ) {
 			case self::SUCCESS:
@@ -810,7 +810,10 @@ class LoginForm extends SpecialPage {
 				$this->userBlockedMessage( $this->getUser()->isBlockedFromCreateAccount() );
 				break;
 			case self::THROTTLED:
-				$this->mainLoginForm( $this->msg( 'login-throttled' )->text() );
+				$this->mainLoginForm( $this->msg( 'login-throttled' )
+				->params ( $lang->formatDuration( $wgPasswordAttemptThrottle['seconds'] ) )
+				->text()
+				);
 				break;
 			case self::USER_BLOCKED:
 				$this->mainLoginForm( $this->msg( 'login-userblocked',
