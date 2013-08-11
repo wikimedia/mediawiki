@@ -9,3 +9,8 @@
 /*
 .mw-email-authenticated .mw-input { }
 */
+.mw-navigation-hint {
+	overflow: hidden;
+	height: 0;
+	zoom: 1;
+}
