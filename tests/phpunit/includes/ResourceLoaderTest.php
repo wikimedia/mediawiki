@@ -22,6 +22,14 @@ class ResourceLoaderTest extends MediaWikiTestCase {
 		);
 	}
 
+	public static function provideResourceLoaderContext() {
+		$resourceLoader = new ResourceLoader();
+		$request = new FauxRequest();
+		return array(
+			array( new ResourceLoaderContext( $resourceLoader, $request ) ),
+		);
+	}
+
 	/* Test Methods */
 
 	/**
@@ -47,6 +55,20 @@ class ResourceLoaderTest extends MediaWikiTestCase {
 	) {
 		$resourceLoader->register( $name, $module );
 		$this->assertEquals( $module, $resourceLoader->getModule( $name ) );
+	}
+
+	/**
+	 * @dataProvider provideResourceLoaderContext
+	 * @covers ResourceLoaderFileModule::compileLessFile
+	 */
+	public function testLessFileCompilation( $context ) {
+		$basePath = __DIR__ . '/../data/less';
+		$module = new ResourceLoaderFileModule( array(
+			'localBasePath' => $basePath,
+			'styles' => array( 'styles.less' ),
+		) );
+		$styles = $module->getStyles( $context );
+		$this->assertStringEqualsFile( $basePath . '/styles.css', $styles['all'] );
 	}
 
 	/**
