@@ -3282,6 +3282,67 @@ $wgResourceLoaderValidateStaticJS = false;
  */
 $wgResourceLoaderExperimentalAsyncLoading = false;
 
+/**
+ * Global LESS variables. An associative array binding variable names
+ * to CSS string values.
+ *
+ * @par Example:
+ * @code
+ *   $wgResourceLoaderLESSVars = array(
+ *     'baseFontSize'  => '1em',
+ *     'smallFontSize' => '0.75em',
+ *     'WikimediaBlue' => '#006699',
+ *   );
+ * @endcode
+ * @since 1.22
+ */
+$wgResourceLoaderLESSVars = array();
+
+/**
+ * Custom LESS functions. An associative array mapping function name
+ * to PHP callable.
+ *
+ * @since 1.22
+ */
+$wgResourceLoaderLESSFunctions = array(
+	/**
+	 * Convert an image URI to a base64-encoded data URI.
+	 *
+	 * @par Example:
+	 * @code
+	 *   .fancy-button {
+	 *       background-image: embed('../images/button-bg.png');
+	 *   }
+	 * @endcode
+	 */
+	'embed' => function( $frame, $less ) {
+		$url = $frame[2][0];
+		$base = pathinfo( $less->parser->sourceName, PATHINFO_DIRNAME );
+		$file = $base . '/' . $url;
+
+		$plainUrl = 'url(' . $url . ')';
+		if ( file_exists( $file ) ) {
+			$data = CSSMin::encodeImageAsDataURI( $file );
+			if ( $data ) {
+				$less->embeddedImages[ realpath( $file ) ] = filemtime( $file );
+				$dataUrl = 'url(' . $data . ')';
+				return $dataUrl . ';' . $plainUrl . '!ie';
+			}
+		}
+		return $plainUrl;
+	},
+);
+
+/**
+ * Default import paths for LESS modules. LESS files referenced in @import
+ * statements will be looked up here first, and relative to the importing file
+ * second. To avoid collisions, it's important for the LESS files in these
+ * directories to have a common, predictable file name prefix.
+ *
+ * @since 1.22
+ */
+$wgResourceLoaderLESSImportPaths = array();
+
 /** @} */ # End of resource loader settings }
 
 /*************************************************************************//**
