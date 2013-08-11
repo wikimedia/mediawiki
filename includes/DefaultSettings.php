@@ -3282,6 +3282,54 @@ $wgResourceLoaderValidateStaticJS = false;
  */
 $wgResourceLoaderExperimentalAsyncLoading = false;
 
+/**
+ * Global LESS variables. An associative array binding variable names to CSS
+ * string values.
+ *
+ * Because the hashed contents of this array are used to construct the cache key
+ * that ResourceLoader uses to look up LESS compilation results, updating this
+ * array can be used to deliberately invalidate the set of cached results.
+ *
+ * @par Example:
+ * @code
+ *   $wgResourceLoaderLESSVars = array(
+ *     'baseFontSize'  => '1em',
+ *     'smallFontSize' => '0.75em',
+ *     'WikimediaBlue' => '#006699',
+ *   );
+ * @endcode
+ * @since 1.22
+ */
+$wgResourceLoaderLESSVars = array();
+
+/**
+ * Custom LESS functions. An associative array mapping function name to PHP
+ * callable.
+ *
+ * Changes to LESS functions do not trigger cache invalidation. If you update
+ * the behavior of a LESS function and need to invalidate stale compilation
+ * results, you can touch one of values in $wgResourceLoaderLESSVars, as
+ * documented above.
+ *
+ * @since 1.22
+ */
+$wgResourceLoaderLESSFunctions = array();
+
+/**
+ * Default import paths for LESS modules. LESS files referenced in @import
+ * statements will be looked up here first, and relative to the importing file
+ * second. To avoid collisions, it's important for the LESS files in these
+ * directories to have a common, predictable file name prefix.
+ *
+ * Extensions need not (and should not) register paths in
+ * $wgResourceLoaderLESSImportPaths. The import path includes the path of the
+ * currently compiling LESS file, which allows each extension to freely import
+ * files from its own tree.
+ *
+ * @since 1.22
+ */
+$wgResourceLoaderLESSImportPaths = array();
+
 /** @} */ # End of resource loader settings }
 
 /*************************************************************************//**
