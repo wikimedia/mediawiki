@@ -407,6 +407,9 @@ abstract class ResourceLoaderModule {
 	private static $jsParser;
 	private static $parseCacheVersion = 1;
 
+	/** @var array Global LESS variables */
+	private static $lessVars;
+
 	/**
 	 * Validate a given script file; if valid returns the original source.
 	 * If invalid, returns replacement JS source that throws an exception.
@@ -452,6 +455,60 @@ abstract class ResourceLoaderModule {
 			self::$jsParser = new JSParser();
 		}
 		return self::$jsParser;
+	}
+
+	/**
+	 * @return lessc
+	 */
+	protected static function lessCompiler() {
+		global $wgResourceLoaderLESSFunctions, $wgResourceLoaderLESSImportPaths;
+
+		$less = new lessc();
+		$less->setPreserveComments( true );
+		$less->setVariables( self::getLESSVars() );
+		$less->setImportDir( $wgResourceLoaderLESSImportPaths );
+		foreach ( $wgResourceLoaderLESSFunctions as $name => $func ) {
+			$less->registerFunction( $name, $func );
+		}
+		// To ensure embedded images are refreshed when their source files
+		// change, track the names and modification times of image files that
+		// were embedded in the generated CSS source.
+		$less->embeddedImages = array();
+		return $less;
+	}
+
+	/**
+	 * Get global LESS variables.
+	 *
+	 * @return array: Map of variable names to string CSS values.
+	 */
+	protected static function getLESSVars() {
+		global $wgResourceLoaderLESSVars;
+
+		if ( self::$lessVars === null ) {
+			self::$lessVars = $wgResourceLoaderLESSVars;
+			// Sort by key to ensure consistent hashing for cache lookups.
+			ksort( self::$lessVars );
+		}
+		return self::$lessVars;
+	}
+
+	/**
+	 * Generate a cache key for a LESS resource.
+	 * The cache key varies on the file name, the names and values of global
+	 * LESS variables, and the value of $wgShowExceptionDetails. Varying on
+	 * $wgShowExceptionDetails ensures the CSS comment indicating compilation
+	 * failure shows the right level of detail.
+	 *
+	 * @param string $fileName File name of root LESS file.
+	 * @return string: Cache key
+	 */
+	protected static function getLESSCacheKey( $fileName ) {
+		global $wgShowExceptionDetails;
+
+		$vars = json_encode( self::getLESSVars() );
+		$hash = md5( $fileName . $vars );
+		return wfMemcKey( 'resourceloader', 'less', (string)$wgShowExceptionDetails, $hash );
 	}
 
 	/**
