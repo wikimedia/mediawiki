@@ -748,7 +748,6 @@ Den administratören som låste den gav denna anledning: "\'\'$3\'\'".',
 # Login and logout pages
 'logouttext' => "'''Du är nu utloggad.'''
 
-Du kan fortsätta att använda {{SITENAME}} anonymt, eller så kan du <span class='plainlinks'>[$1 logga in igen]</span> som samma eller som en annan användare.
 Observera att det, tills du tömmer din webbläsares cache, på vissa sidor kan se ut som att du fortfarande är inloggad.",
 'welcomeuser' => 'Välkommen, $1!',
 'welcomecreation-msg' => 'Ditt konto har skapats.
@@ -796,7 +795,7 @@ Glöm inte att justera dina [[Special:Preferences|{{SITENAME}}-inställningar]].
 'createacct-emailoptional' => 'E-postadress (valfritt)',
 'createacct-email-ph' => 'Bekräfta din e-postadress',
 'createacct-another-email-ph' => 'Skriv in e-postadress',
-'createaccountmail' => 'Använd ett tillfälligt slumpvis valt lösenord och skicka det till e-postadressen som anges nedan',
+'createaccountmail' => 'Använd ett tillfälligt slumpvis valt lösenord och skicka det till den angivna e-postadressen',
 'createacct-realname' => 'Riktigt namn (valfritt)',
 'createaccountreason' => 'Orsak:',
 'createacct-reason' => 'Anledning',
@@ -1590,10 +1589,10 @@ Om du väljer att ange ditt riktiga namn, kommer det att användas för att till
 'userrights-no-interwiki' => 'Du har inte behörighet att ändra användarrättigheter på andra wikis.',
 'userrights-nodatabase' => 'Databasen $1 finns inte eller så är den inte lokal.',
 'userrights-nologin' => 'Du måste [[Special:UserLogin|logga in]] med ett administratörskonto för att ändra användarrättigheter.',
-'userrights-notallowed' => 'Ditt konto har inte behörighet till att lägga till eller ta bort användarrättigheter.',
+'userrights-notallowed' => 'Du har inte behörighet till att lägga till eller ta bort användarrättigheter.',
 'userrights-changeable-col' => 'Grupper du kan ändra',
 'userrights-unchangeable-col' => 'Grupper du inte kan ändra',
-'userrights-conflict' => 'Användarrättighetskonflikt! Var god tillämpa dina ändringar igen.',
+'userrights-conflict' => 'Konflikt vid ändringar av användarrättigheter! Var god granska och bekräfta dina ändringar.',
 'userrights-removed-self' => 'Du tog bort dina egna rättigheter. Som sådan, kan du inte längre komma åt denna sida.',
 
 # Groups
@@ -3224,13 +3223,13 @@ Detta orsakades troligen av en länk till en svartlistad webbplats.',
 'pageinfo-length' => 'Sidlängd (i byte)',
 'pageinfo-article-id' => 'Sid-ID',
 'pageinfo-language' => 'Språk för sidinnehåll',
-'pageinfo-robot-policy' => 'Sökmotordirektiv',
-'pageinfo-robot-index' => 'Indexerbar',
-'pageinfo-robot-noindex' => 'Inte indexerbar',
+'pageinfo-robot-policy' => 'Indexering av robotar',
+'pageinfo-robot-index' => 'Tillåten',
+'pageinfo-robot-noindex' => 'Inte tillåten',
 'pageinfo-views' => 'Antal visningar',
 'pageinfo-watchers' => 'Antal användare som bevakar sidan',
 'pageinfo-few-watchers' => 'Färre än $1 {{PLURAL:$1|bevakare}}',
-'pageinfo-redirects-name' => 'Omdirigeringar till denna sida',
+'pageinfo-redirects-name' => 'Antal omdirigeringar till denna sida',
 'pageinfo-subpages-name' => 'Undersidor till denna sida',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|omdirigering|omdirigeringar}}; $3 {{PLURAL:$3|icke-omdirigering|icke-omdirigeringar}})',
 'pageinfo-firstuser' => 'Sidskapare',

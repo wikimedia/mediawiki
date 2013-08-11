@@ -3939,7 +3939,9 @@ Example: [[:Image:Addon-icn.png]]',
 'filehist-user' => 'In image description page.
 
 {{Identical|User}}',
-'filehist-dimensions' => 'In file description page',
+'filehist-dimensions' => 'Used as label in file description page.
+
+Followed by length, filesize, and width x height. e.g. "1.5 s (13 KB)".',
 'filehist-filesize' => 'In image description page',
 'filehist-comment' => 'In file description page
 
@@ -7073,10 +7075,16 @@ See also:
 'pageinfo-article-id' => 'The numeric identifier of the page.',
 'pageinfo-language' => 'Language in which the page content is written.',
 'pageinfo-robot-policy' => 'The search engine status of the page.
+
+Used as label. Followed by any one of the following messages:
 *{{msg-mw|Pageinfo-robot-index}}
 *{{msg-mw|Pageinfo-robot-noindex}}',
-'pageinfo-robot-index' => 'An indication that the page is indexable by search engines, that is listed in their search results.',
-'pageinfo-robot-noindex' => 'An indication that the page is not indexable (that is, is not listed on the results page of a search engine).',
+'pageinfo-robot-index' => 'An indication that the page is indexable by search engines, that is listed in their search results.
+
+Preceded by the label {{msg-mw|Pageinfo-robot-policy}}.',
+'pageinfo-robot-noindex' => 'An indication that the page is not indexable (that is, is not listed on the results page of a search engine).
+
+Preceded by the label {{msg-mw|Pageinfo-robot-policy}}.',
 'pageinfo-views' => 'The number of times the page has been viewed.',
 'pageinfo-watchers' => 'Header of the row in the first table of the info action.',
 'pageinfo-few-watchers' => 'Message displayed when there are fewer than $wgUnwatchedPageThreshold watchers. $1 is the value of $wgUnwatchedPageThreshold.',

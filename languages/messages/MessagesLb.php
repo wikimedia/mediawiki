@@ -609,8 +609,6 @@ Den Administrateur den d\'Schreiwe gespaart huet, huet dës Erklärung uginn: "$
 # Login and logout pages
 'logouttext' => "'''Dir sidd elo ausgeloggt.'''
 
-Dir kënnt {{SITENAME}} elo anonym benotzen, oder Iech <span class='plainlinks'>[$1 erëm aloggen]</span>.
-
 Opgepasst: Op verschiddene Säite kann et nach esou aus gesinn, wéi wann Dir nach ageloggt wiert, bis Dir Ärem Browser säin Tëschespäicher (cache) eidel maacht.",
 'welcomeuser' => 'Wëllkomm $1!',
 'welcomecreation-msg' => "Äre Benotzerkont gouf ugeluecht.
@@ -658,7 +656,7 @@ Vergiesst net fir Är [[Special:Preferences|{{SITENAME}} Astellungen]] z'ännere
 'createacct-emailoptional' => 'E-Mailadress (fakultativ)',
 'createacct-email-ph' => 'Gitt Är E-Mailadress an',
 'createacct-another-email-ph' => 'E-Mailadress aginn',
-'createaccountmail' => 'En temporäert Passwuert benotzen an et per E-Mail un déi E-Mailadress schécken déi hei drënner steet',
+'createaccountmail' => 'En temporäert zoufällegt Passwuert benotzen an et per E-Mail un déi spezifizéiert E-Mailadress schécken',
 'createacct-realname' => 'Richtegen Numm (fakultativ)',
 'createaccountreason' => 'Grond:',
 'createacct-reason' => 'Grond',
@@ -1442,10 +1440,10 @@ Si muss manner wéi $1 {{PLURAL:$1|Zeechen|Zeechen}} hunn.',
 'userrights-no-interwiki' => "Dir hutt net déi néideg Rechter, fir d'Rechter vu Benoutzer op anere Wikien z'änneren.",
 'userrights-nodatabase' => "D'Datebank $1 gëtt et net oder se ass net lokal.",
 'userrights-nologin' => 'Dir musst mat engem Administrateurs-Benotzerkont [[Special:UserLogin|ageloggt sinn]], fir Benotzerrechter änneren ze kënnen.',
-'userrights-notallowed' => "Äre Benotzerkont hutt net déi néideg Rechter fir d'Rechter vun anere Benotzer z'änneren.",
+'userrights-notallowed' => 'Dir hutt net déi néideg Rechter fir Rechter vun anere Benotzer derbäizesetzen oder ewechzehuelen.',
 'userrights-changeable-col' => 'Gruppen déi Dir ännere kënnt',
 'userrights-unchangeable-col' => 'Gruppen déi Dir net ännere kënnt',
-'userrights-conflict' => 'Konflikt bäi de Benotzerrechter! Maacht Är Ännerunge w.e.g. nach eng Kéier.',
+'userrights-conflict' => 'Konflikt bäi de Benotzerrechter! Kuckt Är Ännerunge w.e.g. no a maacht se w.e.g. nach eng Kéier.',
 'userrights-removed-self' => 'Dir hutt Är eege Rechter ewechgeholl. Dofir kënnt Dir net méi op dës Säit zougräifen.',
 
 # Groups
@@ -3045,13 +3043,13 @@ Dëst wahrscheinlech duerch en externe Link den op der schwaarzer Lëscht (black
 'pageinfo-length' => 'Gréisst vun der Säit (a Bytes)',
 'pageinfo-article-id' => 'ID (Nummer) vun der Säit',
 'pageinfo-language' => 'Sprooch vum Inhalt vun der Säit',
-'pageinfo-robot-policy' => 'Sichmaschinnestatus',
-'pageinfo-robot-index' => 'Indexéierbar',
-'pageinfo-robot-noindex' => 'Net indexéierbar',
+'pageinfo-robot-policy' => 'Indexéierung duerch Botten',
+'pageinfo-robot-index' => 'Erlaabt',
+'pageinfo-robot-noindex' => 'Net erlaabt',
 'pageinfo-views' => 'Zuel vun de Kéieren déi dës Säit gekuckt gouf',
 'pageinfo-watchers' => "Zuel vun de Benotzer déi d'Säit iwwerwaachen",
 'pageinfo-few-watchers' => 'Manner wéi $1 {{PLURAL:$1|Benotzer deen iwwerwaacht|Benotzer déi iwwerwaachen}}',
-'pageinfo-redirects-name' => 'Viruleedungen op dës Säit',
+'pageinfo-redirects-name' => 'Zuel vun de Viruleedungen op dës Säit',
 'pageinfo-subpages-name' => 'Ënnersäite vun dëser Säit',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|Viruleedung|Viruleedungen}}; $3 {{PLURAL:$3|Ënnersäit|Ënnersäiten}})',
 'pageinfo-firstuser' => '1. Auteur vun der Säit',

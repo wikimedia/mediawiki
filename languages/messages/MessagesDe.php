@@ -841,7 +841,6 @@ Der Administrator, der den Schreibzugriff sperrte, gab folgenden Grund an: „$3
 # Login and logout pages
 'logouttext' => "'''Du bist nun abgemeldet.'''
 
-Du kannst {{SITENAME}} jetzt anonym weiternutzen oder dich erneut unter dem selben oder einem anderen Benutzernamen <span class='plainlinks'>[$1 anmelden]</span>.
 Beachte, dass einige Seiten noch anzeigen können, dass du angemeldet bist, solange du nicht deinen Browsercache geleert hast.",
 'welcomeuser' => 'Willkommen, $1!',
 'welcomecreation-msg' => 'Dein Benutzerkonto wurde erstellt.
@@ -889,7 +888,7 @@ Vergiss nicht, deine [[Special:Preferences|{{SITENAME}}-Einstellungen]] zu ände
 'createacct-emailoptional' => 'E-Mail-Adresse (optional)',
 'createacct-email-ph' => 'Gib deine E-Mail-Adresse ein',
 'createacct-another-email-ph' => 'E-Mail-Adresse',
-'createaccountmail' => 'Ein temporäres Zufallspasswort verwenden und an die unten angegebene E-Mail-Adresse versenden',
+'createaccountmail' => 'Ein temporäres Zufallspasswort verwenden und an die angegebene E-Mail-Adresse versenden',
 'createacct-realname' => 'Bürgerlicher Name (optional)',
 'createaccountreason' => 'Grund:',
 'createacct-reason' => 'Begründung',
@@ -1679,7 +1678,7 @@ Dies kann nicht mehr rückgängig gemacht werden.',
 'userrights-notallowed' => 'Du verfügst nicht über die erforderlichen Berechtigungen, um Benutzerrechte vergeben oder entziehen zu können.',
 'userrights-changeable-col' => 'Gruppenzugehörigkeit, die du ändern kannst',
 'userrights-unchangeable-col' => 'Gruppenzugehörigkeit, die du nicht ändern kannst',
-'userrights-conflict' => 'Benutzerrechtekonflikt! Bitte führe deine Änderungen erneut durch.',
+'userrights-conflict' => 'Benutzerrechteänderungskonflikt! Bitte überprüfe und bestätige deine Änderungen.',
 'userrights-removed-self' => 'Du hast deine eigenen Rechte erfolgreich entfernt. Du kannst nicht länger auf diese Seite zugreifen.',
 
 # Groups
@@ -3292,13 +3291,13 @@ Das liegt wahrscheinlich an einem Link auf eine externe Seite.',
 'pageinfo-length' => 'Seitenlänge (in Bytes)',
 'pageinfo-article-id' => 'Seitenkennnummer',
 'pageinfo-language' => 'Seiteninhaltssprache',
-'pageinfo-robot-policy' => 'Suchmaschinenstatus',
-'pageinfo-robot-index' => 'Indexierbar',
-'pageinfo-robot-noindex' => 'Nicht indexierbar',
+'pageinfo-robot-policy' => 'Indexierung durch Robots',
+'pageinfo-robot-index' => 'Erlaubt',
+'pageinfo-robot-noindex' => 'Nicht erlaubt',
 'pageinfo-views' => 'Anzahl der Seitenaufrufe',
 'pageinfo-watchers' => 'Anzahl der Beobachter der Seite',
 'pageinfo-few-watchers' => 'Weniger als {{PLURAL:$1|ein|$1}} Beobachter',
-'pageinfo-redirects-name' => 'Weiterleitungen zu dieser Seite',
+'pageinfo-redirects-name' => 'Anzahl der Weiterleitungen zu dieser Seite',
 'pageinfo-redirects-value' => '$1',
 'pageinfo-subpages-name' => 'Unterseiten dieser Seite',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|Weiterleitung|Weiterleitungen}}; $3 {{PLURAL:$3|Unterseite|Unterseiten}})',

@@ -32,6 +32,7 @@
  * @author Naval Scene
  * @author Remember the dot
  * @author Rex
+ * @author Rv77ax
  * @author Urhixidur
  * @author לערי ריינהארט
  */
@@ -762,8 +763,7 @@ Administrator yang terkunci menawarkan penjelasan ini: " $3 ".',
 # Login and logout pages
 'logouttext' => "'''Anda telah keluar log dari sistem.'''
 
-Anda dapat terus menggunakan {{SITENAME}} secara anonim, atau Anda dapat <span class='plainlinks'>[$1 masuk log lagi]</span> sebagai pengguna yang sama atau pengguna yang lain.
-Perhatikan bahwa beberapa halaman mungkin masih terus menunjukkan bahwa Anda masih masuk log sampai Anda membersihkan singgahan penjelajah web Anda",
+Ingatlah bahwa beberapa halaman mungkin masih menampilkan anda seperti masih masuk log, sampai Anda membersihkan singgahan penjelajah web Anda.",
 'welcomeuser' => 'Selamat datang,  $1 !',
 'welcomecreation-msg' => 'Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi [[Special:Preferences|preferensi {{SITENAME}}]] Anda.',
 'yourname' => 'Nama pengguna:',
@@ -809,7 +809,7 @@ Perhatikan bahwa beberapa halaman mungkin masih terus menunjukkan bahwa Anda mas
 'createacct-emailoptional' => 'Alamat surel (opsional)',
 'createacct-email-ph' => 'Masukkan alamat surel Anda',
 'createacct-another-email-ph' => 'Masukkan alamat surel',
-'createaccountmail' => 'Gunakan kata sandi acak sementara dan kirimkan ke surel yang tercantum di bawah',
+'createaccountmail' => 'Gunakan kata sandi acak sementara dan kirimkan ke surel yang diinginkan',
 'createacct-realname' => 'Nama asli (opsional)',
 'createaccountreason' => 'Alasan:',
 'createacct-reason' => 'Alasan',
@@ -1578,6 +1578,7 @@ Jika Anda memberikannya, nama asli Anda akan digunakan untuk memberi pengenalan 
 'prefs-displayrc' => 'Pilihan tampilan',
 'prefs-displaysearchoptions' => 'Pilihan tampilan',
 'prefs-displaywatchlist' => 'Pilihan tampilan',
+'prefs-tokenwatchlist' => 'Tanda',
 'prefs-diffs' => 'Beda',
 
 # User preference: email validation using jQuery
@@ -1603,11 +1604,11 @@ Jika Anda memberikannya, nama asli Anda akan digunakan untuk memberi pengenalan 
 'userrights-no-interwiki' => 'Anda tidak memiliki hak untuk mengubah hak pengguna di wiki yang lain.',
 'userrights-nodatabase' => 'Basis data $1 tidak ada atau bukan lokal.',
 'userrights-nologin' => 'Anda harus [[Special:UserLogin|masuk log]] dengan menggunakan akun pengurus untuk dapat mengubah hak pengguna.',
-'userrights-notallowed' => 'Akun Anda tidak berhak untuk menambahkan atau membuang hak pengguna.',
+'userrights-notallowed' => 'AkunAnda tidak berhak untuk menambahkan atau membuang hak pengguna.',
 'userrights-changeable-col' => 'Kelompok yang dapat Anda ubah',
 'userrights-unchangeable-col' => 'Kelompok yang tidak dapat Anda ubah',
 'userrights-irreversible-marker' => '$1*',
-'userrights-conflict' => 'Konflik hak pengguna! Silakan ubah kembali.',
+'userrights-conflict' => 'Konflik perubahan hak pengguna! Silakan tinjau ulang dan konfirmasi perubahan anda.',
 'userrights-removed-self' => 'Anda berhasil mencabut hak-hak Anda. Anda tidak bisa lagi mengakses halaman ini.',
 
 # Groups
@@ -3230,13 +3231,13 @@ Ini mungkin disebabkan oleh pranala ke situs luar yang termasuk dalam daftar hit
 'pageinfo-length' => 'Panjang halaman (dalam bita)',
 'pageinfo-article-id' => 'ID Halaman',
 'pageinfo-language' => 'Bahasa isi halaman',
-'pageinfo-robot-policy' => 'Status mesin pencari',
-'pageinfo-robot-index' => 'Dapat diindeks',
-'pageinfo-robot-noindex' => 'Tidak dapat diindeks',
+'pageinfo-robot-policy' => 'Pengindeksan oleh robot',
+'pageinfo-robot-index' => 'Diperbolehkan',
+'pageinfo-robot-noindex' => 'Tidak diperbolehkan',
 'pageinfo-views' => 'Jumlah penampilan',
 'pageinfo-watchers' => 'Jumlah pemantau halaman',
 'pageinfo-few-watchers' => 'Kurang dari $1 {{PLURAL:$1|pengunjung}}',
-'pageinfo-redirects-name' => 'Pengalihan ke halaman ini',
+'pageinfo-redirects-name' => 'Jumah pengalihan ke halaman ini',
 'pageinfo-redirects-value' => '$1',
 'pageinfo-subpages-name' => 'Subhalaman halaman ini',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|pengalihan|pengalihan}}; $3 {{PLURAL:$3|non-pengalihan|non-pengalihan}})',

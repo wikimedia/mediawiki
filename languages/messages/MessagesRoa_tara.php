@@ -458,10 +458,9 @@ L\'amministratore ca l\'ha bloccate dèje sta spiegazione: "$3".',
 'virus-unknownscanner' => 'antivirus scanusciute:',
 
 # Login and logout pages
-'logouttext' => "'''Tu tè scolleghete.'''
+'logouttext' => "'''Tu tè scollegate.'''
 
-Tu puè condinuà a ausà {{SITENAME}} in mode anonime, o tu puè <span class='plainlinks'>[$1 collegarte 'n'otra vote]</span> cumme 'u stesse utende o cumme 'n'otre utende.
-Note Bbuene ca certe pàggene ponne condinuà a essere viste cumme ce tu ste angore colleghete, fine a quanne a cache d'u browser no se sdeveche.",
+Note Bbuene ca certe pàggene ponne condinuà a essere viste cumme ce tu ste angore collegate, fine a quanne a cache d'u browser no se sdevache.",
 'welcomeuser' => 'Bovègne, $1!',
 'welcomecreation-msg' => "'U cunde tue ha state ccrejete.
 No te sce scurdanne de cangià le [[Special:Preferences|{{SITENAME}} preferenze tue]].",
@@ -508,7 +507,7 @@ No te sce scurdanne de cangià le [[Special:Preferences|{{SITENAME}} preferenze 
 'createacct-emailoptional' => 'Indirizze email (opzionale)',
 'createacct-email-ph' => "Mitte l'indirizze email tune",
 'createacct-another-email-ph' => "Mitte l'indirizze email",
-'createaccountmail' => 'Pe e-mail',
+'createaccountmail' => "Ause 'na passuord temboranèe a uecchije e mannale a l'indirizze email specificate",
 'createacct-realname' => 'Nome vere (opzionale)',
 'createaccountreason' => 'Mutive:',
 'createacct-reason' => 'Mutive',
@@ -1333,11 +1332,11 @@ Ce tu 'u mitte, a fatje ca è fatte t'avène ricanusciute.",
 'userrights-no-interwiki' => "Tu non ge tìne le permesse pe cangià le deritte utende sus a l'otre uicchi.",
 'userrights-nodatabase' => "'U Database $1 non g'esiste o non g'è lochele.",
 'userrights-nologin' => "Tu à essere [[Special:UserLogin|colleghete]] cu 'nu cunde utende d'amministratore pe assignà le deritte utende.",
-'userrights-notallowed' => "'U cunde utende tune non ge tène le permesse pe aggiunge o luà le deritte a l'utinde.",
+'userrights-notallowed' => 'Non ge tìne le permesse pe aggiungere o luà le deritte a le utinde.',
 'userrights-changeable-col' => 'Gruppe ca tu puè cangià',
 'userrights-unchangeable-col' => 'Gruppe ca tu non ge puè cangià',
 'userrights-irreversible-marker' => '$1*',
-'userrights-conflict' => 'Conflitte sus a le deritte utende! Pe piacere appliche le cangiaminde tune arrete.',
+'userrights-conflict' => 'Conflitte sus a le cangiaminde de le deritte utende! Pe piacere revide e conferme le cangiaminde tune.',
 'userrights-removed-self' => "T'è luate le deritte tune. Mò non ge puè cchiù trasè jndr'à sta pàgene.",
 
 # Groups
@@ -3011,13 +3010,13 @@ Stu fatte ha state causate da 'nu collegamende a 'nu site esterne ca appartene a
 'pageinfo-length' => "Lunghezze d'a pàgene (in byte)",
 'pageinfo-article-id' => "ID d'a pàgene",
 'pageinfo-language' => "Lènga d'a pàgene de condenute",
-'pageinfo-robot-policy' => "State d'u motore de ricerche",
-'pageinfo-robot-index' => 'Indicizzabbele',
-'pageinfo-robot-noindex' => 'None indicizzabbele',
+'pageinfo-robot-policy' => 'Indicizzate da le robbot',
+'pageinfo-robot-index' => 'Permesse',
+'pageinfo-robot-noindex' => 'Non permesse',
 'pageinfo-views' => 'Numere de visite',
 'pageinfo-watchers' => "Numere de visitature d'a pàgene",
 'pageinfo-few-watchers' => 'Mene de $1 {{PLURAL:$1|visitatore|visitature}}',
-'pageinfo-redirects-name' => 'Redirezionaminde a sta pàgene',
+'pageinfo-redirects-name' => 'Numere de redirezionaminde a sta pàgene',
 'pageinfo-redirects-value' => '$1',
 'pageinfo-subpages-name' => 'Sottopàggene de sta pàgene',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|ridirezionate|ridirezionate}}; $3 {{PLURAL:$3|none ridirezionate|none ridirezionate}})',

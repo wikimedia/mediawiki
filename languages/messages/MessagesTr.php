@@ -1123,7 +1123,7 @@ Geri giderek varolan sayfayı değiştirebilirsiniz ya da kayıtlı iseniz [[Spe
 'nocreate-loggedin' => 'Yeni sayfalar oluşturmaya yetkiniz yok.',
 'sectioneditnotsupported-title' => 'Bölüm değiştirmesi desteklenmiyor',
 'sectioneditnotsupported-text' => 'Bölüm değiştirmesi bu sayfada desteklenmiyor.',
-'permissionserrors' => 'İzin hataları',
+'permissionserrors' => 'İzin hatası',
 'permissionserrorstext' => 'Aşağıdaki {{PLURAL:$1|sebep|sebepler}}den dolayı, bunu yapmaya yetkiniz yok:',
 'permissionserrorstext-withaction' => 'Aşağıdaki {{PLURAL:$1|neden|nedenler}}den dolayı $2 yetkiniz yok:',
 'recreate-moveddeleted-warn' => "'''Uyarı: Daha önceden silinmiş bir sayfayı tekrar oluşturuyorsunuz.'''

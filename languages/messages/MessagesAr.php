@@ -2293,6 +2293,9 @@ $1',
 'randompage' => 'صفحة عشوائية',
 'randompage-nopages' => 'لا توجد صفحات في {{PLURAL:$2||النطاق التالي|النطاقين التاليين|النطاقات التالية}}: $1.',
 
+# Special:RandomInCategory
+'randomincategory-selectcategory-submit' => 'اذهب',
+
 # Random redirect
 'randomredirect' => 'تحويلة عشوائية',
 'randomredirect-nopages' => 'لا توجد تحويلات في النطاق "$1".',

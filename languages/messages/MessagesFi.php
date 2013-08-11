@@ -731,7 +731,7 @@ Lukituksen asettanut ylläpitäjä on antanut seuraavan syyn toimenpiteelle: $3.
 # Login and logout pages
 'logouttext' => "'''Olet nyt kirjautunut ulos.'''
 
-Voit jatkaa {{GRAMMAR:genitive|{{SITENAME}}}} käyttöä nimettömänä, tai <span class='plainlinks'>[$1 kirjautua uudelleen sisään]</span>.
+Voit jatkaa {{GRAMMAR:genitive|{{SITENAME}}}} käyttöä nimettömänä, tai <span class='plainlinks'>[$1 kirjautua uudelleen sisään]</span> samalla tai eri käyttäjätunnuksella.
 Huomaa, että jotkut sivut saattavat näkyä edelleen kuin olisit kirjautunut sisään, kunnes tyhjennät selaimen välimuistin.",
 'welcomeuser' => 'Tervetuloa $1!',
 'welcomecreation-msg' => 'Käyttäjätunnuksesi on luotu.
@@ -779,7 +779,7 @@ Huomaa, että jotkut sivut saattavat näkyä edelleen kuin olisit kirjautunut si
 'createacct-emailoptional' => 'Sähköpostiosoite (vapaaehtoinen)',
 'createacct-email-ph' => 'Anna sähköpostiosoitteesi',
 'createacct-another-email-ph' => 'Lisää sähköpostiosoite',
-'createaccountmail' => 'Käytä satunnaista väliaikaissalasanaa ja lähetä se alla määritettyyn sähköpostiosoitteeseen',
+'createaccountmail' => 'Käytä satunnaista väliaikaissalasanaa ja lähetä se alla olevaan sähköpostiosoitteeseen',
 'createacct-realname' => 'Oikea nimi (valinnainen)',
 'createaccountreason' => 'Syy',
 'createacct-reason' => 'Syy',

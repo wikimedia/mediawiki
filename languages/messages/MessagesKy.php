@@ -15,6 +15,7 @@
  * @author Growingup
  * @author Kgbek
  * @author Muratjumashev
+ * @author Tynchtyk Chorotegin
  * @author Ztimur
  * @author Викиней
  */
@@ -141,6 +142,8 @@ $messages = array(
 'nov' => 'Ноя',
 'dec' => 'Дек',
 'january-date' => 'Январь (Үчтүн айы) $1',
+'february-date' => '$1-феврал',
+'march-date' => '$1-март',
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Категория|Категориялар}}',

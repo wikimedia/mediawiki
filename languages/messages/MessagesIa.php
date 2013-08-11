@@ -570,7 +570,6 @@ Le administrator qui lo blocava offereva iste explication: "$3".',
 # Login and logout pages
 'logouttext' => "'''Tu ha claudite le session.'''
 
-Tu pote continuar a usar {{SITENAME}} anonymemente, o tu pote <span class='plainlinks'>[$1 aperir un nove session]</span> con le mesme nomine de usator o con un altere.
 Nota que alcun paginas pote continuar a apparer como si tu esserea ancora authenticate. Pro remediar isto, tu pote vacuar le cache de tu navigator.",
 'welcomeuser' => 'Benvenite, $1!',
 'welcomecreation-msg' => 'Tu conto ha essite create.
@@ -618,7 +617,7 @@ Non oblida personalisar tu [[Special:Preferences|preferentias in {{SITENAME}}]].
 'createacct-emailoptional' => 'Adresse de e-mail (optional)',
 'createacct-email-ph' => 'Entra tu adresse de e-mail',
 'createacct-another-email-ph' => 'Entra adresse de e-mail',
-'createaccountmail' => 'Usar un contrasigno aleatori temporari e inviar lo al adresse de e-mail specificate hic infra',
+'createaccountmail' => 'Usar un contrasigno aleatori temporari e inviar lo al adresse de e-mail specificate',
 'createacct-realname' => 'Nomine real (optional)',
 'createaccountreason' => 'Motivo:',
 'createacct-reason' => 'Motivo',
@@ -1446,10 +1445,10 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'userrights-no-interwiki' => 'Tu non ha le permission de modificar le derectos de usatores in altere wikis.',
 'userrights-nodatabase' => 'Le base de datos $1 non existe o non es local.',
 'userrights-nologin' => 'Tu debe [[Special:UserLogin|aperir un session]] con un conto de administrator pro poter assignar derectos de usator.',
-'userrights-notallowed' => 'Tu conto non ha le permission de adder o remover derectos de usator.',
+'userrights-notallowed' => 'Tu non ha le permission de adder o remover derectos de usator.',
 'userrights-changeable-col' => 'Gruppos que tu pote modificar',
 'userrights-unchangeable-col' => 'Gruppos que tu non pote modificar',
-'userrights-conflict' => 'Conflicto inter derectos de usator! Per favor applica tu cambiamentos de novo.',
+'userrights-conflict' => 'Conflicto inter cambiamentos de derectos de usator! Per favor revide e confirma tu cambiamentos.',
 'userrights-removed-self' => 'Tu ha removite con successo tu proprie derectos. In consequentia, tu non plus pote acceder a iste pagina.',
 
 # Groups
@@ -3107,13 +3106,13 @@ Le causa es probabilemente un ligamine verso un sito externe que es presente in 
 'pageinfo-length' => 'Dimension del pagina (in bytes)',
 'pageinfo-article-id' => 'ID del pagina',
 'pageinfo-language' => 'Lingua del contento del pagina',
-'pageinfo-robot-policy' => 'Stato del motor de recerca',
-'pageinfo-robot-index' => 'Indexabile',
-'pageinfo-robot-noindex' => 'Non indexabile',
+'pageinfo-robot-policy' => 'Indexation per robots',
+'pageinfo-robot-index' => 'Permittite',
+'pageinfo-robot-noindex' => 'Non permittite',
 'pageinfo-views' => 'Numero de visitas',
 'pageinfo-watchers' => 'Numero de observatores del pagina',
 'pageinfo-few-watchers' => 'Minus de $1 {{PLURAL:$1|observator|observatores}}',
-'pageinfo-redirects-name' => 'Redirectiones verso iste pagina',
+'pageinfo-redirects-name' => 'Numero de redirectiones verso iste pagina',
 'pageinfo-subpages-name' => 'Subpaginas de iste pagina',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|redirection|redirectiones}}; $3 {{PLURAL:$3|non-redirection|non-redirectiones}})',
 'pageinfo-firstuser' => 'Creator del pagina',

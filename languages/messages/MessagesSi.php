@@ -245,7 +245,7 @@ $messages = array(
 'editfont-style' => 'අකුරු විලාසයන් සංස්කරණ පෙදෙස:',
 'editfont-default' => 'පෙර නිමි බ්‍රව්සරය',
 'editfont-monospace' => 'ඒක අවකාශිත ෆොන්ට්',
-'editfont-sansserif' => 'Sans-serif අකුරු',
+'editfont-sansserif' => 'සෙරිෆ්-විරහිත අකුරු',
 'editfont-serif' => 'සේරිෆ් අකුරු',
 
 # Dates

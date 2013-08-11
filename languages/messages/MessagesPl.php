@@ -1569,7 +1569,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'saveusergroups' => 'Zapisz',
 'userrights-groupsmember' => 'Należy do:',
 'userrights-groupsmember-auto' => 'Na stałe należy do:',
-'userrights-groups-help' => 'Możesz zmienić przynależność tego użytkownika do podanych grup.
+'userrights-groups-help' => 'Możesz zmienić przynależność tego użytkownika do podanych grup:
 * Zaznaczone pole oznacza przynależność użytkownika do danej grupy.
 * Niezaznaczone pole oznacza, że użytkownik nie należy do danej grupy.
 * Gwiazdka * informuje, że nie możesz usunąć użytkownika z grupy po dodaniu do niej lub dodać po usunięciu.',

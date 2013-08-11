@@ -727,7 +727,6 @@ Administratorul care a efectuat blocarea a furnizat explicația: „$3”.',
 # Login and logout pages
 'logouttext' => "'''Acum sunteți deconectat.'''
 
-Sesiunea dumneavoastră la {{SITENAME}} a fost închisă. Puteți continua să folosiți {{SITENAME}} ca utilizator anonim, sau puteți să vă <span class='plainlinks'>[$1 reautentificați]</span> ca același sau ca alt utilizator.
 Țineți minte că anumite pagini pot fi în continuare afișate ca și când ați fi autentificat până când curățați memoria cache a navigatorului.",
 'welcomeuser' => 'Bun venit, $1!',
 'welcomecreation-msg' => 'Contul dumneavoastră a fost creat.
@@ -775,7 +774,7 @@ Nu uitați să vă modificați [[Special:Preferences|preferințele]] pentru {{SI
 'createacct-emailoptional' => 'Adresă de e-mail (opțională)',
 'createacct-email-ph' => 'Introduceți adresa dumnevoastră de e-mail',
 'createacct-another-email-ph' => 'Introduceți adresa de e-mail',
-'createaccountmail' => 'Utilizează o parolă temporară aleasă la întâmplare și o trimite la adresa de e-mail indicată mai jos',
+'createaccountmail' => 'Utilizează o parolă temporară aleasă la întâmplare și o trimite la adresa de e-mail indicată',
 'createacct-realname' => 'Nume real (opțional)',
 'createaccountreason' => 'Motiv:',
 'createacct-reason' => 'Motiv',
@@ -1572,10 +1571,10 @@ Dacă decideți furnizarea sa, acesta va fi folosit pentru a vă atribui munca.'
 'userrights-no-interwiki' => 'Nu aveți permisiunea de a modifica permisiunile utilizatorilor pe alte wiki.',
 'userrights-nodatabase' => 'Baza de date $1 nu există sau nu este locală.',
 'userrights-nologin' => 'Trebuie să te [[Special:UserLogin|autentifici]] cu un cont de administrator pentru a atribui permisiuni utilizatorilor.',
-'userrights-notallowed' => 'Contul dumneavoastră nu are permisiunea de a acorda sau elimina drepturi utilizatorilor.',
+'userrights-notallowed' => 'Nu aveți permisiunea de a acorda sau elimina drepturi utilizatorilor.',
 'userrights-changeable-col' => 'Grupuri pe care le puteți schimba',
 'userrights-unchangeable-col' => 'Grupuri pe care nu le puteți schimba',
-'userrights-conflict' => 'Conflict al drepturilor de utilizator! Aplicați din nou modificările dumneavoastră.',
+'userrights-conflict' => 'Conflict al schimbării drepturilor de utilizator! Reverificați și confirmați-vă modificările.',
 'userrights-removed-self' => 'V-ați eliminat cu succes propriile drepturi. Ca urmare, nu mai puteți accesa această pagină.',
 
 # Groups
@@ -3197,13 +3196,13 @@ Permite adăugarea unui motiv în descrierea modificărilor',
 'pageinfo-length' => 'Lungimea paginii (în octeți)',
 'pageinfo-article-id' => 'ID pagină',
 'pageinfo-language' => 'Limba conținutului paginii',
-'pageinfo-robot-policy' => 'Statut pentru motorul de căutare',
-'pageinfo-robot-index' => 'Indexabilă',
-'pageinfo-robot-noindex' => 'Neindexabilă',
+'pageinfo-robot-policy' => 'Indexare de către roboți',
+'pageinfo-robot-index' => 'Permisă',
+'pageinfo-robot-noindex' => 'Nepermisă',
 'pageinfo-views' => 'Număr de vizualizări',
 'pageinfo-watchers' => 'Număr de utilizatori care urmăresc pagina',
 'pageinfo-few-watchers' => 'Mai puțin de {{PLURAL:$1|un urmăritor|$1 urmăritori|$1 de urmăritori}}',
-'pageinfo-redirects-name' => 'Redirecționări către această pagină',
+'pageinfo-redirects-name' => 'Număr de redirecționări către această pagină',
 'pageinfo-subpages-name' => 'Subpagini ale acestei pagini',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|redirecționare|redirecționări|de redirecționări}}; $3 {{PLURAL:$3|non-redirecționare|non-redirecționări|de non-redirecționări}})',
 'pageinfo-firstuser' => 'Creatorul paginii',
