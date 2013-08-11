@@ -407,6 +407,10 @@ abstract class ResourceLoaderModule {
 	private static $jsParser;
 	private static $parseCacheVersion = 1;
 
+	/** @var lessc lazy-initialized; use self::lessCompiler() */
+	private static $lessc;
+	private static $lessVars;
+
 	/**
 	 * Validate a given script file; if valid returns the original source.
 	 * If invalid, returns replacement JS source that throws an exception.
@@ -452,6 +456,32 @@ abstract class ResourceLoaderModule {
 			self::$jsParser = new JSParser();
 		}
 		return self::$jsParser;
+	}
+
+	/**
+	 * @return lessc
+	 */
+	protected static function lessCompiler() {
+		global $wgLESSFunctions;
+		$less = new lessc();
+		$less->setPreserveComments( true );
+		$less->setVariables( self::getLESSVars() );
+		foreach( $wgLESSFunctions as $name => $func ) {
+			$less->registerFunction( $name, $func );
+		}
+		return $less;
+	}
+
+	protected static function getLESSVars() {
+		global $wgLESSVars;
+
+		if ( !self::$lessVars ) {
+			self::$lessVars = $wgLESSVars;
+			wfRunHooks( 'ResourceLoaderGetLESSVars', array( &self::$lessVars ) );
+			// Sort by key to ensure consistent hashing for cache lookups.
+			ksort( self::$lessVars );
+		}
+		return self::$lessVars;
 	}
 
 	/**
