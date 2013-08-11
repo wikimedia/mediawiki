@@ -6790,6 +6790,51 @@ $wgSiteTypes = array(
 $wgCompiledFiles = array();
 
 /**
+ * Global LESS variables. An associative array binding variable names
+ * to CSS string values.
+ *
+ * @par Example:
+ * @code
+ *   $wgLESSVars = array(
+ *     'baseFontSize'  => '1em',
+ *     'smallFontSize' => '0.75em',
+ *     'WikimediaBlue' => '#006699',
+ *   );
+ * @endcode
+ * @since 1.22
+ */
+$wgLESSVars = array();
+
+/**
+ * Custom LESS functions. An associative array mapping function name
+ * to PHP callable.
+ *
+ * @since 1.22
+ */
+$wgLESSFunctions = array(
+	/**
+	 * Mark an image URI as embeddable. Expands a URL argument to a CSS
+	 * URL value with a a CSSMin @embed annotation prepended. This
+	 * exploits the fact that the return value of LESS functions is not
+	 * subject to further transformations by the LESS compiler to ensure
+	 * @embed comments are not munged or reordered.
+	 *
+	 * @par Example:
+	 * @code
+	 *   .fancy-button {
+	 *       background-image: embed('../images/button-bg.png');
+	 *   }
+	 * @endcode
+	 *
+	 * @todo: 'embed' should invoke CSSMin directly to generate data
+	 * URIs rather than generate comment directives.
+	 */
+	'embed' => function( $arg ) {
+		return '/* @embed */ url(' . $arg[2][0] . ')';
+	},
+);
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}

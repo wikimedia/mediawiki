@@ -212,6 +212,17 @@ production.
 * IPv6 addresses in X-Forwarded-For headers are now normalised before checking
   against allowed proxy lists.
 * Add deferrable update support for callback/closure
+* Add support for the LESS stylesheet language to ResourceLoader. LESS is a
+  stylesheet language that compiles into CSS. ResourceLoader file modules may
+  include LESS style files; ResourceLoader will compile these files into CSS
+  before sending them to the client.
+** The $wgLESSVars configuration variable is an associative array mapping
+   variable names to string CSS values. These variables are considered declared
+   for all LESS files. Additional variables may be registered by adding keys to
+   the array or by registering a ResourceLoaderGetLESSVars hook handler.
+** Similarly, $wgLESSFunctions is an associative array of custom LESS function
+   names to PHP callables. See <http://leafo.net/lessphp/docs/#custom_functions>
+   for more details regarding custom functions.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
