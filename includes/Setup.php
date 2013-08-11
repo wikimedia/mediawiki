@@ -300,6 +300,8 @@ if ( $wgResourceLoaderMaxQueryLength === false ) {
 	$wgResourceLoaderMaxQueryLength = $maxValueLength > 0 ? $maxValueLength : -1;
 }
 
+$wgResourceLoaderLESSImportPaths[] = "$IP/resources/mediawiki.less";
+
 /**
  * Definitions of the NS_ constants are in Defines.php
  * @private
