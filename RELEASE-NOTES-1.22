@@ -180,6 +180,7 @@ production.
   setcookie() or setrawcookie() should begin using this instead.
 * New hook WebResponseSetCookie, called from WebResponse::setcookie().
 * New hook ResetSessionID, called when the session id is reset.
+* Improved the accessibility of the tabs in Special:Preferences
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
