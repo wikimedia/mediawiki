@@ -46,6 +46,18 @@
  */
 class FormatMetadata extends ContextSource {
 
+	/** @var boolean Only output a single language for multi-language fields */
+	protected $singleLang = false;
+
+	/**
+	 * Trigger only outputting single language for multilanguage fields
+	 *
+	 * @param Boolean $val
+	 */
+	public function setSingleLanguage( $val ) {
+		$this->singleLang = $val;
+	}
+
 	/**
 	 * Numbers given by Exif user agents are often magical, that is they
 	 * should be replaced by a detailed explanation depending on their
@@ -940,6 +952,8 @@ class FormatMetadata extends ContextSource {
 
 				$content = '';
 
+				$priorityLanguages = Language::getFallbacksIncludingSiteLanguage( $this->getLanguage()->getCode() );
+				$priorityLanguages = array_merge( (array) $this->getLanguage()->getCode(), $priorityLanguages[0], $priorityLanguages[1] );
 				$cLang = $wgContLang->getCode();
 				$defaultItem = false;
 				$defaultLang = false;
@@ -955,18 +969,24 @@ class FormatMetadata extends ContextSource {
 					$defaultItem = $vals['x-default'];
 					unset( $vals['x-default'] );
 				}
-				// Do contentLanguage.
-				if ( isset( $vals[$cLang] ) ) {
-					$isDefault = false;
-					if ( $vals[$cLang] === $defaultItem ) {
-						$defaultItem = false;
-						$isDefault = true;
-					}
-					$content .= $this->langItem(
-						$vals[$cLang], $cLang,
-						$isDefault, $noHtml );
+				foreach( $priorityLanguages as $pLang ) {
+					if ( isset( $vals[$pLang] ) ) {
+						$isDefault = false;
+						if ( $vals[$pLang] === $defaultItem ) {
+							$defaultItem = false;
+							$isDefault = true;
+						}
+						$content .= $this->langItem(
+							$vals[$pLang], $pLang,
+							$isDefault, $noHtml );
 
-					unset( $vals[$cLang] );
+						unset( $vals[$pLang] );
+
+						if ( $this->singleLang ) {
+							return Html::rawElement( 'span',
+								array( 'lang' => $pLang ), $vals[$pLang] );
+						}
+					}
 				}
 
 				// Now do the rest.
@@ -977,11 +997,18 @@ class FormatMetadata extends ContextSource {
 					}
 					$content .= $this->langItem( $item,
 						$lang, false, $noHtml );
+					if ( $this->singleLang ) {
+						return Html::rawElement( 'span',
+							array( 'lang' => $lang ), $item );
+					}
 				}
 				if ( $defaultItem !== false ) {
 					$content = $this->langItem( $defaultItem,
 						$defaultLang, true, $noHtml ) .
 						$content;
+					if ( $this->singleLang ) {
+						return $defaultItem;
+					}
 				}
 				if ( $noHtml ) {
 					return $content;
@@ -1408,6 +1435,144 @@ class FormatMetadata extends ContextSource {
 				$street, $city, $region, $postal, $country,
 				$tel )->text();
 		}
+	}
+
+	/**
+	 * Get a list of fields that are visible by default.
+	 *
+	 * @return array
+	 */
+	public static function getVisibleFields() {
+		$fields = array();
+		$lines = explode( "\n", wfMessage( 'metadata-fields' )->inContentLanguage()->text() );
+		foreach ( $lines as $line ) {
+			$matches = array();
+			if ( preg_match( '/^\\*\s*(.*?)\s*$/', $line, $matches ) ) {
+				$fields[] = $matches[1];
+			}
+		}
+		$fields = array_map( 'strtolower', $fields );
+		return $fields;
+	}
+
+	/**
+	 * Get an array of extended metadata. (See the imageinfo API for format.)
+	 *
+	 * @param File $file File to use
+	 * @param bool|string $language What language to use when fetching metadata
+	 * @param bool $single Whether to get only one language (true) or all (false)
+	 * @return array [<property name> => ['value' => <value>]], or [] on error
+	 */
+	public function fetchExtendedMetadata( File $file, $language = false, $single = true ) {
+		global $wgContLang, $wgMemc;
+
+		wfProfileIn( __METHOD__ );
+
+		if ( !$language ) {
+			$language = $wgContLang->getCode();
+		}
+
+		// If revision deleted, exit immediately
+		if ( $file->isDeleted( File::DELETED_FILE ) ) {
+			return array();
+		}
+
+		$cacheKey = wfMemcKey(
+			'getExtendedMetadata',
+			$language,
+			(int) $single,
+			$file->getSha1()
+		);
+
+		$cachedValue = $wgMemc->get( $cacheKey );
+		if (
+			$cachedValue
+			&& wfRunHooks( 'ValidateExtendedMetadataCache', array( $cachedValue['timestamp'], $file ) )
+		) {
+			$extendedMetadata = $cachedValue['data'];
+		} else {
+			$maxCacheTime = ( $file instanceof ForeignAPIFile ) ? 60 * 60 * 12 : 60 * 60 * 24 * 30;
+			$fileMetadata = $this->getExtendedMetadataFromFile( $file );
+			$extendedMetadata = $this->getExtendedMetadataFromHook( $file, $fileMetadata, $maxCacheTime, $language, $single );
+			$valueToCache = array( 'data' => $extendedMetadata, 'timestamp' => wfTimestampNow() );
+			$wgMemc->set( $cacheKey, $valueToCache, $maxCacheTime );
+		}
+
+		wfProfileOut( __METHOD__ );
+		return $extendedMetadata;
+	}
+
+	public function getExtendedMetadataFromFile( File $file ) {
+		// If this is a remote file accessed via an API request, we already
+		// have remote metadata so we just ignore any local one
+		if ( $file instanceof ForeignAPIFile ) {
+			// in case of error we pretend no metadata - this will get cached. Might or might not be a good idea.
+			return $file->getExtendedMetadata() ?: array();
+		}
+
+		wfProfileIn( __METHOD__ );
+
+		$uploadDate = wfTimestamp( TS_ISO_8601, $file->getTimestamp() );
+
+		$fileMetadata = array(
+			// This is modification time, which is close to "upload" time.
+			'DateTime' => array(
+				'value' => $uploadDate,
+				'source' => 'mediawiki-metadata',
+			),
+		);
+
+		$title = $file->getTitle();
+		if ( $title ) {
+			$text = $title->getText();
+			$pos = strrpos( $text, '.' );
+
+			if ( $pos ) {
+				$name = substr( $text, 0, $pos );
+			} else {
+				$name = $text;
+			}
+
+			$fileMetadata[ 'ObjectName' ] = array(
+				'value' => $name,
+				'source' => 'mediawiki-metadata',
+			);
+		}
+
+		$common = $file->getCommonMetaArray();
+
+		foreach ( $common as $key => $value ) {
+			$fileMetadata[$key] = array(
+				'value' => $value,
+				'source' => 'file-metadata',
+			);
+		}
+
+		wfProfileOut( __METHOD__ );
+		return $fileMetadata;
+	}
+
+	public function getExtendedMetadataFromHook( File $file, array $extendedMetadata, &$maxCacheTime, $language, $single) {
+		wfProfileIn( __METHOD__ );
+
+		$this->getContext()->setLanguage( $language );
+		wfRunHooks( 'GetExtendedMetadata', array(
+			&$extendedMetadata,
+			$file,
+			$this->getContext(),
+			$single,
+			&$maxCacheTime
+		) );
+
+		$visible = array_flip( self::getVisibleFields() );
+		foreach ( $extendedMetadata as $key => $value ) {
+			if ( !isset( $visible[ strtolower( $key ) ] ) ) {
+				$extendedMetadata[$key]['hidden'] = '';
+			}
+		}
+
+		wfProfileOut( __METHOD__ );
+		return $extendedMetadata;
 	}
 }
 
