@@ -170,6 +170,16 @@ class ForeignAPIFile extends File {
 	}
 
 	/**
+	 * @return bool|null|string
+	 */
+	public function getExtendedMetadata() {
+		if ( isset( $this->mInfo['extendedmetadata'] ) ) {
+			return $this->mInfo['extendedmetadata'];
+		}
+		return null;
+	}
+
+	/**
 	 * @param $metadata array
 	 * @return array
 	 */
