@@ -419,6 +419,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		$sha1 = isset( $prop['sha1'] );
 		$meta = isset( $prop['metadata'] );
 		$extmetadata = isset( $prop['extmetadata'] );
+		$commonmeta = isset( $prop['commonmetadata'] );
 		$mime = isset( $prop['mime'] );
 		$mediatype = isset( $prop['mediatype'] );
 		$archive = isset( $prop['archivename'] );
@@ -489,6 +490,10 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				$metadata = $file->convertMetadataVersion( $metadata, $version );
 			}
 			$vals['metadata'] = $metadata ? self::processMetaData( $metadata, $result ) : null;
+		}
+		if ( $commonmeta ) {
+			$metaArray = $file->getCommonMetaArray();
+			$vals['commonmetadata'] = $metaArray ? self::processMetaData( $metaArray, $result ) : array();
 		}
 
 		if ( $extmetadata ) {
@@ -672,6 +677,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				' (requires url and param ' . $modulePrefix . 'urlwidth)',
 			'mediatype' =>      ' mediatype     - Adds the media type of the image',
 			'metadata' =>       ' metadata      - Lists Exif metadata for the version of the image',
+			'commonmetadata' => ' commonmetadata - Lists file format generic metadata for the version of the image',
 			'extmetadata' =>    ' extmetadata   - Lists formatted metadata combined ' .
 				'from multiple sources. Results are HTML formatted.',
 			'archivename' =>    ' archivename   - Adds the file name of the archive ' .
