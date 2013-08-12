@@ -46,6 +46,18 @@
  */
 class FormatMetadata extends ContextSource {
 
+	/** @var boolean Only output a single language for multi-language fields */
+	protected $singleLang = false;
+
+	/**
+	 * Trigger only outputting single language for multilanguage fields
+	 *
+	 * @param Boolean $val
+	 */
+	public function setSingleLanguage( $val ) {
+		$this->singleLang = $val;
+	}
+
 	/**
 	 * Numbers given by Exif user agents are often magical, that is they
 	 * should be replaced by a detailed explanation depending on their
@@ -940,7 +952,7 @@ class FormatMetadata extends ContextSource {
 
 				$content = '';
 
-				$cLang = $wgContLang->getCode();
+				$cLang = $this->getLanguage()->getCode();
 				$defaultItem = false;
 				$defaultLang = false;
 
@@ -1408,6 +1420,209 @@ class FormatMetadata extends ContextSource {
 				$street, $city, $region, $postal, $country,
 				$tel )->text();
 		}
+	}
+
+	/**
+	 * Get a list of fields that are visible by default.
+	 *
+	 * @return array
+	 */
+	public static function getVisibleFields() {
+		$fields = array();
+		$lines = explode( "\n", wfMessage( 'metadata-fields' )->inContentLanguage()->text() );
+		foreach ( $lines as $line ) {
+			$matches = array();
+			if ( preg_match( '/^\\*\s*(.*?)\s*$/', $line, $matches ) ) {
+				$fields[] = $matches[1];
+			}
+		}
+		$fields = array_map( 'strtolower', $fields );
+		return $fields;
+	}
+
+	/**
+	 * Get an array of extended metadata. (See the imageinfo API for format.)
+	 *
+	 * @param File $file File to use
+	 * @return array [<property name> => ['value' => <value>]], or [] on error
+	 */
+	public function fetchExtendedMetadata( File $file ) {
+		global $wgMemc;
+
+		wfProfileIn( __METHOD__ );
+
+		// If revision deleted, exit immediately
+		if ( $file->isDeleted( File::DELETED_FILE ) ) {
+			return array();
+		}
+
+		$cacheKey = wfMemcKey(
+			'getExtendedMetadata',
+			$this->getLanguage()->getCode(),
+			(int) $this->singleLang,
+			$file->getSha1()
+		);
+
+		$cachedValue = $wgMemc->get( $cacheKey );
+		if (
+			$cachedValue
+			&& wfRunHooks( 'ValidateExtendedMetadataCache', array( $cachedValue['timestamp'], $file ) )
+		) {
+			$extendedMetadata = $cachedValue['data'];
+		} else {
+			$maxCacheTime = ( $file instanceof ForeignAPIFile ) ? 60 * 60 * 12 : 60 * 60 * 24 * 30;
+			$fileMetadata = $this->getExtendedMetadataFromFile( $file );
+			$extendedMetadata = $this->getExtendedMetadataFromHook( $file, $fileMetadata, $maxCacheTime );
+			$valueToCache = array( 'data' => $extendedMetadata, 'timestamp' => wfTimestampNow() );
+			$wgMemc->set( $cacheKey, $valueToCache, $maxCacheTime );
+		}
+
+		wfProfileOut( __METHOD__ );
+		return $extendedMetadata;
+	}
+
+	/**
+	 * Get file-based metadata in standardized format.
+	 *
+	 * @param File $file File to use
+	 * @return array [<property name> => ['value' => <value>]], or [] on error
+	 */
+	protected function getExtendedMetadataFromFile( File $file ) {
+		// If this is a remote file accessed via an API request, we already
+		// have remote metadata so we just ignore any local one
+		if ( $file instanceof ForeignAPIFile ) {
+			// in case of error we pretend no metadata - this will get cached. Might or might not be a good idea.
+			return $file->getExtendedMetadata() ?: array();
+		}
+
+		wfProfileIn( __METHOD__ );
+
+		$uploadDate = wfTimestamp( TS_ISO_8601, $file->getTimestamp() );
+
+		$fileMetadata = array(
+			// This is modification time, which is close to "upload" time.
+			'DateTime' => array(
+				'value' => $uploadDate,
+				'source' => 'mediawiki-metadata',
+			),
+		);
+
+		$title = $file->getTitle();
+		if ( $title ) {
+			$text = $title->getText();
+			$pos = strrpos( $text, '.' );
+
+			if ( $pos ) {
+				$name = substr( $text, 0, $pos );
+			} else {
+				$name = $text;
+			}
+
+			$fileMetadata[ 'ObjectName' ] = array(
+				'value' => $name,
+				'source' => 'mediawiki-metadata',
+			);
+		}
+
+		$common = $file->getCommonMetaArray();
+		if ( $this->singleLang ) {
+			foreach ( $common as &$value ) {
+				$value = $this->resolveMultilangValue($value);
+			}
+		}
+		unset( $value );
+
+		foreach ( $common as $key => $value ) {
+			$fileMetadata[$key] = array(
+				'value' => $value,
+				'source' => 'file-metadata',
+			);
+		}
+
+		wfProfileOut( __METHOD__ );
+		return $fileMetadata;
+	}
+
+	/**
+	 * Get additional metadata from hooks in standardized format.
+	 *
+	 * @param File $file File to use
+	 * @param array $extendedMetadata
+	 * @param int $maxCacheTime hook handlers might use this parameter to override cache time
+	 *
+	 * @return array [<property name> => ['value' => <value>]], or [] on error
+	 */
+	protected function getExtendedMetadataFromHook( File $file, array $extendedMetadata, &$maxCacheTime ) {
+		wfProfileIn( __METHOD__ );
+
+		wfRunHooks( 'GetExtendedMetadata', array(
+			&$extendedMetadata,
+			$file,
+			$this->getContext(),
+			$this->singleLang,
+			&$maxCacheTime
+		) );
+
+		$visible = array_flip( self::getVisibleFields() );
+		foreach ( $extendedMetadata as $key => $value ) {
+			if ( !isset( $visible[ strtolower( $key ) ] ) ) {
+				$extendedMetadata[$key]['hidden'] = '';
+			}
+		}
+
+		wfProfileOut( __METHOD__ );
+		return $extendedMetadata;
+	}
+
+	/**
+	 * Turns an XMP-style multilang array into a single value.
+	 * If the value is not a multilang array, it is returned unchanged.
+	 * @param mixed $value
+	 * @return mixed value in best language, null if there were no languages at all
+	 */
+	protected function resolveMultilangValue( $value )
+	{
+		if (
+			!is_array( $value )
+			|| !isset( $value['_type'] )
+			|| $value['_type'] != 'lang'
+		) {
+			return $value; // do nothing if not a multilang array
+		}
+
+		// choose the language best matching user or site settings
+		$priorityLanguages = $this->getPriorityLanguages();
+		foreach( $priorityLanguages as $lang ) {
+			if ( isset( $value[$lang] ) ) {
+				return $value[$lang];
+			}
+		}
+
+		// otherwise go with the default language, if set
+		if ( isset( $value['x-default'] ) ) {
+			return $value['x-default'];
+		}
+
+		// otherwise just return any one language
+		unset($value['_type']);
+		if (!empty($value)) {
+			return reset($value);
+		}
+
+		// this should not happen; signal error
+		return null;
+	}
+
+	/**
+	 * Returns a list of languages (first is best) to use when formatting multilang fields,
+	 * based on user and site preferences.
+	 * @return array
+	 */
+	protected function getPriorityLanguages()
+	{
+		$priorityLanguages = Language::getFallbacksIncludingSiteLanguage( $this->getLanguage()->getCode() );
+		$priorityLanguages = array_merge( (array) $this->getLanguage()->getCode(), $priorityLanguages[0], $priorityLanguages[1] );
+		return $priorityLanguages;
 	}
 }
 
