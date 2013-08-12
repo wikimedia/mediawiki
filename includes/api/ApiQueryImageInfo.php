@@ -49,6 +49,12 @@ class ApiQueryImageInfo extends ApiQueryBase {
 
 		$scale = $this->getScale( $params );
 
+		$metadataOpts = array(
+			'version' => $params['metadataversion'],
+			'language' => $params['extmetadatalanguage'],
+			'multilang' => $params['extmetadatamultilang'],
+		);
+
 		$pageIds = $this->getPageSet()->getAllTitlesByNamespace();
 		if ( !empty( $pageIds[NS_FILE] ) ) {
 			$titles = array_keys( $pageIds[NS_FILE] );
@@ -146,7 +152,8 @@ class ApiQueryImageInfo extends ApiQueryBase {
 
 					$fit = $this->addPageSubItem( $pageId,
 						self::getInfo( $img, $prop, $result,
-							$finalThumbParams, $params['metadataversion'] ) );
+							$finalThumbParams, $metadataOpts )
+						);
 					if ( !$fit ) {
 						if ( count( $pageIds[NS_FILE] ) == 1 ) {
 							// See the 'the user is screwed' comment above
@@ -178,7 +185,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 					$fit = self::getTransformCount() < self::TRANSFORM_LIMIT &&
 						$this->addPageSubItem( $pageId,
 							self::getInfo( $oldie, $prop, $result,
-								$finalThumbParams, $params['metadataversion']
+								$finalThumbParams, $metadataOpts
 							)
 						);
 					if ( !$fit ) {
@@ -296,10 +303,18 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	 * @param array $prop of properties to get (in the keys)
 	 * @param $result ApiResult object
 	 * @param array $thumbParams containing 'width' and 'height' items, or null
-	 * @param string $version Version of image metadata (for things like jpeg which have different versions).
+	 * @param string $metadataOpts Options for metadata fetching.
 	 * @return Array: result array
 	 */
-	static function getInfo( $file, $prop, $result, $thumbParams = null, $version = 'latest' ) {
+	static function getInfo( $file, $prop, $result, $thumbParams = null, $metadataOpts = false ) {
+		if ( !$metadataOpts || is_string( $metadataOpts ) ) {
+			$metadataOpts = array(
+				'version' => 'latest',
+				'language' => $wgContLang,
+				'multilang' => false,
+			);
+		}
+		$version = $metadataOpts['version'];
 		$vals = array();
 		// Timestamp is shown even if the file is revdelete'd in interface
 		// so do same here.
@@ -360,6 +375,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		$sha1 = isset( $prop['sha1'] );
 		$meta = isset( $prop['metadata'] );
 		$commonmeta = isset( $prop['commonmetadata'] );
+		$extmeta = isset( $prop['extmetadata'] );
 		$mime = isset( $prop['mime'] );
 		$mediatype = isset( $prop['mediatype'] );
 		$archive = isset( $prop['archivename'] );
@@ -422,6 +438,19 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			$vals['commonmetadata'] = $metaArray ? self::processMetaData( $metaArray, $result ) : array();
 		}
 
+		if ( $extmeta ) {
+			$metaArray = FormatMetadata::getExtendedMeta(
+				$file,
+				$metadataOpts['language'],
+				!$metadataOpts['multilang']
+			);
+			foreach( $metaArray as $key => &$value ) {
+				ApiResult::setContent( $value, $value['value'] );
+				unset( $value['value'] );
+			}
+			$vals['extendedmetadata'] = $metaArray;
+		}
+
 		if ( $mime ) {
 			$vals['mime'] = $file->getMimeType();
 		}
@@ -480,6 +509,11 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	}
 
 	public function getCacheMode( $params ) {
+		$prop = array_flip( $params['prop'] );
+		if ( isset( $prop['extmetadata'] ) ) {
+			// extmetadata can vary depending on user
+			return 'private';
+		}
 		return 'public';
 	}
 
@@ -496,6 +530,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	}
 
 	public function getAllowedParams() {
+		global $wgContLang;
 		return array(
 			'prop' => array(
 				ApiBase::PARAM_ISMULTI => true,
@@ -526,6 +561,14 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			'metadataversion' => array(
 				ApiBase::PARAM_TYPE => 'string',
 				ApiBase::PARAM_DFLT => '1',
+			),
+			'extmetadatalanguage' => array(
+				ApiBase::PARAM_TYPE => 'string',
+				ApiBase::PARAM_DFLT => $wgContLang->getCode(),
+			),
+			'extmetadatamultilang' => array(
+				ApiBase::PARAM_TYPE => 'boolean',
+				ApiBase::PARAM_DFLT => false,
 			),
 			'urlparam' => array(
 				ApiBase::PARAM_DFLT => '',
@@ -570,6 +613,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			'mediatype' =>      ' mediatype     - Adds the media type of the image',
 			'metadata' =>       ' metadata      - Lists Exif metadata for the version of the image',
 			'commonmetadata' => ' commonmetadata - Lists file format generic metadata for the version of the image',
+			'extmetadata' =>    ' extmetadata    - Lists formatted metadata combined from multiple sources. Results are HTML formatted.',
 			'archivename' =>    ' archivename   - Adds the file name of the archive version for non-latest versions',
 			'bitdepth' =>       ' bitdepth      - Adds the bit depth of the version',
 			'uploadwarning' =>  ' uploadwarning - Used by the Special:Upload page to get information about an existing file. Not intended for use outside MediaWiki core',
@@ -609,6 +653,10 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			'end' => 'Timestamp to stop listing at',
 			'metadataversion' => array( "Version of metadata to use. if 'latest' is specified, use latest version.",
 						"Defaults to '1' for backwards compatibility" ),
+			'extmetadatalanguage' => array( 'What language to fetch extmetadata in. This affects both which',
+						'translation to fetch, if multiple are available, as well as how things',
+						'like numbers and various values are formatted.' ),
+			'extmetadatamultilang' => 'If translations for extmetadata property are available, fetch all of them.',
 			'continue' => 'If the query response includes a continue value, use it here to get another page of results',
 			'localonly' => 'Look only for files in the local repository',
 		);
