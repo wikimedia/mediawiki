@@ -468,16 +468,7 @@ abstract class MediaHandler {
 	 * @access protected
 	 */
 	function visibleMetadataFields() {
-		$fields = array();
-		$lines = explode( "\n", wfMessage( 'metadata-fields' )->inContentLanguage()->text() );
-		foreach ( $lines as $line ) {
-			$matches = array();
-			if ( preg_match( '/^\\*\s*(.*?)\s*$/', $line, $matches ) ) {
-				$fields[] = $matches[1];
-			}
-		}
-		$fields = array_map( 'strtolower', $fields );
-		return $fields;
+		return FormatMetadata::getVisibleFields();
 	}
 
 	/**
