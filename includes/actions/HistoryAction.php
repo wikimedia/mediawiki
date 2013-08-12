@@ -115,7 +115,7 @@ class HistoryAction extends FormlessAction {
 
 		// Setup page variables.
 		$out->setFeedAppendQuery( 'action=history' );
-		$out->addModules( array( 'mediawiki.legacy.history', 'mediawiki.action.history' ) );
+		$out->addModules( 'mediawiki.action.history' );
 
 		// Handle atom/RSS feeds.
 		$feedType = $request->getVal( 'feed' );
