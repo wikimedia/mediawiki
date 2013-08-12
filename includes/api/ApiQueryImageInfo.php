@@ -49,6 +49,10 @@ class ApiQueryImageInfo extends ApiQueryBase {
 
 		$scale = $this->getScale( $params );
 
+		$metadataOpts = array(
+			'version' => $params['metadataversion'],
+		);
+
 		$pageIds = $this->getPageSet()->getAllTitlesByNamespace();
 		if ( !empty( $pageIds[NS_FILE] ) ) {
 			$titles = array_keys( $pageIds[NS_FILE] );
@@ -146,7 +150,9 @@ class ApiQueryImageInfo extends ApiQueryBase {
 
 					$fit = $this->addPageSubItem( $pageId,
 						self::getInfo( $img, $prop, $result,
-							$finalThumbParams, $params['metadataversion'] ) );
+							$finalThumbParams, $metadataOpts
+						)
+					);
 					if ( !$fit ) {
 						if ( count( $pageIds[NS_FILE] ) == 1 ) {
 							// See the 'the user is screwed' comment above
@@ -178,7 +184,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 					$fit = self::getTransformCount() < self::TRANSFORM_LIMIT &&
 						$this->addPageSubItem( $pageId,
 							self::getInfo( $oldie, $prop, $result,
-								$finalThumbParams, $params['metadataversion']
+								$finalThumbParams, $metadataOpts
 							)
 						);
 					if ( !$fit ) {
@@ -296,10 +302,18 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	 * @param array $prop of properties to get (in the keys)
 	 * @param $result ApiResult object
 	 * @param array $thumbParams containing 'width' and 'height' items, or null
-	 * @param string $version Version of image metadata (for things like jpeg which have different versions).
+	 * @param string|array $metadataOpts Options for metadata fetching.
+	 *   This is an array consisting of the keys:
+	 *    'version': The metadata version for the metadata option
 	 * @return Array: result array
 	 */
-	static function getInfo( $file, $prop, $result, $thumbParams = null, $version = 'latest' ) {
+	static function getInfo( $file, $prop, $result, $thumbParams = null, $metadataOpts = false ) {
+		if ( !$metadataOpts || is_string( $metadataOpts ) ) {
+			$metadataOpts = array(
+				'version' => $metadataOpts ?: 'latest',
+			);
+		}
+		$version = $metadataOpts['version'];
 		$vals = array();
 		// Timestamp is shown even if the file is revdelete'd in interface
 		// so do same here.
@@ -359,6 +373,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		$url = isset( $prop['url'] );
 		$sha1 = isset( $prop['sha1'] );
 		$meta = isset( $prop['metadata'] );
+		$extmetadata = isset( $prop['extmetadata'] );
 		$mime = isset( $prop['mime'] );
 		$mediatype = isset( $prop['mediatype'] );
 		$archive = isset( $prop['archivename'] );
@@ -415,6 +430,15 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				$metadata = $file->convertMetadataVersion( $metadata, $version );
 			}
 			$vals['metadata'] = $metadata ? self::processMetaData( $metadata, $result ) : null;
+		}
+
+		if ( $extmetadata ) {
+			// Note, this should return an array where all the keys
+			// start with a letter, and all the values are strings.
+			// Thus there should be no issue with format=xml.
+			$format = new FormatMetadata;
+			$extmetaArray = $format->fetchExtendedMetadata( $file );
+			$vals['extmetadata'] = $extmetaArray;
 		}
 
 		if ( $mime ) {
@@ -564,6 +588,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				' (requires url and param ' . $modulePrefix . 'urlwidth)',
 			'mediatype' =>      ' mediatype     - Adds the media type of the image',
 			'metadata' =>       ' metadata      - Lists Exif metadata for the version of the image',
+			'extmetadata' =>    ' extmetadata   - Lists formatted metadata combined from multiple sources. Results are HTML formatted.',
 			'archivename' =>    ' archivename   - Adds the file name of the archive version for non-latest versions',
 			'bitdepth' =>       ' bitdepth      - Adds the bit depth of the version',
 			'uploadwarning' =>  ' uploadwarning - Used by the Special:Upload page to get information about an existing file. Not intended for use outside MediaWiki core',
