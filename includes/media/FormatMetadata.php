@@ -46,6 +46,18 @@
  */
 class FormatMetadata extends ContextSource {
 
+	/** @var boolean Only output a single language for multi-language fields */
+	protected $singleLang = false;
+
+	/**
+	 * Trigger only outputting single language for multilanguage fields
+	 *
+	 * @param Boolean $val
+	 */
+	public function setSingleLanguage( $val ) {
+		$this->singleLang = $val;
+	}
+
 	/**
 	 * Numbers given by Exif user agents are often magical, that is they
 	 * should be replaced by a detailed explanation depending on their
@@ -940,6 +952,8 @@ class FormatMetadata extends ContextSource {
 
 				$content = '';
 
+				$priorityLanguages = Language::getFallbacksIncludingSiteLanguage( $this->getLanguage()->getCode() );
+				$priorityLanguages = array_merge( (array) $this->getLanguage()->getCode(), $priorityLanguages[0], $priorityLanguages[1] );
 				$cLang = $wgContLang->getCode();
 				$defaultItem = false;
 				$defaultLang = false;
@@ -955,18 +969,24 @@ class FormatMetadata extends ContextSource {
 					$defaultItem = $vals['x-default'];
 					unset( $vals['x-default'] );
 				}
-				// Do contentLanguage.
-				if ( isset( $vals[$cLang] ) ) {
-					$isDefault = false;
-					if ( $vals[$cLang] === $defaultItem ) {
-						$defaultItem = false;
-						$isDefault = true;
-					}
-					$content .= $this->langItem(
-						$vals[$cLang], $cLang,
-						$isDefault, $noHtml );
+				foreach( $priorityLanguages as $pLang ) {
+					if ( isset( $vals[$pLang] ) ) {
+						$isDefault = false;
+						if ( $vals[$pLang] === $defaultItem ) {
+							$defaultItem = false;
+							$isDefault = true;
+						}
+						$content .= $this->langItem(
+							$vals[$pLang], $pLang,
+							$isDefault, $noHtml );
 
-					unset( $vals[$cLang] );
+						unset( $vals[$pLang] );
+
+						if ( $this->singleLang ) {
+							return Html::rawElement( 'span',
+								array( 'lang' => $pLang ), $vals[$pLang] );
+						}
+					}
 				}
 
 				// Now do the rest.
@@ -977,11 +997,18 @@ class FormatMetadata extends ContextSource {
 					}
 					$content .= $this->langItem( $item,
 						$lang, false, $noHtml );
+					if ( $this->singleLang ) {
+						return Html::rawElement( 'span',
+							array( 'lang' => $lang ), $item );
+					}
 				}
 				if ( $defaultItem !== false ) {
 					$content = $this->langItem( $defaultItem,
 						$defaultLang, true, $noHtml ) .
 						$content;
+					if ( $this->singleLang ) {
+						return $defaultItem;
+					}
 				}
 				if ( $noHtml ) {
 					return $content;
@@ -1408,6 +1435,153 @@ class FormatMetadata extends ContextSource {
 				$street, $city, $region, $postal, $country,
 				$tel )->text();
 		}
+	}
+
+	/**
+	 * Get a list of fields that are visible by default.
+	 *
+	 * @return array
+	 */
+	public static function getVisibleFields() {
+		$fields = array();
+		$lines = explode( "\n", wfMessage( 'metadata-fields' )->inContentLanguage()->text() );
+		foreach ( $lines as $line ) {
+			$matches = array();
+			if ( preg_match( '/^\\*\s*(.*?)\s*$/', $line, $matches ) ) {
+				$fields[] = $matches[1];
+			}
+		}
+		$fields = array_map( 'strtolower', $fields );
+		return $fields;
+	}
+
+	/**
+	 * Get extended metadata. Like normal metadata, but includes
+	 * additional information, and only one language is shown.
+	 *
+	 * @note This method cannot be called while $wgParser is parsing something.
+	 *
+	 * @todo This should possibly be cached.
+	 *
+	 * @param File $file File to use
+	 * @param String|Language $lang Language to use (defaults to content language)
+	 * @param Boolean $single Return only target language, or all translations.
+	 * @param IContextSource $context Request context (optional)
+	 * @return Array (Empty array if no metadata).
+	 */
+	public static function getExtendedMeta( File $file, $lang = false, $single = true, $context = false ) {
+		global $wgContLang;
+		if ( !$lang ) {
+			$lang = $wgContLang;
+		}
+
+		$format = new FormatMetadata;
+		$format->setSingleLanguage( $single );
+		if ( $context ) {
+			$format->setContext( $context );
+		}
+
+		$derivContext = new DerivativeContext( $format->getContext() );
+		$derivContext->setLanguage( $lang );
+		$format->setContext( $derivContext );
+
+		return $format->makeExtendedMeta( $file );
+	}
+
+	/**
+	 * Make extended metadata.
+	 *
+	 * Usually outside callers use getExtendedMeta.
+	 *
+	 * @note This method cannot be called while $wgParser is parsing something.
+	 *
+	 * @param File $file File to use
+	 * @return Array
+	 */
+	public function makeExtendedMeta( File $file ) {
+		global $wgParser;
+		wfProfileIn( __METHOD__ );
+
+		// If revision deleted, exit immediately
+		if ( $file->isDeleted( File::DELETED_FILE ) ) {
+			return array();
+		}
+
+		$combinedMeta = array(
+			// This is modification time, which is close to "upload" time.
+			'DateTime' => array(
+					'value' => htmlspecialchars( $this->getLanguage()->timeanddate( $file->getTimestamp() ) ),
+					'source' => 'mediawiki-metadata',
+				),
+			);
+		if ( !$file->isDeleted( File::DELETED_USER ) ) {
+			$combinedMeta['Artist'] = array(
+				'value' => Linker::userLink( $file->getUser( 'id' ), $file->getUser() ),
+				'source' => 'mediawiki-metadata',
+			);
+		}
+		if ( $file->getTitle() ) {
+			$pos = strrpos( $file->getTitle()->getText(), '.' );
+			if ( $pos ) {
+				$name = substr( $file->getTitle()->getText(), 0, $pos );
+			} else {
+				$name = $file->getTitle()->getText();
+			}
+			$combinedMeta[ 'ObjectName' ] = array(
+				'value' => htmlspecialchars( $name ),
+				'source' => 'mediawiki-metadata',
+			);
+		}
+		$common = $file->getCommonMetaArray();
+		$commonFormatted = $this->makeFormattedData( $common );
+		wfProfileIn( __METHOD__ . '-common' );
+
+		$title = $file->getTitle();
+		if ( !$title ) {
+			$title = Title::newFromText( 'No_title', NS_FILE );
+		}
+		$poptions = ParserOptions::newFromContext( $this->getContext() );
+		$poptions->setEditSection( false );
+		$poptions->setTargetLanguage( $this->getLanguage() );
+
+		foreach ( $commonFormatted as $name => $value ) {
+			$pout = $wgParser->parse( $value, $title, $poptions );
+			$string = $pout->getText();
+			if ( preg_match( '/^<p>(.*)\n?<\/p>\n?$/sU', $string, $m ) ) {
+				$string = $m[1];
+			}
+			$combinedMeta[ $name ] = array(
+				'value' => $string,
+				'source' => 'file-metadata'
+			);
+		}
+
+		wfProfileOut( __METHOD__ . '-common' );
+
+		wfRunHooks( 'GetExtendedMetadata', array( &$combinedMeta, $file, $this->getContext(), $this->singleLang ) );
+
+		$visible = array_flip( self::getVisibleFields() );
+		foreach ( $combinedMeta as $key => $value ) {
+			if ( !isset( $value['source'] ) ) {
+				$combinedMeta[$key]['source'] = 'hook';
+			}
+			if ( !isset( $value['translatedName'] ) ) {
+				$msg = $this->msg( 'exif-' . strtolower( $key ) );
+				if ( $msg->exists() ) {
+					$translated = $msg->parse();
+				} else {
+					$translated = htmlspecialchars( strtolower( $key ) );
+				}
+
+				$combinedMeta[$key]['translatedName'] = $translated;
+			}
+			if ( !isset( $visible[ strtolower( $key ) ] ) ) {
+				$combinedMeta[$key]['hidden'] = '';
+			}
+		}
+
+		wfProfileOut( __METHOD__ );
+		return $combinedMeta;
 	}
 }
 
