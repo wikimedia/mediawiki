@@ -946,7 +946,7 @@ class FormatMetadata extends ContextSource {
 
 				$content = '';
 
-				$cLang = $wgContLang->getCode();
+				$cLang = $this->getLanguage()->getCode();
 				$defaultItem = false;
 				$defaultLang = false;
 
@@ -1415,6 +1415,198 @@ class FormatMetadata extends ContextSource {
 				$street, $city, $region, $postal, $country,
 				$tel )->text();
 		}
+	}
+
+	/**
+	 * Get a list of fields that are visible by default.
+	 *
+	 * @return array
+	 * @since 1.23
+	 */
+	public static function getVisibleFields() {
+		$fields = array();
+		$lines = explode( "\n", wfMessage( 'metadata-fields' )->inContentLanguage()->text() );
+		foreach ( $lines as $line ) {
+			$matches = array();
+			if ( preg_match( '/^\\*\s*(.*?)\s*$/', $line, $matches ) ) {
+				$fields[] = $matches[1];
+			}
+		}
+		$fields = array_map( 'strtolower', $fields );
+		return $fields;
+	}
+
+	/**
+	 * Get an array of extended metadata. (See the imageinfo API for format.)
+	 *
+	 * @param File $file File to use
+	 * @return array [<property name> => ['value' => <value>]], or [] on error
+	 * @since 1.23
+	 */
+	public function fetchExtendedMetadata( File $file ) {
+		global $wgMemc;
+
+		wfProfileIn( __METHOD__ );
+
+		// If revision deleted, exit immediately
+		if ( $file->isDeleted( File::DELETED_FILE ) ) {
+			return array();
+		}
+
+		$cacheKey = wfMemcKey(
+			'getExtendedMetadata',
+			$this->getLanguage()->getCode(),
+			$file->getSha1()
+		);
+
+		$cachedValue = $wgMemc->get( $cacheKey );
+		if (
+			$cachedValue
+			&& wfRunHooks( 'ValidateExtendedMetadataCache', array( $cachedValue['timestamp'], $file ) )
+		) {
+			$extendedMetadata = $cachedValue['data'];
+		} else {
+			$maxCacheTime = ( $file instanceof ForeignAPIFile ) ? 60 * 60 * 12 : 60 * 60 * 24 * 30;
+			$fileMetadata = $this->getExtendedMetadataFromFile( $file );
+			$extendedMetadata = $this->getExtendedMetadataFromHook( $file, $fileMetadata, $maxCacheTime );
+			$valueToCache = array( 'data' => $extendedMetadata, 'timestamp' => wfTimestampNow() );
+			$wgMemc->set( $cacheKey, $valueToCache, $maxCacheTime );
+		}
+
+		wfProfileOut( __METHOD__ );
+		return $extendedMetadata;
+	}
+
+	/**
+	 * Get file-based metadata in standardized format.
+	 *
+	 * Note that for a remote file, this might return metadata supplied by extensions.
+	 *
+	 * @param File $file File to use
+	 * @return array [<property name> => ['value' => <value>]], or [] on error
+	 * @since 1.23
+	 */
+	protected function getExtendedMetadataFromFile( File $file ) {
+		// If this is a remote file accessed via an API request, we already
+		// have remote metadata so we just ignore any local one
+		if ( $file instanceof ForeignAPIFile ) {
+			// in case of error we pretend no metadata - this will get cached. Might or might not be a good idea.
+			return $file->getExtendedMetadata() ?: array();
+		}
+
+		wfProfileIn( __METHOD__ );
+
+		$uploadDate = wfTimestamp( TS_ISO_8601, $file->getTimestamp() );
+
+		$fileMetadata = array(
+			// This is modification time, which is close to "upload" time.
+			'DateTime' => array(
+				'value' => $uploadDate,
+				'source' => 'mediawiki-metadata',
+			),
+		);
+
+		$title = $file->getTitle();
+		if ( $title ) {
+			$text = $title->getText();
+			$pos = strrpos( $text, '.' );
+
+			if ( $pos ) {
+				$name = substr( $text, 0, $pos );
+			} else {
+				$name = $text;
+			}
+
+			$fileMetadata[ 'ObjectName' ] = array(
+				'value' => $name,
+				'source' => 'mediawiki-metadata',
+			);
+		}
+
+		$common = $file->getCommonMetaArray();
+
+		foreach ( $common as $key => $value ) {
+			$key = $this->sanitizeKeyForXml( $key );
+			$fileMetadata[$key] = array(
+				'value' => $value,
+				'source' => 'file-metadata',
+			);
+		}
+
+		wfProfileOut( __METHOD__ );
+		return $fileMetadata;
+	}
+
+	/**
+	 * Get additional metadata from hooks in standardized format.
+	 *
+	 * @param File $file File to use
+	 * @param array $extendedMetadata
+	 * @param int $maxCacheTime hook handlers might use this parameter to override cache time
+	 *
+	 * @return array [<property name> => ['value' => <value>]], or [] on error
+	 * @since 1.23
+	 */
+	protected function getExtendedMetadataFromHook( File $file, array $extendedMetadata, &$maxCacheTime ) {
+		wfProfileIn( __METHOD__ );
+
+		wfRunHooks( 'GetExtendedMetadata', array(
+			&$extendedMetadata,
+			$file,
+			$this->getContext(),
+			&$maxCacheTime
+		) );
+
+		$visible = array_flip( self::getVisibleFields() );
+		foreach ( $extendedMetadata as $key => $value ) {
+			if ( !isset( $visible[ strtolower( $key ) ] ) ) {
+				$extendedMetadata[$key]['hidden'] = '';
+			}
+		}
+
+		wfProfileOut( __METHOD__ );
+		return $extendedMetadata;
+	}
+
+	/**
+	 * Turns a string into a valid XML identifier.
+	 * Used to ensure that keys of an associative array in the
+	 * API response do not break the XML formatter.
+	 * @param string $key
+	 * @return string
+	 * @since 1.23
+	 */
+	protected function sanitizeKeyForXml( $key ) {
+		// drop all characters which are not valid in an XML tag name
+		// a bunch of non-ASCII letters would be valid but probably won't
+		// be used so we take the easy way
+		$key = preg_replace( '/[^a-zA-z0-9_:.-]/', '', $key );
+		// drop characters which are invalid at the first position
+		$key = preg_replace( '/^[\d-.]+/', '', $key );
+
+		if ( $key == '' ) {
+			$key = '_';
+		}
+
+		// special case for an internal keyword
+		if ( $key == '_element' ) {
+			$key = 'element';
+		}
+
+		return $key;
+	}
+
+	/**
+	 * Returns a list of languages (first is best) to use when formatting multilang fields,
+	 * based on user and site preferences.
+	 * @return array
+	 * @since 1.23
+	 */
+	protected function getPriorityLanguages()
+	{
+		$priorityLanguages = Language::getFallbacksIncludingSiteLanguage( $this->getLanguage()->getCode() );
+		$priorityLanguages = array_merge( (array) $this->getLanguage()->getCode(), $priorityLanguages[0], $priorityLanguages[1] );
+		return $priorityLanguages;
 	}
 }
 
