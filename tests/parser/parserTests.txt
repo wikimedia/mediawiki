@@ -1353,15 +1353,15 @@ Regression with preformatted in <center>
 !! end
 
 !! test
-Bug 6200: Preformatted in <blockquote>
+Bug 52763: Preformatted in <blockquote>
 !! input
 <blockquote>
  Blah
 </blockquote>
 !! result
 <blockquote>
-<pre>Blah
-</pre>
+<p> Blah
+</p>
 </blockquote>
 
 !! end
@@ -1900,6 +1900,12 @@ c
  foo
 </blockquote>
 
+<blockquote>
+<pre>
+foo
+</pre>
+</blockquote>
+
 <table><tr><td>
  foo
 </td></tr></table>
@@ -1921,7 +1927,12 @@ c
 </pre>
 </center>
 <blockquote>
-<pre>foo
+<p> foo
+</p>
+</blockquote>
+<blockquote>
+<pre>
+foo
 </pre>
 </blockquote>
 <table><tr><td>

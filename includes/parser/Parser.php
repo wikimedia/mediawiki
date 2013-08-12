@@ -154,7 +154,7 @@ class Parser {
 	 */
 	var $mStripState;
 
-	var $mIncludeCount, $mArgStack, $mLastSection, $mInPre;
+	var $mIncludeCount, $mArgStack, $mLastSection, $mInPre, $mInBlockQuote;
 	/**
 	 * @var LinkHolderArray
 	 */
@@ -289,6 +289,7 @@ class Parser {
 		$this->mIncludeCount = array();
 		$this->mArgStack = false;
 		$this->mInPre = false;
+		$this->mInBlockQuote = false;
 		$this->mLinkHolders = new LinkHolderArray( $this );
 		$this->mLinkID = 0;
 		$this->mRevisionObject = $this->mRevisionTimestamp =
@@ -2416,9 +2417,12 @@ class Parser {
 					if ( $preOpenMatch and !$preCloseMatch ) {
 						$this->mInPre = true;
 					}
+					if ( preg_match( '/<(\\/?)blockquote[\s>]/i', $t, $bqm ) ) {
+						$this->mInBlockQuote = !$bqm[1];
+					}
 					$inBlockElem = !$closematch;
 				} elseif ( !$inBlockElem && !$this->mInPre ) {
-					if ( ' ' == substr( $t, 0, 1 ) and ( $this->mLastSection === 'pre' || trim( $t ) != '' ) ) {
+					if ( ' ' == substr( $t, 0, 1 ) and ( $this->mLastSection === 'pre' || trim( $t ) != '' ) and !$this->mInBlockQuote ) {
 						# pre
 						if ( $this->mLastSection !== 'pre' ) {
 							$paragraphStack = false;
