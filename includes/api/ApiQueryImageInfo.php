@@ -359,6 +359,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		$url = isset( $prop['url'] );
 		$sha1 = isset( $prop['sha1'] );
 		$meta = isset( $prop['metadata'] );
+		$commonmeta = isset( $prop['commonmetadata'] );
 		$mime = isset( $prop['mime'] );
 		$mediatype = isset( $prop['mediatype'] );
 		$archive = isset( $prop['archivename'] );
@@ -415,6 +416,10 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				$metadata = $file->convertMetadataVersion( $metadata, $version );
 			}
 			$vals['metadata'] = $metadata ? self::processMetaData( $metadata, $result ) : null;
+		}
+		if ( $commonmeta ) {
+			$metaArray = $file->getCommonMetaArray();
+			$vals['commonmetadata'] = $metaArray ? self::processMetaData( $metaArray, $result ) : array();
 		}
 
 		if ( $mime ) {
@@ -550,20 +555,21 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	 */
 	private static function getProperties( $modulePrefix = '' ) {
 		return array(
-			'timestamp' =>      ' timestamp     - Adds timestamp for the uploaded version',
-			'user' =>           ' user          - Adds the user who uploaded the image version',
-			'userid' =>         ' userid        - Add the user ID that uploaded the image version',
-			'comment' =>        ' comment       - Comment on the version',
-			'parsedcomment' =>  ' parsedcomment - Parse the comment on the version',
-			'url' =>            ' url           - Gives URL to the image and the description page',
-			'size' =>           ' size          - Adds the size of the image in bytes and the height, width and page count (if applicable)',
-			'dimensions' =>     ' dimensions    - Alias for size', // For backwards compatibility with Allimages
-			'sha1' =>           ' sha1          - Adds SHA-1 hash for the image',
-			'mime' =>           ' mime          - Adds MIME type of the image',
-			'thumbmime' =>      ' thumbmime     - Adds MIME type of the image thumbnail' .
+			'timestamp' =>      ' timestamp      - Adds timestamp for the uploaded version',
+			'user' =>           ' user           - Adds the user who uploaded the image version',
+			'userid' =>         ' userid         - Add the user ID that uploaded the image version',
+			'comment' =>        ' comment        - Comment on the version',
+			'parsedcomment' =>  ' parsedcomment  - Parse the comment on the version',
+			'url' =>            ' url            - Gives URL to the image and the description page',
+			'size' =>           ' size           - Adds the size of the image in bytes and the height, width and page count (if applicable)',
+			'dimensions' =>     ' dimensions     - Alias for size', // For backwards compatibility with Allimages
+			'sha1' =>           ' sha1           - Adds SHA-1 hash for the image',
+			'mime' =>           ' mime           - Adds MIME type of the image',
+			'thumbmime' =>      ' thumbmime      - Adds MIME type of the image thumbnail' .
 				' (requires url and param ' . $modulePrefix . 'urlwidth)',
 			'mediatype' =>      ' mediatype     - Adds the media type of the image',
 			'metadata' =>       ' metadata      - Lists Exif metadata for the version of the image',
+			'commonmetadata' => ' commonmetadata - Lists file format generic metadata for the version of the image',
 			'archivename' =>    ' archivename   - Adds the file name of the archive version for non-latest versions',
 			'bitdepth' =>       ' bitdepth      - Adds the bit depth of the version',
 			'uploadwarning' =>  ' uploadwarning - Used by the Special:Upload page to get information about an existing file. Not intended for use outside MediaWiki core',
