@@ -3013,7 +3013,7 @@ Aquò es probablament causat per un ligam sus lista negra que punta cap a un sit
 'pageinfo-views' => 'Nombre de vistas',
 'pageinfo-watchers' => "Nombre de contributors qu'an la pagina dins lor lista de seguiment",
 'pageinfo-few-watchers' => 'Mens de $1 {{PLURAL:$1|observator|observators}}',
-'pageinfo-redirects-name' => 'Redireccions cap a aquesta pagina',
+'pageinfo-redirects-name' => 'Nombre de redireccions cap a aquesta pagina',
 'pageinfo-subpages-name' => "Sospaginas d'aquesta pagina",
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|redireccion|redireccions}}; $3 {{PLURAL:$3|non-redireccion|non-redireccions}})',
 'pageinfo-firstuser' => 'Creator de la pagina',

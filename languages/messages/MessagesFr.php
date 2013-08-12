@@ -811,10 +811,9 @@ L'administrateur qui l'a verrouillé a fourni ce motif : « $3 ».",
 'virus-unknownscanner' => 'antivirus inconnu :',
 
 # Login and logout pages
-'logouttext' => "'''Vous êtes à présent déconnecté(e).'''
+'logouttext' => "'''Vous êtes à présent déconnecté.'''
 
-Vous pouvez continuer à utiliser {{SITENAME}} de façon anonyme, <span class='plainlinks'>[$1 vous reconnecter]</span> sous le même nom ou un autre.
-Notez que certaines pages peuvent être encore affichées comme si vous étiez toujours connecté(e), jusqu'à ce que vous effaciez le cache de votre navigateur.",
+Notez que certaines pages peuvent être encore affichées comme si vous étiez toujours connecté, jusqu’à ce que vous effaciez le cache de votre navigateur.",
 'welcomeuser' => 'Bienvenue, $1&nbsp;!',
 'welcomecreation-msg' => "Votre compte a été créé.
 N'oubliez pas de modifier [[Special:Preferences|vos préférences pour {{SITENAME}}]].",
@@ -861,7 +860,7 @@ N'oubliez pas de modifier [[Special:Preferences|vos préférences pour {{SITENAM
 'createacct-emailoptional' => 'Adresse de courriel (facultative)',
 'createacct-email-ph' => 'Entrez votre adresse de courriel',
 'createacct-another-email-ph' => 'Saisir l’adresse de courriel',
-'createaccountmail' => "Utiliser un mot de passe aléatoire temporaire et l'envoyer à l'adresse de courriel spécifiée ci-dessous",
+'createaccountmail' => "Utiliser un mot de passe aléatoire temporaire et l'envoyer à l'adresse de courriel spécifiée",
 'createacct-realname' => 'Nom réel (facultatif)',
 'createaccountreason' => 'Motif :',
 'createacct-reason' => 'Motif',
@@ -1641,10 +1640,10 @@ Elle ne doit pas dépasser $1 caractère{{PLURAL:$1||s}}.',
 'userrights-no-interwiki' => "Vous n'avez pas la permission de modifier des droits d'utilisateurs sur d'autres wikis.",
 'userrights-nodatabase' => "La base de donnée « $1 » n'existe pas ou n'est pas locale.",
 'userrights-nologin' => "Vous devez vous [[Special:UserLogin|connecter]] avec un compte d'administrateur pour modifier des droits d'utilisateur.",
-'userrights-notallowed' => "Votre compte n'a pas la permission de modifier des droits d'utilisateur.",
+'userrights-notallowed' => 'Vous n’avez pas la permission d’ajouter ou supprimer des droits d’utilisateur.',
 'userrights-changeable-col' => 'Les groupes que vous pouvez modifier',
 'userrights-unchangeable-col' => 'Les groupes que vous ne pouvez pas modifier',
-'userrights-conflict' => 'Conflit de droits utilisateur ! Veuillez appliquer de nouveau vos modifications.',
+'userrights-conflict' => 'Conflit de modification de droits utilisateur ! Veuillez relire et confirmer vos modifications.',
 'userrights-removed-self' => 'Vous avez bien supprimé vos propres droits. Du coup, vous ne pouvez plus accéder à cette page.',
 
 # Groups
@@ -3283,13 +3282,13 @@ Permet de rétablir la version précédente et d'ajouter un motif dans la boîte
 'pageinfo-length' => 'Taille de la page (en octets)',
 'pageinfo-article-id' => 'Numéro de la page',
 'pageinfo-language' => 'Langue du contenu de la page',
-'pageinfo-robot-policy' => 'Statut de moteur de recherche',
-'pageinfo-robot-index' => 'Indexable',
-'pageinfo-robot-noindex' => 'Non indexable',
+'pageinfo-robot-policy' => 'Indexation par robots',
+'pageinfo-robot-index' => 'Autorisée',
+'pageinfo-robot-noindex' => 'Interdite',
 'pageinfo-views' => 'Nombre de vues',
 'pageinfo-watchers' => 'Nombre de contributeurs ayant la page dans leur liste de suivi',
 'pageinfo-few-watchers' => 'Moins de $1 {{PLURAL:$1|observateur|observateurs}}',
-'pageinfo-redirects-name' => 'Redirections vers cette page',
+'pageinfo-redirects-name' => 'Nombre de redirections vers cette page',
 'pageinfo-subpages-name' => 'Sous-pages de cette page',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|redirection|redirections}}; $3 {{PLURAL:$3|non-redirection|non-redirections}})',
 'pageinfo-firstuser' => 'Créateur de la page',

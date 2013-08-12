@@ -3069,7 +3069,7 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 'tooltip-n-recentchanges' => 'Listo de la lastaj ŝanĝoj en la vikio.',
 'tooltip-n-randompage' => 'Iri al hazarda paĝo',
 'tooltip-n-help' => 'Serĉopaĝo.',
-'tooltip-t-whatlinkshere' => 'Listo de ĉiuj vikiaj paĝoj kij ligas ĉi tien',
+'tooltip-t-whatlinkshere' => 'Listo de ĉiuj vikiaj paĝoj kiuj ligas ĉi tien',
 'tooltip-t-recentchangeslinked' => 'Lastaj ŝanĝoj en paĝoj kiuj ligas al tiu ĉi paĝo',
 'tooltip-feed-rss' => 'RSS-fonto por tiu ĉi paĝo',
 'tooltip-feed-atom' => 'Atom-fonto por ĉi tiu paĝo',

@@ -1851,9 +1851,11 @@ $1',
 'randompage-nopages' => 'Бу {{PLURAL:$2|аат дала кураана|аат далларыгар сирэйдэр суохтар}}: $1.',
 
 # Special:RandomInCategory
-'randomincategory' => 'Категория хайа баҕарар ыстатыйата',
-'randomincategory-invalidcategory' => '"$1" аат категорияҕа туттуллубат.',
-'randomincategory-nopages' => '[[:Category:$1|$1 категорияҕа]] маннык ыстатыйа суох.',
+'randomincategory' => 'Категория түбэспиччэ ыстатыйата',
+'randomincategory-invalidcategory' => '"$1" диэн категория суох эбит.',
+'randomincategory-nopages' => 'Бу категорияҕа [[:Category:$1]] киирэр ыстатыйалар суохтар.',
+'randomincategory-selectcategory' => 'Категория түбэспиччэ сирэйигэр көс: $1 $2.',
+'randomincategory-selectcategory-submit' => 'Көс',
 
 # Random redirect
 'randomredirect' => 'Түбэспиччэ утаарыы',
@@ -1950,6 +1952,7 @@ $1',
 'mostrevisions' => 'Саамай элбэхтик уларытыллыбыт ыстатыйалар',
 'prefixindex' => 'Мантан саҕаланар (префикстаах) сирэйдэр барыта',
 'prefixindex-namespace' => 'Сирэй саҕаланыытынан наардаан көрдөрүү ($1 аат далыгар)',
+'prefixindex-strip' => 'Түмүк тиһигэр префиксы көрдөрүмэ',
 'shortpages' => 'Кылгас ыстатыйалар',
 'longpages' => 'Уһун ыстатыйалар',
 'deadendpages' => 'Dead-end (Бүтэй) сирэйдэр',
@@ -3651,6 +3654,7 @@ $5
 'version-license' => 'Лиссиэнзийэ',
 'version-poweredby-credits' => "Бу биики бу движокка олоҕурар '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'атыттар',
+'version-poweredby-translators' => 'translatewiki.net тылбаасчыттара',
 'version-credits-summary' => '[[Special:Version|MediaWiki]] сайдыытыгар үлэлэрин иһин манна ахтыллыбыт дьоҥҥо махтанабыт.',
 'version-license-info' => 'MediaWiki көҥүл тарҕанар бырагырааммаларга киирэр, кинини көмпүүтэр аһаҕас бырагырааммаларын пуондатын GNU General Public License усулуобуйатынан көҥүл тарҕатаргыт уонна/эбэтэр уларытаргыт көҥүллэнэр; иккис эбэтэр онтон хойукку ханнык баҕарар барылыттан саҕалаан.
 

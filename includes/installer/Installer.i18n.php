@@ -590,7 +590,7 @@ You can browse [//www.mediawiki.org/wiki/Category:Extensions_by_category extensi
  * @author Waldir
  */
 $messages['qqq'] = array(
-	'config-desc' => '{{desc}}',
+	'config-desc' => 'Short description of the installer.',
 	'config-title' => 'Parameters:
 * $1 is the version of MediaWiki that is being installed.',
 	'config-information' => '{{Identical|Information}}',
