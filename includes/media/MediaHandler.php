@@ -208,6 +208,10 @@ abstract class MediaHandler {
 	 * FormatMetadata::getFormattedData() on the full response array, which
 	 * transforms all values into prettified, human-readable text.
 	 *
+	 * Subclasses overriding this function must return a value which is a
+	 * valid API response fragment (all associative array keys are valid
+	 * XML tagnames).
+	 *
 	 * Note, if the file simply has no metadata, but the handler supports
 	 * this interface, it should return an empty array, not false.
 	 *
@@ -468,16 +472,7 @@ abstract class MediaHandler {
 	 * @access protected
 	 */
 	function visibleMetadataFields() {
-		$fields = array();
-		$lines = explode( "\n", wfMessage( 'metadata-fields' )->inContentLanguage()->text() );
-		foreach ( $lines as $line ) {
-			$matches = array();
-			if ( preg_match( '/^\\*\s*(.*?)\s*$/', $line, $matches ) ) {
-				$fields[] = $matches[1];
-			}
-		}
-		$fields = array_map( 'strtolower', $fields );
-		return $fields;
+		return FormatMetadata::getVisibleFields();
 	}
 
 	/**
