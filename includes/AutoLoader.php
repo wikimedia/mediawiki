@@ -698,6 +698,7 @@ $wgAutoloadLocalClasses = array(
 	'JSCompilerContext' => 'includes/libs/jsminplus.php',
 	'JSMinPlus' => 'includes/libs/jsminplus.php',
 	'JSNode' => 'includes/libs/jsminplus.php',
+	'JsonFallback' => 'includes/libs/JsonFallback.php',
 	'JSParser' => 'includes/libs/jsminplus.php',
 	'JSToken' => 'includes/libs/jsminplus.php',
 	'JSTokenizer' => 'includes/libs/jsminplus.php',
