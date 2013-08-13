@@ -184,6 +184,9 @@ production.
   setcookie() or setrawcookie() should begin using this instead.
 * New hook WebResponseSetCookie, called from WebResponse::setcookie().
 * New hook ResetSessionID, called when the session id is reset.
+* (bug 47431) Added a new JSON library to provide the standard set of JSON
+  functions when they are not compiled into PHP. It is somewhat faster than
+  Services_JSON and supports a wider range of options.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
@@ -321,8 +324,6 @@ changes to languages because of Bugzilla reports.
 === Other changes in 1.22 ===
 * BREAKING CHANGE: Implementation of MediaWiki's JS and JSON value encoding
   has changed:
-** MediaWiki no longer supports PHP installations in which the native JSON
-   extension is missing or disabled.
 ** XmlJsCode objects can no longer be nested inside objects or arrays.
    (For Xml::encodeJsCall(), this individually applies to each argument.)
 ** The sets of characters escaped by default, along with the precise escape
