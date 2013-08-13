@@ -93,6 +93,19 @@ if ( !function_exists( 'mb_strrpos' ) ) {
 		return Fallback::mb_strrpos( $haystack, $needle, $offset, $encoding );
 	}
 }
+
+// For now, this is only here for the automated testing.
+// Do not actually use this until PHP 5.3 support is dropped.
+if ( !interface_exists( 'JsonSerializable', false ) ) {
+	interface JsonSerializable {
+		public function jsonSerialize();
+	}
+}
+
+if ( !function_exists( 'json_encode' ) ) {
+	JsonFallback::addGlobals();
+}
+
 /// @endcond
 
 /**
