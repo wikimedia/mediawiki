@@ -22,10 +22,15 @@
  * @author Lupo
  * @since 1.20
  */
-header( 'Content-Type: text/javascript; charset=utf-8' );
+chdir( __DIR__ . '/../../..' );
+require './includes/WebStart.php';
 
-require_once __DIR__ . '/../../../includes/json/FormatJson.php';
-require_once __DIR__ . '/../../../includes/Xml.php';
+// URL safety checks
+if ( !$wgRequest->checkUrlExtension() ) {
+	return;
+}
+
+header( 'Content-Type: text/javascript; charset=utf-8' );
 
 $moduleImplementations = array(
 	'testUsesMissing' => "
