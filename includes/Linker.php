@@ -1688,7 +1688,7 @@ class Linker {
 		$lang = wfGetLangObj( $lang );
 		$title = wfMessage( 'toc' )->inLanguage( $lang )->escaped();
 
-		return '<div id="toc" class="toc">'
+		return '<div id="toc" class="toc" role="directory" aria-labelledby="toctitle">'
 			. '<div id="toctitle"><h2>' . $title . "</h2></div>\n"
 			. $toc
 			. "</ul>\n</div>\n";

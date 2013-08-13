@@ -9738,7 +9738,7 @@ Section headings with TOC
 Some text
 ===Another headline===
 !! result
-<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<div id="toc" class="toc" role="directory" aria-labelledby="toctitle"><div id="toctitle"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Headline_1"><span class="tocnumber">1</span> <span class="toctext">Headline 1</span></a>
 <ul>
@@ -9786,7 +9786,7 @@ Handling of sections up to level 6 and beyond
 ========= Level 9 Heading=========
 ========== Level 10 Heading==========
 !! result
-<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<div id="toc" class="toc" role="directory" aria-labelledby="toctitle"><div id="toctitle"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Level_1_Heading"><span class="tocnumber">1</span> <span class="toctext">Level 1 Heading</span></a>
 <ul>
@@ -9838,7 +9838,7 @@ TOC regression (bug 9764)
 == title 2 ==
 === title 2.1 ===
 !! result
-<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<div id="toc" class="toc" role="directory" aria-labelledby="toctitle"><div id="toctitle"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#title_1"><span class="tocnumber">1</span> <span class="toctext">title 1</span></a>
 <ul>
@@ -9878,7 +9878,7 @@ wgMaxTocLevel=3
 == title 2 ==
 === title 2.1 ===
 !! result
-<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<div id="toc" class="toc" role="directory" aria-labelledby="toctitle"><div id="toctitle"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#title_1"><span class="tocnumber">1</span> <span class="toctext">title 1</span></a>
 <ul>
@@ -9913,7 +9913,7 @@ wgMaxTocLevel=3
 ====Section 1.1.1.1====
 ==Section 2==
 !! result
-<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<div id="toc" class="toc" role="directory" aria-labelledby="toctitle"><div id="toctitle"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Section_1"><span class="tocnumber">1</span> <span class="toctext">Section 1</span></a>
 <ul>
@@ -10005,7 +10005,7 @@ __TOC__
 === title 1.1 ===
 == title 2 ==
 !! result
-<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<div id="toc" class="toc" role="directory" aria-labelledby="toctitle"><div id="toctitle"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#title_1"><span class="tocnumber">1</span> <span class="toctext">title 1</span></a>
 <ul>
@@ -10069,7 +10069,7 @@ section 5
 !! result
 <p>The tooltips shall not show entities to the user (ie. be double escaped)
 </p>
-<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<div id="toc" class="toc" role="directory" aria-labelledby="toctitle"><div id="toctitle"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#text_.3E_text"><span class="tocnumber">1</span> <span class="toctext">text &gt; text</span></a></li>
 <li class="toclevel-1 tocsection-2"><a href="#text_.3C_text"><span class="tocnumber">2</span> <span class="toctext">text &lt; text</span></a></li>
@@ -10104,7 +10104,7 @@ Headers with excess '=' characters
 =''italic'' heading==
 ==''italic'' heading=
 !! result
-<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<div id="toc" class="toc" role="directory" aria-labelledby="toctitle"><div id="toctitle"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#foo.3D"><span class="tocnumber">1</span> <span class="toctext">foo=</span></a></li>
 <li class="toclevel-1 tocsection-2"><a href="#.3Dfoo"><span class="tocnumber">2</span> <span class="toctext">=foo</span></a></li>
@@ -10133,7 +10133,7 @@ HTML headers vs TOC (bug 23393)
 == Header 2.2 ==
 __NOEDITSECTION__
 !! result
-<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<div id="toc" class="toc" role="directory" aria-labelledby="toctitle"><div id="toctitle"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1"><a href="#Header_1"><span class="tocnumber">1</span> <span class="toctext">Header 1</span></a>
 <ul>
@@ -11517,7 +11517,7 @@ Fuzz testing: Parser14
 http://__TOC__
 !! result
 <h2><span class="mw-headline" id="onmouseover.3D">onmouseover=</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: onmouseover=">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-http://<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+http://<div id="toc" class="toc" role="directory" aria-labelledby="toctitle"><div id="toctitle"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#onmouseover.3D"><span class="tocnumber">1</span> <span class="toctext">onmouseover=</span></a></li>
 </ul>
@@ -13390,7 +13390,7 @@ Out-of-order TOC heading levels
 =====5=====
 ==2==
 !! result
-<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<div id="toc" class="toc" role="directory" aria-labelledby="toctitle"><div id="toctitle"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#2"><span class="tocnumber">1</span> <span class="toctext">2</span></a>
 <ul>
@@ -14967,7 +14967,7 @@ title=[[Main Page]]
 __TOC__
 == ''Lost'' episodes ==
 !! result
-<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<div id="toc" class="toc" role="directory" aria-labelledby="toctitle"><div id="toctitle"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Lost_episodes"><span class="tocnumber">1</span> <span class="toctext"><i>Lost</i> episodes</span></a></li>
 </ul>
@@ -14984,7 +14984,7 @@ title=[[Main Page]]
 __TOC__
 == '''should be bold''' then normal text ==
 !! result
-<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<div id="toc" class="toc" role="directory" aria-labelledby="toctitle"><div id="toctitle"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#should_be_bold_then_normal_text"><span class="tocnumber">1</span> <span class="toctext"><b>should be bold</b> then normal text</span></a></li>
 </ul>
@@ -15001,7 +15001,7 @@ title=[[Main Page]]
 __TOC__
 == Image [[Image:foobar.jpg]] ==
 !! result
-<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<div id="toc" class="toc" role="directory" aria-labelledby="toctitle"><div id="toctitle"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Image"><span class="tocnumber">1</span> <span class="toctext">Image</span></a></li>
 </ul>
@@ -15018,7 +15018,7 @@ title=[[Main Page]]
 __TOC__
 == <blockquote>Quote</blockquote> ==
 !! result
-<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<div id="toc" class="toc" role="directory" aria-labelledby="toctitle"><div id="toctitle"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Quote"><span class="tocnumber">1</span> <span class="toctext">Quote</span></a></li>
 </ul>
@@ -15037,7 +15037,7 @@ __TOC__
 <small>Hanc marginis exiguitas non caperet.</small>
 QED
 !! result
-<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<div id="toc" class="toc" role="directory" aria-labelledby="toctitle"><div id="toctitle"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Proof:_2_.3C_3"><span class="tocnumber">1</span> <span class="toctext">Proof: 2 &lt; 3</span></a></li>
 </ul>
@@ -15056,7 +15056,7 @@ __TOC__
 
 == <i>Foo</i> <blockquote>Bar</blockquote> ==
 !! result
-<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<div id="toc" class="toc" role="directory" aria-labelledby="toctitle"><div id="toctitle"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Foo_Bar"><span class="tocnumber">1</span> <span class="toctext"><i>Foo</i> <b>Bar</b></span></a></li>
 <li class="toclevel-1 tocsection-2"><a href="#Foo_Bar_2"><span class="tocnumber">2</span> <span class="toctext"><i>Foo</i> Bar</span></a></li>
@@ -15075,7 +15075,7 @@ __TOC__
 
 == <sup class="a > b">Evilbye</sup> ==
 !! result
-<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<div id="toc" class="toc" role="directory" aria-labelledby="toctitle"><div id="toctitle"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Hello"><span class="tocnumber">1</span> <span class="toctext"><sup>Hello</sup></span></a></li>
 <li class="toclevel-1 tocsection-2"><a href="#b.22.3EEvilbye"><span class="tocnumber">2</span> <span class="toctext"><sup> b"&gt;Evilbye</sup></span></a></li>
@@ -15100,7 +15100,7 @@ __TOC__
 
 == <span dir="ltr" style="font-style: italic">Attributes after dir on these span tags must be deleted from the TOC</span> ==
 !! result
-<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<div id="toc" class="toc" role="directory" aria-labelledby="toctitle"><div id="toctitle"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#C.2B.2B"><span class="tocnumber">1</span> <span class="toctext"><span dir="ltr">C++</span></span></a></li>
 <li class="toclevel-1 tocsection-2"><a href="#.D7.96.D7.91.D7.A0.D7.92.21"><span class="tocnumber">2</span> <span class="toctext"><span dir="rtl">זבנג!</span></span></a></li>
