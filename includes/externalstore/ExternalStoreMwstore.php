@@ -47,6 +47,29 @@ class ExternalStoreMwstore extends ExternalStoreMedium {
 	}
 
 	/**
+	 * Fetch data from given external store URLs.
+	 * The URL returned is of the form of the form mwstore://backend/container/wiki/id
+	 *
+	 * @param array $urls An array of external store URLs
+	 * @return array A map from url to stored content. Failed results are not represented.
+	 */
+	public function batchFetchFromURLs( array $urls ) {
+		$pathsByBackend = array();
+		foreach ( $urls as $url ) {
+			$be = FileBackendGroup::singleton()->backendFromPath( $url );
+			if ( $be instanceof FileBackend ) {
+				$pathsByBackend[$be->getName()][] = $url;
+			}
+		}
+		$blobs = array();
+		foreach ( $pathsByBackend as $backendName => $paths ) {
+			$be = FileBackendGroup::get( $backendName );
+			$blobs = $blobs + $be->getFileContentsMulti( array( 'srcs' => $paths ) );
+		}
+		return $blobs;
+	}
+
+	/**
 	 * @see ExternalStoreMedium::store()
 	 */
 	public function store( $backend, $data ) {
