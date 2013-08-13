@@ -90,10 +90,10 @@ class FormatJson {
 	 * @return string|bool: String if successful; false upon failure
 	 */
 	public static function encode( $value, $pretty = false, $escaping = 0 ) {
-		if ( version_compare( PHP_VERSION, '5.4.0', '<' ) ) {
-			return self::encode53( $value, $pretty, $escaping );
+		if ( defined( 'JSON_UNESCAPED_UNICODE' ) ) {
+			return self::encode54( $value, $pretty, $escaping );
 		}
-		return self::encode54( $value, $pretty, $escaping );
+		return self::encode53( $value, $pretty, $escaping );
 	}
 
 	/**

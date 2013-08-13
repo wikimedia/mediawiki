@@ -93,6 +93,11 @@ if ( !function_exists( 'mb_strrpos' ) ) {
 		return Fallback::mb_strrpos( $haystack, $needle, $offset, $encoding );
 	}
 }
+
+if ( !function_exists( 'json_encode' ) ) {
+	require_once __DIR__ . '/libs/JsonFallback.php';
+}
+
 /// @endcond
 
 /**
