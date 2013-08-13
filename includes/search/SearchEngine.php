@@ -95,6 +95,7 @@ class SearchEngine {
 	public function supports( $feature ) {
 		switch ( $feature ) {
 		case 'list-redirects':
+		case 'search-update':
 			return true;
 		case 'title-suffix-filter':
 		default:
