@@ -73,7 +73,6 @@ class RunJobs extends Maintenance {
 		$startTime = time();
 		$type = $this->getOption( 'type', false );
 		$wgTitle = Title::newFromText( 'RunJobs.php' );
-		$dbw = wfGetDB( DB_MASTER );
 		$jobsRun = 0; // counter
 
 		$group = JobQueueGroup::singleton();
