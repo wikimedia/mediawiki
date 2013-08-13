@@ -89,27 +89,33 @@ class SearchUpdate implements DeferrableUpdate {
 
 		wfProfileIn( __METHOD__ );
 
-		$search = SearchEngine::create();
-		$normalTitle = $search->normalizeText(
-			Title::indexTitle( $this->title->getNamespace(), $this->title->getText() ) );
+		$page = WikiPage::newFromId( $this->id );
+		$indexTitle = Title::indexTitle( $this->title->getNamespace(), $this->title->getText() );
 
-		if ( WikiPage::newFromId( $this->id ) === null ) {
-			$search->delete( $this->id, $normalTitle );
-			wfProfileOut( __METHOD__ );
-			return;
-		} elseif ( $this->content === false ) {
-			$search->updateTitle( $this->id, $normalTitle );
-			wfProfileOut( __METHOD__ );
-			return;
+		foreach ( SearchEngine::getSearchTypes() as $type ) {
+			$search = SearchEngine::create( $type );
+			if ( !$search->supports( 'search-update' ) ) {
+				continue;
+			}
+
+			$normalTitle = $search->normalizeText( $indexTitle );
+
+			if ( $page === null ) {
+				$search->delete( $this->id, $normalTitle );
+				continue;
+			} elseif ( $this->content === false ) {
+				$search->updateTitle( $this->id, $normalTitle );
+				continue;
+			}
+
+			$text = $search->getTextFromContent( $this->title, $this->content );
+			if( wfRunHooks( 'SearchUpdate', array( $this->id, $this->title, &$text, $this->content ) ) ) {
+				$text = self::updateText( $text );
+			}
+
+			# Perform the actual update
+			$search->update( $this->id, $normalTitle, $search->normalizeText( $text ) );
 		}
-
-		$text = $search->getTextFromContent( $this->title, $this->content );
-		if( wfRunHooks( 'SearchUpdate', array( $this->id, $this->title, &$text, $this->content ) ) ) {
-			$text = self::updateText( $text );
-		}
-
-		# Perform the actual update
-		$search->update( $this->id, $normalTitle, $search->normalizeText( $text ) );
 
 		wfProfileOut( __METHOD__ );
 	}
