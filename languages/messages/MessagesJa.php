@@ -4482,4 +4482,19 @@ MediaWikiは、有用であることを期待して配布されていますが�
 # Image rotation
 'rotate-comment' => '画像を時計回りに $1 {{PLURAL:$1|度}}回転',
 
+# Limit report
+'limitreport-title' => 'パーサーのプロファイリング データ:',
+'limitreport-cputime' => 'CPU 時間',
+'limitreport-cputime-value' => '$1 {{PLURAL:$1|秒}}',
+'limitreport-walltime' => '実時間',
+'limitreport-walltime-value' => '$1 {{PLURAL:$1|秒}}',
+'limitreport-ppvisitednodes' => 'プリプロセッサが訪問したノード数',
+'limitreport-ppgeneratednodes' => 'プリプロセッサが生成したノード数',
+'limitreport-postexpandincludesize' => '参照読み込みの展開後のサイズ',
+'limitreport-postexpandincludesize-value' => '$1/$2 バイト',
+'limitreport-templateargumentsize' => 'テンプレート引数のサイズ',
+'limitreport-templateargumentsize-value' => '$1/$2 バイト',
+'limitreport-expansiondepth' => '展開の最大深さ',
+'limitreport-expensivefunctioncount' => '高負荷パーサー関数の数',
+
 );

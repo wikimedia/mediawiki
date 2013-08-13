@@ -620,10 +620,9 @@ L\'administrador que l\'ha bloquejat ha donat aquesta explicació: "$3".',
 'virus-unknownscanner' => 'antivirus desconegut:',
 
 # Login and logout pages
-'logouttext' => "'''Heu finalitzat la vostra sessió.'''
+'logouttext' => "'''Heu finalitzat la sessió.'''
 
-Podeu continuar utilitzant {{SITENAME}} de forma anònima, o podeu <span class='plainlinks'>[$1 iniciar una sessió una altra vegada]</span> amb el mateix o un altre usuari.
-Tingueu en compte que algunes pàgines poden continuar mostrant-se com si encara estiguéssiu en una sessió, fins que buideu la memòria cau del vostre navegador.",
+Tingueu en compte que, fins que buideu la memòria cau del navegador, algunes pàgines poden continuar mostrant-se com si encara estiguéssiu en una sessió.",
 'welcomeuser' => 'Benvingut, $1!',
 'welcomecreation-msg' => 'El vostre compte ha estat creat.
 No oblideu de canviar les vostres [[Special:Preferences|preferències de {{SITENAME}}]].',
@@ -670,7 +669,7 @@ No oblideu de canviar les vostres [[Special:Preferences|preferències de {{SITEN
 'createacct-emailoptional' => 'Adreça de correu electrònic (opcional)',
 'createacct-email-ph' => 'Introduïu la vostra adreça de correu electrònic',
 'createacct-another-email-ph' => 'Introdueix una adreça de correu electrònic',
-'createaccountmail' => "Utilitza una contrasenya aleatòria temporal i envia-la a l'adreça de correu  especificada a continuació.",
+'createaccountmail' => "Utilitza una contrasenya aleatòria temporal i envia-la a l'adreça de correu indicada",
 'createacct-realname' => 'Nom real (opcional)',
 'createaccountreason' => 'Motiu:',
 'createacct-reason' => 'Motiu',
@@ -1050,6 +1049,7 @@ Se n'han omès els arguments.",
 'undo-failure' => 'No pot desfer-se la modificació perquè hi ha edicions entre mig que hi entren en conflicte.',
 'undo-norev' => "No s'ha pogut desfer l'edició perquè no existeix o ha estat esborrada.",
 'undo-summary' => 'Es desfà la revisió $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussió]])',
+'undo-summary-username-hidden' => "Desfés la revisió $1 d'un usuari ocult",
 
 # Account creation failure
 'cantcreateaccounttitle' => 'No es pot crear el compte',
@@ -1076,8 +1076,8 @@ El motiu donat per $3 és ''$2''",
 (prev) = diferència amb la versió anterior, m = modificació menor',
 'history-fieldset-title' => "Cerca a l'historial",
 'history-show-deleted' => 'Només esborrats',
-'histfirst' => 'Primeres',
-'histlast' => 'Últimes',
+'histfirst' => 'més antigues',
+'histlast' => 'més noves',
 'historysize' => '({{PLURAL:$1|1 octet|$1 octets}})',
 'historyempty' => '(buit)',
 
@@ -1400,7 +1400,7 @@ Ha de tenir com a molt {{PLURAL:$1|un caràcter|$1 caràcters}}.',
 'prefs-signature' => 'Signatura',
 'prefs-dateformat' => 'Format de la data',
 'prefs-timeoffset' => 'Decalatge horari',
-'prefs-advancedediting' => 'Opcions avançades',
+'prefs-advancedediting' => 'Opcions generals',
 'prefs-advancedrc' => 'Opcions avançades',
 'prefs-advancedrendering' => 'Opcions avançades',
 'prefs-advancedsearchoptions' => 'Opcions avançades',
@@ -1432,7 +1432,7 @@ Ha de tenir com a molt {{PLURAL:$1|un caràcter|$1 caràcters}}.',
 'userrights-no-interwiki' => "No teniu permisos per a editar els permisos d'usuari d'altres wikis.",
 'userrights-nodatabase' => 'La base de dades $1 no existeix o no és local.',
 'userrights-nologin' => "Heu [[Special:UserLogin|d'iniciar una sessió]] amb un compte d'administrador per a poder assignar permisos d'usuari.",
-'userrights-notallowed' => "El vostre compte no té permisos per a assignar o desassignar permisos d'usuari.",
+'userrights-notallowed' => "No teniu autorització per concedir o retirar permisos d'usuari.",
 'userrights-changeable-col' => 'Grups que podeu canviar',
 'userrights-unchangeable-col' => 'Grups que no podeu canviar',
 
@@ -2160,8 +2160,8 @@ Es necessita com a mínim un domini de primer nivell, per exemple "*.org".<br />
 'listgrouprights' => "Drets dels grups d'usuaris",
 'listgrouprights-summary' => "A continuació hi ha una llista dels grups d'usuaris definits en aquest wiki, així com dels seus drets d'accés associats.
 Pot ser que hi hagi més informació sobre drets individuals [[{{MediaWiki:Listgrouprights-helppage}}|aquí]].",
-'listgrouprights-key' => '* <span class="listgrouprights-granted">Drets concedits</span>
-* <span class="listgrouprights-revoked">Drets revocats</span>',
+'listgrouprights-key' => '* <span class="listgrouprights-granted">Dret concedit</span>
+* <span class="listgrouprights-revoked">Dret retirat</span>',
 'listgrouprights-group' => 'Grup',
 'listgrouprights-rights' => 'Drets',
 'listgrouprights-helppage' => 'Help:Drets del grup',
@@ -2340,7 +2340,7 @@ de l'usuari [[User:$2|$2]] ([[User talk:$2|Discussió]]{{int:pipe-separator}}[[S
 La darrera modificació ha estat feta per l'usuari [[User:$3|$3]] ([[User talk:$3|Discussió]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
 'editcomment' => "El resum d'edició ha estat: «$1».",
 'revertpage' => "Revertides les edicions de [[Special:Contributions/$2|$2]] ([[User talk:$2|discussió]]) a l'última versió de [[User:$1|$1]]",
-'revertpage-nouser' => "Desfetes les edicions de (nom d'usuari eliminat) a l'última revisió feta per [[User:$1|$1]]",
+'revertpage-nouser' => "Les edicions realitzades per un usuari ocult s'han eliminat fins a l'última revisió de [[User:$1|$1]]",
 'rollback-success' => "Edicions revertides de $1; s'ha canviat a la darrera versió de $2.",
 
 # Edit tokens
@@ -3003,13 +3003,13 @@ Això deu ser degut per un enllaç a un lloc extern inclòs a la llista negra.',
 'pageinfo-length' => 'Mida de la pàgina (en bytes)',
 'pageinfo-article-id' => 'ID de la pàgina',
 'pageinfo-language' => 'Llengua del contingut de la pàgina',
-'pageinfo-robot-policy' => 'Estat del motor de cerca',
-'pageinfo-robot-index' => 'Indexable',
-'pageinfo-robot-noindex' => 'No indexable',
+'pageinfo-robot-policy' => 'Indexació per robots',
+'pageinfo-robot-index' => 'Permès',
+'pageinfo-robot-noindex' => 'No permès',
 'pageinfo-views' => 'Número de visites',
 'pageinfo-watchers' => "Número d'usuaris que vigilen la pàgina",
 'pageinfo-few-watchers' => 'Menys de $1 {{PLURAL:$1|observador|observadors}}',
-'pageinfo-redirects-name' => 'Redireccions a aquesta pàgina',
+'pageinfo-redirects-name' => 'Nombre de redireccions a aquesta pàgina',
 'pageinfo-subpages-name' => "Subpàgines d'aquesta pàgina",
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|redirecció|redireccions}}; $3 {{PLURAL:$3|no redireció|no redireccions}})',
 'pageinfo-firstuser' => 'Creador de la pàgina',
@@ -3127,6 +3127,13 @@ Si l'executeu, podeu comprometre la seguretat del vostre sistema.",
 'minutes-ago' => 'fa $1 {{PLURAL:$1|minut|minuts}}',
 'seconds-ago' => 'fa $1 {{PLURAL:$1|segon|segons}}',
 'monday-at' => 'Dilluns a les $1',
+'tuesday-at' => 'Dimarts a les $1',
+'wednesday-at' => 'Dimecres a les $1',
+'thursday-at' => 'Dijous a les $1',
+'friday-at' => 'Divendres a les $1',
+'saturday-at' => 'Dissabte a les $1',
+'sunday-at' => 'Diumenge a les $1',
+'yesterday-at' => 'Ahir a les $1',
 
 # Bad image list
 'bad_image_list' => "El format ha de ser el següent:
@@ -3339,7 +3346,7 @@ La resta d'enllaços de la línia són les excepcions, és a dir, les pàgines o
 'exif-compression-4' => 'Codificació de fax CCITT grup 4',
 
 'exif-copyrighted-true' => "Sotmesa a drets d'autor",
-'exif-copyrighted-false' => 'de domini públic',
+'exif-copyrighted-false' => "No s'ha definit l'estat de copyright",
 
 'exif-unknowndate' => 'Data desconeguda',
 

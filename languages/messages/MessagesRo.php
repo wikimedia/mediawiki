@@ -4168,4 +4168,12 @@ MediaWiki este distribuit în speranța că va fi folositor, dar FĂRĂ VREO GAR
 # Image rotation
 'rotate-comment' => 'Imagine rotită în sensul acelor de ceasornic cu $1 {{PLURAL:$1|grad|grade|de grade}}',
 
+# Limit report
+'limitreport-cputime' => 'Timp de utilizare CPU',
+'limitreport-cputime-value' => '$1 {{PLURAL:$1|secundă|secunde|de secunde}}',
+'limitreport-walltime' => 'Timp real de utilizare',
+'limitreport-walltime-value' => '$1 {{PLURAL:$1|secundă|secunde|de secunde}}',
+'limitreport-postexpandincludesize-value' => '$1/$2 octeți',
+'limitreport-templateargumentsize-value' => '$1/$2 octeți',
+
 );

@@ -11174,9 +11174,9 @@ Mandrake를 실행하고 있다면 php-xml 패키지를 설치하세요.',
 	'config-no-cli-uri' => "'''경고''': 기본값을 사용하여 --scriptpath를 지정하지 않았습니다: <code>$1</code>.",
 	'config-using-server' => '"<nowiki>$1</nowiki>"(을)를 서버 이름으로 사용합니다.',
 	'config-using-uri' => '"<nowiki>$1$2</nowiki>"(을)를 서버 URL로 사용합니다.',
-	'config-uploads-not-safe' => "'''경고:''' 올리기에 대한 기본 디렉토리(<code>$1</code>)는 임의의 스크립트 실행에 취약합니다.
+	'config-uploads-not-safe' => "'''경고:''' 올리기에 대한 기본 디렉터리(<code>$1</code>)는 임의의 스크립트 실행에 취약합니다.
 미디어위키는 보안 위협에 대한 모든 올린 파일을 검사하지만, 올리기를 활성화하기 전에 [//www.mediawiki.org/wiki/Manual:Security#Upload_security 이 보안 취약점을 해결할 것]을 매우 권장합니다.",
-	'config-no-cli-uploads-check' => "'''경고:''' 올리기에 대한 기본 디렉토리(<code>$1</code>)는 CLI를 설치하는 동안 임의의 스크립트 실행에 대한 취약점에 대해 검사되지 않습니다.",
+	'config-no-cli-uploads-check' => "'''경고:''' 올리기에 대한 기본 디렉터리(<code>$1</code>)는 CLI를 설치하는 동안 임의의 스크립트 실행에 대한 취약점에 대해 검사되지 않습니다.",
 	'config-brokenlibxml' => '시스템에 버그가 있는 PHP와 libxml2의 조합이 있으며 미디어위키나 다른 웹 어플리케이션에 숨겨진 데이터 손상을 일으킬 수 있습니다.
 PHP 5.2.9 이후와 libxml2 2.7.3 이후로 업그레이드하세요. ([//bugs.php.net/bug.php?id=45996 PHP에 제기한 버그])
 설치가 중단되었습니다.',
@@ -11244,7 +11244,7 @@ MySQL의 UTF-8 모드를 보다 더 효율적이고 유니코드 문자의 전�
 	'config-db-schema-help' => '보통 이 스키마는 문제가 없습니다.
 필요한 경우에만 바꾸세요.',
 	'config-pg-test-error' => "'''$1''' 데이터베이스에 연결할 수 없습니다: $2",
-	'config-sqlite-dir' => 'SQLite 데이터 디렉토리:',
+	'config-sqlite-dir' => 'SQLite 데이터 디렉터리:',
 	'config-sqlite-dir-help' => "SQLite는 하나의 파일에 모든 데이터를 저장합니다.
 
 제공하는 디렉토리는 설치하는 동안 웹 서버가 쓸 수 있어야 합니다.
@@ -11470,7 +11470,7 @@ GFDL 하에 사용을 허가한 내용을 재사용하는 것도 어렵습니다
 
 파일 올리기를 활성화하려면 미디어위키의 루트 디렉토리에 있는 <code>images</code> 하위 디렉토리에서 웹 서버가 기록할 수 있도록 모드를 바꿉니다.
 그 다음 이 옵션을 활성화합니다.',
-	'config-upload-deleted' => '삭제된 파일에 대한 디렉토리:',
+	'config-upload-deleted' => '삭제된 파일에 대한 디렉터리:',
 	'config-upload-deleted-help' => '삭제된 파일을 보관할 디렉토리를 선택하세요.
 이상적으로 웹에서 접근할 수 없게 해야 합니다.',
 	'config-logo' => '로고 URL:',
@@ -11560,13 +11560,13 @@ GFDL 하에 사용을 허가한 내용을 재사용하는 것도 어렵습니다
 설치 프로그램이 <code>LocalSettings.php</code> 파일을 만들었습니다.
 모든 설정이 포함되어 있습니다.
 
-파일을 다운로드하여 위키 설치의 거점에 넣어야 합니다. (index.php와 같은 디렉토리) 다운로드가 자동으로 시작됩니다.
+파일을 다운로드하여 위키 설치의 거점에 넣어야 합니다. (index.php와 같은 디렉터리) 다운로드가 자동으로 시작됩니다.
 
 다운로드가 제공되지 않을 경우나 그것을 취소한 경우에는 아래의 링크를 클릭하여 다운로드를 다시 시작할 수 있습니다:
 
 $3
 
-'''참고''': 이 생성한 설정 파일을 다운로드하지 않고 설치를 끝내면 이 파일은 나중에 사용할 수 없습니다.
+'''참고:''' 이 생성한 설정 파일을 다운로드하지 않고 설치를 끝내면 이 파일은 나중에 사용할 수 없습니다.
 
 완료되었으면 '''[$2 위키에 들어갈 수 있습니다]'''.",
 	'config-download-localsettings' => '<code>LocalSettings.php</code> 다운로드',

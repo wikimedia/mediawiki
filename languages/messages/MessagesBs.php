@@ -480,6 +480,7 @@ $messages = array(
 'create-this-page' => 'Napravi ovu stranicu',
 'delete' => 'Obriši',
 'deletethispage' => 'Obriši ovu stranicu',
+'undeletethispage' => 'Povrati ovu stranicu',
 'undelete_short' => 'Vrati obrisanih {{PLURAL:$1|$1 izmjenu|$1 izmjene|$1 izmjena}}',
 'viewdeleted_short' => 'Pogledaj {{PLURAL:$1|jednu obrisanu izmjenu|$1 obrisane izmjene|$1 obrisanih izmjena}}',
 'protect' => 'Zaštitite',
@@ -679,6 +680,10 @@ $2',
 'namespaceprotected' => "Vi nemate dozvulu da mijenjate stranicu '''$1'''.",
 'customcssprotected' => 'Nemate dozvolu za mijenjanje ove CSS stranice jer sadrži osobne postavke nekog drugog korisnika.',
 'customjsprotected' => 'Nemate dozvolu za mijenjanje ove JavaScript stranice jer sadrži osobne postavke nekog drugog korisnika.',
+'mycustomcssprotected' => 'Nemate dozvolu da uređujete ovu CSS stranicu.',
+'mycustomjsprotected' => 'Nemate dozvolu da uređujete ovu stranicu sa JavaScriptom.',
+'myprivateinfoprotected' => 'Nemate dozvolu da uređujete svoje privatne informacije.',
+'mypreferencesprotected' => 'Nemate dozvolu da uređujete svoje postavke.',
 'ns-specialprotected' => 'Specijalne stranice se ne mogu uređivati.',
 'titleprotected' => 'Naslov stranice je zaštićen od postavljanja od strane korisnika [[User:$1|$1]].
 Iz razloga "\'\'$2\'\'".',
@@ -695,7 +700,6 @@ Iz razloga "\'\'$2\'\'".',
 # Login and logout pages
 'logouttext' => "'''Sad ste odjavljeni.'''
 
-Možete nastaviti da koristite {{SITENAME}} anonimno, ili se ponovo <span class='plainlinks'>[$1 prijaviti]</span> kao isti ili kao drugi korisnik.
 Obratite pažnju da neke stranice mogu nastaviti da se prikazuju kao da ste još uvijek prijavljeni, dok ne očistite keš svog preglednika.",
 'welcomeuser' => 'Dobro došli, $1',
 'welcomecreation-msg' => 'Vaš nalog je napravljen.
@@ -703,6 +707,7 @@ Ne zaboravite da prilagodite sebi svoja [[Special:Preferences|{{SITENAME}} pode�
 'yourname' => 'Korisničko ime:',
 'userlogin-yourname' => 'Korisničko ime',
 'userlogin-yourname-ph' => 'Unesite Vaše korisničko ime',
+'createacct-another-username-ph' => 'Unesite korisničko ime',
 'yourpassword' => 'Šifra:',
 'userlogin-yourpassword' => 'Šifra',
 'userlogin-yourpassword-ph' => 'Unesite Vašu šifru/lozinku',
@@ -737,10 +742,12 @@ Ne zaboravite da prilagodite sebi svoja [[Special:Preferences|{{SITENAME}} pode�
 'helplogin-url' => 'Help:Prijavljivanje',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Pomoć pri prijavljivanju]]',
 'createacct-join' => 'Unesite svoje podatke ispod.',
+'createacct-another-join' => 'Unesite informacije o novom računu ispod.',
 'createacct-emailrequired' => 'Adresa e-pošte',
 'createacct-emailoptional' => 'Adresa e-pošte (opcionalno)',
 'createacct-email-ph' => 'Unesite Vašu adresu e-pоšte',
-'createaccountmail' => 'Koristite privremenu, slučajno stvorenu šifru/lozinku i pošaljite na dole navedenu adrеsu e-pošte',
+'createacct-another-email-ph' => 'Unesite adresu e-pošte',
+'createaccountmail' => 'Koristite privremenu, slučajno stvorenu šifru/lozinku i pošaljite na navedenu adrеsu e-pošte',
 'createacct-realname' => 'Pravo ime (opcionalno)',
 'createaccountreason' => 'Razlog:',
 'createacct-reason' => 'Razlog',
@@ -748,6 +755,7 @@ Ne zaboravite da prilagodite sebi svoja [[Special:Preferences|{{SITENAME}} pode�
 'createacct-captcha' => 'Sigurnosna provjera',
 'createacct-imgcaptcha-ph' => 'Unesite tekst koji vidite iznad',
 'createacct-submit' => 'Napravite svoj korisnički račun',
+'createacct-another-submit' => 'Napravi još jedan korisnički račun',
 'createacct-benefit-heading' => '{{SITENAME}} je napravljen od strane ljudi kao što ste Vi.',
 'createacct-benefit-body1' => '{{PLURAL:$1|izmjena|izmjene}}',
 'createacct-benefit-body2' => '{{PLURAL:$1|stranica|stranice|stranica}}',
@@ -822,6 +830,7 @@ Molimo Vas da sačekate prije nego što pokušate ponovo.',
 # Email sending
 'php-mail-error-unknown' => 'Nepoznata greška u PHP funkciji mail()',
 'user-mail-no-addy' => 'Pokušaj slanja e-maila bez navedene e-mail adrese.',
+'user-mail-no-body' => 'Pokušano slanje e-poruke s praznim ili nerazumno kratkim sadržajem.',
 
 # Change password dialog
 'resetpass' => 'Promijeni korisničku šifru',
@@ -845,6 +854,7 @@ Možda ste već uspješno promijenili Vašu šifru ili ste tražili novu privrem
 # Special:PasswordReset
 'passwordreset' => 'Poništavanje šifre',
 'passwordreset-text-one' => 'Ispunite ovaj obrazac da biste resetovali Vašu šifru/lozinku.',
+'passwordreset-text-many' => '{{PLURAL:$1|Ispunite jedno od polja kako bi ste resetirali svoju šifru/lozinku.}}',
 'passwordreset-legend' => 'Poništi šifru',
 'passwordreset-disabled' => 'Poništavanje šifre  je onemogućeno na ovoj wiki.',
 'passwordreset-username' => 'Korisničko ime:',
@@ -1133,6 +1143,7 @@ Molimo da provjerite usporedbu ispod da budete sigurni da to želite učiniti, a
 'undo-failure' => 'Izmjene se ne mogu vratiti zbog konflikta sa izmjenama u međuvremenu.',
 'undo-norev' => 'Izmjena se ne može vratiti jer ne postoji ranija ili je obrisana.',
 'undo-summary' => 'Vraćena izmjena $1 [[Special:Contributions/$2|korisnika $2]] ([[User talk:$2|razgovor]])',
+'undo-summary-username-hidden' => 'Poništi izmjenu $1 od skrivenog korisnika',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Nije moguće napraviti korisnički račun',
@@ -1313,6 +1324,7 @@ Korištenje navigacionih linkova će resetovati ovaj stupac.',
 'compareselectedversions' => 'Uporedite označene verzije',
 'showhideselectedversions' => 'Pokaži/sakrij odabrane verzije',
 'editundo' => 'ukloni ovu izmjenu',
+'diff-empty' => '(Nema razlike)',
 'diff-multi' => '({{plural:$1|Nije prikazana jedna međurevizija|Nisu prikazane $1 međurevizije|Nije prikazano $1 međurevizija}} od {{PLURAL:$2|jednog korisnika|$2 korisnika}})',
 'diff-multi-manyusers' => '({{PLURAL:$1|Jedna međurevizija|$1 međurevizije|$1 međurevizija}} od više od $2 {{PLURAL:$2|korisnika|korisnika}} {{PLURAL:$1|nije prikazana|nisu prikazane}})',
 'difference-missing-revision' => '{{PLURAL:$2|Jedna izmjena|$2 izmjene}} od ove razlike ($1) ne {{PLURAL:$2|postoji|postoje}}.
@@ -1523,6 +1535,7 @@ Ako izaberete da date ime, biće korišteno za pripisivanje za vaš rad.',
 'userrights-changeable-col' => 'Grupe koje možete mijenjati',
 'userrights-unchangeable-col' => 'Grupe koje ne možete mijenjati',
 'userrights-conflict' => 'Sukob u korisničkim pravima! Molimo pošaljite Vaše promjene ponovno.',
+'userrights-removed-self' => 'Uspješno ste uklonili vlastite prava. Zbog toga više niste u stanju pristupiti ovoj stranici.',
 
 # Groups
 'group' => 'Grupa:',
@@ -1594,6 +1607,7 @@ Ako izaberete da date ime, biće korišteno za pripisivanje za vaš rad.',
 'right-editusercss' => 'Uređivanje CSS datoteka drugih korisnika',
 'right-edituserjs' => 'Uređivanje JS datoteka drugih korisnika',
 'right-editmyusercss' => 'Uredite svoje vlastite korisničke CSS datoteke',
+'right-editmyprivateinfo' => 'Uredite svoje privatne podatke (npr. adresa e-pošte, pravo ime)',
 'right-editmyoptions' => 'Uredite svoje postavke',
 'right-rollback' => 'Brzo vraćanje izmjena na zadnjeg korisnika koji je uređivao određenu stranicu',
 'right-markbotedits' => 'Označavanje vraćenih izmjena kao izmjene bota',
@@ -1656,6 +1670,9 @@ Ako izaberete da date ime, biće korišteno za pripisivanje za vaš rad.',
 'action-userrights-interwiki' => 'uređujete korisnička prava korisnika na drugim wikijima',
 'action-siteadmin' => 'zaključavate ili otključavate bazu podataka',
 'action-sendemail' => 'pošalji e-mail poruke',
+'action-editmywatchlist' => 'uredite svoj spisak praćenih stranica',
+'action-viewmywatchlist' => 'pogledajte svoj spisak praćenih stranica',
+'action-viewmyprivateinfo' => 'pogledajte svoje privatne informacije',
 'action-editmyprivateinfo' => 'uredite svoje privatne podatke',
 
 # Recent changes
@@ -2055,6 +2072,9 @@ Prije brisanja provjerite da li druge stranice vode na te šablone.',
 # Random page
 'randompage' => 'Slučajna stranica',
 'randompage-nopages' => 'Nema stranica u {{PLURAL:$2|slijedećem imenskom prostoru|slijedećim imenskim prostorima}}: "$1".',
+
+# Special:RandomInCategory
+'randomincategory-selectcategory-submit' => 'Idi',
 
 # Random redirect
 'randomredirect' => 'Slučajno preusmjerenje',

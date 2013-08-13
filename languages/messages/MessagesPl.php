@@ -677,6 +677,7 @@ Możliwe, że zostały już usunięte przez kogoś innego.',
 'cannotdelete-title' => 'Nie można usunąć strony „$1”.',
 'delete-hook-aborted' => 'Usuwanie przerwane przez hak.
 Przyczyna nieokreślona.',
+'no-null-revision' => 'Nie można utworzyć zerowej wersji strony "$1"',
 'badtitle' => 'Niepoprawny tytuł',
 'badtitletext' => 'Podano niepoprawny tytuł strony. Prawdopodobnie jest pusty lub zawiera znaki, których użycie jest zabronione.',
 'perfcached' => 'Poniższe dane są kopią z pamięci podręcznej i mogą być nieaktualne. Maksymalnie {{PLURAL:$1|jeden wynik jest|$1 wyniki są|$1 wyników jest}} w pamięci podręcznej.',
@@ -726,7 +727,6 @@ Administrator blokujący go podał następujący powód "\'\'$3\'\'".',
 # Login and logout pages
 'logouttext' => "'''Nie jesteś już zalogowany.'''
 
-Możesz kontynuować pracę w {{GRAMMAR:MS.lp|{{SITENAME}}}} jako niezarejestrowany użytkownik albo <span class='plainlinks'>[$1 zalogować się ponownie]</span> jako ten sam lub inny użytkownik.
 Zauważ, że do momentu wyczyszczenia pamięci podręcznej przeglądarki niektóre strony mogą wyglądać tak, jakbyś wciąż był zalogowany.",
 'welcomeuser' => 'Witaj, $1!',
 'welcomecreation-msg' => 'Twoje konto zostało utworzone.
@@ -774,7 +774,7 @@ Nie zapomnij dostosować [[Special:Preferences|preferencji]].',
 'createacct-emailoptional' => 'Adres e-mail (opcjonalnie)',
 'createacct-email-ph' => 'Wpisz swój adres e-mail',
 'createacct-another-email-ph' => 'Podaj adres e-mail',
-'createaccountmail' => 'Użyj tymczasowego hasła wygenerowanego losowo i wyślij je na podany poniżej adres e-mail',
+'createaccountmail' => 'Użyj tymczasowego hasła wygenerowanego losowo i wyślij je na podany adres e-mail',
 'createacct-realname' => 'Prawdziwe imię i nazwisko (opcjonalnie)',
 'createaccountreason' => 'Powód',
 'createacct-reason' => 'Powód',
@@ -1553,6 +1553,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'prefs-displayrc' => 'Opcje wyświetlania',
 'prefs-displaysearchoptions' => 'Opcje wyświetlania',
 'prefs-displaywatchlist' => 'Opcje wyświetlania',
+'prefs-tokenwatchlist' => 'Token',
 'prefs-diffs' => 'Zmiany',
 
 # User preference: email validation using jQuery
@@ -1580,7 +1581,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'userrights-notallowed' => 'Nie jesteś upoważniony do nadawania i odbierania uprawnień użytkownikom.',
 'userrights-changeable-col' => 'Grupy, które możesz wybrać',
 'userrights-unchangeable-col' => 'Grupy, których nie możesz wybrać',
-'userrights-conflict' => 'Konflikt uprawnień użytkownika! Proszę zastosować zmiany ponownie.',
+'userrights-conflict' => 'Konflikt zmiany uprawnień użytkownika! Proszę sprawdzić i potwierdzić swoje zmiany.',
 'userrights-removed-self' => 'Pomyślnie odebrałeś sobie uprawnienia. W związku z tym nie masz już dostępu do tej strony.',
 
 # Groups
@@ -2240,6 +2241,7 @@ Każdy wiersz zawiera linki do pierwszego i drugiego przekierowania oraz link, d
 'mostrevisions' => 'Strony o największej liczbie wersji',
 'prefixindex' => 'Wszystkie strony o prefiksie',
 'prefixindex-namespace' => 'Wszystkie strony z prefiksem (przestrzeń nazw $1)',
+'prefixindex-strip' => 'Ukryj prefiks na liście wyników',
 'shortpages' => 'Najkrótsze strony',
 'longpages' => 'Najdłuższe strony',
 'deadendpages' => 'Strony bez linków wewnętrznych',
@@ -3217,9 +3219,9 @@ Najprawdopodobniej zostało to spowodowane przez link do zewnętrznej strony int
 'pageinfo-length' => 'Długość strony (w bajtach)',
 'pageinfo-article-id' => 'Identyfikator strony',
 'pageinfo-language' => 'Język zawartości strony',
-'pageinfo-robot-policy' => 'Status w wyszukiwarce',
-'pageinfo-robot-index' => 'Indeksowalne',
-'pageinfo-robot-noindex' => 'Nieindeksowalne',
+'pageinfo-robot-policy' => 'Indeksowanie przez roboty',
+'pageinfo-robot-index' => 'Dozwolone',
+'pageinfo-robot-noindex' => 'Niedozwolone',
 'pageinfo-views' => 'Odsłon',
 'pageinfo-watchers' => 'Liczba obserwujących',
 'pageinfo-few-watchers' => 'Mniej niż $1 {{PLURAL:$1|obserwujący|obserwujących}}',
@@ -4250,5 +4252,20 @@ W przeciwnym wypadku można użyć prostego formularza poniżej. Komentarz zosta
 
 # Image rotation
 'rotate-comment' => 'Obraz został odwrócony o $1 {{PLURAL:$1|stopień|stopnie|stopni}} (w kierunku zgodnym z ruchem wskazówek zegara)',
+
+# Limit report
+'limitreport-title' => 'Dane profilowania parsera:',
+'limitreport-cputime' => 'Czas pracy (CPU)',
+'limitreport-cputime-value' => '$1 {{PLURAL:$1|sekunda|sekund}}',
+'limitreport-walltime' => 'Czas pracy (faktyczny)',
+'limitreport-walltime-value' => '$1 {{PLURAL:$1|sekunda|sekund}}',
+'limitreport-ppvisitednodes' => 'Liczba odwiedzonych węzłów preprocesora',
+'limitreport-ppgeneratednodes' => 'Liczba wygenerowanych węzłów preprocesora',
+'limitreport-postexpandincludesize' => 'Rozmiar dołączonych elementów po ekspansji',
+'limitreport-postexpandincludesize-value' => '$1/$2 bajtów',
+'limitreport-templateargumentsize' => 'Rozmiar argumentów szablonów',
+'limitreport-templateargumentsize-value' => '$1/$2 bajtów',
+'limitreport-expansiondepth' => 'Największa głębokość ekspansji',
+'limitreport-expensivefunctioncount' => 'Liczba wywołań kosztownych funkcji parsera',
 
 );

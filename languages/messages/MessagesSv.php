@@ -4201,4 +4201,12 @@ Annars kan du använda det enkla formuläret nedan. Din kommentar kommer att lä
 # Image rotation
 'rotate-comment' => 'Bilden roteras $1 {{PLURAL:$1|grad|grader}} medurs',
 
+# Limit report
+'limitreport-cputime' => 'Processortidsanvändning',
+'limitreport-cputime-value' => '$1 {{PLURAL:$1|sekund|sekunder}}',
+'limitreport-walltime' => 'Realtidsanvändning',
+'limitreport-walltime-value' => '$1 {{PLURAL:$1|sekund|sekunder}}',
+'limitreport-postexpandincludesize-value' => '$1/$2 byte',
+'limitreport-templateargumentsize-value' => '$1/$2 byte',
+
 );

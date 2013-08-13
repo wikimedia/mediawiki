@@ -1217,7 +1217,7 @@ Legenda: '''({{int:cur}})''' = diferenças para a versão atual,
 'history-fieldset-title' => 'Navegar pelo histórico',
 'history-show-deleted' => 'Somente eliminados',
 'histfirst' => 'Mais antigas',
-'histlast' => 'Mais recentes',
+'histlast' => 'Mais novas',
 'historysize' => '({{PLURAL:$1|1 byte|$1 bytes}})',
 'historyempty' => '(vazia)',
 
@@ -2165,6 +2165,8 @@ Considera-se que uma página é de desambiguação se nela for utilizada uma pre
 'pageswithprop-text' => 'Esta página lista páginas que usam uma propriedade em particular.',
 'pageswithprop-prop' => 'Nome da propriedade:',
 'pageswithprop-submit' => 'Avançar',
+'pageswithprop-prophidden-long' => 'foi ocultado o valor da propriedade por ser um texto muito longo ($1 kilobytes)',
+'pageswithprop-prophidden-binary' => 'foi ocultado o valor da propriedade por ser binário ($1 kilobytes)',
 
 'doubleredirects' => 'Redirecionamentos duplos',
 'doubleredirectstext' => 'Esta página lista todas as páginas que redirecionam para outras páginas de redirecionamento.
@@ -2344,7 +2346,8 @@ Veja também as [[Special:WantedCategories|categorias desejadas]].',
 'listgrouprights' => 'Privilégios dos grupos de utilizadores',
 'listgrouprights-summary' => 'A seguinte lista contém os grupos de utilizadores definidos nesta wiki, com os respectivos privilégios de acesso.
 Encontram-se disponíveis [[{{MediaWiki:Listgrouprights-helppage}}|informações adicionais]] sobre privilégios individuais.',
-'listgrouprights-key' => '* <span class="listgrouprights-granted">Privilégio concedido</span>
+'listgrouprights-key' => 'Legenda:
+* <span class="listgrouprights-granted">Privilégio concedido</span>
 * <span class="listgrouprights-revoked">Privilégio revogado</span>',
 'listgrouprights-group' => 'Grupo',
 'listgrouprights-rights' => 'Privilégios',
@@ -2525,7 +2528,7 @@ alguém editou ou já reverteu a página.
 A última edição foi de [[User:$3|$3]] ([[User talk:$3|discussão]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment' => "O resumo da edição era: \"''\$1''\".",
 'revertpage' => 'Foram revertidas as edições de [[Special:Contributions/$2|$2]] ([[User talk:$2|disc]]) para a última versão por [[User:$1|$1]]',
-'revertpage-nouser' => 'Revertidas as edições de (nome de utilizador removido) para a última revisão por [[User:$1|$1]]',
+'revertpage-nouser' => 'Revertidas as edições de um usuário ocultado para a última revisão por [[User:$1|$1]]',
 'rollback-success' => 'Foram revertidas as edições de $1, com o conteúdo passando a estar como na última edição de $2.',
 
 # Edit tokens
@@ -3199,13 +3202,13 @@ Este bloqueio foi provavelmente causado por um link para um site externo que con
 'pageinfo-length' => 'Tamanho da página (em bytes)',
 'pageinfo-article-id' => 'ID da página',
 'pageinfo-language' => 'Idioma do conteúdo da página',
-'pageinfo-robot-policy' => 'Estado para mecanismos de pesquisa',
-'pageinfo-robot-index' => 'Indexável',
-'pageinfo-robot-noindex' => 'Não indexável',
+'pageinfo-robot-policy' => 'Indexação por robôs',
+'pageinfo-robot-index' => 'Permitida',
+'pageinfo-robot-noindex' => 'Não permitida',
 'pageinfo-views' => 'Número de visitas',
 'pageinfo-watchers' => 'Número de vigilantes da página',
 'pageinfo-few-watchers' => 'Menos do que $1 {{PLURAL:$1|vigilante|vigilantes}}',
-'pageinfo-redirects-name' => 'Redirecionamentos para esta página',
+'pageinfo-redirects-name' => 'Número de redirecionamentos para esta página',
 'pageinfo-subpages-name' => 'Subpáginas desta página',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|redirecionamento|redirecionamentos}}; $3 {{PLURAL:$3|não-redirecionamento|não-redirecionamentos}})',
 'pageinfo-firstuser' => 'Criador da página',
@@ -3546,7 +3549,7 @@ Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns de
 'exif-compression-4' => 'CCITT Grupo 4 codificação de fax',
 
 'exif-copyrighted-true' => 'Direitos de autor reservados',
-'exif-copyrighted-false' => 'Domínio público',
+'exif-copyrighted-false' => 'Situação dos direitos autorais não definida',
 
 'exif-unknowndate' => 'Data desconhecida',
 

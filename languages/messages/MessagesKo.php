@@ -2334,7 +2334,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'protectedtitlesempty' => '해당 조건에 맞는 만들기 금지 표제어가 없습니다.',
 'listusers' => '사용자 목록',
 'listusers-editsonly' => '기여가 있는 사용자만 보기',
-'listusers-creationsort' => '계정 등록일 순으로 정렬',
+'listusers-creationsort' => '계정을 만든 날짜 순으로 정렬',
 'usereditcount' => '{{PLURAL:$1|편집}} $1회',
 'usercreated' => '$1 $2에 계정 {{GENDER:$3|만들어짐}}',
 'newpages' => '새 문서 목록',
@@ -4230,7 +4230,7 @@ $5
 'logentry-newusers-newusers' => '$1 사용자 계정을 {{GENDER:$2|만들었습니다}}',
 'logentry-newusers-create' => '$1 사용자 계정을 {{GENDER:$2|만들었습니다}}',
 'logentry-newusers-create2' => '$1 사용자가 $3 사용자 계정을 {{GENDER:$2|만들었습니다}}',
-'logentry-newusers-byemail' => '$3 사용자 계정이 $1에 {{GENDER:$2|만들어졌고}} 비밀번호는 이메일로 보냈습니다',
+'logentry-newusers-byemail' => '$3 사용자 계정을 $1님이 {{GENDER:$2|만들었고}} 비밀번호는 이메일로 보냈습니다',
 'logentry-newusers-autocreate' => '$1 사용자 계정을 자동적으로 {{GENDER:$2|만들었습니다}}',
 'logentry-rights-rights' => '$1 사용자가 $3 사용자의 권한을 $4에서 $5으로 {{GENDER:$2|바꾸었습니다}}',
 'logentry-rights-rights-legacy' => '$1 사용자가 $3 사용자의 권한을 {{GENDER:$2|바꾸었습니다}}',
@@ -4312,5 +4312,18 @@ $5
 
 # Image rotation
 'rotate-comment' => '그림을 시계 방향으로 $1{{PLURAL:$1|도}}로 회전함',
+
+# Limit report
+'limitreport-title' => '파서 프로파일링 데이터:',
+'limitreport-cputime' => 'CPU 시간 사용',
+'limitreport-cputime-value' => '$1{{PLURAL:$1|초}}',
+'limitreport-walltime' => '실제 시간 사용',
+'limitreport-walltime-value' => '$1{{PLURAL:$1|초}}',
+'limitreport-ppvisitednodes' => '전처리기가 방문한 노드 수',
+'limitreport-ppgeneratednodes' => '전처리기가 생성한 노드 수',
+'limitreport-postexpandincludesize-value' => '$1/$2 바이트',
+'limitreport-templateargumentsize-value' => '$1/$2 바이트',
+'limitreport-expansiondepth' => '최대 전개 깊이',
+'limitreport-expensivefunctioncount' => '부하 높은 파서 함수 수',
 
 );

@@ -745,6 +745,7 @@ Por favor, avisa a un [[Special:ListUsers/sysop|administrador]], tomando nota de
 Puede que ya haya sido borrado por alguien más.',
 'cannotdelete-title' => 'No se puede borrar la página «$1»',
 'delete-hook-aborted' => 'La modificación que intentaste hacer fue cancelada por un gancho de extensión. No hay explicación disponible.',
+'no-null-revision' => 'No se pudo crear la nueva revisión nula para la página "$1"',
 'badtitle' => 'Título incorrecto',
 'badtitletext' => 'El título de la página solicitada está vacío, no es válido, o es un enlace interidioma o interwiki incorrecto.
 Puede que contenga uno o más caracteres que no se pueden usar en los títulos.',
@@ -792,10 +793,8 @@ El administrador que lo ha bloqueado ofrece esta explicación: "$3".',
 'virus-unknownscanner' => 'antivirus desconocido:',
 
 # Login and logout pages
-'logouttext' => "'''Ha terminado su sesión.'''
-
-Puedes continuar usando {{SITENAME}} de forma anónima, o puedes <span class='plainlinks'>[$1 iniciar sesión otra vez]</span> con el mismo u otro usuario.
-Ten en cuenta que las páginas que tengas abiertas en otras ventanas o pestañas pueden verse como si siguieras identificado hasta que las refresques.",
+'logouttext' => '"\'Usted está ahora desconectado."\'
+Tenga en cuenta que algunas páginas pueden continuar mostrándose como si todavía estuviera conectado, hasta que borres la caché de tu navegador.',
 'welcomeuser' => '¡Bienvenido, $1!',
 'welcomecreation-msg' => 'Tu cuenta ha sido creada.
 No olvides cambiar tus [[Special:Preferences|preferencias de {{SITENAME}} ]].',
@@ -842,7 +841,7 @@ No olvides cambiar tus [[Special:Preferences|preferencias de {{SITENAME}} ]].',
 'createacct-emailoptional' => 'Dirección de correo electrónico (opcional)',
 'createacct-email-ph' => 'Escribe tu dirección de correo electrónico',
 'createacct-another-email-ph' => 'Introduzca la dirección de correo electrónico',
-'createaccountmail' => 'Usar una contraseña aleatoria temporal y enviarla a la siguiente dirección de correo electrónico',
+'createaccountmail' => 'Utilizar una contraseña aleatoria temporal y enviarla a la dirección de correo electrónico especificada',
 'createacct-realname' => 'Nombre real (opcional)',
 'createaccountreason' => 'Motivo:',
 'createacct-reason' => 'Motivo',
@@ -924,6 +923,8 @@ Puedes ignorar este mensaje si esta cuenta fue creada por error.',
 'login-abort-generic' => 'Tu inicio de sesión no fue exitoso - Cancelado',
 'loginlanguagelabel' => 'Idioma: $1',
 'suspicious-userlogout' => 'Tu solicitud de desconexión ha sido denegada, pues parece haber sido enviada desde un navegador defectuoso o un proxy caché.',
+'createacct-another-realname-tip' => 'El nombre Real es opcional.
+Si elige proporcionarlo, se usará para dar al usuario la atribución de su trabajo.',
 
 # Email sending
 'php-mail-error-unknown' => 'Error desconocido en la función mail() de PHP.',
@@ -1001,7 +1002,17 @@ Contraseña temporal: $2',
 'changeemail-cancel' => 'Cancelar',
 
 # Special:ResetTokens
+'resettokens' => 'Restablecer fichas',
+'resettokens-text' => 'Puede restablecer las fichas que permiten el acceso a ciertos datos privados asociados a tu cuenta aquí.
+
+Deberías hacerlo si accidentalmente la haz compartido con alguien o si su cuenta ha sido comprometida.',
+'resettokens-no-tokens' => 'No hay fichas para restablecer.',
+'resettokens-legend' => 'Restablecer fichas',
+'resettokens-tokens' => 'Fichas:',
 'resettokens-token-label' => '$1 (valor actual: $2)',
+'resettokens-watchlist-token' => 'Lista de seguimiento de la red de fichas',
+'resettokens-done' => 'restablecimiento de fichas.',
+'resettokens-resetbutton' => 'Restablecer las fichas',
 
 # Edit page toolbar
 'bold_sample' => 'Texto en negrita',
@@ -2183,6 +2194,9 @@ Entrada: contenttype/subtype, p. ej. <code>image/jpeg</code>.',
 'randompage-nopages' => 'No hay páginas en los siguientes {{PLURAL:$2|espacio de nombre|espacios de nombre}}: $1.',
 
 # Special:RandomInCategory
+'randomincategory' => 'Página aleatoria en categoría',
+'randomincategory-invalidcategory' => '"$1" no es una categoría válida.',
+'randomincategory-nopages' => 'No hay páginas en la categoría [[:Categoría:$1|$1]].',
 'randomincategory-selectcategory-submit' => 'Ir',
 
 # Random redirect

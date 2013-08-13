@@ -784,7 +784,6 @@ Správce serveru, který úložiště zamkl, poskytl toto zdůvodnění: „''$3
 # Login and logout pages
 'logouttext' => "'''Nyní jste odhlášeni.'''
 
-Můžete pokračovat v anonymním prohlížení a editaci {{grammar:2sg|{{SITENAME}}}}, nebo se můžete <span class='plainlinks'>[$1 znovu přihlásit]</span> jako stejný či jiný uživatel.
 Uvědomte si, že některé stránky se mohou i nadále zobrazovat, jako byste byli dosud přihlášeni, pokud nevymažete cache prohlížeče.",
 'welcomeuser' => 'Vítejte, uživateli $1!',
 'welcomecreation-msg' => 'Váš účet byl vytvořen.
@@ -832,7 +831,7 @@ Nezapomeňte si upravit své [[Special:Preferences|nastavení {{grammar:2sg|{{SI
 'createacct-emailoptional' => 'E-mailová adresa (nepovinné)',
 'createacct-email-ph' => 'Zadejte svou e-mailovou adresu',
 'createacct-another-email-ph' => 'Zadejte e-mailovou adresu',
-'createaccountmail' => 'Použít dočasné náhodné heslo a odeslat ho na níže uvedenou e-mailovou adresu',
+'createaccountmail' => 'Použít dočasné náhodné heslo a odeslat ho na uvedenou e-mailovou adresu',
 'createacct-realname' => 'Skutečné jméno (nepovinné)',
 'createaccountreason' => 'Důvod:',
 'createacct-reason' => 'Důvod',
@@ -1617,10 +1616,10 @@ Vaše adresa v takovém případě není prozrazena.',
 'userrights-no-interwiki' => 'Nemáte povoleno měnit uživatelská práva na jiných wiki.',
 'userrights-nodatabase' => 'Databáze $1 neexistuje nebo není místní.',
 'userrights-nologin' => 'Musíte se [[Special:UserLogin|přihlásit]] k účtu správce, abyste mohli měnit uživatelská práva.',
-'userrights-notallowed' => 'Váš účet nemá oprávnění měnit uživatelská práva.',
+'userrights-notallowed' => 'Nemáte oprávnění měnit uživatelská práva.',
 'userrights-changeable-col' => 'Skupiny, které můžete měnit',
 'userrights-unchangeable-col' => 'Skupiny, které nemůžete měnit',
-'userrights-conflict' => 'Konflikt uživatelských práv! Proveďte požadované změny ještě jednou.',
+'userrights-conflict' => 'Konflikt změn uživatelských práv! Zkontrolujte a potvrďte požadované změny.',
 'userrights-removed-self' => 'Úspěšně jste si odebrali vlastní práva. Tudíž už nemáte k této stránce přístup.',
 
 # Groups
@@ -3225,13 +3224,13 @@ Uložte jej na svůj disk a nahrajte ho sem.',
 'pageinfo-length' => 'Velikost stránky (v bajtech)',
 'pageinfo-article-id' => 'ID stránky',
 'pageinfo-language' => 'Jazyk obsahu stránky',
-'pageinfo-robot-policy' => 'Nastavení pro vyhledávače',
-'pageinfo-robot-index' => 'Indexovatelná',
-'pageinfo-robot-noindex' => 'Neindexovatelná',
+'pageinfo-robot-policy' => 'Indexování roboty',
+'pageinfo-robot-index' => 'Dovoleno',
+'pageinfo-robot-noindex' => 'Zakázáno',
 'pageinfo-views' => 'Počet zobrazení',
 'pageinfo-watchers' => 'Počet sledujících',
 'pageinfo-few-watchers' => 'Méně než $1 {{PLURAL:$1|sledující|sledující|sledujících}}',
-'pageinfo-redirects-name' => 'Přesměrování na tuto stránku',
+'pageinfo-redirects-name' => 'Počet přesměrování na tuto stránku',
 'pageinfo-subpages-name' => 'Podstránky této stránky',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|přesměrování}}; $3 {{PLURAL:$3|nepřesměrování}})',
 'pageinfo-firstuser' => 'Zakladatel stránky',
@@ -3835,7 +3834,7 @@ Platnost tohoto potvrzovacího kódu vyprší $4.',
 'confirmemail_body_set' => 'Někdo (patrně vy, z IP adresy $1) nastavil e-mailovou adresu
 účtu „$2“ na {{grammar:6sg|{{SITENAME}}}} na tuto adresu.
 
-Pokud si přejete znovu aktivovat e-mailové funkce na
+Pokud si přejete aktivovat e-mailové funkce na
 {{grammar:6sg|{{SITENAME}}}}, tak pro potvrzení, že tato adresa opravdu
 patří vám, přejděte svým internetovým prohlížečem na následující adresu:
 
@@ -4259,5 +4258,20 @@ Jinak můžete využít jednoduchý formulář níže. Váš komentář bude př
 
 # Image rotation
 'rotate-comment' => 'Obrázek otočen o $1 {{PLURAL:$1|stupeň|stupně|stupňů}} po směru hodinových ručiček',
+
+# Limit report
+'limitreport-title' => 'Data profilování parseru:',
+'limitreport-cputime' => 'Využití času procesoru',
+'limitreport-cputime-value' => '$1 {{PLURAL:$1|sekunda|sekundy|sekund}}',
+'limitreport-walltime' => 'Využití reálného času',
+'limitreport-walltime-value' => '$1 {{PLURAL:$1|sekunda|sekundy|sekund}}',
+'limitreport-ppvisitednodes' => 'Počet uzlů navštívených preprocesorem',
+'limitreport-ppgeneratednodes' => 'Počet uzlů vygenerovaných preprocesorem',
+'limitreport-postexpandincludesize' => 'Velikost vložení po expanzi',
+'limitreport-postexpandincludesize-value' => '$1/$2 bajtů',
+'limitreport-templateargumentsize' => 'Velikost argumentů šablon',
+'limitreport-templateargumentsize-value' => '$1/$2 bajtů',
+'limitreport-expansiondepth' => 'Největší hloubka expanze',
+'limitreport-expensivefunctioncount' => 'Počet náročných funkcí parseru',
 
 );

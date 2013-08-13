@@ -520,10 +520,9 @@ An administrador na iyo an nagkandado kaini nagpahayag kaining kapaliwanagan: "$
 'virus-unknownscanner' => 'bakong bistadong antivirus:',
 
 # Login and logout pages
-'logouttext' => "'''Ika po sa ngunyan nakaluwas na.'''
+'logouttext' => "'''Ika ngunyan nakaluwas na.'''
 
-Ika makakadagos pa sa paggamit kan {{SITENAME}} na dai nagpapabisto, o ika <span class='plainlinks'>[$1 Maglaog giraray]</span> bilang pareho o bilang ibang paragamit.
-Giromdoma na an ibang mga pahina mapuwedeng padagos na magpapahiling siring baga na kun ika garo yaon man sana sa laog, sagkod na saimong malinigan mo an sarayan sa kilyawan.",
+Tandai tabi na an nagkapirang mga pahina puwedeng maipagpapadagos na ipagpapahiling siring sa ika baga yaon sa laog pa, sagkod na maiklarado an saimong pankilyaw na kaaganan.",
 'welcomeuser' => 'Marhayong pag-abot, $1!',
 'welcomecreation-msg' => 'An saimong panindog pinagmukna na.
 Dae malingaw na liwaton an saimong [[Special:Preferences|{{SITENAME}} mga kamuyahan]].',
@@ -570,7 +569,7 @@ Dae malingaw na liwaton an saimong [[Special:Preferences|{{SITENAME}} mga kamuya
 'createacct-emailoptional' => 'E-surat na estada (opsyonal)',
 'createacct-email-ph' => 'Pakikaag an saimong e-surat na estada',
 'createacct-another-email-ph' => 'Ikaag an estada kan e-surat',
-'createaccountmail' => 'Gumamit nin sarong random na temporaryong sekretong panlaog asin ipadara ini sa adres kan e-surat na pinaghaya sa ibaba',
+'createaccountmail' => 'Gumamit nin sarong temporaryong pampurak na pasa-taramon asin ipadara ini sa pinagsambit na estada kan e-surat',
 'createacct-realname' => 'Totoong pangaran (opsyonal)',
 'createaccountreason' => 'Rason:',
 'createacct-reason' => 'Rason',
@@ -1370,10 +1369,10 @@ An saimong e-surat na adres dae ipagbuyagyag kunsoarin na an ibang paragamit mak
 'userrights-no-interwiki' => 'Ika mayo tabing permkso na magliwat sa paragamit na karapatan sa ibang wikis.',
 'userrights-nodatabase' => 'An datos-sarayan $1 bakong eksistido o bakong lokal.',
 'userrights-nologin' => 'Ika kaipuhan na [[Special:UserLogin|maglaog ka]] na igwa nin panindog na administrador bago ka makapagtao nin karapatan sa paragamit.',
-'userrights-notallowed' => 'An saimong panindog mayo tabi nin permiso na magdagdag o maghale nin karapatan kan mga paragamit.',
+'userrights-notallowed' => 'Ika mayo tabing permiso na magdugang o magtangkas nin mga katanosan kan paragamit.',
 'userrights-changeable-col' => 'Mga grupo na mapuwede mong baguhon',
 'userrights-unchangeable-col' => 'Mga grupo na dae mo mapuwedeng baguhon',
-'userrights-conflict' => 'Kumplikto sa katanosan nin paragamit! Pakigibo giraray kan saimong mga kaliwatan.',
+'userrights-conflict' => 'Kumplikto sa mga kaliwatan nin mga katanosan kan paragamit! Tabi man pakirikisa asin kumpirmaron an saimong mga kaliwatan.',
 'userrights-removed-self' => 'Saimong matrayumpong pinagtangkas an sadire mong mga katanosan. Sa siring, ika dae na tabi makakalaog sa pahinang ini.',
 
 # Groups
@@ -2981,13 +2980,13 @@ Ini hurot na pinagkausa nin sarong sugpunan pasiring sa sarong pinagbawal na pan
 'pageinfo-length' => 'Kalabaan kan pahina (yaon sa mga bayta)',
 'pageinfo-article-id' => 'ID kan pahina',
 'pageinfo-language' => 'Lengguwahe kan laog sa pahina',
-'pageinfo-robot-policy' => 'Estado kan makinang parahanap',
-'pageinfo-robot-index' => 'Maihuhukdo',
-'pageinfo-robot-noindex' => 'Dae maihuhukdo',
+'pageinfo-robot-policy' => 'Pinaghuhukdo sa paagi nin mga robot',
+'pageinfo-robot-index' => 'Pinagtutugotan',
+'pageinfo-robot-noindex' => 'Dae pinagtutugotan',
 'pageinfo-views' => 'Numero kan mga patanaw',
 'pageinfo-watchers' => 'Numero kan parabantay nin pahina',
 'pageinfo-few-watchers' => 'Kadikiton kesa $1{{PLURAL:$1|parabantay|mga parabantay}}',
-'pageinfo-redirects-name' => 'Maipalikwat pasiring sa pahina ini',
+'pageinfo-redirects-name' => 'Numero kan mga palikwat kaining pahina',
 'pageinfo-subpages-name' => 'Mga sub-pahina kaining pahina',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|panlikwat|mga panlikwat}}; $3 {{PLURAL:$3|bakong panlikwat|bakong mga panlikwat}})',
 'pageinfo-firstuser' => 'Paramukna nin pahina',

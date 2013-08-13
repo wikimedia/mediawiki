@@ -4184,4 +4184,19 @@ Ce nò, tu puè ausà 'u module facile aqquà sotte. 'U commende tune avène agg
 # Image rotation
 'rotate-comment' => 'Immaggine rotate de $1 {{PLURAL:$1|grade}} in sienze orarie',
 
+# Limit report
+'limitreport-title' => "Analizzatore de le date d'a profilazione:",
+'limitreport-cputime' => "Tiembe de ause d'a CPU",
+'limitreport-cputime-value' => '$1 {{PLURAL:$1|seconde}}',
+'limitreport-walltime' => 'Tiembe de ause in dirette',
+'limitreport-walltime-value' => '$1 {{PLURAL:$1|seconde}}',
+'limitreport-ppvisitednodes' => "Preprocessore d'u cunde de le node 'ndrucate",
+'limitreport-ppgeneratednodes' => "Preprocessore d'u cunde de le node generate",
+'limitreport-postexpandincludesize' => "Espanzione de apprisse ca 'nglude 'a dimenzione",
+'limitreport-postexpandincludesize-value' => '$1/$2 byte',
+'limitreport-templateargumentsize' => "Dimenzione de le argomende d'u template",
+'limitreport-templateargumentsize-value' => '$1/$2 byte',
+'limitreport-expansiondepth' => 'Espanzione massime de profonnetà',
+'limitreport-expensivefunctioncount' => "Analizzatore d'u cunde d'a funzione ca coste assaije",
+
 );

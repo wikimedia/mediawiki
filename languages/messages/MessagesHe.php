@@ -919,6 +919,8 @@ $2',
 'login-abort-generic' => 'הכניסה לחשבון לא הצליחה - היא הופסקה',
 'loginlanguagelabel' => 'שפה: $1',
 'suspicious-userlogout' => 'בקשתכם לצאת מהחשבון נדחתה כיוון שנראה שהיא נשלחה על ידי דפדפן שבור או שרת פרוקסי עם זיכרון מטמון.',
+'createacct-another-realname-tip' => 'השם האמיתי הוא אופציונאלי.
+אם תבחרו לספקו, הוא ישמש לייחוס עבודת המשתמש אליו.',
 
 # Email sending
 'php-mail-error-unknown' => 'שגיאה לא ידועה בפונקציה mail()‎ של PHP',
@@ -3287,7 +3289,7 @@ $2',
 'pageinfo-watchers' => 'מספר העוקבים אחר הדף',
 'pageinfo-few-watchers' => 'פחות מ{{PLURAL:$1|עוקב אחד|־$1 עוקבים}}',
 'pageinfo-redirects-name' => 'מספר ההפניות לדף זה',
-'pageinfo-subpages-name' => 'דפי־משנה של דף זה',
+'pageinfo-subpages-name' => 'מספר דפי־המשנה של דף זה',
 'pageinfo-subpages-value' => '$1 ({{PLURAL:$2|הפניה אחת|$2 הפניות}}; {{PLURAL:$3|דף רגיל אחד|$3 דפים רגילים}})',
 'pageinfo-firstuser' => 'יוצר הדף',
 'pageinfo-firsttime' => 'תאריך יצירת הדף',
@@ -4080,7 +4082,7 @@ $5
 'version-mediahandlers' => 'מציגי מדיה',
 'version-hooks' => 'מבני Hook',
 'version-parser-extensiontags' => 'תגיות של הרחבות מפענח',
-'version-parser-function-hooks' => 'משתנים',
+'version-parser-function-hooks' => 'מבנים של פונקציות מפענח',
 'version-hook-name' => 'שם ה־Hook',
 'version-hook-subscribedby' => 'הפונקציה הרושמת',
 'version-version' => '(גרסה $1)',
@@ -4321,5 +4323,20 @@ $5
 
 # Image rotation
 'rotate-comment' => 'התמונה סובבה {{PLURAL:$1|במעלה אחת|ב֫־$1 מעלות}} בכיוון השעון',
+
+# Limit report
+'limitreport-title' => 'מידע על ביצועי המפענח:',
+'limitreport-cputime' => 'זמן CPU',
+'limitreport-cputime-value' => '{{PLURAL:$1|שנייה|$1 שניות}}',
+'limitreport-walltime' => 'זמן אמיתי',
+'limitreport-walltime-value' => '{{PLURAL:$1|שנייה|$1 שניות}}',
+'limitreport-ppvisitednodes' => 'מספר הצמתים בהם ביקר קדם����־המפענח',
+'limitreport-ppgeneratednodes' => 'מספר הצמתים שיצר קדם����־המפענח',
+'limitreport-postexpandincludesize' => 'גודל הטקסט המוכלל לאחר הפריסה',
+'limitreport-postexpandincludesize-value' => '$1/$2 בתים',
+'limitreport-templateargumentsize' => 'גודל הפרמטרים של התבניות',
+'limitreport-templateargumentsize-value' => '$1/$2 בתים',
+'limitreport-expansiondepth' => 'עומק הפריסה הגבוה ביותר',
+'limitreport-expensivefunctioncount' => 'מספר פונקציות המפענח שגוזלות משאבים',
 
 );

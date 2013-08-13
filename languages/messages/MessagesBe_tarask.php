@@ -3136,8 +3136,8 @@ $2',
 'pageinfo-article-id' => 'Ідэнтыфікатар старонкі',
 'pageinfo-language' => 'Мова зьместу старонкі',
 'pageinfo-robot-policy' => 'Індэксацыя пашукавікамі',
-'pageinfo-robot-index' => 'Індэксуецца',
-'pageinfo-robot-noindex' => 'Не індэксуецца',
+'pageinfo-robot-index' => 'Дазволеная',
+'pageinfo-robot-noindex' => 'Не дазволеная',
 'pageinfo-views' => 'Колькасьць праглядаў',
 'pageinfo-watchers' => 'Колькасьць назіральнікаў і назіральніц',
 'pageinfo-few-watchers' => 'Менш за $1 {{PLURAL:$1|назіральніка|назіральнікаў}}',
@@ -4125,5 +4125,8 @@ MediaWiki распаўсюджваецца з надзеяй, што будзе 
 
 # Image rotation
 'rotate-comment' => 'Выява павернутая на $1{{PLURAL:$1|°}} па гадзіньнікавай стрэлцы',
+
+# Limit report
+'limitreport-title' => 'Зьвесткі прафіляваньня парсэра:',
 
 );

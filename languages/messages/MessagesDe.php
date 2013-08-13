@@ -966,6 +966,8 @@ Bitte warte, bevor du es erneut probierst.',
 'login-abort-generic' => 'Deine Anmeldung war nicht erfolgreich – Abgebrochen',
 'loginlanguagelabel' => 'Sprache: $1',
 'suspicious-userlogout' => 'Deine Abmeldeanfrage wurde verweigert, da sie vermutlich von einem defekten Browser oder einem Cache-Proxy gesendet wurde.',
+'createacct-another-realname-tip' => 'Der bürgerliche Name ist optional.
+Wenn du ihn angibst, wird er für die Zuordnung der Beiträge verwendet.',
 
 # Email sending
 'php-mail-error-unknown' => 'Unbekannter Fehler mit der Funktion mail() von PHP',
@@ -1933,7 +1935,7 @@ Um ein '''Bild''' in einer Seite zu verwenden, nutze einen Link in der folgenden
 'large-file' => 'Die Dateigröße sollte nach Möglichkeit $1 nicht überschreiten. Diese Datei ist $2 groß.',
 'largefileserver' => 'Die Datei ist größer als die vom Server eingestellte Maximalgröße.',
 'emptyfile' => 'Die hochgeladene Datei ist leer. Der Grund kann ein Tippfehler im Dateinamen sein. Bitte kontrolliere, ob du die Datei wirklich hochladen willst.',
-'windows-nonascii-filename' => 'Dieses Wiki unterstützt keine Dateinamen die Sonderzeichen enthalten.',
+'windows-nonascii-filename' => 'Dieses Wiki unterstützt keine Dateinamen, die Sonderzeichen enthalten.',
 'fileexists' => 'Eine Datei dieses Namens ist bereits vorhanden. Bitte prüfe <strong>[[:$1]]</strong>, sofern du dir nicht sicher bist, ob du sie ändern möchtest.
 [[$1|thumb]]',
 'filepageexists' => 'Eine Beschreibungsseite wurde bereits als <strong>[[:$1]]</strong> erstellt, es ist aber keine Datei mit diesem Namen vorhanden.
@@ -4286,5 +4288,23 @@ Anderenfalls kannst du auch das untenstehende einfache Formular nutzen. Dein Kom
 
 # Image rotation
 'rotate-comment' => 'Bild um $1 {{PLURAL:$1|Grad}} im Uhrzeigersinn gedreht',
+
+# Limit report
+'limitreport-title' => 'Parser-Profiling-Daten:',
+'limitreport-cputime' => 'CPU-Zeit-Nutzung',
+'limitreport-cputime-value' => '{{PLURAL:$1|Eine Sekunde|$1 Sekunden}}',
+'limitreport-walltime' => 'Echtzeitnutzung',
+'limitreport-walltime-value' => '{{PLURAL:$1|Eine Sekunde|$1 Sekunden}}',
+'limitreport-ppvisitednodes' => 'Besuchte Knotenanzahl des Präprozessors',
+'limitreport-ppvisitednodes-value' => '$1/$2',
+'limitreport-ppgeneratednodes' => 'Erzeugte Knotenanzahl des Präprozessors',
+'limitreport-ppgeneratednodes-value' => '$1/$2',
+'limitreport-postexpandincludesize' => 'Einbindungsgröße nach dem Expandieren',
+'limitreport-postexpandincludesize-value' => '$1/$2 Bytes',
+'limitreport-templateargumentsize' => 'Vorlagenargumentgröße',
+'limitreport-templateargumentsize-value' => '$1/$2 Bytes',
+'limitreport-expansiondepth' => 'Höchste Expansionstiefe',
+'limitreport-expansiondepth-value' => '$1/$2',
+'limitreport-expensivefunctioncount' => 'Anzahl aufwändiger Parserfunktionen',
 
 );

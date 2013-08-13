@@ -37,6 +37,7 @@
  * @author Reedy
  * @author Remember the dot
  * @author Sinopeus
+ * @author Tifa93
  * @author Urhixidur
  * @author ZaDiak
  * @author Απεργός
@@ -4120,5 +4121,8 @@ $5
 
 # Image rotation
 'rotate-comment' => 'Η εικόνα περιστράφηκε $1 {{PLURAL:$1| μοίρα|μοίρες}} δεξιόστροφα',
+
+# Limit report
+'limitreport-cputime' => 'Χρόνος χρήσης CPU',
 
 );

@@ -353,13 +353,29 @@ One of the set: {{msg-mw|Jan}}, {{msg-mw|Feb}}, {{msg-mw|Mar}}, {{msg-mw|Apr}}, 
 'december-date' => 'A date in the Gregorian month of December. $1 is the numerical date, for example "23".',
 
 # Categories related messages
-'pagecategories' => 'Used in the categories section of pages. Is followed by a colon and a list of categories.',
-'category_header' => 'In category description page',
+'pagecategories' => 'Used in the categories section of pages.
+
+Followed by a colon and a list of categories.
+
+Parameters:
+* $1 - number of categories',
+'category_header' => 'In category description page. Parameters:
+* $1 - category name
+See also:
+* {{msg-mw|Category-media-header}}',
 'subcategories' => 'Used as a header on category pages that have subcategories.
 {{Identical|Subcategory}}',
-'category-media-header' => 'In category description page',
+'category-media-header' => 'In category description page. Parameters:
+* $1 - category name
+See also:
+* {{msg-mw|Category header}}',
 'category-empty' => 'The text displayed in category page when that category is empty',
-'hidden-categories' => 'Used in the categories section of pages. Is followed by a colon and a list of categories.',
+'hidden-categories' => 'Used in the categories section of pages.
+
+Followed by a colon and a list of categories.
+
+Parameters:
+* $1 - number of hidden categories',
 'hidden-category-category' => 'Name of the [[mw:Help:Tracking categories|tracking category]] where hidden categories will be listed.',
 'category-subcat-count' => 'This message is displayed at the top of a category page showing the number of pages in the category.
 
@@ -556,7 +572,9 @@ See also:
 'create' => 'The text on the tab of the edit form on unexisting pages starts editing them.
 
 {{Identical|Create}}',
-'editthispage' => 'This is the "edit" link as used in the Cologne Blue skin, at the bottom of the page. See {{msg|create-this-page}} for when the page does not exist.',
+'editthispage' => 'This is the "edit" link as used in the Cologne Blue skin, at the bottom of the page.
+
+See {{msg-mw|Create-this-page}} for when the page does not exist.',
 'create-this-page' => 'In the Cologne Blue skin this is the text for the link leading to the edit form on pages that have not yet been created, at the bottom of the page. See {{msg-mw|editthispage}} for when the page already exists.
 {{Identical|Createpage}}',
 'delete' => 'Name of the Delete tab shown for admins. Should be in the infinitive mood.
@@ -569,8 +587,12 @@ See also:
 'deletethispage' => 'In the Cologne Blue skin this is the text for link to delete the page in admin view, at the bottom of the page.
 {{Identical|Delete this page}}',
 'undeletethispage' => 'In the Cologne Blue skin this is the text for link to undelete the page in admin view, at the bottom of the page.',
-'undelete_short' => "It is tab label. It's really can be named ''nstab-undelete''.",
-'viewdeleted_short' => 'Tab label for the undelete button when the user has permission to view the deleted history but not undelete.',
+'undelete_short' => "It is tab label. It's really can be named ''nstab-undelete''. Parameters:
+* $1 - number of edits",
+'viewdeleted_short' => 'Tab label for the undelete button when the user has permission to view the deleted history but not undelete.
+
+Parameters:
+* $1 - number of edits',
 'protect' => 'Name of protect tab displayed for admins. Should be in the infinitive mood.
 
 See also:
@@ -639,7 +661,8 @@ Parameters:
 * $2 - time
 See also:
 * {{msg-mw|Lastmodifiedatby}}',
-'viewcount' => 'Used as page-view counter.',
+'viewcount' => 'Used as page-view counter. Parameters:
+* $1 - number of pageviews',
 'protectedpage' => "This message is displayed when trying to edit a page you can't edit because it has been protected.
 
 This message is the title for the message {{msg-mw|protectedpagetext}}.",
@@ -701,7 +724,9 @@ See also:
 * {{msg-mw|Accesskey-n-mainpage}}
 * {{msg-mw|Tooltip-n-mainpage}}
 {{Identical|Main page}}',
-'mainpage-description' => 'The same as {{msg|mainpage|pl=yes}}, used as link text on [[MediaWiki:Sidebar]]. This makes it possible to the change the link destination (the message "mainpage") without changing the link text or without disabling translations.
+'mainpage-description' => 'The same as {{msg-mw|mainpage}}, used as link text on [[MediaWiki:Sidebar]].
+
+This makes it possible to the change the link destination (the message "mainpage") without changing the link text or without disabling translations.
 
 See also:
 * {{msg-mw|Mainpage-description}}
@@ -737,8 +762,18 @@ See also:
 * $1 - a list of groups
 * $2 - the number of groups",
 
-'versionrequired' => 'This message is not used in the MediaWiki core, but was introduced with the reason that it could be useful for extensions. See also {{msg|versionrequiredtext}}.',
-'versionrequiredtext' => 'This message is not used in the MediaWiki core, but was introduced with the reason that it could be useful for extensions. See also {{msg|versionrequired}}.',
+'versionrequired' => 'This message is not used in the MediaWiki core, but was introduced with the reason that it could be useful for extensions.
+
+Parameters:
+* $1 - MediaWiki version number
+See also:
+* {{msg|versionrequiredtext}}',
+'versionrequiredtext' => 'This message is not used in the MediaWiki core, but was introduced with the reason that it could be useful for extensions.
+
+Parameters:
+* $1 - MediaWiki version number
+See also:
+* {{msg-mw|Versionrequired}}',
 
 'ok' => '{{Identical|OK}}',
 'pagetitle' => "{{Optional}}
@@ -753,6 +788,7 @@ Appears in subtitle
 Parameters:
 * $1 - a link back to the current page: {{FULLURL:{{FULLPAGENAME}}}}',
 'youhavenewmessages' => 'The yellow message appearing when someone edited your user talk page.
+
 The format is: "{{int:youhavenewmessages| [[MediaWiki:Newmessageslink/{{SUBPAGENAME}}|{{int:newmessageslink}}]] |[[MediaWiki:Newmessagesdifflink/{{SUBPAGENAME}}|{{int:newmessagesdifflink}}]]}}"',
 'newmessageslink' => 'This is the first link displayed in an orange rectangle when a user gets a message on his talk page.
 
@@ -785,7 +821,8 @@ Like {{msg-mw|newmessagesdifflink}} but supporting pluralization.
 
 Used in message {{msg-mw|youhavenewmessagesfromusers}} (as parameter $2).
 {{Identical|Last change}}',
-'youhavenewmessagesmulti' => 'The alternative of {{msg|youhavenewmessages}} as used on wikis with a special setup so they can receive the "new message" notice on other wikis as well. Used on [http://www.wikia.com/ Wikia].
+'youhavenewmessagesmulti' => 'The alternative of {{msg-mw|youhavenewmessages}} as used on wikis with a special setup so they can receive the "new message" notice on other wikis as well. Used on [http://www.wikia.com/ Wikia].
+
 The format is: "{{int:youhavenewmessagesmulti| [[MediaWiki:Newmessageslink/{{SUBPAGENAME}}|{{int:newmessageslink}}]]}}"',
 'editsection' => 'Display name of link to edit a section on a content page. Example: [{{MediaWiki:Editsection}}].
 
@@ -1370,8 +1407,8 @@ See also:
 'loginlanguagelabel' => 'Used on [[Special:UserLogin]] if $wgLoginLanguageSelector is true. $1 is a pipe-separated list built from the names that appear in the message {{msg-mw|Loginlanguagelinks}}.
 {{Identical|Language}}',
 'suspicious-userlogout' => 'Used when the logout request looks suspicious, in Special:UserLogout.',
-'createacct-another-realname-tip' => 'Used on the account creation form when creating another user\'s account. Similar to {{mw-msg|prefs-help-realname}}.
-{{Identical|Real name attribution}}',
+'createacct-another-realname-tip' => "Used on the account creation form when creating another user's account. Similar to {{mw-msg|prefs-help-realname}}.
+{{Identical|Real name attribution}}",
 
 # Email sending
 'php-mail-error-unknown' => 'Used as error message when <code>mail()</code> returned empty error message.',
@@ -1571,7 +1608,7 @@ See also:
 * {{msg-mw|Tooltip-preview}}
 {{Identical|Show preview}}',
 'showlivepreview' => 'An edit preview without needing to reload the edit form.',
-'showdiff' => 'Button below the edit page. See also {{msg|showpreview}} and {{msg|savearticle}} for the other buttons.
+'showdiff' => 'Button below the edit page. See also {{msg-mw|Showpreview}} and {{msg-mw|Savearticle}} for the other buttons.
 
 See also:
 * {{msg-mw|Showdiff}}
@@ -1764,8 +1801,9 @@ See also:
 * \$1 is the number of reasons that were found why ''the action'' cannot be performed.",
 'permissionserrorstext-withaction' => 'This message is "with action" version of {{msg-mw|Permissionserrorstext}}.
 
-* $1 is the number of reasons that were found why the action cannot be performed.
-* $2 is one of the action-* messages (for example {{msg|action-edit}}) or other such messages tagged with {{tl|doc-action}} in their documentation.
+Parameters:
+* $1 - the number of reasons that were found why the action cannot be performed
+* $2 - one of the action-* messages (for example {{msg-mw|action-edit}}) or other such messages tagged with {{tl|doc-action}} in their documentation
 
 Please report at [[Support]] if you are unable to properly translate this message. Also see [[bugzilla:14246]] (now closed) for background.',
 'recreate-moveddeleted-warn' => 'Warning shown when creating a page which has already been deleted. See for example [[Test]].',
@@ -2832,7 +2870,9 @@ Parameters:
 'userrights-no-interwiki' => 'Error message when editing user groups',
 'userrights-nodatabase' => 'Error message when editing user groups. "Local" means databases/wikis of the same farm/cluster; that is, meta, enwiki, dewiki, commons, etc are all local databases of the Wikimedia Foundation.
 See [{{canonicalurl:meta:Special:Log|type=rights}} meta:Special:Log?type=rights] for a usage of local databases: username@barwiki',
-'userrights-nologin' => "Error displayed on [[Special:UserRights]] when you aren't logged in. If you are logged in, but don't have the correct permission, you see {{msg|userrights-notallowed|pl=yes}}.",
+'userrights-nologin' => "Error displayed on [[Special:UserRights]] when you aren't logged in.
+
+If you are logged in, but don't have the correct permission, you see {{msg-mw|Userrights-notallowed}}.",
 'userrights-notallowed' => "Error displayed on [[Special:UserRights]] when you don't have the permission.",
 'userrights-changeable-col' => 'Used when editing user groups in [[Special:Userrights]]. The message is the head of a column of group assignements.
 
@@ -3579,8 +3619,9 @@ See also:
 'upload-options' => 'Caption above a section of the [[Special:Upload]] page',
 'watchthisupload' => 'In [[Special:Upload]]',
 'filewasdeleted' => 'This warning is shown when trying to upload a file that does not exist, but has previously been deleted.
+
 Parameters:
-* $1 is a link to the deletion log, with the text from {{msg|deletionlog}}.',
+* $1 - a link to the deletion log, with the text from {{msg-mw|deletionlog}}',
 'filename-bad-prefix' => 'Used as warning in [[Special:Upload]]. Parameters:
 * $1 - prefix
 See also:
@@ -4212,9 +4253,18 @@ See also:
 
 'doubleredirects' => '{{doc-special|DoubleRedirects}}',
 'doubleredirectstext' => 'Shown on top of [[Special:Doubleredirects]]',
-'double-redirect-fixed-move' => 'This is the message in the log when the software (under the username {{msg|double-redirect-fixer}}) updates the redirects after a page move. See also {{msg|fix-double-redirects}}.',
+'double-redirect-fixed-move' => 'This is the message in the log when the software (under the username {{msg-mw|Double-redirect-fixer}}) updates the redirects after a page move.
+
+See also:
+* {{msg-mw|Fix-double-redirects}}',
 'double-redirect-fixed-maintenance' => 'This is the message in the log when the software (under the username {{msg-mw|double-redirect-fixer}}) updates the redirects after running maintenance/fixDoubleRedirects.php. Compare with {{msg-mw|double-redirect-fixed-move}}.',
-'double-redirect-fixer' => "This is the '''username''' of the user who updates the double redirects after a page move. A user is created with this username, so it is perhaps better to not change this message too often. See also {{msg|double-redirect-fixed-move}} and {{msg|fix-double-redirects}}.",
+'double-redirect-fixer' => "This is the '''username''' of the user who updates the double redirects after a page move.
+
+A user is created with this username, so it is perhaps better to not change this message too often.
+
+See also:
+* {{msg-mw|Double-redirect-fixed-move}}
+* {{msg-mw|Fix-double-redirects}}",
 
 'brokenredirects' => '{{doc-special|BrokenRedirects}}',
 'brokenredirectstext' => 'Shown on top of [[Special:BrokenRedirects]].',
@@ -4391,8 +4441,14 @@ The other parts are {{msg-mw|Prevpage}} and {{msg-mw|Nextpage}}.
 'prevpage' => 'Second part of the navigation bar for the special page [[Special:AllPages]] and [[Special:PrefixIndex]]. $1 is a page title. The other parts are {{msg-mw|Allpages}} and {{msg-mw|Nextpage}}.
 
 {{Identical|Previous page}}',
-'allpagesfrom' => 'Option in [[Special:AllPages]]. See also {{msg|allpagesto}}.',
-'allpagesto' => 'Option in [[Special:AllPages]]. See also {{msg|allpagesfrom}}.',
+'allpagesfrom' => 'Option in [[Special:AllPages]].
+
+See also:
+* {{msg-mw|allpagesto}}',
+'allpagesto' => 'Option in [[Special:AllPages]].
+
+See also:
+* {{msg-mw|allpagesfrom}}',
 'allarticles' => 'The page title of [[Special:Allpages]]. When the user limit the list to a certain namespace, {{msg-mw|allinnamespace}} is used instead.
 
 {{Identical|All pages}}',
@@ -4424,10 +4480,10 @@ The other parts are {{msg-mw|Prevpage}} and {{msg-mw|Nextpage}}.
 # Special:Categories
 'categories' => 'The page name of [[Special:Categories]].
 {{Identical|Category}}',
-'categoriespagetext' => "{{doc-important|Do not translate or change links.}}
+'categoriespagetext' => '{{doc-important|Do not translate or change links.}}
 Text displayed in [[Special:Categories]].
 
-In order to translate ''Unused categories'' and ''wanted categories'' see {{msg|unusedcategories}} and {{msg|wantedcategories}}.",
+In order to translate "Unused categories" and "wanted categories" see {{msg-mw|Unusedcategories}} and {{msg-mw|Wantedcategories}}.',
 'categoriesfrom' => 'Used as label for the input box in [[Special:Categories]].
 
 This message follows the fieldset label {{msg-mw|categories}}, and is followed by the input box.',
@@ -4659,7 +4715,13 @@ See also {{msg-mw|addedwatch}}.',
 
 See also:
 * {{msg-mw|Addwatch}}',
-'removedwatchtext' => "After a page has been removed from a user's watchlist by clicking the {{msg|unwatch}} tab at the top of an article, this message appears just below the title of the article. $1 is the title of the article. See also {{msg|removedwatch}} and {{msg|addedwatchtext}}.",
+'removedwatchtext' => "After a page has been removed from a user's watchlist by clicking the {{msg-mw|Unwatch}} tab at the top of an article, this message appears just below the title of the article.
+
+Parameters:
+* $1 - the title of the article
+See also:
+* {{msg-mw|Removedwatch}}
+* {{msg-mw|Addedwatchtext}}",
 'watch' => '{{doc-actionlink}}
 Name of the Watch tab. Should be in the imperative mood.
 
@@ -5227,9 +5289,13 @@ See also:
 * {{msg-mw|Contributions}}
 * {{msg-mw|Accesskey-t-contributions}}
 * {{msg-mw|Tooltip-t-contributions}}",
-'contributions-title' => 'The page title in your browser bar, but not the page title. See also {{msg|contributions}}. Parameter $1 is the username.
+'contributions-title' => '{{Gender}}
+The page title in your browser bar, but not the page title.
 
-{{Gender}}',
+Parameters:
+* $1 - the username
+See also:
+* {{msg-mw|Contributions}}',
 'mycontris' => 'In the personal urls page section - right upper corner.
 
 See also:
@@ -5255,7 +5321,10 @@ See also:
 
 'sp-contributions-newbies' => 'Text of radio button on special page [[Special:Contributions]].',
 'sp-contributions-newbies-sub' => "Note at the top of the page of results for a search on [[Special:Contributions]] where 'Show contributions for new accounts only' has been selected.",
-'sp-contributions-newbies-title' => 'The page title in your browser bar, but not the page title. See also {{msg|sp-contributions-newbies-sub}}.',
+'sp-contributions-newbies-title' => 'The page title in your browser bar, but not the page title.
+
+See also:
+* {{msg-mw|Sp-contributions-newbies-sub}}',
 'sp-contributions-blocklog' => 'Used as a display name for a link to the block log on for example [[Special:Contributions/Mediawiki default]]
 
 Used as link title in [[Special:Contributions]] and in [[Special:DeletedContributions]].
@@ -6114,8 +6183,18 @@ See also:
 {{Identical|Reason}}',
 'revertmove' => '{{Identical|Revert}}',
 'delete_and_move' => 'Button text on the move page when the target page already exists.',
-'delete_and_move_text' => 'Used when moving a page, but the destination page already exists and needs deletion. This message is to confirm that you really want to delete the page. See also {{msg|delete and move confirm}}.',
-'delete_and_move_confirm' => 'Used when moving a page, but the destination page already exists and needs deletion. This message is for a checkbox to confirm that you really want to delete the page. See also {{msg|delete and move text}}.',
+'delete_and_move_text' => 'Used when moving a page, but the destination page already exists and needs deletion.
+
+This message is to confirm that you really want to delete the page.
+
+See also:
+* {{msg-mw|delete and move confirm}}',
+'delete_and_move_confirm' => 'Used when moving a page, but the destination page already exists and needs deletion.
+
+This message is for a checkbox to confirm that you really want to delete the page.
+
+See also:
+* {{msg-mw|Delete and move text}}',
 'delete_and_move_reason' => 'Shown as reason in content language in the deletion log. Parameter:
 * $1 - The page name for which this page was deleted.',
 'selfmove' => 'Used as error message when moving page.
@@ -6609,7 +6688,7 @@ See also:
 * {{msg-mw|Addsection}}
 * {{msg-mw|Accesskey-ca-addsection}}
 * {{msg-mw|Tooltip-ca-addsection}}',
-'tooltip-ca-viewsource' => 'Tooltip displayed when hovering over the {{msg|viewsource}} tab.
+'tooltip-ca-viewsource' => 'Tooltip displayed when hovering over the {{msg-mw|Viewsource}} tab.
 
 See also:
 * {{msg-mw|Viewsource}}
@@ -6659,7 +6738,7 @@ See also:
 * {{msg-mw|Accesskey-ca-watch}}
 * {{msg-mw|Tooltip-ca-watch}}
 {{Identical|Add this page to your watchlist}}',
-'tooltip-ca-unwatch' => 'Tooltip shown when hovering over the {{msg|unwatch}} tab.
+'tooltip-ca-unwatch' => 'Tooltip shown when hovering over the {{msg-mw|Unwatch}} tab.
 
 See also:
 * {{msg-mw|Unwatch}}
@@ -6708,7 +6787,7 @@ See also:
 * {{msg-mw|Portal-url}}
 * {{msg-mw|Accesskey-n-portal}}
 * {{msg-mw|Tooltip-n-portal}}',
-'tooltip-n-currentevents' => 'Tooltip shown when hovering over {{msg|currentevents}} in the sidebar.
+'tooltip-n-currentevents' => 'Tooltip shown when hovering over {{msg-mw|currentevents}} in the sidebar.
 
 See also:
 * {{msg-mw|Currentevents}}
@@ -6733,7 +6812,7 @@ See also:
 * {{msg-mw|Help}}
 * {{msg-mw|Accesskey-n-help}}
 * {{msg-mw|Tooltip-n-help}}",
-'tooltip-t-whatlinkshere' => 'Tooltip shown when hovering over the {{msg|whatlinkshere}} message in the toolbox.
+'tooltip-t-whatlinkshere' => 'Tooltip shown when hovering over the {{msg-mw|whatlinkshere}} message in the toolbox.
 
 See also:
 * {{msg-mw|Whatlinkshere}}
@@ -6757,7 +6836,7 @@ See also:
 * {{msg-mw|Feed-atom}}
 * {{msg-mw|Accesskey-feed-atom}}
 * {{msg-mw|Tooltip-feed-atom}}',
-'tooltip-t-contributions' => 'Tooltip shown when hovering over {{msg|contributions}} in the toolbox.
+'tooltip-t-contributions' => 'Tooltip shown when hovering over {{msg-mw|Contributions}} in the toolbox.
 
 See also:
 * {{msg-mw|Contributions}}
@@ -6803,7 +6882,7 @@ See also:
 * {{msg-mw|Accesskey-ca-nstab-main}}
 * {{msg-mw|Tooltip-ca-nstab-main}}
 {{Identical|Content page}}',
-'tooltip-ca-nstab-user' => 'Tooltip shown when hovering over {{msg|nstab-user}} (User namespace tab).
+'tooltip-ca-nstab-user' => 'Tooltip shown when hovering over {{msg-mw|Nstab-user}} (User namespace tab).
 
 No GENDER-Support for performance reason.
 
@@ -6828,7 +6907,7 @@ See also:
 * {{msg-mw|Nstab-project}}
 * {{msg-mw|Accesskey-ca-nstab-project}}
 * {{msg-mw|Tooltip-ca-nstab-project}}',
-'tooltip-ca-nstab-image' => 'Tooltip shown when hovering over {{msg|nstab-image}} (File namespace tab).
+'tooltip-ca-nstab-image' => 'Tooltip shown when hovering over {{msg-mw|Nstab-image}} (File namespace tab).
 
 See also:
 * {{msg-mw|Nstab-image}}
@@ -6846,13 +6925,13 @@ See also:
 * {{msg-mw|Nstab-template}}
 * {{msg-mw|Accesskey-ca-nstab-template}}
 * {{msg-mw|Tooltip-ca-nstab-template}}',
-'tooltip-ca-nstab-help' => 'Tootip shown when hovering over the {{msg|nstab-help}} tab in the Help namespace.
+'tooltip-ca-nstab-help' => 'Tooltip shown when hovering over the {{msg-mw|Nstab-help}} tab in the Help namespace.
 
 See also:
 * {{msg-mw|Nstab-help}}
 * {{msg-mw|Accesskey-ca-nstab-help}}
 * {{msg-mw|Tooltip-ca-nstab-help}}',
-'tooltip-ca-nstab-category' => 'Tooltip shown when hovering over the {{msg|nstab-category}} tab.
+'tooltip-ca-nstab-category' => 'Tooltip shown when hovering over the {{msg-mw|Nstab-category}} tab.
 
 See also:
 * {{msg-mw|Nstab-category}}
@@ -6884,7 +6963,7 @@ See also:
 * {{msg-mw|Showdiff}}
 * {{msg-mw|Accesskey-diff}}
 * {{msg-mw|Tooltip-diff}}',
-'tooltip-compareselectedversions' => 'Tooltip of {{msg|compareselectedversions}} (which is used as button in history pages).
+'tooltip-compareselectedversions' => 'Tooltip of {{msg-mw|Compareselectedversions}} (which is used as button in history pages).
 
 See also:
 * {{msg-mw|Compareselectedversions}}
@@ -9270,20 +9349,34 @@ Parameters:
 
 # Limit report
 'limitreport-title' => 'Title for the preview limit report table.',
-'limitreport-cputime' => 'Label for the "CPU time usage" row in the limit report table',
-'limitreport-cputime-value' => 'Format for the "CPU time usage" value in the limit report table.
-* $1 is the time usage in seconds',
-'limitreport-walltime' => 'Label for the "Real time usage" row in the limit report table',
-'limitreport-walltime-value' => 'Format for the "Real time usage" value in the limit report table.
-* $1 is the time usage in seconds',
+'limitreport-cputime' => 'Label for the "CPU time usage" row in the limit report table.
+
+See also:
+* {{msg-mw|Limitreport-walltime}}',
+'limitreport-cputime-value' => 'Format for the "CPU time usage" value in the limit report table. Parameters:
+* $1 - the time usage in seconds
+{{Identical|Second}}',
+'limitreport-walltime' => 'Label for the "Real time usage" row in the limit report table.
+
+See also:
+* {{msg-mw|Limitreport-cputime}}',
+'limitreport-walltime-value' => 'Format for the "Real time usage" value in the limit report table. Parameters:
+* $1 - the time usage in seconds
+{{Identical|Second}}',
 'limitreport-ppvisitednodes' => 'Label for the "Preprocessor visited node count" row in the limit report table',
-'limitreport-ppvisitednodes-value' => 'Format for the "Preprocessor visited node count" row in the limit report table.
-* $1 is the usage
-* $2 is the maximum',
+'limitreport-ppvisitednodes-value' => '{{optional}}
+Format for the "Preprocessor visited node count" row in the limit report table.
+
+Parameters:
+* $1 - the usage
+* $2 - the maximum',
 'limitreport-ppgeneratednodes' => 'Label for the "Preprocessor generated node count" row in the limit report table',
-'limitreport-ppgeneratednodes-value' => 'Format for the "Preprocessor generated node count" row in the limit report table.
-* $1 is the usage
-* $2 is the maximum',
+'limitreport-ppgeneratednodes-value' => '{{optional}}
+Format for the "Preprocessor generated node count" row in the limit report table.
+
+Parameters:
+* $1 - the usage
+* $2 - the maximum',
 'limitreport-postexpandincludesize' => 'Label for the "Post-expand include size" row in the limit report table',
 'limitreport-postexpandincludesize-value' => 'Format for the "Post-expand include size" row in the limit report table.
 * $1 is the usage in bytes
@@ -9293,12 +9386,18 @@ Parameters:
 * $1 is the usage in bytes
 * $2 is the maximum',
 'limitreport-expansiondepth' => 'Label for the "Highest expansion depth" row in the limit report table',
-'limitreport-expansiondepth-value' => 'Format for the "Highest expansion depth" row in the limit report table.
-* $1 is the depth
-* $2 is the maximum',
+'limitreport-expansiondepth-value' => '{{optional}}
+Format for the "Highest expansion depth" row in the limit report table.
+
+Parameters:
+* $1 - the depth
+* $2 - the maximum',
 'limitreport-expensivefunctioncount' => 'Label for the "Expensive parser function count" row in the limit report table',
-'limitreport-expensivefunctioncount-value' => 'Format for the "Expensive parser function count" row in the limit report table.
-* $1 is the usage
-* $2 is the maximum',
+'limitreport-expensivefunctioncount-value' => '{{optional}}
+Format for the "Expensive parser function count" row in the limit report table.
+
+Parameters:
+* $1 - the usage
+* $2 - the maximum',
 
 );

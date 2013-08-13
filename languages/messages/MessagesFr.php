@@ -4339,4 +4339,19 @@ Sinon, vous pouvez utiliser le formulaire simplifié ci-dessous. Votre commentai
 # Image rotation
 'rotate-comment' => "Image pivotée de $1 {{PLURAL:$1|degré|degrés}} dans le sens des aiguilles d'une montre",
 
+# Limit report
+'limitreport-title' => 'Données d’optimisation de l’analyseur :',
+'limitreport-cputime' => 'Temps CPU d’utilisation',
+'limitreport-cputime-value' => '$1 {{PLURAL:$1|seconde|secondes}}',
+'limitreport-walltime' => 'Temps réel d’utilisation',
+'limitreport-walltime-value' => '$1 {{PLURAL:$1|seconde|secondes}}',
+'limitreport-ppvisitednodes' => 'Nombre de nœuds de préprocesseur visités',
+'limitreport-ppgeneratednodes' => 'Nombre de nœuds de préprocesseur générés',
+'limitreport-postexpandincludesize' => 'Taille d’inclusion après expansion',
+'limitreport-postexpandincludesize-value' => '$1/$2 octets',
+'limitreport-templateargumentsize' => 'Taille de l’argument du modèle',
+'limitreport-templateargumentsize-value' => '$1/$2 octets',
+'limitreport-expansiondepth' => 'Plus grande profondeur d’expansion',
+'limitreport-expensivefunctioncount' => 'Nombre de fonctions d’analyse coûteuses',
+
 );

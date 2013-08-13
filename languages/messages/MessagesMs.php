@@ -625,7 +625,7 @@ Pentadbir yang menguncinya memberikan penjelasan yang berikut: "$3".',
 # Login and logout pages
 'logouttext' => "'''Anda telah log keluar.'''
 
-Anda boleh terus menggunakan {{SITENAME}} sebagai pengguna tanpa nama, atau anda boleh <span class='plainlinks'>[$1 log masuk sekali lagi]</span> sebagai pengguna lain. Anda boleh membersihkan cache pelayar web anda sekiranya terdapat laman yang memaparkan seolah-olah anda masih log masuk.",
+Sila ingat bahawa sesetengah halaman mungkin masih dipaparkan seolah-olah anda masih log masuk hingga anda memadamkan cache pelayar anda.",
 'welcomeuser' => 'Selamat datang, $1!',
 'welcomecreation-msg' => 'Akaun anda telah dibuka.
 Jangan lupa untuk mengubah [[Special:Preferences|keutamaan anda di {{SITENAME}}]].',
@@ -672,7 +672,7 @@ Jangan lupa untuk mengubah [[Special:Preferences|keutamaan anda di {{SITENAME}}]
 'createacct-emailoptional' => 'Alamat e-mel (pilihan)',
 'createacct-email-ph' => 'Isikan alamt e-mel anda',
 'createacct-another-email-ph' => 'Masukkan alamat e-mel',
-'createaccountmail' => 'Gunakan kata laluan rawak yang sementara dan hantarnya ke alamat e-mel yang dinyatakan di bawah',
+'createaccountmail' => 'Gunakan kata laluan rawak yang sementara dan hantarnya ke alamat e-mel yang dinyatakan',
 'createacct-realname' => 'Nama sebenar (pilihan)',
 'createaccountreason' => 'Sebab:',
 'createacct-reason' => 'Sebab',
@@ -1461,7 +1461,7 @@ Tindakan ini tidak boleh dibatalkan.',
 'userrights-changeable-col' => 'Kumpulan yang anda boleh ubah',
 'userrights-unchangeable-col' => 'Kumpulan yang anda tak boleh ubah',
 'userrights-irreversible-marker' => '$1*',
-'userrights-conflict' => 'Hak-hak pengguna bercanggah! Sila terapkan pengubahan anda sekali lagi.',
+'userrights-conflict' => 'Percanggahan perubahan hak pengguna! Sila semak dan sahkan perubahan anda.',
 'userrights-removed-self' => 'Anda telah berjaya menggugurkan hak-hak sendiri. Oleh yang demikian, anda tidak boleh mengakses halaman ini lagi.',
 
 # Groups
