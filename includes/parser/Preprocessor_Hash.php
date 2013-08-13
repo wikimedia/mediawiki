@@ -302,11 +302,11 @@ class Preprocessor_Hash implements Preprocessor {
 						$i = $lengthText;
 					} else {
 						// Search backwards for leading whitespace
-						$wsStart = $i ? ( $i - strspn( $revText, ' ', $lengthText - $i ) ) : 0;
+						$wsStart = $i ? ( $i - strspn( $revText, " \t", $lengthText - $i ) ) : 0;
 
 						// Search forwards for trailing whitespace
 						// $wsEnd will be the position of the last space (or the '>' if there's none)
-						$wsEnd = $endPos + 2 + strspn( $text, ' ', $endPos + 3 );
+						$wsEnd = $endPos + 2 + strspn( $text, " \t", $endPos + 3 );
 
 						// Keep looking forward as long as we're finding more
 						// comments.
@@ -316,7 +316,7 @@ class Preprocessor_Hash implements Preprocessor {
 							if ( $c === false ) {
 								break;
 							}
-							$c = $c + 2 + strspn( $text, ' ', $c + 3 );
+							$c = $c + 2 + strspn( $text, " \t", $c + 3 );
 							$comments[] = array( $wsEnd + 1, $c );
 							$wsEnd = $c;
 						}
@@ -333,7 +333,7 @@ class Preprocessor_Hash implements Preprocessor {
 							$wsLength = $i - $wsStart;
 							if ( $wsLength > 0
 								&& $accum->lastNode instanceof PPNode_Hash_Text
-								&& substr( $accum->lastNode->value, -$wsLength ) === str_repeat( ' ', $wsLength ) )
+								&& strspn( $accum->lastNode->value, " \t", -$wsLength ) === $wsLength )
 							{
 								$accum->lastNode->value = substr( $accum->lastNode->value, 0, -$wsLength );
 							}
