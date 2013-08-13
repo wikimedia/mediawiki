@@ -1352,6 +1352,8 @@ Regression with preformatted in <center>
 
 !! end
 
+# Expected output in the following test is not really expected (there should be
+# <pre> in the output) -- it's only testing for well-formedness.
 !! test
 Bug 6200: Preformatted in <blockquote>
 !! input
@@ -1360,53 +1362,7 @@ Bug 6200: Preformatted in <blockquote>
 </blockquote>
 !! result
 <blockquote>
-<pre>Blah
-</pre>
-</blockquote>
-
-!! end
-
-!! test
-Bug 51086: Double newlines in blockquotes should be turned into paragraphs
-!! input
-<blockquote>
-Foo
-
-Bar
-</blockquote>
-!! result
-<blockquote>
-<p>Foo
-</p><p>Bar
-</p>
-</blockquote>
-
-!! end
-
-!! test
-Bug 15491: <ins>/<del> in blockquote
-!! input
-<blockquote>
-Foo <del>bar</del> <ins>baz</ins> quux
-</blockquote>
-!! result
-<blockquote>
-<p>Foo <del>bar</del> <ins>baz</ins> quux
-</p>
-</blockquote>
-
-!! end
-
-# Note that the p-wrapping is newline sensitive, which could be
-# considered a bug: tidy will wrap only the 'Foo' in the example
-# below in a <p> tag. (see comment 23-25 of bug #6200)
-!! test
-Bug 15491: <ins>/<del> in blockquote (2)
-!! input
-<blockquote>Foo <del>bar</del> <ins>baz</ins> quux
-</blockquote>
-!! result
-<blockquote>Foo <del>bar</del> <ins>baz</ins> quux
+ Blah
 </blockquote>
 
 !! end
@@ -1921,8 +1877,7 @@ c
 </pre>
 </center>
 <blockquote>
-<pre>foo
-</pre>
+ foo
 </blockquote>
 <table><tr><td>
 <pre>foo
@@ -13523,6 +13478,9 @@ __NOEDITSECTION__
 </p>
 !! end
 
+# Expected output in the following test is not necessarily expected (there
+# should probably be <p> tags inside the <blockquote> in the output) -- it's
+# only testing for well-formedness.
 !! test
 Bug 6200: blockquotes and paragraph formatting
 !! input
@@ -13535,8 +13493,7 @@ bar
  baz
 !! result
 <blockquote>
-<p>foo
-</p>
+foo
 </blockquote>
 <p>bar
 </p>
@@ -14216,6 +14173,8 @@ B</strong>
 # Bug 6200: <blockquote> should behave like <div> with respect to line breaks
 !! test
 Bug 6200: paragraphs inside blockquotes (no extra line breaks)
+!! options
+disabled
 !! input
 <blockquote>Line one
 
@@ -14228,6 +14187,8 @@ Line two</blockquote>
 
 !! test
 Bug 6200: paragraphs inside blockquotes (extra line break on open)
+!! options
+disabled
 !! input
 <blockquote>
 Line one
@@ -14243,6 +14204,8 @@ Line two</blockquote>
 
 !! test
 Bug 6200: paragraphs inside blockquotes (extra line break on close)
+!! options
+disabled
 !! input
 <blockquote>Line one
 
@@ -14258,6 +14221,8 @@ Line two
 
 !! test
 Bug 6200: paragraphs inside blockquotes (extra line break on open and close)
+!! options
+disabled
 !! input
 <blockquote>
 Line one
