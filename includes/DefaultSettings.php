@@ -1528,6 +1528,15 @@ $wgDBadminpassword = null;
 $wgSearchType = null;
 
 /**
+ * Alternative search types
+ * Sometimes you want to support multiple search engines for testing. This
+ * allows users to select their search engine of choice via url parameters
+ * to Special:Search and the action=search API. If using this, there's no
+ * need to add $wgSearchType to it, that is handled automatically.
+ */
+$wgSearchTypeAlternatives = null;
+
+/**
  * Table name prefix
  */
 $wgDBprefix = '';
