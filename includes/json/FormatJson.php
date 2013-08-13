@@ -90,10 +90,10 @@ class FormatJson {
 	 * @return string|bool: String if successful; false upon failure
 	 */
 	public static function encode( $value, $pretty = false, $escaping = 0 ) {
-		if ( version_compare( PHP_VERSION, '5.4.0', '<' ) ) {
-			return self::encode53( $value, $pretty, $escaping );
+		if ( defined( 'JSON_UNESCAPED_UNICODE' ) ) {
+			return self::encode54( $value, $pretty, $escaping );
 		}
-		return self::encode54( $value, $pretty, $escaping );
+		return self::encode53( $value, $pretty, $escaping );
 	}
 
 	/**
@@ -173,6 +173,8 @@ class FormatJson {
 	 * Adds non-significant whitespace to an existing JSON representation of an object.
 	 * Only needed for PHP < 5.4, which lacks the JSON_PRETTY_PRINT option.
 	 *
+	 * @note Duplicated as JsonFallbackEncoder::prettyPrint().
+	 *
 	 * @param string $json
 	 * @return string
 	 */
@@ -188,14 +190,14 @@ class FormatJson {
 					break;
 				case '[':
 				case '{':
-					$indent++; // falls through
+					++$indent;
+					// falls through
 				case ',':
 					$buf .= $json[$i] . "\n" . str_repeat( '    ', $indent );
 					break;
 				case ']':
 				case '}':
-					$indent--;
-					$buf .= "\n" . str_repeat( '    ', $indent ) . $json[$i];
+					$buf .= "\n" . str_repeat( '    ', --$indent ) . $json[$i];
 					break;
 				case '"':
 					$skip = strcspn( $json, '"', $i + 1 ) + 2;
