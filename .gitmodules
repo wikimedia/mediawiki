@@ -469,3 +469,25 @@
 [submodule "extensions/CirrusSearch"]
 	path = extensions/CirrusSearch
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/CirrusSearch.git
+[submodule "extensions/CreateWiki"]
+	path = extensions/CreateWiki
+	url = https://github.com/Orain/CreateWiki.git
+[submodule "extensions/DPLforum"]
+	path = extensions/DPLforum
+	url = https://git.wikimedia.org/git/mediawiki/extensions/DPLforum.git
+[submodule "extensions/InterwikiMagic"]
+	path = extensions/InterwikiMagic
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/InterwikiMagic.git
+[submodule "extensions/OrainMessages"]
+	path = extensions/OrainMessages
+	url = https://github.com/Orain/OrainMessages.git
+[submodule "skins/filament"]
+	path = skins/filament
+	url = https://github.com/WikiWonders/filament.git
+[submodule "skins/foreground"]
+	path = skins/foreground
+	url = https://github.com/WikiWonders/foreground.git
+[submodule "skins/monaco"]
+	path = skins/monaco
+	url = https://github.com/dantman/monaco-port.git
+
