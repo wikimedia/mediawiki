@@ -93,6 +93,14 @@ if ( !function_exists( 'mb_strrpos' ) ) {
 		return Fallback::mb_strrpos( $haystack, $needle, $offset, $encoding );
 	}
 }
+
+if ( !function_exists( 'json_encode' ) ) {
+	JsonFallback::addGlobals();
+	interface JsonSerializable {
+		public function jsonSerialize();
+	}
+}
+
 /// @endcond
 
 /**
