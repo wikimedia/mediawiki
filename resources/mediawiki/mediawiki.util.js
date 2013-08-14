@@ -109,8 +109,21 @@
 			$tocToggleLink = $( '#togglelink' );
 			// Only add it if there is a TOC and there is no toggle added already
 			if ( $( '#toc' ).length && $tocTitle.length && !$tocToggleLink.length ) {
+				$( '#toc ul:first' )
+					.attr( {
+						'aria-expanded': true,
+						id: 'mw-toc-mainlist'
+					} );
+
 				hideTocCookie = $.cookie( 'mw_hidetoc' );
-					$tocToggleLink = $( '<a href="#" class="internal" id="togglelink"></a>' )
+					$tocToggleLink = $( '<a>' )
+						.attr( {
+							href: '#',
+							id: 'togglelink',
+							role: 'button',
+							'class': 'internal',
+							'aria-controls': 'mw-toc-mainlist'
+						} )
 						.text( mw.msg( 'hidetoc' ) )
 						.click( function ( e ) {
 							e.preventDefault();
@@ -221,28 +234,31 @@
 
 			// This function shouldn't be called if there's no TOC,
 			// but just in case...
-			if ( $tocList.length ) {
-				if ( $tocList.is( ':hidden' ) ) {
-					$tocList.slideDown( 'fast', callback );
-					$toggleLink.text( mw.msg( 'hidetoc' ) );
-					$( '#toc' ).removeClass( 'tochidden' );
-					$.cookie( 'mw_hidetoc', null, {
-						expires: 30,
-						path: '/'
-					} );
-					return true;
-				} else {
-					$tocList.slideUp( 'fast', callback );
-					$toggleLink.text( mw.msg( 'showtoc' ) );
-					$( '#toc' ).addClass( 'tochidden' );
-					$.cookie( 'mw_hidetoc', '1', {
-						expires: 30,
-						path: '/'
-					} );
-					return false;
-				}
-			} else {
+			if ( !$tocList.length ) {
 				return null;
+			}
+			if ( $tocList.is( ':hidden' ) ) {
+				$tocList
+					.slideDown( 'fast', callback )
+					.attr( 'aria-expanded', true );
+				$toggleLink.text( mw.msg( 'hidetoc' ) );
+				$( '#toc' ).removeClass( 'tochidden' );
+				$.cookie( 'mw_hidetoc', null, {
+					expires: 30,
+					path: '/'
+				} );
+				return true;
+			} else {
+				$tocList
+					.slideUp( 'fast', callback )
+					.attr( 'aria-expanded', false );
+				$toggleLink.text( mw.msg( 'showtoc' ) );
+				$( '#toc' ).addClass( 'tochidden' );
+				$.cookie( 'mw_hidetoc', '1', {
+					expires: 30,
+					path: '/'
+				} );
+				return false;
 			}
 		},
 
