@@ -1597,4 +1597,12 @@ CREATE UNIQUE INDEX /*i*/site_ids_type ON /*_*/site_identifiers (si_type, si_key
 CREATE INDEX /*i*/site_ids_site ON /*_*/site_identifiers (si_site);
 CREATE INDEX /*i*/site_ids_key ON /*_*/site_identifiers (si_key);
 
+-- Key-value object store
+CREATE TABLE /*_*/store (
+	-- Key
+	store_key varbinary(255) NOT NULL PRIMARY KEY,
+	-- Value
+	store_value MEDIUMBLOB
+) /*$wgDBTableOptions*/;
+
 -- vim: sw=2 sts=2 et
