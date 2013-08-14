@@ -6982,6 +6982,16 @@ $wgSiteTypes = array(
 $wgCompiledFiles = array();
 
 /**
+ * List of supported key-value stores and their configuration
+ * @since 1.22
+ */
+$wgDataStores = array(
+	'default' => array(
+		'class' => 'SqlDataStore',
+	),
+);
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}
