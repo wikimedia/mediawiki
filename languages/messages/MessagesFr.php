@@ -939,6 +939,8 @@ Veuillez attendre avant d'essayer à nouveau.",
 'login-abort-generic' => 'Votre tentative de connexion a échoué',
 'loginlanguagelabel' => 'Langue : $1',
 'suspicious-userlogout' => "Votre demande de déconnexion a été refusée car il semble qu'elle a été envoyée par un navigateur cassé ou la mise en cache d'un proxy.",
+'createacct-another-realname-tip' => 'Le vrai nom est optionnel.
+Si vous décidez de le fournir, il sera utilisé pour attribuer à l’utilisateur ses travaux.',
 
 # Email sending
 'php-mail-error-unknown' => 'Erreur inconnue dans la fonction mail() de PHP.',

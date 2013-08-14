@@ -706,6 +706,8 @@ Per favor attende ante de probar lo novemente.',
 'login-abort-generic' => 'Apertura de session non succedite - Abortate',
 'loginlanguagelabel' => 'Lingua: $1',
 'suspicious-userlogout' => 'Le requesta de clauder le session ha essite refusate proque illo pare haber essite inviate per un navigator o proxy de cache defectuose.',
+'createacct-another-realname-tip' => 'Le nomine real es optional.
+Si tu opta pro dar lo, isto essera usate pro dar al usator attribution pro su contributiones.',
 
 # Email sending
 'php-mail-error-unknown' => 'Error incognite in le function mail() de PHP',
@@ -4086,5 +4088,12 @@ Si non, tu pote usar le formulario facile hic infra. Tu commento essera addite a
 
 # Image rotation
 'rotate-comment' => 'Imagine rotate de $1 {{PLURAL:$1|grado|grados}} in senso horologic',
+
+# Limit report
+'limitreport-title' => 'Datos de rendimento del analysator syntactic:',
+'limitreport-cputime' => 'Tempore de uso del CPU',
+'limitreport-cputime-value' => '$1 {{PLURAL:$1|secunda|secundas}}',
+'limitreport-walltime' => 'Tempore de uso real',
+'limitreport-walltime-value' => '$1 {{PLURAL:$1|secunda|secundas}}',
 
 );

@@ -934,6 +934,8 @@ Cookieを有効にしていることを確認して、このページを再読�
 'login-abort-generic' => 'ログインに失敗しました - 中止',
 'loginlanguagelabel' => '言語: $1',
 'suspicious-userlogout' => '壊れたブラウザーまたはキャッシュプロキシによって送信された可能性があるため、ログアウト要求は拒否されました。',
+'createacct-another-realname-tip' => '本名は省略できます。
+入力すると、その利用者の著作物の帰属表示に使われます。',
 
 # Email sending
 'php-mail-error-unknown' => 'PHPのmail()関数での不明なエラーです。',
@@ -2329,8 +2331,8 @@ contenttype/subtypeの形式で入力してください (例: <code>image/jpeg</
 'nmembers' => '$1項目',
 'nrevisions' => '$1版',
 'nviews' => '$1回の閲覧',
-'nimagelinks' => '$1ページで使用',
-'ntransclusions' => '$1ページで使用',
+'nimagelinks' => '$1 {{PLURAL:$1|ページ}}で使用',
+'ntransclusions' => '$1 {{PLURAL:$1|ページ}}で使用',
 'specialpage-empty' => '該当するものはありません。',
 'lonelypages' => '孤立しているページ',
 'lonelypagestext' => '以下のページは、{{SITENAME}}の他のページからリンクも参照読み込みもされていません。',

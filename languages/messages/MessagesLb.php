@@ -722,7 +722,7 @@ Dofir kënne Visiteure déi dës IP-Adress benotzen den Ament keng Benotzerkonte
 Dowéinst ass et bis ewell net méiglech, fir déi folgend Funktiounen E-Mailen ze schécken oder ze kréien.',
 'noemailprefs' => 'Gitt eng E-Mailadress bei Ären Astellungen un, fir datt déi Funktioune funktionéieren.',
 'emailconfirmlink' => 'Confirméiert är E-Mailadress w.e.g..',
-'invalidemailaddress' => 'Dës E-Mail-Adress gëtt net akzeptéiert well se en ongëltegt Format (z.B. ongëlteg Zeechen) ze hu schéngt.
+'invalidemailaddress' => 'Dës E-Mail-Adress gëtt net akzeptéiert well se en ongëltegt Format (z. B. ongëlteg Zeechen) ze hu schéngt.
 Gitt eng valabel E-Mail-Adress an oder loosst dëst Feld eidel.',
 'cannotchangeemail' => 'Mailadresse vu Benotzerkonte kënnen op dëser Wiki net geännert ginn.',
 'emaildisabled' => 'Dëse Site ka keng Maile schécken.',
@@ -739,6 +739,9 @@ Waart w.e.g. ier Dir et nach eng Kéier versicht.",
 'login-abort-generic' => 'Dir sidd net ageloggt - Aloggen ofgebrach',
 'loginlanguagelabel' => 'Sprooch: $1',
 'suspicious-userlogout' => 'Är Ufro fir Iech auszeloggen gouf refuséiert well et esou ausgesäit wéi wann se vun engem Futtise Browser oder Proxy-Tëschespäicher kënnt.',
+'createacct-another-realname-tip' => "De richtegen Numm ass fakultativ.
+
+Wann Dir en ugitt, gëtt e benotzt fir d'Benotzerattributiounen fir Är Aarbecht zouzeuerdnen.",
 
 # Email sending
 'php-mail-error-unknown' => 'Onbekannte Feeler an der PHP-Mail-Fonctioun',
@@ -3995,5 +3998,11 @@ Soss kënnt Dir den einfache Formulär hei drënner benotzen. Är Bemierkung gë
 
 # Image rotation
 'rotate-comment' => 'Bild ëm $1 {{PLURAL:$1|Grad}} an der Richtung vun der Auer gedréint',
+
+# Limit report
+'limitreport-cputime-value' => '$1 {{PLURAL:$1|Sekonn|Sekonnen}}',
+'limitreport-walltime-value' => '$1 {{PLURAL:$1|Sekonn|Sekonnen}}',
+'limitreport-postexpandincludesize-value' => '$1/$2 Byten',
+'limitreport-templateargumentsize-value' => '$1/$2 Byten',
 
 );

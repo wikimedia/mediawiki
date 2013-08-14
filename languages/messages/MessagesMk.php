@@ -914,6 +914,8 @@ $2',
 'login-abort-generic' => 'Најавата е неуспешна - Прекинато',
 'loginlanguagelabel' => 'Јазик: $1',
 'suspicious-userlogout' => 'Вашето барање за одјава е одбиено бидејќи се чини дека е испратено од расипан прелистувач или кеширачки застапник (proxy).',
+'createacct-another-realname-tip' => 'Вистинското име е незадолжително.
+Доколку изберете да го внесете, тоа може да се искористи за оддавање на заслуги за Вашата работа.',
 
 # Email sending
 'php-mail-error-unknown' => 'Непозната грешка во функцијата mail() на PHP',
@@ -4444,5 +4446,20 @@ $5
 
 # Image rotation
 'rotate-comment' => 'Сликата е завртена за $1 {{PLURAL:$1|степен|степени}} вдесно',
+
+# Limit report
+'limitreport-title' => 'Профилни парсерски податоци:',
+'limitreport-cputime' => 'Употреба на CPU-време',
+'limitreport-cputime-value' => '$1 {{PLURAL:$1|секунда|секунди}}',
+'limitreport-walltime' => 'Употреба на вистинско време',
+'limitreport-walltime-value' => '$1 {{PLURAL:$1|секунда|секунди}}',
+'limitreport-ppvisitednodes' => 'Бр. на пројдени јазли од предобработувачот',
+'limitreport-ppgeneratednodes' => 'Бр. на создадени јазли од предобработувачот',
+'limitreport-postexpandincludesize' => 'Големина на вклученото по проширувањето',
+'limitreport-postexpandincludesize-value' => '$1/$2 бајти',
+'limitreport-templateargumentsize' => 'Големина на аргументот во шаблонот',
+'limitreport-templateargumentsize-value' => '$1/$2 бајти',
+'limitreport-expansiondepth' => 'Најголема длабочина на проширувањето',
+'limitreport-expensivefunctioncount' => 'Бр. на сложени парсерски функции',
 
 );

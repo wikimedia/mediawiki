@@ -851,6 +851,8 @@ Vă rugăm să așteptați până să mai încercați.',
 'login-abort-generic' => 'Procesul de autentificare a eșuat și a fost abandonat',
 'loginlanguagelabel' => 'Limba: $1',
 'suspicious-userlogout' => 'Cererea dumneavoastră de a închide sesiunea a fost refuzată întrucât pare că a fost trimisă printr-o eroare a navigatorului sau de un proxy memorat în cache.',
+'createacct-another-realname-tip' => 'Numele real este opțional.
+Dacă decideți furnizarea sa, acesta va fi folosit pentru a atribui utilizatorului munca sa.',
 
 # Email sending
 'php-mail-error-unknown' => 'Eroare necunoscută în funcția PHP mail()',
@@ -4169,11 +4171,18 @@ MediaWiki este distribuit în speranța că va fi folositor, dar FĂRĂ VREO GAR
 'rotate-comment' => 'Imagine rotită în sensul acelor de ceasornic cu $1 {{PLURAL:$1|grad|grade|de grade}}',
 
 # Limit report
+'limitreport-title' => 'Date de optimizare a analizorului:',
 'limitreport-cputime' => 'Timp de utilizare CPU',
 'limitreport-cputime-value' => '$1 {{PLURAL:$1|secundă|secunde|de secunde}}',
 'limitreport-walltime' => 'Timp real de utilizare',
 'limitreport-walltime-value' => '$1 {{PLURAL:$1|secundă|secunde|de secunde}}',
+'limitreport-ppvisitednodes' => 'Număr de noduri de preprocesor vizitate',
+'limitreport-ppgeneratednodes' => 'Număr de noduri de preprocesor generate',
+'limitreport-postexpandincludesize' => 'Mărimea includerii post-expansiune',
 'limitreport-postexpandincludesize-value' => '$1/$2 octeți',
+'limitreport-templateargumentsize' => 'Mărimea argumentului formatului',
 'limitreport-templateargumentsize-value' => '$1/$2 octeți',
+'limitreport-expansiondepth' => 'Cea mai mare profunzime a expansiunii',
+'limitreport-expensivefunctioncount' => 'Număr de funcții de analiză costisitoare',
 
 );
