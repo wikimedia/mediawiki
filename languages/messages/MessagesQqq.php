@@ -4939,6 +4939,11 @@ See the following search results:
 'listusers-editsonly' => 'Option in [[Special:ListUsers]].',
 'listusers-creationsort' => 'Option in [[Special:ListUsers]].',
 'listusers-desc' => 'Used as label for the checkbox.',
+'listusers-showblocks' => 'Option in [[Special:ListUsers]].',
+'listusers-list-all' => 'Option value in [[Special:ListUsers]].',
+'listusers-perm-block' => 'Option value in [[Special:ListUsers]].',
+'listusers-temp-block' => 'Option value in [[Special:ListUsers]].',
+'listusers-all-block' => 'Option value in [[Special:ListUsers]].',
 'usereditcount' => 'Shown behind every username on [[Special:ListUsers]]. Parameters:
 * $1 - number of edits',
 'usercreated' => 'Used in [[Special:ListUsers]]. Parameters:
