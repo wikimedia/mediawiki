@@ -271,7 +271,7 @@ $1',
 'pool-queuefull' => 'Adras n umahil yečuṛ',
 'pool-errorunknown' => 'Anezri warisem',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Awal ɣef {{SITENAME}}',
 'aboutpage' => 'Project:Awal ɣef...',
 'copyright' => 'Tzemreḍ ad twaliḍ ayen yella deg $1.',
@@ -353,17 +353,6 @@ $1',
 # General errors
 'error' => 'Agul',
 'databaseerror' => 'Agul n database',
-'dberrortext' => 'Yella ugul n tseddast deg database.
-Waqila yella bug deg software.
-Query n database taneggarut hatt:
-<blockquote><tt>$1</tt></blockquote>
-seg tawuri  "<tt>$2</tt>".
-MySQL yerra-d agul "<tt>$3: $4</tt>".',
-'dberrortextcl' => 'Yella ugul n tseddast deg database.
-Query n database taneggarut hatt:
-"$1"
-seg tawuri "$2".
-MySQL yerra-d agul "$3: $4"',
 'laggedslavemode' => 'Aɣtal: Ahat asebter ur yesɛi ara akk ibeddlen imaynuten.',
 'readonly' => 'Database d tamsekkert',
 'enterlockreason' => 'Ini ayɣer tsekkreḍ database, ini daɣen melmi ara ad ifukk asekker',
@@ -415,7 +404,6 @@ Query: $2',
 'viewyourtext' => 'Tzemṛeḍ ad ẓṛeḍ dɣa ad nɣeleḍ agbur n "ibeddlen inek/inem" deg usebter agi :',
 'protectedinterface' => 'Asebter-agi d amsekker axaṭer yettuseqdac i weḍris n software.',
 'editinginterface' => "'''Aɣtal:''' Aqla-k tettbeddileḍ asebter i yettuseqdac i weḍris n software. Tagmett n software i tt-ẓren yimseqdacen wiyaḍ ad tbeddel akk d ibeddlen inek.",
-'sqlhidden' => '(Query n SQL tettwaffer)',
 'cascadeprotected' => 'Asebter-agi yegdel axaṭer yettusekcem deg {{PLURAL:$1|asebter yegdelen agi|isebtar yegdelen agi}} s Taxtiṛit « amesten s uceṛcuṛ » isermeden :
 $2',
 'namespaceprotected' => "Ur tesɛiḍ ara turagt iwakken ad beddeleḍ isebtar n tallunt n isemawen \"'''\$1'''\".",
@@ -446,7 +434,6 @@ Kra n isebtar zemren ad sskanen belli mazal-ik s yisem n wemseqdac inek armi tem
 'yourpassword' => 'Awal n tbaḍnit',
 'yourpasswordagain' => 'Ɛiwed ssekcem awal n tbaḍnit',
 'remembermypassword' => 'Cfu ɣef wawal n tbaḍnit inu di uselkim-agi (i afellay n $1 {{PLURAL:$1|ass|ussan}})',
-'securelogin-stick-https' => 'Qqim uqqin s HTTPS sakin tuqqna',
 'yourdomainname' => 'Taɣult inek',
 'password-change-forbidden' => 'Ur zemreḍ ara ad beddeleḍ awalen n uɛaddi ɣef uwiki agi.',
 'externaldberror' => 'Yella ugul aberrani n database neɣ ur tettalaseḍ ara ad tbeddleḍ isem an wemseqdac aberrani inek.',
@@ -539,7 +526,7 @@ Ilaq ad rǧuḍ ciṭaḥ uqbel ad ɛerdeḍ tikkelt nniḍen.',
 'newpassword' => 'Awal n tbaḍnit amaynut:',
 'retypenew' => 'Ɛiwed ssekcem n tbaḍnit amaynut:',
 'resetpass_submit' => 'Eg awal n tbaḍnit u kcem',
-'resetpass_success' => 'Awal n tbaḍnit yettubeddel! Qrib ad tkecmeḍ...',
+'changepassword-success' => 'Awal n tbaḍnit yettubeddel! Qrib ad tkecmeḍ...',
 'resetpass_forbidden' => 'Ur zemreḍ ara ad beddeleḍ awalen n uɛaddi',
 'resetpass-no-info' => 'Ilaq ad qqeneḍ iwakken ad ẓṛeḍ asebter agi.',
 'resetpass-submit-loggedin' => 'Beddel awal n uɛaddi',
@@ -1734,12 +1721,6 @@ Ur tettuḍ ara ad selkeneḍ ma ur llan ara izdayen nniḍen ɣer tilɣatin uqb
 'statistics-users-active-desc' => 'Iseqdacen yesɛan xersum yiwet tigawt seg {{PLURAL:$1|ass agi aneggaru|$1 ussan agi ineggura}}',
 'statistics-mostpopular' => 'isebtar mmeẓren aṭṭas',
 
-'disambiguations' => 'Isebtar yesɛan izdayen ɣer isebtar n tiynisemt',
-'disambiguationspage' => 'Template:Asefham',
-'disambiguations-text' => "Isebtar agi azday ɣer '''asebter n tiynisemt'''.
-Ilaq ad sɛun azday ɣer amagrad amellay.<br />
-Asebter yella d asebter n tiynisemt lukan yetseqdac talɣa i qqenen ar [[MediaWiki:Disambiguationspage]]",
-
 'doubleredirects' => 'Asemmimeḍ yeḍra snat tikwal',
 'doubleredirectstext' => 'Mkull ajerriḍ yesɛa azday ɣer asmimeḍ amezwaru akk d wis sin, ajerriḍ amezwaru n uḍris n usebter wis sin daɣen, iwumi yefkan asmimeḍ ṣaḥiḥ i yessefk ad sɛan isebtar azday ɣur-s.',
 'double-redirect-fixed-move' => 'Alsanamud agi, ɣef ayed asaḍas [[$1]] yetwebeddel isem, yetawi tura ɣer [[$2]].',
@@ -2258,7 +2239,6 @@ Asekcem aneggaru n useklas n ikyafen yella ddaw agi :',
 'block-log-flags-anononly' => 'Imseqdacen udrigen kan',
 'block-log-flags-nocreate' => 'asnulfu n umiḍan yessegdel',
 'proxyblockreason' => 'Tansa n IP inek teɛkel axaṭer nettat "open proxy". G leɛnayek, meslay akk d provider inek.',
-'proxyblocksuccess' => 'D ayen.',
 'sorbsreason' => 'Tansa IP inek/inem tella deg yiwen umuɣ am "open proxy" deg DNSBL yettuseqdac deg {{SITENAME}}.',
 'sorbs_create_account_reason' => 'Tansa IP inek/inem tella deg yiwen umuɣ am "open proxy" deg DNSBL yettuseqdac deg {{SITENAME}}.
 Ur tezmireḍ ara ad snulfuḍ amiḍan.',

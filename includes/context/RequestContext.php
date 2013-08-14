@@ -90,7 +90,10 @@ class RequestContext implements IContextSource {
 	 *
 	 * @param Title $t
 	 */
-	public function setTitle( Title $t ) {
+	public function setTitle( $t ) {
+		if ( $t !== null && !$t instanceof Title ) {
+			throw new MWException( __METHOD__ . " expects an instance of Title" );
+		}
 		$this->title = $t;
 		// Erase the WikiPage so a new one with the new title gets created.
 		$this->wikipage = null;

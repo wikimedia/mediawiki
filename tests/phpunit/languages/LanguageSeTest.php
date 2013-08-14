@@ -7,14 +7,20 @@
 
 /** Tests for MediaWiki languages/classes/LanguageSe.php */
 class LanguageSeTest extends LanguageClassesTestCase {
-	/** @dataProvider providePlural */
-	function testPlural( $result, $value ) {
+	/**
+	 * @dataProvider providePlural
+	 * @covers Language::convertPlural
+	 */
+	public function testPlural( $result, $value ) {
 		$forms = array( 'one', 'two', 'other' );
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
-	/** @dataProvider providePlural */
-	function testGetPluralRuleType( $result, $value ) {
+	/**
+	 * @dataProvider providePlural
+	 * @covers Language::getPluralRuleType
+	 */
+	public function testGetPluralRuleType( $result, $value ) {
 		$this->assertEquals( $result, $this->getLang()->getPluralRuleType( $value ) );
 	}
 
@@ -27,13 +33,16 @@ class LanguageSeTest extends LanguageClassesTestCase {
 		);
 	}
 
-	/** @dataProvider providerPluralTwoForms */
-	function testPluralTwoForms( $result, $value ) {
+	/**
+	 * @dataProvider providePluralTwoForms
+	 * @covers Language::convertPlural
+	 */
+	public function testPluralTwoForms( $result, $value ) {
 		$forms = array( 'one', 'other' );
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
-	public static function providerPluralTwoForms() {
+	public static function providePluralTwoForms() {
 		return array(
 			array( 'other', 0 ),
 			array( 'one', 1 ),

@@ -106,7 +106,13 @@ class CategoryPage extends Article {
 		unset( $reqArray["from"] );
 		unset( $reqArray["to"] );
 
-		$viewer = new $this->mCategoryViewerClass( $this->getContext()->getTitle(), $this->getContext(), $from, $until, $reqArray );
+		$viewer = new $this->mCategoryViewerClass(
+			$this->getContext()->getTitle(),
+			$this->getContext(),
+			$from,
+			$until,
+			$reqArray
+		);
 		$this->getContext()->getOutput()->addHTML( $viewer->getHTML() );
 	}
 }

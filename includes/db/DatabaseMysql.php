@@ -43,12 +43,9 @@ class DatabaseMysql extends DatabaseMysqlBase {
 	}
 
 	protected function mysqlConnect( $realServer ) {
-		# Load mysql.so if we don't have it
-		wfDl( 'mysql' );
-
 		# Fail now
 		# Otherwise we get a suppressed fatal error, which is very hard to track down
-		if ( !function_exists( 'mysql_connect' ) ) {
+		if ( !extension_loaded( 'mysql' ) ) {
 			throw new DBConnectionError( $this, "MySQL functions missing, have you compiled PHP with the --with-mysql option?\n" );
 		}
 

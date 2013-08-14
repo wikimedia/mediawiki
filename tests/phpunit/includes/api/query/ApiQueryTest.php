@@ -4,6 +4,7 @@
  * @group API
  * @group Database
  * @group medium
+ * @covers ApiQuery
  */
 class ApiQueryTest extends ApiTestCase {
 
@@ -12,7 +13,7 @@ class ApiQueryTest extends ApiTestCase {
 		$this->doLogin();
 	}
 
-	function testTitlesGetNormalized() {
+	public function testTitlesGetNormalized() {
 
 		global $wgMetaNamespace;
 
@@ -43,7 +44,7 @@ class ApiQueryTest extends ApiTestCase {
 		);
 	}
 
-	function testTitlesAreRejectedIfInvalid() {
+	public function testTitlesAreRejectedIfInvalid() {
 		$title = false;
 		while ( !$title || Title::newFromText( $title )->exists() ) {
 			$title = md5( mt_rand( 0, 10000 ) + rand( 0, 999000 ) );

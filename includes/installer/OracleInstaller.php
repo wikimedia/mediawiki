@@ -59,12 +59,23 @@ class OracleInstaller extends DatabaseInstaller {
 		if ( $this->getVar( 'wgDBserver' ) == 'localhost' ) {
 			$this->parent->setVar( 'wgDBserver', '' );
 		}
-		return $this->getTextBox( 'wgDBserver', 'config-db-host-oracle', array(), $this->parent->getHelpBox( 'config-db-host-oracle-help' ) ) .
+
+		return $this->getTextBox(
+			'wgDBserver',
+			'config-db-host-oracle',
+			array(),
+			$this->parent->getHelpBox( 'config-db-host-oracle-help' )
+		) .
 			Html::openElement( 'fieldset' ) .
 			Html::element( 'legend', array(), wfMessage( 'config-db-wiki-settings' )->text() ) .
 			$this->getTextBox( 'wgDBprefix', 'config-db-prefix' ) .
 			$this->getTextBox( '_OracleDefTS', 'config-oracle-def-ts' ) .
-			$this->getTextBox( '_OracleTempTS', 'config-oracle-temp-ts', array(), $this->parent->getHelpBox( 'config-db-oracle-help' ) ) .
+			$this->getTextBox(
+				'_OracleTempTS',
+				'config-oracle-temp-ts',
+				array(),
+				$this->parent->getHelpBox( 'config-db-oracle-help' )
+			) .
 			Html::closeElement( 'fieldset' ) .
 			$this->parent->getWarningBox( wfMessage( 'config-db-account-oracle-warn' )->text() ) .
 			$this->getInstallUserBox() .
@@ -74,12 +85,18 @@ class OracleInstaller extends DatabaseInstaller {
 	public function submitInstallUserBox() {
 		parent::submitInstallUserBox();
 		$this->parent->setVar( '_InstallDBname', $this->getVar( '_InstallUser' ) );
+
 		return Status::newGood();
 	}
 
 	public function submitConnectForm() {
 		// Get variables from the request
-		$newValues = $this->setVarsFromRequest( array( 'wgDBserver', 'wgDBprefix', 'wgDBuser', 'wgDBpassword' ) );
+		$newValues = $this->setVarsFromRequest(
+			'wgDBserver',
+			'wgDBprefix',
+			'wgDBuser',
+			'wgDBpassword'
+		);
 		$this->parent->setVar( 'wgDBname', $this->getVar( 'wgDBuser' ) );
 
 		// Validate them
@@ -162,6 +179,7 @@ class OracleInstaller extends DatabaseInstaller {
 			$this->connError = $e->db->lastErrno();
 			$status->fatal( 'config-connection-error', $e->getMessage() );
 		}
+
 		return $status;
 	}
 
@@ -181,6 +199,7 @@ class OracleInstaller extends DatabaseInstaller {
 			$this->connError = $e->db->lastErrno();
 			$status->fatal( 'config-connection-error', $e->getMessage() );
 		}
+
 		return $status;
 	}
 
@@ -189,6 +208,7 @@ class OracleInstaller extends DatabaseInstaller {
 		$this->parent->setVar( 'wgDBname', $this->getVar( 'wgDBuser' ) );
 		$retVal = parent::needsUpgrade();
 		$this->parent->setVar( 'wgDBname', $tempDBname );
+
 		return $retVal;
 	}
 
@@ -203,6 +223,7 @@ class OracleInstaller extends DatabaseInstaller {
 
 	public function setupDatabase() {
 		$status = Status::newGood();
+
 		return $status;
 	}
 
@@ -285,13 +306,14 @@ class OracleInstaller extends DatabaseInstaller {
 		foreach ( $varNames as $name ) {
 			$vars[$name] = $this->getVar( $name );
 		}
+
 		return $vars;
 	}
 
 	public function getLocalSettings() {
 		$prefix = $this->getVar( 'wgDBprefix' );
-		return
-"# Oracle specific settings
+
+		return "# Oracle specific settings
 \$wgDBprefix = \"{$prefix}\";
 ";
 	}
@@ -311,9 +333,11 @@ class OracleInstaller extends DatabaseInstaller {
 	 * @return bool Whether the connection string is valid.
 	 */
 	public static function checkConnectStringFormat( $connect_string ) {
-		$isValid  = preg_match( '/^[[:alpha:]][\w\-]*(?:\.[[:alpha:]][\w\-]*){0,2}$/', $connect_string ); // TNS name
+		// @@codingStandardsIgnoreStart Long lines with regular expressions.
+		// @todo Very long regular expression. Make more readable?
+		$isValid = preg_match( '/^[[:alpha:]][\w\-]*(?:\.[[:alpha:]][\w\-]*){0,2}$/', $connect_string ); // TNS name
 		$isValid |= preg_match( '/^(?:\/\/)?[\w\-\.]+(?::[\d]+)?(?:\/(?:[\w\-\.]+(?::(pooled|dedicated|shared))?)?(?:\/[\w\-\.]+)?)?$/', $connect_string ); // EZConnect
+		// @@codingStandardsIgnoreEnd
 		return (bool)$isValid;
 	}
-
 }

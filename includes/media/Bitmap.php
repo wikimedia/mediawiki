@@ -100,17 +100,6 @@ class BitmapHandler extends ImageHandler {
 	}
 
 	/**
-	 * Function that returns the number of pixels to be thumbnailed.
-	 * Intended for animated GIFs to multiply by the number of frames.
-	 *
-	 * @param File $image
-	 * @return int
-	 */
-	function getImageArea( $image ) {
-		return $image->getWidth() * $image->getHeight();
-	}
-
-	/**
 	 * @param $image File
 	 * @param  $dstPath
 	 * @param  $dstUrl
@@ -357,12 +346,12 @@ class BitmapHandler extends ImageHandler {
 			" -depth 8 $sharpen " .
 			" -rotate -$rotation " .
 			" {$animation_post} " .
-			wfEscapeShellArg( $this->escapeMagickOutput( $params['dstPath'] ) ) . " 2>&1";
+			wfEscapeShellArg( $this->escapeMagickOutput( $params['dstPath'] ) );
 
 		wfDebug( __METHOD__ . ": running ImageMagick: $cmd\n" );
 		wfProfileIn( 'convert' );
 		$retval = 0;
-		$err = wfShellExec( $cmd, $retval, $env );
+		$err = wfShellExecWithStderr( $cmd, $retval, $env );
 		wfProfileOut( 'convert' );
 
 		if ( $retval !== 0 ) {
@@ -472,7 +461,7 @@ class BitmapHandler extends ImageHandler {
 		wfDebug( __METHOD__ . ": Running custom convert command $cmd\n" );
 		wfProfileIn( 'convert' );
 		$retval = 0;
-		$err = wfShellExec( $cmd, $retval );
+		$err = wfShellExecWithStderr( $cmd, $retval );
 		wfProfileOut( 'convert' );
 
 		if ( $retval !== 0 ) {
@@ -712,24 +701,6 @@ class BitmapHandler extends ImageHandler {
 		imagejpeg( $dst_image, $thumbPath, 95 );
 	}
 
-	/**
-	 * On supporting image formats, try to read out the low-level orientation
-	 * of the file and return the angle that the file needs to be rotated to
-	 * be viewed.
-	 *
-	 * This information is only useful when manipulating the original file;
-	 * the width and height we normally work with is logical, and will match
-	 * any produced output views.
-	 *
-	 * The base BitmapHandler doesn't understand any metadata formats, so this
-	 * is left up to child classes to implement.
-	 *
-	 * @param $file File
-	 * @return int 0, 90, 180 or 270
-	 */
-	public function getRotation( $file ) {
-		return 0;
-	}
 
 	/**
 	 * Returns whether the current scaler supports rotation (im and gd do)
@@ -774,11 +745,11 @@ class BitmapHandler extends ImageHandler {
 				$cmd = wfEscapeShellArg( $wgImageMagickConvertCommand ) . " " .
 					wfEscapeShellArg( $this->escapeMagickInput( $params['srcPath'], $scene ) ) .
 					" -rotate -$rotation " .
-					wfEscapeShellArg( $this->escapeMagickOutput( $params['dstPath'] ) ) . " 2>&1";
+					wfEscapeShellArg( $this->escapeMagickOutput( $params['dstPath'] ) );
 				wfDebug( __METHOD__ . ": running ImageMagick: $cmd\n" );
 				wfProfileIn( 'convert' );
 				$retval = 0;
-				$err = wfShellExec( $cmd, $retval, $env );
+				$err = wfShellExecWithStderr( $cmd, $retval, $env );
 				wfProfileOut( 'convert' );
 				if ( $retval !== 0 ) {
 					$this->logErrorForExternalProcess( $retval, $err, $cmd );

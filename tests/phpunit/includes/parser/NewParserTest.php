@@ -6,6 +6,8 @@
  * @group Database
  * @group Parser
  * @group Stub
+ *
+ * @todo covers tags
  */
 class NewParserTest extends MediaWikiTestCase {
 	static protected $articles = array(); // Array of test articles defined by the tests
@@ -37,7 +39,7 @@ class NewParserTest extends MediaWikiTestCase {
 	}
 
 	protected function setUp() {
-		global $wgNamespaceAliases;
+		global $wgNamespaceAliases, $wgContLang;
 		global $wgHooks, $IP;
 
 		parent::setUp();
@@ -132,6 +134,9 @@ class NewParserTest extends MediaWikiTestCase {
 		$tmpHooks['ParserTestParser'][] = 'ParserTestParserHook::setup';
 		$tmpHooks['ParserGetVariableValueTs'][] = 'ParserTest::getFakeTimestamp';
 		$tmpGlobals['wgHooks'] = $tmpHooks;
+		# add a namespace shadowing a interwiki link, to test
+		# proper precedence when resolving links. (bug 51680)
+		$tmpGlobals['wgExtraNamespaces'] = array( 100 => 'MemoryAlpha' );
 
 		$this->setMwGlobals( $tmpGlobals );
 
@@ -140,10 +145,13 @@ class NewParserTest extends MediaWikiTestCase {
 
 		$wgNamespaceAliases['Image'] = NS_FILE;
 		$wgNamespaceAliases['Image_talk'] = NS_FILE_TALK;
+
+		MWNamespace::getCanonicalNamespaces( true ); # reset namespace cache
+		$wgContLang->resetNamespaces(); # reset namespace cache
 	}
 
 	protected function tearDown() {
-		global $wgNamespaceAliases;
+		global $wgNamespaceAliases, $wgContLang;
 
 		$wgNamespaceAliases['Image'] = $this->savedWeirdGlobals['image_alias'];
 		$wgNamespaceAliases['Image_talk'] = $this->savedWeirdGlobals['image_talk_alias'];
@@ -159,6 +167,14 @@ class NewParserTest extends MediaWikiTestCase {
 		MessageCache::destroyInstance();
 
 		parent::tearDown();
+
+		MWNamespace::getCanonicalNamespaces( true ); # reset namespace cache
+		$wgContLang->resetNamespaces(); # reset namespace cache
+	}
+
+	public static function tearDownAfterClass() {
+		ParserTest::tearDownInterwikis();
+		parent::tearDownAfterClass();
 	}
 
 	function addDBData() {
@@ -615,6 +631,7 @@ class NewParserTest extends MediaWikiTestCase {
 			$out = $parser->getPreloadText( $input, $title, $options );
 		} else {
 			$output = $parser->parse( $input, $title, $options, true, true, 1337 );
+			$output->setTOCEnabled( !isset( $opts['notoc'] ) );
 			$out = $output->getText();
 
 			if ( isset( $opts['showtitle'] ) ) {
@@ -656,7 +673,7 @@ class NewParserTest extends MediaWikiTestCase {
 	 *
 	 * @group ParserFuzz
 	 */
-	function testFuzzTests() {
+	public function testFuzzTests() {
 		global $wgParserTestFiles;
 
 		$files = $wgParserTestFiles;

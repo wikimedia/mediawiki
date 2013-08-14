@@ -14,6 +14,7 @@
  * @author Ebrahimi-amir
  * @author Erdemaslancan
  * @author Mousa
+ * @author Shirayuki
  */
 
 $fallback = 'fa';
@@ -324,7 +325,7 @@ $1',
 'pool-queuefull' => 'مخزن صفی دولودور',
 'pool-errorunknown' => 'تانینمامیش خطا',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}}-ا گؤره',
 'aboutpage' => 'Project:حاقیندا',
 'copyright' => 'ایچینده‌کیلر $1 لیسانسی احاطه‌سینده‌دیلر.',
@@ -410,17 +411,6 @@ $1',
 # General errors
 'error' => 'خطا',
 'databaseerror' => 'دیتابیس خطاسی',
-'dberrortext' => 'بیر دیتابیس سورغو سینتکس خطاسی قاباغا گلدی.
-بو، یازیلیم‌دا بیر خطانی گؤستره بیلر.
-سون قصد ائدیلن دیتابیس سورغوسو بو ایدی:
-<blockquote><code>$1</code></blockquote>
-"<code>$2</code>" فونکسیاسی ایچیندن.
-دیتابیس بو خطانی قایتاردی: "<samp>$3: $4</samp>".',
-'dberrortextcl' => 'بیر دیتابیس سورغو سینتکس خطاسی قاباغا گلدی.
-سون قصد ائدیلن دیتابیس سورغوسو بو ایدی:
-"$1"
-"$2" فونکسیاسی ایچیندن.
-دیتابیس بو خطانی قایتاردی: "$3: $4"',
 'laggedslavemode' => "'''دیقت:''' یارپاق‌دا، سون دَییشیکلیکلرین اولماماسی ایمکانی وار.",
 'readonly' => 'دیتابیس باغلانیب',
 'enterlockreason' => 'باغلاما نَدَن‌لیگی و آچیلماغین تخمینی واختینی یازین',
@@ -475,7 +465,6 @@ $1',
 'editinginterface' => "'''دیقت:''' سیز بیر یازیلیم آرا-اوزونه یازی تعمین ائدن صحیفه‌نی دَییشدیرمک‌ده‌سینیز.
 بو صحیفه‌نی دَییشدیرمک، بو ویکی‌نی ایستیفاده ائدن باشقا ایستیفاده‌چیلرین گؤرونوشونو دَییشه‌جک‌دیر.
 چئویرمه‌لری بوتون ویکی‌لره آرتیریب یوخسا دَییشدیرمک اوچون لوطفاً [//translatewiki.net/ translatewiki.net]، مئدیاویکی‌نین یئرلیلشدیرمه پروژه‌سیندن ایستیفاده ائدین.",
-'sqlhidden' => '(اس‌کیوال سورغوسو گیزلی)',
 'cascadeprotected' => 'بو صحیفه دَییشیکلیکلر قاباغیندا قورونوب‌دور، چونکو بو آشاغیداکی، آبشاری {{PLURAL:$1|سئچمه‌سی|سئچمه‌لری}} سئچیلن، قورونان {{PLURAL:$1|صحیفه|صحیفه‌لر}} ایچینده‌دیر:
 $2',
 'namespaceprotected' => "سیز '''$1''' آدفضاسینداکی صحیفه‌لرین دَییشمه‌سینه ایجازه‌نیز یوخدور.",
@@ -522,7 +511,6 @@ $2',
 'remembermypassword' => 'بو بیلگی‌سایاردا منیم گیریشیمی (چوخو $1 {{PLURAL:$1|گون}}ه قدر) یاددا ساخلا',
 'userlogin-remembermypassword' => 'منی ایچری‌ده ساخلا',
 'userlogin-signwithsecure' => 'آرخایین باغلانتی ایشلدین',
-'securelogin-stick-https' => 'گیرندن سونرا، HTTPS-ه باغلی قال',
 'yourdomainname' => 'سیزین دامنه:',
 'password-change-forbidden' => 'بو ویکی‌ده رمزلری دَییشه بیلنمه‌سینیز.',
 'externaldberror' => 'بیر دیتابیس دوغرولاما خطاسی اولدو، یوخسا سیزین ائشیک حسابینیزی گونجل‌لدمگه ایجازه‌نیز یوخدور.',
@@ -647,7 +635,7 @@ $2',
 'newpassword' => 'یئنی رمز',
 'retypenew' => 'یئنی رمزی یئنی‌دن یازین:',
 'resetpass_submit' => 'رمز یارادین و گیریش ائدین',
-'resetpass_success' => 'رمزینیز باشاری‌لا دَییشدیرلدی! ایندی گیریرسینیز...',
+'changepassword-success' => 'رمزینیز باشاری‌لا دَییشدیرلدی! ایندی گیریرسینیز...',
 'resetpass_forbidden' => 'رمزلر دَییشیلمز',
 'resetpass-no-info' => 'بو صحیفه‌نی دوغرو گؤردوگونوز اوچون سیستمه گیرمه‌لیسینیز.',
 'resetpass-submit-loggedin' => 'رمزی دَییشدیر',
@@ -1900,12 +1888,6 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization صحیفه‌‌سین
 'statistics-users-active-desc' => 'سون {{PLURAL:$1|بیر|$1}} گون‌ده بیر ایش گؤرن ایستیفاده‌چیلر',
 'statistics-mostpopular' => 'ان چوخ گؤرونموش صحیفه‌لر',
 
-'disambiguations' => 'آیدین‌لاشدیرما صحیفه‌لرینه باغلانتیلاری اولان صحیفه‌لر',
-'disambiguationspage' => 'Template:دقیقلشدیرمه',
-'disambiguations-text' => "آشاغیداکی صحیفه‌لرده آزی بیر باغلانتی، '''بلیرلیندیمه صحیفه‌لری'''نه واردیر.
-اولا بیلر اونلاری داها اویغون صحیفه‌یه باغلاماق لازیم اولا.<br />
-بیر صحیفه، بلیرلندیرمه صحیفه‌سی کیمی اولار، اگر [[MediaWiki:Disambiguationspage]] صحیفه‌سینه باغلانمیش بیر شابلون‌دان ایستیفاده ائتسه.",
-
 'pageswithprop' => 'صحیفه اؤزل‌لیگی اولان صحیفه‌لر',
 'pageswithprop-legend' => 'صحیفه اؤزل‌لیگی اولان صحیفه‌لر',
 'pageswithprop-text' => 'بو صحیفه‌ده، بیر خاص صحیفه اؤزل‌لیگی ایشلدن صحیفه‌لرین لیستی واردیر.',
@@ -2163,7 +2145,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization صحیفه‌‌سین
 'wlheader-showupdated' => "سون گؤروشونوزدن سونرا ائدیلن دییشیکلیکلر '''قالین''' گؤستریلیبدیلر.",
 'watchmethod-recent' => 'یئنی دییشیک‌لیک‌لر ایزلنیلن صحیفه‌لر اوچون یوخلانیلیر',
 'watchmethod-list' => 'ایزلنیلن صحیفه‌لر یئنی دییشیک‌لیک‌لر اوچون یوخلانیلیر',
-'watchlistcontains' => 'ایزلمه سیاهینیزدا $1 {{PLURAL:$11|صحیفه}} وار.',
+'watchlistcontains' => 'ایزلمه سیاهینیزدا $1 {{PLURAL:$1|صحیفه}} وار.',
 'iteminvalidname' => "'$1 ایله باغ‌لی پروبلئم، آدی دوزگون دئییل...",
 'wlnote' => "آشاغیداکی {{PLURAL:$1|'''$1''' ديَیشیک‌لیک|'''$1'''ديَیشیک‌لیک}}  سون {{PLURAL:$2|ساعتدا|'''$2''' ساعتدا}} ائدیلمیشدیر.$3، $4",
 'wlshowlast' => 'سون $1 ساعات $2 گون گؤستر $3',
@@ -2364,7 +2346,7 @@ $نئwپاگئ
 'undeletereset' => 'قور',
 'undeleteinvert' => 'سئچیلنی دؤندر',
 'undeletecomment' => 'ندن:',
-'undeletedrevisions' => 'جمعی {{PLURAL:$11|1 دییش|$1 دییشدیر}} گئری قایتاریلدی.',
+'undeletedrevisions' => 'جمعی {{PLURAL:$1|1 دییش|$1 دییشدیر}} گئری قایتاریلدی.',
 'undeletedrevisions-files' => '{{PLURAL:$1|1 نوسخه|$1 نوسخه}} و {{PLURAL:$2|1 فایل|$2 فایل}} برپا ائدیلدی',
 'undeletedfiles' => '{{PLURAL:$1|1 فایل|$1 فایل}} برپا اولوندو',
 'cannotundelete' => 'برپا ائدیلمه اولمادی
@@ -2560,12 +2542,9 @@ $1 آدلی ایستیفاده‌چی‌نین باغلانما سببی: "$2"',
 آنجاق، بو عنوان $2 آرا‌لیغینین پارچاسی اولا‌راق مانعه تؤردیلمیش، دئکابر مانعه تؤرتمه‌سینی قال‌دیرا.',
 'ip_range_invalid' => 'یانلیش ای پی',
 'ip_range_toolarge' => '/ $1 بلوک‌دان داها بؤیوک بازه باغلانمالارینا ایجازه وئریلمیر.',
-'blockme' => 'منی باغلا',
 'proxyblocker' => 'پروکسی باغلییان',
-'proxyblocker-disabled' => 'بو ایش باغلانیب دیر.',
 'proxyblockreason' => 'ای پی آدرئسینیز آچیق بیر پروکسی اولدوغو اوچون مانعه تؤردیلدی.
 خاهیش ائدیریک اینتئرنئت سئویش تعمین ایله یا دا تئکنیکی دستک ایله علاقه قورون و بو جدی تهلوکه‌سیزلیک پروبلئمین‌دن خبردار ائدین.',
-'proxyblocksuccess' => 'اولدو.',
 'sorbsreason' => 'ای پی عنوانینیز، {{SITENAME}} سایتی طرفین‌دن ایستیفاده ائدیلن DNSBL آچیق پروکسی اولا‌راق اولونموش.',
 'sorbs_create_account_reason' => 'ایپ اونوانینیز {{SITENAME}} سایتی طرفین‌دن ایستیفاده ائدیلن DNSBL آچیق پروکسی اولا‌راق اولونموش.
 حساب میدانا گتیره بیلمز',
@@ -3744,8 +3723,7 @@ $5
 
 # Database error messages
 'dberr-header' => 'بو ویکی‌ده بیر ایشکال وار',
-'dberr-problems' => 'عوذر ایسته‌ییریک!
-بو سایت‌دا تِکنیکی ایشکال‌لار واردیر.',
+'dberr-problems' => 'عوذر ایسته‌ییریک! بو سایت‌دا تِکنیکی ایشکال‌لار واردیر.',
 'dberr-again' => 'بیر نئچه دقیقه دؤزوب سونرا یئنی‌دن یوکله‌یین.',
 'dberr-info' => '(دیتابیس خیدمت‌چیسی‌یه باغلانماق اولونمادی: $1)',
 'dberr-usegoogle' => 'بو آرادا، گوگل‌ده آختارابیلرسینیز.',

@@ -124,7 +124,7 @@ class WebInstaller extends Installer {
 	/**
 	 * Constructor.
 	 *
-	 * @param $request WebRequest
+	 * @param WebRequest $request
 	 */
 	public function __construct( WebRequest $request ) {
 		parent::__construct();
@@ -142,7 +142,7 @@ class WebInstaller extends Installer {
 	 *
 	 * @param array $session initial session array
 	 *
-	 * @return Array: new session array
+	 * @return array New session array
 	 */
 	public function execute( array $session ) {
 		$this->session = $session;
@@ -155,8 +155,8 @@ class WebInstaller extends Installer {
 		$this->setupLanguage();
 
 		if ( ( $this->getVar( '_InstallDone' ) || $this->getVar( '_UpgradeDone' ) )
-			&& $this->request->getVal( 'localsettings' ) )
-		{
+			&& $this->request->getVal( 'localsettings' )
+		) {
 			$this->request->response()->header( 'Content-type: application/x-httpd-php' );
 			$this->request->response()->header(
 				'Content-Disposition: attachment; filename="LocalSettings.php"'
@@ -168,6 +168,7 @@ class WebInstaller extends Installer {
 				$ls->setGroupRights( $group, $rightsArr );
 			}
 			echo $ls->getText();
+
 			return $this->session;
 		}
 
@@ -176,6 +177,7 @@ class WebInstaller extends Installer {
 			$cssDir = ( $cssDir == 'rtl' ? 'rtl' : 'ltr' );
 			$this->request->response()->header( 'Content-type: text/css' );
 			echo $this->output->getCSS( $cssDir );
+
 			return $this->session;
 		}
 
@@ -199,6 +201,7 @@ class WebInstaller extends Installer {
 			$this->output->useShortHeader();
 			$this->output->allowFrames();
 			$page->submitCC();
+
 			return $this->finish();
 		}
 
@@ -207,6 +210,7 @@ class WebInstaller extends Installer {
 			$this->output->useShortHeader();
 			$this->output->allowFrames();
 			$this->output->addHTML( $page->getCCDoneBox() );
+
 			return $this->finish();
 		}
 
@@ -256,6 +260,7 @@ class WebInstaller extends Installer {
 			}
 
 			$this->output->redirect( $this->getUrl( array( 'page' => $nextPage ) ) );
+
 			return $this->finish();
 		}
 
@@ -336,6 +341,7 @@ class WebInstaller extends Installer {
 
 		if ( $this->phpErrors ) {
 			$this->showError( 'config-session-error', $this->phpErrors[0] );
+
 			return false;
 		}
 
@@ -362,6 +368,7 @@ class WebInstaller extends Installer {
 			// the /mw-config/index.php. Kinda scary though?
 			$url = $m[1];
 		}
+
 		return md5( serialize( array(
 			'local path' => dirname( __DIR__ ),
 			'url' => $url,
@@ -384,7 +391,7 @@ class WebInstaller extends Installer {
 	/**
 	 * Temporary error handler for session start debugging.
 	 * @param $errno
-	 * @param $errstr string
+	 * @param string $errstr
 	 */
 	public function errorHandler( $errno, $errstr ) {
 		$this->phpErrors[] = $errstr;
@@ -417,7 +424,7 @@ class WebInstaller extends Installer {
 	/**
 	 * Get a URL for submission back to the same script.
 	 *
-	 * @param $query array
+	 * @param array $query
 	 * @return string
 	 */
 	public function getUrl( $query = array() ) {
@@ -435,7 +442,7 @@ class WebInstaller extends Installer {
 	/**
 	 * Get a WebInstallerPage by name.
 	 *
-	 * @param $pageName String
+	 * @param string $pageName
 	 * @return WebInstallerPage
 	 */
 	public function getPageByName( $pageName ) {
@@ -447,7 +454,7 @@ class WebInstaller extends Installer {
 	/**
 	 * Get a session variable.
 	 *
-	 * @param $name String
+	 * @param string $name
 	 * @param $default
 	 * @return null
 	 */
@@ -461,8 +468,8 @@ class WebInstaller extends Installer {
 
 	/**
 	 * Set a session variable.
-	 * @param string $name key for the variable
-	 * @param $value Mixed
+	 * @param string $name Key for the variable
+	 * @param mixed $value
 	 */
 	public function setSession( $name, $value ) {
 		$this->session[$name] = $value;
@@ -516,7 +523,7 @@ class WebInstaller extends Installer {
 	/**
 	 * Called by execute() before page output starts, to show a page list.
 	 *
-	 * @param $currentPageName String
+	 * @param string $currentPageName
 	 */
 	private function startPageWrapper( $currentPageName ) {
 		$s = "<div class=\"config-page-wrapper\">\n";
@@ -539,7 +546,14 @@ class WebInstaller extends Installer {
 
 		$s .= "</ul><br/><ul>\n";
 		$s .= $this->getPageListItem( 'Restart', true, $currentPageName );
-		$s .= "</ul></div>\n"; // end list pane
+		// End list pane
+		$s .= "</ul></div>\n";
+
+		// Messages:
+		// config-page-language, config-page-welcome, config-page-dbconnect, config-page-upgrade,
+		// config-page-dbsettings, config-page-name, config-page-options, config-page-install,
+		// config-page-complete, config-page-restart, config-page-readme, config-page-releasenotes,
+		// config-page-copying, config-page-upgradedoc, config-page-existingwiki
 		$s .= Html::element( 'h2', array(),
 			wfMessage( 'config-page-' . strtolower( $currentPageName ) )->text() );
 
@@ -549,14 +563,20 @@ class WebInstaller extends Installer {
 	/**
 	 * Get a list item for the page list.
 	 *
-	 * @param $pageName String
-	 * @param $enabled Boolean
-	 * @param $currentPageName String
+	 * @param string $pageName
+	 * @param bool $enabled
+	 * @param string $currentPageName
 	 *
 	 * @return string
 	 */
 	private function getPageListItem( $pageName, $enabled, $currentPageName ) {
 		$s = "<li class=\"config-page-list-item\">";
+
+		// Messages:
+		// config-page-language, config-page-welcome, config-page-dbconnect, config-page-upgrade,
+		// config-page-dbsettings, config-page-name, config-page-options, config-page-install,
+		// config-page-complete, config-page-restart, config-page-readme, config-page-releasenotes,
+		// config-page-copying, config-page-upgradedoc, config-page-existingwiki
 		$name = wfMessage( 'config-page-' . strtolower( $pageName ) )->text();
 
 		if ( $enabled ) {
@@ -601,16 +621,16 @@ class WebInstaller extends Installer {
 	 */
 	private function endPageWrapper() {
 		$this->output->addHTMLNoFlush(
-					"<div class=\"visualClear\"></div>\n" .
-				"</div>\n" .
-				"<div class=\"visualClear\"></div>\n" .
+			"<div class=\"visualClear\"></div>\n" .
+			"</div>\n" .
+			"<div class=\"visualClear\"></div>\n" .
 			"</div>" );
 	}
 
 	/**
 	 * Get HTML for an error box with an icon.
 	 *
-	 * @param string $text wikitext, get this with wfMessage()->plain()
+	 * @param string $text Wikitext, get this with wfMessage()->plain()
 	 *
 	 * @return string
 	 */
@@ -621,7 +641,7 @@ class WebInstaller extends Installer {
 	/**
 	 * Get HTML for a warning box with an icon.
 	 *
-	 * @param string $text wikitext, get this with wfMessage()->plain()
+	 * @param string $text Wikitext, get this with wfMessage()->plain()
 	 *
 	 * @return string
 	 */
@@ -632,16 +652,19 @@ class WebInstaller extends Installer {
 	/**
 	 * Get HTML for an info box with an icon.
 	 *
-	 * @param string $text wikitext, get this with wfMessage()->plain()
-	 * @param string $icon icon name, file in skins/common/images
-	 * @param string $class additional class name to add to the wrapper div
+	 * @param string $text Wikitext, get this with wfMessage()->plain()
+	 * @param string|bool $icon Icon name, file in skins/common/images. Default: false
+	 * @param string|bool $class Additional class name to add to the wrapper div. Default: false.
 	 *
 	 * @return string
 	 */
 	public function getInfoBox( $text, $icon = false, $class = false ) {
 		$text = $this->parse( $text, true );
-		$icon = ( $icon == false ) ? '../skins/common/images/info-32.png' : '../skins/common/images/' . $icon;
+		$icon = ( $icon == false ) ?
+			'../skins/common/images/info-32.png' :
+			'../skins/common/images/' . $icon;
 		$alt = wfMessage( 'config-information' )->text();
+
 		return Html::infoBox( $text, $icon, $alt, $class, false );
 	}
 
@@ -668,7 +691,7 @@ class WebInstaller extends Installer {
 
 	/**
 	 * Output a help box.
-	 * @param string $msg key for wfMessage()
+	 * @param string $msg Key for wfMessage()
 	 */
 	public function showHelpBox( $msg /*, ... */ ) {
 		$args = func_get_args();
@@ -680,19 +703,19 @@ class WebInstaller extends Installer {
 	 * Show a short informational message.
 	 * Output looks like a list.
 	 *
-	 * @param $msg string
+	 * @param string $msg
 	 */
 	public function showMessage( $msg /*, ... */ ) {
 		$args = func_get_args();
 		array_shift( $args );
 		$html = '<div class="config-message">' .
-		$this->parse( wfMessage( $msg, $args )->useDatabase( false )->plain() ) .
+			$this->parse( wfMessage( $msg, $args )->useDatabase( false )->plain() ) .
 			"</div>\n";
 		$this->output->addHTML( $html );
 	}
 
 	/**
-	 * @param $status Status
+	 * @param Status $status
 	 */
 	public function showStatusMessage( Status $status ) {
 		$errors = array_merge( $status->getErrorsArray(), $status->getWarningsArray() );
@@ -708,7 +731,7 @@ class WebInstaller extends Installer {
 	 * @param $msg
 	 * @param $forId
 	 * @param $contents
-	 * @param $helpData string
+	 * @param string $helpData
 	 * @return string
 	 */
 	public function label( $msg, $forId, $contents, $helpData = "" ) {
@@ -728,11 +751,12 @@ class WebInstaller extends Installer {
 			"  <div class=\"config-block-label\">\n" .
 			Xml::tags( 'label',
 				$attributes,
-				$labelText ) . "\n" .
-				$helpData .
+				$labelText
+			) . "\n" .
+			$helpData .
 			"  </div>\n" .
 			"  <div class=\"config-block-elements\">\n" .
-				$contents .
+			$contents .
 			"  </div>\n" .
 			"</div>\n";
 	}
@@ -740,14 +764,14 @@ class WebInstaller extends Installer {
 	/**
 	 * Get a labelled text box to configure a variable.
 	 *
-	 * @param $params Array
+	 * @param array $params
 	 *    Parameters are:
-	 *      var:        The variable to be configured (required)
-	 *      label:      The message name for the label (required)
-	 *      attribs:    Additional attributes for the input element (optional)
+	 *      var:         The variable to be configured (required)
+	 *      label:       The message name for the label (required)
+	 *      attribs:     Additional attributes for the input element (optional)
 	 *      controlName: The name for the input element (optional)
-	 *      value:      The current value of the variable (optional)
-	 *      help:		The html for the help text (optional)
+	 *      value:       The current value of the variable (optional)
+	 *      help:        The html for the help text (optional)
 	 *
 	 * @return string
 	 */
@@ -766,34 +790,35 @@ class WebInstaller extends Installer {
 		if ( !isset( $params['help'] ) ) {
 			$params['help'] = "";
 		}
+
 		return $this->label(
-				$params['label'],
+			$params['label'],
+			$params['controlName'],
+			Xml::input(
 				$params['controlName'],
-				Xml::input(
-					$params['controlName'],
-					30, // intended to be overridden by CSS
-					$params['value'],
-					$params['attribs'] + array(
-						'id' => $params['controlName'],
-						'class' => 'config-input-text',
-						'tabindex' => $this->nextTabIndex()
-					)
-				),
-				$params['help']
-			);
+				30, // intended to be overridden by CSS
+				$params['value'],
+				$params['attribs'] + array(
+					'id' => $params['controlName'],
+					'class' => 'config-input-text',
+					'tabindex' => $this->nextTabIndex()
+				)
+			),
+			$params['help']
+		);
 	}
 
 	/**
 	 * Get a labelled textarea to configure a variable
 	 *
-	 * @param $params Array
+	 * @param array $params
 	 *    Parameters are:
-	 *      var:        The variable to be configured (required)
-	 *      label:      The message name for the label (required)
-	 *      attribs:    Additional attributes for the input element (optional)
+	 *      var:         The variable to be configured (required)
+	 *      label:       The message name for the label (required)
+	 *      attribs:     Additional attributes for the input element (optional)
 	 *      controlName: The name for the input element (optional)
-	 *      value:      The current value of the variable (optional)
-	 *      help:		The html for the help text (optional)
+	 *      value:       The current value of the variable (optional)
+	 *      help:        The html for the help text (optional)
 	 *
 	 * @return string
 	 */
@@ -812,36 +837,37 @@ class WebInstaller extends Installer {
 		if ( !isset( $params['help'] ) ) {
 			$params['help'] = "";
 		}
+
 		return $this->label(
-				$params['label'],
+			$params['label'],
+			$params['controlName'],
+			Xml::textarea(
 				$params['controlName'],
-				Xml::textarea(
-					$params['controlName'],
-					$params['value'],
-					30,
-					5,
-					$params['attribs'] + array(
-						'id' => $params['controlName'],
-						'class' => 'config-input-text',
-						'tabindex' => $this->nextTabIndex()
-					)
-				),
-				$params['help']
-			);
+				$params['value'],
+				30,
+				5,
+				$params['attribs'] + array(
+					'id' => $params['controlName'],
+					'class' => 'config-input-text',
+					'tabindex' => $this->nextTabIndex()
+				)
+			),
+			$params['help']
+		);
 	}
 
 	/**
 	 * Get a labelled password box to configure a variable.
 	 *
 	 * Implements password hiding
-	 * @param $params Array
+	 * @param array $params
 	 *    Parameters are:
-	 *      var:        The variable to be configured (required)
-	 *      label:      The message name for the label (required)
-	 *      attribs:    Additional attributes for the input element (optional)
+	 *      var:         The variable to be configured (required)
+	 *      label:       The message name for the label (required)
+	 *      attribs:     Additional attributes for the input element (optional)
 	 *      controlName: The name for the input element (optional)
-	 *      value:      The current value of the variable (optional)
-	 *      help:		The html for the help text (optional)
+	 *      value:       The current value of the variable (optional)
+	 *      help:        The html for the help text (optional)
 	 *
 	 * @return string
 	 */
@@ -863,14 +889,14 @@ class WebInstaller extends Installer {
 	/**
 	 * Get a labelled checkbox to configure a boolean variable.
 	 *
-	 * @param $params Array
+	 * @param array $params
 	 *    Parameters are:
-	 *      var:        The variable to be configured (required)
-	 *      label:      The message name for the label (required)
-	 *      attribs:    Additional attributes for the input element (optional)
+	 *      var:         The variable to be configured (required)
+	 *      label:       The message name for the label (required)
+	 *      attribs:     Additional attributes for the input element (optional)
 	 *      controlName: The name for the input element (optional)
-	 *      value:      The current value of the variable (optional)
-	 *      help:		The html for the help text (optional)
+	 *      value:       The current value of the variable (optional)
+	 *      help:        The html for the help text (optional)
 	 *
 	 * @return string
 	 */
@@ -914,17 +940,17 @@ class WebInstaller extends Installer {
 	/**
 	 * Get a set of labelled radio buttons.
 	 *
-	 * @param $params Array
+	 * @param array $params
 	 *    Parameters are:
-	 *      var:            The variable to be configured (required)
-	 *      label:          The message name for the label (required)
+	 *      var:             The variable to be configured (required)
+	 *      label:           The message name for the label (required)
 	 *      itemLabelPrefix: The message name prefix for the item labels (required)
-	 *      values:         List of allowed values (required)
-	 *      itemAttribs     Array of attribute arrays, outer key is the value name (optional)
-	 *      commonAttribs   Attribute array applied to all items
-	 *      controlName:    The name for the input element (optional)
-	 *      value:          The current value of the variable (optional)
-	 *      help:		The html for the help text (optional)
+	 *      values:          List of allowed values (required)
+	 *      itemAttribs:     Array of attribute arrays, outer key is the value name (optional)
+	 *      commonAttribs:   Attribute array applied to all items
+	 *      controlName:     The name for the input element (optional)
+	 *      value:           The current value of the variable (optional)
+	 *      help:            The html for the help text (optional)
 	 *
 	 * @return string
 	 */
@@ -980,7 +1006,7 @@ class WebInstaller extends Installer {
 	/**
 	 * Output an error or warning box using a Status object.
 	 *
-	 * @param $status Status
+	 * @param Status $status
 	 */
 	public function showStatusBox( $status ) {
 		if ( !$status->isGood() ) {
@@ -1001,8 +1027,8 @@ class WebInstaller extends Installer {
 	 * Assumes that variables containing "password" in the name are (potentially
 	 * fake) passwords.
 	 *
-	 * @param $varNames Array
-	 * @param string $prefix the prefix added to variables to obtain form names
+	 * @param array $varNames
+	 * @param string $prefix The prefix added to variables to obtain form names
 	 *
 	 * @return array
 	 */
@@ -1054,6 +1080,7 @@ class WebInstaller extends Installer {
 	 */
 	public function docLink( $linkText, $attribs, $parser ) {
 		$url = $this->getDocUrl( $attribs['href'] );
+
 		return '<a href="' . htmlspecialchars( $url ) . '">' .
 			htmlspecialchars( $linkText ) .
 			'</a>';
@@ -1065,7 +1092,7 @@ class WebInstaller extends Installer {
 	 * @param $text
 	 * @param $attribs
 	 * @param $parser
-	 * @return String Html for download link
+	 * @return string Html for download link
 	 */
 	public function downloadLinkHook( $text, $attribs, $parser ) {
 		$img = Html::element( 'img', array(
@@ -1076,6 +1103,7 @@ class WebInstaller extends Installer {
 		$anchor = Html::rawElement( 'a',
 			array( 'href' => $this->getURL( array( 'localsettings' => 1 ) ) ),
 			$img . ' ' . wfMessage( 'config-download-localsettings' )->parse() );
+
 		return Html::rawElement( 'div', array( 'class' => 'config-download-link' ), $anchor );
 	}
 
@@ -1097,8 +1125,10 @@ class WebInstaller extends Installer {
 			$this->setVar( 'wgScriptPath', $uri );
 		} else {
 			$this->showError( 'config-no-uri' );
+
 			return false;
 		}
+
 		return parent::envCheckPath();
 	}
 

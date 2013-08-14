@@ -165,7 +165,7 @@ class DatabaseLogEntry extends LogEntryBase {
 	 */
 	public static function newFromRow( $row ) {
 		if ( is_array( $row ) && isset( $row['rc_logid'] ) ) {
-			return new RCDatabaseLogEntry( (object) $row );
+			return new RCDatabaseLogEntry( (object)$row );
 		} else {
 			return new self( $row );
 		}
@@ -234,7 +234,7 @@ class DatabaseLogEntry extends LogEntryBase {
 
 	public function getPerformer() {
 		if ( !$this->performer ) {
-			$userId = (int) $this->row->log_user;
+			$userId = (int)$this->row->log_user;
 			if ( $userId !== 0 ) { // logged-in users
 				if ( isset( $this->row->user_name ) ) {
 					$this->performer = User::newFromRow( $this->row );
@@ -292,7 +292,7 @@ class RCDatabaseLogEntry extends DatabaseLogEntry {
 
 	public function getPerformer() {
 		if ( !$this->performer ) {
-			$userId = (int) $this->row->rc_user;
+			$userId = (int)$this->row->rc_user;
 			if ( $userId !== 0 ) {
 				$this->performer = User::newFromId( $userId );
 			} else {
@@ -472,7 +472,7 @@ class ManualLogEntry extends LogEntryBase {
 			'log_title' => $this->getTarget()->getDBkey(),
 			'log_page' => $this->getTarget()->getArticleID(),
 			'log_comment' => $comment,
-			'log_params' => serialize( (array) $this->getParameters() ),
+			'log_params' => serialize( (array)$this->getParameters() ),
 		);
 		$dbw->insert( 'logging', $data, __METHOD__ );
 		$this->id = !is_null( $id ) ? $id : $dbw->insertId();
@@ -498,16 +498,12 @@ class ManualLogEntry extends LogEntryBase {
 	}
 
 	/**
-	 * Publishes the log entry.
-	 * @param int $newId id of the log entry.
-	 * @param string $to rcandudp (default), rc, udp
+	 * Get a RecentChanges object for the log entry
+	 * @param int $newId
+	 * @return RecentChange
+	 * @since 1.23
 	 */
-	public function publish( $newId, $to = 'rcandudp' ) {
-		$log = new LogPage( $this->getType() );
-		if ( $log->isRestricted() ) {
-			return;
-		}
-
+	public function getRecentChange( $newId = 0 ) {
 		$formatter = LogFormatter::newFromEntry( $this );
 		$context = RequestContext::newExtraneousContext( $this->getTarget() );
 		$formatter->setContext( $context );
@@ -524,7 +520,7 @@ class ManualLogEntry extends LogEntryBase {
 				$ip = $user->getName();
 			}
 		}
-		$rc = RecentChange::newLogEntry(
+		return RecentChange::newLogEntry(
 			$this->getTimestamp(),
 			$logpage,
 			$user,
@@ -534,17 +530,32 @@ class ManualLogEntry extends LogEntryBase {
 			$this->getSubtype(),
 			$this->getTarget(),
 			$this->getComment(),
-			serialize( (array) $this->getParameters() ),
+			serialize( (array)$this->getParameters() ),
 			$newId,
 			$formatter->getIRCActionComment() // Used for IRC feeds
 		);
+
+	}
+
+	/**
+	 * Publishes the log entry.
+	 * @param int $newId id of the log entry.
+	 * @param string $to rcandudp (default), rc, udp
+	 */
+	public function publish( $newId, $to = 'rcandudp' ) {
+		$log = new LogPage( $this->getType() );
+		if ( $log->isRestricted() ) {
+			return;
+		}
+
+		$rc = $this->getRecentChange( $newId );
 
 		if ( $to === 'rc' || $to === 'rcandudp' ) {
 			$rc->save( 'pleasedontudp' );
 		}
 
 		if ( $to === 'udp' || $to === 'rcandudp' ) {
-			$rc->notifyRC2UDP();
+			$rc->notifyRCFeeds();
 		}
 	}
 
@@ -586,7 +597,7 @@ class ManualLogEntry extends LogEntryBase {
 	}
 
 	public function getDeleted() {
-		return (int) $this->deleted;
+		return (int)$this->deleted;
 	}
 
 }

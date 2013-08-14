@@ -232,7 +232,7 @@ Bitte warte eenige Minuta, bevur du 's noo eemool versuchst.
 
 $1",
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Ieber {{SITENAME}}',
 'aboutpage' => 'Project:Ieber',
 'copyright' => 'Inhalt ies verfügbar unter der $1.',
@@ -305,15 +305,6 @@ Oalle verfügbara Spezialseyta sein ei der [[Special:SpecialPages|Liste der Spez
 
 # General errors
 'databaseerror' => 'Fehler ei der Datenbank',
-'dberrortext' => 'Is ies a Datenbankfahler uffgetreten.
-Dar Grund koan a Programmierfahler sei.
-De letzte Datenbankoabfroage lautete:
-<blockquote><tt>$1</tt></blockquote>
-aus dar Funksjonn „<tt>$2</tt>“.
-De Datenbank meldete dann Fahler „<tt>$3: $4</tt>“.',
-'dberrortextcl' => "Is goab an'n Syntaxfahler ei dar Datenbankobfroage.
-De letzte Datenbankobfroage lautete: „$1“ aus dar Funksjonn „<tt>$2</tt>“.
-De Datenbank meldete dann Fahler: „<tt>$3: $4</tt>“.",
 'laggedslavemode' => 'Achtung: Die angezeigte Seite enthält unter Umständen nicht die jüngsten Bearbeitungen.',
 'readonly' => 'Datenbanksperre',
 'missing-article' => 'Der Text von „$1“ $2 wurde nicht in der Datenbank gefunden.
@@ -343,7 +334,6 @@ Abfroage: $2',
 'editinginterface' => "'''Warnung:''' Diese Seite enthält vu der MediaWiki-Software benutzta Text.
 Änderunga wirka siech uff de Benutzeroberfläche aus.
 Fier Iebersetzunga ziehe bitte ei Betracht, diese eim [//translatewiki.net/wiki/Main_Page?setlang=de Translatewiki], damm MediaWiki-Lokalisierungsprojekt, durchzufiehra.",
-'sqlhidden' => '(SQL-Abfroage versteckt)',
 'cascadeprotected' => 'Diese Seite ies zur Beoarbeetung gesperrt. Se ies ei de {{PLURAL:$1|fulgende Seite|fulgenda Seita}} eengebunda, de mittels der Kaskadensperroption geschitzt {{PLURAL:$1|ies|sein}}:
 $2',
 'namespaceprotected' => "Du host kenne Berechtigung, de Seite eim '''$1'''-Noamensraum zu bearbta.",
@@ -445,7 +435,7 @@ Bitte warte, bevor du is erneut probierst.',
 'newpassword' => 'Neues Passwurt:',
 'retypenew' => 'Neues Passwurt (nuchmoal):',
 'resetpass_submit' => 'Poaßwurt iebermitteln und oamelda',
-'resetpass_success' => 'Dei Poaßwurt wurde erfolgreich geändert. Is fulgt de Oameldung …',
+'changepassword-success' => 'Dei Poaßwurt wurde erfolgreich geändert. Is fulgt de Oameldung …',
 'resetpass_forbidden' => 'Doas Poaßwurt koan ne geändert waan.',
 'resetpass-no-info' => 'Du muoßt diech oamelda, im uff diese Seite direkt zuzugreifa.',
 'resetpass-submit-loggedin' => 'Poaßwurt ändern',
@@ -1217,10 +1207,6 @@ Ieberpriefe andere Links zu den Vurlooga, bevur du diese läscht.',
 'statistics-users-active-desc' => 'Nutzer miet Beoarbeetunga {{PLURAL:$1|enn letzta 24 Stunden|enn vergangenen $1 Tagen}}',
 'statistics-mostpopular' => 'Meistbesichte Seyta',
 
-'disambiguations' => 'Begriffsklärungsseyta',
-'disambiguationspage' => 'Template:Begriffsklärung',
-'disambiguations-text' => 'De fulgenda Seita verlinka uff anne Seite zur Begriefsklärung. Se sullta stoats dassens uff de eigentlich gemeente Seite verlinka.<br />Anne Seite werd ols Begriefsklärungsseite behandelt, wenn [[MediaWiki:Disambiguationspage]] uff se verlinkt.<br />Links aus Noamasräumen waan hier ne uffgelistet.',
-
 'doubleredirects' => 'Doppelte Weiterleitunga',
 'doubleredirectstext' => 'Diese Liste enthält Weiterleitunga, de uff wettere Wetterleitunga verlinka.
 Jede Zeile enthält Links zu dar erschta und zweeta Wetterleitung suwie doas Ziel dar zweeta Wetterleitung, welches fier gewehnlich die gewünschte Zielseyte ies, uff de bereits de erschte Wetterleitung zeiga sullte.
@@ -1708,10 +1694,7 @@ Siehe de [[Special:BlockList|Liste dar gesperrta IP-Atressa und Nutzernoama]] fi
 'ipb_cant_unblock' => 'Fahler: Sperr-ID $1 ne gefunda. De Sperre wurde bereits uffgehuba.',
 'ipb_blocked_as_range' => 'Fahler: De IP-Atresse $1 wurde ols Teel dar Bereichssperre $2 indirekt gesperrt. Anne Entsperrung vu $1 alleene ies ne meeglich.',
 'ip_range_invalid' => 'Ungiltiger IP-Atressbereich.',
-'blockme' => 'Sperre miech',
-'proxyblocker-disabled' => 'Diese Funksjonn ies deaktiviert.',
 'proxyblockreason' => 'Denne IP-Atresse wurde gesperrt, do se a offener Proxy ies. Bitte kontaktiere denn Internet-Provider oder denne Systemadministratoren und informiere se ieber dieses meegliche Sicherheetsproblem.',
-'proxyblocksuccess' => 'Fattich',
 'sorbsreason' => 'De IP-Atresse ies ei dar DNSBL vu {{SITENAME}} ols offener PROXY gelistet.',
 'sorbs_create_account_reason' => 'De IP-Atresse ies ei dar DNSBL vu {{SITENAME}} ols offener PROXY gelistet. Doas Oalega neuer Nutzer ies ne meeglich.',
 'cant-block-while-blocked' => 'Du koast kenne andern Nutzer sperra, während du selbst gesperrt best',

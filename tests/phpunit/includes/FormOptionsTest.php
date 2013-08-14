@@ -60,6 +60,7 @@ class FormOptionsTest extends MediaWikiTestCase {
 
 	/**
 	 * Reuse helpers above assertGuessBoolean assertGuessInt assertGuessString
+	 * @covers FormOptions::guessType
 	 */
 	public function testGuessTypeDetection() {
 		$this->assertGuessBoolean( true );
@@ -78,12 +79,14 @@ class FormOptionsTest extends MediaWikiTestCase {
 
 	/**
 	 * @expectedException MWException
+	 * @covers FormOptions::guessType
 	 */
 	public function testGuessTypeOnArrayThrowException() {
 		$this->object->guessType( array( 'foo' ) );
 	}
 	/**
 	 * @expectedException MWException
+	 * @covers FormOptions::guessType
 	 */
 	public function testGuessTypeOnNullThrowException() {
 		$this->object->guessType( null );

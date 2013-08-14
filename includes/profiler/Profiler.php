@@ -34,8 +34,8 @@ function wfProfileIn( $functionname ) {
 	if ( Profiler::$__instance === null ) { // use this directly to reduce overhead
 		Profiler::instance();
 	}
-	if ( Profiler::$__instance && !( Profiler::$__instance instanceof ProfilerStub ) ) {
-		Profiler::instance()->profileIn( $functionname );
+	if ( !( Profiler::$__instance instanceof ProfilerStub ) ) {
+		Profiler::$__instance->profileIn( $functionname );
 	}
 }
 
@@ -47,8 +47,8 @@ function wfProfileOut( $functionname = 'missing' ) {
 	if ( Profiler::$__instance === null ) { // use this directly to reduce overhead
 		Profiler::instance();
 	}
-	if ( Profiler::$__instance && !( Profiler::$__instance instanceof ProfilerStub ) ) {
-		Profiler::instance()->profileOut( $functionname );
+	if ( !( Profiler::$__instance instanceof ProfilerStub ) ) {
+		Profiler::$__instance->profileOut( $functionname );
 	}
 }
 
@@ -77,7 +77,7 @@ class ProfileSection {
 		if ( Profiler::$__instance === null ) { // use this directly to reduce overhead
 			Profiler::instance();
 		}
-		if ( Profiler::$__instance && !( Profiler::$__instance instanceof ProfilerStub ) ) {
+		if ( !( Profiler::$__instance instanceof ProfilerStub ) ) {
 			$this->enabled = true;
 			Profiler::$__instance->profileIn( $this->name );
 		}
@@ -594,8 +594,8 @@ class Profiler {
 			$prof .= sprintf( $format,
 				substr( $fname, 0, $nameWidth ),
 				$calls,
-				(float) ( $elapsed * 1000 ),
-				(float) ( $elapsed * 1000 ) / $calls,
+				(float)( $elapsed * 1000 ),
+				(float)( $elapsed * 1000 ) / $calls,
 				$percent,
 				$memory,
 				( $this->mMin[$fname] * 1000.0 ),
@@ -665,7 +665,7 @@ class Profiler {
 
 			foreach ( $this->mCollated as $name => $elapsed ) {
 				$eventCount = $this->mCalls[$name];
-				$timeSum = (float) ( $elapsed * 1000 );
+				$timeSum = (float)( $elapsed * 1000 );
 				$memorySum = (float)$this->mMemory[$name];
 				$name = substr( $name, 0, 255 );
 

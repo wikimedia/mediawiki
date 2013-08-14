@@ -93,9 +93,9 @@ class MWTimestamp {
 			# TS_ORACLE // session altered to DD-MM-YYYY HH24:MI:SS.FF6
 			$strtime = preg_replace( '/(\d\d)\.(\d\d)\.(\d\d)(\.(\d+))?/', "$1:$2:$3",
 					str_replace( '+00:00', 'UTC', $ts ) );
-		} elseif ( preg_match( '/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})(?:\.*\d*)?Z$/', $ts, $da ) ) {
+		} elseif ( preg_match( '/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})(?:\.*\d*)?Z?$/', $ts, $da ) ) {
 			# TS_ISO_8601
-		} elseif ( preg_match( '/^(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})(\d{2})(?:\.*\d*)?Z$/', $ts, $da ) ) {
+		} elseif ( preg_match( '/^(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})(\d{2})(?:\.*\d*)?Z?$/', $ts, $da ) ) {
 			#TS_ISO_8601_BASIC
 		} elseif ( preg_match( '/^(\d{4})\-(\d\d)\-(\d\d) (\d\d):(\d\d):(\d\d)\.*\d*[\+\- ](\d\d)$/', $ts, $da ) ) {
 			# TS_POSTGRES
@@ -252,7 +252,7 @@ class MWTimestamp {
 			if ( count( $data ) >= 2 ) {
 				// Combination hours and minutes.
 				$diff = abs( (int)$data[0] ) * 60 + (int)$data[1];
-				if ( (int) $data[0] < 0 ) {
+				if ( (int)$data[0] < 0 ) {
 					$diff *= -1;
 				}
 			} else {
@@ -268,6 +268,44 @@ class MWTimestamp {
 
 		$this->timestamp->add( $interval );
 		return $interval;
+	}
+
+	/**
+	 * Generate a purely relative timestamp, i.e., represent the time elapsed between
+	 * the given base timestamp and this object.
+	 *
+	 * @param MWTimestamp $relativeTo Relative base timestamp (defaults to now)
+	 * @param User $user Use to use offset for
+	 * @param Language $lang Language to use
+	 * @param array $chosenIntervals Intervals to use to represent it
+	 * @return string Relative timestamp
+	 */
+	public function getRelativeTimestamp(
+		MWTimestamp $relativeTo = null,
+		User $user = null,
+		Language $lang = null,
+		array $chosenIntervals = array()
+	) {
+		if ( $relativeTo === null ) {
+			$relativeTo = new self;
+		}
+		if ( $user === null ) {
+			$user = RequestContext::getMain()->getUser();
+		}
+		if ( $lang === null ) {
+			$lang = RequestContext::getMain()->getLanguage();
+		}
+
+		$ts = '';
+		$diff = $this->diff( $relativeTo );
+		if ( wfRunHooks( 'GetRelativeTimestamp', array( &$ts, &$diff, $this, $relativeTo, $user, $lang ) ) ) {
+			$seconds = ( ( ( $diff->days * 24 + $diff->h ) * 60 + $diff->i ) * 60 + $diff->s );
+			$ts = wfMessage( 'ago', $lang->formatDuration( $seconds, $chosenIntervals ) )
+				->inLanguage( $lang )
+				->text();
+		}
+
+		return $ts;
 	}
 
 	/**

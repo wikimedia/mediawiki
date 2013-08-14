@@ -50,6 +50,12 @@ class WebRequest {
 	 */
 	private $ip;
 
+	/**
+	 * Cached URL protocol
+	 * @var string
+	 */
+	private $protocol;
+
 	public function __construct() {
 		/// @todo FIXME: This preemptive de-quoting can interfere with other web libraries
 		///        and increases our memory footprint. It would be cleaner to do on
@@ -160,7 +166,8 @@ class WebRequest {
 	 * @return string
 	 */
 	public static function detectServer() {
-		list( $proto, $stdPort ) = self::detectProtocolAndStdPort();
+		$proto = self::detectProtocol();
+		$stdPort = $proto === 'https' ? 443 : 80;
 
 		$varNames = array( 'HTTP_HOST', 'SERVER_NAME', 'HOSTNAME', 'SERVER_ADDR' );
 		$host = 'localhost';
@@ -189,25 +196,32 @@ class WebRequest {
 	}
 
 	/**
+	 * Detect the protocol from $_SERVER.
+	 * This is for use prior to Setup.php, when no WebRequest object is available.
+	 * At other times, use the non-static function getProtocol().
+	 *
 	 * @return array
 	 */
-	public static function detectProtocolAndStdPort() {
+	public static function detectProtocol() {
 		if ( ( isset( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] == 'on' ) ||
 			( isset( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) &&
 			$_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https' ) ) {
-			$arr = array( 'https', 443 );
+			return 'https';
 		} else {
-			$arr = array( 'http', 80 );
+			return 'http';
 		}
 		return $arr;
 	}
 
 	/**
+	 * Get the current URL protocol (http or https)
 	 * @return string
 	 */
-	public static function detectProtocol() {
-		list( $proto, ) = self::detectProtocolAndStdPort();
-		return $proto;
+	public function getProtocol() {
+		if ( $this->protocol === null ) {
+			$this->protocol = self::detectProtocol();
+		}
+		return $this->protocol;
 	}
 
 	/**
@@ -881,8 +895,9 @@ class WebRequest {
 			return;
 		}
 
-		if ( function_exists( 'apache_request_headers' ) ) {
-			foreach ( apache_request_headers() as $tempName => $tempValue ) {
+		$apacheHeaders = function_exists( 'apache_request_headers' ) ? apache_request_headers() : false;
+		if ( $apacheHeaders ) {
+			foreach ( $apacheHeaders as $tempName => $tempValue ) {
 				$this->headers[strtoupper( $tempName )] = $tempValue;
 			}
 		} else {
@@ -1141,12 +1156,19 @@ HTML;
 			# unless the address is not sensible (e.g. private). However, prefer private
 			# IP addresses over proxy servers controlled by this site (more sensible).
 			foreach ( $ipchain as $i => $curIP ) {
-				$curIP = IP::canonicalize( $curIP );
+				$curIP = IP::sanitizeIP( IP::canonicalize( $curIP ) );
 				if ( wfIsTrustedProxy( $curIP ) && isset( $ipchain[$i + 1] ) ) {
-					if ( wfIsConfiguredProxy( $curIP ) || // bug 48919
-						( IP::isPublic( $ipchain[$i + 1] ) || $wgUsePrivateIPs )
+					if ( wfIsConfiguredProxy( $curIP ) || // bug 48919; treat IP as sane
+						IP::isPublic( $ipchain[$i + 1] ) ||
+						$wgUsePrivateIPs
 					) {
-						$ip = IP::canonicalize( $ipchain[$i + 1] );
+						$nextIP = IP::canonicalize( $ipchain[$i + 1] );
+						if ( !$nextIP && wfIsConfiguredProxy( $ip ) ) {
+							// We have not yet made it past CDN/proxy servers of this site,
+							// so either they are misconfigured or there is some IP spoofing.
+							throw new MWException( "Invalid IP given in XFF '$forwardedFor'." );
+						}
+						$ip = $nextIP;
 						continue;
 					}
 				}
@@ -1158,7 +1180,7 @@ HTML;
 		wfRunHooks( 'GetIP', array( &$ip ) );
 
 		if ( !$ip ) {
-			throw new MWException( "Unable to determine IP" );
+			throw new MWException( "Unable to determine IP." );
 		}
 
 		wfDebug( "IP: $ip\n" );
@@ -1304,9 +1326,10 @@ class FauxRequest extends WebRequest {
 	 *   fake GET/POST values
 	 * @param bool $wasPosted whether to treat the data as POST
 	 * @param $session Mixed: session array or null
+	 * @param string $protocol 'http' or 'https'
 	 * @throws MWException
 	 */
-	public function __construct( $data = array(), $wasPosted = false, $session = null ) {
+	public function __construct( $data = array(), $wasPosted = false, $session = null, $protocol = 'http' ) {
 		if ( is_array( $data ) ) {
 			$this->data = $data;
 		} else {
@@ -1316,6 +1339,7 @@ class FauxRequest extends WebRequest {
 		if ( $session ) {
 			$this->session = $session;
 		}
+		$this->protocol = $protocol;
 	}
 
 	/**
@@ -1375,6 +1399,10 @@ class FauxRequest extends WebRequest {
 
 	public function getRequestURL() {
 		$this->notImplemented( __METHOD__ );
+	}
+
+	public function getProtocol() {
+		return $this->protocol;
 	}
 
 	/**
@@ -1515,5 +1543,9 @@ class DerivativeRequest extends FauxRequest {
 
 	public function getIP() {
 		return $this->base->getIP();
+	}
+
+	public function getProtocol() {
+		return $this->base->getProtocol();
 	}
 }

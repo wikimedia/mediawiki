@@ -383,13 +383,8 @@ class ApiMain extends ApiBase {
 			wfRunHooks( 'ApiMain::onException', array( $this, $e ) );
 
 			// Log it
-			if ( $e instanceof MWException && !( $e instanceof UsageException ) ) {
-				global $wgLogExceptionBacktrace;
-				if ( $wgLogExceptionBacktrace ) {
-					wfDebugLog( 'exception', $e->getLogMessage() . "\n" . $e->getTraceAsString() . "\n" );
-				} else {
-					wfDebugLog( 'exception', $e->getLogMessage() );
-				}
+			if ( !( $e instanceof UsageException ) ) {
+				MWExceptionHandler::logException( $e );
 			}
 
 			// Handle any kind of exception by outputting properly formatted error message.
@@ -714,15 +709,9 @@ class ApiMain extends ApiBase {
 		}
 		$moduleParams = $module->extractRequestParams();
 
-		// Die if token required, but not provided (unless there is a gettoken parameter)
-		if ( isset( $moduleParams['gettoken'] ) ) {
-			$gettoken = $moduleParams['gettoken'];
-		} else {
-			$gettoken = false;
-		}
-
+		// Die if token required, but not provided
 		$salt = $module->getTokenSalt();
-		if ( $salt !== false && !$gettoken ) {
+		if ( $salt !== false ) {
 			if ( !isset( $moduleParams['token'] ) ) {
 				$this->dieUsageMsg( array( 'missingparam', 'token' ) );
 			} else {
@@ -1150,7 +1139,7 @@ class ApiMain extends ApiBase {
 		$this->setHelp();
 		// Get help text from cache if present
 		$key = wfMemcKey( 'apihelp', $this->getModuleName(),
-			SpecialVersion::getVersion( 'nodb' ) );
+			str_replace( ' ', '_', SpecialVersion::getVersion( 'nodb' ) ) );
 		if ( $wgAPICacheHelpTimeout > 0 ) {
 			$cached = $wgMemc->get( $key );
 			if ( $cached ) {

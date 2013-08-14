@@ -59,7 +59,12 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 		}
 
 		if ( $request->wasPosted() && $request->getBool( 'wpCancel' ) ) {
-			$this->doReturnTo();
+			$titleObj = Title::newFromText( $request->getVal( 'returnto' ) );
+			if ( !$titleObj instanceof Title ) {
+				$titleObj = Title::newMainPage();
+			}
+			$query = $request->getVal( 'returntoquery' );
+			$this->getOutput()->redirect( $titleObj->getFullURL( $query ) );
 
 			return;
 		}
@@ -79,7 +84,11 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 				$this->attemptReset( $this->mNewpass, $this->mRetype );
 
 				if ( $user->isLoggedIn() ) {
-					$this->doReturnTo();
+					$this->getOutput()->wrapWikiMsg(
+							"<div class=\"successbox\">\n$1\n</div>",
+							'changepassword-success'
+					);
+					$this->getOutput()->returnToMain();
 				} else {
 					LoginForm::setLoginToken();
 					$token = LoginForm::getLoginToken();
@@ -101,16 +110,6 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 			}
 		}
 		$this->showForm();
-	}
-
-	function doReturnTo() {
-		$request = $this->getRequest();
-		$titleObj = Title::newFromText( $request->getVal( 'returnto' ) );
-		if ( !$titleObj instanceof Title ) {
-			$titleObj = Title::newMainPage();
-		}
-		$query = $request->getVal( 'returntoquery' );
-		$this->getOutput()->redirect( $titleObj->getFullURL( $query ) );
 	}
 
 	/**
@@ -231,6 +230,8 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 	 * @throws PasswordError when cannot set the new password because requirements not met.
 	 */
 	protected function attemptReset( $newpass, $retype ) {
+		global $wgPasswordAttemptThrottle;
+
 		$isSelf = ( $this->mUserName === $this->getUser()->getName() );
 		if ( $isSelf ) {
 			$user = $this->getUser();
@@ -249,7 +250,11 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 
 		$throttleCount = LoginForm::incLoginThrottle( $this->mUserName );
 		if ( $throttleCount === true ) {
-			throw new PasswordError( $this->msg( 'login-throttled' )->text() );
+			$lang = $this->getLanguage();
+			throw new PasswordError( $this->msg( 'login-throttled' )
+				->params( $lang->formatDuration( $wgPasswordAttemptThrottle['seconds'] ) )
+				->text()
+			);
 		}
 
 		$abortMsg = 'resetpass-abort-generic';

@@ -7,14 +7,20 @@
 
 /** Tests for MediaWiki languages/LanguageLt.php */
 class LanguageLtTest extends LanguageClassesTestCase {
-	/** @dataProvider providePlural */
-	function testPlural( $result, $value ) {
+	/**
+	 * @dataProvider providePlural
+	 * @covers Language::convertPlural
+	 */
+	public function testPlural( $result, $value ) {
 		$forms = array( 'one', 'few', 'other' );
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
-	/** @dataProvider providePlural */
-	function testGetPluralRuleType( $result, $value ) {
+	/**
+	 * @dataProvider providePlural
+	 * @covers Language::getPluralRuleType
+	 */
+	public function testGetPluralRuleType( $result, $value ) {
 		$this->assertEquals( $result, $this->getLang()->getPluralRuleType( $value ) );
 	}
 
@@ -34,8 +40,11 @@ class LanguageLtTest extends LanguageClassesTestCase {
 		);
 	}
 
-	/** @dataProvider providePluralTwoForms */
-	function testOneFewPlural( $result, $value ) {
+	/**
+	 * @dataProvider providePluralTwoForms
+	 * @covers Language::convertPlural
+	 */
+	public function testOneFewPlural( $result, $value ) {
 		$forms = array( 'one', 'other' );
 		// This fails for 21, but not sure why.
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );

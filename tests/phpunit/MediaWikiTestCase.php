@@ -537,6 +537,12 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		global $wgDBprefix;
 
 		$tables = $db->listTables( $wgDBprefix, __METHOD__ );
+
+		if ( $db->getType() === 'mysql' ) {
+			# bug 43571: cannot clone VIEWs under MySQL
+			$views = $db->listViews( $wgDBprefix, __METHOD__ );
+			$tables = array_diff( $tables, $views );
+		}
 		$tables = array_map( array( __CLASS__, 'unprefixTable' ), $tables );
 
 		// Don't duplicate test tables from the previous fataled run
@@ -777,7 +783,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * Returns true iff the given namespace defaults to Wikitext
+	 * Returns true if the given namespace defaults to Wikitext
 	 * according to $wgNamespaceContentModels
 	 *
 	 * @param int $ns The namespace ID to check
@@ -918,6 +924,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * the provided code.
 	 *
 	 * @since 1.21
+	 * @deprecated since 1.22 Use setExpectedException
 	 *
 	 * @param callable $code
 	 * @param string $expected

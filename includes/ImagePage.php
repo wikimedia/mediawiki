@@ -128,7 +128,7 @@ class ImagePage extends Article {
 				$out->setPageTitle( $this->getTitle()->getPrefixedText() );
 				$out->addHTML( $this->viewRedirect( Title::makeTitle( NS_FILE, $this->mPage->getFile()->getName() ),
 					/* $appendSubtitle */ true, /* $forceKnown */ true ) );
-				$this->mPage->doViewUpdates( $this->getContext()->getUser() );
+				$this->mPage->doViewUpdates( $this->getContext()->getUser(), $this->getOldID() );
 				return;
 			}
 		}
@@ -165,7 +165,7 @@ class ImagePage extends Article {
 			# Just need to set the right headers
 			$out->setArticleFlag( true );
 			$out->setPageTitle( $this->getTitle()->getPrefixedText() );
-			$this->mPage->doViewUpdates( $this->getContext()->getUser() );
+			$this->mPage->doViewUpdates( $this->getContext()->getUser(), $this->getOldID() );
 		}
 
 		# Show shared description, if needed
@@ -350,15 +350,33 @@ class ImagePage extends Article {
 					$linktext = wfMessage( 'show-big-image' )->escaped();
 					if ( $this->displayImg->getRepo()->canTransformVia404() ) {
 						$thumbSizes = $wgImageLimits;
+						// Also include the full sized resolution in the list, so
+						// that users know they can get it. This will link to the
+						// original file asset if mustRender() === false. In the case
+						// that we mustRender, some users have indicated that they would
+						// find it useful to have the full size image in the rendered
+						// image format.
+						$thumbSizes[] = array( $width_orig, $height_orig );
 					} else {
 						# Creating thumb links triggers thumbnail generation.
 						# Just generate the thumb for the current users prefs.
 						$thumbSizes = array( $this->getImageLimitsFromOption( $user, 'thumbsize' ) );
+						if ( !$this->displayImg->mustRender() ) {
+							// We can safely include a link to the "full-size" preview,
+							// without actually rendering.
+							$thumbSizes[] = array( $width_orig, $height_orig );
+						}
 					}
 					# Generate thumbnails or thumbnail links as needed...
 					$otherSizes = array();
 					foreach ( $thumbSizes as $size ) {
-						if ( $size[0] < $width_orig && $size[1] < $height_orig
+						// We include a thumbnail size in the list, if it is
+						// less than or equal to the original size of the image
+						// asset ($width_orig/$height_orig). We also exclude
+						// the current thumbnail's size ($width/$height)
+						// since that is added to the message separately, so
+						// it can be denoted as the current size being shown.
+						if ( $size[0] <= $width_orig && $size[1] <= $height_orig
 							&& $size[0] != $width && $size[1] != $height )
 						{
 							$sizeLink = $this->makeSizeLink( $params, $size[0], $size[1] );
@@ -367,6 +385,7 @@ class ImagePage extends Article {
 							}
 						}
 					}
+					$otherSizes = array_unique( $otherSizes );
 					$msgsmall = '';
 					$sizeLinkBigImagePreview = $this->makeSizeLink( $params, $width, $height );
 					if ( $sizeLinkBigImagePreview ) {
@@ -401,6 +420,7 @@ class ImagePage extends Article {
 
 				$isMulti = $this->displayImg->isMultipage() && $this->displayImg->pageCount() > 1;
 				if ( $isMulti ) {
+					$out->addModules( 'mediawiki.page.image.pagination' );
 					$out->addHTML( '<table class="multipageimage"><tr><td>' );
 				}
 
@@ -450,7 +470,6 @@ class ImagePage extends Article {
 					$formParams = array(
 						'name' => 'pageselector',
 						'action' => $wgScript,
-						'onchange' => 'document.pageselector.submit();',
 					);
 					$options = array();
 					for ( $i = 1; $i <= $count; $i++ ) {
@@ -600,7 +619,7 @@ EOT
 		$this->loadFile();
 
 		$descUrl = $this->mPage->getFile()->getDescriptionUrl();
-		$descText = $this->mPage->getFile()->getDescriptionText();
+		$descText = $this->mPage->getFile()->getDescriptionText( $this->getContext()->getLanguage() );
 
 		/* Add canonical to head if there is no local page for this shared file */
 		if ( $descUrl && $this->mPage->getID() == 0 ) {
@@ -765,7 +784,15 @@ EOT
 				break;
 			}
 
-			$link = Linker::linkKnown( Title::makeTitle( $element->page_namespace, $element->page_title ) );
+			$query = array();
+			# Add a redirect=no to make redirect pages reachable
+			if ( isset( $redirects[$element->page_title] ) ) {
+				$query['redirect'] = 'no';
+			}
+			$link = Linker::linkKnown(
+				Title::makeTitle( $element->page_namespace, $element->page_title ),
+				null, array(), $query
+			);
 			if ( !isset( $redirects[$element->page_title] ) ) {
 				# No redirects
 				$liContents = $link;

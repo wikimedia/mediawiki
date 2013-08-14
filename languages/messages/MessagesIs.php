@@ -231,6 +231,7 @@ $specialPageAliases = array(
 $separatorTransformTable = array( ',' => '.', '.' => ',' );
 $linkPrefixExtension = true;
 $linkTrail = '/^([áðéíóúýþæöa-z-–]+)(.*)$/sDu';
+$linkPrefixCharset = 'áÁðÐéÉíÍóÓúÚýÝþÞæÆöÖA-Za-z–-';
 
 $messages = array(
 # User preference toggles
@@ -371,14 +372,12 @@ $messages = array(
 'noindex-category' => 'Óraðaðar skrár',
 'broken-file-category' => 'Síður með brotna myndatengla',
 
-'linkprefix' => '/^(.*?)([áÁðÐéÉíÍóÓúÚýÝþÞæÆöÖA-Za-z-–]+)$/sDu',
-
 'about' => 'Um',
 'article' => 'Efnissíða',
 'newwindow' => '(opnast í nýjum glugga)',
 'cancel' => 'Hætta við',
 'moredotdotdot' => 'Meira...',
-'morenotlisted' => 'fleiri ekki skráð...',
+'morenotlisted' => 'Þessi listi er ekki tæmandi.',
 'mypage' => 'Síða',
 'mytalk' => 'Spjall',
 'anontalk' => 'Spjallsíða þessa vistfangs.',
@@ -478,10 +477,10 @@ $1',
 'pool-queuefull' => 'Vefþjónninn er yfirhlaðinn í augnablikinu.',
 'pool-errorunknown' => 'Óþekkt villa',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Um {{SITENAME}}',
 'aboutpage' => 'Project:Um verkefnið',
-'copyright' => 'Efni má nota samkvæmt $1.',
+'copyright' => 'Efni má nota samkvæmt $1 nema kemur fram annars.',
 'copyrightpage' => '{{ns:project}}:Höfundarréttur',
 'currentevents' => 'Potturinn',
 'currentevents-url' => 'Project:Potturinn',
@@ -563,17 +562,7 @@ Sjá [[Special:Version|útgáfusíðuna]].',
 # General errors
 'error' => 'Villa',
 'databaseerror' => 'Gagnagrunnsvilla',
-'dberrortext' => 'Málfræðivilla kom upp í gangagrnunsfyrirspurninni.
-Þetta gæti verið vegna villu í hugbúnaðinum.
-Síðasta gagnagrunnsfyrirspurnin var:
-<blockquote><code>$1</code></blockquote>
-úr aðgerðinni: „<code>$2</code>".
-MySQL skilar villuboðunum „<samp>$3: $4</samp>".',
-'dberrortextcl' => 'Málfræðivilla kom upp í gangagrnunsfyrirspurninni.
-Síðasta gagnagrunnsfyrirspurnin var:
-„$1“
-úr aðgerðinni: „$2“.
-MySQL skilar villuboðanum „$3: $4“',
+'databaseerror-error' => 'Villa: $1',
 'laggedslavemode' => 'Viðvörun: Síðan inniheldur ekki nýjustu uppfærslur.',
 'readonly' => 'Gagnagrunnur læstur',
 'enterlockreason' => 'Gefðu fram ástæðu fyrir læsingunni, og einnig áætlun
@@ -628,7 +617,6 @@ Til þess að bæta við eða breyta þýðingum fyrir öll wiki verkefni, vinsa
 'editinginterface' => "'''Aðvörun:''' Þú ert að breyta síðu sem hefur að geyma texta fyrir notendaumhverfi hugbúnaðarins.
 Breytingar á þessari síðu munu hafa áhrif á notendaumhverfi annarra notenda á þessu vefsvæði.
 Til þess að bæta við eða breyta þýðingum fyrir öll wiki verkefni, vinsamlegast notaðu [//translatewiki.net/wiki/Main_Page?setlang=is translatewiki.net], staðfæringaverkefni MediaWiki.",
-'sqlhidden' => '(SQL-fyrirspurn falin)',
 'cascadeprotected' => 'Þessi síða hefur verið vernduð fyrir breytingum, vegna þess að hún er innifalin í eftirfarandi {{PLURAL:$1|síðu, sem er vernduð|síðum, sem eru verndaðar}} með „keðjuverndun“:
 $2',
 'namespaceprotected' => "Þú hefur ekki leyfi til að breyta síðum í '''$1''' nafnrýminu.",
@@ -663,6 +651,7 @@ Ekki gleyma að breyta [[Special:Preferences|{{SITENAME}} stillingunum]] þínum
 'yourname' => 'Notandanafn:',
 'userlogin-yourname' => 'Notandanafn',
 'userlogin-yourname-ph' => 'Skrifaðu inn notendanafnið þitt',
+'createacct-another-username-ph' => 'Skrifaðu inn notendanafnið',
 'yourpassword' => 'Lykilorð:',
 'userlogin-yourpassword' => 'Lykilorð',
 'userlogin-yourpassword-ph' => 'Skrifaðu niður lykilorðið þitt',
@@ -673,7 +662,6 @@ Ekki gleyma að breyta [[Special:Preferences|{{SITENAME}} stillingunum]] þínum
 'remembermypassword' => 'Muna innskráninguna mína í þessum vafra (í allt að $1 {{PLURAL:$1|dag|daga}})',
 'userlogin-remembermypassword' => 'Muna innskráningu mína',
 'userlogin-signwithsecure' => 'Nota örugga tengingu',
-'securelogin-stick-https' => 'Halda öllum samskiptum áfram yfir HTTPS eftir að þú skráir þig inn',
 'yourdomainname' => 'Þitt lén:',
 'password-change-forbidden' => 'Þú getur ekki breytt lykilorðum á þessum wiki.',
 'externaldberror' => 'Uppfærsla mistókst. Annaðhvort varð villa í gagnasafninu eða að þér sé óheimilt að uppfæra aðra aðganga.',
@@ -696,10 +684,15 @@ Ekki gleyma að breyta [[Special:Preferences|{{SITENAME}} stillingunum]] þínum
 'userlogin-resetpassword-link' => 'Endursetja lykilorð',
 'helplogin-url' => 'Help:Innskráning',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Hjálp við innskráningu]]',
+'userlogin-loggedin' => 'Þú ert búin(n) að skrá þig inn sem {{GENDER:$1|$1}}.
+Notaðu eyðablaðið fyrir neðan til að skrá þig inn sem annar notandi.',
+'userlogin-createanother' => 'Stofna annan aðgang',
 'createacct-join' => 'Sláðu inn þínar upplýsingar fyrir neðan.',
+'createacct-another-join' => 'Skrifaðu upplýsingar um nýja aðganginn fyrir neðan.',
 'createacct-emailrequired' => 'Netfang',
 'createacct-emailoptional' => 'Netfang (valfrjálst)',
 'createacct-email-ph' => 'Skrifaðu niður netfangið þitt',
+'createacct-another-email-ph' => 'Skrifaðu netfang',
 'createaccountmail' => 'Nota handahófsvalið bráðabirgðalykilorð og senda það á netfangið sem er tilgreint hér fyrir neðan',
 'createacct-realname' => 'Raunverulegt nafn (valfrjálst)',
 'createaccountreason' => 'Ástæða:',
@@ -708,6 +701,7 @@ Ekki gleyma að breyta [[Special:Preferences|{{SITENAME}} stillingunum]] þínum
 'createacct-captcha' => 'Öryggis athugun',
 'createacct-imgcaptcha-ph' => 'Sláðu inn textann að ofan',
 'createacct-submit' => 'Búa til aðganginn',
+'createacct-another-submit' => 'Stofna annan aðgang',
 'createacct-benefit-heading' => '{{SITENAME}} er skrifuð af fólki eins og þér.',
 'createacct-benefit-body1' => '{{PLURAL:$1|breyting|breytingar}}',
 'createacct-benefit-body2' => '{{PLURAL:$1|síða|síður}}',
@@ -777,10 +771,11 @@ Gjörðu svo vel og settu inn netfang á gildu formi eða tæmdu reitinn.',
 Þú getur hunsað þessi skilaboð, ef villa hefur átt sér stað.',
 'usernamehasherror' => 'Notendanöfn mega ekki innihalda kassa (#)',
 'login-throttled' => 'Þér hefur mistekist að skrá þig inn undir þessu notendanafni of oft.
-Vinsamlegast reynið aftur síðar.',
+Vinsamlegast bíðið $1 áður en þú reynir aftur.',
 'login-abort-generic' => 'Innskráningin misheppnaðist - hætt var við hana.',
 'loginlanguagelabel' => 'Tungumál: $1',
 'suspicious-userlogout' => 'Beiðni um útskráningu hafnað því hún var líklegast send frá biluðum vafra eða vefseli sem hefur vistað vefsíðuna í flýtiminni.',
+'createacct-another-realname-tip' => 'Alvöru nafn er valfrjálst. Ef þú kýst að gefa það upp, verður það notað til að gefa þér heiður af verkum þínum.',
 
 # Email sending
 'php-mail-error-unknown' => 'Óþekkt villa í PHP mail() aðgerð.',
@@ -797,7 +792,7 @@ Til að klára að skrá þig inn, verður þú að endurstilla lykilorðið hé
 'newpassword' => 'Nýja lykilorðið',
 'retypenew' => 'Endurtaktu nýja lykilorðið:',
 'resetpass_submit' => 'Skrifaðu aðgangsorðið og skráðu þig inn',
-'resetpass_success' => 'Aðgangsorðinu þínu hefur verið breytt! Skráir þig inn...',
+'changepassword-success' => 'Það tókst að breyta lykilorðinu þínu!',
 'resetpass_forbidden' => 'Ekki er hægt að breyta lykilorðum',
 'resetpass-no-info' => 'Þú verður að vera skráð(ur) inn til að hafa aðgang að þessari síðu.',
 'resetpass-submit-loggedin' => 'Breyta lykilorði',
@@ -851,6 +846,18 @@ Tímabundið lykilorð: $2',
 'changeemail-password' => '{{SITENAME}} lykilorðið þitt:',
 'changeemail-submit' => 'Breyta netfangi',
 'changeemail-cancel' => 'Hætta við',
+
+# Special:ResetTokens
+'resettokens' => 'Endurstilla lykla',
+'resettokens-text' => 'Hér getur þú endurstillt lykla sem veita þér aðgang að ákveðnum persónuupplýsingum um aðganginn þinn.
+
+Þú átt að gera það ef þú ert búin(n) að deila þeim með einhverjum öðrum óviljandi eða ef búið er að brjóta inn í aðganginn þinn.',
+'resettokens-no-tokens' => 'Það eru engir lyklar að endurstilla.',
+'resettokens-legend' => 'Endurstilla lykla',
+'resettokens-tokens' => 'Lyklar:',
+'resettokens-token-label' => '$1 (núverandi gildi: $2)',
+'resettokens-done' => 'Lyklarnir hafa verið endurstilltir.',
+'resettokens-resetbutton' => 'Endurstilla valda lykla',
 
 # Edit page toolbar
 'bold_sample' => 'Feitletraður texti',
@@ -1031,7 +1038,7 @@ Verndunarskrá síðunnar er gefin fyrir neðan til tilvísunar.",
 'nocreate-loggedin' => 'Þú hefur ekki leyfi til að skapa nýjar síður.',
 'sectioneditnotsupported-title' => 'Hlutabreyting er ekki virk',
 'sectioneditnotsupported-text' => 'Hlutabreyting er ekki virk á þessari síðu.',
-'permissionserrors' => 'Leyfisvillur',
+'permissionserrors' => 'Leyfisvilla',
 'permissionserrorstext' => 'Þú hefur ekki leyfi til að gera þetta, af eftirfarandi {{PLURAL:$1|ástæðu|ástæðum}}:',
 'permissionserrorstext-withaction' => 'Þú hefur ekki réttindi til að $2, af eftirfarandi {{PLURAL:$1|ástæðu|ástæðum}}:',
 'recreate-moveddeleted-warn' => "'''Viðvörun: Þú ert að endurskapa síðu sem áður hefur verið eytt.'''
@@ -1090,6 +1097,7 @@ Hluti sniðsins verður ekki með.",
 'undo-failure' => 'Breytinguna var ekki hægt að taka tilbaka vegna breytinga í millitíðinni.',
 'undo-norev' => 'Ekki var hægt að taka breytinguna aftr því að hún er ekki til eða henni var eytt.',
 'undo-summary' => 'Tek aftur breytingu $1 frá [[Special:Contributions/$2|$2]] ([[User talk:$2|spjall]])',
+'undo-summary-username-hidden' => 'Afturkalla breytingu $1 eftir faldan notanda',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Ekki hægt að búa til aðgang',
@@ -1118,7 +1126,7 @@ Skýringartexti: (nú) = skoðanamunur á núverandi útgáfu,
 'history-fieldset-title' => 'Skoða breytingaskrá',
 'history-show-deleted' => 'Eingöngu eyddar breytingar',
 'histfirst' => 'elstu',
-'histlast' => 'yngstu',
+'histlast' => 'nýjustu',
 'historysize' => '({{PLURAL:$1|1 bæti|$1 bæti}})',
 'historyempty' => '(tóm)',
 
@@ -1182,15 +1190,15 @@ Frekari upplýsingar eru í [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGE
 * Óviðeigandi persónulegar upplýsingar
 *: ''heimilisfang, símanúmer, kennitala, osfrv.''",
 'revdelete-legend' => 'Setja sjáanlegar hamlanir',
-'revdelete-hide-text' => 'Fela breytingatexta',
+'revdelete-hide-text' => 'Breytingatexti',
 'revdelete-hide-image' => 'Fela efni skráar',
 'revdelete-hide-name' => 'Fela aðgerð og mark',
-'revdelete-hide-comment' => 'Fela breytingarágrip',
-'revdelete-hide-user' => 'Fela notandanafn/vistfang',
+'revdelete-hide-comment' => 'Breytingarágrip',
+'revdelete-hide-user' => 'Notandanafn/vistfang',
 'revdelete-hide-restricted' => 'Dylja gögn frá stjórnendum og öðrum',
 'revdelete-radio-same' => '(ekki breyta)',
-'revdelete-radio-set' => 'Já',
-'revdelete-radio-unset' => 'Nei',
+'revdelete-radio-set' => 'Sjáanlegt',
+'revdelete-radio-unset' => 'Falið',
 'revdelete-suppress' => 'Dylja gögn frá stjórnendum og öðrum',
 'revdelete-unsuppress' => 'Fjarlægja takmarkanir á endurvöktum breytingum',
 'revdelete-log' => 'Ástæða:',
@@ -1272,6 +1280,7 @@ Athugaðu að með því að nota flakktenglana er þessi dálkur endurstilltur.
 'compareselectedversions' => 'Bera saman valdar útgáfur',
 'showhideselectedversions' => 'Sýna/fela valdar breytingar',
 'editundo' => 'Taka aftur þessa breytingu',
+'diff-empty' => '(Enginn munur)',
 'diff-multi' => '({{PLURAL:$1|Ein millibreyting ekki sýnd|$1 millibreytingar ekki sýndar}} frá {{PLURAL:$2|notanda|$2 notendum}}.)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Ein millibreyting ekki sýnd|$1 millibreytingar ekki sýndar}} frá fleiri en {{PLURAL:$2|einum notanda|$2 notendum}}.)',
 'difference-missing-revision' => '{{PLURAL:$2|Ein útgáfa|$2 útgáfur}} samanburðarins ($1) {{PLURAL:$2|fannst|fundust}} ekki.
@@ -1373,7 +1382,7 @@ Athugaðu að skrár þeirra yfir {{SITENAME}}-efni kunna að vera úreltar.',
 'prefs-rendering' => 'Útlit',
 'saveprefs' => 'Vista',
 'resetprefs' => 'Endurstilla valmöguleika',
-'restoreprefs' => 'Endurheimta allar stillingar',
+'restoreprefs' => 'Endurstilla allar sjálfgefnar stillingar (í öllum hlutum)',
 'prefs-editing' => 'Breytingarflipinn',
 'rows' => 'Raðir',
 'columns' => 'Dálkar',
@@ -1429,10 +1438,10 @@ Ekki er hægt að taka þessa breytingu til baka.',
 'badsig' => 'Ógild hrá undirskrift. Athugaðu HTML-kóða.',
 'badsiglength' => 'Undirskriftin er of löng.
 Hún þarf að vera færri en $1 {{PLURAL:$1|stafur|stafir}}.',
-'yourgender' => 'Kyn:',
-'gender-unknown' => 'Óskilgreint',
-'gender-male' => 'Karl',
-'gender-female' => 'Kona',
+'yourgender' => 'Hvernig vilt þú helst lýsa þér?',
+'gender-unknown' => 'Ég vil heldur ekki gefa upp',
+'gender-male' => 'Hann breytir wikisíðum',
+'gender-female' => 'Hún breytir wikisíðum',
 'prefs-help-gender' => 'Valfrjálst: notað til að aðgreina kynin í meldingum hugbúnaðarins. Þessar upplýsingar verða aðgengilegar öllum.',
 'email' => 'Tölvupóstur',
 'prefs-help-realname' => 'Alvöru nafn er valfrjálst.
@@ -1446,7 +1455,9 @@ Tölvupóstfang þitt er ekki gefið upp þegar aðrir notendur hafa samband vi�
 'prefs-signature' => 'Undirskrift',
 'prefs-dateformat' => 'Dagasnið',
 'prefs-timeoffset' => 'Tímamismunur',
-'prefs-advancedediting' => 'Háþróaðir möguleikar',
+'prefs-advancedediting' => 'Almennir valkostir',
+'prefs-editor' => 'Ritsjóri',
+'prefs-preview' => 'Forskoðun',
 'prefs-advancedrc' => 'Háþróaðir möguleikar',
 'prefs-advancedrendering' => 'Háþróaðir möguleikar',
 'prefs-advancedsearchoptions' => 'Háþróaðir möguleikar',
@@ -1454,7 +1465,9 @@ Tölvupóstfang þitt er ekki gefið upp þegar aðrir notendur hafa samband vi�
 'prefs-displayrc' => 'Útlitsmöguleikar',
 'prefs-displaysearchoptions' => 'Útlitsmöguleikar',
 'prefs-displaywatchlist' => 'Útlitsmöguleikar',
+'prefs-tokenwatchlist' => 'Lykill',
 'prefs-diffs' => 'Breytingar',
+'prefs-help-prefershttps' => 'Þessi stilling tekur gildi í næsta skiptið sem þú skráir inn.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'Netfang virðist vera virkt.',
@@ -1478,9 +1491,11 @@ Tölvupóstfang þitt er ekki gefið upp þegar aðrir notendur hafa samband vi�
 'userrights-no-interwiki' => 'Þú hefur ekki leyfi til að breyta notandaréttindum á öðrum wiki-síðum.',
 'userrights-nodatabase' => 'Gagnagrunnurinn $1 er ekki til eða ekki staðbundinn.',
 'userrights-nologin' => 'Þú verður að [[Special:UserLogin|innskrá]] þig á möppudýraaðgang til að geta útdeilt notandaréttindum.',
-'userrights-notallowed' => 'Þinn aðgangur hefur ekki réttindi til að útdeila notandaréttindum.',
+'userrights-notallowed' => 'Þú hefur ekki réttindi til að útdeila eða draga til baka notandaréttini.',
 'userrights-changeable-col' => 'Hópar sem þú getur breytt',
 'userrights-unchangeable-col' => 'Hópar sem þú getur ekki breytt',
+'userrights-conflict' => 'Árekstur í að breyta notandaréttindum! Vinsamlegast skoðaðu aftur og staðfestu breytingar þínar.',
+'userrights-removed-self' => 'Þér hefur tekist að fjarlægja þín eigin réttindi. Vegna þess mátt þú ekki lengur skoða þessa síðu.',
 
 # Groups
 'group' => 'Hópur:',
@@ -1546,13 +1561,19 @@ Tölvupóstfang þitt er ekki gefið upp þegar aðrir notendur hafa samband vi�
 'right-proxyunbannable' => 'Sneiða hjá sjálfvirkum proxy-bönnum',
 'right-unblockself' => 'Afbanna sjálfan sig',
 'right-protect' => 'Breyta verndunarstigi og breyta vernduðum síðum',
-'right-editprotected' => 'Breyta verndaðar síður (án keðjuverndunar)',
+'right-editprotected' => 'Breyta síðum vernduðum sem „{{int:protect-level-sysop}}“',
+'right-editsemiprotected' => 'Breyta síðum vernduðum sem „{{int:protect-level-autoconfirmed}}“',
 'right-editinterface' => 'Breyta notandaviðmótinu',
 'right-editusercssjs' => 'Breyta CSS- og JS-skrám annarra',
 'right-editusercss' => 'Breyta CSS-skrám annarra',
 'right-edituserjs' => 'Breyta JS-skrám annarra',
 'right-editmyusercss' => 'Breyta þinni eigin CSS-notandaskrá',
 'right-editmyuserjs' => 'Breyta þinni eigin JavaScript-notandaskrá',
+'right-viewmywatchlist' => 'Skoða þinn eigin vaktlista',
+'right-editmywatchlist' => 'Breyta þínum eigin vaktlista. Athugið að nokkrar aðgerðir bæta enn við síður án þessa réttindis.',
+'right-viewmyprivateinfo' => 'Skoða þínar eigin persónuupplýsingar (t.d. netfang, alvörunafn)',
+'right-editmyprivateinfo' => 'Breyta þínum eigin persónuupplýsingum (t.d. netfangi, alvörunafni)',
+'right-editmyoptions' => 'Breyta þínum eigin stillingum',
 'right-rollback' => 'Taka snögglega aftur breytingar síðasta notanda sem breytti síðunni',
 'right-markbotedits' => 'Merkja endurtektar breytingar sem vélmennabreytingar',
 'right-noratelimit' => 'Sneiða hjá takmörkunum',
@@ -1604,8 +1625,8 @@ Tölvupóstfang þitt er ekki gefið upp þegar aðrir notendur hafa samband vi�
 'action-block' => 'Banna notandanum að gera breytingar',
 'action-protect' => 'breyta verndunarstigum fyrir þessa síðu',
 'action-rollback' => 'Taka snögglega aftur breytingar síðasta notanda sem breytti ákveðinni síðu',
-'action-import' => 'Flytja inn þessa skrá frá öðrum wiki',
-'action-importupload' => 'Flytja inn þessa síðu frá skráar upphali',
+'action-import' => 'flytja inn síður frá öðrum wiki',
+'action-importupload' => 'flytja inn síður frá skráarupphali',
 'action-patrol' => 'Merkja breytingar annara sem yfirfarnar',
 'action-autopatrol' => 'Merkja eigin breytingu sem yfirfarna',
 'action-unwatchedpages' => 'Skoða lista yfir óvaktaðar síður',
@@ -1614,12 +1635,19 @@ Tölvupóstfang þitt er ekki gefið upp þegar aðrir notendur hafa samband vi�
 'action-userrights-interwiki' => 'breyta notandaréttindum annarra notenda á öðrum wiki-verkefnum',
 'action-siteadmin' => 'læsa eða opna gagnagrunninn',
 'action-sendemail' => 'senda tölvupósta',
+'action-editmywatchlist' => 'breyta vaktlistanum þínum',
+'action-viewmywatchlist' => 'skoða vaktlistann þinn',
+'action-viewmyprivateinfo' => 'skoða persónuupplýsingar þínar',
+'action-editmyprivateinfo' => 'breyta persónuupplýsingum þínum',
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|breyting|breytingar}}',
+'enhancedrc-since-last-visit' => '$1 {{PLURAL:$1|síðan síðustu heimsókn}}',
+'enhancedrc-history' => 'breytingaskrá',
 'recentchanges' => 'Nýlegar breytingar',
 'recentchanges-legend' => 'Stillingar nýlegra breytinga',
 'recentchanges-summary' => 'Hér geturðu fylgst með nýjustu breytingunum.',
+'recentchanges-noresult' => 'Engar breytingar í uppgefna tímabilinu sem passa við þessa mælikvarða.',
 'recentchanges-feed-description' => 'Hér er hægt að fylgjast með nýlegum breytingum á {{SITENAME}}.',
 'recentchanges-label-newpage' => 'Þessi breyting skapaði nýja síðu',
 'recentchanges-label-minor' => 'Þetta er minniháttar breyting',
@@ -1647,7 +1675,7 @@ Tölvupóstfang þitt er ekki gefið upp þegar aðrir notendur hafa samband vi�
 'rc_categories_any' => 'Alla',
 'rc-change-size-new' => '$1 {{PLURAL:$1|bæt|bæti}} eftir breytingu',
 'newsectionsummary' => 'Nýr hluti: /* $1 */',
-'rc-enhanced-expand' => 'Sýna upplýsingar (þarfnast JavaScript)',
+'rc-enhanced-expand' => 'Sýna upplýsingar',
 'rc-enhanced-hide' => 'Fela ítarefni',
 'rc-old-title' => 'Upphaflega búin til undir nafninu "$1"',
 
@@ -1667,8 +1695,7 @@ Síður á [[Special:Watchlist|vaktlistanum þínum]] eru '''feitletraðar'''.",
 'reuploaddesc' => 'Aftur á innhlaðningarformið.',
 'upload-tryagain' => 'Sendu breytta myndlýsingu',
 'uploadnologin' => 'Óinnskráð(ur)',
-'uploadnologintext' => 'Þú verður að vera [[Special:UserLogin|skráð(ur) inn]]
-til að hlaða inn skrám.',
+'uploadnologintext' => 'Þú verður $1 til að hala upp skrár.',
 'upload_directory_missing' => 'Mappa upphlaða ($1) er týnd og vefþjónninn gat ekki búið hana til.',
 'upload_directory_read_only' => 'Mistókst að skrifa í möppu upphlaða ($1) á vefþjóni.',
 'uploaderror' => 'Villa í innhlaðningu',
@@ -1907,8 +1934,7 @@ Athugaðu hvort síðan sé aðgengileg, bíddu í smástund og reyndu aftur.
 'upload_source_file' => '(skrá á tölvunni þinni)',
 
 # Special:ListFiles
-'listfiles-summary' => 'Þessi kerfissíða sýnir allar upphlaðnar skrár.
-Þegar hún er síuð ákveðnu notendanafni birtast eingöngu myndir frá honum.',
+'listfiles-summary' => 'Þessi kerfissíða sýnir allar upphlaðnar skrár.',
 'listfiles_search_for' => 'Leita að miðilsnafni:',
 'imgfile' => 'skrá',
 'listfiles' => 'Skráalisti',
@@ -1919,6 +1945,10 @@ Athugaðu hvort síðan sé aðgengileg, bíddu í smástund og reyndu aftur.
 'listfiles_size' => 'Stærð (bæti)',
 'listfiles_description' => 'Lýsing',
 'listfiles_count' => 'Útgáfur',
+'listfiles-show-all' => 'Taka með gamlar útgáfur af myndum',
+'listfiles-latestversion' => 'Núverandi útgáfa',
+'listfiles-latestversion-yes' => 'Já',
+'listfiles-latestversion-no' => 'Nei',
 
 # File description page
 'file-anchor-link' => 'Skrá',
@@ -2015,6 +2045,13 @@ Leitarstrengurinn á að vera á þessu formi: efnistag/myndasnið, t.d. <code>i
 'randompage' => 'Handahófsvalin grein',
 'randompage-nopages' => 'Það eru engar síður í {{PLURAL:$2|nafnrýminu|nafnrýmunum}}: $1.',
 
+# Random page in category
+'randomincategory' => 'Handhófsvalin síða í flokki',
+'randomincategory-invalidcategory' => '„$1“ er ekki gilt flokkarheiti',
+'randomincategory-nopages' => 'Það eru engar síður í flokkinum [[:Category:$1|$1]].',
+'randomincategory-selectcategory' => 'Fá handhófsvalda síðu úr flokkinum: $1 $2.',
+'randomincategory-selectcategory-submit' => 'Fara',
+
 # Random redirect
 'randomredirect' => 'Handahófsvalin tilvísun',
 'randomredirect-nopages' => 'Það eru engar tilvísanir í nafnrýminu „$1“.',
@@ -2040,12 +2077,10 @@ Leitarstrengurinn á að vera á þessu formi: efnistag/myndasnið, t.d. <code>i
 'statistics-users-active-desc' => 'Notendur sem hafa framkvæmt aðgerð {{PLURAL:$1|síðastliðin dag|síðastliðna $1 daga}}',
 'statistics-mostpopular' => 'Mest skoðuðu síður',
 
-'disambiguations' => 'Síður sem tengja á aðgreiningarsíður',
-'disambiguationspage' => 'Template:Aðgreining',
-'disambiguations-text' => "Þessar síður innihalda tengla á svokallaðar „'''aðgreiningarsíður'''“.
-Laga ætti tenglanna og láta þá vísa á rétta síðu.<br />
-Farið er með síðu sem aðgreiningarsíðu ef að hún inniheldur snið sem vísað er í frá [[MediaWiki:Disambiguationspage]]",
-
+'pageswithprop' => 'Síður með eiginleika',
+'pageswithprop-legend' => 'Síður með síðueiginleika',
+'pageswithprop-text' => 'Á þessari síðu er listi yfir síður sem hafa ákveðna síðueiginleika.',
+'pageswithprop-prop' => 'Heiti eiginleika:',
 'pageswithprop-submit' => 'Áfram',
 
 'doubleredirects' => 'Tvöfaldar tilvísanir',
@@ -2105,6 +2140,7 @@ Hún er tilvísun á [[$2]].',
 'mostrevisions' => 'Síður eftir fjölda breytinga',
 'prefixindex' => 'Allar síður með forskeyti',
 'prefixindex-namespace' => 'Allar síður með forskeyti ($1 nafnrými)',
+'prefixindex-strip' => 'Fjarlægja forskeyti í listanum',
 'shortpages' => 'Stuttar síður',
 'longpages' => 'Langar síður',
 'deadendpages' => 'Botnlangar',
@@ -2120,6 +2156,7 @@ Hún er tilvísun á [[$2]].',
 'listusers' => 'Notendalisti',
 'listusers-editsonly' => 'Sýna eingöngu notendur með breytingar',
 'listusers-creationsort' => 'Raða eftir stofndegi',
+'listusers-desc' => 'Raða í lækkandi röð',
 'usereditcount' => '$1 {{PLURAL:$1|breyting|breytingar}}',
 'usercreated' => '{{GENDER:$3|Stofnað|}} $1 $2',
 'newpages' => 'Nýjustu greinar',
@@ -2549,7 +2586,7 @@ $1',
 'contributions' => 'Framlög {{GENDER:$1|notanda}}',
 'contributions-title' => 'Framlög notanda $1',
 'mycontris' => 'Framlög',
-'contribsub2' => 'Eftir $1 ($2)',
+'contribsub2' => 'Eftir {{GENDER:$3|$1}} ($2)',
 'nocontribs' => 'Engar breytingar fundnar sem passa við þessa viðmiðun.',
 'uctop' => '(núverandi)',
 'month' => 'Frá mánuðinum (og fyrr):',
@@ -2708,12 +2745,9 @@ Sjá [[Special:BlockList|ítarlegri lista]] fyrir öll núgildandi bönn.',
 Vistfangið var bannað sem hluti af fjöldabanninu $2, sem er hægt að afbanna.',
 'ip_range_invalid' => 'Ógilt vistfangasvið.',
 'ip_range_toolarge' => 'Fjöldabönn stærri en /$1 eru óheimil.',
-'blockme' => 'Banna mig',
 'proxyblocker' => 'Vefsels bann',
-'proxyblocker-disabled' => 'Þessi virkni er óvirk.',
 'proxyblockreason' => 'Vistfangið þitt hefur verið bannað því það er opið vefsel.
 Vinsamlegast hafðu samband við internetþjónustuaðilann þinn eða netstjóra félagsins og láttu þá vita af þessu alvarlegu öryggisvandamáli.',
-'proxyblocksuccess' => 'Búinn.',
 'sorbsreason' => 'Vistfangið þitt er á lista yfir opin vefsel í DNSBL sem er í notkun á {{SITENAME}}.',
 'sorbs_create_account_reason' => 'Vistfangið þitt er á lista yfir opin vefsel í DNSBL sem er notað af {{SITENAME}}.
 Þú getur ekki stofnað aðgang.',
@@ -3058,6 +3092,8 @@ Vinsamlegast reyndu aftur.',
 'spam_reverting' => 'Tek aftur síðustu breytingu sem inniheldur ekki tengil á $1',
 'spam_blanking' => 'Allar útgáfur innihéldu tengla á $1, tæmi síðuna',
 'spam_deleting' => 'Allar útgáfur innihéldu tengla á $1, eyði síðunni',
+'simpleantispam-label' => "Kæfuvörn.
+'''EKKI''' fylla þetta út!",
 
 # Info page
 'pageinfo-title' => 'Upplýsingar um $1',
@@ -3072,12 +3108,12 @@ Vinsamlegast reyndu aftur.',
 'pageinfo-article-id' => 'Einkennisnúmer síðunnar',
 'pageinfo-language' => 'Tungumál síðunnar',
 'pageinfo-robot-policy' => 'Leitarvélastaða',
-'pageinfo-robot-index' => 'Skráanleg',
-'pageinfo-robot-noindex' => 'Óskráanleg',
+'pageinfo-robot-index' => 'Heimilað',
+'pageinfo-robot-noindex' => 'Ekki heimilað',
 'pageinfo-views' => 'Fjöldi innlita',
 'pageinfo-watchers' => 'Fjöldi notenda, sem vakta síðuna',
 'pageinfo-few-watchers' => 'Vöktuð af færri en $1 {{PLURAL:$1|notanda|notendum}}',
-'pageinfo-redirects-name' => 'Tilvísanir til þessarar síðu',
+'pageinfo-redirects-name' => 'Fjöldi tilvísana til þessarar síðu',
 'pageinfo-subpages-name' => 'Undirsíður þessarar síðu',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|tilvísun|tilvísanir}}; $3 {{PLURAL:$3|ekki tilvísun|ekki tilvísanir}})',
 'pageinfo-firstuser' => 'Stofnandi síðunnar',
@@ -3383,6 +3419,7 @@ Ef skránni hefur verið breytt, kann að vera að einhverjar upplýsingar eigi 
 'exif-disclaimer' => 'Fyrirvari',
 'exif-contentwarning' => 'Viðvörun innihalds myndar',
 'exif-giffilecomment' => 'GIF athugasemd',
+'exif-intellectualgenre' => 'Tegund hlutar',
 'exif-scenecode' => 'IPTC kóði myndefnis',
 'exif-event' => 'Lýsir viðburðinum',
 'exif-organisationinimage' => 'Lýsir félaginu',
@@ -3825,7 +3862,10 @@ MediaWiki er útgefin í þeirri von að hann sé gagnlegur, en ÁN ALLRAR ÁBYR
 'tags-tag' => 'Nafn tags',
 'tags-display-header' => 'Útlit í breytingarskrá',
 'tags-description-header' => 'Tæmandi merkingarlýsing',
+'tags-active-header' => 'Virkt?',
 'tags-hitcount-header' => 'Merktar breytingar',
+'tags-active-yes' => 'Já',
+'tags-active-no' => 'Nei',
 'tags-edit' => 'breyta',
 'tags-hitcount' => '$1 {{PLURAL:$1|breyting|breytingar}}',
 
@@ -3843,10 +3883,10 @@ MediaWiki er útgefin í þeirri von að hann sé gagnlegur, en ÁN ALLRAR ÁBYR
 
 # Database error messages
 'dberr-header' => 'Vandamál við þennan wiki',
-'dberr-problems' => 'Því miður!
-Tæknilegir örðugleikar eru á þessari síðu.',
+'dberr-problems' => 'Því miður!Tæknilegir örðugleikar eru á þessari síðu.',
 'dberr-again' => 'Reyndu að bíða í nokkrar mínútur og endurhladdu síðan síðuna.',
 'dberr-info' => '(Mistókst að hafa samband við gagnaþjón: $1)',
+'dberr-info-hidden' => '(Mistókst að hafa samband við gagnaþjón)',
 'dberr-usegoogle' => 'Þú getur notað Google til að leita á meðan.',
 'dberr-outofdate' => 'Athugaðu að afrit þeirra gætu verið úreld.',
 'dberr-cachederror' => 'Þetta er afritað eintak af umbeðinni síðu og gæti verið úreld.',
@@ -3981,5 +4021,9 @@ Ef ekki, þá getur þú notað einfalt eyðublað hér fyrir neðan. Athugasemd
 
 # Image rotation
 'rotate-comment' => 'Myndinni var snúið um $1 {{PLURAL:$1|gráðu|gráður}} réttsælis',
+
+# Limit report
+'limitreport-walltime' => 'Rauntímanotkun',
+'limitreport-walltime-value' => '$1 {{PLURAL:$1|sekúnda|sekúndur}}',
 
 );

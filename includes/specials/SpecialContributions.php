@@ -227,7 +227,8 @@ class SpecialContributions extends SpecialPage {
 	 * Generates the subheading with links
 	 * @param $userObj User object for the target
 	 * @return String: appropriately-escaped HTML to be output literally
-	 * @todo FIXME: Almost the same as getSubTitle in SpecialDeletedContributions.php. Could be combined.
+	 * @todo FIXME: Almost the same as getSubTitle in SpecialDeletedContributions.php.
+	 * Could be combined.
 	 */
 	protected function contributionsSub( $userObj ) {
 		if ( $userObj->isAnon() ) {
@@ -267,19 +268,7 @@ class SpecialContributions extends SpecialPage {
 			}
 		}
 
-		// Old message 'contribsub' had one parameter, but that doesn't work for
-		// languages that want to put the "for" bit right after $user but before
-		// $links.  If 'contribsub' is around, use it for reverse compatibility,
-		// otherwise use 'contribsub2'.
-		// @todo Should this be removed at some point?
-		$oldMsg = $this->msg( 'contribsub' );
-		if ( $oldMsg->exists() ) {
-			$linksWithParentheses = $this->msg( 'parentheses' )->rawParams( $links )->escaped();
-
-			return $oldMsg->rawParams( "$user $linksWithParentheses" );
-		}
-
-		return $this->msg( 'contribsub2' )->rawParams( $user, $links );
+		return $this->msg( 'contribsub2' )->rawParams( $user, $links )->params( $userObj->getName() );
 	}
 
 	/**
@@ -606,9 +595,11 @@ class SpecialContributions extends SpecialPage {
  */
 class ContribsPager extends ReverseChronologicalPager {
 	public $mDefaultDirection = true;
-	var $messages, $target;
-	var $namespace = '', $mDb;
-	var $preventClickjacking = false;
+	public $messages;
+	public $target;
+	public $namespace = '';
+	public $mDb;
+	public $preventClickjacking = false;
 
 	/**
 	 * @var array
@@ -691,8 +682,13 @@ class ContribsPager extends ReverseChronologicalPager {
 		 * $limit: see phpdoc above
 		 * $descending: see phpdoc above
 		 */
-		$data = array( $this->mDb->select( $tables, $fields, $conds, $fname, $options, $join_conds ) );
-		wfRunHooks( 'ContribsPager::reallyDoQuery', array( &$data, $pager, $offset, $limit, $descending ) );
+		$data = array( $this->mDb->select(
+			$tables, $fields, $conds, $fname, $options, $join_conds
+		) );
+		wfRunHooks(
+			'ContribsPager::reallyDoQuery',
+			array( &$data, $pager, $offset, $limit, $descending )
+		);
 
 		$result = array();
 
@@ -956,7 +952,11 @@ class ContribsPager extends ReverseChronologicalPager {
 				$chardiff .= Linker::formatRevisionSize( $row->rev_len );
 				$chardiff .= ' <span class="mw-changeslist-separator">. .</span> ';
 			} else {
-				$parentLen = isset( $this->mParentLens[$row->rev_parent_id] ) ? $this->mParentLens[$row->rev_parent_id] : 0;
+				$parentLen = 0;
+				if ( isset( $this->mParentLens[$row->rev_parent_id] ) ) {
+					$parentLen = $this->mParentLens[$row->rev_parent_id];
+				}
+
 				$chardiff = ' <span class="mw-changeslist-separator">. .</span> ';
 				$chardiff .= ChangesList::showCharacterDifference(
 					$parentLen,
@@ -986,7 +986,7 @@ class ContribsPager extends ReverseChronologicalPager {
 			# Show user names for /newbies as there may be different users.
 			# Note that we already excluded rows with hidden user names.
 			if ( $this->contribs == 'newbie' ) {
-				$userlink = ' . . ' . Linker::userLink( $rev->getUser(), $rev->getUserText() );
+				$userlink = ' . . ' . $lang->getDirMark() . Linker::userLink( $rev->getUser(), $rev->getUserText() );
 				$userlink .= ' ' . $this->msg( 'parentheses' )->rawParams(
 					Linker::userTalkLink( $rev->getUser(), $rev->getUserText() ) )->escaped() . ' ';
 			} else {
@@ -1013,11 +1013,14 @@ class ContribsPager extends ReverseChronologicalPager {
 			$diffHistLinks = $this->msg( 'parentheses' )
 				->rawParams( $difftext . $this->messages['pipe-separator'] . $histlink )
 				->escaped();
-			$ret = "{$del}{$d} {$diffHistLinks}{$chardiff}{$nflag}{$mflag} {$link}{$userlink} {$comment} {$topmarktext}";
+			$ret = "{$del}{$d} {$diffHistLinks}{$chardiff}{$nflag}{$mflag} ";
+			$ret .= "{$link}{$userlink} {$comment} {$topmarktext}";
 
 			# Denote if username is redacted for this edit
 			if ( $rev->isDeleted( Revision::DELETED_USER ) ) {
-				$ret .= " <strong>" . $this->msg( 'rev-deleted-user-contribs' )->escaped() . "</strong>";
+				$ret .= " <strong>" .
+					$this->msg( 'rev-deleted-user-contribs' )->escaped() .
+					"</strong>";
 			}
 
 			# Tags, if any.

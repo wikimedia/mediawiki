@@ -13,7 +13,7 @@
 		 * (don't call before document ready)
 		 */
 		init: function () {
-			var profile, $tocTitle, $tocToggleLink, hideTocCookie;
+			var profile;
 
 			/* Set tooltipAccessKeyPrefix */
 			profile = $.client.profile();
@@ -53,8 +53,9 @@
 							|| profile.name === 'konqueror' ) ) {
 				util.tooltipAccessKeyPrefix = 'ctrl-';
 
-			// Firefox 2.x and later
-			} else if ( profile.name === 'firefox' && profile.versionBase > '1' ) {
+			// Firefox/Iceweasel 2.x and later
+			} else if ( ( profile.name === 'firefox' || profile.name === 'iceweasel' )
+				&& profile.versionBase > '1' ) {
 				util.tooltipAccessKeyPrefix = 'alt-shift-';
 			}
 
@@ -105,29 +106,32 @@
 			} )();
 
 			// Table of contents toggle
-			$tocTitle = $( '#toctitle' );
-			$tocToggleLink = $( '#togglelink' );
-			// Only add it if there is a TOC and there is no toggle added already
-			if ( $( '#toc' ).length && $tocTitle.length && !$tocToggleLink.length ) {
-				hideTocCookie = $.cookie( 'mw_hidetoc' );
+			mw.hook( 'wikipage.content' ).add( function () {
+				var $tocTitle, $tocToggleLink, hideTocCookie;
+				$tocTitle = $( '#toctitle' );
+				$tocToggleLink = $( '#togglelink' );
+				// Only add it if there is a TOC and there is no toggle added already
+				if ( $( '#toc' ).length && $tocTitle.length && !$tocToggleLink.length ) {
+					hideTocCookie = $.cookie( 'mw_hidetoc' );
 					$tocToggleLink = $( '<a href="#" class="internal" id="togglelink"></a>' )
 						.text( mw.msg( 'hidetoc' ) )
 						.click( function ( e ) {
 							e.preventDefault();
 							util.toggleToc( $(this) );
 						} );
-				$tocTitle.append(
-					$tocToggleLink
-						.wrap( '<span class="toctoggle"></span>' )
-						.parent()
-							.prepend( '&nbsp;[' )
-							.append( ']&nbsp;' )
-				);
+					$tocTitle.append(
+						$tocToggleLink
+							.wrap( '<span class="toctoggle"></span>' )
+							.parent()
+								.prepend( '&nbsp;[' )
+								.append( ']&nbsp;' )
+					);
 
-				if ( hideTocCookie === '1' ) {
-					util.toggleToc( $tocToggleLink );
+					if ( hideTocCookie === '1' ) {
+						util.toggleToc( $tocToggleLink );
+					}
 				}
-			}
+			} );
 		},
 
 		/* Main body */
@@ -160,11 +164,18 @@
 		 * Get the link to a page name (relative to `wgServer`),
 		 *
 		 * @param {string} str Page name to get the link for.
+		 * @param {Object} params A mapping of query parameter names to values,
+		 *     e.g. { action: 'edit' }. Optional.
 		 * @return {string} Location for a page with name of `str` or boolean false on error.
 		 */
-		wikiGetlink: function ( str ) {
-			return mw.config.get( 'wgArticlePath' ).replace( '$1',
+		wikiGetlink: function ( str, params ) {
+			var url = mw.config.get( 'wgArticlePath' ).replace( '$1',
 				util.wikiUrlencode( typeof str === 'string' ? str : mw.config.get( 'wgPageName' ) ) );
+			if ( params && !$.isEmptyObject( params ) ) {
+				url += url.indexOf( '?' ) !== -1 ? '&' : '?';
+				url += $.param( params );
+			}
+			return url;
 		},
 
 		/**

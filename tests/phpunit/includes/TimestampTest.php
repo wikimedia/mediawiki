@@ -14,8 +14,9 @@ class TimestampTest extends MediaWikiLangTestCase {
 	/**
 	 * Test parsing of valid timestamps and outputing to MW format.
 	 * @dataProvider provideValidTimestamps
+	 * @covers MWTimestamp::getTimestamp
 	 */
-	function testValidParse( $format, $original, $expected ) {
+	public function testValidParse( $format, $original, $expected ) {
 		$timestamp = new MWTimestamp( $original );
 		$this->assertEquals( $expected, $timestamp->getTimestamp( TS_MW ) );
 	}
@@ -23,8 +24,9 @@ class TimestampTest extends MediaWikiLangTestCase {
 	/**
 	 * Test outputting valid timestamps to different formats.
 	 * @dataProvider provideValidTimestamps
+	 * @covers MWTimestamp::getTimestamp
 	 */
-	function testValidOutput( $format, $expected, $original ) {
+	public function testValidOutput( $format, $expected, $original ) {
 		$timestamp = new MWTimestamp( $original );
 		$this->assertEquals( $expected, (string)$timestamp->getTimestamp( $format ) );
 	}
@@ -32,16 +34,18 @@ class TimestampTest extends MediaWikiLangTestCase {
 	/**
 	 * Test an invalid timestamp.
 	 * @expectedException TimestampException
+	 * @covers MWTimestamp
 	 */
-	function testInvalidParse() {
+	public function testInvalidParse() {
 		new MWTimestamp( "This is not a timestamp." );
 	}
 
 	/**
 	 * Test requesting an invalid output format.
 	 * @expectedException TimestampException
+	 * @covers MWTimestamp::getTimestamp
 	 */
-	function testInvalidOutput() {
+	public function testInvalidOutput() {
 		$timestamp = new MWTimestamp( '1343761268' );
 		$timestamp->getTimestamp( 98 );
 	}
@@ -69,8 +73,8 @@ class TimestampTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @test
 	 * @dataProvider provideHumanTimestampTests
+	 * @covers MWTimestamp::getHumanTimestamp
 	 */
 	public function testHumanTimestamp(
 		$tsTime, // The timestamp to format
@@ -197,6 +201,103 @@ class TimestampTest extends MediaWikiLangTestCase {
 				'ISO 8601',
 				'1991-01-30T15:15:00',
 				'Different year with ISO-8601',
+			),
+		);
+	}
+
+	/**
+	 * @dataProvider provideRelativeTimestampTests
+	 * @covers MWTimestamp::getRelativeTimestamp
+	 */
+	public function testRelativeTimestamp(
+		$tsTime, // The timestamp to format
+		$currentTime, // The time to consider "now"
+		$timeCorrection, // The time offset to use
+		$dateFormat, // The date preference to use
+		$expectedOutput, // The expected output
+		$desc // Description
+	) {
+		$user = $this->getMock( 'User' );
+		$user->expects( $this->any() )
+			->method( 'getOption' )
+			->with( 'timecorrection' )
+			->will( $this->returnValue( $timeCorrection ) );
+
+		$tsTime = new MWTimestamp( $tsTime );
+		$currentTime = new MWTimestamp( $currentTime );
+
+		$this->assertEquals(
+			$expectedOutput,
+			$tsTime->getRelativeTimestamp( $currentTime, $user ),
+			$desc
+		);
+	}
+
+	public static function provideRelativeTimestampTests() {
+		return array(
+			array(
+				'20111231170000',
+				'20120101000000',
+				'Offset|0',
+				'mdy',
+				'7 hours ago',
+				'"Yesterday" across years',
+			),
+			array(
+				'20120717190900',
+				'20120717190929',
+				'Offset|0',
+				'mdy',
+				'29 seconds ago',
+				'"Just now"',
+			),
+			array(
+				'20120717190900',
+				'20120717191530',
+				'Offset|0',
+				'mdy',
+				'6 minutes and 30 seconds ago',
+				'Combination of multiple units',
+			),
+			array(
+				'20121006173100',
+				'20121006173200',
+				'Offset|0',
+				'mdy',
+				'1 minute ago',
+				'"1 minute ago"',
+			),
+			array(
+				'19910130151500',
+				'20120716193700',
+				'Offset|0',
+				'mdy',
+				'2 decades, 1 year, 168 days, 2 hours, 8 minutes and 48 seconds ago',
+				'A long time ago',
+			),
+			array(
+				'20120101050000',
+				'20120101080000',
+				'Offset|-360',
+				'mdy',
+				'3 hours ago',
+				'"Yesterday" across years with time correction',
+			),
+			array(
+				'20120714184300',
+				'20120716184300',
+				'Offset|-420',
+				'mdy',
+				'2 days ago',
+				'Recent weekday with time correction',
+			),
+			array(
+				'20120714184300',
+				'20120715040000',
+				'Offset|-420',
+				'mdy',
+				'9 hours and 17 minutes ago',
+				'Today at another time with time correction',
 			),
 		);
 	}

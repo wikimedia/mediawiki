@@ -4,6 +4,8 @@
  * @group API
  * @group Database
  * @group medium
+ *
+ * @covers ApiPurge
  */
 class ApiPurgeTest extends ApiTestCase {
 
@@ -15,7 +17,7 @@ class ApiPurgeTest extends ApiTestCase {
 	/**
 	 * @group Broken
 	 */
-	function testPurgeMainPage() {
+	public function testPurgeMainPage() {
 		if ( !Title::newFromText( 'UTPage' )->exists() ) {
 			$this->markTestIncomplete( "The article [[UTPage]] does not exist" );
 		}

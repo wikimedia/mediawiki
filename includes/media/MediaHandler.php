@@ -79,13 +79,15 @@ abstract class MediaHandler {
 	 * Merge a parameter array into a string appropriate for inclusion in filenames
 	 *
 	 * @param $params array Array of parameters that have been through normaliseParams.
+	 * @return String
 	 */
 	abstract function makeParamString( $params );
 
 	/**
 	 * Parse a param string made with makeParamString back into an array
 	 *
-	 * @param $str string
+	 * @param $str string The parameter string without file name (e.g. 122px)
+	 * @return Array|Boolean Array of parameters or false on failure.
 	 */
 	abstract function parseParamString( $str );
 
@@ -183,6 +185,43 @@ abstract class MediaHandler {
 	 */
 	function isMetadataValid( $image, $metadata ) {
 		return self::METADATA_GOOD;
+	}
+
+	/**
+	 * Get an array of standard (FormatMetadata type) metadata values.
+	 *
+	 * The returned data is largely the same as that from getMetadata(),
+	 * but formatted in a standard, stable, handler-independent way.
+	 * The idea being that some values like ImageDescription or Artist
+	 * are universal and should be retrievable in a handler generic way.
+	 *
+	 * The specific properties are the type of properties that can be
+	 * handled by the FormatMetadata class. These values are exposed to the
+	 * user via the filemetadata parser function.
+	 *
+	 * Details of the response format of this function can be found at
+	 * https://www.mediawiki.org/wiki/Manual:File_metadata_handling
+	 * tl/dr: the response is an associative array of
+	 * properties keyed by name, but the value can be complex. You probably
+	 * want to call one of the FormatMetadata::flatten* functions on the
+	 * property values before using them, or call
+	 * FormatMetadata::getFormattedData() on the full response array, which
+	 * transforms all values into prettified, human-readable text.
+	 *
+	 * Subclasses overriding this function must return a value which is a
+	 * valid API response fragment (all associative array keys are valid
+	 * XML tagnames).
+	 *
+	 * Note, if the file simply has no metadata, but the handler supports
+	 * this interface, it should return an empty array, not false.
+	 *
+	 * @param File $file
+	 *
+	 * @return Array or false if interface not supported
+	 * @since 1.23
+	 */
+	public function getCommonMetaArray( File $file ) {
+		return false;
 	}
 
 	/**
@@ -434,16 +473,7 @@ abstract class MediaHandler {
 	 * @access protected
 	 */
 	function visibleMetadataFields() {
-		$fields = array();
-		$lines = explode( "\n", wfMessage( 'metadata-fields' )->inContentLanguage()->text() );
-		foreach ( $lines as $line ) {
-			$matches = array();
-			if ( preg_match( '/^\\*\s*(.*?)\s*$/', $line, $matches ) ) {
-				$fields[] = $matches[1];
-			}
-		}
-		$fields = array_map( 'strtolower', $fields );
-		return $fields;
+		return FormatMetadata::getVisibleFields();
 	}
 
 	/**
@@ -643,4 +673,23 @@ abstract class MediaHandler {
 	public static function canRotate() {
 		return false;
 	}
+
+	/**
+	 * On supporting image formats, try to read out the low-level orientation
+	 * of the file and return the angle that the file needs to be rotated to
+	 * be viewed.
+	 *
+	 * This information is only useful when manipulating the original file;
+	 * the width and height we normally work with is logical, and will match
+	 * any produced output views.
+	 *
+	 * For files we don't know, we return 0.
+	 *
+	 * @param $file File
+	 * @return int 0, 90, 180 or 270
+	 */
+	public function getRotation( $file ) {
+		return 0;
+	}
+
 }

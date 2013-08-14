@@ -103,7 +103,7 @@ class PHPUnitMaintClass extends Maintenance {
 $maintClass = 'PHPUnitMaintClass';
 require RUN_MAINTENANCE_IF_MAIN;
 
-if ( !class_exists( 'PHPUnit_Runner_Version') ) {
+if ( !class_exists( 'PHPUnit_Runner_Version' ) ) {
 	require_once 'PHPUnit/Runner/Version.php';
 }
 

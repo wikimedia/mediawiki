@@ -48,7 +48,7 @@ class RefreshLinksJob extends Job {
 		# Wait for the DB of the current/next slave DB handle to catch up to the master.
 		# This way, we get the correct page_latest for templates or files that just changed
 		# milliseconds ago, having triggered this job to begin with.
-		if ( isset( $this->params['masterPos'] ) ) {
+		if ( isset( $this->params['masterPos'] ) && $this->params['masterPos'] !== false ) {
 			wfGetLB()->waitFor( $this->params['masterPos'] );
 		}
 

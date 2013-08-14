@@ -20,7 +20,8 @@
 
 				dataType: 'json'
 			}
-		};
+		},
+		tokenCache = {};
 
 	/**
 	 * Constructor to create an object to interact with the API of a particular MediaWiki server.
@@ -176,8 +177,82 @@
 			return apiDeferred.promise( { abort: xhr.abort } ).fail( function ( code, details ) {
 				mw.log( 'mw.Api error: ', code, details );
 			} );
-		}
+		},
 
+		/**
+		 * Post to API with specified type of token. If we have no token, get one and try to post.
+		 * If we have a cached token try using that, and if it fails, blank out the
+		 * cached token and start over. For example to change an user option you could do:
+		 *
+		 *     new mw.Api().postWithToken( 'options', {
+		 *         action: 'options',
+		 *         optionname: 'gender',
+		 *         optionvalue: 'female'
+		 *     } );
+		 *
+		 * @param {string} tokenType The name of the token, like options or edit.
+		 * @param {Object} params API parameters
+		 * @return {jQuery.Promise} See #post
+		 */
+		postWithToken: function ( tokenType, params ) {
+			var api = this, hasOwn = tokenCache.hasOwnProperty;
+			if ( hasOwn.call( tokenCache, tokenType ) && tokenCache[tokenType] !== undefined ) {
+				params.token = tokenCache[tokenType];
+				return api.post( params ).then(
+					null,
+					function ( code ) {
+						if ( code === 'badtoken' ) {
+							// force a new token, clear any old one
+							tokenCache[tokenType] = params.token = undefined;
+							return api.post( params );
+						}
+						// Pass the promise forward, so the caller gets error codes
+						return this;
+					}
+				);
+			} else {
+				return api.getToken( tokenType ).then( function ( token ) {
+					tokenCache[tokenType] = params.token = token;
+					return api.post( params );
+				} );
+			}
+		},
+
+		/**
+		 * Api helper to grab any token.
+		 *
+		 * @param {string} type Token type.
+		 * @return {jQuery.Promise}
+		 * @return {Function} return.done
+		 * @return {string} return.done.token Received token.
+		 */
+		getToken: function ( type ) {
+			var apiPromise,
+				d = $.Deferred();
+
+			apiPromise = this.get( {
+					action: 'tokens',
+					type: type
+				}, {
+					// Due to the API assuming we're logged out if we pass the callback-parameter,
+					// we have to disable jQuery's callback system, and instead parse JSON string,
+					// by setting 'jsonp' to false.
+					// TODO: This concern seems genuine but no other module has it. Is it still
+					// needed and/or should we pass this by default?
+				} )
+				.done( function ( data ) {
+					// If token type is not available for this user,
+					// key '...token' is missing or can contain Boolean false
+					if ( data.tokens && data.tokens[type + 'token'] ) {
+						d.resolve( data.tokens[type + 'token'] );
+					} else {
+						d.reject( 'token-missing', data );
+					}
+				} )
+				.fail( d.reject );
+
+			return d.promise( { abort: apiPromise.abort } );
+		}
 	};
 
 	/**

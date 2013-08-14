@@ -60,11 +60,14 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 		if ( $gzipped_contents === false ) {
 			$this->fail( "Could not get contents of $fname" );
 		}
-		// We resort to use gzinflate instead of gzdecode, as gzdecode
-		// need not be available
-		$contents = gzinflate( substr( $gzipped_contents, 10, -8 ) );
-		$this->assertEquals( strlen( $contents ),
-			file_put_contents( $fname, $contents ), "# bytes written" );
+
+		$contents = gzdecode( $gzipped_contents );
+
+		$this->assertEquals(
+			strlen( $contents ),
+			file_put_contents( $fname, $contents ),
+			'# bytes written'
+		);
 	}
 
 	/**
@@ -114,7 +117,7 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 	 * @param $name string: name of the closing element to look for
 	 *           (e.g.: "mediawiki" when looking for </mediawiki>)
 	 *
-	 * @return bool: true iff the end node could be found. false otherwise.
+	 * @return bool: true if the end node could be found. false otherwise.
 	 */
 	protected function skipToNodeEnd( $name ) {
 		while ( $this->xml->read() ) {

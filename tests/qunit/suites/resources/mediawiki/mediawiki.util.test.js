@@ -17,7 +17,7 @@
 		assert.equal( mw.util.wikiUrlencode( 'Test:A & B/Here' ), 'Test:A_%26_B/Here' );
 	} );
 
-	QUnit.test( 'wikiGetlink', 3, function ( assert ) {
+	QUnit.test( 'wikiGetlink', 4, function ( assert ) {
 		// Not part of startUp module
 		mw.config.set( 'wgArticlePath', '/wiki/$1' );
 		mw.config.set( 'wgPageName', 'Foobar' );
@@ -31,6 +31,10 @@
 
 		href = mw.util.wikiGetlink();
 		assert.equal( href, '/wiki/Foobar', 'Default title; Get link for current page ("Foobar")' );
+
+		href = mw.util.wikiGetlink( 'Sandbox', { action: 'edit' } );
+		assert.equal( href, '/wiki/Sandbox?action=edit',
+			'Simple title with query string; Get link for "Sandbox" with action=edit' );
 	} );
 
 	QUnit.test( 'wikiScript', 4, function ( assert ) {
@@ -91,8 +95,8 @@
 			'</div>' +
 			'<ul><li></li></ul>' +
 			'</div>';
-		$( tocHtml ).appendTo( '#qunit-fixture' ),
-			$toggleLink = $( '#togglelink' );
+		$( tocHtml ).appendTo( '#qunit-fixture' );
+		$toggleLink = $( '#togglelink' );
 
 		assert.strictEqual( $toggleLink.length, 1, 'Toggle link is appended to the page.' );
 

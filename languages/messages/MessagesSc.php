@@ -177,8 +177,6 @@ $messages = array(
 'index-category' => 'Pàginas indicizadas',
 'noindex-category' => 'Pàginas no indicitzadas',
 
-'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
-
 'about' => 'A propòsitu de',
 'article' => 'Artìculu',
 'newwindow' => '(aberit in una bentana noa)',
@@ -270,7 +268,7 @@ $messages = array(
 'jumptosearch' => 'chirca',
 'pool-errorunknown' => 'Faddina disconnota',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'A propòsitu de {{SITENAME}}',
 'aboutpage' => 'Project:Informatziones',
 'copyright' => 'Cuntènnidu a suta licèntzia $1.',
@@ -344,12 +342,6 @@ Una lista de pàginas ispetziales bàlidas d'agatas in [[Special:SpecialPages|{{
 # General errors
 'error' => 'Faddina',
 'databaseerror' => 'Faddina de su database',
-'dberrortext' => 'Faddina de sintassi in sa pregunta fata a su database.
-Custu podet indicare unu sbàlliu de su software.
-S\'ùrtima consulta imbiada a su database est istada:
-<blockquote><tt>$1</tt></blockquote>
-aintru de sa funtzione "<tt>$2</tt>".
-Su database at torradu custa faddina "<tt>$3: $4</tt>".',
 'readonly' => 'Database bloccadu',
 'enterlockreason' => 'Inserta su motivu de su bloccu, ispetzifichende su momentu probabile chi su bloccu at a acabai',
 'readonlytext' => "In custu momentu su database est bloccadu dae aciunturas e àteras modificas, probabilmente pro ordinaria manutentzione a su database, a pustis de custas at a èssere normale torra.
@@ -378,7 +370,6 @@ Podet èsser stadu burradu dae calicunu àteru.',
 'badtitletext' => "Su tìtulu de sa pàgina ch'as pediu est bùidu, isballiau, o iscritu in is cullegamentus inter-wiki in manera non currègia o cun caràteres no amìtius.",
 'viewsource' => 'Càstia mitza',
 'actionthrottled' => 'Atzione rimandada',
-'sqlhidden' => '(Consulta SQL cuada)',
 'namespaceprotected' => "Non tenes su permissu de acontzare is pàginas in su nùmene-lugu '''$1'''.",
 'ns-specialprotected' => 'Is pàginas ispetziales non podent èssere acontzadas.',
 
@@ -914,8 +905,6 @@ Càstia sa [[Special:NewFiles|galleria de files nous]] pro una presentada prus b
 'statistics-header-users' => 'Statìsticas subra is usuàrios',
 'statistics-pages' => 'Pàginas',
 
-'disambiguationspage' => 'Template:Disambìgua',
-
 'doubleredirects' => 'Redirects dòpios',
 'doubleredirectstext' => 'Custa pàgina cuntenet una lista de pàginas ki re-indiritzant a àteras pàginas de re-indiritzamentu.
 Ogni lìnia cuntenet ligàmines a su primu e a su de duos re-indiritzamentu, aici comente sa prima lìnia de sa de duos re-indiritzamentos, chi de sòlitu adòbiat s\'artìculu "beru", a sa cale fintzas su primu re-indiritzamentu dia depet puntare.
@@ -1217,8 +1206,6 @@ Abbàida sa [[Special:BlockList|lista de IP bloccados]] pro bìder sas bloccadur
 'blocklogentry' => 'bloccau [[$1]] pro unu tempu de $2 $3',
 'unblocklogentry' => 'at sbloccau $1',
 'block-log-flags-nocreate' => 'creatzione account bloccada',
-'blockme' => 'Blocca·mi',
-'proxyblocksuccess' => 'Fatu.',
 'sorbs' => 'DNSBL',
 
 # Developer tools

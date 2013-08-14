@@ -18,6 +18,8 @@ DROP SEQUENCE IF EXISTS recentchanges_rc_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS logging_log_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS job_job_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS category_cat_id_seq CASCADE;
+DROP SEQUENCE IF EXISTS archive_ar_id_seq CASCADE;
+DROP SEQUENCE IF EXISTS externallinks_el_id_seq CASCADE;
 DROP FUNCTION IF EXISTS page_deleted() CASCADE;
 DROP FUNCTION IF EXISTS ts2_page_title() CASCADE;
 DROP FUNCTION IF EXISTS ts2_page_text() CASCADE;
@@ -156,7 +158,9 @@ ALTER TABLE page_props ADD CONSTRAINT page_props_pk PRIMARY KEY (pp_page,pp_prop
 CREATE INDEX page_props_propname ON page_props (pp_propname);
 CREATE UNIQUE INDEX pp_propname_page ON page_props (pp_propname,pp_page);
 
+CREATE SEQUENCE archive_ar_id_seq;
 CREATE TABLE archive (
+  ar_id             INTEGER      NOT NULL  PRIMARY KEY DEFAULT nextval('archive_ar_id_seq'),
   ar_namespace      SMALLINT     NOT NULL,
   ar_title          TEXT         NOT NULL,
   ar_text           TEXT, -- technically should be bytea, but not used anymore
@@ -224,7 +228,9 @@ CREATE TABLE categorylinks (
 CREATE UNIQUE INDEX cl_from ON categorylinks (cl_from, cl_to);
 CREATE INDEX cl_sortkey     ON categorylinks (cl_to, cl_sortkey, cl_from);
 
+CREATE SEQUENCE externallinks_id_seq;
 CREATE TABLE externallinks (
+  el_id     INTEGER  NOT NULL  PRIMARY KEY DEFAULT nextval('externallinks_id_seq'),
   el_from   INTEGER  NOT NULL  REFERENCES page(page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
   el_to     TEXT     NOT NULL,
   el_index  TEXT     NOT NULL
@@ -405,8 +411,7 @@ CREATE TABLE recentchanges (
   rc_this_oldid      INTEGER      NOT NULL,
   rc_last_oldid      INTEGER      NOT NULL,
   rc_type            SMALLINT     NOT NULL  DEFAULT 0,
-  rc_moved_to_ns     SMALLINT,
-  rc_moved_to_title  TEXT,
+  rc_source          TEXT         NOT NULL,
   rc_patrolled       SMALLINT     NOT NULL  DEFAULT 0,
   rc_ip              CIDR,
   rc_old_len         INTEGER,
@@ -587,8 +592,8 @@ $mw$;
 -- This table is not used unless profiling is turned on
 CREATE TABLE profiling (
   pf_count   INTEGER         NOT NULL DEFAULT 0,
-  pf_time    NUMERIC(18,10)  NOT NULL DEFAULT 0,
-  pf_memory  NUMERIC(18,10)  NOT NULL DEFAULT 0,
+  pf_time    FLOAT           NOT NULL DEFAULT 0,
+  pf_memory  FLOAT           NOT NULL DEFAULT 0,
   pf_name    TEXT            NOT NULL,
   pf_server  TEXT            NULL
 );

@@ -182,8 +182,8 @@ $messages = array(
 'help' => 'Куцтохкам',
 'search' => 'Лахаp',
 'searchbutton' => 'Хьалаха',
-'go' => 'Дехьавала',
-'searcharticle' => 'Дехьавала',
+'go' => 'Дехьа гӀо',
+'searcharticle' => 'Дехьа гӀо',
 'history' => 'искар',
 'history_short' => 'Искар',
 'updatedmarker' => 'Со ханача денца хувцамаш хиннaд',
@@ -228,14 +228,14 @@ $messages = array(
 'lastmodifiedat' => 'Укх оагӀув тӀехьара  хувцам: $2, $1.',
 'viewcount' => 'Укх оагӀув тӀа бӀаргтасса хиннад {{PLURAL:$1|цхьазза|$1 шозза}}.',
 'protectedpage' => 'Лорама оагӀув',
-'jumpto' => 'Укхаза дехьавала/яла:',
+'jumpto' => 'Укхаза дехьа гӀо:',
 'jumptonavigation' => 'никътохкарг',
 'jumptosearch' => 'леха',
 'pool-timeout' => 'ЧIегатохара сабаран ха чакхаяьннай',
 'pool-queuefull' => 'Хаттарий цӀа хьалдизад',
 'pool-errorunknown' => 'Довзаш доаца гӀалат',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Лоацам {{SITENAME}}',
 'aboutpage' => 'Project:Лоацам',
 'copyright' => '$1 чулоацамаца тIакхоачаш да.',
@@ -740,8 +740,6 @@ $messages = array(
 'statistics' => 'Дагара куц',
 'statistics-pages' => 'ОагIувнаш',
 
-'disambiguationspage' => 'Template: ЦаI маIандоацар',
-
 'brokenredirects-edit' => 'хувца',
 'brokenredirects-delete' => 'дIадаккха',
 
@@ -911,8 +909,6 @@ $messages = array(
 'blocklogentry' => '[[$1]] чIега белаб,  $2 $3 ха ялалца',
 'unblocklogentry' => '$1 юха яста я',
 'block-log-flags-nocreate' => 'ЛархIамий дагарчена цIи яьккхар пурам янза я.',
-'blockme' => 'ЧIега бола сона',
-'proxyblocksuccess' => 'Хьадаьд.',
 
 # Move page
 'move-page-legend' => 'ОагIува цIи хувца',
@@ -958,7 +954,7 @@ $messages = array(
 'allmessagesdefault' => 'Сатийна улла яздам',
 'allmessages-filter-all' => 'Дерригаш',
 'allmessages-language' => 'Мотт:',
-'allmessages-filter-submit' => 'Дехьавала/яла',
+'allmessages-filter-submit' => 'Дехьа гӀо',
 
 # Thumbnails
 'thumbnail-more' => 'Хьадоккхаде',
@@ -1104,7 +1100,7 @@ $messages = array(
 'confirm_purge_button' => 'ХIаа',
 
 # Multipage image navigation
-'imgmultigo' => 'Дехьавала/яла!',
+'imgmultigo' => 'Дехьа гӀо!',
 'imgmultigoto' => '$1 оагIув тIа дехьавала',
 
 # Table pager

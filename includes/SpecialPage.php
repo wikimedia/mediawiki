@@ -982,7 +982,13 @@ abstract class FormSpecialPage extends SpecialPage {
 
 		$form = new HTMLForm( $this->fields, $this->getContext(), $this->getMessagePrefix() );
 		$form->setSubmitCallback( array( $this, 'onSubmit' ) );
-		$form->setWrapperLegendMsg( $this->getMessagePrefix() . '-legend' );
+		// If the form is a compact vertical form, then don't output this ugly
+		// fieldset surrounding it.
+		// XXX Special pages can setDisplayFormat to 'vform' in alterForm(), but that
+		// is called after this.
+		if ( !$form->isVForm() ) {
+			$form->setWrapperLegendMsg( $this->getMessagePrefix() . '-legend' );
+		}
 
 		$headerMsg = $this->msg( $this->getMessagePrefix() . '-text' );
 		if ( !$headerMsg->isDisabled() ) {
@@ -1227,7 +1233,16 @@ class SpecialListBots extends SpecialRedirectToSpecial {
  */
 class SpecialCreateAccount extends SpecialRedirectToSpecial {
 	function __construct() {
-		parent::__construct( 'CreateAccount', 'Userlogin', 'signup', array( 'uselang' ) );
+		parent::__construct( 'CreateAccount', 'Userlogin', 'signup', array( 'returnto', 'returntoquery', 'uselang' ) );
+	}
+
+	// No reason to hide this link on Special:Specialpages
+	public function isListed() {
+		return true;
+	}
+
+	protected function getGroupName() {
+		return 'login';
 	}
 }
 /**
@@ -1386,13 +1401,29 @@ class SpecialMycontributions extends RedirectSpecialPage {
 class SpecialMyuploads extends RedirectSpecialPage {
 	function __construct() {
 		parent::__construct( 'Myuploads' );
-		$this->mAllowedRedirectParams = array( 'limit' );
+		$this->mAllowedRedirectParams = array( 'limit', 'ilshowall', 'ilsearch' );
 	}
 
 	function getRedirect( $subpage ) {
 		return SpecialPage::getTitleFor( 'Listfiles', $this->getUser()->getName() );
 	}
 }
+
+/**
+ * Redirect Special:Listfiles?user=$wgUser&ilshowall=true
+ */
+class SpecialAllMyUploads extends RedirectSpecialPage {
+	function __construct() {
+		parent::__construct( 'AllMyUploads' );
+		$this->mAllowedRedirectParams = array( 'limit', 'ilsearch' );
+	}
+
+	function getRedirect( $subpage ) {
+		$this->mAddedRedirectParams['ilshowall'] = 1;
+		return SpecialPage::getTitleFor( 'Listfiles', $this->getUser()->getName() );
+	}
+}
+
 
 /**
  * Redirect from Special:PermanentLink/### to index.php?oldid=###

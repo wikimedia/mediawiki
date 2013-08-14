@@ -57,7 +57,10 @@ class ForeignAPIFile extends File {
 			'titles' => 'File:' . $title->getDBkey(),
 			'iiprop' => self::getProps(),
 			'prop' => 'imageinfo',
-			'iimetadataversion' => MediaHandler::getMetadataVersion()
+			'iimetadataversion' => MediaHandler::getMetadataVersion(),
+			// extmetadata is language-dependant, accessing the current language here
+			// would be problematic, so we just get them all
+			'iiextmetadatamultilang' => 1,
 		) );
 
 		$info = $repo->getImageInfo( $data );
@@ -86,7 +89,7 @@ class ForeignAPIFile extends File {
 	 * @return string
 	 */
 	static function getProps() {
-		return 'timestamp|user|comment|url|size|sha1|metadata|mime';
+		return 'timestamp|user|comment|url|size|sha1|metadata|mime|mediatype|extmetadata';
 	}
 
 	// Dummy functions...
@@ -170,6 +173,16 @@ class ForeignAPIFile extends File {
 	}
 
 	/**
+	 * @return array|null extended metadata (see imageinfo API for format) or null on error
+	 */
+	public function getExtendedMetadata() {
+		if ( isset( $this->mInfo['extmetadata'] ) ) {
+			return $this->mInfo['extmetadata'];
+		}
+		return null;
+	}
+
+	/**
 	 * @param $metadata array
 	 * @return array
 	 */
@@ -245,10 +258,12 @@ class ForeignAPIFile extends File {
 	}
 
 	/**
-	 * @todo FIXME: May guess wrong on file types that can be eg audio or video
 	 * @return int|string
 	 */
 	function getMediaType() {
+		if ( isset( $this->mInfo['mediatype'] ) ) {
+			return $this->mInfo['mediatype'];
+		}
 		$magic = MimeMagic::singleton();
 		return $magic->getMediaType( null, $this->getMimeType() );
 	}

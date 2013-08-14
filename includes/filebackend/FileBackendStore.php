@@ -38,13 +38,16 @@
 abstract class FileBackendStore extends FileBackend {
 	/** @var BagOStuff */
 	protected $memCache;
-	/** @var ProcessCacheLRU */
-	protected $cheapCache; // Map of paths to small (RAM/disk) cache items
-	/** @var ProcessCacheLRU */
-	protected $expensiveCache; // Map of paths to large (RAM/disk) cache items
+	/** @var ProcessCacheLRU Map of paths to small (RAM/disk) cache items */
+	protected $cheapCache;
+	/** @var ProcessCacheLRU Map of paths to large (RAM/disk) cache items */
+	protected $expensiveCache;
 
-	/** @var Array Map of container names to sharding settings */
-	protected $shardViaHashLevels = array(); // (container name => config array)
+	/** @var Array Map of container names to sharding config */
+	protected $shardViaHashLevels = array();
+
+	/** @var callback Method to get the MIME type of files */
+	protected $mimeCallback;
 
 	protected $maxFileSize = 4294967296; // integer bytes (4GiB)
 
@@ -54,11 +57,21 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackend::__construct()
+	 * Additional $config params include:
+	 *   - mimeCallback : Callback that takes (storage path, content, file system path) and
+	 *                    returns the MIME type of the file or 'unknown/unknown'. The file
+	 *                    system path parameter should be used if the content one is null.
 	 *
 	 * @param array $config
 	 */
 	public function __construct( array $config ) {
 		parent::__construct( $config );
+		$this->mimeCallback = isset( $config['mimeCallback'] )
+			? $config['mimeCallback']
+			: function( $storagePath, $content, $fsPath ) {
+				// @TODO: handle the case of extension-less files using the contents
+				return StreamFile::contentTypeFromPath( $storagePath ) ?: 'unknown/unknown';
+			};
 		$this->memCache = new EmptyBagOStuff(); // disabled by default
 		$this->cheapCache = new ProcessCacheLRU( self::CACHE_CHEAP_SIZE );
 		$this->expensiveCache = new ProcessCacheLRU( self::CACHE_EXPENSIVE_SIZE );
@@ -940,12 +953,13 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * Get a list of storage paths to lock for a list of operations
-	 * Returns an array with 'sh' (shared) and 'ex' (exclusive) keys,
-	 * each corresponding to a list of storage paths to be locked.
-	 * All returned paths are normalized.
+	 * Returns an array with LockManager::LOCK_UW (shared locks) and
+	 * LockManager::LOCK_EX (exclusive locks) keys, each corresponding
+	 * to a list of storage paths to be locked. All returned paths are
+	 * normalized.
 	 *
 	 * @param array $performOps List of FileOp objects
-	 * @return Array ('sh' => list of paths, 'ex' => list of paths)
+	 * @return Array (LockManager::LOCK_UW => path list, LockManager::LOCK_EX => path list)
 	 */
 	final public function getPathsToLockForOpsInternal( array $performOps ) {
 		// Build up a list of files to lock...
@@ -959,15 +973,15 @@ abstract class FileBackendStore extends FileBackend {
 		// Get a shared lock on the parent directory of each path changed
 		$paths['sh'] = array_merge( $paths['sh'], array_map( 'dirname', $paths['ex'] ) );
 
-		return $paths;
+		return array(
+			LockManager::LOCK_UW => $paths['sh'],
+			LockManager::LOCK_EX => $paths['ex']
+		);
 	}
 
 	public function getScopedLocksForOps( array $ops, Status $status ) {
 		$paths = $this->getPathsToLockForOpsInternal( $this->getOperationsInternal( $ops ) );
-		return array(
-			$this->getScopedFileLocks( $paths['sh'], LockManager::LOCK_UW, $status ),
-			$this->getScopedFileLocks( $paths['ex'], LockManager::LOCK_EX, $status )
-		);
+		return array( $this->getScopedFileLocks( $paths, 'mixed', $status ) );
 	}
 
 	final protected function doOperationsInternal( array $ops, array $opts ) {
@@ -985,8 +999,7 @@ abstract class FileBackendStore extends FileBackend {
 			// Build up a list of files to lock...
 			$paths = $this->getPathsToLockForOpsInternal( $performOps );
 			// Try to lock those files for the scope of this function...
-			$scopeLockS = $this->getScopedFileLocks( $paths['sh'], LockManager::LOCK_UW, $status );
-			$scopeLockE = $this->getScopedFileLocks( $paths['ex'], LockManager::LOCK_EX, $status );
+			$scopeLock = $this->getScopedFileLocks( $paths, 'mixed', $status );
 			if ( !$status->isOK() ) {
 				return $status; // abort
 			}
@@ -1022,7 +1035,7 @@ abstract class FileBackendStore extends FileBackend {
 		// Clear any file cache entries
 		$this->clearCache();
 
-		$supportedOps = array( 'create', 'store', 'copy', 'move', 'delete', 'null' );
+		$supportedOps = array( 'create', 'store', 'copy', 'move', 'delete', 'describe', 'null' );
 		$async = ( $this->parallelize === 'implicit' && count( $ops ) > 1 );
 		$maxConcurrency = $this->concurrency; // throttle
 
@@ -1582,6 +1595,18 @@ abstract class FileBackendStore extends FileBackend {
 			}
 		}
 		return $opts;
+	}
+
+	/**
+	 * Get the content type to use in HEAD/GET requests for a file
+	 *
+	 * @param string $storagePath
+	 * @param string|null $content File data
+	 * @param string|null $fsPath File system path
+	 * @return MIME type
+	 */
+	protected function getContentType( $storagePath, $content, $fsPath ) {
+		return call_user_func_array( $this->mimeCallback, func_get_args() );
 	}
 }
 

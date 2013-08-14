@@ -278,6 +278,7 @@ $messages = array(
 'tog-noconvertlink' => '唔轉連結標題',
 'tog-norollbackdiff' => '進行反轉之後略過差異',
 'tog-useeditwarning' => '當我離開未保存好嘅修改嗰陣警告我',
+'tog-prefershttps' => '簽到後繼續用加密連線',
 
 'underline-always' => '全部',
 'underline-never' => '永不',
@@ -462,7 +463,7 @@ $1',
 'pool-queuefull' => '隊池已滿',
 'pool-errorunknown' => '未知嘅錯誤',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '關於{{SITENAME}}',
 'aboutpage' => 'Project:關於',
 'copyright' => '響版度嘅內容係根據$1嘅條款發佈。',
@@ -542,17 +543,6 @@ $1',
 # General errors
 'error' => '錯誤',
 'databaseerror' => '資料庫錯誤',
-'dberrortext' => '資料庫查詢語法錯咗。
-咁係可能指出軟件中可能有臭蟲。
-最後一次資料庫嘅嘗試係：
-<blockquote><tt>$1</tt></blockquote>
-於 "<tt>$2</tt>" 功能中。
-數據庫嘅錯誤回應 "<tt>$3: $4</tt>"。',
-'dberrortextcl' => '資料庫查詢語法錯咗。
-最後一次資料庫嘅嘗試係：
-"$1"
-於 "$2"功能中。
-數據庫嘅錯誤回應 "$3: $4"',
 'laggedslavemode' => '警告：呢頁可能未包括最新嘅更新。',
 'readonly' => '資料庫鎖咗',
 'enterlockreason' => '輸入鎖資料庫嘅原因，同埋預計幾耐後會解鎖',
@@ -598,7 +588,6 @@ $1',
 'viewsourcetext' => '你可以睇吓或者複製呢一頁嘅原始碼：',
 'protectedinterface' => '呢一頁提供軟件嘅介面文字，呢一頁已經保護咗以預防濫用。',
 'editinginterface' => "'''警告：'''你而家編輯緊嘅呢一個用嚟提供介面文字嘅頁面。響呢一頁嘅更改會影響到其他用戶使用中嘅介面外觀。要翻譯，請考慮利用[//translatewiki.net/wiki/Main_Page?setlang=yue translatewiki.net]，一個用來為MediaWiki軟件本地化嘅計劃。",
-'sqlhidden' => '(SQL 查詢隱藏)',
 'cascadeprotected' => '呢一版已經保護咗唔能夠編輯，因為佢係響以下嘅{{PLURAL:$1|一|幾}}頁度包含咗，當中啟用咗"連串"保護選項來保護嗰一版: $2',
 'namespaceprotected' => "你無權編輯響'''$1'''空間名裏面嘅呢一版。",
 'ns-specialprotected' => '特別頁係唔可以編輯嘅。',
@@ -618,7 +607,6 @@ $1',
 'yourpassword' => '密碼:',
 'yourpasswordagain' => '再輸入密碼:',
 'remembermypassword' => '響呢個瀏覽器度記住我嘅登入資料 (最高維持$1{{PLURAL:$1|日|日}})',
-'securelogin-stick-https' => '登入後繼續以HTTPS連接',
 'yourdomainname' => '你嘅網域:',
 'externaldberror' => '驗證資料庫出錯，或者唔允許你更新你嘅外部帳戶。',
 'login' => '登入',
@@ -675,7 +663,7 @@ $1',
 'passwordsent' => '新嘅密碼已經寄咗畀呢位用戶 "$1" 嘅電郵地址。收到之後請重新登入。',
 'blocked-mailpassword' => '你嘅IP地址被鎖住，唔可以用密碼復原功能以防止濫用。',
 'eauthentsent' => '確認電郵已經傳送到指定嘅電郵地址。喺其它嘅郵件傳送到呢個戶口之前，你需要按電郵嘅指示，嚟確認呢個戶口真係屬於你嘅。',
-'throttled-mailpassword' => '一個密碼提醒已經響$1個鐘頭之前發送咗。為咗防止濫用，響$1個鐘頭之內只可以發送一個密碼提醒。',
+'throttled-mailpassword' => '一個密碼提醒已經響$1{{PLURAL:$1|個鐘頭}}之前發送咗。為咗防止濫用，響$1{{PLURAL:$1|個鐘頭}}之內只可以發送一個密碼提醒。',
 'mailerror' => '傳送電郵錯誤： $1',
 'acct_creation_throttle_hit' => '利用你呢個IP地址嘅訪客響上一日已經開咗 $1 個戶口，係響呢段時間嘅上限。
 結果，利用呢個IP地址嘅訪客唔可以響呢段時間再開多個戶口。',
@@ -707,7 +695,7 @@ $1',
 'newpassword' => '新密碼:',
 'retypenew' => '打多次新密碼:',
 'resetpass_submit' => '設定密碼同登入',
-'resetpass_success' => '你嘅密碼已經成功噉改咗！
+'changepassword-success' => '你嘅密碼已經成功噉改咗！
 而家幫你登入緊...',
 'resetpass_forbidden' => '唔可以更改密碼',
 'resetpass-no-info' => '你一定要登入咗去直接入來呢一版。',
@@ -1773,11 +1761,6 @@ $1',
 'statistics-users-active-desc' => '響$1日前做過動作嘅用戶',
 'statistics-mostpopular' => '最多人睇嘅頁',
 
-'disambiguations' => '搞清楚頁',
-'disambiguationspage' => 'Template:disambig
-Template:搞清楚',
-'disambiguations-text' => "以下呢啲頁面連結去一個'''搞清楚頁'''。佢哋先至應該指去正確嘅主題。<br />如果一個頁面連結自[[MediaWiki:Disambiguationspage]]，噉就會當佢係搞清楚頁。",
-
 'doubleredirects' => '雙重跳轉',
 'doubleredirectstext' => '每一行都順次序寫住第一頁名，佢嘅目的頁，同埋目的頁再指去邊度。改嘅時候，應該將第一個跳轉頁轉入第三頁。
 <del>劃咗</del>嘅項目係已經解決咗嘅。',
@@ -2345,11 +2328,8 @@ $1',
 'ipb_blocked_as_range' => '錯誤：個IP $1 無直接封鎖，唔可以解封。但係佢係響 $2 嘅封鎖範圍之內，嗰段範圍係可以解封嘅。',
 'ip_range_invalid' => '無效嘅IP範圍',
 'ip_range_toolarge' => '大過 /$1 嘅封鎖範圍係唔容許嘅。',
-'blockme' => '封鎖我',
 'proxyblocker' => 'Proxy 封鎖器',
-'proxyblocker-disabled' => '呢個功能已經停用。',
 'proxyblockreason' => '你嘅IP係一個公開（指任何人都可以用，無須身份認證？）嘅代理地址，因此被封鎖。請聯絡你嘅Internet服務提供商或技術支援，向佢哋報告呢個嚴重嘅安全問題。',
-'proxyblocksuccess' => '完成。',
 'sorbsreason' => '你嘅IP地址已經畀響{{SITENAME}}度用嘅DNSBL列咗做公開代理。',
 'sorbs_create_account_reason' => '你嘅IP地址已經畀響{{SITENAME}}度用嘅DNSBL列咗做公開代理。你唔可以開新戶口。',
 'cant-block-while-blocked' => '當你被封鎖嗰陣唔可以封鎖其他用戶。',
@@ -2665,6 +2645,8 @@ $1',
 'spambot_username' => 'MediaWiki垃圾清除',
 'spam_reverting' => '恢復返去最後一個唔包含指去$1嘅連結嘅嗰個修訂。',
 'spam_blanking' => '全部版本都含有指去$1嘅連結，留空',
+'simpleantispam-label' => "反垃圾檢查。
+'''唔好'''加入呢個！",
 
 # Skin names
 'skinname-cologneblue' => '科隆藍',
@@ -2731,6 +2713,12 @@ $1',
 'ilsubmit' => '搵嘢',
 'bydate' => '以時間',
 'sp-newimages-showfrom' => '顯示由$1 $2嘅新檔',
+
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'hours' => '$1{{PLURAL:$1|個鐘}}',
+
+# Human-readable timestamps
+'hours-ago' => '$1{{PLURAL:$1|個鐘}}之前',
 
 # Bad image list
 'bad_image_list' => '請根據下面嘅格式去寫:
@@ -3036,7 +3024,7 @@ Variants for Chinese language
 'exif-gpsmeasuremode-3' => '三維量度',
 
 # Pseudotags used for GPSSpeedRef
-'exif-gpsspeed-k' => '千米/小時',
+'exif-gpsspeed-k' => '公里/小時',
 'exif-gpsspeed-m' => '英里/小時',
 'exif-gpsspeed-n' => '浬/小時',
 
@@ -3295,8 +3283,7 @@ MediaWiki是基於使用目的而加以發佈，但係就唔會負上任何嘅�
 
 # Database error messages
 'dberr-header' => '呢個 wiki 出咗問題',
-'dberr-problems' => '對唔住！
-呢一版出現咗一啲技術性問題。',
+'dberr-problems' => '對唔住！呢一版出現咗一啲技術性問題。',
 'dberr-again' => '試吓等多幾分種然後開試。',
 'dberr-info' => '(唔能夠連繫個資料伺服器: $1)',
 'dberr-usegoogle' => '響現階段你可以用 Google 去搵嘢。',
@@ -3327,5 +3314,8 @@ MediaWiki是基於使用目的而加以發佈，但係就唔會負上任何嘅�
 # Search suggestions
 'searchsuggest-search' => '搵嘢',
 'searchsuggest-containing' => '名單傳送緊...',
+
+# Durations
+'duration-hours' => '$1{{PLURAL:$1|個鐘}}',
 
 );

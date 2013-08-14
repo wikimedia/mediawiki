@@ -247,7 +247,7 @@ $1',
 'pool-queuefull' => 'Ang pila sang linaw puno na',
 'pool-errorunknown' => 'Wala mahibaluan nga sala',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Nahanungod sa {{SITENAME}}',
 'aboutpage' => 'Project:Nahanungod',
 'copyright' => 'Ang unod nga abeylabol nga naga paidalum $1.',
@@ -334,17 +334,6 @@ May lista sang mga nagaka-igo nga mga espesyal nga mga panid sa [[Special:Specia
 # General errors
 'error' => 'Sala/Eror',
 'databaseerror' => 'May sala sa database',
-'dberrortext' => 'May sala sa syntax sang pagpangita sa database.
-Ini nagakahulogan nga basi may sapat-sapat/bug sa software.
-Ang pinaka-ulihe nga pagtilaw sa pagpangita sa database amo ang:
-<blockquote><code>$1</code></blockquote>
-nga halin sa buluhaton nga "<code>$2</code>".
-Ang database nagbalik sang sala/eror nga "<samp>$3: $4</samp>".',
-'dberrortextcl' => 'May sala sa syntax sang pagpangita sa database.
-Ang pinaka-ulihe nga pamilit sa pagpangita sa database amo ang:
-"$1"
-nga halin sa buluhaton nga "$2".
-Ang database nagbalik sang sala/eror nga "$3: $4"',
 'laggedslavemode' => "'''Pahibalo:''' Ang panid indi dapat maka-angkon sang mga ulihe nga pagbag-o.",
 'readonly' => 'Naka-kandado ang database',
 'enterlockreason' => 'Magbutang sang rason para sa pagkandado, upod na ang paghaum-haom kon san-o ang kandado pagabuksan',
@@ -400,7 +389,6 @@ Palihog tilawan mo liwat pagkatapos sang malip-ot nga tinion.',
 'editinginterface' => "'''Pahibalo:''' Naga-ilis ka sang panid nga ginagamit sa paghatag sang mga teksto sang interface para sa software.
 Ang mga pagbag-o sang sini nga panid maga-apekto sa hitsura sang interface sang panid sang manug-gamit sang iban.
 Para sa mga paglubad/pagbadbad, palihog kilalanon ang paggamit sang [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], ang proyekto sang MediaWiki para sa localisasyon.",
-'sqlhidden' => '(Nakatago ang pagpamangkot sang SQL)',
 'cascadeprotected' => 'Ang ini nga panid ginpangapinan agod nga indi ma-ilisan, bangud nga ini nadal sa masunod nga {{PLURAL:$1|panid, nga|mga panid, nga}} ginapangapinan sang naga-"kaskad" nga pililian nga naga-andar:
 $2',
 'namespaceprotected' => "Wala ka ginapasugtan nga mag-ilis sang mga panid sa '''$1''' nga lugar-espasyo.",
@@ -434,7 +422,6 @@ Indi pagkalimtan ang pag-ilis sa imo nga [[Special:Preferences|{{SITENAME}} pagp
 'yourpassword' => 'Kontra-senyas:',
 'yourpasswordagain' => 'Suliton ang kontra-senyas:',
 'remembermypassword' => 'Dumdumon ang akon pagsulod sa sini nga brawser (para sa indi magsobra $1 {{PLURAL:$1|nga adlaw|nga mga adlaw}})',
-'securelogin-stick-https' => 'Magpabilin nga nakatakod sa HTTPS pagkatapos magsulod',
 'yourdomainname' => 'Imo dominyo',
 'password-change-forbidden' => 'Indi ka mahimo nga makailis sang pasword sa sini nga wiki.',
 'externaldberror' => 'Mahimo nga may ara sang sala sa pagpamatood sang database ukon wala ka sa lugar nga magbag-o sang imo pang-guha nga akawnt.',
@@ -545,7 +532,7 @@ Agod nga makatapos ka sa pagsulod, kinahanglan mo magbutang sang bag-o nga paswo
 'newpassword' => 'Bag-o nga pasword:',
 'retypenew' => 'Suliton ang bag-o nga pasword:',
 'resetpass_submit' => 'Ibutang ang pasword kag magsulod',
-'resetpass_success' => 'Ang imo pasword madinalag-on nga gin-ilisan!
+'changepassword-success' => 'Ang imo pasword madinalag-on nga gin-ilisan!
 Ginapasulod ka na...',
 'resetpass_forbidden' => 'Ang mga pasword indi mahimo nga paga-ilisan',
 'resetpass-no-info' => 'Kinahanglan nga nakasulod ka agod nga makadtoan ang ini nga panid sing derecho.',
@@ -1497,8 +1484,6 @@ Ang gusto nga {{PLURAL:\$3|tipo sang file amo|mga tipo sang file amo ang}} \$2."
 
 # Statistics
 'statistics' => 'Mga Statistik',
-
-'disambiguationspage' => 'Template:disambig',
 
 'brokenredirects-edit' => 'ilisan',
 'brokenredirects-delete' => 'panason',

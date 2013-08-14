@@ -231,7 +231,7 @@ $messages = array(
 'jumptosearch' => 'ನಾಡ್’ಲೆ',
 'pool-errorunknown' => 'ಗೊತ್ತಿಂಜಂದಿನ  ದೋಷ',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} ದ ಬಗ್ಗೆ',
 'aboutpage' => 'Project:ನಮ್ಮ ಬಗ್ಗೆ',
 'copyright' => 'ಉಂದು ಈ ಕಾಪಿರೈಟ್‌ಡ್ ಲಭ್ಯವುಂಡು $1.',
@@ -736,8 +736,6 @@ $messages = array(
 # Statistics
 'statistics' => 'ಅಂಕಿ ಅಂಶೊಲು',
 'statistics-header-pages' => 'ಪುಟೊತ ಅಂಕಿ ಅಂಶಲು',
-
-'disambiguationspage' => 'ದ್ವಂದ್ವ ನಿವಾರಣೆ',
 
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|ಬೈಟ್|ಬೈಟ್‍ಲು}}',

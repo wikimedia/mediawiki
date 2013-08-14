@@ -67,7 +67,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 			$this->client->setOption( Memcached::OPT_RETRY_TIMEOUT, $params['retry_timeout'] );
 		}
 
-		if ( isset ( $params['server_failure_limit'] ) ) {
+		if ( isset( $params['server_failure_limit'] ) ) {
 			$this->client->setOption( Memcached::OPT_SERVER_FAILURE_LIMIT, $params['server_failure_limit'] );
 		}
 

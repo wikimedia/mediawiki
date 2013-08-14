@@ -772,7 +772,8 @@ class SpecialBlock extends FormSpecialPage {
 			$logaction,
 			Title::makeTitle( NS_USER, $target ),
 			$data['Reason'][0],
-			$logParams
+			$logParams,
+			$performer
 		);
 		# Relate log ID to block IDs (bug 25763)
 		$blockIds = array_merge( array( $status['id'] ), $status['autoIds'] );

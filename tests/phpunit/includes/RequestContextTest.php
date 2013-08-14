@@ -7,6 +7,8 @@ class RequestContextTest extends MediaWikiTestCase {
 
 	/**
 	 * Test the relationship between title and wikipage in RequestContext
+	 * @covers RequestContext::getWikiPage
+	 * @covers RequestContext::getTitle
 	 */
 	public function testWikiPageTitle() {
 		$context = new RequestContext();
@@ -27,6 +29,9 @@ class RequestContextTest extends MediaWikiTestCase {
 			"When a title is updated the WikiPage should be purged and recreated on-demand with the new title." );
 	}
 
+	/**
+	 * @covers RequestContext::importScopedSession
+	 */
 	public function testImportScopedSession() {
 		$context = RequestContext::getMain();
 

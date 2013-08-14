@@ -3,6 +3,7 @@
 /**
  * @group Database
  * @group Cache
+ * @covers MessageCache
  */
 class MessageCacheTest extends MediaWikiLangTestCase {
 
@@ -83,7 +84,7 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 	 *
 	 * @dataProvider provideMessagesForFallback
 	 */
-	function testMessageFallbacks( $message, $lang, $expectedContent ) {
+	public function testMessageFallbacks( $message, $lang, $expectedContent ) {
 		$result = MessageCache::singleton()->get( $message, true, $lang );
 		$this->assertEquals( $expectedContent, $result, "Message fallback failed." );
 	}
@@ -111,7 +112,7 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 	 *
 	 * @dataProvider provideMessagesForFullKeys
 	 */
-	function testFullKeyBehaviour( $message, $lang, $expectedContent ) {
+	public function testFullKeyBehaviour( $message, $lang, $expectedContent ) {
 		$result = MessageCache::singleton()->get( $message, true, $lang, true );
 		$this->assertEquals( $expectedContent, $result, "Full key message fallback failed." );
 	}

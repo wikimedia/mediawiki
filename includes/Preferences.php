@@ -188,7 +188,8 @@ class Preferences {
 		global $wgAuth, $wgContLang, $wgParser, $wgCookieExpiration, $wgLanguageCode,
 			$wgDisableTitleConversion, $wgDisableLangConversion, $wgMaxSigChars,
 			$wgEnableEmail, $wgEmailConfirmToEdit, $wgEnableUserEmail, $wgEmailAuthentication,
-			$wgEnotifWatchlist, $wgEnotifUserTalk, $wgEnotifRevealEditorAddress;
+			$wgEnotifWatchlist, $wgEnotifUserTalk, $wgEnotifRevealEditorAddress,
+			$wgSecureLogin;
 
 		// retrieving user name for GENDER and misc.
 		$userName = $user->getName();
@@ -280,18 +281,6 @@ class Preferences {
 			'help-message' => 'prefs-help-realname',
 		);
 
-		$defaultPreferences['gender'] = array(
-			'type' => 'select',
-			'section' => 'personal/info',
-			'options' => array(
-				$context->msg( 'gender-male' )->text() => 'male',
-				$context->msg( 'gender-female' )->text() => 'female',
-				$context->msg( 'gender-unknown' )->text() => 'unknown',
-			),
-			'label-message' => 'yourgender',
-			'help-message' => 'prefs-help-gender',
-		);
-
 		if ( $canEditPrivateInfo && $wgAuth->allowPasswordChange() ) {
 			$link = Linker::link( SpecialPage::getTitleFor( 'ChangePassword' ),
 				$context->msg( 'prefs-resetpass' )->escaped(), array(),
@@ -311,6 +300,15 @@ class Preferences {
 				'label' => $context->msg( 'tog-rememberpassword' )->numParams(
 					ceil( $wgCookieExpiration / ( 3600 * 24 ) ) )->text(),
 				'section' => 'personal/info',
+			);
+		}
+		// Only show preferhttps if secure login is turned on
+		if ( $wgSecureLogin && wfCanIPUseHTTPS( $context->getRequest()->getIP() ) ) {
+			$defaultPreferences['prefershttps'] = array(
+				'type' => 'toggle',
+				'label-message' => 'tog-prefershttps',
+				'help-message' => 'prefs-help-prefershttps',
+				'section' => 'personal/info'
 			);
 		}
 
@@ -333,40 +331,75 @@ class Preferences {
 			'label-message' => 'yourlanguage',
 		);
 
+		$defaultPreferences['gender'] = array(
+			'type' => 'radio',
+			'section' => 'personal/i18n',
+			'options' => array(
+				$context->msg( 'parentheses',
+					$context->msg( 'gender-unknown' )->text()
+				)->text() => 'unknown',
+				$context->msg( 'gender-female' )->text() => 'female',
+				$context->msg( 'gender-male' )->text() => 'male',
+			),
+			'label-message' => 'yourgender',
+			'help-message' => 'prefs-help-gender',
+		);
+
 		// see if there are multiple language variants to choose from
 		if ( !$wgDisableLangConversion ) {
-			$variants = $wgContLang->getVariants();
+			foreach ( LanguageConverter::$languagesWithVariants as $langCode ) {
+				if ( $langCode == $wgContLang->getCode() ) {
+					$variants = $wgContLang->getVariants();
 
-			if ( count( $variants ) > 1 ) {
-				$variantArray = array();
-				foreach ( $variants as $v ) {
-					$v = str_replace( '_', '-', strtolower( $v ) );
-					$variantArray[$v] = $wgContLang->getVariantname( $v, false );
-				}
+					if ( count( $variants ) <= 1 ) {
+						continue;
+					}
 
-				$options = array();
-				foreach ( $variantArray as $code => $name ) {
-					$display = wfBCP47( $code ) . ' - ' . $name;
-					$options[$display] = $code;
-				}
+					$variantArray = array();
+					foreach ( $variants as $v ) {
+						$v = str_replace( '_', '-', strtolower( $v ) );
+						$variantArray[$v] = $lang->getVariantname( $v, false );
+					}
 
-				$defaultPreferences['variant'] = array(
-					'label-message' => 'yourvariant',
-					'type' => 'select',
-					'options' => $options,
-					'section' => 'personal/i18n',
-					'help-message' => 'prefs-help-variant',
-				);
+					$options = array();
+					foreach ( $variantArray as $code => $name ) {
+						$display = wfBCP47( $code ) . ' - ' . $name;
+						$options[$display] = $code;
+					}
 
-				if ( !$wgDisableTitleConversion ) {
-					$defaultPreferences['noconvertlink'] =
-						array(
-						'type' => 'toggle',
+					$defaultPreferences['variant'] = array(
+						'label-message' => 'yourvariant',
+						'type' => 'select',
+						'options' => $options,
 						'section' => 'personal/i18n',
-						'label-message' => 'tog-noconvertlink',
+						'help-message' => 'prefs-help-variant',
+					);
+
+					if ( !$wgDisableTitleConversion ) {
+						$defaultPreferences['noconvertlink'] = array(
+							'type' => 'toggle',
+							'section' => 'personal/i18n',
+							'label-message' => 'tog-noconvertlink',
+						);
+					}
+				} else {
+					$defaultPreferences["variant-$langCode"] = array(
+						'type' => 'api',
 					);
 				}
 			}
+		}
+
+		// Stuff from Language::getExtraUserToggles()
+		// FIXME is this dead code? $extraUserToggles doesn't seem to be defined for any language
+		$toggles = $wgContLang->getExtraUserToggles();
+
+		foreach ( $toggles as $toggle ) {
+			$defaultPreferences[$toggle] = array(
+				'type' => 'toggle',
+				'section' => 'personal/i18n',
+				'label-message' => "tog-$toggle",
+			);
 		}
 
 		// show a preview of the old signature first
@@ -675,6 +708,18 @@ class Preferences {
 	 * @param $defaultPreferences Array
 	 */
 	static function renderingPreferences( $user, IContextSource $context, &$defaultPreferences ) {
+		## Diffs ####################################
+		$defaultPreferences['diffonly'] = array(
+			'type' => 'toggle',
+			'section' => 'rendering/diffs',
+			'label-message' => 'tog-diffonly',
+		);
+		$defaultPreferences['norollbackdiff'] = array(
+			'type' => 'toggle',
+			'section' => 'rendering/diffs',
+			'label-message' => 'tog-norollbackdiff',
+		);
+
 		## Page Rendering ##############################
 		global $wgAllowUserCssPrefs;
 		if ( $wgAllowUserCssPrefs ) {
@@ -969,6 +1014,8 @@ class Preferences {
 
 		foreach ( $watchTypes as $action => $pref ) {
 			if ( $user->isAllowed( $action ) ) {
+				// Messages:
+				// tog-watchdefault, tog-watchmoves, tog-watchdeletion, tog-watchcreations
 				$defaultPreferences[$pref] = array(
 					'type' => 'toggle',
 					'section' => 'watchlist/advancedwatchlist',
@@ -1045,35 +1092,9 @@ class Preferences {
 	}
 
 	/**
-	 * @param $user User
-	 * @param $context IContextSource
-	 * @param $defaultPreferences Array
+	 * Dummy, kept for backwards-compatibility.
 	 */
 	static function miscPreferences( $user, IContextSource $context, &$defaultPreferences ) {
-		global $wgContLang;
-
-		## Misc #####################################
-		$defaultPreferences['diffonly'] = array(
-			'type' => 'toggle',
-			'section' => 'misc/diffs',
-			'label-message' => 'tog-diffonly',
-		);
-		$defaultPreferences['norollbackdiff'] = array(
-			'type' => 'toggle',
-			'section' => 'misc/diffs',
-			'label-message' => 'tog-norollbackdiff',
-		);
-
-		// Stuff from Language::getExtraUserToggles()
-		$toggles = $wgContLang->getExtraUserToggles();
-
-		foreach ( $toggles as $toggle ) {
-			$defaultPreferences[$toggle] = array(
-				'type' => 'toggle',
-				'section' => 'personal/i18n',
-				'label-message' => "tog-$toggle",
-			);
-		}
 	}
 
 	/**

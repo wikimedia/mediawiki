@@ -246,7 +246,7 @@ class LanguageConverter {
 	 * @return Mixed: variant if one found, false otherwise.
 	 */
 	protected function getUserVariant() {
-		global $wgUser;
+		global $wgUser, $wgContLang;
 
 		// memoizing this function wreaks havoc on parserTest.php
 		/*
@@ -259,7 +259,11 @@ class LanguageConverter {
 		// Don't call this on stub objects because that causes infinite
 		// recursion during initialisation
 		if ( $wgUser->isLoggedIn() ) {
-			$ret = $wgUser->getOption( 'variant' );
+			if ( $this->mMainLanguageCode == $wgContLang->getCode() ) {
+				$ret = $wgUser->getOption( 'variant' );
+			} else {
+				$ret = $wgUser->getOption( 'variant-' . $this->mMainLanguageCode );
+			}
 		} else {
 			// figure out user lang without constructing wgLang to avoid
 			// infinite recursion
@@ -551,7 +555,7 @@ class LanguageConverter {
 		$variant = $this->getPreferredVariant();
 		$index = $title->getNamespace();
 		if ( $index !== NS_MAIN ) {
-			$text = $this->convertNamespace( $index ) . ':';
+			$text = $this->convertNamespace( $index, $variant ) . ':';
 		} else {
 			$text = '';
 		}
@@ -563,10 +567,13 @@ class LanguageConverter {
 	 * Get the namespace display name in the preferred variant.
 	 *
 	 * @param $index int namespace id
+	 * @param $variant string|null variant code or null for preferred variant
 	 * @return String: namespace name for display
 	 */
-	public function convertNamespace( $index ) {
-		$variant = $this->getPreferredVariant();
+	public function convertNamespace( $index, $variant = null ) {
+		if ( $variant === null ) {
+			$variant = $this->getPreferredVariant();
+		}
 		if ( $index === NS_MAIN ) {
 			return '';
 		} else {
@@ -1096,6 +1103,7 @@ class LanguageConverter {
 	 * @param $text String: text to armour against conversion
 	 * @return String: armoured text where { and } have been converted to
 	 *                 &#123; and &#125;
+	 * @deprecated since 1.22 is no longer used
 	 */
 	public function armourMath( $text ) {
 		// convert '-{' and '}-' to '-&#123;' and '&#125;-' to prevent
@@ -1256,7 +1264,10 @@ class ConverterRule {
 		$variants = $this->mConverter->mVariants;
 		$varsep_pattern = $this->mConverter->getVarSeparatorPattern();
 
+		// Split according to $varsep_pattern, but ignore semicolons from HTML entities
+		$rules = preg_replace( '/(&[#a-zA-Z0-9]+);/', "$1\x01", $rules );
 		$choice = preg_split( $varsep_pattern, $rules );
+		$choice = str_replace( "\x01", ';', $choice );
 
 		foreach ( $choice as $c ) {
 			$v = explode( ':', $c, 2 );

@@ -257,7 +257,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * @param $limit Int|String
 	 */
 	function setLimit( $limit ) {
-		$limit = (int) $limit;
+		$limit = (int)$limit;
 		// WebRequest::getLimitOffset() puts a cap of 5000, so do same here.
 		if ( $limit > 5000 ) {
 			$limit = 5000;

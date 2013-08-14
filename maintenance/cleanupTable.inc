@@ -41,6 +41,8 @@ class TableCleanup extends Maintenance {
 	public $batchSize = 100;
 	public $reportInterval = 100;
 
+	protected $processed, $updated, $count, $startTime, $table;
+
 	public function __construct() {
 		parent::__construct();
 		$this->addOption( 'dry-run', 'Perform a dry run' );
@@ -66,6 +68,9 @@ class TableCleanup extends Maintenance {
 		$this->table = $table;
 	}
 
+	/**
+	 * @param int $updated
+	 */
 	protected function progress( $updated ) {
 		$this->updated += $updated;
 		$this->processed++;
@@ -96,12 +101,16 @@ class TableCleanup extends Maintenance {
 		flush();
 	}
 
+	/**
+	 * @param array $params
+	 * @throws MWException
+	 */
 	public function runTable( $params ) {
 		$dbr = wfGetDB( DB_SLAVE );
 
 		if ( array_diff( array_keys( $params ),
-			array( 'table', 'conds', 'index', 'callback' ) ) )
-		{
+			array( 'table', 'conds', 'index', 'callback' ) )
+		) {
 			throw new MWException( __METHOD__ . ': Missing parameter ' . implode( ', ', $params ) );
 		}
 
@@ -110,7 +119,6 @@ class TableCleanup extends Maintenance {
 		$count = $dbr->estimateRowCount( $table, '*', '', __METHOD__ );
 		$this->init( $count, $table );
 		$this->output( "Processing $table...\n" );
-
 
 		$index = (array)$params['index'];
 		$indexConds = array();
@@ -156,6 +164,10 @@ class TableCleanup extends Maintenance {
 		$this->output( "Finished $table... $this->updated of $this->processed rows updated\n" );
 	}
 
+	/**
+	 * @param array $matches
+	 * @return string
+	 */
 	protected function hexChar( $matches ) {
 		return sprintf( "\\x%02x", ord( $matches[1] ) );
 	}

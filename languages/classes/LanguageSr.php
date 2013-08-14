@@ -202,9 +202,9 @@ class SrConverter extends LanguageConverter {
 		$numLatin = preg_match_all( "/[šđčćžŠĐČĆŽ]/u", $text, $dummy );
 
 		if ( $variant == 'sr-ec' ) {
-			return (boolean) ( $numCyrillic > $numLatin );
+			return $numCyrillic > $numLatin;
 		} elseif ( $variant == 'sr-el' ) {
-			return (boolean) ( $numLatin > $numCyrillic );
+			return $numLatin > $numCyrillic;
 		} else {
 			return false;
 		}

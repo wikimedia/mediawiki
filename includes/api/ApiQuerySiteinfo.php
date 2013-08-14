@@ -123,6 +123,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data['mainpage'] = $mainPage->getPrefixedText();
 		$data['base'] = wfExpandUrl( $mainPage->getFullURL(), PROTO_CURRENT );
 		$data['sitename'] = $GLOBALS['wgSitename'];
+		$data['logo'] = $GLOBALS['wgLogo'];
 		$data['generator'] = "MediaWiki {$GLOBALS['wgVersion']}";
 		$data['phpversion'] = phpversion();
 		$data['phpsapi'] = PHP_SAPI;
@@ -139,7 +140,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			$allowException = !empty( $allowFrom );
 		}
 		if ( $allowException ) {
-			$data['externalimages'] = (array) $allowFrom;
+			$data['externalimages'] = (array)$allowFrom;
 			$this->getResult()->setIndexedTagName( $data['externalimages'], 'prefix' );
 		}
 
@@ -152,8 +153,12 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		}
 
 		if ( $wgContLang->linkPrefixExtension() ) {
-			$data['linkprefix'] = wfMessage( 'linkprefix' )->inContentLanguage()->text();
+			$linkPrefixCharset = $wgContLang->linkPrefixCharset();
+			$data['linkprefixcharset'] = $linkPrefixCharset;
+			// For backwards compatability
+			$data['linkprefix'] = "/^((?>.*[^$linkPrefixCharset]|))(.+)$/sDu";
 		} else {
+			$data['linkprefixcharset'] = '';
 			$data['linkprefix'] = '';
 		}
 
@@ -295,6 +300,8 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			$data[] = $item;
 		}
 
+		sort( $data );
+
 		$this->getResult()->setIndexedTagName( $data, 'ns' );
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
@@ -418,6 +425,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data['activeusers'] = intval( SiteStats::activeUsers() );
 		$data['admins'] = intval( SiteStats::numberingroup( 'sysop' ) );
 		$data['jobs'] = intval( SiteStats::jobs() );
+
+		wfRunHooks( 'APIQuerySiteInfoStatisticsInfo', array( &$data ) );
+
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
 
@@ -471,7 +481,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		global $wgFileExtensions;
 
 		$data = array();
-		foreach ( $wgFileExtensions as $ext ) {
+		foreach ( array_unique( $wgFileExtensions ) as $ext ) {
 			$data[] = array( 'ext' => $ext );
 		}
 		$this->getResult()->setIndexedTagName( $data, 'fe' );
@@ -691,7 +701,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				' extensions            - Returns extensions installed on the wiki',
 				' fileextensions        - Returns list of file extensions allowed to be uploaded',
 				' rightsinfo            - Returns wiki rights (license) information if available',
-				" languages             - Returns a list of languages MediaWiki supports".
+				" languages             - Returns a list of languages MediaWiki supports" .
 					"(optionally localised by using {$p}inlanguagecode)",
 				' skins                 - Returns a list of all enabled skins',
 				' extensiontags         - Returns a list of parser extension tags',

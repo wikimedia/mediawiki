@@ -380,6 +380,8 @@ CREATE TABLE /*_*/text (
 -- fields, with several caveats.
 --
 CREATE TABLE /*_*/archive (
+  -- Primary key
+  ar_id int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
   ar_namespace int NOT NULL default 0,
   ar_title varchar(255) binary NOT NULL default '',
 
@@ -445,7 +447,6 @@ CREATE TABLE /*_*/archive (
 
   -- content format, see CONTENT_FORMAT_XXX constants
   ar_content_format varbinary(64) DEFAULT NULL
-
 ) /*$wgDBTableOptions*/;
 
 CREATE INDEX /*i*/name_title_timestamp ON /*_*/archive (ar_namespace,ar_title,ar_timestamp);
@@ -602,6 +603,9 @@ CREATE INDEX /*i*/cat_pages ON /*_*/category (cat_pages);
 -- Track links to external URLs
 --
 CREATE TABLE /*_*/externallinks (
+  -- Primary key
+  el_id int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
+
   -- page_id of the referring page
   el_from int unsigned NOT NULL default 0,
 
@@ -761,7 +765,7 @@ CREATE TABLE /*_*/ipblocks (
   -- Start and end of an address range, in hexadecimal
   -- Size chosen to allow IPv6
   -- FIXME: these fields were originally blank for single-IP blocks,
-  -- but now they are populated. No migration was ever done. They 
+  -- but now they are populated. No migration was ever done. They
   -- should be fixed to be blank again for such blocks (bug 49504).
   ipb_range_start tinyblob NOT NULL,
   ipb_range_end tinyblob NOT NULL,
@@ -1058,6 +1062,10 @@ CREATE TABLE /*_*/recentchanges (
   -- The type of change entry (RC_EDIT,RC_NEW,RC_LOG,RC_EXTERNAL)
   rc_type tinyint unsigned NOT NULL default 0,
 
+  -- The source of the change entry (replaces rc_type)
+  -- default of '' is temporary, needed for initial migration
+  rc_source varchar(16) binary not null default '',
+
   -- If the Recent Changes Patrol option is enabled,
   -- users may mark edits as having been reviewed to
   -- remove a warning flag on the RC list.
@@ -1076,7 +1084,7 @@ CREATE TABLE /*_*/recentchanges (
   -- Visibility of recent changes items, bitfield
   rc_deleted tinyint unsigned NOT NULL default 0,
 
-  -- Value corresonding to log_id, specific log entries
+  -- Value corresponding to log_id, specific log entries
   rc_logid int unsigned NOT NULL default 0,
   -- Store log type info here, or null
   rc_log_type varbinary(255) NULL default NULL,
@@ -1105,8 +1113,9 @@ CREATE TABLE /*_*/watchlist (
   wl_namespace int NOT NULL default 0,
   wl_title varchar(255) binary NOT NULL default '',
 
-  -- Timestamp when user was last sent a notification e-mail;
-  -- cleared when the user visits the page.
+  -- Timestamp used to send notification e-mails and show "updated since last visit" markers on
+  -- history and recent changes / watchlist. Set to NULL when the user visits the latest revision
+  -- of the page, which means that they should be sent an e-mail on the next change.
   wl_notificationtimestamp varbinary(14)
 
 ) /*$wgDBTableOptions*/;
@@ -1132,7 +1141,7 @@ CREATE TABLE /*_*/searchindex (
 
   -- Munged version of body text
   si_text mediumtext NOT NULL
-) ENGINE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE UNIQUE INDEX /*i*/si_page ON /*_*/searchindex (si_page);
 CREATE FULLTEXT INDEX /*i*/si_title ON /*_*/searchindex (si_title);

@@ -751,10 +751,17 @@ class EmailNotification {
 		# Replace this after transforming the message, bug 35019
 		$postTransformKeys['$PAGESUMMARY'] = $this->summary == '' ? ' - ' : $this->summary;
 
-		# Now build message's subject and body
+		// Now build message's subject and body
+
+		// Messages:
+		// enotif_subject_deleted, enotif_subject_created, enotif_subject_moved,
+		// enotif_subject_restored, enotif_subject_changed
 		$this->subject = wfMessage( 'enotif_subject_' . $this->pageStatus )->inContentLanguage()
 			->params( $pageTitle, $keys['$PAGEEDITOR'] )->text();
 
+		// Messages:
+		// enotif_body_intro_deleted, enotif_body_intro_created, enotif_body_intro_moved,
+		// enotif_body_intro_restored, enotif_body_intro_changed
 		$keys['$PAGEINTRO'] = wfMessage( 'enotif_body_intro_' . $this->pageStatus )
 			->inContentLanguage()->params( $pageTitle, $keys['$PAGEEDITOR'], $pageTitleUrl )
 			->text();

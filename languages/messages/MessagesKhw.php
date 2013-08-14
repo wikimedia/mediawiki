@@ -236,7 +236,7 @@ $messages = array(
 $1',
 'pool-errorunknown' => 'نامعلوم خطا',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'تعارف {{SITENAME}}',
 'aboutpage' => 'Project:کھوار ویکیپیڈیو تعارف',
 'copyright' => 'تمام مواد $1 تحتہ میانسار شیر',
@@ -320,17 +320,6 @@ $1 (صفحہ موجود نیکی)',
 # General errors
 'error' => 'Error/خطاء',
 'databaseerror' => 'خطائے ڈیٹابیس',
-'dberrortext' => 'ڈیٹابیسہ ای خطائے نحوی واقع بیتی شیر. 
-ھمو وجھین مصنع‌لطیفا چاریو نشاندہیو اندیشہ شیر. 
-آچھو سعی‌شدہ ڈیٹابیسی استفسارہ ھیہ اوشوی:
-<blockquote><tt>$1</tt></blockquote>
-فعلیتو موژار "<tt>$2</tt>".
-MySQL خطائی جواب پرائے "<tt>$3: $4</tt>".',
-'dberrortextcl' => 'ڈیٹابیسو استفسارہ ای خطائے نحوی واقع بیتی شیر. 
-آچھو سعی‌شدہ ڈیٹابیسی استفسارہ ھیہ اوشوی:
-"$1"
-"$2" فعلیتو موژار.
-MySQL جوابِ خطاء پرائے "$3: $4"',
 'laggedslavemode' => 'Warning: Page may not contain recent updates.
 خبردار: منکھن شیر کہ صفحہا موجودہ بتاریخہ جات شامل نو بونی',
 'readonly' => 'ڈیٹابیسا قلف لیگی شیر',
@@ -374,7 +363,6 @@ MySQL جوابِ خطاء پرائے "$3: $4"',
 'protectedinterface' => 'ھیہ صفحہ مصنع‌لطیفو بچے سطح‌البینی متن فراہم کورویان، وا  ناجائزاستعمالو سدِبابو بچے ھمو قلف لیگینو بیتی شیر',
 'editinginterface' => "\"'''خبردار:''' تو ای ھش صفحہو تدوینو کوروسان کہ ھیہ مصنع‌لطیفو بچے سطح‌البینی متن فراہم کورویان۔ ھیہ صفحہا کاردو ترمیم، دیگر ممبارانن بچے سطح‌البینو تبدیل کوروی۔
 براہِ کرم، ترجمہ کوریکو بچے  [//translatewiki.net/wiki/Main_Page?setlang=en '''بیٹاویکی'''] (میڈیاویکی مقامیانی منصوبو) استعمال کورے.\",",
-'sqlhidden' => '(SQL استفسارہ کھوشت)',
 'namespaceprotected' => "\"تتے '''\$1''' فضائے نامہ صفحاتن تدوینو کوریکو اِجازت نیکی.\",",
 'ns-specialprotected' => 'خاص صفحاتن تدوین کوریکو اجازت نیکی',
 'titleprotected' => 'ھیہ عنوانو [[User:$1|$1]] تخلیق کوریکاری محفوظ کوری آسور.
@@ -777,8 +765,6 @@ HTML tags لوڑے.',",
 
 # Statistics
 'statistics' => 'اعداد و شمار',
-
-'disambiguationspage' => 'سانچہ: ڈسایمبگ',
 
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|بایٹ|بایٹس}}',

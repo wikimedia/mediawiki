@@ -101,7 +101,7 @@ class SpecialSearch extends SpecialPage {
 
 		$this->load();
 
-		$this->searchEngineType = $request->getVal( 'backend' );
+		$this->searchEngineType = $request->getVal( 'srbackend' );
 
 		if ( $request->getVal( 'fulltext' )
 			|| !is_null( $request->getVal( 'offset' ) )
@@ -738,7 +738,7 @@ class SpecialSearch extends SpecialPage {
 	 *
 	 * @return string
 	 */
-	protected function showInterwiki( &$matches, $query ) {
+	protected function showInterwiki( $matches, $query ) {
 		global $wgContLang;
 		wfProfileIn( __METHOD__ );
 		$terms = $wgContLang->convertForSearchResult( $matches->termMatches() );

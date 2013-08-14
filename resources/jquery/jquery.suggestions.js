@@ -220,7 +220,7 @@ $.suggestions = {
 						} else {
 							// Expand from right
 							newCSS.left = 'auto';
-							newCSS.right = $( 'body' ).width() - ( context.config.$region.offset().left + context.config.$region.outerWidth() );
+							newCSS.right = $( document ).width() - ( context.config.$region.offset().left + context.config.$region.outerWidth() );
 						}
 
 						context.data.$container.css( newCSS );
@@ -585,10 +585,12 @@ $.fn.suggestions = function () {
 					switch ( context.data.keypressed ) {
 						// This preventDefault logic is duplicated from
 						// $.suggestions.keypress(), which sucks
+						// Arrow down
 						case 40:
 							e.preventDefault();
 							e.stopImmediatePropagation();
 							break;
+						// Arrow up, Escape and Enter
 						case 38:
 						case 27:
 						case 13:

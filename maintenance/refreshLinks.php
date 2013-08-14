@@ -160,7 +160,7 @@ class RefreshLinks extends Maintenance {
 			}
 
 			if ( !$redirectsOnly ) {
-				$this->output( "Refreshing links table.\n" );
+				$this->output( "Refreshing links tables.\n" );
 				$this->output( "Starting from page_id $start of $end.\n" );
 
 				for ( $id = $start; $id <= $end; $id++ ) {

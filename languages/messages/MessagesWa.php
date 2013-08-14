@@ -296,7 +296,7 @@ Soeyoz vayant di ratinde ene miete divant di rsayî di vey cisse pådje ci.
 $1",
 'pool-errorunknown' => 'Aroke nén cnoxhowe',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Åd fwait di {{SITENAME}}',
 'aboutpage' => 'Project:Åd fwait',
 'copyright' => "Li contnou est dizo l' $1.",
@@ -366,17 +366,6 @@ Motoit ki vos avoz må scrît l' hårdêye ou shuvou on cron loyén.
 # General errors
 'error' => 'Aroke',
 'databaseerror' => "Åk n' a nén stî avou l' båze di dnêyes",
-'dberrortext' => "Åk n' a nén stî avou l' sintacse do cweraedje del båze di dnêyes.
-Çoula pout esse cåze d' on bug dins l' programe.
-Li dierin cweraedje del båze di dnêyes di sayî esteut:
-<blockquote><tt>$1</tt></blockquote>
-a pårti del fonccion «<tt>$2</tt>».
-Li båze di dnêyes a rtourné l' aroke «<tt>$3: $4</tt>».",
-'dberrortextcl' => "Åk n' a nén stî avou l' sintacse do cweraedje del båze di dnêyes.
-Li dierin cweraedje del båze di dnêyes di sayî esteut:
-«$1»
-a pårti del fonccion «$2».
-Li båze di dnêyes a rtourné l' aroke «$3: $4».",
 'laggedslavemode' => "Asteme: I s' pout ki l' pådje n' åye nén co les dierins candjmints.",
 'readonly' => 'Li båze di dnêyes est aclawêye',
 'missing-article' => "Li båze di dnêyes n' a nén trové l' tecse d' ene pådje k' åreut dvou esse trovêye, lomêye «$1» $2.
@@ -499,7 +488,7 @@ Por vos fini l' elodjaedje, vos dvoz defini on novea scret:",
 'newpassword' => 'Noû scret:',
 'retypenew' => "Ritapez l' noû scret:",
 'resetpass_submit' => "Defini on scret et s' elodjî",
-'resetpass_success' => "Vosse sicret a stî candjî comifåt!
+'changepassword-success' => "Vosse sicret a stî candjî comifåt!
 Asteure l' elodjaedje...",
 'resetpass_forbidden' => "Les screts n' polèt nén esse candjîs",
 'resetpass-no-info' => 'Vos dvoz esse elodjî po pleur aveur accès a cisse pådje ci.',
@@ -1268,12 +1257,6 @@ Rimimbrez vs di verifyî s' i n' a nén des ôtes loyéns divant delzès disface
 'statistics-pages-desc' => 'Totes les pådjes do "Wiki", minme les copinaedjes, les rdjiblaedjes, evnd.',
 'statistics-mostpopular' => 'Pådjes les pus veyowes',
 
-'disambiguations' => "Pådjes avou des loyéns viè des pådjes d' omonimeye",
-'disambiguationspage' => 'Template:omonimeye',
-'disambiguations-text' => "Ces pådjes ci loynut eviè ene '''pådje d' omonimeye'''.
-Ele divrént purade raloyî direk å mwaisse sudjet.<br />
-Ene pådje est waiteye come pådje d' omonimeye s' ele eploye on modele k' est loyî a [[MediaWiki:Disambiguationspage]].",
-
 'doubleredirects' => 'Dobes redjiblaedjes',
 'doubleredirectstext' => "Cisse pådje ci mostere les dobes redjiblaedjes (pådjes ki redjiblèt viè ene ôte pådje di redjiblaedje).
 Tchaeke roye a-st on loyén viè l' prumî eyet l' deujhinme redjiblaedje, avou on mostraedje del såme do deujhinme redjiblaedje, çou ki å pus sovint dene li «vraiy» årtike såme, ki l' prumî redjiblaedje divreut evoyî viè lu.
@@ -1741,7 +1724,6 @@ Loukîz li [[Special:BlockList|djivêye des blocaedjes]] po vey les blocaedjes �
 'ip_range_invalid' => "Fortchete d' adresses IP nén valide.",
 'proxyblocker' => 'Blocaedje di procsi',
 'proxyblockreason' => "Voste adresse IP a stî blokêye paski c' est on procsi k' est å lådje. Contactez vost ahesseu Internet ou l' siervice di sopoirt tecnike eyet lzî dire po çoula, la k' c' est on problinme di såvrité serieus.",
-'proxyblocksuccess' => 'Fwait.',
 'sorbsreason' => "Voste adresse IP si trove dins l' djivêye des procsis å lådje di DNSBL.",
 'sorbs_create_account_reason' => "Voste adresse IP si trove dins l' djivêye des procsis å lådje di DNSBL. Vos n' poloz nén ahiver on conte d' uzeu.",
 

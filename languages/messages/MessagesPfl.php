@@ -69,7 +69,6 @@ $messages = array(
 'tog-previewontop' => 'Vorbligg owwahalwb vum Beaawaidungsfenschda zaische',
 'tog-previewonfirst' => 'Zaischen Vorbligg baim erschdemol Schaffe',
 'tog-oldsig' => 'Voahonneni Unnaschfrid',
-'tog-showjumplinks' => 'Schdellde "Hubs uff"-Lingg',
 'tog-uselivepreview' => 'Uuvazeschada Vorbligg (bneedischd JavaScript) (vasugswais)',
 'tog-showhiddencats' => 'Zaisch vaschdeglde Grubbe',
 
@@ -244,7 +243,7 @@ Waad ä bissl un brobieas nomol.
 $1',
 'pool-errorunknown' => 'Ubkonnde Irrdumm',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Iwwa {{SITENAME}}',
 'aboutpage' => 'Project:Iwwa',
 'copyright' => 'Was do drin schded isch unna $1 vafieschba.',
@@ -791,8 +790,6 @@ Saide uff [[Special:Watchlist|Doina Beowachdungslischd]] sinn '''fedd'''.",
 # Statistics
 'statistics' => 'Schdadischdigge',
 'statistics-pages' => 'Saide',
-
-'disambiguationspage' => 'Template:Vadaidlischung',
 
 'brokenredirects-edit' => 'beawaide',
 'brokenredirects-delete' => 'lesche',

@@ -240,7 +240,7 @@ $1',
 'pool-queuefull' => 'Safka shaqeenta Pool woo buuxsamay',
 'pool-errorunknown' => 'Qalad la aqoon',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Ku saabsan {{SITENAME}}',
 'aboutpage' => 'Project:ku saabsan',
 'copyright' => 'Qoraalka wuxuu ku salaysanyahay $1.',
@@ -504,7 +504,7 @@ Hadii aad rabtid in aad dhameestirtid gudagelkaaga, waa in aad meeshaan ku qorta
 'newpassword' => 'Ereysir cusub:',
 'retypenew' => 'Qor mar labaad ereysirka cusub:',
 'resetpass_submit' => 'Qor eraysirka gudaha neh gal',
-'resetpass_success' => 'Ereysirkaada si fiican oo kuugu bedelmay!
+'changepassword-success' => 'Ereysirkaada si fiican oo kuugu bedelmay!
 Hadda gudaha ku gal',
 'resetpass_forbidden' => 'ereyada sirta ah mala bedeli karo',
 'resetpass-no-info' => 'Waa in aad gudaha u gashaa hadii aad rabto in aad si toos ah ugu soo gudubto boggaan.',
@@ -892,6 +892,7 @@ E-mailkaada mala sheegaayo markii ee dadka kale kula soo xiriirayaan.',
 'recentchanges' => 'Isbedelada dhow',
 'recentchanges-legend' => 'Dooqyada isbedelada dhow',
 'recentchanges-summary' => 'Dabagal isbedelada dhow ee wikiga ee ku dhacay bogaan.',
+'recentchanges-noresult' => 'Ma jiraan wax is bedel ah xilliga aad soo koobtay ee u dhigma habkaan.',
 'recentchanges-feed-description' => 'Dabagal isbedelada dhow ee wikiga oo ku dhacay feedkaan',
 'recentchanges-label-newpage' => 'Wax bedelkaan wuxuu sameeyay bog cusub',
 'recentchanges-label-minor' => 'Kan waa bedel yar',
@@ -1136,6 +1137,7 @@ Hadii aad rabootid in aad boggan ka saartid wardiyeynta, dhagsii \"Ha' wardiyeyn
 'enotif_subject_created' => '{{SITENAME}} Bogga $1 Qof ayaa sameeyey {{gender:$2|$2}}',
 'enotif_subject_changed' => '{{SITENAME}} Bogga $1 Waxaa {{GENDER:$2|Bedel}} ku sameeyey qof $2',
 'enotif_body_intro_created' => 'Bogga {{SITENAME}} ga $1 waxaa la sameeyey $PAGEEDITDATE qof {{gender:$2|$2}}, eeg $3 sida laga dhigay hadda.',
+'enotif_body_intro_moved' => 'Bogga {{SITENAME}} $1 {{GENDER:$2|move|loo wareejiyey}} $2 ee $PAGEEDITDATE. si aad u aragto sida uu yahay hadda eeg $3.',
 'enotif_body_intro_restored' => 'Booga {{SITENAME}} $1 waa labadelay {{GENDER:$2|dib u habayn}} waqtigaan $PAGEEDITDATE waxaana badalay $2, eeg $3 sida hadda laga dhigay.',
 'enotif_body_intro_changed' => 'Bogga {{SITENAME}} ga $1 waxaa la badelay $PAGEEDITDATE qof {{gender:$2|$2}}, eeg $3 sida laga dhigay hadda.',
 'enotif_lastvisited' => 'Eeg $1 Dhamaan isbedeleda ilaa goortii kuugu dambaysay.',
@@ -1298,8 +1300,6 @@ Eeg [[Special:BlockList|Mamnuucyada]] si aad u aragto liiska mamnuucyada ee hadd
 'block-log-flags-nocreate' => 'sameynta gudagalah lamaogola',
 'block-log-flags-noemail' => 'e-mailka laga mamnuucay',
 'ipb-needreblock' => '$1 mar hore aa la mamnuucay. marabtaa in aad wax ka bedesho habka?',
-'blockme' => 'I mamnuuc',
-'proxyblocksuccess' => 'waa la sameeyay.',
 
 # Move page
 'movenologin' => 'Gudaha kuma jirtid',
@@ -1522,5 +1522,9 @@ waxaad awoodaa [[Special:EditWatchlist/raw|Liiska wax ka bedel]].',
 'api-error-unknown-code' => 'Qalad la aqoon: "$1"',
 'api-error-unknown-warning' => 'Digniin la aqoon: $1',
 'api-error-uploaddisabled' => 'Soo gelinta waa laga xiray wikigaan.',
+
+# Limit report
+'limitreport-cputime' => 'Waqtiga adeegsiga CPU',
+'limitreport-walltime' => 'Waqtiga dhabta ah adeegsiga',
 
 );

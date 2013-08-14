@@ -384,7 +384,7 @@ $messages = array(
 $1',
 'pool-errorunknown' => 'نامعلوم خطا',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'تعارف {{SITENAME}}',
 'aboutpage' => 'Project:تعارف',
 'copyright' => 'تمام مواد $1 کے تحت میسر ہے۔',
@@ -472,17 +472,6 @@ $1',
 # General errors
 'error' => 'خطاء',
 'databaseerror' => 'خطائے ڈیٹابیس',
-'dberrortext' => 'ڈیٹابیس کے استفسارہ میں ایک خطائے نحوی واقع ہوئی ہے.
-اِس سے مصنع‌لطیف میں کھٹمل کی نشاندہی کا اندیشہ ہے.
-پچھلا سعی‌شدہ ڈیٹابیسی استفسارہ یہ تھا:
-<blockquote><tt>$1</tt></blockquote>
-فعلیت میں سے "<tt>$2</tt>".
-MySQL نے خطائی جواب دیا "<tt>$3: $4</tt>".',
-'dberrortextcl' => 'ڈیٹابیس کے استفسارہ میں ایک خطائے نحوی واقع ہوئی ہے.
-پچھلا سعی‌شدہ ڈیٹابیسی استفسارہ یہ تھا:
-"$1"
-"$2" فعلیت میں سے.
-MySQL نے جوابِ خطاء دیا "$3: $4"',
 'laggedslavemode' => 'انتباہ: ممکن ہے کہ صفحہ میں حالیہ بتاریخہ جات شامل نہ ہوں.
 
 Warning: Page may not contain recent updates.',
@@ -527,7 +516,6 @@ Warning: Page may not contain recent updates.',
 'protectedinterface' => 'یہ صفحہ مصنع‌لطیف کیلئے سطح‌البینی متن فراہم کرتا ہے، اور ناجائزاستعمال کے سدِباب کیلئے اِسے مقفل کیا گیا ہے.',
 'editinginterface' => "'''انتباہ: ''' آپ ایک ایسا صفحہ تدوین کر رہے ہیں جو مصنع‌لطیف کیلئے سطح‌البینی متن فراہم کرتا ہے۔ اس صفحہ میں کی جانے والی ترمیم، دیگر صارفین کیلئے سطح‌البین کو تبدیل کردے گی۔
 براہِ کرم، ترجمہ کیلئے [//translatewiki.net/wiki/Main_Page?setlang=en '''ٹرانسلیٹ ویکی.نیٹ'''] (میڈیاویکی مقامیانی منصوبہ) استعمال کیجئے.",
-'sqlhidden' => '(SQL استفسارہ پوشیدہ)',
 'namespaceprotected' => "آپ کو '''$1''' فضائے نام میں صفحات تدوین کرنے کی اِجازت نہیں ہے.",
 'ns-specialprotected' => 'خاص صفحات کی تدوین نہیں کی جاسکتی.',
 'titleprotected' => 'اس عنوان کو [[User:$1|$1]] نے تخلیق سے محفوظ کیا ہے.
@@ -662,7 +650,7 @@ Warning: Page may not contain recent updates.',
 'newpassword' => 'نیا کلمۂ شناخت',
 'retypenew' => 'نیا کلمۂ شناخت دوبارہ درج کریں:',
 'resetpass_submit' => 'پارلفظ بناؤ اور داخل ہوجاؤ',
-'resetpass_success' => 'آپ کا پارلفظ کامیابی سے تبدیل ہوگیا!
+'changepassword-success' => 'آپ کا پارلفظ کامیابی سے تبدیل ہوگیا!
 اَب داخلِ نوشتہ کیا جارہا ہے...',
 'resetpass_forbidden' => 'پارلفظ تبدیل نہیں ہوسکتا',
 'resetpass-no-info' => 'اِس صفحہ تک براہِ راست رسائی کیلئے آپ کو داخلِ نوشتہ ہونا پڑے گا.',
@@ -1239,9 +1227,6 @@ HTML tags جانچئے.',
 'statistics' => 'اعداد و شمار',
 'statistics-header-users' => 'ارکان کے اعداد و شمار',
 
-'disambiguations' => 'ضد ابہام صفحات',
-'disambiguationspage' => 'سانچہ:ضدابہام',
-
 'doubleredirects' => 'دوہرے متبادل ربط',
 
 'brokenredirects' => 'نامکمل متبادل ربط',
@@ -1442,7 +1427,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'contribslink' => 'شـراکـت',
 'blocklogpage' => 'نوشتۂ پابندی',
 'block-log-flags-nocreate' => 'کھاتے کی تخلیق غیرفعال',
-'proxyblocksuccess' => 'کردیا.',
 
 # Move page
 'move-page' => 'منتقلی',

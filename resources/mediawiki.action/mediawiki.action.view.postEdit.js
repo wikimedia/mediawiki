@@ -1,6 +1,23 @@
 ( function ( mw, $ ) {
 	'use strict';
 
+	/**
+	 * @event postEdit
+	 * @member mw.hook
+	 * @param {Object} [data] Optional data
+	 * @param {string|jQuery|Array} [data.message] Message that listeners
+	 *  should use when displaying notifications. String for plain text,
+	 *  use array or jQuery object to pass actual nodes.
+	 * @param {string|mw.user} [data.user=mw.user] User that made the edit.
+	 */
+
+	/**
+	 * After the listener for #postEdit removes the notification.
+	 *
+	 * @event postEdit_afterRemoval
+	 * @member mw.hook
+	 */
+
 	var config = mw.config.get( [ 'wgAction', 'wgCookiePrefix', 'wgCurRevisionId' ] ),
 		// This should match EditPage::POST_EDIT_COOKIE_KEY_PREFIX:
 		cookieKey = config.wgCookiePrefix + 'PostEditRevision' + config.wgCurRevisionId,
@@ -53,15 +70,6 @@
 		$.cookie( cookieKey, null, { path: '/' } );
 		mw.config.set( 'wgPostEdit', true );
 
-		/**
-		 * @event postEdit
-		 * @member mw.hook
-		 * @param {Object} [data]
-		 * @param {string|jQuery|Array} [data.message] Message that listeners
-		 *  should use when displaying notifications. String for plain text,
-		 *  use array or jQuery object to pass actual nodes.
-		 * @param {string|mw.user} [data.user=mw.user] User that made the edit.
-		 */
 		mw.hook( 'postEdit' ).fire();
 	}
 

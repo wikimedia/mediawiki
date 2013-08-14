@@ -59,7 +59,7 @@ class ShowJobs extends Maintenance {
 				$pending = $queue->getSize();
 				$claimed = $queue->getAcquiredCount();
 				$abandoned = $queue->getAbandonedCount();
-				$active = ( $claimed - $abandoned );
+				$active = max( 0, $claimed - $abandoned );
 				if ( ( $pending + $claimed ) > 0 ) {
 					$this->output(
 						"{$type}: $pending queued; " .

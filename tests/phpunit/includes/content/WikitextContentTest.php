@@ -64,6 +64,7 @@ more stuff
 	/**
 	 * @dataProvider dataGetSecondaryDataUpdates
 	 * @group Database
+	 * @covers WikitextContent::getSecondaryDataUpdates
 	 */
 	public function testGetSecondaryDataUpdates( $title, $model, $text, $expectedStuff ) {
 		$ns = $this->getDefaultWikitextNS();
@@ -116,6 +117,7 @@ just a test"
 
 	/**
 	 * @dataProvider dataGetSection
+	 * @covers WikitextContent::getSection
 	 */
 	public function testGetSection( $text, $sectionId, $expectedText ) {
 		$content = $this->newContent( $text );
@@ -167,6 +169,7 @@ just a test"
 
 	/**
 	 * @dataProvider dataReplaceSection
+	 * @covers WikitextContent::replaceSection
 	 */
 	public function testReplaceSection( $text, $section, $with, $sectionTitle, $expected ) {
 		$content = $this->newContent( $text );
@@ -175,6 +178,9 @@ just a test"
 		$this->assertEquals( $expected, is_null( $c ) ? null : $c->getNativeData() );
 	}
 
+	/**
+	 * @covers WikitextContent::addSectionHeader
+	 */
 	public function testAddSectionHeader() {
 		$content = $this->newContent( 'hello world' );
 		$content = $content->addSectionHeader( 'test' );
@@ -239,26 +245,6 @@ just a test"
 		);
 	}
 
-	/**
-	 * @todo Test needs database! Should be done by a test class in the Database group.
-	 */
-	/*
-	public function getRedirectChain() {
-		$text = $this->getNativeData();
-		return Title::newFromRedirectArray( $text );
-	}
-	*/
-
-	/**
-	 * @todo Test needs database! Should be done by a test class in the Database group.
-	 */
-	/*
-	public function getUltimateRedirectTarget() {
-		$text = $this->getNativeData();
-		return Title::newFromRedirectRecurse( $text );
-	}
-	*/
-
 	public static function dataIsCountable() {
 		return array(
 			array( '',
@@ -319,6 +305,9 @@ just a test"
 		);
 	}
 
+	/**
+	 * @covers WikitextContent::matchMagicWord
+	 */
 	public function testMatchMagicWord() {
 		$mw = MagicWord::get( "staticredirect" );
 
@@ -329,6 +318,9 @@ just a test"
 		$this->assertFalse( $content->matchMagicWord( $mw ), "should not have matched magic word" );
 	}
 
+	/**
+	 * @covers WikitextContent::updateRedirect
+	 */
 	public function testUpdateRedirect() {
 		$target = Title::newFromText( "testUpdateRedirect_target" );
 
@@ -348,12 +340,18 @@ just a test"
 		$this->assertEquals( $target->getFullText(), $newContent->getRedirectTarget()->getFullText() );
 	}
 
+	/**
+	 * @covers WikitextContent::getModel
+	 */
 	public function testGetModel() {
 		$content = $this->newContent( "hello world." );
 
 		$this->assertEquals( CONTENT_MODEL_WIKITEXT, $content->getModel() );
 	}
 
+	/**
+	 * @covers WikitextContent::getContentHandler
+	 */
 	public function testGetContentHandler() {
 		$content = $this->newContent( "hello world." );
 

@@ -240,7 +240,7 @@ $messages = array(
 'jumptosearch' => 'ronsee',
 'pool-errorunknown' => 'Doilleeid gyn enney',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Mychione {{SITENAME}}',
 'aboutpage' => 'Project:Mychione',
 'copyright' => 'Ta stoo ry-gheddyn rere $1.',
@@ -331,7 +331,6 @@ Cur-shiu coontey jeh da [[Special:ListUsers/sysop|reireyder]], as goaill stiagh 
 'actionthrottledtext' => "Myr saase noi-spam, cha nod oo jannoo yn obbyr shoh rouyr keayrtyn ayns tammylt beg, as t'ou er roshtyn yn earroo smoo.  Jean eab noa dy gerrid, my saillt.",
 'protectedpagetext' => "Ta'n duillag shoh fo ghlass, as cha nod oo eshyn y reaghey.",
 'viewsourcetext' => 'Foddee oo jeeagh as jean aascreeuyn er bun ny duillag shoh:',
-'sqlhidden' => '(briaght SQL follit)',
 'namespaceprotected' => "Cha nel kiart ayd duillagyn 'sy reamys '''$1''' y reaghey.",
 'ns-specialprotected' => 'Cha nod oo reaghey duillagyn er lheh.',
 
@@ -358,7 +357,7 @@ Cur-shiu coontey jeh da [[Special:ListUsers/sysop|reireyder]], as goaill stiagh 
 'createaccount' => 'Croo coontys',
 'gotaccount' => "Vel coontys ayd hannah? '''$1'''.",
 'gotaccountlink' => 'Log stiagh',
-'createaccountmail' => 'Liorish post-L',
+'createaccountmail' => "Croo fockle arrey shallidagh gyn tort as cur eh da'n post-l reiht ayd",
 'createaccountreason' => 'Fa:',
 'loginerror' => 'Marranys loggal stiagh',
 'createaccounterror' => 'Cha nod shin croo coontys: $1',
@@ -872,8 +871,6 @@ Ta duillagyn er [[Special:Watchlist|dty rolley arrey]] ayns '''clou trome'''.",
 'statistics-header-users' => 'Staydraa ymmydeyr',
 'statistics-pages' => 'Duillagyn',
 
-'disambiguations' => 'Duillagyn ta kianglt rish duillagyn reddaghey',
-
 'doubleredirects' => 'Aa-enmyssyn dooblagh',
 
 'brokenredirects' => 'Aa-enmyssyn brisht',
@@ -1189,7 +1186,6 @@ Shoh ny reaghaghyn roie da'n duillag '''$1''':",
 'unblocklogentry' => '$1 er ny neughlassey magh',
 'block-log-flags-anononly' => 'ymmydeyryn neuenmyssit ynrican',
 'block-log-flags-nocreate' => 'gyn kiart coontyssyn y chroo',
-'proxyblocksuccess' => 'Jeant.',
 
 # Move page
 'move-page' => '$1 y scughey',

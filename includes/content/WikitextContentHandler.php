@@ -55,10 +55,11 @@ class WikitextContentHandler extends TextContentHandler {
 	 * @see ContentHandler::makeRedirectContent
 	 *
 	 * @param Title $destination the page to redirect to.
+	 * @param string $text text to include in the redirect, if possible.
 	 *
 	 * @return Content
 	 */
-	public function makeRedirectContent( Title $destination ) {
+	public function makeRedirectContent( Title $destination, $text = '' ) {
 		$optionalColon = '';
 
 		if ( $destination->getNamespace() == NS_CATEGORY ) {
@@ -72,6 +73,9 @@ class WikitextContentHandler extends TextContentHandler {
 
 		$mwRedir = MagicWord::get( 'redirect' );
 		$redirectText = $mwRedir->getSynonym( 0 ) . ' [[' . $optionalColon . $destination->getFullText() . ']]';
+		if ( $text != '' ) {
+			$redirectText .= "\n" . $text;
+		}
 
 		return new WikitextContent( $redirectText );
 	}

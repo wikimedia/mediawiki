@@ -340,7 +340,7 @@ $messages = array(
 'pool-timeout' => 'Че блоки чәш кардә вахт сәбе.',
 'pool-errorunknown' => 'Номәлумә сәһв',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Təsvir {{SITENAME}}',
 'aboutpage' => 'Project: Тәсвир',
 'copyrightpage' => '{{ns:project}}:Мыәллифә һуғуғ',
@@ -741,8 +741,6 @@ $messages = array(
 
 # Statistics
 'statistics' => 'Статистика',
-
-'disambiguationspage' => 'Template:дәгиг кардеј',
 
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|бајт|бајтон}}',

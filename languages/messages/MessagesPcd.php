@@ -218,7 +218,7 @@ $messages = array(
 'jumptonavigation' => 'navigachon',
 'jumptosearch' => 'tracher',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'à pérpos éd {{SITENAME}}',
 'aboutpage' => 'Project:à pérpos',
 'copyright' => "Ch'contnu, il est disponipe dsou $1.",
@@ -306,7 +306,6 @@ Si s'n'est poin ch'cas-lo, pététe éq ch'est un bogue din ch'businkillache. <b
 'viewsource' => "Vir l'source",
 'viewsource-title' => "Vir l'source éd $1",
 'protectedpagetext' => "L'pache-lo ale o té garantie pou impétcher chés canjemints.",
-'sqlhidden' => "(l'édminde SQL est muchée)",
 'ns-specialprotected' => "Ches paches éspéchiales, is n'peute poin éte éditées.",
 
 # Virus scanner
@@ -317,7 +316,6 @@ Si s'n'est poin ch'cas-lo, pététe éq ch'est un bogue din ch'businkillache. <b
 'yourpassword' => "Mot d'passe:",
 'yourpasswordagain' => "Intrer à nouvieu ch'mot d'passe:",
 'remembermypassword' => "Intrer oùtonmatiquemint l'prochaine fouos (pour un maximum éd $1 {{PLURAL:$1|jour|jours}})",
-'securelogin-stick-https' => "Réster connécté in HTTPS apré l'connécsion",
 'yourdomainname' => 'Vote donmène:',
 'login' => 'Intrer',
 'nav-login-createaccount' => 'Intrer / créer vote conpte',
@@ -674,9 +672,6 @@ Vir l'pache [$2 édseur Commons].",
 # Statistics
 'statistics' => 'Éstatistikes',
 'statistics-users' => '[[Special:ListUsers|Uzeus]] inrégistrés',
-
-'disambiguations' => 'Paches aveuc des loïens vers des paches du meume nom',
-'disambiguationspage' => 'Template:Omonymie',
 
 'doubleredirects' => 'Doubes érdireccions',
 

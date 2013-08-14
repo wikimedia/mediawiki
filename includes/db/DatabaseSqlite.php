@@ -52,7 +52,7 @@ class DatabaseSqlite extends DatabaseBase {
 		$this->mName = $dbName;
 		parent::__construct( $server, $user, $password, $dbName, $flags );
 		// parent doesn't open when $user is false, but we can work with $dbName
-		if ( $dbName ) {
+		if ( $dbName && !$this->isOpen() ) {
 			global $wgSharedDB;
 			if ( $this->open( $server, $user, $password, $dbName ) && $wgSharedDB ) {
 				$this->attachDatabase( $wgSharedDB );
@@ -90,6 +90,7 @@ class DatabaseSqlite extends DatabaseBase {
 	function open( $server, $user, $pass, $dbName ) {
 		global $wgSQLiteDataDir;
 
+		$this->close();
 		$fileName = self::generateFileName( $wgSQLiteDataDir, $dbName );
 		if ( !is_readable( $fileName ) ) {
 			$this->mConn = false;
@@ -655,7 +656,11 @@ class DatabaseSqlite extends DatabaseBase {
 		if ( $this->mTrxLevel == 1 ) {
 			$this->commit( __METHOD__ );
 		}
-		$this->mConn->beginTransaction();
+		try {
+			$this->mConn->beginTransaction();
+		} catch ( PDOException $e ) {
+			throw new DBUnexpectedError( $this, 'Error in BEGIN query: ' . $e->getMessage() );
+		}
 		$this->mTrxLevel = 1;
 	}
 
@@ -663,7 +668,11 @@ class DatabaseSqlite extends DatabaseBase {
 		if ( $this->mTrxLevel == 0 ) {
 			return;
 		}
-		$this->mConn->commit();
+		try {
+			$this->mConn->commit();
+		} catch ( PDOException $e ) {
+			throw new DBUnexpectedError( $this, 'Error in COMMIT query: ' . $e->getMessage() );
+		}
 		$this->mTrxLevel = 0;
 	}
 
@@ -709,6 +718,8 @@ class DatabaseSqlite extends DatabaseBase {
 	function addQuotes( $s ) {
 		if ( $s instanceof Blob ) {
 			return "x'" . bin2hex( $s->fetch() ) . "'";
+		} elseif ( is_bool( $s ) ) {
+			return (int)$s;
 		} elseif ( strpos( $s, "\0" ) !== false ) {
 			// SQLite doesn't support \0 in strings, so use the hex representation as a workaround.
 			// This is a known limitation of SQLite's mprintf function which PDO should work around,
@@ -792,6 +803,9 @@ class DatabaseSqlite extends DatabaseBase {
 			$s = preg_replace( '/\(\d+\)/', '', $s );
 			// No FULLTEXT
 			$s = preg_replace( '/\bfulltext\b/i', '', $s );
+		} elseif ( preg_match( '/^\s*DROP INDEX/i', $s ) ) {
+			// DROP INDEX is database-wide, not table-specific, so no ON <table> clause.
+			$s = preg_replace( '/\sON\s+[^\s]*/i', '', $s );
 		}
 		return $s;
 	}

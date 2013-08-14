@@ -269,7 +269,7 @@ $1",
 'pool-queuefull' => 'Kinniqpandmiisi järekõrd om täüs',
 'pool-errorunknown' => 'Tiidmäldä hädä',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} tutvustus',
 'aboutpage' => 'Project:Pääteedüs',
 'copyright' => 'Teksti või vabalt pruukiq litsendsi $1 perrä.',
@@ -349,17 +349,6 @@ Olõmanolõvaq tallitusleheküleq ommaq löüdäq leheküle päält [[Special:Sp
 # General errors
 'error' => 'Viga',
 'databaseerror' => 'Teedüskogo viga',
-'dberrortext' => 'Teedüskogo perräküsümisen oll\' süntaksiviga.
-Perräküsümine oll\' viganõ vai om tarkvaran viga.
-Viimäne teedüskogo perräküsümine oll\':
-<blockquote><tt>$1</tt></blockquote>
-ja tuu tetti funktsioonist "<tt>$2</tt>".
-Teedüskogo and\' viateedüse "<tt>$3: $4</tt>".',
-'dberrortextcl' => 'Teedüskogo perräküsümisen oll\' süntaksiviga.
-Viimäne teedüskogo perräküsümine oll\':
-"$1"
-ja tuu tetti funktsioonist "$2".
-Teedüskogo and\' viateedüse "$3: $4".',
 'laggedslavemode' => 'Hoiatus: Taa lehe pääl pruugi-i ollaq perämäidsi muutmiisi.',
 'readonly' => 'Teedüskogo kirotuskaitsõ all',
 'enterlockreason' => 'Kirodaq lukkupandmisõ põhjus ja ligikaudnõ vallalõvõtmisõ aig',
@@ -404,7 +393,6 @@ Perräküsümine: $2',
 'viewsourcetext' => 'Võit kaiaq ja kopidaq taa lehe lättekoodi:',
 'protectedinterface' => "Taa lehe pääl om tarkvara pruukjapalgõ tekst. Leht om lukku pant, et taad saasi-i ärq ts'urkiq.",
 'editinginterface' => "'''Hoiatus:''' Sa toimõndat tarkvara pruukjapalgõ tekstiga lehte. Ku siin midä muudat, mõotas tuu pruukjapalõt. Ümbrepandmisõs tasos pruukiq MediaWiki ümbrepandmisõ tüüriista [//translatewiki.net/wiki/Main_Page?setlang=fiu-vro translatewiki.net].",
-'sqlhidden' => '(SQL-perräküsümine käkit)',
 'cascadeprotected' => 'Taa leht om kirotuskaidsõt, selle et taa {{PLURAL:$1|kuulus alanolõvidõ kaidsõtuidõ lehti hulka|kuulus alanolõvidõ kaidsõtuidõ lehti hulka}}:
 $2',
 'namespaceprotected' => "Sul olõ-i lubat toimõndaq nimeruumi '''$1''' lehti.",
@@ -502,7 +490,7 @@ Oodaq vähä inne ku proovit vahtsõst.",
 'newpassword' => 'Vahtsõnõ salasõna',
 'retypenew' => 'Kirodaq viilkõrd vahtsõnõ salasõna',
 'resetpass_submit' => 'Kirodaq salasõna ja mineq nimega sisse',
-'resetpass_success' => 'Salasõna vaihtaminõ läts kõrda.',
+'changepassword-success' => 'Salasõna vaihtaminõ läts kõrda.',
 'resetpass_forbidden' => 'Salasõnno saa-i muutaq.',
 'resetpass-no-info' => 'Taa lehe pääle päsemises piät olõma nimega sisse lännüq.',
 'resetpass-submit-loggedin' => 'Muudaq salasõnna',
@@ -1162,12 +1150,6 @@ Ku ülekaet teedüstü om sama pilt alguperälidsen suurusõn, sis olõ-i vaia e
 'statistics-users-active-desc' => 'Pruukjaq, kiä ommaq tan midägi toimõndanuq {{PLURAL:$1|viimädse päävä|viimädse $1 päävä}} seen.',
 'statistics-mostpopular' => 'Kõgõ kaetumbaq leheq',
 
-'disambiguations' => 'Lingiq, miä näütäseq täpsüstüslehekülgi pääle',
-'disambiguationspage' => 'Template:Linke täpsüstüslehekülile',
-'disambiguations-text' => "Naaq leheq näütäseq '''täpsüstüslehti''' pääle.
-Tuu asõmal pidänüq nä näütämä as'a sisu pääle.<br />
-Lehte peetäs täpsüstüslehes, ku timän om pruugit näüdüst, kohe näütäs link lehelt [[MediaWiki:Disambiguationspage]].",
-
 'doubleredirects' => 'Katõkõrdsõq ümbresaatmisõq',
 'doubleredirectstext' => 'Egä ria pääl om ärq tuud edimäne ja tõõnõ ümbresaatmisleht ja niisama tõõsõ ümbresaatmislehe link, miä näütäs hariligult kotusõ pääle, kohe edimäne ümbersaatmisleht pidänüq õkva näütämä.',
 
@@ -1580,7 +1562,6 @@ Perämäidsi kistutuisi ja tagasitegemiisi saat kaiaq [[Special:Log/delete|kistu
 'ip_range_invalid' => 'Viganõ puutri võrgoaadrõsi kujo.',
 'proxyblocker' => 'Vaihõserveri kinniqpidämine',
 'proxyblockreason' => "Su puutri võrgoaadrõs om kinniq peet, selle et taa om avalik vaihõserver. Otsiq üles uma võrgoliini pakja vai puutrias'atundja ja kõnõlõq näile taast hädäst.",
-'proxyblocksuccess' => 'Valmis.',
 'sorbsreason' => 'Su puutri võrgoaadrõs om SORBS-i mustan nimekirän ku avalik vaihõserver.',
 'sorbs_create_account_reason' => 'Su puutri võrgoaadrõs om pant SORBS-i musta nimekirjä ku avalik vaihõserver. Sa saa-i pruukjanimme tetäq',
 

@@ -277,7 +277,7 @@ $messages = array(
 'jumptonavigation' => 'kullan',
 'jumptosearch' => 'ara',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} için',
 'aboutpage' => 'Project:Uurunda',
 'copyright' => 'İçersindeki $1 altında.',
@@ -717,8 +717,6 @@ Sizin bakmaa [[Special:Watchlist|listasındaki]] sayfalar verildi '''kalın''' b
 'statistics-users-active' => 'Aktivli kullanıcılar',
 'statistics-users-active-desc' => 'Bitki {{PLURAL:$1|gün|$1 günde}} çalışmaa yapmaa kullanıcılar',
 'statistics-mostpopular' => 'En anılmış yazılar',
-
-'disambiguations' => 'Maana aydınnatmak yaprakları',
 
 'doubleredirects' => 'İki kerä yönnendirmeler',
 

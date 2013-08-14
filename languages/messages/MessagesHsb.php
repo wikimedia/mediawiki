@@ -398,7 +398,7 @@ $1',
 'pool-queuefull' => 'Poolowa čakanska rynka je połna',
 'pool-errorunknown' => 'Njeznaty zmylk:',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Wo {{GRAMMAR:lokatiw|{{SITENAME}}}}',
 'aboutpage' => 'Project:Wo',
 'copyright' => 'Wobsah steji pod $1.',
@@ -484,16 +484,6 @@ Płaćiwe specialne strony hodźa so pod [[Special:SpecialPages|lisćinu special
 # General errors
 'error' => 'Zmylk',
 'databaseerror' => 'Zmylk w datowej bance',
-'dberrortext' => 'Syntaktiski zmylk při wotprašowanju datoweje banki.
-To móhło zmylk w programje być. Poslednje spytane wotprašenje w datowej bance běše:
-<blockquote><code>$1</code></blockquote>
-z funkcije "<code>$2</code>".
-Datowa banka wróći zmylk "<samp>$3: $4</samp>".',
-'dberrortextcl' => 'Syntaktiski zmylk je we wotprašowanju datoweje banki wustupił.
-Poslednje wotprašenje w datowej bance běše:
-"$1"
-z funkcije "$2".
-Datowa banka wróći zmylk "$3: $4"',
 'laggedslavemode' => "'''Kedźbu:''' Je móžno, zo strona žane zaktualizowanja njewobsahuje.",
 'readonly' => 'Datowa banka je zawrjena',
 'enterlockreason' => 'Zapodaj přičinu za zawrjenje a přibližny čas, hdy budźe zawrjenje zběhnjene',
@@ -545,7 +535,6 @@ Wotprašenje: $2',
 'protectedinterface' => 'Tuta strona wobsahuje tekst za wužiwarski powjerch softwary na tutym wikiju a je škitana, zo by so znjewužiwanje zadźěwało.
 Zo by přełožki za wšě wikije přidał abo změnił, wužij prošu [//translatewiki.net/ translatewiki.net], projekt MediaWiki za lokalizaciju.',
 'editinginterface' => "'''Warnowanje:''' Wobdźěłuješ stronu, kotraž so wužiwa, zo by tekst za wužiwarski powjerch softwary k dispoziciji stajiła. Změny na stronje  wuskutkuja so na napohlad wužiwarskeho powjercha za druhich wužiwarjow na tutym wikiju. Zo by přełožki za wšě wikije přidał abo změnił, wužij prošu [//translatewiki.net/ translatewiki.net], projekt MediaWiki za lokalizaciju.",
-'sqlhidden' => '(SQL wotprašenje schowane)',
 'cascadeprotected' => 'Tuta strona je za wobdźěłowanje zawrjena, dokelž je w {{PLURAL:$1|slědowacej stronje|slědowacymaj stronomaj|slědowacych stronach|slědowacych stronach}} zapřijata, {{PLURAL:$1|kotraž je|kotrejž stej|kotrež su|kotrež su}} přez kaskadowu opciju {{PLURAL:$1|škitana|škitanej|škitane|škitane}}:
 $2',
 'namespaceprotected' => "Nimaš dowolnosć, zo by stronu w mjenowym rumje '''$1''' wobdźěłał.",
@@ -592,7 +581,6 @@ Njezabudź swoje [[Special:Preferences|nastajenja za {{GRAMMAR:akuzatiw|{{SITENA
 'remembermypassword' => 'Na tutym ličaku přizjewjeny wostać (za maksimalnje $1 {{PLURAL:$1|dźeń|dnjej|dny|dnjow}})',
 'userlogin-remembermypassword' => 'Přizjewjeny wostać',
 'userlogin-signwithsecure' => 'Wěsty zwisk wužiwać',
-'securelogin-stick-https' => 'Po přizjewjenju z HTTPS zwjazany wostać',
 'yourdomainname' => 'Twoja domejna:',
 'password-change-forbidden' => 'Njemóžeš hesła na tutym wikiju změnić.',
 'externaldberror' => 'Běše pak eksterny zmylk awtentifikacije datoweje banki, pak njesměš swoje eksterne konto aktualizować.',
@@ -705,7 +693,7 @@ Móžeš tutu zdźělenku ignorować, jeli so wužiwarske konto zmylnje wutwori�
 'newpassword' => 'Nowe hesło:',
 'retypenew' => 'Nowe hesło wospjetować:',
 'resetpass_submit' => 'Hesło posrědkować a so přizjewić',
-'resetpass_success' => 'Twoje hesło bu wuspěšnje změnjene! Nětko přizjewjenje běži...',
+'changepassword-success' => 'Twoje hesło bu wuspěšnje změnjene! Nětko přizjewjenje běži...',
 'resetpass_forbidden' => 'Hesła njedadźa so změnić.',
 'resetpass-no-info' => 'Dyrbiš so přizjewić, zo by direktny přistup na tutu stronu měł.',
 'resetpass-submit-loggedin' => 'Hesło změnić',
@@ -1940,10 +1928,6 @@ Snano chceš wopisanje na jeje [$2 stronje datajoweho wopisanja] wobdźěłać.'
 'statistics-users-active-desc' => 'Wužiwarjo, kotřiž su {{PLURAL:$1|wčera|w zańdźenymaj $1 dnjomaj|w zańdźenych $1 dnjach|w zańdźenych $1 dnjach}} aktiwni byli',
 'statistics-mostpopular' => 'Najhusćišo wopytowane strony',
 
-'disambiguations' => 'Strony, kotrež na strony wjacezmyslnosće wotkazuja',
-'disambiguationspage' => 'Template:Wjacezmyslnosć',
-'disambiguations-text' => "Slědowace strony wobsahuja znajmjeńša jedyn wotkaz k stronje '''rozjasnjenja wjacezmyslnosće'''. Měli město toho na poprawnu stronu wotkazać.<br />Maja stronu za stronu rozjasnjenja wjacezmyslnosće, jeli předłohu wužiwa, na kotruž so wot [[MediaWiki:Disambiguationspage]] wotkazuje.",
-
 'pageswithprop' => 'Strony z kajkosću strony',
 'pageswithprop-legend' => 'Strony z kajkosću strony',
 'pageswithprop-text' => 'Tuta strona nalistuje strony, kotrež wěstu kajkosć strony wužiwaja.',
@@ -2585,11 +2569,8 @@ Hlej [[Special:BlockList|lisćinu blokowanjow]], zo by zablokowanjow pruwował.'
 'ipb_blocked_as_range' => 'Zmylk: IP $1 njeje direktnje zablokowana a njeda so wublokować. Blokuje so wšak jako dźěl wobwoda $2, kotryž da so wublokować.',
 'ip_range_invalid' => 'Njepłaciwy wobłuk IP-adresow.',
 'ip_range_toolarge' => 'Wobłukowe bloki, kotrež su wjetše hač /$1, njejsu dowolene.',
-'blockme' => 'Blokować',
 'proxyblocker' => 'Awtomatiske blokowanje wotewrjenych proksy-serwerow',
-'proxyblocker-disabled' => 'Tuta funkcija je deaktiwizowana.',
 'proxyblockreason' => 'Twoja IP-adresa bu zablokowana, dokelž je wotewrjeny proksy. Prošu skontaktuj swojeho prowidera abo syćoweho administratora a informuj jeho wo tutym chutnym wěstotnym problemje.',
-'proxyblocksuccess' => 'Dokónčene.',
 'sorbs' => 'SORBS DNSbl',
 'sorbsreason' => 'Twoja IP-adresa je jako wotewrjeny proksy na DNSBL {{GRAMMAR:genitiw|{{SITENAME}}}} zapisana.',
 'sorbs_create_account_reason' => 'Twoja IP-adresa je jako wotewrjeny proksy na DNSBL {{GRAMMAR:genitiw|{{SITENAME}}}} zapisana. Njemóžeš konto wutworić.',
@@ -2920,6 +2901,8 @@ $2',
 'spam_reverting' => 'wróćo na poslednju wersiju, kotraž wotkazy na $1 njewobsahuje',
 'spam_blanking' => 'Wšě wersije z wotkazami do $1 so porjedźeja',
 'spam_deleting' => 'Wšě wersije z wotkazami do $1 so zhašeja',
+'simpleantispam-label' => "Kontrola přećiwo spamej.
+Tu '''ničo''' njezapisać!",
 
 # Info page
 'pageinfo-title' => 'Informacije za stronu "$1"',

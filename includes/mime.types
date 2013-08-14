@@ -75,6 +75,9 @@ audio/x-pn-realaudio ram rm
 audio/x-pn-realaudio-plugin rpm
 audio/x-realaudio ra
 audio/x-wav wav
+audio/wav wav
+audio/x-flac flac
+audio/flac flac
 chemical/x-pdb pdb
 chemical/x-xyz xyz
 image/bmp bmp
@@ -118,6 +121,8 @@ text/xml xml xsl xslt rss rdf
 text/x-setext etx
 text/x-sawfish jl
 video/mpeg mpeg mpg mpe
+video/mp4 mp4 m4a m4p m4b m4r m4v
+audio/mp4 m4a
 video/ogg ogv ogm ogg
 video/quicktime qt mov
 video/vnd.mpegurl mxu

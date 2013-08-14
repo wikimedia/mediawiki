@@ -38,7 +38,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 				'iwlinks' ) );
 	}
 
-	public function setUp() {
+	protected function setUp() {
 		global $wgExtraNamespaces, $wgNamespaceContentModels, $wgContentHandlers, $wgContLang;
 
 		parent::setUp();
@@ -456,15 +456,15 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	 * @dataProvider provideUserWasLastToEdit
 	 */
 	public function testUserWasLastToEdit( $sinceIdx, $expectedLast ) {
-		$userA = \User::newFromName( "RevisionStorageTest_userA" );
-		$userB = \User::newFromName( "RevisionStorageTest_userB" );
+		$userA = User::newFromName( "RevisionStorageTest_userA" );
+		$userB = User::newFromName( "RevisionStorageTest_userB" );
 
 		if ( $userA->getId() === 0 ) {
-			$userA = \User::createNew( $userA->getName() );
+			$userA = User::createNew( $userA->getName() );
 		}
 
 		if ( $userB->getId() === 0 ) {
-			$userB = \User::createNew( $userB->getName() );
+			$userB = User::createNew( $userB->getName() );
 		}
 
 		$ns = $this->getDefaultWikitextNS();

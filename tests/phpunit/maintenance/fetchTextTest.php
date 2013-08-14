@@ -70,6 +70,7 @@ class SemiMockedFetchText extends FetchText {
  *
  * @group Database
  * @group Dump
+ * @covers FetchText
  */
 class FetchTextTest extends MediaWikiTestCase {
 

@@ -251,9 +251,8 @@ class LinkHolderArray {
 	}
 
 	/**
-	 * @todo FIXME: Update documentation. makeLinkObj() is deprecated.
 	 * Replace <!--LINK--> link placeholders with actual links, in the buffer
-	 * Placeholders created in Skin::makeLinkObj()
+	 *
 	 * @return array of link CSS classes, indexed by PDBK.
 	 */
 	function replace( &$text ) {
@@ -377,6 +376,10 @@ class LinkHolderArray {
 				$key = "$ns:$index";
 				$searchkey = "<!--LINK $key-->";
 				$displayText = $entry['text'];
+				if ( isset( $entry['selflink'] ) ) {
+					$replacePairs[$searchkey] = Linker::makeSelfLinkObj( $title, $displayText, $query );
+					continue;
+				}
 				if ( $displayText === '' ) {
 					$displayText = null;
 				}
@@ -455,20 +458,17 @@ class LinkHolderArray {
 		// single string to all variants. This would improve parser's performance
 		// significantly.
 		foreach ( $this->internals as $ns => $entries ) {
+			if ( $ns == NS_SPECIAL ) {
+				continue;
+			}
 			foreach ( $entries as $index => $entry ) {
 				$pdbk = $entry['pdbk'];
 				// we only deal with new links (in its first query)
 				if ( !isset( $colours[$pdbk] ) || $colours[$pdbk] === 'new' ) {
-					$title = $entry['title'];
-					$titleText = $title->getText();
-					$titlesAttrs[] = array(
-						'ns' => $ns,
-						'key' => "$ns:$index",
-						'titleText' => $titleText,
-					);
+					$titlesAttrs[] = array( $index, $entry['title'] );
 					// separate titles with \0 because it would never appears
 					// in a valid title
-					$titlesToBeConverted .= $titleText . "\0";
+					$titlesToBeConverted .= $entry['title']->getText() . "\0";
 				}
 			}
 		}
@@ -479,19 +479,35 @@ class LinkHolderArray {
 		foreach ( $titlesAllVariants as &$titlesVariant ) {
 			$titlesVariant = explode( "\0", $titlesVariant );
 		}
-		$l = count( $titlesAttrs );
+
 		// Then add variants of links to link batch
-		for ( $i = 0; $i < $l; $i ++ ) {
+		$parentTitle = $this->parent->getTitle();
+		foreach ( $titlesAttrs as $i => $attrs ) {
+			list( $index, $title ) = $attrs;
+			$ns = $title->getNamespace();
+			$text = $title->getText();
+
 			foreach ( $allVariantsName as $variantName ) {
 				$textVariant = $titlesAllVariants[$variantName][$i];
-				if ( $textVariant != $titlesAttrs[$i]['titleText'] ) {
-					$variantTitle = Title::makeTitle( $titlesAttrs[$i]['ns'], $textVariant );
-					if ( is_null( $variantTitle ) ) {
-						continue;
-					}
-					$linkBatch->addObj( $variantTitle );
-					$variantMap[$variantTitle->getPrefixedDBkey()][] = $titlesAttrs[$i]['key'];
+				if ( $textVariant === $text ) {
+					continue;
 				}
+
+				$variantTitle = Title::makeTitle( $ns, $textVariant );
+				if ( is_null( $variantTitle ) ) {
+					continue;
+				}
+
+				// Self-link checking for mixed/different variant titles. At this point, we
+				// already know the exact title does not exist, so the link cannot be to a
+				// variant of the current title that exists as a separate page.
+				if ( $variantTitle->equals( $parentTitle ) && $title->getFragment() === '' ) {
+					$this->internals[$ns][$index]['selflink'] = true;
+					continue 2;
+				}
+
+				$linkBatch->addObj( $variantTitle );
+				$variantMap[$variantTitle->getPrefixedDBkey()][] = "$ns:$index";
 			}
 		}
 

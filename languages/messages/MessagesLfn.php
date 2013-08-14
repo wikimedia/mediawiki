@@ -141,7 +141,7 @@ $messages = array(
 'cancel' => 'Cansela',
 'moredotdotdot' => 'Plu...',
 'mypage' => 'Me paje',
-'mytalk' => 'Me discutes',
+'mytalk' => 'Discutes',
 'anontalk' => 'Discutes per esta IP',
 'navigation' => 'Naviga',
 'and' => '&#32;e',
@@ -207,7 +207,7 @@ $messages = array(
 'jumptonavigation' => 'naviga',
 'jumptosearch' => 'xerca',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Supra {{SITENAME}}',
 'aboutpage' => 'Project:Supra',
 'copyrightpage' => '{{ns:project}}:Diretos de autor',
@@ -444,7 +444,7 @@ La arcivo de sutraes per esta paje es asi per conveni:",
 
 # Preferences page
 'preferences' => 'Preferis',
-'mypreferences' => 'Me preferis',
+'mypreferences' => 'Preferis',
 'skin-preview' => 'Previde',
 'saveprefs' => 'Fisa',
 'rows' => 'Linias:',
@@ -473,6 +473,7 @@ La arcivo de sutraes per esta paje es asi per conveni:",
 'gender-female' => 'Fema',
 'email' => 'Eposta',
 'prefs-help-realname' => 'Tu nom vera no es obligada, ma si tu vole dona tu nom vera, el va es usada per onora tu per tu labora.',
+'prefs-signature' => 'Suscrive',
 
 # User rights
 'userrights' => 'Dirije de la diretos de usores',
@@ -518,7 +519,7 @@ La arcivo de sutraes per esta paje es asi per conveni:",
 'newpageletter' => 'N',
 'boteditletter' => 'b',
 'rc_categories_any' => 'Cualce',
-'rc-enhanced-expand' => 'Mostra detalias (JavaScript es nesesada)',
+'rc-enhanced-expand' => 'Mostra detalias',
 'rc-enhanced-hide' => 'Asconde detalias',
 
 # Recent changes linked
@@ -554,7 +555,7 @@ Pajes a [[Special:Watchlist|tu lista de pajes oservada]] es en leteras '''forte'
 'filehist-dimensions' => 'Mesuras',
 'filehist-filesize' => 'Grandia de fix',
 'filehist-comment' => 'Comenta',
-'imagelinks' => 'Lias de fix',
+'imagelinks' => 'Usas de fix',
 'linkstoimage' => 'Esta {{PLURAL:$1|paje|pajes}} lia a esta fix:',
 'nolinkstoimage' => 'Es no pajes ce lia a esta fix.',
 'sharedupload' => 'Esta fix es parte de $1 e pote es usada par otra projetas.',
@@ -577,8 +578,6 @@ Pajes a [[Special:Watchlist|tu lista de pajes oservada]] es en leteras '''forte'
 
 # Statistics
 'statistics' => 'Statisticas',
-
-'disambiguations' => 'Pajes desambiguinte',
 
 'doubleredirects' => 'Redirijes duple',
 
@@ -665,7 +664,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 
 # Watchlist
 'watchlist' => 'Pajes oservada',
-'mywatchlist' => 'Me lista de pajes oservada',
+'mywatchlist' => 'Lista de pajes oservada',
 'nowatchlist' => 'Tu ave no cosas en tu lista oservada',
 'addedwatchtext' => "La paje \"[[:\$1]]\" ia es juntada a tu [[Special:Watchlist|lista de pajes oservada]].
 Cambias future a esta paje e se paje de discutes va es listada ala, e la paje va apera en leteras '''forte''' en la [[Special:RecentChanges|lista de cambias resente]] per es plu fasil oservada.

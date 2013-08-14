@@ -151,6 +151,7 @@ $dateFormats = array(
 );
 
 $linkTrail = "/^((?:[a-zıʼ’“»]|'(?!'))+)(.*)$/sDu";
+$linkPrefixCharset = 'a-zıA-Zİ\\x80-\\xff';
 
 $messages = array(
 # User preference toggles
@@ -264,8 +265,6 @@ $messages = array(
 'category-file-count-limited' => "Usı kategoriyada to'mendegi {{PLURAL:$1|fayl|$1 fayl}} bar.",
 'listingcontinuesabbrev' => 'dawamı',
 
-'linkprefix' => '/^(.*?)([a-zıA-Zİ\\x80-\\xff]+)$/sDu',
-
 'about' => 'Haqqında',
 'article' => "Mag'lıwmat beti",
 'newwindow' => "(jan'a aynada)",
@@ -357,7 +356,7 @@ $messages = array(
 'jumptonavigation' => 'navigatsiya',
 'jumptosearch' => 'izlew',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} haqqında',
 'aboutpage' => 'Project:Haqqında',
 'copyright' => "Mag'lıwmat $1 boyınsha alıng'an.",
@@ -437,17 +436,6 @@ Arnawlı betlerdin' dizimin [[Special:SpecialPages|{{int:specialpages}}]] betine
 # General errors
 'error' => "Qa'telik",
 'databaseerror' => "Mag'lıwmatlar bazası qa'tesi",
-'dberrortext' => "Mag'lıwmatlar bazası sorawında sintaksis qa'tesi sa'dir boldı.
-Bul bag'darlamada qa'te barlıg'ın bildiriwi mu'mkin.
-Aqırg'ı soralg'an mag'lıwmatlar bazası sorawı:
-<blockquote><tt>\$1</tt></blockquote>
-\"<tt>\$2</tt>\" funktsiyasınan.
-Mag'lıwmatlar bazası qaytarg'an qa'tesi \"<tt>\$3: \$4</tt>\".",
-'dberrortextcl' => 'Mag\'lıwmatlar bazası sorawında sintaksis qa\'tesi sa\'dir boldı.
-Aqırg\'ı soralg\'an mag\'lıwmatlar bazası sorawı:
-"$1"
-funktsiya: "$2".
-Mag\'lıwmatlar bazası qaytarg\'an qa\'tesi "$3: $4".',
 'laggedslavemode' => "Esletpe: Bette aqırg'ı jan'alanıwlar bolmawı mu'mkin.",
 'readonly' => "Mag'lıwmatlar bazası qulplang'an",
 'enterlockreason' => "Qulıplawdın' sebebin ha'mde qansha waqıtqa esaplang'anlıg'ın ko'rsetin'",
@@ -493,7 +481,6 @@ Birneshe minuttan keyin qaytadan ha'reket qılıp ko'rin'.",
 'editinginterface' => "'''Esletpe:''' Siz ishinde MediaWiki sistema xabarı bar bolg'an betti o'zgertip atırsız.
 Bul bettin' o'zgeriwi basqa paydalanıwshılardın' sırtqı interfeisine ta'sir etedi.
 Audarıw ushın,  MediaWiki programmasın jersindiriw [//translatewiki.net/wiki/Main_Page?setlang=kaa translatewiki.net proyektisin] qarap shıg'ın'ız.",
-'sqlhidden' => "(SQL sorawı jasırılg'an)",
 'namespaceprotected' => "'''$1''' isimler ko'pligindegi betlerdi o'zgertiwge ruxsatın'ız joq.",
 'ns-specialprotected' => '"{{ns:special}}:" isimler ko\'pligindegi betler o\'zgertilmeydi',
 'titleprotected' => "Bul atamanı jaratıw [[User:$1|$1]] ta'repinen qorg'alg'an.
@@ -596,7 +583,7 @@ Kiriw protsessin juwmaqlaw ushın jan'a parolin'izdi usı jerge kiritin':",
 'newpassword' => 'Taza parol:',
 'retypenew' => "Taza paroldi qayta kiritin':",
 'resetpass_submit' => "Paroldi kirgizin'",
-'resetpass_success' => "Parolin'iz sa'tli o'zgertildi! Endi kirin'...",
+'changepassword-success' => "Parolin'iz sa'tli o'zgertildi! Endi kirin'...",
 'resetpass_forbidden' => "Paroller o'zgertile almaydi",
 'resetpass-submit-loggedin' => "Paroldi o'zgertiw",
 'resetpass-temp-password' => 'Waqtınshalıq parol:',
@@ -1231,9 +1218,6 @@ Barlıq mag'lıwmat tu'rin (sonın' ishinde sa'wbet betlerdi, shablonlardı h.t.
 'statistics-users-active' => 'Aktiv paydalanıwshılar',
 'statistics-mostpopular' => "En' ko'p ko'rilgen betler",
 
-'disambiguations' => "Ko'p ma'nisli betler",
-'disambiguationspage' => '{{ns:template}}:disambig',
-
 'doubleredirects' => 'Qos burıwshılar',
 'double-redirect-fixer' => "Qayta bag'ıtlawshılardı du'zetiwshi",
 
@@ -1595,8 +1579,6 @@ Basqa bloklawlar ushın [[Special:BlockList|IP bloklaw dizimin]] ko'rip shıg'ı
 'block-log-flags-noemail' => "e-mail bloklang'an",
 'ipb_expiry_invalid' => "Ku'shin joytıw waqtı nadurıs.",
 'ipb_already_blocked' => '"$1" a\'lle qashan bloklang\'an',
-'proxyblocker-disabled' => "Bul funktsiya o'shirilgen.",
-'proxyblocksuccess' => 'Tamamlandı.',
 
 # Developer tools
 'lockdb' => "Mag'lıwmatlar bazasın qulpla",

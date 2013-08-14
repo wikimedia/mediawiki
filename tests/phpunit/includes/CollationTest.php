@@ -1,8 +1,16 @@
 <?php
+
+/**
+ * Class CollationTest
+ * @covers Collation
+ * @covers IcuCollation
+ * @covers IdentityCollation
+ * @covers UppercaseCollation
+ */
 class CollationTest extends MediaWikiLangTestCase {
 	protected function setUp() {
 		parent::setUp();
-		if ( !wfDl( 'intl' ) ) {
+		if ( !extension_loaded( 'intl' ) ) {
 			$this->markTestSkipped( 'These tests require intl extension' );
 		}
 	}
@@ -20,7 +28,7 @@ class CollationTest extends MediaWikiLangTestCase {
 	 *
 	 * @dataProvider prefixDataProvider
 	 */
-	function testIsPrefix( $lang, $base, $extended ) {
+	public function testIsPrefix( $lang, $base, $extended ) {
 		$cp = Collator::create( $lang );
 		$cp->setStrength( Collator::PRIMARY );
 		$baseBin = $cp->getSortKey( $base );
@@ -30,7 +38,7 @@ class CollationTest extends MediaWikiLangTestCase {
 		$this->assertStringStartsWith( $baseBin, $extendedBin, "$base is not a prefix of $extended" );
 	}
 
-	function prefixDataProvider() {
+	public static function prefixDataProvider() {
 		return array(
 			array( 'en', 'A', 'AA' ),
 			array( 'en', 'A', 'AAA' ),
@@ -53,7 +61,7 @@ class CollationTest extends MediaWikiLangTestCase {
 	 *
 	 * @dataProvider notPrefixDataProvider
 	 */
-	function testNotIsPrefix( $lang, $base, $extended ) {
+	public function testNotIsPrefix( $lang, $base, $extended ) {
 		$cp = Collator::create( $lang );
 		$cp->setStrength( Collator::PRIMARY );
 		$baseBin = $cp->getSortKey( $base );
@@ -63,7 +71,7 @@ class CollationTest extends MediaWikiLangTestCase {
 		$this->assertStringStartsNotWith( $baseBin, $extendedBin, "$base is a prefix of $extended" );
 	}
 
-	function notPrefixDataProvider() {
+	public static function notPrefixDataProvider() {
 		return array(
 			array( 'en', 'A', 'B' ),
 			array( 'en', 'AC', 'ABC' ),
@@ -81,7 +89,7 @@ class CollationTest extends MediaWikiLangTestCase {
 	 *
 	 * @dataProvider firstLetterProvider
 	 */
-	function testGetFirstLetter( $collation, $string, $firstLetter ) {
+	public function testGetFirstLetter( $collation, $string, $firstLetter ) {
 		$col = Collation::factory( $collation );
 		$this->assertEquals( $firstLetter, $col->getFirstLetter( $string ) );
 	}

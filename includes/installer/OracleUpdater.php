@@ -38,6 +38,8 @@ class OracleUpdater extends DatabaseUpdater {
 
 	protected function getCoreUpdateList() {
 		return array(
+			array( 'disableContentHandlerUseDB' ),
+
 			// 1.17
 			array( 'doNamespaceDefaults' ),
 			array( 'doFKRenameDeferr' ),
@@ -48,13 +50,13 @@ class OracleUpdater extends DatabaseUpdater {
 			array( 'addTable', 'user_former_groups', 'patch-user_former_groups.sql' ),
 
 			//1.18
-			array( 'addIndex',	'user',          'i02',       'patch-user_email_index.sql' ),
+			array( 'addIndex', 'user', 'i02', 'patch-user_email_index.sql' ),
 			array( 'modifyField', 'user_properties', 'up_property', 'patch-up_property.sql' ),
 			array( 'addTable', 'uploadstash', 'patch-uploadstash.sql' ),
 			array( 'doRecentchangesFK2Cascade' ),
 
 			//1.19
-			array( 'addIndex', 'logging',       'i05',      'patch-logging_type_action_index.sql'),
+			array( 'addIndex', 'logging', 'i05', 'patch-logging_type_action_index.sql' ),
 			array( 'addField', 'revision', 'rev_sha1', 'patch-rev_sha1_field.sql' ),
 			array( 'addField', 'archive', 'ar_sha1', 'patch-ar_sha1_field.sql' ),
 			array( 'doRemoveNotNullEmptyDefaults2' ),
@@ -70,20 +72,26 @@ class OracleUpdater extends DatabaseUpdater {
 			array( 'dropField', 'category', 'cat_hidden', 'patch-cat_hidden.sql' ),
 
 			//1.21
-			array( 'addField',	'revision',	'rev_content_format',		'patch-revision-rev_content_format.sql' ),
-			array( 'addField',	'revision',	'rev_content_model',		'patch-revision-rev_content_model.sql' ),
-			array( 'addField',	'archive',	'ar_content_format',		'patch-archive-ar_content_format.sql' ),
-			array( 'addField',	'archive',	'ar_content_model',		    'patch-archive-ar_content_model.sql' ),
-			array( 'addField',	'page',     'page_content_model',		'patch-page-page_content_model.sql' ),
-			array( 'dropField', 'site_stats', 'ss_admins',  'patch-ss_admins.sql' ),
+			array( 'addField', 'revision', 'rev_content_format',
+				'patch-revision-rev_content_format.sql' ),
+			array( 'addField', 'revision', 'rev_content_model',
+				'patch-revision-rev_content_model.sql' ),
+			array( 'addField', 'archive', 'ar_content_format', 'patch-archive-ar_content_format.sql' ),
+			array( 'addField', 'archive', 'ar_content_model', 'patch-archive-ar_content_model.sql' ),
+			array( 'addField', 'archive', 'ar_id', 'patch-archive-ar_id.sql' ),
+			array( 'addField', 'externallinks', 'el_id', 'patch-externallinks-el_id.sql' ),
+			array( 'addField', 'page', 'page_content_model', 'patch-page-page_content_model.sql' ),
+			array( 'enableContentHandlerUseDB' ),
+			array( 'dropField', 'site_stats', 'ss_admins', 'patch-ss_admins.sql' ),
 			array( 'dropField', 'recentchanges', 'rc_moved_to_title', 'patch-rc_moved.sql' ),
-			array( 'addTable', 'sites',                            'patch-sites.sql' ),
-			array( 'addField', 'filearchive',   'fa_sha1',          'patch-fa_sha1.sql' ),
-			array( 'addField', 'job',           'job_token',         'patch-job_token.sql' ),
-			array( 'addField', 'job',           'job_attempts',       'patch-job_attempts.sql' ),
-			array( 'addField', 'uploadstash',      'us_props',      'patch-uploadstash-us_props.sql' ),
+			array( 'addTable', 'sites', 'patch-sites.sql' ),
+			array( 'addField', 'filearchive', 'fa_sha1', 'patch-fa_sha1.sql' ),
+			array( 'addField', 'job', 'job_token', 'patch-job_token.sql' ),
+			array( 'addField', 'job', 'job_attempts', 'patch-job_attempts.sql' ),
+			array( 'addField', 'uploadstash', 'us_props', 'patch-uploadstash-us_props.sql' ),
 			array( 'modifyField', 'user_groups', 'ug_group', 'patch-ug_group-length-increase-255.sql' ),
-			array( 'modifyField', 'user_former_groups', 'ufg_group', 'patch-ufg_group-length-increase-255.sql' ),
+			array( 'modifyField', 'user_former_groups', 'ufg_group',
+				'patch-ufg_group-length-increase-255.sql' ),
 
 			// KEEP THIS AT THE BOTTOM!!
 			array( 'doRebuildDuplicateFunction' ),
@@ -102,14 +110,22 @@ class OracleUpdater extends DatabaseUpdater {
 			return;
 		}
 
-		$this->applyPatch( 'patch_namespace_defaults.sql', false, "Altering namespace fields with default value" );
+		$this->applyPatch(
+			'patch_namespace_defaults.sql',
+			false,
+			'Altering namespace fields with default value'
+		);
 	}
 
 	/**
 	 * Uniform FK names + deferrable state
 	 */
 	protected function doFKRenameDeferr() {
-		$meta = $this->db->query( 'SELECT COUNT(*) cnt FROM user_constraints WHERE constraint_type = \'R\' AND deferrable = \'DEFERRABLE\'' );
+		$meta = $this->db->query( '
+			SELECT COUNT(*) cnt
+			FROM user_constraints
+			WHERE constraint_type = \'R\' AND deferrable = \'DEFERRABLE\''
+		);
 		$row = $meta->fetchRow();
 		if ( $row && $row['cnt'] > 0 ) {
 			return;
@@ -167,7 +183,11 @@ class OracleUpdater extends DatabaseUpdater {
 		if ( $meta->isNullable() ) {
 			return;
 		}
-		$this->applyPatch( 'patch_remove_not_null_empty_defs.sql', false, "Removing not null empty constraints" );
+		$this->applyPatch(
+			'patch_remove_not_null_empty_defs.sql',
+			false,
+			'Removing not null empty constraints'
+		);
 	}
 
 	protected function doRemoveNotNullEmptyDefaults2() {
@@ -175,7 +195,11 @@ class OracleUpdater extends DatabaseUpdater {
 		if ( $meta->isNullable() ) {
 			return;
 		}
-		$this->applyPatch( 'patch_remove_not_null_empty_defs2.sql', false, "Removing not null empty constraints" );
+		$this->applyPatch(
+			'patch_remove_not_null_empty_defs2.sql',
+			false,
+			'Removing not null empty constraints'
+		);
 	}
 
 	/**
@@ -212,6 +236,7 @@ class OracleUpdater extends DatabaseUpdater {
 		$row = $meta->fetchRow();
 		if ( $row['column_name'] == 'PR_ID' ) {
 			$this->output( "seems to be up to date.\n" );
+
 			return;
 		}
 
@@ -247,5 +272,4 @@ class OracleUpdater extends DatabaseUpdater {
 		$this->db->delete( '/*Q*/' . $this->db->tableName( 'objectcache' ), '*', __METHOD__ );
 		$this->output( "done.\n" );
 	}
-
 }

@@ -1,7 +1,11 @@
 <?php
 
 class LanguageTest extends LanguageClassesTestCase {
-	function testLanguageConvertDoubleWidthToSingleWidth() {
+	/**
+	 * @covers Language::convertDoubleWidth
+	 * @covers Language::normalizeForSearch
+	 */
+	public function testLanguageConvertDoubleWidthToSingleWidth() {
 		$this->assertEquals(
 			"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
 			$this->getLang()->normalizeForSearch(
@@ -12,9 +16,10 @@ class LanguageTest extends LanguageClassesTestCase {
 	}
 
 	/**
-	 * @dataProvider provideFormattableTimes
+	 * @dataProvider provideFormattableTimes#
+	 * @covers Language::formatTimePeriod
 	 */
-	function testFormatTimePeriod( $seconds, $format, $expected, $desc ) {
+	public function testFormatTimePeriod( $seconds, $format, $expected, $desc ) {
 		$this->assertEquals( $expected, $this->getLang()->formatTimePeriod( $seconds, $format ), $desc );
 	}
 
@@ -203,7 +208,10 @@ class LanguageTest extends LanguageClassesTestCase {
 		);
 	}
 
-	function testTruncate() {
+	/**
+	 * @covers Language::truncate
+	 */
+	public function testTruncate() {
 		$this->assertEquals(
 			"XXX",
 			$this->getLang()->truncate( "1234567890", 0, 'XXX' ),
@@ -236,9 +244,10 @@ class LanguageTest extends LanguageClassesTestCase {
 	}
 
 	/**
-	 * @dataProvider provideHTMLTruncateData()
+	 * @dataProvider provideHTMLTruncateData
+	 * @covers Language::truncateHTML
 	 */
-	function testTruncateHtml( $len, $ellipsis, $input, $expected ) {
+	public function testTruncateHtml( $len, $ellipsis, $input, $expected ) {
 		// Actual HTML...
 		$this->assertEquals(
 			$expected,
@@ -247,7 +256,7 @@ class LanguageTest extends LanguageClassesTestCase {
 	}
 
 	/**
-	 * Array format is ($len, $ellipsis, $input, $expected)
+	 * @return array format is ($len, $ellipsis, $input, $expected)
 	 */
 	public static function provideHTMLTruncateData() {
 		return array(
@@ -308,8 +317,9 @@ class LanguageTest extends LanguageClassesTestCase {
 	/**
 	 * Test Language::isWellFormedLanguageTag()
 	 * @dataProvider provideWellFormedLanguageTags
+	 * @covers Language::isWellFormedLanguageTag
 	 */
-	function testWellFormedLanguageTag( $code, $message = '' ) {
+	public function testWellFormedLanguageTag( $code, $message = '' ) {
 		$this->assertTrue(
 			Language::isWellFormedLanguageTag( $code ),
 			"validating code $code $message"
@@ -359,8 +369,9 @@ class LanguageTest extends LanguageClassesTestCase {
 	/**
 	 * Negative test for Language::isWellFormedLanguageTag()
 	 * @dataProvider provideMalformedLanguageTags
+	 * @covers Language::isWellFormedLanguageTag
 	 */
-	function testMalformedLanguageTag( $code, $message = '' ) {
+	public function testMalformedLanguageTag( $code, $message = '' ) {
 		$this->assertFalse(
 			Language::isWellFormedLanguageTag( $code ),
 			"validating that code $code is a malformed language tag - $message"
@@ -409,8 +420,9 @@ class LanguageTest extends LanguageClassesTestCase {
 
 	/**
 	 * Negative test for Language::isWellFormedLanguageTag()
+	 * @covers Language::isWellFormedLanguageTag
 	 */
-	function testLenientLanguageTag() {
+	public function testLenientLanguageTag() {
 		$this->assertTrue(
 			Language::isWellFormedLanguageTag( 'pa_guru', true ),
 			'pa_guru is a well-formed language tag in lenient mode'
@@ -420,15 +432,19 @@ class LanguageTest extends LanguageClassesTestCase {
 	/**
 	 * Test Language::isValidBuiltInCode()
 	 * @dataProvider provideLanguageCodes
+	 * @covers Language::isValidBuiltInCode
 	 */
-	function testBuiltInCodeValidation( $code, $message = '' ) {
+	public function testBuiltInCodeValidation( $code, $message = '' ) {
 		$this->assertTrue(
 			(bool)Language::isValidBuiltInCode( $code ),
 			"validating code $code $message"
 		);
 	}
 
-	function testBuiltInCodeValidationRejectUnderscore() {
+	/**
+	 * @covers Language::isValidBuiltInCode
+	 */
+	public function testBuiltInCodeValidationRejectUnderscore() {
 		$this->assertFalse(
 			(bool)Language::isValidBuiltInCode( 'be_tarask' ),
 			"reject underscore in language code"
@@ -450,8 +466,9 @@ class LanguageTest extends LanguageClassesTestCase {
 	/**
 	 * Test Language::isKnownLanguageTag()
 	 * @dataProvider provideKnownLanguageTags
+	 * @covers Language::isKnownLanguageTag
 	 */
-	function testKnownLanguageTag( $code, $message = '' ) {
+	public function testKnownLanguageTag( $code, $message = '' ) {
 		$this->assertTrue(
 			(bool)Language::isKnownLanguageTag( $code ),
 			"validating code $code - $message"
@@ -467,9 +484,9 @@ class LanguageTest extends LanguageClassesTestCase {
 	}
 
 	/**
-	 * Test Language::isKnownLanguageTag()
+	 * @covers Language::isKnownLanguageTag
 	 */
-	function testKnownCldrLanguageTag() {
+	public function testKnownCldrLanguageTag() {
 		if ( !class_exists( 'LanguageNames' ) ) {
 			$this->markTestSkipped( 'The LanguageNames class is not available. The cldr extension is probably not installed.' );
 		}
@@ -483,8 +500,9 @@ class LanguageTest extends LanguageClassesTestCase {
 	/**
 	 * Negative tests for Language::isKnownLanguageTag()
 	 * @dataProvider provideUnKnownLanguageTags
+	 * @covers Language::isKnownLanguageTag
 	 */
-	function testUnknownLanguageTag( $code, $message = '' ) {
+	public function testUnknownLanguageTag( $code, $message = '' ) {
 		$this->assertFalse(
 			(bool)Language::isKnownLanguageTag( $code ),
 			"checking that code $code is invalid - $message"
@@ -501,31 +519,35 @@ class LanguageTest extends LanguageClassesTestCase {
 	/**
 	 * Test too short timestamp
 	 * @expectedException MWException
+	 * @covers Language::sprintfDate
 	 */
-	function testSprintfDateTooShortTimestamp() {
+	public function testSprintfDateTooShortTimestamp() {
 		$this->getLang()->sprintfDate( 'xiY', '1234567890123' );
 	}
 
 	/**
 	 * Test too long timestamp
 	 * @expectedException MWException
+	 * @covers Language::sprintfDate
 	 */
-	function testSprintfDateTooLongTimestamp() {
+	public function testSprintfDateTooLongTimestamp() {
 		$this->getLang()->sprintfDate( 'xiY', '123456789012345' );
 	}
 
 	/**
 	 * Test too short timestamp
 	 * @expectedException MWException
+	 * @covers Language::sprintfDate
 	 */
-	function testSprintfDateNotAllDigitTimestamp() {
+	public function testSprintfDateNotAllDigitTimestamp() {
 		$this->getLang()->sprintfDate( 'xiY', '-1234567890123' );
 	}
 
 	/**
 	 * @dataProvider provideSprintfDateSamples
+	 * @covers Language::sprintfDate
 	 */
-	function testSprintfDate( $format, $ts, $expected, $msg ) {
+	public function testSprintfDate( $format, $ts, $expected, $msg ) {
 		$this->assertEquals(
 			$expected,
 			$this->getLang()->sprintfDate( $format, $ts ),
@@ -536,8 +558,9 @@ class LanguageTest extends LanguageClassesTestCase {
 	/**
 	 * sprintfDate should always use UTC when no zone is given.
 	 * @dataProvider provideSprintfDateSamples
+	 * @covers Language::sprintfDate
 	 */
-	function testSprintfDateNoZone( $format, $ts, $expected, $ignore, $msg ) {
+	public function testSprintfDateNoZone( $format, $ts, $expected, $ignore, $msg ) {
 		$oldTZ = date_default_timezone_get();
 		$res = date_default_timezone_set( 'Asia/Seoul' );
 		if ( !$res ) {
@@ -556,8 +579,9 @@ class LanguageTest extends LanguageClassesTestCase {
 	/**
 	 * sprintfDate should use passed timezone
 	 * @dataProvider provideSprintfDateSamples
+	 * @covers Language::sprintfDate
 	 */
-	function testSprintfDateTZ( $format, $ts, $ignore, $expected, $msg ) {
+	public function testSprintfDateTZ( $format, $ts, $ignore, $expected, $msg ) {
 		$tz = new DateTimeZone( 'Asia/Seoul' );
 		if ( !$tz ) {
 			$this->markTestSkipped( "Error getting Timezone" );
@@ -957,8 +981,9 @@ class LanguageTest extends LanguageClassesTestCase {
 
 	/**
 	 * @dataProvider provideFormatSizes
+	 * @covers Language::formatSize
 	 */
-	function testFormatSize( $size, $expected, $msg ) {
+	public function testFormatSize( $size, $expected, $msg ) {
 		$this->assertEquals(
 			$expected,
 			$this->getLang()->formatSize( $size ),
@@ -1019,8 +1044,9 @@ class LanguageTest extends LanguageClassesTestCase {
 
 	/**
 	 * @dataProvider provideFormatBitrate
+	 * @covers Language::formatBitrate
 	 */
-	function testFormatBitrate( $bps, $expected, $msg ) {
+	public function testFormatBitrate( $bps, $expected, $msg ) {
 		$this->assertEquals(
 			$expected,
 			$this->getLang()->formatBitrate( $bps ),
@@ -1091,8 +1117,9 @@ class LanguageTest extends LanguageClassesTestCase {
 
 	/**
 	 * @dataProvider provideFormatDuration
+	 * @covers Language::formatDuration
 	 */
-	function testFormatDuration( $duration, $expected, $intervals = array() ) {
+	public function testFormatDuration( $duration, $expected, $intervals = array() ) {
 		$this->assertEquals(
 			$expected,
 			$this->getLang()->formatDuration( $duration, $intervals ),
@@ -1227,8 +1254,9 @@ class LanguageTest extends LanguageClassesTestCase {
 
 	/**
 	 * @dataProvider provideCheckTitleEncodingData
+	 * @covers Language::checkTitleEncoding
 	 */
-	function testCheckTitleEncoding( $s ) {
+	public function testCheckTitleEncoding( $s ) {
 		$this->assertEquals(
 			$s,
 			$this->getLang()->checkTitleEncoding( $s ),
@@ -1291,8 +1319,9 @@ class LanguageTest extends LanguageClassesTestCase {
 
 	/**
 	 * @dataProvider provideRomanNumeralsData
+	 * @covers Language::romanNumeral
 	 */
-	function testRomanNumerals( $num, $numerals ) {
+	public function testRomanNumerals( $num, $numerals ) {
 		$this->assertEquals(
 			$numerals,
 			Language::romanNumeral( $num ),
@@ -1349,8 +1378,9 @@ class LanguageTest extends LanguageClassesTestCase {
 
 	/**
 	 * @dataProvider providePluralData
+	 * @covers Language::convertPlural
 	 */
-	function testConvertPlural( $expected, $number, $forms ) {
+	public function testConvertPlural( $expected, $number, $forms ) {
 		$chosen = $this->getLang()->convertPlural( $number, $forms );
 		$this->assertEquals( $expected, $chosen );
 	}
@@ -1395,7 +1425,7 @@ class LanguageTest extends LanguageClassesTestCase {
 	 * @covers Language::translateBlockExpiry()
 	 * @dataProvider provideTranslateBlockExpiry
 	 */
-	function testTranslateBlockExpiry( $expectedData, $str, $desc ) {
+	public function testTranslateBlockExpiry( $expectedData, $str, $desc ) {
 		$lang = $this->getLang();
 		if ( is_array( $expectedData ) ) {
 			list( $func, $arg ) = $expectedData;
@@ -1427,7 +1457,7 @@ class LanguageTest extends LanguageClassesTestCase {
 	 * @covers Language::commafy()
 	 * @dataProvider provideCommafyData
 	 */
-	function testCommafy( $number, $numbersWithCommas ) {
+	public function testCommafy( $number, $numbersWithCommas ) {
 		$this->assertEquals(
 			$numbersWithCommas,
 			$this->getLang()->commafy( $number ),
@@ -1454,7 +1484,10 @@ class LanguageTest extends LanguageClassesTestCase {
 		);
 	}
 
-	function testListToText() {
+	/**
+	 * @covers Language::listToText
+	 */
+	public function testListToText() {
 		$lang = $this->getLang();
 		$and = $lang->getMessageFromDB( 'and' );
 		$s = $lang->getMessageFromDB( 'word-separator' );
@@ -1469,8 +1502,9 @@ class LanguageTest extends LanguageClassesTestCase {
 
 	/**
 	 * @dataProvider provideIsSupportedLanguage
+	 * @covers Language::isSupportedLanguage
 	 */
-	function testIsSupportedLanguage( $code, $expected, $comment ) {
+	public function testIsSupportedLanguage( $code, $expected, $comment ) {
 		$this->assertEquals( $expected, Language::isSupportedLanguage( $code ), $comment );
 	}
 
@@ -1485,8 +1519,9 @@ class LanguageTest extends LanguageClassesTestCase {
 
 	/**
 	 * @dataProvider provideGetParentLanguage
+	 * @covers Language::getParentLanguage
 	 */
-	function testGetParentLanguage( $code, $expected, $comment ) {
+	public function testGetParentLanguage( $code, $expected, $comment ) {
 		$lang = Language::factory( $code );
 		if ( is_null( $expected ) ) {
 			$this->assertNull( $lang->getParentLanguage(), $comment );
@@ -1502,6 +1537,31 @@ class LanguageTest extends LanguageClassesTestCase {
 			array( 'zh-invalid', null, 'do not be fooled by arbitrarily composed language codes' ),
 			array( 'en-gb', null, 'en does not have converter' ),
 			array( 'en', null, 'en does not have converter. Although FakeConverter handles en -> en conversion but it is useless' ),
+		);
+	}
+
+	/**
+	 * @dataProvider provideGetNamespaceAliases
+	 * @covers Language::getNamespaceAliases
+	 */
+	public function testGetNamespaceAliases( $languageCode, $subset ) {
+		$language = Language::factory( $languageCode );
+		$aliases = $language->getNamespaceAliases();
+		foreach ( $subset as $alias => $nsId ) {
+			$this->assertEquals( $nsId, $aliases[$alias] );
+		}
+	}
+
+	public static function provideGetNamespaceAliases() {
+		// TODO: Add tests for NS_PROJECT_TALK and GenderNamespaces
+		return array(
+			array(
+				'zh',
+				array(
+					'文件' => NS_FILE,
+					'檔案' => NS_FILE,
+				),
+			),
 		);
 	}
 }

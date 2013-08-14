@@ -267,7 +267,7 @@ $messages = array(
 'jumptonavigation' => 'ນຳທິດ',
 'jumptosearch' => 'ຄົ້ນຫາ',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'ກ່ຽວກັບ{{SITENAME}}',
 'aboutpage' => 'Project:ກ່ຽວກັບ',
 'copyright' => 'ເນື້ອໃນ ສະໜອງໃຫ້ ພາຍໃຕ້ $1.',
@@ -377,7 +377,7 @@ $messages = array(
 'newpassword' => 'ລະຫັດຜ່ານໃໝ່:',
 'retypenew' => 'ພິມລະຫັດຜ່ານໃໝ່ອີກ:',
 'resetpass_submit' => 'ຕັ້ງລະຫັດຜ່ານ ແລະ ເຊັນເຂົ້າ',
-'resetpass_success' => 'ສຳເລັດການປ່ຽນແປງ ລະຫັດຜ່ານຂອງທ່ານແລ້ວ! ດຽວນີ້ ທ່ານ ເຊັ່ນເຂົ້າ ໃນ ...',
+'changepassword-success' => 'ສຳເລັດການປ່ຽນແປງ ລະຫັດຜ່ານຂອງທ່ານແລ້ວ! ດຽວນີ້ ທ່ານ ເຊັ່ນເຂົ້າ ໃນ ...',
 
 # Edit page toolbar
 'bold_sample' => 'ໂຕໜັງສືເຂັ້ມ',
@@ -603,11 +603,6 @@ $messages = array(
 
 # Statistics
 'statistics' => 'ສະຖິຕິ',
-
-'disambiguations' => 'ໜ້າແກ້ຄວາມກຳກວມ',
-'disambiguations-text' => "ໜ້າຕໍ່ໄປນີ້ເຊື່ອມໂຍງໄປຍັງ '''ໜ້າແກ້ຄວາມກຳກວມ'''&nbsp;
-ຊຶ່ງຄວນດັດແກ້ລິງຄ໌ໃຫ້ເຊື່ອມໂຍງໄປທີ່ໜ້າອື່ນທີ່ເໝາະສົມ<br />
-ໜ້າໃດທີ່ຮຽກໃຊ້ແມ່ແບບ [[MediaWiki:Disambiguationspage|ແກ້ກຳກວມ]] ໜ້າເຫຼ່ານັ້ນຖຶກເປັນໜ້າແກ້ຄວາມກຳກວມ",
 
 'doubleredirects' => 'ໂອນໜ້າ 2 ຄັ້ງ',
 

@@ -167,7 +167,7 @@ class ExternalStore {
 	public static function insertToDefault( $data, array $params = array() ) {
 		global $wgDefaultExternalStore;
 
-		return self::insertWithFallback( (array) $wgDefaultExternalStore, $data, $params );
+		return self::insertWithFallback( (array)$wgDefaultExternalStore, $data, $params );
 	}
 
 	/**

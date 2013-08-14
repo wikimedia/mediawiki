@@ -75,10 +75,10 @@
 					$containers.hide();
 					hookCallback();
 				} else {
-					$containers.stop( true, true ).fadeOut( hookCallback );
+					$containers.stop( true, true ).fadeOut().promise().done( hookCallback );
 				}
 			} else {
-				$containers.stop( true, true ).fadeIn( hookCallback );
+				$containers.stop( true, true ).fadeIn().promise().done( hookCallback );
 			}
 
 		} else if ( !options.plainMode && ( $collapsible.is( 'ul' ) || $collapsible.is( 'ol' ) ) ) {
@@ -94,10 +94,10 @@
 					$containers.hide();
 					hookCallback();
 				} else {
-					$containers.stop( true, true ).slideUp( hookCallback );
+					$containers.stop( true, true ).slideUp().promise().done( hookCallback );
 				}
 			} else {
-				$containers.stop( true, true ).slideDown( hookCallback );
+				$containers.stop( true, true ).slideDown().promise().done( hookCallback );
 			}
 
 		} else {
@@ -111,10 +111,10 @@
 						$collapsibleContent.hide();
 						hookCallback();
 					} else {
-						$collapsibleContent.slideUp( hookCallback );
+						$collapsibleContent.slideUp().promise().done( hookCallback );
 					}
 				} else {
-					$collapsibleContent.slideDown( hookCallback );
+					$collapsibleContent.slideDown().promise().done( hookCallback );
 				}
 
 			// Otherwise assume this is a customcollapse with a remote toggle
@@ -126,16 +126,16 @@
 						hookCallback();
 					} else {
 						if ( $collapsible.is( 'tr' ) || $collapsible.is( 'td' ) || $collapsible.is( 'th' ) ) {
-							$collapsible.fadeOut( hookCallback );
+							$collapsible.fadeOut().promise().done( hookCallback );
 						} else {
-							$collapsible.slideUp( hookCallback );
+							$collapsible.slideUp().promise().done( hookCallback );
 						}
 					}
 				} else {
 					if ( $collapsible.is( 'tr' ) || $collapsible.is( 'td' ) || $collapsible.is( 'th' ) ) {
-						$collapsible.fadeIn( hookCallback );
+						$collapsible.fadeIn().promise().done( hookCallback );
 					} else {
-						$collapsible.slideDown( hookCallback );
+						$collapsible.slideDown().promise().done( hookCallback );
 					}
 				}
 			}
@@ -163,8 +163,8 @@
 			if ( e.type === 'click' && options.linksPassthru && $.nodeName( e.target, 'a' ) ) {
 				// Don't fire if a link was clicked, if requested  (for premade togglers by default)
 				return;
-			} else if ( e.type === 'keypress' && e.which !== 13 ) {
-				// Only handle keypresses on the "Enter" key
+			} else if ( e.type === 'keypress' && e.which !== 13 && e.which !== 32 ) {
+				// Only handle keypresses on the "Enter" or "Space" keys
 				return;
 			} else {
 				e.preventDefault();
@@ -172,7 +172,12 @@
 			}
 		}
 
-		wasCollapsed = $collapsible.hasClass( 'mw-collapsed' );
+		// This allows the element to be hidden on initial toggle without fiddling with the class
+		if ( options.wasCollapsed !== undefined ) {
+			wasCollapsed = options.wasCollapsed;
+		} else {
+			wasCollapsed = $collapsible.hasClass( 'mw-collapsed' );
+		}
 
 		// Toggle the state of the collapsible element (that is, expand or collapse)
 		$collapsible.toggleClass( 'mw-collapsed', !wasCollapsed );
@@ -367,11 +372,9 @@
 
 			// Initial state
 			if ( options.collapsed || $collapsible.hasClass( 'mw-collapsed' ) ) {
-				// Remove here so that the toggler goes in the right direction (the class is re-added)
-				$collapsible.removeClass( 'mw-collapsed' );
 				// One toggler can hook to multiple elements, and one element can have
 				// multiple togglers. This is the sanest way to handle that.
-				actionHandler.call( $toggleLink.get( 0 ), null, { instantHide: true } );
+				actionHandler.call( $toggleLink.get( 0 ), null, { instantHide: true, wasCollapsed: false } );
 			}
 		} );
 	};

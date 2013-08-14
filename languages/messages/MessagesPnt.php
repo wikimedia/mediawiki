@@ -233,7 +233,7 @@ $messages = array(
 'jumptonavigation' => 'Πορπάτεμαν',
 'jumptosearch' => 'Αράεμαν',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Περί {{SITENAME}}',
 'aboutpage' => 'Project:Σχετικά',
 'copyright' => 'Το περιεχόμενον εν άμον ντο λεει η $1.',
@@ -412,7 +412,7 @@ $messages = array(
 'newpassword' => 'Καινούρεον σημάδιν:',
 'retypenew' => 'Γράψον ξαν το νέον σημάδιν:',
 'resetpass_submit' => 'Ορίστεν το σημάδιν κι ελάτεν απές',
-'resetpass_success' => 'Το σημάδιν ελλάεν!
+'changepassword-success' => 'Το σημάδιν ελλάεν!
 Ατώρα συνδέουμε σας...',
 'resetpass_forbidden' => "Τα σημάδια για να εμπάτεν 'κ επορούν ν'αλλάζνε",
 'resetpass-no-info' => "Επρέπ να ελάτεν απές για ν'ελέπετε αούτον τη σελίδαν κιάλλο τογρία.",
@@ -846,8 +846,6 @@ $messages = array(
 'statistics' => 'Στατιστικήν',
 'statistics-pages' => 'Σελίδας',
 
-'disambiguations' => 'Σελίδας εξηγησίων',
-
 'doubleredirects' => 'Περισσά διπλά συνδέσμ',
 
 'brokenredirects' => 'Τσακωμένα διπλά συνδέσμ',
@@ -1104,8 +1102,6 @@ $messages = array(
 'blocklogentry' => 'εσπάλισεν [[$1]] για $2 $3',
 'unblocklogentry' => 'άνοιγμαν ασπαλιγματί τη $1',
 'block-log-flags-nocreate' => "ποίσιμον λογαρίας 'κ ίνεται",
-'blockme' => 'Ασπάλισον με',
-'proxyblocksuccess' => 'Εγέντον.',
 
 # Developer tools
 'lockdb' => 'Ασπάλιγμαν βάσης δογμενίων',

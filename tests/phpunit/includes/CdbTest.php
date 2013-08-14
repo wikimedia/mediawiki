@@ -2,6 +2,8 @@
 
 /**
  * Test the CDB reader/writer
+ * @covers CdbWriter_PHP
+ * @covers CdbWriter_DBA
  */
 class CdbTest extends MediaWikiTestCase {
 

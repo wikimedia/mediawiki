@@ -31,18 +31,25 @@
  * An operation which is not OK should have errors so that the user can be
  * informed as to what went wrong. Calling the fatal() function sets an error
  * message and simultaneously switches off the OK flag.
+ *
+ * The recommended pattern for Status objects is to return a Status object
+ * unconditionally, i.e. both on success and on failure -- so that the
+ * developer of the calling code is reminded that the function can fail, and
+ * so that a lack of error-handling will be explicit.
  */
 class Status {
-	var $ok = true;
-	var $value;
+	public $ok = true;
+	public $value;
 
 	/** Counters for batch operations */
-	public $successCount = 0, $failCount = 0;
+	public $successCount = 0;
+	public $failCount = 0;
+
 	/** Array to indicate which items of the batch operations were successful */
 	public $success = array();
 
-	/*semi-private*/ var $errors = array();
-	/*semi-private*/ var $cleanCallback = false;
+	public $errors = array();
+	public $cleanCallback = false;
 
 	/**
 	 * Factory function for fatal errors
@@ -183,21 +190,74 @@ class Status {
 			}
 		}
 		if ( count( $this->errors ) == 1 ) {
-			$s = $this->getErrorMessage( $this->errors[0] );
+			$s = $this->getErrorMessage( $this->errors[0] )->plain();
 			if ( $shortContext ) {
 				$s = wfMessage( $shortContext, $s )->plain();
 			} elseif ( $longContext ) {
 				$s = wfMessage( $longContext, "* $s\n" )->plain();
 			}
 		} else {
-			$s = '* ' . implode( "\n* ",
-				$this->getErrorMessageArray( $this->errors ) ) . "\n";
+			$errors = $this->getErrorMessageArray( $this->errors );
+			foreach ( $errors as &$error ) {
+				$error = $error->plain();
+			}
+			$s = '* ' . implode( "\n* ", $errors ) . "\n";
 			if ( $longContext ) {
 				$s = wfMessage( $longContext, $s )->plain();
 			} elseif ( $shortContext ) {
 				$s = wfMessage( $shortContext, "\n$s\n" )->plain();
 			}
 		}
+		return $s;
+	}
+
+	/**
+	 * Get the error list as a Message object
+	 *
+	 * @param string $shortContext a short enclosing context message name, to
+	 *        be used when there is a single error
+	 * @param string $longContext a long enclosing context message name, for a list
+	 * @return Message
+	 */
+	function getMessage( $shortContext = false, $longContext = false ) {
+		if ( count( $this->errors ) == 0 ) {
+			if ( $this->ok ) {
+				$this->fatal( 'internalerror_info',
+					__METHOD__ . " called for a good result, this is incorrect\n" );
+			} else {
+				$this->fatal( 'internalerror_info',
+					__METHOD__ . ": Invalid result object: no error text but not OK\n" );
+			}
+		}
+		if ( count( $this->errors ) == 1 ) {
+			$s = $this->getErrorMessage( $this->errors[0] );
+			if ( $shortContext ) {
+				$s = wfMessage( $shortContext, $s );
+			} elseif ( $longContext ) {
+				$wrapper = new RawMessage( "* \$1\n" );
+				$wrapper->params( $s )->parse();
+				$s = wfMessage( $longContext, $wrapper );
+			}
+		} else {
+			$msgs =  $this->getErrorMessageArray( $this->errors );
+			$msgCount = count( $msgs );
+
+			if ( $shortContext ) {
+				$msgCount++;
+			}
+
+			$wrapper = new RawMessage( '* $' . implode( "\n* \$", range( 1, $msgCount ) ) );
+			$s = $wrapper->params( $msgs )->parse();
+
+			if ( $longContext ) {
+				$s = wfMessage( $longContext, $wrapper );
+			} elseif ( $shortContext ) {
+				$wrapper = new RawMessage( "\n\$1\n", $wrapper );
+				$wrapper->parse();
+				$s = wfMessage( $shortContext, $wrapper );
+			}
+		}
+
 		return $s;
 	}
 
@@ -225,7 +285,7 @@ class Status {
 		} else {
 			$msg = wfMessage( $error );
 		}
-		return $msg->plain();
+		return $msg;
 	}
 
 	/**
@@ -289,7 +349,6 @@ class Status {
 	/**
 	 * Returns a list of status messages of the given type
 	 * @param $type String
-	 *
 	 * @return Array
 	 */
 	protected function getStatusArray( $type ) {
@@ -297,7 +356,10 @@ class Status {
 		foreach ( $this->errors as $error ) {
 			if ( $error['type'] === $type ) {
 				if ( $error['message'] instanceof Message ) {
-					$result[] = array_merge( array( $error['message']->getKey() ), $error['message']->getParams() );
+					$result[] = array_merge(
+						array( $error['message']->getKey() ),
+						$error['message']->getParams()
+					);
 				} elseif ( $error['params'] ) {
 					$result[] = array_merge( array( $error['message'] ), $error['params'] );
 				} else {
@@ -305,6 +367,7 @@ class Status {
 				}
 			}
 		}
+
 		return $result;
 	}
 
@@ -364,15 +427,6 @@ class Status {
 			}
 		}
 		return $replaced;
-	}
-
-	/**
-	 * Backward compatibility function for WikiError -> Status migration
-	 *
-	 * @return String
-	 */
-	public function getMessage() {
-		return $this->getWikiText();
 	}
 
 	/**

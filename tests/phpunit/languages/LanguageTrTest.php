@@ -16,8 +16,10 @@ class LanguageTrTest extends LanguageClassesTestCase {
 	 *  - Emperyan
 	 * @see http://en.wikipedia.org/wiki/Dotted_and_dotless_I
 	 * @dataProvider provideDottedAndDotlessI
+	 * @covers Language::ucfirst
+	 * @covers Language::lcfirst
 	 */
-	function testDottedAndDotlessI( $func, $input, $inputCase, $expected ) {
+	public function testDottedAndDotlessI( $func, $input, $inputCase, $expected ) {
 		if ( $func == 'ucfirst' ) {
 			$res = $this->getLang()->ucfirst( $input );
 		} elseif ( $func == 'lcfirst' ) {

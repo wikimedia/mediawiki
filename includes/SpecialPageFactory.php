@@ -78,7 +78,6 @@ class SpecialPageFactory {
 		'Allpages'                  => 'SpecialAllpages',
 		'Prefixindex'               => 'SpecialPrefixindex',
 		'Categories'                => 'SpecialCategories',
-		'Disambiguations'           => 'DisambiguationsPage',
 		'Listredirects'             => 'ListredirectsPage',
 		'PagesWithProp'             => 'SpecialPagesWithProp',
 
@@ -156,13 +155,13 @@ class SpecialPageFactory {
 
 		// Unlisted / redirects
 		'Blankpage'                 => 'SpecialBlankpage',
-		'Blockme'                   => 'SpecialBlockme',
 		'Emailuser'                 => 'SpecialEmailUser',
 		'Movepage'                  => 'MovePageForm',
 		'Mycontributions'           => 'SpecialMycontributions',
 		'Mypage'                    => 'SpecialMypage',
 		'Mytalk'                    => 'SpecialMytalk',
 		'Myuploads'                 => 'SpecialMyuploads',
+		'AllMyUploads'              => 'SpecialAllMyUploads',
 		'PermanentLink'             => 'SpecialPermanentLink',
 		'Redirect'                  => 'SpecialRedirect',
 		'Revisiondelete'            => 'SpecialRevisionDelete',

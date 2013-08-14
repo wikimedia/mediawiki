@@ -33,7 +33,7 @@
 .mw-spinner-inline {
 	display: inline-block;
 	vertical-align: middle;
-	
+
 	/* IE < 8 */
 	zoom: 1;
 	*display: inline;

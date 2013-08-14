@@ -357,7 +357,7 @@ Wachtsje efkes foardatsto op 'e nij tagong ta dizze side probearrest te krijen.
 
 $1",
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Oer de {{SITENAME}}',
 'aboutpage' => 'Project:Ynfo',
 'copyright' => 'Ynhâld is beskikber ûnder de $1.',
@@ -431,16 +431,6 @@ $1",
 # General errors
 'error' => 'Fout',
 'databaseerror' => 'Databankfout',
-'dberrortext' => 'Sinboufout in databankfraach.
-De lêst besochte databankfraach wie:
-<blockquote><tt>$1</tt></blockquote>
-fan funksje "<tt>$2</tt>" út.
-MySQL joech fout "<tt>$3: $4</tt>" werom.',
-'dberrortextcl' => 'Sinboufout yn databankfraach.
-De lêst besochte databankfraach wie:
-"$1"
-fanút funksje "$2" .
-MySQL joech fout "$3: $4"',
 'laggedslavemode' => 'Warskôging: Mûglik binne resinte bewurkings noch net trochfierd.',
 'readonly' => "Databank is 'Net-skriuwe'.",
 'enterlockreason' => "Skriuw wêrom de databank 'net-skriuwe' makke is, en hoenear't men wêr nei alle gedachten wer skriuwe kin.",
@@ -485,7 +475,6 @@ Query: $2',
 'viewsourcetext' => 'Jo kinne de boarnetekst fan dizze side besjen en kopiearje:',
 'protectedinterface' => "Dizze side befettet tekst foar berjochten fan 'e software en is befeilige om misbrûk tefoaren te kommen.",
 'editinginterface' => "'''Warskôging;''' Jo bewurkje in side dy't brûkt wurdt troch software. Bewurkings op dizze side beynfloedzje de gebrûksynterface fan elkenien. Oerweagje foar oersettings [//translatewiki.net/wiki/Main_Page?setlang=fy translatewiki.net] te brûken, it oersetprojekt foar MediaWiki.",
-'sqlhidden' => '(SQL query ferburgen)',
 'cascadeprotected' => 'Dizze side is skoattele tsjin wizigjen, om\'t der in ûnderdiel útmakket fan de neikommende {{PLURAL:$1|side|siden}}, dy\'t skoattele {{PLURAL:$1|is|binne}} mei de "ûnderlizzende siden" opsje ynskeakele: $2',
 'namespaceprotected' => "Jo hawwe gjin rjochten om siden yn'e nammerûmte '''$1''' te bewurkjen.",
 'ns-specialprotected' => "Siden yn'e nammerûmte {{ns:special}} kinne net bewurke wurde.",
@@ -581,7 +570,7 @@ Jo moatte efkes wachtsje foar't jo it op'e nij besykje kinne.",
 'newpassword' => 'Nij wachtwurd',
 'retypenew' => 'Nij wachtwurd (nochris)',
 'resetpass_submit' => 'Wachtwurd ynstelle en oanmelde',
-'resetpass_success' => 'Jo wachtwurd is feroare. Dwaande mei oanmelden ...',
+'changepassword-success' => 'Jo wachtwurd is feroare. Dwaande mei oanmelden ...',
 'resetpass_forbidden' => 'Wachtwurden kinne net feroare wurde',
 'resetpass-no-info' => "Jo moatte oanmeld wêze foar't Jo dizze side brûke kinne.",
 'resetpass-submit-loggedin' => 'Wachtwurd feroarje',
@@ -1478,11 +1467,6 @@ Ferjit net de "Wat is hjirmei keppele" nei te gean foar it fuortheljen fan dit s
 'statistics-users-active-desc' => "Brûkers dy't yn 'e ôfrûne {{PLURAL:$1|dei|$1 dagen}} in hanneling útfierd hawwe",
 'statistics-mostpopular' => 'Meast besjoene siden',
 
-'disambiguations' => 'Betsjuttingssiden',
-'disambiguationspage' => 'Template:Neibetsjuttings',
-'disambiguations-text' => "De ûndersteande siden keppelje mei in '''Betsjuttingssiden'''.
-Se soenen mei de side sels keppele wurde moatte.<br /> In side wurdt sjoen as betsjuttingssiden, as de side ien berjocht fan [[MediaWiki:Disambiguationspage]] brûkt.",
-
 'doubleredirects' => 'Dûbelde synonimen',
 'doubleredirectstext' => '<b>Let op!</b> Der kinne missen yn dizze list stean! Dat komt dan ornaris troch oare keppelings ûnder de "#REDIRECT". Eltse rigel jout keppelings nei it earste synonym, it twadde synonym en dan it werklike doel.',
 'double-redirect-fixed-move' => '[[$1]] is ferplakt en is no in trochferwizing nei [[$2]]',
@@ -1929,7 +1913,6 @@ Meld de krekte reden! Neam bygelyks de siden dy't oantaaste waarden.",
 'ipb_expiry_invalid' => 'Tiid fan ferrinnen is net goed.',
 'ipb_already_blocked' => '"$1" is al útsluten',
 'ipb_cant_unblock' => 'Flater: It útsluten fan ID $1 kin net fûn wurde. It is miskien al net mear útsluten.',
-'proxyblocksuccess' => 'Dien.',
 
 # Developer tools
 'lockdb' => "Meitsje de database 'Net-skriuwe'",

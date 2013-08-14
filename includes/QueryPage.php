@@ -35,7 +35,6 @@ $wgQueryPages = array(
 	array( 'AncientPagesPage',              'Ancientpages'                  ),
 	array( 'BrokenRedirectsPage',           'BrokenRedirects'               ),
 	array( 'DeadendPagesPage',              'Deadendpages'                  ),
-	array( 'DisambiguationsPage',           'Disambiguations'               ),
 	array( 'DoubleRedirectsPage',           'DoubleRedirects'               ),
 	array( 'FileDuplicateSearchPage',       'FileDuplicateSearch'           ),
 	array( 'LinkSearchPage',                'LinkSearch'                    ),

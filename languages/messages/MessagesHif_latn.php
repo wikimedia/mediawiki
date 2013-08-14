@@ -42,12 +42,12 @@ $messages = array(
 'tog-hidepatrolled' => 'Pahraa dewa gais badlao ke nawaa badlao me se lukao',
 'tog-newpageshidepatrolled' => 'Pahraa dewa gais badlao ke nawaa panna me se lukao',
 'tog-extendwatchlist' => 'Dhyaan suchi ke khol ke sab badlao ke dekhao, khaali nawaa waala nai',
-'tog-usenewrc' => 'Dher jan se badla gais panna, haali ke badlao aur dhyan suchi me (Javascript maange hae)',
+'tog-usenewrc' => 'Dher jan se badla gais panna, haali ke badlao aur dhyan suchi me',
 'tog-numberheadings' => 'Sab heading ke apne se number karo',
-'tog-showtoolbar' => 'Badle waala aujaar ke toolbar ke dekhao (JavaScript ke jarurat hai)',
-'tog-editondblclick' => 'Dugnaa click pe panna ke badlo (JavaScript ke jarurat hai)',
+'tog-showtoolbar' => 'Badle waala toolbar ke dekhao',
+'tog-editondblclick' => 'Dugnaa click pe panna ke badlo',
 'tog-editsection' => '[Badlao] ke jorr se section ke badlao se enable karo',
-'tog-editsectiononrightclick' => 'Bhaag ke title pe right click kare pe bhaag ke badle ke laabu karo  (JavaScript)',
+'tog-editsectiononrightclick' => 'Bhaag ke title pe right click kare pe bhaag ke badle ke laabu karo',
 'tog-showtoc' => 'Dhyan suchi dekhao (uu panna khatir jon me tiin se jaada heading hai)',
 'tog-rememberpassword' => 'Ii browser me (jaada se jaada $1 {{PLURAL:$1|din|din}}) talak hamaar login ke yaad rakho.',
 'tog-watchcreations' => 'Hamaar banawa waala panna aur upload karaa gais file ke hamaar dhyaan suchi me jorro',
@@ -65,7 +65,7 @@ $messages = array(
 'tog-shownumberswatching' => 'Ketna sadasya dekhe hai ke number dekhao',
 'tog-oldsig' => 'Abhi ke signature:',
 'tog-fancysig' => 'Signature ke wikitext ke rakam dekho (binaa automatic jorr se)',
-'tog-uselivepreview' => 'Jinda jhalak ke kaam me lao (JavaScript) (Experimental)',
+'tog-uselivepreview' => 'Jinda jhalak ke kaam me lao',
 'tog-forceeditsummary' => 'Ek khali badlao waala summary ke likhe ke time hamse puchho',
 'tog-watchlisthideown' => 'Hamaar badlao ke hamaar dhyaan suchi se lukao',
 'tog-watchlisthidebots' => 'Bot waala badlao ke hamaar dhyaan suchi se lukao',
@@ -78,6 +78,7 @@ $messages = array(
 'tog-showhiddencats' => 'Lukawal waala vibhag ke dekhao',
 'tog-norollbackdiff' => 'Rollback kare ke baad diff ke mitae do',
 'tog-useeditwarning' => 'Jab ham koi panna se bina bachae nikaltaa hae, tab hamke warning do',
+'tog-prefershttps' => 'Logged in hoe pe secure connection ke kaam me lao',
 
 'underline-always' => 'Sab time',
 'underline-never' => 'Kabhi nai',
@@ -178,7 +179,7 @@ $messages = array(
 'newwindow' => '(Nawaa window me khule hai)',
 'cancel' => 'Nai karo',
 'moredotdotdot' => 'Aur...',
-'morenotlisted' => 'Au ke nai list karaa gais hae...',
+'morenotlisted' => 'Ii suchi puura nai hae',
 'mypage' => 'Panna',
 'mytalk' => 'Baat',
 'anontalk' => 'Ii IP khatir bichar',
@@ -278,10 +279,10 @@ $1',
 'pool-queuefull' => 'Pool ke line bhar gais hae',
 'pool-errorunknown' => 'Pata nahi kaisan galti hae',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} ke baare me',
 'aboutpage' => 'Project:Ke baare me',
-'copyright' => 'Ii panna me likha gae chij ke aap $1 ke niche kaam me lae sakta hai.',
+'copyright' => 'Agar duusra kaaran nai dewa gais hae, tab aap ii panna me likha gae chij ke aap $1 ke niche kaam me lae sakta hai.',
 'copyrightpage' => '{{ns:project}}:Chhaape ke adhikaar',
 'currentevents' => 'Abhi ke ghatna',
 'currentevents-url' => 'Project:Abhi ke ghatna',
@@ -364,17 +365,12 @@ Sahi khaas panna ke suchi [[Special:SpecialPages|{{int:specialpages}}]]pe mili.'
 # General errors
 'error' => 'Galti',
 'databaseerror' => 'Database me galti hai',
-'dberrortext' => 'Database ke khoj me syntax error hoe gais hae.
-Iske matlab ii hoe sake hae ki saait software me bug hoi.
-Pahile waala database ke khoj ke kosis rahaa:
-<blockquote><code>$1</code></blockquote>
-"<code>$2</code>" function ke bhitar se.
-Database ke galti sandes rahaa "<samp>$3: $4</samp>".',
-'dberrortextcl' => 'Database ke khoj me syntax error hoe gais hae.
-Pahile waala database ke khoj ke kosis rahaa:
-"$1"
-"$2" function ke bhitar se.
-Database ke galti sandes rahaa "$3: $4"',
+'databaseerror-text' => 'Database ke khoj me kuchh karrbarr bhais hae
+Ii saait software me ek bug ke indicate kare hae.',
+'databaseerror-textcl' => 'Database ke khoj me kuchh garrbarri hoe gais hae.',
+'databaseerror-query' => 'Khoj:$1',
+'databaseerror-function' => 'Kaam: $1',
+'databaseerror-error' => 'Galti: $1',
 'laggedslavemode' => 'Chetawni: Panna me nawaa badlao sait nai hoi.',
 'readonly' => 'Database band hai',
 'enterlockreason' => 'Band kare ke kaaran likho, aur ii bhi likho ki kab khola jaai.',
@@ -407,6 +403,7 @@ Iske, URL ke likh ke, koi administrator ke report karo.',
 'cannotdelete-title' => 'Panna "$1" ke mitae nai saktaa hae',
 'delete-hook-aborted' => 'Mitae ke kisis ke hook rok diis hae.
 Uu koi kaaran nai dis hae.',
+'no-null-revision' => 'Panna "$1" ke khatir nawaa null badlao nai banae sakaa hae',
 'badtitle' => 'Kharaab title',
 'badtitletext' => 'Jon panna aap mangta hai uske page title invalid, galat, nai to an incorrectly linked inter-language or inter-wiki title. Isme sait ek yah jaada character hoi jon ki title me nai kaam me lawa jae sake hai.',
 'perfcached' => 'Niche likha data ke cache karaa gais hai aur sait purana hoi. Jaada se jaada {{PLURAL:$1|ek result |$1 results}} cache me hae.',
@@ -428,7 +425,6 @@ Sab wiki me anuwaad ke jorre nai to badle ke khatir, meharbaani kar ke [//transl
 'editinginterface' => "'''Chetawani:''' Aap ek panna ke badaltaa hai jon ki software ke interface text dewe hae.
 Ii panna me badlao ke asar duusra sadasya ke interface pe bhi hoi.
 Translation khatir [//translatewiki.net/ translatewiki.net], the MediaWiki localisation project, ke kaam me lao.",
-'sqlhidden' => '(SQL query lukawal hai)',
 'cascadeprotected' => 'Ii panna ke badlao se bachawa gais hai, kahe ki iske {{PLURAL:$1|panna, jon ki|panna, jon ki}} surakchhit hae "cascading" option turned on ke saathe me rakkhaa gais hai:
 $2',
 'namespaceprotected' => "Aap ke paas '''$1''' namespace me panna ke badle ke adhikar nai hai.",
@@ -456,8 +452,7 @@ Jon administrator iske lock karis hae, koi kaaran nai diis hae: "$3"',
 # Login and logout pages
 'logouttext' => "'''Aap abhi logged out hai.'''
 
-Aap bina naam ke {{SITENAME}} ke kaam me lae sakta hai, nai to aap wahi sadasya ke naam se nai to duusra sadasya ke naam se <span class='plainlinks'>[$1 log in kare sakta hai]</span>.
-Yaad rakhna ki kuch panna wahi rakam se dekhai jaise ki aap log in bhaya hai, jab tak ki browser ke cache safaa nai hoe jaae.",
+Yaad rakhna ki kuch panna wahi rakam se dekhai jaise ki aap log in bhaya hai, jab talak ki browser ke cache safaa nai hoe jaae.",
 'welcomeuser' => 'Swagat, $1!',
 'welcomecreation-msg' => 'Aap ke account banae dewa gais hai.
 Aapan [[Special:Preferences|{{SITENAME}} pasand]]  ke badle nai bhulna.',
@@ -475,7 +470,6 @@ Aapan [[Special:Preferences|{{SITENAME}} pasand]]  ke badle nai bhulna.',
 'remembermypassword' => 'Ii computer pe hamaar login yaad rakho (jaada se jaada $1 {{PLURAL:$1|din|din}} talak)',
 'userlogin-remembermypassword' => 'Secure connection ke kaam me lao',
 'userlogin-signwithsecure' => 'Secure connection ke kaam me lao',
-'securelogin-stick-https' => 'Login kare ke baad HTTPS se connected raho',
 'yourdomainname' => 'Aap ke domain:',
 'password-change-forbidden' => 'Aap ii wiki me password nai badle saktaa hae.',
 'externaldberror' => 'Koi bahaari database authentication error hai, nai to aap ke bahaari account badle ke adhikar nai hai.',
@@ -504,7 +498,7 @@ Aapan [[Special:Preferences|{{SITENAME}} pasand]]  ke badle nai bhulna.',
 'createacct-emailoptional' => 'Email address (jaruri nai hae)',
 'createacct-email-ph' => 'Aapan mail address ke likho',
 'createacct-another-email-ph' => 'Email address ke likho',
-'createaccountmail' => 'Ek temporary password ke kaam me laao aur iske niche dekhawa gais Email pe bhej do',
+'createaccountmail' => 'Ek temporary password ke kaam me laao aur iske batawa gais Email pe bhej do',
 'createacct-realname' => 'Aslii naam (jaruri nai hae)',
 'createaccountreason' => 'Kaaran:',
 'createacct-reason' => 'Kaaran',
@@ -582,11 +576,13 @@ Meharbaani kar ke achchha address ke enter karo nai to uu field ke khali kar do.
 Aap ke chaahi ki aap login kar ke password ke badal do.
 Agar ii account galti se banaa hai tab ii sandes ke ignore kar do.',
 'usernamehasherror' => 'Sadasya ke naam me hash akchhar ke nai kaam me lawa jaae sake hae',
-'login-throttled' => 'Aap bahut jaada dafe ii account ke password ke enter kare ke kosis karaa hai.
-Thora deri baad fir se kosis karna.',
+'login-throttled' => 'Aap bahut jaada dafe ii account ke password ke enter kare ke kosis karaa hae.
+$1 talak wait kar ke fir se try karo.',
 'login-abort-generic' => 'Aap ke login nai chalaa - Aborted',
 'loginlanguagelabel' => 'Bhasa: $1',
 'suspicious-userlogout' => 'Aap ke log out kare ke maang ke na kar dewa gais hae kaahe ki ii janaawe hae ki ii maang ke ek tuuta browser nai to caching proxy bhejis hae.',
+'createacct-another-realname-tip' => 'Aslii naam ke jaruri nai hae.
+Agar aap iske diya hae tab iske aapke kaam ke attribute kare ke khatir kaam me lawa jaai.',
 
 # Email sending
 'php-mail-error-unknown' => 'PHP ke mail() function me koi anjaan kharaabi hae',
@@ -603,7 +599,7 @@ Login khatam kare khatir, aap ke nawaa password set kare ke parri hian:',
 'newpassword' => 'Nawaa password:',
 'retypenew' => 'Password fir se type karo:',
 'resetpass_submit' => 'Password ke set kar ke login karo',
-'resetpass_success' => 'Aap ke password ke safalta se badal dewa gais hai! Aap ke ab login karaa jaae hai...',
+'changepassword-success' => 'Aap ke password ke safalta se badal dewa gais hai!',
 'resetpass_forbidden' => 'Password nai badlaa jaae sake hai',
 'resetpass-no-info' => 'Ii panna ke sidha access kare ke khatir aap ke logged in rahe ke parri.',
 'resetpass-submit-loggedin' => 'Password ke badlo',
@@ -665,7 +661,7 @@ Aap ke ii kare ke chaahi agar aap galti se ii jaankari ke aur koi ke de diya hae
 'resettokens-legend' => 'Token ke reset karo',
 'resettokens-tokens' => 'Chinh (token)',
 'resettokens-token-label' => '$1 (abhi ke value: $2)',
-'resettokens-watchlist-token' => 'Dhyan suchi ke web feed token',
+'resettokens-watchlist-token' => 'Dhyan suchi ke web feed token (Atom/RSS) of [[Special:Watchlist|changes to pages on your watchlist]]',
 'resettokens-done' => 'Token ke reset kar dewa gais hae.',
 'resettokens-resetbutton' => 'Chuna gais token ke reset karo',
 
@@ -1199,7 +1195,7 @@ Yaad rakhna ki uu log ke {{SITENAME}} ke index saait purana hoi.',
 'prefs-rendering' => 'Dekhe me kaise lage hai',
 'saveprefs' => 'Save karo',
 'resetprefs' => 'Binaa bachawa gias badlao ke mitao',
-'restoreprefs' => 'Sab default settings ke pahile jaise karo',
+'restoreprefs' => 'Sab default settings ke pahile jaise karo (sab vibhag me)',
 'prefs-editing' => 'Badaltaa hai',
 'rows' => 'Line:',
 'columns' => 'Column:',
@@ -1258,10 +1254,10 @@ Iske pahile jaise nai karaa jaawe sake hai.',
 'badsig' => 'Invalid raw signature; HTML tags ke check karo.',
 'badsiglength' => 'Signature bahut lambaa hai.
 Iske $1 {{PLURAL:$1|character|characters}} se kamti rahe ke chaahi.',
-'yourgender' => 'Admi ki aurat:',
-'gender-unknown' => 'Khaas ruup nai dewa gais hae',
-'gender-male' => 'Admi',
-'gender-female' => 'Aurat',
+'yourgender' => 'Aap kaise describe hoe mangtaa hae?',
+'gender-unknown' => 'Ham bole nai mangtaa hae',
+'gender-male' => 'Uu wiki panna ke badle hae',
+'gender-female' => 'Uu wiki panna ke badle hae',
 'prefs-help-gender' => 'Optional: used for gender-correct addressing by the software. This information will be public.',
 'email' => 'E-mail',
 'prefs-help-realname' => 'Asli naam ke jaruri nai hai lekin agar jo aap aapan naam diya hai to iske aap ke kaam ke pahachane khatir kaam me lawa jai.',
@@ -1285,6 +1281,7 @@ Iske $1 {{PLURAL:$1|character|characters}} se kamti rahe ke chaahi.',
 'prefs-displaywatchlist' => 'Choice dekhao',
 'prefs-tokenwatchlist' => 'Chinh (token)',
 'prefs-diffs' => 'Farka',
+'prefs-help-prefershttps' => 'Aap ke agla login pe ii preferences effect me aai.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'E-mail address kanuni hae',
@@ -1879,12 +1876,6 @@ Templates ke delete kare se pahile duusra links ke bhi check kare ke nai bhulna.
 'statistics-users-active' => 'Active sadasya',
 'statistics-users-active-desc' => 'Sadasya jon ki pichhle {{PLURAL:$1|din|$1 din}} me kuchh karin hai.',
 'statistics-mostpopular' => 'Sab se jaada dekha gae panna',
-
-'disambiguations' => 'Garrbarri ke sudhare waala panna',
-'disambiguationspage' => 'Template:disambig',
-'disambiguations-text' => "Niche ke panna '''disambiguation panna''' se link hoe hai.
-Saait isse aur achchha panna se link hoi. <br />
-Ek panna ke disambiguation panna maana jaae hae jab ki ii ek template ke kaam me laae hae jon ki [[MediaWiki:Disambiguationspage]] se link hoe hae.",
 
 'pageswithprop' => 'Panna, aapan property ke saathe',
 'pageswithprop-legend' => 'Panna, aapan poperty ke saathe',
@@ -2567,12 +2558,9 @@ Saait iske pahile khol dewa gais hoi.',
 Lekin iske, as part of the range $2, block karaa gais hai, jiske unblock karaa jaawe sake hai.',
 'ip_range_invalid' => 'IP ke range me galti hai.',
 'ip_range_toolarge' => '/$1 se barraa range blocks ke ijajat nai hae.',
-'blockme' => 'Ham ke roko',
 'proxyblocker' => 'Proxy roke waala',
-'proxyblocker-disabled' => 'Ii function pe rukawat hai.',
 'proxyblockreason' => 'Aap ke IP address ke block kar dewa gais hai kahe ki ii ek open proxy hai.
 Meharbaani kar ke aap aapan Internet service provider, nai to tech support, ke contact kar ke ii serious security problem ke baare me batao.',
-'proxyblocksuccess' => 'Hoe gais hai.',
 'sorbsreason' => 'DNSBL used by {{SITENAME}} me aap ke IP address ke as an open proxy list karaa gais hai.',
 'sorbs_create_account_reason' => 'DNSBL used by {{SITENAME}} me aap ke IP address ke as an open proxy list karaa gais hai.
 Aap ke ek account banae ke ijajat nai hai',

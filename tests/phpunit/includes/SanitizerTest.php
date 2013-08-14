@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @todo Tests covering decodeCharReferences can be refactored into a single
+ * method and dataprovider.
+ */
 class SanitizerTest extends MediaWikiTestCase {
 
 	protected function setUp() {
@@ -8,7 +12,10 @@ class SanitizerTest extends MediaWikiTestCase {
 		AutoLoader::loadClass( 'Sanitizer' );
 	}
 
-	function testDecodeNamedEntities() {
+	/**
+	 * @covers Sanitizer::decodeCharReferences
+	 */
+	public function testDecodeNamedEntities() {
 		$this->assertEquals(
 			"\xc3\xa9cole",
 			Sanitizer::decodeCharReferences( '&eacute;cole' ),
@@ -16,7 +23,10 @@ class SanitizerTest extends MediaWikiTestCase {
 		);
 	}
 
-	function testDecodeNumericEntities() {
+	/**
+	 * @covers Sanitizer::decodeCharReferences
+	 */
+	public function testDecodeNumericEntities() {
 		$this->assertEquals(
 			"\xc4\x88io bonas dans l'\xc3\xa9cole!",
 			Sanitizer::decodeCharReferences( "&#x108;io bonas dans l'&#233;cole!" ),
@@ -24,7 +34,10 @@ class SanitizerTest extends MediaWikiTestCase {
 		);
 	}
 
-	function testDecodeMixedEntities() {
+	/**
+	 * @covers Sanitizer::decodeCharReferences
+	 */
+	public function testDecodeMixedEntities() {
 		$this->assertEquals(
 			"\xc4\x88io bonas dans l'\xc3\xa9cole!",
 			Sanitizer::decodeCharReferences( "&#x108;io bonas dans l'&eacute;cole!" ),
@@ -32,7 +45,10 @@ class SanitizerTest extends MediaWikiTestCase {
 		);
 	}
 
-	function testDecodeMixedComplexEntities() {
+	/**
+	 * @covers Sanitizer::decodeCharReferences
+	 */
+	public function testDecodeMixedComplexEntities() {
 		$this->assertEquals(
 			"\xc4\x88io bonas dans l'\xc3\xa9cole! (mais pas &#x108;io dans l'&eacute;cole)",
 			Sanitizer::decodeCharReferences(
@@ -42,7 +58,10 @@ class SanitizerTest extends MediaWikiTestCase {
 		);
 	}
 
-	function testInvalidAmpersand() {
+	/**
+	 * @covers Sanitizer::decodeCharReferences
+	 */
+	public function testInvalidAmpersand() {
 		$this->assertEquals(
 			'a & b',
 			Sanitizer::decodeCharReferences( 'a & b' ),
@@ -50,7 +69,10 @@ class SanitizerTest extends MediaWikiTestCase {
 		);
 	}
 
-	function testInvalidEntities() {
+	/**
+	 * @covers Sanitizer::decodeCharReferences
+	 */
+	public function testInvalidEntities() {
 		$this->assertEquals(
 			'&foo;',
 			Sanitizer::decodeCharReferences( '&foo;' ),
@@ -58,7 +80,10 @@ class SanitizerTest extends MediaWikiTestCase {
 		);
 	}
 
-	function testInvalidNumberedEntities() {
+	/**
+	 * @covers Sanitizer::decodeCharReferences
+	 */
+	public function testInvalidNumberedEntities() {
 		$this->assertEquals( UTF8_REPLACEMENT, Sanitizer::decodeCharReferences( "&#88888888888888;" ), 'Invalid numbered entity' );
 	}
 
@@ -69,7 +94,7 @@ class SanitizerTest extends MediaWikiTestCase {
 	 * @param String $tag Name of an HTML5 element (ie: 'video')
 	 * @param Boolean $escaped Wheter sanitizer let the tag in or escape it (ie: '&lt;video&gt;')
 	 */
-	function testRemovehtmltagsOnHtml5Tags( $tag, $escaped ) {
+	public function testRemovehtmltagsOnHtml5Tags( $tag, $escaped ) {
 		$this->setMwGlobals( array(
 			'wgUseTidy' => false
 		) );
@@ -131,8 +156,9 @@ class SanitizerTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider dataRemoveHTMLtags
+	 * @covers Sanitizer::removeHTMLtags
 	 */
-	function testRemoveHTMLtags( $input, $output, $msg = null ) {
+	public function testRemoveHTMLtags( $input, $output, $msg = null ) {
 		$GLOBALS['wgUseTidy'] = false;
 		$this->assertEquals( $output, Sanitizer::removeHTMLtags( $input ), $msg );
 	}
@@ -141,7 +167,7 @@ class SanitizerTest extends MediaWikiTestCase {
 	 * @dataProvider provideTagAttributesToDecode
 	 * @covers Sanitizer::decodeTagAttributes
 	 */
-	function testDecodeTagAttributes( $expected, $attributes, $message = '' ) {
+	public function testDecodeTagAttributes( $expected, $attributes, $message = '' ) {
 		$this->assertEquals( $expected,
 			Sanitizer::decodeTagAttributes( $attributes ),
 			$message
@@ -189,7 +215,7 @@ class SanitizerTest extends MediaWikiTestCase {
 	 * @dataProvider provideDeprecatedAttributes
 	 * @covers Sanitizer::fixTagAttributes
 	 */
-	function testDeprecatedAttributesUnaltered( $inputAttr, $inputEl, $message = '' ) {
+	public function testDeprecatedAttributesUnaltered( $inputAttr, $inputEl, $message = '' ) {
 		$this->assertEquals( " $inputAttr",
 			Sanitizer::fixTagAttributes( $inputAttr, $inputEl ),
 			$message
@@ -209,7 +235,7 @@ class SanitizerTest extends MediaWikiTestCase {
 			array( 'align="left"', 'tr' ),
 			array( 'align="center"', 'div' ),
 			array( 'align="left"', 'h1' ),
-			array( 'align="left"', 'span' ),
+			array( 'align="left"', 'p' ),
 		);
 	}
 
@@ -217,7 +243,7 @@ class SanitizerTest extends MediaWikiTestCase {
 	 * @dataProvider provideCssCommentsFixtures
 	 * @covers Sanitizer::checkCss
 	 */
-	function testCssCommentsChecking( $expected, $css, $message = '' ) {
+	public function testCssCommentsChecking( $expected, $css, $message = '' ) {
 		$this->assertEquals( $expected,
 			Sanitizer::checkCss( $css ),
 			$message
@@ -265,8 +291,9 @@ class SanitizerTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideAttributeSupport
+	 * @covers Sanitizer::fixTagAttributes
 	 */
-	function testAttributeSupport( $tag, $attributes, $expected, $message ) {
+	public function testAttributeSupport( $tag, $attributes, $expected, $message ) {
 		$this->assertEquals( $expected,
 			Sanitizer::fixTagAttributes( $attributes, $tag ),
 			$message

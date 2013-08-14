@@ -1,5 +1,9 @@
-/*
- * Core MediaWiki JavaScript Library
+/**
+ * Base library for MediaWiki.
+ *
+ * @class mw
+ * @alternateClassName mediaWiki
+ * @singleton
  */
 
 var mw = ( function ( $, undefined ) {
@@ -9,6 +13,31 @@ var mw = ( function ( $, undefined ) {
 
 	var hasOwn = Object.prototype.hasOwnProperty,
 		slice = Array.prototype.slice;
+
+	/**
+	 * Log a message to window.console, if possible. Useful to force logging of some
+	 * errors that are otherwise hard to detect (I.e., this logs also in production mode).
+	 * Gets console references in each invocation, so that delayed debugging tools work
+	 * fine. No need for optimization here, which would only result in losing logs.
+	 *
+	 * @private
+	 * @method log_
+	 * @param {string} msg text for the log entry.
+	 * @param {Error} [e]
+	 */
+	function log( msg, e ) {
+		var console = window.console;
+		if ( console && console.log ) {
+			console.log( msg );
+			// If we have an exception object, log it through .error() to trigger
+			// proper stacktraces in browsers that support it. There are no (known)
+			// browsers that don't support .error(), that do support .log() and
+			// have useful exception handling through .log().
+			if ( e && console.error ) {
+				console.error( String( e ), e );
+			}
+		}
+	}
 
 	/* Object constructors */
 
@@ -46,11 +75,11 @@ var mw = ( function ( $, undefined ) {
 	 * @class mw.Map
 	 *
 	 * @constructor
-	 * @param {boolean} [global=false] Whether to store the values in the global window
-	 *  object or a exclusively in the object property 'values'.
+	 * @param {Object|boolean} [values] Value-bearing object to map, or boolean
+	 *  true to map over the global object. Defaults to an empty object.
 	 */
-	function Map( global ) {
-		this.values = global === true ? window : {};
+	function Map( values ) {
+		this.values = values === true ? window : ( values || {} );
 		return this;
 	}
 
@@ -197,7 +226,7 @@ var mw = ( function ( $, undefined ) {
 		},
 
 		/**
-		 * Converts message object to it's string form based on the state of format.
+		 * Converts message object to its string form based on the state of format.
 		 *
 		 * @return {string} Message as a string in the current form or `<key>` if key does not exist.
 		 */
@@ -291,11 +320,7 @@ var mw = ( function ( $, undefined ) {
 	};
 
 	/**
-	 * Base library for MediaWiki.
-	 *
 	 * @class mw
-	 * @alternateClassName mediaWiki
-	 * @singleton
 	 */
 	return {
 		/* Public Members */
@@ -592,7 +617,7 @@ var mw = ( function ( $, undefined ) {
 							try {
 								styleEl.styleSheet.cssText += cssText; // IE
 							} catch ( e ) {
-								log( 'addEmbeddedCSS fail\ne.message: ' + e.message, e );
+								log( 'addEmbeddedCSS fail', e );
 							}
 						} else {
 							styleEl.appendChild( document.createTextNode( String( cssText ) ) );
@@ -771,30 +796,6 @@ var mw = ( function ( $, undefined ) {
 			}
 
 			/**
-			 * Log a message to window.console, if possible. Useful to force logging of some
-			 * errors that are otherwise hard to detect (I.e., this logs also in production mode).
-			 * Gets console references in each invocation, so that delayed debugging tools work
-			 * fine. No need for optimization here, which would only result in losing logs.
-			 *
-			 * @private
-			 * @param {string} msg text for the log entry.
-			 * @param {Error} [e]
-			 */
-			function log( msg, e ) {
-				var console = window.console;
-				if ( console && console.log ) {
-					console.log( msg );
-					// If we have an exception object, log it through .error() to trigger
-					// proper stacktraces in browsers that support it. There are no (known)
-					// browsers that don't support .error(), that do support .log() and
-					// have useful exception handling through .log().
-					if ( e && console.error ) {
-						console.error( e );
-					}
-				}
-			}
-
-			/**
 			 * A module has entered state 'ready', 'error', or 'missing'. Automatically update pending jobs
 			 * and modules that depend upon this module. if the given module failed, propagate the 'error'
 			 * state up the dependency tree; otherwise, execute all jobs/modules that now have all their
@@ -834,29 +835,26 @@ var mw = ( function ( $, undefined ) {
 						j -= 1;
 						try {
 							if ( hasErrors ) {
-								throw new Error( 'Module ' + module + ' failed.');
+								if ( $.isFunction( job.error ) ) {
+									job.error( new Error( 'Module ' + module + ' has failed dependencies' ), [module] );
+								}
 							} else {
 								if ( $.isFunction( job.ready ) ) {
 									job.ready();
 								}
 							}
 						} catch ( e ) {
-							if ( $.isFunction( job.error ) ) {
-								try {
-									job.error( e, [module] );
-								} catch ( ex ) {
-									// A user-defined operation raised an exception. Swallow to protect
-									// our state machine!
-									log( 'Exception thrown by job.error()', ex );
-								}
-							}
+							// A user-defined callback raised an exception.
+							// Swallow it to protect our state machine!
+							log( 'Exception thrown by job.error', e );
 						}
 					}
 				}
 
 				if ( registry[module].state === 'ready' ) {
-					// The current module became 'ready'. Recursively execute all dependent modules that are loaded
-					// and now have all dependencies satisfied.
+					// The current module became 'ready'. Set it in the module store, and recursively execute all
+					// dependent modules that are loaded and now have all dependencies satisfied.
+					mw.loader.store.set( module, registry[module] );
 					for ( m in registry ) {
 						if ( registry[m].state === 'loaded' && allReady( registry[m].dependencies ) ) {
 							execute( m );
@@ -1009,7 +1007,7 @@ var mw = ( function ( $, undefined ) {
 					} catch ( e ) {
 						// This needs to NOT use mw.log because these errors are common in production mode
 						// and not in debug mode, such as when a symbol that should be global isn't exported
-						log( 'Exception thrown by ' + module + ': ' + e.message, e );
+						log( 'Exception thrown by ' + module, e );
 						registry[module].state = 'error';
 						handlePending( module );
 					}
@@ -1026,30 +1024,37 @@ var mw = ( function ( $, undefined ) {
 					mw.messages.set( registry[module].messages );
 				}
 
-				// Make sure we don't run the scripts until all (potentially asynchronous)
-				// stylesheet insertions have completed.
-				( function () {
-					var pending = 0;
-					checkCssHandles = function () {
-						// cssHandlesRegistered ensures we don't take off too soon, e.g. when
-						// one of the cssHandles is fired while we're still creating more handles.
-						if ( cssHandlesRegistered && pending === 0 && runScript ) {
-							runScript();
-							runScript = undefined; // Revoke
-						}
-					};
-					cssHandle = function () {
-						var check = checkCssHandles;
-						pending++;
-						return function () {
-							if (check) {
-								pending--;
-								check();
-								check = undefined; // Revoke
+				if ( $.isReady || registry[module].async ) {
+					// Make sure we don't run the scripts until all (potentially asynchronous)
+					// stylesheet insertions have completed.
+					( function () {
+						var pending = 0;
+						checkCssHandles = function () {
+							// cssHandlesRegistered ensures we don't take off too soon, e.g. when
+							// one of the cssHandles is fired while we're still creating more handles.
+							if ( cssHandlesRegistered && pending === 0 && runScript ) {
+								runScript();
+								runScript = undefined; // Revoke
 							}
 						};
-					};
-				}() );
+						cssHandle = function () {
+							var check = checkCssHandles;
+							pending++;
+							return function () {
+								if (check) {
+									pending--;
+									check();
+									check = undefined; // Revoke
+								}
+							};
+						};
+					}() );
+				} else {
+					// We are in blocking mode, and so we can't afford to wait for CSS
+					cssHandle = function () {};
+					// Run immediately
+					checkCssHandles = runScript;
+				}
 
 				// Process styles (see also mw.loader.implement)
 				// * back-compat: { <media>: css }
@@ -1190,7 +1195,7 @@ var mw = ( function ( $, undefined ) {
 			 * @param {Object} moduleMap Module map, see #buildModulesString
 			 * @param {Object} currReqBase Object with other parameters (other than 'modules') to use in the request
 			 * @param {string} sourceLoadScript URL of load.php
-			 * @param {boolean} async If true, use an asynchrounous request even if document ready has not yet occurred
+			 * @param {boolean} async If true, use an asynchronous request even if document ready has not yet occurred
 			 */
 			function doRequest( moduleMap, currReqBase, sourceLoadScript, async ) {
 				var request = $.extend(
@@ -1203,8 +1208,18 @@ var mw = ( function ( $, undefined ) {
 				addScript( sourceLoadScript + '?' + $.param( request ) + '&*', null, async );
 			}
 
-			/* Public Methods */
+			/* Public Members */
 			return {
+				/**
+				 * The module registry is exposed as an aid for debugging and inspecting page
+				 * state; it is not a public interface for modifying the registry.
+				 *
+				 * @see #registry
+				 * @property
+				 * @private
+				 */
+				moduleRegistry: registry,
+
 				/**
 				 * @inheritdoc #newStyleTag
 				 * @method
@@ -1216,7 +1231,7 @@ var mw = ( function ( $, undefined ) {
 				 */
 				work: function () {
 					var	reqBase, splits, maxQueryLength, q, b, bSource, bGroup, bSourceGroup,
-						source, group, g, i, modules, maxVersion, sourceLoadScript,
+						source, concatSource, group, g, i, modules, maxVersion, sourceLoadScript,
 						currReqBase, currReqBaseLength, moduleMap, l,
 						lastDotIndex, prefix, suffix, bytesAdded, async;
 
@@ -1242,6 +1257,21 @@ var mw = ( function ( $, undefined ) {
 							}
 						}
 					}
+
+					mw.loader.store.init();
+					if ( mw.loader.store.enabled ) {
+						concatSource = [];
+						batch = $.grep( batch, function ( module ) {
+							var source = mw.loader.store.get( module );
+							if ( source ) {
+								concatSource.push( source );
+								return false;
+							}
+							return true;
+						} );
+						$.globalEval( concatSource.join( ';' ) );
+					}
+
 					// Early exit if there's nothing to load...
 					if ( !batch.length ) {
 						return;
@@ -1436,16 +1466,19 @@ var mw = ( function ( $, undefined ) {
 				 * @param {Function|Array} script Function with module code or Array of URLs to
 				 *  be used as the src attribute of a new `<script>` tag.
 				 * @param {Object} style Should follow one of the following patterns:
+				 *
 				 *     { "css": [css, ..] }
 				 *     { "url": { <media>: [url, ..] } }
+				 *
 				 * And for backwards compatibility (needs to be supported forever due to caching):
+				 *
 				 *     { <media>: css }
 				 *     { <media>: [url, ..] }
 				 *
 				 * The reason css strings are not concatenated anymore is bug 31676. We now check
 				 * whether it's safe to extend the stylesheet (see #canExpandStylesheetWith).
 				 *
-				 * @param {Object} msgs List of key/value pairs to be added to {@link mw#messages}.
+				 * @param {Object} msgs List of key/value pairs to be added to mw#messages.
 				 */
 				implement: function ( module, script, style, msgs ) {
 					// Validate input
@@ -1682,6 +1715,251 @@ var mw = ( function ( $, undefined ) {
 				 */
 				go: function () {
 					mw.loader.load( 'mediawiki.user' );
+				},
+
+				/**
+				 * @inheritdoc mw.inspect#runReports
+				 * @method
+				 */
+				inspect: function () {
+					var args = slice.call( arguments );
+					mw.loader.using( 'mediawiki.inspect', function () {
+						mw.inspect.runReports.apply( mw.inspect, args );
+					} );
+				},
+
+				/**
+				 * On browsers that implement the localStorage API, the module store serves as a
+				 * smart complement to the browser cache. Unlike the browser cache, the module store
+				 * can slice a concatenated response from ResourceLoader into its constituent
+				 * modules and cache each of them separately, using each module's versioning scheme
+				 * to determine when the cache should be invalidated.
+				 *
+				 * @singleton
+				 * @class mw.loader.store
+				 */
+				store: {
+					// Whether the store is in use on this page.
+					enabled: null,
+
+					// The contents of the store, mapping '[module name]@[version]' keys
+					// to module implementations.
+					items: {},
+
+					// Cache hit stats
+					stats: { hits: 0, misses: 0, expired: 0 },
+
+					/**
+					 * Construct a JSON-serializable object representing the content of the store.
+					 * @return {Object} Module store contents.
+					 */
+					toJSON: function () {
+						return { items: mw.loader.store.items, vary: mw.loader.store.getVary() };
+					},
+
+					/**
+					 * Get the localStorage key for the entire module store. The key references
+					 * $wgDBname to prevent clashes between wikis which share a common host.
+					 *
+					 * @return {string} localStorage item key
+					 */
+					getStoreKey: function () {
+						return 'MediaWikiModuleStore:' + mw.config.get( 'wgDBname' );
+					},
+
+					/**
+					 * Get a string key on which to vary the module cache.
+					 * @return {string} String of concatenated vary conditions.
+					 */
+					getVary: function () {
+						return [
+							mw.config.get( 'skin' ),
+							mw.config.get( 'wgResourceLoaderStorageVersion' ),
+							mw.config.get( 'wgUserLanguage' )
+						].join(':');
+					},
+
+					/**
+					 * Get a string key for a specific module. The key format is '[name]@[version]'.
+					 *
+					 * @param {string} module Module name
+					 * @return {string|null} Module key or null if module does not exist
+					 */
+					getModuleKey: function ( module ) {
+						return typeof registry[module] === 'object' ?
+							( module + '@' + registry[module].version ) : null;
+					},
+
+					/**
+					 * Initialize the store by retrieving it from localStorage and (if successfully
+					 * retrieved) decoding the stored JSON value to a plain object.
+					 *
+					 * The try / catch block is used for JSON & localStorage feature detection.
+					 * See the in-line documentation for Modernizr's localStorage feature detection
+					 * code for a full account of why we need a try / catch: <http://git.io/4NEwKg>.
+					 */
+					init: function () {
+						var raw, data, optedIn;
+
+						if ( mw.loader.store.enabled !== null ) {
+							// #init already ran.
+							return;
+						}
+
+						// Temporarily allow users to opt-in during mw.loader.store test phase by
+						// manually setting a cookie (bug 56397).
+						optedIn = /ResourceLoaderStorageEnabled=1/.test( document.cookie );
+
+						if ( !( mw.config.get( 'wgResourceLoaderStorageEnabled' ) || optedIn ) || mw.config.get( 'debug' ) ) {
+							// Disabled by configuration, or because debug mode is set.
+							mw.loader.store.enabled = false;
+							return;
+						}
+
+						try {
+							raw = localStorage.getItem( mw.loader.store.getStoreKey() );
+							// If we get here, localStorage is available; mark enabled.
+							mw.loader.store.enabled = true;
+							data = JSON.parse( raw );
+							if ( data && typeof data.items === 'object' && data.vary === mw.loader.store.getVary() ) {
+								mw.loader.store.items = data.items;
+								return;
+							}
+						} catch (e) {}
+
+						if ( raw === undefined ) {
+							mw.loader.store.enabled = false;  // localStorage failed; disable store.
+						} else {
+							mw.loader.store.update();
+						}
+					},
+
+					/**
+					 * Retrieve a module from the store and update cache hit stats.
+					 *
+					 * @param {string} module Module name
+					 * @return {string|boolean} Module implementation or false if unavailable
+					 */
+					get: function ( module ) {
+						var key;
+
+						if ( mw.loader.store.enabled !== true ) {
+							return false;
+						}
+
+						key = mw.loader.store.getModuleKey( module );
+						if ( key in mw.loader.store.items ) {
+							mw.loader.store.stats.hits++;
+							return mw.loader.store.items[key];
+						}
+						mw.loader.store.stats.misses++;
+						return false;
+					},
+
+					/**
+					 * Stringify a module and queue it for storage.
+					 *
+					 * @param {string} module Module name
+					 * @param {Object} descriptor The module's descriptor as set in the registry
+					 */
+					set: function ( module, descriptor ) {
+						var args, key;
+
+						if ( mw.loader.store.enabled !== true ) {
+							return false;
+						}
+
+						key = mw.loader.store.getModuleKey( module );
+
+						if ( key in mw.loader.store.items ) {
+							// Already set; decline to store.
+							return false;
+						}
+
+						if ( descriptor.state !== 'ready' ) {
+							// Module failed to load; decline to store.
+							return false;
+						}
+
+						if ( !descriptor.version || $.inArray( descriptor.group, [ 'private', 'user', 'site' ] ) !== -1 ) {
+							// Unversioned, private, or site-/user-specific; decline to store.
+							return false;
+						}
+
+						if ( $.inArray( undefined, [ descriptor.script, descriptor.style, descriptor.messages ] ) !== -1 ) {
+							// Partial descriptor; decline to store.
+							return false;
+						}
+
+						try {
+							args = [
+								JSON.stringify( module ),
+								typeof descriptor.script === 'function' ?
+									String( descriptor.script ) : JSON.stringify( descriptor.script ),
+								JSON.stringify( descriptor.style ),
+								JSON.stringify( descriptor.messages )
+							];
+						} catch (e) {
+							return;
+						}
+						mw.loader.store.items[key] = 'mw.loader.implement(' + args.join(',') + ');';
+						mw.loader.store.update();
+					},
+
+					/**
+					 * Iterate through the module store, removing any item that does not correspond
+					 * (in name and version) to an item in the module registry.
+					 */
+					prune: function () {
+						var key, module;
+
+						if ( mw.loader.store.enabled !== true ) {
+							return false;
+						}
+
+						for ( key in mw.loader.store.items ) {
+							module = key.substring( 0, key.indexOf( '@' ) );
+							if ( mw.loader.store.getModuleKey( module ) !== key ) {
+								mw.loader.store.stats.expired++;
+								delete mw.loader.store.items[key];
+							}
+						}
+					},
+
+					/**
+					 * Sync modules to localStorage.
+					 *
+					 * This function debounces localStorage updates. When called multiple times in
+					 * quick succession, the calls are coalesced into a single update operation.
+					 * This allows us to call #update without having to consider the module load
+					 * queue; the call to localStorage.setItem will be naturally deferred until the
+					 * page is quiescent.
+					 *
+					 * Because localStorage is shared by all pages with the same origin, if multiple
+					 * pages are loaded with different module sets, the possibility exists that
+					 * modules saved by one page will be clobbered by another. But the impact would
+					 * be minor and the problem would be corrected by subsequent page views.
+					 */
+					update: ( function () {
+						var timer;
+
+						function flush() {
+							var data;
+							if ( mw.loader.store.enabled !== true ) {
+								return false;
+							}
+							mw.loader.store.prune();
+							try {
+								data = JSON.stringify( mw.loader.store );
+								localStorage.setItem( mw.loader.store.getStoreKey(), data );
+							} catch (e) {}
+						}
+
+						return function () {
+							clearTimeout( timer );
+							timer = setTimeout( flush, 2000 );
+						};
+					}() )
 				}
 			};
 		}() ),

@@ -274,7 +274,7 @@ $1',
 'pool-queuefull' => 'পুলর লাইনহান বুঝেসে',
 'pool-errorunknown' => 'হারনাপাসি লালহান',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}}র বারে',
 'aboutpage' => 'Project:বারে',
 'copyright' => '$1-র মাতুঙে এহানর মেথেলহানি পানা একরের।',
@@ -356,17 +356,6 @@ $1',
 # General errors
 'error' => 'লালুইসে',
 'databaseerror' => 'ডাটাবেসর লাল',
-'dberrortext' => 'ডাটাবেজ কোয়েরি সিন্ট্যাক্সর মা লালুইসে।
-সফটওয়্যারে কোন বাগর কা এহান ইতে পারে।
-লমিলগা ডাটাবেজ কোয়েরিহান এসারে আসিল:
-<blockquote><tt>$1</tt></blockquote>
-"<tt>$2</tt>" ফাংশনর ভিতরেত্ত।
-ডাটাবেজ লাল হান দিল: "<tt>$3: $4</tt>"।',
-'dberrortextcl' => 'ডাটাবেজ কোয়েরি সিন্ট্যাক্সর মা লালুইসে।
-লমিলগা ডাটাবেজ কোয়েরিহান এসারে আসিল:
-"$1"
-"$2" ফাংশনর ভিতরেত্ত।
-ডাটাবেজ লাল হান দিল: "$3: $4"।',
 'laggedslavemode' => "'''সিঙুইস:''' পাতা এহানাত হাদি এহানার পতানি নেই।",
 'readonly' => 'ডাটাবেস গাথি লাগিসে',
 'enterlockreason' => 'তালা দেনার কারণহান মাত, লগে কুম্পাগা মুকিতেই অহান মাত',
@@ -413,7 +402,6 @@ $1',
 'viewsourcetext' => 'পাতা এহানর উত্স চা বারো কপি করে পারর:',
 'protectedinterface' => 'পাতা এহানর মেথেল উইকি সফটওয়্যারর ইন্টারফেসর পৌহান দের, অহানে এহানরে ইতু করিয়া থনা অসে এবিউসেত্ত ঙাক্করানির কাজে।',
 'editinginterface' => "'''সিঙুইস:''' তি এমন পাতা আহান পতার যেহান সফটওয়্যারর কা ইন্টারফেস টেক্সট দের হানে। পাতা এহার পতানিহান আতাকুরার ইন্টারফেস সিল পরতইগা, যেহান আর আ আতাকুরাইদেখতাই। অনুবাদর কা [//translatewiki.net/wiki/Main_Page?setlang=bpy translatewiki.net] ব্যবহার করানির বারে খালকর। এহান মিডিয়াউইকির স্থানীয়করণ প্রকল্পহান।",
-'sqlhidden' => '(এস কিউ এল কোয়েরি গুরিয়া আসে)',
 'cascadeprotected' => 'পাতা এহান পতানি থা নেই, কিদিয়া বুল্লে {{PLURAL:$1|হান পাতা|হান পাতার}}  মা তিলুইসে, যে পাতা/পাতাহানিরতা cascading অপশন অহান লয়া সুরক্ষিত অসে।
 $2',
 'namespaceprotected' => "'''$1''' নাঙর থাকে কোন পাতা পতানিরকা তরতা য়্যাথাং নেই।",
@@ -436,7 +424,6 @@ $2',
 'yourpassword' => 'খন্তাচাবিগ (password)',
 'yourpasswordagain' => 'খন্তাচাবিগ (password) আরাকমু ইকর',
 'remembermypassword' => 'আহার গজে সেশনর কা খন্তাচাবি মনে থ(সর্বোচ্চ $1 {{PLURAL:$1|দিনর|দিনর}} কা)',
-'securelogin-stick-https' => 'লগইন করানির পিছে এইচটিটিপিএস-র লগে সংযোগ থ',
 'yourdomainname' => 'তর ডোমেইনগ',
 'externaldberror' => 'ডাটেবেজর মা বেসেপ আহান ইসে নাইলে তরতা বারেদের একাউন্ট বদালানির য়্যাথাং নেই।',
 'login' => 'হমানি',
@@ -532,7 +519,7 @@ $2',
 'newpassword' => 'নুৱা খন্তাচাবি:',
 'retypenew' => 'নুৱা খন্তাচাবি বারো টাইপ কর:',
 'resetpass_submit' => 'খন্তাচাবি লেপকর বারো লগ-ইন কর',
-'resetpass_success' => 'তর খন্তা চাবি হবাই বালাই পতিল। তি এপাগা ভিতরে হমারগা...',
+'changepassword-success' => 'তর খন্তা চাবি হবাই বালাই পতিল। তি এপাগা ভিতরে হমারগা...',
 'resetpass_forbidden' => 'খন্তাচাবিগ সিলকরানি নুৱারলাঙ',
 'resetpass-no-info' => 'পাতা এহানাত হমিতে গেলেগা তি যেসারেউ লগইন করানি লাগতই।',
 'resetpass-submit-loggedin' => 'খন্তাচাবি সিলকর',
@@ -1126,9 +1113,6 @@ $2',
 'statistics-header-hooks' => 'আরআর পরিসংখ্যান',
 'statistics-articles' => 'পাতার কন্টেনহানি',
 'statistics-pages' => 'পাতাহানি',
-
-'disambiguations' => 'সন্দই চুমকরের পাতাহানি',
-'disambiguationspage' => 'Template:সন্দই চুম',
 
 'doubleredirects' => 'আলথকে যানা দ্বিমাউ মাতের',
 

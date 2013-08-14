@@ -427,7 +427,7 @@ Gortewgh pols kyns hwi dhe assaya hedhas an folen-ma arta, mar pleg.
 $1',
 'pool-errorunknown' => 'Gwall ankoth',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'A-dro dhe {{SITENAME}}',
 'aboutpage' => 'Project:Kedhlow',
 'copyright' => 'Kavadow yw an dalgh yn-dann $1.',
@@ -535,7 +535,6 @@ Na ankevewgh dhe janjya agas [[Special:Preferences|dewisyansow {{SITENAME}}]].',
 'remembermypassword' => "Perthi kov a'm omgelmi war an jynn amontya-ma (rag $1 {{PLURAL:$1|dydh}} dhe'n moyha)",
 'userlogin-remembermypassword' => "Perthi kov a'm omgelmi",
 'userlogin-signwithsecure' => 'Devnydhya junyans diogel',
-'securelogin-stick-https' => 'Gwitha junyes gans HTTPS wosa omgelmi',
 'yourdomainname' => 'Agas tiredh:',
 'password-change-forbidden' => 'Ny yllir chanjya geryow tremena war an wiki-ma.',
 'login' => 'Omgelmi',
@@ -631,7 +630,7 @@ Rag gorfenna omgelmi, res yw dhywgh settya ger tremena nowyth omma:',
 'newpassword' => 'Ger tremena nowyth:',
 'retypenew' => 'Jynnscrifewgh an ger tremena nowyth arta:',
 'resetpass_submit' => 'Settya an ger tremena hag omgelmi',
-'resetpass_success' => 'Chanjyes re beu agas ger tremena yn sewen!
+'changepassword-success' => 'Chanjyes re beu agas ger tremena yn sewen!
 Orth agas omgelmi lemmyn...',
 'resetpass_forbidden' => 'Ny yllir chanjya geryow tremena',
 'resetpass-submit-loggedin' => 'Chanjya an ger tremena',
@@ -1524,8 +1523,7 @@ Hwi a yll [[Special:EditWatchlist|devnydhya an janjyel usadow]] ynwedh.',
 
 # Database error messages
 'dberr-header' => "An wiki-ma a'n jeves kudyn",
-'dberr-problems' => "Drog yw genen!
-An wiasva-ma a's teves kaletter teknogel.",
+'dberr-problems' => "Drog yw genen! An wiasva-ma a's teves kaletter teknogel.",
 'dberr-again' => 'Assayewgh gortos pols ha daskarga.',
 'dberr-info' => '(Ny yllir kestava orth servyer an database: $1)',
 'dberr-usegoogle' => 'Hwi a yll assaya hwilas dre Google.',

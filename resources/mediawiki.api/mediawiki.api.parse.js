@@ -17,9 +17,9 @@
 		parse: function ( wikitext, ok, err ) {
 			var d = $.Deferred(),
 				apiPromise;
+
 			// Backwards compatibility (< MW 1.20)
-			d.done( ok );
-			d.fail( err );
+			d.done( ok ).fail( err );
 
 			apiPromise = this.get( {
 					action: 'parse',

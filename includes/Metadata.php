@@ -28,10 +28,10 @@ abstract class RdfMetaData {
 
 	/**
 	 * Constructor
-	 * @param $article Article object
+	 * @param Page $page
 	 */
-	public function __construct( Page $article ) {
-		$this->mArticle = $article;
+	public function __construct( Page $page ) {
+		$this->mArticle = $page;
 	}
 
 	abstract public function show();
@@ -40,7 +40,10 @@ abstract class RdfMetaData {
 		global $wgOut, $wgRequest;
 
 		$httpaccept = isset( $_SERVER['HTTP_ACCEPT'] ) ? $_SERVER['HTTP_ACCEPT'] : null;
-		$rdftype = wfNegotiateType( wfAcceptToPrefs( $httpaccept ), wfAcceptToPrefs( self::RDF_TYPE_PREFS ) );
+		$rdftype = wfNegotiateType(
+			wfAcceptToPrefs( $httpaccept ),
+			wfAcceptToPrefs( self::RDF_TYPE_PREFS )
+		);
 
 		if ( !$rdftype ) {
 			throw new HttpError( 406, wfMessage( 'notacceptable' ) );
@@ -103,8 +106,8 @@ abstract class RdfMetaData {
 	}
 
 	/**
-	 * @param $name string
-	 * @param $title Title
+	 * @param string $name
+	 * @param Title $title
 	 */
 	protected function page( $name, $title ) {
 		$this->url( $name, $title->getFullURL() );

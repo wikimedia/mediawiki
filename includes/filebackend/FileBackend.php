@@ -807,7 +807,7 @@ abstract class FileBackend {
 	 * @return ScopedCallback|null
 	 */
 	final protected function getScopedPHPBehaviorForOps() {
-		if ( php_sapi_name() != 'cli' ) { // http://bugs.php.net/bug.php?id=47540
+		if ( PHP_SAPI != 'cli' ) { // http://bugs.php.net/bug.php?id=47540
 			$old = ignore_user_abort( true ); // avoid half-finished operations
 			return new ScopedCallback( function() use ( $old ) {
 				ignore_user_abort( $old );
@@ -1183,8 +1183,10 @@ abstract class FileBackend {
 	 * Once the return value goes out scope, the locks will be released and
 	 * the status updated. Unlock fatals will not change the status "OK" value.
 	 *
-	 * @param array $paths Storage paths
-	 * @param integer $type LockManager::LOCK_* constant
+	 * @see ScopedLock::factory()
+	 *
+	 * @param array $paths List of storage paths or map of lock types to path lists
+	 * @param integer|string $type LockManager::LOCK_* constant or "mixed"
 	 * @param Status $status Status to update on lock/unlock
 	 * @return ScopedLock|null Returns null on failure
 	 */

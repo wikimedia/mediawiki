@@ -15,6 +15,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider providePreSaveTransform
+	 * @covers Parser::preSaveTransform
 	 */
 	public function testPreSaveTransform( $text, $expected ) {
 		global $wgParser;
@@ -28,6 +29,9 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $expected, $text );
 	}
 
+	/**
+	 * @covers Parser::callParserFunction
+	 */
 	public function testCallParserFunction() {
 		global $wgParser;
 
@@ -44,5 +48,48 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 			'text' => '<pre style="margin-left: 1.6em">foo</pre>',
 		), $ret, 'callParserFunction works for {{#tag:pre|foo|style=margin-left: 1.6em}}' );
 	}
-	// TODO: Add tests for cleanSig() / cleanSigInSig(), getSection(), replaceSection(), getPreloadText()
+
+	/**
+	 * @covers Parser::parse
+	 * @covers ParserOutput::getSections
+	 */
+	public function testGetSections() {
+		global $wgParser;
+
+		$title = Title::newFromText( str_replace( '::', '__', __METHOD__ ) );
+		$out = $wgParser->parse( "==foo==\n<h2>bar</h2>\n==baz==\n", $title, new ParserOptions() );
+		$this->assertSame( array(
+			array(
+				'toclevel' => 1,
+				'level' => '2',
+				'line' => 'foo',
+				'number' => '1',
+				'index' => '1',
+				'fromtitle' => $title->getPrefixedDBkey(),
+				'byteoffset' => 0,
+				'anchor' => 'foo',
+			),
+			array(
+				'toclevel' => 1,
+				'level' => '2',
+				'line' => 'bar',
+				'number' => '2',
+				'index' => '',
+				'fromtitle' => false,
+				'byteoffset' => null,
+				'anchor' => 'bar',
+			),
+			array(
+				'toclevel' => 1,
+				'level' => '2',
+				'line' => 'baz',
+				'number' => '3',
+				'index' => '2',
+				'fromtitle' => $title->getPrefixedDBkey(),
+				'byteoffset' => 21,
+				'anchor' => 'baz',
+			),
+		), $out->getSections(), 'getSections() with proper value when <h2> is used' );
+	}
+	//@Todo Add tests for cleanSig() / cleanSigInSig(), getSection(), replaceSection(), getPreloadText()
 }

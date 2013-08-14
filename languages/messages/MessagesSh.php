@@ -451,7 +451,7 @@ $1',
 'pool-queuefull' => 'Red na pool je prenapunjen',
 'pool-errorunknown' => 'nepoznata greška',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'O projektu {{SITENAME}}',
 'aboutpage' => 'Project:O_projektu_{{SITENAME}}',
 'copyright' => 'Sadržaj je dostupan pod $1.',
@@ -537,17 +537,6 @@ Lista valjanih posebnih stranica se može naći na [[Special:SpecialPages|{{int:
 # General errors
 'error' => 'Greška',
 'databaseerror' => 'Greška u bazi podataka',
-'dberrortext' => 'Došlo je do sintaktičke greške u bazi.
-Možda se radi o grešci u softveru.
-Posljednji pokušaj upita je glasio:
-<blockquote><code>$1</code></blockquote>
-unutar funkcije „<code>$2</code>“.
-Baza podataka je prijavila grešku „<samp>$3: $4</samp>“.',
-'dberrortextcl' => 'Desila se sintaksna greška upita baze.
-Posljednji pokušani upit je bio:
-"$1"
-iz funkcije "$2".
-MySQL je vratio grešku "$3: $4".',
 'laggedslavemode' => "'''Upozorenje''': Stranica ne mora sadržavati posljednja ažuriranja.",
 'readonly' => 'Baza podataka je zaključana',
 'enterlockreason' => 'Unesite razlog za zaključavanje, uključujući procjenu vremena otključavanja',
@@ -602,7 +591,6 @@ Pretraga: $2',
 'editinginterface' => "'''Upozorenje:''' Mijenjate stranicu koja se koristi za tekst interfejsa za softver.
 Promjene na ovoj stranici će izazvati promjene korisničkog interfejsa za druge korisnike na ovoj wiki.
 Za prijevode, molimo Vas koristite [//translatewiki.net/wiki/Main_Page?setlang=bs translatewiki.net], projekt lokalizacije MediaWiki.",
-'sqlhidden' => '(SQL pretraga sakrivena)',
 'cascadeprotected' => 'Ova stranica je zaštićena od uređivanja, jer je uključena u {{PLURAL:$1|stranicu zaštićenu|stranice zaštićene}} od uređivanja sa uključenom kaskadnom opcijom:
 $2',
 'namespaceprotected' => "Nemate dozvolu uređivati stranice imenskog prostora '''$1'''.",
@@ -650,7 +638,6 @@ Ne zaboravite izmijeniti vlastite [[Special:Preferences|{{SITENAME}} postavke]].
 'remembermypassword' => 'Upamti moju lozinku na ovom kompjuteru (za maksimum od $1 {{PLURAL:$1|dan|dana}})',
 'userlogin-remembermypassword' => 'Držite me ulogiranog/u',
 'userlogin-signwithsecure' => 'Koristite sigurnu vezu',
-'securelogin-stick-https' => 'Ostanite povezani na HTTPS nakon prijave',
 'yourdomainname' => 'Vaš domen:',
 'password-change-forbidden' => 'Ne možete da promenite lozinku na ovom vikiju.',
 'externaldberror' => 'Došlo je do greške pri vanjskoj autorizaciji baze podataka ili vam nije dopušteno osvježavanje Vašeg vanjskog korisničkog računa.',
@@ -779,7 +766,7 @@ Da biste završili prijavu, morate unijeti novu šifru ovdje:',
 'newpassword' => 'Nova šifra:',
 'retypenew' => 'Ukucajte ponovo novu šifru:',
 'resetpass_submit' => 'Odredi lozinku i prijavi se',
-'resetpass_success' => 'Vaša šifra je uspiješno promjenjena! Prijava u toku...',
+'changepassword-success' => 'Vaša šifra je uspiješno promjenjena! Prijava u toku...',
 'resetpass_forbidden' => 'Šifre ne mogu biti promjenjene',
 'resetpass-no-info' => 'Morate biti prijavljeni da bi ste pristupili ovoj stranici direktno.',
 'resetpass-submit-loggedin' => 'Promijeni lozinku',
@@ -2052,12 +2039,6 @@ Prije brisanja provjerite da li druge stranice vode na te šablone.',
 'statistics-users-active-desc' => 'Korisnici koju su izvršili akciju u toku {{PLURAL:$1|zadnjeg dana|zadnja $1 dana|zadnjih $1 dana}}',
 'statistics-mostpopular' => 'Najviše pregledane stranice',
 
-'disambiguations' => 'Stranice do višeznačnih odrednica',
-'disambiguationspage' => 'Template:Višeznačna odrednica',
-'disambiguations-text' => "Slijedeće stranice su povezane sa '''stranicom za razvrstavanje'''.
-One se možda moraju povezati sa konkretnim člankom.<br />
-Stranica se smatra stranicom za razvrstavanje, ukoliko koristi šablon koji je povezan sa spiskom [[MediaWiki:Disambiguationspage|stranica za razvrstavanje]]",
-
 'pageswithprop' => 'Stranice sa svojstvom stranice',
 'pageswithprop-legend' => 'Stranice sa svojstvom stranice',
 'pageswithprop-text' => 'Ova stranica navodi stranice sa specifičnim svojstvom stranice.',
@@ -2727,12 +2708,9 @@ Možda je već deblokirana.',
 Međutim, možda je blokirana kao dio bloka $2, koji se može deblokirati.',
 'ip_range_invalid' => 'Netačan raspon IP adresa.',
 'ip_range_toolarge' => 'Grupne blokade veće od /$1 nisu dozvoljene.',
-'blockme' => 'Blokiraj me',
 'proxyblocker' => 'Bloker proksija',
-'proxyblocker-disabled' => 'Ova funkcija je onemogućena.',
 'proxyblockreason' => 'Vaša IP adresa je blokirana jer je ona otvoreni proksi.  
 Molimo vas da kontaktirate vašeg davatelja internetskih usluga (Internet Service Provider-a) ili tehničku podršku i obavijestite ih o ovom ozbiljnom sigurnosnom problemu.',
-'proxyblocksuccess' => 'Proksi uspješno blokiran.',
 'sorbsreason' => 'Vaša IP adresa je prikazana kao otvoreni proxy u DNSBL koji koristi {{SITENAME}}.',
 'sorbs_create_account_reason' => 'Vaša IP adresa je prikazana kao otvoreni proxy u DNSBL korišten od {{SITENAME}}.
 Ne možete napraviti račun',

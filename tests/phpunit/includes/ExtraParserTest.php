@@ -5,6 +5,11 @@
  */
 class ExtraParserTest extends MediaWikiTestCase {
 
+	/** @var ParserOptions */
+	protected $options;
+	/** @var Parser */
+	protected $parser;
+
 	protected function setUp() {
 		parent::setUp();
 
@@ -26,8 +31,11 @@ class ExtraParserTest extends MediaWikiTestCase {
 		MagicWord::clearCache();
 	}
 
-	// Bug 8689 - Long numeric lines kill the parser
-	function testBug8689() {
+	/**
+	 * Bug 8689 - Long numeric lines kill the parser
+	 * @covers Parser::parse
+	 */
+	public function testBug8689() {
 		global $wgUser;
 		$longLine = '1.' . str_repeat( '1234567890', 100000 ) . "\n";
 
@@ -37,14 +45,20 @@ class ExtraParserTest extends MediaWikiTestCase {
 			$this->parser->parse( $longLine, $t, $options )->getText() );
 	}
 
-	/* Test the parser entry points */
-	function testParse() {
+	/**
+	 * Test the parser entry points
+	 * @covers Parser::parse
+	 */
+	public function testParse() {
 		$title = Title::newFromText( __FUNCTION__ );
 		$parserOutput = $this->parser->parse( "Test\n{{Foo}}\n{{Bar}}", $title, $this->options );
 		$this->assertEquals( "<p>Test\nContent of <i>Template:Foo</i>\nContent of <i>Template:Bar</i>\n</p>", $parserOutput->getText() );
 	}
 
-	function testPreSaveTransform() {
+	/**
+	 * @covers Parser::preSaveTransform
+	 */
+	public function testPreSaveTransform() {
 		global $wgUser;
 		$title = Title::newFromText( __FUNCTION__ );
 		$outputText = $this->parser->preSaveTransform( "Test\r\n{{subst:Foo}}\n{{Bar}}", $title, $wgUser, $this->options );
@@ -52,7 +66,10 @@ class ExtraParserTest extends MediaWikiTestCase {
 		$this->assertEquals( "Test\nContent of ''Template:Foo''\n{{Bar}}", $outputText );
 	}
 
-	function testPreprocess() {
+	/**
+	 * @covers Parser::preprocess
+	 */
+	public function testPreprocess() {
 		$title = Title::newFromText( __FUNCTION__ );
 		$outputText = $this->parser->preprocess( "Test\n{{Foo}}\n{{Bar}}", $title, $this->options );
 
@@ -61,8 +78,9 @@ class ExtraParserTest extends MediaWikiTestCase {
 
 	/**
 	 * cleanSig() makes all templates substs and removes tildes
+	 * @covers Parser::cleanSig
 	 */
-	function testCleanSig() {
+	public function testCleanSig() {
 		$title = Title::newFromText( __FUNCTION__ );
 		$outputText = $this->parser->cleanSig( "{{Foo}} ~~~~" );
 
@@ -71,8 +89,9 @@ class ExtraParserTest extends MediaWikiTestCase {
 
 	/**
 	 * cleanSig() should do nothing if disabled
+	 * @covers Parser::cleanSig
 	 */
-	function testCleanSigDisabled() {
+	public function testCleanSigDisabled() {
 		$this->setMwGlobals( 'wgCleanSignatures', false );
 
 		$title = Title::newFromText( __FUNCTION__ );
@@ -84,8 +103,9 @@ class ExtraParserTest extends MediaWikiTestCase {
 	/**
 	 * cleanSigInSig() just removes tildes
 	 * @dataProvider provideStringsForCleanSigInSig
+	 * @covers Parser::cleanSigInSig
 	 */
-	function testCleanSigInSig( $in, $out ) {
+	public function testCleanSigInSig( $in, $out ) {
 		$this->assertEquals( Parser::cleanSigInSig( $in ), $out );
 	}
 
@@ -97,7 +117,10 @@ class ExtraParserTest extends MediaWikiTestCase {
 		);
 	}
 
-	function testGetSection() {
+	/**
+	 * @covers Parser::getSection
+	 */
+	public function testGetSection() {
 		$outputText2 = $this->parser->getSection( "Section 0\n== Heading 1 ==\nSection 1\n=== Heading 2 ===\nSection 2\n== Heading 3 ==\nSection 3\n", 2 );
 		$outputText1 = $this->parser->getSection( "Section 0\n== Heading 1 ==\nSection 1\n=== Heading 2 ===\nSection 2\n== Heading 3 ==\nSection 3\n", 1 );
 
@@ -105,7 +128,10 @@ class ExtraParserTest extends MediaWikiTestCase {
 		$this->assertEquals( "== Heading 1 ==\nSection 1\n=== Heading 2 ===\nSection 2", $outputText1 );
 	}
 
-	function testReplaceSection() {
+	/**
+	 * @covers Parser::replaceSection
+	 */
+	public function testReplaceSection() {
 		$outputText = $this->parser->replaceSection( "Section 0\n== Heading 1 ==\nSection 1\n=== Heading 2 ===\nSection 2\n== Heading 3 ==\nSection 3\n", 1, "New section 1" );
 
 		$this->assertEquals( "Section 0\nNew section 1\n\n== Heading 3 ==\nSection 3", $outputText );
@@ -113,8 +139,9 @@ class ExtraParserTest extends MediaWikiTestCase {
 
 	/**
 	 * Templates and comments are not affected, but noinclude/onlyinclude is.
+	 * @covers Parser::getPreloadText
 	 */
-	function testGetPreloadText() {
+	public function testGetPreloadText() {
 		$title = Title::newFromText( __FUNCTION__ );
 		$outputText = $this->parser->getPreloadText( "{{Foo}}<noinclude> censored</noinclude> information <!-- is very secret -->", $title, $this->options );
 
@@ -133,8 +160,9 @@ class ExtraParserTest extends MediaWikiTestCase {
 
 	/**
 	 * @group Database
+	 * @covers Parser::parse
 	 */
-	function testTrackingCategory() {
+	public function testTrackingCategory() {
 		$title = Title::newFromText( __FUNCTION__ );
 		$catName = wfMessage( 'broken-file-category' )->inContentLanguage()->text();
 		$cat = Title::makeTitleSafe( NS_CATEGORY, $catName );
@@ -146,8 +174,9 @@ class ExtraParserTest extends MediaWikiTestCase {
 
 	/**
 	 * @group Database
+	 * @covers Parser::parse
 	 */
-	function testTrackingCategorySpecial() {
+	public function testTrackingCategorySpecial() {
 		// Special pages shouldn't have tracking cats.
 		$title = SpecialPage::getTitleFor( 'Contributions' );
 		$parserOutput = $this->parser->parse( "[[file:nonexistent]]", $title, $this->options );

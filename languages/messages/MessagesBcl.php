@@ -11,6 +11,7 @@
  * @author Geopoet
  * @author Hoo
  * @author Kaganer
+ * @author Shirayuki
  * @author Steven*fung
  * @author Urhixidur
  */
@@ -103,12 +104,12 @@ $messages = array(
 'tog-hidepatrolled' => 'Tagóa an patrolyadong mga paghirá sa nakakaági pa sanáng pagbabàgo',
 'tog-newpageshidepatrolled' => 'Tagóa an patrolyadong mga pahina gikan sa listahan kan bàgong pahina',
 'tog-extendwatchlist' => 'Palakbanga an bantay-listahan (watchlist) na maipahiling an gabos na pinagbago, bako sana an pinakahurihang binago',
-'tog-usenewrc' => 'Grupong mga pagbabago sa kada pahina kan pinakahuring mga binago asin bantay-listahan (minakaipo nin JavaScript)',
+'tog-usenewrc' => 'Pangrupong mga kaliwatan sa kada pahina kan mga dae pa sana nahaloy na mga kaliwatan asin bantay-listahan',
 'tog-numberheadings' => 'Tolos-bilang na mga pamayohán',
-'tog-showtoolbar' => 'Ihayag an toolbar nin paghirá (minakaipo nin JavaScript)',
-'tog-editondblclick' => 'Liwaton an mga pahina sa dobleng pagpindot (minakaipo nin JavaScript)',
+'tog-showtoolbar' => 'Ipahiling an barang-gamit nin pagliwat',
+'tog-editondblclick' => 'Liwaton an mga pahina sa pagdoble nin klik',
 'tog-editsection' => 'Paganaha an paghihirá kan seksyon sa paági kan [liwaton] na kilyawan',
-'tog-editsectiononrightclick' => 'Paganaha an paghihirá kan seksyon sa paagi kan patoong pagpindot sa mga titulo kan seksyon (minakaipo nin JavaScript)',
+'tog-editsectiononrightclick' => 'Paganaha an seksyon nin pagliliwat sa pag-klik kan mga titulo nin seksyon',
 'tog-showtoc' => 'Ihayag an taytayan nin mga laog (para sa mga pahinang igwang sobra sa 3 pamayohan)',
 'tog-rememberpassword' => 'Giromdoma an sakong paglaóg sa kilyaw (browser) na ini (para sa maximum na $1 {{PLURAL:$1|aldaw|mga aldaw}})',
 'tog-watchcreations' => 'Idagdag an mga pahina na ako an nagmukna asin an mga sagunson na ako an nagkarga sa sakong bantay-listahan',
@@ -126,7 +127,7 @@ $messages = array(
 'tog-shownumberswatching' => 'Ihayag an numero kan nagbabantay na mga parágamit',
 'tog-oldsig' => 'Tugmadong pirma',
 'tog-fancysig' => 'Trataron an pirma na wiki-teksto (mayo nin awtomatikong kilyaw)',
-'tog-uselivepreview' => 'Gamíta an buhay na patànaw (minakaipo nin JavaScript) (eksperimental)',
+'tog-uselivepreview' => 'Gamíta an buhay na patànaw (eksperimental)',
 'tog-forceeditsummary' => 'Ibunyaw sako kun maglalaog sa blangkong kalanyang nin paghirá',
 'tog-watchlisthideown' => 'Tagóa an sakong mga pagliwat gikan sa bantay-listahan',
 'tog-watchlisthidebots' => 'Tagóa an bot na mga pagliwat gikan sa bantay-listahan',
@@ -139,6 +140,7 @@ $messages = array(
 'tog-showhiddencats' => 'Ihayag an nakatagong mga kategorya',
 'tog-norollbackdiff' => 'Omidohon an diff matapos himoon an pagbalikot',
 'tog-useeditwarning' => 'Patanidan ako kunsoarin na ako nagbaya sa pahinang pigliliwat na dae naitatagama an mga kaliwatan',
+'tog-prefershttps' => 'Pirmeng gumamit nin sarong seguradong koneksyon kunsoarin na ika nakalaog na',
 
 'underline-always' => 'Pirmi',
 'underline-never' => 'Nungka',
@@ -239,7 +241,7 @@ $messages = array(
 'newwindow' => '(minabukas sa bàgong bintanà)',
 'cancel' => 'Kanselaron',
 'moredotdotdot' => 'Kadagdagan...',
-'morenotlisted' => 'Dakol pa an bakong listado...',
+'morenotlisted' => 'Ining listahan bako pang kumpleto.',
 'mypage' => 'An Pahina',
 'mytalk' => 'Orolayan',
 'anontalk' => 'Olay para kaining IP address',
@@ -312,7 +314,7 @@ $messages = array(
 'articlepage' => 'Tanawon an laog kan pahina',
 'talk' => 'Orolayan',
 'views' => 'Mga Tanawon',
-'toolbox' => 'Kagamitang kahon',
+'toolbox' => 'Mga gagamiton:',
 'userpage' => 'Tanawon an pahina kan parágamit',
 'projectpage' => 'Tanawon an pahina kan proyekto',
 'imagepage' => 'Hilngón an pahina nin sagunson (file)',
@@ -339,10 +341,10 @@ $1',
 'pool-queuefull' => 'An grupong panproseso panoon',
 'pool-errorunknown' => 'Bakong bistadong sala',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Dapít sa {{SITENAME}}',
 'aboutpage' => 'Project:Mapanonongód',
-'copyright' => 'An kalamnan manunumpungan sa laog kan $1.',
+'copyright' => 'An kalamnan manunumpungan sa laog kan $1 o baya notado na ining laen.',
 'copyrightpage' => '{{ns:project}}:Mga Katanosang pansurat',
 'currentevents' => 'Sa ngunyan na mga pangyayari',
 'currentevents-url' => 'Project:Mga pangyayari sa ngunyán',
@@ -426,17 +428,12 @@ Pwede mong mahiling an lista nin mga marhay na pahina sa [[Special:SpecialPages|
 # General errors
 'error' => 'Salâ',
 'databaseerror' => 'Salâ sa base nin datos',
-'dberrortext' => 'May kahaputan sa datos-sarayan sa napasalang sintaks an nangyari.
-Ini puwedeng minapanungod nin sarong kubol na yaon sa kasungatan .
-An pinakahuring pagprubar sa datos-sarayan naghahapot nin:
-<blockquote><tt>$1</tt></blockquote>
-gikan sa laog kan punksyon na "<tt>$2</tt>".
-An pinagbalik na kasalaan sa datos-sarayan "<tt>$3: $4</tt>".',
-'dberrortextcl' => 'Sarong datos-sarayan na may napasalang sintaks an nangyari.
-An pinakahuring pagprubar sa datos-sarayan naghahapot nin:
-"$1"
-na hale sa laog kan punksyon na "$2".
-An datos-sarayan nagbalik nin sala na "<tt>$3: $4</tt>".',
+'databaseerror-text' => 'Sarong hapot sa datos-sarayan na kasalaan an nangyari.
+Ini puwedeng minapasabot nin sarong kudol sa panuklob.',
+'databaseerror-textcl' => 'Sarong hapot sa datos-sarayan na kasalaan an nangyari.',
+'databaseerror-query' => 'Hapot: $1',
+'databaseerror-function' => 'Punksyon: $1',
+'databaseerror-error' => 'Kasalaan: $1',
 'laggedslavemode' => 'Patanid: An pahina pwedeng dai nin pagbabâgo sa ngonyan.',
 'readonly' => 'Nakakandado na datos-sarayan',
 'enterlockreason' => 'Magkaag tabì nin rason sa pagkandado, asin ikalkulo kun nuarin bubukasón an kandado',
@@ -493,7 +490,6 @@ Sa pagdagdag or pagliwat nin mga dakit-taramon para sa bilog na wiki, gamita tab
 'editinginterface' => "'''Patanid:''' Ika nagliliwat kan pahina na ginagamit sa pagtao nin pantahaw-olay na teksto para sa software.
 An mga pagbabago kaining pahina makaka-apekto sa hitsura kan pantahaw-olay nin paragamit para sa iba man na paragamit.
 Para sa mga pagdadakit-taramon, pakikonsidera man tabi an paggagamit kan [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], an MediaWiking lokalisasyon kan proyekto.",
-'sqlhidden' => '(nakatagô an hapót nin SQL)',
 'cascadeprotected' => 'Pinoprotehirán ining páhina sa mga paghirá, ta sarô ini sa mga minasunod na {{PLURAL:$1|páhina|mga páhina}} na pinoprotehiran kan opsyón na "katarata" na nakabuká:
 $2',
 'namespaceprotected' => "Mayô kang permisong maghirá kan mga páhina sa '''$1''' ngaran-espacio.",
@@ -540,7 +536,6 @@ Dae malingaw na liwaton an saimong [[Special:Preferences|{{SITENAME}} mga kamuya
 'remembermypassword' => 'Giromdoma an sakong paglaog sa kilyaw (browser) na ini (para sa maksimum na $1 {{PLURAL:$1|aldaw|mga aldaw}})',
 'userlogin-remembermypassword' => 'Dagos mo akong giromdomon na nakalaog',
 'userlogin-signwithsecure' => 'Gamiton an seguradong koneksyon',
-'securelogin-stick-https' => 'Magpirmeng konektado sa HTTPS matapos kang maglaog',
 'yourdomainname' => 'An saimong kasakupan:',
 'password-change-forbidden' => 'Ika dae makapagliwat nin sekretong panlaog sa wiking ini.',
 'externaldberror' => 'Igwa gayod sala sa arinman kan patunay sa datos-sarayan o ika dae pinagtugutan na bâgohon an saimong panluwas na panindog.',
@@ -563,6 +558,9 @@ Dae malingaw na liwaton an saimong [[Special:Preferences|{{SITENAME}} mga kamuya
 'userlogin-resetpassword-link' => 'Pakibaguha an saimong sekretong panlaog',
 'helplogin-url' => 'Help:Paglalaog',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Tabang sa paglalaog]]',
+'userlogin-loggedin' => 'Ika nakalaog na tabi bilang si {{GENDER:$1|$1}}.
+Gamita an porma sa ibaba sa paglaog bilang ibang paragamit.',
+'userlogin-createanother' => 'Magmukna nin ibang panindog',
 'createacct-join' => 'Pakikaag an saimong impormasyon sa ibaba.',
 'createacct-another-join' => 'Ikaag an impormasyon kan baguhong panindog sa ibaba.',
 'createacct-emailrequired' => 'Estada kan e-surat',
@@ -625,8 +623,8 @@ Kun ibang tawo an naghimo kaining kahagadan, o kun saimo nang nagiromdoman an sa
 'passwordsent' => 'Sarong baguhon na sekretong panlaog an ipinadara sa e-koreong address na nakarehistro para ki "$1".
 Tabi maglaog giraray matapos mong maresibe ini.',
 'blocked-mailpassword' => 'An saimong IP address pinagkubkob na magliwat, asin kaya dae tinutugutan na gumamit kan pambawi nin sekretong panlaog na punksyon tanganing makalikay sa abuso.',
-'eauthentsent' => 'Sarong e-koreong pankumpirmasyon an ipinadara sa nominadong e-koreong address.
-Bago an ibang e-koreo ipinadara sa panindog, ika igwang pagsunudong na mga instruksyon na yaon sa e-koreo, tanganing kumpirmaron na an panindog tunay talagang saimo.',
+'eauthentsent' => 'Sarong pankumpirmasyon na e-surat an ipinadara sa isinambit na estada nin e-surat.
+Bago an ibang e-surat ipinapadara sa panindog, ika igwang susunudon na mga instruksyon na yaon sa e-surat, tanganing kumpirmaron na an panindog tunay talagang saimo.',
 'throttled-mailpassword' => 'Sarong e-surat sa pagliliwat kan sekretong panlaog an ipinadara na, sa laog nin {{PLURAL:$1|hour|$1 hours}}.
 Tangarig malikayan an abuso, saro sanang e-surat sa pagliliwat kan sekretong panlaog an ipinapadara sa lambang {{PLURAL:$1|hour|$1 hours}}.',
 'mailerror' => 'Salâ an pagpadará kan koreo: $1',
@@ -646,10 +644,12 @@ Pakilaog sana tabi nin sarong tugmadong koreo o pabayae na mayong laman an surat
 'createaccount-title' => 'Panindog na pagmukna para sa {{SITENAME}}',
 'createaccount-text' => 'May tawong nagmukna nin sarong panindog na gamit an saimong address na e-surat sa {{SITENAME}} ($4) na may ngaran na "$2, na may sikretong panlaog na "$3".',
 'usernamehasherror' => 'Paragamit na ngaran dae puwede na igwang simbolikong mga kabtang',
-'login-throttled' => 'Nakapaghimo ka na nin kadakulon na pagprubar sa paglaog dae pa sana nahaloy. Mapuwede lang po na maghalat bago magprubar giraray.',
+'login-throttled' => 'Nakapaghimo ka na nin grabe kadakol na pagprubar na maglaog sa dae pa sana nahahaloy. Tabi man pakihalat nin $1 bago ka magprubar giraray.',
 'login-abort-generic' => 'An saimong paglaog dae nakadagos - Pinundo',
 'loginlanguagelabel' => 'Lengguwahe: $1',
 'suspicious-userlogout' => 'An hinahagad mong magluwas pinagpundo nin huli ta ini gayod pinagpadara sa paagi nin sarong pasang kilyaw o proksing hilom.',
+'createacct-another-realname-tip' => 'An totoong pangaran opsyonal.
+Kun gustuhon mong itao ini, ini paggagamiton sa pagtatao nin pagkakabistohan kan paragamit para sa saindang mga kaggibohan.',
 
 # Email sending
 'php-mail-error-unknown' => 'Bakong bantog na kasalaan sa PHP mail() function.',
@@ -666,7 +666,7 @@ Tanganing tapuson an paglalaog, ika kaipong magkaag nin sarong baguhon na sekret
 'newpassword' => 'Bàguhon na sekretong panlaog:',
 'retypenew' => 'Itaták giraray an bàgong panlaog:',
 'resetpass_submit' => 'Ipwesto an sekretong panlaog dangan maglaog',
-'resetpass_success' => 'Naribayan na an saimong sekretong panlaog! Pigpapadagos ka na...',
+'changepassword-success' => 'An saimong pasa-taramon matrayumpong pinagliwat na!',
 'resetpass_forbidden' => 'An mga sekretong panlaog dae puwedeng maribayan',
 'resetpass-no-info' => 'Ika dapat nakalaog na tanganing direktang makagamit kaining pahina.',
 'resetpass-submit-loggedin' => 'Ribayan an sekretong panlaog',
@@ -730,7 +730,7 @@ Gibohon mo ini kun aksidente mong naipagheras sinda sa kiisay man o kun an saimo
 'resettokens-legend' => 'Pakibaguha an mga paduos',
 'resettokens-tokens' => 'Mga Paduos:',
 'resettokens-token-label' => '$1 (na ngunyan na halaga: $2)',
-'resettokens-watchlist-token' => 'Paduos sa Bantay-listahan kan hungitan sa web',
+'resettokens-watchlist-token' => 'Paduos para sa hungitan nin web (Atom/RSS) kan [[Special:Watchlist|mga kaliwatan sa mga pahina nin saimong bantay-listahan]]',
 'resettokens-done' => 'Mga paduos pinagbago na.',
 'resettokens-resetbutton' => 'Pakibaguha an pinagpiling mga paduos',
 
@@ -811,9 +811,7 @@ Ini puwedeng pinagbalyo o pinagpara na habang saimong pinaghihiling an pahina.',
 'loginreqlink' => 'maglaog',
 'loginreqpagetext' => 'Kaipuhan kang $1 tangarig makahilíng nin ibang pahina.',
 'accmailtitle' => 'Napadará na an sekretong panlaog.',
-'accmailtext' => "An patsambang pagpuyos kan sekretong panlaog para ki [[User talk:$1|$1]] ipinagpadara na ki $2.
-
-An sekretong panlaog para sa bagong panindog mapuwede tabing maribayan ''[[Special:ChangePassword|Ribayan an sekretong panlaog]]'' na pahina matapos na makalaog.",
+'accmailtext' => "An purak na pinagpuyos na pasa-taramon para ki [[User talk:$1|$1]] ipinagpadara na sa $2. Ini mapupuwedeng pagribayan sa ''[[Special:ChangePassword|change password]]'' na pahina matapos na ika nakalaog na.",
 'newarticle' => '(Bàgo)',
 'newarticletext' => "Ika nakapagsunod sa sarong sugpon pasiring sa sarong pahina na bako pang eksistido. Tanganing makapagmukna nin pahina, magpoon sa pagpindot sa laog nin kahon sa ibaba (hilngon an [[{{MediaWiki:Helppage}}|pahina nin katabangan]] para sa kadugangan na impormasyon).
 Kun ika napasalang nakadigde, i-klik an  '''ibalik''' na pindutan kan saimong kilyaw.",
@@ -1067,15 +1065,15 @@ An ibang administrador sa {{SITENAME}} puwede pa man makagamit sa pinagtagong la
 *Bakong angay an personal na impormasyon
 *: ''mga address kan harong asin mga numero kan telepono, sosyal na seguridad, iba pa.''",
 'revdelete-legend' => 'Ilapat an mga restriksyon sa bisibilidad',
-'revdelete-hide-text' => 'Tagoon an teksto kan pagpakaraháy',
+'revdelete-hide-text' => 'Teksto nin rebisyon',
 'revdelete-hide-image' => 'Tagoon an laog kan file',
 'revdelete-hide-name' => 'Tagoon an aksyon asin target',
-'revdelete-hide-comment' => 'Tagoon an komento sa paghirá',
-'revdelete-hide-user' => 'Tagoon an pangaran kan editor/IP',
+'revdelete-hide-comment' => 'Liwaton an sumaryo',
+'revdelete-hide-user' => 'Paraliwat na ngaran-paragamit/IP na estada',
 'revdelete-hide-restricted' => 'Ilubog an mga datos gikan sa mga administrador asin man kan iba',
 'revdelete-radio-same' => '(dae pagribayan)',
-'revdelete-radio-set' => 'Iyo tabi',
-'revdelete-radio-unset' => 'Bako tabi',
+'revdelete-radio-set' => 'Namamansayan',
+'revdelete-radio-unset' => 'Itinago',
 'revdelete-suppress' => 'Dai ipahilíng an mga datos sa mga sysops asin sa mga iba pa',
 'revdelete-unsuppress' => 'Halîon an mga restriksyón sa mga ibinalík na pagpakarhay',
 'revdelete-log' => 'Rason:',
@@ -1258,7 +1256,7 @@ Prubaran na panigmitan an saimong kahaputan nin ''all:'' sa paghanap kan gabos n
 'prefs-rendering' => 'Hitsurahon',
 'saveprefs' => 'Itagama',
 'resetprefs' => 'Linigan an dae naitagamang mga kaliwatan',
-'restoreprefs' => 'Ibalik an gabos na pirmihang mga panuytoy',
+'restoreprefs' => 'Balikon an gabos na panugmad na mga panuytoy (sa gabos na mga seksyon)',
 'prefs-editing' => 'Pighihira',
 'rows' => 'Mga hilera:',
 'columns' => 'Mga taytay:',
@@ -1317,12 +1315,13 @@ Ini dae tabi matitingkog.',
 'badsig' => 'Dai pwede an bâgong pirmang ini; isúsog an mga HTML na takód.',
 'badsiglength' => 'An saimong pirma grabe kahalabaon.
 Ini dapat dae magsobra sa $1 {{PLURAL:$1|karakter|mga karakter}} an laba.',
-'yourgender' => 'Pagkatawo:',
-'gender-unknown' => 'Dae nakasambit',
-'gender-male' => 'Lalaki',
-'gender-female' => 'Babai',
-'prefs-help-gender' => 'Opsyonal: Ginagamit para sa pagkatawong pag-apod sa paagi nin kasungatan.
-Ining impormasyon magigin pampubliko.',
+'yourgender' => 'Ano an muya mo sa paglaladawan saimo?',
+'gender-unknown' => 'Ako muya na dae ipagdetalye',
+'gender-male' => 'Siya nagliliwat nin mga pahina sa wiki',
+'gender-female' => 'Siya nagliliwat nin mga pahina sa wiki',
+'prefs-help-gender' => 'An panuytoy kaining kamuyahan opsyonal.
+An panuklob minagamit kan saiyang kahalagahan sa pagpanungod saimo asin sa pagsambit saimo sa iba pa na naggagamit nin maninigong gramatikal na kabolosan.
+Ining impormasyon isasapubliko.',
 'email' => 'E-koreo',
 'prefs-help-realname' => 'Opsyonal an totoong pangaran asin kun itatao mo ini, gagamiton ini yangarig an mga sinurat mo maatribuir saimo.',
 'prefs-help-email' => 'An e-surat na adres sarong opsyonal, alagad ini kinakaipohan para sa pagtuytoy otro kan sekretong panlaog, kun ika malingaw kan saimong sekretong panlaog.',
@@ -1346,6 +1345,7 @@ An saimong e-surat na adres dae ipagbuyagyag kunsoarin na an ibang paragamit mak
 'prefs-displaywatchlist' => 'Ipahiling ang mga pagpipilian',
 'prefs-tokenwatchlist' => 'Paduos',
 'prefs-diffs' => 'Diffs',
+'prefs-help-prefershttps' => 'Ining kamuyahan magkaka-epekto sa masunod mong paglaog.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'An e-koreo nagpapahiling na balido',
@@ -1503,8 +1503,8 @@ An saimong e-surat na adres dae ipagbuyagyag kunsoarin na an ibang paragamit mak
 'action-block' => 'kubkubon ining paragamit gikan sa pagliliwat',
 'action-protect' => 'ribayan an kurit nin proteksyon para sa pahinang ini',
 'action-rollback' => 'hidaling ipagbalik an mga pagliwat kan huring paragamit na pinagliwat an sarong partikular na pahina',
-'action-import' => 'importaron ining pahina gikan sa ibang wiki',
-'action-importupload' => 'importaron ining pahina gikan sa sarong ikinargang sagunson',
+'action-import' => 'importaron an mga pahina gikan sa ibang wiki',
+'action-importupload' => 'importaron an mga pahina gikan sa sarong ikinargang sagunson',
 'action-patrol' => 'markahan an pagliwat kan iba bilang patrolyado',
 'action-autopatrol' => 'Giboha na an saimong pagliwat markado bilang patrolyado',
 'action-unwatchedpages' => 'tanawon an listahan kan mayong bantay na mga pahina',
@@ -1520,6 +1520,8 @@ An saimong e-surat na adres dae ipagbuyagyag kunsoarin na an ibang paragamit mak
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|kaliwatan|mga kaliwatan}}',
+'enhancedrc-since-last-visit' => '$1 {{PLURAL:$1|poon kaidtong huring bisita}}',
+'enhancedrc-history' => 'historiya',
 'recentchanges' => 'Dae pa sana nahahaloy na mga kaliwatan',
 'recentchanges-legend' => 'Pinakahuring mga option kan mga pagbabago',
 'recentchanges-summary' => 'Hanapon an mga pinahuring pagbabâgo sa wiki digdi sa páhinang ini.',
@@ -1551,7 +1553,7 @@ An saimong e-surat na adres dae ipagbuyagyag kunsoarin na an ibang paragamit mak
 'rc_categories_any' => 'Dawà arín',
 'rc-change-size-new' => '$1 {{PLURAL:$1|byte|bytes}} pagtatapos kan pagbabago',
 'newsectionsummary' => '/* $1 */ bàgong seksyon',
-'rc-enhanced-expand' => 'Magpahiling kan mga detalye (minakaipo nin JavaScript)',
+'rc-enhanced-expand' => 'Ipahiling an mga detalye',
 'rc-enhanced-hide' => 'Itago an mga detalye',
 'rc-old-title' => 'orihinal na pinagmukna bilang "$1"',
 
@@ -1803,8 +1805,7 @@ Para sa pinakamakusog na seguridad, img_auth.php nganay pinagpundo.',
 'upload_source_file' => " (sarong ''file'' sa kompyuter mo)",
 
 # Special:ListFiles
-'listfiles-summary' => 'Ining espesyal na pahina nagpapahiling kan gabos na pinagkargang mga sagunson.
-Kunsoarin na pinagsara nin paragamit, an mga sagunson sana kun saen an pinagkarga nin paragamit na iyo an pinakahuring bersyon an ipagpapahiling.',
+'listfiles-summary' => 'Ining espesyal na pahina minapahiling kan gabos na ipinagkargang mga sagunson.',
 'listfiles_search_for' => 'Hanápon an pangaran kan retrato:',
 'imgfile' => 'dokumento',
 'listfiles' => 'Lista kan dokumento',
@@ -1815,6 +1816,10 @@ Kunsoarin na pinagsara nin paragamit, an mga sagunson sana kun saen an pinagkarg
 'listfiles_size' => 'Sukol',
 'listfiles_description' => 'Deskripsión',
 'listfiles_count' => 'Mga Bersyon',
+'listfiles-show-all' => 'Minabali kan lumang mga bersyon nin mga imahe',
+'listfiles-latestversion' => 'Sa ngunyan na bersyon',
+'listfiles-latestversion-yes' => 'Iyo',
+'listfiles-latestversion-no' => 'Dae',
 
 # File description page
 'file-anchor-link' => 'Sagunson',
@@ -1910,7 +1915,7 @@ Giromdoma baya na mag-tsek para sa iba pang kasugpon sa mga templato bago mo pag
 'randompage' => 'Purakan na pahina',
 'randompage-nopages' => 'Dae tabi nin mga pahina sa minasunod na {{PLURAL:$2|espasyong-ngaran|mga espasyong-ngaran}}: $1.',
 
-# Special:RandomInCategory
+# Random page in category
 'randomincategory' => 'Purakan na pahina sa kategoriya',
 'randomincategory-invalidcategory' => '"$1" bako sarong balidong pangaran nin kategoriya.',
 'randomincategory-nopages' => 'Mayo nin mga pahina sa [[:Category:$1]].',
@@ -1942,19 +1947,13 @@ Giromdoma baya na mag-tsek para sa iba pang kasugpon sa mga templato bago mo pag
 'statistics-users-active-desc' => 'Mga paragamit na may ginibong aksyon sa nakaaging {{PLURAL:$1|aldaw|$1 mga aldaw}}',
 'statistics-mostpopular' => 'mga pinaka pighiling na pahina',
 
-'disambiguations' => 'Mga pahinang minatulay pasiring sa pampalinaw na mga pahina',
-'disambiguationspage' => 'Template:kapaliwanagan',
-'disambiguations-text' => "An mga minasunod na mga pahina igwang laog nin kisera sarong tulay pasiring sa '''pampalinaw na pahina'''.
-Sinda mapuwedeng makipagsugpon pasiring sa sarong mas manigong pahina nanggad.<br />
-An sarong pahina tratado bilang pampalinaw na pahina kun ini minagamit nin sarong templato na nakasugpon gikan sa [[MediaWiki:Disambiguationspage]].",
-
 'pageswithprop' => 'Mga pahina na igwang pahina nin kagrugaring',
 'pageswithprop-legend' => 'Mga pahina na igwang pahina nin kagrugaring',
 'pageswithprop-text' => 'Ining mahina naglilista kan mga pahina na minagamit nin partikular na pahina nin kagrugaring.',
 'pageswithprop-prop' => 'Kagrugaring na pangaran:',
 'pageswithprop-submit' => 'Larga',
-'pageswithprop-prophidden-long' => 'halabaon na tekstong propriyedad na an halaga nakatago ($1 kilobayta)',
-'pageswithprop-prophidden-binary' => 'binaryong propriyedad na an halaga nakatago ($1 kilobayta)',
+'pageswithprop-prophidden-long' => 'halawigon na pampropriyedad na tekstong halaga na ipinagtago ($1)',
+'pageswithprop-prophidden-binary' => 'binaryong propriyedad na an halaga ipinagtago ($1)',
 
 'doubleredirects' => 'Dobleng mga redirekta',
 'doubleredirectstext' => 'Ining pahina minalista nin mga pahina na minatukdo liwat pasiring sa pinagtukdong-liwat na mga pahina.
@@ -2029,6 +2028,7 @@ Ini ngunyan minatukdo-liwat pasiring sa [[$2]].',
 'listusers' => 'Lista nin paragamit',
 'listusers-editsonly' => 'Ipahiling sana an mga paragamit na igwang mga pinagliwat',
 'listusers-creationsort' => 'Salansanon sa paagi kan petsa nin pagmukna',
+'listusers-desc' => 'Salansanon sa paibabang pasurunod',
 'usereditcount' => '$1 {{PLURAL:$1|pigliwat|mga pigliwat}}',
 'usercreated' => '{{GENDER:$3|Minukna}} kan $1 sa $2',
 'newpages' => 'Mga bàguhong pahina',
@@ -2293,10 +2293,12 @@ Hilingón tabì an $2 para mahiling an lista nin mga kaaagi pa sanang pagparà.'
 'deletecomment' => 'Rason:',
 'deleteotherreason' => 'Iba/dugang na rason:',
 'deletereasonotherlist' => 'Ibang rason',
-'deletereason-dropdown' => '*Pirmehang rason nin pagpupura
-** Kahagadan nin Awtor/Parasurat
-** Kalapasan sa Copyright
-** Bandalismo',
+'deletereason-dropdown' => '*Kumon na mga rason nin pagpura
+**Ispam
+**Bandalismo
+**Kalapasan sa Katanosan nin pagsadiri
+**Kahagadan nin Awtor
+**Parasa na panlikwat',
 'delete-edit-reasonlist' => 'Pagliwat kan mga rason nin pagpupura',
 'delete-toobig' => 'Ining pahina igwa nin dakulaong historiya sa pagliwat, minasobrang $1 {{PLURAL:$1|rebisyon|mga rebisyon}}.
 An pagpupura kan nasambit na mga pahina dae pinagtutugot tanganing maiwasan an aksidenteng pagka-antala kan {{SITENAME}}.',
@@ -2317,7 +2319,7 @@ may iba na tabing nagliwat o nagbalik kan pahina.
 An huring pagliwat sa pahina ginibo ni [[User:$3|$3]] ([[User talk:$3|olay]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment' => "An sumaryo kan pagliwat: \"''\$1''\".",
 'revertpage' => 'Ibinalik na mga pagliwat ni [[Special:Contributions/$2|$2]] ([[User talk:$2|talk]]) sagkod sa huring rebisyon ni [[User:$1|$1]]',
-'revertpage-nouser' => 'Binalikwat na mga pagliliwat kan sarong nakatagong paragamit sa huring rebisyon ni [[User:$1|$1]]',
+'revertpage-nouser' => 'Binalikwat na mga pagliliwat kan sarong nakatagong paragamit sa huring rebisyon ni {{GENDER:$1|[[User:$1|$1]]}}',
 'rollback-success' => 'Binawî na mga paghirá ni $1; pigbalik sa dating bersyón ni $2.',
 
 # Edit tokens
@@ -2457,7 +2459,7 @@ $1",
 'contributions' => '{{GENDER:$1|Paragamit}} na mga kaambagan',
 'contributions-title' => 'Mga kontribusyon kan paragamit para sa $1',
 'mycontris' => 'Mga Kaarambagan',
-'contribsub2' => 'Para ki $1($2)',
+'contribsub2' => 'Para ki {{GENDER:$3|$1}} ($2)',
 'nocontribs' => 'Mayong mga pagbabago na nahanap na kapadis sa ining mga criteria.',
 'uctop' => '(sa ngunyan)',
 'month' => 'Poon bulan (asin mas amay):',
@@ -2615,11 +2617,8 @@ Hilngon sa [[Special:BlockList|listahan nin kubkob]] para sa listahan kan presen
 Ini, baya, pinagkubkob bilang parte kan hidwas $2, na mapuwedeng daemakukubkob.',
 'ip_range_invalid' => 'Dai pwede ining serye nin IP.',
 'ip_range_toolarge' => 'An hidwas kan mga kubkob dakulaon kesa /$1 dae pinagtutugutan.',
-'blockme' => 'Kubkuba ako',
 'proxyblocker' => 'Parabagát na karibay',
-'proxyblocker-disabled' => 'Ining punksyon pinag-untok.',
 'proxyblockreason' => 'Binagat an saimong direccion nin IP ta ini sarong bukas na proxy. Apodon tabi an saimong Internet service provider o tech support asin ipaaram sainda ining seriosong problema nin seguridad.',
-'proxyblocksuccess' => 'Tapos.',
 'sorbsreason' => 'An saimong IP na estada pinaglista bilang sarong bukas na proksi sa lang kan DNSBL na ginagamit kan {{SITENAME}}.',
 'sorbs_create_account_reason' => 'An saimong IP na estada pinaglista bilang sarong bukas na proksi sa laog kan DNSBL na ginagamit kan {{SITENAME}}.
 Ika dae makakamukna nin sarong panindog.',
@@ -2704,7 +2703,7 @@ Magpilì tabì nin ibang pangaran.',
 'movepage-page-exists' => 'An pahina sa $1 eksistido na asin bako tabi awtomatikong masasalambawan.',
 'movepage-page-moved' => 'An pahina $1 pinagbalyo na paduman sa $2.',
 'movepage-page-unmoved' => 'An pahina $1 dae maipagbabalyo paduman sa $2.',
-'movepage-max-pages' => 'An pinakahalangkawon na $1 {{PLURAL:S1|pahina|mga pahina}} pinagbalyo na asin mayo tabi na awtomatikong maipagbabalyo.',
+'movepage-max-pages' => 'An pinakahalangkawon na $1 {{PLURAL:$1|pahina|mga pahina}} pinagbalyo na asin mayo tabi na awtomatikong maipagbabalyo.',
 'movelogpage' => 'Balyuhon an katalaanan',
 'movelogpagetext' => 'Nasa ibaba an lista kan pahinang pigbalyó.',
 'movesubpage' => '{{PLURAL:$1|Sub-pahina|Mga Sub-pahina}}',
@@ -2967,6 +2966,8 @@ Ini hurot na pinagkausa nin sarong sugpunan pasiring sa sarong pinagbawal na pan
 'spam_reverting' => 'Mabalik sa huring bersion na mayong takod sa $1',
 'spam_blanking' => 'An gabos na mga pahirá na may takod sa $1, pigblablanko',
 'spam_deleting' => 'An gabos na mga rebisyon na igwang mga kasugpunan sa $1, pinupura',
+'simpleantispam-label' => "Rikisa nin Kontra-Ispam.
+Giboha na '''DAE''' paglaogan digde!",
 
 # Info page
 'pageinfo-title' => 'Impormasyon para sa "$1"',
@@ -3090,7 +3091,7 @@ Sa pagpapa-andar kaini, an saimong sistema mapupuwedeng makompromiso.",
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'seconds' => '{{PLURAL:$1|$1 segundo|$1 segundos}}',
 'minutes' => '{{PLURAL:$1|$1 minuto|$1 minutos}}',
-'hours' => '{{PLURAL:$1|$1 oras|$1 oras}}',
+'hours' => '{{PLURAL:$1|$1 oras}}',
 'days' => '{{PLURAL:$1|$1 aldaw|$1 mga aldaw}}',
 'weeks' => '{{PLURAL:$1|$1 semana|$1 mga semana}}',
 'months' => '{{PLURAL:$1|$1 bulan|$1 mga bulan}}',
@@ -3735,7 +3736,7 @@ Ika dapat na nakapagresibe na kan [{{SERVER}}{{SCRIPTPATH}}/COPYING sarong kopya
 # Special:Redirect
 'redirect' => 'Palikwatong sa paagi nin sagunson, paragamit, or rebisyon kan ID',
 'redirect-legend' => 'Palikwatong pasiring sa sarong sagunson o pahina',
-'redirect-summary' => 'Ining espesyal na pahina minalikwat pasiring sa sarong sagunson (ipinagtao an ngaran kan sagunson), sarong pahina (ipinagtao an sarong rebisyon kan ID), o sarong pahina nin paragamit (ipinagtao an numerikong ID nin paragamit).',
+'redirect-summary' => 'Ining espesyal na pahina minalikwat pasiring sa sarong sagunson (ipinagtao an ngaran kan sagunson), sarong pahina (ipinagtao an sarong rebisyon kan ID), o sarong pahina nin paragamit (ipinagtao an numerikong ID nin paragamit). Pinaggamitan: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]], or [[{{#Special:Redirect}}/user/101]].',
 'redirect-submit' => 'Dumani',
 'redirect-lookup' => 'Hanapon mo',
 'redirect-value' => 'Halaga:',
@@ -3797,7 +3798,10 @@ Ika dapat na nakapagresibe na kan [{{SERVER}}{{SCRIPTPATH}}/COPYING sarong kopya
 'tags-tag' => 'Ngarang panmarka',
 'tags-display-header' => 'Kinaluwasan sa listahan nin kaliwatan',
 'tags-description-header' => 'Bilog na deskripsyon nin kahulugan',
+'tags-active-header' => 'Aktibo?',
 'tags-hitcount-header' => 'Pinagmarkahan na mga kaliwatan',
+'tags-active-yes' => 'Iyo',
+'tags-active-no' => 'Dae',
 'tags-edit' => 'liwatón',
 'tags-hitcount' => '$1 {{PLURAL:$1|kaliwatan|mga kaliwatan}}',
 
@@ -3815,10 +3819,10 @@ Ika dapat na nakapagresibe na kan [{{SERVER}}{{SCRIPTPATH}}/COPYING sarong kopya
 
 # Database error messages
 'dberr-header' => 'Ining wiki igwa nin sarong problema',
-'dberr-problems' => 'Sori!
-Ining sityo igwang naeksperiyensiyahan na mga kakundian sa teknikal.',
+'dberr-problems' => 'Sori! Ining sityo igwang naeksperiyensiyahan na mga kakundian sa teknikal.',
 'dberr-again' => 'Prubaring maghalat tabi nin nagkapirang minutos asin otrohon ikarga.',
 'dberr-info' => '(Dae makakontak sa serbidor kan datos-sarayan: $1)',
+'dberr-info-hidden' => '(Dae makakontak sa serbidor kan datos-sarayan)',
 'dberr-usegoogle' => 'Ika puwedeng magprubar na maghanap sa Google nguna.',
 'dberr-outofdate' => 'Pasinon mo tabi na an saindang mga indekso kan satuyang laog puwedeng luwas na sa petsa.',
 'dberr-cachederror' => 'Ini sarong nakasaray na kopya kan pinaghahagad na pahina, asin puwedeng bakong angat sa petsa.',
@@ -3953,5 +3957,20 @@ Kun bako man, ika makakagamit nin sayon na porma sa ibaba. An saimong komento id
 
 # Image rotation
 'rotate-comment' => 'An imahe pinagbirik ni $1 {{PLURAL:$1|grado|mga grado}} hitsado',
+
+# Limit report
+'limitreport-title' => 'Datos panungdanan kan parabangay:',
+'limitreport-cputime' => 'Oras na ginagamit kan CPU',
+'limitreport-cputime-value' => '$1 {{PLURAL:$1|segundo|segundos}}',
+'limitreport-walltime' => 'Tunay na oras na ginagamit',
+'limitreport-walltime-value' => '$1 {{PLURAL:$1|segundo|segundos}}',
+'limitreport-ppvisitednodes' => 'Bilang kan tagapagsumpay sa pangenot na tagapagprosesong pinagbisita',
+'limitreport-ppgeneratednodes' => 'Bilang kan tagapagsumpay sa pangenot na tagapagprosesong pinagpuyos',
+'limitreport-postexpandincludesize' => 'Bigak kan paskil kabali an sukol',
+'limitreport-postexpandincludesize-value' => '$1/$2 {{PLURAL:$2|bayta|mga bayta}}',
+'limitreport-templateargumentsize' => 'Sukol kan argumentong panguyog',
+'limitreport-templateargumentsize-value' => '$1/$2{{PLURAL:$2|bayta|mga bayta}}',
+'limitreport-expansiondepth' => 'Kinatugmadan kan pinakahalangkaw na kahiwasan',
+'limitreport-expensivefunctioncount' => 'Bilang kan hiro nin mamahalon na parabangay',
 
 );

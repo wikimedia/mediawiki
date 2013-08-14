@@ -1,9 +1,16 @@
 <?php
-/**
- * Tests for the PathRouter parsing
- */
 
+/**
+ * Tests for the PathRouter parsing.
+ *
+ * @covers PathRouter
+ */
 class PathRouterTest extends MediaWikiTestCase {
+
+	/**
+	 * @var PathRouter
+	 */
+	protected $basicRouter;
 
 	protected function setUp() {
 		parent::setUp();

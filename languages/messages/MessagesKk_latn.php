@@ -539,7 +539,7 @@ $messages = array(
 'jumptonavigation' => 'şarlaw',
 'jumptosearch' => 'izdew',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} twralı',
 'aboutpage' => 'Project:Joba twralı',
 'copyright' => 'Mağlumat $1 şartımen jetimdi.',
@@ -614,17 +614,6 @@ Jaramdı arnaýı bet tizimin [[{{#special:Specialpages}}|{{int:specialpages}}]]
 # General errors
 'error' => 'Qate',
 'databaseerror' => 'Derekqor qatesi',
-'dberrortext' => 'Derekqor suranımında söýlem jüýesiniñ qatesi boldı.
-Bul bağdarlamalıq jasaqtama qatesin belgilewi mümkin.
-Soñğı bolğan derekqor suranımı:
-<blockquote><tt>$1</tt></blockquote>
-mına jeteden «<tt>$2</tt>».
-MySQL qaýtarğan qatesi «<tt>$3: $4</tt>».',
-'dberrortextcl' => 'Derekqor suranımında söýlem jüýesiniñ qatesi boldı.
-Soñğı bolğan derekqor suranımı:
-«$1»
-mına jeteden: «$2».
-MySQL qaýtarğan qatesi «$3: $4»',
 'laggedslavemode' => 'Qulaqtandırw: Bette jwıqtağı jañalawlar bolmawı mümkin.',
 'readonly' => 'Derekqorı qulıptalğan',
 'enterlockreason' => 'Qulıptaw sebebin, qaý waqıtqa deýin qulıptalğanın kiristirip, engiziñiz',
@@ -672,7 +661,6 @@ Birneşe mïnöttan qaýta baýqap köriñiz.',
 'editinginterface' => "'''Qulaqtandırw:''' Bağdarlamalıq jasaqtamanıñ tildesw mätinin jetistiretin betin öñdep jatırsız.
 Bul bettiñ özgertwi basqa qatıswşılarğa paýdalanwşılıq tildeswi qalaý körinetine äser etedi.
 Awdarmalar üşin, MediaWiki bağdarlamasın jersindirw [//translatewiki.net/wiki/Main_Page?setlang=kk translatewiki.net jobası] arqılı qarap şeşiñiz.",
-'sqlhidden' => '(SQL suranımı jasırılğan)',
 'cascadeprotected' => 'Bul bet öñdewden qorğalğan, sebebi bul kelesi «bawlı qorğawı» qosılğan {{PLURAL:$1|bettiñ|betterdiñ}} kirikbeti:
 $2',
 'namespaceprotected' => "'''$1''' esim ayasındağı betterdi öñdew üşin ruqsatıñız joq.",
@@ -771,7 +759,7 @@ Kirwiñizdi bitirw üşin, jaña qupïya söziñizdi mında engizwiñiz jön:',
 'newpassword' => 'Jaña qupïya söziñiz:',
 'retypenew' => 'Jaña qupïya söziñizdi qaýtalañız:',
 'resetpass_submit' => 'Qupïya sözdi qoýıñız da kiriñiz',
-'resetpass_success' => 'Qupïya söziñiz sätti özgertildi! Endi kiriñiz…',
+'changepassword-success' => 'Qupïya söziñiz sätti özgertildi! Endi kiriñiz…',
 'resetpass_forbidden' => '{{SITENAME}} jobasında qupïya sözder özgertilmeýdi',
 
 # Edit page toolbar
@@ -1499,12 +1487,6 @@ Kirisi: mağlumat_türi/tür_tarawı, mısalı <code>image/jpeg</code>.',
 'statistics-header-users' => 'Qatıswşı sanağı',
 'statistics-mostpopular' => 'Eñ köp qaralğan better',
 
-'disambiguations' => 'Aýrıqtı better',
-'disambiguationspage' => '{{ns:template}}:Aýrıq',
-'disambiguations-text' => "Kelesi better '''aýrıqtı betke''' silteýdi.
-Bunıñ ornına belgili taqırıpqa siltewi kerek.<br />
-Eger [[MediaWiki:Disambiguationspage]] tizimindegi ülgi qoldanılsa, bet aýrıqtı dep sanaladı.",
-
 'doubleredirects' => 'Şınjırlı aýdağıştar',
 'doubleredirectstext' => 'Bul bette basqa aýdatw betterge silteýtin better tizimdelinedi. Ärbir jolaqta birinşi jäne ekinşi aýdağışqa siltemeler bar, sonımen birge ekinşi aýdağış nısanası bar, ädette bul birinşi aýdağış bağıttaýtın «naqtı» nısana bet atawı bolwı kerek.',
 
@@ -1996,12 +1978,9 @@ Ağımdağı belsendi tïımdar men buğattawlardı [[{{#special:Ipblocklist}}|I
 'ipb_blocked_as_range' => 'Qatelik: IP $1 tikeleý buğattalmağan jäne buğattawı öşirilmeýdi.
 Biraq, bul buğattawı öşirilwi mümkin $2 awqımı böligi bop buğattalğan.',
 'ip_range_invalid' => 'IP mekenjaý awqımı jaramsız.',
-'blockme' => 'Özdiktik_buğattaw',
 'proxyblocker' => 'Proksï serverlerdi buğattawış',
-'proxyblocker-disabled' => 'Bul jete öşirilgen.',
 'proxyblockreason' => 'IP mekenjaýıñız aşıq proksï serverge jatatındıqtan buğattalğan.
 Ïnternet qızmetin jabdıqtawşıñızben, ne texnïkalıq qoldaw qızmetimen qatınasıñız, jäne olarğa osı ote kürdeli qawıpsizdik şataq twralı aqparat beriñiz.',
-'proxyblocksuccess' => 'Bitti.',
 'sorbsreason' => 'IP mekenjaýıñız {{SITENAME}} torabında qoldanılğan DNSBL qara tizimindegi aşıq proksï-server dep tabıladı.',
 'sorbs_create_account_reason' => 'IP mekenjaýıñız {{SITENAME}} torabında qoldanılğan DNSBL qara tizimindegi aşıq proksï-server dep tabıladı.
 Jaña tirkelgi jasaý almaýsız.',

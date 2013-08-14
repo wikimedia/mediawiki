@@ -101,7 +101,7 @@ class XMPValidate {
 			$val = null;
 			return;
 		} else {
-			$nVal = (float) $val;
+			$nVal = (float)$val;
 			if ( $nVal < 0 ) {
 				// We do < 0 here instead of < -1 here, since
 				// the values between 0 and -1 are also illegal

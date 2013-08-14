@@ -57,6 +57,11 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		$fld_content = isset( $prop['content'] );
 		$fld_token = isset( $prop['token'] );
 
+		// If we're in JSON callback mode, no tokens can be obtained
+		if ( !is_null( $this->getMain()->getRequest()->getVal( 'callback' ) ) ) {
+			$fld_token = false;
+		}
+
 		$result = $this->getResult();
 		$pageSet = $this->getPageSet();
 		$titles = $pageSet->getTitles();

@@ -115,6 +115,10 @@ class Parser {
 	# Marker Suffix needs to be accessible staticly.
 	const MARKER_SUFFIX = "-QINU\x7f";
 
+	# Markers used for wrapping the table of contents
+	const TOC_START = '<mw:toc>';
+	const TOC_END = '</mw:toc>';
+
 	# Persistent:
 	var $mTagHooks = array();
 	var $mTransparentTagHooks = array();
@@ -191,6 +195,7 @@ class Parser {
 	var $mRevisionId;   # ID to display in {{REVISIONID}} tags
 	var $mRevisionTimestamp; # The timestamp of the specified revision ID
 	var $mRevisionUser; # User to display in {{REVISIONUSER}} tag
+	var $mRevisionSize; # Size to display in {{REVISIONSIZE}} variable
 	var $mRevIdForTs;   # The revision ID which was used to fetch the timestamp
 	var $mInputSize = false; # For {{PAGESIZE}} on current page.
 
@@ -292,7 +297,7 @@ class Parser {
 		$this->mLinkHolders = new LinkHolderArray( $this );
 		$this->mLinkID = 0;
 		$this->mRevisionObject = $this->mRevisionTimestamp =
-			$this->mRevisionId = $this->mRevisionUser = null;
+			$this->mRevisionId = $this->mRevisionUser = $this->mRevisionSize = null;
 		$this->mVarCache = array();
 		$this->mUser = null;
 		$this->mLangLinkLanguages = array();
@@ -354,7 +359,7 @@ class Parser {
 		 * to internalParse() which does all the real work.
 		 */
 
-		global $wgUseTidy, $wgAlwaysUseTidy;
+		global $wgUseTidy, $wgAlwaysUseTidy, $wgShowHostnames;
 		$fname = __METHOD__ . '-' . wfGetCaller();
 		wfProfileIn( __METHOD__ );
 		wfProfileIn( $fname );
@@ -375,11 +380,13 @@ class Parser {
 		$oldRevisionObject = $this->mRevisionObject;
 		$oldRevisionTimestamp = $this->mRevisionTimestamp;
 		$oldRevisionUser = $this->mRevisionUser;
+		$oldRevisionSize = $this->mRevisionSize;
 		if ( $revid !== null ) {
 			$this->mRevisionId = $revid;
 			$this->mRevisionObject = null;
 			$this->mRevisionTimestamp = null;
 			$this->mRevisionUser = null;
+			$this->mRevisionSize = null;
 		}
 
 		wfRunHooks( 'ParserBeforeStrip', array( &$this, &$text, &$this->mStripState ) );
@@ -529,6 +536,9 @@ class Parser {
 			wfRunHooks( 'ParserLimitReportPrepare', array( $this, $this->mOutput ) );
 
 			$limitReport = "NewPP limit report\n";
+			if ( $wgShowHostnames ) {
+				$limitReport .= 'Parsed by ' . wfHostname() . "\n";
+			}
 			foreach ( $this->mOutput->getLimitReportData() as $key => $value ) {
 				if ( wfRunHooks( 'ParserLimitReportFormat',
 					array( $key, $value, &$limitReport, false, false )
@@ -566,6 +576,7 @@ class Parser {
 		$this->mRevisionObject = $oldRevisionObject;
 		$this->mRevisionTimestamp = $oldRevisionTimestamp;
 		$this->mRevisionUser = $oldRevisionUser;
+		$this->mRevisionSize = $oldRevisionSize;
 		$this->mInputSize = false;
 		wfProfileOut( $fname );
 		wfProfileOut( __METHOD__ );
@@ -1414,174 +1425,179 @@ class Parser {
 	 */
 	public function doQuotes( $text ) {
 		$arr = preg_split( "/(''+)/", $text, -1, PREG_SPLIT_DELIM_CAPTURE );
-		if ( count( $arr ) == 1 ) {
+		$countarr = count( $arr );
+		if ( $countarr == 1 ) {
 			return $text;
-		} else {
-			# First, do some preliminary work. This may shift some apostrophes from
-			# being mark-up to being text. It also counts the number of occurrences
-			# of bold and italics mark-ups.
-			$numbold = 0;
-			$numitalics = 0;
-			for ( $i = 0; $i < count( $arr ); $i++ ) {
-				if ( ( $i % 2 ) == 1 ) {
-					# If there are ever four apostrophes, assume the first is supposed to
-					# be text, and the remaining three constitute mark-up for bold text.
-					if ( strlen( $arr[$i] ) == 4 ) {
-						$arr[$i - 1] .= "'";
-						$arr[$i] = "'''";
-					} elseif ( strlen( $arr[$i] ) > 5 ) {
-						# If there are more than 5 apostrophes in a row, assume they're all
-						# text except for the last 5.
-						$arr[$i - 1] .= str_repeat( "'", strlen( $arr[$i] ) - 5 );
-						$arr[$i] = "'''''";
-					}
-					# Count the number of occurrences of bold and italics mark-ups.
-					# We are not counting sequences of five apostrophes.
-					if ( strlen( $arr[$i] ) == 2 ) {
-						$numitalics++;
-					} elseif ( strlen( $arr[$i] ) == 3 ) {
-						$numbold++;
-					} elseif ( strlen( $arr[$i] ) == 5 ) {
-						$numitalics++;
-						$numbold++;
-					}
-				}
-			}
-
-			# If there is an odd number of both bold and italics, it is likely
-			# that one of the bold ones was meant to be an apostrophe followed
-			# by italics. Which one we cannot know for certain, but it is more
-			# likely to be one that has a single-letter word before it.
-			if ( ( $numbold % 2 == 1 ) && ( $numitalics % 2 == 1 ) ) {
-				$i = 0;
-				$firstsingleletterword = -1;
-				$firstmultiletterword = -1;
-				$firstspace = -1;
-				foreach ( $arr as $r ) {
-					if ( ( $i % 2 == 1 ) and ( strlen( $r ) == 3 ) ) {
-						$x1 = substr( $arr[$i - 1], -1 );
-						$x2 = substr( $arr[$i - 1], -2, 1 );
-						if ( $x1 === ' ' ) {
-							if ( $firstspace == -1 ) {
-								$firstspace = $i;
-							}
-						} elseif ( $x2 === ' ' ) {
-							if ( $firstsingleletterword == -1 ) {
-								$firstsingleletterword = $i;
-							}
-						} else {
-							if ( $firstmultiletterword == -1 ) {
-								$firstmultiletterword = $i;
-							}
-						}
-					}
-					$i++;
-				}
-
-				# If there is a single-letter word, use it!
-				if ( $firstsingleletterword > -1 ) {
-					$arr[$firstsingleletterword] = "''";
-					$arr[$firstsingleletterword - 1] .= "'";
-				} elseif ( $firstmultiletterword > -1 ) {
-					# If not, but there's a multi-letter word, use that one.
-					$arr[$firstmultiletterword] = "''";
-					$arr[$firstmultiletterword - 1] .= "'";
-				} elseif ( $firstspace > -1 ) {
-					# ... otherwise use the first one that has neither.
-					# (notice that it is possible for all three to be -1 if, for example,
-					# there is only one pentuple-apostrophe in the line)
-					$arr[$firstspace] = "''";
-					$arr[$firstspace - 1] .= "'";
-				}
-			}
-
-			# Now let's actually convert our apostrophic mush to HTML!
-			$output = '';
-			$buffer = '';
-			$state = '';
-			$i = 0;
-			foreach ( $arr as $r ) {
-				if ( ( $i % 2 ) == 0 ) {
-					if ( $state === 'both' ) {
-						$buffer .= $r;
-					} else {
-						$output .= $r;
-					}
-				} else {
-					if ( strlen( $r ) == 2 ) {
-						if ( $state === 'i' ) {
-							$output .= '</i>';
-							$state = '';
-						} elseif ( $state === 'bi' ) {
-							$output .= '</i>';
-							$state = 'b';
-						} elseif ( $state === 'ib' ) {
-							$output .= '</b></i><b>';
-							$state = 'b';
-						} elseif ( $state === 'both' ) {
-							$output .= '<b><i>' . $buffer . '</i>';
-							$state = 'b';
-						} else { # $state can be 'b' or ''
-							$output .= '<i>';
-							$state .= 'i';
-						}
-					} elseif ( strlen( $r ) == 3 ) {
-						if ( $state === 'b' ) {
-							$output .= '</b>';
-							$state = '';
-						} elseif ( $state === 'bi' ) {
-							$output .= '</i></b><i>';
-							$state = 'i';
-						} elseif ( $state === 'ib' ) {
-							$output .= '</b>';
-							$state = 'i';
-						} elseif ( $state === 'both' ) {
-							$output .= '<i><b>' . $buffer . '</b>';
-							$state = 'i';
-						} else { # $state can be 'i' or ''
-							$output .= '<b>';
-							$state .= 'b';
-						}
-					} elseif ( strlen( $r ) == 5 ) {
-						if ( $state === 'b' ) {
-							$output .= '</b><i>';
-							$state = 'i';
-						} elseif ( $state === 'i' ) {
-							$output .= '</i><b>';
-							$state = 'b';
-						} elseif ( $state === 'bi' ) {
-							$output .= '</i></b>';
-							$state = '';
-						} elseif ( $state === 'ib' ) {
-							$output .= '</b></i>';
-							$state = '';
-						} elseif ( $state === 'both' ) {
-							$output .= '<i><b>' . $buffer . '</b></i>';
-							$state = '';
-						} else { # ($state == '')
-							$buffer = '';
-							$state = 'both';
-						}
-					}
-				}
-				$i++;
-			}
-			# Now close all remaining tags.  Notice that the order is important.
-			if ( $state === 'b' || $state === 'ib' ) {
-				$output .= '</b>';
-			}
-			if ( $state === 'i' || $state === 'bi' || $state === 'ib' ) {
-				$output .= '</i>';
-			}
-			if ( $state === 'bi' ) {
-				$output .= '</b>';
-			}
-			# There might be lonely ''''', so make sure we have a buffer
-			if ( $state === 'both' && $buffer ) {
-				$output .= '<b><i>' . $buffer . '</i></b>';
-			}
-			return $output;
 		}
+
+		// First, do some preliminary work. This may shift some apostrophes from
+		// being mark-up to being text. It also counts the number of occurrences
+		// of bold and italics mark-ups.
+		$numbold = 0;
+		$numitalics = 0;
+		for ( $i = 1; $i < $countarr; $i += 2 ) {
+			$thislen = strlen( $arr[$i] );
+			// If there are ever four apostrophes, assume the first is supposed to
+			// be text, and the remaining three constitute mark-up for bold text.
+			// (bug 13227: ''''foo'''' turns into ' ''' foo ' ''')
+			if ( $thislen == 4 ) {
+				$arr[$i - 1] .= "'";
+				$arr[$i] = "'''";
+				$thislen = 3;
+			} elseif ( $thislen > 5 ) {
+				// If there are more than 5 apostrophes in a row, assume they're all
+				// text except for the last 5.
+				// (bug 13227: ''''''foo'''''' turns into ' ''''' foo ' ''''')
+				$arr[$i - 1] .= str_repeat( "'", $thislen - 5 );
+				$arr[$i] = "'''''";
+				$thislen = 5;
+			}
+			// Count the number of occurrences of bold and italics mark-ups.
+			if ( $thislen == 2 ) {
+				$numitalics++;
+			} elseif ( $thislen == 3 ) {
+				$numbold++;
+			} elseif ( $thislen == 5 ) {
+				$numitalics++;
+				$numbold++;
+			}
+		}
+
+		// If there is an odd number of both bold and italics, it is likely
+		// that one of the bold ones was meant to be an apostrophe followed
+		// by italics. Which one we cannot know for certain, but it is more
+		// likely to be one that has a single-letter word before it.
+		if ( ( $numbold % 2 == 1 ) && ( $numitalics % 2 == 1 ) ) {
+			$firstsingleletterword = -1;
+			$firstmultiletterword = -1;
+			$firstspace = -1;
+			for ( $i = 1; $i < $countarr; $i += 2 ) {
+				if ( strlen( $arr[$i] ) == 3 ) {
+					$x1 = substr( $arr[$i - 1], -1 );
+					$x2 = substr( $arr[$i - 1], -2, 1 );
+					if ( $x1 === ' ' ) {
+						if ( $firstspace == -1 ) {
+							$firstspace = $i;
+						}
+					} elseif ( $x2 === ' ' ) {
+						if ( $firstsingleletterword == -1 ) {
+							$firstsingleletterword = $i;
+							// if $firstsingleletterword is set, we don't
+							// look at the other options, so we can bail early.
+							break;
+						}
+					} else {
+						if ( $firstmultiletterword == -1 ) {
+							$firstmultiletterword = $i;
+						}
+					}
+				}
+			}
+
+			// If there is a single-letter word, use it!
+			if ( $firstsingleletterword > -1 ) {
+				$arr[$firstsingleletterword] = "''";
+				$arr[$firstsingleletterword - 1] .= "'";
+			} elseif ( $firstmultiletterword > -1 ) {
+				// If not, but there's a multi-letter word, use that one.
+				$arr[$firstmultiletterword] = "''";
+				$arr[$firstmultiletterword - 1] .= "'";
+			} elseif ( $firstspace > -1 ) {
+				// ... otherwise use the first one that has neither.
+				// (notice that it is possible for all three to be -1 if, for example,
+				// there is only one pentuple-apostrophe in the line)
+				$arr[$firstspace] = "''";
+				$arr[$firstspace - 1] .= "'";
+			}
+		}
+
+		// Now let's actually convert our apostrophic mush to HTML!
+		$output = '';
+		$buffer = '';
+		$state = '';
+		$i = 0;
+		foreach ( $arr as $r ) {
+			if ( ( $i % 2 ) == 0 ) {
+				if ( $state === 'both' ) {
+					$buffer .= $r;
+				} else {
+					$output .= $r;
+				}
+			} else {
+				$thislen = strlen( $r );
+				if ( $thislen == 2 ) {
+					if ( $state === 'i' ) {
+						$output .= '</i>';
+						$state = '';
+					} elseif ( $state === 'bi' ) {
+						$output .= '</i>';
+						$state = 'b';
+					} elseif ( $state === 'ib' ) {
+						$output .= '</b></i><b>';
+						$state = 'b';
+					} elseif ( $state === 'both' ) {
+						$output .= '<b><i>' . $buffer . '</i>';
+						$state = 'b';
+					} else { // $state can be 'b' or ''
+						$output .= '<i>';
+						$state .= 'i';
+					}
+				} elseif ( $thislen == 3 ) {
+					if ( $state === 'b' ) {
+						$output .= '</b>';
+						$state = '';
+					} elseif ( $state === 'bi' ) {
+						$output .= '</i></b><i>';
+						$state = 'i';
+					} elseif ( $state === 'ib' ) {
+						$output .= '</b>';
+						$state = 'i';
+					} elseif ( $state === 'both' ) {
+						$output .= '<i><b>' . $buffer . '</b>';
+						$state = 'i';
+					} else { // $state can be 'i' or ''
+						$output .= '<b>';
+						$state .= 'b';
+					}
+				} elseif ( $thislen == 5 ) {
+					if ( $state === 'b' ) {
+						$output .= '</b><i>';
+						$state = 'i';
+					} elseif ( $state === 'i' ) {
+						$output .= '</i><b>';
+						$state = 'b';
+					} elseif ( $state === 'bi' ) {
+						$output .= '</i></b>';
+						$state = '';
+					} elseif ( $state === 'ib' ) {
+						$output .= '</b></i>';
+						$state = '';
+					} elseif ( $state === 'both' ) {
+						$output .= '<i><b>' . $buffer . '</b></i>';
+						$state = '';
+					} else { // ($state == '')
+						$buffer = '';
+						$state = 'both';
+					}
+				}
+			}
+			$i++;
+		}
+		// Now close all remaining tags.  Notice that the order is important.
+		if ( $state === 'b' || $state === 'ib' ) {
+			$output .= '</b>';
+		}
+		if ( $state === 'i' || $state === 'bi' || $state === 'ib' ) {
+			$output .= '</i>';
+		}
+		if ( $state === 'bi' ) {
+			$output .= '</b>';
+		}
+		// There might be lonely ''''', so make sure we have a buffer
+		if ( $state === 'both' && $buffer ) {
+			$output .= '<b><i>' . $buffer . '</i></b>';
+		}
+		return $output;
 	}
 
 	/**
@@ -1847,7 +1863,9 @@ class Parser {
 		if ( $useLinkPrefixExtension ) {
 			# Match the end of a line for a word that's not followed by whitespace,
 			# e.g. in the case of 'The Arab al[[Razi]]', 'al' will be matched
-			$e2 = wfMessage( 'linkprefix' )->inContentLanguage()->text();
+			global $wgContLang;
+			$charset = $wgContLang->linkPrefixCharset();
+			$e2 = "/^((?>.*[^$charset]|))(.+)$/sDu";
 		}
 
 		if ( is_null( $this->mTitle ) ) {
@@ -2101,16 +2119,12 @@ class Parser {
 				}
 			}
 
-			# Self-link checking
-			if ( $nt->getFragment() === '' && $ns != NS_SPECIAL ) {
-				if ( $nt->equals( $this->mTitle ) || ( !$nt->isKnown() && in_array(
-					$this->mTitle->getPrefixedText(),
-					$this->getConverterLanguage()->autoConvertToAllVariants( $nt->getPrefixedText() ),
-					true
-				) ) ) {
-					$s .= $prefix . Linker::makeSelfLinkObj( $nt, $text, '', $trail );
-					continue;
-				}
+			# Self-link checking. For some languages, variants of the title are checked in
+			# LinkHolderArray::doVariants() to allow batching the existence checks necessary
+			# for linking to a different variant.
+			if ( $ns != NS_SPECIAL && $nt->equals( $this->mTitle ) && $nt->getFragment() === '' ) {
+				$s .= $prefix . Linker::makeSelfLinkObj( $nt, $text, '', $trail );
+				continue;
 			}
 
 			# NS_MEDIA is a pseudo-namespace for linking directly to a file
@@ -2269,13 +2283,13 @@ class Parser {
 		$result = $this->closeParagraph();
 
 		if ( '*' === $char ) {
-			$result .= '<ul><li>';
+			$result .= "<ul>\n<li>";
 		} elseif ( '#' === $char ) {
-			$result .= '<ol><li>';
+			$result .= "<ol>\n<li>";
 		} elseif ( ':' === $char ) {
-			$result .= '<dl><dd>';
+			$result .= "<dl>\n<dd>";
 		} elseif ( ';' === $char ) {
-			$result .= '<dl><dt>';
+			$result .= "<dl>\n<dt>";
 			$this->mDTopen = true;
 		} else {
 			$result = '<!-- ERR 1 -->';
@@ -2293,11 +2307,11 @@ class Parser {
 	 */
 	function nextItem( $char ) {
 		if ( '*' === $char || '#' === $char ) {
-			return '</li><li>';
+			return "</li>\n<li>";
 		} elseif ( ':' === $char || ';' === $char ) {
-			$close = '</dd>';
+			$close = "</dd>\n";
 			if ( $this->mDTopen ) {
-				$close = '</dt>';
+				$close = "</dt>\n";
 			}
 			if ( ';' === $char ) {
 				$this->mDTopen = true;
@@ -2319,15 +2333,15 @@ class Parser {
 	 */
 	function closeList( $char ) {
 		if ( '*' === $char ) {
-			$text = '</li></ul>';
+			$text = "</li>\n</ul>";
 		} elseif ( '#' === $char ) {
-			$text = '</li></ol>';
+			$text = "</li>\n</ol>";
 		} elseif ( ':' === $char ) {
 			if ( $this->mDTopen ) {
 				$this->mDTopen = false;
-				$text = '</dt></dl>';
+				$text = "</dt>\n</dl>";
 			} else {
-				$text = '</dd></dl>';
+				$text = "</dd>\n</dl>";
 			}
 		} else {
 			return '<!-- ERR 3 -->';
@@ -2357,6 +2371,7 @@ class Parser {
 		$this->mDTopen = $inBlockElem = false;
 		$prefixLength = 0;
 		$paragraphStack = false;
+		$inBlockquote = false;
 
 		foreach ( $textLines as $oLine ) {
 			# Fix up $linestart
@@ -2450,10 +2465,10 @@ class Parser {
 				wfProfileIn( __METHOD__ . "-paragraph" );
 				# No prefix (not in list)--go to paragraph mode
 				# XXX: use a stack for nestable elements like span, table and div
-				$openmatch = preg_match( '/(?:<table|<blockquote|<h1|<h2|<h3|<h4|<h5|<h6|<pre|<tr|<p|<ul|<ol|<dl|<li|<\\/tr|<\\/td|<\\/th)/iS', $t );
+				$openmatch = preg_match( '/(?:<table|<h1|<h2|<h3|<h4|<h5|<h6|<pre|<tr|<p|<ul|<ol|<dl|<li|<\\/tr|<\\/td|<\\/th)/iS', $t );
 				$closematch = preg_match(
-					'/(?:<\\/table|<\\/blockquote|<\\/h1|<\\/h2|<\\/h3|<\\/h4|<\\/h5|<\\/h6|' .
-					'<td|<th|<\\/?div|<hr|<\\/pre|<\\/p|' . $this->mUniqPrefix . '-pre|<\\/li|<\\/ul|<\\/ol|<\\/dl|<\\/?center)/iS', $t );
+					'/(?:<\\/table|<\\/h1|<\\/h2|<\\/h3|<\\/h4|<\\/h5|<\\/h6|' .
+					'<td|<th|<\\/?blockquote|<\\/?div|<hr|<\\/pre|<\\/p|<\\/mw:|' . $this->mUniqPrefix . '-pre|<\\/li|<\\/ul|<\\/ol|<\\/dl|<\\/?center)/iS', $t );
 				if ( $openmatch or $closematch ) {
 					$paragraphStack = false;
 					# TODO bug 5718: paragraph closed
@@ -2461,9 +2476,14 @@ class Parser {
 					if ( $preOpenMatch and !$preCloseMatch ) {
 						$this->mInPre = true;
 					}
+					$bqOffset = 0;
+					while ( preg_match( '/<(\\/?)blockquote[\s>]/i', $t, $bqMatch, PREG_OFFSET_CAPTURE, $bqOffset ) ) {
+						$inBlockquote = !$bqMatch[1][0]; // is this a close tag?
+						$bqOffset = $bqMatch[0][1] + strlen( $bqMatch[0][0] );
+					}
 					$inBlockElem = !$closematch;
 				} elseif ( !$inBlockElem && !$this->mInPre ) {
-					if ( ' ' == substr( $t, 0, 1 ) and ( $this->mLastSection === 'pre' || trim( $t ) != '' ) ) {
+					if ( ' ' == substr( $t, 0, 1 ) and ( $this->mLastSection === 'pre' || trim( $t ) != '' ) and !$inBlockquote ) {
 						# pre
 						if ( $this->mLastSection !== 'pre' ) {
 							$paragraphStack = false;
@@ -2893,6 +2913,13 @@ class Parser {
 				wfDebug( __METHOD__ . ": {{REVISIONUSER}} used, setting vary-revision...\n" );
 				$value = $this->getRevisionUser();
 				break;
+			case 'revisionsize':
+				# Let the edit saving system know we should parse the page
+				# *after* a revision ID has been assigned. This is for null edits.
+				$this->mOutput->setFlag( 'vary-revision' );
+				wfDebug( __METHOD__ . ": {{REVISIONSIZE}} used, setting vary-revision...\n" );
+				$value = $this->getRevisionSize();
+				break;
 			case 'namespace':
 				$value = str_replace( '_', ' ', $wgContLang->getNsText( $this->mTitle->getNamespace() ) );
 				break;
@@ -2909,7 +2936,7 @@ class Parser {
 				$value = $this->mTitle->canTalk() ? wfUrlencode( $this->mTitle->getTalkNsText() ) : '';
 				break;
 			case 'subjectspace':
-				$value = $this->mTitle->getSubjectNsText();
+				$value = str_replace( '_', ' ', $this->mTitle->getSubjectNsText() );
 				break;
 			case 'subjectspacee':
 				$value = ( wfUrlencode( $this->mTitle->getSubjectNsText() ) );
@@ -3170,6 +3197,12 @@ class Parser {
 	 *   'post-expand-template-inclusion' (corresponding messages:
 	 *       'post-expand-template-inclusion-warning',
 	 *       'post-expand-template-inclusion-category')
+	 *   'node-count-exceeded' (corresponding messages:
+	 *       'node-count-exceeded-warning',
+	 *       'node-count-exceeded-category')
+	 *   'expansion-depth-exceeded' (corresponding messages:
+	 *       'expansion-depth-exceeded-warning',
+	 *       'expansion-depth-exceeded-category')
 	 * @param int|null $current Current value
 	 * @param int|null $max Maximum allowed, when an explicit limit has been
 	 *	 exceeded, provide the values (optional)
@@ -3177,7 +3210,7 @@ class Parser {
 	function limitationWarn( $limitationType, $current = '', $max = '' ) {
 		# does no harm if $current and $max are present but are unnecessary for the message
 		$warning = wfMessage( "$limitationType-warning" )->numParams( $current, $max )
-			->inContentLanguage()->escaped();
+			->inLanguage( $this->mOptions->getUserLangObj() )->text();
 		$this->mOutput->addWarning( $warning );
 		$this->addTrackingCategory( "$limitationType-category" );
 	}
@@ -4419,7 +4452,8 @@ class Parser {
 
 			# Add the section to the section tree
 			# Find the DOM node for this header
-			while ( $node && !$isTemplate ) {
+			$noOffset = ( $isTemplate || $sectionIndex === false );
+			while ( $node && !$noOffset ) {
 				if ( $node->getName() === 'h' ) {
 					$bits = $node->splitHeading();
 					if ( $bits['i'] == $sectionIndex ) {
@@ -4437,7 +4471,7 @@ class Parser {
 				'number' => $numbering,
 				'index' => ( $isTemplate ? 'T-' : '' ) . $sectionIndex,
 				'fromtitle' => $titleText,
-				'byteoffset' => ( $isTemplate ? null : $byteOffset ),
+				'byteoffset' => ( $noOffset ? null : $byteOffset ),
 				'anchor' => $anchor,
 			);
 
@@ -4488,6 +4522,7 @@ class Parser {
 			}
 			$toc = Linker::tocList( $toc, $this->mOptions->getUserLangObj() );
 			$this->mOutput->setTOCHTML( $toc );
+			$toc = self::TOC_START . $toc . self::TOC_END;
 		}
 
 		if ( $isMain ) {
@@ -5047,7 +5082,19 @@ class Parser {
 	 */
 	function renderImageGallery( $text, $params ) {
 		wfProfileIn( __METHOD__ );
-		$ig = new ImageGallery();
+
+		$mode = false;
+		if ( isset( $params['mode'] ) ) {
+			$mode = $params['mode'];
+		}
+
+		try {
+			$ig = ImageGalleryBase::factory( $mode );
+		} catch ( MWException $e ) {
+			// If invalid type set, fallback to default.
+			$ig = ImageGalleryBase::factory( false );
+		}
+
 		$ig->setContextTitle( $this->mTitle );
 		$ig->setShowBytes( false );
 		$ig->setShowFilename( false );
@@ -5075,6 +5122,7 @@ class Parser {
 		if ( isset( $params['heights'] ) ) {
 			$ig->setHeights( $params['heights'] );
 		}
+		$ig->setAdditionalOptions( $params );
 
 		wfRunHooks( 'BeforeParserrenderImageGallery', array( &$this, &$ig ) );
 
@@ -5143,7 +5191,7 @@ class Parser {
 					if ( $magicName ) {
 						$paramName = $paramMap[$magicName];
 
-						switch( $paramName ) {
+						switch ( $paramName ) {
 						case 'gallery-internal-alt':
 							$alt = $this->stripAltText( $match, false );
 							break;
@@ -5714,8 +5762,9 @@ class Parser {
 	 * Get the revision object for $this->mRevisionId
 	 *
 	 * @return Revision|null either a Revision object or null
+	 * @since 1.23 (public since 1.23)
 	 */
-	protected function getRevisionObject() {
+	public function getRevisionObject() {
 		if ( !is_null( $this->mRevisionObject ) ) {
 			return $this->mRevisionObject;
 		}
@@ -5771,6 +5820,27 @@ class Parser {
 			}
 		}
 		return $this->mRevisionUser;
+	}
+
+	/**
+	 * Get the size of the revision
+	 *
+	 * @return int|null revision size
+	 */
+	function getRevisionSize() {
+		if ( is_null( $this->mRevisionSize ) ) {
+			$revObject = $this->getRevisionObject();
+
+			# if this variable is subst: the revision id will be blank,
+			# so just use the parser input size, because the own substituation
+			# will change the size.
+			if ( $revObject ) {
+				$this->mRevisionSize = $revObject->getSize();
+			} elseif ( $this->ot['wiki'] || $this->mOptions->getIsPreview() ) {
+				$this->mRevisionSize = $this->mInputSize;
+			}
+		}
+		return $this->mRevisionSize;
 	}
 
 	/**

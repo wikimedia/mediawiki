@@ -1,5 +1,5 @@
 <?php
-/** Kirghiz (Кыргызча)
+/** Kyrgyz (Кыргызча)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -269,7 +269,7 @@ $1',
 'pool-queuefull' => 'Суроо жыйнагыч толгон',
 'pool-errorunknown' => 'Белгисиз ката',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} тууралуу',
 'aboutpage' => 'Project:Долбоор тууралуу',
 'copyright' => '$1 лицензиясына ылайык жеткиликтүү мазмун.',
@@ -346,12 +346,6 @@ $1',
 # General errors
 'error' => 'Ката',
 'databaseerror' => 'Маалымат базасынын катасы',
-'dberrortext' => 'Маалымат базасынын суроо синтаксисинде ката табылды.
-Бул программалык камсыздоодо ката бар болгонун билдирет.
-Акыркы маалымат базасынын суроосу:
-<blockquote><code>$1</code></blockquote>
-«<code>$2</code>» функциясынан пайда болду.
-Маалымат базасы «<samp>$3: $4</samp>» катасын кайтарды.',
 'laggedslavemode' => "'''Эскертүү:''' баракта акыркы жаңыртуулар жок болуп калышы мүмкүн.",
 'readonly' => 'Маалымат базасы бөгөттөлгөн',
 'enterlockreason' => 'Бөгөттөөнүн себебин жана мөөнөтүн көрсөтүңүз',
@@ -386,7 +380,6 @@ $1',
 'viewsource-title' => '$1 барагынын баштапкы кодун көрүү',
 'actionthrottled' => 'Аралык боюнча чектөө',
 'viewsourcetext' => 'Сиз бул барактын баштапкы кодун көрүп жана көчүрүп алсаңыз болот:',
-'sqlhidden' => '(SQL суроо жашырылган)',
 'ns-specialprotected' => 'Кызматык барактарды оңдоого мүмкүн эмес.',
 'invalidtitle-unknownnamespace' => 'Туура эмес баш сөз',
 'exception-nologin' => 'Сиз системге кирген жоксуз',
@@ -416,7 +409,6 @@ $1',
 'remembermypassword' => 'Бул браузерде колдонуучу атымды ($1 {{PLURAL:$1|күнгө}} чейин сактоо)',
 'userlogin-remembermypassword' => 'Мени системге кирген боюнча калтыр',
 'userlogin-signwithsecure' => 'Коопсуз байланышты колдонуу',
-'securelogin-stick-https' => 'Киргенден кийин HTTPS аркылуу туташтырууну улантуу',
 'yourdomainname' => 'Сиздин домен:',
 'password-change-forbidden' => 'Сиз бул уикиден сырсөзүңүздү өзгөртө албайсыз.',
 'externaldberror' => 'Маалымат базасында ката кетти же сизге сырткы эсебиңизди жаңыртууга уруксат берилген эмес.',
@@ -517,7 +509,7 @@ $1',
 'newpassword' => 'Жаңы сырсөз:',
 'retypenew' => 'Жаңы сырсөздү кайра териңиз:',
 'resetpass_submit' => 'Сырсөздү терип анан кирүү',
-'resetpass_success' => 'Сиздин сырсөзүңүз ийгиликтүү өзгөртүлдү!
+'changepassword-success' => 'Сиздин сырсөзүңүз ийгиликтүү өзгөртүлдү!
 Системага кирүү аткарылып жатат...',
 'resetpass_forbidden' => 'Сырсөздү өзгөртүүгө мүмкүн эмес',
 'resetpass-no-info' => 'Бул баракка түз кайрылыш үчүн, сиз системага киришиңиз керек.',
@@ -1099,8 +1091,6 @@ To include a file in a page, use a link in one of the following forms:
 'statistics-pages' => 'Барактар',
 'statistics-files' => 'Жүктөлгөн файлдар',
 
-'disambiguationspage' => 'Template:көп маанилүү',
-
 'brokenredirects-edit' => 'оңдоо',
 'brokenredirects-delete' => 'өчүрүү',
 
@@ -1319,7 +1309,6 @@ To include a file in a page, use a link in one of the following forms:
 'block-log-flags-nocreate' => 'эсеп жазуусун жаратуу өчүрүлгөн',
 'block-log-flags-noemail' => 'кат жөнөтүүгө тыюу салынган',
 'block-log-flags-hiddenname' => 'колдонуучу аты жашырылган',
-'blockme' => 'Мени бөгөттө',
 'proxyblocker' => 'Проксини блокировкалоо',
 
 # Developer tools

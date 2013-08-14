@@ -318,7 +318,7 @@ class ProtectionForm {
 		 *             you can also return an array of message name and its parameters
 		 */
 		$errorMsg = '';
-		if ( !wfRunHooks( 'ProtectionForm::save', array( $this->mArticle, &$errorMsg ) ) ) {
+		if ( !wfRunHooks( 'ProtectionForm::save', array( $this->mArticle, &$errorMsg, $reasonstr ) ) ) {
 			if ( $errorMsg == '' ) {
 				$errorMsg = array( 'hookaborted' );
 			}
@@ -363,8 +363,10 @@ class ProtectionForm {
 			Xml::openElement( 'table', array( 'id' => 'mwProtectSet' ) ) .
 			Xml::openElement( 'tbody' );
 
+		// Not all languages have V_x <-> N_x relation
 		foreach ( $this->mRestrictions as $action => $selected ) {
-			/* Not all languages have V_x <-> N_x relation */
+			// Messages:
+			// restriction-edit, restriction-move, restriction-create, restriction-upload
 			$msg = wfMessage( 'restriction-' . $action );
 			$out .= "<tr><td>" .
 			Xml::openElement( 'fieldset' ) .
@@ -603,6 +605,7 @@ class ProtectionForm {
 		if ( $permission == '' ) {
 			return wfMessage( 'protect-default' )->text();
 		} else {
+			// Messages: protect-level-autoconfirmed, protect-level-sysop
 			$msg = wfMessage( "protect-level-{$permission}" );
 			if ( $msg->exists() ) {
 				return $msg->text();

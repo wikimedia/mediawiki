@@ -47,7 +47,8 @@ class ParserOutput extends CacheTime {
 		$mEditSectionTokens = false,  # prefix/suffix markers if edit sections were output as tokens
 		$mProperties = array(),       # Name/value pairs to be cached in the DB
 		$mTOCHTML = '',               # HTML of the TOC
-		$mTimestamp;                  # Timestamp of the revision
+		$mTimestamp,                  # Timestamp of the revision
+		$mTOCEnabled = true;          # Whether TOC should be shown, can't override __NOTOC__
 		private $mIndexPolicy = '';       # 'index' or 'noindex'?  Any other value will result in no change.
 		private $mAccessedOptions = array(); # List of ParserOptions (stored in the keys)
 		private $mSecondaryDataUpdates = array(); # List of DataUpdate, used to save info from the page somewhere else.
@@ -68,11 +69,27 @@ class ParserOutput extends CacheTime {
 	}
 
 	function getText() {
+		wfProfileIn( __METHOD__ );
+		$text = $this->mText;
 		if ( $this->mEditSectionTokens ) {
-			return preg_replace_callback( ParserOutput::EDITSECTION_REGEX,
-				array( &$this, 'replaceEditSectionLinksCallback' ), $this->mText );
+			$text = preg_replace_callback( ParserOutput::EDITSECTION_REGEX,
+				array( &$this, 'replaceEditSectionLinksCallback' ), $text );
+		} else {
+			$text = preg_replace( ParserOutput::EDITSECTION_REGEX, '', $text );
 		}
-		return preg_replace( ParserOutput::EDITSECTION_REGEX, '', $this->mText );
+
+		// If you have an old cached version of this class - sorry, you can't disable the TOC
+		if ( isset( $this->mTOCEnabled ) && $this->mTOCEnabled ) {
+			$text = str_replace( array( Parser::TOC_START, Parser::TOC_END ), '', $text );
+		} else {
+			$text = preg_replace(
+				'#'. preg_quote( Parser::TOC_START ) . '.*?' . preg_quote( Parser::TOC_END ) . '#s',
+				'',
+				$text
+			);
+		}
+		wfProfileOut( __METHOD__ );
+		return $text;
 	}
 
 	/**
@@ -123,6 +140,7 @@ class ParserOutput extends CacheTime {
 	function getTOCHTML()                { return $this->mTOCHTML; }
 	function getTimestamp()              { return $this->mTimestamp; }
 	function getLimitReportData()        { return $this->mLimitReportData; }
+	function getTOCEnabled()             { return $this->mTOCEnabled; }
 
 	function setText( $text )            { return wfSetVar( $this->mText, $text ); }
 	function setLanguageLinks( $ll )     { return wfSetVar( $this->mLanguageLinks, $ll ); }
@@ -134,6 +152,7 @@ class ParserOutput extends CacheTime {
 	function setIndexPolicy( $policy )   { return wfSetVar( $this->mIndexPolicy, $policy ); }
 	function setTOCHTML( $tochtml )      { return wfSetVar( $this->mTOCHTML, $tochtml ); }
 	function setTimestamp( $timestamp )  { return wfSetVar( $this->mTimestamp, $timestamp ); }
+	function setTOCEnabled( $flag )      { return wfSetVar( $this->mTOCEnabled, $flag ); }
 
 	function addCategory( $c, $sort )    { $this->mCategories[$c] = $sort; }
 	function addLanguageLink( $t )       { $this->mLanguageLinks[] = $t; }
@@ -284,7 +303,7 @@ class ParserOutput extends CacheTime {
 	}
 
 	public function addModules( $modules ) {
-		$this->mModules = array_merge( $this->mModules, (array) $modules );
+		$this->mModules = array_merge( $this->mModules, (array)$modules );
 	}
 
 	public function addModuleScripts( $modules ) {

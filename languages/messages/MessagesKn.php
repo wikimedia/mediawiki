@@ -303,7 +303,7 @@ $messages = array(
 'pool-queuefull' => 'ಪ್ರಕ್ರಿಯೆಯನ್ನು ವಿಶೇಷ ಕ್ಯು ಪೂರ್ಣ',
 'pool-errorunknown' => 'ಅಪರಿಚಿತ ದೋಷ',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'ಕನ್ನಡ {{SITENAME}} ಬಗ್ಗೆ',
 'aboutpage' => 'Project:ನಮ್ಮ ಬಗ್ಗೆ',
 'copyright' => 'ಇದು ಈ ಕಾಪಿರೈಟ್‌ನಲ್ಲಿ ಲಭ್ಯವಿದೆ $1.',
@@ -384,17 +384,6 @@ $messages = array(
 # General errors
 'error' => 'ದೋಷ',
 'databaseerror' => 'ಡೇಟಬೇಸ್ ದೋಷ',
-'dberrortext' => 'ಒಂದು ಡೇಟಾಬೇಸ್ ನಿಮ್ಮಪ್ರಶ್ನೆಗೆ ಸಿಂಟಾಕ್ಸ್ ತಪ್ಪು ಸಂಭವಿಸಿದೆ
-ಈ ಸಾಫ್ಟ್ವೇರ್ ಒಂದು ದೋಷವನ್ನು ನಿವಾರಿಸಲಾಗಿದೆ ಸೂಚಿಸಬಹುದು.
-ಕೊನೆಯ ಪ್ರಯತ್ನ ಡೇಟಾಬೇಸ್ ನಿಮ್ಮಪ್ರಶ್ನೆಗೆ ಮಾಡಲಾಯಿತು:
-<blockquote><code>$1</code></blockquote>
-ಕ್ರಿಯೆ ಒಳಗಿನಿಂದಲೇ "<code>$2</code>" 
-ಡೇಟಾಬೇಸ್ ದೋಷವನ್ನು ತಿಳಿಸಿದೆ"<code>$3: $4</code>".',
-'dberrortextcl' => 'ಡೇಟಾಬೇಸ್ ಪ್ರಶ್ನೆಯ ವಿನ್ಯಾಸದಲ್ಲಿ ದೋಷ ಉಂಟಾಗಿದೆ.
-ಕೊನೆಯದಾಗಿ ಪ್ರಯತ್ನಿಸಲಾದ ಡೇಟಾಬೇಸ್ ಪ್ರಶ್ನೆಯು:
-"$1"
-ಇದು ಉಂಟಾಗಿದ್ದು "$2" function ಒಳಗಿಂದ.
-MySQL ಹಿಂದಿರುಗಿಸಿದ ದೋಷ "$3: $4"',
 'laggedslavemode' => 'ಎಚ್ಚರ: ಪುಟದಲ್ಲಿ ಇತ್ತೀಚಿನ ಬದಲಾವಣೆಗಳು ಕಾಣದಿರಬಹುದು.',
 'readonly' => 'ಡೇಟಬೇಸ್ ಮುಚ್ಚಲಾಗಿದೆ',
 'enterlockreason' => 'ಡೇಟಬೇಸ್ ಮುಚ್ಚುತಿರುವ ಕಾರಣವನ್ನು ಮತ್ತು ಮತ್ತೆ ಅದನ್ನು ತೆರೆಯುವ ಅಂದಾಜಿತ ಕಾಲವನ್ನು ತಿಳಿಸಿ',
@@ -484,7 +473,6 @@ $2',
 'createacct-yourpasswordagain' => 'ಪ್ರವೇಶಪದವನ್ನು ಧೃಡೀಕರಿಸಿ',
 'createacct-yourpasswordagain-ph' => 'ಪ್ರವೇಶಪದವನ್ನು ಮತ್ತೊಮ್ಮೆ ನಮೂದಿಸಿ',
 'remembermypassword' => 'ಈ ಗಣಕಯಂತ್ರದಲ್ಲಿ ನನ್ನ ಲಾಗಿನ್ ನೆನಪಿನಲ್ಲಿಟ್ಟುಕೊ (ಗರಿಷ್ಠ $1 {{PLURAL:$1|ದಿನದ|ದಿನಗಳ}}ವರೆಗೆ)',
-'securelogin-stick-https' => 'ಲಾಗಿನ್ ಆದ ಬಳಿಕ HTTPS ನ ಸಂಪರ್ಕದಲ್ಲಿರಿ.',
 'yourdomainname' => 'ನಿಮ್ಮ ಕ್ಷೇತ್ರ:',
 'password-change-forbidden' => 'ನೀವು ಈ ವಿಕಿಯಲ್ಲಿ ಪ್ರವೇಶಪದವನ್ನು ಬದಲಾಯಿಸಲು ಸಾದ್ಯವಿಲ್ಲ.',
 'login' => 'ಲಾಗ್ ಇನ್',
@@ -572,7 +560,7 @@ $2',
 'newpassword' => 'ಹೊಸ ಪ್ರವೇಶ ಪದ',
 'retypenew' => 'ಹೊಸ ಪ್ರವೇಶಪದವನ್ನು ಮತ್ತೆ ಟೈಪಿಸು:',
 'resetpass_submit' => 'ಪ್ರವೇಶ ಪದವನ್ನು ನಿಶ್ಚಯಿಸಿ ಲಾಗ್ ಇನ್ ಆಗಿ',
-'resetpass_success' => 'ನಿಮ್ಮ ಪ್ರವೇಶ ಪದವನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಬದಲಾಯಿಸಲಾಗಿದೆ. ಈಗ ನಿಮ್ಮನ್ನು ಲಾಗ್ ಇನ್ ಮಾಡಲಾಗುತ್ತಿದೆ...',
+'changepassword-success' => 'ನಿಮ್ಮ ಪ್ರವೇಶ ಪದವನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಬದಲಾಯಿಸಲಾಗಿದೆ. ಈಗ ನಿಮ್ಮನ್ನು ಲಾಗ್ ಇನ್ ಮಾಡಲಾಗುತ್ತಿದೆ...',
 'resetpass_forbidden' => 'ಪ್ರವೇಶಪದಗಳನ್ನು ಬದಲಾಯಿಸುವಂತಿಲ್ಲ.',
 'resetpass-submit-loggedin' => 'ಪ್ರವೇಶಪದ ಬದಲಾಯಿಸು',
 'resetpass-submit-cancel' => 'ರದ್ದು ಮಾಡು',
@@ -1348,9 +1336,6 @@ $2',
 'statistics-views-total' => 'ಒಟ್ಟು ವೀಕ್ಷಣೆಗಳು',
 'statistics-mostpopular' => 'ಅತ್ಯಂತ ಹೆಚ್ಚು ವೀಕ್ಷಿತ ಪುಟಗಳು',
 
-'disambiguations' => 'ದ್ವಂದ್ವನಿವಾರಣಾ ಪುಟಗಳು',
-'disambiguationspage' => 'Template:ದ್ವಂದ್ವ ನಿವಾರಣೆ',
-
 'doubleredirects' => 'ಮರುಕಳಿಸಿದ ಪುನರ್ನಿರ್ದೇಶನಗಳು',
 
 'brokenredirects' => 'ಮುರಿದ ರಿಡೈರೆಕ್ಟ್‌ಗಳು',
@@ -1726,8 +1711,6 @@ $2',
 'block-log-flags-nocreate' => 'ಖಾತೆ ಸೃಷ್ಟಿ ತಡೆಹಿಡಿಯಲಾಗಿದೆ',
 'block-log-flags-noemail' => 'ಇ-ಅಂಚೆ ತಡೆಹಿಡಿಯಲಾಗಿದೆ',
 'ipb_already_blocked' => '"$1" ಆಗಲೆ ತಡೆ ಹಿಡಿಯಲಾಗಿದೆ',
-'blockme' => 'ನನ್ನನ್ನು ತಡೆಹಿಡಿ',
-'proxyblocksuccess' => 'ಮುಗಿಯಿತು.',
 
 # Developer tools
 'lockdb' => 'ಡೇಟಾಬೇಸ್ ಅನ್ನು ಮುಚ್ಚು',

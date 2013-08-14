@@ -277,7 +277,7 @@ $messages = array(
 
 $1',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '關於 {{SITENAME}}',
 'aboutpage' => 'Project:關於',
 'copyright' => '箇版嗰內容係根據$1嗰條款發佈。',
@@ -355,17 +355,6 @@ $1',
 # General errors
 'error' => '錯誤',
 'databaseerror' => '資料庫錯誤',
-'dberrortext' => '資料庫查詢語法有錯。
-可能係軟件有錯。
-最晏嗰資料庫指令係:
-<blockquote><tt>$1</tt></blockquote>
-來自函數 "<tt>$2</tt>"。
-MySQL回到錯誤 "<tt>$3: $4</tt>"。',
-'dberrortextcl' => '資料庫查詢語法有錯。
-最晏嗰資料庫指令係:
-“$1”
-來自函數“$2”。
-MySQL回到錯誤“$3: $4”。',
 'laggedslavemode' => '警告：頁面可能冇有新近內容。',
 'readonly' => '資料庫上正鎖哩',
 'enterlockreason' => '請輸入鎖到資料庫嗰理由，包括預計幾時間解鎖',
@@ -406,7 +395,6 @@ MySQL回到錯誤“$3: $4”。',
 'editinginterface' => "'''Warning:''' You are editing a page which is used to provide interface text for the software.
 Changes to this page will affect the appearance of the user interface for other users.
 For translations, please consider using [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], the MediaWiki localisation project.",
-'sqlhidden' => '（SQL 弆到嗰查詢）',
 'cascadeprotected' => '箇頁已拕保護，因為佢拕「聯鎖保護」嗰{{PLURAL:$1|一隻|幾隻}}拕保護頁包到：
 $2',
 'namespaceprotected' => "倷冇權編寫'''$1'''空間裡度嗰頁面。",
@@ -486,7 +474,7 @@ $2',
 'newpassword' => '新密碼：',
 'retypenew' => '確認密碼:',
 'resetpass_submit' => '設定密碼同到登入',
-'resetpass_success' => '汝嗰密碼改正哩！箇下汝登入嘚...',
+'changepassword-success' => '汝嗰密碼改正哩！箇下汝登入嘚...',
 'resetpass_forbidden' => '到{{SITENAME}}上改伓正密碼',
 'resetpass-submit-loggedin' => '設過帳戶密碼',
 'resetpass-submit-cancel' => '取消',
@@ -1120,11 +1108,6 @@ $2',
 'statistics-users-active-desc' => '頭$1日操作過嗰用戶',
 'statistics-mostpopular' => '眵嗰人頂多嗰頁面',
 
-'disambiguations' => '扤清楚頁',
-'disambiguationspage' => 'Template:舞清楚',
-'disambiguations-text' => "底下嗰頁面都有到'''扤清楚頁'''嗰連結, 但係佢俚應當係連到正當嗰標題。<br />
-如果一隻頁面係連結自[[MediaWiki:Disambiguationspage]]，佢會拕當成扤清楚頁。",
-
 'doubleredirects' => '雙重重定向頁面',
 'doubleredirectstext' => '底下嗰重定向連結到別隻重定向頁面:',
 'double-redirect-fixed-move' => '[[$1]]拕移動正，佢箇下拕重定向到[[$2]]。',
@@ -1554,11 +1537,8 @@ $1',
 'ipb_already_blocked' => '鎖到哩"$1"',
 'ipb_cant_unblock' => '錯誤: 冇發現Block ID $1。箇隻IP話伓定拕解封哩。',
 'ip_range_invalid' => '冇用嗰IP範圍。',
-'blockme' => '封吥我去',
 'proxyblocker' => '代理封鎖器',
-'proxyblocker-disabled' => '箇隻功能用伓正哩。',
 'proxyblockreason' => '汝嗰IP係一隻公開嗰代理，佢拕封到哩。請聯絡汝嗰Internet服務提供商或技術幫助再告誦佢俚箇隻嚴重嗰安全問題。',
-'proxyblocksuccess' => '舞正哩。',
 'sorbsreason' => '{{SITENAME}}用嗰 DNSBL 查到汝嗰IP地址係隻公開代理服務器。',
 'sorbs_create_account_reason' => '{{SITENAME}}用嗰 DNSBL 檢查到汝嗰IP地址係隻公開代理服務器，汝也就新開伓正帳戶。',
 

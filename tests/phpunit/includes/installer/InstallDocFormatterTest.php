@@ -1,5 +1,5 @@
 <?php
-/* 
+/*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -9,7 +9,7 @@ class InstallDocFormatterTest extends MediaWikiTestCase {
 	 * @covers InstallDocFormatter::format
 	 * @dataProvider provideDocFormattingTests
 	 */
-	function testFormat( $expected, $unformattedText, $message = '' ) {
+	public function testFormat( $expected, $unformattedText, $message = '' ) {
 		$this->assertEquals(
 			$expected,
 			InstallDocFormatter::format( $unformattedText ),
@@ -27,6 +27,7 @@ class InstallDocFormatterTest extends MediaWikiTestCase {
 			array( 'Install &lt;tag>', 'Install <tag>', 'Escaping <' ),
 			array( 'Install &#123;&#123;template}}', 'Install {{template}}', 'Escaping [[' ),
 			array( 'Install &#91;&#91;page]]', 'Install [[page]]', 'Escaping {{' ),
+			array( 'Install &#95;&#95;TOC&#95;&#95;', 'Install __TOC__', 'Escaping __' ),
 			array( 'Install ', "Install \r", 'Removing \r' ),
 
 			# Transform \t{1,2} into :{1,2}

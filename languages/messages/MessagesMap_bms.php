@@ -58,6 +58,7 @@ $messages = array(
 'tog-diffonly' => 'Aja tidokna isi kaca nang ngisor bedane suntingan',
 'tog-showhiddencats' => 'Tidokna kategori sing diumpetna',
 'tog-norollbackdiff' => 'Lirwakna perbedaan seuwise nglakokna pambalikan',
+'tog-prefershttps' => 'Gunakna koneksi aman terus angger mlebu log',
 
 'underline-always' => 'Saben',
 'underline-never' => 'Ora tau',
@@ -121,6 +122,18 @@ $messages = array(
 'oct' => 'Okt',
 'nov' => 'Nov',
 'dec' => 'Des',
+'january-date' => ' $1 Januari',
+'february-date' => ' $1 Februari',
+'march-date' => ' $1 Maret',
+'april-date' => ' $1 April',
+'may-date' => '$1 Mei',
+'june-date' => ' $1 Juni',
+'july-date' => ' $1 Juli',
+'august-date' => ' $1 Agustus',
+'september-date' => '$1 September',
+'october-date' => ' $1 Oktober',
+'november-date' => '$1 November',
+'december-date' => '$1 Desember',
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Kategori|Kategori}}',
@@ -146,6 +159,7 @@ $messages = array(
 'newwindow' => '(buka nang jendhéla anyar)',
 'cancel' => 'Ora Sida',
 'moredotdotdot' => 'Liyané...',
+'morenotlisted' => 'Liyane sing durung kedaftar...',
 'mypage' => 'Kaca',
 'mytalk' => 'Dopokan',
 'anontalk' => 'Dhiskusi IP kiye',
@@ -201,6 +215,7 @@ $messages = array(
 'create-this-page' => 'Gawe kaca kiye',
 'delete' => 'Busek',
 'deletethispage' => 'Busak kaca kiye',
+'undeletethispage' => 'Batalna pembusekan kaca kiye',
 'undelete_short' => 'Batalna pambusakan $1 {{PLURAL:$1|suntingan|suntingan}}',
 'viewdeleted_short' => 'Deleng {{PLURAL:$1|siji suntingan|$1 suntingan}} sing wis dibusak',
 'protect' => 'Direksa',
@@ -244,7 +259,7 @@ $1',
 'pool-queuefull' => 'Kumpulan antriane kebak',
 'pool-errorunknown' => 'Kesalahan sing ora dingerteni sebabe',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Prakara {{SITENAME}}',
 'aboutpage' => 'Project:Prakara',
 'copyright' => 'Kabeh teks ana miturut $1.',
@@ -331,12 +346,6 @@ Daftar kaca astamiwa sing sah teyeng dideleng nang [[Special:SpecialPages|{{int:
 # General errors
 'error' => 'Kasalahan',
 'databaseerror' => 'Kasalahan basis data',
-'dberrortext' => 'Ana kesalahan sintaks nang penjalukan basis data.
-Kesalahan kiye ndeyan nandakna nek ana \'\'bug\'\' nang piranti alus.
-Penjalukan basis data sing pungkasan yakuwe:
-<blockquote><code>$1</code></blockquote>
-sekang jerone fungsi "<code>$2</code>".
-Basis data ngasilna kesalahan "<samp>$3: $4</samp>".',
 'laggedslavemode' => "'''Pènget:''' Kaca kiye mbokmenawa isiné dudu pangowahan pungkasan.",
 'readonly' => 'Basis data dikunci',
 'enterlockreason' => 'Lebokna alesan panguncèn, kalebu uga prakiran kapan kunci bakal dibuka',
@@ -370,11 +379,14 @@ A',
 'cannotdelete' => 'Kaca utawa berkas "$1" ora teyeng dibusek.
 Kiye ndeyane anu wis dibusek nang wong sejen.',
 'cannotdelete-title' => 'Ora teyeng mbusek kaca "$1".',
+'delete-hook-aborted' => 'Pembusekan dibatalna neng kait parser.
+Kuwe ora ana alesane.',
+'no-null-revision' => 'Ora teyeng nggawe versi null anyar kanggo kaca "$1"',
 'badtitle' => 'Judul ora sah',
 'badtitletext' => 'Judul kaca sing dijaluk ora sah, kosong, utawa salah nyambungna judul antar-basa utawa antarwiki.
 Kiya ndeyane ana siji utawa lewih karakter sing ora teyeng digunakna nang judul.',
-'perfcached' => "Data kiye dijikot sekang singgahan (''cache'') lan ndeyane dudu data pungkasan. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.",
-'perfcachedts' => "Data kiye dijikot sekang singgahan (''cache''), lan dianyarna keri dhewek dong $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.",
+'perfcached' => "Data kiye dijikot sekang singgahan (''cache'') lan ndeyane dudu data pungkasan. Paling akeh {{PLURAL:$1|siji asil|$1 asil}} disediakna nang papan singgahan.",
+'perfcachedts' => "Data kiye dijikot sekang singgahan (''cache''), lan dianyarna keri dhewek dong $1. Paling akeh ana  {{PLURAL:$4|siji asil|$4 asil}} disediakna nang papan singgahan.",
 'querypage-no-updates' => 'Update nggo kaca kiye lagi dipateni.
 Data sing ana nang kene sekiye ora teyeng dibaleni unggah maning.',
 'wrong_wfQuery_params' => 'Parameter salah maring wfQuery()<br />
@@ -385,22 +397,32 @@ Panyuwunan: $2',
 'actionthrottled' => 'Tindakan diwatesi',
 'actionthrottledtext' => 'Kanggo ngukur anti-spam, Rika diwatesi gole nglakoni tikdakan kiye keseringen nang wektu sing cendhak, lan Rika uwis nglewati watese kuwe.
 Monggo dijajal maning nang sawetara menit.',
-'protectedpagetext' => 'Kaca kiye uwis dikunci ben ora teyeng disunting.',
+'protectedpagetext' => 'Kaca kiye uwis dikunci ben ora teyeng disunting utawa aksi liyane (pokoke ora teyeng diapa-apakna maning).',
 'viewsourcetext' => 'Rika teyeng ndeleng lan nyalin sumbere kaca kiye:',
 'viewyourtext' => "Rika teyeng ndeleng lan nyalin sumbere '''suntingane Rika''' nang kaca kiye:",
-'protectedinterface' => 'Kaca kiye isine teks antarmuka ding dienggo piranti lunak, lan uwis dikunci nggo menghindari kasalahan.',
+'protectedinterface' => 'Kaca kiye isine teks antarmuka ding dienggo piranti alus nang wiki kiye, lan uwis dikunci nggo menghindari kasalahan.
+Kanggo nambaih utawa ngowaih terjemahan nang kabeh wiki, monggo gunakna [//translatewiki.net/ translatewiki.net], proyek lokalisasi MediaWiki.',
 'editinginterface' => "'''Pènget:''' Rika nyunting kaca sing dienggo nyedyakna tèks antarmuka kanggo piranti alus.
-Pangowahan kaca kiye bakal awèh pangaruh maring tampilan antarmuka panganggo duweke panganggo sejen.
-Angger arep nerjemahna, monggo nganggo [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], proyèk lokalisasi MediaWiki.",
-'sqlhidden' => '(Penjalukan SQL diumpetna)',
+Pangowahan kaca kiye bakal awèh pangaruh maring tampilan antarmuka panganggo duweke panganggo sejen nang wiki kiye.
+Angger arep nambaih utawa ngowaih terjemahan, monggo gunakna [//translatewiki.net/translatewiki.net], proyèk lokalisasi MediaWiki.",
 'cascadeprotected' => 'Kaca kiye wis direksa sekang penyuntingan jalaran melu mlebu nang {{PLURAL:$1|kaca|kaca-kaca}} nang ngisor kiye sing wis direksa nganggo opsi "runtun":
 $2',
 'namespaceprotected' => "Rika ora duwe hak akses kanggo nyunting kaca nang bilik jeneng '''$1'''.",
 'customcssprotected' => 'Rika ora duwe izin nggo nyunting kaca CSS kiye, jalaran isine pengaturan pribadine panganggo sejen.',
 'customjsprotected' => 'Rika ora duwe izin nggo nyunting kaca JavaScript kiye, jalaran isine pengaturan pribadine panganggo sejen.',
+'mycustomcssprotected' => 'Rika ora duwe hak akses kanggo ngowaih kaca CSS kiye.',
+'mycustomjsprotected' => 'Rika ora duwe idin kanggo ngowaih kaca JavaScript kiye.',
+'myprivateinfoprotected' => 'Rika ora duwe idin kanggo ngowaih informasi pribadine Rika.',
+'mypreferencesprotected' => 'Rika ora duwe idin kanggo ngowaih preferensine rika.',
 'ns-specialprotected' => 'Kaca astaiwa ora teyeng disunting.',
 'titleprotected' => 'Judul kiye wis direksa ora olih digawe nang [[User:$1|$1]].
 Alesane yakuwe "\'\'$2\'\'".',
+'filereadonlyerror' => 'Ora teyeng ngowaih berkas "$1" jalaran panyimpenan berkas "$2" ana nang mode-mung-teyeng-diwaca.
+
+Administrator sing ngunci aweh keterangan: "$3".',
+'invalidtitle-knownnamespace' => 'Irah-irahan ora sah nang bilikjeneng "$2" lan teks "$3"',
+'invalidtitle-unknownnamespace' => 'Judhul ora sah nang bilik jeneng sing ora dingerteni nomer $1 lan teks "$2"',
+'exception-nologin-text' => 'Kaca utawa kelakon kiye mbutuhna mlebu log nèng wiki kiye dhisit.',
 
 # Virus scanner
 'virus-badscanner' => "Kasalahan konfigurasi: pamindai virus ora dikenal: ''$1''",
@@ -410,14 +432,25 @@ Alesane yakuwe "\'\'$2\'\'".',
 # Login and logout pages
 'logouttext' => "'''Rika uwis metu log sekang sistem.'''
 
-Rika teyeng terus nggunakna {{SITENAME}} kanthi anonim, utawa Rika teyeng <span class='plainlinks'>[$1 mlebu log maning]</span> nganggo jeneng panganggo sing padha utawa sejene.
-Digatekna ya, nek ana kaca sing esih terus nidokna nek rika esih mlebu log nnganti Rika mbusak singgahan nang panjelajah web-e Rika.",
+Digatekna ya, cokan ana kaca sing esih terus nidokna nek rika esih mlebu log nganti Rika mbusak singgahan nang panjelajah web-e Rika.",
+'welcomecreation-msg' => 'Akune Rika uwis digawe. 
+Aja kelalen ngowaih [[Special:Preferences|preferensi {{SITENAME}}]] Rika.',
 'yourname' => 'Jeneng panganggo:',
+'userlogin-yourname' => 'Jenengpanganggo',
+'userlogin-yourname-ph' => 'Lebokna jenengpanganggone Rika',
+'createacct-another-username-ph' => 'Lebokna jeneng panganggo',
 'yourpassword' => 'Tembung sandhi:',
+'userlogin-yourpassword' => 'Tembung sandhi',
+'userlogin-yourpassword-ph' => 'Lebokna tembung sandhine Rika',
+'createacct-yourpassword-ph' => 'Lebokna tembung sandhi',
 'yourpasswordagain' => 'Balèni tembung sandhi:',
+'createacct-yourpasswordagain' => 'Konfirmasi tembung sandhi',
+'createacct-yourpasswordagain-ph' => 'Lebokna tembung sandhi maning',
 'remembermypassword' => 'Emutna data login-ne inyong nang peramban kiye (kanggo paling suwe $1 {{PLURAL:$1|dina|dina}})',
-'securelogin-stick-https' => 'Tetep kahubung maring HTTPS seuwise mlebu log',
+'userlogin-remembermypassword' => 'Jorna ben Inyong tetep mlebu log',
+'userlogin-signwithsecure' => 'Gunakna koneksi aman',
 'yourdomainname' => 'Domain Rika:',
+'password-change-forbidden' => 'Rika ora teyeng ngowaih tembung sandhi nang wiki kiye.',
 'externaldberror' => 'Ana kesalahan otentikasi basis data utawa Rika ora olih nglakokna pemutakhiran maring akun eksternale Rika.',
 'login' => 'Melebu',
 'nav-login-createaccount' => 'Mlebu / gawe kaca anggota (akun)',
@@ -427,18 +460,41 @@ Digatekna ya, nek ana kaca sing esih terus nidokna nek rika esih mlebu log nngan
 'logout' => 'Metu Log',
 'userlogout' => 'Metu Log',
 'notloggedin' => 'Durung mlebu log',
+'userlogin-noaccount' => 'Durung duwe akun?',
+'userlogin-joinproject' => 'Melu {{SITENAME}}',
 'nologin' => 'Durung duwe akun? $1.',
 'nologinlink' => 'Gawe akun anyar',
 'createaccount' => 'Gawe akun anyar',
 'gotaccount' => 'Wis duwe akun? $1.',
 'gotaccountlink' => 'Mlebu log',
 'userlogin-resetlink' => 'Apa Rika kelalen info detil nggo mlebune?',
-'createaccountmail' => 'Liwat imel',
+'userlogin-resetpassword-link' => 'Setel maning tembung sandhine Rika',
+'helplogin-url' => 'Pitulung:Mlebu log',
+'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Pitulung mlebu log]]',
+'createacct-join' => 'Lebokna informasine Rika nang ngisor kiye.',
+'createacct-another-join' => 'Lebokna informasi akun anyar nang ngisor kiye.',
+'createacct-emailrequired' => 'Alamat imel',
+'createacct-emailoptional' => 'Alamat imel (ora kudu)',
+'createacct-email-ph' => 'Lebokna alamat imele Rika',
+'createacct-another-email-ph' => 'Lebokna alamat imel',
+'createaccountmail' => 'Gunakna tembung sandhi acak sementara lan kirimna maring alamat imel',
+'createacct-realname' => 'Jeneng asli (ora kudu)',
 'createaccountreason' => 'Alesan:',
+'createacct-reason' => 'Alesan',
+'createacct-reason-ph' => 'Kenangapa Rika nggawe akun sejen',
+'createacct-captcha' => 'Priksa keamanan',
+'createacct-imgcaptcha-ph' => 'Lebokna teks sing keton nang dhuwur',
+'createacct-submit' => 'Gawe akune Rika',
+'createacct-another-submit' => 'Gawe akun liyane',
+'createacct-benefit-heading' => '{{SITENAME}} kuwe digawe nang wong kaya Rika.',
+'createacct-benefit-body1' => '{{PLURAL:$1|suntingan|suntingan}}',
+'createacct-benefit-body2' => '{{PLURAL:$1|kaca|kaca}}',
+'createacct-benefit-body3' => '{{PLURAL:$1|kontributor|kontributor}} anyaran',
 'badretype' => 'Tembung sandhi sing Rika lebokna ora gathuk.',
 'userexists' => 'Jeneng panganggo sing dilebokna uwis ana sing nganggo.
 Monggo pilih jeneng liyane.',
 'loginerror' => 'Kasalahan mlebu log',
+'createacct-error' => 'Gole gawe akun gagal',
 'createaccounterror' => 'Ora teyeng gawe akun:$1',
 'nocookiesnew' => "Akunpanganggo wis digawe, tapi Rika durung mlebu log.
 {{SITENAME}} nggunakna ''cookies'' kanggo log panganggo.
@@ -484,8 +540,8 @@ Monggoo mlebu log maning seuwise Rika nampa imel kuwe.',
 'blocked-mailpassword' => "Alamat IP-ne Rika diblokir sekang panyuntingan, mulane kuwe Rika ora olih nganggo fungsi pèngetan tembung sandhi kanggo ''mencegah penyalahgunaan''.",
 'eauthentsent' => 'Pesen imel konfirmasi wis dikirim maring alamat imele Rika.
 Rika kudu ngetutna instruksi nang imel kuwe mau nggo mastekna nek alamat kuwe pancen imele Rika dhewek. {{SITENAME}} ora bakal ngaktifna fitur imel angger langkah kiye durung dilakokna.',
-'throttled-mailpassword' => 'Sawijining pènget tembung sandhi wis dikirim, jroning {{PLURAL:$1|jam|$1 jam}} pungkasan kiye.
-Kanggo nyegah salah-guna, mung siji pènget tembung sandi thok sing teyeng dikirim saben {{PLURAL:$1|jam|$1 jam}}.',
+'throttled-mailpassword' => 'Sawijining imel kanggo mbalekna tembung sandhi wis dikirim, jroning {{PLURAL:$1|jam|$1 jam}} pungkasan kiye.
+Kanggo nyegah salah-guna, mung siji imel tembung sandi thok sing teyeng dikirim saben {{PLURAL:$1|jam|$1 jam}}.',
 'mailerror' => 'Kasalahan dong ngirim imel: $1',
 'acct_creation_throttle_hit' => 'Tamu nang wiki kiye sing nganggo alamat IP padha karo Rika kiye uwis gawe {{PLURAL:$1|1 akun|$1 akun}} nang sadina pungkasan, gutul jumlah maksimum sing diidinaken.
 Mulane kuwe, tamu sing nganggo alamat IP kiye ora teyeng maning gawe akun sejen sauntara kiye.',
@@ -497,8 +553,9 @@ Sedurunge dikonfirmasi Rika ora teyeng nggunakna fitur imel.',
 'invalidemailaddress' => 'Alamat imel ora teyeng ditampa jalaran formate ora bener.
 Monggo lebokna alamat imel nganggo format sing bener utawa dikosongna baen isian kuwe mau.',
 'cannotchangeemail' => 'Alamat imel akun ora teyeng diganti nang wiki kiye.',
+'emaildisabled' => 'Situs kiye ora teyeng ngirimna imel.',
 'accountcreated' => 'Akun wis digawe',
-'accountcreatedtext' => 'Akun panganggo nggo $1 wis digawe.',
+'accountcreatedtext' => 'Akun panganggo nggo [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|dopokan]]) wis digawe.',
 'createaccount-title' => 'Gawe akun kanggo {{SITENAME}}',
 'createaccount-text' => 'Ana wong sing gawe akun nggo alamat imel-e Rika nang {{SITENAME}} ($4) nganggo jeneng "$2", lan tembung sandhi "$3".
 Rika mendingan mlebu log disit lan ganti tembung sandine sekiye.
@@ -506,14 +563,17 @@ Rika mendingan mlebu log disit lan ganti tembung sandine sekiye.
 Rika teyeng nglirwakna pesen kiye anggere akun kiye kuwe jebule anu salah gawe.',
 'usernamehasherror' => 'Jeneng panganggo ora teyeng nganggo tanda pager',
 'login-throttled' => 'Rika wis kakehan gole njajal mlebu log.
-Tulung ngenteni sedela sedurunge njajal maning.',
+Tulung ngenteni $1 sedurunge njajal maning.',
 'login-abort-generic' => 'Proses mlebu log Rika ora gagal - Dibatalna',
 'loginlanguagelabel' => 'Basa: $1',
 'suspicious-userlogout' => "Panjalukan Rika nggo metu log ditolak jalarak ketone dikirim nang panjlajah sing rusak utawa proksi panyinggah (''caching proxy'').",
+'createacct-another-realname-tip' => "'''Jeneng asli''' kuwe ora kudu.
+Angger Rika milih arep ngaweh, kiye bakal digunakna nggo aweh atribut maring kasil kerjaane Rika.",
 
 # Email sending
 'php-mail-error-unknown' => 'Kasalahan sing ora genah nang fungsi mail() PHP.',
 'user-mail-no-addy' => 'Njajal ngirimna imel tanpa nganggo alamat imel.',
+'user-mail-no-body' => 'Njajal ngirim imel sing kosong urawa isine sithik thok.',
 
 # Change password dialog
 'resetpass' => 'Ganti tembung sandhi',
@@ -524,8 +584,7 @@ Nggo nerusna, Rika kudu nglebokna tembung sandhi anyar nang kene:',
 'newpassword' => 'Tembung sandi anyar:',
 'retypenew' => 'Ketik maning tembung sandhi:',
 'resetpass_submit' => 'Nata tembung sandhi lan mlebu log',
-'resetpass_success' => 'Tembung sandhi Rika wis sukses diowahi!
-Sekiye mroses Rika mlebu log...',
+'changepassword-success' => 'Tembung sandhi Rika wis sukses diowahi!',
 'resetpass_forbidden' => 'Tembung sandhi ora teyeng diganti',
 'resetpass-no-info' => 'Rika kudu mlebu log kanggo ngakses kaca kiye sacara langsung.',
 'resetpass-submit-loggedin' => 'Ganti tembung sandhi',
@@ -533,11 +592,15 @@ Sekiye mroses Rika mlebu log...',
 'resetpass-wrong-oldpass' => 'Tembung sandhi ora sah.
 Rika ndeyan  uwis kasil ngganti tembung sandhine Rika utawa wis njaluk tembung sandhi sauntara sing anyar.',
 'resetpass-temp-password' => 'Tembung sandhi sauntara:',
+'resetpass-abort-generic' => 'Owahan tembung sandhi wis dibatalna nang ektensi.',
 
 # Special:PasswordReset
 'passwordreset' => "Tembung sandhi di-''reset''",
+'passwordreset-text-one' => 'Kumpliti formulir kiye kanggo nyetel maning tembung sandhine Rika.',
+'passwordreset-text-many' => '{{PLURAL:$1|Isi salah siji kotak kanggo nyetel maning tembung sandhine Rika.}}',
 'passwordreset-legend' => "Tembung sandhi di-''reset''",
 'passwordreset-disabled' => "''Reset'' tembung sandhi wis dipateni nang wiki kiye.",
+'passwordreset-emaildisabled' => 'Fitur imel wis dinonaktifna nang wiki kiye.',
 'passwordreset-username' => 'Jeneng panganggo:',
 'passwordreset-domain' => 'Domain:',
 'passwordreset-capture' => 'Deleng imel hasile?',
@@ -546,9 +609,9 @@ Rika ndeyan  uwis kasil ngganti tembung sandhine Rika utawa wis njaluk tembung s
 'passwordreset-emailtitle' => 'Detil akun nang {{SITENAME}}',
 'passwordreset-emailelement' => 'Jeneng panganggo: $1
 Tembung sandhi sauntara: $2',
-'passwordreset-emailsent' => 'Imel nggo ngelingna uwis dikirim.',
-'passwordreset-emailsent-capture' => 'Imel kanggo ngelingna uwis dikirim, kaya sing ditidokna nang ngisor kiye.',
-'passwordreset-emailerror-capture' => 'Imel nggo ngelingna uwis digawe, kaya sing ditidokna nang ngisor kiye, ningen ora teyeng dikirim maring panganggo: $1',
+'passwordreset-emailsent' => 'Imel nggo nyetel maning tembung sandhi uwis dikirim.',
+'passwordreset-emailsent-capture' => 'Imel kanggo nyetel maning tembung sandhi uwis dikirim, kaya sing ditidokna nang ngisor kiye.',
+'passwordreset-emailerror-capture' => 'Imel nggo nyetel maning tembung sandhi uwis digawe, kaya sing ditidokna nang ngisor kiye, ningen gole ngirim maring {{GENDER:$2|panganggo}} ora teyeng: $1',
 
 # Special:ChangeEmail
 'changeemail' => 'Ganti alamat imel',
@@ -558,8 +621,16 @@ Tembung sandhi sauntara: $2',
 'changeemail-oldemail' => 'Alamat imel sekiye:',
 'changeemail-newemail' => 'Alamat imel anyar:',
 'changeemail-none' => '(ora ana)',
+'changeemail-password' => 'Tembung sandhi {{SITENAME}} Rika:',
 'changeemail-submit' => 'Ganti imel',
 'changeemail-cancel' => 'Ora sida',
+
+# Special:ResetTokens
+'resettokens-no-tokens' => 'Ora ana token sing arep disetel maning.',
+'resettokens-legend' => 'Nyetel maning token',
+'resettokens-token-label' => '$1 (biji sekiye:$2)',
+'resettokens-done' => 'Token wis disetel maning.',
+'resettokens-resetbutton' => 'Nyetel maning token sing dipilih',
 
 # Edit page toolbar
 'bold_sample' => 'Tèks kiye bakal dicithak kandel',
@@ -730,8 +801,8 @@ Alesane miturut $3 yakuwe ''$2''",
 'histlegend' => "Pilihen rong tombol radhio banjur pencèt tombol ''bandhingna'' kanggo mbandhingna versi. Klik sawijining tanggal kanggo ndeleng versi kaca nang tanggal kuwe.<br />(sky) = prabédan karo vèrsi sekiye, (akir) = prabédan karo vèrsi sadurungé, '''c''' = suntingan cilik, '''b''' = suntingan bot, → = suntingan bagiyan, ← = ringkesan otomatis.",
 'history-fieldset-title' => 'Njlajah sajarah vèrsi sadhurungé',
 'history-show-deleted' => 'Sing dibusak thok',
-'histfirst' => 'Paling suwe',
-'histlast' => 'Paling anyar',
+'histfirst' => 'paling lawas',
+'histlast' => 'paling anyar',
 'historysize' => '($1 {{PLURAL:$1|bita|bita}})',
 'historyempty' => '(kosong)',
 
@@ -1301,13 +1372,6 @@ Deskripsi sekang [$2 kaca deskripsine] ditidokna nang ngisor kiye.',
 'statistics-users-active-desc' => 'Panganggo sing nglakokna aktivitas nang {{PLURAL:$1|dina|$1 dina}} pungkasan',
 'statistics-mostpopular' => 'Kaca sing paling akèh dideleng',
 
-'disambiguations' => 'Kaca sing nggandeng maring kaca disambiguasi',
-'disambiguationspage' => 'Template:Disambig',
-'disambiguations-text' => "Kaca-kaca kiye nduwe pranala maring '''kaca disambiguasi'''.
-Kaca-kaca kuwe kudune nggandeng maring topik sing bener/pas.<br />
-Sawijining kaca bakal dianggep dadi kaca disambiguasi angger nggunakna cithakan sing nggandeng maring 
-[[MediaWiki:Disambiguationspage]]",
-
 'doubleredirects' => 'Pangalihan dobel',
 'doubleredirectstext' => 'Kaca kiye muat daftar kaca sing dialihna maring kaca pangalihan liyane.
 Saben barise nduwe pranala maring pangalihan pertama lan kepindho, lan tujuan sekang pengalihan kepindho sing biasane kuwe kaca tujuan sing "sebenere", sing kudune dadi tujuane kaca pangalihan pertama.
@@ -1450,12 +1514,12 @@ Rika teyeng mbatesi tampilan kanthi milih jinis log, jeneng panganggo (sensitif 
 'emailuserfooter' => 'Layang kiye dikirimna sekang $1 ming $2 nggunakna fungsi "Layangpanganggo" nang {{SITENAME}}.',
 
 # Watchlist
-'watchlist' => 'Daftar sawangané inyong',
+'watchlist' => 'Daftar pangawasan',
 'mywatchlist' => 'Daftar sawangané inyong',
 'watchlistfor2' => 'Kanggo $1 $2',
 'watch' => 'Pantau',
 'unwatch' => 'Batalna pantauan',
-'watchlist-details' => 'Ana {{PLURAL:$1|$1 kaca|$1 kaca}} nang daftar pangawasané Rika, ningèn kaca dhiskusiné ora mélu diétung.',
+'watchlist-details' => 'Ana {{PLURAL:$1|$1 kaca|$1 kaca}} nang daftar pangawasané Rika, ora klebu kaca-kaca dhiskusiné.',
 'wlshowlast' => 'Tidokna $1 jam $2 dina $3 pungkasan',
 'watchlist-options' => 'Opsi daftar pangawasan',
 
@@ -1556,7 +1620,7 @@ Rika teyeng ngowaih tingkat pangreksan nggo kaca kiye, ningen perkara iku ora aw
 'contributions-title' => 'Kontribusi panganggo kanggo $1',
 'mycontris' => 'Kontribusi',
 'contribsub2' => 'Kanggo $1 ($2)',
-'uctop' => ' (dhuwur)',
+'uctop' => '(sekiye)',
 'month' => 'Sekang sasi (lan sadurungé):',
 'year' => 'Sekang taun (lan sadurunge):',
 

@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function ( mw, $ ) {
 	// mw.Title relies on these three config vars
 	// Restore them after each test run
 	var config = {
@@ -53,48 +53,183 @@
 			antarctic_waterfowl: 100
 		},
 		wgCaseSensitiveNamespaces: []
+	},
+	repeat = function ( input, multiplier ) {
+		return new Array( multiplier + 1 ).join( input );
+	},
+	cases = {
+		// See also TitleTest.php#testSecureAndSplit
+		valid: [
+			'Sandbox',
+			'A "B"',
+			'A \'B\'',
+			'.com',
+			'~',
+			'"',
+			'\'',
+			'Talk:Sandbox',
+			'Talk:Foo:Sandbox',
+			'File:Example.svg',
+			'File_talk:Example.svg',
+			'Foo/.../Sandbox',
+			'Sandbox/...',
+			'A~~',
+			// Length is 256 total, but only title part matters
+			'Category:' + repeat( 'x', 248 ),
+			repeat( 'x', 252 )
+		],
+		invalid: [
+			'',
+			'__  __',
+			'  __  ',
+			// Bad characters forbidden regardless of wgLegalTitleChars
+			'A [ B',
+			'A ] B',
+			'A { B',
+			'A } B',
+			'A < B',
+			'A > B',
+			'A | B',
+			// URL encoding
+			'A%20B',
+			'A%23B',
+			'A%2523B',
+			// XML/HTML character entity references
+			// Note: The ones with # are commented out as those are interpreted as fragment and
+			// as such end up being valid.
+			'A &eacute; B',
+			//'A &#233; B',
+			//'A &#x00E9; B',
+			// Subject of NS_TALK does not roundtrip to NS_MAIN
+			'Talk:File:Example.svg',
+			// Directory navigation
+			'.',
+			'..',
+			'./Sandbox',
+			'../Sandbox',
+			'Foo/./Sandbox',
+			'Foo/../Sandbox',
+			'Sandbox/.',
+			'Sandbox/..',
+			// Tilde
+			'A ~~~ Name',
+			'A ~~~~ Signature',
+			'A ~~~~~ Timestamp',
+			repeat( 'x', 256 ),
+			// Extension separation is a js invention, for length
+			// purposes it is part of the title
+			repeat( 'x', 252 ) + '.json',
+			// Namespace prefix without actual title
+			// ':', // bug 54044
+			'Talk:',
+			'Category: ',
+			'Category: #bar'
+		]
 	};
 
 	QUnit.module( 'mediawiki.Title', QUnit.newMwEnvironment( { config: config } ) );
 
-	QUnit.test( 'Transformation', 8, function ( assert ) {
-		var title;
-
-		title = new mw.Title( 'File:quux pif.jpg' );
-		assert.equal( title.getName(), 'Quux_pif' );
-
-		title = new mw.Title( 'File:Glarg_foo_glang.jpg' );
-		assert.equal( title.getNameText(), 'Glarg foo glang' );
-
-		title = new mw.Title( 'User:ABC.DEF' );
-		assert.equal( title.toText(), 'User:ABC.DEF' );
-		assert.equal( title.getNamespaceId(), 2 );
-		assert.equal( title.getNamespacePrefix(), 'User:' );
-
-		title = new mw.Title( 'uSEr:hAshAr' );
-		assert.equal( title.toText(), 'User:HAshAr' );
-		assert.equal( title.getNamespaceId(), 2 );
-
-		title = new mw.Title( '   MediaWiki:  Foo   bar   .js   ' );
-		// Don't ask why, it's the way the backend works. One space is kept of each set
-		assert.equal( title.getName(), 'Foo_bar_.js', 'Merge multiple spaces to a single space.' );
+	QUnit.test( 'constructor', cases.invalid.length, function ( assert ) {
+		var i, title;
+		for ( i = 0; i < cases.valid.length; i++ ) {
+			title = new mw.Title( cases.valid[i] );
+		}
+		for ( i = 0; i < cases.invalid.length; i++ ) {
+			/*jshint loopfunc:true */
+			title = cases.invalid[i];
+			assert.throws( function () {
+				return new mw.Title( title );
+			}, cases.invalid[i] );
+		}
 	} );
 
-	QUnit.test( 'Main text for filename', 8, function ( assert ) {
-		var title = new mw.Title( 'File:foo_bar.JPG' );
+	QUnit.test( 'newFromText', cases.valid.length + cases.invalid.length, function ( assert ) {
+		var i;
+		for ( i = 0; i < cases.valid.length; i++ ) {
+			assert.equal(
+				$.type( mw.Title.newFromText( cases.valid[i] ) ),
+				'object',
+				cases.valid[i]
+			);
+		}
+		for ( i = 0; i < cases.invalid.length; i++ ) {
+			assert.equal(
+				$.type( mw.Title.newFromText( cases.invalid[i] ) ),
+				'null',
+				cases.invalid[i]
+			);
+		}
+	} );
+
+	QUnit.test( 'Basic parsing', 12, function ( assert ) {
+		var title;
+		title = new mw.Title( 'File:Foo_bar.JPG' );
 
 		assert.equal( title.getNamespaceId(), 6 );
 		assert.equal( title.getNamespacePrefix(), 'File:' );
 		assert.equal( title.getName(), 'Foo_bar' );
 		assert.equal( title.getNameText(), 'Foo bar' );
-		assert.equal( title.getMain(), 'Foo_bar.JPG' );
-		assert.equal( title.getMainText(), 'Foo bar.JPG' );
 		assert.equal( title.getExtension(), 'JPG' );
 		assert.equal( title.getDotExtension(), '.JPG' );
+		assert.equal( title.getMain(), 'Foo_bar.JPG' );
+		assert.equal( title.getMainText(), 'Foo bar.JPG' );
+		assert.equal( title.getPrefixedDb(), 'File:Foo_bar.JPG' );
+		assert.equal( title.getPrefixedText(), 'File:Foo bar.JPG' );
+
+		title = new mw.Title( 'Foo#bar' );
+		assert.equal( title.getPrefixedText(), 'Foo' );
+		assert.equal( title.getFragment(), 'bar' );
 	} );
 
-	QUnit.test( 'Namespace detection and conversion', 6, function ( assert ) {
+	QUnit.test( 'Transformation', 11, function ( assert ) {
 		var title;
+
+		title = new mw.Title( 'File:quux pif.jpg' );
+		assert.equal( title.getNameText(), 'Quux pif', 'First character of title' );
+
+		title = new mw.Title( 'File:Glarg_foo_glang.jpg' );
+		assert.equal( title.getNameText(), 'Glarg foo glang', 'Underscores' );
+
+		title = new mw.Title( 'User:ABC.DEF' );
+		assert.equal( title.toText(), 'User:ABC.DEF', 'Round trip text' );
+		assert.equal( title.getNamespaceId(), 2, 'Parse canonical namespace prefix' );
+
+		title = new mw.Title( 'Image:quux pix.jpg' );
+		assert.equal( title.getNamespacePrefix(), 'File:', 'Transform alias to canonical namespace' );
+
+		title = new mw.Title( 'uSEr:hAshAr' );
+		assert.equal( title.toText(), 'User:HAshAr' );
+		assert.equal( title.getNamespaceId(), 2, 'Case-insensitive namespace prefix' );
+
+		// Don't ask why, it's the way the backend works. One space is kept of each set.
+		title = new mw.Title( 'Foo  __  \t __ bar' );
+		assert.equal( title.getMain(), 'Foo_bar', 'Merge multiple types of whitespace/underscores into a single underscore' );
+
+		// Regression test: Previously it would only detect an extension if there is no space after it
+		title = new mw.Title( 'Example.js  ' );
+		assert.equal( title.getExtension(), 'js', 'Space after an extension is stripped' );
+
+		title = new mw.Title( 'Example#foo' );
+		assert.equal( title.getFragment(), 'foo', 'Fragment' );
+
+		title = new mw.Title( 'Example#_foo_bar baz_' );
+		assert.equal( title.getFragment(), ' foo bar baz', 'Fragment' );
+	} );
+
+	QUnit.test( 'Namespace detection and conversion', 10, function ( assert ) {
+		var title;
+
+		title = new mw.Title( 'File:User:Example' );
+		assert.equal( title.getNamespaceId(), 6, 'Titles can contain namespace prefixes, which are otherwise ignored' );
+
+		title = new mw.Title( 'Example', 6 );
+		assert.equal( title.getNamespaceId(), 6, 'Default namespace passed is used' );
+
+		title = new mw.Title( 'User:Example', 6 );
+		assert.equal( title.getNamespaceId(), 2, 'Included namespace prefix overrides the given default' );
+
+		title = new mw.Title( ':Example', 6 );
+		assert.equal( title.getNamespaceId(), 0, 'Colon forces main namespace' );
 
 		title = new mw.Title( 'something.PDF', 6 );
 		assert.equal( title.toString(), 'File:Something.PDF' );
@@ -195,4 +330,101 @@
 		assert.equal( title.getUrl(), '/wiki/User_talk:John_Doe', 'Escaping in title and namespace for urls' );
 	} );
 
-}( mediaWiki ) );
+	QUnit.test( 'newFromImg', 36, function ( assert ) {
+		var title, i, thisCase, prefix,
+			cases = [
+				{
+					url: '/wiki/images/thumb/9/91/Anticlockwise_heliotrope%27s.jpg/99px-Anticlockwise_heliotrope%27s.jpg',
+					typeOfUrl: 'Normal hashed directory thumbnail',
+					nameText: 'Anticlockwise heliotrope\'s',
+					prefixedText: 'File:Anticlockwise heliotrope\'s.jpg'
+				},
+
+				{
+					url: '/wiki/images/thumb/8/80/Wikipedia-logo-v2.svg/langde-150px-Wikipedia-logo-v2.svg.png',
+					typeOfUrl: 'Normal hashed directory thumbnail with complex thumbnail parameters',
+					nameText: 'Wikipedia-logo-v2',
+					prefixedText: 'File:Wikipedia-logo-v2.svg'
+				},
+
+				{
+					url: '//upload.wikimedia.org/wikipedia/commons/thumb/8/80/Wikipedia-logo-v2.svg/150px-Wikipedia-logo-v2.svg.png',
+					typeOfUrl: 'Commons thumbnail',
+					nameText: 'Wikipedia-logo-v2',
+					prefixedText: 'File:Wikipedia-logo-v2.svg'
+				},
+
+				{
+					url: '/wiki/images/9/91/Anticlockwise_heliotrope%27s.jpg',
+					typeOfUrl: 'Full image',
+					nameText: 'Anticlockwise heliotrope\'s',
+					prefixedText: 'File:Anticlockwise heliotrope\'s.jpg'
+				},
+
+				{
+					url: 'http://localhost/thumb.php?f=Stuffless_Figaro%27s.jpg&width=180',
+					typeOfUrl: 'thumb.php-based thumbnail',
+					nameText: 'Stuffless Figaro\'s',
+					prefixedText: 'File:Stuffless Figaro\'s.jpg'
+				},
+
+				{
+					url: '/wikipedia/commons/thumb/Wikipedia-logo-v2.svg/150px-Wikipedia-logo-v2.svg.png',
+					typeOfUrl: 'Commons unhashed thumbnail',
+					nameText: 'Wikipedia-logo-v2',
+					prefixedText: 'File:Wikipedia-logo-v2.svg'
+				},
+
+				{
+					url: '/wikipedia/commons/thumb/Wikipedia-logo-v2.svg/langde-150px-Wikipedia-logo-v2.svg.png',
+					typeOfUrl: 'Commons unhashed thumbnail with complex thumbnail parameters',
+					nameText: 'Wikipedia-logo-v2',
+					prefixedText: 'File:Wikipedia-logo-v2.svg'
+				},
+
+				{
+					url: '/wiki/images/Anticlockwise_heliotrope%27s.jpg',
+					typeOfUrl: 'Unhashed local file',
+					nameText: 'Anticlockwise heliotrope\'s',
+					prefixedText: 'File:Anticlockwise heliotrope\'s.jpg'
+				},
+
+				{
+					url: '',
+					typeOfUrl: 'Empty string'
+				},
+
+				{
+					url: 'foo',
+					typeOfUrl: 'String with only alphabet characters'
+				},
+
+				{
+					url: 'foobar.foobar',
+					typeOfUrl: 'Not a file path'
+				},
+
+				{
+					url: '/a/a0/blah blah blah',
+					typeOfUrl: 'Space characters'
+				}
+			];
+
+		for ( i = 0; i < cases.length; i++ ) {
+			thisCase = cases[i];
+			title = mw.Title.newFromImg( { src: thisCase.url } );
+
+			if ( thisCase.nameText !== undefined ) {
+				prefix = '[' + thisCase.typeOfUrl + ' URL' + '] ';
+
+				assert.notStrictEqual( title, null, prefix + 'Parses successfully' );
+				assert.equal( title.getNameText(), thisCase.nameText, prefix + 'Filename matches original' );
+				assert.equal( title.getPrefixedText(), thisCase.prefixedText, prefix + 'File page title matches original' );
+				assert.equal( title.getNamespaceId(), 6, prefix + 'Namespace ID matches File namespace' );
+			} else {
+				assert.strictEqual( title, null, thisCase.typeOfUrl + ', should not produce an mw.Title object' );
+			}
+		}
+	} );
+
+}( mediaWiki, jQuery ) );

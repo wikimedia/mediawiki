@@ -1,10 +1,12 @@
 <?php
+
 /**
  * @group Upload
  */
 class UploadBaseTest extends MediaWikiTestCase {
-	protected $upload;
 
+	/** @var UploadTestHandler */
+	protected $upload;
 
 	protected function setUp() {
 		global $wgHooks;
@@ -30,6 +32,7 @@ class UploadBaseTest extends MediaWikiTestCase {
 	 * of UploadBase::getTitle() and then the actual returned title
 	 *
 	 * @dataProvider provideTestTitleValidation
+	 * @covers UploadBase::getTitle
 	 */
 	public function testTitleValidation( $srcFilename, $dstFilename, $code, $msg ) {
 		/* Check the result code */
@@ -82,6 +85,7 @@ class UploadBaseTest extends MediaWikiTestCase {
 
 	/**
 	 * Test the upload verification functions
+	 * @covers UploadBase::verifyUpload
 	 */
 	public function testVerifyUpload() {
 		/* Setup with zero file size */
@@ -108,7 +112,6 @@ class UploadBaseTest extends MediaWikiTestCase {
 	 *
 	 * This method should be abstracted so we can test different settings.
 	 */
-
 	public function testMaxUploadSize() {
 		global $wgMaxUploadSize;
 		$savedGlobal = $wgMaxUploadSize; // save global

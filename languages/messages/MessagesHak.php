@@ -13,6 +13,7 @@
  * @author Jetlag
  * @author Mnemonic kek
  * @author Urhixidur
+ * @author Xiaomingyan
  */
 
 $messages = array(
@@ -23,12 +24,12 @@ $messages = array(
 'tog-hidepatrolled' => '隱藏最近更改肚巡查過嘅編寫',
 'tog-newpageshidepatrolled' => '隱藏新頁面清單肚巡查過嘅頁面',
 'tog-extendwatchlist' => '展開監視列表來顯示所有更改，毋單淨係最近嘅',
-'tog-usenewrc' => '在最近更改與監視列表中整合同一頁嘅修改 （愛有JavaScript）',
+'tog-usenewrc' => '在最近更改和監視列表肚整合同一頁嘅修改',
 'tog-numberheadings' => '標題自動編號',
-'tog-showtoolbar' => '顯示編寫工具欄 （愛有JavaScript）',
-'tog-editondblclick' => '雙撳編寫頁面 （愛有JavaScript）',
+'tog-showtoolbar' => '展示編寫工具欄',
+'tog-editondblclick' => '雙撳編寫頁面',
 'tog-editsection' => '允許通過點撳[編寫]鏈接編寫段落',
-'tog-editsectiononrightclick' => '允許右撳標題編寫段落 （愛有JavaScript）',
+'tog-editsectiononrightclick' => '允許右撳標題編寫段落',
 'tog-showtoc' => '顯示目錄（針對一頁超過3隻標題嘅頁面）',
 'tog-rememberpassword' => '在邇隻瀏覽器記下亻厓嘅登入狀態（最多$1日）',
 'tog-watchcreations' => '加亻厓建立嘅頁面撈上傳嘅文件加入亻厓嘅監視列表',
@@ -46,7 +47,7 @@ $messages = array(
 'tog-shownumberswatching' => '展示監視中嘅使用人數目',
 'tog-oldsig' => '現有簽名：',
 'tog-fancysig' => '將簽名看做維基文字（毋會自動產生鏈接）',
-'tog-uselivepreview' => '使用即時預覽（愛有 JavaScript）（實驗中）',
+'tog-uselivepreview' => '使用即時預覽（實驗中）',
 'tog-forceeditsummary' => '還吂輸入編寫摘要時提醒亻厓',
 'tog-watchlisthideown' => '監視列表肚隱藏亻厓嘅編寫',
 'tog-watchlisthidebots' => '監視列表肚隱藏機器人嘅編寫',
@@ -59,6 +60,7 @@ $messages = array(
 'tog-showhiddencats' => '展示隱藏分類',
 'tog-norollbackdiff' => '执行回退後毋顯示差別',
 'tog-useeditwarning' => '當離開頁面之時變更還吂儲存，請提醒𠊎',
+'tog-prefershttps' => '登入時一直使用安全連線',
 
 'underline-always' => '總係使用',
 'underline-never' => '從來毋用',
@@ -122,6 +124,18 @@ $messages = array(
 'oct' => '10月',
 'nov' => '11月',
 'dec' => '12月',
+'january-date' => '1月$1日',
+'february-date' => '2月$1日',
+'march-date' => '3月$1日',
+'april-date' => '4月$1日',
+'may-date' => '5月$1日',
+'june-date' => '6月$1日',
+'july-date' => '7月$1日',
+'august-date' => '8月$1日',
+'september-date' => '9月$1日',
+'october-date' => '10月$1日',
+'november-date' => '11月$1日',
+'december-date' => '12月$1日',
 
 # Categories related messages
 'pagecategories' => '$1隻分類',
@@ -147,7 +161,7 @@ $messages = array(
 'newwindow' => '（在新視窗肚打開）',
 'cancel' => '取消',
 'moredotdotdot' => '還較多...',
-'morenotlisted' => '有較多還吂列出嘅項目...',
+'morenotlisted' => '邇列表吂完成。',
 'mypage' => '頁面',
 'mytalk' => '交流',
 'anontalk' => '本IP地址嘅交流',
@@ -203,6 +217,7 @@ $messages = array(
 'create-this-page' => '建立本頁',
 'delete' => '刪除',
 'deletethispage' => '刪除本頁',
+'undeletethispage' => '取消刪除邇頁',
 'undelete_short' => '恢復$1隻分删除嘅编寫',
 'viewdeleted_short' => '查看$1項已刪除嘅修訂',
 'protect' => '保護',
@@ -244,10 +259,10 @@ $1',
 'pool-queuefull' => '請求隊列满矣',
 'pool-errorunknown' => '毋知得嘅差錯',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '關於 {{SITENAME}}',
 'aboutpage' => 'Project:關於',
-'copyright' => '本站內容使用$1條款授權。',
+'copyright' => '除非另有講明，否則本站內容都係以$1條款提供。',
 'copyrightpage' => '{{ns:project}}:版權信息',
 'currentevents' => '新聞動態',
 'currentevents-url' => 'Project:新聞動態',
@@ -331,17 +346,8 @@ $1',
 # General errors
 'error' => '差錯',
 'databaseerror' => '數據庫差錯',
-'dberrortext' => '發生數據庫查詢語法錯誤。
-可能係由於軟體自身嘅錯誤所引起。
-最後一次數據庫查詢指令係：
-<blockquote><code>$1</code></blockquote>
-來自於函數“<code>$2</code>”。
-數據庫返回錯誤“<samp>$3: $4</samp>”。',
-'dberrortextcl' => '發生數據庫查詢語法錯誤。
-最後一次嘅數據庫查詢是:
-「$1」
-來自於函數「$2」。
-數據庫返回錯誤「$3: $4」。',
+'databaseerror-text' => '出現資料庫查詢錯誤。
+邇可能表示軟件肚存在錯誤。',
 'laggedslavemode' => "'''警告：'''頁面可能毋包含最近嘅更新。",
 'readonly' => '數據庫分人鎖定',
 'enterlockreason' => '請撳入禁止訪問原因, 包括估計重新開放嘅時間',
@@ -397,7 +403,6 @@ $1',
 'editinginterface' => "'''警告：'''汝今下編寫緊嘅頁面係用於提供軟件嘅界面文字。
 改變邇頁將影響其他在邇隻wiki上嘅用戶界面外觀。
 假使愛修改所有wiki嘅翻譯，請到[//translatewiki.net/ translatewiki.net]上嘅MediaWiki本地化計劃。",
-'sqlhidden' => '（隱藏SQL查詢）',
 'cascadeprotected' => '邇隻頁面已經畀保護，因為邇隻頁面被以下已標註"聯鎖保護"嘅{{PLURAL:$1|一個|多個}}畀保護頁面包含：
 $2',
 'namespaceprotected' => "汝還無權限編輯'''$1'''名字空間嘅頁面。",
@@ -438,7 +443,6 @@ $2',
 'remembermypassword' => '在邇隻瀏覽器上記下𠊎嘅登入狀態（最長$1日）',
 'userlogin-remembermypassword' => '保持𠊎嘅登入狀態',
 'userlogin-signwithsecure' => '使用安全連線',
-'securelogin-stick-https' => '登入後繼續用HTTPS連接',
 'yourdomainname' => '汝嘅域名：',
 'password-change-forbidden' => '汝做毋得更改本wiki上嘅密碼。',
 'externaldberror' => '邇可能係由於驗證數據庫差錯或者汝分系統禁止更新汝嘅外部賬號。',
@@ -554,7 +558,7 @@ $2',
 'newpassword' => '舊密碼:',
 'retypenew' => '再一擺輸入密碼：',
 'resetpass_submit' => '設定密碼並登入',
-'resetpass_success' => '汝成功更改矣汝嘅密碼！
+'changepassword-success' => '汝成功更改矣汝嘅密碼！
 今下為汝登入緊...',
 'resetpass_forbidden' => '無辦法更改密碼',
 'resetpass-no-info' => '汝必須登入後直接進入邇隻頁面。',
@@ -1165,10 +1169,6 @@ Tshòng-tón pit-sî chhai $1-ke sṳ-ngièn yî-ha.',
 'statistics-header-users' => '用戶統計',
 'statistics-mostpopular' => '分查閱次數最多嘅頁面',
 
-'disambiguations' => 'Sêu-hàm fù-chông',
-'disambiguationspage' => 'Template:消歧義',
-'disambiguations-text' => 'Yî-ha ke hong-mien tû-yû to <b> sêu-hàm fù-chông </b> ke lièn-chiap, than yin-kôi he lièn-to sṳt-tông ke phêu-thì. <br /> Yit-ke hong-mien chiông-voi pûn-ngìn sṳ-vi Sêu-hàm fù-chông kó-yèn kí he lièn-chhṳ [[MediaWiki:disambiguationspage]].',
-
 'doubleredirects' => '雙重重定向頁',
 'doubleredirectstext' => 'Mî yit-hàng pâu-hàm to thi-yit lâu thi-ngi-ke chhûng-thin hong-mien ke lièn-chiap, yî-khi̍p thi-ngi ke chhûng-thin hong-mien ke thi-yit-hàng vùn-sṳ, thûng-sòng hién-sṳ ke he "chṳ̂n-chṳn" ke muk-phêu vùn-chông, ye-he thi-yit-ke chhûng-thin hong-mien  yin-kôi chṳ́-hiong ke vùn-chông.',
 
@@ -1561,7 +1561,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'ip_range_invalid' => '無效嘅IP範圍。',
 'proxyblocker' => '代理封鎖器',
 'proxyblockreason' => '汝嘅IP地址係一隻開放嘅代理，其已經分封鎖。請聯繫汝嘅網際網路服務提供商或技術支援者並講佢兜聽邇隻嚴重嘅安全問題。',
-'proxyblocksuccess' => '完成。',
 'sorbsreason' => 'Ngì-ke IP chhô-vi pûn DNSBL lie̍t-vi su̍k-yî khôi-fong thoi-lî fu̍k-vu-khí.',
 'sorbs_create_account_reason' => 'Ngì-ke IP chhô-vi pûn DNSBL lie̍t-vi su̍k-yî khôi-fong thoi-lî fu̍k-vu-khí. Só-yî ngì mò-fap kien-li̍p chong-ho.',
 
@@ -1811,7 +1810,7 @@ Please visit [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and 
 'file-info-size' => '$1 × $2像素，文件大小：$3，MIME類型：$4',
 'file-nohires' => '無做得提供嘅還較高分辨率。',
 'svg-long-desc' => 'SVG文件，尺寸：$1×$2像素，文件大細：$3',
-'show-big-image' => '完全分辨率',
+'show-big-image' => '完整分辨率',
 
 # Special:NewFiles
 'newimages' => 'Sîn-kien thù-chhiong ke va̍k-lòng',

@@ -46,22 +46,106 @@
 		$toggle.trigger( 'click' );
 	} );
 
-	QUnit.asyncTest( 'basic operation (<div>)', 3, function ( assert ) {
-		var $collapsible, $content;
+	QUnit.asyncTest( 'basic operation (<div>)', 5, function ( assert ) {
+		var $collapsible, $content, $toggle;
 		$collapsible = prepareCollapsible(
 			'<div class="mw-collapsible">' + loremIpsum + '</div>'
 		);
 		$content = $collapsible.find( '.mw-collapsible-content' );
+		$toggle = $collapsible.find( '.mw-collapsible-toggle' );
 
 		assert.equal( $content.length, 1, 'content is present' );
+		assert.equal( $content.find( $toggle ).length, 0, 'toggle is not a descendant of content' );
+
 		assert.assertTrue( $content.is( ':visible' ), 'content is visible' );
 
 		$collapsible.on( 'afterCollapse.mw-collapsible', function () {
 			assert.assertTrue( $content.is( ':hidden' ), 'after collapsing: content is hidden' );
-			QUnit.start();
+
+			$collapsible.on( 'afterExpand.mw-collapsible', function () {
+				assert.assertTrue( $content.is( ':visible' ), 'after expanding: content is visible' );
+				QUnit.start();
+			} );
+
+			$toggle.trigger( 'click' );
 		} );
 
-		$collapsible.find( '.mw-collapsible-toggle' ).trigger( 'click' );
+		$toggle.trigger( 'click' );
+	} );
+
+	QUnit.asyncTest( 'basic operation (<table>)', 7, function ( assert ) {
+		var $collapsible, $headerRow, $contentRow, $toggle;
+		$collapsible = prepareCollapsible(
+			'<table class="mw-collapsible">' +
+				'<tr><td>' + loremIpsum + '</td><td>' + loremIpsum + '</td></tr>' +
+				'<tr><td>' + loremIpsum + '</td><td>' + loremIpsum + '</td></tr>' +
+				'<tr><td>' + loremIpsum + '</td><td>' + loremIpsum + '</td></tr>' +
+			'</table>'
+		);
+		$headerRow = $collapsible.find( 'tr:first' );
+		$contentRow = $collapsible.find( 'tr:last' );
+
+		$toggle = $headerRow.find( 'td:last .mw-collapsible-toggle' );
+		assert.equal( $toggle.length, 1, 'toggle is added to last cell of first row' );
+
+		assert.assertTrue( $headerRow.is( ':visible' ), 'headerRow is visible' );
+		assert.assertTrue( $contentRow.is( ':visible' ), 'contentRow is visible' );
+
+		$collapsible.on( 'afterCollapse.mw-collapsible', function () {
+			assert.assertTrue( $headerRow.is( ':visible' ), 'after collapsing: headerRow is still visible' );
+			assert.assertTrue( $contentRow.is( ':hidden' ), 'after collapsing: contentRow is hidden' );
+
+			$collapsible.on( 'afterExpand.mw-collapsible', function () {
+				assert.assertTrue( $headerRow.is( ':visible' ), 'after expanding: headerRow is still visible' );
+				assert.assertTrue( $contentRow.is( ':visible' ), 'after expanding: contentRow is visible' );
+				QUnit.start();
+			} );
+
+			$toggle.trigger( 'click' );
+		} );
+
+		$toggle.trigger( 'click' );
+	} );
+
+	function listTest( listType, assert ) {
+		var $collapsible, $toggleItem, $contentItem, $toggle;
+		$collapsible = prepareCollapsible(
+			'<' + listType + ' class="mw-collapsible">' +
+				'<li>' + loremIpsum + '</li>' +
+				'<li>' + loremIpsum + '</li>' +
+			'</' + listType + '>'
+		);
+		$toggleItem = $collapsible.find( 'li.mw-collapsible-toggle-li:first-child' );
+		$contentItem = $collapsible.find( 'li:last' );
+
+		$toggle = $toggleItem.find( '.mw-collapsible-toggle' );
+		assert.equal( $toggle.length, 1, 'toggle is present, added inside new zeroth list item' );
+
+		assert.assertTrue( $toggleItem.is( ':visible' ), 'toggleItem is visible' );
+		assert.assertTrue( $contentItem.is( ':visible' ), 'contentItem is visible' );
+
+		$collapsible.on( 'afterCollapse.mw-collapsible', function () {
+			assert.assertTrue( $toggleItem.is( ':visible' ), 'after collapsing: toggleItem is still visible' );
+			assert.assertTrue( $contentItem.is( ':hidden' ), 'after collapsing: contentItem is hidden' );
+
+			$collapsible.on( 'afterExpand.mw-collapsible', function () {
+				assert.assertTrue( $toggleItem.is( ':visible' ), 'after expanding: toggleItem is still visible' );
+				assert.assertTrue( $contentItem.is( ':visible' ), 'after expanding: contentItem is visible' );
+				QUnit.start();
+			} );
+
+			$toggle.trigger( 'click' );
+		} );
+
+		$toggle.trigger( 'click' );
+	}
+
+	QUnit.asyncTest( 'basic operation (<ul>)', 7, function ( assert ) {
+		listTest( 'ul', assert );
+	} );
+
+	QUnit.asyncTest( 'basic operation (<ol>)', 7, function ( assert ) {
+		listTest( 'ol', assert );
 	} );
 
 	QUnit.test( 'basic operation when synchronous (options.instantHide)', 2, function ( assert ) {

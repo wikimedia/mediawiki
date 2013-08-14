@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Ahmed-Najib-Biabani-Ibrahimkhel
  * @author Chaojoker
  * @author Nemo bis
  * @author Pandukht
@@ -513,7 +514,7 @@ $messages = array(
 $1',
 'pool-errorunknown' => 'Անհայտ սխալ',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{grammar:genitive|{{SITENAME}}}} մասին',
 'aboutpage' => 'Project:Էությունը',
 'copyright' => 'Կայքի բովանդակությունը գտնվում է «$1» արտոնագրի տակ։',
@@ -599,17 +600,6 @@ $1',
 # General errors
 'error' => 'Սխալ',
 'databaseerror' => 'Տվյալների բազայի սխալ',
-'dberrortext' => 'Հայտնաբերվել է տվյալների բազային հայցի շարահյուսության սխալ։
-Սա կարող է լինել ծրագրային ապահովման սխալից։
-Տվյալների բազային վերջին հայցն էր․
-<blockquote><tt>$1</tt></blockquote>
-հետևյալ ֆունկցիայի մարմնից <tt>«$2»</tt>։
-Տվյլաների բազայի վերադարձրած սխալն է․ <tt>«$3: $4»</tt>։',
-'dberrortextcl' => 'Հայտնաբերվել է տվյալների բազային հայցի շարահյուսության սխալ։
-Տվյալների բազային վերջին հայցն էր.
-«$1»
-հետևյալ ֆունկցիայի մարմնից <tt>«$2»</tt>։
-Տվյալների բազայի վերադարձրած սխալն է. <tt>«$3: $4»</tt>։',
 'laggedslavemode' => 'Զգուշացում. էջը կարող է չպարունակել վերջին փոփոխությունները։',
 'readonly' => 'Տվյալների բազան կողպված է',
 'enterlockreason' => 'Նշեք կողպման պատճառը և մոտավոր ժամկետը',
@@ -661,7 +651,6 @@ $1',
 'editinginterface' => "'''Ուշադրություն՝''' Դուք խմբագրում եք ծրագրային ապահովման միջերեսի տեքստ պարունակող էջ։
 Այս էջի փոփոխությունը կանդրադառնա այլ մասնակիցներին տեսանելի միջերեսը այս վիքիի վրա։
 Թարգմանությունների համար նախընտրելի է օգտագործել [//translatewiki.net/wiki/Main_Page?setlang=hy translatewiki.net]՝ Մեդիավիքի ծրագրի տեղայնացման նախագիծը։",
-'sqlhidden' => '(SQL հայցումը թաքցված է)',
 'cascadeprotected' => 'Այս էջը պաշտպանված է խմբագրումից, քանի որ ընդգրկված է հետևյալ {{PLURAL:$1|էջի|էջերի}} տեքստում, {{PLURAL:$1|որը|որոնք}} պաշտպանվել {{PLURAL:$1|է|են}} կասկադային հնարավորությամբ.
 $2',
 'namespaceprotected' => 'Դուք չունեք «$1» անվանատարածքի էջերի խմբագրման իրավունք։',
@@ -698,7 +687,6 @@ $2',
 'remembermypassword' => 'Հիշել իմ մուտքը այս դիտարկչում ($1 {{PLURAL:$1|օրից}} ոչ ավել ժամկետով)',
 'userlogin-remembermypassword' => 'Մուտք գործած մնալ',
 'userlogin-signwithsecure' => 'Օգտագործել անվտանգ միացում',
-'securelogin-stick-https' => 'Մուտք գործելուց հետո շարունակել աշխատանքը HTTPS–ով',
 'yourdomainname' => 'Ձեր դոմենը՝',
 'password-change-forbidden' => 'Այս վիքիում չեք կարող փոխել գաղտնաբառ։',
 'externaldberror' => 'Տեղի է ունեցել վավերացման արտաքին տվյալների բազայի սխալ, կամ դուք չունեք բավարար իրավունքներ ձեր արտաքին հաշվի փոփոխման համար։',
@@ -804,7 +792,7 @@ $2',
 'newpassword' => 'Նոր գաղտնաբառը.',
 'retypenew' => 'Հաստատեք նոր գաղտնաբառը.',
 'resetpass_submit' => 'Հաստատել գաղտնաբառը և մտնել համակարգ',
-'resetpass_success' => 'Ձեր գաղտնաբառը փոխված է։ Մուտք համակարգ…',
+'changepassword-success' => 'Ձեր գաղտնաբառը փոխված է։ Մուտք համակարգ…',
 'resetpass_forbidden' => 'Գաղտնաբառը չի կարող փոխվել',
 'resetpass-no-info' => 'Այս էջին ուղիղ դիմելու համար անհրաժեշտ է մտնել համակարգ։',
 'resetpass-submit-loggedin' => 'Փոխել գաղտնաբառը',
@@ -1028,7 +1016,7 @@ $2',
 <charinsert>~ | ° ¹ ² ³ ¼ ½ ¾ € $ ¥ £ † × ← → ↔ ↑ ± ≠ © ® ™ ‰ «+» ‹+› „+“ „+” ‚+‘ ¡ ¿ …</charinsert> –
 <charinsert>&amp;nbsp; &nbsp; [[Category:+]] #REDIRECT[[+]] {{msg-mw|+|notext=1}}  ~~~~</charinsert>
 <charinsert>ڈ ڑ ٹ </charinsert>
-<charinsert>ټ څ ځ ډ ړ ږ ښ ګ ڼ ؤ ي ې ۍ ئ </charinsert>
+<charinsert>ټ څ ځ ډ ړ ږ ښ ڼ ؤ ي ې ۍ ئ </charinsert>
 <charinsert>{{{+}}} {{+}} {{subst:+}} <noinclude>+</noinclude></charinsert>
 </p></div>',
 'nocreatetext' => '{{SITENAME}} կայքում էջերի ստեղծման հնարավորությունը սահմանափակված է։
@@ -1647,12 +1635,6 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'statistics-users-active-desc' => 'Վերջին {{PLURAL:$1|օր|$1 օր}}ում որևէ գործողություն են կատարած մասնակիցներ',
 'statistics-mostpopular' => 'Ամենահաճախ դիտվող էջեր',
 
-'disambiguations' => 'Երկիմաստության փարատման էջեր',
-'disambiguationspage' => 'Template:Երկիմաստ',
-'disambiguations-text' => 'Հետևյալ էջերը հղում են երկիմաստության փարատման էջերին։
-Փոխարենը նրանք, հավանաբար, պետք է հղեն համապատասխան թեմային։<br />
-Էջը համարվում է երկիմաստության փարատման էջ, եթե այն պարունակում է [[MediaWiki:Disambiguationspage]] էջում ընդգրկված կաղապարներից որևէ մեկը։',
-
 'pageswithprop-submit' => 'Անցնել',
 
 'doubleredirects' => 'Կրկնակի վերահղումներ',
@@ -2181,7 +2163,6 @@ $1',
 'ip_range_invalid' => 'IP-հասցեների անթույլատրելի լայնույթ։',
 'proxyblocker' => 'Փոխանորդի արգելափակում',
 'proxyblockreason' => 'Ձեր IP-հասցեն արգելափակվել է, քանի որ այն պատկանում է հանրային միջնորդ (պրոքսի) սեռվերին։ Խնդրում ենք կապվել ձեր ցանցային կամ տեխնիկական ծառայության տրամադրողի հետ և տեղեկացնել այս լուրջ անվտանգության խնդրի մասին։',
-'proxyblocksuccess' => 'Արված է։',
 'sorbsreason' => 'Ձեր IP-հասցեն հաշվված է որպես ազատ օգտագործման փոխանորդ DNSBL ցանկում։',
 'sorbs_create_account_reason' => 'Ձեր IP-հասցեն հաշվված է որպես ազատ օգտագործման փոխանորդ DNSBL ցանկում։ Դուք չեք կարող ստեղծել մասնակցային հաշիվ։',
 'ipbnounblockself' => 'Դուք չեք կարող արգելափակել ինքներդ ձեզ',

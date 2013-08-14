@@ -261,7 +261,7 @@ $messages = array(
 $1',
 'pool-errorunknown' => 'ކޮންމެވެސް ކުށެއް',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}}ގެ ތަޢާރަފު',
 'aboutpage' => 'Project:ތަޢާރަފު',
 'copyright' => 'ހުރިހާ މާއްދާއެއް $1 ގެ ދަށުން ލިބެން އެބަހުއްޓެވެ.',
@@ -376,7 +376,7 @@ $1',
 'newpassword' => 'އައު ސިއްރުބަސް:',
 'retypenew' => 'އައު ސިއްރުބަސް އަލުންލިޔުއްވާ:',
 'resetpass_submit' => 'ސިއްރުބަސް ހަމަޖައްސަވާފައި ވަދެވަޑައިގަންނަވާ',
-'resetpass_success' => 'ތިބެފުޅާގެ ސިއްރުބަސް ބަދަލުކުރެވިއްޖެ. 
+'changepassword-success' => 'ތިބެފުޅާގެ ސިއްރުބަސް ބަދަލުކުރެވިއްޖެ. 
 މިހާރު ވަދެވަޑައިގަންނަވަނީ...',
 'resetpass_forbidden' => 'ސިއްރުބަސް ބަދަލެއް ނުކުރެވޭނެއެވެ',
 'resetpass-submit-loggedin' => 'ސިއްރުބަސް ބަދަލުކުރައްވާ',
@@ -734,7 +734,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'blocklink' => 'ފިޔަވަޅުއަޅުއްވާ',
 'unblocklink' => 'ފިޔަވަޅުއެޅުން ބަދަލުކުރައްވާ',
 'contribslink' => 'ޙިއްޞާ',
-'proxyblocksuccess' => 'ފުރިހަމަވެއްޖެ.',
 
 # Developer tools
 'lockdb' => 'ކޮށާރު ބަންދުކުރައްވާ',

@@ -513,6 +513,17 @@ abstract class File {
 	}
 
 	/**
+	 * Like getMetadata but returns a handler independent array of common values.
+	 * @see MediaHandler::getCommonMetaArray()
+	 * @return Array or false if not supported
+	 * @since 1.23
+	 */
+	public function getCommonMetaArray() {
+		$handler = $this->getHandler();
+		return $handler->getCommonMetaArray( $this );
+	}
+
+	/**
 	 * get versioned metadata
 	 *
 	 * @param $metadata Mixed Array or String of (serialized) metadata
@@ -842,8 +853,9 @@ abstract class File {
 	protected function transformErrorOutput( $thumbPath, $thumbUrl, $params, $flags ) {
 		global $wgIgnoreImageErrors;
 
-		if ( $wgIgnoreImageErrors && !( $flags & self::RENDER_NOW ) ) {
-			return $this->getHandler()->getTransform( $this, $thumbPath, $thumbUrl, $params );
+		$handler = $this->getHandler();
+		if ( $handler && $wgIgnoreImageErrors && !( $flags & self::RENDER_NOW ) ) {
+			return $handler->getTransform( $this, $thumbPath, $thumbUrl, $params );
 		} else {
 			return new MediaTransformError( 'thumbnail_error',
 				$params['width'], 0, wfMessage( 'thumbnail-dest-create' )->text() );
@@ -1000,7 +1012,7 @@ abstract class File {
 	/**
 	 * Get a MediaHandler instance for this file
 	 *
-	 * @return MediaHandler
+	 * @return MediaHandler|boolean Registered MediaHandler for file's mime type or false if none found
 	 */
 	function getHandler() {
 		if ( !isset( $this->handler ) ) {
@@ -1656,18 +1668,22 @@ abstract class File {
 	/**
 	 * Get the HTML text of the description page, if available
 	 *
+	 * @param $lang Language Optional language to fetch description in
 	 * @return string
 	 */
-	function getDescriptionText() {
+	function getDescriptionText( $lang = false ) {
 		global $wgMemc, $wgLang;
 		if ( !$this->repo || !$this->repo->fetchDescription ) {
 			return false;
 		}
-		$renderUrl = $this->repo->getDescriptionRenderUrl( $this->getName(), $wgLang->getCode() );
+		if ( !$lang ) {
+			$lang = $wgLang;
+		}
+		$renderUrl = $this->repo->getDescriptionRenderUrl( $this->getName(), $lang->getCode() );
 		if ( $renderUrl ) {
 			if ( $this->repo->descriptionCacheExpiry > 0 ) {
 				wfDebug( "Attempting to get the description from cache..." );
-				$key = $this->repo->getLocalCacheKey( 'RemoteFileDescription', 'url', $wgLang->getCode(),
+				$key = $this->repo->getLocalCacheKey( 'RemoteFileDescription', 'url', $lang->getCode(),
 									$this->getName() );
 				$obj = $wgMemc->get( $key );
 				if ( $obj ) {

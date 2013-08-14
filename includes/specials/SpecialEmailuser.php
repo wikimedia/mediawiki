@@ -148,11 +148,12 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 
 		$this->mTargetObj = $ret;
 
-		$form = new HTMLForm( $this->getFormFields(), $this->getContext() );
+		$context = new DerivativeContext( $this->getContext() );
+		$context->setTitle( $this->getTitle() ); // Remove subpage
+		$form = new HTMLForm( $this->getFormFields(), $context );
 		// By now we are supposed to be sure that $this->mTarget is a user name
 		$form->addPreText( $this->msg( 'emailpagetext', $this->mTarget )->parse() );
 		$form->setSubmitTextMsg( 'emailsend' );
-		$form->setTitle( $this->getTitle() );
 		$form->setSubmitCallback( array( __CLASS__, 'uiSubmit' ) );
 		$form->setWrapperLegendMsg( 'email-legend' );
 		$form->loadData();
@@ -165,7 +166,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 
 		if ( $result === true || ( $result instanceof Status && $result->isGood() ) ) {
 			$out->setPageTitle( $this->msg( 'emailsent' ) );
-			$out->addWikiMsg( 'emailsenttext' );
+			$out->addWikiMsg( 'emailsenttext', $this->mTarget );
 			$out->returnToMain( false, $this->mTargetObj->getUserPage() );
 		}
 	}

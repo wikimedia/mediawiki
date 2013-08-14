@@ -34,6 +34,11 @@
  */
 class UsersPager extends AlphabeticPager {
 
+	const SHOW_BLOCKED_USERS = 1;
+	const HIDE_PERM_BLOCKED_USERS = 2;
+	const HIDE_TEMP_BLOCKED_USERS = 3;
+	const HIDE_ALL_BLOCKED_USERS = 4;
+
 	/**
 	 * @param $context IContextSource
 	 * @param array $par (Default null)
@@ -69,6 +74,7 @@ class UsersPager extends AlphabeticPager {
 		$this->editsOnly = $request->getBool( 'editsOnly' );
 		$this->creationSort = $request->getBool( 'creationSort' );
 		$this->including = $including;
+		$this->mDefaultDirection = $request->getBool( 'desc' );
 
 		$this->requestedUser = '';
 
@@ -78,6 +84,15 @@ class UsersPager extends AlphabeticPager {
 			if ( !is_null( $username ) ) {
 				$this->requestedUser = $username->getText();
 			}
+		}
+
+		$this->showBlocked = self::SHOW_BLOCKED_USERS; // Show all blocked users by default
+		$reqBlockedValue = $request->getInt( 'showBlocked' );
+		if ( $reqBlockedValue == self::SHOW_BLOCKED_USERS
+			|| $reqBlockedValue == self::HIDE_PERM_BLOCKED_USERS
+			|| $reqBlockedValue == self::HIDE_TEMP_BLOCKED_USERS
+			|| $reqBlockedValue == self::HIDE_ALL_BLOCKED_USERS) {
+			$this->showBlocked = $reqBlockedValue;
 		}
 
 		parent::__construct();
@@ -120,6 +135,19 @@ class UsersPager extends AlphabeticPager {
 		if ( $this->editsOnly ) {
 			$conds[] = 'user_editcount > 0';
 		}
+
+		if ( $this->showBlocked == self::HIDE_PERM_BLOCKED_USERS ) {
+			$conds[] = 'ipb_expiry IS NULL OR ipb_expiry != ' .
+					$dbr->addQuotes( $dbr->getInfinity() );
+		} elseif ( $this->showBlocked == self::HIDE_TEMP_BLOCKED_USERS ) {
+			$conds[] = 'ipb_expiry IS NULL OR ipb_expiry = ' .
+					$dbr->addQuotes( $dbr->getInfinity() ) .
+					'OR ipb_expiry < ' . $dbr->addQuotes( $dbr->timestamp( wfTimestampNow() ) );
+		} elseif ( $this->showBlocked == self::HIDE_ALL_BLOCKED_USERS ) {
+			$conds[] = 'ipb_expiry IS NULL OR ipb_expiry < ' .
+					$dbr->addQuotes( $dbr->timestamp( wfTimestampNow() ) );
+		}
+		// else -> show all users
 
 		$options['GROUP BY'] = $this->creationSort ? 'user_id' : 'user_name';
 
@@ -277,7 +305,28 @@ class UsersPager extends AlphabeticPager {
 			'creationSort',
 			$this->creationSort
 		);
-		$out .= '<br />';
+		$out .= '&#160;';
+		$out .= Xml::checkLabel(
+			$this->msg( 'listusers-desc' )->text(),
+			'desc',
+			'desc',
+			$this->mDefaultDirection
+		);
+
+		# Show blocked users drop-down list
+		$out .= "<p>\n";
+		$out .= Xml::label( $this->msg( 'listusers-showblocks' )->text(), 'showBlocked' ) . ' ' .
+			Xml::openElement( 'select', array( 'name' => 'showBlocked', 'id' => 'showBlocked' ) ) .
+			Xml::option( $this->msg( 'listusers-list-all' )->text(),
+				self::SHOW_BLOCKED_USERS, $this->showBlocked == self::SHOW_BLOCKED_USERS ) .
+			Xml::option( $this->msg( 'listusers-perm-block' )->text(),
+				self::HIDE_PERM_BLOCKED_USERS, $this->showBlocked == self::HIDE_PERM_BLOCKED_USERS ) .
+			Xml::option( $this->msg( 'listusers-temp-block' )->text(),
+				self::HIDE_TEMP_BLOCKED_USERS, $this->showBlocked == self::HIDE_TEMP_BLOCKED_USERS ) .
+			Xml::option( $this->msg( 'listusers-all-block' )->text(),
+				self::HIDE_ALL_BLOCKED_USERS, $this->showBlocked == self::HIDE_ALL_BLOCKED_USERS ) .
+			Xml::closeElement( 'select' );
+		$out .= '</p>';
 
 		wfRunHooks( 'SpecialListusersHeaderForm', array( $this, &$out ) );
 

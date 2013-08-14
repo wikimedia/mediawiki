@@ -28,6 +28,7 @@
  * @author Siggis
  * @author Tomasdd
  * @author Urhixidur
+ * @author Vilius2001
  * @author Vpovilaitis
  * @author לערי ריינהארט
  */
@@ -428,7 +429,7 @@ $1',
 'pool-queuefull' => 'Telkinio eilė pilna',
 'pool-errorunknown' => 'Nežinoma klaida',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Apie {{SITENAME}}',
 'aboutpage' => 'Project:Apie',
 'copyright' => 'Turinys pateikiamas pagal $1 licenciją.',
@@ -514,17 +515,6 @@ Egzistuojančių specialiųjų puslapių sąrašą galite rasti [[Special:Specia
 # General errors
 'error' => 'Klaida',
 'databaseerror' => 'Duomenų bazės klaida',
-'dberrortext' => 'Neteisinga duomenų bazės užklausos sintaksė.
-Galima klaida programinėje įrangoje.
-Paskutinė mėginta užklausa:
-<blockquote><tt>$1</tt></blockquote>
-iš funkcijos: „<tt>$2</tt>“.
-Duomenų bazė grąžino klaidą „<tt>$3: $4</tt>“.',
-'dberrortextcl' => 'Įvyko duomenų bazės užklausos sintaksės klaida.
-Paskutinė mėginta duomenų bazės užklausa buvo:
-„$1“
-iš funkcijos: „$2“.
-Duomenų bazė grąžino klaidą „$3: $4“',
 'laggedslavemode' => 'Dėmesio: Puslapyje gali nesimatyti naujausių pakeitimų.',
 'readonly' => 'Duomenų bazė užrakinta',
 'enterlockreason' => 'Įveskite užrakinimo priežastį, taip pat datą, kada bus atrakinta',
@@ -578,7 +568,6 @@ Užklausa: $2',
 'protectedinterface' => 'Šiame puslapyje yra apsaugotas nuo piktnaudžiavimo programinės įrangos sąsajos tekstas.',
 'editinginterface' => "'''Dėmesio:''' Jūs redaguojate puslapį, kuris yra naudojamas programinės įrangos sąsajos tekste. Pakeitimai šiame puslapyje taip pat pakeis naudotojo sąsajos išvaizdą ir kitiems naudotojams šiame wiki.
 Jei norite pridėti ir keisti vertimus, siūlome pasinaudoti [//translatewiki.net/wiki/Main_Page?setlang=lt „translatewiki.net“], „MediaWiki“ lokalizacijos projektu.",
-'sqlhidden' => '(SQL užklausa paslėpta)',
 'cascadeprotected' => 'Šis puslapis buvo apsaugotas nuo redagavimo, kadangi jis yra įtrauktas į {{PLURAL:$1|šį puslapį, apsaugotą|šiuos puslapius, apsaugotus}} „pakopinės apsaugos“ pasirinktimi:
 $2',
 'namespaceprotected' => "Jūs neturite teisės redaguoti puslapių '''$1''' srityje.",
@@ -626,7 +615,6 @@ Nepamirškite pakeisti savo [[Special:Preferences|{{SITENAME}} nustatymų]].',
 'remembermypassword' => 'Prisiminti prisijungimo duomenis šiame kompiuteryje (daugiausiai $1 {{PLURAL:$1|dieną|dienas|dienų}})',
 'userlogin-remembermypassword' => 'Įsiminti mane',
 'userlogin-signwithsecure' => 'Naudoti saugią jungtį',
-'securelogin-stick-https' => 'Likite prisijungę prie HTTPS po prisijungimo',
 'yourdomainname' => 'Jūsų domenas:',
 'password-change-forbidden' => 'Jus negalite keisti slaptažodžių šioje wiki.',
 'externaldberror' => 'Yra arba išorinė autorizacijos duomenų bazės klaida arba jums neleidžiama atnaujinti jūsų išorinės paskyros.',
@@ -754,7 +742,7 @@ Palaukite prieš bandant vėl.',
 'newpassword' => 'Naujas slaptažodis:',
 'retypenew' => 'Pakartokite naują slaptažodį:',
 'resetpass_submit' => 'Nustatyti slaptažodį ir prisijungti',
-'resetpass_success' => 'Jūsų slaptažodis pakeistas sėkmingai! Dabar prisijungiama...',
+'changepassword-success' => 'Jūsų slaptažodis pakeistas sėkmingai! Dabar prisijungiama...',
 'resetpass_forbidden' => 'Slaptažodžiai negali būti pakeisti',
 'resetpass-no-info' => 'Jūs turite būti prisijungęs, kad pasiektumėte puslapį tiesiogiai.',
 'resetpass-submit-loggedin' => 'Keisti slaptažodį',
@@ -1539,8 +1527,8 @@ teisės",
 'action-block' => 'neleisti šiam naudotojui redaguoti',
 'action-protect' => 'pakeisti apsaugos lygius šiam puslapiui',
 'action-rollback' => 'greitai atmesti paskutinio naudotojo atliktų tam tikro puslapio pakeitimų',
-'action-import' => 'importuoti šį puslapį iš kitos wiki',
-'action-importupload' => 'importuoti šį puslapį iš įkelto failo',
+'action-import' => 'importuoti puslapius iš kitos wiki',
+'action-importupload' => 'importuoti puslapius iš įkelto failo',
 'action-patrol' => 'pažymėti kitų keitimus kaip patikrintus',
 'action-autopatrol' => 'savo keitimų pažymėjimas patikrintais',
 'action-unwatchedpages' => 'žiūrėti nestebimų puslapių sąrašą',
@@ -1586,7 +1574,7 @@ teisės",
 'rc_categories_any' => 'Bet kokia',
 'rc-change-size-new' => '$1 {{PLURAL:$1|baitas|baitai|baitų}} po pakeitimo',
 'newsectionsummary' => '/* $1 */ naujas skyrius',
-'rc-enhanced-expand' => 'Rodyti detales (reikia JavaScript)',
+'rc-enhanced-expand' => 'Rodyti detales',
 'rc-enhanced-hide' => 'Slėpti detales',
 'rc-old-title' => 'iš pradžių sukurtas kaip " $1 "',
 
@@ -1833,6 +1821,9 @@ Kai sąrašas susiaurinamas pagal naudotoją, rodomi tik tie failai, kurių nauj
 'listfiles_size' => 'Dydis',
 'listfiles_description' => 'Aprašymas',
 'listfiles_count' => 'Versijos',
+'listfiles-latestversion' => 'Dabartinė versija',
+'listfiles-latestversion-yes' => 'Taip',
+'listfiles-latestversion-no' => 'Ne',
 
 # File description page
 'file-anchor-link' => 'Failas',
@@ -1948,12 +1939,6 @@ Informacija iš [$2 failo aprašymo puslapio] yra pateikiama žemiau.',
 'statistics-users-active' => 'Aktyvių naudotojų',
 'statistics-users-active-desc' => 'Naudotojai, kurie per {{PLURAL:$1|paskutinę dieną|paskutines $1 dienų}} padarė keitimų',
 'statistics-mostpopular' => 'Daugiausiai rodyti puslapiai',
-
-'disambiguations' => 'Puslapiai rodantys į daugiaprasmių žodžių puslapius',
-'disambiguationspage' => 'Template:Daugiareikšmis',
-'disambiguations-text' => "Žemiau išvardinti puslapiai nurodo į '''daugiaprasmių žodžių puslapius'''.
-Nuorodos turėtų būti patikslintos, kad rodytų į konkretų puslapį.<br />
-Puslapis laikomas daugiaprasmiu puslapiu, jei jis naudoja šabloną, kuris yra nurodomas iš [[MediaWiki:Disambiguationspage]].",
 
 'pageswithprop' => 'Puslapiai su puslapio atributais',
 'pageswithprop-legend' => 'Puslapiai su puslapio atributais',
@@ -2318,7 +2303,7 @@ kažkas jau pakeitė puslapį arba suspėjo pirmas atmesti keitimą.
 Paskutimas keitimas darytas naudotojo [[User:$3|$3]] ([[User talk:$3|Aptarimas]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment' => "Redagavimo komentaras: „''$1''“.",
 'revertpage' => 'Atmestas [[Special:Contributions/$2|$2]] ([[User talk:$2|Aptarimas]]) pakeitimas; sugrąžinta [[User:$1|$1]] versija',
-'revertpage-nouser' => 'Atmesti (naudotojo vardas pašalintas) pakeitimai, grąžinta prieš tai buvusi [[User:$1|$1]] versija',
+'revertpage-nouser' => 'Atversti pakeitimai paslėpto vartotojo, grąžino prieš tai buvusią versiją {{GENDER:$1|[[User:$1|$1]]}}',
 'rollback-success' => 'Atmesti $1 pakeitimai;
 grąžinta prieš tai buvusi $2 versija.',
 
@@ -2458,7 +2443,7 @@ $1',
 'contributions' => '{{GENDER:$1|Naudotojo}} įndėlis',
 'contributions-title' => '{{GENDER:$1|Naudotojo|Naudotojos}} $1 indėlis',
 'mycontris' => 'Įnašai',
-'contribsub2' => 'Naudotojo $1 ($2)',
+'contribsub2' => 'Dėl {{GENDER:$3|$1}} ($2)',
 'nocontribs' => 'Jokie keitimai neatitiko šių kriterijų.',
 'uctop' => '(dabartinis)',
 'month' => 'Nuo mėnesio (ir anksčiau):',
@@ -2615,11 +2600,8 @@ Jei norite pamatyti dabar blokuojamus adresus, žiūrėkite [[Special:BlockList|
 'ipb_blocked_as_range' => 'Klaida: IP $1 nebuvo užblokuotas tiesiogiai, tad negali būti atblokuotas. Tačiau jis buvo užblokuotas kaip srities $2 dalis, kuri gali būti atblokuota.',
 'ip_range_invalid' => 'Neleistina IP sritis.',
 'ip_range_toolarge' => 'Didesni nei /$1 blokai neleidžiami.',
-'blockme' => 'Užblokuoti mane',
 'proxyblocker' => 'Tarpinių serverių („proxy“) blokavimo priemonė',
-'proxyblocker-disabled' => 'Ši funkcija yra išjungta.',
 'proxyblockreason' => 'Jūsų IP adresas yra užblokuotas, nes jis yra atvirasis tarpinis serveris. Prašome susisiekti su savo interneto paslaugų tiekėju ar technine pagalba ir praneškite jiems apie šią svarbią saugumo problemą.',
-'proxyblocksuccess' => 'Atlikta.',
 'sorbsreason' => 'Jūsų IP adresas yra įtrauktas į atvirųjų tarpinių serverių DNSBL sąrašą, naudojamą šios svetainės.',
 'sorbs_create_account_reason' => 'Jūsų IP adresas yra įtrauktas į atvirųjų tarpinių serverių DNSBL sąrašą, naudojamą šios svetainės. Jūs negalite sukurti paskyros',
 'cant-block-while-blocked' => 'Jūs negalite blokuoti kitų naudotojų, pats būdamas užblokuotas.',
@@ -2975,6 +2957,8 @@ Leidžia pridėti atmetimo priežastį komentaruose',
 'spam_reverting' => 'Atkuriama į ankstesnę versiją, neturinčios nuorodų į $1',
 'spam_blanking' => 'Visos versijos turėjo nuorodų į $1, išvaloma',
 'spam_deleting' => 'Visos versijos turėjo nuorodų į $1, ištrinama',
+'simpleantispam-label' => "Anti-spam patikra.
+'''NE'''pildykite!",
 
 # Info page
 'pageinfo-title' => '„$1“ informacija',

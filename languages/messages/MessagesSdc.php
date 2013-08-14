@@ -293,7 +293,7 @@ $messages = array(
 'jumptonavigation' => 'nabiggazioni',
 'jumptosearch' => 'zercha',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Infuimmazioni in {{SITENAME}}',
 'aboutpage' => 'Project:Infuimmazioni',
 'copyright' => "Cuntinuddi suggetti a licèntzia d'usu $1.",
@@ -366,17 +366,6 @@ $messages = array(
 # General errors
 'error' => 'Errori',
 'databaseerror' => 'Errori di la bancadati',
-'dberrortext' => 'Errori di sintassi i\' la prigonta inviadda a la bancadati.
-Lu chi pudaria indicà la prisènzia d\'un bacu i\' lu software.
-L\'ulthima interrogazioni inviadda a la bancadati è isthadda:
-<blockquote><tt>$1</tt></blockquote>
-riciamadda da la funzioni "<tt>$2</tt>".
-MySQL à turraddu lu sighenti errori "<tt>$3: $4</tt>".',
-'dberrortextcl' => 'Errori di sintassi i\' la prigonta inviadda a la bancadati.
-L\'ulthima interrogazioni inviadda a la bancadati è isthadda:
-"$1"
-riciamadda da la funzioni "$2".
-MySQL à turraddu lu sighenti errori "$3: $4".',
 'laggedslavemode' => "Attinzioni: la pàgina pudia no cuntinì l'aggiornamenti più rizzenti.",
 'readonly' => 'Bancadati broccadda',
 'enterlockreason' => 'Indica lu mutibu di lu broccu, ippizzifichendi candu po’ assé chi venghia buggaddu.',
@@ -419,7 +408,6 @@ Interrogazioni: $2",
 'viewsourcetext' => 'È pussìbiri visuarizzà e cupià lu còdizi di chistha pàgina:',
 'protectedinterface' => "Chistha pàgina cunteni un'erementu chi fazzi parthi di l'interfàccia utenti di lu software; è dunca prutiggidda pa evità pussìbiri abusi.",
 'editinginterface' => "'''Attinzioni:''' Lu testhu di chistha pàgina fazzi parthi di l'interfàccia utenti di lu situ. Tutti li mudìfigghi arriggaddi a chistha pàgina si rifrèttini i' l'imbasciaddi visuarizzaddi pa tutti l'utenti. Pa li traduzioni, pa piazeri utirizà [//translatewiki.net/wiki/Main_Page?setlang=sdc translatewiki.net], lu prugettu di lucarizazioni MediaWiki.",
-'sqlhidden' => "(l'interrogazioni SQL è isthadda cuadda)",
 'cascadeprotected' => 'In chistha pàgina nò è pussìbiri effettuà mudìfigghi parchí è isthadda incrusa {{PLURAL:$1|i la sighenti pàgina indicadda, ch\'è isthadda prutiggidda|i li sighenti pàgini indicaddi, chi so isthaddi prutiggiddi}} chirriendi la prutizioni "ricussiba":
 $2',
 'namespaceprotected' => "Nò si diponi di li pimmissi nezzessàri pa mudifiggà li pagini di lu tipu di pagina '''$1'''.",
@@ -508,7 +496,7 @@ Pa cumprità la registhrazioni è nezzessàriu impusthà una noba paràura d'ór
 'newpassword' => "Noba paràura d'órdhini:",
 'retypenew' => "Turra a ischribì la noba paràura d'órdhini:",
 'resetpass_submit' => "Impustha la paràura d'órdhini e intra",
-'resetpass_success' => "La paràura d'órdhini tóia è isthadda mudìfiggadda. Abà sei intrendi...",
+'changepassword-success' => "La paràura d'órdhini tóia è isthadda mudìfiggadda. Abà sei intrendi...",
 'resetpass_forbidden' => "No è pussìbiri mudifiggà li paràuri d'órdhini in {{SITENAME}}.",
 
 # Edit page toolbar
@@ -1114,10 +1102,6 @@ Si si diponi di l'immàgina i' la risoruzioni originari, pa piazeri carriggalla.
 'statistics-pages' => 'Pagini',
 'statistics-mostpopular' => 'Pàgini più visitaddi',
 
-'disambiguations' => 'Pàgini cu lu matessi innòmmu',
-'disambiguationspage' => 'Template:Matessi innòmmu',
-'disambiguations-text' => "Li pàgini i' la sighenti listha cuntènani cullegamenti a '''pàgini cu' lu matessi innòmmu''' e nò a la rasgiòni a chi dubaristhia fà rifirimentu.<br />So cunsidaraddi pàgini cu lu matessi innòmmu tutti chissi chi cuntènini li mudelli erencaddi in [[MediaWiki:Disambiguationspage]].",
-
 'doubleredirects' => 'Rinvii doppi',
 'doubleredirectstext' => 'Inogghi v\'è una listha di li pàgini chi puntani a pàgini di rinviu. Ogna riga cunteni i cullegamenti a lu primmu e sigundu rinviu, cumenti a la disthinazioni di lu sigundu rinviu, che noimmaimmenti è la pàgina "curretta" a la quari dubia puntà puru lu primmu rinviu.',
 
@@ -1529,11 +1513,8 @@ $1",
 'ipb_cant_unblock' => 'Errori: Impussìbiri acciappà lu broccu cun ID $1. Lu broccu pudia assé già isthaddu buggaddu.',
 'ipb_blocked_as_range' => "Errori: L'indirizzu IP $1 nò è broccaddu individuaimmenti e nò pó assé ibbruccaddu. Lu broccu è inveci attibu a libellu di l'intervallu  $2, chi pó assé ibbruccaddu.",
 'ip_range_invalid' => "Intervallu d'indirizzi ip nò vàriddu.",
-'blockme' => 'Broccami',
 'proxyblocker' => 'Broccu di li proxy abbérthi',
-'proxyblocker-disabled' => 'Chistha funzioni nò è attiba.',
 'proxyblockreason' => "Chisth'indirizzu IP è isthaddu broccaddu parchí risultha assé un proxy abbérthu. Pa piazeri cuntattà lu propriu frunidori di sivvìzi pa la reti pa infuimmalli di chisthu grabi probrema di sigguriddai.",
-'proxyblocksuccess' => 'Broggu eseguiddu.',
 'sorbsreason' => "Chisth'indirizzu IP è erencaddu cumenti proxy abbérthu i' la listha-niedda DNSBL utirizadda da {{SITENAME}}.",
 'sorbs_create_account_reason' => "Nò è pussìbiri crià nobi registhrazioni da chisthu indirizzu IP parchí è erencaddu cumenti proxy abbérthu i' la listha-niedda DNSBL utirizadda da {{SITENAME}}.",
 

@@ -225,7 +225,7 @@ $messages = array(
 'jumptosearch' => 'fetleka',
 'pool-errorunknown' => 'Phošo yago setsebege',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Mabapi le {{SITENAME}}',
 'aboutpage' => 'Project:Mabapi',
 'copyright' => 'Mateng a hwetšagala tlase ga $1.',
@@ -383,7 +383,7 @@ Ga wa dumelwa go tlhoma tše dingwe.',
 'oldpassword' => 'Ditlhaka-tša-siphiri tša kgale:',
 'newpassword' => 'Ditlhaka-tša-siphiri tše mpsha:',
 'retypenew' => 'Tlanya ditlhaka tše mphsa tša siphiri gape:',
-'resetpass_success' => 'Ditlhaka tša siphiri di fetotšwe ka katlego! Bjale o kgona go tsena...',
+'changepassword-success' => 'Ditlhaka tša siphiri di fetotšwe ka katlego! Bjale o kgona go tsena...',
 
 # Edit page toolbar
 'bold_sample' => "Mongwalo wa '''Bold'''",
@@ -776,9 +776,6 @@ Matlakala ago ba [[Special:Watchlist|lenanong la gago la matlakala ditlhapetšo]
 'statistics' => 'Dipalopalo',
 'statistics-header-users' => 'Dipalopalo tša mošomiši',
 
-'disambiguations' => "Matlakala a ''Disambiguation''",
-'disambiguationspage' => 'Template:"disambig"',
-
 'doubleredirects' => "Di''redirect'' goya go ''redirect''",
 
 'brokenredirects' => "''redirect'' tša go robega",
@@ -1031,7 +1028,6 @@ Seemo sa go lota ga letlakala '''$1''':",
 'unblocklogentry' => 'Gago thibelo $1',
 'block-log-flags-nocreate' => 'Go hloma tšhupaleloko gago dumelege',
 'block-log-flags-noemail' => 'e-mail e thibilwe',
-'proxyblocksuccess' => 'Phetilwe.',
 
 # Move page
 'move-page-legend' => 'Huduša letlakala',

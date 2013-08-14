@@ -301,7 +301,7 @@ $1',
 'pool-queuefull' => 'Pool kyu zùrù',
 'pool-errorunknown' => 'Nsogbu nke námaghi',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Maka {{SITENAME}}',
 'aboutpage' => 'Project:Ihe owù',
 'copyright' => 'Ihe di ime nọr okpúrụ $1',
@@ -422,7 +422,6 @@ Orürü: $1<br />
 'editinginterface' => "'''Okwu egú:''' I na rü ihü né nyé ihu maka mkpurụ edemede nke eji-a-rü nka.
 Gbanwere më ihüa ga mètú ihu élélé nke onye-na-banife maka ndi ozor.
 Maka ikuwaria na asụsụ nke ozor, biko chetu I ji [//translatewiki.net/wiki/Main_Page?setlang=ig translatewiki.net], ihe orü MediaWiki di na ama ama.",
-'sqlhidden' => '(nchowa SQL zonari a zonari)',
 'namespaceprotected' => "I weghị ike I rüwa élu ihü nor na '''$1''' áháama.",
 'ns-specialprotected' => 'Ihü mkpà, a nweriki ru na ya.',
 
@@ -489,7 +488,7 @@ Biko meríáríá ya.',
 'newpassword' => 'Mkpurụ okwu ejị a gafẹ nke ohúrù',
 'retypenew' => 'Dechákwari mkpurụ okwu ejị a gafẹ nke ohúrù:',
 'resetpass_submit' => 'Bá okwu éjị gáfè na áhà Í bànyè',
-'resetpass_success' => 'Mkpurụ okwu ejị a gafẹ a gbanwere nke oma!
+'changepassword-success' => 'Mkpurụ okwu ejị a gafẹ a gbanwere nke oma!
 I na á banye...',
 'resetpass_forbidden' => 'Okwu éjị à gáfè enwéghịkị gabnwe',
 'resetpass-submit-loggedin' => 'Gbanwe okwu éjị à gáfe',
@@ -1009,8 +1008,6 @@ Ihü nọr na [[Special:Watchlist|ndétu ihe Í ne lé]] di na mkpụrụ edemed
 'statistics-views-total' => 'Há hụrụ ya olé níle',
 'statistics-users-active' => "Ọ'bànifé di galagala",
 
-'disambiguationspage' => 'Template:ọlúchịgị',
-
 'double-redirect-fixed-move' => '[[$1]] a puziele.
 Ubwa, o na ga [[$2]].',
 
@@ -1288,8 +1285,6 @@ Ngá bu ihe hé mèkwàrà nà ihü '''$1''':",
 'unblocklogentry' => 'àkwáchị gị $1',
 'block-log-flags-nocreate' => "Í ké ọ'bànifé bàchìrì",
 'block-log-flags-noemail' => 'ha kwàchịrị e-mail',
-'blockme' => 'Kwàchím',
-'proxyblocksuccess' => 'Ọméchá.',
 
 # Developer tools
 'lockdb' => 'Gbàchí uche nsónùsòrò',
@@ -1724,8 +1719,7 @@ Nke ozor gí zonari na áká onwe ha.
 
 # Database error messages
 'dberr-header' => 'Wiki nka nwere nsogbu',
-'dberr-problems' => 'Ndó!
-Ámá nka nwere nsogbu ime ime.',
+'dberr-problems' => 'Ndó! Ámá nka nwere nsogbu ime ime.',
 
 # HTML forms
 'htmlform-required' => 'Ọgụgụ nke gi dị',

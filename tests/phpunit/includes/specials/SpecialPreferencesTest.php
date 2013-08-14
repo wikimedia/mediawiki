@@ -7,6 +7,9 @@
  *
  */
 
+/**
+ * @covers SpecialPreferences
+ */
 class SpecialPreferencesTest extends MediaWikiTestCase {
 
 	/**
@@ -15,7 +18,7 @@ class SpecialPreferencesTest extends MediaWikiTestCase {
 	 *
 	 * Test specifications by Alexandre "ialex" Emsenhuber.
 	 */
-	function testBug41337() {
+	public function testBug41337() {
 
 		// Set a low limit
 		$this->setMwGlobals( 'wgMaxSigChars', 2 );

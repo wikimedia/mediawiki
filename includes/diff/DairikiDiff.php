@@ -692,7 +692,7 @@ class Diff {
 	/**
 	 * Check for empty diff.
 	 *
-	 * @return bool True iff two sequences were identical.
+	 * @return bool True if two sequences were identical.
 	 */
 	function isEmpty() {
 		foreach ( $this->edits as $edit ) {

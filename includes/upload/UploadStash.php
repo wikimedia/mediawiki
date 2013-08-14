@@ -358,7 +358,7 @@ class UploadStash {
 		wfDebug( __METHOD__ . " clearing row $key\n" );
 
 		// Ensure we have the UploadStashFile loaded for this key
-		$this->getFile( $key );
+		$this->getFile( $key, true );
 
 		$dbw = $this->repo->getMasterDb();
 

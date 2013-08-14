@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @group WebRequest
+ */
 class WebRequestTest extends MediaWikiTestCase {
 	protected $oldServer;
 
@@ -17,8 +20,9 @@ class WebRequestTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideDetectServer
+	 * @covers WebRequest::detectServer
 	 */
-	function testDetectServer( $expected, $input, $description ) {
+	public function testDetectServer( $expected, $input, $description ) {
 		$_SERVER = $input;
 		$result = WebRequest::detectServer();
 		$this->assertEquals( $expected, $result, $description );
@@ -100,8 +104,9 @@ class WebRequestTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideGetIP
+	 * @covers WebRequest::getIP
 	 */
-	function testGetIP( $expected, $input, $squid, $xffList, $private, $description ) {
+	public function testGetIP( $expected, $input, $squid, $xffList, $private, $description ) {
 		$_SERVER = $input;
 		$this->setMwGlobals( array(
 			'wgSquidServersNoPurge' => $squid,
@@ -142,6 +147,17 @@ class WebRequestTest extends MediaWikiTestCase {
 				array(),
 				false,
 				'Simple IPv6'
+			),
+			array(
+				'12.0.0.1',
+				array(
+					'REMOTE_ADDR' => 'abcd:0001:002:03:4:555:6666:7777',
+					'HTTP_X_FORWARDED_FOR' => '12.0.0.1, abcd:0001:002:03:4:555:6666:7777',
+				),
+				array( 'ABCD:1:2:3:4:555:6666:7777' ),
+				array(),
+				false,
+				'IPv6 normalisation'
 			),
 			array(
 				'12.0.0.3',
@@ -258,8 +274,9 @@ class WebRequestTest extends MediaWikiTestCase {
 
 	/**
 	 * @expectedException MWException
+	 * @covers WebRequest::getIP
 	 */
-	function testGetIpLackOfRemoteAddrThrowAnException() {
+	public function testGetIpLackOfRemoteAddrThrowAnException() {
 		$request = new WebRequest();
 		# Next call throw an exception about lacking an IP
 		$request->getIP();
@@ -283,8 +300,9 @@ class WebRequestTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideLanguageData
+	 * @covers WebRequest::getAcceptLang
 	 */
-	function testAcceptLang( $acceptLanguageHeader, $expectedLanguages, $description ) {
+	public function testAcceptLang( $acceptLanguageHeader, $expectedLanguages, $description ) {
 		$_SERVER = array( 'HTTP_ACCEPT_LANGUAGE' => $acceptLanguageHeader );
 		$request = new WebRequest();
 		$this->assertSame( $request->getAcceptLang(), $expectedLanguages, $description );

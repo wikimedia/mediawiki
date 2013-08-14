@@ -25,6 +25,12 @@
  * their associated module code by deferring initialisation until the first
  * method call.
  *
+ * Note on reference parameters:
+ *
+ * If the called method takes any parameters by reference, the __call magic
+ * here won't work correctly. The solution is to unstub the object before
+ * calling the method.
+ *
  * Note on unstub loops:
  *
  * Unstub loops (infinite recursion) sometimes occur when a constructor calls
@@ -61,6 +67,20 @@ class StubObject {
 	 */
 	static function isRealObject( $obj ) {
 		return is_object( $obj ) && !$obj instanceof StubObject;
+	}
+
+	/**
+	 * Unstubs an object, if it is a stub object. Can be used to break a
+	 * infinite loop when unstubbing an object or to avoid reference parameter
+	 * breakage.
+	 *
+	 * @param $obj Object to check.
+	 * @return void
+	 */
+	static function unstub( $obj ) {
+		if ( $obj instanceof StubObject ) {
+			$obj->_unstub( 'unstub', 3 );
+		}
 	}
 
 	/**

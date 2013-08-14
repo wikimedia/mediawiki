@@ -63,19 +63,19 @@ class GetConfiguration extends Maintenance {
 		$format = strtolower( $this->getOption( 'format', 'PHP' ) );
 
 		$validFormat = in_array( $format, self::$outFormats );
-		if( ! $validFormat ) {
-			$this->error("--format set to an unrecognized format", 0);
+		if ( ! $validFormat ) {
+			$this->error( "--format set to an unrecognized format", 0 );
 			$error_out = true;
 		}
 
-		if( $this->getOption( 'regex' ) && $this->getOption( 'iregex' ) ) {
-			$this->error("Can only use either --regex or --iregex");
+		if ( $this->getOption( 'regex' ) && $this->getOption( 'iregex' ) ) {
+			$this->error( "Can only use either --regex or --iregex" );
 			$error_out = true;
 		}
 
 		parent::validateParamsAndArgs();
 
-		if( $error_out ) {
+		if ( $error_out ) {
 			# Force help and quit
 			$this->maybeHelp( true );
 		}
@@ -88,14 +88,14 @@ class GetConfiguration extends Maintenance {
 		parent::finalSetup();
 
 		$this->regex = $this->getOption( 'regex' ) ? : $this->getOption( 'iregex' );
-		if( $this->regex ) {
+		if ( $this->regex ) {
 			$this->regex = '/' . $this->regex . '/';
 			if ( $this->hasOption( 'iregex' ) ) {
 				$this->regex .= 'i';  # case insensitive regex
 			}
 		}
 
-		if( $this->hasOption( 'settings' ) ) {
+		if ( $this->hasOption( 'settings' ) ) {
 			$this->settings_list = explode( ' ', $this->getOption( 'settings' ) );
 			# Values validation
 			foreach ( $this->settings_list as $name ) {
@@ -115,14 +115,14 @@ class GetConfiguration extends Maintenance {
 		$res = array();
 
 		# Sane default: dump any wg / wmg variable
-		if( ! $this->regex && ! $this->getOption( 'settings' ) ) {
+		if ( ! $this->regex && ! $this->getOption( 'settings' ) ) {
 			$this->regex = '/^wm?g/';
 		}
 
 		# Filter out globals based on the regex
 		if ( $this->regex ) {
 			$res = array();
-			foreach( $GLOBALS as $name => $value ) {
+			foreach ( $GLOBALS as $name => $value ) {
 				if ( preg_match( $this->regex, $name ) ) {
 					$res[$name] = $value;
 				}
@@ -131,7 +131,7 @@ class GetConfiguration extends Maintenance {
 
 		# Explicitly dumps a list of provided global names
 		if ( $this->settings_list ) {
-			foreach( $this->settings_list as $name ) {
+			foreach ( $this->settings_list as $name ) {
 				$res[$name] = $GLOBALS[$name];
 			}
 		}
@@ -157,7 +157,7 @@ class GetConfiguration extends Maintenance {
 			throw new MWException( "Failed to serialize the requested settings." );
 		}
 
-		if( $out ) {
+		if ( $out ) {
 			$this->output( $out . "\n" );
 		}
 	}

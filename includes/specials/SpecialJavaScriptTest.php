@@ -64,6 +64,7 @@ class SpecialJavaScriptTest extends SpecialPage {
 			// Matched! Display proper title and initialize the framework
 			$out->setPageTitle( $this->msg(
 				'javascripttest-title',
+				// Messages: javascripttest-qunit-name
 				$this->msg( "javascripttest-$framework-name" )->plain()
 			) );
 			$out->setSubtitle( $this->msg( 'javascripttest-backlink' )
@@ -97,6 +98,7 @@ class SpecialJavaScriptTest extends SpecialPage {
 				array(),
 				Linker::link(
 					$this->getTitle( $framework ),
+					// Message: javascripttest-qunit-name
 					$this->msg( "javascripttest-$framework-name" )->escaped()
 				)
 			);

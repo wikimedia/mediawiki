@@ -271,6 +271,8 @@ $magicWords = array(
 	'formatdate'                => array( '0', 'formatdata', 'dataformat', 'formatdate', 'dateformat' ),
 );
 
+$linkPrefixCharset = 'A-\\x{10ffff}';
+
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Ħoloq sottolinjati:',
@@ -315,6 +317,7 @@ $messages = array(
 'tog-showhiddencats' => 'Uri kategoriji moħbija',
 'tog-norollbackdiff' => "Turix il-paragun bejn il-verżjonijiet wara li tkun effettwajt ir-''rollback''",
 'tog-useeditwarning' => "Avżani kull meta nħalli paġna ta' modifika b'modifiki li għadhom ma ġewx salvati",
+'tog-prefershttps' => 'Dejjem uża l-konnessjoni sigura meta tidħol fil-kont',
 
 'underline-always' => 'Dejjem',
 'underline-never' => 'Qatt',
@@ -409,8 +412,6 @@ $messages = array(
 'index-category' => 'Paġni indiċjati',
 'noindex-category' => 'Paġni mhux indiċizzati',
 'broken-file-category' => "Paġni b'ħoloq lejn fajls miksura",
-
-'linkprefix' => '/^(.*?)([a-żA-Ż\\x80-\\xff]+)$/sD',
 
 'about' => 'Dwar',
 'article' => 'artiklu',
@@ -516,7 +517,7 @@ $1",
 'pool-queuefull' => "Il-kju tal-''pool'' hi mimlija",
 'pool-errorunknown' => 'Problema mhux magħrufa',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Dwar {{SITENAME}}',
 'aboutpage' => 'Project:Dwar',
 'copyright' => 'Kontenut aċċessibli taħt $1.',
@@ -601,17 +602,6 @@ Lista ta' paġni speċjali validi tinsab hawn [[Special:SpecialPages|{{int:speci
 # General errors
 'error' => 'Problema',
 'databaseerror' => 'Problema fid-database',
-'dberrortext' => 'Kien hemm żball fis-sintassi ta\' rikjesta tad-databażi.
-Dan jista\' jindika li hemm problema fis-softwer.
-L-aħħar attentat ta\' rikjesta tad-databażi kienet:
-<blockquote><tt>$1</tt></blockquote>
-mill-funzjoni ta\' "<tt>$2</tt>".
-Id-databażi tat problema ta\' "<tt>$3: $4</tt>".',
-'dberrortextcl' => 'Kien hemm żball fis-sintassi ta\' rikjesta tad-databażi.
-L-aħħar attentat ta\' rikjesta tad-databażi kienet:
-"$1"
-mill-funzjoni "$2".
-Id-databażi tat il-problema segwenti "$3: $4"',
 'laggedslavemode' => "Twissija: Il-Paġna jista' ma jkollhiex l-affarijiet aġġornati.",
 'readonly' => 'Database magħluq',
 'enterlockreason' => "Daħħal raġuni għala qiegħed tagħlqu, inkludi l-istima ta' meta l-għeluq se tieħu effett",
@@ -660,7 +650,6 @@ Jekk jogħġbok erġa' prova fi ftit minuti oħra.",
 'viewyourtext' => "Tista' tara u tikkopja s-sors tal-'''modifiki tiegħek''' fuq din il-paġna:",
 'protectedinterface' => 'Din il-paġna għanda element li tagħmel parti mill-interfaċċa tal-utent tas-software, u għaldaqstant ġiet protetta sabiex ma jkunx hemm abbuż.',
 'editinginterface' => "'''Avviż:''' Qiegħed tagħmel modifiki lejn paġna li qegħdha tintuża biex tipprovdi interfaċċa għall-messaġġi tas-software. Kull modifika f'din il-paġna se taffetwa l-apparenza tal-faċċata tal-utenti kollha. Għat-traduzzjonijiet, ikkunsidra l-possibilità li tuża'  [//translatewiki.net/wiki/Main_Page?setlang=mt translatewiki.net], il-proġett MediaWiki għal-lokalizzazzjoni.",
-'sqlhidden' => '(SQL rikjesta moħbija)',
 'cascadeprotected' => 'Din il-paġna ġiet protetta mill-modifiki, minħabba li tinkludi {{PLURAL:$1|paġni, li huwa|paġni, li huma}} protetti bil-preferenza tal-"kaskata" mixewla:
 $2',
 'namespaceprotected' => "Inti m'għandhekx il-permess li timodifika paġni fin-''namespace'' '''$1''.",
@@ -692,7 +681,6 @@ Kun af li ċerti paġni jistgħu jkomplu jidhru bħallikieku l-illogjar 'l barra
 'remembermypassword' => "Ftakar il-login tiegħi fuq dan il-kompjuter (għal massimu ta' {{PLURAL:$1|ġurnata|$1 ġurnata}})",
 'userlogin-remembermypassword' => 'Żommni fil-kont',
 'userlogin-signwithsecure' => 'Uża konnessjoni sigura',
-'securelogin-stick-https' => "Ibqa' konness fuq l-HTTPS wara l-login",
 'yourdomainname' => 'Id-dominju tiegħek:',
 'externaldberror' => "Kien hemm problema esterna ta' awtentiċitá jew m'għandhekx permess neċċessarju sabiex tagħmel aġġornamenti fuq l-aċċess estern.",
 'login' => 'Idħol',
@@ -809,7 +797,7 @@ Biex tkompli l-aċċess tal-kont tiegħek huwa neċessarju li toħloq password �
 'newpassword' => 'Password ġdida:',
 'retypenew' => "Erġa' ikteb il-password il-ġdida:",
 'resetpass_submit' => 'Issettja l-password u idħol fis-sit',
-'resetpass_success' => 'Il-password ġie modifikat. Aċċess fil-proċess...',
+'changepassword-success' => 'Il-password ġie modifikat. Aċċess fil-proċess...',
 'resetpass_forbidden' => 'Mhuwiex possibbli li timmodifika l-passwords',
 'resetpass-no-info' => 'Trid tkun effetwajt il-login qabel ma taċċessa direttament din il-paġna.',
 'resetpass-submit-loggedin' => 'Biddel il-password',
@@ -1426,6 +1414,8 @@ Innota però li l-werreja tal-kontenut ta' {{SITENAME}} f'dawn is-siti, jistgħu
 'prefs-dateformat' => 'Format tad-data',
 'prefs-timeoffset' => 'Differenza fis-sigħat',
 'prefs-advancedediting' => 'Opzjonijiet avvanzati',
+'prefs-editor' => 'Editur',
+'prefs-preview' => 'Dehra proviżorja',
 'prefs-advancedrc' => 'Opzjonijiet avvanzati',
 'prefs-advancedrendering' => 'Opzjonijiet avvanzati',
 'prefs-advancedsearchoptions' => 'Opzjonijiet avvanzati',
@@ -1976,12 +1966,6 @@ Daħħal: tip/sottotip, eż. <code>image/jpeg</code>.",
 'statistics-users-active' => 'Utenti attivi',
 'statistics-users-active-desc' => 'Utenti li wettqu azzjoni fl-aħħar {{PLURAL:$1|ġurnata|$1 ġurnata}}',
 'statistics-mostpopular' => 'Il-paġni l-aktar miżjura',
-
-'disambiguations' => "Paġni li jorbtu lejn paġni ta' diżambigwazzjoni",
-'disambiguationspage' => 'Template:diżambig',
-'disambiguations-text' => "Il-paġni segwenti għandhom minn tal-inqas ħolqa waħda lejn '''paġna ta' diżambigwazzjoni'''.
-Dawn probabbilment għandhom jippuntaw lejn l-paġna t-tajba minflok.<br />
-Paġna tiġi stmata bħala paġna ta' diżambigwazzjoni jekk tuża' mudell fil-lista li tinsab fuq [[MediaWiki:Disambiguationspage]].",
 
 'pageswithprop' => "Paġni bi proprjetà ta' paġna",
 'pageswithprop-legend' => "Paġni bi proprjetà ta' paġna",
@@ -2624,11 +2608,8 @@ Ara l-[[Special:BlockList|lista tal-blokki]] sabiex tara l-blokki attivi.',
 'ipb_blocked_as_range' => "Problema: L-Indirizz tal-IP $1 ma jistax jiġi blokkat waħdu u ma jistax jiġi sblokkat. L-Imblokk huwa attiv però f'livell ta' interval $2, li jista' jkun sblokkat.",
 'ip_range_invalid' => "Interval ta' indirizzi ta' IP mhux validi.",
 'ip_range_toolarge' => "Mhumiex permessi firxa ta' blokki ikbar minn /$1.",
-'blockme' => 'Imblukkani',
 'proxyblocker' => "Blokki ta' proxy miftuħa",
-'proxyblocker-disabled' => 'Din il-funzjoni mhijiex attivata.',
 'proxyblockreason' => "L-indirizz IP tiegħek ġie imblukkat peress li huwa proxy miftuħ. Jekk jogħġbok, ikkuntattja lill-provdituri tas-servizz tal-internet (ISP) jew lis-''support'' tekniku tiegħek u infurmahom b'din il-problema serja ta' sigurtà.",
-'proxyblocksuccess' => 'Blokk esegwit.',
 'sorbsreason' => 'L-indirizz IP tiegħek huwa mniżżel bħala proxy miftuħ fid-DNSBL użat minn {{SITENAME}}.',
 'sorbs_create_account_reason' => 'L-indirizz IP tiegħek huwa mniżżel bħala proxy miftuħ fid-DNSBL użat minn {{SITENAME}}. Ma tistax toħloq kont.',
 'cant-block-while-blocked' => 'Ma tistax timblokka lil utenti oħra waqt li inti mblukkat.',

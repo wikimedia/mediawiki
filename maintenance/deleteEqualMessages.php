@@ -70,7 +70,13 @@ class DeleteEqualMessages extends Maintenance {
 				$default = wfMessage( $key )->inLanguage( $langCode )->useDatabase( false )->plain();
 
 				$messageInfo['relevantPages']++;
-				if ( $actual === $default ) {
+
+				if (
+					// Exclude messages that are empty by default, such as sitenotice, specialpage
+					// summaries and accesskeys.
+					$default !== '' && $default !== '-' &&
+						$actual === $default
+				) {
 					$hasTalk = isset( $statuses['talks'][$key] );
 					$messageInfo['results'][] = array(
 						'title' => $key . $titleSuffix,

@@ -95,6 +95,7 @@ class SearchEngine {
 	public function supports( $feature ) {
 		switch ( $feature ) {
 		case 'list-redirects':
+		case 'search-update':
 			return true;
 		case 'title-suffix-filter':
 		default:
@@ -461,13 +462,16 @@ class SearchEngine {
 		$dbr = null;
 
 		$alternatives = self::getSearchTypes();
-		$type = $type !== null ? $type : $wgSearchType;
+
 		if ( $type && in_array( $type, $alternatives ) ) {
 			$class = $type;
+		} elseif ( $wgSearchType !== null ) {
+			$class = $wgSearchType;
 		} else {
 			$dbr = wfGetDB( DB_SLAVE );
 			$class = $dbr->getSearchEngine();
 		}
+
 		$search = new $class( $dbr );
 		$search->setLimitOffset( 0, 0 );
 		return $search;
@@ -556,6 +560,17 @@ class SearchEngine {
 	 */
 	public function getTextFromContent( Title $t, Content $c = null ) {
 		return $c ? $c->getTextForSearchIndex() : '';
+	}
+
+	/**
+	 * If an implementation of SearchEngine handles all of its own text processing
+	 * in getTextFromContent() and doesn't require SearchUpdate::updateText()'s
+	 * rather silly handling, it should return true here instead.
+	 *
+	 * @return bool
+	 */
+	public function textAlreadyUpdatedForIndex() {
+		return false;
 	}
 }
 
@@ -862,11 +877,11 @@ class SearchResult {
 	 * @return String: highlighted text snippet, null (and not '') if not supported
 	 */
 	function getTextSnippet( $terms ) {
-		global $wgUser, $wgAdvancedSearchHighlighting;
+		global $wgAdvancedSearchHighlighting;
 		$this->initText();
 
 		// TODO: make highliter take a content object. Make ContentHandler a factory for SearchHighliter.
-		list( $contextlines, $contextchars ) = SearchEngine::userHighlightPrefs( $wgUser );
+		list( $contextlines, $contextchars ) = SearchEngine::userHighlightPrefs();
 		$h = new SearchHighlighter();
 		if ( $wgAdvancedSearchHighlighting ) {
 			return $h->highlightText( $this->mText, $terms, $contextlines, $contextchars );

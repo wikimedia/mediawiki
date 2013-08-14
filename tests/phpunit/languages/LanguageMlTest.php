@@ -8,9 +8,12 @@
 /** Tests for MediaWiki languages/LanguageMl.php */
 class LanguageMlTest extends LanguageClassesTestCase {
 
-	/** see bug 29495 */
-	/** @dataProvider providerFormatNum */
-	function testFormatNum( $result, $value ) {
+	/**
+	 * @dataProvider providerFormatNum
+	 * @see bug 29495
+	 * @covers Language::formatNum
+	 */
+	public function testFormatNum( $result, $value ) {
 		$this->assertEquals( $result, $this->getLang()->formatNum( $value ) );
 	}
 

@@ -6,7 +6,9 @@
  */
 class BlockTest extends MediaWikiLangTestCase {
 
-	private $block, $madeAt;
+	/** @var Block */
+	private $block;
+	private $madeAt;
 
 	/* variable used to save up the blockID we insert in this test suite */
 	private $blockId;
@@ -66,18 +68,24 @@ class BlockTest extends MediaWikiLangTestCase {
 		}
 	}
 
-	function testInitializerFunctionsReturnCorrectBlock() {
-		// $this->dumpBlocks();
-
+	/**
+	 * @covers Block::newFromTarget
+	 */
+	public function testINewFromTargetReturnsCorrectBlock() {
 		$this->assertTrue( $this->block->equals( Block::newFromTarget( 'UTBlockee' ) ), "newFromTarget() returns the same block as the one that was made" );
+	}
 
+	/**
+	 * @covers Block::newFromID
+	 */
+	public function testINewFromIDReturnsCorrectBlock() {
 		$this->assertTrue( $this->block->equals( Block::newFromID( $this->blockId ) ), "newFromID() returns the same block as the one that was made" );
 	}
 
 	/**
 	 * per bug 26425
 	 */
-	function testBug26425BlockTimestampDefaultsToTime() {
+	public function testBug26425BlockTimestampDefaultsToTime() {
 		// delta to stop one-off errors when things happen to go over a second mark.
 		$delta = abs( $this->madeAt - $this->block->mTimestamp );
 		$this->assertLessThan( 2, $delta, "If no timestamp is specified, the block is recorded as time()" );
@@ -90,8 +98,9 @@ class BlockTest extends MediaWikiLangTestCase {
 	 * This stopped working with r84475 and friends: regression being fixed for bug 29116.
 	 *
 	 * @dataProvider provideBug29116Data
+	 * @covers Block::load
 	 */
-	function testBug29116LoadWithEmptyIp( $vagueTarget ) {
+	public function testBug29116LoadWithEmptyIp( $vagueTarget ) {
 		$this->hideDeprecated( 'Block::load' );
 
 		$uid = User::idFromName( 'UTBlockee' );
@@ -110,8 +119,9 @@ class BlockTest extends MediaWikiLangTestCase {
 	 * had. Regression bug 29116.
 	 *
 	 * @dataProvider provideBug29116Data
+	 * @covers Block::newFromTarget
 	 */
-	function testBug29116NewFromTargetWithEmptyIp( $vagueTarget ) {
+	public function testBug29116NewFromTargetWithEmptyIp( $vagueTarget ) {
 		$block = Block::newFromTarget( 'UTBlockee', $vagueTarget );
 		$this->assertTrue( $this->block->equals( $block ), "newFromTarget() returns the same block as the one that was made when given empty vagueTarget param " . var_export( $vagueTarget, true ) );
 	}
@@ -124,7 +134,10 @@ class BlockTest extends MediaWikiLangTestCase {
 		);
 	}
 
-	function testBlockedUserCanNotCreateAccount() {
+	/**
+	 * @covers Block::prevents
+	 */
+	public function testBlockedUserCanNotCreateAccount() {
 		$username = 'BlockedUserToCreateAccountWith';
 		$u = User::newFromName( $username );
 		$u->setPassword( 'NotRandomPass' );
@@ -184,7 +197,10 @@ class BlockTest extends MediaWikiLangTestCase {
 		);
 	}
 
-	function testCrappyCrossWikiBlocks() {
+	/**
+	 * @covers Block::insert
+	 */
+	public function testCrappyCrossWikiBlocks() {
 		// Delete the last round's block if it's still there
 		$oldBlock = Block::newFromTarget( 'UserOnForeignWiki' );
 		if ( $oldBlock ) {
@@ -343,8 +359,10 @@ class BlockTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider providerXff
+	 * @covers Block::getBlocksForIPList
+	 * @covers Block::chooseBlock
 	 */
-	function testBlocksOnXff( $xff, $exCount, $exResult ) {
+	public function testBlocksOnXff( $xff, $exCount, $exResult ) {
 		$list = array_map( 'trim', explode( ',', $xff ) );
 		$xffblocks = Block::getBlocksForIPList( $list, true );
 		$this->assertEquals( $exCount, count( $xffblocks ), 'Number of blocks for ' . $xff );

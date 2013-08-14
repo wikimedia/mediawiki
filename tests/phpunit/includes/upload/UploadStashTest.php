@@ -1,6 +1,8 @@
 <?php
 /**
  * @group Database
+ *
+ * @covers UploadStash
  */
 class UploadStashTest extends MediaWikiTestCase {
 	/**

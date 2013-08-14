@@ -1,10 +1,13 @@
 <?php
 
+/**
+ * @covers ::wfShorthandToInteger
+ */
 class WfShorthandToIntegerTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideABunchOfShorthands
 	 */
-	function testWfShorthandToInteger( $input, $output, $description ) {
+	public function testWfShorthandToInteger( $input, $output, $description ) {
 		$this->assertEquals(
 			wfShorthandToInteger( $input ),
 			$output,

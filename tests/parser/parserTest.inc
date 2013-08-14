@@ -33,22 +33,22 @@
  */
 class ParserTest {
 	/**
-	 * boolean $color whereas output should be colorized
+	 * @var bool $color whereas output should be colorized
 	 */
 	private $color;
 
 	/**
-	 * boolean $showOutput Show test output
+	 * @var bool $showOutput Show test output
 	 */
 	private $showOutput;
 
 	/**
-	 * boolean $useTemporaryTables Use temporary tables for the temporary database
+	 * @var bool $useTemporaryTables Use temporary tables for the temporary database
 	 */
 	private $useTemporaryTables = true;
 
 	/**
-	 * boolean $databaseSetupDone True if the database has been set up
+	 * @var bool $databaseSetupDone True if the database has been set up
 	 */
 	private $databaseSetupDone = false;
 
@@ -65,7 +65,7 @@ class ParserTest {
 	private $dbClone;
 
 	/**
-	 * string $oldTablePrefix Original table prefix
+	 * @var string $oldTablePrefix Original table prefix
 	 */
 	private $oldTablePrefix;
 
@@ -143,7 +143,7 @@ class ParserTest {
 	static function setUp() {
 		global $wgParser, $wgParserConf, $IP, $messageMemc, $wgMemc,
 			$wgUser, $wgLang, $wgOut, $wgRequest, $wgStyleDirectory, $wgEnableParserCache,
-			$wgNamespaceAliases, $wgNamespaceProtection, $wgLocalFileRepo,
+			$wgExtraNamespaces, $wgNamespaceAliases, $wgNamespaceProtection, $wgLocalFileRepo,
 			$parserMemc, $wgThumbnailScriptPath, $wgScriptPath,
 			$wgArticlePath, $wgScript, $wgStylePath, $wgExtensionAssetsPath,
 			$wgMainCacheType, $wgMessageCacheType, $wgParserCacheType, $wgLockManagers;
@@ -182,6 +182,9 @@ class ParserTest {
 		$wgNamespaceProtection[NS_MEDIAWIKI] = 'editinterface';
 		$wgNamespaceAliases['Image'] = NS_FILE;
 		$wgNamespaceAliases['Image_talk'] = NS_FILE_TALK;
+		# add a namespace shadowing a interwiki link, to test
+		# proper precedence when resolving links. (bug 51680)
+		$wgExtraNamespaces[100] = 'MemoryAlpha';
 
 		// XXX: tests won't run without this (for CACHE_DB)
 		if ( $wgMainCacheType === CACHE_DB ) {
@@ -239,6 +242,11 @@ class ParserTest {
 					'iw_api' => '',
 					'iw_wikiid' => '',
 					'iw_local' => 0 ),
+				'memoryalpha' => array(
+					'iw_url' => 'http://www.memory-alpha.org/en/index.php/$1',
+					'iw_api' => '',
+					'iw_wikiid' => '',
+					'iw_local' => 0 ),
 				'zh' => array(
 					'iw_url' => 'http://zh.wikipedia.org/wiki/$1',
 					'iw_api' => '',
@@ -260,13 +268,20 @@ class ParserTest {
 					'iw_wikiid' => '',
 					'iw_local' => 1 ),
 			);
-			if( array_key_exists( $prefix, $testInterwikis ) ) {
+			if ( array_key_exists( $prefix, $testInterwikis ) ) {
 				$iwData = $testInterwikis[$prefix];
 			}
 
 			// We only want to rely on the above fixtures
 			return false;
 		} );// hooks::register
+	}
+
+	/**
+	 * Remove the hardcoded interwiki lookup table.
+	 */
+	public static function tearDownInterwikis() {
+		Hooks::clear( 'InterwikiLoadPrefix' );
 	}
 
 	public function setupRecorder( $options ) {
@@ -479,6 +494,9 @@ class ParserTest {
 
 	/**
 	 * Get a Parser object
+	 *
+	 * @param string $preprocessor
+	 * @return Parser
 	 */
 	function getParser( $preprocessor = null ) {
 		global $wgParserConf;
@@ -551,6 +569,7 @@ class ParserTest {
 			$out = $parser->getPreloadText( $input, $title, $options );
 		} else {
 			$output = $parser->parse( $input, $title, $options, true, true, 1337 );
+			$output->setTOCEnabled( !isset( $opts['notoc'] ) );
 			$out = $output->getText();
 
 			if ( isset( $opts['showtitle'] ) ) {
@@ -603,7 +622,7 @@ class ParserTest {
 	/**
 	 * Use a regex to find out the value of an option
 	 * @param $key String: name of option val to retrieve
-	 * @param $opts Options array to look in
+	 * @param $opts array: Options array to look in
 	 * @param $default Mixed: default value returned if not found
 	 */
 	private static function getOptionValue( $key, $opts, $default ) {

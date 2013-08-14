@@ -79,7 +79,7 @@ class MWDocGen extends Maintenance {
 
 		$this->input = '';
 		$inputs = explode( ',', $this->getOption( 'file', '' ) );
-		foreach( $inputs as $input ) {
+		foreach ( $inputs as $input ) {
 			# Doxygen inputs are space separted and double quoted
 			$this->input .= " \"$IP/$input\"";
 		}

@@ -270,7 +270,7 @@ $1',
 'pool-queuefull' => 'La colona da spetga dil pool è plaina',
 'pool-errorunknown' => 'Errur nunenconuschenta',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Davart {{SITENAME}}',
 'aboutpage' => 'Project:Davart',
 'copyright' => 'Cuntegn disponibel sut $1.',
@@ -358,17 +358,6 @@ Ina glista da las paginas spezialas existentas chattais vus sut [[Special:Specia
 # General errors
 'error' => 'Errur',
 'databaseerror' => 'Sbagl da la datoteca',
-'dberrortext' => 'In sbagl da la sintaxa da la dumonda a la banca da datas è capità.
-Quai po esser in sbagl en la software.
-L\'ultima dumonda per la banca da datas era:
-<blockquote><code>$1</code></blockquote>
-ord la funcziun "<code>$2</code>".
-La banca da datas ha rapportà l\'errur "<samp>$3: $4</samp>".',
-'dberrortextcl' => 'In sbagl da la sintaxa da la dumonda a la banca da datas è capità.
-L\'ultima dumonda per la banca da datas era:
-"$1"
-ord la funcziun "$2".
-La banca da datas ha rapportà l\'errur "$3: $4"',
 'laggedslavemode' => 'Attenziun: La pagina mussada na cuntign eventualmain betg anc las ultimas midadas.',
 'readonly' => 'Banca da datas bloccada',
 'enterlockreason' => 'Inditgescha ina raschun per la bloccada da la banca da datas ed il temp cura che ti quintas che la bloccada po vegnir annullada',
@@ -424,7 +413,6 @@ Emprova danovamain en in per minutas.',
 'editinginterface' => "'''Attenziun:''' Questa pagina cuntegna text che vegn duvra en la interfatscha da questa software. 
 Midadas influenzeschan directamain l'interfatscha per tut ils utilisaders sin questa vichi. 
 Sche ti vuls far translaziuns u correcturas per tut las vichis, lura utilisescha [//translatewiki.net/ translatewiki.net], il project per translatar MediaWiki.",
-'sqlhidden' => '(Zuppentà la dumonda da SQL)',
 'cascadeprotected' => "Questa pagina è protegida da modificaziuns perquai ch'ella è integrada en suandanta{{PLURAL:$1| pagina, ch'è protegida|s paginas, ch'èn protegidas}} entras l'opziun «protecziun ertada»: 
 $2",
 'namespaceprotected' => "Ti n'has betg la lubientscha da modifitgar paginas dal tip da pagina '''$1'''.",
@@ -457,7 +445,6 @@ N'emblida betg da midar tias [[Special:Preferences|{{SITENAME}} preferenzas]].",
 'yourpassword' => 'pled-clav',
 'yourpasswordagain' => 'repeter pled-clav',
 'remembermypassword' => "S'annunziar permanantamain sin quest computer (per maximalmain $1 {{PLURAL:$1|di|dis}})",
-'securelogin-stick-https' => "Restar collià entras HTTPS suenter l'annunzia",
 'yourdomainname' => 'Vossa domain',
 'password-change-forbidden' => 'Ti na pos betg midar pleds-clav sin quest vichi.',
 'externaldberror' => "U ch'i è capità ina errur cun l'autentificaziun externa u che ti na dastgas betg actualisar tes conto extern.",
@@ -558,7 +545,7 @@ Per finir da t'annunziar stos ti definir qua in nov pled-clav:",
 'newpassword' => 'pled-clav nov:',
 'retypenew' => 'repeter pled-clav nov:',
 'resetpass_submit' => "Definir il pled clav e m'annunziar",
-'resetpass_success' => 'Tes pled-clav è vegnì midà cun success. 
+'changepassword-success' => 'Tes pled-clav è vegnì midà cun success. 
 Ti vegns annunzià…',
 'resetpass_forbidden' => 'Il pled-clav na po betg vegnir midà',
 'resetpass-no-info' => "Ti stos t'annunziar per acceder directamain questa pagina.",
@@ -1802,12 +1789,6 @@ Betg emblida da controllar sche autras colliaziuns mainan als models avant ch'al
 'statistics-users-active-desc' => "Utilisaders che han fatg almain ina acziun {{PLURAL:$1|l'ultim di|ils ultims $1 dis}}",
 'statistics-mostpopular' => 'Paginas visitadas il pli savens',
 
-'disambiguations' => 'Paginas cun colliaziuns sin paginas per la decleraziun da noziuns',
-'disambiguationspage' => 'Template:disambiguiziun',
-'disambiguations-text' => "Las suandantas paginas cuntegnan almain ina colliaziun ad ina '''pagina per la decleraziun da noziuns'''.
-Eventualmain duessan ellas plitost esser cun il dretg artitgel. 
-Ina pagina vegn tractada sco pagina per la decleraziun da noziuns sch'ella cuntegna almain in dals models enumerads sin [[MediaWiki:Disambiguationspage]].",
-
 'doubleredirects' => 'Renviaments dubels',
 'doubleredirectstext' => "Questa glista mussa renviaments che mainan puspè a renviaments.
 Mintga colonna cuntegna colliaziuns a l'emprim ed al segund renviaments, sco era la pagina finala dal segund renviament che è probablamain la pagina a la quala duess vegnir renvià.
@@ -2471,12 +2452,9 @@ Eventualmain è ella gia vegnida annulada.",
 Ella e bloccada en la zona d'adressas IP $2 che po vegnir debloccà.",
 'ip_range_invalid' => "Zona d'adressas IP nunvalida.",
 'ip_range_toolarge' => "Zonas da bloccadas pli grondas che /$1 n'èn betg lubidas.",
-'blockme' => 'Bloccar mai',
 'proxyblocker' => 'Bloccar proxys',
-'proxyblocker-disabled' => 'Questa funcziun è deactivada.',
 'proxyblockreason' => "Tia adressa IP è vegnida bloccada perquai ch'ella è in proxy avert. 
 Contactescha tes provider dals survetschs d'internet u ils administraturs dal sistem ed als infurmescha davart quest problem da segirezza pussaivel.",
-'proxyblocksuccess' => 'Terminà.',
 'sorbsreason' => 'Tia adressa IP fa part da la glista da proxys averts da DNSBL che vegn utilisada da {{SITENAME}}.',
 'sorbs_create_account_reason' => "Tia adressa IP fa part da la glista da proxys averts da DNSBL che vegn utilisada da {{SITENAME}}.
 Ti na pos betg crear in conto d'utilisader.",
@@ -3638,8 +3616,7 @@ Ti duessas avair retschavì [{{SERVER}}{{SCRIPTPATH}}/COPYING ina copia da la GN
 
 # Database error messages
 'dberr-header' => 'Questa wiki ha in problem',
-'dberr-problems' => 'Stgisa!
-Questa pagina ha actualmain difficultads tecnicas.',
+'dberr-problems' => 'Stgisa! Questa pagina ha actualmain difficultads tecnicas.',
 'dberr-again' => 'Spetga in per minutas ed emprova alura da chargiar danovamain.',
 'dberr-info' => '(Betg pussaivel da contactar il server da la banca da datas: $1)',
 'dberr-usegoogle' => 'Ti pos empruvar da tschertgar cun Google en il fratemp.',

@@ -459,7 +459,7 @@ $1",
 'pool-queuefull' => 'Radha e proceseve është mbushur',
 'pool-errorunknown' => 'Gabim i panjohur',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Rreth {{SITENAME}}',
 'aboutpage' => 'Project:Rreth',
 'copyright' => 'Përmbajtja është në disponim nëpërmjet licencës $1.',
@@ -545,18 +545,6 @@ Kjo mund të vijë edhe si rezultat i një gabimi në programin e përdorur nga 
 # General errors
 'error' => 'Gabim',
 'databaseerror' => 'Gabim në databazë',
-'dberrortext' => 'Ka ndodhur një gabim me pyetjen e regjistrit.
-Kjo mund të ndodhi n.q.s. pyetja nuk është e vlehshme,
-ose mund të jetë një yçkël e softuerit.
-Pyetja e fundit që i keni bërë regjistrit ishte:
-<blockquote><tt>$1</tt></blockquote>
-nga funksioni "<tt>$2</tt>".
-MySQL kthehu gabimin "<tt>$3: $4</tt>".',
-'dberrortextcl' => 'Ka ndodhur një gabim me sintaksën query në databazë. 
-Query e fundit që i keni bërë regjistrit ishte:
-"$1"
-nga funksioni "$2".
-MySQL kthehu gabimin "$3: $4".',
 'laggedslavemode' => "'''Kujdes:''' Kjo faqe nuk mund të ketë përditësime të kohëve të fundit.",
 'readonly' => 'Databaza e kyçur',
 'enterlockreason' => 'Shëno arsyen e kyçjes, gjithashtu shëno se kur mund të hapet.',
@@ -611,7 +599,6 @@ Ju lutemi, provojeni përsëri pas disa minutash.',
 'editinginterface' => "'''Kujdes:''' Po redaktoni një faqe që përdoret për tekstin dritares së programit. 
 Ndryshimet në këtë faqe do të ndikojnë pamjen e dritares për përdoruesit e tjerë.
 Për përkthime, ju lutem konsideroni përdorimin e [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], projektin e lokalizimit MediaWiki.",
-'sqlhidden' => '(Query SQL e fshehur)',
 'cascadeprotected' => 'Kjo faqe është mbrojtur nga redaktimi pasi është përfshirë në {{PLURAL:$1|faqen|faqet}} e mëposhtme që {{PLURAL:$1|është|janë}} mbrojtur sipas metodës "cascading":
 $2',
 'namespaceprotected' => "Nuk ju lejohet redaktimi i faqeve në hapsirën '''$1'''.",
@@ -655,7 +642,6 @@ Mos harroni të ndryshoni [[Special:Preferences|{{SITENAME}} preferencat]] tuaja
 'remembermypassword' => 'Mbaj mënd fjalëkalimin tim për tërë vizitat e ardhshme (për një kohë maksimale prej $1 {{PLURAL:$1|dite|ditësh}})',
 'userlogin-remembermypassword' => 'Më mbaj të kyçur',
 'userlogin-signwithsecure' => 'Përdor lidhje të sigurtë',
-'securelogin-stick-https' => 'Qëndro i lidhur me HTTPS pas hyrjes me emrin përkatës',
 'yourdomainname' => 'Faqja juaj',
 'password-change-forbidden' => 'Ju nuk mund të ndryshoni fjalëkalimet në këtë wiki.',
 'externaldberror' => 'Ose kishte një gabim tek regjistri i identifikimit të jashtëm, ose nuk ju lejohet të përtërini llogarinë tuaje të jashtme.',
@@ -753,7 +739,7 @@ Për të hyrë tërësisht duhet të vendosni një fjalëkalim të ri këtu:',
 'newpassword' => 'I riu',
 'retypenew' => 'I riu përsëri',
 'resetpass_submit' => 'Ndrysho fjalëkalimin dhe hyni brenda',
-'resetpass_success' => 'Fjalëkalimi juaj është ndryshuar me sukses! Mund të hyni brenda...',
+'changepassword-success' => 'Fjalëkalimi juaj është ndryshuar me sukses! Mund të hyni brenda...',
 'resetpass_forbidden' => 'Fjalëkalimet nuk mund të ndryshohen',
 'resetpass-no-info' => 'Duhet të jeni i kyçur që të keni qasje direkte në këtë faqe.',
 'resetpass-submit-loggedin' => 'Ndrysho fjalëkalimin',
@@ -1953,12 +1939,6 @@ Mos harroni të shihni nyje tjera të stampave para grisjes së tyre.',
 'statistics-users-active-desc' => 'Përdoruesit që kanë së paku një veprim në {{PLURAL:$1|ditën|$1 ditët}} e fundit',
 'statistics-mostpopular' => 'Faqet më të shikuara',
 
-'disambiguations' => 'Faqet që lidhen te faqet kthjelluese',
-'disambiguationspage' => 'Template:Kthjellim',
-'disambiguations-text' => "Faqet e mëposhtme lidhen tek një '''faqe kthjelluese'''.
-Ato duhet të kenë lidhje të drejtpërdrejtë tek artikujt e nevojshëm.<br />
-Një faqe trajtohet si faqe kthjelluese nëse përdor stampat e lidhura nga [[MediaWiki:Disambiguationspage]]",
-
 'doubleredirects' => 'Përcjellime dopjo',
 'doubleredirectstext' => "Kjo faqe liston faqet përcjellëse tek faqet e tjera përcjellëse.
 Secili rresht përmban lidhjet tek përcjellimi i parë dhe përcjellimi i dytë, gjithashtu synimin e përcjellimit të dytë, që është zakonisht faqja synuese '''e vërtetë''', që faqja w parë duhej të ishte përcjellëse e kësaj faqeje.
@@ -2621,11 +2601,8 @@ Mund të jetë zhbllokuar.',
 Ajo është, megjithatë, e bllokuar si pjesë e rangut $2, që nuk mund të zhbllokohet.',
 'ip_range_invalid' => 'Shtrirje IP gabim.',
 'ip_range_toolarge' => 'Radhitja e bllokimeve më të mëdha se /$1 nuk lejohet.',
-'blockme' => 'Më blloko',
 'proxyblocker' => 'Bllokuesi i ndërmjetëseve',
-'proxyblocker-disabled' => 'Ky funksion është pamundësuar.',
 'proxyblockreason' => 'IP adresa juaj është bllokuar sepse është një ndërmjetëse e hapur. Ju lutem lidhuni me kompaninë e shërbimeve të Internetit që përdorni dhe i informoni për këtë problem sigurije.',
-'proxyblocksuccess' => 'Mbaruar.',
 'sorbsreason' => 'Adresa IP e juaj është radhitur si ndërmjetëse e hapur tek lista DNSBL.',
 'sorbs_create_account_reason' => 'Adresa IP e juaj është radhitur si ndërmjetëse e hapur tek lista DNSBL që përdoret nga {{SITENAME}}. Nuk ju lejohet të hapni një llogari.',
 'cant-block-while-blocked' => 'Ju nuk mund të bllokoni përdorues të tjerë ndërkohë që jeni i bllokuar.',
@@ -2956,6 +2933,8 @@ Ju lutemi provoni përsëri.',
 'spam_reverting' => "U kthye tek versioni i fundit që s'ka lidhje tek $1",
 'spam_blanking' => 'U boshatis sepse të gjitha versionet kanë lidhje tek $1',
 'spam_deleting' => 'Të gjitha inspektimet përmbanin lidhje në $1, duke fshirë',
+'simpleantispam-label' => "Kontroll anti-spam.
+'''MOS''' e plotësoni këtë!",
 
 # Info page
 'pageinfo-title' => 'Informacion për " $1 "',
@@ -3720,8 +3699,7 @@ Ju duhet të keni marrë [{{SERVER}}{{SCRIPTPATH}}/COPYING një kopje të GNU Ge
 
 # Database error messages
 'dberr-header' => 'Kjo wiki ka një problem',
-'dberr-problems' => 'Na vjen keq! 
-Kjo faqe është duke përjetuar vështirësi teknike.',
+'dberr-problems' => 'Na vjen keq! Kjo faqe po has vështirësi teknike.',
 'dberr-again' => 'Pritni disa minuta dhe provoni të ringarkoni faqen.',
 'dberr-info' => '(Nuk mund të lidhet me serverin bazë e të dhënave : $1)',
 'dberr-usegoogle' => 'Ju mund të provoni të kërkoni përmes Googles në ndërkohë.',

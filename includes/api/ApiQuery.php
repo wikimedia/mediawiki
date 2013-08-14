@@ -64,6 +64,7 @@ class ApiQuery extends ApiBase {
 	 */
 	private static $QueryListModules = array(
 		'allcategories' => 'ApiQueryAllCategories',
+		'allfileusages' => 'ApiQueryAllLinks',
 		'allimages' => 'ApiQueryAllImages',
 		'alllinks' => 'ApiQueryAllLinks',
 		'allpages' => 'ApiQueryAllPages',
@@ -102,6 +103,7 @@ class ApiQuery extends ApiBase {
 		'allmessages' => 'ApiQueryAllMessages',
 		'siteinfo' => 'ApiQuerySiteinfo',
 		'userinfo' => 'ApiQueryUserInfo',
+		'filerepoinfo' => 'ApiQueryFileRepoInfo',
 	);
 
 	/**

@@ -216,8 +216,6 @@ $messages = array(
 'index-category' => 'İndekslanğan bitlär',
 'noindex-category' => 'İndekslanmağan bitlär',
 
-'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
-
 'about' => 'Taswirlama',
 'article' => 'Mäqälä',
 'newwindow' => '(yaña täräzädä açıla)',
@@ -318,7 +316,7 @@ $1',
 'pool-queuefull' => 'Sorawlarnı saqlaw  bite tulı',
 'pool-errorunknown' => 'Bilgesez  xata',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} turında',
 'aboutpage' => 'Project:Taswirlama',
 'copyright' => 'Mäğlümat $1 buyınça taratıla.',
@@ -400,17 +398,6 @@ Maxsus bitlär isemlegen qarağız: [[Special:SpecialPages|{{int:specialpages}}]
 # General errors
 'error' => 'Xata',
 'databaseerror' => 'Mäğlümatlar bazasında xata',
-'dberrortext' => 'Mäğlümatlar bazasına cibärelgän sorawda sintaksik xata tabıldı.
-Programmada xata bulırğa mömkin.
-Mäğlümatlar bazasına cibärelgän soñğı soraw:
-<blockquote><tt>$1</tt></blockquote>
-<tt>«$2»</tt> funksiäsennän.
-Baza <tt>«$3: $4»</tt> xatasın qaytardı.',
-'dberrortextcl' => 'Mäğlümatlar bazasına cibärelgän sorawda sintaksik xata tabıldı.
-Mäğlümatlar bazasına cibärelgän soñğı soraw:
-"$1"
-«$2» funksiäsennän.
-Baza «$3: $4» xatasın qaytardı.',
 'laggedslavemode' => 'İğtibar: bittä soñğı yañartular kürsätelmägän bulırğa mömkin.',
 'readonly' => 'Mäğlümatlar bazasına yazu yabılğan',
 'enterlockreason' => 'Yabılu säbäben häm waqıtın kürsätegez.',
@@ -455,7 +442,6 @@ Soraw: $2',
 'viewsourcetext' => 'Sez bu bitneñ başlanğıç tekstın qarıy häm küçerä alasız:',
 'protectedinterface' => 'Bu bittä programma interfeysı xäbärläre bar. Vandalizmğa qarşı köräş säbäple, bu bitne üzgärtü tıyıla.',
 'editinginterface' => "'''İğtibar:''' Sez MediaWiki sistemasınıñ interfeys biten üzgärtäsez. Bu başqa qullanuçılarğa da tä'sir itäçäk. Tärcemä öçen [//translatewiki.net/wiki/Main_Page?setlang=tt-latn translatewiki.net] lokalizatsiäläw proyektın qullanığız.",
-'sqlhidden' => '(SQL-soraw yäşerelgän)',
 'cascadeprotected' => 'Bu bit üzgärtülärdän saqlanğan, çönki ul kaskadlı saqlaw qabul itelgän {{PLURAL:$1|bitkä|bitlärgä}} östälgän:
 $2',
 'namespaceprotected' => "'''$1''' isem kiñlegendäge bitlärne üzgärtü öçen sezneñ röxsätegez yuq.",
@@ -477,7 +463,6 @@ Qayber bitlär Sez kergän kebek kürsätelergä mömkin. Monı beterü öçen b
 'yourpassword' => 'Sersüz:',
 'yourpasswordagain' => 'Sersüzne qabat kertü:',
 'remembermypassword' => 'Xisap yazmamnı bu brauzerda saqlansın (iñ küp $1 {{PLURAL:$1|kön|kön|kön}}gä qädär)',
-'securelogin-stick-https' => 'Kerüdän soñ HTTPS buyınça totaştırunı däwam itärgä',
 'yourdomainname' => 'Sezneñ domenığız:',
 'externaldberror' => 'Tışqı mäğlümat bazası yärdämendä awtentifikatsiä ütkändä xata çıqtı, yäisä tışqı xisap yazmağızğa üzgäreşlär kertü xoquqığız yuq.',
 'login' => 'Kerü',
@@ -556,7 +541,7 @@ Yañadan qabatlağançı beraz kötüegez sorala.',
 'newpassword' => 'Yaña sersüz:',
 'retypenew' => 'Yaña sersüzne qabatlağız:',
 'resetpass_submit' => 'Sersüz quyıp kerü',
-'resetpass_success' => 'Sezneñ sersüz uñışlı üzgärtelde! Sistemağa kerü başqarıla...',
+'changepassword-success' => 'Sezneñ sersüz uñışlı üzgärtelde! Sistemağa kerü başqarıla...',
 'resetpass_forbidden' => 'Sersüz üzgärtelä almıy',
 'resetpass-no-info' => 'Bu bitne qaraw öçen sez sistemağa üz xisap yazmağız yärdämendä kerergä tieş.',
 'resetpass-submit-loggedin' => 'Sersüzne üzgärtü',
@@ -1333,8 +1318,6 @@ PICT # törle
 'statistics-users-active-desc' => '{{PLURAL:$1|$1 kön }} öçendä nindi dä bulsa üzgärtülär kertkän qullanuçılar',
 'statistics-mostpopular' => 'İñ küp qaraluçı bitlär',
 
-'disambiguations' => 'Küp mäğnäle süzlär turında bitlär',
-
 'doubleredirects' => 'İkelätä yünältülär',
 
 'brokenredirects' => 'Bäyläneşsez yünältülär',
@@ -1702,7 +1685,6 @@ $1',
 'ipb_expiry_invalid' => 'İskärü waqıtı xatalı.',
 'ip_range_invalid' => 'Xatalı IP arası.',
 'proxyblocker' => 'Proksi tıyu',
-'proxyblocksuccess' => 'Eşlände',
 'sorbsreason' => 'Sezneñ IP adresığız DNSBLda açıq proksi dip sanala.',
 
 # Developer tools

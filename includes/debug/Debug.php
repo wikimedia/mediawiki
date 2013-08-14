@@ -332,7 +332,7 @@ class MWDebug {
 		self::$query[] = array(
 			'sql' => $sql,
 			'function' => $function,
-			'master' => (bool) $isMaster,
+			'master' => (bool)$isMaster,
 			'time' => 0.0,
 			'_start' => microtime( true ),
 		);

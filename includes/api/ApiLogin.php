@@ -46,6 +46,15 @@ class ApiLogin extends ApiBase {
 	 * is reached. The expiry is $this->mLoginThrottle.
 	 */
 	public function execute() {
+		// If we're in JSON callback mode, no tokens can be obtained
+		if ( !is_null( $this->getMain()->getRequest()->getVal( 'callback' ) ) ) {
+			$this->getResult()->addValue( null, 'login', array(
+				'result' => 'Aborted',
+				'reason' => 'Cannot log in when using a callback',
+			) );
+			return;
+		}
+
 		$params = $this->extractRequestParams();
 
 		$result = array();
@@ -245,9 +254,9 @@ class ApiLogin extends ApiBase {
 
 	public function getDescription() {
 		return array(
-			'Log in and get the authentication tokens. ',
+			'Log in and get the authentication tokens.',
 			'In the event of a successful log-in, a cookie will be attached',
-			'to your session. In the event of a failed log-in, you will not ',
+			'to your session. In the event of a failed log-in, you will not',
 			'be able to attempt another log-in through this method for 5 seconds.',
 			'This is to prevent password guessing by automated password crackers'
 		);
@@ -258,10 +267,10 @@ class ApiLogin extends ApiBase {
 			array( 'code' => 'NeedToken', 'info' => 'You need to resubmit your login with the specified token. See https://bugzilla.wikimedia.org/show_bug.cgi?id=23076' ),
 			array( 'code' => 'WrongToken', 'info' => 'You specified an invalid token' ),
 			array( 'code' => 'NoName', 'info' => 'You didn\'t set the lgname parameter' ),
-			array( 'code' => 'Illegal', 'info' => ' You provided an illegal username' ),
-			array( 'code' => 'NotExists', 'info' => ' The username you provided doesn\'t exist' ),
-			array( 'code' => 'EmptyPass', 'info' => ' You didn\'t set the lgpassword parameter or you left it empty' ),
-			array( 'code' => 'WrongPass', 'info' => ' The password you provided is incorrect' ),
+			array( 'code' => 'Illegal', 'info' => 'You provided an illegal username' ),
+			array( 'code' => 'NotExists', 'info' => 'The username you provided doesn\'t exist' ),
+			array( 'code' => 'EmptyPass', 'info' => 'You didn\'t set the lgpassword parameter or you left it empty' ),
+			array( 'code' => 'WrongPass', 'info' => 'The password you provided is incorrect' ),
 			array( 'code' => 'WrongPluginPass', 'info' => 'Same as "WrongPass", returned when an authentication plugin rather than MediaWiki itself rejected the password' ),
 			array( 'code' => 'CreateBlocked', 'info' => 'The wiki tried to automatically create a new account for you, but your IP address has been blocked from account creation' ),
 			array( 'code' => 'Throttled', 'info' => 'You\'ve logged in too many times in a short time' ),

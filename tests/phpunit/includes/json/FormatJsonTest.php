@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers FormatJson
+ */
 class FormatJsonTest extends MediaWikiTestCase {
 
 	public function testEncoderPrettyPrinting() {
@@ -12,25 +15,25 @@ class FormatJsonTest extends MediaWikiTestCase {
 					123,
 					456,
 				),
+				// Nested json works without problems
 				'"7":["8",{"9":"10"}]',
+				// Whitespace clean up doesn't touch strings that look alike
+				"{\n\t\"emptyObject\": {\n\t},\n\t\"emptyArray\": [ ]\n}",
 			),
 		);
 
 		// 4 space indent, no trailing whitespace, no trailing linefeed
 		$json = '{
-    "emptyObject": {
-
-    },
-    "emptyArray": [
-
-    ],
+    "emptyObject": {},
+    "emptyArray": [],
     "string": "foobar\\\\",
     "filledArray": [
         [
             123,
             456
         ],
-        "\"7\":[\"8\",{\"9\":\"10\"}]"
+        "\"7\":[\"8\",{\"9\":\"10\"}]",
+        "{\n\t\"emptyObject\": {\n\t},\n\t\"emptyArray\": [ ]\n}"
     ]
 }';
 

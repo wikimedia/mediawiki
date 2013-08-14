@@ -290,7 +290,7 @@ Ju lutem pritni pak para se me tentue me iu qasë faqes prap.
 
 $1',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Rreth {{SITENAME}}',
 'aboutpage' => 'Project:Rreth',
 'copyright' => 'Përmbajtja mundësohet simbas $1.',
@@ -371,17 +371,6 @@ Lista e faqeve speciale valide gjindet te [[Special:SpecialPages|{{int:specialpa
 # General errors
 'error' => 'Gabim',
 'databaseerror' => 'Gabim në databazë',
-'dberrortext' => 'Ka ndodh nji gabim sintaksor në kërkesën në databazë.
-Kjo mundet me tregue gabim në software.
-Kërkesa e fundit në databazë ishte:
-<blockquote><tt>$1</tt></blockquote>
-mbrenda funksionit "<tt>$2</tt>".
-Databaza ktheu gabimin "<tt>$3: $4</tt>".',
-'dberrortextcl' => 'Ka ndodh nji gabim sintaksor në kërkesën në databazë.
-Kërkesa e fundit në databazë ishte:
-"$1"
-mbrenda funksionit "$2".
-Databaza ktheu gabimin "$3: $4".',
 'laggedslavemode' => "'''Kujdes:''' Kjo faqe mundet mos me përmbajtë ndryshime të reja.",
 'readonly' => 'Databaza âsht e bllokueme',
 'enterlockreason' => 'Futni një arsye për bllokimin, gjithashtu futni edhe kohën se kur pritet të çbllokohet',
@@ -431,7 +420,6 @@ Ju lutemi provoni prap mbas disa minutave.',
 'editinginterface' => "'''Kujdes:''' Po redaktoni nji faqe që përdoret për me ofrue tekst të interfaceit të softwareit.
 Ndryshimet në këtë faqe do të prekin pamjen e interfaceit për të gjithë përdoruesit tjerë.
 Për përkthim, konsideroni ju lutem përdorimin e [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], projektin e MediaWiki për përshtatje gjuhësore.",
-'sqlhidden' => '(Kërkesa SQL e msheftë)',
 'cascadeprotected' => 'Kjo faqe âsht e mbrojtun prej redaktimit, për shkak se âsht e përfshime në {{PLURAL:$1|faqen, e cila âsht e mbrojtun|faqet, të cilat janë të mbrojtuna}} me opcionin "zinxhir" të zgjedhun:
 $2',
 'namespaceprotected' => "Nuk keni tagër me redaktue faqe në hapësinën '''$1'''.",
@@ -551,7 +539,7 @@ Për me krye kyçjen, specifikoni fjalëkalimin e ri këtu:',
 'newpassword' => 'Fajlëkalimi i ri:',
 'retypenew' => 'Fjalëkalimi i ri përsëdyti',
 'resetpass_submit' => 'Vendos fjalëkalimin dhe kyçu',
-'resetpass_success' => 'Fjalëkalimi juej u ndryshue me sukses! Tash po kyçeni...',
+'changepassword-success' => 'Fjalëkalimi juej u ndryshue me sukses! Tash po kyçeni...',
 'resetpass_forbidden' => 'Fjalëkalimet nuk mujnë me u ndryshue',
 'resetpass-no-info' => 'Duheni me qenë të kyçun për me iu qasë kësaj faqeje direkt.',
 'resetpass-submit-loggedin' => 'Ndrysho fjalëkalimin',
@@ -1515,6 +1503,9 @@ Lejon dhânien e arsyes në përmbledhje.',
 'others' => 'tjerët',
 'siteusers' => '{{SITENAME}} {{PLURAL:$2|përdorues|përdorues}} $1',
 'creditspage' => 'Kreditat e faqes',
+
+# Spam protection
+'simpleantispam-label' => "Anti-spam kontrolloni. A'''''NUK' plotësoni këtë!",
 
 # Browsing diffs
 'previousdiff' => '← Redaktim mâ i vjetër',

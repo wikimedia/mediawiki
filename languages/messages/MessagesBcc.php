@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Ebraminio
  * @author Huji
  * @author Kaganer
  * @author Mostafadaneshvar
@@ -352,7 +353,7 @@ $messages = array(
 
 $1',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'باره {{SITENAME}}',
 'aboutpage' => 'Project:باره',
 'copyright' => 'محتوا موجودانت تحت $1.',
@@ -432,17 +433,6 @@ $1',
 # General errors
 'error' => 'حطا',
 'databaseerror' => 'حطا دیتابیس',
-'dberrortext' => 'یک اشتباه ته درخواست دیتابیس پیش آتک.
-شی شاید یک باگی ته نرم افزار پیش داریت.
-آهرین تلاش درخواست دیتابیس بوته:
-<blockquote><tt>$1</tt></blockquote>
-"<tt>$2</tt>".
-ته ای عملگر ما اس کیو ال ای حطا پیش داشتت "<tt>$3: $4</tt>".',
-'dberrortextcl' => 'یک اشتباه ته درخواست دیتابیس پیش آتک.
-آهری تلاش درخواست دیتابیس بوتت:
-"$1"
-چه ای عملگر"$2".
-مای اس کیو ال ای حطا پیش داشتت  "$3: $4"',
 'laggedslavemode' => 'هوژاری: صفحه شاید نوکین په روچ بییگان داشته می بیت',
 'readonly' => 'دیتابیس کبلنت',
 'enterlockreason' => 'یک دلیلی په کبل وارد کنیت، شامل یک برآوردی چه وهد کبل ویل بیت',
@@ -489,7 +479,6 @@ Query: $2',
 'editinginterface' => "'''هوژاری:''' شما یک صفحه ای اصلاح کنیت که به عنوان مداخله گر متنی برنامه استفاده بیت.
 تغییرات ای صفحه کاربرد مداخله گر په دگه کابران تاثیر هلیت.
   [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net],  په ترجمه یان لطفا توجه کنیت په استفاده پروژه ملکی کتن مدیا وی کی",
-'sqlhidden' => '(SQL درخواست پناهین)',
 'cascadeprotected' => 'ای صفحه محافظت بیت چه اصلاح چرا که آیی شامل جهلیگین {{PLURAL:$1|صفحه, که|صفحات, که}} محافظتی گون the "cascading" option turned on:
 $2',
 'namespaceprotected' => "شما اجازت په اصلاح صفحات ته  '''$1'' نام فضا نیست",
@@ -597,7 +586,7 @@ $2',
 'newpassword' => 'نوکین کلمه رمز:',
 'retypenew' => 'کلمه رمز دگه بنویس',
 'resetpass_submit' => 'تنظیم کلمه رمز و ورود',
-'resetpass_success' => 'شمی کلمه رمز گون موفقیت عوض بون! هنو شما وارد بیگیت...',
+'changepassword-success' => 'شمی کلمه رمز گون موفقیت عوض بون! هنو شما وارد بیگیت...',
 'resetpass_forbidden' => 'کلمات رمز نه توننت عوض بنت.',
 'resetpass-no-info' => 'په مستقیمین دسترسی په ای صفحه شما بایدن وارد سایت بیت',
 'resetpass-submit-loggedin' => 'عوض کتن کلمه رمز',
@@ -1533,12 +1522,6 @@ PICT # misc.
 'statistics-users-active-desc' => 'کاربرانی که ته پیشگین {{PLURAL:$1|روچ|$1 روچان}} کاری اش کتت',
 'statistics-mostpopular' => 'باز چار تگین صفحات',
 
-'disambiguations' => 'صفحات رفع ابهام',
-'disambiguationspage' => 'Template:رفع ابهام',
-'disambiguations-text' => "جهلیگین صفحه لینک انت په یک '''صفحه رفع ابهام'''.
-شما بایدن په جاه آیی په یک مناسبین موضوعی لینک دهیت.<br />
-یک صفحه ای که په داب صفحه رفع ابهام چارگ بیت اگر آیء چه یک تمپلتی که لینک بیت چه [[MediaWiki:Disambiguationspage|صفحه رفع ابهام]] استفاده کنت.",
-
 'doubleredirects' => 'دوبل غیر مستقیم',
 'doubleredirectstext' => 'ای صفحه لیست کنت صفحاتی که غیر مستقیم رونت په دگه صفحات. هر ردیف شامل لینکانی انت به اولی و دومی غیر مستقیم، و هدف دومی غیر مستقیم، که معمولا استفاده بیت "real" صفحه هدف، که بایدن اولی غیر مستقیم پیش داریت.',
 'double-redirect-fixed-move' => '[[$1]] انتقال دهگ بوتت، و الان تغییر مسیری په [[$2]] انت',
@@ -2097,12 +2080,9 @@ $1',
 'ipb_blocked_as_range' => 'حطا: ای پی  $1 مستقیما محدود نهنت و نه تونیت رفع محدودیت بیت.
 بله آی جزی چه محدوده  $2 محدود بوتت که تونیت رفع محدودیت بیت.',
 'ip_range_invalid' => 'نامعتبر محدوده آی پی',
-'blockme' => 'مناء محدود کن',
 'proxyblocker' => 'محدود کننده ی پروکسی',
-'proxyblocker-disabled' => 'ای عمگر غیرفعالنت.',
 'proxyblockreason' => 'شمی آدرس آی پی محدود بوتت په چی که ایء یک پچین پروکسی ات.
 لطفا گون وتی اینترنتی شرکت تماس گریت یا حمایت تکنیکی و آیانا چی ای مشکل امنیتی شدید سهی کنیت.',
-'proxyblocksuccess' => 'انجام بوت.',
 'sorbs' => 'دی ان اس بی ال',
 'sorbsreason' => 'شمی آدرس آی پی لیست بوتت په داب پچین پروکسی ته  DNSBL که استفاده بیت گون {{SITENAME}}.',
 'sorbs_create_account_reason' => 'شمی آدرس آی پی لیست بوتت په داب پچین پروکسی ته  دی ان ای بی ال که استفاده بیت گون {{SITENAME}}.
@@ -2390,6 +2370,8 @@ $1',
 'spambot_username' => 'اسپم پاک کنوک مدیا وی کی',
 'spam_reverting' => 'عوض کتن په آهری نسحه که شامل لینکان می بیت په $1',
 'spam_blanking' => 'کل بازبینی آن شامل لینکان په $1, بوتت  هالیکی',
+'simpleantispam-label' => "کنترل ضد اسپم.
+ای شیء پر ''مکن''",
 
 # Skin names
 'skinname-cologneblue' => 'نیلی کولاجن',

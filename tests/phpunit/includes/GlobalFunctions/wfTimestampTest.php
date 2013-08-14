@@ -1,12 +1,12 @@
 <?php
 /*
- * Tests for wfTimestamp()
+ * @covers ::wfTimestamp
  */
 class WfTimestampTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideNormalTimestamps
 	 */
-	function testNormalTimestamps( $input, $format, $output, $desc ) {
+	public function testNormalTimestamps( $input, $format, $output, $desc ) {
 		$this->assertEquals( $output, wfTimestamp( $format, $input ), $desc );
 	}
 
@@ -57,7 +57,7 @@ class WfTimestampTest extends MediaWikiTestCase {
 	 * See r74778 and bug 25451
 	 * @dataProvider provideOldTimestamps
 	 */
-	function testOldTimestamps( $input, $format, $output, $desc ) {
+	public function testOldTimestamps( $input, $format, $output, $desc ) {
 		$this->assertEquals( $output, wfTimestamp( $format, $input ), $desc );
 	}
 
@@ -96,7 +96,7 @@ class WfTimestampTest extends MediaWikiTestCase {
 	 * @see http://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html#sec3.3.1
 	 * @dataProvider provideHttpDates
 	 */
-	function testHttpDate( $input, $output, $desc ) {
+	public function testHttpDate( $input, $output, $desc ) {
 		$this->assertEquals( $output, wfTimestamp( TS_MW, $input ), $desc );
 	}
 
@@ -114,9 +114,9 @@ class WfTimestampTest extends MediaWikiTestCase {
 	 * There are a number of assumptions in our codebase where wfTimestamp()
 	 * should give the current date but it is not given a 0 there. See r71751 CR
 	 */
-	function testTimestampParameter() {
+	public function testTimestampParameter() {
 		$now = wfTimestamp( TS_UNIX );
-		// We check that wfTimestamp doesn't return false (error) and use a LessThan assert 
+		// We check that wfTimestamp doesn't return false (error) and use a LessThan assert
 		// for the cases where the test is run in a second boundary.
 
 		$zero = wfTimestamp( TS_UNIX, 0 );

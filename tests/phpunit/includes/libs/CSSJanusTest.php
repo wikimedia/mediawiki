@@ -4,12 +4,14 @@
  * CSSJanus libary:
  * http://code.google.com/p/cssjanus/source/browse/trunk/cssjanus_test.py
  * Ported to PHP for ResourceLoader and has been extended since.
+ *
+ * @covers CSSJanus
  */
 class CSSJanusTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideTransformCases
 	 */
-	function testTransform( $cssA, $cssB = null ) {
+	public function testTransform( $cssA, $cssB = null ) {
 
 		if ( $cssB ) {
 			$transformedA = CSSJanus::transform( $cssA );
@@ -28,7 +30,7 @@ class CSSJanusTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideTransformAdvancedCases
 	 */
-	function testTransformAdvanced( $code, $expectedOutput, $options = array() ) {
+	public function testTransformAdvanced( $code, $expectedOutput, $options = array() ) {
 		$swapLtrRtlInURL = isset( $options['swapLtrRtlInURL'] ) ? $options['swapLtrRtlInURL'] : false;
 		$swapLeftRightInURL = isset( $options['swapLeftRightInURL'] ) ? $options['swapLeftRightInURL'] : false;
 
@@ -44,7 +46,7 @@ class CSSJanusTest extends MediaWikiTestCase {
 	 * @dataProvider provideTransformBrokenCases
 	 * @group Broken
 	 */
-	function testTransformBroken( $code, $expectedOutput ) {
+	public function testTransformBroken( $code, $expectedOutput ) {
 		$flipped = CSSJanus::transform( $code );
 
 		$this->assertEquals( $expectedOutput, $flipped, 'Test flipping' );
@@ -194,6 +196,28 @@ class CSSJanusTest extends MediaWikiTestCase {
 			// Shorthand / One notation
 			array(
 				'.foo { padding: 1px; }'
+			),
+
+			// text-shadow and box-shadow
+			array(
+				'.foo { box-shadow: -6px 3px 8px 5px rgba(0, 0, 0, 0.25); }',
+				'.foo { box-shadow: 6px 3px 8px 5px rgba(0, 0, 0, 0.25); }',
+			),
+			array(
+				'.foo { box-shadow: inset -6px 3px 8px 5px rgba(0, 0, 0, 0.25); }',
+				'.foo { box-shadow: inset 6px 3px 8px 5px rgba(0, 0, 0, 0.25); }',
+			),
+			array(
+				'.foo { text-shadow: orange 2px 0; }',
+				'.foo { text-shadow: orange -2px 0; }',
+			),
+			array(
+				'.foo { text-shadow: 2px 0 orange; }',
+				'.foo { text-shadow: -2px 0 orange; }',
+			),
+			array(
+				// Don't mangle zeroes
+				'.foo { text-shadow: orange 0 2px; }'
 			),
 
 			// Direction

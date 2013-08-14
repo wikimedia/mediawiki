@@ -432,6 +432,10 @@ sites general information.
 $module: the current ApiQuerySiteInfo module
 &$results: array of results, add things here
 
+'APIQuerySiteInfoStatisticsInfo': Use this hook to add extra information to the
+sites statistics information.
+&$results: array of results, add things here
+
 'APIQueryUsersTokens': Use this hook to add custom token to list=users. Every
 token has an action, which will be used in the ustoken parameter and in the
 output (actiontoken="..."), and a callback function which should return the
@@ -758,6 +762,12 @@ $user: the user who did the block (not the one being blocked)
 $isbn: ISBN to show information for
 $output: OutputPage object in use
 
+'CanIPUseHTTPS': Determine whether the client at a given source IP is likely
+to be able to access the wiki via HTTPS.
+$ip: The IP address in human-readable form
+&$canDo: This reference should be set to false if the client may not be able 
+to use HTTPS
+
 'CanonicalNamespaces': For extensions adding their own namespaces or altering
 the defaults.
 Note that if you need to specify namespace protection or content model for
@@ -855,10 +865,6 @@ etc.
 
 'DatabaseOraclePostInit': Called after initialising an Oracle database
 &$db: the DatabaseOracle object
-
-'Debug': Called when outputting a debug log line via wfDebug() or wfDebugLog()
-$text: plaintext string to be output
-$group: null or a string naming a logging group (as defined in $wgDebugLogGroups)
 
 'NewDifferenceEngine': Called when a new DifferenceEngine object is made
 $title: the diff page title (nullable)
@@ -1071,6 +1077,7 @@ change the tables headers.
 
 'ExtractThumbParameters': Called when extracting thumbnail parameters from a
 thumbnail file name.
+DEPRECATED: Media handler should override MediaHandler::parseParamString instead.
 $thumbname: the base name of the thumbnail file
 &$params: the currently extracted params (has source name, temp or archived zone)
 
@@ -1117,6 +1124,12 @@ $reason: reason
  $title: An optional title object used to links to sections. Can be null.
  $local: Boolean indicating whether section links should refer to local page.
 
+'GalleryGetModes': Get list of classes that can render different modes of a
+ gallery
+$modeArray: An associative array mapping mode names to classes that implement
+ that mode. It is expected all registered classes are a subclass of
+ ImageGalleryBase.
+
 'GetAutoPromoteGroups': When determining which autopromote groups a user is
 entitled to be in.
 &$user: user to promote.
@@ -1143,6 +1156,16 @@ $title: Title object that we need to get a sortkey for
 'GetDoubleUnderscoreIDs': Modify the list of behavior switch (double
 underscore) magic words. Called by MagicWord.
 &$doubleUnderscoreIDs: array of strings
+
+'GetExtendedMetadata': Get extended file metadata for the API
+&$combinedMeta: Array of the form: 'MetadataPropName' => array(
+'value' => prop value, 'source' => 'name of hook' ).
+$file: File object of file in question
+$context: RequestContext (including language to use)
+$single: Only extract the current language; if false, the prop value should
+be in the metadata multi-language array format:
+mediawiki.org/wiki/Manual:File_metadata_handling#Multi-language_array_format
+&$maxCacheTime: how long the results can be cached
 
 'GetFullURL': Modify fully-qualified URLs used in redirects/export/offsite data.
 $title: Title object of page
@@ -1209,6 +1232,16 @@ $out: OutputPage object (to check what type of page the user is on)
 'GetPreferences': Modify user preferences.
 $user: User whose preferences are being modified.
 &$preferences: Preferences description array, to be fed to an HTMLForm object
+
+'GetRelativeTimestamp': Pre-emptively override the relative timestamp generated
+by MWTimestamp::getRelativeTimestamp(). Return false in this hook to use the custom
+output.
+&$output: string for the output timestamp
+&$diff: DateInterval representing the difference between the timestamps
+$timestamp: MWTimestamp object of the current (user-adjusted) timestamp
+$relativeTo: MWTimestamp object of the relative (user-adjusted) timestamp
+$user: User whose preferences are being used to make timestamp
+$lang: Language that will be used to render the timestamp
 
 'getUserPermissionsErrors': Add a permissions error when permissions errors are
 checked for. Use instead of userCan for most cases. Return false if the user
@@ -1575,7 +1608,7 @@ $wcOnlySysopsCanPatrol: config setting indicating whether the user must be a
 something completely different, after the basic globals have been set up, but
 before ordinary actions take place.
 $output: $wgOut
-$article: $wgArticle
+$article: Article on which the action will be performed
 $title: $wgTitle
 $user: $wgUser
 $request: $wgRequest
@@ -1867,6 +1900,7 @@ $action : Action being performed
 &$result : Whether or not the action should be prevented
 Change $result and return false to give a definitive answer, otherwise
 the built-in rate limiting checks are used, if enabled.
+$incrBy: Amount to increment counter by
 
 'PlaceNewSection': Override placement of new sections. Return false and put the
 merged text into $text to override the default behavior.
@@ -1904,9 +1938,10 @@ $article: the title being (un)protected
 $output: a string of the form HTML so far
 
 'ProtectionForm::save': Called when a protection form is submitted.
-$article: the title being (un)protected
-$errorMsg: an html message string of an error or an array of message name and
+$article: the Page being (un)protected
+&$errorMsg: an html message string of an error or an array of message name and
   its parameters
+$reasonstr: a string describing the reason page protection level is altered
 
 'ProtectionForm::showLogExtract': Called after the protection log extract is
 shown.
@@ -1975,13 +2010,6 @@ $data: the data stored in old_text.  The meaning depends on $flags: if external
   text is gzipped.
 $flags: a comma-delimited list of strings representing the options used.  May
   include: utf8 (this will always be set for new revisions); gzip; external.
-
-'SearchUpdate': Prior to search update completion. Return false to stop any
-further text/content processing
-$id : Page id
-$title : Title object
-$text : Current text being indexed
-$content : Content object for text being indexed.
 
 'SearchGetNearMatchBefore': Perform exact-title-matches in "go" searches before
 the normal operations.
@@ -2347,6 +2375,11 @@ $special: the special page object
 &$fields: array of query fields
 $values: array of variables with watchlist options
 
+'SpecialWatchlistGetNonRevisionTypes': Called when building sql query for
+SpecialWatchlist. Allows extensions to register custom values they have 
+inserted to rc_type so they can be returned as part of the watchlist.
+&$nonRevisionTypes: array of values in the rc_type field of recentchanges table
+
 'TestCanonicalRedirect': Called when about to force a redirect to a canonical
 URL for a title when we have no other parameters on the URL. Gives a chance for
 extensions that alter page view behavior radically to abort that redirect or
@@ -2412,6 +2445,11 @@ $title: Title object that is being checked
 $result: Boolean; whether MediaWiki currently thinks this is a wikitext page.
   Hooks may change this value to override the return value of
   Title::isWikitextPage()
+
+'TitleMove': Before moving an article (title).
+$old: old title
+$nt: new title
+$user: user who does the move
 
 'TitleMoveComplete': After moving an article (title).
 $old: old title
@@ -2551,6 +2589,7 @@ $user: User (object) whose permission is being checked
 'UserClearNewTalkNotification': Called when clearing the "You have new
 messages!" message, return false to not delete it.
 $user: User (object) that will clear the message
+$oldid: ID of the talk page revision being viewed (0 means the most recent one)
 
 'UserComparePasswords': Called when checking passwords, return false to
 override the default password checks.
@@ -2676,6 +2715,12 @@ $user  : User object that was changed
 $add   : Array of strings corresponding to groups added
 $remove: Array of strings corresponding to groups removed
 
+'UserRequiresHTTPS': Called to determine whether a user needs
+to be switched to HTTPS.
+$user: User in question.
+&$https: Boolean whether $user should be switched to HTTPS.
+
+
 'UserRetrieveNewTalks': Called when retrieving "You have new messages!"
 message(s).
 $user: user retrieving new talks messages
@@ -2708,6 +2753,12 @@ authentication timestamp
 $userId: User id of the current user
 $userText: User name of the current user
 &$items: Array of user tool links as HTML fragments
+
+'ValidateExtendedMetadataCache': Called to validate the cached metadata in
+FormatMetadata::getExtendedMeta (return false means cache will be
+invalidated and GetExtendedMetadata hook called again).
+$timestamp: The timestamp metadata was generated
+$file: The file the metadata is for
 
 'WantedPages::getQueryInfo': Called in WantedPagesPage::getQueryInfo(), can be
 used to alter the SQL query which gets the list of wanted pages.

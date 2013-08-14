@@ -100,6 +100,15 @@ class CoreParserFunctions {
 		$parser->setFunctionHook( 'subjectpagenamee', array( __CLASS__, 'subjectpagenamee' ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'tag',              array( __CLASS__, 'tagObj'           ), SFH_OBJECT_ARGS );
 		$parser->setFunctionHook( 'formatdate',       array( __CLASS__, 'formatDate'       ) );
+		$parser->setFunctionHook( 'pageid',           array( __CLASS__, 'pageid'           ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'revisionid',       array( __CLASS__, 'revisionid'       ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'revisionday',      array( __CLASS__, 'revisionday'      ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'revisionday2',     array( __CLASS__, 'revisionday2'     ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'revisionmonth',    array( __CLASS__, 'revisionmonth'    ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'revisionmonth1',   array( __CLASS__, 'revisionmonth1'   ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'revisionyear',     array( __CLASS__, 'revisionyear'     ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'revisiontimestamp', array( __CLASS__, 'revisiontimestamp' ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'revisionuser',     array( __CLASS__, 'revisionuser'     ), SFH_NO_HASH );
 
 		if ( $wgAllowDisplayTitle ) {
 			$parser->setFunctionHook( 'displaytitle', array( __CLASS__, 'displaytitle' ), SFH_NO_HASH );
@@ -139,7 +148,7 @@ class CoreParserFunctions {
 		$pref = $parser->getOptions()->getDateFormat();
 
 		// Specify a different default date format other than the the normal default
-		// iff the user has 'default' for their setting
+		// if the user has 'default' for their setting
 		if ( $pref == 'default' && $defaultPref ) {
 			$pref = $defaultPref;
 		}
@@ -634,6 +643,7 @@ class CoreParserFunctions {
 	 * @return string
 	 */
 	static function pagesincategory( $parser, $name = '', $arg1 = null, $arg2 = null ) {
+		global $wgContLang;
 		static $magicWords = null;
 		if ( is_null( $magicWords ) ) {
 			$magicWords = new MagicWordArray( array(
@@ -663,6 +673,7 @@ class CoreParserFunctions {
 		if ( !$title ) { # invalid title
 			return self::formatRaw( 0, $raw );
 		}
+		$wgContLang->findVariantLink( $name, $title, true );
 
 		// Normalize name for cache
 		$name = $title->getDBkey();
@@ -705,35 +716,15 @@ class CoreParserFunctions {
 	 * @return string
 	 */
 	static function pagesize( $parser, $page = '', $raw = null ) {
-		static $cache = array();
 		$title = Title::newFromText( $page );
 
 		if ( !is_object( $title ) ) {
-			$cache[$page] = 0;
 			return self::formatRaw( 0, $raw );
 		}
 
-		# Normalize name for cache
-		$page = $title->getPrefixedText();
-
-		$length = 0;
-		if ( $title->equals( $parser->getTitle() )
-			&& $parser->mInputSize !== false
-		) {
-			# We are on current page (and not in PST), so
-			# take length of input to parser.
-			$length = $parser->mInputSize;
-		} elseif ( isset( $cache[$page] ) ) {
-			$length = $cache[$page];
-		} elseif ( $parser->incrementExpensiveFunctionCount() ) {
-			$rev = Revision::newFromTitle( $title, false, Revision::READ_NORMAL );
-			$pageID = $rev ? $rev->getPage() : 0;
-			$revID = $rev ? $rev->getId() : 0;
-			$length = $cache[$page] = $rev ? $rev->getSize() : 0;
-
-			// Register dependency in templatelinks
-			$parser->mOutput->addTemplate( $title, $pageID, $revID );
-		}
+		// fetch revision from cache/database and return the value
+		$rev = self::getCachedRevisionObject( $parser, $title );
+		$length = $rev ? $rev->getSize() : 0;
 		return self::formatRaw( $length, $raw );
 	}
 
@@ -952,5 +943,205 @@ class CoreParserFunctions {
 			'close' => "</$tagName>",
 		);
 		return $parser->extensionSubstitution( $params, $frame );
+	}
+
+	/**
+	 * Fetched the current revision of the given title and return this.
+	 * Will increment the expensive function count and
+	 * add a template link to get the value refreshed on changes.
+	 * For a given title, which is equal to the current parser title,
+	 * the revision object from the parser is used, when that is the current one
+	 *
+	 * @param $parser Parser
+	 * @param $title Title
+	 * @return Revision
+	 * @since 1.23
+	 */
+	private static function getCachedRevisionObject( $parser, $title = null ) {
+		static $cache = array();
+
+		if ( is_null( $title ) ) {
+			return null;
+		}
+
+		// Use the revision from the parser itself, when param is the current page
+		// and the revision is the current one
+		if ( $title->equals( $parser->getTitle() ) ) {
+			$parserRev = $parser->getRevisionObject();
+			if ( $parserRev && $parserRev->isCurrent() ) {
+				// force reparse after edit with vary-revision flag
+				$parser->getOutput()->setFlag( 'vary-revision' );
+				wfDebug( __METHOD__ . ": use current revision from parser, setting vary-revision...\n" );
+				return $parserRev;
+			}
+		}
+
+		// Normalize name for cache
+		$page = $title->getPrefixedDBkey();
+
+		if ( array_key_exists( $page, $cache ) ) { // cache contains null values
+			return $cache[$page];
+		}
+		if ( $parser->incrementExpensiveFunctionCount() ) {
+			$rev = Revision::newFromTitle( $title, false, Revision::READ_NORMAL );
+			$pageID = $rev ? $rev->getPage() : 0;
+			$revID = $rev ? $rev->getId() : 0;
+			$cache[$page] = $rev; // maybe null
+
+			// Register dependency in templatelinks
+			$parser->getOutput()->addTemplate( $title, $pageID, $revID );
+
+			return $rev;
+		}
+		$cache[$page] = null;
+		return null;
+	}
+
+	/**
+	 * Get the pageid of a specified page
+	 * @param $parser Parser
+	 * @param $title string Title to get the pageid from
+	 * @since 1.23
+	 */
+	public static function pageid( $parser, $title = null ) {
+		$t = Title::newFromText( $title );
+		if ( is_null( $t ) ) {
+			return '';
+		}
+		// Use title from parser to have correct pageid after edit
+		if ( $t->equals( $parser->getTitle() ) ) {
+			$t = $parser->getTitle();
+		}
+		// fetch pageid from cache/database and return the value
+		$pageid = $t->getArticleID();
+		return $pageid ? $pageid : '';
+	}
+
+	/**
+	 * Get the id from the last revision of a specified page.
+	 * @param $parser Parser
+	 * @param $title string Title to get the id from
+	 * @since 1.23
+	 */
+	public static function revisionid( $parser, $title = null ) {
+		$t = Title::newFromText( $title );
+		if ( is_null( $t ) ) {
+			return '';
+		}
+		// fetch revision from cache/database and return the value
+		$rev = self::getCachedRevisionObject( $parser, $t );
+		return $rev ? $rev->getId() : '';
+	}
+
+	/**
+	 * Get the day from the last revision of a specified page.
+	 * @param $parser Parser
+	 * @param $title string Title to get the day from
+	 * @since 1.23
+	 */
+	public static function revisionday( $parser, $title = null ) {
+		$t = Title::newFromText( $title );
+		if ( is_null( $t ) ) {
+			return '';
+		}
+		// fetch revision from cache/database and return the value
+		$rev = self::getCachedRevisionObject( $parser, $t );
+		return $rev ? MWTimestamp::getLocalInstance( $rev->getTimestamp() )->format( 'j' ) : '';
+	}
+
+	/**
+	 * Get the day with leading zeros from the last revision of a specified page.
+	 * @param $parser Parser
+	 * @param $title string Title to get the day from
+	 * @since 1.23
+	 */
+	public static function revisionday2( $parser, $title = null ) {
+		$t = Title::newFromText( $title );
+		if ( is_null( $t ) ) {
+			return '';
+		}
+		// fetch revision from cache/database and return the value
+		$rev = self::getCachedRevisionObject( $parser, $t );
+		return $rev ? MWTimestamp::getLocalInstance( $rev->getTimestamp() )->format( 'd' ) : '';
+	}
+
+	/**
+	 * Get the month with leading zeros from the last revision of a specified page.
+	 * @param $parser Parser
+	 * @param $title string Title to get the month from
+	 * @since 1.23
+	 */
+	public static function revisionmonth( $parser, $title = null ) {
+		$t = Title::newFromText( $title );
+		if ( is_null( $t ) ) {
+			return '';
+		}
+		// fetch revision from cache/database and return the value
+		$rev = self::getCachedRevisionObject( $parser, $t );
+		return $rev ? MWTimestamp::getLocalInstance( $rev->getTimestamp() )->format( 'm' ) : '';
+	}
+
+	/**
+	 * Get the month from the last revision of a specified page.
+	 * @param $parser Parser
+	 * @param $title string Title to get the month from
+	 * @since 1.23
+	 */
+	public static function revisionmonth1( $parser, $title = null ) {
+		$t = Title::newFromText( $title );
+		if ( is_null( $t ) ) {
+			return '';
+		}
+		// fetch revision from cache/database and return the value
+		$rev = self::getCachedRevisionObject( $parser, $t );
+		return $rev ? MWTimestamp::getLocalInstance( $rev->getTimestamp() )->format( 'n' ) : '';
+	}
+
+	/**
+	 * Get the year from the last revision of a specified page.
+	 * @param $parser Parser
+	 * @param $title string Title to get the year from
+	 * @since 1.23
+	 */
+	public static function revisionyear( $parser, $title = null ) {
+		$t = Title::newFromText( $title );
+		if ( is_null( $t ) ) {
+			return '';
+		}
+		// fetch revision from cache/database and return the value
+		$rev = self::getCachedRevisionObject( $parser, $t );
+		return $rev ? MWTimestamp::getLocalInstance( $rev->getTimestamp() )->format( 'Y' ) : '';
+	}
+
+	/**
+	 * Get the timestamp from the last revision of a specified page.
+	 * @param $parser Parser
+	 * @param $title string Title to get the timestamp from
+	 * @since 1.23
+	 */
+	public static function revisiontimestamp( $parser, $title = null ) {
+		$t = Title::newFromText( $title );
+		if ( is_null( $t ) ) {
+			return '';
+		}
+		// fetch revision from cache/database and return the value
+		$rev = self::getCachedRevisionObject( $parser, $t );
+		return $rev ? MWTimestamp::getLocalInstance( $rev->getTimestamp() )->format( 'YmdHis' ) : '';
+	}
+
+	/**
+	 * Get the user from the last revision of a specified page.
+	 * @param $parser Parser
+	 * @param $title string Title to get the user from
+	 * @since 1.23
+	 */
+	public static function revisionuser( $parser, $title = null ) {
+		$t = Title::newFromText( $title );
+		if ( is_null( $t ) ) {
+			return '';
+		}
+		// fetch revision from cache/database and return the value
+		$rev = self::getCachedRevisionObject( $parser, $t );
+		return $rev ? $rev->getUserText() : '';
 	}
 }

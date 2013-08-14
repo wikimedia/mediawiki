@@ -56,6 +56,17 @@ class FormatJson {
 	const ALL_OK = 3;
 
 	/**
+	 * Regex that matches whitespace inside empty arrays and objects.
+	 *
+	 * This doesn't affect regular strings inside the JSON because those can't
+	 * have a real line break (\n) in them, at this point they are already escaped
+	 * as the string "\n" which this doesn't match.
+	 *
+	 * @private
+	 */
+	const WS_CLEANUP_REGEX = '/(?<=[\[{])\n\s*+(?=[\]}])/';
+
+	/**
 	 * Characters problematic in JavaScript.
 	 *
 	 * @note These are listed in ECMA-262 (5.1 Ed.), §7.3 Line Terminators along with U+000A (LF)
@@ -90,10 +101,10 @@ class FormatJson {
 	 * @return string|bool: String if successful; false upon failure
 	 */
 	public static function encode( $value, $pretty = false, $escaping = 0 ) {
-		if ( version_compare( PHP_VERSION, '5.4.0', '<' ) ) {
-			return self::encode53( $value, $pretty, $escaping );
+		if ( defined( 'JSON_UNESCAPED_UNICODE' ) ) {
+			return self::encode54( $value, $pretty, $escaping );
 		}
-		return self::encode54( $value, $pretty, $escaping );
+		return self::encode53( $value, $pretty, $escaping );
 	}
 
 	/**
@@ -103,9 +114,8 @@ class FormatJson {
 	 * @param bool $assoc When true, returned objects will be converted into associative arrays.
 	 *
 	 * @return mixed: the value encoded in JSON in appropriate PHP type.
-	 * Values `"true"`, `"false"`, and `"null"` (case-insensitive) are returned as `true`, `false`
-	 * and `null` respectively. `null` is returned if the JSON cannot be
-	 * decoded or if the encoded data is deeper than the recursion limit.
+	 * `null` is returned if the JSON cannot be decoded or if the encoded data is deeper than
+	 * the recursion limit.
 	 */
 	public static function decode( $value, $assoc = false ) {
 		return json_decode( $value, $assoc );
@@ -121,8 +131,8 @@ class FormatJson {
 	 */
 	private static function encode54( $value, $pretty, $escaping ) {
 		// PHP escapes '/' to prevent breaking out of inline script blocks using '</script>',
-		// which is hardly useful when '<' and '>' are escaped, and such escaping negatively
-		// impacts the human readability of URLs and similar strings.
+		// which is hardly useful when '<' and '>' are escaped (and inadequate), and such
+		// escaping negatively impacts the human readability of URLs and similar strings.
 		$options = JSON_UNESCAPED_SLASHES;
 		$options |= $pretty ? JSON_PRETTY_PRINT : 0;
 		$options |= ( $escaping & self::UTF8_OK ) ? JSON_UNESCAPED_UNICODE : 0;
@@ -130,6 +140,12 @@ class FormatJson {
 		$json = json_encode( $value, $options );
 		if ( $json === false ) {
 			return false;
+		}
+
+		if ( $pretty ) {
+			// Remove whitespace inside empty arrays/objects; different JSON encoders
+			// vary on this, and we want our output to be consistent across implementations.
+			$json = preg_replace( self::WS_CLEANUP_REGEX, '', $json );
 		}
 		if ( $escaping & self::UTF8_OK ) {
 			$json = str_replace( self::$badChars, self::$badCharsEscaped, $json );
@@ -152,7 +168,11 @@ class FormatJson {
 		if ( $json === false ) {
 			return false;
 		}
-		$json = str_replace( '\\/', '/', $json ); // emulate JSON_UNESCAPED_SLASHES
+
+		// Emulate JSON_UNESCAPED_SLASHES. Because the JSON contains no unescaped slashes
+		// (only escaped slashes), a simple string replacement works fine.
+		$json = str_replace( '\/', '/', $json );
+
 		if ( $escaping & self::UTF8_OK ) {
 			// JSON hex escape sequences follow the format \uDDDD, where DDDD is four hex digits
 			// indicating the equivalent UTF-16 code unit's value. To most efficiently unescape
@@ -166,7 +186,11 @@ class FormatJson {
 			$json = json_decode( preg_replace( "/\\\\\\\\u(?!00[0-7])/", "\\\\u", "\"$json\"" ) );
 			$json = str_replace( self::$badChars, self::$badCharsEscaped, $json );
 		}
-		return $pretty ? self::prettyPrint( $json ) : $json;
+
+		if ( $pretty ) {
+			return self::prettyPrint( $json );
+		}
+		return $json;
 	}
 
 	/**
@@ -188,14 +212,14 @@ class FormatJson {
 					break;
 				case '[':
 				case '{':
-					$indent++; // falls through
+					++$indent;
+					// falls through
 				case ',':
 					$buf .= $json[$i] . "\n" . str_repeat( '    ', $indent );
 					break;
 				case ']':
 				case '}':
-					$indent--;
-					$buf .= "\n" . str_repeat( '    ', $indent ) . $json[$i];
+					$buf .= "\n" . str_repeat( '    ', --$indent ) . $json[$i];
 					break;
 				case '"':
 					$skip = strcspn( $json, '"', $i + 1 ) + 2;
@@ -206,6 +230,7 @@ class FormatJson {
 					$buf .= substr( $json, $i, $skip );
 			}
 		}
-		return str_replace( "\x01", '\"', preg_replace( '/ +$/m', '', $buf ) );
+		$buf = preg_replace( self::WS_CLEANUP_REGEX, '', $buf );
+		return str_replace( "\x01", '\"', $buf );
 	}
 }

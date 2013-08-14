@@ -82,10 +82,38 @@ class CSSMin {
 	}
 
 	/**
+	 * Encode an image file as a base64 data URI.
+	 * If the image file has a suitable MIME type and size, encode it as a
+	 * base64 data URI. Return false if the image type is unfamiliar or exceeds
+	 * the size limit.
+	 *
+	 * @param string $file Image file to encode.
+	 * @param string|null $type File's MIME type or null. If null, CSSMin will
+	 *     try to autodetect the type.
+	 * @param int|bool $sizeLimit If the size of the target file is greater than
+	 *     this value, decline to encode the image file and return false
+	 *     instead. If $sizeLimit is false, no limit is enforced.
+	 * @return string|bool: Image contents encoded as a data URI or false.
+	 */
+	public static function encodeImageAsDataURI( $file, $type = null, $sizeLimit = self::EMBED_SIZE_LIMIT ) {
+		if ( $sizeLimit !== false && filesize( $file ) >= $sizeLimit ) {
+			return false;
+		}
+		if ( $type === null ) {
+			$type = self::getMimeType( $file );
+		}
+		if ( !$type ) {
+			return false;
+		}
+		$data = base64_encode( file_get_contents( $file ) );
+		return 'data:' . $type . ';base64,' . $data;
+	}
+
+	/**
 	 * @param $file string
 	 * @return bool|string
 	 */
-	protected static function getMimeType( $file ) {
+	public static function getMimeType( $file ) {
 		$realpath = realpath( $file );
 		// Try a couple of different ways to get the mime-type of a file, in order of
 		// preference
@@ -174,23 +202,14 @@ class CSSMin {
 				// using Z for the timezone, meaning GMT
 				$url .= '?' . gmdate( 'Y-m-d\TH:i:s\Z', round( filemtime( $file ), -2 ) );
 				// Embedding requires a bit of extra processing, so let's skip that if we can
-				if ( $embedData && $embed ) {
-					$type = self::getMimeType( $file );
-					// Detect when URLs were preceeded with embed tags, and also verify file size is
-					// below the limit
-					if (
-						$type
-						&& $match['embed'][1] > 0
-						&& filesize( $file ) < self::EMBED_SIZE_LIMIT
-					) {
-						// Strip off any trailing = symbols (makes browsers freak out)
-						$data = base64_encode( file_get_contents( $file ) );
+				if ( $embedData && $embed && $match['embed'][1] > 0 ) {
+					$data = self::encodeImageAsDataURI( $file );
+					if ( $data !== false ) {
 						// Build 2 CSS properties; one which uses a base64 encoded data URI in place
 						// of the @embed comment to try and retain line-number integrity, and the
 						// other with a remapped an versioned URL and an Internet Explorer hack
 						// making it ignored in all browsers that support data URIs
-						$replacement = "{$pre}url(data:{$type};base64,{$data}){$post};";
-						$replacement .= "{$pre}url({$url}){$post}!ie;";
+						$replacement = "{$pre}url({$data}){$post};{$pre}url({$url}){$post}!ie;";
 					}
 				}
 				if ( $replacement === false ) {

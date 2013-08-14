@@ -90,7 +90,7 @@
 		$td = $( '<td>' ),
 		$fieldLabelText = $( '<label>' ),
 		$container;
-		if ( type === 'table' ) {
+		if ( type === 'tr' ) {
 			addMulti( $oldContainer, $td );
 			$container = $( '<tr>' );
 			$container.append( $td );
@@ -103,25 +103,17 @@
 		$fieldLabelText.text( $oldContainer.find( '.mw-label label' ).text() );
 		$fieldLabel.append( $fieldLabelText );
 		$container.prepend( $fieldLabel );
-		$oldContainer.parent().append( $container );
-		$oldContainer.remove();
+		$oldContainer.replaceWith( $container );
 		return $container;
 	}
 
 	if ( $( '.mw-chosen' ).length ) {
 		mw.loader.using( 'jquery.chosen', function () {
-			var $toConvert,
-			$converted;
-			$toConvert = $( 'table .mw-chosen' );
-			if ( $toConvert.length ) {
-				$converted = convertCheckboxesToMulti( $toConvert, 'table' );
+			$( '.mw-chosen' ).each( function () {
+				var type = this.nodeName.toLowerCase(),
+					$converted = convertCheckboxesToMulti( $( this ), type );
 				$converted.find( '.htmlform-chzn-select' ).chosen( { width: 'auto' } );
-			}
-			$toConvert = $( 'div .mw-chosen' );
-			if ( $toConvert.length ) {
-				$converted = convertCheckboxesToMulti( $toConvert, 'div' );
-				$converted.find( '.htmlform-chzn-select' ).chosen( { width: 'auto' } );
-			}
+			} );
 		} );
 	}
 

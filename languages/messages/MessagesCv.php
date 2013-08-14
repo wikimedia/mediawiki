@@ -42,6 +42,7 @@ $namespaceGenderAliases = array();
 
 $linkPrefixExtension = true;
 $linkTrail = '/^([a-zа-яĕçăӳ"»]+)(.*)$/sDu';
+$linkPrefixCharset = 'a-zA-Z"\\x{80}-\\x{10ffff}';
 
 $messages = array(
 # User preference toggles
@@ -153,8 +154,6 @@ $messages = array(
 'category-file-count-limited' => 'Ку категоринче $1 файл.',
 'listingcontinuesabbrev' => '(малалли)',
 
-'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff«"]+)$/sD',
-
 'about' => 'Ăнлантаркăч',
 'article' => 'Статья',
 'newwindow' => '(çĕнĕ чӳречере)',
@@ -215,12 +214,12 @@ $messages = array(
 'unprotectthispage' => 'Хӳтĕлеве пăрахăçла',
 'newpage' => 'Çĕнĕ статья',
 'talkpage' => 'Сӳтсе явасси',
-'talkpagelinktext' => 'Сӳтсе яв',
+'talkpagelinktext' => 'Сӳтсе явни',
 'specialpage' => 'Ятарлă страницă',
 'personaltools' => 'Ман хатĕрсем',
 'postcomment' => 'Хуравла',
 'articlepage' => 'Статьяна пăх',
-'talk' => 'Сӳтсе явасси',
+'talk' => 'Сӳтсе явни',
 'views' => 'Пурĕ пăхнă',
 'toolbox' => 'Ĕç хатĕрĕсем',
 'userpage' => 'Хутшăнакан страницине пăх',
@@ -241,7 +240,7 @@ $messages = array(
 'jumptonavigation' => 'çӳрев',
 'jumptosearch' => 'Шырав',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} çинчен',
 'aboutpage' => 'Project:çинчен',
 'copyright' => 'Ку ăшлăх $1 килĕшӳллĕн сарăлать.',
@@ -314,16 +313,6 @@ $messages = array(
 # General errors
 'error' => 'Йăнăш',
 'databaseerror' => 'Пĕлĕм пуххин йăнăшĕ',
-'dberrortext' => 'Пĕлĕм пуххине янă ыйтăвĕнче синтаксис йăнăшĕ пур.
-Пĕлĕм пуххине янă юлашки ыйту:
-<blockquote><tt>$1</tt></blockquote>
-<tt>«$2»</tt> функци ыйтнă.
-MySQL çак йăнăша тавăрнă <tt>«$3: $4»</tt>.',
-'dberrortextcl' => 'Пĕлĕм пуххине янă ыйтăвĕнче синтаксис йăнăшĕ пур.
-Пĕлĕм пуххине янă юлашки ыйту:
-«$1»
-«$2» функци ыйтнă.
-MySQL çак йăнăша тавăрнă «$3: $4».',
 'laggedslavemode' => 'Асăрхăр! Страница çинче юлашки улшăнусене кăтартмасăр пултарнă.',
 'readonly' => 'Пĕлĕм пуххине çырассине чарса хунă',
 'enterlockreason' => 'Чарнин сăлтавне тата палăртнă вăхăта кăтартăр.',
@@ -364,7 +353,6 @@ $1',
 'protectedpagetext' => 'Ку страницăна тӳрлетме май çук, хӳтĕленĕ.',
 'viewsourcetext' => 'Эсир ку страницăн малтанхи текстне пăхма тата копилеме пултаратăр:',
 'protectedinterface' => "Ку страница çинче MediaWiki'н системлă çырăвĕ вырнаçнă, ăна проект администраторĕсем çеç улăштарма пултараççĕ.",
-'sqlhidden' => '(SQL ыйтăва пытарнă)',
 'namespaceprotected' => 'Сирĕн «$1» ят уçлăхĕнчи статьясене тӳрлетмелли май çук..',
 'ns-specialprotected' => '«{{ns:special}}» ят уçлăхĕнчи страницăсене эсир тӳрлетейместĕр.',
 'titleprotected' => "Ку ятлă страницăна хатĕрлессине [[Хутшăнакан:$1|$1]] хутшăнакан чарса хунă.
@@ -788,12 +776,6 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 'statistics' => 'Статистика',
 'statistics-header-users' => 'Хутшăнакансен статистики',
 'statistics-mostpopular' => 'Чи нумай пăхакан страницăсем',
-
-'disambiguations' => 'Нумай пĕлтерĕшлĕ статьясене кăтартакан страницăсем',
-'disambiguationspage' => 'Template:Disambig',
-'disambiguations-text' => "Çак статьясем '''нумай пĕлтерĕшле страницăсем'''çине куçараççĕ.
-Унта куçарас вырăнне вĕсем кирлĕ страницăсем çине куçармалла пулĕ.<br />
-Енчен те страница çинче [[MediaWiki:Disambiguationspage]] страницăра кăтартнă шаблон ятне вырнаçтарнă пулсан вăл нумай пĕлтерĕшлĕ страница шутланать.",
 
 'doubleredirects' => 'Икĕ хут куçаракансем',
 

@@ -29,6 +29,18 @@
 class SvgHandler extends ImageHandler {
 	const SVG_METADATA_VERSION = 2;
 
+	/**
+	 * A list of metadata tags that can be converted
+	 * to the commonly used exif tags. This allows messages
+	 * to be reused, and consistent tag names for {{#formatmetadata:..}}
+	 */
+	private static $metaConversion = array(
+		'originalwidth' => 'ImageWidth',
+		'originalheight' => 'ImageLength',
+		'description' => 'ImageDescription',
+		'title' => 'ObjectName',
+	);
+
 	function isEnabled() {
 		global $wgSVGConverters, $wgSVGConverter;
 		if ( !isset( $wgSVGConverters[$wgSVGConverter] ) ) {
@@ -177,16 +189,16 @@ class SvgHandler extends ImageHandler {
 						wfEscapeShellArg( $srcPath ),
 						wfEscapeShellArg( $dstPath ) ),
 					$wgSVGConverters[$wgSVGConverter]
-				) . " 2>&1";
+				);
 
 				$env = array();
-				if( $lang !== false ) {
+				if ( $lang !== false ) {
 					$env['LANG'] = $lang;
 				}
 
 				wfProfileIn( 'rsvg' );
 				wfDebug( __METHOD__ . ": $cmd\n" );
-				$err = wfShellExec( $cmd, $retval, $env );
+				$err = wfShellExecWithStderr( $cmd, $retval, $env );
 				wfProfileOut( 'rsvg' );
 			}
 		}
@@ -340,22 +352,16 @@ class SvgHandler extends ImageHandler {
 		// Sort fields into visible and collapsed
 		$visibleFields = $this->visibleMetadataFields();
 
-		// Rename fields to be compatible with exif, so that
-		// the labels for these fields work and reuse existing messages.
-		$conversion = array(
-			'originalwidth' => 'imagewidth',
-			'originalheight' => 'imagelength',
-			'description' => 'imagedescription',
-			'title' => 'objectname',
-		);
+		$showMeta = false;
 		foreach ( $metadata as $name => $value ) {
 			$tag = strtolower( $name );
-			if ( isset( $conversion[$tag] ) ) {
-				$tag = $conversion[$tag];
+			if ( isset( self::$metaConversion[$tag] ) ) {
+				$tag = strtolower( self::$metaConversion[$tag] );
 			} else {
 				// Do not output other metadata not in list
 				continue;
 			}
+			$showMeta = true;
 			self::addMeta( $result,
 				in_array( $tag, $visibleFields ) ? 'visible' : 'collapsed',
 				'exif',
@@ -363,9 +369,8 @@ class SvgHandler extends ImageHandler {
 				$value
 			);
 		}
-		return $result;
+		return $showMeta ? $result : false;
 	}
-
 
 	/**
 	 * @param string $name Parameter name
@@ -376,9 +381,9 @@ class SvgHandler extends ImageHandler {
 		if ( in_array( $name, array( 'width', 'height' ) ) ) {
 			// Reject negative heights, widths
 			return ( $value > 0 );
-		} elseif( $name == 'lang' ) {
+		} elseif ( $name == 'lang' ) {
 			// Validate $code
-			if( !Language::isValidBuiltinCode( $value ) ) {
+			if ( !Language::isValidBuiltinCode( $value ) ) {
 				wfDebug( "Invalid user language code\n" );
 				return false;
 			}
@@ -394,7 +399,7 @@ class SvgHandler extends ImageHandler {
 	 */
 	function makeParamString( $params ) {
 		$lang = '';
-		if( isset( $params['lang'] ) && $params['lang'] !== 'en' ) {
+		if ( isset( $params['lang'] ) && $params['lang'] !== 'en' ) {
 			$params['lang'] = mb_strtolower( $params['lang'] );
 			$lang = "lang{$params['lang']}-";
 		}
@@ -408,7 +413,7 @@ class SvgHandler extends ImageHandler {
 		$m = false;
 		if ( preg_match( '/^lang([a-z]+(?:-[a-z]+)*)-(\d+)px$/', $str, $m ) ) {
 			return array( 'width' => array_pop( $m ), 'lang' => $m[1] );
-		} elseif( preg_match( '/^(\d+)px$/', $str, $m ) ) {
+		} elseif ( preg_match( '/^(\d+)px$/', $str, $m ) ) {
 			return array( 'width' => $m[1], 'lang' => 'en' );
 		} else {
 			return false;
@@ -428,5 +433,30 @@ class SvgHandler extends ImageHandler {
 			'width' => $params['width'],
 			'lang' => $params['lang'],
 		);
+	}
+
+	public function getCommonMetaArray( File $file ) {
+		$metadata = $file->getMetadata();
+		if ( !$metadata ) {
+			return array();
+		}
+		$metadata = $this->unpackMetadata( $metadata );
+		if ( !$metadata || isset( $metadata['error'] ) ) {
+			return array();
+		}
+		$stdMetadata = array();
+		foreach ( $metadata as $name => $value ) {
+			$tag = strtolower( $name );
+			if ( $tag === 'originalwidth' || $tag === 'originalheight' ) {
+				// Skip these. In the exif metadata stuff, it is assumed these
+				// are measured in px, which is not the case here.
+				continue;
+			}
+			if ( isset( self::$metaConversion[$tag] ) ) {
+				$tag = self::$metaConversion[$tag];
+				$stdMetadata[$tag] = $value;
+			}
+		}
+		return $stdMetadata;
 	}
 }

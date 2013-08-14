@@ -142,8 +142,6 @@ $messages = array(
 'noindex-category' => 'shat mamfhtsach',
 'broken-file-category' => 'ṣfaḫi fiha wṣlat milffaṫ mhrrsa',
 
-'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
-
 'about' => 'ala',
 'article' => 'sfht mohtawa',
 'newwindow' => '(kayṫḫell fe ċerjem weḫdaĥor)',
@@ -246,7 +244,7 @@ $1',
 'pool-queuefull' => 'Ṣeff l-ĥedma ĝamṛa',
 'pool-errorunknown' => 'khata mjhol',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Kolċi ĝla {{SITENAME}}',
 'aboutpage' => 'Project:Meĝlomaṫ',
 'copyright' => 'L-moḫṫawa mojod fe $1',
@@ -332,21 +330,6 @@ lista dyal safahat lkhassa ghatlgaha f [[Special:SpecialPages|{{int:specialpages
 # General errors
 'error' => "ĥata'",
 'databaseerror' => 'khataaa f qaaaidat lbayanat',
-'dberrortext' => 'khata fsight amr qaaaidat lbayanat
-hadchi iqdr ikon raja lchi khataa f lbrnamaj
-akhir amr dyal qaaidat lbayanat kan
-<blockquote><tt>$1</tt></blockquote>
-dakhl had dalla "<tt>$2</tt>".
-qaaidat lbayant rddat bhad lkhataa "<tt>$3: $4</tt>".',
-'dberrortextcl' => 'wqĝ waḫd lmoċkil f siġt istiĝlam qaĝidat lbayanat
-
-aĥir talab istiĝlam qaĝidat lbayanat kan
-
-"$1"
-
-li hwa mn daĥl ddala "$2".
-
-qaĝidat lbayanat rjĝat lĥata\' "$3: $4"',
 'laggedslavemode' => "'''attansyo''' sfḫa iqdr mafihach aĥir tḫditaṫ",
 'readonly' => 'qaĝidat lbayanat msdoda',
 'enterlockreason' => 'dĥl sabab lli ĥllak tsdha, okadalik lwaqt li momkin thll bqdha',
@@ -394,7 +377,6 @@ Query: $2',
 'viewsourcetext' => 'imkn lik  tchof otcopie lmasdar dyak had sfha',
 'protectedinterface' => 'had ṣfḫa ka-ṫĝti n-naṣṣ dl-interface dial l-logiciel, o-raḫa mḫmiyya baċ maymknċ ṫṫĥrab.',
 'editinginterface' => "'''ṫḫdir:''' rak ka-ĝddal waḫd ṣ-ṣfḫa lli msṫĝmla baċ ṫĝti n-naṣṣ dl-interface dial l-logiciel. ṫĥyiraṫ fiha ġadi ṫ'aṫṫar ĝla l-mḍhr dial l-interface dl-mosṫaĥdim ĝnd l-mosṫaĥdimin l-aĥrin. l-ttarjamaṫ, ċoflik mĝa [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], the MediaWiki localisation project.",
-'sqlhidden' => '(talab SQL mĥfi)',
 'cascadeprotected' => 'had ṣfḫa mḫmiyya mn ṫĝdil, ḫqaċ fiha {{PLURAL:$1|ṣfḫa|ṣfaḫi}} mḫmiyya mĝa l-option "cascading" ĥḍḍama:
 $2',
 'namespaceprotected' => "ma msmoh-likċ baċ ṫĝddl ṣfahi mn n-nitaq '''$1'''.",
@@ -419,7 +401,6 @@ tqdr tchof baad sfahi bhal ila msjl hta tfrgh lcache dyalk",
 'yourpassword' => 'Saroṫ:',
 'yourpasswordagain' => 'aaawd ktb lmot de passe dyalk',
 'remembermypassword' => 'Ĝqel ĝla smiyṫ l-ḫsab dyali fe had l-ordinaṫør (ġir limoddaṫ {{PLURAL:$1|yom waḫed|$1 iyyam}})',
-'securelogin-stick-https' => 'bqa mṫṫasl bl-HTTPS moṛa d-doĥol',
 'yourdomainname' => 'domain dyalk',
 'externaldberror' => "kayn imma ċi ĥata' f-doĥol qaĝidaṫ l-bayanaṫ wlla rah ma msmoḫ-likċ baċ ṫḫddṫ l-ḫisab l-ĥariji taĝk.",
 'login' => 'Dĥel',
@@ -526,7 +507,7 @@ baċ ṫsali d-doĥol, ĥask ddir ċi klmṫ s-srr jdida hna:",
 'newpassword' => 'lmot de passe jdida :',
 'retypenew' => 'aaawd ktb lmot de passe jdida :',
 'resetpass_submit' => 'rigler lmot de pass odkhl',
-'resetpass_success' => 'klmṫ s-srr taĝk rah ṫbddlaṫ!
+'changepassword-success' => 'klmṫ s-srr taĝk rah ṫbddlaṫ!
 daba hanta ka-tdĥol...',
 'resetpass_forbidden' => 'ma ymkn-ċ ṫbddal klmaṫ s-srr',
 'resetpass-no-info' => 'ĥaṣṣ tkon daĥol baĥ tqdr twṣl l-had ṣfḫa niċan.',
@@ -1459,9 +1440,6 @@ $1',
 'statistics-users-active' => 'mostakhdimon nachtin',
 'statistics-mostpopular' => 'aktar sfahi mochahada',
 
-'disambiguations' => 'sfahi dyal tawdih',
-'disambiguationspage' => 'Template:tawdih',
-
 'doubleredirects' => 'ṫḫwila mḍoḅla',
 'double-redirect-fixed-move' => '[[$1]] ṫnqlaṫ.
 daba ka ṫḫwwal l-[[$2]].',
@@ -1893,10 +1871,7 @@ Imken lek ṫbeddel l-mosṫawa de l-ḫimaya dyal had ṣ-ṣefḫa bla ma i\'e
 'ipb_expiry_temp' => 'L-Blokaj dyal s-smiyyaṫ dyal l-mosṫeĥdimin l-mĥebbyin ĥaṣṣo ybqa dima.',
 'ipb_already_blocked' => '"$1" rah fayeṫ mbloki',
 'ipb-otherblocks-header' => 'Blokaj {{PLURAL:$1|weḫdaĥor|weḫdaĥrin}}',
-'blockme' => 'blokini',
 'proxyblocker' => 'blokør dl-proksi',
-'proxyblocker-disabled' => 'had l-ĥaṣṣiyya ma mtloqa-ċ',
-'proxyblocksuccess' => 'ṣafi.',
 'sorbs' => 'DNSBL',
 
 # Developer tools

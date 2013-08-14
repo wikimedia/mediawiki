@@ -162,7 +162,7 @@ class GitInfo {
 	/**
 	 * Get an URL to a web viewer link to the HEAD revision.
 	 *
-	 * @return string|bool string if an URL is available or false otherwise.
+	 * @return string|bool string if a URL is available or false otherwise.
 	 */
 	public function getHeadViewUrl() {
 		$config = "{$this->basedir}/config";

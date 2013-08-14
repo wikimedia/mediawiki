@@ -178,7 +178,7 @@ $messages = array(
 'jumptonavigation' => 'muya',
 'jumptosearch' => 'fatukile',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => "Ngesi ye ng'i atulile {{SITENAME}}",
 'aboutpage' => "Project:Ngesi ye ng'i atulile",
 'copyright' => 'Bye sa ilonungi di $1.',
@@ -263,7 +263,6 @@ Fung'ksyun: $1<br />
 Query: $2",
 'viewsource' => "Kamukile ng'i",
 'viewsourcetext' => 'A sa kamukile wiki-selt di bye petulo:',
-'sqlhidden' => '(SQL query sa cwankekile)',
 
 # Login and logout pages
 'yourname' => 'Sebelu:',
@@ -602,8 +601,6 @@ di uplodezi media.',
 'statistics' => 'Mukoloko di kamukile',
 'statistics-header-users' => 'Mukoloko di kamukile di sebelu',
 
-'disambiguations' => 'Disamebigasina',
-
 'doubleredirects' => 'Petulo abezi sa dužemi',
 
 'brokenredirects' => 'Petulo abezi bufosi',
@@ -840,7 +837,6 @@ Petohoni di petulo '''$1''' sa:",
 'contribslink' => 'afina',
 'blocklogpage' => 'Desu di bolok',
 'blocklogentry' => 'sa bolok [[$1]] e simpekile sa $2 $3',
-'proxyblocksuccess' => 'Afi.',
 
 # Move page
 'move-page-legend' => 'Nyanganyisize petulo',

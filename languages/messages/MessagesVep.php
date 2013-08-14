@@ -316,7 +316,7 @@ $1",
 'pool-queuefull' => 'Ecindoiden varadim om üläkormatud.',
 'pool-errorunknown' => 'Tundmatoi petuz',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Informacii saitas {{SITENAME}}',
 'aboutpage' => 'Project:Informacii',
 'copyright' => 'südäiolend kävutadas $1-licenzijan mödhe.',
@@ -399,11 +399,6 @@ Kc. [[Special:SpecialPages|specialižiden lehtpoliden nimikirj]].",
 # General errors
 'error' => 'Petuz',
 'databaseerror' => 'Andmusiden bazan petuz',
-'dberrortextcl' => 'Andmusiden bazas ectes ozaižihe petuz.
-Jäl\'gmäine ecind andmusiden bazas oli:
-"$1"
-funkcijaspäi "$2".
-Andmusiden baz pördi petusen "$3: $4"',
 'laggedslavemode' => "Varutuz: voib olda, lehtpolen versijal ei ole jäl'gmäižid ližadusid.",
 'readonly' => 'Andmusiden baz om luklostadud',
 'enterlockreason' => 'Kirjutagat sü da pandud blokiruindan strok',
@@ -451,7 +446,6 @@ Ecind: $2',
 'editinginterface' => "'''Homaikat:''' Tö ladit redaktiruida lehtpol't, kudambal om programman interfeistekst.
 Mugoi tegend toižetab interfeisan irdnägu toižiden kävutajiden täht.
 Kändmižen täht om paremb kävutada [//translatewiki.net/wiki/Main_Page?setlang=vep translatewiki.net] - MediaWikin lokalizacijan projekt.",
-'sqlhidden' => '(SQL-küzelend om peittud)',
 'namespaceprotected' => "Teil ei ole oiktust redaktiruida lehtpolid '''$1'''-nimiavaruses.",
 'customcssprotected' => 'Teil ei ole oiktust redaktiruida nece CSS-lehtpol’, sikš sil oma toižen ühtnijan personaližed järgendused.',
 'customjsprotected' => 'Teil ei ole oiktust redaktiruida nece JavaScript-lehtpol’, sikš sil oma toižen ühtnijan personaližed järgendused.',
@@ -473,7 +467,6 @@ Otkat sil'mnägubale, miše erasid lehtpolid ozutaškatas mugažo, kut i edel te
 'yourpassword' => 'Peitsana:',
 'yourpasswordagain' => 'Kirjutagat peitsana udes:',
 'remembermypassword' => 'Panda muštho minun tulendandmused neciš kompjuteras (enintään $1 {{PLURAL:$1|päivä|päivää}})',
-'securelogin-stick-https' => "Jäda sidotud HTTPS-ha tulendan jäl'ghe",
 'yourdomainname' => 'Teiden domen:',
 'externaldberror' => 'Ozaižihe petuz autentifikacijan, kudamb tehtihe andmusiden irdbazan turbiš, aigan, vai teile ei ulotu oiktusid toižetada ičetoi irdregistracijad.',
 'login' => 'Kirjutadas sistemha',
@@ -555,7 +548,7 @@ Miše tulda sistemha lopuližikš, teile pidab säta uz' peitsana naku:",
 'newpassword' => "Uz' peitsana:",
 'retypenew' => "Toštkat uz' peitsana:",
 'resetpass_submit' => 'Säta peitsana da kirjutadas sistemha',
-'resetpass_success' => 'Teiden peisana om vajehtadud jügedusita! Tulend sistemha...',
+'changepassword-success' => 'Teiden peisana om vajehtadud jügedusita! Tulend sistemha...',
 'resetpass_forbidden' => 'Ei voi vajehtada peitsanad',
 'resetpass-no-info' => 'Miše kirjutada necil lehtpolel, teile pidab kirjutadas sistemha.',
 'resetpass-submit-loggedin' => 'Vajehtada peitsana',
@@ -790,8 +783,8 @@ Mugomad argumentad čutihe.",
 Znamoičendad: '''({{int:cur}})''' = erod nügüdläižes versijaspäi, '''({{int:last}})''' = erod enččes vepsijaspäi, '''{{int:minoreditletter}}''' = pen' toižetuz.",
 'history-fieldset-title' => 'Lehtelta istorii',
 'history-show-deleted' => 'Vaiše čutud',
-'histfirst' => 'Kaikiš vanhembad',
-'histlast' => 'Tantoižed',
+'histfirst' => 'vanhembad',
+'histlast' => 'udembad',
 'historysize' => '({{PLURAL:$1|1 bait|$1 baitad}})',
 'historyempty' => "(pall'az)",
 
@@ -1258,7 +1251,7 @@ Ku tö kirjutat sen, nece nimi kävutadas, miše ozutada lehtpolen toižetajad.'
 'rc-change-size' => '$1',
 'rc-change-size-new' => "$1 {{PLURAL:$1|bait|baitad}} jäl'ges toižetamišt",
 'newsectionsummary' => "/* $1 */ uz' jaguz",
-'rc-enhanced-expand' => 'Ozutada detalid (JavaScript)',
+'rc-enhanced-expand' => 'Ozutada detalid',
 'rc-enhanced-hide' => 'Peitta detalid',
 'rc-old-title' => 'Om sätud ezmässai kut "$1"',
 
@@ -1522,9 +1515,6 @@ Informacijad sen [$2 andmusiden lehtpolelpäi] om anttud alemba.',
 'statistics-users-active' => 'Activižed kävutajad',
 'statistics-users-active-desc' => "Kävutajad, kudambad ozutiba aktivižut {{PLURAL:$1|jäl’gmäižen päivän|$1 jäl'gmäižil päivil}}",
 'statistics-mostpopular' => 'Kaikiš populärižembad lehtpoled',
-
-'disambiguations' => 'Lehtpoled, kudambil om kosketusid lehtpolihe, kus om äiznamoičendusen laskendoid.',
-'disambiguationspage' => 'Template:Äiznamoičenduz',
 
 'doubleredirects' => 'Kaksitadud läbikosketused',
 'double-redirect-fixed-move' => "[[$1]]-lehtpol' om udesnimitadud. Se läbikosketab nügüd' [[$2]]-lehtpolele.",
@@ -1947,7 +1937,7 @@ $1',
 'contributions-title' => '$1-kävutajan tond',
 'mycontris' => 'Minun tond',
 'contribsub2' => '$1-kävutajan ($2) tond',
-'uctop' => "(jäl'gmäine)",
+'uctop' => '(nügüdläine)',
 'month' => 'Ku:',
 'year' => 'Voz’:',
 
@@ -2085,12 +2075,9 @@ Alemba om anttud blokiruindaiglehtez:',
 'ipb_cant_unblock' => 'Petuz: ei voi löuta ID $1:n blokiruindad.
 Voib olda, se om jo heittud.',
 'ip_range_invalid' => 'Vär IP-diapazon.',
-'blockme' => 'Blokiruigat mindai',
 'proxyblocker' => 'Proxy-blokator',
-'proxyblocker-disabled' => 'Nece funkcii ei ole kävutamas.',
 'proxyblockreason' => 'Teiden IP-adres om blokiruidud, sikš miše se om avoin proksi.
 Olgat hüväd, säkat pagin teiden Internet-provaideranke i kirjutagat hänele necen varuitomuden problemas.',
-'proxyblocksuccess' => 'Vaumiž.',
 'sorbsreason' => 'Teiden IP-adres om ozutadud kut avaitud proksi {{SITENAME}}-saitan DNSBL-an mustas nimikirjuteses.',
 'cant-block-while-blocked' => 'Teile ei sa blokiruida toižid kävutajid, sikš miše tö iče olet blokiruidud.',
 

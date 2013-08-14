@@ -57,7 +57,7 @@ class SpecialPreferences extends SpecialPage {
 
 		if ( $this->getRequest()->getCheck( 'success' ) ) {
 			$out->wrapWikiMsg(
-				"<div class=\"successbox mw-sp-pref-successbox\">\n$1\n</div>",
+				"<div class=\"successbox\">\n$1\n</div>",
 				'savedprefs'
 			);
 		}
@@ -75,10 +75,11 @@ class SpecialPreferences extends SpecialPage {
 
 		$this->getOutput()->addWikiMsg( 'prefs-reset-intro' );
 
-		$htmlForm = new HTMLForm( array(), $this->getContext(), 'prefs-restore' );
+		$context = new DerivativeContext( $this->getContext() );
+		$context->setTitle( $this->getTitle( 'reset' ) ); // Reset subpage
+		$htmlForm = new HTMLForm( array(), $context, 'prefs-restore' );
 
 		$htmlForm->setSubmitTextMsg( 'restoreprefs' );
-		$htmlForm->setTitle( $this->getTitle( 'reset' ) );
 		$htmlForm->setSubmitCallback( array( $this, 'submitReset' ) );
 		$htmlForm->suppressReset();
 
@@ -91,7 +92,7 @@ class SpecialPreferences extends SpecialPage {
 		}
 
 		$user = $this->getUser();
-		$user->resetOptions( 'all' );
+		$user->resetOptions( 'all', $this->getContext() );
 		$user->saveSettings();
 
 		$url = $this->getTitle()->getFullURL( 'success' );

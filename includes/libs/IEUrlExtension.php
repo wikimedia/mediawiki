@@ -232,7 +232,7 @@ class IEUrlExtension {
 			}
 			// We found an illegal character or another dot
 			// Skip to that character and continue the loop
-			$pos = $nextPos + 1;
+			$pos = $nextPos;
 			$remainingLength = $urlLength - $pos;
 		}
 		return false;

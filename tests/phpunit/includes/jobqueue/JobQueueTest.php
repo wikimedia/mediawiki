@@ -70,21 +70,33 @@ class JobQueueTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provider_queueLists
+	 * @covers JobQueue::getWiki
 	 */
-	function testProperties( $queue, $recycles, $desc ) {
+	public function testGetWiki( $queue, $recycles, $desc ) {
 		$queue = $this->$queue;
 		if ( !$queue ) {
 			$this->markTestSkipped( $desc );
 		}
-
 		$this->assertEquals( wfWikiID(), $queue->getWiki(), "Proper wiki ID ($desc)" );
+	}
+
+	/**
+	 * @dataProvider provider_queueLists
+	 * @covers JobQueue::getType
+	 */
+	public function testGetType( $queue, $recycles, $desc ) {
+		$queue = $this->$queue;
+		if ( !$queue ) {
+			$this->markTestSkipped( $desc );
+		}
 		$this->assertEquals( 'null', $queue->getType(), "Proper job type ($desc)" );
 	}
 
 	/**
 	 * @dataProvider provider_queueLists
+	 * @covers JobQueue
 	 */
-	function testBasicOperations( $queue, $recycles, $desc ) {
+	public function testBasicOperations( $queue, $recycles, $desc ) {
 		$queue = $this->$queue;
 		if ( !$queue ) {
 			$this->markTestSkipped( $desc );
@@ -157,8 +169,9 @@ class JobQueueTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provider_queueLists
+	 * @covers JobQueue
 	 */
-	function testBasicDeduplication( $queue, $recycles, $desc ) {
+	public function testBasicDeduplication( $queue, $recycles, $desc ) {
 		$queue = $this->$queue;
 		if ( !$queue ) {
 			$this->markTestSkipped( $desc );
@@ -214,8 +227,9 @@ class JobQueueTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provider_queueLists
+	 * @covers JobQueue
 	 */
-	function testRootDeduplication( $queue, $recycles, $desc ) {
+	public function testRootDeduplication( $queue, $recycles, $desc ) {
 		$queue = $this->$queue;
 		if ( !$queue ) {
 			$this->markTestSkipped( $desc );
@@ -267,8 +281,9 @@ class JobQueueTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provider_fifoQueueLists
+	 * @covers JobQueue
 	 */
-	function testJobOrder( $queue, $recycles, $desc ) {
+	public function testJobOrder( $queue, $recycles, $desc ) {
 		$queue = $this->$queue;
 		if ( !$queue ) {
 			$this->markTestSkipped( $desc );

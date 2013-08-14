@@ -715,7 +715,7 @@ class MessageCache {
 		}
 
 		// Normalise title-case input (with some inlining)
-		$lckey = strtr( $key, ' ', '_');
+		$lckey = strtr( $key, ' ', '_' );
 		if ( ord( $key ) < 128 ) {
 			$lckey[0] = strtolower( $lckey[0] );
 			$uckey = ucfirst( $lckey );
@@ -743,7 +743,7 @@ class MessageCache {
 		}
 
 		// Post-processing if the message exists
-		if( $message !== false ) {
+		if ( $message !== false ) {
 			// Fix whitespace
 			$message = str_replace(
 				array(
@@ -865,7 +865,7 @@ class MessageCache {
 	 *
 	 * @param string $title Message cache key with initial uppercase letter.
 	 * @param string $code Code denoting the language to try.
-	 * @return string|bool The message, or false iff it does not exist or on error
+	 * @return string|bool The message, or false if it does not exist or on error
 	 */
 	function getMsgFromNamespace( $title, $code ) {
 		$this->load( $code );

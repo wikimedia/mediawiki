@@ -1,6 +1,15 @@
 <?php
 class PNGHandlerTest extends MediaWikiTestCase {
 
+	/** @var PNGHandler */
+	protected $handler;
+	/** @var FSRepo */
+	protected $repo;
+	/** @var FSFileBackend */
+	protected $backend;
+	/** @var string */
+	protected $filePath;
+
 	protected function setUp() {
 		parent::setUp();
 
@@ -18,6 +27,9 @@ class PNGHandlerTest extends MediaWikiTestCase {
 		$this->handler = new PNGHandler();
 	}
 
+	/**
+	 * @covers PNGHandler::getMetadata
+	 */
 	public function testInvalidFile() {
 		$res = $this->handler->getMetadata( null, $this->filePath . '/README' );
 		$this->assertEquals( PNGHandler::BROKEN_FILE, $res );
@@ -27,6 +39,7 @@ class PNGHandlerTest extends MediaWikiTestCase {
 	 * @param $filename String basename of the file to check
 	 * @param $expected boolean Expected result.
 	 * @dataProvider provideIsAnimated
+	 * @covers PNGHandler::isAnimatedImage
 	 */
 	public function testIsAnimanted( $filename, $expected ) {
 		$file = $this->dataFile( $filename, 'image/png' );
@@ -45,6 +58,7 @@ class PNGHandlerTest extends MediaWikiTestCase {
 	 * @param $filename String
 	 * @param $expected Integer Total image area
 	 * @dataProvider provideGetImageArea
+	 * @covers PNGHandler::getImageArea
 	 */
 	public function testGetImageArea( $filename, $expected ) {
 		$file = $this->dataFile( $filename, 'image/png' );
@@ -65,6 +79,7 @@ class PNGHandlerTest extends MediaWikiTestCase {
 	 * @param $metadata String Serialized metadata
 	 * @param $expected Integer One of the class constants of PNGHandler
 	 * @dataProvider provideIsMetadataValid
+	 * @covers PNGHandler::isMetadataValid
 	 */
 	public function testIsMetadataValid( $metadata, $expected ) {
 		$actual = $this->handler->isMetadataValid( null, $metadata );
@@ -85,6 +100,7 @@ class PNGHandlerTest extends MediaWikiTestCase {
 	 * @param $filename String
 	 * @param $expected String Serialized array
 	 * @dataProvider provideGetMetadata
+	 * @covers PNGHandler::getMetadata
 	 */
 	public function testGetMetadata( $filename, $expected ) {
 		$file = $this->dataFile( $filename, 'image/png' );
@@ -97,6 +113,29 @@ class PNGHandlerTest extends MediaWikiTestCase {
 		return array(
 			array( 'rgb-na-png.png', 'a:6:{s:10:"frameCount";i:0;s:9:"loopCount";i:1;s:8:"duration";d:0;s:8:"bitDepth";i:8;s:9:"colorType";s:10:"truecolour";s:8:"metadata";a:1:{s:15:"_MW_PNG_VERSION";i:1;}}' ),
 			array( 'xmp.png', 'a:6:{s:10:"frameCount";i:0;s:9:"loopCount";i:1;s:8:"duration";d:0;s:8:"bitDepth";i:1;s:9:"colorType";s:14:"index-coloured";s:8:"metadata";a:2:{s:12:"SerialNumber";s:9:"123456789";s:15:"_MW_PNG_VERSION";i:1;}}' ),
+		);
+	}
+
+	/**
+	 * @param $filename String
+	 * @param $expected Array Expected standard metadata
+	 * @dataProvider provideGetIndependentMetaArray
+	 * @covers PNGHandler::getCommonMetaArray
+	 */
+	public function testGetIndependentMetaArray( $filename, $expected ) {
+		$file = $this->dataFile( $filename, 'image/png' );
+		$actual = $this->handler->getCommonMetaArray( $file );
+		$this->assertEquals( $expected, $actual );
+	}
+
+	public function provideGetIndependentMetaArray() {
+		return array(
+			array( 'rgb-na-png.png', array() ),
+			array( 'xmp.png',
+				array(
+					'SerialNumber' => '123456789',
+				)
+			),
 		);
 	}
 

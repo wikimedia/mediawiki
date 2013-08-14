@@ -43,6 +43,28 @@ production.
   an entry for 'bar.com' will still match 'foo.bar.com' but not 'foobar.com'.
 * $wgCopyUploadTimeout and $wgCopyUploadAsyncTimeout added to change the timeout times for
   fetching the file during upload by url.
+* New key added to $wgGalleryOptions - $wgGalleryOptions['mode'] to set
+  default gallery mode.
+* New hook 'GalleryGetModes' to allow extensions to make new gallery modes.
+* The checkbox for staying in HTTPS displayed on the login form when $wgSecureLogin is
+  enabled has been removed. Instead, whether the user stays in HTTPS will be determined
+  based on the user's preferences, and whether they came from HTTPS or not.
+* $wgRC2UDPAddress, $wgRC2UDPInterwikiPrefix, $wgRC2UDPOmitBots, $wgRC2UDPPort,
+  and $wgRC2UDPPrefix configuration options have been deprecated in favor of a
+  $wgRCFeeds configuration array. $wgRCFeeds makes both the format and
+  destination of recent change notifications customizable, and allows for
+  multiple destinations to be specified.
+* (bug 53862) portal-url, currentevents-url and helppage have been removed from the
+  default Sidebar.
+* The 'vector-simplesearch' preference is now enabled by default. Previously
+  it was only enabled if the Vector extension was installed.
+* The precise format of metric datagrams produced by the UDP profiler and stats counter
+  may now be specified as $wgUDPProfilerFormatString and $wgStatsFormatString,
+  respectively.
+* (bug 54597) $wgBlockOpenProxies, $wgProxyPorts, $wgProxyScriptPath, and
+  $wgProxyMemcExpiry have been removed, along with the open proxy scanner
+  script they were added for.
+* Default value of $wgMaxShellMemory has been tripled (it's now 300 MB).
 
 === New features in 1.22 ===
 * (bug 44525) mediawiki.jqueryMsg can now parse (whitelisted) HTML elements and attributes.
@@ -55,6 +77,8 @@ production.
   version of the Vector extension as this feature may conflict.
 * New 'mediawiki.ui' CSS module providing mw-ui-* styles for buttons and a
   compact vertical form layout.
+* HTMLForm supports a new display format 'vform' which applies this compact vertical
+  layout and button styling. Special:PasswordReset uses this format.
 * New versions of login (Special:UserLogin) and create account
   (Special:UserLogin/signup) forms using the "vform" compact vertical form layout.
   These forms use new messages that assume a "Help logging in" link, see
@@ -101,6 +125,8 @@ production.
   which can be cascading (previously 'sysop' was hard-coded as the only one).
 * XHTML5 support has been improved. If you set $wgMimeType = 'application/xhtml+xml'
   MediaWiki will try outputting markup acording to XHTML5 rules.
+* Altered hook 'ProtectionForm::save', adding the reason page protection is
+  changed as third parameter.
 * New hook 'TitleSquidURLs' for manipulating the list of URLs to be purged from
   HTTP caches when a page is changed.
 * Changed the patrolling system to always show the link for patrolling in case the
@@ -138,6 +164,9 @@ production.
 ** editmyoptions controls whether a user may change their preferences.
 * Add new hook AbortTalkPageEmailNotification, this will be used to determine
   whether to send the regular talk page email notification
+* Action classes registered in $wgActions are now also supported in the form of
+  a callback (which returns an instance of Action) instead of providing the name
+  of a subclass of Action.
 * (bug 46513) Vector: Add the collapsibleTabs script from the Vector extension.
 * Added $wgRecentChangesFlags for defining new flags for RecentChanges and
   watchlists.
@@ -158,8 +187,8 @@ production.
 * Added a new method and hook, User::isEveryoneAllowed() and
   UserIsEveryoneAllowed, for use in situations where a "does everyone have this
   right?" check is used to avoid more expensive checks.
-* Display "(No difference)" instead of an empty diff (when comparing revisions
-  in the history or when previewing changes while editing).
+* (bug 14431) Display "(No difference)" instead of an empty diff (when comparing
+  revisions in the history or when previewing changes while editing).
 * New hook 'IsUploadAllowedFromUrl' is added which can be used to intercept uploads by
   URL, useful for blacklisting specific URLs
 * (bug 21912) Watchlist token implementation has been refactored and
@@ -184,8 +213,59 @@ production.
   setcookie() or setrawcookie() should begin using this instead.
 * New hook WebResponseSetCookie, called from WebResponse::setcookie().
 * New hook ResetSessionID, called when the session id is reset.
+* Add a mode parameter to <gallery> tag with potential options of "traditional",
+  "nolines", "packed", "packed-overlay", or "packed-hover".
+* (bug 47399) A success message is now displayed after changing the password.
+* Make thumb.php give HTTP redirects for file redirects
+* (bug 30607) Special:ListFiles can now show old versions of files. Additionally
+  Special:AllMyUploads was introduced so the user can get a list of all things
+  they have ever uploaded, even if it was subsequently overriden.
+* Introduced Special:MyFiles and Special:AllMyFiles as an alias for Special:MyUploads
+  and Special:AllMyUploads respectively.
+* IPv6 addresses in X-Forwarded-For headers are now normalised before checking
+  against allowed proxy lists.
+* Add deferrable update support for callback/closure.
+* Add TitleMove hook before page renames.
+* Revision deletion backend code is moved out of SpecialRevisiondelete
+* Added {{REVISIONSIZE}} variable to get the current size of a revision.
+* Add support for the LESS stylesheet language to ResourceLoader. LESS is a
+  stylesheet language that compiles into CSS. ResourceLoader file modules may
+  include LESS style files; ResourceLoader will compile these files into CSS
+  before sending them to the client.
+** The $wgResourceLoaderLESSVars configuration variable is an associative array
+   mapping variable names to string CSS values. These variables are considered
+   declared for all LESS files. Additional variables may be registered by
+   adding keys to the array.
+** $wgResourceLoaderLESSFunctions is an associative array of custom LESS
+   function names to PHP callables. See <http://leafo.net/lessphp/docs/#custom_functions>
+   for more details regarding custom functions.
+** $wgResourceLoaderLESSImportPaths is an array of file system paths. Files
+   referenced in LESS '@import' statements are looked up here first.
+* ResourceLoader supports hashes as module cache invalidation trigger (instead
+  of or in addition to timestamps).
+* Added $wgExtensionEntryPointListFiles for use in mergeMessageFileList.php.
+* Added a hook, APIQuerySiteInfoStatisticsInfo, to allow extensions to modify
+  the output of the API query meta=siteinfo&siprop=statistics
+* Primary keys have been added to both the archive table and the externallinks
+  tables.
+* Added $wgEnableParserLimitReporting to control whether the NewPP limit report is
+  output in a HTML comment.
+* The 'UnwatchArticle' and 'WatchArticle' hooks now support a Status object
+  instead of just a boolean return value to abort the hook.
+* Added a hook, SpecialWatchlistGetNonRevisionTypes, to allow extensions
+  with custom recentchanges entries to hook into the Watchlist without 
+  clobbering each other.
+* A hidden, empty input field was added to the edit form, and any edit that fills
+  it in will be rejected. This prevents against the simplest form of spambots.
+  Previously in the "SimpleAntiSpam" extension by Ryan Schmidt.
+* populateRevisionLength.php maintenance script updated to also populate
+  archive.ar_len field.
+* (bug 43571) DatabaseMySQLBase learned to list views, optionally filtered by a
+  prefix. Also fixed PHPUnit test suite when using a MySQL backend containing
+  views.
 
 === Bug fixes in 1.22 ===
+* (bug 47271) $wgContentHandlerUseDB should be set to false during the upgrade
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
   could still navigate to the page by entering the URL directly.
 * (bug 47138) Fixed a fatal error when a blocked user tries to automatically
@@ -200,8 +280,8 @@ production.
 * mw.util.tooltipAccessKeyRegexp: The regex now matches "option-" as well.
   Support for Mac "option" was added in 1.16, but the regex was never updated.
 * (bug 46768) Usernames of blocking users now display correctly, even if numeric.
-* (bug 39590) {{PAGESIZE}} for the current page and self-transclusions now
-  show the most up to date result always instead of being a revision behind.
+* (bug 39590) Self-transclusions now show the most up to date result always
+  after save instead of being a revision behind.
 * A bias in wfRandomString() toward digits 1-7 has been corrected. Generated
   strings will now start with digits 0 and 8-f as often as they should.
 * (bug 45371) Removed Parser_LinkHooks and CoreLinkFunctions classes.
@@ -256,6 +336,21 @@ production.
 * (bug 49694) $wgSpamRegex is now also applied on the new section headline text
   adding a new topic on a page
 * (bug 41756) Improve treatment of multiple comments on a blank line.
+* (bug 51064) Purge upstream caches when deleting file assets.
+* (bug 39012) File types with a mime that we do not know the extension for
+  can no longer be uploaded as an extension that we do know the mime type
+  for.
+* (bug 51742) Add data-sort-value for better sorting of hitcounts Special:Tags
+* (bug 26811) On DB error pages, server hostnames are now hidden when both
+  $wgShowHostnames and $wgShowSQLErrors are false.
+* (bug 6200) line breaks in <blockquote> are handled like they are in <div>
+* (bug 14931) Default character set now set to 'utf8' when a new MySQL
+  database is created.
+* (bug 47191) Fixed "Column 'si_title' cannot be part of FULLTEXT index"
+  MySQL error when installing using the binary character set option.
+* (bug 45288) Support mysqli PHP extension
+* (bug 55818) BREAKING CHANGE: Removed undocumented 'Debug' hook in wfDebug.
+  This resolves an infinite loop when using $wgDebugFunctionEntry = true.
 
 === API changes in 1.22 ===
 * (bug 25553) The JSON output formatter now leaves forward slashes unescaped
@@ -294,7 +389,7 @@ production.
   user blocks.
 * (bug 48201) action=parse&text=foo now assumes wikitext if no title is given,
   rather than using the content model of the page "API".
-* action=watch may now return errors.
+* action=watch no longer silently ignores hook abort.
 * (bug 50785) action=purge with forcelinkupdate=1 no longer queues refreshLinks
   jobs in the job queue for link table updates of pages that use the given page
   as a template. Instead, forcerecursivelinkupdate=1 is introduced and should
@@ -307,6 +402,16 @@ production.
   version of the title.
 * (bug 52538) action=edit will now use empty text instead of the contents
   of section 0 when passed prependtext or appendtext with section=new.
+* Support for the 'gettoken' parameter to action=block and action=unblock,
+  deprecated since 1.20, has been removed.
+* (bug 49090) Token-getting functions will fail when using jsonp callbacks.
+* (bug 52699) action=upload returns normalized file name on warning
+  "exists-normalized" instead of filename to be uploaded to.
+* (bug 53884) action=edit will now return an error when the specified section
+  does not exist in the page.
+* Added meta=filerepoinfo API module for getting information about foreign
+  file repositories, and related ForeignAPIRepo methods getInfo and getApiUrl.
+* The new query module list=allfileusages to enumerate file usages was added.
 
 === Languages updated in 1.22===
 
@@ -318,6 +423,15 @@ changes to languages because of Bugzilla reports.
 * (bug 46751) Made Buryat (Russia) (буряад) (bxr) fallback to Russian.
 
 === Other changes in 1.22 ===
+* The rc_type field in the recentchanges table has been superseded by a new
+  rc_source field.  The rc_source field is a string representation of the
+  change type where rc_type was a numeric constant.  This field is not yet
+  queried but will be in a future point release of 1.22.  
+** Utilize update.php to create and populate this new field.  On larger wiki's
+   which do not wish to update recentchanges table in one large update please
+   review the sql and comments in maintenance/archives/patch-rc_source.sql.
+** The rc_type field of recentchanges will be deprecated in a future point
+   release.
 * BREAKING CHANGE: Implementation of MediaWiki's JS and JSON value encoding
   has changed:
 ** MediaWiki no longer supports PHP installations in which the native JSON
@@ -389,6 +503,40 @@ changes to languages because of Bugzilla reports.
   have been deprecated in favour of using mw.hook.
 * The 'showjumplinks' user preference has been removed, jump links are now
   always included.
+* Methods RecentChange::notifyRC2UDP, RecentChange::sendToUDP, and
+  RecentChange::cleanupForIRC have been deprecated, as it is now the
+  responsibility of classes implementing the RCFeedFormatter and RCFeedEngine
+  interfaces to implement the formatting and delivery for recent change
+  notifications.
+* SpecialPrefixindex methods namespacePrefixForm() and showPrefixChunk() have
+  been made protected. They were accepting form variance arguments, this is now
+  using properties in the SpecialPrefixindex class.
+* (bug 50310) BREAKING CHANGE: wikibits: Drop support for mwCustomEditButtons.
+  It defaults to an empty array and emits mw.log.warn when accessed.
+* BREAKING CHANGE: Special:Disambiguations has been removed from MediaWiki core.
+  Functions related to disambiguation pages are now handled by the Disambiguator
+  extension (https://www.mediawiki.org/wiki/Extension:Disambiguator) (bug
+  35981).
+* BREAKING CHANGE: The 'mediawiki.legacy.wikiprintable' module has been removed.
+  The skins/common/wikiprintable.css file no longer exists. Return value of
+  Skin#commonPrintStylesheet is ignored. Please use the 'mediawiki.legacy.commonPrint'
+  module instead or base your skin on SkinTemplate.
+* (bug 49629) The hook ExtractThumbParamaters has been deprecated in favour
+  of media handler overriding MediaHandler::parseParamString.
+* (bug 46512) The collapsibleNav feature from the Vector extension has been moved
+  to the Vector skin in core.
+* SpecialRecentChanges::addRecentChangesJS() function has been renamed
+  to addModules() and made protected.
+* Methods WatchAction::doWatch and WatchAction::doUnwatch now return a Status
+  object instead of a boolean.
+* Information boxes (CSS classes errorbox, warningbox, successbox) have been
+  made more subtle.
+* BREAKING CHANGE: The module 'mediawiki.legacy.IEFixes' has been removed as it was
+  unused. The file skins/common/IEFixes.js remains but is only used by wikibits.
+  The file never contained any re-usable components. To use it in a skin, load
+  'mediawiki.legacy.wikibits' (which IEFixes depends on) and that will import
+  IEFixes automatically if user agent conditions are met.
+* Code specific to the Math extension was marked as deprecated.
 
 == Compatibility ==
 

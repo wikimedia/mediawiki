@@ -240,7 +240,7 @@ $1',
 'pool-queuefull' => 'Puul kyuu fulop',
 'pool-errorunknown' => 'Anuon era',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Habowt {{SITENAME}}',
 'aboutpage' => 'Project: អំពី',
 'copyright' => 'Kantent avielobl anda $1.',
@@ -320,17 +320,6 @@ A lis a valid peshal piej kiahn fain a [[Special:SpecialPages|{{int:specialpages
 # General errors
 'error' => 'Era',
 'databaseerror' => 'Dietabies era',
-'dberrortext' => 'A dietabies kwieri sintax era okor.
-Dis maita indikiet wahn bog ina di saafwier.
-Di laas atemp dietabies kwieri ena:
-<blockquote><tt>$1</tt></blockquote>
-frahn widin fongshan "<tt>$2</tt>".
-Dietabies ritoern era "<tt>$3: $4</tt>".',
-'dberrortextcl' => 'A dietabies kwieri sintax era okor.
-Di laas attemp dietabies kwieri ena:
-"$1"
-frahn widin fongshan "$2".
-Dietabies ritoern era "$3: $4"',
 'laggedslavemode' => "'''Waanin:''' Piej maita no kantien riisant opdiet.",
 'readonly' => 'Dietabies lak',
 'enterlockreason' => 'Enta a riizn fi di lak, inkluudn a estimet a wen di lak wi riliis',
@@ -383,7 +372,6 @@ Begyu chrai agen ina fyuu minit.',
 'editinginterface' => "'''Waanin:''' Yu de edit page we yuuz fi provaid intafies tex fi di saafwier.
 Chienj tu dis piej wi afek di apierans a di yuuza intafies fi ada yuuzadem.
 Fi chranslieshan, begyu kansida fi yuuz [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], di MediaWiki luokalaizieshan projek.",
-'sqlhidden' => '(SQL kwieri aidwe)',
 'cascadeprotected' => 'Dis piej protek frahn edit, bikaa i\'inkluud ina di falarin {{PLURAL:$1|piej, ush|piejdem, ush}} protek wid di "kiaskiedn" apshan ton aan:
 $2',
 'namespaceprotected' => "Yu no gat no pomishan fi edit piej ina di '''$1''' niemspies.",
@@ -503,7 +491,7 @@ Fi finish lag iin, yu mos set a nyuu paaswod yaso:',
 'newpassword' => 'Nyuu paaswod:',
 'retypenew' => 'Ritaip nyuu paaswod:',
 'resetpass_submit' => 'Set paaswod ahn lag iin',
-'resetpass_success' => 'Yu paaswod chienj soksesfuli!
+'changepassword-success' => 'Yu paaswod chienj soksesfuli!
 A lag yu iin nou ...',
 'resetpass_forbidden' => 'Paaswod kyaahn chienj',
 'resetpass-no-info' => 'Yu mos lag iin fi akses dis piej dairek.',

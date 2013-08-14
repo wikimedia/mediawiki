@@ -100,30 +100,30 @@ class DoubleRedirectJob extends Job {
 			return true;
 		}
 
-		# Check for a suppression tag (used e.g. in periodically archived discussions)
+		// Check for a suppression tag (used e.g. in periodically archived discussions)
 		$mw = MagicWord::get( 'staticredirect' );
 		if ( $content->matchMagicWord( $mw ) ) {
 			wfDebug( __METHOD__ . ": skipping: suppressed with __STATICREDIRECT__\n" );
 			return true;
 		}
 
-		# Find the current final destination
+		// Find the current final destination
 		$newTitle = self::getFinalDestination( $this->redirTitle );
 		if ( !$newTitle ) {
 			wfDebug( __METHOD__ . ": skipping: single redirect, circular redirect or invalid redirect destination\n" );
 			return true;
 		}
 		if ( $newTitle->equals( $this->redirTitle ) ) {
-			# The redirect is already right, no need to change it
-			# This can happen if the page was moved back (say after vandalism)
+			// The redirect is already right, no need to change it
+			// This can happen if the page was moved back (say after vandalism)
 			wfDebug( __METHOD__ . " : skipping, already good\n" );
 		}
 
-		# Preserve fragment (bug 14904)
+		// Preserve fragment (bug 14904)
 		$newTitle = Title::makeTitle( $newTitle->getNamespace(), $newTitle->getDBkey(),
 			$currentDest->getFragment(), $newTitle->getInterwiki() );
 
-		# Fix the text
+		// Fix the text
 		$newContent = $content->updateRedirect( $newTitle );
 
 		if ( $newContent->equals( $content ) ) {
@@ -137,11 +137,13 @@ class DoubleRedirectJob extends Job {
 			return false;
 		}
 
-		# Save it
+		// Save it
 		global $wgUser;
 		$oldUser = $wgUser;
 		$wgUser = $user;
 		$article = WikiPage::factory( $this->title );
+
+		// Messages: double-redirect-fixed-move, double-redirect-fixed-maintenance
 		$reason = wfMessage( 'double-redirect-fixed-' . $this->reason,
 			$this->redirTitle->getPrefixedText(), $newTitle->getPrefixedText()
 		)->inContentLanguage()->text();
@@ -161,7 +163,8 @@ class DoubleRedirectJob extends Job {
 	public static function getFinalDestination( $title ) {
 		$dbw = wfGetDB( DB_MASTER );
 
-		$seenTitles = array(); # Circular redirect check
+		// Circular redirect check
+		$seenTitles = array();
 		$dest = false;
 
 		while ( true ) {

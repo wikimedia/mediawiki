@@ -552,7 +552,7 @@ $1',
 'pool-queuefull' => 'La renche d’ôvra est plêna',
 'pool-errorunknown' => 'Fôta encognua',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Sur {{SITENAME}}',
 'aboutpage' => 'Project:A propôs',
 'copyright' => 'Lo contegnu est disponiblo desot licence $1.',
@@ -639,17 +639,6 @@ Na lista de les pâges spèciâles justes sè trôve dessus [[Special:SpecialPag
 # General errors
 'error' => 'Fôta',
 'databaseerror' => 'Fôta de la bâsa de balyês',
-'dberrortext' => 'Na fôta de sintaxa de la demanda dens la bâsa de balyês est arrevâye.
-Cen pôt endicar na cofierie dedens la programeria.
-La dèrriére demanda trètâye per la bâsa de balyês ére :
-<blockquote><code>$1</code></blockquote>
-dês la fonccion « <code>$2</code> ».
-La bâsa de balyês at retornâ la fôta « <samp>$3 : $4</samp> ».',
-'dberrortextcl' => 'Na fôta de sintaxa de la demanda dens la bâsa de balyês est arrevâye.
-La dèrriére demanda trètâye per la bâsa de balyês ére :
-« $1 »
-dês la fonccion « $2 ».
-La bâsa de balyês at retornâ la fôta « $3 : $4 ».',
 'laggedslavemode' => "'''Atencion :''' cela pâge pôt pas contegnir tôs los dèrriérs changements fêts.",
 'readonly' => 'Bâsa de balyês vèrrolyêe',
 'enterlockreason' => 'Buchiéd na rêson du vèrroly et pués un’èstimacion de la sina durâ',
@@ -706,7 +695,6 @@ Por apondre ou ben changiér des traduccions sur tôs los vouiquis, se vos plét
 'editinginterface' => "'''Atencion :''' vos éte aprés changiér na pâge empleyêe por fâre lo tèxto d’entèrface de la programeria.
 Los changements sè cognetront sur l’aparence de l’entèrface utilisator por los ôtros utilisators de ceti vouiqui.
 Por apondre ou ben changiér des traduccions sur tôs los vouiquis, se vos plét empleyéd [//translatewiki.net/ translatewiki.net], lo projèt de localisacion de MediaWiki.",
-'sqlhidden' => '(Demanda SQL cachiêe)',
 'cascadeprotected' => 'Cela pâge-que est protègiêe, el est entrebetâye dedens {{PLURAL:$1|ceta pâge qu’est étâye protègiêe|cetes pâges que sont étâyes protègiêes}} avouéc lo chouèx « protèccion en cascâda » activâ :
 $2',
 'namespaceprotected' => "Vos éd pas la pèrmission de changiér les pâges de l’èspâço de noms « '''$1''' ».",
@@ -754,7 +742,6 @@ Oubliâd pas de changiér voutres [[Special:Preferences|prèferences dessus {{SI
 'remembermypassword' => 'Sè rapelar de mon contresegno sur ceti navigator (por lo més $1 jorn{{PLURAL:$1||s}})',
 'userlogin-remembermypassword' => 'Gouardar ma sèance activa',
 'userlogin-signwithsecure' => 'Empleyér un branchement sècurisâ',
-'securelogin-stick-https' => 'Réstar branchiê en HTTPS aprés lo branchement',
 'yourdomainname' => 'Voutron domêno :',
 'password-change-forbidden' => 'Vos pouede pas changiér los contresegnos sur ceti vouiqui.',
 'externaldberror' => 'Ou ben na fôta est arrevâye avouéc la bâsa de balyês d’ôtentificacion de defôr ou ben vos éte pas ôtorisâ{{GENDER:||ye|(ye)}} a betar a jorn voutron compto de defôr.',
@@ -887,7 +874,7 @@ Por chavonar lo branchement, vos dête buchiér un contresegno novél ique :',
 'newpassword' => 'Contresegno novél :',
 'retypenew' => 'Confirmar lo contresegno novél :',
 'resetpass_submit' => 'Changiér lo contresegno et pués sè branchiér',
-'resetpass_success' => 'Voutron contresegno est étâ changiê avouéc reusséta !
+'changepassword-success' => 'Voutron contresegno est étâ changiê avouéc reusséta !
 Branchement en côrs...',
 'resetpass_forbidden' => 'Los contresegnos pôvont pas étre changiês',
 'resetpass-no-info' => 'Vos dête étre branchiê por arrevar tot drêt a cela pâge.',
@@ -2172,12 +2159,6 @@ Oubliâd pas de controlar s’y at gins d’ôtro lim de vers los modèlos devan
 'statistics-users-active-desc' => 'Utilisators qu’ant fêt por lo muens un’accion pendent {{PLURAL:$1|lo jorn passâ|los $1 jorns passâs}}',
 'statistics-mostpopular' => 'Pâges les ples vues',
 
-'disambiguations' => 'Pâges qu’ant des lims de vers des pâges d’homonimia',
-'disambiguationspage' => 'Template:Homonimia',
-'disambiguations-text' => "Cetes pâges ant por lo muens un lim de vers na '''pâge d’homonimia'''.
-Devriant pletout pouentar vers na pâge que vat avouéc.<br />
-Na pâge est trètâye coment na pâge d’homonimia s’emplèye un modèlo liyê a [[MediaWiki:Disambiguationspage]].",
-
 'pageswithprop' => 'Pâges avouéc na propriètât de pâge',
 'pageswithprop-legend' => 'Pâges avouéc na propriètât de pâge',
 'pageswithprop-text' => 'Ceta pâge liste les pâges qu’emplèyont na propriètât de pâge particuliére.',
@@ -2851,12 +2832,9 @@ O est possiblo qu’un dèblocâjo èye ja étâ fêt.',
 Portant, el est avouéc la plage $2 que pôt étre dèblocâ.',
 'ip_range_invalid' => 'Plage d’adrèces IP fôssa.',
 'ip_range_toolarge' => 'Los blocâjos de plages d’adrèces IP ples grantes que /$1 sont pas ôtorisâs.',
-'blockme' => 'Blocâd-mè',
 'proxyblocker' => "Bloquior de sèrvors mandatèros (''proxies'')",
-'proxyblocker-disabled' => 'Cela fonccion est dèsactivâ.',
 'proxyblockreason' => "Voutra adrèce IP at étâ blocâ perce qu’o est un sèrvor mandatèro (''proxy'') uvèrt.
 Vos volyéd veriér vers voutron fornissor d’accès u Malyâjo ou ben voutra assistance tècnica et l’enformar de cél problèmo de sècuritât sèriox.",
-'proxyblocksuccess' => 'Chavonâ.',
 'sorbsreason' => "Voutra adrèce IP est listâ coment sèrvor mandatèro (''proxy'') uvèrt dens lo DNSBL utilisâ per {{SITENAME}}.",
 'sorbs_create_account_reason' => "Voutra adrèce IP est listâ coment sèrvor mandatèro (''proxy'') uvèrt dens lo DNSBL utilisâ per {{SITENAME}}.
 Vos pouede pas fâre un compto.",
@@ -3216,6 +3194,8 @@ O est probâblament diu a un lim de vers un seto de defôr qu’aparêt sur la l
 'spam_reverting' => 'Rètablissement de la dèrriére vèrsion que contint gins de lim de vers $1',
 'spam_blanking' => 'Totes les vèrsions que contegnont des lims de vers $1 sont blanchies',
 'spam_deleting' => 'Totes les vèrsions que contegnont des lims de vers $1 sont suprimâs',
+'simpleantispam-label' => "Contrôlo anti-spame.
+Enscrîde '''REN''' ique !",
 
 # Info page
 'pageinfo-title' => 'Enformacions por « $1 »',
@@ -3865,7 +3845,7 @@ Volyéd confirmar que vos voléd franc refâre cela pâge.",
 # Separators for various lists, etc.
 'semicolon-separator' => '&nbsp;;&#32;',
 'colon-separator' => '&nbsp;:&#32;',
-'percent' => '$1&nbsp;%',
+'percent' => '$1&#160;%',
 
 # Multipage image navigation
 'imgmultipageprev' => '← pâge devant',

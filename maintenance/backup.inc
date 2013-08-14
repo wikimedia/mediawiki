@@ -170,11 +170,8 @@ class BackupDumper {
 					break;
 				case "force-normal":
 					if ( !function_exists( 'utf8_normalize' ) ) {
-						wfDl( "php_utfnormal.so" );
-						if ( !function_exists( 'utf8_normalize' ) ) {
-							$this->fatalError( "Failed to load UTF-8 normalization extension. " .
-								"Install or remove --force-normal parameter to use slower code." );
-						}
+						$this->fatalError( "UTF-8 normalization extension not loaded. " .
+							"Install or remove --force-normal parameter to use slower code." );
 					}
 					break;
 				default:

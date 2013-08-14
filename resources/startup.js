@@ -39,7 +39,9 @@ function isCompatible( ua ) {
 		// Any NetFront based browser
 		ua.match( /NetFront/ ) ||
 		// Opera Mini, all versions
-		ua.match( /Opera Mini/ )
+		ua.match( /Opera Mini/ ) ||
+		// Nokia's Ovi Browser
+		ua.match( /S40OviBrowser/ )
 	);
 }
 

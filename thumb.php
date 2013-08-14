@@ -76,7 +76,7 @@ function wfThumbHandle404() {
 		return;
 	}
 
-	$params = wfExtractThumbParams( $matches['title'] ); // basic wiki URL param extracting
+	$params = wfExtractThumbRequestInfo( $matches['title'] ); // basic wiki URL param extracting
 	if ( $params == null ) {
 		wfThumbError( 400, 'The specified thumbnail parameters are not recognized.' );
 		return;
@@ -88,28 +88,24 @@ function wfThumbHandle404() {
 /**
  * Stream a thumbnail specified by parameters
  *
- * @param $params Array
+ * @param $params Array List of thumbnailing parameters. In addition to parameters
+ *  passed to the MediaHandler, this may also includes the keys:
+ *   f (for filename), archived (if archived file), temp (if temp file),
+ *   w (alias for width), p (alias for page), r (ignored; historical),
+ *   rel404 (path for render on 404 to verify hash path correct),
+ *   thumbName (thumbnail name to potentially extract more parameters from
+ *   e.g. 'lossy-page1-120px-Foo.tiff' would add page, lossy and width
+ *   to the parameters)
  * @return void
  */
 function wfStreamThumb( array $params ) {
 	global $wgVaryOnXFP;
 
-	wfProfileIn( __METHOD__ );
+	$section = new ProfileSection( __METHOD__ );
 
 	$headers = array(); // HTTP headers to send
 
 	$fileName = isset( $params['f'] ) ? $params['f'] : '';
-	unset( $params['f'] );
-
-	// Backwards compatibility parameters
-	if ( isset( $params['w'] ) ) {
-		$params['width'] = $params['w'];
-		unset( $params['w'] );
-	}
-	if ( isset( $params['p'] ) ) {
-		$params['page'] = $params['p'];
-	}
-	unset( $params['r'] ); // ignore 'r' because we unconditionally pass File::RENDER
 
 	// Is this a thumb of an archived file?
 	$isOld = ( isset( $params['archived'] ) && $params['archived'] );
@@ -136,13 +132,11 @@ function wfStreamThumb( array $params ) {
 		$bits = explode( '!', $fileName, 2 );
 		if ( count( $bits ) != 2 ) {
 			wfThumbError( 404, wfMessage( 'badtitletext' )->text() );
-			wfProfileOut( __METHOD__ );
 			return;
 		}
 		$title = Title::makeTitleSafe( NS_FILE, $bits[1] );
 		if ( !$title ) {
 			wfThumbError( 404, wfMessage( 'badtitletext' )->text() );
-			wfProfileOut( __METHOD__ );
 			return;
 		}
 		$img = RepoGroup::singleton()->getLocalRepo()->newFromArchiveName( $title, $fileName );
@@ -153,7 +147,6 @@ function wfStreamThumb( array $params ) {
 	// Check the source file title
 	if ( !$img ) {
 		wfThumbError( 404, wfMessage( 'badtitletext' )->text() );
-		wfProfileOut( __METHOD__ );
 		return;
 	}
 
@@ -163,21 +156,67 @@ function wfStreamThumb( array $params ) {
 		if ( !$img->getTitle() || !$img->getTitle()->userCan( 'read' ) ) {
 			wfThumbError( 403, 'Access denied. You do not have permission to access ' .
 				'the source file.' );
-			wfProfileOut( __METHOD__ );
 			return;
 		}
 		$headers[] = 'Cache-Control: private';
 		$varyHeader[] = 'Cookie';
 	}
 
+	// Do rendering parameters extraction from thumbnail name.
+	if ( isset( $params['thumbName'] ) ) {
+		$params = wfExtractThumbParams( $img, $params );
+	}
+	if ( $params == null ) {
+		wfThumbError( 400, 'The specified thumbnail parameters are not recognized.' );
+		return;
+	}
+
+
 	// Check the source file storage path
 	if ( !$img->exists() ) {
+		$redirectedLocation = false;
+		if ( !$isTemp ) {
+			// Check for file redirect
+			// Since redirects are associated with pages, not versions of files,
+			// we look for the most current version to see if its a redirect.
+			$possRedirFile = RepoGroup::singleton()->getLocalRepo()->findFile( $img->getName() );
+			if ( $possRedirFile && !is_null( $possRedirFile->getRedirected() ) ) {
+				$redirTarget = $possRedirFile->getName();
+				$targetFile = wfLocalFile( Title::makeTitleSafe( NS_FILE, $redirTarget ) );
+				if ( $targetFile->exists() ) {
+					$newThumbName = $targetFile->thumbName( $params );
+					if ( $isOld ) {
+						$newThumbUrl = $targetFile->getArchiveThumbUrl(
+							$bits[0] . '!' . $targetFile->getName(), $newThumbName );
+					} else {
+						$newThumbUrl = $targetFile->getThumbUrl( $newThumbName );
+					}
+					$redirectedLocation = wfExpandUrl( $newThumbUrl, PROTO_CURRENT );
+				}
+			}
+		}
+
+		if ( $redirectedLocation ) {
+			// File has been moved. Give redirect.
+			$response = RequestContext::getMain()->getRequest()->response();
+			$response->header( "HTTP/1.1 302 " . HttpStatus::getMessage( 302 ) );
+			$response->header( 'Location: ' . $redirectedLocation );
+			$response->header( 'Expires: ' .
+				gmdate( 'D, d M Y H:i:s', time() + 12 * 3600 ) . ' GMT' );
+			if ( $wgVaryOnXFP ) {
+				$varyHeader[] = 'X-Forwarded-Proto';
+			}
+			if ( count( $varyHeader ) ) {
+				$response->header( 'Vary: ' . implode( ', ', $varyHeader ) );
+			}
+			return;
+		}
+
+		// If its not a redirect that has a target as a local file, give 404.
 		wfThumbError( 404, "The source file '$fileName' does not exist." );
-		wfProfileOut( __METHOD__ );
 		return;
 	} elseif ( $img->getPath() === false ) {
 		wfThumbError( 500, "The source file '$fileName' is not locally accessible." );
-		wfProfileOut( __METHOD__ );
 		return;
 	}
 
@@ -192,23 +231,32 @@ function wfStreamThumb( array $params ) {
 		wfRestoreWarnings();
 		if ( wfTimestamp( TS_UNIX, $img->getTimestamp() ) <= $imsUnix ) {
 			header( 'HTTP/1.1 304 Not Modified' );
-			wfProfileOut( __METHOD__ );
 			return;
 		}
 	}
+
+	// Backwards compatibility parameters
+	if ( isset( $params['w'] ) ) {
+		$params['width'] = $params['w'];
+		unset( $params['w'] );
+	}
+	if ( isset( $params['p'] ) ) {
+		$params['page'] = $params['p'];
+	}
+	unset( $params['r'] ); // ignore 'r' because we unconditionally pass File::RENDER
+	unset( $params['f'] ); // We're done with 'f' parameter.
+
 
 	// Get the normalized thumbnail name from the parameters...
 	try {
 		$thumbName = $img->thumbName( $params );
 		if ( !strlen( $thumbName ) ) { // invalid params?
 			wfThumbError( 400, 'The specified thumbnail parameters are not valid.' );
-			wfProfileOut( __METHOD__ );
 			return;
 		}
 		$thumbName2 = $img->thumbName( $params, File::THUMB_FULL_NAME ); // b/c; "long" style
 	} catch ( MWException $e ) {
 		wfThumbError( 500, $e->getHTML() );
-		wfProfileOut( __METHOD__ );
 		return;
 	}
 
@@ -233,13 +281,11 @@ function wfStreamThumb( array $params ) {
 			if ( count( $varyHeader ) ) {
 				$response->header( 'Vary: ' . implode( ', ', $varyHeader ) );
 			}
-			wfProfileOut( __METHOD__ );
 			return;
 		} else {
 			wfThumbError( 404, "The given path of the specified thumbnail is incorrect;
 				expected '" . $img->getThumbRel( $thumbName ) . "' but got '" .
 				rawurldecode( $params['rel404'] ) . "'." );
-			wfProfileOut( __METHOD__ );
 			return;
 		}
 	}
@@ -255,7 +301,12 @@ function wfStreamThumb( array $params ) {
 	$thumbPath = $img->getThumbPath( $thumbName );
 	if ( $img->getRepo()->fileExists( $thumbPath ) ) {
 		$img->getRepo()->streamFile( $thumbPath, $headers );
-		wfProfileOut( __METHOD__ );
+		return;
+	}
+
+	$user = RequestContext::getMain()->getUser();
+	if ( $user->pingLimiter( 'renderfile' ) ) {
+		wfThumbError( 500, wfMessage( 'actionthrottledtext' ) );
 		return;
 	}
 
@@ -287,18 +338,28 @@ function wfStreamThumb( array $params ) {
 		// Stream the file if there were no errors
 		$thumb->streamFile( $headers );
 	}
-
-	wfProfileOut( __METHOD__ );
 }
 
 /**
- * Extract the required params for thumb.php from the thumbnail request URI.
- * At least 'width' and 'f' should be set if the result is an array.
+ * Convert pathinfo type parameter, into normal request parameters
+ *
+ * So for example, if the request was redirected from
+ * /w/images/thumb/a/ab/Foo.png/120px-Foo.png. The $thumbRel parameter
+ * of this function would be set to "a/ab/Foo.png/120px-Foo.png".
+ * This method is responsible for turning that into an array
+ * with the folowing keys:
+ *  * f => the filename (Foo.png)
+ *  * rel404 => the whole thing (a/ab/Foo.png/120px-Foo.png)
+ *  * archived => 1 (If the request is for an archived thumb)
+ *  * temp => 1 (If the file is in the "temporary" zone)
+ *  * thumbName => the thumbnail name, including parameters (120px-Foo.png)
+ *
+ * Transform specific parameters are set later via wfExtractThumbParams().
  *
  * @param $thumbRel String Thumbnail path relative to the thumb zone
  * @return Array|null associative params array or null
  */
-function wfExtractThumbParams( $thumbRel ) {
+function wfExtractThumbRequestInfo( $thumbRel ) {
 	$repo = RepoGroup::singleton()->getLocalRepo();
 
 	$hashDirReg = $subdirReg = '';
@@ -324,12 +385,59 @@ function wfExtractThumbParams( $thumbRel ) {
 		$params['temp'] = 1;
 	}
 
-	// Check hooks if parameters can be extracted
-	// Hooks return false if they manage to *resolve* the parameters
+	$params['thumbName'] = $thumbname;
+	return $params;
+}
+
+/**
+ * Convert a thumbnail name (122px-foo.png) to parameters, using
+ * file handler.
+ *
+ * @param File $file File object for file in question.
+ * @param $param Array Array of parameters so far.
+ * @return Array parameters array with more parameters.
+ */
+function wfExtractThumbParams( $file, $params ) {
+	if ( !isset( $params['thumbName'] ) ) {
+		throw new MWException( "No thumbnail name passed to wfExtractThumbParams" );
+	}
+
+	$thumbname = $params['thumbName'];
+	unset( $params['thumbName'] );
+
+	// Do the hook first for older extensions that rely on it.
 	if ( !wfRunHooks( 'ExtractThumbParameters', array( $thumbname, &$params ) ) ) {
+		// Check hooks if parameters can be extracted
+		// Hooks return false if they manage to *resolve* the parameters
+		// This hook should be considered deprecated
+		wfDeprecated( 'ExtractThumbParameters', '1.22' );
 		return $params; // valid thumbnail URL (via extension or config)
-	// Check if the parameters can be extracted from the thumbnail name...
-	} elseif ( preg_match( '!^(page(\d*)-)*(\d*)px-[^/]*$!', $thumbname, $matches ) ) {
+	}
+
+	// FIXME: Files in the temp zone don't set a mime type, which means
+	// they don't have a handler. Which means we can't parse the param
+	// string. However, not a big issue as what good is a param string
+	// if you have no handler to make use of the param string and
+	// actually generate the thumbnail.
+	$handler = $file->getHandler();
+
+	// Based on UploadStash::parseKey
+	$fileNamePos = strrpos( $thumbname, $params['f'] );
+	if ( $fileNamePos === false ) {
+		// Maybe using a short filename? (see FileRepo::nameForThumb)
+		$fileNamePos = strrpos( $thumbname, 'thumbnail' );
+	}
+
+	if ( $handler && $fileNamePos !== false ) {
+		$paramString = substr( $thumbname, 0, $fileNamePos - 1 );
+		$extraParams = $handler->parseParamString( $paramString );
+		if ( $extraParams !== false ) {
+			return $params + $extraParams;
+		}
+	}
+
+	// As a last ditch fallback, use the traditional common parameters
+	if ( preg_match( '!^(page(\d*)-)*(\d*)px-[^/]*$!', $thumbname, $matches ) ) {
 		list( /* all */, $pagefull, $pagenum, $size ) = $matches;
 		$params['width'] = $size;
 		if ( $pagenum ) {
@@ -337,8 +445,7 @@ function wfExtractThumbParams( $thumbRel ) {
 		}
 		return $params; // valid thumbnail URL
 	}
-
-	return null; // not a valid thumbnail URL
+	return null;
 }
 
 /**
@@ -362,6 +469,7 @@ function wfThumbError( $status, $msg ) {
 		header( 'HTTP/1.1 500 Internal server error' );
 	}
 	if ( $wgShowHostnames ) {
+		header( 'X-MW-Thumbnail-Renderer: ' . wfHostname() );
 		$url = htmlspecialchars( isset( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : '' );
 		$hostname = htmlspecialchars( wfHostname() );
 		$debug = "<!-- $url -->\n<!-- $hostname -->\n";

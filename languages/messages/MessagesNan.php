@@ -251,7 +251,7 @@ $1',
 'pool-queuefull' => 'Tūi-lia̍t pâi moá ah',
 'pool-errorunknown' => 'M̄-chai siáⁿ chhò-gō͘',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'hían-sī',
 'aboutpage' => 'Project:koan-hē',
 'copyright' => 'Tī $1 tiâu-kiāⁿ chi hā khó sú-iōng loē-iông',
@@ -334,12 +334,6 @@ Che mā khó-lêng sī {{SITENAME}} só͘ sú-iōng ê nńg-thé chhut būn-tê.
 # General errors
 'error' => 'Chhò-gō·',
 'databaseerror' => 'Chu-liāu-khò· chhò-gō·',
-'dberrortext' => 'Chu-liāu-khò͘ hoat-seng cha-sûn ê gí-hoat chhò-ngō͘.
-Che khó-lêng sī nńg-thé ê chhò-ngō͘.
-Téng chi̍t ê cha-sûn sī :
-<blockquote><tt>$1</tt></blockquote>
-tī hâm-sò͘  "<tt>$2</tt>".
-Chu-liāu-khò͘ thoân hoê ê chhò-ngō͘ "<tt>$3: $4</tt>".',
 'readonly' => 'Chu-liāu-khò· só tiâu leh',
 'enterlockreason' => 'Phah beh hong-só ê lí-iû, pau-koah ko͘-kè siáⁿ-mi̍h sî-chūn ē kái-tû hong-só.',
 'readonlytext' => 'Chu-liāu-khò· hiān-chú-sî só tiâu leh, bô khai-hòng hō· lâng siu-kái. Che tāi-khài sī in-ūi teh pān î-siu khang-khòe, oân-sêng liáu-āu èng-tong tō ē hôe-ho̍k chèng-siông. Hū-chek ê hêng-chèng jîn-oân lâu chit-ê soat-bêng: $1',
@@ -379,7 +373,6 @@ Chhiáⁿ tī kúi hun-cheng hāu chiah koh chhì.',
 'viewsourcetext' => 'Lí ē-sái khoàⁿ ia̍h khó͘-pih chit ia̍h ê goân-sú loē-iông:',
 'protectedinterface' => 'Chit ia̍h thê-kiong nńg-thé kài-bīn ēng ê bûn-jī. Ūi beh ī-hông lâng chau-that, só͘-í ū siū tio̍h pó-hō͘.',
 'editinginterface' => "'''Sè-jī:''' Lí tng teh siu-kái 1 bīn thê-kiong nńg-thé kài-bīn bûn-jī ê ia̍h. Jīn-hô kái-piàn to ē éng-hióng tio̍h kî-thaⁿ iōng-chiá ê sú-iōng kài-bīn.",
-'sqlhidden' => '(Tshàng SQL tsa-sûn)',
 'cascadeprotected' => 'Chit-ê ia̍h í-keng hông pó-hō͘ bē kái tit. In-ūi i tī ē-bīn {{PLURAL:$1|ê|ê}} liân-só pó-hō͘ lāi-té:
 $2',
 'namespaceprotected' => "Lí bô khoân-lī kái '''$1'''  miâ-khong-kan ê ia̍h",
@@ -752,12 +745,6 @@ Tī pat-lâng liân-lo̍k lí ê sî-chūn bē kā e-mail tsū-tsí siá chhut--
 # Statistics
 'statistics' => 'Thóng-kè',
 'statistics-header-users' => 'Iōng-chiá thóng-kè sò·-ba̍k',
-
-'disambiguations' => 'Khu-pia̍t-ia̍h',
-'disambiguationspage' => 'Template:disambig
-Template:KhPI
-Template:Khu-pia̍t-iah
-Template:Khu-pia̍t-ia̍h',
 
 'doubleredirects' => 'Siang-thâu choán-ia̍h',
 

@@ -250,7 +250,7 @@ $messages = array(
 'jumptonavigation' => 'nawigacëji',
 'jumptosearch' => 'szëkbë',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Ò {{SITENAME}}',
 'aboutpage' => 'Project:Ò_{{SITENAME}}',
 'copyright' => 'Zamkłosc hewòtny starnë je ùżëczónô wedle reglów $1.',
@@ -811,8 +811,6 @@ Wszëtczé gòdzënë tikają conë ùniwersalnégò czasë.',
 'statistics' => 'Statisticzi',
 'statistics-header-users' => 'Statistika brëkòwników',
 
-'disambiguationspage' => 'Template:Starnë_ùjednoznacznieniô',
-
 'doubleredirects' => 'Dëbeltné przeczérowania',
 
 'brokenredirects' => 'Zerwóné przeczerowania',
@@ -1043,7 +1041,6 @@ Biéj do [[Special:BlockList|lëstë zascëgónëch adresów IP]] abë òbaczëc
 'blocklogentry' => 'zablokòwôł [[$1]], czas blokadë: $2 $3',
 'unblocklogentry' => 'òdblokòwôł $1',
 'block-log-flags-nocreate' => 'blokada ùsôdzaniô kònta',
-'proxyblocksuccess' => 'Fertich.',
 
 # Developer tools
 'lockbtn' => 'Zascëgôj bazã pòdôwków',

@@ -1,6 +1,6 @@
 <?php
 /**
- * Tests for wfBCP47()
+ * @covers ::wfBCP47
  */
 class WfBCP47Test extends MediaWikiTestCase {
 	/**
@@ -13,7 +13,7 @@ class WfBCP47Test extends MediaWikiTestCase {
 	 * @see http://tools.ietf.org/html/bcp47
 	 * @dataProvider provideLanguageCodes()
 	 */
-	function testBCP47( $code, $expected ) {
+	public function testBCP47( $code, $expected ) {
 		$code = strtolower( $code );
 		$this->assertEquals( $expected, wfBCP47( $code ),
 			"Applying BCP47 standard to lower case '$code'"

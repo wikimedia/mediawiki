@@ -504,7 +504,7 @@ class ApiUpload extends ApiBase {
 			case UploadBase::FILETYPE_BADTYPE:
 				$extradata = array(
 					'filetype' => $verification['finalExt'],
-					'allowed' => $wgFileExtensions
+					'allowed' => array_values( array_unique( $wgFileExtensions ) )
 				);
 				$this->getResult()->setIndexedTagName( $extradata['allowed'], 'ext' );
 
@@ -565,7 +565,8 @@ class ApiUpload extends ApiBase {
 			if ( isset( $warnings['exists'] ) ) {
 				$warning = $warnings['exists'];
 				unset( $warnings['exists'] );
-				$warnings[$warning['warning']] = $warning['file']->getName();
+				$localFile = isset( $warning['normalizedFile'] ) ? $warning['normalizedFile'] : $warning['file'];
+				$warnings[$warning['warning']] = $localFile->getName();
 			}
 		}
 		return $warnings;

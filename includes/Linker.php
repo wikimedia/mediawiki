@@ -1960,6 +1960,7 @@ class Linker {
 	 * @return String: HTML output
 	 */
 	public static function formatTemplates( $templates, $preview = false, $section = false, $more = null ) {
+		global $wgLang;
 		wfProfileIn( __METHOD__ );
 
 		$outText = '';
@@ -1987,13 +1988,28 @@ class Linker {
 
 			usort( $templates, 'Title::compare' );
 			foreach ( $templates as $titleObj ) {
-				$r = $titleObj->getRestrictions( 'edit' );
-				if ( in_array( 'sysop', $r ) ) {
-					$protected = wfMessage( 'template-protected' )->parse();
-				} elseif ( in_array( 'autoconfirmed', $r ) ) {
-					$protected = wfMessage( 'template-semiprotected' )->parse();
-				} else {
-					$protected = '';
+				$protected = '';
+				$restrictions = $titleObj->getRestrictions( 'edit' );
+				if ( $restrictions ) {
+					// Check backwards-compatible messages
+					$msg = null;
+					if ( $restrictions === array( 'sysop' ) ) {
+						$msg = wfMessage( 'template-protected' );
+					} elseif ( $restrictions === array( 'autoconfirmed' ) ) {
+						$msg = wfMessage( 'template-semiprotected' );
+					}
+					if ( $msg && !$msg->isDisabled() ) {
+						$protected = $msg->parse();
+					} else {
+						// Construct the message from restriction-level-*
+						// e.g. restriction-level-sysop, restriction-level-autoconfirmed
+						$msgs = array();
+						foreach ( $restrictions as $r ) {
+							$msgs[] = wfMessage( "restriction-level-$r" )->parse();
+						}
+						$protected = wfMessage( 'parentheses' )
+							->rawParams( $wgLang->commaList( $msgs ) )->escaped();
+					}
 				}
 				if ( $titleObj->quickUserCan( 'edit' ) ) {
 					$editLink = self::link(
@@ -2100,9 +2116,10 @@ class Linker {
 			$accesskey = self::accesskey( $name );
 			if ( $accesskey !== false ) {
 				if ( $tooltip === false || $tooltip === '' ) {
-					$tooltip = "[$accesskey]";
+					$tooltip = wfMessage( 'brackets', $accesskey )->escaped();
 				} else {
-					$tooltip .= " [$accesskey]";
+					$tooltip .= wfMessage( 'word-separator' )->escaped();
+					$tooltip .= wfMessage( 'brackets', $accesskey )->escaped();
 				}
 			}
 		}

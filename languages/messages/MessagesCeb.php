@@ -285,7 +285,7 @@ Palihog paghulat bag-o nimo sulayan pag-akses og usab ang kining panid.
 
 $1',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Mahitungod sa {{SITENAME}}',
 'aboutpage' => 'Project:Mahitungod sa',
 'copyright' => 'Mga sulod makita sa $1.',
@@ -361,17 +361,6 @@ Ang lista sa mga balidong espesyal nga mga panid makita sa [[Special:SpecialPage
 # General errors
 'error' => 'Sayop',
 'databaseerror' => 'Sayop sa database',
-'dberrortext' => 'May nahitabong sayop sa database query syntax.
-Mahimong nagpakita kini og bug sa software.
-Ang naulahing gi-attempt nga database query mao ang:
-<blockquote><tt>$1</tt></blockquote>
-from within function "<tt>$2</tt>".
-MySQL returned error "<tt>$3: $4</tt>".',
-'dberrortextcl' => 'May nahitabong sayop sa database query syntax.
-Ang naulahing gi-attempt nga database query mao ang:
-"$1"
-from within function "$2".
-MySQL returned error "$3: $4"',
 'laggedslavemode' => 'Pahibalo: Mahimong dili mahiapil sa panid ang mga bag-ong kausaban.',
 'readonly' => 'Gitrangkahan ang database',
 'enterlockreason' => 'Pagbutang og rason para sa lock, apil ang banabana kon kanus-a ma-release ang lock',
@@ -422,7 +411,6 @@ Palihog sulayi'g usab sa pipila ka minutos.",
 'editinginterface' => "'''Pahibalo:''' Imo nang usbon ang panid nga gigamit sa paghatag og interface text para sa software.
 Ang mga pag-usab niining panid moapekto sa appearance sa user interface nga alang sa ubang gumagamit.
 Para sa mga paghubad, palihog ikonsider ang paggamit sa [//translatewiki.net/wiki/Main_Page?setlang=ceb translatewiki.net], ang MediaWiki localisation project.",
-'sqlhidden' => '(nakatagong SQL query)',
 'cascadeprotected' => 'Ang kining panid giprotektahan sa pag-usab tungod kay nahiapil kini sa mosunod nga {{PLURAL:$1|panid, nga|mga panid, nga}} giprotektahan pinaagi sa pag-turn on gamit ang "cascading" nga opsyon:
 $2',
 'namespaceprotected' => "Wala kay permiso nga mag-usab sa mga panid sa '''$1''' nga ngalang espasyo.",

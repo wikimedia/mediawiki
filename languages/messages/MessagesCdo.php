@@ -29,7 +29,7 @@ $messages = array(
 'tog-hideminor' => '藏起最近改變其過要修改',
 'tog-hidepatrolled' => '藏起最近改變其巡邏修改',
 'tog-numberheadings' => '自動編號其標題',
-'tog-editondblclick' => '雙擊就修改頁面（需要JavaScript其支持）',
+'tog-editondblclick' => '雙擊就修改頁面',
 'tog-rememberpassword' => '共我其躒底記錄記敆茲萆瀏覽器𡅏（最長$1{{PLURAL:$1|日}}）',
 'tog-watchcreations' => '加添我開其頁面共我上傳其文件遘我其監視單',
 'tog-watchdefault' => '添加我編輯其頁面共文件遘我其監視單',
@@ -45,7 +45,7 @@ $messages = array(
 'tog-shownumberswatching' => '顯示監視用戶其數量',
 'tog-oldsig' => '存在其簽名',
 'tog-fancysig' => '共簽名當成維基文本（無自動鏈接）',
-'tog-uselivepreview' => '使即時預覽（需要JavaScript）（敆𡅏實驗）',
+'tog-uselivepreview' => '使即時預覽（敆𡅏實驗）',
 'tog-forceeditsummary' => '提醒我行遘蜀萆空白其編輯總結',
 'tog-watchlisthideown' => '趁監視單𡅏藏起我其修改',
 'tog-watchlisthidebots' => '藏起監視單其機器人其修改',
@@ -157,7 +157,7 @@ $messages = array(
 'newwindow' => '（敆新窗口打開）',
 'cancel' => '取消',
 'moredotdotdot' => '更価...',
-'morenotlisted' => '固有未列出其',
+'morenotlisted' => '茲蜀萆單單𣍐完整。',
 'mypage' => '頁面',
 'mytalk' => '我其討論',
 'anontalk' => '茲隻IP其討論頁',
@@ -257,7 +257,7 @@ $1',
 'pool-queuefull' => '隊列池已經滿了',
 'pool-errorunknown' => '𣍐八什乇鄭咯',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '關於{{SITENAME}}',
 'aboutpage' => 'Project:關於',
 'copyright' => '內容敆$1下底會使獲得。',
@@ -342,17 +342,6 @@ $1',
 # General errors
 'error' => '鄭咯',
 'databaseerror' => '數據庫有鄭',
-'dberrortext' => '蜀萆數據庫查詢其語法錯誤發生咯。
-茲可能代表茲軟件其蜀萆漏洞。
-最後嘗試其數據庫查詢是：
-<blockquote><code>$1</code></blockquote>
-趁函數「<code>$2</code>」來其。
-數據庫返回錯誤「<samp>$3: $4</samp>」。',
-'dberrortextcl' => '蜀萆數據庫查詢語法錯誤發生咯。
-最後蜀回嘗試其數據庫查詢是：
-「$1」
-趁函數「$2」來其。
-數據庫返回錯誤「$3: $4」',
 'laggedslavemode' => "'''警告：'''頁面可能無最近其更新。",
 'readonly' => '數據庫乞鎖起咯',
 'readonlytext' => 'Só-gé̤ṳ-kó cī-buàng ké̤ṳk nè̤ng sō̤ kī lāu, mâ̤-sāi siā sĭng dèu-mĕ̤k hĕ̤k có̤ siŭ-gāi, ô kō̤-nèng sê ôi-lāu nĭk-siòng mì-hô, cĭ-hâiu cêu â̤ ciáng-siòng.
@@ -392,7 +381,6 @@ Sō̤ kī só-gé̤ṳ-kó gì guāng-lī-uòng cūng-kuāng gāi-sék: $1',
 'editinginterface' => "'''警告：'''汝敆𡅏修改其頁面廮𡅏提供茲蜀萆軟件其界面文本。
 茲蜀頁其改變會影響遘其它用戶其用戶界面其顯示。
 如果蔔想修改維基其翻譯，起動遘媒體維基本地化計劃[//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net]。",
-'sqlhidden' => '（SQL查詢藏起咯）',
 'namespaceprotected' => "汝𣍐使修改敆'''$1'''命名空間其頁面。",
 'customcssprotected' => '汝𣍐使修改茲蜀萆CSS頁面，因為伊有別蜀隻用戶其設定。',
 'customjsprotected' => '汝𣍐使修改茲蜀萆JavaScript頁面，因為伊有別蜀隻用戶其設定。',
@@ -430,7 +418,6 @@ Sō̤ kī só-gé̤ṳ-kó gì guāng-lī-uòng cūng-kuāng gāi-sék: $1',
 'remembermypassword' => '共我敆茲蜀萆瀏覽器其躒底記錄記定幾日（最価$1日）{{PLURAL:$1}}',
 'userlogin-remembermypassword' => '保持我躒底其',
 'userlogin-signwithsecure' => '使安全其連接',
-'securelogin-stick-https' => '躒底以後保持HTTPS連接',
 'yourdomainname' => '汝其域名：',
 'password-change-forbidden' => '汝𣍐使敆茲蜀萆維基百科𡅏修改密碼。',
 'externaldberror' => '可能是驗證數據庫鄭咯，或者是汝𣍐使升級汝其外部賬戶。',
@@ -881,8 +868,6 @@ Sō̤ kī só-gé̤ṳ-kó gì guāng-lī-uòng cūng-kuāng gāi-sék: $1',
 # Statistics
 'statistics' => '統計',
 'statistics-header-users' => '用戶統計',
-
-'disambiguationspage' => 'Template:歧義',
 
 'brokenredirects-edit' => '改',
 'brokenredirects-delete' => '刪',

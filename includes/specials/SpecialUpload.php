@@ -93,7 +93,6 @@ class SpecialUpload extends SpecialPage {
 		if ( !$this->mDesiredDestName && $request->getFileName( 'wpUploadFile' ) !== null ) {
 			$this->mDesiredDestName = $request->getFileName( 'wpUploadFile' );
 		}
-		$this->mComment = $request->getText( 'wpUploadDescription' );
 		$this->mLicense = $request->getText( 'wpLicense' );
 
 		$this->mDestWarningAck = $request->getText( 'wpDestFileWarningAck' );
@@ -104,6 +103,14 @@ class SpecialUpload extends SpecialPage {
 		$this->mCopyrightSource = $request->getText( 'wpUploadSource' );
 
 		$this->mForReUpload = $request->getBool( 'wpForReUpload' ); // updating a file
+
+		$commentDefault = '';
+		$commentMsg = wfMessage( 'upload-default-description' )->inContentLanguage();
+		if ( !$this->mForReUpload && !$commentMsg->isDisabled() ) {
+			$commentDefault = $commentMsg->plain();
+		}
+		$this->mComment = $request->getText( 'wpUploadDescription', $commentDefault );
+
 		$this->mCancelUpload = $request->getCheck( 'wpCancelUpload' )
 			|| $request->getCheck( 'wpReUpload' ); // b/w compat
 
@@ -214,6 +221,8 @@ class SpecialUpload extends SpecialPage {
 	 */
 	protected function getUploadForm( $message = '', $sessionKey = '', $hideIgnoreWarning = false ) {
 		# Initialize form
+		$context = new DerivativeContext( $this->getContext() );
+		$context->setTitle( $this->getTitle() ); // Remove subpage
 		$form = new UploadForm( array(
 			'watch' => $this->getWatchCheck(),
 			'forreupload' => $this->mForReUpload,
@@ -225,8 +234,7 @@ class SpecialUpload extends SpecialPage {
 			'texttop' => $this->uploadFormTextTop,
 			'textaftersummary' => $this->uploadFormTextAfterSummary,
 			'destfile' => $this->mDesiredDestName,
-		), $this->getContext() );
-		$form->setTitle( $this->getTitle() );
+		), $context );
 
 		# Check the token, but only if necessary
 		if (
@@ -340,7 +348,7 @@ class SpecialUpload extends SpecialPage {
 			if ( $warning == 'exists' ) {
 				$msg = "\t<li>" . self::getExistsWarning( $args ) . "</li>\n";
 			} elseif ( $warning == 'duplicate' ) {
-				$msg = self::getDupeWarning( $args );
+				$msg = $this->getDupeWarning( $args );
 			} elseif ( $warning == 'duplicate-archive' ) {
 				$msg = "\t<li>" . $this->msg( 'file-deleted-duplicate',
 						Title::makeTitle( NS_FILE, $args )->getPrefixedText() )->parse()
@@ -563,8 +571,9 @@ class SpecialUpload extends SpecialPage {
 				} else {
 					$msg->params( $details['finalExt'] );
 				}
-				$msg->params( $this->getLanguage()->commaList( $wgFileExtensions ),
-					count( $wgFileExtensions ) );
+				$extensions = array_unique( $wgFileExtensions );
+				$msg->params( $this->getLanguage()->commaList( $extensions ),
+					count( $extensions ) );
 
 				// Add PLURAL support for the first parameter. This results
 				// in a bit unlogical parameter sequence, but does not break
@@ -677,12 +686,13 @@ class SpecialUpload extends SpecialPage {
 	 * @param $dupes array
 	 * @return string
 	 */
-	public static function getDupeWarning( $dupes ) {
+	public function getDupeWarning( $dupes ) {
 		if ( !$dupes ) {
 			return '';
 		}
 
-		$gallery = new ImageGallery;
+		$gallery = ImageGalleryBase::factory();
+		$gallery->setContext( $this->getContext() );
 		$gallery->setShowBytes( false );
 		foreach ( $dupes as $file ) {
 			$gallery->add( $file->getTitle() );
@@ -802,7 +812,7 @@ class UploadForm extends HTMLForm {
 		$this->mMaxUploadSize['file'] = UploadBase::getMaxUploadSize( 'file' );
 		# Limit to upload_max_filesize unless we are running under HipHop and
 		# that setting doesn't exist
-		if ( !wfIsHipHop() ) {
+		if ( !wfIsHHVM() ) {
 			$this->mMaxUploadSize['file'] = min( $this->mMaxUploadSize['file'],
 				wfShorthandToInteger( ini_get( 'upload_max_filesize' ) ),
 				wfShorthandToInteger( ini_get( 'post_max_size' ) )
@@ -869,16 +879,16 @@ class UploadForm extends HTMLForm {
 				# Everything not permitted is banned
 				$extensionsList =
 					'<div id="mw-upload-permitted">' .
-					$this->msg( 'upload-permitted', $this->getContext()->getLanguage()->commaList( $wgFileExtensions ) )->parseAsBlock() .
+					$this->msg( 'upload-permitted', $this->getContext()->getLanguage()->commaList( array_unique( $wgFileExtensions ) ) )->parseAsBlock() .
 					"</div>\n";
 			} else {
 				# We have to list both preferred and prohibited
 				$extensionsList =
 					'<div id="mw-upload-preferred">' .
-						$this->msg( 'upload-preferred', $this->getContext()->getLanguage()->commaList( $wgFileExtensions ) )->parseAsBlock() .
+						$this->msg( 'upload-preferred', $this->getContext()->getLanguage()->commaList( array_unique( $wgFileExtensions ) ) )->parseAsBlock() .
 					"</div>\n" .
 					'<div id="mw-upload-prohibited">' .
-						$this->msg( 'upload-prohibited', $this->getContext()->getLanguage()->commaList( $wgFileBlacklist ) )->parseAsBlock() .
+						$this->msg( 'upload-prohibited', $this->getContext()->getLanguage()->commaList( array_unique( $wgFileBlacklist ) ) )->parseAsBlock() .
 					"</div>\n";
 			}
 		} else {

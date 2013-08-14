@@ -7,7 +7,7 @@
 	 * @param {jQuery.Event} e
 	 */
 	function doLivePreview( e ) {
-		var $wikiPreview, copySelectors, removeSelectors, $copyElements, $spinner,
+		var $wikiPreview, $editform, copySelectors, $copyElements, $spinner,
 			targetUrl, postData, $previewDataHolder;
 
 		e.preventDefault();
@@ -16,6 +16,7 @@
 		$( mw ).trigger( 'LivePreviewPrepare' );
 
 		$wikiPreview = $( '#wikiPreview' );
+		$editform = $( '#editform' );
 
 		// Show #wikiPreview if it's hidden to be able to scroll to it
 		// (if it is hidden, it's also empty, so nothing changes in the rendering)
@@ -35,16 +36,13 @@
 			'#p-lang',
 			// Editing-related
 			'.templatesUsed',
+			'.limitreport',
 			'.mw-summary-preview'
 		];
 		$copyElements = $( copySelectors.join( ',' ) );
 
 		// Not shown during normal preview, to be removed if present
-		removeSelectors = [
-			'.mw-newarticletext'
-		];
-
-		$( removeSelectors.join( ',' ) ).remove();
+		$( '.mw-newarticletext' ).remove();
 
 		$spinner = $.createSpinner( {
 			size: 'large',
@@ -52,36 +50,29 @@
 		});
 		$wikiPreview.before( $spinner );
 		$spinner.css( {
-			position: 'absolute',
 			marginTop: $spinner.height()
 		} );
-		// Make sure preview area is at least as tall as 2x the height of the spinner.
-		// 1x because if its smaller, it will spin behind the edit toolbar.
-		// (this happens on the first preview when editPreview is still empty)
-		// 2x because the spinner has 1x margin top breathing room.
-		$wikiPreview.css( 'minHeight', $spinner.height() * 2 );
 
 		// Can't use fadeTo because it calls show(), and we might want to keep some elements hidden
 		// (e.g. empty #catlinks)
-		$copyElements.animate( {
-			opacity: 0.4
-		}, 'fast' );
+		$copyElements.animate( { opacity: 0.4 }, 'fast' );
 
 		$previewDataHolder = $( '<div>' );
-		targetUrl = $( '#editform' ).attr( 'action' );
+		targetUrl = $editform.attr( 'action' );
 
 		// Gather all the data from the form
-		postData = $( '#editform' ).formToArray();
+		postData = $editform.formToArray();
 		postData.push( {
 			name: e.target.name,
 			value: ''
 		} );
 
 		// Load new preview data.
-		// TODO: This should use the action=parse API instead of loading the entire page
-		// Though that requires figuring out how to convert that raw data into proper HTML.
+		// TODO: This should use the action=parse API instead of loading the entire page,
+		// although that requires figuring out how to convert that raw data into proper HTML.
 		$previewDataHolder.load( targetUrl + ' ' + copySelectors.join( ',' ), postData, function () {
 			var i, $from;
+
 			// Copy the contents of the specified elements from the loaded page to the real page.
 			// Also copy their class attributes.
 			for ( i = 0; i < copySelectors.length; i++ ) {
@@ -113,32 +104,32 @@
 		}
 
 		// The following elements can change in a preview but are not output
-		// by the server when they're empty until the preview reponse.
+		// by the server when they're empty until the preview response.
 		// TODO: Make the server output these always (in a hidden state), so we don't
 		// have to fish and (hopefully) put them in the right place (since skins
 		// can change where they are output).
 
 		if ( !document.getElementById( 'p-lang' ) && document.getElementById( 'p-tb' ) ) {
 			$( '#p-tb' ).after(
-				$( '<div>' ).prop( 'id', 'p-lang' )
+				$( '<div>' ).attr( 'id', 'p-lang' )
 			);
 		}
 
 		if ( !$( '.mw-summary-preview' ).length ) {
 			$( '.editCheckboxes' ).before(
-				$( '<div>' ).prop( 'className', 'mw-summary-preview' )
+				$( '<div>' ).addClass( 'mw-summary-preview' )
 			);
 		}
 
 		if ( !document.getElementById( 'wikiDiff' ) && document.getElementById( 'wikiPreview' ) ) {
 			$( '#wikiPreview' ).after(
-				$( '<div>' ).prop( 'id', 'wikiDiff')
+				$( '<div>' ).attr( 'id', 'wikiDiff' )
 			);
 		}
 
-		// Make sure diff styles are loaded
-		mw.loader.load( 'mediawiki.action.history.diff' );
-
+		// This should be moved down to '#editform', but is kept on the body for now
+		// because the LiquidThreads extension is re-using this module with only half
+		// the EditPage (doesn't include #editform presumably, bug 55463).
 		$( document.body ).on( 'click', '#wpPreview, #wpDiff', doLivePreview );
 	} );
 

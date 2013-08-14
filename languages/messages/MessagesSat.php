@@ -246,7 +246,7 @@ $1',
 'pool-queuefull' => 'Pul reaḱ sakam perećena',
 'pool-errorunknown' => 'Bań baḍayaḱ bhul',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'babo̠tre',
 'aboutpage' => 'Project: Babo̠t',
 'copyright' => '$1 re bhitrire ńamoḱa.',
@@ -328,17 +328,6 @@ Noa do noṅkanaḱ menkana je {{SITENAME}} sayeṭre beoharen sofṭower re mit
 # General errors
 'error' => 'bhul',
 'databaseerror' => 'Ḍaṭabase vul',
-'dberrortext' => 'Database query syntexre vul hoeakana.
-Sofṭoyerre jahan bag karonte noa do hoe daṛeyaḱa.
-Joto khon mucạt́ database query do tahẽkana noṅka:
-<blockquote><tt>$1</tt><blockquote>
-"<tt>$2</tt>" bhitrire tahẽna.
-Database okaṭaḱ vule em akada:"<tt>$3: $4</tt>".',
-'dberrortextcl' => 'Ḍaṭabes query sintxexṭre vul hoeakana.
-Mucạt́ ḍaṭabes query do tahẽkana:
-"$1"
-"$2" faṅson reaḱ bhitri khon.
-Ḍatabes okaṭaḱ vule kulakaḱ: "$3: $4:',
 'laggedslavemode' => "'''Sontoroḱme:''' sakamre do nahaḱ nãwãnaḱko paseć bạnuḱa.",
 'readonly' => 'Ḍaṭabes do talagea',
 'enterlockreason' => 'Cạbie reaḱ karon do cet́kana ma lạimẽ, Saõte tinre tala cạbim jhija ona okte hõ lạimẽ',
@@ -381,7 +370,6 @@ Query: $2',
 'viewsourcetext' => 'Noa sakam do am ńel ar ńamoḱaḱ ṭhạiem kopi hatao daṛeaḱa:',
 'viewyourtext' => "Am do '''Amaḱ sompadon''' noa sakam ńel arem kopi hatao daṛeaḱa:",
 'protectedinterface' => 'Noa sakam reaḱ babotko do wiki sofṭoyer reaḱ mit́ṭen inṭarfes khobore ema, onate noa do rukhiyạ doho hoeakana.',
-'sqlhidden' => '(SQL query do ukure menaḱa)',
 'cascadeprotected' => 'Noa sakam do sompadon khon rukhiyạre menaḱa, karon sakam do latar reaḱ {{PLURAL:$1 gan sakam reaḱ gan sakam reaḱ}} bhitrire, oka sakam do (cascading) te rukhiyạ menaḱa:
 $2',
 'namespaceprotected' => "Amaḱ do sakamko joṛao lạgit́te ạidạri banuḱ tama '''$1''' ńutumjayga.",
@@ -400,7 +388,6 @@ $2',
 'yourpassword' => 'Uku namber',
 'yourpasswordagain' => 'Arhõ oku namber olme',
 'remembermypassword' => 'Mitṭen khon bạṛti khata reaḱ cạbi disạ dohoḱma (Jạsti $1 {{PLURAL:$1 din reaḱ din reaḱ}} lạgit)',
-'securelogin-stick-https' => 'Bhitri bolo kate HTTPS re soṅge tãhenme',
 'yourdomainname' => 'Amaḱ ḍomen:',
 'externaldberror' => 'Hoe daṛeyaḱa jahan bahre reaḱ jacaeaḱ ḍaṭabes vul hoeakana se amaḱ bahre reaḱ ekaunṭ do nahaḱ halot aguire ạidạri bạnuḱa.',
 'login' => "bolok' duar",
@@ -481,7 +468,7 @@ Arhõ kurumuṭue lahare dayakate thoṛagan tạṅgiemẽ.',
 'newpassword' => 'Nãwã oku nomber',
 'retypenew' => 'Doṛhate oku namber olme',
 'resetpass_submit' => 'Oku namber joṛao ar bhitri bolok',
-'resetpass_success' => 'Amaḱ oku namber do napayte bodolena!
+'changepassword-success' => 'Amaḱ oku namber do napayte bodolena!
 Nitoḱ do am bhitritem boloḱkana...',
 'resetpass_forbidden' => 'Oku namber do baṅ bodoloklena',
 'resetpass-no-info' => 'Noa sakam sojhete laṛcaṛ lạgit́te am do bhitri boloḱ hoyoḱtama.',
@@ -886,8 +873,6 @@ Noa reaḱ pasnao katha [$2 rẽt pasnao sakam] latare emena',
 'statistics' => 'Halot',
 'statistics-pages' => 'Sakamko',
 
-'disambiguationspage' => 'sujhi',
-
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|baiṭ|baiṭ}}',
 'nmembers' => '$1 {{PLURAL:$1 Gaõtaren Gaõtarenko}}',
@@ -1050,8 +1035,6 @@ Noa reaḱ pasnao katha [$2 rẽt pasnao sakam] latare emena',
 'block-log-flags-nocreate' => 'Ekaunṭ benao do bondogeya',
 'block-log-flags-noemail' => 'E-mail do esetgea',
 'block-log-flags-hiddenname' => 'Beoharićaḱ ńutum do ukugea',
-'blockme' => 'Esedińmẽ',
-'proxyblocksuccess' => 'Hoena',
 
 # Move page
 'movepagebtn' => 'Sakam ocogmẽ, Sakam kulmẽ',

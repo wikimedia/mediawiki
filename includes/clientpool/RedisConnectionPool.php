@@ -1,6 +1,6 @@
 <?php
 /**
- * PhpRedis client connection pooling manager.
+ * Redis client connection pooling manager.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,7 +23,7 @@
  */
 
 /**
- * Helper class to manage redis connections using PhpRedis.
+ * Helper class to manage Redis connections.
  *
  * This can be used to get handle wrappers that free the handle when the wrapper
  * leaves scope. The maximum number of free handles (connections) is configurable.
@@ -70,9 +70,9 @@ class RedisConnectionPool {
 	 * @param array $options
 	 */
 	protected function __construct( array $options ) {
-		if ( !extension_loaded( 'redis' ) ) {
-			throw new MWException( __CLASS__ . ' requires the phpredis extension: ' .
-				'https://github.com/nicolasff/phpredis' );
+		if ( !class_exists( 'Redis' ) ) {
+			throw new MWException( __CLASS__ . ' requires a Redis client library. ' .
+				'See https://www.mediawiki.org/wiki/Redis#Setup' );
 		}
 		$this->connectTimeout = $options['connectTimeout'];
 		$this->persistent = $options['persistent'];
@@ -283,6 +283,25 @@ class RedisConnectionPool {
 			}
 		}
 	}
+
+	/**
+	 * Resend an AUTH request to the redis server (useful after disconnects)
+	 *
+	 * This method is for internal use only
+	 *
+	 * @param string $server
+	 * @param Redis $conn
+	 * @return bool Success
+	 */
+	public function reauthenticateConnection( $server, Redis $conn ) {
+		if ( $this->password !== null ) {
+			if ( !$conn->auth( $this->password ) ) {
+				wfDebugLog( 'redis', "Authentication error connecting to $server" );
+				return false;
+			}
+		}
+		return true;
+	}
 }
 
 /**
@@ -324,10 +343,21 @@ class RedisConnRef {
 	public function luaEval( $script, array $params, $numKeys ) {
 		$sha1 = sha1( $script ); // 40 char hex
 		$conn = $this->conn; // convenience
+		$server = $this->server; // convenience
 
 		// Try to run the server-side cached copy of the script
 		$conn->clearLastError();
 		$res = $conn->evalSha( $sha1, $params, $numKeys );
+		// If we got a permission error reply that means that (a) we are not in
+		// multi()/pipeline() and (b) some connection problem likely occured. If
+		// the password the client gave was just wrong, an exception should have
+		// been thrown back in getConnection() previously.
+		if ( preg_match( '/^ERR operation not permitted\b/', $conn->getLastError() ) ) {
+			$this->pool->reauthenticateConnection( $server, $conn );
+			$conn->clearLastError();
+			$res = $conn->eval( $script, $params, $numKeys );
+			wfDebugLog( 'redis', "Used automatic re-authentication for Lua script $sha1." );
+		}
 		// If the script is not in cache, use eval() to retry and cache it
 		if ( preg_match( '/^NOSCRIPT/', $conn->getLastError() ) ) {
 			$conn->clearLastError();
@@ -336,7 +366,7 @@ class RedisConnRef {
 		}
 
 		if ( $conn->getLastError() ) { // script bug?
-			wfDebugLog( 'redis', "Lua script error: " . $conn->getLastError() );
+			wfDebugLog( 'redis', "Lua script error on server $server: " . $conn->getLastError() );
 		}
 
 		return $res;

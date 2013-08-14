@@ -82,6 +82,7 @@ abstract class Skin extends ContextSource {
 	static function getSkinNameMessages() {
 		$messages = array();
 		foreach ( self::getSkinNames() as $skinKey => $skinName ) {
+			// Messages: skinname-cologneblue, skinname-monobook, skinname-modern, skinname-vector
 			$messages[] = "skinname-$skinKey";
 		}
 		return $messages;
@@ -1341,14 +1342,19 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * Should we load mediawiki.legacy.wikiprintable?  Skins that have their own
-	 * print stylesheet should override this and return false.  (This is an
-	 * ugly hack to get Monobook to play nicely with OutputPage::headElement().)
+	 * This function previously controlled whether the 'mediawiki.legacy.wikiprintable' module
+	 * should be loaded by OutputPage. That module no longer exists and the return value of this
+	 * method is ignored.
 	 *
+	 * If your skin doesn't provide its own print styles, the 'mediawiki.legacy.commonPrint' module
+	 * can be used instead (SkinTemplate-based skins do it automatically).
+	 *
+	 * @deprecated since 1.22
 	 * @return bool
 	 */
 	public function commonPrintStylesheet() {
-		return true;
+		wfDeprecated( __METHOD__, '1.22' );
+		return false;
 	}
 
 	/**
@@ -1373,61 +1379,58 @@ abstract class Skin extends ContextSource {
 
 		if ( count( $newtalks ) == 1 && $newtalks[0]['wiki'] === wfWikiID() ) {
 			$uTalkTitle = $user->getTalkPage();
-
-			if ( !$uTalkTitle->equals( $out->getTitle() ) ) {
-				$lastSeenRev = isset( $newtalks[0]['rev'] ) ? $newtalks[0]['rev'] : null;
-				$nofAuthors = 0;
-				if ( $lastSeenRev !== null ) {
-					$plural = true; // Default if we have a last seen revision: if unknown, use plural
-					$latestRev = Revision::newFromTitle( $uTalkTitle, false, Revision::READ_NORMAL );
-					if ( $latestRev !== null ) {
-						// Singular if only 1 unseen revision, plural if several unseen revisions.
-						$plural = $latestRev->getParentId() !== $lastSeenRev->getId();
-						$nofAuthors = $uTalkTitle->countAuthorsBetween(
-							$lastSeenRev, $latestRev, 10, 'include_new' );
-					}
-				} else {
-					// Singular if no revision -> diff link will show latest change only in any case
-					$plural = false;
+			$lastSeenRev = isset( $newtalks[0]['rev'] ) ? $newtalks[0]['rev'] : null;
+			$nofAuthors = 0;
+			if ( $lastSeenRev !== null ) {
+				$plural = true; // Default if we have a last seen revision: if unknown, use plural
+				$latestRev = Revision::newFromTitle( $uTalkTitle, false, Revision::READ_NORMAL );
+				if ( $latestRev !== null ) {
+					// Singular if only 1 unseen revision, plural if several unseen revisions.
+					$plural = $latestRev->getParentId() !== $lastSeenRev->getId();
+					$nofAuthors = $uTalkTitle->countAuthorsBetween(
+						$lastSeenRev, $latestRev, 10, 'include_new' );
 				}
-				$plural = $plural ? 2 : 1;
-				// 2 signifies "more than one revision". We don't know how many, and even if we did,
-				// the number of revisions or authors is not necessarily the same as the number of
-				// "messages".
-				$newMessagesLink = Linker::linkKnown(
-					$uTalkTitle,
-					$this->msg( 'newmessageslinkplural' )->params( $plural )->escaped(),
-					array(),
-					array( 'redirect' => 'no' )
-				);
-
-				$newMessagesDiffLink = Linker::linkKnown(
-					$uTalkTitle,
-					$this->msg( 'newmessagesdifflinkplural' )->params( $plural )->escaped(),
-					array(),
-					$lastSeenRev !== null
-						? array( 'oldid' => $lastSeenRev->getId(), 'diff' => 'cur' )
-						: array( 'diff' => 'cur' )
-				);
-
-				if ( $nofAuthors >= 1 && $nofAuthors <= 10 ) {
-					$newMessagesAlert = $this->msg(
-						'youhavenewmessagesfromusers',
-						$newMessagesLink,
-						$newMessagesDiffLink
-					)->numParams( $nofAuthors );
-				} else {
-					// $nofAuthors === 11 signifies "11 or more" ("more than 10")
-					$newMessagesAlert = $this->msg(
-						$nofAuthors > 10 ? 'youhavenewmessagesmanyusers' : 'youhavenewmessages',
-						$newMessagesLink,
-						$newMessagesDiffLink
-					);
-				}
-				$newMessagesAlert = $newMessagesAlert->text();
-				# Disable Squid cache
-				$out->setSquidMaxage( 0 );
+			} else {
+				// Singular if no revision -> diff link will show latest change only in any case
+				$plural = false;
 			}
+			$plural = $plural ? 2 : 1;
+			// 2 signifies "more than one revision". We don't know how many, and even if we did,
+			// the number of revisions or authors is not necessarily the same as the number of
+			// "messages".
+			$newMessagesLink = Linker::linkKnown(
+				$uTalkTitle,
+				$this->msg( 'newmessageslinkplural' )->params( $plural )->escaped(),
+				array(),
+				array( 'redirect' => 'no' )
+			);
+
+			$newMessagesDiffLink = Linker::linkKnown(
+				$uTalkTitle,
+				$this->msg( 'newmessagesdifflinkplural' )->params( $plural )->escaped(),
+				array(),
+				$lastSeenRev !== null
+					? array( 'oldid' => $lastSeenRev->getId(), 'diff' => 'cur' )
+					: array( 'diff' => 'cur' )
+			);
+
+			if ( $nofAuthors >= 1 && $nofAuthors <= 10 ) {
+				$newMessagesAlert = $this->msg(
+					'youhavenewmessagesfromusers',
+					$newMessagesLink,
+					$newMessagesDiffLink
+				)->numParams( $nofAuthors );
+			} else {
+				// $nofAuthors === 11 signifies "11 or more" ("more than 10")
+				$newMessagesAlert = $this->msg(
+					$nofAuthors > 10 ? 'youhavenewmessagesmanyusers' : 'youhavenewmessages',
+					$newMessagesLink,
+					$newMessagesDiffLink
+				);
+			}
+			$newMessagesAlert = $newMessagesAlert->text();
+			# Disable Squid cache
+			$out->setSquidMaxage( 0 );
 		} elseif ( count( $newtalks ) ) {
 			$sep = $this->msg( 'newtalkseparator' )->escaped();
 			$msgs = array();

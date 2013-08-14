@@ -7,14 +7,20 @@
 
 /** Tests for MediaWiki languages/LanguageHy.php */
 class LanguageHyTest extends LanguageClassesTestCase {
-	/** @dataProvider providePlural */
-	function testPlural( $result, $value ) {
+	/**
+	 * @dataProvider providePlural
+	 * @covers Language::convertPlural
+	 */
+	public function testPlural( $result, $value ) {
 		$forms = array( 'one', 'other' );
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
-	/** @dataProvider providePlural */
-	function testGetPluralRuleType( $result, $value ) {
+	/**
+	 * @dataProvider providePlural
+	 * @covers Language::getPluralRuleType
+	 */
+	public function testGetPluralRuleType( $result, $value ) {
 		// This fails for 0, but I'm not sure why. Some voodoo going on here.
 		$this->assertEquals( $result, $this->getLang()->getPluralRuleType( $value ) );
 	}

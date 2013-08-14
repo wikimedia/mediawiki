@@ -394,7 +394,7 @@ $1',
 'pool-queuefull' => '池隊滿之',
 'pool-errorunknown' => '未明之錯',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '述{{SITENAME}}',
 'aboutpage' => 'Project:述',
 'copyright' => '文奉$1行。',
@@ -477,15 +477,6 @@ $1',
 # General errors
 'error' => '有誤',
 'databaseerror' => '庫藏誤然',
-'dberrortext' => '問庫語誤，或軟體瑕焉。
-末語道：
-<blockquote><tt>$1</tt></blockquote>
-內此函式"<tt>$2</tt>".
-庫藏報有誤"<tt>$3: $4</tt>"。',
-'dberrortextcl' => '庫藏問語有誤，末道：
-"$1"
-內此函式"$2".
-庫藏報有誤"$3: $4"',
 'laggedslavemode' => '警示，此頁不新',
 'readonly' => '鎖庫藏',
 'enterlockreason' => '何以鎖之？何日啟之？',
@@ -527,7 +518,6 @@ $1',
 'viewsourcetext' => '爾可視及複之本頁之原始碼。',
 'protectedinterface' => '此頁司版，錮之以遠濫。',
 'editinginterface' => "'''警示：'''此頁司版，一髮牽身，惠慎之。如譯之，可慮[//translatewiki.net/wiki/Main_Page?setlang=zh-hant translatewiki.net]也，為MediaWiki軟件本地化之計劃也。",
-'sqlhidden' => '（SQL隱然）',
 'cascadeprotected' => '此頁"迭緘"矣。$1頁牽連如下：
 $2',
 'namespaceprotected' => "子權未逮，莫能纂'''$1'''。",
@@ -564,7 +554,6 @@ $2',
 'remembermypassword' => '吾之簿通越（達至$1日）',
 'userlogin-remembermypassword' => '記吾',
 'userlogin-signwithsecure' => '以安全伺服登簿',
-'securelogin-stick-https' => '登後仍以HTTPS通接',
 'yourdomainname' => '子之網域',
 'password-change-forbidden' => '符節不能改乎此維基也。',
 'externaldberror' => '認庫之錯或禁更爾之外簿。',
@@ -670,7 +659,7 @@ $2',
 'newpassword' => '新符節：',
 'retypenew' => '重察新符節：',
 'resetpass_submit' => '設符再登',
-'resetpass_success' => '爾之符節已改！
+'changepassword-success' => '爾之符節已改！
 現登簿中...',
 'resetpass_forbidden' => '無改符節',
 'resetpass-no-info' => '爾須登簿後方進此頁。',
@@ -1683,10 +1672,6 @@ $1',
 'statistics-users-active-desc' => '早$1日前更動之簿',
 'statistics-mostpopular' => '燴炙',
 
-'disambiguations' => '釋義',
-'disambiguationspage' => 'Template:弭誤解',
-'disambiguations-text' => '頁下引[[MediaWiki:Disambiguationspage]]模，求釋義，宜正題之。',
-
 'doubleredirects' => '窮渡',
 'doubleredirectstext' => '頁下窮渡，迭列以示。首尾宿合，宜正渡之。
 <del>劃</del>已解之。',
@@ -2227,9 +2212,7 @@ $1',
 'ipb_blocked_as_range' => '錯：該IP $1 無直禁也，無赦之。唯它在 $2 之範禁內，其範可赦之。',
 'ip_range_invalid' => 'IP址圍不格',
 'ip_range_toolarge' => '大於 /$1 之禁段乃無容也。',
-'blockme' => '自禁',
 'proxyblocker' => '禁Proxy',
-'proxyblocksuccess' => '成矣。',
 'cant-block-while-blocked' => '爾然被禁，勿施於人。',
 'cant-see-hidden-user' => '簿禁或藏矣。
 爾無藏之權，無視纂禁也。',

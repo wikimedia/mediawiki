@@ -68,12 +68,19 @@ class SpecialRandomInCategory extends SpecialPage {
 	}
 
 	public function execute( $par ) {
+		global $wgScript;
+
 		$cat = false;
 
 		$categoryStr = $this->getRequest()->getText( 'category', $par );
 
 		if ( $categoryStr ) {
 			$cat = Title::newFromText( $categoryStr, NS_CATEGORY );
+		}
+
+		if ( $cat && $cat->getNamespace() !== NS_CATEGORY ) {
+			// Someone searching for something like "Wikipedia:Foo"
+			$cat = Title::makeTitleSafe( NS_CATEGORY, $categoryStr );
 		}
 
 		if ( $cat ) {
@@ -94,7 +101,8 @@ class SpecialRandomInCategory extends SpecialPage {
 			$submit = Html::input( '', $submitText, 'submit' );
 
 			$msg = $this->msg( 'randomincategory-selectcategory' );
-			$form = Html::rawElement( 'form', array( 'action' => $this->getTitle()->getLocalUrl() ),
+			$form = Html::rawElement( 'form', array( 'action' => $wgScript ),
+				Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) .
 				$msg->rawParams( $input, $submit )->parse()
 			);
 			$this->getOutput()->addHtml( $form );
@@ -124,7 +132,7 @@ class SpecialRandomInCategory extends SpecialPage {
 	 */
 	public function getRandomTitle() {
 		// Convert to float, since we do math with the random number.
-		$rand = (float) wfRandom();
+		$rand = (float)wfRandom();
 		$title = null;
 
 		// Given that timestamps are rather unevenly distributed, we also
@@ -215,7 +223,7 @@ class SpecialRandomInCategory extends SpecialPage {
 		if ( !$this->minTimestamp || !$this->maxTimestamp ) {
 			try {
 				list( $this->minTimestamp, $this->maxTimestamp ) = $this->getMinAndMaxForCat( $this->category );
-			} catch( MWException $e ) {
+			} catch ( MWException $e ) {
 				// Possibly no entries in category.
 				return false;
 			}

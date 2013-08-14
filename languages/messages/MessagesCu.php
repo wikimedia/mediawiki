@@ -97,6 +97,7 @@ $dateFormats = array(
 );
 
 $linkTrail = '/^([a-zабвгдеєжѕзїіıићклмнопсстѹфхѡѿцчшщъыьѣюѥѧѩѫѭѯѱѳѷѵґѓђёјйљњќуўџэ҄я“»]+)(.*)$/sDu';
+$linkPrefixCharset = '„«';
 
 $messages = array(
 # User preference toggles
@@ -180,8 +181,6 @@ $messages = array(
 'category-subcat-count' => '{{PLURAL:$2|Сѥи катигорїи тъкъмо сꙗ подъкатигорїꙗ ѥстъ|Сѥи катигорїи {{PLURAL:$1|ѥдина подъкатигорїꙗ ѥстъ|2 подъкатигорїи ѥстє|$1 подъкатигорїѩ сѫтъ}} · а вьсѩ жє подъкатигорїѩ число $2 ѥстъ}}',
 'listingcontinuesabbrev' => '· вѧщє',
 
-'linkprefix' => '/^(.*?)(„|«)$/sD',
-
 'about' => 'опьсаниѥ',
 'article' => 'члѣнъ',
 'newwindow' => '(иномь окънѣ)',
@@ -252,7 +251,7 @@ $messages = array(
 'jumptosearch' => 'исканиѥ',
 'pool-errorunknown' => 'нєвѣдома блаꙁна',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'О {{grammar:instrumental|{{SITENAME}}}}',
 'aboutpage' => 'Project:О сѥмь опꙑтьствовании',
 'copyright' => 'подъ прощєниѥмь $1 пьсано ѥстъ',
@@ -456,9 +455,11 @@ $messages = array(
 'searchprofile-articles-tooltip' => 'ищи въ $1',
 'searchprofile-project-tooltip' => 'исканиѥ въ $1',
 'searchprofile-images-tooltip' => 'исканиѥ дѣлъ',
+'searchprofile-everything-tooltip' => 'ищи вьсѩ страницѧ въкоупомь съ бѣсєдꙑ',
 'search-result-size' => '$1 ({{PLURAL:$2|$2 слово|$2 слова|$2 словєсъ}})',
 'search-redirect' => '(прѣнаправлєниѥ $1)',
 'search-section' => '(чѧсть $1)',
+'search-suggest' => '⁖ $1 ⁖ мьниши ли',
 'search-interwiki-caption' => 'родьствьна опꙑтьствованиꙗ',
 'search-interwiki-more' => '(вѧщє)',
 'searchall' => 'вьсꙗ',
@@ -646,9 +647,6 @@ $messages = array(
 'statistics-files' => 'положєнꙑ дѣла',
 'statistics-users-active' => 'дѣꙗтєльнꙑ польꙃєватєлє',
 
-'disambiguations' => 'страницѧ ижє съвѧꙁи съ мъногосъмꙑслиꙗ имѫтъ',
-'disambiguationspage' => 'Template:мъногосъмꙑслиѥ',
-
 'brokenredirects-edit' => 'исправи',
 'brokenredirects-delete' => 'поничьжєниѥ',
 
@@ -666,6 +664,8 @@ $messages = array(
 'ancientpages' => 'давьни страницѧ',
 'move' => 'прѣимєнованиѥ',
 'movethispage' => 'си страницѧ прѣимєнованиѥ',
+'pager-newer-n' => '{{PLURAL:$1|нова 1|новꙑ $1|новъ $1}}',
+'pager-older-n' => '{{PLURAL:$1|давьнꙗ 1|давьни $1|давьн҄ь $1}}',
 
 # Book sources
 'booksources-go' => 'прѣиди',
@@ -813,7 +813,7 @@ $messages = array(
 'blocklink' => 'ꙁагради',
 'contribslink' => 'добродѣꙗниꙗ',
 'blocklogpage' => 'ꙁаграждєниꙗ їсторїꙗ',
-'blocklogentry' => 'ꙁаградихъ [[$1]] на врѣмѧ $2 $3',
+'blocklogentry' => 'ꙁаградилъ [[$1]] на врѣмѧ $2 $3',
 'block-log-flags-anononly' => 'тъкъмо анѡнѷмьнꙑ польꙃєватєлє',
 
 # Move page
@@ -883,6 +883,10 @@ $messages = array(
 'pageinfo-category-pages' => 'страницѩ число',
 'pageinfo-category-files' => 'дѣлъ число',
 
+# Browsing diffs
+'previousdiff' => '← давьнꙗ мѣна',
+'nextdiff' => 'нова мѣна →',
+
 # Media information
 'file-info-size' => '$1 × $2 п҃ѯ · дѣла мѣра : $3 · MIME тѷпъ : $4',
 'svg-long-desc' => 'дѣло SVG · обꙑчьнъ обраꙁъ : $1 × $2 п҃ѯ · дѣла мѣра : $3',
@@ -922,6 +926,7 @@ $messages = array(
 'exif-iimcategory-spo' => 'аѳлитїка',
 
 # External editor support
+'edit-externally' => 'дѣла иꙁмѣнѥниѥ вънѣщьниимь орѫдиѥмь',
 'edit-externally-help' => '(ꙁьри [//www.mediawiki.org/wiki/Manual:External_editors помощь] вѧщєи плирофорїѩ дѣлꙗ)',
 
 # 'all' in various places, this might be different for inflected languages

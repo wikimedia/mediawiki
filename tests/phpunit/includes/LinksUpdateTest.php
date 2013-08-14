@@ -52,6 +52,9 @@ class LinksUpdateTest extends MediaWikiTestCase {
 		return array( $t, $po );
 	}
 
+	/**
+	 * @covers LinksUpdate::addLink
+	 */
 	public function testUpdate_pagelinks() {
 		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", 111 );
 
@@ -60,20 +63,35 @@ class LinksUpdateTest extends MediaWikiTestCase {
 		$po->addLink( Title::newFromText( "linksupdatetest:Foo" ) ); // interwiki link should be ignored
 		$po->addLink( Title::newFromText( "#Foo" ) ); // hash link should be ignored
 
-		$this->assertLinksUpdate( $t, $po, 'pagelinks', 'pl_namespace, pl_title', 'pl_from = 111', array(
+		$update = $this->assertLinksUpdate( $t, $po, 'pagelinks', 'pl_namespace, pl_title', 'pl_from = 111', array(
 			array( NS_MAIN, 'Foo' ),
 		) );
+		$this->assertArrayEquals( array(
+			Title::makeTitle( NS_MAIN, 'Foo' ),  // newFromText doesn't yield the same internal state....
+		), $update->getAddedLinks() );
 
 		$po = new ParserOutput();
 		$po->setTitleText( $t->getPrefixedText() );
 
 		$po->addLink( Title::newFromText( "Bar" ) );
+		$po->addLink( Title::newFromText( "Talk:Bar" ) );
 
-		$this->assertLinksUpdate( $t, $po, 'pagelinks', 'pl_namespace, pl_title', 'pl_from = 111', array(
+		$update = $this->assertLinksUpdate( $t, $po, 'pagelinks', 'pl_namespace, pl_title', 'pl_from = 111', array(
 			array( NS_MAIN, 'Bar' ),
+			array( NS_TALK, 'Bar' ),
 		) );
+		$this->assertArrayEquals( array(
+			Title::makeTitle( NS_MAIN, 'Bar' ),
+			Title::makeTitle( NS_TALK, 'Bar' ),
+		), $update->getAddedLinks() );
+		$this->assertArrayEquals( array(
+			Title::makeTitle( NS_MAIN, 'Foo' ),
+		), $update->getRemovedLinks() );
 	}
 
+	/**
+	 * @covers LinksUpdate::addExternalLink
+	 */
 	public function testUpdate_externallinks() {
 		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", 111 );
 
@@ -84,6 +102,9 @@ class LinksUpdateTest extends MediaWikiTestCase {
 		) );
 	}
 
+	/**
+	 * @covers LinksUpdate::addCategory
+	 */
 	public function testUpdate_categorylinks() {
 		$this->setMwGlobals( 'wgCategoryCollation', 'uppercase' );
 
@@ -96,6 +117,9 @@ class LinksUpdateTest extends MediaWikiTestCase {
 		) );
 	}
 
+	/**
+	 * @covers LinksUpdate::addInterwikiLink
+	 */
 	public function testUpdate_iwlinks() {
 		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", 111 );
 
@@ -107,6 +131,9 @@ class LinksUpdateTest extends MediaWikiTestCase {
 		) );
 	}
 
+	/**
+	 * @covers LinksUpdate::addTemplate
+	 */
 	public function testUpdate_templatelinks() {
 		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", 111 );
 
@@ -117,6 +144,9 @@ class LinksUpdateTest extends MediaWikiTestCase {
 		) );
 	}
 
+	/**
+	 * @covers LinksUpdate::addImage
+	 */
 	public function testUpdate_imagelinks() {
 		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", 111 );
 
@@ -127,6 +157,9 @@ class LinksUpdateTest extends MediaWikiTestCase {
 		) );
 	}
 
+	/**
+	 * @covers LinksUpdate::addLanguageLink
+	 */
 	public function testUpdate_langlinks() {
 		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", 111 );
 
@@ -137,6 +170,9 @@ class LinksUpdateTest extends MediaWikiTestCase {
 		) );
 	}
 
+	/**
+	 * @covers LinksUpdate::setProperty
+	 */
 	public function testUpdate_page_props() {
 		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", 111 );
 
@@ -158,5 +194,6 @@ class LinksUpdateTest extends MediaWikiTestCase {
 		$update->commitTransaction();
 
 		$this->assertSelect( $table, $fields, $condition, $expectedRows );
+		return $update;
 	}
 }

@@ -101,6 +101,7 @@ class SpecialProtectedtitles extends SpecialPage {
 
 		$link = Linker::link( $title );
 		$description_items = array();
+		// Messages: restriction-level-sysop, restriction-level-autoconfirmed
 		$protType = $this->msg( 'restriction-level-' . $row->pt_create_perm )->escaped();
 		$description_items[] = $protType;
 		$lang = $this->getLanguage();
@@ -183,6 +184,7 @@ class SpecialProtectedtitles extends SpecialPage {
 		// First pass to load the log names
 		foreach ( $wgRestrictionLevels as $type ) {
 			if ( $type != '' && $type != '*' ) {
+				// Messages: restriction-level-sysop, restriction-level-autoconfirmed
 				$text = $this->msg( "restriction-level-$type" )->text();
 				$m[$text] = $type;
 			}

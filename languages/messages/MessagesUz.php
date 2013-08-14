@@ -107,6 +107,7 @@ $magicWords = array(
 );
 
 $linkTrail = '/^([a-zʻʼ“»]+)(.*)$/sDu';
+$linkPrefixCharset = 'a-zA-Z\\x80-\\xffʻʼ«„';
 
 $messages = array(
 # User preference toggles
@@ -236,8 +237,6 @@ $messages = array(
 'noindex-category' => 'Indekslanmaydigan sahifalar',
 'broken-file-category' => 'Ishlamaydigan fayl havolalari bor sahifalar',
 
-'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xffʻʼ«„]+)$/sDu',
-
 'about' => 'Haqida',
 'article' => 'Sahifa',
 'newwindow' => '(yangi oynada ochiladi)',
@@ -342,7 +341,7 @@ $1',
 'pool-queuefull' => 'Soʻrovlar jamlanmasi toʻldi',
 'pool-errorunknown' => 'Nomaʼlum xato',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} haqida',
 'aboutpage' => 'Project:Haqida',
 'copyright' => 'Keltirilgan maʼlumotlar $1 orqali tarqatilmoqda.',
@@ -466,7 +465,6 @@ Shuni e'tiborga olingki, ayrim sahifalar siz brauzeringiz keshini tozalamaguning
 'remembermypassword' => 'Hisob ma’lumotlarim ushbu brauzerda eslab qolinsin (ko‘pi bilan $1 {{PLURAL:$1|kunga|kunga}})',
 'userlogin-remembermypassword' => 'Esda saqla',
 'userlogin-signwithsecure' => 'Himoyalangan holda kirish',
-'securelogin-stick-https' => 'Kirgandan keyin HTTPS boʻyicha ulanishni davom ettirish',
 'yourdomainname' => 'Sizning domeningiz:',
 'password-change-forbidden' => 'Siz bu vikida maxfiy soʻzni oʻzgartira olmaysiz.',
 'login' => 'Kirish',
@@ -1079,8 +1077,6 @@ Uning [$2 fayl tavsifi sahifasidan] olingan tavsifi quyida keltirilgan.',
 'statistics-users-active' => 'Faol foydalanuvchilar',
 'statistics-users-active-desc' => 'Oxirgi $1 kun ichida kamida bitta amal qilgan foydalanuvchilar',
 
-'disambiguationspage' => '{{ns:template}}:Disambig',
-
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|bayt}}',
 'ncategories' => '$1 {{PLURAL:$1|turkum|turkumlar}}',
@@ -1466,7 +1462,6 @@ Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 'blocklogentry' => '$2 muddatga [[$1]]ni chetlashtirdi $3',
 'block-log-flags-nocreate' => 'hisob ochish toʻxtatilgan',
 'block-log-flags-nousertalk' => "o'zining munozara sahifasini tahrirlay olmaydi",
-'proxyblocksuccess' => 'Bajarildi.',
 
 # Move page
 'move-page' => '$1 — qayta nomlash',

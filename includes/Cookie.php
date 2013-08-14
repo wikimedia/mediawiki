@@ -82,7 +82,8 @@ class Cookie {
 	 * http://publicsuffix.org/
 	 *
 	 * @todo fixme fails to detect 3-letter top-level domains
-	 * @todo fixme fails to detect 2-letter top-level domains for single-domain use (probably not a big problem in practice, but there are test cases)
+	 * @todo fixme fails to detect 2-letter top-level domains for single-domain use (probably
+	 * not a big problem in practice, but there are test cases)
 	 *
 	 * @param string $domain the domain to validate
 	 * @param string $originDomain (optional) the domain the cookie originates from

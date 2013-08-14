@@ -373,7 +373,7 @@ $1",
 'pool-queuefull' => 'Antrian hibak',
 'pool-errorunknown' => 'Kada tahu napa nang salah',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Pasal {{SITENAME}}',
 'aboutpage' => 'Project:Pasal',
 'copyright' => 'Isi tasadia sasuai lawan $1.',
@@ -459,17 +459,6 @@ Daptar tungkaran istimiwa sah kawa diugai pada [[Special:SpecialPages|{{int:spec
 # General errors
 'error' => 'Kasalahan',
 'databaseerror' => 'Kasalahan Basisdata',
-'dberrortext' => 'Ada kasalahan sintaks pada parmintaan basisdata.
-Kasalahan ngini pina manandai adanya sabuting bug dalam parangkat lunak.
-Parmintaan basisdata yang tadudi adalah:
-<blockquote><tt>$1</tt></blockquote>
-matan dalam pungsi "<tt>$2</tt>".
-Basisdata kasalahan  babulik "<tt>$3: $4</tt>".',
-'dberrortextcl' => 'Ada kasalahan sintaks pada parmintaan basisdata.
-Parmintaan basisdata nang tadudi adalah:
-"$1"
-matan dalam pungsi "$2".
-Basisdata kasalahan  babulik "$3: $4".',
 'laggedslavemode' => "'''Paringatan:''' Tungkaran ngini tagasnya kada baisi paubahan pahanyarnya.",
 'readonly' => 'Basisdata tasunduk',
 'enterlockreason' => 'Buati sabuting alasan manyunduk, tamasuk jua wayah kapan handak dibuka pulang sundukannya.',
@@ -523,7 +512,6 @@ Muhun cubai pulang dalam babarapa minit.',
 'editinginterface' => "'''Paringatan:''' Pian mambabak sabuting tungkaran nang dipuruk hagan manyadiakan naskah antarmuha gasan parangkat lunak.
 Paubahan ka tungkaran ngini akan bapangaruh matan tampaian antarmuha gasan pamakai lain.
 Gasan tarjamahan, muhun pakai [//translatewiki.net/wiki/Main_Page?setlang=bjn translatewiki.net], rangka gawian palokalan MediaWiki.",
-'sqlhidden' => '(Parmintaan SQL disungkupakan)',
 'cascadeprotected' => 'Tungkaran ini sudah dilindungi matan pambabakan, marga nangini tamasuk dalam {{PLURAL:$1|tungkaran|tutungkaran}} dudi nang dilindungi "barénténg": $2',
 'namespaceprotected' => "Pian kada baisi ijin hagan mambabak tutungkaran dalam ngaran kamar '''$1'''.",
 'customcssprotected' => 'Pian kada baisi ijin mambabak tungkaran CSS ngini, karana ngini baisi setelan paribadi pamakai lain.',
@@ -557,7 +545,6 @@ Jangan kada ingat hagan maubah [[Special:Preferences|kakatujuan {{SITENAME}}]] P
 'yourpassword' => 'Katasunduk:',
 'yourpasswordagain' => 'Katik pulang katasunduk:',
 'remembermypassword' => 'Ingatakan log babuat ulun dalam komputer naya (salawas $1 {{PLURAL:$1|hari|hari}})',
-'securelogin-stick-https' => 'Tatap tasambung awan HTTPS imbah babuat-log',
 'yourdomainname' => 'Domain Pian:',
 'password-change-forbidden' => 'Pian kada kawa ma-ubah kata sunduk pada wiki ngini.',
 'externaldberror' => 'Ada kasalahan apakah kacucukan basis data atawa Pian kada bulih mamutakhirakan akun luar.',
@@ -660,7 +647,7 @@ Hagan manuntungakan babuat log, Pian musti manyetel sabuting katasunduk hanyar d
 'newpassword' => 'Katasunduk hanyar:',
 'retypenew' => 'Katik pulang katasunduk hanyar:',
 'resetpass_submit' => 'Setel katasunduk wan babuat log',
-'resetpass_success' => 'Katasunduk Pian bahasil diubah!
+'changepassword-success' => 'Katasunduk Pian bahasil diubah!
 Wayah ni Pian sudah babuat log...',
 'resetpass_forbidden' => 'Katasunduk kada kawa diubah',
 'resetpass-no-info' => 'Pian musti babuat log hagan babuat ka tungkaran ini langsung.',
@@ -1866,12 +1853,6 @@ Pariksa 'hulu tautan lain ka citakan itu sabalum mahapusnya.",
 'statistics-users-active-desc' => 'Pamuruk nang sudah malakukan suatu aksi dalam {{PLURAL:$1|sahari|$1 hari}} tauncit.',
 'statistics-mostpopular' => 'Tungkaran nang paling banyak ditampaiakan',
 
-'disambiguations' => 'Tungkaran nang tahubung ka tungkaran disambiguasi',
-'disambiguationspage' => 'Template:Disambigu',
-'disambiguations-text' => "Tutungkaran barikut bataut ka sabuah '''tungkaran disambigu'''.
-Tutungkaran ngitu harusnya ka tupik nang sasuai.<br />
-Sabuah tungkaran dianggap sawagai tungkaran disambigu amun ngini mamuruk sabuah citakan nang tataut matan [[MediaWiki:Disambiguationspage]]",
-
 'doubleredirects' => 'Paugahan ganda',
 'doubleredirectstext' => 'Tungkaran ngini mandaptar tutungkaran nang maugah ka tutungkaran ugahan lain.
 Tiap baris mangandung tautan ka ugahan panambaian wan kadua, sasarannya adalah ugahn kadua, nang biasanya tungkaran sasaran "sabujurnya", nang ugahan partama tuju.
@@ -2528,12 +2509,9 @@ Janaki [[Special:BlockList|daptar diblukir]] gasan daptar uprasi dibabat wan pam
 Ngini, kayapa pun, diblukir sawagai palihan wilayah $2, nang kawa-ai dilapas-blukirnya.',
 'ip_range_invalid' => 'Jarak IP kada sah.',
 'ip_range_toolarge' => 'Jarak blukir taganal pada /$1 kada dibulihakan.',
-'blockme' => 'Blokir ulun',
 'proxyblocker' => 'Pamblukir pruksi',
-'proxyblocker-disabled' => 'Pungsi ngini dipajahakan.',
 'proxyblockreason' => 'Alamat IP Pian diblukir karana ngini sabuah pruksi tabuka.
 Muhun hubungi Panyadia Layan Internet Pian atawa sukungan tiknik wan padahi sidin pasal masalah ka-amanan sarius ngini.',
-'proxyblocksuccess' => 'Sudah.',
 'sorbsreason' => 'Alamat IP Pian tadaptar sawagai pruksi tabuka dalam DNSBL dipuruk ulih {{SITENAME}}.',
 'sorbs_create_account_reason' => 'Alamat IP Pian tadaptar sawagai pruksi tabuka dalam DNSBL dipuruk ulih {{SITENAME}}.
 Pian kada kawa maulah sabuah akun',
@@ -3664,8 +3642,7 @@ Pian saharusnya [{{SERVER}}{{SCRIPTPATH}}/COPYING sabuting salinan Lisansi Publi
 
 # Database error messages
 'dberr-header' => 'Wiki ngini baisi sabuah masalah',
-'dberr-problems' => 'Ampun!
-Situs ngini mangalami kangalihan teknik.',
+'dberr-problems' => 'Ampun!Situs ngini mangalami kangalihan teknik.',
 'dberr-again' => 'Cuba hadangi babarapa manit wan muat-pulang.',
 'dberr-info' => '(Kada kawa tasambung ka server databasis: $1)',
 'dberr-usegoogle' => 'Pian kawa mancuba manggagai lung Google wayah pahadangan ngini.',

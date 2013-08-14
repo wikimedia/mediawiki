@@ -9,6 +9,7 @@
  *
  * @author Alnokta
  * @author Dudi
+ * @author Ebraminio
  * @author Ghaly
  * @author Meno25
  * @author Ouda
@@ -528,7 +529,7 @@ $1',
 'pool-queuefull' => 'طابور الانتخاب مليان',
 'pool-errorunknown' => 'غلط مش معروف',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'عن {{SITENAME}}',
 'aboutpage' => 'Project:معلومات عن',
 'copyright' => 'المحتوى موجود تحت $1.',
@@ -607,17 +608,6 @@ $1',
 # General errors
 'error' => 'غلطه',
 'databaseerror' => 'غلط فى قاعدة البيانات (database)',
-'dberrortext' => 'حصل غلط فى صيغة الاستعلام فى قاعدة البيانات (database).
-ممكن يكون بسبب عيب فى البرنامج.
-آخر محاوله استعلام اتطلبت من قاعدة البيانات كانت:
-<blockquote><tt>$1</tt></blockquote>
-من جوه الخاصيه "<tt>$2</tt>".
-قاعدة البيانات رجعت الغلط "<tt>$3: $4</tt>".',
-'dberrortextcl' => 'حصل غلط فى صيغة الاستعلام فى قاعدة البيانات (database).
-آخر محاوله استعلام اتطلبت من قاعدة البيانات كانت:
-"$1"
-من جوه الخاصيه "$2".
-قاعدة البيانات رجعت الغلط "$3: $4"',
 'laggedslavemode' => "'''تحذير:''' الصفحه يمكن ما يكونش فيها تحديثات جديده.",
 'readonly' => 'قاعدة البيانات (الـ database) مقفوله',
 'enterlockreason' => 'اكتب سبب القفل, و قول امتى تقريبا ح يتلغى القفل',
@@ -665,7 +655,6 @@ $1',
 'viewsourcetext' => 'ممكن تشوف وتنسخ مصدر  الصفحه دى:',
 'protectedinterface' => 'الصفحة دى هى اللى بتوفر نص الواجهة بتاعة البرنامج،وهى مقفولة لمنع التخريب.',
 'editinginterface' => "'''تحذير''': أنت بتعدل صفحة بتستخدم فى الواجهة النصية  بتاعة البرنامج. التغييرات فى الصفحة دى ها تأثر على مظهر واجهة اليوزر لليوزرز التانيين. للترجمات، لو سمحت استخدم [//translatewiki.net/wiki/Main_Page?setlang=ar بيتاويكى]، مشروع ترجمة الميدياويكى.",
-'sqlhidden' => '(استعلام إس‌كيو‌إل متخبي)',
 'cascadeprotected' => 'الصفحة دى محمية من التعديل، بسبب انها مدمجة فى {{PLURAL:$1|الصفحة|الصفحات}} دي، اللى مستعمل فيها خاصية "حماية الصفحات المدمجة" :
 $2',
 'namespaceprotected' => "ما عندكش صلاحية تعديل الصفحات  اللى فى نطاق '''$1'''.",
@@ -779,7 +768,7 @@ $2',
 'newpassword' => 'الباسورد جديدة:',
 'retypenew' => 'اكتب الباسورد الجديده تانى:',
 'resetpass_submit' => 'اظبط الباسورد و ادخل',
-'resetpass_success' => 'الباسورد بتاعتك اتغيرت بنجاح! دلوقتى  بنسجل دخولك...',
+'changepassword-success' => 'الباسورد بتاعتك اتغيرت بنجاح! دلوقتى  بنسجل دخولك...',
 'resetpass_forbidden' => 'مش ممكن تغيير الباسورد',
 'resetpass-no-info' => 'لازم تسجل دخولك علشان تقدر توصل للصفحة دى على طول.',
 'resetpass-submit-loggedin' => 'غير الباسورد',
@@ -1847,12 +1836,6 @@ PICT # misc.
 'statistics-users-active-desc' => 'اليوزرز اللى نفذو عمليه فى الـ {{PLURAL:$1|يوم|$1 ايام}} اللى فاتو',
 'statistics-mostpopular' => 'اكتر صفحات اتشافت',
 
-'disambiguations' => 'صفحات التوضيح',
-'disambiguationspage' => 'Template:توضيح',
-'disambiguations-text' => "الصفحات دى بتوصل لـ '''صفحة توضيح'''.
-المفروض على العكس انهم يوصلو ل للصفحات المناسبة. <br />
-أى صفحة بتتعامل على انها صفحة توضيح إذا كانت بتستعمل قالب موجود فى [[MediaWiki:Disambiguationspage]]",
-
 'doubleredirects' => 'تحويلات مزدوجه',
 'doubleredirectstext' => 'الصفحة دى فيها لستة الصفحات اللى فيها تحويلة لصفحة تانية فيها تحويلة.
 كل سطر فى اللستة دى  فيه لينك للتحويلة الأولانية والتانية و كمان للصفحة بتاعة التحويلة التانية و اللى غالبا هى الصفحة الاصلية اللى المفروض التحويلة الاولانية توصل ليها.
@@ -2440,12 +2423,9 @@ $1',
 بس هو، على الرغم من كدا،ممنوع لانه جزء من النطاق $2، و اللى ممكن رفع المنع عنه.',
 'ip_range_invalid' => 'نطاق عناوين الأيبى مش صحيح.',
 'ip_range_toolarge' => 'حدود المنع اللى اكبر من /$1 مش مسموح بيها.',
-'blockme' => 'امنعنى',
 'proxyblocker' => 'مانع البروكسي',
-'proxyblocker-disabled' => 'الخاصية دى متعطلة.',
 'proxyblockreason' => 'عنوان الأيبى بتاعك اتمنع لانه بروكسى مفتوح.
 لو سمحت تتصل بمزود خدمة الإنترنت بتاعك أو الدعم الفنى و قولهم على المشكلة الامنية الخطيرة دي.',
-'proxyblocksuccess' => 'خلاص.',
 'sorbs' => 'دى إن إس بى إل',
 'sorbsreason' => 'عنوان الأيبى بتاعك موجود كبروكسى مفتوح فى DNSBL اللى بيستعمله{{SITENAME}}.',
 'sorbs_create_account_reason' => 'عنوان الأيبى بتاعك موجود كبروكسى مفتوح فى ال DNSBL اللى بيستعمله {{SITENAME}}.
@@ -2756,6 +2736,8 @@ $1',
 'spambot_username' => 'تنظيف سبام ميدياويكى',
 'spam_reverting' => 'ترجيع آخر نسخة مافيهاش لينكات لـ $1',
 'spam_blanking' => 'كل النسخ فيها لينكات ل $1، فضيها',
+'simpleantispam-label' => "اختبار انتي-سبام.
+'''ماتعبيش''' دا!",
 
 # Skin names
 'skinname-cologneblue' => 'كولون بلو',

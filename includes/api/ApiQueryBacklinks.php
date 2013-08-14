@@ -255,6 +255,9 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		if ( $this->params['limit'] == 'max' ) {
 			$this->params['limit'] = $this->getMain()->canApiHighLimits() ? $botMax : $userMax;
 			$result->setParsedLimit( $this->getModuleName(), $this->params['limit'] );
+		} else {
+			$this->params['limit'] = intval( $this->params['limit'] );
+			$this->validateLimit( 'limit', $this->params['limit'], 1, $userMax, $botMax );
 		}
 
 		$this->processContinue();

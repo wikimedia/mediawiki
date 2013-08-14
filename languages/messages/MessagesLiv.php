@@ -137,7 +137,7 @@ $messages = array(
 'jumptonavigation' => 'navigīerimiz kast',
 'jumptosearch' => 'Vȯtšõgid',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Iļ {{SITENAME}}',
 'aboutpage' => 'Project:Tītõl tieutõkst',
 'copyright' => 'Amā tekstõ um kȭlbatõmist litsents #$1 pierrõ',
@@ -452,8 +452,6 @@ Legend: '''({{int:cur}})''' = vaiţīd līdzinţõmizõks lǟndz redaktsijõks,,
 
 # Statistics
 'statistics' => 'Lug tīetõkst',
-
-'disambiguationspage' => 'Template:Jarā-seļţimiz-lēḑ',
 
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|bait|baitõ}}',

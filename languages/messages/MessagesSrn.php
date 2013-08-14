@@ -335,7 +335,7 @@ $messages = array(
 'jumptonavigation' => 'fenipresi',
 'jumptosearch' => 'suku',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Abra {{SITENAME}}',
 'aboutpage' => 'Project:Abra',
 'copyright' => 'Ala san skrifi dyaso de ondro $1.',
@@ -836,8 +836,6 @@ Papira ini [[Special:Watchlist|yu Tan Luku réy]] '''fatu'''.",
 # Statistics
 'statistics' => 'Den statistiek',
 'statistics-header-users' => 'Masyininfrumasi',
-
-'disambiguations' => 'Seni doro papira',
 
 'doubleredirects' => 'Seni doro tu leisi',
 'doubleredirectstext' => 'Disi rei abi peprewoysi dy stir na trawan stir. Ies rei abi skaki na a foswan nanga a fostu stirpapira nanga wan skaki na a duli fu a fosty stirpapira. Pasa den ten ben a bakaseywan papira a tru duli.',

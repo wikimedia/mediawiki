@@ -253,7 +253,7 @@ $messages = array(
 'jumptonavigation' => 'ka ho‘okele ‘ana',
 'jumptosearch' => 'huli',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'E pili ana iā {{SITENAME}}',
 'aboutpage' => 'Project:E pili ana',
 'copyrightpage' => '{{ns:project}}:Palapala ho‘okuleana',
@@ -362,7 +362,7 @@ E ʻoluʻolu, e kūlia hou.',
 
 # Change password dialog
 'newpassword' => 'ʻŌlelo hūnā hou:',
-'resetpass_success' => 'Ua loli ‘ia kāu hua‘ōlelo huna! E ‘e‘e iā‘oe...',
+'changepassword-success' => 'Ua loli ‘ia kāu hua‘ōlelo huna! E ‘e‘e iā‘oe...',
 
 # Edit page toolbar
 'bold_sample' => 'Ho‘okā‘ele',
@@ -582,8 +582,6 @@ E ʻoluʻolu, e hōʻoia i ka hoʻokūkū ʻana i lalo, a laila, e mālama i nā
 # Statistics
 'statistics' => 'Papa helu',
 
-'disambiguationspage' => 'Template:Huaʻōlelo puana like',
-
 'brokenredirects-edit' => 'e ho‘ololi',
 'brokenredirects-delete' => 'e kāpae',
 
@@ -738,7 +736,6 @@ E ʻike iā $2 no ka papa o nā kāpae ʻana hou.',
 'unblocklink' => 'mai pale',
 'change-blocklink' => 'hoʻololi ka palena',
 'contribslink' => 'nā ha‘awina',
-'blockme' => 'E ke‘a ia‘u',
 
 # Move page
 'move-page-legend' => 'Hoʻoneʻe i ka ʻaoʻao',

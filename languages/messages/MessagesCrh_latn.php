@@ -97,6 +97,7 @@ $dateFormats = array(
 
 $separatorTransformTable = array( ',' => '.', '.' => ',' );
 $linkTrail = '/^([a-zâçğıñöşüа-яё“»]+)(.*)$/sDu';
+$linkPrefixCharset = 'a-zâçğıñöşüA-ZÂÇĞİÑÖŞÜa-яёА-ЯЁ«„';
 
 $messages = array(
 # User preference toggles
@@ -224,8 +225,6 @@ $messages = array(
 'noindex-category' => 'İndekssiz saifeler',
 'broken-file-category' => 'İçinde bozuq fayl bağlantıları olğan saifeler',
 
-'linkprefix' => '/^(.*?)([a-zâçğıñöşüA-ZÂÇĞİÑÖŞÜa-яёА-ЯЁ«„]+)$/sDu',
-
 'about' => 'Aqqında',
 'article' => 'Saife',
 'newwindow' => '(yañı bir pencerede açılır)',
@@ -328,7 +327,7 @@ $1',
 'pool-queuefull' => 'Soratma toplayıcısı tolu',
 'pool-errorunknown' => 'Bilinmegen hata',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} aqqında',
 'aboutpage' => 'Project:Aqqında',
 'copyright' => 'Malümat $1 binaen keçilip ola.',
@@ -414,16 +413,6 @@ Bar olğan bütün mahsus saifelerni [[Special:SpecialPages|{{int:specialpages}}
 # General errors
 'error' => 'Hata',
 'databaseerror' => 'Malümat bazasınıñ hatası',
-'dberrortext' => 'Malümat bazasından soratqanda sintaksis hatası oldı.
-Bu programmadaki bir hata ola bile.
-"<tt>$2</tt>" funktsiyasından olğan malümat bazasından soñki soratma:
-<blockquote><tt>$1</tt></blockquote>.
-Malümat bazasınıñ bildirgen hatası "<tt>$3: $4</tt>".',
-'dberrortextcl' => 'Malümat bazasından soratqanda sintaksis hatası oldı.
-Malümat bazasından soñki soratma:
-"$1"
-Qullanılğan funktsiya "$2".
-Malümat bazasınıñ bildirgen hatası "$3: $4".',
 'laggedslavemode' => 'Diqqat! Bu saifede soñki yañaruv olmay bile.',
 'readonly' => 'Malümat bazası kilitlendi',
 'enterlockreason' => 'Blok etüvniñ sebebini ve devamını kirsetiñiz.',
@@ -472,7 +461,6 @@ Soratma: $2',
 'viewsourcetext' => 'Saifeniñ kodunı közden keçirip kopiyalay bilesiñiz:',
 'protectedinterface' => 'Bu saifede viki interfeysiniñ metni bar. Onıñ içün mında bir hata çıqmasın dep onı deñiştirmek yasaq.',
 'editinginterface' => "'''Tenbi''': MediaWiki sistemasınıñ interfeys saifesini deñiştireyatasız. Bu saifedeki deñiştirmeler interfeysniñ körünişini bu vikiniñ başqa qullanıcıları içün de deñiştirecek. Lütfen, viki interfeysini tercime etmek içün [//translatewiki.net/wiki/Main_Page?setlang=crh translatewiki.net] saytını (MediaWiki resmiy lokalizatsiya leyhası) qullanıñız.",
-'sqlhidden' => '(SQL istintağı saqlı)',
 'cascadeprotected' => 'Bu saifeni deñiştirip olamazsıñız, çünki kaskad qorçalav altında bulunğan {{PLURAL:$1|saifege|saifelerge}} mensüptir:
 $2',
 'namespaceprotected' => "'''$1''' isim fezasında saifeler deñiştirmege aqqıñız yoq.",
@@ -493,7 +481,6 @@ Sebep: ''$2''.",
 'yourpassword' => 'Paroliñiz',
 'yourpasswordagain' => 'Parolni bir daa yazıñız:',
 'remembermypassword' => 'Kirişimni bu kompyuterde hatırla (eñ çoq $1 {{PLURAL:$1|kün|kün}} içün)',
-'securelogin-stick-https' => 'Kirgen soñ HTTPS-ge bağlanıp tur',
 'yourdomainname' => 'Domen adıñız',
 'externaldberror' => 'Saytqa kirgende bir hata oldı. Bu tış esabıñıznı deñiştirmek aqqıñız olmağanından sebep meydanğa kelip ola.',
 'login' => 'Kiriş',
@@ -577,7 +564,7 @@ Lütfen, qayta kirmezden evel biraz bekleñiz.',
 'newpassword' => 'Yañı parol',
 'retypenew' => 'Yañı parolni tekrar yazıñız',
 'resetpass_submit' => 'Parol qoyıp kir',
-'resetpass_success' => 'Paroliñiz muvafaqiyetnen deñiştirildi! Oturımıñız açılmaqta...',
+'changepassword-success' => 'Paroliñiz muvafaqiyetnen deñiştirildi! Oturımıñız açılmaqta...',
 'resetpass_forbidden' => 'Parol deñiştirmek yasaq',
 'resetpass-no-info' => 'Bu saifege doğrudan irişmek içün oturım açmaq kereksiñiz.',
 'resetpass-submit-loggedin' => 'Parolni deñiştir',
@@ -1253,12 +1240,6 @@ Sutun serlevasına bir basuv sortirlemeniñ tertibini deñiştirir.',
 'statistics-header-users' => 'Qullanıcı statistikası',
 'statistics-header-hooks' => 'Diger statistika',
 'statistics-mostpopular' => 'Eñ sıq baqılğan saifeler',
-
-'disambiguations' => 'Çoq manalı terminler saifeleri',
-'disambiguationspage' => '{{ns:template}}:disambig',
-'disambiguations-text' => "Aşağıdıki saifeler '''çoq manalı saifeler'''ge bağlantı ola.
-Belki de olar bir konkret saifege bağlantı olmalı.<br />
-Eger saifede, [[MediaWiki:Disambiguationspage]] saifesinde adı keçken şablon yerleştirilgen olsa, o saife çoq manalıdır.",
 
 'doubleredirects' => 'Yollamağa olğan yollamalar',
 'doubleredirectstext' => 'Bu saifede diger yollama saifelerine yollanma olğan saifeleri kösterile.

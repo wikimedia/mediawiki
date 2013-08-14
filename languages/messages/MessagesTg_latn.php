@@ -233,7 +233,7 @@ Lutfan qabl az taloş dubora baroi didani in sahifa muddate sabr kuned.
 $1",
 'pool-errorunknown' => 'Xatogiji noşinos',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Dar borai {{SITENAME}}',
 'aboutpage' => 'Project:Dar borai',
 'copyright' => 'Mūhtavo tahti içozatnomai $1 dastras ast.',
@@ -312,12 +312,6 @@ Fehristi sahifahoi viƶai durustro metavoned dar inço [[Special:SpecialPages|{{
 # General errors
 'error' => 'Iştiboh',
 'databaseerror' => 'Xatoi bojgohi doda',
-'dberrortext' => 'Işkole dar dasturi firistanda şuda ba pojgohi doda rux dod.
-Daleli in muşkil metavonad erode dar narmafzor boşad.
-In oxirin dasture bud ki baroi pojgohi doda firistoda şud:
-<blockquote><tt>$1</tt></blockquote>
-in dastur az daruni amalgir "<tt>$2</tt>".
-Pogohi doda in xatoro bozgardond "<tt>$3: $4</tt>".',
 'laggedslavemode' => 'Huşdor: Sahifa mumkin ast rūzrasonihoi oxirro dar bar nagirad.',
 'readonly' => 'Bojgohi doda qufl şudaast',
 'enterlockreason' => 'Dalelero baroi qufl kardan zikr kuned, va taqriban vaqti az qufl ozod şudanaşro ham zikr kuned',
@@ -359,7 +353,6 @@ Pursuçū: $2',
 'protectedpagetext' => 'In sahifa baroi çilavgirī az viroiş qufl şudaast.',
 'viewsourcetext' => 'Şumo metavoned matni vikiji in sahifaro nazar kuned jo nusxa bardored:',
 'protectedinterface' => 'In sahifa oroişdihandai matni in narmafzor ast, va ba manzuri peşgirī az xarobkorī qufl şudaast.',
-'sqlhidden' => '(Dasturi SQL pinhonist)',
 'cascadeprotected' => 'In sahifa az viroiş muhofizat şudaast, baroi in ki  dar {{PLURAL:$1|sahifai|sahifahoi}} muhofizatşudai zerin, ki guzainai "obşorī" dar {{PLURAL:$1|on|onho}} intixob şudaast, faro giriftaast: $2',
 'namespaceprotected' => "Şumo içozati viroişi sahifahoi fazoinomi '''$1'''-ro nadored.",
 'ns-specialprotected' => 'Sahifahoi viƶa ƣajri qobili viroiş hastand.',
@@ -446,7 +439,7 @@ Lutfan peş az on, ki dubora taloş kuned, sabr kuned.',
 'newpassword' => 'Kalimai navi ubur:',
 'retypenew' => 'Kalimai navi uburro takroran navised:',
 'resetpass_submit' => 'Kalimai uburro tanzim karda ba sistem vurud kuned',
-'resetpass_success' => 'Kalimai uburi şumo bo muvaffaqijat taƣjir doda şud! Dar holi vorid kardani şumo ba sistem...',
+'changepassword-success' => 'Kalimai uburi şumo bo muvaffaqijat taƣjir doda şud! Dar holi vorid kardani şumo ba sistem...',
 'resetpass-no-info' => 'Baroi dastrasiji mustaqim ba in sahifa şumo bojad ba sistem vorid şuda boşed.',
 'resetpass-submit-loggedin' => 'Taƣjiri guzarvoƶa',
 'resetpass-wrong-oldpass' => "Guzarvoƶai muvaqat jo oxir nomū'tabar.
@@ -1089,10 +1082,6 @@ Jak klik kardani rūi unvoni sutunho boisi taƣjiri tartibi namoişi parvandaho 
 'statistics-users-active' => "Korbaroni fa'ol",
 'statistics-mostpopular' => 'Sahifahoi bisjor nazarkardaşuda',
 
-'disambiguations' => 'Sahifahoi ibhomzudoī',
-'disambiguationspage' => 'Template:ibhomzudoī',
-'disambiguations-text' => "Sahifahoi zerin pajvand ba '''sahifai ibhomzudoī''' dorand. In sahifaho bojad ba mavzū'i munosibi xud pajvast şavand.<br />Sahifa Ibhomzudoī dar nazar girifta meşavad, ki dar on şablone, ki ba [[MediaWiki:Disambiguationspage]] pajvand dorad istifoda şuda boşad",
-
 'doubleredirects' => 'Taƣjiri masirhoi dutoī',
 'double-redirect-fixer' => "Ta'mirkori taƣjirmasirho",
 
@@ -1518,11 +1507,8 @@ Baroi fehristi mahrumijatho va basta şudanhoi amalijoti kununī ba [[Special:Bl
 'ipb_cant_unblock' => 'Xato: Nişonai basta şudani $1 joft naşud. Mumkin ast peştar boz şuda boşad.',
 'ipb_blocked_as_range' => 'Xato: Nişonai IP-i $1 ba şakli mustaqim basta naşudaast va nametavonad boz şavad. In nişona hamrohi $2, basta şuda qobili boz şudan ast.',
 'ip_range_invalid' => "Safi IP nomū'tabar ast.",
-'blockme' => 'Dastrasiji manro qatь kun',
 'proxyblocker' => 'Proksiband',
-'proxyblocker-disabled' => "In amal ƣajrifa'ol şudaast.",
 'proxyblockreason' => "Az sababi peşkor boz (open proxy) budanaş, nişonai IP-i şumo basta şudaast. Lutfan bo ta'minkunandai xizmathoi Internetiji xud jo puştiboni texnikī tamos bigired va onhoro bo in muşkiliji amnijatiji muhim ogoh kuned.",
-'proxyblocksuccess' => 'Ançom şud.',
 'sorbsreason' => 'Nişonai IP-i şumo hamcun jak proksiji kuşoda dar DNSBL fehrist şudaast, ki az tarafi {{SITENAME}} istifoda meşavad.',
 'sorbs_create_account_reason' => 'Nişonai IP-i şumo hamcun proksiji kuşoda dar DNSBL, ki az tarafi {{SITENAME}} istifoda meşavad, fehrist şudaast. Şumo nametavoned hisobi korabariero eçod kuned',
 

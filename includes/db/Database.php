@@ -282,10 +282,30 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	private $mTrxAutomatic = false;
 
 	/**
+	 * Array of levels of atomicity within transactions
+	 *
+	 * @var SplStack
+	 */
+	private $mTrxAtomicLevels;
+
+	/**
+	 * Record if the current transaction was started implicitly by DatabaseBase::startAtomic
+	 *
+	 * @var Bool
+	 */
+	private $mTrxAutomaticAtomic = false;
+
+	/**
 	 * @since 1.21
 	 * @var file handle for upgrade
 	 */
 	protected $fileHandle = null;
+
+	/**
+	 * @since 1.22
+	 * @var Process cache of VIEWs names in the database
+	 */
+	protected $allViews = null;
 
 # ------------------------------------------------------------------------------
 # Accessors
@@ -359,6 +379,8 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 * database errors. Default is on (false). When turned off, the
 	 * code should use lastErrno() and lastError() to handle the
 	 * situation as appropriate.
+	 *
+	 * Do not use this function outside of the Database classes.
 	 *
 	 * @param $ignoreErrors bool|null
 	 *
@@ -582,7 +604,6 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 * @param $flag Integer: DBO_* constants from Defines.php:
 	 *   - DBO_DEBUG: output some debug info (same as debug())
 	 *   - DBO_NOBUFFER: don't buffer results (inverse of bufferResults())
-	 *   - DBO_IGNORE: ignore errors (same as ignoreErrors())
 	 *   - DBO_TRX: automatically start transactions
 	 *   - DBO_DEFAULT: automatically sets DBO_TRX if not in command line mode
 	 *       and removes it in command line mode
@@ -661,6 +682,18 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 
 	/**
 	 * Constructor.
+	 *
+	 * FIXME: It is possible to construct a Database object with no associated
+	 * connection object, by specifying no parameters to __construct(). This
+	 * feature is deprecated and should be removed.
+	 *
+	 * FIXME: The long list of formal parameters here is not really appropriate
+	 * for MySQL, and not at all appropriate for any other DBMS. It should be
+	 * replaced by named parameters as in DatabaseBase::factory().
+	 *
+	 * DatabaseBase subclasses should not be constructed directly in external
+	 * code. DatabaseBase::factory() should be used instead.
+	 *
 	 * @param string $server database server host
 	 * @param string $user database user name
 	 * @param string $password database user password
@@ -674,6 +707,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	) {
 		global $wgDBprefix, $wgCommandLineMode, $wgDebugDBTransactions;
 
+		$this->mTrxAtomicLevels = new SplStack;
 		$this->mFlags = $flags;
 
 		if ( $this->mFlags & DBO_DEFAULT ) {
@@ -716,7 +750,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	/**
 	 * Given a DB type, construct the name of the appropriate child class of
 	 * DatabaseBase. This is designed to replace all of the manual stuff like:
-	 *	$class = 'Database' . ucfirst( strtolower( $type ) );
+	 *	$class = 'Database' . ucfirst( strtolower( $dbType ) );
 	 * as well as validate against the canonical list of DB types we have
 	 *
 	 * This factory function is mostly useful for when you need to connect to a
@@ -731,17 +765,47 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 *
 	 * @param string $dbType A possible DB type
 	 * @param array $p An array of options to pass to the constructor.
-	 *    Valid options are: host, user, password, dbname, flags, tablePrefix
+	 *    Valid options are: host, user, password, dbname, flags, tablePrefix, driver
 	 * @return DatabaseBase subclass or null
 	 */
 	final public static function factory( $dbType, $p = array() ) {
 		$canonicalDBTypes = array(
-			'mysql', 'postgres', 'sqlite', 'oracle', 'mssql'
+			'mysql'    => array( 'mysqli', 'mysql' ),
+			'postgres' => array(),
+			'sqlite'   => array(),
+			'oracle'   => array(),
+			'mssql'    => array(),
 		);
-		$dbType = strtolower( $dbType );
-		$class = 'Database' . ucfirst( $dbType );
 
-		if ( in_array( $dbType, $canonicalDBTypes ) || ( class_exists( $class ) && is_subclass_of( $class, 'DatabaseBase' ) ) ) {
+		$driver = false;
+		$dbType = strtolower( $dbType );
+		if ( isset( $canonicalDBTypes[$dbType] ) && $canonicalDBTypes[$dbType] ) {
+			$possibleDrivers = $canonicalDBTypes[$dbType];
+			if ( !empty( $p['driver'] ) ) {
+				if ( in_array( $p['driver'], $possibleDrivers ) ) {
+					$driver = $p['driver'];
+				} else {
+					throw new MWException( __METHOD__ .
+						" cannot construct Database with type '$dbType' and driver '{$p['driver']}'" );
+				}
+			} else {
+				foreach ( $possibleDrivers as $posDriver ) {
+					if ( extension_loaded( $posDriver ) ) {
+						$driver = $posDriver;
+						break;
+					}
+				}
+			}
+		} else {
+			$driver = $dbType;
+		}
+		if ( $driver === false ) {
+			throw new MWException( __METHOD__ .
+				" no viable database extension found for type '$dbType'" );
+		}
+
+		$class = 'Database' . ucfirst( $driver );
+		if ( class_exists( $class ) && is_subclass_of( $class, 'DatabaseBase' ) ) {
 			return new $class(
 				isset( $p['host'] ) ? $p['host'] : false,
 				isset( $p['user'] ) ? $p['user'] : false,
@@ -882,22 +946,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 *     for a successful read query, or false on failure if $tempIgnore set
 	 */
 	public function query( $sql, $fname = __METHOD__, $tempIgnore = false ) {
-		$isMaster = !is_null( $this->getLBInfo( 'master' ) );
-		if ( !Profiler::instance()->isStub() ) {
-			# generalizeSQL will probably cut down the query to reasonable
-			# logging size most of the time. The substr is really just a sanity check.
-
-			if ( $isMaster ) {
-				$queryProf = 'query-m: ' . substr( DatabaseBase::generalizeSQL( $sql ), 0, 255 );
-				$totalProf = 'DatabaseBase::query-master';
-			} else {
-				$queryProf = 'query: ' . substr( DatabaseBase::generalizeSQL( $sql ), 0, 255 );
-				$totalProf = 'DatabaseBase::query';
-			}
-
-			wfProfileIn( $totalProf );
-			wfProfileIn( $queryProf );
-		}
+		global $wgUser, $wgDebugDBTransactions;
 
 		$this->mLastQuery = $sql;
 		if ( !$this->mDoneWrites && $this->isWriteQuery( $sql ) ) {
@@ -907,7 +956,6 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		}
 
 		# Add a comment for easy SHOW PROCESSLIST interpretation
-		global $wgUser;
 		if ( is_object( $wgUser ) && $wgUser->isItemLoaded( 'name' ) ) {
 			$userName = $wgUser->getName();
 			if ( mb_strlen( $userName ) > 15 ) {
@@ -931,7 +979,6 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 			# is really used by application
 			$sqlstart = substr( $sql, 0, 10 ); // very much worth it, benchmark certified(tm)
 			if ( strpos( $sqlstart, "SHOW " ) !== 0 && strpos( $sqlstart, "SET " ) !== 0 ) {
-				global $wgDebugDBTransactions;
 				if ( $wgDebugDBTransactions ) {
 					wfDebug( "Implicit transaction start.\n" );
 				}
@@ -944,6 +991,21 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		if ( $this->mTrxLevel && !$this->mTrxDoneWrites && $this->isWriteQuery( $sql ) ) {
 			$this->mTrxDoneWrites = true;
 			Profiler::instance()->transactionWritingIn( $this->mServer, $this->mDBname );
+		}
+
+		$isMaster = !is_null( $this->getLBInfo( 'master' ) );
+		if ( !Profiler::instance()->isStub() ) {
+			# generalizeSQL will probably cut down the query to reasonable
+			# logging size most of the time. The substr is really just a sanity check.
+			if ( $isMaster ) {
+				$queryProf = 'query-m: ' . substr( DatabaseBase::generalizeSQL( $sql ), 0, 255 );
+				$totalProf = 'DatabaseBase::query-master';
+			} else {
+				$queryProf = 'query: ' . substr( DatabaseBase::generalizeSQL( $sql ), 0, 255 );
+				$totalProf = 'DatabaseBase::query';
+			}
+			wfProfileIn( $totalProf );
+			wfProfileIn( $queryProf );
 		}
 
 		if ( $this->debug() ) {
@@ -1607,7 +1669,8 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		$sql = preg_replace( '/\s+/', ' ', $sql );
 
 		# All numbers => N
-		$sql = preg_replace( '/-?[0-9]+/s', 'N', $sql );
+		$sql = preg_replace( '/-?\d+(,-?\d+)+/s', 'N,...,N', $sql );
+		$sql = preg_replace( '/-?\d+/s', 'N', $sql );
 
 		return $sql;
 	}
@@ -2301,8 +2364,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	}
 
 	/**
-	 * If it's a string, adds quotes and backslashes
-	 * Otherwise returns as-is
+	 * Adds quotes and backslashes.
 	 *
 	 * @param $s string
 	 *
@@ -3070,7 +3132,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 * @since 1.20
 	 */
 	final public function onTransactionIdle( $callback ) {
-		$this->mTrxIdleCallbacks[] = $callback;
+		$this->mTrxIdleCallbacks[] = array( $callback, wfGetCaller() );
 		if ( !$this->mTrxLevel ) {
 			$this->runOnTransactionIdleCallbacks();
 		}
@@ -3089,7 +3151,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 */
 	final public function onTransactionPreCommitOrIdle( $callback ) {
 		if ( $this->mTrxLevel ) {
-			$this->mTrxPreCommitCallbacks[] = $callback;
+			$this->mTrxPreCommitCallbacks[] = array( $callback, wfGetCaller() );
 		} else {
 			$this->onTransactionIdle( $callback ); // this will trigger immediately
 		}
@@ -3109,11 +3171,11 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 			$this->mTrxIdleCallbacks = array(); // recursion guard
 			foreach ( $callbacks as $callback ) {
 				try {
+					list( $phpCallback ) = $callback;
 					$this->clearFlag( DBO_TRX ); // make each query its own transaction
-					$callback();
+					call_user_func( $phpCallback );
 					$this->setFlag( $autoTrx ? DBO_TRX : 0 ); // restore automatic begin()
-				} catch ( Exception $e ) {
-				}
+				} catch ( Exception $e ) {}
 			}
 		} while ( count( $this->mTrxIdleCallbacks ) );
 
@@ -3134,7 +3196,8 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 			$this->mTrxPreCommitCallbacks = array(); // recursion guard
 			foreach ( $callbacks as $callback ) {
 				try {
-					$callback();
+					list( $phpCallback ) = $callback;
+					call_user_func( $phpCallback );
 				} catch ( Exception $e ) {}
 			}
 		} while ( count( $this->mTrxPreCommitCallbacks ) );
@@ -3142,6 +3205,39 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		if ( $e instanceof Exception ) {
 			throw $e; // re-throw any last exception
 		}
+	}
+
+	/**
+	 * Begin an atomic section of statements
+	 *
+	 * If a transaction has been started already, just keep track of the given
+	 * section name to make sure the transaction is not committed pre-maturely.
+	 * This function can be used in layers (with sub-sections), so use a stack
+	 * to keep track of the different atomic sections. If there is no transaction,
+	 * start one implicitly.
+	 *
+	 * The goal of this function is to create an atomic section of SQL queries
+	 * without having to start a new transaction if it already exists.
+	 *
+	 * Atomic sections are more strict than transactions. With transactions,
+	 * attempting to begin a new transaction when one is already running results
+	 * in MediaWiki issuing a brief warning and doing an implicit commit. All
+	 * atomic levels *must* be explicitly closed using DatabaseBase::endAtomic(),
+	 * and any database transactions cannot be began or committed until all atomic
+	 * levels are closed. There is no such thing as implicitly opening or closing
+	 * an atomic section.
+	 *
+	 * @since 1.23
+	 * @param string $fname
+	 */
+	final public function startAtomic( $fname = __METHOD__ ) {
+		if ( !$this->mTrxLevel ) {
+			$this->begin( $fname );
+			$this->mTrxAutomatic = true;
+			$this->mTrxAutomaticAtomic = true;
+		}
+
+		$this->mTrxAtomicLevels->push( $fname );
 	}
 
 	/**
@@ -3160,7 +3256,13 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		global $wgDebugDBTransactions;
 
 		if ( $this->mTrxLevel ) { // implicit commit
-			if ( !$this->mTrxAutomatic ) {
+			if ( !$this->mTrxAtomicLevels->isEmpty() ) {
+				// If the current transaction was an automatic atomic one, then we definitely have
+				// a problem. Same if there is any unclosed atomic level.
+				throw new DBUnexpectedError( $this,
+					"Attempted to start explicit transaction when atomic levels are still open."
+				);
+			} elseif ( !$this->mTrxAutomatic ) {
 				// We want to warn about inadvertently nested begin/commit pairs, but not about
 				// auto-committing implicit transactions that were started by query() via DBO_TRX
 				$msg = "$fname: Transaction already in progress (from {$this->mTrxFname}), " .
@@ -3189,6 +3291,8 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		$this->mTrxFname = $fname;
 		$this->mTrxDoneWrites = false;
 		$this->mTrxAutomatic = false;
+		$this->mTrxAutomaticAtomic = false;
+		$this->mTrxAtomicLevels = new SplStack;
 	}
 
 	/**
@@ -3200,6 +3304,28 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	protected function doBegin( $fname ) {
 		$this->query( 'BEGIN', $fname );
 		$this->mTrxLevel = 1;
+	}
+
+	/**
+	 * Ends an atomic section of SQL statements
+	 *
+	 * Ends the next section of atomic SQL statements and commits the transaction
+	 * if necessary.
+	 *
+	 * @since 1.23
+	 * @see DatabaseBase::startAtomic
+	 * @param string $fname
+	 */
+	final public function endAtomic( $fname = __METHOD__ ) {
+		if ( $this->mTrxAtomicLevels->isEmpty() ||
+			$this->mTrxAtomicLevels->pop() !== $fname
+		) {
+			throw new DBUnexpectedError( $this, 'Invalid atomic section ended.' );
+		}
+
+		if ( $this->mTrxAtomicLevels->isEmpty() && $this->mTrxAutomaticAtomic ) {
+			$this->commit( $fname, 'flush' );
+		}
 	}
 
 	/**
@@ -3215,6 +3341,11 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 *        that it is safe to ignore these warnings in your context.
 	 */
 	final public function commit( $fname = __METHOD__, $flush = '' ) {
+		if ( !$this->mTrxAtomicLevels->isEmpty() ) {
+			// There are still atomic sections open. This cannot be ignored
+			throw new DBUnexpectedError( $this, "Attempted to commit transaction while atomic sections are still open" );
+		}
+
 		if ( $flush != 'flush' ) {
 			if ( !$this->mTrxLevel ) {
 				wfWarn( "$fname: No transaction to commit, something got out of sync!" );
@@ -3234,6 +3365,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		if ( $this->mTrxDoneWrites ) {
 			Profiler::instance()->transactionWritingOut( $this->mServer, $this->mDBname );
 		}
+		$this->mTrxDoneWrites = false;
 		$this->runOnTransactionIdleCallbacks();
 	}
 
@@ -3265,9 +3397,11 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		$this->doRollback( $fname );
 		$this->mTrxIdleCallbacks = array(); // cancel
 		$this->mTrxPreCommitCallbacks = array(); // cancel
+		$this->mTrxAtomicLevels = new SplStack;
 		if ( $this->mTrxDoneWrites ) {
 			Profiler::instance()->transactionWritingOut( $this->mServer, $this->mDBname );
 		}
+		$this->mTrxDoneWrites = false;
 	}
 
 	/**
@@ -3314,6 +3448,40 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 */
 	function listTables( $prefix = null, $fname = __METHOD__ ) {
 		throw new MWException( 'DatabaseBase::listTables is not implemented in descendant class' );
+	}
+
+	/**
+	 * Reset the views process cache set by listViews()
+	 * @since 1.22
+	 */
+	final public function clearViewsCache() {
+		$this->allViews = null;
+	}
+
+	/**
+	 * Lists all the VIEWs in the database
+	 *
+	 * For caching purposes the list of all views should be stored in
+	 * $this->allViews. The process cache can be cleared with clearViewsCache()
+	 *
+	 * @param string $prefix   Only show VIEWs with this prefix, eg. unit_test_
+	 * @param string $fname    Name of calling function
+	 * @throws MWException
+	 * @since 1.22
+	 */
+	public function listViews( $prefix = null, $fname = __METHOD__ ) {
+		throw new MWException( 'DatabaseBase::listViews is not implemented in descendant class' );
+	}
+
+	/**
+	 * Differentiates between a TABLE and a VIEW
+	 *
+	 * @param $name string: Name of the database-structure to test.
+	 * @throws MWException
+	 * @since 1.22
+	 */
+	public function isView( $name ) {
+		throw new MWException( 'DatabaseBase::isView is not implemented in descendant class' );
 	}
 
 	/**
@@ -3852,9 +4020,21 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		return (string)$this->mConn;
 	}
 
+	/**
+	 * Run a few simple sanity checks
+	 */
 	public function __destruct() {
+		if ( $this->mTrxLevel && $this->mTrxDoneWrites ) {
+			trigger_error( "Uncommitted DB writes (transaction from {$this->mTrxFname})." );
+		}
 		if ( count( $this->mTrxIdleCallbacks ) || count( $this->mTrxPreCommitCallbacks ) ) {
-			trigger_error( "Transaction idle or pre-commit callbacks still pending." ); // sanity
+			$callers = array();
+			foreach ( $this->mTrxIdleCallbacks as $callbackInfo ) {
+				$callers[] = $callbackInfo[1];
+
+			}
+			$callers = implode( ', ', $callers );
+			trigger_error( "DB transaction callbacks still pending (from $callers)." );
 		}
 	}
 }

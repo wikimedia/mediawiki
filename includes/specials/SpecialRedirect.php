@@ -166,6 +166,7 @@ class SpecialRedirect extends FormSpecialPage {
 		}
 		if ( !is_null( $this->mValue ) ) {
 			$this->getOutput()->setStatusCode( 404 );
+			// Message: redirect-not-exists
 			$msg = $this->getMessagePrefix() . '-not-exists';
 			return Status::newFatal( $msg );
 		}
@@ -176,6 +177,7 @@ class SpecialRedirect extends FormSpecialPage {
 		$mp = $this->getMessagePrefix();
 		$ns = array(
 			// subpage => message
+			// Messages: redirect-user, redirect-revision, redirect-file
 			'user' => $mp . '-user',
 			'revision' => $mp . '-revision',
 			'file' => $mp . '-file',
@@ -183,7 +185,7 @@ class SpecialRedirect extends FormSpecialPage {
 		$a = array();
 		$a['type'] = array(
 			'type' => 'select',
-			'label-message' => $mp . '-lookup',
+			'label-message' => $mp . '-lookup', // Message: redirect-lookup
 			'options' => array(),
 			'default' => current( array_keys( $ns ) ),
 		);
@@ -193,7 +195,7 @@ class SpecialRedirect extends FormSpecialPage {
 		}
 		$a['value'] = array(
 			'type' => 'text',
-			'label-message' => $mp . '-value'
+			'label-message' => $mp . '-value' // Message: redirect-value
 		);
 		// set the defaults according to the parsed subpage path
 		if ( !empty( $this->mType ) ) {
@@ -220,7 +222,8 @@ class SpecialRedirect extends FormSpecialPage {
 	protected function alterForm( HTMLForm $form ) {
 		/* display summary at top of page */
 		$this->outputHeader();
-		/* tweak label on submit button */
+		// tweak label on submit button
+		// Message: redirect-submit
 		$form->setSubmitTextMsg( $this->getMessagePrefix() . '-submit' );
 		/* submit form every time */
 		$form->setMethod( 'get' );

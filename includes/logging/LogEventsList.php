@@ -172,6 +172,7 @@ class LogEventsList extends ContextSource {
 				$query
 			);
 
+			// Message: log-show-hide-patrol
 			$links[$type] = $this->msg( "log-show-hide-{$type}" )->rawParams( $link )->escaped();
 			$hiddens .= Html::hidden( "hide_{$type}_log", $val ) . "\n";
 		}

@@ -21,6 +21,7 @@
  * @file
  * @ingroup Maintenance
  * @author Daniel Friesen <mediawiki@danielfriesen.name>
+ * @author Chris Steipp <csteipp@wikimedia.org>
  */
 
 require_once __DIR__ . '/Maintenance.php';
@@ -35,14 +36,21 @@ class ResetUserTokens extends Maintenance {
 		parent::__construct();
 		$this->mDescription = "Reset the user_token of all users on the wiki. Note that this may log some of them out.";
 		$this->addOption( 'nowarn', "Hides the 5 seconds warning", false, false );
+		$this->addOption( 'nulls', 'Only reset tokens that are currently null (string of \x00\'s)', false, false );
+		$this->setBatchSize( 1000 );
 	}
 
 	public function execute() {
+		$this->nullsOnly = $this->getOption( 'nulls' );
 
 		if ( !$this->getOption( 'nowarn' ) ) {
-			$this->output( "The script is about to reset the user_token for ALL USERS in the database.\n" );
-			$this->output( "This may log some of them out and is not necessary unless you believe your\n" );
-			$this->output( "user table has been compromised.\n" );
+			if ( $this->nullsOnly ) {
+				$this->output( "The script is about to reset the user_token for USERS WITH NULL TOKENS in the database.\n" );
+			} else {
+				$this->output( "The script is about to reset the user_token for ALL USERS in the database.\n" );
+				$this->output( "This may log some of them out and is not necessary unless you believe your\n" );
+				$this->output( "user table has been compromised.\n" );
+			}
 			$this->output( "\n" );
 			$this->output( "Abort with control-c in the next five seconds (skip this countdown with --nowarn) ... " );
 			wfCountDown( 5 );
@@ -50,27 +58,51 @@ class ResetUserTokens extends Maintenance {
 
 		// We list user by user_id from one of the slave database
 		$dbr = wfGetDB( DB_SLAVE );
-		$result = $dbr->select( 'user',
-			array( 'user_id' ),
-			array(),
-			__METHOD__
-			);
 
-		foreach ( $result as $id ) {
-			$user = User::newFromId( $id->user_id );
-
-			$username = $user->getName();
-
-			$this->output( "Resetting user_token for $username: " );
-
-			// Change value
-			$user->setToken();
-			$user->saveSettings();
-
-			$this->output( " OK\n" );
-
+		$where = array();
+		if ( $this->nullsOnly ) {
+			// Have to build this by hand, because \ is escaped in helper functions
+			$where = array( 'user_token = \'' . str_repeat( '\0', 32) . '\'' );
 		}
 
+		$maxid = $dbr->selectField( 'user', 'MAX(user_id)', array(), __METHOD__ );
+
+		$min = 0;
+		$max = $this->mBatchSize;
+
+		do {
+			$result = $dbr->select( 'user',
+				array( 'user_id' ),
+				array_merge(
+					$where,
+					array( 'user_id > ' . $dbr->addQuotes( $min ),
+						'user_id <= ' . $dbr->addQuotes( $max )
+					)
+				),
+				__METHOD__
+			);
+
+			foreach ( $result as $user ) {
+				$this->updateUser( $user->user_id );
+			}
+
+			$min = $max;
+			$max = $min + $this->mBatchSize;
+
+			wfWaitForSlaves();
+
+		} while ( $max <= $maxid );
+
+	}
+
+	private function updateUser( $userid ) {
+		$user = User::newFromId( $userid );
+		$username = $user->getName();
+		$this->output( 'Resetting user_token for "' . $username . '": ' );
+		// Change value
+		$user->setToken();
+		$user->saveSettings();
+		$this->output( " OK\n" );
 	}
 }
 

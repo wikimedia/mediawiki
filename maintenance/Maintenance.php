@@ -453,11 +453,11 @@ abstract class Maintenance {
 	 */
 	public function runChild( $maintClass, $classFile = null ) {
 		// Make sure the class is loaded first
-		if ( !MWInit::classExists( $maintClass ) ) {
+		if ( !class_exists( $maintClass ) ) {
 			if ( $classFile ) {
 				require_once $classFile;
 			}
-			if ( !MWInit::classExists( $maintClass ) ) {
+			if ( !class_exists( $maintClass ) ) {
 				$this->error( "Cannot spawn child: $maintClass" );
 			}
 		}
@@ -477,15 +477,20 @@ abstract class Maintenance {
 	 * Do some sanity checking and basic setup
 	 */
 	public function setup() {
-		global $wgCommandLineMode, $wgRequestTime;
+		global $IP, $wgCommandLineMode, $wgRequestTime;
 
 		# Abort if called from a web server
 		if ( isset( $_SERVER ) && isset( $_SERVER['REQUEST_METHOD'] ) ) {
 			$this->error( 'This script must be run from the command line', true );
 		}
 
+		if ( $IP === null ) {
+			$this->error( "\$IP not set, aborting!\n" .
+				'(Did you forget to call parent::__construct() in your maintenance script?)', 1 );
+		}
+
 		# Make sure we can handle script parameters
-		if ( !function_exists( 'hphp_thread_set_warmup_enabled' ) && !ini_get( 'register_argc_argv' ) ) {
+		if ( !defined( 'HPHP_VERSION' ) && !ini_get( 'register_argc_argv' ) ) {
 			$this->error( 'Cannot get command line arguments, register_argc_argv is set to false', true );
 		}
 
@@ -1171,7 +1176,7 @@ abstract class Maintenance {
 	 * @return bool
 	 */
 	public static function posix_isatty( $fd ) {
-		if ( !MWInit::functionExists( 'posix_isatty' ) ) {
+		if ( !function_exists( 'posix_isatty' ) ) {
 			return !$fd;
 		} else {
 			return posix_isatty( $fd );

@@ -358,7 +358,7 @@ $1',
 'pool-queuefull' => 'Antrian geus pinuh',
 'pool-errorunknown' => 'Éror teu dipikawanoh',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Ngeunaan {{SITENAME}}',
 'aboutpage' => 'Project:Ngeunaan',
 'copyright' => 'Sadaya kandungan ieu loka ditangtayungan ku $1',
@@ -439,17 +439,6 @@ Kaca husus anu bener bisa ditempo béréndélanana dina [[Special:SpecialPages|{
 # General errors
 'error' => 'Kasalahan',
 'databaseerror' => 'Kasalahan gudang data',
-'dberrortext' => 'Éror rumpaka kueri pangkalan data.
-Ieu bisa jadi alatan ayana bug dina sopwérna.
-Kueri pangkalan data nu panungtung nyaéta:
-<blockquote><tt>$1</tt></blockquote>
-ti antara fungsi "<tt>$2</tt>".
-Éror ti pangkalan data "<tt>$3: $4</tt>".',
-'dberrortextcl' => 'Éror rumpaka kueri pangkalan data.
-Kueri pangkalan data nu panungtung nyaéta:
-"$1"
-ti antara fungsi "$2".
-Éror ti pangkalan data "$3: $4".',
 'laggedslavemode' => 'Awas: kandungan kaca bisa baé teu mutahir.',
 'readonly' => 'pangkalan data dikonci',
 'enterlockreason' => 'Asupkeun alesan pikeun ngonci, kaasup kira-kira iraha konci ieu rék dibuka',
@@ -498,7 +487,6 @@ Sigana geus dihapus ku nu séjén.',
 'editinginterface' => "'''Awas:''' Anjeun keur ngédit kaca nu dipaké pikeun nyadiakeun téks antarmuka pikeun sopwérna.
 Parobahan kana ieu kaca bakal mangaruhan pidangan antarmuka pikeun pamaké séjén.
 Pikeun alihbasa, mangga sumping ka [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], proyék lokalisasi MediaWiki.",
-'sqlhidden' => '(Pamenta SQL disumputkeun)',
 'cascadeprotected' => 'Kaca ieu geus dikonci ti éditan alatan disartakeun di {{PLURAL:$1|kaca|kaca-kaca}} katut anu geus dikonci kalawan pilihan "runtun": $2',
 'namespaceprotected' => "Anjeun teu ngabogaan hak pikeun ngédit kaca di ngaranspasi '''$1'''.",
 'customcssprotected' => 'Anjeun teu teu diwenangkeun pikeun ngédit ieu kaca CSS, sabab ngandung setélan pribadi kontributor séjén.',
@@ -520,7 +508,6 @@ Mangkahadé, sababaraha kaca bakal tetep némbongkeun saolah-olah anjeun asup lo
 'yourpassword' => 'Sandi anjeun',
 'yourpasswordagain' => 'Ketik deui sandi anjeun',
 'remembermypassword' => 'Apalkeun login kuring dina ieu komputer (pikeun paling lila $1 {{PLURAL:$1|poé|poé}})',
-'securelogin-stick-https' => 'Terus nyambung ka HTTPS sanggeus login',
 'yourdomainname' => 'Domain anjeun',
 'externaldberror' => 'Aya kasalahan dina pangkalan data oténtikasi luar, atawa anjeun mémang teu diwenangkeun pikeun ngaropéa rekening luar anjeun.',
 'login' => 'Asup log',
@@ -611,7 +598,7 @@ Tungguan heula sakeudeung, laju cobaan deui.',
 'newpassword' => 'Sandi anyar:',
 'retypenew' => 'Ketik ulang sandi',
 'resetpass_submit' => 'Setél log asup katut sandina',
-'resetpass_success' => 'Kecap sandi Anjeun geus junun dirobah! Ayeuna proses asup log Anjeun...',
+'changepassword-success' => 'Kecap sandi Anjeun geus junun dirobah! Ayeuna proses asup log Anjeun...',
 'resetpass_forbidden' => 'Sandi henteu bisa dirobah',
 'resetpass-no-info' => 'Anjeun kudu asup log pkeun bisa muka ieu kaca sacara langsung.',
 'resetpass-submit-loggedin' => 'Ganti kecap sandi rekening',
@@ -1639,12 +1626,6 @@ Saméméh ngahapus, pariksa heula bisi aya tumbu ka ieu citakan.',
 'statistics-users-active-desc' => 'Kontributor nu ngoprék salila {{PLURAL:$1|poé|$1 poé}} panungtung',
 'statistics-mostpopular' => 'Kaca nu pangmindengna dibuka',
 
-'disambiguations' => 'Kaca disambiguasi',
-'disambiguationspage' => 'Template:disambig',
-'disambiguations-text' => "Kaca-kaca ieu ngabogaan tumbu ka hiji ''kaca disambiguasi''.
-Kaca eta sakuduna numbu ka topik-topik anu luyu.<br />
-Sahiji kaca dianggap minangka kaca disambiguasi lamun kaca kasebut ngagunakeun citakan anu nyambung ka [[MediaWiki:Disambiguationspage]].",
-
 'doubleredirects' => 'Alihan ganda',
 'doubleredirectstext' => 'Ieu kaca ngabéréndélkeun kaca-kaca alihan ka kaca alihan lianna. Unggal baris ngandung tutumbu ka alihan kahiji jeung kadua, ogé tujul alihan kadua anu biasana tujul kaca anu "bener", anu sakuduna dituju ku alihan kahiji. Ëntri nu <del>dicorét</del> geus diropéa.',
 'double-redirect-fixed-move' => '[[$1]] geus pindah, dialihkeun ka [[$2]].',
@@ -2176,11 +2157,8 @@ Pikeun rujukan, logna dipidangkeun di handap ieu:',
 'unblock-hideuser' => 'Anjeun teu bisa muka peungpeuk ieu pamaké, kusabab landihanan keur disumputkeun.',
 'ipb_cant_unblock' => 'Éror: ID peungpeuk $1 teu kapanggih. Sigana mah geus dibuka.',
 'ip_range_invalid' => 'Angka IP teu bener.',
-'blockme' => 'Peungpeuk kuring',
 'proxyblocker' => 'Pameungpeuk proxy',
-'proxyblocker-disabled' => 'Ieu fungsi keur ditumpurkeun.',
 'proxyblockreason' => "Alamat IP anjeun dipeungpeuk sabab mangrupa proxy muka. Mangga tepungan ''Internet service provider'' atanapi ''tech support'' anjeun, béjakeun masalah serius ieu.",
-'proxyblocksuccess' => 'Réngsé.',
 'sorbsreason' => "Alamat IP anjeun kadaptar salaku ''open proxy'' dina DNSBL.",
 'sorbs_create_account_reason' => "Alamat IP anjeun kadaptar salaku ''open proxy'' dina DNSBL. Anjeun teu bisa nyieun rekening",
 'cant-block-while-blocked' => 'Lamun keur dipeungpeuk, anjeun teu bisa meungpeuk séjén kontributor.',

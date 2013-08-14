@@ -156,7 +156,7 @@ $messages = array(
 'jumptonavigation' => 'valittsõmisiisõ',
 'jumptosearch' => 'ettsüse',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Tääteja {{GRAMMAR:elative|{{SITENAME}}}}',
 'aboutpage' => 'Project:Täätühsed',
 'copyright' => 'Sisälto on $1 litsentsii mukka svobodnoi.',
@@ -544,8 +544,6 @@ Seness [$2 kuvauhsõ lehocülless] informaattsija on alapallõ annõttu.',
 'statistics' => 'Staťisťikka',
 'statistics-pages' => 'Cülcid',
 
-'disambiguationspage' => 'Template:disambig',
-
 'brokenredirects-edit' => 'muuttaa',
 'brokenredirects-delete' => 'pühi',
 
@@ -736,7 +734,6 @@ Cüľľellä $2 on spiiska viimeiziss pühcimühsiiss.',
 'blocklogentry' => 'piätteli cäüttijää vai IP-cislaa [[$1]]. Piättelemin lõpub $2 $3',
 'unblocklogentry' => 'rooci cäüttijält $1 muutuzpiäsüss',
 'block-log-flags-nocreate' => 'lukuloomin piäteltü',
-'proxyblocksuccess' => 'On tehtü.',
 
 # Move page
 'movepagetext' => "Alla õlõvall ruumõll võitta anta cüľľelle uutt nimiä; kõik cüľľee istori leeb liikutõttu uuvvõ nimee alle.

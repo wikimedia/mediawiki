@@ -63,7 +63,7 @@ $wgConf = new SiteConfiguration;
  * MediaWiki version number
  * @since 1.2
  */
-$wgVersion = '1.22alpha';
+$wgVersion = '1.23alpha';
 
 /**
  * Name of the site. It must be changed in LocalSettings.php
@@ -1126,13 +1126,6 @@ $wgMimeTypeFile = 'includes/mime.types';
 $wgMimeInfoFile = 'includes/mime.info';
 
 /**
- * Switch for loading the FileInfo extension by PECL at runtime.
- * This should be used only if fileinfo is installed as a shared object
- * or a dynamic library.
- */
-$wgLoadFileinfoExtension = false;
-
-/**
  * Sets an external mime detector program. The command must print only
  * the mime type to standard output.
  * The name of the file to process will be appended to the command given here.
@@ -1203,6 +1196,7 @@ $wgGalleryOptions = array(
 	'imageHeight' => 120, // Height of the cells containing images in galleries (in "px")
 	'captionLength' => 25, // Length of caption to truncate (in characters)
 	'showBytes' => true, // Show the filesize in bytes in categories
+	'mode' => 'traditional',
 );
 
 /**
@@ -1622,7 +1616,6 @@ $wgSharedTables = array( 'user', 'user_properties' );
  *                  - DBO_DEFAULT -- turns on DBO_TRX only if !$wgCommandLineMode (recommended)
  *                  - DBO_DEBUG -- equivalent of $wgDebugDumpSql
  *                  - DBO_TRX -- wrap entire request in a transaction
- *                  - DBO_IGNORE -- ignore errors (not useful in LocalSettings.php)
  *                  - DBO_NOBUFFER -- turn off buffering (not useful in LocalSettings.php)
  *                  - DBO_PERSISTENT -- enables persistent database connections
  *                  - DBO_SSL -- uses SSL/TLS encryption in database connections, if available
@@ -1878,11 +1871,6 @@ $wgAllowSlowParserFunctions = false;
  * Allow schema updates
  */
 $wgAllowSchemaUpdates = true;
-
-/**
- * Do DELETE/INSERT for link updates instead of incremental
- */
-$wgUseDumbLinkUpdate = false;
 
 /**
  * Anti-lock flags - bitfield
@@ -2383,7 +2371,7 @@ $wgHTCPRouting = array();
 /**
  * @deprecated since 1.22, please use $wgHTCPRouting instead.
  *
- * Whenever this is set and $wgHTCPRouting evaluates to false, $wgHTCPRouting 
+ * Whenever this is set and $wgHTCPRouting evaluates to false, $wgHTCPRouting
  * will be set to this value.
  * This is merely for back compatibility.
  *
@@ -3281,6 +3269,75 @@ $wgResourceLoaderValidateStaticJS = false;
  */
 $wgResourceLoaderExperimentalAsyncLoading = false;
 
+/**
+ * Global LESS variables. An associative array binding variable names to CSS
+ * string values.
+ *
+ * Because the hashed contents of this array are used to construct the cache key
+ * that ResourceLoader uses to look up LESS compilation results, updating this
+ * array can be used to deliberately invalidate the set of cached results.
+ *
+ * @par Example:
+ * @code
+ *   $wgResourceLoaderLESSVars = array(
+ *     'baseFontSize'  => '1em',
+ *     'smallFontSize' => '0.75em',
+ *     'WikimediaBlue' => '#006699',
+ *   );
+ * @endcode
+ * @since 1.22
+ */
+$wgResourceLoaderLESSVars = array();
+
+/**
+ * Custom LESS functions. An associative array mapping function name to PHP
+ * callable.
+ *
+ * Changes to LESS functions do not trigger cache invalidation. If you update
+ * the behavior of a LESS function and need to invalidate stale compilation
+ * results, you can touch one of values in $wgResourceLoaderLESSVars, as
+ * documented above.
+ *
+ * @since 1.22
+ */
+$wgResourceLoaderLESSFunctions = array(
+	'embeddable' => 'ResourceLoaderLESSFunctions::embeddable',
+	'embed' => 'ResourceLoaderLESSFunctions::embed',
+);
+
+/**
+ * Default import paths for LESS modules. LESS files referenced in @import
+ * statements will be looked up here first, and relative to the importing file
+ * second. To avoid collisions, it's important for the LESS files in these
+ * directories to have a common, predictable file name prefix.
+ *
+ * Extensions need not (and should not) register paths in
+ * $wgResourceLoaderLESSImportPaths. The import path includes the path of the
+ * currently compiling LESS file, which allows each extension to freely import
+ * files from its own tree.
+ *
+ * @since 1.22
+ */
+$wgResourceLoaderLESSImportPaths = array(
+	"$IP/resources/mediawiki.less/",
+);
+
+/**
+ * Whether ResourceLoader should attempt to persist modules in localStorage on
+ * browsers that support the Web Storage API.
+ *
+ * @since 1.23 - Client-side module persistence is experimental. Exercise care.
+ */
+$wgResourceLoaderStorageEnabled = false;
+
+/**
+ * Cache version for client-side ResourceLoader module storage. You can trigger
+ * invalidation of the contents of the module store by incrementing this value.
+ *
+ * @since 1.23
+ */
+$wgResourceLoaderStorageVersion = 1;
+
 /** @} */ # End of resource loader settings }
 
 /*************************************************************************//**
@@ -3895,7 +3952,7 @@ $wgReservedUsernames = array(
 	'ScriptImporter', // Default user name used by maintenance/importSiteScripts.php
 	'msg:double-redirect-fixer', // Automatic double redirect fix
 	'msg:usermessage-editor', // Default user for leaving user messages
-	'msg:proxyblocker', // For Special:Blockme
+	'msg:proxyblocker', // For $wgProxyList and Special:Blockme (removed in 1.22)
 );
 
 /**
@@ -3951,6 +4008,7 @@ $wgDefaultUserOptions = array(
 	'underline' => 2,
 	'uselivepreview' => 0,
 	'usenewrc' => 0,
+	'vector-simplesearch' => 1,
 	'watchcreations' => 0,
 	'watchdefault' => 0,
 	'watchdeletion' => 0,
@@ -3964,6 +4022,7 @@ $wgDefaultUserOptions = array(
 	'watchmoves' => 0,
 	'wllimit' => 250,
 	'useeditwarning' => 1,
+	'prefershttps' => 1,
 );
 
 /**
@@ -3996,13 +4055,6 @@ $wgUserrightsInterwikiDelimiter = '@';
  * @since 1.17
  */
 $wgSecureLogin = false;
-
-/**
- * By default, keep users logged in via HTTPS when $wgSecureLogin is also
- * true. Users opt-out of HTTPS when they login by de-selecting the checkbox.
- * @since 1.21
- */
-$wgSecureLoginDefaultHTTPS = true;
 
 /** @} */ # end user accounts }
 
@@ -4330,6 +4382,20 @@ $wgRestrictionLevels = array( '', 'autoconfirmed', 'sysop' );
 $wgCascadingRestrictionLevels = array( 'sysop' );
 
 /**
+ * Restriction levels that should be considered "semiprotected"
+ *
+ * Certain places in the interface recognize a dichotomy between "protected"
+ * and "semiprotected", without further distinguishing the specific levels. In
+ * general, if anyone can be eligible to edit a protection level merely by
+ * reaching some condition in $wgAutopromote, it should probably be considered
+ * "semiprotected".
+ *
+ * 'autoconfirmed' is quietly rewritten to 'editsemiprotected' for backwards compatibility.
+ * 'sysop' is not changed, since it really shouldn't be here.
+ */
+$wgSemiprotectedRestrictionLevels = array( 'autoconfirmed' );
+
+/**
  * Set the minimum permissions required to edit pages in each
  * namespace.  If you list more than one permission, a user must
  * have all of them to edit pages in that namespace.
@@ -4599,11 +4665,25 @@ $wgRateLimits = array(
 		'ip' => null,
 		'subnet' => null,
 	),
-	'mailpassword' => array(
+	'mailpassword' => array( // triggering password resets emails
 		'anon' => null,
 	),
-	'emailuser' => array(
+	'emailuser' => array( // emailing other users using MediaWiki
 		'user' => null,
+	),
+	'linkpurge' => array( // purges of link tables
+		'anon' => null,
+		'user' => null,
+		'newbie' => null,
+		'ip' => null,
+		'subnet' => null,
+	),
+	'renderfile' => array( // files rendered via thumb.php or thumb_handler.php
+		'anon' => null,
+		'user' => null,
+		'newbie' => null,
+		'ip' => null,
+		'subnet' => null,
 	),
 );
 
@@ -4644,31 +4724,6 @@ $wgPasswordAttemptThrottle = array( 'count' => 5, 'seconds' => 300 );
  * @name   Proxy scanner settings
  * @{
  */
-
-/**
- * If you enable this, every editor's IP address will be scanned for open HTTP
- * proxies.
- *
- * @warning Don't enable this. Many sysops will report "hostile TCP port scans"
- * to your ISP and ask for your server to be shut down.
- * You have been warned.
- */
-$wgBlockOpenProxies = false;
-
-/**
- * Port we want to scan for a proxy
- */
-$wgProxyPorts = array( 80, 81, 1080, 3128, 6588, 8000, 8080, 8888, 65506 );
-
-/**
- * Script used to scan
- */
-$wgProxyScriptPath = "$IP/maintenance/proxyCheck.php";
-
-/**
- * Expiration time for cached proxy IPs
- */
-$wgProxyMemcExpiry = 86400;
 
 /**
  * This should always be customised in LocalSettings.php
@@ -4840,10 +4895,29 @@ $wgDebugDBTransactions = false;
 $wgDebugDumpSql = false;
 
 /**
- * Set to an array of log group keys to filenames.
+ * Map of string log group names to log destinations.
+ *
  * If set, wfDebugLog() output for that group will go to that file instead
  * of the regular $wgDebugLogFile. Useful for enabling selective logging
  * in production.
+ *
+ * Log destinations may be string values specifying a filename or URI, or they
+ * may be filename or an associative array mapping 'destination' to the desired
+ * filename. The associative array may also contain a 'sample' key with an
+ * integer value, specifying a sampling factor.
+ *
+ * @par Example:
+ * @code
+ * $wgDebugLogGroups['redis'] = '/var/log/mediawiki/redis.log';
+ * @endcode
+ *
+ * @par Advanced example:
+ * @code
+ * $wgDebugLogGroups['memcached'] = (
+ *     'destination' => '/var/log/mediawiki/memcached.log',
+ *     'sample' => 1000,  // log 1 message out of every 1,000.
+ * );
+ * @endcode
  */
 $wgDebugLogGroups = array();
 
@@ -4967,6 +5041,17 @@ $wgUDPProfilerHost = '127.0.0.1';
 $wgUDPProfilerPort = '3811';
 
 /**
+ * Format string for the UDP profiler. The UDP profiler invokes sprintf() with
+ * (profile id, count, cpu, cpu_sq, real, real_sq, entry name) as arguments.
+ * You can use sprintf's argument numbering/swapping capability to repeat,
+ * re-order or omit fields.
+ *
+ * @see $wgStatsFormatString
+ * @since 1.22
+ */
+$wgUDPProfilerFormatString = "%s - %d %f %f %f %f %s\n";
+
+/**
  * Detects non-matching wfProfileIn/wfProfileOut calls
  */
 $wgDebugProfiling = false;
@@ -4991,6 +5076,19 @@ $wgStatsMethod = 'cache';
  * will be used.
  */
 $wgAggregateStatsID = false;
+
+/**
+ * When $wgStatsMethod is 'udp', this variable specifies how stats should be
+ * formatted. Its value should be a format string suitable for a sprintf()
+ * invocation with (id, count, key) arguments, where 'id' is either
+ * $wgAggregateStatsID or the DB name, 'count' is the value by which the metric
+ * is being incremented, and 'key' is the metric name.
+ *
+ * @see $wgUDPProfilerFormatString
+ * @see $wgAggregateStatsID
+ * @since 1.22
+ */
+$wgStatsFormatString = "stats/%s - %s 1 1 1 1 %s\n";
 
 /**
  * Whereas to count the number of time an article is viewed.
@@ -5399,11 +5497,15 @@ $wgRCLinkDays = array( 1, 3, 7, 14, 30 );
 /**
  * Send recent changes updates via UDP. The updates will be formatted for IRC.
  * Set this to the IP address of the receiver.
+ *
+ * @deprecated since 1.22, use $wgRCFeeds
  */
 $wgRC2UDPAddress = false;
 
 /**
  * Port number for RC updates
+ *
+ * @deprecated since 1.22, use $wgRCFeeds
  */
 $wgRC2UDPPort = false;
 
@@ -5412,20 +5514,72 @@ $wgRC2UDPPort = false;
  * This can be used to identify the wiki. A script is available called
  * mxircecho.py which listens on a UDP port, and uses a prefix ending in a
  * tab to identify the IRC channel to send the log line to.
+ *
+ * @deprecated since 1.22, use $wgRCFeeds
  */
 $wgRC2UDPPrefix = '';
 
 /**
  * If this is set to true, $wgLocalInterwiki will be prepended to links in the
  * IRC feed. If this is set to a string, that string will be used as the prefix.
+ *
+ * @deprecated since 1.22, use $wgRCFeeds
  */
 $wgRC2UDPInterwikiPrefix = false;
 
 /**
  * Set to true to omit "bot" edits (by users with the bot permission) from the
  * UDP feed.
+ *
+ * @deprecated since 1.22, use $wgRCFeeds
  */
 $wgRC2UDPOmitBots = false;
+
+/**
+ * Destinations to which notifications about recent changes
+ * should be sent.
+ *
+ * As of MediaWiki 1.22, the only supported 'engine' parameter option in core
+ * is 'UDPRCFeedEngine', which is used to send recent changes over UDP to the
+ * specified server.
+ * The common options are:
+ *   * 'uri' -- the address to which the notices are to be sent.
+ *   * 'formatter' -- the class name (implementing RCFeedFormatter) which will
+ *     produce the text to send.
+ *   * 'omit_bots' -- whether the bot edits should be in the feed
+ *  The IRC-specific options are:
+ *   * 'add_interwiki_prefix' -- whether the titles should be prefixed with
+ *     $wgLocalInterwiki.
+ *  The JSON-specific options are:
+ *   * 'channel' -- if set, the 'channel' parameter is also set in JSON values.
+ *
+ *  To ensure backwards-compatability, whenever $wgRC2UDPAddress is set, a
+ *  'default' feed will be created reusing the deprecated $wgRC2UDP* variables.
+ *
+ * @example $wgRCFeeds['example'] = array(
+ *		'formatter' => 'JSONRCFeedFormatter',
+ *		'uri' => "udp://localhost:1336",
+ *		'add_interwiki_prefix' => false,
+ *		'omit_bots' => true,
+ *	);
+ * @example $wgRCFeeds['exampleirc'] = array(
+ *		'formatter' => 'IRCColourfulRCFeedFormatter',
+ *		'uri' => "udp://localhost:1338",
+ *		'add_interwiki_prefix' => false,
+ *		'omit_bots' => true,
+ *	);
+ * @since 1.22
+ */
+$wgRCFeeds = array();
+
+/**
+ * Used by RecentChange::getEngine to find the correct engine to use for a given URI scheme.
+ * Keys are scheme names, values are names of engine classes.
+ */
+$wgRCEngines = array(
+	'redis' => 'RedisPubSubFeedEngine',
+	'udp' => 'UDPRCFeedEngine',
+);
 
 /**
  * Enable user search in Special:Newpages
@@ -5754,6 +5908,13 @@ $wgExtensionFunctions = array();
 $wgExtensionMessagesFiles = array();
 
 /**
+ * Array of files with list(s) of extension entry points to be used in
+ * maintenance/mergeMessageFileList.php
+ * @since 1.22
+ */
+$wgExtensionEntryPointListFiles = array();
+
+/**
  * Parser output hooks.
  * This is an associative array where the key is an extension-defined tag
  * (typically the extension name), and the value is a PHP callback.
@@ -5768,6 +5929,11 @@ $wgExtensionMessagesFiles = array();
  * @endcode
  */
 $wgParserOutputHooks = array();
+
+/**
+ * Whether to include the NewPP limit report as a HTML comment
+ */
+$wgEnableParserLimitReporting = true;
 
 /**
  * List of valid skin names.
@@ -5790,6 +5956,13 @@ $wgSpecialPages = array();
  * Array mapping class names to filenames, for autoloading.
  */
 $wgAutoloadClasses = array();
+
+/**
+ * Switch controlling legacy case-insensitive classloading.
+ * Do not disable if your wiki must support data created by PHP4, or by
+ * MediaWiki 1.4 or earlier.
+ */
+$wgAutoloadAttemptLowercase = true;
 
 /**
  * An array of extension types and inside that their names, versions, authors,
@@ -5840,17 +6013,24 @@ $wgAuth = null;
  * @endcode
  * - A function with some data:
  * @code
- *     $wgHooks['event_name'][] = array($function, $data);
+ *     $wgHooks['event_name'][] = array( $function, $data );
  * @endcode
  * - A an object method:
  * @code
- *     $wgHooks['event_name'][] = array($object, 'method');
+ *     $wgHooks['event_name'][] = array( $object, 'method' );
+ * @endcode
+ * - A closure:
+ * @code
+ *     $wgHooks['event_name'][] = function ( $hookParam ) {
+ *         // Handler code goes here.
+ *     };
  * @endcode
  *
  * @warning You should always append to an event array or you will end up
  * deleting a previous registered hook.
  *
- * @todo Does it support PHP closures?
+ * @warning Hook handlers should be registered at file scope. Registering
+ * handlers after file scope can lead to unexpected results due to caching.
  */
 $wgHooks = array();
 
@@ -6460,7 +6640,7 @@ $wgCrossSiteAJAXdomainExceptions = array();
 /**
  * Maximum amount of virtual memory available to shell processes under linux, in KB.
  */
-$wgMaxShellMemory = 102400;
+$wgMaxShellMemory = 307200;
 
 /**
  * Maximum file size created by shell processes under linux, in KB

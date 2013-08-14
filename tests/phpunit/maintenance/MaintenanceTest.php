@@ -43,7 +43,7 @@ class MaintenanceFixup extends Maintenance {
 	private $testCase;
 
 	/**
-	 * shutdownSimulated === true iff simulateShutdown has done it's work
+	 * shutdownSimulated === true if simulateShutdown has done it's work
 	 *
 	 * @var bool
 	 */
@@ -130,6 +130,9 @@ class MaintenanceFixup extends Maintenance {
 	}
 }
 
+/**
+ * @covers Maintenance
+ */
 class MaintenanceTest extends MediaWikiTestCase {
 
 

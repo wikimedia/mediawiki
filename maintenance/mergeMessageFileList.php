@@ -36,10 +36,14 @@ $mmfl = false;
  * @ingroup Maintenance
  */
 class MergeMessageFileList extends Maintenance {
+	/**
+	 * @var bool
+	 */
+	protected $hasError;
 
 	function __construct() {
 		parent::__construct();
-		$this->addOption( 'list-file', 'A file containing a list of extension setup files, one per line.', true, true );
+		$this->addOption( 'list-file', 'A file containing a list of extension setup files, one per line.', false, true );
 		$this->addOption( 'extensions-dir', 'Path where extensions can be found.', false, true );
 		$this->addOption( 'output', 'Send output to this file (omit for stdout)', false, true );
 		$this->mDescription = 'Merge $wgExtensionMessagesFiles from various extensions to produce a ' .
@@ -47,26 +51,25 @@ class MergeMessageFileList extends Maintenance {
 	}
 
 	public function execute() {
-		global $mmfl;
+		global $mmfl, $wgExtensionEntryPointListFiles;
 
-		# Add setup files contained in file passed to --list-file
-		$lines = file( $this->getOption( 'list-file' ) );
-		if ( $lines === false ) {
-			$this->error( 'Unable to open list file.' );
+		if ( !count( $wgExtensionEntryPointListFiles )
+			&& !$this->hasOption( 'list-file' )
+			&& !$this->hasOption( 'extensions-dir' )
+		) {
+			$this->error( "Either --list-file or --extensions-dir must be provided if " .
+				"\$wgExtensionEntryPointListFiles is not set", 1 );
 		}
+
 		$mmfl = array( 'setupFiles' => array() );
 
-		# Strip comments, discard empty lines, and trim leading and trailing
-		# whitespace. Comments start with '#' and extend to the end of the line.
-		foreach( $lines as $line ) {
-			$line = trim( preg_replace( '/#.*/', '', $line ) );
-			if ( $line !== '' ) {
-				$mmfl['setupFiles'][] = $line;
-			}
+		# Add setup files contained in file passed to --list-file
+		if ( $this->hasOption( 'list-file' ) ) {
+			$extensionPaths = $this->readFile( $this->getOption( 'list-file' ) );
+			$mmfl['setupFiles'] = array_merge( $mmfl['setupFiles'], $extensionPaths );
 		}
 
 		# Now find out files in a directory
-		$hasError = false;
 		if ( $this->hasOption( 'extensions-dir' ) ) {
 			$extdir = $this->getOption( 'extensions-dir' );
 			$entries = scandir( $extdir );
@@ -78,13 +81,19 @@ class MergeMessageFileList extends Maintenance {
 				if ( file_exists( $extfile ) ) {
 					$mmfl['setupFiles'][] = $extfile;
 				} else {
-					$hasError = true;
+					$this->hasError = true;
 					$this->error( "Extension {$extname} in {$extdir} lacks expected {$extname}.php" );
 				}
 			}
 		}
 
-		if ( $hasError ) {
+		# Add setup files defined via configuration
+		foreach ( $wgExtensionEntryPointListFiles as $points ) {
+			$extensionPaths = $this->readFile( $points );
+			$mmfl['setupFiles'] = array_merge( $mmfl['setupFiles'], $extensionPaths );
+		}
+
+		if ( $this->hasError ) {
 			$this->error( "Some files are missing (see above). Giving up.", 1 );
 		}
 
@@ -95,6 +104,38 @@ class MergeMessageFileList extends Maintenance {
 			$mmfl['quiet'] = true;
 		}
 	}
+
+	/**
+	 * @param string $fileName
+	 * @return array List of absolute extension paths
+	 */
+	private function readFile( $fileName ) {
+		global $IP;
+
+		$files = array();
+		$fileLines = file( $fileName );
+		if ( $fileLines === false ) {
+			$this->hasError = true;
+			$this->error( "Unable to open list file $fileName." );
+			return $files;
+		}
+		# Strip comments, discard empty lines, and trim leading and trailing
+		# whitespace. Comments start with '#' and extend to the end of the line.
+		foreach ( $fileLines as $extension ) {
+			$extension = trim( preg_replace( '/#.*/', '', $extension ) );
+			if ( $extension !== '' ) {
+				# Paths may use the string $IP to be substituted by the actual value
+				$extension = str_replace( '$IP', $IP, $extension );
+				if ( file_exists( $extension ) ) {
+					$files[] = $extension;
+				} else {
+					$this->hasError = true;
+					$this->error( "Extension {$extension} doesn't exist" );
+				}
+			}
+		}
+		return $files;
+	}
 }
 
 require_once RUN_MAINTENANCE_IF_MAIN;
@@ -103,11 +144,11 @@ foreach ( $mmfl['setupFiles'] as $fileName ) {
 	if ( strval( $fileName ) === '' ) {
 		continue;
 	}
-	$fileName = str_replace( '$IP', $IP, $fileName );
 	if ( empty( $mmfl['quiet'] ) ) {
 		fwrite( STDERR, "Loading data from $fileName\n" );
 	}
-	if ( !( include_once $fileName ) ) {
+	// Include the extension to update $wgExtensionMessagesFiles
+	if ( !( include_once( $fileName ) ) ) {
 		fwrite( STDERR, "Unable to read $fileName\n" );
 		exit( 1 );
 	}
@@ -126,10 +167,7 @@ $dirs = array(
 );
 
 foreach ( $dirs as $dir ) {
-	$s = preg_replace(
-		"/'" . preg_quote( $dir, '/' ) . "([^']*)'/",
-		'"$IP\1"',
-		$s );
+	$s = preg_replace( "/'" . preg_quote( $dir, '/' ) . "([^']*)'/", '"$IP\1"', $s );
 }
 
 if ( isset( $mmfl['output'] ) ) {

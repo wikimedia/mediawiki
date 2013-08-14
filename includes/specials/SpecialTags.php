@@ -27,6 +27,10 @@
  * @ingroup SpecialPage
  */
 class SpecialTags extends SpecialPage {
+	/**
+	 * @var array List of defined tags
+	 */
+	public $definedTags;
 
 	function __construct() {
 		parent::__construct( 'Tags' );
@@ -44,30 +48,25 @@ class SpecialTags extends SpecialPage {
 		$html = Xml::tags( 'tr', null, Xml::tags( 'th', null, $this->msg( 'tags-tag' )->parse() ) .
 				Xml::tags( 'th', null, $this->msg( 'tags-display-header' )->parse() ) .
 				Xml::tags( 'th', null, $this->msg( 'tags-description-header' )->parse() ) .
+				Xml::tags( 'th', null, $this->msg( 'tags-active-header' )->parse() ) .
 				Xml::tags( 'th', null, $this->msg( 'tags-hitcount-header' )->parse() )
 			);
-		$dbr = wfGetDB( DB_SLAVE );
-		$res = $dbr->select( 'change_tag', array( 'ct_tag', 'hitcount' => 'count(*)' ),
-			array(), __METHOD__, array( 'GROUP BY' => 'ct_tag', 'ORDER BY' => 'hitcount DESC' ) );
 
-		foreach ( $res as $row ) {
-			$html .= $this->doTagRow( $row->ct_tag, $row->hitcount );
+		// Used in #doTagRow()
+		$this->definedTags = array_fill_keys( ChangeTags::listDefinedTags(), true );
+
+		foreach ( ChangeTags::tagUsageStatistics() as $tag => $hitcount ) {
+			$html .= $this->doTagRow( $tag, $hitcount );
 		}
 
-		foreach ( ChangeTags::listDefinedTags() as $tag ) {
-			$html .= $this->doTagRow( $tag, 0 );
-		}
-
-		$out->addHTML( Xml::tags( 'table', array( 'class' => 'wikitable sortable mw-tags-table' ), $html ) );
+		$out->addHTML( Xml::tags(
+			'table',
+			array( 'class' => 'wikitable sortable mw-tags-table' ),
+			$html
+		) );
 	}
 
 	function doTagRow( $tag, $hitcount ) {
-		static $doneTags = array();
-
-		if ( in_array( $tag, $doneTags ) ) {
-			return '';
-		}
-
 		$user = $this->getUser();
 		$newRow = '';
 		$newRow .= Xml::tags( 'td', null, Xml::element( 'code', null, $tag ) );
@@ -75,7 +74,10 @@ class SpecialTags extends SpecialPage {
 		$disp = ChangeTags::tagDescription( $tag );
 		if ( $user->isAllowed( 'editinterface' ) ) {
 			$disp .= ' ';
-			$editLink = Linker::link( Title::makeTitle( NS_MEDIAWIKI, "Tag-$tag" ), $this->msg( 'tags-edit' )->escaped() );
+			$editLink = Linker::link(
+				Title::makeTitle( NS_MEDIAWIKI, "Tag-$tag" ),
+				$this->msg( 'tags-edit' )->escaped()
+			);
 			$disp .= $this->msg( 'parentheses' )->rawParams( $editLink )->escaped();
 		}
 		$newRow .= Xml::tags( 'td', null, $disp );
@@ -84,16 +86,28 @@ class SpecialTags extends SpecialPage {
 		$desc = !$msg->exists() ? '' : $msg->parse();
 		if ( $user->isAllowed( 'editinterface' ) ) {
 			$desc .= ' ';
-			$editDescLink = Linker::link( Title::makeTitle( NS_MEDIAWIKI, "Tag-$tag-description" ), $this->msg( 'tags-edit' )->escaped() );
+			$editDescLink = Linker::link(
+				Title::makeTitle( NS_MEDIAWIKI, "Tag-$tag-description" ),
+				$this->msg( 'tags-edit' )->escaped()
+			);
 			$desc .= $this->msg( 'parentheses' )->rawParams( $editDescLink )->escaped();
 		}
 		$newRow .= Xml::tags( 'td', null, $desc );
 
-		$hitcount = $this->msg( 'tags-hitcount' )->numParams( $hitcount )->escaped();
-		$hitcount = Linker::link( SpecialPage::getTitleFor( 'Recentchanges' ), $hitcount, array(), array( 'tagfilter' => $tag ) );
-		$newRow .= Xml::tags( 'td', null, $hitcount );
+		$active = isset( $this->definedTags[$tag] ) ? 'tags-active-yes' : 'tags-active-no';
+		$active = $this->msg( $active )->escaped();
+		$newRow .= Xml::tags( 'td', null, $active );
 
-		$doneTags[] = $tag;
+		$hitcountLabel = $this->msg( 'tags-hitcount' )->numParams( $hitcount )->escaped();
+		$hitcountLink = Linker::link(
+			SpecialPage::getTitleFor( 'Recentchanges' ),
+			$hitcountLabel,
+			array(),
+			array( 'tagfilter' => $tag )
+		);
+
+		// add raw $hitcount for sorting, because tags-hitcount contains numbers and letters
+		$newRow .= Xml::tags( 'td', array( 'data-sort-value' => $hitcount ), $hitcountLink );
 
 		return Xml::tags( 'tr', null, $newRow ) . "\n";
 	}

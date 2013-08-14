@@ -118,6 +118,18 @@ class BagOStuffTest extends MediaWikiTestCase {
 		$this->assertEquals( $this->cache->get( $key ), $value );
 	}
 
+	/**
+	 * @covers BagOStuff::incr
+	 */
+	public function testIncr() {
+		$key = wfMemcKey( 'test' );
+		$this->cache->add( $key, 0 );
+		$this->cache->incr( $key );
+		$expectedValue = 1;
+		$actualValue = $this->cache->get( $key );
+		$this->assertEquals( $expectedValue, $actualValue, 'Value should be 1 after incrementing' );
+	}
+
 	public function testGetMulti() {
 		$value1 = array( 'this' => 'is', 'a' => 'test' );
 		$value2 = array( 'this' => 'is', 'another' => 'test' );

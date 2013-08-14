@@ -8,6 +8,7 @@
  * @file
  *
  * @author Aleator
+ * @author Alvaro Vidal-Abarca
  * @author Arnaugir
  * @author Avm99963
  * @author BroOk
@@ -208,7 +209,7 @@ $messages = array(
 'tog-hidepatrolled' => 'Amaga edicions patrullades als canvis recents',
 'tog-newpageshidepatrolled' => 'Amaga pàgines patrullades de la llista de pàgines noves',
 'tog-extendwatchlist' => 'Desplega la llista de seguiment per a mostrar tots els canvis afectats, no només els més recents',
-'tog-usenewrc' => 'Utilitza una presentació millorada dels canvis recents (cal JavaScript)',
+'tog-usenewrc' => 'Agrupa els canvis per pàgina en canvis recents i llista de seguiment',
 'tog-numberheadings' => 'Enumera automàticament els encapçalaments',
 'tog-showtoolbar' => "Mostra la barra d'eines d'edició (cal JavaScript)",
 'tog-editondblclick' => 'Edita les pàgines amb un doble clic (cal JavaScript)',
@@ -245,13 +246,14 @@ $messages = array(
 'tog-noconvertlink' => 'Inhabilita la conversió dels títols dels enllaços',
 'tog-norollbackdiff' => 'Omet la pàgina de diferències després de realitzar una reversió',
 'tog-useeditwarning' => "Avisa'm quan surti d'una pàgina d'edició amb canvis sense desar",
+'tog-prefershttps' => 'Utilitza sempre una connexió segura en iniciar una sessió',
 
 'underline-always' => 'Sempre',
 'underline-never' => 'Mai',
 'underline-default' => 'Per defecte del navegador',
 
 # Font style option in Special:Preferences
-'editfont-style' => "Editeu l'estil de la lletra:",
+'editfont-style' => 'Estil de lletra en edició:',
 'editfont-default' => 'Per defecte del navegador',
 'editfont-monospace' => 'Font monoespaiada',
 'editfont-sansserif' => 'Font de pal sec',
@@ -346,7 +348,7 @@ $messages = array(
 'newwindow' => '(obre en una nova finestra)',
 'cancel' => 'Cancel·la',
 'moredotdotdot' => 'Més...',
-'morenotlisted' => 'Més no en la llista...',
+'morenotlisted' => 'Aquesta llista no és completa.',
 'mypage' => 'Pàgina',
 'mytalk' => 'Discussió',
 'anontalk' => "Discussió d'aquesta IP",
@@ -371,11 +373,11 @@ $messages = array(
 'vector-action-undelete' => 'Restaura',
 'vector-action-unprotect' => 'Desprotegeix',
 'vector-simplesearch-preference' => 'Activar la barra de cerca simplificada (només aparença Vector)',
-'vector-view-create' => 'Inicia',
+'vector-view-create' => 'Crea',
 'vector-view-edit' => 'Modifica',
 'vector-view-history' => "Mostra l'historial",
 'vector-view-view' => 'Mostra',
-'vector-view-viewsource' => 'Mostra la font',
+'vector-view-viewsource' => 'Mostra el codi',
 'actions' => 'Accions',
 'namespaces' => 'Espais de noms',
 'variants' => 'Variants',
@@ -446,10 +448,10 @@ $1",
 'pool-queuefull' => 'La cua de treball és plena',
 'pool-errorunknown' => 'Error desconegut',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Quant al projecte {{SITENAME}}',
 'aboutpage' => 'Project:Quant a',
-'copyright' => 'El contingut està disponible sota els termes de la $1.',
+'copyright' => "El contingut està disponible sota la llicència $1 si no s'indica el contrari.",
 'copyrightpage' => "{{ns:project}}:Drets d'autor",
 'currentevents' => 'Actualitat',
 'currentevents-url' => 'Project:Actualitat',
@@ -532,17 +534,11 @@ Vegeu la llista de pàgines especials a [[Special:SpecialPages]].',
 # General errors
 'error' => 'Error',
 'databaseerror' => "S'ha produït un error en la base de dades",
-'dberrortext' => "S'ha produït un error de sintaxi en una consulta a la base de dades.
-Açò podria indicar un error en el programari.
-La darrera consulta que s'ha intentat fer ha estat:
-<blockquote><code>$1</code></blockquote>
-des de la funció «<code>$2</code>».
-L'error de retorn ha estat «<samp>$3: $4</samp>».",
-'dberrortextcl' => "S'ha produït un error de sintaxi en una consulta a la base de dades.
-La darrera consulta que s'ha intentat fer ha estat:
-<blockquote><tt>$1</tt></blockquote>
-des de la funció «<tt>$2</tt>».
-L'error de retorn ha estat «<tt>$3: $4</tt>».",
+'databaseerror-text' => "S'ha produït un error en la consulta de la base de dades.
+Això pot indicar un error en el programari.",
+'databaseerror-textcl' => "S'ha produït un error en la consulta de la base de dades.",
+'databaseerror-query' => 'Consulta: $1',
+'databaseerror-function' => 'Funció: $1',
 'laggedslavemode' => 'Avís: La pàgina podria mancar de modificacions recents.',
 'readonly' => 'La base de dades es troba bloquejada',
 'enterlockreason' => 'Escriviu una raó pel bloqueig, així com una estimació de quan tindrà lloc el desbloqueig',
@@ -576,6 +572,7 @@ Potser ja ha estat esborrat per algú altre.",
 'cannotdelete-title' => 'No es pot suprimir la pàgina " $1 "',
 'delete-hook-aborted' => 'Un «hook» ha interromput la supressió.
 No ha donat cap explicació.',
+'no-null-revision' => "No s'ha pogut crear una nova revisió nul·la de la pàgina «$1»",
 'badtitle' => 'El títol no és correcte',
 'badtitletext' => 'El títol de la pàgina que heu introduït no és correcte, és en blanc o conté un enllaç trencat amb un altre projecte. També podria contenir algun caràcter no acceptat als títols de pàgina.',
 'perfcached' => "Les dades següents es troben a la memòria cau i podrien no estar al dia. Hi ha un màxim {{PLURAL:$1|d'un resultat|de $1 resultats}} disponibles a la memòria cau.",
@@ -584,7 +581,7 @@ No ha donat cap explicació.',
 'wrong_wfQuery_params' => 'Paràmetres incorrectes per a wfQuery()<br />
 Funció: $1<br />
 Consulta: $2',
-'viewsource' => 'Mostra la font',
+'viewsource' => 'Mostra el codi',
 'viewsource-title' => 'Mostra la font per a $1',
 'actionthrottled' => 'Acció limitada',
 'actionthrottledtext' => "Com a mesura per a prevenir la propaganda indiscriminada (spam), no podeu fer aquesta acció tantes vegades en un període de temps tan curt. Torneu-ho a intentar d'ací uns minuts.",
@@ -594,7 +591,6 @@ Consulta: $2',
 'protectedinterface' => "Aquesta pàgina proporciona el text de la interfície del software d'aquest wiki i està protegida per evitar els abusos.
 Per agregar o canviar les traduccions per a tots els wikis, si us plau fes servir [//translatewiki.net/ translatewiki.net], el projecte de localització de MediaWiki.",
 'editinginterface' => "'''Avís:''' Esteu editant una pàgina que conté cadenes de text per a la interfície d'aquest programari. Tingueu en compte que els canvis que es fan a aquesta pàgina afecten a l'aparença de la interfície d'altres usuaris. Per afegir o modificar traduccions a totes les wikis, plantegeu-vos utilitzar la [//translatewiki.net/ translatewiki.net], el projecte de localització de MediaWiki.",
-'sqlhidden' => '(consulta SQL oculta)',
 'cascadeprotected' => "Aquesta pàgina està protegida i no es pot modificar perquè està inclosa en {{PLURAL:$1|la següent pàgina, que té|les següents pàgines, que tenen}} activada l'opció de «protecció en cascada»:
 $2",
 'namespaceprotected' => "No teniu permís per a modificar pàgines en l'espai de noms '''$1'''.",
@@ -640,7 +636,6 @@ No oblideu de canviar les vostres [[Special:Preferences|preferències de {{SITEN
 'remembermypassword' => 'Recorda la contrasenya entre sessions (per un màxim de $1 {{PLURAL:$1|dia|dies}})',
 'userlogin-remembermypassword' => 'Mantén-me connectat',
 'userlogin-signwithsecure' => 'Connexió segura',
-'securelogin-stick-https' => "Roman connectat via HTTPS desprès d'autenticar-se",
 'yourdomainname' => 'El vostre domini',
 'password-change-forbidden' => 'No podeu canviar les contrasenyes en aquest wiki.',
 'externaldberror' => "Hi ha hagut una fallida en el servidor d'autenticació externa de la base de dades i no teniu permís per a actualitzar el vostre compte d'accès extern.",
@@ -663,6 +658,9 @@ No oblideu de canviar les vostres [[Special:Preferences|preferències de {{SITEN
 'userlogin-resetpassword-link' => 'Reinicia la contrasenya',
 'helplogin-url' => 'Help:Registrar-se',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Ajuda]]',
+'userlogin-loggedin' => 'Heu iniciat una sessió com {{GENDER:$1|$1}}.
+Feu servir el formulari de sota per iniciar la sessió com un altre usuari.',
+'userlogin-createanother' => 'Crea un altre compte',
 'createacct-join' => 'Introduïu les vostres dades.',
 'createacct-another-join' => 'Introdueix la informació del nou compte a continuació:',
 'createacct-emailrequired' => 'Adreça de correu electrònic',
@@ -718,7 +716,7 @@ la vostra antiga contrasenya.",
 'passwordsent' => "S'ha enviat una nova contrasenya a l'adreça electrònica registrada per «$1».
 Inicieu una sessió després que la rebeu.",
 'blocked-mailpassword' => 'La vostra adreça IP ha estat blocada. Se us ha desactivat la funció de recuperació de contrasenya per a prevenir abusos.',
-'eauthentsent' => "S'ha enviat un correu electrònic a la direcció especificada. Abans no s'envïi cap altre correu electrònic a aquesta adreça, cal verificar que és realment vostra. Per tant, cal que seguiu les instruccions presents en el correu electrònic que se us ha enviat.",
+'eauthentsent' => "S'ha enviat un correu electrònic a la direcció especificada. Abans no s'enviï cap altre correu electrònic a aquesta adreça, cal verificar que és realment vostra. Per tant, cal que seguiu les instruccions presents en el correu electrònic que se us ha enviat.",
 'throttled-mailpassword' => "Ja se us ha enviat un correu electrònic de reinicialització de contrasenya en {{PLURAL:$1|l'última hora|les últimes $1 hores}}.
 Per a prevenir abusos, només s'envia un correu electrònic de reinicialització de contrasenya cada {{PLURAL:$1|hora|$1 hores}}.",
 'mailerror' => "S'ha produït un error en enviar el missatge: $1",
@@ -741,10 +739,12 @@ Introduïu una adreça amb un format adequat o bé buideu el camp.",
 Si no hi teniu cap relació i aquest compte ha estat creat per error, simplement ignoreu el missatge.",
 'usernamehasherror' => "El nom d'usuari no pot contenir caràcters hash",
 'login-throttled' => "Heu realitzat massa intents d'accés a la sessió.
-Si us plau, esperi abans de tornar-ho a intentar.",
+Espereu $1 abans de tornar-ho a provar.",
 'login-abort-generic' => "L'entrada al compte d'usuari no ha reeixit - Abortada",
 'loginlanguagelabel' => 'Llengua: $1',
 'suspicious-userlogout' => "S'ha denegat la vostra petició per tancar la sessió ja què sembla que va ser enviada per un navegador defectuós o un proxy cau.",
+'createacct-another-realname-tip' => "El nom real és opcional.
+Si decidiu proporcionar-lo, s'utilitzarà per a reconèixer a l'usuari el seu treball.",
 
 # Email sending
 'php-mail-error-unknown' => 'Error desconegut en la funció mail() de PHP',
@@ -760,7 +760,7 @@ Si us plau, esperi abans de tornar-ho a intentar.",
 'newpassword' => 'Contrasenya nova',
 'retypenew' => 'Torneu a escriure la nova contrasenya:',
 'resetpass_submit' => 'Definiu una contrasenya i inicieu una sessió',
-'resetpass_success' => "S'ha canviat la vostra contrasenya amb èxit! Ara ja podeu iniciar-hi una sessió...",
+'changepassword-success' => "S'ha canviat la vostra contrasenya amb èxit!",
 'resetpass_forbidden' => 'No poden canviar-se les contrasenyes',
 'resetpass-no-info' => "Heu d'estar registrats en un compte per a poder accedir directament a aquesta pàgina.",
 'resetpass-submit-loggedin' => 'Canvia la contrasenya',
@@ -773,6 +773,7 @@ Deveu haver canviat la vostra contrasenya o demanat una nova contrasenya tempora
 # Special:PasswordReset
 'passwordreset' => 'Restablir contrasenya',
 'passwordreset-text-one' => 'Cal completar aquest formulari per reiniciar la contrasenya',
+'passwordreset-text-many' => '{{PLURAL:$1|Ompliu un dels camps per a reiniciar la vostra contrasenya.}}',
 'passwordreset-legend' => 'Restablir contrasenya',
 'passwordreset-disabled' => "S'ha desactivat el restabliment de contranyes en aquest wiki.",
 'passwordreset-emaildisabled' => 'Les opcions de correu electrònic no estan habilitades en aquest wiki.',
@@ -811,6 +812,19 @@ Contrasenya temporal: $2",
 'changeemail-password' => 'La vostra contrasenya a {{SITENAME}}:',
 'changeemail-submit' => 'Canvia de correu electrònic',
 'changeemail-cancel' => 'Cancel·la',
+
+# Special:ResetTokens
+'resettokens' => 'Reinicia els testimonis',
+'resettokens-text' => "Des d'aquí podeu reiniciar els testimonis que permeten l'accés a certes dades privades associades amb el vostre compte.
+
+Ho hauríeu de fer si accidentalment els heu compartit amb algú o si el vostre compte ha estat compromès.",
+'resettokens-no-tokens' => 'No hi ha testimonis per reiniciar.',
+'resettokens-legend' => 'Reinicia els testimonis',
+'resettokens-tokens' => 'Testimonis:',
+'resettokens-token-label' => '$1 (valor actual: $2)',
+'resettokens-watchlist-token' => 'Testimoni del canal web (Atom/RSS) dels [[Special:Watchlist|canvis a la llista de seguiment]]',
+'resettokens-done' => "S'han reiniciat els testimonis.",
+'resettokens-resetbutton' => 'Reinicia els testimonis seleccionats',
 
 # Edit page toolbar
 'bold_sample' => 'Text en negreta',
@@ -888,7 +902,7 @@ Potser ha estat moguda o eliminada mentre estàveu veient la pàgina.',
 'loginreqlink' => 'inicia una sessió',
 'loginreqpagetext' => "Cal que seguiu l'enllaç «$1» per a visualitzar altres pàgines.",
 'accmailtitle' => "S'ha enviat una contrasenya.",
-'accmailtext' => "S'ha enviat una contrasenya aleatòria a $2 per a l'{{GENDER:$1|usuari|usuària}} [[User talk:$1|$1]].
+'accmailtext' => "S'ha enviat una contrasenya aleatòria a $2 per a {{GENDER:$1|l'usuari|la usuària}} [[User talk:$1|$1]].
 
 La contrasenya per aquest nou compte pot ser canviada a la pàgina de ''[[Special:ChangePassword|canvi de contrasenya]]'' un cop connectat.",
 'newarticle' => '(Nou)',
@@ -1141,15 +1155,15 @@ Els altres administradors de {{SITENAME}} encara podran accedir al contingut ama
 * Informació personal inapropiada
 *: ''adreces personals, números de telèfon, números de la seguretat social, etc.''",
 'revdelete-legend' => 'Defineix restriccions en la visibilitat',
-'revdelete-hide-text' => 'Amaga el text de revisió',
+'revdelete-hide-text' => 'Text de la revisió',
 'revdelete-hide-image' => 'Amaga el contingut del fitxer',
 'revdelete-hide-name' => "Acció d'amagar i objectiu",
-'revdelete-hide-comment' => "Amaga el comentari de l'edició",
-'revdelete-hide-user' => "Amaga el nom d'usuari o la IP de l'editor",
+'revdelete-hide-comment' => 'Modifica el resum',
+'revdelete-hide-user' => "Nom d'usuari / adreça IP de l'editor",
 'revdelete-hide-restricted' => 'Suprimir les dades als administradors així com a la resta.',
 'revdelete-radio-same' => '(no modificar)',
-'revdelete-radio-set' => 'Si',
-'revdelete-radio-unset' => 'No',
+'revdelete-radio-set' => 'Visible',
+'revdelete-radio-unset' => 'Oculta',
 'revdelete-suppress' => 'Suprimeix també les dades dels administradors',
 'revdelete-unsuppress' => 'Suprimir les restriccions de les revisions restaurades',
 'revdelete-log' => 'Motiu:',
@@ -1320,7 +1334,7 @@ Es pot trobar més informació en el [{{fullurl:{{#Special:Log}}/delete|page={{F
 'prefs-watchlist-days-max' => 'Màxim $1 {{PLURAL:$1|dia|dies}}',
 'prefs-watchlist-edits' => 'Nombre de modificacions a mostrar en una llista estesa de seguiment:',
 'prefs-watchlist-edits-max' => 'Nombre màxim: 1000',
-'prefs-watchlist-token' => 'Fitxa de llista de seguiment:',
+'prefs-watchlist-token' => 'Testimoni de llista de seguiment:',
 'prefs-misc' => 'Altres preferències',
 'prefs-resetpass' => 'Canvia la contrasenya',
 'prefs-changeemail' => 'Canvia de correu electrònic',
@@ -1341,6 +1355,9 @@ Es pot trobar més informació en el [{{fullurl:{{#Special:Log}}/delete|page={{F
 'recentchangesdays-max' => '(màxim $1 {{PLURAL:$1|dia|dies}})',
 'recentchangescount' => "Nombre d'edicions a mostrar per defecte:",
 'prefs-help-recentchangescount' => 'Inclou els canvis recents, els historials de pàgines i els registres.',
+'prefs-help-watchlist-token2' => 'Aquesta és la clau secreta pel canal de continguts de la vostra llista de seguiment.
+Qualsevol que la conegui podria llegir la vostra llista de seguiment, així que no la compartiu.
+[[Special:ResetTokens|Cliqueu aquí si voleu restaurar-la]].',
 'savedprefs' => "S'han desat les vostres preferències",
 'timezonelegend' => 'Fus horari:',
 'localtime' => 'Hora local:',
@@ -1401,6 +1418,8 @@ Ha de tenir com a molt {{PLURAL:$1|un caràcter|$1 caràcters}}.',
 'prefs-dateformat' => 'Format de la data',
 'prefs-timeoffset' => 'Decalatge horari',
 'prefs-advancedediting' => 'Opcions generals',
+'prefs-editor' => 'Edició',
+'prefs-preview' => 'Previsualització',
 'prefs-advancedrc' => 'Opcions avançades',
 'prefs-advancedrendering' => 'Opcions avançades',
 'prefs-advancedsearchoptions' => 'Opcions avançades',
@@ -1408,7 +1427,9 @@ Ha de tenir com a molt {{PLURAL:$1|un caràcter|$1 caràcters}}.',
 'prefs-displayrc' => "Opcions d'aparença",
 'prefs-displaysearchoptions' => 'Opcions de visualització',
 'prefs-displaywatchlist' => 'Opcions de visualització',
+'prefs-tokenwatchlist' => 'Testimoni',
 'prefs-diffs' => 'Difs',
+'prefs-help-prefershttps' => 'Aquesta preferència tindrà efecte quan inicieu una nova sessió.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => "L'adreça de correu electrònic sembla vàlida",
@@ -1435,6 +1456,8 @@ Ha de tenir com a molt {{PLURAL:$1|un caràcter|$1 caràcters}}.',
 'userrights-notallowed' => "No teniu autorització per concedir o retirar permisos d'usuari.",
 'userrights-changeable-col' => 'Grups que podeu canviar',
 'userrights-unchangeable-col' => 'Grups que no podeu canviar',
+'userrights-conflict' => "Conflicte de canvis dels permisos d'usuari. Reviseu i confirmeu els canvis.",
+'userrights-removed-self' => 'Heu suprimit els propis permisos correctament. Per tant, ja no podreu tornar a accedir a aquesta pàgina.',
 
 # Groups
 'group' => 'Grup:',
@@ -1478,7 +1501,7 @@ Ha de tenir com a molt {{PLURAL:$1|un caràcter|$1 caràcters}}.',
 'right-reupload-shared' => 'Carregar localment fitxers amb un nom usat en el repostori multimèdia compartit',
 'right-upload_by_url' => "Carregar un fitxer des de l'adreça URL",
 'right-purge' => 'Purgar la memòria cau del lloc web sense pàgina de confirmació',
-'right-autoconfirmed' => 'Modificar pàgines semi-protegides',
+'right-autoconfirmed' => 'Modificar pàgines semiprotegides',
 'right-bot' => 'Ésser tractat com a procés automatitzat',
 'right-nominornewtalk' => "Que les modificacions menors que facin en pàgines de discussió d'usuari no generin l'avís de nous missatges",
 'right-apihighlimits' => "Tenir límits més alts en les consultes a l'API",
@@ -1500,11 +1523,19 @@ Ha de tenir com a molt {{PLURAL:$1|un caràcter|$1 caràcters}}.',
 'right-proxyunbannable' => 'Evitar els blocatges automàtics a proxies',
 'right-unblockself' => 'Desblocar-se a si mateixos',
 'right-protect' => 'Canviar el nivell de protecció i modificar pàgines protegides',
-'right-editprotected' => 'Editar pàgines protegides (sense protecció de cascada)',
+'right-editprotected' => 'Modificar pàgines protegides (sense protecció de cascada)',
+'right-editsemiprotected' => 'Edita les pàgines protegides com «{{int:protect-level-autoconfirmed}}»',
 'right-editinterface' => "Editar la interfície d'usuari",
 'right-editusercssjs' => "Editar els fitxers de configuració CSS i JS d'altres usuaris",
 'right-editusercss' => "Editar els fitxers de configuració CSS d'altres usuaris",
 'right-edituserjs' => "Editar els fitxers de configuració JS d'altres usuaris",
+'right-editmyusercss' => 'Editeu els fitxers CSS propis',
+'right-editmyuserjs' => 'Editeu els propis fitxers de JavaScript',
+'right-viewmywatchlist' => 'Mostra la llista de seguiment pròpia',
+'right-editmywatchlist' => 'Edita la llista de seguiment pròpia. Tingueu en compte que algunes accions encara afegiran pàgina fins i tot sense aquest permís.',
+'right-viewmyprivateinfo' => 'Mostra les dades privades (p. ex., adreça electrònica o nom real)',
+'right-editmyprivateinfo' => 'Modifica les dades privades  (p. ex., adreça electrònica o nom real)',
+'right-editmyoptions' => 'Edita les pròpies preferències',
 'right-rollback' => "Revertir ràpidament l'últim editor d'una pàgina particular",
 'right-markbotedits' => 'Marcar les reversions com a edicions de bot',
 'right-noratelimit' => "No veure's afectat pels límits d'accions",
@@ -1556,8 +1587,8 @@ Ha de tenir com a molt {{PLURAL:$1|un caràcter|$1 caràcters}}.',
 'action-block' => 'blocar aquest usuari per a què no pugui editar',
 'action-protect' => "canviar els nivells de protecció d'aquesta pàgina",
 'action-rollback' => "desfer ràpidament les modificacions de l'últim usuari que va editar una determinada pàgina",
-'action-import' => "importar aquesta pàgina des d'un altre wiki",
-'action-importupload' => "importar aquesta pàgina mitjançant la càrrega des d'un fitxer",
+'action-import' => "importa pàgines des d'un altre wiki",
+'action-importupload' => "importa pàgines mitjançant la càrrega d'un fitxer",
 'action-patrol' => 'marcar les edicions dels altres com a supervisades',
 'action-autopatrol' => 'marcar les vostres edicions com a supervisades',
 'action-unwatchedpages' => 'visualitzar la llista de pàgines no vigilades',
@@ -1566,9 +1597,15 @@ Ha de tenir com a molt {{PLURAL:$1|un caràcter|$1 caràcters}}.',
 'action-userrights-interwiki' => "modificar permisos d'usuari en altres wikis",
 'action-siteadmin' => 'bloquejar o desbloquejar la base de dades',
 'action-sendemail' => 'enviar missatges de correu',
+'action-editmywatchlist' => 'edita la llista de seguiment',
+'action-viewmywatchlist' => 'mostra la llista de seguiment',
+'action-viewmyprivateinfo' => 'mostra la informació personal',
+'action-editmyprivateinfo' => 'edita la informació personal',
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|canvi|canvis}}',
+'enhancedrc-since-last-visit' => '$1 {{PLURAL:$1|des de la darrera visita}}',
+'enhancedrc-history' => 'historial',
 'recentchanges' => 'Canvis recents',
 'recentchanges-legend' => 'Opcions de canvis recents',
 'recentchanges-summary' => 'Seguiu els canvis recents del projecte {{SITENAME}} en aquesta pàgina.',
@@ -1600,7 +1637,7 @@ Ha de tenir com a molt {{PLURAL:$1|un caràcter|$1 caràcters}}.',
 'rc_categories_any' => 'Qualsevol',
 'rc-change-size-new' => '$1 {{PLURAL:$1|byte|bytes}} després del canvi',
 'newsectionsummary' => '/* $1 */ secció nova',
-'rc-enhanced-expand' => 'Mostra detalls (requereix JavaScript)',
+'rc-enhanced-expand' => 'Mostra detalls',
 'rc-enhanced-hide' => 'Amagar detalls',
 'rc-old-title' => 'originàriament creada com «$1»',
 
@@ -1854,6 +1891,9 @@ Si filtreu per usuari només es mostraran els fitxers la versió més recent del
 'listfiles_size' => 'Mida (octets)',
 'listfiles_description' => 'Descripció',
 'listfiles_count' => 'Versions',
+'listfiles-show-all' => 'Inclou versions antigues de les imatges',
+'listfiles-latestversion' => 'Versió actual',
+'listfiles-latestversion-yes' => 'Sí',
 
 # File description page
 'file-anchor-link' => 'Fitxer',
@@ -1948,6 +1988,13 @@ Potser voleu modificar-ne la descripció en la seva [$2 pàgina de descripció].
 'randompage' => "Pàgina a l'atzar",
 'randompage-nopages' => "No hi ha cap pàgina en {{PLURAL:$2|l'espai de noms següent|els espais de noms següents}}: $1.",
 
+# Random page in category
+'randomincategory' => 'Pàgina aleatòria en la categoria',
+'randomincategory-invalidcategory' => '«$1» no és un nom de categoria vàlid.',
+'randomincategory-nopages' => 'No hi ha pàgines a la categoria [[:Category:$1|$1]].',
+'randomincategory-selectcategory' => "Obté una pàgina a l'atzar de la categoria: $1 $2.",
+'randomincategory-selectcategory-submit' => 'Vés-hi',
+
 # Random redirect
 'randomredirect' => "Redirecció a l'atzar",
 'randomredirect-nopages' => "No hi ha cap redirecció a l'espai de noms «$1».",
@@ -1973,17 +2020,13 @@ Potser voleu modificar-ne la descripció en la seva [$2 pàgina de descripció].
 'statistics-users-active-desc' => "Usuaris que han dut a terme alguna acció en {{PLURAL:$1|l'últim dia|els últims $1 dies}}",
 'statistics-mostpopular' => 'Pàgines més visualitzades',
 
-'disambiguations' => 'Pàgines que enllacen a pàgines de desambiguació',
-'disambiguationspage' => 'Template:Desambiguació',
-'disambiguations-text' => "Les següents pàgines tenen algun enllaç a una '''pàgina de desambiguació'''.
-És possible que hagin d'enllaçar a una altra pàgina més apropiada.<br />
-Una pàgina es tracta com de desambiguació si utilitza una plantilla que està enllaçada a [[MediaWiki:Disambiguationspage]].",
-
 'pageswithprop' => 'Pàgines amb una propietat de pàgina',
 'pageswithprop-legend' => 'Pàgines amb una propietat de pàgina',
 'pageswithprop-text' => 'Aquesta pàgina llista les pàgines que utilitzen una propietat de pàgina en particular.',
 'pageswithprop-prop' => 'Nom de la propietat:',
 'pageswithprop-submit' => 'Vés',
+'pageswithprop-prophidden-long' => 'valor de propietat text llarg ocult ($1)',
+'pageswithprop-prophidden-binary' => 'valor de propietat binària oculta ($1)',
 
 'doubleredirects' => 'Redireccions dobles',
 'doubleredirectstext' => 'Aquesta pàgina llista les pàgines que redirigeixen a altres pàgines de redirecció.
@@ -2041,6 +2084,7 @@ Les entrades <del>ratllades</del> s\'han resolt.',
 'mostrevisions' => 'Pàgines més modificades',
 'prefixindex' => 'Totes les pàgines per prefix',
 'prefixindex-namespace' => 'Totes les pàgines amb prefix (espai de noms $1)',
+'prefixindex-strip' => 'Suprimeix el prefix a la llista',
 'shortpages' => 'Pàgines curtes',
 'longpages' => 'Pàgines llargues',
 'deadendpages' => 'Pàgines atzucac',
@@ -2056,6 +2100,7 @@ Les entrades <del>ratllades</del> s\'han resolt.',
 'listusers' => "Llista d'usuaris",
 'listusers-editsonly' => 'Mostra només usuaris amb edicions',
 'listusers-creationsort' => 'Ordena per data de creació',
+'listusers-desc' => 'Ordena en ordre descendent',
 'usereditcount' => '$1 {{PLURAL:$1|modificació|modificacions}}',
 'usercreated' => '{{GENDER:$3|Creat}}: $1 a les $2',
 'newpages' => 'Pàgines noves',
@@ -2319,9 +2364,11 @@ Vegeu $2 per a un registre dels esborrats més recents.',
 'deleteotherreason' => 'Motiu diferent o addicional:',
 'deletereasonotherlist' => 'Altres motius',
 'deletereason-dropdown' => "*Motius freqüents d'esborrat
-** Demanada per l'autor
+** Brossa
+** Vandalisme
 ** Violació del copyright
-** Vandalisme",
+** Demanada per l'autor
+** Redirecció trencada",
 'delete-edit-reasonlist' => "Edita els motius d'eliminació",
 'delete-toobig' => "Aquesta pàgina té un historial d'edicions molt gran, amb més de $1 {{PLURAL:$1|canvi|canvis}}. L'eliminació d'aquestes pàgines està restringida per a prevenir que hi pugui haver un desajustament seriós de la base de dades de tot el projecte {{SITENAME}} per accident.",
 'delete-warning-toobig' => "Aquesta pàgina té un historial d'edicions molt gran, amb més de $1 {{PLURAL:$1|canvi|canvis}}. Eliminar-la podria suposar un seriós desajustament de la base de dades de tot el projecte {{SITENAME}}; aneu en compte abans dur a terme l'acció.",
@@ -2340,7 +2387,7 @@ de l'usuari [[User:$2|$2]] ([[User talk:$2|Discussió]]{{int:pipe-separator}}[[S
 La darrera modificació ha estat feta per l'usuari [[User:$3|$3]] ([[User talk:$3|Discussió]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
 'editcomment' => "El resum d'edició ha estat: «$1».",
 'revertpage' => "Revertides les edicions de [[Special:Contributions/$2|$2]] ([[User talk:$2|discussió]]) a l'última versió de [[User:$1|$1]]",
-'revertpage-nouser' => "Les edicions realitzades per un usuari ocult s'han eliminat fins a l'última revisió de [[User:$1|$1]]",
+'revertpage-nouser' => "Edicions revertides per un usuari ocult a l'última revisió de {{GENDER:$1|[[User:$1|$1]]}}",
 'rollback-success' => "Edicions revertides de $1; s'ha canviat a la darrera versió de $2.",
 
 # Edit tokens
@@ -2480,7 +2527,7 @@ $1",
 'contributions' => "Contribucions de {{GENDER:$1|l'usuari|la usuària}}",
 'contributions-title' => "Contribucions de l'usuari $1",
 'mycontris' => 'Contribucions',
-'contribsub2' => 'Per $1 ($2)',
+'contribsub2' => 'Per a {{GENDER:$3|$1}} ($2)',
 'nocontribs' => "No s'ha trobat canvis que encaixessin amb aquests criteris.",
 'uctop' => '(actual)',
 'month' => 'Mes (i anteriors):',
@@ -2586,12 +2633,12 @@ l'accés a l'escriptura a una adreça IP o un usuari prèviament bloquejat.",
 'blocklist-userblocks' => 'Amaga bloquejos de compte',
 'blocklist-tempblocks' => 'Amaga bloquejos temporals',
 'blocklist-addressblocks' => "Amaga bloquejos d'una sola IP",
-'blocklist-rangeblocks' => 'Amaga els blocatges de rang',
+'blocklist-rangeblocks' => 'Amaga els bloquejos de rang',
 'blocklist-timestamp' => 'Marca horària',
 'blocklist-target' => 'Usuari blocat',
 'blocklist-expiry' => 'Caduca',
-'blocklist-by' => 'Administrador del blocatge',
-'blocklist-params' => 'Paràmetres del blocatge',
+'blocklist-by' => 'Administrador que ha blocat',
+'blocklist-params' => 'Paràmetres del bloqueig',
 'blocklist-reason' => 'Motiu',
 'ipblocklist-submit' => 'Cerca',
 'ipblocklist-localblock' => 'Bloqueig local',
@@ -2640,11 +2687,8 @@ Per més detalls, a sota es mostra el registre de supressions:',
 'ipb_blocked_as_range' => "Error: L'adreça IP $1 no està blocada directament i per tant no pot ésser desbloquejada. Ara bé, sí que ho està per formar part del rang $2 que sí que pot ser desblocat.",
 'ip_range_invalid' => 'Rang de IP no vàlid.',
 'ip_range_toolarge' => 'No estan permesos el bloquejos de rangs més grans que /$1.',
-'blockme' => "Bloca'm",
 'proxyblocker' => 'Bloqueig de proxy',
-'proxyblocker-disabled' => "S'ha inhabilitat la funció.",
 'proxyblockreason' => "La vostra adreça IP ha estat bloquejada perquè és un proxy obert. Si us plau contactau el vostre proveïdor d'Internet o servei tècnic i informau-los d'aquest seriós problema de seguretat.",
-'proxyblocksuccess' => 'Fet.',
 'sorbsreason' => "La vostra adreça IP està llistada com a servidor intermediari (''proxy'') obert dins la llista negra de DNS que fa servir el projecte {{SITENAME}}.",
 'sorbs_create_account_reason' => "La vostra adreça IP està llistada com a servidor intermediari (''proxy'') obert a la llista negra de DNS que utilitza el projecte {{SITENAME}}. No podeu crear-vos-hi un compte",
 'xffblockreason' => "Una adreça IP present en la capçalera X-Forwarded-For, ja sigui vostra o la d'un servidor proxy que esteu utilitzant, ha estat blocada. El motiu inicial del bloqueig és: $1",
@@ -2812,6 +2856,8 @@ En el darrer cas, podeu fer servir un enllaç com ara [[{{#Special:Export}}/{{Me
 'thumbnail-more' => 'Amplia',
 'filemissing' => 'Fitxer inexistent',
 'thumbnail_error' => "S'ha produït un error en crear la miniatura: $1",
+'thumbnail_error_remote' => "Missatge d'error de $1:
+$2",
 'djvu_page_error' => "La pàgina DjVu està fora de l'abast",
 'djvu_no_xml' => "No s'ha pogut recollir l'XML per al fitxer DjVu",
 'thumbnail-temp-create' => "No s'ha pogut creat el fitxer de miniatura temporal",
@@ -2990,6 +3036,8 @@ Això deu ser degut per un enllaç a un lloc extern inclòs a la llista negra.',
 'spam_reverting' => 'Es reverteix a la darrera versió que no conté enllaços a $1',
 'spam_blanking' => "Totes les revisions contenien enllaços $1, s'està deixant en blanc",
 'spam_deleting' => "S'estan suprimint totes les revisions que contenien enllaços a $1",
+'simpleantispam-label' => "Comprovació antispam.
+'''NO''' ho ompliu!",
 
 # Info page
 'pageinfo-title' => 'Informació de «$1»',
@@ -3624,7 +3672,7 @@ les facilitats de correu electrònic a {{SITENAME}}, cal que obriu al navegador 
 
 $3
 
-Si el compte *no* us pertany, canceŀleu l'adreça de correu electrònic seguint aquest enllaç: 
+Si el compte *no* us pertany, cancel·leu l'adreça de correu electrònic seguint aquest enllaç: 
 
 $5
 
@@ -3759,6 +3807,18 @@ Amb aquest programa heu d'haver rebut [{{SERVER}}{{SCRIPTPATH}}/COPYING una còp
 'version-entrypoints-header-entrypoint' => "Punt d'entrada",
 'version-entrypoints-header-url' => 'URL',
 
+# Special:Redirect
+'redirect' => 'Redirigeix per fitxer, usuari o ID de la revisió',
+'redirect-legend' => 'Redirigeix a un fitxer o a una pàgina',
+'redirect-summary' => "Aquesta pàgina especial redirigeix a un fitxer (donat el nom del fitxer), una pàgina (donada un ID de la revisió), o a una pàgina d'usuari (donat un ID numèric d'usuari). Ús: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]], or [[{{#Special:Redirect}}/user/101]].",
+'redirect-submit' => 'Vés-hi',
+'redirect-lookup' => 'Consulta:',
+'redirect-value' => 'Valor:',
+'redirect-user' => "ID d'usuari",
+'redirect-revision' => 'Revisió de la pàgina',
+'redirect-file' => 'Nom del fitxer',
+'redirect-not-exists' => "No s'ha trobat el valor",
+
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Cerca fitxers duplicats',
 'fileduplicatesearch-summary' => "Cerca fitxers duplicats d'acord amb el seu valor de resum.",
@@ -3807,12 +3867,15 @@ Amb aquest programa heu d'haver rebut [{{SERVER}}{{SCRIPTPATH}}/COPYING una còp
 'tags' => 'Etiquetes de canvi vàlides',
 'tag-filter' => "Filtre d'[[Special:Tags|etiquetes]]:",
 'tag-filter-submit' => 'Filtra',
+'tag-list-wrapper' => '([[Special:Tags|{{PLURAL:$1|Etiqueta|Etiquetes}}]]: $2)',
 'tags-title' => 'Etiquetes',
 'tags-intro' => 'Aquesta pàgina llista les etiquetes amb les què el programari pot marcar una modificació, i llur significat.',
 'tags-tag' => "Nom de l'etiqueta",
 'tags-display-header' => 'Aparença de la llista de canvis',
 'tags-description-header' => 'Descripció completa del significat',
+'tags-active-header' => 'Actiu?',
 'tags-hitcount-header' => 'Canvis etiquetats',
+'tags-active-yes' => 'Sí',
 'tags-edit' => 'modifica',
 'tags-hitcount' => '$1 {{PLURAL:$1|canvi|canvis}}',
 
@@ -3833,6 +3896,7 @@ Amb aquest programa heu d'haver rebut [{{SERVER}}{{SCRIPTPATH}}/COPYING una còp
 'dberr-problems' => 'Ho sentim. Aquest lloc web està experimentant dificultats tècniques.',
 'dberr-again' => 'Intenteu esperar uns minuts i tornar a carregar.',
 'dberr-info' => '(No es pot contactar amb el servidor de dades: $1)',
+'dberr-info-hidden' => '(No es pot contactar amb el servidor de la base de dades)',
 'dberr-usegoogle' => 'Podeu intentar fer la cerca via Google mentrestant.',
 'dberr-outofdate' => 'Tingueu en compte que la seva indexació del nostre contingut pot no estar actualitzada.',
 'dberr-cachederror' => 'A continuació hi ha una còpia emmagatzemada de la pàgina demanada, que pot no estar actualitzada.',
@@ -3850,6 +3914,7 @@ Amb aquest programa heu d'haver rebut [{{SERVER}}{{SCRIPTPATH}}/COPYING una còp
 'htmlform-selectorother-other' => 'Altres',
 'htmlform-no' => 'No',
 'htmlform-yes' => 'Sí',
+'htmlform-chosen-placeholder' => 'Seleccioneu una opció',
 
 # SQLite database support
 'sqlite-has-fts' => '$1, amb suport de búsqueda de text íntegre',
@@ -3966,5 +4031,20 @@ Altrament, podeu fer servir un senzill formulari a continuació. El vostre comen
 
 # Image rotation
 'rotate-comment' => 'Imatge girada $1 {{PLURAL:$1|grau|graus}} en el sentit de les agulles del rellotge',
+
+# Limit report
+'limitreport-title' => "Perfil de dades de l'analitzador:",
+'limitreport-cputime' => "Temps d'ús de CPU",
+'limitreport-cputime-value' => '$1 {{PLURAL:$1|segon|segons}}',
+'limitreport-walltime' => "Temps real d'ús",
+'limitreport-walltime-value' => '$1 {{PLURAL:$1|segon|segons}}',
+'limitreport-ppvisitednodes' => 'Nombre de nodes visitats pel preprocessador',
+'limitreport-ppgeneratednodes' => 'Nombre de nodes generats pel preprocessador',
+'limitreport-postexpandincludesize' => "Mida d'inclusió post-expansió",
+'limitreport-postexpandincludesize-value' => '$1/$2 {{PLURAL:$2|byte|bytes}}',
+'limitreport-templateargumentsize' => "Mida de l'argument de plantilla",
+'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|byte|bytes}}',
+'limitreport-expansiondepth' => "Profunditat màxima d'expansió",
+'limitreport-expensivefunctioncount' => "Número de funcions d'anàlisi dispendioses",
 
 );

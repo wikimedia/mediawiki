@@ -335,7 +335,7 @@ $messages = array(
 'articlepage' => 'Syte',
 'talk' => 'Diskussion',
 'views' => 'Wievylmol agluegt',
-'toolbox' => 'Wärkzügkäschtli',
+'toolbox' => 'Wärchzyyg',
 'userpage' => 'Benutzersyte',
 'projectpage' => 'Projektsyte azeige',
 'imagepage' => 'Dateisyte',
@@ -363,7 +363,7 @@ Di maximal Wartezyt fir e Lock isch umme',
 'pool-queuefull' => 'D Warteschlang isch voll',
 'pool-errorunknown' => 'Nit bekannte Fähler',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Über {{GRAMMAR:akkusativ|{{SITENAME}}}}',
 'aboutpage' => 'Project:Über {{UCFIRST:{{GRAMMAR:akkusativ|{{SITENAME}}}}}}',
 'copyright' => 'Der Inhalt vo dere Syte stoht unter der $1.',
@@ -449,17 +449,6 @@ Alli verfiegbare Spezialsyte sin in dr [[Special:SpecialPages|Lischt vu Spezials
 # General errors
 'error' => 'Fähler',
 'databaseerror' => 'Fähler in dr Datebank',
-'dberrortext' => 'S isch e Datebankfähler ufträtte.
-Dr Grund cha ne e Programmierfähler syy.
-Di letscht Datebankabfrog isch
-<blockquote><code>$1</code></blockquote>
-us dr Funktion „<code>$2</code>“ gsi.
-D Datebank het dr Fähler „<samp>$3: $4</samp>“ gmäldet.',
-'dberrortextcl' => 'S het e Syntaxfähler gee in dr Abfrog vu dr Datebank.
-Di letscht Datebankabfrog isch
-„$1“
-us dr Funktion „$2“ gsi.
-D Datebank het dr Fähler „$3: $4“ gmäldet.',
 'laggedslavemode' => 'Warnig: di letschte Änderige wäre u. U. nonig aazeigt!',
 'readonly' => 'Datebank isch gsperrt',
 'enterlockreason' => 'Bitte gib e Grund y, worum d Datebank soll gsperrt wäre un e Yschätzig wie lang si soll gsperrt blybe',
@@ -507,7 +496,6 @@ Abfrog: $2',
 'viewyourtext' => "Du chasch dr Quälltext vu '''Dyre Bearbeitig''' vu däre Syte aaluege un kopiere:",
 'protectedinterface' => 'In däre Syte het s Text fir s Sproch-Interface vu dr Software un si isch gsperrt, zum Missbruch z verhindre.',
 'editinginterface' => "'''Obacht:''' Du bisch e Syten am Verändere, wu zum User.Interface ghert. Wänn Du die Syte veränderesch, no änderet sich s User-Interface au fir di andere Benutzer vu däm Wiki. Fir Ibersetzige lueg bitte, eb Du doodefir s [//translatewiki.net/wiki/Main_Page?setlang=gsw Translatewiki] witt bruuche, s MediaWiki-Lokalisierigsprojäkt.",
-'sqlhidden' => '(SQL-Abfrog verschteckt)',
 'cascadeprotected' => 'Die Syte isch fir s Bearbeite gsperrt. Si isch yybunde in {{PLURAL:$1|die Syte, wu do chunnt|die Syte, wu do chemme}} , wu mit ere Kaskadesperroption gschitzt {{PLURAL:$1|isch|sin}}:
 $2',
 'namespaceprotected' => "Du hesch kei Berächtigung, die Syte im '''$1'''-Namensruum z bearbeite.",
@@ -539,7 +527,6 @@ Ochat: s cha syy, ass bstimmti Syte eso aazeigt wäre, wie wänn Du allno aagmä
 'yourpassword' => 'Passwort:',
 'yourpasswordagain' => 'Passwort no mol yygee:',
 'remembermypassword' => 'Uf däm Computer duurhaft aamälde (Maximal fir $1 {{PLURAL:$1|Tag|Täg}})',
-'securelogin-stick-https' => 'Noch em Aamälde mit HTTPS verbunde blybe',
 'yourdomainname' => 'Dyyni Domäne',
 'password-change-forbidden' => 'Du chasch uf däm Wiki kei Passwerter ändere.',
 'externaldberror' => 'Entwäder s lit e Fähler bi dr externe Authentifizierung vor, oder Du derfsch Dyy extern Benutzerkonto nid aktualisiere.',
@@ -641,7 +628,7 @@ Wänn s Benutzerkonto us Versäh aaglait woren isch, chasch die Nochricht ignori
 'newpassword' => 'Nöis Passwort',
 'retypenew' => 'Nöis Passwort (es zwöits Mal)',
 'resetpass_submit' => 'Passwort ibermittle un aamälde',
-'resetpass_success' => 'Dyy Passwort isch erfolgryych gänderet wore. Jetz chunnt d Aamäldig …',
+'changepassword-success' => 'Dyy Passwort isch erfolgryych gänderet wore. Jetz chunnt d Aamäldig …',
 'resetpass_forbidden' => 'S Passwort cha nid gänderet wäre.',
 'resetpass-no-info' => 'Du muesch Di aamälde zum uf die Syte diräkt zuegryfe z chenne.',
 'resetpass-submit-loggedin' => 'Passwort ändere',
@@ -950,8 +937,8 @@ Erklärig: (aktuell) = Underschid zu jetz,
 (vorane) = Underschid zur alte Version, <strong>K</strong> = chlyni Änderig',
 'history-fieldset-title' => 'Suech in dr Versionsgschicht',
 'history-show-deleted' => 'nume gleschti Versione',
-'histfirst' => 'Eltischti',
-'histlast' => 'Nöischti',
+'histfirst' => 'eltischti',
+'histlast' => 'neischti',
 'historysize' => '({{PLURAL:$1|1 Byte|$1 Bytes}})',
 'historyempty' => '(läär)',
 
@@ -1465,7 +1452,7 @@ Des cha nimmi ruckgängig gmacht wäre.',
 'rc_categories_any' => 'Alli',
 'rc-change-size-new' => '$1 {{PLURAL:$1|Byte|Byte}} no dr Änderig',
 'newsectionsummary' => 'Neje Abschnitt /* $1 */',
-'rc-enhanced-expand' => 'Detail aazeige (brucht JavaScript)',
+'rc-enhanced-expand' => 'Detail aazeige',
 'rc-enhanced-hide' => 'Detail verstecke',
 'rc-old-title' => 'urspringlig aaglait as „$1“',
 
@@ -1843,12 +1830,6 @@ Iberprief anderi Link zue dr Vorlage, voreb Du die leschesch.',
 'statistics-users-active' => 'Aktivi Benutzer',
 'statistics-users-active-desc' => 'Benutzer mit Bearbeitige {{PLURAL:$1|in dr letschte 24 Stund|in dr letschte $1 Täg}}',
 'statistics-mostpopular' => 'Am meischte aagluegti Syte',
-
-'disambiguations' => 'Syte, wu uf Begriffsklärigssyte verlinke',
-'disambiguationspage' => 'Template:Begriffsklärig',
-'disambiguations-text' => 'Die Syte verwyyse uf e Begriffsklärigs-Syte. Sie sotte aber besser uf d Syte verwyyse, wu eigetli gmeint sin.
-
-E Syte wird as Begriffsklärigs-Syte behandlet, wänn [[MediaWiki:Disambiguationspage]] uf si verwyyst.',
 
 'doubleredirects' => 'Doppleti Wyterleitige (Redirects)',
 'doubleredirectstext' => 'Die Lischt zeigt Wyterleitige, wu uf anderi Wyterleitige verwyyse.
@@ -2328,7 +2309,7 @@ $1',
 'contributions' => '{{GENDER:$1|Benutzer-Byträg}}',
 'contributions-title' => 'Benutzerbyytreg vu „$1“',
 'mycontris' => 'Myyni Byyträg',
-'contribsub2' => 'Für $1 ($2)',
+'contribsub2' => 'Vu {{GENDER:$3|$1}} ($2)',
 'nocontribs' => 'S sin keini Benutzerbyytreg mit däne Kriterie gfunde wore.',
 'uctop' => '(aktuell)',
 'month' => 'u Monet:',
@@ -2481,11 +2462,8 @@ Go d Sperri ufhebe lueg d [[Special:BlockList|Lisch vu allene aktive Sperrine]].
 'ipb_blocked_as_range' => 'Fähler: D IP-Adräss $1 isch as Teil vu dr Beryychssperri $2 indirekt gsperrt. S isch nit megli, nume $1 z entsperre.',
 'ip_range_invalid' => 'Uugiltige IP-Adrässberyych.',
 'ip_range_toolarge' => 'Adrässberyych, wu greßer sin wie /$1, sin nit erlaubt.',
-'blockme' => 'Sperr mi',
 'proxyblocker' => 'Proxy blocker',
-'proxyblocker-disabled' => 'Die Funktion isch deaktiviert.',
 'proxyblockreason' => 'Dyni IP-Adrässe isch gsperrt wore, wel si ne ufige Proxy isch. Bitte kontaktier Dyyn Internet-Provider oder Dyni Systemadministratore un informier si iber des Sicherheitsproblem.',
-'proxyblocksuccess' => 'Fertig.',
 'sorbsreason' => 'D IP-Adräss isch in dr DNSBL vu {{SITENAME}} as uffige PROXY glischtet.',
 'sorbs_create_account_reason' => 'D IP-Adräss isch in dr DNSBL vu {{SITENAME}} as uffige PROXY glischtet. S Aalege vu neije Benutzer isch nit megli.',
 'cant-block-while-blocked' => 'Du derfsch kei anderi Benutzer sperre, derwylscht Du sälber gsperrt bisch.',
@@ -2800,6 +2778,7 @@ Die uf em lokale Rächner spychere un derno do uffelade.',
 'spam_reverting' => 'Letschti Version ohni Links zue $1 widerhärgstellt.',
 'spam_blanking' => 'In allene Versione het s Links zue $1 gha, sufer gmacht.',
 'spam_deleting' => 'Alli Versione mit eme Link zue $1 sin glescht woret.',
+'simpleantispam-label' => "Spamschutz-Priefig. Do '''nyt''' yytrage!",
 
 # Info page
 'pageinfo-title' => 'Informatione zue „$1“',

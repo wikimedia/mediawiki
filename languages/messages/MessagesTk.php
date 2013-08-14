@@ -265,7 +265,7 @@ $1',
 'pool-queuefull' => 'Howzuň nobaty doly',
 'pool-errorunknown' => 'Näbelli säwlik',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} hakynda',
 'aboutpage' => 'Project:Hakynda',
 'copyright' => 'Mazmun $1 esasynda elýeterlidir.',
@@ -347,16 +347,6 @@ Bar bolan ähli ýörite sahypalary [[Special:SpecialPages|ýörite sahypalar]] 
 # General errors
 'error' => 'Säwlik',
 'databaseerror' => 'Maglumat bazasynyň säwligi',
-'dberrortext' => 'Maglumat bazasy gözleginde sintaksis säwligi ýüze çykdy.
-Onuň programmadaky bir säwlik bolmagy ahmal.
-"<tt>$2</tt>" funksiýasyndan synalyp görülen iň soňky maglumat bazasy gözlegi:
-<blockquote><tt>$1</tt></blockquote>.
-Maglumat bazasy tarapyndan yzyna gaýtarylan säwlik "<tt>$3: $4</tt>".',
-'dberrortextcl' => 'Maglumat bazasy gözleginde sintaksis säwligi ýüze çykdy.
-Iň soňky maglumat bazasy gözlegi:
-"$1"
-Ulanylan funksiýa "$2".
-Maglumat bazasy tarapyndan yzyna gaýtarylan säwlik "$3: $4"',
 'laggedslavemode' => 'Duýduryş: Sahypada soňky täzelemeler ýok bolmagy ahmal.',
 'readonly' => 'Maglumat bazasy gulplandy',
 'enterlockreason' => 'Gulplamak üçin bir sebäp görkeziň. Gulpuň haçan açyljakdygy barada takmynan bir sene ýazyň.',
@@ -404,7 +394,6 @@ Talap: $2',
 'viewsourcetext' => 'Bu sahypanyň çeşmesini görüp hem-de göçürip bilersiňiz:',
 'protectedinterface' => 'Bu sahypa programma üçin interfeýs tekstini üpjün edýär. Bet niýetli hüjümlerden goramak maksady bilen gulp astyna alnandyr.',
 'editinginterface' => "'''Duýduryş:''' Programma üçin interfeýs tekstini üpjün etmekte ulanylýan bir sahypany redaktirleýärsiňiz. Bu sahypada ediljek üýtgeşmeler beýleki ulanyjylar üçin ulanyjy interfeýsiniň daşky görnüşini üýtgedýändir. Terjimeler üçin, MediaWikiniň lokalizasiýa taslamasy bolan [//translatewiki.net/wiki/Main_Page?setlang=tr translatewiki.net]i ulanmaklygyňyzy haýyş edýäris.",
-'sqlhidden' => '(SQL gizlin talap)',
 'cascadeprotected' => 'Bu sahypa redaktirlenmekden goralýar, sebäbi ol "kaskadly" opsiýasy işledilip gorag astyna alnan {{PLURAL:$1|sahypada|sahypada}} ulanylýar:
 $2',
 'namespaceprotected' => "Siziň '''$1''' giňişligindäki sahypalary redaktirlemäge rugsadyňyz ýok.",
@@ -516,7 +505,7 @@ Sessiýa açmaklygy tamamlamak üçin, bu ýere täze parol ýazyň:',
 'newpassword' => 'Täze parol:',
 'retypenew' => 'Täze paroly gaýtadan ýaz:',
 'resetpass_submit' => 'Paroly sazlaň we sessiýa açyň',
-'resetpass_success' => 'Parolyňyz şowlulyk bilen üýtgedildi! Häzir sessiýaňyz açylýar...',
+'changepassword-success' => 'Parolyňyz şowlulyk bilen üýtgedildi! Häzir sessiýaňyz açylýar...',
 'resetpass_forbidden' => 'Parollary üýtgedip bolmaýar',
 'resetpass-no-info' => 'Bu sahypany gönüden-göni açmak üçin sessiýa açmagyňyz zerurdyr.',
 'resetpass-submit-loggedin' => 'Paroly üýtget',
@@ -789,8 +778,8 @@ $3 tarapyndan görkezilen sebäp: ''$2''",
 '''({{int:last}})''' = öňündäki wersiýadan tapawudy, '''{{int:minoreditletter}}''' = ujypsyzja özgerdiş.",
 'history-fieldset-title' => 'Geçmişe göz aýla',
 'history-show-deleted' => 'Diňe öçürilenler',
-'histfirst' => 'Iň irki',
-'histlast' => 'Ýaňy-ýakyndaky',
+'histfirst' => 'iň köne',
+'histlast' => 'iň täze',
 'historysize' => '({{PLURAL:$1|1 baýt|$1 baýt}})',
 'historyempty' => '(boş)',
 
@@ -1293,7 +1282,7 @@ $1 {{PLURAL:$1|simwoldan|simwoldan}} köp bolmaly däl.',
 'rc_categories' => 'Kategoriýalar bilen çäklendir ("|" bilen aýyr)',
 'rc_categories_any' => 'Islendik',
 'newsectionsummary' => '/* $1 */ täze bölüm',
-'rc-enhanced-expand' => 'Jikme-jiklikleri görkez (JavaScript gerekli)',
+'rc-enhanced-expand' => 'Jikme-jikligi görkez',
 'rc-enhanced-hide' => 'Jikme-jiklikleri gizle',
 
 # Recent changes linked
@@ -1607,12 +1596,6 @@ Giriş formaty: mazmuntip/kiçitip, meselem <code>surat/jpeg</code>.',
 'statistics-users-active' => 'Işjeň ulanyjylar',
 'statistics-users-active-desc' => 'Soňky {{PLURAL:$1|1 günde|$1 günde}} haýsydyr bir iş geçiren ulanyjylar',
 'statistics-mostpopular' => 'Iň köp görülýän sahypalar',
-
-'disambiguations' => 'Dürli manyly sahypalar',
-'disambiguationspage' => 'Template:Dürli manylar',
-'disambiguations-text' => "Aşakdaky sahypalar '''dürli manyly sahypa''' çykgyt berýär.
-Olar muňa derek degişli anyk sahypa çykgyt bermelidir.<br />
-[[MediaWiki:Disambiguationspage]] sahypasyndan çykgyt berilýän bir şablony ulanýan bolsa, onda ol sahypa dürli manyly hökmünde çemeleşilýär.",
 
 'doubleredirects' => 'Jübüt gönükdirmeler',
 'doubleredirectstext' => 'Bu sahypa başga gönükdirme sahypalaryna gönükdirýän sahypalaryň sanawyny görkezýär.
@@ -2072,9 +2055,9 @@ $1',
 'contributions' => '{{GENDER:$1|Ulanyjy}} goşantlary',
 'contributions-title' => '$1 üçin ulanyjy goşantlary',
 'mycontris' => 'Goşantlar',
-'contribsub2' => '$1 ($2)',
+'contribsub2' => '{{GENDER:$3|$1}} üçin ($2)',
 'nocontribs' => 'Bu kriteriýlere gabat gelýän üýtgeşme ýok.',
-'uctop' => '(iň soňky)',
+'uctop' => '(häzirki)',
 'month' => 'Aý:',
 'year' => 'Ýyl:',
 
@@ -2209,12 +2192,9 @@ Blokirlemesi eýýäm aýyrylan bolmagy mümkin.',
 Emma, bu adres $2 diapazonynyň bir bölegi hökmünde blokirlenipdir, diapazon blokirlemesini aýryp bilersiňiz.',
 'ip_range_invalid' => 'Nädogry IP diapazony.',
 'ip_range_toolarge' => '/$1 blokdan uly aralyk blokirlemelere rugsat berilmeýär',
-'blockme' => 'Meni blokirle',
 'proxyblocker' => 'Proksi blokirleýji',
-'proxyblocker-disabled' => 'Bu funksiýa ýapyk.',
 'proxyblockreason' => 'IP adresiňiz açyk proksidigi sebäpli blokirlenipdir.
 Internet üpjün edijiňiz ýa-da goldaw gullugy bilen habarlaşyp, olary bu çynlakaý howpsuzlyk problemasy barada habardar ediň.',
-'proxyblocksuccess' => 'Ýerine ýetirildi.',
 'sorbsreason' => 'IP adresiňiz {{SITENAME}} tarapyndan ulanylýan DNSBL-de açyk proksi hökmünde sanawa goşulypdyr.',
 'sorbs_create_account_reason' => 'IP adresiňiz {{SITENAME}} tarapyndan ulanylýan DNSBL-de açyk proksi hökmünde sanawa goşulypdyr.
 Hasap açyp bilmeýärsiňiz.',
@@ -2508,6 +2488,8 @@ Mazmun üçin bir sebäp goşmaga rugsat berýär',
 'spambot_username' => 'MediaWiki spam arassalaýyş',
 'spam_reverting' => '$1 sahypasyna çykgytlary bolmadyk iň soňky wersiýasyna yzyna getirilýär',
 'spam_blanking' => 'Ähli wersiýalarda $1 sahypasyna çykgytlar bar, boşadylýar',
+'simpleantispam-label' => "Anti-spam barlagy.
+Muny '''DOLDURMAŇ'''!",
 
 # Patrolling
 'markaspatrolleddiff' => 'Patrullyk edilen diýip belle',

@@ -875,12 +875,7 @@ $NEWPAGE
 只有列示項目（以 * 開頭的項目）會被考慮。第一個連結一定要連接去壞圖片中。
 然後在同一行的連結會考慮作例外，即是幅圖片可以在哪一個頁面中同時顯示。',
 
-/*
-Short names for language variants used for language conversion links.
-To disable showing a particular link, set it to 'disable', e.g.
-'variantname-zh-sg' => 'disable',
-Variants for Chinese language
-*/
+# Variants for Chinese language
 'variantname-zh-tw' => '台灣繁體',
 
 # Metadata

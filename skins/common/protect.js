@@ -1,6 +1,7 @@
+( function ( mw, $ ) {
 
-window.ProtectionForm = {
-	'existingMatch': false,
+var ProtectionForm = window.ProtectionForm = {
+	existingMatch: false,
 
 	/**
 	 * Set up the protection chaining interface (i.e. "unlock move permissions" checkbox)
@@ -12,32 +13,38 @@ window.ProtectionForm = {
 	 *     numTypes             The number of protection types
 	 *     existingMatch        True if all the existing expiry times match
 	 */
-	'init': function( opts ) {
-		if( !( document.createTextNode && document.getElementById && document.getElementsByTagName ) )
-			return false;
+	init: function ( opts ) {
+		var box, boxbody, row, cell, check, label;
 
-		var box = document.getElementById( opts.tableId );
-		if( !box )
+		if ( !( document.createTextNode && document.getElementById && document.getElementsByTagName ) ) {
 			return false;
-		
-		var boxbody = box.getElementsByTagName('tbody')[0];
-		var row = document.createElement( 'tr' );
+		}
+
+		box = document.getElementById( opts.tableId );
+		if ( !box ) {
+			return false;
+		}
+
+		boxbody = box.getElementsByTagName( 'tbody' )[0];
+		row = document.createElement( 'tr' );
 		boxbody.insertBefore( row, boxbody.firstChild.nextSibling );
 
 		this.existingMatch = opts.existingMatch;
 
-		var cell = document.createElement( 'td' );
+		cell = document.createElement( 'td' );
 		row.appendChild( cell );
 		// If there is only one protection type, there is nothing to chain
-		if( opts.numTypes > 1 ) {
-			var check = document.createElement( 'input' );
+		if ( opts.numTypes > 1 ) {
+			check = document.createElement( 'input' );
 			check.id = 'mwProtectUnchained';
 			check.type = 'checkbox';
 			cell.appendChild( check );
-			addClickHandler( check, function() { ProtectionForm.onChainClick(); } );
+			window.addClickHandler( check, function () {
+				ProtectionForm.onChainClick();
+			} );
 
 			cell.appendChild( document.createTextNode( ' ' ) );
-			var label = document.createElement( 'label' );
+			label = document.createElement( 'label' );
 			label.htmlFor = 'mwProtectUnchained';
 			label.appendChild( document.createTextNode( opts.labelText ) );
 			cell.appendChild( label );
@@ -45,7 +52,7 @@ window.ProtectionForm = {
 			check.checked = !this.areAllTypesMatching();
 			this.enableUnchainedInputs( check.checked );
 		}
-		
+
 		$( '#mwProtect-reason' ).byteLimit( 180 );
 
 		this.updateCascadeCheckbox();
@@ -56,17 +63,19 @@ window.ProtectionForm = {
 	/**
 	 * Sets the disabled attribute on the cascade checkbox depending on the current selected levels
 	 */
-	'updateCascadeCheckbox': function() {
+	updateCascadeCheckbox: function () {
+		var i, lists, items, selected;
+
 		// For non-existent titles, there is no cascade option
-		if( !document.getElementById( 'mwProtect-cascade' ) ) {
+		if ( !document.getElementById( 'mwProtect-cascade' ) ) {
 			return;
 		}
-		var lists = this.getLevelSelectors();
-		for( var i = 0; i < lists.length; i++ ) {
-			if( lists[i].selectedIndex > -1 ) {
-				var items = lists[i].getElementsByTagName( 'option' );
-				var selected = items[ lists[i].selectedIndex ].value;
-				if( !this.isCascadeableLevel(selected) ) {
+		lists = this.getLevelSelectors();
+		for ( i = 0; i < lists.length; i++ ) {
+			if ( lists[i].selectedIndex > -1 ) {
+				items = lists[i].getElementsByTagName( 'option' );
+				selected = items[ lists[i].selectedIndex ].value;
+				if ( !this.isCascadeableLevel( selected ) ) {
 					document.getElementById( 'mwProtect-cascade' ).checked = false;
 					document.getElementById( 'mwProtect-cascade' ).disabled = true;
 					return;
@@ -81,7 +90,7 @@ window.ProtectionForm = {
 	 * @param level {String}
 	 * @return {Boolean}
 	 */
-	'isCascadeableLevel': function( level ) {
+	isCascadeableLevel: function (  level ) {
 		var cascadeLevels, len, i;
 
 		cascadeLevels = mw.config.get( 'wgCascadeableLevels' );
@@ -102,9 +111,10 @@ window.ProtectionForm = {
 	 *
 	 * @param source Element Level selector that changed
 	 */
-	'updateLevels': function(source) {
-		if( !this.isUnchained() )
+	updateLevels: function ( source ) {
+		if ( !this.isUnchained() ) {
 			this.setAllSelectors( source.selectedIndex );
+		}
 		this.updateCascadeCheckbox();
 	},
 
@@ -115,22 +125,24 @@ window.ProtectionForm = {
 	 * @param source Element expiry input that changed
 	 */
 
-	'updateExpiry': function(source) {
-		if( !this.isUnchained() ) {
-			var expiry = source.value;
-			this.forEachExpiryInput(function(element) {
+	updateExpiry: function ( source ) {
+		var expiry, listId, list;
+
+		if ( !this.isUnchained() ) {
+			expiry = source.value;
+			this.forEachExpiryInput( function ( element ) {
 				element.value = expiry;
-			});
+			} );
 		}
-		var listId = source.id.replace( /^mwProtect-(\w+)-expires$/, 'mwProtectExpirySelection-$1' );
-		var list = document.getElementById( listId );
-		if (list && list.value != 'othertime' ) {
+		listId = source.id.replace( /^mwProtect-(\w+)-expires$/, 'mwProtectExpirySelection-$1' );
+		list = document.getElementById( listId );
+		if ( list && list.value !== 'othertime' ) {
 			if ( this.isUnchained() ) {
 				list.value = 'othertime';
 			} else {
-				this.forEachExpirySelector(function(element) {
+				this.forEachExpirySelector( function ( element ) {
 					element.value = 'othertime';
-				});
+				} );
 			}
 		}
 	},
@@ -141,15 +153,16 @@ window.ProtectionForm = {
 	 *
 	 * @param source Element expiry selector that changed
 	 */
-	'updateExpiryList': function(source) {
-		if( !this.isUnchained() ) {
-			var expiry = source.value;
-			this.forEachExpirySelector(function(element) {
+	updateExpiryList: function ( source ) {
+		var expiry;
+		if ( !this.isUnchained() ) {
+			expiry = source.value;
+			this.forEachExpirySelector( function ( element ) {
 				element.value = expiry;
-			});
-			this.forEachExpiryInput(function(element) {
+			} );
+			this.forEachExpiryInput( function ( element ) {
 				element.value = '';
-			});
+			} );
 		}
 	},
 
@@ -157,8 +170,8 @@ window.ProtectionForm = {
 	 * Update chain status and enable/disable various bits of the UI
 	 * when the user changes the "unlock move permissions" checkbox
 	 */
-	'onChainClick': function() {
-		if( this.isUnchained() ) {
+	onChainClick: function () {
+		if ( this.isUnchained() ) {
 			this.enableUnchainedInputs( true );
 		} else {
 			this.setAllSelectors( this.getMaxLevel() );
@@ -170,16 +183,17 @@ window.ProtectionForm = {
 	/**
 	 * Returns true if the named attribute in all objects in the given array are matching
 	 */
-	'matchAttribute' : function( objects, attrName ) {
-		var value = null;
+	matchAttribute: function ( objects, attrName ) {
+		var i, element, value;
 
 		// Check levels
-		for ( var i = 0; i < objects.length; i++ ) {
-			var element = objects[i];
-			if ( value == null ) {
+		value = null;
+		for ( i = 0; i < objects.length; i++ ) {
+			element = objects[i];
+			if ( value === null ) {
 				value = element[attrName];
 			} else {
-				if ( value != element[attrName] ) {
+				if ( value !== element[attrName] ) {
 					return false;
 				}
 			}
@@ -192,7 +206,7 @@ window.ProtectionForm = {
 	 *
 	 * @return boolean
 	 */
-	'areAllTypesMatching': function() {
+	areAllTypesMatching: function () {
 		return this.existingMatch
 			&& this.matchAttribute( this.getLevelSelectors(), 'selectedIndex' )
 			&& this.matchAttribute( this.getExpirySelectors(), 'selectedIndex' )
@@ -204,7 +218,7 @@ window.ProtectionForm = {
 	 *
 	 * @return bool
 	 */
-	'isUnchained': function() {
+	isUnchained: function () {
 		var element = document.getElementById( 'mwProtectUnchained' );
 		return element
 			? element.checked
@@ -214,13 +228,13 @@ window.ProtectionForm = {
 	/**
 	 * Find the highest protection level in any selector
 	 */
-	'getMaxLevel': function() {
+	getMaxLevel: function () {
 		var maxIndex = -1;
-		this.forEachLevelSelector(function(element) {
-			if (element.selectedIndex > maxIndex) {
+		this.forEachLevelSelector( function ( element ) {
+			if ( element.selectedIndex > maxIndex ) {
 				maxIndex = element.selectedIndex;
 			}
-		});
+		} );
 		return maxIndex;
 	},
 
@@ -229,12 +243,12 @@ window.ProtectionForm = {
 	 *
 	 * @param index int Protection level
 	 */
-	'setAllSelectors': function(index) {
-		this.forEachLevelSelector(function(element) {
-			if (element.selectedIndex != index) {
+	setAllSelectors: function ( index ) {
+		this.forEachLevelSelector( function ( element ) {
+			if ( element.selectedIndex !== index ) {
 				element.selectedIndex = index;
 			}
-		});
+		} );
 	},
 
 	/**
@@ -242,10 +256,12 @@ window.ProtectionForm = {
 	 *
 	 * @param func callable Callback function
 	 */
-	'forEachLevelSelector': function(func) {
-		var selectors = this.getLevelSelectors();
-		for (var i = 0; i < selectors.length; i++) {
-			func(selectors[i]);
+	forEachLevelSelector: function ( func ) {
+		var i, selectors;
+
+		selectors = this.getLevelSelectors();
+		for ( i = 0; i < selectors.length; i++ ) {
+			func( selectors[i] );
 		}
 	},
 
@@ -254,12 +270,14 @@ window.ProtectionForm = {
 	 *
 	 * @return Array
 	 */
-	'getLevelSelectors': function() {
-		var all = document.getElementsByTagName("select");
-		var ours = [];
-		for (var i = 0; i < all.length; i++) {
-			var element = all[i];
-			if (element.id.match(/^mwProtect-level-/)) {
+	getLevelSelectors: function () {
+		var i, ours, all, element;
+
+		all = document.getElementsByTagName( 'select' );
+		ours = [];
+		for ( i = 0; i < all.length; i++ ) {
+			element = all[i];
+			if ( element.id.match( /^mwProtect-level-/ ) ) {
 				ours[ours.length] = element;
 			}
 		}
@@ -271,10 +289,12 @@ window.ProtectionForm = {
 	 *
 	 * @param func callable Callback function
 	 */
-	'forEachExpiryInput': function(func) {
-		var inputs = this.getExpiryInputs();
-		for (var i = 0; i < inputs.length; i++) {
-			func(inputs[i]);
+	forEachExpiryInput: function ( func ) {
+		var i, inputs;
+
+		inputs = this.getExpiryInputs();
+		for ( i = 0; i < inputs.length; i++ ) {
+			func( inputs[i] );
 		}
 	},
 
@@ -283,12 +303,14 @@ window.ProtectionForm = {
 	 *
 	 * @return Array
 	 */
-	'getExpiryInputs': function() {
-		var all = document.getElementsByTagName("input");
-		var ours = [];
-		for (var i = 0; i < all.length; i++) {
-			var element = all[i];
-			if (element.name.match(/^mwProtect-expiry-/)) {
+	getExpiryInputs: function () {
+		var i, all, element, ours;
+
+		all = document.getElementsByTagName( 'input' );
+		ours = [];
+		for ( i = 0; i < all.length; i++ ) {
+			element = all[i];
+			if ( element.name.match( /^mwProtect-expiry-/ ) ) {
 				ours[ours.length] = element;
 			}
 		}
@@ -299,10 +321,12 @@ window.ProtectionForm = {
 	 * Apply a callback to each expiry selector list
 	 * @param func callable Callback function
 	 */
-	'forEachExpirySelector': function(func) {
-		var inputs = this.getExpirySelectors();
-		for (var i = 0; i < inputs.length; i++) {
-			func(inputs[i]);
+	forEachExpirySelector: function ( func ) {
+		var i, inputs;
+
+		inputs = this.getExpirySelectors();
+		for ( i = 0; i < inputs.length; i++ ) {
+			func( inputs[i] );
 		}
 	},
 
@@ -311,12 +335,14 @@ window.ProtectionForm = {
 	 *
 	 * @return Array
 	 */
-	'getExpirySelectors': function() {
-		var all = document.getElementsByTagName("select");
-		var ours = [];
-		for (var i = 0; i < all.length; i++) {
-			var element = all[i];
-			if (element.id.match(/^mwProtectExpirySelection-/)) {
+	getExpirySelectors: function () {
+		var i, all, ours, element;
+
+		all = document.getElementsByTagName( 'select' );
+		ours = [];
+		for ( i = 0; i < all.length; i++ ) {
+			element = all[i];
+			if ( element.id.match( /^mwProtectExpirySelection-/ ) ) {
 				ours[ours.length] = element;
 			}
 		}
@@ -328,30 +354,33 @@ window.ProtectionForm = {
 	 *
 	 * @param val boolean Enable?
 	 */
-	'enableUnchainedInputs': function(val) {
+	enableUnchainedInputs: function ( val ) {
 		var first = true;
-		this.forEachLevelSelector(function(element) {
-			if (first) {
+
+		this.forEachLevelSelector( function ( element ) {
+			if ( first ) {
 				first = false;
 			} else {
 				element.disabled = !val;
 			}
-		});
+		} );
 		first = true;
-		this.forEachExpiryInput(function(element) {
-			if (first) {
+		this.forEachExpiryInput( function ( element ) {
+			if ( first ) {
 				first = false;
 			} else {
 				element.disabled = !val;
 			}
-		});
+		} );
 		first = true;
-		this.forEachExpirySelector(function(element) {
-			if (first) {
+		this.forEachExpirySelector( function ( element ) {
+			if ( first ) {
 				first = false;
 			} else {
 				element.disabled = !val;
 			}
-		});
+		} );
 	}
 };
+
+}( mediaWiki, jQuery ) );

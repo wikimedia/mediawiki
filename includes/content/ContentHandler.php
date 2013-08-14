@@ -449,10 +449,11 @@ abstract class ContentHandler {
 	 * @since 1.21
 	 *
 	 * @param Title $destination the page to redirect to.
+	 * @param string $text text to include in the redirect, if possible.
 	 *
 	 * @return Content
 	 */
-	public function makeRedirectContent( Title $destination ) {
+	public function makeRedirectContent( Title $destination, $text = '' ) {
 		return null;
 	}
 
@@ -906,6 +907,10 @@ abstract class ContentHandler {
 		$undo_content = $undo->getContent();
 		$undoafter_content = $undoafter->getContent();
 
+		if ( !$undo_content || !$undoafter_content ) {
+			return false; // no content to undo
+		}
+
 		$this->checkModelID( $cur_content->getModel() );
 		$this->checkModelID( $undo_content->getModel() );
 		$this->checkModelID( $undoafter_content->getModel() );
@@ -937,7 +942,7 @@ abstract class ContentHandler {
 	 * @return ParserOptions
 	 */
 	public function makeParserOptions( $context ) {
-		global $wgContLang;
+		global $wgContLang, $wgEnableParserLimitReporting;
 
 		if ( $context instanceof IContextSource ) {
 			$options = ParserOptions::newFromContext( $context );
@@ -949,7 +954,7 @@ abstract class ContentHandler {
 			throw new MWException( "Bad context for parser options: $context" );
 		}
 
-		$options->enableLimitReport(); // show inclusion/loop reports
+		$options->enableLimitReport( $wgEnableParserLimitReporting ); // show inclusion/loop reports
 		$options->setTidy( true ); // fix bad HTML
 
 		return $options;

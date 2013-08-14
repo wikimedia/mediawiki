@@ -27,8 +27,10 @@
  */
 class DeletedContribsPager extends IndexPager {
 	public $mDefaultDirection = true;
-	var $messages, $target;
-	var $namespace = '', $mDb;
+	public $messages;
+	public $target;
+	public $namespace = '';
+	public $mDb;
 
 	/**
 	 * @var string Navigation bar with paging links.
@@ -358,9 +360,9 @@ class DeletedContributionsPage extends SpecialPage {
 		# If there were contributions, and it was a valid user or IP, show
 		# the appropriate "footer" message - WHOIS tools, etc.
 		if ( $target != 'newbies' ) {
-			$message = IP::isIPAddress( $target )
-				? 'sp-contributions-footer-anon'
-				: 'sp-contributions-footer';
+			$message = IP::isIPAddress( $target ) ?
+				'sp-contributions-footer-anon' :
+				'sp-contributions-footer';
 
 			if ( !$this->msg( $message )->isDisabled() ) {
 				$out->wrapWikiMsg(
@@ -482,16 +484,7 @@ class DeletedContributionsPage extends SpecialPage {
 			}
 		}
 
-		// Old message 'contribsub' had one parameter, but that doesn't work for
-		// languages that want to put the "for" bit right after $user but before
-		// $links.  If 'contribsub' is around, use it for reverse compatibility,
-		// otherwise use 'contribsub2'.
-		$oldMsg = $this->msg( 'contribsub' );
-		if ( $oldMsg->exists() ) {
-			return $oldMsg->rawParams( "$user ($links)" );
-		}
-
-		return $this->msg( 'contribsub2' )->rawParams( $user, $links );
+		return $this->msg( 'contribsub2' )->rawParams( $user, $links )->params( $userObj->getName() );
 	}
 
 	/**

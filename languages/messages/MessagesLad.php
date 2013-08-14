@@ -399,7 +399,7 @@ $messages = array(
 'jumptonavigation' => 'navigación',
 'jumptosearch' => 'búsquida',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Encima de la {{SITENAME}}',
 'aboutpage' => 'Project:Encima de',
 'copyright' => 'El contenido se puede topar debaxo de la <i>$1</i>',
@@ -836,8 +836,6 @@ La descripción en su [$2 hoja de descripción del arxivo] está amostrada debax
 
 # Statistics
 'statistics' => 'Estatísticas',
-
-'disambiguationspage' => 'Template:Aklarasion',
 
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|bayt|baytes}}',

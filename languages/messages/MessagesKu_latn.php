@@ -321,7 +321,7 @@ $messages = array(
 'view-pool-error' => 'Bibore, server niha zêde barkirî ne. Gelek bikarhêner niha hewl didin ku vê rûpelê bibînin. Ji kerema xwe kêlîkekê bisekine, berî ku tu dîsa hewl bidî rûpelê bibînî.',
 'pool-errorunknown' => 'Çewtiyeke nenas',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Der barê {{SITENAME}} de',
 'aboutpage' => 'Project:Der barê',
 'copyright' => 'Naverok di $1 de derbasdar e.',
@@ -402,11 +402,6 @@ Hemû rûpelên taybet dikarin di [[Special:SpecialPages|lîsteya rûpelên tayb
 # General errors
 'error' => 'Çewtî',
 'databaseerror' => 'Çewtiya bingeha daneyan',
-'dberrortext' => 'Li cem dîtina bingeha daneyan <blockquote><tt>$1</tt></blockquote>
-ji fonksiyonê "<tt>$2</tt>" ye.
-MySQL ev şaşîtî hate dîtin: "<tt>$3: $4</tt>".',
-'dberrortextcl' => 'Li cem dîtina bingeha daneyan "$1 ji fonksiyonê "<tt>$2</tt>" ye.
-MySQL ev şaşîtî hate dîtin: "<tt>$3: $4</tt>".',
 'laggedslavemode' => "'''Zanibe:''' Dibe ku di vê rûpelê de rojanekirinên dawî nîn bin.",
 'readonly' => 'Bingeha daneyan hatiye girtin',
 'enterlockreason' => 'Sedemeke bestinê binivîse, herwiha demeke texmînkirî ji bo vebûna bestinê binivîse!',
@@ -445,7 +440,6 @@ Pirs: $2',
 'viewsourcetext' => 'Tu dikarî li çavkaniya vê rûpelê binêrî û wê kopî bikî:',
 'protectedinterface' => "Di vê rûpelê da nivîsandin ji bo interface'î zimanan yê vê software'ê ye. Ew tê parstin ji bo vandalîzm li vê derê çênebe.",
 'editinginterface' => "'''Hişyarî:''' Tu rûpeleke ku di Wîkîpediya de ji bo sîstemê girîng e diguherînî. Guherandinên di vê rûpelê de wê ji aliyê hemû bikarhêneran ve werin dîtin. Ji bo wergerê ji kerema xwe di [//translatewiki.net/wiki/Main_Page?setlang=ku-latn translatewiki.net] de bixebite, projeya MediaWiki.",
-'sqlhidden' => '(Jêpirskirina SQL hatiye veşartin)',
 'cascadeprotected' => 'Ev rûpel hatiye parastin ji ber guherandinê, ji ber ku ev rûpela di {{PLURAL:$1|vê rûpelê|van rûpelan da}} tê bikaranîn:
 $2',
 'namespaceprotected' => "Destûra te ji bo guhertina vê rûpelê '''$1''' di valahiya nav de nîne.",
@@ -555,7 +549,7 @@ Ji bo xelaskirina tomarkirinê, divê tu niha şîfreyeke nû binivîsî:',
 'newpassword' => 'Şîfreya nû',
 'retypenew' => 'Şîfreya nû careke din binîvîse',
 'resetpass_submit' => 'Şîfreyê pêkbîne û têkeve',
-'resetpass_success' => 'Şîfreya te hate guherandin! Niha tu tê qeydkirin...',
+'changepassword-success' => 'Şîfreya te hate guherandin! Niha tu tê qeydkirin...',
 'resetpass_forbidden' => 'Şîfre nikarin werin guhertin',
 'resetpass-submit-loggedin' => 'Şîfre biguherîne',
 'resetpass-submit-cancel' => 'Betal bike',
@@ -1267,9 +1261,6 @@ Agahdariya li ser [$2 rûpela danasîna pelê] li jêr tê nîşandan.',
 'statistics-users-active' => 'Bikarhênerên çalak',
 'statistics-mostpopular' => 'Rûpelên herî lênerî',
 
-'disambiguations' => 'Rûpelên girêdayî rûpelên cudakirinê',
-'disambiguationspage' => 'Template:disambig',
-
 'doubleredirects' => 'Beralîkirinên ducarî',
 'double-redirect-fixed-move' => 'Cihê [[$1]] hatiye guhertin, ew niha beralîkirina [[$2]] ye.',
 
@@ -1720,8 +1711,6 @@ Sedemekê binivîse!",
 'ipb_already_blocked' => '"$1" berê hatîye astengkirin',
 'ipb-needreblock' => '$1 berê hatiye astengkirin. Tu dixwazî eyaran biguherînî?',
 'ipb_cant_unblock' => "Şaşbûn: ID'ya astengkirinê $1 nehate dîtin. Astengkirinê xwe niha belkî hatîye rakirin.",
-'blockme' => 'Min astengbike',
-'proxyblocksuccess' => 'Çêbû.',
 'sorbsreason' => "Adrêsa IP ya te ji DNSBL'a {{SITENAME}} wek proxy'eka vekirî tê naskirin.",
 'sorbs_create_account_reason' => "Adrêsa IP ya te ji DNSBL'a {{SITENAME}} wek proxy'eka vekirî tê naskirin. Tu nikarê account'ekê ji xwe ra çêkê.",
 

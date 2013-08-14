@@ -183,21 +183,21 @@ class Preprocessor_DOM implements Preprocessor {
 			$xml = UtfNormal::cleanUp( $xml );
 			// 1 << 19 == XML_PARSE_HUGE, needed so newer versions of libxml2 don't barf when the XML is >256 levels deep
 			$result = $dom->loadXML( $xml, 1 << 19 );
-			if ( !$result ) {
-				wfProfileOut( __METHOD__ . '-loadXML' );
-				if ( $cacheable ) {
-					wfProfileOut( __METHOD__ . '-cacheable' );
-				}
-				wfProfileOut( __METHOD__ );
-				throw new MWException( __METHOD__ . ' generated invalid XML' );
-			}
 		}
-		$obj = new PPNode_DOM( $dom->documentElement );
+		if ( $result ) {
+			$obj = new PPNode_DOM( $dom->documentElement );
+		}
 		wfProfileOut( __METHOD__ . '-loadXML' );
+
 		if ( $cacheable ) {
 			wfProfileOut( __METHOD__ . '-cacheable' );
 		}
+
 		wfProfileOut( __METHOD__ );
+
+		if ( !$result ) {
+			throw new MWException( __METHOD__ . ' generated invalid XML' );
+		}
 		return $obj;
 	}
 
@@ -415,10 +415,10 @@ class Preprocessor_DOM implements Preprocessor {
 							foreach ( $comments as $j => $com ) {
 								$startPos = $com[0];
 								$endPos = $com[1] + 1;
-								if ( $j == ( count( $comments ) - 1) ) {
+								if ( $j == ( count( $comments ) - 1 ) ) {
 									break;
 								}
-								$inner = substr( $text, $startPos, $endPos - $startPos);
+								$inner = substr( $text, $startPos, $endPos - $startPos );
 								$accum .= '<comment>' . htmlspecialchars( $inner ) . '</comment>';
 							}
 

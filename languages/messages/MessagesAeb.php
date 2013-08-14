@@ -243,7 +243,7 @@ $1',
 'pool-queuefull' => 'طابور الاقتراع ملئ',
 'pool-errorunknown' => 'خطأ غير معروف',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'عن {{SITENAME}}',
 'aboutpage' => 'Project:عن',
 'copyright' => 'المحتوى متوفر تحت $1.',
@@ -325,17 +325,6 @@ $1',
 # General errors
 'error' => 'ghalath',
 'databaseerror' => 'خطأ في قاعدة البيانات',
-'dberrortext' => 'حدث خطأ في صيغة استعلام قاعدة البيانات.
-ربما يكون هذا عيب بالبرنامج.
-آخر استعلام طلب من قاعدة البيانات كان:
-<blockquote><tt>$1</tt></blockquote>
-من داخل الدالة "<tt>$2</tt>".
-أرجعت قاعدة البيانات الخطأ "<tt>$3: $4</tt>".',
-'dberrortextcl' => 'حدث خطأ في صيغة استعلام قاعدة البيانات.
-آخر استعلام طلب من قاعدة البيانات كان:
-"$1"
-من داخل الدالة "$2".
-أرجعت قاعدة البيانات الخطأ "$3: $4"',
 'laggedslavemode' => "'''تحذير:''' الصفحة قد لا تحتوي على أحدث التحديثات.",
 'readonly' => 'قاعدة البيانات مغلقة',
 'enterlockreason' => 'أدخل سببا للغلق، متضمنا تقديرا لوقت رفع الغلق',
@@ -391,7 +380,6 @@ mahouwech mobarrar',
 'editinginterface' => "'''تحذير:''' أنت تقوم بتحرير صفحة تستخدم في الواجهة النصية للبرنامج.
 سوف تؤثر التغييرات على هذه الصفحة على مظهر واجهة المستخدم للمستخدمين الآخرين.
 للترجمات، من فضلك استخدم مشروع ترجمة ميدياويكي [//translatewiki.net/wiki/Main_Page?setlang=ar translatewiki.net].",
-'sqlhidden' => '(استعلام SQL مخفي)',
 'cascadeprotected' => 'تمت حماية هذه الصفحة من التعديل لأنها مدمجة في {{PLURAL:$1||الصفحة التالية، والتي|الصفحتين التاليتين، واللتين|الصفحات التالية، والتي}} تم استعمال خاصية "حماية الصفحات المدمجة" {{PLURAL:$1||بها|بهما|بها}}:
 $2',
 'namespaceprotected' => "لا تمتلك الصلاحية لتعديل الصفحات في نطاق '''$1'''.",
@@ -422,7 +410,6 @@ $2',
 'yourpassword' => 'كلمة السر:',
 'yourpasswordagain' => 'أعد كتابة كلمة السر:',
 'remembermypassword' => 'تذكر دخولي على هذا الحاسوب (إلى {{PLURAL:$1||يوم واحد|يومين|$1 أيام|$1 يومًا|$1 يوم}} كحد أقصى)',
-'securelogin-stick-https' => 'ابقَ في اتصال HTTPS بعد الدخول.',
 'yourdomainname' => 'نطاقك:',
 'externaldberror' => 'هناك إما خطأ في دخول قاعدة البيانات الخارجية أو أنه غير مسموح لك بتحديث حسابك الخارجي.',
 'login' => 'ادخل',
@@ -528,7 +515,7 @@ $2',
 'newpassword' => 'كلمة السر الجديدة:',
 'retypenew' => 'أعد كتابة كلمة السر الجديدة:',
 'resetpass_submit' => 'ضبط كلمة السر والدخول',
-'resetpass_success' => 'تم تغيير كلمة السر الخاصة بك بنجاح! يتم تسجيل دخولك الآن...',
+'changepassword-success' => 'تم تغيير كلمة السر الخاصة بك بنجاح! يتم تسجيل دخولك الآن...',
 'resetpass_forbidden' => 'كلمات السر لا يمكن تغييرها',
 'resetpass-no-info' => 'يجب أن تكون مسجل الدخول للوصول إلى هذه الصفحة مباشرة.',
 'resetpass-submit-loggedin' => 'تغيير كلمة السر',
@@ -1110,8 +1097,6 @@ $1",
 
 # Statistics
 'statistics' => 'إحصاءات',
-
-'disambiguationspage' => 'Template:توضيح',
 
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|بايت|بايت}}',

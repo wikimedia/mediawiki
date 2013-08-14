@@ -236,7 +236,7 @@ $1",
 'pool-queuefull' => "Olukalala lw'emirimu egirinda okukolebwako lujjudde",
 'pool-errorunknown' => 'Ekireesewo kiremya tekitegeerese',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Okutangaaza ku {{SITENAME}}',
 'aboutpage' => 'Project:Okutangaaza ku',
 'copyright' => 'Ebiri kuno bifugibwa $1.',
@@ -317,17 +317,6 @@ Ku lupapula "[[Special:SpecialPages|{{int:specialpages}}]]" kuliko olukalala lw\
 # General errors
 'error' => 'Kiremya',
 'databaseerror' => 'Waliwo kiremya ku ggwanika lya data',
-'dberrortext' => 'Waliwo kiremya avudde ku mpandika y\'ekiragiro ekinoonyeza mu ggwanika lya data.<br />
-Ayinza okuba nga azze lwa nsobi mu sofutiweya wa lyo.<br />
-Ekiragiro ekinoonyeza mu ggwanika lya data ekisembye okuyisibwa kiri:<br />
-<blockquote><tt>$1</tt></blockquote>
-ekisangibwa mu mukolo gwa puloguramu "<tt>$2</tt>".<br />
-Obubaka obuvudde mu ggwanika lya data obufa ku kiremya buli "<tt>$3: $4</tt>".',
-'dberrortextcl' => 'Waliwo kiremya avudde ku mpandika y\'ekiragiro ekinoonyeza mu ggwanika lya data.<br />
-Ekiragiro ekinoonyeza mu ggwanika lya data ekisembye okuyisibwa kiri:<br />
-"$1" <br />
-ekisangibwa mu mukolo gwa mu puloguramu "$2".<br />
-Obubaka obuvudde mu ggwanika lya data obufa ku kiremya buli "$3: $4"',
 'laggedslavemode' => "'''Kulabula:''' Olupapula luyinza obutabaamu ebyakalukyusibwamu.",
 'readonly' => 'Eggwanika lya data terikkiriza kulikyusamu',
 'enterlockreason' => "Wandikawo ensonga esibizza eggwanika lya data, nga olaga ddi lw'olisuubira okusumululwa",
@@ -380,7 +369,6 @@ Lindako eddakiika entonotono oly'oke oddemu okugezako ekikolwa.",
 Luliko ebikugizo ebirugaana okwonooebwa.",
 'editinginterface' => "'''Kulabula:''' Okyusa olupapula sofutiweya kw'egya ebigambo byayo.
 Enkyukakyuka z'okola wano zigyakubaako kye zikola ku ngeri abantu gye bakozesaamu enfo eno.",
-'sqlhidden' => '(Waliwo wo ebya SQL ebibikkidwa)',
 'cascadeprotected' => 'Olupapula luno lulandideko ekikugizo ekirugaana okukyusibwako ekisibuka ku {{PLURAL:$1|lunnaalwo luno olulukozesa|zinnalwo zino ezirukozesa}}:<br />
 $2',
 'namespaceprotected' => "Tolina buyinza bwa kukyusa ku mpapula ez'omu kkuŋaanizo erya '''$1'''.",
@@ -402,7 +390,6 @@ Wekkaanye, empapula ezimu ziyinza okukweyolekera nga bwe zibadde nga oyingidde -
 'yourpassword' => 'Ekigambo ekikuumi',
 'yourpasswordagain' => 'Ddamu ekigambo ekikuumi',
 'remembermypassword' => 'Tereka ekigambo kyange ekikuumi ku kompyuta eno (okumala {{PLURAL:$1|olunaku|ennaku ezitasukka mu}} $1)',
-'securelogin-stick-https' => "Sigala ku mukutu gwa kika kya HTTPS ng'omaze okuyingira",
 'yourdomainname' => 'Linnya lya twale lya kayungirizi lyo:',
 'externaldberror' => "Waliwo kiremya mu ggwanika lya data ekozesebwa okukakasa bamemba oba tokkirizibwa okukyusa ku akawunti yo ey'awalala.",
 'login' => 'Yingira',
@@ -507,7 +494,7 @@ Okuyingirira ddala, wetaaga okuwandika wano ekinaaba ekyama kyo ekya ddala:",
 'newpassword' => 'Ekigambo ekikuumi ekipya:',
 'retypenew' => 'Ddamu ekikagambo ekikuumi ekipya ekyo:',
 'resetpass_submit' => 'Kaza ekyama oyingire',
-'resetpass_success' => 'Ekigambo kyo ekikuumi kikyusidwa!<br />
+'changepassword-success' => 'Ekigambo kyo ekikuumi kikyusidwa!<br />
 Kati oyingira...',
 'resetpass_forbidden' => 'Tekikkirizibwa okukyusa ebigambo ebikuumi',
 'resetpass-no-info' => 'Okukola ku lupapula luno obutereevu, wetaaga okuba nga oyingidde sisitemu.',

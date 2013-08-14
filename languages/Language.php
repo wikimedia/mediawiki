@@ -30,10 +30,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	exit( 1 );
 }
 
-# Read language names
-global $wgLanguageNames;
-require_once __DIR__ . '/Names.php';
-
 if ( function_exists( 'mb_strtoupper' ) ) {
 	mb_internal_encoding( 'UTF-8' );
 }
@@ -49,12 +45,14 @@ class FakeConverter {
 	 */
 	public $mLang;
 	function __construct( $langobj ) { $this->mLang = $langobj; }
+	function autoConvert( $text, $variant = false ) { return $text; }
 	function autoConvertToAllVariants( $text ) { return array( $this->mLang->getCode() => $text ); }
 	function convert( $t ) { return $t; }
 	function convertTo( $text, $variant ) { return $text; }
 	function convertTitle( $t ) { return $t->getPrefixedText(); }
 	function convertNamespace( $ns ) { return $this->mLang->getFormattedNsText( $ns ); }
 	function getVariants() { return array( $this->mLang->getCode() ); }
+	function getVariantFallbacks( $variant ) { return $this->mLang->getCode(); }
 	function getPreferredVariant() { return $this->mLang->getCode(); }
 	function getDefaultVariant() { return $this->mLang->getCode(); }
 	function getURLVariant() { return ''; }
@@ -65,7 +63,10 @@ class FakeConverter {
 	function markNoConversion( $text, $noParse = false ) { return $text; }
 	function convertCategoryKey( $key ) { return $key; }
 	function convertLinkToAllVariants( $text ) { return $this->autoConvertToAllVariants( $text ); }
+	/** @deprecated since 1.22 is no longer used */
 	function armourMath( $text ) { return $text; }
+	function validateVariant( $variant = null ) { return $variant === $this->mLang->getCode() ? $variant : null; }
+	function translate( $text, $variant ) { return $text; }
 }
 
 /**
@@ -228,7 +229,7 @@ class Language {
 		// Check if there is a language class for the code
 		$class = self::classFromCode( $code );
 		self::preloadLanguageClass( $class );
-		if ( MWInit::classExists( $class ) ) {
+		if ( class_exists( $class ) ) {
 			$lang = new $class;
 			return $lang;
 		}
@@ -242,7 +243,7 @@ class Language {
 
 			$class = self::classFromCode( $fallbackCode );
 			self::preloadLanguageClass( $class );
-			if ( MWInit::classExists( $class ) ) {
+			if ( class_exists( $class ) ) {
 				$lang = Language::newFromCode( $fallbackCode );
 				$lang->setCode( $code );
 				return $lang;
@@ -392,7 +393,8 @@ class Language {
 		}
 
 		if ( $coreLanguageNames === null ) {
-			include MWInit::compiledPath( 'languages/Names.php' );
+			global $IP;
+			include "$IP/languages/Names.php";
 		}
 
 		if ( isset( $coreLanguageNames[$tag] )
@@ -682,7 +684,18 @@ class Language {
 				}
 			}
 
-			$this->namespaceAliases = $aliases;
+			# Also add converted namespace names as aliases, to avoid confusion.
+			$convertedNames = array();
+			foreach ( $this->getVariants() as $variant ) {
+				if ( $variant === $this->mCode ) {
+					continue;
+				}
+				foreach ( $this->getNamespaces() as $ns => $_ ) {
+					$convertedNames[$this->getConverter()->convertNamespace( $ns, $variant )] = $ns;
+				}
+			}
+
+			$this->namespaceAliases = $aliases + $convertedNames;
 		}
 		return $this->namespaceAliases;
 	}
@@ -863,7 +876,8 @@ class Language {
 		static $coreLanguageNames;
 
 		if ( $coreLanguageNames === null ) {
-			include MWInit::compiledPath( 'languages/Names.php' );
+			global $IP;
+			include "$IP/languages/Names.php";
 		}
 
 		$names = array();
@@ -2089,6 +2103,8 @@ class Language {
 		$segments = array();
 
 		foreach ( $intervals as $intervalName => $intervalValue ) {
+			// Messages: duration-seconds, duration-minutes, duration-hours, duration-days, duration-weeks,
+			// duration-years, duration-decades, duration-centuries, duration-millennia
 			$message = wfMessage( 'duration-' . $intervalName )->numParams( $intervalValue );
 			$segments[] = $message->inLanguage( $this )->escaped();
 		}
@@ -2273,6 +2289,8 @@ class Language {
 			// Timestamp within the past week: show the day of the week and time
 			$format = $this->getDateFormatString( 'time', $user->getDatePreference() ?: 'default' );
 			$weekday = self::$mWeekdayMsgs[$ts->timestamp->format( 'w' )];
+			// Messages:
+			// sunday-at, monday-at, tuesday-at, wednesday-at, thursday-at, friday-at, saturday-at
 			$ts = wfMessage( "$weekday-at" )
 				->inLanguage( $this )
 				->params( $this->sprintfDate( $format, $ts->getTimestamp( TS_MW ) ) )
@@ -2600,7 +2618,7 @@ class Language {
 	 */
 	function checkTitleEncoding( $s ) {
 		if ( is_array( $s ) ) {
-			wfDebugDieBacktrace( 'Given array to checkTitleEncoding.' );
+			throw new MWException( 'Given array to checkTitleEncoding.' );
 		}
 		if ( StringUtils::isUtf8( $s ) ) {
 			return $s;
@@ -3051,7 +3069,7 @@ class Language {
 	 * Normally we output all numbers in plain en_US style, that is
 	 * 293,291.235 for twohundredninetythreethousand-twohundredninetyone
 	 * point twohundredthirtyfive. However this is not suitable for all
-	 * languages, some such as Pakaran want ੨੯੩,੨੯੫.੨੩੫ and others such as
+	 * languages, some such as Punjabi want ੨੯੩,੨੯੫.੨੩੫ and others such as
 	 * Icelandic just want to use commas instead of dots, and dots instead
 	 * of commas like "293.291,235".
 	 *
@@ -3618,7 +3636,7 @@ class Language {
 		foreach ( $forms as $index => $form ) {
 			if ( preg_match( '/^\d+=/i', $form ) ) {
 				$pos = strpos( $form, '=' );
-				if ( substr( $form, 0, $pos ) === (string) $count ) {
+				if ( substr( $form, 0, $pos ) === (string)$count ) {
 					return substr( $form, $pos + 1 );
 				}
 				unset( $forms[$index] );
@@ -3794,6 +3812,7 @@ class Language {
 	 *
 	 * @param $text string
 	 * @return string
+	 * @deprecated since 1.22 is no longer used
 	 */
 	public function armourMath( $text ) {
 		return $this->mConverter->armourMath( $text );
@@ -3930,6 +3949,16 @@ class Language {
 	 */
 	public function linkTrail() {
 		return self::$dataCache->getItem( $this->mCode, 'linkTrail' );
+	}
+
+	/**
+	 * A regular expression character set to match legal word-prefixing
+	 * characters which should be merged onto a link of the form foo[[bar]].
+	 *
+	 * @return string
+	 */
+	public function linkPrefixCharset() {
+		return self::$dataCache->getItem( $this->mCode, 'linkPrefixCharset' );
 	}
 
 	/**

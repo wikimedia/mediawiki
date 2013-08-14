@@ -189,7 +189,7 @@ $messages = array(
 'pool-timeout' => 'Suda tingki paimahon hincu',
 'pool-errorunknown' => 'Hasalaan na so binoto',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Taringot {{SITENAME}}',
 'aboutpage' => 'Project:Taringot tu',
 'copyright' => 'Sude siguriton rade saguru tu $1.',
@@ -499,8 +499,6 @@ Parubaan na binahenmu dang di simpan dope!",
 
 # Statistics
 'statistics' => 'Statistik',
-
-'disambiguationspage' => 'Template:Disambig',
 
 'pageswithprop-submit' => 'Laho tu',
 

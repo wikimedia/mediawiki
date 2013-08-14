@@ -296,7 +296,7 @@ $1',
 'pool-queuefull' => 'Oríìlà dátà ti kún',
 'pool-errorunknown' => 'Àsìṣe àwámárìdí',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Nípa {{SITENAME}}',
 'aboutpage' => 'Project:Nípa',
 'copyright' => 'Gbogbo ohun inú ibí yìí wà lábẹ́  $1.',
@@ -383,17 +383,6 @@ $1',
 # General errors
 'error' => 'Àsìṣe',
 'databaseerror' => 'Àsìṣe ibùdó dátà',
-'dberrortext' => 'Àṣìṣe ìsoọ̀rọ̀pọ̀ ìtọrọ ibùdó-dátà kan ti ṣẹlẹ̀.
-Ó lè jẹ́ nítorí àṣìṣe inú atòlànà.
-Ìgbìyànjú ìtọrọ ibùdó-dátà ṣẹlẹ̀ jẹ́: 
-<blockquote><code>$1</code></blockquote>
-láti inú ìmúṣiṣẹ́ "<code>$2</code>".
-Ibùdó-dátà mú àṣìṣe "<samp>$3: $4</samp>" padà.',
-'dberrortextcl' => 'Àṣìṣe ìsoọ̀rọ̀pọ̀ ìtọrọ ibùdó-dátà kan ti ṣẹlẹ̀.
-Ìgbìyànjú ìtọrọ ibùdó-dátà ṣẹlẹ̀ jẹ́: 
-"$1"
-láti inú ìmúṣiṣẹ́ "$2".
-Ibùdó-dátà mú àṣìṣe "$3: $4" padà',
 'laggedslavemode' => "'''Ìkìlọ̀:''' Ojúewé náà le mọ́ nìí àwọn àtúnṣe tuntun.",
 'readonly' => 'Títìpa ibùdó dátà',
 'enterlockreason' => 'Ẹ ṣàlàyé ìtìpa náà, àti ìgbàtí ẹ rò pé ìtìpa náà yíò kúrò.',
@@ -449,7 +438,6 @@ Kò ṣe àlàyé kankan.',
 'editinginterface' => "'''Ìkìlọ̀:''' Ẹ ún ṣàtúnṣe ojúewé tó jẹ́ lílò láti pèsè ìkọ ìfojúkojú fún àtòlànà kọ̀mpútà.
 Àwọn ìyípadà sí ojúewé yìí yíò kan ìhànsí ìfojúkojú oníṣe fún àwọn oníṣe míràn lọ́rí wiki yìí.
 Láti ṣ'àfikún tàbí ṣ'àyípadà àwọn ìyédèpadà fún gbogbo àwọn wiki, ẹ jọ̀wọ́ ẹ lo [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], iṣẹ́-ọwọ́ ìṣọdìbílẹ̀ MediaWiki.",
-'sqlhidden' => '(bíbòmọ́lẹ̀ ìbéèrè SQL)',
 'cascadeprotected' => 'Ojúewé yìí ti jẹ́ dídáàbòbò sí àtùnṣe, nítorípé ó wà nínú {{PLURAL:$1|ojúewé ìsàlẹ̀ yìí, tó jẹ́|àwọn ojúewé ìsàlẹ̀ wọ̀nyí, tí wọ́n jẹ́}} dídáàbòbò pẹ̀lú ìyàn "ajámọ́ra" ní títàn: $2',
 'namespaceprotected' => "A kò gbàyín ní ààyè láti ṣ'àtúnṣe àwọn ojúewé tó wà nínú orúkọàyè '''$1'''.",
 'customcssprotected' => 'Ẹ kò ní ìyọ̀nda láti ṣàtúnṣe ojúewé CSS yìí nítorípé ó ní àwọn ìtòjọ oníṣe ẹlòmíràn.',
@@ -492,7 +480,6 @@ Olùṣeàmójútó tó típa ṣe àlàyé yìí: "$3".',
 'remembermypassword' => "Ṣè'rántí ìwọlé mi lórí kọ̀mpútà yìí (fún ó pẹ́ jù {{PLURAL:$1|ọjọ́|ọjọ́}} $1)",
 'userlogin-remembermypassword' => 'Fi mí sí ìwọlé',
 'userlogin-signwithsecure' => 'Lo ìsopọ̀ ẹ̀rọ tó ní àbò',
-'securelogin-stick-https' => 'Ìwàní sísopọ̀ mọ́ HTTPS lẹ́yín ìwọlé',
 'yourdomainname' => 'Domain yín:',
 'password-change-forbidden' => 'Ẹ kò le ṣe ìyípadà ọ̀rọ̀ìpamọ́ lórí wiki yìí.',
 'externaldberror' => 'Bóyá àsìṣe ìfidájú ibùdó dátà ló ṣẹlẹ̀ tàbí ẹ kò jẹ́ gbígbà ní ààyè láti sọ àpamọ́ òde yín di ọ̀tun.',
@@ -621,7 +608,7 @@ Láti parí ìmúwọlẹ́, ẹ gbọ́dọ̀ ṣètò ọ̀rọ̀ìpamọ́ tu
 'newpassword' => 'Ọ̀rọ̀ìpamọ́ tuntun:',
 'retypenew' => 'Àtúntẹ̀ ọ̀rọ̀ìpamọ́ tuntun:',
 'resetpass_submit' => 'Ẹ ṣe àtúntò ọ̀rọ̀ìpamọ́ kí ẹ tó wọlé',
-'resetpass_success' => 'Ìyípadà ọ̀rọ̀ìpamọ́ yín ti já sí rere! Ẹ̀ ún wọlé lọ́wọ́...',
+'changepassword-success' => 'Ìyípadà ọ̀rọ̀ìpamọ́ yín ti já sí rere! Ẹ̀ ún wọlé lọ́wọ́...',
 'resetpass_forbidden' => 'Àwọn ọ̀rọ̀ìpamọ́ kò ṣe é yípadà',
 'resetpass-no-info' => 'Ẹ gbọ́dọ̀ wọlẹ́ láti le lọ sí ojúewé yìí tààrà.',
 'resetpass-submit-loggedin' => 'Ìyípadà ọ̀rọ̀ìpamọ́',
@@ -1875,12 +1862,6 @@ Tó bá jẹ́ jíjọ̀ gẹ́gẹ́bí oníṣe, àwọn fáìlì tí oníṣe
 'statistics-users-active-desc' => 'Àwọn oníṣe tí wọ́n ti ṣe ìgbéṣe kan ní {{PLURAL:$1|ọjọ́ kan|ọjọ́ $1}} sẹ́yìn',
 'statistics-mostpopular' => 'Àwọn ojúewé tí wọ́n jẹ́ wíwò jùlọ',
 
-'disambiguations' => 'Àwọn ojúewé tó jápọ̀ mọ́ àwọn ojúewé ìṣeojútùú',
-'disambiguationspage' => 'Template:ojútùú',
-'disambiguations-text' => "Àwọn ojúewé ìsàlẹ̀ yìí, ó kéréjù ní àjápọ̀ kan sí '''ojúewé ìṣeojúùtú'''.
-Ó yẹ kí wọn ó jápọ̀ sí ojúewé tó yẹ wọ́n.<br />
-Ojúewé kan jẹ́ ṣíṣe bíi ojúewé ìṣeojúùtú tí ó bá lo àdàkọ tó jápọ̀ láti [[MediaWiki:Disambiguationspage]].",
-
 'pageswithprop' => 'Àwọn ojúewé tó ní ohun-ìní ojúewé',
 'pageswithprop-legend' => 'Àwọn ojúewé tó ní ohun-ìní ojúewé',
 'pageswithprop-text' => 'Ojúewé yìí ṣe àtòjọ àwọn ojúewé tó únlo ohun-ìní ojúewé pàtò kan.',
@@ -2549,11 +2530,8 @@ $1',
 Sùgbọ́n ó jẹ́ dídílọ́nà gẹ́gẹ́bí ìkan nínú ìgbàjá $2, èyí sì ṣe é mọ́ dí lọ́nà mọ́.',
 'ip_range_invalid' => 'Àdìmọ́ IP aláìníìbámu.',
 'ip_range_toolarge' => 'Ìgbàjá ìdínà tó tóbi ju /$1 kò jẹ́ gbígbà ní àyè.',
-'blockme' => 'Dínà mi',
 'proxyblocker' => 'Olùdínà ẹ̀rọ-ìwọ̀fà ẹlòmíràn',
-'proxyblocker-disabled' => 'Ìmúṣe yìí jẹ́ dídálẹ́kun.',
 'proxyblockreason' => 'Àdírẹ́ẹ̀sì IP yín ti jẹ́ dídílọ́nà nítorípé ó jẹ́ ẹ̀rọ alàìlórúkọ ẹlòmíràn ìgboro. Ẹ sọ ìsòro yìí fún olùpèsè ìwọ̀fà Internet yín tàbí aṣeàtìlẹyìn ẹ̀rọ-ìpèsè ibiiṣẹ́ yín.',
-'proxyblocksuccess' => 'Ṣetán',
 'sorbsreason' => 'Àdírẹ́ẹ̀sì IP yín jẹ́ títòjọ bíi ẹ̀rọ-ìwọ̀fà ẹlòmíràn àsíílẹ̀ nínú DNSBL tí {{SITENAME}} lò.',
 'sorbs_create_account_reason' => 'Àdírẹ́ẹ̀sì IP yín jẹ́ títòjọ bíi ẹ̀rọ-ìwọ̀fà ẹlòmíràn àsíílẹ̀ nínú DNSBL tí {{SITENAME}} lò.
 Ẹ kò le dá àpamọ́.',
@@ -3549,8 +3527,7 @@ $5
 
 # Database error messages
 'dberr-header' => 'Wiki yìí ní ìsòro',
-'dberr-problems' => 'Àforìjì!
-Ibiìtakùn yìí únkojú ìsòro ìṣìṣẹ́ẹ̀rọ.',
+'dberr-problems' => 'Àforìjì! Ibiìtakùn yìí únkojú ìsòro ìṣìṣẹ́ẹ̀rọ.',
 'dberr-again' => 'Ẹ mú sùúrù fún ìṣẹ́jú díẹ̀ kí ẹ tó tún ṣe ìrùsókè.',
 'dberr-info' => '(Kò le farakan ẹ̀rọ-ìpèsè ibùdó dátà: $1)',
 'dberr-usegoogle' => 'Ẹ le ṣàwárí lórí Google báyìí ná.',

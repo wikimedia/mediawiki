@@ -30,6 +30,7 @@ application/x-dia-diagram [DRAWING]
 
 
 audio/mpeg audio/mp3 audio/mpeg3	[AUDIO]
+audio/mp4				[AUDIO]
 audio/wav audio/x-wav audio/wave	[AUDIO]
 audio/midi audio/mid	[AUDIO]
 audio/basic		[AUDIO]
@@ -39,6 +40,8 @@ audio/x-pn-realaudio	[AUDIO]
 audio/x-realaudio	[AUDIO]
 audio/webm		[AUDIO]
 audio/x-matroska	[AUDIO]
+audio/x-flac		[AUDIO]
+audio/flac		[AUDIO]
 
 video/mpeg application/mpeg	[VIDEO]
 video/ogg			[VIDEO]
@@ -46,6 +49,7 @@ video/x-sgi-video		[VIDEO]
 video/x-flv			[VIDEO]
 video/webm			[VIDEO]
 video/x-matroska		[VIDEO]
+video/mp4			[VIDEO]
 
 application/ogg application/x-ogg audio/ogg audio/x-ogg video/ogg video/x-ogg		[MULTIMEDIA]
 

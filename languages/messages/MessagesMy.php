@@ -297,7 +297,7 @@ $messages = array(
 $1',
 'pool-errorunknown' => 'အမည်မသိအမှား',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} အကြောင်း',
 'aboutpage' => 'Project: အကြောင်းအရာ',
 'copyright' => '$1 အောက်တွင် ဤအကြောင်းအရာကို ရရှိနိုင်သည်။',
@@ -465,7 +465,7 @@ $1',
 'newpassword' => 'စကားဝှက် အသစ် -',
 'retypenew' => 'စကားဝှက် အသစ်ကို ထပ်ရိုက်ပါ -',
 'resetpass_submit' => 'စကားဝှက်ကို သတ်မှတ်ပြီးနောက် Log in ဝင်ရန်',
-'resetpass_success' => 'သင့်စကားဝှက်ကို အောင်မြင်စွာ ပြောင်းလဲပြီးပါပြီ။ အခု Log in ဝင်နေပါပြီ...',
+'changepassword-success' => 'သင့်စကားဝှက်ကို အောင်မြင်စွာ ပြောင်းလဲပြီးပါပြီ။ အခု Log in ဝင်နေပါပြီ...',
 'resetpass_forbidden' => 'စကားဝှက် ပြောင်းမရနိုင်ပါ',
 'resetpass-no-info' => 'ဤစာမျက်နှာကို တိုက်ရိုက်အသုံးပြုနိုင်ရန်အတွက် Log in ဝင်ထားရပါမည်။',
 'resetpass-submit-loggedin' => 'စကားဝှက်ပြောင်းရန်',
@@ -1165,8 +1165,6 @@ Your e-mail address is not revealed when other users contact you.
 'statistics-users-active' => 'လက်ရှိလုပ်ကိုင်နေသော အသုံးပြုသူများ',
 'statistics-mostpopular' => 'အများဆုံးကြည့်သော စာမျက်နှာများ',
 
-'disambiguationspage' => 'Template:သံတူကြောင်းကွဲများ',
-
 'doubleredirects' => 'နှစ်ဆင့်ပြန် ပြန်ညွှန်းများ',
 'double-redirect-fixed-move' => '[[$1]] ကို ရွှေ့ပြောင်းပြီးဖြစ်သည်။ ယခုအခါ [[$2]] သို့ ပြန်ညွှန်းထားသည်။',
 
@@ -1511,8 +1509,6 @@ Your e-mail address is not revealed when other users contact you.
 'block-log-flags-hiddenname' => 'အသုံးပြုသူအမည် ဝှက်ထားသည်',
 'ipb_expiry_invalid' => 'သက်တမ်းကုန်လွန်မည့် အချိန်သည် တရားမဝင်ပါ။',
 'ipb_already_blocked' => '"$1" ကို အစကတည်းက ပိတ်ထားသည်',
-'blockme' => 'ကျွန်ုပ်ကို ပိတ်ရန်',
-'proxyblocksuccess' => 'ပြီးပါပြီ။',
 
 # Move page
 'move-page' => '$1 ကို ရွှေ့ရန်',
@@ -1901,8 +1897,7 @@ Your e-mail address is not revealed when other users contact you.
 
 # Database error messages
 'dberr-header' => 'ဤဝီကီတွင် ပြဿနာတစ်ခု ရှိနေသည်',
-'dberr-problems' => 'ဝမ်းနည်းပါသည်။
-ဤဆိုက်သည် နည်းပညာပိုင်းဆိုင်ရာ အခက်အခဲများ ကြုံတွေ့နေရပါသည်။',
+'dberr-problems' => 'ဝမ်းနည်းပါသည်။ ဤဆိုက်သည် နည်းပညာပိုင်းဆိုင်ရာ အခက်အခဲများ ကြုံတွေ့နေရပါသည်။',
 
 # HTML forms
 'htmlform-required' => 'ဤတန်ဖိုး လိုအပ်သည်',

@@ -563,17 +563,17 @@ class UserrightsPage extends SpecialPage {
 		$allgroups = $this->getAllGroups();
 		$ret = '';
 
-		# Put all column info into an associative array so that extensions can
-		# more easily manage it.
+		// Put all column info into an associative array so that extensions can
+		// more easily manage it.
 		$columns = array( 'unchangeable' => array(), 'changeable' => array() );
 
 		foreach ( $allgroups as $group ) {
 			$set = in_array( $group, $usergroups );
-			# Should the checkbox be disabled?
+			// Should the checkbox be disabled?
 			$disabled = !(
 				( $set && $this->canRemove( $group ) ) ||
 				( !$set && $this->canAdd( $group ) ) );
-			# Do we need to point out that this action is irreversible?
+			// Do we need to point out that this action is irreversible?
 			$irreversible = !$disabled && (
 				( $set && !$this->canAdd( $group ) ) ||
 				( !$set && !$this->canRemove( $group ) ) );
@@ -591,13 +591,14 @@ class UserrightsPage extends SpecialPage {
 			}
 		}
 
-		# Build the HTML table
+		// Build the HTML table
 		$ret .= Xml::openElement( 'table', array( 'class' => 'mw-userrights-groups' ) ) .
 			"<tr>\n";
 		foreach ( $columns as $name => $column ) {
 			if ( $column === array() ) {
 				continue;
 			}
+			// Messages: userrights-changeable-col, userrights-unchangeable-col
 			$ret .= Xml::element( 'th', null, $this->msg( 'userrights-' . $name . '-col', count( $column ) )->text() );
 		}
 		$ret .= "</tr>\n<tr>\n";
@@ -634,8 +635,7 @@ class UserrightsPage extends SpecialPage {
 	 * @return bool Can we remove the group?
 	 */
 	private function canRemove( $group ) {
-		// $this->changeableGroups()['remove'] doesn't work, of course. Thanks,
-		// PHP.
+		// $this->changeableGroups()['remove'] doesn't work, of course. Thanks, PHP.
 		$groups = $this->changeableGroups();
 		return in_array( $group, $groups['remove'] ) || ( $this->isself && in_array( $group, $groups['remove-self'] ) );
 	}

@@ -61,6 +61,11 @@ class Revision implements IDBAccessObject {
 	 */
 	protected $mContentHandler;
 
+	/**
+	 * @var int
+	 */
+	protected $mQueryFlags = 0;
+
 	// Revision deletion constants
 	const DELETED_TEXT = 1;
 	const DELETED_COMMENT = 2;
@@ -111,11 +116,13 @@ class Revision implements IDBAccessObject {
 		if ( $id ) {
 			// Use the specified ID
 			$conds['rev_id'] = $id;
+			return self::newFromConds( $conds, (int)$flags );
 		} else {
 			// Use a join to get the latest revision
 			$conds[] = 'rev_id=page_latest';
+			$db = wfGetDB( ( $flags & self::READ_LATEST ) ? DB_MASTER : DB_SLAVE );
+			return self::loadFromConds( $db, $conds, $flags );
 		}
-		return self::newFromConds( $conds, (int)$flags );
 	}
 
 	/**
@@ -298,6 +305,9 @@ class Revision implements IDBAccessObject {
 				$rev = self::loadFromConds( $dbw, $conditions, $flags );
 			}
 		}
+		if ( $rev ) {
+			$rev->mQueryFlags = $flags;
+		}
 		return $rev;
 	}
 
@@ -420,6 +430,36 @@ class Revision implements IDBAccessObject {
 			$fields[] = 'rev_content_model';
 		}
 
+		return $fields;
+	}
+
+	/**
+	 * Return the list of revision fields that should be selected to create
+	 * a new revision from an archive row.
+	 * @return array
+	 */
+	public static function selectArchiveFields() {
+		global $wgContentHandlerUseDB;
+		$fields = array(
+			'ar_id',
+			'ar_page_id',
+			'ar_rev_id',
+			'ar_text_id',
+			'ar_timestamp',
+			'ar_comment',
+			'ar_user_text',
+			'ar_user',
+			'ar_minor_edit',
+			'ar_deleted',
+			'ar_len',
+			'ar_parent_id',
+			'ar_sha1',
+		);
+
+		if ( $wgContentHandlerUseDB ) {
+			$fields[] = 'ar_content_format';
+			$fields[] = 'ar_content_model';
+		}
 		return $fields;
 	}
 
@@ -1477,20 +1517,30 @@ class Revision implements IDBAccessObject {
 			$dbr = wfGetDB( DB_SLAVE );
 			$row = $dbr->selectRow( 'text',
 				array( 'old_text', 'old_flags' ),
-				array( 'old_id' => $this->getTextId() ),
+				array( 'old_id' => $textId ),
 				__METHOD__ );
 		}
 
-		if ( !$row && wfGetLB()->getServerCount() > 1 ) {
-			// Possible slave lag!
+		// Fallback to the master in case of slave lag. Also use FOR UPDATE if it was
+		// used to fetch this revision to avoid missing the row due to REPEATABLE-READ.
+		$forUpdate = ( $this->mQueryFlags & self::READ_LOCKING == self::READ_LOCKING );
+		if ( !$row && ( $forUpdate || wfGetLB()->getServerCount() > 1 ) ) {
 			$dbw = wfGetDB( DB_MASTER );
 			$row = $dbw->selectRow( 'text',
 				array( 'old_text', 'old_flags' ),
-				array( 'old_id' => $this->getTextId() ),
-				__METHOD__ );
+				array( 'old_id' => $textId ),
+				__METHOD__,
+				$forUpdate ? array( 'FOR UPDATE' ) : array() );
+		}
+
+		if ( !$row ) {
+			wfDebugLog( 'Revision', "No text row with ID '$textId' (revision {$this->getId()})." );
 		}
 
 		$text = self::getRevisionText( $row );
+		if ( $row && $text === false ) {
+			wfDebugLog( 'Revision', "No blob for text row '$textId' (revision {$this->getId()})." );
+		}
 
 		# No negative caching -- negative hits on text rows may be due to corrupted slave servers
 		if ( $wgRevisionCacheExpiry && $text !== false ) {

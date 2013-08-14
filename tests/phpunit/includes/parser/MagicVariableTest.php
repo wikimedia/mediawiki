@@ -9,11 +9,13 @@
  * @author Antoine Musso
  * @copyright Copyright © 2011, Antoine Musso
  * @file
+ * @todo covers tags
  */
 
-/** */
 class MagicVariableTest extends MediaWikiTestCase {
-	/** Will contains a parser object*/
+	/**
+	 * @var Parser
+	 */
 	private $testParser = null;
 
 	/**
@@ -51,11 +53,31 @@ class MagicVariableTest extends MediaWikiTestCase {
 		$this->testParser->setTitle( $title );
 	}
 
-	/** destroy parser (TODO: is it really neded?)*/
-	protected function tearDown() {
-		unset( $this->testParser );
+	/**
+	 * @param int $num upper limit for numbers
+	 * @return array of numbers from 1 up to $num
+	 */
+	private static function createProviderUpTo( $num ) {
+		$ret = array();
+		for ( $i = 1; $i <= $num; $i++ ) {
+			$ret[] = array( $i );
+		}
 
-		parent::tearDown();
+		return $ret;
+	}
+
+	/**
+	 * @return array of months numbers (as an integer)
+	 */
+	public static function provideMonths() {
+		return self::createProviderUpTo( 12 );
+	}
+
+	/**
+	 * @return array of days numbers (as an integer)
+	 */
+	public static function provideDays() {
+		return self::createProviderUpTo( 31 );
 	}
 
 	############### TESTS #############################################
@@ -65,70 +87,69 @@ class MagicVariableTest extends MediaWikiTestCase {
 
 	# day
 
-	/** @dataProvider MediaWikiProvide::Days */
-	function testCurrentdayIsUnPadded( $day ) {
+	/** @dataProvider provideDays */
+	public function testCurrentdayIsUnPadded( $day ) {
 		$this->assertUnPadded( 'currentday', $day );
 	}
 
-	/** @dataProvider MediaWikiProvide::Days */
-	function testCurrentdaytwoIsZeroPadded( $day ) {
+	/** @dataProvider provideDays */
+	public function testCurrentdaytwoIsZeroPadded( $day ) {
 		$this->assertZeroPadded( 'currentday2', $day );
 	}
 
-	/** @dataProvider MediaWikiProvide::Days */
-	function testLocaldayIsUnPadded( $day ) {
+	/** @dataProvider provideDays */
+	public function testLocaldayIsUnPadded( $day ) {
 		$this->assertUnPadded( 'localday', $day );
 	}
 
-	/** @dataProvider MediaWikiProvide::Days */
-	function testLocaldaytwoIsZeroPadded( $day ) {
+	/** @dataProvider provideDays */
+	public function testLocaldaytwoIsZeroPadded( $day ) {
 		$this->assertZeroPadded( 'localday2', $day );
 	}
 
 	# month
 
-	/** @dataProvider MediaWikiProvide::Months */
-	function testCurrentmonthIsZeroPadded( $month ) {
+	/** @dataProvider provideMonths */
+	public function testCurrentmonthIsZeroPadded( $month ) {
 		$this->assertZeroPadded( 'currentmonth', $month );
 	}
 
-	/** @dataProvider MediaWikiProvide::Months */
-	function testCurrentmonthoneIsUnPadded( $month ) {
+	/** @dataProvider provideMonths */
+	public function testCurrentmonthoneIsUnPadded( $month ) {
 		$this->assertUnPadded( 'currentmonth1', $month );
 	}
 
-	/** @dataProvider MediaWikiProvide::Months */
-	function testLocalmonthIsZeroPadded( $month ) {
+	/** @dataProvider provideMonths */
+	public function testLocalmonthIsZeroPadded( $month ) {
 		$this->assertZeroPadded( 'localmonth', $month );
 	}
 
-	/** @dataProvider MediaWikiProvide::Months */
-	function testLocalmonthoneIsUnPadded( $month ) {
+	/** @dataProvider provideMonths */
+	public function testLocalmonthoneIsUnPadded( $month ) {
 		$this->assertUnPadded( 'localmonth1', $month );
 	}
 
-
 	# revision day
 
-	/** @dataProvider MediaWikiProvide::Days */
-	function testRevisiondayIsUnPadded( $day ) {
+	/** @dataProvider provideDays */
+	public function testRevisiondayIsUnPadded( $day ) {
 		$this->assertUnPadded( 'revisionday', $day );
 	}
 
-	/** @dataProvider MediaWikiProvide::Days */
-	function testRevisiondaytwoIsZeroPadded( $day ) {
+	/** @dataProvider provideDays */
+	public function testRevisiondaytwoIsZeroPadded( $day ) {
 		$this->assertZeroPadded( 'revisionday2', $day );
 	}
 
 	# revision month
 
-	/** @dataProvider MediaWikiProvide::Months */
-	function testRevisionmonthIsZeroPadded( $month ) {
+	/** @dataProvider provideMonths */
+	public function testRevisionmonthIsZeroPadded( $month ) {
 		$this->assertZeroPadded( 'revisionmonth', $month );
 	}
 
-	/** @dataProvider MediaWikiProvide::Months */
-	function testRevisionmonthoneIsUnPadded( $month ) {
+	/** @dataProvider provideMonths */
+	public function testRevisionmonthoneIsUnPadded( $month ) {
 		$this->assertUnPadded( 'revisionmonth1', $month );
 	}
 
@@ -136,15 +157,15 @@ class MagicVariableTest extends MediaWikiTestCase {
 	 * Rough tests for {{SERVERNAME}} magic word
 	 * Bug 31176
 	 * @group Database
-	 * @dataProvider dataServernameFromDifferentProtocols
+	 * @dataProvider provideDataServernameFromDifferentProtocols
 	 */
-	function testServernameFromDifferentProtocols( $server ) {
+	public function testServernameFromDifferentProtocols( $server ) {
 		$this->setMwGlobals( 'wgServer', $server );
 
 		$this->assertMagic( 'localhost', 'servername' );
 	}
 
-	function dataServernameFromDifferentProtocols() {
+	public static function provideDataServernameFromDifferentProtocols() {
 		return array(
 			array( 'http://localhost/' ),
 			array( 'https://localhost/' ),
@@ -155,12 +176,12 @@ class MagicVariableTest extends MediaWikiTestCase {
 	############### HELPERS ############################################
 
 	/** assertion helper expecting a magic output which is zero padded */
-	PUBLIC function assertZeroPadded( $magic, $value ) {
+	public function assertZeroPadded( $magic, $value ) {
 		$this->assertMagicPadding( $magic, $value, '%02d' );
 	}
 
 	/** assertion helper expecting a magic output which is unpadded */
-	PUBLIC function assertUnPadded( $magic, $value ) {
+	public function assertUnPadded( $magic, $value ) {
 		$this->assertMagicPadding( $magic, $value, '%d' );
 	}
 

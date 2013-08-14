@@ -242,7 +242,7 @@ $1',
 'pool-queuefull' => 'Hnathawhna hmun awl a awm tawh lo',
 'pool-errorunknown' => 'Kan hriatthiam loh dikhlel a awm tlat',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}}  chungchang',
 'aboutpage' => 'Project:Chungchang',
 'copyright' => 'A chhung thute hi $1 hmanga lakchhawn phal a ni.',
@@ -329,12 +329,6 @@ Vohbik phekte chu hetah hian a en theih [[Special:SpecialPages|{{int:specialpage
 # General errors
 'error' => 'Dik lo',
 'databaseerror' => 'Database dik loh',
-'dberrortext' => 'Zémpui zawhna tih dik loh a awm palh.
-Kháwlthlûakah hrik a awm tihna a ni mai thei.
-Zémpui zawhna hnuhnüng ber chu:
-<blockquote><tt>$1<tt></blockquote>,
-"<<tt>$2</tt>" tih hnathawh chhúng aṭang.
-Zémpuiin dikhlelhna "<tt>$3: $4</tt>" a rawn khawhkïr.',
 'laggedslavemode' => "'''Vaukhanna:''' He phêk hian tun hnaia siam thar a pho lang lo mai thei.",
 'readonly' => 'Database kalh a ni',
 'enterlockreason' => 'I kalhna chhan leh i hawn leh hun tura i rin sawi rawh',
@@ -378,7 +372,6 @@ Thil zawn: $2',
 'viewsourcetext' => 'A hnar i lachhawngin i en thei ang:',
 'viewyourtext' => "'''I siamţhatte''' chu he phêkah hian i enin i lachhawng thei ang.",
 'protectedinterface' => 'He phêk hian khawlthluak tan hmangtu-ţawng a phuhru a, hman khawloh a nih loh nan venhim hrih a ni. Lehlinna tidanglam tur emaw belh tur chuan [//translatewiki.net/ translatewiki.net], MediaWiki lehzauna hmachhawp hi i hmang dawn nia.',
-'sqlhidden' => '(SQL zawhna thuhrûk hrih a ni)',
 'cascadeprotected' => 'He phêk hi siam danglam phal a ni hrih lo, a chhan chu {{PLURAL:$1|he phêk|hêng phêk}}, "a huhova venhim" tih hmanga ven chhunga awm a nih vang a ni: 
 $2',
 'namespaceprotected' => "'''$1''' tih hminghmun chhunga phêkte siamţhat phalna i nei lo.",
@@ -407,7 +400,6 @@ I fangtu cache i thenfai hma chu phêk ţhenkhat intar lang a awm reng mai thei,
 'yourpassword' => 'Thurûk:',
 'yourpasswordagain' => 'Thurûk ziak nawn leh rawh le:',
 'remembermypassword' => 'He ka rangpuifanna hman mék (browser)-ah hian ka luhna (a rei berah ni {{PLURAL:$1||}}$1) min vawnsak rawh, thurûk ziah nawn ngai lo tùrin.',
-'securelogin-stick-https' => 'Luh hnuah HTTPS-ah hian chëng reng rawh.',
 'yourdomainname' => 'I ram:',
 'password-change-forbidden' => 'Hë wiki-ah hian thurûk i thlâk thei lo.',
 'externaldberror' => 'Insawifiahna felfai lo a awm lo a nih loh vëk pawhin i pawnlam siangchan tihdanglam phalsak i ni lo a ni ang.',
@@ -489,7 +481,7 @@ I tum leh hmain nghâk lawk ang che.',
 'newpassword' => 'Thurûk thar:',
 'retypenew' => 'Thurûk ziak nawn leh rawh le:',
 'resetpass_submit' => 'Thurûk siamfel la inziaklût rawh',
-'resetpass_success' => 'I thurûk hlawhtling taka thlâk a ni.
+'changepassword-success' => 'I thurûk hlawhtling taka thlâk a ni.
 Kan hruai lût mék a che...',
 'resetpass_forbidden' => 'Thurûk thlâk theih a ni lo.',
 'resetpass-no-info' => 'He phêk lut mai tùr chuan i inziahluh a ngai.',
@@ -1230,9 +1222,6 @@ Taksa sawifiahna hi i siamṭha duh a nih chuan  [$2 taksa sawifiahna phêk] a�
 'statistics-users-active' => 'Hmangtu aktif zât',
 'statistics-users-active-desc' => 'Ni {{PLURAL:$1|khat|$1}} kaltâ chhunga thiltih nei hmangtuho',
 'statistics-mostpopular' => 'Phêk thlir zin deuh deuhte',
-
-'disambiguations' => 'Thliarfelna phêk zawmtu phêkte',
-'disambiguationspage' => 'Template:thliar',
 
 'doubleredirects' => 'Hruailuhna phír',
 'double-redirect-fixed-move' => '[[$1]] sawn a ni ta.

@@ -86,6 +86,7 @@ class Title {
 	var $mRedirect = null;            // /< Is the article at this title a redirect?
 	var $mNotificationTimestamp = array(); // /< Associative array of user ID -> timestamp/false
 	var $mHasSubpage;                 // /< Whether a page has any subpages
+	private $mPageLanguage = false;   // /< The (string) language code of the page's language and content code.
 	// @}
 
 	/**
@@ -489,6 +490,108 @@ class Title {
 		}
 
 		return $rxTc;
+	}
+
+	/**
+	 * Utility method for converting a character sequence from bytes to Unicode.
+	 *
+	 * Primary usecase being converting $wgLegalTitleChars to a sequence usable in
+	 * javascript, as PHP uses UTF-8 bytes where javascript uses Unicode code units.
+	 *
+	 * @param string $byteClass
+	 * @return string
+	 */
+	public static function convertByteClassToUnicodeClass( $byteClass ) {
+		$length = strlen( $byteClass );
+		// Input token queue
+		$x0 = $x1 = $x2 = '';
+		// Decoded queue
+		$d0 = $d1 = $d2 = '';
+		// Decoded integer codepoints
+		$ord0 = $ord1 = $ord2 = 0;
+		// Re-encoded queue
+		$r0 = $r1 = $r2 = '';
+		// Output
+		$out = '';
+		// Flags
+		$allowUnicode = false;
+		for ( $pos = 0; $pos < $length; $pos++ ) {
+			// Shift the queues down
+			$x2 = $x1;
+			$x1 = $x0;
+			$d2 = $d1;
+			$d1 = $d0;
+			$ord2 = $ord1;
+			$ord1 = $ord0;
+			$r2 = $r1;
+			$r1 = $r0;
+			// Load the current input token and decoded values
+			$inChar = $byteClass[$pos];
+			if ( $inChar == '\\' ) {
+				if ( preg_match( '/x([0-9a-fA-F]{2})/A', $byteClass, $m, 0, $pos + 1 ) ) {
+					$x0 = $inChar . $m[0];
+					$d0 = chr( hexdec( $m[1] ) );
+					$pos += strlen( $m[0] );
+				} elseif ( preg_match( '/[0-7]{3}/A', $byteClass, $m, 0, $pos + 1 ) ) {
+					$x0 = $inChar . $m[0];
+					$d0 = chr( octdec( $m[0] ) );
+					$pos += strlen( $m[0] );
+				} elseif ( $pos + 1 >= $length ) {
+					$x0 = $d0 = '\\';
+				} else {
+					$d0 = $byteClass[$pos + 1];
+					$x0 = $inChar . $d0;
+					$pos += 1;
+				}
+			} else {
+				$x0 = $d0 = $inChar;
+			}
+			$ord0 = ord( $d0 );
+			// Load the current re-encoded value
+			if ( $ord0 < 32 || $ord0 == 0x7f ) {
+				$r0 = sprintf( '\x%02x', $ord0 );
+			} elseif ( $ord0 >= 0x80 ) {
+				// Allow unicode if a single high-bit character appears
+				$r0 = sprintf( '\x%02x', $ord0 );
+				$allowUnicode = true;
+			} elseif ( strpos( '-\\[]^', $d0 ) !== false ) {
+				$r0 = '\\' . $d0;
+			} else {
+				$r0 = $d0;
+			}
+			// Do the output
+			if ( $x0 !== '' && $x1 === '-' && $x2 !== '' ) {
+				// Range
+				if ( $ord2 > $ord0 ) {
+					// Empty range
+				} elseif ( $ord0 >= 0x80 ) {
+					// Unicode range
+					$allowUnicode = true;
+					if ( $ord2 < 0x80 ) {
+						// Keep the non-unicode section of the range
+						$out .= "$r2-\\x7F";
+					}
+				} else {
+					// Normal range
+					$out .= "$r2-$r0";
+				}
+				// Reset state to the initial value
+				$x0 = $x1 = $d0 = $d1 = $r0 = $r1 = '';
+			} elseif ( $ord2 < 0x80 ) {
+				// ASCII character
+				$out .= $r2;
+			}
+		}
+		if ( $ord1 < 0x80 ) {
+			$out .= $r1;
+		}
+		if ( $ord0 < 0x80 ) {
+			$out .= $r0;
+		}
+		if ( $allowUnicode ) {
+			$out .= '\u0080-\uFFFF';
+		}
+		return $out;
 	}
 
 	/**
@@ -1441,7 +1544,7 @@ class Title {
 				$url = str_replace( '$1', $dbkey, $wgArticlePath );
 				wfRunHooks( 'GetLocalURL::Article', array( &$this, &$url ) );
 			} else {
-				global $wgVariantArticlePath, $wgActionPaths;
+				global $wgVariantArticlePath, $wgActionPaths, $wgContLang;
 				$url = false;
 				$matches = array();
 
@@ -1463,6 +1566,7 @@ class Title {
 
 				if ( $url === false &&
 					$wgVariantArticlePath &&
+					$wgContLang->getCode() === $this->getPageLanguage()->getCode() &&
 					$this->getPageLanguage()->hasVariants() &&
 					preg_match( '/^variant=([^&]*)$/', $query, $matches ) )
 				{
@@ -2355,31 +2459,31 @@ class Title {
 	}
 
 	/**
-	 * Is this page "semi-protected" - the *only* protection is autoconfirm?
+	 * Is this page "semi-protected" - the *only* protection levels are listed
+	 * in $wgSemiprotectedRestrictionLevels?
 	 *
 	 * @param string $action Action to check (default: edit)
 	 * @return Bool
 	 */
 	public function isSemiProtected( $action = 'edit' ) {
-		if ( $this->exists() ) {
-			$restrictions = $this->getRestrictions( $action );
-			if ( count( $restrictions ) > 0 ) {
-				foreach ( $restrictions as $restriction ) {
-					if ( strtolower( $restriction ) != 'editsemiprotected' &&
-						strtolower( $restriction ) != 'autoconfirmed' // BC
-					) {
-						return false;
-					}
-				}
-			} else {
-				# Not protected
-				return false;
-			}
-			return true;
-		} else {
-			# If it doesn't exist, it can't be protected
+		global $wgSemiprotectedRestrictionLevels;
+
+		$restrictions = $this->getRestrictions( $action );
+		$semi = $wgSemiprotectedRestrictionLevels;
+		if ( !$restrictions || !$semi ) {
+			// Not protected, or all protection is full protection
 			return false;
 		}
+
+		// Remap autoconfirmed to editsemiprotected for BC
+		foreach ( array_keys( $semi, 'autoconfirmed' ) as $key ) {
+			$semi[$key] = 'editsemiprotected';
+		}
+		foreach ( array_keys( $restrictions, 'autoconfirmed' ) as $key ) {
+			$restrictions[$key] = 'editsemiprotected';
+		}
+
+		return !array_diff( $restrictions, $semi );
 	}
 
 	/**
@@ -3007,6 +3111,7 @@ class Title {
 		$this->mLatestID = false;
 		$this->mContentModel = false;
 		$this->mEstimateRevisions = null;
+		$this->mPageLanguage = false;
 	}
 
 	/**
@@ -3062,7 +3167,7 @@ class Title {
 			return false;
 		}
 
-		if ( false !== strpos( $dbkey, UTF8_REPLACEMENT ) ) {
+		if ( strpos( $dbkey, UTF8_REPLACEMENT ) !== false ) {
 			# Contained illegal UTF-8 sequences or forbidden Unicode chars.
 			return false;
 		}
@@ -3199,6 +3304,7 @@ class Title {
 
 		# Can't make a link to a namespace alone... "empty" local links can only be
 		# self-links with a fragment identifier.
+		# TODO: Why do we exclude NS_MAIN (bug 54044)
 		if ( $dbkey == '' && $this->mInterwiki == '' && $this->mNamespace != NS_MAIN ) {
 			return false;
 		}
@@ -3619,6 +3725,8 @@ class Title {
 			$createRedirect = true;
 		}
 
+		wfRunHooks( 'TitleMove', array( $this, $nt, $wgUser ) );
+
 		// If it is a file, move it first.
 		// It is done before all other moving stuff is done because it's hard to revert.
 		$dbw = wfGetDB( DB_MASTER );
@@ -3693,7 +3801,7 @@ class Title {
 				$comment .= wfMessage( 'colon-separator' )->inContentLanguage()->text() . $reason;
 			}
 			// @todo FIXME: $params?
-			$log->addEntry( 'move_prot', $nt, $comment, array( $this->getPrefixedText() ) );
+			$log->addEntry( 'move_prot', $nt, $comment, array( $this->getPrefixedText() ), $wgUser );
 		}
 
 		# Update watchlists
@@ -3735,7 +3843,8 @@ class Title {
 
 		if ( $createRedirect ) {
 			$contentHandler = ContentHandler::getForTitle( $this );
-			$redirectContent = $contentHandler->makeRedirectContent( $nt );
+			$redirectContent = $contentHandler->makeRedirectContent( $nt,
+				wfMessage( 'move-redirect-text' )->inContentLanguage()->plain() );
 
 			// NOTE: If this page's content model does not support redirects, $redirectContent will be null.
 		} else {
@@ -3796,7 +3905,12 @@ class Title {
 			__METHOD__
 		);
 
-		$this->resetArticleID( 0 );
+		// clean up the old title before reset article id - bug 45348
+		if ( !$redirectContent ) {
+			WikiPage::onArticleDelete( $this );
+		}
+
+		$this->resetArticleID( 0 ); // 0 == non existing
 		$nt->resetArticleID( $oldid );
 		$newpage->loadPageData( WikiPage::READ_LOCKING ); // bug 46397
 
@@ -3812,13 +3926,12 @@ class Title {
 		}
 
 		# Recreate the redirect, this time in the other direction.
-		if ( !$redirectContent ) {
-			WikiPage::onArticleDelete( $this );
-		} else {
+		if ( $redirectContent ) {
 			$redirectArticle = WikiPage::factory( $this );
 			$redirectArticle->loadFromRow( false, WikiPage::READ_LOCKING ); // bug 46397
 			$newid = $redirectArticle->insertOn( $dbw );
 			if ( $newid ) { // sanity
+				$this->resetArticleID( $newid );
 				$redirectRevision = new Revision( array(
 					'title' => $this, // for determining the default content model
 					'page' => $newid,
@@ -4701,18 +4814,26 @@ class Title {
 	 * @return Language
 	 */
 	public function getPageLanguage() {
-		global $wgLang;
+		global $wgLang, $wgLanguageCode;
+		wfProfileIn( __METHOD__ );
 		if ( $this->isSpecialPage() ) {
 			// special pages are in the user language
+			wfProfileOut( __METHOD__ );
 			return $wgLang;
 		}
 
-		//TODO: use the LinkCache to cache this! Note that this may depend on user settings, so the cache should be only per-request.
-		//NOTE: ContentHandler::getPageLanguage() may need to load the content to determine the page language!
-		$contentHandler = ContentHandler::getForTitle( $this );
-		$pageLang = $contentHandler->getPageLanguage( $this );
-
-		return wfGetLangObj( $pageLang );
+		if ( !$this->mPageLanguage || $this->mPageLanguage[1] !== $wgLanguageCode ) {
+			// Note that this may depend on user settings, so the cache should be only per-request.
+			// NOTE: ContentHandler::getPageLanguage() may need to load the content to determine the page language!
+			// Checking $wgLanguageCode hasn't changed for the benefit of unit tests.
+			$contentHandler = ContentHandler::getForTitle( $this );
+			$langObj = wfGetLangObj( $contentHandler->getPageLanguage( $this ) );
+			$this->mPageLanguage = array( $langObj->getCode(), $wgLanguageCode );
+		} else {
+			$langObj =  wfGetLangObj( $this->mPageLanguage[0] );
+		}
+		wfProfileOut( __METHOD__ );
+		return $langObj;
 	}
 
 	/**

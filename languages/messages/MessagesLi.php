@@ -385,7 +385,7 @@ $1',
 'pool-queuefull' => 'De wachrie van de pool is vól',
 'pool-errorunknown' => 'Ónbekènde fout',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Euver {{SITENAME}}',
 'aboutpage' => 'Project:Info',
 'copyright' => 'De inhawd is besjikbaar ónger de $1.',
@@ -467,17 +467,6 @@ Mäögelik höbs te 'n typefout gemaak in de URL, of 'n verkierde verwiezing gev
 # General errors
 'error' => 'Fout',
 'databaseerror' => 'Databasefout',
-'dberrortext' => 'Bie \'t zeuke is \'n syntaxfout in de database opgetraoje.
-Dit kan zien veroorzaak door \'n fout in de software.
-De lètste zeukpoging in de database waor:
-<blockquote><tt>$1</tt></blockquote>
-vanoet de functie "<tt>$2</tt>".
-Database gaof de foutmelding "<tt>$3: $4</tt>".',
-'dberrortextcl' => 'Dao is \'n syntaxfout opgetreje bie \'t zeuke in de database.
-De lèste opgevraogde zeukactie waor:
-"$1"
-vanoet de functie "$2".
-Database brach fout "$3" nao veure: "$4"',
 'laggedslavemode' => 'Waarsjoewing: de pagina kin verauwerd zien.',
 'readonly' => 'Database geblokkeerd',
 'enterlockreason' => "Gaef 'n rae veur de blokkering en wie lank 't dinkelik zal dore. De ingegaeve rae zal aan de gebroekers getuind waere.",
@@ -529,7 +518,6 @@ Query: $2',
 'viewyourtext' => 'Doe kans "dien bewèrkinge" ane brónteks van dees pagina bekieke en euverkopiëre:',
 'protectedinterface' => 'Deze pagina bevat teks veur berichte van de software en is beveilig om misbroek te veurkomme.',
 'editinginterface' => "'''Waarsjoewing:''' Doe bewirks 'n pagina die gebroek waert door de software. Bewirkinge op dees pagina beïnvlode de gebroekersinterface van jederein. Euverwaeg veur euverzèttinge [//translatewiki.net/wiki/Main_Page?setlang=li translatewiki.net] te gebroeke, 't euverzèttingssprojek veur MediaWiki.",
-'sqlhidden' => '(SQL query verborge)',
 'cascadeprotected' => "Deze pagina kin neet bewirk waere, omdet zie is opgenome in de volgende {{PLURAL:$1|pagina|pagina's}} die beveilig {{PLURAL:$1|is|zeen}} mèt de kaskaad-optie:
 $2",
 'namespaceprotected' => "Doe höbs gein rechte om pagina's in de naamruumde '''$1''' te bewirke.",
@@ -560,7 +548,6 @@ Mäögelik waert nog 'n deil pagina's getuind esofs te nog aangemeld bis pès te
 'yourpassword' => 'Die wachwaord',
 'yourpasswordagain' => 'Wachwaord opnuuj intype',
 'remembermypassword' => 'Mien wachwaord onthouwe veur later sessies (hoegstens $1 {{PLURAL:$1|daag|daag}})',
-'securelogin-stick-https' => 'Verbónje blieve via HTTPS nao aanmelle',
 'yourdomainname' => 'Die domein',
 'externaldberror' => "d'r Is 'n fout opgetraoje biej 't aanmelje biej de database of doe höbs gén toesjtömming diene externe gebroeker biej te wèrke.",
 'login' => 'Aanmèlde',
@@ -654,7 +641,7 @@ Doe mós effe wachte ierdets te 't obbenuuts kens perbere.",
 'newpassword' => 'Nuuj wachwaord',
 'retypenew' => "Veur 't nuuj wachwaord nogins in",
 'resetpass_submit' => 'Wachwaord instelle en aanmelje',
-'resetpass_success' => 'Dien wachwaord is verangerd. Bezig mèt aanmelje...',
+'changepassword-success' => 'Dien wachwaord is verangerd. Bezig mèt aanmelje...',
 'resetpass_forbidden' => 'Wachwäörd kónne neet verangerd waere',
 'resetpass-no-info' => 'Doe moos aangemeld zien ierdets doe dees pagina gebroeke kens.',
 'resetpass-submit-loggedin' => 'Wachwaord wiezige',
@@ -1840,12 +1827,6 @@ De [$2 pagina mit de besjtandjsbesjrieving] wurt hiejónger weergegaeve.',
 'statistics-users-active-desc' => "Gebroekers die in de aafgeloupe {{PLURAL:$1|daag|$1 daag}} 'ne hanjeling höbbe oetgevoerd",
 'statistics-mostpopular' => "Meisbekeke pazjena's",
 
-'disambiguations' => "Links nao verdudelikingspazjena's",
-'disambiguationspage' => 'Template:Verdudeliking',
-'disambiguations-text' => "Hiej onger staon pagina's die verwieze nao 'ne '''redirect'''.
-Deze heure waarsjienlik direct nao 't zjuste ongerwerp te verwiezen.<br />
-'ne pagina wörd gezeen es redirect wen d'r 'n sjabloon op stuit det gelink is vanaaf [[MediaWiki:Disambiguationspage]]",
-
 'doubleredirects' => 'Dobbel redirects',
 'doubleredirectstext' => "Dees lies haet paazjes mit redireks die nao anger redireks gaon.
 Op eder raegel vings te de ierste redirectpazjena, de twiede redirectpazjena en de iesjte raegel van de twiede redirectpazjena. Meistes bevat dees litste de pazjena woe de iesjte redirect naotoe zouw mótte verwieze.
@@ -2469,11 +2450,8 @@ Wils se de instellinge wiezige?',
 'ipb_blocked_as_range' => "Fout: 't IP-adres $1 is neet direct geblokkeerd en de blokkade kan neet opgeheve waere. De blokkade is ongerdeil van de reeks $2, wovan de blokkade waal opgeheve kan waere.",
 'ip_range_invalid' => 'Ongeldige IP-reeks',
 'ip_range_toolarge' => 'Reeksblokkades groeater es /$1 kènne neet.',
-'blockme' => 'Blokkeer mich',
 'proxyblocker' => 'Proxyblokker',
-'proxyblocker-disabled' => 'Deze functie is oetgesjakeld.',
 'proxyblockreason' => "Dien IP-adres is geblokkeerd ómdat 't 'n aope proxy is. Contacteer estebleef diene internet service provider of technische óngersjteuning en informeer ze euver dit serjeus veiligheidsprebleem.",
-'proxyblocksuccess' => 'Klaor.',
 'sorbsreason' => 'Dien IP-adres is opgenaome in de DNS-blacklist es open proxyserver, dae {{SITENAME}} gebroek.',
 'sorbs_create_account_reason' => 'Dien IP-adres is opgenómme in de DNS-blacklist es open proxyserver, dae {{SITENAME}} gebroek. De kèns gein gebroekersaccount aanmake.',
 'cant-block-while-blocked' => 'De kins anger gebroekers neet blokkere terwiel se zelf geblokkeerd bös.',
@@ -2799,6 +2777,8 @@ Meistal wörd dit door 'ne zwarte externe link veroorzaak.",
 'spam_reverting' => 'Bezig mit trökdrèjje nao de letste versie die gein verwiezing haet nao $1',
 'spam_blanking' => "Alle wieziginge mit 'ne link nao $1 waere verwiederd",
 'spam_deleting' => 'Alle wieziginge hawwe links nao $1, wuuertj gewösj',
+'simpleantispam-label' => "Antispemcontrole.
+Vol dit veld '''NEET''' in!",
 
 # Info page
 'pageinfo-title' => 'Informatie euver "$1"',

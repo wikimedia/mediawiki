@@ -1240,7 +1240,10 @@ class User {
 
 		$defOpt = $wgDefaultUserOptions;
 		// Default language setting
-		$defOpt['language'] = $defOpt['variant'] = $wgContLang->getCode();
+		$defOpt['language'] = $wgContLang->getCode();
+		foreach ( LanguageConverter::$languagesWithVariants as $langCode ) {
+			$defOpt[$langCode == $wgContLang->getCode() ? 'variant' : "variant-$langCode"] = $langCode;
+		}
 		foreach ( SearchEngine::searchableNamespaces() as $nsnum => $nsname ) {
 			$defOpt['searchNs' . $nsnum] = !empty( $wgNamespacesToBeSearchedDefault[$nsnum] );
 		}
@@ -1486,12 +1489,13 @@ class User {
 	 * last-hit counters will be shared across wikis.
 	 *
 	 * @param string $action Action to enforce; 'edit' if unspecified
+	 * @param integer $incrBy Positive amount to increment counter by [defaults to 1]
 	 * @return bool True if a rate limiter was tripped
 	 */
-	public function pingLimiter( $action = 'edit' ) {
+	public function pingLimiter( $action = 'edit', $incrBy = 1 ) {
 		// Call the 'PingLimiter' hook
 		$result = false;
-		if ( !wfRunHooks( 'PingLimiter', array( &$this, $action, &$result ) ) ) {
+		if ( !wfRunHooks( 'PingLimiter', array( &$this, $action, &$result, $incrBy ) ) ) {
 			return $result;
 		}
 
@@ -1580,9 +1584,13 @@ class User {
 				}
 			} else {
 				wfDebug( __METHOD__ . ": adding record for $key $summary\n" );
-				$wgMemc->add( $key, 0, intval( $period ) ); // first ping
+				if ( $incrBy > 0 ) {
+					$wgMemc->add( $key, 0, intval( $period ) ); // first ping
+				}
 			}
-			$wgMemc->incr( $key );
+			if ( $incrBy > 0 ) {
+				$wgMemc->incr( $key, $incrBy );
+			}
 		}
 
 		wfProfileOut( __METHOD__ );
@@ -1697,6 +1705,7 @@ class User {
 			return $this->mLocked;
 		}
 		global $wgAuth;
+		StubObject::unstub( $wgAuth );
 		$authUser = $wgAuth->getUserInstance( $this );
 		$this->mLocked = (bool)$authUser->isLocked();
 		return $this->mLocked;
@@ -1714,6 +1723,7 @@ class User {
 		$this->getBlockedStatus();
 		if ( !$this->mHideName ) {
 			global $wgAuth;
+			StubObject::unstub( $wgAuth );
 			$authUser = $wgAuth->getUserInstance( $this );
 			$this->mHideName = (bool)$authUser->isHidden();
 		}
@@ -2597,6 +2607,26 @@ class User {
 	}
 
 	/**
+	 * Determine based on the wiki configuration and the user's options,
+	 * whether this user must be over HTTPS no matter what.
+	 *
+	 * @return bool
+	 */
+	public function requiresHTTPS() {
+		global $wgSecureLogin;
+		if ( !$wgSecureLogin ) {
+			return false;
+		} else {
+			$https = $this->getBoolOption( 'prefershttps' );
+			wfRunHooks( 'UserRequiresHTTPS', array( $this, &$https ) );
+			if ( $https ) {
+				$https = wfCanIPUseHTTPS( $this->getRequest()->getIP() );
+			}
+			return $https;
+		}
+	}
+
+	/**
 	 * Get the user preferred stub threshold
 	 *
 	 * @return int
@@ -2740,7 +2770,7 @@ class User {
 			$this->mEditCount = $count;
 			wfProfileOut( __METHOD__ );
 		}
-		return (int) $this->mEditCount;
+		return (int)$this->mEditCount;
 	}
 
 	/**
@@ -2991,8 +3021,9 @@ class User {
 	 * the next change of the page if it's watched etc.
 	 * @note If the user doesn't have 'editmywatchlist', this will do nothing.
 	 * @param $title Title of the article to look at
+	 * @param int $oldid The revision id being viewed. If not given or 0, latest revision is assumed.
 	 */
-	public function clearNotification( &$title ) {
+	public function clearNotification( &$title, $oldid = 0 ) {
 		global $wgUseEnotif, $wgShowUpdatedMarker;
 
 		// Do nothing if the database is locked to writes
@@ -3005,12 +3036,25 @@ class User {
 			return;
 		}
 
-		if ( $title->getNamespace() == NS_USER_TALK &&
-			$title->getText() == $this->getName() ) {
-			if ( !wfRunHooks( 'UserClearNewTalkNotification', array( &$this ) ) ) {
+		// If we're working on user's talk page, we should update the talk page message indicator
+		if ( $title->getNamespace() == NS_USER_TALK && $title->getText() == $this->getName() ) {
+			if ( !wfRunHooks( 'UserClearNewTalkNotification', array( &$this, $oldid ) ) ) {
 				return;
 			}
-			$this->setNewtalk( false );
+
+			$nextid = $oldid ? $title->getNextRevisionID( $oldid ) : null;
+
+			if ( !$oldid || !$nextid ) {
+				// If we're looking at the latest revision, we should definitely clear it
+				$this->setNewtalk( false );
+			} else {
+				// Otherwise we should update its revision, if it's present
+				if ( $this->getNewtalk() ) {
+					// Naturally the other one won't clear by itself
+					$this->setNewtalk( false );
+					$this->setNewtalk( true, Revision::newFromId( $nextid ) );
+				}
+			}
 		}
 
 		if ( !$wgUseEnotif && !$wgShowUpdatedMarker ) {
@@ -3033,7 +3077,7 @@ class User {
 			$force = 'force';
 		}
 
-		$this->getWatchedItem( $title )->resetNotificationTimestamp( $force );
+		$this->getWatchedItem( $title )->resetNotificationTimestamp( $force, $oldid );
 	}
 
 	/**
@@ -3061,14 +3105,12 @@ class User {
 		if ( $id != 0 ) {
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->update( 'watchlist',
-				array( /* SET */
-					'wl_notificationtimestamp' => null
-				), array( /* WHERE */
-					'wl_user' => $id
-				), __METHOD__
+				array( /* SET */ 'wl_notificationtimestamp' => null ),
+				array( /* WHERE */ 'wl_user' => $id ),
+				__METHOD__
 			);
-		# 	We also need to clear here the "you have new message" notification for the own user_talk page
-		#	This is cleared one page view later in Article::viewUpdates();
+			// We also need to clear here the "you have new message" notification for the own user_talk page;
+			// it's cleared one page view later in WikiPage::doViewUpdates().
 		}
 	}
 
@@ -3111,19 +3153,24 @@ class User {
 	 *  true: Force setting the secure attribute when setting the cookie
 	 *  false: Force NOT setting the secure attribute when setting the cookie
 	 *  null (default): Use the default ($wgCookieSecure) to set the secure attribute
+	 * @param array $params Array of options sent passed to WebResponse::setcookie()
 	 */
-	protected function setCookie( $name, $value, $exp = 0, $secure = null ) {
-		$this->getRequest()->response()->setcookie( $name, $value, $exp, array(
-			'secure' => $secure,
-		) );
+	protected function setCookie( $name, $value, $exp = 0, $secure = null, $params = array() ) {
+		$params['secure'] = $secure;
+		$this->getRequest()->response()->setcookie( $name, $value, $exp, $params );
 	}
 
 	/**
 	 * Clear a cookie on the user's client
 	 * @param string $name Name of the cookie to clear
+	 * @param bool $secure
+	 *  true: Force setting the secure attribute when setting the cookie
+	 *  false: Force NOT setting the secure attribute when setting the cookie
+	 *  null (default): Use the default ($wgCookieSecure) to set the secure attribute
+	 * @param array $params Array of options sent passed to WebResponse::setcookie()
 	 */
-	protected function clearCookie( $name ) {
-		$this->setCookie( $name, '', time() - 86400 );
+	protected function clearCookie( $name, $secure = null, $params = array() ) {
+		$this->setCookie( $name, '', time() - 86400, $secure, $params );
 	}
 
 	/**
@@ -3181,10 +3228,22 @@ class User {
 		/**
 		 * If wpStickHTTPS was selected, also set an insecure cookie that
 		 * will cause the site to redirect the user to HTTPS, if they access
-		 * it over HTTP. Bug 29898.
+		 * it over HTTP. Bug 29898. Use an un-prefixed cookie, so it's the same
+		 * as the one set by centralauth (bug 53538). Also set it to session, or
+		 * standard time setting, based on if rememberme was set.
 		 */
-		if ( $request->getCheck( 'wpStickHTTPS' ) ) {
-			$this->setCookie( 'forceHTTPS', 'true', time() + 2592000, false ); //30 days
+		if ( $request->getCheck( 'wpStickHTTPS' ) || $this->requiresHTTPS() ) {
+			$time = null;
+			if ( ( 1 == $this->getOption( 'rememberpassword' ) ) ) {
+				$time = 0; // set to $wgCookieExpiration
+			}
+			$this->setCookie(
+				'forceHTTPS',
+				'true',
+				$time,
+				false,
+				array( 'prefix' => '' ) // no prefix
+			);
 		}
 	}
 
@@ -3208,7 +3267,7 @@ class User {
 
 		$this->clearCookie( 'UserID' );
 		$this->clearCookie( 'Token' );
-		$this->clearCookie( 'forceHTTPS' );
+		$this->clearCookie( 'forceHTTPS', false, array( 'prefix' => '' ) );
 
 		// Remember when user logged out, to prevent seeing cached pages
 		$this->setCookie( 'LoggedOut', time(), time() + 86400 );
@@ -3736,6 +3795,7 @@ class User {
 		} elseif ( $type === true ) {
 			$message = 'confirmemail_body_changed';
 		} else {
+			// Messages: confirmemail_body_changed, confirmemail_body_set
 			$message = 'confirmemail_body_' . $type;
 		}
 
@@ -4358,7 +4418,7 @@ class User {
 		// Pull from a slave to be less cruel to servers
 		// Accuracy isn't the point anyway here
 		$dbr = wfGetDB( DB_SLAVE );
-		$count = (int) $dbr->selectField(
+		$count = (int)$dbr->selectField(
 			'revision',
 			'COUNT(rev_user)',
 			array( 'rev_user' => $this->getId() ),

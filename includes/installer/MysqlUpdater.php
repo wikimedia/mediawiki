@@ -31,206 +31,218 @@ class MysqlUpdater extends DatabaseUpdater {
 
 	protected function getCoreUpdateList() {
 		return array(
+			array( 'disableContentHandlerUseDB' ),
+
 			// 1.2
 			array( 'addField', 'ipblocks',      'ipb_id',           'patch-ipblocks.sql' ),
 			array( 'addField', 'ipblocks',      'ipb_expiry',       'patch-ipb_expiry.sql' ),
 			array( 'doInterwikiUpdate' ),
 			array( 'doIndexUpdate' ),
-			array( 'addTable', 'hitcounter',                        'patch-hitcounter.sql' ),
-			array( 'addField', 'recentchanges', 'rc_type',          'patch-rc_type.sql' ),
+			array( 'addTable', 'hitcounter', 'patch-hitcounter.sql' ),
+			array( 'addField', 'recentchanges', 'rc_type', 'patch-rc_type.sql' ),
 
 			// 1.3
-			array( 'addField', 'user',          'user_real_name',   'patch-user-realname.sql' ),
-			array( 'addTable', 'querycache',                        'patch-querycache.sql' ),
-			array( 'addTable', 'objectcache',                       'patch-objectcache.sql' ),
-			array( 'addTable', 'categorylinks',                     'patch-categorylinks.sql' ),
+			array( 'addField', 'user', 'user_real_name', 'patch-user-realname.sql' ),
+			array( 'addTable', 'querycache', 'patch-querycache.sql' ),
+			array( 'addTable', 'objectcache', 'patch-objectcache.sql' ),
+			array( 'addTable', 'categorylinks', 'patch-categorylinks.sql' ),
 			array( 'doOldLinksUpdate' ),
 			array( 'doFixAncientImagelinks' ),
-			array( 'addField', 'recentchanges', 'rc_ip',            'patch-rc_ip.sql' ),
+			array( 'addField', 'recentchanges', 'rc_ip', 'patch-rc_ip.sql' ),
 
 			// 1.4
-			array( 'addIndex', 'image',         'PRIMARY',          'patch-image_name_primary.sql' ),
-			array( 'addField', 'recentchanges', 'rc_id',            'patch-rc_id.sql' ),
-			array( 'addField', 'recentchanges', 'rc_patrolled',     'patch-rc-patrol.sql' ),
-			array( 'addTable', 'logging',                           'patch-logging.sql' ),
-			array( 'addField', 'user',          'user_token',       'patch-user_token.sql' ),
-			array( 'addField', 'watchlist',     'wl_notificationtimestamp', 'patch-email-notification.sql' ),
+			array( 'addIndex', 'image', 'PRIMARY', 'patch-image_name_primary.sql' ),
+			array( 'addField', 'recentchanges', 'rc_id', 'patch-rc_id.sql' ),
+			array( 'addField', 'recentchanges', 'rc_patrolled', 'patch-rc-patrol.sql' ),
+			array( 'addTable', 'logging', 'patch-logging.sql' ),
+			array( 'addField', 'user', 'user_token', 'patch-user_token.sql' ),
+			array( 'addField', 'watchlist', 'wl_notificationtimestamp', 'patch-email-notification.sql' ),
 			array( 'doWatchlistUpdate' ),
-			array( 'dropField', 'user',         'user_emailauthenticationtimestamp', 'patch-email-authentication.sql' ),
+			array( 'dropField', 'user', 'user_emailauthenticationtimestamp',
+				'patch-email-authentication.sql' ),
 
 			// 1.5
 			array( 'doSchemaRestructuring' ),
-			array( 'addField', 'logging',       'log_params',       'patch-log_params.sql' ),
-			array( 'checkBin', 'logging',       'log_title',        'patch-logging-title.sql', ),
-			array( 'addField', 'archive',       'ar_rev_id',        'patch-archive-rev_id.sql' ),
-			array( 'addField', 'page',          'page_len',         'patch-page_len.sql' ),
-			array( 'dropField', 'revision',     'inverse_timestamp', 'patch-inverse_timestamp.sql' ),
-			array( 'addField', 'revision',      'rev_text_id',      'patch-rev_text_id.sql' ),
-			array( 'addField', 'revision',      'rev_deleted',      'patch-rev_deleted.sql' ),
-			array( 'addField', 'image',         'img_width',        'patch-img_width.sql' ),
-			array( 'addField', 'image',         'img_metadata',     'patch-img_metadata.sql' ),
-			array( 'addField', 'user',          'user_email_token', 'patch-user_email_token.sql' ),
-			array( 'addField', 'archive',       'ar_text_id',       'patch-archive-text_id.sql' ),
+			array( 'addField', 'logging', 'log_params', 'patch-log_params.sql' ),
+			array( 'checkBin', 'logging', 'log_title', 'patch-logging-title.sql', ),
+			array( 'addField', 'archive', 'ar_rev_id', 'patch-archive-rev_id.sql' ),
+			array( 'addField', 'page', 'page_len', 'patch-page_len.sql' ),
+			array( 'dropField', 'revision', 'inverse_timestamp', 'patch-inverse_timestamp.sql' ),
+			array( 'addField', 'revision', 'rev_text_id', 'patch-rev_text_id.sql' ),
+			array( 'addField', 'revision', 'rev_deleted', 'patch-rev_deleted.sql' ),
+			array( 'addField', 'image', 'img_width', 'patch-img_width.sql' ),
+			array( 'addField', 'image', 'img_metadata', 'patch-img_metadata.sql' ),
+			array( 'addField', 'user', 'user_email_token', 'patch-user_email_token.sql' ),
+			array( 'addField', 'archive', 'ar_text_id', 'patch-archive-text_id.sql' ),
 			array( 'doNamespaceSize' ),
-			array( 'addField', 'image',         'img_media_type',   'patch-img_media_type.sql' ),
+			array( 'addField', 'image', 'img_media_type', 'patch-img_media_type.sql' ),
 			array( 'doPagelinksUpdate' ),
-			array( 'dropField', 'image',        'img_type',         'patch-drop_img_type.sql' ),
+			array( 'dropField', 'image', 'img_type', 'patch-drop_img_type.sql' ),
 			array( 'doUserUniqueUpdate' ),
 			array( 'doUserGroupsUpdate' ),
-			array( 'addField', 'site_stats',    'ss_total_pages',   'patch-ss_total_articles.sql' ),
-			array( 'addTable', 'user_newtalk',                      'patch-usernewtalk2.sql' ),
-			array( 'addTable', 'transcache',                        'patch-transcache.sql' ),
-			array( 'addField', 'interwiki',     'iw_trans',         'patch-interwiki-trans.sql' ),
+			array( 'addField', 'site_stats', 'ss_total_pages', 'patch-ss_total_articles.sql' ),
+			array( 'addTable', 'user_newtalk', 'patch-usernewtalk2.sql' ),
+			array( 'addTable', 'transcache', 'patch-transcache.sql' ),
+			array( 'addField', 'interwiki', 'iw_trans', 'patch-interwiki-trans.sql' ),
 
 			// 1.6
 			array( 'doWatchlistNull' ),
-			array( 'addIndex', 'logging',         'times',            'patch-logging-times-index.sql' ),
-			array( 'addField', 'ipblocks',        'ipb_range_start',  'patch-ipb_range_start.sql' ),
+			array( 'addIndex', 'logging', 'times', 'patch-logging-times-index.sql' ),
+			array( 'addField', 'ipblocks', 'ipb_range_start', 'patch-ipb_range_start.sql' ),
 			array( 'doPageRandomUpdate' ),
-			array( 'addField', 'user',            'user_registration', 'patch-user_registration.sql' ),
+			array( 'addField', 'user', 'user_registration', 'patch-user_registration.sql' ),
 			array( 'doTemplatelinksUpdate' ),
-			array( 'addTable', 'externallinks',                       'patch-externallinks.sql' ),
-			array( 'addTable', 'job',                                 'patch-job.sql' ),
-			array( 'addField', 'site_stats',      'ss_images',        'patch-ss_images.sql' ),
-			array( 'addTable', 'langlinks',                           'patch-langlinks.sql' ),
-			array( 'addTable', 'querycache_info',                     'patch-querycacheinfo.sql' ),
-			array( 'addTable', 'filearchive',                         'patch-filearchive.sql' ),
-			array( 'addField', 'ipblocks',        'ipb_anon_only',    'patch-ipb_anon_only.sql' ),
-			array( 'addIndex', 'recentchanges',   'rc_ns_usertext',   'patch-recentchanges-utindex.sql' ),
-			array( 'addIndex', 'recentchanges',   'rc_user_text',     'patch-rc_user_text-index.sql' ),
+			array( 'addTable', 'externallinks', 'patch-externallinks.sql' ),
+			array( 'addTable', 'job', 'patch-job.sql' ),
+			array( 'addField', 'site_stats', 'ss_images', 'patch-ss_images.sql' ),
+			array( 'addTable', 'langlinks', 'patch-langlinks.sql' ),
+			array( 'addTable', 'querycache_info', 'patch-querycacheinfo.sql' ),
+			array( 'addTable', 'filearchive', 'patch-filearchive.sql' ),
+			array( 'addField', 'ipblocks', 'ipb_anon_only', 'patch-ipb_anon_only.sql' ),
+			array( 'addIndex', 'recentchanges', 'rc_ns_usertext', 'patch-recentchanges-utindex.sql' ),
+			array( 'addIndex', 'recentchanges', 'rc_user_text', 'patch-rc_user_text-index.sql' ),
 
 			// 1.9
-			array( 'addField', 'user',          'user_newpass_time', 'patch-user_newpass_time.sql' ),
-			array( 'addTable', 'redirect',                           'patch-redirect.sql' ),
-			array( 'addTable', 'querycachetwo',                      'patch-querycachetwo.sql' ),
-			array( 'addField', 'ipblocks',      'ipb_enable_autoblock', 'patch-ipb_optional_autoblock.sql' ),
+			array( 'addField', 'user', 'user_newpass_time', 'patch-user_newpass_time.sql' ),
+			array( 'addTable', 'redirect', 'patch-redirect.sql' ),
+			array( 'addTable', 'querycachetwo', 'patch-querycachetwo.sql' ),
+			array( 'addField', 'ipblocks', 'ipb_enable_autoblock', 'patch-ipb_optional_autoblock.sql' ),
 			array( 'doBacklinkingIndicesUpdate' ),
-			array( 'addField', 'recentchanges', 'rc_old_len',        'patch-rc_len.sql' ),
-			array( 'addField', 'user',          'user_editcount',    'patch-user_editcount.sql' ),
+			array( 'addField', 'recentchanges', 'rc_old_len', 'patch-rc_len.sql' ),
+			array( 'addField', 'user', 'user_editcount', 'patch-user_editcount.sql' ),
 
 			// 1.10
 			array( 'doRestrictionsUpdate' ),
-			array( 'addField', 'logging',       'log_id',           'patch-log_id.sql' ),
-			array( 'addField', 'revision',      'rev_parent_id',    'patch-rev_parent_id.sql' ),
-			array( 'addField', 'page_restrictions', 'pr_id',        'patch-page_restrictions_sortkey.sql' ),
-			array( 'addField', 'revision',      'rev_len',          'patch-rev_len.sql' ),
-			array( 'addField', 'recentchanges', 'rc_deleted',       'patch-rc_deleted.sql' ),
-			array( 'addField', 'logging',       'log_deleted',      'patch-log_deleted.sql' ),
-			array( 'addField', 'archive',       'ar_deleted',       'patch-ar_deleted.sql' ),
-			array( 'addField', 'ipblocks',      'ipb_deleted',      'patch-ipb_deleted.sql' ),
-			array( 'addField', 'filearchive',   'fa_deleted',       'patch-fa_deleted.sql' ),
-			array( 'addField', 'archive',       'ar_len',           'patch-ar_len.sql' ),
+			array( 'addField', 'logging', 'log_id', 'patch-log_id.sql' ),
+			array( 'addField', 'revision', 'rev_parent_id', 'patch-rev_parent_id.sql' ),
+			array( 'addField', 'page_restrictions', 'pr_id', 'patch-page_restrictions_sortkey.sql' ),
+			array( 'addField', 'revision', 'rev_len', 'patch-rev_len.sql' ),
+			array( 'addField', 'recentchanges', 'rc_deleted', 'patch-rc_deleted.sql' ),
+			array( 'addField', 'logging', 'log_deleted', 'patch-log_deleted.sql' ),
+			array( 'addField', 'archive', 'ar_deleted', 'patch-ar_deleted.sql' ),
+			array( 'addField', 'ipblocks', 'ipb_deleted', 'patch-ipb_deleted.sql' ),
+			array( 'addField', 'filearchive', 'fa_deleted', 'patch-fa_deleted.sql' ),
+			array( 'addField', 'archive', 'ar_len', 'patch-ar_len.sql' ),
 
 			// 1.11
-			array( 'addField', 'ipblocks',      'ipb_block_email',  'patch-ipb_emailban.sql' ),
+			array( 'addField', 'ipblocks', 'ipb_block_email', 'patch-ipb_emailban.sql' ),
 			array( 'doCategorylinksIndicesUpdate' ),
-			array( 'addField', 'oldimage',      'oi_metadata',      'patch-oi_metadata.sql' ),
-			array( 'addIndex', 'archive',       'usertext_timestamp', 'patch-archive-user-index.sql' ),
-			array( 'addIndex', 'image',         'img_usertext_timestamp', 'patch-image-user-index.sql' ),
-			array( 'addIndex', 'oldimage',      'oi_usertext_timestamp', 'patch-oldimage-user-index.sql' ),
-			array( 'addField', 'archive',       'ar_page_id',       'patch-archive-page_id.sql' ),
-			array( 'addField', 'image',         'img_sha1',         'patch-img_sha1.sql' ),
+			array( 'addField', 'oldimage', 'oi_metadata', 'patch-oi_metadata.sql' ),
+			array( 'addIndex', 'archive', 'usertext_timestamp', 'patch-archive-user-index.sql' ),
+			array( 'addIndex', 'image', 'img_usertext_timestamp', 'patch-image-user-index.sql' ),
+			array( 'addIndex', 'oldimage', 'oi_usertext_timestamp', 'patch-oldimage-user-index.sql' ),
+			array( 'addField', 'archive', 'ar_page_id', 'patch-archive-page_id.sql' ),
+			array( 'addField', 'image', 'img_sha1', 'patch-img_sha1.sql' ),
 
 			// 1.12
-			array( 'addTable', 'protected_titles',                  'patch-protected_titles.sql' ),
+			array( 'addTable', 'protected_titles', 'patch-protected_titles.sql' ),
 
 			// 1.13
-			array( 'addField', 'ipblocks',      'ipb_by_text',      'patch-ipb_by_text.sql' ),
-			array( 'addTable', 'page_props',                        'patch-page_props.sql' ),
-			array( 'addTable', 'updatelog',                         'patch-updatelog.sql' ),
-			array( 'addTable', 'category',                          'patch-category.sql' ),
+			array( 'addField', 'ipblocks', 'ipb_by_text', 'patch-ipb_by_text.sql' ),
+			array( 'addTable', 'page_props', 'patch-page_props.sql' ),
+			array( 'addTable', 'updatelog', 'patch-updatelog.sql' ),
+			array( 'addTable', 'category', 'patch-category.sql' ),
 			array( 'doCategoryPopulation' ),
-			array( 'addField', 'archive',       'ar_parent_id',     'patch-ar_parent_id.sql' ),
-			array( 'addField', 'user_newtalk',  'user_last_timestamp', 'patch-user_last_timestamp.sql' ),
+			array( 'addField', 'archive', 'ar_parent_id', 'patch-ar_parent_id.sql' ),
+			array( 'addField', 'user_newtalk', 'user_last_timestamp', 'patch-user_last_timestamp.sql' ),
 			array( 'doPopulateParentId' ),
-			array( 'checkBin', 'protected_titles', 'pt_title',      'patch-pt_title-encoding.sql', ),
+			array( 'checkBin', 'protected_titles', 'pt_title', 'patch-pt_title-encoding.sql', ),
 			array( 'doMaybeProfilingMemoryUpdate' ),
 			array( 'doFilearchiveIndicesUpdate' ),
 
 			// 1.14
-			array( 'addField', 'site_stats',    'ss_active_users',  'patch-ss_active_users.sql' ),
+			array( 'addField', 'site_stats', 'ss_active_users', 'patch-ss_active_users.sql' ),
 			array( 'doActiveUsersInit' ),
-			array( 'addField', 'ipblocks',      'ipb_allow_usertalk', 'patch-ipb_allow_usertalk.sql' ),
+			array( 'addField', 'ipblocks', 'ipb_allow_usertalk', 'patch-ipb_allow_usertalk.sql' ),
 
 			// 1.15
 			array( 'doUniquePlTlIl' ),
-			array( 'addTable', 'change_tag',                        'patch-change_tag.sql' ),
-			/* array( 'addTable', 'tag_summary',                       'patch-change_tag.sql' ), */
-			/* array( 'addTable', 'valid_tag',                         'patch-change_tag.sql' ), */
+			array( 'addTable', 'change_tag', 'patch-change_tag.sql' ),
+			array( 'addTable', 'tag_summary', 'patch-tag_summary.sql' ),
+			array( 'addTable', 'valid_tag', 'patch-valid_tag.sql' ),
 
 			// 1.16
-			array( 'addTable', 'user_properties',                   'patch-user_properties.sql' ),
-			array( 'addTable', 'log_search',                        'patch-log_search.sql' ),
-			array( 'addField', 'logging',       'log_user_text',    'patch-log_user_text.sql' ),
-			array( 'doLogUsertextPopulation' ), # listed separately from the previous update because 1.16 was released without this update
+			array( 'addTable', 'user_properties', 'patch-user_properties.sql' ),
+			array( 'addTable', 'log_search', 'patch-log_search.sql' ),
+			array( 'addField', 'logging', 'log_user_text', 'patch-log_user_text.sql' ),
+			# listed separately from the previous update because 1.16 was released without this update
+			array( 'doLogUsertextPopulation' ),
 			array( 'doLogSearchPopulation' ),
-			array( 'addTable', 'l10n_cache',                        'patch-l10n_cache.sql' ),
-			array( 'addIndex', 'log_search',    'ls_field_val',     'patch-log_search-rename-index.sql' ),
-			array( 'addIndex', 'change_tag',    'change_tag_rc_tag', 'patch-change_tag-indexes.sql' ),
-			array( 'addField', 'redirect',      'rd_interwiki',     'patch-rd_interwiki.sql' ),
+			array( 'addTable', 'l10n_cache', 'patch-l10n_cache.sql' ),
+			array( 'addIndex', 'log_search', 'ls_field_val', 'patch-log_search-rename-index.sql' ),
+			array( 'addIndex', 'change_tag', 'change_tag_rc_tag', 'patch-change_tag-indexes.sql' ),
+			array( 'addField', 'redirect', 'rd_interwiki', 'patch-rd_interwiki.sql' ),
 			array( 'doUpdateTranscacheField' ),
 			array( 'doUpdateMimeMinorField' ),
 
 			// 1.17
-			array( 'addTable', 'iwlinks',                           'patch-iwlinks.sql' ),
-			array( 'addIndex', 'iwlinks', 'iwl_prefix_title_from',  'patch-rename-iwl_prefix.sql' ),
-			array( 'addField', 'updatelog',     'ul_value',         'patch-ul_value.sql' ),
-			array( 'addField', 'interwiki',     'iw_api',           'patch-iw_api_and_wikiid.sql' ),
-			array( 'dropIndex', 'iwlinks',      'iwl_prefix',       'patch-kill-iwl_prefix.sql' ),
-			array( 'addField', 'categorylinks', 'cl_collation',     'patch-categorylinks-better-collation.sql' ),
+			array( 'addTable', 'iwlinks', 'patch-iwlinks.sql' ),
+			array( 'addIndex', 'iwlinks', 'iwl_prefix_title_from', 'patch-rename-iwl_prefix.sql' ),
+			array( 'addField', 'updatelog', 'ul_value', 'patch-ul_value.sql' ),
+			array( 'addField', 'interwiki', 'iw_api', 'patch-iw_api_and_wikiid.sql' ),
+			array( 'dropIndex', 'iwlinks', 'iwl_prefix', 'patch-kill-iwl_prefix.sql' ),
+			array( 'addField', 'categorylinks', 'cl_collation', 'patch-categorylinks-better-collation.sql' ),
 			array( 'doClFieldsUpdate' ),
 			array( 'doCollationUpdate' ),
-			array( 'addTable', 'msg_resource',                      'patch-msg_resource.sql' ),
-			array( 'addTable', 'module_deps',                       'patch-module_deps.sql' ),
-			array( 'dropIndex', 'archive',      'ar_page_revid',    'patch-archive_kill_ar_page_revid.sql' ),
-			array( 'addIndex', 'archive',       'ar_revid',         'patch-archive_ar_revid.sql' ),
+			array( 'addTable', 'msg_resource', 'patch-msg_resource.sql' ),
+			array( 'addTable', 'module_deps', 'patch-module_deps.sql' ),
+			array( 'dropIndex', 'archive', 'ar_page_revid', 'patch-archive_kill_ar_page_revid.sql' ),
+			array( 'addIndex', 'archive', 'ar_revid', 'patch-archive_ar_revid.sql' ),
 			array( 'doLangLinksLengthUpdate' ),
 
 			// 1.18
 			array( 'doUserNewTalkTimestampNotNull' ),
-			array( 'addIndex', 'user',          'user_email',       'patch-user_email_index.sql' ),
+			array( 'addIndex', 'user', 'user_email', 'patch-user_email_index.sql' ),
 			array( 'modifyField', 'user_properties', 'up_property', 'patch-up_property.sql' ),
-			array( 'addTable', 'uploadstash',                       'patch-uploadstash.sql' ),
-			array( 'addTable', 'user_former_groups',                'patch-user_former_groups.sql'),
+			array( 'addTable', 'uploadstash', 'patch-uploadstash.sql' ),
+			array( 'addTable', 'user_former_groups', 'patch-user_former_groups.sql' ),
 
 			// 1.19
-			array( 'addIndex', 'logging',       'type_action',      'patch-logging-type-action-index.sql'),
-			array( 'addField', 'revision',      'rev_sha1',         'patch-rev_sha1.sql' ),
+			array( 'addIndex', 'logging', 'type_action', 'patch-logging-type-action-index.sql' ),
+			array( 'addField', 'revision', 'rev_sha1', 'patch-rev_sha1.sql' ),
 			array( 'doMigrateUserOptions' ),
-			array( 'dropField', 'user',         'user_options', 'patch-drop-user_options.sql' ),
-			array( 'addField', 'archive',       'ar_sha1',          'patch-ar_sha1.sql' ),
-			array( 'addIndex', 'page', 'page_redirect_namespace_len', 'patch-page_redirect_namespace_len.sql' ),
-			array( 'addField',	'uploadstash',	'us_chunk_inx',		'patch-uploadstash_chunk.sql' ),
-			array( 'addfield', 'job',           'job_timestamp',    'patch-jobs-add-timestamp.sql' ),
+			array( 'dropField', 'user', 'user_options', 'patch-drop-user_options.sql' ),
+			array( 'addField', 'archive', 'ar_sha1', 'patch-ar_sha1.sql' ),
+			array( 'addIndex', 'page', 'page_redirect_namespace_len',
+				'patch-page_redirect_namespace_len.sql' ),
+			array( 'addField', 'uploadstash', 'us_chunk_inx', 'patch-uploadstash_chunk.sql' ),
+			array( 'addfield', 'job', 'job_timestamp', 'patch-jobs-add-timestamp.sql' ),
 
 			// 1.20
 			array( 'addIndex', 'revision', 'page_user_timestamp', 'patch-revision-user-page-index.sql' ),
-			array( 'addField', 'ipblocks',      'ipb_parent_block_id',           'patch-ipb-parent-block-id.sql' ),
-			array( 'addIndex', 'ipblocks',      'ipb_parent_block_id',           'patch-ipb-parent-block-id-index.sql' ),
-			array( 'dropField', 'category',     'cat_hidden',       'patch-cat_hidden.sql' ),
+			array( 'addField', 'ipblocks', 'ipb_parent_block_id', 'patch-ipb-parent-block-id.sql' ),
+			array( 'addIndex', 'ipblocks', 'ipb_parent_block_id', 'patch-ipb-parent-block-id-index.sql' ),
+			array( 'dropField', 'category', 'cat_hidden', 'patch-cat_hidden.sql' ),
 
 			// 1.21
-			array( 'addField',	'revision',	'rev_content_format',		'patch-revision-rev_content_format.sql' ),
-			array( 'addField',	'revision',	'rev_content_model',		'patch-revision-rev_content_model.sql' ),
+			array( 'addField', 'revision', 'rev_content_format', 'patch-revision-rev_content_format.sql' ),
+			array( 'addField', 'revision', 'rev_content_model', 'patch-revision-rev_content_model.sql' ),
 			array( 'addField',	'archive',	'ar_content_format',		'patch-archive-ar_content_format.sql' ),
 			array( 'addField',	'archive',	'ar_content_model',		    'patch-archive-ar_content_model.sql' ),
 			array( 'addField',	'page',     'page_content_model',		'patch-page-page_content_model.sql' ),
+			array( 'enableContentHandlerUseDB' ),
 			array( 'dropField', 'site_stats',   'ss_admins',        'patch-drop-ss_admins.sql' ),
 			array( 'dropField', 'recentchanges', 'rc_moved_to_title',            'patch-rc_moved.sql' ),
 			array( 'addTable', 'sites',                            'patch-sites.sql' ),
-			array( 'addField', 'filearchive',   'fa_sha1',          'patch-fa_sha1.sql' ),
-			array( 'addField', 'job',           'job_token',         'patch-job_token.sql' ),
-			array( 'addField', 'job',           'job_attempts',       'patch-job_attempts.sql' ),
+			array( 'addField', 'filearchive', 'fa_sha1', 'patch-fa_sha1.sql' ),
+			array( 'addField', 'job', 'job_token', 'patch-job_token.sql' ),
+			array( 'addField', 'job', 'job_attempts', 'patch-job_attempts.sql' ),
 			array( 'doEnableProfiling' ),
-			array( 'addField', 'uploadstash',      'us_props',      'patch-uploadstash-us_props.sql' ),
+			array( 'addField', 'uploadstash', 'us_props', 'patch-uploadstash-us_props.sql' ),
 			array( 'modifyField', 'user_groups', 'ug_group', 'patch-ug_group-length-increase-255.sql' ),
-			array( 'modifyField', 'user_former_groups', 'ufg_group', 'patch-ufg_group-length-increase-255.sql' ),
-			array( 'addIndex', 'page_props', 'pp_propname_page',  'patch-page_props-propname-page-index.sql' ),
+			array( 'modifyField', 'user_former_groups', 'ufg_group',
+				'patch-ufg_group-length-increase-255.sql' ),
+			array( 'addIndex', 'page_props', 'pp_propname_page',
+				'patch-page_props-propname-page-index.sql' ),
 			array( 'addIndex', 'image', 'img_media_mime', 'patch-img_media_mime-index.sql' ),
 
 			// 1.22
 			array( 'doIwlinksIndexNonUnique' ),
-			array( 'addIndex', 'iwlinks', 'iwl_prefix_from_title',  'patch-iwlinks-from-title-index.sql' ),
+			array( 'addIndex', 'iwlinks', 'iwl_prefix_from_title',
+				'patch-iwlinks-from-title-index.sql' ),
+			array( 'addField', 'archive', 'ar_id', 'patch-archive-ar_id.sql' ),
+			array( 'addField', 'externallinks', 'el_id', 'patch-externallinks-el_id.sql' ),
+			array( 'addField', 'recentchanges', 'rc_source', 'patch-rc_source.sql' ),
 		);
 	}
 
@@ -238,20 +250,18 @@ class MysqlUpdater extends DatabaseUpdater {
 	 * 1.4 betas were missing the 'binary' marker from logging.log_title,
 	 * which causes a collation mismatch error on joins in MySQL 4.1.
 	 *
-	 * @param string $table table name
-	 * @param string $field field name to check
-	 * @param string $patchFile path to the patch to correct the field
+	 * @param string $table Table name
+	 * @param string $field Field name to check
+	 * @param string $patchFile Path to the patch to correct the field
+	 * @return bool
 	 */
 	protected function checkBin( $table, $field, $patchFile ) {
 		if ( !$this->doTable( $table ) ) {
 			return true;
 		}
 
-		$tableName = $this->db->tableName( $table );
-		$res = $this->db->query( "SELECT $field FROM $tableName LIMIT 0", __METHOD__ );
-		$flags = explode( ' ', mysql_field_flags( $res->result, 0 ) );
-
-		if ( in_array( 'binary', $flags ) ) {
+		$fieldInfo = $this->db->fieldInfo( $table, $field );
+		if ( $fieldInfo->isBinary() ) {
 			$this->output( "...$table table has correct $field encoding.\n" );
 		} else {
 			$this->applyPatch( $patchFile, false, "Fixing $field encoding on $table table" );
@@ -261,10 +271,10 @@ class MysqlUpdater extends DatabaseUpdater {
 	/**
 	 * Check whether an index contain a field
 	 *
-	 * @param string $table table name
-	 * @param string $index index name to check
-	 * @param string $field field that should be in the index
-	 * @return Boolean
+	 * @param string $table Table name
+	 * @param string $index Index name to check
+	 * @param string $field Field that should be in the index
+	 * @return bool
 	 */
 	protected function indexHasField( $table, $index, $field ) {
 		if ( !$this->doTable( $table ) ) {
@@ -276,11 +286,13 @@ class MysqlUpdater extends DatabaseUpdater {
 			foreach ( $info as $row ) {
 				if ( $row->Column_name == $field ) {
 					$this->output( "...index $index on table $table includes field $field.\n" );
+
 					return true;
 				}
 			}
 		}
 		$this->output( "...index $index on table $table has no field $field; added.\n" );
+
 		return false;
 	}
 
@@ -296,11 +308,16 @@ class MysqlUpdater extends DatabaseUpdater {
 
 		if ( $this->db->tableExists( "interwiki", __METHOD__ ) ) {
 			$this->output( "...already have interwiki table\n" );
+
 			return;
 		}
 
 		$this->applyPatch( 'patch-interwiki.sql', false, 'Creating interwiki table' );
-		$this->applyPatch( "$IP/maintenance/interwiki.sql", true, 'Adding default interwiki definitions' );
+		$this->applyPatch(
+			"$IP/maintenance/interwiki.sql",
+			true,
+			'Adding default interwiki definitions'
+		);
 	}
 
 	/**
@@ -313,6 +330,7 @@ class MysqlUpdater extends DatabaseUpdater {
 		}
 		if ( $meta->isMultipleKey() ) {
 			$this->output( "...indexes seem up to 20031107 standards.\n" );
+
 			return;
 		}
 
@@ -328,10 +346,17 @@ class MysqlUpdater extends DatabaseUpdater {
 		$info = $this->db->fieldInfo( 'imagelinks', 'il_from' );
 		if ( !$info || $info->type() !== 'string' ) {
 			$this->output( "...il_from OK\n" );
+
 			return;
 		}
 
-		if ( $this->applyPatch( 'patch-fix-il_from.sql', false, "Fixing ancient broken imagelinks table." ) ) {
+		$applied = $this->applyPatch(
+			'patch-fix-il_from.sql',
+			false,
+			'Fixing ancient broken imagelinks table.'
+		);
+
+		if ( $applied ) {
 			$this->output( "NOTE: you will have to run maintenance/refreshLinks.php after this." );
 		}
 	}
@@ -341,9 +366,15 @@ class MysqlUpdater extends DatabaseUpdater {
 	 */
 	function doWatchlistUpdate() {
 		$talk = $this->db->selectField( 'watchlist', 'count(*)', 'wl_namespace & 1', __METHOD__ );
-		$nontalk = $this->db->selectField( 'watchlist', 'count(*)', 'NOT (wl_namespace & 1)', __METHOD__ );
+		$nontalk = $this->db->selectField(
+			'watchlist',
+			'count(*)',
+			'NOT (wl_namespace & 1)',
+			__METHOD__
+		);
 		if ( $talk == $nontalk ) {
 			$this->output( "...watchlist talk page rows already present.\n" );
+
 			return;
 		}
 
@@ -361,6 +392,7 @@ class MysqlUpdater extends DatabaseUpdater {
 	function doSchemaRestructuring() {
 		if ( $this->db->tableExists( 'page', __METHOD__ ) ) {
 			$this->output( "...page table already exists.\n" );
+
 			return;
 		}
 
@@ -368,10 +400,21 @@ class MysqlUpdater extends DatabaseUpdater {
 		$this->output( wfTimestamp( TS_DB ) );
 		$this->output( "......checking for duplicate entries.\n" );
 
-		list( $cur, $old, $page, $revision, $text ) = $this->db->tableNamesN( 'cur', 'old', 'page', 'revision', 'text' );
+		list( $cur, $old, $page, $revision, $text ) = $this->db->tableNamesN(
+			'cur',
+			'old',
+			'page',
+			'revision',
+			'text'
+		);
 
-		$rows = $this->db->query( "SELECT cur_title, cur_namespace, COUNT(cur_namespace) AS c
-				FROM $cur GROUP BY cur_title, cur_namespace HAVING c>1", __METHOD__ );
+		$rows = $this->db->query( "
+			SELECT cur_title, cur_namespace, COUNT(cur_namespace) AS c
+			FROM $cur
+			GROUP BY cur_title, cur_namespace
+			HAVING c>1",
+			__METHOD__
+		);
 
 		if ( $rows->numRows() > 0 ) {
 			$this->output( wfTimestamp( TS_DB ) );
@@ -379,11 +422,16 @@ class MysqlUpdater extends DatabaseUpdater {
 			$this->output( sprintf( "<b>      %-60s %3s %5s</b>\n", 'Title', 'NS', 'Count' ) );
 			$duplicate = array();
 			foreach ( $rows as $row ) {
-				if ( ! isset( $duplicate[$row->cur_namespace] ) ) {
+				if ( !isset( $duplicate[$row->cur_namespace] ) ) {
 					$duplicate[$row->cur_namespace] = array();
 				}
+
 				$duplicate[$row->cur_namespace][] = $row->cur_title;
-				$this->output( sprintf( "      %-60s %3s %5s\n", $row->cur_title, $row->cur_namespace, $row->c ) );
+				$this->output( sprintf(
+					"      %-60s %3s %5s\n",
+					$row->cur_title, $row->cur_namespace,
+					$row->c
+				) );
 			}
 			$sql = "SELECT cur_title, cur_namespace, cur_id, cur_timestamp FROM $cur WHERE ";
 			$firstCond = true;
@@ -468,7 +516,10 @@ class MysqlUpdater extends DatabaseUpdater {
 
 		$this->output( wfTimestamp( TS_DB ) );
 		$this->output( "......Locking tables.\n" );
-		$this->db->query( "LOCK TABLES $page WRITE, $revision WRITE, $old WRITE, $cur WRITE", __METHOD__ );
+		$this->db->query(
+			"LOCK TABLES $page WRITE, $revision WRITE, $old WRITE, $cur WRITE",
+			__METHOD__
+		);
 
 		$maxold = intval( $this->db->selectField( 'old', 'max(old_id)', '', __METHOD__ ) );
 		$this->output( wfTimestamp( TS_DB ) );
@@ -489,27 +540,38 @@ class MysqlUpdater extends DatabaseUpdater {
 			$cur_text = 'cur_text';
 			$cur_flags = "''";
 		}
-		$this->db->query( "INSERT INTO $old (old_namespace, old_title, old_text, old_comment, old_user, old_user_text,
-					old_timestamp, old_minor_edit, old_flags)
-			SELECT cur_namespace, cur_title, $cur_text, cur_comment, cur_user, cur_user_text, cur_timestamp, cur_minor_edit, $cur_flags
-			FROM $cur", __METHOD__ );
+		$this->db->query(
+			"INSERT INTO $old (old_namespace, old_title, old_text, old_comment, old_user,
+				old_user_text, old_timestamp, old_minor_edit, old_flags)
+			SELECT cur_namespace, cur_title, $cur_text, cur_comment, cur_user, cur_user_text,
+				cur_timestamp, cur_minor_edit, $cur_flags
+			FROM $cur",
+			__METHOD__
+		);
 
 		$this->output( wfTimestamp( TS_DB ) );
 		$this->output( "......Setting up revision table.\n" );
-		$this->db->query( "INSERT INTO $revision (rev_id, rev_page, rev_comment, rev_user, rev_user_text, rev_timestamp,
-				rev_minor_edit)
+		$this->db->query(
+			"INSERT INTO $revision (rev_id, rev_page, rev_comment, rev_user,
+				rev_user_text, rev_timestamp, rev_minor_edit)
 			SELECT old_id, cur_id, old_comment, old_user, old_user_text,
 				old_timestamp, old_minor_edit
-			FROM $old,$cur WHERE old_namespace=cur_namespace AND old_title=cur_title", __METHOD__ );
+			FROM $old,$cur WHERE old_namespace=cur_namespace AND old_title=cur_title",
+			__METHOD__
+		);
 
 		$this->output( wfTimestamp( TS_DB ) );
 		$this->output( "......Setting up page table.\n" );
-		$this->db->query( "INSERT INTO $page (page_id, page_namespace, page_title, page_restrictions, page_counter,
-			page_is_redirect, page_is_new, page_random, page_touched, page_latest, page_len)
-			SELECT cur_id, cur_namespace, cur_title, cur_restrictions, cur_counter, cur_is_redirect, cur_is_new,
-				cur_random, cur_touched, rev_id, LENGTH(cur_text)
+		$this->db->query(
+			"INSERT INTO $page (page_id, page_namespace, page_title,
+				page_restrictions, page_counter, page_is_redirect, page_is_new, page_random,
+				page_touched, page_latest, page_len)
+			SELECT cur_id, cur_namespace, cur_title, cur_restrictions, cur_counter,
+				cur_is_redirect, cur_is_new, cur_random, cur_touched, rev_id, LENGTH(cur_text)
 			FROM $cur,$revision
-			WHERE cur_id=rev_page AND rev_timestamp=cur_timestamp AND rev_id > {$maxold}", __METHOD__ );
+			WHERE cur_id=rev_page AND rev_timestamp=cur_timestamp AND rev_id > {$maxold}",
+			__METHOD__
+		);
 
 		$this->output( wfTimestamp( TS_DB ) );
 		$this->output( "......Unlocking tables.\n" );
@@ -552,10 +614,15 @@ class MysqlUpdater extends DatabaseUpdater {
 	protected function doPagelinksUpdate() {
 		if ( $this->db->tableExists( 'pagelinks', __METHOD__ ) ) {
 			$this->output( "...already have pagelinks table.\n" );
+
 			return;
 		}
 
-		$this->applyPatch( 'patch-pagelinks.sql', false, "Converting links and brokenlinks tables to pagelinks" );
+		$this->applyPatch(
+			'patch-pagelinks.sql',
+			false,
+			'Converting links and brokenlinks tables to pagelinks'
+		);
 
 		global $wgContLang;
 		foreach ( MWNamespace::getCanonicalNamespaces() as $ns => $name ) {
@@ -589,6 +656,7 @@ class MysqlUpdater extends DatabaseUpdater {
 		$duper = new UserDupes( $this->db, array( $this, 'output' ) );
 		if ( $duper->hasUniqueIndex() ) {
 			$this->output( "...already have unique user_name index.\n" );
+
 			return;
 		}
 
@@ -608,19 +676,22 @@ class MysqlUpdater extends DatabaseUpdater {
 			if ( $info->type() == 'int' ) {
 				$oldug = $this->db->tableName( 'user_groups' );
 				$newug = $this->db->tableName( 'user_groups_bogus' );
-				$this->output( "user_groups table exists but is in bogus intermediate format. Renaming to $newug... " );
+				$this->output( "user_groups table exists but is in bogus intermediate " .
+					"format. Renaming to $newug... " );
 				$this->db->query( "ALTER TABLE $oldug RENAME TO $newug", __METHOD__ );
 				$this->output( "done.\n" );
 
 				$this->applyPatch( 'patch-user_groups.sql', false, "Re-adding fresh user_groups table" );
 
 				$this->output( "***\n" );
-				$this->output( "*** WARNING: You will need to manually fix up user permissions in the user_groups\n" );
+				$this->output( "*** WARNING: You will need to manually fix up user " .
+					"permissions in the user_groups\n" );
 				$this->output( "*** table. Old 1.5 alpha versions did some pretty funky stuff...\n" );
 				$this->output( "***\n" );
 			} else {
 				$this->output( "...user_groups table exists and is in current format.\n" );
 			}
+
 			return;
 		}
 
@@ -628,11 +699,16 @@ class MysqlUpdater extends DatabaseUpdater {
 
 		if ( !$this->db->tableExists( 'user_rights', __METHOD__ ) ) {
 			if ( $this->db->fieldExists( 'user', 'user_rights', __METHOD__ ) ) {
-				$this->db->applyPatch( 'patch-user_rights.sql', false, "Upgrading from a 1.3 or older database? Breaking out user_rights for conversion" );
+				$this->db->applyPatch(
+					'patch-user_rights.sql',
+					false,
+					'Upgrading from a 1.3 or older database? Breaking out user_rights for conversion'
+				);
 			} else {
 				$this->output( "*** WARNING: couldn't locate user_rights table or field for upgrade.\n" );
 				$this->output( "*** You may need to manually configure some sysops by manipulating\n" );
 				$this->output( "*** the user_groups table.\n" );
+
 				return;
 			}
 		}
@@ -670,10 +746,15 @@ class MysqlUpdater extends DatabaseUpdater {
 		}
 		if ( $info->isNullable() ) {
 			$this->output( "...wl_notificationtimestamp is already nullable.\n" );
+
 			return;
 		}
 
-		$this->applyPatch( 'patch-watchlist-null.sql', false, "Making wl_notificationtimestamp nullable" );
+		$this->applyPatch(
+			'patch-watchlist-null.sql',
+			false,
+			'Making wl_notificationtimestamp nullable'
+		);
 	}
 
 	/**
@@ -696,6 +777,7 @@ class MysqlUpdater extends DatabaseUpdater {
 	protected function doTemplatelinksUpdate() {
 		if ( $this->db->tableExists( 'templatelinks', __METHOD__ ) ) {
 			$this->output( "...templatelinks table already exists\n" );
+
 			return;
 		}
 
@@ -719,7 +801,6 @@ class MysqlUpdater extends DatabaseUpdater {
 						'tl_title' => $row->pl_title,
 					), __METHOD__
 				);
-
 			}
 		} else {
 			// Fast update
@@ -733,14 +814,15 @@ class MysqlUpdater extends DatabaseUpdater {
 				), __METHOD__
 			);
 		}
-		$this->output( "Done. Please run maintenance/refreshLinks.php for a more thorough templatelinks update.\n" );
+		$this->output( "Done. Please run maintenance/refreshLinks.php for a more " .
+			"thorough templatelinks update.\n" );
 	}
 
 	protected function doBacklinkingIndicesUpdate() {
 		if ( !$this->indexHasField( 'pagelinks', 'pl_namespace', 'pl_from' ) ||
 			!$this->indexHasField( 'templatelinks', 'tl_namespace', 'tl_from' ) ||
-			!$this->indexHasField( 'imagelinks', 'il_to', 'il_from' ) )
-		{
+			!$this->indexHasField( 'imagelinks', 'il_to', 'il_from' )
+		) {
 			$this->applyPatch( 'patch-backlinkindexes.sql', false, "Updating backlinking indices" );
 		}
 	}
@@ -753,11 +835,20 @@ class MysqlUpdater extends DatabaseUpdater {
 	protected function doRestrictionsUpdate() {
 		if ( $this->db->tableExists( 'page_restrictions', __METHOD__ ) ) {
 			$this->output( "...page_restrictions table already exists.\n" );
+
 			return;
 		}
 
-		$this->applyPatch( 'patch-page_restrictions.sql', false, "Creating page_restrictions table (1/2)" );
-		$this->applyPatch( 'patch-page_restrictions_sortkey.sql', false, "Creating page_restrictions table (2/2)" );
+		$this->applyPatch(
+			'patch-page_restrictions.sql',
+			false,
+			'Creating page_restrictions table (1/2)'
+		);
+		$this->applyPatch(
+			'patch-page_restrictions_sortkey.sql',
+			false,
+			'Creating page_restrictions table (2/2)'
+		);
 		$this->output( "done.\n" );
 
 		$this->output( "Migrating old restrictions to new table...\n" );
@@ -774,6 +865,7 @@ class MysqlUpdater extends DatabaseUpdater {
 	protected function doCategoryPopulation() {
 		if ( $this->updateRowExists( 'populate category' ) ) {
 			$this->output( "...category table already populated.\n" );
+
 			return;
 		}
 
@@ -807,7 +899,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			return true;
 		}
 
-		if ( $wgProfileToDatabase === true && ! $this->db->tableExists( 'profiling', __METHOD__ ) ) {
+		if ( $wgProfileToDatabase === true && !$this->db->tableExists( 'profiling', __METHOD__ ) ) {
 			$this->applyPatch( 'patch-profiling.sql', false, 'Add profiling table' );
 		}
 	}
@@ -821,9 +913,15 @@ class MysqlUpdater extends DatabaseUpdater {
 			return true;
 		} elseif ( $this->db->fieldExists( 'profiling', 'pf_memory', __METHOD__ ) ) {
 			$this->output( "...profiling table has pf_memory field.\n" );
+
 			return true;
 		}
-		return $this->applyPatch( 'patch-profiling-memory.sql', false, "Adding pf_memory field to table profiling" );
+
+		return $this->applyPatch(
+			'patch-profiling-memory.sql',
+			false,
+			'Adding pf_memory field to table profiling'
+		);
 	}
 
 	protected function doFilearchiveIndicesUpdate() {
@@ -831,6 +929,7 @@ class MysqlUpdater extends DatabaseUpdater {
 		if ( !$info ) {
 			$this->applyPatch( 'patch-filearchive-user-index.sql', false, "Updating filearchive indices" );
 		}
+
 		return true;
 	}
 
@@ -838,32 +937,49 @@ class MysqlUpdater extends DatabaseUpdater {
 		$info = $this->db->indexInfo( 'pagelinks', 'pl_namespace' );
 		if ( is_array( $info ) && !$info[0]->Non_unique ) {
 			$this->output( "...pl_namespace, tl_namespace, il_to indices are already UNIQUE.\n" );
+
 			return true;
 		}
 		if ( $this->skipSchema ) {
-			$this->output( "...skipping schema change (making pl_namespace, tl_namespace and il_to indices UNIQUE).\n" );
+			$this->output( "...skipping schema change (making pl_namespace, tl_namespace " .
+				"and il_to indices UNIQUE).\n" );
+
 			return false;
 		}
 
-		return $this->applyPatch( 'patch-pl-tl-il-unique.sql', false, "Making pl_namespace, tl_namespace and il_to indices UNIQUE" );
+		return $this->applyPatch(
+			'patch-pl-tl-il-unique.sql',
+			false,
+			'Making pl_namespace, tl_namespace and il_to indices UNIQUE'
+		);
 	}
 
 	protected function doUpdateMimeMinorField() {
 		if ( $this->updateRowExists( 'mime_minor_length' ) ) {
 			$this->output( "...*_mime_minor fields are already long enough.\n" );
+
 			return;
 		}
 
-		$this->applyPatch( 'patch-mime_minor_length.sql', false, "Altering all *_mime_minor fields to 100 bytes in size" );
+		$this->applyPatch(
+			'patch-mime_minor_length.sql',
+			false,
+			'Altering all *_mime_minor fields to 100 bytes in size'
+		);
 	}
 
 	protected function doClFieldsUpdate() {
 		if ( $this->updateRowExists( 'cl_fields_update' ) ) {
 			$this->output( "...categorylinks up-to-date.\n" );
+
 			return;
 		}
 
-		$this->applyPatch( 'patch-categorylinks-better-collation2.sql', false, 'Updating categorylinks (again)' );
+		$this->applyPatch(
+			'patch-categorylinks-better-collation2.sql',
+			false,
+			'Updating categorylinks (again)'
+		);
 	}
 
 	protected function doLangLinksLengthUpdate() {
@@ -872,7 +988,11 @@ class MysqlUpdater extends DatabaseUpdater {
 		$row = $this->db->fetchObject( $res );
 
 		if ( $row && $row->Type == "varbinary(10)" ) {
-			$this->applyPatch( 'patch-langlinks-ll_lang-20.sql', false, 'Updating length of ll_lang in langlinks' );
+			$this->applyPatch(
+				'patch-langlinks-ll_lang-20.sql',
+				false,
+				'Updating length of ll_lang in langlinks'
+			);
 		} else {
 			$this->output( "...ll_lang is up-to-date.\n" );
 		}
@@ -889,23 +1009,34 @@ class MysqlUpdater extends DatabaseUpdater {
 		}
 		if ( $info->isNullable() ) {
 			$this->output( "...user_last_timestamp is already nullable.\n" );
+
 			return;
 		}
 
-		$this->applyPatch( 'patch-user-newtalk-timestamp-null.sql', false, "Making user_last_timestamp nullable" );
+		$this->applyPatch(
+			'patch-user-newtalk-timestamp-null.sql',
+			false,
+			'Making user_last_timestamp nullable'
+		);
 	}
 
 	protected function doIwlinksIndexNonUnique() {
 		$info = $this->db->indexInfo( 'iwlinks', 'iwl_prefix_title_from' );
 		if ( is_array( $info ) && $info[0]->Non_unique ) {
 			$this->output( "...iwl_prefix_title_from index is already non-UNIQUE.\n" );
+
 			return true;
 		}
 		if ( $this->skipSchema ) {
 			$this->output( "...skipping schema change (making iwl_prefix_title_from index non-UNIQUE).\n" );
+
 			return false;
 		}
 
-		return $this->applyPatch( 'patch-iwl_prefix_title_from-non-unique.sql', false, "Making iwl_prefix_title_from index non-UNIQUE" );
+		return $this->applyPatch(
+			'patch-iwl_prefix_title_from-non-unique.sql',
+			false,
+			'Making iwl_prefix_title_from index non-UNIQUE'
+		);
 	}
 }

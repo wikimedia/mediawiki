@@ -6,6 +6,7 @@ require_once __DIR__ . "/../../../maintenance/backupPrefetch.inc";
  * Tests for BaseDump
  *
  * @group Dump
+ * @covers BaseDump
  */
 class BaseDumpTest extends MediaWikiTestCase {
 

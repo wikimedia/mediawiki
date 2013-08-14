@@ -73,7 +73,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 		$this->installErrorHandler();
 		try {
 			$this->mConn = $this->mysqlConnect( $realServer );
-		} catch (Exception $ex) {
+		} catch ( Exception $ex ) {
 			wfProfileOut( "dbconnect-$server" );
 			wfProfileOut( __METHOD__ );
 			throw $ex;
@@ -469,7 +469,9 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	 * @return string
 	 */
 	public function addIdentifierQuotes( $s ) {
-		return "`" . $this->strencode( $s ) . "`";
+		// Characters in the range \u0001-\uFFFF are valid in a quoted identifier
+		// Remove NUL bytes and escape backticks by doubling
+		return '`' . str_replace( array( "\0", '`' ), array( '', '``' ), $s )  . '`';
 	}
 
 	/**
@@ -994,6 +996,55 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 		return $status;
 	}
 
+	/**
+	 * Lists VIEWs in the database
+	 *
+	 * @param string $prefix   Only show VIEWs with this prefix, eg.
+	 * unit_test_, or $wgDBprefix. Default: null, would return all views.
+	 * @param string $fname    Name of calling function
+	 * @return array
+	 * @since 1.22
+	 */
+	public function listViews( $prefix = null, $fname = __METHOD__ ) {
+
+		if ( !isset( $this->allViews ) ) {
+
+			// The name of the column containing the name of the VIEW
+			$propertyName = 'Tables_in_' . $this->mDBname;
+
+			// Query for the VIEWS
+			$result = $this->query( 'SHOW FULL TABLES WHERE TABLE_TYPE = "VIEW"' );
+			$this->allViews = array();
+			while ( ($row = $this->fetchRow($result)) !== false ) {
+				array_push( $this->allViews, $row[$propertyName] );
+			}
+		}
+
+		if ( is_null($prefix) || $prefix === '' ) {
+			return $this->allViews;
+		}
+
+		$filteredViews = array();
+		foreach ( $this->allViews as $viewName ) {
+			// Does the name of this VIEW start with the table-prefix?
+			if ( strpos( $viewName, $prefix ) === 0 ) {
+				array_push( $filteredViews, $viewName );
+			}
+		}
+		return $filteredViews;
+	}
+
+	/**
+	 * Differentiates between a TABLE and a VIEW.
+	 *
+	 * @param $name string: Name of the TABLE/VIEW to test
+	 * @return bool
+	 * @since 1.22
+	 */
+	public function isView( $name, $prefix = null ) {
+		return in_array( $name, $this->listViews( $prefix ) );
+	}
+
 }
 
 
@@ -1004,7 +1055,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
  */
 class MySQLField implements Field {
 	private $name, $tablename, $default, $max_length, $nullable,
-		$is_pk, $is_unique, $is_multiple, $is_key, $type;
+		$is_pk, $is_unique, $is_multiple, $is_key, $type, $binary;
 
 	function __construct( $info ) {
 		$this->name = $info->name;
@@ -1017,6 +1068,7 @@ class MySQLField implements Field {
 		$this->is_multiple = $info->multiple_key;
 		$this->is_key = ( $this->is_pk || $this->is_unique || $this->is_multiple );
 		$this->type = $info->type;
+		$this->binary = isset( $info->binary ) ? $info->binary : false;
 	}
 
 	/**
@@ -1063,6 +1115,10 @@ class MySQLField implements Field {
 	 */
 	function isMultipleKey() {
 		return $this->is_multiple;
+	}
+
+	function isBinary() {
+		return $this->binary;
 	}
 }
 

@@ -405,8 +405,7 @@ h1, h2, h3, h4, h5, h6 {
 	text-decoration: none;
 	color: white;
 }
-#mw_content a.external,
-#mw_content a.external[href ^="gopher://"] {
+#mw_content a.external {
 	/* @embed */
 	background: url(external.png) center right no-repeat;
 	padding-right: 13px;
@@ -546,8 +545,12 @@ img.thumbborder {
 	border: solid 1px #bbbbbb;
 	display: -moz-inline-block;
 	display: inline-block;
+	display: table;
+
+	/* IE7 and earliers */
 	zoom: 1;
 	*display: inline;
+
 	padding: 7px;
 }
 

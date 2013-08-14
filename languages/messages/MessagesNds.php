@@ -444,7 +444,7 @@ $1",
 'pool-queuefull' => 'Pooltöövslang is vull',
 'pool-errorunknown' => 'Unbekannten Fehler',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Över {{SITENAME}}',
 'aboutpage' => 'Project:Över_{{SITENAME}}',
 'copyright' => 'Inholt is verfögbor ünner de $1.',
@@ -526,17 +526,6 @@ En List vun de Spezialsieden gifft dat ünner [[Special:SpecialPages|{{int:speci
 # General errors
 'error' => 'Fehler',
 'databaseerror' => 'Fehler in de Datenbank',
-'dberrortext' => 'Dor weer en Syntaxfehler in de Datenbankaffraag.
-De Grund kann en Programmeerfehler ween
-De letzte Datenbankaffraag weer:
-
-<blockquote><tt>$1</tt></blockquote>
-
-ut de Funkschoon <tt>$2</tt>.
-MySQL mell den Fehler <tt>$3: $4</tt>.',
-'dberrortextcl' => 'Dor weer en Syntaxfehler in de Datenbankaffraag.
-De letzte Datenbankaffraag weer: $1 ut de Funkschoon <tt>$2</tt>.
-MySQL mell den Fehler: <tt>$3: $4</tt>.',
 'laggedslavemode' => 'Wohrschau: Disse Siet is villicht nich mehr op den ne’esten Stand.',
 'readonly' => 'Datenbank is sparrt',
 'enterlockreason' => 'Giff den Grund an, worüm de Datenbank sparrt warrn schall un taxeer, wo lang de Sparr duert',
@@ -585,7 +574,6 @@ Query: $2',
 'editinginterface' => "'''Wohrschau:''' Disse Siet bargt Text, de vun de MediaWiki-Software för ehr Böverflach bruukt warrt.
 Wat du hier ännerst, warkt sik op dat kumplette Wiki ut.
 Wenn du Text översetten wist, de betherto noch gornich översett is, denn maak dat opbest op [//translatewiki.net/wiki/Main_Page?setlang=nds translatewiki.net], dat Översett-Projekt vun MediaWiki.",
-'sqlhidden' => '(SQL-Affraag versteken)',
 'cascadeprotected' => 'Disse Siet is sperrt un kann nich ännert warrn. Dat kummt dorvun dat se in disse {{PLURAL:$1|Siet|Sieden}} inbunnen is, de över Kaskadensperr schuult {{PLURAL:$1|is|sünd}}:
 $2',
 'namespaceprotected' => "Du hest keen Rechten, Sieden in’n Naamruum '''$1''' to ännern.",
@@ -695,7 +683,7 @@ Tööv en Stoot, ehrdat du dat noch wedder versöchst.',
 'newpassword' => 'Nee Passwoort',
 'retypenew' => 'Nee Passwoort (nochmal)',
 'resetpass_submit' => 'Passwoort instellen un inloggen',
-'resetpass_success' => 'Dien Passwoort is mit Spood ännert worrn. Warrst nu anmellt …',
+'changepassword-success' => 'Dien Passwoort is mit Spood ännert worrn. Warrst nu anmellt …',
 'resetpass_forbidden' => 'Passwöör köönt nich ännert warrn.',
 'resetpass-no-info' => 'Du musst anmellt wesen, dat du disse Sied direkt opropen kannst.',
 'resetpass-submit-loggedin' => 'Passwoord ännern',
@@ -1645,10 +1633,6 @@ Denk dor an, natokieken, wat nich noch annere Sieden na de Vörlagen wiest, ehrd
 'statistics-users-active-desc' => 'Brukers, de {{PLURAL:$1|in de vergahn 24 Stünnen|in de vergahn $1 Daag}} wat daan hebbt',
 'statistics-mostpopular' => 'opmehrst ankekene Sieden',
 
-'disambiguations' => 'Mehrdüdige Begrepen',
-'disambiguationspage' => 'Template:Mehrdüdig_Begreep',
-'disambiguations-text' => 'Disse Sieden wist na Sieden för mehrdüdige Begrepen. Se schöölt lever op de Sieden wiesen, de egentlich meent sünd.<br />Ene Siet warrt as Siet för en mehrdüdigen Begreep ansehn, wenn [[MediaWiki:Disambiguationspage]] na ehr wiest.<br />Lenken ut annere Naamrüüm sünd nich mit in de List.',
-
 'pageswithprop-submit' => 'Los',
 
 'doubleredirects' => 'Dubbelte Wiederleiden',
@@ -2210,12 +2194,9 @@ Kiek [[Special:BlockList|IP-Blocklist]] för en List vun den blockten Brukern.',
 'ipb_cant_unblock' => 'Fehler: Block-ID $1 nich funnen. De Sperr is villicht al wedder ophoven.',
 'ipb_blocked_as_range' => 'Fehler: De IP-Adress $1 is as Deel vun de IP-Reeg $2 indirekt sperrt worrn. De Sperr trüchnehmen för $1 alleen geiht nich.',
 'ip_range_invalid' => 'Ungüllig IP-Addressrebeet.',
-'blockme' => 'Sperr mi',
 'proxyblocker' => 'Proxyblocker',
-'proxyblocker-disabled' => 'Disse Funkschoon is afstellt.',
 'proxyblockreason' => 'Dien IP-Adress is blockt, vun wegen dat se en apenen Proxy is.
 Kontakteer dien Provider oder diene Systemtechnik un informeer se över dat möögliche Sekerheitsproblem.',
-'proxyblocksuccess' => 'Trech.',
 'sorbsreason' => 'Diene IP-Adress steiht in de DNSBL vun {{SITENAME}} as apen PROXY.',
 'sorbs_create_account_reason' => 'Diene IP-Adress steiht in de DNSBL vun {{SITENAME}} as apen PROXY. Du kannst keen Brukerkonto nee opstellen.',
 'cant-block-while-blocked' => 'Du kannst kene annern Brukers sperren, wenn du sülvst sperrt büst.',
@@ -2496,6 +2477,7 @@ All Transwiki-Import-Akschonen staht later ok in dat [[Special:Log/import|Import
 'spambot_username' => 'MediaWiki Spam-Oprümen',
 'spam_reverting' => 'Trüchdreiht na de letzte Version ahn Lenken na $1.',
 'spam_blanking' => 'All Versionen harrn Lenken na $1, rein maakt.',
+'simpleantispam-label' => "Antispam-Kuntrull. Hier '''nix''' indragen!",
 
 # Info page
 'pageinfo-title' => 'Informatschoon för "$1"',

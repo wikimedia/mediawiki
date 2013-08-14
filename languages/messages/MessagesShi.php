@@ -236,7 +236,7 @@ $1',
 'pool-queuefull' => 'Umuɣ n twuri iẓun (iεmr)',
 'pool-errorunknown' => 'Anzri (error) ur ittuyssan.',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'F {{SITENAME}}',
 'aboutpage' => "Project:f' mayad",
 'copyright' => 'Mayllan gis illa ɣ ddu $1.',
@@ -321,12 +321,6 @@ Tifilit n tasnayin gaddanin ratn taft ɣid [[Special:SpecialPages|{{int:specialp
 # General errors
 'error' => 'Laffut',
 'databaseerror' => 'Laffut ɣ database',
-'dberrortext' => 'Tlla laffut ɣikli s tskert database.
-Ulla mayad kis kra ntmukrist.
-May igguran ittu isigal ɣ mayad igat.
-<blockquote><tt>$1</tt></blockquote>
-S ussiglad "<tt>$2</tt>".
-laffut d yurrin ɣ database "<tt>$3: $4</tt>".',
 'laggedslavemode' => 'Ḥan tasnayad ur gis graygan ambddel amaynu.',
 'readonly' => 'Tqqn tabase',
 'missing-article' => 'lqaa\'ida n lbayanat ortofa nass ad gh tawriqt  liss ikhssa asti taf limism "$1" $2.
@@ -411,7 +405,7 @@ Ussaɣ n isqdacn ḥiln hlli.
 'newpassword' => 'Awal iḥḍan amaynu:',
 'retypenew' => 'Als i tirra n w-awal iḥḍan:',
 'resetpass_submit' => 'Sbadl awal n uzri tkcmt',
-'resetpass_success' => 'Awal n uzri nk ibudl mzyan! rad nit tilit ɣ ifalan',
+'changepassword-success' => 'Awal n uzri nk ibudl mzyan! rad nit tilit ɣ ifalan',
 'resetpass_forbidden' => 'Iwaliwn n uzri ur ufan ad badln.',
 'resetpass-no-info' => 'illa fllak ad zwar tilit ɣ ifalan bac ad tkcmt s tasna yad',
 'resetpass-submit-loggedin' => 'Bdl awal n ukccum (tangalt)',
@@ -830,8 +824,6 @@ Mel imbddeln z tisniwin li ittuyzdayni bla tasna li trit.',
 
 # Statistics
 'statistics' => 'Tisnaddanin',
-
-'disambiguationspage' => 'Template:Homonymie',
 
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|byt|byt}}',

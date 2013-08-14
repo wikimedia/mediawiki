@@ -354,7 +354,7 @@ $1',
 'pool-queuefull' => 'Antrian panuah',
 'pool-errorunknown' => 'Kasalahan indak jaleh',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Tantang {{SITENAME}}',
 'aboutpage' => 'Project:Tantang_{{SITENAME}}',
 'copyright' => 'Isi tasadio dalam $1',
@@ -441,17 +441,6 @@ Daftar laman istimewa nan sah dapek dicaliak di [[Special:SpecialPages|{{int:spe
 # General errors
 'error' => 'Kasalahan',
 'databaseerror' => 'Kasalahan basis data',
-'dberrortext' => 'Kasalahan sintaks pado pamintaan basis data lah tajadi.
-Iko mungkin manandokan adonyo bug pado parangkek lunak.
-Pamintaan basis data nan tarakhir adalah:
-<blockquote><code>$1</code></blockquote>
-dari dalam fungsi "<code>$2</code>".
-Basis data manghasilkan kasalahan "<samp>$3: $4</samp>".',
-'dberrortextcl' => 'Ado kasalahan sintaks pado pamintaan basis data.
-Pamintaan basis data nan terakhir adalah:
-"$1"
-dari dalam fungsi "$2".
-Basis data manghasilkan kasalahan "$3: $4".',
 'laggedslavemode' => 'Paringatan: Laman mungkin indak barisi parubahan tabaru.',
 'readonly' => 'Basis data dikunci',
 'enterlockreason' => 'Masuakkan alasan panguncian, tamasuak pakiraan bilo kunci akan dibuka',
@@ -501,7 +490,6 @@ Untuak manambah atau maubah tajamahan di kasado wiki, harap gunoan [//translatew
 'editinginterface' => "'''Paringatan:''' Sanak manyuntiang laman nan digunoan untuak manyadiokan teks antarmuko untuak parangkaik lunak.
 Parubahan teks ko akan mampangaruhi tampilan pado antarmuko pangguno untuak pangguno lain.
 Untuak tajamahan, harap gunoan [//translatewiki.net/wiki/Main_Page?setlang=min translatewiki.net], proyek palokalan MediaWiki.",
-'sqlhidden' => '(Pamintaan SQL disuruakan)',
 'cascadeprotected' => 'Laman iko alah dilindungi dari panyuntiangan karano disartokan di {{PLURAL:$1|laman}} barikuik nan alah dilindungi jo opsi "runtun":
 $2',
 'namespaceprotected' => "Sanak indak mampunyoi hak akses untuak manyuntiang laman di ruang namo '''$1'''.",
@@ -543,7 +531,6 @@ Parhatian bahawa bara laman mungkin masih taruih manunjukkan bahawa Sanak masih 
 'remembermypassword' => 'Ingek log masuak denai di paramban ko (salamo $1 {{PLURAL:$1|hari}})',
 'userlogin-remembermypassword' => 'Biakan ambo tetap masuak',
 'userlogin-signwithsecure' => 'Gunoan server aman',
-'securelogin-stick-https' => 'Tetap tahubuang ka HTTPS sasudah masuk log',
 'yourdomainname' => 'Domain Sanak:',
 'password-change-forbidden' => 'Sanak indak dapek maubah kato sandi di wiki ko.',
 'externaldberror' => 'Alah tajadi kasalahan otentikasi basis data eksternal atau Sanak indak diizinan malakuan pabaruan tahadok akun eksternal Sanak.',
@@ -663,7 +650,7 @@ Tunggulah sabanta sabalun mancubo baliak.',
 'newpassword' => 'Kato sandi baharu:',
 'retypenew' => 'Ketik ulang kato sandi baharu:',
 'resetpass_submit' => 'Atua kato sandi dan masuak log',
-'resetpass_success' => 'Kato sandi Sanak alah berhasil dituka!
+'changepassword-success' => 'Kato sandi Sanak alah berhasil dituka!
 Kini mamproses masuak log Sanak...',
 'resetpass_forbidden' => 'Kato sandi indak dapek dituka',
 'resetpass-no-info' => 'Sanak harus masuak log untuak mangakses laman iko sacara langsuang.',
@@ -1603,12 +1590,6 @@ Pariso dulu "pautan baliak" ka templat tasabuik sabalun manghapuihnyo.',
 'statistics-users-active-desc' => 'Pangguno nan aktip dalam {{PLURAL:$1|$1 ari}} tarakhia.',
 'statistics-mostpopular' => 'Laman nan paliang banyak ditampilkan',
 
-'disambiguations' => 'Laman nan tahubuang ka laman disambiguasi',
-'disambiguationspage' => 'Template:Disambig',
-'disambiguations-text' => "Laman-laman barikuik punyo pautan ka '''laman disambiguasi'''.
-Laman tasabuik saharuihnyo bapauik ka topik-topik nan sasuai.<br />
-Laman nan dianggap sabagai laman disambiguasi jikok laman tasabuik manggunoan templat nan tahubuang ka [[MediaWiki:Disambiguationspage]].",
-
 'pageswithprop' => 'Laman jo laman properti',
 'pageswithprop-legend' => 'Laman jo laman properti',
 'pageswithprop-text' => 'Laman ko barisi daftar laman nan manggunoan properti laman tatantu.',
@@ -2077,9 +2058,7 @@ Caliak [[Special:BlockList|daftar sakek]] untuak kasado pangguno nan kini kanai 
 'ipb_already_blocked' => '"$1" alah disakek',
 'ipb-needreblock' => '$1 alah tasakek. Apo nio diubah pangaturannyo?',
 'ipb-otherblocks-header' => '{{PLURAL:$1|Sakek}} lain',
-'blockme' => 'Sakek denai',
 'proxyblocker' => 'Sakek proksi',
-'proxyblocker-disabled' => 'Fungsi ko dimatian',
 
 # Developer tools
 'lockdb' => 'Kunci basis data',
@@ -2274,6 +2253,8 @@ Sanak hanyo buliah mancaliak sumbernyo sajo',
 # Spam protection
 'spam_blanking' => 'Sado revisi nan ado pautan ka $1, kosong',
 'spam_deleting' => 'Sado revisi nan ado pautan ka $1, dihapuih',
+'simpleantispam-label' => "Pamarisoan anti-spam.
+Masukan ko '''DILARANG'''!",
 
 # Info page
 'pageinfo-title' => 'Informasi untuak "$1"',
@@ -2628,8 +2609,7 @@ Sanak mustilah alah manarimo [{{SERVER}}{{SCRIPTPATH}}/COPYING salinan Lisensi P
 
 # Database error messages
 'dberr-header' => 'Wiki ko bamasalah',
-'dberr-problems' => 'Maaf!
-Situs ko mangalami masalah teknis.',
+'dberr-problems' => 'Maaf! Situs ko mangalami masalah teknis.',
 
 # HTML forms
 'htmlform-required' => 'Nilai ko diparaluan',

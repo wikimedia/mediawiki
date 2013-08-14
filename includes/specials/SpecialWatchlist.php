@@ -100,7 +100,7 @@ class SpecialWatchlist extends SpecialPage {
 
 		// @todo use FormOptions!
 		$defaults = array(
-		/* float */ 'days' => floatval( $user->getOption( 'watchlistdays' ) ), /* 3.0 or 0.5, watch further below */
+		/* float */ 'days' => floatval( $user->getOption( 'watchlistdays' ) ),
 		/* bool  */ 'hideMinor' => (int)$user->getBoolOption( 'watchlisthideminor' ),
 		/* bool  */ 'hideBots' => (int)$user->getBoolOption( 'watchlisthidebots' ),
 		/* bool  */ 'hideAnons' => (int)$user->getBoolOption( 'watchlisthideanons' ),
@@ -121,7 +121,7 @@ class SpecialWatchlist extends SpecialPage {
 		# Extract variables from the request, falling back to user preferences or
 		# other default values if these don't exist
 		$values = array();
-		$values['days'] = $request->getVal( 'days', $defaults['days'] );
+		$values['days'] = floatval( $request->getVal( 'days', $defaults['days'] ) );
 		$values['hideMinor'] = (int)$request->getBool( 'hideMinor', $defaults['hideMinor'] );
 		$values['hideBots'] = (int)$request->getBool( 'hideBots', $defaults['hideBots'] );
 		$values['hideAnons'] = (int)$request->getBool( 'hideAnons', $defaults['hideAnons'] );
@@ -158,18 +158,6 @@ class SpecialWatchlist extends SpecialPage {
 		$values['invert'] = $invert;
 		$values['associated'] = $associated;
 
-		if ( is_null( $values['days'] ) || !is_numeric( $values['days'] ) ) {
-			$big = 1000; /* The magical big */
-			if ( $nitems > $big ) {
-				# Set default cutoff shorter
-				$values['days'] = $defaults['days'] = ( 12.0 / 24.0 ); # 12 hours...
-			} else {
-				$values['days'] = $defaults['days']; # default cutoff for shortlisters
-			}
-		} else {
-			$values['days'] = floatval( $values['days'] );
-		}
-
 		// Dump everything here
 		$nondefaults = array();
 		foreach ( $defaults as $name => $defValue ) {
@@ -190,14 +178,6 @@ class SpecialWatchlist extends SpecialPage {
 		if ( $values['days'] > 0 ) {
 			$conds[] = 'rc_timestamp > ' . $dbr->addQuotes( $dbr->timestamp( time() - intval( $values['days'] * 86400 ) ) );
 		}
-
-		# If the watchlist is relatively short, it's simplest to zip
-		# down its entirety and then sort the results.
-
-		# If it's relatively long, it may be worth our while to zip
-		# through the time-sorted page list checking for watched items.
-
-		# Up estimate of watched items by 15% to compensate for talk pages...
 
 		# Toggles
 		if ( $values['hideOwn'] ) {
@@ -228,7 +208,21 @@ class SpecialWatchlist extends SpecialPage {
 			$usePage = false;
 		} else {
 			# Top log Ids for a page are not stored
-			$conds[] = 'rc_this_oldid=page_latest OR rc_type=' . RC_LOG;
+			$nonRevisionTypes = array( RC_LOG );
+			wfRunHooks( 'SpecialWatchlistGetNonRevisionTypes', array( &$nonRevisionTypes ) );
+			if ( $nonRevisionTypes ) {
+				if ( count( $nonRevisionTypes ) === 1 ) {
+					// if only one use an equality instead of IN condition
+					$nonRevisionTypes = reset( $nonRevisionTypes );
+				}
+				$conds[] = $dbr->makeList(
+					array(
+						'rc_this_oldid=page_latest',
+						'rc_type' => $nonRevisionTypes,
+					),
+					LIST_OR
+				);
+			}
 			$limitWatchlist = 0;
 			$usePage = true;
 		}
@@ -452,7 +446,7 @@ class SpecialWatchlist extends SpecialPage {
 
 	protected function showHideLink( $options, $message, $name, $value ) {
 		$label = $this->msg( $value ? 'show' : 'hide' )->escaped();
-		$options[$name] = 1 - (int) $value;
+		$options[$name] = 1 - (int)$value;
 
 		return $this->msg( $message )->rawParams( Linker::linkKnown( $this->getTitle(), $label, array(), $options ) )->escaped();
 	}

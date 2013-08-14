@@ -176,7 +176,7 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 	public function getDescription() {
 		return array(
 			'Get a set of random pages',
-			'NOTE: Pages are listed in a fixed sequence, only the starting point is random. This means that if, for example, "Main Page" is the first ',
+			'NOTE: Pages are listed in a fixed sequence, only the starting point is random. This means that if, for example, "Main Page" is the first',
 			'      random page on your list, "List of fictional monkeys" will *always* be second, "List of people on stamps of Vanuatu" third, etc',
 			'NOTE: If the number of pages in the namespace is lower than rnlimit, you will get fewer pages. You will not get the same page twice'
 		);

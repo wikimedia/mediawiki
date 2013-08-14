@@ -16,20 +16,27 @@
 }
 
 /**
- * We want to display the ToC element with intrinsic width. There are a few good
- * old ways of making it this way, including floating it or making it a table.
- * Both are clearly suboptimal.
+ * We want to display the ToC element with intrinsic width in block mode. The fit-content
+ * value for width is however not supported by large groups of browsers.
  *
- * Thus we use display: inline-block. It is treated as an inline element with
- * regard to text flow, but this isn't an issue here as the ToC is always
- * sandwiched between other block-level elements.
+ * We use display:table. Even though it should only contain other table-* display
+ * elements, there are no known problems with using this.
+ *
+ * Because IE < 8, FF 2 and other older browsers don't support display:table, we fallback to
+ * using inline-block mode, which features at least intrinsic width, but won't clear preceding
+ * inline elements. In practice inline elements surrounding the TOC are uncommon enough that
+ * this is an acceptable sacrifice.
  */
 #toc,
 .toc {
 	display: -moz-inline-block;
 	display: inline-block;
+	display: table;
+
+	/* IE7 and earlier */
 	zoom: 1;
 	*display: inline;
+
 	padding: 7px;
 }
 

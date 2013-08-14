@@ -29,8 +29,7 @@ class FileRepoStatus extends Status {
 	/**
 	 * Factory function for fatal errors
 	 *
-	 * @param $repo FileRepo
-	 *
+	 * @param FileRepo $repo
 	 * @return FileRepoStatus
 	 */
 	static function newFatal( $repo /*, parameters...*/ ) {
@@ -42,7 +41,7 @@ class FileRepoStatus extends Status {
 	}
 
 	/**
-	 * @param $repo FileRepo
+	 * @param FileRepo|bool $repo Default: false
 	 * @param $value
 	 * @return FileRepoStatus
 	 */

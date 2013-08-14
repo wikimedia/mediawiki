@@ -117,7 +117,15 @@ class NewFilesPager extends ReverseChronologicalPager {
 
 	function getStartBody() {
 		if ( !$this->gallery ) {
-			$this->gallery = new ImageGallery();
+			// Note that null for mode is taken to mean use default.
+			$mode = $this->getRequest()->getVal( 'gallerymode', null );
+			try {
+				$this->gallery = ImageGalleryBase::factory( $mode );
+			} catch ( MWException $e ) {
+				// User specified something invalid, fallback to default.
+				$this->gallery = ImageGalleryBase::factory();
+			}
+			$this->gallery->setContext( $this->getContext() );
 		}
 
 		return '';
@@ -173,8 +181,9 @@ class NewFilesPager extends ReverseChronologicalPager {
 			unset( $fields['like'] );
 		}
 
-		$form = new HTMLForm( $fields, $this->getContext() );
-		$form->setTitle( $this->getTitle() );
+		$context = new DerivativeContext( $this->getContext() );
+		$context->setTitle( $this->getTitle() ); // Remove subpage
+		$form = new HTMLForm( $fields, $context );
 		$form->setSubmitTextMsg( 'ilsubmit' );
 		$form->setMethod( 'get' );
 		$form->setWrapperLegendMsg( 'newimages-legend' );

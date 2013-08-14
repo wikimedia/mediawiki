@@ -32,7 +32,7 @@ abstract class DatabaseInstaller {
 	/**
 	 * The Installer object.
 	 *
-	 * TODO: naming this parent is confusing, 'installer' would be clearer.
+	 * @todo Naming this parent is confusing, 'installer' would be clearer.
 	 *
 	 * @var WebInstaller
 	 */
@@ -158,6 +158,7 @@ abstract class DatabaseInstaller {
 			$this->db->clearFlag( DBO_TRX );
 			$this->db->commit( __METHOD__ );
 		}
+
 		return $status;
 	}
 
@@ -176,6 +177,7 @@ abstract class DatabaseInstaller {
 		if ( $this->db->tableExists( 'archive', __METHOD__ ) ) {
 			$status->warning( 'config-install-tables-exist' );
 			$this->enableLB();
+
 			return $status;
 		}
 
@@ -194,6 +196,7 @@ abstract class DatabaseInstaller {
 		if ( $status->isOk() ) {
 			$this->enableLB();
 		}
+
 		return $status;
 	}
 
@@ -279,6 +282,7 @@ abstract class DatabaseInstaller {
 		}
 		$up->purgeCache();
 		ob_end_flush();
+
 		return $ret;
 	}
 
@@ -288,14 +292,12 @@ abstract class DatabaseInstaller {
 	 * long after the constructor. Helpful for things like modifying setup steps :)
 	 */
 	public function preInstall() {
-
 	}
 
 	/**
 	 * Allow DB installers a chance to make checks before upgrade.
 	 */
 	public function preUpgrade() {
-
 	}
 
 	/**
@@ -319,15 +321,11 @@ abstract class DatabaseInstaller {
 	 * Convenience function.
 	 * Check if a named extension is present.
 	 *
-	 * @see wfDl
 	 * @param $name
 	 * @return bool
 	 */
 	protected static function checkExtension( $name ) {
-		wfSuppressWarnings();
-		$compiled = wfDl( $name );
-		wfRestoreWarnings();
-		return $compiled;
+		return extension_loaded( $name );
 	}
 
 	/**
@@ -335,8 +333,8 @@ abstract class DatabaseInstaller {
 	 * @return String
 	 */
 	public function getReadableName() {
-		// Give grep a chance to find the usages:
-		// config-type-mysql, config-type-postgres, config-type-sqlite, config-type-oracle
+		// Messages: config-type-mysql, config-type-postgres, config-type-sqlite,
+		// config-type-oracle
 		return wfMessage( 'config-type-' . $this->getName() )->text();
 	}
 
@@ -371,6 +369,7 @@ abstract class DatabaseInstaller {
 		} elseif ( isset( $internal[$var] ) ) {
 			$default = $internal[$var];
 		}
+
 		return $this->parent->getVar( $var, $default );
 	}
 
@@ -398,6 +397,7 @@ abstract class DatabaseInstaller {
 		if ( !isset( $attribs ) ) {
 			$attribs = array();
 		}
+
 		return $this->parent->getTextBox( array(
 			'var' => $var,
 			'label' => $label,
@@ -424,6 +424,7 @@ abstract class DatabaseInstaller {
 		if ( !isset( $attribs ) ) {
 			$attribs = array();
 		}
+
 		return $this->parent->getPasswordBox( array(
 			'var' => $var,
 			'label' => $label,
@@ -437,11 +438,16 @@ abstract class DatabaseInstaller {
 	/**
 	 * Get a labelled checkbox to configure a local boolean variable.
 	 *
+	 * @param string $var
+	 * @param string $label
+	 * @param array $attribs Optional.
+	 * @param string $helpData Optional.
 	 * @return string
 	 */
 	public function getCheckBox( $var, $label, $attribs = array(), $helpData = "" ) {
 		$name = $this->getName() . '_' . $var;
 		$value = $this->getVar( $var );
+
 		return $this->parent->getCheckBox( array(
 			'var' => $var,
 			'label' => $label,
@@ -449,7 +455,7 @@ abstract class DatabaseInstaller {
 			'controlName' => $name,
 			'value' => $value,
 			'help' => $helpData
-		));
+		) );
 	}
 
 	/**
@@ -468,6 +474,7 @@ abstract class DatabaseInstaller {
 	public function getRadioSet( $params ) {
 		$params['controlName'] = $this->getName() . '_' . $params['var'];
 		$params['value'] = $this->getVar( $params['var'] );
+
 		return $this->parent->getRadioSet( $params );
 	}
 
@@ -501,7 +508,9 @@ abstract class DatabaseInstaller {
 		if ( !$this->db->selectDB( $this->getVar( 'wgDBname' ) ) ) {
 			return false;
 		}
-		return $this->db->tableExists( 'cur', __METHOD__ ) || $this->db->tableExists( 'revision', __METHOD__ );
+
+		return $this->db->tableExists( 'cur', __METHOD__ ) ||
+			$this->db->tableExists( 'revision', __METHOD__ );
 	}
 
 	/**
@@ -512,8 +521,18 @@ abstract class DatabaseInstaller {
 	public function getInstallUserBox() {
 		return Html::openElement( 'fieldset' ) .
 			Html::element( 'legend', array(), wfMessage( 'config-db-install-account' )->text() ) .
-			$this->getTextBox( '_InstallUser', 'config-db-username', array( 'dir' => 'ltr' ), $this->parent->getHelpBox( 'config-db-install-username' ) ) .
-			$this->getPasswordBox( '_InstallPassword', 'config-db-password', array( 'dir' => 'ltr' ), $this->parent->getHelpBox( 'config-db-install-password' ) ) .
+			$this->getTextBox(
+				'_InstallUser',
+				'config-db-username',
+				array( 'dir' => 'ltr' ),
+				$this->parent->getHelpBox( 'config-db-install-username' )
+			) .
+			$this->getPasswordBox(
+				'_InstallPassword',
+				'config-db-password',
+				array( 'dir' => 'ltr' ),
+				$this->parent->getHelpBox( 'config-db-install-password' )
+			) .
 			Html::closeElement( 'fieldset' );
 	}
 
@@ -523,13 +542,14 @@ abstract class DatabaseInstaller {
 	 */
 	public function submitInstallUserBox() {
 		$this->setVarsFromRequest( array( '_InstallUser', '_InstallPassword' ) );
+
 		return Status::newGood();
 	}
 
 	/**
 	 * Get a standard web-user fieldset
-	 * @param string $noCreateMsg Message to display instead of the creation checkbox.
-	 *   Set this to false to show a creation checkbox.
+	 * @param string|bool $noCreateMsg Message to display instead of the creation checkbox.
+	 *   Set this to false to show a creation checkbox (default).
 	 *
 	 * @return String
 	 */
@@ -551,6 +571,7 @@ abstract class DatabaseInstaller {
 			$s .= $this->getCheckBox( '_CreateDBAccount', 'config-db-web-create' );
 		}
 		$s .= Html::closeElement( 'div' ) . Html::closeElement( 'fieldset' );
+
 		return $s;
 	}
 
@@ -590,6 +611,7 @@ abstract class DatabaseInstaller {
 
 		if ( $this->db->selectRow( 'interwiki', '*', array(), __METHOD__ ) ) {
 			$status->warning( 'config-install-interwiki-exists' );
+
 			return $status;
 		}
 		global $IP;
@@ -613,6 +635,7 @@ abstract class DatabaseInstaller {
 			);
 		}
 		$this->db->insert( 'interwiki', $interwikis, __METHOD__ );
+
 		return Status::newGood();
 	}
 

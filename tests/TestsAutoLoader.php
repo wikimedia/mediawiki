@@ -40,7 +40,6 @@ $wgAutoloadClasses += array(
 	'MediaWikiPHPUnitCommand' => "$testDir/phpunit/MediaWikiPHPUnitCommand.php",
 	'MediaWikiPHPUnitTestListener' => "$testDir/phpunit/MediaWikiPHPUnitTestListener.php",
 	'MediaWikiLangTestCase' => "$testDir/phpunit/MediaWikiLangTestCase.php",
-	'MediaWikiProvide' => "$testDir/phpunit/includes/Providers.php",
 	'TestUser' => "$testDir/phpunit/includes/TestUser.php",
 
 	# tests/phpunit/includes
@@ -56,10 +55,10 @@ $wgAutoloadClasses += array(
 	# tests/phpunit/includes/api
 	'ApiFormatTestBase' => "$testDir/phpunit/includes/api/format/ApiFormatTestBase.php",
 	'ApiTestCase' => "$testDir/phpunit/includes/api/ApiTestCase.php",
-	'ApiTestContext' => "$testDir/phpunit/includes/api/ApiTestCase.php",
-	'MockApi' => "$testDir/phpunit/includes/api/ApiTestCase.php",
+	'ApiTestContext' => "$testDir/phpunit/includes/api/ApiTestContext.php",
+	'MockApi' => "$testDir/phpunit/includes/api/MockApi.php",
+	'UserWrapper' => "$testDir/phpunit/includes/api/UserWrapper.php",
 	'RandomImageGenerator' => "$testDir/phpunit/includes/api/RandomImageGenerator.php",
-	'UserWrapper' => "$testDir/phpunit/includes/api/ApiTestCase.php",
 
 	# tests/phpunit/includes/content
 	'DummyContentHandlerForTesting' => "$testDir/phpunit/includes/content/ContentHandlerTest.php",
@@ -78,6 +77,9 @@ $wgAutoloadClasses += array(
 
 	# tests/phpunit/includes/libs
 	'GenericArrayObjectTest' => "$testDir/phpunit/includes/libs/GenericArrayObjectTest.php",
+
+	# tests/phpunit/media
+	'FakeDimensionFile' => "$testDir/phpunit/includes/media/FakeDimensionFile.php",
 
 	# tests/phpunit/includes/site
 	'SiteTest' => "$testDir/phpunit/includes/site/SiteTest.php",

@@ -348,8 +348,6 @@ $messages = array(
 'noindex-category' => 'Индексланмаган битләр',
 'broken-file-category' => 'Файлларга эшләми торган сылтамалар булган битләр',
 
-'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
-
 'about' => 'Тасвирлама',
 'article' => 'Мәкалә',
 'newwindow' => '(яңа тәрәзәдә ачыла)',
@@ -454,7 +452,7 @@ $1',
 'pool-queuefull' => 'Сорауларны саклау  бите тулы',
 'pool-errorunknown' => 'Билгесез  хата',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} турында',
 'aboutpage' => 'Project:Тасвирлама',
 'copyright' => 'Мәгълүмат $1 буенча таратыла.',
@@ -544,17 +542,6 @@ $1',
 # General errors
 'error' => 'Хата',
 'databaseerror' => 'Мәгълүматлар базасында хата',
-'dberrortext' => 'Мәгълүматлар базасына җибәрелгән сорауда синтаксис хатасы табылды.
-Программада хата булырга мөмкин.
-Мәгълүматлар базасына җибәрелгән соңгы сорау:
-<blockquote><tt>$1</tt></blockquote>
-<tt>«$2»</tt> функциясеннән.
-База <tt>«$3: $4»</tt> хатасын кайтарды.',
-'dberrortextcl' => 'Мәгълүматлар базасына җибәрелгән сорауда синтаксик хата табылды.
-Мәгълүматлар базасына җибәрелгән соңгы сорау:
-"$1"
-«$2» функциясеннән.
-База «$3: $4» хатасын кайтарды.',
 'laggedslavemode' => 'Игътибар: биттә соңгы яңартулар күрсәтелмәгән булырга мөмкин.',
 'readonly' => 'Мәгълүматлар базасына язу ябылган',
 'enterlockreason' => 'Ябылу сәбәбен һәм вакытын күрсәтегез.',
@@ -604,7 +591,6 @@ $1',
 'viewyourtext' => "Сез '''үз төзәтмәләрегезне''' бу сәхифәдә карый һәм чыгарылма текстны күчермәли аласыз:",
 'protectedinterface' => 'Бу биттә программа тәэминатының интерфейс хәбәрләре бар. Вандализмга каршы көрәш сәбәпле, бу битне үзгәртү тыела. Әлеге хәбәрнең тәрҗемәсен өстәү яки үзгәртү өчен, зинһар өчен, MediaWiki [//translatewiki.net/ translatewiki.net] тәрҗемәләү сайтын кулланыгыз.',
 'editinginterface' => "'''Игътибар:''' Сез программа тәэминатының интерфейс тексты булган битне үзгәртәсез. Бу башка кулланучыларга да тәэсир итәчәк. Тәрҗемә өчен [//translatewiki.net/wiki/Main_Page?setlang=tt-cyrl translatewiki.net] локализацияләү проектын кулланыгыз.",
-'sqlhidden' => '(SQL-сорау яшерелгән)',
 'cascadeprotected' => 'Бу бит үзгәртүләрдән сакланган, чөнки ул каскадлы саклау кабул ителгән {{PLURAL:$1|биткә|битләргә}} өстәлгән:
 $2',
 'namespaceprotected' => "'''$1''' исем киңлегендәге битләрне үзгәртү өчен сезнең рөхсәтегез юк.",
@@ -641,7 +627,6 @@ $2',
 'remembermypassword' => 'Хисап язмамны бу браузерда саклансын (иң күп $1 {{PLURAL:$1|көн|көн|көн}}гә кадәр)',
 'userlogin-remembermypassword' => 'Системада калырга',
 'userlogin-signwithsecure' => 'Якланган кушылу',
-'securelogin-stick-https' => 'Керүдән соң HTTPS буенча тоташтыру дәвам ителсен',
 'yourdomainname' => 'Сезнең доменыгыз:',
 'password-change-forbidden' => 'Сез бу викидә серсүзне үзгәртә алмыйсыз.',
 'externaldberror' => 'Тышкы мәгълүмат базасы ярдәмендә аутентификация үткәндә хата чыкты, яисә тышкы хисап язмагызга үзгәрешләр кертү хокукыгыз юк.',
@@ -732,7 +717,7 @@ $2',
 'newpassword' => 'Яңа серсүз:',
 'retypenew' => 'Яңа серсүзне кабатлагыз:',
 'resetpass_submit' => 'Серсүз куеп керү',
-'resetpass_success' => 'Сезнең серсүз уңышлы үзгәртелде! Системага керү башкарыла...',
+'changepassword-success' => 'Сезнең серсүз уңышлы үзгәртелде! Системага керү башкарыла...',
 'resetpass_forbidden' => 'Серсүз үзгәртелә алмый',
 'resetpass-no-info' => 'Бу битне карау өчен сез системага үз хисап язмагыз ярдәмендә керергә тиеш.',
 'resetpass-submit-loggedin' => 'Серсүзне үзгәртү',
@@ -1609,9 +1594,6 @@ PICT # төрле
 'statistics-users-active-desc' => '{{PLURAL:$1|$1 көн }} өчендә нинди дә булса үзгәртүләр керткән кулланучылар',
 'statistics-mostpopular' => 'Иң күп каралучы битләр',
 
-'disambiguations' => 'Күп мәгънәле сүзләр турында битләр',
-'disambiguationspage' => 'Template:disambig',
-
 'doubleredirects' => 'Икеләтә юнәлтүләр',
 
 'brokenredirects' => 'Бәйләнешсез юнәлтүләр',
@@ -2008,7 +1990,6 @@ $1',
 'block-log-flags-noemail' => 'хат җибәрү тыелган',
 'block-log-flags-hiddenname' => 'кулланучының исеме яшерелгән',
 'proxyblocker' => 'Прокси тыю',
-'proxyblocksuccess' => 'Эшләнде',
 'sorbsreason' => 'Сезнең IP адресыгыз DNSBLда ачык прокси дип санала.',
 
 # Developer tools

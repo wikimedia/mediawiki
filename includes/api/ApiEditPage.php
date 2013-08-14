@@ -280,6 +280,10 @@ class ApiEditPage extends ApiBase {
 			if ( $section == 0 && $params['section'] != '0' && $params['section'] != 'new' ) {
 				$this->dieUsage( "The section parameter must be set to an integer or 'new'", "invalidsection" );
 			}
+			$content = $pageObj->getContent();
+			if ( $section !== 0 && ( !$content || !$content->getSection( $section ) ) ) {
+				$this->dieUsage( "There is no section {$section}.", 'nosuchsection' );
+			}
 			$requestArray['wpSection'] = $params['section'];
 		} else {
 			$requestArray['wpSection'] = '';
@@ -329,7 +333,7 @@ class ApiEditPage extends ApiBase {
 
 		// The following is needed to give the hook the full content of the
 		// new revision rather than just the current section. (Bug 52077)
-		if ( !is_null( $params['section'] ) && $contentHandler->supportsSections() ) {
+		if ( !is_null( $params['section'] ) && $contentHandler->supportsSections() && $titleObj->exists() ) {
 
 			$sectionTitle = '';
 			// If sectiontitle is set, use it, otherwise use the summary as the section title (for

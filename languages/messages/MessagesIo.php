@@ -307,7 +307,7 @@ $messages = array(
 'jumptonavigation' => 'pilotado',
 'jumptosearch' => 'serchez',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Pri {{SITENAME}}',
 'aboutpage' => 'Project:Pri {{SITENAME}}',
 'copyright' => 'La kontenajo esas disponebla sub $1.',
@@ -467,7 +467,7 @@ Voluntez enirar altrafoye pos recevar ol.',
 'newpassword' => 'Nova pasovorto:',
 'retypenew' => 'Riskribez la nova pasovorto:',
 'resetpass_submit' => 'Establisez pasovoro ed enirez',
-'resetpass_success' => 'Vua chanjo di pasovorto sucesis! Nun, vu eniras...',
+'changepassword-success' => 'Vua chanjo di pasovorto sucesis! Nun, vu eniras...',
 'resetpass-submit-loggedin' => 'Chanjar pasovorto',
 'resetpass-temp-password' => 'Provizora pasovorto:',
 
@@ -937,8 +937,6 @@ Volutez kontrolar <strong>[[:$1]]</strong> se vu ne esas certa pri chanjar olu.
 'statistics-pages' => 'Pagini',
 'statistics-mostpopular' => 'Maxim ofte vizitita pagini',
 
-'disambiguations' => 'Pagini di desambiguizo',
-
 'doubleredirects' => 'Duopla ridirektili',
 
 'brokenredirects' => 'Ridirektili nekorekta',
@@ -1248,7 +1246,6 @@ Videz [[Special:BlockList|IP-blokuslisto]] por revizor blokusadi.',
 'unblocklogentry' => 'desblokusis "$1"',
 'ipb_expiry_invalid' => 'Nevalida expiro-tempo.',
 'ip_range_invalid' => 'Nevalida IP-rango.',
-'proxyblocksuccess' => 'Facita.',
 
 # Developer tools
 'lockdb' => 'Blokusar datumaro',
@@ -1396,6 +1393,9 @@ Vu darfos adjuntar kauso en la rezumo.',
 
 # Spam protection
 'spamprotectiontitle' => 'Filtrilo kontre spamo',
+
+# Info page
+'pageinfo-toolboxlink' => 'Informo di ca pagino',
 
 # Browsing diffs
 'previousdiff' => '← Plu anciena versiono',

@@ -131,6 +131,7 @@ class SkinTemplate extends Skin {
 	public function getLanguages() {
 		global $wgHideInterlanguageLinks;
 		$out = $this->getOutput();
+		$userLang = $this->getLanguage();
 
 		# Language links
 		$language_urls = array();
@@ -151,10 +152,14 @@ class SkinTemplate extends Skin {
 						$ilLangName = $this->formatLanguageName( $ilLangName );
 					}
 
+					// CLDR extension or similar is required to localize the language name;
+					// otherwise we'll end up with the autonym again.
+					$ilLangLocalName = Language::fetchLanguageName( $ilInterwikiCode, $userLang->getCode() );
+
 					$language_urls[] = array(
 						'href' => $languageLinkTitle->getFullURL(),
 						'text' => $ilLangName,
-						'title' => $languageLinkTitle->getText(),
+						'title' => wfMessage( 'tooltip-iwiki', $languageLinkTitle->getText(), $ilLangLocalName )->escaped(),
 						'class' => $class,
 						'lang' => wfBCP47( $ilInterwikiCode ),
 						'hreflang' => wfBCP47( $ilInterwikiCode ),
@@ -292,6 +297,7 @@ class SkinTemplate extends Skin {
 			$feeds = array();
 			foreach ( $out->getSyndicationLinks() as $format => $link ) {
 				$feeds[$format] = array(
+					// Messages: feed-atom, feed-rss
 					'text' => $this->msg( "feed-$format" )->text(),
 					'href' => $link
 				);
@@ -588,8 +594,6 @@ class SkinTemplate extends Skin {
 	 * @return array
 	 */
 	protected function buildPersonalUrls() {
-		global $wgSecureLogin;
-
 		$title = $this->getTitle();
 		$request = $this->getRequest();
 		$pageurl = $title->getLocalURL();
@@ -615,10 +619,6 @@ class SkinTemplate extends Skin {
 			if ( $query != '' ) {
 				$a['returntoquery'] = $query;
 			}
-		}
-
-		if ( $wgSecureLogin && $request->detectProtocol() === 'https' ) {
-			$a['wpStickHTTPS'] = true;
 		}
 
 		$returnto = wfArrayToCgi( $a );
@@ -692,21 +692,16 @@ class SkinTemplate extends Skin {
 				: 'login';
 			$is_signup = $request->getText( 'type' ) == 'signup';
 
-			# anonlogin & login are the same
-			$proto = $wgSecureLogin ? PROTO_HTTPS : null;
-
 			$login_id = $this->showIPinHeader() ? 'anonlogin' : 'login';
 			$login_url = array(
 				'text' => $this->msg( $loginlink )->text(),
-				'href' => self::makeSpecialUrl( 'Userlogin', $returnto, $proto ),
+				'href' => self::makeSpecialUrl( 'Userlogin', $returnto ),
 				'active' => $title->isSpecial( 'Userlogin' ) && ( $loginlink == 'nav-login-createaccount' || !$is_signup ),
-				'class' => $wgSecureLogin ? 'link-https' : ''
 			);
 			$createaccount_url = array(
 				'text' => $this->msg( 'createaccount' )->text(),
-				'href' => self::makeSpecialUrl( 'Userlogin', "$returnto&type=signup", $proto ),
+				'href' => self::makeSpecialUrl( 'Userlogin', "$returnto&type=signup" ),
 				'active' => $title->isSpecial( 'Userlogin' ) && $is_signup,
-				'class' => $wgSecureLogin ? 'link-https' : ''
 			);
 
 			if ( $this->showIPinHeader() ) {
@@ -1285,12 +1280,14 @@ class SkinTemplate extends Skin {
 				);
 			}
 
-			$sur = new UserrightsPage;
-			$sur->setContext( $this->getContext() );
-			if ( $sur->userCanExecute( $this->getUser() ) ) {
-				$nav_urls['userrights'] = array(
-					'href' => self::makeSpecialUrlSubpage( 'Userrights', $rootUser )
-				);
+			if ( !$user->isAnon() ) {
+				$sur = new UserrightsPage;
+				$sur->setContext( $this->getContext() );
+				if ( $sur->userCanExecute( $this->getUser() ) ) {
+					$nav_urls['userrights'] = array(
+						'href' => self::makeSpecialUrlSubpage( 'Userrights', $rootUser )
+					);
+				}
 			}
 		}
 
@@ -1305,10 +1302,6 @@ class SkinTemplate extends Skin {
 	 */
 	function getNameSpaceKey() {
 		return $this->getTitle()->getNamespaceKey();
-	}
-
-	public function commonPrintStylesheet() {
-		return false;
 	}
 }
 
@@ -1724,6 +1717,10 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * on the link) is present it will be used to generate a tooltip and
 	 * accesskey for the link.
 	 *
+	 * The keys "context" and "primary" are ignored; these keys are used
+	 * internally by skins and are not supposed to be included in the HTML
+	 * output.
+	 *
 	 * If you don't want an accesskey, set $item['tooltiponly'] = true;
 	 *
 	 * @param array $options can be used to affect the output of a link.
@@ -1764,7 +1761,7 @@ abstract class BaseTemplate extends QuickTemplate {
 
 		if ( isset( $item['href'] ) || isset( $options['link-fallback'] ) ) {
 			$attrs = $item;
-			foreach ( array( 'single-id', 'text', 'msg', 'tooltiponly' ) as $k ) {
+			foreach ( array( 'single-id', 'text', 'msg', 'tooltiponly', 'context', 'primary' ) as $k ) {
 				unset( $attrs[$k] );
 			}
 
@@ -2001,9 +1998,10 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * body and html tags.
 	 */
 	function printTrail() { ?>
+<?php echo MWDebug::getDebugHTML( $this->getSkin()->getContext() ); ?>
 <?php $this->html( 'bottomscripts' ); /* JS call to runBodyOnloadHook */ ?>
 <?php $this->html( 'reporttime' ) ?>
-<?php echo MWDebug::getDebugHTML( $this->getSkin()->getContext() );
+<?php
 	}
 
 }

@@ -36,8 +36,10 @@ abstract class JobQueue {
 	protected $maxTries; // integer; maximum number of times to try a job
 	protected $checkDelay; // boolean; allow delayed jobs
 
+	/** @var BagOStuff */
+	protected $dupCache;
+
 	const QOS_ATOMIC = 1; // integer; "all-or-nothing" job insertions
-	const QoS_Atomic = 1; // integer; "all-or-nothing" job insertions (b/c)
 
 	const ROOTJOB_TTL = 2419200; // integer; seconds to remember root jobs (28 days)
 
@@ -61,6 +63,7 @@ abstract class JobQueue {
 		if ( $this->checkDelay && !$this->supportsDelayedJobs() ) {
 			throw new MWException( __CLASS__ . " does not support delayed jobs." );
 		}
+		$this->dupCache = wfGetCache( CACHE_ANYTHING );
 	}
 
 	/**
@@ -439,8 +442,6 @@ abstract class JobQueue {
 	 * @return bool
 	 */
 	protected function doDeduplicateRootJob( Job $job ) {
-		global $wgMemc;
-
 		if ( !$job->hasRootJobParams() ) {
 			throw new MWException( "Cannot register root job; missing parameters." );
 		}
@@ -452,13 +453,13 @@ abstract class JobQueue {
 		// deferred till "transaction idle", do the same here, so that the ordering is
 		// maintained. Having only the de-duplication registration succeed would cause
 		// jobs to become no-ops without any actual jobs that made them redundant.
-		$timestamp = $wgMemc->get( $key ); // current last timestamp of this job
+		$timestamp = $this->dupCache->get( $key ); // current last timestamp of this job
 		if ( $timestamp && $timestamp >= $params['rootJobTimestamp'] ) {
 			return true; // a newer version of this root job was enqueued
 		}
 
 		// Update the timestamp of the last root job started at the location...
-		return $wgMemc->set( $key, $params['rootJobTimestamp'], JobQueueDB::ROOTJOB_TTL );
+		return $this->dupCache->set( $key, $params['rootJobTimestamp'], JobQueueDB::ROOTJOB_TTL );
 	}
 
 	/**
@@ -484,15 +485,14 @@ abstract class JobQueue {
 	 * @return bool
 	 */
 	protected function doIsRootJobOldDuplicate( Job $job ) {
-		global $wgMemc;
-
 		if ( !$job->hasRootJobParams() ) {
 			return false; // job has no de-deplication info
 		}
 		$params = $job->getRootJobParams();
 
+		$key = $this->getRootJobCacheKey( $params['rootJobSignature'] );
 		// Get the last time this root job was enqueued
-		$timestamp = $wgMemc->get( $this->getRootJobCacheKey( $params['rootJobSignature'] ) );
+		$timestamp = $this->dupCache->get( $key );
 
 		// Check if a new root job was started at the location after this one's...
 		return ( $timestamp && $timestamp > $params['rootJobTimestamp'] );
@@ -614,6 +614,63 @@ abstract class JobQueue {
 	 */
 	public function getAllDelayedJobs() {
 		return new ArrayIterator( array() ); // not implemented
+	}
+
+	/**
+	 * Do not use this function outside of JobQueue/JobQueueGroup
+	 *
+	 * @return string
+	 * @since 1.22
+	 */
+	public function getCoalesceLocationInternal() {
+		return null;
+	}
+
+	/**
+	 * Check whether each of the given queues are empty.
+	 * This is used for batching checks for queues stored at the same place.
+	 *
+	 * @param array $types List of queues types
+	 * @return array|null (list of non-empty queue types) or null if unsupported
+	 * @throws MWException
+	 * @since 1.22
+	 */
+	final public function getSiblingQueuesWithJobs( array $types ) {
+		$section = new ProfileSection( __METHOD__ );
+		return $this->doGetSiblingQueuesWithJobs( $types );
+	}
+
+	/**
+	 * @see JobQueue::getSiblingQueuesWithJobs()
+	 * @param array $types List of queues types
+	 * @return array|null (list of queue types) or null if unsupported
+	 */
+	protected function doGetSiblingQueuesWithJobs( array $types ) {
+		return null; // not supported
+	}
+
+	/**
+	 * Check the size of each of the given queues.
+	 * For queues not served by the same store as this one, 0 is returned.
+	 * This is used for batching checks for queues stored at the same place.
+	 *
+	 * @param array $types List of queues types
+	 * @return array|null (job type => whether queue is empty) or null if unsupported
+	 * @throws MWException
+	 * @since 1.22
+	 */
+	final public function getSiblingQueueSizes( array $types ) {
+		$section = new ProfileSection( __METHOD__ );
+		return $this->doGetSiblingQueueSizes( $types );
+	}
+
+	/**
+	 * @see JobQueue::getSiblingQueuesSize()
+	 * @param array $types List of queues types
+	 * @return array|null (list of queue types) or null if unsupported
+	 */
+	protected function doGetSiblingQueueSizes( array $types ) {
+		return null; // not supported
 	}
 
 	/**

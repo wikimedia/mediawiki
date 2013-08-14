@@ -200,6 +200,19 @@ abstract class ImageHandler extends MediaHandler {
 		wfRestoreWarnings();
 		return $gis;
 	}
+	/**
+	 * Function that returns the number of pixels to be thumbnailed.
+	 * Intended for animated GIFs to multiply by the number of frames.
+	 *
+	 * If the file doesn't support a notion of "area" return 0.
+	 *
+	 * @param File $image
+	 * @return int
+	 */
+	function getImageArea( $image ) {
+		return $image->getWidth() * $image->getHeight();
+	}
+
 
 	/**
 	 * @param $file File

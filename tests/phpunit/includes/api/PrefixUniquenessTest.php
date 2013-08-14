@@ -6,6 +6,7 @@
  * @group API
  */
 class PrefixUniquenessTest extends MediaWikiTestCase {
+
 	public function testPrefixes() {
 		$main = new ApiMain( new FauxRequest() );
 		$query = new ApiQuery( $main, 'foo', 'bar' );
@@ -13,6 +14,7 @@ class PrefixUniquenessTest extends MediaWikiTestCase {
 		$prefixes = array();
 
 		foreach ( $modules as $name => $class ) {
+			/** @var ApiMain $module */
 			$module = new $class( $main, $name );
 			$prefix = $module->getModulePrefix();
 			if ( isset( $prefixes[$prefix] ) ) {

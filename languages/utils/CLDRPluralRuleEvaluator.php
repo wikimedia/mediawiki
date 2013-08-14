@@ -127,7 +127,7 @@ class CLDRPluralRuleEvaluator {
 				return !$right->isNumberWithin( $left );
 			case 'mod':
 				if ( is_int( $left ) ) {
-					return (int) fmod( $left, $right );
+					return (int)fmod( $left, $right );
 				}
 				return fmod( $left, $right );
 			case ',':

@@ -21,15 +21,15 @@ class MediaWikiPHPUnitCommand extends PHPUnit_TextUI_Command {
 		}
 	}
 
-	protected function handleArguments(array $argv) {
+	protected function handleArguments( array $argv ) {
 		parent::handleArguments( $argv );
 
 		if ( !isset( $this->arguments['listeners'] ) ) {
 			$this->arguments['listeners'] = array();
 		}
 
-		foreach ($this->options[0] as $option) {
-			switch ($option[0]) {
+		foreach ( $this->options[0] as $option ) {
+			switch ( $option[0] ) {
 				case '--debug-tests':
 					$this->arguments['listeners'][] = new MediaWikiPHPUnitTestListener( 'PHPUnitCommand' );
 					break;

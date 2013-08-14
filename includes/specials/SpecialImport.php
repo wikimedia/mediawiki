@@ -478,7 +478,7 @@ class ImportReporter extends ContextSource {
 				if ( $this->reason ) {
 					$detail .= $this->msg( 'colon-separator' )->inContentLanguage()->text() . $this->reason;
 				}
-				$log->addEntry( 'upload', $title, $detail );
+				$log->addEntry( 'upload', $title, $detail, array(), $this->getUser() );
 			} else {
 				$interwiki = '[[:' . $this->mInterwiki . ':' .
 					$origTitle->getPrefixedText() . ']]';
@@ -487,7 +487,7 @@ class ImportReporter extends ContextSource {
 				if ( $this->reason ) {
 					$detail .= $this->msg( 'colon-separator' )->inContentLanguage()->text() . $this->reason;
 				}
-				$log->addEntry( 'interwiki', $title, $detail );
+				$log->addEntry( 'interwiki', $title, $detail, array(), $this->getUser() );
 			}
 
 			$comment = $detail; // quick

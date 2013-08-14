@@ -41,6 +41,9 @@ class HtmlTest extends MediaWikiTestCase {
 		) );
 	}
 
+	/**
+	 * @covers Html::element
+	 */
 	public function testElementBasics() {
 		$this->assertEquals(
 			'<img>',
@@ -89,11 +92,15 @@ class HtmlTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider dataXmlMimeType
+	 * @covers Html::isXmlMimeType
 	 */
 	public function testXmlMimeType( $mimetype, $isXmlMimeType ) {
 		$this->assertEquals( $isXmlMimeType, Html::isXmlMimeType( $mimetype ) );
 	}
 
+	/**
+	 * @covers HTML::expandAttributes
+	 */
 	public function testExpandAttributesSkipsNullAndFalse() {
 
 		### EMPTY ########
@@ -111,6 +118,9 @@ class HtmlTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * @covers HTML::expandAttributes
+	 */
 	public function testExpandAttributesForBooleans() {
 		$this->assertEquals(
 			'',
@@ -146,6 +156,7 @@ class HtmlTest extends MediaWikiTestCase {
 	/**
 	 * Test for Html::expandAttributes()
 	 * Please note it output a string prefixed with a space!
+	 * @covers Html::expandAttributes
 	 */
 	public function testExpandAttributesVariousExpansions() {
 		### NOT EMPTY ####
@@ -198,6 +209,7 @@ class HtmlTest extends MediaWikiTestCase {
 	 * Html::expandAttributes has special features for HTML
 	 * attributes that use space separated lists and also
 	 * allows arrays to be used as values.
+	 * @covers Html::expandAttributes
 	 */
 	public function testExpandAttributesListValueAttributes() {
 		### STRING VALUES
@@ -249,8 +261,9 @@ class HtmlTest extends MediaWikiTestCase {
 	/**
 	 * Test feature added by r96188, let pass attributes values as
 	 * a PHP array. Restricted to class,rel, accesskey.
+	 * @covers Html::expandAttributes
 	 */
-	function testExpandAttributesSpaceSeparatedAttributesWithBoolean() {
+	public function testExpandAttributesSpaceSeparatedAttributesWithBoolean() {
 		$this->assertEquals(
 			' class="booltrue one"',
 			Html::expandAttributes( array( 'class' => array(
@@ -273,8 +286,9 @@ class HtmlTest extends MediaWikiTestCase {
 	 * The later will take precedence.
 	 *
 	 * Feature added by r96188
+	 * @covers Html::expandAttributes
 	 */
-	function testValueIsAuthoritativeInSpaceSeparatedAttributesArrays() {
+	public function testValueIsAuthoritativeInSpaceSeparatedAttributesArrays() {
 		$this->assertEquals(
 			' class=""',
 			Html::expandAttributes( array( 'class' => array(
@@ -285,7 +299,10 @@ class HtmlTest extends MediaWikiTestCase {
 		);
 	}
 
-	function testNamespaceSelector() {
+	/**
+	 * @covers Html::namespaceSelector
+	 */
+	public function testNamespaceSelector() {
 		$this->assertEquals(
 			'<select id=namespace name=namespace>' . "\n" .
 				'<option value=0>(Main)</option>' . "\n" .
@@ -364,7 +381,7 @@ class HtmlTest extends MediaWikiTestCase {
 		);
 	}
 
-	function testCanFilterOutNamespaces() {
+	public function testCanFilterOutNamespaces() {
 		$this->assertEquals(
 			'<select id=namespace name=namespace>' . "\n" .
 				'<option value=2>User</option>' . "\n" .
@@ -386,7 +403,7 @@ class HtmlTest extends MediaWikiTestCase {
 		);
 	}
 
-	function testCanDisableANamespaces() {
+	public function testCanDisableANamespaces() {
 		$this->assertEquals(
 			'<select id=namespace name=namespace>' . "\n" .
 				'<option disabled value=0>(Main)</option>' . "\n" .
@@ -415,8 +432,9 @@ class HtmlTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideHtml5InputTypes
+	 * @covers Html::element
 	 */
-	function testHtmlElementAcceptsNewHtml5TypesInHtml5Mode( $HTML5InputType ) {
+	public function testHtmlElementAcceptsNewHtml5TypesInHtml5Mode( $HTML5InputType ) {
 		$this->assertEquals(
 			'<input type=' . $HTML5InputType . '>',
 			Html::element( 'input', array( 'type' => $HTML5InputType ) ),
@@ -457,7 +475,7 @@ class HtmlTest extends MediaWikiTestCase {
 	 * @covers Html::dropDefaults
 	 * @dataProvider provideElementsWithAttributesHavingDefaultValues
 	 */
-	function testDropDefaults( $expected, $element, $attribs, $message = '' ) {
+	public function testDropDefaults( $expected, $element, $attribs, $message = '' ) {
 		$this->assertEquals( $expected, Html::element( $element, $attribs ), $message );
 	}
 
@@ -617,6 +635,9 @@ class HtmlTest extends MediaWikiTestCase {
 		return $ret;
 	}
 
+	/**
+	 * @covers Html::expandAttributes
+	 */
 	public function testFormValidationBlacklist() {
 		$this->assertEmpty(
 			Html::expandAttributes( array( 'min' => 1, 'max' => 100, 'pattern' => 'abc', 'required' => true, 'step' => 2 ) ),

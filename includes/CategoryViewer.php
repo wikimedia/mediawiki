@@ -141,8 +141,17 @@ class CategoryViewer extends ContextSource {
 		$this->children = array();
 		$this->children_start_char = array();
 		if ( $this->showGallery ) {
-			$this->gallery = new ImageGallery();
+			// Note that null for mode is taken to mean use default.
+			$mode = $this->getRequest()->getVal( 'gallerymode', null );
+			try {
+				$this->gallery = ImageGalleryBase::factory( $mode );
+			} catch ( MWException $e ) {
+				// User specified something invalid, fallback to default.
+				$this->gallery = ImageGalleryBase::factory();
+			}
+
 			$this->gallery->setHideBadImages();
+			$this->gallery->setContext( $this->getContext() );
 		} else {
 			$this->imgsNoGallery = array();
 			$this->imgsNoGallery_start_char = array();
@@ -648,28 +657,23 @@ class CategoryViewer extends ContextSource {
 	 * returned?  This function says what. Each type is considered independently
 	 * of the other types.
 	 *
-	 * Note for grepping: uses the messages category-article-count,
-	 * category-article-count-limited, category-subcat-count,
-	 * category-subcat-count-limited, category-file-count,
-	 * category-file-count-limited.
-	 *
 	 * @param int $rescnt The number of items returned by our database query.
 	 * @param int $dbcnt The number of items according to the category table.
 	 * @param string $type 'subcat', 'article', or 'file'
-	 * @return String: A message giving the number of items, to output to HTML.
+	 * @return string: A message giving the number of items, to output to HTML.
 	 */
 	private function getCountMessage( $rescnt, $dbcnt, $type ) {
-		# There are three cases:
-		#   1) The category table figure seems sane.  It might be wrong, but
-		#      we can't do anything about it if we don't recalculate it on ev-
-		#      ery category view.
-		#   2) The category table figure isn't sane, like it's smaller than the
-		#      number of actual results, *but* the number of results is less
-		#      than $this->limit and there's no offset.  In this case we still
-		#      know the right figure.
-		#   3) We have no idea.
+		// There are three cases:
+		//   1) The category table figure seems sane.  It might be wrong, but
+		//      we can't do anything about it if we don't recalculate it on ev-
+		//      ery category view.
+		//   2) The category table figure isn't sane, like it's smaller than the
+		//      number of actual results, *but* the number of results is less
+		//      than $this->limit and there's no offset.  In this case we still
+		//      know the right figure.
+		//   3) We have no idea.
 
-		# Check if there's a "from" or "until" for anything
+		// Check if there's a "from" or "until" for anything
 
 		// This is a little ugly, but we seem to use different names
 		// for the paging types then for the messages.
@@ -689,19 +693,22 @@ class CategoryViewer extends ContextSource {
 		if ( $dbcnt == $rescnt ||
 			( ( $rescnt == $this->limit || $fromOrUntil ) && $dbcnt > $rescnt )
 		) {
-			# Case 1: seems sane.
+			// Case 1: seems sane.
 			$totalcnt = $dbcnt;
 		} elseif ( $rescnt < $this->limit && !$fromOrUntil ) {
-			# Case 2: not sane, but salvageable.  Use the number of results.
-			# Since there are fewer than 200, we can also take this opportunity
-			# to refresh the incorrect category table entry -- which should be
-			# quick due to the small number of entries.
+			// Case 2: not sane, but salvageable.  Use the number of results.
+			// Since there are fewer than 200, we can also take this opportunity
+			// to refresh the incorrect category table entry -- which should be
+			// quick due to the small number of entries.
 			$totalcnt = $rescnt;
 			$this->cat->refreshCounts();
 		} else {
-			# Case 3: hopeless.  Don't give a total count at all.
+			// Case 3: hopeless.  Don't give a total count at all.
+			// Messages: category-subcat-count-limited, category-article-count-limited,
+			// category-file-count-limited
 			return $this->msg( "category-$type-count-limited" )->numParams( $rescnt )->parseAsBlock();
 		}
+		// Messages: category-subcat-count, category-article-count, category-file-count
 		return $this->msg( "category-$type-count" )->numParams( $rescnt, $totalcnt )->parseAsBlock();
 	}
 }

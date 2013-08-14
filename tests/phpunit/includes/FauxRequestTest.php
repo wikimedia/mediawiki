@@ -2,7 +2,11 @@
 
 class FauxRequestTest extends MediaWikiTestCase {
 
-	function testGetSetHeader() {
+	/**
+	 * @covers FauxRequest::setHeader
+	 * @covers FauxRequest::getHeader
+	 */
+	public function testGetSetHeader() {
 		$value = 'test/test';
 
 		$request = new FauxRequest();

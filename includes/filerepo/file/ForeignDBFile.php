@@ -120,10 +120,11 @@ class ForeignDBFile extends LocalFile {
 	}
 
 	/**
+	 * @param $lang Language Optional language to fetch description in.
 	 * @return string
 	 */
-	function getDescriptionText() {
+	function getDescriptionText( $lang = false ) {
 		// Restore remote behavior
-		return File::getDescriptionText();
+		return File::getDescriptionText( $lang );
 	}
 }

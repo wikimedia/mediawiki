@@ -61,7 +61,7 @@ class CheckUsernames extends Maintenance {
 				}
 			}
 			$maxUserId = $row->user_id;
-		} while( $res->numRows() );
+		} while ( $res->numRows() );
 	}
 }
 

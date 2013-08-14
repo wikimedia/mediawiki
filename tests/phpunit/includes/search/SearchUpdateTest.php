@@ -30,7 +30,10 @@ class SearchUpdateTest extends MediaWikiTestCase {
 		return trim( SearchUpdate::updateText( $text ) );
 	}
 
-	function testUpdateText() {
+	/**
+	 * @covers SearchUpdate::updateText
+	 */
+	public function testUpdateText() {
 		$this->assertEquals(
 			'test',
 			$this->updateText( '<div>TeSt</div>' ),
@@ -62,7 +65,10 @@ EOT
 		);
 	}
 
-	function testBug32712() {
+	/**
+	 * @covers SearchUpdate::updateText
+	 */
+	public function testBug32712() {
 		$text = "text „http://example.com“ text";
 		$result = $this->updateText( $text );
 		$processed = preg_replace( '/Q/u', 'Q', $result );

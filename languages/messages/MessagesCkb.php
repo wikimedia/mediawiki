@@ -378,7 +378,7 @@ $messages = array(
 'viewtalkpage' => 'بینینی لێدوان',
 'otherlanguages' => 'بە زمانەکانی تر',
 'redirectedfrom' => '(ڕەوانەکراوە لە $1ەوە)',
-'redirectpagesub' => 'پەڕەی ڕەوانەکردن',
+'redirectpagesub' => 'پەڕەی ڕەوانەکەر',
 'lastmodifiedat' => 'ئەم پەڕەیە دواجار لە $2ی $1 نوێ کراوەتەوە.',
 'viewcount' => 'ئەم پەڕەیە {{PLURAL:$1|یەکجار|$1 جار}} بینراوە.',
 'protectedpage' => 'پەڕەی پارێزراو',
@@ -392,7 +392,7 @@ $messages = array(
 $1',
 'pool-errorunknown' => 'هەڵەی نەزانراو',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'سەبارەت بە {{SITENAME}}',
 'aboutpage' => 'Project:سەبارەت',
 'copyright' => 'ناوەرۆک لە ژێر $1 لەبەردەستدایە.',
@@ -483,17 +483,6 @@ $1',
 # General errors
 'error' => 'هه‌ڵه‌',
 'databaseerror' => 'ھەڵەی بنکەدراوه',
-'dberrortext' => 'ھەڵەیەکی ڕستەنووسی لە داواکاریی بنکەیدراو ڕووی داوە.
-لەوانەیە ئەوە نیشاندەری کەلێنێک لە نەرمامێرەکەدا بێت.
-دوایین تێکۆشان بۆ داواکاری بنکەیدراو:	
-<blockquote><code>$1</code></blockquote>
-لە ناو کرداری "<code>$2</code>".
-بنکەیدراو ھەڵەی "<samp>$3: $4</samp>" گەڕاندووەتەوە.',
-'dberrortextcl' => 'هەڵەیەکی ڕستەنووسی لە داواکاریی بنکە‌یدراو ڕوویداوە.
-دوایین تێکۆشان بۆ داواکاری بنکەیدراو ئەمە بووە:
-"$1"
-لە نێو کرداری "$2".
-بنکەیدراو ھەڵەی "$3: $4" گەڕاندووەتەوە',
 'laggedslavemode' => 'ئاگاداری: لەوانەیە لاپەڕەکە نوێکردنەکان لە بەر نەگرێت.',
 'readonly' => 'بنکەدراوە داخراوە',
 'enterlockreason' => 'هۆیەک بۆ قوفڵ‌کردنەکە بنووسە کە  تێیدا کاتی کردنەوەی قۆفڵەکە باس کرابێت',
@@ -549,7 +538,6 @@ $1',
 'editinginterface' => "'''ئاگاداری:''' تۆ خەریکی دەستکاریی پەڕەیەکی کە بۆ دابینکردنی دەقی ڕواڵەتی نەرمامێر بە کار دەھێنرێت.
 گۆڕانکاریی  ئەم پەڕەیە کاریگەر دەبێت لە سەر ڕواڵەتی پەڕەکانی بەکارھێنەرانی تر لەم ویکییەدا.
 بۆ زیادکردن یان گۆڕینی وەرگێڕانەکان بۆ ھەموو ویکییەکان، تکایە لە [//translatewiki.net/ translatewiki.net]، پرۆژەی ناوچەیی کردنی میدیاویکی کەڵک وەربگرە.",
-'sqlhidden' => '(داواکاریی SQL شاراوەیە)',
 'cascadeprotected' => 'ئەم لاپەڕە پارێزراوە لە دەستکاریی، چونکا خراوەتە سەر ڕیزی ئەم {{PLURAL:$1|لاپەڕانه‌، کە}} که‌ به‌ هه‌ڵکردنی بژارده‌ی داڕژان هه‌ڵکراوه‌:
 $2',
 'namespaceprotected' => "تۆ ناتوانی لاپەڕەکانی ناو نەیمسپەیسی '''$1''' بگۆڕی.",
@@ -585,7 +573,6 @@ $2',
 'remembermypassword' => 'چوونە ژوورەوەم لەسەر ئەم کۆمپیوتەرە پاشەکەوت بکە (ئەو پەڕی $1 {{PLURAL:$1|ڕۆژ}}ە)',
 'userlogin-remembermypassword' => 'چوونەژوورەوەکەم ڕابگرە',
 'userlogin-signwithsecure' => 'پەیوەندیی دڵنیا بەکاربھێنە',
-'securelogin-stick-https' => 'پاش چوونەژوورەوە پەیوەندیی لەگەڵ HTTPS بھێڵەوە',
 'yourdomainname' => 'دۆمەینەکەت:',
 'password-change-forbidden' => 'ناتوانیت تێپەڕوشەکانت لەم ویکییەدا بگۆڕیت.',
 'externaldberror' => 'یان هەڵەی ڕێگەپێدانی بنکەدراو هەیە یان ڕێگات پێ نادرێت بۆ نوێ کردنی هەژماری دەرەکیت.',
@@ -700,7 +687,7 @@ $2',
 'newpassword' => 'تێپەڕوشەی نوێ:',
 'retypenew' => 'تێپەڕوشەی نوێ دوبارە بنووسەوە:',
 'resetpass_submit' => 'تێپەڕوشە رێکخە و بچۆ ژوورەوە',
-'resetpass_success' => 'تێپەروشەکەت بە سەرکەوتوویی گۆڕدرا. ئێستا چوونە ژوورەوەت...',
+'changepassword-success' => 'تێپەروشەکەت بە سەرکەوتوویی گۆڕدرا. ئێستا چوونە ژوورەوەت...',
 'resetpass_forbidden' => 'تێپەڕوشەکە ناگۆڕدرێت',
 'resetpass-no-info' => 'بۆ گەیشتنی راستەوخۆ بەم پەڕە ئەشێ بچیتە ژوورەوە.',
 'resetpass-submit-loggedin' => 'تێپەڕوشە بگۆڕە',
@@ -1195,7 +1182,7 @@ $1",
 'search-result-size' => '$1 ({{PLURAL:$2|یەک وشە|$2 وشە}})',
 'search-result-category-size' => '{{PLURAL:$1|١ ئەندام|$1 ئەندام}} ({{PLURAL:$2|١ ژێرپۆل|$2 ژێرپۆل}}, {{PLURAL:$3|١ پەڕگە|$3 پەڕگە}})',
 'search-result-score' => 'پەیوەندی: $1%',
-'search-redirect' => '(ئاڵوگۆڕ $1)',
+'search-redirect' => '(ڕەوانەکەر $1)',
 'search-section' => '(بەشی $1)',
 'search-suggest' => 'ئایا مەبەستت ئەمە بوو: $1',
 'search-interwiki-caption' => 'پرۆژە خوشکەکان',
@@ -1226,7 +1213,7 @@ $1",
 لەیادت بێت لەوانەیە پێرستەکانیان بۆ گەڕانی ناو {{SITENAME}}، کات‌بەسەرچوو بێت.',
 
 # Preferences page
-'preferences' => 'ھەڵبەژاردەکان',
+'preferences' => 'ھەڵبژاردەکان',
 'mypreferences' => 'ھەڵبژاردەکان',
 'prefs-edits' => 'ژمارەی گۆڕانکارییەکان:',
 'prefsnologin' => 'لەژوورەوە نیت',
@@ -1447,7 +1434,7 @@ $1",
 'right-importupload' => 'ھاوردنی پەڕەکان بە بارکردنی پەڕگە',
 'right-patrol' => 'نیشانکردنی دەستکاریەکانی کەسانی تر وەک پاس دراو',
 'right-autopatrol' => 'نیشانکردنی خۆگەڕی دەستکارییەکانی خۆی وەک پاس دراو',
-'right-patrolmarks' => 'دیتنی نیشان کراوەکان وەک پاس دراو لە دوایین گۆڕانکارییەکاندا',
+'right-patrolmarks' => 'دیتنی نیشانەکانی پاسدان لە دوایین گۆڕانکارییەکاندا',
 'right-unwatchedpages' => 'دیتنی پێرستێک لە پەڕە چاودێری نەکراوەکان',
 'right-mergehistory' => 'میژووی پەڕەکان بکە یەک',
 'right-userrights' => 'دەستکاری مافەکانی هەموو بەکارهێنەران',
@@ -1838,12 +1825,6 @@ $1',
 'statistics-users-active' => 'ئەندامە چالاکەکان',
 'statistics-users-active-desc' => 'ئەو بەکارھێنەرانە کە لە {{PLURAL:$1|ڕۆژ|$1 ڕۆژ}}ی ڕابردوودا کارێکیان جێبەجێ کردبێت.',
 'statistics-mostpopular' => 'زۆرترین لاپەڕە بینراوەکان',
-
-'disambiguations' => 'پەڕەکانی بەستەردراو بۆ پەڕەکانی ڕوونکردنەوە',
-'disambiguationspage' => 'Template:ڕوونکردنەوە',
-'disambiguations-text' => "ئەم پەڕانە لانی کەم یەک بەستەریان بۆ '''پەڕەی ڕوونکردنەوە''' ھەیە.
-لەوانەیە لە جیاتی ئەو، بەستەریان ھەبێت  بۆ بابەتەکانیی گونجاو.<br />
-ئەگەر پەڕەیەک لە داڕێژەیەک کەڵک وەرگرێت کە بەستەری ھەبێت بۆ [[MediaWiki:Disambiguationspage]]، وەک پەڕەی ڕوونکردنەوە لەبەر چاو دەگیرێت.",
 
 'pageswithprop' => 'پەڕەکان بە تایبەتمەندیی پەڕە',
 'pageswithprop-legend' => 'پەڕەکان بە تایبەتمەندیی پەڕە',
@@ -2363,11 +2344,11 @@ $1',
 'linkshere' => "ئەم پەڕانە بەستەریان ھەیە بۆ '''[[:$1]]''':",
 'nolinkshere' => "هیچ لاپەڕەیەک بەستەری نەداوە بە '''[[:$1]]'''.",
 'nolinkshere-ns' => "هیچ لاپەڕەیەک بەستەری نەداوە بە '''[[:$1]]''' لە بۆشایی‌ناوی هەڵبژێردراو.",
-'isredirect' => 'پەڕەی ڕەوانەکردن',
+'isredirect' => 'پەڕەی ڕەوانەکەر',
 'istemplate' => 'بەکارھێنراو',
 'isimage' => 'بەستەری پەڕگە',
-'whatlinkshere-prev' => '{{PLURAL:$1|پێشتر|$1 ی پێشتر}}',
-'whatlinkshere-next' => '{{PLURAL:$1|دیکە|$1 ی دیکە}}',
+'whatlinkshere-prev' => '{{PLURAL:$1|پێشتر|$1ی پێشتر}}',
+'whatlinkshere-next' => '{{PLURAL:$1|دیکە|$1ی تر}}',
 'whatlinkshere-links' => '← بەستەرەکان',
 'whatlinkshere-hideredirs' => 'ڕەوانەکەرەکان $1',
 'whatlinkshere-hidetrans' => '$1 ھێنانەناوەوەکان',
@@ -2455,7 +2436,7 @@ $1',
 'blocklog-showlog' => 'ئەم بەکارھێنەرە پێشتر بربەست کراوە.
 لۆگی بەربەستن لە ژێرەوە ھاتووە:',
 'blocklogentry' => '[[$1]]ی بۆ ماوەی $2 بەربەست کرد $3',
-'reblock-logentry' => 'دۆخی ئاستەنگ کردنی [[$1]]  بۆ گۆڕدرا بۆ ماوەی $2 $3',
+'reblock-logentry' => 'دۆخی بەربەستنی [[$1]]  گۆڕدرا بۆ ماوەی $2 $3',
 'blocklogtext' => 'ئەمە لۆگێکی کردەوەکانی بەربەستن یان لابردنی بەربەستنی بەکارھێنەرە.
 ئەو ئایپی ئەدرەسانە خۆکارانە بەربستکراون بە ڕیز نەکراون.
 سەیری [[Special:BlockList|لیستی بەربەستن]] بکە بۆ بینینی ئەو بەرگری و بەربەستنانە ئێستا لە بەرکاردان.',
@@ -2480,12 +2461,9 @@ $1',
 'ipb_blocked_as_range' => 'هەڵە: ئای‌پی $1 ڕاستەوخۆ بەربەست نەکراوە بۆیە ناکڕێت لە بەربەست لای‌ بەیت.
 ئەوە وەک بەشێک لە زنجیرە ئای‌پیی $2 بەربەست کراوە و هەر بەو شێوە دەکرێ لە بەربەست دەرچێ.',
 'ip_range_invalid' => 'زنجیرە ئای‌پی نەگونجاو.',
-'blockme' => 'بەربەست‌کردنی من',
 'proxyblocker' => 'بەربەست‌کەری پرۆکسی',
-'proxyblocker-disabled' => 'ئەم فەنکشێنە لەکار خستراوە.',
 'proxyblockreason' => 'ناونیشانی ئای‌پی تۆ بەربەست‌کراوە لەبەر ئەوەی پرۆکسیەکی کراوەیە.
 تکایە پەیوەندی بکە بە دابینکەری خزمەتی ئینتەرنەتی خۆت یان پاڵپشتی تەکنیکی و ئاگادریان کەوە لەو کێشە ئەمنیە گرینگە.',
-'proxyblocksuccess' => 'جێ‌بەجێ‌کرا.',
 'sorbsreason' => 'ناونیشانی ئای‌پی تۆ لە DNSBLدا کە {{SITENAME}} کەڵکی لێ‌وەر دەگرێ، وەک پرۆکسیەکی کراوە لیست کراوە.',
 'sorbs_create_account_reason' => 'ناونیشانی ئای‌پی تۆ لە DNSBLدا کە {{SITENAME}} کەڵکی لێ‌وەر دەگرێ، وەک پرۆکسیەکی کراوە لیست کراوە.
 بۆیە ناتوانی هەژمارە درووست‌بکەی.',
@@ -2912,12 +2890,28 @@ $1',
 'minutes-abbrev' => '$1خ',
 'hours-abbrev' => '$1ک',
 'days-abbrev' => '$1ڕ',
-'seconds' => '{{PLURAL:$1|$1 چرکە|$1 چرکە}}',
-'minutes' => '{{PLURAL:$1|$1 خولەک|$1 خولەک}}',
-'hours' => '{{PLURAL:$1|$1 کاتژمێر|$1 کاتژمێر}}',
-'days' => '{{PLURAL:$1|$1 ڕۆژ|$1 ڕۆژ}}',
-'ago' => '$1 پێش',
+'seconds' => '{{PLURAL:$1|$1 چرکە}}',
+'minutes' => '{{PLURAL:$1|$1 خولەک}}',
+'hours' => '{{PLURAL:$1|$1 کاتژمێر}}',
+'days' => '{{PLURAL:$1|$1 ڕۆژ}}',
+'weeks' => '{{PLURAL:$1|$1 حەفتە}}',
+'months' => '{{PLURAL:$1|$1 مانگ}}',
+'years' => '{{PLURAL: $1|$1 ساڵ}}',
+'ago' => '$1 لەمە پێش',
 'just-now' => 'ھەرئێستا',
+
+# Human-readable timestamps
+'hours-ago' => '$1 {{PLURAL:$1|کاتژمێر}} لەمه پێش',
+'minutes-ago' => '$1 {{PLURAL:$1|خولەک}} لەمە پێش',
+'seconds-ago' => '$1 {{PLURAL:$1|چرکە}} لەمە پێش',
+'monday-at' => 'دووشەممە $1',
+'tuesday-at' => 'سێشەممە $1',
+'wednesday-at' => 'چوارشەممە $1',
+'thursday-at' => 'پێنجشەممە $1',
+'friday-at' => 'ھەینی $1',
+'saturday-at' => 'شەممە $1',
+'sunday-at' => 'یەکشەممە $1',
+'yesterday-at' => 'دوێنێ $1',
 
 # Bad image list
 'bad_image_list' => 'فۆرمات بەم شێوەی خوارەوەیە:

@@ -87,13 +87,23 @@ return array(
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 	),
 	'skins.vector' => array(
-		// Keep in sync with WebInstallerOutput::getCSS()
+		// Used in the web installer. Test it after modifying this definition!
 		'styles' => array(
 			'common/commonElements.css' => array( 'media' => 'screen' ),
 			'common/commonContent.css' => array( 'media' => 'screen' ),
 			'common/commonInterface.css' => array( 'media' => 'screen' ),
-			'vector/screen.css' => array( 'media' => 'screen' ),
-			'vector/screen-hd.css' => array( 'media' => 'screen and (min-width: 982px)' ),
+			'vector/styles.less',
+		),
+		'remoteBasePath' => $GLOBALS['wgStylePath'],
+		'localBasePath' => $GLOBALS['wgStyleDirectory'],
+	),
+	'skins.vector.beta' => array(
+		// Keep in sync with skins.vector
+		'styles' => array(
+			'common/commonElements.css' => array( 'media' => 'screen' ),
+			'common/commonContent.css' => array( 'media' => 'screen' ),
+			'common/commonInterface.css' => array( 'media' => 'screen' ),
+			'vector/styles-beta.less',
 		),
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
@@ -107,6 +117,22 @@ return array(
 		'dependencies' => 'jquery.delayedBind',
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
+	),
+	'skins.vector.collapsibleNav' => array(
+		'scripts' => array(
+			'vector/collapsibleNav.js',
+		),
+		'messages' => array(
+			'vector-collapsiblenav-more',
+		),
+		'dependencies' => array(
+			'jquery.client',
+			'jquery.cookie',
+			'jquery.tabIndex',
+		),
+		'remoteBasePath' => $GLOBALS['wgStylePath'],
+		'localBasePath' => $GLOBALS['wgStyleDirectory'],
+		'position' => 'bottom',
 	),
 
 	/* jQuery */
@@ -140,6 +166,7 @@ return array(
 	),
 	'jquery.byteLength' => array(
 		'scripts' => 'resources/jquery/jquery.byteLength.js',
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'jquery.byteLimit' => array(
 		'scripts' => 'resources/jquery/jquery.byteLimit.js',
@@ -261,7 +288,10 @@ return array(
 		'scripts' => 'resources/jquery/jquery.tablesorter.js',
 		'styles' => 'resources/jquery/jquery.tablesorter.css',
 		'messages' => array( 'sort-descending', 'sort-ascending' ),
-		'dependencies' => 'jquery.mwExtension',
+		'dependencies' => array(
+			'jquery.mwExtension',
+			'mediawiki.language.months',
+		),
 	),
 	'jquery.textSelection' => array(
 		'scripts' => 'resources/jquery/jquery.textSelection.js',
@@ -623,6 +653,14 @@ return array(
 		// must be loaded on the bottom
 		'position' => 'bottom',
 	),
+	'mediawiki.inspect' => array(
+		'scripts' => 'resources/mediawiki/mediawiki.inspect.js',
+		'dependencies' => array(
+			'jquery.byteLength',
+			'jquery.json',
+		),
+		'targets' => array( 'desktop', 'mobile' ),
+	),
 	'mediawiki.feedback' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.feedback.js',
 		'styles' => 'resources/mediawiki/mediawiki.feedback.css',
@@ -687,7 +725,10 @@ return array(
 	),
 	'mediawiki.Title' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.Title.js',
-		'dependencies' => 'mediawiki.util',
+		'dependencies' => array(
+			'jquery.byteLength',
+			'mediawiki.util',
+		),
 	),
 	'mediawiki.Uri' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.Uri.js',
@@ -719,10 +760,14 @@ return array(
 	'mediawiki.action.edit' => array(
 		'scripts' => 'resources/mediawiki.action/mediawiki.action.edit.js',
 		'dependencies' => array(
-			'mediawiki.legacy.wikibits',
+			'mediawiki.action.edit.styles',
 			'jquery.textSelection',
 			'jquery.byteLimit',
 		),
+		'position' => 'top',
+	),
+	'mediawiki.action.edit.styles' => array(
+		'styles' => 'resources/mediawiki.action/mediawiki.action.edit.styles.css',
 		'position' => 'top',
 	),
 	'mediawiki.action.edit.collapsibleFooter' => array(
@@ -738,6 +783,7 @@ return array(
 		'dependencies' => array(
 			'jquery.form',
 			'jquery.spinner',
+			'mediawiki.action.history.diff',
 		),
 	),
 	'mediawiki.action.history' => array(
@@ -843,6 +889,16 @@ return array(
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 
+	'mediawiki.language.months' => array(
+		'scripts' => 'resources/mediawiki.language/mediawiki.language.months.js',
+		'dependencies' => 'mediawiki.language',
+		'messages' => array_merge(
+			Language::$mMonthMsgs,
+			Language::$mMonthGenMsgs,
+			Language::$mMonthAbbrevMsgs
+		)
+	),
+
 	/* MediaWiki Libs */
 
 	'mediawiki.libs.jpegmeta' => array(
@@ -851,6 +907,9 @@ return array(
 
 	/* MediaWiki Page */
 
+	'mediawiki.page.gallery' => array(
+		'scripts' => 'resources/mediawiki.page/mediawiki.page.gallery.js',
+	),
 	'mediawiki.page.ready' => array(
 		'scripts' => 'resources/mediawiki.page/mediawiki.page.ready.js',
 		'dependencies' => array(
@@ -907,6 +966,10 @@ return array(
 			'watcherrortext',
 		),
 	),
+	'mediawiki.page.image.pagination' => array(
+		'scripts' => 'resources/mediawiki.page/mediawiki.page.image.pagination.js',
+		'dependencies' => array( 'jquery.spinner' )
+	),
 
 	/* MediaWiki Special pages */
 
@@ -941,10 +1004,16 @@ return array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.movePage.js',
 		'dependencies' => 'jquery.byteLimit',
 	),
+	'mediawiki.special.pagesWithProp' => array(
+		'styles' => 'resources/mediawiki.special/mediawiki.special.pagesWithProp.css',
+	),
 	'mediawiki.special.preferences' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.preferences.js',
 		'styles' => 'resources/mediawiki.special/mediawiki.special.preferences.css',
 		'position' => 'top',
+		'skinStyles' => array(
+			'vector' => 'skins/vector/special.preferences.less',
+		),
 	),
 	'mediawiki.special.recentchanges' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.recentchanges.js',
@@ -1043,14 +1112,9 @@ return array(
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 	),
 	'mediawiki.legacy.config' => array(
+		// Used in the web installer. Test it after modifying this definition!
 		'scripts' => 'common/config.js',
-		'styles' => array( 'common/config.css', 'common/config-cc.css' ),
-		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => $GLOBALS['wgStyleDirectory'],
-		'dependencies' => 'mediawiki.legacy.wikibits',
-	),
-	'mediawiki.legacy.IEFixes' => array(
-		'scripts' => 'common/IEFixes.js',
+		'styles' => array( 'common/config.css' ),
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 		'dependencies' => 'mediawiki.legacy.wikibits',
@@ -1066,6 +1130,7 @@ return array(
 		'position' => 'top',
 	),
 	'mediawiki.legacy.shared' => array(
+		// Used in the web installer. Test it after modifying this definition!
 		'styles' => array( 'common/shared.css' => array( 'media' => 'screen' ) ),
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
@@ -1094,11 +1159,6 @@ return array(
 			'mediawiki.util',
 		),
 		'position' => 'top',
-	),
-	'mediawiki.legacy.wikiprintable' => array(
-		'styles' => array( 'common/wikiprintable.css' => array( 'media' => 'print' ) ),
-		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 	),
 	'mediawiki.ui' => array(
 		'skinStyles' => array(

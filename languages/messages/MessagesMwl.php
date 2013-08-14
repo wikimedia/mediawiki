@@ -246,7 +246,7 @@ $messages = array(
 'articlepage' => 'Ber páigina de cuntenido',
 'talk' => 'Çcusson',
 'views' => 'Besitas',
-'toolbox' => 'Caixa de Ferramientas',
+'toolbox' => 'Ferramientas',
 'userpage' => 'Ber páigina de outelizador',
 'imagepage' => 'Ber páigina de fexeiro',
 'mediawikipage' => 'Ber páigina de mensaiges',
@@ -262,7 +262,7 @@ $messages = array(
 'jumptonavigation' => 'nabegaçon',
 'jumptosearch' => 'percura',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Subre {{SITENAME}}',
 'aboutpage' => 'Project:Subre',
 'copyright' => 'Cuntenido çponible subre la lhicença $1.',
@@ -763,8 +763,6 @@ Páiginas que steian ne ls [[Special:Watchlist|tous begiados]] son amostradas an
 'statistics-pages' => 'Páiginas',
 'statistics-views-total' => 'Total de bejitas',
 'statistics-users-active' => 'Outelizadores atibos',
-
-'disambiguations' => 'Páigina de zambiguaçon',
 
 'doubleredirects' => 'Ancaminamientos duplos',
 

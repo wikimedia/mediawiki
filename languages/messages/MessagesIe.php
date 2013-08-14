@@ -335,7 +335,7 @@ Pleser atende un témpor quelc ante que vu prova accesser ti págine denov.
 
 $1',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Concernent {{SITENAME}}',
 'aboutpage' => 'Project:Concernent',
 'copyright' => 'Contenete disponibil sub $1.',
@@ -883,8 +883,6 @@ Li descrition es in li [$2 págine de descrition del file] ta e es monstrat in i
 'statistics-users-active' => 'Usatores activ',
 'statistics-users-active-desc' => 'Usatores qui have efectuat un action in li ultim {{PLURAL:$1|die|dies}}',
 'statistics-mostpopular' => 'Págines max visitat',
-
-'disambiguationspage' => 'Template:disambig',
 
 'brokenredirects-edit' => 'redacter',
 'brokenredirects-delete' => 'deleter',

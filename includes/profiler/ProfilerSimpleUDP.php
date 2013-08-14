@@ -32,7 +32,7 @@ class ProfilerSimpleUDP extends ProfilerSimple {
 	}
 
 	public function logData() {
-		global $wgUDPProfilerHost, $wgUDPProfilerPort;
+		global $wgUDPProfilerHost, $wgUDPProfilerPort, $wgUDPProfilerFormatString;
 
 		$this->close();
 
@@ -57,7 +57,7 @@ class ProfilerSimpleUDP extends ProfilerSimple {
 				|| !isset( $pfdata['real_sq'] ) ) {
 				continue;
 			}
-			$pfline = sprintf( "%s %s %d %f %f %f %f %s\n", $this->getProfileID(), "-", $pfdata['count'],
+			$pfline = sprintf( $wgUDPProfilerFormatString, $this->getProfileID(), $pfdata['count'],
 				$pfdata['cpu'], $pfdata['cpu_sq'], $pfdata['real'], $pfdata['real_sq'], $entry );
 			$length = strlen( $pfline );
 			/* printf("<!-- $pfline -->"); */

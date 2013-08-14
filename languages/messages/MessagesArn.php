@@ -21,8 +21,8 @@ $messages = array(
 # User preference toggles
 'tog-underline' => 'Miñcewirilpe lasun',
 'tog-justify' => 'Xvrvmpe cijkantvkun',
-'tog-showtoolbar' => 'Pengelün kümeelün ñi chemkün (JavaScript duamyengey)',
-'tog-editondblclick' => 'Wirin pakina epu klik mew (JavaScript)',
+'tog-showtoolbar' => 'Pengelün kümeelün ñi chemkün',
+'tog-editondblclick' => 'Wirin pakina epu klik mew',
 'tog-rememberpassword' => 'Amulen tañi nülküwküleael tüfa mew (alürumechi $1 {{PLURAL:$1 antü}})',
 
 'underline-always' => 'Rumel',
@@ -183,7 +183,7 @@ $messages = array(
 'jumptosearch' => 'kintun',
 'pool-errorunknown' => 'Kimnoelchi welulkan',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} ñi dungu',
 'aboutpage' => 'Project:Dungu',
 'copyrightpage' => '{{ns:project}}:Norkülelu ñi ngenngelu ñi deumakelu',
@@ -430,7 +430,7 @@ Rulpakünuy feychi kangelkülelu dungu.",
 'powersearch-field' => 'Kintun',
 
 # Preferences page
-'mypreferences' => 'Tami dullin',
+'mypreferences' => 'Dullin',
 'prefs-edits' => 'Rakin Wirin:',
 'prefsnologin' => 'Mülelay Konün',
 'skin-preview' => 'Pen chum müley',
@@ -581,8 +581,6 @@ Fey ñi chumngen mülelu ($2 fey ñi chumngen wülngiñ) pengeli tüfa mew.',
 # Statistics
 'statistics' => 'Chuntelen',
 'statistics-pages' => 'Pakina',
-
-'disambiguationspage' => 'Template:Kiñeduamngelu dungu',
 
 'brokenredirects-edit' => 'pepikan',
 'brokenredirects-delete' => 'ñamümün',
@@ -754,7 +752,6 @@ Fey ñi chumngen mülelu ($2 fey ñi chumngen wülngiñ) pengeli tüfa mew.',
 'blocklogentry' => 'Katrüntukufi [[$1]] $2 antü/ora mew, $3',
 'block-log-flags-nocreate' => 'Pepi dewmangelay konün',
 'block-log-flags-hiddenname' => 'Üy kellufe ellkan',
-'proxyblocksuccess' => 'Dewmangey.',
 
 # Move page
 'move-page' => 'Nengümün $1',

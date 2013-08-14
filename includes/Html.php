@@ -422,6 +422,7 @@ class Html {
 		$ret = '';
 		$attribs = (array)$attribs;
 		foreach ( $attribs as $key => $value ) {
+			// Support intuitive array( 'checked' => true/false ) form
 			if ( $value === false || is_null( $value ) ) {
 				continue;
 			}
@@ -846,7 +847,7 @@ class Html {
 		# * text/xml
 		# * application/xml
 		# * Any mimetype with a subtype ending in +xml (this implicitly includes application/xhtml+xml)
-		return (bool) preg_match( '!^(text|application)/xml$|^.+/.+\+xml$!', $mimetype );
+		return (bool)preg_match( '!^(text|application)/xml$|^.+/.+\+xml$!', $mimetype );
 	}
 
 	/**

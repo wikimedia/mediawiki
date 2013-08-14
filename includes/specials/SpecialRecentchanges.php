@@ -41,16 +41,17 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	 */
 	public function getDefaultOptions() {
 		$opts = new FormOptions();
+		$user = $this->getUser();
 
-		$opts->add( 'days', $this->getUser()->getIntOption( 'rcdays' ) );
-		$opts->add( 'limit', $this->getUser()->getIntOption( 'rclimit' ) );
+		$opts->add( 'days', $user->getIntOption( 'rcdays' ) );
+		$opts->add( 'limit', $user->getIntOption( 'rclimit' ) );
 		$opts->add( 'from', '' );
 
-		$opts->add( 'hideminor', $this->getUser()->getBoolOption( 'hideminor' ) );
+		$opts->add( 'hideminor', $user->getBoolOption( 'hideminor' ) );
 		$opts->add( 'hidebots', true );
 		$opts->add( 'hideanons', false );
 		$opts->add( 'hideliu', false );
-		$opts->add( 'hidepatrolled', $this->getUser()->getBoolOption( 'hidepatrolled' ) );
+		$opts->add( 'hidepatrolled', $user->getBoolOption( 'hidepatrolled' ) );
 		$opts->add( 'hidemyself', false );
 
 		$opts->add( 'namespace', '', FormOptions::INTNULL );
@@ -154,7 +155,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		$opts = $this->getOptions();
 		$this->setHeaders();
 		$this->outputHeader();
-		$this->addRecentChangesJS();
+		$this->addModules();
 
 		// Fetch results, prepare a batch link existence check query
 		$conds = $this->buildMainQueryConds( $opts );
@@ -424,59 +425,16 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 			return false;
 		}
 
-		// Don't use the new_namespace_time timestamp index if:
-		// (a) "All namespaces" selected
-		// (b) We want pages in more than one namespace (inverted/associated)
-		// (c) There is a tag to filter on (use tag index instead)
-		// (d) UNION + sort/limit is not an option for the DBMS
-		if ( $namespace === ''
-			|| ( $invert || $associated )
-			|| $opts['tagfilter'] != ''
-			|| !$dbr->unionSupportsOrderAndLimit()
-		) {
-			$res = $dbr->select( $tables, $fields, $conds, __METHOD__,
-				array( 'ORDER BY' => 'rc_timestamp DESC', 'LIMIT' => $limit ) +
-					$query_options,
-				$join_conds );
-		} else {
-			// We have a new_namespace_time index! UNION over new=(0,1) and sort result set!
-
-			// New pages
-			$sqlNew = $dbr->selectSQLText(
-				$tables,
-				$fields,
-				array( 'rc_new' => 1 ) + $conds,
-				__METHOD__,
-				array(
-					'ORDER BY' => 'rc_timestamp DESC',
-					'LIMIT' => $limit,
-					'USE INDEX' => array( 'recentchanges' => 'new_name_timestamp' )
-				),
-				$join_conds
-			);
-
-			// Old pages
-			$sqlOld = $dbr->selectSQLText(
-				$tables,
-				$fields,
-				array( 'rc_new' => 0 ) + $conds,
-				__METHOD__,
-				array(
-					'ORDER BY' => 'rc_timestamp DESC',
-					'LIMIT' => $limit,
-					'USE INDEX' => array( 'recentchanges' => 'new_name_timestamp' )
-				),
-				$join_conds
-			);
-
-			# Join the two fast queries, and sort the result set
-			$sql = $dbr->unionQueries( array( $sqlNew, $sqlOld ), false ) .
-				' ORDER BY rc_timestamp DESC';
-			$sql = $dbr->limitResult( $sql, $limit, false );
-			$res = $dbr->query( $sql, __METHOD__ );
-		}
-
-		return $res;
+		// rc_new is not an ENUM, but adding a redundant rc_new IN (0,1) gives mysql enough
+		// knowledge to use an index merge if it wants (it may use some other index though).
+		return $dbr->select(
+			$tables,
+			$fields,
+			$conds + array( 'rc_new' => array( 0, 1 ) ),
+			__METHOD__,
+			array( 'ORDER BY' => 'rc_timestamp DESC', 'LIMIT' => $limit ) + $query_options,
+			$join_conds
+		);
 	}
 
 	/**
@@ -488,27 +446,15 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	public function webOutput( $rows, $opts ) {
 		global $wgRCShowWatchingUsers, $wgShowUpdatedMarker, $wgAllowCategorizedRecentChanges;
 
-		$limit = $opts['limit'];
-
-		if ( !$this->including() ) {
-			// Output options box
-			$this->doHeader( $opts );
-		}
-
-		// And now for the content
-		$feedQuery = $this->getFeedQuery();
-		if ( $feedQuery !== '' ) {
-			$this->getOutput()->setFeedAppendQuery( $feedQuery );
-		} else {
-			$this->getOutput()->setFeedAppendQuery( false );
-		}
+		// Build the final data
 
 		if ( $wgAllowCategorizedRecentChanges ) {
 			$this->filterByCategories( $rows, $opts );
 		}
 
-		$showNumsWachting = $this->getUser()->getOption( 'shownumberswatching' );
-		$showWatcherCount = $wgRCShowWatchingUsers && $showNumsWachting;
+		$limit = $opts['limit'];
+
+		$showWatcherCount = $wgRCShowWatchingUsers && $this->getUser()->getOption( 'shownumberswatching' );
 		$watcherCache = array();
 
 		$dbr = wfGetDB( DB_SLAVE );
@@ -516,14 +462,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		$counter = 1;
 		$list = ChangesList::newFromContext( $this->getContext() );
 
-		if ( $rows->numRows() === 0 ) {
-			$this->getOutput()->wrapWikiMsg(
-				"<div class='mw-changeslist-empty'>\n$1\n</div>", 'recentchanges-noresult'
-			);
-			return;
-		}
-
-		$s = $list->beginRecentChangesList();
+		$rclistOutput = $list->beginRecentChangesList();
 		foreach ( $rows as $obj ) {
 			if ( $limit == 0 ) {
 				break;
@@ -556,12 +495,34 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 
 			$changeLine = $list->recentChangesLine( $rc, !empty( $obj->wl_user ), $counter );
 			if ( $changeLine !== false ) {
-				$s .= $changeLine;
+				$rclistOutput .= $changeLine;
 				--$limit;
 			}
 		}
-		$s .= $list->endRecentChangesList();
-		$this->getOutput()->addHTML( $s );
+		$rclistOutput .= $list->endRecentChangesList();
+
+		// Print things out
+
+		if ( !$this->including() ) {
+			// Output options box
+			$this->doHeader( $opts );
+		}
+
+		// And now for the content
+		$feedQuery = $this->getFeedQuery();
+		if ( $feedQuery !== '' ) {
+			$this->getOutput()->setFeedAppendQuery( $feedQuery );
+		} else {
+			$this->getOutput()->setFeedAppendQuery( false );
+		}
+
+		if ( $rows->numRows() === 0 ) {
+			$this->getOutput()->addHtml(
+				'<div class="mw-changeslist-empty">' . $this->msg( 'recentchanges-noresult' )->parse() . '</div>'
+			);
+		} else {
+			$this->getOutput()->addHTML( $rclistOutput );
+		}
 	}
 
 	/**
@@ -951,9 +912,9 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	}
 
 	/**
-	 * Add JavaScript to the page
+	 * Add page-specific modules.
 	 */
-	function addRecentChangesJS() {
+	protected function addModules() {
 		$this->getOutput()->addModules( array(
 			'mediawiki.special.recentchanges',
 		) );

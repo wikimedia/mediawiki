@@ -1,18 +1,21 @@
 <?php
 /**
- * Tests for wfUrlencode()
- *
  * The function only need a string parameter and might react to IIS7.0
+ * @covers ::wfUrlencode
  */
 class WfUrlencodeTest extends MediaWikiTestCase {
 	#### TESTS ##############################################################
 
-	/** @dataProvider provideURLS */
+	/**
+	 * @dataProvider provideURLS
+	 */
 	public function testEncodingUrlWith( $input, $expected ) {
 		$this->verifyEncodingFor( 'Apache', $input, $expected );
 	}
 
-	/** @dataProvider provideURLS */
+	/**
+	 * @dataProvider provideURLS
+	 */
 	public function testEncodingUrlWithMicrosoftIis7( $input, $expected ) {
 		$this->verifyEncodingFor( 'Microsoft-IIS/7', $input, $expected );
 	}

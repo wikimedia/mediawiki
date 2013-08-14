@@ -426,6 +426,7 @@
 		 * @param {HTMLElement|jQuery|mw.Message|string} message
 		 * @param {Object} options The options to use for the notification.
 		 *  See #defaults for details.
+		 * @return {Object} Object with a close function to close the notification
 		 */
 		notify: function ( message, options ) {
 			var notif;
@@ -438,6 +439,7 @@
 			} else {
 				preReadyNotifQueue.push( notif );
 			}
+			return { close: $.proxy( notif.close, notif ) };
 		},
 
 		/**

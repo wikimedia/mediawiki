@@ -5,7 +5,7 @@
     <generation date="$Date: 2013-01-03 07:17:41 +0530 (Thu, 03 Jan 2013) $"/>
     <plurals>
         <!-- if locale is known to have no plurals, there are no rules -->
-        <pluralRules locales="az bm bo dz fa id ig ii hu ja jv ka kde kea km kn ko lo ms my sah ses sg th to tr vi wo yo zh"/> 
+        <pluralRules locales="az bm bo dz fa id ig ii hu ja jv ka kde kea km kn ko lo ms my sah ses sg th to tr vi wo yo zh"/>
         <pluralRules locales="ar">
             <pluralRule count="zero">n is 0</pluralRule>
             <pluralRule count="one">n is 1</pluralRule>

@@ -23,7 +23,7 @@ class MediaWikiParserTest {
 	/** Include non core files as set in $wgParserTestFiles */
 	const NO_CORE = 2;
 	/** Include anything set via $wgParserTestFiles */
-	const WITH_ALL  = 3;  # CORE_ONLY | NO_CORE
+	const WITH_ALL = 3; # CORE_ONLY | NO_CORE
 
 	/** @} */
 
@@ -51,28 +51,28 @@ class MediaWikiParserTest {
 	 * @return PHPUnit_Framework_TestSuite
 	 */
 	public static function suite( $flags = self::CORE_ONLY ) {
-		if( is_string( $flags ) ) {
+		if ( is_string( $flags ) ) {
 			$flags = self::CORE_ONLY;
 		}
 		global $wgParserTestFiles, $IP;
 
-		$mwTestDir = $IP.'/tests/';
+		$mwTestDir = $IP . '/tests/';
 
 		# Human friendly helpers
-		$wantsCore = ($flags & self::CORE_ONLY);
-		$wantsRest = ($flags & self::NO_CORE);
+		$wantsCore = ( $flags & self::CORE_ONLY );
+		$wantsRest = ( $flags & self::NO_CORE );
 
 		# Will hold the .txt parser test files we will include
 		$filesToTest = array();
 
 		# Filter out .txt files
-		foreach( $wgParserTestFiles as $parserTestFile ) {
+		foreach ( $wgParserTestFiles as $parserTestFile ) {
 			$isCore = ( 0 === strpos( $parserTestFile, $mwTestDir ) );
 
-			if( $isCore && $wantsCore ) {
+			if ( $isCore && $wantsCore ) {
 				self::debug( "included core parser tests: $parserTestFile" );
 				$filesToTest[] = $parserTestFile;
-			} elseif( !$isCore && $wantsRest ) {
+			} elseif ( !$isCore && $wantsRest ) {
 				self::debug( "included non core parser tests: $parserTestFile" );
 				$filesToTest[] = $parserTestFile;
 			} else {
@@ -80,7 +80,7 @@ class MediaWikiParserTest {
 			}
 		}
 		self::debug( 'parser tests files: '
-			. implode(' ', $filesToTest) );
+			. implode( ' ', $filesToTest ) );
 
 		$suite = new PHPUnit_Framework_TestSuite;
 		foreach ( $filesToTest as $fileName ) {

@@ -33,10 +33,7 @@ class Sqlite {
 	 * @return bool
 	 */
 	public static function isPresent() {
-		wfSuppressWarnings();
-		$compiled = wfDl( 'pdo_sqlite' );
-		wfRestoreWarnings();
-		return $compiled;
+		return extension_loaded( 'pdo_sqlite' );
 	}
 
 	/**

@@ -1,6 +1,26 @@
 <?php
 class AutoLoaderTest extends MediaWikiTestCase {
 
+	protected function setUp() {
+		global $wgAutoloadLocalClasses, $wgAutoloadClasses;
+
+		parent::setUp();
+
+		// Fancy dance to trigger a rebuild of AutoLoader::$autoloadLocalClassesLower
+		$this->testLocalClasses = array(
+			'TestAutoloadedLocalClass' => __DIR__ . '/../data/autoloader/TestAutoloadedLocalClass.php',
+			'TestAutoloadedCamlClass' => __DIR__ . '/../data/autoloader/TestAutoloadedCamlClass.php',
+			'TestAutoloadedSerializedClass' => __DIR__ . '/../data/autoloader/TestAutoloadedSerializedClass.php',
+		);
+		$this->setMwGlobals( 'wgAutoloadLocalClasses', $this->testLocalClasses + $wgAutoloadLocalClasses );
+		InstrumentedAutoLoader::resetAutoloadLocalClassesLower();
+
+		$this->testExtensionClasses = array(
+			'TestAutoloadedClass' => __DIR__ . '/../data/autoloader/TestAutoloadedClass.php',
+		);
+		$this->setMwGlobals( 'wgAutoloadClasses', $this->testExtensionClasses + $wgAutoloadClasses );
+	}
+
 	/**
 	 * Assert that there were no classes loaded that are not registered with the AutoLoader.
 	 *
@@ -52,5 +72,33 @@ class AutoLoaderTest extends MediaWikiTestCase {
 			'expected' => $expected,
 			'actual' => $actual,
 		);
+	}
+
+	function testCoreClass() {
+		$this->assertTrue( class_exists( 'TestAutoloadedLocalClass' ) );
+	}
+
+	function testExtensionClass() {
+		$this->assertTrue( class_exists( 'TestAutoloadedClass' ) );
+	}
+
+	function testWrongCaseClass() {
+		$this->assertTrue( class_exists( 'testautoLoadedcamlCLASS' ) );
+	}
+
+	function testWrongCaseSerializedClass() {
+		$dummyCereal = 'O:29:"testautoloadedserializedclass":0:{}';
+		$uncerealized = unserialize( $dummyCereal );
+		$this->assertFalse( $uncerealized instanceof __PHP_Incomplete_Class,
+			"unserialize() can load classes case-insensitively.");
+	}
+}
+
+/**
+ * Cheater to poke protected members
+ */
+class InstrumentedAutoLoader extends AutoLoader {
+	static function resetAutoloadLocalClassesLower() {
+		self::$autoloadLocalClassesLower = null;
 	}
 }

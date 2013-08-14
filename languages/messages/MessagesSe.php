@@ -322,7 +322,7 @@ $messages = array(
 'jumptonavigation' => 'navigašuvdnii',
 'jumptosearch' => 'ohcamii',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} birra',
 'aboutpage' => 'Project:Dieđut',
 'copyright' => 'Sisdoalu sáhttá geavahit liseanssain $1.',
@@ -397,7 +397,6 @@ $messages = array(
 'viewsource' => 'Geahča gáldu',
 'protectedpagetext' => 'Dát siidu lea suodjaluvvon rievdadusain.',
 'viewsourcetext' => 'Sáhtát geahčat ja kopieret dán siiddu gáldokoda:',
-'sqlhidden' => '(SQL-jearahallan lea čihkojuvvon)',
 
 # Login and logout pages
 'logouttext' => "'''Don leat dál loggen olggos {{GRAMMAR:elative|{{SITENAME}}}}s.'''
@@ -462,7 +461,7 @@ Sáhtát joatkit {{GRAMMAR:genitive|{{SITENAME}}}} geavaheami anonyman dahje log
 'newpassword' => 'Ođđa suollemassátni',
 'retypenew' => 'Ođđa suollemassátni ođđasit',
 'resetpass_submit' => 'Čále suollemassáni ja čálligoađe sisa',
-'resetpass_success' => 'Suollemassáni rievdadeapmim lihkosmuvai.',
+'changepassword-success' => 'Suollemassáni rievdadeapmim lihkosmuvai.',
 'resetpass_forbidden' => 'Suollemassániid rievdan ii lihkosmuva dán wikis.',
 'resetpass-submit-loggedin' => 'Molsso suollemassáni',
 
@@ -891,8 +890,6 @@ $1 {{int:pipe-separator}} $2',
 'statistics-users-active-desc' => 'Geavaheaddjit, geat leat bargan juoidá maŋimus {{PLURAL:$1|beaivvi|$1 beaivvi}} áigge.',
 'statistics-mostpopular' => 'Eanemusta gehčojuvvon siiddut',
 
-'disambiguations' => 'Liŋkkat dárkonsiidduide',
-
 'doubleredirects' => 'Guovttegeardán ođđasitstivremat',
 
 'brokenredirects' => 'Bieđganan ođđasitstivremat',
@@ -1217,7 +1214,6 @@ Siiddus $2 lea listu maŋimus sihkomiin.',
 'blocklink' => 'hehtte',
 'contribslink' => 'rievdadusat',
 'blocklogentry' => 'esttii geavaheaddji dahje IP-čujuhusa [[$1]], eastima bistin lea $2 $3',
-'proxyblocksuccess' => 'Gárvvis.',
 
 # Developer tools
 'lockdb' => 'Gidde diehtovuođu',

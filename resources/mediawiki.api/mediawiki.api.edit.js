@@ -3,9 +3,6 @@
  */
 ( function ( mw, $ ) {
 
-	// Cache token so we don't have to keep fetching new ones for every single request.
-	var cachedToken = null;
-
 	$.extend( mw.Api.prototype, {
 
 		/**
@@ -19,32 +16,7 @@
 		 * @return {jQuery.Promise} See #post
 		 */
 		postWithEditToken: function ( params, ok, err ) {
-			var useTokenToPost, getTokenIfBad,
-				api = this;
-			if ( cachedToken === null ) {
-				// We don't have a valid cached token, so get a fresh one and try posting.
-				// We do not trap any 'badtoken' or 'notoken' errors, because we don't want
-				// an infinite loop. If this fresh token is bad, something else is very wrong.
-				useTokenToPost = function ( token ) {
-					params.token = token;
-					api.post( params, { ok: ok, err: err } );
-				};
-				return api.getEditToken( useTokenToPost, err );
-			} else {
-				// We do have a token, but it might be expired. So if it is 'bad' then
-				// start over with a new token.
-				params.token = cachedToken;
-				getTokenIfBad = function ( code, result ) {
-					if ( code === 'badtoken' ) {
-						// force a new token, clear any old one
-						cachedToken = null;
-						api.postWithEditToken( params, ok, err );
-					} else {
-						err( code, result );
-					}
-				};
-				return api.post( params, { ok: ok, err: getTokenIfBad } );
-			}
+			return this.postWithToken( 'edit', params ).done( ok ).fail( err );
 		},
 
 		/**
@@ -57,38 +29,7 @@
 		 * @return {string} return.done.token Received token.
 		 */
 		getEditToken: function ( ok, err ) {
-			var d = $.Deferred(),
-				apiPromise;
-			// Backwards compatibility (< MW 1.20)
-			d.done( ok );
-			d.fail( err );
-
-			apiPromise = this.get( {
-					action: 'tokens',
-					type: 'edit'
-				}, {
-					// Due to the API assuming we're logged out if we pass the callback-parameter,
-					// we have to disable jQuery's callback system, and instead parse JSON string,
-					// by setting 'jsonp' to false.
-					// TODO: This concern seems genuine but no other module has it. Is it still
-					// needed and/or should we pass this by default?
-					jsonp: false
-				} )
-				.done( function ( data ) {
-					var token;
-					// If token type is not available for this user,
-					// key 'edittoken' is missing or can contain Boolean false
-					if ( data.tokens && data.tokens.edittoken ) {
-						token = data.tokens.edittoken;
-						cachedToken = token;
-						d.resolve( token );
-					} else {
-						d.reject( 'token-missing', data );
-					}
-				} )
-				.fail( d.reject );
-
-			return d.promise( { abort: apiPromise.abort } );
+			return this.getToken( 'edit' ).done( ok ).fail( err );
 		},
 
 		/**
@@ -111,8 +52,7 @@
 				text: message
 			}, ok, err );
 		}
-
-	 } );
+	} );
 
 	/**
 	 * @class mw.Api

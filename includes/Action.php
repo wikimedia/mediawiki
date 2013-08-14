@@ -59,7 +59,7 @@ abstract class Action {
 	 * the action is disabled, or null if it's not recognised
 	 * @param $action String
 	 * @param $overrides Array
-	 * @return bool|null|string
+	 * @return bool|null|string|callable
 	 */
 	final private static function getClass( $action, array $overrides ) {
 		global $wgActions;
@@ -89,12 +89,18 @@ abstract class Action {
 	 *     if it is not recognised
 	 */
 	final public static function factory( $action, Page $page, IContextSource $context = null ) {
-		$class = self::getClass( $action, $page->getActionOverrides() );
-		if ( $class ) {
-			$obj = new $class( $page, $context );
+		$classOrCallable = self::getClass( $action, $page->getActionOverrides() );
+
+		if ( is_string( $classOrCallable ) ) {
+			$obj = new $classOrCallable( $page, $context );
 			return $obj;
 		}
-		return $class;
+
+		if ( is_callable( $classOrCallable ) ) {
+			return call_user_func_array( $classOrCallable, array( $page, $context ) );
+		}
+
+		return $classOrCallable;
 	}
 
 	/**
@@ -136,7 +142,7 @@ abstract class Action {
 			return 'view';
 		}
 
-		$action = Action::factory( $actionName, $context->getWikiPage() );
+		$action = Action::factory( $actionName, $context->getWikiPage(), $context );
 		if ( $action instanceof Action ) {
 			return $action->getName();
 		}
@@ -161,8 +167,14 @@ abstract class Action {
 	final public function getContext() {
 		if ( $this->context instanceof IContextSource ) {
 			return $this->context;
+		} else if ( $this->page instanceof Article ) {
+			// NOTE: $this->page can be a WikiPage, which does not have a context.
+			wfDebug( __METHOD__ . ': no context known, falling back to Article\'s context.' );
+			return $this->page->getContext();
 		}
-		return $this->page->getContext();
+
+		wfWarn( __METHOD__ . ': no context known, falling back to RequestContext::getMain().' );
+		return RequestContext::getMain();
 	}
 
 	/**
@@ -241,12 +253,20 @@ abstract class Action {
 	}
 
 	/**
-	 * Protected constructor: use Action::factory( $action, $page ) to actually build
-	 * these things in the real world
+	 * Constructor.
+	 *
+	 * Only public since 1.21
+	 *
 	 * @param $page Page
 	 * @param $context IContextSource
 	 */
-	protected function __construct( Page $page, IContextSource $context = null ) {
+	public function __construct( Page $page, IContextSource $context = null ) {
+		if ( $context === null ) {
+			wfWarn( __METHOD__ . ' called without providing a Context object.' );
+			// NOTE: We could try to initialize $context using $page->getContext(),
+			//      if $page is an Article. That however seems to not work seamlessly.
+		}
+
 		$this->page = $page;
 		$this->context = $context;
 	}
@@ -469,7 +489,7 @@ abstract class FormAction extends Action {
 	public function execute( array $data = null, $captureErrors = true ) {
 		try {
 			// Set a new context so output doesn't leak.
-			$this->context = clone $this->page->getContext();
+			$this->context = clone $this->getContext();
 
 			// This will throw exceptions if there's a problem
 			$this->checkCanExecute( $this->getUser() );
@@ -558,7 +578,7 @@ abstract class FormlessAction extends Action {
 	public function execute( array $data = null, $captureErrors = true ) {
 		try {
 			// Set a new context so output doesn't leak.
-			$this->context = clone $this->page->getContext();
+			$this->context = clone $this->getContext();
 			if ( is_array( $data ) ) {
 				$this->context->setRequest( new FauxRequest( $data, false ) );
 			}

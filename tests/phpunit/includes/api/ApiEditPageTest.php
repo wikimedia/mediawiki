@@ -8,6 +8,8 @@
  * @group API
  * @group Database
  * @group medium
+ *
+ * @covers ApiEditPage
  */
 class ApiEditPageTest extends ApiTestCase {
 
@@ -43,7 +45,7 @@ class ApiEditPageTest extends ApiTestCase {
 		parent::tearDown();
 	}
 
-	function testEdit() {
+	public function testEdit() {
 		$name = 'Help:ApiEditPageTest_testEdit'; // assume Help namespace to default to wikitext
 
 		// -- test new page --------------------------------------------
@@ -97,7 +99,7 @@ class ApiEditPageTest extends ApiTestCase {
 		);
 	}
 
-	function testNonTextEdit() {
+	public function testNonTextEdit() {
 		$name = 'Dummy:ApiEditPageTest_testNonTextEdit';
 		$data = serialize( 'some bla bla text' );
 
@@ -150,7 +152,7 @@ class ApiEditPageTest extends ApiTestCase {
 	/**
 	 * @dataProvider provideEditAppend
 	 */
-	function testEditAppend( $text, $op, $append, $expected ) {
+	public function testEditAppend( $text, $op, $append, $expected ) {
 		static $count = 0;
 		$count++;
 
@@ -193,15 +195,80 @@ class ApiEditPageTest extends ApiTestCase {
 		$this->assertEquals( $expected, $text );
 	}
 
-	function testEditSection() {
-		$this->markTestIncomplete( "not yet implemented" );
+	/**
+	 * Test editing of sections
+	 */
+	public function testEditSection() {
+		$name = 'Help:ApiEditPageTest_testEditSection';
+		$page = WikiPage::factory( Title::newFromText( $name ) );
+		$text = "==section 1==\ncontent 1\n==section 2==\ncontent2";
+		// Preload the page with some text
+		$page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle() ), 'summary' );
+
+		list( $re ) = $this->doApiRequestWithToken( array(
+			'action' => 'edit',
+			'title' => $name,
+			'section' => '1',
+			'text' => "==section 1==\nnew content 1",
+		) );
+		$this->assertEquals( 'Success', $re['edit']['result'] );
+		$newtext = WikiPage::factory( Title::newFromText( $name) )->getContent( Revision::RAW )->getNativeData();
+		$this->assertEquals( $newtext, "==section 1==\nnew content 1\n\n==section 2==\ncontent2" );
+
+		// Test that we raise a 'nosuchsection' error
+		try {
+			$this->doApiRequestWithToken( array(
+				'action' => 'edit',
+				'title' => $name,
+				'section' => '9999',
+				'text' => 'text',
+			) );
+			$this->fail( "Should have raised a UsageException" );
+		} catch ( UsageException $e ) {
+			$this->assertEquals( $e->getCodeString(), 'nosuchsection' );
+		}
 	}
 
-	function testUndo() {
-		$this->markTestIncomplete( "not yet implemented" );
+	/**
+	 * Test action=edit&section=new
+	 * Run it twice so we test adding a new section on a
+	 * page that doesn't exist (bug 52830) and one that
+	 * does exist
+	 */
+	public function testEditNewSection() {
+		$name = 'Help:ApiEditPageTest_testEditNewSection';
+
+		// Test on a page that does not already exist
+		$this->assertFalse( Title::newFromText( $name )->exists() );
+		list( $re ) = $this->doApiRequestWithToken( array(
+			'action' => 'edit',
+			'title' => $name,
+			'section' => 'new',
+			'text' => 'test',
+			'summary' => 'header',
+		));
+
+		$this->assertEquals( 'Success', $re['edit']['result'] );
+		// Check the page text is correct
+		$text = WikiPage::factory( Title::newFromText( $name ) )->getContent( Revision::RAW )->getNativeData();
+		$this->assertEquals( $text, "== header ==\n\ntest" );
+
+		// Now on one that does
+		$this->assertTrue( Title::newFromText( $name )->exists() );
+		list( $re2 ) = $this->doApiRequestWithToken( array(
+			'action' => 'edit',
+			'title' => $name,
+			'section' => 'new',
+			'text' => 'test',
+			'summary' => 'header',
+		));
+
+		$this->assertEquals( 'Success', $re2['edit']['result'] );
+		$text = WikiPage::factory( Title::newFromText( $name ) )->getContent( Revision::RAW )->getNativeData();
+		$this->assertEquals( $text, "== header ==\n\ntest\n\n== header ==\n\ntest" );
 	}
 
-	function testEditConflict() {
+	public function testEditConflict() {
 		static $count = 0;
 		$count++;
 
@@ -237,7 +304,7 @@ class ApiEditPageTest extends ApiTestCase {
 		}
 	}
 
-	function testEditConflict_redirect() {
+	public function testEditConflict_redirect() {
 		static $count = 0;
 		$count++;
 
@@ -293,13 +360,13 @@ class ApiEditPageTest extends ApiTestCase {
 		}
 	}
 
-	function testEditConflict_bug41990() {
+	public function testEditConflict_bug41990() {
 		static $count = 0;
 		$count++;
 
 		/*
 		* bug 41990: if the target page has a newer revision than the redirect, then editing the
-		* redirect while specifying 'redirect' and *not* specifying 'basetimestamp' erronously
+		* redirect while specifying 'redirect' and *not* specifying 'basetimestamp' erroneously
 		* caused an edit conflict to be detected.
 		*/
 

@@ -143,7 +143,7 @@ class GenderCache {
 		$default = $this->getDefault();
 
 		$usersToCheck = array();
-		foreach ( (array) $users as $value ) {
+		foreach ( (array)$users as $value ) {
 			$name = self::normalizeUsername( $value );
 			// Skip users whose gender setting we already know
 			if ( !isset( $this->cache[$name] ) ) {

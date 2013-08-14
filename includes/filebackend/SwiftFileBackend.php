@@ -24,7 +24,7 @@
  */
 
 /**
- * @brief Class for an OpenStack Swift based file backend.
+ * @brief Class for an OpenStack Swift (or Ceph RGW) based file backend.
  *
  * This requires the SwiftCloudFiles MediaWiki extension, which includes
  * the php-cloudfiles library (https://github.com/rackspace/php-cloudfiles).
@@ -252,10 +252,7 @@ class SwiftFileBackend extends FileBackendStore {
 			// The MD5 here will be checked within Swift against its own MD5.
 			$obj->set_etag( md5( $params['content'] ) );
 			// Use the same content type as StreamFile for security
-			$obj->content_type = StreamFile::contentTypeFromPath( $params['dst'] );
-			if ( !strlen( $obj->content_type ) ) { // special case
-				$obj->content_type = 'unknown/unknown';
-			}
+			$obj->content_type = $this->getContentType( $params['dst'], $params['content'], null );
 			// Set any other custom headers if requested
 			if ( isset( $params['headers'] ) ) {
 				$obj->headers += $this->sanitizeHdrs( $params['headers'] );
@@ -329,10 +326,7 @@ class SwiftFileBackend extends FileBackendStore {
 			// The MD5 here will be checked within Swift against its own MD5.
 			$obj->set_etag( md5_file( $params['src'] ) );
 			// Use the same content type as StreamFile for security
-			$obj->content_type = StreamFile::contentTypeFromPath( $params['dst'] );
-			if ( !strlen( $obj->content_type ) ) { // special case
-				$obj->content_type = 'unknown/unknown';
-			}
+			$obj->content_type = $this->getContentType( $params['dst'], null, $params['src'] );
 			// Set any other custom headers if requested
 			if ( isset( $params['headers'] ) ) {
 				$obj->headers += $this->sanitizeHdrs( $params['headers'] );
@@ -765,8 +759,8 @@ class SwiftFileBackend extends FileBackendStore {
 			$srcObj = $contObj->get_object( $srcRel, $this->headersFromParams( $params ) );
 			$this->addMissingMetadata( $srcObj, $params['src'] );
 			$stat = array(
-				// Convert dates like "Tue, 03 Jan 2012 22:01:04 GMT" to TS_MW
-				'mtime' => wfTimestamp( TS_MW, $srcObj->last_modified ),
+				// Convert various random Swift dates to TS_MW
+				'mtime' => $this->convertSwiftDate( $srcObj->last_modified, TS_MW ),
 				'size' => (int)$srcObj->content_length,
 				'sha1' => $srcObj->getMetadataValue( 'Sha1base36' )
 			);
@@ -778,6 +772,21 @@ class SwiftFileBackend extends FileBackendStore {
 		}
 
 		return $stat;
+	}
+
+	/**
+	 * Convert dates like "Tue, 03 Jan 2012 22:01:04 GMT"/"2013-05-11T07:37:27.678360Z".
+	 * Dates might also come in like "2013-05-11T07:37:27.678360" from Swift listings,
+	 * missing the timezone suffix (though Ceph RGW does not appear to have this bug).
+	 *
+	 * @param string $ts
+	 * @param int $format Output format (TS_* constant)
+	 * @return string
+	 * @throws MWException
+	 */
+	protected function convertSwiftDate( $ts, $format = TS_MW ) {
+		$timestamp = new MWTimestamp( $ts );
+		return $timestamp->getTimestamp( $format );
 	}
 
 	/**
@@ -1076,8 +1085,8 @@ class SwiftFileBackend extends FileBackendStore {
 			$object = current( $cfObjects );
 			$path = "{$storageDir}/" . substr( $object->name, $suffixStart );
 			$val = array(
-				// Convert dates like "Tue, 03 Jan 2012 22:01:04 GMT" to TS_MW
-				'mtime'  => wfTimestamp( TS_MW, $object->last_modified ),
+				// Convert various random Swift dates to TS_MW
+				'mtime'  => $this->convertSwiftDate( $object->last_modified, TS_MW ),
 				'size'   => (int)$object->content_length,
 				'latest' => false // eventually consistent
 			);

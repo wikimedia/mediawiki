@@ -1503,7 +1503,7 @@ abstract class ApiBase extends ContextSource {
 	 * @param string $message Error message
 	 */
 	protected static function dieDebug( $method, $message ) {
-		wfDebugDieBacktrace( "Internal error in $method: $message" );
+		throw new MWException( "Internal error in $method: $message" );
 	}
 
 	/**

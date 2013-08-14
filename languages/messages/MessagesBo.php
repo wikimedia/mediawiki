@@ -9,6 +9,7 @@
  *
  * @author Freeyak
  * @author Jason (on bo.wikipedia.org)
+ * @author Shirayuki
  * @author YeshiTuhden
  */
 
@@ -220,7 +221,7 @@ $messages = array(
 'jumptosearch' => 'འཚོལ།',
 'pool-errorunknown' => 'ངོས་མ་ཟིན་པའི་ནོར་འཁྲུལ།',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}}ངེད་ཀྱི་སྐོར།',
 'aboutpage' => 'Project: ཡི་སྐོར།',
 'copyright' => 'དྲ་བའི་ནང་དོན་$1སྟེང་དུ་ཡོད།',
@@ -331,7 +332,7 @@ $messages = array(
 'newpassword' => 'ལམ་ཡིག་གསར་བ།',
 'retypenew' => 'ལམ་ཡིག་གསར་བ་བསྐྱར་འཇུག་བྱོས།',
 'resetpass_submit' => 'ལམ་ཡིག་བསྒྲིགས་ནས་ནང་འཛུལ་བྱེད་པ།',
-'resetpass_success' => 'ལམ་ཡིག་བདེ་ལེགས་ངང་བརྗེས་ཟིན། ད་ནི་ནང་འཛུལ་བྱེད་བཞིན་པ་་་',
+'changepassword-success' => 'ལམ་ཡིག་བདེ་ལེགས་ངང་བརྗེས་ཟིན། ད་ནི་ནང་འཛུལ་བྱེད་བཞིན་པ་་་',
 'resetpass_forbidden' => 'ལམ་ཡིག་བརྗེ་མི་ཐུབ།',
 'resetpass-submit-loggedin' => 'ལམ་ཡིག་བརྗེ་བ།',
 'resetpass-submit-cancel' => 'རྩིས་མེད་ཐོངས།',
@@ -393,7 +394,7 @@ $messages = array(
 'editingsection' => ' $1 (སྡེ་ཚན) ལ་རྩོམ་སྒྲིག་བྱེད་བཞིན་པ།',
 'yourtext' => 'ཁྱོད་ཀྱི་ཡིག་འབྲུ།',
 'yourdiff' => 'མི་འདྲ་ས།',
-'templatesused' => 'ཤོག་ངོས་འདིར་སྤྱད་པའི་ {{PLURAL:$1|དཔེ་པང་།|དཔེ་པང་།}}',
+'templatesused' => 'ཤོག་ངོས་འདིར་སྤྱད་པའི་ {{PLURAL:$1|དཔེ་པང་།}}',
 'template-protected' => 'སྲུང་སྐྱོབ་འོག་ཡོད་པ།',
 'nocreate-loggedin' => 'ཤོག་ངོས་གསར་བཟོའི་ཆོག་མཆན་མི་འདུག',
 'recreate-moveddeleted-warn' => "'''ཉེན་བརྡ་:རང་གིས་སུབ་ཚར་བའི་ཤོག་ལེ་ཞིག་བསྐྱར་བཟོ་བྱེད་ཀྱི་འདུག་ '''
@@ -649,14 +650,14 @@ $messages = array(
 'brokenredirects-delete' => 'གསུབ་པ།',
 
 # Miscellaneous special pages
-'nbytes' => '{{PLURAL:$1|ཡིག་ཚགས།|ཡིག་ཚགས།}} $1',
+'nbytes' => '{{PLURAL:$1|ཡིག་ཚགས།}} $1',
 'shortpages' => 'ཤོག་ངོས་ཐུང་ངུ་།',
 'newpages' => 'ཤོག་ངོས་གསར་བ།',
 'newpages-username' => 'དྲ་མིང་།:',
 'move' => 'སྤོར་བ།',
 'movethispage' => 'ཤོག་ངོས་འདི་སྤོར།',
-'pager-newer-n' => '{{PLURAL：$1|གསར་བ་1|གསར་བ་$1}}',
-'pager-older-n' => '{{PLURAL：$1|རྙིང་པ་1|རྙིང་པ་$1}}',
+'pager-newer-n' => '{{PLURAL:$1|གསར་བ་1|གསར་བ་$1}}',
+'pager-older-n' => '{{PLURAL:$1|རྙིང་པ་1|རྙིང་པ་$1}}',
 
 # Book sources
 'booksources' => 'དཔེ་ཆའི་ཁུངས།',

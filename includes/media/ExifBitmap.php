@@ -61,16 +61,18 @@ class ExifBitmapHandler extends BitmapHandler {
 				. $metadata['Software'][0][1] . ')';
 		}
 
+		$formatter = new FormatMetadata;
+
 		// ContactInfo also has to be dealt with specially
 		if ( isset( $metadata['Contact'] ) ) {
 			$metadata['Contact'] =
-				FormatMetadata::collapseContactInfo(
+				$formatter->collapseContactInfo(
 					$metadata['Contact'] );
 		}
 
 		foreach ( $metadata as &$val ) {
 			if ( is_array( $val ) ) {
-				$val = FormatMetadata::flattenArray( $val, 'ul', $avoidHtml );
+				$val = $formatter->flattenArrayReal( $val, 'ul', $avoidHtml );
 			}
 		}
 		$metadata['MEDIAWIKI_EXIF_VERSION'] = 1;
@@ -117,25 +119,32 @@ class ExifBitmapHandler extends BitmapHandler {
 	 * @return array|bool
 	 */
 	function formatMetadata( $image ) {
-		$metadata = $image->getMetadata();
+		$meta = $this->getCommonMetaArray( $image );
+		if ( count( $meta ) === 0 ) {
+			return false;
+		}
+
+		return $this->formatMetadataHelper( $meta );
+	}
+
+	public function getCommonMetaArray( File $file ) {
+		$metadata = $file->getMetadata();
 		if ( $metadata === self::OLD_BROKEN_FILE ||
 			$metadata === self::BROKEN_FILE ||
-			$this->isMetadataValid( $image, $metadata ) === self::METADATA_BAD )
+			$this->isMetadataValid( $file, $metadata ) === self::METADATA_BAD )
 		{
 			// So we don't try and display metadata from PagedTiffHandler
 			// for example when using InstantCommons.
-			return false;
+			return array();
 		}
 
 		$exif = unserialize( $metadata );
 		if ( !$exif ) {
-			return false;
+			return array();
 		}
 		unset( $exif['MEDIAWIKI_EXIF_VERSION'] );
-		if ( count( $exif ) == 0 ) {
-			return false;
-		}
-		return $this->formatMetadataHelper( $exif );
+
+		return $exif;
 	}
 
 	function getMetadataType( $image ) {

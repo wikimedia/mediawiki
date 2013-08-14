@@ -246,7 +246,7 @@ $messages = array(
 'pool-queuefull' => 'چنوتی کرن ل‏ئی بندے پورے نیں۔',
 'pool-errorunknown' => 'انجان غلطی',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'بارے چ {{SITENAME}}',
 'aboutpage' => 'Project:بارے وچ',
 'copyright' => 'مال $1 دے تھلے ہے گا اے۔',
@@ -329,17 +329,6 @@ $messages = array(
 # General errors
 'error' => 'غلطی',
 'databaseerror' => 'ڈیٹابیس دی غلطی',
-'dberrortext' => 'اک ڈیٹابیس کویری سنٹیکس غلطی ہوگئی اے۔
-اے سوفٹویر چ اک بگ وی ہوسکدا اے۔
-آخری کوشش کیتی ڈیٹابیس کھوج:
-<blockquote><tt>$1</tt></blockquote>
-فنکشن چوں "<tt>$2</tt>".
-ڈیٹا بیس ریٹرنڈ غلطی "<tt>$3: $4</tt>".',
-'dberrortextcl' => 'اکڈیٹابیس کویری سنٹیکس غلطی ہوگئی اے
-آخری ڈیٹابیس کویری سی:
-"$1"
-فنکش دے اندروں "$2"
-ڈیٹابیس ریٹرنڈ غلطی "$3: $4"',
 'laggedslavemode' => "'''خبردار:''' صفے تے نیڑےتریڈے ہون والیاں تبدیلیاں کوئی نیں۔",
 'readonly' => 'ڈیٹابیس تے تالا',
 'enterlockreason' => 'تالا لان دی وجہ دسو تے اہ وی دسو جے کدوں تالا کھلے گا',
@@ -388,7 +377,6 @@ $messages = array(
 'viewyourtext' => 'تسیں آپنی تبدیلیاں دا ذریعہ ایس صفے تے ویکھ تے کاپی کرسکدے او۔',
 'protectedinterface' => 'اے صفحے سافٹویئر نوں ورتن دی تھاں دیندا اے تے ایدے غلط ورتن نوں روکن واسطے اینوں بچایا ہویا اے۔',
 'editinginterface' => "'''خبردار:''' تسیں اک ایسا صفہ بدل رۓ او جیہڑا مکھی صفے دے سوفٹویر نوں لکھت دیندا اے۔ ایس صفے ج تبدیلی ورتنن والیاں دے مکھی صفے دے وکھالے نوں بدل دے گی۔ بولی وٹاندرے لئی، مہربانی کرکے میڈیاوکی بولی ویونت [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net] ول ویکھو۔",
-'sqlhidden' => '(SQL کھوج چھپائی ہوئي اے)',
 'cascadeprotected' => "ایس صفے نوں تبدیلی توں بچایا گیا اے، کیوں جے ایہ تھلے دتے گۓ {{PLURAL:$1|صفہ|صفے}} چ ہیگا اے تے اینوں ''کیسکیڈنگ'' چنوتی نال بچایا گیا اے:
 
  $2",
@@ -413,7 +401,6 @@ Note that some pages may continue to be displayed as if you were still logged in
 'yourpassword' => 'کنجی:',
 'yourpasswordagain' => 'کنجی دوبارہ لکھو:',
 'remembermypassword' => 'اس براؤزر تے میرا ورتن ناں یاد رکھو ($1 {{PLURAL:$1|دن|دناں}} واسطے)',
-'securelogin-stick-https' => 'لاک ان ہون دے مگروں HTTPS  نال جڑے روو۔',
 'yourdomainname' => 'تواڈا علاقہ:',
 'externaldberror' => 'ڈیٹابیس چ توانوں پہچاننے چ کوئی مسئلہ ہویا اے یا فیر تسی اپنا بارلا کھاتا نئیں بدل سکدے۔',
 'login' => 'اندر آؤ جی',
@@ -512,7 +499,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'newpassword' => 'نوی کنجی:',
 'retypenew' => 'نئی کنجی دوبارہ لکھو:',
 'resetpass_submit' => 'کنجی رکھو تے لاگ ان ہو جاو',
-'resetpass_success' => 'تھواڈی کنجی بدلی جاچکی اے!
+'changepassword-success' => 'تھواڈی کنجی بدلی جاچکی اے!
 تسی لاگ ان ہورۓ او۔۔۔۔۔۔',
 'resetpass_forbidden' => 'کنجی بدلی نئیں جاسکدی',
 'resetpass-no-info' => 'تسی لاگ ان ہوکے ای اس صفحے نوں ویکھ سکدے او۔',
@@ -1700,12 +1687,6 @@ $1",
 'statistics-users-active-desc' => 'ورتنوالے جناں نیں پچھلے {{PLURAL:$1|دن|$1 دناں}}  چ کم کیتا اے۔',
 'statistics-mostpopular' => 'سب توں بوتے ویکھے گۓ صفے',
 
-'disambiguations' => 'اوہ صفے جیہڑے گنجل کھول صفیاں نال جڑدے نیں۔',
-'disambiguationspage' => 'سانچہ: ڈسایمبگ',
-'disambiguations-text' => "تھلے دتے گۓ صفیاں دا اک '''گنجل کھول''' نال جوڑ اے۔
-ایدے بجاۓ ایدا جوڑ کسے ٹھیک سرناویں نال جوڑو<br />
-اک صفہ گنجل کھول صفے لئی منیا جائیگا  اگر اے اک ٹمپلیٹ ورتدا جیدا جوڑ [[MediaWiki:Disambiguationspage]] نال ہووے۔",
-
 'doubleredirects' => 'دوہری ریڈیرکٹس',
 'doubleredirectstext' => 'ایس صفے تے اوناں صفیاں دی لسٹ اے جیہڑے ریڈائرکٹ کردے نیں دوجے ریڈائرکٹ صفیاں ول۔
 ہر قطار چ جوڑ نیں  پہلے تے دوجے ریڈائرکٹ نال ، نال دوجے دیڑائرکٹ ول دا تارگٹ نیں جیہڑا کے ٹھیک تارگٹ صفہ ہوندا اے جیہڑا کہ پہلے ریڈائرکٹ نوں اشارہ کرنا چائیدا اے۔
@@ -2349,12 +2330,9 @@ $1',
 اینوں $2 دی رینج چ روکیا گیا، جینوں کھولیا جاسکدا اے۔',
 'ip_range_invalid' => 'ناں منی جان والی آئی پی رینج۔',
 'ip_range_toolarge' => 'رینج روکاں /$1 توں وڈیاں دی اجازت نئیں۔',
-'blockme' => 'مینوں روکو',
 'proxyblocker' => 'دوروں روکن والا',
-'proxyblocker-disabled' => 'اس کم نوں روک دتا گیا اے۔',
 'proxyblockreason' => 'تواڈا آئی پی پتہ تے روک لگادتی گئی جے کیوں جے اے اک کھلا پراکسی اے۔
 مہربانی کرکے اپنے انٹرنٹ سروس دین والے نال  یا تکنیکی مدد دین والے نال تے اوناں ایس بچاؤ خطرے بارے دسو۔',
-'proxyblocksuccess' => 'ہوگیا۔',
 'sorbsreason' => 'تیرا آئی پی پتہ اک کھلی پراکسی وانگوں دتا گیا اے ڈی این ایس بی ایل چ {{سائیٹناں}} نے۔',
 'sorbs_create_account_reason' => 'تواڈا پتہ اک کھلا پراکسی لسٹ چ اے ڈی این ایس بی ایل نال {{سائیٹناں}} چ۔
 تسیں اک کھاتہ نئیں کھول سکدے۔',
@@ -2686,6 +2664,8 @@ $1',
 'spambot_username' => 'میڈیاوکی سپام سفائی',
 'spam_reverting' => 'آخری ریوین ول جیدے چ $1 دے جوڑ ناں ہون۔',
 'spam_blanking' => 'سارے ریوین جناں چ $1 نوں جوڑ نیں، طاف کیتا جاریا اے۔',
+'simpleantispam-label' => 'سپام روک پھاٹک
+ایدے تے ناں لکھو۔',
 
 # Info page
 'pageinfo-title' => '"$1" لئی جانکاری',
@@ -3448,8 +3428,7 @@ the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 
 
 # Database error messages
 'dberr-header' => 'ایس وکی چ کوئی مسلہ اے۔',
-'dberr-problems' => 'معاف کرنا !
-ایس صفے تے تکنیکی مسلے آرۓ نیں۔',
+'dberr-problems' => 'معاف کرنا ! ایس صفے تے تکنیکی مسلے آرۓ نیں۔',
 'dberr-again' => 'تھو ڑے منٹ انتظار کرو تے دوبارہ لوڈ کرو۔',
 'dberr-info' => '(ڈیٹابیس سرور نال میل نئیں ہوسکیا:$1)',
 'dberr-usegoogle' => 'تسیں گوکل راہیں کھوج کر سکدے او۔',

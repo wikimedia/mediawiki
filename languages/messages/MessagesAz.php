@@ -206,8 +206,6 @@ $messages = array(
 'noindex-category' => 'İndeksləşdirilməyən səhifələr',
 'broken-file-category' => 'İşləməyən fayl keçidləri olan səhifələr',
 
-'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
-
 'about' => 'Haqqında',
 'article' => 'Mündəricat',
 'newwindow' => '(yeni pəncərədə açılır)',
@@ -311,7 +309,7 @@ $1',
 'pool-queuefull' => 'Çıxarış səhifəsi doludur',
 'pool-errorunknown' => 'naməlum xəta',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} haqqında',
 'aboutpage' => 'Project:İzah',
 'copyright' => 'Bu məzmun $1 əhatəsindədir.',
@@ -398,16 +396,6 @@ Mövcud xüsusi səhifələrin siyahısı: [[Special:SpecialPages|Xüsusi səhif
 # General errors
 'error' => 'Xəta',
 'databaseerror' => 'Verilənlər bazası xətası',
-'dberrortext' => 'Verilənlər bazası sorğusunda sintaksis xətası yarandı.
-Bu proqram təminatındakı xəta ilə əlaqədar ola bilər.
-Verilənlər bazasına sonuncu sorğu "<tt>$2</tt>" funksiyasından 
-yaranan <blockquote><tt>$1</tt></blockquote>.
-Verilənlər bazasının göstərdiyi xəta "<tt>$3: $4</tt>".',
-'dberrortextcl' => 'Verilənlər bazası sorğusunda sintaksis xətası yarandı.
-Verilənlər bazasına sonuncu sorğu:
-"$1"
-"$2" funksiyasından yaranmışdır.
-Verilənlər bazasının göstərdiyi xəta "$3: $4"',
 'laggedslavemode' => "'''Xəbərdarlıq:''' Səhifə son əlavələri əks etdirməyə bilər.",
 'readonly' => 'Verilənlər bazası bloklanıb',
 'enterlockreason' => 'Bloklamanın səbəbini və nəzərdə tutulan müddətini qeyd edin',
@@ -457,7 +445,6 @@ Sorğu: $2',
 'editinginterface' => "'''Diqqət!''' Siz proqram təminatı interfeysinin mətn olan səhifəsini redaktə edirsiniz.
 Onun dəyişdirilməsi digər istifadəçilərin interfeysinin xarici görünüşünə təsir göstərir.
 Tərcümə üçün daha yaxşı olar ki, MediaWiki-nin lokallaşması üçün olan [//translatewiki.net/wiki/Main_Page?setlang=az translatewiki.net]  layihəsindən istifadə edəsiniz.",
-'sqlhidden' => '(SQL gizli sorğu)',
 'cascadeprotected' => 'Səhifə mühafizə olunub, çünki o kaskad mühafizə olunan {{PLURAL:$1|növbəti səhifəyə|növbəti səhifələrə}} qoşulub:
 $2',
 'namespaceprotected' => 'Sizin adlarında $1 olan məqalələrdə redaktə etməyə icazəniz yoxdur.',
@@ -481,7 +468,6 @@ Siz {{SITENAME}} saytını anonim olaraq istifadə etməyə davam edə bilər v�
 'yourpassword' => 'Parol:',
 'yourpasswordagain' => 'Parolu təkrar yazın:',
 'remembermypassword' => 'Məni bu kompyuterdə xatırla (maksimum $1 {{PLURAL:$1|gün|gün}})',
-'securelogin-stick-https' => 'Daxil olduqdan sonra HTTPS-lə əlaqədə qal',
 'yourdomainname' => 'Sizin domain',
 'password-change-forbidden' => 'Bu vikidə parolunuzu dəyişdirə bilməzsiniz.',
 'externaldberror' => 'Verilənlər bazasının doğruluğunu yoxlamada xəta baş verib və yaxud sizin xarici istifadəçi qeydiyyatını yeniləmək hüququnuz yoxdur.',
@@ -569,7 +555,7 @@ Sistemə daxil olmanı yekunlaşdırmaq üçün yeni parolu bura yazmalısınız
 'newpassword' => 'Yeni parol:',
 'retypenew' => 'Yeni parolu təkrar yazın:',
 'resetpass_submit' => 'Parol yaradın və sistemə daxil olun',
-'resetpass_success' => 'Parolunuz dəyişdirldi! Hazırda sistemə daxil olursunuz...',
+'changepassword-success' => 'Parolunuz dəyişdirldi! Hazırda sistemə daxil olursunuz...',
 'resetpass_forbidden' => 'Parolu dəyişmək mümkün deyil',
 'resetpass-no-info' => 'Bu səhifəni birbaşa açmaq üçün sistemə daxil olmalısınız.',
 'resetpass-submit-loggedin' => 'Parolu dəyiş',
@@ -974,7 +960,7 @@ $1",
 'prefs-rendering' => 'Görünüş',
 'saveprefs' => 'Qeyd et',
 'resetprefs' => 'Yarat',
-'restoreprefs' => 'Bütün nizamlamaları bərpa et',
+'restoreprefs' => 'Bütün nizamlamaları bərpa et (bütün bölmələrdə)',
 'prefs-editing' => 'Redaktə',
 'rows' => 'Sıralar:',
 'columns' => 'Sütunlar:',
@@ -1188,7 +1174,7 @@ Həmçinin kimliyinizi gostərmədən belə, başqalarının sizinlə istifadə�
 'action-suppressionlog' => 'xüsusi gündəliyə baxış',
 'action-block' => 'istifadəçinin redaktə etməsini əngəlləmək',
 'action-protect' => 'bu səhifənin mühafizə səviyyəsini dəyişmək',
-'action-import' => 'bu səhifəni başqa vikidən götürmək',
+'action-import' => 'başqa vikidən səhifələrin idxalı',
 'action-importupload' => 'fayl yükləmə vasitəsilə səhifələrin idxalı',
 'action-patrol' => 'Digərlərinin dəyişikliklərini patrullanmış olaraq işarələ',
 'action-autopatrol' => 'öz redaktələrinizi patrullanmış olarq işarələmək',
@@ -1492,11 +1478,6 @@ $1',
 'statistics-users-active' => 'Aktiv istifadəçilər',
 'statistics-users-active-desc' => 'Son {{PLURAL:$1|gün|$1 gündə}} iş görən istifadəçilər',
 'statistics-mostpopular' => 'Ən çox baxılan səhifələr',
-
-'disambiguations' => 'Dəqiqləşdirmə səhifələrinə keçid verən səhifələr',
-'disambiguationspage' => 'Template:dəqiqləşdirmə',
-'disambiguations-text' => "Aşağıdakı səhifələr '''dəqiqləşdirmə səhifələrinə''' keçid verir. Bunun əvəzinə onlar çox guman ki, müvafiq konkret bir məqaləni göstərməlidirlər.
-<br />Səhifə o zaman dəqiqləşdirmə səhifəsi hesab edilir ki, onda  [[MediaWiki:Disambiguationspage]]-dən keçid verilmiş şablon istifadə edilir.",
 
 'doubleredirects' => 'İkiqat istiqamətləndirmələr',
 'double-redirect-fixed-move' => '[[$1]] dəyişdirilib.
@@ -2045,10 +2026,7 @@ Bloklama şərtlərini dəyişmək istəyirsiniz?',
 'unblock-hideuser' => 'İstifadəçi adı gizli olduğu üçün, bi bloku götürə bilməzsiniz.',
 'ipb_cant_unblock' => 'Xəta: Bloklama IDsi $1 tapılmadı. Bloklamanın götürülməsi mümkündür.',
 'ip_range_invalid' => 'Yanlış IP',
-'blockme' => 'Məni blokla',
 'proxyblocker' => 'Proksi bloklayıcı',
-'proxyblocker-disabled' => 'Bu funksiya əngəlləndi.',
-'proxyblocksuccess' => 'Oldu.',
 'sorbs' => 'DNSBL',
 
 # Developer tools
@@ -2897,7 +2875,10 @@ Variants for Chinese language
 'tags-title' => 'Etiketlər',
 'tags-tag' => 'Etiket adı',
 'tags-description-header' => 'Anlamının tam açıqlaması',
+'tags-active-header' => 'Aktiv?',
 'tags-hitcount-header' => 'Etiketli dəyişikliklər',
+'tags-active-yes' => 'Bəli',
+'tags-active-no' => 'Xeyr',
 'tags-edit' => 'redaktə',
 'tags-hitcount' => '$1 {{PLURAL:$1|dəyişiklik|dəyişiklik}}',
 
@@ -2912,8 +2893,7 @@ Variants for Chinese language
 
 # Database error messages
 'dberr-header' => 'Bu vikidə problem var',
-'dberr-problems' => 'Üzr istəyirik!
-Bu saytda texniki problemlər var.',
+'dberr-problems' => 'Üzr istəyirik! Bu saytda texniki problemlər var.',
 'dberr-info' => '($1: Məlumat bazası ilə əlaqə yoxdur)',
 
 # HTML forms

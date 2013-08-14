@@ -132,6 +132,8 @@ class UpdateMediaWiki extends Maintenance {
 			wfCountDown( 5 );
 		}
 
+		$time1 = new MWTimestamp();
+
 		$shared = $this->hasOption( 'doshared' );
 
 		$updates = array( 'core', 'extensions' );
@@ -140,10 +142,6 @@ class UpdateMediaWiki extends Maintenance {
 				$updates[] = 'noschema';
 			}
 			$updates[] = 'stats';
-
-			if ( !$this->hasOption( 'nopurge' ) ) {
-				$updates[] = 'purge';
-			}
 		}
 
 		$updater = DatabaseUpdater::newForDb( $db, $shared, $this );
@@ -159,7 +157,6 @@ class UpdateMediaWiki extends Maintenance {
 				continue;
 			}
 
-			$child = $this->runChild( $maint );
 			$child->execute();
 			if ( !$isLoggedUpdate ) {
 				$updater->insertUpdateRow( $maint );
@@ -169,8 +166,10 @@ class UpdateMediaWiki extends Maintenance {
 		if ( !$this->hasOption( 'nopurge' ) ) {
 			$updater->purgeCache();
 		}
+		$time2 = new MWTimestamp();
 
 		$this->output( "\nDone.\n" );
+		$this->output( "\nThe job took ". $time2->diff( $time1 )->format( "%i:%S" ). "\n" );
 	}
 
 	function afterFinalSetup() {

@@ -1239,27 +1239,6 @@ diff
 </td><td>
 {{int:Difference}}
 </td></tr><tr><td>
-[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Disambiguations&action=edit disambiguations]<br>
-[[MediaWiki_talk:Disambiguations|Talk]]
-</td><td>
-Disambiguation pages
-</td><td>
-{{int:Disambiguations}}
-</td></tr><tr><td>
-[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Disambiguationspage&action=edit disambiguationspage]<br>
-[[MediaWiki_talk:Disambiguationspage|Talk]]
-</td><td>
-Wiktionary:Links_to_disambiguating_pages
-</td><td>
-{{int:Disambiguationspage}}
-</td></tr><tr><td>
-[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Disambiguationstext&action=edit disambiguationstext]<br>
-[[MediaWiki_talk:Disambiguationstext|Talk]]
-</td><td>
-The following pages link to a &lt;i&gt;disambiguation page&lt;/i&gt;. They should link to the appropriate topic instead.&lt;br /&gt;A page is treated as dismbiguation if it is linked from $1.&lt;br /&gt;Links from other namespaces are &lt;i&gt;not&lt;/i&gt; listed here.
-</td><td>
-{{int:Disambiguationstext}}
-</td></tr><tr><td>
 [http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Disclaimerpage&action=edit disclaimerpage]<br>
 [[MediaWiki_talk:Disclaimerpage|Talk]]
 </td><td>

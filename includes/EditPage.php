@@ -666,6 +666,11 @@ class EditPage {
 			$this->edittime = $request->getVal( 'wpEdittime' );
 			$this->starttime = $request->getVal( 'wpStarttime' );
 
+			$undidRev = $request->getInt( 'wpUndidRevision' );
+			if ( $undidRev ) {
+				$this->undidRev = $undidRev;
+			}
+
 			$this->scrolltop = $request->getIntOrNull( 'wpScrolltop' );
 
 			if ( $this->textbox1 === '' && $request->getVal( 'wpTextbox1' ) === null ) {
@@ -835,7 +840,6 @@ class EditPage {
 		if ( $this->textbox1 === false ) {
 			return false;
 		}
-		wfProxyCheck();
 		return true;
 	}
 
@@ -967,6 +971,7 @@ class EditPage {
 						$undoMsg = 'norev';
 					}
 
+					// Messages: undo-success, undo-failure, undo-norev
 					$class = ( $undoMsg == 'success' ? '' : 'error ' ) . "mw-undo-{$undoMsg}";
 					$this->editFormPageTop .= $wgOut->parse( "<div class=\"{$class}\">" .
 						wfMessage( 'undo-' . $undoMsg )->plain() . '</div>', true, /* interface */true );
@@ -1376,6 +1381,24 @@ class EditPage {
 			return $status;
 		}
 
+		$spam = $wgRequest->getText( 'wpAntispam' );
+		if ( $spam !== '' ) {
+			wfDebugLog(
+				'SimpleAntiSpam',
+				$wgUser->getName() .
+				' editing "' .
+				$this->mTitle->getPrefixedText() .
+				'" submitted bogus field "' .
+				$spam .
+				'"'
+			);
+			$status->fatal( 'spamprotectionmatch', false );
+			$status->value = self::AS_SPAM_ERROR;
+			wfProfileOut( __METHOD__ . '-checks' );
+			wfProfileOut( __METHOD__ );
+			return $status;
+		}
+
 		try {
 			# Construct Content object
 			$textbox_content = $this->toEditContent( $this->textbox1 );
@@ -1403,9 +1426,14 @@ class EditPage {
 		# Check for spam
 		$match = self::matchSummarySpamRegex( $this->summary );
 		if ( $match === false && $this->section == 'new' ) {
+			# $wgSpamRegex is enforced on this new heading/summary because, unlike
+			# regular summaries, it is added to the actual wikitext.
 			if ( $this->sectiontitle !== '' ) {
+				# This branch is taken when the API is used with the 'sectiontitle' parameter.
 				$match = self::matchSpamRegex( $this->sectiontitle );
 			} else {
+				# This branch is taken when the "Add Topic" user interface is used, or the API
+				# is used with the 'summary' parameter.
 				$match = self::matchSpamRegex( $this->summary );
 			}
 		}
@@ -1482,7 +1510,7 @@ class EditPage {
 			wfProfileOut( __METHOD__ );
 			return $status;
 		}
-		if ( $wgUser->pingLimiter() ) {
+		if ( $wgUser->pingLimiter() || $wgUser->pingLimiter( 'linkpurge', 0 ) ) {
 			$status->fatal( 'actionthrottledtext' );
 			$status->value = self::AS_RATE_LIMITED;
 			wfProfileOut( __METHOD__ . '-checks' );
@@ -1520,7 +1548,7 @@ class EditPage {
 			// message with content equivalent to default (allow empty pages
 			// in this case to disable messages, see bug 50124)
 			$defaultMessageText = $this->mTitle->getDefaultMessageText();
-			if( $this->mTitle->getNamespace() === NS_MEDIAWIKI && $defaultMessageText !== false ) {
+			if ( $this->mTitle->getNamespace() === NS_MEDIAWIKI && $defaultMessageText !== false ) {
 				$defaultText = $defaultMessageText;
 			} else {
 				$defaultText = '';
@@ -1603,8 +1631,7 @@ class EditPage {
 				}
 			}
 
-			// If sectiontitle is set, use it, otherwise use the summary as the section title (for
-			// backwards compatibility with old forms/bots).
+			// If sectiontitle is set, use it, otherwise use the summary as the section title.
 			if ( $this->sectiontitle !== '' ) {
 				$sectionTitle = $this->sectiontitle;
 			} else {
@@ -1761,6 +1788,10 @@ class EditPage {
 		}
 
 		$result['nullEdit'] = $doEditStatus->hasMessage( 'edit-no-change' );
+		if ( $result['nullEdit'] ) {
+			// We don't know if it was a null edit until now, so increment here
+			$wgUser->pingLimiter( 'linkpurge' );
+		}
 		$result['redirect'] = $content->isRedirect();
 		$this->updateWatchlist();
 		wfProfileOut( __METHOD__ );
@@ -1889,11 +1920,11 @@ class EditPage {
 	}
 
 	/**
-	 * Check given input text against $wgSpamRegex, and return the text of the first match.
+	 * Check given input text against $wgSummarySpamRegex, and return the text of the first match.
 	 *
 	 * @param $text string
 	 *
-	 * @return string|bool  matching string or false
+	 * @return string|bool matching string or false
 	 */
 	public static function matchSummarySpamRegex( $text ) {
 		global $wgSummarySpamRegex;
@@ -1920,6 +1951,7 @@ class EditPage {
 		global $wgOut, $wgUser;
 
 		$wgOut->addModules( 'mediawiki.action.edit' );
+		$wgOut->addModuleStyles( 'mediawiki.action.edit.styles' );
 
 		if ( $wgUser->getOption( 'uselivepreview', false ) ) {
 			$wgOut->addModules( 'mediawiki.action.edit.preview' );
@@ -2175,6 +2207,14 @@ class EditPage {
 		if ( is_callable( $formCallback ) ) {
 			call_user_func_array( $formCallback, array( &$wgOut ) );
 		}
+
+		// Add an empty field to trip up spambots
+		$wgOut->addHTML(
+			Xml::openElement( 'div', array( 'id' => 'antispam-container', 'style' => 'display: none;' ) )
+			. Html::rawElement( 'label', array( 'for' => 'wpAntiSpam' ), wfMessage( 'simpleantispam-label' )->parse() )
+			. Xml::element( 'input', array( 'type' => 'text', 'name' => 'wpAntispam', 'id' => 'wpAntispam', 'value' => '' ) )
+			. Xml::closeElement( 'div' )
+		);
 
 		wfRunHooks( 'EditPage::showEditForm:fields', array( &$this, &$wgOut ) );
 
@@ -2554,7 +2594,7 @@ class EditPage {
 		global $wgParser;
 
 		if ( $isSubjectPreview ) {
-			$summary = wfMessage( 'newsectionsummary', $wgParser->stripSectionName( $summary ) )
+			$summary = wfMessage( 'newsectionsummary' )->rawParams( $wgParser->stripSectionName( $summary ) )
 				->inContentLanguage()->text();
 		}
 
@@ -2844,7 +2884,15 @@ HTML
 		return self::getCopyrightWarning( $this->mTitle );
 	}
 
-	public static function getCopyrightWarning( $title ) {
+	/**
+	 * Get the copyright warning, by default returns wikitext
+	 *
+	 * @param Title $title
+	 * @param string $format output format, valid values are any function of
+	 *                       a Message object
+	 * @return string
+	 */
+	public static function getCopyrightWarning( $title, $format = 'plain' ) {
 		global $wgRightsText;
 		if ( $wgRightsText ) {
 			$copywarnMsg = array( 'copyrightwarning',
@@ -2858,7 +2906,7 @@ HTML
 		wfRunHooks( 'EditPageCopyrightWarning', array( $title, &$copywarnMsg ) );
 
 		return "<div id=\"editpage-copywarn\">\n" .
-			call_user_func_array( 'wfMessage', $copywarnMsg )->plain() . "\n</div>";
+			call_user_func_array( 'wfMessage', $copywarnMsg )->$format() . "\n</div>";
 	}
 
 	/**
@@ -2936,7 +2984,9 @@ HTML
 
 		$cancel = $this->getCancelLink();
 		if ( $cancel !== '' ) {
-			$cancel .= wfMessage( 'pipe-separator' )->text();
+			$cancel .= Html::element( 'span',
+				array( 'class' => 'mw-editButtons-pipe-separator' ),
+				wfMessage( 'pipe-separator' )->text() );
 		}
 		$edithelpurl = Skin::makeInternalOrExternalUrl( wfMessage( 'edithelppage' )->inContentLanguage()->text() );
 		$edithelp = '<a target="helpwindow" href="' . $edithelpurl . '">' .

@@ -77,7 +77,7 @@ abstract class DatabaseUpdater {
 	/**
 	 * File handle for SQL output.
 	 *
-	 * @var Filehandle
+	 * @var resource
 	 */
 	protected $fileHandle = null;
 
@@ -89,11 +89,16 @@ abstract class DatabaseUpdater {
 	protected $skipSchema = false;
 
 	/**
+	 * Hold the value of $wgContentHandlerUseDB during the upgrade.
+	 */
+	protected $holdContentHandlerUseDB = true;
+
+	/**
 	 * Constructor
 	 *
-	 * @param $db DatabaseBase object to perform updates on
+	 * @param DatabaseBase $db To perform updates on
 	 * @param bool $shared Whether to perform updates on shared tables
-	 * @param $maintenance Maintenance Maintenance object which created us
+	 * @param Maintenance $maintenance Maintenance object which created us
 	 */
 	protected function __construct( DatabaseBase &$db, $shared, Maintenance $maintenance = null ) {
 		$this->db = $db;
@@ -130,7 +135,8 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
-	 * Loads LocalSettings.php, if needed, and initialises everything needed for LoadExtensionSchemaUpdates hook
+	 * Loads LocalSettings.php, if needed, and initialises everything needed for
+	 * LoadExtensionSchemaUpdates hook.
 	 */
 	private function loadExtensions() {
 		if ( !defined( 'MEDIAWIKI_INSTALL' ) ) {
@@ -159,6 +165,7 @@ abstract class DatabaseUpdater {
 		$type = $db->getType();
 		if ( in_array( $type, Installer::getDBTypes() ) ) {
 			$class = ucfirst( $type ) . 'Updater';
+
 			return new $class( $db, $shared, $maintenance );
 		} else {
 			throw new MWException( __METHOD__ . ' called for unsupported $wgDBtype' );
@@ -197,7 +204,7 @@ abstract class DatabaseUpdater {
 	 *
 	 * @since 1.17
 	 *
-	 * @param array $update the update to run. Format is the following:
+	 * @param array $update The update to run. Format is the following:
 	 *                first item is the callback function, it also can be a
 	 *                simple string with the name of a function in this class,
 	 *                following elements are parameters to the function.
@@ -288,11 +295,22 @@ abstract class DatabaseUpdater {
 	 * @param string $tableName The table name
 	 * @param string $oldIndexName The old index name
 	 * @param string $newIndexName The new index name
-	 * @param $skipBothIndexExistWarning Boolean: Whether to warn if both the old and the new indexes exist. [facultative; by default, false]
+	 * @param $skipBothIndexExistWarning Boolean: Whether to warn if both the old
+	 * and the new indexes exist. [facultative; by default, false]
 	 * @param string $sqlPath The path to the SQL change path
 	 */
-	public function renameExtensionIndex( $tableName, $oldIndexName, $newIndexName, $sqlPath, $skipBothIndexExistWarning = false ) {
-		$this->extensionUpdates[] = array( 'renameIndex', $tableName, $oldIndexName, $newIndexName, $skipBothIndexExistWarning, $sqlPath, true );
+	public function renameExtensionIndex( $tableName, $oldIndexName, $newIndexName,
+		$sqlPath, $skipBothIndexExistWarning = false
+	) {
+		$this->extensionUpdates[] = array(
+			'renameIndex',
+			$tableName,
+			$oldIndexName,
+			$newIndexName,
+			$skipBothIndexExistWarning,
+			$sqlPath,
+			true
+		);
 	}
 
 	/**
@@ -370,10 +388,10 @@ abstract class DatabaseUpdater {
 	/**
 	 * Do all the updates
 	 *
-	 * @param array $what what updates to perform
+	 * @param array $what What updates to perform
 	 */
 	public function doUpdates( $what = array( 'core', 'extensions', 'stats' ) ) {
-		global $wgVersion, $wgLocalisationCacheConf;
+		global $wgVersion;
 
 		$this->db->begin( __METHOD__ );
 		$what = array_flip( $what );
@@ -388,14 +406,6 @@ abstract class DatabaseUpdater {
 
 		if ( isset( $what['stats'] ) ) {
 			$this->checkStats();
-		}
-
-		if ( isset( $what['purge'] ) ) {
-			$this->purgeCache();
-
-			if ( $wgLocalisationCacheConf['manualRecache'] ) {
-				$this->rebuildLocalisationCache();
-			}
 		}
 
 		$this->setAppliedUpdates( $wgVersion, $this->updates );
@@ -413,7 +423,7 @@ abstract class DatabaseUpdater {
 	 * Helper function for doUpdates()
 	 *
 	 * @param array $updates of updates to run
-	 * @param $passSelf Boolean: whether to pass this object we calling external
+	 * @param bool $passSelf Whether to pass this object we calling external
 	 *                  functions
 	 */
 	private function runUpdates( array $updates, $passSelf ) {
@@ -440,8 +450,8 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
-	 * @param $version
-	 * @param $updates array
+	 * @param string $version
+	 * @param array $updates
 	 */
 	protected function setAppliedUpdates( $version, $updates = array() ) {
 		$this->db->clearFlag( DBO_DDLMODE );
@@ -460,7 +470,6 @@ abstract class DatabaseUpdater {
 	 * Obviously, only use this for updates that occur after the updatelog table was
 	 * created!
 	 * @param string $key Name of the key to check for
-	 *
 	 * @return bool
 	 */
 	public function updateRowExists( $key ) {
@@ -470,6 +479,7 @@ abstract class DatabaseUpdater {
 			array( 'ul_key' => $key ),
 			__METHOD__
 		);
+
 		return (bool)$row;
 	}
 
@@ -478,7 +488,7 @@ abstract class DatabaseUpdater {
 	 * Obviously, only use this for updates that occur after the updatelog table was
 	 * created!
 	 * @param string $key Name of key to insert
-	 * @param string $val [optional] value to insert along with the key
+	 * @param string $val [optional] Value to insert along with the key
 	 */
 	public function insertUpdateRow( $key, $val = null ) {
 		$this->db->clearFlag( DBO_DDLMODE );
@@ -508,7 +518,7 @@ abstract class DatabaseUpdater {
 	 * Updates will be prevented if the table is a shared table and it is not
 	 * specified to run updates on shared tables.
 	 *
-	 * @param string $name table name
+	 * @param string $name Table name
 	 * @return bool
 	 */
 	protected function doTable( $name ) {
@@ -546,21 +556,21 @@ abstract class DatabaseUpdater {
 		foreach ( $wgExtNewFields as $fieldRecord ) {
 			$updates[] = array(
 				'addField', $fieldRecord[0], $fieldRecord[1],
-					$fieldRecord[2], true
+				$fieldRecord[2], true
 			);
 		}
 
 		foreach ( $wgExtNewIndexes as $fieldRecord ) {
 			$updates[] = array(
 				'addIndex', $fieldRecord[0], $fieldRecord[1],
-					$fieldRecord[2], true
+				$fieldRecord[2], true
 			);
 		}
 
 		foreach ( $wgExtModifiedFields as $fieldRecord ) {
 			$updates[] = array(
 				'modifyField', $fieldRecord[0], $fieldRecord[1],
-					$fieldRecord[2], true
+				$fieldRecord[2], true
 			);
 		}
 
@@ -573,7 +583,7 @@ abstract class DatabaseUpdater {
 	 * 1.13...) with the values being arrays of updates, identical to how
 	 * updaters.inc did it (for now)
 	 *
-	 * @return Array
+	 * @return array
 	 */
 	abstract protected function getCoreUpdateList();
 
@@ -594,8 +604,8 @@ abstract class DatabaseUpdater {
 	 *
 	 * This is used as a callback for for sourceLine().
 	 *
-	 * @param string $line text to append to the file
-	 * @return Boolean false to skip actually executing the file
+	 * @param string $line Text to append to the file
+	 * @return bool False to skip actually executing the file
 	 * @throws MWException
 	 */
 	public function appendLine( $line ) {
@@ -603,6 +613,7 @@ abstract class DatabaseUpdater {
 		if ( fwrite( $this->fileHandle, $line ) === false ) {
 			throw new MWException( "trouble writing file" );
 		}
+
 		return false;
 	}
 
@@ -612,7 +623,7 @@ abstract class DatabaseUpdater {
 	 * @param string $path Path to the patch file
 	 * @param $isFullPath Boolean Whether to treat $path as a relative or not
 	 * @param string $msg Description of the patch
-	 * @return boolean false if patch is skipped.
+	 * @return bool False if patch is skipped.
 	 */
 	protected function applyPatch( $path, $isFullPath = false, $msg = null ) {
 		if ( $msg === null ) {
@@ -620,6 +631,7 @@ abstract class DatabaseUpdater {
 		}
 		if ( $this->skipSchema ) {
 			$this->output( "...skipping schema change ($msg).\n" );
+
 			return false;
 		}
 
@@ -634,6 +646,7 @@ abstract class DatabaseUpdater {
 			$this->db->sourceFile( $path );
 		}
 		$this->output( "done.\n" );
+
 		return true;
 	}
 
@@ -642,8 +655,8 @@ abstract class DatabaseUpdater {
 	 *
 	 * @param string $name Name of the new table
 	 * @param string $patch Path to the patch file
-	 * @param $fullpath Boolean Whether to treat $patch path as a relative or not
-	 * @return Boolean false if this was skipped because schema changes are skipped
+	 * @param bool $fullpath Whether to treat $patch path as a relative or not
+	 * @return bool False if this was skipped because schema changes are skipped
 	 */
 	protected function addTable( $name, $patch, $fullpath = false ) {
 		if ( !$this->doTable( $name ) ) {
@@ -655,6 +668,7 @@ abstract class DatabaseUpdater {
 		} else {
 			return $this->applyPatch( $patch, $fullpath, "Creating $name table" );
 		}
+
 		return true;
 	}
 
@@ -664,8 +678,8 @@ abstract class DatabaseUpdater {
 	 * @param string $table Name of the table to modify
 	 * @param string $field Name of the new field
 	 * @param string $patch Path to the patch file
-	 * @param $fullpath Boolean Whether to treat $patch path as a relative or not
-	 * @return Boolean false if this was skipped because schema changes are skipped
+	 * @param bool $fullpath Whether to treat $patch path as a relative or not
+	 * @return bool False if this was skipped because schema changes are skipped
 	 */
 	protected function addField( $table, $field, $patch, $fullpath = false ) {
 		if ( !$this->doTable( $table ) ) {
@@ -679,6 +693,7 @@ abstract class DatabaseUpdater {
 		} else {
 			return $this->applyPatch( $patch, $fullpath, "Adding $field field to table $table" );
 		}
+
 		return true;
 	}
 
@@ -688,8 +703,8 @@ abstract class DatabaseUpdater {
 	 * @param string $table Name of the table to modify
 	 * @param string $index Name of the new index
 	 * @param string $patch Path to the patch file
-	 * @param $fullpath Boolean Whether to treat $patch path as a relative or not
-	 * @return Boolean false if this was skipped because schema changes are skipped
+	 * @param bool $fullpath Whether to treat $patch path as a relative or not
+	 * @return bool False if this was skipped because schema changes are skipped
 	 */
 	protected function addIndex( $table, $index, $patch, $fullpath = false ) {
 		if ( !$this->doTable( $table ) ) {
@@ -703,6 +718,7 @@ abstract class DatabaseUpdater {
 		} else {
 			return $this->applyPatch( $patch, $fullpath, "Adding index $index to table $table" );
 		}
+
 		return true;
 	}
 
@@ -712,8 +728,8 @@ abstract class DatabaseUpdater {
 	 * @param string $table Name of the table to modify
 	 * @param string $field Name of the old field
 	 * @param string $patch Path to the patch file
-	 * @param $fullpath Boolean Whether to treat $patch path as a relative or not
-	 * @return Boolean false if this was skipped because schema changes are skipped
+	 * @param bool $fullpath Whether to treat $patch path as a relative or not
+	 * @return bool False if this was skipped because schema changes are skipped
 	 */
 	protected function dropField( $table, $field, $patch, $fullpath = false ) {
 		if ( !$this->doTable( $table ) ) {
@@ -725,6 +741,7 @@ abstract class DatabaseUpdater {
 		} else {
 			$this->output( "...$table table does not contain $field field.\n" );
 		}
+
 		return true;
 	}
 
@@ -734,8 +751,8 @@ abstract class DatabaseUpdater {
 	 * @param string $table Name of the table to modify
 	 * @param string $index Name of the index
 	 * @param string $patch Path to the patch file
-	 * @param $fullpath Boolean: Whether to treat $patch path as a relative or not
-	 * @return Boolean false if this was skipped because schema changes are skipped
+	 * @param bool $fullpath Whether to treat $patch path as a relative or not
+	 * @return bool False if this was skipped because schema changes are skipped
 	 */
 	protected function dropIndex( $table, $index, $patch, $fullpath = false ) {
 		if ( !$this->doTable( $table ) ) {
@@ -747,6 +764,7 @@ abstract class DatabaseUpdater {
 		} else {
 			$this->output( "...$index key doesn't exist.\n" );
 		}
+
 		return true;
 	}
 
@@ -756,12 +774,15 @@ abstract class DatabaseUpdater {
 	 * @param string $table Name of the table to modify
 	 * @param string $oldIndex Old name of the index
 	 * @param string $newIndex New name of the index
-	 * @param $skipBothIndexExistWarning Boolean: Whether to warn if both the old and the new indexes exist.
+	 * @param $skipBothIndexExistWarning Boolean: Whether to warn if both the
+	 * old and the new indexes exist.
 	 * @param string $patch Path to the patch file
-	 * @param $fullpath Boolean: Whether to treat $patch path as a relative or not
-	 * @return Boolean false if this was skipped because schema changes are skipped
+	 * @param bool $fullpath Whether to treat $patch path as a relative or not
+	 * @return bool False if this was skipped because schema changes are skipped
 	 */
-	protected function renameIndex( $table, $oldIndex, $newIndex, $skipBothIndexExistWarning, $patch, $fullpath = false ) {
+	protected function renameIndex( $table, $oldIndex, $newIndex,
+		$skipBothIndexExistWarning, $patch, $fullpath = false
+	) {
 		if ( !$this->doTable( $table ) ) {
 			return true;
 		}
@@ -769,27 +790,37 @@ abstract class DatabaseUpdater {
 		// First requirement: the table must exist
 		if ( !$this->db->tableExists( $table, __METHOD__ ) ) {
 			$this->output( "...skipping: '$table' table doesn't exist yet.\n" );
+
 			return true;
 		}
 
 		// Second requirement: the new index must be missing
 		if ( $this->db->indexExists( $table, $newIndex, __METHOD__ ) ) {
 			$this->output( "...index $newIndex already set on $table table.\n" );
-			if ( !$skipBothIndexExistWarning && $this->db->indexExists( $table, $oldIndex, __METHOD__ ) ) {
-				$this->output( "...WARNING: $oldIndex still exists, despite it has been renamed into $newIndex (which also exists).\n" .
+			if ( !$skipBothIndexExistWarning &&
+				$this->db->indexExists( $table, $oldIndex, __METHOD__ )
+			) {
+				$this->output( "...WARNING: $oldIndex still exists, despite it has " .
+					"been renamed into $newIndex (which also exists).\n" .
 					"            $oldIndex should be manually removed if not needed anymore.\n" );
 			}
+
 			return true;
 		}
 
 		// Third requirement: the old index must exist
 		if ( !$this->db->indexExists( $table, $oldIndex, __METHOD__ ) ) {
 			$this->output( "...skipping: index $oldIndex doesn't exist.\n" );
+
 			return true;
 		}
 
 		// Requirements have been satisfied, patch can be applied
-		return $this->applyPatch( $patch, $fullpath, "Renaming index $oldIndex into $newIndex to table $table" );
+		return $this->applyPatch(
+			$patch,
+			$fullpath,
+			"Renaming index $oldIndex into $newIndex to table $table"
+		);
 	}
 
 	/**
@@ -798,10 +829,10 @@ abstract class DatabaseUpdater {
 	 *
 	 * Public @since 1.20
 	 *
-	 * @param $table string
-	 * @param $patch string|false
-	 * @param $fullpath bool
-	 * @return Boolean false if this was skipped because schema changes are skipped
+	 * @param string $table Table to drop.
+	 * @param string|bool $patch String of patch file that will drop the table. Default: false.
+	 * @param bool $fullpath Whether $patch is a full path. Default: false.
+	 * @return bool False if this was skipped because schema changes are skipped
 	 */
 	public function dropTable( $table, $patch = false, $fullpath = false ) {
 		if ( !$this->doTable( $table ) ) {
@@ -815,24 +846,24 @@ abstract class DatabaseUpdater {
 				$this->output( "$msg ..." );
 				$this->db->dropTable( $table, __METHOD__ );
 				$this->output( "done.\n" );
-			}
-			else {
+			} else {
 				return $this->applyPatch( $patch, $fullpath, $msg );
 			}
 		} else {
 			$this->output( "...$table doesn't exist.\n" );
 		}
+
 		return true;
 	}
 
 	/**
 	 * Modify an existing field
 	 *
-	 * @param string $table name of the table to which the field belongs
-	 * @param string $field name of the field to modify
-	 * @param string $patch path to the patch file
-	 * @param $fullpath Boolean: whether to treat $patch path as a relative or not
-	 * @return Boolean false if this was skipped because schema changes are skipped
+	 * @param string $table Name of the table to which the field belongs
+	 * @param string $field Name of the field to modify
+	 * @param string $patch Path to the patch file
+	 * @param bool $fullpath Whether to treat $patch path as a relative or not
+	 * @return bool False if this was skipped because schema changes are skipped
 	 */
 	public function modifyField( $table, $field, $patch, $fullpath = false ) {
 		if ( !$this->doTable( $table ) ) {
@@ -843,13 +874,16 @@ abstract class DatabaseUpdater {
 		if ( !$this->db->tableExists( $table, __METHOD__ ) ) {
 			$this->output( "...$table table does not exist, skipping modify field patch.\n" );
 		} elseif ( !$this->db->fieldExists( $table, $field, __METHOD__ ) ) {
-			$this->output( "...$field field does not exist in $table table, skipping modify field patch.\n" );
+			$this->output( "...$field field does not exist in $table table, " .
+				"skipping modify field patch.\n" );
 		} elseif ( $this->updateRowExists( $updateKey ) ) {
 			$this->output( "...$field in table $table already modified by patch $patch.\n" );
 		} else {
 			$this->insertUpdateRow( $updateKey );
+
 			return $this->applyPatch( $patch, $fullpath, "Modifying $field field of table $table" );
 		}
+
 		return true;
 	}
 
@@ -881,6 +915,7 @@ abstract class DatabaseUpdater {
 			$this->output( "missing ss_total_pages, rebuilding...\n" );
 		} else {
 			$this->output( "done.\n" );
+
 			return;
 		}
 		SiteStatsInit::doAllAndCommit( $this->db );
@@ -912,9 +947,10 @@ abstract class DatabaseUpdater {
 	protected function doLogUsertextPopulation() {
 		if ( !$this->updateRowExists( 'populate log_usertext' ) ) {
 			$this->output(
-			"Populating log_user_text field, printing progress markers. For large\n" .
-			"databases, you may want to hit Ctrl-C and do this manually with\n" .
-			"maintenance/populateLogUsertext.php.\n" );
+				"Populating log_user_text field, printing progress markers. For large\n" .
+				"databases, you may want to hit Ctrl-C and do this manually with\n" .
+				"maintenance/populateLogUsertext.php.\n"
+			);
 
 			$task = $this->maintenance->runChild( 'PopulateLogUsertext' );
 			$task->execute();
@@ -944,6 +980,7 @@ abstract class DatabaseUpdater {
 	protected function doUpdateTranscacheField() {
 		if ( $this->updateRowExists( 'convert transcache field' ) ) {
 			$this->output( "...transcache tc_time already converted.\n" );
+
 			return true;
 		}
 
@@ -962,9 +999,11 @@ abstract class DatabaseUpdater {
 				'COUNT(*)',
 				'cl_collation != ' . $this->db->addQuotes( $wgCategoryCollation ),
 				__METHOD__
-				) == 0 ) {
-					$this->output( "...collations up-to-date.\n" );
-					return;
+				) == 0
+			) {
+				$this->output( "...collations up-to-date.\n" );
+
+				return;
 			}
 
 			$this->output( "Updating category collations..." );
@@ -997,5 +1036,31 @@ abstract class DatabaseUpdater {
 		$cl->setForce();
 		$cl->execute();
 		$this->output( "done.\n" );
+	}
+
+	/**
+	 * Turns off content handler fields during parts of the upgrade
+	 * where they aren't available.
+	 */
+	protected function disableContentHandlerUseDB() {
+		global $wgContentHandlerUseDB;
+
+		if( $wgContentHandlerUseDB ) {
+			$this->output( "Turning off Content Handler DB fields for this part of upgrade.\n" );
+			$this->holdContentHandlerUseDB = $wgContentHandlerUseDB;
+			$wgContentHandlerUseDB = false;
+		}
+	}
+
+	/**
+	 * Turns content handler fields back on.
+	 */
+	protected function enableContentHandlerUseDB() {
+		global $wgContentHandlerUseDB;
+
+		if( $this->holdContentHandlerUseDB ) {
+			$this->output( "Content Handler DB fields should be usable now.\n" );
+			$wgContentHandlerUseDB = $this->holdContentHandlerUseDB;
+		}
 	}
 }
