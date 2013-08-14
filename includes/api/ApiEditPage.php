@@ -329,7 +329,7 @@ class ApiEditPage extends ApiBase {
 
 		// The following is needed to give the hook the full content of the
 		// new revision rather than just the current section. (Bug 52077)
-		if ( !is_null( $params['section'] ) && $contentHandler->supportsSections() ) {
+		if ( !is_null( $params['section'] ) && $contentHandler->supportsSections() && $titleObj->exists() ) {
 
 			$sectionTitle = '';
 			// If sectiontitle is set, use it, otherwise use the summary as the section title (for
