@@ -922,12 +922,12 @@ Väliaikainen salasana: $2',
 'changeemail-cancel' => 'Peruuta',
 
 # Special:ResetTokens
-'resettokens' => 'Uudista tunnisteet.',
+'resettokens' => 'Uudista tunnisteet',
 'resettokens-text' => 'Tällä sivulla voit uudistaa tunnisteesi, joiden avulla hallitaan pääsyä käyttäjätiliisi liittyviin yksityisiin tietoihin.
 
 Sinun pitää tehdä tämä jos olet vahingossa jakanut ne jonkun kanssa tai käyttäjätiliisi on saatettu kajota.',
 'resettokens-no-tokens' => 'Tunnisteita ei löydy uudistettavaksi.',
-'resettokens-legend' => 'Uudista tunnisteet.',
+'resettokens-legend' => 'Uudista tunnisteet',
 'resettokens-tokens' => 'Tunnisteet:',
 'resettokens-token-label' => '$1 (nykyinen arvo: $2)',
 'resettokens-watchlist-token' => 'Tarkkailulistan verkkosyötteen tunniste',

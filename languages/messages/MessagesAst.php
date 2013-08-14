@@ -487,10 +487,9 @@ L'alministrador que lu bloquió dio esti motivu: «$3».",
 'virus-unknownscanner' => 'antivirus desconocíu:',
 
 # Login and logout pages
-'logouttext' => "'''Agora tas desconeutáu.'''
+'logouttext' => "'''Zarró la sesión.'''
 
-Pues siguir usando {{SITENAME}} de forma anónima, o pues <span class='plainlinks'>[$1 volver entrar]</span> como'l mesmu o como otru usuariu.
-Ten en cuenta que dalgunes páxines puen siguir apaeciendo como si tovía tuvieres coneutáu, hasta que llimpies la caché del restolador.",
+Tenga en cuenta que dalgunes páxines puen siguir apaeciendo como si inda tuviera la sesión aniciada, mentanto nun llimpie la caché del navegador.",
 'welcomeuser' => '¡Bienllegáu, $1!',
 'welcomecreation-msg' => "Creóse la to cuenta.
 Nun t'escaezas de camudar les tos [[Special:Preferences|preferencies de {{SITENAME}}]].",
@@ -537,7 +536,7 @@ Nun t'escaezas de camudar les tos [[Special:Preferences|preferencies de {{SITENA
 'createacct-emailoptional' => 'Direición de corréu electrónicu (opcional)',
 'createacct-email-ph' => 'Escriba la so direición de corréu electrónicu',
 'createacct-another-email-ph' => 'Escriba la direición de corréu electrónicu',
-'createaccountmail' => 'Usar una contraseña al debalu temporal y unviala a la direición de corréu electrónicu conseñada más abaxo',
+'createaccountmail' => 'Usar una contraseña al debalu temporal y unviala a la direición de corréu electrónicu conseñada',
 'createacct-realname' => 'Nome real (opcional)',
 'createaccountreason' => 'Motivu:',
 'createacct-reason' => 'Motivu',
@@ -627,6 +626,8 @@ Por favor espera enantes d'intentalo otra vuelta.",
 'login-abort-generic' => 'Falló la identificación - Encaboxao',
 'loginlanguagelabel' => 'Llingua: $1',
 'suspicious-userlogout' => "La to solicitú de zarrar sesión refugose porque paez qu'unvióla un restolador frañíu o un proxy de caché.",
+'createacct-another-realname-tip' => "El nome real ye opcional.
+Si decide conseñalu, va usase p'atribuir el trabayu al usuariu.",
 
 # Email sending
 'php-mail-error-unknown' => 'Fallu desconocíu na función mail() de PHP.',
@@ -1353,10 +1354,10 @@ Esta información sedrá pública.",
 'userrights-no-interwiki' => "Nun tienes permisu pa editar los derechos d'usuariu n'otres wikis.",
 'userrights-nodatabase' => 'La base de datos $1 nun esiste o nun ye llocal.',
 'userrights-nologin' => "Tien d'[[Special:UserLogin|aniciar sesión]] con una cuenta d'alministrador pa dar permisos d'usuariu.",
-'userrights-notallowed' => "La to cuenta nun tien permisu p'amestar o desaniciar permisos d'usuariu.",
+'userrights-notallowed' => "Nun tien autorización p'amestar o desaniciar permisos d'usuariu.",
 'userrights-changeable-col' => 'Grupos que pues camudar',
 'userrights-unchangeable-col' => 'Grupos que nun pues camudar',
-'userrights-conflict' => "¡Hai un conflictu de permisos d'usuariu! Por favor, vuelva a aplicar los cambios.",
+'userrights-conflict' => "¡Conflictu de cambiu de permisos d'usuariu! Por favor, revise y confirme los cambios.",
 'userrights-removed-self' => 'Retiró correutamente los sos propios drechos. Poro, yá nun tendrá accesu a esta páxina.',
 
 # Groups
@@ -2997,13 +2998,13 @@ Probablemente tea causao por un enllaz a un sitiu esternu de la llista prieta.',
 'pageinfo-length' => 'Llonxitú de la páxina (en bytes)',
 'pageinfo-article-id' => 'ID de la páxina',
 'pageinfo-language' => 'Llingua del conteníu de la páxina',
-'pageinfo-robot-policy' => 'Estáu del motor de busca',
-'pageinfo-robot-index' => 'Pue ser índiz',
-'pageinfo-robot-noindex' => 'Nun pue ser índiz',
+'pageinfo-robot-policy' => 'Indexación por robots',
+'pageinfo-robot-index' => 'Permitío',
+'pageinfo-robot-noindex' => 'Torgao',
 'pageinfo-views' => 'Númberu de visites',
 'pageinfo-watchers' => 'Númberu de vixilantes de la páxina',
 'pageinfo-few-watchers' => 'Menos de $1 {{PLURAL:$1|vixilante|vixilantes}}',
-'pageinfo-redirects-name' => 'Redireiciones a esta páxina',
+'pageinfo-redirects-name' => 'Númberu de redireiciones a esta páxina',
 'pageinfo-subpages-name' => "Subpáxines d'esta páxina",
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|redireición|redireiciones}}; $3 {{PLURAL:$3|non-redireición|non-redireiciones}})',
 'pageinfo-firstuser' => 'Creador de la páxina',
@@ -3977,5 +3978,20 @@ D\'otra miente, pues usar el formulariu cenciellu d\'abaxo. El to comentariu apa
 
 # Image rotation
 'rotate-comment' => 'Imaxe xirada $1 {{PLURAL:$1|grau|graos}} en sentíu horariu',
+
+# Limit report
+'limitreport-title' => 'Datos de perfiláu del analizador:',
+'limitreport-cputime' => 'Usu de tiempu de CPU',
+'limitreport-cputime-value' => '$1 {{PLURAL: $1|segundu|segundos}}',
+'limitreport-walltime' => 'Usu de tiempu real',
+'limitreport-walltime-value' => '$1 {{PLURAL: $1|segundu|segundos}}',
+'limitreport-ppvisitednodes' => 'Cuenta de noyos visitaos pol preprocesador',
+'limitreport-ppgeneratednodes' => 'Cuenta de noyos xeneraos pol preprocesador',
+'limitreport-postexpandincludesize' => "Tamañu d'inclusión de post-espansión",
+'limitreport-postexpandincludesize-value' => '$1/$2 bytes',
+'limitreport-templateargumentsize' => 'Tamañu del argumentu de plantía',
+'limitreport-templateargumentsize-value' => '$1/$2 bytes',
+'limitreport-expansiondepth' => "Máxima fondura d'espansión",
+'limitreport-expensivefunctioncount' => "Cuenta de funciones d'analís costoses",
 
 );

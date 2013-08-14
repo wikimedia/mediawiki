@@ -541,7 +541,7 @@ $messages = array(
 'history_short' => '역사',
 'updatedmarker' => '마지막으로 방문한 뒤 바뀜',
 'printableversion' => '인쇄용 문서',
-'permalink' => '고유링크',
+'permalink' => '고유 링크',
 'print' => '인쇄',
 'view' => '보기',
 'edit' => '편집',
@@ -912,6 +912,8 @@ $2',
 'login-abort-generic' => '로그인에 실패했습니다 - 중지됨',
 'loginlanguagelabel' => '언어: $1',
 'suspicious-userlogout' => '브라우저에 이상이 있거나 캐싱 프록시에서 로그아웃을 요청했기 때문에 로그아웃이 거부되었습니다.',
+'createacct-another-realname-tip' => '실명은 선택 사항입니다.
+실명을 입력하면 문서 기여에 사용자의 이름이 들어가게 됩니다.',
 
 # Email sending
 'php-mail-error-unknown' => 'PHP의 mail() 함수에서 알 수 없는 오류가 발생했습니다.',
@@ -4321,7 +4323,9 @@ $5
 'limitreport-walltime-value' => '$1{{PLURAL:$1|초}}',
 'limitreport-ppvisitednodes' => '전처리기가 방문한 노드 수',
 'limitreport-ppgeneratednodes' => '전처리기가 생성한 노드 수',
+'limitreport-postexpandincludesize' => '전개한 뒤 포함 크기',
 'limitreport-postexpandincludesize-value' => '$1/$2 바이트',
+'limitreport-templateargumentsize' => '틀 인수 크기',
 'limitreport-templateargumentsize-value' => '$1/$2 바이트',
 'limitreport-expansiondepth' => '최대 전개 깊이',
 'limitreport-expensivefunctioncount' => '부하 높은 파서 함수 수',

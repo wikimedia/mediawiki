@@ -3008,7 +3008,7 @@ Aquò es probablament causat per un ligam sus lista negra que punta cap a un sit
 'pageinfo-article-id' => 'Numèro de la pagina',
 'pageinfo-language' => 'Lenga del contengut de la pagina',
 'pageinfo-robot-policy' => 'Estatut de motor de recèrca',
-'pageinfo-robot-index' => 'Indexable',
+'pageinfo-robot-index' => 'Autorizada',
 'pageinfo-robot-noindex' => 'Pas indexable',
 'pageinfo-views' => 'Nombre de vistas',
 'pageinfo-watchers' => "Nombre de contributors qu'an la pagina dins lor lista de seguiment",

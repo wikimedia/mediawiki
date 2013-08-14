@@ -873,6 +873,8 @@ Vänta innan du försöker igen.',
 'login-abort-generic' => 'Din inloggning misslyckades - Avbröts',
 'loginlanguagelabel' => 'Språk: $1',
 'suspicious-userlogout' => 'Din begäran om att logga ut nekades eftersom det ser ut som det skickades av en trasig webbläsare eller cachande proxy.',
+'createacct-another-realname-tip' => 'Riktiga namnet är valfritt.
+Om du väljer att ange det, kommer det användas för att tillskriva användaren för sitt arbete.',
 
 # Email sending
 'php-mail-error-unknown' => "Okänt fel i PHP's mail()-funktion",
@@ -4208,5 +4210,6 @@ Annars kan du använda det enkla formuläret nedan. Din kommentar kommer att lä
 'limitreport-walltime-value' => '$1 {{PLURAL:$1|sekund|sekunder}}',
 'limitreport-postexpandincludesize-value' => '$1/$2 byte',
 'limitreport-templateargumentsize-value' => '$1/$2 byte',
+'limitreport-expansiondepth' => 'Högsta expansionsdjup',
 
 );

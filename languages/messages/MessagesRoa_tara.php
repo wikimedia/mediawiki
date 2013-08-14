@@ -597,6 +597,8 @@ Pe piacere vide c'aspitte 'nu picche de timbe apprime de pruvà 'n'otra vote.",
 'login-abort-generic' => "Non g'è riuscite a trasè - Annullate",
 'loginlanguagelabel' => 'Lénga: $1',
 'suspicious-userlogout' => "'A richiesta toje de assè ha state bloccate purcè pare ca ha state mannate da 'nu browser scuasciate o da 'a cache de 'nu proxy.",
+'createacct-another-realname-tip' => "'U nome vere jè facoltative.
+Ce tu scacchie de metterle, quiste avène ausate pe dà 'u giuste merite a 'a fatìe de l'utende.",
 
 # Email sending
 'php-mail-error-unknown' => "Errore scanusciute jndr'à funzione PHP mail()",

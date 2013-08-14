@@ -850,6 +850,7 @@ Da biste završili prijavu, morate unijeti novu šifru ovdje:',
 'resetpass-wrong-oldpass' => 'Privremena ili trenutna šifra nije validna.
 Možda ste već uspješno promijenili Vašu šifru ili ste tražili novu privremenu šifru.',
 'resetpass-temp-password' => 'Privremena šifra:',
+'resetpass-abort-generic' => 'Promjenu šifre/lozinke je prekinula ekstenzija.',
 
 # Special:PasswordReset
 'passwordreset' => 'Poništavanje šifre',
@@ -1497,7 +1498,7 @@ Ako izaberete da date ime, biće korišteno za pripisivanje za vaš rad.',
 'prefs-signature' => 'Potpis',
 'prefs-dateformat' => 'Format datuma',
 'prefs-timeoffset' => 'Vremenska razlika',
-'prefs-advancedediting' => 'Općenito',
+'prefs-advancedediting' => 'Opće opcije',
 'prefs-editor' => 'Urednik',
 'prefs-preview' => 'Prethodni pregled',
 'prefs-advancedrc' => 'Napredne opcije',
@@ -1600,8 +1601,9 @@ Ako izaberete da date ime, biće korišteno za pripisivanje za vaš rad.',
 'right-ipblock-exempt' => 'Zaobilaženje IP blokada, autoblokada i blokada IP grupe',
 'right-proxyunbannable' => 'Zaobilaženje automatskih blokada proxy-ja',
 'right-unblockself' => 'Deblokiranje samog sebe',
-'right-protect' => 'Promjena nivoa zaštite i uređivanje zaštićenih stranica',
-'right-editprotected' => 'Uređivanje zaštićenih stranica (bez povezanih zaštita)',
+'right-protect' => 'Promjena nivoa zaštite i uređivanje kaskadno zaštićenih stranica',
+'right-editprotected' => 'Uređivanje stranice zaštićenih kao "{{int:protect-level-sysop}}"',
+'right-editsemiprotected' => 'Uređivanje stranica zaštićenih kao  "{{int:protect-level-autoconfirmed}}"',
 'right-editinterface' => 'Uređivanje korisničkog interfejsa',
 'right-editusercssjs' => 'Uređivanje CSS i JS datoteka drugih korisnika',
 'right-editusercss' => 'Uređivanje CSS datoteka drugih korisnika',
@@ -2285,7 +2287,8 @@ Podržani {{PLURAL:$2|protokol|protokoli}}: <code>$1</code> (default je http:// 
 'listgrouprights' => 'Prava korisničkih grupa',
 'listgrouprights-summary' => 'Slijedi spisak korisničkih grupa na ovoj wiki, s njihovim pravima pristupa.
 O svakoj od njih postoje i [[{{MediaWiki:Listgrouprights-helppage}}|dodatne informacije]].',
-'listgrouprights-key' => '* <span class="listgrouprights-granted">Dodano pravo</span>
+'listgrouprights-key' => 'Legenda:
+* <span class="listgrouprights-granted">Dodano pravo</span>
 * <span class="listgrouprights-revoked">Uklonjeno pravo</span>',
 'listgrouprights-group' => 'Grupa',
 'listgrouprights-rights' => 'Prava',
@@ -2466,7 +2469,7 @@ nastavite s oprezom.',
 Posljednja izmjena je bila od korisnika [[User:$3|$3]] ([[User talk:$3|razgovor]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment' => "Sažetak izmjene je bio: \"''\$1''\".",
 'revertpage' => 'Vraćene izmjene [[Special:Contributions/$2|$2]] ([[User talk:$2|razgovor]]) na posljednju izmjenu korisnika [[User:$1|$1]]',
-'revertpage-nouser' => 'Vraćene izmjene korisnika (korisničko ime uklonjeno) na posljednju reviziju koju je načinio [[User:$1|$1]]',
+'revertpage-nouser' => 'Vraćene izmjene skrivenog korisnika na posljednju reviziju koju je načinio [[User:$1|$1]]',
 'rollback-success' => 'Poništene izmjene korisnika $1;
 vraćeno na posljednju verziju koju je sačuvao $2.',
 
@@ -2488,6 +2491,7 @@ Pogledajte [[Special:ProtectedPages|spisak zaštićenih stranica]] za pregled tr
 'protect-badnamespace-title' => 'Nezaštitljiv imenski prostor',
 'protect-badnamespace-text' => 'Stranice u ovom imenskom prostoru se ne mogu zaštititi.',
 'protect-norestrictiontypes-text' => 'Ova stranica se ne može zaštititi jer nema dostupnih oblika ograničenja.',
+'protect-norestrictiontypes-title' => 'Nezaštitljiva strana',
 'protect-legend' => 'Potvrdite zaštitu',
 'protectcomment' => 'Razlog:',
 'protectexpiry' => 'Ističe:',
@@ -3145,7 +3149,7 @@ Ovo je vjerovatno izazvao vezom ka vanjskoj nepoželjnoj stranici.',
 'pageinfo-views' => 'Broj pogleda',
 'pageinfo-watchers' => 'Broj pratitelja stranice',
 'pageinfo-few-watchers' => 'Manje od $1 {{PLURAL:$1|pratioca|pratilaca}}',
-'pageinfo-redirects-name' => 'Preusmjeravanja na ovu stranicu',
+'pageinfo-redirects-name' => 'Broj preusmjeravanja na ovu stranicu',
 'pageinfo-subpages-name' => 'Podstranice ove stranice',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|preusmjerenje|preusmjerenja}}; $3 {{PLURAL:$3|nepreusmjerenje|nepreusmjerenja}})',
 'pageinfo-firstuser' => 'Korisnik koji je napravio stranicu',
@@ -3741,9 +3745,9 @@ $5
 
 Ovaj kod za potvrdu će isteći u $4.',
 'confirmemail_body_set' => 'Neko, vjerovatno Vi, je sa IP adrese $1
-je postavio adresu e-pošte računa "$2" na ovu adresu za {{SITENAME}}.
+postavio adresu e-pošte računa "$2" na ovu adresu za {{SITENAME}}.
 
-Da potvrdite da ovaj nalog stvarno pripada Vama i da reaktivirate mogućnosti e-pošte na {{SITENAME}}, otvorite ovaj link u Vašem pregledniku:
+Da potvrdite da ovaj račun stvarno pripada Vama i da aktivirate mogućnosti e-pošte na {{SITENAME}}, otvorite ovaj link u Vašem pregledniku:
 
 $3
 
@@ -3751,7 +3755,7 @@ Ako ovaj račun *ne* pripada Vama, pratite ovaj link da prekinete odobravanje ad
 
 $5
 
-Ovaj kod za potvrdu će isteći u $4.',
+Ovaj kôd za potvrdu će isteći u $4.',
 'confirmemail_invalidated' => 'Potvrda e-mail adrese otkazana',
 'invalidateemail' => 'Odustani od e-mail potvrde',
 

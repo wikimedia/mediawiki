@@ -650,6 +650,8 @@ Pakilaog sana tabi nin sarong tugmadong koreo o pabayae na mayong laman an surat
 'login-abort-generic' => 'An saimong paglaog dae nakadagos - Pinundo',
 'loginlanguagelabel' => 'Lengguwahe: $1',
 'suspicious-userlogout' => 'An hinahagad mong magluwas pinagpundo nin huli ta ini gayod pinagpadara sa paagi nin sarong pasang kilyaw o proksing hilom.',
+'createacct-another-realname-tip' => 'An totoong pangaran opsyonal.
+Kun gustuhon mong itao ini, ini paggagamiton sa pagtatao nin pagkakabistohan kan paragamit para sa saindang mga kaggibohan.',
 
 # Email sending
 'php-mail-error-unknown' => 'Bakong bantog na kasalaan sa PHP mail() function.',
@@ -3953,5 +3955,18 @@ Kun bako man, ika makakagamit nin sayon na porma sa ibaba. An saimong komento id
 
 # Image rotation
 'rotate-comment' => 'An imahe pinagbirik ni $1 {{PLURAL:$1|grado|mga grado}} hitsado',
+
+# Limit report
+'limitreport-title' => 'Datos panungdanan kan parabangay:',
+'limitreport-cputime' => 'Oras na ginagamit kan CPU',
+'limitreport-cputime-value' => '$1 {{PLURAL:$1|segundo|segundos}}',
+'limitreport-walltime' => 'Tunay na oras na ginagamit',
+'limitreport-walltime-value' => '$1 {{PLURAL:$1|segundo|segundos}}',
+'limitreport-ppvisitednodes' => 'Bilang kan tagapagsumpay sa pangenot na tagapagprosesong pinagbisita',
+'limitreport-ppgeneratednodes' => 'Bilang kan tagapagsumpay sa pangenot na tagapagprosesong pinagpuyos',
+'limitreport-postexpandincludesize' => 'Bigak kan paskil kabali an sukol',
+'limitreport-postexpandincludesize-value' => '$1/$2 mga bayta',
+'limitreport-templateargumentsize' => 'Sukol kan argumentong panguyog',
+'limitreport-templateargumentsize-value' => '$1/$2 mga bayta',
 
 );
