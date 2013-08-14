@@ -1150,7 +1150,7 @@ class ApiMain extends ApiBase {
 		$this->setHelp();
 		// Get help text from cache if present
 		$key = wfMemcKey( 'apihelp', $this->getModuleName(),
-			SpecialVersion::getVersion( 'nodb' ) );
+			str_replace( ' ', '_', SpecialVersion::getVersion( 'nodb' ) ) );
 		if ( $wgAPICacheHelpTimeout > 0 ) {
 			$cached = $wgMemc->get( $key );
 			if ( $cached ) {
