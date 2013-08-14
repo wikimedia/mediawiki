@@ -341,14 +341,15 @@ class ApiEditPage extends ApiBase {
 			}
 
 			$contentObj = $contentHandler->unserializeContent( $content, $contentFormat );
-
-			$fullContentObj = $articleObject->replaceSectionContent( $params['section'], $contentObj, $sectionTitle );
-			if ( $fullContentObj ) {
-				$content = $fullContentObj->serialize( $contentFormat );
-			} else {
-				// This most likely means we have an edit conflict which means that the edit
-				// wont succeed anyway.
-				$this->dieUsageMsg( 'editconflict' );
+			if ( $titleObj->exists() ) { // If the page doesn't exist, there is no current content (bug 52830)
+				$fullContentObj = $articleObject->replaceSectionContent( $params['section'], $contentObj, $sectionTitle );
+				if ( $fullContentObj ) {
+					$content = $fullContentObj->serialize( $contentFormat );
+				} else {
+					// This most likely means we have an edit conflict which means that the edit
+					// wont succeed anyway.
+					$this->dieUsageMsg( 'editconflict' );
+				}
 			}
 		}
 
