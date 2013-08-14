@@ -419,6 +419,12 @@ $wgAutoloadLocalClasses = array(
 	'IDBAccessObject' => 'includes/dao/IDBAccessObject.php',
 	'DBAccessBase' => 'includes/dao/DBAccessBase.php',
 
+	# includes/datastore
+	'DataStore' => 'includes/datastore/DataStore.php',
+	'MultiDataStore' => 'includes/datastore/MultiDataStore.php',
+	'NullDataStore' => 'includes/datastore/NullDataStore.php',
+	'SqlDataStore' => 'includes/datastore/SqlDataStore.php',
+
 	# includes/db
 	'Blob' => 'includes/db/DatabaseUtility.php',
 	'ChronologyProtector' => 'includes/db/ChronologyProtector.php',
