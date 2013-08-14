@@ -4342,6 +4342,11 @@ See the following search results:
 'listusers' => '{{doc-special|ListUsers}}',
 'listusers-editsonly' => 'Option in [[Special:ListUsers]].',
 'listusers-creationsort' => 'Option in [[Special:ListUsers]].',
+'listusers-showblocks' => 'Option in [[Special:ListUsers]].',
+'listusers-list-all' => 'Option value in [[Special:ListUsers]].',
+'listusers-perm-block' => 'Option value in [[Special:ListUsers]].',
+'listusers-temp-block' => 'Option value in [[Special:ListUsers]].',
+'listusers-all-block' => 'Option value in [[Special:ListUsers]].',
 'usereditcount' => 'Shown behind every username on [[Special:ListUsers]].',
 'usercreated' => 'Used in [[Special:ListUsers]]. Parameters:
 * $1 - a date
