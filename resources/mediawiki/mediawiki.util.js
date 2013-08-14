@@ -112,6 +112,10 @@
 				hideTocCookie = $.cookie( 'mw_hidetoc' );
 					$tocToggleLink = $( '<a href="#" class="internal" id="togglelink"></a>' )
 						.text( mw.msg( 'hidetoc' ) )
+						.prop( {
+							'aria-controls': 'toc',
+							'aria-expanded': true
+						} )
 						.click( function ( e ) {
 							e.preventDefault();
 							util.toggleToc( $(this) );
@@ -221,28 +225,31 @@
 
 			// This function shouldn't be called if there's no TOC,
 			// but just in case...
-			if ( $tocList.length ) {
-				if ( $tocList.is( ':hidden' ) ) {
-					$tocList.slideDown( 'fast', callback );
-					$toggleLink.text( mw.msg( 'hidetoc' ) );
-					$( '#toc' ).removeClass( 'tochidden' );
-					$.cookie( 'mw_hidetoc', null, {
-						expires: 30,
-						path: '/'
-					} );
-					return true;
-				} else {
-					$tocList.slideUp( 'fast', callback );
-					$toggleLink.text( mw.msg( 'showtoc' ) );
-					$( '#toc' ).addClass( 'tochidden' );
-					$.cookie( 'mw_hidetoc', '1', {
-						expires: 30,
-						path: '/'
-					} );
-					return false;
-				}
-			} else {
+			if ( !$tocList.length ) {
 				return null;
+			}
+			if ( $tocList.is( ':hidden' ) ) {
+				$tocList.slideDown( 'fast', callback );
+				$toggleLink
+					.prop( 'aria-expanded', true )
+					.text( mw.msg( 'hidetoc' ) );
+				$( '#toc' ).removeClass( 'tochidden' );
+				$.cookie( 'mw_hidetoc', null, {
+					expires: 30,
+					path: '/'
+				} );
+				return true;
+			} else {
+				$tocList.slideUp( 'fast', callback );
+				$toggleLink
+					.prop( 'aria-expanded', false )
+					.text( mw.msg( 'showtoc' ) );
+				$( '#toc' ).addClass( 'tochidden' );
+				$.cookie( 'mw_hidetoc', '1', {
+					expires: 30,
+					path: '/'
+				} );
+				return false;
 			}
 		},
 
