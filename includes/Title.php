@@ -1441,7 +1441,7 @@ class Title {
 				$url = str_replace( '$1', $dbkey, $wgArticlePath );
 				wfRunHooks( 'GetLocalURL::Article', array( &$this, &$url ) );
 			} else {
-				global $wgVariantArticlePath, $wgActionPaths;
+				global $wgVariantArticlePath, $wgActionPaths, $wgContLang;
 				$url = false;
 				$matches = array();
 
@@ -1463,6 +1463,7 @@ class Title {
 
 				if ( $url === false &&
 					$wgVariantArticlePath &&
+					$wgContLang->getCode() === $this->getPageLanguage()->getCode() &&
 					$this->getPageLanguage()->hasVariants() &&
 					preg_match( '/^variant=([^&]*)$/', $query, $matches ) )
 				{
