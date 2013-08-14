@@ -80,6 +80,12 @@ class UsersPager extends AlphabeticPager {
 			}
 		}
 
+        $this->showBlocked = 1; // Show all blocked users by default
+        $reqBlockedValue = $request->getInt( 'showBlocked' );
+        if ( $reqBlockedValue > 0 && $reqBlockedValue < 5 ) {
+            $this->showBlocked = $reqBlockedValue;
+        }
+
 		parent::__construct();
 	}
 
@@ -120,6 +126,20 @@ class UsersPager extends AlphabeticPager {
 		if ( $this->editsOnly ) {
 			$conds[] = 'user_editcount > 0';
 		}
+
+        if ( $this->showBlocked == 2 ) {
+            // Hide permanently blocked
+            $conds[] = 'ipb_expiry IS NULL OR ipb_expiry != \'infinity\'';
+        } else if ( $this->showBlocked == 3 ) {
+            // Hide temporarily blocked
+            $conds[] = 'ipb_expiry IS NULL OR ipb_expiry = \'infinity\' OR ipb_expiry < ' .
+                          $dbr->addQuotes( $dbr->timestamp( wfTimestampNow() ) );
+        } else if ( $this->showBlocked == 4 ) {
+            // Hide all blocked
+            $conds[] = 'ipb_expiry IS NULL OR ipb_expiry < ' .
+                            $dbr->addQuotes( $dbr->timestamp( wfTimestampNow() ) );
+        }
+        // else -> show all users
 
 		$options['GROUP BY'] = $this->creationSort ? 'user_id' : 'user_name';
 
@@ -277,7 +297,17 @@ class UsersPager extends AlphabeticPager {
 			'creationSort',
 			$this->creationSort
 		);
-		$out .= '<br />';
+
+        # Show blocked users drop-down list
+        $out .= "<p>\n";
+        $out .= Xml::label( $this->msg( 'listusers-showblocks' )->text(), 'showBlocked' ) . ' ' .
+            Xml::openElement( 'select', array( 'name' => 'showBlocked', 'id' => 'showBlocked' ) ) .
+            Xml::option( $this->msg( 'listusers-list-all' )->text(), '1', $this->showBlocked == 1 ) .
+            Xml::option( $this->msg( 'listusers-perm-block' )->text(), '2', $this->showBlocked == 2 ) .
+            Xml::option( $this->msg( 'listusers-temp-block' )->text(), '3', $this->showBlocked == 3 ) .
+            Xml::option( $this->msg( 'listusers-all-block' )->text(), '4', $this->showBlocked == 4 ) .
+            Xml::closeElement( 'select' );
+		$out .= '</p>';
 
 		wfRunHooks( 'SpecialListusersHeaderForm', array( $this, &$out ) );
 
