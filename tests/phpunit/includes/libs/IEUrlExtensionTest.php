@@ -115,4 +115,12 @@ class IEUrlExtensionTest extends MediaWikiTestCase {
 			'Dot at end of string'
 		);
 	}
+
+	function testTwoDots() {
+		$this->assertEquals(
+			'z',
+			IEUrlExtension::findIE6Extension( 'x.y.z' ),
+			'Two dots'
+		);
+	}
 }
