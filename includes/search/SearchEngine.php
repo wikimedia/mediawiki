@@ -95,6 +95,7 @@ class SearchEngine {
 	public function supports( $feature ) {
 		switch ( $feature ) {
 		case 'list-redirects':
+		case 'search-update':
 			return true;
 		case 'title-suffix-filter':
 		default:
@@ -556,6 +557,17 @@ class SearchEngine {
 	 */
 	public function getTextFromContent( Title $t, Content $c = null ) {
 		return $c ? $c->getTextForSearchIndex() : '';
+	}
+
+	/**
+	 * If an implementation of SearchEngine handles all of its own text processing
+	 * in getTextFromContent() and doesn't require SearchUpdate::updateText()'s
+	 * rather silly handling, it should return true here instead.
+	 *
+	 * @return bool
+	 */
+	public function textAlreadyUpdatedForIndex() {
+		return false;
 	}
 }
 
