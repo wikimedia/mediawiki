@@ -33,7 +33,8 @@ class UpdateSpecialPages extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->addOption( 'list', 'List special page names' );
-		$this->addOption( 'only', 'Only update "page". Ex: --only=BrokenRedirects', false, true );
+		$this->addOption( 'only', 'Only update "page"; case sensitive, check correct case by calling this script
+		with --list or on includes/QueryPage.php. Ex: --only=BrokenRedirects', false, true );
 		$this->addOption( 'override', 'Also update pages that have updates disabled' );
 	}
 
