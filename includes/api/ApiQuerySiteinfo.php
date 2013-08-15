@@ -295,6 +295,8 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			$data[] = $item;
 		}
 
+		asort( $data );
+
 		$this->getResult()->setIndexedTagName( $data, 'ns' );
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
