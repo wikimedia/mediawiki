@@ -176,7 +176,6 @@ production.
 * (bug 30713) New mw.hook "wikipage.content".
 * (bug 40430) jquery.placeholder gets a new parameter to set the attribute value
   to be used.
-<<<<<<< .merge_file_rX8GYk
 * $wgHTCPMulticastRouting renamed $wgHTCPRouting since it accepts unicast.
 * $wgHTCPRouting rules can now be passed an array of hosts/ports to send purge
   too. Can be used whenever several multicast group could be interested by a
@@ -188,10 +187,8 @@ production.
   setcookie() or setrawcookie() should begin using this instead.
 * New hook WebResponseSetCookie, called from WebResponse::setcookie().
 * New hook ResetSessionID, called when the session id is reset.
-=======
 * Add a mode parameter to <gallery> tag with potential options of "traditional",
   "nolines", "packed", "packed-overlay", or "packed-hover".
->>>>>>> .merge_file_gNstr1
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
