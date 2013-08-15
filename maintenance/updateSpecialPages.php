@@ -38,33 +38,12 @@ class UpdateSpecialPages extends Maintenance {
 	}
 
 	public function execute() {
-		global $IP, $wgSpecialPageCacheUpdates, $wgQueryPages, $wgQueryCacheLimit, $wgDisableQueryPageUpdate;
+		global $IP, $wgQueryPages, $wgQueryCacheLimit, $wgDisableQueryPageUpdate;
 
-		$dbw = wfGetDB( DB_MASTER );
-
-		foreach ( $wgSpecialPageCacheUpdates as $special => $call ) {
-			if ( !is_callable( $call ) ) {
-				$this->error( "Uncallable function $call!" );
-				continue;
-			}
-			$this->output( sprintf( '%-30s ', $special ) );
-			$t1 = explode( ' ', microtime() );
-			call_user_func( $call, $dbw );
-			$t2 = explode( ' ', microtime() );
-			$elapsed = ( $t2[0] - $t1[0] ) + ( $t2[1] - $t1[1] );
-			$hours = intval( $elapsed / 3600 );
-			$minutes = intval( $elapsed % 3600 / 60 );
-			$seconds = $elapsed - $hours * 3600 - $minutes * 60;
-			if ( $hours ) {
-				$this->output( $hours . 'h ' );
-			}
-			if ( $minutes ) {
-				$this->output( $minutes . 'm ' );
-			}
-			$this->output( sprintf( "completed in %.2fs\n", $seconds ) );
-			# Wait for the slave to catch up
-			wfWaitForSlaves();
+		if ( !$this->hasOption( 'list' ) && !$this->hasOption( 'only' ) ) {
+			$this->doSpecialPageCacheUpdates();
 		}
+		$dbw = wfGetDB( DB_MASTER );
 
 		// This is needed to initialise $wgQueryPages
 		require_once "$IP/includes/QueryPage.php";
@@ -141,6 +120,35 @@ class UpdateSpecialPages extends Maintenance {
 					$this->output( "cheap, skipped\n" );
 				}
 			}
+		}
+	}
+
+	public function doSpecialPageCacheUpdates() {
+		global $wgSpecialPageCacheUpdates;
+		$dbw = wfGetDB( DB_MASTER );
+
+		foreach ( $wgSpecialPageCacheUpdates as $special => $call ) {
+			if ( !is_callable( $call ) ) {
+				$this->error( "Uncallable function $call!" );
+				continue;
+			}
+			$this->output( sprintf( '%-30s ', $special ) );
+			$t1 = explode( ' ', microtime() );
+			call_user_func( $call, $dbw );
+			$t2 = explode( ' ', microtime() );
+			$elapsed = ( $t2[0] - $t1[0] ) + ( $t2[1] - $t1[1] );
+			$hours = intval( $elapsed / 3600 );
+			$minutes = intval( $elapsed % 3600 / 60 );
+			$seconds = $elapsed - $hours * 3600 - $minutes * 60;
+			if ( $hours ) {
+				$this->output( $hours . 'h ' );
+			}
+			if ( $minutes ) {
+				$this->output( $minutes . 'm ' );
+			}
+			$this->output( sprintf( "completed in %.2fs\n", $seconds ) );
+			# Wait for the slave to catch up
+			wfWaitForSlaves();
 		}
 	}
 }
