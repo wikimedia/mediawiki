@@ -745,7 +745,7 @@ Bảo quản viên khóa nó đưa lý do là: “$3”.',
 # Login and logout pages
 'logouttext' => "'''Bạn đã đăng xuất.'''
 
-Bạn có thể tiếp tục dùng {{SITENAME}} một cách vô danh, hoặc bạn có thể <span class='plainlinks'>[$1 đăng nhập lại]</span> dưới cùng tên người dùng này hoặc một tên người dùng khác. Xin lưu ý rằng một vài trang có thể vẫn hiển thị như khi bạn còn đăng nhập, cho đến khi bạn xóa vùng nhớ đệm (''cache'') của trình duyệt.",
+Xin lưu ý rằng một vài trang có thể vẫn hiển thị như khi bạn còn đăng nhập, cho đến khi bạn xóa vùng nhớ đệm (''cache'') của trình duyệt.",
 'welcomeuser' => 'Hoan nghênh, $1!',
 'welcomecreation-msg' => 'Tài khoản của bạn đã được mở.
 Hãy nhớ thay đổi [[Special:Preferences|tùy chọn cá nhân {{SITENAME}}]] của bạn.',
@@ -792,7 +792,7 @@ Hãy nhớ thay đổi [[Special:Preferences|tùy chọn cá nhân {{SITENAME}}]
 'createacct-emailoptional' => 'Địa chỉ thư điện tử (tùy chọn)',
 'createacct-email-ph' => 'Nhập địa chỉ thư điện tử của bạn',
 'createacct-another-email-ph' => 'Nhập địa chỉ thư điện tử',
-'createaccountmail' => 'Sử dụng mật khẩu ngẫu nhiên tạm và gửi nó cho địa chỉ thư điện tử được chỉ định ở dưới',
+'createaccountmail' => 'Sử dụng mật khẩu ngẫu nhiên tạm và gửi nó cho địa chỉ thư điện tử được chỉ định',
 'createacct-realname' => 'Tên thật (tùy chọn)',
 'createaccountreason' => 'Lý do:',
 'createacct-reason' => 'Lý do',
@@ -862,6 +862,9 @@ Xin hãy đợi chốc lát rồi thử lại.',
 'login-abort-generic' => 'Thất bại khi đăng nhập',
 'loginlanguagelabel' => 'Ngôn ngữ: $1',
 'suspicious-userlogout' => 'Đã bỏ qua yêu cầu đăng xuất bạn, hình như được gửi từ trình duyệt hoặc máy proxy nhớ đệm hư.',
+'createacct-another-realname-tip' => 'Tên thật là không bắt buộc. 
+
+Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao của bạn.',
 
 # Email sending
 'php-mail-error-unknown' => 'Lỗi không rõ trong hàm PHP mail()',
@@ -1579,10 +1582,10 @@ Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao c�
 'userrights-no-interwiki' => 'Bạn không có quyền thay đổi quyền hạn của thành viên tại các wiki khác.',
 'userrights-nodatabase' => 'Cơ sở dữ liệu $1 không tồn tại hoặc nằm ở bên ngoài.',
 'userrights-nologin' => 'Bạn phải [[Special:UserLogin|đăng nhập]] vào một tài khoản có quyền quản lý để gán quyền cho thành viên.',
-'userrights-notallowed' => 'Tài khoản của bạn không có quyền gán hoặc bãi miễn quyền cho thành viên.',
+'userrights-notallowed' => 'Bạn không có quyền gán hoặc bãi miễn quyền cho thành viên.',
 'userrights-changeable-col' => 'Những nhóm bạn có thể thay đổi',
 'userrights-unchangeable-col' => 'Những nhóm bạn không thể thay đổi',
-'userrights-conflict' => 'Mâu thuẫn thay đổi sửa nhóm thành viên! Xin vui lòng áp dụng các thay đổi của bạn một lần nữa.',
+'userrights-conflict' => 'Mâu thuẫn thay đổi sửa nhóm thành viên! Xin vui lòng xem lại và xác nhận các thay đổi của bạn.',
 'userrights-removed-self' => 'Bạn đã loại bỏ quyền của chính mình nên không còn truy cập được trang này.',
 
 # Groups
@@ -3207,9 +3210,9 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 'pageinfo-length' => 'Chiều dài của trang (byte)',
 'pageinfo-article-id' => 'Mã số trang',
 'pageinfo-language' => 'Ngôn ngữ nội dung trang',
-'pageinfo-robot-policy' => 'Trạng thái công cụ tìm kiếm',
-'pageinfo-robot-index' => 'Có thể ghi chỉ mục',
-'pageinfo-robot-noindex' => 'Không thể ghi chỉ mục',
+'pageinfo-robot-policy' => 'Ghi chỉ mục bởi robot',
+'pageinfo-robot-index' => 'Cho phép',
+'pageinfo-robot-noindex' => 'Không cho phép',
 'pageinfo-views' => 'Số lần xem',
 'pageinfo-watchers' => 'Số người theo dõi trang',
 'pageinfo-few-watchers' => 'Không tới $1 người theo dõi',
@@ -3873,13 +3876,13 @@ Mã xác nhận này sẽ hết hạn vào $4.',
 'confirmemail_body_set' => 'Ai đó, có thể là bạn, từ địa chỉ IP $1, đã đặt địa chỉ này là địa
 chỉ thư điện tử của tài khoản "$2" tại {{SITENAME}}.
 
-Để xác nhận rằng tài khoản này thực sự là của bạn và để tái kích hoạt tính năng
+Để xác nhận rằng tài khoản này thực sự là của bạn và để kích hoạt các tính năng
 thư điện tử tại {{SITENAME}}, xin mở liên kết này trong trình duyệt:
 
 $3
 
-Nếu tài khoản *không* phải là của bạn, hãy nhấn vào liên kết này để hủy thủ
-tục xác nhận địa chỉ thư điện tử:
+Nếu tài khoản *không* phải là của bạn, hãy nhấn vào liên kết này để hủy thủ tục
+xác nhận địa chỉ thư điện tử:
 
 $5
 
@@ -4299,5 +4302,20 @@ Nếu không thì bạn có thể điền biểu mẫu đơn giản ở dưới.
 
 # Image rotation
 'rotate-comment' => 'Đã quay hình $1 độ theo chiều kim đồng hồ',
+
+# Limit report
+'limitreport-title' => 'Dữ liệu hồ sơ bộ phân tích:',
+'limitreport-cputime' => 'Sử dụng thời gian CPU',
+'limitreport-cputime-value' => '$1 giây',
+'limitreport-walltime' => 'Sử dụng tức thời',
+'limitreport-walltime-value' => '$1 giây',
+'limitreport-ppvisitednodes' => 'Số nút được truy cập bởi bộ tiền xử lý',
+'limitreport-ppgeneratednodes' => 'Số nút do bộ tiền xử lý tạo',
+'limitreport-postexpandincludesize' => 'Kích thước bao gồm sau khi bung',
+'limitreport-postexpandincludesize-value' => '$1/$2 byte',
+'limitreport-templateargumentsize' => 'Kích thước đối số bản mẫu',
+'limitreport-templateargumentsize-value' => '$1/$2 byte',
+'limitreport-expansiondepth' => 'Độ sâu bung cao nhất',
+'limitreport-expensivefunctioncount' => 'Số lời gọi hàm cú pháp tốn cần mức độ xử lý cao',
 
 );

@@ -453,9 +453,9 @@ $messages = array(
 'category-empty' => "''No momento esta categoria não possui nenhuma página ou arquivo multimídia.''",
 'hidden-categories' => '{{PLURAL:$1|Categoria oculta|Categorias ocultas}}',
 'hidden-category-category' => 'Categorias ocultas',
-'category-subcat-count' => '{{PLURAL:$2|Esta categoria possui apenas a seguinte subcategoria.|Esta categoria possui {{PLURAL:$1| a seguinte subcategoria|as seguintes $1 subcategorias}}, de um total de $2.}}',
+'category-subcat-count' => '{{PLURAL:$2|Esta categoria possui apenas a seguinte subcategoria.|Esta categoria possui as seguintes $1 subcategorias, de um total de $2.}}',
 'category-subcat-count-limited' => 'Esta categoria possui {{PLURAL:$1|a seguinte sub-categoria|as $1 sub-categorias a seguir}}.',
-'category-article-count' => '{{PLURAL:$2|Esta categoria contém apenas a seguinte página.|{{PLURAL:$1|A seguinte página pertence|As seguintes $1 páginas pertencem}} a esta categoria, de um total de $2.}}',
+'category-article-count' => '{{PLURAL:$2|Esta categoria contém apenas a seguinte página.|As seguintes $1 páginas pertencem a esta categoria, de um total de $2.}}',
 'category-article-count-limited' => 'Esta categoria possui {{PLURAL:$1|a seguinte página|as $1 páginas a seguir}}.',
 'category-file-count' => '{{PLURAL:$2|Esta categoria possui apenas o seguinte arquivo.|Esta categoria possui {{PLURAL:$1|o seguinte arquivo|os $1 arquivos a seguir}}, de um total de $2.}}',
 'category-file-count-limited' => 'Esta categoria possui {{PLURAL:$1|um arquivo|$1 arquivos}}.',
@@ -753,7 +753,6 @@ O administrador que bloqueou ofereceu a seguinte explicação: "$3".',
 # Login and logout pages
 'logouttext' => "'''Agora você encontra-se desautenticado.'''
 
-É possível continuar usando {{SITENAME}} anonimamente ou <span class='plainlinks'>[$1 autenticar-se novamente]</span> com o mesmo nome de usuário ou com um nome diferente.
 Note que algumas páginas podem continuar sendo exibidas como se você ainda estivesse autenticado até que você limpe a ''cache'' do seu navegador.",
 'welcomeuser' => 'Bem-vindo, $1!',
 'welcomecreation-msg' => 'A sua conta foi criada.
@@ -1597,10 +1596,10 @@ Caso decida fornecê-lo, este será utilizado para dar-lhe crédito pelo seu tra
 'userrights-no-interwiki' => 'Você não tem permissão para alterar privilégios de usuários em outros wikis.',
 'userrights-nodatabase' => 'O banco de dados $1 não existe ou não é um banco de dados local.',
 'userrights-nologin' => 'Você precisa [[Special:UserLogin|autenticar-se]] como um administrador para especificar os privilégios de usuário.',
-'userrights-notallowed' => 'A sua conta não tem permissão para adicionar ou remover privilégios a usuários.',
+'userrights-notallowed' => 'Você não tem permissão para adicionar ou remover privilégios a usuários.',
 'userrights-changeable-col' => 'Grupos que pode alterar',
 'userrights-unchangeable-col' => 'Grupos que não pode alterar',
-'userrights-conflict' => 'Há um comflito de permissões de usuário! Por favor, aplique as alterações novamente.',
+'userrights-conflict' => 'Há um comflito de permissões de usuário! Por favor, revise e confirme as alterações novamente.',
 'userrights-removed-self' => 'Você removeu com sucesso seus direitos de usuário. Como tal, você agora está impossibilitado de acessar esta página.',
 
 # Groups
@@ -3225,13 +3224,13 @@ Tal bloqueio foi provavelmente causado por uma ligação para um ''website'' ext
 'pageinfo-length' => 'Tamanho da página (em bytes)',
 'pageinfo-article-id' => 'ID da página',
 'pageinfo-language' => 'Idioma do conteúdo da página',
-'pageinfo-robot-policy' => 'Estado para mecanismos de pesquisa',
-'pageinfo-robot-index' => 'Indexável',
-'pageinfo-robot-noindex' => 'Não indexável',
+'pageinfo-robot-policy' => 'Indexado por robôs',
+'pageinfo-robot-index' => 'Autorizado',
+'pageinfo-robot-noindex' => 'Desautorizado',
 'pageinfo-views' => 'Número de visitas',
 'pageinfo-watchers' => 'Número de vigilantes da página',
 'pageinfo-few-watchers' => 'Menos de  $1  {{PLURAL:$1|vigilante|vigilantes}}',
-'pageinfo-redirects-name' => 'Redirecionamentos para esta página',
+'pageinfo-redirects-name' => 'Número de redirecionamentos para esta página',
 'pageinfo-subpages-name' => 'Subpáginas desta página',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|redirecionamento|redirecionamentos}}; $3 {{PLURAL:$3|não redirecionamento|não redirecionamentos}})',
 'pageinfo-firstuser' => 'Criador da página',
@@ -4203,5 +4202,11 @@ Caso contrário, você poderá usar o formulário simplificado a seguir. Seu com
 
 # Image rotation
 'rotate-comment' => 'Imagem girada por $1 {{PLURAL:$1|grau|graus}} no sentido horário',
+
+# Limit report
+'limitreport-cputime-value' => '$1 {{PLURAL:$1|segundo|segundos}}',
+'limitreport-walltime' => 'Tempo de uso real',
+'limitreport-walltime-value' => '$1 {{PLURAL:$1|segundo|segundos}}',
+'limitreport-postexpandincludesize-value' => '$1/$2 bytes',
 
 );

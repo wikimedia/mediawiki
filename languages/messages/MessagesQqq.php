@@ -8063,11 +8063,13 @@ Parameters:
 'exif-fnumber' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 The [[w:F_number|F number]] is the relative aperture of the camera.',
-'exif-fnumber-format' => "{{optional}}
+'exif-fnumber-format' => '{{optional}}
 Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
-*$1 is a number
-*f is the abbreviation used in English for 'f-number'.",
+Parameters:
+* $1 - a number
+Note:
+* f is the abbreviation used in English for "f-number".',
 'exif-exposureprogram' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 How the camera figured out what exposure to use. (If it was manually set, if its optimizing for fast shutter speed, etc).
@@ -8112,11 +8114,13 @@ See this [[w:en:Flash_(photography)|Wikipedia article]] for an explanation of th
 'exif-focallength' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 See this [[w:en:Focal_length_(photography)|Wikipedia article]] for an explanation of the term.',
-'exif-focallength-format' => "{{optional}}
+'exif-focallength-format' => '{{optional}}
 Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
-*$1 is a number
-*mm is the abbreviation used in English for the unit of measurement of length 'millimetre'.",
+Parameters:
+* $1 - a number
+Note:
+* mm is the abbreviation used in English for the unit of measurement of length "millimeter".',
 'exif-subjectarea' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 This exif property contains the position of the main subject. The first two numbers is the position of the subject in the picture in pixels from the upper left corner. If a third number is specified, it is a circle centred at the first two numbers. If four numbers are specified, the first two are coordinates of the centre of the subject as before, the third is the width of the rectangle, and the fourth is the height of the rectangle. It is rare for a photo to use this tag.',
@@ -8254,7 +8258,13 @@ See also:
 {{Related|Exif-gpsdestdistance}}',
 'exif-gpsdestdistance' => '{{Related|Exif-gpsdestdistance}}',
 'exif-gpsdatestamp' => 'Date (does not generally include time unless recorded in XMP) that GPS measurement was taken, in UTC. Since often this is at the same date as photo was taken, this is sometimes more reliable than {{msg-mw|exif-datetimeoriginal}}.',
-'exif-coordinate-format' => '{{optional}} For formatting GPS latitude coordinates. $1 is degrees, $2 is minutes, $3 is seconds (up to two decimal places), $4 is direction (N, S, W, or E), $5 is coordinate as a single positive or negative real number.',
+'exif-coordinate-format' => '{{optional}}
+For formatting GPS latitude coordinates. Parameters:
+* $1 - degrees
+* $2 - minutes
+* $3 - seconds (up to two decimal places)
+* $4 - direction (N, S, W, or E)
+* $5 - (Unused) coordinate as a single positive or negative real number',
 'exif-jpegfilecomment' => 'This is not a true exif tag, but the contents of the JPEG COM segment. This often contains a file source, but can potentially contain any comment about the file. This is similar to {{msg-mw|exif-usercomment}}, {{msg-mw|exif-pngfilecomment}}, and {{msg-mw|exif-giffilecomment}}.',
 'exif-keywords' => "List of keywords for the photograph (or other media).
 
@@ -8357,19 +8367,20 @@ This comes from the png warning textual chunk. See http://www.w3.org/TR/PNG/#11k
 
 # Make & model, can be wikified in order to link to the camera and model name
 'exif-contact-value' => '{{optional}}
-*$1 is email
-*$2 is URL of website
-*$3 is street address.
-*$4 is city
-*$5 is region
-*$6 is postal code
-*$7 is country
-*$8 is telephone number
+Parameters:
+* $1 - email
+* $2 - URL of website
+* $3 - street address
+* $4 - city
+* $5 - region
+* $6 - postal code
+* $7 - country
+* $8 - telephone number
 Note, not all fields are guaranteed to be present, some may be empty strings.',
 'exif-subjectnewscode-value' => '{{Optional}}
-
-*$1 is numeric IPTC subject news code (one of http://cv.iptc.org/newscodes/subjectcode )
-*$2 is one of 17 broad categories that the code falls into. For example any code starting with 15 has the contents of {{msg-mw|exif-iimcategory-spo}} for $2.',
+Parameters:
+* $1 - numeric IPTC subject news code (one of http://cv.iptc.org/newscodes/subjectcode )
+* $2 - one of 17 broad categories that the code falls into. For example any code starting with 15 has the contents of {{msg-mw|Exif-iimcategory-spo}} for $2.',
 
 # Exif attributes
 'exif-compression-1' => '{{Related|Exif-compression}}',
@@ -8440,8 +8451,16 @@ CW is an abbreviation for clockwise.
 * {{msg-mw|Exif-planarconfiguration-1}}
 * {{msg-mw|Exif-planarconfiguration-2}}',
 
-'exif-xyresolution-i' => '{{Optional}} Used to format {{msg-mw|exif-xresolution}} and {{msg-mw|exif-yresolution}} if the unit is dots per inch. $1 is the number of dots/in.',
-'exif-xyresolution-c' => '{{Optional}} Used to format {{msg-mw|exif-xresolution}} and {{msg-mw|exif-yresolution}} if the unit is dots per centimetre. $1 is the number of dots/cm.',
+'exif-xyresolution-i' => '{{Optional}}
+Used to format {{msg-mw|Exif-xresolution}} and {{msg-mw|Exif-yresolution}} if the unit is dots per inch.
+
+Parameters:
+* $1 - the number of dots/in',
+'exif-xyresolution-c' => '{{Optional}}
+Used to format {{msg-mw|Exif-xresolution}} and {{msg-mw|Exif-yresolution}} if the unit is dots per centimeter.
+
+Parameters:
+* $1 - the number of dots/cm',
 
 'exif-colorspace-1' => '{{Optional}}
 If it uses the standard sRGB colour space.
@@ -8758,7 +8777,9 @@ See: http://www.awaresystems.be/imaging/tiff/tifftags/ycbcrpositioning.html
 'exif-isospeedratings-overflow' => "Exif can't store iso speed ratings beyond 65535. This message is shown if the iso speed is too big to be stored.",
 
 'exif-maxaperturevalue-value' => '{{Optional}}
-$1 is maxaperture in APEX units (APEX aperture units = 2log<sub>2</sub>(f-number) ). $2 is the value in the more traditional f-number units.',
+Parameters:
+* $1 - maxaperture in APEX units (APEX aperture units = 2log<sub>2</sub>(f-number) )
+* $2 - the value in the more traditional f-number units',
 
 'exif-iimcategory-ace' => 'Displayed as part of the iimcategory field if the 3 letter code is recognized, or as part {{msg-mw|exif-subjectnewscode-value}}',
 'exif-iimcategory-clj' => 'Displayed as part of the iimcategory field if the 3 letter code is recognized, or as part {{msg-mw|exif-subjectnewscode-value}}',
@@ -8902,7 +8923,8 @@ See also:
 * {{msg-mw|Recreate}}
 * {{msg-mw|Tooltip-recreate}}',
 
-'unit-pixel' => '{{optional}}',
+'unit-pixel' => '{{optional}}
+px is the abbreviation for "pixel".',
 
 # action=purge
 'confirm_purge_button' => 'Used as Submit button text.
@@ -9057,7 +9079,15 @@ See also:
 * {{msg-mw|Watchlistedit-normal-submit}}
 * {{msg-mw|Accesskey-watchlistedit-normal-submit}}
 * {{msg-mw|Tooltip-watchlistedit-normal-submit}}',
-'watchlistedit-normal-done' => 'Message on [[Special:EditWatchlist]] after pages are removed from the watchlist.',
+'watchlistedit-normal-done' => 'Message on [[Special:EditWatchlist]] after pages are removed from the watchlist.
+
+Followed by list of page titles which are removed.
+
+Parameters:
+* $1 - number of page titles which are removed
+See also:
+* {{msg-mw|Watchlistedit-raw-added}}
+* {{msg-mw|Watchlistedit-raw-removed}}',
 'watchlistedit-raw-title' => 'Title of [[Special:Watchlist/raw|Special page]].
 
 {{Identical|Edit raw watchlist}}',
@@ -9074,8 +9104,28 @@ See also:
 * {{msg-mw|Accesskey-watchlistedit-raw-submit}}
 * {{msg-mw|Tooltip-watchlistedit-raw-submit}}',
 'watchlistedit-raw-done' => 'A message which appears after the raw watchlist has been updated using [[Special:Watchlist/raw]].',
-'watchlistedit-raw-added' => 'Message on [[Special:EditWatchlist/raw]]. The message appears after at least 1 message is added to the raw watchlist.',
-'watchlistedit-raw-removed' => 'Message on [[Special:EditWatchlist/raw]]. The message appears after at least 1 message is deleted from the raw watchlist.',
+'watchlistedit-raw-added' => 'Message on [[Special:EditWatchlist/raw]].
+
+The message appears after at least 1 message is added to the raw watchlist.
+
+Followed by list of page titles which are added.
+
+Parameters:
+* $1 - number of page titles which are added
+See also:
+* {{msg-mw|Watchlistedit-normal-done}}
+* {{msg-mw|Watchlistedit-raw-removed}}',
+'watchlistedit-raw-removed' => 'Message on [[Special:EditWatchlist/raw]].
+
+The message appears after at least 1 message is deleted from the raw watchlist.
+
+Followed by list of page titles which are removed.
+
+Parameters:
+* $1 - number of page titles which are removed
+See also:
+* {{msg-mw|Watchlistedit-normal-done}}
+* {{msg-mw|Watchlistedit-raw-added}}',
 
 # Watchlist editing tools
 'watchlisttools-view' => '[[Special:Watchlist]]: Navigation link under the title.
@@ -9206,10 +9256,15 @@ Name of month in Hebrew calendar.',
 Name of month in Hebrew calendar.',
 
 # Signatures
-'signature' => "This will be substituted in the signature (~<nowiki></nowiki>~~ or ~~<nowiki></nowiki>~~ excluding timestamp). Parameters:
+'signature' => "This will be substituted in the signature (~<nowiki></nowiki>~~ or ~~<nowiki></nowiki>~~ excluding timestamp).
+
+Parameters:
 * $1 - the username that is currently login
 * $2 - the customized signature which is specified in [[Special:Preferences|user's preferences]] as non-raw
-Use your language default parentheses ({{msg-mw|parentheses}}), but not use the message direct.",
+Use your language default parentheses ({{msg-mw|parentheses}}), but not use the message direct.
+
+See also:
+* {{msg-mw|Signature-anon}} - signature for anonymous user",
 'timezone-utc' => '{{optional}}',
 
 # Core parser functions
@@ -9219,7 +9274,9 @@ This feature allows tags like <code><nowiki><pre></nowiki></code> to be called w
 
 Parameters:
 * $1 - the unknown extension tag name',
-'duplicate-defaultsort' => 'See definition of [[w:Sorting|sort key]] on Wikipedia.',
+'duplicate-defaultsort' => 'See definition of [[w:Sorting|sort key]] on Wikipedia. Parameters:
+* $1 - old default sort key
+* $2 - new default sort key',
 
 # Special:Version
 'version' => '{{doc-special|Version}}
@@ -9245,8 +9302,11 @@ This message is followed by the list of parser extension tags like <code><nowiki
 'version-version' => '*$1 - version number
 {{Identical|Version}}',
 'version-svn-revision' => '{{optional}}
-This is being used in [[Special:Version]], preceeding the subversion revision numbers of the extensions loaded inside brackets, like this: "({{int:version-revision}} r012345")
+Used in [[Special:Version]], preceeding the subversion revision numbers of the extensions loaded inside brackets, like this: "({{int:version-revision}} r012345").
 
+Parameters:
+* $1 - (Unused) directory revision number or empty string
+* $2 - checkout revision number
 {{Identical|Revision}}',
 'version-license' => '{{Identical|License}}',
 'version-poweredby-credits' => 'Message shown on [[Special:Version]]. Parameters:
@@ -9614,7 +9674,14 @@ $4 is the gender of the target user.',
 {{Identical|None}}',
 
 # Feedback
-'feedback-bugornote' => 'When feedback dialog box is opened, this introductory message in small print explains the options to report a bug or add simple feedback. We expect that people in a hurry will not read this.',
+'feedback-bugornote' => 'When feedback dialog box is opened, this introductory message in small print explains the options to report a bug or add simple feedback.
+
+We expect that people in a hurry will not read this.
+
+Parameters:
+* $1 - Bug note URL
+* $2 - "Feedback"
+* $3 - Feedback page URL',
 'feedback-subject' => 'Label for a text input
 {{Identical|Subject}}',
 'feedback-message' => 'Label for a textarea; signature referrs to a Wikitext signature.
@@ -9627,10 +9694,15 @@ $4 is the gender of the target user.',
 'feedback-error1' => 'Error message, appears when an unknown error occurs submitting feedback',
 'feedback-error2' => 'Error message, appears when we could not add feedback',
 'feedback-error3' => 'Error message, appears when we lose our connection to the wiki',
-'feedback-thanks' => 'Thanks message, appears if feedback was successful',
+'feedback-thanks' => 'Thanks message, appears if feedback was successful. Parameters:
+* $1 - "Feedback"
+* $2 - Feedback page URL',
 'feedback-close' => 'Button label
 {{Identical|Done}}',
-'feedback-bugcheck' => 'Message that appears before the user submits a bug, reminding them to check for known bugs.',
+'feedback-bugcheck' => 'Message that appears before the user submits a bug, reminding them to check for known bugs.
+
+Parameters:
+* $1 - bug list page URL',
 'feedback-bugnew' => 'Button label - asserts that the user has checked for existing bugs. When clicked will launch a bugzilla form to add a new bug in a new tab or window',
 
 # Search suggestions
@@ -9651,12 +9723,27 @@ $4 is the gender of the target user.',
 * $2 - a link to a list of duplicate files',
 'api-error-duplicate-archive-popup-title' => 'API error message that can be used for client side localisation of API errors. Parameters:
 * $1 is a number of files.',
-'api-error-duplicate-popup-title' => 'This message is a pop-up title shown in case one or more files exactly equal to the one just uploaded are already present. The word "duplicate" is an adjective.',
+'api-error-duplicate-popup-title' => 'This message is a pop-up title shown in case one or more files exactly equal to the one just uploaded are already present.
+
+The word "duplicate" is an adjective.
+
+Parameters:
+* $1 - number of files',
 'api-error-empty-file' => 'API error message that can be used for client side localisation of API errors.',
 'api-error-emptypage' => 'API error message that can be used for client side localisation of API errors.',
 'api-error-fetchfileerror' => 'API error message that can be used for client side localisation of API errors.',
-'api-error-fileexists-forbidden' => 'API error message that can be used for client side localisation of API errors.',
-'api-error-fileexists-shared-forbidden' => 'API error message that can be used for client side localisation of API errors.',
+'api-error-fileexists-forbidden' => 'API error message that can be used for client side localisation of API errors.
+
+Parameters:
+* $1 - filename
+See also:
+* {{msg-mw|Api-error-fileexists-shared-forbidden}}',
+'api-error-fileexists-shared-forbidden' => 'API error message that can be used for client side localisation of API errors.
+
+Parameters:
+* $1 - filename
+See also:
+* {{msg-mw|Api-error-fileexists-forbidden}}',
 'api-error-file-too-large' => 'API error message that can be used for client side localisation of API errors.',
 'api-error-filename-tooshort' => 'API error message that can be used for client side localisation of API errors.',
 'api-error-filetype-banned' => 'API error message that can be used for client side localisation of API errors.',
@@ -9714,7 +9801,8 @@ Parameters:
 'duration-millennia' => '{{Related|Duration}}',
 
 # Image rotation
-'rotate-comment' => 'Edit summary for the act of rotating an image.',
+'rotate-comment' => 'Edit summary for the act of rotating an image. Parameters:
+* $1 - degrees to rotate image clockwise',
 
 # Limit report
 'limitreport-title' => 'Title for the preview limit report table.',

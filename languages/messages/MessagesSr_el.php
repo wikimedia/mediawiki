@@ -732,7 +732,6 @@ Administrator koji ju je zaključao ponudio je sledeće objašnjenje: „$3“.'
 # Login and logout pages
 'logouttext' => "'''Odjavljeni ste.'''
 
-Možete da nastavite s korišćenjem ovog vikija kao gost, ili se <span class='plainlinks'>[$1 ponovo prijavite]</span> kao drugi korisnik.
 Imajte na umu da neke stranice mogu nastaviti da se prikazuju kao da ste još prijavljeni, sve dok ne očistite privremenu memoriju svog pregledača.",
 'welcomeuser' => 'Dobrodošli, $1!',
 'yourname' => 'Korisničko ime:',

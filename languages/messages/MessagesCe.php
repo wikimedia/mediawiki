@@ -1710,7 +1710,9 @@ PICT # тайп тайпан
 # Namespace form on various pages
 'namespace' => 'Цlерийн ана:',
 'invert' => 'Хаьржинарг хилийта',
+'tooltip-invert' => 'ХӀоттае хӀара билгало, хаьржинчу цӀерийн меттиган аӀонашан хийцамаш къайлабаха (кхин дихкина цӀерийн меттигаш, гайтина делахь)',
 'namespace_association' => 'Йихкина меттиг',
+'tooltip-namespace_association' => 'ХӀоттае хӀара билгало, иштта дийцарийн (я кхин) цӀерийн меттиг юкъахь хилийта',
 'blanknamespace' => '(Коьрта)',
 
 # Contributions
@@ -1719,7 +1721,7 @@ PICT # тайп тайпан
 'mycontris' => 'Сан къинхьегам',
 'contribsub2' => 'Къинхьегам $1 ($2)',
 'uctop' => ' (тlаьхьара)',
-'month' => 'Беттаца (йа хьалхе):',
+'month' => 'Баттаца (я хьалхе):',
 'year' => 'Шерачохь (я хьалхе):',
 
 'sp-contributions-newbies' => 'Гайта бекъ къинхьегам, керла дlабазбиначара бина болу',
@@ -2109,6 +2111,8 @@ PICT # тайп тайпан
 'exif-yresolution' => 'Локхалла',
 'exif-datetime' => 'Файл хийцина терахь а хан',
 'exif-imagedescription' => 'Суьртан цӏе',
+'exif-make' => 'Камера арахоьцург',
+'exif-model' => 'Камеран модель',
 'exif-software' => 'Лелина программа',
 'exif-copyright' => 'Авторан бакъо ерг',
 'exif-colorspace' => 'Беснашан хьал',
@@ -2116,6 +2120,12 @@ PICT # тайп тайпан
 'exif-pixelxdimension' => 'Суьртан локхалла',
 'exif-datetimeoriginal' => 'Дуьххьарлера терахь а хан',
 'exif-datetimedigitized' => 'Оцифровк йина терахь а хан а',
+'exif-exposuretime' => 'Экспозицин хан',
+'exif-fnumber' => 'Диафрагмин дукхалла',
+'exif-maxaperturevalue' => 'Минимальни диафрагмин дукхалла',
+'exif-focallength' => 'Фокусни бохалла',
+'exif-sensingmethod' => 'Сенсоран тайп',
+'exif-filesource' => 'Файлан хьост',
 'exif-imageuniqueid' => 'Суьртан номер (ID)',
 'exif-gpsaltitude' => 'Локхалла',
 'exif-gpsdestlatitude' => 'Объектан дохалла',
@@ -2140,6 +2150,8 @@ PICT # тайп тайпан
 'exif-orientation-1' => 'Лартӏахь',
 
 'exif-xyresolution-i' => '$1 тӏадамаш дюйман',
+
+'exif-filesource-3' => 'Терахьийн суртдохку аппарат',
 
 'exif-scenetype-1' => 'Сурт даьккхина нис дуьххьал',
 

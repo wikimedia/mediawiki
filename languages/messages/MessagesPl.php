@@ -860,6 +860,8 @@ Odczekaj chwilę zanim ponowisz próbę.',
 'login-abort-generic' => 'Logowanie nieudane – przerwano',
 'loginlanguagelabel' => 'Język: $1',
 'suspicious-userlogout' => 'Żądanie wylogowania zostało odrzucone ponieważ wygląda na to, że zostało wysłane przez uszkodzoną przeglądarkę lub buforujący serwer proxy.',
+'createacct-another-realname-tip' => 'Wpisanie imienia i nazwiska nie jest obowiązkowe.
+Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje autorstwo.',
 
 # Email sending
 'php-mail-error-unknown' => 'Wystąpił nieznany błąd w funkcji PHP mail()',

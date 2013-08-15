@@ -909,6 +909,8 @@ Počkejte chvíli, než to zkusíte znovu.',
 'login-abort-generic' => 'Vaše přihlášení se nezdařilo – přerušeno',
 'loginlanguagelabel' => 'Jazyk: $1',
 'suspicious-userlogout' => 'Váš požadavek na odhlášení byl odmítnut, neboť to vypadá, že ho poslal rozbitý prohlížeč nebo cachující proxy.',
+'createacct-another-realname-tip' => 'Skutečné jméno je nepovinné.
+Pokud se ho rozhodnete uvést, bude použito pro označení autorství vaší práce.',
 
 # Email sending
 'php-mail-error-unknown' => 'Neznámá chyba v PHP funkci mail()',
@@ -1571,7 +1573,8 @@ Tuto operaci nelze vrátit zpět.',
 'gender-female' => 'Ženské',
 'prefs-help-gender' => 'Volitelné: používáno softwarem pro správné oslovování v závislosti na pohlaví. Tato informace je veřejná.',
 'email' => 'E-mail',
-'prefs-help-realname' => 'Skutečné jméno (volitelné): pokud ho zadáte, bude použito pro označení autorství vaší práce.',
+'prefs-help-realname' => 'Skutečné jméno je nepovinné.
+Pokud se ho rozhodnete uvést, bude použito pro označení autorství vaší práce.',
 'prefs-help-email' => 'Uvedení e-mailu není povinné, ale umožní zaslání nového hesla v případě, že své heslo zapomenete.',
 'prefs-help-email-others' => 'Také můžete dovolit ostatním uživatelům vás prostřednictvím uživatelské stránky kontaktovat.
 Vaše adresa v takovém případě není prozrazena.',

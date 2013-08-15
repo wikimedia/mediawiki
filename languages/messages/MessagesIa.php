@@ -4095,5 +4095,13 @@ Si non, tu pote usar le formulario facile hic infra. Tu commento essera addite a
 'limitreport-cputime-value' => '$1 {{PLURAL:$1|secunda|secundas}}',
 'limitreport-walltime' => 'Tempore de uso real',
 'limitreport-walltime-value' => '$1 {{PLURAL:$1|secunda|secundas}}',
+'limitreport-ppvisitednodes' => 'Numero de nodos de preprocessor visitate',
+'limitreport-ppgeneratednodes' => 'Numero de nodos de preprocessor generate',
+'limitreport-postexpandincludesize' => 'Dimension de inclusion post expansion',
+'limitreport-postexpandincludesize-value' => '$1/$2 bytes',
+'limitreport-templateargumentsize' => 'Dimension del argumento del patrono',
+'limitreport-templateargumentsize-value' => '$1/$2 bytes',
+'limitreport-expansiondepth' => 'Maxime profunditate de expansion',
+'limitreport-expensivefunctioncount' => 'Numero de functiones analysator costose',
 
 );

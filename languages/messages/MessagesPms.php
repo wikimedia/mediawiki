@@ -480,7 +480,7 @@ Che a dësmentia pa ëd cambié ij [[Special:Preferences|sò gust për {{SITENAM
 'userlogin' => 'Creé un cont o rintré ant ël sistema',
 'userloginnocreate' => 'Conession',
 'logout' => "Seurte da 'nt ël sistema",
-'userlogout' => 'Deconession',
+'userlogout' => 'Dësconession',
 'notloggedin' => 'Nen rintrà ant ël sistema',
 'userlogin-noaccount' => 'Ha-lo nen un cont?',
 'userlogin-joinproject' => "Ch'as gionza a {{SITENAME}}",
@@ -524,9 +524,9 @@ Për piasì, che as j'abìlita e peuj che a preuva torna a rintré con sò stran
 'nocookieslogin' => "{{SITENAME}} a deuvra ij bëscotin për fé rintré la gent ant sò sistema. Belavans chiel a l'ha pa ij bëscotin abilità. Për piasì, che a j'abìlita e peuj che a preuva torna.",
 'nocookiesfornew' => "Ël cont utent a l'é pa stàit creà, përchè i l'oma pa podù confirmé soa sorgiss.
 Ch'a contròla d'avèj ij bëscotin abilità, ch'a caria torna la pàgina e ch'a preuva torna.",
-'noname' => "Lë stranòm che a l'ha batù as peul pa dovresse, as peul nen creésse un cont Utent con ës nòm-sì.",
-'loginsuccesstitle' => "Compliment! A l'é pen-a rintrà ant ël sistema. A-i é pa staje gnun eror.",
-'loginsuccess' => 'A l\'ha avù ël përmess ëd conession al servent ëd {{SITENAME}} con lë stranòm utent ëd "$1".',
+'noname' => "A l'ha nen ëspessificà në stranòm vàlid.",
+'loginsuccesstitle' => "Compliment! A l'é pen-a rintrà ant ël sistema.",
+'loginsuccess' => "'''Adess a l'é colegà a {{SITENAME}} con lë stranòm «$1».'''",
 'nosuchuser' => 'A-i é pa gnun utent con ël nòm "$1".
 Ij nòm ëd j\'utent a son sensìbij a le majùscole.
 Controla ël nòm che it l\'has batù, o [[Special:UserLogin/signup|fà un neuv cont]].',

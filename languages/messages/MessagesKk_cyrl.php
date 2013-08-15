@@ -10,6 +10,7 @@
  * @author AlefZet
  * @author Alibek Kisybay
  * @author Arystanbek
+ * @author Bakytgul Salykhova
  * @author Daniyar
  * @author GaiJin
  * @author Kaztrans
@@ -784,7 +785,7 @@ $2',
 # Login and logout pages
 'logouttext' => "'''Жүйеден шықтыңыз.'''
 
-Жүйеге кірместен де {{SITENAME}} жобасын пайдалана аласыз, немесе баяғы не өзге қатысушы ретінде жүйеге <span class='plainlinks'>[$1 қайта кіруіңізге]</span> болады.
+Жүйеге кірмесеңіз де {{SITENAME}} жобасын пайдалана аласыз, немесе баяғы не өзге қатысушы ретінде жүйеге <span class='plainlinks'>[$1 қайта кіруіңізге]</span> болады.
 Аңғартпа: Кейбір беттер шолғышыңыздың кэшін тазартқанша әлі де жүйеге кіріп отырғаныңыздай көрінуі мүмкін.",
 'welcomeuser' => 'Қош келдіңіз, $1!',
 'welcomecreation-msg' => 'Сіздің тіркеліміңіз жасалынды.
@@ -832,7 +833,7 @@ $2',
 'createacct-emailoptional' => 'Е-поштаның мекен-жайы (міндетті емес)',
 'createacct-email-ph' => 'Е-пошта мекен-жайыңызды енгізіңіз',
 'createacct-another-email-ph' => 'Е-пошта мекен-жайын енгізіңіз',
-'createaccountmail' => 'Е-поштамен',
+'createaccountmail' => 'Уақытша берілген кілтсөзді пайдаланыңыз және оны көрсетілген электрондық поштаға жіберіңіз',
 'createacct-realname' => 'Нақты атыңыз (ерікті)',
 'createaccountreason' => 'Себебі:',
 'createacct-reason' => 'Себебі:',
@@ -1515,10 +1516,10 @@ $1",
 'userrights-no-interwiki' => 'Басқа уикилердегі қатысушы құқықтарын өңдеуге рұқсатыңыз жоқ.',
 'userrights-nodatabase' => '$1 дерекқоры жоқ не жергілікті емес.',
 'userrights-nologin' => 'Қатысушы құқықтарын тағайындау үшін әкімші тіркелгісімен [[Special:UserLogin|кіруіңіз]] жөн.',
-'userrights-notallowed' => 'Қатысушы құқықтарын қосуға немесе алып тастауға тіркелгіңізде рұқсат жоқ.',
+'userrights-notallowed' => 'Сізге қатысушы құқықтарын қосуға немесе алып тастауға рұқсат берілмеген.',
 'userrights-changeable-col' => 'Өзгерте алатын топтар',
 'userrights-unchangeable-col' => 'Өзгерте алмайтын топтар',
-'userrights-conflict' => 'Қатысушы құқықтар қақтығысы! Өзгертулеріңізді қайта қарап көріңіз.',
+'userrights-conflict' => 'Қатысушы құқықтарының қақтығысы! Өзгертулеріңізді қайта қарап шығыңыз және құптаңыз.',
 'userrights-removed-self' => 'Өзіңіздің құқықтарыңызды сәтті алып тастадыңыз.  As such, you are no longer able to access this page.',
 
 # Groups
@@ -1583,7 +1584,7 @@ $1",
 'right-hideuser' => 'Баршадан жасырып, қатысушы атын бұғаттау',
 'right-ipblock-exempt' => 'IP бұғаттауларды, өзбұғаттауларды және ауқым бұғаттауларды орағыту',
 'right-proxyunbannable' => 'Прокси серверлердің өзбұғаттауларын орағыту',
-'right-unblockself' => 'Өздерін бұғаттамау (Бұғаттаудан шығару)',
+'right-unblockself' => 'Бұғаттаудан шығару',
 'right-protect' => 'Қорғау деңгейлерін өзгерту және баулы-қорғаулы беттерді өңдеу',
 'right-editprotected' => 'Қорғалған беттерді өңдеу "{{int:protect-level-sysop}}"',
 'right-editsemiprotected' => 'Қорғалған беттерді өңдеу "{{int:protect-level-autoconfirmed}}"',
@@ -2946,13 +2947,13 @@ $2',
 'pageinfo-length' => 'Бет ұзындығы (байтпен)',
 'pageinfo-article-id' => 'Бет ID',
 'pageinfo-language' => 'Бет мәлімет тілі',
-'pageinfo-robot-policy' => 'Іздеу күйі',
-'pageinfo-robot-index' => 'Индекстелетін',
-'pageinfo-robot-noindex' => 'Индекстелмейтін',
+'pageinfo-robot-policy' => 'Индекстеуді робот жүргізеді',
+'pageinfo-robot-index' => 'Рұқсат берілген',
+'pageinfo-robot-noindex' => 'Рұқсат етілмеген',
 'pageinfo-views' => 'Қараушылар саны',
 'pageinfo-watchers' => 'Бетті қараушылар саны',
 'pageinfo-few-watchers' => '$1 азырақ {{PLURAL:$1|қараушы|қараушы}}',
-'pageinfo-redirects-name' => 'Бұл бетке айтатылғандар',
+'pageinfo-redirects-name' => 'Бұл бетке айдатылғандар саны',
 'pageinfo-subpages-name' => 'Бұл беттің төменгі беттері',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|айдатқыш|айдатқыштыр}}; $3 {{PLURAL:$3|айдатқыш емес|айдатқыш еместер}})',
 'pageinfo-firstuser' => 'Бетті бастаушы',

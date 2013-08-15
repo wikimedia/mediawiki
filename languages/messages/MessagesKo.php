@@ -1233,7 +1233,7 @@ $2개 보다 적게 {{PLURAL:$2|써야}} 하지만 {{PLURAL:$1|지금은 $1개�
 'post-expand-template-inclusion-warning' => "'''경고:''' 틀 포함 크기가 너무 큽니다.
 일부 틀은 포함되지 않을 수 있습니다.",
 'post-expand-template-inclusion-category' => '사용한 틀의 크기가 지나치게 큰 문서의 목록',
-'post-expand-template-argument-warning' => "'''경고:''' 이 문서는 전개 후 크기가 너무 큰 틀 변수가 하나 이상 포함되어 있습니다.
+'post-expand-template-argument-warning' => "'''경고:''' 이 문서는 전개하면 크기가 너무 큰 틀 변수가 하나 이상 포함되어 있습니다.
 이 변수는 생략했습니다.",
 'post-expand-template-argument-category' => '생략된 틀 변수를 포함한 문서',
 'parser-template-loop-warning' => '재귀적인 틀이 발견되었습니다: [[$1]]',
@@ -2219,7 +2219,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'randompage-nopages' => '{{PLURAL:$2|다음}} 이름공간에는 문서가 없습니다: $1',
 
 # Special:RandomInCategory
-'randomincategory' => '분류에서 임의 문서',
+'randomincategory' => '분류에 있는 임의 문서',
 'randomincategory-invalidcategory' => '"$1"(은)는 올바른 분류 이름이 아닙니다.',
 'randomincategory-nopages' => '[[:Category:$1]]에 문서가 없습니다.',
 'randomincategory-selectcategory' => '분류에서 임의 문서 얻기: $1 $2',
@@ -4294,10 +4294,10 @@ $5
 'api-error-publishfailed' => '내부 오류: 서버가 임시 파일을 게시하지 못했습니다.',
 'api-error-timeout' => '서버가 제 시간 내에 응답하지 않았습니다.',
 'api-error-unclassified' => '알 수 없는 오류가 발생했습니다.',
-'api-error-unknown-code' => '알 수 없는 오류: "$1".',
+'api-error-unknown-code' => '알 수 없는 오류: "$1"',
 'api-error-unknown-error' => '내부 오류: 파일을 올리려 하는 도중에 무엇인가가 잘못되었습니다.',
-'api-error-unknown-warning' => '알 수 없는 경고: "$1".',
-'api-error-unknownerror' => '알 수 없는 오류: "$1".',
+'api-error-unknown-warning' => '알 수 없는 경고: "$1"',
+'api-error-unknownerror' => '알 수 없는 오류: "$1"',
 'api-error-uploaddisabled' => '이 위키에서 파일 올리기가 비활성화되어 있습니다.',
 'api-error-verification-error' => '파일이 손상되었거나 잘못된 확장자를 사용하고 있습니다.',
 

@@ -12277,6 +12277,7 @@ Dës Datebank-Type ginn ënnerstëtzt: $1.
 Wann Dir op engem gesharte Server sidd, da frot Ären Hosting-Provider fir de passenden Datebank-Driver z'installéieren.
 Wann Dir PHP selwer compiléiert hutt, da reconfiguréiert en mat dem ageschalten Datebank-Client, zum Beispill an deem Dir <code>./configure --with-mysql</code> benotzt.
 Wann Dir PHP vun engem Debian oder Ubuntu Package aus installéiert hutt, da musst Dir och den php5-mysql Modul installéieren.",
+	'config-outdated-sqlite' => "'''Warnung:''' SQLite $1 ass installéiert. Allerdengs brauch MediaWiki SQLite $2 oder méi nei. SQLite ass dofir net disponibel.",
 	'config-memory-bad' => "'''Opgepasst:''' De Parameter <code>memory_limit</code> vu PHP ass $1.
 Dat ass wahrscheinlech ze niddreg.
 D'Installatioun kéint net fonctionnéieren.",
@@ -12287,7 +12288,9 @@ D'Installatioun kéint net fonctionnéieren.",
 	'config-no-uri' => "'''Feeler:''' Déi aktuell URI konnt net festgestallt ginn.
 Installatioun ofgebrach.",
 	'config-using-server' => 'De Servernumm "<nowiki>$1</nowiki>" gëtt benotzt.',
+	'config-using-uri' => 'D\'Server URL  "<nowiki>$1$2</nowiki>" gëtt benotzt.',
 	'config-db-type' => 'Datebanktyp:',
+	'config-db-host' => 'Host vun der Datebank:',
 	'config-db-host-oracle' => 'Datebank-TNS:',
 	'config-db-wiki-settings' => 'Dës Wiki identifizéieren',
 	'config-db-name' => 'Numm vun der Datebank:',
@@ -12403,7 +12406,10 @@ Dir kënnt elo déi Astellungen déi nach iwwreg sinn iwwersprangen an d'Wiki el
 	'config-install-user' => 'Datebank Benotzer uleeën',
 	'config-install-user-alreadyexists' => 'De Benotzer "$1" gëtt et schonn!',
 	'config-install-user-create-failed' => 'D\'Opmaache vum Benotzer "$1" huet net fonctionnéiert: $2',
+	'config-install-user-grant-failed' => 'D\'Bäisetze vu Rechter fir de Benotzer "$1" huet net fonctionnéiert: $2',
 	'config-install-user-missing' => 'De Benotzer "$1" deen ugi gouf gëtt et net.',
+	'config-install-user-missing-create' => 'De spezifizéierte Benotzer "$1" gëtt et net.
+Klickt d\'Checkbox "Benotzerkont uleeën" wann Dir dee Benotzer uleeë wëllt.',
 	'config-install-tables' => 'Tabelle ginn ugeluecht',
 	'config-install-interwiki' => 'Standard Interwiki-Tabell gëtt ausgefëllt',
 	'config-install-interwiki-list' => 'De Fichier <code>interwiki.list</code> gouf net fonnt.',
@@ -19566,6 +19572,7 @@ $messages['ug-arab'] = array(
  * @author AS
  * @author Ahonc
  * @author Alex Khimich
+ * @author Andriykopanytsia
  * @author Base
  * @author Diemon.ukr
  * @author Ата
@@ -19700,6 +19707,8 @@ MediaWiki вимагає підтримку UTF-8 для коректної ро
 	'config-mod-security' => "'''Увага''': на Вашому веб-сервері увімкнено [http://modsecurity.org/ mod_security]. У разі неправильних налаштувать, він може викликати проблеми MediaWiki або іншого ПЗ, яке дозволяє користувачам надсилати довільний вміст.
 Зверніться до [http://modsecurity.org/documentation/ документації mod_security] або підтримки Вашого хостера, якщо під час роботи виникають незрозумілі помилки.",
 	'config-diff3-bad' => 'GNU diff3 не знайдено.',
+	'config-git' => 'Знайшов програму управління версіями Git: <code>$1</code>.',
+	'config-git-bad' => 'Програму управління версіями Git  не знайдено.',
 	'config-imagemagick' => 'Виявлено ImageMagick: <code>$1</code>.
 Буде ввімкнуто відображення мініатюр, якщо ви дозволите завантаження файлів.',
 	'config-gd' => 'Виявлено вбудовано графічну бібліотеку GD.
@@ -19720,7 +19729,7 @@ MediaWiki вимагає підтримку UTF-8 для коректної ро
 	'config-using531' => 'MediaWiki не можна використовувати разом з PHP $1 через помилку з параметрами-посиланнями <code>__call()</code>.
 Оновіть PHP до версії 5.3.2 і вище або відкотіть до PHP 5.3.0 щоб уникнути цієї проблеми.
 Встановлення скасовано.',
-	'config-suhosin-max-value-length' => 'Suhosin встановлено і обмежує довжину параметра GET до $1 байтів. Компонент MediaWiki ResourceLoader буде обходити це обмеження, однак це зменшить продуктивність. Якщо це можливо, Вам варто встановити значення <code>suhosin.get.max_value_length</code> 1024 і більше у <code>php.ini</code> і встановити таке ж значення <code>$wgResourceLoaderMaxQueryLength</code> у LocalSettings.php .', # Fuzzy
+	'config-suhosin-max-value-length' => 'Suhosin встановлено і обмежує параметра GET  <code>length</code> до $1 байта. Компонент MediaWiki ResourceLoader буде обходити це обмеження, однак це зменшить продуктивність. Якщо це можливо, Вам варто встановити значення <code>suhosin.get.max_value_length</code> як 1024 і більше у <code>php.ini</code> і встановити таке ж значення <code>$wgResourceLoaderMaxQueryLength</code> у LocalSettings.php .',
 	'config-db-type' => 'Тип бази даних:',
 	'config-db-host' => 'Хост бази даних:',
 	'config-db-host-help' => 'Якщо сервер бази даних знаходиться на іншому сервері, введіть тут ім\'я хосту і IP адресу.
@@ -19809,7 +19818,7 @@ $1
 	'config-missing-db-host' => 'Ви повинні ввести значення параметру «Хост бази даних»',
 	'config-missing-db-server-oracle' => 'Ви повинні ввести значення параметру «TNS бази даних»',
 	'config-invalid-db-server-oracle' => 'Неприпустиме TNS бази даних "$1".
-Використовуйте тільки ASCII букви (a-z, A-Z), цифри (0-9), знаки підкреслення (_) і крапки (.).',
+Використовуйте "TNS Name" або рядок "Easy Connect"  ([http://docs.oracle.com/cd/E11882_01/network.112/e10836/naming.htm Методи найменування Oracle])',
 	'config-invalid-db-name' => 'Неприпустима назва бази даних "$1".
 Використовуйте тільки ASCII букви (a-z, A-Z), цифри (0-9), знаки підкреслення (_) і дефіси (-).',
 	'config-invalid-db-prefix' => 'Неприпустимий префікс бази даних "$1".
@@ -19884,6 +19893,12 @@ chmod a+w $3</pre>',
 
 Якщо Ваша інсталяція MySQL підтримує InnoDB, дуже рекомендується вибрати цей двигун.
 Якщо Ваша інсталяція MySQL не підтримує InnoDB, можливо настав час її оновити.",
+	'config-mysql-only-myisam-dep' => '"\'Зауваження:"\' MyISAM є єдиним механізмом для зберігання MySQL, який не рекомендується для використання з MediaWiki, оскільки:
+* слабо підтримує паралелізм через блокування таблиць
+* більш схильний до пошкоджень, ніж інші двигуни
+* код MediaWiki не завжди розглядає MyISAM, як повинен
+
+Твоє встановлення MySQL не підтримує InnoDB, можливо, потрібно оновити.',
 	'config-mysql-engine-help' => "'''InnoDB''' є завжди кращим вибором, оскільки краще підтримує паралельний доступ.
 
 '''MyISAM''' може бути швидшим для одного користувача або в інсталяціях read-only.
@@ -19937,7 +19952,7 @@ chmod a+w $3</pre>',
 	'config-optional-continue' => 'Запитуйте ще.',
 	'config-optional-skip' => 'Це вже втомлює, просто встановити вікі.',
 	'config-profile' => 'Профіль прав користувача:',
-	'config-profile-wiki' => 'Традиційна вікі', # Fuzzy
+	'config-profile-wiki' => 'Відкрита вікі',
 	'config-profile-no-anon' => 'Необхідно створити обліковий запис',
 	'config-profile-fishbowl' => 'Тільки для авторизованих редакторів',
 	'config-profile-private' => 'Приватна вікі',
@@ -19947,12 +19962,12 @@ chmod a+w $3</pre>',
 Одначе, MediaWiki може бути корисна по-різному, й інколи важко переконати у вигідності відкритої вікі-роботи.
 Тож у Вас є вибір.
 
-'''{{int:config-profile-wiki}}''' дозволяє редагувати будь-кому, навіть без входження в систему.
+Модель '''{{int:config-profile-wiki}}''' дозволяє редагувати будь-кому, навіть без входження в систему.
 Вікі з вимогою \"'''{{int:config-profile-no-anon}}'''\" дає певний облік, але може відвернути випадкових дописувачів.
 Спосіб \"'''{{int:config-profile-fishbowl}}'''\" дозволяє редагувати підтвердженим користувачам, а переглядати сторінки і історію можуть усі.
 '''{{int:config-profile-private}}''' дозволяє переглядати сторінки і редагувати лише підтвердженим користувачам.
 
-Детальніші конфігурації прав користувачів доступні після встановлення, див. [//www.mediawiki.org/wiki/Manual:User_rights відповідний розділ посібника].", # Fuzzy
+Детальніші конфігурації прав користувачів доступні після встановлення, див. [//www.mediawiki.org/wiki/Manual:User_rights відповідний розділ посібника].",
 	'config-license' => 'Авторські права і ліцензія:',
 	'config-license-none' => 'Без ліцензії у нижньому колонтитулі',
 	'config-license-cc-by-sa' => 'Creative Commons Attribution Share Alike',
@@ -19998,9 +20013,12 @@ GFDL — допустима ліцензія, але у ній важко роз
 В ідеалі, вона не має бути доступною через інтернет.',
 	'config-logo' => 'URL логотипу:',
 	'config-logo-help' => 'Стандартна схема оформлення MediaWiki містить вільне для логотипу місце над бічною панеллю розміром 135x160 пікселів. 
+
 Завантажте зображення відповідного розміру і введіть тут його URL.
 
-Якщо Вам не потрібен логотип, залиште це поле пустим.', # Fuzzy
+Ви можете використати <code>$wgStylePath</code> або <code>$wgScriptPath</code>, якщо ваш логотип пов\'язаний з цими шляхами.
+
+Якщо Вам не потрібен логотип, залиште це поле пустим.',
 	'config-instantcommons' => 'Увімкнути Instant Commons',
 	'config-instantcommons-help' => '[//www.mediawiki.org/wiki/InstantCommons Instant Commons] це функція, що дозволяє вікі використовувати зображення, звуки та інші медіа, розміщені на [//commons.wikimedia.org/ Вікісховищі].
 Для цього MediaWiki необхідний доступ до інтернету.
@@ -20034,7 +20052,7 @@ GFDL — допустима ліцензія, але у ній важко роз
 	'config-install-alreadydone' => "'''Увага:''' Здається, Ви вже встановлювали MediaWiki і зараз намагаєтесь встановити її знову.
 Будь ласка, перейдіть на наступну сторінку.",
 	'config-install-begin' => 'Натискаючи "{{int:config-continue}}", Ви розпочинаєте встановлення MediaWiki.
-Якщо Ви все ще хочете внести зміни, натисніть "Назад".', # Fuzzy
+Якщо Ви все ще хочете внести зміни, натисніть "{{int:config-back}}".',
 	'config-install-step-done' => 'виконано',
 	'config-install-step-failed' => 'не вдалося',
 	'config-install-extensions' => 'У тому числі розширення',
@@ -20092,6 +20110,9 @@ $3
 	'config-download-localsettings' => 'Завантажити <code>LocalSettings.php</code>',
 	'config-help' => 'допомога',
 	'config-nofile' => 'Файл "$1" не знайдено. Його видалено?',
+	'config-extension-link' => 'Чи знаєте ви, що ваше вікі підтримує [//www.mediawiki.org/wiki/Manual:Extensions розширення]?
+
+Ви можете переглядати [//www.mediawiki.org/wiki/Category:Extensions_by_category розширення по категорії] або в [//www.mediawiki.org/wiki/Extension_Matrix матрицю розширень] щоб побачити повний список розширень.',
 	'mainpagetext' => 'Програмне забезпечення «MediaWiki» успішно встановлене.',
 	'mainpagedocfooter' => 'Інформацію про роботу з цією вікі можна знайти в [//meta.wikimedia.org/wiki/Help:Contents посібнику користувача].
 
