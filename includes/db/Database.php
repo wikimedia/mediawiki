@@ -3110,10 +3110,9 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 			foreach ( $callbacks as $callback ) {
 				try {
 					$this->clearFlag( DBO_TRX ); // make each query its own transaction
-					$callback();
+					call_user_func( $callback );
 					$this->setFlag( $autoTrx ? DBO_TRX : 0 ); // restore automatic begin()
-				} catch ( Exception $e ) {
-				}
+				} catch ( Exception $e ) {}
 			}
 		} while ( count( $this->mTrxIdleCallbacks ) );
 
@@ -3134,7 +3133,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 			$this->mTrxPreCommitCallbacks = array(); // recursion guard
 			foreach ( $callbacks as $callback ) {
 				try {
-					$callback();
+					call_user_func( $callback );
 				} catch ( Exception $e ) {}
 			}
 		} while ( count( $this->mTrxPreCommitCallbacks ) );
