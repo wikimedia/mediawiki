@@ -1920,6 +1920,7 @@ class EditPage {
 		global $wgOut, $wgUser;
 
 		$wgOut->addModules( 'mediawiki.action.edit' );
+		$wgOut->addModuleStyles( 'mediawiki.action.edit.styles' );
 
 		if ( $wgUser->getOption( 'uselivepreview', false ) ) {
 			$wgOut->addModules( 'mediawiki.action.edit.preview' );
