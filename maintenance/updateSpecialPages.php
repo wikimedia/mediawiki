@@ -140,6 +140,9 @@ class UpdateSpecialPages extends Maintenance {
 				} else {
 					$this->output( "cheap, skipped\n" );
 				}
+				if ( $this->hasOption( 'only' ) ) {
+					break;
+				}
 			}
 		}
 	}
