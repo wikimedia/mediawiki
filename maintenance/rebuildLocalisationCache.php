@@ -61,7 +61,7 @@ class RebuildLocalisationCache extends Maintenance {
 		# no l10n cache. Break the cycle by forcing $wgLanguageCode = 'en'.
 		global $wgLanguageCode;
 		$wgLanguageCode = 'en';
-		return parent::finalSetup();
+		parent::finalSetup();
 	}
 
 	public function execute() {
