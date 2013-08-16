@@ -3170,6 +3170,12 @@ class Parser {
 	 *   'post-expand-template-inclusion' (corresponding messages:
 	 *       'post-expand-template-inclusion-warning',
 	 *       'post-expand-template-inclusion-category')
+	 *   'node-count-exceeded' (corresponding messages:
+	 *       'node-count-exceeded-warning',
+	 *       'node-count-exceeded-category')
+	 *   'expansion-depth-exceeded' (corresponding messages:
+	 *       'expansion-depth-exceeded-warning',
+	 *       'expansion-depth-exceeded-category')
 	 * @param int|null $current Current value
 	 * @param int|null $max Maximum allowed, when an explicit limit has been
 	 *	 exceeded, provide the values (optional)
