@@ -180,7 +180,7 @@ class ResourceLoader {
 			wfDebugLog( 'resourceloader', __METHOD__ . ": minification failed: $exception" );
 			$this->hasErrors = true;
 			// Return exception as a comment
-			$result = self::makeComment( $exception->__toString() );
+			$result = self::formatException( $exception );
 		}
 
 		wfProfileOut( __METHOD__ );
@@ -477,7 +477,7 @@ class ResourceLoader {
 			wfDebugLog( 'resourceloader', __METHOD__ . ": preloading module info failed: $e" );
 			$this->hasErrors = true;
 			// Add exception to the output as a comment
-			$errors .= self::makeComment( $e->__toString() );
+			$errors .= self::formatException( $e );
 		}
 
 		wfProfileIn( __METHOD__ . '-getModifiedTime' );
@@ -496,7 +496,7 @@ class ResourceLoader {
 				wfDebugLog( 'resourceloader', __METHOD__ . ": calculating maximum modified time failed: $e" );
 				$this->hasErrors = true;
 				// Add exception to the output as a comment
-				$errors .= self::makeComment( $e->__toString() );
+				$errors .= self::formatException( $e );
 			}
 		}
 
@@ -677,7 +677,8 @@ class ResourceLoader {
 	}
 
 	/**
-	 * Generate a CSS or JS comment block
+	 * Generate a CSS or JS comment block. Only use this for public data,
+	 * not error message details.
 	 *
 	 * @param $text string
 	 * @return string
@@ -685,6 +686,22 @@ class ResourceLoader {
 	public static function makeComment( $text ) {
 		$encText = str_replace( '*/', '* /', $text );
 		return "/*\n$encText\n*/\n";
+	}
+
+	/**
+	 * Handle exception display
+	 *
+	 * @param Exception $e to be shown to the user
+	 * @return string sanitized text that can be returned to the user
+	 */
+	public static function formatException( $e ) {
+		global $wgShowExceptionDetails;
+
+		if ( $wgShowExceptionDetails ) {
+			return self::makeComment( $e->__toString() );
+		} else {
+			return self::makeComment( wfMessage( 'internalerror' )->text() );
+		}
 	}
 
 	/**
@@ -713,7 +730,7 @@ class ResourceLoader {
 				wfDebugLog( 'resourceloader', __METHOD__ . ": pre-fetching blobs from MessageBlobStore failed: $e" );
 				$this->hasErrors = true;
 				// Add exception to the output as a comment
-				$exceptions .= self::makeComment( $e->__toString() );
+				$exceptions .= self::formatException( $e );
 			}
 		} else {
 			$blobs = array();
@@ -820,7 +837,7 @@ class ResourceLoader {
 				wfDebugLog( 'resourceloader', __METHOD__ . ": generating module package failed: $e" );
 				$this->hasErrors = true;
 				// Add exception to the output as a comment
-				$exceptions .= self::makeComment( $e->__toString() );
+				$exceptions .= self::formatException( $e );
 
 				// Register module as missing
 				$missing[] = $name;
