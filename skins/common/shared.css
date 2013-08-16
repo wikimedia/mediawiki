@@ -1110,6 +1110,7 @@ ol:lang(or) li {
 	direction: ltr;
 	unicode-bidi: embed;
 }
+.diff-multi,
 .diff-otitle,
 .diff-ntitle,
 .diff-lineno {
