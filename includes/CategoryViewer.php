@@ -700,8 +700,8 @@ class CategoryViewer extends ContextSource {
 			# category-article-count-limited, category-file-count-limited
 			return $this->msg( "category-$type-count-limited" )->numParams( $rescnt )->parseAsBlock();
 		}
-		# Give grep a chance to find the usages: category-subcat-count-limited,
-		# category-article-count-limited, category-file-count-limited
+		# Give grep a chance to find the usages:
+		# category-subcat-count, category-article-count, category-file-count
 		return $this->msg( "category-$type-count" )->numParams( $rescnt, $totalcnt )->parseAsBlock();
 	}
 }
