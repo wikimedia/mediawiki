@@ -527,10 +527,10 @@ Ch'a contròla d'avèj ij bëscotin abilità, ch'a caria torna la pàgina e ch'a
 'noname' => "A l'ha nen ëspessificà në stranòm vàlid.",
 'loginsuccesstitle' => "Compliment! A l'é pen-a rintrà ant ël sistema.",
 'loginsuccess' => "'''Adess a l'é colegà a {{SITENAME}} con lë stranòm «$1».'''",
-'nosuchuser' => 'A-i é pa gnun utent con ël nòm "$1".
-Ij nòm ëd j\'utent a son sensìbij a le majùscole.
-Controla ël nòm che it l\'has batù, o [[Special:UserLogin/signup|fà un neuv cont]].',
-'nosuchusershort' => 'A-i é pa gnun utent che as ciama "$1". Për piasì, che a contròla se a l\'ha scrit tut giust.',
+'nosuchuser' => "A-i é pa gnun utent con lë stranòm «$1».
+Jë stranòm ëd j'utent a son sensìbij a le majùscole.
+Ch'a contròla ël nòm che a l'ha batù, o [[Special:UserLogin/signup|ch'a crea un neuv cont]].",
+'nosuchusershort' => "A-i é pa gnun utent che as ciama «$1». Për piasì, che a contròla se a l'ha scrit tut giust.",
 'nouserspecified' => 'A venta che a specìfica në stranòm utent',
 'login-userblocked' => "St'utent-sì a l'é blocà. A peul pa intré ant ël sistema.",
 'wrongpassword' => "La ciav batùa a l'é pa giusta.<br /><br />Che a preuva torna, për piasì.",

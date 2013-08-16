@@ -1361,7 +1361,7 @@ Mae'r wybodaeth hon ar gael i'r cyhoedd.",
 'userrights-notallowed' => 'Nid oes ganiatâd priodol gennych i ychwanegu neu dynnu hawliau defnyddwyr.',
 'userrights-changeable-col' => 'Grwpiau y gallwch eu newid',
 'userrights-unchangeable-col' => 'Grwpiau na allwch eu newid',
-'userrights-conflict' => 'Gwrthdaro gyda hawliau defnyddiwr! Gwnewch eich newidiadau eto.',
+'userrights-conflict' => "Gwrthdaro oherwydd newid i hawliau defnyddiwr! Adolygwch eich newidiadau a'u cadarnhau.",
 'userrights-removed-self' => "Rydych wedi llwyddo rhoi'r gorau i'ch galluoedd. Gan hynny, nid ydych yn cael myned i'r dudalen hon bellach.",
 
 # Groups
@@ -3921,5 +3921,15 @@ Dylech fod wedi derbyn [{{SERVER}}{{SCRIPTPATH}}/COPYING gopi o GNU General Publ
 
 # Image rotation
 'rotate-comment' => "Trowyd y llun $1 {{PLURAL:$1|gradd|radd|radd|gradd}} gyda'r cloc",
+
+# Limit report
+'limitreport-cputime' => 'Defnydd amser CPU',
+'limitreport-cputime-value' => '$1 {{PLURAL:$1|eiliad}}',
+'limitreport-walltime' => 'Defnydd amser real',
+'limitreport-walltime-value' => '$1 {{PLURAL:$1|eiliad}}',
+'limitreport-postexpandincludesize-value' => '$1/$2 beit',
+'limitreport-templateargumentsize' => 'Maint arg y nodyn',
+'limitreport-templateargumentsize-value' => '$1/$2 beit',
+'limitreport-expansiondepth' => 'Uchafswm dyfnder yr ehangu',
 
 );

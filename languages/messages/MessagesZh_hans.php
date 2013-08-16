@@ -895,6 +895,8 @@ $2',
 'login-abort-generic' => '登录失败 - 已终止',
 'loginlanguagelabel' => '语言：$1',
 'suspicious-userlogout' => '注销请求被拒绝，因为它似乎是由有设计缺陷的浏览器或缓存代理发出的。',
+'createacct-another-realname-tip' => '真实姓名是选填项目。
+如果你选择提供它，它将会用于贡献署名。',
 
 # Email sending
 'php-mail-error-unknown' => '在 PHP 的 mail() 函数中的未知错误',
@@ -4118,5 +4120,17 @@ MediaWiki发表时预期有用，但对此'''无任何保证'''，亦无隐含�
 
 # Image rotation
 'rotate-comment' => '图像已顺时针方向旋转了 $1 {{PLURAL:$1|度|度}}',
+
+# Limit report
+'limitreport-title' => '分析器分析数据：',
+'limitreport-cputime' => 'CPU使用时间',
+'limitreport-cputime-value' => '$1秒',
+'limitreport-walltime-value' => '$1秒',
+'limitreport-ppvisitednodes' => '预处理器访问节点计数',
+'limitreport-ppgeneratednodes' => '预处理器生成节点计数',
+'limitreport-postexpandincludesize-value' => '$1/$2字节',
+'limitreport-templateargumentsize' => '模板参数大小',
+'limitreport-templateargumentsize-value' => '$1/$2 字节',
+'limitreport-expansiondepth' => '最高扩展深度',
 
 );

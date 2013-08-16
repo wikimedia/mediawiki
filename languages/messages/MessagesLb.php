@@ -4000,7 +4000,9 @@ Soss kënnt Dir den einfache Formulär hei drënner benotzen. Är Bemierkung gë
 'rotate-comment' => 'Bild ëm $1 {{PLURAL:$1|Grad}} an der Richtung vun der Auer gedréint',
 
 # Limit report
+'limitreport-cputime' => 'CPU-Zäit-Notzung',
 'limitreport-cputime-value' => '$1 {{PLURAL:$1|Sekonn|Sekonnen}}',
+'limitreport-walltime' => 'Echtzäitnotzung',
 'limitreport-walltime-value' => '$1 {{PLURAL:$1|Sekonn|Sekonnen}}',
 'limitreport-postexpandincludesize-value' => '$1/$2 Byten',
 'limitreport-templateargumentsize-value' => '$1/$2 Byten',

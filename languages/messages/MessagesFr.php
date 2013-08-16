@@ -3219,8 +3219,7 @@ Vous pouvez toutefois en visualiser la source.',
 'tooltip-recreate' => 'Recréer la page même si celle-ci a été effacée',
 'tooltip-upload' => "Démarrer l'import",
 'tooltip-rollback' => '« Révoquer » annule en un clic la ou les modification(s) de cette page par son dernier contributeur.',
-'tooltip-undo' => "« Défaire » révoque cette modification et ouvre la fenêtre de modification en mode prévisualisation.
-Permet de rétablir la version précédente et d'ajouter un motif dans la boîte de résumé.",
+'tooltip-undo' => '« Annuler » rétablit la modification précédente et ouvre la fenêtre de modification en mode prévisualisation. Il est possible d’ajouter une raison dans le résumé.',
 'tooltip-preferences-save' => 'Sauvegarder les préférences',
 'tooltip-summary' => 'Entrez un bref résumé',
 

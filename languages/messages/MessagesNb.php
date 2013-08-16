@@ -690,6 +690,7 @@ Den kan ha blitt slettet av noen andre.',
 'cannotdelete-title' => 'Kan ikke slette siden «$1»',
 'delete-hook-aborted' => 'Sletting avbrutt av en funksjon.
 Den ga ingen forklaring.',
+'no-null-revision' => 'Det ble ikke laget en null-endring av side "$1"',
 'badtitle' => 'Ugyldig tittel',
 'badtitletext' => 'Den ønskede tittelen var ugyldig, tom eller feilaktig lenket fra en annen wiki.
 Den inneholder kanskje ett eller flere tegn som ikke kan brukes i titler.',
@@ -739,8 +740,7 @@ Administrators nærmere begrunnelse: «$3».',
 # Login and logout pages
 'logouttext' => "'''Du er nå logget ut.'''
 
-Du kan fortsette å bruke {{SITENAME}} anonymt, eller <span class='plainlinks'>[$1 logge inn igjen]</span> som samme eller en annen bruker.
-Merk at noen sider kan vise at du fortsatt er logget inn fram til du tømmer mellomlageret i nettleseren.",
+Vær oppmerksom på at noen sider kan fortsette å dukke opp som om du fortsatt var innlogget, helt til du nullstiller nettleserens cache.",
 'welcomeuser' => 'Velkommen, $1!',
 'welcomecreation-msg' => 'Kontoen din har blitt opprettet.
 Ikke glem å endre [[Special:Preferences|innstillingene dine]] på {{SITENAME}}.',
@@ -787,7 +787,7 @@ Ikke glem å endre [[Special:Preferences|innstillingene dine]] på {{SITENAME}}.
 'createacct-emailoptional' => 'E-postadresse (valgfritt)',
 'createacct-email-ph' => 'Skriv inn e-postadressen din',
 'createacct-another-email-ph' => 'Skriv inn epostadressen',
-'createaccountmail' => 'Bruk et midlertidig tilfeldig passord, og send det til e-postadressen nedenfor',
+'createaccountmail' => 'Bruk et midlertidig, tilfeldig passord, og send det til angitt e-postadresse',
 'createacct-realname' => 'Virkelig navn (valgfritt)',
 'createaccountreason' => 'Årsak:',
 'createacct-reason' => 'Årsak',
@@ -864,6 +864,8 @@ Du kan ignorere denne beskjeden dersom kontoen ble opprettet ved en feil.',
 'login-abort-generic' => 'Innleggingen ble avbrutt.',
 'loginlanguagelabel' => 'Språk: $1',
 'suspicious-userlogout' => 'Din forespørsel om å logge ut ble nektet fordi den så ut til å ha bli sendt av en ødelagt nettleser eller en mellomtjener.',
+'createacct-another-realname-tip' => 'Det er frivillig å oppgi ditt egentlige navn.
+Hvis du velger å oppgi det, vil det blir anvendt for å gi deg som bruker anerkjennelse',
 
 # Email sending
 'php-mail-error-unknown' => 'Ukjent feil i PHPs mail()-funksjon',

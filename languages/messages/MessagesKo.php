@@ -713,7 +713,7 @@ URL을 잘못 입력하였거나, 잘못된 링크를 따라갔을 수 있습니
 'filecopyerror' => '"$1" 파일을 "$2"로 복사할 수 없습니다.',
 'filerenameerror' => '"$1" 파일을 "$2"로 옮길 수 없습니다.',
 'filedeleteerror' => '"$1" 파일을 삭제할 수 없습니다.',
-'directorycreateerror' => '"$1" 디렉토리를 만들 수 없습니다.',
+'directorycreateerror' => '"$1" 디렉터리를 만들 수 없습니다.',
 'filenotfound' => '"$1" 파일을 찾을 수 없습니다.',
 'fileexistserror' => '"$1" 파일이 이미 있어 여기에 쓸 수 없습니다.',
 'unexpected' => '예상되지 않은 값: "$1"="$2"',
@@ -981,7 +981,7 @@ $2
 # Special:ChangeEmail
 'changeemail' => '이메일 주소 바꾸기',
 'changeemail-header' => '계정 메일 주소 바꾸기',
-'changeemail-text' => '이메일 주소를 바꾸려면 이 양식을 작성해주세요. 바뀜 내용을 확인하기 위해 비밀번호를 입력해야 합니다.',
+'changeemail-text' => '이메일 주소를 바꾸려면 이 양식을 작성해주세요. 바뀜을 확인하기 위해 비밀번호를 입력해야 합니다.',
 'changeemail-no-info' => '이 특수 문서에 직접 접근하려면 반드시 로그인해야 합니다.',
 'changeemail-oldemail' => '현재 이메일 주소 :',
 'changeemail-newemail' => '새 이메일 주소:',
@@ -1399,31 +1399,31 @@ $1",
 'mergehistory' => '문서 역사 합치기',
 'mergehistory-header' => '이 문서는 한 문서에서 다른 문서로 문서 역사를 합치게 할 것입니다.
 이전 문서를 역사적 기록으로 계속 남겨둘 것인지 확인해주세요.',
-'mergehistory-box' => '두 문서의 역사 합치기:',
-'mergehistory-from' => '원본 문서 이름:',
-'mergehistory-into' => '새 문서 이름:',
-'mergehistory-list' => '병합 가능한 문서 역사',
-'mergehistory-merge' => '[[:$1]] 문서의 다음 판이 [[:$2]] 문서로 병합될 수 있습니다.
+'mergehistory-box' => '두 문서의 판 합치기:',
+'mergehistory-from' => '원본 문서:',
+'mergehistory-into' => '대상 문서:',
+'mergehistory-list' => '합칠 수 있는 문서 역사',
+'mergehistory-merge' => '[[:$1]] 문서의 다음 판이 [[:$2]] 문서로 합칠 수 있습니다.
 병합하려는 판과 그 이전의 판을 선택하시려면 라디오 버튼을 이용해주세요.
 둘러보기 링크를 이용하는 것은 이 문서를 초기화시킬 것입니다.',
 'mergehistory-go' => '합칠 수 있는 편집 보기',
-'mergehistory-submit' => '문서 역사 합치기',
+'mergehistory-submit' => '판 합치기',
 'mergehistory-empty' => '합칠 수 있는 판이 없습니다.',
 'mergehistory-success' => '[[:$1]] 문서의 {{PLURAL:$3|판}} $3개가 [[:$2]]에 성공적으로 합쳐졌습니다.',
-'mergehistory-fail' => '문서 역사 합치기 명령을 수행할 수 없습니다. 문서와 시간 변수를 다시 확인하십시오.',
+'mergehistory-fail' => '역사 합치기를 수행할 수 없습니다, 문서와 시간 변수를 다시 확인하세요.',
 'mergehistory-no-source' => '원본인 $1 문서가 존재하지 않습니다.',
 'mergehistory-no-destination' => '대상인 $1 문서가 존재하지 않습니다.',
-'mergehistory-invalid-source' => '원본 문서 이름에는 반드시 유효한 제목을 입력해야 합니다.',
-'mergehistory-invalid-destination' => '대상 문서 이름에는 반드시 유효한 제목을 입력해야 합니다.',
+'mergehistory-invalid-source' => '원본 문서는 올바른 제목이어야 합니다.',
+'mergehistory-invalid-destination' => '대상 문서는 올바른 제목이어야 합니다.',
 'mergehistory-autocomment' => '[[:$1]] 문서를 [[:$2]] 문서로 합침',
 'mergehistory-comment' => '[[:$1]] 문서를 [[:$2]] 문서로 합침: $3',
-'mergehistory-same-destination' => '원본 문서 이름과 새 문서 이름은 달라야 합니다',
+'mergehistory-same-destination' => '원본 문서 이름과 대상 문서 이름은 달라야 합니다',
 'mergehistory-reason' => '이유:',
 
 # Merge log
-'mergelog' => '병합 기록',
-'pagemerge-logentry' => '사용자가 [[$1]]을 [[$2]]에 병합했습니다 ($3판이 위로 옮겨짐)',
-'revertmerge' => '병합 해제',
+'mergelog' => '합치기 기록',
+'pagemerge-logentry' => '사용자가 [[$1]]을 [[$2]]에 합쳤습니다 ($3판이 위로 옮겨짐)',
+'revertmerge' => '합치기 해제',
 'mergelogpagetext' => '다음은 한 문서의 역사를 다른 문서의 역사와 합친 최근 기록입니다.',
 
 # Diffs
@@ -1629,7 +1629,7 @@ HTML 태그를 확인하세요.',
 'prefs-diffs' => '차이',
 
 # User preference: email validation using jQuery
-'email-address-validity-valid' => '이메일 주소가 유효한 것으로 보입니다.',
+'email-address-validity-valid' => '이메일 주소가 올바른 것으로 보입니다',
 'email-address-validity-invalid' => '올바른 이메일 주소를 입력하세요',
 
 # User rights
@@ -1887,7 +1887,7 @@ HTML 태그를 확인하세요.',
 이름을 바꾸어 다시 시도해 주세요.',
 'filename-toolong' => '파일 이름은 240바이트를 넘을 수 없습니다.',
 'badfilename' => '파일 이름이 "$1"로 바뀌었습니다.',
-'filetype-mime-mismatch' => '파일 확장자 ".$1"와 이 파일의 MIME($2)가 일치하지 않습니다.',
+'filetype-mime-mismatch' => '".$1" 파일 확장자와 이 파일의 MIME($2)가 일치하지 않습니다.',
 'filetype-badmime' => '"$1" MIME을 가진 파일은 올릴 수 없습니다.',
 'filetype-bad-ie-mime' => '인터넷 익스플로러가 잠재적으로 위험한 파일 형식으로 판단되어 사용이 금지된 "$1"로 인식할 수 있기 때문에 이 파일을 올릴 수 없습니다.',
 'filetype-unwanted-type' => "'''\".\$1\"''' 확장자는 추천하지 않습니다.
@@ -1934,7 +1934,7 @@ $2 {{PLURAL:$3|형식만 사용할 수 있습니다}}.',
 그래도 파일을 올리시려면, 뒤로 돌아가서 다른 이름으로 시도해 주시기 바랍니다.
 [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => '같은 이름의 파일이 이미 위키미디어 공용에 있습니다.
-파일을 업로드하길 원하신다면 뒤로 돌아가서 다른 이름으로 시도해 주시기 바랍니다.
+그래도 파일을 올리려면 뒤로 돌아가서 다른 이름으로 시도해 주시기 바랍니다.
 [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate' => '현재 올리고 있는 {{PLURAL:$1|파일}}이 아래 파일과 중복됩니다:',
 'file-deleted-duplicate' => '이 파일과 같은 파일 ([[:$1]])이 이전에 삭제된 적이 있습니다. 파일을 다시 올리기 전에 문서의 삭제 기록을 확인해 주시기 바랍니다.',
@@ -2000,29 +2000,29 @@ URL이 올바르고 접근 가능한지를 확인하고 다시 시도하세요.
 'upload-too-many-redirects' => 'URL이 너무 많은 넘겨주기에 연결되어 있습니다.',
 'upload-unknown-size' => '크기를 알 수 없음',
 'upload-http-error' => 'HTTP 오류 발생: $1',
-'upload-copy-upload-invalid-domain' => '이 도메인에 속하지 않는 웹사이트의 파일을 업로드할 수 없습니다.',
+'upload-copy-upload-invalid-domain' => '이 도메인에 속하지 않는 웹사이트의 파일을 올릴 수 없습니다.',
 
 # File backend
-'backend-fail-stream' => '$1 파일을 스트리밍할 수 없습니다.',
-'backend-fail-backup' => '$1 파일을 백업할 수 없습니다.',
+'backend-fail-stream' => '"$1" 파일을 스트림할 수 없습니다.',
+'backend-fail-backup' => '"$1" 파일을 백업할 수 없습니다.',
 'backend-fail-notexists' => '$1 파일이 존재하지 않습니다.',
 'backend-fail-hashes' => '비교 해시값을 얻지 못했습니다.',
-'backend-fail-notsame' => '$1 파일과 같은 이름을 가진 다른 파일이 존재합니다.',
-'backend-fail-invalidpath' => '$1 경로가 유효하지 않습니다.',
-'backend-fail-delete' => '$1 파일을 삭제할 수 없습니다.',
+'backend-fail-notsame' => '"$1" 파일과 같은 이름을 가진 다른 파일이 존재합니다.',
+'backend-fail-invalidpath' => '"$1"(은)는 올바른 저장소 경로가 아닙니다.',
+'backend-fail-delete' => '"$1" 파일을 삭제할 수 없습니다.',
 'backend-fail-describe' => '"$1" 파일에 대한 메타데이터를 바꿀 수 없습니다.',
-'backend-fail-alreadyexists' => '$1 파일이 이미 존재합니다.',
-'backend-fail-store' => '$1 파일을 $2 경로에 저장하지 못했습니다.',
-'backend-fail-copy' => '$1 파일을 $2 경로에 복사하지 못했습니다.',
-'backend-fail-move' => '$1 파일을 $2 경로로 이동하지 못했습니다.',
+'backend-fail-alreadyexists' => '"$1" 파일이 이미 존재합니다.',
+'backend-fail-store' => '"$1" 파일을 "$2" 경로에 저장하지 못했습니다.',
+'backend-fail-copy' => '"$1" 파일을 "$2" 경로에 복사하지 못했습니다.',
+'backend-fail-move' => '"$1" 파일을 "$2" 경로로 옮기지 못했습니다.',
 'backend-fail-opentemp' => '임시 파일을 열 수 없습니다.',
 'backend-fail-writetemp' => '임시 파일을 쓸 수 없습니다.',
 'backend-fail-closetemp' => '임시 파일을 닫을 수 없습니다.',
-'backend-fail-read' => '$1 파일을 읽을 수 없습니다.',
-'backend-fail-create' => '$1 파일을 저장하지 못했습니다.',
-'backend-fail-maxsize' => '$2{{PLURAL:$2|바이트}}보다 커서 $1 파일을 저장하지 못했습니다.',
+'backend-fail-read' => '"$1" 파일을 읽을 수 없습니다.',
+'backend-fail-create' => '"$1" 파일을 저장할 수 없습니다.',
+'backend-fail-maxsize' => '{{PLURAL:$2|1 바이트|$2 바이트}}보다 커서 "$1" 파일을 저장하지 못했습니다.',
 'backend-fail-readonly' => '"$1" 저장 백엔드가 읽기 전용입니다. 자세한 이유는 다음과 같습니다: "$2"',
-'backend-fail-synced' => '파일 "$1"은 내부 저장 백엔드에 불안정한 상태로 있습니다.',
+'backend-fail-synced' => '"$1" 파일은 내부 저장 백엔드에 불안정한 상태로 있습니다',
 'backend-fail-connect' => '"$1" 저장 백엔드에 접속하지 못했습니다.',
 'backend-fail-internal' => '"$1" 저장 백엔드에 알 수 없는 오류가 발생했습니다.',
 'backend-fail-contenttype' => '"$1"에 저장하기 위한 파일의 내용 유형을 결정하지 못했습니다.',
@@ -2069,11 +2069,11 @@ URL이 올바르고 접근 가능한지를 확인하고 다시 시도하세요.
 서버가 이 정보를 받을 수 있도록 설정되어 있지 않습니다.
 이러한 경우는 서버가 CGI 기반이고 img_auth를 지원하지 않을 때 나타날 수 있습니다.
 https://www.mediawiki.org/wiki/Manual:Image_Authorization 을 참고하십시오.',
-'img-auth-notindir' => '요청한 경로가 설정한 올리기 디렉토리에 없습니다.',
+'img-auth-notindir' => '요청한 경로가 설정한 올리기 디렉터리에 없습니다.',
 'img-auth-badtitle' => '"$1"에서 올바른 제목을 만들 수 없습니다.',
 'img-auth-nologinnWL' => '로그인하지 않았으며 "$1" 파일은 화이트리스트에 존재하지 않습니다.',
 'img-auth-nofile' => '"$1" 파일이 없습니다.',
-'img-auth-isdir' => '"$1" 디렉토리에 접근을 시도했습니다.
+'img-auth-isdir' => '"$1" 디렉터리에 접근을 시도했습니다.
 파일에만 접근할 수 있습니다.',
 'img-auth-streaming' => '"$1" 파일을 전송하는 중입니다.',
 'img-auth-public' => 'img_auth.php는 개인 위키 파일을 바깥 사이트로 전송하는 기능입니다.
@@ -2086,8 +2086,8 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization 을 참고하십시오
 'http-invalid-url' => '잘못된 URL: $1',
 'http-invalid-scheme' => '"$1"로 시작하는 URL은 지원되지 않습니다.',
 'http-request-error' => '알 수 없는 오류로 HTTP 요청에 실패했습니다.',
-'http-read-error' => 'HTTP 읽기 오류.',
-'http-timed-out' => 'HTTP 요청 시간 초과.',
+'http-read-error' => 'HTTP 읽기 오류입니다.',
+'http-timed-out' => 'HTTP 요청 시간 초과입니다.',
 'http-curl-error' => 'URL 열기 오류: $1',
 'http-bad-status' => 'HTTP 요청 중 오류 발생: $1 $2',
 
@@ -2095,7 +2095,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization 을 참고하십시오
 'upload-curl-error6' => 'URL 접근 불가',
 'upload-curl-error6-text' => 'URL에 접근할 수 없습니다.
 URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
-'upload-curl-error28' => '업로드 시간 초과',
+'upload-curl-error28' => '올리기 시간 초과',
 'upload-curl-error28-text' => '사이트에서 응답하는 시간이 너무 깁니다.
 사이트 접속이 가능한지 확인한 다음 다시 시도하세요.
 해당 사이트에 접속이 많을 경우 접속이 원활한 시간대에 시도하세요.',
@@ -3112,7 +3112,7 @@ $2',
 'thumbnail-temp-create' => '임시 섬네일 파일을 만들 수 없습니다.',
 'thumbnail-dest-create' => '대상 경로에 섬네일을 저장할 수 없습니다.',
 'thumbnail_invalid_params' => '섬네일 매개변수가 잘못되었습니다.',
-'thumbnail_dest_directory' => '새 목적 디렉토리를 만들 수 없습니다.',
+'thumbnail_dest_directory' => '새 목적 디렉터리를 만들 수 없습니다.',
 'thumbnail_image-type' => '해당 파일 형식은 지원하지 않습니다',
 'thumbnail_gd-library' => 'GD 라이브러리 설정이 잘못되었습니다: $1 함수를 찾을 수 없습니다.',
 'thumbnail_image-missing' => '파일을 찾을 수 없습니다: $1',
@@ -3642,7 +3642,7 @@ Variants for Chinese language
 'exif-serialnumber' => '카메라 일련 번호',
 'exif-cameraownername' => '카메라 소유자',
 'exif-label' => '레이블',
-'exif-datetimemetadata' => '메타데이터 최종 수정일',
+'exif-datetimemetadata' => '메타데이터가 마지막으로 수정된 날짜',
 'exif-nickname' => '그림의 비공식적 이름',
 'exif-rating' => '평가 (5점 만점)',
 'exif-rightscertificate' => '권리 관리 인증서',
@@ -4149,7 +4149,7 @@ $5
 #모든 정규 표현식은 이 줄 위에 넣어 주십시오. 그리고 이 줄은 그대로 두십시오.</pre>',
 
 # Special:Tags
-'tags' => '유효한 편집에 대한 태그',
+'tags' => '올바른 편집 태그',
 'tag-filter' => '[[Special:Tags|태그]] 필터:',
 'tag-filter-submit' => '필터',
 'tag-list-wrapper' => '([[Special:Tags|{{PLURAL:$1|태그}}]]: $2)',
