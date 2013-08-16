@@ -447,15 +447,36 @@ Italics and bold
 
 !! end
 
-# this example taken from the simple/Moon article
+# this example taken from the [[simple:Moon]] article (bug 47326)
 !! test
-Italics and possessives
+Italics and possessives (1)
 !! input
 obtained by ''[[Lunar Prospector]]'''s gamma-ray spectrometer
 !! result
 <p>obtained by <i><a href="/index.php?title=Lunar_Prospector&amp;action=edit&amp;redlink=1" class="new" title="Lunar Prospector (page does not exist)">Lunar Prospector</a>'</i>s gamma-ray spectrometer
 </p>
 !! end
+
+# this example taken from [[en:Flaming Pie]] (bug 49926)
+!! test
+Italics and possessives (2)
+!! input
+'''''Flaming Pie''''' is ... released in 1997. In ''Flaming Pie'''s liner notes
+!! result
+<p><i><b>Flaming Pie</b></i> is ... released in 1997. In <i>Flaming Pie'</i>s liner notes
+</p>
+!! end
+
+# this example taken from [[en:Dictionary]] (bug 49926)
+!! test
+Italics and possessives (3)
+!! input
+The first monolingual dictionary written in a Romance language was ''Sebastián Covarrubias''' ''Tesoro de la lengua castellana o española'', published in 1611 in Madrid. In 1612 the first edition of the ''Vocabolario dell'[[Accademia della Crusca]]'', for Italian, was published. In 1690 in Rotterdam was published, posthumously, the ''Dictionnaire Universel''.
+!! result
+<p>The first monolingual dictionary written in a Romance language was <i>Sebastián Covarrubias'</i> <i>Tesoro de la lengua castellana o española</i>, published in 1611 in Madrid. In 1612 the first edition of the <i>Vocabolario dell'<a href="/index.php?title=Accademia_della_Crusca&amp;action=edit&amp;redlink=1" class="new" title="Accademia della Crusca (page does not exist)">Accademia della Crusca</a></i>, for Italian, was published. In 1690 in Rotterdam was published, posthumously, the <i>Dictionnaire Universel</i>.
+</p>
+!! end
+
 
 ###
 ### 2-quote opening sequence tests
