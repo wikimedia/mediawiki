@@ -116,6 +116,9 @@ class InfoAction extends FormlessAction {
 
 		// Render page information
 		foreach ( $pageInfo as $header => $infoTable ) {
+			// Give grep a chance to find the usages:
+			// pageinfo-header-basic, pageinfo-header-edits, pageinfo-header-restrictions,
+			// pageinfo-header-properties, pageinfo-category-info
 			$content .= $this->makeHeader( $this->msg( "pageinfo-${header}" )->escaped() ) . "\n";
 			$table = "\n";
 			foreach ( $infoTable as $infoRow ) {
@@ -278,6 +281,7 @@ class InfoAction extends FormlessAction {
 
 		// Use robot policy logic
 		$policy = $this->page->getRobotPolicy( 'view', $pOutput );
+		// Give grep a chance to find the usages: pageinfo-robot-index, pageinfo-robot-noindex
 		$pageInfo['header-basic'][] = array(
 			$this->msg( 'pageinfo-robot-policy' ), $this->msg( "pageinfo-robot-${policy['index']}" )
 		);
@@ -393,6 +397,8 @@ class InfoAction extends FormlessAction {
 				$message = $this->msg( 'protect-default' )->escaped();
 			} else {
 				// Administrators only
+				// Give grep a chance to find the usages:
+				// protect-level-autoconfirmed, protect-level-sysop
 				$message = $this->msg( "protect-level-$protectionLevel" );
 				if ( $message->isDisabled() ) {
 					// Require "$1" permission
@@ -402,6 +408,8 @@ class InfoAction extends FormlessAction {
 				}
 			}
 
+			// Give grep a chance to find the usages:
+			// restriction-edit, restriction-move, restriction-create, restriction-upload
 			$pageInfo['header-restrictions'][] = array(
 				$this->msg( "restriction-$restrictionType" ), $message
 			);

@@ -649,11 +649,6 @@ class CategoryViewer extends ContextSource {
 	 * returned?  This function says what. Each type is considered independently
 	 * of the other types.
 	 *
-	 * Note for grepping: uses the messages category-article-count,
-	 * category-article-count-limited, category-subcat-count,
-	 * category-subcat-count-limited, category-file-count,
-	 * category-file-count-limited.
-	 *
 	 * @param int $rescnt The number of items returned by our database query.
 	 * @param int $dbcnt The number of items according to the category table.
 	 * @param string $type 'subcat', 'article', or 'file'
@@ -701,8 +696,12 @@ class CategoryViewer extends ContextSource {
 			$this->cat->refreshCounts();
 		} else {
 			# Case 3: hopeless.  Don't give a total count at all.
+			# Give grep a chance to find the usages: category-subcat-count-limited,
+			# category-article-count-limited, category-file-count-limited
 			return $this->msg( "category-$type-count-limited" )->numParams( $rescnt )->parseAsBlock();
 		}
+		# Give grep a chance to find the usages: category-subcat-count-limited,
+		# category-article-count-limited, category-file-count-limited
 		return $this->msg( "category-$type-count" )->numParams( $rescnt, $totalcnt )->parseAsBlock();
 	}
 }

@@ -62,6 +62,7 @@ class SpecialJavaScriptTest extends SpecialPage {
 			$out->addHtml( $summary );
 		} elseif ( isset( self::$frameworks[$framework] ) ) {
 			// Matched! Display proper title and initialize the framework
+			// Give grep a chance to find the usages: javascripttest-qunit-name
 			$out->setPageTitle( $this->msg(
 				'javascripttest-title',
 				$this->msg( "javascripttest-$framework-name" )->plain()
@@ -92,6 +93,7 @@ class SpecialJavaScriptTest extends SpecialPage {
 	private function getFrameworkListHtml() {
 		$list = '<ul>';
 		foreach ( self::$frameworks as $framework => $initFn ) {
+			// Give grep a chance to find the usages: javascripttest-qunit-name
 			$list .= Html::rawElement(
 				'li',
 				array(),

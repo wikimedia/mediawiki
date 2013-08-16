@@ -291,6 +291,7 @@ class SkinTemplate extends Skin {
 		if ( $out->isSyndicated() ) {
 			$feeds = array();
 			foreach ( $out->getSyndicationLinks() as $format => $link ) {
+				// Give grep a chance to find the usages: feed-atom, feed-rss
 				$feeds[$format] = array(
 					'text' => $this->msg( "feed-$format" )->text(),
 					'href' => $link

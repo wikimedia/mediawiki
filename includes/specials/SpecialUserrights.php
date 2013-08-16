@@ -598,6 +598,7 @@ class UserrightsPage extends SpecialPage {
 			if ( $column === array() ) {
 				continue;
 			}
+			// Give grep a chance to find the usages: userrights-changeable-col, userrights-unchangeable-col
 			$ret .= Xml::element( 'th', null, $this->msg( 'userrights-' . $name . '-col', count( $column ) )->text() );
 		}
 		$ret .= "</tr>\n<tr>\n";

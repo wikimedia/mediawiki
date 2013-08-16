@@ -142,6 +142,8 @@ class DoubleRedirectJob extends Job {
 		$oldUser = $wgUser;
 		$wgUser = $user;
 		$article = WikiPage::factory( $this->title );
+		// Give grep a chance to find the usages:
+		// double-redirect-fixed-move, double-redirect-fixed-maintenance
 		$reason = wfMessage( 'double-redirect-fixed-' . $this->reason,
 			$this->redirTitle->getPrefixedText(), $newTitle->getPrefixedText()
 		)->inContentLanguage()->text();

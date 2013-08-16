@@ -1219,6 +1219,9 @@ class WebInstaller_Install extends WebInstallerPage {
 	}
 
 	public function startStage( $step ) {
+		// Give grep a chance to find the usages: config-install-database, config-install-tables,
+		// config-install-interwiki, config-install-stats, config-install-keys, config-install-sysop,
+		// config-install-mainpage
 		$this->addHTML( "<li>" . wfMessage( "config-install-$step" )->escaped() . wfMessage( 'ellipsis' )->escaped() );
 		if ( $step == 'extension-tables' ) {
 			$this->startLiveBox();

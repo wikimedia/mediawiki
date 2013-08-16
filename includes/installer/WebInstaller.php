@@ -540,6 +540,11 @@ class WebInstaller extends Installer {
 		$s .= "</ul><br/><ul>\n";
 		$s .= $this->getPageListItem( 'Restart', true, $currentPageName );
 		$s .= "</ul></div>\n"; // end list pane
+		// Give grep a chance to find the usages:
+		// config-page-language, config-page-welcome, config-page-dbconnect, config-page-upgrade,
+		// config-page-dbsettings, config-page-name, config-page-options, config-page-install,
+		// config-page-complete, config-page-restart, config-page-readme, config-page-releasenotes,
+		// config-page-copying, config-page-upgradedoc, config-page-existingwiki
 		$s .= Html::element( 'h2', array(),
 			wfMessage( 'config-page-' . strtolower( $currentPageName ) )->text() );
 
@@ -557,6 +562,11 @@ class WebInstaller extends Installer {
 	 */
 	private function getPageListItem( $pageName, $enabled, $currentPageName ) {
 		$s = "<li class=\"config-page-list-item\">";
+		// Give grep a chance to find the usages:
+		// config-page-language, config-page-welcome, config-page-dbconnect, config-page-upgrade,
+		// config-page-dbsettings, config-page-name, config-page-options, config-page-install,
+		// config-page-complete, config-page-restart, config-page-readme, config-page-releasenotes,
+		// config-page-copying, config-page-upgradedoc, config-page-existingwiki
 		$name = wfMessage( 'config-page-' . strtolower( $pageName ) )->text();
 
 		if ( $enabled ) {

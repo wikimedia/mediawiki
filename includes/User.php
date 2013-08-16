@@ -3739,6 +3739,8 @@ class User {
 		} elseif ( $type === true ) {
 			$message = 'confirmemail_body_changed';
 		} else {
+			// Give grep a chance to find the usages:
+			// confirmemail_body_changed, confirmemail_body_set
 			$message = 'confirmemail_body_' . $type;
 		}
 

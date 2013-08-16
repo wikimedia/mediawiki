@@ -365,6 +365,8 @@ class ProtectionForm {
 
 		foreach ( $this->mRestrictions as $action => $selected ) {
 			/* Not all languages have V_x <-> N_x relation */
+			// Give grep a chance to find the usages:
+			// restriction-edit, restriction-move, restriction-create, restriction-upload
 			$msg = wfMessage( 'restriction-' . $action );
 			$out .= "<tr><td>" .
 			Xml::openElement( 'fieldset' ) .
