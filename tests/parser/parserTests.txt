@@ -1311,6 +1311,22 @@ And a <a href="/wiki/Main_Page" title="Main Page">link</a>
 !! end
 
 !! test
+Tabs don't trigger preformatted text
+!! input
+	This is not
+	 preformatted text.
+ This is preformatted text.
+ 	So is this.
+!! result
+<p>	This is not
+	 preformatted text.
+</p>
+<pre>This is preformatted text.
+	So is this.
+</pre>
+!! end
+
+!! test
 Ident preformatting with inline content
 !! input
  a
