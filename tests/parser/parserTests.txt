@@ -1629,66 +1629,82 @@ Templates: Indent-Pre: 1f: Wrapping should be based on expanded content
 </pre>
 !!end
 
+#--------------------------------------------------------------------
+# Transclusion parameter whitespace stripping tests
+# Behavior is different for positional and named parameters
+#--------------------------------------------------------------------
 !! test
-Templates: Single-line variant of parameter whitespace stripping test
+Templates: Strip leading and trailing whitespace from named-param values
 !! input
-{{echo| a}}
+{{echo|1= a }}
 
-{{echo|1= a}}
-
-{{echo|{{echo| a}}}}
-
-{{echo|1={{echo| a}}}}
-!! result
-<pre>a
-</pre>
-<p>a
-</p>
-<pre>a
-</pre>
-<p>a
-</p>
-!! end
-
-!! test
-Templates: Strip whitespace from named parameters, but not positional ones
-!! input
-{{echo|
- foo}}
-
-{{echo|
-* foo}}
+{{echo|1= {{echo|b}} }}
 
 {{echo| 1 =
- foo}}
+ c }}
 
 {{echo| 1 =
-* foo}}
+* d
+}}
 !! result
-<pre>foo
-</pre>
-<p><br />
+<p>a
+</p><p>b
+</p><p>c
 </p>
-<ul><li> foo
-</li></ul>
-<p>foo
-</p>
-<ul><li> foo
+<ul><li> d
 </li></ul>
 
 !! end
 
 !! test
-Templates: Dont strip whitespace from whitespace/comment-only arguments
+Templates: Don't strip whitespace from positional-param values
+!! options
 !! input
-{{echo| }}
-{{echo|<!--cmt-->}}
-{{echo| <!--cmt--> }}
+{{echo|a }}
+
+{{echo|{{echo|b}} }}
+
+{{echo| c 
+}}
+
+{{echo| {{echo|d}}
+}}
+
+{{echo|
+ e}}
+
+{{echo|
+* f}}
+
+{{echo|
+ }}g
 !! result
+<p>a 
+</p><p>b 
+</p>
+<pre>c 
+</pre>
 <p><br />
 </p>
+<pre>d
+</pre>
+<p><br />
+</p>
+<pre>e
+</pre>
+<p><br />
+</p>
+<ul><li> f
+</li></ul>
+<p><br />
+</p>
+<pre>g
+</pre>
 !! end
 
+#--------------------------------------------------------------------
+# Transclusion parameter escaping tests
+#--------------------------------------------------------------------
 !! test
 Templates: Parsoid parameter escaping test 1
 !! options
@@ -2336,6 +2352,19 @@ should be left alone
 <p>this text
 should be left alone
 </p>
+!! end
+
+# Bug 52473
+!! test
+Definition Lists: Hacky use to indent tables (WS-insensitive)
+!! options
+parsoid
+!! input
+: {|
+|a
+|} 
+!! result
+<dl><dd> <table><tr><td>a</td></tr></table> </dd></dl>
 !! end
 ## The PHP parser treats : items (dd) without a corresponding ; item (dt)
 ## as an empty dt item.  It also ignores all but the last ";" when followed
@@ -4262,6 +4291,52 @@ parsoid=wt2html,wt2wt
 <td><ul><li>a</li></ul></td>
 </tr>
 </table>
+!! end
+
+!! test
+Parsoid: Round-trip tables directly followed by content (bug 51219)
+!! options
+parsoid=wt2html,wt2wt
+!! input
+{|
+|foo
+|} bar
+
+{|
+|baz
+|}<b>quux</b>
+!! result
+<table><tbody>
+<tr>
+<td>foo</td></tr></tbody></table> bar
+<table>
+<tbody>
+<tr>
+<td>baz</td></tr></tbody></table><b>quux</b>
+!! end
+
+!! test
+Parsoid: Default to a newline after tables in new content (bug 51219)
+!! options
+parsoid=html2wt
+!! input
+{|
+|-
+|foo
+|}
+<nowiki> </nowiki>bar
+{|
+|-
+|baz
+|}
+'''quux'''
+!! result
+<table><tbody>
+<tr>
+<td>foo</td></tr></tbody></table> bar
+<table><tbody>
+<tr>
+<td>baz</td></tr></tbody></table><b>quux</b>
 !! end
 
 ###
@@ -17152,6 +17227,19 @@ parsoid
 </body>
 !!end
 
+## Currently the p-wrapper is fragile in how adds / removes transformations.
+## Having nested or stray pre tags results in the attempt to add duplicates,
+## causing an assertion fail. This test tries to prevent that situation.
+!!test
+Ensure ParagraphWrapper can deal with stray closing pre tags
+!!options
+parsoid=wt2html
+!!input
+plain text</pre>
+!!result
+plain text
+!!end
+
 # -----------------------------------------------------------------
 # The following section of tests are primarily to spec requirements
 # around serialization of new/edited content.
@@ -17180,6 +17268,23 @@ parsoid=html2wt
 !! result
 <p>123</p><figure typeof="mw:Image/Thumb" class="mw-halign-right"><a href="./File:Wiki.png"><img src="http://192.168.142.128/mw/images/thumb/b/bc/Wiki.png/131px-Wiki.png" width="131" height="150" resource="./File:Wiki.png"></a></figure><p>456</p>
 !!end
+
+# Wacky -- the leading newline in input is required because
+# that is what the serializer emits. To be fixed. Not fixing
+# the test because this test is required to test serialization of
+# new content and preferred whitespace style.
+!! test
+Lists: Serialize correctly even when list content is wrapped in p-tags (like VE does)
+!! options
+parsoid=html2wt
+!! input
+
+* foo
+!! result
+<ul>
+<li><p>foo</p></li>
+</ul>
+!! end
 
 # Wacky -- the leading newline in input is required because
 # that is what the serializer emits. To be fixed. Not fixing
