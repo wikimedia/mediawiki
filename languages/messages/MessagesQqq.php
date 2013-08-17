@@ -3344,7 +3344,7 @@ See also:
 {{Identical|Show}}',
 'minoreditletter' => "Very short form of \"'''minor edit'''\". Used in [[Special:RecentChanges]], [[Special:Watchlist]], [[Special:Contributions]] and history pages.",
 'newpageletter' => "Very short form of \"'''new page'''\". Used in [[Special:RecentChanges]], [[Special:Watchlist]] and [[Special:Contributions]].",
-'boteditletter' => 'Abbreviation of "bot". Appears in [[Special:RecentChanges]] and [[Special:Watchlist]].',
+'boteditletter' => "Abbreviation of \"'''bot'''\". Appears in [[Special:RecentChanges]] and [[Special:Watchlist]].",
 'unpatrolledletter' => '{{optional}}
 
 Used in {{msg-mw|Recentchanges-label-legend}}, meaning "unpatrolled".',

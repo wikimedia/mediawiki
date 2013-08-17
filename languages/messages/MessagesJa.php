@@ -2896,7 +2896,7 @@ $1',
 'blockipsuccesstext' => '[[Special:Contributions/$1|$1]]をブロックしました。<br />
 [[Special:BlockList|ブロックの一覧]]を参照してください。',
 'ipb-blockingself' => '自分自身をブロックしようとしています! 本当に実行しますか?',
-'ipb-confirmhideuser' => '秘匿が有効になっている利用者をブロックしようとしています。実行すると、すべての一覧や記録項目で利用者名が表示されません。本当に実行しますか?',
+'ipb-confirmhideuser' => '利用者名の秘匿を有効にしてブロックしようとしています。実行すると、すべての一覧や記録項目で利用者名が表示されません。本当に実行しますか?',
 'ipb-edit-dropdown' => 'ブロック理由を編集',
 'ipb-unblock-addr' => '$1のブロックを解除',
 'ipb-unblock' => '利用者またはIPアドレスのブロックを解除',

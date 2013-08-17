@@ -989,7 +989,7 @@ $3 зазначів тоту причіну: ''$2''",
 'history-fieldset-title' => 'Перегляднути історію',
 'history-show-deleted' => 'Лем змазаны',
 'histfirst' => 'найстаршы',
-'histlast' => 'послїднї',
+'histlast' => 'найновшы',
 'historysize' => '($1 {{PLURAL:$1|байт|байты|байтів}})',
 'historyempty' => '(порожнє)',
 

@@ -531,9 +531,10 @@ Ch'a contròla d'avèj ij bëscotin abilità, ch'a caria torna la pàgina e ch'a
 Jë stranòm ëd j'utent a son sensìbij a le majùscole.
 Ch'a contròla ël nòm che a l'ha batù, o [[Special:UserLogin/signup|ch'a crea un neuv cont]].",
 'nosuchusershort' => "A-i é pa gnun utent che as ciama «$1». Për piasì, che a contròla se a l'ha scrit tut giust.",
-'nouserspecified' => 'A venta che a specìfica në stranòm utent',
+'nouserspecified' => "A venta che a specìfica në stranòm d'utent",
 'login-userblocked' => "St'utent-sì a l'é blocà. A peul pa intré ant ël sistema.",
-'wrongpassword' => "La ciav batùa a l'é pa giusta.<br /><br />Che a preuva torna, për piasì.",
+'wrongpassword' => "La ciav batùa a l'é pa giusta.
+Che a preuva torna, për piasì.",
 'wrongpasswordempty' => "A l'ha butà na ciav veujda. Për piasì, che a preuva torna.",
 'passwordtooshort' => 'Le ciav a devo avèj almanch {{PLURAL:$1|1 caràter|$1 caràter}}.',
 'password-name-match' => 'Toa ciav a deuv esse diferenta da tò stranòm.',

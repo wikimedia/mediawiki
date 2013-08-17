@@ -490,6 +490,7 @@ Efallai fod rhywun arall eisoes wedi'i dileu.",
 'cannotdelete-title' => "Ni ellir dileu'r dudalen '$1'",
 'delete-hook-aborted' => 'Terfynwyd y dilead cyn pryd gan fachyn.
 Ni roddodd eglurhad.',
+'no-null-revision' => 'Ni lwyddwyd i wneud diwygiad newydd heb unrhyw newid ynddo, i\'r dudalen "$1"',
 'badtitle' => 'Teitl gwael',
 'badtitletext' => "Mae'r teitl a ofynnwyd amdano yn annilys, yn wag, neu cysylltu'n anghywir rhwng ieithoedd neu wicïau. Gall fod ynddo un nod neu ragor na ellir eu defnyddio mewn teitlau.",
 'perfcached' => "Mae'r wybodaeth ganlynol yn gopi cadw; mae'n bosib nad y fersiwn diweddaraf ydyw. Cedwir hyd at {{PLURAL:$1||un canlyniad yn unig|ddau ganlyniad|dri canlyniad|$1 chanlyniad|$1 canlyniad}} yn y copi cadw.",
@@ -656,6 +657,8 @@ Oedwch ychydig cyn mentro eto.',
 'login-abort-generic' => 'Ni lwyddodd y mewngofnodi - Rhoddwyd y gorau iddo',
 'loginlanguagelabel' => 'Iaith: $1',
 'suspicious-userlogout' => 'Gwrthodwyd eich cais i allgofnodi oherwydd ei fod yn ymddangos mai gweinydd wedi torri neu ddirprwy gelc a anfonodd y cais.',
+'createacct-another-realname-tip' => "Gallwch ddewis roi eich enw go iawn.
+Os y gwnewch, fe gaiff yr enw go iawn ei defnyddio wrth dadogi'ch gwaith.",
 
 # Email sending
 'php-mail-error-unknown' => 'Gwall anhysbys yng ngweithrediad post() PHP',

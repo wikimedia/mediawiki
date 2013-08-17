@@ -2703,7 +2703,7 @@ $PAGEINTRO $NEWPAGE
 شما می‌توانید سطح محافظت این صفحه را تغییر بدهید اما این کار تاثیری بر محافظت آبشاری صفحه نخواهد گذاشت.',
 'protect-default' => 'همهٔ کاربرها',
 'protect-fallback' => 'فقط به کاربرهایی که دسترسی «$1» دارند، اجازه داده می‌شود',
-'protect-level-autoconfirmed' => 'تنها کاربران تائیدشده',
+'protect-level-autoconfirmed' => 'تنها کاربران تأییدشده',
 'protect-level-sysop' => 'فقط مدیران',
 'protect-summary-cascade' => 'آبشاری',
 'protect-expiring' => 'زمان سرآمدن $1 (UTC)',
