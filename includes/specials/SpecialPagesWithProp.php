@@ -136,7 +136,7 @@ class SpecialPagesWithProp extends QueryPage {
 			if ( $isBinary || $isTooLong ) {
 				$message = $this
 					->msg( $isBinary ? 'pageswithprop-prophidden-binary' : 'pageswithprop-prophidden-long' )
-					->numParams( round( $valueLength / 1024, 2 ) );
+					->params( $this->getLanguage()->formatSize( $valueLength ) );
 
 				$propValue = Html::element( 'span', array( 'class' => 'prop-value-hidden' ), $message->text() );
 			} else {
