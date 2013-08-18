@@ -575,6 +575,21 @@ class HTMLForm extends ContextSource {
 	}
 
 	/**
+	 * Add an array of hidden fields to the output
+	 *
+	 * @since 1.22
+	 * @param array $fields Associative array of fields to add;
+	 *        mapping names to their values
+	 * @return HTMLForm $this for chaining calls
+	 */
+	public function addHiddenFields( array $fields ) {
+		foreach( $fields as $name => $value ) {
+			$this->mHiddenFields[] = array( $value, array( 'name' => $name ) );
+		}
+		return $this;
+	}
+
+	/**
 	 * Add a button to the form
 	 * @param string $name field name.
 	 * @param string $value field value
