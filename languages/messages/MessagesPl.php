@@ -96,15 +96,21 @@ $namespaceGenderAliases = array(
 $dateFormats = array(
 	'mdy time' => 'H:i',
 	'mdy date' => 'M j, Y',
+	'mdy monthonly' => 'F Y',
 	'mdy both' => 'H:i, M j, Y',
+	'mdy pretty' => 'j xg',
 
 	'dmy time' => 'H:i',
 	'dmy date' => 'j M Y',
+	'dmy monthonly' => 'F Y',
 	'dmy both' => 'H:i, j M Y',
+	'dmy pretty' => 'j xg',
 
 	'ymd time' => 'H:i',
 	'ymd date' => 'Y M j',
+	'ymd monthonly' => 'Y F',
 	'ymd both' => 'H:i, Y M j',
+	'ymd pretty' => 'j xg',
 );
 
 $fallback8bitEncoding = 'iso-8859-2';
