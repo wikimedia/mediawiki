@@ -930,7 +930,7 @@ $2',
 'newpassword' => '새 비밀번호:',
 'retypenew' => '새 비밀번호 재입력:',
 'resetpass_submit' => '비밀번호를 설정하고 로그인하기',
-'resetpass_success' => '비밀번호를 성공적으로 바꿨습니다!
+'changepassword-success' => '비밀번호를 성공적으로 바꿨습니다!
 이제 로그인을 합니다...',
 'resetpass_forbidden' => '비밀번호를 바꿀 수 없음',
 'resetpass-no-info' => '이 특수 문서에 직접 접근하려면 반드시 로그인해야 합니다.',

@@ -446,7 +446,7 @@ Lutfan peş az on, ki dubora taloş kuned, sabr kuned.',
 'newpassword' => 'Kalimai navi ubur:',
 'retypenew' => 'Kalimai navi uburro takroran navised:',
 'resetpass_submit' => 'Kalimai uburro tanzim karda ba sistem vurud kuned',
-'resetpass_success' => 'Kalimai uburi şumo bo muvaffaqijat taƣjir doda şud! Dar holi vorid kardani şumo ba sistem...',
+'changepassword-success' => 'Kalimai uburi şumo bo muvaffaqijat taƣjir doda şud! Dar holi vorid kardani şumo ba sistem...',
 'resetpass-no-info' => 'Baroi dastrasiji mustaqim ba in sahifa şumo bojad ba sistem vorid şuda boşed.',
 'resetpass-submit-loggedin' => 'Taƣjiri guzarvoƶa',
 'resetpass-wrong-oldpass' => "Guzarvoƶai muvaqat jo oxir nomū'tabar.

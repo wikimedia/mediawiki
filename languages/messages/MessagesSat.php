@@ -481,7 +481,7 @@ Arhõ kurumuṭue lahare dayakate thoṛagan tạṅgiemẽ.',
 'newpassword' => 'Nãwã oku nomber',
 'retypenew' => 'Doṛhate oku namber olme',
 'resetpass_submit' => 'Oku namber joṛao ar bhitri bolok',
-'resetpass_success' => 'Amaḱ oku namber do napayte bodolena!
+'changepassword-success' => 'Amaḱ oku namber do napayte bodolena!
 Nitoḱ do am bhitritem boloḱkana...',
 'resetpass_forbidden' => 'Oku namber do baṅ bodoloklena',
 'resetpass-no-info' => 'Noa sakam sojhete laṛcaṛ lạgit́te am do bhitri boloḱ hoyoḱtama.',

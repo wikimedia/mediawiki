@@ -900,7 +900,7 @@ Girişi bitirmek için, burada yeni bir parola yazın:',
 'newpassword' => 'Yeni parola',
 'retypenew' => 'Yeni parolayı tekrar girin',
 'resetpass_submit' => 'Şifreyi ayarlayın ve oturum açın',
-'resetpass_success' => 'Parolanız başarıyla değiştirildi! 
+'changepassword-success' => 'Parolanız başarıyla değiştirildi! 
 Şimdi oturumunuz açılıyor...',
 'resetpass_forbidden' => 'Parolalar değiştirilememektedir',
 'resetpass-no-info' => 'Bu sayfaya doğrudan erişmek için oturum açmanız gereklidir.',

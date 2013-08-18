@@ -557,7 +557,7 @@ Lūdzu uzgaidi pirms mēģini vēlreiz.',
 'newpassword' => 'Jaunā parole',
 'retypenew' => 'Atkārto jauno paroli',
 'resetpass_submit' => 'Uzstādīt paroli un ieiet',
-'resetpass_success' => 'Parole nomainīta veiksmīgi!
+'changepassword-success' => 'Parole nomainīta veiksmīgi!
 Notiek ieiešana...',
 'resetpass_forbidden' => 'Paroles nav iespējams nomainīt',
 'resetpass-no-info' => 'Jums ir nepieciešams ieiet, lai tūlīt piekļūtu šai lapai.',

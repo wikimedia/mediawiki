@@ -809,7 +809,7 @@ Biex tkompli l-aċċess tal-kont tiegħek huwa neċessarju li toħloq password �
 'newpassword' => 'Password ġdida:',
 'retypenew' => "Erġa' ikteb il-password il-ġdida:",
 'resetpass_submit' => 'Issettja l-password u idħol fis-sit',
-'resetpass_success' => 'Il-password ġie modifikat. Aċċess fil-proċess...',
+'changepassword-success' => 'Il-password ġie modifikat. Aċċess fil-proċess...',
 'resetpass_forbidden' => 'Mhuwiex possibbli li timmodifika l-passwords',
 'resetpass-no-info' => 'Trid tkun effetwajt il-login qabel ma taċċessa direttament din il-paġna.',
 'resetpass-submit-loggedin' => 'Biddel il-password',

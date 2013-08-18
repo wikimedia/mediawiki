@@ -445,7 +445,7 @@ $1',
 'oldpassword' => 'Көгшн нууц үг:',
 'newpassword' => 'Шин нууц үг:',
 'retypenew' => 'Шин нууц үгиг дәкәд бичтн:',
-'resetpass_success' => 'Тана нууц үгиг йовудта сольв! Та ода орнат...',
+'changepassword-success' => 'Тана нууц үгиг йовудта сольв! Та ода орнат...',
 'resetpass-submit-loggedin' => 'Нууц үгиг сольх',
 'resetpass-submit-cancel' => 'Уга кех',
 

@@ -609,7 +609,7 @@ $2',
 'newpassword' => 'Саҥа киирии тыл:',
 'retypenew' => 'Саҥа киирии тылы хатылаа:',
 'resetpass_submit' => 'Киирии тылы уларыт уонна киир',
-'resetpass_success' => 'Your password has been changed successfully! Now logging you in...
+'changepassword-success' => 'Your password has been changed successfully! Now logging you in...
 Киирии тылыҥ этэҥҥэ уларыйда. Сотору кэминэн киириэҥ...',
 'resetpass_forbidden' => 'Киирии тылы уларытар сатаммат',
 'resetpass-no-info' => 'Ааккын билиһиннэрдэххинэ эрэ бу сирэйгэ быһа тиийиэххин сөп.',

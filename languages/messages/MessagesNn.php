@@ -863,7 +863,7 @@ Du kan sjå bort frå denne meldinga dersom kontoen vart oppretta med eit uhell.
 'newpassword' => 'Nytt passord',
 'retypenew' => 'Nytt passord om att',
 'resetpass_submit' => 'Oppgje passord og logg inn',
-'resetpass_success' => 'Passordet ditt er no nullstilt! Loggar inn...',
+'changepassword-success' => 'Passordet ditt er no nullstilt! Loggar inn...',
 'resetpass_forbidden' => 'Passord kan ikkje endrast',
 'resetpass-no-info' => 'Du må vera innlogga for å få direktetilgang til denne sida.',
 'resetpass-submit-loggedin' => 'Endra passord',

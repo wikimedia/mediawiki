@@ -382,7 +382,7 @@ confirmom account zo coccebj de'me.",
 'newpassword' => 'Hunquimx canj:',
 'retypenew' => 'Vanhunquimx canj:',
 'resetpass_submit' => 'Vanquimx canj ö caápo',
-'resetpass_success' => 'Me quimx canj coccebj quiixde success! Caápo cmaa...',
+'changepassword-success' => 'Me quimx canj coccebj quiixde success! Caápo cmaa...',
 'resetpass_forbidden' => 'Quimx cánj nereset jan wiki iti',
 
 # Edit page toolbar

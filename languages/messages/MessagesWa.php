@@ -499,7 +499,7 @@ Por vos fini l' elodjaedje, vos dvoz defini on novea scret:",
 'newpassword' => 'Noû scret:',
 'retypenew' => "Ritapez l' noû scret:",
 'resetpass_submit' => "Defini on scret et s' elodjî",
-'resetpass_success' => "Vosse sicret a stî candjî comifåt!
+'changepassword-success' => "Vosse sicret a stî candjî comifåt!
 Asteure l' elodjaedje...",
 'resetpass_forbidden' => "Les screts n' polèt nén esse candjîs",
 'resetpass-no-info' => 'Vos dvoz esse elodjî po pleur aveur accès a cisse pådje ci.',

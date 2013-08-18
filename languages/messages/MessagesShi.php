@@ -411,7 +411,7 @@ Ussaɣ n isqdacn ḥiln hlli.
 'newpassword' => 'Awal iḥḍan amaynu:',
 'retypenew' => 'Als i tirra n w-awal iḥḍan:',
 'resetpass_submit' => 'Sbadl awal n uzri tkcmt',
-'resetpass_success' => 'Awal n uzri nk ibudl mzyan! rad nit tilit ɣ ifalan',
+'changepassword-success' => 'Awal n uzri nk ibudl mzyan! rad nit tilit ɣ ifalan',
 'resetpass_forbidden' => 'Iwaliwn n uzri ur ufan ad badln.',
 'resetpass-no-info' => 'illa fllak ad zwar tilit ɣ ifalan bac ad tkcmt s tasna yad',
 'resetpass-submit-loggedin' => 'Bdl awal n ukccum (tangalt)',

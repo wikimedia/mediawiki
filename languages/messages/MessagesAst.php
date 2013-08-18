@@ -644,7 +644,7 @@ P'acabar d'aniciar sesión, tienes de configurar equí una contraseña nueva:",
 'newpassword' => 'Contraseña nueva:',
 'retypenew' => 'Vuelvi a escribir la contraseña nueva:',
 'resetpass_submit' => 'Configurar la contraseña y aniciar sesión',
-'resetpass_success' => '¡Camudóse la contraseña correutamente!
+'changepassword-success' => '¡Camudóse la contraseña correutamente!
 Aniciando sesión agora...',
 'resetpass_forbidden' => 'Nun puen camudase les contraseñes',
 'resetpass-no-info' => "Tienes d'aniciar sesión pa entrar direutamente a esta páxina.",

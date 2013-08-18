@@ -462,7 +462,7 @@ Sáhtát joatkit {{GRAMMAR:genitive|{{SITENAME}}}} geavaheami anonyman dahje log
 'newpassword' => 'Ođđa suollemassátni',
 'retypenew' => 'Ođđa suollemassátni ođđasit',
 'resetpass_submit' => 'Čále suollemassáni ja čálligoađe sisa',
-'resetpass_success' => 'Suollemassáni rievdadeapmim lihkosmuvai.',
+'changepassword-success' => 'Suollemassáni rievdadeapmim lihkosmuvai.',
 'resetpass_forbidden' => 'Suollemassániid rievdan ii lihkosmuva dán wikis.',
 'resetpass-submit-loggedin' => 'Molsso suollemassáni',
 

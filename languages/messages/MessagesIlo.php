@@ -614,7 +614,7 @@ Tapno malpaska a makastrek, nasken a mangikabilka ti baro a kontrasenias ditoy:'
 'newpassword' => 'Baro a kontrasenias:',
 'retypenew' => 'Imakinilya manen ti baro a kontrasenias:',
 'resetpass_submit' => 'Ikabil ti kontrasenias ken sumrek',
-'resetpass_success' => 'Nagballigi a nabaliwan ti kontraseniasmo! 
+'changepassword-success' => 'Nagballigi a nabaliwan ti kontraseniasmo! 
 </br>
 Iserrek kan...',
 'resetpass_forbidden' => 'Saan a masukatan dagiti kontrasenias',

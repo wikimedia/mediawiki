@@ -641,7 +641,7 @@ Wänn s Benutzerkonto us Versäh aaglait woren isch, chasch die Nochricht ignori
 'newpassword' => 'Nöis Passwort',
 'retypenew' => 'Nöis Passwort (es zwöits Mal)',
 'resetpass_submit' => 'Passwort ibermittle un aamälde',
-'resetpass_success' => 'Dyy Passwort isch erfolgryych gänderet wore. Jetz chunnt d Aamäldig …',
+'changepassword-success' => 'Dyy Passwort isch erfolgryych gänderet wore. Jetz chunnt d Aamäldig …',
 'resetpass_forbidden' => 'S Passwort cha nid gänderet wäre.',
 'resetpass-no-info' => 'Du muesch Di aamälde zum uf die Syte diräkt zuegryfe z chenne.',
 'resetpass-submit-loggedin' => 'Passwort ändere',

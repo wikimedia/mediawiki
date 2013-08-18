@@ -824,7 +824,7 @@ $2',
 'newpassword' => '新密碼:',
 'retypenew' => '確認密碼:',
 'resetpass_submit' => '設定密碼並登入',
-'resetpass_success' => '您的密碼已經被成功更改！
+'changepassword-success' => '您的密碼已經被成功更改！
 現在正為您登入...',
 'resetpass_forbidden' => '無法更改密碼',
 'resetpass-no-info' => '您必須登入後直接進入這個頁面。',

@@ -1495,7 +1495,7 @@ Used on the account creation form when creating another user's account. Similar 
 'newpassword' => '{{Identical|New password}}',
 'retypenew' => "Appears on the 'User profile' tab of the 'Preferences' special page in the 'Change password' section. It appears next to the text box for entering the new password a second time.",
 'resetpass_submit' => 'Submit button on [[Special:ChangePassword]]',
-'resetpass_success' => 'Used in [[Special:ChangePassword]].',
+'changepassword-success' => 'Used in [[Special:ChangePassword]].',
 'resetpass_forbidden' => "Used as error message in changing password. Maybe the external auth plugin won't allow local password changes.",
 'resetpass-no-info' => 'Error message for [[Special:ChangePassword]].',
 'resetpass-submit-loggedin' => 'Button on [[Special:ResetPass]] to submit new password.

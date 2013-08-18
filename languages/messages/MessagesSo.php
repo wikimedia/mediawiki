@@ -504,7 +504,7 @@ Hadii aad rabtid in aad dhameestirtid gudagelkaaga, waa in aad meeshaan ku qorta
 'newpassword' => 'Ereysir cusub:',
 'retypenew' => 'Qor mar labaad ereysirka cusub:',
 'resetpass_submit' => 'Qor eraysirka gudaha neh gal',
-'resetpass_success' => 'Ereysirkaada si fiican oo kuugu bedelmay!
+'changepassword-success' => 'Ereysirkaada si fiican oo kuugu bedelmay!
 Hadda gudaha ku gal',
 'resetpass_forbidden' => 'ereyada sirta ah mala bedeli karo',
 'resetpass-no-info' => 'Waa in aad gudaha u gashaa hadii aad rabto in aad si toos ah ugu soo gudubto boggaan.',

@@ -956,7 +956,7 @@ Si vous décidez de le fournir, il sera utilisé pour attribuer à l’utilisate
 'newpassword' => 'Nouveau mot de passe :',
 'retypenew' => 'Confirmer le nouveau mot de passe :',
 'resetpass_submit' => 'Changer le mot de passe et se connecter',
-'resetpass_success' => 'Votre mot de passe a été changé avec succès ! Connexion en cours…',
+'changepassword-success' => 'Votre mot de passe a été changé avec succès ! Connexion en cours…',
 'resetpass_forbidden' => 'Les mots de passe ne peuvent pas être changés',
 'resetpass-no-info' => 'Vous devez être connecté pour avoir accès à cette page.',
 'resetpass-submit-loggedin' => 'Changer de mot de passe',

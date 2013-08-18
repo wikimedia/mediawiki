@@ -545,7 +545,7 @@ Agod nga makatapos ka sa pagsulod, kinahanglan mo magbutang sang bag-o nga paswo
 'newpassword' => 'Bag-o nga pasword:',
 'retypenew' => 'Suliton ang bag-o nga pasword:',
 'resetpass_submit' => 'Ibutang ang pasword kag magsulod',
-'resetpass_success' => 'Ang imo pasword madinalag-on nga gin-ilisan!
+'changepassword-success' => 'Ang imo pasword madinalag-on nga gin-ilisan!
 Ginapasulod ka na...',
 'resetpass_forbidden' => 'Ang mga pasword indi mahimo nga paga-ilisan',
 'resetpass-no-info' => 'Kinahanglan nga nakasulod ka agod nga makadtoan ang ini nga panid sing derecho.',

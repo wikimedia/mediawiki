@@ -881,7 +881,7 @@ Hvis du velger å oppgi det, vil det blir anvendt for å gi deg som bruker anerk
 'newpassword' => 'Nytt passord:',
 'retypenew' => 'Gjenta nytt passord:',
 'resetpass_submit' => 'Angi passord og logg inn',
-'resetpass_success' => 'Passordet ditt ble endret! Logger inn&nbsp;…',
+'changepassword-success' => 'Passordet ditt ble endret! Logger inn&nbsp;…',
 'resetpass_forbidden' => 'Passord kan ikke endres',
 'resetpass-no-info' => 'Du må være logget inn for å gå til denne siden direkte',
 'resetpass-submit-loggedin' => 'Endre passord',

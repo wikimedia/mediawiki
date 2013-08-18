@@ -362,7 +362,7 @@ E ʻoluʻolu, e kūlia hou.',
 
 # Change password dialog
 'newpassword' => 'ʻŌlelo hūnā hou:',
-'resetpass_success' => 'Ua loli ‘ia kāu hua‘ōlelo huna! E ‘e‘e iā‘oe...',
+'changepassword-success' => 'Ua loli ‘ia kāu hua‘ōlelo huna! E ‘e‘e iā‘oe...',
 
 # Edit page toolbar
 'bold_sample' => 'Ho‘okā‘ele',

@@ -797,7 +797,7 @@ Til að klára að skrá þig inn, verður þú að endurstilla lykilorðið hé
 'newpassword' => 'Nýja lykilorðið',
 'retypenew' => 'Endurtaktu nýja lykilorðið:',
 'resetpass_submit' => 'Skrifaðu aðgangsorðið og skráðu þig inn',
-'resetpass_success' => 'Aðgangsorðinu þínu hefur verið breytt! Skráir þig inn...',
+'changepassword-success' => 'Aðgangsorðinu þínu hefur verið breytt! Skráir þig inn...',
 'resetpass_forbidden' => 'Ekki er hægt að breyta lykilorðum',
 'resetpass-no-info' => 'Þú verður að vera skráð(ur) inn til að hafa aðgang að þessari síðu.',
 'resetpass-submit-loggedin' => 'Breyta lykilorði',

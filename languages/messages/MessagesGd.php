@@ -558,7 +558,7 @@ Gus an clàradh a-steach a choileadh, tha agad ri facal-faire ùr a shuidheachad
 'newpassword' => 'Facal-faire ùr',
 'retypenew' => 'Ath-sgrìobh am facal-faire ùr',
 'resetpass_submit' => "Suidhich am facal-faire 's clàraich a-steach",
-'resetpass_success' => "Chaidh am facal-faire agad atharrachadh!
+'changepassword-success' => "Chaidh am facal-faire agad atharrachadh!
 'Gad chlàradh a-steach an-dràsta...",
 'resetpass_forbidden' => 'Cha ghabh na faclan-faire atharrachadh',
 'resetpass-no-info' => 'Feumaidh tu clàradh a-steach mus dèan thu inntrigeadh dìreach dhan duilleag seo.',

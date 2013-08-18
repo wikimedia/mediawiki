@@ -592,8 +592,8 @@ Tu, mò, t\'avisse a collegà e cangià \'a password toje.
 
 Tu puè pure cacà stu messagge, ce stu cunde utende ha state ccrejete pe errore.',
 'usernamehasherror' => "'U nome utende non ge pò tenè carattere hash",
-'login-throttled' => "Urtemamende tu è pruvate troppe vote a trasè jndr'à Uicchipèdie
-Pe piacere vide c'aspitte 'nu picche de timbe apprime de pruvà 'n'otra vote.",
+'login-throttled' => "Urtemamende tu è pruvate troppe vote a trasè jndr'à Uicchipèdie.
+Pe piacere vide c'aspitte $1 apprime de pruvà 'n'otra vote.",
 'login-abort-generic' => "Non g'è riuscite a trasè - Annullate",
 'loginlanguagelabel' => 'Lénga: $1',
 'suspicious-userlogout' => "'A richiesta toje de assè ha state bloccate purcè pare ca ha state mannate da 'nu browser scuasciate o da 'a cache de 'nu proxy.",
@@ -615,7 +615,7 @@ Pe spiccià 'a procedure de collegamende, tu a 'mbostà 'na password nove aqquà
 'newpassword' => 'Nova passuord:',
 'retypenew' => "Scrive n'otra vota 'a passuord nova:",
 'resetpass_submit' => "'Mboste 'a passuord e colleghete",
-'resetpass_success' => "'A password toje ha state cangete cu successe! Mò te puè collegà...",
+'changepassword-success' => "'A password toje ha state cangiate!",
 'resetpass_forbidden' => 'Le Password non ge ponne cangià',
 'resetpass-no-info' => 'Tu a essere colleghete pe accedere a sta pàgene direttamende.',
 'resetpass-submit-loggedin' => "Cange 'a password",

@@ -806,7 +806,7 @@ You may ignore this message, if this account was created in error.',
 'newpassword' => 'नूतनः कूटशब्दः',
 'retypenew' => 'नूतनः कूटशब्दः पुनः लिख्यताम्:',
 'resetpass_submit' => 'कूटशब्दः योज्यतां प्रविश्यतां च',
-'resetpass_success' => 'भवतः कूटशब्दः सफलतया परिवर्तितः!
+'changepassword-success' => 'भवतः कूटशब्दः सफलतया परिवर्तितः!
 अधुना भवान् प्रवेश्यते ...',
 'resetpass_forbidden' => 'कूटशब्दाः परिवर्तयितुं न शक्यन्ते',
 'resetpass-no-info' => 'भवता एतत्पृष्ठं प्रत्यक्षतया सम्प्राप्तुं प्रवेशः अवश्यमेव कर्त्तव्यः।',

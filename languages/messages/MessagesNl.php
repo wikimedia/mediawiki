@@ -952,7 +952,7 @@ Voer een nieuw wachtwoord in om het aanmelden te voltooien:',
 'newpassword' => 'Nieuw wachtwoord:',
 'retypenew' => 'Herhaling nieuwe wachtwoord:',
 'resetpass_submit' => 'Wachtwoord instellen en aanmelden',
-'resetpass_success' => 'Uw wachtwoord is gewijzigd.
+'changepassword-success' => 'Uw wachtwoord is gewijzigd.
 Bezig met aanmelden…',
 'resetpass_forbidden' => 'Wachtwoorden kunnen niet gewijzigd worden',
 'resetpass-no-info' => 'U dient aangemeld zijn voordat u deze pagina kunt gebruiken.',

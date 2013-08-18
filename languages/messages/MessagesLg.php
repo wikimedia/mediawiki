@@ -507,7 +507,7 @@ Okuyingirira ddala, wetaaga okuwandika wano ekinaaba ekyama kyo ekya ddala:",
 'newpassword' => 'Ekigambo ekikuumi ekipya:',
 'retypenew' => 'Ddamu ekikagambo ekikuumi ekipya ekyo:',
 'resetpass_submit' => 'Kaza ekyama oyingire',
-'resetpass_success' => 'Ekigambo kyo ekikuumi kikyusidwa!<br />
+'changepassword-success' => 'Ekigambo kyo ekikuumi kikyusidwa!<br />
 Kati oyingira...',
 'resetpass_forbidden' => 'Tekikkirizibwa okukyusa ebigambo ebikuumi',
 'resetpass-no-info' => 'Okukola ku lupapula luno obutereevu, wetaaga okuba nga oyingidde sisitemu.',

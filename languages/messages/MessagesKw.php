@@ -631,7 +631,7 @@ Rag gorfenna omgelmi, res yw dhywgh settya ger tremena nowyth omma:',
 'newpassword' => 'Ger tremena nowyth:',
 'retypenew' => 'Jynnscrifewgh an ger tremena nowyth arta:',
 'resetpass_submit' => 'Settya an ger tremena hag omgelmi',
-'resetpass_success' => 'Chanjyes re beu agas ger tremena yn sewen!
+'changepassword-success' => 'Chanjyes re beu agas ger tremena yn sewen!
 Orth agas omgelmi lemmyn...',
 'resetpass_forbidden' => 'Ny yllir chanjya geryow tremena',
 'resetpass-submit-loggedin' => 'Chanjya an ger tremena',

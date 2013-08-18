@@ -583,7 +583,7 @@ San-o matagan pa hin iba nga e-mail para ha imo akawnt, kinahanglan mo sundon an
 'newpassword' => 'Bag-o nga tigaman-pagsulod:',
 'retypenew' => 'Utroha pagbutang an bag-o nga tigaman-pagsulod:',
 'resetpass_submit' => 'Igbutang an password ngan log in',
-'resetpass_success' => 'Malinamposon nga nasalyuan na an imo tigaman-pagsulod!
+'changepassword-success' => 'Malinamposon nga nasalyuan na an imo tigaman-pagsulod!
 Ikaw in naglalog-in yana...',
 'resetpass_forbidden' => 'Diri mababalyoan an mga tigaman-pagsulod',
 'resetpass-no-info' => 'Kinahanglan mo paglog-in para direkta ka makasakob dinhi nga pakli.',

@@ -524,7 +524,7 @@ Nggo nerusna, Rika kudu nglebokna tembung sandhi anyar nang kene:',
 'newpassword' => 'Tembung sandi anyar:',
 'retypenew' => 'Ketik maning tembung sandhi:',
 'resetpass_submit' => 'Nata tembung sandhi lan mlebu log',
-'resetpass_success' => 'Tembung sandhi Rika wis sukses diowahi!
+'changepassword-success' => 'Tembung sandhi Rika wis sukses diowahi!
 Sekiye mroses Rika mlebu log...',
 'resetpass_forbidden' => 'Tembung sandhi ora teyeng diganti',
 'resetpass-no-info' => 'Rika kudu mlebu log kanggo ngakses kaca kiye sacara langsung.',

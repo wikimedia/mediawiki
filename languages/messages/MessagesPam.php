@@ -450,7 +450,7 @@ Bang mayari ing kekang pamag-login, kailangan mung mangibiling bayung password k
 'newpassword' => 'Bayung password:',
 'retypenew' => 'Sulat meng pasibayu ing bayung password:',
 'resetpass_submit' => 'Mangibili kang password at maglogin ka',
-'resetpass_success' => 'Melaus ing pamanalili mung password! Ngeni mila-login naka...',
+'changepassword-success' => 'Melaus ing pamanalili mung password! Ngeni mila-login naka...',
 'resetpass_forbidden' => 'E la malyaring alilan deng password keng wiking ini',
 
 # Edit page toolbar

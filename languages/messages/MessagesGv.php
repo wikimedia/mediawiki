@@ -358,7 +358,7 @@ Cur-shiu coontey jeh da [[Special:ListUsers/sysop|reireyder]], as goaill stiagh 
 'createaccount' => 'Croo coontys',
 'gotaccount' => "Vel coontys ayd hannah? '''$1'''.",
 'gotaccountlink' => 'Log stiagh',
-'createaccountmail' => 'Liorish post-L',
+'createaccountmail' => "Croo fockle arrey shallidagh gyn tort as cur eh da'n post-l reiht ayd",
 'createaccountreason' => 'Fa:',
 'loginerror' => 'Marranys loggal stiagh',
 'createaccounterror' => 'Cha nod shin croo coontys: $1',

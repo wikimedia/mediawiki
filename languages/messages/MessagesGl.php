@@ -831,7 +831,7 @@ Por favor, agarde antes de probar outra vez.',
 'newpassword' => 'Contrasinal novo:',
 'retypenew' => 'Insira outra vez o novo contrasinal:',
 'resetpass_submit' => 'Establecer o contrasinal e acceder ao sistema',
-'resetpass_success' => 'A modificación do contrasinal realizouse correctamente!
+'changepassword-success' => 'A modificación do contrasinal realizouse correctamente!
 Accedendo ao sistema...',
 'resetpass_forbidden' => 'Non se poden mudar os contrasinais',
 'resetpass-no-info' => 'Debe rexistrarse para acceder directamente a esta páxina.',

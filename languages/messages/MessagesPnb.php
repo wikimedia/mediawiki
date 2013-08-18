@@ -512,7 +512,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'newpassword' => 'نوی کنجی:',
 'retypenew' => 'نئی کنجی دوبارہ لکھو:',
 'resetpass_submit' => 'کنجی رکھو تے لاگ ان ہو جاو',
-'resetpass_success' => 'تھواڈی کنجی بدلی جاچکی اے!
+'changepassword-success' => 'تھواڈی کنجی بدلی جاچکی اے!
 تسی لاگ ان ہورۓ او۔۔۔۔۔۔',
 'resetpass_forbidden' => 'کنجی بدلی نئیں جاسکدی',
 'resetpass-no-info' => 'تسی لاگ ان ہوکے ای اس صفحے نوں ویکھ سکدے او۔',

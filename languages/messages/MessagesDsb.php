@@ -676,7 +676,7 @@ Móžoš toś te zdźělenje ignorowaś, jolic toś te konto jo se jano zamólnj
 'newpassword' => 'Nowe šćitne gronidło:',
 'retypenew' => 'Nowe šćitne gronidło (hyšći raz):',
 'resetpass_submit' => 'Šćitne gronidło nastajiś a se pśizjawiś',
-'resetpass_success' => 'Twójo nowe šćitne gronidło jo nastajone. Něnto se pśizjaw …',
+'changepassword-success' => 'Twójo nowe šćitne gronidło jo nastajone. Něnto se pśizjaw …',
 'resetpass_forbidden' => 'Gronidła njedaju se změniś',
 'resetpass-no-info' => 'Dejš pśizjawjony byś, aby direktny pśistup na toś ten bok měł.',
 'resetpass-submit-loggedin' => 'Gronidło změniś',

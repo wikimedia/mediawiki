@@ -538,7 +538,7 @@ Momongoh do sinuang log, mositi do powonsoionnu kaatalib wagu do hiti.:',
 'newpassword' => 'Kaatalib wagu:',
 'retypenew' => 'Mitaipo kaatalib wagu:',
 'resetpass_submit' => 'Posoino kaatalib om sumuang log',
-'resetpass_success' => 'Naalanan noh kaatalibnu!
+'changepassword-success' => 'Naalanan noh kaatalibnu!
 Baino sumuang log...',
 'resetpass_forbidden' => 'Awu milo alanan kaatalib',
 'resetpass-no-info' => 'Mositi sumuang log ko do mongoguno monilombus id bolikon diti.',

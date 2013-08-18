@@ -668,7 +668,7 @@ Tanganing tapuson an paglalaog, ika kaipong magkaag nin sarong baguhon na sekret
 'newpassword' => 'Bàguhon na sekretong panlaog:',
 'retypenew' => 'Itaták giraray an bàgong panlaog:',
 'resetpass_submit' => 'Ipwesto an sekretong panlaog dangan maglaog',
-'resetpass_success' => 'Naribayan na an saimong sekretong panlaog! Pigpapadagos ka na...',
+'changepassword-success' => 'Naribayan na an saimong sekretong panlaog! Pigpapadagos ka na...',
 'resetpass_forbidden' => 'An mga sekretong panlaog dae puwedeng maribayan',
 'resetpass-no-info' => 'Ika dapat nakalaog na tanganing direktang makagamit kaining pahina.',
 'resetpass-submit-loggedin' => 'Ribayan an sekretong panlaog',
@@ -3968,5 +3968,6 @@ Kun bako man, ika makakagamit nin sayon na porma sa ibaba. An saimong komento id
 'limitreport-postexpandincludesize-value' => '$1/$2 mga bayta',
 'limitreport-templateargumentsize' => 'Sukol kan argumentong panguyog',
 'limitreport-templateargumentsize-value' => '$1/$2 mga bayta',
+'limitreport-expansiondepth' => 'Kinatugmadan kan pinakahalangkaw na kahiwasan',
 
 );

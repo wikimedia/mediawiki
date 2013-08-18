@@ -469,7 +469,7 @@ nebus siontamas ni vėinam žemiau ėšvardėntam puoslaugiō.',
 'newpassword' => 'Naus slaptažuodis:',
 'retypenew' => 'Pakartuokėt nauja slaptažuodi:',
 'resetpass_submit' => 'Nostatītė slaptažuodi ė prėsėjongtė',
-'resetpass_success' => 'Tamstas slaptažuodis pakeists siekmėngā! Daba prėsėjongiama...',
+'changepassword-success' => 'Tamstas slaptažuodis pakeists siekmėngā! Daba prėsėjongiama...',
 'resetpass-temp-password' => 'Laikėns slaptažuodis:',
 
 # Edit page toolbar

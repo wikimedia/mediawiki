@@ -554,7 +554,7 @@ $2',
 'newpassword' => '舊密碼:',
 'retypenew' => '再一擺輸入密碼：',
 'resetpass_submit' => '設定密碼並登入',
-'resetpass_success' => '汝成功更改矣汝嘅密碼！
+'changepassword-success' => '汝成功更改矣汝嘅密碼！
 今下為汝登入緊...',
 'resetpass_forbidden' => '無辦法更改密碼',
 'resetpass-no-info' => '汝必須登入後直接進入邇隻頁面。',

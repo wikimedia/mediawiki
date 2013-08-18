@@ -491,7 +491,7 @@ Neheer dit bericht as deêze gebruker zonder joe medeweten is anemikt.',
 'newpassword' => 'Nieuw wachtwoôrd:',
 'retypenew' => 'Herhaolieng nieuwe wachtwoôrd:',
 'resetpass_submit' => "Wachtwoôrd instell'n en anmelden",
-'resetpass_success' => 'Je wachtwoord is ewiezigd. Bezig mie anmelden ...',
+'changepassword-success' => 'Je wachtwoord is ewiezigd. Bezig mie anmelden ...',
 'resetpass_forbidden' => "Wachtwoôrden kunn'n op {{SITENAME}} nie ewiezigd worn",
 
 # Edit page toolbar

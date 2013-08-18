@@ -503,7 +503,7 @@ Fi finish lag iin, yu mos set a nyuu paaswod yaso:',
 'newpassword' => 'Nyuu paaswod:',
 'retypenew' => 'Ritaip nyuu paaswod:',
 'resetpass_submit' => 'Set paaswod ahn lag iin',
-'resetpass_success' => 'Yu paaswod chienj soksesfuli!
+'changepassword-success' => 'Yu paaswod chienj soksesfuli!
 A lag yu iin nou ...',
 'resetpass_forbidden' => 'Paaswod kyaahn chienj',
 'resetpass-no-info' => 'Yu mos lag iin fi akses dis piej dairek.',

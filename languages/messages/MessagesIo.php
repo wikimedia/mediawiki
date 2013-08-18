@@ -467,7 +467,7 @@ Voluntez enirar altrafoye pos recevar ol.',
 'newpassword' => 'Nova pasovorto:',
 'retypenew' => 'Riskribez la nova pasovorto:',
 'resetpass_submit' => 'Establisez pasovoro ed enirez',
-'resetpass_success' => 'Vua chanjo di pasovorto sucesis! Nun, vu eniras...',
+'changepassword-success' => 'Vua chanjo di pasovorto sucesis! Nun, vu eniras...',
 'resetpass-submit-loggedin' => 'Chanjar pasovorto',
 'resetpass-temp-password' => 'Provizora pasovorto:',
 

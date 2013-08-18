@@ -593,7 +593,7 @@ Am det uunmeldin uftuslütjen, skel dü en nei paaswurd iindu.',
 'newpassword' => 'Nei paaswurd:',
 'retypenew' => 'Skriiw det paaswurd noch ans weder hen:',
 'resetpass_submit' => 'Paaswurd saat an uunmelde',
-'resetpass_success' => 'Din paaswurd as feranert wurden!
+'changepassword-success' => 'Din paaswurd as feranert wurden!
 Dü woorst nü uunmeldet ...',
 'resetpass_forbidden' => 'Det paaswurd koon ei feranert wurd.',
 'resetpass-no-info' => 'Dü skel di uunmelde, am üüb det sidj tutugripen.',

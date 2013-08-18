@@ -383,7 +383,7 @@ Ga wa dumelwa go tlhoma tše dingwe.',
 'oldpassword' => 'Ditlhaka-tša-siphiri tša kgale:',
 'newpassword' => 'Ditlhaka-tša-siphiri tše mpsha:',
 'retypenew' => 'Tlanya ditlhaka tše mphsa tša siphiri gape:',
-'resetpass_success' => 'Ditlhaka tša siphiri di fetotšwe ka katlego! Bjale o kgona go tsena...',
+'changepassword-success' => 'Ditlhaka tša siphiri di fetotšwe ka katlego! Bjale o kgona go tsena...',
 
 # Edit page toolbar
 'bold_sample' => "Mongwalo wa '''Bold'''",

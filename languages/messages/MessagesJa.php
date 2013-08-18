@@ -952,7 +952,7 @@ Cookieを有効にしていることを確認して、このページを再読�
 'newpassword' => '新しいパスワード:',
 'retypenew' => '新しいパスワードを再入力:',
 'resetpass_submit' => '再設定してログイン',
-'resetpass_success' => 'パスワードを変更しました!
+'changepassword-success' => 'パスワードを変更しました!
 ログインしています...',
 'resetpass_forbidden' => 'パスワードは変更できません',
 'resetpass-no-info' => 'このページに直接アクセスするためにはログインしている必要があります。',

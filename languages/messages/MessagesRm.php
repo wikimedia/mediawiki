@@ -558,7 +558,7 @@ Per finir da t'annunziar stos ti definir qua in nov pled-clav:",
 'newpassword' => 'pled-clav nov:',
 'retypenew' => 'repeter pled-clav nov:',
 'resetpass_submit' => "Definir il pled clav e m'annunziar",
-'resetpass_success' => 'Tes pled-clav è vegnì midà cun success. 
+'changepassword-success' => 'Tes pled-clav è vegnì midà cun success. 
 Ti vegns annunzià…',
 'resetpass_forbidden' => 'Il pled-clav na po betg vegnir midà',
 'resetpass-no-info' => "Ti stos t'annunziar per acceder directamain questa pagina.",

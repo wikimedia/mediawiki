@@ -670,7 +670,7 @@ $2',
 'newpassword' => '新符節：',
 'retypenew' => '重察新符節：',
 'resetpass_submit' => '設符再登',
-'resetpass_success' => '爾之符節已改！
+'changepassword-success' => '爾之符節已改！
 現登簿中...',
 'resetpass_forbidden' => '無改符節',
 'resetpass-no-info' => '爾須登簿後方進此頁。',

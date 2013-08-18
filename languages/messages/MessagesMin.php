@@ -663,7 +663,7 @@ Tunggulah sabanta sabalun mancubo baliak.',
 'newpassword' => 'Kato sandi baharu:',
 'retypenew' => 'Ketik ulang kato sandi baharu:',
 'resetpass_submit' => 'Atua kato sandi dan masuak log',
-'resetpass_success' => 'Kato sandi Sanak alah berhasil dituka!
+'changepassword-success' => 'Kato sandi Sanak alah berhasil dituka!
 Kini mamproses masuak log Sanak...',
 'resetpass_forbidden' => 'Kato sandi indak dapek dituka',
 'resetpass-no-info' => 'Sanak harus masuak log untuak mangakses laman iko sacara langsuang.',

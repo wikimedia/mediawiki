@@ -526,7 +526,7 @@ baċ ṫsali d-doĥol, ĥask ddir ċi klmṫ s-srr jdida hna:",
 'newpassword' => 'lmot de passe jdida :',
 'retypenew' => 'aaawd ktb lmot de passe jdida :',
 'resetpass_submit' => 'rigler lmot de pass odkhl',
-'resetpass_success' => 'klmṫ s-srr taĝk rah ṫbddlaṫ!
+'changepassword-success' => 'klmṫ s-srr taĝk rah ṫbddlaṫ!
 daba hanta ka-tdĥol...',
 'resetpass_forbidden' => 'ma ymkn-ċ ṫbddal klmaṫ s-srr',
 'resetpass-no-info' => 'ĥaṣṣ tkon daĥol baĥ tqdr twṣl l-had ṣfḫa niċan.',

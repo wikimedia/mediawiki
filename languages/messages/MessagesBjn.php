@@ -660,7 +660,7 @@ Hagan manuntungakan babuat log, Pian musti manyetel sabuting katasunduk hanyar d
 'newpassword' => 'Katasunduk hanyar:',
 'retypenew' => 'Katik pulang katasunduk hanyar:',
 'resetpass_submit' => 'Setel katasunduk wan babuat log',
-'resetpass_success' => 'Katasunduk Pian bahasil diubah!
+'changepassword-success' => 'Katasunduk Pian bahasil diubah!
 Wayah ni Pian sudah babuat log...',
 'resetpass_forbidden' => 'Katasunduk kada kawa diubah',
 'resetpass-no-info' => 'Pian musti babuat log hagan babuat ka tungkaran ini langsung.',

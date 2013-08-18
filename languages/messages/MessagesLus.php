@@ -489,7 +489,7 @@ I tum leh hmain nghâk lawk ang che.',
 'newpassword' => 'Thurûk thar:',
 'retypenew' => 'Thurûk ziak nawn leh rawh le:',
 'resetpass_submit' => 'Thurûk siamfel la inziaklût rawh',
-'resetpass_success' => 'I thurûk hlawhtling taka thlâk a ni.
+'changepassword-success' => 'I thurûk hlawhtling taka thlâk a ni.
 Kan hruai lût mék a che...',
 'resetpass_forbidden' => 'Thurûk thlâk theih a ni lo.',
 'resetpass-no-info' => 'He phêk lut mai tùr chuan i inziahluh a ngai.',

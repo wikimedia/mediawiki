@@ -776,7 +776,7 @@ Om voort te gaan moet u 'n nuwe wagwoord hier kies:",
 'newpassword' => 'Nuwe wagwoord',
 'retypenew' => 'Tik nuwe wagwoord weer in',
 'resetpass_submit' => 'Stel wagwoord en meld aan',
-'resetpass_success' => 'U wagwoord is suksesvol gewysig!
+'changepassword-success' => 'U wagwoord is suksesvol gewysig!
 Besig om u aan te meld...',
 'resetpass_forbidden' => 'Wagwoorde kannie gewysig word nie.',
 'resetpass-no-info' => 'U moet ingeteken wees om hierdie bladsy direk te kan gebruik.',

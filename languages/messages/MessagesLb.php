@@ -758,7 +758,7 @@ Fir är Umeldung ofzeschléissen, musst Dir elo hei een neit Passwuert uginn:',
 'newpassword' => 'Neit Passwuert:',
 'retypenew' => 'Neit Passwuert nach eemol antippen:',
 'resetpass_submit' => 'Passwuert aginn an aloggen',
-'resetpass_success' => 'Äert Passwuert gouf geännert!
+'changepassword-success' => 'Äert Passwuert gouf geännert!
 Loggt Iech elo an ...',
 'resetpass_forbidden' => 'Passwierder kënnen net geännert ginn.',
 'resetpass-no-info' => 'Dir musst ageloggt sinn, fir direkt op dës Säit ze kommen.',
@@ -816,10 +816,12 @@ Temporärt Passwuert: $2',
 
 # Special:ResetTokens
 'resettokens' => 'Token zrécksetzen',
+'resettokens-no-tokens' => 'Et gëtt keng Tokens fir zréck ze setzen.',
 'resettokens-legend' => 'Token zrécksetzen',
 'resettokens-tokens' => 'Token:',
 'resettokens-token-label' => '$1 (aktuelle Wäert: $2)',
 'resettokens-done' => 'Token zréckgesat.',
+'resettokens-resetbutton' => 'Selectionéiert Tokens zrécksetzen',
 
 # Edit page toolbar
 'bold_sample' => 'Fettgedréckten Text',
@@ -2428,7 +2430,7 @@ Hei sinn déi aktuell Astellunge fir d'Säit '''$1''':",
 'protect-cascadeon' => "Dës Säit ass elo gespaart well si an déi folgend {{PLURAL:$1|Säit|Säiten}} agebonn ass déi duerch eng Kaskadespär gespaart {{PLURAL:$1|ass|sinn}}. De Protectiounsniveau ka fir dës Säit geännert ginn, dat huet awer keen Afloss op d'Kaskadespär.",
 'protect-default' => 'All Benotzer erlaben',
 'protect-fallback' => 'Nëmme Benotzer mat enger "$1"-Autorisatioun erlaben.',
-'protect-level-autoconfirmed' => 'Nëmmen automatesch ugemellte Benotzer erlaben',
+'protect-level-autoconfirmed' => 'Nëmmen automatesch ugemellt Benotzer erlaben',
 'protect-level-sysop' => 'Nëmmen Administrateuren erlaben',
 'protect-summary-cascade' => 'Protectioun a Kaskaden',
 'protect-expiring' => 'bis $1 (UTC)',

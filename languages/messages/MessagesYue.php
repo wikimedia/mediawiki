@@ -707,7 +707,7 @@ $1',
 'newpassword' => '新密碼:',
 'retypenew' => '打多次新密碼:',
 'resetpass_submit' => '設定密碼同登入',
-'resetpass_success' => '你嘅密碼已經成功噉改咗！
+'changepassword-success' => '你嘅密碼已經成功噉改咗！
 而家幫你登入緊...',
 'resetpass_forbidden' => '唔可以更改密碼',
 'resetpass-no-info' => '你一定要登入咗去直接入來呢一版。',

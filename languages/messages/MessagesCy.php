@@ -674,7 +674,7 @@ Er mwyn cwblhau'r mewngofnodi, rhaid i chi osod cyfrinair newydd fel hyn:",
 'newpassword' => 'Cyfrinair newydd:',
 'retypenew' => 'Ail-deipiwch y cyfrinair newydd:',
 'resetpass_submit' => 'Gosod y cyfrinair a mewngofnodi',
-'resetpass_success' => "Llwyddodd y newid i'ch cyfrinair! Wrthi'n mewngofnodi...",
+'changepassword-success' => "Llwyddodd y newid i'ch cyfrinair! Wrthi'n mewngofnodi...",
 'resetpass_forbidden' => 'Ni ellir newid cyfrineiriau',
 'resetpass-no-info' => 'Ni allwch fynd at y dudalen hon yn uniongyrchol heblaw eich bod wedi mewngofnodi.',
 'resetpass-submit-loggedin' => 'Newidier y cyfrinair',
@@ -729,6 +729,9 @@ Y cyfrinair dros dro: $2",
 
 # Special:ResetTokens
 'resettokens' => 'Ailosod tocynnau',
+'resettokens-text' => "Gallwch ailosod tocynnau sy'n galluogi mynediad at rai manylion preifat sydd ynghlwm wrth y cyfrif yma.
+
+Dylech wneud hyn os wnaethoch rannu'r manylion hyn gyda rhywun ar ddamwain neu os oes problem wedi codi gyda diogelwch eich cyfrif.",
 'resettokens-no-tokens' => "Nid oes unrhyw docynnau i'w hailosod.",
 'resettokens-legend' => 'Ailosod tocynnau',
 'resettokens-tokens' => 'Tocynnau:',
@@ -1266,6 +1269,9 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'recentchangesdays-max' => '(hyd at $1 {{PLURAL:$1||diwrnod|ddiwrnod|diwrnod|diwrnod|diwrnod}})',
 'recentchangescount' => "Nifer y golygiadau i'w dangos yn ddiofyn:",
 'prefs-help-recentchangescount' => 'Mae hwn yn cynnwys newidiadau diweddar, hanesion tudalennau, a logiau.',
+'prefs-help-watchlist-token2' => "Dyma'r tocyn cudd i borthiant gwe eich rhestr wylio.
+Bydd unrhyw un sy'n gwybod hwn yn gallu darllen eich rhestr wylio, felly peidiwch a'i roi i neb.
+[[Special:ResetTokens|Cliciwch fan hyn os oes angen ailosod y tocyn]].",
 'savedprefs' => 'Mae eich dewisiadau wedi cael eu cadw.',
 'timezonelegend' => 'Ardal amser:',
 'localtime' => 'Amser lleol:',
@@ -1947,6 +1953,8 @@ Diffinir tudalen yn dudalen gwahaniaethu pan mae'n cynnwys un o'r nodiadau '[[Me
 'pageswithprop-text' => "Mae'r dudalen hon yn rhestru tudalennau sydd yn defnyddio nodwedd arbennig yn y dudalen.",
 'pageswithprop-prop' => "Enw'r nodwedd:",
 'pageswithprop-submit' => 'Gwneler',
+'pageswithprop-prophidden-long' => 'gwerth priodwedd ar destun hir, a guddiwyd ($1 cilobeit)',
+'pageswithprop-prophidden-binary' => 'gwerth y briodwedd ddeuol, a guddiwyd ($1 cilobeit)',
 
 'doubleredirects' => 'Ailgyfeiriadau dwbl',
 'doubleredirectstext' => "Mae pob rhes yn cynnwys cysylltiad i'r ddau ail-gyfeiriad cyntaf, ynghyd â chyrchfan yr ail ailgyfeiriad. Fel arfer bydd hyn yn rhoi'r gwir dudalen y dylai'r tudalennau cynt gyfeirio ati.
@@ -2003,6 +2011,7 @@ Gosodwyd <del>llinell</del> drwy'r eitemau sydd eisoes wedi eu datrys.",
 'mostrevisions' => 'Tudalennau yn nhrefn nifer y newidiadau iddynt',
 'prefixindex' => 'Pob tudalen yn ôl parth',
 'prefixindex-namespace' => 'Pob tudalen â rhagddodiad penodol (y parth $1)',
+'prefixindex-strip' => 'Diosg y rhagddodiad wrth restru',
 'shortpages' => 'Erthyglau byr',
 'longpages' => 'Tudalennau hirion',
 'deadendpages' => 'Tudalennau heb gysylltiadau ynddynt',

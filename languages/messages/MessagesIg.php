@@ -489,7 +489,7 @@ Biko meríáríá ya.',
 'newpassword' => 'Mkpurụ okwu ejị a gafẹ nke ohúrù',
 'retypenew' => 'Dechákwari mkpurụ okwu ejị a gafẹ nke ohúrù:',
 'resetpass_submit' => 'Bá okwu éjị gáfè na áhà Í bànyè',
-'resetpass_success' => 'Mkpurụ okwu ejị a gafẹ a gbanwere nke oma!
+'changepassword-success' => 'Mkpurụ okwu ejị a gafẹ a gbanwere nke oma!
 I na á banye...',
 'resetpass_forbidden' => 'Okwu éjị à gáfè enwéghịkị gabnwe',
 'resetpass-submit-loggedin' => 'Gbanwe okwu éjị à gáfe',

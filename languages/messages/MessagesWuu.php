@@ -461,7 +461,7 @@ $2',
 'newpassword' => '新密码:',
 'retypenew' => '再打一遍新密码:',
 'resetpass_submit' => '设置密码再登录',
-'resetpass_success' => '密码修改成功！
+'changepassword-success' => '密码修改成功！
 现在垃许登录...',
 'resetpass_forbidden' => '密码弗好更改',
 'resetpass-no-info' => '侬必须登录仔再好直接进入箇只页面。',

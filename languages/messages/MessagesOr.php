@@ -808,7 +808,7 @@ continue using your old password.',
 'newpassword' => 'ନୂଆ ପାସୱାର୍ଡ଼:',
 'retypenew' => 'ପାସୱାର୍ଡ଼ ଆଉଥରେ ଦିଅନ୍ତୁ:',
 'resetpass_submit' => 'ପାସୱାର୍ଡ଼ଟିଏ ଦେଇ ଲଗ ଇନ କରନ୍ତୁ',
-'resetpass_success' => 'ଆପଣଙ୍କ ପାସୱାର୍ଡ଼ଟି ବଦଳାଇ ଦିଆଗଲା !
+'changepassword-success' => 'ଆପଣଙ୍କ ପାସୱାର୍ଡ଼ଟି ବଦଳାଇ ଦିଆଗଲା !
 ଏବେ ଲଗ ଇନ କରୁଅଛୁଁ...',
 'resetpass_forbidden' => 'ପାସୱାର୍ଡ଼ମାନ ବଦଳା ଯାଇପାରିବ ନାହିଁ',
 'resetpass-no-info' => 'ଏହି ପୃଷ୍ଠାଟିକୁ ସିଧା ଖୋଲିବା ନିମନ୍ତେ ଆପଣଙ୍କୁ ଲଗ ଇନ କରିବାକୁ ପଡ଼ିବ ।',

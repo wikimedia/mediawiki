@@ -771,7 +771,7 @@ Kirwiñizdi bitirw üşin, jaña qupïya söziñizdi mında engizwiñiz jön:',
 'newpassword' => 'Jaña qupïya söziñiz:',
 'retypenew' => 'Jaña qupïya söziñizdi qaýtalañız:',
 'resetpass_submit' => 'Qupïya sözdi qoýıñız da kiriñiz',
-'resetpass_success' => 'Qupïya söziñiz sätti özgertildi! Endi kiriñiz…',
+'changepassword-success' => 'Qupïya söziñiz sätti özgertildi! Endi kiriñiz…',
 'resetpass_forbidden' => '{{SITENAME}} jobasında qupïya sözder özgertilmeýdi',
 
 # Edit page toolbar

@@ -508,7 +508,7 @@ Pa cumprità la registhrazioni è nezzessàriu impusthà una noba paràura d'ór
 'newpassword' => "Noba paràura d'órdhini:",
 'retypenew' => "Turra a ischribì la noba paràura d'órdhini:",
 'resetpass_submit' => "Impustha la paràura d'órdhini e intra",
-'resetpass_success' => "La paràura d'órdhini tóia è isthadda mudìfiggadda. Abà sei intrendi...",
+'changepassword-success' => "La paràura d'órdhini tóia è isthadda mudìfiggadda. Abà sei intrendi...",
 'resetpass_forbidden' => "No è pussìbiri mudifiggà li paràuri d'órdhini in {{SITENAME}}.",
 
 # Edit page toolbar

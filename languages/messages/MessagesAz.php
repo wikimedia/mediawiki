@@ -569,7 +569,7 @@ Sistemə daxil olmanı yekunlaşdırmaq üçün yeni parolu bura yazmalısınız
 'newpassword' => 'Yeni parol:',
 'retypenew' => 'Yeni parolu təkrar yazın:',
 'resetpass_submit' => 'Parol yaradın və sistemə daxil olun',
-'resetpass_success' => 'Parolunuz dəyişdirldi! Hazırda sistemə daxil olursunuz...',
+'changepassword-success' => 'Parolunuz dəyişdirldi! Hazırda sistemə daxil olursunuz...',
 'resetpass_forbidden' => 'Parolu dəyişmək mümkün deyil',
 'resetpass-no-info' => 'Bu səhifəni birbaşa açmaq üçün sistemə daxil olmalısınız.',
 'resetpass-submit-loggedin' => 'Parolu dəyiş',

@@ -541,7 +541,7 @@ Coby powstřimać nadužyća, možliwość wysyuańa připůmńeń naštalowano 
 'newpassword' => 'Nowe hasło',
 'retypenew' => 'Naszkryflej jeszcze roz nowe hasło:',
 'resetpass_submit' => 'Naštaluj hasuo a zalůguj',
-'resetpass_success' => 'Twoje hasuo zostouo půmyślńy pomjyńone! Trwo logůwańe...',
+'changepassword-success' => 'Twoje hasuo zostouo půmyślńy pomjyńone! Trwo logůwańe...',
 'resetpass_forbidden' => 'Ńy idźe sam půmjyńyć hasuůw.',
 'resetpass-no-info' => 'Muśysz być zalogowany, coby uzyskać bezpostrzedńi dostymp do tyj zajty.',
 'resetpass-submit-loggedin' => 'Zmjyń hasło',

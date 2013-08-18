@@ -887,7 +887,7 @@ Por chavonar lo branchement, vos dête buchiér un contresegno novél ique :',
 'newpassword' => 'Contresegno novél :',
 'retypenew' => 'Confirmar lo contresegno novél :',
 'resetpass_submit' => 'Changiér lo contresegno et pués sè branchiér',
-'resetpass_success' => 'Voutron contresegno est étâ changiê avouéc reusséta !
+'changepassword-success' => 'Voutron contresegno est étâ changiê avouéc reusséta !
 Branchement en côrs...',
 'resetpass_forbidden' => 'Los contresegnos pôvont pas étre changiês',
 'resetpass-no-info' => 'Vos dête étre branchiê por arrevar tot drêt a cela pâge.',

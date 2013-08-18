@@ -662,7 +662,7 @@ Warning: Page may not contain recent updates.',
 'newpassword' => 'نیا کلمۂ شناخت',
 'retypenew' => 'نیا کلمۂ شناخت دوبارہ درج کریں:',
 'resetpass_submit' => 'پارلفظ بناؤ اور داخل ہوجاؤ',
-'resetpass_success' => 'آپ کا پارلفظ کامیابی سے تبدیل ہوگیا!
+'changepassword-success' => 'آپ کا پارلفظ کامیابی سے تبدیل ہوگیا!
 اَب داخلِ نوشتہ کیا جارہا ہے...',
 'resetpass_forbidden' => 'پارلفظ تبدیل نہیں ہوسکتا',
 'resetpass-no-info' => 'اِس صفحہ تک براہِ راست رسائی کیلئے آپ کو داخلِ نوشتہ ہونا پڑے گا.',
