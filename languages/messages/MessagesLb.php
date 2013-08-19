@@ -734,8 +734,8 @@ Dir sollt Iech aloggen an Äert Passwuert elo änneren.
 
 Wann dëse Benotzerkont ongewollt ugeluecht gouf, kënnt Dir dës Noriicht einfach ignoréieren.',
 'usernamehasherror' => "Am Benotzernumm däerfe keng ''hash'' Zeeche sinn",
-'login-throttled' => "Dir hutt zevill dacks versicht d'Passwuert vun dësem Benotzerkont anzeginn.
-Waart w.e.g. ier Dir et nach eng Kéier versicht.",
+'login-throttled' => 'Dir hutt zevill dacks versicht Iech anzeloggen.
+Waart w.e.g. $1 ier Dir et nach eng Kéier probéiert.',
 'login-abort-generic' => 'Dir sidd net ageloggt - Aloggen ofgebrach',
 'loginlanguagelabel' => 'Sprooch: $1',
 'suspicious-userlogout' => 'Är Ufro fir Iech auszeloggen gouf refuséiert well et esou ausgesäit wéi wann se vun engem Futtise Browser oder Proxy-Tëschespäicher kënnt.',
@@ -758,8 +758,7 @@ Fir är Umeldung ofzeschléissen, musst Dir elo hei een neit Passwuert uginn:',
 'newpassword' => 'Neit Passwuert:',
 'retypenew' => 'Neit Passwuert nach eemol antippen:',
 'resetpass_submit' => 'Passwuert aginn an aloggen',
-'changepassword-success' => 'Äert Passwuert gouf geännert!
-Loggt Iech elo an ...',
+'changepassword-success' => 'Äert Passwuert gouf geännert!',
 'resetpass_forbidden' => 'Passwierder kënnen net geännert ginn.',
 'resetpass-no-info' => 'Dir musst ageloggt sinn, fir direkt op dës Säit ze kommen.',
 'resetpass-submit-loggedin' => 'Passwuert änneren',

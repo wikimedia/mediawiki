@@ -935,7 +935,7 @@ Vous devriez ouvrir une session et modifier dès à présent votre mot de passe.
 Ignorez ce message si ce compte a été créé par erreur.",
 'usernamehasherror' => "Le nom d'utilisateur ne peut pas contenir des caractères de hachage",
 'login-throttled' => "Vous avez tenté un trop grand nombre de connexions dernièrement.
-Veuillez attendre avant d'essayer à nouveau.",
+Veuillez attendre $1 avant d'essayer à nouveau.",
 'login-abort-generic' => 'Votre tentative de connexion a échoué',
 'loginlanguagelabel' => 'Langue : $1',
 'suspicious-userlogout' => "Votre demande de déconnexion a été refusée car il semble qu'elle a été envoyée par un navigateur cassé ou la mise en cache d'un proxy.",
@@ -956,7 +956,7 @@ Si vous décidez de le fournir, il sera utilisé pour attribuer à l’utilisate
 'newpassword' => 'Nouveau mot de passe :',
 'retypenew' => 'Confirmer le nouveau mot de passe :',
 'resetpass_submit' => 'Changer le mot de passe et se connecter',
-'changepassword-success' => 'Votre mot de passe a été changé avec succès ! Connexion en cours…',
+'changepassword-success' => 'Votre mot de passe a été changé avec succès !',
 'resetpass_forbidden' => 'Les mots de passe ne peuvent pas être changés',
 'resetpass-no-info' => 'Vous devez être connecté pour avoir accès à cette page.',
 'resetpass-submit-loggedin' => 'Changer de mot de passe',

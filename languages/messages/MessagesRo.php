@@ -846,8 +846,8 @@ Este de dorit să vă autentificați și să schimbați parola cât mai repede.
 
 Ignorați acest mesaj dacă crearea contului s-a produs în urma unei greșeli.',
 'usernamehasherror' => 'Numele de utilizator nu poate conține caractere diez (#)',
-'login-throttled' => 'Ați avut prea multe încercări de a vă autentifica.
-Vă rugăm să așteptați până să mai încercați.',
+'login-throttled' => 'Ați avut prea multe încercări recente de a vă autentifica.
+Vă rugăm să așteptați $1 până să reîncercați.',
 'login-abort-generic' => 'Procesul de autentificare a eșuat și a fost abandonat',
 'loginlanguagelabel' => 'Limba: $1',
 'suspicious-userlogout' => 'Cererea dumneavoastră de a închide sesiunea a fost refuzată întrucât pare că a fost trimisă printr-o eroare a navigatorului sau de un proxy memorat în cache.',
@@ -868,7 +868,7 @@ Dacă decideți furnizarea sa, acesta va fi folosit pentru a atribui utilizatoru
 'newpassword' => 'Parola nouă:',
 'retypenew' => 'Reintroduceți noua parolă:',
 'resetpass_submit' => 'Setează parola și autentifică',
-'changepassword-success' => 'Parola a fost schimbată cu succes! Autentificare în curs...',
+'changepassword-success' => 'Parola dumneavoastră a fost schimbată cu succes!',
 'resetpass_forbidden' => 'Parolele nu pot fi schimbate.',
 'resetpass-no-info' => 'Trebuie să fiți autentificat pentru a accesa această pagină direct.',
 'resetpass-submit-loggedin' => 'Modifică parola',

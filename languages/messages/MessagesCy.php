@@ -652,8 +652,8 @@ Felly ni chaiff defnyddwyr sy'n defnyddio'r cyfeiriad IP hwn greu rhagor o gyfri
 
 Rhydd ichi anwybyddu\'r neges hon os mai camgymeriad oedd creu\'r cyfrif.',
 'usernamehasherror' => 'Ni all enw defnyddiwr gynnwys symbolau stwnsh',
-'login-throttled' => 'Rydych wedi ceisio mewngofnodi gormod o weithiau ar unwaith.
-Oedwch ychydig cyn mentro eto.',
+'login-throttled' => 'Rydych wedi ceisio mewngofnodi gormod o weithiau ar ben ei gilydd.
+Oedwch $1 cyn mentro eto.',
 'login-abort-generic' => 'Ni lwyddodd y mewngofnodi - Rhoddwyd y gorau iddo',
 'loginlanguagelabel' => 'Iaith: $1',
 'suspicious-userlogout' => 'Gwrthodwyd eich cais i allgofnodi oherwydd ei fod yn ymddangos mai gweinydd wedi torri neu ddirprwy gelc a anfonodd y cais.',
@@ -674,7 +674,7 @@ Er mwyn cwblhau'r mewngofnodi, rhaid i chi osod cyfrinair newydd fel hyn:",
 'newpassword' => 'Cyfrinair newydd:',
 'retypenew' => 'Ail-deipiwch y cyfrinair newydd:',
 'resetpass_submit' => 'Gosod y cyfrinair a mewngofnodi',
-'changepassword-success' => "Llwyddodd y newid i'ch cyfrinair! Wrthi'n mewngofnodi...",
+'changepassword-success' => "Llwyddodd y newid i'ch cyfrinair!",
 'resetpass_forbidden' => 'Ni ellir newid cyfrineiriau',
 'resetpass-no-info' => 'Ni allwch fynd at y dudalen hon yn uniongyrchol heblaw eich bod wedi mewngofnodi.',
 'resetpass-submit-loggedin' => 'Newidier y cyfrinair',
@@ -3935,10 +3935,13 @@ Dylech fod wedi derbyn [{{SERVER}}{{SCRIPTPATH}}/COPYING gopi o GNU General Publ
 'rotate-comment' => "Trowyd y llun $1 {{PLURAL:$1|gradd|radd|radd|gradd}} gyda'r cloc",
 
 # Limit report
+'limitreport-title' => 'Data proffil y dosrannwr:',
 'limitreport-cputime' => 'Defnydd amser CPU',
 'limitreport-cputime-value' => '$1 {{PLURAL:$1|eiliad}}',
 'limitreport-walltime' => 'Defnydd amser real',
 'limitreport-walltime-value' => '$1 {{PLURAL:$1|eiliad}}',
+'limitreport-ppvisitednodes' => "Rhif y nodau ar ymweliadau'r rhagbrosesydd",
+'limitreport-ppgeneratednodes' => 'Rhif y nodau a gynhyrchodd y rhagbrosesydd',
 'limitreport-postexpandincludesize-value' => '$1/$2 beit',
 'limitreport-templateargumentsize' => 'Maint arg y nodyn',
 'limitreport-templateargumentsize-value' => '$1/$2 beit',

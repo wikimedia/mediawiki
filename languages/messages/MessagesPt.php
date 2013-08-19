@@ -783,7 +783,7 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências]].'
 'createacct-emailrequired' => 'Endereço de email',
 'createacct-emailoptional' => 'Endereço de email (opcional)',
 'createacct-email-ph' => 'Digite seu endereço de email',
-'createaccountmail' => 'Usar uma palavra passe aleatória e temporária e enviar para o endereço de e-mail especificado abaixo',
+'createaccountmail' => 'Usar uma palavra passe aleatória e temporária e enviar para o endereço de correio eletrónico especificado',
 'createacct-realname' => 'Nome verdadeiro (opcional)',
 'createaccountreason' => 'Motivo:',
 'createacct-reason' => 'Razão',
@@ -2128,6 +2128,9 @@ Talvez queira editar a descrição na [$2 página original de descrição do fic
 # Random page
 'randompage' => 'Página aleatória',
 'randompage-nopages' => 'Não há páginas {{PLURAL:$2|no seguinte espaço nominal|nos seguintes espaços nominais}}: $1.',
+
+# Special:RandomInCategory
+'randomincategory-selectcategory-submit' => 'Ir',
 
 # Random redirect
 'randomredirect' => 'Redirecionamento aleatório',
@@ -4183,5 +4186,10 @@ Caso contrário, pode facilmente usar o formulário abaixo. O seu comentário se
 
 # Image rotation
 'rotate-comment' => 'Imagem rodada em $1 {{PLURAL:$1|grau|graus}} no sentido dos ponteiros do relógio',
+
+# Limit report
+'limitreport-cputime-value' => '$1 {{PLURAL:$1|segundo|segundos}}',
+'limitreport-postexpandincludesize-value' => '$1/$2 bytes',
+'limitreport-templateargumentsize-value' => '$1/$2 bytes',
 
 );

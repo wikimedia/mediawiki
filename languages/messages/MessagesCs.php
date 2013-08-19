@@ -926,7 +926,7 @@ Pokud se ho rozhodnete uvést, bude použito pro označení autorství vaší pr
 'newpassword' => 'Nové heslo:',
 'retypenew' => 'Napište znovu nové heslo',
 'resetpass_submit' => 'Nastavit heslo a přihlásit se',
-'changepassword-success' => 'Vaše heslo bylo úspěšně změněno. Probíhá přihlašování…',
+'changepassword-success' => 'Vaše heslo bylo úspěšně změněno!',
 'resetpass_forbidden' => 'Hesla nelze změnit.',
 'resetpass-no-info' => 'K této stránce mají přímý přístup jen přihlášení uživatelé.',
 'resetpass-submit-loggedin' => 'Změnit heslo',

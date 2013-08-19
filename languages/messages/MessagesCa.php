@@ -741,7 +741,7 @@ Introduïu una adreça amb un format adequat o bé buideu el camp.",
 Si no hi teniu cap relació i aquest compte ha estat creat per error, simplement ignoreu el missatge.",
 'usernamehasherror' => "El nom d'usuari no pot contenir caràcters hash",
 'login-throttled' => "Heu realitzat massa intents d'accés a la sessió.
-Si us plau, esperi abans de tornar-ho a intentar.",
+Espereu abans de tornar-ho a provar.",
 'login-abort-generic' => "L'entrada al compte d'usuari no ha reeixit - Abortada",
 'loginlanguagelabel' => 'Llengua: $1',
 'suspicious-userlogout' => "S'ha denegat la vostra petició per tancar la sessió ja què sembla que va ser enviada per un navegador defectuós o un proxy cau.",
@@ -1478,7 +1478,7 @@ Ha de tenir com a molt {{PLURAL:$1|un caràcter|$1 caràcters}}.',
 'right-reupload-shared' => 'Carregar localment fitxers amb un nom usat en el repostori multimèdia compartit',
 'right-upload_by_url' => "Carregar un fitxer des de l'adreça URL",
 'right-purge' => 'Purgar la memòria cau del lloc web sense pàgina de confirmació',
-'right-autoconfirmed' => 'Modificar pàgines semi-protegides',
+'right-autoconfirmed' => 'Modificar pàgines semiprotegides',
 'right-bot' => 'Ésser tractat com a procés automatitzat',
 'right-nominornewtalk' => "Que les modificacions menors que facin en pàgines de discussió d'usuari no generin l'avís de nous missatges",
 'right-apihighlimits' => "Tenir límits més alts en les consultes a l'API",
@@ -1500,7 +1500,7 @@ Ha de tenir com a molt {{PLURAL:$1|un caràcter|$1 caràcters}}.',
 'right-proxyunbannable' => 'Evitar els blocatges automàtics a proxies',
 'right-unblockself' => 'Desblocar-se a si mateixos',
 'right-protect' => 'Canviar el nivell de protecció i modificar pàgines protegides',
-'right-editprotected' => 'Editar pàgines protegides (sense protecció de cascada)',
+'right-editprotected' => 'Modificar pàgines protegides (sense protecció de cascada)',
 'right-editinterface' => "Editar la interfície d'usuari",
 'right-editusercssjs' => "Editar els fitxers de configuració CSS i JS d'altres usuaris",
 'right-editusercss' => "Editar els fitxers de configuració CSS d'altres usuaris",
@@ -3624,7 +3624,7 @@ les facilitats de correu electrònic a {{SITENAME}}, cal que obriu al navegador 
 
 $3
 
-Si el compte *no* us pertany, canceŀleu l'adreça de correu electrònic seguint aquest enllaç: 
+Si el compte *no* us pertany, cancel·leu l'adreça de correu electrònic seguint aquest enllaç: 
 
 $5
 
@@ -3759,6 +3759,12 @@ Amb aquest programa heu d'haver rebut [{{SERVER}}{{SCRIPTPATH}}/COPYING una còp
 'version-entrypoints-header-entrypoint' => "Punt d'entrada",
 'version-entrypoints-header-url' => 'URL',
 
+# Special:Redirect
+'redirect-submit' => 'Vés-hi',
+'redirect-value' => 'Valor:',
+'redirect-user' => "ID d'usuari",
+'redirect-not-exists' => "No s'ha trobat el valor",
+
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Cerca fitxers duplicats',
 'fileduplicatesearch-summary' => "Cerca fitxers duplicats d'acord amb el seu valor de resum.",
@@ -3850,6 +3856,7 @@ Amb aquest programa heu d'haver rebut [{{SERVER}}{{SCRIPTPATH}}/COPYING una còp
 'htmlform-selectorother-other' => 'Altres',
 'htmlform-no' => 'No',
 'htmlform-yes' => 'Sí',
+'htmlform-chosen-placeholder' => 'Seleccioneu una opció',
 
 # SQLite database support
 'sqlite-has-fts' => '$1, amb suport de búsqueda de text íntegre',

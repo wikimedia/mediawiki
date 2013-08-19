@@ -712,7 +712,6 @@ L\'amministratore che lo ha bloccato ha fornito questa motivazione: "$3".',
 # Login and logout pages
 'logouttext' => "'''Logout effettuato.'''
 
-Si può continuare ad usare {{SITENAME}} come utente anonimo oppure <span class='plainlinks'>[$1 eseguire un nuovo accesso]</span>, con lo stesso nome utente o un nome diverso.
 Nota che alcune pagine potrebbero continuare ad apparire come se il logout non fosse avvenuto finché non viene pulita la cache del proprio browser.",
 'welcomeuser' => 'Benvenuto, $1!',
 'welcomecreation-msg' => "L'account è stato creato correttamente.
@@ -831,7 +830,7 @@ Non verranno inviati messaggi email per le funzioni elencate di seguito.",
 Se l\'accesso è stato creato per errore, si può ignorare questo messaggio.',
 'usernamehasherror' => 'Il nome utente non può contenere caratteri hash',
 'login-throttled' => 'Sono stati effettuati troppi tentativi di accesso in breve tempo.
-Riprovare più tardi.',
+Attendi $1 e riprova in seguito.',
 'login-abort-generic' => 'Il tuo login non ha avuto successo - Annullato',
 'loginlanguagelabel' => 'Lingua: $1',
 'suspicious-userlogout' => 'La tua richiesta di disconnessione è stata negata perché sembra inviata da un browser non funzionante o un proxy di caching.',
@@ -850,7 +849,7 @@ Riprovare più tardi.',
 'newpassword' => 'Nuova password:',
 'retypenew' => 'Riscrivi la nuova password:',
 'resetpass_submit' => 'Imposta la password e accedi al sito',
-'changepassword-success' => 'La password è stata modificata. Accesso in corso...',
+'changepassword-success' => 'La password è stata modificata correttamente!',
 'resetpass_forbidden' => 'Non è possibile modificare le password',
 'resetpass-no-info' => "Devi aver effettuato l'accesso per accedere a questa pagina direttamente.",
 'resetpass-submit-loggedin' => 'Cambia password',
@@ -1535,7 +1534,7 @@ Il tuo indirizzo non viene rivelato quando gli altri utenti ti contattano.',
 'userrights-notallowed' => "Non disponi dell'autorizzazione per aggiungere o rimuovere i permessi utente.",
 'userrights-changeable-col' => 'Gruppi modificabili',
 'userrights-unchangeable-col' => 'Gruppi non modificabili',
-'userrights-conflict' => 'Conflitto di diritti utente! Applica nuovamente le tue modifiche.',
+'userrights-conflict' => 'Conflitto di modifica dei diritti utente! Controlla e conferma le tue modifiche.',
 'userrights-removed-self' => 'Hai rimosso con successo i tuoi diritti. E quindi, non sarai più in grado di accedere a questa pagina.',
 
 # Groups
@@ -3129,13 +3128,13 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'pageinfo-length' => 'Lunghezza della pagina (in byte)',
 'pageinfo-article-id' => 'ID della pagina',
 'pageinfo-language' => 'Lingua del contenuto della pagina',
-'pageinfo-robot-policy' => 'Stato per i motori di ricerca',
-'pageinfo-robot-index' => 'Indicizzabile',
-'pageinfo-robot-noindex' => 'Non indicizzabile',
+'pageinfo-robot-policy' => 'Indicizzazione per i robot',
+'pageinfo-robot-index' => 'Consentito',
+'pageinfo-robot-noindex' => 'Non consentito',
 'pageinfo-views' => 'Numero di visualizzazioni',
 'pageinfo-watchers' => 'Numero di utenti che hanno la pagina nei loro osservati speciali',
 'pageinfo-few-watchers' => 'Meno di $1 {{PLURAL:$1|osservatore|osservatori}}',
-'pageinfo-redirects-name' => 'Redirect a questa pagina',
+'pageinfo-redirects-name' => 'Numero di redirect a questa pagina',
 'pageinfo-subpages-name' => 'Sottopagine di questa pagina',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|redirect}}; $3 {{PLURAL:$3|non redirect}})',
 'pageinfo-firstuser' => 'Creatore della pagina',
@@ -4116,5 +4115,11 @@ Questo programma deve essere distribuito assieme ad [{{SERVER}}{{SCRIPTPATH}}/CO
 
 # Image rotation
 'rotate-comment' => 'Immagine ruotata di $1 {{PLURAL:$1|grado|gradi}} in senso orario',
+
+# Limit report
+'limitreport-cputime-value' => '$1 {{PLURAL:$1|secondo|secondi}}',
+'limitreport-walltime-value' => '$1 {{PLURAL:$1|secondo|secondi}}',
+'limitreport-postexpandincludesize-value' => '$1/$2 byte',
+'limitreport-templateargumentsize-value' => '$1/$2 byte',
 
 );

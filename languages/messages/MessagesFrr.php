@@ -446,7 +446,6 @@ Di grünj faan di administraator as: „$3“.',
 # Login and logout pages
 'logouttext' => "'''Dü beest nü ufmeldet.'''
 
-Dü könst {{SITENAME}} nü anonüüm widjerbrük, of di weder <span class='plainlinks'>[$1 uunmelde]</span>.
 Enkelt sidjen wise ferlicht noch uun, dat dü uunmeldet beest, so loong dü dan browser-cache ei leesag maaget heest.",
 'welcomeuser' => 'Welkimen, $1!',
 'welcomecreation-msg' => 'Din brükerkonto as iinracht wurden.
@@ -494,7 +493,7 @@ Ferjid det ei, an aachte üüb din [[Special:Preferences|{{SITENAME}} iinstelang
 'createacct-emailoptional' => 'E-mail adres (optional)',
 'createacct-email-ph' => 'Du din e-mail adres iin',
 'createacct-another-email-ph' => 'E-Mail-adres uundu',
-'createaccountmail' => 'E-mail tu det adres oner ferschüür mä en tufelag paaswurd',
+'createaccountmail' => 'E-mail tu detdiar adres ferschüür mä en tidjwiis tufelag paaswurd',
 'createacct-realname' => 'Rocht nööm (optional)',
 'createaccountreason' => 'Grünj:',
 'createacct-reason' => 'Grünj',
@@ -574,10 +573,11 @@ Dü skulst di nü uunmelde an det paaswurd anre.
 Wan det brükerkonto ütj fersen uunlaanj wurden as, säärst dü niks widjer onernem.',
 'usernamehasherror' => 'Uun brükernöömer mut nian rütjen föörkem.',
 'login-throttled' => 'Dü heest tufölsis fersoocht, di uuntumeldin.
-Wees so gud an teew en uugenblak, iar dü det noch ans ferschükst.',
+Wees so gud an teew $1, iar dü det noch ans ferschükst.',
 'login-abort-generic' => 'Det uunmeldin hää ei loket - Ufbreegen',
 'loginlanguagelabel' => 'Spriak: $1',
 'suspicious-userlogout' => 'Din ufmeldang as ei föörnimen wurden, auer det uunfraag ferlicht faan en uunstakenen browser of faan en cache-proxy kaam.',
+'createacct-another-realname-tip' => 'Stäänt tu wool. Wan dü dan rochten nööm uundääst, koon hi mä din feranrangen ferbünjen wurd.',
 
 # Email sending
 'php-mail-error-unknown' => 'Ünbekäänd feeler mä det funktsjuun mail() faan PHP.',
@@ -593,8 +593,7 @@ Am det uunmeldin uftuslütjen, skel dü en nei paaswurd iindu.',
 'newpassword' => 'Nei paaswurd:',
 'retypenew' => 'Skriiw det paaswurd noch ans weder hen:',
 'resetpass_submit' => 'Paaswurd saat an uunmelde',
-'changepassword-success' => 'Din paaswurd as feranert wurden!
-Dü woorst nü uunmeldet ...',
+'changepassword-success' => 'Din paaswurd as feranert wurden!',
 'resetpass_forbidden' => 'Det paaswurd koon ei feranert wurd.',
 'resetpass-no-info' => 'Dü skel di uunmelde, am üüb det sidj tutugripen.',
 'resetpass-submit-loggedin' => 'Paaswurd feranre',
@@ -1281,7 +1280,7 @@ Do san jo ual iinstelangen wech.',
 'userrights-notallowed' => 'Dü heest ei det rocht, am brükerrochten tu feranrin.',
 'userrights-changeable-col' => 'Lasmootskapen, diar dü feranre könst',
 'userrights-unchangeable-col' => 'Lasmootskapen, diar dü ei feranre könst',
-'userrights-conflict' => 'Brükerrochten konflikt! Du din feranrangen noch ans iin.',
+'userrights-conflict' => "Konflikt bi't feranrin faan brükerrochten! Du din feranrangen noch ans iin.",
 'userrights-removed-self' => 'Dü heest din aanj brükerrochtem stregen. Dü könst nü ei muar üüb det sidj tugrip.',
 
 # Groups
@@ -1808,6 +1807,13 @@ Iar dü ian strikst, stel seeker, dat diar nian ferwisangen üüb detdetdiar fö
 # Random page
 'randompage' => 'Tufelag sidj',
 'randompage-nopages' => 'Diar san nian sidjen uun {{PLURAL:$2|nöömrüm|nöömrümer}}: $1.',
+
+# Special:RandomInCategory
+'randomincategory' => "Tufelag sidj uun't kategorii",
+'randomincategory-invalidcategory' => '"$1" as üs kategoriinööm ei tuläät.',
+'randomincategory-nopages' => 'Diar san nian sidjen uun [[:Category:$1]].',
+'randomincategory-selectcategory' => "Tufelag sidj uun't kategorii: $1 $2.",
+'randomincategory-selectcategory-submit' => 'Widjer',
 
 # Random redirect
 'randomredirect' => 'Tufelag widjerfeerang',
@@ -2833,13 +2839,13 @@ Dü könst di kweltekst uunluke.',
 'pageinfo-length' => 'Sidjenlengde (uun bytes)',
 'pageinfo-article-id' => 'Sidjenkäännumer (ID)',
 'pageinfo-language' => 'Sidjenspriak',
-'pageinfo-robot-policy' => 'Schükmaskiin-stant',
-'pageinfo-robot-index' => 'Koon indisiaret wurd',
-'pageinfo-robot-noindex' => 'Koon ei indisiaret wurd',
+'pageinfo-robot-policy' => 'Faan bots indisiaret',
+'pageinfo-robot-index' => 'Tuläät',
+'pageinfo-robot-noindex' => 'Ei tuläät',
 'pageinfo-views' => 'Taal faan kliks üüb det sidj',
 'pageinfo-watchers' => "Taal faan brükern, diar det sidj uun't uug haa",
 'pageinfo-few-watchers' => "Maner üs {{PLURAL:$1|ään brüker|$1 brükern}}, diar det sidj uun't uug haa",
-'pageinfo-redirects-name' => 'Widjerfeerangen tu detdiar sidj',
+'pageinfo-redirects-name' => 'Taal faan widjerfeerangen tu detdiar sidj',
 'pageinfo-subpages-name' => 'Onersidjen faan detdiar sidj',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|widjerfeerang|widjerfeerangen}}; $3 {{PLURAL:$3|onersidj|onersidjen}})',
 'pageinfo-firstuser' => 'Hoker det sidj maaget hää',
@@ -3556,6 +3562,7 @@ Dü könst uk det [[Special:EditWatchlist|normool sidj]] tu bewerkin nem.",
 'version-license' => 'Lisens',
 'version-poweredby-credits' => "Detheer wääbsteed werket mä '''[//www.mediawiki.org/wiki/MediaWiki/de MediaWiki]''', Copyright © 2001–$1 $2.",
 'version-poweredby-others' => 'öödern',
+'version-poweredby-translators' => 'Auersaatern faan translatewiki.net',
 'version-credits-summary' => 'Wi besoonke üs bi jodiar persuunen för hör bidracher tu [[Special:Version|MediaWiki]].',
 'version-license-info' => 'MediaWiki is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
 
@@ -3791,5 +3798,20 @@ You should have received [{{SERVER}}{{SCRIPTPATH}}/COPYING a copy of the GNU Gen
 
 # Image rotation
 'rotate-comment' => 'Bil am $1 {{PLURAL:$1|graad}} mä a klook dreid.',
+
+# Limit report
+'limitreport-title' => 'Parser-profiling dooten:',
+'limitreport-cputime' => 'CPU-tidj',
+'limitreport-cputime-value' => '$1 {{PLURAL:$1|sekund|sekunden}}',
+'limitreport-walltime' => 'Würelk tidj',
+'limitreport-walltime-value' => '$1 {{PLURAL:$1|sekund|sekunden}}',
+'limitreport-ppvisitednodes' => 'Taal faan ferbinjangsknooter för di föörproseser',
+'limitreport-ppgeneratednodes' => 'Faan di föörproseser bereegent ferbinjangsknooter',
+'limitreport-postexpandincludesize' => "Grate faan iinbinjangen efter't ütjwidjin",
+'limitreport-postexpandincludesize-value' => '$1/$2 bytes',
+'limitreport-templateargumentsize' => "Grate faan't föörlaagenargument",
+'limitreport-templateargumentsize-value' => '$1/$2 bytes',
+'limitreport-expansiondepth' => 'Maksimaal ütjwidjangsjipde',
+'limitreport-expensivefunctioncount' => 'Taal faan apwendag parser-funktjuunen',
 
 );

@@ -803,10 +803,9 @@ Parameters:
 * $2 - a link points to new messages diff. Its text is {{msg-mw|Newmessagesdifflink}}
 See also:
 * {{msg-mw|Youhavenewmessagesmanyusers}}',
-'newmessageslink' => 'This is the first link displayed in an orange rectangle when a user gets a message on his talk page.
+'newmessageslink' => 'This is the first link displayed in an orange rectangle when a user gets a message on their talk page.
 
-Used in message {{msg-mw|youhavenewmessages}} (as parameter $1).
-
+Used as <code>$1</code> in message {{msg-mw|Youhavenewmessages}}.
 {{Identical|New messages}}',
 'newmessagesdifflink' => 'This is the second link displayed in an orange rectangle when a user gets a message on his talk page. Used in message {{msg-mw|youhavenewmessages}} (as parameter $2).
 
@@ -1127,10 +1126,10 @@ See also:
 'actionthrottledtext' => 'Used as error message. Read it in combination with {{msg-mw|actionthrottled}}.',
 'protectedpagetext' => "This message is displayed when trying to edit a page you can't edit because it has been protected.
 
-Parameters:
-* $1 - the raw name of the right which is needed to edit the page
+The title for this message is {{msg-mw|Protectedpage}}.
 
-The title for this message is {{msg-mw|protectedpage}}.",
+Parameters:
+* $1 - (Unused) the raw name of the right which is needed to edit the page",
 'viewsourcetext' => 'The text shown when displaying the source of a page that the user has no permission to edit',
 'viewyourtext' => 'Same as {{msg-mw|viewsourcetext}} but when showing the text submitted by the user, this happens e.g. when the user was blocked while he is editing the page',
 'protectedinterface' => 'Message shown if a user without the "editinterface" right tries to edit a page in the MediaWiki namespace.
@@ -1151,7 +1150,9 @@ See also {{msg-mw|protectedinterface}}.',
 'myprivateinfoprotected' => 'Used as error message.',
 'mypreferencesprotected' => 'Used as error message.',
 'ns-specialprotected' => 'Error message displayed when trying to edit a page in the Special namespace',
-'titleprotected' => 'Use $1 for GENDER.',
+'titleprotected' => 'Used as error message. Parameters:
+* $1 - username; GENDER supported
+* $2 - reason for protection',
 'filereadonlyerror' => 'Parameters:
 * $1 - file name
 * $2 - file repository name
@@ -1178,9 +1179,14 @@ Parameters:
 
 # Login and logout pages
 'logouttext' => 'Log out message. Parameters:
-* $1 - an URL to [[Special:Userlogin]] containing <code>returnto</code> and <code>returntoquery</code> parameters',
+* $1 - (Unused) an URL to [[Special:Userlogin]] containing <code>returnto</code> and <code>returntoquery</code> parameters',
 'welcomeuser' => 'Text for a welcome heading that users see after registering a user account. $1 is the username of the new user. See [[bugzilla:42215]]',
-'welcomecreation-msg' => 'A welcome message users see after registering a user account, following a welcomeuser heading. $1 is the username of the new user. Replaces welcomecreation in 1.21wmf5,see [[bugzilla:42215]]',
+'welcomecreation-msg' => 'A welcome message users see after registering a user account, following a welcomeuser heading.
+
+Parameters:
+* $1 - (Unused) the username of the new user.
+
+Replaces welcomecreation in 1.21wmf5, see [[bugzilla:42215]]',
 'yourname' => 'Since 1.22 no longer used in core, but used by some extensions.
 {{Identical|Username}}',
 'userlogin-yourname' => "In user login & create account forms, label for username field.
@@ -1399,7 +1405,9 @@ This message is only shown when you can't create an account, otherwise the follo
 Parameters:
 * $1 - username",
 'nouserspecified' => 'Used as error message when username to fetch is not specified.',
-'login-userblocked' => 'This message supports GENDER, username is available in $1.',
+'login-userblocked' => '{{gender}}
+Parameters:
+* $1 - (Optional) username, for GENDER support',
 'wrongpassword' => 'Used as error message when the provided password is wrong.
 {{Identical|Please try again}}',
 'wrongpasswordempty' => 'Error message displayed when entering a blank password.
@@ -1461,14 +1469,35 @@ See also:
 * {{msg-mw|Accountcreated|title}}
 * {{msg-mw|Accountcreatedtext|message}}',
 'createaccount-title' => 'Subject of the e-mail sent to the e-mail address entered at [[Special:CreateAccount]] when one user creates an account for another and clicks the checkbox labelled "{{msg-mw|createaccountmail}}".',
-'createaccount-text' => 'Body of the e-mail sent to the e-mail address entered at [[Special:CreateAccount]] when one user creates an account for another and clicks the checkbox labelled "{{msg-mw|createaccountmail}}".
+'createaccount-text' => "Body of the email sent to the email address entered at [[Special:CreateAccount]] when one user creates an account for another and clicks the checkbox labelled:
+* {{msg-mw|Createaccountmail}}
 
-*Parameter $2 is the name entered as username.
-*Parameter $3 is a password (randomly generated).
-*Parameter $4 is a URL to the wiki',
-'login-throttled' => 'Error message shown at [[Special:UserLogin]] after the user has tried to login with incorrect password too many times. The user has to wait a certain time before trying to log in again.
-* $1: the time to wait before the next login attempt. Automatically formatted using the [//www.mediawiki.org/w/index.php?title=Special%3AAllMessages&prefix=duration&filter=all duration-* messages].
-This is a protection against robots trying to find the password by trying lots of them. The number of attempts and waiting time are configured via [[mw:Manual:$wgPasswordAttemptThrottle|$wgPasswordAttemptThrottle]].',
+Parameters:
+* $1 - (Unused) IP address
+* $2 - the name entered as username
+* $3 - a password (randomly generated)
+* $4 - a URL to the wiki ('<' + server name + script name + '>')
+* $5 - (Unused) number of days to password expiry date",
+'login-throttled' => '{{doc-important|<code>$1</code> is empty, which is used in [[Special:ChangeEmail]] and [[Special:ChangePassword]].}}
+Used as error message in [[Special:ChangeEmail]], [[Special:ChangePassword]], and [[Special:UserLogin]].
+
+Error message shown at [[Special:UserLogin]] after the user has tried to login with incorrect password too many times.
+The user has to wait a certain time before trying to log in again.
+
+Parameters:
+* $1 - the time to wait before the next login attempt. Automatically formatted using the following duration messages:
+** {{msg-mw|Duration-millennia}}
+** {{msg-mw|Duration-centuries}}
+** {{msg-mw|Duration-decades}}
+** {{msg-mw|Duration-years}}
+** {{msg-mw|Duration-weeks}}
+** {{msg-mw|Duration-days}}
+** {{msg-mw|Duration-hours}}
+** {{msg-mw|Duration-minutes}}
+** {{msg-mw|Duration-seconds}}
+
+This is a protection against robots trying to find the password by trying lots of them.
+The number of attempts and waiting time are configured via [[mw:Manual:$wgPasswordAttemptThrottle|$wgPasswordAttemptThrottle]].',
 'login-abort-generic' => 'The generic unsuccessful login message is used unless otherwise specified by hook writers',
 'loginlanguagelabel' => 'Used on [[Special:UserLogin]] if $wgLoginLanguageSelector is true. $1 is a pipe-separated list built from the names that appear in the message {{msg-mw|Loginlanguagelinks}}.
 {{Identical|Language}}',
@@ -1528,20 +1557,22 @@ Parameters:
 'passwordreset-capture-help' => 'Longer explanatory message for the capture checkbox label.',
 'passwordreset-email' => '{{Identical|E-mail address}}',
 'passwordreset-emailtitle' => 'Used as subject (title) of E-mail.',
-'passwordreset-emailtext-ip' => 'Be consistent with {{msg-mw|Passwordreset-emailtext-user|notext=y}}.
+'passwordreset-emailtext-ip' => 'Be consistent with {{msg-mw|Passwordreset-emailtext-user}}.
 
 Parameters:
 * $1 - an IP address
-* $2 - message {{msg-mw|passwordreset-emailelement|notext=1}} repeated $3 times
+* $2 - message {{msg-mw|Passwordreset-emailelement}} repeated $3 times
 * $3 - the number of repetitions in $2
-* $4 - base URL of the wiki',
-'passwordreset-emailtext-user' => 'Be consistent with {{msg-mw|Passwordreset-emailtext-ip|notext=y}}.
+* $4 - base URL of the wiki
+* $5 - number of days',
+'passwordreset-emailtext-user' => 'Be consistent with {{msg-mw|Passwordreset-emailtext-ip}}.
 
 Parameters:
 * $1 - a user name
-* $2 - message {{msg-mw|passwordreset-emailelement|notext=1}} repeated $3 times
+* $2 - message {{msg-mw|Passwordreset-emailelement|notext=1}} repeated $3 times
 * $3 - the number of repetitions in $2
-* $4 - base URL of the wiki',
+* $4 - base URL of the wiki
+* $5 - number of days',
 'passwordreset-emailelement' => "This is a body of a password reset email to allow them into the system with a new password. Parameters:
 * $1 - the user's login name. This parameter can be used for GENDER.
 * $2 - the temporary password given by the system",
@@ -1748,9 +1779,12 @@ See also:
 * {{msg-mw|Nocreatetext}}
 * {{msg-mw|Uploadnologintext}}',
 'accmailtitle' => 'Page title when temporary password was sent to a user via email.',
-'accmailtext' => "The message shown when a temporary password has been sent to the user's email address.
+'accmailtext' => '{{doc-important|Do not translate "<nowiki>[[User talk:$1|$1]]</nowiki>" and \'\'Special:ChangePassword\'\'.}}
+The message shown when a temporary password has been sent to the user\'s email address.
 
-{{doc-important|Do not translate \"<nowiki>[[User talk:\$1|\$1]]</nowiki>\" and ''Special:ChangePassword''.}}",
+Parameters:
+* $1 - username
+* $2 - email address',
 'newarticle' => '{{Identical|New}}',
 'newarticletext' => "Text displayed above the edit box in editor when trying to create a new page.<br />'''Very important:''' leave <tt><nowiki>{{MediaWiki:Helppage}}</nowiki></tt> exactly as it is!",
 'anontalkpagetext' => 'Displayed at the bottom of talk pages of anonymous users.',
@@ -1767,8 +1801,9 @@ Example: [{{canonicalurl:Project:News|oldid=9999999}} Permalink with invalid rev
 * $1 is a possible username that has not been registered.',
 'userpage-userdoesnotexist-view' => 'Shown in user pages of non existing users. See for example [{{canonicalurl:User:Foo}} User:Foo]. Parameters:
 * $1 is a username.',
-'blocked-notice-logextract' => 'Parameters:
-* $1 is the name of the blocked user (optional). Can be used for GENDER.',
+'blocked-notice-logextract' => '{{gender}}
+Parameters:
+* $1 - (Optional) the name of the blocked user. Can be used for GENDER.',
 'clearyourcache' => 'Text at the top of .js/.css pages',
 'usercssyoucanpreview' => "Text displayed on every css page. The 'Show preview' part should be the same as {{msg-mw|showpreview}} (or you can use <nowiki>{{int:showpreview}}</nowiki>).",
 'userjsyoucanpreview' => 'Text displayed on every js page.',
@@ -1929,7 +1964,11 @@ See also:
 * {{msg-mw|edit-gone-missing}}
 * {{msg-mw|edit-conflict}}
 * {{msg-mw|edit-already-exists}}',
-'postedit-confirmation' => 'Confirmation message that is displayed upon successful edit. Parameter $1 is the current user, for GENDER support.',
+'postedit-confirmation' => '{{gender}}
+Confirmation message that is displayed upon successful edit.
+
+Parameters:
+* $1 - (Optional) the current user, for GENDER support',
 'edit-already-exists' => 'Used as error message.
 
 See also:
@@ -2007,14 +2046,25 @@ See also:
 'parser-template-recursion-depth-warning' => '* $1 - limit value of recursion depth',
 'language-converter-depth-warning' => 'Error message shown when a page uses too deeply nested language conversion syntax. Parameters:
 * $1 - the value of the depth limit',
-'node-count-exceeded-category' => 'This message is used as a category name for a [[mw:Help:Tracking categories|tracking category]] where pages are placed automatically if the node-count of the preprocessor exceeds the limit.',
-'node-count-exceeded-warning' => 'Error message shown when a page exceeded the node-count limit of the preprocessor. Parameters:
-* $1 - the value of the node-count limit
-* $2 - the value of the max node-count limit',
+'node-count-exceeded-category' => 'This message is used as a category name for a [[mw:Help:Tracking categories|tracking category]] where pages are placed automatically if the node-count of the preprocessor exceeds the limit.
+
+See also:
+* {{msg-mw|Node-count-exceeded-warning}}',
+'node-count-exceeded-warning' => 'Error message shown when a page exceeded the node-count limit of the preprocessor.
+
+Parameters:
+* $1 - (Unused) the value of the node-count limit
+* $2 - (Unused) the value of the max node-count limit
+See also:
+* {{msg-mw|Node-count-exceeded-category}}',
 'expansion-depth-exceeded-category' => 'This message is used as a category name for a [[mw:Help:Tracking categories|tracking category]] where pages are placed automatically if the [[meta:Help:Expansion_depth|expansion depth]] of the preprocessor exceeds the limit.',
-'expansion-depth-exceeded-warning' => 'Error message shown when a page exceeded the [[meta:Help:Expansion_depth|expansion depth limit]] of the preprocessor. Parameters:
-* $1 - the value of the depth limit
-* $2 - the value of the max depth limit',
+'expansion-depth-exceeded-warning' => 'Error message shown when a page exceeded the [[meta:Help:Expansion_depth|expansion depth limit]] of the preprocessor.
+
+Parameters:
+* $1 - (Unused) the value of the depth limit
+* $2 - (Unused) the value of the max depth limit
+See also:
+* {{msg-mw|Expansion-depth-exceeded-category}}',
 'parser-unstrip-loop-warning' => '{{Doc-important|Do not translate function name "<code>unstrip</code>".}}
 This error is shown when a parser extension tag such as &lt;pre> includes a reference to itself in its own output.
 
@@ -2677,6 +2727,7 @@ $1 is the relevance of this result in per cent.
 See also:
 * {{msg-mw|Showingresultsnum}}',
 'showingresultsnum' => 'Parameters:
+* $1 - (Unused) the total number of results in the batch shown
 * $2 - the first number in the batch of results
 * $3 - the number of results on the page
 See also:
@@ -2861,7 +2912,13 @@ Also used on create account form.
 'uid' => 'User ID field in [[Special:Preferences]]. $1 is the current user name for GENDER distinction (depends on sex setting).
 
 {{Identical|User ID}}',
-'prefs-memberingroups' => 'This message is shown on [[Special:Preferences]], first tab. See also {{msg-mw|prefs-memberingroups-type}}. $2 is the user name for GENDER.',
+'prefs-memberingroups' => 'This message is shown on [[Special:Preferences]], first tab.
+
+Parameters:
+* $1 - number of user groups
+* $2 - the username for GENDER
+See also:
+* {{msg-mw|Prefs-memberingroups-type}}',
 'prefs-memberingroups-type' => '{{optional}}
 Parameters:
 * $1 is list of group names
@@ -2972,26 +3029,29 @@ Used in [[Special:Preferences]], tab "Watchlist".
 * $1 is a username
 * $2 are user tool links. Example: "(Talk | contribs | block | send e-mail)".',
 'userrights-editusergroup' => 'Parameter:
-* $1 is a username - optional, can be used for GENDER
+* $1 - (Optional) a username, can be used for GENDER
 {{Identical|Edit user groups}}',
 'saveusergroups' => 'Button text when editing user groups',
-'userrights-groupsmember' => 'Used when editing user groups in [[Special:Userrights]]. The message is followed by a list of group names.
+'userrights-groupsmember' => 'Used when editing user groups in [[Special:Userrights]].
+
+The message is followed by a list of group names.
 
 Parameters:
-* $1 - the number of items in the list following the message, for PLURAL
-* $2 - the user name, for GENDER',
+* $1 - (Optional) the number of items in the list following the message, for PLURAL
+* $2 - (Optional) the user name, for GENDER',
 'userrights-groupsmember-auto' => 'Used when editing user groups in [[Special:Userrights]]. The message is followed by a list of group names.
+
 "Implicit" is for groups that the user was automatically added to (such as "autoconfirmed"); cf. {{msg-mw|userrights-groupsmember}}
 
-Parameters
-* $1 - the number of items in the list following the message, for PLURAL
-* $2 - the user name, for GENDER',
+Parameters:
+* $1 - (Optional) the number of items in the list following the message, for PLURAL
+* $2 - (Optional) the user name, for GENDER',
 'userrights-groupsmember-type' => '{{optional}}
 Parameters:
 * $1 is list of group names.
 * $2 is list of group member names. Used with labels {{msg-mw|userrights-groupsmember}} and {{msg-mw|userrights-groupsmember-auto}}',
 'userrights-groups-help' => 'Instructions displayed on [[Special:UserRights]]. Parameters:
-* $1 is a username - optional, can be used for GENDER',
+* $1 - (Optional) a username, can be used for GENDER',
 'userrights-reason' => 'Text beside log field when editing user groups
 
 {{Identical|Reason}}',
@@ -3008,14 +3068,16 @@ Parameters:
 
 If you are logged in, but don't have the correct permission, you see {{msg-mw|Userrights-notallowed}}.",
 'userrights-notallowed' => "Error displayed on [[Special:UserRights]] when you don't have the permission.",
-'userrights-changeable-col' => 'Used when editing user groups in [[Special:Userrights]]. The message is the head of a column of group assignements.
+'userrights-changeable-col' => 'Used when editing user groups in [[Special:Userrights]].
+
+The message is the head of a column of group assignments.
 
 Parameters:
-* $1 - optional, for PLURAL use, the number of items in the column following the message. Avoid PLURAL, if your language can do without.',
-'userrights-unchangeable-col' => 'Used when editing user groups in [[Special:Userrights]]. The message is the head of a column of group assignements.
+* $1 - (Optional) for PLURAL use, the number of items in the column following the message. Avoid PLURAL, if your language can do without.',
+'userrights-unchangeable-col' => 'Used when editing user groups in [[Special:Userrights]]. The message is the head of a column of group assignments.
 
 Parameters:
-* $1 - optional, for PLURAL use, the number of items in the column following the message. Avoid PLURAL, if your language allows that.',
+* $1 - (Optional) for PLURAL use, the number of items in the column following the message. Avoid PLURAL, if your language allows that.',
 'userrights-irreversible-marker' => '{{optional}}
 Parameters:
 * $1 - group member',
@@ -3727,7 +3789,8 @@ See also:
 * {{msg-mw|Copyuploaddisabled}}',
 'copyuploaddisabled' => 'See also:
 * {{msg-mw|Uploaddisabled}}',
-'uploaddisabledtext' => 'This message can have parameter $1, which contains the name of the target file. See r22243 and [[bugzilla:8818|bug 8818]].',
+'uploaddisabledtext' => 'Parameters:
+* $1 - (Optional) the name of the target file. See r22243 and [[bugzilla:8818|bug 8818]].',
 'php-uploaddisabledtext' => 'This means that file uploading is disabled in PHP, not upload of PHP-files.',
 'uploadscripted' => 'Used as error message when uploading a file.
 
@@ -4237,9 +4300,11 @@ Filepage-nofile and Filepage-nofile-link message deprecate {{msg-mw|Noimage}}",
 Example: http://test.wikipedia.org/wiki/File:Wiki.png#filelinks
 
 $1 is the name of the shared repository. On wikimedia sites, $1 is {{msg-mw|shared-repo-name-shared}}. The default value for $1 is {{msg-mw|shared-repo}}.',
-'shared-repo' => 'This message can be used as parameter $1 in the following messages:
+'shared-repo' => 'This message can be used as parameter <code>$1</code> in the following messages:
 * {{msg-mw|shared-repo-from}}
-* {{msg-mw|sharedupload}}, {{msg-mw|sharedupload-desc-here}}, {{msg-mw|sharedupload-desc-there}}',
+* {{msg-mw|sharedupload}}
+* {{msg-mw|sharedupload-desc-here}}
+* {{msg-mw|sharedupload-desc-there}}',
 'shared-repo-name-wikimediacommons' => '{{optional}}
 {{Identical|Wikimedia Commons}}',
 'filepage.css' => '{{Optional}}',
@@ -4744,9 +4809,9 @@ See also:
 'linksearch-ok' => 'Button label on [[Special:LinkSearch|special page]]e
 
 {{Identical|Search}}',
-'linksearch-text' => 'Introduction to special page [[Special:LinkSearch]].
-
-$1 is a list of internet protocols.',
+'linksearch-text' => 'Introduction to special page [[Special:LinkSearch]]. Parameters:
+* $1 - list of internet protocols
+* $2 - number of internet protocols',
 'linksearch-line' => 'Text for the results of a search using [[Special:LinkSearch]].
 
 *$1 is the address of an external link
@@ -4761,8 +4826,8 @@ You can apparently use 'URL' instead of 'hostname'.",
 {{Identical|Go}}
 {{Identical|Show}}',
 'listusers-noresult' => 'identical with {{msg-mw|activeusers-noresult}}',
-'listusers-blocked' => 'Used on [[Special:ActiveUsers]] when a user has been blocked.
-* $1 - a user name for use with GENDER (optional)
+'listusers-blocked' => 'Used on [[Special:ActiveUsers]] when a user has been blocked. Parameters:
+* $1 - (Optional) a user name for use with GENDER
 {{Identical|Blocked}}',
 
 # Special:ActiveUsers
@@ -5163,7 +5228,7 @@ See also:
 The name of the deletion log. Used as heading on [[Special:Log/delete]] and in the drop down menu for selecting logs on [[Special:Log]].
 {{Identical|Deletion log}}',
 'dellogpagetext' => 'Text in [[Special:Log/delete]].',
-'deletionlog' => 'This message is used to link to the deletion log:
+'deletionlog' => 'Used as text for the link which points to the deletion log:
 * Used as parameter $1 of {{msg-mw|Filewasdeleted}}
 * Used as parameter $2 of {{msg-mw|deletedtext}}
 * Used in log lines on [[Special:DeletedContributions]].
@@ -5281,7 +5346,10 @@ Parameters:
 'protect-badnamespace-title' => 'Title of error page when trying to access action=protect on a non-protectable namespace (currently this only for the MediaWiki: namespace).',
 'protect-badnamespace-text' => 'Content of the error page that goes with {{msg-mw|protect-badnamespace-title}}.',
 'protect-norestrictiontypes-text' => "Content of the error page in case there aren't any restriction types (like edit or create) available.",
-'protect-norestrictiontypes-title' => "Page title in case there aren't any restriction types (like edit or create) available ($1 represents the page title).",
+'protect-norestrictiontypes-title' => "Page title in case there aren't any restriction types (like edit or create) available.
+
+Parameters:
+* $1 - (Unused) the page title",
 'protect-legend' => 'Legend of the fieldset around the input form of the protection form.',
 'protectcomment' => '{{Identical|Reason}}',
 'protectexpiry' => '{{Identical|Expire}}',
@@ -5588,7 +5656,9 @@ See also:
 * {{msg-mw|Accesskey-pt-mycontris}}
 * {{msg-mw|Tooltip-pt-mycontris}}
 {{Identical|Contribution}}',
-'contribsub2' => 'Contributions for "user" (links)
+'contribsub2' => 'Contributions for "user" (links). Parameters:
+* $1 - username
+* $2 - list of tool links. The list contains a link which has text {{msg-mw|Sp-contributions-talk}}
 {{Identical|For $1}}',
 'nocontribs' => 'Used in [[Special:Contributions]] and [[Special:DeletedContributions]].
 
@@ -5691,9 +5761,12 @@ See also:
 * {{msg-mw|Sp-contributions-uploads}}
 * {{msg-mw|Sp-contributions-logs}}
 * {{msg-mw|Sp-contributions-deleted}}",
-'sp-contributions-blocked-notice' => 'Shown on top of contributions special page of currently blocked users. Parameters:
-* $1 is the blocked user. Can be used for GENDER (optional)
-Anon version: {{msg-mw|Sp-contributions-blocked-notice-anon}}',
+'sp-contributions-blocked-notice' => 'Shown on top of contributions special page of currently blocked users.
+
+Parameters:
+* $1 - (Optional) the blocked user. Can be used for GENDER
+Anon version:
+* {{msg-mw|Sp-contributions-blocked-notice-anon}}',
 'sp-contributions-blocked-notice-anon' => 'Same as {{msg-mw|Sp-contributions-blocked-notice}} but for anonymous users.',
 'sp-contributions-search' => 'Used on [[Special:Contributions]]',
 'sp-contributions-username' => 'This message appears whenever someone requests [[Special:Contributions]].
@@ -6056,9 +6129,12 @@ The page name of [[Special:Log/block]]. Also appears in the drop down menu of [[
 
 {{Identical|Block log}}",
 'blocklog-showlog' => 'Parameters:
-* $1 is the blocked user. Can be used for GENDER (optional)',
+* $1 - (Optional) the blocked user. Can be used for GENDER
+See also:
+* {{msg-mw|Blocklog-showsuppresslog}}
+* {{msg-mw|Globalblocking-showlog}}',
 'blocklog-showsuppresslog' => 'Parameters:
-* $1 is the blocked user. Can be used for GENDER (optional)',
+* $1 - (Optional) the blocked user. Can be used for GENDER',
 'blocklogentry' => 'This is the text of an entry in the Block log, and recent changes, after hour (and date, only in the Block log) and sysop name:
 * $1 - the blocked user or IP (with link to contributions and talk)
 * $2 - the duration of the block (hours, days etc.) or the specified expiry date

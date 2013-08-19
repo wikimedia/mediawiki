@@ -876,7 +876,7 @@ $2',
 'createacct-emailoptional' => 'Адреса е-поште (опцијоно)',
 'createacct-email-ph' => 'Унесите вашу адресу е-поште',
 'createacct-another-email-ph' => 'Унесите адресу е-поште',
-'createaccountmail' => 'Користите привремену, случајно створену лозинку и пошаљите на доле наведену адресу електронске поште',
+'createaccountmail' => 'Користите привремену, случајно створену лозинку и пошаљите на наведену адресу електронске поште',
 'createacct-realname' => 'Право име (опцијоно)',
 'createaccountreason' => 'Разлог:',
 'createacct-reason' => 'Разлог',
@@ -947,7 +947,7 @@ $2',
 'cannotchangeemail' => 'На овом викију не можете променити е-адресу налога.',
 'emaildisabled' => 'Овај сајт не може да шаље е-поруке.',
 'accountcreated' => 'Налог је отворен',
-'accountcreatedtext' => 'Налог {{GENDER:$1|корисника|кориснице|корисника}} $1 је отворен.',
+'accountcreatedtext' => 'Кориснички налог [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|talk]]) је отворен.',
 'createaccount-title' => 'Отварање корисничког налога за {{SITENAME}}',
 'createaccount-text' => 'Неко је отворио налог с вашом е-адресом на {{SITENAME}} ($4) под именом $2 и лозинком $3.
 Пријавите се и промените своју лозинку.
@@ -975,8 +975,7 @@ $2',
 'newpassword' => 'Нова лозинка:',
 'retypenew' => 'Потврда лозинке:',
 'resetpass_submit' => 'Постави лозинку и пријави ме',
-'changepassword-success' => 'Ваша лозинка је промењена.
-Пријављивање је у току…',
+'changepassword-success' => 'Ваша лозинка је успешно промењена!',
 'resetpass_forbidden' => 'Лозинка не може бити промењена',
 'resetpass-no-info' => 'Морате бити пријављени да бисте приступили овој страници.',
 'resetpass-submit-loggedin' => 'Промени лозинку',
@@ -1220,7 +1219,7 @@ $2
 'nocreate-loggedin' => 'Немате дозволу да правите нове странице.',
 'sectioneditnotsupported-title' => 'Уређивање одељка није подржано',
 'sectioneditnotsupported-text' => 'Уређивање одељка није подржано на овој страници.',
-'permissionserrors' => 'Грешке у дозволама',
+'permissionserrors' => 'Грешка у дозволи',
 'permissionserrorstext' => 'Немате овлашћење за ту радњу из {{PLURAL:$1|следећег|следећих}} разлога:',
 'permissionserrorstext-withaction' => 'Немате дозволу за $2 из {{PLURAL:$1|следећег|следећих}} разлога:',
 'recreate-moveddeleted-warn' => "'''Упозорење: поново правите страницу која је претходно обрисана.'''
@@ -1608,7 +1607,7 @@ $1",
 'youremail' => 'Е-адреса:',
 'username' => '{{GENDER:$1|Корисничко име}}:',
 'uid' => '{{GENDER:$1|Кориснички}} ID:',
-'prefs-memberingroups' => 'Члан {{PLURAL:$1|групе|групâ}}:',
+'prefs-memberingroups' => '{{GENDER:$2|Корисник|Корисница}} је члан {{PLURAL:$1|групе|група}}:',
 'prefs-memberingroups-type' => '$1',
 'prefs-registration' => 'Време уписа:',
 'prefs-registration-date-time' => '$1',
@@ -1720,7 +1719,7 @@ $1",
 'right-reupload-shared' => 'мењање датотека на дељеном складишту мултимедије',
 'right-upload_by_url' => 'отпремање датотека са веб адресе',
 'right-purge' => 'чишћење кеш меморије странице без потврде',
-'right-autoconfirmed' => 'уређивање полузаштићених страница',
+'right-autoconfirmed' => 'Not be affected by IP-based rate limits',
 'right-bot' => 'сматрање измена као аутоматски процес',
 'right-nominornewtalk' => 'непоседовање малих измена на страницама за разговор отвара прозор за нове поруке',
 'right-apihighlimits' => 'коришћење виших граница за упите из АПИ-ја',
@@ -1740,9 +1739,10 @@ $1",
 'right-hideuser' => 'блокирање корисничког имена и његово сакривање од јавности',
 'right-ipblock-exempt' => 'заобилажење блокирања IP адресе, самоблокирања и блокирања опсега',
 'right-proxyunbannable' => 'заобилажење самоблокирања посредника',
-'right-unblockself' => 'деблокирање самог себе',
-'right-protect' => 'мењање заштићених страница и степена заштите',
-'right-editprotected' => 'уређивање заштићених страница (с преносивом заштитом)',
+'right-unblockself' => 'Одблокирај самог себе',
+'right-protect' => 'Промени нивое заштите и уреди каскадно заштићене странице',
+'right-editprotected' => 'Уреди странице под заштитом „{{int:protect-level-sysop}}“',
+'right-editsemiprotected' => 'Уреди странице под заштитом „{{int:protect-level-autoconfirmed}}“',
 'right-editinterface' => 'уређивање корисничког окружења',
 'right-editusercssjs' => 'уређивање туђих CSS и јаваскрипт датотека',
 'right-editusercss' => 'уређивање туђих CSS датотека',
@@ -1811,6 +1811,7 @@ $1",
 'action-userrights-interwiki' => 'уређивање корисничких права на другим викијима',
 'action-siteadmin' => 'закључавање или откључавање базе података',
 'action-sendemail' => 'слање е-порука',
+'action-editmywatchlist' => 'измени свој списак надгледања',
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|измена|измене|измена}}',
@@ -2349,7 +2350,7 @@ $1',
 'ancientpages' => 'Најстарије странице',
 'move' => 'премести',
 'movethispage' => 'Премести ову страницу',
-'unusedimagestext' => 'Следеће датотеке постоје, али нису уграђене ни у једну страницу.
+'unusedimagestext' => 'Следеће датотеке постоје, али не користе се ни у једној страници.
 Друге веб странице могу користити слику преко директне адресе, тако да и поред тога могу бити приказане овде поред активне употребе.',
 'unusedcategoriestext' => 'Следеће странице категорија постоје иако их ниједан други чланак или категорија не користе.',
 'notargettitle' => 'Нема одредишта',
@@ -2448,7 +2449,8 @@ $1',
 'listgrouprights' => 'Права корисничких група',
 'listgrouprights-summary' => 'Следи списак корисничких група на овом викију, заједно с правима приступа.
 Погледајте [[{{MediaWiki:Listgrouprights-helppage}}|више детаља]] о појединачним правима.',
-'listgrouprights-key' => '* <span class="listgrouprights-granted">Додељено право</span>
+'listgrouprights-key' => 'Легенда:
+* <span class="listgrouprights-granted">Додељено право</span>
 * <span class="listgrouprights-revoked">Укинуто право</span>',
 'listgrouprights-group' => 'Група',
 'listgrouprights-rights' => 'Права',
@@ -3328,12 +3330,12 @@ $1',
 'pageinfo-article-id' => 'ИД странице',
 'pageinfo-language' => 'Језик садржаја странице',
 'pageinfo-robot-policy' => 'Статус претраживача',
-'pageinfo-robot-index' => 'Може да се попише',
-'pageinfo-robot-noindex' => 'Не може да се попише',
+'pageinfo-robot-index' => 'Дозвољено',
+'pageinfo-robot-noindex' => 'Није дозвољено',
 'pageinfo-views' => 'Број прегледа',
 'pageinfo-watchers' => 'Број надгледача страница',
 'pageinfo-few-watchers' => 'Мање од $1 {{PLURAL:$1|пратиоца|пратилаца}}',
-'pageinfo-redirects-name' => 'Преусмеравања на страницу',
+'pageinfo-redirects-name' => 'Број преусмерења на ову страницу',
 'pageinfo-subpages-name' => 'Подстранице ове странице',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|преусмерење|преусмерења|преусмерења}}; $3 {{PLURAL:$3|непреусмерење|непреусмерења|непреусмерења}})',
 'pageinfo-firstuser' => 'Аутор странице',
@@ -3448,6 +3450,7 @@ $1',
 'minutes' => '{{PLURAL:$1|$1 минут|$1 минута|$1 минута}}',
 'hours' => '{{PLURAL:$1|$1 сат|$1 сата|$1 сати}}',
 'days' => '{{PLURAL:$1|$1 дан|$1 дана|$1 дана}}',
+'weeks' => '{{PLURAL:$1|$1 седмица}}',
 'ago' => 'пре $1',
 'just-now' => 'управо сад',
 
@@ -3741,7 +3744,7 @@ $8',
 'exif-compression-34712' => 'JPEG2000',
 
 'exif-copyrighted-true' => 'Заштићено ауторским правом',
-'exif-copyrighted-false' => 'Јавно власништво',
+'exif-copyrighted-false' => 'Статус ауторских права није подешен',
 
 'exif-photometricinterpretation-2' => 'RGB',
 'exif-photometricinterpretation-6' => 'YCbCr',
@@ -4021,9 +4024,10 @@ $3
 $5
 
 Овај потврдни код истиче $6 у $7.',
-'confirmemail_body_set' => 'Неко, вероватно ви, са ИП адресе $1 је променио е-адресу налога „$2“ у ову адресу на викију {{SITENAME}}.
+'confirmemail_body_set' => 'Неко, вероватно ви, са ИП адресе $1 
+је променио е-адресу налога „$2“ у ову адресу на {{SITENAME}}.
 
-Да бисте потврдили да овај налог стварно припада вама и поново активирали могућности е-поште, отворите следећу везу у прегледачу:
+Да бисмо потврдили да овај налог стварно припада вама и поново активирали могућности е-поште на {{SITENAME}}, отворите следећу везу у прегледачу:
 
 $3
 
@@ -4031,7 +4035,7 @@ $3
 
 $5
 
-Овај потврдни код истиче $6 у $7.',
+Овај потврдни код истиче $4.',
 'confirmemail_invalidated' => 'Потврда е-поште је отказана',
 'invalidateemail' => 'Отказивање потврде е-поште',
 
@@ -4228,6 +4232,7 @@ $5
 'version-license' => 'Лиценца',
 'version-poweredby-credits' => "Овај вики покреће '''[//www.mediawiki.org/ Медијавики]''', ауторска права © 2001-$1 $2.",
 'version-poweredby-others' => 'остали',
+'version-poweredby-translators' => 'translatewiki.net преводиоци',
 'version-credits-summary' => 'Желели бисмо да захвалимо следећим људима на њиховом доприносу [[Special:Version|Медијавикији]].',
 'version-license-info' => 'Медијавики је слободан софтвер можете га редистрибуирати и/или модификовати под условима ГНУ-ове опште јавне лиценце верзија 2 или сваке следеће коју објави Задужбина за слободан софтвер.
 
@@ -4347,17 +4352,17 @@ $5
 'sqlite-no-fts' => '$1 без подршке претраге целог текста',
 
 # New logging system
-'logentry-delete-delete' => '$1 {{GENDER:|је обрисао|је обрисала|је обрисао}} $3',
-'logentry-delete-restore' => '$1 {{GENDER:|је вратио|је вратила|је вратио}} страницу $3',
-'logentry-delete-event' => '$1 {{GENDER:$2|је променио|је променила|је променио}} видљивост {{PLURAL:$5|догађаја|$5 догађаја|$5 догађаја}} у дневнику на $3: $4',
-'logentry-delete-revision' => '$1 {{GENDER:|је променио|је променила|је променио}} видљивост {{PLURAL:$5|измене|$5 измене|$5 измена}} на страници $3: $4',
-'logentry-delete-event-legacy' => '$1 {{GENDER:|је променио|је променила|је променио}} видљивост догађајâ у дневнику на $3',
-'logentry-delete-revision-legacy' => '$1 {{GENDER:|је променио|је променила|је променио}} видљивост изменâ на страници $3',
-'logentry-suppress-delete' => '$1 {{GENDER:|је потиснуо|је потиснула|је потиснуо}} страницу $3',
-'logentry-suppress-event' => '$1 је потајно {{GENDER:|променио|променила|променио}} видљивост {{PLURAL:$5|догађаја|$5 догађаја|$5 догађаја}} у дневнику на $3: $4',
-'logentry-suppress-revision' => '$1 је потајно {{GENDER:|променио|променила|променио}} видљивост {{PLURAL:$5|измене|$5 измене|$5 измена}} на страници $3: $4',
-'logentry-suppress-event-legacy' => '$1 је потајно {{GENDER:|променио|променила|променио}} видљивост догађајâ у дневнику на $3',
-'logentry-suppress-revision-legacy' => '$1 је потајно {{GENDER:|променио|променила|променио}} видљивост изменâ на страници $3',
+'logentry-delete-delete' => '$1 је {{GENDER:|обрисао|обрисала}} $3',
+'logentry-delete-restore' => '$1 је {{GENDER:$2|вратио|вратила}} страницу $3',
+'logentry-delete-event' => '$1 је {{GENDER:$2|променио|променила}} видљивост {{PLURAL:$5|догађаја|$5 догађаја}} у дневнику на $3: $4',
+'logentry-delete-revision' => '$1 је {{GENDER:$2|променио|променила}} видљивост {{PLURAL:$5|измене|$5 измена}} на страници $3: $4',
+'logentry-delete-event-legacy' => '$1 је {{GENDER:$2|променио|променила}} видљивост догађаја у дневнику на $3',
+'logentry-delete-revision-legacy' => '$1 је {{GENDER:$2|променио|променила}} видљивост изменâ на страници $3',
+'logentry-suppress-delete' => '$1 је {{GENDER:$2|потиснуо|потиснула}} страницу $3',
+'logentry-suppress-event' => '$1 је потајно {{GENDER:$2|променио|променила}} видљивост {{PLURAL:$5|догађаја|$5 догађаја}} у дневнику на $3: $4',
+'logentry-suppress-revision' => '$1 је потајно {{GENDER:$2|променио|променила}} видљивост {{PLURAL:$5|измене|$5 измена}} на страници $3: $4',
+'logentry-suppress-event-legacy' => '$1 је потајно {{GENDER:$2|променио|променила}} видљивост догађајâ у дневнику на $3',
+'logentry-suppress-revision-legacy' => '$1 је потајно {{GENDER:$2|променио|променила}} видљивост изменâ на страници $3',
 'revdelete-content-hid' => 'садржај је сакривен',
 'revdelete-summary-hid' => 'опис измене је сакривен',
 'revdelete-uname-hid' => 'корисничко име је сакривено',
@@ -4370,15 +4375,16 @@ $5
 'logentry-move-move-noredirect' => '$1 је {{GENDER:$2|преместио|преместила}} страницу $3 на $4 без остављања преусмерења',
 'logentry-move-move_redir' => '$1 је {{GENDER:$2|преместио|преместила}} страницу $3 на $4 преко преусмерења',
 'logentry-move-move_redir-noredirect' => '$1 је {{GENDER:$2|преместио|преместила}} страницу $3 на $4 преко преусмерења без остављања преусмерења',
-'logentry-patrol-patrol' => '$1 {{GENDER:|је означио|је означила|је означио}} измену $4 странице $3 као патролирану',
+'logentry-patrol-patrol' => '$1 је {{GENDER:$2|означио|означила}} измену $4 странице $3 као патролирану',
 'logentry-patrol-patrol-auto' => '$1 је аутоматски {{GENDER:$2|означио|означила}} измену $4 странице $3 као прегледану',
 'logentry-newusers-newusers' => '$1 је {{GENDER:$2|отворио|отворила}} кориснички налог',
 'logentry-newusers-create' => '$1 је {{GENDER:$2|отворио|отворила}} кориснички налог',
 'logentry-newusers-create2' => '$1 је {{GENDER:$2|отворио|отворила}} кориснички налог $3',
+'logentry-newusers-byemail' => 'Кориснички налог $3 је {{GENDER:$2|направљен}} од стране $1 и лозинка је послата на е-пошту',
 'logentry-newusers-autocreate' => 'Кориснички налог $1 је аутоматски {{GENDER:$2|отворен}}',
-'logentry-rights-rights' => '$1 {{GENDER:$1|је променио|је променила|је променио}} чланство групе за $3 из $4 у $5',
-'logentry-rights-rights-legacy' => '$1 {{GENDER:$1|је променио|је променила|је променио}} чланство групе за $3',
-'logentry-rights-autopromote' => '$1 је аутоматски {{GENDER:$1|унапређен|унапређена|унапређен}} из $4 у $5',
+'logentry-rights-rights' => '$1 је {{GENDER:$2|променио|променила}} чланство групе за $3 из $4 у $5',
+'logentry-rights-rights-legacy' => '$1 је {{GENDER:$2|променио|променила}} чланство групе за $3',
+'logentry-rights-autopromote' => '$1 је аутоматски {{GENDER:$2|унапређен|унапређена}} из $4 у $5',
 'rightsnone' => '(ништа)',
 
 # Feedback
@@ -4455,6 +4461,10 @@ $5
 'duration-millennia' => '$1 {{PLURAL:$1|миленијум|миленијума|миленијума}}',
 
 # Image rotation
-'rotate-comment' => 'Слика је ротирана у смеру казаљке на сату за степени: $1',
+'rotate-comment' => 'Слика је ротирана у смеру казаљке на сату за {{PLURAL:$1|степени}}',
+
+# Limit report
+'limitreport-postexpandincludesize-value' => '$1/$2 бајтова',
+'limitreport-templateargumentsize-value' => '$1/$2 бајтова',
 
 );

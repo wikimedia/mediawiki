@@ -2735,7 +2735,7 @@ $1',
 'mycontris' => 'Contribuciones',
 'contribsub2' => '$1 ($2)',
 'nocontribs' => 'No se encontraron cambios que cumplieran estos criterios.',
-'uctop' => '(Edición actual)',
+'uctop' => '(edición actual)',
 'month' => 'Desde el mes (y anteriores):',
 'year' => 'Desde el año (y anteriores):',
 
