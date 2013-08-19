@@ -1414,7 +1414,8 @@ class Parser {
 	 */
 	public function doQuotes( $text ) {
 		$arr = preg_split( "/(''+)/", $text, -1, PREG_SPLIT_DELIM_CAPTURE );
-		if ( count( $arr ) == 1 ) {
+		$countarr = count( $arr );
+		if ( $countarr == 1 ) {
 			return $text;
 		}
 
@@ -1423,26 +1424,29 @@ class Parser {
 		// of bold and italics mark-ups.
 		$numbold = 0;
 		$numitalics = 0;
-		for ( $i = 1; $i < count( $arr ); $i+=2 ) {
+		for ( $i = 1; $i < $countarr; $i+=2 ) {
+			$thislen = strlen( $arr[$i] );
 			// If there are ever four apostrophes, assume the first is supposed to
 			// be text, and the remaining three constitute mark-up for bold text.
 			// (bug 13227: ''''foo'''' turns into ' ''' foo ' ''')
-			if ( strlen( $arr[$i] ) == 4 ) {
+			if ( $thislen == 4 ) {
 				$arr[$i - 1] .= "'";
 				$arr[$i] = "'''";
-			} elseif ( strlen( $arr[$i] ) > 5 ) {
+				$thislen = 3;
+			} elseif ( $thislen > 5 ) {
 				// If there are more than 5 apostrophes in a row, assume they're all
 				// text except for the last 5.
 				// (bug 13227: ''''''foo'''''' turns into ' ''''' foo ' ''''')
-				$arr[$i - 1] .= str_repeat( "'", strlen( $arr[$i] ) - 5 );
+				$arr[$i - 1] .= str_repeat( "'", $thislen - 5 );
 				$arr[$i] = "'''''";
+				$thislen = 5;
 			}
 			// Count the number of occurrences of bold and italics mark-ups.
-			if ( strlen( $arr[$i] ) == 2 ) {
+			if ( $thislen == 2 ) {
 				$numitalics++;
-			} elseif ( strlen( $arr[$i] ) == 3 ) {
+			} elseif ( $thislen == 3 ) {
 				$numbold++;
-			} elseif ( strlen( $arr[$i] ) == 5 ) {
+			} elseif ( $thislen == 5 ) {
 				$numitalics++;
 				$numbold++;
 			}
@@ -1456,7 +1460,7 @@ class Parser {
 			$firstsingleletterword = -1;
 			$firstmultiletterword = -1;
 			$firstspace = -1;
-			for ( $i = 1; $i < count( $arr ); $i+=2 ) {
+			for ( $i = 1; $i < $countarr; $i+=2 ) {
 				if ( strlen( $arr[$i] ) == 3 ) {
 					$x1 = substr( $arr[$i - 1], -1 );
 					$x2 = substr( $arr[$i - 1], -2, 1 );
@@ -1467,6 +1471,9 @@ class Parser {
 					} elseif ( $x2 === ' ' ) {
 						if ( $firstsingleletterword == -1 ) {
 							$firstsingleletterword = $i;
+							// if $firstsingleletterword is set, we don't
+							// look at the other options, so we can bail early.
+							break;
 						}
 					} else {
 						if ( $firstmultiletterword == -1 ) {
@@ -1506,7 +1513,8 @@ class Parser {
 					$output .= $r;
 				}
 			} else {
-				if ( strlen( $r ) == 2 ) {
+				$thislen = strlen( $r );
+				if ( $thislen == 2 ) {
 					if ( $state === 'i' ) {
 						$output .= '</i>';
 						$state = '';
@@ -1523,7 +1531,7 @@ class Parser {
 						$output .= '<i>';
 						$state .= 'i';
 					}
-				} elseif ( strlen( $r ) == 3 ) {
+				} elseif ( $thislen == 3 ) {
 					if ( $state === 'b' ) {
 						$output .= '</b>';
 						$state = '';
@@ -1540,7 +1548,7 @@ class Parser {
 						$output .= '<b>';
 						$state .= 'b';
 					}
-				} elseif ( strlen( $r ) == 5 ) {
+				} elseif ( $thislen == 5 ) {
 					if ( $state === 'b' ) {
 						$output .= '</b><i>';
 						$state = 'i';
