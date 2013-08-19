@@ -499,9 +499,20 @@ class RevDel_FileList extends RevDel_List {
 	}
 
 	public function doPostCommitUpdates() {
+		global $wgUseSquid;
 		$file = wfLocalFile( $this->title );
 		$file->purgeCache();
 		$file->purgeDescription();
+		$purgeUrls = array();
+		foreach ( $this->ids as $timestamp ) {
+			$archiveName = $timestamp . '!' . $this->title->getDBkey();
+			$file->purgeOldThumbnails( $archiveName );
+			$purgeUrls[] = $file->getArchiveUrl( $archiveName );
+		}
+		if ( $wgUseSquid ) {
+			// purge full images from cache
+			SquidUpdate::purge( $purgeUrls );
+		}
 		return Status::newGood();
 	}
 
