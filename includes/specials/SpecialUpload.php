@@ -340,7 +340,7 @@ class SpecialUpload extends SpecialPage {
 			if ( $warning == 'exists' ) {
 				$msg = "\t<li>" . self::getExistsWarning( $args ) . "</li>\n";
 			} elseif ( $warning == 'duplicate' ) {
-				$msg = self::getDupeWarning( $args );
+				$msg = $this->getDupeWarning( $args );
 			} elseif ( $warning == 'duplicate-archive' ) {
 				$msg = "\t<li>" . $this->msg( 'file-deleted-duplicate',
 						Title::makeTitle( NS_FILE, $args )->getPrefixedText() )->parse()
@@ -677,7 +677,7 @@ class SpecialUpload extends SpecialPage {
 	 * @param $dupes array
 	 * @return string
 	 */
-	public static function getDupeWarning( $dupes ) {
+	public function getDupeWarning( $dupes ) {
 		if ( !$dupes ) {
 			return '';
 		}
