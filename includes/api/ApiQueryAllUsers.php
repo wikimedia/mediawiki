@@ -151,7 +151,12 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		}
 
 		if ( $params['activeusers'] ) {
-			global $wgActiveUserDays;
+			global $wgActiveUserDays, $wgMiserMode;
+
+			if ( !$wgMiserMode ) {
+				$this->dieUsage( 'Active users listing is disabled in miser mode', 'activeusersdisabled' );
+			}
+
 			$this->addTables( 'recentchanges' );
 
 			$this->addJoinConds( array( 'recentchanges' => array(
@@ -432,6 +437,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'code' => 'group-excludegroup', 'info' => 'group and excludegroup cannot be used together' ),
+			array( 'code' => 'activeusersdisabled', 'info' => 'Active users listing is disabled in miser mode' ),
 		) );
 	}
 
