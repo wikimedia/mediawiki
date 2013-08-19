@@ -4,18 +4,21 @@
 jQuery( function ( $ ) {
 	$( 'div.vectorMenu' ).each( function () {
 		var $el = $( this );
-		$el.find( 'h3:first a:first' )
-			// For accessibility, show the menu when the hidden link in the menu is clicked (bug 24298)
+		$el.find( '> h3 > a:first' )
+			// For accessibility, show the menu when the hidden link in the menu is clicked (bug 24298/46486)
 			.click( function ( e ) {
 				$el.find( '.menu:first' ).toggleClass( 'menuForceShow' );
 				e.preventDefault();
 			} )
-			// When the hidden link has focus, also set a class that will change the arrow icon
+			// When the hidden link has focus, also set a class that will change the arrow icon and fake
+			// the arrow box to have focus
 			.focus( function () {
 				$el.addClass( 'vectorMenuFocus' );
+				$(this).parent().addClass( 'vectorFakeFocus' );
 			} )
 			.blur( function () {
 				$el.removeClass( 'vectorMenuFocus' );
+				$(this).parent().removeClass( 'vectorFakeFocus' );
 			} );
 	} );
 
