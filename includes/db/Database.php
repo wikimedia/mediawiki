@@ -3233,6 +3233,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		if ( $this->mTrxDoneWrites ) {
 			Profiler::instance()->transactionWritingOut( $this->mServer, $this->mDBname );
 		}
+		$this->mTrxDoneWrites = false;
 		$this->runOnTransactionIdleCallbacks();
 	}
 
@@ -3267,6 +3268,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		if ( $this->mTrxDoneWrites ) {
 			Profiler::instance()->transactionWritingOut( $this->mServer, $this->mDBname );
 		}
+		$this->mTrxDoneWrites = false;
 	}
 
 	/**
@@ -3851,9 +3853,15 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		return (string)$this->mConn;
 	}
 
+	/**
+	 * Run a few simple sanity checks
+	 */
 	public function __destruct() {
+		if ( $this->mTrxLevel && $this->mTrxDoneWrites ) {
+			trigger_error( "DB transaction with writes still pending." );
+		}
 		if ( count( $this->mTrxIdleCallbacks ) || count( $this->mTrxPreCommitCallbacks ) ) {
-			trigger_error( "Transaction idle or pre-commit callbacks still pending." ); // sanity
+			trigger_error( "DB transaction idle or pre-commit callbacks still pending." );
 		}
 	}
 }
