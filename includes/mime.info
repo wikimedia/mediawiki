@@ -39,6 +39,7 @@ audio/x-pn-realaudio	[AUDIO]
 audio/x-realaudio	[AUDIO]
 audio/webm		[AUDIO]
 audio/x-matroska	[AUDIO]
+audio/x-flac		[AUDIO]
 
 video/mpeg application/mpeg	[VIDEO]
 video/ogg			[VIDEO]
