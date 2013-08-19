@@ -1242,6 +1242,7 @@ class LocalFile extends File {
 	 * @return FileRepoStatus object.
 	 */
 	function delete( $reason, $suppress = false ) {
+		global $wgUseSquid;
 		$this->lock(); // begin
 
 		$batch = new LocalFileDeleteBatch( $this, $reason, $suppress );
@@ -1267,6 +1268,15 @@ class LocalFile extends File {
 
 		$this->unlock(); // done
 
+		if ( $wgUseSquid ) {
+			// Purge the squid
+			$purgeUrls = array();
+			foreach ($archiveNames as $archiveName ) {
+				$purgeUrls[] = $this->getArchiveUrl( $archiveName );
+			}
+			SquidUpdate::purge( $purgeUrls );
+		}
+
 		return $status;
 	}
 
@@ -1285,6 +1295,7 @@ class LocalFile extends File {
 	 * @return FileRepoStatus object.
 	 */
 	function deleteOld( $archiveName, $reason, $suppress = false ) {
+		global $wgUseSquid;
 		$this->lock(); // begin
 
 		$batch = new LocalFileDeleteBatch( $this, $reason, $suppress );
@@ -1297,6 +1308,11 @@ class LocalFile extends File {
 		if ( $status->ok ) {
 			$this->purgeDescription();
 			$this->purgeHistory();
+		}
+
+		if ( $wgUseSquid ) {
+			// Purge the squid
+			SquidUpdate::purge( array( $this->getArchiveUrl( $archiveName ) ) );
 		}
 
 		return $status;
