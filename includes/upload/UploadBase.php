@@ -940,8 +940,13 @@ abstract class UploadBase {
 		$match = $magic->isMatchingExtension( $extension, $mime );
 
 		if ( $match === null ) {
-			wfDebug( __METHOD__ . ": no file extension known for mime type $mime, passing file\n" );
-			return true;
+			if ( $magic->getTypesForExtension( $extension ) !== null ) {
+				wfDebug( __METHOD__ . ": No extension known for $mime, but we know a mime for $extension\n" );
+				return false;
+			} else {
+				wfDebug( __METHOD__ . ": no file extension known for mime type $mime, passing file\n" );
+				return true;
+			}
 		} elseif ( $match === true ) {
 			wfDebug( __METHOD__ . ": mime type $mime matches extension $extension, passing file\n" );
 
