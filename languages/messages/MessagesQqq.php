@@ -1466,8 +1466,12 @@ See also:
 *Parameter $2 is the name entered as username.
 *Parameter $3 is a password (randomly generated).
 *Parameter $4 is a URL to the wiki',
-'login-throttled' => 'Error message shown at [[Special:UserLogin]] after the user has tried to login with incorrect password too many times. The user has to wait a certain time before trying to log in again.
-* $1: the time to wait before the next login attempt. Automatically formatted using the [//www.mediawiki.org/w/index.php?title=Special%3AAllMessages&prefix=duration&filter=all duration-* messages].
+'login-throttled' => 'Error message shown at [[Special:UserLogin]] after the user has tried to login with incorrect password too many times; also used by [[Special:ChangeEmail]] and [[Special:ChangePassword]].
+
+The user has to wait a certain time before trying to log in again.
+
+Parameters:
+* $1 - the time to wait before the next login attempt. Automatically formatted using the [//www.mediawiki.org/w/index.php?title=Special%3AAllMessages&prefix=duration&filter=all duration-* messages].
 This is a protection against robots trying to find the password by trying lots of them. The number of attempts and waiting time are configured via [[mw:Manual:$wgPasswordAttemptThrottle|$wgPasswordAttemptThrottle]].',
 'login-abort-generic' => 'The generic unsuccessful login message is used unless otherwise specified by hook writers',
 'loginlanguagelabel' => 'Used on [[Special:UserLogin]] if $wgLoginLanguageSelector is true. $1 is a pipe-separated list built from the names that appear in the message {{msg-mw|Loginlanguagelinks}}.
