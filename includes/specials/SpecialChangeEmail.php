@@ -225,7 +225,7 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 	 * @return bool|string true or string on success, false on failure
 	 */
 	protected function attemptChange( User $user, $pass, $newaddr ) {
-		global $wgAuth;
+		global $wgAuth, $wgPasswordAttemptThrottle;
 
 		if ( $newaddr != '' && !Sanitizer::validateEmail( $newaddr ) ) {
 			$this->error( 'invalidemailaddress' );
@@ -235,7 +235,8 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 
 		$throttleCount = LoginForm::incLoginThrottle( $user->getName() );
 		if ( $throttleCount === true ) {
-			$this->error( 'login-throttled' );
+			$lang = $this->getLanguage();
+			$this->error( array( 'login-throttled', $lang->formatDuration( $wgPasswordAttemptThrottle['seconds'] ) ) );
 
 			return false;
 		}

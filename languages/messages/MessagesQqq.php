@@ -1490,10 +1490,8 @@ Parameters:
 * $3 - a password (randomly generated)
 * $4 - a URL to the wiki ('<' + server name + script name + '>')
 * $5 - (Unused) number of days to password expiry date",
-'login-throttled' => '{{doc-important|<code>$1</code> is empty, which is used in [[Special:ChangeEmail]] and [[Special:ChangePassword]].}}
-Used as error message in [[Special:ChangeEmail]], [[Special:ChangePassword]], and [[Special:UserLogin]].
+'login-throttled' => 'Error message shown at [[Special:UserLogin]] after the user has tried to login with incorrect password too many times; also used by [[Special:ChangeEmail]] and [[Special:ChangePassword]].
 
-Error message shown at [[Special:UserLogin]] after the user has tried to login with incorrect password too many times.
 The user has to wait a certain time before trying to log in again.
 
 Parameters:
