@@ -244,6 +244,10 @@ div.vectorMenuFocus {
 	background-image: linear-gradient(transparent, transparent), url(images/arrow-down-focus-icon.svg);
 	background-position: 100% 60%;
 }
+.vectorFakeFocus {
+	/* Emulate the browser's focus outline */
+	outline: 1px dotted;
+}
 /* @noflip */
 body.rtl div.vectorMenu {
 	direction: rtl;
