@@ -230,6 +230,8 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 	 * @throws PasswordError when cannot set the new password because requirements not met.
 	 */
 	protected function attemptReset( $newpass, $retype ) {
+		global $wgPasswordAttemptThrottle;
+
 		$isSelf = ( $this->mUserName === $this->getUser()->getName() );
 		if ( $isSelf ) {
 			$user = $this->getUser();
@@ -248,7 +250,10 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 
 		$throttleCount = LoginForm::incLoginThrottle( $this->mUserName );
 		if ( $throttleCount === true ) {
-			throw new PasswordError( $this->msg( 'login-throttled' )->text() );
+			throw new PasswordError( $this->msg( 'login-throttled' )
+			->params ( $lang->formatDuration( $wgPasswordAttemptThrottle['seconds'] ) )
+			->text()
+			);
 		}
 
 		$abortMsg = 'resetpass-abort-generic';
