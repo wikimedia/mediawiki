@@ -39,6 +39,9 @@ production.
   page protection levels. The rights 'editprotected' and 'editsemiprotected'
   are now used for this purpose instead.
 * (bug 40866) wgOldChangeTagsIndex removed.
+* The checkbox for staying in HTTPS displayed on the login form when $wgSecureLogin is
+  enabled has been removed. Instead, whether the user stays in HTTPS will be determined
+  based on the user's preferences, and whether they came from HTTPS or not.
 
 === New features in 1.22 ===
 * (bug 44525) mediawiki.jqueryMsg can now parse (whitelisted) HTML elements and attributes.

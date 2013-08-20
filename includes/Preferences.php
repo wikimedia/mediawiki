@@ -188,7 +188,8 @@ class Preferences {
 		global $wgAuth, $wgContLang, $wgParser, $wgCookieExpiration, $wgLanguageCode,
 			$wgDisableTitleConversion, $wgDisableLangConversion, $wgMaxSigChars,
 			$wgEnableEmail, $wgEmailConfirmToEdit, $wgEnableUserEmail, $wgEmailAuthentication,
-			$wgEnotifWatchlist, $wgEnotifUserTalk, $wgEnotifRevealEditorAddress;
+			$wgEnotifWatchlist, $wgEnotifUserTalk, $wgEnotifRevealEditorAddress,
+			$wgSecureLogin;
 
 		// retrieving user name for GENDER and misc.
 		$userName = $user->getName();
@@ -311,6 +312,15 @@ class Preferences {
 				'label' => $context->msg( 'tog-rememberpassword' )->numParams(
 					ceil( $wgCookieExpiration / ( 3600 * 24 ) ) )->text(),
 				'section' => 'personal/info',
+			);
+		}
+		// Only show preferhttps if secure login is turned on
+		if ( $wgSecureLogin ) {
+			$defaultPreferences['prefershttps'] = array(
+				'type' => 'toggle',
+				'label-message' => 'tog-prefershttps',
+				'default' => true,
+				'section' => 'personal/info'
 			);
 		}
 

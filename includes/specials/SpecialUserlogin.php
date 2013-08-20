@@ -105,7 +105,7 @@ class LoginForm extends SpecialPage {
 		$this->mLoginattempt = $request->getCheck( 'wpLoginattempt' );
 		$this->mAction = $request->getVal( 'action' );
 		$this->mRemember = $request->getCheck( 'wpRemember' );
-		$this->mStickHTTPS = $request->getCheck( 'wpStickHTTPS' );
+		$this->mStickHTTPS = $request->getBool( 'wpStickHTTPS' );
 		$this->mLanguage = $request->getText( 'uselang' );
 		$this->mSkipCookieCheck = $request->getCheck( 'wpSkipCookieCheck' );
 		$this->mToken = ( $this->mType == 'signup' ) ? $request->getVal( 'wpCreateaccountToken' ) : $request->getVal( 'wpLoginToken' );
@@ -747,6 +747,10 @@ class LoginForm extends SpecialPage {
 					$user->invalidateCache();
 				}
 
+				if ( $user->requiresHTTPS() ) {
+					$this->mStickHTTPS = true;
+				}
+
 				if ( $wgSecureLogin && !$this->mStickHTTPS ) {
 					$user->setCookies( null, false );
 				} else {
@@ -1151,7 +1155,7 @@ class LoginForm extends SpecialPage {
 		$template->set( 'usereason', $user->isLoggedIn() );
 		$template->set( 'remember', $user->getOption( 'rememberpassword' ) || $this->mRemember );
 		$template->set( 'cansecurelogin', ( $wgSecureLogin === true ) );
-		$template->set( 'stickHTTPS', $this->mStickHTTPS );
+		$template->set( 'stickHTTPS', (int)$this->mStickHTTPS );
 
 		if ( $this->mType === 'signup' && $user->isLoggedIn() ) {
 			$template->set( 'createAnother', true );
