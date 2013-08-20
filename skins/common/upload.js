@@ -141,11 +141,11 @@ window.wgUploadWarningObj = {
 			iiprop: 'uploadwarning',
 			indexpageids: '',
 		} ).done( function ( result ) {
-			var result = '';
+			var resultOut = '';
 			if ( result.query ) {
-				result = result.query.pages[result.query.pageids[0]].imageinfo[0];
+				resultOut = result.query.pages[result.query.pageids[0]].imageinfo[0];
 			}
-			uploadWarningObj.processResult( result, uploadWarningObj.nameToCheck );
+			uploadWarningObj.processResult( resultOut, uploadWarningObj.nameToCheck );
 		} );
 	},
 
