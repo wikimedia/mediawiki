@@ -2675,6 +2675,12 @@ $user  : User object that was changed
 $add   : Array of strings corresponding to groups added
 $remove: Array of strings corresponding to groups removed
 
+'UserRequiresHTTPS': Called to determine whether a user needs
+to be switched to HTTPS.
+$user: User in question.
+&$https: Boolean whether $user should be switched to HTTPS.
+
+
 'UserRetrieveNewTalks': Called when retrieving "You have new messages!"
 message(s).
 $user: user retrieving new talks messages
