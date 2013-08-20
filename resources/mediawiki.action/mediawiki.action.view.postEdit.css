@@ -5,6 +5,7 @@
 	height: 0;
 	left: 50%;
 	z-index: 1000;
+	font-size: 13px;
 }
 
 .postedit-container:hover {
@@ -16,7 +17,6 @@
 	top: 0.6em;
 	left: -50%;
 	padding: .6em 3.6em .6em 1.1em;
-	font-size: 0.8em;
 	line-height: 1.5625em;
 	color: #626465;
 	background-color: #f4f4f4;
