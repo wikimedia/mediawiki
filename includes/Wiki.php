@@ -307,7 +307,8 @@ class MediaWiki {
 				$output->redirect( $article );
 			} else {
 				wfProfileOut( __METHOD__ );
-				throw new MWException( "Shouldn't happen: MediaWiki::initializeArticle() returned neither an object nor a URL" );
+				throw new MWException( "Shouldn't happen: MediaWiki::initializeArticle()"
+					. " returned neither an object nor a URL" );
 			}
 		}
 
