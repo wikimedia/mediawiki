@@ -562,6 +562,22 @@ class LoadBalancer {
 	}
 
 	/**
+	 * Get a database connection handle reference without connecting yet
+	 *
+	 * The handle's methods wrap simply wrap those of a DatabaseBase handle
+	 *
+	 * @see LoadBalancer::getConnection() for parameter information
+	 *
+	 * @param integer $db
+	 * @param mixed $groups
+	 * @param string $wiki
+	 * @return DBConnRef
+	 */
+	public function getLazyConnectionRef( $db, $groups = array(), $wiki = false ) {
+		return new DBConnRef( $this, array( $db, $groups, $wiki ) );
+	}
+
+	/**
 	 * Open a connection to the server given by the specified index
 	 * Index must be an actual index into the array.
 	 * If the server is already open, returns it.
@@ -1088,6 +1104,7 @@ class LoadBalancer {
 
 /**
  * Helper class to handle automatically marking connectons as reusable (via RAII pattern)
+ * as well handling deferring the actual network connection until the handle is used
  *
  * @ingroup Database
  * @since 1.22
@@ -1095,23 +1112,35 @@ class LoadBalancer {
 class DBConnRef implements IDatabase {
 	/** @var LoadBalancer */
 	protected $lb;
-	/** @var DatabaseBase */
+	/** @var DatabaseBase|null */
 	protected $conn;
+	/** @var Array|null */
+	protected $params;
 
 	/**
 	 * @param $lb LoadBalancer
-	 * @param $conn DatabaseBase
+	 * @param $conn DatabaseBase|array Connection or (server index, group, wiki ID) array
 	 */
-	public function __construct( LoadBalancer $lb, DatabaseBase $conn ) {
+	public function __construct( LoadBalancer $lb, $conn ) {
 		$this->lb = $lb;
-		$this->conn = $conn;
+		if ( $conn instanceof DatabaseBase ) {
+			$this->conn = $conn;
+		} else {
+			$this->params = $conn;
+		}
 	}
 
 	public function __call( $name, $arguments ) {
+		if ( $this->conn === null ) {
+			list( $db, $groups, $wiki ) = $this->params;
+			$this->conn = $this->lb->getConnection( $db, $groups, $wiki );
+		}
 		return call_user_func_array( array( $this->conn, $name ), $arguments );
 	}
 
 	function __destruct() {
-		$this->lb->reuseConnection( $this->conn );
+		if ( $this->conn !== null ) {
+			$this->lb->reuseConnection( $this->conn );
+		}
 	}
 }
