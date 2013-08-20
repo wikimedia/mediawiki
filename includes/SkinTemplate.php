@@ -700,13 +700,11 @@ class SkinTemplate extends Skin {
 				'text' => $this->msg( $loginlink )->text(),
 				'href' => self::makeSpecialUrl( 'Userlogin', $returnto, $proto ),
 				'active' => $title->isSpecial( 'Userlogin' ) && ( $loginlink == 'nav-login-createaccount' || !$is_signup ),
-				'class' => $wgSecureLogin ? 'link-https' : ''
 			);
 			$createaccount_url = array(
 				'text' => $this->msg( 'createaccount' )->text(),
 				'href' => self::makeSpecialUrl( 'Userlogin', "$returnto&type=signup", $proto ),
 				'active' => $title->isSpecial( 'Userlogin' ) && $is_signup,
-				'class' => $wgSecureLogin ? 'link-https' : ''
 			);
 
 			if ( $this->showIPinHeader() ) {
