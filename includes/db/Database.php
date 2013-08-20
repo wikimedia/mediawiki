@@ -882,22 +882,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 *     for a successful read query, or false on failure if $tempIgnore set
 	 */
 	public function query( $sql, $fname = __METHOD__, $tempIgnore = false ) {
-		$isMaster = !is_null( $this->getLBInfo( 'master' ) );
-		if ( !Profiler::instance()->isStub() ) {
-			# generalizeSQL will probably cut down the query to reasonable
-			# logging size most of the time. The substr is really just a sanity check.
-
-			if ( $isMaster ) {
-				$queryProf = 'query-m: ' . substr( DatabaseBase::generalizeSQL( $sql ), 0, 255 );
-				$totalProf = 'DatabaseBase::query-master';
-			} else {
-				$queryProf = 'query: ' . substr( DatabaseBase::generalizeSQL( $sql ), 0, 255 );
-				$totalProf = 'DatabaseBase::query';
-			}
-
-			wfProfileIn( $totalProf );
-			wfProfileIn( $queryProf );
-		}
+		global $wgUser, $wgDebugDBTransactions;
 
 		$this->mLastQuery = $sql;
 		if ( !$this->mDoneWrites && $this->isWriteQuery( $sql ) ) {
@@ -907,7 +892,6 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		}
 
 		# Add a comment for easy SHOW PROCESSLIST interpretation
-		global $wgUser;
 		if ( is_object( $wgUser ) && $wgUser->isItemLoaded( 'name' ) ) {
 			$userName = $wgUser->getName();
 			if ( mb_strlen( $userName ) > 15 ) {
@@ -931,13 +915,27 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 			# is really used by application
 			$sqlstart = substr( $sql, 0, 10 ); // very much worth it, benchmark certified(tm)
 			if ( strpos( $sqlstart, "SHOW " ) !== 0 && strpos( $sqlstart, "SET " ) !== 0 ) {
-				global $wgDebugDBTransactions;
 				if ( $wgDebugDBTransactions ) {
 					wfDebug( "Implicit transaction start.\n" );
 				}
 				$this->begin( __METHOD__ . " ($fname)" );
 				$this->mTrxAutomatic = true;
 			}
+		}
+
+		$isMaster = !is_null( $this->getLBInfo( 'master' ) );
+		if ( !Profiler::instance()->isStub() ) {
+			# generalizeSQL will probably cut down the query to reasonable
+			# logging size most of the time. The substr is really just a sanity check.
+			if ( $isMaster ) {
+				$queryProf = 'query-m: ' . substr( DatabaseBase::generalizeSQL( $sql ), 0, 255 );
+				$totalProf = 'DatabaseBase::query-master';
+			} else {
+				$queryProf = 'query: ' . substr( DatabaseBase::generalizeSQL( $sql ), 0, 255 );
+				$totalProf = 'DatabaseBase::query';
+			}
+			wfProfileIn( $totalProf );
+			wfProfileIn( $queryProf );
 		}
 
 		# Keep track of whether the transaction has write queries pending
