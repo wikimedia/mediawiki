@@ -2607,7 +2607,9 @@ class User {
 		if ( !$wgSecureLogin ) {
 			return false;
 		} else {
-			return $this->getBoolOption( 'prefershttps' );
+			$https = $this->getBoolOption( 'prefershttps' );
+			wfRunHooks( 'UserRequiresHTTPS', array( $this, &$https ) );
+			return $https;
 		}
 	}
 
