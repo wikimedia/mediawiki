@@ -151,18 +151,6 @@ class UserloginTemplate extends BaseTemplate {
 	<?php } ?>
 		</div>
 
-	<?php if ( $this->data['cansecurelogin'] ) { ?>
-		<div>
-			<label class="mw-ui-checkbox-label">
-				<input name="wpStickHTTPS" type="checkbox" value="1" id="wpStickHTTPS" tabindex="5"
-					<?php if ( $this->data['stickHTTPS'] ) {
-						echo 'checked="checked"';
-					} ?>
-				>
-				<?php $this->msg( 'securelogin-stick-https' ); ?>
-			</label>
-		</div>
-	<?php } ?>
 		<div>
 			<?php
 			echo Html::input( 'wpLoginAttempt', $this->getMsg( 'login' )->text(), 'submit', array(
@@ -182,6 +170,7 @@ class UserloginTemplate extends BaseTemplate {
 		<?php } ?>
 <?php if ( $this->haveData( 'uselang' ) ) { ?><input type="hidden" name="uselang" value="<?php $this->text( 'uselang' ); ?>" /><?php } ?>
 <?php if ( $this->haveData( 'token' ) ) { ?><input type="hidden" name="wpLoginToken" value="<?php $this->text( 'token' ); ?>" /><?php } ?>
+<?php if ( $this->data['cansecurelogin'] ) {?><input type="hidden" name="wpStickHTTPS" value="<?php $this->text( 'stickHTTPS' ); ?>" /><?php } ?>
 </form>
 </div>
 </div>
