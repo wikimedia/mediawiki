@@ -513,8 +513,20 @@ class MediaWiki {
 			) &&
 			$request->detectProtocol() == 'http'
 		) {
-			$redirUrl = $request->getFullRequestURL();
-			$redirUrl = str_replace( 'http://', 'https://', $redirUrl );
+			$oldUrl = $request->getFullRequestURL();
+			$redirUrl = str_replace( 'http://', 'https://', $oldUrl );
+
+			if ( $request->wasPosted() ) {
+				// This is weird and we'd hope it almost never happens. This
+				// means that a POST came in via HTTP and policy requires us
+				// redirecting to HTTPS. It's likely such a request is going
+				// to fail due to post data being lost, but let's try anyway
+				// and just log the instance.
+				//
+				// @todo @fixme See if we could issue a 307 or 308 here, need
+				// to see how clients (automated & browser) behave when we do
+				wfDebugLog( 'RedirectedPosts', "Redirected from HTTP to HTTPS: $oldUrl" );
+			}
 
 			// Setup dummy Title, otherwise OutputPage::redirect will fail
 			$title = Title::newFromText( NS_MAIN, 'REDIR' );
