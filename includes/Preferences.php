@@ -49,8 +49,6 @@ class Preferences {
 	static $defaultPreferences = null;
 	static $saveFilters = array(
 			'timecorrection' => array( 'Preferences', 'filterTimezoneInput' ),
-			'cols' => array( 'Preferences', 'filterIntval' ),
-			'rows' => array( 'Preferences', 'filterIntval' ),
 			'rclimit' => array( 'Preferences', 'filterIntval' ),
 			'wllimit' => array( 'Preferences', 'filterIntval' ),
 			'searchlimit' => array( 'Preferences', 'filterIntval' ),
@@ -796,20 +794,6 @@ class Preferences {
 				)
 			);
 		}
-		$defaultPreferences['cols'] = array(
-			'type' => 'int',
-			'label-message' => 'columns',
-			'section' => 'editing/editor',
-			'min' => 4,
-			'max' => 1000,
-		);
-		$defaultPreferences['rows'] = array(
-			'type' => 'int',
-			'label-message' => 'rows',
-			'section' => 'editing/editor',
-			'min' => 4,
-			'max' => 1000,
-		);
 		if ( $user->isAllowed( 'minoredit' ) ) {
 			$defaultPreferences['minordefault'] = array(
 				'type' => 'toggle',

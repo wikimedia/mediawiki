@@ -201,12 +201,10 @@ class UserTest extends MediaWikiTestCase {
 		$user->addToDatabase();
 
 		$user->setOption( 'someoption', 'test' );
-		$user->setOption( 'cols', 200 );
 		$user->saveSettings();
 
 		$user = User::newFromName( 'UnitTestUser' );
 		$this->assertEquals( 'test', $user->getOption( 'someoption' ) );
-		$this->assertEquals( 200, $user->getOption( 'cols' ) );
 	}
 
 	/**
@@ -214,9 +212,7 @@ class UserTest extends MediaWikiTestCase {
 	 * Make sure defaults are loaded when setOption is called.
 	 */
 	public function testAnonOptions() {
-		global $wgDefaultUserOptions;
 		$this->user->setOption( 'someoption', 'test' );
-		$this->assertEquals( $wgDefaultUserOptions['cols'], $this->user->getOption( 'cols' ) );
 		$this->assertEquals( 'test', $this->user->getOption( 'someoption' ) );
 	}
 }
