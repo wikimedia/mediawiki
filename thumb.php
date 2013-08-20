@@ -168,6 +168,49 @@ function wfStreamThumb( array $params ) {
 
 	// Check the source file storage path
 	if ( !$img->exists() ) {
+		$redirectedLocation = false;
+		if ( !$isTemp ) {
+			// Check for file redirect
+			if ( $isOld ) {
+				// Since redirects are associated with pages, not versions of files,
+				// we look for the most current version to see if its a redirect.
+				$possibleRedirFile = RepoGroup::singleton()->getLocalRepo()->findFile( $bits[1] );
+			} else {
+				$possibleRedirFile = RepoGroup::singleton()->getLocalRepo()->findFile( $fileName );
+			}
+			if ( $possibleRedirFile && !is_null( $possibleRedirFile->getRedirected() ) ) {
+				$redirTarget = $possibleRedirFile->getName();
+				$targetFile = wfLocalFile( Title::makeTitleSafe( NS_FILE, $redirTarget ) );
+				if ( $targetFile->exists() ) {
+					$newThumbName = $targetFile->thumbName( $params );
+					if ( $isOld ) {
+						$newThumbUrl = $targetFile->getArchiveThumbUrl( $bits[0] . '!' . $targetFile->getName(), $newThumbName );
+					} else {
+						$newThumbUrl = $targetFile->getThumbUrl( $newThumbName );
+					}
+					$redirectedLocation = wfExpandUrl( $newThumbUrl, PROTO_CURRENT );
+				}
+			}
+		}
+
+		if ( $redirectedLocation ) {
+			// File has been moved. Give redirect.
+			$response = RequestContext::getMain()->getRequest()->response();
+			$response->header( "HTTP/1.1 302 " . HttpStatus::getMessage( 302 ) );
+			$response->header( 'Location: ' . $redirectedLocation );
+			$response->header( 'Expires: ' .
+				gmdate( 'D, d M Y H:i:s', time() + 12 * 3600 ) . ' GMT' );
+			if ( $wgVaryOnXFP ) {
+				$varyHeader[] = 'X-Forwarded-Proto';
+			}
+			if ( count( $varyHeader ) ) {
+				$response->header( 'Vary: ' . implode( ', ', $varyHeader ) );
+			}
+			wfProfileOut( __METHOD__ );
+			return;
+		}
+
+		// If its not a redirect that has a target as a local file, give 404.
 		wfThumbError( 404, "The source file '$fileName' does not exist." );
 		return;
 	} elseif ( $img->getPath() === false ) {
