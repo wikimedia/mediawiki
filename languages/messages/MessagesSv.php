@@ -766,7 +766,6 @@ Glöm inte att justera dina [[Special:Preferences|{{SITENAME}}-inställningar]].
 'remembermypassword' => 'Spara min inloggning på den här datorn (i max $1 {{PLURAL:$1|dygn|dygn}})',
 'userlogin-remembermypassword' => 'Håll mig inloggad',
 'userlogin-signwithsecure' => 'Använd säker anslutning',
-'securelogin-stick-https' => 'Fortsätt vara ansluten till HTTPS efter inloggning',
 'yourdomainname' => 'Din domän',
 'password-change-forbidden' => 'Du kan inte ändra lösenord på denna wiki.',
 'externaldberror' => 'Antingen inträffade autentiseringsproblem med en extern databas, eller så får du inte uppdatera ditt externa konto.',

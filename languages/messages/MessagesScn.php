@@ -573,7 +573,6 @@ Accura chi quarchi pàggina pò cuntinuari a èssiri ammustrata comu si nun avis
 'remembermypassword' => 'Arricorda la password supra stu computer (pi ô massimu $1 {{PLURAL:$1|jornu|jorna}})',
 'userlogin-remembermypassword' => 'Mantènimi culligatu',
 'userlogin-signwithsecure' => 'Usa na cunnissioni sicura',
-'securelogin-stick-https' => 'Resta cunnittutu cu HTTPS doppu la trasuta',
 'yourdomainname' => 'Lu tò dominiu',
 'password-change-forbidden' => 'Nun putiti canciari la password nti sta wiki',
 'externaldberror' => "S'havi virificatu n'erruri cû server d'autinticazzioni sternu, oppuru nun si disponi di l'auturizzazzioni nicissari p'aggiurnari lu propiu accessu sternu.",

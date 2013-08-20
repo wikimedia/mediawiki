@@ -481,7 +481,6 @@ Siz {{SITENAME}} saytını anonim olaraq istifadə etməyə davam edə bilər v�
 'yourpassword' => 'Parol:',
 'yourpasswordagain' => 'Parolu təkrar yazın:',
 'remembermypassword' => 'Məni bu kompyuterdə xatırla (maksimum $1 {{PLURAL:$1|gün|gün}})',
-'securelogin-stick-https' => 'Daxil olduqdan sonra HTTPS-lə əlaqədə qal',
 'yourdomainname' => 'Sizin domain',
 'password-change-forbidden' => 'Bu vikidə parolunuzu dəyişdirə bilməzsiniz.',
 'externaldberror' => 'Verilənlər bazasının doğruluğunu yoxlamada xəta baş verib və yaxud sizin xarici istifadəçi qeydiyyatını yeniləmək hüququnuz yoxdur.',

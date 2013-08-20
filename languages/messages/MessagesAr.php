@@ -917,7 +917,6 @@ $2',
 'remembermypassword' => 'تذكر دخولي بهذا المتصفح (لمدة أقصاها {{PLURAL:$1||يوم واحد|يومان|$1 أيام|$1 يوما|$1 يوم}})',
 'userlogin-remembermypassword' => 'أبقني مسجلا للدخول',
 'userlogin-signwithsecure' => 'الولوج باتصّال مؤمّن',
-'securelogin-stick-https' => 'ابقَ في اتصال HTTPS بعد الدخول.',
 'yourdomainname' => 'نطاقك:',
 'password-change-forbidden' => 'أنت لا يمكنك تغيير كلمات السر على هذا الويكي.',
 'externaldberror' => 'هناك إما خطأ في دخول قاعدة البيانات الخارجية أو أنه غير مسموح لك بتحديث حسابك الخارجي.',
@@ -1048,7 +1047,7 @@ $2',
 'newpassword' => 'كلمة السر الجديدة:',
 'retypenew' => 'أعد كتابة كلمة السر الجديدة:',
 'resetpass_submit' => 'ضبط كلمة السر والدخول',
-'changepassword-success' => 'تم تغيير كلمة السر الخاصة بك بنجاح! يتم تسجيل دخولك الآن...',
+'changepassword-success' => 'تم تغيير كلمة السر بنجاح!',
 'resetpass_forbidden' => 'كلمات السر لا يمكن تغييرها',
 'resetpass-no-info' => 'يجب أن تكون مسجل الدخول للوصول إلى هذه الصفحة مباشرة.',
 'resetpass-submit-loggedin' => 'تغيير كلمة السر',
@@ -1061,6 +1060,7 @@ $2',
 # Special:PasswordReset
 'passwordreset' => 'إعادة ضبط كلمة السر',
 'passwordreset-text-one' => 'أكمل هذا النموذج لإعادة ضبط كلمة السر الخاصة بك.',
+'passwordreset-text-many' => '{{PLURAL:$1||املأ الحقل لتستعيد كلمة السر|املأ أحد الحقلين لتستعيد كلمة السر|املأ أحد الحقول لتستعيد كلمة السر}}.',
 'passwordreset-legend' => 'إعادة تعيين كلمة السر',
 'passwordreset-disabled' => 'عُطّلت إعادة تعيين كلمة السر على هذه الويكي.',
 'passwordreset-emaildisabled' => 'تم تعطيل ميزات البريد الإلكتروني على هذه الويكي.',
@@ -1099,6 +1099,9 @@ $2
 'changeemail-password' => 'كلمة سر {{SITENAME}} الخاصة بك:',
 'changeemail-submit' => 'غيّر البريد الإلكتروني',
 'changeemail-cancel' => 'إلغاء',
+
+# Special:ResetTokens
+'resettokens-token-label' => '$1 (القيمة الحالية: $2)',
 
 # Edit page toolbar
 'bold_sample' => 'نص غليظ',
@@ -1178,9 +1181,7 @@ $2
 'loginreqlink' => 'تسجيل الدخول',
 'loginreqpagetext' => 'يجب عليك $1 لتشاهد صفحات أخرى.',
 'accmailtitle' => 'تم إرسال كلمة السر.',
-'accmailtext' => "كلمة سر مولدة عشوائيا ل [[User talk:$1|$1]] تم إرسالها إلى $2.
-
-كلمة السر لهذا الحساب الجديد يمكن تغييرها في صفحة ''[[Special:ChangePassword|تغيير كلمة السر]]'' عند تسجيل الدخول.",
+'accmailtext' => "أُرسِلت كلمة سر مولدة عشوائيا ل[[User talk:$1|$1]] إلى $2. يمكن تغييرها في صفحة ''[[Special:ChangePassword|تغيير كلمة السر]]'' بعد تسجيل الدخول.",
 'newarticle' => '(جديد)',
 'newarticletext' => "لقد تبعت وصلة لصفحة لم يتم إنشائها بعد.
 لإنشاء هذه الصفحة ابدأ الكتابة في الصندوق بالأسفل (انظر في [[{{MediaWiki:Helppage}}|صفحة المساعدة]] للمزيد من المعلومات).
@@ -1291,7 +1292,7 @@ $2
 'nocreate-loggedin' => 'أنت لا تمتلك الصلاحية لإنشاء صفحات جديدة.',
 'sectioneditnotsupported-title' => 'تعديل الأقسام غير مدعوم',
 'sectioneditnotsupported-text' => 'تعديل الأقسام غير مدعوم في هذه الصفحة',
-'permissionserrors' => 'أخطاء السماحات',
+'permissionserrors' => 'خطأ في السماح',
 'permissionserrorstext' => 'لا تمتلك الصلاحية لفعل هذا، {{PLURAL:$1||للسبب التالي|للسببين التاليين|للأسباب التالية}}:',
 'permissionserrorstext-withaction' => 'لا تملك الصلاحيات ل$2، لل{{PLURAL:$1||سبب التالي|سببين التاليين|أسباب التالية}}:',
 'recreate-moveddeleted-warn' => "'''تحذير: أنت تعيد إنشاء صفحة سبق حذفها.'''
@@ -1314,8 +1315,8 @@ $2
 'content-failed-to-parse' => 'فشل في تحليل $2 محتوى لـ $1 نموذج: $3',
 'invalid-content-data' => 'بيانات المحتوى غير صالحة',
 'content-not-allowed-here' => '"$1" المحتوى غير مسموح على صفحة [[$2]]',
-'editwarning-warning' => 'قد تتسبب مغادرة هذه الصفحة بخسارتك لأي تغييرات قمت بها.
-يمكنك تعطيل هذا التحذير إذا كنت والجلًا في قسم "{{int:prefs-editing}}" في تفضيلاتك.',
+'editwarning-warning' => 'قد تتسبب مغادرة هذه الصفحة بخسارتك لأي تغييرات أجريتها.
+يمكنك تعطيل هذا التحذير إذا كنت والجًا في قسم "التحرير" في تفضيلاتك.',
 
 # Content models
 'content-model-wikitext' => 'نص ويكي',
@@ -1351,6 +1352,7 @@ $2
 'undo-failure' => 'لم يمكن استرجاع التعديل بسبب تعديلات متعارضة تمت على الصفحة.',
 'undo-norev' => 'فشل في الرجوع عن التعديل حيث أنه غير موجود أو تم حذفه.',
 'undo-summary' => 'الرجوع عن التعديل $1 بواسطة [[Special:Contributions/$2|$2]] ([[User talk:$2|نقاش]])',
+'undo-summary-username-hidden' => 'الرجوع عن المراجعة $1 التي أجراها مستخدمي مخفي',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'لا يمكن إنشاء حساب',
@@ -1378,8 +1380,8 @@ $2
 (السابق) = الفرق مع النسخة السابقة، ط = تغيير طفيف',
 'history-fieldset-title' => 'تصفح التاريخ',
 'history-show-deleted' => 'المحذوفة فقط',
-'histfirst' => 'أول',
-'histlast' => 'آخر',
+'histfirst' => 'الأقدم',
+'histlast' => 'الأحدث',
 'historysize' => '({{PLURAL:$1|1 بايت|$1 بايت}})',
 'historyempty' => '(فارغ)',
 
@@ -1648,6 +1650,8 @@ $1",
 'recentchangesdays-max' => 'الحد الأقصى {{PLURAL:$1|أقل من يوم|يوم واحد|يومان|$1 أيام|$1 يوما|$1 يوم}}',
 'recentchangescount' => 'عدد التعديلات الظاهرة مبدئيا:',
 'prefs-help-recentchangescount' => 'بما في ذلك أحدث التغييرات وتاريخ الصفحات والسجلات.',
+'prefs-help-watchlist-token2' => 'هذا هو المفتاح السري لتغذية الوِب لقائمة مراقبتك.
+يمكن لأي شخص يعرفه أن يقرأ قائمة مراقبتك، ولذا لا تتشاركه مع أحد. [[Special:ResetTokens|انقر هنا إذا أردت إعادة ضبطه]].',
 'savedprefs' => 'تم حفظ تفضيلاتك.',
 'timezonelegend' => 'المنطقة الزمنية:',
 'localtime' => 'الوقت المحلي:',
@@ -1708,7 +1712,7 @@ $1",
 'prefs-signature' => 'التوقيع',
 'prefs-dateformat' => 'صيغة الوقت',
 'prefs-timeoffset' => 'المنطقة الزمنية',
-'prefs-advancedediting' => 'خيارات متقدمة',
+'prefs-advancedediting' => 'خيارات عامة',
 'prefs-editor' => 'محرر',
 'prefs-preview' => 'عرض مسبق',
 'prefs-advancedrc' => 'خيارات متقدمة',
@@ -1742,10 +1746,11 @@ $1",
 'userrights-no-interwiki' => 'أنت لا تمتلك الصلاحية لتعديل صلاحيات المستخدمين على الويكيات الأخرى.',
 'userrights-nodatabase' => 'قاعدة البيانات $1 غير موجودة أو ليست محلية.',
 'userrights-nologin' => 'يجب عليك [[Special:UserLogin|تسجيل الدخول]] بحساب إداري لتعديل صلاحيات المستخدم.',
-'userrights-notallowed' => 'حسابك لا يمتلك إذنا لإضافة أو إزالة صلاحيات المستخدمين.',
+'userrights-notallowed' => 'ليس لديك إذن لإضافة أو إزالة صلاحيات المستخدمين.',
 'userrights-changeable-col' => 'المجموعات التي يمكنك تغييرها',
 'userrights-unchangeable-col' => 'المجموعات التي لا يمكنك تغييرها',
-'userrights-conflict' => 'تضارب في صلاحيات المستخدمين. طبّق تغييراتك مجدّدا',
+'userrights-conflict' => 'تضارب في تغيير صلاحيات المستخدم! الرجاء مراجعة تغييراتك مجدّدا وتأكيدها.',
+'userrights-removed-self' => 'أزلت بنجاح صلاحياتك، ولن تتمكن من الوصول لهذه الصفحة مجددا.',
 
 # Groups
 'group' => 'المجموعة:',
@@ -1811,11 +1816,15 @@ $1",
 'right-proxyunbannable' => 'تفادي عمليات المنع الأوتوماتيكية للبروكسيهات',
 'right-unblockself' => 'رفع المنع عن أنفسهم',
 'right-protect' => 'تغيير مستويات الحماية وتعديل الصفحات المحمية',
-'right-editprotected' => 'تعديل الصفحات المحمية (بدون الحماية المضمنة)',
+'right-editprotected' => 'تعديل الصفحات التي حمايتها "{{int:protect-level-sysop}}"',
+'right-editsemiprotected' => 'تعديل الصفحات التي حمايتها "{{int:protect-level-autoconfirmed}}"',
 'right-editinterface' => 'تعديل واجهة المستخدم',
 'right-editusercssjs' => 'تعديل ملفات CSS و JS للمستخدمين الآخرين',
 'right-editusercss' => 'تعديل ملفات CSS للمستخدمين الآخرين',
 'right-edituserjs' => 'تعديل ملفات JS للمستخدمين الآخرين',
+'right-editmyusercss' => 'تعديل ملفات CSS للمستخدم نفسه',
+'right-editmyuserjs' => 'تعديل ملفات جافاسكربت للمستخدم نفسه',
+'right-viewmywatchlist' => 'عرض قائمة مراقبتك',
 'right-rollback' => 'استرجاع تعديلات آخر مستخدم عدل صفحة معينة سريعا',
 'right-markbotedits' => 'التعليم على تعديلات الاسترجاع كتعديلات بوت',
 'right-noratelimit' => 'غير متأثر بحدود المعدل',

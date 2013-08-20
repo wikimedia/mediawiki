@@ -578,7 +578,6 @@ Móžoš {{SITENAME}} anomymnje dalej wužywaś abo móžoš <span class='plainl
 'remembermypassword' => 'Na toś tom licadle pśizjawjony wóstaś (za maksimalnje $1 {{PLURAL:$1|źeń|dnja|dny|dnjow}})',
 'userlogin-remembermypassword' => 'Pśizjawjony wóstaś',
 'userlogin-signwithsecure' => 'Wěsty zwisk wužywaś',
-'securelogin-stick-https' => 'Pó pśizjawjenju z HTTPS zwězany wóstaś',
 'yourdomainname' => 'Twója domejna',
 'password-change-forbidden' => 'Njamóžoš gronidła w toś tom wikiju změniś.',
 'externaldberror' => 'Abo jo wustupiła eksterna zmólka awtentifikacije datoweje banki, abo njesmějoš swójo eksterne wužywarske konto aktualizěrowaś.',

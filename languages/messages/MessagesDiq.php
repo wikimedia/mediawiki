@@ -764,7 +764,6 @@ Wexta ke verhafızayê cıgerayoxê şıma pak beno no benate de taye peli de he
 'remembermypassword' => 'Parola mı nê cıgeyrayoği de bia xo viri (seba tewr zêde $1 {{PLURAL:$1|roce|rocan}})',
 'userlogin-remembermypassword' => 'Mı biya xo viri',
 'userlogin-signwithsecure' => 'Ebe teqdimkerê asayişın cıkewe',
-'securelogin-stick-https' => "Dekewtış kerdışi dıma HTTPS'i dı grêdaye bıman",
 'yourdomainname' => 'Nameyê şıma yo meydani',
 'password-change-forbidden' => 'Şıma na wiki de nêşenê parola bıvurnê.',
 'externaldberror' => 'Ya database de xeta esta ya zi heqê şıma çino şıma no hesab bıvurni.',

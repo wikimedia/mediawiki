@@ -751,7 +751,6 @@ Nie zapomnij dostosować [[Special:Preferences|preferencji]].',
 'remembermypassword' => 'Zapamiętaj moje hasło na tym komputerze (maksymalnie przez $1 {{PLURAL:$1|dzień|dni}})',
 'userlogin-remembermypassword' => 'Nie wylogowuj mnie',
 'userlogin-signwithsecure' => 'Użyj bezpiecznego połączenia',
-'securelogin-stick-https' => 'Po zalogowaniu utrzymuj połączenie poprzez HTTPS',
 'yourdomainname' => 'Twoja domena',
 'password-change-forbidden' => 'Nie można zmieniać haseł na tej wiki.',
 'externaldberror' => 'Wystąpił błąd zewnętrznej bazy autentyfikacyjnej lub nie posiadasz uprawnień koniecznych do aktualizacji zewnętrznego konta.',
@@ -1679,7 +1678,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'right-patrolmarks' => 'Podgląd znaczników patrolowania ostatnich zmian – oznaczania jako „sprawdzone”',
 'right-unwatchedpages' => 'Podgląd listy stron nieobserwowanych',
 'right-mergehistory' => 'Łączenie historii edycji stron',
-'right-userrights' => 'Edycja uprawnień wszystkich użytkowników',
+'right-userrights' => 'Edycja uprawnień użytkownika',
 'right-userrights-interwiki' => 'Edycja uprawnień użytkowników innych witryn wiki',
 'right-siteadmin' => 'Blokowanie i odblokowywanie bazy danych',
 'right-override-export-depth' => 'Eksport stron wraz z linkowanymi do głębokości 5 linków',
@@ -1691,7 +1690,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'newuserlogpagetext' => 'To jest rejestr ostatnio utworzonych kont użytkowników',
 
 # User rights log
-'rightslog' => 'Uprawnienia',
+'rightslog' => 'Rejestr uprawnień',
 'rightslogtext' => 'Rejestr zmian uprawnień użytkowników.',
 
 # Associated actions - in the sentence "You do not have permission to X"

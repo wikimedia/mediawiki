@@ -649,7 +649,6 @@ Moenie vergeet om u [[Special:Preferences|voorkeure vir {{SITENAME}}]] te stel n
 'remembermypassword' => 'Onthou dat ek op hierdie rekenaar ingeteken het (vir \'n maksimum van $1 {{PLURAL:$|dag|dae}})',
 'userlogin-remembermypassword' => 'Hou my aangemeld',
 'userlogin-signwithsecure' => 'Gebruik veilige verbinding',
-'securelogin-stick-https' => 'Bly verbind met HTTPS na aanmelding',
 'yourdomainname' => 'U domein:',
 'password-change-forbidden' => 'U kan nie wagwoorde op hierdie wiki verander nie.',
 'externaldberror' => "'n Databasisfout het tydens aanmelding voorgekom of u het nie toestemming om u eksterne rekening op te dateer nie.",

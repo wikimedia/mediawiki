@@ -523,7 +523,6 @@ Puede continar navegando por {{SITENAME}} anonimament, u puede <span class='plai
 'yourpassword' => "Clau d'acceso:",
 'yourpasswordagain' => 'Torne a escribir a clau:',
 'remembermypassword' => "Remerar o mío nombre d'usuario y a clau entre sesions en iste navegador (como muito por $1 {{PLURAL:$1|día|días}})",
-'securelogin-stick-https' => "Continar connectau con HTTPS dimpués d'encetar sesión",
 'yourdomainname' => 'Dominio:',
 'externaldberror' => "Bi habió una error d'autenticación externa d'a base de datos u bien no tiene premisos ta esviellar a suya cuenta externa.",
 'login' => 'Encetar sesión',

@@ -557,7 +557,6 @@ Gloym ikki at broyta tínar [[Special:Preferences|{{SITENAME}}-innstillingar]].'
 'remembermypassword' => 'Minst til logg inn hjá mær á hesum kaganum (í mesta lagi í $1 {{PLURAL:$1|dag|dagar}})',
 'userlogin-remembermypassword' => 'Lat meg vera innritaðan',
 'userlogin-signwithsecure' => 'Nýt trygt samband',
-'securelogin-stick-https' => 'Varðveit sambandið við HTTPS eftir logg inn',
 'yourdomainname' => 'Títt domene:',
 'password-change-forbidden' => 'Tú kanst ikki broyta loyniorð á hesi wiki.',
 'externaldberror' => 'Antin var talan um ein atgongd dátubasu feil, ella hevur tú ikki loyvi til at dagføra tína eksternu kontu.',

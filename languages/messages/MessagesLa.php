@@ -673,9 +673,7 @@ Fortasse aliquis hanc partem movit vel delevit.',
 'loginreqlink' => 'conventum aperire',
 'loginreqpagetext' => 'Necesse est tibi $1 priusquam paginas alias legas.',
 'accmailtitle' => 'Tessera missa est.',
-'accmailtext' => "Tessera nova usoris [[User talk:$1|$1]] ad $2 missa est.
-
-Convento aperto, tessera huius novae rationis hic potest mutari: ''[[Special:ChangePassword|tesseram mutare]]''.",
+'accmailtext' => "Tessera nova usoris [[User talk:$1|$1]] ad $2 missa est. Convento aperto, tessera hic potest mutari: ''[[Special:ChangePassword|tesseram mutare]]''.",
 'newarticle' => '(Nova)',
 'newarticletext' => "Per nexum progressus es ad paginam quae nondum exsistit.
 Novam paginam si vis creare, in capsam infra praebitam scribe.

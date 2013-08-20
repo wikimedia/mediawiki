@@ -332,6 +332,7 @@ $messages = array(
 'tog-noconvertlink' => 'Disattiva la conversione dei titoli dei link',
 'tog-norollbackdiff' => 'Non mostrare il confronto tra versioni dopo aver effettuato un rollback',
 'tog-useeditwarning' => 'Avvisa quando si lascia una pagina di modifica con modifiche non salvate',
+'tog-prefershttps' => "Usa sempre una connessione sicura quando effettuo l'accesso",
 
 'underline-always' => 'Sempre',
 'underline-never' => 'Mai',
@@ -730,7 +731,6 @@ Non dimenticare di personalizzare le [[Special:Preferences|preferenze di {{SITEN
 'remembermypassword' => 'Ricorda la password su questo browser (per un massimo di $1 {{PLURAL:$1|giorno|giorni}})',
 'userlogin-remembermypassword' => 'Mantienimi collegato',
 'userlogin-signwithsecure' => 'Usa una connessione sicura',
-'securelogin-stick-https' => 'Resta connesso attraverso HTTPS dopo il login',
 'yourdomainname' => 'Specificare il dominio',
 'password-change-forbidden' => 'Non è possibile modificare le password su questo wiki.',
 'externaldberror' => 'Si è verificato un errore con il server di autenticazione esterno, oppure non si dispone delle autorizzazioni necessarie per aggiornare il proprio accesso esterno.',
@@ -834,6 +834,7 @@ Attendi $1 e riprova in seguito.',
 'login-abort-generic' => 'Il tuo login non ha avuto successo - Annullato',
 'loginlanguagelabel' => 'Lingua: $1',
 'suspicious-userlogout' => 'La tua richiesta di disconnessione è stata negata perché sembra inviata da un browser non funzionante o un proxy di caching.',
+'createacct-another-realname-tip' => "L'indicazione del proprio nome vero è opzionale; se si sceglie di inserirlo, verrà utilizzato per attribuire la paternità dei contenuti inviati.",
 
 # Email sending
 'php-mail-error-unknown' => 'Errore sconosciuto nella funzione PHP mail()',
@@ -996,9 +997,7 @@ Potrebbe essere stata spostata o eliminata mentre si stava visionando la pagina.
 'loginreqlink' => "eseguire l'accesso",
 'loginreqpagetext' => 'Per vedere altre pagine è necessario $1.',
 'accmailtitle' => 'Password inviata.',
-'accmailtext' => "Una password generata casualmente per [[User talk:$1|$1]] è stata inviata a $2.
-
-Questa password può essere modificata nella pagina per ''[[Special:ChangePassword|cambiare la password]]'' subito dopo l'accesso.",
+'accmailtext' => "Una password generata casualmente per [[User talk:$1|$1]] è stata inviata a $2. Questa password può essere modificata nella pagina per ''[[Special:ChangePassword|cambiare la password]]'' subito dopo l'accesso.",
 'newarticle' => '(Nuovo)',
 'newarticletext' => "Il collegamento appena seguito corrisponde ad una pagina non ancora esistente.
 Se vuoi creare la pagina ora, basta cominciare a scrivere il testo nella casella qui sotto (vedi la [[{{MediaWiki:Helppage}}|pagina di aiuto]] per maggiori informazioni).
@@ -4117,9 +4116,18 @@ Questo programma deve essere distribuito assieme ad [{{SERVER}}{{SCRIPTPATH}}/CO
 'rotate-comment' => 'Immagine ruotata di $1 {{PLURAL:$1|grado|gradi}} in senso orario',
 
 # Limit report
+'limitreport-title' => 'Dati profilo del parser:',
+'limitreport-cputime' => 'Tempo di utilizzo CPU',
 'limitreport-cputime-value' => '$1 {{PLURAL:$1|secondo|secondi}}',
+'limitreport-walltime' => 'Tempo di utilizzo reale',
 'limitreport-walltime-value' => '$1 {{PLURAL:$1|secondo|secondi}}',
+'limitreport-ppvisitednodes' => 'Numero nodi preprocessore visitati',
+'limitreport-ppgeneratednodes' => 'Numero nodi preprocessore generati',
+'limitreport-postexpandincludesize' => 'Dimensione inclusioni post-espansione',
 'limitreport-postexpandincludesize-value' => '$1/$2 byte',
+'limitreport-templateargumentsize' => 'Dimensione parametri template',
 'limitreport-templateargumentsize-value' => '$1/$2 byte',
+'limitreport-expansiondepth' => 'Massima profondità di espansione',
+'limitreport-expensivefunctioncount' => 'Numero funzioni parser dispendiose',
 
 );

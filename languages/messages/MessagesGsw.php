@@ -539,7 +539,6 @@ Ochat: s cha syy, ass bstimmti Syte eso aazeigt wäre, wie wänn Du allno aagmä
 'yourpassword' => 'Passwort:',
 'yourpasswordagain' => 'Passwort no mol yygee:',
 'remembermypassword' => 'Uf däm Computer duurhaft aamälde (Maximal fir $1 {{PLURAL:$1|Tag|Täg}})',
-'securelogin-stick-https' => 'Noch em Aamälde mit HTTPS verbunde blybe',
 'yourdomainname' => 'Dyyni Domäne',
 'password-change-forbidden' => 'Du chasch uf däm Wiki kei Passwerter ändere.',
 'externaldberror' => 'Entwäder s lit e Fähler bi dr externe Authentifizierung vor, oder Du derfsch Dyy extern Benutzerkonto nid aktualisiere.',

@@ -540,7 +540,6 @@ Dae malingaw na liwaton an saimong [[Special:Preferences|{{SITENAME}} mga kamuya
 'remembermypassword' => 'Giromdoma an sakong paglaog sa kilyaw (browser) na ini (para sa maksimum na $1 {{PLURAL:$1|aldaw|mga aldaw}})',
 'userlogin-remembermypassword' => 'Dagos mo akong giromdomon na nakalaog',
 'userlogin-signwithsecure' => 'Gamiton an seguradong koneksyon',
-'securelogin-stick-https' => 'Magpirmeng konektado sa HTTPS matapos kang maglaog',
 'yourdomainname' => 'An saimong kasakupan:',
 'password-change-forbidden' => 'Ika dae makapagliwat nin sekretong panlaog sa wiking ini.',
 'externaldberror' => 'Igwa gayod sala sa arinman kan patunay sa datos-sarayan o ika dae pinagtugutan na bâgohon an saimong panluwas na panindog.',
@@ -646,7 +645,7 @@ Pakilaog sana tabi nin sarong tugmadong koreo o pabayae na mayong laman an surat
 'createaccount-title' => 'Panindog na pagmukna para sa {{SITENAME}}',
 'createaccount-text' => 'May tawong nagmukna nin sarong panindog na gamit an saimong address na e-surat sa {{SITENAME}} ($4) na may ngaran na "$2, na may sikretong panlaog na "$3".',
 'usernamehasherror' => 'Paragamit na ngaran dae puwede na igwang simbolikong mga kabtang',
-'login-throttled' => 'Nakapaghimo ka na nin kadakulon na pagprubar sa paglaog dae pa sana nahaloy. Mapuwede lang po na maghalat bago magprubar giraray.',
+'login-throttled' => 'Nakapaghimo ka na nin grabe kadakol na pagprubar na maglaog sa dae pa sana nahahaloy. Tabi man pakihalat nin $1 bago ka magprubar giraray.',
 'login-abort-generic' => 'An saimong paglaog dae nakadagos - Pinundo',
 'loginlanguagelabel' => 'Lengguwahe: $1',
 'suspicious-userlogout' => 'An hinahagad mong magluwas pinagpundo nin huli ta ini gayod pinagpadara sa paagi nin sarong pasang kilyaw o proksing hilom.',
@@ -668,7 +667,7 @@ Tanganing tapuson an paglalaog, ika kaipong magkaag nin sarong baguhon na sekret
 'newpassword' => 'Bàguhon na sekretong panlaog:',
 'retypenew' => 'Itaták giraray an bàgong panlaog:',
 'resetpass_submit' => 'Ipwesto an sekretong panlaog dangan maglaog',
-'changepassword-success' => 'Naribayan na an saimong sekretong panlaog! Pigpapadagos ka na...',
+'changepassword-success' => 'An saimong pasa-taramon matrayumpong pinagliwat na!',
 'resetpass_forbidden' => 'An mga sekretong panlaog dae puwedeng maribayan',
 'resetpass-no-info' => 'Ika dapat nakalaog na tanganing direktang makagamit kaining pahina.',
 'resetpass-submit-loggedin' => 'Ribayan an sekretong panlaog',
@@ -3969,5 +3968,6 @@ Kun bako man, ika makakagamit nin sayon na porma sa ibaba. An saimong komento id
 'limitreport-templateargumentsize' => 'Sukol kan argumentong panguyog',
 'limitreport-templateargumentsize-value' => '$1/$2 mga bayta',
 'limitreport-expansiondepth' => 'Kinatugmadan kan pinakahalangkaw na kahiwasan',
+'limitreport-expensivefunctioncount' => 'Bilang kan hiro nin mamahalon na parabangay',
 
 );

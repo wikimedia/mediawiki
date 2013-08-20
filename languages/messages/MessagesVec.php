@@ -581,7 +581,6 @@ Nó desmentegarte de personałixare łe [[Special:Preferences|prefarense de {{SI
 'remembermypassword' => 'Tiente in mente la password su sto conputer (par un massimo de $1 {{PLURAL:$1|zorno|zorni}})',
 'userlogin-remembermypassword' => 'Tienme colegà',
 'userlogin-signwithsecure' => 'Entra con na conesion segura',
-'securelogin-stick-https' => 'Resta tacà par HTTPS dopo èssar entrà',
 'yourdomainname' => 'Spesifegare el dominio',
 'password-change-forbidden' => 'Nó xe posibiłe canbiar ła password so sta wiki.',
 'externaldberror' => "Se xè verifegà n'erore con el server de autenticasion esterno, opure no se dispone de łe autorizasion nesesarie par ajornare el proprio aceso esterno.",

@@ -640,7 +640,6 @@ No oblideu de canviar les vostres [[Special:Preferences|preferències de {{SITEN
 'remembermypassword' => 'Recorda la contrasenya entre sessions (per un màxim de $1 {{PLURAL:$1|dia|dies}})',
 'userlogin-remembermypassword' => 'Mantén-me connectat',
 'userlogin-signwithsecure' => 'Connexió segura',
-'securelogin-stick-https' => "Roman connectat via HTTPS desprès d'autenticar-se",
 'yourdomainname' => 'El vostre domini',
 'password-change-forbidden' => 'No podeu canviar les contrasenyes en aquest wiki.',
 'externaldberror' => "Hi ha hagut una fallida en el servidor d'autenticació externa de la base de dades i no teniu permís per a actualitzar el vostre compte d'accès extern.",

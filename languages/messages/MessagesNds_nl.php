@@ -747,7 +747,6 @@ Vergeet niet joew [[Special:Preferences|veurkeuren veur {{SITENAME}}]] an te pas
 'remembermypassword' => 'Vanzelf anmelden (hooguut $1 {{PLURAL:$1|dag|dagen}})',
 'userlogin-remembermypassword' => 'Vanzelf anmelden',
 'userlogin-signwithsecure' => 'Beveiligde verbiending gebruken',
-'securelogin-stick-https' => "Verbunnen blieven via HTTPS naoda'j an-emeld bin",
 'yourdomainname' => 'Joew domein',
 'password-change-forbidden' => 'Je kunnen joew wachtwoord niet wiezigen op disse wiki.',
 'externaldberror' => 'Der gung iets fout bie de externe authentisering, of je maggen je gebrukersprofiel niet bewarken.',

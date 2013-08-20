@@ -434,7 +434,6 @@ Indi pagkalimtan ang pag-ilis sa imo nga [[Special:Preferences|{{SITENAME}} pagp
 'yourpassword' => 'Kontra-senyas:',
 'yourpasswordagain' => 'Suliton ang kontra-senyas:',
 'remembermypassword' => 'Dumdumon ang akon pagsulod sa sini nga brawser (para sa indi magsobra $1 {{PLURAL:$1|nga adlaw|nga mga adlaw}})',
-'securelogin-stick-https' => 'Magpabilin nga nakatakod sa HTTPS pagkatapos magsulod',
 'yourdomainname' => 'Imo dominyo',
 'password-change-forbidden' => 'Indi ka mahimo nga makailis sang pasword sa sini nga wiki.',
 'externaldberror' => 'Mahimo nga may ara sang sala sa pagpamatood sang database ukon wala ka sa lugar nga magbag-o sang imo pang-guha nga akawnt.',

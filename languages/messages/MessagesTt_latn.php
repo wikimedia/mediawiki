@@ -477,7 +477,6 @@ Qayber bitlär Sez kergän kebek kürsätelergä mömkin. Monı beterü öçen b
 'yourpassword' => 'Sersüz:',
 'yourpasswordagain' => 'Sersüzne qabat kertü:',
 'remembermypassword' => 'Xisap yazmamnı bu brauzerda saqlansın (iñ küp $1 {{PLURAL:$1|kön|kön|kön}}gä qädär)',
-'securelogin-stick-https' => 'Kerüdän soñ HTTPS buyınça totaştırunı däwam itärgä',
 'yourdomainname' => 'Sezneñ domenığız:',
 'externaldberror' => 'Tışqı mäğlümat bazası yärdämendä awtentifikatsiä ütkändä xata çıqtı, yäisä tışqı xisap yazmağızğa üzgäreşlär kertü xoquqığız yuq.',
 'login' => 'Kerü',

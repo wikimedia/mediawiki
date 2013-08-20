@@ -763,7 +763,6 @@ Hãy nhớ thay đổi [[Special:Preferences|tùy chọn cá nhân {{SITENAME}}]
 'remembermypassword' => 'Nhớ thông tin đăng nhập của tôi trên máy tính này (cho đến $1 ngày)',
 'userlogin-remembermypassword' => 'Giữ trạng thái đăng nhập',
 'userlogin-signwithsecure' => 'Sử dụng kết nối an toàn',
-'securelogin-stick-https' => 'Giữ kết nối với HTTPS sau khi đăng nhập',
 'yourdomainname' => 'Tên miền của bạn:',
 'password-change-forbidden' => 'Bạn không thể đổi mật khẩu trên wiki này.',
 'externaldberror' => 'Có lỗi khi xác nhận cơ sở dữ liệu bên ngoài hoặc bạn không được phép cập nhật tài khoản bên ngoài.',

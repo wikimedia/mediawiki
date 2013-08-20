@@ -413,7 +413,6 @@ Note that some pages may continue to be displayed as if you were still logged in
 'yourpassword' => 'کنجی:',
 'yourpasswordagain' => 'کنجی دوبارہ لکھو:',
 'remembermypassword' => 'اس براؤزر تے میرا ورتن ناں یاد رکھو ($1 {{PLURAL:$1|دن|دناں}} واسطے)',
-'securelogin-stick-https' => 'لاک ان ہون دے مگروں HTTPS  نال جڑے روو۔',
 'yourdomainname' => 'تواڈا علاقہ:',
 'externaldberror' => 'ڈیٹابیس چ توانوں پہچاننے چ کوئی مسئلہ ہویا اے یا فیر تسی اپنا بارلا کھاتا نئیں بدل سکدے۔',
 'login' => 'اندر آؤ جی',

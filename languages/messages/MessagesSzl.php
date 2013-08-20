@@ -452,7 +452,6 @@ Dej pozůr, co na ńykerych zajtach přeglůndarka može dali pokozywać co jež
 'yourpassword' => 'Hasło:',
 'yourpasswordagain' => 'Naszkryflej ausdruk zaś',
 'remembermypassword' => 'Pamjyntej můj ausdruk na tym kůmputrze (nojdalij bez $1 {{PLURAL:$1|dźyń|dńůw}})',
-'securelogin-stick-https' => 'Po zalogowańy mjyj połonczenie bez HTTPS',
 'yourdomainname' => 'Twoja domyna',
 'externaldberror' => 'Je jaki feler we zewnyntřnyj baźe autentyfikacyjnyj, abo ńy moš uprawńyń potřebnych do aktualizacyji zewnyntřnego kůnta.',
 'login' => 'Zaloguj śe',

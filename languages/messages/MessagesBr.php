@@ -619,7 +619,6 @@ Na zisoñjit ket resisaat ho [[Special:Preferences|penndibaboù evit {{SITENAME}
 'remembermypassword' => "Derc'hel soñj eus ma ger-tremen war an urzhiataer-mañ (evit $1 devezh{{PLURAL:$1||}} d'ar muiañ)",
 'userlogin-remembermypassword' => "Derc'hel ac'hanon kevreet",
 'userlogin-signwithsecure' => 'Implijout ur gevreadenn suraet',
-'securelogin-stick-https' => 'Chom kevreet da HTTPS goude bezañ bet kevreet',
 'yourdomainname' => 'Ho tomani',
 'password-change-forbidden' => "Ne c'hallit ket kemmañ ar gerioù-tremen er wiki-mañ.",
 'externaldberror' => "Pe ez eus bet ur fazi gwiriekaat diavaez er bank titouroù pe n'oc'h ket aotreet da nevesaat ho kont diavaez.",

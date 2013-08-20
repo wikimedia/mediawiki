@@ -555,7 +555,6 @@ Sylwer y bydd rhai tudalennau yn parhau i ymddangos fel ag yr oeddent pan oeddec
 'remembermypassword' => "Y porwr hwn i gofio'r manylion mewngofnodi (am hyd at $1 {{PLURAL:$1||diwrnod|ddiwrnod|diwrnod}})",
 'userlogin-remembermypassword' => "Cadw'r sesiwn yn fyw tan i mi allgofnodi",
 'userlogin-signwithsecure' => 'Defnyddio cysylltiad diogel',
-'securelogin-stick-https' => "Cadw'r cyswllt â HTTPS ar ôl mewngofnodi",
 'yourdomainname' => 'Eich parth:',
 'password-change-forbidden' => 'Ni allwch newid cyfrineiriau ar y wici hwn.',
 'externaldberror' => "Naill ai: cafwyd gwall dilysu allanol ar databas neu: ar y llaw arall efallai nad oes hawl gennych chi i ddiwygio'ch cyfrif allanol.",

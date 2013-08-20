@@ -543,7 +543,6 @@ Parhatian bahawa bara laman mungkin masih taruih manunjukkan bahawa Sanak masih 
 'remembermypassword' => 'Ingek log masuak denai di paramban ko (salamo $1 {{PLURAL:$1|hari}})',
 'userlogin-remembermypassword' => 'Biakan ambo tetap masuak',
 'userlogin-signwithsecure' => 'Gunoan server aman',
-'securelogin-stick-https' => 'Tetap tahubuang ka HTTPS sasudah masuk log',
 'yourdomainname' => 'Domain Sanak:',
 'password-change-forbidden' => 'Sanak indak dapek maubah kato sandi di wiki ko.',
 'externaldberror' => 'Alah tajadi kasalahan otentikasi basis data eksternal atau Sanak indak diizinan malakuan pabaruan tahadok akun eksternal Sanak.',

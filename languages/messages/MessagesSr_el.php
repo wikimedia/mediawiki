@@ -747,7 +747,6 @@ Imajte na umu da neke stranice mogu nastaviti da se prikazuju kao da ste još pr
 'remembermypassword' => 'Zapamti me na ovom pregledaču (najduže $1 {{PLURAL:$1|dan|dana|dana}})',
 'userlogin-remembermypassword' => 'Ostavi me prijavljenog/u',
 'userlogin-signwithsecure' => 'Koristite sigurnu konekciju',
-'securelogin-stick-https' => 'Ostanite povezani sa HTTPS nakon prijave',
 'yourdomainname' => 'Domen:',
 'password-change-forbidden' => 'Ne možete da promenite lozinku na ovom vikiju.',
 'externaldberror' => 'Došlo je do greške pri prepoznavanju baze podataka ili nemate ovlašćenja da ažurirate svoj spoljni nalog.',

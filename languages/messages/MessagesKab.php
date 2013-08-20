@@ -446,7 +446,6 @@ Kra n isebtar zemren ad sskanen belli mazal-ik s yisem n wemseqdac inek armi tem
 'yourpassword' => 'Awal n tbaḍnit',
 'yourpasswordagain' => 'Ɛiwed ssekcem awal n tbaḍnit',
 'remembermypassword' => 'Cfu ɣef wawal n tbaḍnit inu di uselkim-agi (i afellay n $1 {{PLURAL:$1|ass|ussan}})',
-'securelogin-stick-https' => 'Qqim uqqin s HTTPS sakin tuqqna',
 'yourdomainname' => 'Taɣult inek',
 'password-change-forbidden' => 'Ur zemreḍ ara ad beddeleḍ awalen n uɛaddi ɣef uwiki agi.',
 'externaldberror' => 'Yella ugul aberrani n database neɣ ur tettalaseḍ ara ad tbeddleḍ isem an wemseqdac aberrani inek.',

@@ -452,7 +452,6 @@ Beochtt ower, daas oanige Seiten noh åzoang kennern, daas du ågmödt bist, só
 'yourpassword' => 'Passwort:',
 'yourpasswordagain' => 'Es Passwort no amoi eigebm',
 'remembermypassword' => 'Mitm Brausa dauahoft ogmejd bleibm (maximoi $1 {{PLURAL:$1|Dog|Dog}})',
-'securelogin-stick-https' => "Noch'm Auhmöden mid HTTPS vabunden bleim",
 'yourdomainname' => 'Eanerne Domain:',
 'externaldberror' => 'Entweder es ligt a Feeler bai da externen Authentifiziarung vur oder du derfst dai externs Benytzerkonto ned aktualisirn.',
 'login' => 'Eilogga',

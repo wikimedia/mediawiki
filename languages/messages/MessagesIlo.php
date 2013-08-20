@@ -480,7 +480,6 @@ Dimo liplipatan a sukatan dagiti kakaykayatam idiay [[Special:Preferences|{{SITE
 'remembermypassword' => 'Laglagipem ti iseserrekko iti daytoy a pagbasabasa (para iti kapaut iti $1 {{PLURAL:$1|nga aldaw|nga al-aldaw}})',
 'userlogin-remembermypassword' => 'Taginayonennak nga iserrek',
 'userlogin-signwithsecure' => 'Usaren ti natalged a pannakaikapet',
-'securelogin-stick-https' => 'Agyanka a nakasilpo iti HTTPS kalpasan no nakastrekka',
 'yourdomainname' => 'Ti bukodmo a pagturayan:',
 'password-change-forbidden' => 'Saanmo a mabalin ti mangbaliw kadagiti kontrasenias iti daytoy a wiki.',
 'externaldberror' => 'Adda biddut idi ti panakapasingked ti database wenno saanmo a mabalin ti agpabaro ti bukodmo a ruar a pakabilangan.',

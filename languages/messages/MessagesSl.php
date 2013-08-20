@@ -633,7 +633,6 @@ Ne pozabite si prilagoditi vaših [[Special:Preferences|nastavitev {{GRAMMAR:rod
 'remembermypassword' => 'Zapomni si me na tem računalniku (za največ $1 {{PLURAL:$1|dan|dneva|dni}})',
 'userlogin-remembermypassword' => 'Zapomni si me',
 'userlogin-signwithsecure' => 'Uporabi varno povezavo',
-'securelogin-stick-https' => 'Po prijavi ostani povezan preko HTTPS',
 'yourdomainname' => 'Domena',
 'password-change-forbidden' => 'Na tem wikiju ne morete spreminjati gesel.',
 'externaldberror' => 'Pri potrjevanju istovetnosti je prišlo do notranje napake ali pa za osveževanje zunanjega računa nimate dovoljenja.',

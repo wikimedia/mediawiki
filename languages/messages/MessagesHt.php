@@ -525,7 +525,6 @@ Note ke kèk paj gendwa afiche tankou ou te toujou konekte tank ou pa efase kach
 'yourpassword' => 'Mopas ou an :',
 'yourpasswordagain' => 'Mete mopas ou an ankò :',
 'remembermypassword' => 'Sonje mopas mwen an nan òdinatè mwen an (pou yon maximum de $1 {{PLURAL:$1|jou|jou}})',
-'securelogin-stick-https' => 'Kontinye itilize HTTPS toujou apre koneksyon',
 'yourdomainname' => 'Domèn ou an',
 'externaldberror' => 'Li sanble ke yon erè pwodui ak bazdone a pou idantifikasyon ki pa nan sistèm an, oubyen ou pa otorize pou mete a jou kont ou genyen nan lòt sistèm yo.',
 'login' => 'Konekte ou',

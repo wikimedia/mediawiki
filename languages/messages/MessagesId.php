@@ -780,7 +780,6 @@ Ingatlah bahwa beberapa halaman mungkin masih menampilkan anda seperti masih mas
 'remembermypassword' => 'Ingat kata sandi saya di komputer ini (selama $1 {{PLURAL:$1|hari|hari}})',
 'userlogin-remembermypassword' => 'Biarkan saya tetap masuk',
 'userlogin-signwithsecure' => 'Gunakan server aman',
-'securelogin-stick-https' => 'Tetap terhubung ke HTTPS setelah masuk',
 'yourdomainname' => 'Domain Anda:',
 'password-change-forbidden' => 'Anda tidak dapat mengubah kata sandi pada wiki ini.',
 'externaldberror' => 'Telah terjadi kesalahan otentikasi basis data eksternal atau Anda tidak diizinkan melakukan kemaskini terhadap akun eksternal Anda.',

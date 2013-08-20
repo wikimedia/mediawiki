@@ -750,7 +750,6 @@ Huomaa, että jotkut sivut saattavat näkyä edelleen kuin olisit kirjautunut si
 'remembermypassword' => 'Muista minut (enintään $1 {{PLURAL:$1|päivä|päivää}})',
 'userlogin-remembermypassword' => 'Pidä minut kirjautuneena',
 'userlogin-signwithsecure' => 'Käytä salattua yhteyttä',
-'securelogin-stick-https' => 'Jatka salatun yhteyden käyttämistä sisäänkirjautumisen jälkeen',
 'yourdomainname' => 'Verkkonimi',
 'password-change-forbidden' => 'Et voi muuttaa salasanoja tässä wikissä.',
 'externaldberror' => 'Tapahtui virhe ulkoisen autentikointitietokannan käytössä tai sinulla ei ole lupaa päivittää tunnustasi.',

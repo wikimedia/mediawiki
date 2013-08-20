@@ -731,7 +731,6 @@ Pane tähele, et seni kuni sa pole oma võrgulehitseja puhvrit tühjendanud, võ
 'remembermypassword' => 'Jäta parool meelde (kuni $1 {{PLURAL:$1|päevaks|päevaks}})',
 'userlogin-remembermypassword' => 'Jää sisseloginuks',
 'userlogin-signwithsecure' => 'Kasuta turvalist ühendust',
-'securelogin-stick-https' => 'Jätka pärast sisselogimist HTTPS-ühenduse kasutamist',
 'yourdomainname' => 'Sinu domeen:',
 'password-change-forbidden' => 'Selles vikis ei saa paroole muuta.',
 'externaldberror' => 'Esines autentimistõrge või sul pole õigust konto andmeid muuta.',
@@ -829,8 +828,8 @@ Ole hea ja sisesta õige e-posti aadress või jäta väli tühjaks.',
 
 Kui kasutajakonto loomine on eksitus, võid käesolevat sõnumit lihtsalt eirata.',
 'usernamehasherror' => 'Kasutajanimi ei või sisaldada trellimärke ("#").',
-'login-throttled' => 'Oled lühikese aja jooksul liiga palju äpardunud logimiskatseid sooritanud.
-Palun pea nüüd pisut vahet.',
+'login-throttled' => 'Oled lühikese aja jooksul proovinud liiga palju kordi sisse logida.
+Palun oota $1, enne kui uuesti proovid.',
 'login-abort-generic' => 'Sisselogimine ebaõnnestus – Katkestatud',
 'loginlanguagelabel' => 'Keel: $1',
 'suspicious-userlogout' => 'Sinu väljalogimiskatse nurjus, sest see näis olevat katkise veebilehitseja või puhverserveri saadetud.',
@@ -853,7 +852,7 @@ Sisselogimise lõpetamiseks pead siia uue parooli sisestama:',
 'retypenew' => 'Sisesta uus parool uuesti:',
 'resetpass_submit' => 'Sisesta parool ja logi sisse',
 'changepassword-success' => 'Sinu parool on edukalt muudetud!
-Sisselogimine...',
+Sind logitakse nüüd sisse...',
 'resetpass_forbidden' => 'Paroole ei saa muuta',
 'resetpass-no-info' => 'Pead olema sisselogitud, et sellele lehele pääseda.',
 'resetpass-submit-loggedin' => 'Muuda parool',

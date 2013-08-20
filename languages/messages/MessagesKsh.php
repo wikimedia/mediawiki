@@ -664,7 +664,6 @@ Wann De wells, künnts De Ding [[Special:Preferences|Enschtällonge aanpaße]].'
 'remembermypassword' => 'Op Duur aanmelde (hält {{PLURAL:$1|för eine Daach|bes op $1 Dääsch|bloß för hück}})',
 'userlogin-remembermypassword' => 'Op Duur enlogge',
 'userlogin-signwithsecure' => 'Verschlößeld enlogge',
-'securelogin-stick-https' => 'Noh em Enlogge övver HTTPS verbonge blieve.',
 'yourdomainname' => 'Ding Domain',
 'password-change-forbidden' => 'Do kanns en heh däm Wiki kein Paßwööter ändere.',
 'externaldberror' => 'Do wor ene Fähler en de externe Daatebank, oder Do darfs Ding extern Daate nit ändere. Dat Aanmelde jingk jedenfalls donevve.',

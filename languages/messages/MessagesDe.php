@@ -460,6 +460,7 @@ $messages = array(
 'tog-noconvertlink' => 'Konvertierung des Titels deaktivieren',
 'tog-norollbackdiff' => 'Unterschied nach dem Zurücksetzen unterdrücken',
 'tog-useeditwarning' => 'Warnen, sofern eine zur Bearbeitung geöffnete Seite verlassen wird, die nicht gespeicherte Änderungen enthält',
+'tog-prefershttps' => 'Wenn angemeldet, immer eine sichere Verbindung benutzen.',
 
 'underline-always' => 'immer',
 'underline-never' => 'nie',
@@ -859,7 +860,6 @@ Vergiss nicht, deine [[Special:Preferences|{{SITENAME}}-Einstellungen]] zu ände
 'remembermypassword' => 'Mit diesem Browser dauerhaft angemeldet bleiben (maximal $1 {{PLURAL:$1|Tag|Tage}})',
 'userlogin-remembermypassword' => 'Angemeldet bleiben',
 'userlogin-signwithsecure' => 'Sichere Verbindung verwenden',
-'securelogin-stick-https' => 'Nach dem Anmelden mit HTTPS verbunden bleiben',
 'yourdomainname' => 'Deine Domain:',
 'password-change-forbidden' => 'Du kannst auf diesem Wiki keine Passwörter ändern.',
 'externaldberror' => 'Entweder es liegt ein Fehler bei der externen Authentifizierung vor oder du darfst dein externes Benutzerkonto nicht aktualisieren.',
@@ -1129,9 +1129,7 @@ Vermutlich wurde er verschoben oder gelöscht, nachdem du die Seite aufgerufen h
 'loginreqlink' => 'anmelden',
 'loginreqpagetext' => 'Du musst dich $1, um Seiten lesen zu können.',
 'accmailtitle' => 'Passwort wurde verschickt',
-'accmailtext' => 'Ein zufällig generiertes Passwort für [[User talk:$1|$1]] wurde an $2 versandt.
-
-Das Passwort für dieses neue Benutzerkonto kann auf der Spezialseite „[[Special:ChangePassword|Passwort ändern]]“ geändert werden.',
+'accmailtext' => "Ein zufällig generiertes Passwort für [[User talk:$1|$1]] wurde an $2 versandt. Es kann auf der Seite ''[[Special:ChangePassword|Passwort ändern]]'' nach der Anmeldung geändert werden.",
 'newarticle' => '(Neu)',
 'newarticletext' => "Du bist einem Link zu einer Seite gefolgt, die nicht vorhanden ist.
 Um diese Seite anzulegen, trage deinen Text in das untenstehende Bearbeitungsfeld ein (weitere Informationen auf der [[{{MediaWiki:Helppage}}|Hilfeseite]]).

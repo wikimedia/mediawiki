@@ -402,7 +402,6 @@ Wekkaanye, empapula ezimu ziyinza okukweyolekera nga bwe zibadde nga oyingidde -
 'yourpassword' => 'Ekigambo ekikuumi',
 'yourpasswordagain' => 'Ddamu ekigambo ekikuumi',
 'remembermypassword' => 'Tereka ekigambo kyange ekikuumi ku kompyuta eno (okumala {{PLURAL:$1|olunaku|ennaku ezitasukka mu}} $1)',
-'securelogin-stick-https' => "Sigala ku mukutu gwa kika kya HTTPS ng'omaze okuyingira",
 'yourdomainname' => 'Linnya lya twale lya kayungirizi lyo:',
 'externaldberror' => "Waliwo kiremya mu ggwanika lya data ekozesebwa okukakasa bamemba oba tokkirizibwa okukyusa ku akawunti yo ey'awalala.",
 'login' => 'Yingira',

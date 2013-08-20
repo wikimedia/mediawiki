@@ -470,7 +470,6 @@ Che a dësmentia pa ëd cambié ij [[Special:Preferences|sò gust për {{SITENAM
 'remembermypassword' => "Visesse ëd mia ciav ansima a 's navigador (për al pi $1 {{PLURAL:$1|di}})",
 'userlogin-remembermypassword' => 'Ten-me andrinta al sistema',
 'userlogin-signwithsecure' => 'Dovré na conession sigura',
-'securelogin-stick-https' => "Resté colegà an HTTPS apress d'esse intrà ant ël sistema",
 'yourdomainname' => 'Sò domini:',
 'password-change-forbidden' => 'A peul pa modifiché le ciav dzora a costa wiki.',
 'externaldberror' => "Ò che a l'é rivaje n'eror con la base ëd dàit d'autenticassion esterna, ò pura a l'é chiel che a l'é nen autorisà a agiornesse sò cont estern.",

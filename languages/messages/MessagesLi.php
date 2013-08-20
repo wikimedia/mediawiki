@@ -560,7 +560,6 @@ Mäögelik waert nog 'n deil pagina's getuind esofs te nog aangemeld bis pès te
 'yourpassword' => 'Die wachwaord',
 'yourpasswordagain' => 'Wachwaord opnuuj intype',
 'remembermypassword' => 'Mien wachwaord onthouwe veur later sessies (hoegstens $1 {{PLURAL:$1|daag|daag}})',
-'securelogin-stick-https' => 'Verbónje blieve via HTTPS nao aanmelle',
 'yourdomainname' => 'Die domein',
 'externaldberror' => "d'r Is 'n fout opgetraoje biej 't aanmelje biej de database of doe höbs gén toesjtömming diene externe gebroeker biej te wèrke.",
 'login' => 'Aanmèlde',

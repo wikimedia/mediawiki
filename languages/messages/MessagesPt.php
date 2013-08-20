@@ -756,7 +756,6 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências]].'
 'remembermypassword' => 'Recordar os meus dados neste computador (no máximo, por $1 {{PLURAL:$1|dia|dias}})',
 'userlogin-remembermypassword' => 'Manter-me autenticado',
 'userlogin-signwithsecure' => 'Use uma ligação segura',
-'securelogin-stick-https' => 'Manter a ligação HTTPS após a autenticação',
 'yourdomainname' => 'O seu domínio:',
 'password-change-forbidden' => 'Não podes alterar senhas nesta wiki.',
 'externaldberror' => 'Ocorreu um erro externo à base de dados durante a autenticação ou não lhe é permitido atualizar a sua conta externa.',

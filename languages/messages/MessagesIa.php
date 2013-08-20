@@ -588,7 +588,6 @@ Non oblida personalisar tu [[Special:Preferences|preferentias in {{SITENAME}}]].
 'remembermypassword' => 'Memorar mi contrasigno in iste navigator (pro un maximo de $1 {{PLURAL:$1|die|dies}})',
 'userlogin-remembermypassword' => 'Mantener mi session aperte',
 'userlogin-signwithsecure' => 'Usar un connexion secur',
-'securelogin-stick-https' => 'Remaner connectite via HTTPS post apertura de session',
 'yourdomainname' => 'Tu dominio:',
 'password-change-forbidden' => 'Non es possibile cambiar le contrasigno in iste wiki.',
 'externaldberror' => 'O il occurreva un error in le base de datos de authentication, o tu non ha le autorisation de actualisar tu conto externe.',

@@ -450,7 +450,6 @@ Na dìochuimhnich na [[Special:Preferences|roghainnean agad air {{SITENAME}}]] a
 'yourpassword' => 'Am facal-faire agad',
 'yourpasswordagain' => 'Ath-sgrìobh facal-faire',
 'remembermypassword' => "Cuimhnich gu bheil mi air logadh a-steach air a' choimpiutair seo (suas gu $1 {{PLURAL:$1|latha|latha|làithean|latha}})",
-'securelogin-stick-https' => 'Glèidh an ceangal ri HTTPS as dèidh logadh a-steach',
 'yourdomainname' => 'An àrainn-lìn agad:',
 'password-change-forbidden' => 'Chan urrainn dhut faclan-faire atharrachadh air an uicipeid seo.',
 'externaldberror' => 'Thachair mearachd le dearbhadh an stòir-dhàta air neo chan eil cead agad an cunntas agad air an taobh a-muigh ùrachadh.',

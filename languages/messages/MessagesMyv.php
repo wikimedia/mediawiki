@@ -527,7 +527,6 @@ $messages = array(
 'yourpassword' => 'Салава валот:',
 'yourpasswordagain' => 'Омбоцеде сёрмадык кирдицянь леметь:',
 'remembermypassword' => 'Ледстемс совамом те бравзерсэнть (сех кувать $1 {{PLURAL:$1|чи|чить}})',
-'securelogin-stick-https' => 'Кирдемс "HTTPS" сюлмавкс совамодо мейлеяк',
 'yourdomainname' => 'Эсеть доменэть:',
 'password-change-forbidden' => 'Те викисэнть а полавтсак салававалот.',
 'login' => 'Совамо',

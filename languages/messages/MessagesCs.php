@@ -406,6 +406,7 @@ $messages = array(
 'tog-noconvertlink' => 'Vypnout konverzi názvů',
 'tog-norollbackdiff' => 'Po vrácení změny nezobrazovat porovnání rozdílů',
 'tog-useeditwarning' => 'Upozornit, když budu opouštět editaci bez uložení změn',
+'tog-prefershttps' => 'Po přihlášení používat vždy zabezpečené spojení',
 
 'underline-always' => 'Vždy',
 'underline-never' => 'Nikdy',
@@ -802,7 +803,6 @@ Nezapomeňte si upravit své [[Special:Preferences|nastavení {{grammar:2sg|{{SI
 'remembermypassword' => 'Zapamatovat si mé přihlášení na tomto počítači (maximálně $1 {{PLURAL:$1|den|dny|dní}})',
 'userlogin-remembermypassword' => 'Přihlásit trvale',
 'userlogin-signwithsecure' => 'Používat zabezpečené připojení',
-'securelogin-stick-https' => 'Zůstat po přihlášení připojen přes HTTPS',
 'yourdomainname' => 'Vaše doména',
 'password-change-forbidden' => 'Na této wiki nemůžete měnit hesla.',
 'externaldberror' => 'Buď nastala chyba externí autentizační databáze, nebo nemáte dovoleno měnit svůj externí účet.',
@@ -905,7 +905,7 @@ Měli byste se co nejdřív přihlásit a změnit si heslo.
 Pokud byl účet vytvořen omylem, považujte tuto zprávu za bezpředmětnou.',
 'usernamehasherror' => 'Uživatelské jméno nemůže obsahovat znak mřížka (#)',
 'login-throttled' => 'Provedli jste příliš mnoho pokusů o přihlášení.
-Počkejte chvíli, než to zkusíte znovu.',
+Než to zkusíte znovu, musíte počkat na vypršení lhůty $1.',
 'login-abort-generic' => 'Vaše přihlášení se nezdařilo – přerušeno',
 'loginlanguagelabel' => 'Jazyk: $1',
 'suspicious-userlogout' => 'Váš požadavek na odhlášení byl odmítnut, neboť to vypadá, že ho poslal rozbitý prohlížeč nebo cachující proxy.',
@@ -1073,9 +1073,7 @@ Možná byla přesunuta či smazána, zatímco jste si stránku {{GENDER:|prohl�
 'loginreqlink' => 'přihlásit',
 'loginreqpagetext' => 'K prohlížení jiných stránek se musíte $1.',
 'accmailtitle' => 'Heslo odesláno.',
-'accmailtext' => 'Náhodně vygenerované heslo pro uživatele [[User talk:$1|$1]] bylo odesláno na $2.
-
-Heslo tohoto nového účtu bude možné po přihlášení změnit na [[Special:ChangePassword|stránce pro změnu hesla]].',
+'accmailtext' => 'Náhodně vygenerované heslo pro uživatele [[User talk:$1|$1]] bylo odesláno na $2. Po přihlášení ho bude možno změnit na [[Special:ChangePassword|stránce pro změnu hesla]].',
 'newarticle' => '(Nový)',
 'newarticletext' => "Následovali jste odkaz na stránku, která dosud neexistuje.
 Pokud ji chcete vytvořit, napište text do rámečku níže a stiskněte tlačítko ''Uložit změny''. Další rady najdete v [[{{MediaWiki:Helppage}}|nápovědě]].

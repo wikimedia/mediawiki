@@ -754,7 +754,6 @@ Oubliâd pas de changiér voutres [[Special:Preferences|prèferences dessus {{SI
 'remembermypassword' => 'Sè rapelar de mon contresegno sur ceti navigator (por lo més $1 jorn{{PLURAL:$1||s}})',
 'userlogin-remembermypassword' => 'Gouardar ma sèance activa',
 'userlogin-signwithsecure' => 'Empleyér un branchement sècurisâ',
-'securelogin-stick-https' => 'Réstar branchiê en HTTPS aprés lo branchement',
 'yourdomainname' => 'Voutron domêno :',
 'password-change-forbidden' => 'Vos pouede pas changiér los contresegnos sur ceti vouiqui.',
 'externaldberror' => 'Ou ben na fôta est arrevâye avouéc la bâsa de balyês d’ôtentificacion de defôr ou ben vos éte pas ôtorisâ{{GENDER:||ye|(ye)}} a betar a jorn voutron compto de defôr.',

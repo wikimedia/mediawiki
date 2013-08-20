@@ -394,6 +394,7 @@ $messages = array(
 'tog-noconvertlink' => '링크 제목 변환을 비활성화',
 'tog-norollbackdiff' => '되돌리기 후 차이를 보이지 않기',
 'tog-useeditwarning' => '바꾼 내용을 저장하지 않고 편집 페이지를 벗어날 때 알림',
+'tog-prefershttps' => '로그인할 때 항상 보안 연결 사용',
 
 'underline-always' => '항상',
 'underline-never' => '치지 않음',
@@ -795,7 +796,6 @@ $2',
 'remembermypassword' => '이 브라우저에서 로그인 상태를 저장하기 (최대 $1{{PLURAL:$1|일}})',
 'userlogin-remembermypassword' => '로그인 상태를 유지하기',
 'userlogin-signwithsecure' => '보안 연결 사용',
-'securelogin-stick-https' => '로그인 후에도 HTTPS 연결 상태를 유지합니다',
 'yourdomainname' => '도메인 이름:',
 'password-change-forbidden' => '이 위키에서 비밀번호를 바꿀 수 없습니다.',
 'externaldberror' => '바깥 인증 데이터베이스에 오류가 있거나 바깥 계정을 새로 고칠 권한이 없습니다.',
@@ -931,7 +931,7 @@ $1 기다렸다가 다시 시도하세요.',
 'retypenew' => '새 비밀번호 재입력:',
 'resetpass_submit' => '비밀번호를 설정하고 로그인하기',
 'changepassword-success' => '비밀번호가 성공적으로 바뀌었습니다!',
-'resetpass_forbidden' => '비밀번호를 바꿀 수 없음',
+'resetpass_forbidden' => '비밀번호를 바꿀 수 없습니다',
 'resetpass-no-info' => '이 특수 문서에 직접 접근하려면 반드시 로그인해야 합니다.',
 'resetpass-submit-loggedin' => '비밀번호 바꾸기',
 'resetpass-submit-cancel' => '취소',
@@ -1080,9 +1080,7 @@ $1 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 대
 'loginreqlink' => '로그인',
 'loginreqpagetext' => '다른 문서를 보기 위해서는 $1해야 합니다.',
 'accmailtitle' => '비밀번호를 보냈습니다',
-'accmailtext' => '[[User talk:$1|$1]] 사용자의 비밀번호가 임의로 만들어져 $2(으)로 보냈습니다.
-
-새 비밀번호는 로그인한 후 [[Special:ChangePassword|비밀번호를 바꿀]] 수 있습니다.',
+'accmailtext' => '[[User talk:$1|$1]] 사용자의 비밀번호가 임의로 만들어져 $2(으)로 보냈습니다. 로그인하고 나서 [[Special:ChangePassword|비밀번호를 바꿀]] 수 있습니다.',
 'newarticle' => '(새 문서)',
 'newarticletext' => "이 문서는 아직 만들어지지 않았습니다.
 새 문서를 만들려면 아래의 상자에 문서 내용을 입력하면 됩니다(자세한 내용은 [[{{MediaWiki:Helppage}}|도움말]]을 읽어 주세요).

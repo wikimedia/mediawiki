@@ -747,7 +747,6 @@ Ne felejtsd el módosítani a [[Special:Preferences|{{SITENAME}} beállításaid
 'remembermypassword' => 'Emlékezzen rám ezen a számítógépen (legfeljebb $1 napig)',
 'userlogin-remembermypassword' => 'Maradjak bejelentkezve',
 'userlogin-signwithsecure' => 'Biztonságos kapcsolat használata',
-'securelogin-stick-https' => 'Kapcsolódás HTTPS-en keresztül bejelentkezés után is',
 'yourdomainname' => 'A domainneved:',
 'password-change-forbidden' => 'Nem módosíthatod a jelszót ezen a wikin.',
 'externaldberror' => 'Hiba történt a külső adatbázis hitelesítése közben, vagy nem vagy jogosult a külső fiókod frissítésére.',

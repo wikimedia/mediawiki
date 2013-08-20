@@ -771,7 +771,6 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências no 
 'remembermypassword' => 'Lembrar meu login neste navegador (por no máximo $1 {{PLURAL:$1|dia|dias}})',
 'userlogin-remembermypassword' => 'Mantenha-me conectado',
 'userlogin-signwithsecure' => 'Use a conexão segura',
-'securelogin-stick-https' => 'Permanecer conectado ao HTTPS após a autenticação',
 'yourdomainname' => 'Seu domínio:',
 'password-change-forbidden' => 'Você não pode alterar senhas nessa wiki.',
 'externaldberror' => 'Ocorreu ou um erro no banco de dados durante a autenticação ou não lhe é permitido atualizar a sua conta externa.',

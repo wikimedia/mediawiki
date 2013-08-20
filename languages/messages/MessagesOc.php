@@ -729,7 +729,6 @@ Doblidetz pas de modificar [[Special:Preferences|vòstras preferéncias per {{SI
 'remembermypassword' => 'Me reconnectar automaticament a las visitas venentas (al maximum $1 {{PLURAL:$1|jorn|jorns}})',
 'userlogin-remembermypassword' => 'Gardar ma sesilha activa',
 'userlogin-signwithsecure' => 'Utilizar una connexion securizada',
-'securelogin-stick-https' => 'Demorar connectat en HTTPS aprèp la connexion',
 'yourdomainname' => 'Vòstre domeni',
 'password-change-forbidden' => 'Podètz pas modificar los senhals sus aqueste wiki.',
 'externaldberror' => 'Siá una error s’es producha amb la banca de donadas d’autentificacion extèrna, siá sètz pas autorizat a metre a jorn vòstre compte extèrne.',

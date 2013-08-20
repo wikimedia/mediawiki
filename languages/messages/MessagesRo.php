@@ -745,7 +745,6 @@ Nu uitați să vă modificați [[Special:Preferences|preferințele]] pentru {{SI
 'remembermypassword' => 'Autentificare automată de la acest calculator (expiră după {{PLURAL:$1|24 de ore|$1 zile|$1 de zile}})',
 'userlogin-remembermypassword' => 'Păstrează-mă autentificat',
 'userlogin-signwithsecure' => 'Utilizează conexiunea securizată',
-'securelogin-stick-https' => 'Rămâi conectat la HTTPS după autentificare',
 'yourdomainname' => 'Domeniul dumneavoastră:',
 'password-change-forbidden' => 'Nu puteți schimba parole pe acest wiki.',
 'externaldberror' => 'A fost fie o eroare de bază de date pentru o autentificare extenă sau nu aveți permisiunea să actualizați contul extern.',

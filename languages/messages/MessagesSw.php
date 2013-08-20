@@ -547,7 +547,6 @@ Unaweza kuendelea kutumia {{SITENAME}} bila kutaja jina lako, au unaweza <span c
 'userlogin-yourpassword-ph' => 'Weka neno lako la siri',
 'yourpasswordagain' => 'Andika tena neno la siri',
 'remembermypassword' => 'Kumbuka kuingia kwangu katika kivinjari hiki (kwa muda usiozidi {{PLURAL:$1|siku}} $1)',
-'securelogin-stick-https' => 'Endelea kuunganishwa na HTTPS baada ya kuingia',
 'yourdomainname' => 'Tovuti yako:',
 'password-change-forbidden' => 'Hauwezi kubadili nywila katika Wiki hii.',
 'externaldberror' => 'Huenda kulikuwa na hitilafu ya database au labda hauruhusiwi kubadilisha akaunti yako ya nje.',

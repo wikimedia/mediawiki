@@ -228,6 +228,7 @@ $messages = array(
 'tog-noconvertlink' => 'Ëmwandlung vum Titel desaktivéieren',
 'tog-norollbackdiff' => 'Ënnerscheed nom Zrécksetzen ënnerdrécken',
 'tog-useeditwarning' => "Mech warne wann ech d'Ännerung vun enger Säit verloosen, ouni Ännerunge gespäichert ze hunn",
+'tog-prefershttps' => 'Ëmmer eng sécher Verbindung benotze wann ageloggt',
 
 'underline-always' => 'Ëmmer',
 'underline-never' => 'Ni',
@@ -627,7 +628,6 @@ Vergiesst net fir Är [[Special:Preferences|{{SITENAME}} Astellungen]] z'ännere
 'remembermypassword' => 'Meng Umeldung op dësem Computer (fir maximal $1 {{PLURAL:$1|Dag|Deeg}}) verhalen',
 'userlogin-remembermypassword' => 'Mech ageloggt halen',
 'userlogin-signwithsecure' => 'Eng sécher Verbindung benotzen',
-'securelogin-stick-https' => 'Nom Umelle mat HTTPS verbonn bleiwen',
 'yourdomainname' => 'Ären Domain',
 'password-change-forbidden' => 'Dir däerft op dëser Wiki Passwierder net änneren.',
 'externaldberror' => 'Entweder ass e Feeler bei der externer Authentifizéierung geschitt, oder Dir däerft Ären externe Benotzerkont net aktualiséieren.',
@@ -905,9 +905,9 @@ Et ka sinn datt e geännert oder geläscht gouf iwwerdeems wou Dir d'Säit gekuc
 'loginreqlink' => 'aloggen',
 'loginreqpagetext' => 'Dir musst Iech $1, fir aner Säite liesen zu kënnen.',
 'accmailtitle' => 'Passwuert gouf geschéckt.',
-'accmailtext' => "En zoufällegt Passwuert fir [[User talk:$1|$1]] gouf op $2 geschéckt.
+'accmailtext' => "En zoufälleg generéiert Passwuert fir [[User talk:$1|$1]] gouf op $2 geschéckt.
 
-D'Passwuert fir dësen neie Benotzerkont kann op der ''[[Special:ChangePassword|Passwuert ännere]]'' Säit beim Alogge geännert ginn.",
+Et kann op der ''[[Special:ChangePassword|Passwuert ännere]]'' Säit beim Alogge geännert ginn.",
 'newarticle' => '(Nei)',
 'newarticletext' => "Dir hutt op e Link vun enger Säit geklickt, déi et nach net gëtt. Fir déi Säit unzeleeën, gitt w.e.g. Ären Text an déi Këscht hei drënner an (kuckt d'[[{{MediaWiki:Helppage}}|Hëllef Säit]] fir méi Informatiounen). Wann Dir duerch een Iertum heihi komm sidd, da klickt einfach op de Knäppchen '''Zréck''' vun Ärem Browser.",
 'anontalkpagetext' => "---- ''Dëst ass d'Diskussiounssäit fir en anonyme Benotzer deen nach kee Kont opgemaach huet oder en net benotzt. Dowéinst musse mir d'IP Adress benotzen, fir de Benotzer z'identifizéieren.

@@ -520,7 +520,6 @@ Mangkahadé, sababaraha kaca bakal tetep némbongkeun saolah-olah anjeun asup lo
 'yourpassword' => 'Sandi anjeun',
 'yourpasswordagain' => 'Ketik deui sandi anjeun',
 'remembermypassword' => 'Apalkeun login kuring dina ieu komputer (pikeun paling lila $1 {{PLURAL:$1|poé|poé}})',
-'securelogin-stick-https' => 'Terus nyambung ka HTTPS sanggeus login',
 'yourdomainname' => 'Domain anjeun',
 'externaldberror' => 'Aya kasalahan dina pangkalan data oténtikasi luar, atawa anjeun mémang teu diwenangkeun pikeun ngaropéa rekening luar anjeun.',
 'login' => 'Asup log',

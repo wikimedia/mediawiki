@@ -507,7 +507,6 @@ Nun t'escaezas de camudar les tos [[Special:Preferences|preferencies de {{SITENA
 'remembermypassword' => "Recordar la mio identificación nesti restolador (un máximu {{PLURAL:$1|d'un día|de $1 díes}})",
 'userlogin-remembermypassword' => 'Caltener abierta la sesión',
 'userlogin-signwithsecure' => 'Usar una conexón segura',
-'securelogin-stick-https' => "Siguir coneutáu con HTTPS dempués d'aniciar sesión",
 'yourdomainname' => 'El to dominiu:',
 'password-change-forbidden' => 'Nun se pueden camudar les contraseñes nesta wiki.',
 'externaldberror' => "O hebo un fallu d'autenticación de la base de datos o nun tienes permisu p'anovar la to cuenta esterna.",

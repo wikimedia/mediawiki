@@ -443,7 +443,6 @@ Beoachtje, dät eenige Sieden noch anwiese konnen, dät du oumälded bäst, solo
 'yourpassword' => 'Paaswoud:',
 'yourpasswordagain' => 'Paaswoud wierhoalje:',
 'remembermypassword' => 'Ap dissen Computer duurhaft ounmälded blieuwe (Maximoal foar $1 {{PLURAL:$1|Dai|Deege}})',
-'securelogin-stick-https' => 'Ätter dät Anmäldjen mäd HTTOS ferbuunen blieuwe',
 'yourdomainname' => 'Dien Domain:',
 'externaldberror' => 'Äntweeder deer lait n Failer bie ju externe Authentifizierenge foar, of du duurst din extern Benutzerkonto nit aktualisierje.',
 'login' => 'Anmäldje',

@@ -781,7 +781,6 @@ Tarayıcınızın önbelleğini temizleyene kadar bazı sayfalar sanki hâlâ ot
 'remembermypassword' => 'Girişimi bu tarayıcıda hatırla (en fazla $1 {{PLURAL:$1|gün|gün}} için)',
 'userlogin-remembermypassword' => 'Oturumumu sürekli açık tut',
 'userlogin-signwithsecure' => 'Güvenli bağlantı kullanın',
-'securelogin-stick-https' => "Giriş yaptıktan sonra HTTPS'e bağlı kal",
 'yourdomainname' => 'Alan adınız:',
 'password-change-forbidden' => 'Bu vikide parolanızı değiştiremezsiniz.',
 'externaldberror' => 'Ya doğrulama veritabanı hatası var ya da kullanıcı hesabınızı güncellemeye yetkiniz yok.',

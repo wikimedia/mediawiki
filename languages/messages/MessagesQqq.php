@@ -202,13 +202,13 @@ Is only shown if {{msg-mw|tog-enotifusertalkpages}} or/and {{msg-mw|tog-enotifwa
 'tog-ccmeonemails' => 'Option in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}. {{Gender}}',
 'tog-diffonly' => 'Toggle option used in [[Special:Preferences]]. {{Gender}}',
 'tog-showhiddencats' => 'Toggle option used in [[Special:Preferences]]. {{Gender}}',
-'tog-prefershttps' => 'Toggle option used in [[Special:Preferences]] that indicates if the user wants to use a secure connection when logged in',
 'tog-noconvertlink' => "{{optional}}
 
 ''(the message is considered optional because it is only used in wikis with language variants)''",
 'tog-norollbackdiff' => "Option in [[Special:Preferences]], 'Misc' tab. Only shown for users with the rollback right. By default a diff is shown below the return screen of a rollback. Checking this preference toggle will suppress that. {{Gender}}
 {{Identical|Rollback}}",
 'tog-useeditwarning' => 'Used as label for the checkbox in [[Special:Preferences#mw-prefsection-editing|Special:Preferences]].',
+'tog-prefershttps' => 'Toggle option used in [[Special:Preferences]] that indicates if the user wants to use a secure connection when logged in',
 
 'underline-always' => 'Used in [[Special:Preferences#mw-prefsection-rendering|Preferences]].
 

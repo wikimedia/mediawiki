@@ -433,6 +433,7 @@ $messages = array(
 'tog-noconvertlink' => 'Désactiver la conversion des titres',
 'tog-norollbackdiff' => "Ne pas afficher le diff lors d'une révocation",
 'tog-useeditwarning' => "M'avertir quand je quitte une page de modification sans publier les changements",
+'tog-prefershttps' => 'Toujours utiliser une connexion sécurisée en étant connecté',
 
 'underline-always' => 'Toujours',
 'underline-never' => 'Jamais',
@@ -831,7 +832,6 @@ N'oubliez pas de modifier [[Special:Preferences|vos préférences pour {{SITENAM
 'remembermypassword' => 'Me reconnecter automatiquement lors des prochaines visites avec ce navigateur (au maximum $1&nbsp;{{PLURAL:$1|jour|jours}})',
 'userlogin-remembermypassword' => 'Garder ma session active',
 'userlogin-signwithsecure' => 'Utiliser une connexion sécurisée',
-'securelogin-stick-https' => 'Rester connecté en HTTPS après la connexion',
 'yourdomainname' => 'Votre domaine :',
 'password-change-forbidden' => 'Vous ne pouvez pas modifier les mots de passe sur ce wiki.',
 'externaldberror' => "Une erreur s'est produite avec la base de données d'authentification externe, ou bien vous n'êtes pas autorisé{{GENDER:||e|(e)}} à mettre à jour votre compte externe.",

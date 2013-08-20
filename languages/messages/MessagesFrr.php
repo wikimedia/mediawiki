@@ -464,7 +464,6 @@ Ferjid det ei, an aachte üüb din [[Special:Preferences|{{SITENAME}} iinstelang
 'remembermypassword' => 'Üüb diheer reegner üüb düür uunmelde (maksimaal för $1 {{PLURAL:$1|dai|daar}})',
 'userlogin-remembermypassword' => 'Uunmeldet bliiw',
 'userlogin-signwithsecure' => 'Seeker ferbinjang brük',
-'securelogin-stick-https' => "Efter't uunmeldin auer HTTPS ferbünjen bliiw",
 'yourdomainname' => 'Din domain:',
 'password-change-forbidden' => 'Üüb detheer wiki könst dü nian paaswurden feranre.',
 'externaldberror' => 'Deer läit en fäägel bai jü äkstärn autentifisiiring for, unti dü möist din äkstärn brükerkonto äi aktualisiire.',

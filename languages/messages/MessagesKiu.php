@@ -447,7 +447,6 @@ Beno ke taê peli sıma hona cıkote asnenê, hata ke sıma ''browser cache''ê 
 'yourpassword' => 'Parola:',
 'yourpasswordagain' => 'Parola tekrar ke:',
 'remembermypassword' => 'Cıkotena mı na komputeri de bia ho viri (seba tewr jêde $1 {{PLURAL:$1|roze|rozu}})',
-'securelogin-stick-https' => 'Cıkotene ra dıme HTTPS rê giredae bımane',
 'yourdomainname' => 'Bandıra sıma:',
 'externaldberror' => 'Cıfeteliyaisê naskerdene de ya xeta esta ya ki tebera vırastena hesabê sıma rê destur çino.',
 'login' => 'Cı kuye',

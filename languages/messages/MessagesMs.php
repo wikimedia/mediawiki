@@ -643,7 +643,6 @@ Jangan lupa untuk mengubah [[Special:Preferences|keutamaan anda di {{SITENAME}}]
 'remembermypassword' => 'Ingat log masuk saya pada pelayar ini (tidak melebihi $1 {{PLURAL:$1|hari|hari}})',
 'userlogin-remembermypassword' => 'Biar saya kekal log masuk',
 'userlogin-signwithsecure' => 'Gunakan sambungan terlindung',
-'securelogin-stick-https' => 'Kekal disambungkan ke HTTPS selepas log masuk',
 'yourdomainname' => 'Domain anda:',
 'password-change-forbidden' => 'Anda tidak dapat mengubah kata laluan di wiki ini.',
 'externaldberror' => 'Berlaku ralat pangkalan data bagi pengesahan luar atau anda tidak dibenarkan mengemaskinikan akaun luar anda.',

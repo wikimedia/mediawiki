@@ -758,7 +758,6 @@ Ikke glem å endre [[Special:Preferences|innstillingene dine]] på {{SITENAME}}.
 'remembermypassword' => 'Husk meg på denne datamaskinen (i maks $1 {{PLURAL:$1|dag|dager}})',
 'userlogin-remembermypassword' => 'Hold meg innlogget',
 'userlogin-signwithsecure' => 'Logg inn med sikker tjener',
-'securelogin-stick-https' => 'Vær fortsatt koblet til HTTPS etter innlogging',
 'yourdomainname' => 'Ditt domene',
 'password-change-forbidden' => 'Du kan ikke endre passord på denne wikien.',
 'externaldberror' => 'Det var en ekstern autentifiseringsfeil, eller du kan ikke oppdatere din eksterne konto.',
@@ -860,7 +859,8 @@ Skriv inn en fungerende e-postadresse eller tøm feltet.',
 
 Du kan ignorere denne beskjeden dersom kontoen ble opprettet ved en feil.',
 'usernamehasherror' => 'Brukernavn kan ikke inneholde nummertegn.',
-'login-throttled' => 'Du har prøvd å logge inn med denne kontoen for mange ganger. Vent før du prøver igjen.',
+'login-throttled' => 'Du har nylig prøvd for mange ganger å logge inn.
+Vær vennlig å vente $1 før du prøver igjen.',
 'login-abort-generic' => 'Innleggingen ble avbrutt.',
 'loginlanguagelabel' => 'Språk: $1',
 'suspicious-userlogout' => 'Din forespørsel om å logge ut ble nektet fordi den så ut til å ha bli sendt av en ødelagt nettleser eller en mellomtjener.',
@@ -881,7 +881,7 @@ Hvis du velger å oppgi det, vil det blir anvendt for å gi deg som bruker anerk
 'newpassword' => 'Nytt passord:',
 'retypenew' => 'Gjenta nytt passord:',
 'resetpass_submit' => 'Angi passord og logg inn',
-'changepassword-success' => 'Passordet ditt ble endret! Logger inn&nbsp;…',
+'changepassword-success' => 'Passordet ditt ble korrekt endret!',
 'resetpass_forbidden' => 'Passord kan ikke endres',
 'resetpass-no-info' => 'Du må være logget inn for å gå til denne siden direkte',
 'resetpass-submit-loggedin' => 'Endre passord',
@@ -944,9 +944,14 @@ Midlertidig passord: $2',
 
 # Special:ResetTokens
 'resettokens' => 'Nullstill merker',
+'resettokens-text' => 'Du kan nullstille nøklene som gir adgang til visse private data knyttet til din konto.
+
+Og du burde gjøre det hvis du har avslørt nøklene for noen.',
 'resettokens-no-tokens' => 'Det finnes ingen merker å nullstille.',
 'resettokens-legend' => 'Nullstill merker',
 'resettokens-tokens' => 'Merker:',
+'resettokens-token-label' => '$1 (aktuell verdi: $2)',
+'resettokens-watchlist-token' => 'Webmatenøkkel for overvåkningslisten',
 'resettokens-done' => 'Nullstilling av merker.',
 'resettokens-resetbutton' => 'Nullstill valgte merker',
 
@@ -1482,6 +1487,9 @@ For å søke i alle, bruk prefikset ''all:'' (inkluderer diskusjonssider, maler,
 'recentchangesdays-max' => 'Maks $1 {{PLURAL:$1|dag|dager}}',
 'recentchangescount' => 'Antall redigeringer som skal vises som standard:',
 'prefs-help-recentchangescount' => 'Dette inkluderer nylige endringer, sidehistorikk og logger.',
+'prefs-help-watchlist-token2' => 'Dette er den hemmelige nøkkelen til webmatingen for din overvåkningsliste.
+Enhver som kjenner nøkkelen vil kunne lese din overvåkningsliste, så ikke vis den til andre.
+[[Special:ResetTokens|Klikk her om du trenger å nullstille nøkkelen]].',
 'savedprefs' => 'Innstillingene ble lagret.',
 'timezonelegend' => 'Tidssone:',
 'localtime' => 'Lokaltid:',
@@ -1576,11 +1584,11 @@ Den kan maks inneholde $1 {{PLURAL:$1|tegn|tegn}}.',
 'userrights-no-interwiki' => 'Du har ikke tillatelse til å endre brukerrettigheter på andre wikier.',
 'userrights-nodatabase' => 'Databasen $1 finnes ikke, eller er ikke lokal.',
 'userrights-nologin' => 'Du må [[Special:UserLogin|logge inn]] med en administratorkonto for å endre brukerrettigheter.',
-'userrights-notallowed' => 'Kontoen din har ikke tillatelse til å legge til eller fjerne brukerrettigheter.',
+'userrights-notallowed' => 'Du har ikke tillatelse til å gi eller fjerne brukerrettigheter.',
 'userrights-changeable-col' => 'Grupper du kan endre',
 'userrights-unchangeable-col' => 'Grupper du ikke kan endre',
 'userrights-irreversible-marker' => '$1 *',
-'userrights-conflict' => 'En konflikt med brukerrettighetene! Vennligst legg til endringene dine igjen.',
+'userrights-conflict' => 'En konflikt med endringen av brukerrettigheter! Vær vennlig å sjekke og på nytt bekrefte endringene dine.',
 'userrights-removed-self' => 'Du har fjernet dine egne rettigheter. Du har derfor ikke lengere adgang til denne siden.',
 
 # Groups
@@ -2126,6 +2134,13 @@ Kanskje du vil redigere beskrivelsen på dens [$2 filbeskrivelsesside].',
 'randompage' => 'Tilfeldig side',
 'randompage-nopages' => 'Det er ingen sider i {{PLURAL:$2|det følgende navnrommet|de følgende navnrommene}}: $1.',
 
+# Special:RandomInCategory
+'randomincategory' => 'Tilfeldig side innenfor kategorien',
+'randomincategory-invalidcategory' => '"$1" er ikke et gyldig kategorinavn.',
+'randomincategory-nopages' => 'Det finnes ingen sider i [[:Kategori:$1]].',
+'randomincategory-selectcategory' => 'Hent en tilfeldig side fra kategori: $1 $2.',
+'randomincategory-selectcategory-submit' => 'Start',
+
 # Random redirect
 'randomredirect' => 'Tilfeldig omdirigering',
 'randomredirect-nopages' => 'Det er ingen omdirigeringer i navnerommet $1.',
@@ -2162,6 +2177,8 @@ En side anses om en pekerside om den inneholder en mal som det lenkes til fra [[
 'pageswithprop-text' => 'Denne siden lister opp sider som bruker en viss sideverdi.',
 'pageswithprop-prop' => 'Verdinavn:',
 'pageswithprop-submit' => 'Gå',
+'pageswithprop-prophidden-long' => 'skjult verdi for egenskap langtekst ($1 kilobytes)',
+'pageswithprop-prophidden-binary' => 'skjult verdi for binæregenskap ($1 kilobyte)',
 
 'doubleredirects' => 'Doble omdirigeringer',
 'doubleredirectstext' => 'Denne siden lister opp de sidene som er omdirigeringer til andre omdirigeringssider.

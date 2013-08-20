@@ -702,7 +702,6 @@ Ama qunqaychu [[Special:Preferences|{{SITENAME}} allinkachinaykikunata]] hukchay
 'remembermypassword' => "Ruraqpa sutiyta yaykuna rimaytapas yuyaykuy llamk'ay tiyayniypura ({{PLURAL:$1|huk p'unchawkama|$1 p'unchawkama}})",
 'userlogin-remembermypassword' => 'Yaykusqa kakunaytam munani',
 'userlogin-signwithsecure' => "Amachasqa t'inkinakusqata llamk'achiy",
-'securelogin-stick-https' => "Yaykurquspa HTTPS nisqawan t'inkisqa kakuy",
 'yourdomainname' => 'Duminyuykip sutin',
 'password-change-forbidden' => 'Kay wikipi yaykuna rimataqa manam hukchayta atinkichu.',
 'externaldberror' => 'Hawa yaykuna pantasqam karqan, ichataq manam saqillasunkichu hawa rakiqunaykita musuqchayta.',

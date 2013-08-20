@@ -411,6 +411,7 @@ $messages = array(
 'tog-noconvertlink' => 'リンクタイトル変換を無効にする',
 'tog-norollbackdiff' => '巻き戻し後の差分を表示しない',
 'tog-useeditwarning' => '変更を保存せずに編集画面から離れようとしたら警告',
+'tog-prefershttps' => 'ログインする際、常に SSL (https) 接続を使用する',
 
 'underline-always' => '常に付ける',
 'underline-never' => '常に付けない',
@@ -815,7 +816,6 @@ $2',
 'remembermypassword' => 'このブラウザーにログイン情報を保存 (最長 $1 {{PLURAL:$1|日|日間}})',
 'userlogin-remembermypassword' => 'ログイン状態を保持',
 'userlogin-signwithsecure' => 'SSL (https) 接続を使用',
-'securelogin-stick-https' => 'ログイン後にHTTPS接続を維持',
 'yourdomainname' => 'ドメイン:',
 'password-change-forbidden' => 'このウィキではパスワードを変更できません。',
 'externaldberror' => '認証データベースでエラーが発生した、または外部アカウントの更新が許可されていません。',
@@ -1108,9 +1108,7 @@ $1または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこのブロッ�
 'loginreqlink' => 'ログイン',
 'loginreqpagetext' => '他のページを閲覧するには$1する必要があります。',
 'accmailtitle' => 'パスワードをお送りしました',
-'accmailtext' => "[[User talk:$1|$1]]のために無作為に生成したパスワードを、$2に送信しました。
-
-この新アカウントのパスワードは、ログインした際に''[[Special:ChangePassword|パスワード変更]]''ページで変更できます。",
+'accmailtext' => "[[User talk:$1|$1]]のために無作為に生成したパスワードを、$2に送信しました。パスワードは、ログインした際に''[[Special:ChangePassword|パスワード変更]]''ページで変更できます。",
 'newarticle' => '(新)',
 'newarticletext' => "まだ存在しないページへのリンクをたどりました。
 このページを新規作成するには、ページの内容を以下のボックスに記入してください (詳しくは[[{{MediaWiki:Helppage}}|ヘルプページ]]を参照してください)。

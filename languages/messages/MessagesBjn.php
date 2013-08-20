@@ -557,7 +557,6 @@ Jangan kada ingat hagan maubah [[Special:Preferences|kakatujuan {{SITENAME}}]] P
 'yourpassword' => 'Katasunduk:',
 'yourpasswordagain' => 'Katik pulang katasunduk:',
 'remembermypassword' => 'Ingatakan log babuat ulun dalam komputer naya (salawas $1 {{PLURAL:$1|hari|hari}})',
-'securelogin-stick-https' => 'Tatap tasambung awan HTTPS imbah babuat-log',
 'yourdomainname' => 'Domain Pian:',
 'password-change-forbidden' => 'Pian kada kawa ma-ubah kata sunduk pada wiki ngini.',
 'externaldberror' => 'Ada kasalahan apakah kacucukan basis data atawa Pian kada bulih mamutakhirakan akun luar.',

@@ -813,7 +813,6 @@ Vergeet niet uw [[Special:Preferences|voorkeuren voor {{SITENAME}}]] aan te pass
 'remembermypassword' => 'Aanmeldgegevens onthouden (maximaal $1 {{PLURAL:$1|dag|dagen}})',
 'userlogin-remembermypassword' => 'Aangemeld blijven',
 'userlogin-signwithsecure' => 'Beveiligde verbinding gebruiken',
-'securelogin-stick-https' => 'Verbonden blijven via HTTPS na aanmelden',
 'yourdomainname' => 'Uw domein:',
 'password-change-forbidden' => 'U kunt uw wachtwoord niet wijzigen in deze wiki.',
 'externaldberror' => 'Er is een fout opgetreden bij het aanmelden bij de database of u hebt geen toestemming uw externe gebruiker bij te werken.',

@@ -650,7 +650,6 @@ Ne zaboravite izmijeniti vlastite [[Special:Preferences|{{SITENAME}} postavke]].
 'remembermypassword' => 'Upamti moju lozinku na ovom kompjuteru (za maksimum od $1 {{PLURAL:$1|dan|dana}})',
 'userlogin-remembermypassword' => 'Držite me ulogiranog/u',
 'userlogin-signwithsecure' => 'Koristite sigurnu vezu',
-'securelogin-stick-https' => 'Ostanite povezani na HTTPS nakon prijave',
 'yourdomainname' => 'Vaš domen:',
 'password-change-forbidden' => 'Ne možete da promenite lozinku na ovom vikiju.',
 'externaldberror' => 'Došlo je do greške pri vanjskoj autorizaciji baze podataka ili vam nije dopušteno osvježavanje Vašeg vanjskog korisničkog računa.',

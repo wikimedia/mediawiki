@@ -698,7 +698,6 @@ Non esqueza personalizar as súas [[Special:Preferences|preferencias de {{SITENA
 'remembermypassword' => 'Lembrar o meu contrasinal neste ordenador (ata $1 {{PLURAL:$1|día|días}})',
 'userlogin-remembermypassword' => 'Manter a miña conexión',
 'userlogin-signwithsecure' => 'Utilizar a conexión segura',
-'securelogin-stick-https' => 'Permanecer conectado mediante as HTTPS despois de acceder',
 'yourdomainname' => 'O seu dominio:',
 'password-change-forbidden' => 'Non pode mudar os contrasinais neste wiki.',
 'externaldberror' => 'Ou ben se produciu un erro da base de datos na autenticación externa ou ben non se lle permite actualizar a súa conta externa.',

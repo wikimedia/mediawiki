@@ -478,7 +478,6 @@ No te sce scurdanne de cangià le [[Special:Preferences|{{SITENAME}} preferenze 
 'remembermypassword' => "Arrencuerdete 'u nome mije sus a stu combiuter (pe 'nu massime de $1 {{PLURAL:$1|sciurne|sciurne}})",
 'userlogin-remembermypassword' => 'Arrecuèrdeme',
 'userlogin-signwithsecure' => "Ause 'na connessione secure",
-'securelogin-stick-https' => "Statte collegate ô HTTPS apprisse 'a trasute",
 'yourdomainname' => "'U nome d'u dominie tue:",
 'password-change-forbidden' => 'Non ge puè cangià le passuord sus a sta uicchi.',
 'externaldberror' => "Vide bbuene, o stè 'n'errore de autendicazione a 'u database oppure tu non ge puè aggiorna 'u cunde tue esterne.",

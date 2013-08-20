@@ -673,7 +673,6 @@ Ekki gleyma að breyta [[Special:Preferences|{{SITENAME}} stillingunum]] þínum
 'remembermypassword' => 'Muna innskráninguna mína í þessum vafra (í allt að $1 {{PLURAL:$1|dag|daga}})',
 'userlogin-remembermypassword' => 'Muna innskráningu mína',
 'userlogin-signwithsecure' => 'Nota örugga tengingu',
-'securelogin-stick-https' => 'Halda öllum samskiptum áfram yfir HTTPS eftir að þú skráir þig inn',
 'yourdomainname' => 'Þitt lén:',
 'password-change-forbidden' => 'Þú getur ekki breytt lykilorðum á þessum wiki.',
 'externaldberror' => 'Uppfærsla mistókst. Annaðhvort varð villa í gagnasafninu eða að þér sé óheimilt að uppfæra aðra aðganga.',

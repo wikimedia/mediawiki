@@ -692,7 +692,6 @@ Kun af li ċerti paġni jistgħu jkomplu jidhru bħallikieku l-illogjar 'l barra
 'remembermypassword' => "Ftakar il-login tiegħi fuq dan il-kompjuter (għal massimu ta' {{PLURAL:$1|ġurnata|$1 ġurnata}})",
 'userlogin-remembermypassword' => 'Żommni fil-kont',
 'userlogin-signwithsecure' => 'Uża konnessjoni sigura',
-'securelogin-stick-https' => "Ibqa' konness fuq l-HTTPS wara l-login",
 'yourdomainname' => 'Id-dominju tiegħek:',
 'externaldberror' => "Kien hemm problema esterna ta' awtentiċitá jew m'għandhekx permess neċċessarju sabiex tagħmel aġġornamenti fuq l-aċċess estern.",
 'login' => 'Idħol',

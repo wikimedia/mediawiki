@@ -490,7 +490,6 @@ Ayaw kalimti pagbalyo han imo [[Special:Preferences|{{SITENAME}} preperensya]].'
 'remembermypassword' => "Hinumdumi an akon pan-sakob dinhi nga panngaykay ''(browser)'' (para ha pinakamaiha $1 {{PLURAL:$1|ka adlaw|ka mga adlaw}})",
 'userlogin-remembermypassword' => 'I-log-in la ako',
 'userlogin-signwithsecure' => 'Gamit hin koneksyon nga nakakasegurado',
-'securelogin-stick-https' => 'Nagpapabilin nga masumpay ha HTTPS kahuman makalog-in',
 'yourdomainname' => 'Imo dominyo:',
 'password-change-forbidden' => 'Diri ka makakabalyo hin pulong-pagsulod ha dinhi nga wiki.',
 'externaldberror' => 'Mayda authenticaton database error o diri ka tinutugotan pag-update an imo akwant ha gawas.',

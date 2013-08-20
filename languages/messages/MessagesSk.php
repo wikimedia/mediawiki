@@ -726,7 +726,6 @@ Nezabudnite zmeniť svoje [[Special:Preferences|Predvoľby {{GRAMMAR:genitív|{{
 'remembermypassword' => 'Pamätať si prihlásenie na tomto počítači (naviac $1 {{PLURAL:$1|deň|dni|dní}})',
 'userlogin-remembermypassword' => 'Zapamätať si ma',
 'userlogin-signwithsecure' => 'Použiť zabezpečené pripojenie',
-'securelogin-stick-https' => 'Zostať pripojený cez HTTPS po prihlásení',
 'yourdomainname' => 'Vaša doména:',
 'password-change-forbidden' => 'Na tejto wiki si nemôžete zmeniť heslo.',
 'externaldberror' => 'Buď nastala chyba externej autentifikačnej databázy alebo vám nie je povolené aktualizovať váš externý účet.',

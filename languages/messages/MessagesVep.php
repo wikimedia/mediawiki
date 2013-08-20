@@ -473,7 +473,6 @@ Otkat sil'mnägubale, miše erasid lehtpolid ozutaškatas mugažo, kut i edel te
 'yourpassword' => 'Peitsana:',
 'yourpasswordagain' => 'Kirjutagat peitsana udes:',
 'remembermypassword' => 'Panda muštho minun tulendandmused neciš kompjuteras (enintään $1 {{PLURAL:$1|päivä|päivää}})',
-'securelogin-stick-https' => "Jäda sidotud HTTPS-ha tulendan jäl'ghe",
 'yourdomainname' => 'Teiden domen:',
 'externaldberror' => 'Ozaižihe petuz autentifikacijan, kudamb tehtihe andmusiden irdbazan turbiš, aigan, vai teile ei ulotu oiktusid toižetada ičetoi irdregistracijad.',
 'login' => 'Kirjutadas sistemha',

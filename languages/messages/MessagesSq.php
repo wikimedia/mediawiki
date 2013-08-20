@@ -655,7 +655,6 @@ Mos harroni të ndryshoni [[Special:Preferences|{{SITENAME}} preferencat]] tuaja
 'remembermypassword' => 'Mbaj mënd fjalëkalimin tim për tërë vizitat e ardhshme (për një kohë maksimale prej $1 {{PLURAL:$1|dite|ditësh}})',
 'userlogin-remembermypassword' => 'Më mbaj të kyçur',
 'userlogin-signwithsecure' => 'Përdor lidhje të sigurtë',
-'securelogin-stick-https' => 'Qëndro i lidhur me HTTPS pas hyrjes me emrin përkatës',
 'yourdomainname' => 'Faqja juaj',
 'password-change-forbidden' => 'Ju nuk mund të ndryshoni fjalëkalimet në këtë wiki.',
 'externaldberror' => 'Ose kishte një gabim tek regjistri i identifikimit të jashtëm, ose nuk ju lejohet të përtërini llogarinë tuaje të jashtme.',

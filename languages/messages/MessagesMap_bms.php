@@ -416,7 +416,6 @@ Digatekna ya, nek ana kaca sing esih terus nidokna nek rika esih mlebu log nngan
 'yourpassword' => 'Tembung sandhi:',
 'yourpasswordagain' => 'Balèni tembung sandhi:',
 'remembermypassword' => 'Emutna data login-ne inyong nang peramban kiye (kanggo paling suwe $1 {{PLURAL:$1|dina|dina}})',
-'securelogin-stick-https' => 'Tetep kahubung maring HTTPS seuwise mlebu log',
 'yourdomainname' => 'Domain Rika:',
 'externaldberror' => 'Ana kesalahan otentikasi basis data utawa Rika ora olih nglakokna pemutakhiran maring akun eksternale Rika.',
 'login' => 'Melebu',

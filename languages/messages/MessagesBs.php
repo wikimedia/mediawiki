@@ -718,7 +718,6 @@ Ne zaboravite da prilagodite sebi svoja [[Special:Preferences|{{SITENAME}} pode�
 'remembermypassword' => 'Zapamti moju šifru na ovom računaru (najviše $1 {{PLURAL:$1|dan|dana|dana}})',
 'userlogin-remembermypassword' => 'Ostavi me prijavljen',
 'userlogin-signwithsecure' => 'Koristite sigurnu konekciju',
-'securelogin-stick-https' => 'Ostani povezan na HTTPS nakon prijave',
 'yourdomainname' => 'Vaš domen:',
 'password-change-forbidden' => 'Ne možete da promjenite lozinku na ovom wikiju.',
 'externaldberror' => 'Došlo je do greške pri vanjskoj autorizaciji baze podataka ili vam nije dopušteno osvježavanje Vašeg vanjskog korisničkog računa.',
@@ -822,7 +821,7 @@ Trebali biste se prijaviti i promjeniti šifru.
 Možete ignorisati ovu poruku, ako je korisnički račun napravljen greškom.',
 'usernamehasherror' => 'Korisničko ime ne može sadržavati haš znakove',
 'login-throttled' => 'Previše puta ste se pokušali prijaviti.
-Molimo Vas da sačekate prije nego što pokušate ponovo.',
+Molimo Vas da sačekate $1 prije nego što pokušate ponovo.',
 'login-abort-generic' => 'Vaša prijava nije bila uspješna – Prekinuto',
 'loginlanguagelabel' => 'Jezik: $1',
 'suspicious-userlogout' => 'Vaš zahtjev za odjavu je odbijen jer je poslan preko pokvarenog preglednika ili keširanog proksija.',
@@ -842,7 +841,7 @@ Da biste završili prijavu, morate unijeti novu šifru ovdje:',
 'newpassword' => 'Nova šifra:',
 'retypenew' => 'Unesite ponovo novu šifru:',
 'resetpass_submit' => 'Odredi šifru i prijavi se',
-'changepassword-success' => 'Vaša šifra je uspiješno promjenjena! Prijava u toku...',
+'changepassword-success' => 'Vaša šifra/lozinka je uspiješno promjenjena!',
 'resetpass_forbidden' => 'Šifre ne mogu biti promjenjene',
 'resetpass-no-info' => 'Morate biti prijavljeni da bi ste pristupili ovoj stranici direktno.',
 'resetpass-submit-loggedin' => 'Promijeni šifru',
@@ -878,7 +877,7 @@ $2
 Trebate se prijaviti i odabrati novu šifru. Ako je neko drugi napravio ovaj zahtjev, ili ako ste se sjetili Vaše originalne šifre, a ne želite je više promijeniti, možete zanemariti ovu poruku i nastaviti koristiti staru šifru.',
 'passwordreset-emailelement' => 'Korisničko ime: $1
 Privremena šifra: $2',
-'passwordreset-emailsent' => 'E-mail podsjetnik je poslan.',
+'passwordreset-emailsent' => 'Podsjetnik o šifri/lozinci je poslat na Vašu E-mail adresu.',
 'passwordreset-emailsent-capture' => 'Poslat je podsjetnik preko e-pošte (prikazan dole).',
 'passwordreset-emailerror-capture' => 'Napravljen je podsjetnik preko e-pošte (prikazan dole), ali ga ne mogu poslati korisniku zbog sljedećeg razloga: $1',
 
@@ -974,9 +973,9 @@ Možda je pomjerena ili obrisana dok ste pregledavali stranicu.',
 'loginreqlink' => 'prijavi se',
 'loginreqpagetext' => 'Morate $1 da bi ste vidjeli druge strane.',
 'accmailtitle' => 'Šifra poslana.',
-'accmailtext' => "Nasumično odabrana šifra za nalog [[User talk:$1|$1]] je poslata na adresu $2.
+'accmailtext' => "Nasumično odabrana šifra za [[User talk:$1|$1]] je poslata na adresu $2.
 
-Šifra za ovaj novi račun može biti promijenjena na stranici ''[[Special:ChangePassword|izmjene šifre]]'' nakon prijave.",
+Šifra/lozinka za ovaj novi račun može biti promijenjena na stranici ''[[Special:ChangePassword|izmjene šifre]]'' nakon prijave.",
 'newarticle' => '(Novi)',
 'newarticletext' => "Došli ste na stranicu koja još nema sadržaja.
 *Ako želite unijeti sadržaj, počnite tipkati u prozor ispod ovog teksta.
@@ -1600,7 +1599,7 @@ Ako izaberete da date ime, biće korišteno za pripisivanje za vaš rad.',
 'right-hideuser' => 'Blokiranje korisničkog imena, i njegovo sakrivanje od javnosti',
 'right-ipblock-exempt' => 'Zaobilaženje IP blokada, autoblokada i blokada IP grupe',
 'right-proxyunbannable' => 'Zaobilaženje automatskih blokada proxy-ja',
-'right-unblockself' => 'Deblokiranje samog sebe',
+'right-unblockself' => 'Deblokiraj samog sebe',
 'right-protect' => 'Promjena nivoa zaštite i uređivanje kaskadno zaštićenih stranica',
 'right-editprotected' => 'Uređivanje stranice zaštićenih kao "{{int:protect-level-sysop}}"',
 'right-editsemiprotected' => 'Uređivanje stranica zaštićenih kao  "{{int:protect-level-autoconfirmed}}"',
@@ -1892,6 +1891,7 @@ Ako se problem ne riješi, kontaktirajte [[Special:ListUsers/sysop|administrator
 'backend-fail-synced' => 'Datoteka "$1" je u nekonzistentnom stanju u internom skladištu',
 'backend-fail-internal' => 'Došlo je do nepoznate greške u skladišnoj osnovi "$1".',
 'backend-fail-contenttype' => 'Ne mogu da utvrdim kakav sadržaj ima datoteka koju treba da smjestim u "$1".',
+'backend-fail-batchsize' => 'Skladišna osnova je dobila blokadu od $1 {{PLURAL:$1|datotečne operacije|datotečne operacije|datotečnih operacija}}; ograničenje je $2 {{PLURAL:$2|operacija|operacije|operacija}}.',
 
 # Lock manager
 'lockmanager-notlocked' => 'Ne mogu otključati "$1"; nije zaključan.',
@@ -3022,6 +3022,7 @@ Nedostaje privremeni folder.',
 'javascripttest-pagetext-frameworks' => 'Molimo Vas izaberite jednu od sljedećih testnih okvira: $1',
 'javascripttest-pagetext-skins' => 'Izaberite s kojom temom želite da pokrenete probu:',
 'javascripttest-qunit-intro' => 'Pogledajte [$1 dokumentaciju za testiranje] na mediawiki.org.',
+'javascripttest-qunit-heading' => 'MediaWiki JavaScript QUnit testni alati',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'Vaša korisnička stranica',
@@ -3144,8 +3145,8 @@ Ovo je vjerovatno izazvao vezom ka vanjskoj nepoželjnoj stranici.',
 'pageinfo-article-id' => 'ID stranice',
 'pageinfo-language' => 'Jezik sadržaja stranice',
 'pageinfo-robot-policy' => 'Status pretraživača',
-'pageinfo-robot-index' => 'Može se indeksirati',
-'pageinfo-robot-noindex' => 'Ne može se indeksirati',
+'pageinfo-robot-index' => 'Dozvoljeno',
+'pageinfo-robot-noindex' => 'Nije dozvoljeno',
 'pageinfo-views' => 'Broj pogleda',
 'pageinfo-watchers' => 'Broj pratitelja stranice',
 'pageinfo-few-watchers' => 'Manje od $1 {{PLURAL:$1|pratioca|pratilaca}}',
@@ -3485,7 +3486,7 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 'exif-compression-4' => 'CCITT Grupa 4 faks šifriranje',
 
 'exif-copyrighted-true' => 'Zaštićeno autorskim pravima',
-'exif-copyrighted-false' => 'Javna domena',
+'exif-copyrighted-false' => 'Status autorskih prava nije postavljen',
 
 'exif-unknowndate' => 'Nepoznat datum',
 
@@ -3948,6 +3949,7 @@ Trebali biste dobiti [{{SERVER}}{{SCRIPTPATH}}/KOPIJU GNU opće javne licence] z
 'version-software' => 'Instalirani softver',
 'version-software-product' => 'Proizvod',
 'version-software-version' => 'Verzija',
+'version-entrypoints' => 'URL Adrese ulazne tačke',
 'version-entrypoints-header-entrypoint' => 'Ulazna tačka',
 'version-entrypoints-header-url' => 'URL',
 

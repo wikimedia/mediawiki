@@ -748,7 +748,6 @@ Gløym ikkje å endra [[Special:Preferences|innstillingane dine for {{SITENAME}}
 'remembermypassword' => 'Hugs innlogginga mi på denne datamaskinen (høgst {{PLURAL:$1|éin dag|$1 dagar}})',
 'userlogin-remembermypassword' => 'Hald meg innlogga',
 'userlogin-signwithsecure' => 'Nytt trygg kopling',
-'securelogin-stick-https' => 'Fortset HTTPS-tilkopling etter innlogging.',
 'yourdomainname' => 'Domenet ditt',
 'password-change-forbidden' => 'Du kan ikkje endra passord på denne wikien.',
 'externaldberror' => 'Det var anten ein ekstern databasefeil i tilgjengekontrollen, eller du har ikkje løyve til å oppdatere den eksterne kontoen din.',

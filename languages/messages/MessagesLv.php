@@ -459,7 +459,6 @@ Vari turpināt to izmantot anonīmi, vari <span class='plainlinks'>[$1 atgriezti
 'remembermypassword' => 'Atcerēties pēc pārlūka aizvēršanas (spēkā ne vairāk kā $1 {{PLURAL:$1|diena|dienas}}).',
 'userlogin-remembermypassword' => 'Atcerēties mani',
 'userlogin-signwithsecure' => 'Izmantot drošu savienojumu',
-'securelogin-stick-https' => 'Saglabāt HTTPS savienojumu pēc pieslēgšanās',
 'yourdomainname' => 'Tavs domēns',
 'password-change-forbidden' => 'Šajā wiki paroles nevar mainīt.',
 'externaldberror' => 'Notikusi vai nu ārējās autentifikācijas datubāzes kļūda, vai arī tev nav atļauts izmainīt savu ārējo kontu.',

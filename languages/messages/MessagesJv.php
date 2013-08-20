@@ -463,7 +463,6 @@ Cathet yèn sapérangan kaca mungkin isih nampilaké tulisan yèn Sampéyan isih
 'yourpassword' => 'Tembung sandhi:',
 'yourpasswordagain' => 'Balènana tembung sandhi',
 'remembermypassword' => 'Émut tembung sandi kula (salebeting $1 {{PLURAL:$1|dinten|dinten}})',
-'securelogin-stick-https' => 'Tetep kahubung dhumateng HTTPS sasampunipun mlebet log',
 'yourdomainname' => 'Dhomain panjenengan',
 'password-change-forbidden' => 'Sampéyan ora bisa ngganti tembung sandhi nèng wiki iki.',
 'externaldberror' => 'Ana kasalahan otèntikasi basis dhata èksternal utawa panjenengan ora pareng nglakoni pemutakhiran marang akun èksternal panjenengan.',

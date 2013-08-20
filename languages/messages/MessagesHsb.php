@@ -592,7 +592,6 @@ Njezabudź swoje [[Special:Preferences|nastajenja za {{GRAMMAR:akuzatiw|{{SITENA
 'remembermypassword' => 'Na tutym ličaku přizjewjeny wostać (za maksimalnje $1 {{PLURAL:$1|dźeń|dnjej|dny|dnjow}})',
 'userlogin-remembermypassword' => 'Přizjewjeny wostać',
 'userlogin-signwithsecure' => 'Wěsty zwisk wužiwać',
-'securelogin-stick-https' => 'Po přizjewjenju z HTTPS zwjazany wostać',
 'yourdomainname' => 'Twoja domejna:',
 'password-change-forbidden' => 'Njemóžeš hesła na tutym wikiju změnić.',
 'externaldberror' => 'Běše pak eksterny zmylk awtentifikacije datoweje banki, pak njesměš swoje eksterne konto aktualizować.',
