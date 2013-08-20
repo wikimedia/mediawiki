@@ -44,7 +44,7 @@ class SpecialTags extends SpecialPage {
 		$html = Xml::tags( 'tr', null, Xml::tags( 'th', null, $this->msg( 'tags-tag' )->parse() ) .
 				Xml::tags( 'th', null, $this->msg( 'tags-display-header' )->parse() ) .
 				Xml::tags( 'th', null, $this->msg( 'tags-description-header' )->parse() ) .
-				Xml::tags( 'th', null, $this->msg( 'tags-hitcount-header' )->parse() )
+				Xml::tags( 'th', array( 'data-sort-type' => 'number' ), $this->msg( 'tags-hitcount-header' )->parse() )
 			);
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'change_tag', array( 'ct_tag', 'hitcount' => 'count(*)' ),
