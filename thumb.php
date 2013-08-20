@@ -172,6 +172,34 @@ function wfStreamThumb( array $params ) {
 
 	// Check the source file storage path
 	if ( !$img->exists() ) {
+		if ( !$isOld && !$isTemp ) {
+			// Check for file redirect
+			$possibleRedirFile = wfFindFile( $fileName );
+			$redirTarget = $possibleRedirFile->getName();
+			if ( !is_null( $possibleRedirFile->getRedirected() ) ) {
+				$targetFile = wfLocalFile( Title::makeTitleSafe( NS_FILE, $redirTarget ) );
+				if ( $targetFile->exists() ) {
+					$newThumbName = $targetFile->thumbName( $params );
+					$newThumbUrl = $targetFile->getThumbUrl( $newThumbName );
+
+					$response = RequestContext::getMain()->getRequest()->response();
+					$response->header( "HTTP/1.1 302 " . HttpStatus::getMessage( 302 ) );
+					$response->header( 'Location: ' . wfExpandUrl( $newThumbUrl, PROTO_CURRENT ) );
+					$response->header( 'Expires: ' .
+						gmdate( 'D, d M Y H:i:s', time() + 12 * 3600 ) . ' GMT' );
+					if ( $wgVaryOnXFP ) {
+						$varyHeader[] = 'X-Forwarded-Proto';
+					}
+					if ( count( $varyHeader ) ) {
+						$response->header( 'Vary: ' . implode( ', ', $varyHeader ) );
+					}
+					wfProfileOut( __METHOD__ );
+					return;
+				}
+			}
+		}
+
+		// If its not a redirect that has a target as a local file, give 404.
 		wfThumbError( 404, "The source file '$fileName' does not exist." );
 		wfProfileOut( __METHOD__ );
 		return;
