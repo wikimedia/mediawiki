@@ -693,18 +693,15 @@ class SkinTemplate extends Skin {
 				: 'login';
 			$is_signup = $request->getText( 'type' ) == 'signup';
 
-			# anonlogin & login are the same
-			$proto = $wgSecureLogin ? PROTO_HTTPS : null;
-
 			$login_id = $this->showIPinHeader() ? 'anonlogin' : 'login';
 			$login_url = array(
 				'text' => $this->msg( $loginlink )->text(),
-				'href' => self::makeSpecialUrl( 'Userlogin', $returnto, $proto ),
+				'href' => self::makeSpecialUrl( 'Userlogin', $returnto ),
 				'active' => $title->isSpecial( 'Userlogin' ) && ( $loginlink == 'nav-login-createaccount' || !$is_signup ),
 			);
 			$createaccount_url = array(
 				'text' => $this->msg( 'createaccount' )->text(),
-				'href' => self::makeSpecialUrl( 'Userlogin', "$returnto&type=signup", $proto ),
+				'href' => self::makeSpecialUrl( 'Userlogin', "$returnto&type=signup" ),
 				'active' => $title->isSpecial( 'Userlogin' ) && $is_signup,
 			);
 
