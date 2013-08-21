@@ -7,18 +7,12 @@ class WfExpandUrlTest extends MediaWikiTestCase {
 	 * @dataProvider provideExpandableUrls
 	 */
 	public function testWfExpandUrl( $fullUrl, $shortUrl, $defaultProto, $server, $canServer, $httpsMode, $message ) {
-		// Fake $wgServer and $wgCanonicalServer
+		// Fake $wgServer, $wgCanonicalServer and $wgRequest->getProtocol()
 		$this->setMwGlobals( array(
 			'wgServer' => $server,
 			'wgCanonicalServer' => $canServer,
+			'wgRequest' => new FauxRequest( array(), false, null, $httpsMode ? 'https' : 'http' )
 		) );
-
-		// Fake $_SERVER['HTTPS'] if needed
-		if ( $httpsMode ) {
-			$_SERVER['HTTPS'] = 'on';
-		} else {
-			unset( $_SERVER['HTTPS'] );
-		}
 
 		$this->assertEquals( $fullUrl, wfExpandUrl( $shortUrl, $defaultProto ), $message );
 	}

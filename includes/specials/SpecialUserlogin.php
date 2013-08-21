@@ -106,7 +106,7 @@ class LoginForm extends SpecialPage {
 		$this->mAction = $request->getVal( 'action' );
 		$this->mRemember = $request->getCheck( 'wpRemember' );
 		$this->mFromHTTP = $request->getBool( 'fromhttp', false );
-		$this->mStickHTTPS = ( !$this->mFromHTTP && $request->detectProtocol() === 'https' ) || $request->getBool( 'wpForceHttps', false );
+		$this->mStickHTTPS = ( !$this->mFromHTTP && $request->getProtocol() === 'https' ) || $request->getBool( 'wpForceHttps', false );
 		$this->mLanguage = $request->getText( 'uselang' );
 		$this->mSkipCookieCheck = $request->getCheck( 'wpSkipCookieCheck' );
 		$this->mToken = ( $this->mType == 'signup' ) ? $request->getVal( 'wpCreateaccountToken' ) : $request->getVal( 'wpLoginToken' );
@@ -168,7 +168,7 @@ class LoginForm extends SpecialPage {
 
 		// If logging in and not on HTTPS, either redirect to it or offer a link.
 		global $wgSecureLogin;
-		if ( WebRequest::detectProtocol() !== 'https' ) {
+		if ( $this->mRequest->getProtocol() !== 'https' ) {
 			$title = $this->getFullTitle();
 			$query = array(
 				'returnto' => $this->mReturnTo,
@@ -1196,7 +1196,7 @@ class LoginForm extends SpecialPage {
 		$template->set( 'secureLoginUrl', $this->mSecureLoginUrl );
 		// Use loginend-https for HTTPS requests if it's not blank, loginend otherwise
 		// Ditto for signupend.  New forms use neither.
-		$usingHTTPS = WebRequest::detectProtocol() == 'https';
+		$usingHTTPS = $this->mRequest->getProtocol() == 'https';
 		$loginendHTTPS = $this->msg( 'loginend-https' );
 		$signupendHTTPS = $this->msg( 'signupend-https' );
 		if ( $usingHTTPS && !$loginendHTTPS->isBlank() ) {
