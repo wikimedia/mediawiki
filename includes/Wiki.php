@@ -509,7 +509,10 @@ class MediaWiki {
 			(
 				$request->getCookie( 'forceHTTPS' ) ||
 				// Avoid checking the user and groups unless it's enabled.
-				$this->context->getUser()->requiresHTTPS()
+				(
+					$this->context->getUser()->isLoggedIn()
+					&& $this->context->getUser()->requiresHTTPS()
+				)
 			) &&
 			$request->detectProtocol() == 'http'
 		) {
