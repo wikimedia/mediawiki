@@ -213,6 +213,10 @@ class ApiFormatXml extends ApiFormatBase {
 		$this->printText( '<?xml-stylesheet href="' . htmlspecialchars( $nt->getLocalURL( 'action=raw' ) ) . '" type="text/xsl" ?>' );
 	}
 
+	public function formatHTML( $text ) {
+		return $this->formatXMLAsHTML( $text );
+	}
+
 	public function getAllowedParams() {
 		return array(
 			'xslt' => null,

@@ -1,0 +1,47 @@
+/* Wrap long lines in the result. */
+pre.mw-api-result {
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+
+/* When a line wraps, maintain the same indent level. */
+.mw-api-json-ln1 {
+	display: block;
+	float: left;
+	white-space: pre;
+	word-wrap: normal;
+}
+.mw-api-json-ln2 {
+	display: block;
+	overflow: hidden;
+	padding-left: 2ex;
+	zoom: 1;
+}
+.mw-api-json-ln4:before {
+	content: '';
+	display: block;
+	height: 0;
+}
+
+/* To set apart continuation lines from the next actual line, do add a slight amount
+   of indent (1/2 level). */
+.mw-api-json-ln2 {
+	padding-left: 2ex;
+}
+.mw-api-json-ln3 {
+	margin-left: -2ex;
+}
+
+/* Highlight property names and escape sequences. */
+.mw-api-json-prop {
+	color: #55f;
+	font-weight: bold;
+}
+.mw-api-json-esc {
+	color: #d33;
+}
+
+/* Highlight XML tags. */
+.mw-api-xml-tag {
+	color: blue;
+}

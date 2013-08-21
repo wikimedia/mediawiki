@@ -160,7 +160,12 @@ abstract class ApiFormatBase extends ApiBase {
 ?>	<title>MediaWiki API</title>
 <?php } else {
 ?>	<title>MediaWiki API Result</title>
-<?php } ?>
+<?php }
+// OutputPage::addModules() won't work; we're not using OutputPage
+global $wgResourceBasePath, $wgScriptPath;
+$basePath = $wgResourceBasePath === null ? $wgScriptPath : $wgResourceBasePath;
+echo Html::linkedStyle( $basePath . '/resources/mediawiki.special/mediawiki.special.api.css' );
+?>
 </head>
 <body>
 <?php
@@ -177,7 +182,7 @@ To see the non HTML representation of the <?php echo $this->mFormat; ?> format, 
 See the <a href='https://www.mediawiki.org/wiki/API'>complete documentation</a>, or
 <a href='<?php echo $script; ?>'>API help</a> for more information.
 </small>
-<pre style='white-space: pre-wrap;'>
+<pre class="mw-api-result">
 <?php
 
 
@@ -261,16 +266,23 @@ See the <a href='https://www.mediawiki.org/wiki/API'>complete documentation</a>,
 	}
 
 	/**
-	 * Pretty-print various elements in HTML format, such as xml tags and
-	 * URLs. This method also escapes characters like <
+	 * Pretty-print the output as HTML. Responsible for any HTML escaping.
 	 * @param $text string
 	 * @return string
 	 */
 	protected function formatHTML( $text ) {
+		return htmlspecialchars( $text );
+	}
+
+	/**
+	 * @param $text string
+	 * @return string
+	 */
+	protected function formatXMLAsHTML( $text ) {
 		// Escape everything first for full coverage
 		$text = htmlspecialchars( $text );
 		// encode all comments or tags as safe blue strings
-		$text = str_replace( '&lt;', '<span style="color:blue;">&lt;', $text );
+		$text = str_replace( '&lt;', '<span class="mw-api-xml-tag">&lt;', $text );
 		$text = str_replace( '&gt;', '&gt;</span>', $text );
 		// identify requests to api.php
 		$text = preg_replace( "#api\\.php\\?[^ <\n\t]+#", '<a href="\\0">\\0</a>', $text );

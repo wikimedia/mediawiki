@@ -71,6 +71,41 @@ class ApiFormatJson extends ApiFormatBase {
 		}
 	}
 
+	protected function formatHTML( $text ) {
+		// Escape sequences
+		$text = str_replace( '\\\\', "\x01", $text );
+		$text = str_replace( '\\"', "\x02", $text );
+		$text = str_replace( '\n', "\x03", $text );
+		$text = preg_replace( '/(?:\\\\(?:u.{4}|.))+/', "\x04$0\x05", $text );
+
+		// Indent part of each line
+		$text = preg_replace( '/^ */m', "\x06$0\x07", $text );
+
+		// Property names
+		$text = preg_replace( '/\x07"([^"]*)":/', "\x07\"\x08$1\x05\":", $text );
+
+		$pairs = array(
+			'&' => '&amp;',
+			'<' => '&lt;',
+
+			"\x01" => '<span class="mw-api-json-esc">\</span>\\',
+			"\x02" => '<span class="mw-api-json-esc">\</span>"',
+			"\x03" => '<span class="mw-api-json-esc">\n</span></span><span class="mw-api-json-ln4">',
+			"\x04" => '<span class="mw-api-json-esc">',
+			"\x05" => '</span>',
+
+			"\x06" => '<span class="mw-api-json-ln1">',
+			"\x07" => '</span><span class="mw-api-json-ln2"><span class="mw-api-json-ln3">',
+			"\n" => "</span>\n</span>",
+
+			"\x08" => '<span class="mw-api-json-prop">',
+		);
+
+		$html = str_replace( array_keys( $pairs ), array_values( $pairs ), $text );
+		$html .= '</span></span>';
+		return $html;
+	}
+
 	public function getAllowedParams() {
 		return array(
 			'callback' => null,

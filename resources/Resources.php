@@ -936,6 +936,9 @@ return array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.js',
 		'styles' => 'resources/mediawiki.special/mediawiki.special.css',
 	),
+	'mediawiki.special.api' => array(
+		'styles' => 'resources/mediawiki.special/mediawiki.special.api.css',
+	),
 	'mediawiki.special.block' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.block.js',
 		'dependencies' => array(
