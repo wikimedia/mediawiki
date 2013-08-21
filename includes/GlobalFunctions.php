@@ -495,7 +495,7 @@ function wfAppendQuery( $url, $query ) {
  *    no valid URL can be constructed
  */
 function wfExpandUrl( $url, $defaultProto = PROTO_CURRENT ) {
-	global $wgServer, $wgCanonicalServer, $wgInternalServer;
+	global $wgServer, $wgCanonicalServer, $wgInternalServer, $wgRequest;
 	$serverUrl = $wgServer;
 	if ( $defaultProto === PROTO_CANONICAL ) {
 		$serverUrl = $wgCanonicalServer;
@@ -505,7 +505,7 @@ function wfExpandUrl( $url, $defaultProto = PROTO_CURRENT ) {
 		$serverUrl = $wgInternalServer;
 	}
 	if ( $defaultProto === PROTO_CURRENT ) {
-		$defaultProto = WebRequest::detectProtocol() . '://';
+		$defaultProto = $wgRequest->getProtocol() . '://';
 	}
 
 	// Analyze $serverUrl to obtain its protocol
