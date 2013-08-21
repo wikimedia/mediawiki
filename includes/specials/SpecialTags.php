@@ -89,9 +89,10 @@ class SpecialTags extends SpecialPage {
 		}
 		$newRow .= Xml::tags( 'td', null, $desc );
 
-		$hitcount = $this->msg( 'tags-hitcount' )->numParams( $hitcount )->escaped();
-		$hitcount = Linker::link( SpecialPage::getTitleFor( 'Recentchanges' ), $hitcount, array(), array( 'tagfilter' => $tag ) );
-		$newRow .= Xml::tags( 'td', null, $hitcount );
+		$hitcountLabel = $this->msg( 'tags-hitcount' )->numParams( $hitcount )->escaped();
+		$hitcountLink = Linker::link( SpecialPage::getTitleFor( 'Recentchanges' ), $hitcountLabel, array(), array( 'tagfilter' => $tag ) );
+		// add raw $hitcount for sorting, because tags-hitcount contains numbers and letters
+		$newRow .= Xml::tags( 'td', array( 'data-sort-value' => $hitcount ), $hitcountLink );
 
 		$doneTags[] = $tag;
 
