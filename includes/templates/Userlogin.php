@@ -94,7 +94,7 @@ class UserloginTemplate extends BaseTemplate {
 			$this->msg( 'userlogin-yourpassword' );
 
 			if ( $this->data['useemail'] && $this->data['canreset'] && $this->data['resetlink'] === true ) {
-				echo Linker::link(
+				echo " ", Linker::link(
 					SpecialPage::getTitleFor( 'PasswordReset' ),
 					$this->getMsg( 'userlogin-resetpassword-link' )->parse(),
 					array( 'class' => 'mw-ui-flush-right' )
