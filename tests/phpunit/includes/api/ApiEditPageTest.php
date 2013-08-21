@@ -197,6 +197,45 @@ class ApiEditPageTest extends ApiTestCase {
 		$this->markTestIncomplete( "not yet implemented" );
 	}
 
+	/**
+	 * Test action=edit&section=new
+	 * Run it twice so we test adding a new section on a
+	 * page that doesn't exist (bug 52830) and one that
+	 * does exist
+	 */
+	function testEditNewSection() {
+		$name = 'Help:ApiEditPageTest_testEditNewSection';
+
+		// Test on a page that does not already exist
+		$this->assertFalse( Title::newFromText( $name )->exists() );
+		list( $re ) = $this->doApiRequestWithToken( array(
+			'action' => 'edit',
+			'title' => $name,
+			'section' => 'new',
+			'text' => 'test',
+			'summary' => 'header',
+		));
+
+		$this->assertEquals( 'Success', $re['edit']['result'] );
+		// Check the page text is correct
+		$text = WikiPage::factory( Title::newFromText( $name ) )->getContent( Revision::RAW )->getNativeData();
+		$this->assertEquals( $text, "== header ==\n\ntest");
+
+		// Now on one that does
+		$this->assertTrue( Title::newFromText( $name )->exists() );
+		list( $re2 ) = $this->doApiRequestWithToken( array(
+			'action' => 'edit',
+			'title' => $name,
+			'section' => 'new',
+			'text' => 'test',
+			'summary' => 'header',
+		));
+
+		$this->assertEquals( 'Success', $re2['edit']['result'] );
+		$text = WikiPage::factory( Title::newFromText( $name ) )->getContent( Revision::RAW )->getNativeData();
+		$this->assertEquals( $text, "== header ==\n\ntest\n\n== header ==\n\ntest");
+	}
+
 	function testUndo() {
 		$this->markTestIncomplete( "not yet implemented" );
 	}
