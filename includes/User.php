@@ -2612,6 +2612,9 @@ class User {
 		} else {
 			$https = $this->getBoolOption( 'prefershttps' );
 			wfRunHooks( 'UserRequiresHTTPS', array( $this, &$https ) );
+			if ( $https ) {
+				$https = wfCanIPUseHTTPS( $this->getRequest()->getIP() );
+			}
 			return $https;
 		}
 	}
