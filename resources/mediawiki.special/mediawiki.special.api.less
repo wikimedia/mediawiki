@@ -1,0 +1,52 @@
+// Wrap long lines in the result.
+pre.mw-api-result {
+	white-space: pre-wrap;
+	word-wrap: break-word; // IE <= 7
+}
+
+// Insert "fake" line breaks that won't survive copy and paste, so when someone
+// tries to copy and paste the JSON into JSONLint, it will pass as valid.
+.mw-api-br:before {
+	content: '\a';
+}
+
+// When a line wraps, maintain the same indent level plus a slight amount more
+// (1/2 level) to set apart continuation lines from the next actual line.
+// - We support 15 levels of indentation, four spaces per level.
+// - Continuations of a line indented with more than 60 spaces will only get a
+//   62 space indent.
+.indent(0, 15);
+.indent(@i, @j) when (@i < @j) {
+	@mid: @i + floor((@j - @i) / 2);
+	.indent(@i, @mid);
+	.indent(@mid + 1, @j);
+}
+.indent(@i, @j) when (@i = @j) {
+	.mw-api-json-l@{i} {
+		@spaces: (4 * @i) + 2;
+		@advanceWidth: 0.6em; // assuming Courier New
+
+		display: block;
+		/* @noflip */
+		padding-left: @spaces * @advanceWidth; // IE <= 8
+		/* @noflip */
+		padding-left: @spaces * 1ch;
+		text-indent: -@spaces * @advanceWidth; // IE <= 8
+		text-indent: -@spaces * 1ch;
+	}
+}
+
+// Highlight escape sequences.
+.mw-api-esc {
+	color: red;
+}
+
+// Highlight property names.
+.mw-api-json-prop {
+	color: blue;
+}
+
+// Highlight XML tags.
+.mw-api-xml-tag {
+	color: blue;
+}

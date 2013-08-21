@@ -106,6 +106,10 @@ class ApiFormatWddx extends ApiFormatBase {
 		}
 	}
 
+	public function formatHTML( $text ) {
+		return $this->formatXMLAsHTML( $text );
+	}
+
 	public function getDescription() {
 		return 'Output data in WDDX format' . parent::getDescription();
 	}
