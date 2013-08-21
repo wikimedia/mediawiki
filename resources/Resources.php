@@ -783,6 +783,9 @@ return array(
 			'user.tokens',
 		),
 	),
+	'mediawiki.apiResult' => array(
+		'styles' => 'resources/src/mediawiki/mediawiki.apiResult.less',
+	),
 	'mediawiki.debug' => array(
 		'scripts' => array(
 			'resources/src/mediawiki/mediawiki.debug.js',

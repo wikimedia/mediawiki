@@ -72,6 +72,45 @@ class ApiFormatJson extends ApiFormatBase {
 		}
 	}
 
+	protected function formatHTML( $text ) {
+		$hs = new ApiFormatHighlightState( $text );
+		$mr = $hs->getMarkerRange();
+
+		$pairs = array(
+			// Escaped backslashes, linefeeds, double quotes
+			'\\\\' => '<span class="mw-api-esc">\\\\</span>',
+			'\n' => '<span class="mw-api-esc">\n</span><span class="mw-api-br"></span>',
+			'\"' => '<span class="mw-api-esc">\&quot;</span>',
+		);
+		$hs->strReplaceHTML( array_keys( $pairs ), array_values( $pairs ) );
+
+		$pairs = array(
+			// Other escape sequences valid in JSON
+			"/\\\\(?:u[0-9A-Fa-f]{4}|[^$mr])/" => '<span class="mw-api-esc">$0</span>',
+			// Property names
+			'/(?<=  )"([^"]*)":/' => '&quot;<span class="mw-api-json-prop">$1</span>&quot;:',
+		);
+		$hs->pregReplaceHTML( array_keys( $pairs ), array_values( $pairs ) );
+
+		// Beginning of line
+		$hs->startNewMarkerSet();
+		$indent = array();
+		for ( $i = 0; $i < 16; ++$i ) {
+			$indent[$i] = $hs->addMarker( "<span class=\"mw-api-json-l$i\">" );
+		}
+
+		$hs->pregReplaceCallback( '/^ {0,60}/m', function ( $m ) use ( $indent ) {
+			// 4 spaces = 1 indent level
+			return $indent[strlen( $m[0] ) >> 2] . $m[0];
+		} );
+
+		// End of line
+		$hs->startNewMarkerSet();
+		$hs->strReplaceHTML( "\n", "\n</span>" );
+
+		return $hs->getHTML() . '</span>';
+	}
+
 	public function getAllowedParams() {
 		return array(
 			'callback' => null,
