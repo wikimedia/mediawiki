@@ -94,7 +94,8 @@
 					$caption,
 					hookInfo,
 					i,
-					j;
+					j,
+					highestZoom = 1;
 
 				for ( i = 0; i < rows.length; i++ ) {
 					maxWidth = $gallery.width();
@@ -135,7 +136,13 @@
 						// code, would prevent accidentally expanding to
 						// be 10 billion pixels wide.
 						mw.log( 'mw.page.gallery: Cannot fit row, aspect is ' + preferredHeight/curRowHeight );
-						preferredHeight = 1.5 * curRowHeight;
+						if ( i === rows.length - 1 ) {
+							// If its the last row, and we can't fit it,
+							// don't make the entire row huge.
+							preferredHeight = highestZoom * curRowHeight;
+						} else {
+							preferredHeight = 1.5 * curRowHeight;
+						}
 					}
 					if ( !isFinite( preferredHeight ) ) {
 						// This *definitely* should not happen.
@@ -150,6 +157,11 @@
 						// Skip this row.
 						continue;
 					}
+
+					if ( preferredHeight / curRowHeight > highestZoom ) {
+						highestZoom = preferredHeight / curRowHeight;
+					}
+
 					for ( j = 0; j < curRow.length; j++ ) {
 						newWidth = preferredHeight * curRow[j].aspect;
 						padding = curRow[j].width - curRow[j].imgWidth;
