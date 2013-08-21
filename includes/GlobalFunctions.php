@@ -3967,3 +3967,16 @@ function wfIsBadImage( $name, $contextTitle = false, $blacklist = null ) {
 	wfProfileOut( __METHOD__ );
 	return $bad;
 }
+
+/**
+ * Determine whether the client at a given source IP is likely to be able to 
+ * access the wiki via HTTPS. 
+ *
+ * @param string $ip The IPv4/6 address in the normal human-readable form
+ * @return boolean
+ */
+function wfCanIPUseHTTPS( $ip ) {
+	$canDo = true;
+	wfRunHooks( 'CanIPUseHTTPS', array( $ip, &$canDo ) );
+	return !!$canDo;
+}

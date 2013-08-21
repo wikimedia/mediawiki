@@ -178,7 +178,7 @@ class LoginForm extends SpecialPage {
 				'wpStickHTTPS' => $this->mStickHTTPS
 			);
 			$url = $title->getFullURL( $query, false, PROTO_HTTPS );
-			if ( $wgSecureLogin ) {
+			if ( $wgSecureLogin && wfCanIPUseHTTPS( $this->getRequest()->getIP() ) ) {
 				$this->getOutput()->redirect( $url );
 				return;
 			} else {
@@ -1125,7 +1125,11 @@ class LoginForm extends SpecialPage {
 		}
 
 		// Decide if we default stickHTTPS on
-		if ( $wgSecureLoginDefaultHTTPS && $this->mAction != 'submitlogin' && !$this->mLoginattempt ) {
+		if ( $wgSecureLoginDefaultHTTPS 
+			&& $this->mAction != 'submitlogin' 
+			&& !$this->mLoginattempt
+			&& wfCanIPUseHTTPS( $this->getRequest()->getIP() ) )
+		{	
 			$this->mStickHTTPS = true;
 		}
 
