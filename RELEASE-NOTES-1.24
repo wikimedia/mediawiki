@@ -46,6 +46,13 @@ production.
 === Web API changes in 1.24 ===
 * action=parse API now supports prop=modules, which provides the list of
   ResourceLoader modules that should be used to enhance the parsed content.
+* Improvements to syntax highlighting of pretty-printed output:
+** For format=xmlfm and format=wddxfm, character references are now
+   highlighted.
+** For format=jsonfm, property names and escape sequences are now
+   highlighted, and lines are now broken at each linefeed.
+** The XML syntax highlighter is no longer used for non-XML formats,
+   and URLs are no longer auto-hyperlinked in those formats.
 
 === Languages updated in 1.24 ===
 

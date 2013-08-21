@@ -171,8 +171,19 @@ abstract class ApiFormatBase extends ApiBase {
 <?php
 			} else {
 ?>	<title>MediaWiki API Result</title>
-<?php
+	<?php
 			}
+			// OutputPage::addModules() won't work; we're not using OutputPage
+			global $wgDefaultSkin;
+			echo Html::linkedStyle( ResourceLoader::makeLoaderURL(
+				/* $modules = */ array( 'mediawiki.apiResult' ),
+				/* $lang = */ 'en',
+				/* $skin = */ $wgDefaultSkin,
+				/* $user = */ null,
+				/* $version = */ null,
+				/* $debug = */ ResourceLoader::inDebugMode(),
+				/* $only = */ ResourceLoaderModule::TYPE_STYLES
+			) );
 ?>
 </head>
 <body>
@@ -189,7 +200,7 @@ To see the non HTML representation of the <?php echo $this->mFormat; ?> format, 
 See the <a href='https://www.mediawiki.org/wiki/API'>complete documentation</a>, or
 <a href='<?php echo $script; ?>'>API help</a> for more information.
 </small>
-<pre style='white-space: pre-wrap;'>
+<pre class="mw-api-result">
 <?php
 // @codingStandardsIgnoreEnd
 			// don't wrap the contents of the <pre> for help screens
@@ -270,59 +281,65 @@ See the <a href='https://www.mediawiki.org/wiki/API'>complete documentation</a>,
 	}
 
 	/**
-	 * Pretty-print various elements in HTML format, such as xml tags and
-	 * URLs. This method also escapes characters like <
+	 * Pretty-print the output as HTML. Responsible for any HTML escaping.
 	 * @param string $text
 	 * @return string
 	 */
 	protected function formatHTML( $text ) {
-		// Escape everything first for full coverage
-		$text = htmlspecialchars( $text );
-		// encode all comments or tags as safe blue strings
-		$text = str_replace( '&lt;', '<span style="color:blue;">&lt;', $text );
-		$text = str_replace( '&gt;', '&gt;</span>', $text );
+		return htmlspecialchars( $text, ENT_QUOTES, 'UTF-8' );
+	}
 
-		// identify requests to api.php
-		$text = preg_replace( '#^(\s*)(api\.php\?[^ <\n\t]+)$#m', '\1<a href="\2">\2</a>', $text );
+	/**
+	 * Pretty-print an XML-based output format as HTML.
+	 *
+	 * @since 1.24
+	 * @param $text string
+	 * @return string
+	 */
+	protected function formatXMLAsHTML( $text ) {
+		$hs = new ApiFormatHighlightState( $text );
+		$mr = $hs->getMarkerRange();
+
+		// Comments and tags
+		// It is assumed that < and > are escaped even inside attribute values, so
+		// this should result in well-formed HTML with balanced start and end tags.
+		$hs->strReplaceHTML( '<', '<span class="mw-api-xml-tag">&lt;' );
+		$hs->strReplaceHTML( '>', '&gt;</span>' );
+
 		if ( $this->mHelp ) {
-			// make lines inside * bold
-			$text = preg_replace( '#^(\s*)(\*[^<>\n]+\*)(\s*)$#m', '$1<b>$2</b>$3', $text );
+			// Make lines inside * bold
+			$hs->pregReplaceHTML( "/^(\\s*)(\\*[^$mr\\n]+\\*)(\s*)$/m", '$1<b>$2</b>$3' );
 		}
 
-		// Armor links (bug 61362)
-		$masked = array();
-		$text = preg_replace_callback( '#<a .*?</a>#', function ( $matches ) use ( &$masked ) {
-			$sha = sha1( $matches[0] );
-			$masked[$sha] = $matches[0];
-			return "<$sha>";
-		}, $text );
-
-		// identify URLs
+		// URLs, including api.php requests
+		// These are already XML escaped; we don't have to re-escape them
+		// when using them inside double-quoted HTML tag attributes.
+		$hs->startNewMarkerSet();
 		$protos = wfUrlProtocolsWithoutProtRel();
-		// This regex hacks around bug 13218 (&quot; included in the URL)
-		$text = preg_replace(
-			"#(((?i)$protos).*?)(&quot;)?([ \\'\"<>\n]|&lt;|&gt;|&quot;)#",
-			'<a href="\\1">\\1</a>\\3\\4',
-			$text
+		$linkEnd = $hs->addMarker( '</a>' );
+		$hs->pregReplaceCallback( "/(?:api\\.php\\?|(?i)$protos)(?:[^$mr \\'\\n]|&amp;)+/",
+			function ( $m ) use ( $hs, $linkEnd ) {
+				$linkStart = $hs->addMarker( '<a href="' . $m[0] . '">' );
+				return $linkStart . $m[0] . $linkEnd;
+			}
 		);
 
-		// Unarmor links
-		$text = preg_replace_callback( '#<([0-9a-f]{40})>#', function ( $matches ) use ( &$masked ) {
-			$sha = $matches[1];
-			return isset( $masked[$sha] ) ? $masked[$sha] : $matches[0];
-		}, $text );
-
-		/**
-		 * Temporary fix for bad links in help messages. As a special case,
-		 * XML-escaped metachars are de-escaped one level in the help message
-		 * for legibility. Should be removed once we have completed a fully-HTML
-		 * version of the help message.
-		 */
+		// Character references
+		$hs->startNewMarkerSet();
+		$refs = array( '&amp;', '&quot;', '&lt;', '&gt;' );
 		if ( $this->mUnescapeAmps ) {
-			$text = preg_replace( '/&amp;(amp|quot|lt|gt);/', '&\1;', $text );
+			// De-escape one level for legibility of the help message. Should be removed
+			// removed once we have completed a fully-HTML version of the help message.
+			$hs->strReplaceHTML( $refs, $refs );
+		} else {
+			$refsHTML = array();
+			foreach ( $refs as $ref ) {
+				$refsHTML[] = '<span class="mw-api-esc">&amp;' . substr( $ref, 1 ) . '</span>';
+			}
+			$hs->strReplaceHTML( $refs, $refsHTML );
 		}
 
-		return $text;
+		return $hs->getHTML();
 	}
 
 	public function getExamples() {
