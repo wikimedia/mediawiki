@@ -2630,7 +2630,7 @@ Remember to check for other links to the templates before deleting them.',
 # Random page in category
 'randomincategory'                  => 'Random page in category',
 'randomincategory-invalidcategory'  => '"$1" is not a valid category name.',
-'randomincategory-nopages'          => 'There are no pages in [[:Category:$1]].',
+'randomincategory-nopages'          => 'There are no pages in the [[:Category:$1|$1]] category.',
 'randomincategory-selectcategory'   => 'Get random page from category: $1 $2.',
 'randomincategory-selectcategory-submit' => 'Go',
 
