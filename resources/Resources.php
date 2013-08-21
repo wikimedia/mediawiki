@@ -1178,6 +1178,9 @@ return array(
 			'vector' => 'skins/vector/special.less',
 		),
 	),
+	'mediawiki.special.api' => array(
+		'styles' => 'resources/mediawiki.special/mediawiki.special.api.less',
+	),
 	'mediawiki.special.block' => array(
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.block.js',
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.block.css',
