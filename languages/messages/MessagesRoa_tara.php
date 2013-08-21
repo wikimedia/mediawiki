@@ -68,6 +68,7 @@ $messages = array(
 'tog-noconvertlink' => "Disabbilite 'a conversione d'u titele de collegamende",
 'tog-norollbackdiff' => "Non sce penzanne a le differenze apprisse l'esecuzione de 'nu rollback",
 'tog-useeditwarning' => "Avvisave quanne jie lasse 'na pàgene cangiate senze ca agghie sarvate le cangiaminde",
+'tog-prefershttps' => "Ause sembre 'na connessione secure quanne trase",
 
 'underline-always' => 'Sembre',
 'underline-never' => 'Maje',
@@ -762,9 +763,9 @@ Pò essere ca ha state spustate o scangellate quanne tu ste vedive 'a pàgene.",
 'loginreqlink' => 'trase',
 'loginreqpagetext' => 'Tu a $1 pe vedè otre pàggene.',
 'accmailtitle' => 'Passuord mannete.',
-'accmailtext' => "'A password ccrejete a uecchije pe [[User talk:$1|$1]] ha state mannete sus 'a $2.
+'accmailtext' => "'A passuord ccrejate a uecchije pe [[User talk:$1|$1]] ha state mannate sus a $2.
 
-'A password pe stu cunde utende pò essere cangete sus a pàgene ''[[Special:ChangePassword|cange password]]'' 'na vote ca te colleghete.",
+'A passuord pe stu cunde utende pò essere cangiate sus a pàgene ''[[Special:ChangePassword|cange passuord]]'' 'na vote ca è trasute.",
 'newarticle' => '(Nuève)',
 'newarticletext' => "Tu ste segue 'nu collegamende a pàgene ca angore non g'esiste.
 Pe ccrejà 'a pàgene, accuminze a scrivere jndr'à 'u scatole de sotte (vide 'a [[{{MediaWiki:Helppage}}|pàggene d'ajute]] pe avè cchiù 'mbormaziune).
@@ -1282,11 +1283,11 @@ Quiste non ge pò essere annullate.",
 Condrolle le tag HTML.",
 'badsiglength' => "'A firme jè troppe longhe.
 Addà essere assaje assaje sotte a $1 {{PLURAL:$1|carattere|carattere}}.",
-'yourgender' => 'Sesso:',
-'gender-unknown' => 'No specificate',
+'yourgender' => 'Sesse:',
+'gender-unknown' => 'Non apirte',
 'gender-male' => 'Maschele',
 'gender-female' => 'Femmene',
-'prefs-help-gender' => "Opzionale: ausete pe l'indirizzamende corrette d'u sesse jndr'à 'u software. Sta 'mbormazione jè pubbliche.",
+'prefs-help-gender' => "Opzionale: ausate pe l'indirizzamende corrette d'u sesse jndr'à 'u softwer. Sta 'mbormazione jè pubbleche.",
 'email' => 'Poste',
 'prefs-help-realname' => "'U nome vere (quidde d'u munne reale) jè facoltative.
 Ce tu 'u mitte, a fatje ca è fatte t'avène ricanusciute.",

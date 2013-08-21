@@ -540,17 +540,17 @@ Che a preuva torna, për piasì.",
 'password-login-forbidden' => "L'usagi ëd së stranòm d'utent e ëd sa ciav a son ëstàit proibì.",
 'mailmypassword' => 'Mandeme na neuva ciav për pòsta eletrònica',
 'passwordremindertitle' => 'Neuva ciav provisòria për {{SITENAME}}',
-'passwordremindertext' => "Cheidun (a l'é belfé che a sia stàit pròpe chiel, da 'nt l'adrëssa IP \$1) a l'ha ciamà che i-j mandèisso
-na neuva paròla ciav për rintré ant ël sistema ëd {{SITENAME}} (\$4).
-Na ciav a temp për l'utent \"\$2\" a l'é stàita fàita e adess a resta \"\$3\". Se cost a l'era sò intent,
+'passwordremindertext' => "Cheidun (a l'é belfé che a sia stàit pròpe chiel, da 'nt l'adrëssa IP $1) a l'ha ciamà na neuva
+ciav për rintré ant ël sistema ëd {{SITENAME}} ($4).
+Na ciav provisòria për l'utent «$2» a l'é stàita creà e adess a resta «$3». Se cost a l'era sò intent,
 che a la deuvra për rintré e che a serna na neuva ciav adess.
-Soa ciav a temp a scad an {{PLURAL:\$5|un di|\$5 di}}.
+Soa ciav provisòria a scad da-sì {{PLURAL:$5|un di|$5 di}}.
 
-Se cheidun d'àutr a l'ha fàit costa arcesta, o se chiel a l'é arcordasse dla ciav,
+Se cheidun d'àutri a l'ha fàit costa arcesta, o se chiel a l'é arcordasse dla ciav,
 e a veul pì nen cambiela, che a fasa finta ëd gnente e ch'a continua a dovré soa ciav veja.",
-'noemail' => 'An arzulta pa gnun-a casela ëd pòsta eletrònica për l\'Utent "$1".',
-'noemailcreate' => "It deve dé n'adrëssa ëd pòsta eletrònica bon-a",
-'passwordsent' => "Na neuva paròla ciav a l'é stàita mandà a l'adrëssa eletrònica registrà për l'Utent \"\$1\".
+'noemail' => "A-i é gnun-a casela ëd pòsta eletrònica argistrà për l'Utent «$1».",
+'noemailcreate' => "A dev buté n'adrëssa ëd pòsta eletrònica bon-a.",
+'passwordsent' => "Na neuva paròla ciav a l'é stàita mandà a l'adrëssa eletrònica registrà ëd l'Utent «$1».
 Për piasì, che a la deuvra sùbit për rintré ant ël sistema pen-a che a l'arsèiv.",
 'blocked-mailpassword' => "Për evité dj'assion nen corete as peul pa dovresse la funsion \"Mand-me na ciav neuva\" da 'nt n'adrëssa IP ëd cole blocà.",
 'eauthentsent' => "A l'adrëssa che a l'ha dane i l'oma mandaje un messagi ëd pòsta eletrònica për conferma.

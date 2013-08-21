@@ -48,6 +48,7 @@
  * @author Oile11
  * @author Omnipaedista
  * @author PaoloRomano
+ * @author Peter17
  * @author Pietrodn
  * @author Pinodd
  * @author Ramac
@@ -1992,7 +1993,7 @@ Se vengono filtrati per utente, saranno mostrati solamente quei file per i quali
 'filehist-user' => 'Utente',
 'filehist-dimensions' => 'Dimensioni',
 'filehist-filesize' => 'Dimensione del file',
-'filehist-comment' => 'Oggetto',
+'filehist-comment' => 'Commento',
 'filehist-missing' => 'File mancante',
 'imagelinks' => 'Uso del file',
 'linkstoimage' => '{{PLURAL:$1|La seguente pagina contiene|Le seguenti $1 pagine contengono}} collegamenti al file:',

@@ -69,7 +69,6 @@ $messages = array(
 'tog-previewontop' => 'Vorbligg owwahalwb vum Beaawaidungsfenschda zaische',
 'tog-previewonfirst' => 'Zaischen Vorbligg baim erschdemol Schaffe',
 'tog-oldsig' => 'Voahonneni Unnaschfrid',
-'tog-showjumplinks' => 'Schdellde "Hubs uff"-Lingg',
 'tog-uselivepreview' => 'Uuvazeschada Vorbligg (bneedischd JavaScript) (vasugswais)',
 'tog-showhiddencats' => 'Zaisch vaschdeglde Grubbe',
 

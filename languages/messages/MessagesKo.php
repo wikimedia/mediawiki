@@ -1424,7 +1424,7 @@ $1",
 'mergelogpagetext' => '다음은 한 문서의 역사를 다른 문서의 역사와 합친 최근 기록입니다.',
 
 # Diffs
-'history-title' => '"$1" 문서의 판 내역',
+'history-title' => '"$1"의 판 내역',
 'difference-title' => '"$1"의 두 판 사이의 차이',
 'difference-title-multipage' => '"$1" 문서와 "$2" 문서 사이의 차이',
 'difference-multipage' => '(문서 사이의 차이)',

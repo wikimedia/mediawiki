@@ -245,6 +245,7 @@ $messages = array(
 'tog-noconvertlink' => 'Inhabilita la conversió dels títols dels enllaços',
 'tog-norollbackdiff' => 'Omet la pàgina de diferències després de realitzar una reversió',
 'tog-useeditwarning' => "Avisa'm quan surti d'una pàgina d'edició amb canvis sense desar",
+'tog-prefershttps' => 'Utilitza sempre una connexió segura en iniciar una sessió',
 
 'underline-always' => 'Sempre',
 'underline-never' => 'Mai',
@@ -3972,5 +3973,20 @@ Altrament, podeu fer servir un senzill formulari a continuació. El vostre comen
 
 # Image rotation
 'rotate-comment' => 'Imatge girada $1 {{PLURAL:$1|grau|graus}} en el sentit de les agulles del rellotge',
+
+# Limit report
+'limitreport-title' => "Perfil de dades de l'analitzador:",
+'limitreport-cputime' => "Temps d'ús de CPU",
+'limitreport-cputime-value' => '$1 {{PLURAL:$1|segon|segons}}',
+'limitreport-walltime' => "Temps real d'ús",
+'limitreport-walltime-value' => '$1 {{PLURAL:$1|segon|segons}}',
+'limitreport-ppvisitednodes' => 'Nombre de nodes visitats pel preprocessador',
+'limitreport-ppgeneratednodes' => 'Nombre de nodes generats pel preprocessador',
+'limitreport-postexpandincludesize' => "Mida d'inclusió post-expansió",
+'limitreport-postexpandincludesize-value' => '$1/$2 bytes',
+'limitreport-templateargumentsize' => "Mida de l'argument de plantilla",
+'limitreport-templateargumentsize-value' => '$1/$2 bytes',
+'limitreport-expansiondepth' => "Profunditat màxima d'expansió",
+'limitreport-expensivefunctioncount' => "Número de funcions d'anàlisi dispendioses",
 
 );

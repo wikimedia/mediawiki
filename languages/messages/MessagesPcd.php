@@ -317,7 +317,6 @@ Si s'n'est poin ch'cas-lo, pététe éq ch'est un bogue din ch'businkillache. <b
 'yourpassword' => "Mot d'passe:",
 'yourpasswordagain' => "Intrer à nouvieu ch'mot d'passe:",
 'remembermypassword' => "Intrer oùtonmatiquemint l'prochaine fouos (pour un maximum éd $1 {{PLURAL:$1|jour|jours}})",
-'securelogin-stick-https' => "Réster connécté in HTTPS apré l'connécsion",
 'yourdomainname' => 'Vote donmène:',
 'login' => 'Intrer',
 'nav-login-createaccount' => 'Intrer / créer vote conpte',

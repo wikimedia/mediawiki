@@ -306,6 +306,7 @@ $messages = array(
 'tog-noconvertlink' => '不轉換連結標題',
 'tog-norollbackdiff' => '回退後不做差異比對',
 'tog-useeditwarning' => '當離開頁面時編輯仍未儲存，請提醒我',
+'tog-prefershttps' => '登入時始終使用安全連線',
 
 'underline-always' => '總是使用',
 'underline-never' => '從不使用',

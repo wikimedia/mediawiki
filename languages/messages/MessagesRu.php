@@ -78,6 +78,7 @@
  * @author Sagan
  * @author Shirayuki
  * @author Sk
+ * @author Soul Train
  * @author Spider
  * @author TarzanASG
  * @author Temuri rajavi
@@ -1062,7 +1063,7 @@ $2
 'changeemail-cancel' => 'Отмена',
 
 # Special:ResetTokens
-'resettokens' => 'Сбросить жетоны',
+'resettokens' => 'Сбросить токены',
 
 # Edit page toolbar
 'bold_sample' => 'Полужирное начертание',
@@ -1670,7 +1671,7 @@ $1",
 'prefs-displayrc' => 'Настройки отображения',
 'prefs-displaysearchoptions' => 'Настройки отображения',
 'prefs-displaywatchlist' => 'Настройки отображения',
-'prefs-tokenwatchlist' => 'Жетон',
+'prefs-tokenwatchlist' => 'Токен',
 'prefs-diffs' => 'Разница версий',
 
 # User preference: email validation using jQuery

@@ -403,6 +403,7 @@ $messages = array(
 'tog-noconvertlink' => '停用链接文字转换',
 'tog-norollbackdiff' => '执行回退后不显示差异',
 'tog-useeditwarning' => '如在更改未保存时离开页面，则发出警告',
+'tog-prefershttps' => '登录时始终使用安全连接',
 
 'underline-always' => '总是使用',
 'underline-never' => '从不使用',
@@ -1045,7 +1046,7 @@ $2
 'loginreqlink' => '登录',
 'loginreqpagetext' => '您必须$1才能查看其它页面。',
 'accmailtitle' => '密码已寄出',
-'accmailtext' => "'[[User talk:$1|$1]]'的随机密码已经发送到$2。这个账户的密码可在登陆后的'[[Special:ChangePassword|更改密码]]'''页面中更改。",
+'accmailtext' => "为[[User talk:$1|$1]]随机生成的密码已送至$2。登陆后可以在''[[Special:ChangePassword|更改密码]]''页面中修改。",
 'newarticle' => '（新页面）',
 'newarticletext' => '您进入了一个尚未创建的页面。
 要创建该页面，请在下面的编辑框中输入内容（详情参见[[{{MediaWiki:Helppage}}|帮助页]]）。

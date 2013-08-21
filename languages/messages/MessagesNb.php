@@ -360,6 +360,7 @@ $messages = array(
 'tog-showhiddencats' => 'Vis skjulte kategorier',
 'tog-norollbackdiff' => 'Ikke vis diff etter tilbakestilling',
 'tog-useeditwarning' => 'Si ifra dersom jeg forlater en side uten å lagre den.',
+'tog-prefershttps' => 'Bruk alltid en trygg forbindelse når du er innlogget',
 
 'underline-always' => 'Alltid',
 'underline-never' => 'Aldri',
@@ -1033,9 +1034,7 @@ Det kan ha blitt flyttet eller slettet mens du så på siden.',
 'loginreqlink' => 'logge inn',
 'loginreqpagetext' => 'Du må $1 for å se andre sider.',
 'accmailtitle' => 'Passord sendt.',
-'accmailtext' => 'Et tilfeldig passord for [[User talk:$1|$1]] har blitt sendt til $2.
-
-Passordet for denne nye kontoen [[Special:ChangePassword|kan endres]] når du logger inn.',
+'accmailtext' => 'Et tilfeldig passord for [[User talk:$1|$1]] har blitt sendt til $2. Passordet kan endres på[[Special:ChangePassword|Passordendring]]-siden under innlogging.',
 'newarticle' => '(Ny)',
 'newarticletext' => "Du har fulgt en lenke til en side som ikke finnes ennå.
 For å opprette siden, begynn å skrive i boksen under (se [[{{MediaWiki:Helppage}}|hjelpesiden]] for mer informasjon).
@@ -2236,6 +2235,7 @@ Hver rad inneholder lenker til første og andre omdirigering, samt målet for de
 'mostrevisions' => 'Artikler med flest revisjoner',
 'prefixindex' => 'Alle sider med prefiks',
 'prefixindex-namespace' => 'All sider med prefiks ($1 navnerom)',
+'prefixindex-strip' => 'Fjern prefiks fra listen',
 'shortpages' => 'Korte sider',
 'longpages' => 'Lange sider',
 'deadendpages' => 'Blindveisider',
@@ -2355,8 +2355,9 @@ Det kreves at det oppgis minst et toppnivådomene, for eksempel «*.org».<br />
 'listgrouprights' => 'Rettigheter for brukergrupper',
 'listgrouprights-summary' => 'Følgende er en liste over brukergrupper som er definert på denne wikien, og hvilke rettigheter de har.
 Mer informasjon om de enkelte rettighetstypene kan finnes [[{{MediaWiki:Listgrouprights-helppage}}|her]].',
-'listgrouprights-key' => '* <span class="listgrouprights-granted">Innvilget rettighet</span>
-* <span class="listgrouprights-granted">Tilbaketrukket rettighet</span>',
+'listgrouprights-key' => 'Tegnforklaring:
+* <span class="listgrouprights-granted">Innvilget rettighet</span>
+* <span class="listgrouprights-revoked">Tilbaketrukket rettighet</span>',
 'listgrouprights-group' => 'Gruppe',
 'listgrouprights-rights' => 'Rettigheter',
 'listgrouprights-helppage' => 'Help:Grupperettigheter',
@@ -3190,13 +3191,13 @@ Dette er sannsynligvis forårsaket av en lenke til et svartelistet eksternt nett
 'pageinfo-length' => 'Sidelengde (i bytes)',
 'pageinfo-article-id' => 'Side-ID',
 'pageinfo-language' => 'Språk for sideinnholdet',
-'pageinfo-robot-policy' => 'Søkemotorstatus',
-'pageinfo-robot-index' => 'Indekserbar',
-'pageinfo-robot-noindex' => 'Ikke indekserbar',
+'pageinfo-robot-policy' => 'Bot-indeksering',
+'pageinfo-robot-index' => 'Tillatt',
+'pageinfo-robot-noindex' => 'Ikke tillatt',
 'pageinfo-views' => 'Antall visninger',
 'pageinfo-watchers' => 'Antall overvåkere av siden',
 'pageinfo-few-watchers' => 'Færre enn $1 {{PLURAL:$1|overvåker|overvåkere}}',
-'pageinfo-redirects-name' => 'Omdirigeringer til siden',
+'pageinfo-redirects-name' => 'Antall omdirigeringer til denne siden',
 'pageinfo-subpages-name' => 'Undersider av siden',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|omdirigering|omdirigeringer}}; $3 {{PLURAL:$3|ikke-omdirigering|ikke-omdirigeringer}})',
 'pageinfo-firstuser' => 'Sideoppretter',
@@ -3538,7 +3539,7 @@ Andre vil skjules som standard.
 'exif-compression-4' => 'CCITT Gruppe 4 faks-koding',
 
 'exif-copyrighted-true' => 'Opphavsrettsbeskyttet',
-'exif-copyrighted-false' => 'Ikke beskyttet av opphavsrett',
+'exif-copyrighted-false' => 'Opphavsrett er ikke angitt',
 
 'exif-unknowndate' => 'Ukjent dato',
 
@@ -3796,17 +3797,17 @@ for å avbryte e-postbekreftelsen:
 $5
 
 Denne bekreftelseskoden vil løpe ut $4.',
-'confirmemail_body_set' => 'Noen, trolig deg, har satt e-postadressen for kontoen «$2» til denne adressen på {{SITENAME}}, fra IP-adressen $1.
+'confirmemail_body_set' => 'Noen med IP-adresse $1, mest sannsynlig deg, har satt e-postadressen for kontoen «$2» til denne adressen på {{SITENAME}}.
 
-For å bekrefte at denne kontoen tilhører deg og for å slå på e-posttjenestene på {{SITENAME}}, åpne denne lenka i nettleseren din:
+For å bekrefte at denne kontoen faktisk tilhører deg og for å slå på e-post-tjenestene fra {{SITENAME}}, må du åpne denne lenken i nettleseren din:
 
 $3
 
-Om kontoen *ikke* tilhører deg, følg denne lenka for å avbryte bekreftelsen:
+Om kontoen *ikke* tilhører deg, følg denne lenken for å avbryte e-post-bekreftelsen:
 
 $5
 
-Denne bekreftelseskoden går ut på dato $4.',
+Denne bekreftelseskoden utløper $4.',
 'confirmemail_invalidated' => 'Bekreftelse av e-postadresse avbrutt',
 'invalidateemail' => 'Avbryt bekreftelse av e-postadresse',
 
@@ -3951,6 +3952,7 @@ Du kan også [[Special:EditWatchlist|bruke standardverktøyet]].',
 'version-license' => 'Lisens',
 'version-poweredby-credits' => "Denne wikien er drevet av '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'andre',
+'version-poweredby-translators' => 'translatewiki.net oversettere',
 'version-credits-summary' => 'Vi ønsker å takke følgende personer for deres bidrag til [[Special:Version|MediaWiki]].',
 'version-license-info' => 'MediaWiki er fri programvare; du kan redistribuere det og/eller modifisere det under betingelsene i GNU General Public License som publisert av Free Software Foundation; enten versjon 2 av lisensen, eller (etter eget valg) enhver senere versjon.
 
@@ -4132,7 +4134,7 @@ Om det ikke er tilfellet, kan du bruke det enkle skjemaet som du finner under. K
 
 # API errors
 'api-error-badaccess-groups' => 'Du har ikke tillatelse til å laste opp filer til denne wikien.',
-'api-error-badtoken' => 'Intern feil: Ugyldig token.',
+'api-error-badtoken' => 'Intern feil: Ugyldig nøkkel.',
 'api-error-copyuploaddisabled' => 'Opplasting ved URL er deaktivert på denne tjeneren.',
 'api-error-duplicate' => 'Det er allerede {{PLURAL:$1|en [$2 annen fil]|flere [$2 andre filer]}} på denne siden med samme innhold.',
 'api-error-duplicate-archive' => 'Det fantes {{PLURAL:$1|[$2 en annen fil]|[$2 noen andre filer]}} på siden som hadde samme innhold, men {{PLURAL:$1|den|de}} ble slettet.',
@@ -4185,5 +4187,17 @@ Om det ikke er tilfellet, kan du bruke det enkle skjemaet som du finner under. K
 
 # Image rotation
 'rotate-comment' => 'Bildet snudd $1{{PLURAL:°}} med klokka',
+
+# Limit report
+'limitreport-title' => 'Parser-profildata:',
+'limitreport-cputime' => 'CPU-tidsbruk',
+'limitreport-cputime-value' => '$1 {{PLURAL:$1|sekund|sekunder}}',
+'limitreport-walltime' => 'Faktisk tidsbruk',
+'limitreport-walltime-value' => '$1 {{PLURAL:$1|sekund|sekunder}}',
+'limitreport-ppvisitednodes' => 'Nodebesøkstelling for preprosessor',
+'limitreport-postexpandincludesize-value' => '$1/$2 byte',
+'limitreport-templateargumentsize' => 'Malargument-størrelse',
+'limitreport-templateargumentsize-value' => '$1/$2 byte',
+'limitreport-expansiondepth' => 'Største ekspansjonsdybde',
 
 );

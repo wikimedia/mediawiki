@@ -466,7 +466,6 @@ Shuni e'tiborga olingki, ayrim sahifalar siz brauzeringiz keshini tozalamaguning
 'remembermypassword' => 'Hisob ma’lumotlarim ushbu brauzerda eslab qolinsin (ko‘pi bilan $1 {{PLURAL:$1|kunga|kunga}})',
 'userlogin-remembermypassword' => 'Esda saqla',
 'userlogin-signwithsecure' => 'Himoyalangan holda kirish',
-'securelogin-stick-https' => 'Kirgandan keyin HTTPS boʻyicha ulanishni davom ettirish',
 'yourdomainname' => 'Sizning domeningiz:',
 'password-change-forbidden' => 'Siz bu vikida maxfiy soʻzni oʻzgartira olmaysiz.',
 'login' => 'Kirish',

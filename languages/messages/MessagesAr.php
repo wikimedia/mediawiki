@@ -662,7 +662,7 @@ $messages = array(
 'searcharticle' => 'اذهب',
 'history' => 'تاريخ الصفحة',
 'history_short' => 'تاريخ',
-'updatedmarker' => 'حُدِّثَت منذ زيارتي الأخيرة',
+'updatedmarker' => 'عدلت منذ زيارتي الأخيرة',
 'printableversion' => 'بتنسق للطباعة',
 'permalink' => 'رابط دائم',
 'print' => 'اطبع',
@@ -1886,12 +1886,17 @@ $1",
 'action-userrights-interwiki' => 'تعديل صلاحيات المستخدم للمستخدمين في الويكيات الأخرى',
 'action-siteadmin' => 'غلق أو رفع غلق قاعدة البيانات',
 'action-sendemail' => 'إرسال رسائل بريد إلكتروني',
+'action-editmywatchlist' => 'تعديل قائمة مراقبتك',
+'action-viewmywatchlist' => 'مشاهدة قائمة مراقبتك',
+'action-viewmyprivateinfo' => 'مشاهدة معلوماتك الخاصة',
+'action-editmyprivateinfo' => 'تعديل معلوماتك الخاصة',
 
 # Recent changes
 'nchanges' => '{{PLURAL:$1|لا تغييرات|تغيير واحد|تغييران|$1 تغييرات|$1 تغييرا|$1 تغيير}}',
 'recentchanges' => 'أحدث التغييرات',
 'recentchanges-legend' => 'خيارات أحدث التغييرات',
 'recentchanges-summary' => 'تابع آخر التغييرات في الويكي من هذه الصفحة.',
+'recentchanges-noresult' => 'لا توجد تغييرات خلال الفترة المحددة تطابق هذه المعايير.',
 'recentchanges-feed-description' => 'تابع أحدث التغييرات للويكي عبر هذه التلقيمة.',
 'recentchanges-label-newpage' => 'أنشأ هذا التعديل صفحة جديدة',
 'recentchanges-label-minor' => 'هذا تعديل طفيف',
@@ -1939,7 +1944,7 @@ $1",
 'reuploaddesc' => 'إلغاء الرفع والرجوع إلى استمارة الرفع',
 'upload-tryagain' => 'أرسل وصف ملف معدل',
 'uploadnologin' => 'غير مسجل الدخول',
-'uploadnologintext' => 'يجب أن تكون [[Special:UserLogin|مسجلا الدخول]] لتتمكن من رفع الملفات.',
+'uploadnologintext' => 'يجب عليك $1 لترفع الملفات.',
 'upload_directory_missing' => 'مجلد الرفع ($1) مفقود ولم يمكن إنشاؤه بواسطة خادوم الوب.',
 'upload_directory_read_only' => 'مجلد الرفع ($1) لا يمكن الكتابة عليه بواسطة خادوم الوب.',
 'uploaderror' => 'خطأ في الرفع',
@@ -2303,6 +2308,8 @@ $1',
 'randompage-nopages' => 'لا توجد صفحات في {{PLURAL:$2||النطاق التالي|النطاقين التاليين|النطاقات التالية}}: $1.',
 
 # Special:RandomInCategory
+'randomincategory' => 'صفحة عشوائية في التصنيف',
+'randomincategory-invalidcategory' => '"$1" ليس اسم تصنيف صالح.',
 'randomincategory-selectcategory-submit' => 'اذهب',
 
 # Random redirect
@@ -2398,6 +2405,7 @@ $1',
 'mostrevisions' => 'أكثر الصفحات تعديلا',
 'prefixindex' => 'كل الصفحات بالبادئة',
 'prefixindex-namespace' => 'كل الصفحات مع بادئة ($1 مساحة الأسم)',
+'prefixindex-strip' => 'أخف البادئة من القائمة',
 'shortpages' => 'صفحات قصيرة',
 'longpages' => 'صفحات طويلة',
 'deadendpages' => 'صفحات نهاية مسدودة',
@@ -3395,13 +3403,13 @@ $2',
 'pageinfo-length' => 'حجم الصفحة (بالبايت)',
 'pageinfo-article-id' => 'معرف الصفحة (ID)',
 'pageinfo-language' => 'لغة محتوى الصفحة',
-'pageinfo-robot-policy' => 'الصفة في محرك البحث',
-'pageinfo-robot-index' => 'قابلة للفهرسة',
-'pageinfo-robot-noindex' => 'غير قابلة للفهرسة',
+'pageinfo-robot-policy' => 'فهرسة الروبوتات',
+'pageinfo-robot-index' => 'مسموحة',
+'pageinfo-robot-noindex' => 'غير مسموحة',
 'pageinfo-views' => 'عدد المشاهدات',
 'pageinfo-watchers' => 'عدد المراقبين',
 'pageinfo-few-watchers' => 'أقل من {{PLURAL:$1||مراقب واحد|مراقبين اثنين|$1 مراقبين|$1 مراقباً|$1 مراقب}}',
-'pageinfo-redirects-name' => 'التحويلات إلى هذه الصفحة',
+'pageinfo-redirects-name' => 'عدد التحويلات إلى هذه الصفحة',
 'pageinfo-subpages-name' => 'الصفحات الفرعية لهذه الصفحة',
 'pageinfo-subpages-value' => '$1 ({{PLURAL:$2|لا تحويلات|تحويلة واحدة|تحويلتان|$2 تحويلات|$2 تحويلة}}؛ $3 {{PLURAL:$3|من غير  التحويلات}})',
 'pageinfo-firstuser' => 'منشئ الصفحة',
@@ -3759,7 +3767,7 @@ $1',
 'exif-compression-34712' => 'جيه بي إي جي2000',
 
 'exif-copyrighted-true' => 'محفوظ الحقوق',
-'exif-copyrighted-false' => 'ملكية عامة',
+'exif-copyrighted-false' => 'حالة حقوق النشر غير مُعرّفة',
 
 'exif-photometricinterpretation-2' => 'آر جي بي',
 'exif-photometricinterpretation-6' => 'واي سب سر',
@@ -4047,7 +4055,7 @@ $5
 الإلكتروني للحساب "$2" إلى عنوان البريد الإلكتروني هذا في
 {{SITENAME}}.
 
-لتأكيد أن هذا الحساب لك فعلا ولتفعيل خواص البريد الإلكتروني في
+لتأكيد أن هذا الحساب لك فعلا ولتنشيط خواص البريد الإلكتروني في
 {{SITENAME}}، افتح هذه الوصلة في متصفحك:
 
 $3
@@ -4263,6 +4271,7 @@ $5
 'version-license' => 'الرخصة',
 'version-poweredby-credits' => "تدار هذه الويكي ب'''[//www.mediawiki.org/ ميدياويكي]''', حقوق النشر © 2001-$1 $2.",
 'version-poweredby-others' => 'آخرون',
+'version-poweredby-translators' => 'مترجمو translatewiki.net',
 'version-credits-summary' => 'نود أن نعرف بالأشخاص التالية أسماؤهم لمساهمتهم في [[Special:Version|ميدياويكي]].',
 'version-license-info' => "ميدياويكي برنامج حر، يحق لك توزيعه و/أو تعديله وفقاً لبنود رخصة غنو العمومية كما نشرتها مؤسسة البرمجيات الحرة، الإصدار الثاني أو (وفقا لاختيارك أنت) أي إصدار لاحق.
 
@@ -4498,5 +4507,9 @@ $5
 
 # Image rotation
 'rotate-comment' => 'تدوير الصورة  {{PLURAL:$1||درجة واحدة|درجتان|$1 درجات|$1 درجة}} باتجاه عقارب الساعة',
+
+# Limit report
+'limitreport-cputime-value' => '{{PLURAL:$1|أقل من ثانية|ثانية واحدة|ثانيتان|$1 ثوانٍ|$1 ثانية}}',
+'limitreport-walltime-value' => '{{PLURAL:$1|أقل من ثانية|ثانية واحدة|ثانيتان|$1 ثوانٍ|$1 ثانية}}',
 
 );

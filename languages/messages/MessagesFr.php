@@ -1100,7 +1100,7 @@ Elle a peut-être été déplacée ou supprimée depuis que vous avez lu cette p
 'loginreqpagetext' => 'Vous devez vous $1 pour voir les autres pages.',
 'accmailtitle' => 'Mot de passe envoyé.',
 'accmailtext' => "Un mot de passe généré aléatoirement pour [[User talk:$1|$1]] a été envoyé à $2.
-Le mot de passe pour ce nouveau compte peut être changé sur la page ''[[Special:ChangePassword|de changement de mot de passe]]'' après s'être connecté.",
+Il peut être modifié sur la page ''[[Special:ChangePassword|Changement de mot de passe]]'' après s’être connecté.",
 'newarticle' => '(Nouveau)',
 'newarticletext' => "Vous avez suivi un lien vers une page qui n'existe pas encore ou qui a été [{{fullurl:Special:Log|type=delete&page={{FULLPAGENAMEE}}}} effacée].
 Pour créer cette page, entrez votre texte dans la boîte ci-dessous (vous pouvez consulter [[{{MediaWiki:Helppage}}|la page d'aide]] pour plus d'informations).

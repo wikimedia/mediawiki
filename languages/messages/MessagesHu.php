@@ -591,7 +591,7 @@ További információkat a [[Special:Version|verzióinformációs lapon]] talál
 'newmessagesdifflink' => 'az utolsó üzenetet',
 'youhavenewmessagesfromusers' => '$2 kaptál {{PLURAL:$3|egy|$3}} szerkesztőtől $1!',
 'youhavenewmessagesmanyusers' => '$2 kaptál több szerkesztőtől $1.',
-'newmessageslinkplural' => 'a vitalapodon',
+'newmessageslinkplural' => '{{PLURAL:$1||}}a vitalapodon',
 'newmessagesdifflinkplural' => '{{PLURAL:$1|Új üzenetet|Új üzeneteket}}',
 'youhavenewmessagesmulti' => 'Új üzenet vár a(z) $1 wikin',
 'editsection' => 'szerkesztés',

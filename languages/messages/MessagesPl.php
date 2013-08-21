@@ -352,6 +352,7 @@ $messages = array(
 'tog-noconvertlink' => 'Wyłącz konwersję tytułów w linkach',
 'tog-norollbackdiff' => 'Pomiń pokazywanie zmian po użyciu funkcji „cofnij”',
 'tog-useeditwarning' => 'Ostrzegaj mnie, gdy opuszczam stronę edycji bez zapisania zmian',
+'tog-prefershttps' => 'Zawsze używaj bezpiecznego połączenia po zalogowaniu',
 
 'underline-always' => 'zawsze',
 'underline-never' => 'nigdy',
@@ -861,7 +862,7 @@ Zaloguj się teraz i je zmień.
 Możesz zignorować tę wiadomość, jeśli konto zostało utworzone przez pomyłkę.',
 'usernamehasherror' => 'Nazwa użytkownika nie może zawierać znaków kratki „#”',
 'login-throttled' => 'Zbyt wiele razy próbowałeś zalogować się na to konto.
-Odczekaj chwilę zanim ponowisz próbę.',
+Odczekaj $1 zanim ponowisz próbę.',
 'login-abort-generic' => 'Logowanie nieudane – przerwano',
 'loginlanguagelabel' => 'Język: $1',
 'suspicious-userlogout' => 'Żądanie wylogowania zostało odrzucone ponieważ wygląda na to, że zostało wysłane przez uszkodzoną przeglądarkę lub buforujący serwer proxy.',

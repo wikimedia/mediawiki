@@ -416,6 +416,7 @@ $messages = array(
 'tog-noconvertlink' => 'Desactivar la conversión de título de enlace',
 'tog-norollbackdiff' => "Omitir la ''diferencia'' después de revertir",
 'tog-useeditwarning' => 'Advertirme cuando abandone una página editada con cambios sin grabar',
+'tog-prefershttps' => 'Utiliza una conexión segura siempre que haya iniciado una sesión',
 
 'underline-always' => 'Siempre',
 'underline-never' => 'Nunca',
