@@ -4057,7 +4057,7 @@ future releases. Also note that since each list value is wrapped in a unique
 	'listredirects'       => 'List redirects',
 	'unusedtemplates'     => 'Unused templates',
 	'randompage'          => 'Random page',
-	'randomincategory'    => 'Special:RandomInCategory',
+	'randomincategory'    => 'Random page in category',
 	'randomredirect'      => 'Random redirect',
 	'statistics'          => 'Statistics',
 	'disambiguations'     => '',

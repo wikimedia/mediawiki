@@ -2630,10 +2630,10 @@ Remember to check for other links to the templates before deleting them.',
 'randompage-url'     => 'Special:Random', # do not translate or duplicate this message to other languages
 
 # Random page in category
-'randomincategory'                  => 'Random page in category',
-'randomincategory-invalidcategory'  => '"$1" is not a valid category name.',
-'randomincategory-nopages'          => 'There are no pages in the [[:Category:$1|$1]] category.',
-'randomincategory-selectcategory'   => 'Get random page from category: $1 $2.',
+'randomincategory'                       => 'Random page in category',
+'randomincategory-invalidcategory'       => '"$1" is not a valid category name.',
+'randomincategory-nopages'               => 'There are no pages in the [[:Category:$1|$1]] category.',
+'randomincategory-selectcategory'        => 'Get random page from category: $1 $2.',
 'randomincategory-selectcategory-submit' => 'Go',
 
 # Random redirect
@@ -5121,22 +5121,22 @@ Otherwise, you can use the easy form below. Your comment will be added to the pa
 'rotate-comment' => 'Image rotated by $1 {{PLURAL:$1|degree|degrees}} clockwise',
 
 # Limit report
-'limitreport-title' => 'Parser profiling data:',
-'limitreport-cputime' => 'CPU time usage',
-'limitreport-cputime-value' => '$1 {{PLURAL:$1|second|seconds}}',
-'limitreport-walltime' => 'Real time usage',
-'limitreport-walltime-value' => '$1 {{PLURAL:$1|second|seconds}}',
-'limitreport-ppvisitednodes' => 'Preprocessor visited node count',
-'limitreport-ppvisitednodes-value' => '$1/$2',
-'limitreport-ppgeneratednodes' => 'Preprocessor generated node count',
-'limitreport-ppgeneratednodes-value' => '$1/$2',
-'limitreport-postexpandincludesize' => 'Post-expand include size',
-'limitreport-postexpandincludesize-value' => '$1/$2 bytes',
-'limitreport-templateargumentsize' => 'Template argument size',
-'limitreport-templateargumentsize-value' => '$1/$2 bytes',
-'limitreport-expansiondepth' => 'Highest expansion depth',
-'limitreport-expansiondepth-value' => '$1/$2',
-'limitreport-expensivefunctioncount' => 'Expensive parser function count',
-'limitreport-expensivefunctioncount-value' => '$1/$2',
+'limitreport-title'                        => 'Parser profiling data:',
+'limitreport-cputime'                      => 'CPU time usage',
+'limitreport-cputime-value'                => '$1 {{PLURAL:$1|second|seconds}}',
+'limitreport-walltime'                     => 'Real time usage',
+'limitreport-walltime-value'               => '$1 {{PLURAL:$1|second|seconds}}',
+'limitreport-ppvisitednodes'               => 'Preprocessor visited node count',
+'limitreport-ppvisitednodes-value'         => '$1/$2', # only translate this message to other languages if you have to change it
+'limitreport-ppgeneratednodes'             => 'Preprocessor generated node count',
+'limitreport-ppgeneratednodes-value'       => '$1/$2', # only translate this message to other languages if you have to change it
+'limitreport-postexpandincludesize'        => 'Post-expand include size',
+'limitreport-postexpandincludesize-value'  => '$1/$2 bytes',
+'limitreport-templateargumentsize'         => 'Template argument size',
+'limitreport-templateargumentsize-value'   => '$1/$2 bytes',
+'limitreport-expansiondepth'               => 'Highest expansion depth',
+'limitreport-expansiondepth-value'         => '$1/$2', # only translate this message to other languages if you have to change it
+'limitreport-expensivefunctioncount'       => 'Expensive parser function count',
+'limitreport-expensivefunctioncount-value' => '$1/$2', # only translate this message to other languages if you have to change it
 
 );
