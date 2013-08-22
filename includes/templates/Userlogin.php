@@ -170,7 +170,7 @@ class UserloginTemplate extends BaseTemplate {
 		<?php } ?>
 <?php if ( $this->haveData( 'uselang' ) ) { ?><input type="hidden" name="uselang" value="<?php $this->text( 'uselang' ); ?>" /><?php } ?>
 <?php if ( $this->haveData( 'token' ) ) { ?><input type="hidden" name="wpLoginToken" value="<?php $this->text( 'token' ); ?>" /><?php } ?>
-<?php if ( $this->data['cansecurelogin'] ) {?><input type="hidden" name="wpStickHTTPS" value="<?php $this->text( 'stickHTTPS' ); ?>" /><?php } ?>
+<?php if ( $this->data['cansecurelogin'] ) {?><input type="hidden" name="wpForceHttps" value="<?php $this->text( 'stickhttps' ); ?>" /><?php } ?>
 </form>
 </div>
 </div>
