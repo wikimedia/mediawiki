@@ -494,6 +494,9 @@ class ParserTest {
 
 	/**
 	 * Get a Parser object
+	 *
+	 * @param string $preprocessor
+	 * @return Parser
 	 */
 	function getParser( $preprocessor = null ) {
 		global $wgParserConf;
@@ -566,6 +569,7 @@ class ParserTest {
 			$out = $parser->getPreloadText( $input, $title, $options );
 		} else {
 			$output = $parser->parse( $input, $title, $options, true, true, 1337 );
+			$output->setTOCEnabled( !isset( $opts['notoc'] ) );
 			$out = $output->getText();
 
 			if ( isset( $opts['showtitle'] ) ) {
@@ -618,7 +622,7 @@ class ParserTest {
 	/**
 	 * Use a regex to find out the value of an option
 	 * @param $key String: name of option val to retrieve
-	 * @param $opts Options array to look in
+	 * @param $opts array: Options array to look in
 	 * @param $default Mixed: default value returned if not found
 	 */
 	private static function getOptionValue( $key, $opts, $default ) {
