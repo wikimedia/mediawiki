@@ -39,8 +39,8 @@ class SqliteUpdater extends DatabaseUpdater {
 
 			// 1.15
 			array( 'addTable', 'change_tag',                        'patch-change_tag.sql' ),
-			array( 'addTable', 'tag_summary',                       'patch-change_tag.sql' ),
-			array( 'addTable', 'valid_tag',                         'patch-change_tag.sql' ),
+			array( 'addTable', 'tag_summary',                       'patch-tag_summary.sql' ),
+			array( 'addTable', 'valid_tag',                         'patch-valid_tag.sql' ),
 
 			// 1.16
 			array( 'addTable', 'user_properties',                   'patch-user_properties.sql' ),
