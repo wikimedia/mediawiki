@@ -815,7 +815,7 @@ class LoginForm extends SpecialPage {
 				break;
 			case self::THROTTLED:
 				$this->mainLoginForm( $this->msg( 'login-throttled' )
-				->params ( $lang->formatDuration( $wgPasswordAttemptThrottle['seconds'] ) )
+				->params ( $this->getLanguage()->formatDuration( $wgPasswordAttemptThrottle['seconds'] ) )
 				->text()
 				);
 				break;
