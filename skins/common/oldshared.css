@@ -124,8 +124,12 @@ img { border: none; }
 	text-align: center;
 	display: -moz-inline-block;
 	display: inline-block;
+	display: table;
+
+	/* IE7 and earlier */
 	zoom: 1;
 	*display: inline;
+
 	padding: 7px;
 }
 /* CSS for backwards-compatibility with cached page renders and creative uses in wikitext */
