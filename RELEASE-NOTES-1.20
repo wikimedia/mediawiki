@@ -3,6 +3,12 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it '''off''' if you can.
 
+== MediaWiki 1.20.7 ==
+
+This is not yet a release!
+
+=== Changes since 1.20.6 ===
+* (bug 51064) Purge upstream caches when deleting file assets.
 
 == MediaWiki 1.20.6 ==
 
