@@ -838,6 +838,8 @@ class PhpHttpRequest extends MWHttpRequest {
 
 		parent::execute();
 
+		$this->setHeader( 'Connection', 'close' );
+
 		if ( is_array( $this->postData ) ) {
 			$this->postData = wfArrayToCgi( $this->postData );
 		}
