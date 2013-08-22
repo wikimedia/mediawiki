@@ -1396,11 +1396,14 @@ Dëst kann net réckgängeg gemaach ginn.",
 'badsig' => "D'Syntax vun ärer Ënnerschëft ass net korrekt; iwwerpréift w.e.g. ären HTML Code.",
 'badsiglength' => 'Är Ënnerschrëft ass ze laang.
 Si muss manner wéi $1 {{PLURAL:$1|Zeechen|Zeechen}} hunn.',
-'yourgender' => 'Geschlecht:',
-'gender-unknown' => 'Net uginn',
-'gender-male' => 'Männlech',
-'gender-female' => 'Weiblech',
-'prefs-help-gender' => "Fakultativ: gëtt benotzt fir eng ''Gender-korrekt'' Uried duerch d'Software. Dës Informatioun ass ëffentlech.",
+'yourgender' => 'Wéi wëllt Dir beschriwwe ginn?',
+'gender-unknown' => 'Ech wëll dat net preziséieren',
+'gender-male' => 'Hien ännert Wikisäiten',
+'gender-female' => 'Si ännert Wikisäiten',
+'prefs-help-gender' => "Fakultativ:
+D'Software benotzt seng Wäerter fir Iech unzeschwätzen a fir vun Iech vis-a-vis vun Aneren grammatesch ''Gender-korrekt'' ze schwätzen. 
+
+Dës Informatioun ass ëffentlech.",
 'email' => 'E-Mail',
 'prefs-help-realname' => 'Äre richtegen Numm ass fakultativ. Wann Dir en ugitt, gëtt e benotzt fir Iech Är Kontributiounen zouzeuerdnen.',
 'prefs-help-email' => "D'E-Mailadress ass fakultativ, awer si gëtt gebraucht fir Iech Äert Passwuert ze mailen, wann Dir et géift vergiessen.",

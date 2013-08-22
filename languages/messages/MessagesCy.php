@@ -160,6 +160,7 @@ $messages = array(
 'tog-showhiddencats' => 'Dangos categorïau cuddiedig',
 'tog-norollbackdiff' => 'Hepgor dangos cymhariaeth ar ôl gwrthdroi golygiad',
 'tog-useeditwarning' => "Tynnwch fy sylw pan wyf ar fin gadael tudalen olygu heb roi'r newidiadau ar gadw",
+'tog-prefershttps' => 'Defnyddio cysylltiad diogel bob amser tra fy mod wedi mewngofnodi',
 
 'underline-always' => 'Bob amser',
 'underline-never' => 'Byth',
@@ -816,9 +817,7 @@ Efallai bod yr adran wedi cael ei symud neu ei dileu ers i chi agor y dudalen.",
 'loginreqlink' => 'mewngofnodi',
 'loginreqpagetext' => "Mae'n rhaid $1 er mwyn gweld tudalennau eraill.",
 'accmailtitle' => 'Wedi danfon y cyfrinair.',
-'accmailtext' => "Anfonwyd cyfrinair a grewyd ar hap ar gyfer [[User talk:$1|$1]] at $2.
-
-Gellir newid y cyfrinair ar gyfer y cyfrif newydd hwn ar y dudalen ''[[Special:ChangePassword|newid cyfrinair]]'', wedi i chi fewngofnodi.",
+'accmailtext' => "Anfonwyd cyfrinair a grewyd ar hap ar gyfer [[User talk:$1|$1]] at $2. Gellir newid y cyfrinair hwn ar y dudalen ''[[Special:ChangePassword|newid cyfrinair]]'', wrth fewngofnodi.",
 'newarticle' => '(Newydd)',
 'newarticletext' => "Rydych chi wedi dilyn cysylltiad i dudalen sydd heb gael ei chreu eto.
 I greu'r dudalen, dechreuwch deipio yn y blwch isod (gweler y [[{{MediaWiki:Helppage}}|dudalen gymorth]] am fwy o wybodaeth).
@@ -1315,11 +1314,12 @@ Ni allwch ddadwneud y weithred hon.",
 'badsig' => 'Llofnod crai annilys; gwiriwch y tagiau HTML.',
 'badsiglength' => "Mae'ch llysenw'n rhy hir.
 Gall fod hyd at $1 {{PLURAL:$1|llythyren|lythyren|lythyren|llythyren|llythyren|llythyren}} o hyd.",
-'yourgender' => 'Rhyw:',
-'gender-unknown' => 'Heb ei nodi',
-'gender-male' => 'Gwryw',
-'gender-female' => 'Benyw',
-'prefs-help-gender' => "Heb rheidrwydd: mae'r meddalwedd yn defnyddio hwn i gyfeirio atoch ac i'ch cyfarch yn ôl eich rhyw.
+'yourgender' => 'Sut yr hoffech chi gael eich disgrifio:',
+'gender-unknown' => "Mae'n well gennyf beidio nodi",
+'gender-male' => "Mae e'n golygu tudalennau wici",
+'gender-female' => "Mae hi'n golygu tudalennau wici",
+'prefs-help-gender' => "Nid oes rhaid llanw'r dewis yma. 
+Mae'r meddalwedd yn defnyddio hwn i gyfeirio atoch ac i'ch cyfarch yn ôl eich rhyw.
 Mae'r wybodaeth hon ar gael i'r cyhoedd.",
 'email' => 'E-bost',
 'prefs-help-realname' => '* Enw iawn (dewisol): Os ydych yn dewis ei roi, fe fydd yn cael ei ddefnyddio er mwyn rhoi cydnabyddiaeth i chi am eich gwaith.',

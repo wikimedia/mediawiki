@@ -155,6 +155,7 @@ $messages = array(
 'tog-showhiddencats' => 'Vís goymdir bólkar',
 'tog-norollbackdiff' => 'Vís ikki munin eftir eina afturrulling',
 'tog-useeditwarning' => 'Ávara meg, tá ið eg fari frá einari rættingarsíðu, sum hevur broytingar ið ikki eru goymdar.',
+'tog-prefershttps' => 'Nýt altíð trygt samband, meðan tú ert innritað/ur',
 
 'underline-always' => 'Altíð',
 'underline-never' => 'Ongantíð',
@@ -666,7 +667,7 @@ Tú eigur at innrita og broyta loyniorðið nú.
 Tú kanst síggja burtur frá hesum boðum, um henda kontan varð upprættað av misgáum.',
 'usernamehasherror' => 'Brúkaranavn kann ikki innihalda teknið #',
 'login-throttled' => 'Tú hevur roynt at rita inn ov nógvar ferðir nýliga.
-Vinarliga bíða áðrenn tú roynir aftur.',
+Vinarliga bíða $1 áðrenn tú roynir aftur.',
 'login-abort-generic' => 'Tað miseydnaðist tær at rita inn - avbrotið',
 'loginlanguagelabel' => 'Mál: $1',
 'suspicious-userlogout' => 'Tín fyrispurningur um at útrita var noktaður, tí tað sær út til at hann varð sendur frá einum oyðiløgdum kaga ella caching proxy.',
@@ -687,8 +688,7 @@ Fyri at gera innritanina lidna, mást tú velja tær eitt nýtt loyniorð her:',
 'newpassword' => 'Nýtt loyniorð:',
 'retypenew' => 'Skriva nýtt loyniorð umaftur:',
 'resetpass_submit' => 'Vel loyniorð og rita inn',
-'changepassword-success' => 'Tað hevur eydnast tær at broyta títt loyniorð!
-Nú verður tú ritaður inn...',
+'changepassword-success' => 'Títt loyniorð er nú broytt!',
 'resetpass_forbidden' => 'Loyniorð kunnu ikki broytast',
 'resetpass-no-info' => 'Tú mást vera loggaður á fyri at fáa beinleiðis atgongd til hesa síðu.',
 'resetpass-submit-loggedin' => 'Broyt loyniorð',
@@ -833,7 +833,7 @@ Tað kann vera flutt ella blivið strikað meðan tú hevur hugt at síðuni.',
 'loginreqpagetext' => 'Tú mást $1 fyri at síggja aðrar síður.',
 'accmailtitle' => 'Loyniorð sent.',
 'accmailtext' => "Eitt tilvildarliga valt loyniorð fyri brúkaran [[User talk:$1|$1]] er blivið  sent til $2.
-Loyniorðið fyri hesa nýggju kontuna kann verða broytt á ''[[Special:ChangePassword|broyt loyniorð]]'' síðuni tá tú ritar inn.",
+Tað kann broytast á ''[[Special:ChangePassword|broyt loyniorð]]'' síðuni tá tú ritar inn.",
 'newarticle' => '(Nýggj)',
 'newarticletext' => "Tú ert komin eftir eini slóð til eina síðu, ið ikki er til enn. Skriva í kassan niðanfyri, um tú vilt byrja uppá hesa síðuna.
 (Sí [[{{MediaWiki:Helppage}}|hjálparsíðuna]] um tú ynskir fleiri upplýsingar).
@@ -1079,6 +1079,7 @@ Tú kanst síggja munin; smálutir eru at finna í [{{fullurl:{{#Special:Log}}/s
 'revdelete-hide-name' => 'Fjal handling og mál',
 'revdelete-hide-comment' => 'Fjal rættingar frágreiðing',
 'revdelete-hide-user' => 'Fjal brúkaranavn/IP adressu hjá tí sum rættar',
+'revdelete-hide-restricted' => 'Síggj burtur frá data frá administratorum líka væl sum frá øðrum',
 'revdelete-radio-same' => '(ikki broyta)',
 'revdelete-radio-set' => 'Ja',
 'revdelete-radio-unset' => 'Nei',
@@ -1312,11 +1313,13 @@ Tú kanst ikki angra, tá tað fyrst er gjørt.',
 Eftirkannað HTML.',
 'badsiglength' => 'Tín undirskrift er ov long. 
 Hon má ikki hava meira enn $1 {{PLURAL:$1|tekn|tekn}}',
-'yourgender' => 'Kyn:',
-'gender-unknown' => 'Ikki upplýst',
-'gender-male' => 'Maður',
-'gender-female' => 'Kvinna',
-'prefs-help-gender' => 'Tú avgerð sjálv/ur: Tað verður brúkt til at fáa kynsrættan tekst á nøkrum málum. Henda kunning verður almenn.',
+'yourgender' => 'Hvussu ynskir tú at lýsa teg?',
+'gender-unknown' => 'Eg ynski ikki at upplýsa smálutir',
+'gender-male' => 'Hann rættar wiki síður',
+'gender-female' => 'Hon rættar wiki síður',
+'prefs-help-gender' => 'Henda innstillingin er valfríð.
+Ritbúnaðurin brúkar upplýsingina til at tiltala teg og tá tú verður nevnd/ur fyri øðrum, soleiðis at rætta kynið verður brúkt. 
+Henda kunning verður almenn.',
 'email' => 'T-post',
 'prefs-help-realname' => 'Veruligt navn er valfrítt.
 Um tú velur at skriva tað her, so verður tað nýtt til at geva tær æruna fyri títt arbeiði.',
@@ -2674,9 +2677,11 @@ Goym hana á tínari teldu og legg hana so út her.",
 # JavaScriptTest
 'javascripttest' => 'Royndarkoyring av JavaScript',
 'javascripttest-title' => 'Koyrir $1 royndir',
+'javascripttest-pagetext-skins' => 'Vel eina útsjónd at koyra royndirnar við:',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'Tín brúkarasíða',
+'tooltip-pt-anonuserpage' => 'Brúkarasíðan fyri IP adressuna, sum tú rættar frá',
 'tooltip-pt-mytalk' => 'Tín kjaksíða',
 'tooltip-pt-anontalk' => 'Kjak um rættingar frá hesi IP adressuni',
 'tooltip-pt-preferences' => 'Tínar innstillingar',
@@ -2742,6 +2747,9 @@ Goym hana á tínari teldu og legg hana so út her.",
 'tooltip-undo' => '"Angra" tekur burtur hesa rættingina og letur upp rættingarsíðuna við forskoðan. Tað loyvir at tú skrivar eina orsøk í samandráttin.',
 'tooltip-preferences-save' => 'Goym innstillingar',
 'tooltip-summary' => 'Skriva stuttan samandrátt',
+
+# Metadata
+'notacceptable' => 'Wiki ambætarin kann ikki veita dáta í einum formati, sum tín viðskiftari (klientur) kann lesa.',
 
 # Attribution
 'anonymous' => 'Dulnevndir {{PLURAL:$1|brúkari|brúkarar}} í {{SITENAME}}',
@@ -2822,6 +2830,12 @@ Goym hana á tínari teldu og legg hana so út her.",
 
 # Patrol log
 'patrol-log-page' => 'Eftirlitsloggur',
+'patrol-log-header' => 'Hetta er ein loggur yvir patruljeraðum síðuversjónum.',
+'log-show-hide-patrol' => '$1 patrulleringsloggur',
+
+# Image deletion
+'deletedrevision' => 'Slettaði gamla síðuversjón $1',
+'filedeleteerror-short' => 'Feilur hendi við sletting av fílu: $1',
 
 # Browsing diffs
 'previousdiff' => '← Eldri broytingar',
@@ -2841,9 +2855,15 @@ Goym hana á tínari teldu og legg hana so út her.",
 'show-big-image' => 'Full upploysn',
 'show-big-image-preview' => 'Stødd av hesi forskoðan: $1.',
 'show-big-image-other' => '{{PLURAL:$2|Onnur upploysn|Aðrar upploysnir}}: $1.',
+'file-info-gif-frames' => '$1 {{PLURAL:$1|ramma|rammur}}',
+'file-info-png-repeat' => 'spælt $1 {{PLURAL:$1|ferð|ferðir}}',
+'file-info-png-frames' => '$1 {{PLURAL:$1|ramma|rammur}}',
 
 # Special:NewFiles
 'newimages' => 'Nýggjar myndir',
+'newimages-legend' => 'Filtur',
+'newimages-label' => 'Fílunavn (ella ein partur av tí):',
+'showhidebots' => '($1 bottar)',
 'noimages' => 'Einki at síggja.',
 'ilsubmit' => 'Leita',
 'bydate' => 'eftir dato',

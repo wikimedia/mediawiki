@@ -1594,11 +1594,12 @@ $1",
 HTML 태그를 확인하세요.',
 'badsiglength' => '서명이 너무 깁니다.
 서명은 $1 {{PLURAL:$1|글자}}보다 짧아야 합니다.',
-'yourgender' => '성별:',
-'gender-unknown' => '무응답',
-'gender-male' => '남성',
-'gender-female' => '여성',
-'prefs-help-gender' => '선택 사항: 소프트웨어에서 성별에 따른 언어 문제를 해결하기 위해 사용됩니다.
+'yourgender' => '어떻게 성별을 알려주고 싶습니까?',
+'gender-unknown' => '자세히 알려주기 싫습니다',
+'gender-male' => '위키 문서를 편집하는 남자입니다',
+'gender-female' => '위키 문서를 편집하는 여자입니다',
+'prefs-help-gender' => '이 사용자 환경 설정을 설정하는 것은 선택 사항입니다.
+소프트웨어는 다른 사용자에게 화면을 보여주어 당신을 언급할 때 적절한 성별 문법을 사용하는 데 이 값을 사용합니다.
 이 정보는 공개됩니다.',
 'email' => '이메일',
 'prefs-help-realname' => '실명은 선택 사항입니다.
@@ -4254,7 +4255,7 @@ $5
 
 # Search suggestions
 'searchsuggest-search' => '찾기',
-'searchsuggest-containing' => '다음 어구가 들어간 문서 찾기',
+'searchsuggest-containing' => '다음 문자열 포함...',
 
 # API errors
 'api-error-badaccess-groups' => '이 위키에 파일을 올릴 권한이 없습니다.',

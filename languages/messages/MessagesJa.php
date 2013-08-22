@@ -1625,11 +1625,12 @@ $1",
 HTMLタグを見直してください。',
 'badsiglength' => '署名が長すぎます。
 $1 {{PLURAL:$1|文字}}以下である必要があります。',
-'yourgender' => '性別:',
+'yourgender' => '表示に使用する性別',
 'gender-unknown' => '未指定',
 'gender-male' => '男',
 'gender-female' => '女',
-'prefs-help-gender' => '省略可: ソフトウェアによる文法的性の解決に使用されます。
+'prefs-help-gender' => 'この項目の設定は省略できます。
+ソフトウェアが利用者向けの画面表示であなたに言及する際に、適切な文法的性を選択するために使用されます。
 この情報は公開されます。',
 'email' => 'メール',
 'prefs-help-realname' => '本名は省略できます。

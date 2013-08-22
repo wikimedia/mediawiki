@@ -9,6 +9,7 @@
  *
  * @author Agilight
  * @author Andrijko Z.
+ * @author Kaganer
  * @author Krice from Tyvanet.com
  * @author Sborsody
  * @author friends at tyvawiki.org
@@ -508,7 +509,7 @@ Please check if you want to create/edit this page.',
 'userpage-userdoesnotexist-view' => '«$1» деп ажыглакчы not registered.',
 'note' => "'''Тайылбыр:'''",
 'previewnote' => "'''Бо чүгле шенеп көөрү-дүр.'''
- Бижик ам-даа шыгжатынмаан!",
+Бижик ам-даа шыгжатынмаан!",
 'editing' => '«$1» деп арынны эдери',
 'editingsection' => '«$1» деп арынның салбырын эдери',
 'editingcomment' => '«$1» деп арынны өскертип турар (чаа салбыр)',

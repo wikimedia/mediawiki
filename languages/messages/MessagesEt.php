@@ -998,9 +998,9 @@ Võimalik, et see teisaldati või kustutati, sellal kui lehekülge vaatasid.',
 'loginreqlink' => 'sisse logima',
 'loginreqpagetext' => 'Lehekülgede vaatamiseks pead $1.',
 'accmailtitle' => 'Parool saadetud',
-'accmailtext' => "Kasutajale '$1' genereeritud juhuslik parool saadeti aadressile $2.
+'accmailtext' => "Kasutajale [[User talk:$1|$1]] genereeritud juhuslik parool saadeti aadressile $2.
 
-Seda parooli on võimalik muuta ''[[Special:ChangePassword|parooli muutmise lehel]]'' peale uuele kontole sisse logimist.",
+Seda saab pärast sisselogimist muuta ''[[Special:ChangePassword|parooli muutmise]]'' leheküljel.",
 'newarticle' => '(Uus)',
 'newarticletext' => "Lehekülge, kuhu link sind suunas, pole veel.
 Lehekülje loomiseks alusta allolevasse kasti kirjutamist (lisateave [[{{MediaWiki:Helppage}}|juhendist]]).
@@ -1497,7 +1497,9 @@ See ei tohi olla pikem kui {{PLURAL:$1|üks märk|$1 märki}}.',
 'gender-unknown' => 'Määramata',
 'gender-male' => 'Mees',
 'gender-female' => 'Naine',
-'prefs-help-gender' => 'Vabatahtlik: kasutatakse mõnedes keeltes sooliselt korrektse väljendumise otstarbel. Info on avalik.',
+'prefs-help-gender' => 'Selle eelistuse määramine on valikuline.
+Tarkvara kasutab valitud väärtust mõnes keeles, et pöörduda sinu poole ja mainida sind teistele, kasutades sobivat grammatilist sugu.
+See teave on avalik.',
 'email' => 'E-post',
 'prefs-help-realname' => 'Vabatahtlik. Kui otsustad päris nime avaldada, kasutatakse seda sinu kaastöö seostamiseks sinuga.',
 'prefs-help-email' => 'E-posti aadressi sisestamine pole kohustuslik, kuid võimaldab sul tellida parooli meeldetuletuse, kui peaksid oma parooli unustama.',

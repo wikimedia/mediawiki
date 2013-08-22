@@ -552,9 +552,9 @@ e a veul pì nen cambiela, che a fasa finta ëd gnente e ch'a continua a dovré 
 'noemailcreate' => "A dev buté n'adrëssa ëd pòsta eletrònica bon-a.",
 'passwordsent' => "Na neuva paròla ciav a l'é stàita mandà a l'adrëssa eletrònica registrà ëd l'Utent «$1».
 Për piasì, che a la deuvra sùbit për rintré ant ël sistema pen-a che a l'arsèiv.",
-'blocked-mailpassword' => "Për evité dj'assion nen corete as peul pa dovresse la funsion \"Mand-me na ciav neuva\" da 'nt n'adrëssa IP ëd cole blocà.",
-'eauthentsent' => "A l'adrëssa che a l'ha dane i l'oma mandaje un messagi ëd pòsta eletrònica për conferma.
-Anans che qualsëssìa àutr messagi ëd pòsta a ven-a mandà a 's cont-sì, a venta che a a fasa coma che a-j diso dë fé ant ël messagi, për confermé che ës cont a l'é da bon sò.",
+'blocked-mailpassword' => "Soa adrëssa IP a l'é blocà an scritura e donca a peul pa dovré la fonsion d'arciam ëd la ciav për evité j'abus.",
+'eauthentsent' => "A l'adrëssa che a l'ha dane i l'oma mandaje un mëssagi ëd pòsta eletrònica për conferma.
+Anans che qualsëssìa àutr messagi ëd pòsta a ven-a mandà a 's cont-sì, a venta che a a fasa coma che a-j diso dë fé ant ël mëssagi, për confermé che ës cont a l'é da bon sò.",
 'throttled-mailpassword' => 'Na ciav neuva a l\'é gia stàita mandà da manch che {{PLURAL:$1|n\'ora|$1 ore}}. Për evité dij dovré nen regolar, la funsion "Mand-me na ciav neuva" as peul dovresse mach vira {{PLURAL:$1|n\'ora|$1 ore}}.',
 'mailerror' => 'Eror ën mandand via un mëssagi ëd pòsta eletrònica: $1',
 'acct_creation_throttle_hit' => "I visitador ëd costa wiki, an dovrand toa adrëssa IP a l'han fàit {{PLURAL:$1|1 cont|$1 cont}} ant l'ùltim di, che a l'é tut lòn che as peul fesse ant cost temp.

@@ -734,7 +734,7 @@ Ne zaboravite da prilagodite sebi svoja [[Special:Preferences|{{SITENAME}} pode�
 'nologin' => 'Nemate korisničko ime? $1.',
 'nologinlink' => 'Napravite nalog',
 'createaccount' => 'Napravi korisnički račun',
-'gotaccount' => "Imate nalog? '''$1'''.",
+'gotaccount' => 'Već imate korisnički račun? $1.',
 'gotaccountlink' => 'Prijavi se',
 'userlogin-resetlink' => 'Zaboravili ste detalje vaše prijave?',
 'userlogin-resetpassword-link' => 'Resetirajte svoju šifru/lozinku',
@@ -923,7 +923,8 @@ Privremena šifra: $2',
 'showpreview' => 'Prikaži izgled',
 'showlivepreview' => 'Pregled uživo',
 'showdiff' => 'Prikaži izmjene',
-'anoneditwarning' => 'Niste prijavljeni. Vaša IP adresa će biti zapisana.',
+'anoneditwarning' => "'''Upozorenje:''' Niste prijavljeni. 
+Vaša IP adresa će biti zabilježena u historiji ove stranice.",
 'anonpreviewwarning' => "''Niste prijavljeni. Nakon spremanja izmjena vaša IP adresa će biti zapisana u historiji uređivanja ove stranice.''",
 'missingsummary' => "'''Napomena:''' Niste unijeli sažetak izmjene.
 Ako kliknete na Sačuvaj, Vaša izmjena će biti sačuvana bez sažetka.",

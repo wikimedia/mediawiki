@@ -1592,11 +1592,13 @@ Toute personne la connaissant pourra lire votre liste de suivi, ne la communique
 Vérifiez les balises HTML.',
 'badsiglength' => 'Votre signature est trop longue.
 Elle ne doit pas dépasser $1 caractère{{PLURAL:$1||s}}.',
-'yourgender' => 'Genre :',
-'gender-unknown' => 'Non renseigné',
-'gender-male' => 'Masculin',
-'gender-female' => 'Féminin',
-'prefs-help-gender' => "Facultatif : utilisé pour accorder en genre les messages de l'interface. Cette information sera publique.",
+'yourgender' => 'Comment préférez-vous être décrit ?',
+'gender-unknown' => 'Je préfère sans détail',
+'gender-male' => 'Il modifie des pages du wiki',
+'gender-female' => 'Elle modifie des pages du wiki',
+'prefs-help-gender' => 'Définir cette préférence est facultatif.
+Ce logiciel utilise sa valeur pour s’adresser à vous et vous mentionner aux autres en utilisant le bon genre grammatical.
+Cette information sera publique.',
 'email' => 'Courriel',
 'prefs-help-realname' => 'Facultatif : si vous le spécifiez, il sera utilisé pour vous attribuer vos contributions.',
 'prefs-help-email' => "L'adresse de courriel est facultative, mais elle est nécessaire pour réinitialiser votre mot de passe, si vous veniez à l'oublier.",

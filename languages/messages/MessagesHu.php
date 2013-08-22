@@ -1533,7 +1533,7 @@ A műveletet nem lehet visszavonni.',
 'userrights-notallowed' => 'Nincs jogosultságod jogosultságok adására vagy elvételére.',
 'userrights-changeable-col' => 'Megváltoztatható csoportok',
 'userrights-unchangeable-col' => 'Nem megváltoztatható csoportok',
-'userrights-conflict' => 'Felhasználói jogok ütközése! Kérlek, végez el újra a változtatásokat.',
+'userrights-conflict' => 'Felhasználói jogok ütközése! Kérlek, végezd el újra a változtatásokat.',
 
 # Groups
 'group' => 'Csoport:',
@@ -3716,9 +3716,7 @@ A megerősítésre szánt kód felhasználhatósági idejének lejárata: $4.',
 'confirmemail_body_set' => 'Valaki, valószínűleg te, ezt az email címet adta meg
 „$2” nevű {{SITENAME}}-fiókjához a következő IP-címről: $1.
 
-Ha meg szeretnéd erősíteni, hogy a fiók valóban hozzád tartozik,
-így aktiválva a(z) {{SITENAME}} e-mailes funkcióit, nyisd meg az
-alábbi linket a böngésződben:
+Ha meg szeretnéd erősíteni, hogy a fiók valóban hozzád tartozik, így aktiválva a(z) {{SITENAME}} e-mailes funkcióit, nyisd meg az alábbi linket a böngésződben:
 
 $3
 
@@ -3845,6 +3843,7 @@ minden egyes sor egy figyelt lap címe. Ha kész vagy, kattints a lista alatt ta
 'version-license' => 'Licenc',
 'version-poweredby-credits' => "Ez a wiki '''[//www.mediawiki.org/ MediaWiki]''' szoftverrel működik, copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'mások',
+'version-poweredby-translators' => 'translatewiki.net fordítók',
 'version-credits-summary' => 'Szeretnénk elismerni a következő személyek hozzájárulását a [[Special:Version|MediaWiki]] szoftverhez.',
 'version-license-info' => 'A MediaWiki szabad szoftver, terjeszthető és / vagy módosítható a GNU General Public License alatt, amit a Free Software Foundation közzétett; vagy a 2-es verziójú licenc, vagy (az Ön választása alapján) bármely későbbi verzió szerint. 
 
