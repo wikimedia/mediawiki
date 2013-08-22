@@ -83,7 +83,8 @@
 					'<div class="mw-createacct-captcha-and-reload" />',
 					'<input id="wpCaptchaWord" name="wpCaptchaWord" type="text" placeholder="' +
 						mw.message( 'createacct-imgcaptcha-ph' ).escaped() +
-						'" tabindex="' + tabIndex + '" autocapitalize="off" autocorrect="off">',
+						'" tabindex="' + tabIndex + '" autocapitalize="off" autocorrect="off"' +
+						' lang="en" dir="ltr">',
 						helpHtml,
 				'</div>',
 			'</div>'
