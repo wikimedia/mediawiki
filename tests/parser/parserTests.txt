@@ -10349,15 +10349,18 @@ __TOC__
 == title 2 ==
 !! result
 <div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#title_1"><span class="tocnumber">1</span> <span class="toctext">title 1</span></a>
 <ul>
 <li class="toclevel-2 tocsection-2"><a href="#title_1.1"><span class="tocnumber">1.1</span> <span class="toctext">title 1.1</span></a></li>
 </ul>
 </li>
+
 <li class="toclevel-1 tocsection-3"><a href="#title_2"><span class="tocnumber">2</span> <span class="toctext">title 2</span></a></li>
 </ul>
 </div>
+
 <h2><span class="mw-headline" id="title_1">title 1</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: title 1">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h3><span class="mw-headline" id="title_1.1">title 1.1</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: title 1.1">edit</a><span class="mw-editsection-bracket">]</span></span></h3>
 <h2><span class="mw-headline" id="title_2">title 2</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: title 2">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
@@ -11861,10 +11864,12 @@ http://__TOC__
 !! result
 <h2><span class="mw-headline" id="onmouseover.3D">onmouseover=</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: onmouseover=">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 http://<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#onmouseover.3D"><span class="tocnumber">1</span> <span class="toctext">onmouseover=</span></a></li>
 </ul>
 </div>
+
 
 !! end
 
@@ -15311,10 +15316,12 @@ __TOC__
 == ''Lost'' episodes ==
 !! result
 <div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Lost_episodes"><span class="tocnumber">1</span> <span class="toctext"><i>Lost</i> episodes</span></a></li>
 </ul>
 </div>
+
 <h2><span class="mw-headline" id="Lost_episodes"><i>Lost</i> episodes</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Main_Page&amp;action=edit&amp;section=1" title="Edit section: Lost episodes">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 
 !! end
@@ -15328,10 +15335,12 @@ __TOC__
 == '''should be bold''' then normal text ==
 !! result
 <div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#should_be_bold_then_normal_text"><span class="tocnumber">1</span> <span class="toctext"><b>should be bold</b> then normal text</span></a></li>
 </ul>
 </div>
+
 <h2><span class="mw-headline" id="should_be_bold_then_normal_text"><b>should be bold</b> then normal text</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Main_Page&amp;action=edit&amp;section=1" title="Edit section: should be bold then normal text">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 
 !! end
@@ -15345,10 +15354,12 @@ __TOC__
 == Image [[Image:foobar.jpg]] ==
 !! result
 <div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Image"><span class="tocnumber">1</span> <span class="toctext">Image</span></a></li>
 </ul>
 </div>
+
 <h2><span class="mw-headline" id="Image">Image <a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Main_Page&amp;action=edit&amp;section=1" title="Edit section: Image">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 
 !! end
@@ -15362,10 +15373,12 @@ __TOC__
 == <blockquote>Quote</blockquote> ==
 !! result
 <div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Quote"><span class="tocnumber">1</span> <span class="toctext">Quote</span></a></li>
 </ul>
 </div>
+
 <h2><span class="mw-headline" id="Quote"><blockquote>Quote</blockquote></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Main_Page&amp;action=edit&amp;section=1" title="Edit section: Quote">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 
 !! end
@@ -15381,10 +15394,12 @@ __TOC__
 QED
 !! result
 <div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Proof:_2_.3C_3"><span class="tocnumber">1</span> <span class="toctext">Proof: 2 &lt; 3</span></a></li>
 </ul>
 </div>
+
 <h2><span class="mw-headline" id="Proof:_2_.3C_3">Proof: 2 &lt; 3</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Main_Page&amp;action=edit&amp;section=1" title="Edit section: Proof: 2 &lt; 3">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <p><small>Hanc marginis exiguitas non caperet.</small>
 QED
@@ -15400,11 +15415,14 @@ __TOC__
 == <i>Foo</i> <blockquote>Bar</blockquote> ==
 !! result
 <div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Foo_Bar"><span class="tocnumber">1</span> <span class="toctext"><i>Foo</i> <b>Bar</b></span></a></li>
+
 <li class="toclevel-1 tocsection-2"><a href="#Foo_Bar_2"><span class="tocnumber">2</span> <span class="toctext"><i>Foo</i> Bar</span></a></li>
 </ul>
 </div>
+
 <h2><span class="mw-headline" id="Foo_Bar"><i>Foo</i> <b>Bar</b></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Foo Bar">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h2><span class="mw-headline" id="Foo_Bar_2"><i>Foo</i> <blockquote>Bar</blockquote></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Foo Bar">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 
@@ -15419,11 +15437,14 @@ __TOC__
 == <sup class="a > b">Evilbye</sup> ==
 !! result
 <div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Hello"><span class="tocnumber">1</span> <span class="toctext"><sup>Hello</sup></span></a></li>
+
 <li class="toclevel-1 tocsection-2"><a href="#b.22.3EEvilbye"><span class="tocnumber">2</span> <span class="toctext"><sup> b"&gt;Evilbye</sup></span></a></li>
 </ul>
 </div>
+
 <h2><span class="mw-headline" id="Hello"><sup class="in-h2">Hello</sup></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Hello">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h2><span class="mw-headline" id="b.22.3EEvilbye"><sup> b"&gt;Evilbye</sup></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: b&quot;>Evilbye">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 
@@ -15444,14 +15465,20 @@ __TOC__
 == <span dir="ltr" style="font-style: italic">Attributes after dir on these span tags must be deleted from the TOC</span> ==
 !! result
 <div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#C.2B.2B"><span class="tocnumber">1</span> <span class="toctext"><span dir="ltr">C++</span></span></a></li>
+
 <li class="toclevel-1 tocsection-2"><a href="#.D7.96.D7.91.D7.A0.D7.92.21"><span class="tocnumber">2</span> <span class="toctext"><span dir="rtl">זבנג!</span></span></a></li>
+
 <li class="toclevel-1 tocsection-3"><a href="#The_attributes_on_these_span_tags_must_be_deleted_from_the_TOC"><span class="tocnumber">3</span> <span class="toctext"><span>The attributes on these span tags must be deleted from the TOC</span></span></a></li>
+
 <li class="toclevel-1 tocsection-4"><a href="#All_attributes_on_these_span_tags_must_be_deleted_from_the_TOC"><span class="tocnumber">4</span> <span class="toctext"><span>All attributes on these span tags must be deleted from the TOC</span></span></a></li>
+
 <li class="toclevel-1 tocsection-5"><a href="#Attributes_after_dir_on_these_span_tags_must_be_deleted_from_the_TOC"><span class="tocnumber">5</span> <span class="toctext"><span dir="ltr">Attributes after dir on these span tags must be deleted from the TOC</span></span></a></li>
 </ul>
 </div>
+
 <h2><span class="mw-headline" id="C.2B.2B"><span dir="ltr">C++</span></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: C++">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h2><span class="mw-headline" id=".D7.96.D7.91.D7.A0.D7.92.21"><span dir="rtl">זבנג!</span></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: זבנג!">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h2><span class="mw-headline" id="The_attributes_on_these_span_tags_must_be_deleted_from_the_TOC"><span style="font-style: italic">The attributes on these span tags must be deleted from the TOC</span></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: The attributes on these span tags must be deleted from the TOC">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
