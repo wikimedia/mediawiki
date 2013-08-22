@@ -274,12 +274,7 @@ abstract class ResourceLoaderModule {
 	 * Get a list of modules this module depends on.
 	 *
 	 * Dependency information is taken into account when loading a module
-	 * on the client side. When adding a module on the server side,
-	 * dependency information is NOT taken into account and YOU are
-	 * responsible for adding dependent modules as well. If you don't do
-	 * this, the client side loader will send a second request back to the
-	 * server to fetch the missing modules, which kind of defeats the
-	 * purpose of the resource loader.
+	 * on the client side.
 	 *
 	 * To add dependencies dynamically on the client side, use a custom
 	 * loader script, see getLoaderScript()
