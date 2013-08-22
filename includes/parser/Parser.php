@@ -115,6 +115,9 @@ class Parser {
 	# Marker Suffix needs to be accessible staticly.
 	const MARKER_SUFFIX = "-QINU\x7f";
 
+	# Placeholder for TOC
+	const TOC_MARKER = '<!--MWTOC-->';
+
 	# Persistent:
 	var $mTagHooks = array();
 	var $mTransparentTagHooks = array();
@@ -4083,7 +4086,7 @@ class Parser {
 			$this->mForceTocPosition = true;
 
 			# Set a placeholder. At the end we'll fill it in with the TOC.
-			$text = $mw->replace( '<!--MWTOC-->', $text, 1 );
+			$text = $mw->replace( self::TOC_MARKER, $text, 1 );
 
 			# Only keep the first one.
 			$text = $mw->replace( '', $text );
@@ -4490,7 +4493,6 @@ class Parser {
 				$toc .= Linker::tocUnindent( $prevtoclevel - 1 );
 			}
 			$toc = Linker::tocList( $toc, $this->mOptions->getUserLangObj() );
-			$this->mOutput->setTOCHTML( $toc );
 		}
 
 		if ( $isMain ) {
@@ -4534,11 +4536,11 @@ class Parser {
 
 		$full .= join( '', $sections );
 
-		if ( $this->mForceTocPosition ) {
-			return str_replace( '<!--MWTOC-->', $toc, $full );
-		} else {
-			return $full;
+		if ( !$this->mForceTocPosition ) {
+			$toc = '';
 		}
+		$this->mOutput->setTOCHTML( $toc );
+		return $full;
 	}
 
 	/**
