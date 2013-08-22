@@ -256,6 +256,11 @@ class OutputPage extends ContextSource {
 	private $mTarget = null;
 
 	/**
+	 * @var bool: Whether output should contain table of contents
+	 */
+	private $mEnableTOC = true;
+
+	/**
 	 * Constructor for OutputPage. This should not be called directly.
 	 * Instead a new RequestContext should be created and it will implicitly create
 	 * a OutputPage tied to that context.
@@ -1606,6 +1611,7 @@ class OutputPage extends ContextSource {
 	 */
 	function addParserOutput( &$parserOutput ) {
 		$this->addParserOutputNoText( $parserOutput );
+		$parserOutput->setTOCEnabled( $this->mEnableTOC );
 		$text = $parserOutput->getText();
 		wfRunHooks( 'OutputPageBeforeHTML', array( &$this, &$text ) );
 		$this->addHTML( $text );
@@ -3648,4 +3654,20 @@ $templates
 		return array();
 	}
 
+	/**
+	 * Enables/disables TOC, doesn't override __NOTOC__
+	 * @param bool $flag
+	 * @since 1.22
+	 */
+	public function enableTOC( $flag = true ) {
+		$this->mEnableTOC = $flag;
+	}
+
+	/**
+	 * @return bool
+	 * @since 1.22
+	 */
+	public function isTOCEnabled() {
+		return $this->mEnableTOC;
+	}
 }
