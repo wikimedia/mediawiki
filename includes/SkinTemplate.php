@@ -618,10 +618,6 @@ class SkinTemplate extends Skin {
 			}
 		}
 
-		if ( $wgSecureLogin && $request->detectProtocol() === 'https' ) {
-			$a['wpStickHTTPS'] = true;
-		}
-
 		$returnto = wfArrayToCgi( $a );
 		if ( $this->loggedin ) {
 			$personal_urls['userpage'] = array(
