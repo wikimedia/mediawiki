@@ -2895,7 +2895,7 @@ HTML
 
 		foreach ( $output->getLimitReportData() as $key => $value ) {
 			if ( wfRunHooks( 'ParserLimitReportFormat',
-				array( $key, $value, &$limitReport, true, true )
+				array( $key, &$value, &$limitReport, true, true )
 			) ) {
 				$keyMsg = wfMessage( $key );
 				$valueMsg = wfMessage( array( "$key-value-html", "$key-value" ) );

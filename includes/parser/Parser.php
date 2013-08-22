@@ -531,7 +531,7 @@ class Parser {
 			$limitReport = "NewPP limit report\n";
 			foreach ( $this->mOutput->getLimitReportData() as $key => $value ) {
 				if ( wfRunHooks( 'ParserLimitReportFormat',
-					array( $key, $value, &$limitReport, false, false )
+					array( $key, &$value, &$limitReport, false, false )
 				) ) {
 					$keyMsg = wfMessage( $key )->inLanguage( 'en' )->useDatabase( false );
 					$valueMsg = wfMessage( array( "$key-value-text", "$key-value" ) )
