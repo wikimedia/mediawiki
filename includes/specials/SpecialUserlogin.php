@@ -105,7 +105,7 @@ class LoginForm extends SpecialPage {
 		$this->mLoginattempt = $request->getCheck( 'wpLoginattempt' );
 		$this->mAction = $request->getVal( 'action' );
 		$this->mRemember = $request->getCheck( 'wpRemember' );
-		$this->mStickHTTPS = $request->getBool( 'wpStickHTTPS' );
+		$this->mStickHTTPS = false;
 		$this->mLanguage = $request->getText( 'uselang' );
 		$this->mSkipCookieCheck = $request->getCheck( 'wpSkipCookieCheck' );
 		$this->mToken = ( $this->mType == 'signup' ) ? $request->getVal( 'wpCreateaccountToken' ) : $request->getVal( 'wpLoginToken' );
@@ -175,7 +175,6 @@ class LoginForm extends SpecialPage {
 			$query = array(
 				'returnto' => $this->mReturnTo,
 				'returntoquery' => $this->mReturnToQuery,
-				'wpStickHTTPS' => $this->mStickHTTPS
 			);
 			$url = $title->getFullURL( $query, false, PROTO_HTTPS );
 			if ( $wgSecureLogin ) {
@@ -1124,11 +1123,6 @@ class LoginForm extends SpecialPage {
 			$template->set( 'link', '' );
 		}
 
-		// Decide if we default stickHTTPS on
-		if ( $wgSecureLoginDefaultHTTPS && $this->mAction != 'submitlogin' && !$this->mLoginattempt ) {
-			$this->mStickHTTPS = true;
-		}
-
 		$resetLink = $this->mType == 'signup'
 			? null
 			: is_array( $wgPasswordResetRoutes ) && in_array( true, array_values( $wgPasswordResetRoutes ) );
@@ -1158,7 +1152,6 @@ class LoginForm extends SpecialPage {
 		$template->set( 'usereason', $user->isLoggedIn() );
 		$template->set( 'remember', $user->getOption( 'rememberpassword' ) || $this->mRemember );
 		$template->set( 'cansecurelogin', ( $wgSecureLogin === true ) );
-		$template->set( 'stickHTTPS', (int)$this->mStickHTTPS );
 
 		if ( $this->mType === 'signup' && $user->isLoggedIn() ) {
 			$template->set( 'createAnother', true );
