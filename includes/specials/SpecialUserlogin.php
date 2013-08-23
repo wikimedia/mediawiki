@@ -1041,7 +1041,7 @@ class LoginForm extends SpecialPage {
 		global $wgEnableEmail, $wgEnableUserEmail;
 		global $wgHiddenPrefs, $wgLoginLanguageSelector;
 		global $wgAuth, $wgEmailConfirmToEdit, $wgCookieExpiration;
-		global $wgSecureLogin, $wgSecureLoginDefaultHTTPS, $wgPasswordResetRoutes;
+		global $wgSecureLogin, $wgPasswordResetRoutes;
 
 		$titleObj = $this->getTitle();
 		$user = $this->getUser();
@@ -1125,8 +1125,7 @@ class LoginForm extends SpecialPage {
 		}
 
 		// Decide if we default stickHTTPS on
-		if ( $wgSecureLoginDefaultHTTPS 
-			&& $this->mAction != 'submitlogin' 
+		if ( $this->mAction != 'submitlogin'
 			&& !$this->mLoginattempt
 			&& wfCanIPUseHTTPS( $this->getRequest()->getIP() ) )
 		{	
