@@ -56,6 +56,41 @@ class MessageTest extends MediaWikiLangTestCase {
 		$this->assertEquals( 'abcdefghijka2', $msg->params( $params )->plain(), 'Params > 9 are replaced correctly' );
 	}
 
+	function testMessageParamTypes() {
+		$lang = Language::factory( 'en' );
+
+		$this->assertEquals(
+			$lang->formatNum( 123456.789 ),
+			(new RawMessage( '$1' ))->inLanguage( $lang )->numParams( 123456.789 )->plain(),
+			'numParams is handled correctly'
+		);
+		$this->assertEquals(
+			$lang->formatDuration( 1234 ),
+			(new RawMessage( '$1' ))->inLanguage( $lang )->durationParams( 1234 )->plain(),
+			'durationParams is handled correctly'
+		);
+		$this->assertEquals(
+			$lang->formatExpiry( wfTimestampNow() ),
+			(new RawMessage( '$1' ))->inLanguage( $lang )->expiryParams( wfTimestampNow() )->plain(),
+			'expiryParams is handled correctly'
+		);
+		$this->assertEquals(
+			$lang->formatTimePeriod( 1234 ),
+			(new RawMessage( '$1' ))->inLanguage( $lang )->timeperiodParams( 1234 )->plain(),
+			'timeperiodParams is handled correctly'
+		);
+		$this->assertEquals(
+			$lang->formatSize( 123456 ),
+			(new RawMessage( '$1' ))->inLanguage( $lang )->sizeParams( 123456 )->plain(),
+			'sizeParams is handled correctly'
+		);
+		$this->assertEquals(
+			$lang->formatBitrate( 123456 ),
+			(new RawMessage( '$1' ))->inLanguage( $lang )->bitrateParams( 123456 )->plain(),
+			'bitrateParams is handled correctly'
+		);
+	}
+
 	function testInContentLanguageDisabled() {
 		$this->setMwGlobals( 'wgLang', Language::factory( 'fr' ) );
 
