@@ -56,6 +56,56 @@ class MessageTest extends MediaWikiLangTestCase {
 		$this->assertEquals( 'abcdefghijka2', $msg->params( $params )->plain(), 'Params > 9 are replaced correctly' );
 	}
 
+	/**
+	 * FIXME: This should not need database, but Language#formatExpiry does (bug 55912)
+	 * @group Database
+	 */
+	function testMessageParamTypes() {
+		$lang = Language::factory( 'en' );
+
+		$msg = new RawMessage( '$1' );
+		$this->assertEquals(
+			$lang->formatNum( 123456.789 ),
+			$msg->inLanguage( $lang )->numParams( 123456.789 )->plain(),
+			'numParams is handled correctly'
+		);
+
+		$msg = new RawMessage( '$1' );
+		$this->assertEquals(
+			$lang->formatDuration( 1234 ),
+			$msg->inLanguage( $lang )->durationParams( 1234 )->plain(),
+			'durationParams is handled correctly'
+		);
+
+		$msg = new RawMessage( '$1' );
+		$this->assertEquals(
+			$lang->formatExpiry( wfTimestampNow() ),
+			$msg->inLanguage( $lang )->expiryParams( wfTimestampNow() )->plain(),
+			'expiryParams is handled correctly'
+		);
+
+		$msg = new RawMessage( '$1' );
+		$this->assertEquals(
+			$lang->formatTimePeriod( 1234 ),
+			$msg->inLanguage( $lang )->timeperiodParams( 1234 )->plain(),
+			'timeperiodParams is handled correctly'
+		);
+
+		$msg = new RawMessage( '$1' );
+		$this->assertEquals(
+			$lang->formatSize( 123456 ),
+			$msg->inLanguage( $lang )->sizeParams( 123456 )->plain(),
+			'sizeParams is handled correctly'
+		);
+
+		$msg = new RawMessage( '$1' );
+		$this->assertEquals(
+			$lang->formatBitrate( 123456 ),
+			$msg->inLanguage( $lang )->bitrateParams( 123456 )->plain(),
+			'bitrateParams is handled correctly'
+		);
+	}
+
 	function testInContentLanguageDisabled() {
 		$this->setMwGlobals( 'wgLang', Language::factory( 'fr' ) );
 
