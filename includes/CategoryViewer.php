@@ -141,7 +141,15 @@ class CategoryViewer extends ContextSource {
 		$this->children = array();
 		$this->children_start_char = array();
 		if ( $this->showGallery ) {
-			$this->gallery = ImageGalleryBase::factory();
+			// Note that null for mode is taken to mean use default.
+			$mode = $this->getRequest()->getVal( 'gallerymode', null );
+			try {
+				$this->gallery = ImageGalleryBase::factory( $mode );
+			} catch ( MWException $e ) {
+				// User specified something invalid, fallback to default.
+				$this->gallery = ImageGalleryBase::factory();
+			}
+
 			$this->gallery->setHideBadImages();
 			$this->gallery->setContext( $this->getContext() );
 		} else {

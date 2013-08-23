@@ -117,7 +117,14 @@ class NewFilesPager extends ReverseChronologicalPager {
 
 	function getStartBody() {
 		if ( !$this->gallery ) {
-			$this->gallery = ImageGalleryBase::factory();
+			// Note that null for mode is taken to mean use default.
+			$mode = $this->getRequest()->getVal( 'gallerymode', null );
+			try {
+				$this->gallery = ImageGalleryBase::factory( $mode );
+			} catch ( MWException $e ) {
+				// User specified something invalid, fallback to default.
+				$this->gallery = ImageGalleryBase::factory();
+			}
 			$this->gallery->setContext( $this->getContext() );
 		}
 
