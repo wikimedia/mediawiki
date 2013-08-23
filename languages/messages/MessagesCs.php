@@ -1565,11 +1565,13 @@ Tuto operaci nelze vrátit zpět.',
 'prefs-help-signature' => 'Komentáře v diskusích by se měly podepisovat pomocí „<nowiki>~~~~</nowiki>“, což se změní na váš podpis a aktuální čas.',
 'badsig' => 'Chybný podpis, zkontrolujte syntaxi HTML.',
 'badsiglength' => 'Váš podpis je příliš dlouhý. Musí být kratší než $1 {{PLURAL:$1|znak|znaky|znaků}}.',
-'yourgender' => 'Pohlaví:',
-'gender-unknown' => 'Neurčeno',
-'gender-male' => 'Mužské',
-'gender-female' => 'Ženské',
-'prefs-help-gender' => 'Volitelné: používáno softwarem pro správné oslovování v závislosti na pohlaví. Tato informace je veřejná.',
+'yourgender' => 'Jak chcete být popisován(a)?',
+'gender-unknown' => 'Nechci sdělit.',
+'gender-male' => 'On upravil článek.',
+'gender-female' => 'Ona upravila článek.',
+'prefs-help-gender' => 'Toto nastavení je nepovinné.
+Software ho používá pro volbu gramatického rodu, když vás oslovuje nebo vás zmiňuje.
+Tato informace je veřejná.',
 'email' => 'E-mail',
 'prefs-help-realname' => 'Skutečné jméno je nepovinné.
 Pokud se ho rozhodnete uvést, bude použito pro označení autorství vaší práce.',

@@ -709,10 +709,9 @@ L'administrator que l'a varrolhat a provesit aqueste motiu : « $3 ».",
 'virus-unknownscanner' => 'antivirús desconegut :',
 
 # Login and logout pages
-'logouttext' => "'''Ara, sètz desconnect{{GENDER:||at|ada}}..'''
+'logouttext' => "'''Ara, sètz desconnectat.'''
 
-Podètz contunhar d'utilizar {{SITENAME}} anonimament, o vos podètz <span class='plainlinks'>[$1 tornar connectar]</span> jol meteis nom o amb un autre nom.
-Notatz que d'unas paginas pòdon èsser encara afichadas coma s'eratz encara connect{{GENDER:||at|ada}}, fins al moment qu'escafaretz l'amagatal de vòstre navigador.",
+Notatz que d'unas paginas pòdon èsser encara afichadas coma s'eratz encara connectat, fins al moment qu'escafaretz l'amagatal de vòstre navigador.",
 'welcomeuser' => 'Benvenguda, $1&nbsp;!',
 'welcomecreation-msg' => "Vòstre compte d'utilizaire es estat creat.
 Doblidetz pas de modificar [[Special:Preferences|vòstras preferéncias per {{SITENAME}}]].",
@@ -755,7 +754,7 @@ Doblidetz pas de modificar [[Special:Preferences|vòstras preferéncias per {{SI
 'createacct-emailrequired' => 'Adreça electronica',
 'createacct-emailoptional' => 'Adreça de corrièr electronic (facultativa)',
 'createacct-email-ph' => 'Entratz vòstra adreça de corrièr electronic',
-'createaccountmail' => 'Utilizar un senhal aleatòri temporari e lo mandar a l’adreça de corrièl especificada çaijós',
+'createaccountmail' => 'Utilizar un senhal aleatòri temporari e lo mandar a l’adreça de corrièl especificada',
 'createacct-realname' => 'Nom vertadièr (facultatiu)',
 'createaccountreason' => 'Motiu :',
 'createacct-reason' => 'Motiu',
@@ -828,8 +827,8 @@ Picatz una adreça plan formatada o daissatz aqueste camp void.",
 
 Ignoratz aqueste messatge se aqueste compte es estat creat per error.",
 'usernamehasherror' => "Lo nom d'utilizaire pòt pas conténer de caractèrs de hachage",
-'login-throttled' => 'Avètz ensajat tròp de temptativas de connexion darrièrament.
-Esperatz abans d’ensajar tornamai.',
+'login-throttled' => 'Avètz ensajat un tròp grand nombre de connexions darrièrament.
+Esperatz $1 abans d’ensajar tornarmai.',
 'login-abort-generic' => 'Vòstra temptativa de connexion a fracassat',
 'loginlanguagelabel' => 'Lenga: $1',
 'suspicious-userlogout' => 'Vòstra demanda de desconnexion es estada refusada perque sembla qu’es estada mandada per un navigador copat o la mesa en escondedor d’un proxy.',
@@ -848,7 +847,7 @@ Esperatz abans d’ensajar tornamai.',
 'newpassword' => 'Senhal novèl :',
 'retypenew' => 'Confirmar lo senhal novèl :',
 'resetpass_submit' => 'Cambiar lo senhal e s’enregistrar',
-'changepassword-success' => 'Vòstre senhal es estat cambiat amb succès ! Enregistrament en cors...',
+'changepassword-success' => 'Vòstre senhal es estat cambiat amb succès !',
 'resetpass_forbidden' => 'Los senhals pòdon pas èsser cambiats',
 'resetpass-no-info' => 'Vos cal èsser connectat per aver accès a aquesta pagina.',
 'resetpass-submit-loggedin' => 'Modificar lo senhal',
@@ -898,6 +897,14 @@ Senhal temporari: $2',
 'changeemail-password' => 'Vòstre senhal sus {{SITENAME}} :',
 'changeemail-submit' => "Cambiar l'adreça electronica:",
 'changeemail-cancel' => 'Anullar',
+
+# Special:ResetTokens
+'resettokens' => 'Reïnicializar los getons',
+'resettokens-legend' => 'Reïnicializar los getons',
+'resettokens-tokens' => 'Getons :',
+'resettokens-token-label' => '$1 (valor actuala : $2)',
+'resettokens-done' => 'Getons reïnicializats.',
+'resettokens-resetbutton' => 'Reïnicializar los getons seleccionats',
 
 # Edit page toolbar
 'bold_sample' => 'Tèxte en gras',
@@ -976,8 +983,8 @@ Benlèu qu'es estada desplaçada o suprimida dempuèi qu'avètz legida aquesta p
 'loginreqlink' => 'connectar',
 'loginreqpagetext' => 'Vos cal vos $1 per veire las autras paginas.',
 'accmailtitle' => 'Senhal mandat.',
-'accmailtext' => "Un senhal generit aleatòriament per [[User talk:$1|$1]] es estat mandat a $2.
-Lo senhal per aqueste compte novèl pòt èsser cambiat sus la pagina ''[[Special:ChangePassword|de cambiament de senhal]]'' aprèp s'èsser connectat.",
+'accmailtext' => "Un senhal generat aleatòriament per [[User talk:$1|$1]] es estat mandat a $2.
+Lo senhal per aqueste compte novèl pòt èsser cambiat sus la pagina ''[[Special:ChangePassword|Cambiament de senhal]]'' aprèp s'èsser connectat.",
 'newarticle' => '(Novèl)',
 'newarticletext' => "Avètz seguit un ligam cap a una pagina qu’existís pas encara o qu'es estada [{{fullurl:Special:Log|type=delete&page={{FULLPAGENAMEE}}}} escafada].
 Per crear aquesta pagina, picatz vòstre tèxte dins la bóstia çaijós (podètz consultar [[{{MediaWiki:Helppage}}|la pagina d’ajuda]] per mai d’entresenhas).
@@ -1046,9 +1053,9 @@ Vos va caler aportar vòstras modificacions al tèxte existent.
 'yourdiff' => 'Diferéncias',
 'copyrightwarning' => "Totas las contribucions a {{SITENAME}} son consideradas coma publicadas jols tèrmes de la $2 (vejatz $1 per mai de detalhs). Se desiratz pas que vòstres escriches sián modificats e distribuits a volontat, mercés de los sometre pas aicí.<br /> Nos prometètz tanben qu'avètz escrich aquò vos-meteis, o que l’avètz copiat d’una font provenent del domeni public, o d’una ressorsa liura.'''UTILIZETZ PAS DE TRABALHS JOS COPYRIGHT SENS AUTORIZACION EXPRÈSSA !'''",
 'copyrightwarning2' => "Totas las contribucions a {{SITENAME}} pòdon èsser modificadas o suprimidas per d’autres utilizaires. Se desiratz pas que vòstres escriches sián modificats e distribuits a volontat, mercés de los sometre pas aicí.<br /> Tanben nos prometètz qu'avètz escrich aquò vos-meteis, o que l’avètz copiat d’una font provenent del domeni public, o d’una ressorsa liura. (vejatz $1 per mai de detalhs). '''UTILIZETZ PAS DE TRABALHS JOS COPYRIGHT SENS AUTORIZACION EXPRÈSSA !'''",
-'longpageerror' => "'''ERROR : Lo tèxte qu'avètz mandat fa $1 Ko, que depassa doncas lo limit autorizat dels $2 Ko. Pòt pas èsser salvat.'''",
-'readonlywarning' => "'''AVERTIMENT : La banca de donadas es estada varrolhada per mantenença, doncas poiretz pas salvar vòstras modificacions ara.
-Podètz copiar lo tèxte dins un fichièr de tèxte e lo salvar per mai tard.'''
+'longpageerror' => "'''ERROR : Lo tèxte qu'avètz somés fa {{PLURAL:$1|un Kio|$1 Kio}}, çò que depassa lo limit fixat a {{PLURAL:$2|un Kio|$2 Kio}}.'''. Pòt pas èsser salvat.",
+'readonlywarning' => "'''AVERTIMENT : La banca de donadas es estada varrolhada per d'operacions de mantenença. Doncas, poiretz pas publicar vòstras modificacions pel moment.'''
+Podètz copiar e pegar vòstre tèxte dins un fichièr de tèxte e lo salvar per mai tard.
 
 L’administrator qu'a varrolhat la banca de donadas a balhat l’explicacion seguenta : $1",
 'protectedpagewarning' => "'''AVERTIMENT : Aquesta pagina es protegida. Sols los utilizaires qu'an l'estatut d'administrator la p�don modificar. ''' La darri�ra entrada del jornal es afichada �aij�s per refer�ncia :",
@@ -1303,6 +1310,7 @@ Asseguratz-vos qu'aqueste cambiament pòsca conservar la continuitat de l'istori
 'compareselectedversions' => 'Comparar las versions seleccionadas',
 'showhideselectedversions' => 'Afichar/amagar las versions seleccionadas',
 'editundo' => 'desfar',
+'diff-empty' => '(Pas cap de diferéncia)',
 'diff-multi' => '({{PLURAL:$1|Una revision intermediària amagada|$1 revisions intermediàrias amagadas}}) per ({{PLURAL:$2|un utilizaire pas afichada|$2 utilizaires pas afichadas}})',
 'diff-multi-manyusers' => '({{PLURAL:$1|Una revision intermediària amagada|$1 revisions intermediàrias amagadas}}) per ({{PLURAL:$2|un utilizaire pas afichada|$2 utilizaires pas afichadas}})',
 
@@ -1455,10 +1463,10 @@ Atencion, lor indexacion de contengut {{SITENAME}} benlèu es pas a jorn.',
 'badsig' => 'Signatura bruta incorrècta, verificatz vòstras balisas HTML.',
 'badsiglength' => 'Vòstra signatura es tròp longa.
 Deu aver, al maximum $1 caractèr{{PLURAL:$1||s}}.',
-'yourgender' => 'Sèxe :',
-'gender-unknown' => 'Pas entresenhat',
-'gender-male' => 'Masculin',
-'gender-female' => 'Femenin',
+'yourgender' => 'Cossí vos agrada mai èsser descrich ?',
+'gender-unknown' => "M'agrada mai sens detalh",
+'gender-male' => 'Modifica de pagina del wiki',
+'gender-female' => 'Modifica de paginas del wiki',
 'prefs-help-gender' => "Opcional : utilizat pels acòrdis dins l'interfàcia del logicial. Aquesta informacion serà publica.",
 'email' => 'Corrièr electronic',
 'prefs-help-realname' => "(facultatiu) : se l'especificatz, serà utilizat per vos atribuir vòstras contribucions.",
@@ -1505,7 +1513,7 @@ Tanben podètz causir de permetre a d’autres de vos contactar per vòstra pagi
 'userrights-no-interwiki' => "Sètz pas abilitat per modificar los dreches dels utilizaires sus d'autres wikis.",
 'userrights-nodatabase' => 'La banca de donadas « $1 » existís pas o es pas en local.',
 'userrights-nologin' => "Vos cal [[Special:UserLogin|vos connectar]] amb un compte d'administrator per balhar los dreches d'utilizaire.",
-'userrights-notallowed' => "Al vòstre compte li es pas permés de modificar de dreches d'utilizaire.",
+'userrights-notallowed' => "Avètz pas la permission d'apondre o suprimir de dreches d'utilizaire.",
 'userrights-changeable-col' => 'Los gropes que podètz cambiar',
 'userrights-unchangeable-col' => 'Los gropes que podètz pas cambiar',
 
@@ -1551,7 +1559,7 @@ Tanben podètz causir de permetre a d’autres de vos contactar per vòstra pagi
 'right-reupload-shared' => 'Espotir localament un fichièr present sus un depaus partejat',
 'right-upload_by_url' => 'Importar un fichièr dempuèi una adreça URL',
 'right-purge' => "Purgar l'amagatal de las paginas sens l'aver de confirmar",
-'right-autoconfirmed' => 'Modificar las paginas semiprotegidas',
+'right-autoconfirmed' => 'Èsser pas afectat per las limitacions de debit ligadas a las adreças IP',
 'right-bot' => 'Èsser tractat coma un procediment automatizat',
 'right-nominornewtalk' => 'Desenclavar pas lo bendèl "Avètz de messatges novèls" al moment d\'un cambiament menor sus una pagina de discussion d\'un utilizaire',
 'right-apihighlimits' => "Utilizar de limits superiors dins las requèstas l'API",
@@ -1571,8 +1579,8 @@ Tanben podètz causir de permetre a d’autres de vos contactar per vòstra pagi
 'right-ipblock-exempt' => "Èsser pas afectat per las IP blocadas, los blocatges automatics e los blocatges de plajas d'IP",
 'right-proxyunbannable' => 'Èsser pas afectat pels blocatges automatics de servidors mandataris',
 'right-unblockself' => 'Se desblocar se-meteis',
-'right-protect' => 'Modificar lo nivèl de proteccion de las paginas e modificar las paginas protegidas',
-'right-editprotected' => 'Modificar las paginas protegidas (sens proteccion en cascada)',
+'right-protect' => 'Modificar los nivèls de proteccion e modificar las paginas protegidas en cascada',
+'right-editprotected' => 'Modificar las paginas protegidas amb « {{int:protect-level-sysop}} »',
 'right-editinterface' => "Modificar l'interfàcia d'utilizaire",
 'right-editusercssjs' => "Modificar los fichièrs CSS e JS d'autres utilizaires",
 'right-editusercss' => "Modificar los fichièrs CSS d'autres utilizaires",
@@ -2010,6 +2018,9 @@ Doblidetz pas de verificar se i a pas d’autre ligam cap als modèls abans de l
 'randompage' => "Una pagina a l'azard",
 'randompage-nopages' => "I a pas cap de pagina dins {{PLURAL:$2|l'espaci de nom|los espacis de noms}} : $1.",
 
+# Special:RandomInCategory
+'randomincategory-selectcategory-submit' => 'Anar',
+
 # Random redirect
 'randomredirect' => "Una pagina de redireccion a l'azard",
 'randomredirect-nopages' => "I a pas cap de redireccion dins l'espaci de nom « $1 ».",
@@ -2036,9 +2047,9 @@ Doblidetz pas de verificar se i a pas d’autre ligam cap als modèls abans de l
 
 'disambiguations' => "Paginas qu'an de ligams cap a de paginas d'omonimia",
 'disambiguationspage' => 'Template:Omonimia',
-'disambiguations-text' => "Las paginas seguentas puntan cap a una '''pagina d’omonimia'''.
-Deurián puslèu puntar cap a una pagina apropriada.<br />
-Una pagina es tractada coma una pagina d’omonimia s'utiliza un modèl qu'es ligat a partir de [[MediaWiki:Disambiguationspage]]",
+'disambiguations-text' => "Las paginas seguentas compòrtan al mens un ligam cap a una '''pagina d’omonimia'''.
+Deurián puslèu puntar cap al bon article.<br />
+Una pagina es considerada coma una pagina d’omonimia s'utiliza un modèl qu'es ligat a partir de [[MediaWiki:Disambiguationspage]]",
 
 'pageswithprop' => 'Paginas amb una proprietat de pagina',
 'pageswithprop-legend' => 'Paginas amb una proprietat de pagina',

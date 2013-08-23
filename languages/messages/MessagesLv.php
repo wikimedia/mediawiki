@@ -556,8 +556,7 @@ Lūdzu uzgaidi pirms mēģini vēlreiz.',
 'newpassword' => 'Jaunā parole',
 'retypenew' => 'Atkārto jauno paroli',
 'resetpass_submit' => 'Uzstādīt paroli un ieiet',
-'changepassword-success' => 'Parole nomainīta veiksmīgi!
-Notiek ieiešana...',
+'changepassword-success' => 'Jūsu parole tika nomainīta veiksmīgi!',
 'resetpass_forbidden' => 'Paroles nav iespējams nomainīt',
 'resetpass-no-info' => 'Jums ir nepieciešams ieiet, lai tūlīt piekļūtu šai lapai.',
 'resetpass-submit-loggedin' => 'Mainīt paroli',
@@ -1091,8 +1090,8 @@ Pagaidām vari meklēt, izmantojot Google vai Yahoo.
 Tam ir jābūt īsākam par  $1 {{PLURAL:$1|simbolu|simboliem}}.',
 'yourgender' => 'Dzimums:',
 'gender-unknown' => 'Nav norādīts',
-'gender-male' => 'Vīrietis',
-'gender-female' => 'Sieviete',
+'gender-male' => 'Viņš labo viki lapas',
+'gender-female' => 'Viņa labo viki lapas',
 'prefs-help-gender' => 'Dzimums nav obligāti jānorāda (šo parametru programmatūra izmanto, lai ģenerētu paziņojumus, kas atkarīgi no lietotāja dzimuma).
 Norādītā parametra vērtība būs publiski pieejama.',
 'email' => 'E-pasts',
@@ -2041,8 +2040,8 @@ Vai nu tu šeit esi nonācis lietojot kļūdainu saiti, vai arī šī versija ja
 'undeletedrevisions' => '$1 {{PLURAL:$1|versija|versijas}} {{PLURAL:$1|atjaunota|atjaunotas}}',
 'undeletedrevisions-files' => '{{PLURAL:$1|1 versija|$1 versijas}} un {{PLURAL:$2|1 fails|$2 faili}} atjaunoti',
 'undeletedfiles' => '{{PLURAL:$1|1 fails atjaunots|$1 faili atjaunoti}}',
-'cannotundelete' => 'Atjaunošana neizdevās;
-kāds cits iespējams to ir atjaunojis ātrāk.',
+'cannotundelete' => 'Atjaunošana neizdevās:
+$1',
 'undeletedpage' => "'''$1 tika atjaunots'''
 
 [[Special:Log/delete|Dzēšanas reģistrā]] ir informācija par pēdējām dzēšanām un atjaunošanām.",

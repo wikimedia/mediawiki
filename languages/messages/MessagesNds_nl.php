@@ -728,8 +728,7 @@ De beheerder gaf hierveur de volgende reden: "$3".',
 # Login and logout pages
 'logouttext' => "'''Je bin noen aofemeld.'''
 
-Je kunnen {{SITENAME}} noen anoniem gebruken of je eigen <span class='plainlinks'>[$1 opniej anmelden]</span> onder disse of n aandere gebrukersnaam.
-t Kan ween dat der wat ziejen bin die weeregeven wörden asof je an-emeld bin totda'j t tussengeheugen van joew webkieker leegmaken.",
+t Kan ween dat der wat ziejen bin die weeregeven wörden as of je an-emeld bin totda'j t tussengeheugen van joew webkieker leegmaken.",
 'welcomeuser' => 'Welkom, $1!',
 'welcomecreation-msg' => 'Joew gebruker is an-emaakt.
 Vergeet niet joew [[Special:Preferences|veurkeuren veur {{SITENAME}}]] an te passen.',
@@ -775,7 +774,7 @@ Vergeet niet joew [[Special:Preferences|veurkeuren veur {{SITENAME}}]] an te pas
 'createacct-emailoptional' => 'Netpostadres (niet verplicht)',
 'createacct-email-ph' => 'Geef joew netpostadres op',
 'createacct-another-email-ph' => 'Vul joew netpostadres in',
-'createaccountmail' => 'Gebruuk n tiejelik wachtwoord dat joe netzelde is en stuur t naor t netpostadres dat hieronder steet',
+'createaccountmail' => 'Gebruuk n tiejelik wachtwoord dat joe netzelde is en stuur t naor t op-egeven netpostadres',
 'createacct-realname' => 'Echte naam (niet verplicht)',
 'createaccountreason' => 'Reden:',
 'createacct-reason' => 'Reden',
@@ -853,7 +852,7 @@ Meld je noen an en wiezig t wachtwoord.
 Negeer dit bericht as disse gebruker zonder joew toestemming an-emaakt is.',
 'usernamehasherror' => "In n gebrukersnaam ma'j gien hekjen gebruken.",
 'login-throttled' => "Je hebben lestens te vake eprobeerd um an te melden mit n verkeerd wachtwoord.
-Je mutten effen wachten veurda'j t opniej proberen kunnen.",
+Je mutten effen $1 wachten veurda'j t opniej proberen.",
 'login-abort-generic' => 'Je bin niet an-emeld. De procedure is aofebreuken.',
 'loginlanguagelabel' => 'Taal: $1',
 'suspicious-userlogout' => 'Joew verzeuk um of te melden is aofewezen umdat t dernaor uutziet dat t verstuurd is deur n kepotte webkieker of tussenopslagbuffer',
@@ -872,7 +871,7 @@ Je mutten effen wachten veurda'j t opniej proberen kunnen.",
 'newpassword' => 'Niej wachtwoord',
 'retypenew' => 'Niej wachtwoord (opniej)',
 'resetpass_submit' => 'Voer t wachtwoord in en meld je an',
-'changepassword-success' => 'Joew wachtwoord is suksesvol ewiezigd Je wörden noen an-emeld...',
+'changepassword-success' => 'Joew wachtwoord is ewiezigd!',
 'resetpass_forbidden' => 'Wachtwoorden kunnen niet ewiezigd wörden',
 'resetpass-no-info' => "Je mutten an-emeld ween veurda'j disse zied gebruken kunnen.",
 'resetpass-submit-loggedin' => 'Wachtwoord wiezigen',
@@ -1019,9 +1018,7 @@ t Kan ween dat t herneumd is of dat t vortedaon is to jie t an t bekieken waren.
 'loginreqlink' => 'Anmelden',
 'loginreqpagetext' => 'Je mutten $1 um disse zied te bekieken.',
 'accmailtitle' => 'Wachtwoord is verstuurd.',
-'accmailtext' => "Der is n willekeurig wachtwoord veur [[User talk:$1|$1]] verstuurd naor $2.
-
-t Wachtwoord veur disse gebruker kan ewiezigd wörden deur de zied ''[[Special:ChangePassword|wachtwoord wiezigen]]'' te gebruken.",
+'accmailtext' => "Der is n willekeurig wachtwoord veur [[User talk:$1|$1]] verstuurd naor $2. t Kan ewiezigd wörden op de zied ''[[Special:ChangePassword|wachtwoord wiezigen]]'' naoda'j an-emeld bin.",
 'newarticle' => '(Niej)',
 'newarticletext' => "Disse zied besteet nog niet.
 In t veld hieronder ku'j wat schrieven um disse zied an te maken (meer informasie vie'j op de [[{{MediaWiki:Helppage}}|hulpzied]]).
@@ -1512,11 +1509,13 @@ Disse haandeling kan niet ongedaonemaakt wörden.',
 'badsig' => 'Ongeldige haandtekening; HTML naokieken.',
 'badsiglength' => 'Joew haandtekening is te lang.
 t Mut minder as {{PLURAL:$1|letter|letters}} hebben.',
-'yourgender' => 'Geslachte:',
-'gender-unknown' => 'Niet an-egeven',
+'yourgender' => 'Geslacht:',
+'gender-unknown' => 'Geet joe niks an',
 'gender-male' => 'Keerl',
 'gender-female' => 'Deerne',
-'prefs-help-gender' => 'Opsioneel: dit gebruken wie um gebrukers op n juuste maniere an te spreken in de programmatuur.
+'prefs-help-gender' => 'Disse instelling is opsioneel.
+
+De programmatuur gebruukt disse weerde um joe op de juuste maniere an te spreken en veur aandere gebrukers um joew geslacht an te geven.
 Disse informasie is zichtbaor veur aandere gebrukers.',
 'email' => 'Privéberichten',
 'prefs-help-realname' => "* Echte naam (niet verplicht): a'j disse opsie invullen zu'w joew echte naam gebruken um erkenning te geven veur joew warkzaamheen.",
@@ -1566,7 +1565,7 @@ Disse informasie is zichtbaor veur aandere gebrukers.',
 'userrights-notallowed' => 'Je hebben gien rechten um gebrukersrechten toe te kunnen wiezen of in te trekken.',
 'userrights-changeable-col' => "Groepen die'j beheren kunnen",
 'userrights-unchangeable-col' => "Groepen die'j niet beheren kunnen",
-'userrights-conflict' => 'Gebrukersrechtenkonflikt! Voer joew wiezigingen nog es in.',
+'userrights-conflict' => 'Konflikt bie t wiezigen van gebrukersrechten! Kiek joew wiezigingen nao en bevestig t.',
 'userrights-removed-self' => 'Je hebben joew eigen bevoegdhejen in-etrökken. Je kunnen disse zied niet meer gebruken.',
 
 # Groups
@@ -3157,13 +3156,13 @@ Meestentieds kömp dit deur n uutgaonde verwiezing die op de zwarte lieste steet
 'pageinfo-length' => 'Ziedlengte (in bytes)',
 'pageinfo-article-id' => 'Zied-ID',
 'pageinfo-language' => 'Taal veur de zied',
-'pageinfo-robot-policy' => 'Staotus veur de zeukmasine',
-'pageinfo-robot-index' => 'Indexeerbaor',
-'pageinfo-robot-noindex' => 'Niet indexeerbaor',
+'pageinfo-robot-policy' => 'Indexering deur bots',
+'pageinfo-robot-index' => 'Toe-estaon',
+'pageinfo-robot-noindex' => 'Niet toe-estaon',
 'pageinfo-views' => 'Antal keer bekeken',
 'pageinfo-watchers' => 'Antal ziedvolgers',
 'pageinfo-few-watchers' => 'Minder as {{PLURAL:$1|één volger|$1 volgers}}',
-'pageinfo-redirects-name' => 'Deurverwiezingen naor disse zied',
+'pageinfo-redirects-name' => 't Antal deurverwiezingen naor disse zied',
 'pageinfo-subpages-name' => 'Onderziejen van disse zied',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|deurverwiezing|deurverwiezingen}}; $3 {{PLURAL:$3|niet-deurverwiezing|niet-deurverwiezingen}})',
 'pageinfo-firstuser' => 'Gebruker die de zied an-emaakt hef',
@@ -4126,5 +4125,12 @@ Aanders ku\'j oek t eenvoudige formulier hieronder gebruken. Joew kommentaar zal
 
 # Image rotation
 'rotate-comment' => 'Aofbeelding is $1 {{PLURAL:$1|graod|graojen}} mit de klokke mee edreid',
+
+# Limit report
+'limitreport-title' => 'Parser-profieldata:',
+'limitreport-cputime-value' => '$1 {{PLURAL:$1|sekonde|sekonden}}',
+'limitreport-walltime-value' => '$1 {{PLURAL:$1|sekonde|sekonden}}',
+'limitreport-postexpandincludesize-value' => '$1/$2 byte',
+'limitreport-templateargumentsize-value' => '$1/$2 byte',
 
 );

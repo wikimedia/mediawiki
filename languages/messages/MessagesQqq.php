@@ -1741,7 +1741,7 @@ Should match: {{msg-mw|summary}}.',
 * $8 - the timestamp when the block started",
 'autoblockedtext' => "Text displayed to automatically blocked users. Parameters:
 * $1 - the blocking sysop (with a link to his/her userpage)
-* $2 - the reason for the block
+* $2 - the reason for the block (in case of autoblocks: {{msg-mw|autoblocker}})
 * $3 - the current IP address of the blocked user
 * $4 - the blocking sysop's username (plain text, without the link). Use it for GENDER.
 * $5 - the unique numeric identifier of the applied autoblock
@@ -2947,18 +2947,23 @@ This may be customized for other languages. This should sound like a question, t
 * {{msg-mw|gender-male}}
 * {{msg-mw|gender-female}}
 The idea is that this preference is used for speaking to the user and about the user, and the label and the preference are supposed to demonstrate it.',
-'gender-unknown' => 'Used in [[Special:Preferences]], first tab, as one of the selectable options of the {{msg-mw|gender}} prompt. Choosing it indicates that the grammatical gender of the user name is not to be made public, cannot be determined, or matches none of the other choices preset in the select.
+'gender-unknown' => 'Used in [[Special:Preferences]], first tab, as one of the selectable options of the {{msg-mw|Yourgender}} prompt. Choosing it indicates that the grammatical gender of the user name is not to be made public, cannot be determined, or matches none of the other choices preset in the select.
+
 This may appropriately customized for your language. It should sound like a reply to {{msg-mw|yourgender}}.',
-'gender-male' => 'Used in [[Special:Preferences]], first tab, as one of the selectable options of the {{msg-mw|gender}} prompt.
+'gender-male' => 'Used in [[Special:Preferences]], first tab, as one of the selectable options of the {{msg-mw|Yourgender}} prompt.
 Choosing it indicates that the grammatical gender of the user name should be "male" for those languages having a "normal" male grammatical gender.
+
 You have to customize this example for your language if needed to have a sentence which varies depending on the grammatical gender.
-The wording must demonstrate the actual usage of the option. It should sound like a reply to {{msg-mw|yourgender}}.
+The wording must demonstrate the actual usage of the option. It should sound like a reply to {{msg-mw|Yourgender}}.
+
 For example, if the verb "I edit" in your language is different in masculine and feminine, translate "I edit" in masculine here.
 If your language does not make a distinction at all, use sentences like "he is male/a man".',
-'gender-female' => 'Used in [[Special:Preferences]], first tab, as one of the selectable options of the {{msg-mw|gender}} prompt.
+'gender-female' => 'Used in [[Special:Preferences]], first tab, as one of the selectable options of the {{msg-mw|Yourgender}} prompt.
 Choosing it indicates that the grammatical gender of the user name should be "female" for those languages having a "normal" female grammatical gender.
+
 You have to customize this example for your language if needed to have a sentence which varies depending on the grammatical gender.
-The wording must demonstrate the actual usage of the option. It should sound like a reply to {{msg-mw|yourgender}}.
+The wording must demonstrate the actual usage of the option. It should sound like a reply to {{msg-mw|Yourgender}}.
+
 For example, if the verb "I edit" in your language is different in masculine and feminine, translate "I edit" in feminine here.
 If your language does not make a distinction at all, use sentences like "she is female/woman".',
 'prefs-help-gender' => 'Used as additional description for {{msg-mw|yourgender}} field in [[Special:Preferences]], section {{msg-mw|prefs-i18n}}.',

@@ -1535,7 +1535,7 @@ Tej operacji nie można później cofnąć.',
 'badsig' => 'Nieprawidłowy podpis, sprawdź znaczniki HTML.',
 'badsiglength' => 'Twój podpis jest zbyt długi.
 Dopuszczalna długość to $1 {{PLURAL:$1|znak|znaki|znaków}}.',
-'yourgender' => 'Płeć',
+'yourgender' => 'Płeć:',
 'gender-unknown' => 'nie określono',
 'gender-male' => 'mężczyzna',
 'gender-female' => 'kobieta',

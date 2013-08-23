@@ -315,6 +315,7 @@ $messages = array(
 'tog-showhiddencats' => 'Uri kategoriji moħbija',
 'tog-norollbackdiff' => "Turix il-paragun bejn il-verżjonijiet wara li tkun effettwajt ir-''rollback''",
 'tog-useeditwarning' => "Avżani kull meta nħalli paġna ta' modifika b'modifiki li għadhom ma ġewx salvati",
+'tog-prefershttps' => 'Dejjem uża l-konnessjoni sigura meta tidħol fil-kont',
 
 'underline-always' => 'Dejjem',
 'underline-never' => 'Qatt',
@@ -1425,6 +1426,8 @@ Innota però li l-werreja tal-kontenut ta' {{SITENAME}} f'dawn is-siti, jistgħu
 'prefs-dateformat' => 'Format tad-data',
 'prefs-timeoffset' => 'Differenza fis-sigħat',
 'prefs-advancedediting' => 'Opzjonijiet avvanzati',
+'prefs-editor' => 'Editur',
+'prefs-preview' => 'Dehra proviżorja',
 'prefs-advancedrc' => 'Opzjonijiet avvanzati',
 'prefs-advancedrendering' => 'Opzjonijiet avvanzati',
 'prefs-advancedsearchoptions' => 'Opzjonijiet avvanzati',

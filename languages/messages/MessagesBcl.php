@@ -139,6 +139,7 @@ $messages = array(
 'tog-showhiddencats' => 'Ihayag an nakatagong mga kategorya',
 'tog-norollbackdiff' => 'Omidohon an diff matapos himoon an pagbalikot',
 'tog-useeditwarning' => 'Patanidan ako kunsoarin na ako nagbaya sa pahinang pigliliwat na dae naitatagama an mga kaliwatan',
+'tog-prefershttps' => 'Pirmeng gumamit nin sarong seguradong koneksyon kunsoarin na ika nakalaog na',
 
 'underline-always' => 'Pirmi',
 'underline-never' => 'Nungka',
@@ -812,9 +813,7 @@ Ini puwedeng pinagbalyo o pinagpara na habang saimong pinaghihiling an pahina.',
 'loginreqlink' => 'maglaog',
 'loginreqpagetext' => 'Kaipuhan kang $1 tangarig makahilíng nin ibang pahina.',
 'accmailtitle' => 'Napadará na an sekretong panlaog.',
-'accmailtext' => "An patsambang pagpuyos kan sekretong panlaog para ki [[User talk:$1|$1]] ipinagpadara na ki $2.
-
-An sekretong panlaog para sa bagong panindog mapuwede tabing maribayan ''[[Special:ChangePassword|Ribayan an sekretong panlaog]]'' na pahina matapos na makalaog.",
+'accmailtext' => "An patsambang pinagpuyos pasa-taramon para ki [[User talk:$1|$1]] ipinagpadara na sa $2. Ini puwedeng mariribayan sa ''[[Special:ChangePassword|Ribayan an pasa-taramon]]'' na pahina matapos na makalaog.",
 'newarticle' => '(Bàgo)',
 'newarticletext' => "Ika nakapagsunod sa sarong sugpon pasiring sa sarong pahina na bako pang eksistido. Tanganing makapagmukna nin pahina, magpoon sa pagpindot sa laog nin kahon sa ibaba (hilngon an [[{{MediaWiki:Helppage}}|pahina nin katabangan]] para sa kadugangan na impormasyon).
 Kun ika napasalang nakadigde, i-klik an  '''ibalik''' na pindutan kan saimong kilyaw.",

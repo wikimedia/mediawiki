@@ -278,6 +278,7 @@ $messages = array(
 'tog-noconvertlink' => '唔轉連結標題',
 'tog-norollbackdiff' => '進行反轉之後略過差異',
 'tog-useeditwarning' => '當我離開未保存好嘅修改嗰陣警告我',
+'tog-prefershttps' => '簽到後繼續用加密連線',
 
 'underline-always' => '全部',
 'underline-never' => '永不',

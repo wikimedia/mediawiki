@@ -1537,7 +1537,9 @@ Den kan maks inneholde $1 {{PLURAL:$1|tegn|tegn}}.',
 'gender-unknown' => 'Uspesifisert',
 'gender-male' => 'Mann',
 'gender-female' => 'Kvinne',
-'prefs-help-gender' => 'Valgfritt: brukes for kjønnskorrekt tekst av programvaren. Denne informasjonen vil være offentlig.',
+'prefs-help-gender' => 'Det er valgfritt å angi dette.
+Programvaren trenger verdien for anvende riktig grammatikalsk kjønn ved henvendelser til deg og i omtale av deg for andre brukere.
+Informasjonen vil være offentlig.',
 'email' => 'E-post',
 'prefs-help-realname' => '* Virkelig navn (valgfritt): dersom du velger å oppgi navnet, vil det bli brukt til å kreditere deg for ditt arbeid.',
 'prefs-help-email' => 'Å angi e-postadresse er valgfritt, men er nødvendig for å få tilsendt nytt passord om du skulle glemme det gamle.',
@@ -4195,6 +4197,7 @@ Om det ikke er tilfellet, kan du bruke det enkle skjemaet som du finner under. K
 'limitreport-walltime' => 'Faktisk tidsbruk',
 'limitreport-walltime-value' => '$1 {{PLURAL:$1|sekund|sekunder}}',
 'limitreport-ppvisitednodes' => 'Nodebesøkstelling for preprosessor',
+'limitreport-ppgeneratednodes' => 'Preprosessor-generert nodetall',
 'limitreport-postexpandincludesize-value' => '$1/$2 byte',
 'limitreport-templateargumentsize' => 'Malargument-størrelse',
 'limitreport-templateargumentsize-value' => '$1/$2 byte',

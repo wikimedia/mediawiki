@@ -2499,6 +2499,7 @@ Fjalingarloggurin er vístur niðanfyri til kunningar:',
 'sorbsreason' => 'Tín IP adressa er merkt sum ein open proxy í DNSBL sum {{SITENAME}} brúkar.',
 'sorbs_create_account_reason' => 'Tín IP adressa er merkt sum ein open proxy í DNSBL sum {{SITENAME}} brúkar.
 Tú kanst ikki upprætta eina konto.',
+'cant-block-while-blocked' => 'Tú kanst ikki sperra aðrar brúkarar meðan tú sjálv/ur ert sperrað/ur.',
 'ipbblocked' => 'Tú kanst ikki sperra ella taka sperring burtur hjá øðrum brúkarum, tí tú ert sjálv/ur sperrað/ur',
 'ipbnounblockself' => 'Tú hevur ikki loyvi til at taka sperringina burtur hjá tær sjálvum',
 
@@ -2668,11 +2669,21 @@ Goym hana á tínari teldu og legg hana so út her.",
 'importnopages' => 'Ongar síður eru at innflyta.',
 'imported-log-entries' => 'Innflutti $1 {{PLURAL:$1|loggpost|loggpostar}}.',
 'importfailed' => 'Innflutningur miseydnaður: $1',
+'importbadinterwiki' => 'Skeiv interwiki leinkja',
 'importnotext' => 'Tómt ella ongin tekstur',
 'importsuccess' => 'Innflutningur er liðugur!',
 'import-noarticle' => 'Ongin síða at innflyta!',
 'import-nonewrevisions' => 'Allar versjónir eru longu innfluttar.',
 'xml-error-string' => '$1 á linju $2, rekkju $3 (byte $4): $5',
+'import-token-mismatch' => 'Misti setunardáta (sesjónsdáta).
+Vinarliga royn aftur.',
+'import-invalid-interwiki' => 'Tað ber ikki til at innflyta frá nevndu wiki.',
+'import-error-edit' => 'Síðan "$1" varð ikki innflutt, tí at tú ikki hevur loyvi til at rætta hana.',
+'import-error-create' => 'Síðan "$1" varð ikki innflutt, tí at tú ikki hevur loyvi til at upprætta hana.',
+
+# Import log
+'importlogpage' => 'Innflutningsloggur.',
+'import-logentry-upload-detail' => '$1 {{PLURAL:$1|versjón|versjónir}}',
 
 # JavaScriptTest
 'javascripttest' => 'Royndarkoyring av JavaScript',

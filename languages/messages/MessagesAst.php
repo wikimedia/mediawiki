@@ -106,6 +106,7 @@ $messages = array(
 'tog-noconvertlink' => 'Desactivar la conversión del títulu del enllaz',
 'tog-norollbackdiff' => 'Desaniciar les diferencies depués de facer una restauración',
 'tog-useeditwarning' => "Avisame cuando salga d'una páxina d'edición con cambios ensin guardar",
+'tog-prefershttps' => 'Usar siempre una conexón segura en aniciando sesión',
 
 'underline-always' => 'Siempre',
 'underline-never' => 'Nunca',
@@ -621,7 +622,7 @@ Agora tendríes d'aniciar sesión y camudar la contraseña.
 Pues escaecer esti mensaxe si esta cuenta creóse por error.",
 'usernamehasherror' => "El nome d'usuariu nun pue contener caráuteres «hash»",
 'login-throttled' => "Ficisti demasiaos intentos d'aniciu de sesión recientes.
-Por favor espera enantes d'intentalo otra vuelta.",
+Por favor espera $1 enantes d'intentalo otra vuelta.",
 'login-abort-generic' => 'Falló la identificación - Encaboxao',
 'loginlanguagelabel' => 'Llingua: $1',
 'suspicious-userlogout' => "La to solicitú de zarrar sesión refugose porque paez qu'unvióla un restolador frañíu o un proxy de caché.",
@@ -643,8 +644,7 @@ P'acabar d'aniciar sesión, tienes de configurar equí una contraseña nueva:",
 'newpassword' => 'Contraseña nueva:',
 'retypenew' => 'Vuelvi a escribir la contraseña nueva:',
 'resetpass_submit' => 'Configurar la contraseña y aniciar sesión',
-'changepassword-success' => '¡Camudóse la contraseña correutamente!
-Aniciando sesión agora...',
+'changepassword-success' => '¡Camudóse la contraseña correutamente!',
 'resetpass_forbidden' => 'Nun puen camudase les contraseñes',
 'resetpass-no-info' => "Tienes d'aniciar sesión pa entrar direutamente a esta páxina.",
 'resetpass-submit-loggedin' => 'Camudar la contraseña',
@@ -795,9 +795,7 @@ Seique se treslladara o desaniciara mientres víes la páxina.',
 'loginreqlink' => 'aniciar sesión',
 'loginreqpagetext' => "Tienes d'$1 pa ver otres páxines.",
 'accmailtitle' => 'Clave unviada',
-'accmailtext' => "Unvióse a $2 una contraseña xenerada al debalu pal usuariu [[User talk:$1|$1]].
-
-La contraseña d'esta cuenta nueva pue camudase na páxina ''[[Special:ChangePassword|camudar contraseña]]'' depués d'aniciar sesión.",
+'accmailtext' => "Unvióse a $2 una contraseña xenerada al debalu pal usuariu [[User talk:$1|$1]]. Pue camudase na páxina ''[[Special:ChangePassword|camudar contraseña]]'' depués d'aniciar sesión.",
 'newarticle' => '(Nuevu)',
 'newarticletext' => "Siguisti un enllaz a un artículu qu'inda nun esiste.
 Pa crear la páxina, empecipia a escribir nel cuadru d'embaxo (mira la [[{{MediaWiki:Helppage}}|páxina d'ayuda]] pa más información).
@@ -1302,12 +1300,12 @@ Esto nun se pue desfacer.',
 'badsig' => 'Firma cruda non válida; comprueba les etiquetes HTML.',
 'badsiglength' => 'La to robla ye demasiao llarga.
 Ha tener menos de $1 {{PLURAL:$1|caráuter|carauteres}}.',
-'yourgender' => 'Xéneru:',
-'gender-unknown' => 'Non especificáu',
-'gender-male' => 'Masculín',
-'gender-female' => 'Femenín',
-'prefs-help-gender' => "Opcional: s'usa pol software pa crear diálogos col xéneru correchu.
-Esta información sedrá pública.",
+'yourgender' => '¿Qué descripción prefieres?',
+'gender-unknown' => 'Prefiero nun dar detalles',
+'gender-male' => 'Él edita páxines wiki',
+'gender-female' => 'Ella edita páxines wiki',
+'prefs-help-gender' => 'Configurar esta preferencia ye opcional. El software usa esti valor pa dirixise a ti y pa mentate a terceros col xéneru gramatical correchu.
+Esta información sedrá pública.',
 'email' => 'Corréu',
 'prefs-help-realname' => "El nome real ye opcional y si decides conseñalu va ser usáu p'atribuyite'l to trabayu.",
 'prefs-help-email' => 'La direición de corréu ye opcional, pero ye necesaria pa unviate una conseña nueva si escaeces la tuya.',

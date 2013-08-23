@@ -1523,4 +1523,8 @@ waxaad awoodaa [[Special:EditWatchlist/raw|Liiska wax ka bedel]].',
 'api-error-unknown-warning' => 'Digniin la aqoon: $1',
 'api-error-uploaddisabled' => 'Soo gelinta waa laga xiray wikigaan.',
 
+# Limit report
+'limitreport-cputime' => 'Waqtiga adeegsiga CPU',
+'limitreport-walltime' => 'Waqtiga dhabta ah adeegsiga',
+
 );
