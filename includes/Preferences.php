@@ -303,7 +303,7 @@ class Preferences {
 			);
 		}
 		// Only show preferhttps if secure login is turned on
-		if ( $wgSecureLogin ) {
+		if ( $wgSecureLogin && wfCanIPUseHTTPS( $context->getRequest()->getIP() ) ) {
 			$defaultPreferences['prefershttps'] = array(
 				'type' => 'toggle',
 				'label-message' => 'tog-prefershttps',
