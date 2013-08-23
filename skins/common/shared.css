@@ -837,10 +837,10 @@ ul.mw-gallery-nolines li.gallerybox div.thumb {
 	background-color: transparent;
 	border: none;
 }
-ul.mw-gallery-nolines li.gallerybox div.thumb img {
-	margin: 0;
-}
 
+ul.mw-gallery-nolines li.gallerybox div.gallerytext {
+	text-align: center;
+}
 
 /* height constrained gallery */
 
