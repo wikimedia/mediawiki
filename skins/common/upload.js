@@ -139,7 +139,7 @@ window.wgUploadWarningObj = {
 			titles: ( new mw.Title( this.nameToCheck, mw.config.get( 'wgNamespaceIds' ).file ) ).getPrefixedText(),
 			prop: 'imageinfo',
 			iiprop: 'uploadwarning',
-			indexpageids: '',
+			indexpageids: ''
 		} ).done( function ( result ) {
 			var resultOut = '';
 			if ( result.query ) {
