@@ -2,7 +2,7 @@
 define mw_prefix='{$wgDBprefix}';
 
 
-CREATE SEQUENCE user_user_id_seq MINVALUE 0 START WITH 0;
+CREATE SEQUENCE user_user_id_seq;
 CREATE TABLE &mw_prefix.mwuser ( -- replace reserved word 'user'
   user_id                   NUMBER  NOT NULL,
   user_name                 VARCHAR2(255)     NOT NULL,
@@ -27,7 +27,7 @@ CREATE INDEX &mw_prefix.mwuser_i02 ON &mw_prefix.mwuser (user_email, user_name);
 
 -- Create a dummy user to satisfy fk contraints especially with revisions
 INSERT INTO &mw_prefix.mwuser
-  VALUES (user_user_id_seq.nextval,'Anonymous',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL, '', current_timestamp, current_timestamp, 0);
+  VALUES (0,'Anonymous',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL, '', current_timestamp, current_timestamp, 0);
 
 CREATE TABLE &mw_prefix.user_groups (
   ug_user   NUMBER      DEFAULT 0 NOT NULL,
