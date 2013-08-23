@@ -22,6 +22,12 @@
 
 class PackedImageGallery extends TraditionalImageGallery {
 
+	function __construct( $mode = 'traditional' ) {
+		parent::__construct( $mode );
+		// Does not support per row option.
+		$this->mPerRow = 0;
+	}
+
 	/**
 	 * We artificially have 1.5 the resolution neccessary so that
 	 * we can scale it up by that much on the client side, without
@@ -87,5 +93,13 @@ class PackedImageGallery extends TraditionalImageGallery {
 	 */
 	protected function getModules() {
 		return array( 'mediawiki.page.gallery' );
+	}
+
+	/**
+	 * Do not support per-row on packed. It really doesn't work
+	 * since the images have varying widths.
+	 */
+	public function setPerRow( $num ) {
+		return;
 	}
 }
