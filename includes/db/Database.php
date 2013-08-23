@@ -923,6 +923,12 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 			}
 		}
 
+		# Keep track of whether the transaction has write queries pending
+		if ( $this->mTrxLevel && !$this->mTrxDoneWrites && $this->isWriteQuery( $sql ) ) {
+			$this->mTrxDoneWrites = true;
+			Profiler::instance()->transactionWritingIn( $this->mServer, $this->mDBname );
+		}
+
 		$isMaster = !is_null( $this->getLBInfo( 'master' ) );
 		if ( !Profiler::instance()->isStub() ) {
 			# generalizeSQL will probably cut down the query to reasonable
@@ -936,12 +942,6 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 			}
 			wfProfileIn( $totalProf );
 			wfProfileIn( $queryProf );
-		}
-
-		# Keep track of whether the transaction has write queries pending
-		if ( $this->mTrxLevel && !$this->mTrxDoneWrites && $this->isWriteQuery( $sql ) ) {
-			$this->mTrxDoneWrites = true;
-			Profiler::instance()->transactionWritingIn( $this->mServer, $this->mDBname );
 		}
 
 		if ( $this->debug() ) {
