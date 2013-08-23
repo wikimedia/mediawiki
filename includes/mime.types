@@ -118,6 +118,8 @@ text/xml xml xsl xslt rss rdf
 text/x-setext etx
 text/x-sawfish jl
 video/mpeg mpeg mpg mpe
+video/mp4 mp4 m4a m4p m4b m4r m4v
+audio/mp4 m4a
 video/ogg ogv ogm ogg
 video/quicktime qt mov
 video/vnd.mpegurl mxu
