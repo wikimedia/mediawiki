@@ -34,8 +34,8 @@ function wfProfileIn( $functionname ) {
 	if ( Profiler::$__instance === null ) { // use this directly to reduce overhead
 		Profiler::instance();
 	}
-	if ( Profiler::$__instance && !( Profiler::$__instance instanceof ProfilerStub ) ) {
-		Profiler::instance()->profileIn( $functionname );
+	if ( !( Profiler::$__instance instanceof ProfilerStub ) ) {
+		Profiler::$__instance->profileIn( $functionname );
 	}
 }
 
@@ -47,8 +47,8 @@ function wfProfileOut( $functionname = 'missing' ) {
 	if ( Profiler::$__instance === null ) { // use this directly to reduce overhead
 		Profiler::instance();
 	}
-	if ( Profiler::$__instance && !( Profiler::$__instance instanceof ProfilerStub ) ) {
-		Profiler::instance()->profileOut( $functionname );
+	if ( !( Profiler::$__instance instanceof ProfilerStub ) ) {
+		Profiler::$__instance->profileOut( $functionname );
 	}
 }
 
@@ -77,7 +77,7 @@ class ProfileSection {
 		if ( Profiler::$__instance === null ) { // use this directly to reduce overhead
 			Profiler::instance();
 		}
-		if ( Profiler::$__instance && !( Profiler::$__instance instanceof ProfilerStub ) ) {
+		if ( !( Profiler::$__instance instanceof ProfilerStub ) ) {
 			$this->enabled = true;
 			Profiler::$__instance->profileIn( $this->name );
 		}
