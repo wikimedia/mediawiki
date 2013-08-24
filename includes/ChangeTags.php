@@ -34,7 +34,7 @@ class ChangeTags {
 	 *            - classes: Array of strings: CSS classes used in the generated html, one class for each tag
 	 *
 	 */
-	static function formatSummaryRow( $tags, $page ) {
+	public static function formatSummaryRow( $tags, $page ) {
 		global $wgLang;
 
 		if ( !$tags ) {
@@ -71,7 +71,7 @@ class ChangeTags {
 	 * @return String: Short description of the tag from "mediawiki:tag-$tag" if this message exists,
 	 *                 html-escaped version of $tag otherwise
 	 */
-	static function tagDescription( $tag ) {
+	public static function tagDescription( $tag ) {
 		$msg = wfMessage( "tag-$tag" );
 		return $msg->exists() ? $msg->parse() : htmlspecialchars( $tag );
 	}
@@ -90,7 +90,7 @@ class ChangeTags {
 	 *
 	 * @exception MWException when $rc_id, $rev_id and $log_id are all null
 	 */
-	static function addTags( $tags, $rc_id = null, $rev_id = null, $log_id = null, $params = null ) {
+	public static function addTags( $tags, $rc_id = null, $rev_id = null, $log_id = null, $params = null ) {
 		if ( !is_array( $tags ) ) {
 			$tags = array( $tags );
 		}
@@ -174,7 +174,7 @@ class ChangeTags {
 	 *
 	 * @throws MWException When unable to determine appropriate JOIN condition for tagging
 	 */
-	static function modifyDisplayQuery( &$tables, &$fields, &$conds,
+	public static function modifyDisplayQuery( &$tables, &$fields, &$conds,
 										&$join_conds, &$options, $filter_tag = false ) {
 		global $wgRequest, $wgUseTagFilter;
 
@@ -255,7 +255,7 @@ class ChangeTags {
 	 *
 	 * @return Array of strings: tags
 	 */
-	static function listDefinedTags() {
+	public static function listDefinedTags() {
 		// Caching...
 		global $wgMemc;
 		$key = wfMemcKey( 'valid-tags' );
