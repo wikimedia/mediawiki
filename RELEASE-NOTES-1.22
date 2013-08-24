@@ -269,6 +269,7 @@ production.
 * (bug 39012) File types with a mime that we do not know the extension for
   can no longer be uploaded as an extension that we do know the mime type
   for.
+* (bug 51742) Add data-sort-value for better sorting of hitcounts Special:Tags
 
 === API changes in 1.22 ===
 * (bug 25553) The JSON output formatter now leaves forward slashes unescaped
