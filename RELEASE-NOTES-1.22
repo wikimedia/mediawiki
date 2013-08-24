@@ -403,6 +403,7 @@ changes to languages because of Bugzilla reports.
   have been deprecated in favour of using mw.hook.
 * The 'showjumplinks' user preference has been removed, jump links are now
   always included.
+* (bug 53305) Rewrite MovePageForm for injection.
 
 == Compatibility ==
 
