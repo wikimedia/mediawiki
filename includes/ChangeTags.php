@@ -231,8 +231,18 @@ class ChangeTags {
 			return $fullForm ? '' : array();
 		}
 
-		$data = array( Html::rawElement( 'label', array( 'for' => 'tagfilter' ), wfMessage( 'tag-filter' )->parse() ),
-			Xml::input( 'tagfilter', 20, $selected, array( 'class' => 'mw-tagfilter-input' ) ) );
+		$select = new XmlSelect( 'tagfilter', false, $selected );
+		$select->addOption( wfMessage( 'tag-filter-none' )->text(), '' );
+		foreach ( self::tagUsageStatistics() as $tag => $unused ) {
+			// Can't use self::tagDescription because it returns HTML
+			$select->addOption( $tag );
+		}
+		$select->setAttribute( 'class', 'mw-tagfilter-input' );
+
+		$data = array(
+			Html::rawElement( 'label', array( 'for' => 'tagfilter' ), wfMessage( 'tag-filter' )->parse() ),
+			$select->getHTML()
+		);
 
 		if ( !$fullForm ) {
 			return $data;
@@ -280,5 +290,34 @@ class ChangeTags {
 		// Short-term caching.
 		$wgMemc->set( $key, $emptyTags, 300 );
 		return $emptyTags;
+	}
+
+	/**
+	 * Returns a map of valid tags to number of edits tagged with them, ordered descending by the hitcount.
+	 *
+	 * @return array Array of string => int
+	 */
+	public static function tagUsageStatistics() {
+		$out = array();
+
+		$dbr = wfGetDB( DB_SLAVE );
+		$res = $dbr->select(
+			'change_tag',
+			array( 'ct_tag', 'hitcount' => 'count(*)' ),
+			array(),
+			__METHOD__,
+			array( 'GROUP BY' => 'ct_tag', 'ORDER BY' => 'hitcount DESC' )
+		);
+
+		foreach ( $res as $row ) {
+			$out[$row->ct_tag] = $row->hitcount;
+		}
+		foreach ( self::listDefinedTags() as $tag ) {
+			if ( !isset( $out[$tag] ) ) {
+				$out[$tag] = 0;
+			}
+		}
+
+		return $out;
 	}
 }
