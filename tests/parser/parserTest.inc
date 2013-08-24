@@ -260,7 +260,7 @@ class ParserTest {
 					'iw_wikiid' => '',
 					'iw_local' => 1 ),
 			);
-			if( array_key_exists( $prefix, $testInterwikis ) ) {
+			if ( array_key_exists( $prefix, $testInterwikis ) ) {
 				$iwData = $testInterwikis[$prefix];
 			}
 

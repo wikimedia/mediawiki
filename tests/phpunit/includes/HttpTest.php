@@ -176,7 +176,7 @@ class HttpTest extends MediaWikiTestCase {
  */
 class MWHttpRequestTester extends MWHttpRequest {
 
-	// function derived from the MWHttpRequest factory function but 
+	// function derived from the MWHttpRequest factory function but
 	// returns appropriate tester class here
 	public static function factory( $url, $options = null ) {
 		if ( !Http::$httpEngine ) {

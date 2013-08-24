@@ -116,7 +116,7 @@ class WfTimestampTest extends MediaWikiTestCase {
 	 */
 	function testTimestampParameter() {
 		$now = wfTimestamp( TS_UNIX );
-		// We check that wfTimestamp doesn't return false (error) and use a LessThan assert 
+		// We check that wfTimestamp doesn't return false (error) and use a LessThan assert
 		// for the cases where the test is run in a second boundary.
 
 		$zero = wfTimestamp( TS_UNIX, 0 );

@@ -1526,7 +1526,7 @@ class EditPage {
 			// message with content equivalent to default (allow empty pages
 			// in this case to disable messages, see bug 50124)
 			$defaultMessageText = $this->mTitle->getDefaultMessageText();
-			if( $this->mTitle->getNamespace() === NS_MEDIAWIKI && $defaultMessageText !== false ) {
+			if ( $this->mTitle->getNamespace() === NS_MEDIAWIKI && $defaultMessageText !== false ) {
 				$defaultText = $defaultMessageText;
 			} else {
 				$defaultText = '';

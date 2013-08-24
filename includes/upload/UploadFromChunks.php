@@ -346,7 +346,7 @@ class UploadFromChunks extends UploadFromFile {
 		$res = $this->verifyPartialFile();
 		$this->mDesiredDestName = $oldDesiredDestName;
 		$this->mTitle = false;
-		if( is_array( $res ) ) {
+		if ( is_array( $res ) ) {
 			throw new UploadChunkVerificationException( $res[0] );
 		}
 	}

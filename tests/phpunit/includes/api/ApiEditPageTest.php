@@ -219,7 +219,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$this->assertEquals( 'Success', $re['edit']['result'] );
 		// Check the page text is correct
 		$text = WikiPage::factory( Title::newFromText( $name ) )->getContent( Revision::RAW )->getNativeData();
-		$this->assertEquals( $text, "== header ==\n\ntest");
+		$this->assertEquals( $text, "== header ==\n\ntest" );
 
 		// Now on one that does
 		$this->assertTrue( Title::newFromText( $name )->exists() );
@@ -233,7 +233,7 @@ class ApiEditPageTest extends ApiTestCase {
 
 		$this->assertEquals( 'Success', $re2['edit']['result'] );
 		$text = WikiPage::factory( Title::newFromText( $name ) )->getContent( Revision::RAW )->getNativeData();
-		$this->assertEquals( $text, "== header ==\n\ntest\n\n== header ==\n\ntest");
+		$this->assertEquals( $text, "== header ==\n\ntest\n\n== header ==\n\ntest" );
 	}
 
 	function testUndo() {

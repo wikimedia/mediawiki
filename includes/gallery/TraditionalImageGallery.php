@@ -168,7 +168,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 				'';
 
 
-			$galleryText  = $textlink . $text . $fileSize;
+			$galleryText = $textlink . $text . $fileSize;
 			$galleryText = $this->wrapGalleryText( $galleryText, $thumb );
 
 			# Weird double wrapping (the extra div inside the li) needed due to FF2 bug

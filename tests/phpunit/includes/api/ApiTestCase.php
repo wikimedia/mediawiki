@@ -140,7 +140,7 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	}
 
 	protected function doLogin( $user = 'sysop' ) {
-		if( !array_key_exists( $user, self::$users ) ){
+		if ( !array_key_exists( $user, self::$users ) ) {
 			throw new MWException( "Can not log in to undefined user $user" );
 		}
 
@@ -170,7 +170,7 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 			'type' => 'edit|delete|protect|move|block|unblock|watch'
 		), $session, false, $user->user );
 
-		if( !array_key_exists( 'tokens', $data[0] ) ){
+		if ( !array_key_exists( 'tokens', $data[0] ) ) {
 			throw new MWException( 'Api failed to return a token list' );
 		}
 

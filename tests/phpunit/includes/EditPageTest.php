@@ -233,7 +233,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 			"",
 			"expected registered MediaWiki: page being created even if empty"
 		)->doDeleteArticleReal( 'EditPageTest_testCreatePage' );
-		
+
 		$this->assertEdit(
 			'MediaWiki:Ipb-default-expiry',
 			null,

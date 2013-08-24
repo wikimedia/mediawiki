@@ -73,7 +73,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 		$this->installErrorHandler();
 		try {
 			$this->mConn = $this->mysqlConnect( $realServer );
-		} catch (Exception $ex) {
+		} catch ( Exception $ex ) {
 			wfProfileOut( "dbconnect-$server" );
 			wfProfileOut( __METHOD__ );
 			throw $ex;

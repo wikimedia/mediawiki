@@ -450,7 +450,7 @@ class ApiUploadTest extends ApiTestCaseUpload {
 		$this->deleteFileByFileName( $fileName );
 		$this->deleteFileByContent( $filePath );
 
-		// Base upload params: 
+		// Base upload params:
 		$params = array(
 			'action' => 'upload',
 			'stash' => 1,
@@ -462,7 +462,7 @@ class ApiUploadTest extends ApiTestCaseUpload {
 		// Upload chunks
 		$chunkSessionKey = false;
 		$resultOffset = 0;
-		// Open the file: 
+		// Open the file:
 		$handle = @fopen( $filePath, "r" );
 		if ( $handle === false ) {
 			$this->markTestIncomplete( "could not open file: $filePath" );
@@ -483,10 +483,10 @@ class ApiUploadTest extends ApiTestCaseUpload {
 				} catch ( UsageException $e ) {
 					$this->markTestIncomplete( $e->getMessage() );
 				}
-				// Make sure we got a valid chunk continue: 
+				// Make sure we got a valid chunk continue:
 				$this->assertTrue( isset( $result['upload'] ) );
 				$this->assertTrue( isset( $result['upload']['filekey'] ) );
-				// If we don't get a session key mark test incomplete. 
+				// If we don't get a session key mark test incomplete.
 				if ( !isset( $result['upload']['filekey'] ) ) {
 					$this->markTestIncomplete( "no filekey provided" );
 				}
@@ -510,11 +510,11 @@ class ApiUploadTest extends ApiTestCaseUpload {
 			} catch ( UsageException $e ) {
 				$this->markTestIncomplete( $e->getMessage() );
 			}
-			// Make sure we got a valid chunk continue: 
+			// Make sure we got a valid chunk continue:
 			$this->assertTrue( isset( $result['upload'] ) );
 			$this->assertTrue( isset( $result['upload']['filekey'] ) );
 
-			// Check if we were on the last chunk: 
+			// Check if we were on the last chunk:
 			if ( $params['offset'] + $chunkSize >= $fileSize ) {
 				$this->assertEquals( 'Success', $result['upload']['result'] );
 				break;
@@ -555,7 +555,7 @@ class ApiUploadTest extends ApiTestCaseUpload {
 
 		// clean up
 		$this->deleteFileByFilename( $fileName );
-		// don't remove downloaded temporary file for fast subquent tests. 
+		// don't remove downloaded temporary file for fast subquent tests.
 		//unlink( $filePath );
 	}
 }

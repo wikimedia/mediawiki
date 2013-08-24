@@ -25,7 +25,7 @@
 								.find( '.mw-help-field-data' )
 									.slideToggle( 'fast' );
 					} );
-		
+
 		// Show/hide code for DB-specific options
 		// FIXME: Do we want slow, fast, or even non-animated (instantaneous) showing/hiding here?
 		$( '.dbRadio' ).each( function () {
@@ -40,12 +40,12 @@
 				$wrapper.show( 'slow' );
 			}
 		} );
-		
+
 		// Scroll to the bottom of upgrade log
 		$( '#config-live-log' ).children( 'textarea' ).each( function () {
 			this.scrollTop = this.scrollHeight;
 		} );
-		
+
 		// Show/hide Creative Commons thingy
 		$( '.licenseRadio' ).click( function () {
 			var $wrapper = $( '#config-cc-wrapper' );
@@ -55,7 +55,7 @@
 				$wrapper.hide( 'slow' );
 			}
 		} );
-		
+
 		// Show/hide random stuff (email, upload)
 		$( '.showHideRadio' ).click( function () {
 			var $wrapper = $( '#' + $(this).attr( 'rel' ) );
@@ -88,7 +88,7 @@
 				$textbox.prop( 'readonly', true ).closest( '.config-block' ).slideUp( 'fast' );
 			}
 		} );
-		
+
 		// Synchronize radio button label for sitename with textbox
 		$label = $( 'label[for=config__NamespaceType_site-name]' );
 		labelText = $label.text();

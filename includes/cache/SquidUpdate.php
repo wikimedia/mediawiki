@@ -209,11 +209,11 @@ class SquidUpdate {
 				continue;
 			}
 
-			if( isset( $conf['host'] ) && isset( $conf['port'] ) ) {
+			if ( isset( $conf['host'] ) && isset( $conf['port'] ) ) {
 				// Normalize single entries
 				$conf = array( $conf );
 			}
-			foreach( $conf as $subconf ) {
+			foreach ( $conf as $subconf ) {
 				if ( !isset( $subconf['host'] ) || !isset( $subconf['port'] ) ) {
 					wfProfileOut( __METHOD__ );
 					throw new MWException( "Invalid HTCP rule for URL $url\n" );
@@ -241,7 +241,7 @@ class SquidUpdate {
 
 			wfDebugLog( 'squid', __METHOD__ .
 				"Purging URL $url via HTCP\n" );
-			foreach( $conf as $subconf ) {
+			foreach ( $conf as $subconf ) {
 				socket_sendto( $conn, $htcpPacket, $htcpLen, 0,
 					$subconf['host'], $subconf['port'] );
 			}

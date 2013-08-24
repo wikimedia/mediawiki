@@ -155,14 +155,14 @@ class RunJobs extends Maintenance {
 			$m = array();
 			if ( preg_match( '!^(\d+)(k|m|g|)$!i', ini_get( 'memory_limit' ), $m ) ) {
 				list( , $num, $unit ) = $m;
-				$conv = array( 'g' => 1024*1024*1024, 'm' => 1024*1024, 'k' => 1024, '' => 1 );
+				$conv = array( 'g' => 1024 * 1024 * 1024, 'm' => 1024 * 1024, 'k' => 1024, '' => 1 );
 				$maxBytes = $num * $conv[strtolower( $unit )];
 			} else {
 				$maxBytes = 0;
 			}
 		}
 		$usedBytes = memory_get_usage();
-		if ( $maxBytes && $usedBytes >= .95*$maxBytes ) {
+		if ( $maxBytes && $usedBytes >= 0.95 * $maxBytes ) {
 			throw new MWException( "Detected excessive memory usage ($usedBytes/$maxBytes)." );
 		}
 	}

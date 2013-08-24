@@ -265,7 +265,7 @@ class ForeignAPIRepo extends FileRepo {
 		) );
 		$info = $this->getImageInfo( $data );
 
-		if( $data && $info && isset( $info['thumberror'] ) ) {
+		if ( $data && $info && isset( $info['thumberror'] ) ) {
 			wfDebug( __METHOD__ . " got remote thumb error " . $info['thumberror'] . "\n" );
 			return new MediaTransformError(
 				'thumbnail_error_remote',

@@ -646,7 +646,7 @@ class MovePageForm extends UnlistedSpecialPage {
 			$newSubpage = Title::makeTitleSafe( $newNs, $newPageName );
 			if ( !$newSubpage ) {
 				$oldLink = Linker::linkKnown( $oldSubpage );
-				$extraOutput[] = $this->msg( 'movepage-page-unmoved' )->rawParams( $oldLink	)
+				$extraOutput[] = $this->msg( 'movepage-page-unmoved' )->rawParams( $oldLink )
 					->params( Title::makeName( $newNs, $newPageName ) )->escaped();
 				continue;
 			}

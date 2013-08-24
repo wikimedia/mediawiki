@@ -22,7 +22,7 @@
  * @author Aaron Schulz
  */
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Maintenance script to delete archived (non-current) files from storage.
@@ -116,4 +116,4 @@ class EraseArchivedFile extends Maintenance {
 }
 
 $maintClass = "EraseArchivedFile";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

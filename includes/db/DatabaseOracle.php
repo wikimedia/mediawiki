@@ -286,7 +286,7 @@ class DatabaseOracle extends DatabaseBase {
 		wfSuppressWarnings();
 		if ( $this->mFlags & DBO_PERSISTENT ) {
 			$this->mConn = oci_pconnect( $this->mUser, $this->mPassword, $this->mServer, $this->defaultCharset, $session_mode );
-		} else if ( $this->mFlags & DBO_DEFAULT ) {
+		} elseif ( $this->mFlags & DBO_DEFAULT ) {
 			$this->mConn = oci_new_connect( $this->mUser, $this->mPassword, $this->mServer, $this->defaultCharset, $session_mode );
 		} else {
 			$this->mConn = oci_connect( $this->mUser, $this->mPassword, $this->mServer, $this->defaultCharset, $session_mode );
