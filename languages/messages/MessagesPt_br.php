@@ -801,7 +801,7 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências no 
 'createacct-another-email-ph' => 'Forneça o endereço de e-mail',
 'createaccountmail' => 'Usar uma senha aleatória e temporária que será enviada ao endereço de e-mail especificado a seguir',
 'createacct-realname' => 'Nome real (opcional)',
-'createaccountreason' => 'Razão:',
+'createaccountreason' => 'Motivo:',
 'createacct-reason' => 'Motivo',
 'createacct-reason-ph' => 'Por que você está criando outra conta',
 'createacct-captcha' => 'Verificação de segurança',
@@ -2632,7 +2632,7 @@ Esta é a configuração atual para a página '''$1''':",
 'restriction-edit' => 'Editar',
 'restriction-move' => 'Mover',
 'restriction-create' => 'Criar',
-'restriction-upload' => 'Carregar',
+'restriction-upload' => 'Enviar',
 
 # Restriction levels
 'restriction-level-sysop' => 'totalmente protegida',

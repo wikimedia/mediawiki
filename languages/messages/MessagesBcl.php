@@ -813,7 +813,7 @@ Ini puwedeng pinagbalyo o pinagpara na habang saimong pinaghihiling an pahina.',
 'loginreqlink' => 'maglaog',
 'loginreqpagetext' => 'Kaipuhan kang $1 tangarig makahilíng nin ibang pahina.',
 'accmailtitle' => 'Napadará na an sekretong panlaog.',
-'accmailtext' => "An patsambang pinagpuyos pasa-taramon para ki [[User talk:$1|$1]] ipinagpadara na sa $2. Ini puwedeng mariribayan sa ''[[Special:ChangePassword|Ribayan an pasa-taramon]]'' na pahina matapos na makalaog.",
+'accmailtext' => "An purak na pinagpuyos na pasa-taramon para ki [[User talk:$1|$1]] ipinagpadara na sa $2. Ini mapupuwedeng pagribayan sa ''[[Special:ChangePassword|change password]]'' na pahina matapos na ika nakalaog na.",
 'newarticle' => '(Bàgo)',
 'newarticletext' => "Ika nakapagsunod sa sarong sugpon pasiring sa sarong pahina na bako pang eksistido. Tanganing makapagmukna nin pahina, magpoon sa pagpindot sa laog nin kahon sa ibaba (hilngon an [[{{MediaWiki:Helppage}}|pahina nin katabangan]] para sa kadugangan na impormasyon).
 Kun ika napasalang nakadigde, i-klik an  '''ibalik''' na pindutan kan saimong kilyaw.",

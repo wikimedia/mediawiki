@@ -4203,12 +4203,17 @@ Annars kan du använda det enkla formuläret nedan. Din kommentar kommer att lä
 'rotate-comment' => 'Bilden roteras $1 {{PLURAL:$1|grad|grader}} medurs',
 
 # Limit report
+'limitreport-title' => 'Parser-profildata:',
 'limitreport-cputime' => 'Processortidsanvändning',
 'limitreport-cputime-value' => '$1 {{PLURAL:$1|sekund|sekunder}}',
 'limitreport-walltime' => 'Realtidsanvändning',
 'limitreport-walltime-value' => '$1 {{PLURAL:$1|sekund|sekunder}}',
+'limitreport-ppvisitednodes' => 'Antal nodbesök för preprocessor',
+'limitreport-ppgeneratednodes' => 'Antal noder genererade av preprocessor',
 'limitreport-postexpandincludesize-value' => '$1/$2 byte',
+'limitreport-templateargumentsize' => 'Storlek på mallargument',
 'limitreport-templateargumentsize-value' => '$1/$2 byte',
 'limitreport-expansiondepth' => 'Högsta expansionsdjup',
+'limitreport-expensivefunctioncount' => 'Antal dyra parser-funktioner',
 
 );

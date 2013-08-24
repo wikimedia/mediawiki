@@ -2832,7 +2832,7 @@ Consulte a [[Special:BlockList|lista de bloqueios]] para obter a lista de bloque
 'proxyblocker-disabled' => 'Esta função foi impossibilitada.',
 'proxyblockreason' => "O seu endereço IP foi bloqueado por ser um ''proxy'' público.
 Contacte o seu fornecedor de internet ou o serviço de apoio técnico e informe-os deste grave problema de segurança, por favor.",
-'proxyblocksuccess' => 'Concluído.',
+'proxyblocksuccess' => 'Feito.',
 'sorbsreason' => "O seu endereço IP encontra-se listado como ''proxy'' aberto na DNSBL utilizada pela {{SITENAME}}.",
 'sorbs_create_account_reason' => "O seu endereço IP encontra-se listado como ''proxy'' aberto na DNSBL utilizada pela {{SITENAME}}. Não pode criar uma conta",
 'xffblockreason' => 'Um endereço IP presente no cabeçalho X-Forwarded-For, seja seu ou de um servidor de proxy que estiver a usar, foi bloqueado. A razão do bloqueio original foi: $1',

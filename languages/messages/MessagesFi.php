@@ -358,6 +358,7 @@ $messages = array(
 'tog-noconvertlink' => 'Älä muunna linkkien otsikoita toiseen kirjoitusjärjestelmään',
 'tog-norollbackdiff' => 'Älä näytä eroavaisuuksia palauttamisen jälkeen',
 'tog-useeditwarning' => 'Varoita minua, kun poistun muokkaussivulta tallentamatta muutoksia',
+'tog-prefershttps' => 'Käytä aina turvallista yhteyttä kun olet sisään kirjautuneena',
 
 'underline-always' => 'Aina',
 'underline-never' => 'Ei koskaan',
@@ -684,6 +685,7 @@ Ilmoita tämän sivun osoite wikin [[Special:ListUsers/sysop|ylläpitäjälle]].
 Joku muu on saattanut poistaa sen.',
 'cannotdelete-title' => 'Sivua $1 ei voi poistaa',
 'delete-hook-aborted' => 'Laajennuskoodi esti poiston antamatta syytä.',
+'no-null-revision' => 'Tyhjää revisiota sivusta "$1" ei voida luoda',
 'badtitle' => 'Virheellinen otsikko',
 'badtitletext' => 'Pyytämäsi sivuotsikko oli virheellinen, tyhjä tai väärin linkitetty kieltenvälinen tai wikienvälinen linkki.',
 'perfcached' => 'Nämä tiedot ovat välimuistista eivätkä välttämättä ole ajan tasalla. Välimuistissa on saatavilla enintään {{PLURAL:$1|yksi tulos|$1 tulosta}}.',
@@ -731,7 +733,6 @@ Lukituksen asettanut ylläpitäjä on antanut seuraavan syyn toimenpiteelle: $3.
 # Login and logout pages
 'logouttext' => "'''Olet nyt kirjautunut ulos.'''
 
-Voit jatkaa {{GRAMMAR:genitive|{{SITENAME}}}} käyttöä nimettömänä, tai <span class='plainlinks'>[$1 kirjautua uudelleen sisään]</span> samalla tai eri käyttäjätunnuksella.
 Huomaa, että jotkut sivut saattavat näkyä edelleen kuin olisit kirjautunut sisään, kunnes tyhjennät selaimen välimuistin.",
 'welcomeuser' => 'Tervetuloa $1!',
 'welcomecreation-msg' => 'Käyttäjätunnuksesi on luotu.
@@ -841,10 +842,12 @@ Tunnuksen $2 salasana on $3. Kirjaudu sisään ja vaihda salasanasi.
 Sinun ei tarvitse huomioida tätä viestiä, jos tunnus on luotu virheellisesti.',
 'usernamehasherror' => 'Käyttäjätunnus ei voi sisältää tiivistemerkkejä.',
 'login-throttled' => 'Olet tehnyt liian monta kirjautumisyritystä.
-Odota ennen kuin yrität uudelleen.',
+Odota $1 ennen kuin yrität uudelleen.',
 'login-abort-generic' => 'Kirjautuminen epäonnistui – keskeytetty',
 'loginlanguagelabel' => 'Kieli: $1',
 'suspicious-userlogout' => 'Pyyntösi kirjautua ulos evättiin, koska se näytti rikkinäisen selaimen tai välimuistipalvelimen lähettämältä.',
+'createacct-another-realname-tip' => 'Oikea nimi on vapaaehtoinen.
+Nimeä käytetään jotta voidaan kertoa kuka sisältöä on tuottanut.',
 
 # Email sending
 'php-mail-error-unknown' => 'Tuntematon virhe PHP:n mail()-funktiossa',
@@ -860,7 +863,7 @@ Odota ennen kuin yrität uudelleen.',
 'newpassword' => 'Uusi salasana',
 'retypenew' => 'Uusi salasana uudelleen',
 'resetpass_submit' => 'Aseta salasana ja kirjaudu sisään',
-'changepassword-success' => 'Salasanan vaihto onnistui.',
+'changepassword-success' => 'Salasanasi vaihtaminen onnistui.',
 'resetpass_forbidden' => 'Salasanoja ei voi vaihtaa.',
 'resetpass-no-info' => 'Et voi nähdä tätä sivua kirjautumatta sisään.',
 'resetpass-submit-loggedin' => 'Muuta salasana',

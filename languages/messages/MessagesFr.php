@@ -1593,7 +1593,7 @@ Vérifiez les balises HTML.',
 'badsiglength' => 'Votre signature est trop longue.
 Elle ne doit pas dépasser $1 caractère{{PLURAL:$1||s}}.',
 'yourgender' => 'Comment préférez-vous être décrit ?',
-'gender-unknown' => 'Je préfère sans détail',
+'gender-unknown' => 'Je préfère ne pas l’indiquer',
 'gender-male' => 'Il modifie des pages du wiki',
 'gender-female' => 'Elle modifie des pages du wiki',
 'prefs-help-gender' => 'Définir cette préférence est facultatif.

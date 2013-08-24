@@ -297,6 +297,7 @@ $messages = array(
 'tog-noconvertlink' => 'Desactivar a conversión dos títulos de ligazón',
 'tog-norollbackdiff' => 'Omitir as diferenzas despois de levar a cabo unha reversión de edicións',
 'tog-useeditwarning' => 'Avisádeme cando deixe unha páxina de edición cos cambios sen gardar',
+'tog-prefershttps' => 'Utilice unha conexión segura sempre que comece unha sesión',
 
 'underline-always' => 'Sempre',
 'underline-never' => 'Nunca',
@@ -679,8 +680,7 @@ O administrador que bloqueou o repositorio achegou este motivo: "$3".',
 # Login and logout pages
 'logouttext' => "'''Agora está fóra do sistema.'''
 
-Pode continuar usando {{SITENAME}} de xeito anónimo, ou pode <span class='plainlinks'>[$1 acceder de novo]</span> co mesmo nome de usuario ou con outro.
-Teña en conta que mentres non se limpa a memoria caché do seu navegador algunhas páxinas poden continuar aparecendo como se aínda estivese dentro do sistema.",
+Teña en conta que algunhas páxinas poden continuar aparecendo coma se aínda estivese dentro do sistema, ata que borre a caché do seu navegador.",
 'welcomeuser' => 'Reciba a nosa benvida, $1!',
 'welcomecreation-msg' => 'A súa conta foi creada correctamente.
 Non esqueza personalizar as súas [[Special:Preferences|preferencias de {{SITENAME}}]].',
