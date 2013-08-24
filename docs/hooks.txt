@@ -2193,6 +2193,12 @@ $movePage: MovePageForm object
 $oldTitle: old title (object)
 $newTitle: new title (object)
 
+'SpecialMovepageForm': Called before adding submit button and token
+at MovePageForm::showForm.
+$movePage: MovePageForm object
+&$fields: array of adding form fields. if key is not int, key is considered as
+  message key of label. The messages are transformed.
+
 'SpecialNewpagesConditions': Called when building sql query for
 Special:NewPages.
 &$special: NewPagesPager object (subclass of ReverseChronologicalPager)

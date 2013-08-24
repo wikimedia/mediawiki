@@ -263,9 +263,6 @@ class MovePageForm extends UnlistedSpecialPage {
 			$out->addHTML( "</div>\n" );
 		}
 
-		// Byte limit (not string length limit) for wpReason and wpNewTitleMain
-		// is enforced in the mediawiki.special.movePage module
-
 		$immovableNamespaces = array();
 
 		foreach ( array_keys( $this->getLanguage()->getNamespaces() ) as $nsId ) {
@@ -275,6 +272,9 @@ class MovePageForm extends UnlistedSpecialPage {
 		}
 
 		$handler = ContentHandler::getForTitle( $this->oldTitle );
+
+		// Byte limit (not string length limit) for wpReason and wpNewTitleMain
+		// is enforced in the mediawiki.special.movePage module
 
 		$out->addHTML(
 			Xml::openElement(
@@ -423,6 +423,22 @@ class MovePageForm extends UnlistedSpecialPage {
 				) .
 				"</td>
 			</tr>" );
+		}
+
+		$fieids = array();
+		wfRunHooks( 'SpecialMovepageForm', array( $this, &$fields ) );
+		foreach ( $fields as $label => $input ) {
+			if ( is_int( $label ) ) {
+				$out->addHTML(
+					"\n<tr>\n<td></td>\n<td class=\"mw-input\">\n{$input}\n</td>\n</tr>"
+				);
+			} else {
+				$label = $this->msg( $label )->text();
+				$out->addHTML(
+					"\n<tr>\n<td class=\"mw-label\">\n{$label}\n</td>\n"
+					. "<td class=\"mw-input\">\n{$input}\n</td>\n</tr>"
+				);
+			}
 		}
 
 		$out->addHTML( "
