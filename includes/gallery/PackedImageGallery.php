@@ -30,7 +30,7 @@ class PackedImageGallery extends TraditionalImageGallery {
 	const SCALE_FACTOR = 1.5;
 
 	protected function getVPad( $boxHeight, $thumbHeight ) {
-		return ( $this->getThumbPadding() + $boxHeight - $thumbHeight/ self::SCALE_FACTOR ) / 2;
+		return ( $this->getThumbPadding() + $boxHeight - $thumbHeight / self::SCALE_FACTOR ) / 2;
 	}
 
 	protected function getThumbPadding() {

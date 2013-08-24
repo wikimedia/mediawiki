@@ -2384,7 +2384,7 @@ $wgHTCPRouting = array();
 /**
  * @deprecated since 1.22, please use $wgHTCPRouting instead.
  *
- * Whenever this is set and $wgHTCPRouting evaluates to false, $wgHTCPRouting 
+ * Whenever this is set and $wgHTCPRouting evaluates to false, $wgHTCPRouting
  * will be set to this value.
  * This is merely for back compatibility.
  *

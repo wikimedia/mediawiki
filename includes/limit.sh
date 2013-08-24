@@ -55,7 +55,7 @@ fi
 
 # Clean up cgroup
 cleanup() {
-	# First we have to move the current task into a "garbage" group, otherwise 
+	# First we have to move the current task into a "garbage" group, otherwise
 	# the cgroup will not be empty, and attempting to remove it will fail with
 	# "Device or resource busy"
 	if [ -w "$MW_CGROUP"/tasks ]; then
@@ -84,7 +84,7 @@ if [ -n "$MW_CGROUP" ]; then
 	updateTaskCount
 
 	if [ $NUM_TASKS -gt 1 ]; then
-		# Spawn a monitor process which will continue to poll for completion 
+		# Spawn a monitor process which will continue to poll for completion
 		# of all processes in the cgroup after termination of the parent shell
 		(
 			while [ $NUM_TASKS -gt 1 ]; do

@@ -19,7 +19,7 @@ window.ProtectionForm = {
 		var box = document.getElementById( opts.tableId );
 		if( !box )
 			return false;
-		
+
 		var boxbody = box.getElementsByTagName('tbody')[0];
 		var row = document.createElement( 'tr' );
 		boxbody.insertBefore( row, boxbody.firstChild.nextSibling );
@@ -45,7 +45,7 @@ window.ProtectionForm = {
 			check.checked = !this.areAllTypesMatching();
 			this.enableUnchainedInputs( check.checked );
 		}
-		
+
 		$( '#mwProtect-reason' ).byteLimit( 180 );
 
 		this.updateCascadeCheckbox();

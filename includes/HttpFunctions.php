@@ -66,7 +66,7 @@ class Http {
 		if ( !isset( $options['timeout'] ) ) {
 			$options['timeout'] = 'default';
 		}
-		if( !isset( $options['connectTimeout'] ) ) {
+		if ( !isset( $options['connectTimeout'] ) ) {
 			$options['connectTimeout'] = 'default';
 		}
 

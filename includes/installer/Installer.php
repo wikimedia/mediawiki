@@ -1090,7 +1090,7 @@ abstract class Installer {
 	 */
 	protected function envCheckSuhosinMaxValueLength() {
 		$maxValueLength = ini_get( 'suhosin.get.max_value_length' );
-		if ( $maxValueLength > 0 &&  $maxValueLength < 1024 ) {
+		if ( $maxValueLength > 0 && $maxValueLength < 1024 ) {
 			// Only warn if the value is below the sane 1024
 			$this->showMessage( 'config-suhosin-max-value-length', $maxValueLength );
 		}

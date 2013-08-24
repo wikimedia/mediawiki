@@ -715,7 +715,7 @@ class MessageCache {
 		}
 
 		// Normalise title-case input (with some inlining)
-		$lckey = strtr( $key, ' ', '_');
+		$lckey = strtr( $key, ' ', '_' );
 		if ( ord( $key ) < 128 ) {
 			$lckey[0] = strtolower( $lckey[0] );
 			$uckey = ucfirst( $lckey );
@@ -743,7 +743,7 @@ class MessageCache {
 		}
 
 		// Post-processing if the message exists
-		if( $message !== false ) {
+		if ( $message !== false ) {
 			// Fix whitespace
 			$message = str_replace(
 				array(

@@ -1423,7 +1423,7 @@ class Parser {
 		// of bold and italics mark-ups.
 		$numbold = 0;
 		$numitalics = 0;
-		for ( $i = 1; $i < count( $arr ); $i+=2 ) {
+		for ( $i = 1; $i < count( $arr ); $i += 2 ) {
 			// If there are ever four apostrophes, assume the first is supposed to
 			// be text, and the remaining three constitute mark-up for bold text.
 			// (bug 13227: ''''foo'''' turns into ' ''' foo ' ''')
@@ -1456,7 +1456,7 @@ class Parser {
 			$firstsingleletterword = -1;
 			$firstmultiletterword = -1;
 			$firstspace = -1;
-			for ( $i = 1; $i < count( $arr ); $i+=2 ) {
+			for ( $i = 1; $i < count( $arr ); $i += 2 ) {
 				if ( strlen( $arr[$i] ) == 3 ) {
 					$x1 = substr( $arr[$i - 1], -1 );
 					$x2 = substr( $arr[$i - 1], -2, 1 );
@@ -5159,7 +5159,7 @@ class Parser {
 					if ( $magicName ) {
 						$paramName = $paramMap[$magicName];
 
-						switch( $paramName ) {
+						switch ( $paramName ) {
 						case 'gallery-internal-alt':
 							$alt = $this->stripAltText( $match, false );
 							break;
