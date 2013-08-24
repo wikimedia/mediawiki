@@ -2481,10 +2481,6 @@ $templates
 		$userdir = $this->getLanguage()->getDir();
 		$sitedir = $wgContLang->getDir();
 
-		if ( $sk->commonPrintStylesheet() ) {
-			$this->addModuleStyles( 'mediawiki.legacy.wikiprintable' );
-		}
-
 		$ret = Html::htmlHeader( array( 'lang' => $this->getLanguage()->getHtmlCode(), 'dir' => $userdir, 'class' => 'client-nojs' ) );
 
 		if ( $this->getHTMLTitle() == '' ) {

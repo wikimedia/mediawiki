@@ -441,6 +441,13 @@ changes to languages because of Bugzilla reports.
   Functions related to disambiguation pages are now handled by the Disambiguator
   extension (https://www.mediawiki.org/wiki/Extension:Disambiguator) (bug
   35981).
+* BREAKING CHANGE: The 'mediawiki.legacy.wikiprintable' module has been removed.
+  The skins/common/wikiprintable.css file no longer exists. Return value of
+  Skin#commonPrintStylesheet is ignored. Please use the 'mediawiki.legacy.commonPrint'
+  module instead or base your skin on SkinTemplate.
+
+If your skin doesn't provide its own print styles, just add the 'mediawiki.legacy.commonPrint'
+module instead. (SkinTemplate-based skins do it automatically.)
 
 == Compatibility ==
 
