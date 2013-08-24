@@ -1107,11 +1107,6 @@ return array(
 		),
 		'position' => 'top',
 	),
-	'mediawiki.legacy.wikiprintable' => array(
-		'styles' => array( 'common/wikiprintable.css' => array( 'media' => 'print' ) ),
-		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => $GLOBALS['wgStyleDirectory'],
-	),
 	'mediawiki.ui' => array(
 		'skinStyles' => array(
 			'default' => 'resources/mediawiki.ui/mediawiki.ui.default.css',

@@ -1302,10 +1302,6 @@ class SkinTemplate extends Skin {
 	function getNameSpaceKey() {
 		return $this->getTitle()->getNamespaceKey();
 	}
-
-	public function commonPrintStylesheet() {
-		return false;
-	}
 }
 
 /**

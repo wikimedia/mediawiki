@@ -1343,14 +1343,18 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * Should we load mediawiki.legacy.wikiprintable?  Skins that have their own
-	 * print stylesheet should override this and return false.  (This is an
-	 * ugly hack to get Monobook to play nicely with OutputPage::headElement().)
+	 * This function previously controlled whether the 'mediawiki.legacy.wikiprintable' module should
+	 * be loaded. The module no longer exists and the return value is ignored.
+	 * 
+	 * If your skin doesn't provide its own print styles, just add the 'mediawiki.legacy.commonPrint'
+	 * module instead. (SkinTemplate-based skins do it automatically.)
 	 *
+	 * @deprecated since 1.22
 	 * @return bool
 	 */
 	public function commonPrintStylesheet() {
-		return true;
+		wfDeprecated( __METHOD__, '1.22' );
+		return false;
 	}
 
 	/**
