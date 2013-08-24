@@ -882,8 +882,11 @@ class WebRequest {
 		}
 
 		if ( function_exists( 'apache_request_headers' ) ) {
-			foreach ( apache_request_headers() as $tempName => $tempValue ) {
-				$this->headers[strtoupper( $tempName )] = $tempValue;
+			$reqHeaders = apache_request_headers();
+			if ( $reqHeaders ) {
+				foreach ( $reqHeaders as $tempName => $tempValue ) {
+					$this->headers[strtoupper( $tempName )] = $tempValue;
+				}
 			}
 		} else {
 			foreach ( $_SERVER as $name => $value ) {
