@@ -164,9 +164,15 @@ class UserloginTemplate extends BaseTemplate {
 			<?php echo $this->getMsg( 'userlogin-helplink' )->parse(); ?>
 		</div>
 		<?php if ( $this->haveData( 'createOrLoginHref' ) ) { ?>
-			<div id="mw-createaccount-cta">
-				<h3 id="mw-userloginlink"><?php $this->msg( 'userlogin-noaccount' ); ?><a href="<?php $this->text( 'createOrLoginHref' ); ?>" id="mw-createaccount-join" tabindex="7"  class="mw-ui-button mw-ui-constructive"><?php $this->msg( 'userlogin-joinproject' ); ?></a></h3>
-			</div>
+			<?php if ( $this->data['createAnother'] ) { ?>
+				<div id="mw-createaccount-another">
+					<h3 id="mw-userloginlink"><a href="<?php $this->text( 'createOrLoginHref' ); ?>" id="mw-createaccount-join" tabindex="7"  class="mw-ui-button"><?php $this->msg( 'createacct-another-submit' ); ?></a></h3>
+				</div>
+			<?php } else { ?>
+				<div id="mw-createaccount-cta">
+					<h3 id="mw-userloginlink"><?php $this->msg( 'userlogin-noaccount' ); ?><a href="<?php $this->text( 'createOrLoginHref' ); ?>" id="mw-createaccount-join" tabindex="7"  class="mw-ui-button mw-ui-constructive"><?php $this->msg( 'userlogin-joinproject' ); ?></a></h3>
+				</div>
+			<?php } ?>
 		<?php } ?>
 <?php if ( $this->haveData( 'uselang' ) ) { ?><input type="hidden" name="uselang" value="<?php $this->text( 'uselang' ); ?>" /><?php } ?>
 <?php if ( $this->haveData( 'token' ) ) { ?><input type="hidden" name="wpLoginToken" value="<?php $this->text( 'token' ); ?>" /><?php } ?>

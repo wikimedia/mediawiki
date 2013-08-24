@@ -1164,7 +1164,7 @@ class LoginForm extends SpecialPage {
 		$template->set( 'cansecurelogin', ( $wgSecureLogin === true ) );
 		$template->set( 'stickHTTPS', (int)$this->mStickHTTPS );
 
-		if ( $this->mType === 'signup' && $user->isLoggedIn() ) {
+		if ( $user->isLoggedIn() ) {
 			$template->set( 'createAnother', true );
 		} else {
 			$template->set( 'createAnother', false );
@@ -1227,9 +1227,7 @@ class LoginForm extends SpecialPage {
 	 * @return bool
 	 */
 	private function showCreateOrLoginLink( &$user ) {
-		if ( $user->isLoggedIn() ) {
-			return false;
-		} elseif ( $this->mType == 'signup' ) {
+		if ( $this->mType == 'signup' ) {
 			return true;
 		} elseif ( $user->isAllowed( 'createaccount' ) ) {
 			return true;

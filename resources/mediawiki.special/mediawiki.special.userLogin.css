@@ -10,21 +10,28 @@
 	padding: 0 0 0 11px;
 }
 
+#mw-createaccount-cta,
+#mw-createaccount-another {
+	width: 20em;
+	text-align: center;
+	margin: 0 auto;
+}
+
+#mw-createaccount-cta h3,
+#mw-createaccount-another h3 {
+	font-size: 0.9em;
+	font-weight: normal;
+	text-align: center;
+}
+
 /* The login form invites users to create an account */
 #mw-createaccount-cta {
-	width: 20em;
-	height: 10em;
+	height: 6em;
+	padding-top: 3.5em;
 	text-align: center;
 	/* @embed */
 	background: url(images/glyph-people-large.png) no-repeat 50%;
 	margin: 0 auto;
-}
-
-#mw-createaccount-cta h3 {
-	font-size: 0.9em;
-	font-weight: normal;
-	text-align: center;
-	padding-top: 4em;
 }
 
 #mw-createaccount-join {
