@@ -86,7 +86,7 @@ class SpecialResetTokens extends FormSpecialPage {
 			$tokensForForm = array();
 			foreach ( $tokens as $tok ) {
 				$label = $this->msg( 'resettokens-token-label' )
-					->rawParams( $this->msg( $tok['label-message'] )->escaped() )
+					->rawParams( $this->msg( $tok['label-message'] )->parse() )
 					->params( $user->getTokenFromOption( $tok['preference'] ) )
 					->escaped();
 				$tokensForForm[ $label ] = $tok['preference'];
