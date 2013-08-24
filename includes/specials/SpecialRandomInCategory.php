@@ -76,6 +76,11 @@ class SpecialRandomInCategory extends SpecialPage {
 			$cat = Title::newFromText( $categoryStr, NS_CATEGORY );
 		}
 
+		if ( $cat && $cat->getNamespace() !== NS_CATEGORY ) {
+			// Someone searching for something like "Wikipedia:Foo"
+			$cat = Title::makeTitleSafe( NS_CATEGORY, $categoryStr );
+		}
+
 		if ( $cat ) {
 			$this->setCategory( $cat );
 		}
