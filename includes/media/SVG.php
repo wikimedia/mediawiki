@@ -348,6 +348,7 @@ class SvgHandler extends ImageHandler {
 			'description' => 'imagedescription',
 			'title' => 'objectname',
 		);
+		$showMeta = false;
 		foreach ( $metadata as $name => $value ) {
 			$tag = strtolower( $name );
 			if ( isset( $conversion[$tag] ) ) {
@@ -356,6 +357,7 @@ class SvgHandler extends ImageHandler {
 				// Do not output other metadata not in list
 				continue;
 			}
+			$showMeta = true;
 			self::addMeta( $result,
 				in_array( $tag, $visibleFields ) ? 'visible' : 'collapsed',
 				'exif',
@@ -363,7 +365,7 @@ class SvgHandler extends ImageHandler {
 				$value
 			);
 		}
-		return $result;
+		return $showMeta ? $result : false;
 	}
 
 
