@@ -1154,9 +1154,19 @@ class LoginForm extends SpecialPage {
 		$template->set( 'usereason', $user->isLoggedIn() );
 		$template->set( 'remember', $user->getOption( 'rememberpassword' ) || $this->mRemember );
 		$template->set( 'cansecurelogin', ( $wgSecureLogin === true ) );
+<<<<<<< HEAD
 		$template->set( 'stickhttps', (int) $this->mStickHTTPS );
+
+		if ( $this->mType === 'signup' && $user->isLoggedIn() ) {
+			$template->set( 'createAnother', true );
+		} else {
+			$template->set( 'createAnother', false );
+		}
+=======
+		$template->set( 'stickHTTPS', (int)$this->mStickHTTPS );
 		$template->set( 'loggedin', (bool)$user->isLoggedIn() );
 		$template->set( 'loggedinuser', $user->getName() );
+>>>>>>> Special:UserLogin UI improvements when user is logged in
 
 		if ( $this->mType == 'signup' ) {
 			if ( !self::getCreateaccountToken() ) {
