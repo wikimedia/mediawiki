@@ -1353,6 +1353,11 @@ See example: [[Special:UserLogin]]
 
 See also:
 * {{msg-mw|Helplogin-url}}',
+'userlogin-loggedin' => 'Used instead of the form on [[Special:UserLogin]] when the current user is already logged in.
+
+Parameters:
+* $1 - user name (used for display and for gender support)',
+'userlogin-createanother' => 'Button on [[Special:UserLogin]] shown when the current user is already logged in.',
 'createacct-join' => 'Subheading of vertical-layout create account form encouraging user to join the wiki.
 
 See example: [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]',
