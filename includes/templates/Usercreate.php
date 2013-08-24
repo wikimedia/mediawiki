@@ -58,7 +58,7 @@ class UsercreateTemplate extends BaseTemplate {
 <div id="userloginForm">
 <h2 class="createaccount-join">
 	<?php
-	$this->msg( $this->data['createAnother'] ?
+	$this->msg( $this->data['loggedin'] ?
 		'createacct-another-join' : 'createacct-join' );
 	?>
 </h2>
@@ -89,7 +89,7 @@ class UsercreateTemplate extends BaseTemplate {
 				'tabindex' => '1',
 				'size' => '20',
 				'required',
-				'placeholder' => $this->getMsg( $this->data['createAnother'] ?
+				'placeholder' => $this->getMsg( $this->data['loggedin'] ?
 					'createacct-another-username-ph' : 'userlogin-yourname-ph' )->text(),
 			) );
 			?>
@@ -162,7 +162,7 @@ class UsercreateTemplate extends BaseTemplate {
 					'id' => 'wpEmail',
 					'tabindex' => '6',
 					'size' => '20',
-					'placeholder' => $this->getMsg( $this->data['createAnother'] ?
+					'placeholder' => $this->getMsg( $this->data['loggedin'] ?
 						'createacct-another-email-ph' : 'createacct-email-ph' )->text()
 				) + ( $this->data['emailrequired'] ? array() : array( 'required' => '' ) ) );
 			?>
@@ -175,7 +175,7 @@ class UsercreateTemplate extends BaseTemplate {
 					tabindex="7"
 					value="<?php $this->text( 'realname' ); ?>" size='20' />
 				<div class="prefsectiontip">
-					<?php $this->msgWiki( $this->data['createAnother'] ? 'createacct-another-realname-tip' : 'prefs-help-realname' ); ?>
+					<?php $this->msgWiki( $this->data['loggedin'] ? 'createacct-another-realname-tip' : 'prefs-help-realname' ); ?>
 				</div>
 			</div>
 		<?php }
@@ -253,7 +253,7 @@ class UsercreateTemplate extends BaseTemplate {
 		<div class="mw-submit">
 			<?php
 			echo Html::input( 'wpCreateaccount',
-				$this->getMsg( $this->data['createAnother'] ?
+				$this->getMsg( $this->data['loggedin'] ?
 					'createacct-another-submit' : 'createacct-submit' ),
 				'submit',
 				array(
