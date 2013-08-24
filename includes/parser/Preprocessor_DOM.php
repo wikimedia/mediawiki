@@ -415,10 +415,10 @@ class Preprocessor_DOM implements Preprocessor {
 							foreach ( $comments as $j => $com ) {
 								$startPos = $com[0];
 								$endPos = $com[1] + 1;
-								if ( $j == ( count( $comments ) - 1) ) {
+								if ( $j == ( count( $comments ) - 1 ) ) {
 									break;
 								}
-								$inner = substr( $text, $startPos, $endPos - $startPos);
+								$inner = substr( $text, $startPos, $endPos - $startPos );
 								$accum .= '<comment>' . htmlspecialchars( $inner ) . '</comment>';
 							}
 

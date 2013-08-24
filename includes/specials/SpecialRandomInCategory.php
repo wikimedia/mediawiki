@@ -215,7 +215,7 @@ class SpecialRandomInCategory extends SpecialPage {
 		if ( !$this->minTimestamp || !$this->maxTimestamp ) {
 			try {
 				list( $this->minTimestamp, $this->maxTimestamp ) = $this->getMinAndMaxForCat( $this->category );
-			} catch( MWException $e ) {
+			} catch ( MWException $e ) {
 				// Possibly no entries in category.
 				return false;
 			}

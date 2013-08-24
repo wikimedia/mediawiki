@@ -251,7 +251,7 @@ class ApiTest extends ApiTestCase {
 		}
 
 		if ( isset( $rights['protect'] ) ) {
-			$this->assertArrayHasKey( 'protecttoken', $tokens  );
+			$this->assertArrayHasKey( 'protecttoken', $tokens );
 		}
 
 		return $tokens;

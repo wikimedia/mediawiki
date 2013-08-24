@@ -209,7 +209,7 @@ abstract class MediaTransformOutput {
 		if ( $this->page && $this->page !== 1 ) {
 			$query['page'] = $this->page;
 		}
-		if( $this->lang ) {
+		if ( $this->lang ) {
 			$query['lang'] = $this->lang;
 		}
 

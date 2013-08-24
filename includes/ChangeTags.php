@@ -98,7 +98,8 @@ class ChangeTags {
 		$tags = array_filter( $tags ); // Make sure we're submitting all tags...
 
 		if ( !$rc_id && !$rev_id && !$log_id ) {
-			throw new MWException( "At least one of: RCID, revision ID, and log ID MUST be specified when adding a tag to a change!" );
+			throw new MWException( 'At least one of: RCID, revision ID, and log ID MUST be ' .
+				'specified when adding a tag to a change!' );
 		}
 
 		$dbr = wfGetDB( DB_SLAVE );

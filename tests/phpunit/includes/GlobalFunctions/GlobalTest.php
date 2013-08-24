@@ -424,7 +424,7 @@ class GlobalTest extends MediaWikiTestCase {
 	/** array( shorthand, expected integer ) */
 	public static function provideShorthand() {
 		return array(
-			# Null, empty ... 
+			# Null, empty ...
 			array( '', -1 ),
 			array( '  ', -1 ),
 			array( null, -1 ),

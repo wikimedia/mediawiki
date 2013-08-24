@@ -66,7 +66,7 @@ class SearchUpdate implements DeferrableUpdate {
 		if ( $nt ) {
 			$this->id = $id;
 			// is_string() check is back-compat for ApprovedRevs
-			if( is_string( $c ) ) {
+			if ( is_string( $c ) ) {
 				$this->content = new TextContent( $c );
 			} else {
 				$this->content = $c ?: false;

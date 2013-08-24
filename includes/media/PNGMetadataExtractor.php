@@ -202,7 +202,7 @@ class PNGMetadataExtractor {
 
 							if ( $items[5] === false ) {
 								// decompression failed
-								wfDebug( __METHOD__ . ' Error decompressing iTxt chunk - ' . $items[1] . "\n");
+								wfDebug( __METHOD__ . ' Error decompressing iTxt chunk - ' . $items[1] . "\n" );
 								fseek( $fh, self::$CRC_size, SEEK_CUR );
 								continue;
 							}
@@ -290,7 +290,7 @@ class PNGMetadataExtractor {
 
 					if ( $content === false ) {
 						// decompression failed
-						wfDebug( __METHOD__ . ' Error decompressing zTXt chunk - ' . $keyword . "\n");
+						wfDebug( __METHOD__ . ' Error decompressing zTXt chunk - ' . $keyword . "\n" );
 						fseek( $fh, self::$CRC_size, SEEK_CUR );
 						continue;
 					}

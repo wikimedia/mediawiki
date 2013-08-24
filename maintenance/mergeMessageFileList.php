@@ -58,7 +58,7 @@ class MergeMessageFileList extends Maintenance {
 
 		# Strip comments, discard empty lines, and trim leading and trailing
 		# whitespace. Comments start with '#' and extend to the end of the line.
-		foreach( $lines as $line ) {
+		foreach ( $lines as $line ) {
 			$line = trim( preg_replace( '/#.*/', '', $line ) );
 			if ( $line !== '' ) {
 				$mmfl['setupFiles'][] = $line;

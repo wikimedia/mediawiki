@@ -90,7 +90,7 @@ class MonoBookTemplate extends BaseTemplate {
 <?php } ?><?php if ( $this->data['newtalk'] ) { ?>
 		<div class="usermessage"><?php $this->html( 'newtalk' ) ?></div>
 <?php } ?>
-		<div id="jump-to-nav" class="mw-jump"><?php $this->msg('jumpto') ?> <a href="#column-one"><?php $this->msg('jumptonavigation') ?></a><?php $this->msg( 'comma-separator' ) ?><a href="#searchInput"><?php $this->msg('jumptosearch') ?></a></div>
+		<div id="jump-to-nav" class="mw-jump"><?php $this->msg( 'jumpto' ) ?> <a href="#column-one"><?php $this->msg( 'jumptonavigation' ) ?></a><?php $this->msg( 'comma-separator' ) ?><a href="#searchInput"><?php $this->msg( 'jumptosearch' ) ?></a></div>
 
 		<!-- start content -->
 <?php $this->html( 'bodytext' ) ?>

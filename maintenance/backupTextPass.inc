@@ -484,7 +484,12 @@ class TextPassDumper extends BackupDumper {
 
 				$revLength = strlen( $text );
 				if ( $wgContentHandlerUseDB ) {
-					$row  = $this->db->selectRow( 'revision', array( 'rev_len', 'rev_content_model' ), array( 'rev_id' => $revID ), __METHOD__ );
+					$row = $this->db->selectRow(
+						'revision',
+						array( 'rev_len', 'rev_content_model' ),
+						array( 'rev_id' => $revID ),
+						__METHOD__
+					);
 					if ( $row ) {
 						// only check the length for the wikitext content handler,
 						// it's a wasted (and failed) check otherwise

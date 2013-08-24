@@ -201,8 +201,8 @@ input.mw-searchInput {
 
 
 #sitetitle, #sitesub, #toplinks, #linkcollection {
-	margin-top: 0; 
-	margin-bottom: 0; 
+	margin-top: 0;
+	margin-bottom: 0;
 }
 
 #sitetitle, #toplinks {
@@ -220,7 +220,7 @@ input.mw-searchInput {
 }
 #sitetitle a, #toplinks a {
 	color: white;
-	text-decoration: none; 
+	text-decoration: none;
 }
 /* Bring #sitetitle to top. Otherwise #toplinks is overlaid over it, making the link unclickable. */
 #sitetitle a {
