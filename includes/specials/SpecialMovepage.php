@@ -425,6 +425,10 @@ class MovePageForm extends UnlistedSpecialPage {
 			</tr>" );
 		}
 
+		$formrows = '';
+		wfRunHooks( 'SpecialMovepageForm', array( $this, &$formrows ) );
+		$out->addHTML( $formrows );
+
 		$out->addHTML( "
 				{$confirm}
 			<tr>
