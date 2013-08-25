@@ -3754,7 +3754,7 @@ $5
 # Watchlist editing tools
 'watchlisttools-view' => 'आधारित बदलाव देखें',
 'watchlisttools-edit' => 'ध्यानसूची देखें एवं संपादित करें',
-'watchlisttools-raw' => 'रॉ ध्यानसूची देखें एवम्‌ संपादित करें',
+'watchlisttools-raw' => 'रॉ ध्यानसूची देखें एवं संपादित करें',
 
 # Iranian month names
 'iranian-calendar-m1' => 'फ़र्वर्दिन',

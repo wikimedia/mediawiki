@@ -16971,6 +16971,7 @@ Faça o upload de uma imagem com estas dimensões e introduza aqui a URL dessa i
 Se você não pretende usar um logotipo, deixe este campo em branco.', # Fuzzy
 	'config-advanced-settings' => 'Configuração avançada',
 	'config-extensions' => 'Extensões',
+	'config-install-step-done' => 'feito',
 	'config-help' => 'ajuda',
 	'mainpagetext' => "'''MediaWiki instalado com sucesso.'''",
 	'mainpagedocfooter' => 'Consulte o [//meta.wikimedia.org/wiki/Help:Contents Manual de Usuário] para informações de como usar o software wiki.

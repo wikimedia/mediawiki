@@ -14,6 +14,7 @@
  * @author Kwekubo
  * @author Moilleadóir
  * @author Moydow
+ * @author Pksofttec
  * @author Reedy
  * @author Spacebirdy
  * @author Stifle
@@ -747,6 +748,7 @@ Treoir: (rth) = difríocht ón leagan reatha, (rmh) = difríocht ón leagan roim
 'logdelete-selected' => "'''{{PLURAL:$1|Teagmhas log roghnaithe|Teagmhais log roghnaithe}}:'''",
 'revdelete-hide-text' => 'Folaigh leagan téacs',
 'revdelete-radio-same' => 'ná hathraigh',
+'revdelete-radio-set' => 'Is ea',
 'revdelete-radio-unset' => 'Ní',
 'revdel-restore' => 'athraigh infheictheacht',
 'pagehist' => 'Stair leathanach',

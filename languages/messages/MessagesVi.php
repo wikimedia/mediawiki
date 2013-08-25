@@ -2693,7 +2693,7 @@ $1',
 'sp-contributions-blocked-notice-anon' => 'Địa chỉ IP này đang bị cấm. Hãy tham khảo mục mới nhất trong nhật trình cấm IP này:',
 'sp-contributions-search' => 'Tìm kiếm đóng góp',
 'sp-contributions-username' => 'Địa chỉ IP hay tên thành viên:',
-'sp-contributions-toponly' => 'Chỉ hiện các phiên bản gần đây',
+'sp-contributions-toponly' => 'Chỉ hiện các phiên bản mới nhất',
 'sp-contributions-submit' => 'Tìm kiếm',
 
 # What links here
