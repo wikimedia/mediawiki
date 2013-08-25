@@ -406,12 +406,16 @@
 
 	function setHeadersCss( table, $headers, list, css, msg, columnToHeader ) {
 		// Remove all header information and reset titles to default message
-		$headers.removeClass( css[0] ).removeClass( css[1] ).attr( 'title', msg[1] );
+		$headers.removeClass( css[0] ).removeClass( css[1] ).attr( 'title', msg[1] ).removeAttr( 'aria-sort' );
 
 		for ( var i = 0; i < list.length; i++ ) {
 			$headers.eq( columnToHeader[ list[i][0] ] )
 				.addClass( css[ list[i][1] ] )
-				.attr( 'title', msg[ list[i][1] ] );
+				.attr( {
+					title: msg[ list[i][1] ],
+					// This is not fully correct, but aria doesn't support our method of secondary keys
+					'aria-sort': ( i == 0 && list[i][1] === 0 ? 'ascending' : 'descending' )
+				} );
 		}
 	}
 
