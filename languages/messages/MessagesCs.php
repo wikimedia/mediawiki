@@ -993,7 +993,7 @@ Dočasné heslo: $2',
 'resettokens-legend' => 'Reinicializace klíčů',
 'resettokens-tokens' => 'Klíče:',
 'resettokens-token-label' => '$1 (aktuální hodnota: $2)',
-'resettokens-watchlist-token' => 'Klíč k webovému kanálu sledovaných stránek',
+'resettokens-watchlist-token' => 'Klíč k webovému kanálu (Atom/RSS) [[Special:Watchlist|změn sledovaných stránek]]',
 'resettokens-done' => 'Klíče reinicializovány',
 'resettokens-resetbutton' => 'Reinicializovat vybrané klíče',
 

@@ -914,7 +914,7 @@ Peaksid load lähtestama, kui jagasid neid kogemata või kui su konto on kellegi
 'resettokens-legend' => 'Lubade lähtestamine',
 'resettokens-tokens' => 'Load:',
 'resettokens-token-label' => '$1 (praegune väärtus: $2)',
-'resettokens-watchlist-token' => 'Jälgimisloendi võrgutoite luba:',
+'resettokens-watchlist-token' => '[[Special:Watchlist|Jälgimisloendis olevatel lehekülgedel tehtud muudatuste]] võrgutoite (Atom/RSS) luba',
 'resettokens-done' => 'Load lähtestatud.',
 'resettokens-resetbutton' => 'Lähtesta valitud load',
 
@@ -4080,9 +4080,18 @@ Kui ei, kasuta allolevat lihtsat vormi. Sinu kommentaar lisatakse koos kasutajan
 'rotate-comment' => 'Pilti pööratud $1 {{PLURAL:$1|kraad|kraadi}} päripäeva',
 
 # Limit report
+'limitreport-title' => 'Parseri profiilimisandmed:',
+'limitreport-cputime' => 'Protsessoriaja kasutus',
 'limitreport-cputime-value' => '$1 {{PLURAL:$1|sekund|sekundit}}',
+'limitreport-walltime' => 'Reaalaja kasutus',
 'limitreport-walltime-value' => '$1 {{PLURAL:$1|sekund|sekundit}}',
+'limitreport-ppvisitednodes' => 'Eelprotsessori külastatud sõlmede arv',
+'limitreport-ppgeneratednodes' => 'Eelprotsessori genereeritud sõlmede arv',
+'limitreport-postexpandincludesize' => 'Hõrendusjärgne kaasa arvatav suurus',
 'limitreport-postexpandincludesize-value' => '$1/$2 baiti',
+'limitreport-templateargumentsize' => 'Malli argumendi suurus',
 'limitreport-templateargumentsize-value' => '$1/$2 baiti',
+'limitreport-expansiondepth' => 'Suurim hõrendussügavus',
+'limitreport-expensivefunctioncount' => 'Kulukate parserifunktsioonide arv',
 
 );

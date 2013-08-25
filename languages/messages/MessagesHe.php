@@ -9,6 +9,7 @@
  *
  * @author Agbad
  * @author Amire80
+ * @author Dekel E
  * @author Drorsnir
  * @author Hoo
  * @author Ijon
@@ -1006,7 +1007,7 @@ $2
 'resettokens-legend' => 'איפוס אסימונים',
 'resettokens-tokens' => 'אסימונים:',
 'resettokens-token-label' => '$1 (ערך נוכחי: $2)',
-'resettokens-watchlist-token' => 'אסימון הזנה של רשימת המעקב',
+'resettokens-watchlist-token' => 'אסימון להזנת הרשת (Atom/RSS) של [[Special:Watchlist|שינויים של דפים ברשימת המעקב]]',
 'resettokens-done' => 'האסימונים אופסו.',
 'resettokens-resetbutton' => 'איפוס האסימונים שנבחרו',
 
@@ -2873,7 +2874,7 @@ $1',
 'blocklogpage' => 'יומן חסימות',
 'blocklog-showlog' => 'משתמש זה נחסם בעבר. יומן החסימות מוצג למטה:',
 'blocklog-showsuppresslog' => 'משתמש זה נחסם והוסתר בעבר. יומן ההסתרות מוצג למטה:',
-'blocklogentry' => 'חסם את [[$1]] למשך $2 $3',
+'blocklogentry' => '{{GENDER:$4|חסם|חסמה}} את [[$1]] למשך $2 $3',
 'reblock-logentry' => 'שינה את הגדרות החסימה של [[$1]] עם זמן פקיעה של $2 $3',
 'blocklogtext' => 'זהו יומן פעולות החסימה והשחרור של משתמשים.
 כתובות IP שנחסמו אוטומטית אינן מופיעות.

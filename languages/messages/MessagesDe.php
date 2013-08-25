@@ -1049,7 +1049,7 @@ Du solltest dies nur machen, wenn du die Tokens versehentlich mit jemandem getei
 'resettokens-legend' => 'Tokens zurücksetzen',
 'resettokens-tokens' => 'Tokens:',
 'resettokens-token-label' => '$1 (aktueller Wert: $2)',
-'resettokens-watchlist-token' => 'Beobachtungslisten-Webfeed-Token',
+'resettokens-watchlist-token' => 'Token für den Webfeed (Atom/RSS) der [[Special:Watchlist|Änderungen an Seiten auf deiner Beobachtungsliste]]',
 'resettokens-done' => 'Tokens zurückgesetzt.',
 'resettokens-resetbutton' => 'Ausgewählte Tokens zurücksetzen',
 
@@ -1261,7 +1261,7 @@ Wenn du angemeldet bist, kannst du das Anzeigen dieser Warnung im Bereich „Bea
 'content-model-css' => 'CSS',
 
 # Parser/template warnings
-'expensive-parserfunction-warning' => "'''Achtung''': Diese Seite enthält zu viele Aufrufe aufwändiger Parserfunktionen.
+'expensive-parserfunction-warning' => "'''Achtung:''' Diese Seite enthält zu viele Aufrufe aufwändiger Parserfunktionen.
 
 Sie darf nicht mehr als $2 {{PLURAL:$2|Aufruf|Aufrufe}} haben, es {{PLURAL:$1|ist aktuell $1 Aufruf|sind aktuell $1 Aufrufe}}.",
 'expensive-parserfunction-category' => 'Seiten, die aufwändige Parserfunktionen zu oft aufrufen',

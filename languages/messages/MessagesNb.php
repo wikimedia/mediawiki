@@ -799,7 +799,7 @@ Ikke glem å endre [[Special:Preferences|innstillingene dine]] på {{SITENAME}}.
 'createacct-benefit-heading' => '{{SITENAME}} er laget av folk som deg.',
 'createacct-benefit-body1' => '{{PLURAL:$1|redigering|redigeringer}}',
 'createacct-benefit-body2' => '{{PLURAL:$1|side|sider}}',
-'createacct-benefit-body3' => '{{PLURAL:$1|nylig bidragsyter|nylige bidragsytere}}',
+'createacct-benefit-body3' => '{{PLURAL:$1|aktiv bidragsyter|aktive bidragsytere}}',
 'badretype' => 'Passordene samsvarte ikke.',
 'userexists' => 'Brukernavnet er allerede i bruk.
 Velg et annet brukernavn.',
@@ -1034,7 +1034,7 @@ Det kan ha blitt flyttet eller slettet mens du så på siden.',
 'loginreqlink' => 'logge inn',
 'loginreqpagetext' => 'Du må $1 for å se andre sider.',
 'accmailtitle' => 'Passord sendt.',
-'accmailtext' => 'Et tilfeldig passord for [[User talk:$1|$1]] har blitt sendt til $2. Passordet kan endres på[[Special:ChangePassword|Passordendring]]-siden under innlogging.',
+'accmailtext' => 'Et tilfeldig passord for [[User talk:$1|$1]] har blitt sendt til $2. Det kan endres på [[Special:ChangePassword|passordendringssiden]] under innlogging.',
 'newarticle' => '(Ny)',
 'newarticletext' => "Du har fulgt en lenke til en side som ikke finnes ennå.
 For å opprette siden, begynn å skrive i boksen under (se [[{{MediaWiki:Helppage}}|hjelpesiden]] for mer informasjon).
@@ -1533,12 +1533,12 @@ Dette kan ikke tilbakestilles.',
 'badsig' => 'Ugyldig råsignatur; sjekk HTML-elementer.',
 'badsiglength' => 'Signaturen er for lang.
 Den kan maks inneholde $1 {{PLURAL:$1|tegn|tegn}}.',
-'yourgender' => 'Kjønn:',
-'gender-unknown' => 'Uspesifisert',
-'gender-male' => 'Mann',
-'gender-female' => 'Kvinne',
+'yourgender' => 'Hvordan ønsker du å bli omtalt?',
+'gender-unknown' => 'Jeg ønsker ikke å spesifisere',
+'gender-male' => 'Han redigerer wikisider',
+'gender-female' => 'Hun redigerer wikisider',
 'prefs-help-gender' => 'Det er valgfritt å angi dette.
-Programvaren trenger verdien for anvende riktig grammatikalsk kjønn ved henvendelser til deg og i omtale av deg for andre brukere.
+Programvaren bruker verdien for å anvende riktig grammatikalsk kjønn ved henvendelser til deg og i omtale av deg for andre brukere.
 Informasjonen vil være offentlig.',
 'email' => 'E-post',
 'prefs-help-realname' => '* Virkelig navn (valgfritt): dersom du velger å oppgi navnet, vil det bli brukt til å kreditere deg for ditt arbeid.',
@@ -2137,7 +2137,7 @@ Kanskje du vil redigere beskrivelsen på dens [$2 filbeskrivelsesside].',
 
 # Special:RandomInCategory
 'randomincategory' => 'Tilfeldig side innenfor kategorien',
-'randomincategory-invalidcategory' => '"$1" er ikke et gyldig kategorinavn.',
+'randomincategory-invalidcategory' => '«$1» er ikke et gyldig kategorinavn.',
 'randomincategory-nopages' => 'Det finnes ingen sider i [[:Kategori:$1]].',
 'randomincategory-selectcategory' => 'Hent en tilfeldig side fra kategori: $1 $2.',
 'randomincategory-selectcategory-submit' => 'Start',
@@ -3541,7 +3541,7 @@ Andre vil skjules som standard.
 'exif-compression-4' => 'CCITT Gruppe 4 faks-koding',
 
 'exif-copyrighted-true' => 'Opphavsrettsbeskyttet',
-'exif-copyrighted-false' => 'Opphavsrett er ikke angitt',
+'exif-copyrighted-false' => 'Opphavsrettstatus er ikke angitt',
 
 'exif-unknowndate' => 'Ukjent dato',
 
@@ -3954,7 +3954,7 @@ Du kan også [[Special:EditWatchlist|bruke standardverktøyet]].',
 'version-license' => 'Lisens',
 'version-poweredby-credits' => "Denne wikien er drevet av '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'andre',
-'version-poweredby-translators' => 'translatewiki.net oversettere',
+'version-poweredby-translators' => 'translatewiki.net-oversettere',
 'version-credits-summary' => 'Vi ønsker å takke følgende personer for deres bidrag til [[Special:Version|MediaWiki]].',
 'version-license-info' => 'MediaWiki er fri programvare; du kan redistribuere det og/eller modifisere det under betingelsene i GNU General Public License som publisert av Free Software Foundation; enten versjon 2 av lisensen, eller (etter eget valg) enhver senere versjon.
 

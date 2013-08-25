@@ -358,6 +358,7 @@ $messages = array(
 'tog-showhiddencats' => 'Rejtett kategóriák megjelenítése',
 'tog-norollbackdiff' => 'Ne jelenjenek meg az eltérések visszaállítás után',
 'tog-useeditwarning' => 'Figyelmeztessen, ha szerkesztéskor a módosítások mentése nélkül akarom elhagyni a lapot',
+'tog-prefershttps' => 'Mindig biztonságos kapcsolatot használjon, amikor be vagyok jelentkezve',
 
 'underline-always' => 'mindig',
 'underline-never' => 'soha',

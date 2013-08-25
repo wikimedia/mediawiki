@@ -1024,7 +1024,7 @@ $2
 'resettokens-legend' => 'トークンの再設定',
 'resettokens-tokens' => 'トークン:',
 'resettokens-token-label' => '$1 (現在の値: $2)',
-'resettokens-watchlist-token' => 'ウォッチリストのフィード トークン',
+'resettokens-watchlist-token' => '[[Special:Watchlist|あなたのウォッチリストに登録されているページの変更]]を列挙するフィード (Atom/RSS) のトークン',
 'resettokens-done' => 'トークンを再設定しました。',
 'resettokens-resetbutton' => '選択したトークンを再設定',
 

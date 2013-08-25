@@ -678,7 +678,7 @@ Tu avissa farle ce pe sbaglie l'è condivise cu otre o ce 'u cunde tune ha state
 'resettokens-legend' => 'Azzere le gettone',
 'resettokens-tokens' => 'Gettone:',
 'resettokens-token-label' => '$1 (valore de mò: $2)',
-'resettokens-watchlist-token' => "Gettone de le feed de le pàggene condrollate cu 'u web",
+'resettokens-watchlist-token' => 'Gettone pu feed web (Atom/RSS) de [[Special:Watchlist|le cangiaminde de le pàggene condrollate]]',
 'resettokens-done' => 'Gettone azzerate.',
 'resettokens-resetbutton' => 'Azzere le gettone scacchiate',
 

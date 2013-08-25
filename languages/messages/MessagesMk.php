@@ -4448,7 +4448,7 @@ $5
 
 # Limit report
 'limitreport-title' => 'Профилни парсерски податоци:',
-'limitreport-cputime' => 'Употреба на CPU-време',
+'limitreport-cputime' => 'Употреба на обработувачко време',
 'limitreport-cputime-value' => '$1 {{PLURAL:$1|секунда|секунди}}',
 'limitreport-walltime' => 'Употреба на вистинско време',
 'limitreport-walltime-value' => '$1 {{PLURAL:$1|секунда|секунди}}',

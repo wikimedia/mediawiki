@@ -34,6 +34,7 @@
  * @author Dalibor Bosits
  * @author Darth Kule
  * @author Deadelf
+ * @author Dekel E
  * @author Dsvyas
  * @author Emilkris33
  * @author Erwin
@@ -4510,13 +4511,13 @@ This block of text is shown on [[:Special:Disambiguations]].
 'pageswithprop-prophidden-long' => 'Information shown on [[Special:PagesWithProp]] when property value is longer than 1 kilobyte.
 
 Parameters:
-* $1 - size of property value, formatted
+* $1 - size of property value in kilobytes
 See also:
 * {{msg-mw|pageswithprop-prophidden-binary}}',
 'pageswithprop-prophidden-binary' => 'Information shown on [[Special:PagesWithProp]] when property value contains binary data.
 
 Parameters:
-* $1 - size of property value, formatted
+* $1 - size of property value in kilobytes
 See also:
 * {{msg-mw|pageswithprop-prophidden-long}}',
 
@@ -6157,6 +6158,7 @@ See also:
 * $1 - the blocked user or IP (with link to contributions and talk)
 * $2 - the duration of the block (hours, days etc.) or the specified expiry date
 * $3 - contains "(details) (\'\'reason\'\')"
+* $4 - male or female
 See also:
 * {{msg-mw|Blocklistline}}',
 'reblock-logentry' => 'This is the text of an entry in the Block log (and Recent Changes), after hour (and date, only in the Block log) and sysop name:

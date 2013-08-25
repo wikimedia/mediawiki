@@ -917,7 +917,7 @@ Dovresti farlo se le hai accidentalmente condivise con qualcuno o se la tua uten
 'resettokens-legend' => 'Reset token',
 'resettokens-tokens' => 'Token:',
 'resettokens-token-label' => '$1 (valore attuale: $2)',
-'resettokens-watchlist-token' => 'Token per il feed web dei tuoi osservati speciali',
+'resettokens-watchlist-token' => 'Token per il feed web (Atom/RSS) delle [[Special:Watchlist|modifiche alle pagine nei tuoi osservati speciali]]',
 'resettokens-done' => 'Token reimpostati.',
 'resettokens-resetbutton' => 'Reset token selezionati',
 

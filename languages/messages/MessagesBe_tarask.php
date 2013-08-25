@@ -896,7 +896,7 @@ $2
 'resettokens-legend' => 'Скінуць токены',
 'resettokens-tokens' => 'Токены:',
 'resettokens-token-label' => '$1 (бягучае значэньне: $2)',
-'resettokens-watchlist-token' => 'Токен стужкі сьпісу назіраньня',
+'resettokens-watchlist-token' => 'Токен стужкі (Atom/RSS) [[Special:Watchlist|зьменаў у вашым сьпісе назіраньня]]',
 'resettokens-done' => 'Токены скінутыя.',
 'resettokens-resetbutton' => 'Скінуць вылучаныя токены',
 

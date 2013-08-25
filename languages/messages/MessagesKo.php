@@ -998,7 +998,7 @@ $2
 'resettokens-legend' => '토큰 재설정',
 'resettokens-tokens' => '토큰:',
 'resettokens-token-label' => '$1 (현재 값: $2)',
-'resettokens-watchlist-token' => '주시문서 목록 웹 피드 토큰',
+'resettokens-watchlist-token' => '[[Special:Watchlist|주시문서 목록에 있는 문서의 바뀜]]의 웹 피드(Atom/RSS)에 대한 토큰',
 'resettokens-done' => '토큰을 재설정했습니다.',
 'resettokens-resetbutton' => '선택한 토큰 재설정',
 

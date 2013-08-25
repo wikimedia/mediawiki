@@ -837,7 +837,7 @@ $2
 'resettokens-legend' => 'צוריקזעצן טאקנס',
 'resettokens-tokens' => 'טאקנס:',
 'resettokens-token-label' => '$1 (אקטועלער ווערט: $2)',
-'resettokens-watchlist-token' => 'אויפֿפאסונג וועב־פֿיד טאקן',
+'resettokens-watchlist-token' => 'טאקן פארן וועב־פֿיד (Atom/RSS) פון [[Special:Watchlist|ענדערונגען צו בלעטער אויף אייער אויפֿפאסונג ליסטע]]',
 'resettokens-done' => 'טאקנס צוריקגעזעצט.',
 'resettokens-resetbutton' => 'צוריקזעצן אויסגעקליבענע טאקנס',
 
@@ -3951,7 +3951,13 @@ $5
 'rotate-comment' => 'בילד געדרייט דורך $1 {{PLURAL:$1|גראד}} זייגערווייז',
 
 # Limit report
+'limitreport-title' => 'פארזער פראפילירן דאטן:',
+'limitreport-cputime' => 'צײַט ניצונג CPU',
+'limitreport-cputime-value' => '$1 {{PLURAL:$1|סעקונדע|סעקונדעס}}',
+'limitreport-walltime' => 'עכטע צייט ניצונג',
 'limitreport-postexpandincludesize-value' => '$1/$2 בייטן',
+'limitreport-templateargumentsize' => ' מוסטער פאראמעטער גרייס',
 'limitreport-templateargumentsize-value' => '$1/$2 בייטן',
+'limitreport-expansiondepth' => 'גרעסטע אויסשפרייט טיף',
 
 );

@@ -736,7 +736,7 @@ Dylech wneud hyn os wnaethoch rannu'r manylion hyn gyda rhywun ar ddamwain neu o
 'resettokens-legend' => 'Ailosod tocynnau',
 'resettokens-tokens' => 'Tocynnau:',
 'resettokens-token-label' => '$1 (gwerth presennol: $2)',
-'resettokens-watchlist-token' => 'Tocyn i borthiant gwe y rhestr wylio',
+'resettokens-watchlist-token' => "Tocyn i borthiant gwe (Atom/RSS) y [[Special:Watchlist|newidiadau i'r tudalennau ar eich rhestr wylio]]",
 'resettokens-done' => 'Ailosodwyd y tocynnau.',
 'resettokens-resetbutton' => 'Ailosoder y tocynnau a ddewiswyd',
 
@@ -949,7 +949,7 @@ Os ydych wedi mewngofnodi gallwch ddiddymu\'r rhybudd hwn yn yr adran "Golygu" y
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''Rhybudd:''' Mae gormod o alwadau ar ffwythiannau dosrannu sy'n dreth ar adnoddau yn y dudalen hon.
 
-Dylai fod llai na $2 {{PLURAL:$2|galwad|alwad|alwad|galwad|galwad|galwad}} yn y dudalen, ond ar hyn o bryd mae $1 {{PLURAL:$1|galwad|alwad|alwad|galwad|galwad|galwad}} ynddi.",
+Dylai fod llai na $2 {{PLURAL:$2|galwad|alwad|alwad|galwad}} yn y dudalen, ond ar hyn o bryd mae $1 {{PLURAL:$1|galwad|alwad|alwad|galwad}} ynddi.",
 'expensive-parserfunction-category' => "Tudalennau a gormod o alwadau ar ffwythiannau dosrannu sy'n dreth ar adnoddau",
 'post-expand-template-inclusion-warning' => "'''Rhybudd:''' Mae maint y nodiadau ar ôl eu chwyddo yn rhy fawr.
 Ni chaiff rhai nodiadau eu cynnwys.",
@@ -3941,9 +3941,11 @@ Dylech fod wedi derbyn [{{SERVER}}{{SCRIPTPATH}}/COPYING gopi o GNU General Publ
 'limitreport-walltime-value' => '$1 {{PLURAL:$1|eiliad}}',
 'limitreport-ppvisitednodes' => "Rhif y nodau ar ymweliadau'r rhagbrosesydd",
 'limitreport-ppgeneratednodes' => 'Rhif y nodau a gynhyrchodd y rhagbrosesydd',
+'limitreport-postexpandincludesize' => 'Uchafswm maint y nodiadau ar ôl eu chwyddo',
 'limitreport-postexpandincludesize-value' => '$1/$2 beit',
 'limitreport-templateargumentsize' => 'Maint arg y nodyn',
 'limitreport-templateargumentsize-value' => '$1/$2 beit',
 'limitreport-expansiondepth' => 'Uchafswm dyfnder yr ehangu',
+'limitreport-expensivefunctioncount' => "Nifer y ffwythiannau dosrannu sy'n dreth ar adnoddau",
 
 );

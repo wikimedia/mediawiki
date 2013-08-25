@@ -237,6 +237,7 @@ $messages = array(
 'tog-noconvertlink' => 'Slå konvertering af sidetitler fra',
 'tog-norollbackdiff' => 'Vis ikke forskel efter tilbagerulning',
 'tog-useeditwarning' => 'Advar mig, hvis jeg forlader en redigeringsside med ændringer, der ikke er gemt.',
+'tog-prefershttps' => 'Brug altid en sikker forbindelse, når du er logget ind',
 
 'underline-always' => 'Altid',
 'underline-never' => 'Aldrig',
@@ -615,7 +616,6 @@ Administratoren, som skrivebeskyttede den, gav følgende begrundelse: "$3".',
 # Login and logout pages
 'logouttext' => "'''Du er nu logget af.'''
 
-Du kan fortsætte med at bruge {{SITENAME}} anonymt, eller du kan <span class='plainlinks'>[$1 logge på igen]</span> som den samme eller en anden bruger.
 Bemærk, at nogle sider stadigvæk kan vises som om du var logget på, indtil du tømmer din browsers cache.",
 'welcomeuser' => 'Velkommen, $1!',
 'welcomecreation-msg' => 'Din konto er blevet oprettet.
@@ -662,7 +662,7 @@ Glem ikke at ændre dine [[Special:Preferences|{{SITENAME}} indstillinger]].',
 'createacct-emailoptional' => 'Mailadresse (valgfri)',
 'createacct-email-ph' => 'Indtast din mailadresse',
 'createacct-another-email-ph' => 'Indtast e-mail-adresse',
-'createaccountmail' => 'Brug en midlertidig tilfældig adgangskode og send den til e-mailadressen angivet nedenfor',
+'createaccountmail' => 'Brug en midlertidig tilfældig adgangskode og send den til den angivne e-mailadresse',
 'createacct-realname' => 'Dit rigtige navn',
 'createaccountreason' => 'Begrundelse:',
 'createacct-reason' => 'Årsag',
@@ -738,7 +738,7 @@ Du opfordres til at logge ind og ændre adgangskoden med det samme.
 Du kan ignorere denne besked hvis kontoen blev oprettet ved en fejl.',
 'usernamehasherror' => 'Brugernavn må ikke indeholde #',
 'login-throttled' => 'Du har forsøgt at logge på for mange gange.
-Vent venligst før du prøver igen.',
+Vent venligst $1, før du prøver igen.',
 'login-abort-generic' => 'Det lykkedes dig ikke at logge på - afbrudt',
 'loginlanguagelabel' => 'Sprog: $1',
 'suspicious-userlogout' => 'Din anmodning om at logge ud blev nægtet, fordi det ser ud som den blev sendt af en ødelagt browser eller caching proxy.',
@@ -757,7 +757,7 @@ Vent venligst før du prøver igen.',
 'newpassword' => 'Ny adgangskode:',
 'retypenew' => 'Gentag ny adgangskode:',
 'resetpass_submit' => 'Gem adgangskode og log på',
-'changepassword-success' => 'Din adgangskode er nu ændret. Logger ind...',
+'changepassword-success' => 'Din adgangskode er nu ændret!',
 'resetpass_forbidden' => 'Adgangskoder kan ikke ændres',
 'resetpass-no-info' => 'Du skal være logget på for at komme direkte til denne side.',
 'resetpass-submit-loggedin' => 'Skift adgangskode',
@@ -890,9 +890,7 @@ Angiv venligst alle de ovenstående detaljer ved eventuelle henvendelser.',
 'loginreqlink' => 'logge på',
 'loginreqpagetext' => 'Du skal $1 for at se andre sider.',
 'accmailtitle' => 'Adgangskode sendt.',
-'accmailtext' => "En tilfældigt dannet adgangskode for [[User talk:$1|$1]] er sendt til $2.
-
-Adgangskoden for denne ny brugerkonto kan ændres på ''[[Special:ChangePassword|skift   adgangskode]]'', når du logger ind.",
+'accmailtext' => "En tilfældigt dannet adgangskode for [[User talk:$1|$1]] er sendt til $2. Den kan ændres på siden ''[[Special:ChangePassword|skift adgangskode]]'', når du logger ind.",
 'newarticle' => '(Ny)',
 'newarticletext' => "Du har fulgt en henvisning til en side som endnu ikke findes.
 For at oprette siden skal du begynde at skrive i boksen nedenfor
@@ -1388,11 +1386,13 @@ Det kan ikke gøres om.',
 'prefs-help-signature' => 'Kommentarer på diskussionssider bør signeres med "<nowiki>~~~~</nowiki>" som vil blive konverteret til din signatur og et tidsstempel.',
 'badsig' => 'Syntaksen i underskriften er ugyldig; kontroller venligst den brugte HTML.',
 'badsiglength' => 'Din signatur er for lang. Den må højst indeholde {{PLURAL:$1|}}$1 tegn.',
-'yourgender' => 'Køn:',
-'gender-unknown' => 'Uspecificeret',
-'gender-male' => 'Mand',
-'gender-female' => 'Kvinde',
-'prefs-help-gender' => 'Angivelse af køn er valgfrit. Det bruges af programmet til at lave kønskorrekte tekster på nogle sprog. Informationen vil være offentlig.',
+'yourgender' => 'Hvordan foretrækker du at blive beskrevet?',
+'gender-unknown' => 'Jeg foretrækker ikke at specificere',
+'gender-male' => 'Han redigerer wikisider',
+'gender-female' => 'Hun redigerer wikisider',
+'prefs-help-gender' => 'Angivelse af denne indstilling er valgfri.
+Det bruges af programmet til at lave kønskorrekte tekster på nogle sprog.
+Informationen vil være offentlig.',
 'email' => 'E-mail',
 'prefs-help-realname' => 'Angivelse af rigtigt navn er valgfrit.
 Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit arbejde.',
@@ -1414,6 +1414,7 @@ Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit
 'prefs-displayrc' => 'Indstillinger for visning',
 'prefs-displaysearchoptions' => 'Visningsmuligheder',
 'prefs-displaywatchlist' => 'Visningsmuligheder',
+'prefs-tokenwatchlist' => 'Mærke',
 'prefs-diffs' => 'Forskelle',
 
 # User preference: email validation using jQuery
@@ -1441,7 +1442,8 @@ Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit
 'userrights-notallowed' => 'Du har ikke tilladelse til at tilføje eller fjerne brugerrettigheder.',
 'userrights-changeable-col' => 'Redigerbare grupper',
 'userrights-unchangeable-col' => 'Uredigerbare grupper',
-'userrights-conflict' => 'Brugerrettighedskonflikt. Tilføj venligst dine ændringer påny.',
+'userrights-conflict' => 'Konflikt i ændringer af brugerrettigheder!
+Vær venlig at gennemse og bekræft dine ændringer.',
 'userrights-removed-self' => 'Du har fjernet dine egne rettigheder. Du har derfor ikke længere adgang til denne side.',
 
 # Groups
@@ -3044,13 +3046,13 @@ Dette skyldes sandsynligvis en henvisning til et sortlistet eksternt websted.',
 'pageinfo-length' => 'Sidelængde (i bytes)',
 'pageinfo-article-id' => 'Side-ID',
 'pageinfo-language' => 'Sprog for sideindholdet',
-'pageinfo-robot-policy' => 'Søgemaskinestatus',
-'pageinfo-robot-index' => 'Indekserbar',
-'pageinfo-robot-noindex' => 'Ikke indekserbar',
+'pageinfo-robot-policy' => 'Indeksering af robotter',
+'pageinfo-robot-index' => 'Tilladt',
+'pageinfo-robot-noindex' => 'Ikke tilladt',
 'pageinfo-views' => 'Antal visninger',
 'pageinfo-watchers' => 'Antal brugere, der overvåger siden',
 'pageinfo-few-watchers' => 'Overvåget af færre end $1 {{PLURAL:$1|bruger|brugere}}',
-'pageinfo-redirects-name' => 'Omdirigeringer til denne side',
+'pageinfo-redirects-name' => 'Antal omdirigeringer til denne side',
 'pageinfo-subpages-name' => 'Undersider til denne side',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|omdirigering|omdirigeringer}}; $3 {{PLURAL:$3|der ikke er en omdirigering|der ikke er omdirigeringer}})',
 'pageinfo-firstuser' => 'Brugeren, der oprettede siden',
@@ -4008,5 +4010,11 @@ Ellers kan du bruge den enkle formular nedenfor. Din kommentar vil blive tilføj
 
 # Image rotation
 'rotate-comment' => 'Billedet roteres med $1 {{PLURAL:$1| grad|grader}} med uret',
+
+# Limit report
+'limitreport-cputime' => 'Brugt CPU-tid',
+'limitreport-cputime-value' => '$1 {{PLURAL:$1|sekund|sekunder}}',
+'limitreport-walltime' => 'Brugt reel tid',
+'limitreport-walltime-value' => '$1 {{PLURAL:$1|sekund|sekunder}}',
 
 );

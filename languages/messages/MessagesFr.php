@@ -31,6 +31,7 @@
  * @author Erkethan
  * @author Esbardu
  * @author Fabrice Ferrer
+ * @author Frakir
  * @author François Melchior
  * @author Fryed-peach
  * @author Geoleplubo
@@ -2665,7 +2666,7 @@ Voici les réglages actuels de la page '''$1''' :",
 ** Conflits de modifications contre-productives
 ** Page à fort trafic',
 'protect-edit-reasonlist' => 'Modifier les motifs de protection',
-'protect-expiry-options' => '1 heure:1 hour,1 jour:1 day,1 semaine:1 week,2 semaines:2 weeks,1 mois:1 month,3 mois:3 months,6 mois:6 months,1 an:1 year,indéfiniment:infinite',
+'protect-expiry-options' => '1 heure:1 hour,1 jour:1 day,3 jours:3 days,1 semaine:1 week,2 semaines:2 weeks,1 mois:1 month,3 mois:3 months,6 mois:6 months,1 an:1 year,indéfiniment:infinite',
 'restriction-type' => 'Autorisation :',
 'restriction-level' => 'Niveau de restriction :',
 'minimum-size' => 'Taille minimum',
