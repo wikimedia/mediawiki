@@ -4510,13 +4510,13 @@ This block of text is shown on [[:Special:Disambiguations]].
 'pageswithprop-prophidden-long' => 'Information shown on [[Special:PagesWithProp]] when property value is longer than 1 kilobyte.
 
 Parameters:
-* $1 - size of property value in kilobytes
+* $1 - size of property value, formatted
 See also:
 * {{msg-mw|pageswithprop-prophidden-binary}}',
 'pageswithprop-prophidden-binary' => 'Information shown on [[Special:PagesWithProp]] when property value contains binary data.
 
 Parameters:
-* $1 - size of property value in kilobytes
+* $1 - size of property value, formatted
 See also:
 * {{msg-mw|pageswithprop-prophidden-long}}',
 

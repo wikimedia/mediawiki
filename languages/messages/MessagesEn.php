@@ -2674,8 +2674,8 @@ A page is treated as a disambiguation page if it uses a template that is linked 
 'pageswithprop-text'              => 'This page lists pages that use a particular page property.',
 'pageswithprop-prop'              => 'Property name:',
 'pageswithprop-submit'            => 'Go',
-'pageswithprop-prophidden-long'   => 'long text property value hidden ($1 kilobytes)',
-'pageswithprop-prophidden-binary' => 'binary property value hidden ($1 kilobytes)',
+'pageswithprop-prophidden-long'   => 'long text property value hidden ($1)',
+'pageswithprop-prophidden-binary' => 'binary property value hidden ($1)',
 
 'doubleredirects'                   => 'Double redirects',
 'doubleredirects-summary'           => '', # do not translate or duplicate this message to other languages
