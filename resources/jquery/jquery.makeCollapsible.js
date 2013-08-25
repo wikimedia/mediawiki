@@ -172,7 +172,12 @@
 			}
 		}
 
-		wasCollapsed = $collapsible.hasClass( 'mw-collapsed' );
+		// This allows the element to be hidden on initial toggle without fiddling with the class
+		if ( options.wasCollapsed !== undefined ) {
+			wasCollapsed = options.wasCollapsed;
+		} else {
+			wasCollapsed = $collapsible.hasClass( 'mw-collapsed' );
+		}
 
 		// Toggle the state of the collapsible element (that is, expand or collapse)
 		$collapsible.toggleClass( 'mw-collapsed', !wasCollapsed );
@@ -367,11 +372,9 @@
 
 			// Initial state
 			if ( options.collapsed || $collapsible.hasClass( 'mw-collapsed' ) ) {
-				// Remove here so that the toggler goes in the right direction (the class is re-added)
-				$collapsible.removeClass( 'mw-collapsed' );
 				// One toggler can hook to multiple elements, and one element can have
 				// multiple togglers. This is the sanest way to handle that.
-				actionHandler.call( $toggleLink.get( 0 ), null, { instantHide: true } );
+				actionHandler.call( $toggleLink.get( 0 ), null, { instantHide: true, wasCollapsed: false } );
 			}
 		} );
 	};
