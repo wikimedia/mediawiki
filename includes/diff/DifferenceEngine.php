@@ -1181,26 +1181,29 @@ class DifferenceEngine extends ContextSource {
 	function loadText() {
 		if ( $this->mTextLoaded == 2 ) {
 			return true;
-		} else {
-			// Whether it succeeds or fails, we don't want to try again
-			$this->mTextLoaded = 2;
 		}
+
+		// Whether it succeeds or fails, we don't want to try again
+		$this->mTextLoaded = 2;
 
 		if ( !$this->loadRevisionData() ) {
 			return false;
 		}
+
 		if ( $this->mOldRev ) {
 			$this->mOldContent = $this->mOldRev->getContent( Revision::FOR_THIS_USER, $this->getUser() );
 			if ( $this->mOldContent === null ) {
 				return false;
 			}
 		}
+
 		if ( $this->mNewRev ) {
 			$this->mNewContent = $this->mNewRev->getContent( Revision::FOR_THIS_USER, $this->getUser() );
 			if ( $this->mNewContent === null ) {
 				return false;
 			}
 		}
+
 		return true;
 	}
 
@@ -1212,13 +1215,16 @@ class DifferenceEngine extends ContextSource {
 	function loadNewText() {
 		if ( $this->mTextLoaded >= 1 ) {
 			return true;
-		} else {
-			$this->mTextLoaded = 1;
 		}
+
+		$this->mTextLoaded = 1;
+
 		if ( !$this->loadRevisionData() ) {
 			return false;
 		}
+
 		$this->mNewContent = $this->mNewRev->getContent( Revision::FOR_THIS_USER, $this->getUser() );
+
 		return true;
 	}
 }
