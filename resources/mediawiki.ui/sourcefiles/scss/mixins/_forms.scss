@@ -1,7 +1,6 @@
 // Font is not included.
 // For Vector, that should be layered on top with vector-type
 @mixin agora-field-styling() {
-    @include reset-focus;  // Removes OS field focus
 
     border: {
         style: solid;
@@ -9,7 +8,13 @@
         color: $agoraGray;
     };
 
+    // Styling focus of native checkboxes etc on Mac is almost impossible.
     &:focus {
+	// Styling focus of native checkboxes etc on Mac is almost impossible.
+	&:not([type=checkbox]):not([type=radio]) {
+		@include reset-focus;  // Removes OS field focus
+	};
+
         // @include box-shadow generates unneeded prefixes
         // https://github.com/chriseppstein/compass/issues/1054 , so specify
         // directly.
