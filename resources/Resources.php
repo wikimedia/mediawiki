@@ -743,6 +743,7 @@ return array(
 		'dependencies' => array(
 			'jquery.form',
 			'jquery.spinner',
+			'mediawiki.action.history.diff',
 		),
 	),
 	'mediawiki.action.history' => array(
