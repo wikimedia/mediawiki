@@ -5474,6 +5474,7 @@ $wgRCFeeds = array();
  * Keys are scheme names, values are names of engine classes.
  */
 $wgStreamLoggers = array(
+	'redis' => 'RedisPubSubFeedEngine',
 	'udp' => 'UDPRCFeedEngine',
 );
 
