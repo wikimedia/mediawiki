@@ -317,7 +317,7 @@ class RecentChange {
 		global $wgRCFeeds;
 
 		foreach ( $wgRCFeeds as $feed ) {
-			$engine = self::getStreamEngine( $feed['uri'] );
+			$engine = self::getEngine( $feed['uri'] );
 
 			if ( isset( $this->mExtras['actionCommentIRC'] ) ) {
 				$actionComment = $this->mExtras['actionCommentIRC'];
@@ -342,24 +342,24 @@ class RecentChange {
 	}
 
 	/**
-	 * Gets the stream engine object for a given URI from $wgStreamLoggers
+	 * Gets the stream engine object for a given URI from $wgRCEngines
 	 *
 	 * @param $uri string URI to get the engine object for
 	 * @return object The engine object
 	 */
-	private static function getStreamEngine( $uri ) {
-		global $wgStreamLoggers;
+	private static function getEngine( $uri ) {
+		global $wgRCEngines;
 
 		$scheme = parse_url( $uri, PHP_URL_SCHEME );
 		if ( !$scheme ) {
 			throw new MWException( __FUNCTION__ . ": Invalid stream logger URI: '$uri'" );
 		}
 
-		if ( !isset( $wgStreamLoggers[$scheme] ) ) {
+		if ( !isset( $wgRCEngines[$scheme] ) ) {
 			throw new MWException( __FUNCTION__ . ": Unknown stream logger URI scheme: $scheme" );
 		}
 
-		return new $wgStreamLoggers[$scheme];
+		return new $wgRCEngines[$scheme];
 	}
 
 	/**

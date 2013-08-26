@@ -5470,10 +5470,10 @@ $wgRC2UDPOmitBots = false;
 $wgRCFeeds = array();
 
 /**
- * Used by RecentChange::getStreamEngine to find the correct engine to use for a given URI protocol.
+ * Used by RecentChange::getEngine to find the correct engine to use for a given URI scheme.
  * Keys are scheme names, values are names of engine classes.
  */
-$wgStreamLoggers = array(
+$wgRCEngines = array(
 	'udp' => 'UDPRCFeedEngine',
 );
 
