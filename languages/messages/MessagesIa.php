@@ -795,7 +795,7 @@ Tu deberea facer lo si tu los ha accidentalmente dividite con un altere persona 
 'resettokens-legend' => 'Reinitialisar indicios',
 'resettokens-tokens' => 'Indicios:',
 'resettokens-token-label' => '$1 (valor actual: $2)',
-'resettokens-watchlist-token' => 'Indicio pro syndication web del observatorio',
+'resettokens-watchlist-token' => 'Indicio pro syndication web (Atom/RSS) de [[Special:Watchlist|modificationes a paginas in tu observatorio]]',
 'resettokens-done' => 'Indicios reinitialisate.',
 'resettokens-resetbutton' => 'Reinitialisar le indicios seligite',
 
@@ -2054,8 +2054,8 @@ Un pagina se tracta como pagina de disambiguation si illo usa un patrono que es 
 'pageswithprop-text' => 'Iste pagina lista le paginas que usa un certe proprietate de pagina.',
 'pageswithprop-prop' => 'Nomine del proprietate:',
 'pageswithprop-submit' => 'Va',
-'pageswithprop-prophidden-long' => 'valor de proprietate de texto longe celate ($1 kilobytes)',
-'pageswithprop-prophidden-binary' => 'valor de proprietate binari celate ($1 kilobytes)',
+'pageswithprop-prophidden-long' => 'valor de proprietate de texto longe celate ($1)',
+'pageswithprop-prophidden-binary' => 'valor de proprietate binari celate ($1)',
 
 'doubleredirects' => 'Redirectiones duple',
 'doubleredirectstext' => 'Iste pagina lista paginas de redirection verso altere paginas de redirection.

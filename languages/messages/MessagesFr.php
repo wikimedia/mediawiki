@@ -1017,7 +1017,7 @@ Vous devriez le faire si vous les avez partagés accidentellement avec quelqu'un
 'resettokens-legend' => 'Réinitialiser les jetons',
 'resettokens-tokens' => 'Jetons :',
 'resettokens-token-label' => '$1 (valeur actuelle : $2)',
-'resettokens-watchlist-token' => 'Jeton de flux Web liste de suivi',
+'resettokens-watchlist-token' => 'Jeton pour le flux (Atom/RSS) web de [[Special:Watchlist|modifications de pages de votre liste de suivi]]',
 'resettokens-done' => 'Jetons réinitialisés.',
 'resettokens-resetbutton' => 'Réinitialiser les jetons sélectionnés',
 
@@ -2245,8 +2245,8 @@ Une page est considérée comme une page d'homonymie si elle utilise un modèle 
 'pageswithprop-text' => 'Cette page liste les pages qui utilisent une propriété de page particulière.',
 'pageswithprop-prop' => 'Nom de la propriété:',
 'pageswithprop-submit' => 'Aller',
-'pageswithprop-prophidden-long' => 'valeur de propriété de texte long masquée ($1 ko)',
-'pageswithprop-prophidden-binary' => 'valeur de propriété binaire masquée ($1 ko)',
+'pageswithprop-prophidden-long' => 'valeur de propriété de texte long masquée ($1)',
+'pageswithprop-prophidden-binary' => 'valeur de propriété binaire masquée ($1)',
 
 'doubleredirects' => 'Doubles redirections',
 'doubleredirectstext' => 'Voici une liste des pages qui redirigent vers des pages qui sont elles-mêmes des pages de redirection.
@@ -2666,7 +2666,7 @@ Voici les réglages actuels de la page '''$1''' :",
 ** Conflits de modifications contre-productives
 ** Page à fort trafic',
 'protect-edit-reasonlist' => 'Modifier les motifs de protection',
-'protect-expiry-options' => '1 heure:1 hour,1 jour:1 day,3 jours:3 days,1 semaine:1 week,2 semaines:2 weeks,1 mois:1 month,3 mois:3 months,6 mois:6 months,1 an:1 year,indéfiniment:infinite',
+'protect-expiry-options' => '1 heure:1 hour,1 jour:1 day,1 semaine:1 week,2 semaines:2 weeks,1 mois:1 month,3 mois:3 months,6 mois:6 months,1 an:1 year,indéfiniment:infinite',
 'restriction-type' => 'Autorisation :',
 'restriction-level' => 'Niveau de restriction :',
 'minimum-size' => 'Taille minimum',

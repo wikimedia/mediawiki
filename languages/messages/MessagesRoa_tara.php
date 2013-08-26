@@ -1946,8 +1946,8 @@ Arrecuèrdete de condrollà pe otre collegaminde a le template apprime de scange
 'pageswithprop-text' => "Sta pàgene elenghe le pàggene ca ausane 'na particolare probbietà d'a pàgene.",
 'pageswithprop-prop' => "Nome d'a probbietà:",
 'pageswithprop-submit' => 'Véje',
-'pageswithprop-prophidden-long' => "valore d'a probbietà d'u teste lunghe scunnute ($1 kilobyte)",
-'pageswithprop-prophidden-binary' => 'valore probbietà binarie scunnute ($1 kilobyte)',
+'pageswithprop-prophidden-long' => "valore d'a probbietà d'u teste lunghe scunnute ($1)",
+'pageswithprop-prophidden-binary' => 'valore probbietà binarie scunnute ($1)',
 
 'doubleredirects' => 'Ridirezionaminde a doppie',
 'doubleredirectstext' => "Sta pàgene elenghe le pàggene ca se ridirezionane sus a otre pàggene de ridirezionaminde.

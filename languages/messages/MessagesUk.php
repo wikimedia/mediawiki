@@ -1000,7 +1000,7 @@ $2
 'resettokens-legend' => 'Скинути жетони',
 'resettokens-tokens' => 'Жетони:',
 'resettokens-token-label' => '$1 (поточне значення: $2)',
-'resettokens-watchlist-token' => 'Жетон стрічки новин списку спостереження',
+'resettokens-watchlist-token' => 'Маркер стрічки новин (Atom/RSS) з [[Special:Watchlist|змін на сторінку у вашому списку спостереження]]',
 'resettokens-done' => 'Жетони скинуто.',
 'resettokens-resetbutton' => 'Скинути обрані жетони',
 
@@ -1799,6 +1799,8 @@ $1",
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|зміна|зміни|змін}}',
+'enhancedrc-since-last-visit' => '$1 {{PLURAL:$1|зміна з останнього візиту|зміни з останнього візиту|змін з останнього візиту}}',
+'enhancedrc-history' => 'історія',
 'recentchanges' => 'Нові редагування',
 'recentchanges-legend' => 'Налаштування нових редагувань',
 'recentchanges-summary' => 'Відстеження останніх змін на сторінках {{grammar:genitive|{{SITENAME}}}}.',
@@ -2255,8 +2257,8 @@ $1',
 'pageswithprop-text' => 'Тут перераховані сторінки, у яких були вручну перевизначені окремі властивості.',
 'pageswithprop-prop' => 'Назва властивості:',
 'pageswithprop-submit' => 'Перейти',
-'pageswithprop-prophidden-long' => 'довге значення текстової властивості приховано ({{PLURAL:$1|кілобайт|кілобайти|кілобайтів}})',
-'pageswithprop-prophidden-binary' => 'двійкове значення властивості приховано ({{PLURAL:$1|кілобайт|кілобайти|кілобайтів}})',
+'pageswithprop-prophidden-long' => 'довге значення текстової властивості приховано ($1)',
+'pageswithprop-prophidden-binary' => 'двійкове значення властивості приховано ($1)',
 
 'doubleredirects' => 'Подвійні перенаправлення',
 'doubleredirectstext' => 'На цій сторінці наведено список перенаправлень на інші перенаправлення.

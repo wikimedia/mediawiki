@@ -281,7 +281,7 @@ $1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite' => 'Maipanggep ti {{SITENAME}}',
-'aboutpage' => 'Project:Maipaggep',
+'aboutpage' => 'Project:Maipanggep',
 'copyright' => 'Ti linaon ket magun-od babaen ti $1.',
 'copyrightpage' => '{{ns:project}}:Dagiti karbengan ti kopia',
 'currentevents' => 'Agdama a paspasamak',
@@ -767,7 +767,7 @@ Mabalin a naiyalis wenno naikkat bayat idi kitkitaem ti panid.',
 'loginreqlink' => 'sumrek',
 'loginreqpagetext' => 'Naskenka a $1 tapno makakitaka kadagiti sabsabali a pampanid.',
 'accmailtitle' => 'Naipatuloden ti kontrasenias.',
-'accmailtext' => "Ti pugto a napartuat a kontrasenias para ken ni [[User talk:$1|$1]] ket naipatuloden idiay $2. Mabalin a masukatan idiay
+'accmailtext' => "Ti pugto a napartuat a kontrasenias para kenni [[User talk:$1|$1]] ket naipatuloden idiay $2. Mabalin a masukatan idiay
 ''[[Special:ChangePassword|pagsukatan ti kontrasenias]]'' a panid no sumrekka.",
 'newarticle' => '(Baro)',
 'newarticletext' => "Nasurotmo ti maysa a silpo iti awan pay a panid. 
@@ -1934,8 +1934,8 @@ Ti panid ket matrato a kas panangilawlawag a panid no agusar ti plantilia a naka
 'pageswithprop-text' => 'Daytoy a panid ket ilistana ti pampanid nga agus-usar ti naisangayan a tagikua ti panid.',
 'pageswithprop-prop' => 'Nagan ti tagikua:',
 'pageswithprop-submit' => 'Inkan',
-'pageswithprop-prophidden-long' => 'atiddog a testo ti tagikua a nailemmeng (dagiti $1 kilobyte)',
-'pageswithprop-prophidden-binary' => 'binario a pateg ti tagikua a nailemmeng (dagiti $1 kilobyte)',
+'pageswithprop-prophidden-long' => 'atiddog a testo ti tagikua a nailemmeng ($1)',
+'pageswithprop-prophidden-binary' => 'binario a pateg ti tagikua a nailemmeng ($1)',
 
 'doubleredirects' => 'Dagiti namindua a naibaw-ing',
 'doubleredirectstext' => 'Daytoy a panid ket ilistana dagiti panid nga agbaw-ing kadagiti sabsabali a baw-ing a pampanid.
@@ -2072,9 +2072,9 @@ Mapabassitmo ti pinagpakita no piliam ti kita ti listaan, ti nagan ti agar-arama
 
 # Special:Categories
 'categories' => 'Katkategoria',
-'categoriespagetext' => 'Ti sumaganad a {{PLURAL:$1|kategoria ket aglaon|a katkategoria ket aglaon}} kadagiti panid wenno midia.
+'categoriespagetext' => 'Ti sumaganad a {{PLURAL:$1|kategoria ket aglaon|katkategoria ket aglaon}} kadagiti panid wenno midia.
 [[Special:UnusedCategories|Dagiti saan a nausar a kategoria]] ket saan a maiparang ditoy.
-Kitaen met [[Special:WantedCategories|dagiti makidkiddaw a kategoria]].',
+Kitaen met [[Special:WantedCategories|dagiti makiddaw a kategoria]].',
 'categoriesfrom' => 'Ipakita dagiti kategoria a mangrugi iti:',
 'special-categories-sort-count' => 'paglalasinen babaen ti bilang',
 'special-categories-sort-abc' => 'paglalasinen nga alpabetiko',
@@ -3706,10 +3706,10 @@ Mabalinmo pay nga [[Special:EditWatchlist|usaren ti dati a panagurnos]].',
 Ti MediaWiki ket naiwarwaras nga adda ti namnama a makatulong, ngem AWAN TI ANIA MAN A GARANTIA; nga awan pay ti naibagbaga a PANAKAILAKO wenno KALAINGAN NA ITI DAYTOY A PANGGEP. Kitaen ti GNU Sapasap a Publiko a Lisensia para kadagiti adu pay a salaysay.
 
 Naka-awatka koman ti [{{SERVER}}{{SCRIPTPATH}}/COPYING kopia iti GNU Sapasap a  Publiko a Lisensia] a nairaman iti daytoy a programa; no saan, agsuratka idiay Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA wenno [//www.gnu.org/licenses/old-licenses/gpl-2.0.html basaem idiay online].',
-'version-software' => 'Naikabil a software',
+'version-software' => 'Naisaad a sopwer',
 'version-software-product' => 'Produkto',
 'version-software-version' => 'Bersion',
-'version-entrypoints' => 'Paserrekan a puntos dagiti URL',
+'version-entrypoints' => 'Pagserrekan a puntos dagiti URL',
 'version-entrypoints-header-entrypoint' => 'Pagserrekan a puntos',
 'version-entrypoints-header-url' => 'URL',
 
@@ -3742,7 +3742,7 @@ Naka-awatka koman ti [{{SERVER}}{{SCRIPTPATH}}/COPYING kopia iti GNU Sapasap a  
 * Kadawyan nga espesial a pampanid.
 * <span class="mw-specialpagerestricted">Naiparit nga espesial a pampanid.</span>
 * <span class="mw-specialpagecached">Cached nga espesial a pampanid (baka nagpaso).</span>',
-'specialpages-group-maintenance' => 'Dagiti pagsimpa a padamag',
+'specialpages-group-maintenance' => 'Dagiti padamag ti panagtaripato',
 'specialpages-group-other' => 'Sabsabali pay nga espesial a pampanid',
 'specialpages-group-login' => 'Sumrek / agaramid ti pakabilangan',
 'specialpages-group-changes' => 'Kaudian a sinukatan ken listaan',

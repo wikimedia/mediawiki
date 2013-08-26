@@ -435,7 +435,7 @@ $messages = array(
 ביטע ווארטן א ביסל צייט בעפאר איר פרובירט ווידער אריינגיין אינעם בלאט.
 
 $1',
-'pool-timeout' => 'אַריבער די צײַט וואַרטן פֿאר דער שליסונג',
+'pool-timeout' => 'אַריבער דער צײַט וואַרטן פֿאר דער שליסונג',
 'pool-queuefull' => 'ריי איז פֿול',
 'pool-errorunknown' => 'אומבאַקאַנטער פֿעלער',
 
@@ -3952,12 +3952,17 @@ $5
 
 # Limit report
 'limitreport-title' => 'פארזער פראפילירן דאטן:',
-'limitreport-cputime' => 'צײַט ניצונג CPU',
+'limitreport-cputime' => 'צײַט באניץ CPU',
 'limitreport-cputime-value' => '$1 {{PLURAL:$1|סעקונדע|סעקונדעס}}',
 'limitreport-walltime' => 'עכטע צייט ניצונג',
+'limitreport-walltime-value' => '$1 {{PLURAL:$1|סעקונדע|סעקונדעס}}',
+'limitreport-ppvisitednodes' => 'פאר־פראצעסאר באזוכן נאדן־צאל',
+'limitreport-ppgeneratednodes' => 'פאר־פראצעסאר גענערירט נאדן־צאל',
+'limitreport-postexpandincludesize' => 'טעקסט גרייס נאכן שפרייטן',
 'limitreport-postexpandincludesize-value' => '$1/$2 בייטן',
 'limitreport-templateargumentsize' => ' מוסטער פאראמעטער גרייס',
 'limitreport-templateargumentsize-value' => '$1/$2 בייטן',
 'limitreport-expansiondepth' => 'גרעסטע אויסשפרייט טיף',
+'limitreport-expensivefunctioncount' => 'צאל פזרנישע פארזער־פֿונקציעס',
 
 );

@@ -336,6 +336,7 @@ $messages = array(
 'tog-noconvertlink' => 'Desactivar la conversion dels títols',
 'tog-norollbackdiff' => 'Ometre lo diff aprèp l’utilizacion d’un revert',
 'tog-useeditwarning' => 'M’avisar quand quiti una pagina de modificacion sens publicar los cambiaments',
+'tog-prefershttps' => 'Utilizar totjorn una connexion securizada en essent connectat',
 
 'underline-always' => 'Totjorn',
 'underline-never' => 'Pas jamai',
@@ -666,6 +667,7 @@ Benlèu la supression ja es estada efectuada per qualqu’un mai.',
 'cannotdelete-title' => 'Impossible de suprimir la pagina "$1"',
 'delete-hook-aborted' => "Supression anullada per una extension.
 Cap d'explicacion es pas estada provesida.",
+'no-null-revision' => 'Impossible de crear una novèla revision voida per la pagina « $1 »',
 'badtitle' => 'Títol marrit',
 'badtitletext' => 'Lo títol de la pagina demandada es invalid, void o s’agís d’un títol interlenga o interprojècte mal ligat. Benlèu conten un o maites caractèrs que pòdon pas èsser utilizats dins los títols.',
 'perfcached' => "Las donadas seguendas son en escondedor e benlèu, son pas a jorn. Un maximum de {{PLURAL:$1|un resultat|$1 resultats}} es disponible dins l'escondedor.",
@@ -692,6 +694,8 @@ $2",
 'customjsprotected' => "Avètz pas la permission d'editar aquesta pagina JavaScript perque conten de preferéncias d’autres utilizaires.",
 'mycustomcssprotected' => 'Avètz pas lo drech de modificar aquesta pagina CSS.',
 'mycustomjsprotected' => 'Avètz pas lo drech de modificar aquesta pagina JavaScript.',
+'myprivateinfoprotected' => 'Avètz pas los dreches per modificar vòstras informacions personalas.',
+'mypreferencesprotected' => 'Avètz pas los dreches per modificar vòstras preferéncias.',
 'ns-specialprotected' => 'Las paginas dins l’espaci de noms « {{ns:special}} » pòdon pas èsser modificadas',
 'titleprotected' => "Aqueste títol es estat protegit a la creacion per [[User:$1|$1]].
 Lo motiu avançat es « ''$2'' ».",
@@ -718,6 +722,7 @@ Doblidetz pas de modificar [[Special:Preferences|vòstras preferéncias per {{SI
 'yourname' => "Nom d'utilizaire :",
 'userlogin-yourname' => "Nom d'utilizaire",
 'userlogin-yourname-ph' => "Picatz vòstre nom d'utilizaire",
+'createacct-another-username-ph' => "Picar lo nom d'utilizaire",
 'yourpassword' => 'Vòstre senhal :',
 'userlogin-yourpassword' => 'Senhal',
 'userlogin-yourpassword-ph' => 'Picatz vòstre senhal',
@@ -751,9 +756,11 @@ Doblidetz pas de modificar [[Special:Preferences|vòstras preferéncias per {{SI
 'helplogin-url' => 'Help:Connexion',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Ajuda a la connexion]]',
 'createacct-join' => 'Entratz vòstras informacions çaijós.',
+'createacct-another-join' => 'Picar las informacions del novèl compte çaijós.',
 'createacct-emailrequired' => 'Adreça electronica',
 'createacct-emailoptional' => 'Adreça de corrièr electronic (facultativa)',
 'createacct-email-ph' => 'Entratz vòstra adreça de corrièr electronic',
+'createacct-another-email-ph' => "Picar l'adreça de corrièr electronic",
 'createaccountmail' => 'Utilizar un senhal aleatòri temporari e lo mandar a l’adreça de corrièl especificada',
 'createacct-realname' => 'Nom vertadièr (facultatiu)',
 'createaccountreason' => 'Motiu :',
@@ -762,6 +769,7 @@ Doblidetz pas de modificar [[Special:Preferences|vòstras preferéncias per {{SI
 'createacct-captcha' => 'Contraròtle de seguretat',
 'createacct-imgcaptcha-ph' => 'Entratz lo tèxte que vesètz çaisús',
 'createacct-submit' => 'Creatz vòstre compte',
+'createacct-another-submit' => 'Crear un autre compte',
 'createacct-benefit-heading' => '{{SITENAME}} es escrich per de monde coma vos.',
 'createacct-benefit-body1' => '{{PLURAL:$1|cambiament|cambiaments}}',
 'createacct-benefit-body2' => '{{PLURAL:$1|pagina|paginas}}',
@@ -832,6 +840,8 @@ Esperatz $1 abans d’ensajar tornarmai.',
 'login-abort-generic' => 'Vòstra temptativa de connexion a fracassat',
 'loginlanguagelabel' => 'Lenga: $1',
 'suspicious-userlogout' => 'Vòstra demanda de desconnexion es estada refusada perque sembla qu’es estada mandada per un navigador copat o la mesa en escondedor d’un proxy.',
+'createacct-another-realname-tip' => 'Lo nom vertadièr es opcional.
+Se decidissètz de lo provesir, serà utilizat per atribuir a l’utilizaire sos trabalhs.',
 
 # Email sending
 'php-mail-error-unknown' => 'Error desconeguda dins la foncion mail() de PHP.',
@@ -900,9 +910,11 @@ Senhal temporari: $2',
 
 # Special:ResetTokens
 'resettokens' => 'Reïnicializar los getons',
+'resettokens-no-tokens' => 'I a pas cap de geton de reïnicializar.',
 'resettokens-legend' => 'Reïnicializar los getons',
 'resettokens-tokens' => 'Getons :',
 'resettokens-token-label' => '$1 (valor actuala : $2)',
+'resettokens-watchlist-token' => 'Geton pel flux (Atom/RSS) web de [[Special:Watchlist|modificacions de paginas de vòstra lista de seguiment]]',
 'resettokens-done' => 'Getons reïnicializats.',
 'resettokens-resetbutton' => 'Reïnicializar los getons seleccionats',
 
@@ -1467,7 +1479,9 @@ Deu aver, al maximum $1 caractèr{{PLURAL:$1||s}}.',
 'gender-unknown' => "M'agrada mai sens detalh",
 'gender-male' => 'Modifica de pagina del wiki',
 'gender-female' => 'Modifica de paginas del wiki',
-'prefs-help-gender' => "Opcional : utilizat pels acòrdis dins l'interfàcia del logicial. Aquesta informacion serà publica.",
+'prefs-help-gender' => 'Definir aquesta preferéncia es facultatiu.
+Aqueste logicial utiliza sa valor per s’adreçar a vos e vos mencionar als autres en utilizant lo bon genre gramatical.
+Aquesta informacion serà publica.',
 'email' => 'Corrièr electronic',
 'prefs-help-realname' => "(facultatiu) : se l'especificatz, serà utilizat per vos atribuir vòstras contribucions.",
 'prefs-help-email' => 'L’adreça de corrièr electronic es facultativa mas vos permet de reçaupre lo senhal se lo doblidatz.
@@ -1489,6 +1503,7 @@ Tanben podètz causir de permetre a d’autres de vos contactar per vòstra pagi
 'prefs-displayrc' => "Opcions d'afichatge",
 'prefs-displaysearchoptions' => "Opcions d'afichatge",
 'prefs-displaywatchlist' => "Opcions d'afichatge",
+'prefs-tokenwatchlist' => 'Geton',
 'prefs-diffs' => 'Diferéncias',
 
 # User preference: email validation using jQuery
@@ -1566,6 +1581,7 @@ Tanben podètz causir de permetre a d’autres de vos contactar per vòstra pagi
 'right-writeapi' => "Utilizar l'API per modificar lo wiki",
 'right-delete' => 'Suprimir de paginas',
 'right-bigdelete' => "Suprimir de paginas amb d'istorics grands",
+'right-deletelogentry' => 'Suprimir e restablir una entrada particulara del jornal',
 'right-deleterevision' => "Suprimir e restablir una revision especifica d'una pagina",
 'right-deletedhistory' => 'Veire las entradas dels istorics suprimits mas sens lor tèxte',
 'right-deletedtext' => 'Veire lo tèxte suprimit e las diferéncias entre las versions suprimidas',
@@ -1581,6 +1597,7 @@ Tanben podètz causir de permetre a d’autres de vos contactar per vòstra pagi
 'right-unblockself' => 'Se desblocar se-meteis',
 'right-protect' => 'Modificar los nivèls de proteccion e modificar las paginas protegidas en cascada',
 'right-editprotected' => 'Modificar las paginas protegidas amb « {{int:protect-level-sysop}} »',
+'right-editsemiprotected' => 'Modificar las paginas protegidas amb « {{int:protect-level-autoconfirmed}} »',
 'right-editinterface' => "Modificar l'interfàcia d'utilizaire",
 'right-editusercssjs' => "Modificar los fichièrs CSS e JS d'autres utilizaires",
 'right-editusercss' => "Modificar los fichièrs CSS d'autres utilizaires",
@@ -1588,6 +1605,9 @@ Tanben podètz causir de permetre a d’autres de vos contactar per vòstra pagi
 'right-editmyusercss' => 'Modificar vòstres pròpris fichièrs CSS utilizaire',
 'right-editmyuserjs' => 'Modificar vòstres pròpris fichièrs JavaScript utilizaire',
 'right-viewmywatchlist' => 'Afichar vòstra pròpria lista de seguiment',
+'right-viewmyprivateinfo' => 'Veire vòstras donadas personalas (exemple adreça, nom vertadièr)',
+'right-editmyprivateinfo' => 'Modificar vòstras donadas personalas (exemple adreça, nom vertadièr)',
+'right-editmyoptions' => 'Modificar vòstras preferéncias',
 'right-rollback' => "Revocacion rapida del darrièr utilizaire qu'a modificat una pagina particulara",
 'right-markbotedits' => 'Marcar los cambiaments revocats coma de cambiaments que son estats fachs per de robòts',
 'right-noratelimit' => 'Pas afectat pels limits de taus',
@@ -1638,6 +1658,7 @@ Tanben podètz causir de permetre a d’autres de vos contactar per vòstra pagi
 'action-suppressionlog' => 'veire aqueste jornal privat',
 'action-block' => 'blocar aqueste utilizaire a l’edicion',
 'action-protect' => 'modificar los nivèls de proteccion per aquesta pagina',
+'action-rollback' => "anullar rapidament las modificacions del darrièr utilizaire qu'a modificat una pagina donada",
 'action-import' => 'importar aquesta pagina a partir d’un autre wiki',
 'action-importupload' => 'importar aquesta pagina e partir de l’impòrt d’un fichièr',
 'action-patrol' => 'marcar la modificacion dels autres coma patrolhada',
@@ -2227,7 +2248,8 @@ Necessitan al mens un domeni de nivèl superior, per exemple « *.org ».<br />
 'listgrouprights' => "Dreches dels gropes d'utilizaires",
 'listgrouprights-summary' => "Aquesta pagina conten una tièra de gropes definits sus aqueste wiki e mai los dreches d'accès qu'i son associats.
 I pòt aver [[{{MediaWiki:Listgrouprights-helppage}}|d'entresenhas complementàrias]] a prepaus dels dreches.",
-'listgrouprights-key' => '*<span class="listgrouprights-granted">Drech autrejat</span>
+'listgrouprights-key' => 'Legenda :
+*<span class="listgrouprights-granted">Drech autrejat</span>
 *<span class="listgrouprights-revoked">Drech revocat</span>',
 'listgrouprights-group' => 'Grop',
 'listgrouprights-rights' => 'Dreches associats',
@@ -2328,11 +2350,10 @@ per modificar vòstra lista de seguiment.',
 'enotif_anon_editor' => 'utilizaire anonim $1',
 'enotif_body' => 'Car(a) $WATCHINGUSERNAME,
 
-La pagina « $PAGETITLE » de {{SITENAME}} es estada $CHANGEDORCREATED lo $PAGEEDITDATE per « $PAGEEDITOR », visitatz $PAGETITLE_URL per visualizar la version actuala.
+$PAGEINTRO $NEWPAGE
 
-$NEWPAGE
-
-Resumit del contributor : $PAGESUMMARY $PAGEMINOREDIT
+Resumit del contributor : $PAGESUMMARY 
+$PAGEMINOREDIT
 
 Contactatz aqueste contributor :
 corrièl : $PAGEEDITOR_EMAIL
@@ -2344,6 +2365,8 @@ Podètz tanben reïnicializar las bandièras de notificacion per totas las pagin
              Vòstre sistèma de notificacion de {{SITENAME}}
 
 --
+Pour modificar los paramètres de notificacion per corrièl, visitatz {{canonicalurl:{{#special:Preferences}}}}
+
 Per modificar los paramètres de vòstra lista de seguiment, visitatz
 {{canonicalurl:{{#special:EditWatchlist}}}}
 
@@ -2403,7 +2426,7 @@ qualqu’un mai ja a modificat o revocat la pagina.
 La darrièra modificacion es estada efectuada per [[User:$3|$3]] ([[User talk:$3|Discutir]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
 'editcomment' => "Lo resumit de la modificacion èra : « ''$1'' ».",
 'revertpage' => 'Anullacion de las modificacions de [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussion]]) cap a la darrièra version de [[User:$1|$1]]',
-'revertpage-nouser' => 'Revocacion de las modificacions per (nom d’utilizaire suprimit) a la darrièra version per [[User:$1|$1]]',
+'revertpage-nouser' => 'Revocacion de las modificacions per un d’utilizaire amagat a la darrièra version per [[User:$1|$1]]',
 'rollback-success' => 'Anullacion de las modificacions de $1 ; retorn a la version de $2.',
 
 # Edit tokens
@@ -2615,7 +2638,7 @@ Donatz çaijós un motiu precís (per exemple en citant las paginas que son esta
 'ipb-confirm' => 'Confirmar lo blocatge',
 'badipaddress' => "L'adreça IP es incorrècta",
 'blockipsuccesssub' => 'Blocatge capitat',
-'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] es estat blocat.<br />
+'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] es esta{{GENDER:||t|(da)}} bloca{{GENDER:||t|(da)}}.<br />
 Podètz consultar la [[Special:BlockList|lista dels comptes e de las adreças IP blocats]].',
 'ipb-edit-dropdown' => 'Modificar los motius de blocatge per defaut',
 'ipb-unblock-addr' => 'Desblocar $1',
@@ -2666,7 +2689,9 @@ La rason balhada per $1 es : « $2 ».',
 'blocklog-showsuppresslog' => 'Aqueste utilizaire es estat blocat e amagat precedentament. Lo jornal de las supressions es disponible çaijós :',
 'blocklogentry' => 'a blocat « [[$1]] » - durada : $2 $3',
 'reblock-logentry' => 'a modificat los parametratge de blocatge per [[$1]] amb una durada d’expiracion de $2 $3',
-'blocklogtext' => "Aquò es l'istoric dels blocatges e desblocatges dels utilizaires. Las adreças IP automaticament blocadas son pas listadas. Consultatz la [[Special:BlockList|lista dels utilizaires blocats]] per veire qui es actualament efectivament blocat.",
+'blocklogtext' => "Aquò es l'istoric dels blocatges e desblocatges dels utilizaires.
+Las adreças IP automaticament blocadas son pas listadas.
+Consultatz la [[Special:BlockList|lista dels utilizaires blocats]] per veire los bandiments e blocatges actualament en cors.",
 'unblocklogentry' => 'a desblocat « $1 »',
 'block-log-flags-anononly' => 'utilizaires anonims solament',
 'block-log-flags-nocreate' => 'creacion de compte interdicha',
@@ -2729,7 +2754,7 @@ Doblidetz pas de la desvarrolhar quand auretz acabat vòstra operacion de manten
 Notatz que la pagina serà '''pas''' renomada s'existís ja una pagina amb lo novèl títol, levat se aquesta darrièra a un istoric de modificacions verge e es una simpla redireccion. Aquò permet de renomenar una pagina cap a sa posicion d'origina se lo desplaçament s'avera erronèu.
 
 '''ATENCION !'''
-Aquò pòt provocar un cambiament radical e imprevist per una pagina consultada frequentament. Asseguratz-vos de n'aver comprés las consequéncias abans de contunhar.",
+Aquò pòt provocar un cambiament radical e imprevist per una pagina consultada frequentament ; asseguratz-vos de n'aver comprés las consequéncias abans de contunhar.",
 'movepagetalktext' => "La pagina de discussion associada, se presenta, serà automaticament desplaçada amb ''' levat se :'''
 *Desplaçatz una pagina cap a un autre espaci,
 *Una pagina de discussion ja existís amb lo nom novèl, o
@@ -2885,6 +2910,7 @@ Salvatz-lo sus vòstre disc dur puèi importatz-lo aicí.",
 'import-upload' => "Impòrt d'un fichier XML",
 'import-token-mismatch' => 'Pèrda de las donadas de sesilha. Tornatz ensajar.',
 'import-invalid-interwiki' => "Impossible d'importar dempuèi lo wiki especificat.",
+'import-options-wrong' => '{{PLURAL:$2|Marrida opcion|Marridas opcions}} : <nowiki>$1</nowiki>',
 
 # Import log
 'importlogpage' => 'Istoric de las importacions de paginas',
@@ -3861,7 +3887,8 @@ Ensajatz la previsualizacion normala.',
 'logentry-move-move' => '$1  {{GENDER:$2|a deplaçat}} la pagina $3 cap a $4',
 'logentry-move-move-noredirect' => '$1 {{GENDER:$2|a deplaçat}} la pagina $3 cap a $4 sens daissar cap de redireccion',
 'logentry-move-move_redir' => '$1 {{GENDER:$2|a deplaçat}} la pagina $3 cap a $4 per dessús una redireccion',
-'logentry-move-move_redir-noredirect' => '$1 a deplaçat la pagina $3 cap a $4 per dessús una redireccion sens daissar cap de redireccion',
+'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|a desplaçat}} la pagina $3 cap a $4 per dessús una redireccion sens daissar cap de redireccion',
+'logentry-patrol-patrol' => '$1 {{GENDER:$2|a marcat}} la revision $4 de la pagina $3 coma relegida',
 'logentry-newusers-newusers' => 'Lo compte utilizaire $1 {{GENDER:$2|es estat creat}}',
 'logentry-newusers-create' => "Lo compte d'utilizaire $1 {{GENDER:$2|es estat creat}}",
 'logentry-newusers-create2' => "Lo compte d'utilizaire $3 {{GENDER:$2|es estat creat}} per $1",
@@ -3917,5 +3944,14 @@ Ensajatz la previsualizacion normala.',
 'duration-decades' => '$1 decenni{{PLURAL:$1||s}}',
 'duration-centuries' => '$1 sègle{{PLURAL:$1||s}}',
 'duration-millennia' => '$1 milleni{{PLURAL:$1||s}}',
+
+# Limit report
+'limitreport-title' => 'Donadas d’optimizacion de l’analisador :',
+'limitreport-cputime' => 'Temps CPU d’utilizacion',
+'limitreport-cputime-value' => '$1 {{PLURAL:$1|segonda|segondas}}',
+'limitreport-walltime' => 'Temps real d’utilizacion',
+'limitreport-walltime-value' => '$1 {{PLURAL:$1|segonda|segondas}}',
+'limitreport-postexpandincludesize-value' => '$1/$2 octets',
+'limitreport-templateargumentsize-value' => '$1/$2 octets',
 
 );

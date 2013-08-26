@@ -2259,8 +2259,8 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'pageswithprop-text' => '이 문서는 특정 문서 속성을 사용한 문서를 나타냅니다.',
 'pageswithprop-prop' => '속성 이름:',
 'pageswithprop-submit' => '가기',
-'pageswithprop-prophidden-long' => '숨겨진 긴 텍스트 속성 값 ($1 킬로바이트)',
-'pageswithprop-prophidden-binary' => '숨겨진 이진 속성 값 ($1 킬로바이트)',
+'pageswithprop-prophidden-long' => '숨겨진 긴 텍스트 속성 값 ($1)',
+'pageswithprop-prophidden-binary' => '숨겨진 이진 속성 값 ($1)',
 
 'doubleredirects' => '이중 넘겨주기 목록',
 'doubleredirectstext' => '이 문서는 다른 넘겨주기 문서로 넘겨주고 있는 문서의 목록입니다.

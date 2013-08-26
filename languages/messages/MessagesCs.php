@@ -2209,8 +2209,8 @@ Stránka je považována za rozcestník, pokud používá některou ze šablon o
 'pageswithprop-text' => 'Tato stránka obsahuje seznam stránek, které používají zadanou vlastnost stránky.',
 'pageswithprop-prop' => 'Název vlastnosti:',
 'pageswithprop-submit' => 'Provést',
-'pageswithprop-prophidden-long' => 'dlouhá hodnota textové vlastnosti skryta ($1 KB)',
-'pageswithprop-prophidden-binary' => 'dlouhá hodnota binární vlastnosti skryta ($1 KB)',
+'pageswithprop-prophidden-long' => 'dlouhá hodnota textové vlastnosti skryta ($1)',
+'pageswithprop-prophidden-binary' => 'hodnota binární vlastnosti skryta ($1)',
 
 'doubleredirects' => 'Dvojitá přesměrování',
 'doubleredirectstext' => 'Na této stránce je seznam přesměrování vedoucích na další přesměrování.

@@ -1723,8 +1723,12 @@ Um trupulleikin heldur fram, set teg so vinarliga í samband við ein [[Special:
 'lockmanager-fail-acquirelock' => 'Kundi ikki fáa lás til "$1".',
 'lockmanager-fail-openlock' => 'Kundi ikki læsa upp fíluna til: "$1".',
 'lockmanager-fail-releaselock' => 'Kundi ikki læsa upp læsingina fyri: "$1".',
+'lockmanager-fail-db-release' => 'Kundi ikki loysa lásini í dátagrunninum $1.',
+'lockmanager-fail-svr-acquire' => 'Kundi ikki skaffa lás til dátagrunnin $1.',
+'lockmanager-fail-svr-release' => 'Kundi ikki loysa lásini í ambætaranum $1.',
 
 # Special:UploadStash
+'uploadstash' => 'Legg út stash',
 'uploadstash-refresh' => 'Uppfrískað listan við fílum',
 
 # img_auth script messages
@@ -1910,7 +1914,7 @@ Ein síða verður sædd sum ein síða við fleiri týdningum, um hon brúkar e
 'pageswithprop-text' => 'Henda síðan vísir síður ein lista yvir síður, sum hava ein serstakan síðueginleika.',
 'pageswithprop-prop' => 'Navn á eginleika:',
 'pageswithprop-submit' => 'Far',
-'pageswithprop-prophidden-long' => 'langur tekstur eginleikavirði er fjalt ($1 kilobytes)',
+'pageswithprop-prophidden-long' => 'langur tekstur eginleikavirði er fjalt ($1)',
 
 'doubleredirects' => 'Tvífaldað ávísing',
 'doubleredirectstext' => 'Henda síða gevur yvirlit yvir síður, sum vísa víðari til aðrar víðaristillaðar síður.
@@ -2596,6 +2600,11 @@ Grein við navninum "[[:$1]]" finst longu. Ynskir tú at strika hana til tess at
 'immobile-target-namespace' => 'Tað ber ikki til at flyta síður inn til navnaøkið "$1"',
 'immobile-target-namespace-iw' => 'Tú kanst ikki flyta eina síðu til eina interwiki leinkju.',
 'immobile-source-page' => 'Henda síðan kann ikki flytast.',
+'imagenocrossnamespace' => 'Fílur kunnu ikki flytast til eitt navnarúm sum ikki inniheldur fílur',
+'nonfile-cannot-move-to-file' => 'Kann ikki flyta ikki-fílur til fílunavnarúmið',
+'imagetypemismatch' => 'Tann nýggja fíluendingin samsvarar ikki við fíluslagið',
+'imageinvalidfilename' => 'Ynskta fílunavnið er ikki galdandi',
+'fix-double-redirects' => 'Dagfør snarvegir (umdirigeringar) sum føra til tað upprunaliga heitið',
 'move-leave-redirect' => 'Lat eina umstilling vera eftir',
 'protectedpagemovewarning' => "'''Ávaring:''' Henda síðan er blivin friðað, so at einans brúkarar við umboðsstjóra heimildum kunnu flyta hana.
 Tann seinasti loggurin er goymdur niðanfyri til ávísingar:",
@@ -2660,6 +2669,7 @@ Allar transwiki innflytingar handlingar verða goymdar í [[Special:Log/import|i
 'import-interwiki-history' => 'Avrita alla versjónssøguna fyri hesa síðu',
 'import-interwiki-templates' => 'Tak allar fyrimyndir við',
 'import-interwiki-submit' => 'Innflyta',
+'import-interwiki-namespace' => 'Innflyt til navnarúm:',
 'import-upload-filename' => 'Fílunavn',
 'import-comment' => 'Viðmerking:',
 'importtext' => "Útflyt fíluna frá kelduwiki'ini við at nýta [[Special:Export|útflutningstólið]].
@@ -2669,12 +2679,18 @@ Goym hana á tínari teldu og legg hana so út her.",
 'importnopages' => 'Ongar síður eru at innflyta.',
 'imported-log-entries' => 'Innflutti $1 {{PLURAL:$1|loggpost|loggpostar}}.',
 'importfailed' => 'Innflutningur miseydnaður: $1',
+'importunknownsource' => 'Ókent slag av innflutningskeldu',
+'importcantopen' => 'Innflutningsfíla kundi ikki latast upp',
 'importbadinterwiki' => 'Skeiv interwiki leinkja',
 'importnotext' => 'Tómt ella ongin tekstur',
 'importsuccess' => 'Innflutningur er liðugur!',
+'importnofile' => 'Ongin fíla at innflyta varð løgd út.',
+'importuploaderrorsize' => 'Útleggjan av innflutningsfílu miseydnaðist.
+Fílan er størri enn mest loyvda upload-støddin.',
 'import-noarticle' => 'Ongin síða at innflyta!',
 'import-nonewrevisions' => 'Allar versjónir eru longu innfluttar.',
 'xml-error-string' => '$1 á linju $2, rekkju $3 (byte $4): $5',
+'import-upload' => 'Legg út XML dáta',
 'import-token-mismatch' => 'Misti setunardáta (sesjónsdáta).
 Vinarliga royn aftur.',
 'import-invalid-interwiki' => 'Tað ber ikki til at innflyta frá nevndu wiki.',
@@ -2684,10 +2700,13 @@ Vinarliga royn aftur.',
 # Import log
 'importlogpage' => 'Innflutningsloggur.',
 'import-logentry-upload-detail' => '$1 {{PLURAL:$1|versjón|versjónir}}',
+'import-logentry-interwiki' => '$1 varð flutt millum wikiir',
+'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|versjón|versjónir}} frá $2',
 
 # JavaScriptTest
 'javascripttest' => 'Royndarkoyring av JavaScript',
 'javascripttest-title' => 'Koyrir $1 royndir',
+'javascripttest-pagetext-noframework' => 'Henda síðan er løgd av til at koyra JavaScript royndir.',
 'javascripttest-pagetext-skins' => 'Vel eina útsjónd at koyra royndirnar við:',
 
 # Tooltip help for the actions
@@ -2940,6 +2959,9 @@ Onnur metadáta verða fjald sum standard.
 'exif-artist' => 'Rithøvundur',
 'exif-copyright' => 'Upphavsrætt haldari',
 'exif-usercomment' => 'Viðmerkingar frá brúkarum',
+'exif-exposuretime-format' => '$1 sek ($2)',
+'exif-flash' => 'Blits',
+'exif-jpegfilecomment' => 'JPEG-fíluviðmerking',
 'exif-keywords' => 'Lyklaorð',
 'exif-worldregioncreated' => 'Heimsregión har myndin varð tikin',
 'exif-countrycreated' => 'Landið har myndin varð tikin',
@@ -2947,11 +2969,92 @@ Onnur metadáta verða fjald sum standard.
 'exif-provinceorstatecreated' => 'Landslutur ella lutastatur, sum myndin varð tikin í',
 'exif-citycreated' => 'Býurin sum myndin varð tikin í',
 'exif-sublocationcreated' => 'Býarpartur av býnum, har myndin varð tikin',
+'exif-countrydest' => 'Landið víst',
+'exif-countrycodedest' => 'Landakota verður víst',
+'exif-citydest' => 'Vísir bý',
+'exif-sublocationdest' => 'Býarpartur vístur',
+'exif-objectname' => 'Stutt heiti',
 'exif-headline' => 'Yvirskrift',
 'exif-source' => 'Kelda',
+'exif-writer' => 'Høvundur',
 'exif-languagecode' => 'Mál',
+'exif-iimversion' => 'IIM-versjón',
 'exif-iimcategory' => 'Bólkur',
+'exif-iimsupplementalcategory' => 'Aðrir bólkar',
+'exif-datetimeexpires' => 'Ikki brúka eftir',
 'exif-datetimereleased' => 'Útgivið hin',
+'exif-lens' => 'Linsa brúkt',
+'exif-serialnumber' => 'Seriunummar á myndatóli',
+'exif-cameraownername' => 'Eigari av myndatóli',
+'exif-copyrighted' => 'Upphavsrættarstøða:',
+'exif-copyrightowner' => 'Eigari av upphavsrættinum',
+'exif-usageterms' => 'Brúkstreytir',
+'exif-personinimage' => 'Avmyndaður persónur',
+'exif-originalimageheight' => 'Hæddin á myndini, áðrenn hon varð skorin',
+'exif-originalimagewidth' => 'Breiddin á myndini, áðrenn hon varð skorin',
+
+# Exif attributes
+'exif-compression-1' => 'Ikki komprimerað',
+
+'exif-copyrighted-true' => 'Vard av upphavrætti',
+
+'exif-unknowndate' => 'Ókendur dagur',
+
+'exif-orientation-1' => 'Normalt',
+
+'exif-subjectdistance-value' => '$1 metrar',
+
+'exif-meteringmode-0' => 'Ókent',
+'exif-meteringmode-1' => 'Miðal',
+
+'exif-lightsource-1' => 'Dagsljós',
+'exif-lightsource-9' => 'Gott veður',
+'exif-lightsource-10' => 'Skýggjað veður',
+'exif-lightsource-11' => 'Skuggi',
+
+'exif-scenecapturetype-1' => 'Landsskap',
+'exif-scenecapturetype-2' => 'Portrett',
+
+'exif-contrast-0' => 'Vanligt',
+'exif-contrast-1' => 'Bleytt',
+'exif-contrast-2' => 'Hart',
+
+'exif-saturation-0' => 'Vanligt',
+
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '$1 {{PLURAL:$1|metur|metrar}} yvir havið',
+'exif-gpsaltitude-below-sealevel' => '$1 {{PLURAL:$1|metur|metrar}} undir havinum',
+
+# Pseudotags used for GPSSpeedRef
+'exif-gpsspeed-k' => 'Kilometrar pr. tíma',
+'exif-gpsspeed-m' => 'Míl pr. tíma',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilometrar',
+'exif-gpsdestdistance-m' => 'Míl',
+'exif-gpsdestdistance-n' => 'Sjómíl',
+
+'exif-gpsdop-excellent' => 'Einastandandi ($1)',
+'exif-gpsdop-good' => 'Gott ($1)',
+'exif-gpsdop-fair' => 'Hampuligt ($1)',
+'exif-gpsdop-poor' => 'Vánaligt ($1)',
+
+'exif-objectcycle-a' => 'Bert um morgunin',
+'exif-objectcycle-p' => 'Bert um kvøldið',
+'exif-objectcycle-b' => 'Bæði morgun og kvøld',
+
+'exif-iimcategory-edu' => 'Útbúgving',
+'exif-iimcategory-evn' => 'Umhvørvi',
+'exif-iimcategory-hth' => 'Heilsa',
+'exif-iimcategory-lif' => 'Lívsstílur og frítíð',
+'exif-iimcategory-pol' => 'Politikkur',
+'exif-iimcategory-rel' => 'Átrúnaður og trúgv',
+'exif-iimcategory-sci' => 'Vísund og tøkni',
+'exif-iimcategory-soi' => 'Sosialmál',
+'exif-iimcategory-spo' => 'Ítróttur',
+'exif-iimcategory-wea' => 'Veðrið',
+
+'exif-urgency-normal' => 'Vanligt ($1)',
 
 # External editor support
 'edit-externally' => 'Rætta hesa fílu við eksternari applikatión',
@@ -2987,12 +3090,21 @@ Hendan váttanarkoda fer úr gildi tann $4.',
 # action=purge
 'confirm_purge_button' => 'Í lagi',
 
+# action=watch/unwatch
+'confirm-watch-button' => 'Í lagi',
+'confirm-watch-top' => 'Legg hesa síðuna til tín eftirlitslista?',
+'confirm-unwatch-button' => 'Í lagi',
+'confirm-unwatch-top' => 'Taka hesa síðuna burtur frá tínum eftirlitslista?',
+
 # Multipage image navigation
 'imgmultipageprev' => '← fyrrverandi síða',
 'imgmultipagenext' => 'næsta síða →',
 'imgmultigo' => 'Far!',
+'imgmultigoto' => 'Far til síðu $1',
 
 # Table pager
+'ascending_abbrev' => 'upp',
+'descending_abbrev' => 'nið',
 'table_pager_next' => 'Næsta síða',
 'table_pager_prev' => 'Fyrrverandi síða',
 'table_pager_first' => 'Fyrsta síða',
@@ -3004,12 +3116,20 @@ Hendan váttanarkoda fer úr gildi tann $4.',
 
 # Auto-summaries
 'autosumm-blank' => 'Slettaði alt innihald á síðuni',
+'autosumm-replace' => 'Innihaldið á síðuni bleiv skift út við "$1"',
+'autoredircomment' => 'Víðaristillaði síðuna til [[$1]]',
 'autosumm-new' => 'Stovnaði síðu við "$1"',
+
+# Live preview
+'livepreview-loading' => 'Innlesur...',
 
 # Watchlist editor
 'watchlistedit-normal-title' => 'Rætta eftirlit',
 'watchlistedit-raw-title' => 'Rætta rátt eftirlit',
 'watchlistedit-raw-legend' => 'Rætta rátt eftirlit',
+'watchlistedit-raw-titles' => 'Heiti:',
+'watchlistedit-raw-submit' => 'Dagfør eftirlitslistan',
+'watchlistedit-raw-done' => 'Tín eftirlitslisti varð dagførdur.',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Vís viðkomandi broytingar',
@@ -3021,13 +3141,45 @@ Hendan váttanarkoda fer úr gildi tann $4.',
 
 # Special:Version
 'version' => 'Útgáva',
+'version-specialpages' => 'Serstakar síður',
+'version-skins' => 'Útsjóndir',
+'version-other' => 'Annað',
 'version-hooks' => 'Krókur',
 'version-hook-name' => 'Krókurnavn',
 'version-version' => '(Útgáva $1)',
+'version-license' => 'Lisensur',
+'version-poweredby-credits' => "Henda wiki verður rikin av '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-others' => 'onnur',
+'version-poweredby-translators' => 'translatewiki.net týðarar',
+'version-credits-summary' => 'Vit ynskja at takka fylgjandi persónum fyri teirra íkast til [[Special:Version|MediaWiki]].',
 'version-software-version' => 'Útgáva',
+
+# Special:Redirect
+'redirect-submit' => 'Far',
+'redirect-value' => 'Virði:',
+'redirect-user' => 'Brúkara ID',
+'redirect-revision' => 'Síðuversjón',
+'redirect-file' => 'Fílunavn',
+'redirect-not-exists' => 'Virði ikki funnið',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch-filename' => 'Fílunavn:',
+'fileduplicatesearch-submit' => 'Leita',
+'fileduplicatesearch-info' => '$1 × $2 pixel<br />Fílustødd: $3<br />MIME slag: $4',
 
 # Special:SpecialPages
 'specialpages' => 'Serligar síður',
+'specialpages-group-other' => 'Aðrar serstakar síður',
+'specialpages-group-login' => 'Rita inn / stovna konto',
+'specialpages-group-pages' => 'Síðulistar',
+'specialpages-group-pagetools' => 'Síðutól',
+'specialpages-group-wiki' => 'Dáta og tól',
+'specialpages-group-redirects' => 'Víðaristillar serstakar síður',
+'specialpages-group-spam' => 'Spamm-tól',
+
+# Special:BlankPage
+'blankpage' => 'Tóm síða',
+'intentionallyblankpage' => 'Henda síðan er tóm við vilja.',
 
 # External image whitelist
 'external_image_whitelist' => "↓  #Lat hesa linjuna vera júst sum hon er<pre>
@@ -3041,12 +3193,20 @@ Hendan váttanarkoda fer úr gildi tann $4.',
 
 # Special:Tags
 'tag-filter' => '[[Special:Tags|Tag]] filtur:',
+'tag-filter-submit' => 'Filtur',
+'tags-title' => 'Lyklaorð',
 'tags-edit' => 'rætta',
 'tags-hitcount' => '$1 {{PLURAL:$1|broyting|broytingar}}',
 
 # Special:ComparePages
 'compare-page1' => 'Síða 1',
 'compare-page2' => 'Síða 2',
+'compare-rev1' => 'Versjón 1',
+'compare-rev2' => 'Versjón 2',
+'compare-submit' => 'Samanber',
+
+# Database error messages
+'dberr-header' => 'Henda wikiin hevur ein trupulleika',
 
 # New logging system
 'rightsnone' => '(ongin)',

@@ -242,6 +242,7 @@ $messages = array(
 'tog-noconvertlink' => 'Lumpuhkan penukaran tajuk pautan',
 'tog-norollbackdiff' => 'Abaikan perbezaan selepas melakukan pengunduran suntingan.',
 'tog-useeditwarning' => 'Beri saya amaran apabila saya meninggalkan sesebuah laman penyuntingan tanpa menyimpan perubahan.',
+'tog-prefershttps' => 'Sentiasa gunakan sambungan terlindung apabila log masuk',
 
 'underline-always' => 'Sentiasa',
 'underline-never' => 'Jangan',
@@ -745,10 +746,12 @@ Anda boleh log masuk dan tukar kata laluan anda sekarang.
 Sila abaikan mesej ini jika anda tidak meminta untuk membuka akaun tersebut.',
 'usernamehasherror' => 'Nama pengguna tidak boleh memiliki aksara cincangan',
 'login-throttled' => 'Anda telah mencuba log masuk berulang kali.
-Sila tunggu sebentar dan cuba lagi.',
+Sila tunggu $1 dan cuba lagi.',
 'login-abort-generic' => 'Log masuk anda tidak berjaya, dan terpaksa dibatalkan',
 'loginlanguagelabel' => 'Bahasa: $1',
 'suspicious-userlogout' => 'Permintaan anda untuk log keluar ditolak kerana ia kelihatan seperti dihantar oleh pelayar rosak atau proksi pengagregatan.',
+'createacct-another-realname-tip' => 'Nama sebenar adalah tidak wajib.
+Jika anda memilih untuk menyatakannya, ini akan digunakan untuk memberikan atribusi kepada pengguna atas sumbangan mereka.',
 
 # Email sending
 'php-mail-error-unknown' => 'Ralat tak diketahui dalam fungsi mail() PHP',
@@ -764,7 +767,7 @@ Sila tunggu sebentar dan cuba lagi.',
 'newpassword' => 'Kata laluan baru:',
 'retypenew' => 'Ulangi kata laluan baru:',
 'resetpass_submit' => 'Tetapkan kata laluan dan log masuk',
-'changepassword-success' => 'Kata laluan anda ditukar dengan jayanya! Sila tunggu...',
+'changepassword-success' => 'Kata laluan anda berjaya ditukar!',
 'resetpass_forbidden' => 'Kata laluan tidak boleh ditukar',
 'resetpass-no-info' => 'Anda hendaklah log masuk terlebih dahulu untuk mencapai laman ini secara terus.',
 'resetpass-submit-loggedin' => 'Tukar kata laluan',
@@ -826,7 +829,7 @@ Anda harus melakukannya jika anda tanpa sengaja mengongsinya dengan sesiapa atau
 'resettokens-legend' => 'Set semula token',
 'resettokens-tokens' => 'Token:',
 'resettokens-token-label' => '$1 (nilai semasa: $2)',
-'resettokens-watchlist-token' => 'Token suapan web senarai pantau',
+'resettokens-watchlist-token' => 'Token untuk suapan sesawang (Atom/RSS) bagi [[Special:Watchlist|perubahan pada halaman dalam senarai pantau anda]]',
 'resettokens-done' => 'Token diset semula.',
 'resettokens-resetbutton' => 'Set semula token terpilih',
 
@@ -905,9 +908,7 @@ Ia mungkin telah dialih atau dihapus semasa anda melihat laman ini.',
 'loginreqlink' => 'log masuk',
 'loginreqpagetext' => 'Anda harus $1 untuk dapat melihat laman yang lain.',
 'accmailtitle' => 'Kata laluan dikirim.',
-'accmailtext' => "Kata laluan rawak yang dijanakan untuk [[User talk:$1|$1]] telah dikirim kepada $2.
-
-Kata laluan bagi akaun baru ini boleh ditukar di laman ''[[Special:ChangePassword|tukar kata laluan]]'' setelah pengguna tersebut melog masuk.",
+'accmailtext' => "Kata laluan janaan rawak untuk [[User talk:$1|$1]] telah dikirim kepada $2. Anda boleh menukarnya di halaman ''[[Special:ChangePassword|tukar kata laluan]]'' sebaik sahaja log masuk.",
 'newarticle' => '(Baru)',
 'newarticletext' => "Anda telah mengikuti pautan ke laman yang belum wujud.
 Untuk mencipta laman ini, sila taip dalam kotak di bawah
@@ -3071,7 +3072,7 @@ Simpan dalam komputer anda dan muat naiknya di sini.',
 'pageinfo-article-id' => 'ID halaman',
 'pageinfo-language' => 'Bahasa isi kandungan halaman',
 'pageinfo-robot-policy' => 'Status enjin pencarian',
-'pageinfo-robot-index' => 'Boleh diindekskan',
+'pageinfo-robot-index' => 'Dibenarkan',
 'pageinfo-robot-noindex' => 'Tidak boleh diindekskan',
 'pageinfo-views' => 'Bilangan kunjungan',
 'pageinfo-watchers' => 'Bilangan pemantau halaman',
@@ -4056,5 +4057,9 @@ Ataupun, anda boleh menggunakan borang yang mudah di bawah. Ulasan anda akan dic
 
 # Image rotation
 'rotate-comment' => 'Imej diputar sebanyak $1 {{PLURAL:$1|darjah|darjah}} mengikut arah jam',
+
+# Limit report
+'limitreport-postexpandincludesize-value' => '$1/$2 bait',
+'limitreport-templateargumentsize-value' => '$1/$2 bait',
 
 );

@@ -839,7 +839,7 @@ To storite, če ste po nesreči žetone z nekom delili, ali če je bil vaš rač
 'resettokens-legend' => 'Ponastavitev žetonov',
 'resettokens-tokens' => 'Žetoni:',
 'resettokens-token-label' => '$1 (trenutna vrednost: $2)',
-'resettokens-watchlist-token' => 'Žeton spletnega vira spiska nadzorov',
+'resettokens-watchlist-token' => 'Žeton spletnega vira (Atom/RSS) [[Special:Watchlist|sprememb strani na vašem spisku nadzorov]]',
 'resettokens-done' => 'Žetone sem ponastavil.',
 'resettokens-resetbutton' => 'Ponastavi izbrane žetone',
 
@@ -1421,11 +1421,12 @@ Tega ni mogoče razveljaviti.',
 'badsig' => 'Neveljaven surovi podpis; preverite oznake HTML.',
 'badsiglength' => 'Vaš podpis je preobsežen.
 Ne sme biti daljši od $1 {{PLURAL:$1|znaka|znakov}}.',
-'yourgender' => 'Spol:',
-'gender-unknown' => 'nedoločen',
+'yourgender' => 'Kako vam je ljubše, da vas opišemo?',
+'gender-unknown' => 'Ne želim navesti',
 'gender-male' => 'On ureja wikistrani',
 'gender-female' => 'Ona ureja wikistrani',
-'prefs-help-gender' => 'Podatek ni obvezen, uporablja pa se ga izključno za pravilno obliko naslavljanja programja glede na spol.
+'prefs-help-gender' => 'Nastavitev ni obvezna.
+Programje uporablja njeno vrednost za naslavljanje vas in omenjanje vas drugim v primernem slovničnem spolu.
 Podatek bo javno prikazan.',
 'email' => 'E-pošta',
 'prefs-help-realname' => 'Pravo ime ni obvezno.
@@ -2082,8 +2083,8 @@ Stran se obravnava kot razločitvena, če uporablja predloge, povezane z [[Media
 'pageswithprop-text' => 'Stran navaja vse strani, ki uporabljajo določene lastnosti strani.',
 'pageswithprop-prop' => 'Ime lastnosti:',
 'pageswithprop-submit' => 'Pojdi',
-'pageswithprop-prophidden-long' => 'dolga besedilna vrednost lastnosti je skrita ($1 kilobajtov)',
-'pageswithprop-prophidden-binary' => 'dvojiška vrednost lastnosti je skrita ($1 kilobajtov)',
+'pageswithprop-prophidden-long' => 'dolga besedilna vrednost lastnosti je skrita ($1)',
+'pageswithprop-prophidden-binary' => 'dvojiška vrednost lastnosti je skrita ($1)',
 
 'doubleredirects' => 'Dvojne preusmeritve',
 'doubleredirectstext' => 'Ta stran navaja strani, ki se preusmerjajo na druge preusmeritvene strani.
@@ -4098,8 +4099,13 @@ V nasprotnem primeru lahko uporabite preprost obrazec spodaj. Vašo pripombo bom
 'rotate-comment' => 'Slika zavrti s  $1  {{PLURAL:$1| degree|degrees}} v smeri urinega kazalca',
 
 # Limit report
+'limitreport-title' => 'Podatki profiliranja razčlenjevalnika:',
+'limitreport-cputime' => 'Poraba časa CPU',
 'limitreport-cputime-value' => '$1 {{PLURAL:$1|sekunda|sekundi|sekunde|sekund}}',
+'limitreport-walltime' => 'Realna poraba časa',
 'limitreport-walltime-value' => '$1 {{PLURAL:$1|sekunda|sekundi|sekunde|sekund}}',
+'limitreport-ppvisitednodes' => 'Število predprocesorjevih ogledanih vozlišč',
+'limitreport-ppgeneratednodes' => 'Število predprocesorjevih ustvarjenih vozlišč',
 'limitreport-postexpandincludesize-value' => '$1/$2 bajtov',
 'limitreport-templateargumentsize-value' => '$1/$2 bajtov',
 'limitreport-expansiondepth' => 'Največja globina razširitve',

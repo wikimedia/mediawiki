@@ -297,7 +297,7 @@ $messages = array(
 'tog-noconvertlink' => 'Desactivar a conversión dos títulos de ligazón',
 'tog-norollbackdiff' => 'Omitir as diferenzas despois de levar a cabo unha reversión de edicións',
 'tog-useeditwarning' => 'Avisádeme cando deixe unha páxina de edición cos cambios sen gardar',
-'tog-prefershttps' => 'Utilice unha conexión segura sempre que comece unha sesión',
+'tog-prefershttps' => 'Utilizar unha conexión segura sempre que acceda ao sistema',
 
 'underline-always' => 'Sempre',
 'underline-never' => 'Nunca',
@@ -680,7 +680,7 @@ O administrador que bloqueou o repositorio achegou este motivo: "$3".',
 # Login and logout pages
 'logouttext' => "'''Agora está fóra do sistema.'''
 
-Teña en conta que algunhas páxinas poden continuar aparecendo coma se aínda estivese dentro do sistema, ata que borre a caché do seu navegador.",
+Teña en conta que algunhas páxinas poden continuar aparecendo como se aínda estivese dentro do sistema, ata que limpe a caché do seu navegador.",
 'welcomeuser' => 'Reciba a nosa benvida, $1!',
 'welcomecreation-msg' => 'A súa conta foi creada correctamente.
 Non esqueza personalizar as súas [[Special:Preferences|preferencias de {{SITENAME}}]].',
@@ -726,7 +726,7 @@ Non esqueza personalizar as súas [[Special:Preferences|preferencias de {{SITENA
 'createacct-emailoptional' => 'Enderezo de correo electrónico (opcional)',
 'createacct-email-ph' => 'Insira o seu enderezo de correo electrónico',
 'createacct-another-email-ph' => 'Insira o enderezo de correo electrónico',
-'createaccountmail' => 'Utilizar un contrasinal aleatorio temporal e envialo ao enderezo de correo electrónico especificado embaixo',
+'createaccountmail' => 'Utilizar un contrasinal aleatorio temporal e envialo ao enderezo de correo electrónico especificado',
 'createacct-realname' => 'Nome real (opcional)',
 'createaccountreason' => 'Motivo:',
 'createacct-reason' => 'Motivo',
@@ -810,11 +810,13 @@ Debe acceder ao sistema e mudar o contrasinal agora.
 
 Pode facer caso omiso desta mensaxe se se creou esta conta por erro.',
 'usernamehasherror' => 'O nome de usuario non pode conter cancelos ("#")',
-'login-throttled' => 'Fixo demasiados intentos de inserir o contrasinal.
-Por favor, agarde antes de probar outra vez.',
+'login-throttled' => 'Fixo demasiados intentos de acceder ao sistema.
+Por favor, agarde $1 antes de probar outra vez.',
 'login-abort-generic' => 'Acceso ao sistema incorrecto; abortado',
 'loginlanguagelabel' => 'Lingua: $1',
 'suspicious-userlogout' => 'Rexeitouse a súa petición de saír do sistema porque semella que a enviou un navegador roto ou a caché dun proxy.',
+'createacct-another-realname-tip' => 'O nome real é opcional.
+Se escolle dalo utilizarase para atribuír ao usuario o seu traballo.',
 
 # Email sending
 'php-mail-error-unknown' => 'Erro descoñecido na función mail() do PHP.',
@@ -830,8 +832,7 @@ Por favor, agarde antes de probar outra vez.',
 'newpassword' => 'Contrasinal novo:',
 'retypenew' => 'Insira outra vez o novo contrasinal:',
 'resetpass_submit' => 'Establecer o contrasinal e acceder ao sistema',
-'changepassword-success' => 'A modificación do contrasinal realizouse correctamente!
-Accedendo ao sistema...',
+'changepassword-success' => 'O seu contrasinal modificouse correctamente!',
 'resetpass_forbidden' => 'Non se poden mudar os contrasinais',
 'resetpass-no-info' => 'Debe rexistrarse para acceder directamente a esta páxina.',
 'resetpass-submit-loggedin' => 'Cambiar o contrasinal',
@@ -901,7 +902,7 @@ Debería facelo se os compartiu accidentalmente con alguén ou se a súa conta f
 'resettokens-legend' => 'Restablecer os pases',
 'resettokens-tokens' => 'Pases:',
 'resettokens-token-label' => '$1 (valor actual: $2)',
-'resettokens-watchlist-token' => 'Pase da fonte de novas web para a lista de vixilancia',
+'resettokens-watchlist-token' => 'Pase para a fonte de novas (Atom/RSS) web dos [[Special:Watchlist|cambios feitos nas páxinas da súa lista de vixilancia]]',
 'resettokens-done' => 'Restablecéronse os pases.',
 'resettokens-resetbutton' => 'Restablecer os pases seleccionados',
 
@@ -984,9 +985,7 @@ Poida que a movesen ou borrasen mentres ollaba a páxina.',
 'loginreqlink' => 'acceder ao sistema',
 'loginreqpagetext' => 'Debe $1 para poder ver outras páxinas.',
 'accmailtitle' => 'Enviouse o contrasinal',
-'accmailtext' => 'Un contrasinal xerado ao chou para "[[User talk:$1|$1]]" foi enviado a "$2".
-
-O contrasinal para esta conta nova pode ser modificado na páxina especial \'\'[[Special:ChangePassword|Cambiar o contrasinal]]\'\' tras acceder ao sistema.',
+'accmailtext' => 'Un contrasinal xerado ao chou para [[User talk:$1|$1]] foi enviado a $2. Pode modificarse na páxina de [[Special:ChangePassword|cambio de contrasinais]] tras acceder ao sistema.',
 'newarticle' => '(Novo)',
 'newarticletext' => "Seguiu unha ligazón a unha páxina que aínda non existe.
 Para crear a páxina, comece a escribir na caixa de embaixo (vexa a [[{{MediaWiki:Helppage}}|páxina de axuda]] para obter máis información).
@@ -1491,13 +1490,16 @@ Este cambio non se poderá desfacer.',
 'badsig' => 'Sinatura non válida; comprobe o código HTML utilizado.',
 'badsiglength' => 'A súa sinatura é demasiado longa.
 Ha de ter menos {{PLURAL:$1|dun carácter|de $1 caracteres}}.',
-'yourgender' => 'Sexo:',
-'gender-unknown' => 'Non especificado',
-'gender-male' => 'Home',
-'gender-female' => 'Muller',
-'prefs-help-gender' => 'Opcional: Usado para xerar correctamente o sexo por parte do software. Esta información será pública.',
+'yourgender' => 'Como prefire describirse?',
+'gender-unknown' => 'Prefiro non indicalo',
+'gender-male' => 'El edita as páxinas do wiki',
+'gender-female' => 'Ela edita as páxinas do wiki',
+'prefs-help-gender' => 'Definir esta preferencia é opcional.
+O software usa este valor para dirixirse á súa persoa e para facerlle mencións mediante o xénero gramatical axeitado.
+Esta información será pública.',
 'email' => 'Correo electrónico',
-'prefs-help-realname' => 'O seu nome real é opcional, pero se escolle dalo utilizarase para atribuírlle o seu traballo.',
+'prefs-help-realname' => 'O nome real é opcional.
+Se escolle dalo utilizarase para atribuírlle o seu traballo.',
 'prefs-help-email' => 'O enderezo de correo electrónico é opcional, pero permite que se lle envíe un contrasinal novo se se esquece del.',
 'prefs-help-email-others' => 'Tamén pode optar por deixar aos outros que se poidan poñer en contacto con vostede a través da súa páxina de usuario sen necesidade de revelar a súa identidade.',
 'prefs-help-email-required' => 'Cómpre o enderezo de correo electrónico.',
@@ -1541,10 +1543,10 @@ Ha de ter menos {{PLURAL:$1|dun carácter|de $1 caracteres}}.',
 'userrights-no-interwiki' => 'Non dispón de permiso para editar dereitos de usuarios noutros wikis.',
 'userrights-nodatabase' => 'A base de datos $1 non existe ou non é local.',
 'userrights-nologin' => 'Debe [[Special:UserLogin|acceder ao sistema]] cunta conta de administrador para asignar dereitos de usuario.',
-'userrights-notallowed' => 'A súa conta non dispón dos permisos necesarios para asignar ou retirar dereitos de usuario.',
+'userrights-notallowed' => 'Non dispón dos permisos necesarios para asignar ou retirar dereitos de usuario.',
 'userrights-changeable-col' => 'Os grupos que pode cambiar',
 'userrights-unchangeable-col' => 'Os grupos que non pode cambiar',
-'userrights-conflict' => 'Hai un conflito cos dereitos de usuario! Aplique de novo os seus cambios.',
+'userrights-conflict' => 'Hai un conflito na modificación dos dereitos de usuario! Por favor, revíseo e confirme os seus cambios.',
 'userrights-removed-self' => 'Retirou correctamente os seus propios dereitos. Polo tanto, xa non ten acceso a esta páxina.',
 
 # Groups
@@ -2148,8 +2150,8 @@ Unha páxina trátase como páxina de homónimos cando nela se usa un modelo que
 'pageswithprop-text' => 'Esta páxina lista aquelas páxinas que utilizan unha propiedade de páxina determinada.',
 'pageswithprop-prop' => 'Nome da propiedade:',
 'pageswithprop-submit' => 'Mostrar',
-'pageswithprop-prophidden-long' => 'agochouse o valor de propiedade de texto longo ($1 kilobytes)',
-'pageswithprop-prophidden-binary' => 'agochouse o valor de propiedade binaria ($1 kilobytes)',
+'pageswithprop-prophidden-long' => 'agochouse o valor de propiedade de texto longo ($1)',
+'pageswithprop-prophidden-binary' => 'agochouse o valor de propiedade binaria ($1)',
 
 'doubleredirects' => 'Redireccións dobres',
 'doubleredirectstext' => 'Esta lista contén as páxinas que redirixen cara a outras páxinas de redirección.
@@ -3190,13 +3192,13 @@ Isto, probabelmente, se debe a unha ligazón cara a un sitio externo que está n
 'pageinfo-length' => 'Lonxitude da páxina (en bytes)',
 'pageinfo-article-id' => 'ID da páxina',
 'pageinfo-language' => 'Lingua do contido da páxina',
-'pageinfo-robot-policy' => 'Estado do motor de procuras',
-'pageinfo-robot-index' => 'Indexable',
-'pageinfo-robot-noindex' => 'Non indexable',
+'pageinfo-robot-policy' => 'Indexación por robots',
+'pageinfo-robot-index' => 'Permitida',
+'pageinfo-robot-noindex' => 'Non permitida',
 'pageinfo-views' => 'Número de visitas',
 'pageinfo-watchers' => 'Número de vixiantes da páxina',
 'pageinfo-few-watchers' => 'Menos de $1 {{PLURAL:$1|vixiante|vixiantes}}',
-'pageinfo-redirects-name' => 'Redireccións cara a esta páxina',
+'pageinfo-redirects-name' => 'Número de redireccións cara a esta páxina',
 'pageinfo-subpages-name' => 'Subpáxinas desta páxina',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|redirección|redireccións}}; $3 {{PLURAL:$3|non-redirección|non-redireccións}})',
 'pageinfo-firstuser' => 'Creador da páxina',
@@ -3806,7 +3808,7 @@ O código de confirmación caduca o $6 ás $7.',
 'confirmemail_body_set' => 'Alguén, probablemente vostede, desde o enderezo IP $1,
 estableceu este enderezo de correo electrónico como o da conta "$2" en {{SITENAME}}.
 
-Para confirmar que realmente esta conta lle pertence a vostede e reactivar
+Para confirmar que realmente esta conta lle pertence a vostede e activar
 as características do correo electrónico en {{SITENAME}}, abra esta ligazón no seu navegador:
 
 $3
@@ -4174,5 +4176,20 @@ En caso contrario, pode empregar o formulario sinxelo inferior. O seu comentario
 
 # Image rotation
 'rotate-comment' => 'Imaxe rotada $1 {{PLURAL:$1|grao|graos}} en sentido horario',
+
+# Limit report
+'limitreport-title' => 'Datos do perfil do analizador:',
+'limitreport-cputime' => 'Tempo de uso da CPU',
+'limitreport-cputime-value' => '$1 {{PLURAL:$1|segundo|segundos}}',
+'limitreport-walltime' => 'Tempo real de uso',
+'limitreport-walltime-value' => '$1 {{PLURAL:$1|segundo|segundos}}',
+'limitreport-ppvisitednodes' => 'Número de nodos do preprocesador visitados',
+'limitreport-ppgeneratednodes' => 'Número de nodos do preprocesador xerados',
+'limitreport-postexpandincludesize' => 'Tamaño de inclusión logo da expansión',
+'limitreport-postexpandincludesize-value' => '$1/$2 bytes',
+'limitreport-templateargumentsize' => 'Tamaño dos argumentos do modelo',
+'limitreport-templateargumentsize-value' => '$1/$2 bytes',
+'limitreport-expansiondepth' => 'Máxima profundidade de expansión',
+'limitreport-expensivefunctioncount' => 'Número de funcións de análise custosas',
 
 );

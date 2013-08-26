@@ -909,12 +909,12 @@ Password temporanea: $2',
 'changeemail-cancel' => 'Annulla',
 
 # Special:ResetTokens
-'resettokens' => 'Reset token',
+'resettokens' => 'Reimposta token',
 'resettokens-text' => "Qui puoi reimpostare le chiavi che permettono l'accesso a determinati dati privati associati alla tua utenza.
 
 Dovresti farlo se le hai accidentalmente condivise con qualcuno o se la tua utenza è stato compromessa.",
 'resettokens-no-tokens' => 'Non ci sono token da reimpostare.',
-'resettokens-legend' => 'Reset token',
+'resettokens-legend' => 'Reimposta token',
 'resettokens-tokens' => 'Token:',
 'resettokens-token-label' => '$1 (valore attuale: $2)',
 'resettokens-watchlist-token' => 'Token per il feed web (Atom/RSS) delle [[Special:Watchlist|modifiche alle pagine nei tuoi osservati speciali]]',
@@ -1482,8 +1482,8 @@ L'operazione non può essere annullata.",
 'badsiglength' => 'La firma scelta è troppo lunga, non deve superare $1 {{PLURAL:$1|carattere|caratteri}}.',
 'yourgender' => 'Come preferisci essere descritto?',
 'gender-unknown' => 'Preferisco non specificarlo',
-'gender-male' => 'Lui modifica pagine wiki',
-'gender-female' => 'Lei modifica pagine wiki',
+'gender-male' => 'È registrato a {{SITENAME}}',
+'gender-female' => 'È registrata a {{SITENAME}}',
 'prefs-help-gender' => "L'impostazione di questa preferenza è opzionale.
 Il software utilizza questo valore per rivolgersi a te e menzionarti agli altri usando il genere grammaticale appropriato.
 Questa informazione sarà pubblica.",
@@ -2117,8 +2117,8 @@ Vengono considerate pagine di disambiguazione tutte quelle che contengono i temp
 'pageswithprop-text' => 'Questa pagina elenca le pagine che utilizzano una particolare proprietà di pagina.',
 'pageswithprop-prop' => 'Nome proprietà:',
 'pageswithprop-submit' => 'Vai',
-'pageswithprop-prophidden-long' => 'valore testuale lungo della proprietà nascosto ($1 kilobyte)',
-'pageswithprop-prophidden-binary' => 'valore binario della proprietà nascosto ($1 kilobyte)',
+'pageswithprop-prophidden-long' => 'valore testuale lungo della proprietà nascosto ($1)',
+'pageswithprop-prophidden-binary' => 'valore binario della proprietà nascosto ($1)',
 
 'doubleredirects' => 'Redirect doppi',
 'doubleredirectstext' => 'In questa pagina sono elencate pagine che reindirizzano ad altre pagine di redirect.
