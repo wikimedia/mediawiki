@@ -47,6 +47,7 @@ $wgAutoloadClasses += array(
 
 	//db
 	'ORMTableTest' => "$testDir/phpunit/includes/db/ORMTableTest.php",
+	'PageORMTableForTesting' => "$testDir/phpunit/includes/db/ORMTableTest.php",
 
 	//Selenium
 	'SeleniumTestConstants' => "$testDir/selenium/SeleniumTestConstants.php",

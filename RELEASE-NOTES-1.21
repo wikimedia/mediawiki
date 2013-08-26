@@ -10,6 +10,9 @@ This is not a release yet.
 === Changes since 1.21.1 ===
 
 * (bug 51064) Purge upstream caches when deleting file assets.
+* (bug 47750) Unit test suite now runs the AutoLoader tests. Also fixed the
+  autoloading entry for the PageORMTableForTesting class though it had no
+  impact.
 
 == MediaWiki 1.21.1 ==
 
