@@ -161,6 +161,11 @@ class NewParserTest extends MediaWikiTestCase {
 		parent::tearDown();
 	}
 
+	public static function tearDownAfterClass() {
+		ParserTest::tearDownInterwikis();
+		parent::tearDownAfterClass();
+	}
+
 	function addDBData() {
 		$this->tablesUsed[] = 'site_stats';
 		# disabled for performance

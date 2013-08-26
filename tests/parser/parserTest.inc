@@ -269,6 +269,13 @@ class ParserTest {
 		} );// hooks::register
 	}
 
+	/**
+	 * Remove the hardcoded interwiki lookup table.
+	 */
+	public static function tearDownInterwikis() {
+		Hooks::clear( 'InterwikiLoadPrefix' );
+	}
+
 	public function setupRecorder( $options ) {
 		if ( isset( $options['record'] ) ) {
 			$this->recorder = new DbTestRecorder( $this );
