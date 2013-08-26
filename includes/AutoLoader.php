@@ -851,6 +851,7 @@ $wgAutoloadLocalClasses = array(
 
 	# includes/rcfeed
 	'RCFeedEngine' => 'includes/rcfeed/RCFeedEngine.php',
+	'RedisPubSubFeedEngine' => 'includes/rcfeed/RedisPubSubFeedEngine.php',
 	'UDPRCFeedEngine' => 'includes/rcfeed/UDPRCFeedEngine.php',
 	'RCFeedFormatter' => 'includes/rcfeed/RCFeedFormatter.php',
 	'IRCColourfulRCFeedFormatter' => 'includes/rcfeed/IRCColourfulRCFeedFormatter.php',
