@@ -3064,6 +3064,11 @@ $templates
 			$vars['wgRedirectedFrom'] = $this->mRedirectedFrom->getPrefixedDBkey();
 		}
 
+		$actualRevId = $this->getRevisionId();
+		if ( $actualRevId ) {
+			$vars['wgRevisionId'] = $actualRevId;
+		}
+
 		// Allow extensions to add their custom variables to the mw.config map.
 		// Use the 'ResourceLoaderGetConfigVars' hook if the variable is not
 		// page-dependant but site-wide (without state).
