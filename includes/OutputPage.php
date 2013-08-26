@@ -3022,6 +3022,7 @@ $templates
 			'wgPageName' => $title->getPrefixedDBkey(),
 			'wgTitle' => $title->getText(),
 			'wgCurRevisionId' => $latestRevID,
+			'wgRevisionId' => $this->getRevisionId(),
 			'wgArticleId' => $pageID,
 			'wgIsArticle' => $this->isArticle(),
 			'wgIsRedirect' => $title->isRedirect(),
