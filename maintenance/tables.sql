@@ -1076,6 +1076,9 @@ CREATE TABLE /*_*/recentchanges (
   -- Visibility of recent changes items, bitfield
   rc_deleted tinyint unsigned NOT NULL default 0,
 
+  -- Store type of change when rc_type === RC_EXTERNAL, or null
+  rc_external_type varbinary(255) NULL default NULL,
+
   -- Value corresonding to log_id, specific log entries
   rc_logid int unsigned NOT NULL default 0,
   -- Store log type info here, or null
@@ -1093,6 +1096,7 @@ CREATE INDEX /*i*/new_name_timestamp ON /*_*/recentchanges (rc_new,rc_namespace,
 CREATE INDEX /*i*/rc_ip ON /*_*/recentchanges (rc_ip);
 CREATE INDEX /*i*/rc_ns_usertext ON /*_*/recentchanges (rc_namespace, rc_user_text);
 CREATE INDEX /*i*/rc_user_text ON /*_*/recentchanges (rc_user_text, rc_timestamp);
+CREATE INDEX /*i*/rc_type ON /*_*/recentchanges (rc_type, rc_external_type );
 
 
 CREATE TABLE /*_*/watchlist (
