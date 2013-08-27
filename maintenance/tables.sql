@@ -1076,6 +1076,9 @@ CREATE TABLE /*_*/recentchanges (
   -- Visibility of recent changes items, bitfield
   rc_deleted tinyint unsigned NOT NULL default 0,
 
+  -- Store type of change when rc_type === RC_EXTERNAL, or null
+  rc_external_type varbinary(255) NULL default NULL,
+
   -- Value corresonding to log_id, specific log entries
   rc_logid int unsigned NOT NULL default 0,
   -- Store log type info here, or null

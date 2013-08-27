@@ -85,6 +85,9 @@ class OracleUpdater extends DatabaseUpdater {
 			array( 'modifyField', 'user_groups', 'ug_group', 'patch-ug_group-length-increase-255.sql' ),
 			array( 'modifyField', 'user_former_groups', 'ufg_group', 'patch-ufg_group-length-increase-255.sql' ),
 
+			// 1.23
+			array( 'addField', 'recentchanges', 'rc_external_type', 'patch-rc_external_type.sql' ),
+
 			// KEEP THIS AT THE BOTTOM!!
 			array( 'doRebuildDuplicateFunction' ),
 
