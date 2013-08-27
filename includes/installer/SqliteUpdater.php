@@ -109,6 +109,10 @@ class SqliteUpdater extends DatabaseUpdater {
 			array( 'addIndex', 'page_props', 'pp_propname_page',  'patch-page_props-propname-page-index.sql' ),
 			array( 'addIndex', 'image', 'img_media_mime', 'patch-img_media_mime-index.sql' ),
 			array( 'addIndex', 'iwlinks', 'iwl_prefix_from_title',  'patch-iwlinks-from-title-index.sql' ),
+
+			// 1.23
+			array( 'addField', 'recentchanges', 'rc_external_type', 'patch-rc_external_type.sql' ),
+			array( 'addIndex', 'recentchanges', 'rc_type', 'patch-rc_type_idx.sql' ),
 		);
 	}
 
