@@ -412,6 +412,7 @@ CREATE TABLE recentchanges (
   rc_old_len         INTEGER,
   rc_new_len         INTEGER,
   rc_deleted         SMALLINT     NOT NULL  DEFAULT 0,
+  rc_external_type   TEXT,
   rc_logid           INTEGER      NOT NULL  DEFAULT 0,
   rc_log_type        TEXT,
   rc_log_action      TEXT,
@@ -423,7 +424,6 @@ CREATE INDEX rc_namespace_title ON recentchanges (rc_namespace, rc_title);
 CREATE INDEX rc_cur_id          ON recentchanges (rc_cur_id);
 CREATE INDEX new_name_timestamp ON recentchanges (rc_new, rc_namespace, rc_timestamp);
 CREATE INDEX rc_ip              ON recentchanges (rc_ip);
-
 
 CREATE TABLE watchlist (
   wl_user                   INTEGER     NOT NULL  REFERENCES mwuser(user_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
