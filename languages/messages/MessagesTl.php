@@ -285,7 +285,7 @@ $messages = array(
 'broken-file-category' => 'Mga pahina na may sirang mga kawing ng talaksan',
 'categoryviewer-pagedlinks' => '($1) ($2)',
 
-'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
+'linkprefix' => '/^((?>.*(?<![a-zA-Z\\x80-\\xff])))(.+)$/sD',
 
 'about' => 'Patungkol',
 'article' => 'Pahina ng nilalaman',

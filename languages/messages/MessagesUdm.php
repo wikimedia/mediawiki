@@ -151,7 +151,7 @@ $messages = array(
 'index-category' => 'Индексировать кароно бамъёс',
 'noindex-category' => 'Индексировать каронтэм бамъёс',
 
-'linkprefix' => '/^(.*?)(„|«)$/sDu',
+'linkprefix' => '/^((?>.*(?<!(?:„|«)$)))(.+)$/sDu',
 
 'about' => 'Та сярысь',
 'article' => 'Статья',

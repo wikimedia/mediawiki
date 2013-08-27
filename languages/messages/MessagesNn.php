@@ -457,7 +457,7 @@ $messages = array(
 'noindex-category' => 'Ikkje-indekserte sider',
 'broken-file-category' => 'Sider med brotne fillenkjer',
 
-'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
+'linkprefix' => '/^((?>.*(?<![a-zA-Z\\x80-\\xff])))(.+)$/sD',
 
 'about' => 'Om',
 'article' => 'Innhaldsside',

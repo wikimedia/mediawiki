@@ -309,7 +309,7 @@ $messages = array(
 'broken-file-category' => 'გვერდები ფაილების არასწორი ბმულებით',
 'categoryviewer-pagedlinks' => '($1) ($2)',
 
-'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
+'linkprefix' => '/^((?>.*(?<![a-zA-Z\\x80-\\xff])))(.+)$/sD',
 
 'about' => 'შესახებ',
 'article' => 'სტატია',
