@@ -412,6 +412,7 @@ CREATE TABLE recentchanges (
   rc_old_len         INTEGER,
   rc_new_len         INTEGER,
   rc_deleted         SMALLINT     NOT NULL  DEFAULT 0,
+  rc_external_type   TEXT,
   rc_logid           INTEGER      NOT NULL  DEFAULT 0,
   rc_log_type        TEXT,
   rc_log_action      TEXT,
