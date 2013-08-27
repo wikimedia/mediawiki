@@ -9534,6 +9534,7 @@ See definition of [[w:Regular_expression|regular expression]] on Wikipedia.",
 
 It appears that the word 'valid' describes 'tags', not 'change'. It also appears that you could use the term 'defined' instead of 'valid', or perhaps use a phrase meaning 'Change tags in use'.",
 'tag-filter' => 'Caption of a filter shown on lists of changes (e.g. [[Special:Log]], [[Special:Contributions]], [[Special:Newpages]], [[Special:Recentchanges]], [[Special:Recentchangeslinked]], page histories)',
+'tag-filter-none' => 'First element of dropdown list of tags, to indicate that no tag is selected.',
 'tag-filter-submit' => 'Caption of the submit button displayed next to the tag filter on lists of changes (e.g. [[Special:Log]], [[Special:Contributions]], [[Special:Newpages]], [[Special:Recentchanges]], [[Special:Recentchangeslinked]], page histories)
 
 {{Identical|Filter}}',
