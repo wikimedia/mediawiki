@@ -666,6 +666,11 @@ class EditPage {
 			$this->edittime = $request->getVal( 'wpEdittime' );
 			$this->starttime = $request->getVal( 'wpStarttime' );
 
+			$undidRev = $request->getInt( 'wpUndidRevision' );
+			if ( $undidRev ) {
+				$this->undidRev = $undidRev;
+			}
+
 			$this->scrolltop = $request->getIntOrNull( 'wpScrolltop' );
 
 			if ( $this->textbox1 === '' && $request->getVal( 'wpTextbox1' ) === null ) {
