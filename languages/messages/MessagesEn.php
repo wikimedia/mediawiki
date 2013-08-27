@@ -4928,6 +4928,7 @@ You should have received [{{SERVER}}{{SCRIPTPATH}}/COPYING a copy of the GNU Gen
 'tags'                    => 'Valid change tags',
 'tags-summary'            => '', # do not translate or duplicate this message to other languages
 'tag-filter'              => '[[Special:Tags|Tag]] filter:',
+'tag-filter-none'         => '(none)',
 'tag-filter-submit'       => 'Filter',
 'tag-list-wrapper'        => '([[Special:Tags|{{PLURAL:$1|Tag|Tags}}]]: $2)',
 'tags-title'              => 'Tags',

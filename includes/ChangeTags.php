@@ -231,8 +231,18 @@ class ChangeTags {
 			return $fullForm ? '' : array();
 		}
 
-		$data = array( Html::rawElement( 'label', array( 'for' => 'tagfilter' ), wfMessage( 'tag-filter' )->parse() ),
-			Xml::input( 'tagfilter', 20, $selected, array( 'class' => 'mw-tagfilter-input' ) ) );
+		$select = new XmlSelect( 'tagfilter', false, $selected );
+		$select->addOption( wfMessage( 'tag-filter-none' )->text(), '' );
+		foreach ( self::listDefinedTags() as $tag ) {
+			// Can't use self::tagDescription because it returns HTML
+			$select->addOption( $tag );
+		}
+		$select->setAttribute( 'class', 'mw-tagfilter-input' );
+
+		$data = array(
+			Html::rawElement( 'label', array( 'for' => 'tagfilter' ), wfMessage( 'tag-filter' )->parse() ),
+			$select->getHTML()
+		);
 
 		if ( !$fullForm ) {
 			return $data;
