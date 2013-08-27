@@ -481,7 +481,7 @@ $messages = array(
 'broken-file-category' => 'Halaman dengan gambar rusak',
 'categoryviewer-pagedlinks' => '($1) ($2)',
 
-'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
+'linkprefix' => '/^((?>.*(?<![a-zA-Z\\x80-\\xff])))(.+)$/sD',
 
 'about' => 'Tentang',
 'article' => 'Halaman isi',

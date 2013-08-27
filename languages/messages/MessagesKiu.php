@@ -177,7 +177,7 @@ $messages = array(
 'noindex-category' => 'Pelê bêendeksıni',
 'broken-file-category' => 'Peli be gıreunê dosyeunê sıkıtau',
 
-'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
+'linkprefix' => '/^((?>.*(?<![a-zA-Z\\x80-\\xff])))(.+)$/sD',
 
 'about' => 'Heqa',
 'article' => 'Pela tedeesteyu',

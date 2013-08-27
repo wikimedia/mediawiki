@@ -264,7 +264,7 @@ $messages = array(
 'category-file-count-limited' => "Usı kategoriyada to'mendegi {{PLURAL:$1|fayl|$1 fayl}} bar.",
 'listingcontinuesabbrev' => 'dawamı',
 
-'linkprefix' => '/^(.*?)([a-zıA-Zİ\\x80-\\xff]+)$/sDu',
+'linkprefix' => '/^((?>.*(?<![a-zıA-Zİ\\x80-\\xff])))(.+)$/sDu',
 
 'about' => 'Haqqında',
 'article' => "Mag'lıwmat beti",

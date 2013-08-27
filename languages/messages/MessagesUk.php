@@ -504,7 +504,7 @@ $messages = array(
 'broken-file-category' => 'Сторінки, що посилаються на неіснуючі файли',
 'categoryviewer-pagedlinks' => '($1) ($2)',
 
-'linkprefix' => '/^(.*?)(„|«)$/sD',
+'linkprefix' => '/^((?>.*(?<!(?:„|«)$)))(.+)$/sDu',
 
 'about' => 'Про',
 'article' => 'Стаття',

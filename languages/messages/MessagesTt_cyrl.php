@@ -348,7 +348,7 @@ $messages = array(
 'noindex-category' => 'Индексланмаган битләр',
 'broken-file-category' => 'Файлларга эшләми торган сылтамалар булган битләр',
 
-'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
+'linkprefix' => '/^((?>.*(?<![a-zA-Z\\x80-\\xff])))(.+)$/sD',
 
 'about' => 'Тасвирлама',
 'article' => 'Мәкалә',
