@@ -489,7 +489,7 @@ $messages = array(
 'noindex-category' => 'Неиндексирани страници',
 'broken-file-category' => 'Страници со прекинати врски до податотеки',
 
-'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
+'linkprefix' => '/^((?>.*(?<![a-zA-Z\\x80-\\xff])))(.+)$/sD',
 
 'about' => 'За {{SITENAME}}',
 'article' => 'Статија',

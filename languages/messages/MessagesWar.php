@@ -203,7 +203,7 @@ $messages = array(
 'noindex-category' => 'Mga diri nakatudlokan nga pagkli',
 'broken-file-category' => 'Mga pakli nga mayda utod nga mga sumpay hin paypay',
 
-'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
+'linkprefix' => '/^((?>.*(?<![a-zA-Z\\x80-\\xff])))(.+)$/sD',
 
 'about' => 'Mahitungod han',
 'article' => 'Pakli hin sulod',
