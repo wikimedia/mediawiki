@@ -217,7 +217,7 @@ $messages = array(
 'listingcontinuesabbrev' => 'ar lean.',
 'index-category' => 'Leathanaigh innéacsaithe',
 
-'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
+'linkprefix' => '/^((?>.*(?<![a-zA-Z\\x80-\\xff])))(.+)$/sD',
 
 'about' => 'Maidir leis',
 'article' => 'Leathanach ábhair',

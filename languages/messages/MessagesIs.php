@@ -371,7 +371,7 @@ $messages = array(
 'noindex-category' => 'Óraðaðar skrár',
 'broken-file-category' => 'Síður með brotna myndatengla',
 
-'linkprefix' => '/^(.*?)([áÁðÐéÉíÍóÓúÚýÝþÞæÆöÖA-Za-z-–]+)$/sDu',
+'linkprefix' => '/^((?>.*(?<![áÁðÐéÉíÍóÓúÚýÝþÞæÆöÖA-Za-z-–])))(.+)$/sDu',
 
 'about' => 'Um',
 'article' => 'Efnissíða',

@@ -411,7 +411,7 @@ $messages = array(
 'noindex-category' => 'Paġni mhux indiċizzati',
 'broken-file-category' => "Paġni b'ħoloq lejn fajls miksura",
 
-'linkprefix' => '/^(.*?)([a-żA-Ż\\x80-\\xff]+)$/sD',
+'linkprefix' => '/^((?>.*(?<![a-żA-Ż\\x80-\\xff])))(.+)$/sD',
 
 'about' => 'Dwar',
 'article' => 'artiklu',

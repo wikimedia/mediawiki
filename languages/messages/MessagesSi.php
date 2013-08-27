@@ -331,7 +331,7 @@ $messages = array(
 'noindex-category' => 'සූචිගත නොකළ පිටු',
 'broken-file-category' => 'භින්න වූ ගොනු සබැඳි සහිත පිටු',
 
-'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
+'linkprefix' => '/^((?>.*(?<![a-zA-Z\\x80-\\xff])))(.+)$/sD',
 
 'about' => 'පිළිබඳ',
 'article' => 'පටුන',
