@@ -168,6 +168,7 @@ class RecentChange {
 			'rc_log_type',
 			'rc_log_action',
 			'rc_params',
+			'rc_external_type',
 		);
 	}
 
