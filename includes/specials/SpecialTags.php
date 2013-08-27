@@ -46,28 +46,15 @@ class SpecialTags extends SpecialPage {
 				Xml::tags( 'th', null, $this->msg( 'tags-description-header' )->parse() ) .
 				Xml::tags( 'th', null, $this->msg( 'tags-hitcount-header' )->parse() )
 			);
-		$dbr = wfGetDB( DB_SLAVE );
-		$res = $dbr->select( 'change_tag', array( 'ct_tag', 'hitcount' => 'count(*)' ),
-			array(), __METHOD__, array( 'GROUP BY' => 'ct_tag', 'ORDER BY' => 'hitcount DESC' ) );
 
-		foreach ( $res as $row ) {
-			$html .= $this->doTagRow( $row->ct_tag, $row->hitcount );
-		}
-
-		foreach ( ChangeTags::listDefinedTags() as $tag ) {
-			$html .= $this->doTagRow( $tag, 0 );
+		foreach ( ChangeTags::tagUsageStatistics() as $tag => $hitcount ) {
+			$html .= $this->doTagRow( $tag, $hitcount );
 		}
 
 		$out->addHTML( Xml::tags( 'table', array( 'class' => 'wikitable sortable mw-tags-table' ), $html ) );
 	}
 
 	function doTagRow( $tag, $hitcount ) {
-		static $doneTags = array();
-
-		if ( in_array( $tag, $doneTags ) ) {
-			return '';
-		}
-
 		$user = $this->getUser();
 		$newRow = '';
 		$newRow .= Xml::tags( 'td', null, Xml::element( 'code', null, $tag ) );
@@ -93,8 +80,6 @@ class SpecialTags extends SpecialPage {
 		$hitcountLink = Linker::link( SpecialPage::getTitleFor( 'Recentchanges' ), $hitcountLabel, array(), array( 'tagfilter' => $tag ) );
 		// add raw $hitcount for sorting, because tags-hitcount contains numbers and letters
 		$newRow .= Xml::tags( 'td', array( 'data-sort-value' => $hitcount ), $hitcountLink );
-
-		$doneTags[] = $tag;
 
 		return Xml::tags( 'tr', null, $newRow ) . "\n";
 	}

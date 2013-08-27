@@ -291,4 +291,34 @@ class ChangeTags {
 		$wgMemc->set( $key, $emptyTags, 300 );
 		return $emptyTags;
 	}
+
+	/**
+	 * Returns a map of any tags used on the wiki to number of edits
+	 * tagged with them, ordered descending by the hitcount.
+	 *
+	 * @return array Array of string => int
+	 */
+	public static function tagUsageStatistics() {
+		$out = array();
+
+		$dbr = wfGetDB( DB_SLAVE );
+		$res = $dbr->select(
+			'change_tag',
+			array( 'ct_tag', 'hitcount' => 'count(*)' ),
+			array(),
+			__METHOD__,
+			array( 'GROUP BY' => 'ct_tag', 'ORDER BY' => 'hitcount DESC' )
+		);
+
+		foreach ( $res as $row ) {
+			$out[$row->ct_tag] = $row->hitcount;
+		}
+		foreach ( self::listDefinedTags() as $tag ) {
+			if ( !isset( $out[$tag] ) ) {
+				$out[$tag] = 0;
+			}
+		}
+
+		return $out;
+	}
 }
