@@ -1770,6 +1770,8 @@ Vaše adresa v takovém případě není prozrazena.',
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|změna|změny|změn}}',
+'enhancedrc-since-last-visit' => '$1 {{PLURAL:$1|od poslední návštěvy}}',
+'enhancedrc-history' => 'historie',
 'recentchanges' => 'Poslední změny',
 'recentchanges-legend' => 'Možnosti posledních změn',
 'recentchanges-summary' => 'Sledujte poslední změny na {{grammar:6sg|{{SITENAME}}}} na této stránce.',
@@ -2166,7 +2168,7 @@ Vstup: <code>typ obsahu/podtyp</code>, např. <code>image/jpeg</code>.',
 'randompage' => 'Náhodná stránka',
 'randompage-nopages' => 'V {{PLURAL:$2|následujícím jmenném prostoru|následujících jmenných prostorech}} nejsou žádné stránky: $1.',
 
-# Special:RandomInCategory
+# Random page in category
 'randomincategory' => 'Náhodná stránka z kategorie',
 'randomincategory-invalidcategory' => '„$1“ není platný název kategorie.',
 'randomincategory-nopages' => 'V [[:Category:$1|kategorii $1]] žádné stránky nejsou.',

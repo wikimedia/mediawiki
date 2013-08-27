@@ -1001,7 +1001,7 @@ $2
 'resettokens-legend' => 'Враќање одново на шифри',
 'resettokens-tokens' => 'Шифри:',
 'resettokens-token-label' => '$1 (тековна вредност: $2)',
-'resettokens-watchlist-token' => 'Шифра за канализирани набљудувања',
+'resettokens-watchlist-token' => 'Шифра за каналот (Atom/RSS) на [[Special:Watchlist|измени во набљудуваните страници]]',
 'resettokens-done' => 'Шифрата е вратена одново.',
 'resettokens-resetbutton' => 'Врати избрани шифри',
 
@@ -1796,6 +1796,8 @@ $1",
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|промена|промени}}',
+'enhancedrc-since-last-visit' => '$1 {{PLURAL:$1|од последната посаета}}',
+'enhancedrc-history' => 'историја',
 'recentchanges' => 'Скорешни промени',
 'recentchanges-legend' => 'Нагодувања за скорешни промени',
 'recentchanges-summary' => 'На оваа страница ги следите скорешните промени на викито.',
@@ -2210,7 +2212,7 @@ $1',
 'randompage' => 'Случајна страница',
 'randompage-nopages' => 'Нема страници во {{PLURAL:$2|следниот именски простор|следниве именски простори}}: $1.',
 
-# Special:RandomInCategory
+# Random page in category
 'randomincategory' => 'Случајна страница во категоријата',
 'randomincategory-invalidcategory' => '„$1“ не претставува важечка категорија.',
 'randomincategory-nopages' => 'Нема страници во [[:Category:$1]].',
@@ -2253,8 +2255,8 @@ $1',
 'pageswithprop-text' => 'На страницава се наведени страници што користат дадено својство.',
 'pageswithprop-prop' => 'Име на својството:',
 'pageswithprop-submit' => 'Оди',
-'pageswithprop-prophidden-long' => 'долгата вредност на текстуалното својство е скриена ($1 килобајти)',
-'pageswithprop-prophidden-binary' => 'бинарната вредност на својството за долгиот текст е скриена ($1 килобајти)',
+'pageswithprop-prophidden-long' => 'долгата вредност на текстуалното својство е скриена ($1)',
+'pageswithprop-prophidden-binary' => 'бинарната вредност на својството за долгиот текст е скриена  ($1)',
 
 'doubleredirects' => 'Двојни пренасочувања',
 'doubleredirectstext' => 'Оваа страница ги прикажува пренасочувачките страници до други пренасочувачки страници.

@@ -822,8 +822,8 @@ $2',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|登录帮助]]',
 'createacct-join' => '请在下面输入你的信息。',
 'createacct-another-join' => '在下方输入新帐户信息。',
-'createacct-emailrequired' => '电子邮件地址：',
-'createacct-emailoptional' => '电子邮件地址 (可选)',
+'createacct-emailrequired' => '电子邮件地址',
+'createacct-emailoptional' => '电子邮件地址（可选）',
 'createacct-email-ph' => '请输入您的电子邮件地址',
 'createacct-another-email-ph' => '输入电子邮件地址',
 'createaccountmail' => '使用一个临时的随机密码并将其发送到指定的电子邮件地址中',
@@ -1704,6 +1704,8 @@ $1",
 
 # Recent changes
 'nchanges' => '$1个更改',
+'enhancedrc-since-last-visit' => '$1 {{PLURAL:$1|自上次访问}}',
+'enhancedrc-history' => '历史',
 'recentchanges' => '最近更改',
 'recentchanges-legend' => '最近更改选项',
 'recentchanges-summary' => '在此页面上跟踪维基的更改。',
@@ -1792,7 +1794,7 @@ $1",
 'filetype-unwanted-type' => "'''\".\$1\"'''是一种不需要的文件类型。
 建议的{{PLURAL:\$3|一种|多种}}文件类型有\$2。",
 'filetype-banned-type' => '\'\'\'".$1"\'\'\'{{PLURAL:$4|不是一个允许的文件类型|不是一个允许的文件类型}}。
-允许 {{PLURAL:$3|文件类型是|文件类型是}} $2。',
+允许 {{PLURAL:$3|文件类型是}} $2。',
 'filetype-missing' => '该文件名称并没有扩展名（例如“.jpg”）。',
 'empty-file' => '您所提交的文件为空文件。',
 'file-too-large' => '您所提交的文件过大。',
@@ -1895,7 +1897,7 @@ $1',
 'backend-fail-connect' => '无法连接到存储后端“$1。',
 'backend-fail-internal' => '存储后端“$1”发生了一个未知错误。',
 'backend-fail-contenttype' => '无法判断文件的内容类型来储存于“$1”。',
-'backend-fail-batchsize' => '存储后端被给予了一批$1个文件{{PLURAL:$1|操作|操作}}；限值为$2个{{PLURAL:$2|操作|操作}}。',
+'backend-fail-batchsize' => '存储后端被给予了一批$1个文件{{PLURAL:$1|操作}}；限值为$2个{{PLURAL:$2|操作}}。',
 'backend-fail-usable' => '权限不足或缺少目录/贮存器，无法读取或写入文件“$1”。',
 
 # File journal errors
@@ -2072,9 +2074,9 @@ $1',
 
 # Random page
 'randompage' => '随机页面',
-'randompage-nopages' => '在以下{{PLURAL:$2|名字空间|名字空间}}中没有页面：$1。',
+'randompage-nopages' => '在以下{{PLURAL:$2|名字空间}}中没有页面：$1。',
 
-# Special:RandomInCategory
+# Random page in category
 'randomincategory' => '分类中的随机页面',
 'randomincategory-invalidcategory' => '“$1”不是一个有效的分类名称。',
 'randomincategory-nopages' => '[[:Category:$1]]中没有页面。',
@@ -2429,7 +2431,7 @@ $UNWATCHURL
 'exblank' => '页面为空',
 'delete-confirm' => '删除“$1”',
 'delete-legend' => '删除',
-'historywarning' => '警告：您将要删除的页面有约$1个{{PLURAL:$1|修订|修订}}版本的历史：',
+'historywarning' => '警告：您将要删除的页面有约$1个{{PLURAL:$1|修订}}版本的历史：',
 'confirmdeletetext' => '您即将删除一个页面或图像以及其历史。
 请确定您要进行此项操作，并且了解其后果，同时您的行为符合[[{{MediaWiki:Policy-url}}]]。',
 'actioncomplete' => '操作完成',
@@ -2745,7 +2747,7 @@ $1被封禁的理由是：“$2”',
 'ipb_hide_invalid' => '无法隐藏此账户，它可能有太多编辑。',
 'ipb_already_blocked' => '“$1”已被封禁',
 'ipb-needreblock' => '$1已被封禁。您是否想更改封禁设置？',
-'ipb-otherblocks-header' => '其他{{PLURAL:$1|封禁|封禁}}',
+'ipb-otherblocks-header' => '其他{{PLURAL:$1|封禁}}',
 'unblock-hideuser' => '您无法取消封禁该用户，因为他们的用户名已被隐藏。',
 'ipb_cant_unblock' => '错误：找不到封禁ID$1。可能已经解除封禁。',
 'ipb_blocked_as_range' => '错误：IP地址$1未被直接封禁，故无法解除封禁。然而，它位于IP地址段$2的封禁范围内，后者可被解除封禁。',
@@ -4073,8 +4075,8 @@ MediaWiki发表时预期有用，但对此'''无任何保证'''，亦无隐含�
 'api-error-copyuploaddisabled' => '通过URL上传的功能已被此服务器禁用。',
 'api-error-duplicate' => '在网站上已经具有相同内容的{{PLURAL:$1|[$2 另一个文件]|[$2 另一些文件]}}。',
 'api-error-duplicate-archive' => '在网站上曾经具有相同内容的{{PLURAL:$1|[$2 另一个文件]|[$2 另一些文件]}}，但已被删除。',
-'api-error-duplicate-archive-popup-title' => '已被删的除重复{{PLURAL:$1|文件|文件}}',
-'api-error-duplicate-popup-title' => '重复的 {{PLURAL:$1|文件|文件}}',
+'api-error-duplicate-archive-popup-title' => '已被删的除重复{{PLURAL:$1|文件}}。',
+'api-error-duplicate-popup-title' => '重复的 {{PLURAL:$1|文件}}。',
 'api-error-empty-file' => '您提交的文件是空的。',
 'api-error-emptypage' => '不能创建没有内容的新页面。',
 'api-error-fetchfileerror' => '内部错误：获取文件时发生错误。',
@@ -4121,7 +4123,7 @@ MediaWiki发表时预期有用，但对此'''无任何保证'''，亦无隐含�
 'duration-millennia' => '$1千年',
 
 # Image rotation
-'rotate-comment' => '图像已顺时针方向旋转了 $1 {{PLURAL:$1|度|度}}',
+'rotate-comment' => '图像已顺时针方向旋转了 $1 {{PLURAL:$1|度}}',
 
 # Limit report
 'limitreport-title' => '分析器分析数据：',

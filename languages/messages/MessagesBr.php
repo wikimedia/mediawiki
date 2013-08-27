@@ -721,7 +721,7 @@ Mat e vefe deoc\'h kevreañ ha cheñch ho ker-tremen bremañ.
 Na daolit ket evezh ouzh ar c\'hemenn-mañ m\'eo bet krouet ar gont dre fazi.',
 'usernamehasherror' => "N'haller ket ober gant an arouezenn # en anvioù an implijerien",
 'login-throttled' => "Betek re oc'h heus klasket kevreañ en aner.
-Gortozit £1, mar plij, a-raok esaeañ en-dro.",
+Gortozit $1, mar plij, a-raok esaeañ en-dro.",
 'login-abort-generic' => 'Dibosupl ho kevreañ - Dilezet',
 'loginlanguagelabel' => 'Yezh : $1',
 'suspicious-userlogout' => 'Distaolet eo bet ho koulenn digevreañ rak kaset e oa bet gant ur merdeer direizhet pe krubuilhadenn ur proksi, evit doare.',
@@ -748,10 +748,12 @@ Gortozit £1, mar plij, a-raok esaeañ en-dro.",
 'resetpass-submit-cancel' => 'Nullañ',
 'resetpass-wrong-oldpass' => "Direizh eo ar ger-tremen a-vremañ pe da c'hortoz.",
 'resetpass-temp-password' => "Ger-tremen da c'hortoz :",
+'resetpass-abort-generic' => 'Nullet eo bet kemm ar ger-tremen gant un astenn.',
 
 # Special:PasswordReset
 'passwordreset' => 'Adderaouekaat ar ger-tremen',
 'passwordreset-text-one' => 'Leugnit ar furmskrid-mañ evit adderaouekaat ho ker-tremen.',
+'passwordreset-text-many' => '{{PLURAL:$1|Leugnit unan eus ar maeziennoù da adderaouekaat ho ker-tremen.}}',
 'passwordreset-legend' => 'Adsevel ar ger-tremen',
 'passwordreset-disabled' => 'Diweredekaet eo bet an adsevel gerioù-tremen war ar wiki-mañ.',
 'passwordreset-emaildisabled' => "Ne c'haller ket ober gant posteloù er wiki-mañ.",
@@ -1373,7 +1375,7 @@ Gallout a reot kavout munudoù e [{{fullurl:{{#Special:Log}}/delete|page={{FULLP
 'badsig' => 'Direizh eo ho sinadur kriz; gwiriit ho palizennoù HTML.',
 'badsiglength' => "Re hir eo ho sinadur.
 Dre ret e rank bezañ nebeutoc'h eget {{PLURAL:$1|arouezenn|arouezenn}} ennañ.",
-'yourgender' => 'Jener :',
+'yourgender' => "Penaos eo plij deoc'h bezañ deskrivet ?",
 'gender-unknown' => 'Gwell eo ganin tevel war se',
 'gender-male' => 'Aozañ a ra-eñ pajennoù wiki',
 'gender-female' => 'Aozañ a ra-hi pajennoù wiki',
@@ -1973,7 +1975,7 @@ Marteze a-walc'h e fell deoc'h kemmañ an deskrivadur anezhi war ar [$2 bajenn d
 'randompage' => 'Ur bajenn dre zegouezh',
 'randompage-nopages' => 'N\'eus pajenn ebet en {{PLURAL:$2|esaouennn anv|esaouennoù anv}} da-heul : "$1".',
 
-# Special:RandomInCategory
+# Random page in category
 'randomincategory' => 'Ur bajenn dre zegouezh er rummad',
 'randomincategory-invalidcategory' => '"$1" n\'eo ket un anv rummad reizh.',
 'randomincategory-nopages' => "N'eus pajenn ebet e [[:Category:$1]].",

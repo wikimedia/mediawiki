@@ -1985,7 +1985,7 @@ Aza manadino manamarina raha tsy misy rohy makany amin'ny endrika hafa alohan'ny
 'randompage' => 'Takelaka kisendra',
 'randompage-nopages' => "Tsy misy pejy ao amin'ny anaran-tsehatra {{PLURAL:$2}} : $1.",
 
-# Special:RandomInCategory
+# Random page in category
 'randomincategory' => "Pejy kisendra ao amin'ny sokajy",
 'randomincategory-invalidcategory' => 'Tsy anaran-tsokajy azo raisina "$1"',
 'randomincategory-nopages' => "Tsy misy pejy ao amin'i [[:Category:$1]]",

@@ -423,6 +423,7 @@ Par to varat ziņot [[Special:ListUsers/sysop|kādam administratoram]], norādot
 Funkcija: $1<br />
 Vaicājums: $2',
 'viewsource' => 'Aplūkot kodu',
+'viewsource-title' => 'Apskatīt $1 izejas kodu',
 'actionthrottled' => 'Darbība netika atļauta',
 'protectedpagetext' => 'Šī lapa ir aizsargāta lai novērstu tās izmainīšanu vai citas darbības.',
 'viewsourcetext' => 'Tu vari apskatīties un nokopēt šīs lapas vikitekstu:',
@@ -511,6 +512,7 @@ Lūdzu, izvēlieties citu vārdu.',
 'passwordtooshort' => 'Tava parole ir pārāk īsa.
 Tajā jābūt vismaz {{PLURAL:$1|1 zīmei|$1 zīmēm}}.',
 'password-name-match' => 'Tava parole nedrīkst būt tāda pati kā tavs lietotājvārds.',
+'password-login-forbidden' => 'Šī lietotājvārda un paroles izmantošana ir aizliegta.',
 'mailmypassword' => 'Atsūtīt man jaunu paroli',
 'passwordremindertitle' => 'Jauna pagaidu parole no {{SITENAME}}s',
 'passwordremindertext' => 'Kads (iespejams, Tu pats, no IP adreses $1)
@@ -1596,7 +1598,7 @@ Apraksts ir [$2 faila apraksta lapā], kas ir parādīta zemāk.',
 # Random page
 'randompage' => 'Nejauša lapa',
 
-# Special:RandomInCategory
+# Random page in category
 'randomincategory' => 'Nejauša lapa kategorijā',
 'randomincategory-invalidcategory' => '"$1" nav derīgs kategorijas nosaukums.',
 'randomincategory-selectcategory-submit' => 'Aiziet',

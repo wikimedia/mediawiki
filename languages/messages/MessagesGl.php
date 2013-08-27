@@ -1535,8 +1535,8 @@ Se escolle dalo utilizarase para atribuírlle o seu traballo.',
 'saveusergroups' => 'Gardar os grupos do usuario',
 'userrights-groupsmember' => 'Membro de:',
 'userrights-groupsmember-auto' => 'Membro implícito de:',
-'userrights-groups-help' => 'Pode cambiar os grupos aos que o usuario pertence:
-* Se a caixa ten un sinal (✓) significa que o usuario pertence a ese grupo.
+'userrights-groups-help' => 'Pode cambiar os grupos aos que {{GENDER:$1|o usuario|a usuaria}} pertence:
+* Se a caixa ten un sinal (✓) significa que {{GENDER:$1|o usuario|a usuaria}} pertence a ese grupo.
 * Se, pola contra, non o ten, significa que non pertence.
 * Un asterisco (*) indica que non pode eliminar o grupo unha vez que o engadiu, e viceversa.',
 'userrights-reason' => 'Motivo:',
@@ -1694,6 +1694,8 @@ Se escolle dalo utilizarase para atribuírlle o seu traballo.',
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|modificación|modificacións}}',
+'enhancedrc-since-last-visit' => '$1 {{PLURAL:$1|desde a última visita}}',
+'enhancedrc-history' => 'historial',
 'recentchanges' => 'Cambios recentes',
 'recentchanges-legend' => 'Opcións dos cambios',
 'recentchanges-summary' => 'Nesta páxina pode seguir as modificacións máis recentes feitas no wiki.',
@@ -2107,7 +2109,7 @@ Lembre verificar outras ligazóns cara aos modelos antes de borralos.',
 'randompage' => 'Páxina aleatoria',
 'randompage-nopages' => 'Non hai páxinas {{PLURAL:$2|no seguinte espazo de nomes|nos seguintes espazos de nomes}}: $1.',
 
-# Special:RandomInCategory
+# Random page in category
 'randomincategory' => 'Páxina aleatoria na categoría',
 'randomincategory-invalidcategory' => '"$1" non é un nome de categoría válido.',
 'randomincategory-nopages' => 'Non hai páxinas na [[:Category:$1]].',

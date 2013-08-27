@@ -2198,7 +2198,7 @@ Entrada: contenttype/subtype, p. ej. <code>image/jpeg</code>.',
 'randompage' => 'Página aleatoria',
 'randompage-nopages' => 'No hay páginas en los siguientes {{PLURAL:$2|espacio de nombre|espacios de nombre}}: $1.',
 
-# Special:RandomInCategory
+# Random page in category
 'randomincategory' => 'Página aleatoria en categoría',
 'randomincategory-invalidcategory' => '"$1" no es una categoría válida.',
 'randomincategory-nopages' => 'No hay páginas en la categoría [[:Category:$1|$1]].',

@@ -1517,6 +1517,7 @@ Mae'r wybodaeth hon ar gael i'r cyhoedd.",
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|newid|newid|newid|newid|newid|o newidiadau}}',
+'enhancedrc-history' => 'hanes',
 'recentchanges' => 'Newidiadau diweddar',
 'recentchanges-legend' => "Dewisiadau'r newidiadau diweddar",
 'recentchanges-summary' => "Dilynwch y newidiadau diweddaraf i'r wici ar y dudalen hon.",
@@ -1910,7 +1911,7 @@ Cofiwch chwilio am gysylltiadau eraill at nodyn a'u hystyried cyn ei ddileu.",
 'randompage' => 'Tudalen ar hap',
 'randompage-nopages' => 'Does dim tudalennau yn y {{PLURAL:$2|parth hwn|parth hwn|parthau hyn|parthau hyn|parthau hyn|parthau hyn}}: $1.',
 
-# Special:RandomInCategory
+# Random page in category
 'randomincategory' => "Tudalen ar hap o blith tudalennau'r categori",
 'randomincategory-invalidcategory' => 'Nid yw "$1" yn enw dilys i gategori.',
 'randomincategory-nopages' => 'Nid oes unrhyw dudalennau yn y categori [[:Category:$1]].',

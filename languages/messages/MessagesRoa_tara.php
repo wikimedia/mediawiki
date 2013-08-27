@@ -1486,6 +1486,8 @@ Ce tu 'u mitte, a fatje ca è fatte t'avène ricanusciute.",
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|cangiaminde|cangiaminde}}',
+'enhancedrc-since-last-visit' => "$1 {{PLURAL:$1|da l'urtema visite}}",
+'enhancedrc-history' => 'cunde',
 'recentchanges' => 'Cangiaminde recende',
 'recentchanges-legend' => 'Opzione pe le cangiaminde recende',
 'recentchanges-summary' => 'Tracce le cchiù recednde cangiaminde de Uicchi sus a sta pàgene.',
@@ -1903,7 +1905,7 @@ Arrecuèrdete de condrollà pe otre collegaminde a le template apprime de scange
 'randompage' => 'Pàgene a uecchie',
 'randompage-nopages' => "Non ge stonne pàggene jndr'à {{PLURAL:$2|'u seguende namespace|le seguende namespace}}: $1.",
 
-# Special:RandomInCategory
+# Random page in category
 'randomincategory' => "Pàggene a uecchije jndr'à categorije",
 'randomincategory-invalidcategory' => '"$1" non g\'è \'nu nome d\'a categorije valide.',
 'randomincategory-nopages' => "Non ge stonne pàggene jndr'à [[:Category:$1]].",

@@ -2074,7 +2074,7 @@ Sisesta kujul tüüp/alamtüüp, näiteks <code>image/jpeg</code>.',
 'randompage' => 'Juhuslik artikkel',
 'randompage-nopages' => '{{PLURAL:$2|Järgmises nimeruumis|Järgmistes nimeruumides}} ei ole ühtegi lehekülge: $1.',
 
-# Special:RandomInCategory
+# Random page in category
 'randomincategory' => 'Juhuslik lehekülg kategoorias',
 'randomincategory-invalidcategory' => '"$1" pole sobiv kategooria nimi.',
 'randomincategory-nopages' => 'Kategoorias "[[:Category:$1|$1]]" puuduvad leheküljed.',

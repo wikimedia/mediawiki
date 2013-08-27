@@ -2005,7 +2005,7 @@ Mungkin anda ingin menyunting keterangan pada [$2 laman penerangan failnya] di s
 'randompage' => 'Laman rawak',
 'randompage-nopages' => 'Tiada laman dalam {{PLURAL:$2|ruang|ruang-ruang}} nama berikut: $1.',
 
-# Special:RandomInCategory
+# Random page in category
 'randomincategory' => 'Halaman pilihan rawak dalam kategori',
 'randomincategory-invalidcategory' => '"$1" bukan nama kategori yang sah.',
 'randomincategory-nopages' => 'Tiada halaman di [[:Category:$1]].',

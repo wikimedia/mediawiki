@@ -952,7 +952,7 @@ Du bör återställa om du av misstag delade dem med någon eller om ditt konto 
 'resettokens-legend' => 'Återställ nycklar',
 'resettokens-tokens' => 'Nycklar:',
 'resettokens-token-label' => '$1 (aktuellt värde: $2)',
-'resettokens-watchlist-token' => 'Nyckel för bevakningslistans webbflöde',
+'resettokens-watchlist-token' => 'Nyckel för webbflöde (Atom/RSS) av [[Special:Watchlist|ändringar i sidor på din bevakningslista]]',
 'resettokens-done' => 'Nycklarna är återställda.',
 'resettokens-resetbutton' => 'Återställ valda nycklar',
 
@@ -1741,6 +1741,8 @@ Om du väljer att ange ditt riktiga namn, kommer det att användas för att till
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|ändring|ändringar}}',
+'enhancedrc-since-last-visit' => '$1 {{PLURAL:$1|sedan senaste besöket}}',
+'enhancedrc-history' => 'historik',
 'recentchanges' => 'Senaste ändringarna',
 'recentchanges-legend' => 'Alternativ för senaste ändringarna',
 'recentchanges-summary' => 'Följ de senaste ändringarna i wikin på denna sida.',
@@ -2144,7 +2146,7 @@ Innan mallarna raderas, kontrollera att det inte finns andra länkar till dem.',
 'randompage' => 'Slumpsida',
 'randompage-nopages' => 'Det finns inte några sidor i följande {{PLURAL:$2|namnrymd|namnrymder}}: $1.',
 
-# Special:RandomInCategory
+# Random page in category
 'randomincategory' => 'Slumpsida i kategori',
 'randomincategory-invalidcategory' => '"$1" är inte ett giltigt kategorinamn.',
 'randomincategory-nopages' => 'Det finns inga sidor i [[:Category:$1]].',
@@ -2187,8 +2189,8 @@ En sida anses vara en förgreningssida om den inkluderar en mall som länkas til
 'pageswithprop-text' => 'Denna sida listar sidor som använder en speciell sidegenskap.',
 'pageswithprop-prop' => 'Egenskapsnamn:',
 'pageswithprop-submit' => 'Gå',
-'pageswithprop-prophidden-long' => 'dold långt textegenskapsvärde ($1 kilobyte)',
-'pageswithprop-prophidden-binary' => 'dold binärt egenskapsvärde ($1 kilobyte)',
+'pageswithprop-prophidden-long' => 'dold långt textegenskapsvärde ($1)',
+'pageswithprop-prophidden-binary' => 'dold binärt egenskapsvärde ($1)',
 
 'doubleredirects' => 'Dubbla omdirigeringar',
 'doubleredirectstext' => 'Det här är en lista över sidor som dirigerar om till andra omdirigeringssidor. 
@@ -4203,13 +4205,14 @@ Annars kan du använda det enkla formuläret nedan. Din kommentar kommer att lä
 'rotate-comment' => 'Bilden roteras $1 {{PLURAL:$1|grad|grader}} medurs',
 
 # Limit report
-'limitreport-title' => 'Parser-profildata:',
+'limitreport-title' => 'Profildata för parser:',
 'limitreport-cputime' => 'Processortidsanvändning',
 'limitreport-cputime-value' => '$1 {{PLURAL:$1|sekund|sekunder}}',
 'limitreport-walltime' => 'Realtidsanvändning',
 'limitreport-walltime-value' => '$1 {{PLURAL:$1|sekund|sekunder}}',
 'limitreport-ppvisitednodes' => 'Antal nodbesök för preprocessor',
 'limitreport-ppgeneratednodes' => 'Antal noder genererade av preprocessor',
+'limitreport-postexpandincludesize' => 'Inkludera storlek efter utvidgning',
 'limitreport-postexpandincludesize-value' => '$1/$2 byte',
 'limitreport-templateargumentsize' => 'Storlek på mallargument',
 'limitreport-templateargumentsize-value' => '$1/$2 byte',

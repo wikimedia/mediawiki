@@ -2101,7 +2101,7 @@ Vergeet niet de verwiezingen nao te kieken veurda\'j de mal vortdoon.',
 'randompage' => 'Netzelde welk artikel',
 'randompage-nopages' => 'Der staon gien ziejen in de {{PLURAL:$2|naamruumte|naamruumtes}}: $1.',
 
-# Special:RandomInCategory
+# Random page in category
 'randomincategory' => 'Netzelde welke zied in n kategorie',
 'randomincategory-invalidcategory' => '"$1" is gien geldige kategorienaam.',
 'randomincategory-nopages' => 'Der bin gien ziejen in [[:Category:$1]].',

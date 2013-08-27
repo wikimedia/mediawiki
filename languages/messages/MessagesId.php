@@ -2156,7 +2156,7 @@ Cek dahulu pranala lain ke templat tersebut sebelum menghapusnya.',
 'randompage' => 'Halaman sembarang',
 'randompage-nopages' => 'Tidak ada halaman pada {{PLURAL:$2||}}ruang nama berikut: $1.',
 
-# Special:RandomInCategory
+# Random page in category
 'randomincategory' => 'Halaman acak dalam kategori',
 'randomincategory-invalidcategory' => '"$1" bukanlah nama kategori yang berlaku.',
 'randomincategory-nopages' => 'Tidak ada halaman dalam [[:Category:$1]].',

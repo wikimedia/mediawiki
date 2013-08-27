@@ -2040,7 +2040,7 @@ Preden jih izbrišete, preverite še druge povezave nanje.',
 'randompage' => 'Naključni članek',
 'randompage-nopages' => 'V {{PLURAL:$2|naslednjem imenskem prostoru|naslednjih imenskih prostorih}} ni strani: $1.',
 
-# Special:RandomInCategory
+# Random page in category
 'randomincategory' => 'Naključna stran v kategoriji',
 'randomincategory-invalidcategory' => '»$1« ni veljavno ime kategorije.',
 'randomincategory-nopages' => 'V kategoriji [[:Category:$1]] ni nobene strani.',

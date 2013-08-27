@@ -1807,7 +1807,7 @@ Iar dü ian strikst, stel seeker, dat diar nian ferwisangen üüb detdetdiar fö
 'randompage' => 'Tufelag sidj',
 'randompage-nopages' => 'Diar san nian sidjen uun {{PLURAL:$2|nöömrüm|nöömrümer}}: $1.',
 
-# Special:RandomInCategory
+# Random page in category
 'randomincategory' => "Tufelag sidj uun't kategorii",
 'randomincategory-invalidcategory' => '"$1" as üs kategoriinööm ei tuläät.',
 'randomincategory-nopages' => 'Diar san nian sidjen uun [[:Category:$1]].',

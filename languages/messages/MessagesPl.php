@@ -946,7 +946,7 @@ Należy to zrobić, jeśli ktoś je poznał lub zdobył hasło do Twojego konta.
 'resettokens-legend' => 'Resetuj tokeny',
 'resettokens-tokens' => 'Tokeny:',
 'resettokens-token-label' => '$1 (obecna wartość: $2)',
-'resettokens-watchlist-token' => 'Token kanału internetowego (Atom/RSS) zmian w obserwowanych stronach',
+'resettokens-watchlist-token' => 'Token kanału internetowego (Atom/RSS) zmian w [[Special:Watchlist|obserwowanych stronach]]',
 'resettokens-done' => 'Tokeny zresetowane.',
 'resettokens-resetbutton' => 'Zresetuj wybrane tokeny',
 
@@ -1737,6 +1737,8 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|zmiana|zmiany|zmian}}',
+'enhancedrc-since-last-visit' => '$1 {{PLURAL:$1|od ostatniej wizyty}}',
+'enhancedrc-history' => 'historia',
 'recentchanges' => 'Ostatnie zmiany',
 'recentchanges-legend' => 'Opcje ostatnich zmian',
 'recentchanges-summary' => 'Ta strona przedstawia historię ostatnich zmian w tej wiki.',
@@ -2147,7 +2149,7 @@ Sprawdź inne linki do szablonów, zanim usuniesz tę stronę.',
 'randompage' => 'Losowa strona',
 'randompage-nopages' => 'Brak stron w {{PLURAL:$2|przestrzeni nazw|przestrzeniach nazw:}} $1.',
 
-# Special:RandomInCategory
+# Random page in category
 'randomincategory' => 'Losowa strona w kategorii',
 'randomincategory-invalidcategory' => '"$1" nie jest prawidłową nazwą kategorii.',
 'randomincategory-nopages' => 'Nie ma żadnych stron w [[:Category:$1]].',
@@ -2190,8 +2192,8 @@ Strona uznawana jest za ujednoznaczniającą, jeśli zawiera szablon linkowany p
 'pageswithprop-text' => 'Ta strona zawiera listę stron korzystających z właściwości.',
 'pageswithprop-prop' => 'Nazwa właściwości:',
 'pageswithprop-submit' => 'Pokaż',
-'pageswithprop-prophidden-long' => 'długa wartość własności ukryta ($1 kilobajta)',
-'pageswithprop-prophidden-binary' => 'binarna wartość własności ukryta ($1 kilobajta)',
+'pageswithprop-prophidden-long' => 'długa wartość własności ukryta ($1)',
+'pageswithprop-prophidden-binary' => 'binarna wartość własności ukryta ($1)',
 
 'doubleredirects' => 'Podwójne przekierowania',
 'doubleredirectstext' => 'Lista zawiera strony z przekierowaniami do stron, które przekierowują do innej strony.

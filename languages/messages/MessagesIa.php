@@ -2010,7 +2010,7 @@ Memora verificar que non existe altere ligamines al patronos ante que tu los del
 'randompage' => 'Pagina aleatori',
 'randompage-nopages' => 'Il non ha paginas in le sequente {{PLURAL:$2|spatio|spatios}} de nomines: $1.',
 
-# Special:RandomInCategory
+# Random page in category
 'randomincategory' => 'Pagina aleatori in categoria',
 'randomincategory-invalidcategory' => '"$1" non es un nomine de categoria valide.',
 'randomincategory-nopages' => 'Il non ha paginas in [[:Category:$1]].',

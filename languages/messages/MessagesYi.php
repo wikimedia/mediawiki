@@ -1977,7 +1977,7 @@ $1",
 'randompage' => 'צופֿעליגער אַרטיקל',
 'randompage-nopages' => 'נישטא קיין בלעטער אין {{PLURAL:$2|דעם פאלגנדן נאמענטייל |די פאלגנדע נאמענטיילן}} "$1".',
 
-# Special:RandomInCategory
+# Random page in category
 'randomincategory' => 'צופעליקער בלאט אין קאטעגאריע',
 'randomincategory-invalidcategory' => '"$1" איז נישט קיין גילטיקער קאטעגאריע נאמען.',
 'randomincategory-nopages' => 'נישט פאראן קיין בלעטער אין [[:Category:$1]].',

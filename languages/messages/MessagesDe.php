@@ -57,6 +57,7 @@
  * @author Saibo
  * @author Se4598
  * @author Sebastian Wallroth
+ * @author Shirayuki
  * @author Spacebirdy
  * @author Srhat
  * @author TMg
@@ -1623,7 +1624,7 @@ Dies kann nicht mehr rückgängig gemacht werden.',
 'yournick' => 'Signatur:',
 'prefs-help-signature' => 'Beiträge auf Diskussionsseiten sollten mit „<nowiki>~~~~</nowiki>“ signiert werden, was dann in die Signatur mit Zeitstempel umgewandelt wird.',
 'badsig' => 'Die Syntax der Signatur ist ungültig; bitte HTML überprüfen.',
-'badsiglength' => 'Die Signatur darf maximal $1 {{PLURAL:$1|Zeichen|Zeichen}} lang sein.',
+'badsiglength' => 'Die Signatur darf maximal $1 {{PLURAL:$1|Zeichen}} lang sein.',
 'yourgender' => 'Wie willst du dich beschreiben?',
 'gender-unknown' => 'Ich will es nicht beschreiben',
 'gender-male' => 'Er bearbeitet Wikiseiten',
@@ -1828,6 +1829,8 @@ Diese Information ist öffentlich.',
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|Änderung|Änderungen}}',
+'enhancedrc-since-last-visit' => '$1 {{PLURAL:$1|seit dem letzten Besuch}}',
+'enhancedrc-history' => 'Versionsgeschichte',
 'recentchanges' => 'Letzte Änderungen',
 'recentchanges-legend' => 'Anzeigeoptionen',
 'recentchanges-summary' => 'Auf dieser Seite kannst du die letzten Änderungen in diesem Wiki nachverfolgen.',
@@ -2229,7 +2232,7 @@ Vielleicht möchtest du die Beschreibung auf der dortigen [$2 Dateibeschreibungs
 'randompage' => 'Zufällige Seite',
 'randompage-nopages' => 'Es sind keine Seiten {{PLURAL:$2|im folgenden Namensraum|in den folgenden Namensräumen}} enthalten: „$1“',
 
-# Special:RandomInCategory
+# Random page in category
 'randomincategory' => 'Zufällige Seite einer Kategorie',
 'randomincategory-invalidcategory' => '„$1“ ist kein gültiger Kategorienname.',
 'randomincategory-nopages' => 'Es gibt keine Seiten in [[:Category:$1]].',
@@ -3266,7 +3269,7 @@ Diese auf dem lokalen Rechner speichern und danach hier hochladen.',
 'lastmodifiedatby' => 'Diese Seite wurde zuletzt am $1 um $2 Uhr von $3 geändert.',
 'othercontribs' => 'Basierend auf der Arbeit von $1.',
 'others' => 'anderen',
-'siteusers' => '{{SITENAME}}-{{PLURAL:$2|Benutzer|Benutzer}} $1',
+'siteusers' => '{{SITENAME}}-{{PLURAL:$2|Benutzer}} $1',
 'anonusers' => '{{PLURAL:$2|unangemeldetem|unangemeldeten}} {{SITENAME}}-{{PLURAL:$2|Benutzer|Benutzern}} $1',
 'creditspage' => 'Seiteninformationen',
 'nocredits' => 'Für diese Seite sind keine Informationen vorhanden.',
@@ -3387,7 +3390,7 @@ Durch das Herunterladen und Öffnen der Datei kann dein Computer beschädigt wer
 'file-info-gif-looped' => 'Endlosschleife',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|Bild|Bilder}}',
 'file-info-png-looped' => 'Endlosschleife',
-'file-info-png-repeat' => '$1-{{PLURAL:$1|mal|mal}} abgespielt',
+'file-info-png-repeat' => '$1-{{PLURAL:$1|mal}} abgespielt',
 'file-info-png-frames' => '$1 {{PLURAL:$1|Bild|Bilder}}',
 'file-no-thumb-animation' => "'''Hinweis: Aufgrund technischer Beschränkungen werden Vorschaubilder dieser Datei nicht animiert.'''",
 'file-no-thumb-animation-gif' => "'''Hinweis: Aufgrund technischer Beschränkungen werden Vorschaubilder hochauflösender GIF-Dateien wie dieser nicht animiert.'''",
@@ -3413,7 +3416,7 @@ Durch das Herunterladen und Öffnen der Datei kann dein Computer beschädigt wer
 'months' => '{{PLURAL:$1|1 Monat|$1 Monate}}',
 'years' => '{{PLURAL:$1|1 Jahr|$1 Jahre}}',
 'ago' => 'vor $1',
-'just-now' => 'Gerade eben',
+'just-now' => 'gerade eben',
 
 # Human-readable timestamps
 'hours-ago' => 'vor {{PLURAL:$1|einer Stunde|$1 Stunden}}',
@@ -3772,8 +3775,8 @@ Weitere werden standardmäßig nicht angezeigt.
 'exif-gpslongitude-w' => 'westl. Länge',
 
 # Pseudotags used for GPSAltitudeRef
-'exif-gpsaltitude-above-sealevel' => '$1 {{plural:$1|Meter|Meter}} über dem Meeresspiegel',
-'exif-gpsaltitude-below-sealevel' => '$1 {{plural:$1|Meter|Meter}} unter dem Meeresspiegel',
+'exif-gpsaltitude-above-sealevel' => '$1 {{plural:$1|Meter}} über dem Meeresspiegel',
+'exif-gpsaltitude-below-sealevel' => '$1 {{plural:$1|Meter}} unter dem Meeresspiegel',
 
 'exif-gpsstatus-a' => 'Messung läuft',
 'exif-gpsstatus-v' => 'Interoperabilität von Messungen',

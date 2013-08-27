@@ -2074,7 +2074,7 @@ Input:contenttype/subtype, e.g. <code>image/jpeg</code>.',
 'randompage' => 'अविशिष्ट लेख',
 'randompage-nopages' => 'पुढील {{PLURAL:$2|नामविश्वात|नामविश्वांत}} कोणतीही पाने नाहीत: $1.',
 
-# Special:RandomInCategory
+# Random page in category
 'randomincategory' => 'वर्गातील अनियत पान',
 'randomincategory-invalidcategory' => '"$1" हे अधिकृत वर्गाचे नाव नाही.',
 'randomincategory-nopages' => '[[:Category:$1]] यात काहीच पाने नाहीत.',

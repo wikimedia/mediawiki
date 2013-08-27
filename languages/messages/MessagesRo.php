@@ -2128,7 +2128,7 @@ Lista tipurilor MIME recunoscute de MediaWiki poate fi găsită la [http://svn.w
 'randompage' => 'Pagină aleatorie',
 'randompage-nopages' => 'Nu există pagini în {{PLURAL:$2|spațiul|spațiile}} de nume: $1.',
 
-# Special:RandomInCategory
+# Random page in category
 'randomincategory' => 'Pagină aleatorie din categorie',
 'randomincategory-invalidcategory' => '„$1” nu este un nume de categorie valid.',
 'randomincategory-nopages' => 'Nu există pagini în [[:Category:$1]].',

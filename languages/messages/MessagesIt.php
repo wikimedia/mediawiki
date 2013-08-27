@@ -1684,6 +1684,8 @@ Il tuo indirizzo non viene rivelato quando gli altri utenti ti contattano.',
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|modifica|modifiche}}',
+'enhancedrc-since-last-visit' => "$1 {{PLURAL:$1|dall'ultima visita}}",
+'enhancedrc-history' => 'cronologia',
 'recentchanges' => 'Ultime modifiche',
 'recentchanges-legend' => 'Opzioni ultime modifiche',
 'recentchanges-summary' => 'Questa pagina presenta le modifiche più recenti ai contenuti del sito.',
@@ -2074,7 +2076,7 @@ Probabilmente vuoi modificare la descrizione presente nella [$2 pagina di descri
 'randompage' => 'Una pagina a caso',
 'randompage-nopages' => 'Non ci sono pagine {{PLURAL:$2|nel seguente namespace|nei seguenti namespace}}: $1.',
 
-# Special:RandomInCategory
+# Random page in category
 'randomincategory' => 'Pagina casuale in una categoria',
 'randomincategory-invalidcategory' => '"$1" non è un nome di categoria valido.',
 'randomincategory-nopages' => 'Non ci sono pagine in [[:Category:$1]].',

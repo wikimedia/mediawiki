@@ -2216,7 +2216,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'randompage' => '임의 문서로',
 'randompage-nopages' => '{{PLURAL:$2|다음}} 이름공간에는 문서가 없습니다: $1',
 
-# Special:RandomInCategory
+# Random page in category
 'randomincategory' => '분류에 있는 임의 문서',
 'randomincategory-invalidcategory' => '"$1"(은)는 올바른 분류 이름이 아닙니다.',
 'randomincategory-nopages' => '[[:Category:$1]]에 문서가 없습니다.',

@@ -1910,7 +1910,7 @@ Giromdoma baya na mag-tsek para sa iba pang kasugpon sa mga templato bago mo pag
 'randompage' => 'Purakan na pahina',
 'randompage-nopages' => 'Dae tabi nin mga pahina sa minasunod na {{PLURAL:$2|espasyong-ngaran|mga espasyong-ngaran}}: $1.',
 
-# Special:RandomInCategory
+# Random page in category
 'randomincategory' => 'Purakan na pahina sa kategoriya',
 'randomincategory-invalidcategory' => '"$1" bako sarong balidong pangaran nin kategoriya.',
 'randomincategory-nopages' => 'Mayo nin mga pahina sa [[:Category:$1]].',

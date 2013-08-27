@@ -1940,7 +1940,7 @@ $1',
 'randompage' => 'สุ่มหน้า',
 'randompage-nopages' => 'ไม่มีหน้าใดใน{{PLURAL:$2|เนมสเปซ}}ต่อไปนี้: "$1"',
 
-# Special:RandomInCategory
+# Random page in category
 'randomincategory' => 'สุ่มหน้าในหมวดหมู่',
 'randomincategory-invalidcategory' => '"$1" มิใช่ชื่อหมวดหมู่ที่ถูกต้อง',
 'randomincategory-nopages' => 'ไม่มีหน้าใน[[:Category:$1]]',

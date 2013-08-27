@@ -809,7 +809,9 @@ See also:
 
 Used as <code>$1</code> in message {{msg-mw|Youhavenewmessages}}.
 {{Identical|New messages}}',
-'newmessagesdifflink' => 'This is the second link displayed in an orange rectangle when a user gets a message on his talk page. Used in message {{msg-mw|youhavenewmessages}} (as parameter $2).
+'newmessagesdifflink' => 'This is the second link displayed in an orange rectangle when a user gets a message on his talk page.
+
+Used as <code>$2</code> in message {{msg-mw|Youhavenewmessages}}.
 
 See also:
 * {{msg-mw|Newmessagesdifflinkplural}}
@@ -3361,11 +3363,16 @@ This action allows editing of all of the "user rights", not just the rights of t
 $1 is the number of changes on that day (2 or more).
 Three messages are shown side-by-side: ({{msg-mw|nchanges}} | {{msg-mw|enhancedrc-since-last-visit}} | {{msg-mw|enhancedrc-history}}).',
 'enhancedrc-since-last-visit' => "Appears on enhanced watchlist and recent changes when page has more than one change on given date and at least one that the user hasn't seen yet, linking to a diff of the unviewed changes.
-$1 is the number of unviewed changes (1 or more).
+
+Parameters:
+* $1 - the number of unviewed changes (1 or more)
 Three messages are shown side-by-side: ({{msg-mw|nchanges}} | {{msg-mw|enhancedrc-since-last-visit}} | {{msg-mw|enhancedrc-history}}).",
 'enhancedrc-history' => 'Appears on enhanced watchlist and recent changes when page has more than one change on given date, linking to its history.
+
 This is the same as {{msg-mw|hist}}, but not abbreviated.
-Three messages are shown side-by-side: ({{msg-mw|nchanges}} | {{msg-mw|enhancedrc-since-last-visit}} | {{msg-mw|enhancedrc-history}}).',
+
+Three messages are shown side-by-side: ({{msg-mw|nchanges}} | {{msg-mw|enhancedrc-since-last-visit}} | {{msg-mw|enhancedrc-history}}).
+{{Identical|History}}',
 'recentchanges' => 'The text of the link in sidebar going to the special page [[Special:RecentChanges]]. Also the page title of that special page.
 
 See also:
@@ -4440,7 +4447,7 @@ See also:
 'randompage-nopages' => '* $1 - list of namespaces
 * $2 - number of namespaces',
 
-# Special:RandomInCategory
+# Random page in category
 'randomincategory' => '{{doc-special|RandomInCategory}}',
 'randomincategory-invalidcategory' => 'Message shown if an invalid category is specified.
 
@@ -4501,7 +4508,8 @@ Used in [[Special:Statistics]].',
 'disambiguations' => '{{doc-special|Disambiguations}}',
 'disambiguationspage' => 'This message is the name of the template used for marking disambiguation pages. It is used by [[Special:Disambiguations]] to find all pages which link to disambiguation pages.
 
-{{doc-important|Don\'t translate the "Template:" part!}}',
+{{doc-important|Don\'t translate the "Template:" part!}}
+{{Identical|Template:disambig}}',
 'disambiguations-text' => '{{doc-important|Do not change the link "<code><nowiki>[[MediaWiki:Disambiguationspage]]</nowiki></code>", even because it is listed as problematic. Be sure the "D" is in uppercase, so not "d".}}
 This block of text is shown on [[:Special:Disambiguations]].
 
@@ -5256,9 +5264,9 @@ The name of the deletion log. Used as heading on [[Special:Log/delete]] and in t
 {{Identical|Deletion log}}',
 'dellogpagetext' => 'Text in [[Special:Log/delete]].',
 'deletionlog' => 'Used as text for the link which points to the deletion log:
-* Used as parameter $1 of {{msg-mw|Filewasdeleted}}
-* Used as parameter $2 of {{msg-mw|deletedtext}}
-* Used in log lines on [[Special:DeletedContributions]].
+* Used as <code>$1</code> in {{msg-mw|Filewasdeleted}}
+* Used as <code>$2</code> in {{msg-mw|Deletedtext}}
+* Used in log lines on [[Special:DeletedContributions]]
 {{Identical|Deletion log}}',
 'reverted' => '{{Identical|Revert}}',
 'deletecomment' => '{{Identical|Reason}}',

@@ -1671,6 +1671,8 @@ Tanben podètz causir de permetre a d’autres de vos contactar per vòstra pagi
 'action-sendemail' => 'mandar corrièrs electronics',
 'action-editmywatchlist' => 'modificar vòstra lista de seguiment',
 'action-viewmywatchlist' => 'afichar vòstra pròpria lista de seguiment',
+'action-viewmyprivateinfo' => 'veire vòstras informacions personalas',
+'action-editmyprivateinfo' => 'modificar vòstras informacions personalas',
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|cambiament|cambiaments}}',
@@ -1889,6 +1891,7 @@ Se lo problèma persistís, contactatz un [[Special:ListUsers/sysop|administrato
 
 # ZipDirectoryReader
 'zip-file-open-error' => "Una error s'es producha al moment de la dobertura del fichièr ZIP per contraròtle.",
+'zip-wrong-format' => 'Lo fichièr especificat es pas un archiu ZIP.',
 
 # Special:UploadStash
 'uploadstash' => "Escondedor d'impòrt",
@@ -2039,7 +2042,11 @@ Doblidetz pas de verificar se i a pas d’autre ligam cap als modèls abans de l
 'randompage' => "Una pagina a l'azard",
 'randompage-nopages' => "I a pas cap de pagina dins {{PLURAL:$2|l'espaci de nom|los espacis de noms}} : $1.",
 
-# Special:RandomInCategory
+# Random page in category
+'randomincategory' => "Pagina a l'azard dins la categoria",
+'randomincategory-invalidcategory' => '« $1 » es pas un nom de categoria valid.',
+'randomincategory-nopages' => 'I a pas cap de pagina dins [[:Category:$1]].',
+'randomincategory-selectcategory' => "Prene una pagina a l'azard dins la categoria : $1 $2.",
 'randomincategory-selectcategory-submit' => 'Anar',
 
 # Random redirect
@@ -2076,6 +2083,8 @@ Una pagina es considerada coma una pagina d’omonimia s'utiliza un modèl qu'es
 'pageswithprop-legend' => 'Paginas amb una proprietat de pagina',
 'pageswithprop-prop' => 'Nom de la proprietat :',
 'pageswithprop-submit' => 'Anar',
+'pageswithprop-prophidden-long' => 'valor de proprietat de tèxte long amagada ($1)',
+'pageswithprop-prophidden-binary' => 'valor de proprietat binària amagada ($1)',
 
 'doubleredirects' => 'Redireccions doblas',
 'doubleredirectstext' => 'Vaquí una lista de las paginas que redirigisson cap a de paginas que son elas-meteissas de paginas de redireccion.
@@ -2131,6 +2140,7 @@ Las entradas <del>barradas</del> son estadas resolgudas.',
 'mostrevisions' => 'Articles mai modificats',
 'prefixindex' => 'Totas las paginas que començan per…',
 'prefixindex-namespace' => 'Totas las paginas amb prefix (espaci de noms $1)',
+'prefixindex-strip' => 'Levar lo prefix dins la lista',
 'shortpages' => 'Paginas brèvas',
 'longpages' => 'Paginas longas',
 'deadendpages' => "Paginas sul camin d'enlòc",
@@ -2863,6 +2873,8 @@ Visitatz la [//www.mediawiki.org/wiki/Localisation Localizacion MediaWiki] e [//
 'thumbnail-more' => 'Agrandir',
 'filemissing' => 'Fichièr absent',
 'thumbnail_error' => 'Error al moment de la creacion de la miniatura : $1',
+'thumbnail_error_remote' => "Messatge d'error de $1 :
+$2",
 'djvu_page_error' => 'Pagina DjVu fòra limits',
 'djvu_no_xml' => "Impossible d’obténer l'XML pel fichièr DjVu",
 'thumbnail_invalid_params' => 'Paramètres de la miniatura invalids',
@@ -3351,6 +3363,7 @@ Los autres ligams sus la meteissa linha son considerats coma d'excepcions, per e
 'exif-serialnumber' => "Numèro de seria de l'aparelh de fòto",
 'exif-cameraownername' => "Proprietari de l'aparelh de fòto",
 'exif-label' => 'Libellat',
+'exif-nickname' => "Nom informal de l'imatge",
 'exif-rating' => 'Nòta (sus 5)',
 'exif-rightscertificate' => 'Certificat de gestion dels dreches',
 'exif-copyrighted' => "Estatut del drech d'autor",
@@ -3759,6 +3772,7 @@ Ensajatz la previsualizacion normala.',
 'version-license' => 'Licéncia',
 'version-poweredby-credits' => "Aqueste wiki fonciona gràcias a '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'autres',
+'version-poweredby-translators' => 'traductors de translatewiki.net',
 'version-software' => 'Logicial installat',
 'version-software-product' => 'Produch',
 'version-software-version' => 'Version',
@@ -3825,6 +3839,7 @@ Ensajatz la previsualizacion normala.',
 'tags' => 'Balisas de las modificacions validas',
 'tag-filter' => 'Filtrar las [[Special:Tags|balisas]] :',
 'tag-filter-submit' => 'Filtrar',
+'tag-list-wrapper' => '([[Special:Tags|{{PLURAL:$1|Balisa|Balisas}}]] : $2)',
 'tags-title' => 'Balisas',
 'tags-intro' => 'Aquesta pagina lista las balisas que lo logicial pòt utilizar per marcar una modificacion, e lor significacion.',
 'tags-tag' => 'Nom de la balisa',
@@ -3872,6 +3887,7 @@ Ensajatz la previsualizacion normala.',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 amb recèrca en tèxte integral suportada',
+'sqlite-no-fts' => '$1 sens recèrca en tèxte integral suportada',
 
 # New logging system
 'logentry-delete-delete' => '$1 {{GENDER:$2|a suprimit}} la pagina $3',
@@ -3929,6 +3945,7 @@ Ensajatz la previsualizacion normala.',
 'api-error-filename-tooshort' => 'Lo nom del fichièr es tròp cort.',
 'api-error-filetype-banned' => 'Aqueste tipe de fichièr es interdich',
 'api-error-illegal-filename' => 'Lo nom del fichièr es pas autorizat.',
+'api-error-unclassified' => "Una error desconeguda s'es producha.",
 'api-error-unknown-code' => 'Error desconeguda : « $1 »',
 'api-error-unknown-warning' => 'Avertiment desconegut : $1',
 'api-error-unknownerror' => 'Error desconeguda : « $1 »',

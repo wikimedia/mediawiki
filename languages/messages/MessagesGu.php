@@ -1945,7 +1945,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization. જુઓ',
 'randompage' => 'કોઈ પણ એક લેખ',
 'randompage-nopages' => 'આ {{PLURAL:$2|નામસ્થળ|નામસ્થળો}}માં કોઇ પાના નથી: $1.',
 
-# Special:RandomInCategory
+# Random page in category
 'randomincategory-selectcategory-submit' => 'જાઓ',
 
 # Random redirect

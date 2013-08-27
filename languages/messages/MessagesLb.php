@@ -1988,7 +1988,7 @@ Dir musst ëmmer de Medien- a Subtyp aginn: z. Bsp. <code>image/jpeg</code>.",
 'randompage' => 'Zoufallssäit',
 'randompage-nopages' => 'Et gëtt keng Säiten {{PLURAL:$2|am Nummraum|an den Nummraim}}: $1.',
 
-# Special:RandomInCategory
+# Random page in category
 'randomincategory' => 'Zoufälleg Säit an der Kategorie',
 'randomincategory-invalidcategory' => '"$1" ass kee valabelen Numm fir eng Kategorie.',
 'randomincategory-nopages' => 'Et gëtt keng Säiten an der [[:Category:$1]].',

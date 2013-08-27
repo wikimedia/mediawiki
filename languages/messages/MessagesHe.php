@@ -2200,7 +2200,7 @@ $1',
 'randompage' => 'דף אקראי',
 'randompage-nopages' => 'אין דפים {{PLURAL:$2|במרחב השם הבא|במרחבי השם הבאים}}: $1.',
 
-# Special:RandomInCategory
+# Random page in category
 'randomincategory' => 'דף אקראי בקטגוריה',
 'randomincategory-invalidcategory' => '"$1" אינו שם תקין לקטגוריה.',
 'randomincategory-nopages' => 'אין דפים בקטגוריה [[:Category:$1|$1]].',
@@ -4331,8 +4331,8 @@ $5
 'limitreport-cputime-value' => '{{PLURAL:$1|שנייה|$1 שניות}}',
 'limitreport-walltime' => 'זמן אמיתי',
 'limitreport-walltime-value' => '{{PLURAL:$1|שנייה|$1 שניות}}',
-'limitreport-ppvisitednodes' => 'מספר הצמתים בהם ביקר קדם-המפענח',
-'limitreport-ppgeneratednodes' => 'מספר הצמתים שיצר קדם-המפענח',
+'limitreport-ppvisitednodes' => 'מספר הצמתים שקדם־המפענח ביקר בהם',
+'limitreport-ppgeneratednodes' => 'מספר הצמתים שקדם־המפענח יצר',
 'limitreport-postexpandincludesize' => 'גודל הטקסט המוכלל לאחר הפריסה',
 'limitreport-postexpandincludesize-value' => '$1/$2 בתים',
 'limitreport-templateargumentsize' => 'גודל הפרמטרים של התבניות',

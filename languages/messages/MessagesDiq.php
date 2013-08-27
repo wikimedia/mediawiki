@@ -2096,7 +2096,7 @@ listeya ke ha ver a têna na {{PLURAL:$1|dosyaya ewwili|dosyaya $1 ewwili}} mocn
 'randompage' => 'Pela raştameyiye',
 'randompage-nopages' => 'Ena {{PLURAL:$2|cayêname|cayênameyî}} de enê pelan çin o: $1.',
 
-# Special:RandomInCategory
+# Random page in category
 'randomincategory-invalidcategory' => '"$1" namedı kategori çıniya',
 'randomincategory-selectcategory-submit' => 'Şo',
 

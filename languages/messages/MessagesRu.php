@@ -2248,7 +2248,7 @@ $1',
 'randompage' => 'Случайная статья',
 'randompage-nopages' => 'В {{PLURAL:$2|следующем пространстве имён отсутствуют страницы|следующих пространствах имён нет страниц}}: $1.',
 
-# Special:RandomInCategory
+# Random page in category
 'randomincategory' => 'Случайная страница в категории',
 'randomincategory-invalidcategory' => 'Категории «$1» не существует.',
 'randomincategory-nopages' => 'Нет страниц в категории [[:Category:$1]].',

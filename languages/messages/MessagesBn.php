@@ -1858,7 +1858,7 @@ Maybe you want to edit the description on its [$2 file description page] there.'
 'randompage' => 'অজানা যেকোনো পাতা',
 'randompage-nopages' => 'যে {{PLURAL:$2|নামস্থানে|নামস্থানসমূহে}} কোন পাতা নেই: $1।',
 
-# Special:RandomInCategory
+# Random page in category
 'randomincategory-nopages' => '[[:Category:$1]]-এ কোন পাতা নেই।',
 'randomincategory-selectcategory-submit' => 'যাও',
 

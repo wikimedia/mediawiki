@@ -2161,7 +2161,7 @@ Talvez você deseje editar a descrição na sua [$2 página de descrição de ar
 'randompage' => 'Página aleatória',
 'randompage-nopages' => 'Não há páginas {{PLURAL:$2|no seguinte espaço nominal|nos seguintes espaços nominais}}: $1.',
 
-# Special:RandomInCategory
+# Random page in category
 'randomincategory' => 'Página aleatória na categoria',
 'randomincategory-invalidcategory' => '"$1" não é um nome de categoria válido.',
 'randomincategory-nopages' => 'Não há paginas em [[:Category:$1]].',

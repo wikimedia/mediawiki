@@ -2079,7 +2079,7 @@ Syöte: sisältötyyppi/alatyyppi, esimerkiksi <code>image/jpeg</code>.',
 'randompage' => 'Satunnainen sivu',
 'randompage-nopages' => '{{PLURAL:$2|Nimiavaruudessa|Nimiavaruuksissa}} $1 ei ole sivuja.',
 
-# Special:RandomInCategory
+# Random page in category
 'randomincategory' => 'Satunnainen sivu, joka kuuluu luokkaan',
 'randomincategory-invalidcategory' => '" $1 " ei ole kelvollinen luokan nimi.',
 'randomincategory-nopages' => 'Luokassa [[:Category:$1]] ei ole sivuja.',

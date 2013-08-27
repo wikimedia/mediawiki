@@ -1871,7 +1871,7 @@ Minst til at kanna eftir um aðrar síður slóða til fyrimyndirnar, áðrenn t
 'randompage' => 'Tilvildarlig síða',
 'randompage-nopages' => 'Tað eru ongar síður í hesum {{PLURAL:$2|navnarúminum|navnarúmunum}}: $1.',
 
-# Special:RandomInCategory
+# Random page in category
 'randomincategory' => 'Tilvildarlig síða í bólkinum',
 'randomincategory-invalidcategory' => '"$1" kann ikki brúkast sum bólkaheiti.',
 'randomincategory-nopages' => 'Tað eru ongar síður í [[:Category:$1]].',

@@ -2076,7 +2076,7 @@ Prije brisanja provjerite da li druge stranice vode na te šablone.',
 'randompage' => 'Slučajna stranica',
 'randompage-nopages' => 'Nema stranica u {{PLURAL:$2|slijedećem imenskom prostoru|slijedećim imenskim prostorima}}: "$1".',
 
-# Special:RandomInCategory
+# Random page in category
 'randomincategory-selectcategory-submit' => 'Idi',
 
 # Random redirect

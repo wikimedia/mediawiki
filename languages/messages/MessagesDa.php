@@ -1990,7 +1990,7 @@ Husk at kontrollere for andre henvisninger til skabelonerne før de slettes.',
 'randompage' => 'Tilfældig side',
 'randompage-nopages' => 'Der er ingen sider i {{PLURAL:$2|navnerummet|disse navnerum:}} $1.',
 
-# Special:RandomInCategory
+# Random page in category
 'randomincategory' => 'Tilfældig side i kategori',
 'randomincategory-invalidcategory' => '"$1" er ikke et gyldigt kategorinavn.',
 'randomincategory-nopages' => 'Der er ingen sider i [[:Category:$1]].',

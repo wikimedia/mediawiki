@@ -2214,7 +2214,7 @@ $1',
 'randompage' => 'Випадкова стаття',
 'randompage-nopages' => 'Нема сторінок в {{PLURAL:$2|просторі назв|просторах назв}} $1.',
 
-# Special:RandomInCategory
+# Random page in category
 'randomincategory' => 'Випадкова сторінка у категорії',
 'randomincategory-invalidcategory' => '" $1 " не є дійсним іменем категорії.',
 'randomincategory-nopages' => 'У [[:Category:$1]] немає сторінок.',

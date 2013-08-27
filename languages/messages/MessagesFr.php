@@ -1796,6 +1796,8 @@ Cette information sera publique.',
 
 # Recent changes
 'nchanges' => '$1 modification{{PLURAL:$1||s}}',
+'enhancedrc-since-last-visit' => '$1 {{PLURAL:$1|depuis la dernière visite}}',
+'enhancedrc-history' => 'historique',
 'recentchanges' => 'Modifications récentes',
 'recentchanges-legend' => 'Options des modifications récentes',
 'recentchanges-summary' => 'Piste les changements les plus récents du wiki sur cette page.',
@@ -2202,7 +2204,7 @@ N'oubliez pas de vérifier s'il n'y a pas d'autres liens vers les modèles avant
 'randompage' => 'Page au hasard',
 'randompage-nopages' => "Il n'y a aucune page dans {{PLURAL:$2|l'espace de noms|les espaces de noms}} : $1.",
 
-# Special:RandomInCategory
+# Random page in category
 'randomincategory' => 'Page au hasard dans la catégorie',
 'randomincategory-invalidcategory' => '« $1 » n’est pas un nom de catégorie valide.',
 'randomincategory-nopages' => 'Il n’y a pas de page dans [[:Category:$1]].',

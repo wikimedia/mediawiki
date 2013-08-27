@@ -1914,7 +1914,7 @@ Alcuérdate de comprobar otros enllaces a les plantíes enantes d'esborrales.",
 'randompage' => 'Páxina al debalu',
 'randompage-nopages' => 'Nun hai páxines {{PLURAL:$2|nel espaciu|nos espacios}} de nomes darréu: "$1".',
 
-# Special:RandomInCategory
+# Random page in category
 'randomincategory' => 'Páxina al debalu de la categoría',
 'randomincategory-invalidcategory' => '"$1" nun ye un nome de categoría válidu.',
 'randomincategory-nopages' => 'Nun hai páxines en [[:Category:$1]].',

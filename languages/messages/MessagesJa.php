@@ -1832,6 +1832,8 @@ $1 {{PLURAL:$1|文字}}以下である必要があります。',
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|回の変更}}',
+'enhancedrc-since-last-visit' => '最終閲覧以降 $1 {{PLURAL:$1|件}}',
+'enhancedrc-history' => '履歴',
 'recentchanges' => '最近の更新',
 'recentchanges-legend' => '最近の更新のオプション',
 'recentchanges-summary' => 'このページでは、このウィキでの最近の更新を確認できます。',
@@ -2254,7 +2256,7 @@ contenttype/subtypeの形式で入力してください (例: <code>image/jpeg</
 'randompage' => 'おまかせ表示',
 'randompage-nopages' => '以下の{{PLURAL:$2|名前空間}}にはページがありません: $1',
 
-# Special:RandomInCategory
+# Random page in category
 'randomincategory' => 'カテゴリ内でおまかせ表示',
 'randomincategory-invalidcategory' => '「$1」は有効なカテゴリ名ではありません。',
 'randomincategory-nopages' => '[[:Category:$1]] にはページがありません。',

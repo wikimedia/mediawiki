@@ -1849,7 +1849,7 @@ $1',
 'randompage' => 'Түбэспиччэ сирэй',
 'randompage-nopages' => 'Бу {{PLURAL:$2|аат дала кураана|аат далларыгар сирэйдэр суохтар}}: $1.',
 
-# Special:RandomInCategory
+# Random page in category
 'randomincategory' => 'Категория түбэспиччэ ыстатыйата',
 'randomincategory-invalidcategory' => '"$1" диэн категория суох эбит.',
 'randomincategory-nopages' => 'Бу категорияҕа [[:Category:$1]] киирэр ыстатыйалар суохтар.',

@@ -2130,7 +2130,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization കാണുക.',
 'randompage' => 'ഏതെങ്കിലും താൾ',
 'randompage-nopages' => 'ഇനി കൊടുത്തിരിക്കുന്ന {{PLURAL:$2|നാമമേഖലയിൽ|നാമമേഖലകളിൽ}} താളുകൾ ഒന്നുമില്ല: $1.',
 
-# Special:RandomInCategory
+# Random page in category
 'randomincategory' => 'വർഗ്ഗത്തിൽ നിന്ന് ക്രമരഹിതമായി എടുക്കുന്ന താൾ',
 'randomincategory-invalidcategory' => '"$1" സാധുതയുള്ള വർഗ്ഗത്തിന്റെ പേരല്ല.',
 'randomincategory-nopages' => '[[:Category:$1|വർഗ്ഗം:$1]] എന്നതിൽ താളുകളൊന്നുമില്ല.',

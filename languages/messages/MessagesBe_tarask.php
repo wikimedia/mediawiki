@@ -1680,6 +1680,8 @@ $1",
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|зьмена|зьмены|зьменаў}}',
+'enhancedrc-since-last-visit' => '$1 {{PLURAL:$1|з апошняга візыту}}',
+'enhancedrc-history' => 'гісторыя',
 'recentchanges' => 'Апошнія зьмены',
 'recentchanges-legend' => 'Налады апошніх зьменаў',
 'recentchanges-summary' => 'Сачыце за апошнімі зьменамі ў {{GRAMMAR:месны|{{SITENAME}}}} на гэтай старонцы.',
@@ -2073,7 +2075,7 @@ $1',
 'randompage' => 'Выпадковая старонка',
 'randompage-nopages' => 'Няма старонак у {{PLURAL:$2|наступнай прасторы|наступных прасторах}} назваў: $1.',
 
-# Special:RandomInCategory
+# Random page in category
 'randomincategory' => 'Выпадковая старонка ў катэгорыі',
 'randomincategory-invalidcategory' => '«$1» — ня слушная назва катэгорыі.',
 'randomincategory-nopages' => 'У катэгорыі «[[:Category:$1|$1]]» старонак няма.',

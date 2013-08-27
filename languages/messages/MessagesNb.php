@@ -2135,7 +2135,7 @@ Kanskje du vil redigere beskrivelsen på dens [$2 filbeskrivelsesside].',
 'randompage' => 'Tilfeldig side',
 'randompage-nopages' => 'Det er ingen sider i {{PLURAL:$2|det følgende navnrommet|de følgende navnrommene}}: $1.',
 
-# Special:RandomInCategory
+# Random page in category
 'randomincategory' => 'Tilfeldig side innenfor kategorien',
 'randomincategory-invalidcategory' => '«$1» er ikke et gyldig kategorinavn.',
 'randomincategory-nopages' => 'Det finnes ingen sider i [[:Kategori:$1]].',

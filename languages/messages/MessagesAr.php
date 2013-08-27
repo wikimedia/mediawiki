@@ -2326,7 +2326,7 @@ $1',
 'randompage' => 'صفحة عشوائية',
 'randompage-nopages' => 'لا توجد صفحات في {{PLURAL:$2||النطاق التالي|النطاقين التاليين|النطاقات التالية}}: $1.',
 
-# Special:RandomInCategory
+# Random page in category
 'randomincategory' => 'صفحة عشوائية في التصنيف',
 'randomincategory-invalidcategory' => '"$1" ليس اسم تصنيف صالح.',
 'randomincategory-selectcategory-submit' => 'اذهب',

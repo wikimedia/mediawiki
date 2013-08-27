@@ -16,6 +16,7 @@
  * @author DanielTom
  * @author Dicionarista
  * @author Francisco Leandro
+ * @author Fúlvio
  * @author Giro720
  * @author GoEThe
  * @author Hamilton Abreu
@@ -361,6 +362,7 @@ $messages = array(
 'tog-noconvertlink' => 'Impossibilitar a conversão dos títulos de links',
 'tog-norollbackdiff' => 'Omitir diferenças depois de reverter edições em bloco',
 'tog-useeditwarning' => 'Avisar-me ao abandonar uma página editada sem gravar as alterações.',
+'tog-prefershttps' => 'Sempre utilizar uma conexão segura ao iniciar sessão',
 
 'underline-always' => 'Sempre',
 'underline-never' => 'Nunca',
@@ -692,6 +694,7 @@ Pode já ter sido eliminado por outro utilizador.',
 'cannotdelete-title' => 'Não é possível eliminar a página "$1"',
 'delete-hook-aborted' => 'A eliminação foi cancelada por um "hook".
 Não foi dada nenhuma explicação.',
+'no-null-revision' => 'Não foi possível criar uma nova revisão nula para a página "$1"',
 'badtitle' => 'Título inválido',
 'badtitletext' => 'O título de página solicitado era inválido, vazio, ou um link interlínguas ou interwikis incorrecto.
 Talvez contenha um ou mais caracteres que não podem ser usados em títulos.',
@@ -719,6 +722,8 @@ $2',
 'customjsprotected' => 'Não tem permissões para editar esta página de JavaScript porque ela contém as configurações pessoais de outro utilizador.',
 'mycustomcssprotected' => 'Não tem permissão para editar esta página de CSS.',
 'mycustomjsprotected' => 'Não tem permissão para editar esta página de JavaScript.',
+'myprivateinfoprotected' => 'Você não tem permissão para editar sua informação privada.',
+'mypreferencesprotected' => 'Você não tem permissão para editar as suas preferências.',
 'ns-specialprotected' => 'Não é possível editar páginas especiais',
 'titleprotected' => 'Este título foi protegido contra criação por [[User:$1|$1]].
 A justificação foi "\'\'$2\'\'".',
@@ -738,7 +743,6 @@ O administrador que efetuou o bloqueio deu a seguinte explicação: "$3".',
 # Login and logout pages
 'logouttext' => "'''Já não está autenticado.'''
 
-Pode continuar a utilizar a {{SITENAME}} anonimamente, ou pode <span class='plainlinks'>[$1 autenticar-se novamente]</span> com o mesmo nome de utilizador ou com um nome de utilizador diferente.
 Tenha em atenção que algumas páginas poderão continuar a ser apresentadas como se ainda estivesse autenticado até limpar a cache do seu browser.",
 'welcomeuser' => 'Bem-vindo, $1!',
 'welcomecreation-msg' => 'A sua conta foi criada.
@@ -746,6 +750,7 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências]].'
 'yourname' => 'Nome de utilizador:',
 'userlogin-yourname' => 'Nome de utilizador(a):',
 'userlogin-yourname-ph' => 'Digite seu nome de utilizador(a)',
+'createacct-another-username-ph' => 'Digite o nome de utilizador',
 'yourpassword' => 'Palavra-chave:',
 'userlogin-yourpassword' => 'Palavra-chave',
 'userlogin-yourpassword-ph' => 'Digite sua palavra-chave',
@@ -779,9 +784,11 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências]].'
 'helplogin-url' => 'Help:Autenticação',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Ajuda a fazer login]]',
 'createacct-join' => 'Insira a sua informação abaixo.',
+'createacct-another-join' => 'Digite a informação da nova conta abaixo.',
 'createacct-emailrequired' => 'Endereço de email',
 'createacct-emailoptional' => 'Endereço de email (opcional)',
 'createacct-email-ph' => 'Digite seu endereço de email',
+'createacct-another-email-ph' => 'Digite o endereço de e-mail',
 'createaccountmail' => 'Usar uma palavra passe aleatória e temporária e enviar para o endereço de correio eletrónico especificado',
 'createacct-realname' => 'Nome verdadeiro (opcional)',
 'createaccountreason' => 'Motivo:',
@@ -790,6 +797,7 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências]].'
 'createacct-captcha' => 'Verificar segurança',
 'createacct-imgcaptcha-ph' => 'Digite o texto que vê acima',
 'createacct-submit' => 'Crie a sua conta',
+'createacct-another-submit' => 'Criar uma outra conta',
 'createacct-benefit-heading' => '{{SITENAME}} é feito por pessoas como você.',
 'createacct-benefit-body1' => '{{PLURAL:$1|edição|edições}}',
 'createacct-benefit-body2' => '{{PLURAL:$1|página|páginas}}',
@@ -860,11 +868,13 @@ Deve agora autenticar-se e alterar a sua palavra-chave.
 
 Se a conta foi criada por engano, pode ignorar esta mensagem.',
 'usernamehasherror' => 'O nome de utilizador não pode conter o símbolo de cardinal (#).',
-'login-throttled' => 'Realizou demasiadas tentativas de autenticação com esta conta.
-Aguarde antes de tentar novamente, por favor.',
+'login-throttled' => 'Você realizou demasiadas tentativas de autenticação com esta conta.
+Aguarde $1 antes de tentar novamente, por favor.',
 'login-abort-generic' => 'A sua autenticação não teve êxito - Cancelada',
 'loginlanguagelabel' => 'Língua: $1',
 'suspicious-userlogout' => 'O seu pedido para sair foi negado porque parece ter sido enviado por um browser danificado ou por um proxy com cache.',
+'createacct-another-realname-tip' => 'O nome real é opcional.
+Se você optar por fornecê-lo, este será utilizado para dar ao usuário a atribuição de seu trabalho.',
 
 # Email sending
 'php-mail-error-unknown' => 'Erro desconhecido na função mail() do PHP',
@@ -881,7 +891,7 @@ Para prosseguir, será necessário definir uma nova palavra-chave.',
 'newpassword' => 'Palavra-chave nova:',
 'retypenew' => 'Repita a palavra-chave nova:',
 'resetpass_submit' => 'Definir palavra-chave e entrar',
-'changepassword-success' => 'A sua palavra-chave foi alterada! Autenticação em curso...',
+'changepassword-success' => 'A sua palavra-chave foi alterada com êxito!',
 'resetpass_forbidden' => 'Não é possível alterar palavras-chave',
 'resetpass-no-info' => 'Precisa estar autenticado para aceder diretamente a esta página.',
 'resetpass-submit-loggedin' => 'Alterar palavra-chave',
@@ -894,7 +904,7 @@ Pode ter já alterado com sucesso a sua palavra-chave ou solicitado uma nova pal
 # Special:PasswordReset
 'passwordreset' => 'Repor palavra-chave',
 'passwordreset-text-one' => 'Preencha este formulário para repor a sua palavra-passe.',
-'passwordreset-text-many' => '{{PLURAL:$1|Digite uma parte dos dados para redefinir sua senha.}}',
+'passwordreset-text-many' => '{{PLURAL:$1|Preencha um dos campos para redefinir sua senha.}}',
 'passwordreset-legend' => 'Reiniciar a palavra-chave',
 'passwordreset-disabled' => 'O reinício da palavra-chave foi impossibilitado nesta wiki.',
 'passwordreset-emaildisabled' => 'Recursos de e-mail foram desativados neste wiki.',
@@ -933,6 +943,15 @@ Palavra-chave temporária: $2',
 'changeemail-password' => 'A sua senha {{SITENAME}}:',
 'changeemail-submit' => 'Alterar correio electrónico',
 'changeemail-cancel' => 'Cancelar',
+
+# Special:ResetTokens
+'resettokens' => 'Redefinir os tokens',
+'resettokens-text' => 'Você pode redefinir tokens que permitem o acesso a certos dados privados associados à sua conta aqui.
+
+Você deve fazê-lo se acidentalmente compartilhá-los com alguém ou se sua conta estiver comprometida.',
+'resettokens-no-tokens' => 'Não existem tokens para redefinir.',
+'resettokens-legend' => 'Redefinir tokens',
+'resettokens-token-label' => '$1 (valor actual: $2)',
 
 # Edit page toolbar
 'bold_sample' => 'Texto a negrito',
@@ -1018,7 +1037,7 @@ Ela pode ter sido movida ou removida enquanto estava a ver a página.',
 'accmailtitle' => 'Palavra-chave enviada.',
 'accmailtext' => 'Uma palavra-chave gerada aleatoriamente para [[User talk:$1|$1]] foi enviada para $2.
 
-A palavra-chave para esta nova conta pode ser alterada na página [[Special:ChangePassword|alterar palavra-chave]] após autenticação.',
+Ela pode ser alterada na página [[Special:ChangePassword|de alteração da palavra-chave]] após autenticação.',
 'newarticle' => '(Nova)',
 'newarticletext' => "Seguiu uma ligação para uma página que ainda não existe.
 Para criá-la, escreva o seu conteúdo na caixa abaixo (consulte a [[{{MediaWiki:Helppage}}|página de ajuda]] para mais detalhes).
@@ -2128,7 +2147,7 @@ Talvez queira editar a descrição na [$2 página original de descrição do fic
 'randompage' => 'Página aleatória',
 'randompage-nopages' => 'Não há páginas {{PLURAL:$2|no seguinte espaço nominal|nos seguintes espaços nominais}}: $1.',
 
-# Special:RandomInCategory
+# Random page in category
 'randomincategory-selectcategory-submit' => 'Ir',
 
 # Random redirect
