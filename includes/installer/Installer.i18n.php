@@ -63,8 +63,8 @@ Check your php.ini and make sure <code>session.save_path</code> is set to an app
 	'config-help-restart'             => 'Do you want to clear all saved data that you have entered and restart the installation process?',
 	'config-restart'                  => 'Yes, restart it',
 	'config-welcome'                  => "=== Environmental checks ===
-Basic checks are performed to see if this environment is suitable for MediaWiki installation.
-You should provide the results of these checks if you need help during installation.",
+Basic checks will now be performed to see if this environment is suitable for MediaWiki installation.
+Remember to include this information if you seek support on how to complete the installation.",
 	'config-copyright'                => "=== Copyright and Terms ===
 
 $1
