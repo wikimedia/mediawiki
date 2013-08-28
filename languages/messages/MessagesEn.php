@@ -4003,7 +4003,7 @@ By executing it, your system may be compromised.",
 # Human-readable timestamps
 'hours-ago'    => '$1 {{PLURAL:$1|hour|hours}} ago',
 'minutes-ago'  => '$1 {{PLURAL:$1|minute|minutes}} ago',
-'seconds-ago'  => '$1 {{PLURAL:$1|seconds|seconds}} ago',
+'seconds-ago'  => '$1 {{PLURAL:$1|second|seconds}} ago',
 'monday-at'    => 'Monday at $1',
 'tuesday-at'   => 'Tuesday at $1',
 'wednesday-at' => 'Wednesday at $1',
