@@ -188,6 +188,39 @@ abstract class MediaHandler {
 	}
 
 	/**
+	 * Get an array of standard (FormatMetadata type) metadata values.
+	 *
+	 * The returned data is largely the same as that from getMetadata(),
+	 * but formatted in a standard, stable, handler-independent way.
+	 * The idea being that some values like ImageDescription or Artist
+	 * are universal and should be retrievable in a handler generic way.
+	 *
+	 * The specific properties are the type of properties that can be
+	 * handled by the FormatMetadata class. These values are exposed to the
+	 * user via the filemetadata parser function.
+	 *
+	 * Details of the response format of this function can be found at
+	 * https://www.mediawiki.org/wiki/Manual:File_metadata_handling
+	 * tl/dr: the response is an associative array of
+	 * properties keyed by name, but the value can be complex. You probably
+	 * want to call one of the FormatMetadata::flatten* functions on the
+	 * property values before using them, or call
+	 * FormatMetadata::getFormattedData() on the full response array, which
+	 * transforms all values into prettified, human-readable text.
+	 *
+	 * Note, if the file simply has no metadata, but the handler supports
+	 * this interface, it should return an empty array, not false.
+	 *
+	 * @param File $file
+	 *
+	 * @return Array or false if interface not supported
+	 * @since 1.23
+	 */
+	public function getCommonMetaArray( File $file ) {
+		return false;
+	}
+
+	/**
 	 * Get a MediaTransformOutput object representing an alternate of the transformed
 	 * output which will call an intermediary thumbnail assist script.
 	 *
