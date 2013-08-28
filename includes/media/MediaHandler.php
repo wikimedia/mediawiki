@@ -186,6 +186,28 @@ abstract class MediaHandler {
 	}
 
 	/**
+	 * Get an array of standard (FormatMetadata type) metadata values.
+	 *
+	 * These are meant to be fairly stable, and *not* handler specific.
+	 * The specific properties are the type of properties that can be
+	 * handled by the FormatMetadata class. These values are exposed to the
+	 * user via the filemetadata parser function.
+	 *
+	 * The idea being that some values like ImageDescription or Artist
+	 * are universal and should be retrievable in a handler generic way.
+	 *
+	 * Note, if the file simply has no metadata, but the handler supports
+	 * this interface, it should return an empty array, not false.
+	 *
+	 * @param File $file
+	 *
+	 * @return Array or false if interface not supported
+	 */
+	public function getCommonMetaArray( $file ) {
+		return false;
+	}
+
+	/**
 	 * Get a MediaTransformOutput object representing an alternate of the transformed
 	 * output which will call an intermediary thumbnail assist script.
 	 *
