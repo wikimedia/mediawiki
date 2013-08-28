@@ -319,6 +319,7 @@ class Preferences {
 			$defaultPreferences['prefershttps'] = array(
 				'type' => 'toggle',
 				'label-message' => 'tog-prefershttps',
+				'help-message' => 'prefs-help-prefershttps',
 				'section' => 'personal/info'
 			);
 		}
