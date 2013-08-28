@@ -123,8 +123,7 @@ class SpecialProtectedpages extends SpecialPage {
 
 		$description_items = array();
 
-		// Give grep a chance to find the usages:
-		// restriction-level-sysop, restriction-level-autoconfirmed
+		// Messages: restriction-level-sysop, restriction-level-autoconfirmed
 		$protType = $this->msg( 'restriction-level-' . $row->pr_level )->escaped();
 
 		$description_items[] = $protType;
@@ -151,8 +150,8 @@ class SpecialProtectedpages extends SpecialPage {
 			$stxt = $lang->getDirMark() . ' ' . Linker::formatRevisionSize( $size );
 		}
 
-		# Show a link to the change protection form for allowed users otherwise
-		# a link to the protection log
+		// Show a link to the change protection form for allowed users otherwise
+		// a link to the protection log
 		if ( $this->getUser()->isAllowed( 'protect' ) ) {
 			$changeProtection = Linker::linkKnown(
 				$title,
@@ -310,8 +309,7 @@ class SpecialProtectedpages extends SpecialPage {
 
 		// First pass to load the log names
 		foreach ( Title::getFilteredRestrictionTypes( true ) as $type ) {
-			// Give grep a chance to find the usages:
-			// restriction-edit, restriction-move, restriction-create, restriction-upload
+			// Messages: restriction-edit, restriction-move, restriction-create, restriction-upload
 			$text = $this->msg( "restriction-$type" )->text();
 			$m[$text] = $type;
 		}
