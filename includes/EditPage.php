@@ -972,7 +972,7 @@ class EditPage {
 						$undoMsg = 'norev';
 					}
 
-					// Give grep a chance to find the usages: undo-success, undo-failure, undo-norev
+					// Messages: undo-success, undo-failure, undo-norev
 					$class = ( $undoMsg == 'success' ? '' : 'error ' ) . "mw-undo-{$undoMsg}";
 					$this->editFormPageTop .= $wgOut->parse( "<div class=\"{$class}\">" .
 						wfMessage( 'undo-' . $undoMsg )->plain() . '</div>', true, /* interface */true );
