@@ -214,6 +214,7 @@ class SearchMySQL extends SearchEngine {
 		switch ( $feature ) {
 		case 'list-redirects':
 		case 'title-suffix-filter':
+		case 'search-update':
 			return true;
 		default:
 			return false;
