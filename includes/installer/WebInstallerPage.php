@@ -84,14 +84,14 @@ abstract class WebInstallerPage {
 
 		if ( $continue ) {
 			// Fake submit button for enter keypress (bug 26267)
-			// Give grep a chance to find the usages: config-continue
+			// config-continue, config-restart, config-regenerate
 			$s .= Xml::submitButton( wfMessage( "config-$continue" )->text(),
 				array( 'name' => "enter-$continue", 'style' =>
 					'visibility:hidden;overflow:hidden;width:1px;margin:0' ) ) . "\n";
 		}
 
 		if ( $back ) {
-			// Give grep a chance to find the usages: config-back
+			// config-back
 			$s .= Xml::submitButton( wfMessage( "config-$back" )->text(),
 				array(
 					'name' => "submit-$back",
@@ -100,7 +100,7 @@ abstract class WebInstallerPage {
 		}
 
 		if ( $continue ) {
-			// Give grep a chance to find the usages: config-continue
+			// config-continue, config-restart, config-m
 			$s .= Xml::submitButton( wfMessage( "config-$continue" )->text(),
 				array(
 					'name' => "submit-$continue",
@@ -457,7 +457,6 @@ class WebInstaller_DBConnect extends WebInstallerPage {
 		$settings = '';
 		$defaultType = $this->getVar( 'wgDBtype' );
 
-		// Give grep a chance to find the usages:
 		// config-support-mysql, config-support-postgres, config-support-oracle, config-support-sqlite
 		$dbSupport = '';
 		foreach ( $this->parent->getDBTypes() as $type ) {
@@ -488,7 +487,6 @@ class WebInstaller_DBConnect extends WebInstallerPage {
 				) .
 				"</li>\n";
 
-			// Give grep a chance to find the usages:
 			// config-header-mysql, config-header-postgres, config-header-oracle, config-header-sqlite
 			$settings .=
 				Html::openElement( 'div', array( 'id' => 'DB_wrapper_' . $type,
@@ -1131,7 +1129,6 @@ class WebInstaller_Options extends WebInstallerPage {
 				return false;
 			}
 		} elseif ( in_array( $code, array_keys( $this->parent->licenses ) ) ) {
-			// Give grep a chance to find the usages:
 			// config-license-cc-by, config-license-cc-by-sa, config-license-cc-by-nc-sa,
 			// config-license-cc-0, config-license-pd, config-license-gfdl,
 			// config-license-none, config-license-cc-choose
@@ -1219,9 +1216,8 @@ class WebInstaller_Install extends WebInstallerPage {
 	}
 
 	public function startStage( $step ) {
-		// Give grep a chance to find the usages: config-install-database, config-install-tables,
-		// config-install-interwiki, config-install-stats, config-install-keys, config-install-sysop,
-		// config-install-mainpage
+		// config-install-database, config-install-tables, config-install-interwiki,
+		// config-install-stats, config-install-keys, config-install-sysop, config-install-mainpage
 		$this->addHTML( "<li>" . wfMessage( "config-install-$step" )->escaped() . wfMessage( 'ellipsis' )->escaped() );
 		if ( $step == 'extension-tables' ) {
 			$this->startLiveBox();

@@ -123,7 +123,6 @@ class SpecialProtectedpages extends SpecialPage {
 
 		$description_items = array();
 
-		// Give grep a chance to find the usages:
 		// restriction-level-sysop, restriction-level-autoconfirmed
 		$protType = $this->msg( 'restriction-level-' . $row->pr_level )->escaped();
 
@@ -310,7 +309,6 @@ class SpecialProtectedpages extends SpecialPage {
 
 		// First pass to load the log names
 		foreach ( Title::getFilteredRestrictionTypes( true ) as $type ) {
-			// Give grep a chance to find the usages:
 			// restriction-edit, restriction-move, restriction-create, restriction-upload
 			$text = $this->msg( "restriction-$type" )->text();
 			$m[$text] = $type;

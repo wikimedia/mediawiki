@@ -335,7 +335,6 @@ abstract class DatabaseInstaller {
 	 * @return String
 	 */
 	public function getReadableName() {
-		// Give grep a chance to find the usages:
 		// config-type-mysql, config-type-postgres, config-type-sqlite, config-type-oracle
 		return wfMessage( 'config-type-' . $this->getName() )->text();
 	}

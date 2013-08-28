@@ -987,7 +987,6 @@ class Preferences {
 
 		foreach ( $watchTypes as $action => $pref ) {
 			if ( $user->isAllowed( $action ) ) {
-				// Give grep a chance to find the usages:
 				// tog-watchdefault, tog-watchmoves, tog-watchdeletion, tog-watchcreations
 				$defaultPreferences[$pref] = array(
 					'type' => 'toggle',

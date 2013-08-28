@@ -516,7 +516,7 @@ class WebInstaller extends Installer {
 	/**
 	 * Called by execute() before page output starts, to show a page list.
 	 *
-	 * @param $currentPageName String
+	 * @param $currentPageName string
 	 */
 	private function startPageWrapper( $currentPageName ) {
 		$s = "<div class=\"config-page-wrapper\">\n";
@@ -539,8 +539,8 @@ class WebInstaller extends Installer {
 
 		$s .= "</ul><br/><ul>\n";
 		$s .= $this->getPageListItem( 'Restart', true, $currentPageName );
-		$s .= "</ul></div>\n"; // end list pane
-		// Give grep a chance to find the usages:
+		// end list pane
+		$s .= "</ul></div>\n";
 		// config-page-language, config-page-welcome, config-page-dbconnect, config-page-upgrade,
 		// config-page-dbsettings, config-page-name, config-page-options, config-page-install,
 		// config-page-complete, config-page-restart, config-page-readme, config-page-releasenotes,
@@ -554,15 +554,14 @@ class WebInstaller extends Installer {
 	/**
 	 * Get a list item for the page list.
 	 *
-	 * @param $pageName String
-	 * @param $enabled Boolean
-	 * @param $currentPageName String
+	 * @param $pageName string
+	 * @param $enabled boolean
+	 * @param $currentPageName string
 	 *
 	 * @return string
 	 */
 	private function getPageListItem( $pageName, $enabled, $currentPageName ) {
 		$s = "<li class=\"config-page-list-item\">";
-		// Give grep a chance to find the usages:
 		// config-page-language, config-page-welcome, config-page-dbconnect, config-page-upgrade,
 		// config-page-dbsettings, config-page-name, config-page-options, config-page-install,
 		// config-page-complete, config-page-restart, config-page-readme, config-page-releasenotes,
