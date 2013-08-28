@@ -80,6 +80,17 @@ class SVGMetadataExtractorTest extends MediaWikiTestCase {
 					'originalWidth' => '385',
 					'originalHeight' => '385.0004883',
 				)
+			),
+			array(
+				"$base/Tux.svg",
+				array (
+					'width' => 512,
+					'height' => 594,
+					'originalWidth' => '100%',
+					'originalHeight' => '100%',
+					'title' => 'Tux',
+					'description' => 'For more information see: http://commons.wikimedia.org/wiki/Image:Tux.svg',
+				)
 			)
 		);
 	}
