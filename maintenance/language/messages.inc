@@ -2994,6 +2994,12 @@ $wgMessageStructure = array(
 		'metadata-langitem',
 		'metadata-langitem-default',
 	),
+	'filemetadata' => array(
+		'filemetadata-notfile',
+		'filemetadata-unsupported',
+		'filemetadata-noprop',
+		'filemetadata-nosubprop',
+	),
 	'exif' => array(
 		'exif-imagewidth',
 		'exif-imagelength',
@@ -4226,4 +4232,5 @@ Variants for Chinese language",
 	'cachedspecial'         => 'SpecialCachedPage',
 	'rotation'              => 'Image rotation',
 	'limitreport'           => 'Limit report',
+	'filemetadata'		=> '{{#filemetadata:.. parser function',
 );
