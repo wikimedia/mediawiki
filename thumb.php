@@ -171,20 +171,17 @@ function wfStreamThumb( array $params ) {
 		$redirectedLocation = false;
 		if ( !$isTemp ) {
 			// Check for file redirect
-			if ( $isOld ) {
-				// Since redirects are associated with pages, not versions of files,
-				// we look for the most current version to see if its a redirect.
-				$possibleRedirFile = RepoGroup::singleton()->getLocalRepo()->findFile( $img->getName() );
-			} else {
-				$possibleRedirFile = RepoGroup::singleton()->getLocalRepo()->findFile( $fileName );
-			}
-			if ( $possibleRedirFile && !is_null( $possibleRedirFile->getRedirected() ) ) {
-				$redirTarget = $possibleRedirFile->getName();
+			// Since redirects are associated with pages, not versions of files,
+			// we look for the most current version to see if its a redirect.
+			$possRedirFile = RepoGroup::singleton()->getLocalRepo()->findFile( $img->getName() );
+			if ( $possRedirFile && !is_null( $possRedirFile->getRedirected() ) ) {
+				$redirTarget = $possRedirFile->getName();
 				$targetFile = wfLocalFile( Title::makeTitleSafe( NS_FILE, $redirTarget ) );
 				if ( $targetFile->exists() ) {
 					$newThumbName = $targetFile->thumbName( $params );
 					if ( $isOld ) {
-						$newThumbUrl = $targetFile->getArchiveThumbUrl( $bits[0] . '!' . $targetFile->getName(), $newThumbName );
+						$newThumbUrl = $targetFile->getArchiveThumbUrl(
+							$bits[0] . '!' . $targetFile->getName(), $newThumbName );
 					} else {
 						$newThumbUrl = $targetFile->getThumbUrl( $newThumbName );
 					}
