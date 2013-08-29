@@ -206,6 +206,8 @@ production.
   they have ever uploaded, even if it was subsequently overriden.
 * Introduced Special:MyFiles and Special:AllMyFiles as an alias for Special:MyUploads
   and Special:AllMyUploads respectively.
+* IPv6 addresses in X-Forwarded-For headers are now normalised before checking
+  against allowed proxy lists.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one

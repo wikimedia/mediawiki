@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @group WebRequest
+ */
 class WebRequestTest extends MediaWikiTestCase {
 	protected $oldServer;
 
@@ -142,6 +145,17 @@ class WebRequestTest extends MediaWikiTestCase {
 				array(),
 				false,
 				'Simple IPv6'
+			),
+			array(
+				'12.0.0.1',
+				array(
+					'REMOTE_ADDR' => 'abcd:0001:002:03:4:555:6666:7777',
+					'HTTP_X_FORWARDED_FOR' => '12.0.0.1, abcd:0001:002:03:4:555:6666:7777',
+				),
+				array( 'ABCD:1:2:3:4:555:6666:7777' ),
+				array(),
+				false,
+				'IPv6 normalisation'
 			),
 			array(
 				'12.0.0.3',
