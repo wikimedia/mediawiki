@@ -206,6 +206,8 @@ production.
   they have ever uploaded, even if it was subsequently overriden.
 * Introduced Special:MyFiles and Special:AllMyFiles as an alias for Special:MyUploads
   and Special:AllMyUploads respectively.
+* (bug 41498) Add {{#filemetadata:...}} to retrieve metadata (i.e. Exif and friends)
+  for a file in wikitext.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
