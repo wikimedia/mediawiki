@@ -238,6 +238,7 @@ $messages = array(
 'tog-showhiddencats' => 'ווײַז באהאלטענע קאטעגאריעס',
 'tog-norollbackdiff' => 'היפט איבער ווײַזן אונטערשייד נאכן אויספֿירן א צוריקדריי',
 'tog-useeditwarning' => 'שטעלן א ווארענונג ווען איך לאז איבער א רעדאקטירונג בלאט מיט נישט אויפגעהיטענע ענדערונגען',
+'tog-prefershttps' => 'ניצט שטענדיק א זיכערע פארבינדונג ווען ארײַנגלאגירט',
 
 'underline-always' => 'אייביג',
 'underline-never' => 'קיינמאל',
@@ -1366,7 +1367,7 @@ $1",
 'prefs-rendering' => 'אויסזען',
 'saveprefs' => 'אויפֿהיטן',
 'resetprefs' => 'אוועקנעמען נישט-אויפגעהיטענע ענדערונגען',
-'restoreprefs' => 'צוריקשטעלן אלע גרונטלעכע שטעלונגען',
+'restoreprefs' => 'צוריקשטעלן אלע גרונטלעכע שטעלונגען (אין אלע אפטיילן)',
 'prefs-editing' => 'באַאַרבעטן',
 'rows' => 'שורות:',
 'columns' => 'עמודים:',
@@ -1451,6 +1452,7 @@ $1",
 'prefs-displaywatchlist' => 'ווײַזן אפציעס',
 'prefs-tokenwatchlist' => 'טאקן',
 'prefs-diffs' => 'צווישנשיידן',
+'prefs-help-prefershttps' => 'דער פרעפערענץ וועט ארבעטן ביי אײַער נעקסטער ארײַנלאגירונג.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'ע-פּאָסט אַדרעס זעט אויס גילטיק',
@@ -1620,6 +1622,8 @@ $1",
 
 # Recent changes
 'nchanges' => '{{PLURAL:$1|ענדערונג|$1 ענדערונגען}}',
+'enhancedrc-since-last-visit' => '$1 {{PLURAL:$1|זײַט לעצטן וויזיט}}',
+'enhancedrc-history' => 'היסטאריע',
 'recentchanges' => 'לעצטע ענדערונגען',
 'recentchanges-legend' => 'ברירות פאר לעצטע ענדערונגען',
 'recentchanges-summary' => 'גיי נאך די לעצטע ענדערונגען צו דער וויקי אויף דעם בלאט.',
@@ -1871,8 +1875,7 @@ $1",
 'upload_source_file' => '(א טעקע אויף אײַער קאמפיוטער)',
 
 # Special:ListFiles
-'listfiles-summary' => 'דער דאזיקער באזונדערער בלאט ווייזט אלע ארויפגעלאדענע טעקעס.
-ווען געפילטערט לויטן באניצער, ווייזט מען נאר טעקעס וואס יענער באניצער האט ארויפגעלאדן די לעצטע ווערסיע.',
+'listfiles-summary' => 'דער דאזיקער באזונדערער בלאט ווייזט אלע ארויפגעלאדענע טעקעס.',
 'listfiles_search_for' => 'זוכן פֿאַר מעדיע נאָמען:',
 'imgfile' => 'טעקע',
 'listfiles' => 'טעקע ליסטע',
@@ -1883,6 +1886,10 @@ $1",
 'listfiles_size' => 'גרייס',
 'listfiles_description' => 'באַשרײַבונג',
 'listfiles_count' => 'ווערסיעס',
+'listfiles-show-all' => 'שליסט אײַן אלטע ווערסיעס פון בילדער',
+'listfiles-latestversion' => 'לויפיקע ווערסיע',
+'listfiles-latestversion-yes' => 'יא',
+'listfiles-latestversion-no' => 'ניין',
 
 # File description page
 'file-anchor-link' => 'בילד טעקע',
@@ -3790,6 +3797,7 @@ $5
 'tags' => 'גילטיקע ענדערונג טאַגן',
 'tag-filter' => '[[Special:Tags|מאַרקירונג]] פֿילטער:',
 'tag-filter-submit' => 'פֿילטער',
+'tag-list-wrapper' => '([[Special:Tags|{{PLURAL:$1|טאַג|טאַגן}}]]: $2)',
 'tags-title' => 'טאַגן',
 'tags-intro' => 'דער בלאַט ווײַזט די טאַגן מיט וואס דאס ווייכווארג קען צייכענען אַ רעדאַגירונג, און זייער באַטייַט.',
 'tags-tag' => 'טאַג נאָמען',

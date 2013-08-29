@@ -19,6 +19,7 @@
  * @author Purodha
  * @author Reedy
  * @author SPQRobin
+ * @author Shirayuki
  * @author Spacebirdy
  * @author Xethron
  * @author පසිඳු කාවින්ද
@@ -222,7 +223,7 @@ $messages = array(
 'tog-editsection' => 'Wys [wysig]-skakels vir elke afdeling',
 'tog-editsectiononrightclick' => 'Wysig afdeling met regskliek op afdeling se titel (JavaScript)',
 'tog-showtoc' => 'Wys inhoudsopgawe (by bladsye met meer as drie opskrifte)',
-'tog-rememberpassword' => 'Onthou dat ek op hierdie rekenaar ingeteken het (vir \'n maksimum van $1 {{PLURAL:$|dag|dae}})',
+'tog-rememberpassword' => "Onthou dat ek op hierdie rekenaar ingeteken het (vir 'n maksimum van $1 {{PLURAL:$1|dag|dae}})",
 'tog-watchcreations' => 'Voeg bladsye wat ek skep en lêers wat ek oplaai by my dophoulys',
 'tog-watchdefault' => 'Voeg bladsye en lêers wat ek wysig by my dophoulys',
 'tog-watchmoves' => 'Voeg bladsye en lêers wat ek skuif by my dophoulys',
@@ -646,7 +647,7 @@ Moenie vergeet om u [[Special:Preferences|voorkeure vir {{SITENAME}}]] te stel n
 'yourpasswordagain' => 'Herhaal wagwoord',
 'createacct-yourpasswordagain' => 'Bevestig wagwoord',
 'createacct-yourpasswordagain-ph' => 'Sleutel weer u wagwoord in',
-'remembermypassword' => 'Onthou dat ek op hierdie rekenaar ingeteken het (vir \'n maksimum van $1 {{PLURAL:$|dag|dae}})',
+'remembermypassword' => "Onthou dat ek op hierdie rekenaar ingeteken het (vir 'n maksimum van $1 {{PLURAL:$1|dag|dae}})",
 'userlogin-remembermypassword' => 'Hou my aangemeld',
 'userlogin-signwithsecure' => 'Gebruik veilige verbinding',
 'yourdomainname' => 'U domein:',
@@ -3559,8 +3560,8 @@ Ander velde sal versteek wees.
 'exif-gpslongitude-w' => 'Westerlengte',
 
 # Pseudotags used for GPSAltitudeRef
-'exif-gpsaltitude-above-sealevel' => '$1 {{PLURAL:$1|meter|meter}} bo seespieël',
-'exif-gpsaltitude-below-sealevel' => '$1 {{PLURAL:$1|meter|meter}} onder seespieël',
+'exif-gpsaltitude-above-sealevel' => '$1 {{PLURAL:$1|meter}} bo seespieël',
+'exif-gpsaltitude-below-sealevel' => '$1 {{PLURAL:$1|meter}} onder seespieël',
 
 'exif-gpsstatus-a' => 'Besig met meting',
 'exif-gpsstatus-v' => 'Meetinteroperabiliteit',

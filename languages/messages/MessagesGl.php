@@ -1431,7 +1431,7 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 'prefs-rendering' => 'Aparencia',
 'saveprefs' => 'Gardar',
 'resetprefs' => 'Eliminar os cambios non gardados',
-'restoreprefs' => 'Restaurar todas as preferencias por defecto',
+'restoreprefs' => 'Restaurar todas as preferencias por defecto (en todas as seccións)',
 'prefs-editing' => 'Edición',
 'rows' => 'Filas:',
 'columns' => 'Columnas:',
@@ -1520,6 +1520,7 @@ Se escolle dalo utilizarase para atribuírlle o seu traballo.',
 'prefs-displaywatchlist' => 'Opcións de visualización',
 'prefs-tokenwatchlist' => 'Pase',
 'prefs-diffs' => 'Diferenzas',
+'prefs-help-prefershttps' => 'Esta preferencia ha aplicarse no seu vindeiro acceso ao sistema.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'O enderezo de correo electrónico semella válido',
@@ -2000,8 +2001,7 @@ Tamén pode reintentalo cando haxa menos actividade.',
 'upload_source_file' => '  (un ficheiro no seu ordenador)',
 
 # Special:ListFiles
-'listfiles-summary' => 'Esta páxina especial mostra todos os ficheiros cargados.
-Ao filtrar a lista por usuario, soamente se mostran as últimas versións dos ficheiros cargados polo usuario.',
+'listfiles-summary' => 'Esta páxina especial mostra todos os ficheiros cargados.',
 'listfiles_search_for' => 'Buscar polo nome do ficheiro multimedia:',
 'imgfile' => 'ficheiro',
 'listfiles' => 'Lista de ficheiros',
@@ -2012,6 +2012,10 @@ Ao filtrar a lista por usuario, soamente se mostran as últimas versións dos fi
 'listfiles_size' => 'Tamaño',
 'listfiles_description' => 'Descrición',
 'listfiles_count' => 'Versións',
+'listfiles-show-all' => 'Incluír as versións vellas das imaxes',
+'listfiles-latestversion' => 'Versión actual',
+'listfiles-latestversion-yes' => 'Si',
+'listfiles-latestversion-no' => 'Non',
 
 # File description page
 'file-anchor-link' => 'Ficheiro',
@@ -3294,7 +3298,7 @@ O seu sistema pode quedar comprometido se o executa.",
 # Special:NewFiles
 'newimages' => 'Galería de imaxes novas',
 'imagelisttext' => "A continuación móstrase unha lista de '''$1''' {{PLURAL:$1|ficheiro|ficheiros}} ordenados $2.",
-'newimages-summary' => 'Esta páxina especial amosa os ficheiros cargados máis recentemente.',
+'newimages-summary' => 'Esta páxina especial mostra os últimos ficheiros cargados.',
 'newimages-legend' => 'Filtro',
 'newimages-label' => 'Nome do ficheiro (ou parte del):',
 'showhidebots' => '($1 os bots)',

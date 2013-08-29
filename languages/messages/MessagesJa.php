@@ -1563,7 +1563,7 @@ $1",
 'prefs-rendering' => '表示',
 'saveprefs' => '保存',
 'resetprefs' => '保存していない変更を破棄',
-'restoreprefs' => '初期設定に戻す',
+'restoreprefs' => 'すべて初期設定に戻す',
 'prefs-editing' => '編集',
 'rows' => '行数:',
 'columns' => '列数:',
@@ -1656,6 +1656,7 @@ $1 {{PLURAL:$1|文字}}以下である必要があります。',
 'prefs-displaywatchlist' => '表示の設定',
 'prefs-tokenwatchlist' => 'トークン',
 'prefs-diffs' => '差分',
+'prefs-help-prefershttps' => 'この設定は、次回ログインの際に反映されます。',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'メールアドレスは有効のようです',
@@ -2146,8 +2147,7 @@ URLが正しいものであり、ウェブサイトが稼働していること�
 'upload_source_file' => '(あなたのコンピューター上のファイル)',
 
 # Special:ListFiles
-'listfiles-summary' => 'この特別ページでは、アップロードされたファイルをすべて表示します。
-利用者で絞り込んだ場合は、その利用者がアップロードした最新版のファイルのみが表示されます。',
+'listfiles-summary' => 'この特別ページでは、アップロードされたファイルをすべて表示します。',
 'listfiles_search_for' => '検索するメディア名:',
 'imgfile' => 'ファイル',
 'listfiles' => 'ファイル一覧',
@@ -2158,6 +2158,9 @@ URLが正しいものであり、ウェブサイトが稼働していること�
 'listfiles_size' => 'サイズ',
 'listfiles_description' => '概要',
 'listfiles_count' => '版数',
+'listfiles-show-all' => '画像の古い版を含める',
+'listfiles-latestversion-yes' => 'はい',
+'listfiles-latestversion-no' => 'いいえ',
 
 # File description page
 'file-anchor-link' => 'ファイル',
@@ -2259,7 +2262,7 @@ contenttype/subtypeの形式で入力してください (例: <code>image/jpeg</
 # Random page in category
 'randomincategory' => 'カテゴリ内でおまかせ表示',
 'randomincategory-invalidcategory' => '「$1」は有効なカテゴリ名ではありません。',
-'randomincategory-nopages' => '[[:Category:$1]] にはページがありません。',
+'randomincategory-nopages' => 'カテゴリ [[:Category:$1|$1]] にはページがありません。',
 'randomincategory-selectcategory' => '以下のカテゴリでおまかせ表示: $1 $2',
 'randomincategory-selectcategory-submit' => '表示',
 

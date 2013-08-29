@@ -1517,6 +1517,7 @@ Mae'r wybodaeth hon ar gael i'r cyhoedd.",
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|newid|newid|newid|newid|newid|o newidiadau}}',
+'enhancedrc-since-last-visit' => '$1 {{PLURAL:$1|ers eich ymweliad diwethaf}}',
 'enhancedrc-history' => 'hanes',
 'recentchanges' => 'Newidiadau diweddar',
 'recentchanges-legend' => "Dewisiadau'r newidiadau diweddar",
@@ -1953,8 +1954,8 @@ Diffinir tudalen yn dudalen gwahaniaethu pan mae'n cynnwys un o'r nodiadau '[[Me
 'pageswithprop-text' => "Mae'r dudalen hon yn rhestru tudalennau sydd yn defnyddio nodwedd arbennig yn y dudalen.",
 'pageswithprop-prop' => "Enw'r nodwedd:",
 'pageswithprop-submit' => 'Gwneler',
-'pageswithprop-prophidden-long' => 'gwerth priodwedd ar destun hir, a guddiwyd ($1 cilobeit)',
-'pageswithprop-prophidden-binary' => 'gwerth y briodwedd ddeuol, a guddiwyd ($1 cilobeit)',
+'pageswithprop-prophidden-long' => 'gwerth priodwedd ar destun hir, a guddiwyd ($1)',
+'pageswithprop-prophidden-binary' => 'gwerth y briodwedd ddeuol, a guddiwyd ($1)',
 
 'doubleredirects' => 'Ailgyfeiriadau dwbl',
 'doubleredirectstext' => "Mae pob rhes yn cynnwys cysylltiad i'r ddau ail-gyfeiriad cyntaf, ynghyd â chyrchfan yr ail ailgyfeiriad. Fel arfer bydd hyn yn rhoi'r gwir dudalen y dylai'r tudalennau cynt gyfeirio ati.

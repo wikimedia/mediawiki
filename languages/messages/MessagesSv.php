@@ -369,7 +369,7 @@ $messages = array(
 'tog-noconvertlink' => 'Stäng av konvertering av sidtitlar',
 'tog-norollbackdiff' => 'Visa inte diff efter tillbakarullning',
 'tog-useeditwarning' => 'Varna mig om jag lämnar en redigeringssida där jag gjort ändringar men inte sparat.',
-'tog-prefershttps' => 'Använd alltid en säker anslutning för inloggning',
+'tog-prefershttps' => 'Använd alltid en säker anslutning när jag är inloggad',
 
 'underline-always' => 'Alltid',
 'underline-never' => 'Aldrig',
@@ -1479,7 +1479,7 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 'prefs-rendering' => 'Utseende',
 'saveprefs' => 'Spara',
 'resetprefs' => 'Återställ osparade ändringar',
-'restoreprefs' => 'Återställ alla standardinställningar',
+'restoreprefs' => 'Återgå till standardinställningar',
 'prefs-editing' => 'Redigering',
 'rows' => 'Rader:',
 'columns' => 'Kolumner:',
@@ -1567,6 +1567,7 @@ Om du väljer att ange ditt riktiga namn, kommer det att användas för att till
 'prefs-displaywatchlist' => 'Visningalternativ',
 'prefs-tokenwatchlist' => 'Nyckel',
 'prefs-diffs' => 'Skillnader',
+'prefs-help-prefershttps' => 'Ändringar av denna inställning börjar gälla nästa gång du loggar in',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'Ser giltig ut',
@@ -2038,8 +2039,7 @@ För optimal säkerhet, har img_auth.php blivit avaktiverad.',
 'upload_source_file' => ' (en fil på din dator)',
 
 # Special:ListFiles
-'listfiles-summary' => 'Den här specialsidan visar alla filer som har laddats upp.
-När den filtreras av en användare visas endast den senast uppladdade versionen av filen.',
+'listfiles-summary' => 'Den här specialsidan visar alla filer som laddats upp.',
 'listfiles_search_for' => 'Sök efter filnamn:',
 'imgfile' => 'fil',
 'listfiles' => 'Fillista',
@@ -2050,6 +2050,10 @@ När den filtreras av en användare visas endast den senast uppladdade versionen
 'listfiles_size' => 'Storlek (byte)',
 'listfiles_description' => 'Beskrivning',
 'listfiles_count' => 'Versioner',
+'listfiles-show-all' => 'Visa även äldre versioner av bilder',
+'listfiles-latestversion' => 'Nuvarande version',
+'listfiles-latestversion-yes' => 'Ja',
+'listfiles-latestversion-no' => 'Nej',
 
 # File description page
 'file-anchor-link' => 'Fil',

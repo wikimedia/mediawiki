@@ -12,6 +12,7 @@
  * @author Mikel
  * @author Remember the dot
  * @author Savh
+ * @author Shirayuki
  * @author Xuacu
  * @author לערי ריינהארט
  */
@@ -3685,7 +3686,7 @@ Por favor confirma que daveres quies volver a crear esta páxina.",
 'livepreview-error' => 'Nun se pudo coneutar: $1 "$2". Intenta la previsualización normal.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'Los cambios más nuevos que $1 {{PLURAL:$|segundu|segundos}} seique nun s\'amuesen nesta llista.',
+'lag-warn-normal' => "Los cambios más nuevos que $1 {{PLURAL:$1|segundu|segundos}} seique nun s'amuesen nesta llista.",
 'lag-warn-high' => "Pola mor d'un importante retrasu nel sirvidor de la base de datos, los cambios más nuevos que $1 {{PLURAL:$1|segundu|segundos}} seique nun s'amuesen nesta llista.",
 
 # Watchlist editor

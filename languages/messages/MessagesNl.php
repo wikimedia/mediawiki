@@ -51,6 +51,7 @@
  * @author WTM
  * @author Wiki13
  * @author Wikiklaas
+ * @author Wolf Lambert
  * @author לערי ריינהארט
  */
 
@@ -409,6 +410,7 @@ $messages = array(
 'tog-noconvertlink' => 'Paginanaamconversie uitschakelen',
 'tog-norollbackdiff' => 'Wijzigingen weglaten na terugdraaien',
 'tog-useeditwarning' => 'U waarschuwen als u een bewerkte pagina die nog niet is opgeslagen wil verlaten',
+'tog-prefershttps' => 'Gebruik altijd een veilige verbinding wanneer u bent ingelogd',
 
 'underline-always' => 'Altijd',
 'underline-never' => 'Nooit',
@@ -794,8 +796,7 @@ De opgegeven reden is "\'\'$3\'\'".',
 # Login and logout pages
 'logouttext' => "'''U bent nu afgemeld.'''
 
-U kunt {{SITENAME}} nu anoniem gebruiken of weer <span class='plainlinks'>[$1 aanmelden]</span> als dezelfde of een andere gebruiker.
-Mogelijk worden nog een aantal pagina's weergegeven alsof u aangemeld bent totdat u de cache van uw browser leegt.",
+Merk op dat sommige pagina's kunnen blijven getoond worden alsof je nog ingelogd bent, totdat u uw browsercache leegt.",
 'welcomeuser' => 'Welkom, $1!',
 'welcomecreation-msg' => 'Uw gebruiker is aangemaakt.
 Vergeet niet uw [[Special:Preferences|voorkeuren voor {{SITENAME}}]] aan te passen.',
@@ -841,7 +842,7 @@ Vergeet niet uw [[Special:Preferences|voorkeuren voor {{SITENAME}}]] aan te pass
 'createacct-emailoptional' => 'E-mailadres (optioneel)',
 'createacct-email-ph' => 'Geef uw e-mailadres op',
 'createacct-another-email-ph' => 'Geef een e-mailadres op',
-'createaccountmail' => 'Gebruik een tijdelijk willekeurig wachtwoord en stuur het naar het e-mailadres dat hieronder is vermeld',
+'createaccountmail' => 'Gebruik een tijdelijk willekeurig wachtwoord en stuur het naar het gespecifieerde e-mailadres',
 'createacct-realname' => 'Echte naam (optioneel)',
 'createaccountreason' => 'Reden:',
 'createacct-reason' => 'Reden',
@@ -930,11 +931,13 @@ Meld u aan en wijzig uw wachtwoord.
 
 Negeer dit bericht als deze gebruiker zonder uw medeweten is aangemaakt.',
 'usernamehasherror' => 'Een gebruikersnaam mag het teken hekje ("#") niet bevatten.',
-'login-throttled' => 'U hebt recentelijk te vaak geprobeerd aan te melden met een onjuist wachtwoord.
-Wacht even voordat u het opnieuw probeert.',
+'login-throttled' => 'U heeft te veel mislukte recentelijke inlogpogingen gedaan.
+Wacht alstublieft $1 voordat u het opnieuw probeert.',
 'login-abort-generic' => 'U bent niet aangemeld. De procedure is afgebroken.',
 'loginlanguagelabel' => 'Taal: $1',
 'suspicious-userlogout' => 'Uw verzoek om af te melden is genegeerd, omdat het lijkt alsof het verzoek is verzonden door een browser of cacheproxy die stuk is.',
+'createacct-another-realname-tip' => 'Uw echte naam is optioneel.
+Wanneer u ervoor kiest deze op te geven, zal deze gebruikt worden om erkenning te geven voor uw werk.',
 
 # Email sending
 'php-mail-error-unknown' => 'Er is een onbekende fout opgetreden in de mail()-functie van PHP',
@@ -951,8 +954,7 @@ Voer een nieuw wachtwoord in om het aanmelden te voltooien:',
 'newpassword' => 'Nieuw wachtwoord:',
 'retypenew' => 'Herhaling nieuwe wachtwoord:',
 'resetpass_submit' => 'Wachtwoord instellen en aanmelden',
-'changepassword-success' => 'Uw wachtwoord is gewijzigd.
-Bezig met aanmelden…',
+'changepassword-success' => 'Uw wachtwoord is succesvol gewijzigd!',
 'resetpass_forbidden' => 'Wachtwoorden kunnen niet gewijzigd worden',
 'resetpass-no-info' => 'U dient aangemeld zijn voordat u deze pagina kunt gebruiken.',
 'resetpass-submit-loggedin' => 'Wachtwoord wijzigen',
@@ -1098,9 +1100,7 @@ Wellicht is het verplaatst of verwijderd terwijl u de pagina aan het bekijken wa
 'loginreqlink' => 'aanmelden',
 'loginreqpagetext' => "U moet zich $1 om andere pagina's te kunnen bekijken.",
 'accmailtitle' => 'Wachtwoord verzonden.',
-'accmailtext' => "Een willekeurig wachtwoord voor [[User talk:$1|$1]] is naar $2 gestuurd.
-
-Het wachtwoord voor deze nieuwe gebruiker kan gewijzigd worden via de pagina ''[[Special:ChangePassword|Wachtwoord wijzigen]]'' na het aanmelden.",
+'accmailtext' => 'Een willekeurig gegenereerd wachtwoord voor [[User talk:$1|$1]] is verzonden naar $2. Het kan worden gewijzigd op de pagina "[[Special:ChangePassword|wachtwoord wijzigen]]" na het aanmelden.',
 'newarticle' => '(Nieuw)',
 'newarticletext' => "Deze pagina bestaat niet.
 Typ in het onderstaande veld om de pagina aan te maken (meer informatie staat op de [[{{MediaWiki:Helppage}}|hulppagina]]).
@@ -1617,12 +1617,15 @@ De tildes worden omgezet in uw ondertekening en een datum en tijd van de bewerki
 'badsig' => 'Ongeldige ondertekening; controleer de HTML-tags.',
 'badsiglength' => 'Uw ondertekening is te lang.
 Deze moet minder dan $1 {{PLURAL:$1|teken|tekens}} bevatten.',
-'yourgender' => 'Geslacht:',
-'gender-unknown' => 'Niet opgegeven',
-'gender-male' => 'Man',
-'gender-female' => 'Vrouw',
-'prefs-help-gender' => 'Optioneel: dit wordt gebruikt om gebruikers correct aan te spreken in de software.
-Deze informatie is zichtbaar voor andere gebruikers.',
+'yourgender' => 'Hoe prefereert u beschreven te worden?',
+'gender-unknown' => 'Ik prefereer dit niet op te geven',
+'gender-male' => 'Hij bewerkt artikelen',
+'gender-female' => 'Zij bewerkt artikelen',
+'prefs-help-gender' => 'Deze voorkeur instellen is optioneel.
+
+De software gebruikt deze waarde om u aan te spreken en u te vermelden aan andere gebruikers door middel van het juiste grammaticale geslacht.
+
+Deze informatie is openbaar en zichtbaar voor andere gebruikers.',
 'email' => 'E-mail',
 'prefs-help-realname' => 'Echte naam is optioneel.
 Als u deze opgeeft, kan deze naam gebruikt worden om u erkenning te geven voor uw werk.',
@@ -1669,10 +1672,10 @@ Als u deze opgeeft, kan deze naam gebruikt worden om u erkenning te geven voor u
 'userrights-no-interwiki' => "U hebt geen rechten om gebruikersrechten op andere wiki's te wijzigen.",
 'userrights-nodatabase' => 'De database $1 bestaat niet of is geen lokale database.',
 'userrights-nologin' => 'U moet [[Special:UserLogin|aangemeld]] zijn met een gebruiker met de juiste rechten om gebruikersrechten toe te wijzen.',
-'userrights-notallowed' => 'U hebt geen rechten om gebruikersrechten toe te voegen of te verwijderen.',
+'userrights-notallowed' => 'U bent niet gemachtigd om gebruikersrechten toe te voegen of te verwijderen.',
 'userrights-changeable-col' => 'Groepen die u kunt beheren',
 'userrights-unchangeable-col' => 'Groepen die u niet kunt beheren',
-'userrights-conflict' => 'Er is een probleem opgetreden tijdens het instellen van de gebruikersrechten. Pas uw wijzigingen opnieuw toe.',
+'userrights-conflict' => 'Probleem bij het instellen van de gebruikersrechten! Controleer en bevestig alstublieft uw wijzigingen.',
 'userrights-removed-self' => 'U hebt uw eigen bevoegdheden ingetrokken. U kunt deze pagina niet langer raadplegen.',
 
 # Groups
@@ -1820,6 +1823,8 @@ Als u deze opgeeft, kan deze naam gebruikt worden om u erkenning te geven voor u
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|bewerking|bewerkingen}}',
+'enhancedrc-since-last-visit' => '$1 {{PLURAL:$1|sinds uw laatste bezoek}}',
+'enhancedrc-history' => 'geschiedenis',
 'recentchanges' => 'Recente wijzigingen',
 'recentchanges-legend' => 'Opties voor recente wijzigingen',
 'recentchanges-summary' => 'Op deze pagina kunt u de recentste wijzigingen in deze wiki bekijken.',
@@ -2240,6 +2245,13 @@ Vergeet niet de "Koppelingen naar deze pagina" te controleren alvorens deze sjab
 # Random page
 'randompage' => 'Willekeurige pagina',
 'randompage-nopages' => "Er zijn geen pagina's in de volgende {{PLURAL:$2|naamruimte|naamruimten}}: $1.",
+
+# Random page in category
+'randomincategory' => 'Willekeurige pagina in de categorie',
+'randomincategory-invalidcategory' => '"$1" is geen geldige categorienaam.',
+'randomincategory-nopages' => "Er zijn geen pagina's in de categorie [[:Category:$1|$1]].",
+'randomincategory-selectcategory' => 'Vind een willekeurige pagina uit de categorie $1 $2.',
+'randomincategory-selectcategory-submit' => 'Oké',
 
 # Random redirect
 'randomredirect' => 'Willekeurige doorverwijzing',
@@ -3337,13 +3349,13 @@ Meestal wordt dit door een externe koppeling op een zwarte lijst veroorzaakt.',
 'pageinfo-length' => 'Paginalengte (in bytes)',
 'pageinfo-article-id' => 'Paginanummer',
 'pageinfo-language' => 'Taal voor de pagina',
-'pageinfo-robot-policy' => 'Status voor de zoekmachine',
-'pageinfo-robot-index' => 'Indexeerbaar',
-'pageinfo-robot-noindex' => 'Niet indexeerbaar',
+'pageinfo-robot-policy' => 'Indexering door robots',
+'pageinfo-robot-index' => 'Toegestaan',
+'pageinfo-robot-noindex' => 'Niet toegestaan',
 'pageinfo-views' => 'Aantal weergaven',
 'pageinfo-watchers' => 'Aantal paginavolgers',
 'pageinfo-few-watchers' => 'Minder dan  {{PLURAL:$1|één volger|$1 volgers}}',
-'pageinfo-redirects-name' => 'Doorverwijzingen naar deze pagina',
+'pageinfo-redirects-name' => 'Aantal doorverwijzingen naar deze pagina',
 'pageinfo-subpages-name' => "Subpagina's van deze pagina",
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|doorverwijzing|doorverwijzingen}}; $3 {{PLURAL:$3|niet-doorverwijzing|niet-doorverwijzingen}})',
 'pageinfo-firstuser' => 'Gebruiker die de pagina heeft aangemaakt',
@@ -3952,11 +3964,11 @@ De bevestigingscode vervalt op $4.',
 'confirmemail_body_set' => 'Iemand, waarschijnlijk u, met het IP-adres $1,
 heeft het het e-mailadres voor gebruiker "$2" op {{SITENAME}} ingesteld op dit e-mailadres.
 
-Open de volgende koppeling in uw webbrowser om te bevestigen dat u deze gebruiker bent en om de e-mailmogelijkheden op {{SITENAME}} opnieuw te activeren:
+Klik op de volgende koppeling of open deze in uw webbrowser om te bevestigen dat u deze gebruiker bent en om de e-mailmogelijkheden op {{SITENAME}} opnieuw te activeren:
 
 $3
 
-Als u deze wijziging *niet* hebt gemaakt, volg dan de volgende koppeling om de bevestiging van uw e-mailadres te annuleren:
+Als dit account *niet* aan u toebehoort, klik dan op de volgende koppeling om de bevestiging van uw e-mailadres te annuleren:
 
 $5
 
@@ -4097,6 +4109,7 @@ U kunt ook [[Special:EditWatchlist|het standaard bewerkingsscherm gebruiken]].',
 'version-license' => 'Licentie',
 'version-poweredby-credits' => "Deze wiki wordt aangedreven door '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'anderen',
+'version-poweredby-translators' => 'translatewiki.net-vertalers',
 'version-credits-summary' => 'We erkennen graag de volgende personen voor hun bijdrage aan [[Special:Version|MediaWiki]].',
 'version-license-info' => 'MediaWiki is vrije software; u kunt MediaWiki verspreiden en/of aanpassen onder de voorwaarden van de GNU General Public License zoals gepubliceerd door de Free Software Foundation; ofwel versie 2 van de Licentie, of - naar uw wens - enige latere versie.
 
@@ -4333,5 +4346,11 @@ Anders kunt u ook het eenvoudige formulier hieronder gebruiken. Uw reactie wordt
 
 # Image rotation
 'rotate-comment' => 'Afbeelding gedraaid, $1 {{PLURAL:$1|graad|graden}} met de klok mee',
+
+# Limit report
+'limitreport-cputime' => 'CPU-tijdsgebruik',
+'limitreport-cputime-value' => '$1 {{PLURAL:$1|seconde|seconden}}',
+'limitreport-walltime' => 'Reëel tijdgebruik',
+'limitreport-walltime-value' => '$1 {{PLURAL:$1|seconde|seconden}}',
 
 );

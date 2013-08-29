@@ -336,6 +336,7 @@ $messages = array(
 'tog-showhiddencats' => 'Näita peidetud kategooriaid',
 'tog-norollbackdiff' => 'Ära näita erinevusi pärast tühistamist',
 'tog-useeditwarning' => 'Hoiata mind, kui lahkun redigeerimisleheküljelt muudatusi salvestamata',
+'tog-prefershttps' => 'Kasuta sisselogimisel alati turvalist ühendust',
 
 'underline-always' => 'Alati',
 'underline-never' => 'Mitte kunagi',
@@ -436,6 +437,7 @@ $messages = array(
 'newwindow' => '(avaneb uues aknas)',
 'cancel' => 'Loobu',
 'moredotdotdot' => 'Veel...',
+'morenotlisted' => 'Veel, loetlemata...',
 'mypage' => 'Minu lehekülg',
 'mytalk' => 'Arutelu',
 'anontalk' => 'Selle IP-aadressi artuelu',
@@ -1142,6 +1144,10 @@ Need argumendid on välja jäetud.",
 'parser-template-loop-warning' => 'Mallid moodustavad tsükli: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Malli rekursiivse kasutamise limiit on ületatud ($1)',
 'language-converter-depth-warning' => 'Keeleteisendaja sügavuspiir ületatud ($1)',
+'node-count-exceeded-category' => 'Ületatud sõlmemääraga leheküljed',
+'node-count-exceeded-warning' => 'Lehekülg ületas sõlmemäära.',
+'expansion-depth-exceeded-category' => 'Ületatud hõrendussügavusega leheküljed',
+'expansion-depth-exceeded-warning' => 'Lehekülg ületas hõrendussügavuse.',
 
 # "Undo" feature
 'undo-success' => 'Selle redaktsiooni käigus tehtud muudatusi saab eemaldada. Palun kontrolli allolevat võrdlust veendumaks, et tahad need muudatused tõepoolest eemaldada. Seejärel saad lehekülje salvestada.',
@@ -1433,7 +1439,7 @@ Pane tähele, et Google'is talletatud {{GRAMMAR:genitive|{{SITENAME}}}} sisu võ
 'prefs-rendering' => 'Ilme',
 'saveprefs' => 'Salvesta eelistused',
 'resetprefs' => 'Lähtesta eelistused',
-'restoreprefs' => 'Taasta kõikjal vaikesätted',
+'restoreprefs' => 'Taasta kõik vaike-eelistused (kõigil kaartidel)',
 'prefs-editing' => 'Toimetamine',
 'rows' => 'Ridu:',
 'columns' => 'Veerge:',
@@ -1494,11 +1500,11 @@ Palun kontrolli HTML koodi.',
 'badsiglength' => 'Sinu allkiri on liiga pikk.
 See ei tohi olla pikem kui {{PLURAL:$1|üks märk|$1 märki}}.',
 'yourgender' => 'Sugu:',
-'gender-unknown' => 'Määramata',
+'gender-unknown' => 'Jätan täpsustamata',
 'gender-male' => 'Mees',
 'gender-female' => 'Naine',
 'prefs-help-gender' => 'Selle eelistuse määramine on valikuline.
-Tarkvara kasutab valitud väärtust mõnes keeles, et pöörduda sinu poole ja mainida sind teistele, kasutades sobivat grammatilist sugu.
+Tarkvara kasutab valitud väärtust mõnes keeles, et pöörduda sinu poole ja mainida sind teistele, kasutades soole vastavat sõna või sõnavormi.
 See teave on avalik.',
 'email' => 'E-post',
 'prefs-help-realname' => 'Vabatahtlik. Kui otsustad päris nime avaldada, kasutatakse seda sinu kaastöö seostamiseks sinuga.',
@@ -1522,6 +1528,7 @@ See teave on avalik.',
 'prefs-displaywatchlist' => 'Kuvasätted',
 'prefs-tokenwatchlist' => 'Luba',
 'prefs-diffs' => 'Erinevused',
+'prefs-help-prefershttps' => 'See eelistus jõustub pärast järgmist sisselogimist.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'Sobiv e-posti aadress',
@@ -1696,6 +1703,8 @@ See teave on avalik.',
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|muudatus|muudatust}}',
+'enhancedrc-since-last-visit' => '$1 {{PLURAL:$1|viimase vaatamise järel}}',
+'enhancedrc-history' => 'ajalugu',
 'recentchanges' => 'Viimased muudatused',
 'recentchanges-legend' => 'Viimaste muudatuste seaded',
 'recentchanges-summary' => 'Jälgi sellel leheküljel viimaseid muudatusi.',
@@ -1969,8 +1978,7 @@ Samuti võid proovida siis, kui võrgukoht on vähem hõivatud.',
 'upload_source_file' => '(fail sinu arvutis)',
 
 # Special:ListFiles
-'listfiles-summary' => 'See erileht kuvab kõik üleslaaditud failid.
-Kui kasutaja järgi filtrida, kuvatakse ainult need failid, mille viimase versiooni antud kasutaja on üles laadinud.',
+'listfiles-summary' => 'Sellel erileheküljel näidatakse kõiki üles laaditud faile.',
 'listfiles_search_for' => 'Nimeotsing:',
 'imgfile' => 'fail',
 'listfiles' => 'Piltide loend',
@@ -1981,6 +1989,10 @@ Kui kasutaja järgi filtrida, kuvatakse ainult need failid, mille viimase versio
 'listfiles_size' => 'Suurus',
 'listfiles_description' => 'Kirjeldus',
 'listfiles_count' => 'Versioonid',
+'listfiles-show-all' => 'Kaasa arvatud piltide vanad versioonid',
+'listfiles-latestversion' => 'Praegune versioon',
+'listfiles-latestversion-yes' => 'Jah',
+'listfiles-latestversion-no' => 'Ei',
 
 # File description page
 'file-anchor-link' => 'Pilt',
@@ -2117,6 +2129,8 @@ Lehekülg loetakse täpsustusleheküljeks, kui see kasutab malli, millele viitab
 'pageswithprop-text' => 'Sellel leheküljel on loetletud mõnd leheatribuuti kasutavad leheküljed.',
 'pageswithprop-prop' => 'Atribuudi nimi:',
 'pageswithprop-submit' => 'Mine',
+'pageswithprop-prophidden-long' => 'pika tekstiatribuudi väärtus peidetud ($1)',
+'pageswithprop-prophidden-binary' => 'kahendatribuudi väärtus peidetud ($1)',
 
 'doubleredirects' => 'Kahekordsed ümbersuunamised',
 'doubleredirectstext' => 'Käesolev leht esitab loendi lehtedest, mis sisaldavad ümbersuunamisi teistele ümbersuunamislehtedele.

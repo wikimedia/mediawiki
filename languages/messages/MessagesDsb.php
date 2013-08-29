@@ -19,6 +19,7 @@
  * @author Nepl1
  * @author Pe7er
  * @author Qualia
+ * @author Shirayuki
  * @author Tlustulimu
  * @author Tlustulimu Nepl1
  */
@@ -621,7 +622,7 @@ Pśeglěduj pšawopis abo [[Special:UserLogin/signup|załož nowe konto]].',
 'login-userblocked' => 'Toś ten wužywaŕ jo blokěrowany. Pśizjawjenje njejo dowólone.',
 'wrongpassword' => 'Zapódane šćitne gronidło njejo pšawe. Pšosym wopytaj hyšći raz.',
 'wrongpasswordempty' => 'Šćitne gronidło jo było prozne. Pšosym zapódaj jo hyšći raz.',
-'passwordtooshort' => 'Gronidła deje nanejmjenjej {{PLURAL:$|1 znamuško|$1 znamušce|$1 znamuška|$1 znamuškow}} měś.',
+'passwordtooshort' => 'Gronidła deje nanejmjenjej {{PLURAL:$1|1 znamuško|$1 znamušce|$1 znamuška|$1 znamuškow}} měś.',
 'password-name-match' => 'Twójo gronidło musy se wót swójogo wužywarskego mjenja rozeznaś.',
 'password-login-forbidden' => 'Wužywanje toś togo wužywarskego mjenja a gronidła jo zakazane.',
 'mailmypassword' => 'Nowe gronidło pśipósłaś',

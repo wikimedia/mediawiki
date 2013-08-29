@@ -3789,7 +3789,7 @@ De bevestigingskode zal verlopen op $4.',
 # action=purge
 'confirm_purge_button' => 'Bevestig',
 'confirm-purge-top' => "Klik op 'bevestig' um t tussengeheugen van disse zied te legen.",
-'confirm-purge-bottom' => "t leegmaken van t tussengeheugen zörgt derveur da'j de leste versie van n zied zien.",
+'confirm-purge-bottom' => "t Leegmaken van t tussengeheugen zörgt derveur da'j de leste versie van n zied zien.",
 
 # action=watch/unwatch
 'confirm-watch-button' => 'Oké',

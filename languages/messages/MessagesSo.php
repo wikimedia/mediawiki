@@ -1136,6 +1136,7 @@ Hadii aad rabootid in aad boggan ka saartid wardiyeynta, dhagsii \"Ha' wardiyeyn
 'enotif_subject_created' => '{{SITENAME}} Bogga $1 Qof ayaa sameeyey {{gender:$2|$2}}',
 'enotif_subject_changed' => '{{SITENAME}} Bogga $1 Waxaa {{GENDER:$2|Bedel}} ku sameeyey qof $2',
 'enotif_body_intro_created' => 'Bogga {{SITENAME}} ga $1 waxaa la sameeyey $PAGEEDITDATE qof {{gender:$2|$2}}, eeg $3 sida laga dhigay hadda.',
+'enotif_body_intro_moved' => 'Bogga {{SITENAME}} $1 {{GENDER:$2|move|loo wareejiyey}} $2 ee $PAGEEDITDATE. si aad u aragto sida uu yahay hadda eeg $3.',
 'enotif_body_intro_restored' => 'Booga {{SITENAME}} $1 waa labadelay {{GENDER:$2|dib u habayn}} waqtigaan $PAGEEDITDATE waxaana badalay $2, eeg $3 sida hadda laga dhigay.',
 'enotif_body_intro_changed' => 'Bogga {{SITENAME}} ga $1 waxaa la badelay $PAGEEDITDATE qof {{gender:$2|$2}}, eeg $3 sida laga dhigay hadda.',
 'enotif_lastvisited' => 'Eeg $1 Dhamaan isbedeleda ilaa goortii kuugu dambaysay.',

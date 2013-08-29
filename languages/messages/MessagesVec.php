@@ -19,6 +19,7 @@
  * @author Omnipaedista
  * @author OrbiliusMagister
  * @author Reedy
+ * @author Shirayuki
  * @author Urhixidur
  * @author Vajotwo
  * @author לערי ריינהארט
@@ -1523,7 +1524,7 @@ Co qualcheduni te scrivarà, nol vedarà mia el to indirizo.',
 'number_of_watching_users_pageview' => '[osservà da {{PLURAL:$1|un utente|$1 utenti}}]',
 'rc_categories' => 'Limita a le categorie (separà da "|")',
 'rc_categories_any' => 'Qualsiasi',
-'rc-change-size-new' => '$1 {{PLURAL:$|byte}} dopo ła modifega',
+'rc-change-size-new' => '$1 {{PLURAL:$1|byte}} dopo ła modifega',
 'newsectionsummary' => '/* $1 */ sezion nova',
 'rc-enhanced-expand' => 'Mostra detaji (richiede JavaScript)',
 'rc-enhanced-hide' => 'Scondi detaji',
@@ -1936,12 +1937,12 @@ Le righe <del>sbarà</del> le xe xà stà sistemà.',
 'fewestrevisions' => 'Pagine con manco revision',
 
 # Miscellaneous special pages
-'nbytes' => '$1 {{PLURAL:$1|byte|byte}}',
+'nbytes' => '$1 {{PLURAL:$1|byte}}',
 'ncategories' => '$1 {{PLURAL:$1|categoria|categorie}}',
 'ninterwikis' => '$1 {{PLURAL:$1|interwiki}}',
 'nlinks' => '$1 {{PLURAL:$1|colegamento|colegamenti}}',
 'nmembers' => '$1 {{PLURAL:$1|elemento|elementi}}',
-'nrevisions' => '$1 {{PLURAL:$1|revision|revision}}',
+'nrevisions' => '$1 {{PLURAL:$1|revision}}',
 'nviews' => '$1 {{PLURAL:$1|visita|visite}}',
 'nimagelinks' => 'Doparà su $1 {{PLURAL:$1|pagina|pagine}}',
 'ntransclusions' => 'doparà su $1 {{PLURAL:$1|pagina|pagine}}',
@@ -2231,7 +2232,7 @@ Par comentare e risevere ajuto:
 'exblank' => "ła pàxena l'era voda",
 'delete-confirm' => 'Scancela "$1"',
 'delete-legend' => 'Scancela',
-'historywarning' => "'''Ocio:''' La pàxena che te sì drio scancełar la gà na cronołogia con circa $1 {{PLURAL:$1|revision|revision}}:",
+'historywarning' => "'''Ocio:''' La pàxena che te sì drio scancełar la gà na cronołogia con circa $1 {{PLURAL:$1|revision}}:",
 'confirmdeletetext' => 'Te ste par scansełare na pajina co tuta ła so cronołosia. Par cortesia, conferma che xè to intension prosedere a tałe scansełasion, che te ghe piena consapevołeza de łe conseguense de ła to axion e che esa xè conforme a łe linee guida stabiłie en [[{{MediaWiki:Policy-url}}]].',
 'actioncomplete' => 'Asion conpletà',
 'actionfailed' => 'Asion mia riussìa',
@@ -2989,7 +2990,7 @@ La so esecuzion la podarìa danegiar el to computer.",
 'show-big-image-other' => '{{PLURAL:$2|Altra risołusion|Altre risołusion}}: $1.',
 'show-big-image-size' => '$1 × $2 pixel',
 'file-info-gif-looped' => 'ripetù',
-'file-info-gif-frames' => '$1 {{PLURAL:$1|frame|frame}}',
+'file-info-gif-frames' => '$1 {{PLURAL:$1|frame}}',
 'file-info-png-looped' => 'ripetù',
 'file-info-png-repeat' => 'ripetù $1 {{PLURAL:$1|olta|olte}}',
 'file-info-png-frames' => '$1 {{PLURAL:$1|fotograma|fotogrami}}',

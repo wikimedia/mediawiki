@@ -1417,7 +1417,7 @@ $1",
 'prefs-rendering' => 'Выгляд',
 'saveprefs' => 'Захаваць',
 'resetprefs' => 'Скінуць',
-'restoreprefs' => 'Скінуць да перадвызначаных наладаў',
+'restoreprefs' => 'Аднавіць усе стандартныя налады (ва ўсіх разьдзелах)',
 'prefs-editing' => 'Рэдагаваньне',
 'rows' => 'Радкоў:',
 'columns' => 'Слупкоў:',
@@ -1506,6 +1506,7 @@ $1",
 'prefs-displaywatchlist' => 'Налады паказу',
 'prefs-tokenwatchlist' => 'Токен',
 'prefs-diffs' => 'Розьніцы вэрсіяў',
+'prefs-help-prefershttps' => 'Гэтая налада набудзе моц пры наступным уваходзе ў сыстэму.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'Выглядае слушна',
@@ -1966,8 +1967,7 @@ $1',
 'upload_source_file' => ' (файл на Вашым кампутары)',
 
 # Special:ListFiles
-'listfiles-summary' => 'На гэтай спэцыяльнай старонцы паказаныя ўсе загружаныя файлы.
-Падчас фільтрацыі па ўдзельніку, паказваюцца толькі файлы, апошнія вэрсіі якіх загрузіў удзельнік.',
+'listfiles-summary' => 'На гэтай спэцыяльнай старонцы паказаныя ўсе загружаныя файлы.',
 'listfiles_search_for' => 'Пошук па назьве файла:',
 'imgfile' => 'файл',
 'listfiles' => 'Сьпіс файлаў',
@@ -1978,6 +1978,10 @@ $1',
 'listfiles_size' => 'Памер',
 'listfiles_description' => 'Апісаньне',
 'listfiles_count' => 'Вэрсіі',
+'listfiles-show-all' => 'Уключаць старыя вэрсіі выяў',
+'listfiles-latestversion' => 'Бягучая вэрсія',
+'listfiles-latestversion-yes' => 'Так',
+'listfiles-latestversion-no' => 'Не',
 
 # File description page
 'file-anchor-link' => 'Файл',

@@ -1565,7 +1565,7 @@ Einzelheiten sind im [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}
 'prefs-rendering' => 'Aussehen',
 'saveprefs' => 'Einstellungen speichern',
 'resetprefs' => 'Eingaben verwerfen',
-'restoreprefs' => 'Alle Standardeinstellungen wiederherstellen',
+'restoreprefs' => 'Alle Standardeinstellungen wiederherstellen (in allen Abschnitten)',
 'prefs-editing' => 'Bearbeiten',
 'rows' => 'Zeilen:',
 'columns' => 'Spalten:',
@@ -1654,6 +1654,7 @@ Diese Information ist öffentlich.',
 'prefs-displaywatchlist' => 'Anzeigeoptionen',
 'prefs-tokenwatchlist' => 'Token',
 'prefs-diffs' => 'Versionsvergleich',
+'prefs-help-prefershttps' => 'Diese Einstellung wird bei deiner nächsten Anmeldung wirksam',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'Diese E-Mail-Adresse scheint gültig zu sein.',
@@ -2126,8 +2127,7 @@ Aus Sicherheitsgründen ist img_auth.php deaktiviert.',
 'upload_source_file' => ' (eine Datei auf deinem Computer)',
 
 # Special:ListFiles
-'listfiles-summary' => 'Diese Spezialseite listet alle hochgeladenen Dateien auf. 
-Sofern nach einem bestimmten Benutzer gefiltert wird, werden nur die Dateien gezeigt, bei denen er die letzte Version hochgeladen hat.',
+'listfiles-summary' => 'Diese Spezialseite listet alle hochgeladenen Dateien auf.',
 'listfiles_search_for' => 'Suche nach Datei:',
 'imgfile' => 'Datei',
 'listfiles' => 'Dateiliste',
@@ -2138,6 +2138,10 @@ Sofern nach einem bestimmten Benutzer gefiltert wird, werden nur die Dateien gez
 'listfiles_size' => 'Größe',
 'listfiles_description' => 'Beschreibung',
 'listfiles_count' => 'Versionen',
+'listfiles-show-all' => 'Alte Bildversionen einschließen',
+'listfiles-latestversion' => 'Aktuelle Version',
+'listfiles-latestversion-yes' => 'Ja',
+'listfiles-latestversion-no' => 'Nein',
 
 # File description page
 'file-anchor-link' => 'Datei',

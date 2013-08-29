@@ -1533,7 +1533,7 @@ $1",
 'prefs-rendering' => 'Зовнішній вигляд',
 'saveprefs' => 'Зберегти',
 'resetprefs' => 'Скасувати незбережені зміни',
-'restoreprefs' => 'Відновити всі стандартні налаштування',
+'restoreprefs' => 'Відновити всі стандартні налаштування (у всіх розділах)',
 'prefs-editing' => 'Редагування',
 'rows' => 'Рядків:',
 'columns' => 'Колонок:',
@@ -1624,6 +1624,7 @@ $1",
 'prefs-displaywatchlist' => 'Налаштування показу',
 'prefs-tokenwatchlist' => 'Жетон',
 'prefs-diffs' => 'Різниці версій',
+'prefs-help-prefershttps' => 'Цей параметр набуде чинності при вашому наступному вході у систему.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'Адреса електронної пошти є чинною',
@@ -2105,8 +2106,7 @@ $1',
 'upload_source_file' => " (файл на вашому комп'ютері)",
 
 # Special:ListFiles
-'listfiles-summary' => 'Ця спеціальна сторінка показує всі завантажені файли.
-При фільтруванні за користувачем, відображаються лише останні завантаження користувача.',
+'listfiles-summary' => 'Ця спеціальна сторінка показує всі завантажені файли.',
 'listfiles_search_for' => 'Пошук по назві зображення:',
 'imgfile' => 'файл',
 'listfiles' => 'Список файлів',
@@ -2117,6 +2117,10 @@ $1',
 'listfiles_size' => 'Розмір (в байтах)',
 'listfiles_description' => 'Опис',
 'listfiles_count' => 'Версії',
+'listfiles-show-all' => 'Включати старі версії зображень',
+'listfiles-latestversion' => 'Поточна версія',
+'listfiles-latestversion-yes' => 'Так',
+'listfiles-latestversion-no' => 'Ні',
 
 # File description page
 'file-anchor-link' => 'Файл',

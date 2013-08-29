@@ -571,12 +571,12 @@ Për piasì che a buta n'adrëssa scrita giusta ò che a lassa ël camp veujd.",
 'accountcreated' => 'Cont creà',
 'accountcreatedtext' => "Ël cont utent për [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|ciaciarade]]) a l'é stàit creà.",
 'createaccount-title' => "Creassion d'un cont për {{SITENAME}}",
-'createaccount-text' => 'Cheidun a l\'ha dorbù un cont për st\'adrëssa ëd pòsta eletrònica-sì ansima a {{SITENAME}} ($4) butand da stranòm "$2" e da ciav "$3". A dovrìa rintré ant ël sistema e cambiesse soa ciav pì ampressa ch\'a peul.
+'createaccount-text' => "Cheidun a l'ha duvertà un cont për soa adrëssa ëd pòsta eletrònica ansima a {{SITENAME}} ($4) butand da stranòm «$2» e da ciav «$3». A dovrìa rintré ant ël sistema e cambiesse soa ciav pì ampressa ch'a peul.
 
-Se sòn a l\'é rivà për eror, a peul lassé sté e fe gnente sensa problema.',
-'usernamehasherror' => "Un nòm utent a peul pa conten-e caràter ciapulà (''hash'')",
-'login-throttled' => "It l'has fàit tròpi tentativ recent d'intré.
-Për piasì speta prima ëd prové torna.",
+Se sòn a l'é rivà për eror, a peul lassé perde e fé gnente sensa problema.",
+'usernamehasherror' => "Lë stranòm d'utent a peul pa conten-e dij caràter ciapulà",
+'login-throttled' => "A l'ha fàit tròpi tentativ recent d'intré ant ël sistema.
+Për piasì, ch'a speta $1 prima ëd prové torna.",
 'login-abort-generic' => "Sò tentitiv d'intré ant ël sistema a l'é falì - Abortì",
 'loginlanguagelabel' => 'Lenga: $1',
 'suspicious-userlogout' => "Soa arcesta ëd seurte dal sistema a l'é stàita arfudà përchè a smija com s'a fussa stàita mandà da 'n navigador scolegà o da l'archiviassion an local d'un proxy.",

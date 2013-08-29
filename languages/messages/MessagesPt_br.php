@@ -369,6 +369,7 @@ $messages = array(
 'tog-noconvertlink' => 'Desabilitar conversão de títulos de links',
 'tog-norollbackdiff' => 'Omitir diferenças após desfazer edições em bloco',
 'tog-useeditwarning' => 'Avisar-me quando eu deixar uma janela de edição sem ter salvo as alterações',
+'tog-prefershttps' => 'Usar sempre uma conexão segura quando estiver conectado',
 
 'underline-always' => 'Sempre',
 'underline-never' => 'Nunca',
@@ -873,11 +874,13 @@ Você deve se autenticar e alterar sua senha.
 
 Ignore esta mensagem caso a conta tenha sido criada por engano.',
 'usernamehasherror' => 'Nome de usuário não pode conter o símbolo de cardinal (#).',
-'login-throttled' => 'Você fez tentativas demais de se autenticar com esta conta recentemente.
-Por favor aguarde antes de tentar novamente.',
+'login-throttled' => 'Você recentemente tentou iniciar sessão muitas vezes.
+Por favor aguarde $1 antes de tentar novamente.',
 'login-abort-generic' => 'A sua autenticação não teve êxito - Abortada',
 'loginlanguagelabel' => 'Idioma: $1',
 'suspicious-userlogout' => 'Sua solicitação para sair foi negada porque aparentemente foi enviada por um navegador danificado ou por um servidor proxy com cache.',
+'createacct-another-realname-tip' => 'O nome verdadeiro é opcional.
+Se você optar por fornecê-lo, este nome será utilizado para dar ao usuário a atribuição de seu trabalho.',
 
 # Email sending
 'php-mail-error-unknown' => 'Erro desconhecido na função mail() do PHP',
@@ -893,7 +896,7 @@ Por favor aguarde antes de tentar novamente.',
 'newpassword' => 'Nova senha',
 'retypenew' => 'Reintroduza a nova senha',
 'resetpass_submit' => 'Definir senha e entrar',
-'changepassword-success' => 'Sua senha foi alterada com sucesso! Autenticando-se...',
+'changepassword-success' => 'Sua senha foi alterada com sucesso!',
 'resetpass_forbidden' => 'As senhas não podem ser alteradas',
 'resetpass-no-info' => 'Você precisa estar autenticado para acessar esta página diretamente.',
 'resetpass-submit-loggedin' => 'Alterar senha',
@@ -958,7 +961,7 @@ Você só deve reiniciá-los se compartilhou-os com alguém ou se a sua conta fo
 'resettokens-no-tokens' => 'Não existem tokens para reiniciar.',
 'resettokens-legend' => 'Reiniciar tokens',
 'resettokens-token-label' => '$1 (valor atual: $2)',
-'resettokens-watchlist-token' => 'Vigiar os tokens através de um feed da Web',
+'resettokens-watchlist-token' => 'Tokens para o feed da web (Atom/RSS) das [[Special:Watchlist|mudanças de páginas em sua lista de páginas vigiadas]]',
 'resettokens-done' => 'Tokens reiniciados.',
 'resettokens-resetbutton' => 'Reiniciar tokens selecionados',
 
@@ -1044,7 +1047,7 @@ Ela pode ter sido movida ou removido enquanto você estava vendo a página.',
 'accmailtitle' => 'Senha enviada.',
 'accmailtext' => "Uma senha gerada aleatoriamente para [[User talk:$1|$1]] foi enviada para $2.
 
-A senha para esta nova conta pode ser alterada na página ''[[Special:ChangePassword|de troca de senha]]'', após a autenticação.",
+Ela pode ser alterada na página ''[[Special:ChangePassword|de troca de senha]]'', após o início de sessão.",
 'newarticle' => '(Nova)',
 'newarticletext' => "Você seguiu um link para uma página que ainda não existe.
 Para criá-la, comece escrevendo na caixa abaixo (veja [[{{MediaWiki:Helppage}}|a página de ajuda]] para mais informações).
@@ -1546,11 +1549,13 @@ Esta ação não pode ser desfeita.',
 'badsig' => 'Assinatura inválida; verifique o código HTML utilizado.',
 'badsiglength' => 'A sua assinatura é muito longa.
 Ela deve ter menos de $1 {{PLURAL:$1|caractere|caracteres}}.',
-'yourgender' => 'Gênero:',
-'gender-unknown' => 'Não especificado',
-'gender-male' => 'Masculino',
-'gender-female' => 'Feminino',
-'prefs-help-gender' => 'Opcional: usado para endereçamento correto pelo software baseado no sexo. Esta informação será pública.',
+'yourgender' => 'Como você prefere ser descrito(a)?',
+'gender-unknown' => 'Prefiro não dizer',
+'gender-male' => 'Ele edita páginas wiki',
+'gender-female' => 'Ela edita páginas wiki',
+'prefs-help-gender' => 'A configuração desta preferência é opcional.
+O software utiliza seu valor para tratá-lo(a) e mencioná-lo(a) a outros usando o gênero gramatical adequado.
+Esta informação será pública.',
 'email' => 'E-mail',
 'prefs-help-realname' => 'O fornecimento de seu nome verdadeiro é opcional.
 Caso decida fornecê-lo, este será utilizado para dar-lhe crédito pelo seu trabalho.',
@@ -2372,7 +2377,7 @@ Necessário no mínimo um domínio de nível superior, por exemplo "*.org".<br /
 'activeusers' => 'Lista de usuários ativos',
 'activeusers-intro' => 'Esta é uma lista de usuários com algum tipo de atividade nos últimos $1 {{PLURAL:$1|dia|dias}}.',
 'activeusers-count' => '$1 {{PLURAL:$1|ação|ações}} {{PLURAL:$3|no último dia|nos últimos $3 dias}}',
-'activeusers-from' => 'Mostrar usuários começando em:',
+'activeusers-from' => 'Mostrar usuários começando por:',
 'activeusers-hidebots' => 'Esconder robôs',
 'activeusers-hidesysops' => 'Esconder administradores',
 'activeusers-noresult' => 'Nenhum usuário encontrado.',

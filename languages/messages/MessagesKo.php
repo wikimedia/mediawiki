@@ -1799,6 +1799,8 @@ HTML 태그를 확인하세요.',
 
 # Recent changes
 'nchanges' => '$1개 {{PLURAL:$1|바뀜}}',
+'enhancedrc-since-last-visit' => '{{PLURAL:$1|마지막 방문 이후}} $1개',
+'enhancedrc-history' => '역사',
 'recentchanges' => '최근 바뀜',
 'recentchanges-legend' => '최근 바뀜 설정',
 'recentchanges-summary' => '위키의 최근 바뀜이 나와 있습니다.',
@@ -2249,7 +2251,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'statistics-mostpopular' => '가장 많이 읽힌 문서',
 
 'disambiguations' => '동음이의 문서를 가리키는 문서 목록',
-'disambiguationspage' => 'Template:disambig',
+'disambiguationspage' => 'Template:동음이의',
 'disambiguations-text' => "다음 문서는 적어도 하나 이상 '''동음이의 문서'''를 가리키고 있습니다.
 그 링크는 다른 적절한 문서로 연결할 필요가 있습니다.<br />
 [[MediaWiki:Disambiguationspage]]에서 링크된 틀을 사용하는 문서를 동음이의 문서로 간주합니다.",

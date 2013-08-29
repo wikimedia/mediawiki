@@ -1015,7 +1015,7 @@ Za sklic je priskrbljen spodnji dnevnik vnosov:",
 'templatesusedsection' => '{{PLURAL:$1|Predloga, uporabljena|Predlogi, uporabljeni|Predloge, uporabljene}} v tem delu:',
 'template-protected' => '(zaščitena)',
 'template-semiprotected' => '(delno zaščitena)',
-'hiddencategories' => 'Ta stran je v vsebovana v {{PLURAL:$1|1 skriti kategoriji|$1 skritih kategorijah}}:',
+'hiddencategories' => 'Stran je vsebovana v $1 {{PLURAL:$1|skriti kategoriji|skritih kategorijah}}:',
 'edittools' => '<!-- To besedilo bo prikazano pod urejevalnim poljem in poljem za nalaganje. -->',
 'nocreatetext' => '{{SITENAME}} ima omejeno zmožnost za ustvarjanje novih strani.
 Lahko se vrnete nazaj in urejate že obstoječe strani, ali pa se [[Special:UserLogin|prijavite ali ustvarite račun]].',
@@ -1363,7 +1363,7 @@ Upoštevajte, da so njihovi podatki vsebine {{GRAMMAR:rodilnik|{{SITENAME}}}} mo
 'prefs-rendering' => 'Videz',
 'saveprefs' => 'Shrani',
 'resetprefs' => 'Počisti neshranjene spremembe',
-'restoreprefs' => 'Obnovi vse privzete nastavitve',
+'restoreprefs' => 'Obnovi vse privzete nastavitve (v vseh razdelkih)',
 'prefs-editing' => 'Urejanje',
 'rows' => 'Vrstic:',
 'columns' => 'Stolpcev:',
@@ -1452,6 +1452,7 @@ Ko vas drugi uporabniki kontaktirajo, jim vašega e-poštnega naslova ne bomo ra
 'prefs-displaywatchlist' => 'Možnosti prikaza',
 'prefs-tokenwatchlist' => 'Žeton',
 'prefs-diffs' => 'Primerjave',
+'prefs-help-prefershttps' => 'Nastavitev bo začela veljati ob vaši naslednji prijavi.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'Izgleda veljaven',
@@ -1626,6 +1627,8 @@ Ko vas drugi uporabniki kontaktirajo, jim vašega e-poštnega naslova ne bomo ra
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|sprememba|spremembi|spremembe|sprememb|sprememb}}',
+'enhancedrc-since-last-visit' => '$1 {{PLURAL:$1|od zadnjega obiska}}',
+'enhancedrc-history' => 'zgodovina',
 'recentchanges' => 'Zadnje spremembe',
 'recentchanges-legend' => 'Možnosti zadnjih sprememb',
 'recentchanges-summary' => 'Na tej strani lahko spremljate najnovejše spremembe wikija.',
@@ -1931,8 +1934,7 @@ Morda želite poskusiti ob času manjše zasedenosti.',
 'upload_source_file' => ' (datoteka na vašem računalniku)',
 
 # Special:ListFiles
-'listfiles-summary' => 'Ta posebna stran prikazuje vse naložene datoteke.
-Ko so rezultati filtrirani po uporabniku, so prikazane samo datoteke, pri katerih je izbrani uporabnik naložil najnovejšo različico datoteke.',
+'listfiles-summary' => 'Ta posebna stran prikazuje vse naložene datoteke.',
 'listfiles_search_for' => 'Išči po imenu datoteke:',
 'imgfile' => 'dat.',
 'listfiles' => 'Seznam datotek',
@@ -1943,6 +1945,10 @@ Ko so rezultati filtrirani po uporabniku, so prikazane samo datoteke, pri kateri
 'listfiles_size' => 'Velikost',
 'listfiles_description' => 'Opis',
 'listfiles_count' => 'Različice',
+'listfiles-show-all' => 'Vključuje stare različice slik',
+'listfiles-latestversion' => 'Trenutna različica',
+'listfiles-latestversion-yes' => 'Da',
+'listfiles-latestversion-no' => 'Ne',
 
 # File description page
 'file-anchor-link' => 'Datoteka',
@@ -4106,7 +4112,9 @@ V nasprotnem primeru lahko uporabite preprost obrazec spodaj. Vašo pripombo bom
 'limitreport-walltime-value' => '$1 {{PLURAL:$1|sekunda|sekundi|sekunde|sekund}}',
 'limitreport-ppvisitednodes' => 'Število predprocesorjevih ogledanih vozlišč',
 'limitreport-ppgeneratednodes' => 'Število predprocesorjevih ustvarjenih vozlišč',
+'limitreport-postexpandincludesize' => 'Velikost vključitve po razširitvi',
 'limitreport-postexpandincludesize-value' => '$1/$2 bajtov',
+'limitreport-templateargumentsize' => 'Velikost argumentov predloge',
 'limitreport-templateargumentsize-value' => '$1/$2 bajtov',
 'limitreport-expansiondepth' => 'Največja globina razširitve',
 'limitreport-expensivefunctioncount' => 'Število dragih funkcij razčlenjevalnika',

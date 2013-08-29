@@ -1737,6 +1737,7 @@ Informasjonen vil være offentlig.',
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|endring|endringer}}',
+'enhancedrc-since-last-visit' => '$1 {{PLURAL:$1|siden forrige besøk}}',
 'recentchanges' => 'Siste endringer',
 'recentchanges-legend' => 'Alternativer for siste endringer',
 'recentchanges-summary' => 'På denne siden vises de siste endringene i wikien.',

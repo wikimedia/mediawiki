@@ -3367,8 +3367,8 @@ Zkontrolujte svůj soubor php.ini a ujistěte se, že <code>session.save_path</c
 	'config-help-restart' => 'Chcete smazat všechny údaje, které jste zadali, a spustit proces instalace znovu od začátku?',
 	'config-restart' => 'Ano, restartovat',
 	'config-welcome' => '=== Kontrola prostředí ===
-Provedou se základní kontroly, aby se zjistilo, zda je toto prostředí použitelné k instalaci MediaWiki.
-Pokud budete potřebovat při instalaci pomoc, měli byste sdělit výsledky těchto testů.',
+Nyní se provedou základní kontroly, aby se zjistilo, zda je toto prostředí použitelné k instalaci MediaWiki.
+Pokud budete potřebovat k dokončení instalace pomoc, nezapomeňte sdělit výsledky těchto testů.',
 	'config-copyright' => "=== Licence a podmínky ===
 $1
 
@@ -3563,7 +3563,7 @@ Pokud v nabídce níže nevidíte databázový systém, který chcete použít, 
 	'config-missing-db-host' => 'Musíte zadat hodnotu pro „Databázový server“',
 	'config-missing-db-server-oracle' => 'Musíte zadat hodnotu pro „Databázové TNS“',
 	'config-invalid-db-server-oracle' => 'Chybné databázové TNS „$1“.
-Používejte pouze ASCII písmena (a-z, A-Z), čísla (0-9), podtržítko (_) a tečku (.).',
+Používejte buď „TNS Name“ nebo „Easy Connect“ (vizte [http://docs.oracle.com/cd/E11882_01/network.112/e10836/naming.htm Oracle Naming Methods]).',
 	'config-invalid-db-name' => 'Chybné jméno databáze „$1“.
 Používejte pouze ASCII písmena (a-z, A-Z), čísla (0-9), podtržítko (_) a spojovník (-).',
 	'config-invalid-db-prefix' => 'Chybný databázový prefix „$1“.
@@ -3638,6 +3638,12 @@ Svou wiki teď můžete [$1 začít používat].',
 
 Pokud vaše instalace MySQL podporuje InnoDB, důrazně doporučujeme použít spíše to.
 Pokud vaše instalace MySQL InnoDB nepodporuje, možná je čas na aktualizaci.",
+	'config-mysql-only-myisam-dep' => "'''Upozornění:''' Jediným dostupným formátem dat pro MySQL je MyISAM, který se k užití pro MediaWiki nedoporučuje, protože:
+* téměř nepodporuje současný přístup kvůli zamykání tabulek,
+* oproti jiným formátům je náchylnější k poškození,
+* kód MediaWiki nepodporuje MyISAM tak dobře, jak by bylo potřeba.
+
+Vaše instalace MySQL nepodporuje InnoDB, možná je na čase upgradovat.",
 	'config-mysql-engine-help' => "'''InnoDB''' je téměř vždy nejlepší volba, neboť má dobrou podporu současného přístupu.
 
 '''MyISAM''' může být rychlejší u instalací pro jednoho uživatele nebo jen pro čtení.
@@ -3853,6 +3859,9 @@ Až to dokončíte, můžete '''[$2 vstoupit do své wiki]'''.",
 	'config-download-localsettings' => 'Stáhnout <code>LocalSettings.php</code>',
 	'config-help' => 'nápověda',
 	'config-nofile' => 'Soubor „$1“ nelze nalézt. Byl smazán?',
+	'config-extension-link' => 'Věděli jste, že vaše wiki podporuje [//www.mediawiki.org/wiki/Manual:Extensions rozšíření]?
+
+Můžete procházet [//www.mediawiki.org/wiki/Category:Extensions_by_category rozšíření po kategoriích] nebo si prohlédnout [//www.mediawiki.org/wiki/Extension_Matrix Matici rozšíření] obsahující úplný seznam.',
 	'mainpagetext' => "'''MediaWiki byla úspěšně nainstalována.'''",
 	'mainpagedocfooter' => '[//meta.wikimedia.org/wiki/Help:Contents Uživatelská příručka] vám napoví, jak MediaWiki používat.
 
@@ -3984,8 +3993,8 @@ Die Datei <code>php.ini</code> muss geprüft und es muss dabei sichergestellt we
 	'config-help-restart' => 'Sollen alle bereits eingegebenen Daten gelöscht und der Installationsvorgang erneut gestartet werden?',
 	'config-restart' => 'Ja, erneut starten',
 	'config-welcome' => '=== Prüfung der Installationsumgebung ===
-Die Basisprüfungen werden durchgeführt, um festzustellen, ob die Installationsumgebung für die Installation von MediaWiki geeignet ist.
-Die Ergebnisse dieser Prüfung sollten angegeben werden, sofern während des Installationsvorgangs Hilfe benötigt und erfragt wird.',
+Die Basisprüfungen werden jetzt durchgeführt, um festzustellen, ob die Installationsumgebung für die Installation von MediaWiki geeignet ist.
+Nimm diese Information auf, falls du Unterstützung bei der Vervollständigung der Installation benötigst.',
 	'config-copyright' => "=== Lizenz und Nutzungsbedingungen ===
 
 $1
@@ -5794,9 +5803,9 @@ Vérifiez votre fichier php.ini et assurez-vous que <code>session.save_path</cod
 	'config-page-existingwiki' => 'Wiki existant',
 	'config-help-restart' => "Voulez-vous effacer toutes les données enregistrées que vous avez entrées et relancer le processus d'installation ?",
 	'config-restart' => 'Oui, le relancer',
-	'config-welcome' => "=== Vérifications liées à l’environnement ===
-Des vérifications de base sont effectuées pour voir si cet environnement est adapté à l'installation de MediaWiki.
-Vous devriez indiquer les résultats de ces vérifications si vous avez besoin d’aide lors de l’installation.",
+	'config-welcome' => '=== Vérifications liées à l’environnement ===
+Des vérifications de base vont maintenant être effectuées pour voir si cet environnement est adapté à l’installation de MediaWiki.
+Rappelez-vous d’inclure ces informations si vous recherchez de l’aide sur la manière de terminer l’installation.',
 	'config-copyright' => "=== Droit d'auteur et conditions ===
 
 $1
@@ -6616,8 +6625,8 @@ Comprobe o seu php.ini e asegúrese de que en <code>session.save_path</code> est
 	'config-help-restart' => 'Quere eliminar todos os datos gardados e reiniciar o proceso de instalación?',
 	'config-restart' => 'Si, reiniciala',
 	'config-welcome' => '=== Comprobación da contorna ===
-Cómpre realizar unhas comprobacións básicas para ver se a contorna é axeitada para a instalación de MediaWiki.
-Deberá proporcionar os resultados destas comprobacións se necesita axuda durante a instalación.',
+Cómpre realizar agora unhas comprobacións básicas para ver se a contorna é axeitada para a instalación de MediaWiki.
+Lembre incluír esta información se necesita axuda para completar a instalación.',
 	'config-copyright' => "=== Dereitos de autor e termos de uso ===
 
 $1
@@ -10330,8 +10339,8 @@ php.ini 内で <code>session.save_path</code> が適切なディレクトリに�
 	'config-help-restart' => '入力した保存データをすべて消去して、インストール作業を再起動しますか?',
 	'config-restart' => 'はい、再起動します',
 	'config-welcome' => '=== 環境の確認 ===
-基本的な確認では、現在の環境がMediaWikiのインストールに適しているかを確認します。
-インストール中に助けが必要になった場合は、この確認結果を提供してください。',
+基本的な確認では、現在の環境が MediaWiki のインストールに適しているかを確認します。
+インストール方法について助けが必要になった場合は、必ずこの確認結果を添えてください。',
 	'config-copyright' => '=== 著作権および規約 ===
 $1
 
@@ -12777,9 +12786,8 @@ $1',
 	'config-page-existingwiki' => 'Постоечко вики',
 	'config-help-restart' => 'Дали сакате да ги исчистите сите зачувани податоци што ги внесовте и да ја започнете инсталацијата одново?',
 	'config-restart' => 'Да, почни одново',
-	'config-welcome' => '=== Environmental checks ===
-Се вршат основни проверки за да се востанови дали околината е погодна за инсталирање на МедијаВики.
-Ако ви затреба помош при инсталацијата, ќе треба да ги наведете резултатите од овие проверки.',
+	'config-welcome' => '=== Проверки на околината ===
+Сега ќе се извршиме основни проверки за да се востанови дали околината е погодна за инсталирање на МедијаВики. Не заборавајте да ги приложите овие информации ако барате помош со довршување на инсталацијата.',
 	'config-copyright' => "=== Авторски права и услови ===
 
 $1
@@ -16925,7 +16933,7 @@ Verifique o seu php.ini e certifique-se de que em <code>session.save_path</code>
 	'config-restart' => 'Sim, reiniciar',
 	'config-welcome' => '=== Verificações do ambiente ===
 São realizadas verificações básicas para determinar se este ambiente é apropriado para instalação do MediaWiki.
-Você deverá fornecer os resultados destas verificações se você precisar de ajuda durante a instalação.',
+Você deverá fornecer os resultados destas verificações se você precisar de ajuda durante a instalação.', # Fuzzy
 	'config-copyright' => "=== Direitos autorais e Termos de uso ===
 
 $1
@@ -18112,8 +18120,8 @@ Preverite vaš php.ini in se prepričajte, da je <code>session.save_path</code> 
 	'config-help-restart' => 'Želite počistiti vse shranjene podatke, ki ste jih vnesti, in ponovno začeti s postopkom namestitve?',
 	'config-restart' => 'Da, ponovno zaženi',
 	'config-welcome' => '=== Pregledi okolja ===
-Izvedeni so osnovni pregledi, da vidimo, če je okolje primerno za namestitev MediaWiki.
-Če med namestitvijo potrebujete pomoč, posredujte tudi rezultate teh pregledov.',
+Izvedli bomo osnovne preglede, da vidimo, če je okolje primerno za namestitev MediaWiki.
+Posredujte rezultate teh pregledov, če med namestitvijo potrebujete pomoč.',
 	'config-sidebar' => '* [//www.mediawiki.org Domača stran MediaWiki]
 * [//www.mediawiki.org/wiki/Help:Contents Vodnik za uporabnike]
 * [//www.mediawiki.org/wiki/Manual:Contents Vodnik za administratorje]

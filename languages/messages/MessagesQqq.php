@@ -829,10 +829,15 @@ Parameters:
 * $2 - {{msg-mw|newmessagesdifflinkplural}}
 See also:
 * {{msg-mw|Youhavenewmessages}}',
-'newmessageslinkplural' => 'Like {{msg-mw|newmessageslink}} but supporting pluralization. Used in message {{msg-mw|youhavenewmessagesfromusers}} (as parameter $1).
-This message itself takes one parameter, $1, which is 1 if there was one new edit, or 2 if there was more than one new edit
-since the last time the user has seen his or her talk page.
-{{Identical|New messages}}',
+'newmessageslinkplural' => "Like {{msg-mw|Newmessageslink}} but supporting pluralization.
+
+Used as <code>$1</code> in {{msg-mw|Youhavenewmessagesfromusers}}.
+
+Parameters:
+* $1 - 1 or 2:
+** 1 - if there was '''one''' new edit since the last time the user has seen their talk page
+** 2 - if there was '''more than one''' new edit since the last time the user has seen their talk page
+{{Identical|New messages}}",
 'newmessagesdifflinkplural' => 'This message itself takes one parameter, $1, which is the number of new edits since the last time the user has seen his or her talk page: it should be used only for correct [[plural]] as in the source text, as the exact number is not relevant.
 
 Like {{msg-mw|newmessagesdifflink}} but supporting pluralization.
@@ -1800,8 +1805,10 @@ See also {{msg-mw|Noarticletext-nopermission}}.',
 Example: [{{canonicalurl:Project:News|oldid=9999999}} Permalink with invalid revision#]
 
 * $1 is the ID of the missing revision',
-'userpage-userdoesnotexist' => 'Error message displayed when trying to edit or create a page or a subpage that belongs to a user who is not registered on the wiki. Parameters:
-* $1 is a possible username that has not been registered.',
+'userpage-userdoesnotexist' => 'Error message displayed when trying to edit or create a page or a subpage that belongs to a user who is not registered on the wiki.
+
+Parameters:
+* $1 - a possible username that has not been registered',
 'userpage-userdoesnotexist-view' => 'Shown in user pages of non existing users. See for example [{{canonicalurl:User:Foo}} User:Foo]. Parameters:
 * $1 is a username.',
 'blocked-notice-logextract' => '{{gender}}
@@ -2550,9 +2557,17 @@ Please note that the parameters in a log entry will appear in the log only in th
 'mergelogpagetext' => 'Description of the [{{canonicalurl:Special:Log|type=merge&user=&page=&year=&month=-1}} merge log], on the log. The associated [[Special:MergeHistory|Merge]] special page is not enabled by default.',
 
 # Diffs
-'history-title' => 'Displayed as page title when you click on the "history" tab. The parameter $1 is the normal page title.',
-'difference-title' => 'Displayed as page title when viewing the difference between two edits of the same page. The parameter $1 is the page title of the two revisions.',
-'difference-title-multipage' => 'Displayed as page title when viewing the difference between two edits of different pages. The parameter $1 is the page title of the old revision and $2 is the page title of the new revision.',
+'history-title' => 'Displayed as page title when you click on the "history" tab. Parameters:
+* $1 - the normal page title',
+'difference-title' => 'Displayed as page title when viewing the difference between two edits of the same page.
+
+Parameters:
+* $1 - the page title of the two revisions',
+'difference-title-multipage' => 'Displayed as page title when viewing the difference between two edits of different pages.
+
+Parameters:
+* $1 - the page title of the old revision
+* $2 - the page title of the new revision',
 'difference-multipage' => 'Displayed under the title when viewing the difference between two or more pages.
 See also {{msg-mw|difference}}.',
 'lineno' => 'Message used when comparing different versions of a page (diff). $1 is a line number.',
@@ -2572,7 +2587,9 @@ This message has sometimes a tooltip {{msg-mw|tooltip-undo}}
 
 *Parameter $1 is the number of revisions
 *Parameter $2 is the number of distinct users who made those revisions",
-'diff-multi-manyusers' => "This message appears in the revision history of a page when comparing two versions which aren't consecutive, and the intermediate revisions have been edited by more than 100 users. Parameters:
+'diff-multi-manyusers' => "This message appears in the revision history of a page when comparing two versions which aren't consecutive, and the intermediate revisions have been edited by more than 100 users.
+
+Parameters:
 * $1 - the number of revisions, will always be 101 or more
 * $2 - the number of users that were found, which was limited at 100",
 'difference-missing-revision' => 'Text displayed when the requested revision does not exist using a diff link.
@@ -2836,7 +2853,9 @@ See also:
 * {{msg-mw|Tooltip-preferences-save}}
 {{Identical|Save}}',
 'resetprefs' => 'Button for resetting changes in the preferences page.',
-'restoreprefs' => 'Used in [[Special:Preferences]]',
+'restoreprefs' => 'Used as link text in [[Special:Preferences]]. The link points to [[Special:Preferences/reset]] which shows the "Restore all default settings" form.
+
+Also used as label for the Submit button in [[Special:Preferences/reset]].',
 'prefs-editing' => 'Title of a tab in [[Special:Preferences]].
 When changing this message, please also update {{msg-mw|vector-editwarning-warning}} which references to this message.
 {{Identical|Editing}}',
@@ -3034,7 +3053,11 @@ Used in [[Special:Preferences]], tab "Watchlist". The display options refer to:
 Used in [[Special:Preferences]], tab "Watchlist".
 {{Identical|Token}}',
 'prefs-diffs' => 'Used in [[Special:Preferences]], tab "Misc".',
-'prefs-help-prefershttps' => 'Used in [[Special:Preferences]] as help text for the "use secure login" option',
+'prefs-help-prefershttps' => 'Used as help text for the checkbox in [[Special:Preferences]].
+
+The checkbox has the label {{msg-mw|Tog-prefershttps}}.
+
+See example: [[mw:Special:Preferences]].',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'Used as hint for {{msg-mw|changeemail-newemail}} field in [[Special:ChangeEmail]], when the provided E-mail address is valid.',
@@ -4219,10 +4242,24 @@ See also:
 {{Identical|Description}}',
 'listfiles_count' => 'One of the table column headers in [[Special:Listfiles]] denoting the amount of saved versions of that file.
 {{Identical|Version}}',
-'listfiles-show-all'    => 'Label for a checkbox in the options section of [[Special:ListFiles]]. The checkbox controls if old versions of image files are shown in Special:Listfiles (as opposed to only the most recent version of an image).',
-'listfiles-latestversion' => 'Column header for the result table on [[Special:Listfiles]]. The column is for if the entry is for a current version of the file, or if it is for a historic version of the file that has since been overriden',
-'listfiles-latestversion-yes' => 'Text to display in latestversion column if the entry is the latest version of the file. See also {{msg-mw|listfiles-latestversion-no}} and {{msg-mw|listfiles-latestversion}}.',
-'listfiles-latestversion-no' => 'Text to display in latestversion column if the entry is an old version of the file. See also {{msg-mw|listfiles-latestversion-yes}} and {{msg-mw|listfiles-latestversion}}.',
+'listfiles-show-all' => 'Used as checkbox label in [[Special:ListFiles]].',
+'listfiles-latestversion' => 'Used as label for the field.
+
+This probably means "The latest version".
+
+Followed by any one of the following messages:
+* {{msg-mw|Listfiles-latestversion-yes}}
+* {{msg-mw|Listfiles-latestversion-no}}',
+'listfiles-latestversion-yes' => 'Used as value for the field which has the label {{msg-mw|Listfiles-latestversion}}.
+
+See also:
+* {{msg-mw|Listfiles-latestversion-no}}
+{{Identical|Yes}}',
+'listfiles-latestversion-no' => 'Used as value for the field which has the label {{msg-mw|Listfiles-latestversion}}.
+
+See also:
+* {{msg-mw|Listfiles-latestversion-yes}}
+{{Identical|No}}',
 
 # File description page
 'file-anchor-link' => '{{Identical|File}}',
@@ -4586,8 +4623,10 @@ See also:
 # Miscellaneous special pages
 'nbytes' => 'Message used on the history page of a wiki page. Each version of a page consist of a number of bytes. $1 is the number of bytes that the page uses. Uses plural as configured for a language based on $1.',
 'ncategories' => "Used in the special page '[[Special:MostCategories]]' in brackets after each entry on the list signifying how many categories a page is part of. $1 is the number of categories.",
-'ninterwikis' => "Used in the special page '[[Special:MostInterwikis]]' in brackets after each entry on the list signifying how many interwikis a page is part of. Parameters:
-* $1 is the number of interwiki links.",
+'ninterwikis' => "Used in the special page '[[Special:MostInterwikis]]' in brackets after each entry on the list signifying how many interwikis a page is part of.
+
+Parameters:
+* $1 - the number of interwiki links",
 'nlinks' => 'This appears in brackets after each entry on the special page [[Special:MostLinked]]. $1 is the number of wiki links.',
 'nmembers' => 'Appears in brackets after each category listed on the special page [[Special:WantedCategories]]. $1 is the number of members of the category.',
 'nrevisions' => 'Used as link text in [[Special:FewestRevisions]].
@@ -5824,8 +5863,12 @@ See also:
 * {{msg-mw|Tooltip-t-whatlinkshere}}',
 'whatlinkshere-title' => "Title of the special page [[Special:WhatLinksHere]]. This page appears when you click on the 'What links here' button in the toolbox. $1 is the name of the page concerned.",
 'whatlinkshere-page' => '{{Identical|Page}}',
-'linkshere' => "This message is the header line of the [[Special:WhatLinksHere/$1]] page generated by clicking 'What links here' in the sidebar toolbox. It is followed by a navigation bar built using {{msg-mw|Viewprevnext}}. Parameters:
-* $1 - page title",
+'linkshere' => 'This message is the header line of the [[Special:WhatLinksHere/$1]] page generated by clicking "What links here" in the sidebar toolbox.
+
+It is followed by a navigation bar built using {{msg-mw|Viewprevnext}}.
+
+Parameters:
+* $1 - page title',
 'nolinkshere' => 'This appears on Whatlinkshere pages which are empty.
 
 Parameter $1 is a page title.',
@@ -6059,12 +6102,7 @@ Parameters:
 * $1 - number of blocks
 See also:
 * {{msg-mw|Ipb-otherblocks-header}}',
-'infiniteblock' => "* contents of $4 in {{msg-mw|Blocklistline|notext=1}}: (''{{int:Blocklistline}}'')
-* contents of $4 in {{msg-mw|Globalblocking-blocked|notext=1}}:
-<blockquote>''{{int:Globalblocking-blocked}}''</blockquote>
-*See also {{msg-mw|Expiringblock}}
-
-Part of the log entry of user block in [[Special:BlockList]].
+'infiniteblock' => 'Part of the log entry of user block in [[Special:BlockList]].
 
 See also:
 * {{msg-mw|Anononlyblock}}
@@ -6074,15 +6112,15 @@ See also:
 * {{msg-mw|Blocklist-nousertalk}}
 * {{msg-mw|Unblocklink}}
 * {{msg-mw|Change-blocklink}}
-{{Identical|Infinite}}",
-'expiringblock' => 'Parameters:
-* $1 is a date
-* $2 is a time
+* {{msg-mw|Expiringblock}}
+{{Identical|Infinite}}',
+'expiringblock' => 'Unused at this time.
 
-Usage:
-* Substituted as $4 in in {{msg-mw|Blocklistline|notext=1}}
-* Substituted as $4 in  in {{msg-mw|Globalblocking-blocked|notext=1}}
-* See also {{msg-mw|Infiniteblock}}',
+Parameters:
+* $1 - a date
+* $2 - a time
+See also:
+* {{msg-mw|Infiniteblock}}',
 'anononlyblock' => 'Part of the log entry of user block in [[Special:BlockList]].
 
 "anon." stands for "anonymous".
@@ -6179,9 +6217,9 @@ See also:
 * $1 - the blocked user or IP (with link to contributions and talk)
 * $2 - the duration of the block (hours, days etc.) or the specified expiry date
 * $3 - contains "(details) (\'\'reason\'\')"
-* $4 - male or female
 See also:
-* {{msg-mw|Blocklistline}}',
+* {{msg-mw|Unblocklogentry}}
+* {{msg-mw|Reblock-logentry}}',
 'reblock-logentry' => 'This is the text of an entry in the Block log (and Recent Changes), after hour (and date, only in the Block log) and sysop name:
 * $1 is the user being reblocked
 * $2 is the expiry time of the block
@@ -7566,12 +7604,25 @@ See also:
 * {{msg-mw|Spamprotectiontext|text}}
 * {{msg-mw|Yourdiff}}
 * {{msg-mw|Yourtext}}',
-'spam_reverting' => 'Edit summary for spam cleanup script. Used when a page is reverted because all later revisions contained a particular link. Parameters:
-* $1 is a spammed domain name.',
-'spam_blanking' => 'Edit summary for spam cleanup script. Used when a page is blanked (made to have no content, but still exist) because the script could not find an appropriate revision to set the page to. Parameters:
-* $1 is a spammed domain name.',
-'spam_deleting' => 'Edit summary for spam cleanup script. Used when a page is deleted because all revisions contained a particular link. Parameters:
-* $1 is a spammed domain name.',
+'spambot_username' => 'Used as bot username.',
+'spam_reverting' => 'Edit summary for spam cleanup script.
+
+Used when a page is reverted because all later revisions contained a particular link.
+
+Parameters:
+* $1 - a spammed domain name',
+'spam_blanking' => 'Edit summary for spam cleanup script.
+
+Used when a page is blanked (made to have no content, but still exist) because the script could not find an appropriate revision to set the page to.
+
+Parameters:
+* $1 - a spammed domain name',
+'spam_deleting' => 'Edit summary for spam cleanup script.
+
+Used when a page is deleted because all revisions contained a particular link.
+
+Parameters:
+* $1 - a spammed domain name',
 
 # Info page
 'pageinfo-title' => 'Page title for action=info. Parameters:
@@ -8942,8 +8993,8 @@ Displayed on image description pages. See for example [[:Image:Yes.png#filehisto
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'Appears on [[Special:Watchlist]].
-This message is variable $3 in the message {{msg-mw|Wlshowlast}}.
 
+Used as <code>$3</code> in the message {{msg-mw|Wlshowlast}}.
 {{Identical|All}}',
 'namespacesall' => 'In special page [[Special:WhatLinksHere]]. Drop-down box option for namespace.
 
@@ -9731,16 +9782,16 @@ $3 is the name of the log page inside parenthesis',
 * {{msg-mw|logentry-delete-revision}}
 * {{msg-mw|logentry-suppress-event}}
 * {{msg-mw|logentry-suppress-event}}',
-'revdelete-restricted' => 'This message is used as parameter $4 when setting visibility restrictions for administrators in:
-* {{msg-mw|logentry-delete-event}}
-* {{msg-mw|logentry-delete-revision}}
-* {{msg-mw|logentry-suppress-event}}
-* {{msg-mw|logentry-suppress-event}}',
-'revdelete-unrestricted' => 'This message is used as parameter $4 when setting visibility restrictions for administrators in:
-* {{msg-mw|logentry-delete-event}}
-* {{msg-mw|logentry-delete-revision}}
-* {{msg-mw|logentry-suppress-event}}
-* {{msg-mw|logentry-suppress-event}}',
+'revdelete-restricted' => 'Used as <code>$4</code> in the following messages when setting visibility restrictions for administrators:
+* {{msg-mw|Logentry-delete-event}}
+* {{msg-mw|Logentry-delete-revision}}
+* {{msg-mw|Logentry-suppress-event}}
+* {{msg-mw|Logentry-suppress-event}}',
+'revdelete-unrestricted' => 'Used as <code>$4</code> in the following messages when setting visibility restrictions for administrators:
+* {{msg-mw|Logentry-delete-event}}
+* {{msg-mw|Logentry-delete-revision}}
+* {{msg-mw|Logentry-suppress-event}}
+* {{msg-mw|Logentry-suppress-event}}',
 'logentry-move-move' => '{{Logentry|[[Special:Log/move]]}}
 Parameter $4, the target page, is also not visible to parser functions.',
 'logentry-move-move-noredirect' => '{{Logentry|[[Special:Log/move]]}}

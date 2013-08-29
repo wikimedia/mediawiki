@@ -14,6 +14,7 @@
  * @author Ebrahimi-amir
  * @author Erdemaslancan
  * @author Mousa
+ * @author Shirayuki
  */
 
 $fallback = 'fa';
@@ -2162,7 +2163,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization صحیفه‌‌سین
 'wlheader-showupdated' => "سون گؤروشونوزدن سونرا ائدیلن دییشیکلیکلر '''قالین''' گؤستریلیبدیلر.",
 'watchmethod-recent' => 'یئنی دییشیک‌لیک‌لر ایزلنیلن صحیفه‌لر اوچون یوخلانیلیر',
 'watchmethod-list' => 'ایزلنیلن صحیفه‌لر یئنی دییشیک‌لیک‌لر اوچون یوخلانیلیر',
-'watchlistcontains' => 'ایزلمه سیاهینیزدا $1 {{PLURAL:$11|صحیفه}} وار.',
+'watchlistcontains' => 'ایزلمه سیاهینیزدا $1 {{PLURAL:$1|صحیفه}} وار.',
 'iteminvalidname' => "'$1 ایله باغ‌لی پروبلئم، آدی دوزگون دئییل...",
 'wlnote' => "آشاغیداکی {{PLURAL:$1|'''$1''' ديَیشیک‌لیک|'''$1'''ديَیشیک‌لیک}}  سون {{PLURAL:$2|ساعتدا|'''$2''' ساعتدا}} ائدیلمیشدیر.$3، $4",
 'wlshowlast' => 'سون $1 ساعات $2 گون گؤستر $3',
@@ -2363,7 +2364,7 @@ $نئwپاگئ
 'undeletereset' => 'قور',
 'undeleteinvert' => 'سئچیلنی دؤندر',
 'undeletecomment' => 'ندن:',
-'undeletedrevisions' => 'جمعی {{PLURAL:$11|1 دییش|$1 دییشدیر}} گئری قایتاریلدی.',
+'undeletedrevisions' => 'جمعی {{PLURAL:$1|1 دییش|$1 دییشدیر}} گئری قایتاریلدی.',
 'undeletedrevisions-files' => '{{PLURAL:$1|1 نوسخه|$1 نوسخه}} و {{PLURAL:$2|1 فایل|$2 فایل}} برپا ائدیلدی',
 'undeletedfiles' => '{{PLURAL:$1|1 فایل|$1 فایل}} برپا اولوندو',
 'cannotundelete' => 'برپا ائدیلمه اولمادی

@@ -1534,7 +1534,7 @@ Essayez en utilisant le préfixe ''all:'' pour rechercher dans tout le contenu (
 'prefs-rendering' => 'Apparence',
 'saveprefs' => 'Enregistrer les préférences',
 'resetprefs' => 'Rétablir les préférences',
-'restoreprefs' => 'Restaurer toutes les valeurs par défaut',
+'restoreprefs' => 'Restaurer tous les paramètres par défaut (dans toutes les sections)',
 'prefs-editing' => 'Modification',
 'rows' => 'Rangées :',
 'columns' => 'Colonnes :',
@@ -1588,7 +1588,7 @@ Toute personne la connaissant pourra lire votre liste de suivi, ne la communique
 'yourvariant' => 'Variante de la langue du contenu :',
 'prefs-help-variant' => 'Votre variante ou orthographe préféré dans lequel afficher les pages de contenu de ce wiki.',
 'yournick' => 'Signature pour les discussions :',
-'prefs-help-signature' => 'Les commentaires sur les pages de discussion doivent être signés avec « <nowiki>~~~~</nowiki> », qui sera converti par votre signature et un horodatage.',
+'prefs-help-signature' => 'Les commentaires sur les pages de discussion doivent être signés avec « <nowiki>~~~~</nowiki> », qui sera remplacé par votre signature et un horodatage.',
 'badsig' => 'Signature brute incorrecte.
 Vérifiez les balises HTML.',
 'badsiglength' => 'Votre signature est trop longue.
@@ -1622,6 +1622,7 @@ Cette information sera publique.',
 'prefs-displaywatchlist' => "Options d'affichage",
 'prefs-tokenwatchlist' => 'Jeton',
 'prefs-diffs' => 'Différences',
+'prefs-help-prefershttps' => 'Cette préférence sera effective lors de votre prochaine connexion.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'Semble valide',
@@ -2094,8 +2095,7 @@ Pour une sécurité optimale, img_auth.php est désactivé.",
 'upload_source_file' => ' (un fichier sur votre ordinateur)',
 
 # Special:ListFiles
-'listfiles-summary' => 'Cette page spéciale permet de lister tous les fichiers importés.
-Quand elle est filtrée par utilisateur, seuls les fichiers dont la version la plus récente a été importée par cet utilisateur sont affichés.',
+'listfiles-summary' => 'Cette page spéciale permet de lister tous les fichiers importés.',
 'listfiles_search_for' => 'Rechercher un nom de média :',
 'imgfile' => 'fichier',
 'listfiles' => 'Liste de fichiers',
@@ -2106,6 +2106,10 @@ Quand elle est filtrée par utilisateur, seuls les fichiers dont la version la p
 'listfiles_size' => 'Taille',
 'listfiles_description' => 'Description',
 'listfiles_count' => 'Versions',
+'listfiles-show-all' => 'Inclure les anciennes versions des images',
+'listfiles-latestversion' => 'Version actuelle',
+'listfiles-latestversion-yes' => 'Oui',
+'listfiles-latestversion-no' => 'Non',
 
 # File description page
 'file-anchor-link' => 'Fichier',

@@ -1598,6 +1598,8 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|modification|modificationes}}',
+'enhancedrc-since-last-visit' => '$1 {{PLURAL:$1|desde le ultime visita}}',
+'enhancedrc-history' => 'historia',
 'recentchanges' => 'Modificationes recente',
 'recentchanges-legend' => 'Optiones del modificationes recente',
 'recentchanges-summary' => 'Seque le plus recente modificationes a {{SITENAME}} in iste pagina.',

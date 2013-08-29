@@ -1528,7 +1528,7 @@ $1",
 'prefs-rendering' => 'מראה',
 'saveprefs' => 'שמירת העדפות',
 'resetprefs' => 'מחיקת שינויים שלא נשמרו',
-'restoreprefs' => 'שחזור ההגדרות ההתחלתיות',
+'restoreprefs' => 'שחזור ההגדרות ההתחלתיות (בכל הלשוניות)',
 'prefs-editing' => 'עריכה',
 'rows' => 'שורות:',
 'columns' => 'עמודות:',
@@ -1619,6 +1619,7 @@ $1",
 'prefs-displaywatchlist' => 'אפשרויות תצוגה',
 'prefs-tokenwatchlist' => 'אסימון',
 'prefs-diffs' => 'הבדלים בין גרסאות',
+'prefs-help-prefershttps' => 'העדפה זו תיכנס לתוקף בכניסה הבאה לחשבון.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'כתובת הדואר האלקטרוני נראית תקינה',
@@ -1793,6 +1794,8 @@ $1",
 
 # Recent changes
 'nchanges' => '{{PLURAL:$1|שינוי אחד|$1 שינויים}}',
+'enhancedrc-since-last-visit' => '$1 {{PLURAL:$1|מאז ביקורך האחרון}}',
+'enhancedrc-history' => 'היסטוריה',
 'recentchanges' => 'שינויים אחרונים',
 'recentchanges-legend' => 'אפשרויות בשינויים האחרונים',
 'recentchanges-summary' => 'ניתן לעקוב אחרי השינויים האחרונים באתר בדף זה.',
@@ -2091,8 +2094,7 @@ $1',
 'upload_source_file' => '(קובץ במחשב שלך)',
 
 # Special:ListFiles
-'listfiles-summary' => 'דף מיוחד זה מציג את כל הקבצים שהועלו.
-כאשר משתמשים בסינון לפי משתמש, רק קבצים שהמשתמש העלה את הגרסה האחרונה שלהם מוצגים.',
+'listfiles-summary' => 'דף מיוחד זה מציג את כל הקבצים שהועלו.',
 'listfiles_search_for' => 'חיפוש קובץ מדיה בשם:',
 'imgfile' => 'קובץ',
 'listfiles' => 'רשימת קבצים',
@@ -2103,6 +2105,10 @@ $1',
 'listfiles_size' => 'גודל',
 'listfiles_description' => 'תיאור',
 'listfiles_count' => 'גרסאות',
+'listfiles-show-all' => 'כולל גרסאות ישנות של תמונות',
+'listfiles-latestversion' => 'גרסה נוכחית',
+'listfiles-latestversion-yes' => 'כן',
+'listfiles-latestversion-no' => 'לא',
 
 # File description page
 'file-anchor-link' => 'קובץ',

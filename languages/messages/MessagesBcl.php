@@ -11,6 +11,7 @@
  * @author Geopoet
  * @author Hoo
  * @author Kaganer
+ * @author Shirayuki
  * @author Steven*fung
  * @author Urhixidur
  */
@@ -732,7 +733,7 @@ Gibohon mo ini kun aksidente mong naipagheras sinda sa kiisay man o kun an saimo
 'resettokens-legend' => 'Pakibaguha an mga paduos',
 'resettokens-tokens' => 'Mga Paduos:',
 'resettokens-token-label' => '$1 (na ngunyan na halaga: $2)',
-'resettokens-watchlist-token' => 'Paduos sa Bantay-listahan kan hungitan sa web',
+'resettokens-watchlist-token' => 'Paduos para sa hungitan nin web (Atom/RSS) kan [[Special:Watchlist|mga kaliwatan sa mga pahina nin saimong bantay-listahan]]',
 'resettokens-done' => 'Mga paduos pinagbago na.',
 'resettokens-resetbutton' => 'Pakibaguha an pinagpiling mga paduos',
 
@@ -1258,7 +1259,7 @@ Prubaran na panigmitan an saimong kahaputan nin ''all:'' sa paghanap kan gabos n
 'prefs-rendering' => 'Hitsurahon',
 'saveprefs' => 'Itagama',
 'resetprefs' => 'Linigan an dae naitagamang mga kaliwatan',
-'restoreprefs' => 'Ibalik an gabos na pirmihang mga panuytoy',
+'restoreprefs' => 'Balikon an gabos na panugmad na mga panuytoy (sa gabos na mga seksyon)',
 'prefs-editing' => 'Pighihira',
 'rows' => 'Mga hilera:',
 'columns' => 'Mga taytay:',
@@ -1317,12 +1318,13 @@ Ini dae tabi matitingkog.',
 'badsig' => 'Dai pwede an bâgong pirmang ini; isúsog an mga HTML na takód.',
 'badsiglength' => 'An saimong pirma grabe kahalabaon.
 Ini dapat dae magsobra sa $1 {{PLURAL:$1|karakter|mga karakter}} an laba.',
-'yourgender' => 'Pagkatawo:',
-'gender-unknown' => 'Dae nakasambit',
-'gender-male' => 'Lalaki',
-'gender-female' => 'Babai',
-'prefs-help-gender' => 'Opsyonal: Ginagamit para sa pagkatawong pag-apod sa paagi nin kasungatan.
-Ining impormasyon magigin pampubliko.',
+'yourgender' => 'Ano an muya mo sa paglaladawan saimo?',
+'gender-unknown' => 'Ako muya na dae ipagdetalye',
+'gender-male' => 'Siya nagliliwat nin mga pahina sa wiki',
+'gender-female' => 'Siya nagliliwat nin mga pahina sa wiki',
+'prefs-help-gender' => 'An panuytoy kaining kamuyahan opsyonal.
+An panuklob minagamit kan saiyang kahalagahan sa pagpanungod saimo asin sa pagsambit saimo sa iba pa na naggagamit nin maninigong gramatikal na kabolosan.
+Ining impormasyon isasapubliko.',
 'email' => 'E-koreo',
 'prefs-help-realname' => 'Opsyonal an totoong pangaran asin kun itatao mo ini, gagamiton ini yangarig an mga sinurat mo maatribuir saimo.',
 'prefs-help-email' => 'An e-surat na adres sarong opsyonal, alagad ini kinakaipohan para sa pagtuytoy otro kan sekretong panlaog, kun ika malingaw kan saimong sekretong panlaog.',
@@ -1346,6 +1348,7 @@ An saimong e-surat na adres dae ipagbuyagyag kunsoarin na an ibang paragamit mak
 'prefs-displaywatchlist' => 'Ipahiling ang mga pagpipilian',
 'prefs-tokenwatchlist' => 'Paduos',
 'prefs-diffs' => 'Diffs',
+'prefs-help-prefershttps' => 'Ining kamuyahan magkaka-epekto sa masunod mong paglaog.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'An e-koreo nagpapahiling na balido',
@@ -1520,6 +1523,8 @@ An saimong e-surat na adres dae ipagbuyagyag kunsoarin na an ibang paragamit mak
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|kaliwatan|mga kaliwatan}}',
+'enhancedrc-since-last-visit' => '$1 {{PLURAL:$1|poon kaidtong huring bisita}}',
+'enhancedrc-history' => 'historiya',
 'recentchanges' => 'Dae pa sana nahahaloy na mga kaliwatan',
 'recentchanges-legend' => 'Pinakahuring mga option kan mga pagbabago',
 'recentchanges-summary' => 'Hanapon an mga pinahuring pagbabâgo sa wiki digdi sa páhinang ini.',
@@ -1803,8 +1808,7 @@ Para sa pinakamakusog na seguridad, img_auth.php nganay pinagpundo.',
 'upload_source_file' => " (sarong ''file'' sa kompyuter mo)",
 
 # Special:ListFiles
-'listfiles-summary' => 'Ining espesyal na pahina nagpapahiling kan gabos na pinagkargang mga sagunson.
-Kunsoarin na pinagsara nin paragamit, an mga sagunson sana kun saen an pinagkarga nin paragamit na iyo an pinakahuring bersyon an ipagpapahiling.',
+'listfiles-summary' => 'Ining espesyal na pahina minapahiling kan gabos na ipinagkargang mga sagunson.',
 'listfiles_search_for' => 'Hanápon an pangaran kan retrato:',
 'imgfile' => 'dokumento',
 'listfiles' => 'Lista kan dokumento',
@@ -1815,6 +1819,10 @@ Kunsoarin na pinagsara nin paragamit, an mga sagunson sana kun saen an pinagkarg
 'listfiles_size' => 'Sukol',
 'listfiles_description' => 'Deskripsión',
 'listfiles_count' => 'Mga Bersyon',
+'listfiles-show-all' => 'Minabali kan lumang mga bersyon nin mga imahe',
+'listfiles-latestversion' => 'Sa ngunyan na bersyon',
+'listfiles-latestversion-yes' => 'Iyo',
+'listfiles-latestversion-no' => 'Dae',
 
 # File description page
 'file-anchor-link' => 'Sagunson',
@@ -1953,8 +1961,8 @@ An sarong pahina tratado bilang pampalinaw na pahina kun ini minagamit nin saron
 'pageswithprop-text' => 'Ining mahina naglilista kan mga pahina na minagamit nin partikular na pahina nin kagrugaring.',
 'pageswithprop-prop' => 'Kagrugaring na pangaran:',
 'pageswithprop-submit' => 'Larga',
-'pageswithprop-prophidden-long' => 'halabaon na tekstong propriyedad na an halaga nakatago ($1 kilobayta)',
-'pageswithprop-prophidden-binary' => 'binaryong propriyedad na an halaga nakatago ($1 kilobayta)',
+'pageswithprop-prophidden-long' => 'halawigon na pampropriyedad na tekstong halaga na ipinagtago ($1)',
+'pageswithprop-prophidden-binary' => 'binaryong propriyedad na an halaga ipinagtago ($1)',
 
 'doubleredirects' => 'Dobleng mga redirekta',
 'doubleredirectstext' => 'Ining pahina minalista nin mga pahina na minatukdo liwat pasiring sa pinagtukdong-liwat na mga pahina.
@@ -2704,7 +2712,7 @@ Magpilì tabì nin ibang pangaran.',
 'movepage-page-exists' => 'An pahina sa $1 eksistido na asin bako tabi awtomatikong masasalambawan.',
 'movepage-page-moved' => 'An pahina $1 pinagbalyo na paduman sa $2.',
 'movepage-page-unmoved' => 'An pahina $1 dae maipagbabalyo paduman sa $2.',
-'movepage-max-pages' => 'An pinakahalangkawon na $1 {{PLURAL:S1|pahina|mga pahina}} pinagbalyo na asin mayo tabi na awtomatikong maipagbabalyo.',
+'movepage-max-pages' => 'An pinakahalangkawon na $1 {{PLURAL:$1|pahina|mga pahina}} pinagbalyo na asin mayo tabi na awtomatikong maipagbabalyo.',
 'movelogpage' => 'Balyuhon an katalaanan',
 'movelogpagetext' => 'Nasa ibaba an lista kan pahinang pigbalyó.',
 'movesubpage' => '{{PLURAL:$1|Sub-pahina|Mga Sub-pahina}}',
@@ -3090,7 +3098,7 @@ Sa pagpapa-andar kaini, an saimong sistema mapupuwedeng makompromiso.",
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'seconds' => '{{PLURAL:$1|$1 segundo|$1 segundos}}',
 'minutes' => '{{PLURAL:$1|$1 minuto|$1 minutos}}',
-'hours' => '{{PLURAL:$1|$1 oras|$1 oras}}',
+'hours' => '{{PLURAL:$1|$1 oras}}',
 'days' => '{{PLURAL:$1|$1 aldaw|$1 mga aldaw}}',
 'weeks' => '{{PLURAL:$1|$1 semana|$1 mga semana}}',
 'months' => '{{PLURAL:$1|$1 bulan|$1 mga bulan}}',

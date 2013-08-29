@@ -3212,9 +3212,9 @@ $1',
 'minutes' => '$1分鍾',
 'hours' => '$1小時',
 'days' => '$1天',
-'weeks' => '{{PLURAL:$1|$1周|$1周}}',
-'months' => '{{PLURAL:$1|$1個月|$1個月}}',
-'years' => '{{PLURAL:$1|$1年|$1年}}',
+'weeks' => '{{PLURAL:$1|$1周}}',
+'months' => '{{PLURAL:$1|$1個月}}',
+'years' => '{{PLURAL:$1|$1年}}',
 'ago' => '$1前',
 'just-now' => '剛才',
 
@@ -3597,8 +3597,8 @@ Variants for Chinese language
 'exif-gpslongitude-w' => '西經',
 
 # Pseudotags used for GPSAltitudeRef
-'exif-gpsaltitude-above-sealevel' => '海拔$1 {{PLURAL:$1|米|米}}',
-'exif-gpsaltitude-below-sealevel' => '海拔負$1{{PLURAL:$1|米|米}}',
+'exif-gpsaltitude-above-sealevel' => '海拔$1 {{PLURAL:$1|米}}',
+'exif-gpsaltitude-below-sealevel' => '海拔負$1{{PLURAL:$1|米}}',
 
 'exif-gpsstatus-a' => '測量過程',
 'exif-gpsstatus-v' => '互動測量',
@@ -4044,8 +4044,8 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'api-error-copyuploaddisabled' => '通過URL上傳的功能已被此伺服器禁用。',
 'api-error-duplicate' => '在網站上已經具有相同內容的{{PLURAL:$1|[$2 另一個文件]|[$2 另一些文件]}}。',
 'api-error-duplicate-archive' => '在網站上曾經具有相同內容的{{PLURAL:$1|[$2 另一個文件]|[$2 另一些文件]}}，但已被刪除。',
-'api-error-duplicate-archive-popup-title' => '已被刪除的重複{{PLURAL:$1|文件|文件}}',
-'api-error-duplicate-popup-title' => '重複的{{PLURAL:$1|文件|文件}}',
+'api-error-duplicate-archive-popup-title' => '已被刪除的重複{{PLURAL:$1|文件}}。',
+'api-error-duplicate-popup-title' => '重複的{{PLURAL:$1|文件}}。',
 'api-error-empty-file' => '您提交的檔案是空的。',
 'api-error-emptypage' => '不許創建沒有內容的新頁面。',
 'api-error-fetchfileerror' => '內部錯誤：獲取文件時發生錯誤。',
@@ -4054,7 +4054,7 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'api-error-file-too-large' => '您提交的檔案太大了。',
 'api-error-filename-tooshort' => '檔案名過短。',
 'api-error-filetype-banned' => '這種類型的檔案是被禁止的。',
-'api-error-filetype-banned-type' => '$1{{PLURAL:$4|不是允許的檔案類型|不是允許的檔案類型}}。  允許的{{PLURAL:$3|檔案類型是|檔案類型是}} $2。',
+'api-error-filetype-banned-type' => '$1{{PLURAL:$4|不是允許的檔案類型}}。  允許的{{PLURAL:$3|檔案類型是}} $2。',
 'api-error-filetype-missing' => '本檔案缺少了副檔名。',
 'api-error-hookaborted' => '你試圖進行的修改被一個擴展鉤子終止。',
 'api-error-http' => '內部錯誤：無法連接到伺服器。',
@@ -4092,6 +4092,6 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'duration-millennia' => '$1千年',
 
 # Image rotation
-'rotate-comment' => '順時針旋轉圖像$1{{PLURAL:$1|度|度}}',
+'rotate-comment' => '順時針旋轉圖像$1{{PLURAL:$1|度}}',
 
 );

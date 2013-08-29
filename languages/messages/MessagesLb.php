@@ -1599,6 +1599,8 @@ Dës Informatioun ass ëffentlech.",
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|Ännerung|Ännerungen}}',
+'enhancedrc-since-last-visit' => '$1 {{PLURAL:$1|zanter dem leschte Passage}}',
+'enhancedrc-history' => 'Versiounen',
 'recentchanges' => 'Rezent Ännerungen',
 'recentchanges-legend' => 'Optioune vun de rezenten Ännerungen',
 'recentchanges-summary' => "Op dëser Säit kënnt Dir déi rezent Ännerungen op '''{{SITENAME}}''' gesinn.",

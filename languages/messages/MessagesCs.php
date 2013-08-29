@@ -1508,7 +1508,7 @@ Pokud na začátek dotazu přidáte ''all:'', bude se hledat všude (včetně di
 'prefs-rendering' => 'Vzhled',
 'saveprefs' => 'Uložit nastavení',
 'resetprefs' => 'Vrátit původní nastavení',
-'restoreprefs' => 'Obnovit všechna výchozí nastavení',
+'restoreprefs' => 'Obnovit všechna výchozí nastavení (ve všech sekcích)',
 'prefs-editing' => 'Editace',
 'rows' => 'Řádky',
 'columns' => 'Sloupce',
@@ -1596,6 +1596,7 @@ Vaše adresa v takovém případě není prozrazena.',
 'prefs-displaywatchlist' => 'Možnosti zobrazení',
 'prefs-tokenwatchlist' => 'Klíč',
 'prefs-diffs' => 'Porovnání verzí',
+'prefs-help-prefershttps' => 'Toto nastavení se projeví při příštím přihlášení.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'E-mailová adresa vypadá platně',
@@ -2060,8 +2061,7 @@ Z bezpečnostních důvodů je img_auth.php vypnuto.',
 'upload_source_file' => ' (soubor ve vašem počítači)',
 
 # Special:ListFiles
-'listfiles-summary' => 'Tato speciální stránka zobrazuje všechny načtené soubory.
-Při filtrování podle uživatele se zobrazují jen soubory, u kterých tento uživatel načetl aktuální verzi.',
+'listfiles-summary' => 'Tato speciální stránka zobrazuje všechny načtené soubory.',
 'listfiles_search_for' => 'Hledat soubor podle názvu:',
 'imgfile' => 'soubor',
 'listfiles' => 'Seznam souborů',
@@ -2072,6 +2072,10 @@ Při filtrování podle uživatele se zobrazují jen soubory, u kterých tento u
 'listfiles_size' => 'Velikost (bajtů)',
 'listfiles_description' => 'Popis',
 'listfiles_count' => 'Verze',
+'listfiles-show-all' => 'Zahrnout staré verze obrázků',
+'listfiles-latestversion' => 'Aktuální verze',
+'listfiles-latestversion-yes' => 'Ano',
+'listfiles-latestversion-no' => 'Ne',
 
 # File description page
 'file-anchor-link' => 'Soubor',

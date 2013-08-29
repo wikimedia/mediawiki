@@ -1221,7 +1221,7 @@ Però fa attenzione purcè l'indice lore sus a {{SITENAME}} ponne condenè pàgg
 'prefs-rendering' => 'Aspette',
 'saveprefs' => 'Reggistre',
 'resetprefs' => "Pulizze le cangiaminde ca non g'è reggistrete",
-'restoreprefs' => "Repristene tutte le 'mbostaziune origginale",
+'restoreprefs' => "Repristine tutte le 'mbostaziune origgenale",
 'prefs-editing' => 'Stoche a cange',
 'rows' => 'Righe:',
 'columns' => 'Culonne:',
@@ -1311,6 +1311,7 @@ Ce tu 'u mitte, a fatje ca è fatte t'avène ricanusciute.",
 'prefs-displaywatchlist' => "Fà vedè l'opzione",
 'prefs-tokenwatchlist' => 'Gettone',
 'prefs-diffs' => 'Diff',
+'prefs-help-prefershttps' => 'Sta preferenze pigghie effette sulamende quanne tràse arrete.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => "L'indirizze e-mail pare valide",
@@ -1796,7 +1797,7 @@ Sinde a me, vue ccu pruève quanne ste mene casine?",
 
 # Special:ListFiles
 'listfiles-summary' => "Sta pàgena speciale face vedè tutte le file carecate.<br />
-Quanne jè filtrate da l'utende, sulamende le file ca quidde utende ave carecate le versiune cchiù recende d'u file avènene fatte vedè.",
+Quanne jè filtrate da l'utende, sulamende le file addò quidde utende ave carecate le versiune cchiù recende, avènene fatte vedè.",
 'listfiles_search_for' => 'Cirche pe nome de le media:',
 'imgfile' => 'file',
 'listfiles' => 'Liste de le fail',
@@ -1807,6 +1808,10 @@ Quanne jè filtrate da l'utende, sulamende le file ca quidde utende ave carecate
 'listfiles_size' => 'Dimenzione',
 'listfiles_description' => 'Descrizione',
 'listfiles_count' => 'Versiune',
+'listfiles-show-all' => "'Nglude le versiune vicchie de le immaggine",
+'listfiles-latestversion' => 'Versione de mò',
+'listfiles-latestversion-yes' => 'Sìne',
+'listfiles-latestversion-no' => 'None',
 
 # File description page
 'file-anchor-link' => 'File',
