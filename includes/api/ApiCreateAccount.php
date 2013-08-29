@@ -29,6 +29,10 @@
  */
 class ApiCreateAccount extends ApiBase {
 	public function execute() {
+		// If we're in JSON callback mode, no tokens can be obtained
+		if ( !is_null( $this->getMain()->getRequest()->getVal( 'callback' ) ) ) {
+			$this->dieUsage( 'Cannot create account when using a callback', 'aborted' );
+		}
 
 		// $loginForm->addNewaccountInternal will throw exceptions
 		// if wiki is read only (already handled by api), user is blocked or does not have rights.

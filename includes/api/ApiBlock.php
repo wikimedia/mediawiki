@@ -42,12 +42,6 @@ class ApiBlock extends ApiBase {
 		$user = $this->getUser();
 		$params = $this->extractRequestParams();
 
-		if ( $params['gettoken'] ) {
-			$res['blocktoken'] = $user->getEditToken();
-			$this->getResult()->addValue( null, $this->getModuleName(), $res );
-			return;
-		}
-
 		if ( !$user->isAllowed( 'block' ) ) {
 			$this->dieUsageMsg( 'cantblock' );
 		}
@@ -156,10 +150,6 @@ class ApiBlock extends ApiBase {
 				ApiBase::PARAM_REQUIRED => true
 			),
 			'token' => null,
-			'gettoken' => array(
-				ApiBase::PARAM_DFLT => false,
-				ApiBase::PARAM_DEPRECATED => true,
-			),
 			'expiry' => 'never',
 			'reason' => '',
 			'anononly' => false,
@@ -177,7 +167,6 @@ class ApiBlock extends ApiBase {
 		return array(
 			'user' => 'Username, IP address or IP range you want to block',
 			'token' => 'A block token previously obtained through prop=info',
-			'gettoken' => 'If set, a block token will be returned, and no other action will be taken',
 			'expiry' => 'Relative expiry time, e.g. \'5 months\' or \'2 weeks\'. If set to \'infinite\', \'indefinite\' or \'never\', the block will never expire.',
 			'reason' => 'Reason for block',
 			'anononly' => 'Block anonymous users only (i.e. disable anonymous edits for this IP)',
@@ -194,10 +183,6 @@ class ApiBlock extends ApiBase {
 	public function getResultProperties() {
 		return array(
 			'' => array(
-				'blocktoken' => array(
-					ApiBase::PROP_TYPE => 'string',
-					ApiBase::PROP_NULLABLE => true
-				),
 				'user' => array(
 					ApiBase::PROP_TYPE => 'string',
 					ApiBase::PROP_NULLABLE => true
