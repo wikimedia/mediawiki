@@ -297,12 +297,18 @@ class RecentChange {
 	 * @deprecated since 1.22
 	 */
 	public static function sendToUDP( $line, $address = '', $prefix = '', $port = '' ) {
-		global $wgRC2UDPPrefix, $wgRC2UDPInterwikiPrefix;
+		global $wgRC2UDPAddress, $wgRC2UDPInterwikiPrefix, $wgRC2UDPPort, $wgRC2UDPPrefix;
+
 		wfDeprecated( __METHOD__, '1.22' );
+
+		# Assume default for standard RC case
+		$address = $address ? $address : $wgRC2UDPAddress;
+		$prefix = $prefix ? $prefix : $wgRC2UDPPrefix;
+		$port = $port ? $port : $wgRC2UDPPort;
 
 		$engine = new UDPRCFeedEngine();
 		$feed = array(
-			'uri' => "udp://$address:$port/$wgRC2UDPPrefix",
+			'uri' => "udp://$address:$port/$prefix",
 			'formatter' => 'IRCColourfulRCFeedFormatter',
 			'add_interwiki_prefix' => $wgRC2UDPInterwikiPrefix,
 		);
