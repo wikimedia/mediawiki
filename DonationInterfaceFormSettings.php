@@ -123,7 +123,7 @@ $forms_whitelist['rtbt-enets'] = array(
 	'file' => $form_dirs['gc'] . '/rtbt/rtbt-enets.html',
 	'gateway' => 'globalcollect',
 	'payment_methods' => array('rtbt' => 'rtbt_enets'),
-	'countries' => array( '+' => 'SI' ),
+	'countries' => array( '+' => 'SG' ),
 	'currencies' => array( '+' => 'SGD' ),
 );
 
