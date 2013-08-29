@@ -212,11 +212,10 @@ class SearchMySQL extends SearchEngine {
 
 	public function supports( $feature ) {
 		switch ( $feature ) {
-		case 'list-redirects':
 		case 'title-suffix-filter':
 			return true;
 		default:
-			return false;
+			return parent::supports( $feature );
 		}
 	}
 
