@@ -44,8 +44,12 @@ class SpecialTags extends SpecialPage {
 		$html = Xml::tags( 'tr', null, Xml::tags( 'th', null, $this->msg( 'tags-tag' )->parse() ) .
 				Xml::tags( 'th', null, $this->msg( 'tags-display-header' )->parse() ) .
 				Xml::tags( 'th', null, $this->msg( 'tags-description-header' )->parse() ) .
+				Xml::tags( 'th', null, $this->msg( 'tags-active-header' )->parse() ) .
 				Xml::tags( 'th', null, $this->msg( 'tags-hitcount-header' )->parse() )
 			);
+
+		// Used in #doTagRow()
+		$this->definedTags = array_fill_keys( ChangeTags::listDefinedTags(), true );
 
 		foreach ( ChangeTags::tagUsageStatistics() as $tag => $hitcount ) {
 			$html .= $this->doTagRow( $tag, $hitcount );
@@ -75,6 +79,9 @@ class SpecialTags extends SpecialPage {
 			$desc .= $this->msg( 'parentheses' )->rawParams( $editDescLink )->escaped();
 		}
 		$newRow .= Xml::tags( 'td', null, $desc );
+
+		$active = $this->msg( isset( $this->definedTags[$tag] ) ? 'tags-active-yes' : 'tags-active-no' )->escaped();
+		$newRow .= Xml::tags( 'td', null, $active );
 
 		$hitcountLabel = $this->msg( 'tags-hitcount' )->numParams( $hitcount )->escaped();
 		$hitcountLink = Linker::link( SpecialPage::getTitleFor( 'Recentchanges' ), $hitcountLabel, array(), array( 'tagfilter' => $tag ) );
