@@ -1,11 +1,12 @@
 <?php
+
 class JSONRCFeedFormatter implements RCFeedFormatter {
 	/**
 	 * Generates a notification that can be easily interpreted by a machine.
 	 * @see RCFeedFormatter::getLine
 	 */
 	public function getLine( array $feed, RecentChange $rc, $actionComment ) {
-		global $wgCanonicalServer, $wgScriptPath, $wgArticlePath, $wgDBname;
+		global $wgCanonicalServer, $wgScriptPath, $wgDBname;
 		$attrib = $rc->getAttributes();
 
 		$packet = array(

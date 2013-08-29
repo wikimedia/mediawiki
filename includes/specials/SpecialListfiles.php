@@ -471,7 +471,7 @@ class ImageListPager extends TablePager {
 			'tabindex' => 3,
 		) );
 
-		$inputForm['listfiles-show-all'] = HTML::input( 'ilshowall', 1, 'checkbox', array(
+		$inputForm['listfiles-show-all'] = Html::input( 'ilshowall', 1, 'checkbox', array(
 			'checked' => $this->mShowAll,
 			'tabindex' => 4,
 		) );
