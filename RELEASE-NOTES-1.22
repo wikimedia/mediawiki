@@ -338,6 +338,9 @@ production.
   version of the title.
 * (bug 52538) action=edit will now use empty text instead of the contents
   of section 0 when passed prependtext or appendtext with section=new.
+* Support for the 'gettoken' parameter to action=block and action=unblock,
+  deprecated since 1.20, has been removed.
+* (bug 49090) Token-getting functions will fail when using jsonp callbacks.
 
 === Languages updated in 1.22===
 
