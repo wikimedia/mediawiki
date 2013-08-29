@@ -10048,7 +10048,10 @@ Parameters:
 'tags-tag' => 'Caption of a column in [[Special:Tags]]. For more information on tags see [[mw:Manual:Tags|MediaWiki]].',
 'tags-display-header' => 'Caption of a column in [[Special:Tags]]. For more information on tags see [[mw:Manual:Tags|MediaWiki]].',
 'tags-description-header' => 'Caption of a column in [[Special:Tags]]. For more information on tags see [[mw:Manual:Tags|MediaWiki]].',
+'tags-active-header' => 'Caption of a column in [[Special:Tags]]. For more information on tags see [[mw:Manual:Tags|MediaWiki]].',
 'tags-hitcount-header' => 'Caption of a column in [[Special:Tags]]. For more information on tags see [[mw:Manual:Tags|MediaWiki]].',
+'tags-active-yes' => 'Table cell contents if given tag is "active".',
+'tags-active-no' => 'Table cell contents if given tag is not "active".',
 'tags-edit' => 'Used on [[Special:Tags]]. Verb. Used as display text on a link to create/edit a description.
 {{Identical|Edit}}',
 'tags-hitcount' => 'Shown in the "{{msg-mw|Tags-hitcount-header}}" column in [[Special:Tags]]. For more information on tags see [[mw:Manual:Tags|MediaWiki]].
