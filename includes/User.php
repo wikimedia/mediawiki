@@ -3144,9 +3144,13 @@ class User {
 	/**
 	 * Clear a cookie on the user's client
 	 * @param string $name Name of the cookie to clear
+	 * @param bool $secure
+	 *  true: Force setting the secure attribute when setting the cookie
+	 *  false: Force NOT setting the secure attribute when setting the cookie
+	 *  null (default): Use the default ($wgCookieSecure) to set the secure attribute
 	 */
-	protected function clearCookie( $name ) {
-		$this->setCookie( $name, '', time() - 86400 );
+	protected function clearCookie( $name, $secure = null ) {
+		$this->setCookie( $name, '', time() - 86400, $secure );
 	}
 
 	/**
@@ -3231,7 +3235,7 @@ class User {
 
 		$this->clearCookie( 'UserID' );
 		$this->clearCookie( 'Token' );
-		$this->clearCookie( 'forceHTTPS' );
+		$this->clearCookie( 'forceHTTPS', false );
 
 		// Remember when user logged out, to prevent seeing cached pages
 		$this->setCookie( 'LoggedOut', time(), time() + 86400 );
