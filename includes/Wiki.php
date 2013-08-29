@@ -508,7 +508,7 @@ class MediaWiki {
 		// preference set, redirect them to HTTPS.
 		if (
 			(
-				$request->getCookie( 'forceHTTPS' ) ||
+				$request->getCookie( 'forceHTTPS', '' ) ||
 				// Avoid checking the user and groups unless it's enabled.
 				(
 					$this->context->getUser()->isLoggedIn()
