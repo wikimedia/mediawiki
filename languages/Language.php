@@ -49,12 +49,14 @@ class FakeConverter {
 	 */
 	public $mLang;
 	function __construct( $langobj ) { $this->mLang = $langobj; }
+	function autoConvert( $text, $variant = false ) { return $text; }
 	function autoConvertToAllVariants( $text ) { return array( $this->mLang->getCode() => $text ); }
 	function convert( $t ) { return $t; }
 	function convertTo( $text, $variant ) { return $text; }
 	function convertTitle( $t ) { return $t->getPrefixedText(); }
 	function convertNamespace( $ns ) { return $this->mLang->getFormattedNsText( $ns ); }
 	function getVariants() { return array( $this->mLang->getCode() ); }
+	function getVariantFallbacks( $variant ) { return $this->mLang->getCode(); }
 	function getPreferredVariant() { return $this->mLang->getCode(); }
 	function getDefaultVariant() { return $this->mLang->getCode(); }
 	function getURLVariant() { return ''; }
@@ -66,6 +68,8 @@ class FakeConverter {
 	function convertCategoryKey( $key ) { return $key; }
 	function convertLinkToAllVariants( $text ) { return $this->autoConvertToAllVariants( $text ); }
 	function armourMath( $text ) { return $text; }
+	function validateVariant( $variant = null ) { return $variant === $this->mLang->getCode() ? $variant : null; }
+	function translate( $text, $variant ) { return $text; }
 }
 
 /**
