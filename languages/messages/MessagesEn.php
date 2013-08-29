@@ -4937,7 +4937,10 @@ You should have received [{{SERVER}}{{SCRIPTPATH}}/COPYING a copy of the GNU Gen
 'tags-tag'                => 'Tag name',
 'tags-display-header'     => 'Appearance on change lists',
 'tags-description-header' => 'Full description of meaning',
+'tags-active-header'      => 'Active?',
 'tags-hitcount-header'    => 'Tagged changes',
+'tags-active-yes'         => 'Yes',
+'tags-active-no'          => 'No',
 'tags-edit'               => 'edit',
 'tags-hitcount'           => '$1 {{PLURAL:$1|change|changes}}',
 
