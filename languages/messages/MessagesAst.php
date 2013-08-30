@@ -711,7 +711,7 @@ Tendría de facelo si los compartió con alguién de mou accidental o si la so c
 'resettokens-legend' => 'Reaniciar los pases',
 'resettokens-tokens' => 'Pases:',
 'resettokens-token-label' => '$1 (valor actual: $2)',
-'resettokens-watchlist-token' => 'Pase de la canal de noticies web de la llista de vixilancia',
+'resettokens-watchlist-token' => 'Pase pa la canal de noticies web (Atom/RSS) de los [[Special:Watchlist|cambios en páxines de la llista de vixilancia]]',
 'resettokens-done' => 'Reaniciaronse los pases.',
 'resettokens-resetbutton' => 'Reaniciar los pases seleicionaos',
 
@@ -1242,7 +1242,7 @@ Se puen alcontrar más detalles nel [{{fullurl:{{#Special:Log}}/delete|page={{FU
 'prefs-rendering' => 'Aspeutu',
 'saveprefs' => 'Guardar',
 'resetprefs' => 'Llimpiar los cambios ensin guardar',
-'restoreprefs' => 'Restaurar tolos axustes predeterminaos',
+'restoreprefs' => 'Restaurar tolos axustes predeterminaos (en toles seiciones)',
 'prefs-editing' => 'Edición',
 'rows' => 'Fileres:',
 'columns' => 'Columnes:',
@@ -1329,6 +1329,7 @@ Esta información sedrá pública.',
 'prefs-displaywatchlist' => 'Opciones de vista',
 'prefs-tokenwatchlist' => 'Pase',
 'prefs-diffs' => 'Diferencies',
+'prefs-help-prefershttps' => 'Esta preferencia aplicaráse nel siguiente aniciu de sesión.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'La direición de corréu paez válida',
@@ -1503,6 +1504,8 @@ Esta información sedrá pública.',
 
 # Recent changes
 'nchanges' => '{{PLURAL:$1|un cambiu|$1 cambios}}',
+'enhancedrc-since-last-visit' => '$1 {{PLURAL:$1|dende la última visita}}',
+'enhancedrc-history' => 'historial',
 'recentchanges' => 'Cambios recientes',
 'recentchanges-legend' => 'Opciones de cambios recientes',
 'recentchanges-summary' => 'Sigui los cambios más recientes na wiki nesta páxina.',
@@ -1807,8 +1810,7 @@ Pa una meyor seguridá, img_auth.php ta desactiváu.",
 'upload_source_file' => ' (un archivu del to ordenador)',
 
 # Special:ListFiles
-'listfiles-summary' => "Esta páxina especial amuesa tolos ficheros xubíos.
-Al peñerar por usuariu, s'amuesa namái la cabera versión de los ficheros que xubió esi usuariu.",
+'listfiles-summary' => 'Esta páxina especial amuesa tolos ficheros xubíos.',
 'listfiles_search_for' => "Buscar por nome d'archivu multimedia:",
 'imgfile' => 'archivu',
 'listfiles' => "Llista d'imáxenes",
@@ -1819,6 +1821,10 @@ Al peñerar por usuariu, s'amuesa namái la cabera versión de los ficheros que 
 'listfiles_size' => 'Tamañu',
 'listfiles_description' => 'Descripción',
 'listfiles_count' => 'Versiones',
+'listfiles-show-all' => 'Incluir les versiones antigües de les imaxes',
+'listfiles-latestversion' => 'Versión actual',
+'listfiles-latestversion-yes' => 'Sí',
+'listfiles-latestversion-no' => 'Non',
 
 # File description page
 'file-anchor-link' => 'Ficheru',
@@ -1957,8 +1963,8 @@ Una páxina tratase como una páxina de dixebra si usa una plantía que tea enll
 'pageswithprop-text' => "Esta páxina llista les páxines qu'usen una propiedá de páxina determinada.",
 'pageswithprop-prop' => 'Nome de la propiedá:',
 'pageswithprop-submit' => 'Dir',
-'pageswithprop-prophidden-long' => 'valor de propiedá de testu llargu tapecíu ($1 kilobytes)',
-'pageswithprop-prophidden-binary' => 'valor de propiedá binaria tapecíu ($1 kilobytes)',
+'pageswithprop-prophidden-long' => 'valor de propiedá de testu llargu tapecíu ($1)',
+'pageswithprop-prophidden-binary' => 'valor de propiedá binaria tapecíu ($1)',
 
 'doubleredirects' => 'Redireiciones dobles',
 'doubleredirectstext' => 'Esta páxina llista páxines que redireicionen a otres páxines de redireición.

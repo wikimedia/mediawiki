@@ -410,7 +410,7 @@ $messages = array(
 'tog-noconvertlink' => 'Paginanaamconversie uitschakelen',
 'tog-norollbackdiff' => 'Wijzigingen weglaten na terugdraaien',
 'tog-useeditwarning' => 'U waarschuwen als u een bewerkte pagina die nog niet is opgeslagen wil verlaten',
-'tog-prefershttps' => 'Gebruik altijd een veilige verbinding wanneer u bent ingelogd',
+'tog-prefershttps' => 'Altijd een beveiligde verbinding gebruiken wanneer u bent aangemeld',
 
 'underline-always' => 'Altijd',
 'underline-never' => 'Nooit',
@@ -796,7 +796,7 @@ De opgegeven reden is "\'\'$3\'\'".',
 # Login and logout pages
 'logouttext' => "'''U bent nu afgemeld.'''
 
-Merk op dat sommige pagina's kunnen blijven getoond worden alsof je nog ingelogd bent, totdat u uw browsercache leegt.",
+Sommige pagina's kunnen blijven weergegeven alsof u nog aangemeld bent, totdat u uw browsercache leegt.",
 'welcomeuser' => 'Welkom, $1!',
 'welcomecreation-msg' => 'Uw gebruiker is aangemaakt.
 Vergeet niet uw [[Special:Preferences|voorkeuren voor {{SITENAME}}]] aan te passen.',
@@ -842,7 +842,7 @@ Vergeet niet uw [[Special:Preferences|voorkeuren voor {{SITENAME}}]] aan te pass
 'createacct-emailoptional' => 'E-mailadres (optioneel)',
 'createacct-email-ph' => 'Geef uw e-mailadres op',
 'createacct-another-email-ph' => 'Geef een e-mailadres op',
-'createaccountmail' => 'Gebruik een tijdelijk willekeurig wachtwoord en stuur het naar het gespecifieerde e-mailadres',
+'createaccountmail' => 'Gebruik een tijdelijk willekeurig wachtwoord en stuur het naar het opgegeven e-mailadres',
 'createacct-realname' => 'Echte naam (optioneel)',
 'createaccountreason' => 'Reden:',
 'createacct-reason' => 'Reden',
@@ -931,13 +931,13 @@ Meld u aan en wijzig uw wachtwoord.
 
 Negeer dit bericht als deze gebruiker zonder uw medeweten is aangemaakt.',
 'usernamehasherror' => 'Een gebruikersnaam mag het teken hekje ("#") niet bevatten.',
-'login-throttled' => 'U heeft te veel mislukte recentelijke inlogpogingen gedaan.
+'login-throttled' => 'U heeft recentelijk te veel mislukte aanmeldpogingen gedaan.
 Wacht alstublieft $1 voordat u het opnieuw probeert.',
 'login-abort-generic' => 'U bent niet aangemeld. De procedure is afgebroken.',
 'loginlanguagelabel' => 'Taal: $1',
 'suspicious-userlogout' => 'Uw verzoek om af te melden is genegeerd, omdat het lijkt alsof het verzoek is verzonden door een browser of cacheproxy die stuk is.',
-'createacct-another-realname-tip' => 'Uw echte naam is optioneel.
-Wanneer u ervoor kiest deze op te geven, zal deze gebruikt worden om erkenning te geven voor uw werk.',
+'createacct-another-realname-tip' => 'Echte naam is optioneel.
+Als u deze opgeeft, wordt deze naam gebruikt worden om u erkenning te geven voor uw werk.',
 
 # Email sending
 'php-mail-error-unknown' => 'Er is een onbekende fout opgetreden in de mail()-functie van PHP',
@@ -954,7 +954,7 @@ Voer een nieuw wachtwoord in om het aanmelden te voltooien:',
 'newpassword' => 'Nieuw wachtwoord:',
 'retypenew' => 'Herhaling nieuwe wachtwoord:',
 'resetpass_submit' => 'Wachtwoord instellen en aanmelden',
-'changepassword-success' => 'Uw wachtwoord is succesvol gewijzigd!',
+'changepassword-success' => 'Uw wachtwoord is gewijzigd.',
 'resetpass_forbidden' => 'Wachtwoorden kunnen niet gewijzigd worden',
 'resetpass-no-info' => 'U dient aangemeld zijn voordat u deze pagina kunt gebruiken.',
 'resetpass-submit-loggedin' => 'Wachtwoord wijzigen',
@@ -1617,10 +1617,10 @@ De tildes worden omgezet in uw ondertekening en een datum en tijd van de bewerki
 'badsig' => 'Ongeldige ondertekening; controleer de HTML-tags.',
 'badsiglength' => 'Uw ondertekening is te lang.
 Deze moet minder dan $1 {{PLURAL:$1|teken|tekens}} bevatten.',
-'yourgender' => 'Hoe prefereert u beschreven te worden?',
-'gender-unknown' => 'Ik prefereer dit niet op te geven',
-'gender-male' => 'Hij bewerkt artikelen',
-'gender-female' => 'Zij bewerkt artikelen',
+'yourgender' => 'Hoe wilt u beschreven worden?',
+'gender-unknown' => 'Ik wil dit niet opgeven',
+'gender-male' => "Hij bewerkt pagina's",
+'gender-female' => "Zij bewerkt pagina's",
 'prefs-help-gender' => 'Deze voorkeur instellen is optioneel.
 
 De software gebruikt deze waarde om u aan te spreken en u te vermelden aan andere gebruikers door middel van het juiste grammaticale geslacht.
@@ -1675,7 +1675,7 @@ Als u deze opgeeft, kan deze naam gebruikt worden om u erkenning te geven voor u
 'userrights-notallowed' => 'U bent niet gemachtigd om gebruikersrechten toe te voegen of te verwijderen.',
 'userrights-changeable-col' => 'Groepen die u kunt beheren',
 'userrights-unchangeable-col' => 'Groepen die u niet kunt beheren',
-'userrights-conflict' => 'Probleem bij het instellen van de gebruikersrechten! Controleer en bevestig alstublieft uw wijzigingen.',
+'userrights-conflict' => 'Er is een probleem opgetreden tijdens het instellen van de gebruikersrechten! Controleer en bevestig uw wijzigingen.',
 'userrights-removed-self' => 'U hebt uw eigen bevoegdheden ingetrokken. U kunt deze pagina niet langer raadplegen.',
 
 # Groups
@@ -2250,8 +2250,8 @@ Vergeet niet de "Koppelingen naar deze pagina" te controleren alvorens deze sjab
 'randomincategory' => 'Willekeurige pagina in de categorie',
 'randomincategory-invalidcategory' => '"$1" is geen geldige categorienaam.',
 'randomincategory-nopages' => "Er zijn geen pagina's in de categorie [[:Category:$1|$1]].",
-'randomincategory-selectcategory' => 'Vind een willekeurige pagina uit de categorie $1 $2.',
-'randomincategory-selectcategory-submit' => 'Oké',
+'randomincategory-selectcategory' => 'Geef een willekeurige pagina uit de categorie $1 weer. $2',
+'randomincategory-selectcategory-submit' => 'OK',
 
 # Random redirect
 'randomredirect' => 'Willekeurige doorverwijzing',
@@ -2289,8 +2289,8 @@ Een pagina wordt gezien als doorverwijspagina als er een sjabloon op staat dat o
 'pageswithprop-text' => "Op deze pagina worden pagina's weergegeven met een bepaalde pagina-eigenschap.",
 'pageswithprop-prop' => 'Naam van de eigenschap:',
 'pageswithprop-submit' => 'OK',
-'pageswithprop-prophidden-long' => 'lange teksteigenschapswaarde verborgen ({{PLURAL:$1|$1 kilobyte}})',
-'pageswithprop-prophidden-binary' => 'binaire eigenschapswaarde verborgen ({{PLURAL:$1|$1 kilobyte}})',
+'pageswithprop-prophidden-long' => 'lange teksteigenschapswaarde verborgen ($1)',
+'pageswithprop-prophidden-binary' => 'binaire eigenschapswaarde verborgen ($1)',
 
 'doubleredirects' => 'Dubbele doorverwijzingen',
 'doubleredirectstext' => "Deze lijst bevat pagina's die doorverwijzen naar andere doorverwijspagina's.
@@ -3968,7 +3968,7 @@ Klik op de volgende koppeling of open deze in uw webbrowser om te bevestigen dat
 
 $3
 
-Als dit account *niet* aan u toebehoort, klik dan op de volgende koppeling om de bevestiging van uw e-mailadres te annuleren:
+Als deze gebruiker *niet* aan u toebehoort, klik dan op de volgende koppeling om de bevestiging van uw e-mailadres te annuleren:
 
 $5
 
@@ -4348,7 +4348,7 @@ Anders kunt u ook het eenvoudige formulier hieronder gebruiken. Uw reactie wordt
 'rotate-comment' => 'Afbeelding gedraaid, $1 {{PLURAL:$1|graad|graden}} met de klok mee',
 
 # Limit report
-'limitreport-cputime' => 'CPU-tijdsgebruik',
+'limitreport-cputime' => 'Tijdsgebruik van CPU',
 'limitreport-cputime-value' => '$1 {{PLURAL:$1|seconde|seconden}}',
 'limitreport-walltime' => 'Reëel tijdgebruik',
 'limitreport-walltime-value' => '$1 {{PLURAL:$1|seconde|seconden}}',

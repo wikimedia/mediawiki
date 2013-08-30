@@ -1421,7 +1421,7 @@ Atencion, lor indexacion de contengut {{SITENAME}} benlèu es pas a jorn.',
 'prefs-rendering' => 'Aparéncia',
 'saveprefs' => 'Enregistrar las preferéncias',
 'resetprefs' => 'Restablir las preferéncias',
-'restoreprefs' => 'Restablir totas las valors per defaut',
+'restoreprefs' => 'Restablir totes los paramètres per defaut (dins totas las seccions)',
 'prefs-editing' => 'Fenèstra de modificacion',
 'rows' => 'Rengadas :',
 'columns' => 'Colomnas :',
@@ -1676,6 +1676,8 @@ Tanben podètz causir de permetre a d’autres de vos contactar per vòstra pagi
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|cambiament|cambiaments}}',
+'enhancedrc-since-last-visit' => '$1 {{PLURAL:$1|dempuèi la darrièra visita}}',
+'enhancedrc-history' => 'istoric',
 'recentchanges' => 'Darrièrs cambiaments',
 'recentchanges-legend' => 'Opcions dels darrièrs cambiaments',
 'recentchanges-summary' => 'Vaquí sus aquesta pagina, los darrièrs cambiaments de {{SITENAME}}.',
@@ -1953,6 +1955,8 @@ Quand es filtrada per utilizaire, sols los fichièrs que la version la mai recen
 'listfiles_size' => 'Talha (en octets)',
 'listfiles_description' => 'Descripcion',
 'listfiles_count' => 'Versions',
+'listfiles-latestversion-yes' => 'Òc',
+'listfiles-latestversion-no' => 'Non',
 
 # File description page
 'file-anchor-link' => 'Fichièr',
@@ -3662,6 +3666,7 @@ Aqueste còde de confirmacion expirarà lo $4.",
 # Scary transclusion
 'scarytranscludedisabled' => '[La transclusion interwiki es desactivada]',
 'scarytranscludefailed' => '[La recuperacion de modèl a pas capitat per $1]',
+'scarytranscludefailed-httpstatus' => '[Fracàs de la recuperacion del modèl per  $1 : HTTP  $2 ]',
 'scarytranscludetoolong' => '[L’URL es tròp longa]',
 
 # Delete conflict
@@ -3748,6 +3753,9 @@ Ensajatz la previsualizacion normala.',
 'watchlisttools-view' => 'Lista de seguiment',
 'watchlisttools-edit' => 'Veire e modificar la lista de seguiment',
 'watchlisttools-raw' => 'Modificar la lista (mòde brut)',
+
+# Signatures
+'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|discussion]])',
 
 # Core parser functions
 'unknown_extension_tag' => "Balisa d'extension « $1 » desconeguda",
@@ -3892,6 +3900,9 @@ Ensajatz la previsualizacion normala.',
 # New logging system
 'logentry-delete-delete' => '$1 {{GENDER:$2|a suprimit}} la pagina $3',
 'logentry-delete-restore' => '$1 {{GENDER:$2|a restablit}} la pagina $3',
+'logentry-delete-event-legacy' => '$1 {{GENDER:$2|a modificat}} la visibilitat dels eveniments del jornal sus $3',
+'logentry-delete-revision-legacy' => '$1 {{GENDER:$2|a modificat}} la visibilitat de las revisions sus la pagina $3',
+'logentry-suppress-delete' => '$1 {{GENDER:$2|a suprimit}} la pagina $3',
 'revdelete-content-hid' => 'contengut amagat',
 'revdelete-summary-hid' => 'resumit de modificacion amagat',
 'revdelete-uname-hid' => 'nom d’utilizaire amagat',
@@ -3944,7 +3955,11 @@ Ensajatz la previsualizacion normala.',
 'api-error-file-too-large' => "Lo fichièr qu'avètz somés èra tròp grand.",
 'api-error-filename-tooshort' => 'Lo nom del fichièr es tròp cort.',
 'api-error-filetype-banned' => 'Aqueste tipe de fichièr es interdich',
+'api-error-filetype-missing' => "L'extension del fichièr es mancanta.",
+'api-error-hookaborted' => "La modificacion qu'avètz ensajat de realizar es estada anullada per una extension.",
 'api-error-illegal-filename' => 'Lo nom del fichièr es pas autorizat.',
+'api-error-nomodule' => 'Error intèrna : cap de modul de versament pas definit.',
+'api-error-ok-but-empty' => 'Error intèrna : Lo servidor a pas respondut.',
 'api-error-unclassified' => "Una error desconeguda s'es producha.",
 'api-error-unknown-code' => 'Error desconeguda : « $1 »',
 'api-error-unknown-warning' => 'Avertiment desconegut : $1',
@@ -3968,7 +3983,13 @@ Ensajatz la previsualizacion normala.',
 'limitreport-cputime-value' => '$1 {{PLURAL:$1|segonda|segondas}}',
 'limitreport-walltime' => 'Temps real d’utilizacion',
 'limitreport-walltime-value' => '$1 {{PLURAL:$1|segonda|segondas}}',
+'limitreport-ppvisitednodes' => 'Nombre de nosèls de preprocessor visitats',
+'limitreport-ppgeneratednodes' => 'Nombre de nosèls de preprocessor generats',
+'limitreport-postexpandincludesize' => 'Talha d’inclusion aprèp espandiment',
 'limitreport-postexpandincludesize-value' => '$1/$2 octets',
+'limitreport-templateargumentsize' => 'Talha de l’argument del modèl',
 'limitreport-templateargumentsize-value' => '$1/$2 octets',
+'limitreport-expansiondepth' => 'Mai granda prigondor d’espandiment',
+'limitreport-expensivefunctioncount' => 'Nombre de foncions d’analisi costosas',
 
 );

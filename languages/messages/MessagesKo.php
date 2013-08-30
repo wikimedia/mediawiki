@@ -1534,7 +1534,7 @@ $1",
 'prefs-rendering' => '문서 보이기 설정',
 'saveprefs' => '저장',
 'resetprefs' => '저장하지 않은 설정 되돌리기',
-'restoreprefs' => '모두 기본 설정으로 되돌리기',
+'restoreprefs' => '(모든 부분에서) 모두 기본 설정으로 되돌리기',
 'prefs-editing' => '편집 상자',
 'rows' => '줄 수:',
 'columns' => '열 수:',
@@ -1625,6 +1625,7 @@ HTML 태그를 확인하세요.',
 'prefs-displaywatchlist' => '보이기 설정',
 'prefs-tokenwatchlist' => '토큰',
 'prefs-diffs' => '차이',
+'prefs-help-prefershttps' => '이 사용자 환경 설정은 다음 로그인에 적용됩니다.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => '이메일 주소가 올바른 것으로 보입니다',
@@ -2108,8 +2109,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'upload_source_file' => ' (당신의 컴퓨터에 있는 파일)',
 
 # Special:ListFiles
-'listfiles-summary' => '이 위키에 올라와 있는 모든 파일이 나열되어 있습니다.
-사용자별로 필터링했을 경우에는 사용자가 올린 가장 최신 판만이 보여집니다.',
+'listfiles-summary' => '이 특수 문서는 모든 올려진 파일을 보여줍니다.',
 'listfiles_search_for' => '다음 이름을 가진 미디어 찾기:',
 'imgfile' => '파일',
 'listfiles' => '파일 목록',
@@ -2120,6 +2120,10 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'listfiles_size' => '크기',
 'listfiles_description' => '설명',
 'listfiles_count' => '버전',
+'listfiles-show-all' => '그림의 과거 판 포함',
+'listfiles-latestversion' => '현재 판',
+'listfiles-latestversion-yes' => '예',
+'listfiles-latestversion-no' => '아니오',
 
 # File description page
 'file-anchor-link' => '파일',

@@ -1320,7 +1320,7 @@ Gallout a reot kavout munudoù e [{{fullurl:{{#Special:Log}}/delete|page={{FULLP
 'prefs-rendering' => 'Neuz',
 'saveprefs' => 'Enrollañ ar penndibaboù',
 'resetprefs' => 'Adlakaat ar penndibaboù kent',
-'restoreprefs' => 'Adlakaat an holl arventennoù dre ziouer',
+'restoreprefs' => 'Adlakaat an holl arventennoù dre ziouer (en holl gevrennoù)',
 'prefs-editing' => 'Prenestr skridaozañ',
 'rows' => 'Linennoù :',
 'columns' => 'Bannoù',
@@ -1430,6 +1430,7 @@ Ma skrivit anezhañ e vo implijet evit lakaat war wel ar pezh a vo bet degaset g
 'userrights-notallowed' => "N'oc'h ket aotreet da ouzhpennañ na da lemel gwirioù an implijerien.",
 'userrights-changeable-col' => "Ar strolladoù a c'hallit cheñch",
 'userrights-unchangeable-col' => "Ar strolladoù n'hallit ket cheñch",
+'userrights-removed-self' => "Lamet ho peus ho kwirioù deoc'h-c'hwi. Dre se ne c'hallit ket ken mont d'ar bajenn-mañ.",
 
 # Groups
 'group' => 'Strollad :',
@@ -1575,6 +1576,8 @@ Ma skrivit anezhañ e vo implijet evit lakaat war wel ar pezh a vo bet degaset g
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|kemm|kemm}}',
+'enhancedrc-since-last-visit' => '$1 {{PLURAL:$1|abaoe ho kweladenn diwezhañ}}',
+'enhancedrc-history' => 'istor',
 'recentchanges' => 'Kemmoù diwezhañ',
 'recentchanges-legend' => "Dibarzhioù ar c'hemmoù diwezhañ",
 'recentchanges-summary' => "Dre ar bajenn-mañ e c'hallit heuliañ ar c'hemmoù diwezhañ bet degaset d'ar wiki.",
@@ -1869,8 +1872,7 @@ Diweredekaet eo bet img_auth.php evit ur surentez eus ar gwellañ",
 'upload_source_file' => " (ur restr war hoc'h urzhiataer)",
 
 # Special:ListFiles
-'listfiles-summary' => 'Diskouez a ra ar bajenn dibar-mañ an holl restroù bet enporzhiet.
-Pa vez silet dre implijerien, ne vez diskouezet nemet ar restroù eo bet enporzhiet ar stumm diwezhañ anezho gant an implijerien-se.',
+'listfiles-summary' => 'Diskouez a ra ar bajenn dibar-mañ an holl restroù bet ezporzhiet.',
 'listfiles_search_for' => 'Klask anv ar skeudenn :',
 'imgfile' => 'restr',
 'listfiles' => 'Roll ar skeudennoù',
@@ -1881,6 +1883,8 @@ Pa vez silet dre implijerien, ne vez diskouezet nemet ar restroù eo bet enporzh
 'listfiles_size' => 'Ment (e bitoù)',
 'listfiles_description' => 'Deskrivadur',
 'listfiles_count' => 'Stummoù',
+'listfiles-latestversion-yes' => 'Ya',
+'listfiles-latestversion-no' => 'Ket',
 
 # File description page
 'file-anchor-link' => 'Skeudenn',
@@ -3088,6 +3092,7 @@ Sur a-walc'h abalamour d'ul liamm enni a gas d'ul lec'hienn ziavaez berzet.",
 'markedaspatrollederror' => "N'hall ket bezañ merket evel gwiriet",
 'markedaspatrollederrortext' => "Ret eo deoc'h spisaat ur stumm a-benn e verkañ evel gwiriet.",
 'markedaspatrollederror-noautopatrol' => "N'oc'h ket aotreet da verkañ evel gwiriet ar c'hemmoù degaset ganeoc'h.",
+'markedaspatrollednotify' => "Ar c'hemm-mañ da $1 zo bet merket evel gwiriet.",
 
 # Patrol log
 'patrol-log-page' => 'Log gwiriañ',
@@ -3813,6 +3818,7 @@ Sañset oc'h bezañ resevet [{{SERVER}}{{SCRIPTPATH}}/COPYING un eilskrid eus ar
 'redirect-lookup' => 'Klask :',
 'redirect-value' => 'Talvoud :',
 'redirect-user' => 'ID an implijer',
+'redirect-revision' => 'Adwel ar bajenn',
 'redirect-file' => 'Anv ar restr',
 'redirect-not-exists' => "Talvoud n'eo ket bet kavet",
 
@@ -3921,9 +3927,9 @@ Sañset oc'h bezañ resevet [{{SERVER}}{{SCRIPTPATH}}/COPYING un eilskrid eus ar
 'logentry-delete-event-legacy' => 'Kemmet eo bet gwelusted darvoudoù ar marilh $3 gant $1',
 'logentry-delete-revision-legacy' => 'Kemmet eo bet gwelusted ar reizhadennoù war ar bajenn $3 gant $1',
 'logentry-suppress-delete' => '$1 {{GENDER:$2|en deus dilamet}} ar bajenn $3',
-'logentry-suppress-event' => "Kemmet eo bet dre guzh gwelusted {{PLURAL:$5|darvoud eus ar marilh|$5 darvoud eus ar marilh}} d'an $3 gant $1 : $4",
+'logentry-suppress-event' => "Kemmet eo bet dre guzh gwelusted {{PLURAL:$5|un darvoud eus ar marilh|$5 darvoudoù eus ar marilh}} d'an $3 gant $1 : $4",
 'logentry-suppress-revision' => 'Kemmet eo bet dre guzh gwelusted {{PLURAL:$5|reizhadenn|$5 reizhadenn}} war ar bajenn $3 gant $1 : $4',
-'logentry-suppress-event-legacy' => 'Kemmet eo bet dre guzh gwelusted darvoudoù ar marilh $3 gant $1',
+'logentry-suppress-event-legacy' => "Kemmet eo bet dre guzh gwelusted darvoudoù ar marilh d'an $3 gant $1",
 'logentry-suppress-revision-legacy' => 'Kemmet eo bet dre guzh gwelusted ar reizhadennoù war ar bajenn $3 gant $1',
 'revdelete-content-hid' => 'danvez kuzet',
 'revdelete-summary-hid' => 'kemmañ an diverrañ kuzhet',

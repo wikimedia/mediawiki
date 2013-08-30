@@ -425,7 +425,7 @@ Vaicājums: $2',
 'viewsource' => 'Aplūkot kodu',
 'viewsource-title' => 'Apskatīt $1 izejas kodu',
 'actionthrottled' => 'Darbība netika atļauta',
-'protectedpagetext' => 'Šī lapa ir aizsargāta lai novērstu tās izmainīšanu vai citas darbības.',
+'protectedpagetext' => 'Šī lapa ir aizsargāta, lai novērstu tās izmainīšanu vai citas darbības.',
 'viewsourcetext' => 'Tu vari apskatīties un nokopēt šīs lapas vikitekstu:',
 'protectedinterface' => 'Šī lapa satur programmatūras interfeisā lietotu tekstu un ir bloķēta pret izmaiņām, lai pasargātu no bojājumiem.',
 'editinginterface' => "'''Brīdinājums:''' Tu izmaini lapu, kuras saturu izmanto wiki programmatūras lietotāja saskarnē (''interfeisā''). Šīs lapas izmaiņas ietekmēs lietotāja saskarni citiem lietotājiem. Pēc modificēšanas, šīs izmaiņas būtu lietderīgi pievienot arī [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], kas ir MediaWiki lokalizēšanas projekts.",
@@ -543,8 +543,8 @@ Tādēļ šobrīd no šīs IP adreses vairs nevar izveidot jaunus kontus.',
 'accountcreatedtext' => 'Lietotāja konts priekš $1 tika izveidots.',
 'createaccount-title' => 'Lietotāja konta izveidošana {{grammar:lokatīvs|{{SITENAME}}}}',
 'usernamehasherror' => 'Lietotājvārds nevar saturēt hash simbolus',
-'login-throttled' => 'Tu esi veicis pārāk daudz ieiešanas mēģinājumus.
-Lūdzu uzgaidi pirms mēģini vēlreiz.',
+'login-throttled' => 'Jūs esat veicis pārāk daudz pieslēgšanās mēģinājumus.
+Lūdzu, uzgaidiet $1 pirms mēģiniet vēlreiz.',
 'login-abort-generic' => 'Jūsu pieteikšanās bija neveiksmīga — Darbība pārtraukta',
 'loginlanguagelabel' => 'Valoda: $1',
 
@@ -588,8 +588,12 @@ Pagaidu parole: $2',
 'changeemail-oldemail' => 'Pašreizējā e-pasta adrese:',
 'changeemail-newemail' => 'Jaunā e-pasta adrese:',
 'changeemail-none' => '(nav)',
+'changeemail-password' => 'Jūsu {{SITENAME}} parole:',
 'changeemail-submit' => 'Mainīt e-pastu',
 'changeemail-cancel' => 'Atcelt',
+
+# Special:ResetTokens
+'resettokens-token-label' => '$1 (šībrīža vērtība: $2)',
 
 # Edit page toolbar
 'bold_sample' => 'Teksts treknrakstā',
@@ -1091,7 +1095,7 @@ Pagaidām vari meklēt, izmantojot Google vai Yahoo.
 'badsiglength' => 'Paraksts ir pārāk garš.
 Tam ir jābūt īsākam par  $1 {{PLURAL:$1|simbolu|simboliem}}.',
 'yourgender' => 'Dzimums:',
-'gender-unknown' => 'Nav norādīts',
+'gender-unknown' => 'Es nevēlos norādīt',
 'gender-male' => 'Viņš labo viki lapas',
 'gender-female' => 'Viņa labo viki lapas',
 'prefs-help-gender' => 'Dzimums nav obligāti jānorāda (šo parametru programmatūra izmanto, lai ģenerētu paziņojumus, kas atkarīgi no lietotāja dzimuma).
@@ -1268,6 +1272,7 @@ Ja tu izvēlies to norādīt, tas tiks izmantots, lai identificētu tavu darbu (
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|izmaiņa|izmaiņas}}',
+'enhancedrc-history' => 'vēsture',
 'recentchanges' => 'Pēdējās izmaiņas',
 'recentchanges-legend' => 'Pēdējo izmaiņu iespējas',
 'recentchanges-summary' => 'Šajā lapā ir uzskaitītas pēdējās izdarītās izmaiņas.',
@@ -1502,8 +1507,7 @@ Atļauta ir tikai failu piekļuve.',
 'upload_source_file' => '(fails datorā)',
 
 # Special:ListFiles
-'listfiles-summary' => 'Šajā īpašajā lapā ir redzami visi augšuplādētie faili.
-Filtrējot pēc lietotāja, tiek rādītas tikai pēdējās lietotāja augšupielādētās faila versijas.',
+'listfiles-summary' => 'Šajā īpašajā lapā ir redzami visi augšupielādētie faili.',
 'listfiles_search_for' => 'Meklēt failu pēc vārda:',
 'imgfile' => 'fails',
 'listfiles' => 'Attēlu uzskaitījums',
@@ -1514,6 +1518,10 @@ Filtrējot pēc lietotāja, tiek rādītas tikai pēdējās lietotāja augšupie
 'listfiles_size' => 'Izmērs',
 'listfiles_description' => 'Apraksts',
 'listfiles_count' => 'Versijas',
+'listfiles-show-all' => 'Iekļaut attēlus vecās versijas',
+'listfiles-latestversion' => 'Pašreizējā versija',
+'listfiles-latestversion-yes' => 'Jā',
+'listfiles-latestversion-no' => 'Nē',
 
 # File description page
 'file-anchor-link' => 'Attēls',
@@ -1802,6 +1810,7 @@ Papildu informāciju par katru individuālu piekļuves tiesību veidu, iespējam
 'mailnologin' => 'Nav adreses, uz kuru sūtīt',
 'mailnologintext' => 'Tev jābūt [[Special:UserLogin|iegājušam]], kā arī tev jābūt [[Special:Preferences|norādītai]] derīgai e-pasta adresei, lai sūtītu e-pastu citiem lietotājiem.',
 'emailuser' => 'Sūtīt e-pastu šim lietotājam',
+'emailuser-title-target' => 'Nosūtīt e-pastu {{GENDER:$1|šim lietotājam|šai lietotājai}}',
 'emailuser-title-notarget' => 'Sūtīt e-pastu lietotājam',
 'emailpage' => 'Sūtīt e-pastu lietotājam',
 'emailpagetext' => 'Ar šo veidni ir iespējams nosūtīt e-pastu šim lietotājam.
@@ -1974,9 +1983,9 @@ Lūdzu, spied \"''back''\" un atjaunini iepriekšējo lapu. Tad mēģini vēlrei
 Pašreizējie lapas '''$1''' iestatījumi ir:",
 'protect-cascadeon' => 'Šī lapa pašlaik ir aizsargāta, jo tā ir iekļauta {{PLURAL:$1|sekojošā lapā|sekojošās lapās}} (mainot šīs lapas aizsardzības līmeni aizsardzība netiks noņemta):',
 'protect-default' => 'Atļaut visiem lietotājiem',
-'protect-fallback' => 'Nepieciešama atļauja "$1"',
-'protect-level-autoconfirmed' => 'Bloķēt jauniem un nereģistrētiem lietotājiem',
-'protect-level-sysop' => 'Tikai administratoriem',
+'protect-fallback' => 'Atļaut tikai lietotājiem ar "$1" atļauju',
+'protect-level-autoconfirmed' => 'Atļaut tikai autoapstiprinātiem lietotājiem',
+'protect-level-sysop' => 'Atļaut tikai administratoriem',
 'protect-summary-cascade' => 'kaskāde',
 'protect-expiring' => 'līdz $1 (UTC)',
 'protect-expiring-local' => 'beidzas $1',
@@ -3058,10 +3067,18 @@ Var arī lietot [[Special:EditWatchlist|standarta izmainīšanas lapu]].',
 'version-license' => 'Licence',
 'version-poweredby-credits' => "Šis viki darbojas ar '''[//www.mediawiki.org/ MediaWiki]''' programmatūru, autortiesības © 2001-$1 $2.",
 'version-poweredby-others' => 'citi',
+'version-poweredby-translators' => 'translatewiki.net tulkotāji',
+'version-credits-summary' => 'Mēs vēlētos izteikt atzinību šīm personām par viņu ieguldījumu [[Special:Version|MediaWiki]].',
 'version-software' => 'Instalētā programmatūra',
 'version-software-product' => 'Produkts',
 'version-software-version' => 'Versija',
 'version-entrypoints-header-url' => 'URL',
+
+# Special:Redirect
+'redirect-value' => 'Vērtība:',
+'redirect-user' => 'Lietotāja ID',
+'redirect-file' => 'Faila nosaukums',
+'redirect-not-exists' => 'Vērtība nav atrasta',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Meklēt failu kopijas',
@@ -3165,8 +3182,8 @@ Var arī lietot [[Special:EditWatchlist|standarta izmainīšanas lapu]].',
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|pārvietoja}} lapu $3 uz $4 ar pāradresāciju, neatstājot pāradresāciju',
 'logentry-newusers-newusers' => 'Lietotāja konts $1 tika {{GENDER:$2|izveidots}}',
 'logentry-newusers-create' => 'Lietotāja konts $1 tika {{GENDER:$2|izveidots}}',
-'logentry-newusers-create2' => 'Lietotāja kontu $3 izveidoja $1',
-'logentry-newusers-autocreate' => 'Konts $1 tika izveidots automātiski',
+'logentry-newusers-create2' => '$1 {{GENDER:$2|izveidoja}} lietotāja kontu $3',
+'logentry-newusers-autocreate' => 'Konts $1 tika {GENDER:$2|izveidots}} automātiski',
 'rightsnone' => '(nav)',
 
 # Feedback

@@ -1482,8 +1482,8 @@ L'operazione non può essere annullata.",
 'badsiglength' => 'La firma scelta è troppo lunga, non deve superare $1 {{PLURAL:$1|carattere|caratteri}}.',
 'yourgender' => 'Come preferisci essere descritto?',
 'gender-unknown' => 'Preferisco non specificarlo',
-'gender-male' => 'È registrato a {{SITENAME}}',
-'gender-female' => 'È registrata a {{SITENAME}}',
+'gender-male' => 'È registrato su {{SITENAME}}',
+'gender-female' => 'È registrata su {{SITENAME}}',
 'prefs-help-gender' => "L'impostazione di questa preferenza è opzionale.
 Il software utilizza questo valore per rivolgersi a te e menzionarti agli altri usando il genere grammaticale appropriato.
 Questa informazione sarà pubblica.",

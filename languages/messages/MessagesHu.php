@@ -3241,6 +3241,9 @@ A futtatása során kárt tehet a számítógépedben.",
 'ago' => '$1 ezelőtt',
 'just-now' => 'épp most',
 
+# Human-readable timestamps
+'hours-ago' => '$1 {{PLURAL:$1|órával|órával}} ezelőtt',
+
 # Bad image list
 'bad_image_list' => 'A formátum a következő:
 

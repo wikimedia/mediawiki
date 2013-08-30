@@ -1049,19 +1049,23 @@ Parameters:
 * $2 - Content of
 *# {{msg-mw|Missingarticle-rev}} - Permalink with invalid revision#
 *# {{msg-mw|Missingarticle-diff}} - Diff with invalid revision#',
-'missingarticle-rev' => 'Parameter $2 of {{msg-mw|Missing-article}}: It is shown after the articlename.
+'missingarticle-rev' => 'Used as <code>$2</code> in {{msg-mw|Missing-article}}
+
+Preceded by the page title.
+
+[{{canonicalurl:Translating:Tasks|oldid=371789000}} Click here] to see an example of such an error message.
 
 Parameters:
-* $1 - revision# of the requested id
+* $1 - revision# of the requested ID',
+'missingarticle-diff' => 'Used as <code>$2</code> in {{msg-mw|Missing-article}}
 
-[{{canonicalurl:Translating:Tasks|oldid=371789000}} Click here] to see an example of such an error message.',
-'missingarticle-diff' => 'Parameter $2 of {{msg-mw|Missing-article}}: It is shown after the articlename.
+Preceded by the page title.
+
+[{{canonicalurl:Translating:Tasks|diff=372398&oldid=371789000}} Click here] to see an example of such an error message.
 
 Parameters:
-* $1 - revision# of the old id
-* $2 - revision# of the id build the diff with
-
-[{{canonicalurl:Translating:Tasks|diff=372398&oldid=371789000}} Click here] to see an example of such an error message.',
+* $1 - the old revision ID
+* $2 - the revision ID to build the diff with',
 'readonly_lag' => 'Error message displayed when the database is locked.',
 'internalerror' => '{{Identical|Internal error}}',
 'internalerror_info' => '* $1 - error message',
@@ -7078,7 +7082,8 @@ See also:
 * {{msg-mw|Javascripttest|title}}
 * {{msg-mw|Javascripttest-pagetext-noframework|summary}}
 * {{msg-mw|Javascripttest-pagetext-unknownframework|error message}}',
-'javascripttest-pagetext-frameworks' => '$1 is the id of the framework.',
+'javascripttest-pagetext-frameworks' => 'Parameters:
+* $1 - frameworks list which contain a link text {{msg-mw|Javascripttest-qunit-name}}',
 'javascripttest-pagetext-skins' => 'Used as label in [[Special:JavaScriptTest]].',
 'javascripttest-qunit-intro' => '$1 is the configured url to the documentation.',
 'javascripttest-qunit-heading' => '{{Optional}}',
@@ -7166,7 +7171,7 @@ See also:
 * {{msg-mw|Tooltip-ca-viewsource}}',
 'tooltip-ca-history' => 'Used as tooltip for {{msg-mw|Vector-view-history}}.
 
-See for example {{canonicalurl:Main_Page|useskin=vector}}Main page?useskin=vector]
+See for example [{{canonicalurl:Main_Page|useskin=vector}}]
 
 See also:
 * {{msg-mw|Vector-view-history}}
@@ -8451,7 +8456,9 @@ This can come from IPTC-iim 2:25 keyword field, or XMP's dc:subject field.",
 'exif-provinceorstatedest' => 'Province, state, territory, or other secondary political division shown.',
 'exif-citydest' => 'City shown',
 'exif-sublocationdest' => 'Sub-location of city shown. This could be an address, a street, an area of town, etc.',
-'exif-objectname' => "This is a short name for the image or other media. (As compared to {{msg-mw|exif-imagedescription}} which is a long description of the image). This is sometimes an id number used to identify the photo, or a (short) title of the photo.
+'exif-objectname' => "This is a short name for the image or other media. (As compared to {{msg-mw|exif-imagedescription}} which is a long description of the image).
+
+This is sometimes an ID number used to identify the photo, or a (short) title of the photo.
 
 This property is extracted based on XMP's dc:title property ( http://www.adobe.com/content/dam/Adobe/en/devnet/xmp/pdfs/XMPSpecificationPart1.pdf ), PNG's title keyword ( http://www.w3.org/TR/PNG/#11keywords ), or IPTC-iim 2:05 Object name property ( http://www.iptc.org/std/IIM/4.1/specification/IIMV4.1.pdf ).",
 'exif-specialinstructions' => 'Special instructions for how to use the image/media. This might include embargo notices, or other warnings.
@@ -8493,7 +8500,9 @@ This is taken from IPTC-iim 2:135 and XMP's dc:language.
 'exif-datetimereleased' => 'Earliest date the image (media) can be used.
 
 See 2:30 of http://www.iptc.org/std/IIM/4.1/specification/IIMV4.1.pdf',
-'exif-originaltransmissionref' => 'This is basically a job id. This could help an individual keep track of for what reason the image was created. See Job Id on page 19 of http://www.iptc.org/std/photometadata/specification/IPTC-PhotoMetadata-201007_1.pdf',
+'exif-originaltransmissionref' => 'This is basically a job ID. This could help an individual keep track of for what reason the image was created.
+
+See Job Id on page 19 of http://www.iptc.org/std/photometadata/specification/IPTC-PhotoMetadata-201007_1.pdf',
 'exif-identifier' => 'A formal identifier for the image. Often this is a URL.',
 'exif-lens' => 'Description of lens used. This is taken from aux:Lens XMP property. See http://www.adobe.com/content/dam/Adobe/en/devnet/xmp/pdfs/XMPSpecificationPart2.pdf',
 'exif-serialnumber' => 'Serial number of camera. See aux:SerialNumber in http://www.adobe.com/content/dam/Adobe/en/devnet/xmp/pdfs/XMPSpecificationPart2.pdf',
@@ -8510,7 +8519,7 @@ This property can come from xmp:Label in XMP ( http://www.adobe.com/content/dam/
 'exif-copyrightowner' => 'Copyright owner. Can have more than one person or entity.',
 'exif-usageterms' => "Terms under which you're allowed to use the image/media.",
 'exif-webstatement' => "URL detailing the copyright status of the image, and how you're allowed to use the image. Often this is a link to a creative commons license, however the creative commons people recommend using a page that generally contains specific information about the image, and recommend using {{msg-mw|exif-licenseurl}} for linking to the license. See http://wiki.creativecommons.org/XMP",
-'exif-originaldocumentid' => 'A unique id of the original document (image) that this document (image) is based on.',
+'exif-originaldocumentid' => 'A unique ID of the original document (image) that this document (image) is based on.',
 'exif-licenseurl' => 'URL for copyright license. This is almost always a creative commons license since this information comes from the creative commons namespace of XMP (but could be a link to any type of license). See also {{msg-mw|exif-webstatement}}',
 'exif-morepermissionsurl' => 'A url where you can "buy" (or otherwise negotiate) to get more rights for the image.',
 'exif-attributionurl' => "A url that you're supposed to use when re-using the image.",
@@ -9958,17 +9967,35 @@ Parameters:
 'api-error-verification-error' => 'The word "extension" refers to the part behind the last dot in a file name, that by convention gives a hint about the kind of data format which a files contents are in.',
 
 # Durations
-'duration-seconds' => '{{Related|Duration}}
+'duration-seconds' => 'Used as duration. Parameters:
+* $1 - number of seconds
+{{Related|Duration}}
 {{Identical|Second}}',
-'duration-minutes' => '{{Related|Duration}}
+'duration-minutes' => 'Used as duration. Parameters:
+* $1 - number of minutes
+{{Related|Duration}}
 {{Identical|Minute}}',
-'duration-hours' => '{{Related|Duration}}',
-'duration-days' => '{{Related|Duration}}',
-'duration-weeks' => '{{Related|Duration}}',
-'duration-years' => '{{Related|Duration}}',
-'duration-decades' => '{{Related|Duration}}',
-'duration-centuries' => '{{Related|Duration}}',
-'duration-millennia' => '{{Related|Duration}}',
+'duration-hours' => 'Used as duration. Parameters:
+* $1 - number of hours
+{{Related|Duration}}',
+'duration-days' => 'Used as duration. Parameters:
+* $1 - number of days
+{{Related|Duration}}',
+'duration-weeks' => 'Used as duration. Parameters:
+* $1 - number of weeks
+{{Related|Duration}}',
+'duration-years' => 'Used as duration. Parameters:
+* $1 - number of years
+{{Related|Duration}}',
+'duration-decades' => 'Used as duration. Parameters:
+* $1 - number of decades
+{{Related|Duration}}',
+'duration-centuries' => 'Used as duration. Parameters:
+* $1 - number of centuries
+{{Related|Duration}}',
+'duration-millennia' => 'Used as duration. Parameters:
+* $1 - number of millennia
+{{Related|Duration}}',
 
 # Image rotation
 'rotate-comment' => 'Edit summary for the act of rotating an image. Parameters:

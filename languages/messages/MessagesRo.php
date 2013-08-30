@@ -343,6 +343,7 @@ pe titlul secțiunii (JavaScript)',
 'tog-noconvertlink' => 'Dezactivează conversia titlurilor',
 'tog-norollbackdiff' => 'Nu arăta diferența după efectuarea unei reveniri',
 'tog-useeditwarning' => 'Avertizează-mă când părăsesc o pagină fără a salva modificările',
+'tog-prefershttps' => 'Utilizează întotdeauna o conexiune securizată când sunt autentificat(ă)',
 
 'underline-always' => 'Întotdeauna',
 'underline-never' => 'Niciodată',
@@ -933,7 +934,7 @@ Ar trebui să faceți acest lucru numai dacă le-ați partajat accidental cu alt
 'resettokens-legend' => 'Resetare jetoane',
 'resettokens-tokens' => 'Jetoane:',
 'resettokens-token-label' => '$1 (valoare actuală: $2)',
-'resettokens-watchlist-token' => 'Jeton pentru fluxul web al listei de pagini urmărite',
+'resettokens-watchlist-token' => 'Jeton pentru fluxul web (Atom/RSS) al [[Special:Watchlist|modificărilor aduse paginilor pe care le urmăriți]]',
 'resettokens-done' => 'Jetoane resetate.',
 'resettokens-resetbutton' => 'Resetează jetoanele selectate',
 
@@ -1013,9 +1014,7 @@ Aceasta fie a fost mutată, fie a fost ștearsă în timp ce vizualizați pagina
 'loginreqlink' => 'autentificați',
 'loginreqpagetext' => 'Trebuie să vă $1 pentru a vizualiza alte pagini.',
 'accmailtitle' => 'Parola a fost trimisă.',
-'accmailtext' => "Parola generată automat pentru [[User talk:$1|$1]] a fost trimisă la $2.
-
-Parola pentru acest nou cont poate fi schimbată după autentificare din ''[[Special:ChangePassword|schimbare parolă]]''",
+'accmailtext' => "O parolă generată aleator pentru [[User talk:$1|$1]] a fost trimisă la $2. Parola poate fi schimbată după autentificare din pagina ''[[Special:ChangePassword|schimbare parolă]]''.",
 'newarticle' => '(Nou)',
 'newarticletext' => 'Ați încercat să ajungeți la o pagină care nu există. Pentru a o crea, începeți să scrieți în caseta de mai jos (vedeți [[{{MediaWiki:Helppage}}|pagina de ajutor]] pentru mai multe informații). Dacă ați ajuns aici din greșeală, întoarceți-vă folosind controalele navigatorului dumneavoastră.',
 'anontalkpagetext' => "---- ''Aceasta este pagina de discuții pentru un utilizator care nu și-a creat un cont încă, sau care nu s-a autentificat.
@@ -1461,7 +1460,7 @@ Detalii se pot găsi în [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE
 'prefs-rendering' => 'Aspect',
 'saveprefs' => 'Salvează preferințele',
 'resetprefs' => 'Resetează preferințele',
-'restoreprefs' => 'Restaurează toate valorile implicite',
+'restoreprefs' => 'Restaurează toate valorile implicite (în toate secțiunile)',
 'prefs-editing' => 'Modificare',
 'rows' => 'Rânduri:',
 'columns' => 'Coloane:',
@@ -1520,11 +1519,12 @@ Acțiunea nu este reversibilă.',
 'badsig' => 'Semnătură brută incorectă; verificați tagurile HTML.',
 'badsiglength' => 'Semnătura este prea lungă.
 Lungimea trebuie să fie mai mică de $1 {{PLURAL:$1|caracter|caractere}}.',
-'yourgender' => 'Gen:',
-'gender-unknown' => 'Nespecificat',
-'gender-male' => 'Bărbat',
-'gender-female' => 'Femeie',
-'prefs-help-gender' => 'Opțional: sexul utilizatorului este folosit pentru adresarea corectă de către software.
+'yourgender' => 'Cum preferați să se facă referire la dumneavoastră?',
+'gender-unknown' => 'Prefer să nu menționez',
+'gender-male' => 'El modifică pagini wiki',
+'gender-female' => 'Ea modifică pagini wiki',
+'prefs-help-gender' => 'Stabilirea acestei preferințe este opțională.
+Acest software folosește datele pentru a vi se adresa și pentru a face referire la dumneavoastră utilizând genul gramatical corespunzător.
 Această informație va fi publică.',
 'email' => 'E-mail',
 'prefs-help-realname' => 'Numele real este opțional.
@@ -1549,6 +1549,7 @@ Dacă decideți furnizarea sa, acesta va fi folosit pentru a vă atribui munca.'
 'prefs-displaywatchlist' => 'Opțiuni de afișare',
 'prefs-tokenwatchlist' => 'Jeton',
 'prefs-diffs' => 'Diferențe',
+'prefs-help-prefershttps' => 'Această preferință va avea efect la următoarea autentificare.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'Adresa de e-mail pare validă',
@@ -1723,6 +1724,8 @@ Dacă decideți furnizarea sa, acesta va fi folosit pentru a vă atribui munca.'
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|modificare|modificări|de modificări}}',
+'enhancedrc-since-last-visit' => '$1 {{PLURAL:$1|de la ultima vizită}}',
+'enhancedrc-history' => 'istoric',
 'recentchanges' => 'Schimbări recente',
 'recentchanges-legend' => 'Opțiuni schimbări recente',
 'recentchanges-summary' => 'Urmăriți cele mai recente modificări din wiki pe această pagină.',
@@ -2009,8 +2012,7 @@ Poate doriți să încercați la o oră mai puțin ocupată.',
 'upload_source_file' => ' (un fișier de pe computerul dv.)',
 
 # Special:ListFiles
-'listfiles-summary' => 'Această pagină specială arată toate fișierele încărcate.
-Când acestei pagini îi este aplicat filtrul de utilizator, sunt afișate doar fișierele ale căror versiune cea mai recentă a fost încărcată de către acel utilizator.',
+'listfiles-summary' => 'Această pagină specială listează toate fișierele încărcate.',
 'listfiles_search_for' => 'Căutare fișiere după nume:',
 'imgfile' => 'fișier',
 'listfiles' => 'Listă fișiere',
@@ -2021,6 +2023,10 @@ Când acestei pagini îi este aplicat filtrul de utilizator, sunt afișate doar 
 'listfiles_size' => 'Mărime (octeți)',
 'listfiles_description' => 'Descriere',
 'listfiles_count' => 'Versiuni',
+'listfiles-show-all' => 'Include versiunile vechi ale imaginilor',
+'listfiles-latestversion' => 'Versiunea curentă',
+'listfiles-latestversion-yes' => 'Da',
+'listfiles-latestversion-no' => 'Nu',
 
 # File description page
 'file-anchor-link' => 'Fișier',
@@ -2171,8 +2177,8 @@ O pagină este considerată o pagină de dezambiguizare dacă folosește formate
 'pageswithprop-text' => 'Această pagină listează paginile care utilizează o anumită proprietate de pagină.',
 'pageswithprop-prop' => 'Numele proprietății:',
 'pageswithprop-submit' => 'Du-te',
-'pageswithprop-prophidden-long' => 'valoarea proprietății de text lung ascunsă ($1 kiloocteți)',
-'pageswithprop-prophidden-binary' => 'valoarea proprietății binare ascunsă ($1 kiloocteți)',
+'pageswithprop-prophidden-long' => 'valoarea proprietății de text lung ascunsă ($1)',
+'pageswithprop-prophidden-binary' => 'valoarea proprietății binare ascunsă ($1)',
 
 'doubleredirects' => 'Redirecționări duble',
 'doubleredirectstext' => 'Această listă conține pagini care redirecționează la alte pagini de redirecționare.

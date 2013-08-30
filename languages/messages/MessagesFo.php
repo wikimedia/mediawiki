@@ -1257,7 +1257,7 @@ Legg til merkis, at teirra innihaldsyvirlit av {{SITENAME}} kann vera gamalt og 
 'prefs-rendering' => 'Útsjónd',
 'saveprefs' => 'Goym innstillingar',
 'resetprefs' => 'Reinsa ikki goymdar broytingar',
-'restoreprefs' => 'Endurset alt til standard innstillingar',
+'restoreprefs' => 'Nullstilla alt til standard innstillingar (í øllum teigum)',
 'prefs-editing' => 'Broyting av greinum',
 'rows' => 'Røð:',
 'columns' => 'Teigar:',

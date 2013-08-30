@@ -754,6 +754,7 @@ Wexta ke verhafızayê cıgerayoxê şıma pak beno no benate de taye peli de he
 'yourname' => 'Nameyê karberi:',
 'userlogin-yourname' => 'Nameyê karberi',
 'userlogin-yourname-ph' => 'Nameyê xoye karberi cıkewe',
+'createacct-another-username-ph' => 'Namey karberi de fi',
 'yourpassword' => 'Parola',
 'userlogin-yourpassword' => 'Parola',
 'userlogin-yourpassword-ph' => 'Parolaya xo cıkewe',
@@ -790,6 +791,7 @@ Wexta ke verhafızayê cıgerayoxê şıma pak beno no benate de taye peli de he
 'createacct-emailrequired' => 'Adresa e-postey',
 'createacct-emailoptional' => 'Adresa e-postey (mecburi niya)',
 'createacct-email-ph' => 'Adresa e-posteyê xo cıkewe',
+'createacct-another-email-ph' => 'Adresa e-posta de fi',
 'createaccountmail' => 'Yew parolaya rastameyiya ravêrdiye bıgurene û parola ena adresa e-postey rê bırışe',
 'createacct-realname' => 'Nameyo raştıkên (mecburi niyo)',
 'createaccountreason' => 'Sebeb:',
@@ -798,6 +800,7 @@ Wexta ke verhafızayê cıgerayoxê şıma pak beno no benate de taye peli de he
 'createacct-captcha' => 'Qontrolê asayişi',
 'createacct-imgcaptcha-ph' => 'Nuşteyo ke cor aseno ey cı ke',
 'createacct-submit' => 'Hesabê xo vıraze',
+'createacct-another-submit' => 'Zewbi hesab vıraz',
 'createacct-benefit-heading' => '{{SITENAME}} meş de merduman şi',
 'createacct-benefit-body1' => '{{PLURAL:$1|vurnayış|vurnayışi}}',
 'createacct-benefit-body2' => '{{PLURAL:$1|pele|peli}}',
@@ -862,7 +865,7 @@ Yew formato meqbul de adresê e-posta bınuse ya zi veng bıverde.',
 'createaccount-text' => 'Kesê, be e-posteyê şıma ra {{SITENAME}} ($4) de, ebe nameyê "$2" u parola "$3" ra yew hesab vıraşto.
 Şıma gani cı kewê u parola xo nıka bıvurnê.',
 'usernamehasherror' => 'Namey karberi de karakteri gani têmiyan ra mebê',
-'login-throttled' => 'Demekê cıwa ver de şıma zah teşebbusê hesab akerdış kerd.
+'login-throttled' => 'Demekê $1 cıwa ver de şıma zah teşebbusê hesab akerdış kerd.
 Bıne vındere u newe ra dest pê bıkere.',
 'login-abort-generic' => 'Dekewtışê şıma xırabo-terkneyayo',
 'loginlanguagelabel' => 'Zıwan: $1',
@@ -881,7 +884,7 @@ Bıne vındere u newe ra dest pê bıkere.',
 'newpassword' => 'Parola newiye:',
 'retypenew' => 'Parola newiye tekrar ke:',
 'resetpass_submit' => 'Parola eyar kere u newe ra dekewe',
-'changepassword-success' => 'Parola şıma be serkewtış vurriye! Nıka hesabê şıma beno a...',
+'changepassword-success' => 'Parola şıma be serkewtış vuriye!',
 'resetpass_forbidden' => 'parolayi nêvuryayi',
 'resetpass-no-info' => 'şıma gani hesab akere u hona bıeşke bırese cı',
 'resetpass-submit-loggedin' => 'Parola bıvurne',
@@ -931,6 +934,14 @@ Parola vêrdiye: $2',
 'changeemail-password' => 'Parolaya şımaya {{SITENAME}}i:',
 'changeemail-submit' => 'E-postay xo bıvurne',
 'changeemail-cancel' => 'Bıtexelne',
+
+# Special:ResetTokens
+'resettokens' => 'Reset fi ye',
+'resettokens-no-tokens' => 'Ena reset nefina',
+'resettokens-legend' => 'Reset fi ye',
+'resettokens-token-label' => '$1 (weziyeta newki: $2)',
+'resettokens-done' => 'Reset fi',
+'resettokens-resetbutton' => 'Reset fiyayış weçin',
 
 # Edit page toolbar
 'bold_sample' => 'Metno qalın',
@@ -1345,6 +1356,7 @@ no vurnayişo ke şıma keni kontrol bıkere yew pelo kehen nêbo.',
 'compareselectedversions' => 'Rewizyonanê weçineyan pêver ke',
 'showhideselectedversions' => 'Revizyonanê weçinıtan bımocne/bınımne',
 'editundo' => 'peyser bia',
+'diff-empty' => '(Babetna niyo)',
 'diff-multi' => '({{PLURAL:$1|Yew revizyono miyanên|$1 revizyonê miyanêni}} terefê {{PLURAL:$2|yew karberi|$2 karberan}} nêmocno)',
 'diff-multi-manyusers' => '({{PLURAL:$1|jew timar kerdışo qıckeko|$1 timar kerdışo qıckeko}} timar kerdo, $2 {{PLURAL:$2|Karber|karberi}} memocne)',
 'difference-missing-revision' => 'Ferqê {{PLURAL:$2|Yew rewizyonê|$2 rewizyonê}} {{PLURAL:$2|dı|dı}} ($1) sero çıniyo.
@@ -1503,11 +1515,12 @@ Na game tepeya nêerziyena.',
 Etiketê HTMLî kontrol bike.',
 'badsiglength' => 'İmzayê şıma zaf dergo.
 $1 gani bınê no {{PLURAL:$1|karakter|karakter}} de bıbo.',
-'yourgender' => 'Cınsiyet:',
-'gender-unknown' => 'Cınsiyet nêvato',
-'gender-male' => 'Camêrd',
-'gender-female' => 'Cıniye',
-'prefs-help-gender' => 'keyfiyo: sofware qey adersê cinsiyet şuxulneno, no malumat umumiyo.',
+'yourgender' => 'Çıçiy cı esto?',
+'gender-unknown' => 'Ez detay nivana',
+'gender-male' => 'Ey pera viki vurni',
+'gender-female' => 'Ay pera wiki vurni',
+'prefs-help-gender' => 'Eyar kerdış keyfiyo.
+ sofware qey adersê cinsiyet şuxulneno, no malumat umumiyo.Şaryayış malumat wazem.',
 'email' => 'E-posta',
 'prefs-help-realname' => 'Nameyo raşt waştena şıma rê mendo.
 Eka tu wazene ke nameyo raşt xo bide, ma nameyo raşt ti iştirakanê ti de mocnenê.',
@@ -1698,6 +1711,8 @@ Kaberê bini ke şıma de kewti irtıbat, adresa e-postey şıma eşkera nêbena
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|fın vurna|fıni vurna}}',
+'enhancedrc-since-last-visit' => '$1 {{PLURAL:$1|ra yok wazino}}',
+'enhancedrc-history' => 'verenayış',
 'recentchanges' => 'Vurnayışê peyêni',
 'recentchanges-legend' => 'Tercihê vurnayışanê peyênan',
 'recentchanges-summary' => 'Ena pele de wiki sero vurnayışanê peyênan teqib ke.',
@@ -1991,7 +2006,7 @@ keyepel nıka zaf meşğulo yew dema herayi de newe ra tesel bıkerê.',
 'upload_source_file' => '(komputerê ti de yew dosya)',
 
 # Special:ListFiles
-'listfiles-summary' => 'Na pelaya xısusiya; heme resimê bar biyayeyan mocnena.',
+'listfiles-summary' => 'Na pera bağsiya; heme resima bar biyayeyan mocnena.',
 'listfiles_search_for' => 'Qe nameyê medyayî bigêre:',
 'imgfile' => 'dosya',
 'listfiles' => 'Lista Dosya',
@@ -2002,6 +2017,9 @@ keyepel nıka zaf meşğulo yew dema herayi de newe ra tesel bıkerê.',
 'listfiles_size' => 'Gırdiye',
 'listfiles_description' => 'Sılasnayış',
 'listfiles_count' => 'Versiyoni',
+'listfiles-latestversion' => 'Versiyono verin',
+'listfiles-latestversion-yes' => 'E',
+'listfiles-latestversion-no' => 'Nê',
 
 # File description page
 'file-anchor-link' => 'Dosya',
@@ -2097,6 +2115,7 @@ listeya ke ha ver a têna na {{PLURAL:$1|dosyaya ewwili|dosyaya $1 ewwili}} mocn
 'randompage-nopages' => 'Ena {{PLURAL:$2|cayêname|cayênameyî}} de enê pelan çin o: $1.',
 
 # Random page in category
+'randomincategory' => 'Ğoseri pera kategoriya',
 'randomincategory-invalidcategory' => '"$1" namedı kategori çıniya',
 'randomincategory-selectcategory-submit' => 'Şo',
 
@@ -3586,7 +3605,7 @@ $8',
 'exif-compression-34712' => 'JPEG2000',
 
 'exif-copyrighted-true' => 'Heqê telifiye',
-'exif-copyrighted-false' => 'Malê Şari',
+'exif-copyrighted-false' => 'Telifiya waziyeta eyara',
 
 'exif-photometricinterpretation-2' => 'RGB',
 'exif-photometricinterpretation-6' => 'YCbCr',
@@ -4323,5 +4342,10 @@ Ena sita dı newke xırabiya teknik esta.',
 'duration-decades' => '$1 {{PLURAL:$1|dades|dadesi}}',
 'duration-centuries' => '$1 {{PLURAL:$1|seserre|seserri}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenyum|milenyumi}}',
+
+# Limit report
+'limitreport-postexpandincludesize-value' => '$1/$2 bayt',
+'limitreport-templateargumentsize' => 'Ebata hacetandi şablonan',
+'limitreport-templateargumentsize-value' => '$1/$2 bayt',
 
 );

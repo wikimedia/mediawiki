@@ -579,7 +579,7 @@ Se sòn a l'é rivà për eror, a peul lassé perde e fé gnente sensa problema.
 Për piasì, ch'a speta $1 prima ëd prové torna.",
 'login-abort-generic' => "Sò tentitiv d'intré ant ël sistema a l'é falì - Abortì",
 'loginlanguagelabel' => 'Lenga: $1',
-'suspicious-userlogout' => "Soa arcesta ëd seurte dal sistema a l'é stàita arfudà përchè a smija com s'a fussa stàita mandà da 'n navigador scolegà o da l'archiviassion an local d'un proxy.",
+'suspicious-userlogout' => "Soa arcesta ëd seurte dal sistema a l'é stàita arfudà përchè a smija com s'a fussa stàita mandà da 'n navigador rot o da l'archiviassion an local d'un prëstanòm.",
 
 # Email sending
 'php-mail-error-unknown' => 'Eror pa conossù ant la funsion PHP mail()',

@@ -1255,7 +1255,7 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'prefs-rendering' => 'Ymddangosiad',
 'saveprefs' => 'Cadwer y dewisiadau',
 'resetprefs' => "Clirio'r darpar newidiadau",
-'restoreprefs' => 'Adfer yr holl osodiadau diofyn',
+'restoreprefs' => 'Adfer yr holl osodiadau diofyn (ymhob adran)',
 'prefs-editing' => 'Golygu',
 'rows' => 'Rhesi:',
 'columns' => 'Colofnau:',
@@ -1343,6 +1343,7 @@ Mae'r wybodaeth hon ar gael i'r cyhoedd.",
 'prefs-displaywatchlist' => 'Dewisiadau arddangos',
 'prefs-tokenwatchlist' => 'Tocyn',
 'prefs-diffs' => "Cymharu golygiadau ('gwahan')",
+'prefs-help-prefershttps' => "Bydd y dewis yma'n cael ei roi ar waith y tro nesaf i chi fewngofnodi.",
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'Y cyfeiriad e-bost yn ymddangos yn un dilys',
@@ -1804,8 +1805,7 @@ Efallai yr hoffech rhoi cynnig arni ar adeg llai prysur.',
 'upload_source_file' => ' (ffeil ar eich cyfrifiadur)',
 
 # Special:ListFiles
-'listfiles-summary' => "Rhestr yr holl ffeiliau sydd wedi eu huwchlwytho sydd ar y dudalen hon.
-Pan hidlir y rhestr yn ôl defnyddiwr, yr unig rhai a ddangosir o blith y ffeiliau a uwchlwythwyd gan y defnyddiwr, yw'r rhai sydd yn parhau i fod yn ddiwygiad diweddaraf o'r ffeil i gael ei huwchlwytho.",
+'listfiles-summary' => 'Rhestr yr holl ffeiliau sydd wedi eu huwchlwytho sydd ar y dudalen hon.',
 'listfiles_search_for' => "Chwilio am enw'r ddelwedd:",
 'imgfile' => 'ffeil',
 'listfiles' => "Rhestr o'r holl ffeiliau",
@@ -1816,6 +1816,10 @@ Pan hidlir y rhestr yn ôl defnyddiwr, yr unig rhai a ddangosir o blith y ffeili
 'listfiles_size' => 'Maint',
 'listfiles_description' => 'Disgrifiad',
 'listfiles_count' => 'Fersiynau',
+'listfiles-show-all' => "Cynnwys hen fersiynau o'r delweddau",
+'listfiles-latestversion' => 'Y fersiwn diweddaraf',
+'listfiles-latestversion-yes' => 'Ie',
+'listfiles-latestversion-no' => 'Na',
 
 # File description page
 'file-anchor-link' => 'Ffeil',

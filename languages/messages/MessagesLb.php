@@ -1339,7 +1339,7 @@ Detailer fannt Dir am [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}
 'prefs-rendering' => 'Ausgesinn',
 'saveprefs' => 'Späicheren',
 'resetprefs' => 'Net gespäichert Ännerungen zrécksetzen',
-'restoreprefs' => 'All Standardastellungen zrécksetzen',
+'restoreprefs' => 'All Standardastellungen zrécksetzen (an allen Abschnitter)',
 'prefs-editing' => 'Änneren',
 'rows' => 'Zeilen',
 'columns' => 'Kolonnen',
@@ -1425,6 +1425,7 @@ Dës Informatioun ass ëffentlech.",
 'prefs-displaysearchoptions' => 'Optioune vum Affichage',
 'prefs-displaywatchlist' => 'Optioune vun deem wat gewise gëtt',
 'prefs-diffs' => 'Ënnerscheeder',
+'prefs-help-prefershttps' => 'Dës Astellung gëtt déi nächste Kéier wierksam wou Dir Iech ageloggt.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => "D'E-Mail-Adress schéngt valabel ze sinn",
@@ -1881,9 +1882,7 @@ Kuckt w.e.g. no op kee Feeler an der URL ass an op de Site och online ass.',
 'upload_source_file' => ' (e Fichier op Ärem Computer)',
 
 # Special:ListFiles
-'listfiles-summary' => 'Op dëser Spezialsäit stinn all déi eropgeluede Fichieren.
-
-Wa se pro Benotzer gefiltert sinn, ginn nëmmen déi Fichiere gewise wou dee Benotzer déi lescht Versioun vum Fichier eropgelueden huet.',
+'listfiles-summary' => 'Op dëser Spezialsäit stinn all déi eropgeluede Fichieren.',
 'listfiles_search_for' => 'Sicht nom Fichier:',
 'imgfile' => 'Fichier',
 'listfiles' => 'Lëscht vun de Fichieren',
@@ -1894,6 +1893,10 @@ Wa se pro Benotzer gefiltert sinn, ginn nëmmen déi Fichiere gewise wou dee Ben
 'listfiles_size' => 'Gréisst',
 'listfiles_description' => 'Beschreiwung',
 'listfiles_count' => 'Versiounen',
+'listfiles-show-all' => 'Al Versioune vu Biller aschléissen',
+'listfiles-latestversion' => 'Aktuell Versioun',
+'listfiles-latestversion-yes' => 'Jo',
+'listfiles-latestversion-no' => 'Neen',
 
 # File description page
 'file-anchor-link' => 'Fichier',

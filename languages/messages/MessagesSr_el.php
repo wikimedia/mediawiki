@@ -848,8 +848,8 @@ Prijavite se i promenite svoju lozinku.
 
 Ako je ovo greška, zanemarite ovu poruku.',
 'usernamehasherror' => 'Korisničko ime ne može sadržati tarabe',
-'login-throttled' => 'Previše puta ste pokušali da se prijavite.
-Sačekajte nekoliko minuta i pokušajte ponovo.',
+'login-throttled' => 'Previše puta ste pokušali da se prijavite. 
+Molimo vas da sačekate $1 pre nego što pokušate ponovo.',
 'login-abort-generic' => 'Neuspešna prijava – prekinuto',
 'loginlanguagelabel' => 'Jezik: $1',
 'suspicious-userlogout' => 'Vaš zahtev za odjavu je odbijen jer je poslat od strane neispravnog pregledača ili posrednika.',
@@ -906,7 +906,7 @@ Prijavite se i izaberite novu lozinku. Ako je neko drugi zahtevao ovu radnju ili
 Privremena lozinka: $2',
 'passwordreset-emailsent' => 'Podsetnik o lozinci je poslat na vašu adresu.',
 'passwordreset-emailsent-capture' => 'Poslat je podsetnik preko e-pošte (prikazan dole).',
-'passwordreset-emailerror-capture' => 'Napravljen je podsetnik za slanje preko e-pošte (prikazan dole), ali ga ne mogu poslati korisniku: $1',
+'passwordreset-emailerror-capture' => 'E-poruka za resetovanje lozinke, prikazana ispod je poslata, ali slanje {{GENDER:$2|korisniku|korisnici}} nije uspelo: $1',
 
 # Special:ChangeEmail
 'changeemail' => 'Promena e-adrese',
@@ -3198,8 +3198,8 @@ Ovo je verovatno izazvano vezom do spoljašnjeg sajta koji se nalazi na crnoj li
 'pageinfo-article-id' => 'ID stranice',
 'pageinfo-language' => 'Jezik sadržaja stranice',
 'pageinfo-robot-policy' => 'Status pretraživača',
-'pageinfo-robot-index' => 'Može da se popiše',
-'pageinfo-robot-noindex' => 'Ne može da se popiše',
+'pageinfo-robot-index' => 'Dozvoljeno',
+'pageinfo-robot-noindex' => 'Nije dozvoljeno',
 'pageinfo-views' => 'Broj pregleda',
 'pageinfo-watchers' => 'Broj nadgledača stranica',
 'pageinfo-few-watchers' => 'Manje od $1 {{PLURAL:$1|pratioca|pratilaca}}',

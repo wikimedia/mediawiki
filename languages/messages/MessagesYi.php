@@ -3718,6 +3718,7 @@ $5
 'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|רעדן]])',
 
 # Core parser functions
+'unknown_extension_tag' => 'אומבאַוואוסטער פֿאַרברייטערונג טאַג "$1"',
 'duplicate-defaultsort' => '\'\'\'ווארענונג:\'\'\' גרונט סארטשליסל "$2" פֿאָרט איבערן פֿריערדיגן גרונט סארטשליסל "$1".',
 
 # Special:Version
@@ -3726,6 +3727,7 @@ $5
 'version-specialpages' => 'ספעציעלע בלעטער',
 'version-parserhooks' => 'פארזער פארברייטונגען',
 'version-variables' => 'וואַריאַבלען',
+'version-antispam' => 'ספאם פארמיידן',
 'version-skins' => 'באניצער־אייבערפלאכן',
 'version-other' => 'אנדער',
 'version-hooks' => 'Hook סטרוקטורן',
@@ -3743,6 +3745,7 @@ $5
 'version-entrypoints-header-url' => 'URL',
 
 # Special:Redirect
+'redirect-legend' => 'ווײַטערײַטערפירונג צו א טעקע אדער בלאט',
 'redirect-submit' => 'גייט',
 'redirect-lookup' => 'זוכן:',
 'redirect-value' => 'ווערט:',
