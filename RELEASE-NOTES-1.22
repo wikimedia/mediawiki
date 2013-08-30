@@ -218,8 +218,8 @@ production.
   and Special:AllMyUploads respectively.
 * IPv6 addresses in X-Forwarded-For headers are now normalised before checking
   against allowed proxy lists.
-* Add deferrable update support for callback/closure
-* Add TitleMove hook before page renames
+* Add deferrable update support for callback/closure.
+* Add TitleMove hook before page renames.
 * Revision deletion backend code is moved out of SpecialRevisiondelete
 * Add a variable (wgRedactedFunctionArguments) to redact the values sent as certain function
   parameters from exception stack traces.
@@ -237,6 +237,8 @@ production.
    for more details regarding custom functions.
 ** $wgResourceLoaderLESSImportPaths is an array of file system paths. Files
    referenced in LESS '@import' statements are looked up here first.
+* ResourceLoader supports hashes as module cache invalidation trigger (instead
+  of or in addition to timestamps).
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one

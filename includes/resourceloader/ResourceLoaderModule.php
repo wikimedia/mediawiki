@@ -382,12 +382,57 @@ abstract class ResourceLoaderModule {
 	 * If you want this to happen, you'll need to call getMsgBlobMtime()
 	 * yourself and take its result into consideration.
 	 *
-	 * @param ResourceLoaderContext $context
-	 * @return int: UNIX timestamp
+	 * NOTE: The mtime of the module's hash is NOT automatically included.
+	 * If your module provides a getModifiedHash() method, you'll need to call getHashMtime()
+	 * yourself and take its result into consideration.
+	 *
+	 * @param ResourceLoaderContext $context Context object
+	 * @return integer UNIX timestamp
 	 */
 	public function getModifiedTime( ResourceLoaderContext $context ) {
 		// 0 would mean now
 		return 1;
+	}
+
+	/**
+	 * Helper method for calculating when the module's hash (if it has one) changed.
+	 *
+	 * @param ResourceLoaderContext $context
+	 * @return integer: UNIX timestamp or 0 if there is no hash provided
+	 */
+	public function getHashMtime( ResourceLoaderContext $context ) {
+		$hash = $this->getModifiedHash( $context );
+		if ( !is_string( $hash ) ) {
+			return 0;
+		}
+
+		$cache = wfGetCache( CACHE_ANYTHING );
+		$key = wfMemcKey( 'resourceloader', 'modulemodifiedhash', $this->getName() );
+
+		$data = $cache->get( $key );
+		if ( is_array( $data ) && $data['hash'] === $hash ) {
+			// Hash is still the same, re-use the timestamp of when we first saw this hash.
+			return $data['timestamp'];
+		}
+
+		$timestamp = wfTimestamp();
+		$cache->set( $key, array(
+			'hash' => $hash,
+			'timestamp' => $timestamp,
+		) );
+
+		return $timestamp;
+	}
+
+	/**
+	 * Get the last modification timestamp of the message blob for this
+	 * module in a given language.
+	 *
+	 * @param ResourceLoaderContext $context
+	 * @return string|null: Hash
+	 */
+	public function getModifiedHash( ResourceLoaderContext $context ) {
+		return null;
 	}
 
 	/**
