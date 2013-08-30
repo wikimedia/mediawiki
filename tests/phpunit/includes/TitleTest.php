@@ -32,6 +32,74 @@ class TitleTest extends MediaWikiTestCase {
 		}
 	}
 
+	public static function provideConvertByteClassToUnicodeClass() {
+		return array(
+			array(
+				' %!"$&\'()*,\\-.\\/0-9:;=?@A-Z\\\\^_`a-z~\\x80-\\xFF+',
+				' %!"$&\'()*,\\-.\\/0-9:;=?@A-Z\\\\^_`a-z~+\\u0080-\\uFFFF',
+			),
+			array(
+				'QWERTY\\x66-\\xFF+',
+				'QWERTY\\x66-\\x7F+\\u0080-\\uFFFF',
+			),
+			array(
+				'QWERTY\\x66-\\xFD+',
+				'QWERTY\\x66-\\x7F+\\u0080-\\uFFFF',
+			),
+			array(
+				'QWERTY\\x66-\\x79+',
+				'QWERTY\\x66-\\x79+',
+			),
+			array(
+				'QWERTY\\x66-\\x80+',
+				'QWERTY\\x66-\\x7F+\\u0080-\\uFFFF',
+			),
+			array(
+				'QWERTY\\x66-\\x80+\\x23',
+				'QWERTY\\x66-\\x7F+\\x23\\u0080-\\uFFFF',
+			),
+			array(
+				'QWERTY\\x66-\\x80+\\xD3',
+				'QWERTY\\x66-\\x7F+\\u0080-\\uFFFF',
+			),
+			array(
+				'\\\\\\x99',
+				'\\\\\\u0080-\\uFFFF',
+			),
+			array(
+				'-\\x99',
+				'-\\u0080-\\uFFFF',
+			),
+			array(
+				'QWERTY\\-\\x99',
+				'QWERTY\\-\\u0080-\\uFFFF',
+			),
+			array(
+				'\\\\x99',
+				'\\\\x99',
+			),
+			array(
+				'A-\\x9F',
+				'A-\\x7F\\u0080-\\uFFFF',
+			),
+			array(
+				'\\x66-\\x77QWERTY\\x88-\\x91FXZ',
+				'\\x66-\\x77QWERTYFXZ\\u0080-\\uFFFF',
+			),
+			array(
+				'\\x66-\\x99QWERTY\\xAA-\\xEEFXZ',
+				'\\x66-\\x7FQWERTYFXZ\\u0080-\\uFFFF',
+			),
+		);
+	}
+
+	/**
+	 * @dataProvider provideConvertByteClassToUnicodeClass
+	 */
+	function testConvertByteClassToUnicodeClass( $byteClass, $unicodeClass ) {
+		$this->assertEquals( $unicodeClass, Title::convertByteClassToUnicodeClass( $byteClass ) );
+	}
+
 	/**
 	 * @dataProvider provideBug31100
 	 */
