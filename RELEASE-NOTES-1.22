@@ -211,8 +211,9 @@ production.
   and Special:AllMyUploads respectively.
 * IPv6 addresses in X-Forwarded-For headers are now normalised before checking
   against allowed proxy lists.
-* Add deferrable update support for callback/closure
-* Add TitleMove hook before page renames
+* Add deferrable update support for callback/closure.
+* Add TitleMove hook before page renames.
+* resourceloader: Support hashes as cache invalidation trigger.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
