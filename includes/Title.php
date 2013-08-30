@@ -492,6 +492,41 @@ class Title {
 	}
 
 	/**
+	 * Utility method for converting a character sequence from bytes to Unicode.
+	 *
+	 * Primary usecase being converting $wgLegalTitleChars to a sequence usable in
+	 * javascript, as PHP uses UTF-8 bytes where javascript uses Unicode code units.
+	 *
+	 * @param string $byteClass
+	 * @return string
+	 */
+	public static function convertByteClassToUnicodeClass( $byteClass ) {
+		// If the PHP class contains any bytes above \xFF, remove them and add in the whole of
+		// '\x80-\xFF' (more permissive).
+
+		$charClass = $byteClass;
+
+		$count1 = 0;
+		$charClass = preg_replace( '/(?<!\\\\)((?:\\\\\\\\)*)([\\\\]x[0-7][0-9A-Fa-f])-([\\\\]x[8-9A-Fa-f][0-9A-Fa-f])/', '$1$2-\\x7F', $charClass, -1, $count1 );
+
+		$count2 = 0;
+		$charClass = preg_replace( '/(?<!\\\\)((?:\\\\\\\\)*)([\\\\]x[8-9A-Fa-f][0-9A-Fa-f])-([\\\\]x[8-9A-Fa-f][0-9A-Fa-f])/' , '$1', $charClass, -1, $count2 );
+
+		$count3 = 0;
+		$charClass = preg_replace( '/([^\\\\])-[\\\\]x[8-9A-Fa-f][0-9A-Fa-f]/', '$1-\\x7F', $charClass, -1, $count3 );
+
+		$count4 = 0;
+		$charClass = preg_replace( '/(?<!\\\\)((?:\\\\\\\\)*)([\\\\]x[8-9A-Fa-f][0-9A-Fa-f])/', '$1', $charClass, -1, $count4 );
+
+		if ( $count1 || $count2 || $count3 || $count4 ) {
+			// Allow every non-ascii sequence
+			$charClass .= '\u0080-\uFFFF';
+		}
+
+		return $charClass;
+	}
+
+	/**
 	 * Get a string representation of a title suitable for
 	 * including in a search index
 	 *
