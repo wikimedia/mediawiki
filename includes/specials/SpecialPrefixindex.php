@@ -210,7 +210,8 @@ class SpecialPrefixindex extends SpecialAllpages {
 					$t = Title::makeTitle( $s->page_namespace, $s->page_title );
 					if ( $t ) {
 						$displayed = $t->getText();
-						if ( $this->stripPrefix ) {
+						// Try not to generate unclickable links
+						if ( $this->stripPrefix && $prefixLength !== strlen( $displayed ) ) {
 							$displayed = substr( $displayed, $prefixLength );
 						}
 						$link = ( $s->page_is_redirect ? '<div class="allpagesredirect">' : '' ) .
