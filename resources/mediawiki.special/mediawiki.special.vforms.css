@@ -22,9 +22,7 @@ section.mw-form-header {
 }
 
 /*
- * Besides errorbox there could be warningbox, successbox, msgbox, though
- * spage has never seen these in practice.
- * Vector has styles coloring warningbox cream and successbox green.
+ * Styles for information boxes.
  */
 .mw-ui-vform .errorbox,
 .mw-ui-vform .warningbox,
@@ -35,11 +33,26 @@ section.mw-form-header {
 	font-size: 0.9em;
 	margin: 0 0 1em 0;
 	padding: 0.5em;
-	color: #cc0000;
-	border: 1px solid #fac5c5;
-	background-color: #fae3e3;
-	text-shadow: 0 1px #fae3e3;
+	border: 1px solid;
 	word-wrap: break-word;
+}
+
+.mw-ui-vform .errorbox {
+	color: #cc0000;
+	border-color: #fac5c5;
+	background-color: #fae3e3;
+}
+
+.mw-ui-vform .warningbox {
+	color: #705000;
+	border-color: #fde29b;
+	background-color: #fdf1d1;
+}
+
+.mw-ui-vform .successbox {
+	color: #009000;
+	border-color: #b7fdb5;
+	background-color: #e1fddf;
 }
 
 /*
