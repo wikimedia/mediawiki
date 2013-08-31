@@ -2093,8 +2093,8 @@ class Language {
 		$segments = array();
 
 		foreach ( $intervals as $intervalName => $intervalValue ) {
-			// Messages: duration-centuries, duration-decades, duration-years, duration-days,
-			// duration-hours, duration-minutes, duration-seconds
+			// Messages: duration-seconds, duration-minutes, duration-hours, duration-days, duration-weeks,
+			// duration-years, duration-decades, duration-centuries, duration-millennia
 			$message = wfMessage( 'duration-' . $intervalName )->numParams( $intervalValue );
 			$segments[] = $message->inLanguage( $this )->escaped();
 		}
