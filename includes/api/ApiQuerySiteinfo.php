@@ -139,7 +139,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			$allowException = !empty( $allowFrom );
 		}
 		if ( $allowException ) {
-			$data['externalimages'] = (array) $allowFrom;
+			$data['externalimages'] = (array)$allowFrom;
 			$this->getResult()->setIndexedTagName( $data['externalimages'], 'prefix' );
 		}
 

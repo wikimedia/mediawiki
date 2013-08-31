@@ -423,7 +423,7 @@ class Message {
 	 * @since 1.20
 	 */
 	public function setInterfaceMessageFlag( $value ) {
-		$this->interface = (bool) $value;
+		$this->interface = (bool)$value;
 		return $this;
 	}
 
@@ -434,7 +434,7 @@ class Message {
 	 * @return Message: $this
 	 */
 	public function useDatabase( $value ) {
-		$this->useDatabase = (bool) $value;
+		$this->useDatabase = (bool)$value;
 		return $this;
 	}
 

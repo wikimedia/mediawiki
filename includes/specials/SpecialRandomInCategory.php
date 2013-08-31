@@ -132,7 +132,7 @@ class SpecialRandomInCategory extends SpecialPage {
 	 */
 	public function getRandomTitle() {
 		// Convert to float, since we do math with the random number.
-		$rand = (float) wfRandom();
+		$rand = (float)wfRandom();
 		$title = null;
 
 		// Given that timestamps are rather unevenly distributed, we also
