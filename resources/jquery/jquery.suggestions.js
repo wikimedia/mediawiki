@@ -62,6 +62,16 @@ $.suggestions = {
 	},
 
 	/**
+	 * Hide the element with suggestions and clean up some state.
+	 */
+	hide: function ( context ) {
+		// Remove any highlights, including on "special" items
+		context.data.$container.find( '.suggestions-result-current' ).removeClass( 'suggestions-result-current' );
+		// Hide the container
+		context.data.$container.hide();
+	},
+
+	/**
 	 * Restore the text the user originally typed in the textbox, before it
 	 * was overwritten by highlight(). This restores the value the currently
 	 * displayed suggestions are based on, rather than the value just before
@@ -83,7 +93,7 @@ $.suggestions = {
 		// if the textbox is empty then clear the result div, but leave other settings intouched
 		function maybeFetch() {
 			if ( context.data.$textbox.val().length === 0 ) {
-				context.data.$container.hide();
+				$.suggestions.hide( context );
 				context.data.prevText = '';
 			} else if (
 				context.data.$textbox.val() !== context.data.prevText ||
@@ -147,7 +157,7 @@ $.suggestions = {
 				if ( context.data !== undefined ) {
 					if ( context.data.$textbox.val().length === 0 ) {
 						// Hide the div when no suggestion exist
-						context.data.$container.hide();
+						$.suggestions.hide( context );
 					} else {
 						// Rebuild the suggestions list
 						context.data.$container.show();
@@ -399,7 +409,7 @@ $.suggestions = {
 				break;
 			// Escape
 			case 27:
-				context.data.$container.hide();
+				$.suggestions.hide( context );
 				$.suggestions.restore( context );
 				$.suggestions.cancel( context );
 				context.data.$textbox.trigger( 'change' );
@@ -407,9 +417,9 @@ $.suggestions = {
 				break;
 			// Enter
 			case 13:
-				context.data.$container.hide();
 				preventDefault = wasVisible;
 				selected = context.data.$container.find( '.suggestions-result-current' );
+				$.suggestions.hide( context );
 				if ( selected.length === 0 || context.data.selectedWithMouse ) {
 					// if nothing is selected OR if something was selected with the mouse,
 					// cancel any current requests and submit the form
@@ -530,7 +540,7 @@ $.fn.suggestions = function () {
 							// do not interfere with non-left clicks or if modifier keys are pressed (e.g. ctrl-click)
 							if ( !( e.which !== 1 || e.altKey || e.ctrlKey || e.shiftKey || e.metaKey ) ) {
 								$.suggestions.highlight( context, $result, true );
-								context.data.$container.hide();
+								$.suggestions.hide( context );
 								if ( typeof context.config.result.select === 'function' ) {
 									context.config.result.select.call( $result, context.data.$textbox );
 								}
@@ -557,7 +567,7 @@ $.fn.suggestions = function () {
 							}
 							// do not interfere with non-left clicks or if modifier keys are pressed (e.g. ctrl-click)
 							if ( !( e.which !== 1 || e.altKey || e.ctrlKey || e.shiftKey || e.metaKey ) ) {
-								context.data.$container.hide();
+								$.suggestions.hide( context );
 								if ( typeof context.config.special.select === 'function' ) {
 									context.config.special.select.call( $special, context.data.$textbox );
 								}
@@ -617,7 +627,7 @@ $.fn.suggestions = function () {
 					if ( context.data.mouseDownOn.length > 0 ) {
 						return;
 					}
-					context.data.$container.hide();
+					$.suggestions.hide( context );
 					$.suggestions.cancel( context );
 				} );
 		}
