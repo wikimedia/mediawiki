@@ -456,31 +456,6 @@ div.vectorMenu li.selected a:visited {
 	background: transparent url(images/search-ltr.png) center center no-repeat;
 }
 
-/* The following styles exist only for backwards-compatibility with
- * cached HTML and are to be removed before 1.22 release. */
-.client-js div#simpleSearch button#searchButton {
-	position: absolute;
-	padding: 0;
-	padding-top: 0.3em;
-	padding-bottom: 0.2em;
-	padding-right: 0.4em;
-	margin: 0;
-	border: none;
-	background-image: none;
-	text-indent: 0;
-}
-/* OVERRIDDEN BY COMPLIANT BROWSERS */
-.client-js div#simpleSearch button#searchButton img {
-	border: none;
-	margin: 0;
-	margin-top: -3px;
-	padding: 0;
-}
-/* IGNORED BY IE6 */
-.client-js div#simpleSearch button#searchButton > img {
-	margin: 0;
-}
-
 /* Panel */
 div#mw-panel {
 	position: absolute;
