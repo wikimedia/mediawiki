@@ -3624,7 +3624,7 @@ class Language {
 		foreach ( $forms as $index => $form ) {
 			if ( preg_match( '/^\d+=/i', $form ) ) {
 				$pos = strpos( $form, '=' );
-				if ( substr( $form, 0, $pos ) === (string) $count ) {
+				if ( substr( $form, 0, $pos ) === (string)$count ) {
 					return substr( $form, $pos + 1 );
 				}
 				unset( $forms[$index] );

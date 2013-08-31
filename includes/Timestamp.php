@@ -252,7 +252,7 @@ class MWTimestamp {
 			if ( count( $data ) >= 2 ) {
 				// Combination hours and minutes.
 				$diff = abs( (int)$data[0] ) * 60 + (int)$data[1];
-				if ( (int) $data[0] < 0 ) {
+				if ( (int)$data[0] < 0 ) {
 					$diff *= -1;
 				}
 			} else {

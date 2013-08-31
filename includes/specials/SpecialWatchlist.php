@@ -452,7 +452,7 @@ class SpecialWatchlist extends SpecialPage {
 
 	protected function showHideLink( $options, $message, $name, $value ) {
 		$label = $this->msg( $value ? 'show' : 'hide' )->escaped();
-		$options[$name] = 1 - (int) $value;
+		$options[$name] = 1 - (int)$value;
 
 		return $this->msg( $message )->rawParams( Linker::linkKnown( $this->getTitle(), $label, array(), $options ) )->escaped();
 	}

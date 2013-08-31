@@ -614,7 +614,7 @@ class InfoAction extends FormlessAction {
 
 		if ( !$wgDisableCounters ) {
 			// Number of views
-			$views = (int) $dbr->selectField(
+			$views = (int)$dbr->selectField(
 				'page',
 				'page_counter',
 				array( 'page_id' => $id ),
@@ -624,7 +624,7 @@ class InfoAction extends FormlessAction {
 		}
 
 		// Number of page watchers
-		$watchers = (int) $dbr->selectField(
+		$watchers = (int)$dbr->selectField(
 			'watchlist',
 			'COUNT(*)',
 			array(
@@ -636,7 +636,7 @@ class InfoAction extends FormlessAction {
 		$result['watchers'] = $watchers;
 
 		// Total number of edits
-		$edits = (int) $dbr->selectField(
+		$edits = (int)$dbr->selectField(
 			'revision',
 			'COUNT(rev_page)',
 			array( 'rev_page' => $id ),
@@ -645,7 +645,7 @@ class InfoAction extends FormlessAction {
 		$result['edits'] = $edits;
 
 		// Total number of distinct authors
-		$authors = (int) $dbr->selectField(
+		$authors = (int)$dbr->selectField(
 			'revision',
 			'COUNT(DISTINCT rev_user_text)',
 			array( 'rev_page' => $id ),
@@ -657,7 +657,7 @@ class InfoAction extends FormlessAction {
 		$threshold = $dbr->timestamp( time() - $wgRCMaxAge );
 
 		// Recent number of edits
-		$edits = (int) $dbr->selectField(
+		$edits = (int)$dbr->selectField(
 			'revision',
 			'COUNT(rev_page)',
 			array(
@@ -669,7 +669,7 @@ class InfoAction extends FormlessAction {
 		$result['recent_edits'] = $edits;
 
 		// Recent number of distinct authors
-		$authors = (int) $dbr->selectField(
+		$authors = (int)$dbr->selectField(
 			'revision',
 			'COUNT(DISTINCT rev_user_text)',
 			array(
@@ -687,7 +687,7 @@ class InfoAction extends FormlessAction {
 
 			// Subpages of this page (redirects)
 			$conds['page_is_redirect'] = 1;
-			$result['subpages']['redirects'] = (int) $dbr->selectField(
+			$result['subpages']['redirects'] = (int)$dbr->selectField(
 				'page',
 				'COUNT(page_id)',
 				$conds,
@@ -695,7 +695,7 @@ class InfoAction extends FormlessAction {
 
 			// Subpages of this page (non-redirects)
 			$conds['page_is_redirect'] = 0;
-			$result['subpages']['nonredirects'] = (int) $dbr->selectField(
+			$result['subpages']['nonredirects'] = (int)$dbr->selectField(
 				'page',
 				'COUNT(page_id)',
 				$conds,
@@ -708,7 +708,7 @@ class InfoAction extends FormlessAction {
 		}
 
 		// Counts for the number of transclusion links (to/from)
-		$result['transclusion']['to'] = (int) $dbr->selectField(
+		$result['transclusion']['to'] = (int)$dbr->selectField(
 			'templatelinks',
 			'COUNT(tl_from)',
 			array(
@@ -718,7 +718,7 @@ class InfoAction extends FormlessAction {
 			__METHOD__
 		);
 
-		$result['transclusion']['from'] = (int) $dbr->selectField(
+		$result['transclusion']['from'] = (int)$dbr->selectField(
 			'templatelinks',
 			'COUNT(*)',
 			array( 'tl_from' => $title->getArticleID() ),

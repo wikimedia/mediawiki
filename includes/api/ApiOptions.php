@@ -87,7 +87,7 @@ class ApiOptions extends ApiBase {
 				case 'registered-checkmatrix':
 					// A key for a multiselect or checkmatrix option.
 					$validation = true;
-					$value = $value !== null ? (bool) $value : null;
+					$value = $value !== null ? (bool)$value : null;
 					break;
 				case 'userjs':
 					// Allow non-default preferences prefixed with 'userjs-', to be set by user scripts

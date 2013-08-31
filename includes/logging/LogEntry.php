@@ -165,7 +165,7 @@ class DatabaseLogEntry extends LogEntryBase {
 	 */
 	public static function newFromRow( $row ) {
 		if ( is_array( $row ) && isset( $row['rc_logid'] ) ) {
-			return new RCDatabaseLogEntry( (object) $row );
+			return new RCDatabaseLogEntry( (object)$row );
 		} else {
 			return new self( $row );
 		}
@@ -234,7 +234,7 @@ class DatabaseLogEntry extends LogEntryBase {
 
 	public function getPerformer() {
 		if ( !$this->performer ) {
-			$userId = (int) $this->row->log_user;
+			$userId = (int)$this->row->log_user;
 			if ( $userId !== 0 ) { // logged-in users
 				if ( isset( $this->row->user_name ) ) {
 					$this->performer = User::newFromRow( $this->row );
@@ -292,7 +292,7 @@ class RCDatabaseLogEntry extends DatabaseLogEntry {
 
 	public function getPerformer() {
 		if ( !$this->performer ) {
-			$userId = (int) $this->row->rc_user;
+			$userId = (int)$this->row->rc_user;
 			if ( $userId !== 0 ) {
 				$this->performer = User::newFromId( $userId );
 			} else {
@@ -472,7 +472,7 @@ class ManualLogEntry extends LogEntryBase {
 			'log_title' => $this->getTarget()->getDBkey(),
 			'log_page' => $this->getTarget()->getArticleID(),
 			'log_comment' => $comment,
-			'log_params' => serialize( (array) $this->getParameters() ),
+			'log_params' => serialize( (array)$this->getParameters() ),
 		);
 		$dbw->insert( 'logging', $data, __METHOD__ );
 		$this->id = !is_null( $id ) ? $id : $dbw->insertId();
@@ -534,7 +534,7 @@ class ManualLogEntry extends LogEntryBase {
 			$this->getSubtype(),
 			$this->getTarget(),
 			$this->getComment(),
-			serialize( (array) $this->getParameters() ),
+			serialize( (array)$this->getParameters() ),
 			$newId,
 			$formatter->getIRCActionComment() // Used for IRC feeds
 		);
@@ -586,7 +586,7 @@ class ManualLogEntry extends LogEntryBase {
 	}
 
 	public function getDeleted() {
-		return (int) $this->deleted;
+		return (int)$this->deleted;
 	}
 
 }

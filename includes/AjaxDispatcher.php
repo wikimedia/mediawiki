@@ -111,7 +111,7 @@ class AjaxDispatcher {
 			wfHttpError(
 				400,
 				'Bad Request',
-				"unknown function " . (string) $this->func_name
+				"unknown function " . $this->func_name
 			);
 		} elseif ( !User::isEveryoneAllowed( 'read' ) && !$wgUser->isAllowed( 'read' ) ) {
 			wfHttpError(

@@ -2763,7 +2763,7 @@ class User {
 			$this->mEditCount = $count;
 			wfProfileOut( __METHOD__ );
 		}
-		return (int) $this->mEditCount;
+		return (int)$this->mEditCount;
 	}
 
 	/**
@@ -4399,7 +4399,7 @@ class User {
 		// Pull from a slave to be less cruel to servers
 		// Accuracy isn't the point anyway here
 		$dbr = wfGetDB( DB_SLAVE );
-		$count = (int) $dbr->selectField(
+		$count = $dbr->selectField(
 			'revision',
 			'COUNT(rev_user)',
 			array( 'rev_user' => $this->getId() ),

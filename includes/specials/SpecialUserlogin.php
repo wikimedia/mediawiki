@@ -1154,7 +1154,7 @@ class LoginForm extends SpecialPage {
 		$template->set( 'usereason', $user->isLoggedIn() );
 		$template->set( 'remember', $user->getOption( 'rememberpassword' ) || $this->mRemember );
 		$template->set( 'cansecurelogin', ( $wgSecureLogin === true ) );
-		$template->set( 'stickhttps', (int) $this->mStickHTTPS );
+		$template->set( 'stickhttps', (int)$this->mStickHTTPS );
 
 		if ( $this->mType === 'signup' && $user->isLoggedIn() ) {
 			$template->set( 'createAnother', true );
