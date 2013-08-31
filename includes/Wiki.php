@@ -509,6 +509,8 @@ class MediaWiki {
 		if (
 			(
 				$request->getCookie( 'forceHTTPS', '' ) ||
+				// check for prefixed version for currently logged in users
+				$request->getCookie( 'forceHTTPS' ) ||
 				// Avoid checking the user and groups unless it's enabled.
 				(
 					$this->context->getUser()->isLoggedIn()
