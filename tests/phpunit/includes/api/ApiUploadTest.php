@@ -138,7 +138,7 @@ class ApiUploadTest extends ApiTestCaseUpload {
 		}
 		$this->assertTrue( isset( $result['upload'] ) );
 		$this->assertEquals( 'Success', $result['upload']['result'] );
-		$this->assertEquals( $fileSize, ( int )$result['upload']['imageinfo']['size'] );
+		$this->assertEquals( $fileSize, (int)$result['upload']['imageinfo']['size'] );
 		$this->assertEquals( $mimeType, $result['upload']['imageinfo']['mime'] );
 		$this->assertFalse( $exception );
 
@@ -386,7 +386,7 @@ class ApiUploadTest extends ApiTestCaseUpload {
 		$this->assertFalse( $exception );
 		$this->assertTrue( isset( $result['upload'] ) );
 		$this->assertEquals( 'Success', $result['upload']['result'] );
-		$this->assertEquals( $fileSize, ( int )$result['upload']['imageinfo']['size'] );
+		$this->assertEquals( $fileSize, (int)$result['upload']['imageinfo']['size'] );
 		$this->assertEquals( $mimeType, $result['upload']['imageinfo']['mime'] );
 		$this->assertTrue( isset( $result['upload']['filekey'] ) );
 		$this->assertEquals( $result['upload']['sessionkey'], $result['upload']['filekey'] );
