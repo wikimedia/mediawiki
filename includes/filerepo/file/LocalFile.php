@@ -1664,9 +1664,11 @@ class LocalFile extends File {
 	 * Get the HTML text of the description page
 	 * This is not used by ImagePage for local files, since (among other things)
 	 * it skips the parser cache.
+	 *
+	 * @param $lang Language What language to get description in (Optional)
 	 * @return bool|mixed
 	 */
-	function getDescriptionText() {
+	function getDescriptionText( $lang = null ) {
 		$revision = Revision::newFromTitle( $this->title, false, Revision::READ_NORMAL );
 		if ( !$revision ) {
 			return false;
@@ -1675,7 +1677,7 @@ class LocalFile extends File {
 		if ( !$content ) {
 			return false;
 		}
-		$pout = $content->getParserOutput( $this->title, null, new ParserOptions() );
+		$pout = $content->getParserOutput( $this->title, null, new ParserOptions( null, $lang ) );
 		return $pout->getText();
 	}
 
