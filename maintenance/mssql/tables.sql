@@ -505,8 +505,6 @@ CREATE TABLE /*$wgDBprefix*/recentchanges (
    rc_this_oldid INT DEFAULT 0,
    rc_last_oldid INT DEFAULT 0,
    rc_type tinyint DEFAULT 0,
-   rc_moved_to_ns BIT DEFAULT 0,
-   rc_moved_to_title NVARCHAR(255)  DEFAULT '',
    rc_patrolled BIT DEFAULT 0,
    rc_ip NCHAR(40) DEFAULT '',
    rc_old_len INT DEFAULT 0,
