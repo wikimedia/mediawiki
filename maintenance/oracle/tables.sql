@@ -409,8 +409,6 @@ CREATE TABLE &mw_prefix.recentchanges (
   rc_this_oldid      NUMBER      DEFAULT 0 NOT NULL,
   rc_last_oldid      NUMBER      DEFAULT 0 NOT NULL,
   rc_type            CHAR(1)         DEFAULT '0' NOT NULL,
-  rc_moved_to_ns     NUMBER          DEFAULT 0 NOT NULL,
-  rc_moved_to_title  VARCHAR2(255),
   rc_patrolled       CHAR(1)         DEFAULT '0' NOT NULL,
   rc_ip              VARCHAR2(15),
   rc_old_len         NUMBER,
