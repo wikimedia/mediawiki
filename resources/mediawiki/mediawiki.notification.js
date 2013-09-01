@@ -353,6 +353,13 @@
 		var offset, $window = $( window );
 
 		$area = $( '<div id="mw-notification-area" class="mw-notification-area mw-notification-area-layout"></div>' )
+			// Let screen readers know about the notifications. Please note that only few screen reader + browser
+			// combinations seem to support this properly. The aria-relevant is needed to make sure NVDA on Firefox
+			// is only notifying the user once. (bug 53483)
+			.attr( {
+				'aria-live': 'assertive',
+				'aria-relevant' : 'additions'
+			} )
 			// Pause auto-hide timers when the mouse is in the notification area.
 			.on( {
 				mouseenter: notification.pause,
