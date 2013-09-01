@@ -353,6 +353,11 @@
 		var offset, $window = $( window );
 
 		$area = $( '<div id="mw-notification-area" class="mw-notification-area mw-notification-area-layout"></div>' )
+			// Some useful comment goes here
+			.attr( {
+				'aria-live': 'assertive',
+				'aria-relevant' : 'additions'
+			} )
 			// Pause auto-hide timers when the mouse is in the notification area.
 			.on( {
 				mouseenter: notification.pause,
