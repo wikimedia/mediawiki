@@ -704,7 +704,7 @@ For explanation of 'lock' see [[w:Lock_(computer_science)|wikipedia]].",
 {{Identical|Copyright}}',
 'currentevents' => 'Standard link in the sidebar, for news.
 
-See also {{msg-mw|currentevents-url}} for the link url.
+See also {{msg-mw|Currentevents-url}} for the link URL.
 
 See also:
 * {{msg-mw|Currentevents}}
@@ -1330,7 +1330,7 @@ See also:
 
 See example: [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]',
 'createacct-another-email-ph' => 'Placeholder in create account form for email field when one user creates an account for another.',
-'createaccountmail' => 'The label for the checkbox for creating a new account and sending the new password to the specified e-mail address directly, as used on [[Special:UserLogin/signup]] when one user creates an account for another (if creating accounts by e-mail is allowed).
+'createaccountmail' => 'The label for the checkbox for creating a new account and sending the new password to the specified email address directly, as used on [[Special:UserLogin/signup]] when one user creates an account for another (if creating accounts by email is allowed).
 
 See example: [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]',
 'createacct-realname' => 'In vertical-layout create account form, label for field to enter optional real name.',
@@ -1352,9 +1352,9 @@ See example: [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?t
 'createacct-another-submit' => 'Submit button of  [[Special:UserLogin/signup]] ([[Special:CreateAccount]]) when accessed by a registered user.
 
 The original means "create an account in addition to the one you already have"; sometimes, but not always, it means you are going to "Create the account on behalf of somebody else" or "Create account for another".',
-'createacct-benefit-heading' => 'In vertical-layout create account form, the heading for the section describing the benefits of creating an account.
+'createacct-benefit-heading' => 'In vertical-layout create account form, the heading for the section describing the benefits of creating an account. See example: [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]
 
-See example: [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]',
+If in your language you need to know the gender of the name for the wiki (which is the subject of the English sentence), please adapt the sentence as much as you need for your translation to fit.',
 'createacct-benefit-body1' => 'In vertical-layout create account form, the text for the first benefit.
 
 Preceded by the message {{msg-mw|Createacct-benefit-head1}} (number of edits).
@@ -1433,21 +1433,23 @@ $1 is the minimum number of characters in the password.',
 'password-name-match' => 'Used as error message when password validity check failed.',
 'password-login-forbidden' => 'Error message shown when the user has tried to log in using one of the special username/password combinations used for MediaWiki testing. (See [[mwr:75589]], [[mwr:75605]].)',
 'mailmypassword' => 'Heading in [[Special:PasswordReset]]',
-'passwordremindertitle' => 'Title of e-mail which contains temporary password',
-'passwordremindertext' => 'This text is used in an e-mail sent when a user requests a new temporary password (he has forgotten his password) or when an sysop creates a new user account choosing to have password and username sent to the new user by e-mail.
-* $1 is an IP address. Example: 123.123.123.123
-* $2 is a username. Example: Joe
-* $3 is a password. Example: er##@fdas!
-* $4 is a URL. Example: http://wiki.example.com
-* $5 is a number of days in which the temporary password will expire',
-'noemail' => 'Shown as error message when trying to register a user sending password to e-mail adress and no e-mail address has been given. Registering users and sending a password to an e-mail address may require non-standard user rights ([{{canonicalurl:Special:UserLogin|action=submitlogin&type=signup}} register user link]).
+'passwordremindertitle' => 'Title of email which contains temporary password',
+'passwordremindertext' => 'This text is used in an email sent when a user requests a new temporary password (he has forgotten his password) or when an sysop creates a new user account choosing to have password and username sent to the new user by email.
 
 Parameters:
-* $1 is a user name. This parameter can be used with GENDER.',
+* $1 - an IP address. Example: 123.123.123.123
+* $2 - a username. Example: Joe
+* $3 - a password. Example: er##@fdas!
+* $4 - a URL. Example: http://wiki.example.com
+* $5 - a number of days in which the temporary password will expire',
+'noemail' => 'Shown as error message when trying to register a user sending password to email adress and no email address has been given. Registering users and sending a password to an email address may require non-standard user rights ([{{canonicalurl:Special:UserLogin|action=submitlogin&type=signup}} register user link]).
+
+Parameters:
+* $1 - a user name, can be used with GENDER',
 'noemailcreate' => 'Used as error message when one user creates an account for another and there is no email.',
 'passwordsent' => '* $1 - username',
 'blocked-mailpassword' => 'Used as error message in password recovery.',
-'eauthentsent' => "This message appears after entering an e-mail address in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}, then clicking on '{{int:saveprefs}}'.",
+'eauthentsent' => 'This message appears after entering an email address in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}, then clicking on "{{int:saveprefs}}".',
 'throttled-mailpassword' => 'Used in [[Special:PasswordReset]].
 * $1 - password reset email resend time (in hours)',
 'mailerror' => 'Used as error message in sending confirmation mail to user. Parameters:
@@ -2809,7 +2811,8 @@ The link beside each skin name in [[Special:Preferences|your user preferences]],
 'datedefault' => 'Used as checkbox label in [[Special:Preferences#mw-prefsection-datetime|user preferences]], {{msg-mw|prefs-datetime}} tab.
 
 This message indicates {{msg-mw|prefs-dateformat}} is default (= not specified).',
-'prefs-beta' => "Header of a subsection at [[Special:Preferences]], tab ''{{int:prefs-editing}}'', listing features that are in beta but mostly suitable for general use",
+'prefs-beta' => "Header of a subsection at [[Special:Preferences]], tab ''{{int:prefs-editing}}'', listing features that are in beta but mostly suitable for general use.
+{{Identical|Beta feature}}",
 'prefs-datetime' => '{{Identical|Date}}',
 'prefs-labs' => "Header of a subsection at [[Special:Preferences]], tab ''{{int:prefs-editing}}'', listing features that are experimental",
 'prefs-user-pages' => "Header of a subsection at [[Special:Preferences]], tab ''{{int:prefs-misc}}'', listing features that are related to user pages",
@@ -3880,7 +3883,7 @@ See also:
 * {{msg-mw|Upload source file}}
 * {{msg-mw|Upload source url}}
 * {{msg-mw|Upload-maxfilesize}}',
-'sourceurl' => 'Caption for the upload-by-url feature at [[Special:Upload]]
+'sourceurl' => 'Caption for the upload-by-URL feature at [[Special:Upload]].
 
 See also:
 * {{msg-mw|Sourcefilename|label}}
@@ -3922,7 +3925,7 @@ See also:
 * {{msg-mw|upload-failure-msg|message}}',
 'upload-success-msg' => 'Used as message body which is posted on the user talk page. Parameters:
 * $1 - the local file name after uploading
-* $2 - the URL the file was uploaded from, when using upload-by-url
+* $2 - the URL the file was uploaded from, when using upload-by-URL
 See also:
 * {{msg-mw|upload-success-subj|subject}}
 * {{msg-mw|upload-success-msg|message}}
@@ -3939,7 +3942,7 @@ See also:
 * {{msg-mw|upload-failure-msg|message}}',
 'upload-failure-msg' => 'Used as message body which is posted on the user talk page. Parameters:
 * $1 - the specific error message
-* $2 - the URL the file tried to upload from, when using upload-by-url.
+* $2 - the URL the file tried to upload from, when using upload-by-URL.
 See also:
 * {{msg-mw|upload-success-subj|subject}}
 * {{msg-mw|upload-success-msg|message}}
@@ -3951,7 +3954,7 @@ See also:
 * {{msg-mw|upload-warning-subj|subject}}
 * {{msg-mw|upload-warning-msg|message}}',
 'upload-warning-msg' => 'Used as warning body which is posted on the user talk page. Parameters:
-* $1 is the URL the file was uploaded from, when using upload-by-url
+* $1 is the URL the file was uploaded from, when using upload-by-URL
 * $2 is the session key for the upload
 See also:
 * {{msg-mw|upload-warning-subj|subject}}
@@ -5230,7 +5233,10 @@ See also:
 * $1 - the page title
 * $2 - the page editor
 * $3 - page URL',
-'enotif_body_intro_changed' => 'Email notification body intro for pages that get changed, $1 is the page title, $2 is the page editor, $3 is page url.',
+'enotif_body_intro_changed' => 'Email notification body intro for pages that get changed. Parameters:
+* $1 - the page title
+* $2 - the page editor
+* $3 - page URL',
 'enotif_lastvisited' => '$1 is a URL address.',
 'enotif_lastdiff' => 'E-mail notification text to the latest page differences. Parameters:
 * $1 is a link to a diff, shown as a plain link.',
@@ -7084,8 +7090,12 @@ See also:
 'javascripttest-pagetext-frameworks' => 'Parameters:
 * $1 - frameworks list which contain a link text {{msg-mw|Javascripttest-qunit-name}}',
 'javascripttest-pagetext-skins' => 'Used as label in [[Special:JavaScriptTest]].',
-'javascripttest-qunit-intro' => '$1 is the configured url to the documentation.',
-'javascripttest-qunit-heading' => '{{Optional}}',
+'javascripttest-qunit-intro' => 'Used as summary. Parameters:
+* $1 - the configured url to the documentation
+See also:
+* {{msg-mw|Javascripttest-qunit-heading}}',
+'javascripttest-qunit-heading' => 'See also:
+* {{msg-mw|Javascripttest-qunit-intro}}',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'Tooltip shown when hovering the mouse over the link to your own User page in the upper-side personal toolbox.
@@ -8520,8 +8530,8 @@ This property can come from xmp:Label in XMP ( http://www.adobe.com/content/dam/
 'exif-webstatement' => "URL detailing the copyright status of the image, and how you're allowed to use the image. Often this is a link to a creative commons license, however the creative commons people recommend using a page that generally contains specific information about the image, and recommend using {{msg-mw|exif-licenseurl}} for linking to the license. See http://wiki.creativecommons.org/XMP",
 'exif-originaldocumentid' => 'A unique ID of the original document (image) that this document (image) is based on.',
 'exif-licenseurl' => 'URL for copyright license. This is almost always a creative commons license since this information comes from the creative commons namespace of XMP (but could be a link to any type of license). See also {{msg-mw|exif-webstatement}}',
-'exif-morepermissionsurl' => 'A url where you can "buy" (or otherwise negotiate) to get more rights for the image.',
-'exif-attributionurl' => "A url that you're supposed to use when re-using the image.",
+'exif-morepermissionsurl' => 'A URL where you can "buy" (or otherwise negotiate) to get more rights for the image.',
+'exif-attributionurl' => "A URL that you're supposed to use when re-using the image.",
 'exif-preferredattributionname' => 'The preferred name to give credit to when re-using this image.',
 'exif-pngfilecomment' => 'See also:
 * {{msg-mw|Exif-pngfilecomment}}
@@ -8944,7 +8954,7 @@ See: http://www.awaresystems.be/imaging/tiff/tifftags/ycbcrpositioning.html
 'exif-dc-date' => 'One or more dates associated with the image. How they are associated is not really defined. From the dc:date XMP property.',
 'exif-dc-publisher' => 'One or more publisher of resource.
 {{Identical|Publisher}}',
-'exif-dc-relation' => "Something related to this image. Often a list of url's to related images.",
+'exif-dc-relation' => "Something related to this image. Often a list of URL's to related images.",
 'exif-dc-rights' => 'Copyright information about the image/media given in informal language.',
 'exif-dc-source' => 'Source of the image. This is another image that this image is based on. This does not refer to the person who provided the image.',
 'exif-dc-type' => 'Type or genre of image/media. This might be something like painting or photograph.',

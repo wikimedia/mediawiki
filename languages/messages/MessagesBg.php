@@ -1576,6 +1576,7 @@ $1",
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|промяна|промени}}',
+'enhancedrc-history' => 'история',
 'recentchanges' => 'Последни промени',
 'recentchanges-legend' => 'Опции на списъка с последни промени',
 'recentchanges-summary' => "Проследяване на последните промени в {{SITENAME}}.
@@ -1829,6 +1830,9 @@ $1',
 'listfiles_size' => 'Размер',
 'listfiles_description' => 'Описание',
 'listfiles_count' => 'Версии',
+'listfiles-latestversion' => 'Текущата версия',
+'listfiles-latestversion-yes' => 'Да',
+'listfiles-latestversion-no' => 'Не',
 
 # File description page
 'file-anchor-link' => 'Файл',
@@ -3602,6 +3606,7 @@ MediaWiki се разпространява с надеждата, че ще б�
 
 # Special:Redirect
 'redirect-user' => 'Потребителски номер',
+'redirect-file' => 'Име на файл',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Търсене на повтарящи се файлове',
@@ -3800,5 +3805,11 @@ $1 е автоматично повишен от $4 до $5',
 
 # Image rotation
 'rotate-comment' => 'Изображението е завъртяно на $1 {{PLURAL:$1|градус|градуса}} по часовниковата стрелка',
+
+# Limit report
+'limitreport-cputime-value' => '$1 {{PLURAL:$1|секунда|секунди}}',
+'limitreport-walltime-value' => '$1 {{PLURAL:$1|секунда|секунди}}',
+'limitreport-postexpandincludesize-value' => '$1/$2 байта',
+'limitreport-templateargumentsize-value' => '$1/$2 байта',
 
 );

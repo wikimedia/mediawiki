@@ -440,6 +440,7 @@ $messages = array(
 'tog-noconvertlink' => 'Онемогући претварање наслова веза',
 'tog-norollbackdiff' => 'Изостави разлику након извршеног враћања',
 'tog-useeditwarning' => 'Упозори ме када напуштам страницу са несачуваним променама',
+'tog-prefershttps' => 'Увек користи сигурну конекцију када сам пријављен.',
 
 'underline-always' => 'увек подвлачи',
 'underline-never' => 'никад не подвлачи',
@@ -958,6 +959,8 @@ $2',
 'login-abort-generic' => 'Неуспешна пријава – прекинуто',
 'loginlanguagelabel' => 'Језик: $1',
 'suspicious-userlogout' => 'Ваш захтев за одјаву је одбијен јер је послат од стране неисправног прегледача или посредника.',
+'createacct-another-realname-tip' => 'Право име није обавезно.
+Ако изаберете да га унесете, оно ће бити коришћено за приписивање вашег рада.',
 
 # Email sending
 'php-mail-error-unknown' => 'Непозната грешка у функцији PHP mail().',
@@ -1278,6 +1281,7 @@ $2
 'undo-failure' => 'Не могу да вратим измену због постојања сукобљених међуизмена.',
 'undo-norev' => 'Не могу да вратим измену јер не постоји или је обрисана.',
 'undo-summary' => 'Враћена измена $1 од {{GENDER:$2|корисника|кориснице|корисника}} [[Special:Contributions/$2|$2]] ([[User talk:$2|разговор]])',
+'undo-summary-username-hidden' => 'Поништи измену $1 скривеног корисника',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Не могу да отворим налог',
@@ -1561,7 +1565,7 @@ $1",
 'prefs-rendering' => 'Изглед',
 'saveprefs' => 'Сачувај',
 'resetprefs' => 'Очисти несачуване измене',
-'restoreprefs' => 'Врати све на подразумевано',
+'restoreprefs' => 'Врати све на подразумевано (у свим одељцима)',
 'prefs-editing' => 'Уређивање',
 'rows' => 'Редова:',
 'columns' => 'Колоне:',
@@ -1620,10 +1624,10 @@ $1",
 Проверите ознаке HTML.',
 'badsiglength' => 'Ваш потпис је предугачак.
 Не сме бити дужи од $1 {{PLURAL:$1|знака|знака|знакова}}.',
-'yourgender' => 'Пол:',
-'gender-unknown' => 'неназначен',
-'gender-male' => 'мушки',
-'gender-female' => 'женски',
+'yourgender' => 'Како желите да се представите?',
+'gender-unknown' => 'Не превише детаљно',
+'gender-male' => 'Он уређује вики странице',
+'gender-female' => 'Она уређује вики странице',
 'prefs-help-gender' => 'Необавезно: користи се за исправно обраћање софтвера корисницима, зависно од њиховог пола.
 Овај податак ће бити јаван.',
 'email' => 'Е-адреса',
@@ -1648,6 +1652,7 @@ $1",
 'prefs-displaysearchoptions' => 'Поставке приказа',
 'prefs-displaywatchlist' => 'Поставке приказа',
 'prefs-diffs' => 'Разлике',
+'prefs-help-prefershttps' => 'Ова подешавања ће ступити на снагу при следећој пријави.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'Е-адреса је исправна',
@@ -1814,6 +1819,7 @@ $1",
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|измена|измене|измена}}',
+'enhancedrc-history' => 'историја',
 'recentchanges' => 'Скорашње измене',
 'recentchanges-legend' => 'Поставке скорашњих измена',
 'recentchanges-summary' => 'Пратите скорашње измене на овој страници.',
@@ -2123,8 +2129,7 @@ $1',
 'upload_source_file' => ' (датотека на вашем рачунару)',
 
 # Special:ListFiles
-'listfiles-summary' => 'Ова посебна страница приказује све послате датотеке.
-Кад је поређано по кориснику, попис приказује само оне датотеке чије је последње издање поставио тај корисник.',
+'listfiles-summary' => 'Ова посебна страница приказује све послате датотеке.',
 'listfiles_search_for' => 'Назив датотеке:',
 'imgfile' => 'датотека',
 'listfiles' => 'Списак датотека',
@@ -2135,6 +2140,8 @@ $1',
 'listfiles_size' => 'Величина',
 'listfiles_description' => 'Опис',
 'listfiles_count' => 'Верзије',
+'listfiles-latestversion-yes' => 'Да',
+'listfiles-latestversion-no' => 'Не',
 
 # File description page
 'file-anchor-link' => 'Датотека',
@@ -2232,6 +2239,10 @@ $1',
 # Random page
 'randompage' => 'Случајна страница',
 'randompage-nopages' => 'Нема страница у {{PLURAL:$2|следећем именском простору|следећим именским просторима}}: $1.',
+
+# Random page in category
+'randomincategory' => 'Случајна страница у категорији',
+'randomincategory-selectcategory-submit' => 'Иди',
 
 # Random redirect
 'randomredirect' => 'Случајно преусмерење',
@@ -2514,9 +2525,7 @@ $1',
 'watchnologintext' => 'Морате бити [[Special:UserLogin|пријављени]] да бисте мењали списак надгледања.',
 'addwatch' => 'Додај на списак надгледања',
 'addedwatchtext' => 'Страница „[[:$1]]“ је додата на ваш [[Special:Watchlist|списак надгледања]].
-Будуће измене ове странице и њене странице за разговор биће наведене овде, а страница ће бити <b>подебљана</b> у [[Special:RecentChanges|списку скорашњих измена]] да би се лакше уочила.
-
-Уколико будете желели да уклоните страницу са списка надгледања, кликните опет на звездицу у горњој палети.',
+Будуће измене ове странице и њене странице за разговор биће наведене тамо.',
 'removewatch' => 'Уклони са списка надгледања',
 'removedwatchtext' => 'Страница „[[:$1]]“ је уклоњена с вашег [[Special:Watchlist|списка надгледања]].',
 'watch' => 'Надгледај',
@@ -3450,8 +3459,23 @@ $1',
 'hours' => '{{PLURAL:$1|$1 сат|$1 сата|$1 сати}}',
 'days' => '{{PLURAL:$1|$1 дан|$1 дана|$1 дана}}',
 'weeks' => '{{PLURAL:$1|$1 седмица}}',
+'months' => '{{PLURAL:$1|$1 месец|$1 месеци}}',
+'years' => '{{PLURAL:$1|$1 година|$1 године}}',
 'ago' => 'пре $1',
 'just-now' => 'управо сад',
+
+# Human-readable timestamps
+'hours-ago' => 'Пре $1 {{PLURAL:$1|сат|сати}}',
+'minutes-ago' => 'Пре $1 {{PLURAL:$1|минут|минута}}',
+'seconds-ago' => 'Пре $1 {{PLURAL:$1|секунда|секунди}}',
+'monday-at' => 'Понедељак у $1',
+'tuesday-at' => 'Уторак у $1',
+'wednesday-at' => 'Среда у $1',
+'thursday-at' => 'Четвртак у $1',
+'friday-at' => 'Петак у $1',
+'saturday-at' => 'Субота у $1',
+'sunday-at' => 'Недеља у $1',
+'yesterday-at' => 'Јуче у $1',
 
 # Bad image list
 'bad_image_list' => 'Формат је следећи:
@@ -4360,8 +4384,8 @@ $5
 'logentry-suppress-delete' => '$1 је {{GENDER:$2|потиснуо|потиснула}} страницу $3',
 'logentry-suppress-event' => '$1 је потајно {{GENDER:$2|променио|променила}} видљивост {{PLURAL:$5|догађаја|$5 догађаја}} у дневнику на $3: $4',
 'logentry-suppress-revision' => '$1 је потајно {{GENDER:$2|променио|променила}} видљивост {{PLURAL:$5|измене|$5 измена}} на страници $3: $4',
-'logentry-suppress-event-legacy' => '$1 је потајно {{GENDER:$2|променио|променила}} видљивост догађајâ у дневнику на $3',
-'logentry-suppress-revision-legacy' => '$1 је потајно {{GENDER:$2|променио|променила}} видљивост изменâ на страници $3',
+'logentry-suppress-event-legacy' => '$1 је потајно {{GENDER:$2|променио|променила}} видљивост догађаја у дневнику на $3',
+'logentry-suppress-revision-legacy' => '$1 је потајно {{GENDER:$2|променио|променила}} видљивост измена на страници $3',
 'revdelete-content-hid' => 'садржај је сакривен',
 'revdelete-summary-hid' => 'опис измене је сакривен',
 'revdelete-uname-hid' => 'корисничко име је сакривено',
@@ -4463,6 +4487,7 @@ $5
 'rotate-comment' => 'Слика је ротирана у смеру казаљке на сату за {{PLURAL:$1|степени}}',
 
 # Limit report
+'limitreport-walltime-value' => '$1 {{PLURAL:$1|секунда|секунди}}',
 'limitreport-postexpandincludesize-value' => '$1/$2 бајтова',
 'limitreport-templateargumentsize-value' => '$1/$2 бајтова',
 

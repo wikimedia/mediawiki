@@ -1138,7 +1138,7 @@ Ja tu izvēlies to norādīt, tas tiks izmantots, lai identificētu tavu darbu (
 'userrights-groupsmember' => 'Šobrīd ietilpst grupās:',
 'userrights-groupsmember-auto' => 'Netiešs dalībnieks:',
 'userrights-groups-help' => 'Tu vari izmainīt kādās grupās šis lietotājs ir:
-* Ieķeksēts lauciņš noāda, ka lietotājs ir attiecīgajā grupā.
+* Ieķeksēts lauciņš norāda, ka lietotājs ir attiecīgajā grupā.
 * Neieķeksēts lauciņš norāda, ka lietotājs nav attiecīgajā grupā.
 * * norāda, ka šo grupu tu nevarēsi noņemt, pēc tam, kad to būsi pielicis, vai otrādāk (tu nevarēsi atcelt savas izmaiņas).',
 'userrights-reason' => 'Iemesls:',

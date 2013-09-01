@@ -4777,7 +4777,7 @@ Verifica tu php.ini y comprueba que <code>session.save_path</code> está estable
 	'config-restart' => 'Sí, reiniciarlo',
 	'config-welcome' => '=== Comprobación del entorno ===
 Se realiza comprobaciones básicas para ver si el entorno es adecuado para la instalación de MediaWiki.
-Deberás suministrar los resultados de tales comprobaciones si necesitas ayuda durante la instalación.',
+Deberás suministrar los resultados de tales comprobaciones si necesitas ayuda durante la instalación.', # Fuzzy
 	'config-copyright' => "=== Derechos de autor y Términos de uso ===
 
 $1
@@ -4968,7 +4968,7 @@ Si no encuentras en el listado el sistema de base de datos que estás intentando
 	'config-missing-db-name' => 'Debes introducir un valor para "Nombre de la base de datos"',
 	'config-missing-db-host' => 'Debe introducir un valor para "Servidor (host) de base de datos"',
 	'config-missing-db-server-oracle' => 'Debe introducir un valor para "TNS de la base de datos"',
-	'config-invalid-db-server-oracle' => 'El TNS de la base de datos, "$1", es inválido.Use sólo carateres ASCII: letras (a-z, A-Z), números (0-9), guiones bajos (_) y guiones (-).Usa sólo caracteres ASCII: letras (a-z, A-Z), dígitos (0-9), guiones bajos (_) y puntos (.).',
+	'config-invalid-db-server-oracle' => 'El TNS de la base de datos, "$1", es inválido.Use sólo carateres ASCII: letras (a-z, A-Z), números (0-9), guiones bajos (_) y guiones (-).Usa sólo caracteres ASCII: letras (a-z, A-Z), dígitos (0-9), guiones bajos (_) y puntos (.).', # Fuzzy
 	'config-invalid-db-name' => 'El nombre de la base de datos "$1"  es inválido.
 Usa sólo caracteres ASCII: letras (a-z, A-Z), números (0-9), guiones bajos (_)y guiones (-).',
 	'config-invalid-db-prefix' => 'El prefijo de la base de datos "$1"  es inválido.
@@ -5097,7 +5097,7 @@ Ahora puedes saltarte el resto de pasos e instalar el wiki con valores predeterm
 	'config-optional-continue' => 'Hazme más preguntas.',
 	'config-optional-skip' => 'Ya estoy aburrido, sólo instala el wiki.',
 	'config-profile' => 'Perfil de derechos de usuario:',
-	'config-profile-wiki' => 'Wiki tradicional', # Fuzzy
+	'config-profile-wiki' => 'Wiki abierto',
 	'config-profile-no-anon' => 'Creación de cuenta requerida',
 	'config-profile-fishbowl' => 'Sólo editores autorizados',
 	'config-profile-private' => 'Wiki privado',
@@ -19658,8 +19658,8 @@ $1',
 	'config-help-restart' => 'Ви бажаєте видалити всі введені та збережені вами дані і запустити процес установки спочатку?',
 	'config-restart' => 'Так, перезапустити установку',
 	'config-welcome' => '=== Перевірка оточення ===
-Проводяться базові перевірки, щоб виявити, чи можлива установка MediaWiki у даній системі.
-Вкажіть результати цих перевірок при зверненні за допомогою під час установки.',
+Будуть проведені базові перевірки, щоб виявити, чи можлива установка MediaWiki у даній системі.
+Не забудьте включити цю інформацію, якщо ви звернетеся по підтримку, як завершити установку.',
 	'config-copyright' => "=== Авторське право і умови ===
 
 $1

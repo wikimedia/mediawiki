@@ -802,7 +802,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'difference-multipage' => '(ከገጾች መካከል ያለው ልዩነት)',
 'lineno' => 'መስመር፡ $1፦',
 'compareselectedversions' => 'የተመረጡትን እትሞች ለማነፃፀር',
-'editundo' => 'ለውጡ ይገለበጥ',
+'editundo' => 'ለውጡ ይገልበጥ',
 'diff-multi' => '(ከነዚህ 2 እትሞች መካከል በ{{PLURAL:$2|አንድ አባል |$2 አባላት}} {{PLURAL:$1|የተደረገ አንድ ለውጥ አይታይም|የተደረጉ $1 ለውጦች አይታዩም}}።)',
 
 # Search results

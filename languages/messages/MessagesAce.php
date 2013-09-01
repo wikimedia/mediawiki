@@ -186,7 +186,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Peuleumah jumeulah ureueng kalon',
 'tog-oldsig' => 'Tanda jaroe jinoe:',
 'tog-fancysig' => 'Peujeuet tanda jaroe sibagoe naseukah wiki (hana hubong keudroe)',
-'tog-showjumplinks' => 'Peuudep hubong keu ngon bantu "langsong u"',
 'tog-uselivepreview' => 'Nguy peuleumah hase langsong (JavaScript) (baci)',
 'tog-forceeditsummary' => 'Peuingat lon meunyo plok neuringkaih neuandam mantong soh',
 'tog-watchlisthideown' => 'Peusöm nyang lôn andam nibak dapeuta keunalön',

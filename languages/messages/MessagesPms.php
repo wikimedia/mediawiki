@@ -580,9 +580,11 @@ Për piasì, ch'a speta $1 prima ëd prové torna.",
 'login-abort-generic' => "Sò tentitiv d'intré ant ël sistema a l'é falì - Abortì",
 'loginlanguagelabel' => 'Lenga: $1',
 'suspicious-userlogout' => "Soa arcesta ëd seurte dal sistema a l'é stàita arfudà përchè a smija com s'a fussa stàita mandà da 'n navigador rot o da l'archiviassion an local d'un prëstanòm.",
+'createacct-another-realname-tip' => "Ël nòm ver a l'é opsional.
+S'a decid ëd butelo, a sarà dovrà për dé a l'utent ël mérit ëd sò travaj.",
 
 # Email sending
-'php-mail-error-unknown' => 'Eror pa conossù ant la funsion PHP mail()',
+'php-mail-error-unknown' => 'Eror pa conossù ant la funsion mail() ëd PHP.',
 'user-mail-no-addy' => 'Provà a spedì un mëssagi sensa adrëssa ëd pòsta eletrònica.',
 'user-mail-no-body' => 'Tentativ ëd mandé un mëssagi con un còrp veuid o curt ëd fasson esagerà.',
 

@@ -1476,7 +1476,7 @@ Jednak informacje o treści {{GRAMMAR:D.lp|{{SITENAME}}}} mogą być w Google ni
 'prefs-rendering' => 'Wygląd',
 'saveprefs' => 'Zapisz',
 'resetprefs' => 'Cofnij niezapisane zmiany',
-'restoreprefs' => 'Przywróć wszystkie domyślne preferencje',
+'restoreprefs' => 'Przywróć wszystkie domyślne preferencje (we wszystkich sekcjach)',
 'prefs-editing' => 'Edycja',
 'rows' => 'Wiersze',
 'columns' => 'Kolumny',
@@ -1563,6 +1563,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'prefs-displaywatchlist' => 'Opcje wyświetlania',
 'prefs-tokenwatchlist' => 'Token',
 'prefs-diffs' => 'Zmiany',
+'prefs-help-prefershttps' => 'Ta opcja zacznie działać przy twoim następnym zalogowaniu.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'Wygląda na prawidłowy',
@@ -2040,8 +2041,7 @@ Możesz także spróbować w czasie mniejszego obciążenia serwera.',
 'upload_source_file' => ' (plik na twoim komputerze)',
 
 # Special:ListFiles
-'listfiles-summary' => 'Na tej stronie specjalnej prezentowane są wszystkie przesłane pliki.
-Jeśli włączono filtrowanie dla konkretnego użytkownika, prezentowane są wyłącznie przesłana przez niego najnowsze wersje plików.',
+'listfiles-summary' => 'Na tej stronie specjalnej prezentowane są wszystkie przesłane pliki.',
 'listfiles_search_for' => 'Szukaj pliku o nazwie',
 'imgfile' => 'plik',
 'listfiles' => 'Lista plików',
@@ -2052,6 +2052,9 @@ Jeśli włączono filtrowanie dla konkretnego użytkownika, prezentowane są wy�
 'listfiles_size' => 'Wielkość',
 'listfiles_description' => 'Opis',
 'listfiles_count' => 'Wersje',
+'listfiles-latestversion' => 'Aktualna wersja',
+'listfiles-latestversion-yes' => 'Tak',
+'listfiles-latestversion-no' => 'Nie',
 
 # File description page
 'file-anchor-link' => 'Plik',

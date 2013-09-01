@@ -1490,7 +1490,7 @@ Note que os índices do sistema de busca externo poderão conter referências de
 'prefs-rendering' => 'Aparência',
 'saveprefs' => 'Salvar',
 'resetprefs' => 'Eliminar as alterações não-salvas',
-'restoreprefs' => 'Restaurar todas as configurações padrão',
+'restoreprefs' => 'Restaurar todas as configurações padrão (em todas as seções)',
 'prefs-editing' => 'Opções de edição',
 'rows' => 'Linhas:',
 'columns' => 'Colunas:',
@@ -1577,6 +1577,7 @@ Caso decida fornecê-lo, este será utilizado para dar-lhe crédito pelo seu tra
 'prefs-displaysearchoptions' => 'Opções de exibição',
 'prefs-displaywatchlist' => 'Opções de exibição',
 'prefs-diffs' => 'Diferenças',
+'prefs-help-prefershttps' => 'Esta preferência terá efeito no seu próximo início de sessão.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'Parece válido',
@@ -1751,6 +1752,8 @@ Caso decida fornecê-lo, este será utilizado para dar-lhe crédito pelo seu tra
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|alteração|alterações}}',
+'enhancedrc-since-last-visit' => '$1 {{PLURAL:$1|desde a última visita}}',
+'enhancedrc-history' => 'histórico',
 'recentchanges' => 'Mudanças recentes',
 'recentchanges-legend' => 'Opções das mudanças recentes',
 'recentchanges-summary' => 'Acompanhe nesta página as mudanças mais recentes deste wiki.',
@@ -2071,6 +2074,10 @@ Um clique sobre um cabeçalho de coluna altera a ordenação.',
 'listfiles_size' => 'Tamanho',
 'listfiles_description' => 'Descrição',
 'listfiles_count' => 'Versões',
+'listfiles-show-all' => 'Incluir versões antigas das imagens',
+'listfiles-latestversion' => 'Versão atual',
+'listfiles-latestversion-yes' => 'Sim',
+'listfiles-latestversion-no' => 'Não',
 
 # File description page
 'file-anchor-link' => 'Arquivo',
@@ -4208,6 +4215,8 @@ Caso contrário, você poderá usar o formulário simplificado a seguir. Seu com
 'rotate-comment' => 'Imagem girada por $1 {{PLURAL:$1|grau|graus}} no sentido horário',
 
 # Limit report
+'limitreport-title' => 'Analisador de dados de perfis:',
+'limitreport-cputime' => 'Tempo de uso da CPU',
 'limitreport-cputime-value' => '$1 {{PLURAL:$1|segundo|segundos}}',
 'limitreport-walltime' => 'Tempo de uso real',
 'limitreport-walltime-value' => '$1 {{PLURAL:$1|segundo|segundos}}',

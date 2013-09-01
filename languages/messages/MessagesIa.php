@@ -1335,7 +1335,7 @@ Nota que lor indices del contento de {{SITENAME}} pote esser obsolete.',
 'prefs-rendering' => 'Apparentia',
 'saveprefs' => 'Confirmar',
 'resetprefs' => 'Reverter cambios',
-'restoreprefs' => 'Restaurar tote le configurationes predefinite',
+'restoreprefs' => 'Restaurar tote le preselectiones (in tote le sectiones)',
 'prefs-editing' => 'Modification',
 'rows' => 'Lineas:',
 'columns' => 'Columnas:',
@@ -1424,6 +1424,7 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'prefs-displaywatchlist' => 'Optiones de presentation',
 'prefs-tokenwatchlist' => 'Indicio',
 'prefs-diffs' => 'Differentias',
+'prefs-help-prefershttps' => 'Iste preferentia habera effecto a partir de tu proxime session.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'Sembla valide',
@@ -1904,8 +1905,7 @@ Pote esser preferite reprovar quando le sito es minus occupate.',
 'upload_source_file' => ' (un file in tu computator)',
 
 # Special:ListFiles
-'listfiles-summary' => 'Iste pagina special monstra tote le files incargate.
-Si un filtro per usator es active, es monstrate solmente le files del quales le usator in question ha incargate le version le plus recente.',
+'listfiles-summary' => 'Iste pagina special monstra tote le files incargate.',
 'listfiles_search_for' => 'Cercar un nomine de media:',
 'imgfile' => 'file',
 'listfiles' => 'Lista de files',
@@ -1916,6 +1916,10 @@ Si un filtro per usator es active, es monstrate solmente le files del quales le 
 'listfiles_size' => 'Grandor',
 'listfiles_description' => 'Description',
 'listfiles_count' => 'Versiones',
+'listfiles-show-all' => 'Includer ancian versiones de imagines',
+'listfiles-latestversion' => 'Version actual',
+'listfiles-latestversion-yes' => 'Si',
+'listfiles-latestversion-no' => 'No',
 
 # File description page
 'file-anchor-link' => 'File',

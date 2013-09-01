@@ -358,7 +358,7 @@ $messages = array(
 'tog-noconvertlink' => 'Älä muunna linkkien otsikoita toiseen kirjoitusjärjestelmään',
 'tog-norollbackdiff' => 'Älä näytä eroavaisuuksia palauttamisen jälkeen',
 'tog-useeditwarning' => 'Varoita minua, kun poistun muokkaussivulta tallentamatta muutoksia',
-'tog-prefershttps' => 'Käytä aina turvallista yhteyttä kun olet sisään kirjautuneena',
+'tog-prefershttps' => 'Käytä aina turvallista yhteyttä kun olet kirjautunut sisään',
 
 'underline-always' => 'Aina',
 'underline-never' => 'Ei koskaan',
@@ -685,7 +685,7 @@ Ilmoita tämän sivun osoite wikin [[Special:ListUsers/sysop|ylläpitäjälle]].
 Joku muu on saattanut poistaa sen.',
 'cannotdelete-title' => 'Sivua $1 ei voi poistaa',
 'delete-hook-aborted' => 'Laajennuskoodi esti poiston antamatta syytä.',
-'no-null-revision' => 'Tyhjää revisiota sivusta "$1" ei voida luoda',
+'no-null-revision' => 'Nollamuokkausta sivulla "$1" ei voi tehdä',
 'badtitle' => 'Virheellinen otsikko',
 'badtitletext' => 'Pyytämäsi sivuotsikko oli virheellinen, tyhjä tai väärin linkitetty kieltenvälinen tai wikienvälinen linkki.',
 'perfcached' => 'Nämä tiedot ovat välimuistista eivätkä välttämättä ole ajan tasalla. Välimuistissa on saatavilla enintään {{PLURAL:$1|yksi tulos|$1 tulosta}}.',
