@@ -555,7 +555,7 @@ class LanguageConverter {
 		$variant = $this->getPreferredVariant();
 		$index = $title->getNamespace();
 		if ( $index !== NS_MAIN ) {
-			$text = $this->convertNamespace( $index ) . ':';
+			$text = $this->convertNamespace( $index, $variant ) . ':';
 		} else {
 			$text = '';
 		}
@@ -567,10 +567,13 @@ class LanguageConverter {
 	 * Get the namespace display name in the preferred variant.
 	 *
 	 * @param $index int namespace id
+	 * @param $variant string|null variant code or null for preferred variant
 	 * @return String: namespace name for display
 	 */
-	public function convertNamespace( $index ) {
-		$variant = $this->getPreferredVariant();
+	public function convertNamespace( $index, $variant = null ) {
+		if ( $variant === null ) {
+			$variant = $this->getPreferredVariant();
+		}
 		if ( $index === NS_MAIN ) {
 			return '';
 		} else {

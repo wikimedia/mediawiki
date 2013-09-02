@@ -686,7 +686,18 @@ class Language {
 				}
 			}
 
-			$this->namespaceAliases = $aliases;
+			# Also add converted namespace names as aliases, to avoid confusion.
+			$convertedNames = array();
+			foreach ( $this->getVariants() as $variant ) {
+				if ( $variant === $this->mCode ) {
+					continue;
+				}
+				foreach ( $this->getNamespaces() as $ns => $_ ) {
+					$convertedNames[$this->getConverter()->convertNamespace( $ns, $variant )] = $ns;
+				}
+			}
+
+			$this->namespaceAliases = $aliases + $convertedNames;
 		}
 		return $this->namespaceAliases;
 	}

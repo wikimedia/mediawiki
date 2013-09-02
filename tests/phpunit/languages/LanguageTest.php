@@ -1504,4 +1504,28 @@ class LanguageTest extends LanguageClassesTestCase {
 			array( 'en', null, 'en does not have converter. Although FakeConverter handles en -> en conversion but it is useless' ),
 		);
 	}
+
+	/**
+	 * @dataProvider provideGetNamespaceAliases
+	 */
+	function testGetNamespaceAliases( $languageCode, $subset ) {
+		$language = Language::factory( $languageCode );
+		$aliases = $language->getNamespaceAliases();
+		foreach ( $subset as $alias => $nsId ) {
+			$this->assertEquals( $nsId, $aliases[$alias] );
+		}
+	}
+
+	function provideGetNamespaceAliases() {
+		// TODO: Add tests for NS_PROJECT_TALK and GenderNamespaces
+		return array(
+			array(
+				'zh',
+				array(
+					'文件' => NS_FILE,
+					'檔案' => NS_FILE,
+				),
+			),
+		);
+	}
 }
