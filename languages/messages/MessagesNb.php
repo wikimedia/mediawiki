@@ -1738,6 +1738,7 @@ Informasjonen vil være offentlig.',
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|endring|endringer}}',
 'enhancedrc-since-last-visit' => '$1 {{PLURAL:$1|siden forrige besøk}}',
+'enhancedrc-history' => 'historikk',
 'recentchanges' => 'Siste endringer',
 'recentchanges-legend' => 'Alternativer for siste endringer',
 'recentchanges-summary' => 'På denne siden vises de siste endringene i wikien.',
@@ -2030,8 +2031,7 @@ For best mulig sikkerhet er img_auth.php slått av.',
 'upload_source_file' => ' (en fil på din datamaskin)',
 
 # Special:ListFiles
-'listfiles-summary' => 'Denne spesialsiden viser alle opplastede filer.
-Når den filtreres av en bruker, vises bare de sist opplastede versjonene av filen.',
+'listfiles-summary' => 'Denne spesialsiden viser alle opplastede filer.',
 'listfiles_search_for' => 'Søk etter filnavn:',
 'imgfile' => 'fil',
 'listfiles' => 'Filliste',
@@ -2042,6 +2042,10 @@ Når den filtreres av en bruker, vises bare de sist opplastede versjonene av fil
 'listfiles_size' => 'Størrelse (bytes)',
 'listfiles_description' => 'Beskrivelse',
 'listfiles_count' => 'Versjoner',
+'listfiles-show-all' => 'Inkluderer gamle versjoner av bilder',
+'listfiles-latestversion' => 'Gjeldende versjon',
+'listfiles-latestversion-yes' => 'Ja',
+'listfiles-latestversion-no' => 'Nei',
 
 # File description page
 'file-anchor-link' => 'Fil',
@@ -2139,7 +2143,7 @@ Kanskje du vil redigere beskrivelsen på dens [$2 filbeskrivelsesside].',
 # Random page in category
 'randomincategory' => 'Tilfeldig side innenfor kategorien',
 'randomincategory-invalidcategory' => '«$1» er ikke et gyldig kategorinavn.',
-'randomincategory-nopages' => 'Det finnes ingen sider i [[:Kategori:$1]].',
+'randomincategory-nopages' => 'Det finnes ingen sider i [[:Kategori:$1]]-kategorien.',
 'randomincategory-selectcategory' => 'Hent en tilfeldig side fra kategori: $1 $2.',
 'randomincategory-selectcategory-submit' => 'Start',
 
@@ -2179,8 +2183,8 @@ En side anses om en pekerside om den inneholder en mal som det lenkes til fra [[
 'pageswithprop-text' => 'Denne siden lister opp sider som bruker en viss sideverdi.',
 'pageswithprop-prop' => 'Verdinavn:',
 'pageswithprop-submit' => 'Gå',
-'pageswithprop-prophidden-long' => 'skjult verdi for egenskap langtekst ($1 kilobytes)',
-'pageswithprop-prophidden-binary' => 'skjult verdi for binæregenskap ($1 kilobyte)',
+'pageswithprop-prophidden-long' => 'skjult verdi for egenskap langtekst ($1)',
+'pageswithprop-prophidden-binary' => 'skjult verdi for binæregenskap ($1)',
 
 'doubleredirects' => 'Doble omdirigeringer',
 'doubleredirectstext' => 'Denne siden lister opp de sidene som er omdirigeringer til andre omdirigeringssider.
@@ -4203,5 +4207,6 @@ Om det ikke er tilfellet, kan du bruke det enkle skjemaet som du finner under. K
 'limitreport-templateargumentsize' => 'Malargument-størrelse',
 'limitreport-templateargumentsize-value' => '$1/$2 byte',
 'limitreport-expansiondepth' => 'Største ekspansjonsdybde',
+'limitreport-expensivefunctioncount' => 'Antall kostbare parserfunksjoner',
 
 );

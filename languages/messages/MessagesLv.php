@@ -1053,7 +1053,7 @@ Pagaidām vari meklēt, izmantojot Google vai Yahoo.
 'recentchangesdays-max' => 'Ne vairāk kā $1 {{PLURAL:$1|diena|dienas}}',
 'recentchangescount' => 'Izmaiņu skaits, kuru rāda pēc noklusējuma:',
 'prefs-help-recentchangescount' => 'Šis parametrs attiecas uz pēdējo izmaiņu un hronoloģijas lapām, kā arī uz sistēmas žurnāliem',
-'savedprefs' => 'Tavas izvēles ir saglabātas.',
+'savedprefs' => 'Jūsu izvēles ir saglabātas.',
 'timezonelegend' => 'Laika josla:',
 'localtime' => 'Vietējais laiks:',
 'timezoneuseserverdefault' => 'Lietot viki noklusēto ($1)',

@@ -1734,7 +1734,7 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 'show' => 'Montri',
 'minoreditletter' => 'e',
 'newpageletter' => 'N',
-'boteditletter' => 'R',
+'boteditletter' => 'r',
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|priatentanta uzanto|priatentantaj uzantoj}}]',
 'rc_categories' => 'Nur por jenaj kategorioj (disigu per "|")',
 'rc_categories_any' => 'ĉiu',

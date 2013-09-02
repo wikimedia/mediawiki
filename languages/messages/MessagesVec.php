@@ -265,6 +265,18 @@ $messages = array(
 'oct' => 'oto',
 'nov' => 'nov',
 'dec' => 'dis',
+'january-date' => '$1 de zenaro',
+'february-date' => '$1 de febraro',
+'march-date' => '$1 de marso',
+'april-date' => '$1 de avril',
+'may-date' => '$1 de majo',
+'june-date' => '$1 de zugno',
+'july-date' => '$1 de lujo',
+'august-date' => '$1 de agosto',
+'september-date' => '$1 de setenbre',
+'october-date' => '$1 de otobre',
+'november-date' => '$1 de novenbre',
+'december-date' => '$1 de desenbre',
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Categoria|Categorie}}',
@@ -290,7 +302,7 @@ $messages = array(
 'newwindow' => '(se verze in te na finestra nova)',
 'cancel' => 'Lassa star',
 'moredotdotdot' => 'Altro...',
-'morenotlisted' => 'Altro nó elencà',
+'morenotlisted' => 'Sta lista no xe conpleta.',
 'mypage' => 'Pàjina',
 'mytalk' => 'Discussion',
 'anontalk' => 'Discusion par sto IP',
@@ -346,6 +358,7 @@ $messages = array(
 'create-this-page' => 'Crea sta pagina',
 'delete' => 'Scansela',
 'deletethispage' => 'Scansela sta pagina',
+'undeletethispage' => 'Recupera sta pagina',
 'undelete_short' => 'Recupera {{PLURAL:$1|na revision|$1 revision}}',
 'viewdeleted_short' => 'Vedi {{PLURAL:$1|na modifega cancełà|$1 modifeghe cancełade}}',
 'protect' => 'Protezi',
@@ -697,7 +710,7 @@ Spèta un tocheto prima de proàr da novo.',
 'newpassword' => 'Nova password:',
 'retypenew' => 'Riscrivi la password nova:',
 'resetpass_submit' => 'Inposta la password e acedi al sito',
-'changepassword-success' => 'La password la xe stà modificà. Acesso in corso...',
+'changepassword-success' => 'La password la xe stà modificà!',
 'resetpass_forbidden' => 'No se pol modificar le password',
 'resetpass-no-info' => "Te ghè da ver fato l'acesso per poder entrar in sta pàxena.",
 'resetpass-submit-loggedin' => 'Cànbia password',
@@ -1154,6 +1167,7 @@ Assicùrete che la continuità storica de la pagina no la vegna alterà.',
 'compareselectedversions' => 'Confronta le version segnàe',
 'showhideselectedversions' => 'Mostra/scondi version selessionà',
 'editundo' => 'tira indrìo',
+'diff-empty' => '(Nissuna difarensa)',
 'diff-multi' => '({{PLURAL:$1|Una revision intermedia|$1 revision intermedie}} de {{PLURAL:$2|un utente|$2 utenti}} mia mostrà)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Una revision intermedia|$1 revision intermedie}} de pi de {{PLURAL:$2|un utente|$2 utenti}} mia mostrà)',
 'difference-missing-revision' => "{{PLURAL:$2|Na version|$2 version}} de sta difarensa ($1) {{PLURAL:$2|nó ła xe sta trovà|nó łe xe stae trovae}}.
@@ -1785,6 +1799,8 @@ Se l'utente modifega l'ordenamento, vien mostradi soło i file caricadi pi de re
 'listfiles_size' => 'Dimension in byte',
 'listfiles_description' => 'Descrizion',
 'listfiles_count' => 'Versioni',
+'listfiles-latestversion-yes' => 'Sì',
+'listfiles-latestversion-no' => 'No',
 
 # File description page
 'file-anchor-link' => 'File',
@@ -1878,6 +1894,9 @@ Probabilmente te vui modifegar ła descrision prexente inte ła [$2 pàjina de d
 # Random page
 'randompage' => 'Na pagina a ocio',
 'randompage-nopages' => 'No ghe xe nissuna pàxena in {{PLURAL:$2|tel|tei}} namespace "$1".',
+
+# Random page in category
+'randomincategory' => 'Pagina a ocio in te na categoria',
 
 # Random redirect
 'randomredirect' => 'Un redirect a caso',

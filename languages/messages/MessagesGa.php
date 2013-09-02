@@ -12,6 +12,7 @@
  * @author Evertype
  * @author Kscanne
  * @author Kwekubo
+ * @author Leftmostcat
  * @author Moilleadóir
  * @author Moydow
  * @author Pksofttec
@@ -138,8 +139,8 @@ $messages = array(
 'tog-showhiddencats' => 'Taispeáin chatagóirí folaithe',
 'tog-norollbackdiff' => 'Fág an difr ar lár tar éis athruithe a rolladh siar',
 
-'underline-always' => 'Ar siúl i gcónaí',
-'underline-never' => 'Múchta',
+'underline-always' => 'I gcónaí',
+'underline-never' => 'Riamh',
 'underline-default' => 'Mar atá réamhshocraithe sa bhrabhsálaí',
 
 # Font style option in Special:Preferences
@@ -173,8 +174,8 @@ $messages = array(
 'august' => 'Lúnasa',
 'september' => 'Meán Fómhair',
 'october' => 'Deireadh Fómhair',
-'november' => 'Mí na Samhna',
-'december' => 'Mí na Nollag',
+'november' => 'Samhain',
+'december' => 'Nollaig',
 'january-gen' => 'Eanáir',
 'february-gen' => 'Feabhra',
 'march-gen' => 'an Mhárta',
@@ -224,7 +225,7 @@ $messages = array(
 'newwindow' => '(a osclófar i bhfuinneog nua)',
 'cancel' => 'Cealaigh',
 'moredotdotdot' => 'Tuilleadh...',
-'mypage' => 'Mo leathanach',
+'mypage' => 'Leathanach',
 'mytalk' => 'Plé',
 'anontalk' => 'Plé don seoladh IP seo',
 'navigation' => 'Nascleanúint',
@@ -473,7 +474,10 @@ An fáth ná ''$2''.",
 
 Is féidir leat an {{SITENAME}} a úsáid fós gan ainm, nó is féidir leat <span class='plainlinks'>[$1 logáil isteach arís]</span> mar an úsáideoir céanna, nó mar úsáideoir eile.
 Tabhair faoi deara go taispeáinfear roinnt leathanaigh mar atá tú logáilte isteach fós, go dtí go ghlanfá amach do taisce líonleitheora.",
+'welcomeuser' => 'Fáilte, $1!',
+'welcomecreation-msg' => 'Cruthaíodh do chuntas.',
 'yourname' => "D'ainm úsáideora",
+'userlogin-yourname' => 'Ainm úsáideora',
 'yourpassword' => "D'fhocal faire",
 'yourpasswordagain' => "Athiontráil d'fhocal faire",
 'remembermypassword' => "Cuimhnigh ar m'fhocal faire ar an ríomhaire seo (ar feadh uastréimhse de $1 {{PLURAL:$1|lá|lá}})",
@@ -493,8 +497,14 @@ Tabhair faoi deara go taispeáinfear roinnt leathanaigh mar atá tú logáilte i
 'gotaccount' => "An bhfuil cuntas agat cheana féin? '''$1'''.",
 'gotaccountlink' => 'Logáil isteach',
 'userlogin-resetlink' => 'Sonraí logála isteach dearmadta agat?',
+'createacct-emailrequired' => 'Seoladh ríomhphoist',
+'createacct-email-ph' => 'Iontráil do sheoladh ríomhphoist',
+'createacct-another-email-ph' => 'Iontráil seoladh ríomhphoist',
 'createaccountmail' => 'le ríomhphost',
 'createaccountreason' => 'Fáth:',
+'createacct-reason' => 'Cúis',
+'createacct-submit' => 'Cruthaigh do chuntas',
+'createacct-another-submit' => 'Cruthaigh cuntas eile',
 'badretype' => "D'iontráil tú dhá fhocal faire difriúla.",
 'userexists' => 'Tá an ainm úsáideora sin in úsáid cheana féin.<br />
 Roghnaigh ainm eile agus bain triail eile as.',
@@ -561,7 +571,7 @@ Iontráil seoladh dea-fhormáidte le do thoil, nó glan an réimse sin.',
 'resetpass_announce' => "Tá tú logáilte isteach le cód sealadach a seoladh chugat i r-phost.
 Chun d'iarratas logáil isteach a chríochnú, caithfidh tú focal faire nua a roghnú anseo:",
 'resetpass_text' => '<!-- Cur téacs anseo -->',
-'resetpass_header' => 'Athshocraigh pasfhocail chuntais',
+'resetpass_header' => 'Athraigh focal faire an chuntais',
 'oldpassword' => 'Focal faire reatha:',
 'newpassword' => 'Focal faire nua:',
 'retypenew' => 'Athiontráil an focal nua faire:',
@@ -574,8 +584,11 @@ Chun d'iarratas logáil isteach a chríochnú, caithfidh tú focal faire nua a r
 
 # Special:PasswordReset
 'passwordreset-username' => 'Ainm úsáideora:',
+'passwordreset-email' => 'Seoladh ríomhphoist:',
 
 # Special:ChangeEmail
+'changeemail-none' => '(neamhní)',
+'changeemail-password' => "D'fhocal faire {{SITENAME}}:",
 'changeemail-cancel' => 'Cealaigh',
 
 # Edit page toolbar

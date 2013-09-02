@@ -910,6 +910,9 @@ Senhal temporari: $2',
 
 # Special:ResetTokens
 'resettokens' => 'Reïnicializar los getons',
+'resettokens-text' => "Aici, podètz reïnicializar los getons que permeton d’accedir a d'unas donadas privadas associadas a vòstre compte.
+
+Lo vos caldriá far se las avètz partejats accidentalament amb qualqu'un o se vòstre compte es estat compromés.",
 'resettokens-no-tokens' => 'I a pas cap de geton de reïnicializar.',
 'resettokens-legend' => 'Reïnicializar los getons',
 'resettokens-tokens' => 'Getons :',
@@ -1943,8 +1946,7 @@ Per una seguretat optimala, img_auth.php es desactivat.",
 'upload_source_file' => ' (un fichièr sus vòstre ordenador)',
 
 # Special:ListFiles
-'listfiles-summary' => 'Aquesta pagina especiala permet de far la lista de totes los fichièrs importats.
-Quand es filtrada per utilizaire, sols los fichièrs que la version la mai recenta es estada importada per aqueste utilizaire son afichats.',
+'listfiles-summary' => 'Aquesta pagina especiala permet de far la lista de totes los fichièrs importats.',
 'listfiles_search_for' => 'Recèrca del mèdia nomenat :',
 'imgfile' => 'fichièr',
 'listfiles' => 'Lista dels imatges',
