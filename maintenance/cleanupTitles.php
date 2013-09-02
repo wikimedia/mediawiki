@@ -42,6 +42,9 @@ class TitleCleanup extends TableCleanup {
 		$this->mDescription = "Script to clean up broken, unparseable titles";
 	}
 
+	/**
+	 * @param $row object
+	 */
 	protected function processRow( $row ) {
 		global $wgContLang;
 		$display = Title::makeName( $row->page_namespace, $row->page_title );
@@ -53,23 +56,28 @@ class TitleCleanup extends TableCleanup {
 			&& $title->getNamespace() == $row->page_namespace
 			&& $title->getDBkey() === $row->page_title )
 		{
-			return $this->progress( 0 );  // all is fine
+			$this->progress( 0 );  // all is fine
+			return;
 		}
 
 		if ( $row->page_namespace == NS_FILE && $this->fileExists( $row->page_title ) ) {
 			$this->output( "file $row->page_title needs cleanup, please run cleanupImages.php.\n" );
-			return $this->progress( 0 );
+			$this->progress( 0 );
 		} elseif ( is_null( $title ) ) {
 			$this->output( "page $row->page_id ($display) is illegal.\n" );
 			$this->moveIllegalPage( $row );
-			return $this->progress( 1 );
+			$this->progress( 1 );
 		} else {
 			$this->output( "page $row->page_id ($display) doesn't match self.\n" );
 			$this->moveInconsistentPage( $row, $title );
-			return $this->progress( 1 );
+			$this->progress( 1 );
 		}
 	}
 
+	/**
+	 * @param $name string
+	 * @return bool
+	 */
 	protected function fileExists( $name ) {
 		// XXX: Doesn't actually check for file existence, just presence of image record.
 		// This is reasonable, since cleanupImages.php only iterates over the image table.
@@ -78,6 +86,9 @@ class TitleCleanup extends TableCleanup {
 		return $row !== false;
 	}
 
+	/**
+	 * @param $row object
+	 */
 	protected function moveIllegalPage( $row ) {
 		$legal = 'A-Za-z0-9_/\\\\-';
 		$legalized = preg_replace_callback( "!([^$legal])!",
@@ -115,6 +126,10 @@ class TitleCleanup extends TableCleanup {
 		}
 	}
 
+	/**
+	 * @param $row object
+	 * @param $title Title
+	 */
 	protected function moveInconsistentPage( $row, $title ) {
 		if ( $title->exists() || $title->getInterwiki() || !$title->canExist() ) {
 			if ( $title->getInterwiki() || !$title->canExist() ) {
