@@ -28,6 +28,7 @@ class InstallDocFormatterTest extends MediaWikiTestCase {
 			array( 'Install &#123;&#123;template}}', 'Install {{template}}', 'Escaping [[' ),
 			array( 'Install &#91;&#91;page]]', 'Install [[page]]', 'Escaping {{' ),
 			array( 'Install ', "Install \r", 'Removing \r' ),
+			array( 'Install &#95;&#95;TOC&#95;&#95;', 'Install __TOC__', 'Escaping __' ),
 
 			# Transform \t{1,2} into :{1,2}
 			array( ':One indentation', "\tOne indentation", 'Replacing a single \t' ),
