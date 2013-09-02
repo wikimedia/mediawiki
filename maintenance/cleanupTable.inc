@@ -41,6 +41,8 @@ class TableCleanup extends Maintenance {
 	public $batchSize = 100;
 	public $reportInterval = 100;
 
+	protected $processed, $updated, $count, $startTime, $table;
+
 	public function __construct() {
 		parent::__construct();
 		$this->addOption( 'dry-run', 'Perform a dry run' );
@@ -66,6 +68,9 @@ class TableCleanup extends Maintenance {
 		$this->table = $table;
 	}
 
+	/**
+	 * @param $updated int
+	 */
 	protected function progress( $updated ) {
 		$this->updated += $updated;
 		$this->processed++;
@@ -96,6 +101,10 @@ class TableCleanup extends Maintenance {
 		flush();
 	}
 
+	/**
+	 * @param $params array
+	 * @throws MWException
+	 */
 	public function runTable( $params ) {
 		$dbr = wfGetDB( DB_SLAVE );
 
@@ -156,6 +165,10 @@ class TableCleanup extends Maintenance {
 		$this->output( "Finished $table... $this->updated of $this->processed rows updated\n" );
 	}
 
+	/**
+	 * @param $matches array
+	 * @return string
+	 */
 	protected function hexChar( $matches ) {
 		return sprintf( "\\x%02x", ord( $matches[1] ) );
 	}
