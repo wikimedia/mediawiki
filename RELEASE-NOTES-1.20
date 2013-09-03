@@ -5,17 +5,13 @@ setting since version 1.2.0. If you have it on, turn it '''off''' if you can.
 
 == MediaWiki 1.20.7 ==
 
-This is not yet a release!
-
-=== Changes since 1.20.6 ===
-* (bug 51064) Purge upstream caches when deleting file assets.
-
-== MediaWiki 1.20.7 ==
-
 This is a security release of the MediaWiki 1.20 branch.
 
 === Changes since 1.20.6 ===
-* (bug 49090) Token-getting functions will fail when using jsonp callbacks.
+* SECURITY: Fix extension detection with 2 .'s
+* SECURITY: Token-getting functions will fail when using jsonp callbacks.
+* SECURITY: Sanitize ResourceLoader exception messages
+* Purge upstream caches when deleting file assets.
 
 == MediaWiki 1.20.6 ==
 
