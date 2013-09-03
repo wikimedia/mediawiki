@@ -44,6 +44,10 @@ class ApiUnblock extends ApiBase {
 		$params = $this->extractRequestParams();
 
 		if ( $params['gettoken'] ) {
+			// If we're in JSON callback mode, no tokens can be obtained
+			if ( !is_null( $this->getMain()->getRequest()->getVal( 'callback' ) ) ) {
+				$this->dieUsage( 'Cannot get token when using a callback', 'aborted' );
+			}
 			$res['unblocktoken'] = $user->getEditToken();
 			$this->getResult()->addValue( null, $this->getModuleName(), $res );
 			return;
