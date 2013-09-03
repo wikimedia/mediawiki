@@ -5,10 +5,11 @@ setting since version 1.2.0. If you have it on, turn it '''off''' if you can.
 
 == MediaWiki 1.19.8 ==
 
-This is not a release yet.
+This is a security release of the MediaWiki 1.19 branch.
 
 === Changes since 1.19.7 ===
 * (bug 51064) Purge upstream caches when deleting file assets.
+* (bug 49090) SECURITY: Token-getting functions will fail when using jsonp callbacks.
 
 == MediaWiki 1.19.7 ==
 
