@@ -5,17 +5,17 @@ have it on, turn it '''off''' if you can.
 
 == MediaWiki 1.21.2 ==
 
-This is a security release of the MediaWiki 1.21 branch.
+This is a security adn maintenance release of the MediaWiki 1.21 branch.
 
 === Changes since 1.21.1 ===
 
-* Support for the 'gettoken' parameter to action=block and action=unblock,
+* SECURITY: Fix extension detection with 2 .'s
+* SECURITY: Support for the 'gettoken' parameter to action=block and action=unblock,
   deprecated since 1.20, has been removed.
-* (bug 49090) Token-getting functions will fail when using jsonp callbacks.
-* (bug 51064) Purge upstream caches when deleting file assets.
-* (bug 47750) Unit test suite now runs the AutoLoader tests. Also fixed the
-  autoloading entry for the PageORMTableForTesting class though it had no
-  impact.
+* SECURITY: Sanitize ResourceLoader exception messages
+* Purge upstream caches when deleting file assets.
+* Unit test suite now runs the AutoLoader tests. Also fixed the autoloading
+  entry for the PageORMTableForTesting class though it had no impact.
 
 == MediaWiki 1.21.1 ==
 
