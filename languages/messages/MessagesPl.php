@@ -1676,7 +1676,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'right-import' => 'Import stron z innych wiki',
 'right-importupload' => 'Import stron poprzez przesłanie pliku',
 'right-patrol' => 'Oznaczanie edycji jako „sprawdzone”',
-'right-autopatrol' => 'Własne edycje automatycznie oznaczane jako „sprawdzone”',
+'right-autopatrol' => 'Automatyczne oznaczanie własnych edycji jako „sprawdzone”',
 'right-patrolmarks' => 'Podgląd znaczników patrolowania ostatnich zmian – oznaczania jako „sprawdzone”',
 'right-unwatchedpages' => 'Podgląd listy stron nieobserwowanych',
 'right-mergehistory' => 'Łączenie historii edycji stron',

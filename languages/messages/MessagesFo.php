@@ -745,6 +745,9 @@ Fyribils loyniorð: $2',
 
 # Special:ResetTokens
 'resettokens' => 'Nullstilla lyklar',
+'resettokens-text' => 'Tú kanst nullstilla lyklar sum geva atgongd til ávís privat dáta sum eru knýtt at tínari konto her.
+
+Tú eigur at gera tað um tú av óvart hevur deilt lyklarnar við onkran, ella um tín konta hevur verið útsett fyri vandastøðu.',
 'resettokens-no-tokens' => 'Tað eru ongir lyklar at nullstilla.',
 'resettokens-legend' => 'Nullstilla lyklar',
 'resettokens-tokens' => 'Lyklar:',
@@ -1778,6 +1781,8 @@ Tú kanst eisini royna aftur, tá tað ikki eru so nógv í gongd her í senn.',
 'listfiles_size' => 'Stødd',
 'listfiles_description' => 'Frágreiðing',
 'listfiles_count' => 'Versjónir',
+'listfiles-latestversion-yes' => 'Ja',
+'listfiles-latestversion-no' => 'Nei',
 
 # File description page
 'file-anchor-link' => 'Mynd',

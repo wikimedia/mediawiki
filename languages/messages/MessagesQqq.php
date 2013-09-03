@@ -5845,7 +5845,9 @@ See also:
 * {{msg-mw|Tooltip-pt-mycontris}}
 {{Identical|Contribution}}',
 'contribsub2' => 'Contributions for "user" (links). Parameters:
-* $1 - username
+* $1 - any one of the following:
+** IP address (if anonymous user)
+** username, with a link which points to the user page (if registered user)
 * $2 - list of tool links. The list contains a link which has text {{msg-mw|Sp-contributions-talk}}
 {{Identical|For $1}}',
 'nocontribs' => 'Used in [[Special:Contributions]] and [[Special:DeletedContributions]].
@@ -7051,9 +7053,13 @@ See also:
 See also:
 * {{msg-mw|Importsuccess}}
 * {{msg-mw|Importfailed}}',
-'import-revision-count' => '* $1 - number of revisions, success count',
+'import-revision-count' => 'Preceded by link text. Parameters:
+* $1 - number of succeeded revisions',
 'importnopages' => 'Used as error message in [[Special:Import]].',
-'imported-log-entries' => '* $1 - number of log items',
+'imported-log-entries' => 'Used as success message. Parameters:
+* $1 - number of log items
+See also:
+* {{msg-mw|Importnopages}} - fatal error message',
 'importfailed' => 'Used as error message in [[Special:Import]]. Parameters:
 * $1 - import source
 See also:
@@ -7131,17 +7137,25 @@ See also:
 * {{msg-mw|import-token-mismatch}}
 * {{msg-mw|import-invalid-interwiki}}
 * {{msg-mw|Importunknownsource}}',
-'import-error-edit' => 'Import error message displayed when importing user has no edit rights for a page. Parameters:
-* $1 is a page name.
-See also:
-* {{msg-mw|import-error-create}}',
-'import-error-create' => 'Import error message displayed when importing user has no create rights for a page. Parameters:
-* $1 is a page name.
-See also:
-* {{msg-mw|import-error-edit}}',
-'import-error-interwiki' => '* $1 - page title',
-'import-error-special' => '* $1 - page title',
-'import-error-invalid' => '* $1 - page title',
+'import-error-edit' => 'Import error message displayed when importing user has no edit rights for a page.
+
+Parameters:
+* $1 - a page name
+{{Related|Import-error}}',
+'import-error-create' => 'Import error message displayed when importing user has no create rights for a page.
+
+Parameters:
+* $1 - a page name
+{{Related|Import-error}}',
+'import-error-interwiki' => 'Used as error message when importing pages. Parameters:
+* $1 - page title
+{{Related|Import-error}}',
+'import-error-special' => 'Used as error message when importing pages. Parameters:
+* $1 - page title
+{{Related|Import-error}}',
+'import-error-invalid' => 'Used as error message when importing pages. Parameters:
+* $1 - page title
+{{Related|Import-error}}',
 'import-error-unserialize' => 'Import error message displayed when a revision could not be unserialized.
 
 This may happen if the content got corrupted or the serialization format is mis-reported.
@@ -7150,7 +7164,8 @@ Parameters:
 * $1 - the name of the page the offending revision belongs to
 * $2 - the ID of the offending revision, as reported in the dump that is being imported
 * $3 - the content model reported for the offending revision in the dump that is being imported
-* $4 - the serialization format reported for the offending revision in the dump that is being imported',
+* $4 - the serialization format reported for the offending revision in the dump that is being imported
+{{Related|Import-error}}',
 'import-options-wrong' => 'Used as error message on [[Special:Import]], when one of the options has an error.
 
 Parameters:
@@ -7165,11 +7180,17 @@ Parameters:
 'importlogpagetext' => 'This text appears at the top of the [{{canonicalurl:Special:Log|type=import}} import log] special page.',
 'import-logentry-upload' => 'This is the text of an entry in the Import log (and Recent Changes), after hour (and date, only in the Import log) and sysop name:
 * $1 is the name of the imported file',
-'import-logentry-upload-detail' => '* $1 - number of revisions, success count',
+'import-logentry-upload-detail' => 'Used as success message. Parameters:
+* $1 - number of succeeded revisions
+See also:
+* {{msg-mw|Import-logentry-interwiki-detail}}',
 'import-logentry-interwiki' => 'Used as action listed in the log. Parameters:
 * $1 - page title',
-'import-logentry-interwiki-detail' => '* $1 - number of revisions, success count
-* $2 - interwiki name',
+'import-logentry-interwiki-detail' => 'Used as success message. Parameters:
+* $1 - number of succeeded revisions
+* $2 - interwiki name
+See also:
+* {{msg-mw|Import-logentry-upload-detail}}',
 
 # JavaScriptTest
 'javascripttest' => 'Title of the special page [[Special:JavaScriptTest]].

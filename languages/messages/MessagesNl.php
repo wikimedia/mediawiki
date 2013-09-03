@@ -511,7 +511,7 @@ $messages = array(
 'newwindow' => '(opent in een nieuw venster)',
 'cancel' => 'Annuleren',
 'moredotdotdot' => 'Meer…',
-'morenotlisted' => 'Meer niet in de lijst...',
+'morenotlisted' => 'Deze lijst is niet compleet.',
 'mypage' => 'Gebruikerspagina',
 'mytalk' => 'Overleg',
 'anontalk' => 'Overlegpagina voor dit IP-adres',
@@ -1015,7 +1015,7 @@ Doe dit als u ze per ongeluk met iemand hebt gedeeld of als uw onbevoegden toega
 'resettokens-legend' => 'Tokens opnieuw instellen',
 'resettokens-tokens' => 'Tokens:',
 'resettokens-token-label' => '$1 (huidige waarde: $2)',
-'resettokens-watchlist-token' => 'Token voor webfeed van volglijst',
+'resettokens-watchlist-token' => 'Token voor webfeed van [[Special:Watchlist|uw volglijst]] (Atom/RSS)',
 'resettokens-done' => 'De tokens zijn opnieuw ingesteld.',
 'resettokens-resetbutton' => 'Geselecteerde tokens opnieuw instellen',
 
@@ -1557,7 +1557,7 @@ De gegevens over {{SITENAME}} zijn mogelijk niet bijgewerkt.',
 'prefs-rendering' => 'Uiterlijk',
 'saveprefs' => 'Opslaan',
 'resetprefs' => 'Niet opgeslagen wijzigingen herstellen',
-'restoreprefs' => 'Voorkeuren herstellen',
+'restoreprefs' => 'Voorkeuren herstellen (voor alle instellingen)',
 'prefs-editing' => 'Bewerken',
 'rows' => 'Regels:',
 'columns' => 'Kolommen:',
@@ -1649,6 +1649,7 @@ Als u deze opgeeft, kan deze naam gebruikt worden om u erkenning te geven voor u
 'prefs-displaywatchlist' => 'Weergaveopties',
 'prefs-tokenwatchlist' => 'Token',
 'prefs-diffs' => 'Verschillen',
+'prefs-help-prefershttps' => 'Deze voorkeur wordt toegepast bij de volgende keer aanmelden.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'Het e-mailadres lijkt geldig',
@@ -2136,8 +2137,7 @@ U kunt het misschien proberen als het minder druk is.',
 'upload_source_file' => ' (een bestand op uw computer)',
 
 # Special:ListFiles
-'listfiles-summary' => 'Op deze speciale pagina zijn alle toegevoegde bestanden te bekijken.
-Als deze pagina wordt gefilterd op gebruiker, worden alleen bestanden waar de gebruiker de laatste versie van heeft geüpload weergegeven.',
+'listfiles-summary' => 'Op deze speciale pagina zijn alle toegevoegde bestanden te bekijken.',
 'listfiles_search_for' => 'Zoeken naar bestand:',
 'imgfile' => 'bestand',
 'listfiles' => 'Bestandslijst',
@@ -2148,6 +2148,10 @@ Als deze pagina wordt gefilterd op gebruiker, worden alleen bestanden waar de ge
 'listfiles_size' => 'Grootte',
 'listfiles_description' => 'Beschrijving',
 'listfiles_count' => 'Versies',
+'listfiles-show-all' => 'Oude versies van afbeeldingen opnemen',
+'listfiles-latestversion' => 'Huidige versie',
+'listfiles-latestversion-yes' => 'Ja',
+'listfiles-latestversion-no' => 'Nee',
 
 # File description page
 'file-anchor-link' => 'Bestand',
@@ -4348,9 +4352,18 @@ Anders kunt u ook het eenvoudige formulier hieronder gebruiken. Uw reactie wordt
 'rotate-comment' => 'Afbeelding gedraaid, $1 {{PLURAL:$1|graad|graden}} met de klok mee',
 
 # Limit report
+'limitreport-title' => 'Prestatiegegevens van de parser:',
 'limitreport-cputime' => 'Tijdsgebruik van CPU',
 'limitreport-cputime-value' => '$1 {{PLURAL:$1|seconde|seconden}}',
 'limitreport-walltime' => 'Reëel tijdgebruik',
 'limitreport-walltime-value' => '$1 {{PLURAL:$1|seconde|seconden}}',
+'limitreport-ppvisitednodes' => 'Aantal nodes bekeken tijdens de voorverwerking:',
+'limitreport-ppgeneratednodes' => 'Aantal nodes aangemaakt tijdens de voorverwerking:',
+'limitreport-postexpandincludesize' => 'Inclusiegrootte na uitbreiden',
+'limitreport-postexpandincludesize-value' => '$1 / $2 bytes',
+'limitreport-templateargumentsize' => 'Grootte sjabloonparameters',
+'limitreport-templateargumentsize-value' => '$1 / $2 bytes',
+'limitreport-expansiondepth' => 'Hoogste uitbreidingsdiepte',
+'limitreport-expensivefunctioncount' => 'Aantal kostbare parserfuncties',
 
 );

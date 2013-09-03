@@ -485,7 +485,7 @@ $messages = array(
 'newwindow' => '(പുതിയ ജാലകത്തിൽ തുറന്നു വരും)',
 'cancel' => 'റദ്ദാക്കുക',
 'moredotdotdot' => 'കൂടുതൽ...',
-'morenotlisted' => 'ബാക്കി പട്ടികയിൽ ഉൾപ്പെടുത്തിയിട്ടില്ല...',
+'morenotlisted' => 'ഈ പട്ടിക പൂർണ്ണമല്ല.',
 'mypage' => 'താൾ',
 'mytalk' => 'സംവാദത്താൾ',
 'anontalk' => 'ഈ ഐ.പി.യുടെ സം‌വാദം താൾ',
@@ -4189,15 +4189,18 @@ $5
 'rotate-comment' => 'ചിത്രം പ്രദക്ഷിണദിശയിൽ {{PLURAL:$1|ഒരു ഡിഗ്രി|$1 ഡിഗ്രി}} തിരിച്ചു',
 
 # Limit report
+'limitreport-title' => 'പാഴ്സർ പ്രൊഫൈലിങിന്റെ വിവരങ്ങൾ:',
 'limitreport-cputime' => 'സി.പി.യു. സമയ ഉപയോഗം',
 'limitreport-cputime-value' => '{{PLURAL:$1|ഒരു സെക്കന്റ്|$1 സെക്കന്റ്}}',
 'limitreport-walltime' => 'യഥാർത്ഥ സമയ ഉപയോഗം',
 'limitreport-walltime-value' => '{{PLURAL:$1|ഒരു സെക്കന്റ്|$1 സെക്കന്റ്}}',
 'limitreport-ppvisitednodes' => 'പ്രീപ്രോസസർ സന്ദർശിച്ച നോഡിന്റെ എണ്ണം',
 'limitreport-ppgeneratednodes' => 'പ്രീപ്രോസർ സൃഷ്ടിച്ച നോഡിന്റെ എണ്ണം',
+'limitreport-postexpandincludesize' => 'വികസിപ്പിച്ചതിനു ശേഷമുള്ള ഉൾപ്പെടുത്തൽ വലിപ്പം',
 'limitreport-postexpandincludesize-value' => '$1/$2 ബൈറ്റുകൾ',
 'limitreport-templateargumentsize' => 'ഫലകത്തിലെ ചരങ്ങൾക്കനുവദിച്ചിരിക്കുന്ന വലിപ്പം',
 'limitreport-templateargumentsize-value' => '$1/$2 ബൈറ്റുകൾ',
 'limitreport-expansiondepth' => 'വികസിപ്പിക്കാനാവുന്ന ഉയർന്ന പരിധി',
+'limitreport-expensivefunctioncount' => 'വ്യയമേറിയ പാഴ്സർ ഫങ്ഷൻ എണ്ണം',
 
 );

@@ -10051,7 +10051,7 @@ Controlla il tuo file php.ini ed assicurati che <code>session.save_path</code> �
 	'config-restart' => 'Sì, riavvia',
 	'config-welcome' => "=== Controllo dell'ambiente ===
 Vengono eseguiti controlli di base per vedere se questo ambiente è adatto per l'installazione di MediaWiki.
-Se hai bisogno di aiuto durante l'installazione, è necessario fornire i risultati di questi controlli.",
+Se hai bisogno di aiuto durante l'installazione, è necessario fornire i risultati di questi controlli.", # Fuzzy
 	'config-sidebar' => '* [//www.mediawiki.org Pagina principale MediaWiki]
 * [//www.mediawiki.org/wiki/Aiuto:Guida ai contenuti per utenti]
 * [//www.mediawiki.org/wiki/Manuale:Guida ai contenuti per admin]
@@ -10100,11 +10100,28 @@ Installazione interrotta.",
 	'config-no-cli-uri' => "'''Attenzione''': --scriptpath non specificato, si utilizza il valore predefinito: <code>$1</code>.",
 	'config-using-server' => 'Nome server in uso "<nowiki>$1</nowiki>".',
 	'config-using-uri' => 'URL del server in uso "<nowiki>$1$2</nowiki>".',
+	'config-brokenlibxml' => 'Il tuo sistema ha una combinazione di versioni di PHP e libxml2 che è difettosa e che può provocare un danneggiamento non visibile di dati in MediaWiki ed in altre applicazioni per il web.
+Aggiorna a PHP 5.2.9 o successivo, ed a libxml2 2.7.3 o successivo ([//bugs.php.net/bug.php?id=45996 il bug è studiato dal lato PHP]).
+Installazione interrotta.',
+	'config-using531' => 'MediaWiki non può essere usato con il PHP $1 a causa di un bug che coinvolge i parametri di riferimento a <code>__call()</code>.
+Aggiorna a PHP 5.3.2 o superiore, o fai un downgrade tornando a PHP 5.3.0 per risolvere il problema.
+Installazione interrotta.',
 	'config-db-type' => 'Tipo di database:',
 	'config-db-host' => 'Host del database:',
+	'config-db-host-help' => 'Se il server del tuo database è su un server diverso, immetti qui il nome dell\'host o il suo indirizzo IP.
+
+Se stai utilizzando un web hosting condiviso, il tuo hosting provider dovrebbe fornirti il nome host corretto nella sua documentazione.
+
+Se stai installando su un server Windows con uso di MySQL, l\'uso di "localhost" potrebbe non funzionare correttamente come nome del server. In caso di problemi, prova a impostare "127.0.0.1" come indirizzo IP locale.
+
+Se usi PostgreSQL, lascia questo campo vuoto per consentire di connettersi tramite un socket Unix.',
 	'config-db-host-oracle' => 'TNS del database:',
 	'config-db-wiki-settings' => 'Identifica questo wiki',
 	'config-db-name' => 'Nome del database:',
+	'config-db-name-help' => 'Scegli un nome che identifica il tuo wiki.
+Non deve contenere spazi.
+
+Se utilizzi un web hosting condiviso, il tuo hosting provider o ti fornisce uno specifico nome di database da utilizzare, oppure ti consentirà di creare il database tramite un pannello di controllo.',
 	'config-db-name-oracle' => 'Schema del database:',
 	'config-db-install-account' => "Account utente per l'installazione",
 	'config-db-username' => 'Nome utente del database:',
@@ -10121,7 +10138,12 @@ Questa non è la password dell'account MediaWiki; ma quella per il tuo database.
 	'config-db-wiki-help' => "Inserisci il nome utente e la password che verrà utilizzato per connettersi al database durante il normale funzionamento del wiki.
 Se l'account non esiste, e l'account di installazione dispone di privilegi sufficienti, verrà creato con privilegi minimi necessari per operare sul wiki.",
 	'config-db-prefix' => 'Prefisso tabella del database:',
+	'config-db-prefix-help' => "Se hai bisogno di condividere un database tra più wiki, o tra MediaWiki e un'altra applicazione web, puoi scegliere di aggiungere un prefisso a tutti i nomi di tabella, per evitare conflitti.
+Non utilizzare spazi.
+
+Solitamente, questo campo viene lasciato vuoto.",
 	'config-db-charset' => 'Set di caratteri del database',
+	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0 binario',
 	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
 	'config-charset-mysql4' => 'MySQL 4.0 con compatibilità UTF-8',
 	'config-mysql-old' => 'MySQL $1 o una versione successiva è necessaria, rilevata la $2.',
@@ -10133,6 +10155,12 @@ Da cambiare solamente se si è sicuri di averne bisogno.',
 	'config-sqlite-dir' => 'Directory data di SQLite:',
 	'config-oracle-def-ts' => 'Tablespace di default:',
 	'config-oracle-temp-ts' => 'Tablespace temporaneo:',
+	'config-support-info' => 'MediaWiki supporta i seguenti sistemi di database:
+
+$1
+
+Se fra quelli elencati qui sotto non vedi il sistema di database che vorresti utilizzare, seguire le istruzioni linkate sopra per abilitare il supporto.',
+	'config-support-mysql' => '* $1 è la configurazione preferibile per MediaWiki ed è quella meglio supportata ([http://www.php.net/manual/en/mysql.installation.php come compilare PHP con supporto MySQL])',
 	'config-header-mysql' => 'Impostazioni MySQL',
 	'config-header-postgres' => 'Impostazioni PostgreSQL',
 	'config-header-sqlite' => 'Impostazioni SQLite',
@@ -10141,11 +10169,29 @@ Da cambiare solamente se si è sicuri di averne bisogno.',
 	'config-missing-db-name' => 'È necessario immettere un valore per "Nome del database"',
 	'config-missing-db-host' => 'È necessario immettere un valore per "Host del database"',
 	'config-missing-db-server-oracle' => 'È necessario immettere un valore per "TNS del database"',
+	'config-invalid-db-name' => 'Nome di database "$1" non valido.
+Utilizza soltanto caratteri ASCII come lettere (a-z, A-Z), numeri (0-9), sottolineatura (_) e trattini (-).',
+	'config-invalid-db-prefix' => 'Prefisso database "$1" non valido.
+Utilizza soltanto caratteri ASCII come lettere (a-z, A-Z), numeri (0-9), sottolineatura (_) e trattini (-).',
 	'config-connection-error' => '$1.
 
 Controlla host, nome utente e password e prova ancora.',
+	'config-db-sys-create-oracle' => "Il programma di installazione supporta solo l'utilizzo di un account SYSDBA per la creazione di un nuovo account.",
+	'config-db-sys-user-exists-oracle' => 'L\'account utente "$1" esiste già. SYSDBA può essere usato solo per la creazione di un nuovo account!',
 	'config-postgres-old' => 'PostgreSQL $1 o una versione successiva è necessaria, rilevata la $2.',
+	'config-sqlite-name-help' => 'Scegli un nome che identifichi il tuo wiki.
+Non utilizzare spazi o trattini.
+Questo servirà per il nome del file di dati SQLite.',
+	'config-sqlite-mkdir-error' => 'Errore durante la creazione della directory dati "$1".
+Controlla la posizione e riprova.',
+	'config-sqlite-dir-unwritable' => 'Impossibile scrivere nella directory "$1".
+Modifica le autorizzazioni in modo che il webserver possa scrivere in essa e riprova.',
+	'config-sqlite-connection-error' => '$1.
+
+Controlla la directory dati e il nome del database qui sotto, poi riprova.',
+	'config-sqlite-readonly' => 'Il file <code>$1</code> non è scrivibile.',
 	'config-sqlite-cant-create-db' => 'Impossibile creare il file di database <code>$1</code> .',
+	'config-sqlite-fts3-downgrade' => 'Il PHP è mancante del supporto FTS3, declassamento tabelle in corso',
 	'config-can-upgrade' => "Ci sono tabelle di MediaWiki in questo database.
 Per aggiornarle a MediaWiki $1, fai clic su '''continua'''.",
 	'config-upgrade-done' => "Aggiornamento completo.
@@ -10157,6 +10203,8 @@ Se vuoi rigenerare il tuo file <code>LocalSettings.php</code>, clicca sul pulsan
 
 Puoi [$1 iniziare ad usare il tuo wiki].',
 	'config-regenerate' => 'Rigenera LocalSettings.php →',
+	'config-show-table-status' => 'La query <code>SHOW TABLE STATUS</code> è fallita!',
+	'config-unknown-collation' => "'''Attenzione:''' il database utilizza regole di confronto non riconosciute.",
 	'config-db-web-account' => "Account del database per l'accesso web",
 	'config-db-web-help' => 'Seleziona il nome utente e la password che il server web utilizzerà per connettersi al server di database, durante il normale funzionamento del wiki.',
 	'config-db-web-account-same' => "Utilizza lo stesso account dell'installazione",

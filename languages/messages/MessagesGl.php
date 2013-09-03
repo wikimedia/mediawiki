@@ -1995,7 +1995,7 @@ Tamén pode reintentalo cando haxa menos actividade.',
 
 'license' => 'Licenza:',
 'license-header' => 'Licenza',
-'nolicense' => 'Ningunha (os ficheiros sen licenza serán eliminados)',
+'nolicense' => 'Ningunha seleccionada',
 'license-nopreview' => '(A vista previa non está dispoñible)',
 'upload_source_url' => '  (un URL válido e accesible publicamente)',
 'upload_source_file' => '  (un ficheiro no seu ordenador)',
