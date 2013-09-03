@@ -46,6 +46,15 @@ class ApiLogin extends ApiBase {
 	 * is reached. The expiry is $this->mLoginThrottle.
 	 */
 	public function execute() {
+		// If we're in JSON callback mode, no tokens can be obtained
+		if ( !is_null( $this->getMain()->getRequest()->getVal( 'callback' ) ) ) {
+			$this->getResult()->addValue( null, 'login', array(
+				'result' => 'Aborted',
+				'reason' => 'Cannot log in when using a callback',
+			) );
+			return;
+		}
+
 		$params = $this->extractRequestParams();
 
 		$result = array();
