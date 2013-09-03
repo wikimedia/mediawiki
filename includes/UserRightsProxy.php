@@ -138,7 +138,7 @@ class UserRightsProxy {
 	 */
 	public static function getDB( $database, $ignoreInvalidDB = false ) {
 		global $wgDBname;
-		if ( self::validDatabase( $database ) ) {
+		if ( $ignoreInvalidDB || self::validDatabase( $database ) ) {
 			if ( $database == $wgDBname ) {
 				// Hmm... this shouldn't happen though. :)
 				return wfGetDB( DB_MASTER );
