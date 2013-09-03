@@ -1024,9 +1024,7 @@ This error is shown when trying to open a special page which does not exist, e.g
 
 # General errors
 'error' => '{{Identical|Error}}',
-'databaseerror' => 'Used as title of error message (one of the following messages):
-* {{msg-mw|Dberrortext}}
-* {{msg-mw|Dberrortextcl}}',
+'databaseerror' => 'Used as title of error message {{msg-mw|Databaseerrortext}}.',
 'dberrortext' => 'Parameters:
 * $1 - The last SQL command/query
 * $2 - SQL function name
@@ -1037,6 +1035,17 @@ This error is shown when trying to open a special page which does not exist, e.g
 * $2 - SQL function name
 * $3 - Error number
 * $4 - Error description',
+'databaseerror-text' => 'A list of technical details might (or might not) follow, depending on server configuration. Do not use wiki markup.',
+'databaseerror-textcl' => 'Abridged form of {{msg-mw|databaseerror-text}}, suitable for use in command-line scripts run by the server administrator. Do not use wiki markup.',
+'databaseerror-query' => 'Identifies, in the list of technical details, the [[wikipedia:SQL|SQL]] statement that failed.
+Parameters:
+* $1 - SQL statement (shown within a box)',
+'databaseerror-function' => 'Identifies, in the list of technical details, the function that tried to execute the database query.
+Parameters:
+* $1 - Name of function',
+'databaseerror-error' => 'Identifies, in the list of technical details, the error message the database server returned.
+Parameters:
+* $1 - Error message from the database server, probably in English',
 'laggedslavemode' => 'Used as warning when getting the timestamp of the latest version, if in LaggedSlaveMode.',
 'readonly' => 'Used as title of error message when database is locked.',
 'enterlockreason' => 'For developers when locking the database',
@@ -9799,6 +9808,7 @@ Parameters:
 'dberr-again' => 'This message does not allow any wiki nor html markup.',
 'dberr-info' => 'This message does not allow any wiki nor html markup.
 * $1 - database server name',
+'dberr-info-hidden' => 'This message does not allow any wiki nor html markup.',
 'dberr-usegoogle' => 'This message does not allow any wiki nor html markup.',
 'dberr-outofdate' => "{{doc-singularthey}}
 In this sentence, '''their''' indexes refers to '''Google's''' indexes. This message does not allow any wiki nor html markup.",
