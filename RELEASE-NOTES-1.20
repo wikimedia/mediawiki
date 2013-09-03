@@ -10,6 +10,13 @@ This is not yet a release!
 === Changes since 1.20.6 ===
 * (bug 51064) Purge upstream caches when deleting file assets.
 
+== MediaWiki 1.20.7 ==
+
+This is a security release of the MediaWiki 1.20 branch.
+
+=== Changes since 1.20.6 ===
+* (bug 49090) Token-getting functions will fail when using jsonp callbacks.
+
 == MediaWiki 1.20.6 ==
 
 This is a security and maintenance release of the MediaWiki 1.20 branch.
