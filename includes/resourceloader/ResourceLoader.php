@@ -173,7 +173,7 @@ class ResourceLoader {
 			$cache->set( $key, $result );
 		} catch ( Exception $exception ) {
 			// Return exception as a comment
-			$result = $this->makeComment( $exception->__toString() );
+			$result = $this->formatException( $exception );
 		}
 
 		wfProfileOut( __METHOD__ );
@@ -455,7 +455,7 @@ class ResourceLoader {
 			$this->preloadModuleInfo( array_keys( $modules ), $context );
 		} catch( Exception $e ) {
 			// Add exception to the output as a comment
-			$errors .= $this->makeComment( $e->__toString() );
+			$errors .= $this->formatException( $e );
 		}
 
 		wfProfileIn( __METHOD__.'-getModifiedTime' );
@@ -472,7 +472,7 @@ class ResourceLoader {
 				$mtime = max( $mtime, $module->getModifiedTime( $context ) );
 			} catch ( Exception $e ) {
 				// Add exception to the output as a comment
-				$errors .= $this->makeComment( $e->__toString() );
+				$errors .= $this->formatException( $e );
 			}
 		}
 
@@ -652,6 +652,22 @@ class ResourceLoader {
 	}
 
 	/**
+	 * Handle exception display
+	 *
+	 * @param Exception $e to be shown to the user
+	 * @return string sanitized text that can be returned to the user
+	 */
+	protected function formatException( $e ) {
+		global $wgShowExceptionDetails;
+
+		if ( $wgShowExceptionDetails ) {
+			return $this->makeComment( $e->__toString() );
+		} else {
+			return $this->makeComment( wfMessage( 'internalerror' )->text() );
+		}
+	}
+
+	/**
 	 * Generates code for a response
 	 *
 	 * @param $context ResourceLoaderContext: Context in which to generate a response
@@ -675,7 +691,7 @@ class ResourceLoader {
 				$blobs = MessageBlobStore::get( $this, $modules, $context->getLanguage() );
 			} catch ( Exception $e ) {
 				// Add exception to the output as a comment
-				$exceptions .= $this->makeComment( $e->__toString() );
+				$exceptions .= $this->formatException( $e );
 			}
 		} else {
 			$blobs = array();
@@ -754,7 +770,7 @@ class ResourceLoader {
 				}
 			} catch ( Exception $e ) {
 				// Add exception to the output as a comment
-				$exceptions .= $this->makeComment( $e->__toString() );
+				$exceptions .= $this->formatException( $e );
 
 				// Register module as missing
 				$missing[] = $name;
