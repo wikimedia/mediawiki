@@ -2010,15 +2010,42 @@ function wfCheckLimits( $deflimit = 50, $optionname = 'rclimit' ) {
  * @return String
  */
 function wfEscapeWikiText( $text ) {
-	$text = strtr( "\n$text", array(
-		'"' => '&#34;', '&' => '&#38;', "'" => '&#39;', '<' => '&#60;',
-		'=' => '&#61;', '>' => '&#62;', '[' => '&#91;', ']' => '&#93;',
-		'{' => '&#123;', '|' => '&#124;', '}' => '&#125;',
-		"\n#" => "\n&#35;", "\n*" => "\n&#42;",
-		"\n:" => "\n&#58;", "\n;" => "\n&#59;",
-		'://' => '&#58;//', 'ISBN ' => 'ISBN&#32;', 'RFC ' => 'RFC&#32;',
-	) );
-	return substr( $text, 1 );
+	static $repl = null, $repl2 = null;
+	if ( $repl === null ) {
+		$repl = array(
+			'"' => '&#34;', '&' => '&#38;', "'" => '&#39;', '<' => '&#60;',
+			'=' => '&#61;', '>' => '&#62;', '[' => '&#91;', ']' => '&#93;',
+			'{' => '&#123;', '|' => '&#124;', '}' => '&#125;',
+			"\n#" => "\n&#35;", "\r#" => "\r&#35;",
+			"\n*" => "\n&#42;", "\r*" => "\r&#42;",
+			"\n:" => "\n&#58;", "\r:" => "\r&#58;",
+			"\n;" => "\n&#59;", "\r;" => "\r&#59;",
+			"\n " => "\n&#32;", "\r " => "\r&#32;",
+			'__' => '_&#95;', '://' => '&#58;//',
+		);
+
+		// We have to catch everything "\s" matches in PCRE
+		foreach ( array( 'ISBN', 'RFC', 'PMID' ) as $magic ) {
+				$repl["$magic "] = "$magic&#32;";
+				$repl["$magic\t"] = "$magic&#32;";
+				$repl["$magic\r"] = "$magic&#32;";
+				$repl["$magic\n"] = "$magic&#32;";
+				$repl["$magic\f"] = "$magic&#32;";
+		}
+
+		// And handle protocols that don't use "://"
+		global $wgUrlProtocols;
+		$repl2 = array();
+		foreach ( $wgUrlProtocols as $prot ) {
+			if ( substr( $prot, -1 ) === ':' ) {
+				$repl2[] = preg_quote( substr( $prot, 0, -1 ), '/' );
+			}
+		}
+		$repl2 = $repl2 ? '/\b(' . join( '|', $repl2 ) . '):/i' : '/^(?!)/';
+	}
+	$text = substr( strtr( "\n$text", $repl ), 1 );
+	$text = preg_replace( $repl2, '$1&#58;', $text );
+	return $text;
 }
 
 /**
