@@ -64,6 +64,16 @@ class DeferredUpdates {
 	}
 
 	/**
+	 * Add a callable update.  In a lot of cases, we just need a callback/closure,
+	 * defining a new DeferrableUpdate object is not necessary
+	 * @see MWCallableUpdate::__construct()
+	 * @param callable $callable
+	 */
+	public static function addCallableUpdate( $callable ) {
+		self::addUpdate( new MWCallableUpdate( $callable ) );
+	}
+
+	/**
 	 * Do any deferred updates and clear the list
 	 *
 	 * @param string $commit set to 'commit' to commit after every update to
