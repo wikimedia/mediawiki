@@ -70,22 +70,6 @@ class ApiBlockTest extends ApiTestCase {
 	}
 
 	/**
-	 * @dataProvider provideBlockUnblockAction
-	 */
-	function testGetTokenUsingABlockingAction( $action ) {
-		$data = $this->doApiRequest(
-			array(
-				'action' => $action,
-				'user' => 'UTApiBlockee',
-				'gettoken' => '' ),
-			null,
-			false,
-			self::$users['sysop']->user
-		);
-		$this->assertEquals( 34, strlen( $data[0][$action]["{$action}token"] ) );
-	}
-
-	/**
 	 * Attempting to block without a token should give a UsageException with
 	 * error message:
 	 *   "The token parameter must be set"
