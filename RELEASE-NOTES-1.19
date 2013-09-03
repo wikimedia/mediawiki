@@ -5,11 +5,15 @@ setting since version 1.2.0. If you have it on, turn it '''off''' if you can.
 
 == MediaWiki 1.19.8 ==
 
-This is a security release of the MediaWiki 1.19 branch.
+This is a security and maintenance release of the MediaWiki 1.19 branch.
 
 === Changes since 1.19.7 ===
-* (bug 51064) Purge upstream caches when deleting file assets.
-* (bug 49090) SECURITY: Token-getting functions will fail when using jsonp callbacks.
+* SECURITY: Sanitize ResourceLoader exception messages
+* SECURITY: Token-getting functions will fail when using jsonp callbacks.
+* SECURITY: Fix extension detection with 2 .'s
+* Allow a string other than '*' as condition for DatabaseBase::delete()
+* Purge upstream caches when deleting file assets.
+* jquery.tablesorter: Add missing dependency on jquery.mwExtension
 
 == MediaWiki 1.19.7 ==
 
