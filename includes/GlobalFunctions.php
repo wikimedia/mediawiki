@@ -3183,9 +3183,9 @@ function wfBaseConvert( $input, $sourceBase, $destBase, $pad = 1, $lowercase = t
 		$sourceBase > 36 ||
 		$destBase < 2 ||
 		$destBase > 36 ||
-		$sourceBase != (int) $sourceBase ||
-		$destBase != (int) $destBase ||
-		$pad != (int) $pad ||
+		$sourceBase != (int)$sourceBase ||
+		$destBase != (int)$destBase ||
+		$pad != (int)$pad ||
 		!preg_match( "/^[" . substr( '0123456789abcdefghijklmnopqrstuvwxyz', 0, $sourceBase ) . "]+$/i", $input )
 	) {
 		return false;
@@ -3239,7 +3239,7 @@ function wfBaseConvert( $input, $sourceBase, $destBase, $pad = 1, $lowercase = t
 				$work += $digit;
 
 				if ( $workDigits || $work >= $destBase ) {
-					$workDigits[] = (int) ( $work / $destBase );
+					$workDigits[] = (int)( $work / $destBase );
 				}
 				$work %= $destBase;
 			}

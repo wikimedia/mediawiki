@@ -594,8 +594,8 @@ class Profiler {
 			$prof .= sprintf( $format,
 				substr( $fname, 0, $nameWidth ),
 				$calls,
-				(float) ( $elapsed * 1000 ),
-				(float) ( $elapsed * 1000 ) / $calls,
+				(float)( $elapsed * 1000 ),
+				(float)( $elapsed * 1000 ) / $calls,
 				$percent,
 				$memory,
 				( $this->mMin[$fname] * 1000.0 ),
@@ -665,7 +665,7 @@ class Profiler {
 
 			foreach ( $this->mCollated as $name => $elapsed ) {
 				$eventCount = $this->mCalls[$name];
-				$timeSum = (float) ( $elapsed * 1000 );
+				$timeSum = (float)( $elapsed * 1000 );
 				$memorySum = (float)$this->mMemory[$name];
 				$name = substr( $name, 0, 255 );
 

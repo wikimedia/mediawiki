@@ -494,8 +494,8 @@ class IP {
 				$n += pow( 2, 32 );
 				# On 32-bit platforms (and on Windows), 2^32 does not fit into an int,
 				# so $n becomes a float. We convert it to string instead.
-				if ( is_float ( $n ) ) {
-					$n = (string) $n;
+				if ( is_float( $n ) ) {
+					$n = (string)$n;
 				}
 			}
 		}

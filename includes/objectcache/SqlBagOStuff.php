@@ -364,7 +364,7 @@ class SqlBagOStuff extends BagOStuff {
 			return false;
 		}
 
-		return (bool) $db->affectedRows();
+		return (bool)$db->affectedRows();
 	}
 
 	/**

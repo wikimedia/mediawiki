@@ -1534,7 +1534,7 @@ class OutputPage extends ContextSource {
 
 		$popts = $this->parserOptions();
 		$oldTidy = $popts->setTidy( $tidy );
-		$popts->setInterfaceMessage( (bool) $interface );
+		$popts->setInterfaceMessage( (bool)$interface );
 
 		$parserOutput = $wgParser->parse(
 			$text, $title, $popts,
@@ -2577,7 +2577,7 @@ $templates
 	protected function makeResourceLoaderLink( $modules, $only, $useESI = false, array $extraQuery = array(), $loadCall = false ) {
 		global $wgResourceLoaderUseESI;
 
-		$modules = (array) $modules;
+		$modules = (array)$modules;
 
 		if ( !count( $modules ) ) {
 			return '';

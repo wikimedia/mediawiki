@@ -239,9 +239,9 @@ class UIDGenerator {
 		$data = explode( ' ', fgets( $handle ) ); // "<clk seq> <sec> <msec> <counter> <offset>"
 		$clockChanged = false; // clock set back significantly?
 		if ( count( $data ) == 5 ) { // last UID info already initialized
-			$clkSeq = (int) $data[0] % $clockSeqSize;
-			$prevTime = array( (int) $data[1], (int) $data[2] );
-			$offset = (int) $data[4] % $counterSize; // random counter offset
+			$clkSeq = (int)$data[0] % $clockSeqSize;
+			$prevTime = array( (int)$data[1], (int)$data[2] );
+			$offset = (int)$data[4] % $counterSize; // random counter offset
 			$counter = 0; // counter for UIDs with the same timestamp
 			// Delay until the clock reaches the time of the last ID.
 			// This detects any microtime() drift among processes.
@@ -251,7 +251,7 @@ class UIDGenerator {
 				$time = self::millitime();
 			} elseif ( $time == $prevTime ) {
 				// Bump the counter if there are timestamp collisions
-				$counter = (int) $data[3] % $counterSize;
+				$counter = (int)$data[3] % $counterSize;
 				if ( ++$counter >= $counterSize ) { // sanity (starts at 0)
 					flock( $handle, LOCK_UN ); // abort
 					throw new MWException( "Counter overflow for timestamp value." );
@@ -328,7 +328,7 @@ class UIDGenerator {
 	 */
 	protected static function millitime() {
 		list( $msec, $sec ) = explode( ' ', microtime() );
-		return array( (int) $sec, (int) ( $msec * 1000 ) );
+		return array( (int)$sec, (int)( $msec * 1000 ) );
 	}
 
 	function __destruct() {

@@ -1802,6 +1802,6 @@ class Sanitizer {
 		$                      # End of string
 		/ix"; // case Insensitive, eXtended
 
-		return (bool) preg_match( $HTML5_email_regexp, $addr );
+		return (bool)preg_match( $HTML5_email_regexp, $addr );
 	}
 }

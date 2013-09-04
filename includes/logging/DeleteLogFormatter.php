@@ -87,9 +87,9 @@ class DeleteLogFormatter extends LogFormatter {
 		// Input is like ofield=2134 or just the number
 		if ( strpos( $string, 'field=' ) === 1 ) {
 			list( , $field ) = explode( '=', $string );
-			return (int) $field;
+			return (int)$field;
 		} else {
-			return (int) $string;
+			return (int)$string;
 		}
 	}
 
