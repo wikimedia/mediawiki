@@ -589,8 +589,6 @@ class SkinTemplate extends Skin {
 	 * @return array
 	 */
 	protected function buildPersonalUrls() {
-		global $wgSecureLogin;
-
 		$title = $this->getTitle();
 		$request = $this->getRequest();
 		$pageurl = $title->getLocalURL();
