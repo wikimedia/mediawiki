@@ -325,8 +325,8 @@ class RecentChange {
 		foreach ( $wgRCFeeds as $feed ) {
 			$engine = self::getEngine( $feed['uri'] );
 
-			if ( isset( $this->mExtras['actionCommentIRC'] ) ) {
-				$actionComment = $this->mExtras['actionCommentIRC'];
+			if ( isset( $this->mExtra['actionCommentIRC'] ) ) {
+				$actionComment = $this->mExtra['actionCommentIRC'];
 			} else {
 				$actionComment = null;
 			}
