@@ -675,17 +675,6 @@ Daftar halaman istimewa yang sah dapat dilihat di [[Special:SpecialPages|{{int:s
 # General errors
 'error' => 'Kesalahan',
 'databaseerror' => 'Kesalahan basis data',
-'dberrortext' => 'Ada kesalahan sintaks pada permintaan basis data.
-Kesalahan ini mungkin menandakan adanya sebuah \'\'bug\'\' dalam perangkat lunak.
-Permintaan basis data yang terakhir adalah:
-<blockquote><code>$1</code></blockquote>
-dari dalam fungsi "<code>$2</code>".
-Basis data menghasilkan kesalahan "<samp>$3: $4</samp>".',
-'dberrortextcl' => 'Ada kesalahan sintaks pada permintaan basis data.
-Permintaan basis data yang terakhir adalah:
-"$1"
-dari dalam fungsi "$2".
-Basis data menghasilkan kesalahan "$3: $4".',
 'laggedslavemode' => 'Peringatan: Halaman mungkin tidak berisi perubahan terbaru.',
 'readonly' => 'Basis data dikunci',
 'enterlockreason' => 'Masukkan alasan penguncian, termasuk perkiraan kapan kunci akan dibuka',
@@ -734,7 +723,6 @@ Tidak ada keterangan.',
 'protectedinterface' => 'Halaman ini memuat teks antarmuka untuk perangkat lunak pada wiki ini, dan dilindungi terhadap penyalahgunaan. Untuk menambah atau mengubah terjemahan pada semua wiki, harap gunakan [//translatewiki.net/ translatewiki.net], proyek pelokalan MediaWiki.',
 'editinginterface' => "'''Peringatan:''' Anda menyunting suatu halaman yang digunakan untuk menyediakan teks antarmuka untuk perangkat lunak situs ini. Perubahan teks ini akan memengaruhi tampilan pada antarmuka pengguna untuk pengguna lain di wiki ini.
 Untuk menambah atau mengubahterjemahan untuk semua wiki, harap gunakan [//translatewiki.net/ translatewiki.net], proyek pelokalan MediaWiki.",
-'sqlhidden' => '(Permintaan SQL disembunyikan)',
 'cascadeprotected' => 'Halaman ini telah dilindungi dari penyuntingan karena disertakan di {{PLURAL:$1|halaman|halaman-halaman}} berikut yang telah dilindungi dengan opsi "runtun":
 $2',
 'namespaceprotected' => "Anda tak memiliki hak akses untuk menyunting halaman di ruang nama '''$1'''.",

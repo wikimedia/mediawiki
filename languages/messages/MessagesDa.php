@@ -523,17 +523,6 @@ En liste over gyldige specialsider findes på [[Special:SpecialPages|{{int:speci
 # General errors
 'error' => 'Fejl',
 'databaseerror' => 'Databasefejl',
-'dberrortext' => 'Der er opstået en syntaksfejl i en databaseforespørgsel.
-Det kan tyde på en fejl i softwaren.
-Den sidst forsøgte databaseforespørgsel var:
-<blockquote><code>$1</code></blockquote>
-fra funktionen "<code>$2</code>".
-Databasen returnerede fejlen "<samp>$3: $4</samp>".',
-'dberrortextcl' => 'Der er opstået en syntaksfejl i en databaseforespørgsel.
-Den seneste forsøgte databaseforespørgsel var:
-"$1"
-fra funktionen "$2".
-Databasen returnerede fejlen "$3: $4"',
 'laggedslavemode' => "'''Bemærk:''' Den viste side indeholder muligvis ikke de nyeste ændringer.",
 'readonly' => 'Databasen er skrivebeskyttet',
 'enterlockreason' => 'Skriv en begrundelse for skrivebeskyttelsen, med samt en vurdering af, hvornår skrivebeskyttelsen ophæves igen',
@@ -588,7 +577,6 @@ Forespørgsel: $2',
 Hvis du vil tilføje eller ændre oversættelser til alle wiki-websteder, brug venligst [//translatewiki.net/ translatewiki.net], MediaWiki lokalisering projektet.',
 'editinginterface' => "'''Advarsel:''' Du redigerer en side som bruges i programmets grænseflade. Ændringer på denne side vil påvirke udseendet af grænsefladen for andre brugere af denne wiki.
 For at tilføje eller ændre oversættelser på alle wikier bedes du benytte [//translatewiki.net/ translatewiki.net], projektet for oversættelse af MediaWiki.",
-'sqlhidden' => '(SQL forespørgsel skjult)',
 'cascadeprotected' => 'Denne side er skrivebeskyttet, da den er indeholdt i nedenstående {{PLURAL:$1|side|sider}}, som er skrivebeskyttet med tilvalg af "nedarvende sidebeskyttelse":
 $2',
 'namespaceprotected' => 'Du har ikke rettigheder til at redigere sider i $1-navnerummet.',

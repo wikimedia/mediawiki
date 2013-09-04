@@ -333,17 +333,6 @@ $1',
 # General errors
 'error' => '错误',
 'databaseerror' => '数据库错误',
-'dberrortext' => '数据库查询语法有错。
-可能系软件有错。
-最晏𠮶数据库指令系:
-<blockquote><tt>$1</tt></blockquote>
-来自函数 "<tt>$2</tt>"。
-MySQL回到错误 "<tt>$3: $4</tt>"。',
-'dberrortextcl' => '数据库查询语法有错。
-最晏𠮶数据库指令系:
-“$1”
-来自函数“$2”。
-MySQL回到错误“$3: $4”。',
 'laggedslavemode' => '警告：页面可能冇有新近内容。',
 'readonly' => '数据库上正锁啰',
 'enterlockreason' => '请输入锁到数据库𠮶理由，包括预计几时间解锁',
@@ -384,7 +373,6 @@ MySQL回到错误“$3: $4”。',
 'editinginterface' => "'''Warning:''' You are editing a page which is used to provide interface text for the software.
 Changes to this page will affect the appearance of the user interface for other users.
 For translations, please consider using [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], the MediaWiki localisation project.",
-'sqlhidden' => '（SQL 弆到𠮶查询）',
 'cascadeprotected' => '个页已拖保护，因为佢拖“联锁保护”𠮶{{PLURAL:$1|一只|几只}}拖保护页包到：
 $2',
 'namespaceprotected' => "倷冇权编写'''$1'''空间里度𠮶页面。",

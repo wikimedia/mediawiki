@@ -330,17 +330,6 @@ Lis pointopot bobolikon pinatantu okito id [[Special:SpecialPages|{{int:specialp
 # General errors
 'error' => 'Nosilopan',
 'databaseerror' => 'Nakasala databing',
-'dberrortext' => 'Nokosilap pogiuludan databing.
-Haro kaanto kutu id posuang-suangon.
-Tohuri pinokianu pogiuludan databing nopo nga:
-<blockquote><code>$1</code></blockquote>
-mantad suang momoguno "<code>$2</code>".
-Databing nokosilap pinopoguli "<samp>$3: $4</samp>".',
-'dberrortextcl' => 'Haro kinosilapan pinongimuhatan sintak diri databing.
-Pinokianu databing di nokotohuri nopo nga:
-"$1"
-mantad kopomogunoon "$2".
-Nokosilap pinonimbar databing do "$3: $4"',
 'laggedslavemode' => "'''Panansarahan:''' Awu moti kaanto nopinwoguan suang do bolikon diti.",
 'readonly' => 'Nokunsian databing',
 'enterlockreason' => 'Posuango sabab do mongunsi, poobion do gisom soira oukaban kunsi',
@@ -397,7 +386,6 @@ Nung mongoruhang toi monimban do waliwboros tongowiki, mangai noh gunoo iri puru
 'editinginterface' => "Panansarahan :''' Mongidit ko diti bolikon di gunoon do poposodia diri pongurasan montok posuang-suangon.
 Sinuratan id bolikon diti kopogoit do pongitanan  kourasan momoguno  montok momomoguno suai.
 Montok mongoruhang toi monimban do waliwboros, gunoo noh [//translatewiki.net/ translatewiki.net], purujik popodusun ModiaWiki.",
-'sqlhidden' => '(Pongimuhatan SQL poinlisok)',
 'cascadeprotected' => 'Notingoligan bolikon diti mantad do pingiditan tu nokosuang  id bolikon, {{PLURAL:$1 | do | it}} pinilian tingolig  "kasading" poinsikit:
 $2',
 'namespaceprotected' => "Ingaa kasagaannu do mongidit bobolikon it kinoingaran '''$1'''.",

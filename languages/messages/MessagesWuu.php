@@ -312,12 +312,6 @@ $1',
 # General errors
 'error' => '错误',
 'databaseerror' => '数据库错误',
-'dberrortext' => '发生仔数据库查询语法错误，作兴是软件自身个错误所引起个。压末一趟数据库查询指令是：
-<blockquote><tt>$1</tt></blockquote>
-来自函数“<tt>$2</tt>”内。数据库返回错误“<tt>$3: $4</tt>”。',
-'dberrortextcl' => '发生了数据库查询语法错误。压末一趟数据库查询指令是：
-“$1”
-来自函数“$2”内。数据库返回错误“$3: $4”。',
 'laggedslavemode' => '警告: 页面可能弗包含最近个更新。',
 'readonly' => '数据库锁定',
 'enterlockreason' => '请输入锁定个原因，包括预计解锁个辰光',
@@ -363,7 +357,6 @@ $1',
 'viewsourcetext' => '侬可以查看搭仔复制箇只页面个源码：',
 'protectedinterface' => '箇只页面提供软件个界面文本。为著防止滥用咾已经锁定。',
 'editinginterface' => "'''警告：''' 侬垃许编辑个页面是用于提供软件个界面文本。改变此页会得影响其他用户个界面外观。假使要翻译，请考虑使用 [//translatewiki.net/wiki/Main_Page?setlang=zh-hans translatewiki.net]，一个用得来为MediaWiki软件本地化个计划。",
-'sqlhidden' => '（SQL查询已隐藏）',
 'cascadeprotected' => '箇只页面拨保护拉许，因为箇只页面拨下底已经标注“联锁保护”个{{PLURAL:$1|一只|多只}}被保护页面包含：
 $2',
 'namespaceprotected' => "侬无没编辑'''$1'''名字空间里向页面个权限。",

@@ -623,17 +623,6 @@ Käibel olevad erileheküljed on loetletud leheküljel [[Special:SpecialPages|{{
 # General errors
 'error' => 'Viga',
 'databaseerror' => 'Andmebaasi viga',
-'dberrortext' => 'Andmebaasipäringus oli süntaksiviga.
-Selle võis tingida tarkvaraviga.
-Viimane andmebaasipäring oli:
-<blockquote><code>$1</code></blockquote>
-ja see ilmnes funktsiooniga "<code>$2</code>".
-Andmebaas tagastas veateate "<samp>$3: $4</samp>".',
-'dberrortextcl' => 'Andmebaasipäringus oli süntaksiviga.
-Viimane andmebaasipäring oli:
-"$1"
-ja see kutsuti funktsioonist "$2".
-Andmebaas tagastas veateate "$3: $4".',
 'laggedslavemode' => 'Hoiatus: Leheküljel võivad puududa viimased uuendused.',
 'readonly' => 'Andmebaas on hetkel kirjutuskaitse all',
 'enterlockreason' => 'Sisesta lukustamise põhjus ning juurdepääsu taastamise ligikaudne aeg',
@@ -687,7 +676,6 @@ Et lisada ja muuta tõlkeid kõigi vikide jaoks, kasuta palun MediaWiki lokalise
 'editinginterface' => "'''Hoiatus:''' Redigeerid tarkvara kasutajaliidese tekstiga lehekülge.
 Muudatused siin mõjutavad kõikide selle viki kasutajate kasutajaliidest.
 Et lisada ja muuta tõlkeid kõigi vikide jaoks, kasuta palun MediaWiki lokaliseerimisprojekti [//translatewiki.net/ translatewiki.net].",
-'sqlhidden' => '(SQL päring peidetud)',
 'cascadeprotected' => 'See lehekülg on muutmise eest kaitstud, sest see on osa {{PLURAL:$1|järgmisest leheküljest|järgmistest lehekülgedest}}, mis on kaskaadkaitse all:
 $2',
 'namespaceprotected' => "Sul pole õigust redigeerida lehekülgi nimeruumis '''$1'''.",

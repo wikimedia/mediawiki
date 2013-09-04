@@ -208,7 +208,7 @@ $messages = array(
 'newwindow' => "(s'abre nuna ventana nueva)",
 'cancel' => 'Encaboxar',
 'moredotdotdot' => 'Más...',
-'morenotlisted' => 'Más na llista...',
+'morenotlisted' => 'Esta llista nun ta completa.',
 'mypage' => 'Páxina',
 'mytalk' => 'Alderique',
 'anontalk' => 'Alderique pa esta IP',
@@ -394,17 +394,12 @@ Pues atopar una llista de les páxines especiales válides en [[Special:SpecialP
 # General errors
 'error' => 'Error',
 'databaseerror' => 'Fallu na base de datos',
-'dberrortext' => "Hebo un fallu de sintaxis nuna consulta a la base de datos.
-Esti fallu pue ser por un problema del software.
-La postrer consulta a la base de datos que s'intentó foi:
-<blockquote><code>$1</code></blockquote>
-dende la función «<code>$2</code>».
-La base datos dio'l fallu «<samp>$3: $4</samp>».",
-'dberrortextcl' => "Hebo un error de sintaxis nuna consulta a la base de datos.
-La última consulta a la base de datos que s'intentó foi:
-«$1»
-dende la función «$2».
-La base de datos devolvió l'error «$3: $4».",
+'databaseerror-text' => 'Hebo un error na consulta a la base de datos.
+Esto pue indicar un fallu nel software.',
+'databaseerror-textcl' => 'Hebo un error na consulta a la base de datos.',
+'databaseerror-query' => 'Consulta: $1',
+'databaseerror-function' => 'Función: $1',
+'databaseerror-error' => 'Error: $1',
 'laggedslavemode' => "'''Avisu:''' Esta páxina pue que nun tenga actualizaciones recientes.",
 'readonly' => 'Base de datos candada',
 'enterlockreason' => 'Introduz un motivu pal candáu, amestando una estimación de cuándo va tener llugar el descandáu',
@@ -462,7 +457,6 @@ P'amestar o cambiar les traducciones de toles wikis, por favor usa [//translatew
 'editinginterface' => "'''Avisu:''' Tas editando una páxina que s'usa pa proporcionar el testu d'interfaz del programa.
 Los cambeos nesta páxina van afeutar l'apariencia de la interfaz pa otros usuarios d'esta wiki.
 P'amestar o camudar traducciones pa toles wikis, por favor, usa [//translatewiki.net/ translatewiki.net], el proyeutu de traducción de MediaWiki.",
-'sqlhidden' => '(consulta SQL anubrida)',
 'cascadeprotected' => "Esta páxina ta protexida d'ediciones porque ta inxerta {{PLURAL:$1|na siguiente páxina, protexida|nes siguientes páxines, protexíes}} cola opción «en cascada» activada:
 $2",
 'namespaceprotected' => "Nun tienes permisu pa editar páxines nel espaciu de nomes '''$1'''.",
@@ -3848,6 +3842,7 @@ Tendría d'haber recibío [{{SERVER}}{{SCRIPTPATH}}/COPYING una copia de la Llic
 'dberr-problems' => '¡Sentímoslo! Esti sitiu ta esperimentando dificultaes téuniques.',
 'dberr-again' => 'Tenta esperar dellos minutos y recargar.',
 'dberr-info' => '(Nun se pue contautar cola base de datos del sirvidor: $1)',
+'dberr-info-hidden' => '(Nun se pue comunicar col sirvidor de base de datos)',
 'dberr-usegoogle' => 'Pue probar a buscar con Google mentanto.',
 'dberr-outofdate' => 'Atalanta que los sos índices del nuesu conteníu seique nun tean actualizaos.',
 'dberr-cachederror' => 'Esta ye una copia na caché de la páxina que se pidiera, y pue que nun tea actualizada.',

@@ -424,12 +424,12 @@ $messages = array(
 'tog-hidepatrolled' => 'Kontrollierte Änderungen in den „Letzten Änderungen“ ausblenden',
 'tog-newpageshidepatrolled' => 'Kontrollierte Seiten bei den „Neuen Seiten“ ausblenden',
 'tog-extendwatchlist' => 'Erweiterte Beobachtungsliste zur Anzeige aller Änderungen',
-'tog-usenewrc' => 'Änderungen auf „Letzte Änderungen“ und Beobachtungsliste nach Seite gruppieren (benötigt JavaScript)',
+'tog-usenewrc' => 'Änderungen auf „Letzte Änderungen“ und Beobachtungsliste nach Seite gruppieren',
 'tog-numberheadings' => 'Überschriften automatisch nummerieren',
-'tog-showtoolbar' => 'Bearbeiten-Werkzeugleiste anzeigen (benötigt JavaScript)',
-'tog-editondblclick' => 'Seiten mit Doppelklick bearbeiten (benötigt JavaScript)',
+'tog-showtoolbar' => 'Bearbeiten-Werkzeugleiste anzeigen',
+'tog-editondblclick' => 'Seiten mit Doppelklick bearbeiten',
 'tog-editsection' => 'Links zum Bearbeiten einzelner Abschnitte anzeigen',
-'tog-editsectiononrightclick' => 'Einzelne Abschnitte per Rechtsklick bearbeiten (benötigt JavaScript)',
+'tog-editsectiononrightclick' => 'Einzelne Abschnitte per Rechtsklick bearbeiten',
 'tog-showtoc' => 'Anzeige eines Inhaltsverzeichnisses auf Seiten mit mehr als drei Überschriften',
 'tog-rememberpassword' => 'Mit diesem Browser dauerhaft angemeldet bleiben (maximal $1 {{PLURAL:$1|Tag|Tage}})',
 'tog-watchcreations' => 'Selbst erstellte Seiten und hochgeladene Dateien automatisch beobachten',
@@ -447,7 +447,7 @@ $messages = array(
 'tog-shownumberswatching' => 'Anzahl der beobachtenden Benutzer anzeigen',
 'tog-oldsig' => 'Vorhandene Signatur:',
 'tog-fancysig' => 'Signatur als Wikitext behandeln (ohne automatische Verlinkung)',
-'tog-uselivepreview' => 'Vorschau sofort anzeigen (benötigt JavaScript) (experimentell)',
+'tog-uselivepreview' => 'Vorschau sofort anzeigen (experimentell)',
 'tog-forceeditsummary' => 'Warnen, sofern beim Speichern die Zusammenfassung fehlt',
 'tog-watchlisthideown' => 'Eigene Bearbeitungen in der Beobachtungsliste ausblenden',
 'tog-watchlisthidebots' => 'Bearbeitungen durch Bots in der Beobachtungsliste ausblenden',
@@ -750,15 +750,12 @@ Alle verfügbaren Spezialseiten sind in der [[Special:SpecialPages|Liste der Spe
 # General errors
 'error' => 'Fehler',
 'databaseerror' => 'Datenbankfehler',
-'dberrortext' => 'Es ist ein Datenbankfehler aufgetreten.
-Der Grund kann ein Programmierfehler sein.
-Die letzte Datenbankabfrage lautete:
-<blockquote><code>$1</code></blockquote>
-aus der Funktion „<code>$2</code>“.
-Die Datenbank meldete den Fehler „<samp>$3: $4</samp>“.',
-'dberrortextcl' => 'Es gab einen Syntaxfehler in der Datenbankabfrage.
-Die letzte Datenbankabfrage lautete: „$1“ aus der Funktion „<tt>$2</tt>“.
-Die Datenbank meldete den Fehler: „<tt>$3: $4</tt>“.',
+'databaseerror-text' => 'Es ist ein Datenbankabfragefehler aufgetreten.
+Dies könnte auf einen Fehler in der Software hindeuten.',
+'databaseerror-textcl' => 'Es ist ein Datenbankabfragefehler aufgetreten.',
+'databaseerror-query' => 'Abfrage: $1',
+'databaseerror-function' => 'Funktion: $1',
+'databaseerror-error' => 'Fehler: $1',
 'laggedslavemode' => "'''Achtung:''' Die angezeigte Seite könnte unter Umständen nicht die letzten Bearbeitungen enthalten.",
 'readonly' => 'Datenbank gesperrt',
 'enterlockreason' => 'Bitte gib einen Grund ein, warum die Datenbank gesperrt werden soll und eine Abschätzung über die Dauer der Sperrung',
@@ -814,7 +811,6 @@ Nutze bitte [//translatewiki.net/ translatewiki.net], das Lokalisierungsprojekt 
 'editinginterface' => "'''Warnung:''' Diese Seite enthält von der MediaWiki-Software genutzten Text.
 Änderungen auf dieser Seite wirken sich auf die Benutzeroberfläche dieses Wikis aus.
 Nutze bitte [//translatewiki.net/ translatewiki.net], das Lokalisierungsprojekt von MediaWiki, um Übersetzungen für alle Wikis hinzuzufügen oder zu ändern.",
-'sqlhidden' => '(Die SQL-Datenbankabfrage ist verborgen.)',
 'cascadeprotected' => 'Diese Seite ist zur Bearbeitung gesperrt. Sie ist in die {{PLURAL:$1|folgende Seite|folgenden Seiten}} eingebunden, die mittels der Kaskadensperroption geschützt {{PLURAL:$1|ist|sind}}:
 $2',
 'namespaceprotected' => "Du hast nicht die erforderliche Berechtigung, um Seiten im Namensraum '''$1''' bearbeiten zu können.",
@@ -1865,7 +1861,7 @@ Stand: $4, $5 Uhr.",
 'rc-change-size' => '$1 {{PLURAL:$1|Byte|Bytes}}',
 'rc-change-size-new' => '$1 {{PLURAL:$1|Byte|Bytes}} nach der Änderung',
 'newsectionsummary' => 'Neuer Abschnitt /* $1 */',
-'rc-enhanced-expand' => 'Einzelheiten anzeigen (benötigt JavaScript)',
+'rc-enhanced-expand' => 'Einzelheiten anzeigen',
 'rc-enhanced-hide' => 'Einzelheiten verstecken',
 'rc-old-title' => 'ursprünglich erstellt als „$1“',
 
@@ -4161,6 +4157,7 @@ Eine [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie der ''GNU General Public License'']
 'dberr-problems' => 'Entschuldigung. Diese Seite hat momentan technische Schwierigkeiten.',
 'dberr-again' => 'Warte einige Minuten und versuche dann neu zu laden.',
 'dberr-info' => '(Kann keine Verbindung zum Datenbank-Server herstellen: $1)',
+'dberr-info-hidden' => '(Es konnte keine Verbindung mit dem Datenbankserver hergestellt werden)',
 'dberr-usegoogle' => 'Du könntest in der Zwischenzeit mit Google suchen.',
 'dberr-outofdate' => 'Beachte, dass der Suchindex unserer Inhalte bei Google veraltet sein kann.',
 'dberr-cachederror' => 'Folgendes ist eine Kopie des Caches der angeforderten Seite und kann veraltet sein.',

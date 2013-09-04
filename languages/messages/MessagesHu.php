@@ -646,15 +646,6 @@ Az érvényes speciális lapok listáját a [[Special:SpecialPages|{{int:special
 # General errors
 'error' => 'Hiba',
 'databaseerror' => 'Adatbázishiba',
-'dberrortext' => 'Szintaktikai hiba található az adatbázis-lekérdezésben.
-Ezt szoftverhiba okozhatta.
-Az utolsó adatbázis-lekérdezés a(z) „<code>$2</code>” függvényből történt, és a következő volt:
-<blockquote><code>$1</code></blockquote>
-Az adatbázis ezzel a hibával tért vissza: „<samp>$3: $4</samp>”.',
-'dberrortextcl' => 'Szintaktikai hiba található az adatbázis-lekérdezésben.
-Az utolsó adatbázis-lekérdezés a(z) „$2” függvényből történt, és a következő volt:
-„$1”
-Az adatbázis ezzel a hibával tért vissza: „$3: $4”.',
 'laggedslavemode' => "'''Figyelem:''' Ez a lap nem feltétlenül tartalmazza a legfrissebb változtatásokat!",
 'readonly' => 'Az adatbázis le van zárva',
 'enterlockreason' => 'Add meg a lezárás okát, valamint egy becslést, hogy mikor lesz a lezárásnak vége',
@@ -705,7 +696,6 @@ Lekérdezés: $2',
 'viewyourtext' => "Megtekintheted és kimásolhatod a '''saját szerkesztéseidet''' az alábbi lapra:",
 'protectedinterface' => 'Ez a lap a szoftver felületéhez szolgáltat szöveget, és a visszaélések elkerülése miatt le van zárva.',
 'editinginterface' => "'''Vigyázat:''' egy olyan lapot szerkesztesz, ami a MediaWiki szoftver felületéhez tartozik. A lap megváltoztatása hatással lesz a kinézetre, ahogy más szerkesztők látják a lapot. Fordításra inkább használd a MediaWiki fordítására indított kezdeményezést, a [//translatewiki.net/wiki/Main_Page?setlang=hu translatewiki.net-et].",
-'sqlhidden' => '(rejtett SQL lekérdezés)',
 'cascadeprotected' => 'Ez a lap szerkesztés elleni védelemmel lett ellátva, mert a következő {{PLURAL:$1|lapon|lapokon}} be van kapcsolva a „kaszkádolt” védelem:
 $2',
 'namespaceprotected' => "Nincs jogosultságod a(z) '''$1''' névtérben található lapok szerkesztésére.",

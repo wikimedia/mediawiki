@@ -643,17 +643,6 @@ Za popis svih posebnih stranica posjetite [[Special:SpecialPages|ovdje]].',
 # General errors
 'error' => 'Pogreška',
 'databaseerror' => 'Pogreška baze podataka',
-'dberrortext' => 'Došlo je do sintaksne pogrješke u upitu bazi.
-Možda se radi o pogrješci u softveru.
-Posljednji je pokušaj upita glasio:
-<blockquote><tt>$1</tt></blockquote>
-iz funkcije "<tt>$2</tt>".
-Baza je vratila pogrješku "<tt>$3: $4</tt>".',
-'dberrortextcl' => 'Došlo je do sintaksne pogreške s upitom bazi.
-Posljednji pokušaj upita je glasio:
-"$1"
-iz funkcije "$2".
-Baza je vratila pogrešku "$3: $4"',
 'laggedslavemode' => 'Upozorenje: na stranici se možda ne nalaze najnovije promjene.',
 'readonly' => 'Baza podataka je zaključana',
 'enterlockreason' => 'Upiši razlog zaključavanja i procjenu vremena otključavanja',
@@ -704,7 +693,6 @@ Upit: $2',
 'protectedinterface' => 'Ova stranica je zaštićena od izmjena jer sadrži tekst MediaWiki softvera.
 AKo želite prevesti neprevedenu poruku ili popraviti prijevod neke druge poruke za sve MediaWiki wikije, posjetite [//translatewiki.net/  translatewiki.net], projekt za lokalizaciju MediaWiki softvera.',
 'editinginterface' => "'''Upozorenje:''' Uređujete stranicu koja se rabi za prikaz teksta u sučelju softvera. Promjene učinjene na ovoj stranici će se odraziti na izgled korisničkog sučelja kod drugih suradnika. Za prijevod, razmotrite uporabu [//translatewiki.net/wiki/Main_Page?setlang=hr translatewiki.net], projekta lokalizacije MedijeWiki.",
-'sqlhidden' => '(SQL upit sakriven)',
 'cascadeprotected' => 'Ova je stranica zaključana za uređivanja jer je uključena u {{PLURAL:$1|slijedeću stranicu|slijedeće stranice}}, koje su zaštićene "prenosivom zaštitom":
 $2',
 'namespaceprotected' => "Ne možete uređivati stranice u imenskom prostoru '''$1'''.",

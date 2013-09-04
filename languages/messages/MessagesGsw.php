@@ -449,17 +449,6 @@ Alli verfiegbare Spezialsyte sin in dr [[Special:SpecialPages|Lischt vu Spezials
 # General errors
 'error' => 'Fähler',
 'databaseerror' => 'Fähler in dr Datebank',
-'dberrortext' => 'S isch e Datebankfähler ufträtte.
-Dr Grund cha ne e Programmierfähler syy.
-Di letscht Datebankabfrog isch
-<blockquote><code>$1</code></blockquote>
-us dr Funktion „<code>$2</code>“ gsi.
-D Datebank het dr Fähler „<samp>$3: $4</samp>“ gmäldet.',
-'dberrortextcl' => 'S het e Syntaxfähler gee in dr Abfrog vu dr Datebank.
-Di letscht Datebankabfrog isch
-„$1“
-us dr Funktion „$2“ gsi.
-D Datebank het dr Fähler „$3: $4“ gmäldet.',
 'laggedslavemode' => 'Warnig: di letschte Änderige wäre u. U. nonig aazeigt!',
 'readonly' => 'Datebank isch gsperrt',
 'enterlockreason' => 'Bitte gib e Grund y, worum d Datebank soll gsperrt wäre un e Yschätzig wie lang si soll gsperrt blybe',
@@ -507,7 +496,6 @@ Abfrog: $2',
 'viewyourtext' => "Du chasch dr Quälltext vu '''Dyre Bearbeitig''' vu däre Syte aaluege un kopiere:",
 'protectedinterface' => 'In däre Syte het s Text fir s Sproch-Interface vu dr Software un si isch gsperrt, zum Missbruch z verhindre.',
 'editinginterface' => "'''Obacht:''' Du bisch e Syten am Verändere, wu zum User.Interface ghert. Wänn Du die Syte veränderesch, no änderet sich s User-Interface au fir di andere Benutzer vu däm Wiki. Fir Ibersetzige lueg bitte, eb Du doodefir s [//translatewiki.net/wiki/Main_Page?setlang=gsw Translatewiki] witt bruuche, s MediaWiki-Lokalisierigsprojäkt.",
-'sqlhidden' => '(SQL-Abfrog verschteckt)',
 'cascadeprotected' => 'Die Syte isch fir s Bearbeite gsperrt. Si isch yybunde in {{PLURAL:$1|die Syte, wu do chunnt|die Syte, wu do chemme}} , wu mit ere Kaskadesperroption gschitzt {{PLURAL:$1|isch|sin}}:
 $2',
 'namespaceprotected' => "Du hesch kei Berächtigung, die Syte im '''$1'''-Namensruum z bearbeite.",

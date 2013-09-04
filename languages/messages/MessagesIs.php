@@ -563,17 +563,6 @@ Sjá [[Special:Version|útgáfusíðuna]].',
 # General errors
 'error' => 'Villa',
 'databaseerror' => 'Gagnagrunnsvilla',
-'dberrortext' => 'Málfræðivilla kom upp í gangagrnunsfyrirspurninni.
-Þetta gæti verið vegna villu í hugbúnaðinum.
-Síðasta gagnagrunnsfyrirspurnin var:
-<blockquote><code>$1</code></blockquote>
-úr aðgerðinni: „<code>$2</code>".
-MySQL skilar villuboðunum „<samp>$3: $4</samp>".',
-'dberrortextcl' => 'Málfræðivilla kom upp í gangagrnunsfyrirspurninni.
-Síðasta gagnagrunnsfyrirspurnin var:
-„$1“
-úr aðgerðinni: „$2“.
-MySQL skilar villuboðanum „$3: $4“',
 'laggedslavemode' => 'Viðvörun: Síðan inniheldur ekki nýjustu uppfærslur.',
 'readonly' => 'Gagnagrunnur læstur',
 'enterlockreason' => 'Gefðu fram ástæðu fyrir læsingunni, og einnig áætlun
@@ -628,7 +617,6 @@ Til þess að bæta við eða breyta þýðingum fyrir öll wiki verkefni, vinsa
 'editinginterface' => "'''Aðvörun:''' Þú ert að breyta síðu sem hefur að geyma texta fyrir notendaumhverfi hugbúnaðarins.
 Breytingar á þessari síðu munu hafa áhrif á notendaumhverfi annarra notenda á þessu vefsvæði.
 Til þess að bæta við eða breyta þýðingum fyrir öll wiki verkefni, vinsamlegast notaðu [//translatewiki.net/wiki/Main_Page?setlang=is translatewiki.net], staðfæringaverkefni MediaWiki.",
-'sqlhidden' => '(SQL-fyrirspurn falin)',
 'cascadeprotected' => 'Þessi síða hefur verið vernduð fyrir breytingum, vegna þess að hún er innifalin í eftirfarandi {{PLURAL:$1|síðu, sem er vernduð|síðum, sem eru verndaðar}} með „keðjuverndun“:
 $2',
 'namespaceprotected' => "Þú hefur ekki leyfi til að breyta síðum í '''$1''' nafnrýminu.",

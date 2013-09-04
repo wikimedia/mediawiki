@@ -297,17 +297,6 @@ Ating tala da reng bulung a makabukud king [[Special:SpecialPages|{{int:specialp
 # General errors
 'error' => 'Mali',
 'databaseerror' => 'Pamagkamali king database (simpanan)',
-'dberrortext' => 'Ating migkamali king database query syntax.
-Mapaliaring ating bug king software.
-Ing tauling mesubuk a kutang king database (database query) yapin iti:
-<blockquote><tt>$1</tt></blockquote>
-from within function "<tt>$2</tt>".
-MySQL returned error "<tt>$3: $4</tt>".',
-'dberrortextcl' => 'Mika pamagkamali king syntax ning pamangutang king database (database query).
-Ing tauling kutang king database yapin iti:
-"$1"
-manibat king kilub ning function "$2".
-Ini ing pamagkamaling linto king MySQL - "$3: $4"',
 'laggedslavemode' => 'Kapiadian: Mapaliaring ala lu king bulung deng pekatauling mibayu.',
 'readonly' => 'Makasara ya ing database',
 'enterlockreason' => 'Ibie me ing sangkan ning pamaniara, pati ing tantia nung kapilan ya milako iti',
@@ -352,7 +341,6 @@ Pakisubukan mung pasibayu kaibat ning mapilang minutu.',
 'viewsourcetext' => 'Malyari meng lon at kopian ing pikuanan (source) ning bulung a ini:',
 'protectedinterface' => 'Maki interface text ya para king software ing bulung a iti. Makasara ya ba yang e mayabusu.',
 'editinginterface' => "'''Babala:''' Babie yang interface text para king software ing bulung a i-edit mu. Makayapektu la king itsura ning user interface para kareng aliwang gagamit deng pamagbayu keti. Malyari lang munta king [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net] deng bisang sumaup king pamaglikas.",
-'sqlhidden' => '(makasalikut ya ing SQL query)',
 'cascadeprotected' => 'Makaprotekta ya king pamag-edit ing bulung a ini uling kayabe ya king makatuking {{PLURAL:$1|bulung, a|bulung, a}} a maki proteksiun uling makasalangi ya ing  "tuki-tuki" o "cascading" option:
 $2',
 'namespaceprotected' => "Ala kang paintulut a mag-edit bulung king pirinan lagyung (namespace a) '''$1'''.",

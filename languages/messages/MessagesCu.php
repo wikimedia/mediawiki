@@ -456,9 +456,11 @@ $messages = array(
 'searchprofile-articles-tooltip' => 'ищи въ $1',
 'searchprofile-project-tooltip' => 'исканиѥ въ $1',
 'searchprofile-images-tooltip' => 'исканиѥ дѣлъ',
+'searchprofile-everything-tooltip' => 'ищи вьсѩ страницѧ въкоупомь съ бѣсєдꙑ',
 'search-result-size' => '$1 ({{PLURAL:$2|$2 слово|$2 слова|$2 словєсъ}})',
 'search-redirect' => '(прѣнаправлєниѥ $1)',
 'search-section' => '(чѧсть $1)',
+'search-suggest' => '⁖ $1 ⁖ мьниши ли',
 'search-interwiki-caption' => 'родьствьна опꙑтьствованиꙗ',
 'search-interwiki-more' => '(вѧщє)',
 'searchall' => 'вьсꙗ',
@@ -666,6 +668,8 @@ $messages = array(
 'ancientpages' => 'давьни страницѧ',
 'move' => 'прѣимєнованиѥ',
 'movethispage' => 'си страницѧ прѣимєнованиѥ',
+'pager-newer-n' => '{{PLURAL:$1|нова 1|новꙑ $1|новъ $1}}',
+'pager-older-n' => '{{PLURAL:$1|давьнꙗ 1|давьни $1|давьн҄ь $1}}',
 
 # Book sources
 'booksources-go' => 'прѣиди',
@@ -883,6 +887,10 @@ $messages = array(
 'pageinfo-category-pages' => 'страницѩ число',
 'pageinfo-category-files' => 'дѣлъ число',
 
+# Browsing diffs
+'previousdiff' => '← давьнꙗ мѣна',
+'nextdiff' => 'нова мѣна →',
+
 # Media information
 'file-info-size' => '$1 × $2 п҃ѯ · дѣла мѣра : $3 · MIME тѷпъ : $4',
 'svg-long-desc' => 'дѣло SVG · обꙑчьнъ обраꙁъ : $1 × $2 п҃ѯ · дѣла мѣра : $3',
@@ -922,6 +930,7 @@ $messages = array(
 'exif-iimcategory-spo' => 'аѳлитїка',
 
 # External editor support
+'edit-externally' => 'дѣла иꙁмѣнѥниѥ вънѣщьниимь орѫдиѥмь',
 'edit-externally-help' => '(ꙁьри [//www.mediawiki.org/wiki/Manual:External_editors помощь] вѧщєи плирофорїѩ дѣлꙗ)',
 
 # 'all' in various places, this might be different for inflected languages

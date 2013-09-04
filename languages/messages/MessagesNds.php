@@ -526,17 +526,6 @@ En List vun de Spezialsieden gifft dat ünner [[Special:SpecialPages|{{int:speci
 # General errors
 'error' => 'Fehler',
 'databaseerror' => 'Fehler in de Datenbank',
-'dberrortext' => 'Dor weer en Syntaxfehler in de Datenbankaffraag.
-De Grund kann en Programmeerfehler ween
-De letzte Datenbankaffraag weer:
-
-<blockquote><tt>$1</tt></blockquote>
-
-ut de Funkschoon <tt>$2</tt>.
-MySQL mell den Fehler <tt>$3: $4</tt>.',
-'dberrortextcl' => 'Dor weer en Syntaxfehler in de Datenbankaffraag.
-De letzte Datenbankaffraag weer: $1 ut de Funkschoon <tt>$2</tt>.
-MySQL mell den Fehler: <tt>$3: $4</tt>.',
 'laggedslavemode' => 'Wohrschau: Disse Siet is villicht nich mehr op den ne’esten Stand.',
 'readonly' => 'Datenbank is sparrt',
 'enterlockreason' => 'Giff den Grund an, worüm de Datenbank sparrt warrn schall un taxeer, wo lang de Sparr duert',
@@ -585,7 +574,6 @@ Query: $2',
 'editinginterface' => "'''Wohrschau:''' Disse Siet bargt Text, de vun de MediaWiki-Software för ehr Böverflach bruukt warrt.
 Wat du hier ännerst, warkt sik op dat kumplette Wiki ut.
 Wenn du Text översetten wist, de betherto noch gornich översett is, denn maak dat opbest op [//translatewiki.net/wiki/Main_Page?setlang=nds translatewiki.net], dat Översett-Projekt vun MediaWiki.",
-'sqlhidden' => '(SQL-Affraag versteken)',
 'cascadeprotected' => 'Disse Siet is sperrt un kann nich ännert warrn. Dat kummt dorvun dat se in disse {{PLURAL:$1|Siet|Sieden}} inbunnen is, de över Kaskadensperr schuult {{PLURAL:$1|is|sünd}}:
 $2',
 'namespaceprotected' => "Du hest keen Rechten, Sieden in’n Naamruum '''$1''' to ännern.",

@@ -468,17 +468,6 @@ Dapeuta on kusuih nyang sah jeuet neu'eu bak [[Special:SpecialPages|{{int:specia
 # General errors
 'error' => 'Seunalah',
 'databaseerror' => 'Kesalahan basis data',
-'dberrortext' => 'Na salah bak syntax neulakee basis data.
-Nyoe kadang tanda na saboh bug lam alat leumiek.
-Neulakee basis data keuneulheueh nakeuh:
-<blockquote><code>$1</code></blockquote>
-nibak function "<code>$2</code>".
-Basis data na salah "<samp>$3: $4</samp>".',
-'dberrortextcl' => 'Na salah sintaks bak neulakee basis data.
-Neulakee basis data nyang keuneulheueh nakeuh:
-"$1"
-nibak fungsi "$2"
-Basis data geupeuhase salah "$3: $4".',
 'laggedslavemode' => 'Peuneugah: On nyoe kadang hana neuubah baro',
 'readonly' => 'Basis data geurok',
 'enterlockreason' => 'Pasoe daleh neurok ngon pajan jeuet geupeuhah',

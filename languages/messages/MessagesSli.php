@@ -305,15 +305,6 @@ Oalle verfügbara Spezialseyta sein ei der [[Special:SpecialPages|Liste der Spez
 
 # General errors
 'databaseerror' => 'Fehler ei der Datenbank',
-'dberrortext' => 'Is ies a Datenbankfahler uffgetreten.
-Dar Grund koan a Programmierfahler sei.
-De letzte Datenbankoabfroage lautete:
-<blockquote><tt>$1</tt></blockquote>
-aus dar Funksjonn „<tt>$2</tt>“.
-De Datenbank meldete dann Fahler „<tt>$3: $4</tt>“.',
-'dberrortextcl' => "Is goab an'n Syntaxfahler ei dar Datenbankobfroage.
-De letzte Datenbankobfroage lautete: „$1“ aus dar Funksjonn „<tt>$2</tt>“.
-De Datenbank meldete dann Fahler: „<tt>$3: $4</tt>“.",
 'laggedslavemode' => 'Achtung: Die angezeigte Seite enthält unter Umständen nicht die jüngsten Bearbeitungen.',
 'readonly' => 'Datenbanksperre',
 'missing-article' => 'Der Text von „$1“ $2 wurde nicht in der Datenbank gefunden.
@@ -343,7 +334,6 @@ Abfroage: $2',
 'editinginterface' => "'''Warnung:''' Diese Seite enthält vu der MediaWiki-Software benutzta Text.
 Änderunga wirka siech uff de Benutzeroberfläche aus.
 Fier Iebersetzunga ziehe bitte ei Betracht, diese eim [//translatewiki.net/wiki/Main_Page?setlang=de Translatewiki], damm MediaWiki-Lokalisierungsprojekt, durchzufiehra.",
-'sqlhidden' => '(SQL-Abfroage versteckt)',
 'cascadeprotected' => 'Diese Seite ies zur Beoarbeetung gesperrt. Se ies ei de {{PLURAL:$1|fulgende Seite|fulgenda Seita}} eengebunda, de mittels der Kaskadensperroption geschitzt {{PLURAL:$1|ies|sein}}:
 $2',
 'namespaceprotected' => "Du host kenne Berechtigung, de Seite eim '''$1'''-Noamensraum zu bearbta.",

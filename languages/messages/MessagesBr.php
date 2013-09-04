@@ -511,16 +511,9 @@ Ur roll eus ar pajennoù dibar reizh a c'hallit kavour war [[Special:SpecialPage
 # General errors
 'error' => 'Fazi',
 'databaseerror' => 'Fazi bank roadennoù',
-'dberrortext' => 'C\'hoarvezet ez eus ur fazi ereadur eus ar reked er bank roadennoù, ar pezh a c\'hall talvezout ez eus un draen er meziant.
-Setu ar goulenn bet pledet gantañ da ziwezhañ :
-<blockquote><code>$1</code></blockquote>
-adal an arc\'hwel "<code>$2</code>".
-Adkaset eo bet ar fazi "<samp>$3: $4</samp>" gant ar bank roadennoù.',
-'dberrortextcl' => 'Ur fazi ereadur zo en ur reked savet ouzh ar bank roadennoù.
-Setu ar goulenn bet pledet gantañ da ziwezhañ :
-"$1"
-adal an arc\'hwel "$2"
-Adkaset eo bet ar fazi "$3 : $4" gant ar bank roadennoù.',
+'databaseerror-query' => 'Reked : $1',
+'databaseerror-function' => "Arc'hwel : $1",
+'databaseerror-error' => 'Fazi : $1',
 'laggedslavemode' => "Diwallit : marteze a-walc'h n'emañ ket ar c'hemmoù diwezhañ war ar bajenn-mañ",
 'readonly' => 'Hizivadurioù stanket war ar bank roadennoù',
 'enterlockreason' => 'Merkit perak eo stanket hag istimit pegeit e chomo evel-henn',
@@ -572,7 +565,6 @@ Goulenn : $2",
 'viewyourtext' => "Gallout a rit gwelet hag eilañ mammenn ho '''kemmoù''' d'ar bajenn-mañ :",
 'protectedinterface' => 'Testenn ar bajenn-mañ a dalvez evit etrefas ar meziant er wiki-mañ. Setu perak eo bet gwarezet ar bajenn.',
 'editinginterface' => "'''Diwallit :''' Emaoc'h o kempenn ur bajenn a dalvez da sevel skridoù evit etrefas ar meziant. Ar c'hemmoù graet d'ar bajenn-mañ a cheñcho etrefas an holl implijerien. Mar fell deoc'h skoazellañ evit treiñ traoù, soñjit kentoc'h implijout [//translatewiki.net/wiki/Main_Page?setlang=br translatewiki.net], ar raktres evit lec'helaat MediaWiki.",
-'sqlhidden' => '(Reked SQL kuzhet)',
 'cascadeprotected' => 'Gwarezet eo ar bajenn-mañ; n\'haller ket kemmañ anezhi ken p\'he c\'haver {{PLURAL:$1|er bajenn|e-mesk ar pajennoù}} da-heul zo bet gwarezet en ur zibab an dibarzh "skalierad" :
 $2',
 'namespaceprotected' => "N'oc'h ket aotreet da gemmañ pajennoù an esaouenn anv '''$1'''.",
@@ -1883,6 +1875,8 @@ Diweredekaet eo bet img_auth.php evit ur surentez eus ar gwellañ",
 'listfiles_size' => 'Ment (e bitoù)',
 'listfiles_description' => 'Deskrivadur',
 'listfiles_count' => 'Stummoù',
+'listfiles-show-all' => 'Stummoù kozh eus skeudennoù e-barzh',
+'listfiles-latestversion' => 'Stumm diwezhañ',
 'listfiles-latestversion-yes' => 'Ya',
 'listfiles-latestversion-no' => 'Ket',
 
@@ -3157,15 +3151,15 @@ Ma vez erounezet ganeoc'h e c'hallje tagañ ho reizhiad.",
 'hours' => '{{PLURAL:$1|$1 eurvezh|$1 eurvezh}}',
 'days' => '{{PLURAL:$1|$1 deiz|$1 deiz}}',
 'weeks' => '{{PLURAL:$1|$1 sizhun|$1 sizhun}}',
-'months' => '{{PLURAL:$1|$1 miz|$1 miz}}',
+'months' => '{{PLURAL:$1|$1 miz}}',
 'years' => '{{PLURAL:$1|$1 bloaz|$1 vloaz}}',
 'ago' => '$1 zo',
 'just-now' => 'bremañ diouzhtu',
 
 # Human-readable timestamps
-'hours-ago' => '$1 {{PLURAL:$1|eur|eur}} zo',
+'hours-ago' => '$1 {{PLURAL:$1|eur}} zo',
 'minutes-ago' => '$1 {{PLURAL:$1|vunutenn|munut}} zo',
-'seconds-ago' => '$1 {{PLURAL:$1|eiladenn|eiladenn}} zo',
+'seconds-ago' => '$1 {{PLURAL:$1|eiladenn}} zo',
 'monday-at' => 'Dilun da $1',
 'tuesday-at' => 'Dimeurzh da $1',
 'wednesday-at' => "Dimerc'her da $1",
@@ -3896,6 +3890,7 @@ Sañset oc'h bezañ resevet [{{SERVER}}{{SCRIPTPATH}}/COPYING un eilskrid eus ar
 'dberr-problems' => "Ho tigarez ! Kudennoù teknikel zo gant al lec'hienn-mañ.",
 'dberr-again' => 'Gortozit un nebeud munutennoù a-raok adkargañ.',
 'dberr-info' => '(Dibosupl kevreañ ouzh servijer an diaz roadennoù: $1)',
+'dberr-info-hidden' => "(Ne c'haller ket mont da servijer an diaz roadennoù)",
 'dberr-usegoogle' => "E-keit-se esaeit klask dre c'hGoogle.",
 'dberr-outofdate' => "Notit mat e c'hall o menegerioù dezho bezañ dispredet e-keñver ar boued zo ganeomp.",
 'dberr-cachederror' => 'Un eilstumm memoret eus ar bajenn goulennet eo hemañ, gallout a ra bezañ dispredet.',
@@ -3923,7 +3918,7 @@ Sañset oc'h bezañ resevet [{{SERVER}}{{SCRIPTPATH}}/COPYING un eilskrid eus ar
 'logentry-delete-delete' => 'Diverket eo bet ar bajenn $3 gant $1',
 'logentry-delete-restore' => 'Assavet eo bet ar bajenn $3 gant $1',
 'logentry-delete-event' => "Kemmet eo bet gwelusted {{PLURAL:$5|un darvoud eus ar marilh|$5 darvoud eus ar marilh}} d'an $3 gant $1 : $4",
-'logentry-delete-revision' => 'Kemmet eo bet gwelusted {{PLURAL:$5|reizhadenn|$5 reizhadenn}} war ar bajenn $3 gant $1 : $4',
+'logentry-delete-revision' => 'Kemmet eo bet gwelusted {{PLURAL:$5|reizhadenn}} war ar bajenn $3 gant $1 : $4',
 'logentry-delete-event-legacy' => 'Kemmet eo bet gwelusted darvoudoù ar marilh $3 gant $1',
 'logentry-delete-revision-legacy' => 'Kemmet eo bet gwelusted ar reizhadennoù war ar bajenn $3 gant $1',
 'logentry-suppress-delete' => '$1 {{GENDER:$2|en deus dilamet}} ar bajenn $3',
@@ -4028,9 +4023,9 @@ A-hend-all e c'hallit ober gant ar furmskrid eeunaet dindan. Ouzhpennet e vo hoc
 
 # Limit report
 'limitreport-cputime' => 'Amzer implij ar CPU',
-'limitreport-cputime-value' => '$1 {{PLURAL:$1|eiladenn|eiladenn}}',
+'limitreport-cputime-value' => '$1 {{PLURAL:$1|eiladenn}}',
 'limitreport-walltime' => 'Amzer implij gwirion',
-'limitreport-walltime-value' => '$1 {{PLURAL:$1|eiladenn|eiladenn}}',
+'limitreport-walltime-value' => '$1 {{PLURAL:$1|eiladenn}}',
 'limitreport-postexpandincludesize-value' => '$1/$2 okted',
 'limitreport-templateargumentsize-value' => '$1/$2 okted',
 

@@ -346,17 +346,6 @@ Daftar kaca astamiwa sing sah teyeng dideleng nang [[Special:SpecialPages|{{int:
 # General errors
 'error' => 'Kasalahan',
 'databaseerror' => 'Kasalahan basis data',
-'dberrortext' => 'Ana kesalahan sintaks nang penjalukan basis data.
-Kesalahan kiye ndeyan nandakna nek ana \'\'bug\'\' nang piranti alus.
-Penjalukan basis data sing pungkasan yakuwe:
-<blockquote><code>$1</code></blockquote>
-sekang jerone fungsi "<code>$2</code>".
-Basis data ngasilna kesalahan "<samp>$3: $4</samp>".',
-'dberrortextcl' => 'Ana kesalahan sintaks nang penjalukan basis data.
-Penjalukan basis data sing pungkasan yakuwe:
-"$1"
-sekang jroning fungsi "$2".
-Basis data ngasilna kasalahan "$3: $4"',
 'laggedslavemode' => "'''Pènget:''' Kaca kiye mbokmenawa isiné dudu pangowahan pungkasan.",
 'readonly' => 'Basis data dikunci',
 'enterlockreason' => 'Lebokna alesan panguncèn, kalebu uga prakiran kapan kunci bakal dibuka',
@@ -416,7 +405,6 @@ Kanggo nambaih utawa ngowaih terjemahan nang kabeh wiki, monggo gunakna [//trans
 'editinginterface' => "'''Pènget:''' Rika nyunting kaca sing dienggo nyedyakna tèks antarmuka kanggo piranti alus.
 Pangowahan kaca kiye bakal awèh pangaruh maring tampilan antarmuka panganggo duweke panganggo sejen nang wiki kiye.
 Angger arep nambaih utawa ngowaih terjemahan, monggo gunakna [//translatewiki.net/translatewiki.net], proyèk lokalisasi MediaWiki.",
-'sqlhidden' => '(Penjalukan SQL diumpetna)',
 'cascadeprotected' => 'Kaca kiye wis direksa sekang penyuntingan jalaran melu mlebu nang {{PLURAL:$1|kaca|kaca-kaca}} nang ngisor kiye sing wis direksa nganggo opsi "runtun":
 $2',
 'namespaceprotected' => "Rika ora duwe hak akses kanggo nyunting kaca nang bilik jeneng '''$1'''.",

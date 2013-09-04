@@ -370,16 +370,6 @@ Iki manawa uga nuduhaké anané kesalahan ing piranti alus sing dipigunakaké d�
 # General errors
 'error' => 'Kasalahan',
 'databaseerror' => 'Kasalahan database',
-'dberrortext' => 'Ana kasalahan sintaks ing panyuwunan basis data.
-Kasalahan iki mbokmenawa nuduhaké anané \'\'bug\'\' ing software.
-Panyuwunan basis data sing pungkasan yakuwi: <blockquote><code>$1</code></blockquote>
-saka jroning fungsi "<code>$2</code>".
-Basis data ngasilaké kasalahan "<samp>$3: $4</samp>".',
-'dberrortextcl' => 'Ana kasalahan sintaks ing panyuwunan basis data.
-Panyuwunan basis data sing pungkasan iku:
-"$1"
-saka jroning fungsi "$2".
-Basis data ngasilaké kasalahan "$3: $4".',
 'laggedslavemode' => 'Pènget: Kaca iki mbokmenawa isiné dudu pangowahan pungkasan.',
 'readonly' => 'Database dikunci',
 'enterlockreason' => 'Lebokna alesan panguncèn, kalebu uga prakiran kapan kunci bakal dibuka',
@@ -426,7 +416,6 @@ Mangga dicoba manèh ing sawetara menit.',
 'editinginterface' => "'''Pènget:''' Panjenengan nyunting kaca sing dianggo nyedyakaké tèks antarmuka kanggo piranti alus.
 Pangowahan kaca iki bakal awèh pangaruh marang tampilan antarmuka panganggo kanggoné panganggo liya.
 Kanggo terjemahan, mangga nganggo [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], proyèk lokalisasi MediaWiki.",
-'sqlhidden' => '(Panyuwunan SQL didelikaké)',
 'cascadeprotected' => 'Kaca iki wis direksa saka panyuntingan amerga disertakaké ing {{PLURAL:$1|kaca|kaca-kaca}} ngisor iki sing wis direksa mawa opsi "runtun" diaktifaké:
 $2',
 'namespaceprotected' => "Panjenengan ora kagungan idin kanggo nyunting kaca ing bilik nama '''$1'''.",

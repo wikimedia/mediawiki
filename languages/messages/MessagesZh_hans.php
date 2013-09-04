@@ -690,15 +690,12 @@ $1',
 # General errors
 'error' => '错误',
 'databaseerror' => '数据库错误',
-'dberrortext' => '发生数据库查询语法错误。
-可能是由于软件自身的错误所引起。
-最后一次数据库查询指令是：
-<blockquote><code>$1</code></blockquote>
-来自于函数“<code>$2</code>”。
-数据库返回错误“<samp>$3: $4</samp>”。',
-'dberrortextcl' => '发生了数据库查询语法错误。最后一次数据库查询指令是：
-“$1”
-来自函数“$2”内。数据库返回错误“$3: $4”。',
+'databaseerror-text' => '出现了一个数据库查询错误。
+这可能表明软件中存在bug。',
+'databaseerror-textcl' => '数据库查询错误。',
+'databaseerror-query' => '查询：$1',
+'databaseerror-function' => '功能：$1',
+'databaseerror-error' => '错误：$1',
 'laggedslavemode' => "'''警告'''：页面可能未包含最近的更新。",
 'readonly' => '数据库被锁定',
 'enterlockreason' => '请输入锁定的原因，包括预计重新开放的时间',
@@ -753,7 +750,6 @@ $1',
 'editinginterface' => "'''警告：'''您正在编辑的页面是用于提供软件的界面文字。
 改变此页将影响其他在此wiki上的用户界面外观。
 如欲修改所有wiki的翻译，请到[//translatewiki.net/ translatewiki.net]上的MediaWiki本地化计划。",
-'sqlhidden' => '（SQL查询已隐藏）',
 'cascadeprotected' => '此页面已被保护，因为这个页面被以下已标注“联锁保护”的{{PLURAL:$1|一个|多个}}被保护页面包含：
 $2',
 'namespaceprotected' => "您没有权限编辑'''$1'''名字空间内的页面。",
@@ -3996,6 +3992,7 @@ MediaWiki发表时预期有用，但对此'''无任何保证'''，亦无隐含�
 本网站出现了一些技术问题。',
 'dberr-again' => '请等待几分钟后重试。',
 'dberr-info' => '（无法连接到数据库服务器：$1）',
+'dberr-info-hidden' => '（无法连接到数据库服务器）',
 'dberr-usegoogle' => '在此期间您可以尝试用 Google 来搜索。',
 'dberr-outofdate' => '须注意他们索引出来的内容可能不是最新的。',
 'dberr-cachederror' => '这是所请求页面的缓存副本，可能不是最新的。',

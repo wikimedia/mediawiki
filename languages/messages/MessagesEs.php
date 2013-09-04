@@ -702,17 +702,6 @@ Puedes ver una lista de las páginas especiales en [[Special:SpecialPages|{{int:
 # General errors
 'error' => 'Error',
 'databaseerror' => 'Error de la base de datos',
-'dberrortext' => 'Ha ocurrido un error de sintaxis en una consulta a la base de datos.
-Esto puede indicar un error en el software.
-La última consulta a la base de datos que se intentó fue:
-<blockquote><code>$1</code></blockquote>
-dentro de la función "<code>$2</code>".
-La base de datos devolvió el error "<samp>$3: $4</samp>".',
-'dberrortextcl' => 'Ha ocurrido un error de sintaxis en una consulta a la base de datos.
-La última consulta a la base de datos que se intentó fue:
-«$1»
-desde la función «$2».
-Base de datos retornó error «$3: $4».',
 'laggedslavemode' => "'''Aviso:''' puede que falten las actualizaciones más recientes en esta página.",
 'readonly' => 'Base de datos bloqueada',
 'enterlockreason' => 'Explique el motivo del bloqueo, incluyendo una estimación de cuándo se producirá el desbloqueo',
@@ -768,7 +757,6 @@ Para agregar o cambiar las traducciones para todos los wikis, por favor, usa [//
 'editinginterface' => "'''Aviso:''' Estás editando una página usada para proporcionar el texto de la interfaz para el software. 
 Los cambios en esta página afectarán a la apariencia de la interfaz para los demás usuarios de este wiki. 
 Para añadir o cambiar las traducciones, por favor considera usar [//translatewiki.net/ translatewiki.net], el proyecto de localización de MediaWiki.",
-'sqlhidden' => '(Consulta SQL oculta)',
 'cascadeprotected' => 'Esta página ha sido protegida para su edición, porque está incluida en {{PLURAL:$1|la siguiente página|las siguientes páginas}}, que están protegidas con la opción de «cascada»:
 $2',
 'namespaceprotected' => "No tienes permiso para editar las páginas del espacio de nombres '''$1'''.",

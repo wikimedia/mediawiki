@@ -331,7 +331,6 @@ Cur-shiu coontey jeh da [[Special:ListUsers/sysop|reireyder]], as goaill stiagh 
 'actionthrottledtext' => "Myr saase noi-spam, cha nod oo jannoo yn obbyr shoh rouyr keayrtyn ayns tammylt beg, as t'ou er roshtyn yn earroo smoo.  Jean eab noa dy gerrid, my saillt.",
 'protectedpagetext' => "Ta'n duillag shoh fo ghlass, as cha nod oo eshyn y reaghey.",
 'viewsourcetext' => 'Foddee oo jeeagh as jean aascreeuyn er bun ny duillag shoh:',
-'sqlhidden' => '(briaght SQL follit)',
 'namespaceprotected' => "Cha nel kiart ayd duillagyn 'sy reamys '''$1''' y reaghey.",
 'ns-specialprotected' => 'Cha nod oo reaghey duillagyn er lheh.',
 

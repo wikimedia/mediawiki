@@ -648,10 +648,6 @@ Dette kan òg skuldast ein feil i programvara som er nytta av {{SITENAME}}.',
 # General errors
 'error' => 'Feil',
 'databaseerror' => 'Databasefeil',
-'dberrortext' => 'Det oppstod ein syntaksfeil i ein databaseførespurnad. Dette kan tyda på feil i programvara. Siste førespurnaden til databasen var: <blockquote><code>$1</code></blockquote> frå funksjonen «<code>$2</code>». Databasen returnerte feilen «<samp>$3: $4</samp>».',
-'dberrortextcl' => 'Det oppstod ein syntaksfeil i databaseførespurnaden.
-Den sist prøvde førespurnaden var: «$1» frå funksjonen «$2».
-Databasen returnerte feilen «$3: $4».',
 'laggedslavemode' => 'Åtvaring: Det er mogleg at sida ikkje er heilt oppdatert.',
 'readonly' => 'Databasen er skriveverna',
 'enterlockreason' => 'Skriv ein grunn for vernet, inkludert eit overslag for kva tid det vil bli oppheva',
@@ -703,7 +699,6 @@ For å leggja til eller endra omsetjingar for alle wikiar, gjer vel å nytta [//
 'editinginterface' => "'''Åtvaring:''' Du endrar på ei side som inneheld tekst nytta av brukargrensesnittet for programvara.
 Endringar på denne sida påverkar utsjånaden til brukargrensesnittet for dei andre brukarane av wikien.
 For å leggja til eller endra omsetjingar, gjer vel å nytta [//translatewiki.net/wiki/Main_Page?setlang=nn translatewiki.net], prosjektet for lokalisering av MediaWiki.",
-'sqlhidden' => '(SQL-førespurnaden er gøymd)',
 'cascadeprotected' => 'Denne sida er verna mot endring fordi ho er inkludert i {{PLURAL:$1|den opplista sida|dei opplista sidene}} som har djupvern slått på:
 $2',
 'namespaceprotected' => "Du har ikkje tilgang til å endre sidene i '''$1'''-namnerommet.",

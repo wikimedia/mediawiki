@@ -477,15 +477,6 @@ $1',
 # General errors
 'error' => '有誤',
 'databaseerror' => '庫藏誤然',
-'dberrortext' => '問庫語誤，或軟體瑕焉。
-末語道：
-<blockquote><tt>$1</tt></blockquote>
-內此函式"<tt>$2</tt>".
-庫藏報有誤"<tt>$3: $4</tt>"。',
-'dberrortextcl' => '庫藏問語有誤，末道：
-"$1"
-內此函式"$2".
-庫藏報有誤"$3: $4"',
 'laggedslavemode' => '警示，此頁不新',
 'readonly' => '鎖庫藏',
 'enterlockreason' => '何以鎖之？何日啟之？',
@@ -527,7 +518,6 @@ $1',
 'viewsourcetext' => '爾可視及複之本頁之原始碼。',
 'protectedinterface' => '此頁司版，錮之以遠濫。',
 'editinginterface' => "'''警示：'''此頁司版，一髮牽身，惠慎之。如譯之，可慮[//translatewiki.net/wiki/Main_Page?setlang=zh-hant translatewiki.net]也，為MediaWiki軟件本地化之計劃也。",
-'sqlhidden' => '（SQL隱然）',
 'cascadeprotected' => '此頁"迭緘"矣。$1頁牽連如下：
 $2',
 'namespaceprotected' => "子權未逮，莫能纂'''$1'''。",

@@ -684,16 +684,6 @@ Bu, {{SITENAME}} sitesindeki bir hatayı da belirtebilir.",
 # General errors
 'error' => 'Hata',
 'databaseerror' => 'Veritabanı hatası',
-'dberrortext' => 'Bir veritabanı sorgusu sözdizimi hatası oluştu.
-Bu yazılımdaki bir hatadan kaynaklanabilir.
-"<tt>$2</tt>" işlevinden denenen son sorgulama:
-<blockquote><tt>$1</tt></blockquote>.
-Veritabanının rapor ettiği hata "<tt>$3: $4</tt>".',
-'dberrortextcl' => 'Veritabanı sorgu sözdizimi hatası oluştu.
-Son yapılan veritabanı sorgusu:
-"$1"
-Kullanılan fonksiyon "$2".
-Veritabanının verdiği hata mesajı "$3: $4"',
 'laggedslavemode' => 'Uyarı: Sayfa son güncellemeleri içermeyebilir.',
 'readonly' => 'Veritabanı kilitlendi',
 'enterlockreason' => 'Koruma için bir neden belirtin. Korumanın ne zaman kaldırılacağına dair tahmini bir tarih eklemeyi unutmayın.',
@@ -746,7 +736,6 @@ Lütfen birkaç dakika sonra yeniden deneyin.',
 'viewyourtext' => "Bu sayfaya '''yaptığınız değişikliklerin''' kaynağını görünteleyip kopyalayabilirsiniz:",
 'protectedinterface' => "Bu sayfa yazılım için arayüz metni sağlamaktadır ve kötüye kullanımı önlemek için korumaya alınmıştır. Eklemek ya da bütün vikilerdeki çevirileri değiştirmek için lütfen MediaWiki yerelleştirme projesi [//translatewiki.net/ translatewiki.net]'i kullanın.",
 'editinginterface' => "'''UYARI:''' Wiki yazılımı için arayüz sağlamakta kullanılan bir sayfayı değiştirmektesiniz. Bu sayfadaki değişiklikler kullanıcı arayüzünü diğer kullanıcılar için de değiştirecektir. Çeviriler için, lütfen [//translatewiki.net/wiki/Main_Page?setlang=tr translatewiki.net]'yi kullanarak MediaWiki yerelleştirme projesini dikkate alınız.",
-'sqlhidden' => '(SQL gizli sorgu)',
 'cascadeprotected' => 'Bu sayfa değişiklik yapılması engellenmiştir, çünkü  "kademeli" seçeneği aktif hale getirilerek koruma altına alınan {{PLURAL:$1|sayfada|sayfada}} kullanılmaktadır:
 $2',
 'namespaceprotected' => "'''$1''' alandındaki sayfaları düzenlemeye izniniz bulunmamaktadır.",

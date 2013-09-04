@@ -698,17 +698,6 @@ Een lijst met bestaande speciale pagina’s staat op [[Special:SpecialPages|{{in
 # General errors
 'error' => 'Fout',
 'databaseerror' => 'Databasefout',
-'dberrortext' => 'Er is een syntaxisfout in het databaseverzoek opgetreden.
-Mogelijk zit er een fout in de software.
-Het laatste verzoek aan de database was:
-<blockquote><code>$1</code></blockquote>
-vanuit de functie "<code>$2</code>".
-De database gaf de volgende foutmelding "<samp>$3: $4</samp>".',
-'dberrortextcl' => 'Er is een syntaxisfout in het databaseverzoek opgetreden.
-Het laatste verzoek aan de database was:
-"$1"
-vanuit de functie "$2".
-De database gaf de volgende foutmelding: "$3: $4"',
 'laggedslavemode' => "'''Waarschuwing:''' in deze pagina zijn recente wijzigingen mogelijk nog niet verwerkt.",
 'readonly' => 'Database geblokkeerd',
 'enterlockreason' => 'Geef een reden op voor de blokkade en geef op wanneer die waarschijnlijk wordt opgeheven',
@@ -767,7 +756,6 @@ Gebruik [//translatewiki.net/ translatewiki.net], het vertaalproject voor MediaW
 'editinginterface' => "'''Waarschuwing:''' u bewerkt een pagina die interfacetekst voor de software bevat.
 Bewerkingen op deze pagina beïnvloeden de gebruikersinterface van iedereen op deze wiki.
 Gebruik [//translatewiki.net/ translatewiki.net], het vertaalproject voor MediaWiki, om vertalingen toe te voegen of te wijzigen voor alle wiki's.",
-'sqlhidden' => '(SQL-zoekopdracht verborgen)',
 'cascadeprotected' => "Deze pagina kan niet bewerkt worden, omdat die is opgenomen in de volgende {{PLURAL:$1|pagina|pagina's}} die beveiligd {{PLURAL:$1|is|zijn}} met de cascade-optie:
 $2",
 'namespaceprotected' => "U hebt geen rechten om pagina's in de naamruimte '''$1''' te bewerken.",

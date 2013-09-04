@@ -352,17 +352,6 @@ Gheibh thu liosta nan duilleagan sònraichte 's dligheach aig [[Special:SpecialP
 # General errors
 'error' => 'Mearachd',
 'databaseerror' => 'Mearachd an stòir-dhàta',
-'dberrortext' => 'Thachair mearachd co-chàraidh rè iarrtas an stòir-dhàta.
-Faodaidh gu bheil seo a\' comharrachadh mearachd sa bhathar-bhog.
-Seo iarrtas an stòir-dhàta mu dheireadh a chaidh feuchainn ris:
-<blockquote><code>$1</code></blockquote>
-o bhroinn an fhoincsein "<code>$2</code>".
-Thill an stòr-dàta a\' mhearachd "<samp>$3: $4</samp>".',
-'dberrortextcl' => 'Thachair mearachd co-chàraidh rè iarrtas an stòir-dhàta.
-Seo iarrtas an stòir-dhàta mu dheireadh a chaidh feuchainn ris:
-"$1"
-o bhroinn an fhoincsein "$2".
-Thill an stòr-dàta a\' mhearachd "$3: $4"',
 'laggedslavemode' => "'''Rabhadh:''' Faodaidh nach eil ùrachaidhean a rinneadh o chionn ghoirid a' nochdadh san duilleag.",
 'readonly' => 'Stòr-dàta glaiste',
 'enterlockreason' => "Cuir a-steach adhbhar a' ghlais, a' gabhail a-steach tuairmeas air fuasgladh a' ghlais.",
@@ -418,7 +407,6 @@ Feuch ris a-rithist às a dhèidh seo.",
 'editinginterface' => "'''Rabhadh:''' Tha thu a' deasachadh duilleag a tha 'ga chleachdadh a chum teacsa eadar-aghaidh a sholar airson a' bhathar-bhog.
 Ma dh'atharraicheas tu an duilleag seo, bidh buaidh ann air coltas na h-eadar-aghaidh mar a chì càch e air an uicipeid seo.
 Gus eadar-theangachadh atharrachadh no a chur ris airson gach uicipeid, cleachd [//translatewiki.net/ translatewiki.net], pròiseactan eadar-theangachadh MediaWiki.",
-'sqlhidden' => "(Iarrtas SQL 'ga fhalach)",
 'cascadeprotected' => 'Chaidh an duilleag seo a dhìon o dheasachadh a chionn \'s gu bheil e am broinn {{PLURAL:$1|na duilleige|nan duilleagan}} a leanas a chaidh an dìon \'s an roghainn "mar eas" air:
 $2',
 'namespaceprotected' => "Chan eil cead agad duilleagan san namespace '''$1''' a dheasachadh.",

@@ -399,17 +399,6 @@ Tá liosta de leathanaigh speisialta bhailí ar fáil ag [[Special:SpecialPages|
 # General errors
 'error' => 'Earráid',
 'databaseerror' => 'Earráid sa bhunachar sonraí',
-'dberrortext' => 'Tharla earráid chomhréire in iarratas chuig an mbunachar sonraí.
-B\'fhéidir gur fabht sa bhogearraí é seo.
-Seo é an t-iarratas deireanach chuig an mbunachar sonrai:
-<blockquote><tt>$1</tt></blockquote>
-ón bhfeidhm "<tt>$2</tt>".
-Thug MySQL an earráid seo: "<tt>$3: $4</tt>".',
-'dberrortextcl' => 'Tharla earráid chomhréire in iarratas chuig an bhunachar sonraí.
-"$1",
-ón bhfeidhm "$2",
-ab ea an t-iarratas deireanach chuig an mbunachar sonrai.
-Thug MySQL an earráid seo: "$3: $4".',
 'laggedslavemode' => "Rabhadh: B'fhéidir nach bhfuil na nuashonrúcháin is déanaí le feiceáil ar an leathanach seo.",
 'readonly' => 'Bunachar sonraí faoi ghlas',
 'enterlockreason' => 'Iontráil cúis don glasáil, agus meastachán
@@ -459,7 +448,6 @@ Bain trial arís as i gcionn cúpla bomaite más é do thoil é.',
 'viewsourcetext' => 'Is féidir foinse an leathanach seo a fheiceáil ná a cóipeáil:',
 'editinginterface' => "'''Rabhadh:''' Tá tú ag athrú leathanaigh a bhfuil téacs comhéadain do na bogearraí air. Cuirfear athruithe ar an leathanach seo i bhfeidhm ar an gcomhéadan úsáideora.
 Más maith leat MediaWiki a aistriú, cuimhnigh ar [//translatewiki.net/wiki/Main_Page?setlang=ga translatewiki.net] (tionscadal logánaithe MediaWiki) a úsáid.",
-'sqlhidden' => '(Iarratas SQL folaithe)',
 'namespaceprotected' => "Ní chead agat leathanaigh a chur in eagar san ainmspás '''$1'''.",
 'ns-specialprotected' => 'Ní féidir leathanaigh speisialta a chur in eagar.',
 'titleprotected' => "Tá an teideal seo cosanta ar chruthú le [[User:$1|$1]].

@@ -614,17 +614,6 @@ Zoznam platných špeciálnych stránok nájdete na [[Special:SpecialPages|{{int
 # General errors
 'error' => 'Chyba',
 'databaseerror' => 'Chyba v databáze',
-'dberrortext' => 'V databázovom dopyte sa vyskytla syntaktická chyba.
-Príčinou môže byť chyba v softvéri.
-Posledný dopyt bol:
-<blockquote><tt>$1</tt></blockquote>
-z funkcie „<tt>$2</tt>“.
-Databáza vrátila chybu „<tt>$3: $4</tt>“.',
-'dberrortextcl' => 'Nastala syntaktická chyba pri požiadavke do databázy.
-Posledná požiadavka na databázu bola:
-„$1“
-z funkcie „$2“.
-Databáza vrátila chybu „$3: $4“.',
 'laggedslavemode' => 'Upozornenie: Je možné, že stránka neobsahuje posledné aktualizácie.',
 'readonly' => 'Databáza je zamknutá',
 'enterlockreason' => 'Zadajte dôvod požadovaného zamknutia vrátane odhadu, kedy očakávate odomknutie',
@@ -678,7 +667,6 @@ Ak chcete pridať alebo zmeniť preklady pre všetky wiki, prosím, použite [//
 'editinginterface' => "'''Upozornenie:''' Upravujete stránku, ktorá poskytuje text používateľského rozhrania.
 Zmeny tejto stránky ovplyvnia vzhľad používateľského rozhrania ostatným používateľom.
 Ak chcete pridať alebo zmeniť preklady pre všetky wiki, prosím, použite [//translatewiki.net/wiki/Main_Page?setlang=sk translatewiki.net], projekt lokalizácie MediaWiki.",
-'sqlhidden' => '(SQL príkaz je skrytý)',
 'cascadeprotected' => 'Táto stránka bola zamknutá proti úpravám, pretože je použitá na {{PLURAL:$1|nasledovnej stránke, ktorá je zamknutá|nasledovných stránkach, ktoré sú zamknuté}} voľbou „kaskádového zamknutia“:
 $2',
 'namespaceprotected' => "Nemáte povolenie upravovať stránky v mennom priestore '''$1'''.",

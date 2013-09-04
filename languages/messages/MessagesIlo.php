@@ -366,17 +366,6 @@ Masarakan ti listaan dagiti umisu nga espesial a pampanid iti [[Special:SpecialP
 # General errors
 'error' => 'Biddut',
 'databaseerror' => 'Biddut iti database',
-'dberrortext' => 'Adda napasamak a biddut ti nakaibatayan ti datos a panagsapul ti gramatika.
-Adda ngata kiteb iti sopwer.
-Ti kinaudi a panagipadas ti panagsapul ti nakaibatayan ti datos ket:
-<blockquote><code>$1</code></blockquote>
-naggapu ti uneg ti pamay-an "<code>$2</code>".
-Ti nakaibatayan ti datos ket nangipatulod ti biddut "<samp>$3: $4</samp>".',
-'dberrortextcl' => 'Adda biddut ti database ti gramatika a panagsapul.
-Ti kinaudi a panagsapul ti database ket:
-"$1"
-naggapu ti uneg ti opisio "$2".
-Ti database ket nangipatulod ti biddut "$3: $4".',
 'laggedslavemode' => "'''Ballaag:''' Ti panid ket mabalin a saan nga aglaon kadagiti kinaudi a panagpabaro.",
 'readonly' => 'Narikepan ti database',
 'enterlockreason' => 'Agikabil ti rason para iti pannakarikep, agraman ti maysa a karkulo no kaanonto a maluktan',
@@ -435,7 +424,6 @@ Ti aginayon wenno panagibaliw kadagiti panagipatarus para kadagiti amin a wiki, 
 'editinginterface' => "'''Ballaag:''' Ur-urnosem ti maysa a panid a maar-aramat a mangted iti testo ti interface para iti sopwer.
 Dagiti panagsukat iti daytoy a panid ket maarigan ti langa ti panagaramat nga interface dagiti sabali nga agar-aramat iti daytoy a wiki.
 Ti aginayon wenno panagibaliw kadagiti panagipatarus para kadagiti amin a wiki,  pangngaasi nga usaren ti [//translatewiki.net/ translatewiki.net], ti lokalisasion a gandat ti MediaWiki.",
-'sqlhidden' => '(Nailemmeng ti SQL a panagbiruk)',
 'cascadeprotected' => 'Daytoy a panid ket nasalakniban para iti panag-urnos ngamin ket nairaman kadagiti sumaganad {{PLURAL:$1|a panid, a|a pampanid, a}} nasalakniban nga adda ti napili nga "agsariap"  :
 $2',
 'namespaceprotected' => "Awan ti pammalubosmo nga agurnos kadagiti panid iti '''$1''' a nagan ti espasio.",

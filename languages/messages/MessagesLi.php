@@ -467,17 +467,6 @@ Mäögelik höbs te 'n typefout gemaak in de URL, of 'n verkierde verwiezing gev
 # General errors
 'error' => 'Fout',
 'databaseerror' => 'Databasefout',
-'dberrortext' => 'Bie \'t zeuke is \'n syntaxfout in de database opgetraoje.
-Dit kan zien veroorzaak door \'n fout in de software.
-De lètste zeukpoging in de database waor:
-<blockquote><tt>$1</tt></blockquote>
-vanoet de functie "<tt>$2</tt>".
-Database gaof de foutmelding "<tt>$3: $4</tt>".',
-'dberrortextcl' => 'Dao is \'n syntaxfout opgetreje bie \'t zeuke in de database.
-De lèste opgevraogde zeukactie waor:
-"$1"
-vanoet de functie "$2".
-Database brach fout "$3" nao veure: "$4"',
 'laggedslavemode' => 'Waarsjoewing: de pagina kin verauwerd zien.',
 'readonly' => 'Database geblokkeerd',
 'enterlockreason' => "Gaef 'n rae veur de blokkering en wie lank 't dinkelik zal dore. De ingegaeve rae zal aan de gebroekers getuind waere.",
@@ -529,7 +518,6 @@ Query: $2',
 'viewyourtext' => 'Doe kans "dien bewèrkinge" ane brónteks van dees pagina bekieke en euverkopiëre:',
 'protectedinterface' => 'Deze pagina bevat teks veur berichte van de software en is beveilig om misbroek te veurkomme.',
 'editinginterface' => "'''Waarsjoewing:''' Doe bewirks 'n pagina die gebroek waert door de software. Bewirkinge op dees pagina beïnvlode de gebroekersinterface van jederein. Euverwaeg veur euverzèttinge [//translatewiki.net/wiki/Main_Page?setlang=li translatewiki.net] te gebroeke, 't euverzèttingssprojek veur MediaWiki.",
-'sqlhidden' => '(SQL query verborge)',
 'cascadeprotected' => "Deze pagina kin neet bewirk waere, omdet zie is opgenome in de volgende {{PLURAL:$1|pagina|pagina's}} die beveilig {{PLURAL:$1|is|zeen}} mèt de kaskaad-optie:
 $2",
 'namespaceprotected' => "Doe höbs gein rechte om pagina's in de naamruumde '''$1''' te bewirke.",

@@ -650,17 +650,6 @@ Encontra uma lista das páginas especiais válidas em [[Special:SpecialPages|{{i
 # General errors
 'error' => 'Erro',
 'databaseerror' => 'Erro na base de dados',
-'dberrortext' => 'Ocorreu um erro sintáctico na pesquisa à base de dados.
-Isto poderá indicar um defeito no software.
-A última pesquisa executada na base de dados foi:
-<blockquote><code>$1</code></blockquote>
-na função "<code>$2</code>".
-A base de dados devolveu o erro "<samp>$3: $4</samp>".',
-'dberrortextcl' => 'Ocorreu um erro sintáctico na pesquisa à base de dados.
-A última tentativa de consulta à base de dados foi:
-"$1"
-na função "$2".
-A base de dados devolveu o erro "$3: $4"',
 'laggedslavemode' => "'''Aviso:''' A página pode não conter as atualizações mais recentes.",
 'readonly' => 'Base de dados bloqueada (limitada a leituras)',
 'enterlockreason' => 'Introduza um motivo para bloquear, incluindo uma estimativa de quando será desbloqueada',
@@ -714,7 +703,6 @@ Consulta: $2',
 'viewyourtext' => "Pode ver e copiar o código-fonte das '''suas edições''' desta página:",
 'protectedinterface' => 'Esta página fornece o texto da interface ao software, e está protegida para prevenir abusos.',
 'editinginterface' => "'''Aviso:''' Está a editar uma página usada para fornecer texto de interface ao software. Alterações a esta página afetarão a aparência da interface de utilizador para os outros utilizadores. Para traduções, considere utilizar a [//translatewiki.net/wiki/Main_Page?setlang=pt translatewiki.net], um projeto destinado à tradução do MediaWiki.",
-'sqlhidden' => '(Consulta SQL em segundo-plano)',
 'cascadeprotected' => 'Esta página foi protegida contra edições por estar incluída {{PLURAL:$1|na página listada|nas páginas listadas}} a seguir, ({{PLURAL:$1|página essa que está protegida|páginas essas que estão protegidas}} com a opção de proteção "em cascata" ativada):
 $2',
 'namespaceprotected' => "Não possui permissão para editar páginas no espaço nominal '''$1'''.",

@@ -317,17 +317,6 @@ Ku lupapula "[[Special:SpecialPages|{{int:specialpages}}]]" kuliko olukalala lw\
 # General errors
 'error' => 'Kiremya',
 'databaseerror' => 'Waliwo kiremya ku ggwanika lya data',
-'dberrortext' => 'Waliwo kiremya avudde ku mpandika y\'ekiragiro ekinoonyeza mu ggwanika lya data.<br />
-Ayinza okuba nga azze lwa nsobi mu sofutiweya wa lyo.<br />
-Ekiragiro ekinoonyeza mu ggwanika lya data ekisembye okuyisibwa kiri:<br />
-<blockquote><tt>$1</tt></blockquote>
-ekisangibwa mu mukolo gwa puloguramu "<tt>$2</tt>".<br />
-Obubaka obuvudde mu ggwanika lya data obufa ku kiremya buli "<tt>$3: $4</tt>".',
-'dberrortextcl' => 'Waliwo kiremya avudde ku mpandika y\'ekiragiro ekinoonyeza mu ggwanika lya data.<br />
-Ekiragiro ekinoonyeza mu ggwanika lya data ekisembye okuyisibwa kiri:<br />
-"$1" <br />
-ekisangibwa mu mukolo gwa mu puloguramu "$2".<br />
-Obubaka obuvudde mu ggwanika lya data obufa ku kiremya buli "$3: $4"',
 'laggedslavemode' => "'''Kulabula:''' Olupapula luyinza obutabaamu ebyakalukyusibwamu.",
 'readonly' => 'Eggwanika lya data terikkiriza kulikyusamu',
 'enterlockreason' => "Wandikawo ensonga esibizza eggwanika lya data, nga olaga ddi lw'olisuubira okusumululwa",
@@ -380,7 +369,6 @@ Lindako eddakiika entonotono oly'oke oddemu okugezako ekikolwa.",
 Luliko ebikugizo ebirugaana okwonooebwa.",
 'editinginterface' => "'''Kulabula:''' Okyusa olupapula sofutiweya kw'egya ebigambo byayo.
 Enkyukakyuka z'okola wano zigyakubaako kye zikola ku ngeri abantu gye bakozesaamu enfo eno.",
-'sqlhidden' => '(Waliwo wo ebya SQL ebibikkidwa)',
 'cascadeprotected' => 'Olupapula luno lulandideko ekikugizo ekirugaana okukyusibwako ekisibuka ku {{PLURAL:$1|lunnaalwo luno olulukozesa|zinnalwo zino ezirukozesa}}:<br />
 $2',
 'namespaceprotected' => "Tolina buyinza bwa kukyusa ku mpapula ez'omu kkuŋaanizo erya '''$1'''.",

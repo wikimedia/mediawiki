@@ -306,7 +306,6 @@ Si s'n'est poin ch'cas-lo, pététe éq ch'est un bogue din ch'businkillache. <b
 'viewsource' => "Vir l'source",
 'viewsource-title' => "Vir l'source éd $1",
 'protectedpagetext' => "L'pache-lo ale o té garantie pou impétcher chés canjemints.",
-'sqlhidden' => "(l'édminde SQL est muchée)",
 'ns-specialprotected' => "Ches paches éspéchiales, is n'peute poin éte éditées.",
 
 # Virus scanner

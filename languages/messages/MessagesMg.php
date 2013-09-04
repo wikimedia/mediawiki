@@ -542,16 +542,6 @@ Mitaky version $1-n'i MediaWiki",
 # General errors
 'error' => 'Tsy mety',
 'databaseerror' => "Tsy fetezana eo amin'ny toby",
-'dberrortext' => "Nitranga ny hadisoana ara-pirafi-kataka (syntax error).
-Mety noho ny tsifandehanan'ny rindrankajy tsara izany.
-<blockquote><code>$1</code></blockquote>
-avy amin'ny tao « <code>$2</code> ».
-ary « <samp>$3 : $4</samp> » no hadisoana naverinn'ny banky angona.",
-'dberrortextcl' => "Ao amin'ny fangatahana tao amin'ny banky angona dia misy tsi-fetezana ara-pehezanteny.
-Ny fangatahana farany nalefa dia :
-« $1 »
-tao amin'ny asa « $2 ».
-Ny banky angona dia namerina ny tsi-fetezana « $3 : $4 »",
 'laggedslavemode' => 'Fampitandremana: Mety ho tsy nisy fanovana vao haingana angamba io pejy io',
 'readonly' => 'Mihidy ny banky angona',
 'enterlockreason' => 'Manomeza antony hanidiana ny pejy, ahitana ny fotoana tokony hamahana izay fihidiana izay',
@@ -610,7 +600,6 @@ Andramo indray afaka minitra vitsivitsy.",
 Hisy fiantraikany amin'ny fisehon'ny tranonkala amin'ny mpampiasa rehetra eto amin'ity wiki ity ny fanovana.
 
 Raha hanampy dikanteny izay tokony hihatra amin'ny wiki rehetra, ampiaao ny tranonkala [//translatewiki.net/ translatewiki.net translatewiki.net], ny tetikasa fandikana an'i MediaWiki.",
-'sqlhidden' => '(nafenina ny requête SQL)',
 'cascadeprotected' => 'Ankehitriny dia voaaro ity pejy ity satria misy pejy voaaro {{PLURAL:$1||$1}}1 mampiasa ity pejy ity. Io pejy io dia mampiasa ny fiarovana "en cascade" :
 
 $2',

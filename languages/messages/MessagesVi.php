@@ -656,17 +656,6 @@ Có danh sách trang đặc biệt tại [[Special:SpecialPages|{{int:specialpag
 # General errors
 'error' => 'Lỗi',
 'databaseerror' => 'Lỗi cơ sở dữ liệu',
-'dberrortext' => 'Đã xảy ra lỗi cú pháp trong truy vấn cơ sở dữ liệu.
-Có vẻ như nguyên nhân của vấn đề này xuất phát từ một lỗi trong phần mềm.
-Truy vấn vừa rồi là:
-<blockquote><code>$1</code></blockquote>
-từ hàm “<code>$2</code>”.
-Cơ sở dữ liệu  báo lỗi “<samp>$3: $4</samp>”.',
-'dberrortextcl' => 'Đã xảy ra lỗi cú pháp trong truy vấn cơ sở dữ liệu.
-Truy vấn vừa rồi là:
-“$1”
-từ hàm “$2”.
-Cơ sở dữ liệu báo lỗi “$3: $4”',
 'laggedslavemode' => 'Cảnh báo: Trang có thể chưa được cập nhật.',
 'readonly' => 'Cơ sở dữ liệu bị khóa',
 'enterlockreason' => 'Nêu lý do khóa, cùng với thời hạn khóa',
@@ -717,7 +706,6 @@ Truy vấn: $2',
 'viewyourtext' => "Bạn vẫn có thể xem và chép xuống mã nguồn '''các sửa đổi của bạn''' tại trang này:",
 'protectedinterface' => 'Trang này cung cấp một thông điệp trong giao diện phần mềm, và bị khóa để tránh phá hoại. Để bổ sung hoặc thay đổi bản dịch ở bất cứ wiki nào, xin vui lòng đóng góp vào [//translatewiki.net/wiki/Main_Page?setlang=vi translatewiki.net], dự án bản địa hóa của MediaWiki.',
 'editinginterface' => "'''Lưu ý:''' Bạn đang sửa chữa một trang dùng để cung cấp thông điệp giao diện cho phần mềm. Những thay đổi tại trang này sẽ ảnh hưởng đến giao diện của rất nhiều người dùng wiki này. Để bổ sung hoặc thay đổi bản dịch ở bất cứ wiki nào, xin vui lòng đóng góp vào [//translatewiki.net/wiki/Main_Page?setlang=vi translatewiki.net], dự án bản địa hóa của MediaWiki.",
-'sqlhidden' => '(đã giấu truy vấn SQL)',
 'cascadeprotected' => 'Trang này đã bị khóa không cho sửa đổi, vì nó được nhúng vào {{PLURAL:$1|trang|những trang}} đã bị khóa với tùy chọn “khóa theo tầng” được kích hoạt:
 $2',
 'namespaceprotected' => "Bạn không có quyền sửa các trang trong không gian tên '''$1'''.",

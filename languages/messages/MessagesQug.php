@@ -63,7 +63,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Mashna rurakkunaka chay pankata rikukuncha rikuchina',
 'tog-oldsig' => 'Kunan pachapak aspina:',
 'tog-fancysig' => 'aspinata Wiki-killkay shina rikuchina (mana ñapash tinkita churashpa)',
-'tog-showjumplinks' => '"chayman kallpana" tinkikunata sakina',
 'tog-forceeditsummary' => 'Mana uchilla willayta churashpa killkakpi willaway',
 'tog-watchlisthideown' => 'Rikushka pankakunapak mushuk killkaykunapi, ñukapak killkaykunata mana rikuchina',
 'tog-watchlisthidebots' => 'Rikushka pankakunapak mushuk killkaykunapi, antawakunapak killkaykunata mana rikuchina',

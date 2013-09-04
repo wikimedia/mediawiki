@@ -447,17 +447,7 @@ Mae rhestr o'r tudalennau arbennig dilys i'w gael [[Special:SpecialPages|yma]]."
 # General errors
 'error' => 'Gwall',
 'databaseerror' => 'Gwall databas',
-'dberrortext' => 'Mae gwall cystrawen ymholi wedi taro\'r gronfa ddata.
-Efallai fod gwall yn y meddalwedd.
-Y gofyniad diwethaf a ofynwyd i\'r gronfa ddata oedd:
-<blockquote><code>$1</code></blockquote>
-o\'r ffwythiant "<code>$2</code>".
-Rhoddwyd y côd gwall "<samp>$3: $4</samp>".',
-'dberrortextcl' => 'Mae gwall cystrawen wedi taro\'r databas.
-Y gofyniad olaf y trïodd y databas oedd:
-"$1"
-o\'r ffwythiant "$2".
-Rhoddwyd y côd gwall "$3: $4<".',
+'databaseerror-error' => 'Gwall: $1',
 'laggedslavemode' => "Rhybudd: hwyrach nad yw'r dudalen yn cynnwys diwygiadau diweddar.",
 'readonly' => 'Databas ar glo',
 'enterlockreason' => "Rhowch eglurhad dros gloi'r databas, ac amcangyfrif hyd at pa bryd y bydd y databas dan glo",
@@ -510,7 +500,6 @@ Ceisiwch eto ymhen rhai munudau.",
 'viewyourtext' => "Cewch weld a copïo ffynhonnell ''eich golygiadau'' i'r dudalen hon:",
 'protectedinterface' => "Testun ar gyfer rhyngwyneb y wici yw cynnwys y dudalen hon. Clowyd y dudalen er mwyn ei diogeli. Os am gyfieithu'r neges neu ei newid ym mhob wici yn hytrach nag yn hwn yn unig, defnyddiwch [//translatewiki.net/ translatewiki.net], y prosiect MediaWiki sy'n hyrwyddo'r gwaith cyfieithu.",
 'editinginterface' => "'''Dalier sylw:''' Rydych yn golygu tudalen sy'n rhan o destun rhyngwyneb y meddalwedd. Bydd newidiadau i'r dudalen hon yn effeithio ar y rhyngwyneb a ddefnyddir ar y wici hwn yn unig. Os am gyfieithu'r neges rhagosodedig a ddefnyddir ar bob wici, ystyriwch ddefnyddio [//translatewiki.net/ translatewiki.net], sef y prosiect MediaWiki sy'n hyrwyddo creu rhyngwyneb amlieithog ar wicïau.",
-'sqlhidden' => '(cuddiwyd chwiliad SQL)',
 'cascadeprotected' => "Diogelwyd y dudalen hon rhag ei newid, oherwydd ei bod wedi ei chynnwys yn y {{PLURAL:$1|dudalen ganlynol|dudalen ganlynol|tudalennau canlynol|tudalennau canlynol|tudalennau canlynol|tudalennau canlynol}}, a {{PLURAL:$1|honno yn ei thro wedi ei|honno yn ei thro wedi ei|rheiny yn eu tro wedi eu|rheiny yn eu tro wedi eu|rheiny yn eu tro wedi eu|rheiny yn eu tro wedi eu}} diogelu, a'r dewisiad 'sgydol' ynghynn:
 $2",
 'namespaceprotected' => "Nid oes caniatâd gennych i olygu tudalennau yn y parth '''$1'''.",

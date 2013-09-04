@@ -364,17 +364,6 @@ Pe 'na liste de le pàggene speciele cirche aqquà [[Special:SpecialPages|{{int:
 # General errors
 'error' => 'Errore',
 'databaseerror' => "Errore de l'archivije",
-'dberrortext' => "Ha assute n'errore de sindassi de 'na inderrogazione sus a 'u database.
-Quiste pò indicà 'nu bochere jndr'à 'u software.
-L'urteme tendative de inderrogazione sus a 'u database ha state:
-<blockquote><code>\$1</code></blockquote>
-cu 'a funzione \"<code>\$2</code>\".
-'U database ha returnate l'errore \"<samp>\$3: \$4</samp>\".",
-'dberrortextcl' => 'A assute \'n\'errore de sindasse sus a \'n\'inderrogazione d\'u database.
-L\'urteme tendative de inderrogazione sus a \'u database ha state:
-"$1"
-ausanne \'a funzione "$2".
-\'U database ha returnate l\'errore "$3: $4"',
 'laggedslavemode' => "Attenzione: 'A pàgene no ge tène cangiaminde recente.",
 'readonly' => 'Archivie blocchete',
 'enterlockreason' => "Mitte 'na raggione p'u blocche, 'ncludenne 'na stime de quanne 'u blocche avène luate.",
@@ -432,7 +421,6 @@ Pe aggiungere o cangià le traduziune pe tutte le uicchi, pe piacere ause [//tra
 'editinginterface' => "'''Fà attenziò:'''  Tu ste cange 'na pàgene ca jè ausate pe dà 'n'inderfacce de teste p'u software.
 Le cangiaminde de sta pàgene vonne a mettene mane sus a l'inderfacce utende pe l'otre utinde de sta Uicchi.
 Pe aggiungere o cangià le traduziune, pe piacere vide ce ause [//translatewiki.net/ translatewiki.net], 'u pruggette de localizzazione de MediaUicchi.",
-'sqlhidden' => '(query SQL ascunnute)',
 'cascadeprotected' => 'Sta pàgene ha state prutette da le cangiaminde, purcè jè ingluse jndr\'à {{PLURAL:$1|seguende pàgene, ca jè|le seguende pàggene, ca sonde}} prutette cu l\'opzione "a caschete":
 $2',
 'namespaceprotected' => "Non ge tine 'u permesse pe cangià pàggene d'u neimspeise '''$1'''.",

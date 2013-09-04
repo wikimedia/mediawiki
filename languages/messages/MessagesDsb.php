@@ -477,17 +477,6 @@ Płaśece specialne boki namakaju se pód [[Special:SpecialPages|lisćinu specia
 # General errors
 'error' => 'Zmólka',
 'databaseerror' => 'Zmólka w datowej bance',
-'dberrortext' => 'Syntaktiska zmólka pśi wótpšašowanju datoweje banki nastata.
-To by mógło zmólki w softwarje byś.
-Slědne wótpšašowanje jo było:
-<blockquote><code>$1</code></blockquote>
-z funkcije "<code>$2</code>".
-Datowa banka jo zmólku "<samp>$3: $4</samp>" wrośiła.',
-'dberrortextcl' => 'Syntaktiska zmólka pśi wótpšašowanju datoweje banki nastata.
-Slědne wopytane wótpšašowanje jo było:
-"$1"
-z funkcije "$2".
-Datowa banka jo zmólku "$3: $4" wrośiła',
 'laggedslavemode' => 'Glědaj: Jo móžno, až pokazany bok nejaktualnjejše změny njewopśimjejo.',
 'readonly' => 'Datowa banka jo zacynjona',
 'enterlockreason' => 'Pšosym zapódaj pśicynu za zacynjenje datoweje banki a informaciju, ga buźo zasej pśistupna',
@@ -539,7 +528,6 @@ Wótpšašanje: $2',
 Aby pśełožki za wšykne wikije pśidał abo změnił, wužyj pšosym [//translatewiki.net/ translatewiki.net], lokalizěrowański projekt MediaWiki.',
 'editinginterface' => "'''Warnowanje:''' Wobźěłujoš bok, kótaryž se wužywa, aby se tekst za pówjerch software MediaWiki k dispoziciji stajił. Změny na toś tom boku buźo wuglědanje wužywarskego pówjercha za drugich wužywarjow na toś tom wikiju wobwliwowaś.
 Aby pśełožki za wšykne wikije pśidał abo změnił, wužywaj pšosym [//translatewiki.net/ translatewiki.net], projekt MediaWiki za lokalizacije.",
-'sqlhidden' => '(Wótpšašanje SQL schowane)',
 'cascadeprotected' => 'Za toś ten bok jo se wobźěłowanje znjemóžniło, dokulaž jo zawězany do {{PLURAL:$1|slědujucego boka|slědujuceju bokowu|slědujucych bokow}}, {{PLURAL:$1|kótaryž jo|kótarejž stej|kótarež su}} pśez kaskadowu opciju {{PLURAL:$1|šćitany|šćitanej|šćitane}}: $2',
 'namespaceprotected' => "Njejsy wopšawnjony, boki w rumje: '''$1''' wobźěłaś.",
 'customcssprotected' => 'Njamaš pšawo, aby toś ten CSS-bok wobźěłał, dokulaž wopśimujo  wósobinske nastajenja drugego wužywarja.',

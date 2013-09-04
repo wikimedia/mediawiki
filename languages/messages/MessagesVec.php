@@ -488,17 +488,6 @@ L'elenco de le pagine speciali te lo cati su [[Special:SpecialPages|{{int:specia
 # General errors
 'error' => 'Erore',
 'databaseerror' => 'Erore del database',
-'dberrortext' => 'Eror de sintasi inte ła dimanda inoltrà al database.
-Ciò podaria indicar ła prexensa de un bug inte\'l software.
-L\'ultema query invià al database ła xè sta:
-<blockquote><tt>$1</tt></blockquote>
-riciamà da ła funsion "<tt>$2</tt>".
-El database el ga restituio el seguente eror "<tt>$3: $4</tt>".',
-'dberrortextcl' => 'Erore de sintasi ne ła richiesta inoltrà al database.
-L\'ultima query invià al database xè sta:
-"$1"
-riciamà da ła funsion "$2".
-El database ga restituio el seguente erore "$3: $4".',
 'laggedslavemode' => "'''Atension:''' ła pajina podaria no riportare i azornamenti pì resenti.",
 'readonly' => 'Database blocà',
 'enterlockreason' => 'Indicare el motivo del bloco, spesifegando el momento in cui xè presumibiłe che el venga rimoso',
@@ -552,7 +541,6 @@ Query: $2',
 Par xontar o modifegar tradusion par tute łe wiki doparar [//translatewiki.net/ translatewiki.net], el projeto de locałixasion de MediaWiki.",
 'editinginterface' => "'''Ocio:''' El testo de sta pàjina el fa parte de l'interfacia utente del sito. Tute łe modifeghe aportae a sta pajina se riflete so i mesaji visuałixà par tuti i utenti so sta wiki.
 Par xontare o modifegar łe tradusion vałide so tute łe wiki, considera ła posibiłità de doparar [//translatewiki.net/wiki/Main_Page?setlang=vec translatewiki.net], el projeto MediaWiki par ła localixasion.",
-'sqlhidden' => '(ła query SQL ła xè sta sconta)',
 'cascadeprotected' => 'So sta pajina no xè posibiłe efetuare modifeghe parché xè sta inclusa {{PLURAL:$1|ne ła pajina indicà de seguito, che xè sta proteta|ne łe pajine indicae de seguito, che e xè sta protete}} sełesionando ła protesion "ricorsiva":
 $2',
 'namespaceprotected' => "No se dispone de i parmesi nesesari par modifegare łe pajine del namespace '''$1'''.",

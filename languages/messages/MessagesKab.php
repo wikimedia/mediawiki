@@ -353,17 +353,6 @@ $1',
 # General errors
 'error' => 'Agul',
 'databaseerror' => 'Agul n database',
-'dberrortext' => 'Yella ugul n tseddast deg database.
-Waqila yella bug deg software.
-Query n database taneggarut hatt:
-<blockquote><tt>$1</tt></blockquote>
-seg tawuri  "<tt>$2</tt>".
-MySQL yerra-d agul "<tt>$3: $4</tt>".',
-'dberrortextcl' => 'Yella ugul n tseddast deg database.
-Query n database taneggarut hatt:
-"$1"
-seg tawuri "$2".
-MySQL yerra-d agul "$3: $4"',
 'laggedslavemode' => 'Aɣtal: Ahat asebter ur yesɛi ara akk ibeddlen imaynuten.',
 'readonly' => 'Database d tamsekkert',
 'enterlockreason' => 'Ini ayɣer tsekkreḍ database, ini daɣen melmi ara ad ifukk asekker',
@@ -415,7 +404,6 @@ Query: $2',
 'viewyourtext' => 'Tzemṛeḍ ad ẓṛeḍ dɣa ad nɣeleḍ agbur n "ibeddlen inek/inem" deg usebter agi :',
 'protectedinterface' => 'Asebter-agi d amsekker axaṭer yettuseqdac i weḍris n software.',
 'editinginterface' => "'''Aɣtal:''' Aqla-k tettbeddileḍ asebter i yettuseqdac i weḍris n software. Tagmett n software i tt-ẓren yimseqdacen wiyaḍ ad tbeddel akk d ibeddlen inek.",
-'sqlhidden' => '(Query n SQL tettwaffer)',
 'cascadeprotected' => 'Asebter-agi yegdel axaṭer yettusekcem deg {{PLURAL:$1|asebter yegdelen agi|isebtar yegdelen agi}} s Taxtiṛit « amesten s uceṛcuṛ » isermeden :
 $2',
 'namespaceprotected' => "Ur tesɛiḍ ara turagt iwakken ad beddeleḍ isebtar n tallunt n isemawen \"'''\$1'''\".",

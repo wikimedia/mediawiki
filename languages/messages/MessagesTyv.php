@@ -382,7 +382,6 @@ $messages = array(
 Адында таарышпас демдектер бары чадапчок.',
 'viewsource' => 'Дөзүн көөрү',
 'actionthrottled' => 'Шеглээн дүрген',
-'sqlhidden' => '(SQL айтырыгны чажырган)',
 'exception-nologin' => 'Кирбес',
 
 # Login and logout pages

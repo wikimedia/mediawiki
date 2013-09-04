@@ -304,17 +304,6 @@ Pueis alcuentral una lista colas páhinas especialis desistentis en [[Special:Sp
 # General errors
 'error' => 'Marru',
 'databaseerror' => 'Marru ena basi e datus',
-'dberrortext' => 'Marru sintáticu ena consurta a la bassi de datus:
-Estu puei sel ebiu a un marru nel software.
-La úrtima consurta jue:
-<blockquote><tt>$1</tt></blockquote>
-endrentu la junción "<tt>$2</tt>".
-La bassi de datus degorvió el marru "<tt>$3: $4</tt>".',
-'dberrortextcl' => 'Marru sintáticu ena consurta a la bassi de datus.
-La úrtima consurta jue:
-"$1"
-endrentu la junción "$2".
-La bassi de datus degorvió el marru "$3: $4"',
 'laggedslavemode' => 'Avisu: Es posibri que la páhina nu esté atualizá.',
 'readonly' => 'Basi e datus atarugá',
 'enterlockreason' => 'Escrebi una razón pal tarugu, i cuandu esti
@@ -357,7 +346,6 @@ Pol favol, contauta con un [[Special:ListUsers/sysop|çajoril]], mentandu la URL
 'protectedinterface' => "Esta páhina proporciona el testu la entrihazi el software, razón pola que s'alcuentra atarugá.",
 'editinginterface' => "'''Cudiau:''' Estás eitandu una página que propolciona el testu la entrijazi el software. Los chambus hechus aquina afeutarán a la entrijazi d'otrus ussuárius.
 Pa traucil, consiera gastal [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], el proyeutu de traución de MediaWiki.",
-'sqlhidden' => '(Consurta SQL açonchá)',
 'cascadeprotected' => 'Esta páhina s\'alcuentra protehia ebiu a que horma parti e {{PLURAL:$1|la siguienti páhina|las siguientis páhinas}}, qu\'están protehias cola oción "proteción en cascá" ativá:
 $2',
 'namespaceprotected' => "Nu tiinis premisu pa eital páhinas nel \"espaciu e nombris\" '''\$1'''.",

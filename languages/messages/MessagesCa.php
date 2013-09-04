@@ -534,17 +534,6 @@ Vegeu la llista de pàgines especials a [[Special:SpecialPages]].',
 # General errors
 'error' => 'Error',
 'databaseerror' => "S'ha produït un error en la base de dades",
-'dberrortext' => "S'ha produït un error de sintaxi en una consulta a la base de dades.
-Açò podria indicar un error en el programari.
-La darrera consulta que s'ha intentat fer ha estat:
-<blockquote><code>$1</code></blockquote>
-des de la funció «<code>$2</code>».
-L'error de retorn ha estat «<samp>$3: $4</samp>».",
-'dberrortextcl' => "S'ha produït un error de sintaxi en una consulta a la base de dades.
-La darrera consulta que s'ha intentat fer ha estat:
-<blockquote><tt>$1</tt></blockquote>
-des de la funció «<tt>$2</tt>».
-L'error de retorn ha estat «<tt>$3: $4</tt>».",
 'laggedslavemode' => 'Avís: La pàgina podria mancar de modificacions recents.',
 'readonly' => 'La base de dades es troba bloquejada',
 'enterlockreason' => 'Escriviu una raó pel bloqueig, així com una estimació de quan tindrà lloc el desbloqueig',
@@ -596,7 +585,6 @@ Consulta: $2',
 'protectedinterface' => "Aquesta pàgina proporciona el text de la interfície del software d'aquest wiki i està protegida per evitar els abusos.
 Per agregar o canviar les traduccions per a tots els wikis, si us plau fes servir [//translatewiki.net/ translatewiki.net], el projecte de localització de MediaWiki.",
 'editinginterface' => "'''Avís:''' Esteu editant una pàgina que conté cadenes de text per a la interfície d'aquest programari. Tingueu en compte que els canvis que es fan a aquesta pàgina afecten a l'aparença de la interfície d'altres usuaris. Per afegir o modificar traduccions a totes les wikis, plantegeu-vos utilitzar la [//translatewiki.net/ translatewiki.net], el projecte de localització de MediaWiki.",
-'sqlhidden' => '(consulta SQL oculta)',
 'cascadeprotected' => "Aquesta pàgina està protegida i no es pot modificar perquè està inclosa en {{PLURAL:$1|la següent pàgina, que té|les següents pàgines, que tenen}} activada l'opció de «protecció en cascada»:
 $2",
 'namespaceprotected' => "No teniu permís per a modificar pàgines en l'espai de noms '''$1'''.",

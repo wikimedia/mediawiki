@@ -370,15 +370,6 @@ Olle vafiagborn Speziaalseiten san in da [[Special:SpecialPages|Listen voh dé S
 # General errors
 'error' => 'Feeler',
 'databaseerror' => 'Feeler in da Daatenbånk',
-'dberrortext' => "Es is a Daatenbånkfeeler auftreeden!
-Da Grund kå a Prógrammierfeeler seih.
-D' létzde Daatenbånkobfrog wor:
-<blockquote><tt>$1</tt></blockquote>
-aus da Funkzión „<tt>$2</tt>“.
-Dé Daatenbånk hod an Feeler „<tt>$3: $4</tt>“ gmödt.",
-'dberrortextcl' => "Tschuidigung! Es hod an Syntaxfeeler in da Daatenbånkobfrog geem.
-D' letzte Daatenbånkobfrog hod  „$1“ aus da Funkzion „<tt>$2</tt>“ glautt.
-De Daatenbånk möidt 'n Feeler: „<tt>$3: $4</tt>“.",
 'laggedslavemode' => "'''Ochtung:''' De åzoagte Seiten kunnterd unter Umständ ned d' letzden Beorweitungen enthoiden.",
 'readonly' => 'Daatenbånk gsperrd',
 'enterlockreason' => 'Bittscheh gib an Grund å, warum de Daatenbånk gsperrd wern soi und a Obschätzung ywer de Dauer voh da Sperrung',
@@ -429,7 +420,6 @@ Bittscheh vasuachs in a por Minunten nuamoi.',
 'editinginterface' => "'''Ówocht:''' Dé Seiten do enthoit voh da MediaWiki-Software gnutzden Text. 
 Änderrungen auf derer Seiten wirken sé auf d' Benutzerówerflächen aus.
 Ziag bittscheh im Foi voh Ywersétzungen in Betrocht, dé bei [//translatewiki.net/wiki/Main_Page?setlang=de translatewiki.net], da Lókaalisiarungsblottform fyr MediaWiki, durchzfyrn.",
-'sqlhidden' => '(SQL-Obfrog vastéckt)',
 'cascadeprotected' => "Dé Seiten is zua da Beorweitung gsperrd worn. Sie is in d' {{PLURAL:$1|fóigande Seiten|fóiganden Seiten}} eihbunden, dé mid da Kaskaadensperrópzión gschytzd {{PLURAL:$1|is|san}}:
 $2",
 'namespaceprotected' => "Du host néd d' daforderliche Berechtigung, Seiten im Náumensraum '''$1''' b'orweiden z' kenner.",

@@ -384,17 +384,6 @@ Listahan o talaan hin puyde nga mga pinaurog nga pakli in mabibilngan ha [[Speci
 # General errors
 'error' => 'Sayop',
 'databaseerror' => 'Sayop hin database',
-'dberrortext' => 'Mayda nahinabo nga sayop hin syntax ha database nga kwery.
-Bangin ini nagpapakita hin bug dida han softweyr.
-An kataposan nga ginsari nga database nga kweri amo in:
-<blockquote><code>$1</code></blockquote>
-tikang ha sakob han funsyon nga "<code>$2</code>".
-Nagbalik an database hin sayop nga "<samp>$3: $4</samp>".',
-'dberrortextcl' => 'Mayda nahitabo nga sayop hin syntax ha database nga kwery.
-An kataposan nga ginsari nga kweri han database amo an:
-"$1"
-tikang ha sakob han funsyon nga "$2".
-Nagbalik hin sayop an database nga "$3: $4"',
 'laggedslavemode' => 'Pahimatngon: It pakli bangin waray mga kabag-ohan nga bag-o.',
 'readonly' => 'Gintrankahan an database',
 'enterlockreason' => 'Pagbutang hin rason para han pagtrangka, upod hin banabana kon san-o kukuha-on an pagtrangka',
@@ -450,7 +439,6 @@ Para makadugang o makaliwat hin mga paghubad para han tanan nga mga wiki, alayon
 'editinginterface' => "'''Pahimatngon:''' Imo ginliliwat an pakli nga gingagamit paghatag hin interface text para han software.
 An mga pagbag-o hini nga pakli in makakaapekto han user interface han iba nga mga gumaramit hini nga wiki.
 Para makadugang o makabag-o han mga paghubad para han ngatanan nga mga wiki, alayon paggamit han [//translatewiki.net/ translatewiki.net], an lokalisasyon nga proyekto han MediaWiki.",
-'sqlhidden' => '(nakatago an SQL query)',
 'namespaceprotected' => "Diri ka gintutugutan pagliwat han mga pakli ha ngaran-lat'ang nga '''$1'''.",
 'customcssprotected' => 'Diri ka gintutugotan pagliwat hini nga CSS nga pakli, tungod nga nagsusulod ini hin kanan iba nga tawo personal nga karuyagon.',
 'customjsprotected' => 'Diri ka gintutugotan pagliwat hini nga JavaScript nga pakli, tungod nga nagsusulod ini hin kanan iba nga tawo personal nga karuyagon.',

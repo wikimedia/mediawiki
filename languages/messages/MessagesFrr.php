@@ -355,16 +355,6 @@ En list mä aal a spezial-sidjen fanjst dü üüb [[Special:SpecialPages|{{int:s
 # General errors
 'error' => 'Feeler',
 'databaseerror' => 'Dootenbeenkfeeler',
-'dberrortext' => 'Diar as wat skiaf gingen mä det dootenbeenk.
-Ferlicht as det software ei bi a rä.
-Det leetst uunfraag tu\'t dootenbeenk wiar:
-<blockquote><code>$1</code></blockquote>
-faan det funktsjuun "<code>$2</code>".
-Det dootenbeenk swaaret mä "<samp>$3: $4</samp>".',
-'dberrortextcl' => "Bi't uffraagin faan a dootenbeenk as wat skiaf gingen. Det leetst uffraag wiar:
-„$1“
-ütj det funktjuun „$2“.
-At dootebeenk swaaret: „$3: $4“.",
 'laggedslavemode' => "'''Paase üüb:''' Ferlicht wiset detdiar sidj ei a leetst stant.",
 'readonly' => 'Dootenbeenk speret.',
 'enterlockreason' => 'Wees so gud an du en grünj uun, huaram det dootenbeenk speret wurd skal, an hü loong det (amanbi) speret wurd skal.',
@@ -417,7 +407,6 @@ Wees so gud an ferschük det glik noch ans weder.',
 Dü könst [//translatewiki.net/ translatewiki.net] faan MediaWiki brük, am auersaatangen för ale wiki projekten tu maagin.',
 'editinginterface' => "'''Paase üüb:''' Üüb detdiar sidj stäänt tekst, diar faan't MediaWiki software brükt woort. Wan dü diar wat feranerst, feranerst dü di skak faan't Nordfriisk Wikipedia.
 Wan dü wat auersaat wel, maage det mä [//translatewiki.net/ translatewiki.net], det as det MediaWiki lokalisiarangsprojekt.",
-'sqlhidden' => 'SQL-uffraag as ferbürgen',
 'cascadeprotected' => 'Detdiar sidj koon ei bewerket wurd. Hat as uun {{PLURAL:$1|detdiar sidj|jodiar sidjen}}
 iinbünjen, diar auer kaskaadenseekerhaid seekert {{PLURAL:$1|as|san}}:
 $2',

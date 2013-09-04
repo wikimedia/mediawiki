@@ -263,7 +263,6 @@ Fung'ksyun: $1<br />
 Query: $2",
 'viewsource' => "Kamukile ng'i",
 'viewsourcetext' => 'A sa kamukile wiki-selt di bye petulo:',
-'sqlhidden' => '(SQL query sa cwankekile)',
 
 # Login and logout pages
 'yourname' => 'Sebelu:',

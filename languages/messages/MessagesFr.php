@@ -721,17 +721,6 @@ Une liste des pages spéciales valides se trouve sur [[Special:SpecialPages|{{in
 # General errors
 'error' => 'Erreur',
 'databaseerror' => 'Erreur de la base de données',
-'dberrortext' => "Une erreur de syntaxe de la requête dans la base de données est survenue.
-Ceci peut indiquer un bogue dans le logiciel.
-La dernière requête traitée par la base de données était :
-<blockquote><code>$1</code></blockquote>
-depuis la fonction « <code>$2</code> ».
-La base de données a renvoyé l'erreur « <samp>$3 : $4</samp> ».",
-'dberrortextcl' => "Une requête dans la base de données comporte une erreur de syntaxe.
-La dernière requête émise était :
-« $1 »
-dans la fonction « $2 ».
-La base de données a renvoyé l'erreur « $3 : $4 ».",
 'laggedslavemode' => 'Attention, cette page peut ne pas contenir les toutes dernières modifications effectuées',
 'readonly' => 'Base de données verrouillée',
 'enterlockreason' => "Indiquez la raison du verrouillage ainsi qu'une estimation de sa durée",
@@ -786,7 +775,6 @@ Essayez à nouveau dans quelques minutes.",
 Pour ajouter ou modifier des traductions sur tous les wikis, veuillez utiliser [//translatewiki.net/ translatewiki.net], le projet de localisation de MediaWiki.",
 'editinginterface' => "'''Attention''': Vous êtes en train de modifier une page utilisée pour créer le texte de l'interface du logiciel. Les changements sur cette page se répercuteront dur l'apparence de l'interface utilisateur pour les autres utilisateurs de ce wiki.
 Pour ajouter ou modifier des traductions pour tous les wikis, veuillez utiliser [//translatewiki.net/ translatewiki.net], le projet d'internationalisation de MediaWiki.",
-'sqlhidden' => '(Requête SQL cachée)',
 'cascadeprotected' => "Cette page est protégée car elle est incluse par {{PLURAL:$1|la page suivante, qui a été protégée|les pages suivantes, qui ont été protégées}} avec l'option « protection en cascade » activée :
 $2",
 'namespaceprotected' => "Vous n'avez pas la permission de modifier les pages de l'espace de noms « '''$1''' ».",

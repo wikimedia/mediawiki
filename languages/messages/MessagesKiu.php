@@ -364,18 +364,6 @@ Jü lista pelunê vêrdoğu bınê [[Special:SpecialPages|{{int:specialpages}}]]
 # General errors
 'error' => 'Xeta',
 'databaseerror' => 'Xeta panga daeyu',
-'dberrortext' => 'Jü xeta persê cumla panga daeyu de amê meydan.
-Heni aseno ke na xeta nustene de esta.
-Persê panga daeyuno peyên nia bi:
-<blockquote><tt>$1</tt></blockquote>
-ebe gurê zerrê "<tt>$2</tt>"y ra.
-Panga daeyu xetawa ke asnena "<tt>$3: $4</tt>".',
-'dberrortextcl' => 'Rêza cumleunê panga daeyu de jü xeta amê meydan.
-Heni aseno ke na xeta nustene de esta.
-Persê panga daeyuno peyên nia bi:
-"$1"
-Fonksiyono ke gureniyo "$2".
-Panga daeyu xetawa ke asnena "$3: $4"',
 'laggedslavemode' => 'Teme: Beno ke vurnaisê peyêni pele de niyê.',
 'readonly' => 'Panga daeyu kılit kerdiya',
 'enterlockreason' => 'Serba kılit-kerdişi jü sebeb bıde ke, kılitkerdis texminen key beno ra',
@@ -426,7 +414,6 @@ Kerem kerê, deqêna oncia bıcerrebnê.",
 'editinginterface' => "Teme:''' Sıma hawo jü pela ke serba nustê meqalunê caunê bırnau dana, vurnenê.
 Vurnaisê na pele karberunê binu rê serpela karberi kena ke bıasno.
 Serba çarnaişi, yardımê [//translatewiki.net/wiki/Main_Page?setlang=kiu translatewiki.net]i ra procêdoskerdene rê diqet kerê.",
-'sqlhidden' => '(Persê SQLi nımıteo)',
 'cascadeprotected' => 'Na pele esterıtene ra sıtar biya, çıke na zerrê {{PLURAL:$1|pela ke|pelunê ke}} dera/derê be "cascading" opsiyoni kılit biya, $2 de bena ra.',
 'namespaceprotected' => "'''$1''' ''namespace'' de desturê sıma be vurnaisê pelu çino.",
 'ns-specialprotected' => 'Pelê xususi nêvurrinê.',

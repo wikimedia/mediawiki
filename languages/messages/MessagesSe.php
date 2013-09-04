@@ -397,7 +397,6 @@ $messages = array(
 'viewsource' => 'Geahča gáldu',
 'protectedpagetext' => 'Dát siidu lea suodjaluvvon rievdadusain.',
 'viewsourcetext' => 'Sáhtát geahčat ja kopieret dán siiddu gáldokoda:',
-'sqlhidden' => '(SQL-jearahallan lea čihkojuvvon)',
 
 # Login and logout pages
 'logouttext' => "'''Don leat dál loggen olggos {{GRAMMAR:elative|{{SITENAME}}}}s.'''

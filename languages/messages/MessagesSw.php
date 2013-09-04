@@ -454,17 +454,6 @@ Orodha ya kurasa maalumu zinapatika kwenye [[Special:SpecialPages|{{int:kurasama
 # General errors
 'error' => 'Hitilafu',
 'databaseerror' => 'Hitilafu ya hifadhidata',
-'dberrortext' => 'Shina la kuulizia kihifadhidata kuna hitilafu imetokea.
-Hii inaweza kuashiria kuna mdudu katika bidhaa pepe.
-Jaribio la ulizio la mwisho la kihifadhidata lilikuwa:
-<blockquote><tt>$1</tt></blockquote>
-kutoka ndani ya kitendea "<tt>$2</tt>".
-Kihifadhidata kikarejesha tatizo "<tt>$3: $4</tt>".',
-'dberrortextcl' => 'Shina la kuulizia kihifadhidata kuna hitilafu imetokea.
-Jaribio la ulizio la mwisho la kihifadhidata lilikuwa:
-"$1"
-kutoka ndani ya kitendea "$2".
-Kihifadhidata kikarejesha tatizo "<tt>$3: $4</tt>".',
 'laggedslavemode' => "'''Ilani:'''Labda masahihisho ya hivi karibuni bado hayajaonekana.",
 'readonly' => 'Hifadhidata imefungika',
 'enterlockreason' => 'Ingiza sababu za kufunga, pamoja na makisio yake lini itafunguliwa',
@@ -517,7 +506,6 @@ Tafadhali jaribu tena baada ya muda mfupi.',
 'editinginterface' => "'''Ilani:''' Una hariri ukurasa unaotumika kutoa maelezo ya msingi ya bidhaa pepe.
 Mabadiliko katika ukurasa huu yataathiri mwonekano mzima wa viungo vya watumiaji wengine.
 Kwa lengo la kutaka kutafsiri, tafadhali fikiria kutumia  [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], kwa kuweka miradi ya MediaWiki kwa kienyeji.",
-'sqlhidden' => '(maulizo ya SQL yamefichwa)',
 'cascadeprotected' => 'Ukurasa huu umekingwa usihaririwe, kwa sababu umejumlishwa katika {{PLURAL:$1|ukurasa ufuatao, ambao umekingwa|kurasa zifuatazo, ambazo zimekingwa}} na chagua la "cascadi" iliwashwa:
 $2',
 'namespaceprotected' => "Huna ruhusa ya kuhariri kurasa za eneo la wiki la '''$1'''.",

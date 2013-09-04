@@ -331,17 +331,6 @@ $1',
 # General errors
 'error' => '差錯',
 'databaseerror' => '數據庫差錯',
-'dberrortext' => '發生數據庫查詢語法錯誤。
-可能係由於軟體自身嘅錯誤所引起。
-最後一次數據庫查詢指令係：
-<blockquote><code>$1</code></blockquote>
-來自於函數“<code>$2</code>”。
-數據庫返回錯誤“<samp>$3: $4</samp>”。',
-'dberrortextcl' => '發生數據庫查詢語法錯誤。
-最後一次嘅數據庫查詢是:
-「$1」
-來自於函數「$2」。
-數據庫返回錯誤「$3: $4」。',
 'laggedslavemode' => "'''警告：'''頁面可能毋包含最近嘅更新。",
 'readonly' => '數據庫分人鎖定',
 'enterlockreason' => '請撳入禁止訪問原因, 包括估計重新開放嘅時間',
@@ -397,7 +386,6 @@ $1',
 'editinginterface' => "'''警告：'''汝今下編寫緊嘅頁面係用於提供軟件嘅界面文字。
 改變邇頁將影響其他在邇隻wiki上嘅用戶界面外觀。
 假使愛修改所有wiki嘅翻譯，請到[//translatewiki.net/ translatewiki.net]上嘅MediaWiki本地化計劃。",
-'sqlhidden' => '（隱藏SQL查詢）',
 'cascadeprotected' => '邇隻頁面已經畀保護，因為邇隻頁面被以下已標註"聯鎖保護"嘅{{PLURAL:$1|一個|多個}}畀保護頁面包含：
 $2',
 'namespaceprotected' => "汝還無權限編輯'''$1'''名字空間嘅頁面。",

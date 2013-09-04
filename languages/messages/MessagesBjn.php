@@ -459,17 +459,6 @@ Daptar tungkaran istimiwa sah kawa diugai pada [[Special:SpecialPages|{{int:spec
 # General errors
 'error' => 'Kasalahan',
 'databaseerror' => 'Kasalahan Basisdata',
-'dberrortext' => 'Ada kasalahan sintaks pada parmintaan basisdata.
-Kasalahan ngini pina manandai adanya sabuting bug dalam parangkat lunak.
-Parmintaan basisdata yang tadudi adalah:
-<blockquote><tt>$1</tt></blockquote>
-matan dalam pungsi "<tt>$2</tt>".
-Basisdata kasalahan  babulik "<tt>$3: $4</tt>".',
-'dberrortextcl' => 'Ada kasalahan sintaks pada parmintaan basisdata.
-Parmintaan basisdata nang tadudi adalah:
-"$1"
-matan dalam pungsi "$2".
-Basisdata kasalahan  babulik "$3: $4".',
 'laggedslavemode' => "'''Paringatan:''' Tungkaran ngini tagasnya kada baisi paubahan pahanyarnya.",
 'readonly' => 'Basisdata tasunduk',
 'enterlockreason' => 'Buati sabuting alasan manyunduk, tamasuk jua wayah kapan handak dibuka pulang sundukannya.',
@@ -523,7 +512,6 @@ Muhun cubai pulang dalam babarapa minit.',
 'editinginterface' => "'''Paringatan:''' Pian mambabak sabuting tungkaran nang dipuruk hagan manyadiakan naskah antarmuha gasan parangkat lunak.
 Paubahan ka tungkaran ngini akan bapangaruh matan tampaian antarmuha gasan pamakai lain.
 Gasan tarjamahan, muhun pakai [//translatewiki.net/wiki/Main_Page?setlang=bjn translatewiki.net], rangka gawian palokalan MediaWiki.",
-'sqlhidden' => '(Parmintaan SQL disungkupakan)',
 'cascadeprotected' => 'Tungkaran ini sudah dilindungi matan pambabakan, marga nangini tamasuk dalam {{PLURAL:$1|tungkaran|tutungkaran}} dudi nang dilindungi "barénténg": $2',
 'namespaceprotected' => "Pian kada baisi ijin hagan mambabak tutungkaran dalam ngaran kamar '''$1'''.",
 'customcssprotected' => 'Pian kada baisi ijin mambabak tungkaran CSS ngini, karana ngini baisi setelan paribadi pamakai lain.',

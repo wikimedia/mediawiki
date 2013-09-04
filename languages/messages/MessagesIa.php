@@ -151,12 +151,12 @@ $messages = array(
 'tog-hidepatrolled' => 'Celar le modificationes patruliate in le modificationes recente',
 'tog-newpageshidepatrolled' => 'Celar le paginas patruliate del lista de nove paginas',
 'tog-extendwatchlist' => 'Displicar le observatorio pro monstrar tote le modificationes, non solmente les plus recente',
-'tog-usenewrc' => 'Gruppar modificationes per pagina in modificationes recente e observatorio (require JavaScript)',
+'tog-usenewrc' => 'Gruppar modificationes per pagina in modificationes recente e observatorio',
 'tog-numberheadings' => 'Numerar titulos automaticamente',
-'tog-showtoolbar' => 'Monstrar instrumentario de modification (require JavaScript)',
-'tog-editondblclick' => 'Duple clic pro modificar un pagina (require JavaScript)',
+'tog-showtoolbar' => 'Monstrar instrumentario de modification',
+'tog-editondblclick' => 'Modificar paginas con duple clic',
 'tog-editsection' => 'Activar le modification de sectiones con ligamines "[modificar]"',
-'tog-editsectiononrightclick' => 'Activar modification de sectiones con clic-a-dextra super lor titulos (require JavaScript)',
+'tog-editsectiononrightclick' => 'Permitter modification de sectiones con clic-a-dextra sur titulos de section',
 'tog-showtoc' => 'Monstrar tabula de contento (in paginas con plus de 3 sectiones)',
 'tog-rememberpassword' => 'Memorar mi contrasigno in iste navigator (pro un maximo de $1 {{PLURAL:$1|die|dies}})',
 'tog-watchcreations' => 'Adder le paginas que io crea e le files que io incarga a mi observatorio',
@@ -174,7 +174,7 @@ $messages = array(
 'tog-shownumberswatching' => 'Monstrar le numero de usatores que observa le pagina',
 'tog-oldsig' => 'Signatura existente:',
 'tog-fancysig' => 'Tractar signatura como wikitexto (sin ligamine automatic)',
-'tog-uselivepreview' => 'Usar previsualisation in directo (require JavaScript) (experimental)',
+'tog-uselivepreview' => 'Usar previsualisation in directo (experimental)',
 'tog-forceeditsummary' => 'Avisar me si io non entra un summario de modification',
 'tog-watchlisthideown' => 'Celar mi proprie modificationes in le observatorio',
 'tog-watchlisthidebots' => 'Celar le modificationes de robots in le observatorio',
@@ -475,17 +475,10 @@ Un lista de paginas special valide se trova a [[Special:SpecialPages|{{int:speci
 # General errors
 'error' => 'Error',
 'databaseerror' => 'Error del base de datos',
-'dberrortext' => 'Un error de syntaxe occurreva durante un consulta del base de datos.
-Isto pote indicar le presentia de un defecto in le software.
-Le ultime consulta que esseva tentate es:
-<blockquote><code>$1</code></blockquote>
-effectuate per le function "<code>$2</code>".
-Le base de datos retornava le error "<samp>$3: $4</samp>".',
-'dberrortextcl' => 'Un error de syntaxe occurreva durante un consulta del base de datos.
-Le ultime consulta que esseva tentate es:
-"$1"
-effectuate per le function "$2".
-Le base de datos retornava le error "$3: $4"',
+'databaseerror-text' => 'Un error ha occurrite in un consulta del base de datos.
+Isto pote indicar un defecto in le software.',
+'databaseerror-textcl' => 'Un error ha occurrite in un consulta del base de datos.',
+'databaseerror-query' => 'Consulta: $1',
 'laggedslavemode' => 'Attention: Es possibile que le pagina non contine actualisationes recente.',
 'readonly' => 'Base de datos blocate',
 'enterlockreason' => 'Describe le motivo del blocada, includente un estimation
@@ -542,7 +535,6 @@ Per favor reprova post alcun minutas.',
 'editinginterface' => "'''Attention:''' Le texto de iste pagina face parte del interfacie pro le software.
 Omne modification a iste pagina cambiara le apparentia del interfacie pro altere usatores de iste wiki.
 Pro adder o modificar traductiones pro tote le wikis, per favor usa [//translatewiki.net/ translatewiki.net], le projecto de traduction de MediaWiki.",
-'sqlhidden' => '(Consulta SQL non monstrate)',
 'cascadeprotected' => 'Iste pagina ha essite protegite contra modificationes, proque illo es includite in le sequente {{PLURAL:$1|pagina, le qual|paginas, le quales}} es protegite usante le option "cascada":
 $2',
 'namespaceprotected' => "Tu non ha le permission de modificar paginas in le spatio de nomines '''$1'''.",
@@ -1632,7 +1624,7 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'rc_categories_any' => 'Qualcunque',
 'rc-change-size-new' => '$1 {{PLURAL:$1|byte|bytes}} post cambio',
 'newsectionsummary' => '/* $1 */ nove section',
-'rc-enhanced-expand' => 'Revelar detalios (require JavaScript)',
+'rc-enhanced-expand' => 'Revelar detalios',
 'rc-enhanced-hide' => 'Celar detalios',
 'rc-old-title' => 'originalmente create como "$1"',
 
@@ -3960,6 +3952,7 @@ Vos deberea haber recipite [{{SERVER}}{{SCRIPTPATH}}/COPYING un exemplar del Lic
 'dberr-problems' => 'Pardono! Iste sito ha incontrate difficultates technic.',
 'dberr-again' => 'Proba attender alcun minutas e recargar.',
 'dberr-info' => '(Non pote contactar le servitor del base de datos: $1)',
+'dberr-info-hidden' => '(Non pote contactar le servitor del base de datos)',
 'dberr-usegoogle' => 'Tu pote probar cercar con Google intertanto.',
 'dberr-outofdate' => 'Nota que lor indices de nostre contento pote esser obsolete.',
 'dberr-cachederror' => 'Lo sequente es un copia del cache del pagina requestate, e pote esser obsolete.',

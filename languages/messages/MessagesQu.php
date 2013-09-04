@@ -595,17 +595,6 @@ Allin sapaq p'anqakunataqa tarinki [[Special:SpecialPages|Sapaq p'anqakuna]] nis
 # General errors
 'error' => 'Pantasqa',
 'databaseerror' => 'Willañiqintin pantasqa',
-'dberrortext' => 'Willañiqimanta mañakuptiyki sintaksis pantasqam tukurqan.
-Llamp\'u kaq wakichipi pantasqachá.
-Qayna willañiqimanta mañakusqaqa karqan kaypacham:
-<blockquote><code>$1</code></blockquote>
-kay ruraypim: "<code>$2</code>".
-Willañiqintinpa kutichisqan pantasqaqa karqan "<samp>$3: $4</samp>".',
-'dberrortextcl' => 'Willañiqimanta mañakuptiyki sintaksis pantasqam tukurqan.
-Qayna willañiqimanta mañakusqaqa karqan kaymi:
-"$1"
-kay ruraymantam: "$2".
-MySQL-pa kutichisqan pantasqaqa karqan "$3: $4".',
 'laggedslavemode' => "'''Paqtataq''': Kay p'anqapiqa manaraqchá kachkanchu aswan qayna musuqchasqakuna.",
 'readonly' => "Willañiqintinqa hark'asqam",
 'enterlockreason' => "Qillqamuy imarayku hark'asqa karqan, hayk'appas manañachá hark'asqachu kanqa",
@@ -659,7 +648,6 @@ Tukuy wikikunapi uyapuraman t'ikrasqakunata yapayta icha hukchayta munaspaykiqa,
 'editinginterface' => "'''Paqtataq:''' Llamp'u kaqpaq uyapura qillqakuna ruranapaq p'anqatam llamk'apuchkanki.
 Hukchaptiykiqa, chay uyapurap rikch'ayninqa hukyanqa kay wikipi huk ruraqkunapaqpas.
 Uyapuraman t'ikrasqakunata yapayta icha hukchayta munaspaykiqa, [//translatewiki.net/wiki/Main_Page?setlang=qu translatewiki.net] nisqa MediaWiki t'ikrana ruraykamay llika tiyaypi ruranaykimanta hamut'ariy.",
-'sqlhidden' => '(SQL tapunaqa pakasqam)',
 'cascadeprotected' => "Kay p'anqaqa amachasqam kachkan, ''phaqcha'' nisqa kamachiwan amachasqa kay {{PLURAL:$1|p'anqapi|p'anqakunapi}} ch'aqtasqa kaspanmi:
 $2",
 'namespaceprotected' => "'''$1''' nisqa suti k'ititaqa llamk'apuyta manam saqillasunkichu.",

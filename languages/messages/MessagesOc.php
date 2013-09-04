@@ -623,17 +623,6 @@ Una lista de las paginas especialas pòt èsser trobada sus [[Special:SpecialPag
 # General errors
 'error' => 'Error',
 'databaseerror' => 'Error de la banca de donadas',
-'dberrortext' => "Una error de sintaxi de la requèsta dins la banca de donadas s'es producha.
-Aquò pòt indicar una error dins lo logicial.
-La darrièra requèsta tractada per la banca de donadas èra :
-<blockquote><tt>$1</tt></blockquote>
-dempuèi la foncion « <tt>$2</tt> ».
-La banca de donadas a renviat l’error « <tt>$3 : $4</tt> ».",
-'dberrortextcl' => 'Una requèsta dins la banca de donadas compòrta una error de sintaxi.
-La darrièra requèsta emesa èra :
-« $1 »
-dins la foncion « $2 ».
-La banca de donadas a renviat l’error « $3 : $4 ».',
 'laggedslavemode' => 'Atencion : Aquesta pagina pòt conténer pas totes los darrièrs cambiaments efectuats.',
 'readonly' => 'Mesas a jorn blocadas sus la banca de donadas',
 'enterlockreason' => 'Indicatz la rason del blocatge, e mai una estimacion de sa durada',
@@ -686,7 +675,6 @@ Requèsta : $2',
 'protectedinterface' => 'Aquesta pagina provesís de tèxte d’interfàcia pel logicial susaqueste wiki, e es protegida per evitar los abuses.
 Per apondre o modificar de traduccions sus totes los wikis, utilizatz [//translatewiki.net/ translatewiki.net], lo projècte de localizacion de MediaWiki.',
 'editinginterface' => "'''Atencion :''' sètz a mand de modificar una pagina utilizada per crear lo tèxte de l’interfàcia del logicial. Los cambiaments sus aquesta pagina se repercutaràn sus l'aparéncia de l'interfàcia d'utilizaire pels autres utilizaires d'aqueste wiki. Per apondre o modificar de traduccions per totes los wikis, utilizatz [//translatewiki.net/translatewiki.net], lo projècte MediaWiki d'internacionalizacion dels messatges .",
-'sqlhidden' => '(Requèsta SQL amagada)',
 'cascadeprotected' => "Aquesta pagina es actualament protegida perque es inclusa dins {{PLURAL:$1|la pagina seguenta|las paginas seguentas}}, {{PLURAL:$1|qu'es estada protegida|que son estadas protegidas}} amb l’opcion « proteccion en cascada » activada :
 $2",
 'namespaceprotected' => "Avètz pas la permission de modificar las paginas de l’espaci de noms « '''$1''' ».",

@@ -428,17 +428,6 @@ Pwede mong mahiling an lista nin mga marhay na pahina sa [[Special:SpecialPages|
 # General errors
 'error' => 'Salâ',
 'databaseerror' => 'Salâ sa base nin datos',
-'dberrortext' => 'May kahaputan sa datos-sarayan sa napasalang sintaks an nangyari.
-Ini puwedeng minapanungod nin sarong kubol na yaon sa kasungatan .
-An pinakahuring pagprubar sa datos-sarayan naghahapot nin:
-<blockquote><tt>$1</tt></blockquote>
-gikan sa laog kan punksyon na "<tt>$2</tt>".
-An pinagbalik na kasalaan sa datos-sarayan "<tt>$3: $4</tt>".',
-'dberrortextcl' => 'Sarong datos-sarayan na may napasalang sintaks an nangyari.
-An pinakahuring pagprubar sa datos-sarayan naghahapot nin:
-"$1"
-na hale sa laog kan punksyon na "$2".
-An datos-sarayan nagbalik nin sala na "<tt>$3: $4</tt>".',
 'laggedslavemode' => 'Patanid: An pahina pwedeng dai nin pagbabâgo sa ngonyan.',
 'readonly' => 'Nakakandado na datos-sarayan',
 'enterlockreason' => 'Magkaag tabì nin rason sa pagkandado, asin ikalkulo kun nuarin bubukasón an kandado',
@@ -495,7 +484,6 @@ Sa pagdagdag or pagliwat nin mga dakit-taramon para sa bilog na wiki, gamita tab
 'editinginterface' => "'''Patanid:''' Ika nagliliwat kan pahina na ginagamit sa pagtao nin pantahaw-olay na teksto para sa software.
 An mga pagbabago kaining pahina makaka-apekto sa hitsura kan pantahaw-olay nin paragamit para sa iba man na paragamit.
 Para sa mga pagdadakit-taramon, pakikonsidera man tabi an paggagamit kan [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], an MediaWiking lokalisasyon kan proyekto.",
-'sqlhidden' => '(nakatagô an hapót nin SQL)',
 'cascadeprotected' => 'Pinoprotehirán ining páhina sa mga paghirá, ta sarô ini sa mga minasunod na {{PLURAL:$1|páhina|mga páhina}} na pinoprotehiran kan opsyón na "katarata" na nakabuká:
 $2',
 'namespaceprotected' => "Mayô kang permisong maghirá kan mga páhina sa '''$1''' ngaran-espacio.",
