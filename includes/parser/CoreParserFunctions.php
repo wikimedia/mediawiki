@@ -719,13 +719,7 @@ class CoreParserFunctions {
 		$page = $title->getPrefixedText();
 
 		$length = 0;
-		if ( $title->equals( $parser->getTitle() )
-			&& $parser->mInputSize !== false
-		) {
-			# We are on current page (and not in PST), so
-			# take length of input to parser.
-			$length = $parser->mInputSize;
-		} elseif ( isset( $cache[$page] ) ) {
+		if ( isset( $cache[$page] ) ) {
 			$length = $cache[$page];
 		} elseif ( $parser->incrementExpensiveFunctionCount() ) {
 			$rev = Revision::newFromTitle( $title, false, Revision::READ_NORMAL );

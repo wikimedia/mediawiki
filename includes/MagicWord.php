@@ -124,6 +124,7 @@ class MagicWord {
 		'revisionyear',
 		'revisiontimestamp',
 		'revisionuser',
+		'revisionsize',
 		'subpagename',
 		'subpagenamee',
 		'talkspace',
