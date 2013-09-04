@@ -720,7 +720,6 @@ return array(
 		'scripts' => 'resources/mediawiki.action/mediawiki.action.edit.js',
 		'dependencies' => array(
 			'mediawiki.action.edit.styles',
-			'mediawiki.legacy.wikibits',
 			'jquery.textSelection',
 			'jquery.byteLimit',
 		),
