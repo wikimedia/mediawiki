@@ -401,19 +401,6 @@ div#simpleSearch {
 	background-position: top left;
 	background-repeat: repeat-x;
 }
-div#simpleSearch label {
-	/*
-	 * DON'T PANIC! Browsers that won't scale this properly are the same browsers that have JS issues that prevent
-	 * this from ever being shown anyways.
-	*/
-	font-size: 13px;
-	top: 0.25em;
-	direction: ltr;
-}
-div#simpleSearch input {
-	color: black;
-	direction: ltr;
-}
 div#simpleSearch input:focus {
 	outline: none;
 }
@@ -446,6 +433,7 @@ div#simpleSearch input#searchInput {
 	 * this from ever being shown anyways.
 	*/
 	font-size: 13px;
+	color: black;
 	background-color: transparent;
 	direction: ltr;
 }
