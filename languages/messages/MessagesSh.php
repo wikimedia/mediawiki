@@ -537,17 +537,6 @@ Lista valjanih posebnih stranica se može naći na [[Special:SpecialPages|{{int:
 # General errors
 'error' => 'Greška',
 'databaseerror' => 'Greška u bazi podataka',
-'dberrortext' => 'Došlo je do sintaktičke greške u bazi.
-Možda se radi o grešci u softveru.
-Posljednji pokušaj upita je glasio:
-<blockquote><code>$1</code></blockquote>
-unutar funkcije „<code>$2</code>“.
-Baza podataka je prijavila grešku „<samp>$3: $4</samp>“.',
-'dberrortextcl' => 'Desila se sintaksna greška upita baze.
-Posljednji pokušani upit je bio:
-"$1"
-iz funkcije "$2".
-MySQL je vratio grešku "$3: $4".',
 'laggedslavemode' => "'''Upozorenje''': Stranica ne mora sadržavati posljednja ažuriranja.",
 'readonly' => 'Baza podataka je zaključana',
 'enterlockreason' => 'Unesite razlog za zaključavanje, uključujući procjenu vremena otključavanja',
@@ -602,7 +591,6 @@ Pretraga: $2',
 'editinginterface' => "'''Upozorenje:''' Mijenjate stranicu koja se koristi za tekst interfejsa za softver.
 Promjene na ovoj stranici će izazvati promjene korisničkog interfejsa za druge korisnike na ovoj wiki.
 Za prijevode, molimo Vas koristite [//translatewiki.net/wiki/Main_Page?setlang=bs translatewiki.net], projekt lokalizacije MediaWiki.",
-'sqlhidden' => '(SQL pretraga sakrivena)',
 'cascadeprotected' => 'Ova stranica je zaštićena od uređivanja, jer je uključena u {{PLURAL:$1|stranicu zaštićenu|stranice zaštićene}} od uređivanja sa uključenom kaskadnom opcijom:
 $2',
 'namespaceprotected' => "Nemate dozvolu uređivati stranice imenskog prostora '''$1'''.",

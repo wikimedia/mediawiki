@@ -402,11 +402,6 @@ Hemû rûpelên taybet dikarin di [[Special:SpecialPages|lîsteya rûpelên tayb
 # General errors
 'error' => 'Çewtî',
 'databaseerror' => 'Çewtiya bingeha daneyan',
-'dberrortext' => 'Li cem dîtina bingeha daneyan <blockquote><tt>$1</tt></blockquote>
-ji fonksiyonê "<tt>$2</tt>" ye.
-MySQL ev şaşîtî hate dîtin: "<tt>$3: $4</tt>".',
-'dberrortextcl' => 'Li cem dîtina bingeha daneyan "$1 ji fonksiyonê "<tt>$2</tt>" ye.
-MySQL ev şaşîtî hate dîtin: "<tt>$3: $4</tt>".',
 'laggedslavemode' => "'''Zanibe:''' Dibe ku di vê rûpelê de rojanekirinên dawî nîn bin.",
 'readonly' => 'Bingeha daneyan hatiye girtin',
 'enterlockreason' => 'Sedemeke bestinê binivîse, herwiha demeke texmînkirî ji bo vebûna bestinê binivîse!',
@@ -445,7 +440,6 @@ Pirs: $2',
 'viewsourcetext' => 'Tu dikarî li çavkaniya vê rûpelê binêrî û wê kopî bikî:',
 'protectedinterface' => "Di vê rûpelê da nivîsandin ji bo interface'î zimanan yê vê software'ê ye. Ew tê parstin ji bo vandalîzm li vê derê çênebe.",
 'editinginterface' => "'''Hişyarî:''' Tu rûpeleke ku di Wîkîpediya de ji bo sîstemê girîng e diguherînî. Guherandinên di vê rûpelê de wê ji aliyê hemû bikarhêneran ve werin dîtin. Ji bo wergerê ji kerema xwe di [//translatewiki.net/wiki/Main_Page?setlang=ku-latn translatewiki.net] de bixebite, projeya MediaWiki.",
-'sqlhidden' => '(Jêpirskirina SQL hatiye veşartin)',
 'cascadeprotected' => 'Ev rûpel hatiye parastin ji ber guherandinê, ji ber ku ev rûpela di {{PLURAL:$1|vê rûpelê|van rûpelan da}} tê bikaranîn:
 $2',
 'namespaceprotected' => "Destûra te ji bo guhertina vê rûpelê '''$1''' di valahiya nav de nîne.",

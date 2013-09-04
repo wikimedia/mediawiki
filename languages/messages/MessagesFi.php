@@ -646,13 +646,6 @@ Luettelo toimintosivuista löytyy sivulta [[Special:SpecialPages|{{int:specialpa
 # General errors
 'error' => 'Virhe',
 'databaseerror' => 'Tietokantavirhe',
-'dberrortext' => 'Tietokantakyselyssä oli syntaksivirhe.
-Se saattaa johtua ohjelmointivirheestä.
-Viimeinen tietokantakysely:
-<blockquote><code>$1</code></blockquote>
-Se tehtiin funktiosta <code>$2</code>.
-Tietokanta palautti virheen <samp>$3: $4</samp>.',
-'dberrortextcl' => 'Tietokantakyselyssä oli syntaksivirhe. Viimeinen tietokantakysely, jota yritettiin, oli: ”$1”. Se tehtiin funktiosta ”$2”. Tietokanta palautti virheen ”$3: $4”.',
 'laggedslavemode' => "'''Varoitus:''' Sivu ei välttämättä sisällä viimeisimpiä muutoksia.",
 'readonly' => 'Tietokanta on lukittu',
 'enterlockreason' => 'Anna lukituksen syy sekä sen arvioitu poistamisaika',
@@ -704,7 +697,6 @@ Viestien kääntäminen tulisi tehdä [//translatewiki.net/ translatewiki.netiss
 'editinginterface' => "'''Varoitus:''' Muokkaat sivua, joka sisältää ohjelmiston käyttöliittymätekstiä.
 Muutokset tähän sivuun vaikuttavat muiden käyttäjien käyttöliittymän ulkoasuun tässä wikissä.
 Viestien kääntäminen tulisi tehdä [//translatewiki.net/ translatewiki.netissä] – MediaWikin kotoistusprojektissa.",
-'sqlhidden' => '(SQL-kysely piilotettu)',
 'cascadeprotected' => 'Tämä sivu on suojattu muokkauksilta, koska se on sisällytetty alla {{PLURAL:$1|olevaan laajennetusti suojattuun sivuun|oleviin laajennetusti suojattuihin sivuihin}}:
 $2',
 'namespaceprotected' => "Et voi muokata sivuja nimiavaruudessa '''$1'''.",

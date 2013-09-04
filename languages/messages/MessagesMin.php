@@ -441,17 +441,6 @@ Daftar laman istimewa nan sah dapek dicaliak di [[Special:SpecialPages|{{int:spe
 # General errors
 'error' => 'Kasalahan',
 'databaseerror' => 'Kasalahan basis data',
-'dberrortext' => 'Kasalahan sintaks pado pamintaan basis data lah tajadi.
-Iko mungkin manandokan adonyo bug pado parangkek lunak.
-Pamintaan basis data nan tarakhir adalah:
-<blockquote><code>$1</code></blockquote>
-dari dalam fungsi "<code>$2</code>".
-Basis data manghasilkan kasalahan "<samp>$3: $4</samp>".',
-'dberrortextcl' => 'Ado kasalahan sintaks pado pamintaan basis data.
-Pamintaan basis data nan terakhir adalah:
-"$1"
-dari dalam fungsi "$2".
-Basis data manghasilkan kasalahan "$3: $4".',
 'laggedslavemode' => 'Paringatan: Laman mungkin indak barisi parubahan tabaru.',
 'readonly' => 'Basis data dikunci',
 'enterlockreason' => 'Masuakkan alasan panguncian, tamasuak pakiraan bilo kunci akan dibuka',
@@ -501,7 +490,6 @@ Untuak manambah atau maubah tajamahan di kasado wiki, harap gunoan [//translatew
 'editinginterface' => "'''Paringatan:''' Sanak manyuntiang laman nan digunoan untuak manyadiokan teks antarmuko untuak parangkaik lunak.
 Parubahan teks ko akan mampangaruhi tampilan pado antarmuko pangguno untuak pangguno lain.
 Untuak tajamahan, harap gunoan [//translatewiki.net/wiki/Main_Page?setlang=min translatewiki.net], proyek palokalan MediaWiki.",
-'sqlhidden' => '(Pamintaan SQL disuruakan)',
 'cascadeprotected' => 'Laman iko alah dilindungi dari panyuntiangan karano disartokan di {{PLURAL:$1|laman}} barikuik nan alah dilindungi jo opsi "runtun":
 $2',
 'namespaceprotected' => "Sanak indak mampunyoi hak akses untuak manyuntiang laman di ruang namo '''$1'''.",

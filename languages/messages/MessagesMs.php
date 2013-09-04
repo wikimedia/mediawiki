@@ -533,17 +533,6 @@ Senarai laman khas yang sah boleh dilihat di [[Special:SpecialPages]].',
 # General errors
 'error' => 'Ralat',
 'databaseerror' => 'Ralat pangkalan data',
-'dberrortext' => 'Terjadinya ralat sintaks pertanyaan pangkalan data.
-Ini mungkin menandakan adanya pepijat dalam perisian ini.
-Pertanyaan pangkalan data terakhir yang dicuba ialah:
-<blockquote><code>$1</code></blockquote>
-daripada dalam fungsi "<samp>$2</samp>".
-Pangkalan data memulangkan ralat "<samp>$3: $4</samp>".',
-'dberrortextcl' => 'Terdapat ralat sintaks pertanyaan pangkalan data.
-Pertanyaan terakhir ialah:
-"$1"
-daripada fungsi "$2".
-Pangkalan data memulangkan ralat "$3: $4".',
 'laggedslavemode' => 'Amaran: Laman ini mungkin bukan yang terkini.',
 'readonly' => 'Pangkalan data dikunci',
 'enterlockreason' => 'Sila nyatakan sebab penguncian dan jangkaan
@@ -599,7 +588,6 @@ Pertanyaan: $2',
 Untuk menambah atau menyunting terjemahan untuk semua wiki, sila gunakan projek penyetempatan MediaWiki, [//translatewiki.net/ translatewiki.net].',
 'editinginterface' => "'''Amaran:''' Anda sedang menyunting laman yang digunakan untuk menghasilkan teks antara muka bagi perisian ini. Sebarang perubahan terhadap laman ini akan menjejaskan rupa antara muka bagi pengguna-pengguna lain di wiki ini.
 Untuk menambah atau menyunting terjemahan untuk semua wiki, sila gunakan projek penyetempatan MediaWiki, [//translatewiki.net/ translatewiki.net].",
-'sqlhidden' => '(Pertanyaan SQL disorokkan)',
 'cascadeprotected' => 'Laman ini telah dilindungi daripada penyuntingan oleh pengguna selain penyelia, kerana ia termasuk dalam {{PLURAL:$1|laman|laman-laman}} berikut, yang dilindungi dengan secara "melata": $2',
 'namespaceprotected' => "Anda tidak mempunyai keizinan untuk menyunting laman dalam ruang nama '''$1'''.",
 'customcssprotected' => 'Anda tidak dibenarkan menyunting laman JavaScript ini kerana ia mengandungi tetapan peribadi pengguna lain.',

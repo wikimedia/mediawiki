@@ -321,12 +321,6 @@ Tifilit n tasnayin gaddanin ratn taft ɣid [[Special:SpecialPages|{{int:specialp
 # General errors
 'error' => 'Laffut',
 'databaseerror' => 'Laffut ɣ database',
-'dberrortext' => 'Tlla laffut ɣikli s tskert database.
-Ulla mayad kis kra ntmukrist.
-May igguran ittu isigal ɣ mayad igat.
-<blockquote><tt>$1</tt></blockquote>
-S ussiglad "<tt>$2</tt>".
-laffut d yurrin ɣ database "<tt>$3: $4</tt>".',
 'laggedslavemode' => 'Ḥan tasnayad ur gis graygan ambddel amaynu.',
 'readonly' => 'Tqqn tabase',
 'missing-article' => 'lqaa\'ida n lbayanat ortofa nass ad gh tawriqt  liss ikhssa asti taf limism "$1" $2.

@@ -193,10 +193,10 @@ $messages = array(
 'tog-extendwatchlist' => 'Iwwerwaachungslëscht op all Ännerungen ausbreeden, net nëmmen op déi rezentst',
 'tog-usenewrc' => 'Erweidert rezent Ännerunge benotzen (verlaangt JavaScript)',
 'tog-numberheadings' => 'Iwwerschrëften automatesch numeréieren',
-'tog-showtoolbar' => 'Ännerungstoolbar weisen (JavaScript)',
-'tog-editondblclick' => 'Säite mat Duebelklick veränneren (JavaScript)',
+'tog-showtoolbar' => 'Ännerungstoolbar weisen',
+'tog-editondblclick' => 'Säite mat Duebelklick änneren',
 'tog-editsection' => "Linke fir d'Ännere vun eenzelnen Abschnitter weisen",
-'tog-editsectiononrightclick' => 'Eenzel Abschnitter mat Rietsklick änneren (JavaScript)',
+'tog-editsectiononrightclick' => 'Eenzel Abschnitter mat Rietsklick änneren',
 'tog-showtoc' => 'Inhaltsverzeechnes weise bei Säite mat méi wéi dräi Iwwerschrëften',
 'tog-rememberpassword' => 'Meng Umeldung mat dësem Browser (fir maximal $1 {{PLURAL:$1|Dag|Deeg}}) verhalen',
 'tog-watchcreations' => 'Säiten déi ech uleeën a Fichieren déi ech eroplueden op meng Iwwerwaachungslëscht derbäisetzen',
@@ -214,7 +214,7 @@ $messages = array(
 'tog-shownumberswatching' => "D'Zuel vun de Benotzer déi dës Säit iwwerwaache weisen",
 'tog-oldsig' => 'Aktuell Ënnerschrëft:',
 'tog-fancysig' => 'Ënnerschrëft als Wiki-Text behandelen (Ouni automatesche Link)',
-'tog-uselivepreview' => 'Live-Preview benotzen (JavaScript) (experimentell)',
+'tog-uselivepreview' => 'Live-Preview benotzen (experimentell)',
 'tog-forceeditsummary' => 'Warnen, wa beim Späicheren de Resumé feelt',
 'tog-watchlisthideown' => 'Meng Ännerungen op menger Iwwerwaachungslëscht verstoppen',
 'tog-watchlisthidebots' => 'Ännerunge vu Botten op menger Iwwerwaachungslëscht verstoppen',
@@ -329,7 +329,7 @@ $messages = array(
 'newwindow' => '(geet an enger neier Fënster op)',
 'cancel' => 'Zréck',
 'moredotdotdot' => 'Méi …',
-'morenotlisted' => 'Méi, déi hei net stinn...',
+'morenotlisted' => 'Dës Lëscht ass net komplett.',
 'mypage' => 'Säit',
 'mytalk' => 'Diskussioun',
 'anontalk' => 'Diskussioun fir dës IP Adress',
@@ -516,17 +516,9 @@ All Spezialsäiten déi et gëtt, sinn op der [[Special:SpecialPages|{{int:speci
 # General errors
 'error' => 'Feeler',
 'databaseerror' => 'Datebank Feeler',
-'dberrortext' => 'En Datebank Syntax Feeler ass opgetrueden.
-Dëst kann op e Feeler an der Software hiweisen.
-De leschte versichten Datebank Query war:
-<blockquote><code>$1</code></blockquote>
-vun der Funktioun "<code>$2</code>".
-D\'Datebank huet de Feeler "<samp>$3: $4</samp>" gemellt.',
-'dberrortextcl' => 'En Datebank Syntax Feeler ass opgetrueden.
-De leschten Datebank Query war:
-"$1"
-vun der Funktioun "$2".
-D\'Datebank huet de Feeler "$3: $4" gemellt.',
+'databaseerror-query' => 'Ufro: $1',
+'databaseerror-function' => 'Fonctioun: $1',
+'databaseerror-error' => 'Feeler: $1',
 'laggedslavemode' => "'''Opgepasst:''' Dës Säit ass net onbedéngt um neiste Stand.",
 'readonly' => "D'Datebank ass gespaart",
 'enterlockreason' => "Gitt w.e.g. e Grond u firwat d'Datebak gespaart ass, a wéi laang dës Spär ongeféier bestoe soll.",
@@ -582,7 +574,6 @@ Fir Iwwersetzungen fir all Wikien bäizesetzen oder z'änneren gitt w.e.g. op [/
 'editinginterface' => "'''Opgepasst:''' Dir sidd am Gaang, eng Säit z'änneren, déi do ass, fir Interface-Text fir d'Software ze liwweren. 
 Ännerungen op dëser Säit änneren den Interface-Text, jee no Kontext, op allen oder verschiddene Säiten, déi vun alle Benotzer op dëser Wiki gesi ginn. 
 Fir d'Iwwersetzunge fir all Wikien derbäizesetzen oder z'änneren gitt w.e.g. op [//translatewiki.net translatewiki.net], de MediaWiki-Lokalisatiouns-Projet.",
-'sqlhidden' => '(SQL-Offro verstoppt)',
 'cascadeprotected' => 'Dës Säit gouf fir Ännerunge gespaart, well se duerch Cascadeprotectioun vun {{PLURAL:$1|dëser Säit|dëse Säite}} gespaart ass mat der Cascadenoptioun:
 $2',
 'namespaceprotected' => "Dir hutt net déi néideg Rechter fir d'Säiten am Nummraum '''$1''' ze änneren.",

@@ -312,12 +312,6 @@ Fehristi sahifahoi viƶai durustro metavoned dar inço [[Special:SpecialPages|{{
 # General errors
 'error' => 'Iştiboh',
 'databaseerror' => 'Xatoi bojgohi doda',
-'dberrortext' => 'Işkole dar dasturi firistanda şuda ba pojgohi doda rux dod.
-Daleli in muşkil metavonad erode dar narmafzor boşad.
-In oxirin dasture bud ki baroi pojgohi doda firistoda şud:
-<blockquote><tt>$1</tt></blockquote>
-in dastur az daruni amalgir "<tt>$2</tt>".
-Pogohi doda in xatoro bozgardond "<tt>$3: $4</tt>".',
 'laggedslavemode' => 'Huşdor: Sahifa mumkin ast rūzrasonihoi oxirro dar bar nagirad.',
 'readonly' => 'Bojgohi doda qufl şudaast',
 'enterlockreason' => 'Dalelero baroi qufl kardan zikr kuned, va taqriban vaqti az qufl ozod şudanaşro ham zikr kuned',
@@ -359,7 +353,6 @@ Pursuçū: $2',
 'protectedpagetext' => 'In sahifa baroi çilavgirī az viroiş qufl şudaast.',
 'viewsourcetext' => 'Şumo metavoned matni vikiji in sahifaro nazar kuned jo nusxa bardored:',
 'protectedinterface' => 'In sahifa oroişdihandai matni in narmafzor ast, va ba manzuri peşgirī az xarobkorī qufl şudaast.',
-'sqlhidden' => '(Dasturi SQL pinhonist)',
 'cascadeprotected' => 'In sahifa az viroiş muhofizat şudaast, baroi in ki  dar {{PLURAL:$1|sahifai|sahifahoi}} muhofizatşudai zerin, ki guzainai "obşorī" dar {{PLURAL:$1|on|onho}} intixob şudaast, faro giriftaast: $2',
 'namespaceprotected' => "Şumo içozati viroişi sahifahoi fazoinomi '''$1'''-ro nadored.",
 'ns-specialprotected' => 'Sahifahoi viƶa ƣajri qobili viroiş hastand.',

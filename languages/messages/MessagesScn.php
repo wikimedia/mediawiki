@@ -479,17 +479,6 @@ L'alencu dî pàggini spiciali vàlidi s'attrova 'n [[Special:SpecialPages|Alenc
 # General errors
 'error' => 'Erruri',
 'databaseerror' => 'Erruri dû database',
-'dberrortext' => 'Erruri di sintassi ntâ richiesta nultrata a lu databbasi.
-Chistu putissi innicari la prisenza d\'un bug ntô software.
-L\'ùrtima query mannata a lu database fu:
-<blockquote><tt>$1</tt></blockquote>
-richiamata dâ funzioni "<tt>$2</tt>".
-Lu databbasi desi l\'erruri "<tt>$3: $4</tt>".',
-'dberrortextcl' => 'Erruri di sintassi ntâ richiesta nultrata a lu database.
-L\'ùrtima query mannata a lu database hà stata:
-"$1"
-richiamata dâ funzioni "$2".
-MySQL hà ristituitu lu siquenti erruri "$3: $4".',
 'laggedslavemode' => "Accura: La pàggina putissi nun ripurtari l'aggiurnamenti cchiù ricenti.",
 'readonly' => 'Database bluccatu',
 'enterlockreason' => "Ìnnica lu mutivu dû bloccu, spicificannu lu mumentu 'n cui è prisumìbbili ca veni rimossu.",
@@ -537,7 +526,6 @@ Query: $2',
 'viewyourtext' => "È pussibbili visualizzarei cupiari lu còdici surgenti dî '''tò canciamenti''' nti sta pàggina:",
 'protectedinterface' => "Sta pàggina cunteni un elementu ca fà parti dâ nterfaccia utenti dû software eggh'è  prutetta p'evitari pussìbbili abbusi. Pi jùnciri o canciari li traduzzioni pi tutti li wiki usari [//translatewiki.net/translatewiki.net] lu pruggettu di lucalizzazzioni di Mediawiki.",
 'editinginterface' => "'''Accura:''' Lu testu di sta pàggina fà parti dî interfaccia utenti dû situ. Tutti li canciamenti appurtati a sta pàggina si riflèttinu supra li missaggi visualizzati pi tutti l'utenti. Pi li traduzioni, cunsidira â pussibilità di usari [//translatewiki.net/wiki/Main_Page?setlang=scn translatewiki.net], u prugettu di localizzazioni MediaWiki.",
-'sqlhidden' => '(la query SQL hà statu ammucciata)',
 'cascadeprotected' => 'Supra sta pàggina nun è pussìbbili effittuari canciamenti pirchì veni nclusa nt{{PLURAL:$1|â pàggina siquenti, ca fu prutetta|ê pàggini siquenti, ca foru prutetti}} silizziunannu la prutizzioni "ricursiva":
 $2',
 'namespaceprotected' => "Nun hai lu pirmissu pi canciari li pàggini ntô namespace '''$1'''.",

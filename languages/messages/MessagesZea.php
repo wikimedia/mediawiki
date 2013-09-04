@@ -346,17 +346,6 @@ Een lieste mie speciaole pagina’s sti op [[Special:SpecialPages|speciaole pagi
 # General errors
 'error' => 'Fout',
 'databaseerror' => 'Databasefout',
-'dberrortext' => "Der is een syntaxisfout in 't databaseverzoek opetreeën.
-Meuhlijk zit der een fout in de software.
-'t Lèste verzoek an de database was:
-<blockquote><tt>$1</tt></blockquote>
-vanuut de functie “<tt>$2</tt>”.
-MySQL haf de foutmeldieng “<tt>$3: $4</tt>”.",
-'dberrortextcl' => "Der is een syntaxisfout in 't databaseverzoek opetreeën.
-'t Lèste verzoek an de database was:
-“$1”
-vanuut de functie “$2”.
-MySQL haf de volhende foutmeldieng: “$3: $4”",
 'laggedslavemode' => "Waerschuwieng: de pahina zou verouwerd kunn'n zien.",
 'readonly' => 'Database heblokkeerd',
 'enterlockreason' => 'Heef een reeën op voe de blokkaode en heef op wunnir a die warschijnlijk wor opeheven',
@@ -400,7 +389,6 @@ Probeer 't over een antal menuten wee.",
 'viewsourcetext' => 'Je kan de brontekst van deêze pagina bekieken en kopiëren:',
 'protectedinterface' => "Deêze pagina bevat tekst voe berichen van de software en is beveiligd om misbruuk te voorkomm'n.",
 'editinginterface' => "'''Waerschuwienge:''' Je bewerk een pagina die a gebruukt wor deur de software. Bewerkiengen op deêze pagina beïnvloeden de gebrukersinterface van iedereên. Overweeg voe vertaeliengen om [//translatewiki.net/wiki/Main_Page?setlang=zea translatewiki.net] te gebruken, 't vertaeliengsproject voe MediaWiki.",
-'sqlhidden' => '(SQL-zoekopdracht verborhen)',
 'cascadeprotected' => "Deêze pagina kan nie bewerkt worn, omda 't een is openomen in de volhende {{PLURAL:$1|pagina|pagina's}} die beveiligd {{PLURAL:$1|is|zien}} mie de cascaode-optie:
 $2",
 'namespaceprotected' => "Je ei hin rechen om pagina's in de naemruumte '''$1''' te bewerken.",

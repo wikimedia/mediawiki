@@ -398,16 +398,6 @@ Mövcud xüsusi səhifələrin siyahısı: [[Special:SpecialPages|Xüsusi səhif
 # General errors
 'error' => 'Xəta',
 'databaseerror' => 'Verilənlər bazası xətası',
-'dberrortext' => 'Verilənlər bazası sorğusunda sintaksis xətası yarandı.
-Bu proqram təminatındakı xəta ilə əlaqədar ola bilər.
-Verilənlər bazasına sonuncu sorğu "<tt>$2</tt>" funksiyasından 
-yaranan <blockquote><tt>$1</tt></blockquote>.
-Verilənlər bazasının göstərdiyi xəta "<tt>$3: $4</tt>".',
-'dberrortextcl' => 'Verilənlər bazası sorğusunda sintaksis xətası yarandı.
-Verilənlər bazasına sonuncu sorğu:
-"$1"
-"$2" funksiyasından yaranmışdır.
-Verilənlər bazasının göstərdiyi xəta "$3: $4"',
 'laggedslavemode' => "'''Xəbərdarlıq:''' Səhifə son əlavələri əks etdirməyə bilər.",
 'readonly' => 'Verilənlər bazası bloklanıb',
 'enterlockreason' => 'Bloklamanın səbəbini və nəzərdə tutulan müddətini qeyd edin',
@@ -457,7 +447,6 @@ Sorğu: $2',
 'editinginterface' => "'''Diqqət!''' Siz proqram təminatı interfeysinin mətn olan səhifəsini redaktə edirsiniz.
 Onun dəyişdirilməsi digər istifadəçilərin interfeysinin xarici görünüşünə təsir göstərir.
 Tərcümə üçün daha yaxşı olar ki, MediaWiki-nin lokallaşması üçün olan [//translatewiki.net/wiki/Main_Page?setlang=az translatewiki.net]  layihəsindən istifadə edəsiniz.",
-'sqlhidden' => '(SQL gizli sorğu)',
 'cascadeprotected' => 'Səhifə mühafizə olunub, çünki o kaskad mühafizə olunan {{PLURAL:$1|növbəti səhifəyə|növbəti səhifələrə}} qoşulub:
 $2',
 'namespaceprotected' => 'Sizin adlarında $1 olan məqalələrdə redaktə etməyə icazəniz yoxdur.',

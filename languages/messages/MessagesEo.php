@@ -652,17 +652,6 @@ Listo de validaj specialaj paĝoj estas trovebla ĉe [[Special:SpecialPages|{{in
 # General errors
 'error' => 'Eraro',
 'databaseerror' => 'Datumbaza eraro',
-'dberrortext' => 'Sintakseraro okazis dum informpeto al la datenbazo.
-Ĝi eble indikas misaĵeton en la programaro.
-Jen la plej laste provita informpeto:
-<blockquote><code>$1</code></blockquote>
-el la funkcio "<code>$2</code>".
-La datenbazo liveris eraron "<samp>$3: $4</samp>".',
-'dberrortextcl' => 'Sintaksa eraro de la datumbaza informmendo okazis.
-La lasta provita datumbaza informmendo estis:
-"$1"
-el la funkcio "$2".
-Datumbazo liveris la erarmesaĝon "$3: $4".',
 'laggedslavemode' => 'Avertu: la paĝo eble ne enhavas lastatempajn ĝisdatigojn.',
 'readonly' => 'Datumaro ŝlosita, nurlega',
 'enterlockreason' => 'Bonvolu klarigi, kial oni ŝlosas la datumaron, kaj
@@ -720,7 +709,6 @@ Peto: $2',
 'protectedinterface' => 'Ĉi tiu paĝo provizas interfacan tekston por la softvaro, kaj estas ŝlosita por malebligi misuzon.
 Por aldoni aŭ ŝanĝi tradukojn por ĉiuj vikioj, bonvolu uzi [//translatewiki.net/ translatewiki.net], la projekto por provizi tradukojn por MediaWiki.',
 'editinginterface' => "'''Atentu:''' Vi redaktas paĝon, kiu estas uzata kiel interfaca teksto por la programaro. Ŝanĝoj de ĉi tiu teksto povas ŝanĝi aspekton de la interfaco por aliaj uzantoj sur ĉi tiu vikio. Por aldoni aŭ ŝanĝi tradukojn, bonvolu uzi [//translatewiki.net/ translatewiki.net], la MediaWiki-projekton por lingvigaj versioj.",
-'sqlhidden' => '(SQL serĉomendo kaŝita)',
 'cascadeprotected' => 'Ĉi tiu paĝo estas protektita kontraŭ redaktado, ĉar ĝi estas inkludita en la {{PLURAL:$1|sekvan paĝon, kiu|sekvajn paĝojn, kiuj}} estas {{PLURAL:$1|protektata|protektataj}} kun la "kaskada" opcio turnita sur:
 $2',
 'namespaceprotected' => "Vi ne rajtas redakti paĝojn en la '''$1''' nomspaco.",

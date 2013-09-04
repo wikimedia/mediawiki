@@ -366,17 +366,6 @@ Motoit ki vos avoz må scrît l' hårdêye ou shuvou on cron loyén.
 # General errors
 'error' => 'Aroke',
 'databaseerror' => "Åk n' a nén stî avou l' båze di dnêyes",
-'dberrortext' => "Åk n' a nén stî avou l' sintacse do cweraedje del båze di dnêyes.
-Çoula pout esse cåze d' on bug dins l' programe.
-Li dierin cweraedje del båze di dnêyes di sayî esteut:
-<blockquote><tt>$1</tt></blockquote>
-a pårti del fonccion «<tt>$2</tt>».
-Li båze di dnêyes a rtourné l' aroke «<tt>$3: $4</tt>».",
-'dberrortextcl' => "Åk n' a nén stî avou l' sintacse do cweraedje del båze di dnêyes.
-Li dierin cweraedje del båze di dnêyes di sayî esteut:
-«$1»
-a pårti del fonccion «$2».
-Li båze di dnêyes a rtourné l' aroke «$3: $4».",
 'laggedslavemode' => "Asteme: I s' pout ki l' pådje n' åye nén co les dierins candjmints.",
 'readonly' => 'Li båze di dnêyes est aclawêye',
 'missing-article' => "Li båze di dnêyes n' a nén trové l' tecse d' ene pådje k' åreut dvou esse trovêye, lomêye «$1» $2.

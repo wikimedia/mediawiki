@@ -543,17 +543,6 @@ $1',
 # General errors
 'error' => '錯誤',
 'databaseerror' => '資料庫錯誤',
-'dberrortext' => '資料庫查詢語法錯咗。
-咁係可能指出軟件中可能有臭蟲。
-最後一次資料庫嘅嘗試係：
-<blockquote><tt>$1</tt></blockquote>
-於 "<tt>$2</tt>" 功能中。
-數據庫嘅錯誤回應 "<tt>$3: $4</tt>"。',
-'dberrortextcl' => '資料庫查詢語法錯咗。
-最後一次資料庫嘅嘗試係：
-"$1"
-於 "$2"功能中。
-數據庫嘅錯誤回應 "$3: $4"',
 'laggedslavemode' => '警告：呢頁可能未包括最新嘅更新。',
 'readonly' => '資料庫鎖咗',
 'enterlockreason' => '輸入鎖資料庫嘅原因，同埋預計幾耐後會解鎖',
@@ -599,7 +588,6 @@ $1',
 'viewsourcetext' => '你可以睇吓或者複製呢一頁嘅原始碼：',
 'protectedinterface' => '呢一頁提供軟件嘅介面文字，呢一頁已經保護咗以預防濫用。',
 'editinginterface' => "'''警告：'''你而家編輯緊嘅呢一個用嚟提供介面文字嘅頁面。響呢一頁嘅更改會影響到其他用戶使用中嘅介面外觀。要翻譯，請考慮利用[//translatewiki.net/wiki/Main_Page?setlang=yue translatewiki.net]，一個用來為MediaWiki軟件本地化嘅計劃。",
-'sqlhidden' => '(SQL 查詢隱藏)',
 'cascadeprotected' => '呢一版已經保護咗唔能夠編輯，因為佢係響以下嘅{{PLURAL:$1|一|幾}}頁度包含咗，當中啟用咗"連串"保護選項來保護嗰一版: $2',
 'namespaceprotected' => "你無權編輯響'''$1'''空間名裏面嘅呢一版。",
 'ns-specialprotected' => '特別頁係唔可以編輯嘅。',

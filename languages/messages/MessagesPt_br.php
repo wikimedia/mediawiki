@@ -657,17 +657,6 @@ Uma lista de páginas especiais válidas poderá ser encontrada em [[Special:Spe
 # General errors
 'error' => 'Erro',
 'databaseerror' => 'Erro no banco de dados',
-'dberrortext' => 'Ocorreu um erro de sintaxe na busca no banco de dados.
-Isto pode indicar um bug no software.
-A última tentativa de busca no banco de dados foi:
-<blockquote><code>$1</code></blockquote>
-na função "<code>$2</code>".
-O banco de dados retornou o erro "<samp>$3: $4</samp>".',
-'dberrortextcl' => 'Ocorreu um erro de sintaxe de busca no banco de dados.
-A última tentativa de busca no banco de dados foi:
-"$1"
-na função "$2".
-O banco de dados retornou o erro "$3: $4".',
 'laggedslavemode' => 'Aviso: a página poderá não conter atualizações recentes.',
 'readonly' => 'Banco de dados disponível no modo "somente leitura"',
 'enterlockreason' => 'Entre com um motivo para trancá-lo, incluindo uma estimativa de quando poderá novamente ser destrancado',
@@ -725,7 +714,6 @@ Para adicionar ou alterar traduções em todos os wikis, utilize o [//translatew
 'editinginterface' => "'''Aviso:''' Você se encontra prestes a editar uma página que é utilizada para fornecer texto de interface ao software.
 Alterações nesta página irão afetar a aparência da interface de usuário para outros usuários deste wiki.
 Para alterar ou adicionar traduções, considere utilizar a [//translatewiki.net/wiki/Main_Page?setlang=pt-br translatewiki.net], um projeto destinado para a tradução do MediaWiki.",
-'sqlhidden' => '(Consulta SQL em segundo-plano)',
 'cascadeprotected' => 'Esta página foi protegida contra edições por estar incluída {{PLURAL:$1|na página listada|nas páginas listadas}} a seguir, ({{PLURAL:$1|página essa que está protegida|páginas essas que estão protegidas}} com a opção de "proteção progressiva" ativada):
 $2',
 'namespaceprotected' => "Você não possui permissão para editar páginas no espaço nominal '''$1'''.",

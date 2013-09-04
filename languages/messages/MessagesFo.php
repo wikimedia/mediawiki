@@ -443,17 +443,6 @@ Hetta kann eisini benda á ein feil í software'ini sum {{SITENAME}} brúkar.",
 # General errors
 'error' => 'Villa',
 'databaseerror' => 'Villa í dátagrunni',
-'dberrortext' => '↓ Tað er hend ein syntaks villa í fyrispurninginum til dátugrunnin.
-Hetta kann merkja, at tað er feilur í ritbúnaðinum (software).
-Seinasta royndin at spyrja dátugrunnin var:
-<blockquote><code>$1</code></blockquote>
-frá innaru funktión "<code>$2</code>".
-Dátagrunnurin gav feilmelding "<samp>$3: $4</samp>".',
-'dberrortextcl' => '↓ Ein syntaks feilur hendi í fyrispurningi til dátugrunnin.
-Seinasta royndin at leita í dátugrunninum var:
- "$1"
-frá funktiónini "$2".
-Dátugrunnurin sendi aftur feilmeldingina: "$3: $4"',
 'laggedslavemode' => "'''Ávaring:''' Síðan inniheldur møguliga ikki nýggjar dagføringar.",
 'readonly' => 'Dátubasan er stongd fyri skriving',
 'enterlockreason' => 'Skriva eina orsøk fyri at stongja síðuna fyri skriving, saman við einari meting av, nær ið síðan verður lást upp aftur',
@@ -510,7 +499,6 @@ Fyri at gera rættingar ella broyta týðingar á øllum wiki'um, vinarliga nýt
 'editinginterface' => "↓ '''Ávaring:''' Tú rættar eina síðu sum verður brúkt til at geva markamóts tekst til ritbúnaðin (software).
 Broytingar á hesi síðu fara at ávirka útsjóndina á brúkara markamótinum (interface) fyri aðrar brúkarar á hesi wiki.
 Fyri at gera týðingar ella broyta týðingar á øllum wiki, vinarliga nýt [//translatewiki.net/ translatewiki.net],  sum er ein MediaWiki verkætlan.",
-'sqlhidden' => '(SQL fyrispurningur fjaldur)',
 'cascadeprotected' => 'Henda síðan er vard fyri rættingum, tí hon er í fylgjandi {{PLURAL:$1|síðu, sum er|síðum, sum eru}}
 vardar við "arvaðari síðuverjing"
 $2',

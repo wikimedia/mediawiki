@@ -453,7 +453,7 @@ $messages = array(
 'newwindow' => '(otwiera się w nowym oknie)',
 'cancel' => 'Anuluj',
 'moredotdotdot' => 'Więcej...',
-'morenotlisted' => 'I inne...',
+'morenotlisted' => 'Nie jest to kompletna lista.',
 'mypage' => 'Strona',
 'mytalk' => 'Dyskusja',
 'anontalk' => 'Dyskusja tego IP',
@@ -640,17 +640,9 @@ Listę dostępnych stron specjalnych znajdziesz [[Special:SpecialPages|tutaj]].'
 # General errors
 'error' => 'Błąd',
 'databaseerror' => 'Błąd bazy danych',
-'dberrortext' => 'Wystąpił błąd składni w zapytaniu do bazy danych.
-Może to oznaczać błąd w oprogramowaniu.
-Ostatnie, nieudane zapytanie to:
-<blockquote><code>$1</code></blockquote>
-wysłane przez funkcję „<code>$2</code>”.
-Baza danych zgłosiła błąd „<samp>$3: $4</samp>”.',
-'dberrortextcl' => 'Wystąpił błąd składni w zapytaniu do bazy danych.
-Ostatnie, nieudane zapytanie to:
-„$1”
-wywołane zostało przez funkcję „$2”.
-Baza danych zgłosiła błąd „$3: $4”',
+'databaseerror-query' => 'Zapytanie: $1',
+'databaseerror-function' => 'Funkcja: $1',
+'databaseerror-error' => 'Błąd: $1',
 'laggedslavemode' => 'Uwaga! Ta strona może nie zawierać najnowszych aktualizacji.',
 'readonly' => 'Baza danych jest zablokowana',
 'enterlockreason' => 'Podaj powód zablokowania bazy oraz szacunkowy termin jej odblokowania',
@@ -705,7 +697,6 @@ By dodać lub zmienić tłumaczenia wszystkich serwisów wiki, użyj [//translat
 'editinginterface' => "'''Ostrzeżenie:''' Edytujesz stronę, która zawiera tekst interfejsu oprogramowania.
 Zmiany na tej stronie zmienią wygląd interfejsu dla innych użytkowników tej wiki.
 By dodać lub zmienić tłumaczenia wszystkich wiki, użyj [//translatewiki.net/wiki/Main_Page?setlang=pl translatewiki.net], specjalizowany projekt lokalizacji oprogramowania MediaWiki.",
-'sqlhidden' => '(ukryto zapytanie SQL)',
 'cascadeprotected' => 'Ta strona została zabezpieczona przed edycją, ponieważ jest ona zawarta na {{PLURAL:$1|następującej stronie, która została zabezpieczona|następujących stronach, które zostały zabezpieczone}} z włączoną opcją dziedziczenia:
 $2',
 'namespaceprotected' => "Nie masz uprawnień do edytowania stron w przestrzeni nazw '''$1'''.",
@@ -4131,6 +4122,7 @@ Powinieneś otrzymać [{{SERVER}}{{SCRIPTPATH}}/COPYING kopię licencji GNU Gene
 'dberr-problems' => 'Przepraszamy! Witryna ma problemy techniczne.',
 'dberr-again' => 'Spróbuj przeładować stronę za kilka minut.',
 'dberr-info' => '(Brak komunikacji z serwerem bazy danych – $1)',
+'dberr-info-hidden' => '(Nie można skontaktować się z serwerem bazy danych)',
 'dberr-usegoogle' => 'Możesz spróbować wyszukać w międzyczasie za pomocą Google.',
 'dberr-outofdate' => 'Uwaga – indeksy zawartości serwisu mogą być nieaktualne.',
 'dberr-cachederror' => 'Strona została pobrana z pamięci podręcznej i może być nieaktualna.',

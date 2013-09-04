@@ -260,12 +260,12 @@ $messages = array(
 'tog-hidepatrolled' => 'Agochar as edicións patrulladas nos cambios recentes',
 'tog-newpageshidepatrolled' => 'Agochar as páxinas revisadas da lista de páxinas novas',
 'tog-extendwatchlist' => 'Expandir a lista de vixilancia para mostrar todos os cambios e non só os máis recentes',
-'tog-usenewrc' => 'Agrupar as modificacións por páxina nos cambios recentes e na lista de vixilancia (cómpre JavaScript)',
+'tog-usenewrc' => 'Agrupar as modificacións por páxina nos cambios recentes e na lista de vixilancia',
 'tog-numberheadings' => 'Numerar automaticamente as cabeceiras',
-'tog-showtoolbar' => 'Mostrar a barra de ferramentas de edición (cómpre JavaScript)',
-'tog-editondblclick' => 'Editar as páxinas logo de facer dobre clic (cómpre JavaScript)',
+'tog-showtoolbar' => 'Mostrar a barra de ferramentas de edición',
+'tog-editondblclick' => 'Editar as páxinas logo de facer dobre clic',
 'tog-editsection' => 'Permitir a edición de seccións mediante as ligazóns "[editar]"',
-'tog-editsectiononrightclick' => 'Permitir a edición de seccións premendo co botón dereito nos títulos das seccións (cómpre JavaScript)',
+'tog-editsectiononrightclick' => 'Permitir a edición de seccións premendo co botón dereito nos títulos das seccións',
 'tog-showtoc' => 'Mostrar o índice (para as páxinas con máis de tres cabeceiras)',
 'tog-rememberpassword' => 'Lembrar o meu contrasinal neste navegador (ata $1 {{PLURAL:$1|día|días}})',
 'tog-watchcreations' => 'Engadir as páxinas que cree e os ficheiros que cargue á miña lista de vixilancia',
@@ -283,7 +283,7 @@ $messages = array(
 'tog-shownumberswatching' => 'Mostrar o número de usuarios que están a vixiar',
 'tog-oldsig' => 'Sinatura actual:',
 'tog-fancysig' => 'Tratar a sinatura como se fose texto wiki (sen ligazón automática)',
-'tog-uselivepreview' => 'Usar a vista previa en tempo real (cómpre JavaScript) (experimental)',
+'tog-uselivepreview' => 'Usar a vista previa en tempo real (experimental)',
 'tog-forceeditsummary' => 'Avisádeme cando o campo resumo estea baleiro',
 'tog-watchlisthideown' => 'Agochar as edicións propias na lista de vixilancia',
 'tog-watchlisthidebots' => 'Agochar as edicións dos bots na lista de vixilancia',
@@ -584,17 +584,12 @@ Pode atopar unha lista coas páxinas especiais válidas en [[Special:SpecialPage
 # General errors
 'error' => 'Erro',
 'databaseerror' => 'Erro na base de datos',
-'dberrortext' => 'Ocorreu un erro de sintaxe na consulta á base de datos.
-Isto pódese deber a un erro no software.
-A última consulta á base de datos foi:
-<blockquote><code>$1</code></blockquote>
-desde a función "<code>$2</code>".
-A base de datos devolveu o erro "<samp>$3: $4</samp>".',
-'dberrortextcl' => 'Ocorreu un erro de sintaxe na consulta.
-A última consulta á base de datos foi:
-"$1"
-desde a función "$2".
-A base de datos devolveu o erro "$3: $4"',
+'databaseerror-text' => 'Produciuse un erro na pescuda na base de datos.
+Isto pode ser indicativo dun erro no software.',
+'databaseerror-textcl' => 'Produciuse un erro na pescuda na base de datos.',
+'databaseerror-query' => 'Pescuda: $1',
+'databaseerror-function' => 'Función: $1',
+'databaseerror-error' => 'Erro: $1',
 'laggedslavemode' => "'''Aviso:''' A páxina pode non conter as actualizacións recentes.",
 'readonly' => 'Base de datos pechada',
 'enterlockreason' => 'Dea unha razón para o peche, incluíndo unha estimación de até cando se manterá',
@@ -651,7 +646,6 @@ Para engadir ou modificar as traducións en todos os wikis utilice [//translatew
 'editinginterface' => "'''Aviso:''' Está editando unha páxina usada para fornecer o texto da interface do software.
 Os cambios nesta páxina afectarán á aparencia da interface dos outros usuarios do wiki.
 Para engadir ou modificar as traducións en todos os wikis utilice [//translatewiki.net/wiki/Main_Page?setlang=gl translatewiki.net], o proxecto de localización de MediaWiki.",
-'sqlhidden' => '(Procura SQL agochada)',
 'cascadeprotected' => 'Esta páxina foi protexida fronte á edición debido a que está incluída {{PLURAL:$1|na seguinte páxina protexida, que ten|nas seguintes páxinas protexidas, que teñen}} a "protección en serie" activada:
 $2',
 'namespaceprotected' => "Non ten os permisos necesarios para modificar páxinas no espazo de nomes '''$1'''.",
@@ -1728,7 +1722,7 @@ Se escolle dalo utilizarase para atribuírlle o seu traballo.',
 'rc_categories_any' => 'Calquera',
 'rc-change-size-new' => '$1 {{PLURAL:$1|byte|bytes}} despois da modificación',
 'newsectionsummary' => 'Nova sección: /* $1 */',
-'rc-enhanced-expand' => 'Mostrar os detalles (cómpre JavaScript)',
+'rc-enhanced-expand' => 'Mostrar os detalles',
 'rc-enhanced-hide' => 'Agochar os detalles',
 'rc-old-title' => 'creada orixinalmente como "$1"',
 
@@ -4047,7 +4041,8 @@ Debería recibir [{{SERVER}}{{SCRIPTPATH}}/COPYING unha copia da licenza públic
 'dberr-header' => 'Este wiki ten un problema',
 'dberr-problems' => 'Sentímolo! Este sitio está experimentando dificultades técnicas.',
 'dberr-again' => 'Por favor, agarde uns minutos e logo probe a cargar de novo a páxina.',
-'dberr-info' => '(Non se pode conectar coa base de datos do servidor: $1)',
+'dberr-info' => '(Non se pode conectar co servidor da base de datos: $1)',
+'dberr-info-hidden' => '(Non se pode conectar co servidor da base de datos)',
 'dberr-usegoogle' => 'Mentres tanto, pode probar a buscar co Google.',
 'dberr-outofdate' => 'Teña en conta que os índices de Google do noso contido poden non estar actualizados.',
 'dberr-cachederror' => 'O seguinte contido é unha copia da memoria caché da páxina solicitada, polo que pode non estar actualizada.',

@@ -332,21 +332,6 @@ lista dyal safahat lkhassa ghatlgaha f [[Special:SpecialPages|{{int:specialpages
 # General errors
 'error' => "ĥata'",
 'databaseerror' => 'khataaa f qaaaidat lbayanat',
-'dberrortext' => 'khata fsight amr qaaaidat lbayanat
-hadchi iqdr ikon raja lchi khataa f lbrnamaj
-akhir amr dyal qaaidat lbayanat kan
-<blockquote><tt>$1</tt></blockquote>
-dakhl had dalla "<tt>$2</tt>".
-qaaidat lbayant rddat bhad lkhataa "<tt>$3: $4</tt>".',
-'dberrortextcl' => 'wqĝ waḫd lmoċkil f siġt istiĝlam qaĝidat lbayanat
-
-aĥir talab istiĝlam qaĝidat lbayanat kan
-
-"$1"
-
-li hwa mn daĥl ddala "$2".
-
-qaĝidat lbayanat rjĝat lĥata\' "$3: $4"',
 'laggedslavemode' => "'''attansyo''' sfḫa iqdr mafihach aĥir tḫditaṫ",
 'readonly' => 'qaĝidat lbayanat msdoda',
 'enterlockreason' => 'dĥl sabab lli ĥllak tsdha, okadalik lwaqt li momkin thll bqdha',
@@ -394,7 +379,6 @@ Query: $2',
 'viewsourcetext' => 'imkn lik  tchof otcopie lmasdar dyak had sfha',
 'protectedinterface' => 'had ṣfḫa ka-ṫĝti n-naṣṣ dl-interface dial l-logiciel, o-raḫa mḫmiyya baċ maymknċ ṫṫĥrab.',
 'editinginterface' => "'''ṫḫdir:''' rak ka-ĝddal waḫd ṣ-ṣfḫa lli msṫĝmla baċ ṫĝti n-naṣṣ dl-interface dial l-logiciel. ṫĥyiraṫ fiha ġadi ṫ'aṫṫar ĝla l-mḍhr dial l-interface dl-mosṫaĥdim ĝnd l-mosṫaĥdimin l-aĥrin. l-ttarjamaṫ, ċoflik mĝa [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], the MediaWiki localisation project.",
-'sqlhidden' => '(talab SQL mĥfi)',
 'cascadeprotected' => 'had ṣfḫa mḫmiyya mn ṫĝdil, ḫqaċ fiha {{PLURAL:$1|ṣfḫa|ṣfaḫi}} mḫmiyya mĝa l-option "cascading" ĥḍḍama:
 $2',
 'namespaceprotected' => "ma msmoh-likċ baċ ṫĝddl ṣfahi mn n-nitaq '''$1'''.",

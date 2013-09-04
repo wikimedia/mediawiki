@@ -447,17 +447,6 @@ Ou ka jwenn yon lis paj espesial ki valid yo la [[Special:SpecialPages|{{int:spe
 # General errors
 'error' => 'Erè',
 'databaseerror' => 'Erè nan bazdone.',
-'dberrortext' => 'Yon rekèt nan bazdone a bay yon erè.
-Sa kapab vle di genyen yon erè nan lojisyèl nan.
-Dènye esè a te :
-<blockquote><tt>$1</tt></blockquote>
-depi fonksyon sa « <tt>$2</tt> ».
-Bazdone ritounen erè sa « <tt>$3 : $4</tt> ».',
-'dberrortextcl' => 'Yon rekèt nan bazdone a bay yon erè.
-Dènye esè nan baz done a te:
-« $1 »
-depi fonksyon sa « $2 ».
-Bazdone a te bay mesaj erè sa « $3 : $4 ».',
 'laggedslavemode' => "'''Atansyon:''' paj sa a kapab pa anrejistre modifikasyon ki fèk fèt yo.",
 'readonly' => 'Bazdone a fèmen toutbon.',
 'enterlockreason' => 'Bay yon rezon pou fème bazdone a ak yon estimasyon ki lè w ap ouvri l ankò',
@@ -503,7 +492,6 @@ Demann : $2',
 'viewsourcetext' => 'Ou kapab gade epitou modifye kontni atik sa a pou ou travay anlè li :',
 'protectedinterface' => 'Paj sa ap bay tèks pou entèfas lojisyèl an e li pwoteje pou anpeche move itilizasyon nou ta kapab fè ak li.',
 'editinginterface' => "'''Pòte atansyon :''' ou ap modifye yon paj ki itilize nan kreyasyon tèks entèfas lojisyèl an. Chanjman yo ap ritounen, li ap depann de kèk sityasyon, nan tout paj ke lòt itilizatè yo kapab wè tou. Pou tradiksyon yo, nap envite w itilize pwojè MediaWiki pou mesaj entènasyonal yo (tradiksyon) nan paj sa [//translatewiki.net/wiki/Main_Page?setlang=fr translatewiki.net].",
-'sqlhidden' => '(Demann SQL an kache)',
 'cascadeprotected' => 'Paj sa pwoteje kounye a paske l nan {{PLURAL:$1|paj ki douvan l|paj yo ki douvan l}}, paske {{PLURAL:$1|l te pwoteje|yo te pwoteje}} ak opsyon « pwoteksyon pou tout paj ki nan premye paj an - kaskad » aktive :
 $2',
 'namespaceprotected' => "Ou pa gen dwa modifye paj nan espas non « '''$1''' ».",

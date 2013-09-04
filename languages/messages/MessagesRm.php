@@ -358,17 +358,6 @@ Ina glista da las paginas spezialas existentas chattais vus sut [[Special:Specia
 # General errors
 'error' => 'Errur',
 'databaseerror' => 'Sbagl da la datoteca',
-'dberrortext' => 'In sbagl da la sintaxa da la dumonda a la banca da datas è capità.
-Quai po esser in sbagl en la software.
-L\'ultima dumonda per la banca da datas era:
-<blockquote><code>$1</code></blockquote>
-ord la funcziun "<code>$2</code>".
-La banca da datas ha rapportà l\'errur "<samp>$3: $4</samp>".',
-'dberrortextcl' => 'In sbagl da la sintaxa da la dumonda a la banca da datas è capità.
-L\'ultima dumonda per la banca da datas era:
-"$1"
-ord la funcziun "$2".
-La banca da datas ha rapportà l\'errur "$3: $4"',
 'laggedslavemode' => 'Attenziun: La pagina mussada na cuntign eventualmain betg anc las ultimas midadas.',
 'readonly' => 'Banca da datas bloccada',
 'enterlockreason' => 'Inditgescha ina raschun per la bloccada da la banca da datas ed il temp cura che ti quintas che la bloccada po vegnir annullada',
@@ -424,7 +413,6 @@ Emprova danovamain en in per minutas.',
 'editinginterface' => "'''Attenziun:''' Questa pagina cuntegna text che vegn duvra en la interfatscha da questa software. 
 Midadas influenzeschan directamain l'interfatscha per tut ils utilisaders sin questa vichi. 
 Sche ti vuls far translaziuns u correcturas per tut las vichis, lura utilisescha [//translatewiki.net/ translatewiki.net], il project per translatar MediaWiki.",
-'sqlhidden' => '(Zuppentà la dumonda da SQL)',
 'cascadeprotected' => "Questa pagina è protegida da modificaziuns perquai ch'ella è integrada en suandanta{{PLURAL:$1| pagina, ch'è protegida|s paginas, ch'èn protegidas}} entras l'opziun «protecziun ertada»: 
 $2",
 'namespaceprotected' => "Ti n'has betg la lubientscha da modifitgar paginas dal tip da pagina '''$1'''.",

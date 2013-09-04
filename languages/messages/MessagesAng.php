@@ -341,12 +341,6 @@ Getæl gengra syndrigra trameta cann man findan be [[Special:SpecialPages|þǣm 
 # General errors
 'error' => 'Wōh',
 'databaseerror' => 'Cȳþþuhordes wōh',
-'dberrortext' => 'Cȳþþuhordes bēne endebyrdnesse wōh gelamp.
-Þis mæg mǣnan wōh on þǣre weorcwrithyrste.
-Sēo nīwoste gesōhte cȳþþuhordes bēn wæs:
-<blockquote><code>$1</code></blockquote>
-fram innan wyrcunge "<code>$2</code>".
-Cȳþþuhord ageaf wōh "<code>$3: $4</code>"',
 'laggedslavemode' => "'''Warnung:''' Wēnunga næbbe se tramet nīwlīca nīwunga.",
 'enterlockreason' => 'Wrīt race þǣre forwiernunge and apinsunge þæs tīman on þǣm bēo sēo forwiernung forlǣten',
 'missingarticle-rev' => '(nīwung#: $1)',

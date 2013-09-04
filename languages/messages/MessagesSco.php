@@ -307,8 +307,6 @@ A leet o valid byordinar pages can be funnd at [[Special:SpecialPages|{{int:spec
 # General errors
 'error' => 'Error',
 'databaseerror' => 'Database error',
-'dberrortext' => 'A database query syntax error haes occurt. This micht indicate a bug in the saftware. The last attemptit database query wis: <blockquote><tt>$1</tt></blockquote> frae athin function "<tt>$2</tt>". Database returned error "<tt>$3: $4</tt>".',
-'dberrortextcl' => 'A database query syntax error haes occurt. The last attemptit database query wis: "$1" frae athin function "$2". Database returned error "$3: $4".',
 'laggedslavemode' => 'Warning: Page micht nae contain recent updates',
 'readonly' => 'Database lockit',
 'enterlockreason' => "Enter a raeson for the lock, includin an estimate o whan the lock'll be lowsed",
@@ -354,7 +352,6 @@ Aks: $2',
 'editinginterface' => "'''Warning:''' You are editing a page which is used to provide interface text for the software.
 Changes to this page will affect the appearance of the user interface for other users.
 For translations, please consider using [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], the MediaWiki localisation project.",
-'sqlhidden' => '(SQL query hidden)',
 'cascadeprotected' => 'This page haes been protectit fra editin, acause it is includit in the followin {{PLURAL:$1|page|pages}}, that are protectit wi the "cascading" option turnit on:
 $2',
 'namespaceprotected' => "Ye dinna hae permeession tae edit pages in the '''$1''' namespace.",

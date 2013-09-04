@@ -399,11 +399,6 @@ Kc. [[Special:SpecialPages|specialižiden lehtpoliden nimikirj]].",
 # General errors
 'error' => 'Petuz',
 'databaseerror' => 'Andmusiden bazan petuz',
-'dberrortextcl' => 'Andmusiden bazas ectes ozaižihe petuz.
-Jäl\'gmäine ecind andmusiden bazas oli:
-"$1"
-funkcijaspäi "$2".
-Andmusiden baz pördi petusen "$3: $4"',
 'laggedslavemode' => "Varutuz: voib olda, lehtpolen versijal ei ole jäl'gmäižid ližadusid.",
 'readonly' => 'Andmusiden baz om luklostadud',
 'enterlockreason' => 'Kirjutagat sü da pandud blokiruindan strok',
@@ -451,7 +446,6 @@ Ecind: $2',
 'editinginterface' => "'''Homaikat:''' Tö ladit redaktiruida lehtpol't, kudambal om programman interfeistekst.
 Mugoi tegend toižetab interfeisan irdnägu toižiden kävutajiden täht.
 Kändmižen täht om paremb kävutada [//translatewiki.net/wiki/Main_Page?setlang=vep translatewiki.net] - MediaWikin lokalizacijan projekt.",
-'sqlhidden' => '(SQL-küzelend om peittud)',
 'namespaceprotected' => "Teil ei ole oiktust redaktiruida lehtpolid '''$1'''-nimiavaruses.",
 'customcssprotected' => 'Teil ei ole oiktust redaktiruida nece CSS-lehtpol’, sikš sil oma toižen ühtnijan personaližed järgendused.',
 'customjsprotected' => 'Teil ei ole oiktust redaktiruida nece JavaScript-lehtpol’, sikš sil oma toižen ühtnijan personaližed järgendused.',

@@ -306,16 +306,6 @@ S'ghend aa â brogramiirfäälâr in dr sofdwäâr sâj, dii baj {{SITENAME}} le
 # General errors
 'error' => 'Feelâr',
 'databaseerror' => 'Feelâr fon dr Daadnbangg',
-'dberrortext' => 'Bam abfrôôchn fon dr daadnbangg is was schiif gangn.
-Filajchd weechn am brogramiir-feelâr?
-Jeednfals wôôr di ledsd abfrôôchn:
-<blockquote><tt>$1</tt></blockquote>
-aus dr fungdsjoon „<tt>$2</tt>“.
-Un dôôdruf had dan di daadnbangg den feelâr „<tt>$3: $4</tt>“ gmeld.',
-'dberrortextcl' => 'Dii daadnbangg-abfrôôchn wôôr falsch gschriiwn.
-Di abfrôôchn wôôr neemlich
-<blockquote><tt>$1</tt></blockquote>
-aus dr fungdsjoon "<tt>$2</tt>". Un dôôdruf had dan di daadnbangg den feelâr „$3: $4“ gmeld.',
 'laggedslavemode' => "'''Achdung:''' Filajchd dsajchd dii sajdn noch ned ales, was indswischn gändârd wôrn is.",
 'readonly' => 'Di daadnbangg is gschbärd.',
 'enterlockreason' => 'Bide schrajb, wisoo dii daadnbangg gschbärd wärn sol, un wi lang des dan dauârn mechd.',

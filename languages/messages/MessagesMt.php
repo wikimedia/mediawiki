@@ -602,17 +602,6 @@ Lista ta' paġni speċjali validi tinsab hawn [[Special:SpecialPages|{{int:speci
 # General errors
 'error' => 'Problema',
 'databaseerror' => 'Problema fid-database',
-'dberrortext' => 'Kien hemm żball fis-sintassi ta\' rikjesta tad-databażi.
-Dan jista\' jindika li hemm problema fis-softwer.
-L-aħħar attentat ta\' rikjesta tad-databażi kienet:
-<blockquote><tt>$1</tt></blockquote>
-mill-funzjoni ta\' "<tt>$2</tt>".
-Id-databażi tat problema ta\' "<tt>$3: $4</tt>".',
-'dberrortextcl' => 'Kien hemm żball fis-sintassi ta\' rikjesta tad-databażi.
-L-aħħar attentat ta\' rikjesta tad-databażi kienet:
-"$1"
-mill-funzjoni "$2".
-Id-databażi tat il-problema segwenti "$3: $4"',
 'laggedslavemode' => "Twissija: Il-Paġna jista' ma jkollhiex l-affarijiet aġġornati.",
 'readonly' => 'Database magħluq',
 'enterlockreason' => "Daħħal raġuni għala qiegħed tagħlqu, inkludi l-istima ta' meta l-għeluq se tieħu effett",
@@ -661,7 +650,6 @@ Jekk jogħġbok erġa' prova fi ftit minuti oħra.",
 'viewyourtext' => "Tista' tara u tikkopja s-sors tal-'''modifiki tiegħek''' fuq din il-paġna:",
 'protectedinterface' => 'Din il-paġna għanda element li tagħmel parti mill-interfaċċa tal-utent tas-software, u għaldaqstant ġiet protetta sabiex ma jkunx hemm abbuż.',
 'editinginterface' => "'''Avviż:''' Qiegħed tagħmel modifiki lejn paġna li qegħdha tintuża biex tipprovdi interfaċċa għall-messaġġi tas-software. Kull modifika f'din il-paġna se taffetwa l-apparenza tal-faċċata tal-utenti kollha. Għat-traduzzjonijiet, ikkunsidra l-possibilità li tuża'  [//translatewiki.net/wiki/Main_Page?setlang=mt translatewiki.net], il-proġett MediaWiki għal-lokalizzazzjoni.",
-'sqlhidden' => '(SQL rikjesta moħbija)',
 'cascadeprotected' => 'Din il-paġna ġiet protetta mill-modifiki, minħabba li tinkludi {{PLURAL:$1|paġni, li huwa|paġni, li huma}} protetti bil-preferenza tal-"kaskata" mixewla:
 $2',
 'namespaceprotected' => "Inti m'għandhekx il-permess li timodifika paġni fin-''namespace'' '''$1''.",

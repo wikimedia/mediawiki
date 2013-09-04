@@ -545,18 +545,6 @@ Kjo mund të vijë edhe si rezultat i një gabimi në programin e përdorur nga 
 # General errors
 'error' => 'Gabim',
 'databaseerror' => 'Gabim në databazë',
-'dberrortext' => 'Ka ndodhur një gabim me pyetjen e regjistrit.
-Kjo mund të ndodhi n.q.s. pyetja nuk është e vlehshme,
-ose mund të jetë një yçkël e softuerit.
-Pyetja e fundit që i keni bërë regjistrit ishte:
-<blockquote><tt>$1</tt></blockquote>
-nga funksioni "<tt>$2</tt>".
-MySQL kthehu gabimin "<tt>$3: $4</tt>".',
-'dberrortextcl' => 'Ka ndodhur një gabim me sintaksën query në databazë. 
-Query e fundit që i keni bërë regjistrit ishte:
-"$1"
-nga funksioni "$2".
-MySQL kthehu gabimin "$3: $4".',
 'laggedslavemode' => "'''Kujdes:''' Kjo faqe nuk mund të ketë përditësime të kohëve të fundit.",
 'readonly' => 'Databaza e kyçur',
 'enterlockreason' => 'Shëno arsyen e kyçjes, gjithashtu shëno se kur mund të hapet.',
@@ -611,7 +599,6 @@ Ju lutemi, provojeni përsëri pas disa minutash.',
 'editinginterface' => "'''Kujdes:''' Po redaktoni një faqe që përdoret për tekstin dritares së programit. 
 Ndryshimet në këtë faqe do të ndikojnë pamjen e dritares për përdoruesit e tjerë.
 Për përkthime, ju lutem konsideroni përdorimin e [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], projektin e lokalizimit MediaWiki.",
-'sqlhidden' => '(Query SQL e fshehur)',
 'cascadeprotected' => 'Kjo faqe është mbrojtur nga redaktimi pasi është përfshirë në {{PLURAL:$1|faqen|faqet}} e mëposhtme që {{PLURAL:$1|është|janë}} mbrojtur sipas metodës "cascading":
 $2',
 'namespaceprotected' => "Nuk ju lejohet redaktimi i faqeve në hapsirën '''$1'''.",

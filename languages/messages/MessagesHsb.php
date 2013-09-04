@@ -484,16 +484,6 @@ Płaćiwe specialne strony hodźa so pod [[Special:SpecialPages|lisćinu special
 # General errors
 'error' => 'Zmylk',
 'databaseerror' => 'Zmylk w datowej bance',
-'dberrortext' => 'Syntaktiski zmylk při wotprašowanju datoweje banki.
-To móhło zmylk w programje być. Poslednje spytane wotprašenje w datowej bance běše:
-<blockquote><code>$1</code></blockquote>
-z funkcije "<code>$2</code>".
-Datowa banka wróći zmylk "<samp>$3: $4</samp>".',
-'dberrortextcl' => 'Syntaktiski zmylk je we wotprašowanju datoweje banki wustupił.
-Poslednje wotprašenje w datowej bance běše:
-"$1"
-z funkcije "$2".
-Datowa banka wróći zmylk "$3: $4"',
 'laggedslavemode' => "'''Kedźbu:''' Je móžno, zo strona žane zaktualizowanja njewobsahuje.",
 'readonly' => 'Datowa banka je zawrjena',
 'enterlockreason' => 'Zapodaj přičinu za zawrjenje a přibližny čas, hdy budźe zawrjenje zběhnjene',
@@ -545,7 +535,6 @@ Wotprašenje: $2',
 'protectedinterface' => 'Tuta strona wobsahuje tekst za wužiwarski powjerch softwary na tutym wikiju a je škitana, zo by so znjewužiwanje zadźěwało.
 Zo by přełožki za wšě wikije přidał abo změnił, wužij prošu [//translatewiki.net/ translatewiki.net], projekt MediaWiki za lokalizaciju.',
 'editinginterface' => "'''Warnowanje:''' Wobdźěłuješ stronu, kotraž so wužiwa, zo by tekst za wužiwarski powjerch softwary k dispoziciji stajiła. Změny na stronje  wuskutkuja so na napohlad wužiwarskeho powjercha za druhich wužiwarjow na tutym wikiju. Zo by přełožki za wšě wikije přidał abo změnił, wužij prošu [//translatewiki.net/ translatewiki.net], projekt MediaWiki za lokalizaciju.",
-'sqlhidden' => '(SQL wotprašenje schowane)',
 'cascadeprotected' => 'Tuta strona je za wobdźěłowanje zawrjena, dokelž je w {{PLURAL:$1|slědowacej stronje|slědowacymaj stronomaj|slědowacych stronach|slědowacych stronach}} zapřijata, {{PLURAL:$1|kotraž je|kotrejž stej|kotrež su|kotrež su}} přez kaskadowu opciju {{PLURAL:$1|škitana|škitanej|škitane|škitane}}:
 $2',
 'namespaceprotected' => "Nimaš dowolnosć, zo by stronu w mjenowym rumje '''$1''' wobdźěłał.",

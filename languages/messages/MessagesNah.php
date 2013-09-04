@@ -366,7 +366,6 @@ Hueliz quimpiya tlahtōl tlein ahmo mohuelītih motequitiltia tōcāpan.',
 'viewsource' => 'Tiquittāz tlahtōlcaquiliztilōni',
 'actionthrottled' => 'Tlachīhualiztli ōmotzacuili',
 'viewsourcetext' => 'Tihuelīti tiquitta auh ticcopīna inīn zāzanilli ītlahtōlcaquiliztilōni:',
-'sqlhidden' => '(Tlatēmoliztli SQL omotlāti)',
 'namespaceprotected' => "Ahmo tiquihuelīti tiquimpatla zāzaniltin īpan '''$1'''.",
 'ns-specialprotected' => 'In nònkuâkìskàtlaìxtlapaltìn awel ìmpan nemàtilòs mokinyèktlàlis.',
 'titleprotected' => "Inīn zāzanilli ōmoquīxti ic tlachīhualiztli ic [[User:$1|$1]].

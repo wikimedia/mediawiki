@@ -455,17 +455,6 @@ Existitzen direnen zerrenda ikus dezakezu  [[Special:SpecialPages|{{int:specialp
 # General errors
 'error' => 'Errorea',
 'databaseerror' => 'Datu-base errorea',
-'dberrortext' => 'Datu-basean kontsulta egiterakoan sintaxi errore bat gertatu da. 
-Baliteke softwareak bug bat izatea. 
-Datu-basean egindako azken kontsulta:
-<blockquote><code>$1</code></blockquote>
-funtzio honekin: "<code>$2</code>".
-Datu-baseak emandako errorea: "<samp>$3: $4</samp>".',
-'dberrortextcl' => 'Datu-basean kontsulta egiterakoan sintaxi errore bat gertatu da.
-Datu-basean egindako azken kontsulta:
-"$1"
-funtzio honekin: "$2".
-Datu-baseak emandako errore informazioa: "$3: $4"',
 'laggedslavemode' => 'Oharra: Baliteke orrialde honetan azken aldaketak ez erakustea.',
 'readonly' => 'Datu-basea blokeatuta dago',
 'enterlockreason' => 'Zehaztu blokeatzeko arrazoia, noiz kenduko den jakinaraziz',
@@ -520,7 +509,6 @@ Wiki guztientzako aldaketak egin edo gehitzeko, mesedez erabili [//translatewiki
 'editinginterface' => "'''Oharra:''' Softwarearen interfazerako testua duen orri bat aldatzen ari zara.
 Orri honetako aldaketek wiki honetako erabiltzaile guztiei eragingo diete.
 Itzulpenetarako, erabil ezazu [//translatewiki.net/ translatewiki.net], MediaWiki proiektuan.",
-'sqlhidden' => '(ezkutuko SQL kontsulta)',
 'cascadeprotected' => "Orrialde hau aldaketen aurka babestua dago, ''kaskada'' aukerarekin babestu {{PLURAL:$1|duten orrialde honetan|dituzten orrialde hauetan}} txertaturik dagoelako:
 $2",
 'namespaceprotected' => "Ez daukazu '''$1''' izen-tarteko orrialdeak aldatzeko baimenik.",

@@ -543,18 +543,6 @@ Et künnt sesch och öm ene Fäähler en dä Sofware fum Wiki handelle.',
 # General errors
 'error' => 'Fähler',
 'databaseerror' => 'Fähler en de Daatebank',
-'dberrortext' => 'Enne Fähler es opjefalle en dä Süntax vun ennem Befähl för de Daatebangk.
-Dat künnd_enne Fähler em Wikki-Projamm sin.
-De läzde Befähl för de Daatebangk eß jewääse:
-<blockquote><code>$1</code></blockquote>
-uß dä Fongxjohn: „<code>$2</code>“.
-De Daatebangk mälldt dä Fähler: „<code>$3: $4</code>“.',
-'dberrortextcl' => 'En dä Syntax vun enem Befähl för de Daatebank es
-ene Fähler es opjefalle.
-Dä letzte Befähl för de Daatebank es jewäse:
-<blockquote><code>$1</code></blockquote>
-un kohm us däm Projramm singe Funktion: „<code>$2</code>“.
-De Datebank meld dä Fähler: „<code>$3: $4</code>“.',
 'laggedslavemode' => '<strong>Opjepass:</strong> Künnt sin, dat heh nit dä neuste Stand vun dä Sigg aanjezeich weed.',
 'readonly' => 'De Daatebank es jesperrt',
 'enterlockreason' => 'Jevv aan, woröm un för wie lang dat de Daatebank jesperrt wääde soll',
@@ -622,7 +610,6 @@ Wann De weße wells, wat dä Täx heh bedügg, do häß De en Schangß, dat De o
 <code lang="en">//www.mediawiki.org/wiki/Manual:Interface/{{BASEPAGENAMEE}}?setlang=ksh</code>
 jet doh drövver fenge kanns, udder op
 <code lang="en">//translatewiki.net/wiki/MediaWiki:{{BASEPAGENAMEE}}/qqq?setlang=ksh</code>',
-'sqlhidden' => "(Dä SQL_Befähl du'mer nit zeije)",
 'cascadeprotected' => 'Die Sigg es jeschöz, un mer kann se nit ändere. Se es en en Schotz-Kaskad enjebonge, zosamme met dä {{PLURAL:$1|Sigg|Sigge}}:
 $2',
 'namespaceprotected' => 'Do darfs Sigge em Appachtemang „$1“ nit ändere.',

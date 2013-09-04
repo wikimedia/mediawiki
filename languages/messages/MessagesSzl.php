@@ -369,14 +369,6 @@ Lista špecyjalnych zajtůw znejdźeš na [[Special:SpecialPages|{{int:specialpa
 # General errors
 'error' => 'Feler',
 'databaseerror' => 'Feler bazy danych',
-'dberrortext' => 'Zdorziu sie feler we skuadńi zapytańo do bazy danych. Uostatńy, ńyudane zapytańy to:
-<blockquote><tt>$1</tt></blockquote>
-wysuane bez funkcja "<tt>$2</tt>".
-MySQL zguośiu feler "<tt>$3: $4</tt>".',
-'dberrortextcl' => 'Zdorziu śe feler we skuadńi zapytańo do bazy danych. Uostatńy, ńyudane zapytańy to:
-"$1"
-kere wywououa funkcyjo "$2".
-MySQL zguośiu feler "$3: $4"',
 'laggedslavemode' => 'Dej pozůr: Ta zajta može ńy mjeć nojnowšych aktualizacyjůw.',
 'readonly' => 'Baza danych je zawarto',
 'enterlockreason' => 'Naškryflej sam powůd zawarća bazy danych a za wjela (myńi-wjyncyj) ja uodymkńeš',
@@ -424,7 +416,6 @@ Zapytańy: $2',
 'viewyourtext' => 'We tekst zdrzůduowy tyj zajty możno dali filować, idźe go tyż kopjować.',
 'protectedinterface' => 'Na tyj zajće znojduje śe tekst interfejsu uoprogramowańo, bestož uůna je zawarto uod sprowjańo.',
 'editinginterface' => "''''Dej pozůr:''' Sprowjosz zajta, na keryj je tekst interfejsu uoprogramowańo. Pomjyńyńa na tyj zajće zmjyńům wyglůnd interfejsu lo inkšych užytkowńikůw.",
-'sqlhidden' => '(schowano zapytańy SQL)',
 'cascadeprotected' => 'Ta zajta je zawarto uod sprowjańo, po takymu, co uůna je zauončono na {{PLURAL:$1|nastympujůncyj zajće, kero zostaua zawarto|nastympujůncych zajtach, kere zostauy zawarte}} ze zauončonům opcyjům dźedźičyńo:
 $2',
 'namespaceprotected' => "Ńy moš uprowńyń, coby sprowjać zajty we přestřeńi mjan '''$1'''.",

@@ -296,13 +296,13 @@ $messages = array(
 'tog-hidepatrolled' => 'Nascondi le modifiche verificate nelle ultime modifiche',
 'tog-newpageshidepatrolled' => "Nascondi le pagine verificate dall'elenco delle pagine più recenti",
 'tog-extendwatchlist' => "Mostra tutte le modifiche agli osservati speciali, non solo l'ultima",
-'tog-usenewrc' => 'Raggruppa le modifiche per pagina nelle ultime modifiche e negli osservati speciali (richiede JavaScript)',
+'tog-usenewrc' => 'Raggruppa le modifiche per pagina nelle ultime modifiche e negli osservati speciali',
 'tog-numberheadings' => 'Numerazione automatica dei titoli di sezione',
-'tog-showtoolbar' => 'Mostra barra degli strumenti di modifica (richiede JavaScript)',
-'tog-editondblclick' => 'Modifica delle pagine tramite doppio clic (richiede JavaScript)',
+'tog-showtoolbar' => 'Mostra barra degli strumenti di modifica',
+'tog-editondblclick' => 'Modifica delle pagine tramite doppio clic',
 'tog-editsection' => 'Modifica delle sezioni tramite il collegamento [modifica]',
-'tog-editsectiononrightclick' => 'Modifica delle sezioni tramite clic destro sul titolo (richiede JavaScript)',
-'tog-showtoc' => "Mostra l'indice per le pagine con più di 3 sezioni",
+'tog-editsectiononrightclick' => 'Modifica delle sezioni tramite clic destro sul titolo',
+'tog-showtoc' => "Mostra l'indice (per le pagine con più di 3 sezioni)",
 'tog-rememberpassword' => 'Ricorda la password su questo browser (per un massimo di $1 {{PLURAL:$1|giorno|giorni}})',
 'tog-watchcreations' => 'Aggiungi le pagine create e i file caricati agli osservati speciali',
 'tog-watchdefault' => 'Aggiungi le pagine e i file modificati agli osservati speciali',
@@ -319,7 +319,7 @@ $messages = array(
 'tog-shownumberswatching' => 'Mostra il numero di utenti che hanno la pagina in osservazione',
 'tog-oldsig' => 'Firma attuale:',
 'tog-fancysig' => 'Tratta la firma come wikitesto (senza un collegamento automatico)',
-'tog-uselivepreview' => "Abilita la funzione ''Live preview'' (anteprima in diretta - richiede JavaScript; sperimentale)",
+'tog-uselivepreview' => "Abilita la funzione ''Live preview'' (anteprima in diretta - sperimentale)",
 'tog-forceeditsummary' => 'Chiedi conferma se il campo oggetto è vuoto',
 'tog-watchlisthideown' => 'Nascondi le mie modifiche negli osservati speciali',
 'tog-watchlisthidebots' => 'Nascondi le modifiche dei bot negli osservati speciali',
@@ -620,17 +620,12 @@ L'elenco delle pagine speciali valide si trova in [[Special:SpecialPages|Elenco 
 # General errors
 'error' => 'Errore',
 'databaseerror' => 'Errore del database',
-'dberrortext' => 'Errore di sintassi nella richiesta inoltrata al database.
-Ciò potrebbe indicare la presenza di un bug nel software.
-L\'ultima query inviata al database è stata:
-<blockquote><code>$1</code></blockquote>
-richiamata dalla funzione "<code>$2</code>".
-Il database ha restituito il seguente errore "<samp>$3: $4</samp>".',
-'dberrortextcl' => 'Errore di sintassi nella richiesta inoltrata al database.
-L\'ultima query inviata al database è stata:
-"$1"
-richiamata dalla funzione "$2".
-Il database ha restituito il seguente errore "$3: $4".',
+'databaseerror-text' => 'Si è verificato un errore in una query sul database.
+Potrebbe indicare un bug nel software.',
+'databaseerror-textcl' => 'Si è verificato un errore in una query sul database.',
+'databaseerror-query' => 'Query: $1',
+'databaseerror-function' => 'Funzione: $1',
+'databaseerror-error' => 'Errore: $1',
 'laggedslavemode' => "'''Attenzione:''' la pagina potrebbe non riportare gli aggiornamenti più recenti.",
 'readonly' => 'Database bloccato',
 'enterlockreason' => 'Indicare il motivo del blocco, specificando il momento in cui è presumibile che venga rimosso',
@@ -685,7 +680,6 @@ Query: $2',
 Per aggiungere o modificare traduzioni per tutti i wiki usare [//translatewiki.net/ translatewiki.net], il progetto di localizzazione di MediaWiki.",
 'editinginterface' => "'''Attenzione:''' Il testo di questa pagina fa parte dell'interfaccia utente del sito. Tutte le modifiche apportate a questa pagina si riflettono sui messaggi visualizzati per tutti gli utenti su questo wiki.
 Per aggiungere o modificare le traduzioni valide su tutti i wiki, considera la possibilità di usare [//translatewiki.net/wiki/Main_Page?setlang=it translatewiki.net], il progetto MediaWiki per la localizzazione.",
-'sqlhidden' => '(la query SQL è stata nascosta)',
 'cascadeprotected' => 'Su questa pagina non è possibile effettuare modifiche perché è stata inclusa {{PLURAL:$1|nella pagina indicata di seguito, che è stata protetta|nelle pagine indicate di seguito, che sono state protette}} selezionando la protezione "ricorsiva":
 $2',
 'namespaceprotected' => "Non si dispone dei permessi necessari per modificare le pagine del namespace '''$1'''.",
@@ -1718,7 +1712,7 @@ Il tuo indirizzo non viene rivelato quando gli altri utenti ti contattano.',
 'rc_categories_any' => 'Qualsiasi',
 'rc-change-size-new' => '$1 {{PLURAL:$1|byte|byte}} dopo la modifica',
 'newsectionsummary' => '/* $1 */ nuova sezione',
-'rc-enhanced-expand' => 'Mostra dettagli (richiede JavaScript)',
+'rc-enhanced-expand' => 'Mostra dettagli',
 'rc-enhanced-hide' => 'Nascondi dettagli',
 'rc-old-title' => 'originariamente creata come "$1"',
 
@@ -3990,6 +3984,7 @@ Questo programma deve essere distribuito assieme ad [{{SERVER}}{{SCRIPTPATH}}/CO
 'dberr-problems' => 'Questo sito sta avendo dei problemi tecnici.',
 'dberr-again' => 'Prova ad attendere qualche minuto e ricaricare.',
 'dberr-info' => '(Impossibile contattare il server del database: $1)',
+'dberr-info-hidden' => '(Impossibile contattare il server del database)',
 'dberr-usegoogle' => 'Puoi provare a cercare su Google nel frattempo.',
 'dberr-outofdate' => 'Nota che la loro indicizzazione dei nostri contenuti potrebbe non essere aggiornata.',
 'dberr-cachederror' => 'Quella che segue è una copia cache della pagina richiesta, e potrebbe non essere aggiornata.',

@@ -359,17 +359,6 @@ Na lista dle pàgine speciaj bon-e a peul esse trovà ambelessì [[Special:Speci
 # General errors
 'error' => 'Eror',
 'databaseerror' => 'Eror ant la base ëd dat',
-'dberrortext' => "A l'é capitaje n'eror ëd sintassi ant la domanda mandà a la base dij dat.
-Sòn a peul vorèj dì n'eror ant ël programa.
-L'ùltima arcesta mandà a la base dij dat a l'é stàita:
-<blockquote><code>$1</code></blockquote>
-da 'nt la funsion «<code>$2</code>».
-La base dij dat a l'ha dàit n'eror «<samp>$3: $4</samp>».",
-'dberrortextcl' => "A-i é staje n'eror ant la sintassi d'anterogassion dla base ëd dat.
-L'ùltima anterogassion a l'é stàita:
-«$1»
-da andrinta a la funsion «$2».
-La base ëd dat a l'ha dane l'eror «$3: $4»",
 'laggedslavemode' => "'''Avis:''' la pàgina a podrìa ëdcò nen mostré le modìfiche pi recente.",
 'readonly' => 'Acess a la base ëd dat sërà për chèich temp.',
 'enterlockreason' => 'Che a buta na rason për ël blocagi, con andrinta data e ora ëd quand che a stima che a sarà gavà.',
@@ -423,7 +412,6 @@ Për gionté o modifiché dle tradussion për tute le wiki, për piasì ch'a deu
 'editinginterface' => "'''Dossman!''' A l'é dapress ch'a modìfica na pàgina ch'as deuvra për generé ël test dl'antërfacia dël programa. 
 Le modìfiche a sta pàgina a toco l'aparensa ëd l'antërfacia utent a tuti j'utent dzora a sta wiki. 
 Për gionté o cangé dle tradussion për tute le wiki, për piasì ch'a deuvra [//translatewiki.net/translatewiki.net], ël proget ëd localisassion ëd MediaWiki.",
-'sqlhidden' => "(l'anterogassion SQL a l'é stërmà)",
 'cascadeprotected' => 'Ant sta pàgina-sì as peulo pa fé ëd modìfiche, përché a-i intra ant {{PLURAL:$1|la pàgina|le pàgine}} butà sot a protession con la fonsion «a tombé» viscà ansima a: $2',
 'namespaceprotected' => "A l'ha nen ël përmess dë feje dle modìfiche a le pàgine dlë spassi nominal '''$1'''.",
 'customcssprotected' => "Ch'a varda ch'a l'ha pa ël përmess ëd modifiché sta pàgina ëd CSS, për via ch'a l'ha andrinta ij gust ëd n'àutr utent.",
@@ -589,8 +577,8 @@ S'a decid ëd butelo, a sarà dovrà për dé a l'utent ël mérit ëd sò trava
 'user-mail-no-body' => 'Tentativ ëd mandé un mëssagi con un còrp veuid o curt ëd fasson esagerà.',
 
 # Change password dialog
-'resetpass' => 'Cambia la ciav',
-'resetpass_announce' => "A l'é rintrà ant ël sistema con na ciav provisòria mandà via për pòsta eletrònica. Për podèj finì la procedura a l'ha da butesse na ciav neuva ambelessì:",
+'resetpass' => "Cangé 'd ciav",
+'resetpass_announce' => "A l'é rintrà ant ël sistema con na ciav provisòria mandà për pòsta eletrònica. Për podèj livré la procedura a l'ha da butesse na ciav neuva ambelessì:",
 'resetpass_text' => '<!-- Gionté dël test ambelessì -->',
 'resetpass_header' => 'Cambia la ciav dël cont',
 'oldpassword' => 'Veja ciav',

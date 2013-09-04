@@ -610,15 +610,6 @@ Spisak valjanih posebnih stranica se može naći na [[Special:SpecialPages|{{int
 # General errors
 'error' => 'Greška',
 'databaseerror' => 'Greška u bazi',
-'dberrortext' => 'Desila je se sintaksna greška kod upita prema bazi podataka.
-Ovo je se desilo zbog moguće greške u softveru.
-Posljednji pokušani upit je bio: <blockquote><code>$1</code></blockquote> iz funkcije "<code>$2</code>".
-Baza podataka je vratila grešku "<samp>$3: $4</samp>".',
-'dberrortextcl' => 'Desila se sintaksna greška upita baze.
-Posljednji pokušani upit je bio:
-"$1"
-iz funkcije "$2".
-Baza podataka je vratila grešku "$3: $4".',
 'laggedslavemode' => "'''Upozorenje''': Stranica, možda, nije ažurirana.",
 'readonly' => 'Baza je zaključana',
 'enterlockreason' => 'Unesite razlog za zaključavanje, uključujući procjenu vremena otključavanja',
@@ -674,7 +665,6 @@ Da biste dodali ili izmjenili prijevode svih wikija, posjetite [//translatewiki.
 'editinginterface' => "'''Upozorenje:''' Mijenjate stranicu koja sadrži aktivan tekst programa.
 Promjene na ovoj stranici dovode i do promjena za druge korisnike ovog wikija.
 Za dodavanje ili promjene prijevoda svih wikija, molimo Vas koristite [//translatewiki.net/ translatewiki.net], projekt prijevoda za MediaWiki.",
-'sqlhidden' => '(SQL pretraga sakrivena)',
 'cascadeprotected' => 'Uređivanje ove stranice je zabranjeno jer sadrži {{PLURAL:$1|stranicu zaštićenu|stranice zaštićene}} od uređivanja iz razloga:
 $2',
 'namespaceprotected' => "Vi nemate dozvulu da mijenjate stranicu '''$1'''.",

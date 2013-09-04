@@ -639,17 +639,6 @@ Na lista de les pâges spèciâles justes sè trôve dessus [[Special:SpecialPag
 # General errors
 'error' => 'Fôta',
 'databaseerror' => 'Fôta de la bâsa de balyês',
-'dberrortext' => 'Na fôta de sintaxa de la demanda dens la bâsa de balyês est arrevâye.
-Cen pôt endicar na cofierie dedens la programeria.
-La dèrriére demanda trètâye per la bâsa de balyês ére :
-<blockquote><code>$1</code></blockquote>
-dês la fonccion « <code>$2</code> ».
-La bâsa de balyês at retornâ la fôta « <samp>$3 : $4</samp> ».',
-'dberrortextcl' => 'Na fôta de sintaxa de la demanda dens la bâsa de balyês est arrevâye.
-La dèrriére demanda trètâye per la bâsa de balyês ére :
-« $1 »
-dês la fonccion « $2 ».
-La bâsa de balyês at retornâ la fôta « $3 : $4 ».',
 'laggedslavemode' => "'''Atencion :''' cela pâge pôt pas contegnir tôs los dèrriérs changements fêts.",
 'readonly' => 'Bâsa de balyês vèrrolyêe',
 'enterlockreason' => 'Buchiéd na rêson du vèrroly et pués un’èstimacion de la sina durâ',
@@ -706,7 +695,6 @@ Por apondre ou ben changiér des traduccions sur tôs los vouiquis, se vos plét
 'editinginterface' => "'''Atencion :''' vos éte aprés changiér na pâge empleyêe por fâre lo tèxto d’entèrface de la programeria.
 Los changements sè cognetront sur l’aparence de l’entèrface utilisator por los ôtros utilisators de ceti vouiqui.
 Por apondre ou ben changiér des traduccions sur tôs los vouiquis, se vos plét empleyéd [//translatewiki.net/ translatewiki.net], lo projèt de localisacion de MediaWiki.",
-'sqlhidden' => '(Demanda SQL cachiêe)',
 'cascadeprotected' => 'Cela pâge-que est protègiêe, el est entrebetâye dedens {{PLURAL:$1|ceta pâge qu’est étâye protègiêe|cetes pâges que sont étâyes protègiêes}} avouéc lo chouèx « protèccion en cascâda » activâ :
 $2',
 'namespaceprotected' => "Vos éd pas la pèrmission de changiér les pâges de l’èspâço de noms « '''$1''' ».",

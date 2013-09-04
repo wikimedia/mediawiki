@@ -364,17 +364,6 @@ Sahi khaas panna ke suchi [[Special:SpecialPages|{{int:specialpages}}]]pe mili.'
 # General errors
 'error' => 'Galti',
 'databaseerror' => 'Database me galti hai',
-'dberrortext' => 'Database ke khoj me syntax error hoe gais hae.
-Iske matlab ii hoe sake hae ki saait software me bug hoi.
-Pahile waala database ke khoj ke kosis rahaa:
-<blockquote><code>$1</code></blockquote>
-"<code>$2</code>" function ke bhitar se.
-Database ke galti sandes rahaa "<samp>$3: $4</samp>".',
-'dberrortextcl' => 'Database ke khoj me syntax error hoe gais hae.
-Pahile waala database ke khoj ke kosis rahaa:
-"$1"
-"$2" function ke bhitar se.
-Database ke galti sandes rahaa "$3: $4"',
 'laggedslavemode' => 'Chetawni: Panna me nawaa badlao sait nai hoi.',
 'readonly' => 'Database band hai',
 'enterlockreason' => 'Band kare ke kaaran likho, aur ii bhi likho ki kab khola jaai.',
@@ -428,7 +417,6 @@ Sab wiki me anuwaad ke jorre nai to badle ke khatir, meharbaani kar ke [//transl
 'editinginterface' => "'''Chetawani:''' Aap ek panna ke badaltaa hai jon ki software ke interface text dewe hae.
 Ii panna me badlao ke asar duusra sadasya ke interface pe bhi hoi.
 Translation khatir [//translatewiki.net/ translatewiki.net], the MediaWiki localisation project, ke kaam me lao.",
-'sqlhidden' => '(SQL query lukawal hai)',
 'cascadeprotected' => 'Ii panna ke badlao se bachawa gais hai, kahe ki iske {{PLURAL:$1|panna, jon ki|panna, jon ki}} surakchhit hae "cascading" option turned on ke saathe me rakkhaa gais hai:
 $2',
 'namespaceprotected' => "Aap ke paas '''$1''' namespace me panna ke badle ke adhikar nai hai.",

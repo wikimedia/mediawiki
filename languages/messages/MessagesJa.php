@@ -374,12 +374,12 @@ $messages = array(
 'tog-hidepatrolled' => '最近の更新に巡回済みの編集を表示しない',
 'tog-newpageshidepatrolled' => '新しいページの一覧に巡回済みのページを表示しない',
 'tog-extendwatchlist' => 'ウォッチリストを拡張し、最新のものだけではなくすべての変更を表示',
-'tog-usenewrc' => '最近の更新とウォッチリストで複数の変更をページごとにまとめる (JavaScript が必要)',
+'tog-usenewrc' => '最近の更新とウォッチリストで複数の変更をページごとにまとめる',
 'tog-numberheadings' => '見出しに番号を自動的に振る',
-'tog-showtoolbar' => '編集用のツールバーを表示 (JavaScriptが必要)',
-'tog-editondblclick' => 'ダブルクリックで編集 (JavaScriptが必要)',
+'tog-showtoolbar' => '編集用のツールバーを表示',
+'tog-editondblclick' => 'ダブルクリックでページを編集',
 'tog-editsection' => '[編集]リンクから節を編集できるようにする',
-'tog-editsectiononrightclick' => '節見出しの右クリックで節を編集できるようにする (JavaScriptが必要)',
+'tog-editsectiononrightclick' => '節見出しの右クリックで節を編集できるようにする',
 'tog-showtoc' => '目次を表示 (ページに見出しが4つ以上ある場合)',
 'tog-rememberpassword' => 'このブラウザーにログイン情報を保存 (最長 $1 {{PLURAL:$1|日|日間}})',
 'tog-watchcreations' => '自分が作成したページやアップロードしたファイルをウォッチリストに追加',
@@ -397,7 +397,7 @@ $messages = array(
 'tog-shownumberswatching' => 'ページをウォッチしている利用者数を表示',
 'tog-oldsig' => '既存の署名:',
 'tog-fancysig' => '署名をウィキ文として扱う (自動リンクなし)',
-'tog-uselivepreview' => 'ライブプレビューを使用 (JavaScriptが必要) (開発中)',
+'tog-uselivepreview' => 'ライブプレビューを使用 (開発中)',
 'tog-forceeditsummary' => '要約欄が空欄の場合に確認を促す',
 'tog-watchlisthideown' => 'ウォッチリストに自分の編集を表示しない',
 'tog-watchlisthidebots' => 'ウォッチリストにボットによる編集を表示しない',
@@ -701,17 +701,12 @@ URL を間違って入力したか、正しくないリンクをたどった可�
 # General errors
 'error' => 'エラー',
 'databaseerror' => 'データベース エラー',
-'dberrortext' => 'データベース クエリの構文エラーが発生しました。
-ソフトウェアにバグがある可能性があります。
-最後に実行を試みたクエリ:
-<blockquote><code>$1</code></blockquote>
-(関数「<code>$2</code>」内)。
-データベースはエラー「<samp>$3: $4</samp>」を返しました。',
-'dberrortextcl' => 'データベース クエリの構文エラーが発生しました。
-最後に実行を試みたクエリ:
-「$1」
-(関数「$2」内)。
-データベースはエラー「$3: $4」を返しました',
+'databaseerror-text' => 'データベース クエリのエラーが発生しました。
+これはソフトウェアのバグである可能性があります。',
+'databaseerror-textcl' => 'データベース クエリのエラーが発生しました。',
+'databaseerror-query' => 'クエリ: $1',
+'databaseerror-function' => '関数: $1',
+'databaseerror-error' => 'エラー: $1',
 'laggedslavemode' => "'''警告:''' ページに最新の編集が反映されていない可能性があります。",
 'readonly' => 'データベースがロックされています',
 'enterlockreason' => 'ロックの理由とロック解除の予定を入力してください',
@@ -769,7 +764,6 @@ URL を間違って入力したか、正しくないリンクをたどった可�
 'editinginterface' => "'''警告:''' ソフトウェアのインターフェイスに使用されるテキストのページを編集しています。
 このページを変更すると、このウィキの他の利用者のユーザーインターフェイスの外観に影響します。
 すべてのウィキに対して翻訳を追加/変更する場合は、MediaWiki の地域化プロジェクト [//translatewiki.net/wiki/Main_Page?setlang=ja translatewiki.net] を使用してください。",
-'sqlhidden' => '(SQL クエリ非表示)',
 'cascadeprotected' => 'このページは、「カスケード保護」が指定された状態で保護されている以下の{{PLURAL:$1|ページ|ページ群}}で読み込まれているため、編集できないように保護されています:
 $2',
 'namespaceprotected' => "'''$1'''名前空間にあるページを編集する権限がありません。",
@@ -1868,7 +1862,7 @@ $1 {{PLURAL:$1|文字}}以下である必要があります。',
 'rc-change-size' => '$1',
 'rc-change-size-new' => '変更後は $1 {{PLURAL:$1|バイト}}',
 'newsectionsummary' => '/* $1 */ 新しい節',
-'rc-enhanced-expand' => '詳細を表示 (JavaScript が必要)',
+'rc-enhanced-expand' => '詳細を表示',
 'rc-enhanced-hide' => '詳細を非表示',
 'rc-old-title' => '作成時のページ名は「$1」',
 
@@ -4352,6 +4346,7 @@ MediaWikiは、有用であることを期待して配布されていますが�
 このウェブサイトに技術的な障害が発生しています。',
 'dberr-again' => '数分間待った後、もう一度読み込んでください。',
 'dberr-info' => '(データベースサーバー $1 に接続できませんでした)',
+'dberr-info-hidden' => '(データベース サーバーと通信できません)',
 'dberr-usegoogle' => '元に戻るまで、Googleを利用して検索できます。',
 'dberr-outofdate' => '収集された内容は古い可能性があることに注意してください。',
 'dberr-cachederror' => 'これは要求されたページをキャッシュした複製であり、古くなっている可能性があります。',

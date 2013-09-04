@@ -538,17 +538,6 @@ Dit kan ook dui op 'n fout in die sagteware van {{SITENAME}}.",
 # General errors
 'error' => 'Fout',
 'databaseerror' => 'Databasisfout',
-'dberrortext' => 'Daar was \'n sintaksisfout in die databasisnavraag.
-Dit kan moontlik dui op \'n fout in die sagteware.
-Die laaste navraag was:
-<blockquote><code>$1</code></blockquote>
-vanuit funksie "<code>$2</code>".
-Databasis gee foutboodskap "<samp>$3: $4</samp>".',
-'dberrortextcl' => 'Sintaksisfout in databasisnavraag.
-Die laaste navraag was:
-"$1"
-vanuit funksie "$2".
-Databasis gee foutboodskap: "$3: $4".',
 'laggedslavemode' => 'Waarskuwing: Onlangse wysigings dalk nie in bladsy vervat nie.',
 'readonly' => 'Databasis gesluit',
 'enterlockreason' => 'Rede vir die sluiting,
@@ -603,7 +592,6 @@ Probeer asseblief weer oor 'n paar minute.",
 'protectedinterface' => 'Hierdie bladsy verskaf teks vir die koppelvlak van die sagteware, en is beskerm om misbruik te voorkom.
 Gebruik asseblief [//translatewiki.net/ translatewiki.net] om vertalings by te voeg of te wysig.',
 'editinginterface' => "'''Waarskuwing:''' U is besig om 'n bladsy te redigeer wat koppelvlakinligting aan die programmatuur voorsien. Wysigings aan hierdie bladsy sal die voorkoms van die gebruikerskoppelvlak vir ander gebruikers beïnvloed. Vir vertalings, oorweeg om eerder [//translatewiki.net/wiki/Main_Page?setlang=af translatewiki.net] (die vertalingsprojek vir MediaWiki) te gebruik.",
-'sqlhidden' => '(SQL navraag versteek)',
 'cascadeprotected' => 'Hierdie bladsy is beskerm teen redigering omdat dit ingesluit is in die volgende {{PLURAL:$1|bladsy|bladsye}} wat beskerm is met die "kaskade" opsie aangeskakel: $2',
 'namespaceprotected' => "U het nie toestemming om bladsye in die '''$1'''-naamruimte te wysig nie.",
 'customcssprotected' => "U het nie toestemming om hierdie CSS-bladsy te redigeer nie, want dit bevat 'n ander gebruiker se persoonlike verstellings.",

@@ -375,17 +375,6 @@ Derīgo īpašo lapu saraksts atrodas te: [[Special:SpecialPages|{{int:specialpa
 # General errors
 'error' => 'Kļūda',
 'databaseerror' => 'Datu bāzes kļūda',
-'dberrortext' => 'Konstatēta sintakses kļūda datubāzes pieprasījumā.
-Iespējams, tā radusies dēļ kļūdas programmatūrā.
-Pēdējais datubāzes pieprasījums bija:
-<blockquote><code>$1</code></blockquote>
-no funkcijas "<code>$2</code>".
-Datubāzes atgrieztais kļūdas paziņojums: "<samp>$3: $4</samp>".',
-'dberrortextcl' => 'Datubāzes vaicājumā pieļauta sintakses kļūda.
-Pēdējais priekšraksts:
-"$1"
-palaists funkcijā "$2".
-Izdotā MySQL kļūda: "$3: $4"',
 'laggedslavemode' => 'Uzmanību: Iespējams, šajā lapā nav redzami nesen izdarītie papildinājumi.',
 'readonly' => 'Datubāze bloķēta',
 'enterlockreason' => 'Ievadiet bloķēšanas iemeslu, ieskaitot aplēses, kad bloķēšana tiks beigta.',
@@ -429,7 +418,6 @@ Vaicājums: $2',
 'viewsourcetext' => 'Tu vari apskatīties un nokopēt šīs lapas vikitekstu:',
 'protectedinterface' => 'Šī lapa satur programmatūras interfeisā lietotu tekstu un ir bloķēta pret izmaiņām, lai pasargātu no bojājumiem.',
 'editinginterface' => "'''Brīdinājums:''' Tu izmaini lapu, kuras saturu izmanto wiki programmatūras lietotāja saskarnē (''interfeisā''). Šīs lapas izmaiņas ietekmēs lietotāja saskarni citiem lietotājiem. Pēc modificēšanas, šīs izmaiņas būtu lietderīgi pievienot arī [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], kas ir MediaWiki lokalizēšanas projekts.",
-'sqlhidden' => '(SQL vaicājums paslēpts)',
 'namespaceprotected' => "Tev nav atļaujas izmainīt lapas, kas atrodas '''$1''' ''namespacē''.",
 'ns-specialprotected' => 'Nevar izmainīt īpašās lapas.',
 'titleprotected' => "Šī lapa ir aizsargāta pret izveidošanu. To aizsargāja [[User:$1|$1]].

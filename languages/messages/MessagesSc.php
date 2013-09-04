@@ -344,12 +344,6 @@ Una lista de pàginas ispetziales bàlidas d'agatas in [[Special:SpecialPages|{{
 # General errors
 'error' => 'Faddina',
 'databaseerror' => 'Faddina de su database',
-'dberrortext' => 'Faddina de sintassi in sa pregunta fata a su database.
-Custu podet indicare unu sbàlliu de su software.
-S\'ùrtima consulta imbiada a su database est istada:
-<blockquote><tt>$1</tt></blockquote>
-aintru de sa funtzione "<tt>$2</tt>".
-Su database at torradu custa faddina "<tt>$3: $4</tt>".',
 'readonly' => 'Database bloccadu',
 'enterlockreason' => 'Inserta su motivu de su bloccu, ispetzifichende su momentu probabile chi su bloccu at a acabai',
 'readonlytext' => "In custu momentu su database est bloccadu dae aciunturas e àteras modificas, probabilmente pro ordinaria manutentzione a su database, a pustis de custas at a èssere normale torra.
@@ -378,7 +372,6 @@ Podet èsser stadu burradu dae calicunu àteru.',
 'badtitletext' => "Su tìtulu de sa pàgina ch'as pediu est bùidu, isballiau, o iscritu in is cullegamentus inter-wiki in manera non currègia o cun caràteres no amìtius.",
 'viewsource' => 'Càstia mitza',
 'actionthrottled' => 'Atzione rimandada',
-'sqlhidden' => '(Consulta SQL cuada)',
 'namespaceprotected' => "Non tenes su permissu de acontzare is pàginas in su nùmene-lugu '''$1'''.",
 'ns-specialprotected' => 'Is pàginas ispetziales non podent èssere acontzadas.',
 

@@ -514,17 +514,6 @@ Egzistuojančių specialiųjų puslapių sąrašą galite rasti [[Special:Specia
 # General errors
 'error' => 'Klaida',
 'databaseerror' => 'Duomenų bazės klaida',
-'dberrortext' => 'Neteisinga duomenų bazės užklausos sintaksė.
-Galima klaida programinėje įrangoje.
-Paskutinė mėginta užklausa:
-<blockquote><tt>$1</tt></blockquote>
-iš funkcijos: „<tt>$2</tt>“.
-Duomenų bazė grąžino klaidą „<tt>$3: $4</tt>“.',
-'dberrortextcl' => 'Įvyko duomenų bazės užklausos sintaksės klaida.
-Paskutinė mėginta duomenų bazės užklausa buvo:
-„$1“
-iš funkcijos: „$2“.
-Duomenų bazė grąžino klaidą „$3: $4“',
 'laggedslavemode' => 'Dėmesio: Puslapyje gali nesimatyti naujausių pakeitimų.',
 'readonly' => 'Duomenų bazė užrakinta',
 'enterlockreason' => 'Įveskite užrakinimo priežastį, taip pat datą, kada bus atrakinta',
@@ -578,7 +567,6 @@ Užklausa: $2',
 'protectedinterface' => 'Šiame puslapyje yra apsaugotas nuo piktnaudžiavimo programinės įrangos sąsajos tekstas.',
 'editinginterface' => "'''Dėmesio:''' Jūs redaguojate puslapį, kuris yra naudojamas programinės įrangos sąsajos tekste. Pakeitimai šiame puslapyje taip pat pakeis naudotojo sąsajos išvaizdą ir kitiems naudotojams šiame wiki.
 Jei norite pridėti ir keisti vertimus, siūlome pasinaudoti [//translatewiki.net/wiki/Main_Page?setlang=lt „translatewiki.net“], „MediaWiki“ lokalizacijos projektu.",
-'sqlhidden' => '(SQL užklausa paslėpta)',
 'cascadeprotected' => 'Šis puslapis buvo apsaugotas nuo redagavimo, kadangi jis yra įtrauktas į {{PLURAL:$1|šį puslapį, apsaugotą|šiuos puslapius, apsaugotus}} „pakopinės apsaugos“ pasirinktimi:
 $2',
 'namespaceprotected' => "Jūs neturite teisės redaguoti puslapių '''$1''' srityje.",
@@ -1832,6 +1820,9 @@ Kai sąrašas susiaurinamas pagal naudotoją, rodomi tik tie failai, kurių nauj
 'listfiles_size' => 'Dydis',
 'listfiles_description' => 'Aprašymas',
 'listfiles_count' => 'Versijos',
+'listfiles-latestversion' => 'Dabartinė versija',
+'listfiles-latestversion-yes' => 'Taip',
+'listfiles-latestversion-no' => 'Ne',
 
 # File description page
 'file-anchor-link' => 'Failas',

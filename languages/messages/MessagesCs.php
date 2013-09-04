@@ -369,12 +369,12 @@ $messages = array(
 'tog-hidepatrolled' => 'Skrýt patrolované editace v posledních změnách',
 'tog-newpageshidepatrolled' => 'Skrýt patrolované stránky ze seznamu nových stránek',
 'tog-extendwatchlist' => 'Na seznamu sledovaných stránek zobrazovat všechny změny, ne jen tu poslední',
-'tog-usenewrc' => 'V posledních změnách a sledovaných stránkách seskupovat změny podle stránek (vyžaduje JavaScript)',
+'tog-usenewrc' => 'V posledních změnách a sledovaných stránkách seskupovat změny podle stránek',
 'tog-numberheadings' => 'Automaticky číslovat nadpisy',
-'tog-showtoolbar' => 'Zobrazit panel nástrojů (vyžaduje JavaScript)',
-'tog-editondblclick' => 'Editovat dvojklikem (JavaScript)',
+'tog-showtoolbar' => 'Zobrazit panel nástrojů',
+'tog-editondblclick' => 'Editovat stránky dvojklikem',
 'tog-editsection' => 'Zapnout možnost editace části stránky pomocí odkazu [editovat]',
-'tog-editsectiononrightclick' => 'Zapnout možnost editace části stránky pomocí kliknutí pravým tlačítkem na nadpisy stránky (JavaScript)',
+'tog-editsectiononrightclick' => 'Umožnit editaci části stránky kliknutím pravým tlačítkem na nadpisy sekcí',
 'tog-showtoc' => 'Zobrazovat obsah (na stránkách s více než třemi nadpisy)',
 'tog-rememberpassword' => 'Zapamatovat si mé přihlášení v tomto prohlížeči (maximálně $1 {{PLURAL:$1|den|dny|dní}})',
 'tog-watchcreations' => 'Přidávat mnou založené stránky a načtené soubory ke sledovaným',
@@ -392,7 +392,7 @@ $messages = array(
 'tog-shownumberswatching' => 'Zobrazovat počet sledujících uživatelů',
 'tog-oldsig' => 'Stávající podpis:',
 'tog-fancysig' => 'Používat v podpisu wikitext (bez automatického odkazu)',
-'tog-uselivepreview' => 'Používat rychlý náhled (JavaScript) (Experimentální)',
+'tog-uselivepreview' => 'Používat rychlý náhled (experimentální)',
 'tog-forceeditsummary' => 'Upozornit, když nevyplním shrnutí editace',
 'tog-watchlisthideown' => 'Na seznamu sledovaných stránek skrýt moje editace',
 'tog-watchlisthidebots' => 'Na seznamu sledovaných stránek skrýt editace botů',
@@ -694,17 +694,12 @@ Zkuste se podívat na [[Special:SpecialPages|seznam všech existujících speci�
 # General errors
 'error' => 'Chyba',
 'databaseerror' => 'Chyba databáze',
-'dberrortext' => 'Při dotazu do databáze došlo k syntaktické chybě.
-Příčinou může být chyba v programu.
-Poslední dotaz byl:
-<blockquote><code>$1</code></blockquote>
-z funkce „<code>$2</code>“.
-Databáze vrátila chybu „<samp>$3: $4</samp>“.',
-'dberrortextcl' => 'Při dotazu do databáze došlo k syntaktické chybě.
-Poslední dotaz byl:
-„$1“
-z funkce „$2“.
-Databáze vrátila chybu „$3: $4“',
+'databaseerror-text' => 'Došlo k chybě při dotazu do databáze.
+Může to být způsobeno chybou v softwaru.',
+'databaseerror-textcl' => 'Došlo k chybě při dotazu do databáze.',
+'databaseerror-query' => 'Dotaz: $1',
+'databaseerror-function' => 'Funkce: $1',
+'databaseerror-error' => 'Chyba: $1',
 'laggedslavemode' => 'Upozornění: Stránka nemusí být zcela aktuální.',
 'readonly' => 'Databáze je uzamčena',
 'enterlockreason' => 'Udejte důvod zamčení, včetně odhadu, za jak dlouho dojde k odemčení.',
@@ -757,7 +752,6 @@ Pro přidávání a změny překladů pro všechny wiki použijte [//translatewi
 'editinginterface' => "'''Upozornění:''' Editujete stránku, která definuje texty rozhraní.
 Změny této stránky ovlivní vzhled uživatelského rozhraní všem uživatelům této wiki.
 Pro přidávání a změny překladů pro všechny wiki použijte [//translatewiki.net/ translatewiki.net], projekt pro lokalizaci MediaWiki.",
-'sqlhidden' => '(SQL dotaz skryt)',
 'cascadeprotected' => 'Tato stránka je zamčena, neboť je vložena do {{PLURAL:$1|následující stránky zamčené|následujících stránek zamčených|následujících stránek zamčených}} kaskádovým zámkem:
 $2',
 'namespaceprotected' => "Nemáte povoleno editovat stránky ve jmenném prostoru '''$1'''.",
@@ -1805,7 +1799,7 @@ $3',
 'rc_categories_any' => 'Všechny',
 'rc-change-size-new' => '$1 {{PLURAL:$1|bajt|bajty|bajtů}} po změně',
 'newsectionsummary' => 'Nová sekce /* $1 */',
-'rc-enhanced-expand' => 'Zobrazit detaily (vyžaduje JavaScript)',
+'rc-enhanced-expand' => 'Zobrazit detaily',
 'rc-enhanced-hide' => 'Skrýt detaily',
 'rc-old-title' => 'původně vytvořena jako „$1“',
 
@@ -4133,6 +4127,7 @@ MediaWiki je distribuována v naději, že bude užitečná, avšak BEZ JAKÉKOL
 'dberr-problems' => 'Promiňte! Tento server má v tuto chvíli technické problémy.',
 'dberr-again' => 'Zkuste několik minut počkat a poté znovu načíst stránku.',
 'dberr-info' => '(Nelze navázat spojení s databázovým serverem: $1)',
+'dberr-info-hidden' => '(Nelze navázat spojení s databázovým serverem)',
 'dberr-usegoogle' => 'Mezitím můžete zkusit hledat pomocí Google.',
 'dberr-outofdate' => 'Uvědomte si, že jejich vyhledávací index našeho obsahu může být zastaralý.',
 'dberr-cachederror' => 'Následující stránka je kopie z cache a nemusí být aktuální.',

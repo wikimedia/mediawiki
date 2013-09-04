@@ -400,17 +400,6 @@ Maxsus bitlär isemlegen qarağız: [[Special:SpecialPages|{{int:specialpages}}]
 # General errors
 'error' => 'Xata',
 'databaseerror' => 'Mäğlümatlar bazasında xata',
-'dberrortext' => 'Mäğlümatlar bazasına cibärelgän sorawda sintaksik xata tabıldı.
-Programmada xata bulırğa mömkin.
-Mäğlümatlar bazasına cibärelgän soñğı soraw:
-<blockquote><tt>$1</tt></blockquote>
-<tt>«$2»</tt> funksiäsennän.
-Baza <tt>«$3: $4»</tt> xatasın qaytardı.',
-'dberrortextcl' => 'Mäğlümatlar bazasına cibärelgän sorawda sintaksik xata tabıldı.
-Mäğlümatlar bazasına cibärelgän soñğı soraw:
-"$1"
-«$2» funksiäsennän.
-Baza «$3: $4» xatasın qaytardı.',
 'laggedslavemode' => 'İğtibar: bittä soñğı yañartular kürsätelmägän bulırğa mömkin.',
 'readonly' => 'Mäğlümatlar bazasına yazu yabılğan',
 'enterlockreason' => 'Yabılu säbäben häm waqıtın kürsätegez.',
@@ -455,7 +444,6 @@ Soraw: $2',
 'viewsourcetext' => 'Sez bu bitneñ başlanğıç tekstın qarıy häm küçerä alasız:',
 'protectedinterface' => 'Bu bittä programma interfeysı xäbärläre bar. Vandalizmğa qarşı köräş säbäple, bu bitne üzgärtü tıyıla.',
 'editinginterface' => "'''İğtibar:''' Sez MediaWiki sistemasınıñ interfeys biten üzgärtäsez. Bu başqa qullanuçılarğa da tä'sir itäçäk. Tärcemä öçen [//translatewiki.net/wiki/Main_Page?setlang=tt-latn translatewiki.net] lokalizatsiäläw proyektın qullanığız.",
-'sqlhidden' => '(SQL-soraw yäşerelgän)',
 'cascadeprotected' => 'Bu bit üzgärtülärdän saqlanğan, çönki ul kaskadlı saqlaw qabul itelgän {{PLURAL:$1|bitkä|bitlärgä}} östälgän:
 $2',
 'namespaceprotected' => "'''$1''' isem kiñlegendäge bitlärne üzgärtü öçen sezneñ röxsätegez yuq.",

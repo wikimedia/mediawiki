@@ -647,17 +647,6 @@ En liste over gyldige spesialsider finnes på [[Special:SpecialPages|{{int:speci
 # General errors
 'error' => 'Feil',
 'databaseerror' => 'Databasefeil',
-'dberrortext' => 'Det har oppstått en syntaksfeil i en databaseforespørsel.
-Dette kan tyde på en feil i programvaren.
-Forrige databaseforespørsel var:
-<blockquote><tt>$1</tt></blockquote>
-fra funksjonen «<tt>$2</tt>».
-Databasen returnerte feilen «<tt>$3: $4</tt>».',
-'dberrortextcl' => 'Det oppsto en syntaksfeil i en databaseforespørsel.
-Forrige databaseforespørsel var:
-«$1»
-fra funksjonen «$2».
-Databasen returnerte feilen «$3: $4».',
 'laggedslavemode' => 'Advarsel: Dette kan være en eldre versjon av siden.',
 'readonly' => 'Databasen er skrivebeskyttet',
 'enterlockreason' => 'Skriv en begrunnelse for skrivebeskyttelsen, inkludert et estimat for når den blir opphevet',
@@ -712,7 +701,6 @@ Spørring: $2',
 'editinginterface' => "'''Advarsel:''' Du redigerer en side som brukes for å fremskaffe grensesnittekst for programvaren.
 Endringer av denne siden vil påvirke hvordan grensesnittet vil se ut for andre brukere.
 For oversettelser er det best om du bruker [//translatewiki.net/wiki/Main_Page?setlang=nb translatewiki.net], prosjektet for oversettelse av MediaWiki.",
-'sqlhidden' => '(SQL-spørring skjult)',
 'cascadeprotected' => 'Denne siden er låst for redigering fordi den inkluderes på følgende sider som har dypbeskyttelse slått på:<!--{{PLURAL:$1}}-->
 $2',
 'namespaceprotected' => "Du har ikke tillatelse til å redigere sider i navnerommet '''$1'''.",

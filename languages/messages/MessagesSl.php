@@ -195,12 +195,12 @@ $messages = array(
 'tog-hidepatrolled' => 'Skrij pregledana urejanja v zadnjih spremembah',
 'tog-newpageshidepatrolled' => 'Skrij pregledane strani iz seznama novih strani',
 'tog-extendwatchlist' => 'Razširi spisek nadzorov, da bo prikazoval vse spremembe, ne le najnovejše',
-'tog-usenewrc' => 'Združi spremembe posamezne strani na zadnjih spremembah in spisku nadzorov (zahteva JavaScript)',
+'tog-usenewrc' => 'Združi spremembe posamezne strani na zadnjih spremembah in spisku nadzorov',
 'tog-numberheadings' => 'Samodejno številči poglavja',
-'tog-showtoolbar' => 'Prikaži urejevalno orodno vrstico (potrebuje JavaScript)',
-'tog-editondblclick' => 'Omogoči urejanje strani z dvojnim klikom (zahteva JavaScript)',
+'tog-showtoolbar' => 'Prikaži urejevalno orodno vrstico',
+'tog-editondblclick' => 'Omogoči urejanje strani z dvojnim klikom',
 'tog-editsection' => 'Omogoči urejanje delov prek povezav [{{int:editsection}}]',
-'tog-editsectiononrightclick' => 'Omogoči urejanje razdelkov z desnim klikanjem njihovih naslovov (zahteva JavaScript)',
+'tog-editsectiononrightclick' => 'Omogoči urejanje razdelkov z desnim klikanjem njihovih naslovov',
 'tog-showtoc' => 'Prikaži vsebino (strani z več kot tremi naslovi)',
 'tog-rememberpassword' => 'Zapomni si me v tem brskalniku (za največ $1 {{PLURAL:$1|dan|dneva|dni}})',
 'tog-watchcreations' => 'Vse ustvarjene strani in moje naložene datoteke dodaj na spisek nadzorov',
@@ -218,7 +218,7 @@ $messages = array(
 'tog-shownumberswatching' => 'Prikaži število uporabnikov, ki spremljajo temo',
 'tog-oldsig' => 'Obstoječi podpis:',
 'tog-fancysig' => 'Obravnavaj podpis kot wikibesedilo (brez samodejne povezave)',
-'tog-uselivepreview' => 'Uporabi hitri predogled (zahteva JavaScript) (preizkusno)',
+'tog-uselivepreview' => 'Uporabi hitri predogled (preizkusno)',
 'tog-forceeditsummary' => 'Ob vpisu praznega povzetka urejanja me opozori',
 'tog-watchlisthideown' => 'Na spisku nadzorov skrij moja urejanja',
 'tog-watchlisthidebots' => 'Na spisku nadzorov skrij urejanja botov',
@@ -332,7 +332,7 @@ $messages = array(
 'newwindow' => '(odpre se novo okno)',
 'cancel' => 'Prekliči',
 'moredotdotdot' => 'Več ...',
-'morenotlisted' => 'Več ni navedenih ...',
+'morenotlisted' => 'Seznam ni popoln.',
 'mypage' => 'Stran',
 'mytalk' => 'Pogovor',
 'anontalk' => 'Pogovorna stran IP-naslova',
@@ -519,17 +519,12 @@ Seznam vseh prepoznanih posebnih strani je na razpolago na strani [[Special:Spec
 # General errors
 'error' => 'Napaka',
 'databaseerror' => 'Napaka zbirke podatkov',
-'dberrortext' => 'Prišlo je do napake podatkovne zbirke.
-Vzrok je lahko programski hrošč v programju.
-Zadnja poskušana poizvedba po zbirki podatkov:
-<blockquote><code>$1</code></blockquote>
-znotraj funkcije »<code>$2</code>«.
-Zbirka podatkov je vrnila napako »<samp>$3: $4</samp>«.',
-'dberrortextcl' => 'Pri iskanju v podatkoovni zbirki je prišlo do skladenjske napake.
-Zadnje iskanje v zbirki podatkov:
-»$1«
-iz funkcije »$2«.
-Podatkovna zbirka je vrnila napako »$3: $4«.',
+'databaseerror-text' => 'Prišlo je do napake poizvedbe v zbirki podatkov.
+To lahko pomeni hrošča v programju.',
+'databaseerror-textcl' => 'Prišlo je do napake poizvedbe v zbirki podatkov.',
+'databaseerror-query' => 'Poizvedba: $1',
+'databaseerror-function' => 'Funkcija: $1',
+'databaseerror-error' => 'Napaka: $1',
 'laggedslavemode' => "'''Opozorilo:''' Stran morda ne vsebuje najnovejših posodobitev.",
 'readonly' => 'Zbirka podatkov je zaklenjena',
 'enterlockreason' => 'Vnesite razlog za zaklenitev in oceno, kdaj bo urejanje spet mogoče',
@@ -587,7 +582,6 @@ Za dodajanje ali spreminjanje prevodov vseh wikijev uporabite [//translatewiki.n
 'editinginterface' => "'''Opozorilo:''' Urejate stran, ki vsebuje besedilo ali drug element uporabniškega vmesnika programja.
 Spremembe te strani bodo vplivale na podobo uporabniškega vmesnika ostalih uporabnikov na tem wikiju.
 Za dodajanje ali spreminjanje prevodov vseh wikijev uporabite [//translatewiki.net/ translatewiki.net], projekt za lokalizacijo MediaWiki.",
-'sqlhidden' => '(Poizvedba SQL je skrita)',
 'cascadeprotected' => 'Ta stran je bila zaščitena pred urejanji, ker je vključena na {{PLURAL:$1|sledečo stran, ki je bila zaščitena|sledeči strani, ki sta bili zaščiteni|sledeče strani, ki so bile zaščitene}} z vključeno kaskadno možnostjo:
 $2',
 'namespaceprotected' => "Nimate dovoljenja urejati strani v imenskem prostoru '''$1'''.",
@@ -1660,7 +1654,7 @@ Ko vas drugi uporabniki kontaktirajo, jim vašega e-poštnega naslova ne bomo ra
 'rc_categories_any' => 'Katero koli',
 'rc-change-size-new' => '$1 {{PLURAL:$1|bajt|bajta|bajti|bajtov}} po spremembi',
 'newsectionsummary' => '/* $1 */ nov razdelek',
-'rc-enhanced-expand' => 'Pokaži podrobnosti (potrebuje JavaScript)',
+'rc-enhanced-expand' => 'Pokaži podrobnosti',
 'rc-enhanced-hide' => 'Skrij podrobnosti',
 'rc-old-title' => 'prvotno ustvarjeno kot »$1«',
 
@@ -3969,6 +3963,7 @@ Skupaj s programom bi morali bi prejeti [{{SERVER}}{{SCRIPTPATH}}/COPYING kopijo
 Ta stran se sooča s tehničnimi težavami.',
 'dberr-again' => 'Poskusite počakati nekaj minut in ponovno naložite stran.',
 'dberr-info' => '(Ne morem se povezati s strežnikom zbirke podatkov: $1)',
+'dberr-info-hidden' => '(Ne morem se povezati s strežnikom zbirke podatkov)',
 'dberr-usegoogle' => 'V vmesnem času lahko poskusite z iskanjem preko Googla',
 'dberr-outofdate' => 'Pomnite, da so njegovi imeniki naših vsebin lahko zastareli.',
 'dberr-cachederror' => 'To je shranjena kopija zahtevane strani, ki morda ni najnovejša.',

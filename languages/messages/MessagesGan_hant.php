@@ -355,17 +355,6 @@ $1',
 # General errors
 'error' => '錯誤',
 'databaseerror' => '資料庫錯誤',
-'dberrortext' => '資料庫查詢語法有錯。
-可能係軟件有錯。
-最晏嗰資料庫指令係:
-<blockquote><tt>$1</tt></blockquote>
-來自函數 "<tt>$2</tt>"。
-MySQL回到錯誤 "<tt>$3: $4</tt>"。',
-'dberrortextcl' => '資料庫查詢語法有錯。
-最晏嗰資料庫指令係:
-“$1”
-來自函數“$2”。
-MySQL回到錯誤“$3: $4”。',
 'laggedslavemode' => '警告：頁面可能冇有新近內容。',
 'readonly' => '資料庫上正鎖哩',
 'enterlockreason' => '請輸入鎖到資料庫嗰理由，包括預計幾時間解鎖',
@@ -406,7 +395,6 @@ MySQL回到錯誤“$3: $4”。',
 'editinginterface' => "'''Warning:''' You are editing a page which is used to provide interface text for the software.
 Changes to this page will affect the appearance of the user interface for other users.
 For translations, please consider using [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], the MediaWiki localisation project.",
-'sqlhidden' => '（SQL 弆到嗰查詢）',
 'cascadeprotected' => '箇頁已拕保護，因為佢拕「聯鎖保護」嗰{{PLURAL:$1|一隻|幾隻}}拕保護頁包到：
 $2',
 'namespaceprotected' => "倷冇權編寫'''$1'''空間裡度嗰頁面。",

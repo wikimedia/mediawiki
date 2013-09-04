@@ -636,19 +636,6 @@ n Lieste mit bestaonde spesiale ziejen ku'j vienen op [[Special:SpecialPages|{{i
 # General errors
 'error' => 'Foutmelding',
 'databaseerror' => 'Fout in de databanke',
-'dberrortext' => 'Bie t zeuken is n syntaxisfout in de databanke op-etrejen.
-De oorzake hiervan kan dujen op n fout in de programmatuur.
-Der is n syntaxisfout in t databankeverzeuk op-etrejen.
-t Kan ween dat der n fout in de programmatuur zit.
-De leste zeukpoging in de databanke was:
-<blockquote><code>$1</code></blockquote>
-vanuut de funksie "<code>$2</code>".
-De databanke gaf de volgende foutmelding "<samp>$3: $4</samp>".',
-'dberrortextcl' => 'Der is n syntaxisfout in t databankeverzeuk op-etrejen.
-t Leste veurzeuk an de databanke was:
-"$1"
-vanuut de funksie "$2"
-De databanke gaf de volgende foutmelding: "$3: $4"',
 'laggedslavemode' => '<strong>Waorschuwing:</strong> t is meugelik dat leste wiezigingen in de tekste van dit artikel nog niet verwarkt bin.',
 'readonly' => 'De databanke is beveiligd',
 'enterlockreason' => 'Waorumme en veur hoe lange is t eblokkeerd?',
@@ -699,7 +686,6 @@ Zeukopdrachte: $2',
 'protectedinterface' => "Op disse zied steet tekste die gebruukt wörden veur systeemteksten van disse wiki. Allinnig beheerders kunnen disse zied bewarken.
 Um vertalingen veur alle wiki's derbie te zetten of te wiezigen, gebruuk [//translatewiki.net/ translatewiki.net], t vertaalprojekt veur MediaWiki.",
 'editinginterface' => "'''Waorschuwing:''' je bewarken n zied die gebruukt wörden deur de programmatuur. Wa'j hier wiezigen, is van invleud op de hele wiki. Um vertalingen derbie te zetten of te wiezigen veur alle wiki's, gebruuk [//translatewiki.net/wiki/Main_Page?setlang=nds-nl translatewiki.net], t vertalingsprojekt veur MediaWiki.",
-'sqlhidden' => '(SQL-zeukopdrachte verbörgen)',
 'cascadeprotected' => 'Disse zied is beveiligd umdat t veurkömp in de volgende {{PLURAL:$1|zied|ziejen}}, die beveiligd {{PLURAL:$1|is|bin}} mit de "kaskade"-opsie:
 $2',
 'namespaceprotected' => "Je maggen gien ziejen in de '''$1'''-naamruumte bewarken.",

@@ -693,7 +693,6 @@ $1',
 'protectedpagetext' => 'ХӀара агӀо дӀакъойлина йу рé цадаккхийта.',
 'viewsourcetext' => 'Хьоьга далундерг хьажар а дезахь хlокху агlон чура йоза хьаэцар:',
 'protectedinterface' => 'ХӀара схьгайтарна гӀирса хаамаш латтош йолу агӀо ю. Куьйгалхошна бен иза хийца цало.',
-'sqlhidden' => '(SQL жоп дехар къайладаккха)',
 'namespaceprotected' => 'ХӀан бакъо яц анна цӀераш чохь тадарш да «$1».',
 'customcssprotected' => 'Хьан бакъо яц хӀара CSS-агӀо тая, иза кхечу декъашхочун гӀерс болу дера.',
 'customjsprotected' => 'Хьан бакъо яц хӀара JavaScript-агӀо тая, иза кхечу декъашхочун гӀерс болу дера.',
@@ -2232,10 +2231,19 @@ PICT # тайп тайпан
 'livepreview-ready' => 'Чуйолуш… Кийча йу!',
 
 # Watchlist editor
+'watchlistedit-normal-title' => 'Тергаме могӀанийн хийцамаш',
+'watchlistedit-normal-legend' => 'Тергаме могӀам юкъар дӀаяккхар',
 'watchlistedit-normal-explain' => 'Лахахь гойту хьан тергаме могӀамехь йолу агӀонаш.
 ДӀаяздарш дӀадаха билгалде уьш такха тӀетаӀе кнопка «{{int:Watchlistedit-normal-submit}}».
 Кхин хьа йиш ю [[Special:EditWatchlist/raw|йозан кепар могӀом нисба ]].',
 'watchlistedit-normal-submit' => 'ДӀадаха дӀаяздарш',
+'watchlistedit-raw-title' => 'Тергаме могӀам йоза санна нисбар',
+'watchlistedit-raw-legend' => 'Тергаме могӀам нисбар',
+'watchlistedit-raw-explain' => 'Лахахь гойтуш ю хьа тергаме могӀанийн юкъахь йолу агӀонаш. Хьан йиш ю могӀан хийцам ба, оьцу чура цӀераш тӀетухуш а дӀайохкуш а.
+Хийцамаш бина баьлчи тӀетаӀе кнопка «{{int:Watchlistedit-raw-submit}}».
+Хьа кхин йиш ю [[Special:EditWatchlist|лело стандартни тадар]].',
+'watchlistedit-raw-titles' => 'ДӀаяздарш:',
+'watchlistedit-raw-submit' => 'МогӀам Ӏалашбар',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Могlам чура агlонашан хийцамаш',

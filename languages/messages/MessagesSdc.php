@@ -366,17 +366,6 @@ $messages = array(
 # General errors
 'error' => 'Errori',
 'databaseerror' => 'Errori di la bancadati',
-'dberrortext' => 'Errori di sintassi i\' la prigonta inviadda a la bancadati.
-Lu chi pudaria indicà la prisènzia d\'un bacu i\' lu software.
-L\'ulthima interrogazioni inviadda a la bancadati è isthadda:
-<blockquote><tt>$1</tt></blockquote>
-riciamadda da la funzioni "<tt>$2</tt>".
-MySQL à turraddu lu sighenti errori "<tt>$3: $4</tt>".',
-'dberrortextcl' => 'Errori di sintassi i\' la prigonta inviadda a la bancadati.
-L\'ulthima interrogazioni inviadda a la bancadati è isthadda:
-"$1"
-riciamadda da la funzioni "$2".
-MySQL à turraddu lu sighenti errori "$3: $4".',
 'laggedslavemode' => "Attinzioni: la pàgina pudia no cuntinì l'aggiornamenti più rizzenti.",
 'readonly' => 'Bancadati broccadda',
 'enterlockreason' => 'Indica lu mutibu di lu broccu, ippizzifichendi candu po’ assé chi venghia buggaddu.',
@@ -419,7 +408,6 @@ Interrogazioni: $2",
 'viewsourcetext' => 'È pussìbiri visuarizzà e cupià lu còdizi di chistha pàgina:',
 'protectedinterface' => "Chistha pàgina cunteni un'erementu chi fazzi parthi di l'interfàccia utenti di lu software; è dunca prutiggidda pa evità pussìbiri abusi.",
 'editinginterface' => "'''Attinzioni:''' Lu testhu di chistha pàgina fazzi parthi di l'interfàccia utenti di lu situ. Tutti li mudìfigghi arriggaddi a chistha pàgina si rifrèttini i' l'imbasciaddi visuarizzaddi pa tutti l'utenti. Pa li traduzioni, pa piazeri utirizà [//translatewiki.net/wiki/Main_Page?setlang=sdc translatewiki.net], lu prugettu di lucarizazioni MediaWiki.",
-'sqlhidden' => "(l'interrogazioni SQL è isthadda cuadda)",
 'cascadeprotected' => 'In chistha pàgina nò è pussìbiri effettuà mudìfigghi parchí è isthadda incrusa {{PLURAL:$1|i la sighenti pàgina indicadda, ch\'è isthadda prutiggidda|i li sighenti pàgini indicaddi, chi so isthaddi prutiggiddi}} chirriendi la prutizioni "ricussiba":
 $2',
 'namespaceprotected' => "Nò si diponi di li pimmissi nezzessàri pa mudifiggà li pagini di lu tipu di pagina '''$1'''.",

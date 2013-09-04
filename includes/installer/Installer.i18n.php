@@ -11159,7 +11159,7 @@ php.ini를 확인하고 <code>session.save_path</code>가 적절한 디렉토리
 	'config-restart' => '예, 다시 시작합니다',
 	'config-welcome' => '=== 사용 환경 검사 ===
 이 환경이 미디어위키 설치에 적합한지 기본 검사를 실행합니다.
-설치 중 도움이 필요하다면 이 검사 결과를 함께 제공해주어야 합니다.',
+설치 중 도움이 필요하다면 이 검사 결과를 함께 제공해주어야 합니다.', # Fuzzy
 	'config-copyright' => "=== 저작권 및 이용 약관 ===
 
 $1
@@ -11607,7 +11607,7 @@ GFDL에 따라 사용이 허가된 내용을 재사용하는 것도 어렵습니
 
 현재 미디어위키는 테이블을 웹 사용자가 소유해야 합니다. 다른 웹 계정 이름을 지정하거나 "뒤로"를 클릭하고 적절한 권한의 설치할 사용자를 지정하세요.',
 	'config-install-user' => '데이터베이스 사용자를 만드는 중',
-	'config-install-user-alreadyexists' => '"$1" 사용자가 이미 있습니다',
+	'config-install-user-alreadyexists' => '"$1" 사용자가 이미 존재합니다',
 	'config-install-user-create-failed' => '"$1" 사용자 만드는 중 실패: $2',
 	'config-install-user-grant-failed' => '"$1" 사용자에 대한 권한 부여 실패: $2',
 	'config-install-user-missing' => '지정한 "$1" 사용자가 존재하지 않습니다.',

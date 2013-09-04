@@ -160,14 +160,20 @@ $messages = array(
 'tog-hidepatrolled' => 'Option in Recent changes tab of [[Special:Preferences]] (if [[mw:Manual:$wgUseRCPatrol|$wgUseRCPatrol]] is enabled). {{Gender}}',
 'tog-newpageshidepatrolled' => 'Toggle in [[Special:Preferences]], section "Recent changes" (if [[mw:Manual:$wgUseRCPatrol|$wgUseRCPatrol]] is enabled). {{Gender}}',
 'tog-extendwatchlist' => "[[Special:Preferences]], tab 'Watchlist'. Offers user to show all applicable changes in watchlist (by default only the last change to a page on the watchlist is shown). {{Gender}}",
-'tog-usenewrc' => "[[Special:Preferences]], tab 'Recent changes'. Offers user to use alternative representation of [[Special:RecentChanges]] and watchlist. {{Gender}}",
+'tog-usenewrc' => '{{Gender}}
+Used as label for the checkbox in [[Special:Preferences]], tab "Recent changes".
+
+Offers user to use alternative representation of [[Special:RecentChanges]] and watchlist.',
 'tog-numberheadings' => "[[Special:Preferences]], tab 'Misc'. Offers numbered headings on content pages to user. {{Gender}}",
-'tog-showtoolbar' => "[[Special:Preferences]], tab 'Edit'. Offers user to show edit toolbar in page edit screen. {{Gender}}
+'tog-showtoolbar' => "{{Gender}}
+[[Special:Preferences]], tab 'Edit'. Offers user to show edit toolbar in page edit screen.
 
 This is the toolbar: [[Image:Toolbar.png]]",
-'tog-editondblclick' => "[[Special:Preferences]], tab 'Edit'. Offers user to open edit page on double click. {{Gender}}",
+'tog-editondblclick' => "{{Gender}}
+[[Special:Preferences]], tab 'Edit'. Offers user to open edit page on double click.",
 'tog-editsection' => "[[Special:Preferences]], tab 'Edit'. Offers user to add links in sub headings for editing sections. {{Gender}}",
-'tog-editsectiononrightclick' => "[[Special:Preferences]], tab 'Edit'. Offers user to edit a section by clicking on a section title. {{Gender}}",
+'tog-editsectiononrightclick' => "{{Gender}}
+[[Special:Preferences]], tab 'Edit'. Offers user to edit a section by clicking on a section title.",
 'tog-showtoc' => "[[Special:Preferences]], tab 'Misc'.
 Offers user to show a table of contents automatically if a page has more than 3 headings (= 4 or more headings).",
 'tog-rememberpassword' => "{{Gender}}
@@ -192,7 +198,10 @@ Is only shown if {{msg-mw|tog-enotifusertalkpages}} or/and {{msg-mw|tog-enotifwa
 'tog-shownumberswatching' => 'Toggle option used in [[Special:Preferences]], in the section for recent changes. When this option is activated, the entries in recent changes includes the number of users who watch pages. {{Gender}}',
 'tog-oldsig' => 'Used in [[Special:Preferences]], tab User profile. {{Gender}}',
 'tog-fancysig' => 'In user preferences under the signature box.  {{Gender}}',
-'tog-uselivepreview' => 'Toggle option used in [[Special:Preferences]]. Live preview is an experimental feature (unavailable by default) to use edit preview without loading the page again. {{Gender}}',
+'tog-uselivepreview' => '{{Gender}}
+Toggle option used in [[Special:Preferences]].
+
+Live preview is an experimental feature (unavailable by default) to use edit preview without loading the page again.',
 'tog-forceeditsummary' => "Toggle option used in [[Special:Preferences]] to force an edit ''{{msg-mw|summary}}''. {{Gender}}",
 'tog-watchlisthideown' => "[[Special:Preferences]], tab 'Watchlist'. Offers user to hide own edits from watchlist. {{Gender}}",
 'tog-watchlisthidebots' => "[[Special:Preferences]], tab 'Watchlist'. Offers user to hide bot edits from watchlist. {{Gender}}",
@@ -839,11 +848,12 @@ Parameters:
 ** 1 - if there was '''one''' new edit since the last time the user has seen their talk page
 ** 2 - if there was '''more than one''' new edit since the last time the user has seen their talk page
 {{Identical|New messages}}",
-'newmessagesdifflinkplural' => 'This message itself takes one parameter, $1, which is the number of new edits since the last time the user has seen his or her talk page: it should be used only for correct [[plural]] as in the source text, as the exact number is not relevant.
+'newmessagesdifflinkplural' => 'Parameters:
+* $1 - the number of new edits since the last time the user has seen their talk page: it should be used only for correct [[plural]] as in the source text, as the exact number is not relevant.
 
-Like {{msg-mw|newmessagesdifflink}} but supporting pluralization.
+Like {{msg-mw|Newmessagesdifflink}} but supporting pluralization.
 
-Used in message {{msg-mw|youhavenewmessagesfromusers}} (as parameter $2).
+Used as <code>$2</code> in message {{msg-mw|Youhavenewmessagesfromusers}}.
 {{Identical|Last change}}',
 'youhavenewmessagesmulti' => 'The alternative of {{msg-mw|youhavenewmessages}} as used on wikis with a special setup so they can receive the "new message" notice on other wikis as well. Used on [http://www.wikia.com/ Wikia].
 
@@ -894,7 +904,9 @@ See the following example:
 * $1 - a link to [[Special:Undelete]], with {{msg-mw|restorelink}} as the text
 See also:
 * {{msg-mw|viewdeleted}}',
-'viewdeleted' => 'Message shown on a deleted page when the user does not have the undelete right (but has the deletedhistory right). Parameters:
+'viewdeleted' => 'Message shown on a deleted page when the user does not have the undelete right (but has the deletedhistory right).
+
+Parameters:
 * $1 - a link to [[Special:Undelete]], with {{msg-mw|restorelink}} as the text
 See also:
 * {{msg-mw|thisisdeleted}}',
@@ -1025,27 +1037,23 @@ This error is shown when trying to open a special page which does not exist, e.g
 # General errors
 'error' => '{{Identical|Error}}',
 'databaseerror' => 'Used as title of error message {{msg-mw|Databaseerrortext}}.',
-'dberrortext' => 'Parameters:
-* $1 - The last SQL command/query
-* $2 - SQL function name
-* $3 - Error number
-* $4 - Error description',
-'dberrortextcl' => 'Parameters:
-* $1 - The last SQL command/query
-* $2 - SQL function name
-* $3 - Error number
-* $4 - Error description',
-'databaseerror-text' => 'A list of technical details might (or might not) follow, depending on server configuration. Do not use wiki markup.',
+'databaseerror-text' => 'A list of technical details might (or might not) follow, depending on server configuration. Do not use wiki markup.
+
+See also:
+* {{msg-mw|Databaseerror-textcl}} - abridged form',
 'databaseerror-textcl' => 'Abridged form of {{msg-mw|databaseerror-text}}, suitable for use in command-line scripts run by the server administrator. Do not use wiki markup.',
 'databaseerror-query' => 'Identifies, in the list of technical details, the [[wikipedia:SQL|SQL]] statement that failed.
 Parameters:
-* $1 - SQL statement (shown within a box)',
+* $1 - SQL statement (shown within a box)
+{{Identical|Query}}',
 'databaseerror-function' => 'Identifies, in the list of technical details, the function that tried to execute the database query.
 Parameters:
-* $1 - Name of function',
+* $1 - Name of function
+{{Identical|Function}}',
 'databaseerror-error' => 'Identifies, in the list of technical details, the error message the database server returned.
 Parameters:
-* $1 - Error message from the database server, probably in English',
+* $1 - Error message from the database server, probably in English
+{{Identical|Error}}',
 'laggedslavemode' => 'Used as warning when getting the timestamp of the latest version, if in LaggedSlaveMode.',
 'readonly' => 'Used as title of error message when database is locked.',
 'enterlockreason' => 'For developers when locking the database',
@@ -1166,7 +1174,6 @@ See also {{msg-mw|editinginterface}}.',
 'editinginterface' => 'A message shown when editing pages in the namespace MediaWiki:.
 
 See also {{msg-mw|protectedinterface}}.',
-'sqlhidden' => 'This message indicates the SQL is hidden for security reasons.',
 'cascadeprotected' => 'Parameters:
 * $1 - number of cascade-protected pages, used for PLURAL
 * $2 - list of cascade-protected pages',
@@ -1192,7 +1199,9 @@ Parameters:
 * $1 - (Unused) the namespace number
 * $2 - the namespace name in content language or {{msg-mw|blanknamespace}} for the main namespace
 * $3 - the part of the title after the namespace (e.g. SomeName for the page User:SomeName)',
-'invalidtitle-unknownnamespace' => 'Displayed when an invalid title was encountered (generally in a list) and the namespace number is unknown. Parameters:
+'invalidtitle-unknownnamespace' => 'Displayed when an invalid title was encountered (generally in a list) and the namespace number is unknown.
+
+Parameters:
 * $1 - the namespace number
 * $2 - the part of the title after the namespace (e.g. SomeName for the page User:SomeName)',
 'exception-nologin' => 'Generic page title used on error page when a user is not logged in. Message used by the UserNotLoggedIn exception.
@@ -2178,8 +2187,12 @@ See the error message:
 * $1 is a date and time
 * $2 is a date (optional)
 * $3 is a time (optional)',
-'revisionasof' => 'Used on a difference page when comparing different versions of a page or when viewing an non-current version of a page. See {{msg-mw|Currentrev-asof}} for the message for the current version.
-* $1 - the date/time at which the revision was created. Example: "\'\'Revision as of 14:44, 24 January 2008\'\'".
+'revisionasof' => 'Used on a difference page when comparing different versions of a page or when viewing an non-current version of a page.
+
+See {{msg-mw|Currentrev-asof}} for the message for the current version.
+
+Parameters:
+* $1 - the date/time at which the revision was created. e.g. "\'\'Revision as of 14:44, 24 January 2008\'\'".
 * $2 - the date at which the revision was created
 * $3 - the time at which the revision was created',
 'revision-info' => 'Appears just below the page title when an old version of the page is being viewed.
@@ -2298,11 +2311,14 @@ Parameters:
 Parameters:
 * $1 - page title
 * $2 - number of revisions
+See also:
+* {{msg-mw|Logdelete-selected}}
 [[File:RevDelete Special-RevisionDelete (r60428).png|frame|center|Screenshot of the interface]]',
 'logdelete-selected' => '{{RevisionDelete}}
 Parameters:
-* $1 - page title
-* $2 - number of log events',
+* $1 - number of log events
+See also:
+* {{msg-mw|Revdelete-selected}}',
 'revdelete-text' => '{{RevisionDelete}}
 This is the introduction explaining the feature.',
 'revdelete-confirm' => 'This message is a part of the [[mw:RevisionDelete|RevisionDelete]] feature.
@@ -2666,8 +2682,11 @@ It is also used by Category pages (which do ''not'' use {{msg-mw|Viewprevnext}})
 
 {{Identical|Previous}}",
 'nextn' => "This is part of the navigation message on the top and bottom of Special pages (lists of things in alphabetical order, i.e. the '[[Special:Categories]]' page), where it is used as the second argument of {{msg-mw|Viewprevnext}}.
+
 It is also used by Category pages (which do ''not'' use {{msg-mw|Viewprevnext}}).
-$1 is the number of items shown per page. It is not used when $1 is zero; not sure what happens when $1 is one.
+
+Parameters:
+* $1 - the number of items shown per page. It is not used when $1 is zero; not sure what happens when $1 is one.
 [[Special:WhatLinksHere|Whatlinkshere]] pages use {{msg-mw|Whatlinkshere-next}} instead (still as an argument to {{msg-mw|Viewprevnext}}).
 
 {{Identical|Next $1}}",
@@ -2762,12 +2781,13 @@ See also:
 * $1 - number of members in this category. $1 is equal to $2+$3.
 * $2 - number of subcategories
 * $3 - number of files',
-'search-result-score' => 'Shown per line of a [[Special:Search|search result]].
-
-$1 is the relevance of this result in per cent.
-
+'search-result-score' => 'Shown per line of a [[Special:Search|search result]]. Parameters:
+* $1 - the relevance of this result in percent
 {{Identical|Relevance: $1%}}',
-'search-redirect' => "\$1 is a link to the redirect to the page (so, \$1 is the page that the search result is redirected '''from'''). \"Redirect\" is a noun here, not a verb.",
+'search-redirect' => "\"Redirect\" is a noun here, not a verb.
+
+Parameters:
+* \$1 - a link to the redirect to the page (so, \$1 is the page that the search result is redirected '''from''')",
 'search-section' => 'This text will be shown on the search result listing after the page title of a result if the search algorithm thinks that section is more relevant than the rest of the page. $1 is a section title.
 {{Identical|Section}}',
 'search-suggest' => 'Used for "Did you mean" suggestions:
@@ -3428,8 +3448,10 @@ This action allows editing of all of the "user rights", not just the rights of t
 
 # Recent changes
 'nchanges' => 'Appears on enhanced watchlist and recent changes when page has more than one change on given date, linking to a diff of the changes.
-$1 is the number of changes on that day (2 or more).
-Three messages are shown side-by-side: ({{msg-mw|nchanges}} | {{msg-mw|enhancedrc-since-last-visit}} | {{msg-mw|enhancedrc-history}}).',
+
+Parameters:
+* $1 - the number of changes on that day (2 or more)
+Three messages are shown side-by-side: ({{msg-mw|Nchanges}} | {{msg-mw|Enhancedrc-since-last-visit}} | {{msg-mw|Enhancedrc-history}}).',
 'enhancedrc-since-last-visit' => "Appears on enhanced watchlist and recent changes when page has more than one change on given date and at least one that the user hasn't seen yet, linking to a diff of the unviewed changes.
 
 Parameters:
@@ -3531,9 +3553,11 @@ Parameters:
 'newsectionsummary' => 'Default summary when adding a new section to a page. Parameters:
 * $1 - section title',
 'rc-enhanced-expand' => 'See also:
-* {{msg-mw|Rc-enhanced-hide}}',
+* {{msg-mw|Rc-enhanced-hide}}
+{{Identical|Show details}}',
 'rc-enhanced-hide' => 'See also:
-* {{msg-mw|Rc-enhanced-expand}}',
+* {{msg-mw|Rc-enhanced-expand}}
+{{Identical|Hide details}}',
 'rc-old-title' => 'Text that shows the original title of a page, $1 is the original title text',
 
 # Recent changes linked
@@ -3678,7 +3702,8 @@ See also:
 * $2 is the MIME type of the uploaded file',
 'filetype-badmime' => 'Parameters:
 * $1 - string representing the MIME type',
-'filetype-bad-ie-mime' => '$1 will contain a mime type like <tt>image/jpeg</tt> or <tt>application/zip</tt>',
+'filetype-bad-ie-mime' => 'Parameters:
+* $1 - a mime type like <code>image/jpeg</code> or <code>application/zip</code>',
 'filetype-unwanted-type' => "Parameters:
 * $1 - the extension of the file which cannot be uploaded
 * $2 - the list of file extensions that can be uploaded (Example: ''png, gif, jpg, jpeg, ogg, pdf, svg.'')
@@ -4101,7 +4126,8 @@ A "[[:wikipedia:Front and back ends|backend]]" is a system or component that ord
 * $1 - backend name
 
 A "[[:wikipedia:Front and back ends|backend]]" is a system or component that ordinary users don\'t interact with directly and don\'t need to know about, and that is responsible for a distinct task or service - for example, a storage back-end is a generic system for storing data which other applications can use. Possible alternatives for back-end are "system" or "service", or (depending on context and language) even leave it untranslated.',
-'backend-fail-contenttype' => '$1 is a storage (file) path',
+'backend-fail-contenttype' => 'Used as fatal error message. Parameters:
+* $1 - a storage (file) path',
 'backend-fail-batchsize' => 'Error message when the limit of operations to be done at once in the file backend was reached.
 Parameters:
 * $1 - the number of operations attempted at once in this case
@@ -4336,11 +4362,10 @@ See also:
 
 Example: [[:Image:Addon-icn.png]]
 {{Identical|Thumbnail}}',
-'filehist-thumbtext' => "Shown in the file history list of a file description page.
-* '''$1''' is a time followed by a date, e.g. ''10:23, 18 april 2007''.
-* '''$2''' is the date,
-* '''$3''' is the time.
-
+'filehist-thumbtext' => "Shown in the file history list of a file description page. Parameters:
+* $1 - timestamp, localized. e.g. ''10:23, 18 april 2007''
+* $2 - (Optional) the date
+* $3 - (Optional) the time
 Example: [[wikipedia:Image:Madeleine close2.jpg]]",
 'filehist-nothumb' => 'Shown if no thumbnail is available in the file history list of a file desription page.
 
@@ -4422,15 +4447,16 @@ See also:
 Filepage-nofile and Filepage-nofile-link message deprecate {{msg-mw|Noimage}}",
 'filepage-nofile-link' => "This message appears when visiting a File page for which there's no file, if the user can upload files, and file uploads are enabled. (Otherwise, see {{msg-mw|Filepage-nofile}})
 
-$1 - URL of upload page for this file.
-
+Parameters:
+* $1 - URL of upload page for this file
 Filepage-nofile and Filepage-nofile-link message deprecate {{msg-mw|Noimage}}",
 'uploadnewversion-linktext' => 'Used on pages in the "File" namespace to update the file version.',
 'shared-repo-from' => 'This message is shown on an image description page when a duplicate of the image exists on a shared repository such as Wikimedia Commons.
 
 Example: http://test.wikipedia.org/wiki/File:Wiki.png#filelinks
 
-$1 is the name of the shared repository. On wikimedia sites, $1 is {{msg-mw|shared-repo-name-shared}}. The default value for $1 is {{msg-mw|shared-repo}}.',
+Parameters:
+* $1 - the name of the shared repository. On wikimedia sites, $1 is {{msg-mw|Shared-repo-name-shared}}. The default value for $1 is {{msg-mw|Shared-repo}}.',
 'shared-repo' => 'This message can be used as parameter <code>$1</code> in the following messages:
 * {{msg-mw|shared-repo-from}}
 * {{msg-mw|sharedupload}}
@@ -4744,7 +4770,8 @@ See also:
 'wantedpages' => '{{doc-special|WantedPages}}',
 'wantedpages-badtitle' => "Error message shown when [[Special:WantedPages]] is listing a page with a title that shouldn't exist.
 
-$1 is a page title",
+Parameters:
+* $1 - a page title",
 'wantedfiles' => '{{doc-special|WantedFiles}}',
 'wantedfiletext-cat' => 'Message displayed at top of [[special:WantedFiles]]. $1 contains the name of the tracking category for broken files (Including Category prefix). {{msg-mw|wantedfiletext-nocat}} is used if the tracking category is disabled.',
 'wantedfiletext-nocat' => 'Message displayed at top of [[special:WantedFiles]] when broken file tracking category is disabled. See {{msg-mw|wantedfiletext-cat}}.',
@@ -9327,7 +9354,9 @@ See also:
 
 Parameters:
 * $1 - truncated text',
-'autoredircomment' => 'The auto summary when making a redirect. $1 is the page where it redirects to. $2 is the first X number of characters of the redirect ($2 is usually only used when end users customize the message)',
+'autoredircomment' => 'The auto summary when making a redirect. Parameters:
+* $1 - the page where it redirects to
+* $2 - (Optional) the first X number of characters of the redirect ($2 is usually only used when end users customize the message)',
 'autosumm-new' => 'The auto summary when creating a new page. $1 are the first X number of characters of the new page.',
 
 # Size units
@@ -9806,9 +9835,14 @@ Parameters:
 'dberr-header' => 'This message does not allow any wiki nor html markup.',
 'dberr-problems' => 'This message does not allow any wiki nor html markup.',
 'dberr-again' => 'This message does not allow any wiki nor html markup.',
-'dberr-info' => 'This message does not allow any wiki nor html markup.
-* $1 - database server name',
-'dberr-info-hidden' => 'This message does not allow any wiki nor html markup.',
+'dberr-info' => 'This message does not allow any wiki nor html markup. Parameters:
+* $1 - database server name
+See also:
+* {{msg-mw|Dberr-info-hidden}} - hides database server name',
+'dberr-info-hidden' => 'This message does not allow any wiki nor html markup.
+
+See also:
+* {{msg-mw|Dberr-info}} - shows database server name',
 'dberr-usegoogle' => 'This message does not allow any wiki nor html markup.',
 'dberr-outofdate' => "{{doc-singularthey}}
 In this sentence, '''their''' indexes refers to '''Google's''' indexes. This message does not allow any wiki nor html markup.",

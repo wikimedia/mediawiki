@@ -482,17 +482,6 @@ Matatagpuan ang isang tala ng mga tamang natatanging pahina sa [[Special:Special
 # General errors
 'error' => 'Kamalian',
 'databaseerror' => 'Kamalian sa kalipunan ng datos',
-'dberrortext' => 'Naganap ang isang pagkakamali sa pag-uusisa na pampalaugnayan sa kalipunan ng datos.
-Maaaring magpahiwatig ito ng isang surot sa loob ng sopwer.
-Ang huling tinangkang pag-uusisa sa kalipunan ng datos ay:
-<blockquote><code>$1</code></blockquote>
-magmula sa loob ng tungkuling "<code>$2</code>".
-Nagbalik ang kalipunan ng dato ng kamalian na "<samp>$3: $4</samp>".',
-'dberrortextcl' => 'Nagkaroon po ng isang pagkakamali sa usisang pampalaugnayan sa kalipunan ng datos.
-Ang huling sinubukang paguusisa sa kalipunan ng datos ay:
-"$1"
-mula sa gawaing "$2".
-Ibinalik ng kalipunan ng datos ang kamaliang "$3: $4"',
 'laggedslavemode' => "'''Babala:''' Maaaring hindi naglalaman ang pahina ng mga huling dagdag.",
 'readonly' => 'Nakakandado ang kalipunan ng datos',
 'enterlockreason' => 'Maglagay ng dahilan sa pagkakandado, kasama ang taya kung kailan magtatapos ang pagkakandado',
@@ -548,7 +537,6 @@ Pakisubok na lang ulit pagkaraan ng kaunting mga minuto.",
 'editinginterface' => "'''Babala:''' Binabago mo ang isang pahinang ginagamit sa pagbibigay ng tekstong panghangganan para sa sopwer.
 Makaaapekto ang mga pagbago sa pahinang ito sa anyo ng hangganang (''interface'') pantagagamit na para sa ibang mga tagagamit sa wiking ito.
 Upang magdagag o magbago ng mga salinwika, isaaalang-alang na lang po ang paggamit ng [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], ang proyekto para sa lokalisasyon ng MediaWiki.",
-'sqlhidden' => '(nakatago ang tanong ng SQL)',
 'cascadeprotected' => 'Nakasanggalang ang pahinang ito mula sa mga pagbabago, dahil kabilang ito sa sumusunod na {{PLURAL:$1|pahinang|mga pahinang}} nakasanggalang sa pamamagitan ng binuhay na opsyong "nahuhulog" (kumakaskada):
 $2',
 'namespaceprotected' => "Wala kang pahintulot na magbago ng mga pahinang nasa ngalan-espasyong '''$1'''.",

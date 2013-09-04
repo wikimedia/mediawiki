@@ -657,16 +657,6 @@ Seba lista pelanê xasanê vêrdeyan reca kena: [[Special:SpecialPages|{{int:spe
 # General errors
 'error' => 'Xırab',
 'databaseerror' => 'Xeta serveri',
-'dberrortext' => 'Rêzê vateyê malumati de xeta bı.
-No xeta belka software ra yo.
-"<blockquote><tt>$1</tt></blockquote>.
-<tt>$2</tt>" ra pers kerdışê peyin:
-Malumatê yo ke xeta dayo "<tt>$3: $4</tt>".',
-'dberrortextcl' => 'Persê rêzê vateyê database de xeta bı.
-Persê databaseyê peyin:
-"$1"
-Fonksiyono ke şuxulyo "$2".
-Mesacê ke database dayo "$3: $4"',
 'laggedslavemode' => 'Diqet: Pel de newe vıraşteyi belka çini .',
 'readonly' => 'database kılit biyo',
 'enterlockreason' => 'Database kılit biyo',
@@ -719,7 +709,6 @@ Perse: $2',
 'editinginterface' => "'''İqaz:''' Şıma hayo yew pela ke seba nuşteyê meqalanê cayanê bırnayeyan dana, vurnenê.
 Vurnayışê na pele karberanê binan rê serpela karberi kena ke bımocno.
 Seba çarnayışi, yardımê [//translatewiki.net/wiki/Main_Page?setlang=diq translatewiki.net]i ra procêdoşkerdışi rê diqet kerên.",
-'sqlhidden' => '(SQL pers kerdışê nımıte)',
 'cascadeprotected' => 'No pel de vurnayiş qedexe biyo, çunke şıma tuşa "kademeyın" aqtif kerdo u no {{PLURAL:$1|pelo|pelo}} pawıteyo de xebıtyeno:
 $2',
 'namespaceprotected' => "No '''$1''' ca de icazetê şıma çino şıma pel rêz keri.",

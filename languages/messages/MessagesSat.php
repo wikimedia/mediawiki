@@ -328,17 +328,6 @@ Noa do noṅkanaḱ menkana je {{SITENAME}} sayeṭre beoharen sofṭower re mit
 # General errors
 'error' => 'bhul',
 'databaseerror' => 'Ḍaṭabase vul',
-'dberrortext' => 'Database query syntexre vul hoeakana.
-Sofṭoyerre jahan bag karonte noa do hoe daṛeyaḱa.
-Joto khon mucạt́ database query do tahẽkana noṅka:
-<blockquote><tt>$1</tt><blockquote>
-"<tt>$2</tt>" bhitrire tahẽna.
-Database okaṭaḱ vule em akada:"<tt>$3: $4</tt>".',
-'dberrortextcl' => 'Ḍaṭabes query sintxexṭre vul hoeakana.
-Mucạt́ ḍaṭabes query do tahẽkana:
-"$1"
-"$2" faṅson reaḱ bhitri khon.
-Ḍatabes okaṭaḱ vule kulakaḱ: "$3: $4:',
 'laggedslavemode' => "'''Sontoroḱme:''' sakamre do nahaḱ nãwãnaḱko paseć bạnuḱa.",
 'readonly' => 'Ḍaṭabes do talagea',
 'enterlockreason' => 'Cạbie reaḱ karon do cet́kana ma lạimẽ, Saõte tinre tala cạbim jhija ona okte hõ lạimẽ',
@@ -381,7 +370,6 @@ Query: $2',
 'viewsourcetext' => 'Noa sakam do am ńel ar ńamoḱaḱ ṭhạiem kopi hatao daṛeaḱa:',
 'viewyourtext' => "Am do '''Amaḱ sompadon''' noa sakam ńel arem kopi hatao daṛeaḱa:",
 'protectedinterface' => 'Noa sakam reaḱ babotko do wiki sofṭoyer reaḱ mit́ṭen inṭarfes khobore ema, onate noa do rukhiyạ doho hoeakana.',
-'sqlhidden' => '(SQL query do ukure menaḱa)',
 'cascadeprotected' => 'Noa sakam do sompadon khon rukhiyạre menaḱa, karon sakam do latar reaḱ {{PLURAL:$1 gan sakam reaḱ gan sakam reaḱ}} bhitrire, oka sakam do (cascading) te rukhiyạ menaḱa:
 $2',
 'namespaceprotected' => "Amaḱ do sakamko joṛao lạgit́te ạidạri banuḱ tama '''$1''' ńutumjayga.",

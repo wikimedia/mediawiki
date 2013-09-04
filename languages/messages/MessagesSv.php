@@ -656,17 +656,6 @@ I [[Special:SpecialPages|listan över specialsidor]] kan du se vilka specialsido
 # General errors
 'error' => 'Fel',
 'databaseerror' => 'Databasfel',
-'dberrortext' => 'Ett syntaxfel i databasfrågan har uppstått.
-Detta kan indikera en bugg i mjukvaran.
-Den senaste databasfrågan att köras var:
-<blockquote><tt>$1</tt></blockquote>
-från funktionen "<tt>$2</tt>".
-Databasen returnerade felet "<tt>$3: $4</tt>".',
-'dberrortextcl' => 'Det har uppstått ett syntaxfel i databassökningen.
-Senaste sökbegrepp var:
-"$1"
-från funktionen "$2".
-Databasen svarade med felmeddelandet "$3: $4"',
 'laggedslavemode' => 'Varning: Sidan kan sakna de senaste uppdateringarna.',
 'readonly' => 'Databasen är skrivskyddad',
 'enterlockreason' => 'Ange varför sidan skrivskyddats, och ge en uppskattning av hur länge skrivskyddet bör behållas.',
@@ -720,7 +709,6 @@ För att lägga till eller ändra översättningar för alla wikis, var god anv�
 'editinginterface' => "'''Varning:''' Du redigerar en sida som används till texten i gränssnittet.
 Ändringar på denna sida kommer att påverka gränssnittets utseende för alla användare på denna wiki.
 För att lägga till eller ändra översättningar för alla wikis, var god använd [//translatewiki.net/ translatewiki.net], översättningsprojektet för MediaWiki.",
-'sqlhidden' => '(gömd SQL-förfrågan)',
 'cascadeprotected' => 'Den här sidan har skyddats från redigering eftersom den inkluderas på följande {{PLURAL:$1|sida|sidor}} som skrivskyddats med "kaskaderande skydd":
 $2',
 'namespaceprotected' => "Du har inte behörighet att redigera sidor i namnrymden '''$1'''.",

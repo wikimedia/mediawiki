@@ -439,17 +439,6 @@ Kaca husus anu bener bisa ditempo béréndélanana dina [[Special:SpecialPages|{
 # General errors
 'error' => 'Kasalahan',
 'databaseerror' => 'Kasalahan gudang data',
-'dberrortext' => 'Éror rumpaka kueri pangkalan data.
-Ieu bisa jadi alatan ayana bug dina sopwérna.
-Kueri pangkalan data nu panungtung nyaéta:
-<blockquote><tt>$1</tt></blockquote>
-ti antara fungsi "<tt>$2</tt>".
-Éror ti pangkalan data "<tt>$3: $4</tt>".',
-'dberrortextcl' => 'Éror rumpaka kueri pangkalan data.
-Kueri pangkalan data nu panungtung nyaéta:
-"$1"
-ti antara fungsi "$2".
-Éror ti pangkalan data "$3: $4".',
 'laggedslavemode' => 'Awas: kandungan kaca bisa baé teu mutahir.',
 'readonly' => 'pangkalan data dikonci',
 'enterlockreason' => 'Asupkeun alesan pikeun ngonci, kaasup kira-kira iraha konci ieu rék dibuka',
@@ -498,7 +487,6 @@ Sigana geus dihapus ku nu séjén.',
 'editinginterface' => "'''Awas:''' Anjeun keur ngédit kaca nu dipaké pikeun nyadiakeun téks antarmuka pikeun sopwérna.
 Parobahan kana ieu kaca bakal mangaruhan pidangan antarmuka pikeun pamaké séjén.
 Pikeun alihbasa, mangga sumping ka [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], proyék lokalisasi MediaWiki.",
-'sqlhidden' => '(Pamenta SQL disumputkeun)',
 'cascadeprotected' => 'Kaca ieu geus dikonci ti éditan alatan disartakeun di {{PLURAL:$1|kaca|kaca-kaca}} katut anu geus dikonci kalawan pilihan "runtun": $2',
 'namespaceprotected' => "Anjeun teu ngabogaan hak pikeun ngédit kaca di ngaranspasi '''$1'''.",
 'customcssprotected' => 'Anjeun teu teu diwenangkeun pikeun ngédit ieu kaca CSS, sabab ngandung setélan pribadi kontributor séjén.',

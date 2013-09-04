@@ -455,11 +455,6 @@ Pro indice paginarum specialum validarum, vide [[Special:SpecialPages|{{int:spec
 # General errors
 'error' => 'Erratum',
 'databaseerror' => 'Erratum in basi datorum',
-'dberrortextcl' => 'Erratum syntacticum basis datorum accidit.
-Inquisitio basis datorum ultime apparata erat:
-"$1"
-ex functionis "$2".
-Basis datorum erratum reddidit "$3: $4"',
 'readonly' => 'Basis datorum obstructa',
 'missingarticle-rev' => '(numerus emendationis: $1)',
 'missingarticle-diff' => '(Diss: $1, $2)',
@@ -484,7 +479,6 @@ Inquisitio: $2',
 'viewsourcetext' => 'Fontem videas et exscribeas:',
 'protectedinterface' => 'Haec pagina dat textum interfaciei pro logiciali, et est protecta ad vandalismum vetandum.',
 'editinginterface' => "'''Caveat censor:''' Emendas iam paginam quae textum interfaciei logicialem dat. Mutationes vultum {{grammar:genitive|{{SITENAME}}}} omnibus usoribus afficient. In nuntia MediaWiki vertendo, quaesumus te uti [//translatewiki.net/wiki/Main_Page?setlang=la translatewiki.net].",
-'sqlhidden' => '(inquisitio SQL celata)',
 'namespaceprotected' => "Tibi non licet paginas spatii nominalis '''$1''' recensere.",
 'ns-specialprotected' => 'Paginae speciales recenseri non possunt.',
 'titleprotected' => 'Hic titulus protectus est ab usore [[User:$1|$1]] ne creetur.
