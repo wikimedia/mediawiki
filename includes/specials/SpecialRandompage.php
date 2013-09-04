@@ -64,6 +64,7 @@ class RandomPage extends SpecialPage {
 
 		if ( is_null( $title ) ) {
 			$this->setHeaders();
+			// Message: randompage-nopages, randomredirect-nopages
 			$this->getOutput()->addWikiMsg( strtolower( $this->getName() ) . '-nopages',
 				$this->getNsList(), count( $this->namespaces ) );
 
