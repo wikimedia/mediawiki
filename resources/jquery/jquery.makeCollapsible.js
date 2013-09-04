@@ -75,10 +75,10 @@
 					$containers.hide();
 					hookCallback();
 				} else {
-					$containers.stop( true, true ).fadeOut( hookCallback );
+					$.when( $containers.stop( true, true ).fadeOut() ).then( hookCallback );
 				}
 			} else {
-				$containers.stop( true, true ).fadeIn( hookCallback );
+				$.when( $containers.stop( true, true ).fadeIn() ).then( hookCallback );
 			}
 
 		} else if ( !options.plainMode && ( $collapsible.is( 'ul' ) || $collapsible.is( 'ol' ) ) ) {
@@ -94,10 +94,10 @@
 					$containers.hide();
 					hookCallback();
 				} else {
-					$containers.stop( true, true ).slideUp( hookCallback );
+					$.when( $containers.stop( true, true ).slideUp() ).then( hookCallback );
 				}
 			} else {
-				$containers.stop( true, true ).slideDown( hookCallback );
+				$.when( $containers.stop( true, true ).slideDown() ).then( hookCallback );
 			}
 
 		} else {
@@ -111,10 +111,10 @@
 						$collapsibleContent.hide();
 						hookCallback();
 					} else {
-						$collapsibleContent.slideUp( hookCallback );
+						$.when( $collapsibleContent.slideUp() ).then( hookCallback );
 					}
 				} else {
-					$collapsibleContent.slideDown( hookCallback );
+					$.when( $collapsibleContent.slideDown() ).then( hookCallback );
 				}
 
 			// Otherwise assume this is a customcollapse with a remote toggle
@@ -126,16 +126,16 @@
 						hookCallback();
 					} else {
 						if ( $collapsible.is( 'tr' ) || $collapsible.is( 'td' ) || $collapsible.is( 'th' ) ) {
-							$collapsible.fadeOut( hookCallback );
+							$.when( $collapsible.fadeOut() ).then( hookCallback );
 						} else {
-							$collapsible.slideUp( hookCallback );
+							$.when( $collapsible.slideUp() ).then( hookCallback );
 						}
 					}
 				} else {
 					if ( $collapsible.is( 'tr' ) || $collapsible.is( 'td' ) || $collapsible.is( 'th' ) ) {
-						$collapsible.fadeIn( hookCallback );
+						$.when( $collapsible.fadeIn() ).then( hookCallback );
 					} else {
-						$collapsible.slideDown( hookCallback );
+						$.when( $collapsible.slideDown() ).then( hookCallback );
 					}
 				}
 			}
