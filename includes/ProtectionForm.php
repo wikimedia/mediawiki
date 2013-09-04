@@ -605,6 +605,7 @@ class ProtectionForm {
 		if ( $permission == '' ) {
 			return wfMessage( 'protect-default' )->text();
 		} else {
+			// Messages: protect-level-autoconfirmed, protect-level-sysop
 			$msg = wfMessage( "protect-level-{$permission}" );
 			if ( $msg->exists() ) {
 				return $msg->text();

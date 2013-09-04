@@ -357,7 +357,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		$UserAllowed = true;
 
 		if ( $this->typeName == 'logging' ) {
-			$this->getOutput()->addWikiMsg( 'logdelete-selected', $this->getLanguage()->formatNum( count( $this->ids ) ) );
+			$this->getOutput()->addWikiMsg( 'logdelete-selected', count( $this->ids ) );
 		} else {
 			$this->getOutput()->addWikiMsg( 'revdelete-selected',
 				$this->targetObj->getPrefixedText(), count( $this->ids ) );
