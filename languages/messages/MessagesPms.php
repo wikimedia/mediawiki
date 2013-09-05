@@ -579,8 +579,8 @@ S'a decid ëd butelo, a sarà dovrà për dé a l'utent ël mérit ëd sò trava
 # Change password dialog
 'resetpass' => "Cangé 'd ciav",
 'resetpass_announce' => "A l'é rintrà ant ël sistema con na ciav provisòria mandà për pòsta eletrònica. Për podèj livré la procedura a l'ha da butesse na ciav neuva ambelessì:",
-'resetpass_text' => '<!-- Gionté dël test ambelessì -->',
-'resetpass_header' => 'Cambia la ciav dël cont',
+'resetpass_text' => '<!-- Gionté ël test ambelessì -->',
+'resetpass_header' => 'Cangé la ciav dël cont',
 'oldpassword' => 'Veja ciav',
 'newpassword' => 'Neuva ciav',
 'retypenew' => 'Che a scriva torna soa neuva ciav',

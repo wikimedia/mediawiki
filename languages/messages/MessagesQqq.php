@@ -5347,9 +5347,14 @@ See also:
 * $1 - the page title
 * $2 - the page editor
 * $3 - page URL',
-'enotif_lastvisited' => '$1 is a URL address.',
-'enotif_lastdiff' => 'E-mail notification text to the latest page differences. Parameters:
-* $1 is a link to a diff, shown as a plain link.',
+'enotif_lastvisited' => 'Parameters:
+* $1 - a URL which points to diff
+See also:
+* {{msg-mw|Enotif lastdiff}}',
+'enotif_lastdiff' => 'Email notification text to the latest page differences. Parameters:
+* $1 - a link which points to a diff, shown as a plain link
+See also:
+* {{msg-mw|Enotif lastvisited}}',
 'enotif_anon_editor' => 'User name in an e-mail notification when referring to an anonymous user. Parameters:
 * $1 is the anonymous user name (i.e. an IP address).',
 'enotif_body' => 'Text of a notification e-mail sent when a watched page has been edited or deleted.[[File:Screenshot_MediaWiki_e-mail_notifier.PNG|150px|right]]
@@ -5403,12 +5408,15 @@ Parameters:
 
 Parameters:
 * $1 - content before blanking',
-'delete-confirm' => 'The title of the form to delete a page.
-
-$1 = the name of the page',
+'delete-confirm' => 'Used as page title. Parameters:
+* $1 - the page title',
 'delete-legend' => '{{Identical|Delete}}',
 'historywarning' => 'Warning when about to delete a page that has history.
-$1 is the <b>approximate</b> number of revisions that the page has, the message should not claim to give an exact count.',
+
+Followed by a link which points to the history page.
+
+Parameters:
+* $1 - the <b>approximate</b> number of revisions that the page has, the message should not claim to give an exact count',
 'confirmdeletetext' => 'Introduction shown when deleting a page.',
 'actioncomplete' => 'Used in several situations, for example when a page has been deleted.
 
@@ -6032,14 +6040,22 @@ Displayed in [[Special:WhatLinksHere]] (see [[Special:WhatLinksHere/Template:New
 {{Identical|Transclusion}}',
 'isimage' => 'This message is displayed on [[Special:WhatLinksHere]] for images. It means that the image is used on the page (as opposed to just being linked to like an non-image page).',
 'whatlinkshere-prev' => 'This is part of the navigation message on the top and bottom of Whatlinkshere pages, where it is used as the first argument of {{msg-mw|Viewprevnext}}.
-$1 is the number of items shown per page. It is not used when $1 is zero; not sure what happens when $1 is one.
+
+Parameters:
+* $1 - the number of items shown per page. It is not used when $1 is zero; not sure what happens when $1 is one.
 Special pages use {{msg-mw|Prevn}} instead (still as an argument to {{msg-mw|Viewprevnext}}).
 
+See also:
+* {{msg-mw|Whatlinkshere-next}}
 {{Identical|Previous}}',
 'whatlinkshere-next' => 'This is part of the navigation message on the top and bottom of Whatlinkshere pages, where it is used as the second argument of {{msg-mw|Viewprevnext}}.
-$1 is the number of items shown per page. It is not used when $1 is zero; not sure what happens when $1 is one.
+
+Parameters:
+* $1 - the number of items shown per page. It is not used when $1 is zero; not sure what happens when $1 is one.
 Special pages use {{msg-mw|Nextn}} instead (still as an argument to {{msg-mw|Viewprevnext}}).
 
+See also:
+* {{msg-mw|Whatlinkshere-prev}}
 {{Identical|Next}}',
 'whatlinkshere-links' => 'Used on [[Special:WhatLinksHere]]. It is a link to the WhatLinksHere page of that page.
 
@@ -8278,7 +8294,10 @@ The sentences are for explanation only and are not shown to the user.',
 'metadata-langitem' => '{{optional}}
 This is used for constructing the list of translations when a metadata property is translated into multiple languages.
 
-$1 is the value of the property (in one language), $2 is the language name that this translation is for (or language code if language name cannot be determined), $3 is the language code.',
+Parameters:
+* $1 - the value of the property (in one language)
+* $2 - the language name that this translation is for (or language code if language name cannot be determined)
+* $3 - (Unused) the language code',
 'metadata-langitem-default' => '{{optional}}
 Similar to "metadata-langitem" but for the case where a multilingual property has a default specified that does not specify what language the default is in. $1 is the value of the property.',
 
@@ -8861,7 +8880,8 @@ See also:
 'exif-exposureprogram-8' => "One of the exposure program types in the table of metadata on image description pages. See the Wikipedia article '[[w:Mode_dial|Mode dial]]' for an explanation.
 {{Related|Exif-exposureprogram}}",
 
-'exif-subjectdistance-value' => '$1 is a distance measured in metres. The value can, and usually does, include decimal places.',
+'exif-subjectdistance-value' => 'Parameters:
+* $1 - a distance measured in meters. The value can, and usually does, include decimal places.',
 
 'exif-meteringmode-0' => '{{Related|Exif-meteringmode}}
 {{Identical|Unknown}}',
@@ -9741,9 +9761,10 @@ Parameters:
 * $2 - height of the file
 * $3 - File size
 * $4 - MIME type',
-'fileduplicatesearch-result-1' => 'Result line after the list of files of [[Special:FileDuplicateSearch]]
+'fileduplicatesearch-result-1' => 'Result line after the list of files of [[Special:FileDuplicateSearch]].
 
-$1 is the name of the requested file.',
+Parameters:
+* $1 - the name of the requested file',
 'fileduplicatesearch-result-n' => 'Result line after the list of files of [[Special:FileDuplicateSearch]]
 
 * $1 is the name of the requested file.

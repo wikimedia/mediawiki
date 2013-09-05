@@ -16928,6 +16928,7 @@ Depois de terminar o passo anterior, pode '''[$2 entrar na wiki]'''.",
 );
 
 /** Brazilian Portuguese (português do Brasil)
+ * @author Cainamarques
  * @author Giro720
  * @author Gustavo
  * @author Luckas
@@ -17036,7 +17037,8 @@ Se você não pretende usar um logotipo, deixe este campo em branco.', # Fuzzy
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Lista de opções de configuração]
 * [//www.mediawiki.org/wiki/Manual:FAQ FAQ do MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de discussão com avisos de novas versões do MediaWiki]', # Fuzzy
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de discussão com avisos de novas versões do MediaWiki]
+* [//www.mediawiki.org/wiki/Localisation#Translation_resources Traduza o MediaWiki para seu idioma]',
 );
 
 /** Quechua (Runa Simi)

@@ -1323,11 +1323,13 @@ Hindi ito maibabalik sa dating gawi.',
 Pakisuri ang mga tatak ng HTML.',
 'badsiglength' => 'Napakahaba ng iyong lagda.
 Dapat na mas mababa kaysa $1 {{PLURAL:$1|panitik|mga panitik}}.',
-'yourgender' => 'Kasarian:',
-'gender-unknown' => 'Hindi tinukoy',
-'gender-male' => 'Lalaki',
-'gender-female' => 'Babae',
-'prefs-help-gender' => 'Maaaring wala nito: ginagamit para sa pagbanggit ng tamang kasarian sa pamamagitan ng sopwer. Magging pangmadla ang kabatiran ito.',
+'yourgender' => 'Sa anong paraan nais mo bang ilarawan ang sarili mo?',
+'gender-unknown' => 'Hindi ko nais itukoy',
+'gender-male' => 'Binabago ko ang mga pahinang wiki bilang lalaki',
+'gender-female' => 'Binabago ko ang mga pahinang wiki bilang babae',
+'prefs-help-gender' => 'Opsiyonal ang pagtatakda ng kagustuhang ito.
+Ginagamit ng software ang halagang ito upang tukuyan ka at upang mailarawan ka sa iba gamit ang akmang kasariang pambalarila.
+Isasapubliko ang impormasyong ito.',
 'email' => 'E-liham',
 'prefs-help-realname' => "Opsyonal ('di-talaga kailangan) ang tunay na pangalan.
 Kung pipiliin mong ibigay ito, gagamitin ito para mabigyan ka ng pagkilala para iyong mga ginawa.",

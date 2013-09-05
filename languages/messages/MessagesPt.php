@@ -650,6 +650,7 @@ Encontra uma lista das páginas especiais válidas em [[Special:SpecialPages|{{i
 # General errors
 'error' => 'Erro',
 'databaseerror' => 'Erro na base de dados',
+'databaseerror-error' => 'Erro: $1',
 'laggedslavemode' => "'''Aviso:''' A página pode não conter as atualizações mais recentes.",
 'readonly' => 'Base de dados bloqueada (limitada a leituras)',
 'enterlockreason' => 'Introduza um motivo para bloquear, incluindo uma estimativa de quando será desbloqueada',

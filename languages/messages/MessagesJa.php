@@ -2620,7 +2620,7 @@ $UNWATCHURL
 'excontentauthor' => '内容:「$1」(投稿者は「[[Special:Contributions/$2|$2]]」のみ)',
 'exbeforeblank' => '白紙化前の内容:「$1」',
 'exblank' => '白紙ページ',
-'delete-confirm' => '「$1」を削除',
+'delete-confirm' => '「$1」の削除',
 'delete-legend' => '削除',
 'historywarning' => "'''警告:''' 削除しようとしているページには、約$1版の履歴があります:",
 'confirmdeletetext' => 'ページをすべての履歴とともに削除しようとしています。

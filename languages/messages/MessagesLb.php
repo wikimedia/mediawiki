@@ -191,7 +191,7 @@ $messages = array(
 'tog-hidepatrolled' => 'Iwwerkuckten Ännerungen an de "Rezenten Ännerungen" verstoppen',
 'tog-newpageshidepatrolled' => 'Iwwerkuckte Säiten op der Lëscht vun den "Neie Säite" verstoppen',
 'tog-extendwatchlist' => 'Iwwerwaachungslëscht op all Ännerungen ausbreeden, net nëmmen op déi rezentst',
-'tog-usenewrc' => 'Erweidert rezent Ännerunge benotzen (verlaangt JavaScript)',
+'tog-usenewrc' => 'Rezent Ännerunge an Iwwerwaachungslëscht pro Säit weisen',
 'tog-numberheadings' => 'Iwwerschrëften automatesch numeréieren',
 'tog-showtoolbar' => 'Ännerungstoolbar weisen',
 'tog-editondblclick' => 'Säite mat Duebelklick änneren',
@@ -864,11 +864,11 @@ D'Spär gouf vum \$1 gemaach. Als Grond gouf ''\$2'' uginn.
 Dir kënnt den/d' \$1 kontaktéieren oder ee vun den aneren [[{{MediaWiki:Grouppage-sysop}}|Administrateure]] fir iwwer d'Spär ze schwätzen.
 
 Dëst sollt Der besonnesch maachen, wann Der d'Gefill hutt, datt de Grond fir d'Spären net bei Iech läit.
-D'Ursaach dofir ass an deem Fall, datt der eng dynamesch IP hutt, iwwert en Access-Provider, iwwer deen och aner Leit fueren.
+D'Ursaach dofir ass an deem Fall, datt der eng dynamesch IP hutt, iwwer en Access-Provider, iwwer deen och aner Leit fueren.
 Aus deem Grond ass et recommandéiert, sech e Benotzernumm zouzeleeën, fir all Mëssverständnes z'evitéieren.
 
 Dir kënnt d'Funktioun \"Dësem Benotzer eng E-Mail schécken\" nëmme benotzen, wann Dir eng gëlteg E-Mail Adress bei Ären [[Special:Preferences|Astellungen]] aginn hutt.
-Är aktuell-IP Adress ass \$3 an d'Nummer vun der Spär ass #\$5.
+Är aktuell IP-Adress ass \$3 an d'Nummer vun der Spär ass #\$5.
 Schreift all dës Informatioune w.e.g. bei all Ufro derbäi.",
 'autoblockedtext' => 'Är IP-Adress gouf automatesch gespaart, well se vun engem anere Benotzer gebraucht gouf, an dee vum $1 gespaart gouf.
 De Grond dofir war:
@@ -1625,7 +1625,7 @@ Dës Informatioun ass ëffentlech.",
 'rc-change-size' => '$1 {{PLURAL:$1|Byte|Bytes}}',
 'rc-change-size-new' => '$1 {{PLURAL:$1|Byte|Bytes}} no der Ännerung',
 'newsectionsummary' => 'Neien Abschnitt /* $1 */',
-'rc-enhanced-expand' => 'Detailer weisen (erfuedert JavaScript)',
+'rc-enhanced-expand' => 'Detailer weisen',
 'rc-enhanced-hide' => 'Detailer verstoppen',
 'rc-old-title' => 'original als "$1" ugeluecht',
 
@@ -1999,7 +1999,7 @@ Dir musst ëmmer de Medien- a Subtyp aginn: z. Bsp. <code>image/jpeg</code>.",
 'statistics' => 'Statistik',
 'statistics-header-pages' => 'Säitestatistiken',
 'statistics-header-edits' => 'Statistik vun den Ännerungen',
-'statistics-header-views' => "Statistiken iwwert d'Visiten",
+'statistics-header-views' => "Statistiken iwwer d'Visitten",
 'statistics-header-users' => 'Benotzerstatistik',
 'statistics-header-hooks' => 'Aner Statistiken',
 'statistics-articles' => 'Säite mat Inhalt',
@@ -3023,7 +3023,7 @@ Erlaabt et e Grond an de Resumé derbäizesetzen.',
 'siteusers' => '{{SITENAME}} {{PLURAL:$2|Benotzer|Benotzer}} $1',
 'anonusers' => '{{PLURAL:$2|Anonyme(n)|Anonym}} {{SITENAME}}-Benotzer $1',
 'creditspage' => 'Quellen',
-'nocredits' => "Fir dës Säit si keng Informatiounen iwwert d'Mataarbechter vun der Säit disponibel.",
+'nocredits' => "Fir dës Säit si keng Informatiounen iwwer d'Mataarbechter vun der Säit disponibel.",
 
 # Spam protection
 'spamprotectiontitle' => 'Spamfilter',
@@ -3068,7 +3068,7 @@ Dëst wahrscheinlech duerch en externe Link den op der schwaarzer Lëscht (black
 'pageinfo-hidden-categories' => 'Verstoppte {{PLURAL:$1|Kategorie|Kategorien}} ($1)',
 'pageinfo-templates' => 'Agebonne {{PLURAL:$1|Schabloun|Schabloune}} ($1)',
 'pageinfo-transclusions' => 'Agebonnen {{PLURAL:$1|an eng Säit|a(n) $1 Säiten}}',
-'pageinfo-toolboxlink' => "Informatiounen iwwert d'Säit",
+'pageinfo-toolboxlink' => "Informatiounen iwwer d'Säit",
 'pageinfo-redirectsto' => 'Viruleedung op',
 'pageinfo-redirectsto-info' => 'Informatioun',
 'pageinfo-contentpage' => 'Als Säit mat Inhalt gezielt',
@@ -3866,6 +3866,7 @@ Dir misst eng [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie vun der GNU General Public
 'dberr-problems' => 'Pardon! Dëse Site huet technesch Schwieregkeeten.',
 'dberr-again' => 'Versicht e puer Minutten ze waarden an dann nei ze lueden.',
 'dberr-info' => '(Den Datebank-Server kann net erreecht ginn: $1)',
+'dberr-info-hidden' => '(Den Datebank-Server kann net erreecht ginn)',
 'dberr-usegoogle' => 'An der Tëschenzäit kënnt Dir probéiere mam Google ze sichen.',
 'dberr-outofdate' => 'Denkt drunn, datt de Sichindex vun eisen Inhalte méiglecherweis net aktuell ass.',
 'dberr-cachederror' => 'Dëst ass eng tëschegespäichert Kopie vun der gefroter Säit, a si kann eventuell net aktuell sinn.',
@@ -3876,7 +3877,7 @@ Dir misst eng [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie vun der GNU General Public
 'htmlform-int-invalid' => 'De Wäert deen Dir aginn hutt ass keng ganz Zuel.',
 'htmlform-float-invalid' => 'De Wäert deen Dir uginn hutt ass keng Zuel.',
 'htmlform-int-toolow' => 'De Wäert deen Dir uginn hutt ass ënnert dem Minimum vu(n) $1',
-'htmlform-int-toohigh' => 'De Wäert deen Dir uginn hutt ass iwwert dem Maximum vu(n) $1',
+'htmlform-int-toohigh' => 'De Wäert deen Dir uginn hutt ass iwwer dem Maximum vu(n) $1',
 'htmlform-required' => 'Dëse Wäert ass verlaangt',
 'htmlform-submit' => 'Späicheren',
 'htmlform-reset' => 'Ännerungen zrécksetzen',

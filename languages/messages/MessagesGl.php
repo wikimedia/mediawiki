@@ -749,7 +749,7 @@ Por favor, habilíteas e inténteo de novo.',
 'nocookiesfornew' => 'Non se creou a conta de usuario porque non puidemos confirmar a súa orixe.
 Asegúrese de que ten as cookies habilitadas, volva cargar a páxina e inténteo de novo.',
 'noname' => 'Non especificou un nome de usuario válido.',
-'loginsuccesstitle' => 'Acceso exitoso',
+'loginsuccesstitle' => 'Accedeu correctamente',
 'loginsuccess' => "'''Accedeu ao sistema {{SITENAME}} como \"\$1\".'''",
 'nosuchuser' => 'Non existe ningún usuario chamado "$1".
 Os nomes de usuario diferencian entre maiúsculas e minúsculas.
@@ -1484,7 +1484,7 @@ Este cambio non se poderá desfacer.',
 'badsig' => 'Sinatura non válida; comprobe o código HTML utilizado.',
 'badsiglength' => 'A súa sinatura é demasiado longa.
 Ha de ter menos {{PLURAL:$1|dun carácter|de $1 caracteres}}.',
-'yourgender' => 'Como prefire describirse?',
+'yourgender' => 'Cal das seguintes oracións referidas a vostede é a máis axeitada?',
 'gender-unknown' => 'Prefiro non indicalo',
 'gender-male' => 'El edita as páxinas do wiki',
 'gender-female' => 'Ela edita as páxinas do wiki',
@@ -1852,10 +1852,10 @@ Non están permitidas as cargas de ficheiros Java, dado que poden causar restric
 Debe comprobar o $1 antes de proceder a cargalo outra vez.',
 'filename-bad-prefix' => "O nome do ficheiro que está cargando comeza con '''\"\$1\"''', que é un típico nome non descritivo asignado automaticamente polas cámaras dixitais.
 Por favor, escolla un nome máis descritivo para o seu ficheiro.",
-'filename-prefix-blacklist' => ' #<!-- deixe esta liña exactamente como está --> <pre>
+'filename-prefix-blacklist' => ' #<!-- Deixe esta liña tal e como está --> <pre>
 # A sintaxe é a seguinte:
-#   * Todo o que estea desde o carácter "#" até o final da liña é un comentario
-#   * Cada liña que non está en branco é un prefixo para os nomes típicos dos ficheiros asignados automaticamente polas cámaras dixitais
+#   * Todo o que vaia despois dun carácter "#" ata o final da liña é un comentario
+#   * Toda liña que non estea en branco é un prefixo para os nomes típicos dos ficheiros asignados automaticamente polas cámaras dixitais
 CIMG # Casio
 DSC_ # Nikon
 DSCF # Fuji
@@ -1864,8 +1864,8 @@ DUW # algúns teléfonos móbiles
 IMG # xenérico
 JD # Jenoptik
 MGP # Pentax
-PICT # varias
- #</pre> <!-- deixe esta liña exactamente como está -->',
+PICT # varios
+ #</pre> <!-- Deixe esta liña tal e como está -->',
 'upload-success-subj' => 'A carga realizouse correctamente',
 'upload-success-msg' => 'A súa carga desde [$2] rematou correctamente e está dispoñible aquí: [[:{{ns:file}}:$1]]',
 'upload-failure-subj' => 'Problema ao cargar',
@@ -2734,7 +2734,7 @@ Explique a razón específica do bloqueo (por exemplo, citando as páxinas concr
 'ipb-change-block' => 'Volver bloquear o usuario con estas configuracións',
 'ipb-confirm' => 'Confirmar o bloqueo',
 'badipaddress' => 'O enderezo IP non é válido',
-'blockipsuccesssub' => 'Bloqueo exitoso',
+'blockipsuccesssub' => 'O bloqueo realizouse correctamente',
 'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] foi {{GENDER:$1|bloqueado|bloqueada}}.<br />
 Olle a [[Special:BlockList|lista de bloqueos]] para revisalo.',
 'ipb-blockingself' => 'Está a piques de se bloquear! Está seguro de querer facelo?',

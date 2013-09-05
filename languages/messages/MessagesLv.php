@@ -9,6 +9,7 @@
  *
  * @author Admresdeserv.
  * @author Dark Eagle
+ * @author Edgars2007
  * @author FnTmLV
  * @author Geimeris
  * @author Geitost
@@ -1002,7 +1003,7 @@ Pagaidām vari meklēt, izmantojot Google vai Yahoo.
 
 # Preferences page
 'preferences' => 'Izvēles',
-'mypreferences' => 'Iestatījumi',
+'mypreferences' => 'Izvēles',
 'prefs-edits' => 'Izmaiņu skaits:',
 'prefsnologin' => 'Neesi iegājis',
 'prefsnologintext' => 'Tev jābūt <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} iegājušam]</span>, lai mainītu lietotāja izvēles.',

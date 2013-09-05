@@ -333,8 +333,8 @@ $messages = array(
 'tog-extendwatchlist' => 'Etendi la atentaron por montri ĉiujn ŝanĝojn, ne nur la plej lastajn',
 'tog-usenewrc' => 'Grupigi ŝanĝoj laŭ paĝo en "Lastaj ŝanĝoj" kaj "Atentaro" (bezonas Ĝavaskripton)',
 'tog-numberheadings' => 'Aŭtomate numerigi sekciojn',
-'tog-showtoolbar' => 'Montri eldonilaron',
-'tog-editondblclick' => 'Redakti per duobla alklako (JavaScript)',
+'tog-showtoolbar' => 'Montri redakto-breton (per JavaScript)',
+'tog-editondblclick' => 'Redakti per duobla alklako (per JavaScript)',
 'tog-editsection' => 'Montri [redakti]-ligilojn por sekcioj',
 'tog-editsectiononrightclick' => 'Ŝalti sekcian redaktadon per dekstra musklako de sekciaj titoloj (kun JavaScript)',
 'tog-showtoc' => 'Montri enhavliston (por paĝoj kun pli ol 3 sekcioj)',
@@ -354,7 +354,7 @@ $messages = array(
 'tog-shownumberswatching' => 'Montri la nombron da priatentaj uzantoj',
 'tog-oldsig' => 'Ekzistanta subskribo:',
 'tog-fancysig' => 'Trakti subskribon kiel vikitekston (sen aŭtomata ligo)',
-'tog-uselivepreview' => 'Uzi tujan antaŭrigardon (ĜavaSkripto) (Eksperimenta)',
+'tog-uselivepreview' => 'Uzi tujan antaŭrigardon (per ĜavaSkripto) (Eksperimenta)',
 'tog-forceeditsummary' => 'Averti min kiam mi konservas malplenan redaktoresumon',
 'tog-watchlisthideown' => 'Kaŝi miajn redaktojn de la atentaro',
 'tog-watchlisthidebots' => 'Kaŝi bot-redaktojn de la atentaro',
@@ -845,13 +845,13 @@ Enigi bone formatita adreso aŭ malplenigi tiun kampon.',
 'cannotchangeemail' => 'Kontaj retpoŝtadresoj ne povas esti ŝanĝita en ĉi tiu vikio.',
 'emaildisabled' => 'Ĉi tiu paĝaro ne povas sendi retpoŝtojn.',
 'accountcreated' => 'Konto kreita',
-'accountcreatedtext' => 'La uzanto-konto por $1 estas kreita.',
+'accountcreatedtext' => 'La uzanto-konto por [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|diskuto]])  estas kreita.',
 'createaccount-title' => 'Konto-kreado por {{SITENAME}}',
 'createaccount-text' => 'Iu kreis konton por via retadreso en {{SITENAME}} ($4) nomata "$2", kun pasvorto "$3". Vi ensalutu kaj ŝanĝu vian pasvorton nun.
 
 Vi povas ignori ĉi mesaĝon, se ĉi konto estis kreita erare.',
 'usernamehasherror' => 'Salutnomo ne povas enhavi kriphaketaĵajn signojn',
-'login-throttled' => 'Vi tro ofte provis eniri la pasvorton por ĉi tiu konto.
+'login-throttled' => 'Vi tro ofte provis ensaluti.
 Bonvolu ĝisatendi antaŭ retrovi.',
 'login-abort-generic' => 'Via ensaluto malsukcesis - Ĉesigita',
 'loginlanguagelabel' => 'Lingvo: $1',
@@ -879,6 +879,7 @@ Bonvolu ĝisatendi antaŭ retrovi.',
 'resetpass-wrong-oldpass' => 'Malvalida provizora aŭ nuna pasvorto.
 Vi eble jam ŝanĝis vian pasvorton aŭ petis novan provizoran pasvorton.',
 'resetpass-temp-password' => 'Provizora pasvorto:',
+'resetpass-abort-generic' => 'Ŝanĝo de pasvorto estis nuligita per kromprogramo.',
 
 # Special:PasswordReset
 'passwordreset' => 'Restarigo de pasvorto',
@@ -891,9 +892,7 @@ Vi eble jam ŝanĝis vian pasvorton aŭ petis novan provizoran pasvorton.',
 'passwordreset-capture-help' => 'Se vi marki ĉi tiun skatoleton, la retpoŝto (kun provizora pasvorto) estos montrita al vi kaj estos sendita al la uzanto.',
 'passwordreset-email' => 'Retpoŝtadreso:',
 'passwordreset-emailtitle' => 'Kontaj detaloj en {{SITENAME}}',
-'passwordreset-emailtext-ip' => 'Iu (verŝajne vi, de IP-adreso $1) petis rememoraĵo de viaj
-kontaj detaloj por {{SITENAME}} ($4). La {{PLURAL:$3|jena uzanto-konto|jenaj uzanto-kontoj}} estas
-asociita kun ĉi tiu retpoŝtadreso:
+'passwordreset-emailtext-ip' => 'Iu (verŝajne vi, de IP-adreso $1) petis restarigon de via pasvorto por {{SITENAME}} ($4). La {{PLURAL:$3|jena uzanto-konto estas asociita|jenaj uzanto-kontoj estas asociitaj}} kun ĉi tiu retpoŝtadreso:
 
 $2
 
@@ -902,8 +901,8 @@ Vi ensalutu kaj elektu novan pasvorton nun. Se iu alia petis ĉi tion,
 aŭ se vi memoris vian originalan pasvorton, kaj vi ne plu volas
 ŝanĝi ĝin, vi povas ignori ĉi tiun mesaĝon kaj plu uzi vian 
 malnovan pasvorton.',
-'passwordreset-emailtext-user' => 'Uzanto $1 de {{SITENAME}} petis rememoraĵo de viaj kontaj detaloj por {{SITENAME}}
-($4). La {{PLURAL:$3|jena uzanto-konto|jenaj uzanto-kontoj}} estas asociita kun ĉi tiu retpoŝtadreso:
+'passwordreset-emailtext-user' => 'Uzanto $1 de {{SITENAME}} petis restarigo de via pasvorto por {{SITENAME}}
+($4). La {{PLURAL:$3|jena uzanto-konto estas asociita|jenaj uzanto-kontoj estas asociitaj}} kun ĉi tiu retpoŝtadreso:
 
 $2
 
@@ -2618,7 +2617,7 @@ $1',
 'mycontris' => 'Kontribuoj',
 'contribsub2' => 'De $1 ($2)',
 'nocontribs' => 'Trovis neniajn redaktojn laŭ tiu kriterio.',
-'uctop' => ' (lasta)',
+'uctop' => ' (aktuala)',
 'month' => 'Ekde monato (kaj pli frue):',
 'year' => 'Ekde jaro (kaj pli frue):',
 
