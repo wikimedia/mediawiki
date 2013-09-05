@@ -920,7 +920,6 @@ $wgAutoloadLocalClasses = array(
 	'DeadendPagesPage' => 'includes/specials/SpecialDeadendpages.php',
 	'DeletedContribsPager' => 'includes/specials/SpecialDeletedContributions.php',
 	'DeletedContributionsPage' => 'includes/specials/SpecialDeletedContributions.php',
-	'DisambiguationsPage' => 'includes/specials/SpecialDisambiguations.php',
 	'DoubleRedirectsPage' => 'includes/specials/SpecialDoubleRedirects.php',
 	'EditWatchlistCheckboxSeriesField' => 'includes/specials/SpecialEditWatchlist.php',
 	'EditWatchlistNormalHTMLForm' => 'includes/specials/SpecialEditWatchlist.php',
