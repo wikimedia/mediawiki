@@ -1,0 +1,4 @@
+/* Distinguish actual data from information about it being hidden visually */
+.prop-value-hidden {
+	font-style: italic;
+}
