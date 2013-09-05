@@ -577,22 +577,6 @@ $.fn.suggestions = function () {
 					// Store key pressed to handle later
 					context.data.keypressed = e.which;
 					context.data.keypressedCount = 0;
-
-					switch ( context.data.keypressed ) {
-						// This preventDefault logic is duplicated from
-						// $.suggestions.keypress(), which sucks
-						case 40: // Arrow down
-							e.preventDefault();
-							e.stopImmediatePropagation();
-							break;
-						case 38: // Arrow up
-						case 27: // Escape
-						case 13: // Enter
-							if ( context.data.$container.is( ':visible' ) ) {
-								e.preventDefault();
-								e.stopImmediatePropagation();
-							}
-					}
 				} )
 				.keypress( function ( e ) {
 					context.data.keypressedCount++;
