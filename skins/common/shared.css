@@ -535,51 +535,56 @@ table.collapsed tr.collapsable {
 }
 
 /* success and error messages */
+.error,
+.warning,
 .success {
-	color: green;
-	font-size: larger;
-}
-.warning {
-	color: #FFA500; /* orange */
 	font-size: larger;
 }
 .error {
-	color: red;
-	font-size: larger;
+	color: #cc0000;
 }
+.warning {
+	color: #705000;
+}
+.success {
+	color: #009000;
+}
+
 .errorbox,
 .warningbox,
 .successbox {
-	font-size: larger;
-	border: 2px solid;
+	border: 1px solid;
 	padding: .5em 1em;
-	margin-bottom: 2em;
-	color: #000;
+	margin-bottom: 1em;
 	display: -moz-inline-block;
 	display: inline-block;
 	zoom: 1;
 	*display: inline;
 }
-.errorbox {
-	border-color: red;
-	background-color: #fff2f2;
-}
-.warningbox {
-	border-color: #FF8C00; /* darkorange */
-	background-color: #FFFFC0;
-}
-.successbox {
-	border-color: green;
-	background-color: #dfd;
-}
 .errorbox h2,
 .warningbox h2,
 .successbox h2 {
 	font-size: 1em;
+	color: inherit;
 	font-weight: bold;
 	display: inline;
 	margin: 0 .5em 0 0;
 	border: none;
+}
+.errorbox {
+	color: #cc0000;
+	border-color: #fac5c5;
+	background-color: #fae3e3;
+}
+.warningbox {
+	color: #705000;
+	border-color: #fde29b;
+	background-color: #fdf1d1;
+}
+.successbox {
+	color: #009000;
+	border-color: #b7fdb5;
+	background-color: #e1fddf;
 }
 
 /* general info/warning box for SP */
