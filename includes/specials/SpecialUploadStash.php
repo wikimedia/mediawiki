@@ -134,8 +134,13 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 			$paramString = substr( $thumbPart, 0, $srcNamePos - 1 );
 
 			$handler = $file->getHandler();
-			$params = $handler->parseParamString( $paramString );
-			return array( 'file' => $file, 'type' => $type, 'params' => $params );
+			if ( $handler ) {
+				$params = $handler->parseParamString( $paramString );
+				return array( 'file' => $file, 'type' => $type, 'params' => $params );
+			} else {
+				throw new UploadStashBadPathException( 'No handler found for ' .
+						"mime {$file->getMimeType()} of file {$file->getPath()}" );
+			}
 		}
 
 		return array( 'file' => $file, 'type' => $type );
