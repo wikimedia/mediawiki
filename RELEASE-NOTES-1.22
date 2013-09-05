@@ -485,6 +485,8 @@ changes to languages because of Bugzilla reports.
   of media handler overriding MediaHandler::parseParamString.
 * (bug 46512) The collapsibleNav feature from the Vector extension has been moved
   to the Vector skin in core.
+* Information boxes (CSS classes errorbox, warningbox, successbox) have been
+  made more subtle.
 
 == Compatibility ==
 
