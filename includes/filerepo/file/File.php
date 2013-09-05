@@ -1000,11 +1000,16 @@ abstract class File {
 	/**
 	 * Get a MediaHandler instance for this file
 	 *
+	 * @throws MWException
 	 * @return MediaHandler
 	 */
 	function getHandler() {
 		if ( !isset( $this->handler ) ) {
 			$this->handler = MediaHandler::getHandler( $this->getMimeType() );
+		}
+		if ( $this->handler === false ) {
+			throw new MWException( get_class( $this ) . ': No handler found for ' .
+				"mime {$this->getMimeType()} of file {$this->getPath()}" );
 		}
 		return $this->handler;
 	}
