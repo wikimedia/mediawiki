@@ -27,7 +27,7 @@
 		// if we haven't already bound our resize hanlder, bind it now
 		if ( !$.collapsibleTabs.boundEvent ) {
 			$( window )
-				.delayedBind( '500', 'resize', function ( ) {
+				.delayedBind( 500, 'resize', function () {
 					$.collapsibleTabs.handleResize();
 				} );
 		}
@@ -129,7 +129,7 @@
 					$.collapsibleTabs
 						.moveToExpanded( data.collapsedContainer + ' ' + data.collapsible + ':first' );
 				}
-			});
+			} );
 		},
 		moveToCollapsed: function ( ele ) {
 			var data, expContainerSettings, target,
