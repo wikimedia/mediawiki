@@ -16,20 +16,22 @@
 
 	} );
 
-	QUnit.test( 'Special text', 5, function ( assert ) {
-		// http://en.wikipedia.org/wiki/UTF-8
+	QUnit.test( 'Special text', 4, function ( assert ) {
+		// https://en.wikipedia.org/wiki/UTF-8
 		var u0024 = '$',
+			// Cent symbol
 			u00A2 = '\u00A2',
+			// Euro symbol
 			u20AC = '\u20AC',
-			u024B62 = '\u024B62',
-			// The normal one doesn't display properly, try the below which is the same
-			// according to http://www.fileformat.info/info/unicode/char/24B62/index.htm
-			u024B62alt = '\uD852\uDF62';
+			// Character \U00024B62 (Han script) can't be represented in javascript as a single
+			// code point, instead it is composed as a surrogate pair of two separate code units.
+			// http://codepoints.net/U+24B62
+			// http://www.fileformat.info/info/unicode/char/24B62/index.htm
+			u024B62 = '\uD852\uDF62';
 
-		assert.strictEqual( $.byteLength( u0024 ), 1, 'U+0024: 1 byte. $ (dollar sign)' );
-		assert.strictEqual( $.byteLength( u00A2 ), 2, 'U+00A2: 2 bytes. \u00A2 (cent sign)' );
-		assert.strictEqual( $.byteLength( u20AC ), 3, 'U+20AC: 3 bytes. \u20AC (euro sign)' );
-		assert.strictEqual( $.byteLength( u024B62 ), 4, 'U+024B62: 4 bytes. \uD852\uDF62 (a Han character)' );
-		assert.strictEqual( $.byteLength( u024B62alt ), 4, 'U+024B62: 4 bytes. \uD852\uDF62 (a Han character) - alternative method' );
+		assert.strictEqual( $.byteLength( u0024 ), 1, 'U+0024' );
+		assert.strictEqual( $.byteLength( u00A2 ), 2, 'U+00A2' );
+		assert.strictEqual( $.byteLength( u20AC ), 3, 'U+20AC' );
+		assert.strictEqual( $.byteLength( u024B62 ), 4, 'U+024B62 (surrogate pair: \\uD852\\uDF62)' );
 	} );
 }( jQuery ) );
