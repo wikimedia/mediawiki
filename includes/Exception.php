@@ -247,16 +247,9 @@ class MWException extends Exception {
 	 * It will be either HTML or plain text based on isCommandLine().
 	 */
 	function report() {
-		global $wgLogExceptionBacktrace, $wgMimeType;
-		$log = $this->getLogMessage();
+		global $wgMimeType;
 
-		if ( $log ) {
-			if ( $wgLogExceptionBacktrace ) {
-				wfDebugLog( 'exception', $log . "\n" . $this->getTraceAsString() . "\n" );
-			} else {
-				wfDebugLog( 'exception', $log );
-			}
-		}
+		$this->logException();
 
 		if ( defined( 'MW_API' ) ) {
 			// Unhandled API exception, we can't be sure that format printer is alive
@@ -270,6 +263,22 @@ class MWException extends Exception {
 			header( "Content-Type: $wgMimeType; charset=utf-8", true );
 
 			$this->reportHTML();
+		}
+	}
+
+	/**
+	 * Log the error message to the exception log (if enabled)
+	 */
+	function logException() {
+		global $wgLogExceptionBacktrace;
+
+		$log = $this->getLogMessage();
+		if ( $log ) {
+			if ( $wgLogExceptionBacktrace ) {
+				wfDebugLog( 'exception', $log . "\n" . $this->getTraceAsString() . "\n" );
+			} else {
+				wfDebugLog( 'exception', $log );
+			}
 		}
 	}
 
