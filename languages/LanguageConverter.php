@@ -1127,7 +1127,7 @@ class LanguageConverter {
 			//	  [1] => 'zh-hant:<span style="font-size:120%;">yyy</span>'
 			//	  [2] => ''
 			//	 )
-			$pat = '/;\s*(?=';
+			$pat = '/(?<!&[#a-zA-Z0-9]{1,999});\s*(?=';
 			foreach ( $this->mVariants as $variant ) {
 				// zh-hans:xxx;zh-hant:yyy
 				$pat .= $variant . '\s*:|';
