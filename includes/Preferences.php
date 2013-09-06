@@ -335,9 +335,11 @@ class Preferences {
 			'type' => 'radio',
 			'section' => 'personal/i18n',
 			'options' => array(
-				$context->msg( 'gender-male' )->text() => 'male',
+				$context->msg( 'parentheses',
+					$context->msg( 'gender-unknown' )->text()
+				)->text() => 'unknown',
 				$context->msg( 'gender-female' )->text() => 'female',
-				$context->msg( 'gender-unknown' )->text() => 'unknown',
+				$context->msg( 'gender-male' )->text() => 'male',
 			),
 			'label-message' => 'yourgender',
 			'help-message' => 'prefs-help-gender',
