@@ -651,6 +651,7 @@ future releases. Also note that since each list value is wrapped in a unique
 ** mainpage|mainpage-description
 ** recentchanges-url|recentchanges
 ** randompage-url|randompage
+** helppage|help
 * SEARCH
 * TOOLBOX
 * LANGUAGES', # do not translate or duplicate this message to other languages
@@ -915,7 +916,7 @@ $1',
 'disclaimerpage'       => 'Project:General disclaimer',
 'edithelp'             => 'Editing help',
 'edithelppage'         => 'https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Editing_pages', # do not translate or duplicate this message to other languages
-'helppage'             => 'Help:Contents',
+'helppage'             => 'https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents',
 'mainpage'             => 'Main Page',
 'mainpage-description' => 'Main page',
 'policy-url'           => 'Project:Policy',
@@ -1435,9 +1436,9 @@ It may have been moved or deleted while you were viewing the page.',
 'accmailtext'                      => "A randomly generated password for [[User talk:$1|$1]] has been sent to $2. It can be changed on the ''[[Special:ChangePassword|change password]]'' page upon logging in.",
 'newarticle'                       => '(New)',
 'newarticletext'                   => "You have followed a link to a page that does not exist yet.
-To create the page, start typing in the box below (see the [[{{MediaWiki:Helppage}}|help page]] for more info).
+To create the page, start typing in the box below (see the [$1 help page] for more info).
 If you are here by mistake, click your browser's '''back''' button.",
-'newarticletextanon'               => '{{int:newarticletext}}', # do not translate or duplicate this message to other languages
+'newarticletextanon'               => '{{int:newarticletext|$1}}', # do not translate or duplicate this message to other languages
 'talkpagetext'                     => '<!-- MediaWiki:talkpagetext -->', # do not translate or duplicate this message to other languages
 'anontalkpagetext'                 => "----
 ''This is the discussion page for an anonymous user who has not created an account yet, or who does not use it.''
