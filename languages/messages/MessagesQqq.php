@@ -1897,10 +1897,9 @@ Parameters:
 * $1 - username
 * $2 - email address",
 'newarticle' => '{{Identical|New}}',
-'newarticletext' => '{{doc-important|Do not translate <code><nowiki>{{MediaWiki:Helppage}}</nowiki></code>.}}
-Text displayed above the edit box in editor when trying to create a new page.
-
-Refers to {{msg-mw|Helppage}}.',
+'newarticletext' => "Text displayed above the edit box in editor when trying to create a new page.
+Parameters:
+* $1 - The URL to the help page, defined in {{msg-mw|helppage}}",
 'anontalkpagetext' => 'Displayed at the bottom of talk pages of anonymous users.',
 'noarticletext' => 'This is the message that you get if you search for a term that has not yet got any entries on the wiki.
 
