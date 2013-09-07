@@ -163,8 +163,8 @@
 			if ( e.type === 'click' && options.linksPassthru && $.nodeName( e.target, 'a' ) ) {
 				// Don't fire if a link was clicked, if requested  (for premade togglers by default)
 				return;
-			} else if ( e.type === 'keypress' && e.which !== 13 ) {
-				// Only handle keypresses on the "Enter" key
+			} else if ( e.type === 'keypress' && e.which !== 13 && e.which !== 32 ) {
+				// Only handle keypresses on the "Enter" or "Space" keys
 				return;
 			} else {
 				e.preventDefault();
