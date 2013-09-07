@@ -9,6 +9,12 @@ This is a maintenance release of the MediaWiki 1.22 branch.
 
 === Changes since 1.22.4 ===
 
+* (bug 53887) Reintroduced a link to help pages in the default sidebar, that
+  any sysop can customize by editing [[MediaWiki:Sidebar]] locally. The link
+  now points to a mediawiki.org page which is guaranteed to exist. Nothing needs
+  to be done on your end, but remember to adjust [[MediaWiki:Sidebar]] for the
+  needs of your wikis. Everyone can help with the shared documentation by
+  translating: https://www.mediawiki.org/wiki/Special:Translate/agg-Help_pages .
 * (bug 53888) Corrected a regression in 1.22 which introduced red links on the
   login page. If you previously installed 1.22.x and have created a local page
   to make the red link blue, write its title as in [[MediaWiki:helplogin-url]]
