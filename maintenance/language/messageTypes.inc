@@ -483,6 +483,7 @@ $wgOptionalMessages = array(
 	'limitreport-ppgeneratednodes-value',
 	'limitreport-expansiondepth-value',
 	'limitreport-expensivefunctioncount-value',
+	'helplogin-url',
 );
 
 /** Exif messages, which may be set as optional in several checks, but are generally mandatory */
