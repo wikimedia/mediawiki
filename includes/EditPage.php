@@ -2063,10 +2063,32 @@ class EditPage {
 		}
 		# Try to add a custom edit intro, or use the standard one if this is not possible.
 		if ( !$this->showCustomIntro() && !$this->mTitle->exists() ) {
+			$helpLink = wfMessage( 'helppage' )->inContentLanguage()->text();
+			$internalHelpLink = false;
+			// Check if the help link defined is an internal one. If so, parse it properly.
+			if ( !preg_match( '/^(?i:' . wfUrlProtocols() . ')/', $helpLink ) ) {
+				$helpLink = wfExpandUrl ( Skin::makeUrl( $helpLink ) );
+				$internalHelpLink = true;
+			}
+
 			if ( $wgUser->isLoggedIn() ) {
-				$wgOut->wrapWikiMsg( "<div class=\"mw-newarticletext\">\n$1\n</div>", 'newarticletext' );
+				$wgOut->wrapWikiMsg(
+					// Suppress the external link icon if the help url is an internal one
+					"<div class=\"mw-newarticletext". ( $internalHelpLink ? " plainlinks" : "" ) ."\">\n$1\n</div>",
+					array(
+						'newarticletext',
+						$helpLink
+					)
+				);
 			} else {
-				$wgOut->wrapWikiMsg( "<div class=\"mw-newarticletextanon\">\n$1\n</div>", 'newarticletextanon' );
+				$wgOut->wrapWikiMsg(
+					// Suppress the external link icon if the help url is an internal one
+					"<div class=\"mw-newarticletextanon". ( $internalHelpLink ? " plainlinks" : "" ) ."\">\n$1\n</div>",
+					array(
+						'newarticletextanon',
+						$helpLink
+					)
+				);
 			}
 		}
 		# Give a notice if the user is editing a deleted/moved page...

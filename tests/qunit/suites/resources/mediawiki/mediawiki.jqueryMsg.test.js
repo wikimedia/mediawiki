@@ -352,14 +352,14 @@
 	} );
 
 	QUnit.test( 'Int', 4, function ( assert ) {
-		var newarticletextSource = 'You have followed a link to a page that does not exist yet. To create the page, start typing in the box below (see the [[{{Int:Helppage}}|help page]] for more info). If you are here by mistake, click your browser\'s back button.',
+		var newarticletextSource = 'You have followed a link to a page that does not exist yet. To create the page, start typing in the box below (see the [[{{Int:Foobar}}|foobar]] for more info). If you are here by mistake, click your browser\'s back button.',
 			expectedNewarticletext,
-			helpPageTitle = 'Help:Contents';
+			helpPageTitle = 'Help:Foobar';
 
-		mw.messages.set( 'helppage', helpPageTitle );
+		mw.messages.set( 'foobar', helpPageTitle );
 
 		expectedNewarticletext = 'You have followed a link to a page that does not exist yet. To create the page, start typing in the box below (see the ' +
-			'<a title="Help:Contents" href="/wiki/Help:Contents">help page</a> for more info). If you are here by mistake, click your browser\'s back button.';
+			'<a title="Help:Foobar" href="/wiki/Help:Foobar">foobar</a> for more info). If you are here by mistake, click your browser\'s back button.';
 
 		mw.messages.set( 'newarticletext', newarticletextSource );
 
