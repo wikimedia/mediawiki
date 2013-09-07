@@ -3,6 +3,18 @@
 Security reminder: MediaWiki does not require PHP's register_globals. If you
 have it on, turn it '''off''' if you can.
 
+== MediaWiki 1.22.5 ==
+
+This is a maintenance release of the MediaWiki 1.22 branch.
+
+=== Changes since 1.22.4 ===
+
+* (bug 53888) Corrected a regression in 1.22 which introduced red links on the
+  login page. If you previously installed 1.22.x and have created a local page
+  to make the red link blue, write its title as in [[MediaWiki:helplogin-url]]
+  if you didn't already. Otherwise, you don't need to do anything, but you can
+  translate the help page at https://www.mediawiki.org/wiki/Help:Logging_in .
+
 == MediaWiki 1.22.4 ==
 
 This is a maintenance release of the MediaWiki 1.22 branch.
