@@ -194,6 +194,40 @@ class ApiEditPageTest extends ApiTestCase {
 	}
 
 	/**
+	 * Test editing of sections
+	 */
+	function testEditSection() {
+		$name = 'Help:ApiEditPageTest_testEditSection';
+		$page = WikiPage::factory( Title::newFromText( $name ) );
+		$text = "==section 1==\ncontent 1\n==section 2==\ncontent2";
+		// Preload the page with some text
+		$page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle() ), 'summary' );
+
+		list( $re ) = $this->doApiRequestWithToken( array(
+			'action' => 'edit',
+			'title' => $name,
+			'section' => '1',
+			'text' => "==section 1==\nnew content 1",
+		) );
+		$this->assertEquals( 'Success', $re['edit']['result'] );
+		$newtext = WikiPage::factory( Title::newFromText( $name) )->getContent( Revision::RAW )->getNativeData();
+		$this->assertEquals( $newtext, "==section 1==\nnew content 1\n\n==section 2==\ncontent2" );
+
+		// Test that we raise a 'nosuchsection' error
+		try {
+			$this->doApiRequestWithToken( array(
+				'action' => 'edit',
+				'title' => $name,
+				'section' => '9999',
+				'text' => 'text',
+			) );
+			$this->fail( "Should have raised a UsageException" );
+		} catch ( UsageException $e ) {
+			$this->assertEquals( $e->getCodeString(), 'nosuchsection' );
+		}
+	}
+
+	/**
 	 * Test action=edit&section=new
 	 * Run it twice so we test adding a new section on a
 	 * page that doesn't exist (bug 52830) and one that
