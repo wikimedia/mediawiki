@@ -195,6 +195,11 @@
 		 * @return {jQuery.Promise} See #post
 		 */
 		postWithToken: function ( tokenType, params ) {
+			function postWithTokenInternal( token ) {
+				tokenCache[tokenType] = params.token = token;
+				return api.post( params );
+			}
+
 			var api = this, hasOwn = tokenCache.hasOwnProperty;
 			if ( hasOwn.call( tokenCache, tokenType ) && tokenCache[tokenType] !== undefined ) {
 				params.token = tokenCache[tokenType];
@@ -204,17 +209,14 @@
 						if ( code === 'badtoken' ) {
 							// force a new token, clear any old one
 							tokenCache[tokenType] = params.token = undefined;
-							return api.post( params );
+							return api.getToken( tokenType ).then( postWithTokenInternal );
 						}
 						// Pass the promise forward, so the caller gets error codes
 						return this;
 					}
 				);
 			} else {
-				return api.getToken( tokenType ).then( function ( token ) {
-					tokenCache[tokenType] = params.token = token;
-					return api.post( params );
-				} );
+				return api.getToken( tokenType ).then( postWithTokenInternal );
 			}
 		},
 
