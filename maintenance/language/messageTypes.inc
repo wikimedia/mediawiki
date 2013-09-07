@@ -260,6 +260,7 @@ $wgIgnoredMessages = array(
 	'today-at',
 	'redirect-text',
 	'edithelppage',
+	'helppage',
 	'autocomment-prefix',
 	'move-redirect-text',
 );
