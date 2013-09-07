@@ -1131,8 +1131,8 @@ You can change your {{SITENAME}} [[Special:Preferences|preferences]] if you wish
 'gotaccountlink'                  => 'Log in',
 'userlogin-resetlink'             => 'Forgotten your login details?',
 'userlogin-resetpassword-link'    => 'Forgot your password?',
-'helplogin-url'                   => 'Help:Logging in',
-'userlogin-helplink'              => '[[{{MediaWiki:helplogin-url}}|Help with logging in]]',
+'helplogin-url'                   => 'https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Logging_in',
+'userlogin-helplink2'              => 'Help with logging in',
 'userlogin-loggedin'              => 'You are already logged in as {{GENDER:$1|$1}}.
 Use the form below to log in as another user.',
 'userlogin-createanother'         => 'Create another account',
