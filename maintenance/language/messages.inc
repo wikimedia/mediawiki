@@ -472,7 +472,7 @@ $wgMessageStructure = array(
 		'userlogin-resetlink',
 		'userlogin-resetpassword-link',
 		'helplogin-url',
-		'userlogin-helplink',
+		'userlogin-helplink2',
 		'userlogin-loggedin',
 		'userlogin-createanother',
 		'createacct-join',
