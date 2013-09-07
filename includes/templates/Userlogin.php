@@ -161,7 +161,7 @@ class UserloginTemplate extends BaseTemplate {
 			?>
 		</div>
 		<div id="mw-userlogin-help">
-			<?php echo $this->getMsg( 'userlogin-helplink' )->parse(); ?>
+			<?php echo $this->getMsg( 'userlogin-helplink2' )->parse(); ?>
 		</div>
 		<?php if ( $this->haveData( 'createOrLoginHref' ) ) { ?>
 			<div id="mw-createaccount-cta">

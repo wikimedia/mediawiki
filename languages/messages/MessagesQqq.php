@@ -1339,11 +1339,11 @@ The link points to the local [[Special:PasswordReset]].
 See example: [[Special:UserLogin]]
 
 userlogin-resetpassword-link may have to be shorter than the old {{msg-mw|userlogin-resetlink}}',
-'helplogin-url' => '{{doc-important|Do not translate the namespace name <code>Help</code>.}}
+'helplogin-url2' => '{{doc-important|Do not translate the namespace name <code>Help</code>.}}
 Used as name of the page that provides information about logging into the wiki.
 
 Used as a link target in the message {{msg-mw|Userlogin-helplink}}.',
-'userlogin-helplink' => '{{doc-important|Do not change <code><nowiki>{{MediaWiki:helplogin-url}}</nowiki></code>.}}
+'userlogin-helplink2' => '{{doc-important|Do not change <code><nowiki>{{MediaWiki:helplogin-url}}</nowiki></code>.}}
 Wikitext linking to login help.
 
 See example: [[Special:UserLogin]]
