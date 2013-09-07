@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function ( mw, $ ) {
 	QUnit.module( 'mediawiki.api', QUnit.newMwEnvironment() );
 
 	QUnit.asyncTest( 'Basic functionality', function ( assert ) {
@@ -58,4 +58,71 @@
 			QUnit.start();
 		} );
 	} );
-}( mediaWiki ) );
+
+	QUnit.asyncTest( 'postWithToken', 3, function ( assert ) {
+		var api = new mw.Api();
+
+		// This mocks an edit adding a section.
+		function testDone() {
+			var mockIndex;
+
+			QUnit.stop();
+			// Return a valid response as if it were a successful edit
+			mockIndex = $.mockjax( {
+				url: api.defaults.ajax.url,
+				contentType: 'application/json',
+				response: function ( settings ) {
+					var hasToken = /token=[^&]+/.test( settings.data );
+					assert.strictEqual( hasToken, true, 'token is passed to mockjax response function' );
+
+					if ( hasToken ) {
+						this.responseText = {
+							edit: {
+								result: 'Success',
+								pageid: 123,
+								title: 'Lorem ipsum',
+								contentmodel: 'wikitext',
+								oldrevid: '456',
+								newrevid: '567',
+								newtimestamp: '2013-11-22T03:15:04Z'
+							}
+						};
+					} else {
+						this.responseText = {
+							error: {
+								code: 'notoken',
+								info: 'The token parameter must be set'
+							}
+						};
+					}
+				}
+			} );
+
+			// Mocked request
+			api.postWithToken( 'edit', {
+				action: 'edit',
+				title: 'Lorem ipsum',
+				section: 'new',
+				sectiontitle: 'New section',
+				text: 'Section text'
+			} ).done( function ( response ) {
+				assert.strictEqual( response.edit.result, 'Success', 'done called for succesful mock edit with token previously in cache' );
+			} ).always( function () {
+				$.mockjaxClear( mockIndex );
+				QUnit.start();
+			} );
+		}
+
+		// Tests that fail is called when the token is fetched/available, but the main
+		// POST fails.  It also means the token will be cached when testDone runs.
+		api.postWithToken( 'edit', {
+			action: 'edit',
+			title: 'Lorem ipsum',
+			summary: 'Make a change'
+		} ).fail( function ( code ) {
+			QUnit.start();
+			assert.strictEqual( code, 'notext', 'Calls fail (with correct code) when token is fetched, but main request fails' );
+			testDone();
+		} );
+	} );
+}( mediaWiki, jQuery ) );
