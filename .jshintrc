@@ -37,6 +37,10 @@
 	"predef": [
 		"mediaWiki",
 		"jQuery",
-		"QUnit"
+		"QUnit",
+
+		// Globals used by QUnit Async Control
+		"start",
+		"stop"
 	]
 }
