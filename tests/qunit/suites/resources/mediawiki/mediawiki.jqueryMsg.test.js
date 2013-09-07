@@ -356,7 +356,7 @@
 			expectedNewarticletext,
 			helpPageTitle = 'Help:Contents';
 
-		mw.messages.set( 'helppage', helpPageTitle );
+		mw.messages.set( 'helppage', helpPageTitle ); // Note, this test is using an old default version of helppage
 
 		expectedNewarticletext = 'You have followed a link to a page that does not exist yet. To create the page, start typing in the box below (see the ' +
 			'<a title="Help:Contents" href="/wiki/Help:Contents">help page</a> for more info). If you are here by mistake, click your browser\'s back button.';
