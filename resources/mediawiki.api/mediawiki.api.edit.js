@@ -20,16 +20,27 @@
 		 */
 		postWithEditToken: function ( params, ok, err ) {
 			var useTokenToPost, getTokenIfBad,
-				api = this;
+				api = this, deferred;
+
+			// We can't just reuse the promise returned from api.post or getEditToken:
+			// * The api.getEditToken promise is not sufficient alone because it ignores
+			//   whether the primary request (e.g. the actual edit) succeeds.
+			// * We have custom error handling of 'badtoken' when the token is cached.
+			deferred = $.Deferred();
+
+			deferred.done( ok ).fail( err );
+
 			if ( cachedToken === null ) {
 				// We don't have a valid cached token, so get a fresh one and try posting.
 				// We do not trap any 'badtoken' or 'notoken' errors, because we don't want
 				// an infinite loop. If this fresh token is bad, something else is very wrong.
 				useTokenToPost = function ( token ) {
 					params.token = token;
-					api.post( params, { ok: ok, err: err } );
+					api.post( params )
+						.done( deferred.resolve )
+						.fail( deferred.reject );
 				};
-				return api.getEditToken( useTokenToPost, err );
+				api.getEditToken( useTokenToPost, deferred.reject );
 			} else {
 				// We do have a token, but it might be expired. So if it is 'bad' then
 				// start over with a new token.
@@ -38,13 +49,19 @@
 					if ( code === 'badtoken' ) {
 						// force a new token, clear any old one
 						cachedToken = null;
-						api.postWithEditToken( params, ok, err );
+						api.postWithEditToken( params )
+							.done( deferred.resolve )
+							.fail( deferred.reject );
 					} else {
-						err( code, result );
+						deferred.reject( code, result );
 					}
 				};
-				return api.post( params, { ok: ok, err: getTokenIfBad } );
+				api.post( params )
+					.done( deferred.resolve )
+					.fail( getTokenIfBad );
 			}
+
+			return deferred.promise();
 		},
 
 		/**
