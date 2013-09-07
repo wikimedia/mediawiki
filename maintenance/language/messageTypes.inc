@@ -266,6 +266,7 @@ $wgIgnoredMessages = array(
 	'createacct-benefit-icon3',
 	'today-at',
 	'redirect-text',
+	'helppage',
 	'edithelppage',
 	'helplogin-url',
 	'autocomment-prefix',
