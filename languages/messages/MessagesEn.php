@@ -653,6 +653,7 @@ future releases. Also note that since each list value is wrapped in a unique
 ** mainpage|mainpage-description
 ** recentchanges-url|recentchanges
 ** randompage-url|randompage
+** helppage|help
 * SEARCH
 * TOOLBOX
 * LANGUAGES', # do not translate or duplicate this message to other languages
@@ -913,7 +914,7 @@ $1',
 'disclaimerpage'       => 'Project:General disclaimer',
 'edithelp'             => 'Editing help',
 'edithelppage'         => 'https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Editing_pages', # do not translate or duplicate this message to other languages
-'helppage'             => 'Help:Contents',
+'helppage'             => 'https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents',
 'mainpage'             => 'Main Page',
 'mainpage-description' => 'Main page',
 'policy-url'           => 'Project:Policy',
