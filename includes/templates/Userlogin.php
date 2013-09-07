@@ -159,9 +159,19 @@ class UserloginTemplate extends BaseTemplate {
 				) );
 				?>
 			</div>
-
 			<div id="mw-userlogin-help">
-				<?php echo $this->getMsg( 'userlogin-helplink' )->parse(); ?>
+				<?php
+				echo Html::element(
+					'a',
+					array(
+						'href' => Skin::makeInternalOrExternalUrl(
+							wfMessage( 'helplogin-url' )->inContentLanguage()->text()
+						),
+						'target' => '_blank',
+					),
+					$this->getMsg( 'userlogin-helplink2' )->text()
+				);
+				?>
 			</div>
 			<?php if ( $this->haveData( 'createOrLoginHref' ) ) { ?>
 				<?php if ( $this->data['loggedin'] ) { ?>

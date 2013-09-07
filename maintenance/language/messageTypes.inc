@@ -262,6 +262,7 @@ $wgIgnoredMessages = array(
 	'edithelppage',
 	'autocomment-prefix',
 	'move-redirect-text',
+	'helplogin-url',
 );
 
 /** Optional messages, which may be translated only if changed in the target language. */
