@@ -193,8 +193,38 @@ class ApiEditPageTest extends ApiTestCase {
 		$this->assertEquals( $expected, $text );
 	}
 
+	/**
+	 * Test editing of sections
+	 */
 	function testEditSection() {
-		$this->markTestIncomplete( "not yet implemented" );
+		$name = 'Help:ApiEditPageTest_testEditSection';
+		$page = WikiPage::factory( Title::newFromText( $name ) );
+		$text = "==section 1==\ncontent 1\n==section 2==\ncontent2";
+		// Preload the page with some text
+		$page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle() ), 'summary' );
+
+		list( $re ) = $this->doApiRequestWithToken( array(
+			'action' => 'edit',
+			'title' => $name,
+			'section' => '1',
+			'text' => "==section 1==\nnew content 1",
+		) );
+		$this->assertEquals( 'Success', $re['edit']['result'] );
+		$newtext = WikiPage::factory( Title::newFromText( $name) )->getContent( Revision::RAW )->getNativeData();
+		$this->assertEquals( $newtext, "==section 1==\nnew content 1\n\n==section 2==\ncontent2" );
+
+		// Test that we raise a 'nosuchsection' error
+		try {
+			$this->doApiRequestWithToken( array(
+				'action' => 'edit',
+				'title' => $name,
+				'section' => '9999',
+				'text' => 'text',
+			) );
+			$this->assertTrue(false, "Should have raised a UsageException" );
+		} catch ( UsageException $e ) {
+			$this->assertEquals( $e->getCodeString(), 'nosuchsection' );
+		}
 	}
 
 	/**
