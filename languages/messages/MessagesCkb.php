@@ -392,7 +392,7 @@ $messages = array(
 $1',
 'pool-errorunknown' => 'هەڵەی نەزانراو',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'سەبارەت بە {{SITENAME}}',
 'aboutpage' => 'Project:سەبارەت',
 'copyright' => 'ناوەرۆک لە ژێر $1 لەبەردەستدایە.',
@@ -1825,12 +1825,6 @@ $1',
 'statistics-users-active' => 'ئەندامە چالاکەکان',
 'statistics-users-active-desc' => 'ئەو بەکارھێنەرانە کە لە {{PLURAL:$1|ڕۆژ|$1 ڕۆژ}}ی ڕابردوودا کارێکیان جێبەجێ کردبێت.',
 'statistics-mostpopular' => 'زۆرترین لاپەڕە بینراوەکان',
-
-'disambiguations' => 'پەڕەکانی بەستەردراو بۆ پەڕەکانی ڕوونکردنەوە',
-'disambiguationspage' => 'Template:ڕوونکردنەوە',
-'disambiguations-text' => "ئەم پەڕانە لانی کەم یەک بەستەریان بۆ '''پەڕەی ڕوونکردنەوە''' ھەیە.
-لەوانەیە لە جیاتی ئەو، بەستەریان ھەبێت  بۆ بابەتەکانیی گونجاو.<br />
-ئەگەر پەڕەیەک لە داڕێژەیەک کەڵک وەرگرێت کە بەستەری ھەبێت بۆ [[MediaWiki:Disambiguationspage]]، وەک پەڕەی ڕوونکردنەوە لەبەر چاو دەگیرێت.",
 
 'pageswithprop' => 'پەڕەکان بە تایبەتمەندیی پەڕە',
 'pageswithprop-legend' => 'پەڕەکان بە تایبەتمەندیی پەڕە',

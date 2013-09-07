@@ -389,7 +389,7 @@ $1',
 'pool-queuefull' => 'Le cauda commun de processos es plen',
 'pool-errorunknown' => 'Error incognite',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'A proposito de {{SITENAME}}',
 'aboutpage' => 'Project:A proposito',
 'copyright' => 'Le contento es disponibile sub $1.',
@@ -479,6 +479,8 @@ Un lista de paginas special valide se trova a [[Special:SpecialPages|{{int:speci
 Isto pote indicar un defecto in le software.',
 'databaseerror-textcl' => 'Un error ha occurrite in un consulta del base de datos.',
 'databaseerror-query' => 'Consulta: $1',
+'databaseerror-function' => 'Function: $1',
+'databaseerror-error' => 'Error: $1',
 'laggedslavemode' => 'Attention: Es possibile que le pagina non contine actualisationes recente.',
 'readonly' => 'Base de datos blocate',
 'enterlockreason' => 'Describe le motivo del blocada, includente un estimation
@@ -2039,13 +2041,6 @@ Memora verificar que non existe altere ligamines al patronos ante que tu los del
 'statistics-users-active' => 'Usatores active',
 'statistics-users-active-desc' => 'Usatores qui ha facite un action durante le {{PLURAL:$1|die|$1 dies}} passate',
 'statistics-mostpopular' => 'Le paginas plus visitate',
-
-'disambiguations' => 'Paginas con ligamines a paginas de disambiguation',
-'disambiguationspage' => 'Template:Disambig
-Template:Disambiguation',
-'disambiguations-text' => "Le sequente paginas contine al minus un ligamine a un '''pagina de disambiguation'''.
-Istes debe forsan ligar directemente al articulo sur le thema in question.<br />
-Un pagina se tracta como pagina de disambiguation si illo usa un patrono que es ligate ab [[MediaWiki:Disambiguationspage]].",
 
 'pageswithprop' => 'Paginas con un proprietate de pagina',
 'pageswithprop-legend' => 'Paginas con un proprietate de pagina',

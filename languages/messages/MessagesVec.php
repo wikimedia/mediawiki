@@ -402,7 +402,7 @@ $1',
 'pool-queuefull' => 'La cóa de laorassion la xe piena',
 'pool-errorunknown' => 'Eror sconossùo',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Se parla de {{SITENAME}}',
 'aboutpage' => 'Project:Se parla de',
 'copyright' => "Contenui sojeti a licensa d'uso $1.",
@@ -1920,12 +1920,6 @@ Probabilmente te vui modifegar ła descrision prexente inte ła [$2 pàjina de d
 'statistics-users-active' => 'Utenti atìvi',
 'statistics-users-active-desc' => "Utenti che gà fato almanco un'azion in {{PLURAL:$1|tel'ultimo zorno|in tei ultimi $1 zorni}}",
 'statistics-mostpopular' => 'Pagine piassè visità',
-
-'disambiguations' => 'Pajine cołegade a pajine de dixanbiguasion',
-'disambiguationspage' => 'Template:Disambigua',
-'disambiguations-text' => "Łe pàjine inte ła lista cuà soto łe ga drento almanco un ligamento a na '''pàjina de dixanbiguasion'''.
-Łe podaria dover puntar a na pàjina pì apropià.<br />
-Vien considerae pàjine de dixanbiguasion tute cuełe che łe ga drento i modełi elencai in [[MediaWiki:Disambiguationspage]].",
 
 'pageswithprop' => 'Pagine co na proprietà de pagina',
 'pageswithprop-legend' => 'Pagine co na proprietà de pagina',

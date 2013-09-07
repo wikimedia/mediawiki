@@ -451,7 +451,7 @@ $1',
 'pool-queuefull' => 'Red na pool je prenapunjen',
 'pool-errorunknown' => 'nepoznata greška',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'O projektu {{SITENAME}}',
 'aboutpage' => 'Project:O_projektu_{{SITENAME}}',
 'copyright' => 'Sadržaj je dostupan pod $1.',
@@ -2038,12 +2038,6 @@ Prije brisanja provjerite da li druge stranice vode na te šablone.',
 'statistics-users-active' => 'Aktivni korisnici',
 'statistics-users-active-desc' => 'Korisnici koju su izvršili akciju u toku {{PLURAL:$1|zadnjeg dana|zadnja $1 dana|zadnjih $1 dana}}',
 'statistics-mostpopular' => 'Najviše pregledane stranice',
-
-'disambiguations' => 'Stranice do višeznačnih odrednica',
-'disambiguationspage' => 'Template:Višeznačna odrednica',
-'disambiguations-text' => "Slijedeće stranice su povezane sa '''stranicom za razvrstavanje'''.
-One se možda moraju povezati sa konkretnim člankom.<br />
-Stranica se smatra stranicom za razvrstavanje, ukoliko koristi šablon koji je povezan sa spiskom [[MediaWiki:Disambiguationspage|stranica za razvrstavanje]]",
 
 'pageswithprop' => 'Stranice sa svojstvom stranice',
 'pageswithprop-legend' => 'Stranice sa svojstvom stranice',

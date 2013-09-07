@@ -426,7 +426,7 @@ $1',
 'pool-queuefull' => 'পোল কিউ (pool queue) সমূল',
 'pool-errorunknown' => 'অপৰিচিত ত্ৰুটি',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}}ৰ বিষয়ে',
 'aboutpage' => 'Project:ইতিবৃত্ত',
 'copyright' => 'এই বিষয়বস্তু $1 ৰ আওতাত উপলব্ধ।',
@@ -1991,12 +1991,6 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization চাওক।",
 'statistics-users-active' => 'সক্ৰিয় সদস্য',
 'statistics-users-active-desc' => 'শেষ {{PLURAL:$1|দিনত|$1 দিনত}} কোনো কাম কৰা সদস্যসমূহ',
 'statistics-mostpopular' => 'সৰ্বোচ্চ দৰ্শন কৰা পৃষ্ঠাসমূহ',
-
-'disambiguations' => 'দ্ব্যৰ্থতা-দূৰীকৰণ পৃষ্ঠাসমূহলৈ সংযোগ থকা পৃষ্ঠাসমূহ',
-'disambiguationspage' => 'সাঁচ:দ্ব্যৰ্থতা-দূৰীকৰণ',
-'disambiguations-text' => "তলৰ পৃষ্ঠাখনসমূহত অন্ততঃ এটা হ'লেই '''দ্ব্যৰ্থতা দূৰীকৰণ পৃষ্ঠা'''ৰ সংযোগ আছে।
-তাৰ সলনি সেইবোৰত উপযুক্ত পৃষ্ঠাৰ লগত সংযোগ থাকিব পাৰে।
-[[MediaWiki:Disambiguationspage]]ৰ পৰা সংযোগ থকা কোনো সাঁচ ব্যৱহাৰ কৰিলে এখন পৃষ্ঠাক দ্ব্যৰ্থতা দূৰীকৰণ পৃষ্ঠা হিছাপে গণ্য কৰা হয়।",
 
 'pageswithprop' => 'পৃষ্ঠা উপাদান সম্বলিত পৃষ্ঠাসমূহ',
 'pageswithprop-legend' => 'পৃষ্ঠা উপাদান সম্বলিত পৃষ্ঠাসমূহ',

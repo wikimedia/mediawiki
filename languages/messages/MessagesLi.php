@@ -385,7 +385,7 @@ $1',
 'pool-queuefull' => 'De wachrie van de pool is vól',
 'pool-errorunknown' => 'Ónbekènde fout',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Euver {{SITENAME}}',
 'aboutpage' => 'Project:Info',
 'copyright' => 'De inhawd is besjikbaar ónger de $1.',
@@ -1826,12 +1826,6 @@ De [$2 pagina mit de besjtandjsbesjrieving] wurt hiejónger weergegaeve.',
 'statistics-users-active' => 'Actieve gebroekers',
 'statistics-users-active-desc' => "Gebroekers die in de aafgeloupe {{PLURAL:$1|daag|$1 daag}} 'ne hanjeling höbbe oetgevoerd",
 'statistics-mostpopular' => "Meisbekeke pazjena's",
-
-'disambiguations' => "Links nao verdudelikingspazjena's",
-'disambiguationspage' => 'Template:Verdudeliking',
-'disambiguations-text' => "Hiej onger staon pagina's die verwieze nao 'ne '''redirect'''.
-Deze heure waarsjienlik direct nao 't zjuste ongerwerp te verwiezen.<br />
-'ne pagina wörd gezeen es redirect wen d'r 'n sjabloon op stuit det gelink is vanaaf [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects' => 'Dobbel redirects',
 'doubleredirectstext' => "Dees lies haet paazjes mit redireks die nao anger redireks gaon.

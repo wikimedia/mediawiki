@@ -452,7 +452,7 @@ $1",
 'pool-queuefull' => 'Die poel se wagtou is vol',
 'pool-errorunknown' => 'Onbekende fout',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Inligting oor {{SITENAME}}',
 'aboutpage' => 'Project:Omtrent',
 'copyright' => 'Teks is beskikbaar onderhewig aan $1.',
@@ -2035,12 +2035,6 @@ Miskien wil u eerder die beskrywing daar op die [$2 lêerbeskrywing] bywerk.',
 'statistics-users-active' => 'Aktiewe gebruikers',
 'statistics-users-active-desc' => "Gebruikers wat in die afgelope {{PLURAL:$1|dag|$1 dae}} 'n handeling uitgevoer het",
 'statistics-mostpopular' => 'Mees bekykte bladsye',
-
-'disambiguations' => 'Bladsye wat na dubbelsinnigheidsbladsye skakel',
-'disambiguationspage' => 'Template:Dubbelsinnig',
-'disambiguations-text' => "Die volgende bladsye het ten minste een skakel na 'n '''dubbelsinnigheidsbladsy'''.
-Hulle moet gewysig word om eerder direk na die regte onderwerpe te skakel.<br />
-'n Bladsy word beskou as 'n dubbelsinnigheidsbladsy as dit 'n sjabloon bevat wat geskakel is vanaf [[MediaWiki:Disambiguationspage]]",
 
 'pageswithprop' => "Blaaie met 'n bladsy-eienskap",
 'pageswithprop-legend' => "Blaaie met 'n bladsy-eienskap",

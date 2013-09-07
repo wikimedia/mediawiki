@@ -292,7 +292,7 @@ $messages = array(
 $1',
 'pool-errorunknown' => 'Хатогии ношинос',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Дар бораи {{SITENAME}}',
 'aboutpage' => 'Project:Дар бораи',
 'copyright' => 'Мӯҳтаво таҳти иҷозатномаи $1 дастрас аст.',
@@ -1240,10 +1240,6 @@ $1',
 'statistics-users' => '[[Special:ListUsers|Корбарони]] сабтиномшуда',
 'statistics-users-active' => 'Корбарони фаъол',
 'statistics-mostpopular' => 'Саҳифаҳои бисёр назаркардашуда',
-
-'disambiguations' => 'Саҳифаҳои ибҳомзудоӣ',
-'disambiguationspage' => 'Template:ибҳомзудоӣ',
-'disambiguations-text' => "Саҳифаҳои зерин пайванд ба '''саҳифаи ибҳомзудоӣ''' доранд. Ин саҳифаҳо бояд ба мавзӯъи муносиби худ пайваст шаванд.<br />Саҳифа Ибҳомзудоӣ дар назар гирифта мешавад, ки дар он шаблоне, ки ба [[MediaWiki:Disambiguationspage]] пайванд дорад истифода шуда бошад",
 
 'doubleredirects' => 'Тағйири масирҳои дутоӣ',
 'doubleredirectstext' => 'Ҳар сатр дар бар дорандаи пайвандҳое ба тағйири масири аввал ва дувум ва ҳамчунин хати нахуст тагйири масири дувум аст. Маъмулан саҳифаи мақсади воқеъӣ, ки нахустин тағйири масир бояд ба он бошад ба ин гуна мушаххас мешавад.',

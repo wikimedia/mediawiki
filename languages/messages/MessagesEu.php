@@ -369,7 +369,7 @@ $1',
 'pool-queuefull' => 'Prozesuen zerrenda beteta dago',
 'pool-errorunknown' => 'Errore ezezaguna',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}}(e)ri buruz',
 'aboutpage' => 'Project:Honi_buruz',
 'copyright' => 'Eduki guztia $1(r)en babespean dago.',
@@ -1806,12 +1806,6 @@ Bere [$2 fitxategiaren deskribapen orrialdea] behean dago.',
 'statistics-users-active' => 'Lankide aktiboak',
 'statistics-users-active-desc' => 'Aurreko {{PLURAL:$1|egunean|egunetan}} jardueraren bat gauzatu duten erabiltzaileak',
 'statistics-mostpopular' => 'Orri bisitatuenak',
-
-'disambiguations' => 'Argipen orrietara lotzen duten orriak',
-'disambiguationspage' => 'Template:argipen',
-'disambiguations-text' => "Jarraian azaltzen diren orrialdeek '''argipen orrialde''' baterako lotura dute. 
-Kasu bakoitzean dagokion artikulu zuzenarekin izan beharko lukete lotura.<br />
-Orrialde bat argipen motakoa dela antzeman ohi da [[MediaWiki:Disambiguationspage]] orrialdean agertzen den txantiloietako bat duenean.",
 
 'pageswithprop' => 'Orrialde propietatea duten orrialdeak',
 'pageswithprop-legend' => 'Orrialde propietatea duten orrialdeak',

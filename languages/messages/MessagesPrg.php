@@ -222,7 +222,7 @@ Pāusai en kategōrijai "$1"',
 'jumptonavigation' => 'nawigaciōni',
 'jumptosearch' => 'laukīsna',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Ezze {{SITENAME}}',
 'aboutpage' => 'Project:Ezze',
 'copyright' => 'Ēnturs preiēiminan pa $1 licēncin.',
@@ -1341,12 +1341,6 @@ Tērpausna: ēnturas_tīps/pōtips, perw. <code>image/jpeg</code>.',
 'statistics-users-active' => 'Aktīwai tērpautajai',
 'statistics-users-active-desc' => 'Tērpautajai sēntei aktīwai en {{PLURAL:$1|panzdauman dēinan|panzdaumans dēinans}}',
 'statistics-mostpopular' => 'Ukadeznimai kāimalukitai pāusai',
-
-'disambiguations' => 'Ainapreslinsnas pāusai',
-'disambiguationspage' => 'Template:Ainapreslinsna',
-'disambiguations-text' => "Zemmaišai pāusai autenginna prei '''ainapreslinsnas pāusan'''.
-Tenēimans prawerru autengīntun entikriskai prei pāusas ēnturan. </br>
-Pāusan ast laikātan per ainapreslinsnan pāusan ik tennan tērpaui šablōnin prei kawīdan autenginna [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects' => 'Dwigubbai prawessenei',
 'doubleredirectstext' => 'Zemmais ast listi wisēisan pāusan sen prawessenins en pāusans, kawīdai prawedda en kittan pāusan.

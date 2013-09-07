@@ -595,7 +595,7 @@ $1',
 'pool-queuefull' => '풀 큐가 가득 찼습니다',
 'pool-errorunknown' => '알 수 없는 오류',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} 소개',
 'aboutpage' => 'Project:소개',
 'copyright' => '내용은 $1 라이선스에 따라 사용할 수 있습니다.',
@@ -2247,12 +2247,6 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'statistics-users-active' => '활동적인 사용자',
 'statistics-users-active-desc' => '최근 {{PLURAL:$1|$1일}} 동안 활동한 사용자',
 'statistics-mostpopular' => '가장 많이 읽힌 문서',
-
-'disambiguations' => '동음이의 문서를 가리키는 문서 목록',
-'disambiguationspage' => 'Template:동음이의',
-'disambiguations-text' => "다음 문서는 적어도 하나 이상 '''동음이의 문서'''를 가리키고 있습니다.
-그 링크는 다른 적절한 문서로 연결할 필요가 있습니다.<br />
-[[MediaWiki:Disambiguationspage]]에서 링크된 틀을 사용하는 문서를 동음이의 문서로 간주합니다.",
 
 'pageswithprop' => '문서 속성이 있는 문서',
 'pageswithprop-legend' => '문서 속성이 있는 문서',

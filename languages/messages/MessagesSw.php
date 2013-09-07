@@ -367,7 +367,7 @@ $1',
 'pool-queuefull' => 'Foleni ya michakato imejaa',
 'pool-errorunknown' => 'Hitilafu isiyojulikana',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Kuhusu {{SITENAME}}',
 'aboutpage' => 'Project:Kuhusu',
 'copyright' => 'Yaliyomo yafuata $1.',
@@ -1747,12 +1747,6 @@ Kumbuka kuhakikisha kwamba hakuna viungo vingine vinavyoelekea kigezo fulani kab
 'statistics-users-active' => 'Watumiaji wanaofanya kazi',
 'statistics-users-active-desc' => 'Watumiaji waliofanya kazi katika siku {{PLURAL:$1|iliyopita|$1 zilizopita}}',
 'statistics-mostpopular' => 'Kurasa zinazotazamwa sana',
-
-'disambiguations' => 'Kurasa zinazoungana na kurasa za uanishaji',
-'disambiguationspage' => 'Template:Maana',
-'disambiguations-text' => "Kurasa zinazofuata zina angalau kiungo kimoja kinachoelekea kwa '''kurasa ya kutofautishana maana'''.
-Ni afadhali kiungo kiende makala yanayostahili moja kwa moja.<br />
-Ukurasa unatibiwa kama ukurasa wa kutofautishana maana inazotumia kigezo kinachoorodheshwa katika ukurasa wa [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects' => 'Maelekezo mawilimawili',
 'doubleredirectstext' => 'Ukurasa huu unaorodhesha kurasa zinazoelekeza kurasa zingine za kuelekeza.

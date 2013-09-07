@@ -635,7 +635,7 @@ $1",
 'pool-queuefull' => 'La file de travail est pleine',
 'pool-errorunknown' => 'Erreur inconnue',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'À propos de {{SITENAME}}',
 'aboutpage' => 'Project:À propos',
 'copyright' => 'Le contenu est disponible sous licence $1 .',
@@ -2227,12 +2227,6 @@ N'oubliez pas de vérifier s'il n'y a pas d'autres liens vers les modèles avant
 'statistics-users-active' => 'Utilisateurs actifs',
 'statistics-users-active-desc' => 'Utilisateurs ayant fait au moins une action durant {{PLURAL:$1|le dernier jours|les $1 derniers jours}}',
 'statistics-mostpopular' => 'Pages les plus consultées',
-
-'disambiguations' => "Pages ayant des liens vers des pages d'homonymie",
-'disambiguationspage' => 'Template:Homonymie',
-'disambiguations-text' => "Les pages suivantes comportent au moins un lien vers une '''page d'homonymie'''.
-Elles devraient plutôt pointer vers le bon article.<br />
-Une page est considérée comme une page d'homonymie si elle utilise un modèle lié à [[MediaWiki:Disambiguationspage]]",
 
 'pageswithprop' => 'Pages avec une propriété de page',
 'pageswithprop-legend' => 'Pages avec une propriété de page',

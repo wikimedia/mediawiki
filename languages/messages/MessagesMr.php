@@ -464,7 +464,7 @@ $messages = array(
 'broken-file-category' => 'तुटलेल्या संचिका दुव्यांसह असलेली पाने',
 
 'about' => 'च्या विषयी',
-'article' => 'मजकूराचे पान',
+'article' => 'आशयाचे पान',
 'newwindow' => '(नवीन खिडकीत उघडते.)',
 'cancel' => 'रद्द करा',
 'moredotdotdot' => 'अजून...',
@@ -565,7 +565,7 @@ $1',
 'pool-queuefull' => 'सर्व्हरवर ताण आहे.',
 'pool-errorunknown' => 'अपरिचित त्रूटी',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}}बद्दल',
 'aboutpage' => 'Project:माहितीपृष्ठ',
 'copyright' => 'येथील मजकूर $1च्या अंतर्गत उपलब्ध आहे.',
@@ -654,6 +654,9 @@ $1',
 # General errors
 'error' => 'त्रुटी',
 'databaseerror' => 'माहितीसंग्रहातील त्रुटी',
+'databaseerror-text' => 'विदागार पृच्छा त्रूटी घडलेली आहे.
+ते संचेतनात गणकदोष असण्याची शक्यता निर्देशित करते.',
+'databaseerror-textcl' => 'विदागार पृच्छा त्रूटी घडलेली आहे.',
 'laggedslavemode' => "'''सुचना:''' पानावर अद्ययावत बदल नसतील.",
 'readonly' => 'विदागारास (डाटाबेस) ताळे आहे.',
 'enterlockreason' => 'विदागारास ताळे ठोकण्याचे कारण, ताळे उघडले जाण्याच्या अदमासे कालावधीसहीत द्या.',
@@ -943,7 +946,7 @@ $2',
 'extlink_tip' => 'बाह्य दुव्यात (http:// हा उपसर्ग विसरू नका)',
 'headline_sample' => 'मथळा मजकुर',
 'headline_tip' => 'द्वितीय-स्तर अग्रशीर्ष',
-'nowiki_sample' => 'मजकूर येथे लिहा',
+'nowiki_sample' => 'अस्वरूपित मजकूर येथे भरा',
 'nowiki_tip' => 'विकिभाषेप्रमाणे बदल करू नका',
 'image_tip' => 'संलग्न संचिका',
 'media_tip' => 'संचिकेचा दुवा',
@@ -1686,6 +1689,7 @@ $1",
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|बदल}}',
+'enhancedrc-history' => 'इतिहास',
 'recentchanges' => 'अलीकडील बदल',
 'recentchanges-legend' => 'अलीकडील बदलाएवजी पर्याय',
 'recentchanges-summary' => 'या विकिवर झालेल्या सर्वात अलीकडील बदलांचा या पानावर मागोवा घ्या.',
@@ -1968,6 +1972,8 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization कृपया हे
 'listfiles_size' => 'आकार (बाईट्स)',
 'listfiles_description' => 'वर्णन',
 'listfiles_count' => 'आवृत्त्या',
+'listfiles-latestversion-yes' => 'हो',
+'listfiles-latestversion-no' => 'नाही',
 
 # File description page
 'file-anchor-link' => 'संचिका',
@@ -2092,11 +2098,6 @@ Input:contenttype/subtype, e.g. <code>image/jpeg</code>.',
 'statistics-users-active' => 'कार्यरत सदस्य',
 'statistics-users-active-desc' => '{{PLURAL:$1|शेवटच्या दिवसात|शेवटच्या $1 दिवसांत}} एकतरी संपादन केलेले सदस्य',
 'statistics-mostpopular' => 'सर्वाधिक बघितली जाणारी पाने',
-
-'disambiguations' => 'नि:संदिग्धकरण पृष्ठे',
-'disambiguationspage' => 'Template:नि:संदिग्धीकरण',
-'disambiguations-text' => "निम्नलिखीत पानांस, त्यांना '''नि:संदिग्धिकरण पृष्ठास''' जोडणारा किमान एक दुवा आहे.
-ऐवजी, ती सुयोग्य विषयाशी जोडली जावयास हवीत.<br /> जर एखादे पान [[MediaWiki:Disambiguationspage]]पासून जोडलेला साचा वापरत असेल तर त्या पानास, '''नि:संदिग्धिकरण पृष्ठ''' असे गृहीत धरले जाते.",
 
 'pageswithprop' => "'पृष्ठ गुणधर्म' असणारी पाने",
 'pageswithprop-legend' => 'पृष्ठ गुणधर्म असणारी पाने',

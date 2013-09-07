@@ -277,7 +277,7 @@ $messages = array(
 'jumptonavigation' => 'nènemòwalistli',
 'jumptosearch' => 'tlatēmoliztli',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Ītechcopa {{SITENAME}}',
 'aboutpage' => 'Project:Ītechcopa',
 'copyright' => 'Tlahcuilōltzin cah yōllōxoxouhqui īpan $1',
@@ -901,9 +901,6 @@ Timitztlātlauhtiah, xitlahcuiloa occē tōcāitl.',
 'statistics-pages-desc' => 'Mochīntīn zāzaniltin huiquipan, mopiyah tēixnāmiquiliztli, tlacuepaliztli, etz.',
 'statistics-files' => 'Tlahcuilōlli ōmoquetz',
 'statistics-views-peredit' => 'Tlahpololiztli ic tlapatlaliztli',
-
-'disambiguations' => 'Āmatl tlein motzonhuiliah īca tlahtōlmelāhuacātlāliztli āmatl',
-'disambiguationspage' => 'Template:Tlahtōlmelāhuacātlālīliztli',
 
 'doubleredirects' => 'Ōntetl tlacuepaliztli',
 

@@ -247,7 +247,7 @@ $1',
 'pool-queuefull' => 'Ang pila sang linaw puno na',
 'pool-errorunknown' => 'Wala mahibaluan nga sala',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Nahanungod sa {{SITENAME}}',
 'aboutpage' => 'Project:Nahanungod',
 'copyright' => 'Ang unod nga abeylabol nga naga paidalum $1.',
@@ -1484,8 +1484,6 @@ Ang gusto nga {{PLURAL:\$3|tipo sang file amo|mga tipo sang file amo ang}} \$2."
 
 # Statistics
 'statistics' => 'Mga Statistik',
-
-'disambiguationspage' => 'Template:disambig',
 
 'brokenredirects-edit' => 'ilisan',
 'brokenredirects-delete' => 'panason',

@@ -416,7 +416,7 @@ $1',
 'pool-queuefull' => 'Процессты рад йедзаг у',
 'pool-errorunknown' => 'Æнæбæрæг рæдыд',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{grammar:genitive|{{SITENAME}}}} тыххæй',
 'aboutpage' => 'Project:Афыст',
 'copyright' => 'Мидис у гом {{grammar:allative|$1}} гæсгæ.',
@@ -1324,8 +1324,6 @@ $3',
 'statistics-header-users' => 'Архайджыты статистикæ',
 'statistics-header-hooks' => 'Æндæр статистикæтæ',
 'statistics-articles' => 'Мидисы фæрстæ',
-
-'disambiguationspage' => 'Template:бирæнысанон',
 
 'double-redirect-fixer' => 'Рарвыст растгæнæн',
 

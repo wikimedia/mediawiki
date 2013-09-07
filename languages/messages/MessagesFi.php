@@ -559,7 +559,7 @@ $1',
 'pool-queuefull' => 'Lukkojono on täysi.',
 'pool-errorunknown' => 'Tuntematon virhe.',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Tietoja {{GRAMMAR:elative|{{SITENAME}}}}',
 'aboutpage' => 'Project:Tietoja',
 'copyright' => 'Sisältö on käytettävissä lisenssillä $1.',
@@ -2102,12 +2102,6 @@ Syöte: sisältötyyppi/alatyyppi, esimerkiksi <code>image/jpeg</code>.',
 'statistics-users-active' => 'Aktiivisia käyttäjiä',
 'statistics-users-active-desc' => 'Käyttäjät, jotka ovat suorittaneet jonkin toiminnon {{PLURAL:$1|edellisen päivän|edellisten $1 päivän}} aikana.',
 'statistics-mostpopular' => 'Katsotuimmat sivut',
-
-'disambiguations' => 'Linkit täsmennyssivuihin',
-'disambiguationspage' => 'Template:Täsmennyssivu',
-'disambiguations-text' => "Seuraavilla sivuilla on linkkejä ''täsmennyssivuihin''.
-Täsmennyssivun sijaan ne voisivat linkittää suoraan asianomaiseen aiheeseen.<br />
-Sivua kohdellaan täsmennyssivuna, jos se käyttää mallinetta, johon on linkki sivulta [[MediaWiki:Disambiguationspage]].",
 
 'pageswithprop' => 'Sivut sivun ominaisuuden mukaan',
 'pageswithprop-legend' => 'Sivut sivun ominaisuuden mukaan',

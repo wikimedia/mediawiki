@@ -273,7 +273,7 @@ $1",
 'pool-queuefull' => "La coa ëd travaj a l'é pien-a",
 'pool-errorunknown' => 'Eror pa conossù',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'A propòsit ëd {{SITENAME}}',
 'aboutpage' => 'Project:A propòsit',
 'copyright' => 'Ël contnù a resta disponìbil sota a na licensa $1.',
@@ -581,10 +581,10 @@ S'a decid ëd butelo, a sarà dovrà për dé a l'utent ël mérit ëd sò trava
 'resetpass_announce' => "A l'é rintrà ant ël sistema con na ciav provisòria mandà për pòsta eletrònica. Për podèj livré la procedura a l'ha da butesse na ciav neuva ambelessì:",
 'resetpass_text' => '<!-- Gionté ël test ambelessì -->',
 'resetpass_header' => 'Cangé la ciav dël cont',
-'oldpassword' => 'Veja ciav',
-'newpassword' => 'Neuva ciav',
-'retypenew' => 'Che a scriva torna soa neuva ciav',
-'resetpass_submit' => 'Registra la ciav e rintra ant ël sistema',
+'oldpassword' => 'Veja ciav:',
+'newpassword' => 'Neuva ciav:',
+'retypenew' => 'Che a scriva torna soa neuva ciav:',
+'resetpass_submit' => 'Argistré la ciav e rintré ant ël sistema',
 'changepassword-success' => "Soa ciav a l'é stàita modificà sensa problema!",
 'resetpass_forbidden' => 'Le ciav as peulo pa cambiesse',
 'resetpass-no-info' => 'It deve esse intrà për andé diretament a sta pàgina.',
@@ -1824,12 +1824,6 @@ Ch'as visa ëd controlé che në stamp a-j serva nen a dj'àutri stamp anans che
 'statistics-users-active' => 'Utent ativ',
 'statistics-users-active-desc' => "Utent che a l'han fàit n'assion ant {{PLURAL:$1|l'ùltim di|j'ùltim $1 di}}",
 'statistics-mostpopular' => "Pàgine ch'a 'ncontro dë pì",
-
-'disambiguations' => "Pàgine ch'a men-o vers dle pàgine d'omonimìe",
-'disambiguationspage' => "Template:Gestion dj'omonimìe",
-'disambiguations-text' => "Ste pàgine-sì a men-o a na '''pàgina ëd gestion dj'omònim'''.
-Mach che a dovrìo ëmné bele drit a n'artìcol.<br />
-Na pàgina as trata coma pàgina ëd gestion dj'omònim se a deuvra në stamp dont l'anliura as treuva ant ël [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects' => 'Ridiression dobie',
 'doubleredirectstext' => "Sta pàgina-sì a a lista dle pàgine ch'a armando a d'àutre pàgine ëd ridiression.

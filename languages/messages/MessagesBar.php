@@ -287,7 +287,7 @@ $1",
 'pool-queuefull' => 'Poolworteschlång is vói',
 'pool-errorunknown' => 'Unbekånnter Feeler',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Iba {{SITENAME}}',
 'aboutpage' => 'Project:Iba',
 'copyright' => 'Da Inhoid is unter da $1 vafiagbor.',
@@ -958,12 +958,6 @@ A [[Special:WhatLinksHere/$2|voiständige Listn]] gibt's aa.",
 'statistics-edits-average' => 'Beorweitungen pró Seiten im Durchschnit',
 'statistics-views-total' => 'Seitenaufruaff gsåmmt',
 'statistics-mostpopular' => 'Dé am moastbsuachten Seiten',
-
-'disambiguationspage' => 'Template:Begriffsklearung',
-'disambiguations-text' => "D' fóigernden Seiten valinken af a Seiten za ner Begiefsklärung. Du sóiderst stott dém af d' oagerntlich gmoahde Seiten valinken.
-
-A Seiten gijt ois Begriefsklärungsseiten, waunns oane vah dé af [[MediaWiki:Disambiguationspage]] afgfyrde Vurloog(ng) eihbindt.</br>
-Links as Naumensraim wern do néd afglistt.",
 
 'doubleredirects' => 'Doppede Weiderloatungen',
 

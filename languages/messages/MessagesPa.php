@@ -430,7 +430,7 @@ $1',
 'pool-queuefull' => 'ਪੂਲ ਕਤਾਰ ਭਰੀ ਹੋਈ ਹੈ',
 'pool-errorunknown' => 'ਅਣਜਾਣ ਗਲਤੀ',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} ਬਾਰੇ',
 'aboutpage' => 'Project:ਬਾਰੇ',
 'copyright' => 'ਸਮੱਗਰੀ $1 ਹੇਠ ਉਪਲੱਬਧ ਹੈ।',
@@ -1637,9 +1637,6 @@ HTML ਟੈਗ ਚੈੱਕ ਕਰੋ।',
 'statistics-users-active' => 'ਸਰਗਰਮ ਵਰਤੋਂਕਾਰ',
 'statistics-users-active-desc' => 'ਮੈਂਬਰ, ਜਿੰਨ੍ਹਾ ਨੇ ਆਖ਼ਰੀ {{PLURAL:$1|ਦਿਨ|$1 ਦਿਨਾਂ}} ਵਿਚ ਕੋਈ ਕੰਮ ਕੀਤਾ ਹੈ।',
 'statistics-mostpopular' => 'ਸਭ ਤੋਂ ਵੱਧ ਵੇਖੇ ਸਫ਼ੇ',
-
-'disambiguations' => 'ਗੁੰਝਲ-ਖੋਲ੍ਹ ਸਫ਼ਿਆਂ ਨਾਲ਼ ਜੁੜਦੇ ਸਫ਼ੇ',
-'disambiguationspage' => 'Template:ਗੁੰਝਲ ਖੋਲ੍ਹ',
 
 'pageswithprop-submit' => 'ਜਾਉ',
 

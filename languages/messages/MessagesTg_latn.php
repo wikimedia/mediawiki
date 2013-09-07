@@ -233,7 +233,7 @@ Lutfan qabl az taloş dubora baroi didani in sahifa muddate sabr kuned.
 $1",
 'pool-errorunknown' => 'Xatogiji noşinos',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Dar borai {{SITENAME}}',
 'aboutpage' => 'Project:Dar borai',
 'copyright' => 'Mūhtavo tahti içozatnomai $1 dastras ast.',
@@ -1081,10 +1081,6 @@ Jak klik kardani rūi unvoni sutunho boisi taƣjiri tartibi namoişi parvandaho 
 'statistics-users' => '[[Special:ListUsers|Korbaroni]] sabtinomşuda',
 'statistics-users-active' => "Korbaroni fa'ol",
 'statistics-mostpopular' => 'Sahifahoi bisjor nazarkardaşuda',
-
-'disambiguations' => 'Sahifahoi ibhomzudoī',
-'disambiguationspage' => 'Template:ibhomzudoī',
-'disambiguations-text' => "Sahifahoi zerin pajvand ba '''sahifai ibhomzudoī''' dorand. In sahifaho bojad ba mavzū'i munosibi xud pajvast şavand.<br />Sahifa Ibhomzudoī dar nazar girifta meşavad, ki dar on şablone, ki ba [[MediaWiki:Disambiguationspage]] pajvand dorad istifoda şuda boşad",
 
 'doubleredirects' => 'Taƣjiri masirhoi dutoī',
 'double-redirect-fixer' => "Ta'mirkori taƣjirmasirho",

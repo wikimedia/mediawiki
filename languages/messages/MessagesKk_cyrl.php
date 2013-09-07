@@ -605,7 +605,7 @@ $1',
 'pool-queuefull' => 'Сұранымдар жинақтауышысы толық',
 'pool-errorunknown' => 'Белгісіз қате',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} туралы',
 'aboutpage' => 'Project:Жоба туралы',
 'copyright' => 'Мәлімет $1 шартымен жетімді.',
@@ -1979,12 +1979,6 @@ URL дұрыс екендігін және торап істеп тұрғаны�
 'statistics-users-active' => 'Белсенді қатысушылар',
 'statistics-users-active-desc' => 'Соңғы {{PLURAL:$1|күнде|$1 күнде}} қандай да бір іс-әрекет жасаған қатысушылар',
 'statistics-mostpopular' => 'Ең көп қаралған беттер',
-
-'disambiguations' => 'Айрықты беттерге сілтенген беттер',
-'disambiguationspage' => '{{ns:template}}:Айрық',
-'disambiguations-text' => "Келесі беттер '''айрықты бетке''' сілтейді.
-Бұның орнына белгілі тақырыпқа сілтеуі керек.<br />
-Егер [[MediaWiki:Disambiguationspage]] тізіміндегі үлгі қолданылса, бет айрықты деп саналады.",
 
 'pageswithprop' => 'Беттер бет сипатымен',
 'pageswithprop-legend' => 'Беттер бет сипатымен',

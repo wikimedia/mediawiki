@@ -425,7 +425,7 @@ $1',
 'pool-queuefull' => 'Soulgarget eo ar servijerioù',
 'pool-errorunknown' => 'Fazi dianav',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Diwar-benn {{SITENAME}}',
 'aboutpage' => 'Project:Diwar-benn',
 'copyright' => "Danvez a c'haller implijout dindan $1.",
@@ -2007,12 +2007,6 @@ Marteze a-walc'h e fell deoc'h kemmañ an deskrivadur anezhi war ar [$2 bajenn d
 'statistics-users-active' => 'Implijerien oberiant',
 'statistics-users-active-desc' => "Implijerien o deus degaset da nebeutañ ur c'hemm {{PLURAL:$1|an deiz paseet|e-kerzh an $1 deiz diwezhañ}}",
 'statistics-mostpopular' => 'Pajennoù muiañ sellet',
-
-'disambiguations' => 'Pajennoù enno liammoù war-zu pajennoù disheñvelout',
-'disambiguationspage' => 'Template:Disheñvelout',
-'disambiguations-text' => "Liammet eo ar pajennoù da-heul ouzh ur '''bajenn disheñvelout'''.
-Padal e tlefent kas war-eeun d'an danvez anezho.<br />
-Sellet e vez ouzh ur bajenn evel ouzh ur bajenn disheñvelout ma ra gant ur patrom liammet ouzh [[MediaWiki:Disambiguationspage]]",
 
 'pageswithprop-prop' => 'Anv ar perzh :',
 'pageswithprop-submit' => 'Mont',

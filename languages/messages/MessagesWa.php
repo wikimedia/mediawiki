@@ -296,7 +296,7 @@ Soeyoz vayant di ratinde ene miete divant di rsayî di vey cisse pådje ci.
 $1",
 'pool-errorunknown' => 'Aroke nén cnoxhowe',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Åd fwait di {{SITENAME}}',
 'aboutpage' => 'Project:Åd fwait',
 'copyright' => "Li contnou est dizo l' $1.",
@@ -1256,12 +1256,6 @@ Rimimbrez vs di verifyî s' i n' a nén des ôtes loyéns divant delzès disface
 'statistics-articles' => 'Pådjes di contnou',
 'statistics-pages-desc' => 'Totes les pådjes do "Wiki", minme les copinaedjes, les rdjiblaedjes, evnd.',
 'statistics-mostpopular' => 'Pådjes les pus veyowes',
-
-'disambiguations' => "Pådjes avou des loyéns viè des pådjes d' omonimeye",
-'disambiguationspage' => 'Template:omonimeye',
-'disambiguations-text' => "Ces pådjes ci loynut eviè ene '''pådje d' omonimeye'''.
-Ele divrént purade raloyî direk å mwaisse sudjet.<br />
-Ene pådje est waiteye come pådje d' omonimeye s' ele eploye on modele k' est loyî a [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects' => 'Dobes redjiblaedjes',
 'doubleredirectstext' => "Cisse pådje ci mostere les dobes redjiblaedjes (pådjes ki redjiblèt viè ene ôte pådje di redjiblaedje).

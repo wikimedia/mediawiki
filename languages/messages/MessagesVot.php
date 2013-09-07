@@ -156,7 +156,7 @@ $messages = array(
 'jumptonavigation' => 'valittsõmisiisõ',
 'jumptosearch' => 'ettsüse',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Tääteja {{GRAMMAR:elative|{{SITENAME}}}}',
 'aboutpage' => 'Project:Täätühsed',
 'copyright' => 'Sisälto on $1 litsentsii mukka svobodnoi.',
@@ -543,8 +543,6 @@ Seness [$2 kuvauhsõ lehocülless] informaattsija on alapallõ annõttu.',
 # Statistics
 'statistics' => 'Staťisťikka',
 'statistics-pages' => 'Cülcid',
-
-'disambiguationspage' => 'Template:disambig',
 
 'brokenredirects-edit' => 'muuttaa',
 'brokenredirects-delete' => 'pühi',

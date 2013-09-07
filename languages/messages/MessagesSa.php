@@ -507,7 +507,7 @@ $1',
 'pool-queuefull' => 'कुण्डपंक्तिः (पूल् क्यू इत्येषा) पूर्णा अस्ति।',
 'pool-errorunknown' => 'अज्ञाता त्रुटिः',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} इत्यस्य विषये',
 'aboutpage' => 'Project:एतद्विषयकम्',
 'copyright' => 'अस्य घटकानि $1 इत्यस्यान्तर्गतानि उपलब्धानि।',
@@ -1988,12 +1988,6 @@ See https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'statistics-users-active' => 'सक्रियाः सदस्याः',
 'statistics-users-active-desc' => 'गतेषु {{PLURAL:$1|day|$1 दिनेषु}} सक्रियाः योजकाः  ।',
 'statistics-mostpopular' => 'अत्यवलोकितपुटानि ।',
-
-'disambiguations' => 'द्वैधीभावरहितपुटानाम् अनुबन्धितपुटानि ।',
-'disambiguationspage' => 'Template:असन्दिग्धम्',
-'disambiguations-text' => 'अधो निदेशितपुटानि असन्धिग्धपुटेन अनुबन्धितानि । 
-एतानि यथार्थविषैः योजनीयानि । <br />
-यदि कोऽपि पुटेन प्रकृतिं प्रयोजयति यः  [[MediaWiki:Disambiguationspage]] इत्यनेन अनुबद्धः  ससन्दिग्धपुटम् इति उच्यते ।',
 
 'pageswithprop' => 'प्रगुणविशेषयुतानि पृष्ठानि',
 'pageswithprop-legend' => 'प्रगुणविशेषयुतानि पृष्ठानि',

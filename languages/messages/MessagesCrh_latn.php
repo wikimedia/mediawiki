@@ -328,7 +328,7 @@ $1',
 'pool-queuefull' => 'Soratma toplayıcısı tolu',
 'pool-errorunknown' => 'Bilinmegen hata',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} aqqında',
 'aboutpage' => 'Project:Aqqında',
 'copyright' => 'Malümat $1 binaen keçilip ola.',
@@ -1241,12 +1241,6 @@ Sutun serlevasına bir basuv sortirlemeniñ tertibini deñiştirir.',
 'statistics-header-users' => 'Qullanıcı statistikası',
 'statistics-header-hooks' => 'Diger statistika',
 'statistics-mostpopular' => 'Eñ sıq baqılğan saifeler',
-
-'disambiguations' => 'Çoq manalı terminler saifeleri',
-'disambiguationspage' => '{{ns:template}}:disambig',
-'disambiguations-text' => "Aşağıdıki saifeler '''çoq manalı saifeler'''ge bağlantı ola.
-Belki de olar bir konkret saifege bağlantı olmalı.<br />
-Eger saifede, [[MediaWiki:Disambiguationspage]] saifesinde adı keçken şablon yerleştirilgen olsa, o saife çoq manalıdır.",
 
 'doubleredirects' => 'Yollamağa olğan yollamalar',
 'doubleredirectstext' => 'Bu saifede diger yollama saifelerine yollanma olğan saifeleri kösterile.

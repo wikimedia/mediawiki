@@ -334,7 +334,7 @@ $1',
 'pool-queuefull' => 'ܣܕܪܐ ܕܦܘܣܣܐ ܡܠܝܐ',
 'pool-errorunknown' => 'ܦܘܕܐ ܠܐ ܝܕܝܥܐ',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'ܡܢܘ {{SITENAME}}',
 'aboutpage' => 'Project:ܡܢܘ',
 'copyright' => 'ܚܒܝܫܬ̈ܐ ܐܝܬ ܬܚܝܬ $1.',
@@ -1059,9 +1059,6 @@ $1',
 'statistics-users' => '[[Special:ListUsers|ܡܦܠܚܢ̈ܐ]] ܡܣܓܠ̈ܐ',
 'statistics-users-active' => 'ܡܦܠܚܢ̈ܐ ܙܪ̄ܝܙܐ',
 'statistics-mostpopular' => 'ܦܐܬܬ̈ܐ ܚܙܝ̈ܐ ܝܬܝܪ ܡܢ ܟܠ',
-
-'disambiguations' => 'ܦܐܬܬ̈ܐ ܐܣܝܪ̈ܬܐ ܒܦܐܬܬ̈ܐ ܕܬܘܚܡܐ ܐܚܪܢܐ',
-'disambiguationspage' => 'Template:ܬܘܚܡܐ ܐܚܪܢܐ',
 
 'pageswithprop' => 'ܦܐܬܬ̈ܐ ܥܡ ܕܝܠܝܬܐ ܕܦܐܬܐ',
 'pageswithprop-legend' => 'ܦܐܬܬ̈ܐ ܥܡ ܕܝܠܝܬܐ ܕܦܐܬܐ',

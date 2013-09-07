@@ -563,7 +563,7 @@ $1',
 'pool-queuefull' => 'A fila de processos está cheia',
 'pool-errorunknown' => 'Erro desconhecido',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Sobre a {{SITENAME}}',
 'aboutpage' => 'Project:Sobre',
 'copyright' => 'Conteúdo disponibilizado nos termos da $1.',
@@ -2163,12 +2163,6 @@ Talvez queira editar a descrição na [$2 página original de descrição do fic
 'statistics-users-active' => 'Utilizadores ativos',
 'statistics-users-active-desc' => 'Utilizadores que efectuaram uma operação {{PLURAL:$1|no último dia|nos últimos $1 dias}}',
 'statistics-mostpopular' => 'Páginas mais vistas',
-
-'disambiguations' => 'Páginas com ligações para páginas de desambiguação',
-'disambiguationspage' => 'Template:disambig',
-'disambiguations-text' => "As páginas abaixo contêm pelo menos um link para uma '''página de desambiguação'''.
-Estes links deviam ser desambiguados, apontando-os para uma página mais apropriada.<br />
-Considera-se que uma página é de desambiguação se nela for utilizada uma predefinição que esteja definida em [[MediaWiki:Disambiguationspage]].",
 
 'pageswithprop' => 'Páginas com uma propriedade',
 'pageswithprop-legend' => 'Páginas com uma propriedade',

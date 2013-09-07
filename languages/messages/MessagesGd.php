@@ -265,7 +265,7 @@ $1",
 'pool-queuefull' => 'Tha ciutha nam pròiseasan làn',
 'pool-errorunknown' => 'Mearachd neo-aithnichte',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Mu dhèidhinn {{SITENAME}}',
 'aboutpage' => 'Project:Mu dhèidhinn',
 'copyright' => 'Tha susbaint ri làimh fo $1.',
@@ -1216,8 +1216,6 @@ Chithear an tuairisgeul a tha aice air [duilleag tuairisgeul an fhaidhle $2] gu 
 
 # Statistics
 'statistics' => 'Staitistearachd',
-
-'disambiguationspage' => 'Template:ciallan',
 
 'doubleredirects' => 'Ath-seòlaidhean dùbailte',
 

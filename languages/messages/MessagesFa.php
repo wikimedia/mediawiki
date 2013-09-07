@@ -9,6 +9,7 @@
  *
  * @author Alnokta
  * @author Americophile
+ * @author Amire80
  * @author Armandaneshjoo
  * @author Asoxor
  * @author Baqeri
@@ -679,7 +680,7 @@ $1',
 'pool-queuefull' => 'صف مخزن پر است',
 'pool-errorunknown' => 'خطای ناشناخته',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'دربارهٔ {{SITENAME}}',
 'aboutpage' => 'Project:درباره',
 'copyright' => 'محتوا تحت اجازه‌نامهٔ $1 در دسترس است.',
@@ -2290,12 +2291,6 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'statistics-users-active-desc' => 'کاربرانی که در {{PLURAL:$1|روز|$1 روز}} قبل فعالیتی انجام داده‌اند',
 'statistics-mostpopular' => 'صفحه‌هایی که بیشترین تعداد بازدیدکننده را داشته‌اند',
 
-'disambiguations' => 'صفحه‌های دارای پیوند به صفحه‌های ابهام‌زدایی',
-'disambiguationspage' => 'Template:ابهام‌زدایی',
-'disambiguations-text' => "صفحه‌های زیر حاوی حداقل یک پیوند به یک '''صفحهٔ ابهام‌زدایی''' هستند.
-این صفحه‌ها شاید در عوض به موضوعات مرتبط پیوند داده شوند.<br />
-یک صفحه هنگامی صفحهٔ ابهام‌زدایی در نظر گرفته می‌شود که در آن از الگویی که به [[MediaWiki:Disambiguationspage]] پیوند دارد استفاده شده باشد.",
-
 'pageswithprop' => 'صفحه‌های دارای خاصیت صفحه',
 'pageswithprop-legend' => 'صفحه‌های دارای خاصیت صفحه',
 'pageswithprop-text' => 'این صفحه فهرستی است از صفحه‌هایی که از یک خاصیت صفحهٔ خاص استفاده می‌کنند.',
@@ -2566,7 +2561,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'watcherrortext' => 'ایرادی در هنگام عوض کردن تنظیمات فهرست پیگیرتان برای «$1» رخ داد.',
 
 'enotif_mailer' => 'رایانامهٔ اطلاع‌رسانی {{SITENAME}}',
-'enotif_reset' => 'علامت‌گذاری همهٔ صفحه‌ها به عنوان بازدید شده',
+'enotif_reset' => 'نشان‌گذاری همهٔ صفحه‌ها به‌عنوان بازدیدشده',
 'enotif_impersonal_salutation' => 'کاربر {{SITENAME}}',
 'enotif_subject_deleted' => '{{SITENAME}} صفحهٔ $1 توسط {{gender:$2|$2}} حذف شد.',
 'enotif_subject_created' => '{{SITENAME}} صفحهٔ $1 توسط {{gender:$2|$2}} ایجاد شده.',
@@ -4298,7 +4293,7 @@ $5
 'rightsnone' => '(هیچ)',
 
 # Feedback
-'feedback-bugornote' => 'اگر آماده‌اید تا مشکلی فنی را با جزئیاتش شرح دهید لطفاً [$1 یک ایراد گزارش دهید]. در غیر این صورت می‌توانید از فرم سادهٔ زیر استفاده کنید. نظر شما به همراه نام کاربری و مرورگرتان به صفحهٔ «[$2 $3]» افزوده خواهد شد.',
+'feedback-bugornote' => 'اگر آماده‌اید تا مشکلی فنی را با جزئیاتش شرح دهید لطفاً [$1 یک ایراد گزارش دهید]. در غیر این صورت می‌توانید از فرم سادهٔ زیر استفاده کنید. نظر شما به همراه نام کاربری و مرورگرتان به صفحهٔ «[$3 $2]» افزوده خواهد شد.',
 'feedback-subject' => 'موضوع:',
 'feedback-message' => 'پیغام:',
 'feedback-cancel' => 'لغو',

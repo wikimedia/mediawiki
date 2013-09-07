@@ -607,7 +607,7 @@ $1',
 'pool-queuefull' => 'Fronta ve fondu je plná',
 'pool-errorunknown' => 'Neznámá chyba',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'O&nbsp;{{grammar:6sg|{{SITENAME}}}}',
 'aboutpage' => 'Project:{{SITENAME}}',
 'copyright' => 'Obsah je dostupný pod $1.',
@@ -2197,12 +2197,6 @@ Vstup: <code>typ obsahu/podtyp</code>, např. <code>image/jpeg</code>.',
 'statistics-users-active' => 'Aktivní uživatelé',
 'statistics-users-active-desc' => 'Uživatelé, kteří v {{plural:$1|posledním dni|posledních $1 dnech}} provedli nějakou operaci',
 'statistics-mostpopular' => 'Nejčtenější stránky',
-
-'disambiguations' => 'Stránky odkazující na rozcestníky',
-'disambiguationspage' => 'Template:Rozcestník',
-'disambiguations-text' => "Následující stránky obsahují nejméně jeden odkaz na '''rozcestník'''.
-Asi by místo toho měly odkazovat na konkrétnější stránku.<br />
-Stránka je považována za rozcestník, pokud používá některou ze šablon odkazovaných na [[MediaWiki:Disambiguationspage]].",
 
 'pageswithprop' => 'Stránky s vlastností',
 'pageswithprop-legend' => 'Stránky s vlastností',

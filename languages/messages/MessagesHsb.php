@@ -398,7 +398,7 @@ $1',
 'pool-queuefull' => 'Poolowa čakanska rynka je połna',
 'pool-errorunknown' => 'Njeznaty zmylk:',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Wo {{GRAMMAR:lokatiw|{{SITENAME}}}}',
 'aboutpage' => 'Project:Wo',
 'copyright' => 'Wobsah steji pod $1.',
@@ -1927,10 +1927,6 @@ Snano chceš wopisanje na jeje [$2 stronje datajoweho wopisanja] wobdźěłać.'
 'statistics-users-active' => 'Aktiwni wužiwarjo',
 'statistics-users-active-desc' => 'Wužiwarjo, kotřiž su {{PLURAL:$1|wčera|w zańdźenymaj $1 dnjomaj|w zańdźenych $1 dnjach|w zańdźenych $1 dnjach}} aktiwni byli',
 'statistics-mostpopular' => 'Najhusćišo wopytowane strony',
-
-'disambiguations' => 'Strony, kotrež na strony wjacezmyslnosće wotkazuja',
-'disambiguationspage' => 'Template:Wjacezmyslnosć',
-'disambiguations-text' => "Slědowace strony wobsahuja znajmjeńša jedyn wotkaz k stronje '''rozjasnjenja wjacezmyslnosće'''. Měli město toho na poprawnu stronu wotkazać.<br />Maja stronu za stronu rozjasnjenja wjacezmyslnosće, jeli předłohu wužiwa, na kotruž so wot [[MediaWiki:Disambiguationspage]] wotkazuje.",
 
 'pageswithprop' => 'Strony z kajkosću strony',
 'pageswithprop-legend' => 'Strony z kajkosću strony',

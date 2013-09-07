@@ -513,7 +513,7 @@ $messages = array(
 $1',
 'pool-errorunknown' => 'Անհայտ սխալ',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{grammar:genitive|{{SITENAME}}}} մասին',
 'aboutpage' => 'Project:Էությունը',
 'copyright' => 'Կայքի բովանդակությունը գտնվում է «$1» արտոնագրի տակ։',
@@ -1633,12 +1633,6 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'statistics-users-active' => 'Ակտիվ մասնակիցներ',
 'statistics-users-active-desc' => 'Վերջին {{PLURAL:$1|օր|$1 օր}}ում որևէ գործողություն են կատարած մասնակիցներ',
 'statistics-mostpopular' => 'Ամենահաճախ դիտվող էջեր',
-
-'disambiguations' => 'Երկիմաստության փարատման էջեր',
-'disambiguationspage' => 'Template:Երկիմաստ',
-'disambiguations-text' => 'Հետևյալ էջերը հղում են երկիմաստության փարատման էջերին։
-Փոխարենը նրանք, հավանաբար, պետք է հղեն համապատասխան թեմային։<br />
-Էջը համարվում է երկիմաստության փարատման էջ, եթե այն պարունակում է [[MediaWiki:Disambiguationspage]] էջում ընդգրկված կաղապարներից որևէ մեկը։',
 
 'pageswithprop-submit' => 'Անցնել',
 

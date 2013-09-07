@@ -275,7 +275,7 @@ $messages = array(
 'jumptosearch' => 'кычалмаш',
 'pool-errorunknown' => 'Палыдыме йоҥылыш',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} нерген',
 'aboutpage' => 'Project:Нерген',
 'copyright' => 'Лаштыкыште возымо $1 йӧн дене почмо.',

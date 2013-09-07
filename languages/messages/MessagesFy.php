@@ -357,7 +357,7 @@ Wachtsje efkes foardatsto op 'e nij tagong ta dizze side probearrest te krijen.
 
 $1",
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Oer de {{SITENAME}}',
 'aboutpage' => 'Project:Ynfo',
 'copyright' => 'Ynhâld is beskikber ûnder de $1.',
@@ -1466,11 +1466,6 @@ Ferjit net de "Wat is hjirmei keppele" nei te gean foar it fuortheljen fan dit s
 'statistics-users-active' => 'Aktive brûkers',
 'statistics-users-active-desc' => "Brûkers dy't yn 'e ôfrûne {{PLURAL:$1|dei|$1 dagen}} in hanneling útfierd hawwe",
 'statistics-mostpopular' => 'Meast besjoene siden',
-
-'disambiguations' => 'Betsjuttingssiden',
-'disambiguationspage' => 'Template:Neibetsjuttings',
-'disambiguations-text' => "De ûndersteande siden keppelje mei in '''Betsjuttingssiden'''.
-Se soenen mei de side sels keppele wurde moatte.<br /> In side wurdt sjoen as betsjuttingssiden, as de side ien berjocht fan [[MediaWiki:Disambiguationspage]] brûkt.",
 
 'doubleredirects' => 'Dûbelde synonimen',
 'doubleredirectstext' => '<b>Let op!</b> Der kinne missen yn dizze list stean! Dat komt dan ornaris troch oare keppelings ûnder de "#REDIRECT". Eltse rigel jout keppelings nei it earste synonym, it twadde synonym en dan it werklike doel.',

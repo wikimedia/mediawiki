@@ -528,7 +528,7 @@ $1',
 'pool-queuefull' => 'Front je plný',
 'pool-errorunknown' => 'Neznáma chyba',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'O {{GRAMMAR:lokál|{{SITENAME}}}}',
 'aboutpage' => 'Project:Úvod',
 'copyright' => 'Obsah je k dispozícii za licenčných podmienok $1.',
@@ -2087,12 +2087,6 @@ Možno chcete upraviť popis na jeho [$2 popisnej stránke súboru] tam.',
 'statistics-users-active' => 'Aktívnych používateľov',
 'statistics-users-active-desc' => 'Používatelia, ktorí za {{PLURAL:$1|posledný deň|posledné $1 dni|posledných $1 dní}} vykonali nejakú operáciu',
 'statistics-mostpopular' => 'Najčastejšie prezerané stránky',
-
-'disambiguations' => 'Stránky odkazujúce na rozlišovacie stránky',
-'disambiguationspage' => 'Template:Rozlišovacia stránka',
-'disambiguations-text' => "Nasledovné stránky odkazujú na '''rozlišovaciu stránku'''.
-Mali by však odkazovať priamo na príslušnú tému.<br />
-Stránka sa považuje za rozlišovaciu, keď používa šablónu, na ktorú odkazuje [[MediaWiki:Disambiguationspage]].",
 
 'pageswithprop' => 'Stránky s vlastnosťou stránky',
 'pageswithprop-legend' => 'Stránky s vlastnosťou stránky',

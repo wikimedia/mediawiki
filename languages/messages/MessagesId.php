@@ -586,7 +586,7 @@ $1',
 'pool-queuefull' => 'Kumpulan antrean penuh',
 'pool-errorunknown' => 'Kesalahan yang tidak diketahui',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Tentang {{SITENAME}}',
 'aboutpage' => 'Project:Perihal',
 'copyright' => 'Seluruh teks tersedia sesuai dengan $1.',
@@ -2175,12 +2175,6 @@ Cek dahulu pranala lain ke templat tersebut sebelum menghapusnya.',
 'statistics-users-active' => 'Jumlah pengguna aktif',
 'statistics-users-active-desc' => 'Pengguna yang telah melakukan suatu aktivitas dalam {{PLURAL:$1|sehari|$1 hari}} terakhir.',
 'statistics-mostpopular' => 'Halaman yang paling banyak ditampilkan',
-
-'disambiguations' => 'Halaman yang terhubung ke halaman disambiguasi',
-'disambiguationspage' => 'Template:Disambig',
-'disambiguations-text' => "Halaman-halaman berikut memiliki pranala ke suatu '''halaman disambiguasi'''.
-Halaman-halaman tersebut seharusnya berpaut ke topik-topik yang sesuai.<br />
-Suatu halaman dianggap sebagai halaman disambiguasi apabila halaman tersebut menggunakan templat yang terhubung ke [[MediaWiki:Disambiguationspage]].",
 
 'pageswithprop' => 'Halaman dengan halaman properti',
 'pageswithprop-legend' => 'Halaman dengan halaman properti',

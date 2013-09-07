@@ -271,7 +271,7 @@ $1',
 'pool-queuefull' => 'Pooltäiweslange is ful',
 'pool-errorunknown' => 'Uunbekoanden Failer',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Uur {{SITENAME}}',
 'aboutpage' => 'Project:Uur_{{SITENAME}}',
 'copyright' => 'Inhoold is ferföichboar unner de $1.',
@@ -1629,12 +1629,6 @@ Ne [[Special:WhatLinksHere/$2|fulständige Lieste]] is ferföigboar.',
 'statistics-users-active' => 'Aktive Benutsere',
 'statistics-users-active-desc' => 'Benutsere mäd Beoarbaidengen {{PLURAL:$1|in do lääste 24 Uuren|in do fergeene $1 Deege}}',
 'statistics-mostpopular' => 'Maast besoachte Sieden',
-
-'disambiguations' => 'Sieden do der ap Begriepskläärengssieden ferlinkje',
-'disambiguationspage' => 'Template:Begriepskläärenge',
-'disambiguations-text' => "Do foulgjende Sieden ferlinkje ap ne Siede tou ju '''Begriepskläärenge'''.
-Jie skuulen insteede deerfon ap ju eegentelk meende Siede ferlinkje.<br />
-Ne Siede wäd as Begriepskläärengssiede behonneld, wan [[MediaWiki:Disambiguationspage]] ap ju ferlinket.",
 
 'doubleredirects' => 'Dubbelde Fäärelaitengen',
 'doubleredirectstext' => 'Disse Lieste änthoalt Fääreleedengen, do der ap wiedere Fääreleedengen ferlinkje.

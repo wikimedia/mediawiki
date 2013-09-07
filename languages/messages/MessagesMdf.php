@@ -369,7 +369,7 @@ $1',
 'pool-queuefull' => 'Тяряфнемада вельф лама',
 'pool-errorunknown' => 'Аф содаф эльбятькс',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} колга',
 'aboutpage' => 'Project:Колга',
 'copyright' => 'Сёрматфсь ули кода мумс $1-са.',
@@ -1496,10 +1496,6 @@ $3 макссь туфталсь - ''$2''",
 'statistics-users-active' => 'Покай тиихне',
 'statistics-users-active-desc' => 'Тиихне конатне тисть мезеге ётай {{PLURAL:$1|шиня|$1 шиста}}',
 'statistics-mostpopular' => 'Сидеста сувсеви лопат',
-
-'disambiguations' => 'Лама смузьса лопат',
-'disambiguationspage' => 'Template:лама смусть',
-'disambiguations-text' => "Ня лопатне сюлмафт '''лама смузень лопа''' мархта. Синьдеест эрявихть сюлмамс иля башка сёрмафкснень мархта.<br />Лопась лувови лама смузеннекс мъзярда сон сюлмаф [[MediaWiki:Disambiguationspage]] кепотькс мархта.",
 
 'doubleredirects' => 'Кафонзаф умборондафтфксне',
 'doubleredirectstext' => 'Тя лопань лувомаса няфтевихть умборондафтфксне сюлмафт иля умборондафтфкснень мархта. Эрь луфксса (строкаса) улихть васенце ди омбоце умборондафтфкснень сюлмафкссна, тяса тага ули омбоце умборондафтфксонь васенце киксонцты сюлмафкссь, тоса ули няфтемась лопань лемонц лангс конань мархта эряволь васенце умборондафтфксть сюлмафтомс.

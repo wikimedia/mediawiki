@@ -324,10 +324,10 @@ $messages = array(
 'tog-hidepatrolled' => 'Vurnayışanê qontrolkerdeyan pela vurnayışê peyêni de bınımne',
 'tog-newpageshidepatrolled' => 'Pelanê qontrolkerdeyan lista pelanê neweyan de bınımne',
 'tog-extendwatchlist' => 'Lista seyrkerdışi hera bıke ke vurnayışi pêro basê, tenya tewr peyêni nê',
-'tog-usenewrc' => 'Pele be vurnayışanê grube de vurnayışê peyêni u lista seyrkerdışi (JavaScript lazımo)',
+'tog-usenewrc' => 'Pera vurnayışanê grube de vurnayışê peyêni u lista seyrkerdışi (JavaScript lazımo)',
 'tog-numberheadings' => 'Sernuşteyan be xo numre cı şane',
-'tog-showtoolbar' => 'Goceganê hacetanê vurnayışi bımocne (JavaScript lazımo)',
-'tog-editondblclick' => 'Pê dı rey tıknayış pele sero bıxebetiye (JavaScript lazımo)',
+'tog-showtoolbar' => 'Toolbar virnayisi bivin (JavaScript lazımo)',
+'tog-editondblclick' => 'Per virnayisi di dilet klik bike (JavaScript lazımo)',
 'tog-editsection' => 'Vurnayışê qısımi be gıreyanê [bıvurne] ra feal ke',
 'tog-editsectiononrightclick' => 'Qısıman be tıknayışê serrêze ra ebe gocega raşte bıvurne (JavaScript lazımo)',
 'tog-showtoc' => 'Tabloyê tedeesteyan bımocne (de pelanê be hirê sernuşteyan ra vêşêri de)',
@@ -347,7 +347,7 @@ $messages = array(
 'tog-shownumberswatching' => 'Amarê karberanê seyrkerdoğan bımocne',
 'tog-oldsig' => 'İmzaya mewcude:',
 'tog-fancysig' => 'İmza rê mameleyê wikimeqaley bıke (bê gıreyo otomatik)',
-'tog-uselivepreview' => 'Verqayto cınde bıxebetne (JavaScript lazımo) (hewna cerrebnayış dero)',
+'tog-uselivepreview' => 'Verqayt di weseye  karneno (JavaScript lazım o) (Cerbino)',
 'tog-forceeditsummary' => 'Mı ke xulasa kerde cı vira, hay be mı ser de',
 'tog-watchlisthideown' => 'Vurnayışanê mı lista mına seyrkerdışi de bınımne',
 'tog-watchlisthidebots' => 'Lista seyrkerdışi ra vurnayışanê boti bınımne',
@@ -465,7 +465,7 @@ $messages = array(
 'newwindow' => '(pençereyê newey de beno a)',
 'cancel' => 'Bıtexelne',
 'moredotdotdot' => 'Vêşi...',
-'morenotlisted' => 'Vêşêri lista nêbi...',
+'morenotlisted' => 'Vêşi lista nêbi...',
 'mypage' => 'Pele',
 'mytalk' => 'Werênayış',
 'anontalk' => 'Pela werênayışê nê IPy',
@@ -565,7 +565,7 @@ $1',
 'pool-queuefull' => 'Rêza hewze pırra',
 'pool-errorunknown' => 'Xeta nêzanıtiye',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Heqa {{SITENAME}}i de',
 'aboutpage' => 'Project:Heqdê cı',
 'copyright' => 'Zerrek bınê $1 dero.',
@@ -657,6 +657,8 @@ Seba lista pelanê xasanê vêrdeyan reca kena: [[Special:SpecialPages|{{int:spe
 # General errors
 'error' => 'Xırab',
 'databaseerror' => 'Xeta serveri',
+'databaseerror-function' => 'Fonksiyon: $1',
+'databaseerror-error' => 'Xırab: $1',
 'laggedslavemode' => 'Diqet: Pel de newe vıraşteyi belka çini .',
 'readonly' => 'database kılit biyo',
 'enterlockreason' => 'Database kılit biyo',
@@ -733,9 +735,8 @@ Xızmetkarê  kılitkerdışi wa bewni ro enay wa çımra ravyarno: "$3".',
 'virus-unknownscanner' => 'antiviruso ke nêzanyeno:',
 
 # Login and logout pages
-'logouttext' => "'''Şıma hesab qefelna.'''
+'logouttext' => "'''Şıma hesabra newke vicyay.'''
 
-Nıka kamiyê xo eşkera mekere u siteyê {{SITENAME}} ra eşkeni devam bıkeri, ya zi <span class='plainlinks'>[$1 newe ra hesabê xo akere]</span> (wazeni pey nameyê xo, wazeni pey yewna name).
 Wexta ke verhafızayê cıgerayoxê şıma pak beno no benate de taye peli de hesabe şıma akerde aseno.",
 'welcomeuser' => 'Xeyr ameyê $1',
 'welcomecreation-msg' => 'Hesabê şıma abiyo.
@@ -863,6 +864,7 @@ Bıne vındere u newe ra dest pê bıkere.',
 # Email sending
 'php-mail-error-unknown' => "PHP's mail() fonksiyoni de xırabin vıcyê.",
 'user-mail-no-addy' => 'Bê E-posta kerd ju e-posta bırşo cırê.',
+'user-mail-no-body' => 'Veng yana vireyo ke makbul niyo eya xebtina.',
 
 # Change password dialog
 'resetpass' => 'Parola bıvurne',
@@ -928,6 +930,7 @@ Parola vêrdiye: $2',
 'resettokens' => 'Reset fi ye',
 'resettokens-no-tokens' => 'Ena reset nefina',
 'resettokens-legend' => 'Reset fi ye',
+'resettokens-tokens' => 'Beli kerdeni:',
 'resettokens-token-label' => '$1 (weziyeta newki: $2)',
 'resettokens-done' => 'Reset fi',
 'resettokens-resetbutton' => 'Reset fiyayış weçin',
@@ -1445,7 +1448,7 @@ Pe verbendi ''all:'', vaceyê xo bıvurni ki contenti hemi cıgeyro (pelanê mı
 'prefs-rendering' => 'Asayış',
 'saveprefs' => 'Qeyd ke',
 'resetprefs' => 'Vurnayışê ke qeyd nêbiy, pak ke',
-'restoreprefs' => 'Sazanê hesıbyaya pêron newe dere barke',
+'restoreprefs' => 'Sazanê hesıbyaya pêron newe ke',
 'prefs-editing' => 'Cay pela nustısi',
 'rows' => 'Xeti:',
 'columns' => 'Estûni:',
@@ -1532,6 +1535,7 @@ Kaberê bini ke şıma de kewti irtıbat, adresa e-postey şıma eşkera nêbena
 'prefs-displayrc' => 'Tercihan bımocne',
 'prefs-displaysearchoptions' => 'Weçinayışê mocnayışi',
 'prefs-displaywatchlist' => 'Weçinayışê mocnayışi',
+'prefs-tokenwatchlist' => 'Morge',
 'prefs-diffs' => 'Ferqi',
 
 # User preference: email validation using jQuery
@@ -1734,7 +1738,7 @@ Kaberê bini ke şıma de kewti irtıbat, adresa e-postey şıma eşkera nêbena
 'rc-change-size' => '$1',
 'rc-change-size-new' => 'Vurnayışa dıma $1 {{PLURAL:$1|bayt|bayt}}',
 'newsectionsummary' => '/* $1 */ qısımo newe',
-'rc-enhanced-expand' => 'detayan bımoc (requires JavaScript)',
+'rc-enhanced-expand' => 'Detaya bıvin (JavaScript lazımo)',
 'rc-enhanced-hide' => 'Detaya bınımnê',
 'rc-old-title' => '"$1"i orcinalê cı vıraşt',
 
@@ -2133,12 +2137,9 @@ listeya ke ha ver a têna na {{PLURAL:$1|dosyaya ewwili|dosyaya $1 ewwili}} mocn
 'statistics-users-active-desc' => '{{PLURAL:$1|roco peyin de|$1 roco peyin de}} karber ê ke kar kerdê.',
 'statistics-mostpopular' => 'Pelayanê ke tewr zafî vînî biye',
 
-'disambiguations' => 'Pelayê ke maneyo bini rê gırey cı esto',
-'disambiguationspage' => 'Template:Maneo bin',
-'disambiguations-text' => "Peleyê ke satır da sıteyên dı pelanê '''maneo bin'''i rê esteyina zeregri mocnenê. Nara satırda dıdın dı zi <br />tiya de [[MediaWiki:Disambiguationspage|Pelaya Maneo do bini ]] gani heme gıreyê şablonê ciya-manayan re gıre dayış icab keno.",
-
 'pageswithprop' => 'Peli be yew xısusiyetê pele',
 'pageswithprop-legend' => 'Peli be yew xısusiyetê pele',
+'pageswithprop-text' => 'Na per pimanen pera kena liste.',
 'pageswithprop-prop' => 'Nameyo xısusi:',
 'pageswithprop-submit' => 'Şo',
 
@@ -2526,6 +2527,8 @@ Qey malumato ziyede [[Special:ProtectedPages|Peleyê ke star biye]] bewni rê ê
 'prot_1movedto2' => 'nameyê [[$1]] peli yo newe: [[$2]]',
 'protect-badnamespace-title' => 'Heruna naman itad starêna',
 'protect-badnamespace-text' => 'Na herunda namide peley nêstarênê.',
+'protect-norestrictiontypes-text' => 'Na perdi mahne esto cokira tipeci nikarnina',
+'protect-norestrictiontypes-title' => 'Pera starneyin',
 'protect-legend' => 'Pawıtışi araşt ke',
 'protectcomment' => 'Sebeb:',
 'protectexpiry' => 'Qediyeno:',
@@ -3029,6 +3032,7 @@ dosyaya emaneti vindbiyo',
 'import-error-interwiki' => 'Pela " $1 " qandê name dayışi aya nêgêrêna çıkı namey cı (interwiki) sero cırê ca abıryayo.',
 'import-error-special' => 'Pela " $1 " qandê vıraştışi aya nêgêrêna çıkı namay cı nameyo do xısusiyo u na pela rê no name nêgêrêno.',
 'import-error-invalid' => 'Pela "$1" nêdebyê de çıkı namey cı çınyo.',
+'import-error-unserialize' => 'Rewizyon perda $2 ra "$1" nihewdeyino/ Miyane raporer $3 ra $4 model deye ratneyi.',
 'import-options-wrong' => '{{PLURAL:$2|Weçenego|Weçenego}} xerpiyaye: <nowiki>$1</nowiki>',
 'import-rootpage-invalid' => 'Sernuştey ena pela reçey cı raverde niyo.',
 'import-rootpage-nosubpage' => 'Qan de bınnaman reçe de "$1" re mısade nedano.',
@@ -4254,6 +4258,7 @@ Ena sita dı newke xırabiya teknik esta.',
 'logentry-newusers-newusers' => 'Hesabê karberê $1 {{GENDER:$2|vıraziya}}',
 'logentry-newusers-create' => 'Hesabê karberi $1 {{GENDER:$2|vıraziya}}',
 'logentry-newusers-create2' => 'Hesabê karberi $1 terefê $3 ra {{GENDER:$2|vıraziya}}',
+'logentry-newusers-byemail' => 'Karber $1 hesabe $3 {{GENDER:$2|virast}} u parola rist epostadaci',
 'logentry-newusers-autocreate' => 'Hesabê karberi $1 otomatikmen {{GENDER:$2|vıraşt}}',
 'logentry-rights-rights' => '$1 qandê $3 rê ezayiya grube $4 ra $5 {{GENDER:$2|vuriye}}',
 'logentry-rights-rights-legacy' => '$1 qandê $3 rê ezayiya grube {{GENDER:$2|vuriye}}',
@@ -4332,7 +4337,12 @@ Ena sita dı newke xırabiya teknik esta.',
 'duration-centuries' => '$1 {{PLURAL:$1|seserre|seserri}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenyum|milenyumi}}',
 
+# Image rotation
+'rotate-comment' => 'Resim heta sehata $1 {{PLURAL:$1|derece|derecey}} bi cerx',
+
 # Limit report
+'limitreport-cputime-value' => '$1 {{PLURAL:$1|saniye|saniyeyan}}',
+'limitreport-walltime-value' => '$1 {{PLURAL:$1|saniye|saniyeyan}}',
 'limitreport-postexpandincludesize-value' => '$1/$2 bayt',
 'limitreport-templateargumentsize' => 'Ebata hacetandi şablonan',
 'limitreport-templateargumentsize-value' => '$1/$2 bayt',

@@ -301,7 +301,7 @@ $1',
 'pool-queuefull' => 'Pool kyu zùrù',
 'pool-errorunknown' => 'Nsogbu nke námaghi',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Maka {{SITENAME}}',
 'aboutpage' => 'Project:Ihe owù',
 'copyright' => 'Ihe di ime nọr okpúrụ $1',
@@ -1007,8 +1007,6 @@ Ihü nọr na [[Special:Watchlist|ndétu ihe Í ne lé]] di na mkpụrụ edemed
 'statistics-files' => 'Usòrò hé tinyèrè',
 'statistics-views-total' => 'Há hụrụ ya olé níle',
 'statistics-users-active' => "Ọ'bànifé di galagala",
-
-'disambiguationspage' => 'Template:ọlúchịgị',
 
 'double-redirect-fixed-move' => '[[$1]] a puziele.
 Ubwa, o na ga [[$2]].',

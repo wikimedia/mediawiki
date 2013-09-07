@@ -535,7 +535,7 @@ Palun oota hetk, enne kui uuesti proovid.
 $1',
 'pool-errorunknown' => 'Teadmata tõrge',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{GRAMMAR:genitive|{{SITENAME}}}} tiitelandmed',
 'aboutpage' => 'Project:Tiitelandmed',
 'copyright' => 'Kogu tekst on kasutatav litsentsi $1 tingimustel.',
@@ -2109,12 +2109,6 @@ Sisesta kujul tüüp/alamtüüp, näiteks <code>image/jpeg</code>.',
 'statistics-users-active' => 'Aktiivseid kasutajaid',
 'statistics-users-active-desc' => 'Kasutajad, kes on viimase {{PLURAL:$1|päeva|$1 päeva}} jooksul tegutsenud',
 'statistics-mostpopular' => 'Enim vaadatud leheküljed',
-
-'disambiguations' => 'Täpsustuslehekülgedele linkivad leheküljed',
-'disambiguationspage' => 'Template:Täpsustuslehekülg',
-'disambiguations-text' => "Järgmised leheküljed sisaldavad vähemalt üht linki '''täpsustusleheküljele'''.
-Võimalik, et sellised lingid peaks viitama sobivamatele lehekülgedele.
-Lehekülg loetakse täpsustusleheküljeks, kui see kasutab malli, millele viitab sõnum [[MediaWiki:Disambiguationspage]].",
 
 'pageswithprop' => 'Leheatribuudiga leheküljed',
 'pageswithprop-legend' => 'Leheatribuudiga leheküljed',

@@ -400,7 +400,7 @@ $1',
 'pool-queuefull' => 'د بهير صف ډک دی',
 'pool-errorunknown' => 'ناجوته ستونزه',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'د {{SITENAME}} په اړه',
 'aboutpage' => 'Project:په اړه',
 'copyright' => 'دا مېنځپانګه د $1 اجازتليک له مخې ستاسې لاسرسي ته پرته ده.',
@@ -1503,9 +1503,6 @@ $1',
 'statistics-users-active' => 'فعاله کارنان',
 'statistics-users-active-desc' => 'هغه کارنان چې په {{PLURAL:$1|وروستۍ ورځ|وروستيو $1 ورځو}} کې فعاله ونډه لرلې',
 'statistics-mostpopular' => 'ډېر کتل شوي مخونه',
-
-'disambiguations' => 'د مبهمو مخونو سره تړلي مخونه',
-'disambiguationspage' => 'Template:ناجوت',
 
 'pageswithprop-submit' => 'ورځه',
 

@@ -356,7 +356,7 @@ $1',
 'pool-queuefull' => 'Køin til "hylin" er full',
 'pool-errorunknown' => 'Ókend villa',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Um {{SITENAME}}',
 'aboutpage' => 'Project:Um',
 'copyright' => 'Innihald er tøkt undir $1.',
@@ -1896,12 +1896,6 @@ Minst til at kanna eftir um aðrar síður slóða til fyrimyndirnar, áðrenn t
 'statistics-users-active' => 'Virknir brúkarir',
 'statistics-users-active-desc' => 'Brúkarar ið hava framt eina handling seinasta/u {{PLURAL:$1|døgnið|$1 dagarnar}}',
 'statistics-mostpopular' => 'Mest sæddu síður',
-
-'disambiguations' => 'Síður sum vísa til síður við fleirfaldum týdningi',
-'disambiguationspage' => 'Template:fleiri týdningar',
-'disambiguations-text' => "Hesar síður innihalda í minsta lagi ein leinkju til eina '''síðu við fleiri týdningum'''.
-Tær eiga heldur at slóða til ein meira passandi síðu í staðin.<br />
-Ein síða verður sædd sum ein síða við fleiri týdningum, um hon brúkar eina fyrimynd, sum slóðar frá [[MediaWiki:Disambiguationspage]].",
 
 'pageswithprop' => 'Síður við síðueginleika',
 'pageswithprop-legend' => 'Síður við einum síðueginleika',

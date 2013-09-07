@@ -333,7 +333,7 @@ $1',
 'pool-queuefull' => 'Соратма топлайыджысы толу',
 'pool-errorunknown' => 'Билинмеген хата',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} акъкъында',
 'aboutpage' => 'Project:Акъкъында',
 'copyright' => 'Малюмат $1 бинаэн кечилип ола.',
@@ -1246,12 +1246,6 @@ $3 мына бу себепни бильдирди: ''$2''",
 'statistics-header-users' => 'Къулланыджы статистикасы',
 'statistics-header-hooks' => 'Дигер статистика',
 'statistics-mostpopular' => 'Энъ сыкъ бакъылгъан саифелер',
-
-'disambiguations' => 'Чокъ маналы терминлер саифелери',
-'disambiguationspage' => 'Template:disambig',
-'disambiguations-text' => "Ашагъыдыки саифелер '''чокъ маналы саифелер'''ге багъланты ола.
-Бельки де олар бир конкрет саифеге багъланты олмалы.<br />
-Эгер саифеде, [[MediaWiki:Disambiguationspage]] саифесинде ады кечкен шаблон ерлештирильген олса, о саифе чокъ маналыдыр.",
 
 'doubleredirects' => 'Ёлламагъа олгъан ёлламалар',
 'doubleredirectstext' => 'Бу саифеде дигер ёллама саифелерине ёлланма олгъан саифелери косьтериле.

@@ -570,7 +570,7 @@ $1',
 'pool-queuefull' => 'Kön är full',
 'pool-errorunknown' => 'Okänt fel',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Om {{SITENAME}}',
 'aboutpage' => 'Project:Om',
 'copyright' => 'Innehållet är tillgängligt under $1.',
@@ -2171,12 +2171,6 @@ Innan mallarna raderas, kontrollera att det inte finns andra länkar till dem.',
 'statistics-users-active' => 'Aktiva användare',
 'statistics-users-active-desc' => 'Användare som utfört någon åtgärd under {{PLURAL:$1|det senaste dygnet|de senaste $1 dygnen}}',
 'statistics-mostpopular' => 'Mest besökta sidor',
-
-'disambiguations' => 'Sidor som länkar till förgreningssidor',
-'disambiguationspage' => 'Template:Förgrening',
-'disambiguations-text' => "Följande sidorna innehåller minst en länk till en '''förgreningssida'''.
-De bör troligtvis ändras så att de länkar till en mer passande sida istället.<br />
-En sida anses vara en förgreningssida om den inkluderar en mall som länkas till från [[MediaWiki:Disambiguationspage]].",
 
 'pageswithprop' => 'Sidor med en sidegenskap',
 'pageswithprop-legend' => 'Sidor med en sidegenskap',

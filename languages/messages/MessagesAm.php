@@ -265,7 +265,7 @@ $messages = array(
 $1',
 'pool-errorunknown' => 'የማይታወቅ ስኅተት',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'ስለ {{SITENAME}}',
 'aboutpage' => 'Project:ስለ',
 'copyright' => 'ይዘቱ በ$1 ሥር ይገኛል።',
@@ -1336,11 +1336,6 @@ $1',
 'statistics-users-active' => 'ተግባራዊ ተጠቃሚዎች',
 'statistics-users-active-desc' => 'ባለፈው {{PLURAL:$1|ቀን|$1 ቀን}} ማንኛውንም ድርጊት የሠሩት ተጠቃሚዎች',
 'statistics-mostpopular' => 'ከሁሉ የታዩት ገጾች',
-
-'disambiguations' => 'ወደ መንታ መንገድ የሚያያይዝ',
-'disambiguationspage' => 'Template:መንታ',
-'disambiguations-text' => "የሚከተሉት ጽሑፎች ወደ '''መንታ መንገድ''' እየተያያዙ ነውና ብዙ ጊዜ እንዲህ ሳይሆን ወደሚገባው ርዕስ ቢወስዱ ይሻላል። <br />
-መንታ መንገድ ማለት የመንታ መለጠፊያ ([[MediaWiki:Disambiguationspage]]) ሲኖርበት ነው።",
 
 'doubleredirects' => 'ድርብ መምሪያ መንገዶች',
 'doubleredirectstext' => 'ይህ ድርብ መምሪያ መንገዶች ይዘርዘራል።

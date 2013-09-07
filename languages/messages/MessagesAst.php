@@ -308,7 +308,7 @@ $1",
 'pool-queuefull' => 'La cola de trabayu ta enllena',
 'pool-errorunknown' => 'Fallu desconocíu',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Tocante a {{SITENAME}}',
 'aboutpage' => 'Project:Tocante a',
 'copyright' => 'El conteníu ta disponible baxo los términos de la $1.',
@@ -1946,11 +1946,6 @@ Alcuérdate de comprobar otros enllaces a les plantíes enantes d'esborrales.",
 'statistics-users-active' => 'Usuarios activos',
 'statistics-users-active-desc' => 'Usuarios que realizaron una aición {{PLURAL:$1|nel caberu día|nos caberos $1 díes}}',
 'statistics-mostpopular' => 'Páxines más vistes',
-
-'disambiguations' => "Páxines qu'enllacen con páxines de dixebra",
-'disambiguationspage' => 'Template:dixebra',
-'disambiguations-text' => "Les siguientes páxines contienen polo menos un enllaz a una '''páxina de dixebra'''. En cuenta d'ello habríen enllaciar a una páxina más apropiada.<br />
-Una páxina tratase como una páxina de dixebra si usa una plantía que tea enllaciada dende [[MediaWiki:Disambiguationspage]]",
 
 'pageswithprop' => 'Páxines con una propiedá de páxina',
 'pageswithprop-legend' => 'Páxines con una propiedá de páxina',

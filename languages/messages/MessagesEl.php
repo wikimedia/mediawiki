@@ -606,7 +606,7 @@ $1',
 'pool-queuefull' => 'Η ουρά της δεξαμενής διεργασιών είναι πλήρης',
 'pool-errorunknown' => 'Άγνωστο σφάλμα',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Σχετικά με {{SITENAME}}',
 'aboutpage' => 'Project:Σχετικά',
 'copyright' => 'Το περιεχόμενο είναι διαθέσιμο σύμφωνα με την $1.',
@@ -2171,12 +2171,6 @@ $1',
 'statistics-users-active' => 'Ενεργοί χρήστες',
 'statistics-users-active-desc' => 'Χρήστες που έχουν κάνει κάποια επεξεργασία μέσα σε {{PLURAL:$1|μέρα|$1 μέρες}}',
 'statistics-mostpopular' => 'Οι πιο δημοφιλείς σελίδες',
-
-'disambiguations' => 'Σελίδες με συνδέσμους σε σελίδες αποσαφήνισης',
-'disambiguationspage' => 'Project:Σύνδεσμοι_προς_τις_σελίδες_αποσαφήνισης',
-'disambiguations-text' => "Οι ακόλουθες σελίδες οδηγούν σε μια '''σελίδα αποσαφήνισης'''.
-Αντιθέτως θα έπρεπε να κατευθύνουν στο κατάλληλο θέμα.<br />
-Μια σελίδα αντιμετωπίζεται ως σελίδα αποσαφήνισης αν χρησιμοποιεί ένα πρότυπο το οποίο συνδέεται από το [[MediaWiki:Disambiguationspage]]",
 
 'pageswithprop' => 'Σελίδες με ιδιότητα σελίδας',
 'pageswithprop-legend' => 'Σελίδες με ιδιότητα σελίδας',

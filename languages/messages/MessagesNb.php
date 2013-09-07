@@ -561,7 +561,7 @@ $1',
 'pool-queuefull' => 'Prosesskøen er full',
 'pool-errorunknown' => 'Ukjent feil',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Om {{SITENAME}}',
 'aboutpage' => 'Project:Om',
 'copyright' => 'Innholdet er tilgjengelig under $1.',
@@ -2159,12 +2159,6 @@ Kanskje du vil redigere beskrivelsen på dens [$2 filbeskrivelsesside].',
 'statistics-users-active' => 'Aktive brukere',
 'statistics-users-active-desc' => 'Brukere som har utført handlinger {{PLURAL:$1|det siste døgnet|de siste $1 dagene}}',
 'statistics-mostpopular' => 'Mest viste sider',
-
-'disambiguations' => 'Sider som lenker til artikler med flertydige titler',
-'disambiguationspage' => 'Template:Peker',
-'disambiguations-text' => "Følgende sider lenker til en '''pekerside'''.
-De burde i stedet lenke til en passende innholdsside.<br />
-En side anses om en pekerside om den inneholder en mal som det lenkes til fra [[MediaWiki:Disambiguationspage]].",
 
 'pageswithprop' => 'Sider med sideverdi',
 'pageswithprop-legend' => 'Sider med en sideverdi',

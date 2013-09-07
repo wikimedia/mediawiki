@@ -315,7 +315,7 @@ $1',
 'pool-queuefull' => 'পুলের লাইন পূর্ণ',
 'pool-errorunknown' => 'অজানা ত্রুটি',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} বৃত্তান্ত',
 'aboutpage' => 'Project:বৃত্তান্ত',
 'copyright' => '$1 এর আওতায় প্রাপ্য।',
@@ -1892,12 +1892,6 @@ Maybe you want to edit the description on its [$2 file description page] there.'
 'statistics-users-active' => 'সক্রিয় ব্যবহারকারী',
 'statistics-users-active-desc' => 'ব্যবহারকারী যারা বিগত {{PLURAL:$1|দিনে|$1 দিনে}} একটি কাজ করেছেন।',
 'statistics-mostpopular' => 'সবচেয়ে বেশী বার দেখা পাতাসমূহ',
-
-'disambiguations' => 'দ্ব্যর্থতা-দূরীকরণ পাতাসমূহে সংযোগকৃত পাতাসমূহ',
-'disambiguationspage' => 'Template:দ্ব্যর্থতা_নিরসন',
-'disambiguations-text' => "নিচের পাতাগুলিতে অন্তত একটি '''দ্ব্যর্থতা নিরসন পাতা'''-তে সংযোগ আছে।
-এর পরিবর্তে এগুলি থেকে একটি উপযুক্ত বিষয়ে সংযোগ থাকা আবশ্যক।<br />
-যদি কোন পাতায় এমন কোন টেমপ্লেট থাকে যেটিতে [[MediaWiki:Disambiguationspage]] থেকে সংযোগ আছে, তবে সেই পাতাটিকে একটি দ্ব্যর্থতা নিরসন পাতা হিসেবে গণ্য করা হয়।",
 
 'pageswithprop' => 'পাতার উপাদান সম্বলিত পৃষ্ঠাসমূহ',
 'pageswithprop-legend' => 'পাতার উপাদান সম্বলিত পৃষ্ঠাসমূহ',

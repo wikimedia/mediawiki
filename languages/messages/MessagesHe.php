@@ -605,7 +605,7 @@ $1',
 'pool-queuefull' => 'התור מלא',
 'pool-errorunknown' => 'שגיאה בלתי ידועה',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'אודות {{SITENAME}}',
 'aboutpage' => 'Project:אודות',
 'copyright' => 'התוכן מוגש בכפוף ל־$1.<br /> בעלי זכויות היוצרים מפורטים בהיסטוריית השינויים של הדף.',
@@ -2231,12 +2231,6 @@ $1',
 'statistics-users-active' => 'המשתמשים הפעילים',
 'statistics-users-active-desc' => 'משתמשים שביצעו פעולה כלשהי {{PLURAL:$1|ביום האחרון|ביומיים האחרונים|ב־$1 הימים האחרונים}}',
 'statistics-mostpopular' => 'הדפים הנצפים ביותר',
-
-'disambiguations' => 'דפים שמקשרים לדפי פירושונים',
-'disambiguationspage' => 'Template:פירושונים',
-'disambiguations-text' => "בדפים הבאים יש לפחות קישור אחד ל'''דף פירושונים'''.
-ייתכן שעליהם לקשר במקום זאת לדף מתאים יותר.<br />
-דף נחשב לדף פירושונים אם הוא משתמש בתבנית המקושרת מהדף [[MediaWiki:Disambiguationspage]].",
 
 'pageswithprop' => 'דפים עם מאפיין דף',
 'pageswithprop-legend' => 'דפים עם מאפיין דף',

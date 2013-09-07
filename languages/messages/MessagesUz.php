@@ -342,7 +342,7 @@ $1',
 'pool-queuefull' => 'Soʻrovlar jamlanmasi toʻldi',
 'pool-errorunknown' => 'Nomaʼlum xato',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} haqida',
 'aboutpage' => 'Project:Haqida',
 'copyright' => 'Keltirilgan maʼlumotlar $1 orqali tarqatilmoqda.',
@@ -1077,8 +1077,6 @@ Uning [$2 fayl tavsifi sahifasidan] olingan tavsifi quyida keltirilgan.',
 'statistics-users' => 'Qayd etilgan [[Special:ListUsers|foydalanuvchilar]]',
 'statistics-users-active' => 'Faol foydalanuvchilar',
 'statistics-users-active-desc' => 'Oxirgi $1 kun ichida kamida bitta amal qilgan foydalanuvchilar',
-
-'disambiguationspage' => '{{ns:template}}:Disambig',
 
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|bayt}}',

@@ -403,7 +403,7 @@ $messages = array(
 'jumptosearch' => 'вешнэме',
 'pool-errorunknown' => 'Апак содань ильведькс',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} ланга',
 'aboutpage' => 'Project:Эстэдензэ',
 'copyright' => '$1-сто муят мезе тесэ.',
@@ -1275,9 +1275,6 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'statistics-views-peredit' => 'Зяроксть ванозь апак витне апак петне',
 'statistics-users-active' => 'Чистэ лисийть-совийть',
 'statistics-mostpopular' => 'Весемеде сеедьстэ ванозь лопат',
-
-'disambiguations' => 'Лопат, конатне сюлмазь чарькодевтемань ламо терминэнь лопас',
-'disambiguationspage' => 'Template:смустень коряс явома',
 
 'doubleredirects' => 'Кавксть ютавтозь',
 'double-redirect-fixer' => 'Печтевтемс витнема-петнема пель',

@@ -233,7 +233,7 @@ $messages = array(
 'jumptonavigation' => 'Πορπάτεμαν',
 'jumptosearch' => 'Αράεμαν',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Περί {{SITENAME}}',
 'aboutpage' => 'Project:Σχετικά',
 'copyright' => 'Το περιεχόμενον εν άμον ντο λεει η $1.',
@@ -845,8 +845,6 @@ $messages = array(
 # Statistics
 'statistics' => 'Στατιστικήν',
 'statistics-pages' => 'Σελίδας',
-
-'disambiguations' => 'Σελίδας εξηγησίων',
 
 'doubleredirects' => 'Περισσά διπλά συνδέσμ',
 

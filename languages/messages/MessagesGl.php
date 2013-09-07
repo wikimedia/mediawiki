@@ -498,7 +498,7 @@ $1',
 'pool-queuefull' => 'A cola está chea',
 'pool-errorunknown' => 'Erro descoñecido',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Acerca de {{SITENAME}}',
 'aboutpage' => 'Project:Acerca de',
 'copyright' => 'Todo o texto está dispoñible baixo $1.',
@@ -2138,12 +2138,6 @@ Lembre verificar outras ligazóns cara aos modelos antes de borralos.',
 'statistics-users-active' => 'Usuarios activos',
 'statistics-users-active-desc' => 'Usuarios que teñen levado a cabo unha acción {{PLURAL:$1|no último día|nos últimos $1 días}}',
 'statistics-mostpopular' => 'Páxinas máis vistas',
-
-'disambiguations' => 'Páxinas que ligan con páxinas de homónimos',
-'disambiguationspage' => 'Template:Homónimos',
-'disambiguations-text' => "As seguintes páxinas conteñen, polo menos, unha ligazón cara a unha '''páxina de homónimos'''.
-No canto de ligar cos homónimos deben apuntar cara á páxina apropiada.<br />
-Unha páxina trátase como páxina de homónimos cando nela se usa un modelo que está ligado desde [[MediaWiki:Disambiguationspage]].",
 
 'pageswithprop' => 'Páxinas cunha propiedade de páxina',
 'pageswithprop-legend' => 'Páxinas cunha propiedade de páxina',

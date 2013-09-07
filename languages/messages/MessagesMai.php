@@ -254,7 +254,7 @@ $1',
 'pool-queuefull' => 'प्रतीक्षा-पाँती पौती भरल',
 'pool-errorunknown' => 'अज्ञात भ्रम',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'विषयमे {{SITENAME}}',
 'aboutpage' => 'Project:विवरण',
 'copyright' => '$1क अंतर्गत विषय सूची उपलब्ध अछि',
@@ -1666,12 +1666,6 @@ $1',
 'statistics-users-active' => 'सक्रिय प्रयोक्ता',
 'statistics-users-active-desc' => 'प्रयोक्ता जे अन्तिम {{PLURAL:$1|दिन|$1 दिन}} मे कोनो काज केने छथि',
 'statistics-mostpopular' => 'सभसँ बेसी देखल गेल पन्ना',
-
-'disambiguations' => 'स्पष्ट पन्नासँ लागिबला पन्ना',
-'disambiguationspage' => 'नमूना: निवारण',
-'disambiguations-text' => "ई सभ पन्ना '''स्पष्ट कएल''' सँ लागिमे अछि।
-ओ सभ एकर बदला उचित वार्तापर लागि करथि।<br />
-[[MediaWiki:Disambiguationspage]] सँ लागिमे जँ नमूनाक प्रयोग करैत अछि तखने ओ  '''स्पष्ट कएल'''  पन्ना कहाएत।",
 
 'doubleredirects' => 'द्वितीयक लागिबला बदलेन',
 'doubleredirectstext' => 'ई पन्ना ओइ पन्ना सभक संकलन छी जे बदलेन करैए दोसर बदलेनबला पन्नासँ।

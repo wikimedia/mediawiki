@@ -296,7 +296,7 @@ $messages = array(
 'jumptosearch' => 'дилээри',
 'pool-errorunknown' => 'Билбес алдаг',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} дугайында',
 'aboutpage' => 'Project:Дугайында',
 'copyrightpage' => '{{ns:project}}:Чогаалчының эргелери',
@@ -868,8 +868,6 @@ It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 # Statistics
 'statistics' => 'Статистика',
 'statistics-pages' => 'Арыннар',
-
-'disambiguationspage' => 'Майык: уш-бажы билдинмес',
 
 'brokenredirects-edit' => 'өскертири',
 'brokenredirects-delete' => 'ырадыры',

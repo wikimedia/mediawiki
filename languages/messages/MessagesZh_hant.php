@@ -506,7 +506,7 @@ $1',
 'pool-queuefull' => '請求池已滿',
 'pool-errorunknown' => '未知錯誤',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '關於 {{SITENAME}}',
 'aboutpage' => 'Project:關於',
 'copyright' => '本站內容以$1條款提供。',
@@ -2047,16 +2047,6 @@ $1',
 'statistics-users-active' => '活躍用戶',
 'statistics-users-active-desc' => '在前$1天中操作過的用戶',
 'statistics-mostpopular' => '被查閱次數最多的頁面',
-
-'disambiguations' => '鏈接到消歧義頁的頁面',
-'disambiguationspage' => 'Template:disambig
-Template:消含糊
-Template:消除含糊
-Template:消歧义
-Template:消除歧义
-Template:消歧義
-Template:消除歧義',
-'disambiguations-text' => "以下的頁面都有至少一個連到'''消歧義頁'''的鏈接，但它們應鏈接到合適的頁面。<br />一個頁面如果使用了[[MediaWiki:Disambiguationspage]]內的模板，則會被視為消歧義頁。",
 
 'pageswithprop' => '有頁面屬性的頁面',
 'pageswithprop-legend' => '有頁面屬性的頁面',

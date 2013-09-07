@@ -458,7 +458,7 @@ $1',
 'pool-queuefull' => 'Feno ny lisitry ny asa hatao',
 'pool-errorunknown' => 'Tsi-fetezana tsy fantatra',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Mombamomba ny {{SITENAME}}',
 'aboutpage' => 'Project:Mombamomba',
 'copyright' => '$1 no mifehy ny fampiasana ny votoatin-kevitra eto.',
@@ -2004,9 +2004,6 @@ Aza manadino manamarina raha tsy misy rohy makany amin'ny endrika hafa alohan'ny
 'statistics-users-active' => 'Mpikambana mavitrika',
 'statistics-users-active-desc' => "Mpikambana nanao zavatra teto tanatin'ny $1 andro{{PLURAL:}}.",
 'statistics-mostpopular' => 'Pejy voatsidika',
-
-'disambiguations' => 'Pejy misy rohy amina pejy fanalana ny fisalasalana',
-'disambiguationspage' => 'Template:homonimia',
 
 'pageswithprop-prop' => "Anaran'ilay tondro",
 'pageswithprop-submit' => 'Alefa',

@@ -597,7 +597,7 @@ $1',
 'pool-queuefull' => 'Havuz sırası dolu',
 'pool-errorunknown' => 'Bilinmeyen hata',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} hakkında',
 'aboutpage' => 'Project:Hakkında',
 'copyright' => 'İçerik $1 altındadır.',
@@ -2119,10 +2119,6 @@ Dosya açıklamasını düzenlemek isterseniz, [$2 dosya açıklama sayfası] bu
 'statistics-users-active' => 'Aktif kullanıcılar',
 'statistics-users-active-desc' => 'Son {{PLURAL:$1|gün|$1 günde}} çalışma yapan kullanıcılar',
 'statistics-mostpopular' => 'En çok ziyaret edilen sayfalar',
-
-'disambiguations' => 'Anlam ayrım sayfalarına bağlantısı olan sayfalar',
-'disambiguationspage' => 'Template:Anlam ayrımı',
-'disambiguations-text' => 'İlk satırda yer alan sayfalar bir anlam ayrım sayfasına iç bağlantı olduğunu gösterir. İkinci sırada yer alan sayfalar anlam ayrım sayfalarını gösterir. <br />Burada [[MediaWiki:Disambiguationspage]] tüm anlam ayrım şablonlarına bağlantılar verilmesi gerekmektedir.',
 
 'pageswithprop-submit' => 'Git',
 

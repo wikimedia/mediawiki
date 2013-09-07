@@ -322,7 +322,7 @@ $messages = array(
 'jumptonavigation' => 'navigašuvdnii',
 'jumptosearch' => 'ohcamii',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} birra',
 'aboutpage' => 'Project:Dieđut',
 'copyright' => 'Sisdoalu sáhttá geavahit liseanssain $1.',
@@ -889,8 +889,6 @@ $1 {{int:pipe-separator}} $2',
 'statistics-users-active' => 'Aktiivvalaš geavaheaddjit',
 'statistics-users-active-desc' => 'Geavaheaddjit, geat leat bargan juoidá maŋimus {{PLURAL:$1|beaivvi|$1 beaivvi}} áigge.',
 'statistics-mostpopular' => 'Eanemusta gehčojuvvon siiddut',
-
-'disambiguations' => 'Liŋkkat dárkonsiidduide',
 
 'doubleredirects' => 'Guovttegeardán ođđasitstivremat',
 

@@ -270,7 +270,7 @@ $messages = array(
 'jumptosearch' => 'chirca',
 'pool-errorunknown' => 'Faddina disconnota',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'A propòsitu de {{SITENAME}}',
 'aboutpage' => 'Project:Informatziones',
 'copyright' => 'Cuntènnidu a suta licèntzia $1.',
@@ -906,8 +906,6 @@ Càstia sa [[Special:NewFiles|galleria de files nous]] pro una presentada prus b
 'statistics' => 'Statìsticas',
 'statistics-header-users' => 'Statìsticas subra is usuàrios',
 'statistics-pages' => 'Pàginas',
-
-'disambiguationspage' => 'Template:Disambìgua',
 
 'doubleredirects' => 'Redirects dòpios',
 'doubleredirectstext' => 'Custa pàgina cuntenet una lista de pàginas ki re-indiritzant a àteras pàginas de re-indiritzamentu.

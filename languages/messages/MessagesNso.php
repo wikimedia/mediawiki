@@ -225,7 +225,7 @@ $messages = array(
 'jumptosearch' => 'fetleka',
 'pool-errorunknown' => 'Phošo yago setsebege',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Mabapi le {{SITENAME}}',
 'aboutpage' => 'Project:Mabapi',
 'copyright' => 'Mateng a hwetšagala tlase ga $1.',
@@ -775,9 +775,6 @@ Matlakala ago ba [[Special:Watchlist|lenanong la gago la matlakala ditlhapetšo]
 # Statistics
 'statistics' => 'Dipalopalo',
 'statistics-header-users' => 'Dipalopalo tša mošomiši',
-
-'disambiguations' => "Matlakala a ''Disambiguation''",
-'disambiguationspage' => 'Template:"disambig"',
 
 'doubleredirects' => "Di''redirect'' goya go ''redirect''",
 

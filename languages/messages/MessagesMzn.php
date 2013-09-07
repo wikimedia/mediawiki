@@ -348,7 +348,7 @@ $2، $1',
 'pool-queuefull' => 'مخزن ِصف پر بیّه',
 'pool-errorunknown' => 'خطای ناشناخته',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} درباره',
 'aboutpage' => 'Project:درباره',
 'copyright' => 'این صفحه ره بَنوشته‌ئون  $1  زیر شِمه دسـت دَرنه.',
@@ -771,8 +771,6 @@ $2، $1',
 
 # Statistics
 'statistics' => 'آمار',
-
-'disambiguations' => 'گجگجی‌بَیری صفحه‌ئون',
 
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|بایت|بایت}}',

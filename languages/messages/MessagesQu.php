@@ -509,7 +509,7 @@ $1",
 'pool-queuefull' => "Suyana siq'iqa huntasqañam",
 'pool-errorunknown' => 'Mana riqsisqa pantasqa',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}}manta',
 'aboutpage' => 'Project:{{SITENAME}}manta',
 'copyright' => "Ch'aqtasqakunataqa llamk'achinkiman <i>$1</i> nisqap ruraq hayñinkama",
@@ -2003,12 +2003,6 @@ Ama hina kaspa, [$2 willañiqi ch'uyanchana p'anqata] qhaway astawan willachikun
 'statistics-users-active' => "Llamk'achkaq ruraqkuna",
 'statistics-users-active-desc' => "Ñaqha {{PLURAL:$1|p'unchawpi|$1 p'unchawkunapi}} llamk'apuq ruraqkuna",
 'statistics-mostpopular' => "Lliwmanta astawan rikusqa p'anqakuna",
-
-'disambiguations' => "Sut'ichana qillqakunaman t'inkimuq p'anqakuna",
-'disambiguationspage' => "Template:Sut'ichana qillqa",
-'disambiguations-text' => "Kay qatiq p'anqakunam t'inkimun '''sut'ichana qillqa''' nisqaman.
-Chay rantiqa chiqap, hukchanasqa p'anqamanmi t'inkichun.<br />
-P'anqa [[MediaWiki:Disambiguationspage]] plantillayuq kaspaqa sut'ichana qillqam kanqa.",
 
 'pageswithprop' => "Kaqninniyuq p'anqakuna",
 'pageswithprop-legend' => "Kaqninniyuq p'anqakuna",

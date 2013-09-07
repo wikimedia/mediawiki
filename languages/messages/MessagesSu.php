@@ -358,7 +358,7 @@ $1',
 'pool-queuefull' => 'Antrian geus pinuh',
 'pool-errorunknown' => 'Éror teu dipikawanoh',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Ngeunaan {{SITENAME}}',
 'aboutpage' => 'Project:Ngeunaan',
 'copyright' => 'Sadaya kandungan ieu loka ditangtayungan ku $1',
@@ -1625,12 +1625,6 @@ Saméméh ngahapus, pariksa heula bisi aya tumbu ka ieu citakan.',
 'statistics-users-active' => 'Pamaké getol',
 'statistics-users-active-desc' => 'Kontributor nu ngoprék salila {{PLURAL:$1|poé|$1 poé}} panungtung',
 'statistics-mostpopular' => 'Kaca nu pangmindengna dibuka',
-
-'disambiguations' => 'Kaca disambiguasi',
-'disambiguationspage' => 'Template:disambig',
-'disambiguations-text' => "Kaca-kaca ieu ngabogaan tumbu ka hiji ''kaca disambiguasi''.
-Kaca eta sakuduna numbu ka topik-topik anu luyu.<br />
-Sahiji kaca dianggap minangka kaca disambiguasi lamun kaca kasebut ngagunakeun citakan anu nyambung ka [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects' => 'Alihan ganda',
 'doubleredirectstext' => 'Ieu kaca ngabéréndélkeun kaca-kaca alihan ka kaca alihan lianna. Unggal baris ngandung tutumbu ka alihan kahiji jeung kadua, ogé tujul alihan kadua anu biasana tujul kaca anu "bener", anu sakuduna dituju ku alihan kahiji. Ëntri nu <del>dicorét</del> geus diropéa.',

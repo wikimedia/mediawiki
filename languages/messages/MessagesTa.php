@@ -330,7 +330,7 @@ $1',
 'pool-queuefull' => 'பணி வரிசையில் இடம் இல்லை',
 'pool-errorunknown' => 'அறியப்படாத தவறு',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} பற்றி',
 'aboutpage' => 'Project:விவரம்',
 'copyright' => 'உள்ளடக்கங்கள் $1 இன் கீழ் கிடைக்கின்றன.',
@@ -1809,10 +1809,6 @@ $1',
 'statistics-users-active' => 'தொடர் பங்களிப்பாளர்கள் (பயனர்கள்)',
 'statistics-users-active-desc' => 'கடந்த {{PLURAL:$1|நாள்|$1 நாட்களில்}} ஒன்று அல்லது அதற்கு மேற்பட்ட செயலைச் செய்த பயனர்கள்',
 'statistics-mostpopular' => 'அதிகம் பார்க்கப்பட்ட பக்கங்கள்',
-
-'disambiguations' => 'வழிநெறிப்படுத்தல் பக்கங்களை இணைக்கும் பக்கங்கள்',
-'disambiguationspage' => 'Template:பக்கவழி நெறிப்படுத்தல்',
-'disambiguations-text' => "பின்வரும் பக்கங்கள் '''பக்கவழி நெறிப்படுத்தல் பக்கத்துக்கு''' இணைக்கப்பட்டுள்ளன. மாறாக இவை பொருத்தமன தலைப்பிற்கு இணைக்கப்பட வேண்டும். <br />[[MediaWiki:Disambiguationspage|பக்கவழி நெறிப்படுத்தல் பக்கங்கத்தில்]] உள்ள வார்ப்புரு இணைக்கப்பட்ட பக்கங்கள்  பக்கவழி நெறிப்படுத்தல் பக்கங்கள் என் கருதப்படும்.",
 
 'pageswithprop' => 'பக்கப் பண்புடைய பக்கங்கள்',
 'pageswithprop-submit' => 'செல்க',

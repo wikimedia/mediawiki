@@ -221,7 +221,7 @@ Pabusten ing pamanaliling dake kapamilatan [alilan] ning suglung',
 'jumptonavigation' => 'pamaglibut',
 'jumptosearch' => 'paintunan',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Tungkul {{SITENAME}}',
 'aboutpage' => 'Project:tungkul',
 'copyright' => 'Mipaintulutan ing laman na niti lalam ning $1.',
@@ -1171,13 +1171,6 @@ Isulat (input): contenttype/subtype, alimbawa <code>image/jpeg</code>.',
 'statistics' => 'Deng datos (Statistics)',
 'statistics-header-users' => 'Talagamit statistics',
 'statistics-mostpopular' => 'Bulung a pekamaralas dang linawe',
-
-'disambiguations' => 'Bulung a pamipalino',
-'disambiguationspage' => 'Template:pamipalino',
-'disambiguations-text' => "Makasuglung la king '''bulung pamipalino''' (disambiguation page) deng makatuking bulung.
-Ing dapat, keta lang makatud a paksa makasuglung.<br />
-Tuturing yang bulung pamipalino ing metung a bulung nung gagamit yang modelung (template)  makasuglung manibat king
-[[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects' => 'Dobling pamanaliling direksiun',
 'doubleredirectstext' => 'Pakalista la king bulung a ini deng bulung a makayalis direksiun (redirect) kareng aliwang bulung pamanalis direksiun. Atin yang suglung ing balang dane (row) king mumuna ampong kaduang pamanalis direksiun, ampo king tuturu (target) ning kaduang pamanalis direksiun, a keraklan ya ing "tagana" o "tutung" bulung a tuturu, nung nu ya dapat tambing makaturu ing mumunang pamanalis direksiun.',

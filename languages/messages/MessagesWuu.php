@@ -236,7 +236,7 @@ $messages = array(
 
 $1',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '关于{{SITENAME}}',
 'aboutpage' => 'Project:关于',
 'copyright' => '内容侪拉$1下底发布。',

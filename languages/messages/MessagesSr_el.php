@@ -549,7 +549,7 @@ $1',
 'pool-queuefull' => 'Red je pun zahteva',
 'pool-errorunknown' => 'Nepoznata greška',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'O projektu {{SITENAME}}',
 'aboutpage' => 'Project:O nama',
 'copyright' => 'Sadržaj je dostupan pod licencom $1.',
@@ -2128,12 +2128,6 @@ Pre brisanja proverite da li druge stranice vode do tih šablona.',
 'statistics-users-active' => 'Aktivni korisnici',
 'statistics-users-active-desc' => 'Korisnici koji su izvršili bar jednu radnju {{PLURAL:$1|prethodni dan|u poslednja $1 dana|u poslednjih $1 dana}}',
 'statistics-mostpopular' => 'Najposećenije stranice',
-
-'disambiguations' => 'Stranice do višeznačnih odrednica',
-'disambiguationspage' => 'Template:Višeznačna odrednica',
-'disambiguations-text' => "Sledeće stranice sadrže bar jednu vezu do '''višeznačne odrednice'''.
-Umesto toga, valjalo bi da vode do odgovarajuće teme.
-Stranica se smatra višeznačnom odrednicom ako koristi šablon koji vodi od [[MediaWiki:Disambiguationspage]].",
 
 'pageswithprop-prop' => 'Ime osobine:',
 'pageswithprop-submit' => 'Idi',

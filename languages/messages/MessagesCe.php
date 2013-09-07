@@ -500,7 +500,7 @@ $messages = array(
 'variants' => 'Кепараш',
 
 'navigation-heading' => 'Навигацин меню',
-'errorpagetitle' => 'Гlалат',
+'errorpagetitle' => 'ГӀалат',
 'returnto' => 'Юхагlо оцу агlоне $1.',
 'tagline' => 'Гlирс хlокхуьна бу {{grammar:genitive|{{SITENAME}}}}',
 'help' => 'ГӀо',
@@ -565,7 +565,7 @@ $1',
 'pool-queuefull' => 'Дехаршан чоь юьззина ю',
 'pool-errorunknown' => 'Дойзаш доцу гlалат',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{grammar:genitive|{{SITENAME}}}} лаьцна',
 'aboutpage' => 'Project:Цуьнах лаьцна',
 'copyright' => 'Чулацам лело мега догӀуш хиларца оцу $1.',
@@ -886,6 +886,7 @@ $1',
 'continue-editing' => 'Кхин дӀа тадар',
 'session_fail_preview' => 'Сервер лара ца йира ахьа бина хийцамаш дӀаязба. Кхиъ цкъа а гӀортахь.
 Нагахь санна хӀара гӀалат юха а далахь, [[Special:UserLogout|сеанс дӀа а къоьвлин]], юха а системин чувала/яла хьажа.',
+'edit_form_incomplete' => "'''Цхьайолу тадаран формаш серверан тӀекхаьчча яц. Тидаме хьажа хьай нисдарш доьхна дуй, ТӀакха южу гӀорта.'''",
 'editing' => 'Тадар: $1',
 'creating' => 'АгӀо кхоллар «$1»',
 'editingsection' => 'Тадар $1 (дакъа)',
@@ -1312,6 +1313,7 @@ $1',
 'ignorewarning' => 'ХӀума дац чуяккха файл',
 'ignorewarnings' => 'ДӀахедар тергал ца дан',
 'emptyfile' => 'Ахьа чуйоккхуш йолу файл еса хийла там бу. Иза гӀалат хийла мега файлан цӀе нийса язйина йоцу дела. Дехар до хьажа бакъалла и юьй ахьа чуйоккхуш йолу файл.',
+'file-deleted-duplicate' => 'Иштта файл ([[:$1]]) хӀинцале дӀаяьккхина хилла. Дехар до, юху файл чуяккхале файл дӀаяккхаран историга хьажа.',
 'uploadwarning' => 'Дlахьедар',
 'uploadedimage' => 'чуяккхина «[[$1]]»',
 'overwroteimage' => 'Чуяккхина файлан керла верси «[[$1]]»',
@@ -1436,9 +1438,6 @@ PICT # тайп тайпан
 'statistics-users' => '[[ВП:Дlаязвалар|Дlаязбелларш]] шаберигге декъашхой чохь болу [[Special:ListUsers|(могlам)]]',
 'statistics-users-active' => 'Жигара декъашхой',
 'statistics-users-active-desc' => 'Декъашхой, муьлха цхьа хlум дина болу, кху {{PLURAL:$1|тlаьххьара $1 динахь|тlаьххьара $1 дийнахь}}',
-
-'disambiguations' => 'Дуккха маьIнаш долу хьажорца йолу агIонаш',
-'disambiguationspage' => 'Кеп:цхьатера маьӀна доцуш',
 
 'pageswithprop' => 'АгӀонаш цхьадолу къастамашца',
 'pageswithprop-legend' => 'АгӀонаш цхьадолу къастамашца',

@@ -311,7 +311,7 @@ $1',
 'pool-queuefull' => 'Çıxarış səhifəsi doludur',
 'pool-errorunknown' => 'naməlum xəta',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} haqqında',
 'aboutpage' => 'Project:İzah',
 'copyright' => 'Bu məzmun $1 əhatəsindədir.',
@@ -1480,11 +1480,6 @@ $1',
 'statistics-users-active' => 'Aktiv istifadəçilər',
 'statistics-users-active-desc' => 'Son {{PLURAL:$1|gün|$1 gündə}} iş görən istifadəçilər',
 'statistics-mostpopular' => 'Ən çox baxılan səhifələr',
-
-'disambiguations' => 'Dəqiqləşdirmə səhifələrinə keçid verən səhifələr',
-'disambiguationspage' => 'Template:dəqiqləşdirmə',
-'disambiguations-text' => "Aşağıdakı səhifələr '''dəqiqləşdirmə səhifələrinə''' keçid verir. Bunun əvəzinə onlar çox guman ki, müvafiq konkret bir məqaləni göstərməlidirlər.
-<br />Səhifə o zaman dəqiqləşdirmə səhifəsi hesab edilir ki, onda  [[MediaWiki:Disambiguationspage]]-dən keçid verilmiş şablon istifadə edilir.",
 
 'doubleredirects' => 'İkiqat istiqamətləndirmələr',
 'double-redirect-fixed-move' => '[[$1]] dəyişdirilib.

@@ -259,7 +259,7 @@ $1',
 'pool-queuefull' => 'Kumpulan antriane kebak',
 'pool-errorunknown' => 'Kesalahan sing ora dingerteni sebabe',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Prakara {{SITENAME}}',
 'aboutpage' => 'Project:Prakara',
 'copyright' => 'Kabeh teks ana miturut $1.',
@@ -1371,13 +1371,6 @@ Deskripsi sekang [$2 kaca deskripsine] ditidokna nang ngisor kiye.',
 'statistics-users-active' => 'Jumlah panganggo aktif',
 'statistics-users-active-desc' => 'Panganggo sing nglakokna aktivitas nang {{PLURAL:$1|dina|$1 dina}} pungkasan',
 'statistics-mostpopular' => 'Kaca sing paling akèh dideleng',
-
-'disambiguations' => 'Kaca sing nggandeng maring kaca disambiguasi',
-'disambiguationspage' => 'Template:Disambig',
-'disambiguations-text' => "Kaca-kaca kiye nduwe pranala maring '''kaca disambiguasi'''.
-Kaca-kaca kuwe kudune nggandeng maring topik sing bener/pas.<br />
-Sawijining kaca bakal dianggep dadi kaca disambiguasi angger nggunakna cithakan sing nggandeng maring 
-[[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects' => 'Pangalihan dobel',
 'doubleredirectstext' => 'Kaca kiye muat daftar kaca sing dialihna maring kaca pangalihan liyane.

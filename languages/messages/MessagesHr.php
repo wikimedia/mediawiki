@@ -557,7 +557,7 @@ $1',
 'pool-queuefull' => 'Red čekanja je pun',
 'pool-errorunknown' => 'Nepoznata pogrješka',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'O projektu {{SITENAME}}',
 'aboutpage' => 'Project:O_projektu_{{SITENAME}}',
 'copyright' => 'Sadržaji se koriste u skladu s $1.',
@@ -2076,12 +2076,6 @@ Možda želite urediti njen opis na [$2 stranici opisa datoteke].',
 'statistics-users-active' => 'Aktivni suradnici',
 'statistics-users-active-desc' => 'Suradnici koji su napravili neku od radnji u posljednjih {{PLURAL:$1|dan|$1 dana}}',
 'statistics-mostpopular' => 'Najposjećenije stranice',
-
-'disambiguations' => 'Stranice koje vode na razdvojbene stranice',
-'disambiguationspage' => 'Template:Razdvojba',
-'disambiguations-text' => "Sljedeće stranice povezuju na '''razdvojbenu stranicu'''.
-Umjesto toga bi trebale povezivati na prikladnu temu.<br />
-Stranica se tretira kao razdvojbena stranica ako rabi predložak na kojega vodi [[MediaWiki:Disambiguationspage]]",
 
 'pageswithprop-submit' => 'Idi',
 

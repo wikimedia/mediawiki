@@ -285,7 +285,7 @@ $1',
 'pool-queuefull' => 'प्रतीक्षा पंक्ति भरियो',
 'pool-errorunknown' => 'अज्ञात त्रुटि',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}}को बारेमा',
 'aboutpage' => 'Project:बारेमा',
 'copyright' => 'लेखका सामाग्री $1 अनुसार उपलब्ध छ।',
@@ -1629,9 +1629,6 @@ $1',
 'statistics-users-active' => 'सकृय प्रयोगकर्ताहरु',
 'statistics-users-active-desc' => 'प्रयोगकर्ताहरु जो{{PLURAL:$1|बितेको एक दिन|बितेका $1 दिनहरु}}देखि  जो सक्रिय छन्',
 'statistics-mostpopular' => 'सबैभन्दा धेरै हेरिएको पृष्ठहरु',
-
-'disambiguations' => 'स्पष्टिकरण पृष्ठमा जोडिएका पृष्ठहरु',
-'disambiguationspage' => 'Template:बहुविकल्प',
 
 'doubleredirects' => 'दोहोरो अनुप्रेषण',
 'double-redirect-fixed-move' => '[[$1]] सारिएको छ।

@@ -394,7 +394,7 @@ $1',
 'pool-queuefull' => '池隊滿之',
 'pool-errorunknown' => '未明之錯',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '述{{SITENAME}}',
 'aboutpage' => 'Project:述',
 'copyright' => '文奉$1行。',
@@ -1671,10 +1671,6 @@ $1',
 'statistics-users-active' => '活簿',
 'statistics-users-active-desc' => '早$1日前更動之簿',
 'statistics-mostpopular' => '燴炙',
-
-'disambiguations' => '釋義',
-'disambiguationspage' => 'Template:弭誤解',
-'disambiguations-text' => '頁下引[[MediaWiki:Disambiguationspage]]模，求釋義，宜正題之。',
 
 'doubleredirects' => '窮渡',
 'doubleredirectstext' => '頁下窮渡，迭列以示。首尾宿合，宜正渡之。

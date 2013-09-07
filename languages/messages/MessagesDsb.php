@@ -391,7 +391,7 @@ $1',
 'pool-queuefull' => 'Cakajucy rěd jo połny',
 'pool-errorunknown' => 'Njeznata zmólka',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Wó {{GRAMMAR:lokatiw|{{SITENAME}}}}',
 'aboutpage' => 'Project:Wó_{{GRAMMAR:lokatiw|{{SITENAME}}}}',
 'copyright' => 'Wopśimjeśe stoj pód $1.',
@@ -1868,11 +1868,6 @@ Snaź coš wopisanje na jeje [$2 boku datajowego wopisanja] wobźěłaś.',
 'statistics-users-active' => 'Aktiwne wužywarje',
 'statistics-users-active-desc' => 'Wužywarje, kótarež su {{PLURAL:$1|cora|w slědnyma $1 dnjoma|w slědnych $1 dnjach|w slědnych $1 dnjach}} aktiwne byli',
 'statistics-mostpopular' => 'Nejwěcej woglědane boki',
-
-'disambiguations' => 'Boki, kótarež wótkazuju na boki wěcejzmysłowosći',
-'disambiguationspage' => 'Template:Rozjasnjenje zapśimjeśow',
-'disambiguations-text' => 'Slědujuce boki wopśimuju nanejmjenjej jaden wótkaz k bokoju rozjasnjenja zapśimjeśow. Wóne by dejali město togo ku gódnjejšemu bokoju wótkazaś.<br />
-Maju bok za  bok rozjasnjenja zapśimjeśow, gaž wužywa pśedłogu, na kótaruž wótkazujo se wót [[MediaWiki:Disambiguationspage]].',
 
 'pageswithprop' => 'Boki z kakosću boka',
 'pageswithprop-legend' => 'Boki z kakosću boka',

@@ -339,7 +339,7 @@ $messages = array(
 'jumptosearch' => 'suk',
 'pool-errorunknown' => 'Pöl nesevädik',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Tefü {{SITENAME}}',
 'aboutpage' => 'Project:Tefü',
 'copyright' => 'Ninäd gebidon ma el $1.',
@@ -1494,12 +1494,6 @@ Primanünods: ninädasot/donasot, a.s. <code>image/jpeg</code>.',
 'statistics-users-active' => 'Gebans jäfedik',
 'statistics-users-active-desc' => 'Gebans, kels edunons bosi ün {{PLURAL:$1|del lätik|dels lätik $1}}',
 'statistics-mostpopular' => 'Pads suvüno palogöls:',
-
-'disambiguations' => 'Pads lü telplänovapads yümöls',
-'disambiguationspage' => 'Template:Telplänov',
-'disambiguations-text' => "Pads sököl payümons ad '''telplanövapad'''.
-Sötons plao payümon lü yeged pötik.<br />
-Pad palelogon telplänovapad if gebon samafomoti, lü kel payümon pad [[MediaWiki:Disambiguationspage]].",
 
 'pageswithprop-submit' => 'Golön',
 

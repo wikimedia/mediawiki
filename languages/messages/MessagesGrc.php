@@ -260,7 +260,7 @@ $1',
 'pool-queuefull' => 'Δεξαμενὴ δεδομένων πλήρης',
 'pool-errorunknown' => 'Ἄγνωστον σφάλμα',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Περὶ {{SITENAME}}',
 'aboutpage' => 'Project:Περὶ',
 'copyright' => 'Ἡ διάθεσις τοῦδε περιεχομένου ἐστιν ὑπὸ $1.',
@@ -1315,9 +1315,6 @@ $1",
 'statistics-users-active' => 'Ἐνεργοὶ χρώμενοι <small>(χρώμενοι οἳ have edited or performed an action διάφορον τῆς ποιήσεως λογισμοῦ ἐν τῷ παρελθόντι μηνί)</small>',
 'statistics-users-active-desc' => 'Χρώμενοι δραστήριοι ἐν τῷ παρελθόντι μηνί {{PLURAL:$1|ἡμέρα|$1 ἡμέραι}}',
 'statistics-mostpopular' => 'Αἱ πλέον θεωρουμέναι δέλτοι',
-
-'disambiguations' => 'Σαφηνίσεως δέλτοι',
-'disambiguationspage' => 'Template:σαφήνισις',
 
 'doubleredirects' => 'Ἀναδιευθύνσεις διπλότυπαι',
 'doubleredirectstext' => 'Ἥδε ἡ δέλτος συγκαταλέγει δέλτους αἵπερ ἀνακατευθύνουσι πρὸς ἑτέρας δέλτους ἀνακατευθύνσεως. Πᾶσα σειρά περιέχει συνδέσμους πρὸς τὴν τε πρώτην καὶ τὴν τε δευτέραν δέλτον ἀνακατευθύνσεως καὶ τὸν τε προορισμὸν τῆς δευτέρας δέλτου ἀνακατευθύνσεως ἥπερ ἐστὶ συνήθως ὁ πραγματικὸς προορισμὸς τῆς ἀνακατευθύνσεως ὅπου σὲ ἔδει δεδεγμένος εἶναι. Τὰ <del>διαγεγραμμένα</del> λήμματα ἐπιλέλυνται.',

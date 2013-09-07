@@ -278,7 +278,7 @@ Prašuom palaukat ė mieginkat i ton poslapi patekt vieliau.
 $1',
 'pool-errorunknown' => 'Nežėnuoma klaida',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Aple {{SITENAME}}',
 'aboutpage' => 'Project:Aple',
 'copyright' => 'Turinīs pateikts so $1 licencėjė.',
@@ -1089,9 +1089,6 @@ Infuormacėjė ėš [$2 faila aprašīma poslapė] īr pateikta žemiau.',
 'statistics-users' => 'Ožsėregėstravosiu [[Special:ListUsers|nauduotuoju]]',
 'statistics-users-active' => 'Aktīviu nauduotuoju',
 'statistics-mostpopular' => 'Daugiausē ruodītė poslapē',
-
-'disambiguations' => 'Daugiareikšmiu žuodiu poslapē',
-'disambiguationspage' => 'Template:Tor daug reikšmiū',
 
 'doubleredirects' => 'Dvėgobė paradresavėmā',
 'doubleredirectstext' => 'Tėi paradresavėmā ruod i kėtus paradresavėma poslapius. Kuožnuo eilotē pamėnavuots pėrmasā ėr ontrasā paradresavėmā, tēpuogi ontrojė paradresavėma paskėrtis, katra paprastā ė paruod i tėkraji poslapi, i katra pėrmasā paradresavėms ė torietu ruodītė.',

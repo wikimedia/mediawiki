@@ -325,7 +325,7 @@ $1',
 'pool-queuefull' => 'مخزن صفی دولودور',
 'pool-errorunknown' => 'تانینمامیش خطا',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}}-ا گؤره',
 'aboutpage' => 'Project:حاقیندا',
 'copyright' => 'ایچینده‌کیلر $1 لیسانسی احاطه‌سینده‌دیلر.',
@@ -1887,12 +1887,6 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization صحیفه‌‌سین
 'statistics-users-active' => 'چالیشقان ایستیفاده‌چیلر',
 'statistics-users-active-desc' => 'سون {{PLURAL:$1|بیر|$1}} گون‌ده بیر ایش گؤرن ایستیفاده‌چیلر',
 'statistics-mostpopular' => 'ان چوخ گؤرونموش صحیفه‌لر',
-
-'disambiguations' => 'آیدین‌لاشدیرما صحیفه‌لرینه باغلانتیلاری اولان صحیفه‌لر',
-'disambiguationspage' => 'Template:دقیقلشدیرمه',
-'disambiguations-text' => "آشاغیداکی صحیفه‌لرده آزی بیر باغلانتی، '''بلیرلیندیمه صحیفه‌لری'''نه واردیر.
-اولا بیلر اونلاری داها اویغون صحیفه‌یه باغلاماق لازیم اولا.<br />
-بیر صحیفه، بلیرلندیرمه صحیفه‌سی کیمی اولار، اگر [[MediaWiki:Disambiguationspage]] صحیفه‌سینه باغلانمیش بیر شابلون‌دان ایستیفاده ائتسه.",
 
 'pageswithprop' => 'صحیفه اؤزل‌لیگی اولان صحیفه‌لر',
 'pageswithprop-legend' => 'صحیفه اؤزل‌لیگی اولان صحیفه‌لر',

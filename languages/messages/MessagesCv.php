@@ -241,7 +241,7 @@ $messages = array(
 'jumptonavigation' => 'çӳрев',
 'jumptosearch' => 'Шырав',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} çинчен',
 'aboutpage' => 'Project:çинчен',
 'copyright' => 'Ку ăшлăх $1 килĕшӳллĕн сарăлать.',
@@ -777,12 +777,6 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 'statistics' => 'Статистика',
 'statistics-header-users' => 'Хутшăнакансен статистики',
 'statistics-mostpopular' => 'Чи нумай пăхакан страницăсем',
-
-'disambiguations' => 'Нумай пĕлтерĕшлĕ статьясене кăтартакан страницăсем',
-'disambiguationspage' => 'Template:Disambig',
-'disambiguations-text' => "Çак статьясем '''нумай пĕлтерĕшле страницăсем'''çине куçараççĕ.
-Унта куçарас вырăнне вĕсем кирлĕ страницăсем çине куçармалла пулĕ.<br />
-Енчен те страница çинче [[MediaWiki:Disambiguationspage]] страницăра кăтартнă шаблон ятне вырнаçтарнă пулсан вăл нумай пĕлтерĕшлĕ страница шутланать.",
 
 'doubleredirects' => 'Икĕ хут куçаракансем',
 

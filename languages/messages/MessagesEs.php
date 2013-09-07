@@ -617,7 +617,7 @@ $1',
 'pool-queuefull' => 'La cola de trabajo está llena',
 'pool-errorunknown' => 'Error desconocido',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Acerca de {{SITENAME}}',
 'aboutpage' => 'Project:Acerca de',
 'copyright' => 'El contenido está disponible bajo los términos de la $1.',
@@ -2217,12 +2217,6 @@ Entrada: contenttype/subtype, p. ej. <code>image/jpeg</code>.',
 'statistics-users-active' => 'Usuarios activos',
 'statistics-users-active-desc' => 'Usuarios que han ejecutado una acción en {{PLURAL:$1|el último día|los últimos $1 días}}',
 'statistics-mostpopular' => 'Páginas más vistas',
-
-'disambiguations' => 'Páginas que enlazan con páginas de desambiguación',
-'disambiguationspage' => 'Template:Desambiguación',
-'disambiguations-text' => "Las siguientes páginas contienen al menos un enlace a una '''página de desambiguación'''.
-En lugar de ello deberían enlazar a una página más apropiada.<br />
-Una página es considerada página de desambiguación si utiliza la plantilla que está enlazada desde [[MediaWiki:Disambiguationspage]].",
 
 'pageswithprop' => 'Páginas con una propiedad de página',
 'pageswithprop-legend' => 'Páginas con una propiedad de página',

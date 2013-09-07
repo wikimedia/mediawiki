@@ -225,7 +225,7 @@ $messages = array(
 'jumptonavigation' => 'Güiquipeandu',
 'jumptosearch' => 'Landeal',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Al tentu {{SITENAME}}',
 'aboutpage' => 'Project:Enjolmación',
 'copyright' => 'Continiu disponibri bahu $1.',
@@ -1191,10 +1191,6 @@ Pursa nel entítulu la coluna pa chambal el ordin.',
 'statistics-users-active' => 'Ussuárius ativus',
 'statistics-users-active-desc' => 'Ussuárius que aigan hechu anguna ación {{PLURAL:$1|nel úrtimu dia|enus úrtimus $1 dias}}',
 'statistics-mostpopular' => 'Páhinas mas visoreás',
-
-'disambiguations' => 'Páhinas de desambiguáncia',
-'disambiguationspage' => 'Template:desambiguáncia',
-'disambiguations-text' => "Las siguientis páhinas atihan a una '''páhina e desambiguáncia'''. Estas eberian atihal al artículu apropiau.<br />Una páhina se consiera e desambiguáncia si gasta una prantilla qu'está atihá endi [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects' => 'Redirecionis dobris',
 

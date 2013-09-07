@@ -251,7 +251,7 @@ $1',
 'pool-queuefull' => 'Tūi-lia̍t pâi moá ah',
 'pool-errorunknown' => 'M̄-chai siáⁿ chhò-gō͘',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'hían-sī',
 'aboutpage' => 'Project:koan-hē',
 'copyright' => 'Tī $1 tiâu-kiāⁿ chi hā khó sú-iōng loē-iông',
@@ -745,12 +745,6 @@ Tī pat-lâng liân-lo̍k lí ê sî-chūn bē kā e-mail tsū-tsí siá chhut--
 # Statistics
 'statistics' => 'Thóng-kè',
 'statistics-header-users' => 'Iōng-chiá thóng-kè sò·-ba̍k',
-
-'disambiguations' => 'Khu-pia̍t-ia̍h',
-'disambiguationspage' => 'Template:disambig
-Template:KhPI
-Template:Khu-pia̍t-iah
-Template:Khu-pia̍t-ia̍h',
 
 'doubleredirects' => 'Siang-thâu choán-ia̍h',
 

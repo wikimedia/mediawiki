@@ -612,7 +612,7 @@ $1',
 'pool-queuefull' => 'プールキューがいっぱいです',
 'pool-errorunknown' => '不明なエラー',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}}について',
 'aboutpage' => 'Project:{{SITENAME}}について',
 'copyright' => '内容は$1のライセンスで利用できます。',
@@ -2284,12 +2284,6 @@ contenttype/subtypeの形式で入力してください (例: <code>image/jpeg</
 'statistics-users-active' => '活動中の利用者',
 'statistics-users-active-desc' => '過去 {{PLURAL:$1|$1 日間}}に何らかの操作をした利用者',
 'statistics-mostpopular' => '最も閲覧されているページ',
-
-'disambiguations' => '曖昧さ回避ページにリンクしているページ',
-'disambiguationspage' => 'Template:曖昧回避',
-'disambiguations-text' => "以下のページには'''曖昧さ回避ページ'''へのリンクが 1 個以上あります。
-これらのリンクは、より適切なページへのリンクに変更する必要があります。<br />
-[[MediaWiki:Disambiguationspage]] にリンクがあるテンプレートを使用しているページを、曖昧さ回避ページと見なします。",
 
 'pageswithprop' => 'ページプロパティがあるページ',
 'pageswithprop-legend' => 'ページプロパティがあるページ',
@@ -4007,16 +4001,16 @@ Variants for Chinese language
 'confirmemail_loggedin' => 'メールアドレスは確認されました。',
 'confirmemail_error' => '確認情報を保存する際にエラーが発生しました。',
 'confirmemail_subject' => '{{SITENAME}} メールアドレスの確認',
-'confirmemail_body' => '誰か (おそらくあなた) が、IPアドレス$1から、
-このメールアドレスで{{SITENAME}}のアカウント「$2」を登録しました。
+'confirmemail_body' => '誰か (おそらくあなた) が、IP アドレス$1から、
+このメールアドレスで {{SITENAME}} のアカウント「$2」を登録しました。
 
 このアカウントが本当に自分のものか確認して、
-{{SITENAME}}のメール機能を有効にするには、以下のURLをブラウザーで開いてください:
+{{SITENAME}} のメール機能を有効にするには、以下の URL をブラウザーで開いてください:
 
 $3
 
-もしアカウントの登録をした覚えがない場合は、
-次のURLをブラウザーで開いて、メールアドレスの確認をキャンセルしてください:
+アカウント登録をした覚えがない場合は、
+以下の URL をブラウザーで開いて、メールアドレスの確認をキャンセルしてください:
 
 $5
 
@@ -4043,8 +4037,8 @@ $5
 
 $3
 
-もしあなたのアカウントではない場合は、
-次のリンクをブラウザーで開いて、メールアドレスの確認をキャンセルしてください:
+あなたのアカウントではない場合は、
+以下のリンクをブラウザーで開いて、メールアドレスの確認をキャンセルしてください:
 
 $5
 

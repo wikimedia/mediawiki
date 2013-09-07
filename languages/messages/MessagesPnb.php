@@ -246,7 +246,7 @@ $messages = array(
 'pool-queuefull' => 'چنوتی کرن ل‏ئی بندے پورے نیں۔',
 'pool-errorunknown' => 'انجان غلطی',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'بارے چ {{SITENAME}}',
 'aboutpage' => 'Project:بارے وچ',
 'copyright' => 'مال $1 دے تھلے ہے گا اے۔',
@@ -1686,12 +1686,6 @@ $1",
 'statistics-users-active' => 'اجکل دے کامے',
 'statistics-users-active-desc' => 'ورتنوالے جناں نیں پچھلے {{PLURAL:$1|دن|$1 دناں}}  چ کم کیتا اے۔',
 'statistics-mostpopular' => 'سب توں بوتے ویکھے گۓ صفے',
-
-'disambiguations' => 'اوہ صفے جیہڑے گنجل کھول صفیاں نال جڑدے نیں۔',
-'disambiguationspage' => 'سانچہ: ڈسایمبگ',
-'disambiguations-text' => "تھلے دتے گۓ صفیاں دا اک '''گنجل کھول''' نال جوڑ اے۔
-ایدے بجاۓ ایدا جوڑ کسے ٹھیک سرناویں نال جوڑو<br />
-اک صفہ گنجل کھول صفے لئی منیا جائیگا  اگر اے اک ٹمپلیٹ ورتدا جیدا جوڑ [[MediaWiki:Disambiguationspage]] نال ہووے۔",
 
 'doubleredirects' => 'دوہری ریڈیرکٹس',
 'doubleredirectstext' => 'ایس صفے تے اوناں صفیاں دی لسٹ اے جیہڑے ریڈائرکٹ کردے نیں دوجے ریڈائرکٹ صفیاں ول۔

@@ -360,7 +360,7 @@ $1",
 'pool-queuefull' => 'A coda de treballo ye plena',
 'pool-errorunknown' => 'Error desconoixida',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Información sobre {{SITENAME}}',
 'aboutpage' => 'Project:Sobre',
 'copyright' => 'O conteniu ye disponible baixo a licencia $1.',
@@ -1755,12 +1755,6 @@ Debaixo s'amuestra a descripción d'a suya [$2 pachina de descripción].",
 'statistics-users-active' => 'Usuarios activos',
 'statistics-users-active-desc' => 'Usuarios que han feito qualsiquier acción en {{PLURAL:$1|o zaguer día|os zaguers $1 días}}',
 'statistics-mostpopular' => 'Pachinas más vistas',
-
-'disambiguations' => 'Pachinas con vinclos enta pachinas de desambigación',
-'disambiguationspage' => 'Template:Desambigación',
-'disambiguations-text' => "As siguients pachinas tienen vinclos ta una '''pachina de desambigación'''.
-Ixos vinclos habrían de ir millor t'a pachina especifica apropiada.<br />
-Una pachina se considera pachina de desambigación si fa servir una plantilla provenient de  [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects' => 'Reendreceras dobles',
 'doubleredirectstext' => "En ista pachina s'amuestran as pachinas que son reendreceras enta atras pachinas reendrezatas.

@@ -244,7 +244,7 @@ $1',
 'pool-queuefull' => '請求隊列满矣',
 'pool-errorunknown' => '毋知得嘅差錯',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '關於 {{SITENAME}}',
 'aboutpage' => 'Project:關於',
 'copyright' => '本站內容使用$1條款授權。',
@@ -1151,10 +1151,6 @@ Tshòng-tón pit-sî chhai $1-ke sṳ-ngièn yî-ha.',
 'statistics' => '統計',
 'statistics-header-users' => '用戶統計',
 'statistics-mostpopular' => '分查閱次數最多嘅頁面',
-
-'disambiguations' => 'Sêu-hàm fù-chông',
-'disambiguationspage' => 'Template:消歧義',
-'disambiguations-text' => 'Yî-ha ke hong-mien tû-yû to <b> sêu-hàm fù-chông </b> ke lièn-chiap, than yin-kôi he lièn-to sṳt-tông ke phêu-thì. <br /> Yit-ke hong-mien chiông-voi pûn-ngìn sṳ-vi Sêu-hàm fù-chông kó-yèn kí he lièn-chhṳ [[MediaWiki:disambiguationspage]].',
 
 'doubleredirects' => '雙重重定向頁',
 'doubleredirectstext' => 'Mî yit-hàng pâu-hàm to thi-yit lâu thi-ngi-ke chhûng-thin hong-mien ke lièn-chiap, yî-khi̍p thi-ngi ke chhûng-thin hong-mien ke thi-yit-hàng vùn-sṳ, thûng-sòng hién-sṳ ke he "chṳ̂n-chṳn" ke muk-phêu vùn-chông, ye-he thi-yit-ke chhûng-thin hong-mien  yin-kôi chṳ́-hiong ke vùn-chông.',

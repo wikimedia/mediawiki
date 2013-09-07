@@ -296,7 +296,7 @@ $1',
 'pool-queuefull' => 'Puno an katitirok nga pila',
 'pool-errorunknown' => 'Waray kasabti nga kasaypanan',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Mahitungod han {{SITENAME}}',
 'aboutpage' => 'Project:Mahitungod han',
 'copyright' => 'In sulod mabiblingan ha ilarom han $1.',
@@ -1330,9 +1330,6 @@ An paglaladawan han iya [$2 fayl han paglaladawan nga pakli] didto in ginpapakit
 'statistics-users-active' => 'Mga gumaramit nga nanggigios',
 'statistics-users-active-desc' => 'Mga gumaramit nga may-ada iginbuhat ha urhi nga {{PLURAL:$1|ka adlaw|$1 ka mga adlaw}}',
 'statistics-mostpopular' => 'Gidamoi nga ginpanginanohan nga mga pakli',
-
-'disambiguations' => 'Mga pakli nga nasumpay ha mga pansayod nga pakli',
-'disambiguationspage' => 'Template:pansayod',
 
 'pageswithprop-submit' => 'Kadto-a',
 

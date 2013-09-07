@@ -331,12 +331,12 @@ $messages = array(
 'tog-hidepatrolled' => 'Ẩn sửa đổi đã tuần tra trong trang thay đổi gần đây',
 'tog-newpageshidepatrolled' => 'Ẩn trang đã tuần tra trong danh sách các trang mới',
 'tog-extendwatchlist' => 'Mở rộng danh sách theo dõi để hiển thị tất cả các thay đổi, chứ không chỉ các thay đổi gần đây',
-'tog-usenewrc' => 'Thu gọn các thay đổi theo trang trong thay đổi gần đây và danh sách theo dõi (cần JavaScript)',
+'tog-usenewrc' => 'Thu gọn các thay đổi theo trang trong thay đổi gần đây và danh sách theo dõi',
 'tog-numberheadings' => 'Tự động đánh số các đề mục',
-'tog-showtoolbar' => 'Hiển thị thanh định dạng (JavaScript)',
-'tog-editondblclick' => 'Nhấn đúp để sửa đổi trang (JavaScript)',
+'tog-showtoolbar' => 'Hiển thị thanh định dạng',
+'tog-editondblclick' => 'Nhấn đúp để sửa đổi trang',
 'tog-editsection' => 'Cho phép sửa đổi đề mục qua liên kết [sửa]',
-'tog-editsectiononrightclick' => 'Cho phép sửa đổi đề mục bằng cách bấm chuột phải trên tên đề mục (JavaScript)',
+'tog-editsectiononrightclick' => 'Bấm chuột phải vào đề mục để sửa đổi phần trang',
 'tog-showtoc' => 'Hiển thị mục lục (cho trang có trên 3 đề mục)',
 'tog-rememberpassword' => 'Nhớ thông tin đăng nhập của tôi trong trình duyệt này (cho đến $1 ngày)',
 'tog-watchcreations' => 'Tự động theo dõi các trang tôi viết mới và các tập tin tôi tải lên',
@@ -354,7 +354,7 @@ $messages = array(
 'tog-shownumberswatching' => 'Hiển thị số người đang xem',
 'tog-oldsig' => 'Chữ ký hiện tại:',
 'tog-fancysig' => 'Xem chữ ký là mã wiki (không có liên kết tự động)',
-'tog-uselivepreview' => 'Xem trước trực tiếp (JavaScript; chưa ổn định)',
+'tog-uselivepreview' => 'Xem trước trực tiếp (thử nghiệm)',
 'tog-forceeditsummary' => 'Nhắc tôi khi tôi quên tóm lược sửa đổi',
 'tog-watchlisthideown' => 'Ẩn các sửa đổi của tôi khỏi danh sách theo dõi',
 'tog-watchlisthidebots' => 'Ẩn các sửa đổi của robot khỏi danh sách theo dõi',
@@ -469,7 +469,7 @@ $messages = array(
 'newwindow' => '(mở cửa sổ mới)',
 'cancel' => 'Hủy bỏ',
 'moredotdotdot' => 'Thêm nữa…',
-'morenotlisted' => 'Có nhiều hơn danh sách này…',
+'morenotlisted' => 'Danh sách này không có đầy đủ.',
 'mypage' => 'Trang cá nhân',
 'mytalk' => 'Tin nhắn',
 'anontalk' => 'Thảo luận với IP này',
@@ -569,7 +569,7 @@ $1',
 'pool-queuefull' => 'Đầy hàng đợi khối ứng dụng (pool queue)',
 'pool-errorunknown' => 'Lỗi lạ',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Giới thiệu {{SITENAME}}',
 'aboutpage' => 'Project:Giới thiệu',
 'copyright' => 'Bản quyền $1.',
@@ -656,6 +656,12 @@ Có danh sách trang đặc biệt tại [[Special:SpecialPages|{{int:specialpag
 # General errors
 'error' => 'Lỗi',
 'databaseerror' => 'Lỗi cơ sở dữ liệu',
+'databaseerror-text' => 'Xuất hiện lỗi truy vấn cơ sở dữ liệu.
+Điều này có thể xảy ra do một lỗi phần mềm.',
+'databaseerror-textcl' => 'Xuất hiện lỗi truy vấn cơ sở dữ liệu.',
+'databaseerror-query' => 'Truy vấn: $1',
+'databaseerror-function' => 'Hàm: $1',
+'databaseerror-error' => 'Lỗi: $1',
 'laggedslavemode' => 'Cảnh báo: Trang có thể chưa được cập nhật.',
 'readonly' => 'Cơ sở dữ liệu bị khóa',
 'enterlockreason' => 'Nêu lý do khóa, cùng với thời hạn khóa',
@@ -1457,7 +1463,7 @@ Xem chi tiết trong [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}
 'prefs-rendering' => 'Bề ngoài',
 'saveprefs' => 'Lưu tùy chọn',
 'resetprefs' => 'Mặc định lại lựa chọn',
-'restoreprefs' => 'Mặc định lại toàn bộ tùy chọn',
+'restoreprefs' => 'Mặc định lại toàn bộ tùy chọn (trong tất cả các phần)',
 'prefs-editing' => 'Sửa đổi',
 'rows' => 'Số hàng:',
 'columns' => 'Số cột:',
@@ -1546,6 +1552,7 @@ Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao c�
 'prefs-displaywatchlist' => 'Tùy chọn hiển thị',
 'prefs-tokenwatchlist' => 'Dấu hiệu',
 'prefs-diffs' => 'Khác biệt',
+'prefs-help-prefershttps' => 'Đăng xuất và đăng nhập lại để áp dụng tùy chọn này.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'Có vẻ hợp lệ',
@@ -1753,7 +1760,7 @@ Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao c�
 'rc_categories_any' => 'Bất kỳ',
 'rc-change-size-new' => '$1 byte sau thay đổi',
 'newsectionsummary' => 'Đề mục mới: /* $1 */',
-'rc-enhanced-expand' => 'Xem chi tiết (cần JavaScript)',
+'rc-enhanced-expand' => 'Xem chi tiết',
 'rc-enhanced-hide' => 'Giấu chi tiết',
 'rc-old-title' => 'tên ban đầu là “$1”',
 
@@ -2017,8 +2024,7 @@ Vì lý do bảo mật, img_auth.php đã bị tắt.',
 'upload_source_file' => ' (tập tin trên máy của bạn)',
 
 # Special:ListFiles
-'listfiles-summary' => 'Trang đặc biệt này liệt kê các tập tin được tải lên.
-Lọc theo người dùng để chỉ hiện các tập tin mà người đó đã tải lên phiên bản gần đây nhất.',
+'listfiles-summary' => 'Trang đặc biệt này liệt kê các tập tin được tải lên.',
 'listfiles_search_for' => 'Tìm kiếm theo tên tập tin:',
 'imgfile' => 'tập tin',
 'listfiles' => 'Danh sách tập tin',
@@ -2029,6 +2035,10 @@ Lọc theo người dùng để chỉ hiện các tập tin mà người đó đ
 'listfiles_size' => 'Kích cỡ',
 'listfiles_description' => 'Miêu tả',
 'listfiles_count' => 'Số phiên bản',
+'listfiles-show-all' => 'Bao gồm các phiên bản cũ của hình ảnh',
+'listfiles-latestversion' => 'Phiên bản hiện tại',
+'listfiles-latestversion-yes' => 'Có',
+'listfiles-latestversion-no' => 'Không',
 
 # File description page
 'file-anchor-link' => 'Tập tin',
@@ -2157,10 +2167,6 @@ Hãy nhớ kiểm tra các liên kết khác đến bản mẫu trước khi xó
 'statistics-users-active' => 'Số thành viên tích cực',
 'statistics-users-active-desc' => 'Những thành viên đã hoạt động trong {{PLURAL:$1|ngày|$1 ngày}} qua',
 'statistics-mostpopular' => 'Các trang được xem nhiều nhất',
-
-'disambiguations' => 'Trang liên kết đến trang định hướng',
-'disambiguationspage' => 'Template:disambig',
-'disambiguations-text' => "Các trang này có liên kết đến ít nhất một '''trang định hướng''', những trang này có thể có liên kết đến các trang đúng nghĩa hơn.<br />Các trang định hướng là trang sử dụng những bản mẫu được liệt kê ở [[MediaWiki:Disambiguationspage]].",
 
 'pageswithprop' => 'Trang có thuộc tính trang',
 'pageswithprop-legend' => 'Các trang có thuộc tính trang',
@@ -4157,6 +4163,7 @@ hoặc [//www.gnu.org/licenses/old-licenses/gpl-2.0.html đọc nó trực tuy�
 'dberr-problems' => 'Xin lỗi! Trang này đang gặp phải những khó khăn về kỹ thuật.',
 'dberr-again' => 'Xin thử đợi vài phút rồi tải lại trang.',
 'dberr-info' => '(Không thể liên lạc với máy chủ cơ sở dữ liệu: $1)',
+'dberr-info-hidden' => '(Không thể liên lạc với máy chủ cơ sở dữ liệu)',
 'dberr-usegoogle' => 'Bạn có thể thử tìm trên Google trong khi chờ đợi.',
 'dberr-outofdate' => 'Chú ý rằng các chỉ mục của Google có thể đã lỗi thời.',
 'dberr-cachederror' => 'Sau đây là bản sao được lưu bộ đệm của trang bạn muốn xem, và có thể đã lỗi thời.',

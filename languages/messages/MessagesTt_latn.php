@@ -318,7 +318,7 @@ $1',
 'pool-queuefull' => 'Sorawlarnı saqlaw  bite tulı',
 'pool-errorunknown' => 'Bilgesez  xata',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} turında',
 'aboutpage' => 'Project:Taswirlama',
 'copyright' => 'Mäğlümat $1 buyınça taratıla.',
@@ -1319,8 +1319,6 @@ PICT # törle
 'statistics-users-active' => 'Aktiv qullanuçılar',
 'statistics-users-active-desc' => '{{PLURAL:$1|$1 kön }} öçendä nindi dä bulsa üzgärtülär kertkän qullanuçılar',
 'statistics-mostpopular' => 'İñ küp qaraluçı bitlär',
-
-'disambiguations' => 'Küp mäğnäle süzlär turında bitlär',
 
 'doubleredirects' => 'İkelätä yünältülär',
 

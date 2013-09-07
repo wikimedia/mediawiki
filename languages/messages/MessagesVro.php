@@ -269,7 +269,7 @@ $1",
 'pool-queuefull' => 'Kinniqpandmiisi järekõrd om täüs',
 'pool-errorunknown' => 'Tiidmäldä hädä',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} tutvustus',
 'aboutpage' => 'Project:Pääteedüs',
 'copyright' => 'Teksti või vabalt pruukiq litsendsi $1 perrä.',
@@ -1149,12 +1149,6 @@ Ku ülekaet teedüstü om sama pilt alguperälidsen suurusõn, sis olõ-i vaia e
 'statistics-users-active' => 'Tegüsit pruukjit',
 'statistics-users-active-desc' => 'Pruukjaq, kiä ommaq tan midägi toimõndanuq {{PLURAL:$1|viimädse päävä|viimädse $1 päävä}} seen.',
 'statistics-mostpopular' => 'Kõgõ kaetumbaq leheq',
-
-'disambiguations' => 'Lingiq, miä näütäseq täpsüstüslehekülgi pääle',
-'disambiguationspage' => 'Template:Linke täpsüstüslehekülile',
-'disambiguations-text' => "Naaq leheq näütäseq '''täpsüstüslehti''' pääle.
-Tuu asõmal pidänüq nä näütämä as'a sisu pääle.<br />
-Lehte peetäs täpsüstüslehes, ku timän om pruugit näüdüst, kohe näütäs link lehelt [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects' => 'Katõkõrdsõq ümbresaatmisõq',
 'doubleredirectstext' => 'Egä ria pääl om ärq tuud edimäne ja tõõnõ ümbresaatmisleht ja niisama tõõsõ ümbresaatmislehe link, miä näütäs hariligult kotusõ pääle, kohe edimäne ümbersaatmisleht pidänüq õkva näütämä.',

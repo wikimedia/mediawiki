@@ -352,7 +352,7 @@ $messages = array(
 
 $1',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'باره {{SITENAME}}',
 'aboutpage' => 'Project:باره',
 'copyright' => 'محتوا موجودانت تحت $1.',
@@ -1520,12 +1520,6 @@ PICT # misc.
 'statistics-users-active' => 'فعالین کاربر',
 'statistics-users-active-desc' => 'کاربرانی که ته پیشگین {{PLURAL:$1|روچ|$1 روچان}} کاری اش کتت',
 'statistics-mostpopular' => 'باز چار تگین صفحات',
-
-'disambiguations' => 'صفحات رفع ابهام',
-'disambiguationspage' => 'Template:رفع ابهام',
-'disambiguations-text' => "جهلیگین صفحه لینک انت په یک '''صفحه رفع ابهام'''.
-شما بایدن په جاه آیی په یک مناسبین موضوعی لینک دهیت.<br />
-یک صفحه ای که په داب صفحه رفع ابهام چارگ بیت اگر آیء چه یک تمپلتی که لینک بیت چه [[MediaWiki:Disambiguationspage|صفحه رفع ابهام]] استفاده کنت.",
 
 'doubleredirects' => 'دوبل غیر مستقیم',
 'doubleredirectstext' => 'ای صفحه لیست کنت صفحاتی که غیر مستقیم رونت په دگه صفحات. هر ردیف شامل لینکانی انت به اولی و دومی غیر مستقیم، و هدف دومی غیر مستقیم، که معمولا استفاده بیت "real" صفحه هدف، که بایدن اولی غیر مستقیم پیش داریت.',

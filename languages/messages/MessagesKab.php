@@ -271,7 +271,7 @@ $1',
 'pool-queuefull' => 'Adras n umahil yečuṛ',
 'pool-errorunknown' => 'Anezri warisem',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Awal ɣef {{SITENAME}}',
 'aboutpage' => 'Project:Awal ɣef...',
 'copyright' => 'Tzemreḍ ad twaliḍ ayen yella deg $1.',
@@ -1720,12 +1720,6 @@ Ur tettuḍ ara ad selkeneḍ ma ur llan ara izdayen nniḍen ɣer tilɣatin uqb
 'statistics-users-active' => 'Iseqdacen urmiden',
 'statistics-users-active-desc' => 'Iseqdacen yesɛan xersum yiwet tigawt seg {{PLURAL:$1|ass agi aneggaru|$1 ussan agi ineggura}}',
 'statistics-mostpopular' => 'isebtar mmeẓren aṭṭas',
-
-'disambiguations' => 'Isebtar yesɛan izdayen ɣer isebtar n tiynisemt',
-'disambiguationspage' => 'Template:Asefham',
-'disambiguations-text' => "Isebtar agi azday ɣer '''asebter n tiynisemt'''.
-Ilaq ad sɛun azday ɣer amagrad amellay.<br />
-Asebter yella d asebter n tiynisemt lukan yetseqdac talɣa i qqenen ar [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects' => 'Asemmimeḍ yeḍra snat tikwal',
 'doubleredirectstext' => 'Mkull ajerriḍ yesɛa azday ɣer asmimeḍ amezwaru akk d wis sin, ajerriḍ amezwaru n uḍris n usebter wis sin daɣen, iwumi yefkan asmimeḍ ṣaḥiḥ i yessefk ad sɛan isebtar azday ɣur-s.',

@@ -183,7 +183,7 @@ $messages = array(
 'jumptosearch' => 'kintun',
 'pool-errorunknown' => 'Kimnoelchi welulkan',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} ñi dungu',
 'aboutpage' => 'Project:Dungu',
 'copyrightpage' => '{{ns:project}}:Norkülelu ñi ngenngelu ñi deumakelu',
@@ -581,8 +581,6 @@ Fey ñi chumngen mülelu ($2 fey ñi chumngen wülngiñ) pengeli tüfa mew.',
 # Statistics
 'statistics' => 'Chuntelen',
 'statistics-pages' => 'Pakina',
-
-'disambiguationspage' => 'Template:Kiñeduamngelu dungu',
 
 'brokenredirects-edit' => 'pepikan',
 'brokenredirects-delete' => 'ñamümün',

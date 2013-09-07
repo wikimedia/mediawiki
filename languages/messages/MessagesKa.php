@@ -415,7 +415,7 @@ $1',
 'pool-queuefull' => 'მოთხოვნების დამგროვებელი სავსეა',
 'pool-errorunknown' => 'უცნობი შეცდომა',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}}-ის შესახებ',
 'aboutpage' => 'Project:შესახებ',
 'copyright' => 'შინაარსი წარმოდგენილია $1 პირობებით.',
@@ -1976,12 +1976,6 @@ $1',
 'statistics-users-active' => 'აქტიური მომხმარებლები',
 'statistics-users-active-desc' => 'მომხმარებლები, რომლებმაც განახორციელეს ქმედება {{PLURAL:$1|ბოლო $1 დღის|ბოლო $1 დღის}} განმავლობაში',
 'statistics-mostpopular' => 'ყველზე ხშირად ხილვადი გვერდები',
-
-'disambiguations' => 'გვერდები, რომელთაც აქვთ ბმული მრავალმნიშვნელოვან გვერდებზე',
-'disambiguationspage' => 'Template:მრავალმნიშვნელოვანი',
-'disambiguations-text' => "შემდეგი გვერდები შეიცავენ სულ მცირე ერთ ბმულს '''მრავალმნიშვნელობის გვერდზე'''.
-ამის ნაცვლად, სავარაუდოდ, ისისნი უნდა მიუთითებდნენ შესაბამის კონკრეტულ სტატიაზე.<br />
-გვერდი ითვლება მრავამნიშვნელოვნად, თუ მასში განთავსებულია თარგი, რომლის სახელიც მითითებულია გვერდზე [[MediaWiki:Disambiguationspage]].",
 
 'pageswithprop' => 'გვერდები განსაზღვრული თვისებით',
 'pageswithprop-legend' => 'გვერდები განსაზღვრული თვისებით',

@@ -289,7 +289,7 @@ $1',
 'pool-queuefull' => 'Kolejka zadań jest pełna',
 'pool-errorunknown' => 'Feler ńyznany',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Uo {{GRAMMAR:MS.lp|{{SITENAME}}}}',
 'aboutpage' => 'Project:Uo serwiśe',
 'copyright' => 'Tekst udostympńany na licencyji $1.',
@@ -1452,11 +1452,6 @@ Niżyj sům informacyje ze [$2 zajty popisu] tygo pliku.',
 'statistics-users-active' => 'Aktywnych użytkowńikůw',
 'statistics-users-active-desc' => 'Użytkowńiki, kere bůły aktywne bez {{PLURAL:$1|uostatńi dźyń|uostatńich $1 dńi}}',
 'statistics-mostpopular' => 'Zajty we kere nojčyńśći sam filujom',
-
-'disambiguations' => 'Zajty ujydnoznačńajůnce',
-'disambiguationspage' => '{{ns:template}}:disambig',
-'disambiguations-text' => "Artikle půńižej uodwouůjům śe do '''zajtůw ujydnoznačńajůncych''', a powinny uodwouywać śe bezpostředńo do hasua kere je zwjůnzane ze treśćům artikla.<br />
-Zajta uznawano je za ujydnoznačńajůnco kej zawiyro šablůn uokreślůny we [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects' => 'Podwůjne překierowańa',
 'doubleredirectstext' => 'Na tyi liśće mogům znojdować śe překerowańo pozorne. Uoznača to, aže půńižej pjyrwšej lińii artikla, zawjerajůncyj "#REDIRECT ...", može znojdować śe dodotkowy tekst. Koždy wjerš listy zawjero uodwouańo do pjyrwšygo i drůgygo překerowańo a pjyrwšom lińjům tekstu drůgygo překerowańo. Uůmožliwjo to na ogůu uodnaleźyńy wuaśćiwygo artikla, do kerygo powinno śe překerowywać.',

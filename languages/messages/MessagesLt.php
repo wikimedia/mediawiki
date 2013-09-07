@@ -428,7 +428,7 @@ $1',
 'pool-queuefull' => 'Telkinio eilė pilna',
 'pool-errorunknown' => 'Nežinoma klaida',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Apie {{SITENAME}}',
 'aboutpage' => 'Project:Apie',
 'copyright' => 'Turinys pateikiamas pagal $1 licenciją.',
@@ -1938,12 +1938,6 @@ Informacija iš [$2 failo aprašymo puslapio] yra pateikiama žemiau.',
 'statistics-users-active' => 'Aktyvių naudotojų',
 'statistics-users-active-desc' => 'Naudotojai, kurie per {{PLURAL:$1|paskutinę dieną|paskutines $1 dienų}} padarė keitimų',
 'statistics-mostpopular' => 'Daugiausiai rodyti puslapiai',
-
-'disambiguations' => 'Puslapiai rodantys į daugiaprasmių žodžių puslapius',
-'disambiguationspage' => 'Template:Daugiareikšmis',
-'disambiguations-text' => "Žemiau išvardinti puslapiai nurodo į '''daugiaprasmių žodžių puslapius'''.
-Nuorodos turėtų būti patikslintos, kad rodytų į konkretų puslapį.<br />
-Puslapis laikomas daugiaprasmiu puslapiu, jei jis naudoja šabloną, kuris yra nurodomas iš [[MediaWiki:Disambiguationspage]].",
 
 'pageswithprop' => 'Puslapiai su puslapio atributais',
 'pageswithprop-legend' => 'Puslapiai su puslapio atributais',

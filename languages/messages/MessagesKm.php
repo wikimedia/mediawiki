@@ -506,7 +506,7 @@ $messages = array(
 $1',
 'pool-errorunknown' => 'កំហុសមិនស្គាល់',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'អំពី{{SITENAME}}',
 'aboutpage' => 'Project:អំពី',
 'copyright' => 'រក្សាសិទ្ធិគ្រប់យ៉ាងដោយ$1។',
@@ -2051,13 +2051,6 @@ $1',
 'statistics-users-active' => 'អ្នកប្រើប្រាស់សកម្ម',
 'statistics-users-active-desc' => 'អ្នក​ប្រើប្រាស់​ដែល​បាន​អនុវត្ត​សកម្មភាព​ក្នុង​{{PLURAL:$1|ថ្ងៃ​}}ចុង​ក្រោយ​',
 'statistics-mostpopular' => 'ទំព័រដែលត្រូវបានមើលច្រើនបំផុត',
-
-'disambiguations' => 'ទំព័រដែលភ្ជាប់ទៅទំព័រមានចំណងជើងស្រដៀងគ្នា',
-'disambiguationspage' => 'Template:ស្រដៀងគ្នា',
-'disambiguations-text' => "ទំព័រទាំងឡាយខាងក្រោមនេះមិនតំណភ្ជាប់យ៉ាងតិចមួយដែលភ្ជាប់ទៅកាន់'''ទំព័រពាក្យស្រដៀងគ្នា'''។
-
-ទំព័រទាំងនេះគួរតែភ្ជាប់ទៅទំព័រត្រឹមត្រូវជាងនេះវិញ។<br />
-ទំព័រមួយត្រូវចាត់ទុកជាទំព័រពាក្យស្រដៀងគ្នា ប្រសិនបើវាប្រើទំព័រគំរូដែលភ្ជាប់មកពី[[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects' => 'ទំព័របញ្ជូនបន្តទ្វេដង',
 'doubleredirectstext' => 'ទំព័រនេះរាយឈ្មោះទំព័រដែលបញ្ជូនបន្តទៅទំព័របញ្ជូនបន្ដផ្សេងទៀត។

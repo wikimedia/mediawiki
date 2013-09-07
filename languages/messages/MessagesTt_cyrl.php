@@ -454,7 +454,7 @@ $1',
 'pool-queuefull' => 'Сорауларны саклау  бите тулы',
 'pool-errorunknown' => 'Билгесез  хата',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} турында',
 'aboutpage' => 'Project:Тасвирлама',
 'copyright' => 'Мәгълүмат $1 буенча таратыла.',
@@ -1595,9 +1595,6 @@ PICT # төрле
 'statistics-users-active' => 'Актив кулланучылар',
 'statistics-users-active-desc' => '{{PLURAL:$1|$1 көн }} өчендә нинди дә булса үзгәртүләр керткән кулланучылар',
 'statistics-mostpopular' => 'Иң күп каралучы битләр',
-
-'disambiguations' => 'Күп мәгънәле сүзләр турында битләр',
-'disambiguationspage' => 'Template:disambig',
 
 'doubleredirects' => 'Икеләтә юнәлтүләр',
 

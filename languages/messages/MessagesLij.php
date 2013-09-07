@@ -355,7 +355,7 @@ Aspeta quarche menuto primma de çercâ torna d'accede a sta pagina.
 $1",
 'pool-errorunknown' => 'Aro sconosciuo',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Informaçioìn in sciô {{SITENAME}}',
 'aboutpage' => 'Project:Informaçioìn',
 'copyright' => 'O contegnûo o se peu trovâ a $1.',
@@ -930,9 +930,6 @@ Chì apreuvo ti peu védde a descriçión inta [$2 pàgina de descriçión do fi
 
 # Statistics
 'statistics' => 'Statistiche',
-
-'disambiguations' => 'Paggine de desambiguassion',
-'disambiguationspage' => 'Template:Omonimia',
 
 'doubleredirects' => 'Rindirissamenti doggi',
 

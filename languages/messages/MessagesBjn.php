@@ -373,7 +373,7 @@ $1",
 'pool-queuefull' => 'Antrian hibak',
 'pool-errorunknown' => 'Kada tahu napa nang salah',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Pasal {{SITENAME}}',
 'aboutpage' => 'Project:Pasal',
 'copyright' => 'Isi tasadia sasuai lawan $1.',
@@ -1852,12 +1852,6 @@ Pariksa 'hulu tautan lain ka citakan itu sabalum mahapusnya.",
 'statistics-users-active' => 'Jumlah pamuruk aktip',
 'statistics-users-active-desc' => 'Pamuruk nang sudah malakukan suatu aksi dalam {{PLURAL:$1|sahari|$1 hari}} tauncit.',
 'statistics-mostpopular' => 'Tungkaran nang paling banyak ditampaiakan',
-
-'disambiguations' => 'Tungkaran nang tahubung ka tungkaran disambiguasi',
-'disambiguationspage' => 'Template:Disambigu',
-'disambiguations-text' => "Tutungkaran barikut bataut ka sabuah '''tungkaran disambigu'''.
-Tutungkaran ngitu harusnya ka tupik nang sasuai.<br />
-Sabuah tungkaran dianggap sawagai tungkaran disambigu amun ngini mamuruk sabuah citakan nang tataut matan [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects' => 'Paugahan ganda',
 'doubleredirectstext' => 'Tungkaran ngini mandaptar tutungkaran nang maugah ka tutungkaran ugahan lain.

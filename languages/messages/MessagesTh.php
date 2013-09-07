@@ -441,7 +441,7 @@ $1',
 'pool-queuefull' => 'พื้นที่รองรับคิวเต็ม',
 'pool-errorunknown' => 'เกิดข้อผิดพลาดไม่ทราบสาเหตุ',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'เกี่ยวกับ{{SITENAME}}',
 'aboutpage' => 'Project:เกี่ยวกับ',
 'copyright' => 'เนื้อหาอนุญาตให้เผยแพร่ภายใต้ $1',
@@ -1959,12 +1959,6 @@ $1',
 'statistics-users-active' => 'ผู้ใช้ที่ยังมีความเคลื่อนไหว',
 'statistics-users-active-desc' => 'ผู้ใช้ที่ดำเนินปฏิบัติการในช่วง $1 วันที่ผ่านมา',
 'statistics-mostpopular' => 'หน้าที่มีการเข้าชมมากที่สุด',
-
-'disambiguations' => 'หน้าที่เชื่อมโยงไปยังหน้าแก้ความกำกวม',
-'disambiguationspage' => 'Template:แก้กำกวม',
-'disambiguations-text' => "หน้าต่อไปนี้มีการเชื่อมโยงไปยัง'''หน้าความกำกวม'''อย่างน้อยหนึ่งแห่ง
-ซึ่งอาจต้องเชื่อมโยงไปยังหน้าที่เหมาะสมกว่าแทน<br />
-หน้าใดที่ใช้แม่แบบที่เชื่อมโยงมาจาก [[MediaWiki:Disambiguationspage]] จะถูกนับเป็นหน้าความกำกวม",
 
 'pageswithprop' => 'หน้าพร้อมคุณสมบัติหน้า',
 'pageswithprop-legend' => 'หน้าพร้อมคุณสมบัติหน้า',

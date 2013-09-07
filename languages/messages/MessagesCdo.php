@@ -257,7 +257,7 @@ $1',
 'pool-queuefull' => '隊列池已經滿了',
 'pool-errorunknown' => '𣍐八什乇鄭咯',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '關於{{SITENAME}}',
 'aboutpage' => 'Project:關於',
 'copyright' => '內容敆$1下底會使獲得。',
@@ -868,8 +868,6 @@ Sō̤ kī só-gé̤ṳ-kó gì guāng-lī-uòng cūng-kuāng gāi-sék: $1',
 # Statistics
 'statistics' => '統計',
 'statistics-header-users' => '用戶統計',
-
-'disambiguationspage' => 'Template:歧義',
 
 'brokenredirects-edit' => '改',
 'brokenredirects-delete' => '刪',

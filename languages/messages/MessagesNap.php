@@ -245,7 +245,7 @@ $messages = array(
 'jumptosearch' => 'truova',
 'pool-errorunknown' => 'Errore scanusciuto',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => "'Nfrummazione ncòpp'a {{SITENAME}}",
 'aboutpage' => "Project:'Nfrummazione",
 'copyright' => "Cuntenuti suggietti a licienza 'e uso $1.",
@@ -550,8 +550,6 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 
 # Statistics
 'statistics' => 'Statistiche',
-
-'disambiguations' => "Paggene 'e disambigua",
 
 'doubleredirects' => 'Redirect duppie',
 

@@ -558,7 +558,7 @@ $1',
 'pool-queuefull' => 'A pool sor megtelt',
 'pool-errorunknown' => 'Ismeretlen hiba',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'A {{SITENAME}} wikiről',
 'aboutpage' => 'Project:Rólunk',
 'copyright' => 'A tartalom a(z) $1 feltételei szerint használható fel.',
@@ -2078,12 +2078,6 @@ Ellenőrizd a meglévő hivatkozásokat, mielőtt törölnéd őket.',
 'statistics-users-active' => 'Aktív szerkesztők',
 'statistics-users-active-desc' => 'Szerkesztők, akik csináltak valamit az elmúlt {{PLURAL:$1|egy|$1}} napban',
 'statistics-mostpopular' => 'Legtöbbször megtekintett lapok',
-
-'disambiguations' => 'Egyértelműsítő lapokra mutató lapok',
-'disambiguationspage' => 'Template:Egyért',
-'disambiguations-text' => "A következő oldalak '''egyértelműsítő lapra''' mutató hivatkozást tartalmaznak.
-A megfelelő szócikkre kellene mutatniuk inkább.<br />
-Egy oldal egyértelműsítő lapnak számít, ha tartalmazza a [[MediaWiki:Disambiguationspage]] oldalról belinkelt sablonok valamelyikét.",
 
 'doubleredirects' => 'Dupla átirányítások',
 'doubleredirectstext' => 'Ez a lap azokat a lapokat listázza, melyek átirányító lapokra irányítanak át.

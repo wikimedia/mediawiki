@@ -534,7 +534,7 @@ $1',
 'pool-queuefull' => 'La coda del pool è piena',
 'pool-errorunknown' => 'Errore sconosciuto',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Informazioni su {{SITENAME}}',
 'aboutpage' => 'Project:Informazioni',
 'copyright' => "Contenuti soggetti a licenza d'uso $1.",
@@ -1474,7 +1474,7 @@ L'operazione non può essere annullata.",
 'prefs-help-signature' => 'I commenti nelle pagine di discussione devono essere firmati con "<nowiki>~~~~</nowiki>" che verrà convertito nella propria firma seguita dalla data.',
 'badsig' => 'Errore nella firma non standard, verificare i tag HTML.',
 'badsiglength' => 'La firma scelta è troppo lunga, non deve superare $1 {{PLURAL:$1|carattere|caratteri}}.',
-'yourgender' => 'Come preferisci essere descritto?',
+'yourgender' => 'Come preferisci che ci si riferisca a te?',
 'gender-unknown' => 'Preferisco non specificarlo',
 'gender-male' => 'È registrato su {{SITENAME}}',
 'gender-female' => 'È registrata su {{SITENAME}}',
@@ -2105,12 +2105,6 @@ Probabilmente vuoi modificare la descrizione presente nella [$2 pagina di descri
 'statistics-users-active' => 'Utenti attivi',
 'statistics-users-active-desc' => "Utenti che hanno effettuato un'azione {{PLURAL:$1|nell'ultimo giorno|negli ultimi $1 giorni}}",
 'statistics-mostpopular' => 'Pagine più visitate',
-
-'disambiguations' => 'Pagine che si collegano a pagine di disambiguazione',
-'disambiguationspage' => 'Template:Disambigua',
-'disambiguations-text' => "Le pagine nella lista che segue contengono almeno un collegamento a una '''pagina di disambiguazione'''.
-Esse potrebbero dover puntare a una pagina più appropriata.<br />
-Vengono considerate pagine di disambiguazione tutte quelle che contengono i template elencati in [[MediaWiki:Disambiguationspage]].",
 
 'pageswithprop' => 'Pagine con una proprietà di pagina',
 'pageswithprop-legend' => 'Pagine con una proprietà di pagina',

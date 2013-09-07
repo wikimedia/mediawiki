@@ -270,7 +270,7 @@ $1',
 'pool-queuefull' => 'Пүүлийн дараалал дүүрсэн байна',
 'pool-errorunknown' => 'Үл мэдэгдэх алдаа',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}}-н тухай',
 'aboutpage' => 'Project:Тухай',
 'copyright' => 'Агуулгыг $1-н хувьд хэрэглэх боломжтой.',
@@ -1768,12 +1768,6 @@ URL нь зөв болон сайт ажиллагаатай байгаа эсэ
 'statistics-users-active' => 'Байнгын оролцоотой хэрэглэгч',
 'statistics-users-active-desc' => 'Сүүлийн {{PLURAL:$1|өдөрт|$1 өдөрт}} үйлдэл хийсэн хэрэглэгчид',
 'statistics-mostpopular' => 'Хамгийн олон удаа үзсэн хуудсууд',
-
-'disambiguations' => 'Өөр агуулгатай хуудсуудтай холбоотой хуудсууд',
-'disambiguationspage' => 'Template:Салаа утгатай',
-'disambiguations-text' => "Дараах хуудсууд '''салаа утгатай үгнүүдийн хуудас''' руу холбогдоно.
-Тэдгээр нь зөв сэдэв руу холбогдох ёстой.<br />
-[[MediaWiki:Disambiguationspage]]-с холбогдсон загвар хэрэглэж байвал хуудас нь салаа утгатай үгнүүдийн хуудас гэж тооцогдоно.",
 
 'doubleredirects' => 'Давхар чиглүүлэгчүүд',
 'doubleredirectstext' => 'Энэ хуудсанд өөр хуудсуудыг давхар заасан хуудсуудыг жагсаасан байна

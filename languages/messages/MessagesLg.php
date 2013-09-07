@@ -236,7 +236,7 @@ $1",
 'pool-queuefull' => "Olukalala lw'emirimu egirinda okukolebwako lujjudde",
 'pool-errorunknown' => 'Ekireesewo kiremya tekitegeerese',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Okutangaaza ku {{SITENAME}}',
 'aboutpage' => 'Project:Okutangaaza ku',
 'copyright' => 'Ebiri kuno bifugibwa $1.',

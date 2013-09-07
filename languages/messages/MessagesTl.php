@@ -390,7 +390,7 @@ $1',
 'pool-queuefull' => 'Puno na ang pisan ng mga pila',
 'pool-errorunknown' => 'Hindi nalalamang kamalian',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Tungkol sa {{SITENAME}}',
 'aboutpage' => 'Project:Patungkol',
 'copyright' => 'Maaaring gamitin ang nilalaman sa ilalim ng $1.',
@@ -1940,12 +1940,6 @@ Marahil ay naisa mong baguhin ang paglalarawan doon sa [$2 pahina ng paglalarawa
 'statistics-users-active' => 'Mga masusugid na tagagamit <small>(mga nakatalang mang-aambag sa buwang ito)</small>',
 'statistics-users-active-desc' => 'Mga tagagamit na nagsagawa ng isang galaw/gawain sa huling {{PLURAL:$1|araw|$1 mga araw}}',
 'statistics-mostpopular' => 'Mga pinakarinarayong pahina',
-
-'disambiguations' => 'Mga pahinang nakakawing sa mga pahina ng paglilinaw',
-'disambiguationspage' => 'Template:disambig',
-'disambiguations-text' => "Ang sumusunod na mga pahina ay naglalaman ng kahit na isang kawing na papunta sa isang '''pahina ng paglilinaw'''.
-Sa halip, maaaring kailanganing kumawing ang mga ito sa isang mas naaangkop na pahina.<br />
-Ang isang pahina ay itinuturing bilang pahina ng paglilinaw kung gumagamit ito ng isang suleras na nakakawing magmula sa [[MediaWiki:Disambiguationspage|MediaWiki:Pahina ng mga paglilinaw]].",
 
 'doubleredirects' => 'Mga dobleng karga',
 'doubleredirectstext' => 'Nagtatala ang pahinang ito ng mga pahinang pumupunta sa iba pang mga pahinang nililipatan.  Naglalaman ang bawat hanay ng mga kawing sa una ang pangalawang kapupuntahan, maging ng puntiryang pangalawang kapupuntahan, na karaniwang "tunay" na puntiryang pahina, na dapat kinatuturuan ng unang pupuntahan.

@@ -362,7 +362,7 @@ $1',
 'pool-queuefull' => 'Фронта є повна',
 'pool-errorunknown' => 'Незнама хыба',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'О&nbsp;{{grammar:genitive|{{SITENAME}}}}',
 'aboutpage' => 'Project:{{SITENAME}}',
 'copyright' => 'Обсяг є доступный з $1.',
@@ -1930,12 +1930,6 @@ $1',
 'statistics-users-active' => 'Актівны хоснователї',
 'statistics-users-active-desc' => 'Хоснователї, котры в {{plural:$1|минулого дня|минулых  $1 днїв}} провели даяку операцію',
 'statistics-mostpopular' => 'Найчітанїшы сторінкы',
-
-'disambiguations' => 'Сторінкы одказуючі на богатозначны статї',
-'disambiguationspage' => 'Template:disambig',
-'disambiguations-text' => "Слїдуючі сторінкы включають найменше єден одказ на '''чеперушку'''.
-Асі намісто того мали бы одказовати на конкретнїшу сторінку.<br />
-Сторінка є тримана за чеперушку, кідь хоснує дакотру із шаблон одказованых на [[MediaWiki:Disambiguationspage]].",
 
 'pageswithprop' => 'Сторінкы з властностями',
 'pageswithprop-legend' => 'Сторінкы з властностёв',

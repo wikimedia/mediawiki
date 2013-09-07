@@ -299,12 +299,12 @@ $messages = array(
 'tog-hidepatrolled' => 'Amagar las modificacions susvelhadas dels darrièrs cambiaments',
 'tog-newpageshidepatrolled' => 'Amagar las paginas susvelhadas de la lista de las paginas novèlas',
 'tog-extendwatchlist' => 'Espandir la lista de seguiment per afichar totas las modificacions e non pas solament las mai recentas',
-'tog-usenewrc' => 'Agropar los cambiaments dins los darrièrs cambiaments e la lista de seguiment (necessita JavaScript)',
+'tog-usenewrc' => 'Agropar los cambiaments per pagina dins los darrièrs cambiaments e la lista de seguiment',
 'tog-numberheadings' => 'Numerotar automaticament los títols',
-'tog-showtoolbar' => 'Far veire la barra de menú de modificacion (JavaScript)',
-'tog-editondblclick' => 'Modificar una pagina amb un clic doble (JavaScript)',
+'tog-showtoolbar' => 'Far veire la barra de menú',
+'tog-editondblclick' => 'Modificar las paginas amb un clic doble',
 'tog-editsection' => 'Modificar una seccion via los ligams [modificar]',
-'tog-editsectiononrightclick' => 'Modificar una seccion en fasent un clic drech sus son títol (JavaScript)',
+'tog-editsectiononrightclick' => 'Modificar una seccion en fasent un clic drech suls títols de seccion',
 'tog-showtoc' => "Afichar l'ensenhador (per las paginas de mai de 3 seccions)",
 'tog-rememberpassword' => 'Se remembrar de mon senhal sus aqueste ordinator (al mai $1 {{PLURAL:$1|jorn|jorns}})',
 'tog-watchcreations' => "Apondre las paginas que creï e los fichièrs qu'impòrti a ma lista de seguiment",
@@ -322,7 +322,7 @@ $messages = array(
 'tog-shownumberswatching' => "Afichar lo nombre d'utilizaires que seguisson aquesta pagina",
 'tog-oldsig' => 'Apercebut de la signatura existenta :',
 'tog-fancysig' => 'Tractar la signatura coma de wikitèxte (sens ligam automatic)',
-'tog-uselivepreview' => 'Utilizar l’apercebut rapid (JavaScript) (experimental)',
+'tog-uselivepreview' => 'Utilizar l’apercebut rapid (experimental)',
 'tog-forceeditsummary' => "M'avertir quand ai pas completat lo contengut de la bóstia de comentaris",
 'tog-watchlisthideown' => 'Amagar mas pròprias modificacions dins la lista de seguiment',
 'tog-watchlisthidebots' => 'Amagar los cambiaments faches pels bòts dins la lista de seguiment',
@@ -537,7 +537,7 @@ $1",
 'pool-queuefull' => 'La fila de trabalh es plena',
 'pool-errorunknown' => 'Error desconeguda',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'A prepaus de {{SITENAME}}',
 'aboutpage' => 'Project:A prepaus',
 'copyright' => 'Lo contengut es disponible segon los tèrmes de la licéncia $1.',
@@ -623,6 +623,8 @@ Una lista de las paginas especialas pòt èsser trobada sus [[Special:SpecialPag
 # General errors
 'error' => 'Error',
 'databaseerror' => 'Error de la banca de donadas',
+'databaseerror-function' => 'Foncion : $1',
+'databaseerror-error' => 'Error : $1',
 'laggedslavemode' => 'Atencion : Aquesta pagina pòt conténer pas totes los darrièrs cambiaments efectuats.',
 'readonly' => 'Mesas a jorn blocadas sus la banca de donadas',
 'enterlockreason' => 'Indicatz la rason del blocatge, e mai una estimacion de sa durada',
@@ -2066,12 +2068,6 @@ Doblidetz pas de verificar se i a pas d’autre ligam cap als modèls abans de l
 'statistics-users-active' => 'Utilizaires actius',
 'statistics-users-active-desc' => "Utilizaires qu'an fach al mens una accion durant {{PLURAL:$1|lo darrièr jorn|los $1 darrièrs jorns}}",
 'statistics-mostpopular' => 'Paginas mai consultadas',
-
-'disambiguations' => "Paginas qu'an de ligams cap a de paginas d'omonimia",
-'disambiguationspage' => 'Template:Omonimia',
-'disambiguations-text' => "Las paginas seguentas compòrtan al mens un ligam cap a una '''pagina d’omonimia'''.
-Deurián puslèu puntar cap al bon article.<br />
-Una pagina es considerada coma una pagina d’omonimia s'utiliza un modèl qu'es ligat a partir de [[MediaWiki:Disambiguationspage]]",
 
 'pageswithprop' => 'Paginas amb una proprietat de pagina',
 'pageswithprop-legend' => 'Paginas amb una proprietat de pagina',

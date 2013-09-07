@@ -354,7 +354,7 @@ $1',
 'pool-queuefull' => 'Соруула джыйыучу толуду',
 'pool-errorunknown' => 'Билинмеген халат',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} сайтны юсюнден',
 'aboutpage' => 'Project:Суратлау',
 'copyright' => 'Информация мунга кёре хайырланады: $1',
@@ -1826,12 +1826,6 @@ URL-ни тюз , сайтны ачыкъ болгъанына ишексиз б
 'statistics-users-active' => 'Актив къошулуучула',
 'statistics-users-active-desc' => 'Ахыр {{PLURAL:$1|1 кюнде|$1 кюнде}} ишлеме этген къошулуучула',
 'statistics-mostpopular' => 'Эм кёб къаралгъан бетле',
-
-'disambiguations' => 'Ангылам айыргъан бетлеге джибериулери болгъан бетле',
-'disambiguationspage' => 'Template:кёб магъаналылыкъ',
-'disambiguations-text' => "Келтирилген бетледе '''кёб магъаналы бетлеге''' эм азы бла бир джибериу барды.
-Аны орнуна ала белгили бир статьягъа джибериу этерге керек болурла.<br />
-[[MediaWiki:Disambiguationspage]] бетде аты салыннган шаблон бар эсе, ол бет кёб магъаналы бетге саналады.",
 
 'pageswithprop-submit' => 'Таб',
 

@@ -31,12 +31,12 @@ $messages = array(
 'tog-hidepatrolled' => "Scunne le cangiaminde condrollate jndr'à le cangiaminde recende",
 'tog-newpageshidepatrolled' => "Scunne le pàggene tenute sotte condrolle da l'elenghe de le pàggene nuève",
 'tog-extendwatchlist' => "Spanne l'elenghe de le pàggene condrollate pe fa vedè tutte le cangiaminde fatte, none sulamende l'urteme",
-'tog-usenewrc' => "Ause le cangiaminde recende migliorate (vole 'u JavaScript)",
+'tog-usenewrc' => "Cangiaminde d'u gruppe pe pàgene jndr'à le urteme cangiaminde e elenghe de le pàggene condrollate",
 'tog-numberheadings' => 'Testate auto-numerate',
-'tog-showtoolbar' => "Fà vedè 'a barra de le cangiaminde (JavaScript)",
-'tog-editondblclick' => "Cange le pàggene cu 'nu doppie clic (JavaScript)",
+'tog-showtoolbar' => "Fà vedè 'a barra de le cangiaminde",
+'tog-editondblclick' => "Cange le pàggene cu 'nu doppie clic",
 'tog-editsection' => "Abbilite le cangiaminde d'a sezione ausanne le collagaminde [cange]",
-'tog-editsectiononrightclick' => "Abbilite le cangiaminde d'a sezione ausanne 'u pulsande destre d'u mouse cazzanne sus a 'u titole (Javascript)",
+'tog-editsectiononrightclick' => "Abbilite le cangiaminde d'a sezione ausanne 'u pulsande destre d'u sciorge cazzanne sus a 'u titole",
 'tog-showtoc' => "Fa vedè 'a tabbelle de le condenute (pe le pàggene cu cchiù de 3 testate)",
 'tog-rememberpassword' => "Arrecuèrdete 'u nome mije sus a stu browser (pe 'nu massime de $1 {{PLURAL:$1|sciurne}})",
 'tog-watchcreations' => "Mitte le pàggene ca je agghie ccrejate jndr'à le pàggene condrollate",
@@ -54,7 +54,7 @@ $messages = array(
 'tog-shownumberswatching' => "Fa vedè 'u numere de le utinde ca uardene",
 'tog-oldsig' => 'Firme esistende:',
 'tog-fancysig' => "Firma grezze cumme a 'nu teste de Uicchi (senza collegamende automatiche)",
-'tog-uselivepreview' => "Ause l'andeprime da 'u vive (JavaScript) (Sperimendale)",
+'tog-uselivepreview' => "Ause l'andeprime da 'u vive (Sperimendale)",
 'tog-forceeditsummary' => "Ciércame conferme quanne stoche a 'nzerische 'nu riepighe vianghe",
 'tog-watchlisthideown' => "Scunne le cangiaminde mije da l'elenghe de le pàggene condrollate",
 'tog-watchlisthidebots' => "Scunne le cangiaminde de le bot da l'elenghe de le pàggene condrollate",
@@ -272,7 +272,7 @@ $1",
 'pool-queuefull' => "'A code de le sondagge jè chiene",
 'pool-errorunknown' => 'Errore scanusciute',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Sus a {{SITENAME}}',
 'aboutpage' => 'Project:Sus a',
 'copyright' => "'U condenute jè disponibile sotte a $1.",
@@ -364,6 +364,12 @@ Pe 'na liste de le pàggene speciele cirche aqquà [[Special:SpecialPages|{{int:
 # General errors
 'error' => 'Errore',
 'databaseerror' => "Errore de l'archivije",
+'databaseerror-text' => "Ha assute 'n'errore sus a 'n'inderrogazione d'u database.
+Quiste pò significaà ca ste 'nu bochere jndr'à 'u softuer.",
+'databaseerror-textcl' => "Ha assute 'n'errore sus a 'n'inderrogazione d'u database.",
+'databaseerror-query' => 'Inderrogazione: $1',
+'databaseerror-function' => 'Funzione: $1',
+'databaseerror-error' => 'Errore: $1',
 'laggedslavemode' => "Attenzione: 'A pàgene no ge tène cangiaminde recente.",
 'readonly' => 'Archivie blocchete',
 'enterlockreason' => "Mitte 'na raggione p'u blocche, 'ncludenne 'na stime de quanne 'u blocche avène luate.",
@@ -1510,7 +1516,7 @@ Ce tu 'u mitte, a fatje ca è fatte t'avène ricanusciute.",
 'rc-change-size' => '$1',
 'rc-change-size-new' => "$1 {{PLURAL:$1|byte|byte}} apprisse 'u cangiamende",
 'newsectionsummary' => '/* $1 */ seziona nove',
-'rc-enhanced-expand' => 'Fà vedè le dettaglie (ha ausà JavaScript)',
+'rc-enhanced-expand' => 'Fà vedè le dettaglie',
 'rc-enhanced-hide' => 'Scunne le dettaglie',
 'rc-old-title' => 'origgenariamende ccreajate cumme "$1"',
 
@@ -1929,12 +1935,6 @@ Arrecuèrdete de condrollà pe otre collegaminde a le template apprime de scange
 'statistics-users-active' => 'Utinde attive',
 'statistics-users-active-desc' => "Sonde l'utinde ca onne fatte quacchecose jndr'à l'urteme {{PLURAL:$1|giurne|$1 giurne}}",
 'statistics-mostpopular' => 'Pàggene cchiù visitete',
-
-'disambiguations' => 'Pàggene collegate a le pàggene de disambiguazione',
-'disambiguationspage' => 'Template:disambigue',
-'disambiguations-text' => "Le pàggene seguende appondene a 'na '''pàgene de disambiguazione'''.
-'Nvece avessere appondà a 'a temateca appropriate.<br />
-'Na pàgene jè trattate cumme pàgene de disambiguazione ce tu ause 'nu template ca è appundate da [[MediaWiki:Disambiguationspage]]",
 
 'pageswithprop' => "Pàggene cu 'na probbietà d'a pàgene",
 'pageswithprop-legend' => "Pàggene cu 'na probbietà d'a pàgene",
@@ -4046,6 +4046,7 @@ Avisse avè ricevute [{{SERVER}}{{SCRIPTPATH}}/COPYING 'na copie d'a GNU (Licenz
 'dberr-problems' => "Simw spiacende! Stu site stè 'ngondre de le diffcoltà tecniche.",
 'dberr-again' => 'Aspitte quacche minute e pò recareche.',
 'dberr-info' => "(Non ge riuscime a condattà 'u server d'u database: $1)",
+'dberr-info-hidden' => "(Non ge pozze condattà 'u server d'u database)",
 'dberr-usegoogle' => 'Pu mumende tu puè pruvà a cercà cu Google.',
 'dberr-outofdate' => 'Vide ca le indice lore de le condenute nuèstre ponne essere non aggiornate.',
 'dberr-cachederror' => "Queste jè 'na copie ''cache'' d'a pàgene ca è cercate e allore non g'à puè cangià.",

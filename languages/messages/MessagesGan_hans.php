@@ -255,7 +255,7 @@ $messages = array(
 
 $1',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '关于 {{SITENAME}}',
 'aboutpage' => 'Project:关于',
 'copyright' => '个版𠮶内容系根据$1𠮶条款发布。',
@@ -1085,11 +1085,6 @@ $2',
 'statistics-users-active' => '活跃用户',
 'statistics-users-active-desc' => '头$1日操作过𠮶用户',
 'statistics-mostpopular' => '眵𠮶人最多𠮶页面',
-
-'disambiguations' => '扤清楚页',
-'disambiguationspage' => 'Template:扤清楚',
-'disambiguations-text' => "底下𠮶页面都有到'''扤清楚页'''𠮶链接, 但系佢俚应当系连到正当𠮶标题。<br />
-如果一只页面系链接自[[MediaWiki:Disambiguationspage]]，佢会拖当成扤清楚页。",
 
 'doubleredirects' => '双重重定向页面',
 'doubleredirectstext' => '底下𠮶重定向链接到别只重定向页面:',

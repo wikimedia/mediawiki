@@ -678,7 +678,7 @@ $1',
 'pool-queuefull' => 'Накопитель запросов полон',
 'pool-errorunknown' => 'Неизвестная ошибка',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Описание {{grammar:genitive|{{SITENAME}}}}',
 'aboutpage' => 'Project:Описание',
 'copyright' => 'Содержимое доступно в соответствии с $1.',
@@ -1837,6 +1837,8 @@ $1",
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|изменение|изменения|изменений}}',
+'enhancedrc-since-last-visit' => '$1 с последнего посещения',
+'enhancedrc-history' => 'история',
 'recentchanges' => 'Свежие правки',
 'recentchanges-legend' => 'Настройки свежих правок',
 'recentchanges-summary' => 'Ниже в хронологическом порядке перечислены последние изменения на страницах {{grammar:genitive|{{SITENAME}}}}.',
@@ -2269,12 +2271,6 @@ $1',
 'statistics-users-active' => 'Активные участники',
 'statistics-users-active-desc' => 'Участники, совершившие какое-либо действие за {{PLURAL:$1|последний $1 день|последние $1 дня|последние $1 дней}}',
 'statistics-mostpopular' => 'Наиболее часто просматриваемые страницы',
-
-'disambiguations' => 'Страницы, ссылающиеся на страницы разрешения неоднозначности',
-'disambiguationspage' => 'Template:Неоднозначность',
-'disambiguations-text' => "Следующие страницы содержат по меньшей мере одну ссылку на '''многозначную страницу'''.
-Вместо этого они, вероятно, должны указывать на соответствующую конкретную страницу.<br />
-Страница считается многозначной, если на ней размещён шаблон, имя которого указано на странице [[MediaWiki:Disambiguationspage]].",
 
 'pageswithprop' => 'Страницы с переопределёнными свойствами',
 'pageswithprop-legend' => 'Страницы с переопределёнными свойствами',

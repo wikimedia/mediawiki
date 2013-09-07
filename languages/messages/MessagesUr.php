@@ -384,7 +384,7 @@ $messages = array(
 $1',
 'pool-errorunknown' => 'نامعلوم خطا',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'تعارف {{SITENAME}}',
 'aboutpage' => 'Project:تعارف',
 'copyright' => 'تمام مواد $1 کے تحت میسر ہے۔',
@@ -1226,9 +1226,6 @@ HTML tags جانچئے.',
 # Statistics
 'statistics' => 'اعداد و شمار',
 'statistics-header-users' => 'ارکان کے اعداد و شمار',
-
-'disambiguations' => 'ضد ابہام صفحات',
-'disambiguationspage' => 'سانچہ:ضدابہام',
 
 'doubleredirects' => 'دوہرے متبادل ربط',
 

@@ -517,7 +517,7 @@ $1",
 'pool-queuefull' => "Il-kju tal-''pool'' hi mimlija",
 'pool-errorunknown' => 'Problema mhux magħrufa',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Dwar {{SITENAME}}',
 'aboutpage' => 'Project:Dwar',
 'copyright' => 'Kontenut aċċessibli taħt $1.',
@@ -1966,12 +1966,6 @@ Daħħal: tip/sottotip, eż. <code>image/jpeg</code>.",
 'statistics-users-active' => 'Utenti attivi',
 'statistics-users-active-desc' => 'Utenti li wettqu azzjoni fl-aħħar {{PLURAL:$1|ġurnata|$1 ġurnata}}',
 'statistics-mostpopular' => 'Il-paġni l-aktar miżjura',
-
-'disambiguations' => "Paġni li jorbtu lejn paġni ta' diżambigwazzjoni",
-'disambiguationspage' => 'Template:diżambig',
-'disambiguations-text' => "Il-paġni segwenti għandhom minn tal-inqas ħolqa waħda lejn '''paġna ta' diżambigwazzjoni'''.
-Dawn probabbilment għandhom jippuntaw lejn l-paġna t-tajba minflok.<br />
-Paġna tiġi stmata bħala paġna ta' diżambigwazzjoni jekk tuża' mudell fil-lista li tinsab fuq [[MediaWiki:Disambiguationspage]].",
 
 'pageswithprop' => "Paġni bi proprjetà ta' paġna",
 'pageswithprop-legend' => "Paġni bi proprjetà ta' paġna",

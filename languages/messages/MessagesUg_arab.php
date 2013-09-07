@@ -279,7 +279,7 @@ $1',
 'pool-queuefull' => 'قاچا ئۆچرىتى توشتى',
 'pool-errorunknown' => 'نامەلۇم خاتالىق',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} ھەققىدە',
 'aboutpage' => 'Project:ھەققىدە',
 'copyright' => 'بۇ بېكەتتىكى بارلىق تېكست مەزمۇنى $1 ماددىسىغا ئاساسەن تەمىنلىنىدۇ.',
@@ -1851,12 +1851,6 @@ URL نىڭ توغرىلىقى ۋە تور بېكەتنى زىيارەت قىلى
 'statistics-users-active' => 'ئاكتىپ ئىشلەتكۈچى',
 'statistics-users-active-desc' => 'ئالدىنقى {{PLURAL:$1|كۈن|$1 كۈن}} دىكى مەشغۇلات قىلغان ئىشلەتكۈچىلەر',
 'statistics-mostpopular' => 'ئەڭ كۆپ كۆرۈلگەن بەتلەر',
-
-'disambiguations' => 'ئىككى بىسلىق بەتكە ئۇلانغلىكبەتلەر.',
-'disambiguationspage' => 'Template:ئىككى بىسلىق بەت',
-'disambiguations-text' => "تۆۋەندىكى بەتلەر '''ئىككى بىسلىق بەت'''كە ئۇلانغان.
-ئەمما ئۇلار مۇۋاپىق ماۋزۇغا ئۇلىنىشى كېرەك ئىدى.<br />
-ئەگەر بىر بەت [[MediaWiki:Disambiguationspage]] غا ئۇلانغان بولسا ئىككى بىسلىق بەت دەپ قارىلىدۇ.",
 
 'doubleredirects' => 'قوش قايتا نىشانلانغان بەت',
 'doubleredirectstext' => 'بۇ بەتتە قايتا نىشانلانغان بەت يەنە بىر قايتا نىشانلانغان بەتنى نىشانغانلىق تىزىملىكى كۆرسىتىلدى.

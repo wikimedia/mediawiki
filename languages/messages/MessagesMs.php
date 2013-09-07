@@ -445,7 +445,7 @@ $1',
 'pool-queuefull' => 'Giliran kolam telah penuh',
 'pool-errorunknown' => 'Ralat tak diketahui',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Perihal {{SITENAME}}',
 'aboutpage' => 'Project:Perihal',
 'copyright' => 'Kandungan disediakan dengan $1.',
@@ -1223,7 +1223,7 @@ Sila pastikan bahawa perubahan ini akan mengekalkan kesinambungan sejarah laman.
 # Merge log
 'mergelog' => 'Log penggabungan',
 'pagemerge-logentry' => 'menggabungkan [[$1]] ke dalam [[$2]] (semakan sehingga $3)',
-'revertmerge' => 'Batalkan',
+'revertmerge' => 'Pisahkan',
 'mergelogpagetext' => 'Yang berikut ialah senarai terkini bagi penggabungan sejarah sesebuah laman ke dalam lamana yang lain.',
 
 # Diffs
@@ -2024,12 +2024,6 @@ Mungkin anda ingin menyunting keterangan pada [$2 laman penerangan failnya] di s
 'statistics-users-active' => 'Pengguna aktif',
 'statistics-users-active-desc' => 'Pengguna yang aktif sejak {{PLURAL:$1|semalam|$1 hari lalu}}',
 'statistics-mostpopular' => 'Laman dilihat terbanyak',
-
-'disambiguations' => 'Laman-laman yang berpaut dengan laman penyahkekaburan',
-'disambiguationspage' => 'Template:disambig',
-'disambiguations-text' => "Laman-laman berikut mengandungi sekurang-kurangnya satu pautan ke '''laman penyahkekaburan'''.
-Pautan ini sepatutnya ditujukan ke topik yang sepatutnya.<br />
-Sesebuah laman dianggap sebagai laman penyahkekaburan jika ia menggunakan templat yang dipaut dari [[MediaWiki:Disambiguationspage]]",
 
 'pageswithprop' => 'Halaman dengan sifat halaman',
 'pageswithprop-legend' => 'Halaman dengan sifat halaman',
@@ -3012,7 +3006,7 @@ Simpan dalam komputer anda dan muat naiknya di sini.',
 'tooltip-recreate' => 'Cipta semula laman ini walaupun ia telah dihapuskan',
 'tooltip-upload' => 'Muat naik',
 'tooltip-rollback' => 'Balikkan semua suntingan oleh penyumbang terakhir pada laman ini dengan satu klik.',
-'tooltip-undo' => 'Balikkan suntingan ini dan buka borang sunting dalam mod pralihat. Sebab boleh dinyatakan dalam ruangan ringkasan.',
+'tooltip-undo' => 'Batalkan suntingan ini dan buka borang sunting dalam mod pralihat. Sebab boleh dinyatakan dalam ruangan ringkasan.',
 'tooltip-preferences-save' => 'Simpan keutamaan',
 'tooltip-summary' => 'Berikan ringkasan',
 

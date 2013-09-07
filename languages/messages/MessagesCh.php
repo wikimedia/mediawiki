@@ -202,7 +202,7 @@ $messages = array(
 'jumptonavigation' => 'nabegasion',
 'jumptosearch' => 'aligao',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Pot {{SITENAME}}',
 'aboutpage' => 'Project:Pot',
 'copyright' => 'Guåha i sinahguan gi halom $1.',
@@ -791,9 +791,6 @@ Yanggen un decidi mamo'lu, ma'usa ha' sempre para muna'i hao ni kreditu ni che'c
 
 # Statistics
 'statistics-mostpopular' => "Påhina siha ni mas ma'atan",
-
-'disambiguations' => "Ti mania'abak na påhina siha",
-'disambiguationspage' => 'Template:disambig',
 
 'doubleredirects' => "Mandoble na inachetton ma'dirihi siha",
 

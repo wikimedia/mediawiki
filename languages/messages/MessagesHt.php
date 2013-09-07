@@ -367,7 +367,7 @@ $1',
 'pool-queuefull' => 'Fil pou travay la plen',
 'pool-errorunknown' => 'Erè nou pa konnen',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Apwopo {{SITENAME}}',
 'aboutpage' => 'Project:Apwopo',
 'copyright' => 'Kontni disponib anba $1.',
@@ -1002,8 +1002,6 @@ Si ou mete li, n ap itilize li pou nou ka nonmen ou pou kontribisyon ou yo.',
 
 # Statistics
 'statistics' => 'Estatistik',
-
-'disambiguations' => 'Paj yo ki genyen menm non',
 
 'doubleredirects' => 'Redireksyon de fwa',
 

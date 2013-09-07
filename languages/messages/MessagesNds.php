@@ -444,7 +444,7 @@ $1",
 'pool-queuefull' => 'Pooltöövslang is vull',
 'pool-errorunknown' => 'Unbekannten Fehler',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Över {{SITENAME}}',
 'aboutpage' => 'Project:Över_{{SITENAME}}',
 'copyright' => 'Inholt is verfögbor ünner de $1.',
@@ -1632,10 +1632,6 @@ Denk dor an, natokieken, wat nich noch annere Sieden na de Vörlagen wiest, ehrd
 'statistics-users-active' => 'Aktive Brukers',
 'statistics-users-active-desc' => 'Brukers, de {{PLURAL:$1|in de vergahn 24 Stünnen|in de vergahn $1 Daag}} wat daan hebbt',
 'statistics-mostpopular' => 'opmehrst ankekene Sieden',
-
-'disambiguations' => 'Mehrdüdige Begrepen',
-'disambiguationspage' => 'Template:Mehrdüdig_Begreep',
-'disambiguations-text' => 'Disse Sieden wist na Sieden för mehrdüdige Begrepen. Se schöölt lever op de Sieden wiesen, de egentlich meent sünd.<br />Ene Siet warrt as Siet för en mehrdüdigen Begreep ansehn, wenn [[MediaWiki:Disambiguationspage]] na ehr wiest.<br />Lenken ut annere Naamrüüm sünd nich mit in de List.',
 
 'pageswithprop-submit' => 'Los',
 

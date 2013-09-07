@@ -341,7 +341,7 @@ $1',
 'pool-queuefull' => 'An grupong panproseso panoon',
 'pool-errorunknown' => 'Bakong bistadong sala',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Dapít sa {{SITENAME}}',
 'aboutpage' => 'Project:Mapanonongód',
 'copyright' => 'An kalamnan manunumpungan sa laog kan $1.',
@@ -1937,12 +1937,6 @@ Giromdoma baya na mag-tsek para sa iba pang kasugpon sa mga templato bago mo pag
 'statistics-users-active' => 'Mga Aktibong Paragamit',
 'statistics-users-active-desc' => 'Mga paragamit na may ginibong aksyon sa nakaaging {{PLURAL:$1|aldaw|$1 mga aldaw}}',
 'statistics-mostpopular' => 'mga pinaka pighiling na pahina',
-
-'disambiguations' => 'Mga pahinang minatulay pasiring sa pampalinaw na mga pahina',
-'disambiguationspage' => 'Template:kapaliwanagan',
-'disambiguations-text' => "An mga minasunod na mga pahina igwang laog nin kisera sarong tulay pasiring sa '''pampalinaw na pahina'''.
-Sinda mapuwedeng makipagsugpon pasiring sa sarong mas manigong pahina nanggad.<br />
-An sarong pahina tratado bilang pampalinaw na pahina kun ini minagamit nin sarong templato na nakasugpon gikan sa [[MediaWiki:Disambiguationspage]].",
 
 'pageswithprop' => 'Mga pahina na igwang pahina nin kagrugaring',
 'pageswithprop-legend' => 'Mga pahina na igwang pahina nin kagrugaring',

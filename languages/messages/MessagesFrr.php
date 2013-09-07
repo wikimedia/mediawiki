@@ -263,7 +263,7 @@ $1',
 'pool-queuefull' => 'Pool as auerläästet',
 'pool-errorunknown' => 'Ünbekäänd feeler',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Auer {{SITENAME}}',
 'aboutpage' => 'Project:Auer',
 'copyright' => 'Det stäänt oner det lisens $1.',
@@ -1827,12 +1827,6 @@ Iar dü ian strikst, stel seeker, dat diar nian ferwisangen üüb detdetdiar fö
 'statistics-users-active' => 'Aktiif brükern',
 'statistics-users-active-desc' => 'Brükern, diar wat bewerket haa uun a leetst {{PLURAL:$1|dai|$1 daar}}',
 'statistics-mostpopular' => 'Sidjen mä a miast kliks',
-
-'disambiguations' => 'Sidjen, diar üüb muardüüdag artiikler ferwise',
-'disambiguationspage' => 'Template:Muardüüdag artiikel',
-'disambiguations-text' => "Jodiar sidjen haa tumanst ian ferwisang üüb en '''muardüüdagen artiikel'''. Ferlicht skul jo beeder direkt üüb det mend sidj ferwise.
-
-En sidj täält üs '''muardüüdag artiikel''', wan hat tumanst ian föörlaag faan det [[MediaWiki:Disambiguationspage|Disambiguationspage]] häält.",
 
 'pageswithprop' => 'Sidjen mä en sidjeneegenoort',
 'pageswithprop-legend' => 'Sidjen mä en sidjeneegenoort',

@@ -242,7 +242,7 @@ $1',
 'pool-queuefull' => 'Hnathawhna hmun awl a awm tawh lo',
 'pool-errorunknown' => 'Kan hriatthiam loh dikhlel a awm tlat',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}}  chungchang',
 'aboutpage' => 'Project:Chungchang',
 'copyright' => 'A chhung thute hi $1 hmanga lakchhawn phal a ni.',
@@ -1222,9 +1222,6 @@ Taksa sawifiahna hi i siamṭha duh a nih chuan  [$2 taksa sawifiahna phêk] a�
 'statistics-users-active' => 'Hmangtu aktif zât',
 'statistics-users-active-desc' => 'Ni {{PLURAL:$1|khat|$1}} kaltâ chhunga thiltih nei hmangtuho',
 'statistics-mostpopular' => 'Phêk thlir zin deuh deuhte',
-
-'disambiguations' => 'Thliarfelna phêk zawmtu phêkte',
-'disambiguationspage' => 'Template:thliar',
 
 'doubleredirects' => 'Hruailuhna phír',
 'double-redirect-fixed-move' => '[[$1]] sawn a ni ta.

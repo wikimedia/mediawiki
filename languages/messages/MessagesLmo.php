@@ -313,7 +313,7 @@ Per piasè, specia un mument prima de pruà a vardà anmò quela pagina chì.
 
 $1",
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'A prupòsit de {{SITENAME}}',
 'aboutpage' => 'Project:A pruposit',
 'copyright' => "El cuntegnüü a l'è dispunibil sota a una licenza $1.",
@@ -861,8 +861,6 @@ La descrizión sura la sua [$2 pagina de descrizión del file] l'è mustrada ch�
 'statistics-users' => '[[Special:ListUsers|Druvadur]] registraa',
 'statistics-users-active' => 'Druvadur ativ',
 'statistics-users-active-desc' => "Druvadur che i hann faa un'azión int {{PLURAL:$1|l'ültem dì|i ültem $1 dì}}",
-
-'disambiguations' => 'Pagin da disambiguazziún',
 
 'doubleredirects' => 'Redirezziún dópi',
 

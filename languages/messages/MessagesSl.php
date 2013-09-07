@@ -432,7 +432,7 @@ $1',
 'pool-queuefull' => 'Čakalna vrsta zaloge je polna',
 'pool-errorunknown' => 'Neznana napaka',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'O {{GRAMMAR:dajalnik|{{SITENAME}}}}',
 'aboutpage' => 'Project:O {{GRAMMAR:dajalnik|{{SITENAME}}}}',
 'copyright' => 'Besedilo je na razpolago pod pogoji $1.',
@@ -2071,12 +2071,6 @@ Preden jih izbrišete, preverite še druge povezave nanje.',
 'statistics-users-active' => 'Aktivni uporabniki',
 'statistics-users-active-desc' => 'Uporabniki, ki so izvedli dejanje v {{PLURAL:$1|zadnjem dnevu|zadnjih $1 dneh}}',
 'statistics-mostpopular' => 'Strani z največ ogledi',
-
-'disambiguations' => 'Strani s povezavami na razločitvene strani',
-'disambiguationspage' => 'Template:Razločitev',
-'disambiguations-text' => "Naslednje strani vsebujejo vsaj eno povezavo na '''razločitvene strani'''.
-Namesto tega bi morda bilo bolje, da se povezujejo na primernejše strani.<br />
-Stran se obravnava kot razločitvena, če uporablja predloge, povezane z [[MediaWiki:Disambiguationspage]].",
 
 'pageswithprop' => 'Strani z lastnostmi strani',
 'pageswithprop-legend' => 'Strani z lastnostmi strani',

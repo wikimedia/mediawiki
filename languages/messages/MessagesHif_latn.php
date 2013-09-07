@@ -278,7 +278,7 @@ $1',
 'pool-queuefull' => 'Pool ke line bhar gais hae',
 'pool-errorunknown' => 'Pata nahi kaisan galti hae',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} ke baare me',
 'aboutpage' => 'Project:Ke baare me',
 'copyright' => 'Ii panna me likha gae chij ke aap $1 ke niche kaam me lae sakta hai.',
@@ -1866,12 +1866,6 @@ Templates ke delete kare se pahile duusra links ke bhi check kare ke nai bhulna.
 'statistics-users-active' => 'Active sadasya',
 'statistics-users-active-desc' => 'Sadasya jon ki pichhle {{PLURAL:$1|din|$1 din}} me kuchh karin hai.',
 'statistics-mostpopular' => 'Sab se jaada dekha gae panna',
-
-'disambiguations' => 'Garrbarri ke sudhare waala panna',
-'disambiguationspage' => 'Template:disambig',
-'disambiguations-text' => "Niche ke panna '''disambiguation panna''' se link hoe hai.
-Saait isse aur achchha panna se link hoi. <br />
-Ek panna ke disambiguation panna maana jaae hae jab ki ii ek template ke kaam me laae hae jon ki [[MediaWiki:Disambiguationspage]] se link hoe hae.",
 
 'pageswithprop' => 'Panna, aapan property ke saathe',
 'pageswithprop-legend' => 'Panna, aapan poperty ke saathe',

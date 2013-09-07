@@ -287,7 +287,7 @@ $1',
 'pool-queuefull' => 'Көрдөбүллэри хомуйуу туолбут',
 'pool-errorunknown' => 'Биллибэт алҕас',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} туһунан',
 'aboutpage' => 'Project:туһунан',
 'copyright' => 'Маны туһанары $1 көҥүллүүр.',
@@ -1868,12 +1868,6 @@ $1',
 'statistics-users-active' => 'Көхтөөх кыттааччылар ахсааннара',
 'statistics-users-active-desc' => 'Ааспыт {{PLURAL:$1|биир хонук иһигэр|$1 хонукка}} тугу эмэ оҥорбут кыттааччылар',
 'statistics-mostpopular' => 'Саамай элбэхтик көрүллэр ыстатыйалар',
-
-'disambiguations' => 'Элбэх суолталаах өйдөбүллэргэ сигэнэр сирэйдэр',
-'disambiguationspage' => 'Template:элбэх суолталаах өйдөбүллэр',
-'disambiguations-text' => "Маннык сирэйдэр '''хас да суолталаах сирэйгэ''' сигэнэллэр. 
-Ол оннугар ханнык эрэ чопчу сирэйгэ сигэниэхтээхтэр.<br />
-Быһаарыы: [[MediaWiki:Disambiguationspage]] халыып баар сирэйдэрэ хас да суолталаах сирэй ахсааныгар киирэллэр.",
 
 'pageswithprop' => 'Эрдэттэн туруоруулаах сирэйдэр',
 'pageswithprop-legend' => 'Уларытыллыбыт туруоруулаах сирэйдэр',

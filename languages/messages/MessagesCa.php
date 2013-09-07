@@ -253,7 +253,7 @@ $messages = array(
 'underline-default' => 'Per defecte del navegador',
 
 # Font style option in Special:Preferences
-'editfont-style' => "Editeu l'estil de la lletra:",
+'editfont-style' => 'Estil de lletra en edició:',
 'editfont-default' => 'Per defecte del navegador',
 'editfont-monospace' => 'Font monoespaiada',
 'editfont-sansserif' => 'Font de pal sec',
@@ -448,7 +448,7 @@ $1",
 'pool-queuefull' => 'La cua de treball és plena',
 'pool-errorunknown' => 'Error desconegut',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Quant al projecte {{SITENAME}}',
 'aboutpage' => 'Project:Quant a',
 'copyright' => 'El contingut està disponible sota els termes de la $1.',
@@ -1309,7 +1309,7 @@ Es pot trobar més informació en el [{{fullurl:{{#Special:Log}}/delete|page={{F
 'prefs-watchlist-days-max' => 'Màxim $1 {{PLURAL:$1|dia|dies}}',
 'prefs-watchlist-edits' => 'Nombre de modificacions a mostrar en una llista estesa de seguiment:',
 'prefs-watchlist-edits-max' => 'Nombre màxim: 1000',
-'prefs-watchlist-token' => 'Fitxa de llista de seguiment:',
+'prefs-watchlist-token' => 'Testimoni de llista de seguiment:',
 'prefs-misc' => 'Altres preferències',
 'prefs-resetpass' => 'Canvia la contrasenya',
 'prefs-changeemail' => 'Canvia de correu electrònic',
@@ -1330,6 +1330,9 @@ Es pot trobar més informació en el [{{fullurl:{{#Special:Log}}/delete|page={{F
 'recentchangesdays-max' => '(màxim $1 {{PLURAL:$1|dia|dies}})',
 'recentchangescount' => "Nombre d'edicions a mostrar per defecte:",
 'prefs-help-recentchangescount' => 'Inclou els canvis recents, els historials de pàgines i els registres.',
+'prefs-help-watchlist-token2' => 'Aquesta és la clau secreta pel canal de continguts de la vostra llista de seguiment.
+Qualsevol que la conegui podria llegir la vostra llista de seguiment, així que no la compartiu.
+[[Special:ResetTokens|Cliqueu aquí si voleu restaurar-la]].',
 'savedprefs' => "S'han desat les vostres preferències",
 'timezonelegend' => 'Fus horari:',
 'localtime' => 'Hora local:',
@@ -1390,6 +1393,8 @@ Ha de tenir com a molt {{PLURAL:$1|un caràcter|$1 caràcters}}.',
 'prefs-dateformat' => 'Format de la data',
 'prefs-timeoffset' => 'Decalatge horari',
 'prefs-advancedediting' => 'Opcions generals',
+'prefs-editor' => 'Edició',
+'prefs-preview' => 'Previsualització',
 'prefs-advancedrc' => 'Opcions avançades',
 'prefs-advancedrendering' => 'Opcions avançades',
 'prefs-advancedsearchoptions' => 'Opcions avançades',
@@ -1397,7 +1402,9 @@ Ha de tenir com a molt {{PLURAL:$1|un caràcter|$1 caràcters}}.',
 'prefs-displayrc' => "Opcions d'aparença",
 'prefs-displaysearchoptions' => 'Opcions de visualització',
 'prefs-displaywatchlist' => 'Opcions de visualització',
+'prefs-tokenwatchlist' => 'Testimoni',
 'prefs-diffs' => 'Difs',
+'prefs-help-prefershttps' => 'Aquesta preferència tindrà efecte quan inicieu una nova sessió.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => "L'adreça de correu electrònic sembla vàlida",
@@ -1558,6 +1565,8 @@ Ha de tenir com a molt {{PLURAL:$1|un caràcter|$1 caràcters}}.',
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|canvi|canvis}}',
+'enhancedrc-since-last-visit' => '$1 {{PLURAL:$1|des de la darrera visita}}',
+'enhancedrc-history' => 'historial',
 'recentchanges' => 'Canvis recents',
 'recentchanges-legend' => 'Opcions de canvis recents',
 'recentchanges-summary' => 'Seguiu els canvis recents del projecte {{SITENAME}} en aquesta pàgina.',
@@ -1961,12 +1970,6 @@ Potser voleu modificar-ne la descripció en la seva [$2 pàgina de descripció].
 'statistics-users-active' => 'Usuaris actius',
 'statistics-users-active-desc' => "Usuaris que han dut a terme alguna acció en {{PLURAL:$1|l'últim dia|els últims $1 dies}}",
 'statistics-mostpopular' => 'Pàgines més visualitzades',
-
-'disambiguations' => 'Pàgines que enllacen a pàgines de desambiguació',
-'disambiguationspage' => 'Template:Desambiguació',
-'disambiguations-text' => "Les següents pàgines tenen algun enllaç a una '''pàgina de desambiguació'''.
-És possible que hagin d'enllaçar a una altra pàgina més apropiada.<br />
-Una pàgina es tracta com de desambiguació si utilitza una plantilla que està enllaçada a [[MediaWiki:Disambiguationspage]].",
 
 'pageswithprop' => 'Pàgines amb una propietat de pàgina',
 'pageswithprop-legend' => 'Pàgines amb una propietat de pàgina',

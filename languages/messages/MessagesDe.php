@@ -662,7 +662,7 @@ $1',
 'pool-queuefull' => 'Poolwarteschlange ist voll',
 'pool-errorunknown' => 'Unbekannter Fehler',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Über {{SITENAME}}',
 'aboutpage' => 'Project:Über_{{SITENAME}}',
 'copyright' => 'Der Inhalt ist verfügbar unter der Lizenz $1.',
@@ -2263,12 +2263,6 @@ Vielleicht möchtest du die Beschreibung auf der dortigen [$2 Dateibeschreibungs
 'statistics-users-active' => 'Aktive Benutzer',
 'statistics-users-active-desc' => 'Benutzer mit Bearbeitungen {{PLURAL:$1|während der letzten 24 Stunden|während der vergangenen $1 Tage}}',
 'statistics-mostpopular' => 'Meistbesuchte Seiten',
-
-'disambiguations' => 'Seiten die auf Begriffsklärungsseiten verlinken',
-'disambiguationspage' => 'Template:Begriffsklärung',
-'disambiguations-text' => "Die folgenden Seiten enthalten mindestens einen Link zur einer '''Begriffsklärungsseite'''. Stattdessen sollten sie möglicherweise auf die eigentlich gemeinte Seite verlinken.
-
-Eine Seite gilt als Begriffsklärungsseite, wenn sie mindestens eine der auf der Seite [[MediaWiki:Disambiguationspage|Disambiguationspage]] aufgeführten Vorlagen enthält.",
 
 'pageswithprop' => 'Seiten mit einer Seiteneigenschaft',
 'pageswithprop-legend' => 'Seiten mit einer Seiteneigenschaft',

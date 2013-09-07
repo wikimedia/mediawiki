@@ -440,7 +440,7 @@ $1',
 'pool-queuefull' => 'ריי איז פֿול',
 'pool-errorunknown' => 'אומבאַקאַנטער פֿעלער',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'וועגן {{SITENAME}}',
 'aboutpage' => 'Project:וועגן',
 'copyright' => 'דער אינהאַלט איז בארעכטיגט אונטער $1.',
@@ -2004,10 +2004,6 @@ $1",
 'statistics-users-active' => 'טעטיקע באניצערס',
 'statistics-users-active-desc' => 'באניצערס וואס האבן דורכגעפירט א פעולה אין די לעצטע {{PLURAL:$1|טאג|$1 טעג}}',
 'statistics-mostpopular' => 'מערסטע געזען בלעטער',
-
-'disambiguations' => 'בלעטער וואס פֿארבינדן מיט באדייטן בלעטער',
-'disambiguationspage' => 'Template:באדייטן',
-'disambiguations-text' => "די קומענדיגע בלעטער פארבינדן צו א '''באדייטן בלאט'''. זיי ברויכן ענדערשט פֿארבינדן צו דעם רעלעוואנטן טעמע בלאט.<br />א בלאט ווערט פאררעכענט פאר א באדײַטן בלאט אויב ער באניצט זיך מיט א מוסטער וואס איז פארבינדען פון [[MediaWiki:Disambiguationspage]].",
 
 'pageswithprop' => 'בלעטער מיט א בלאט אייגנשאפט',
 'pageswithprop-legend' => 'בלעטער מיט א בלאט אייגנשאפט',

@@ -265,7 +265,7 @@ $1',
 'pool-queuefull' => 'Howzuň nobaty doly',
 'pool-errorunknown' => 'Näbelli säwlik',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} hakynda',
 'aboutpage' => 'Project:Hakynda',
 'copyright' => 'Mazmun $1 esasynda elýeterlidir.',
@@ -1596,12 +1596,6 @@ Giriş formaty: mazmuntip/kiçitip, meselem <code>surat/jpeg</code>.',
 'statistics-users-active' => 'Işjeň ulanyjylar',
 'statistics-users-active-desc' => 'Soňky {{PLURAL:$1|1 günde|$1 günde}} haýsydyr bir iş geçiren ulanyjylar',
 'statistics-mostpopular' => 'Iň köp görülýän sahypalar',
-
-'disambiguations' => 'Dürli manyly sahypalar',
-'disambiguationspage' => 'Template:Dürli manylar',
-'disambiguations-text' => "Aşakdaky sahypalar '''dürli manyly sahypa''' çykgyt berýär.
-Olar muňa derek degişli anyk sahypa çykgyt bermelidir.<br />
-[[MediaWiki:Disambiguationspage]] sahypasyndan çykgyt berilýän bir şablony ulanýan bolsa, onda ol sahypa dürli manyly hökmünde çemeleşilýär.",
 
 'doubleredirects' => 'Jübüt gönükdirmeler',
 'doubleredirectstext' => 'Bu sahypa başga gönükdirme sahypalaryna gönükdirýän sahypalaryň sanawyny görkezýär.

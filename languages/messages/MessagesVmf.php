@@ -233,7 +233,7 @@ sajdn ham woln. Ward n'bôôr minuudn un brobiir's dan nochâmôôl.
 
 $1",
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Was {{SITENAME}} is',
 'aboutpage' => 'Project:Iibär',
 'copyright' => 'Was hiir schdäd däfmâr benudsn nach $1',

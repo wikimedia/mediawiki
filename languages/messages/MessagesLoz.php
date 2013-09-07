@@ -178,7 +178,7 @@ $messages = array(
 'jumptonavigation' => 'muya',
 'jumptosearch' => 'fatukile',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => "Ngesi ye ng'i atulile {{SITENAME}}",
 'aboutpage' => "Project:Ngesi ye ng'i atulile",
 'copyright' => 'Bye sa ilonungi di $1.',
@@ -600,8 +600,6 @@ di uplodezi media.',
 # Statistics
 'statistics' => 'Mukoloko di kamukile',
 'statistics-header-users' => 'Mukoloko di kamukile di sebelu',
-
-'disambiguations' => 'Disamebigasina',
 
 'doubleredirects' => 'Petulo abezi sa dužemi',
 

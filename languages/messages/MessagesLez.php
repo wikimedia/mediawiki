@@ -262,7 +262,7 @@ $messages = array(
 'pool-queuefull' => 'ТӀалабар кӀватзавайди ацӀа я',
 'pool-errorunknown' => 'Малумтушир гъалатӀ',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => ' {{SITENAME}}кай',
 'aboutpage' => 'Project:Гьакъиндай',
 'copyright' => 'Къене авайбур $1 жугъуриз жеда.',
@@ -884,8 +884,6 @@ $messages = array(
 'statistics-files' => 'Ппарнавай файлар',
 'statistics-views-total' => 'Вири килигунар',
 'statistics-users-active' => 'Актив уртахар',
-
-'disambiguationspage' => 'Template:гзафманавал',
 
 'brokenredirects-edit' => 'дегишарун',
 'brokenredirects-delete' => 'алудун',

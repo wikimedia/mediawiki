@@ -243,7 +243,7 @@ $1',
 'pool-queuefull' => 'Noponu nuludan pool',
 'pool-errorunknown' => 'Ukam nosilap',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Kokomoi {{SITENAME}}',
 'aboutpage' => 'Project:Kokomoi',
 'copyright' => 'Suang di haro do kokomoi $1.',
@@ -1141,8 +1141,6 @@ Kointalangan dilo [$2 kointalangan pail] okito id siriba.',
 
 # Statistics
 'statistics' => 'Runumboboyo',
-
-'disambiguationspage' => 'Template:patarango',
 
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|bait|babait}}',

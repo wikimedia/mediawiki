@@ -438,7 +438,7 @@ $1",
 'pool-queuefull' => 'පොරොත්තු ලේඛනය පිරී ඇත',
 'pool-errorunknown' => 'හඳුනා නොගත් දෝෂය',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} පිළිබඳ',
 'aboutpage' => 'Project:පිළිබඳ',
 'copyright' => ' $1 යටතේ අන්තර්ගතය දැක ගත හැක.',
@@ -1957,12 +1957,6 @@ When filtered by user, only files where that user uploaded the most recent versi
 'statistics-users-active' => 'ක්‍රියාශීලි පරිශීලකයන්',
 'statistics-users-active-desc' => 'පසුගිය {{PLURAL:$1|දිනය|දින $1}} තුලදී කිසියම් ක්‍රියාවක් සිදු කල පරිශීලකයන්',
 'statistics-mostpopular' => 'බෙහෙවින් නරඹනු ලබන පිටු',
-
-'disambiguations' => 'නිරාකරණ පිටු සඳහා සබැදෙන පිටු',
-'disambiguationspage' => 'Template:තේරුම් නිරාකරණය',
-'disambiguations-text' => "පහත දැක්වෙන පිටු අතර '''වක්‍රෝත්තිහරණ පිටුවකට''' සබැඳෙන එක් සබැඳියක් හෝ ඇත.
-ඒවා ඒ වෙනුවට අනුරූප මාතෘකාවට සබැඳිය යුතුය.<br />
-යම් පිටුවක් වක්‍රෝත්තිහරණ පිටුවක් ලෙස සලකනුයේ එය [[MediaWiki:Disambiguationspage]] වෙතින් සබැඳුනු සැකිල්ලක් භාවිතා කරන්නේ නම්ය.",
 
 'doubleredirects' => 'ද්විත්ව යළි-යොමුකිරීම්',
 'doubleredirectstext' => 'අනෙකුත් යළි-යොමුවීම් පිටුවලට යළි-යොමුවන පිටුවල ලැයිස්තුවක් මෙම පිටුවේ දැක්වේ.

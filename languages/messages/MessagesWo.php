@@ -298,7 +298,7 @@ Taaxiirlul ba ci kanam nga jéemaat.
 
 $1',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Ci mbiri {{SITENAME}}',
 'aboutpage' => 'Project:Ci mbiri',
 'copyright' => 'Ëmbit laa ngi  jàppandi ci $1.',
@@ -1367,12 +1367,6 @@ Bul fattee seet baxam amul yeneen lëkkalekaay yu lay jëmale ci royuwaay yi bal
 'statistics-users-active' => 'Jëfandikukat yu yëngu',
 'statistics-users-active-desc' => 'Jëfandikukat yi amal ag yëngu-yëngu ci {{PLURAL:$1|bés bu mujj bi|$1 bés yu mujj yi}}',
 'statistics-mostpopular' => 'Xët yees gën a saytu',
-
-'disambiguations' => 'Xëti turandoo',
-'disambiguationspage' => 'Template:turandoo',
-'disambiguations-text' => "Xët yii di toftal dañoo ëmb ay lëkkalekaay yuy jëme ciy '''xëti turandoo'''.
-Dañoo waroon a jublu ci jukki yu baax. <br />
-Xëti turandoo yi ñooy yi ëmb benn ci royuwaay yees def fii [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects' => 'Jubluwaat ñaari yoon',
 'doubleredirectstext' => "Wii xët dafa ëmb mbooleem xët yees jubluwaatal ci yeneen xëti jubluwaat.

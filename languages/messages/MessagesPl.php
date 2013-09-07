@@ -553,7 +553,7 @@ $1',
 'pool-queuefull' => 'Kolejka zadań jest pełna',
 'pool-errorunknown' => 'Błąd nieznany',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'O {{GRAMMAR:MS.lp|{{SITENAME}}}}',
 'aboutpage' => 'Project:O {{GRAMMAR:MS.lp|{{SITENAME}}}}',
 'copyright' => 'Treść udostępniana na licencji $1.',
@@ -640,6 +640,9 @@ Listę dostępnych stron specjalnych znajdziesz [[Special:SpecialPages|tutaj]].'
 # General errors
 'error' => 'Błąd',
 'databaseerror' => 'Błąd bazy danych',
+'databaseerror-text' => 'Wystąpił błąd podczas wykonywania zapytania do bazy danych.
+Może to wskazywać na błąd w oprogramowaniu.',
+'databaseerror-textcl' => 'Wystąpił błąd podczas wykonywania zapytania do bazy danych.',
 'databaseerror-query' => 'Zapytanie: $1',
 'databaseerror-function' => 'Funkcja: $1',
 'databaseerror-error' => 'Błąd: $1',
@@ -2043,6 +2046,7 @@ Możesz także spróbować w czasie mniejszego obciążenia serwera.',
 'listfiles_size' => 'Wielkość',
 'listfiles_description' => 'Opis',
 'listfiles_count' => 'Wersje',
+'listfiles-show-all' => 'Uwzględnij starsze wersje zdjęć',
 'listfiles-latestversion' => 'Aktualna wersja',
 'listfiles-latestversion-yes' => 'Tak',
 'listfiles-latestversion-no' => 'Nie',
@@ -2174,12 +2178,6 @@ Sprawdź inne linki do szablonów, zanim usuniesz tę stronę.',
 'statistics-users-active' => 'Aktywnych użytkowników',
 'statistics-users-active-desc' => 'Użytkownicy, którzy byli aktywni w ciągu {{PLURAL:$1|ostatniego dnia|ostatnich $1 dni}}',
 'statistics-mostpopular' => 'Najczęściej odwiedzane strony',
-
-'disambiguations' => 'Strony linkujące do stron ujednoznaczniających',
-'disambiguationspage' => 'Template:disambig',
-'disambiguations-text' => "Poniższe strony odwołują się do '''stron ujednoznaczniających''',
-a powinny odwoływać się bezpośrednio do stron treści.<br />
-Strona uznawana jest za ujednoznaczniającą, jeśli zawiera szablon linkowany przez stronę [[MediaWiki:Disambiguationspage]]",
 
 'pageswithprop' => 'Strony z właściwościami',
 'pageswithprop-legend' => 'Strony z właściwościami',

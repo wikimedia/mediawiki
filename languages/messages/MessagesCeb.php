@@ -285,7 +285,7 @@ Palihog paghulat bag-o nimo sulayan pag-akses og usab ang kining panid.
 
 $1',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Mahitungod sa {{SITENAME}}',
 'aboutpage' => 'Project:Mahitungod sa',
 'copyright' => 'Mga sulod makita sa $1.',

@@ -300,7 +300,7 @@ $messages = array(
 'jumptonavigation' => 'exulera',
 'jumptosearch' => 'aneyara',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Icde {{SITENAME}}',
 'aboutpage' => 'Project:Icdeuca',
 'copyright' => 'Deraykan cek kare $1.',
@@ -1263,9 +1263,6 @@ Abdi sulara, setikel da va ari skedasiki va teza stujel.',
 'statistics-edits-average' => 'Mialukafa bubetarota',
 'statistics-users-active' => 'Tegiraf pakesikeem',
 'statistics-mostpopular' => 'Tel lorupen bueem',
-
-'disambiguations' => 'Bu dem milyoltaca yo',
-'disambiguationspage' => '{{ns:template}}:Milyoltaca',
 
 'doubleredirects' => 'Jontolafa graskara',
 'doubleredirectstext' => "<b>Attention:</b> cette liste peut contenir des « faux positifs ». Dans ce cas, c'est probablement la page du premier #REDIRECT contient aussi du texte.<br />Chaque ligne contient les liens à la 1re et 2e page de redirection, ainsi que la première ligne de cette dernière, qui donne normalement la « vraie » destination. Le premier #REDIRECT devrait lier vers cette destination.",

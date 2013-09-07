@@ -321,7 +321,7 @@ $messages = array(
 'view-pool-error' => 'Bibore, server niha zêde barkirî ne. Gelek bikarhêner niha hewl didin ku vê rûpelê bibînin. Ji kerema xwe kêlîkekê bisekine, berî ku tu dîsa hewl bidî rûpelê bibînî.',
 'pool-errorunknown' => 'Çewtiyeke nenas',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Der barê {{SITENAME}} de',
 'aboutpage' => 'Project:Der barê',
 'copyright' => 'Naverok di $1 de derbasdar e.',
@@ -1260,9 +1260,6 @@ Agahdariya li ser [$2 rûpela danasîna pelê] li jêr tê nîşandan.',
 'statistics-users' => '[[Special:ListUsers|Bikarhênerên tomarkirî]]',
 'statistics-users-active' => 'Bikarhênerên çalak',
 'statistics-mostpopular' => 'Rûpelên herî lênerî',
-
-'disambiguations' => 'Rûpelên girêdayî rûpelên cudakirinê',
-'disambiguationspage' => 'Template:disambig',
 
 'doubleredirects' => 'Beralîkirinên ducarî',
 'double-redirect-fixed-move' => 'Cihê [[$1]] hatiye guhertin, ew niha beralîkirina [[$2]] ye.',

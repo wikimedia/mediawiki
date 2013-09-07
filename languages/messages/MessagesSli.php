@@ -232,7 +232,7 @@ Bitte warte eenige Minuta, bevur du 's noo eemool versuchst.
 
 $1",
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Ieber {{SITENAME}}',
 'aboutpage' => 'Project:Ieber',
 'copyright' => 'Inhalt ies verfügbar unter der $1.',
@@ -1206,10 +1206,6 @@ Ieberpriefe andere Links zu den Vurlooga, bevur du diese läscht.',
 'statistics-users' => 'Registrierte [[Special:ListUsers|Nutzer]]',
 'statistics-users-active-desc' => 'Nutzer miet Beoarbeetunga {{PLURAL:$1|enn letzta 24 Stunden|enn vergangenen $1 Tagen}}',
 'statistics-mostpopular' => 'Meistbesichte Seyta',
-
-'disambiguations' => 'Begriffsklärungsseyta',
-'disambiguationspage' => 'Template:Begriffsklärung',
-'disambiguations-text' => 'De fulgenda Seita verlinka uff anne Seite zur Begriefsklärung. Se sullta stoats dassens uff de eigentlich gemeente Seite verlinka.<br />Anne Seite werd ols Begriefsklärungsseite behandelt, wenn [[MediaWiki:Disambiguationspage]] uff se verlinkt.<br />Links aus Noamasräumen waan hier ne uffgelistet.',
 
 'doubleredirects' => 'Doppelte Weiterleitunga',
 'doubleredirectstext' => 'Diese Liste enthält Weiterleitunga, de uff wettere Wetterleitunga verlinka.

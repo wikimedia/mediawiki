@@ -16947,9 +16947,9 @@ Esta instalação deverá ser atualizada através do <code>update.php</code>',
 	'config-localsettings-key' => 'Chave de atualização:',
 	'config-localsettings-badkey' => 'A chave fornecida está incorreta.',
 	'config-upgrade-key-missing' => 'Foi detectada uma instalação existente do MediaWiki.
-Para atualizar esta instalação, por favor, coloque a seguinte linha na parte inferior do seu <code>LocalSettings.php</code>:
+Para atualizar esta instalação, por favor insira a seguinte linha na parte inferior do seu <code>LocalSettings.php</code>:
 
-$ 1', # Fuzzy
+$1',
 	'config-session-error' => 'Erro ao iniciar a sessão: $1',
 	'config-session-expired' => 'Os seus dados de sessão parecem ter expirado.
 As sessões estão configuradas para uma duração de $1.

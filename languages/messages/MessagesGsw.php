@@ -363,7 +363,7 @@ Di maximal Wartezyt fir e Lock isch umme',
 'pool-queuefull' => 'D Warteschlang isch voll',
 'pool-errorunknown' => 'Nit bekannte Fähler',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Über {{GRAMMAR:akkusativ|{{SITENAME}}}}',
 'aboutpage' => 'Project:Über {{UCFIRST:{{GRAMMAR:akkusativ|{{SITENAME}}}}}}',
 'copyright' => 'Der Inhalt vo dere Syte stoht unter der $1.',
@@ -1830,12 +1830,6 @@ Iberprief anderi Link zue dr Vorlage, voreb Du die leschesch.',
 'statistics-users-active' => 'Aktivi Benutzer',
 'statistics-users-active-desc' => 'Benutzer mit Bearbeitige {{PLURAL:$1|in dr letschte 24 Stund|in dr letschte $1 Täg}}',
 'statistics-mostpopular' => 'Am meischte aagluegti Syte',
-
-'disambiguations' => 'Syte, wu uf Begriffsklärigssyte verlinke',
-'disambiguationspage' => 'Template:Begriffsklärig',
-'disambiguations-text' => 'Die Syte verwyyse uf e Begriffsklärigs-Syte. Sie sotte aber besser uf d Syte verwyyse, wu eigetli gmeint sin.
-
-E Syte wird as Begriffsklärigs-Syte behandlet, wänn [[MediaWiki:Disambiguationspage]] uf si verwyyst.',
 
 'doubleredirects' => 'Doppleti Wyterleitige (Redirects)',
 'doubleredirectstext' => 'Die Lischt zeigt Wyterleitige, wu uf anderi Wyterleitige verwyyse.

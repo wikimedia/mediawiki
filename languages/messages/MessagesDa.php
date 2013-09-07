@@ -438,7 +438,7 @@ $1',
 'pool-queuefull' => 'Pool køen er fuld',
 'pool-errorunknown' => 'Ukendt fejl',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Om {{SITENAME}}',
 'aboutpage' => 'Project:Om',
 'copyright' => 'Indholdet er udgivet under $1.',
@@ -2009,12 +2009,6 @@ Husk at kontrollere for andre henvisninger til skabelonerne før de slettes.',
 'statistics-users-active' => 'Aktive brugere',
 'statistics-users-active-desc' => 'Brugere som har udført handlinger i {{PLURAL:$1|det sidste døgn|de sidste $1 dage}}',
 'statistics-mostpopular' => 'Mest besøgte sider',
-
-'disambiguations' => 'Sider, der henviser til flertydige titler',
-'disambiguationspage' => 'Template:Flertydig',
-'disambiguations-text' => "De følgende sider henviser til mindst en side med en '''flertydig titel'''.
-De bør henvise direkte til et mere passende emne i stedet.<br />
-En side behandles som en side med en flertydig titel hvis den bruger en skabelon som der er henvist til fra [[MediaWiki:Disambiguationspage]].",
 
 'pageswithprop' => 'Sider med en sideegenskab',
 'pageswithprop-legend' => 'Sider med en sideegenskab',

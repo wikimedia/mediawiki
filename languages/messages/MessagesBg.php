@@ -481,7 +481,7 @@ $1',
 'pool-queuefull' => 'Опашката за заявки е пълна',
 'pool-errorunknown' => 'Непозната грешка',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'За {{SITENAME}}',
 'aboutpage' => 'Project:За {{SITENAME}}',
 'copyright' => 'Съдържанието е достъпно при условията на $1.',
@@ -1934,10 +1934,6 @@ $1',
 'statistics-users-active' => 'Активни потребители',
 'statistics-users-active-desc' => 'Потребители, направили редакция през {{PLURAL:$1|последния ден|последните $1 дни}}',
 'statistics-mostpopular' => 'Най-преглеждани страници',
-
-'disambiguations' => 'Страници, сочещи към пояснителни страници',
-'disambiguationspage' => 'Template:Пояснение',
-'disambiguations-text' => "Следните страници сочат към '''пояснителна страница''', вместо към истинската тематична страница.<br />Една страница се смята за пояснителна, ако ползва шаблон, към който се препраща от [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects' => 'Двойни пренасочвания',
 'doubleredirectstext' => 'Тази страница съдържа списък със страници, които пренасочват към друга пренасочваща страница.

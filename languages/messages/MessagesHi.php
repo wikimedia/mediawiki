@@ -40,6 +40,7 @@
  * @author Sajeel.irkal
  * @author Sayak Sarkar
  * @author Shantanoo
+ * @author Shirayuki
  * @author Shrish
  * @author Shyam
  * @author Shyam123.ckp
@@ -429,7 +430,7 @@ $1',
 'pool-queuefull' => 'पूल पंक्ति भरी हुई है',
 'pool-errorunknown' => 'अज्ञात त्रुटि',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} के बारे में',
 'aboutpage' => 'Project:परिचय',
 'copyright' => 'उपलब्ध सामग्री $1 के अधीन है।',
@@ -2018,12 +2019,6 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization देखें।',
 'statistics-users-active' => 'सक्रिय सदस्य',
 'statistics-users-active-desc' => 'पिछले {{PLURAL:$1|एक दिन|$1 दिनों}} में कुछ गतिविधि रखने वाले सदस्य',
 'statistics-mostpopular' => 'सबसे अधिक देखे गए पृष्ठ',
-
-'disambiguations' => 'बहुविकल्पी पृष्ठों से जुड़ते पृष्ठ',
-'disambiguationspage' => 'Template:बहुविकल्पी',
-'disambiguations-text' => "निम्नांकित पृष्ठ कम-से-कम एक '''बहुविकल्पी पृष्ठ''' से जुड़ते हैं।
-संभवतः इन्हें उपयुक्त पृष्ठ से जुड़ा होना चाहिए।<br />
-यदि कोई पृष्ठ ऐसे साँचे का प्रयोग करता है जो [[MediaWiki:Disambiguationspage]] से जुड़ा हुआ है, तो उसे बहुविकल्पी पृष्ठ माना जाता है।",
 
 'doubleredirects' => 'दुगुने पुनर्निर्देश',
 'doubleredirectstext' => 'यह पृष्ठ उन पृष्ठों की सूची देता है जो अन्य पुनर्निर्देशित पृष्ठों की ओर पुनर्निर्देशित हैं।

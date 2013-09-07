@@ -270,7 +270,7 @@ $1",
 'pool-queuefull' => 'De wachtrieë von de poel is vaol',
 'pool-errorunknown' => "Er is 'n onbekande fout ophetreed'n",
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Over {{SITENAME}}',
 'aboutpage' => 'Project:Info',
 'copyright' => 'Den inoud is beschikbaer onder de $1.',
@@ -1035,8 +1035,6 @@ De [$2 pagina mè de bestandsbeschrievienge] wòdt hieronder weergegeev'n.",
 
 # Statistics
 'statistics' => "Stattistiek'n",
-
-'disambiguationspage' => 'Template:Deurverwiespagina',
 
 'brokenredirectstext' => 'De volgende deuverwieziengen stiere deu nae bladzie die nie bestae:',
 

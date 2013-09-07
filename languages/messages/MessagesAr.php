@@ -608,7 +608,7 @@ $messages = array(
 'category-article-count-limited' => '{{PLURAL:$1||الصفحة التالية|الصفحتان التاليتان|الصفحات $1 التالية}} مصنّفة بهذا التصنيف.',
 'category-file-count' => '{{PLURAL:$2|لا ملفات مصنّفة بهذا التصنيف سوى التالي.|{{PLURAL:$1||الملف التالي مصنّف|الملفان التاليان مصنّفان|الملفات $1 التالية مصنّفة}} بهذا التصنيف من إجمالي $2.}}',
 'category-file-count-limited' => '{{PLURAL:$1|الملف التالي مصنّف|الملفان التاليان مصنّفان|الملفات $1 التالية مصنّفة}} بهذا التصنيف.',
-'listingcontinuesabbrev' => 'يُتبع',
+'listingcontinuesabbrev' => '(تتمة)',
 'index-category' => 'صفحات مفهرسة',
 'noindex-category' => 'صفحات غير مفهرسة',
 'broken-file-category' => 'صفحات تحوي روابط ملفات معطوبة',
@@ -718,7 +718,7 @@ $1',
 'pool-queuefull' => 'الطابور ملآن',
 'pool-errorunknown' => 'عطل غير معروف',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'عن {{SITENAME}}',
 'aboutpage' => 'Project:عن',
 'copyright' => 'المحتوى منشور وفق $1.',
@@ -1582,7 +1582,7 @@ $1",
 'search-result-score' => 'الارتباط: $1%',
 'search-redirect' => '(تحويلة $1)',
 'search-section' => '(قسم $1)',
-'search-suggest' => 'هل كنت تقصد: $1',
+'search-suggest' => 'أتقصد: $1',
 'search-interwiki-caption' => 'المشاريع الشقيقة',
 'search-interwiki-default' => '$1 نتيجة:',
 'search-interwiki-more' => '(المزيد)',
@@ -2343,12 +2343,6 @@ $1',
 'statistics-users-active' => 'مستخدمون نشطون',
 'statistics-users-active-desc' => 'المستخدمون الذين قاموا بفعل في آخر {{PLURAL:$1||يوم|يومين|$1 أيام|$1 يوماً|$1 يوم}}',
 'statistics-mostpopular' => 'أكثر الصفحات مشاهدة',
-
-'disambiguations' => 'الصفحات التي ترتبط بصفحات توضيح',
-'disambiguationspage' => 'Template:توضيح',
-'disambiguations-text' => "الصفحات التالية تحتوي على وصلة واحدة على الأقل إلى '''صفحة توضيح'''.
-ربما ينبغي أن تصل إلى صفحة أكثر ملائمة. <br />
-تعامل الصفحة كصفحة توضيح إذا كان بها قالب موجود في [[MediaWiki:Disambiguationspage]]",
 
 'pageswithprop' => 'صفحات مع خاصية الصفحة',
 'pageswithprop-legend' => 'صفحات مع خاصية الصفحة',

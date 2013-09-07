@@ -293,7 +293,7 @@ $messages = array(
 'jumptonavigation' => 'nabiggazioni',
 'jumptosearch' => 'zercha',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Infuimmazioni in {{SITENAME}}',
 'aboutpage' => 'Project:Infuimmazioni',
 'copyright' => "Cuntinuddi suggetti a licèntzia d'usu $1.",
@@ -1101,10 +1101,6 @@ Si si diponi di l'immàgina i' la risoruzioni originari, pa piazeri carriggalla.
 'statistics-header-users' => "Sthatisthigghi reratibi a l'utenti",
 'statistics-pages' => 'Pagini',
 'statistics-mostpopular' => 'Pàgini più visitaddi',
-
-'disambiguations' => 'Pàgini cu lu matessi innòmmu',
-'disambiguationspage' => 'Template:Matessi innòmmu',
-'disambiguations-text' => "Li pàgini i' la sighenti listha cuntènani cullegamenti a '''pàgini cu' lu matessi innòmmu''' e nò a la rasgiòni a chi dubaristhia fà rifirimentu.<br />So cunsidaraddi pàgini cu lu matessi innòmmu tutti chissi chi cuntènini li mudelli erencaddi in [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects' => 'Rinvii doppi',
 'doubleredirectstext' => 'Inogghi v\'è una listha di li pàgini chi puntani a pàgini di rinviu. Ogna riga cunteni i cullegamenti a lu primmu e sigundu rinviu, cumenti a la disthinazioni di lu sigundu rinviu, che noimmaimmenti è la pàgina "curretta" a la quari dubia puntà puru lu primmu rinviu.',

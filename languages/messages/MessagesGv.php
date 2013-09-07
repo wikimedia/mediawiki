@@ -240,7 +240,7 @@ $messages = array(
 'jumptosearch' => 'ronsee',
 'pool-errorunknown' => 'Doilleeid gyn enney',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Mychione {{SITENAME}}',
 'aboutpage' => 'Project:Mychione',
 'copyright' => 'Ta stoo ry-gheddyn rere $1.',
@@ -870,8 +870,6 @@ Ta duillagyn er [[Special:Watchlist|dty rolley arrey]] ayns '''clou trome'''.",
 'statistics' => 'Staydraa',
 'statistics-header-users' => 'Staydraa ymmydeyr',
 'statistics-pages' => 'Duillagyn',
-
-'disambiguations' => 'Duillagyn ta kianglt rish duillagyn reddaghey',
 
 'doubleredirects' => 'Aa-enmyssyn dooblagh',
 

@@ -316,7 +316,7 @@ $1",
 'pool-queuefull' => 'Ecindoiden varadim om üläkormatud.',
 'pool-errorunknown' => 'Tundmatoi petuz',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Informacii saitas {{SITENAME}}',
 'aboutpage' => 'Project:Informacii',
 'copyright' => 'südäiolend kävutadas $1-licenzijan mödhe.',
@@ -1515,9 +1515,6 @@ Informacijad sen [$2 andmusiden lehtpolelpäi] om anttud alemba.',
 'statistics-users-active' => 'Activižed kävutajad',
 'statistics-users-active-desc' => "Kävutajad, kudambad ozutiba aktivižut {{PLURAL:$1|jäl’gmäižen päivän|$1 jäl'gmäižil päivil}}",
 'statistics-mostpopular' => 'Kaikiš populärižembad lehtpoled',
-
-'disambiguations' => 'Lehtpoled, kudambil om kosketusid lehtpolihe, kus om äiznamoičendusen laskendoid.',
-'disambiguationspage' => 'Template:Äiznamoičenduz',
 
 'doubleredirects' => 'Kaksitadud läbikosketused',
 'double-redirect-fixed-move' => "[[$1]]-lehtpol' om udesnimitadud. Se läbikosketab nügüd' [[$2]]-lehtpolele.",

@@ -243,7 +243,7 @@ $1',
 'pool-queuefull' => 'طابور الاقتراع ملئ',
 'pool-errorunknown' => 'خطأ غير معروف',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'عن {{SITENAME}}',
 'aboutpage' => 'Project:عن',
 'copyright' => 'المحتوى متوفر تحت $1.',
@@ -1097,8 +1097,6 @@ $1",
 
 # Statistics
 'statistics' => 'إحصاءات',
-
-'disambiguationspage' => 'Template:توضيح',
 
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|بايت|بايت}}',

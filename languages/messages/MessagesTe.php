@@ -385,7 +385,7 @@ $1',
 'pool-queuefull' => 'సమూహపు వరుస నిండుగా ఉంది',
 'pool-errorunknown' => 'గుర్తుతెలియని పొరపాటు',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} గురించి',
 'aboutpage' => 'Project:గురించి',
 'copyright' => 'విషయ సంగ్రహం $1  కి లోబడి లభ్యం.',
@@ -1814,10 +1814,6 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization చూడండి.',
 'statistics-users-active' => 'క్రియాశీల వాడుకర్లు',
 'statistics-users-active-desc' => 'గత {{PLURAL:$1|రోజు|$1 రోజుల}}లో ఒక్క చర్యైనా చేసిన వాడుకరులు',
 'statistics-mostpopular' => 'ఎక్కువగా చూసిన పేజీలు',
-
-'disambiguations' => 'అయోమయ నివృత్తి పుటలకు లింకున్న పుటలు',
-'disambiguationspage' => 'Template:అయోమయ నివృత్తి',
-'disambiguations-text' => "కింది పేజీలు '''అయోమయ నివృత్తి''' పేజీకి లింకవుతున్నాయి. కానీ అవి సంబంధిత పేజీకి నేరుగా లింకు అవాలి. <br /> [[MediaWiki:Disambiguationspage]] నుంది లింకు ఉన్న మూసను వాడే పేజీని అయోమయ నివృత్తి పేజీగా భావిస్తారు.",
 
 'pageswithprop-submit' => 'వెళ్ళు',
 

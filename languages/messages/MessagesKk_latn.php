@@ -539,7 +539,7 @@ $messages = array(
 'jumptonavigation' => 'şarlaw',
 'jumptosearch' => 'izdew',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} twralı',
 'aboutpage' => 'Project:Joba twralı',
 'copyright' => 'Mağlumat $1 şartımen jetimdi.',
@@ -1486,12 +1486,6 @@ Kirisi: mağlumat_türi/tür_tarawı, mısalı <code>image/jpeg</code>.',
 'statistics' => 'Sanaq',
 'statistics-header-users' => 'Qatıswşı sanağı',
 'statistics-mostpopular' => 'Eñ köp qaralğan better',
-
-'disambiguations' => 'Aýrıqtı better',
-'disambiguationspage' => '{{ns:template}}:Aýrıq',
-'disambiguations-text' => "Kelesi better '''aýrıqtı betke''' silteýdi.
-Bunıñ ornına belgili taqırıpqa siltewi kerek.<br />
-Eger [[MediaWiki:Disambiguationspage]] tizimindegi ülgi qoldanılsa, bet aýrıqtı dep sanaladı.",
 
 'doubleredirects' => 'Şınjırlı aýdağıştar',
 'doubleredirectstext' => 'Bul bette basqa aýdatw betterge silteýtin better tizimdelinedi. Ärbir jolaqta birinşi jäne ekinşi aýdağışqa siltemeler bar, sonımen birge ekinşi aýdağış nısanası bar, ädette bul birinşi aýdağış bağıttaýtın «naqtı» nısana bet atawı bolwı kerek.',

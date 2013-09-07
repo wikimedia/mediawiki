@@ -218,7 +218,7 @@ $messages = array(
 'jumptonavigation' => 'navigachon',
 'jumptosearch' => 'tracher',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'à pérpos éd {{SITENAME}}',
 'aboutpage' => 'Project:à pérpos',
 'copyright' => "Ch'contnu, il est disponipe dsou $1.",
@@ -672,9 +672,6 @@ Vir l'pache [$2 édseur Commons].",
 # Statistics
 'statistics' => 'Éstatistikes',
 'statistics-users' => '[[Special:ListUsers|Uzeus]] inrégistrés',
-
-'disambiguations' => 'Paches aveuc des loïens vers des paches du meume nom',
-'disambiguationspage' => 'Template:Omonymie',
 
 'doubleredirects' => 'Doubes érdireccions',
 

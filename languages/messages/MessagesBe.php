@@ -333,7 +333,7 @@ $1',
 'pool-queuefull' => 'Чарга запытаў перапоўнена',
 'pool-errorunknown' => 'Невядомая памылка',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Пра {{GRAMMAR:вінавальны|{{SITENAME}}}}',
 'aboutpage' => 'Project:Пра {{GRAMMAR:вінавальны|{{SITENAME}}}}',
 'copyright' => 'Матэрыял даступны на ўмовах $1.',
@@ -1742,12 +1742,6 @@ $1',
 'statistics-users-active' => 'Актыўныя ўдзельнікі',
 'statistics-users-active-desc' => 'Удзельнікі, якія хоць нешта зрабілі за апошн{{PLURAL:$1|і дзень|ія $1 дзён}}',
 'statistics-mostpopular' => 'Самыя папулярныя старонкі',
-
-'disambiguations' => 'Старонкі, якія спасылаюцца на старонкі вырашэння неадназначнасцяў',
-'disambiguationspage' => 'Template:Неадназначнасць',
-'disambiguations-text' => "Гэтыя старонкі спасылаюцца на '''старонкі развязкі неадназначнасцяў'''.
-Лепей, каб яны спасылаліся на канкрэтныя тэматычныя старонкі.<br />
-Старонка лічыцца старонкай развязкі, калі ў яе ўлучаецца такі шаблон, на які спасылаецца [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects' => 'Падвойныя перасылкі',
 'doubleredirectstext' => 'Тут пералічаныя старонкі-перасылкі, якія паказваюць на іншыя перасылкі.

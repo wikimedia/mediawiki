@@ -286,7 +286,7 @@ $1',
 'pool-queuefull' => 'Kempalan antrian kebak',
 'pool-errorunknown' => 'Kalepata ingkang mboten dipun mangertosi',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Prakara {{SITENAME}}',
 'aboutpage' => 'Project:Prakara',
 'copyright' => 'Kabèh tèks kasedyakaké miturut $1.',
@@ -1741,12 +1741,6 @@ Priksanen dhisik pranala-pranala menyang cithakan iki sadurungé mbusak.',
 'statistics-users-active' => 'Para panganggo aktif',
 'statistics-users-active-desc' => 'Panganggo sing ngayahi aktivitas jroning {{PLURAL:$1|dia|$1 dina}} pungkasan',
 'statistics-mostpopular' => 'Kaca sing paling akèh dideleng',
-
-'disambiguations' => 'Kaca sing kaubung nèng kaca disambiguasi',
-'disambiguationspage' => 'Template:Disambig',
-'disambiguations-text' => "Kaca-kaca iki kaisi paling ora sak pranala nuju '''kaca disambiguasi'''.
-Mungkin kuduné diubungaké nèng kaca sing luwih pantes.<br />
-Kaca kaanggep kaca disambiguasi yèn kuwi nganggo templat sing kaubung saka [[MediaWiki:Disambiguationspage]].",
 
 'pageswithprop' => 'Kaca-kaca mawa ubarampé',
 'pageswithprop-legend' => 'Kaca-kaca mawa ubarampé',

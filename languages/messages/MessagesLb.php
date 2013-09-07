@@ -429,7 +429,7 @@ $1",
 'pool-queuefull' => 'Pool-Queue ass voll',
 'pool-errorunknown' => 'Onbekannte Feeler',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Iwwer {{SITENAME}}',
 'aboutpage' => 'Project:Iwwer',
 'copyright' => 'Inhalt ass zur Verfügung gestallt ënnert der $1.<br />',
@@ -516,6 +516,8 @@ All Spezialsäiten déi et gëtt, sinn op der [[Special:SpecialPages|{{int:speci
 # General errors
 'error' => 'Feeler',
 'databaseerror' => 'Datebank Feeler',
+'databaseerror-text' => 'Et ass ee Feeler bäi enger Ufro un Datebank geschitt. Dat deit op e Feeler an der Software.',
+'databaseerror-textcl' => "Et ass e Feeler bäi enger Ufro un d'Datebank geschitt.",
 'databaseerror-query' => 'Ufro: $1',
 'databaseerror-function' => 'Fonctioun: $1',
 'databaseerror-error' => 'Feeler: $1',
@@ -2016,17 +2018,12 @@ Dir musst ëmmer de Medien- a Subtyp aginn: z. Bsp. <code>image/jpeg</code>.",
 'statistics-users-active-desc' => 'Benotzer déi während {{PLURAL:$1|dem leschten Dag|de leschten $1 Deeg}} eppes gemaach hunn',
 'statistics-mostpopular' => 'Am meeschte gekuckte Säiten',
 
-'disambiguations' => 'Säiten déi op Homonymiesäite linken',
-'disambiguationspage' => 'Template:Homonymie',
-'disambiguations-text' => "Dës Säite ass mat mindestens enger '''Homonymie-Säit''' verlinkt.
-Si sollte am beschten op déi eigentlech gemengte Säit verlinkt sinn.<br />
-Eng Säite gëtt als Homonymie-Säit behandelt, wa si eng Schabloun benotzt déi vu [[MediaWiki:Disambiguationspage]] verlinkt ass.",
-
 'pageswithprop' => 'Säite mat enger Säiteneegeschaft',
 'pageswithprop-legend' => 'Säite mat enger Säiteneegeschaft',
 'pageswithprop-text' => 'Op dëser Säit sti Säiten déi eng speziell Säiteneegeschaft benotzen.',
 'pageswithprop-prop' => 'Numm vun der Eegeschaft:',
 'pageswithprop-submit' => 'Lass',
+'pageswithprop-prophidden-long' => 'Wäert vun der laanger Texteegeschaft verstoppt ($1)',
 
 'doubleredirects' => 'Duebel Viruleedungen',
 'doubleredirectstext' => 'Op dëser Säit stinn déi Säiten déi op aner Viruleedungssäite viruleeden.

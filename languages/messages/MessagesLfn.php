@@ -207,7 +207,7 @@ $messages = array(
 'jumptonavigation' => 'naviga',
 'jumptosearch' => 'xerca',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Supra {{SITENAME}}',
 'aboutpage' => 'Project:Supra',
 'copyrightpage' => '{{ns:project}}:Diretos de autor',
@@ -577,8 +577,6 @@ Pajes a [[Special:Watchlist|tu lista de pajes oservada]] es en leteras '''forte'
 
 # Statistics
 'statistics' => 'Statisticas',
-
-'disambiguations' => 'Pajes desambiguinte',
 
 'doubleredirects' => 'Redirijes duple',
 

@@ -507,7 +507,7 @@ $1',
 'pool-queuefull' => 'Чарга запытаў поўная',
 'pool-errorunknown' => 'Невядомая памылка',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Пра {{GRAMMAR:вінавальны|{{SITENAME}}}}',
 'aboutpage' => 'Project:Пра {{GRAMMAR:вінавальны|{{SITENAME}}}}',
 'copyright' => 'Зьмест даступны на ўмовах $1.',
@@ -2104,12 +2104,6 @@ $1',
 'statistics-users-active' => 'Актыўныя ўдзельнікі',
 'statistics-users-active-desc' => 'Удзельнікі, якія выканалі нейкае дзеяньне цягам {{PLURAL:$1|апошняга $1 дня|апошніх $1 дзён|апошніх $1 дзён}}',
 'statistics-mostpopular' => 'Найпапулярнейшыя старонкі',
-
-'disambiguations' => 'Старонкі, якія спасылаюцца на старонкі-неадназначнасьці',
-'disambiguationspage' => 'Template:Неадназначнасьць',
-'disambiguations-text' => "Наступныя старонкі спасылаюцца на '''старонкі-неадназначнасьці'''.
-Замест гэтага, яны павінны спасылацца на пэўныя старонкі.<br />
-Старонка лічыцца шматзначнай, калі яна ўтрымлівае шаблён назва якога знаходзіцца на старонцы [[MediaWiki:Disambiguationspage]]",
 
 'pageswithprop' => 'Старонкі з уласьцівасьцямі старонак',
 'pageswithprop-legend' => 'Старонкі з уласьцівасьцямі старонак',

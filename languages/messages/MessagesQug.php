@@ -248,7 +248,7 @@ $1',
 'pool-queuefull' => 'Lankankapak suyana uku ña huntashkami',
 'pool-errorunknown' => 'Na riksishka pantay',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}}manta',
 'aboutpage' => 'Project:{{SITENAME}}manta',
 'copyright' => 'Kay panka hawapi, $1 killkakunapak hayñikunaka tiyanmi',
@@ -603,8 +603,6 @@ Shuk rurakkunaka kikinpa e-chaski ''dirección''ta mana yachankachu.",
 
 # Statistics
 'statistics' => 'Kay wikimanta yupaykuna',
-
-'disambiguationspage' => 'Template:Alli killkata akllankapak yanapa',
 
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|byte|byte}}',

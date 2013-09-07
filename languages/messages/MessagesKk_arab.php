@@ -576,7 +576,7 @@ $messages = array(
 'jumptonavigation' => 'باعىتتاۋ',
 'jumptosearch' => 'ىزدەۋ',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} تۋرالى',
 'aboutpage' => 'Project:جوبا تۋرالى',
 'copyright' => 'ماعلۇمات $1 شارتىمەن جەتىمدى.',
@@ -1523,12 +1523,6 @@ URL دۇرىس ەكەندىگىن جانە توراپ ىستەپ تۇرعانى�
 'statistics' => 'ساناق',
 'statistics-header-users' => 'قاتىسۋشى ساناعى',
 'statistics-mostpopular' => 'ەڭ كوپ قارالعان بەتتەر',
-
-'disambiguations' => 'ايرىقتى بەتتەر',
-'disambiguationspage' => '{{ns:template}}:ايرىق',
-'disambiguations-text' => "كەلەسى بەتتەر '''ايرىقتى بەتكە''' سىلتەيدى.
-بۇنىڭ ورنىنا بەلگىلى تاقىرىپقا سىلتەۋى كەرەك.<br />
-ەگەر [[MediaWiki:Disambiguationspage]] تىزىمىندەگى ۇلگى قولدانىلسا, بەت ايرىقتى دەپ سانالادى.",
 
 'doubleredirects' => 'شىنجىرلى ايداعىشتار',
 'doubleredirectstext' => 'بۇل بەتتە باسقا ايداتۋ بەتتەرگە سىلتەيتىن بەتتەر تىزىمدەلىنەدى. ٴاربىر جولاقتا ٴبىرىنشى جانە ەكىنشى ايداعىشقا سىلتەمەلەر بار, سونىمەن بىرگە ەكىنشى ايداعىش نىساناسى بار, ادەتتە بۇل ٴبىرىنشى ايداعىش باعىتتايتىن «ناقتى» نىسانا بەت اتاۋى بولۋى كەرەك.',

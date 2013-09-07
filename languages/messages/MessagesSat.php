@@ -246,7 +246,7 @@ $1',
 'pool-queuefull' => 'Pul reaḱ sakam perećena',
 'pool-errorunknown' => 'Bań baḍayaḱ bhul',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'babo̠tre',
 'aboutpage' => 'Project: Babo̠t',
 'copyright' => '$1 re bhitrire ńamoḱa.',
@@ -872,8 +872,6 @@ Noa reaḱ pasnao katha [$2 rẽt pasnao sakam] latare emena',
 # Statistics
 'statistics' => 'Halot',
 'statistics-pages' => 'Sakamko',
-
-'disambiguationspage' => 'sujhi',
 
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|baiṭ|baiṭ}}',

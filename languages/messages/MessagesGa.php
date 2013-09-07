@@ -315,7 +315,7 @@ $messages = array(
 'pool-timeout' => 'Thar am ag feitheamh leis an nglas',
 'pool-errorunknown' => 'Earráid anaithnid',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Maidir leis an {{SITENAME}}',
 'aboutpage' => 'Project:Maidir leis',
 'copyright' => 'Tá an t-ábhar le fáil faoin $1.',
@@ -1123,9 +1123,6 @@ Má theastáilann uait do chomhad a uaslódáil fós, téigh ar ais agus úsáid
 'statistics' => 'Staidrimh',
 'statistics-header-users' => 'Staidreamh úsáideora',
 'statistics-pages' => 'Leathanaigh',
-
-'disambiguations' => 'Leathanaigh idirdhealaithe',
-'disambiguationspage' => '{{ns:project}}:Naisc_go_leathanaigh_idirdhealaithe',
 
 'doubleredirects' => 'Athsheoltaí dúbailte',
 'doubleredirectstext' => '<b>Tabhair faoi deara:</b> B\'fheidir go bhfuil toraidh bréagacha ar an liosta seo.

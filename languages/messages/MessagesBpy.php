@@ -274,7 +274,7 @@ $1',
 'pool-queuefull' => 'পুলর লাইনহান বুঝেসে',
 'pool-errorunknown' => 'হারনাপাসি লালহান',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}}র বারে',
 'aboutpage' => 'Project:বারে',
 'copyright' => '$1-র মাতুঙে এহানর মেথেলহানি পানা একরের।',
@@ -1113,9 +1113,6 @@ $2',
 'statistics-header-hooks' => 'আরআর পরিসংখ্যান',
 'statistics-articles' => 'পাতার কন্টেনহানি',
 'statistics-pages' => 'পাতাহানি',
-
-'disambiguations' => 'সন্দই চুমকরের পাতাহানি',
-'disambiguationspage' => 'Template:সন্দই চুম',
 
 'doubleredirects' => 'আলথকে যানা দ্বিমাউ মাতের',
 

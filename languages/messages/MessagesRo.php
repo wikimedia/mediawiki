@@ -545,7 +545,7 @@ $1',
 'pool-queuefull' => 'Coada de așteptare este plină',
 'pool-errorunknown' => 'Eroare necunoscută',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Despre {{SITENAME}}',
 'aboutpage' => 'Project:Despre',
 'copyright' => 'Conținutul este disponibil sub $1.',
@@ -2158,12 +2158,6 @@ Lista tipurilor MIME recunoscute de MediaWiki poate fi găsită la [http://svn.w
 'statistics-users-active' => 'Utilizatori activi',
 'statistics-users-active-desc' => 'Utilizatori care au efectuat o acțiune în {{PLURAL:$1|ultima zi|ultimele $1 zile}}',
 'statistics-mostpopular' => 'Paginile cele mai vizualizate',
-
-'disambiguations' => 'Pagini care trimit către pagini de dezambiguizare',
-'disambiguationspage' => 'Template:Dezambiguizare',
-'disambiguations-text' => "Paginile următoare conțin cel puțin o legătură către o '''pagină de dezambiguizare'''.
-Acestea ar trebui să conțină legături către un articol mai potrivit.<br />
-O pagină este considerată o pagină de dezambiguizare dacă folosește formate care apar la [[MediaWiki:Disambiguationspage]].",
 
 'pageswithprop' => 'Pagini cu o proprietate de pagină',
 'pageswithprop-legend' => 'Pagini cu o proprietate de pagină',

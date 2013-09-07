@@ -236,7 +236,7 @@ $messages = array(
 $1',
 'pool-errorunknown' => 'نامعلوم خطا',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'تعارف {{SITENAME}}',
 'aboutpage' => 'Project:کھوار ویکیپیڈیو تعارف',
 'copyright' => 'تمام مواد $1 تحتہ میانسار شیر',
@@ -765,8 +765,6 @@ HTML tags لوڑے.',",
 
 # Statistics
 'statistics' => 'اعداد و شمار',
-
-'disambiguationspage' => 'سانچہ: ڈسایمبگ',
 
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|بایٹ|بایٹس}}',

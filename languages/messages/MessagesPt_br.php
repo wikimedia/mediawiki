@@ -570,7 +570,7 @@ $1',
 'pool-queuefull' => 'A fila de processos está cheia',
 'pool-errorunknown' => 'Erro desconhecido',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Sobre {{SITENAME}}',
 'aboutpage' => 'Project:Sobre',
 'copyright' => 'Conteúdo disponível sob $1.',
@@ -657,6 +657,7 @@ Uma lista de páginas especiais válidas poderá ser encontrada em [[Special:Spe
 # General errors
 'error' => 'Erro',
 'databaseerror' => 'Erro no banco de dados',
+'databaseerror-function' => 'Função: $1',
 'databaseerror-error' => 'Erro: $1',
 'laggedslavemode' => 'Aviso: a página poderá não conter atualizações recentes.',
 'readonly' => 'Banco de dados disponível no modo "somente leitura"',
@@ -2191,12 +2192,6 @@ Talvez você deseje editar a descrição na sua [$2 página de descrição de ar
 'statistics-users-active' => 'Usuários ativos',
 'statistics-users-active-desc' => 'Usuários que efetuaram uma ação {{PLURAL:$1|no último dia|nos últimos $1 dias}}',
 'statistics-mostpopular' => 'Páginas mais visitadas',
-
-'disambiguations' => 'Páginas com links para páginas de desambiguação',
-'disambiguationspage' => 'Template:disambig',
-'disambiguations-text' => "As páginas a seguir possuem pelo menos um link para uma '''página de desambiguação'''.
-Talvez fosse melhor que possuissem links para uma página mais específica.</br>
-Uma página é considerada como de desambiguação se utilizar uma predefinição que esteja definida em [[MediaWiki:Disambiguationspage]].",
 
 'pageswithprop' => 'Páginas com uma propriedade de página',
 'pageswithprop-legend' => 'Páginas com uma propriedade de página',

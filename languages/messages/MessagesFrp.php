@@ -552,7 +552,7 @@ $1',
 'pool-queuefull' => 'La renche d’ôvra est plêna',
 'pool-errorunknown' => 'Fôta encognua',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Sur {{SITENAME}}',
 'aboutpage' => 'Project:A propôs',
 'copyright' => 'Lo contegnu est disponiblo desot licence $1.',
@@ -2158,12 +2158,6 @@ Oubliâd pas de controlar s’y at gins d’ôtro lim de vers los modèlos devan
 'statistics-users-active' => 'Utilisators actifs',
 'statistics-users-active-desc' => 'Utilisators qu’ant fêt por lo muens un’accion pendent {{PLURAL:$1|lo jorn passâ|los $1 jorns passâs}}',
 'statistics-mostpopular' => 'Pâges les ples vues',
-
-'disambiguations' => 'Pâges qu’ant des lims de vers des pâges d’homonimia',
-'disambiguationspage' => 'Template:Homonimia',
-'disambiguations-text' => "Cetes pâges ant por lo muens un lim de vers na '''pâge d’homonimia'''.
-Devriant pletout pouentar vers na pâge que vat avouéc.<br />
-Na pâge est trètâye coment na pâge d’homonimia s’emplèye un modèlo liyê a [[MediaWiki:Disambiguationspage]].",
 
 'pageswithprop' => 'Pâges avouéc na propriètât de pâge',
 'pageswithprop-legend' => 'Pâges avouéc na propriètât de pâge',

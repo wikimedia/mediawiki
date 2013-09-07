@@ -564,7 +564,7 @@ $1',
 'pool-queuefull' => 'Køen er full.',
 'pool-errorunknown' => 'Ukjend feil',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Om {{SITENAME}}',
 'aboutpage' => 'Project:Om',
 'copyright' => 'Innhaldet er utgjeve under $1.',
@@ -2084,12 +2084,6 @@ Du vil kan henda endra skildringa på [$2 filskildringssida] hennar der.',
 'statistics-users-active' => 'Aktive brukarar',
 'statistics-users-active-desc' => 'Brukarar som har utført handlingar {{PLURAL:$1|i dag|dei siste $1 dagane}}',
 'statistics-mostpopular' => 'Mest viste sider',
-
-'disambiguations' => 'Sider som lenkjer til fleirtydingssider',
-'disambiguationspage' => 'Template:Fleirtyding',
-'disambiguations-text' => "Dei fylgjande sidene inneheld minst éi lenkje til ei '''fleirtydingsside'''.
-Dei bør kan henda lenkja til ei meir passande side i staden.<br />
-Ei side vert handsama som ei fleirtydingsside om ho nyttar ein mal som er lenkja til frå [[MediaWiki:Disambiguationspage]].",
 
 'pageswithprop' => 'Sider med ein sideeigenskap',
 'pageswithprop-legend' => 'Sider med ein sideeigenskap',

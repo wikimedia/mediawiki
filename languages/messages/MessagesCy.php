@@ -361,7 +361,7 @@ $1',
 'pool-queuefull' => 'Mae cwt y gronfa brosesu yn llawn',
 'pool-errorunknown' => 'Gwall anhysbys',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Ynglŷn â {{SITENAME}}',
 'aboutpage' => 'Project:Amdanom',
 'copyright' => "Mae'r cynnwys ar gael o dan $1.",
@@ -1941,11 +1941,6 @@ Cofiwch chwilio am gysylltiadau eraill at nodyn a'u hystyried cyn ei ddileu.",
 'statistics-users-active' => 'Defnyddwyr gweithgar',
 'statistics-users-active-desc' => 'Defnyddwyr sydd wedi gweithredu unwaith neu ragor yn ystod y {{PLURAL:$1||diwrnod|deuddydd|tridiau|$1 diwrnod|$1 diwrnod}} diwethaf',
 'statistics-mostpopular' => "Tudalennau sy'n derbyn ymweliad amlaf",
-
-'disambiguations' => "Tudalennau sy'n cysylltu â thudalennau gwahaniaethu",
-'disambiguationspage' => 'Template:Gwahaniaethu',
-'disambiguations-text' => "Mae'r tudalennau canlynol yn cynnwys un neu ragor o gysylltau, sydd yn arwain at '''dudalennau gwahaniaethu'''. Hwyrach y byddai'n hwylusach petai'r cyswllt yn arwain yn syth at y dudalen briodol.<br />
-Diffinir tudalen yn dudalen gwahaniaethu pan mae'n cynnwys un o'r nodiadau '[[MediaWiki:Disambiguationspage|tudalen gwahaniaethu]]'.",
 
 'pageswithprop' => 'Tudalennau a chanddynt nodwedd arbennig',
 'pageswithprop-legend' => 'Tudalennau a chanddynt nodwedd arbennig',

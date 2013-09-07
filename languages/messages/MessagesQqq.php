@@ -421,8 +421,8 @@ See http://test.wikipedia.org/wiki/Category:Test_ko?uselang={{SUBPAGENAME}}, for
 'broken-file-category' => 'Name of [[mw:Help:Tracking categories|tracking category]] where pages that embed files that do not exist ("broken images") are listed.',
 'categoryviewer-pagedlinks' => '{{Optional}}
 The pagination links in category viewer. Parameters:
-* $1 is the previous link,
-* $2 is the next link',
+* $1 - the previous link, uses {{msg-mw|Prevn}}
+* $2 - the next link, uses {{msg-mw|Nextn}}',
 
 'linkprefix' => '{{optional}}',
 
@@ -696,7 +696,7 @@ For explanation of 'lock' see [[w:Lock_(computer_science)|wikipedia]].",
 'pool-errorunknown' => 'Part of {{msg-mw|view-pool-error}}.
 {{Identical|Unknown error}}',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Used as the label of the link that appears at the footer of every page on the wiki (in most of  the skins) and leads to the page that contains the site description. The link target is {{msg-mw|aboutpage}}.
 
 [[mw:Manual:Interface/Aboutsite|MediaWiki manual]].
@@ -1778,20 +1778,24 @@ Should match: {{msg-mw|summary}}.',
 * $1 - the blocking sysop (with a link to his/her userpage)
 * $2 - the reason for the block
 * $3 - the current IP address of the blocked user
-* $4 - the blocking sysop's username (plain text, without the link)
+* $4 - (Unused) the blocking sysop's username (plain text, without the link)
 * $5 - the unique numeric identifier of the applied autoblock
 * $6 - the expiry of the block
 * $7 - the intended target of the block (what the blocking user specified in the blocking form)
-* $8 - the timestamp when the block started",
+* $8 - the timestamp when the block started
+See also:
+* {{msg-mw|Autoblockedtext}}",
 'autoblockedtext' => "Text displayed to automatically blocked users. Parameters:
 * $1 - the blocking sysop (with a link to his/her userpage)
 * $2 - the reason for the block (in case of autoblocks: {{msg-mw|autoblocker}})
 * $3 - the current IP address of the blocked user
-* $4 - the blocking sysop's username (plain text, without the link). Use it for GENDER.
+* $4 - (Unused) the blocking sysop's username (plain text, without the link). Use it for GENDER.
 * $5 - the unique numeric identifier of the applied autoblock
 * $6 - the expiry of the block
 * $7 - the intended target of the block (what the blocking user specified in the blocking form)
-* $8 - the timestamp when the block started",
+* $8 - the timestamp when the block started
+See also:
+* {{msg-mw|Blockedtext}}",
 'blockednoreason' => 'Substituted with <code>$2</code> in the following message if the reason is not given:
 * {{msg-mw|cantcreateaccount-text}}.
 {{Identical|No reason given}}',
@@ -2193,8 +2197,8 @@ See {{msg-mw|Currentrev-asof}} for the message for the current version.
 
 Parameters:
 * $1 - the date/time at which the revision was created. e.g. "\'\'Revision as of 14:44, 24 January 2008\'\'".
-* $2 - the date at which the revision was created
-* $3 - the time at which the revision was created',
+* $2 - (Optional) the date at which the revision was created
+* $3 - (Optional) the time at which the revision was created',
 'revision-info' => 'Appears just below the page title when an old version of the page is being viewed.
 
 Parameters:
@@ -2243,11 +2247,13 @@ It is followed by the message {{msg-mw|Viewprevnext}}.
 # Revision feed
 'history-feed-title' => 'Used as title of the RSS/Atom feed for a page history. See [{{canonicalurl:Main_Page|feed=atom&action=history}} example].',
 'history-feed-description' => 'Used as subtitle (description) of the RSS/Atom feed for a page history. See [{{canonicalurl:Main_Page|feed=atom&action=history}} example].',
-'history-feed-item-nocomment' => "Title for each revision when viewing the RSS/Atom feed for a page history:
-* '''$1''' - user name,
-* '''$2''' - date/time,
-* '''$3''' - date,
-* '''$4''' - time.",
+'history-feed-item-nocomment' => 'Title for each revision when viewing the RSS/Atom feed for a page history.
+
+Parameters:
+* $1 - username
+* $2 - date/time
+* $3 - (Optional) date
+* $4 - (Optional) time',
 'history-feed-empty' => 'Used as summary of the RSS/Atom feed for a page history when the feed is empty.
 See [{{canonicalurl:x|feed=atom&action=history}} example].',
 
@@ -2586,12 +2592,12 @@ See also:
 'mergehistory-reason' => '{{Identical|Reason}}',
 'mergehistory-revisionrow' => '{{Optional}}
 A revision row in the merge history page. Parameters:
-* $1 is a radio button to indicate a merge point,
-* $2 is a link to the last revision of a page ({{msg-mw|last}}),
-* $3 is a page link,
-* $4 is a user link,
-* $5 is a revision size,
-* $6 is a revision comment',
+* $1 - a radio button to indicate a merge point
+* $2 - a link to the last revision of a page ({{msg-mw|Last}})
+* $3 - a page link
+* $4 - a user link
+* $5 - a revision size
+* $6 - a revision comment',
 
 # Merge log
 'mergelog' => '{{doc-logpage}}
@@ -3479,21 +3485,31 @@ See also:
 'recentchanges-label-bot' => 'Tooltip for {{msg-mw|boteditletter}}',
 'recentchanges-label-unpatrolled' => 'Tooltip for {{msg-mw|unpatrolledletter}}',
 'rcnote' => 'Used on [[Special:RecentChanges]].
+
 Similar to {{msg-mw|wlnote}} which is used on [[Special:Watchlist]].
-* $1 is the number of changes shown,
-* $2 is the number of days for which the changes are shown,
-* $3 is a date and time (deprecated),
-* $4 is a date alone,
-* $5 is a time alone.
+
+Parameters:
+* $1 - the number of changes shown
+* $2 - the number of days for which the changes are shown
+* $3 - (Unused) a date and time
+* $4 - a date alone
+* $5 - a time alone
 
  <!--Example: "\'\'Below are the last 50 changes in the last 7 days, as of 14:48, 24 January 2008.\'\'"-->
- Example: "\'\'{{int:rcnote/en|50|7||24 January 2008|14:48}}\'\'"',
-'rcnotefrom' => 'This message is displayed at [[Special:RecentChanges]] when viewing recentchanges from some specific time. The corrosponding message is {{msg-mw|Rclistfrom}} (without split of date and time, [[bugzilla:19104|Bug 19104]]).
+ Example: "\'\'{{int:rcnote/en|50|7||24 January 2008|14:48}}\'\'"
+See also:
+* {{msg-mw|Rcnotefrom}}',
+'rcnotefrom' => 'This message is displayed at [[Special:RecentChanges]] when viewing recentchanges from some specific time.
 
-* Parameter $1 is the maximum number of changes that are displayed.
-* Parameter $2 is a date and time. (alternative to $3 and $4)
-* Parameter $3 is a date. (alternative to $1)
-* Parameter $4 is a time. (alternative to $1)',
+The corrosponding message is {{msg-mw|Rclistfrom}} (without split of date and time, [[bugzilla:19104|Bug 19104]]).
+
+Parameters:
+* $1 - the maximum number of changes that are displayed
+* $2 - a date and time
+* $3 - (Optional) a date
+* $4 - (Optional) a time
+See also:
+* {{msg-mw|Rcnote}}',
 'rclistfrom' => 'Used on [[Special:RecentChanges]]. Parameter $1 is a link to the revision of a specific date and time. The date and the time are the link description (without split of date and time, [[bugzilla:19104|Bug 19104]]). The corrosponding message is {{msg-mw|Rcnotefrom}}.',
 'rcshowhideminor' => "Option text in [[Special:RecentChanges]]. Parameters:
 * $1 is the 'show/hide' command, with the text taken from either {{msg-mw|show}} or {{msg-mw|hide}}.",
@@ -3612,9 +3628,12 @@ See also:
 * {{msg-mw|reuploaddesc|button text}}',
 'uploadnologin' => 'Used as title of the error message {{msg-mw|Uploadnologintext}}.
 {{Identical|Not logged in}}',
-'uploadnologintext' => 'Used as error message. The title for this message is {{msg-mw|Uploadnologin}}. Parameters:
-* $1 - Login link – {{msg-mw|Loginreqlink}}
+'uploadnologintext' => 'Used as error message.
 
+The title for this message is {{msg-mw|Uploadnologin}}.
+
+Parameters:
+* $1 - link text {{msg-mw|Loginreqlink}}. The link points to [[Special:UserLogin]].
 See also:
 * {{msg-mw|Whitelistedittext}}
 * {{msg-mw|Nocreatetext}}
@@ -4655,16 +4674,6 @@ Used in [[Special:Statistics]].',
 * \$1 - Value of <code>\$wgRCMaxAge</code> in days",
 'statistics-mostpopular' => 'Used in [[Special:Statistics]]',
 
-'disambiguations' => '{{doc-special|Disambiguations}}',
-'disambiguationspage' => 'This message is the name of the template used for marking disambiguation pages. It is used by [[Special:Disambiguations]] to find all pages which link to disambiguation pages.
-
-{{doc-important|Don\'t translate the "Template:" part!}}
-{{Identical|Template:disambig}}',
-'disambiguations-text' => '{{doc-important|Do not change the link "<code><nowiki>[[MediaWiki:Disambiguationspage]]</nowiki></code>", even because it is listed as problematic. Be sure the "D" is in uppercase, so not "d".}}
-This block of text is shown on [[:Special:Disambiguations]].
-
-\'\'\'Background information:\'\'\' Beyond telling about links going to disambiguation pages, that they are generally bad, it should explain which pages in the article namespace are seen as disambiguations: [[MediaWiki:Disambiguationspage]] usually holds a list of disambiguation templates of the local wiki. Pages linking to one of them (by transclusion) will count as disambiguation pages. Pages linking to these disambiguation pages, instead to the disambiguated article itself, are listed on [[:Special:Disambiguations]].',
-
 'pageswithprop' => '{{doc-special|PagesWithProp}}
 {{Identical|Page with page property}}',
 'pageswithprop-legend' => 'Legend for the input form on [[Special:PagesWithProp]].
@@ -5117,7 +5126,7 @@ Special:EmailUser appears when you click on the link "Email this user" in the si
 Parameters:
 * $1 - username',
 'defemailsubject' => 'The default subject of EmailUser emails. Parameters:
-* $1 is the username of the user sending the email and can be used for GENDER.',
+* $1 - the username of the user sending the email and can be used for GENDER',
 'usermaildisabled' => 'Caption for an error message ({{msg-mw|Usermaildisabledtext}}) shown when the user-to-user e-mail feature is disabled on the wiki (see [[mw:Manual:$wgEnableEmail]], [[mw:Manual:$wgEnableUserEmail]]).',
 'usermaildisabledtext' => 'Used as error message in [[Special:EmailUser]].
 
@@ -5312,18 +5321,18 @@ See also:
 * {{msg-mw|Watchlist-details|watchlist header}}
 * {{msg-mw|Wlheader-enotif|watchlist header}}",
 'enotif_impersonal_salutation' => 'Used for impersonal e-mail notifications, suitable for bulk mailing.',
-'enotif_subject_deleted' => 'Email notification subject for deleted pages,
+'enotif_subject_deleted' => 'Email notification subject for deleted pages. Parameters:
 * $1 - page title
-* $2 - page editor',
-'enotif_subject_created' => 'Email notification subject for new pages,
+* $2 - username who has deleted the page, can be used for GENDER',
+'enotif_subject_created' => 'Email notification subject for new pages. Parameters:
 * $1 - page title
-* $2 - page editor',
-'enotif_subject_moved' => 'Email notification subject for pages that get moved,
+* $2 - username who has created the page, can be used for GENDER',
+'enotif_subject_moved' => 'Email notification subject for pages that get moved. Parameters:
 * $1 - page title
-* $2 - page editor',
-'enotif_subject_restored' => 'Email notification subject for pages that get restored,
+* $2 - username who has moved the page, can be used for GENDER',
+'enotif_subject_restored' => 'Email notification subject for pages that get restored. Parameters:
 * $1 - page title
-* $2 - page editor',
+* $2 - username who has restored the page, can be used for GENDER',
 'enotif_subject_changed' => 'Email notification subject for pages that get changed.
 * $1 - page title
 * $2 - page editor',
@@ -5500,18 +5509,24 @@ See also:
 'revertpage' => 'Parameters:
 * $1 - username 1
 * $2 - username 2
-Additionally available parameters:
-* $3 - revision ID of the revision reverted to
-* $4 - timestamp of the revision reverted to
-* $5 - revision ID of the revision reverted from
-* $6 - timestamp of the revision reverted from
+* $3 - (Optional) revision ID of the revision reverted to
+* $4 - (Optional) timestamp of the revision reverted to
+* $5 - (Optional) revision ID of the revision reverted from
+* $6 - (Optional) timestamp of the revision reverted from
+See also:
+* {{msg-mw|Revertpage-nouser}}
 {{Identical|Revert}}',
 'revertpage-nouser' => 'This is a confirmation message a user sees after reverting, when the username of the version is hidden with RevisionDelete.
 
 In other cases the message {{msg-mw|Revertpage}} is used.
 
 Parameters:
-* $1 - username',
+* $1 - username 1
+* $2 - (Optional) username 2
+* $3 - (Optional) revision ID of the revision reverted to
+* $4 - (Optional) timestamp of the revision reverted to
+* $5 - (Optional) revision ID of the revision reverted from
+* $6 - (Optional) timestamp of the revision reverted from',
 'rollback-success' => 'This message shows up on screen after successful revert (generally visible only to admins). $1 describes user whose changes have been reverted, $2 describes user which produced version, which replaces reverted version.
 {{Identical|Revert}}
 {{Identical|Rollback}}',
@@ -7724,17 +7739,27 @@ Parameters:
 Parameters:
 * $1 is a link to a user page with the user name as link text
 * $2 is a user name for use with GENDER (optional)",
-'anonuser' => "This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}). Note that this action is enabled by default but disabled on Wikimedia wikis.
-This message is the variable $3 in the message {{msg-mw|lastmodifiedatby}}. This message only appears if the user is anonymous. The variable $1 in this message is a link to the user's contributions.
+'anonuser' => "Shown when viewing the credits of a page (example: {{canonicalurl:Main Page|action=credits}}).
 
-See also {{msg-mw|Anonusers}} and {{msg-mw|Siteuser}}.",
-'lastmodifiedatby' => "This message is shown when viewing the credits of a page (example: [{{fullurl:Main Page|action=credits}}]). Note that this action is disabled by default (currently enabled on translatewiki.net).
+Note that this action is enabled by default but disabled on Wikimedia wikis.
+
+Used as <code>$3</code> in  {{msg-mw|Lastmodifiedatby}}. This message only appears if the user is anonymous.
+
+Parameters:
+* $1 - a link to the user's contributions
+
+See also:
+* {{msg-mw|Anonusers}}
+* {{msg-mw|Siteuser}}",
+'lastmodifiedatby' => "This message is shown when viewing the credits of a page (example: [{{fullurl:Main Page|action=credits}}]).
+
+Note that this action is disabled by default (currently enabled on translatewiki.net).
 
 Parameters:
 * $1 - date
 * $2 - time
 * $3 - if the user has entered his 'real name' in his preferences then this variable is his 'real name'. If the user has not entered his 'real name' in his preferences then this variable is the message {{msg-mw|Siteuser}}, which includes his username.
-* $4 - username in plain text. Can be used for GENDER
+* $4 - (Optional) username. Can be used for GENDER
 See also:
 * {{msg-mw|Lastmodifiedat}}",
 'othercontribs' => 'This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}). Note that this action is disabled by default (currently enabled on translatewiki.net - to use type <nowiki>&action=credits</nowiki> at the end of any URL in the address bar).
@@ -9231,14 +9256,17 @@ See also:
 'confirmemail_error' => 'Error message on [[Special:ConfirmEmail]]',
 'confirmemail_subject' => 'Subject of the e-mail sent to user during e-mail address confirmation
 {{Identical|SITENAME e-mail address confirmation}}',
-'confirmemail_body' => 'Body of the e-mail sent to user when their account is created or they confirm their e-mail address.
-*$1 is the IP address of the user that created or confirmed the e-mail address
-*$2 is the name of the user
-*$3 is a URL to [[Special:ConfirmEmail]]
-*$4 is a time and date (duplicated by $6 and $7)
-*$5 is a URL to [[Special:InvalidateEmail]]
-*$6 is a date
-*$7 is a time',
+'confirmemail_body' => 'Body of the email sent to user when their account is created or they confirm their email address.
+
+Parameters:
+* $1 - the IP address of the user that created or confirmed the email address
+* $2 - the name of the user
+* $3 - a URL to [[Special:ConfirmEmail]]
+* $4 - a time and date (duplicated by $6 and $7)
+* $5 - a URL to [[Special:InvalidateEmail]]
+* $6 - (Optional) a date
+* $7 - (Optional) a time
+{{Related|Confirmemail body}}',
 'confirmemail_body_changed' => 'This message is sent as an email to users when they add or change their email address in [[Special:Preferences]].
 
 Parameters:
@@ -9247,21 +9275,22 @@ Parameters:
 * $3 - a URL to [[Special:ConfirmEmail]]
 * $4 - a time and date (duplicated by $6 and $7)
 * $5 - a URL to [[Special:InvalidateEmail]]
-* $6 - a date
-* $7 - a time
-See also:
-* [[MediaWiki:Confirmemail body set]]',
-'confirmemail_body_set' => 'This is used in a confirmation e-mail sent when a contact e-mail address is set.
+* $6 - (Optional) a date
+* $7 - (Optional) a time
+{{Related|Confirmemail body}}',
+'confirmemail_body_set' => 'This is used in a confirmation email sent when a contact email address is set.
 
-See also [[MediaWiki:Confirmemail_body_changed]].
+See also [[MediaWiki:Confirmemail body changed]].
 
-*$1 is the IP address of the user that set the e-mail address
-*$2 is the name of the user
-*$3 is a URL to [[Special:ConfirmEmail]]
-*$4 is a time and date (duplicated by $6 and $7)
-*$5 is a URL to [[Special:InvalidateEmail]]
-*$6 is a date
-*$7 is a time',
+Parameters:
+* $1 - the IP address of the user that set the email address
+* $2 - the name of the user
+* $3 - a URL to [[Special:ConfirmEmail]]
+* $4 - a time and date (duplicated by $6 and $7)
+* $5 - a URL to [[Special:InvalidateEmail]]
+* $6 - (Optional) a date
+* $7 - (Optional) a time
+{{Related|Confirmemail body}}',
 'confirmemail_invalidated' => 'This is the text of the special page [[Special:InvalidateEmail|InvalidateEmail]] (with the title in {{msg-mw|Invalidateemail}}) where user goes if he chooses the cancel e-mail confirmation link from the confirmation e-mail.',
 'invalidateemail' => "This is the '''name of the special page''' where user goes if he chooses the cancel e-mail confirmation link from the confirmation e-mail.",
 
@@ -10247,12 +10276,16 @@ Parameters:
 * $2 - the maximum',
 'limitreport-postexpandincludesize' => 'Label for the "Post-expand include size" row in the limit report table',
 'limitreport-postexpandincludesize-value' => 'Format for the "Post-expand include size" row in the limit report table.
-* $1 is the usage in bytes
-* $2 is the maximum',
+
+Parameters:
+* $1 - the usage (in bytes)
+* $2 - the maximum (in bytes)',
 'limitreport-templateargumentsize' => 'Label for the "Template argument size" row in the limit report table',
 'limitreport-templateargumentsize-value' => 'Format for the "Template argument size" row in the limit report table.
-* $1 is the usage in bytes
-* $2 is the maximum',
+
+Parameters:
+* $1 - the usage (in bytes)
+* $2 - the maximum (in bytes)',
 'limitreport-expansiondepth' => 'Label for the "Highest expansion depth" row in the limit report table',
 'limitreport-expansiondepth-value' => '{{optional}}
 Format for the "Highest expansion depth" row in the limit report table.

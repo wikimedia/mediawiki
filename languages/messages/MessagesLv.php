@@ -293,7 +293,7 @@ Lūdzu, brīdi uzgaidiet un mēģiniet šo lapu apskatīties vēlreiz.
 $1',
 'pool-errorunknown' => 'Nezināma kļūda',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Par {{grammar:akuzatīvs|{{SITENAME}}}}',
 'aboutpage' => 'Project:Par',
 'copyright' => 'Saturs ir pieejams saskaņā ar $1.',
@@ -1622,12 +1622,6 @@ Apraksts ir [$2 faila apraksta lapā], kas ir parādīta zemāk.',
 'statistics-users-active' => 'Aktīvi lietotāji',
 'statistics-users-active-desc' => 'Lietotāji, kas ir veikuši jebkādu darbību {{PLURAL:$1|iepriekšējā dienā|iepriekšējās $1 dienās}}',
 'statistics-mostpopular' => 'Visvairāk skatītās lapas',
-
-'disambiguations' => 'Lapas, kuras norāda uz nozīmju atdalīšanas lapām',
-'disambiguationspage' => 'Template:Disambig',
-'disambiguations-text' => "Šeit esošajās lapās ir saite uz '''nozīmju atdalīšanas lapu'''.
-Šīs saites vajadzētu izlabot, lai tās vestu tieši uz attiecīgo lapu.<br />
-Lapu uzskata par nozīmju atdalīšanas lapu, ja tā satur veidni, uz kuru ir saite no [[MediaWiki:Disambiguationspage]].",
 
 'pageswithprop-submit' => 'Aiziet',
 

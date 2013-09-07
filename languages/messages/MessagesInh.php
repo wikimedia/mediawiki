@@ -235,7 +235,7 @@ $messages = array(
 'pool-queuefull' => 'Хаттарий цӀа хьалдизад',
 'pool-errorunknown' => 'Довзаш доаца гӀалат',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Лоацам {{SITENAME}}',
 'aboutpage' => 'Project:Лоацам',
 'copyright' => '$1 чулоацамаца тIакхоачаш да.',
@@ -739,8 +739,6 @@ $messages = array(
 # Statistics
 'statistics' => 'Дагара куц',
 'statistics-pages' => 'ОагIувнаш',
-
-'disambiguationspage' => 'Template: ЦаI маIандоацар',
 
 'brokenredirects-edit' => 'хувца',
 'brokenredirects-delete' => 'дIадаккха',

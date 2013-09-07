@@ -252,7 +252,7 @@ $messages = array(
 'jumptosearch' => 'исканиѥ',
 'pool-errorunknown' => 'нєвѣдома блаꙁна',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'О {{grammar:instrumental|{{SITENAME}}}}',
 'aboutpage' => 'Project:О сѥмь опꙑтьствовании',
 'copyright' => 'подъ прощєниѥмь $1 пьсано ѥстъ',
@@ -647,9 +647,6 @@ $messages = array(
 'statistics-pages-desc' => 'вьсѩ страницѧ въкоупомь съ бѣсєдꙑ · прѣнаправлѥниꙗ и инꙑ',
 'statistics-files' => 'положєнꙑ дѣла',
 'statistics-users-active' => 'дѣꙗтєльнꙑ польꙃєватєлє',
-
-'disambiguations' => 'страницѧ ижє съвѧꙁи съ мъногосъмꙑслиꙗ имѫтъ',
-'disambiguationspage' => 'Template:мъногосъмꙑслиѥ',
 
 'brokenredirects-edit' => 'исправи',
 'brokenredirects-delete' => 'поничьжєниѥ',

@@ -315,7 +315,7 @@ $messages = array(
 'jumptosearch' => 'ricercje',
 'pool-errorunknown' => 'Erôr no cognossût',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Informazions su {{SITENAME}}',
 'aboutpage' => 'Project:Informazions',
 'copyright' => 'Il contignût al è disponibil sot de $1',
@@ -979,9 +979,6 @@ La descrizion su la sô [$2 pagjine di descrizion] e je mostrade ca sot.',
 'statistics-users-active' => 'Utents atîfs',
 'statistics-users-active-desc' => 'Utents che a àn fat une azion {{PLURAL:$1|intal ultin dì|intai ultins $1 dîs}}',
 'statistics-mostpopular' => 'Pagjinis plui visitadis',
-
-'disambiguations' => 'Pagjinis di disambiguazion',
-'disambiguationspage' => 'Template:disambig',
 
 'doubleredirects' => 'Re-indreçaments doplis',
 

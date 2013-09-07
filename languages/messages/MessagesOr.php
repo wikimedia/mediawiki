@@ -500,7 +500,7 @@ $1',
 'pool-queuefull' => 'ପୁଲ ଧାଡ଼ିଟି ଭରିଯାଇଅଛି',
 'pool-errorunknown' => 'ଅଜଣା ଅସୁବିଧା',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} ବାବଦରେ',
 'aboutpage' => 'Project:ବାବଦରେ',
 'copyright' => '$1 ରେ ସର୍ବସ୍ଵତ୍ଵ ସଂରକ୍ଷିତ',
@@ -2053,12 +2053,6 @@ URLଟି ଠିକ ଅଚିକି କି ନାଁ ଓ ସାଇଟଟି ସ�
 'statistics-users-active' => 'ସଚଳ ସଭ୍ୟ',
 'statistics-users-active-desc' => 'ବିଗତ {{PLURAL:$1|ଦିନରେ|$1 ଦିନରେ}} କିଛି କାମ କରିଥିବା ସଭ୍ୟଗଣ',
 'statistics-mostpopular' => 'ସବୁଠାରୁ ଅଧିକ ଦେଖାଯାଇଥିବା ପୃଷ୍ଠା',
-
-'disambiguations' => 'ବହୁବିକଳ୍ପ ପୃଷ୍ଠାମାନଙ୍କ ସହ ଯୋଡ଼ା ପୃଷ୍ଠା',
-'disambiguationspage' => 'Template:ବହୁବିକଳ୍ପ',
-'disambiguations-text' => "ତଳେ ଥିବା ପୃଷ୍ଠାଗୁଡିକ ଅତିକମରେ ଗୋଟେ ଗୋଟେ '''ବହୁବିକଳ୍ପ ପୃଷ୍ଠା'''କୁ ଯୋଡ଼ିଥାନ୍ତି ।
-ସେସବୁ ଅଧିକ ଉପଯୁକ୍ତ ପ୍ରସଙ୍ଗ ସହ ଯୋଡ଼ାହେବା ଉଚିତ  ।<br />
-[[MediaWiki:Disambiguationspage]] ସହ ଯୋଡ଼ାଥିବା ଛାଞ୍ଚ ବ୍ୟବହାର କରୁଥିଲେ ପୃଷ୍ଠାଟିଏକୁ ବହୁବିକଳ୍ପ ପୃଷ୍ଠା ବୋଲି କୁହାଯାଏ",
 
 'pageswithprop-submit' => 'ଯିବା',
 

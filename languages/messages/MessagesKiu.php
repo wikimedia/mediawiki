@@ -281,7 +281,7 @@ $1',
 'pool-queuefull' => 'Rêza hewze pırra',
 'pool-errorunknown' => 'Xeta nêzanıtiye',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Heqa {{SITENAME}} de',
 'aboutpage' => 'Project:Heqa',
 'copyright' => 'Zerrek bınê $1 dero.',
@@ -1030,8 +1030,6 @@ Cêr [$2 pela arezekerdena dosya de] arezekerdene asnina.',
 'statistics-header-hooks' => 'İstatistikê bini',
 'statistics-articles' => 'Pelê tedeesteu',
 'statistics-pages' => 'Peli',
-
-'disambiguationspage' => 'Template:vuriyaisê maney',
 
 'brokenredirects-edit' => 'bıvurne',
 'brokenredirects-delete' => 'bestere',

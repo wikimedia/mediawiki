@@ -611,7 +611,7 @@ $1',
 'pool-queuefull' => 'De wachtrij van de poel is vol',
 'pool-errorunknown' => 'Er is een onbekende fout opgetreden',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Over {{SITENAME}}',
 'aboutpage' => 'Project:Info',
 'copyright' => 'De inhoud is beschikbaar onder de $1.',
@@ -2269,12 +2269,6 @@ Vergeet niet de "Koppelingen naar deze pagina" te controleren alvorens deze sjab
 'statistics-users-active' => 'Actieve gebruikers',
 'statistics-users-active-desc' => 'Gebruikers die in de afgelopen {{PLURAL:$1|dag|$1 dagen}} een handeling hebben uitgevoerd',
 'statistics-mostpopular' => "Meest bekeken pagina's",
-
-'disambiguations' => "Pagina's die verwijzen naar doorverwijspagina's",
-'disambiguationspage' => 'Template:Doorverwijspagina',
-'disambiguations-text' => "Hieronder staan pagina's met tenminste één koppeling naar een '''doorverwijspagina'''.
-Deze horen waarschijnlijk direct naar een meer toepasselijke pagina te verwijzen.<br />
-Een pagina wordt gezien als doorverwijspagina als er een sjabloon op staat dat opgenomen is op [[MediaWiki:Disambiguationspage]].",
 
 'pageswithprop' => "Pagina's met een pagina-eigenschap",
 'pageswithprop-legend' => "Pagina's met een pagina-eigenschap",

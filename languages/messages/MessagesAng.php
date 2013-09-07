@@ -38,12 +38,12 @@ $messages = array(
 'tog-hidepatrolled' => 'Hȳdan weardoda adihtunga in nīwra andwendinga getæle',
 'tog-newpageshidepatrolled' => 'Hȳdan weardode trametas in nīwra andwendinga getæle',
 'tog-extendwatchlist' => 'Sprǣdan behealdungtæl tō īwenne ealla andwendinga, nā synderlīce þā nīwostan',
-'tog-usenewrc' => 'Settan andwendunga on hēapas on trametum on nīwra andwendunga getæle and behealdungtæle (þearf JavaScript)',
+'tog-usenewrc' => 'Settan andwendunga on hēapas on trametum on nīwra andwendunga getæle and behealdungtæle',
 'tog-numberheadings' => 'Settan rīm on fōrecwidas selflīce',
-'tog-showtoolbar' => 'Īwan þā adihtunge tōlmearce (þearf JavaScript)',
-'tog-editondblclick' => 'Adihtan trametas mid twifealdum mȳs swenge (þearf JavaScript)',
+'tog-showtoolbar' => 'Īwan þā adihtunge tōlmearce',
+'tog-editondblclick' => 'Adihtan trametas mid twifealdum mȳs swenge',
 'tog-editsection' => 'Þafian dǣla adihtunge mid [adihtan] hlencum',
-'tog-editsectiononrightclick' => 'Þafian dǣla adihtunge þurh swīðran healfe mȳs swengas on dǣla titulum (þearf JavaScript)',
+'tog-editsectiononrightclick' => 'Þafian dǣla adihtunge þurh swīðran healfe mȳs swengas on dǣla titulum',
 'tog-showtoc' => 'Īwan innunge tabulan (for trametum þe mā þonne 3 fōrecwidas habbaþ)',
 'tog-rememberpassword' => 'Gemynan mīne inmeldunge on þissum spearctellende (oþ $1 {{PLURAL:$1|dæg|dagas}} lengest)',
 'tog-watchcreations' => 'Ēacnian mīn behealdungtæl mid trametum þā ic scieppe and ymelum þā ic hlade on nett.',
@@ -61,7 +61,7 @@ $messages = array(
 'tog-shownumberswatching' => 'Īwan þæt rīm behealdendra brūcenda',
 'tog-oldsig' => 'Genge selfmearc:',
 'tog-fancysig' => 'Dōn selfmearce tō wikitexte (lēas ǣr gedōnes hlencan)',
-'tog-uselivepreview' => 'Notian rihte īwde fōrebysene (þearf JavaScript) (on costnunge)',
+'tog-uselivepreview' => 'Notian rihte īwde fōrebysene (on costnunge)',
 'tog-forceeditsummary' => 'Cȳðan mē þǣr ic ne wrīte adihtunge sceortnesse',
 'tog-watchlisthideown' => 'Hȳdan mīna adihtunga wiþ þæt behealdungtæl',
 'tog-watchlisthidebots' => 'Hȳdan searuþrǣla adihtunga wiþ þæt behealdungtæl',
@@ -75,6 +75,7 @@ $messages = array(
 'tog-noconvertlink' => 'Ne lǣt hlencena titula āwendunge',
 'tog-norollbackdiff' => 'Forlǣtan scādunge siþþan edweorc sīe gedōn',
 'tog-useeditwarning' => 'Cȳðan mē þǣr ic afare fram adihtunge tramete þe gīet hæbbe unhordoda andwendunga.',
+'tog-prefershttps' => 'Brūc ā sicore þēodednesse þā þū sī inmeldod',
 
 'underline-always' => 'Ǣfre',
 'underline-never' => 'Nǣfre',
@@ -138,6 +139,18 @@ $messages = array(
 'oct' => 'Winterf',
 'nov' => 'Blō',
 'dec' => 'Æf Gē',
+'january-date' => '$1. Æfterran Gēolan',
+'february-date' => '$1. Solmōnaðes',
+'march-date' => '$1. Hrēðmōnaðes',
+'april-date' => '$1. Ēastermōnaðes',
+'may-date' => '$1. Þrimilces',
+'june-date' => '$1. Ǣrran Līðan',
+'july-date' => '$1. Æfterran Līðan',
+'august-date' => '$1. Wēodmōnaðes',
+'september-date' => '$1. Hāligmōnaðes',
+'october-date' => '$1. Winterfylleðes',
+'november-date' => '$1. Blōtmōnaðes',
+'december-date' => '$1. Ǣrran Gēolan',
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Flocc|Floccas}}',
@@ -259,7 +272,7 @@ Wē biddaþ þæt þū abīde scortne tīman ǣr þū gesēce to sēonne þisne 
 $1',
 'pool-errorunknown' => 'Uncūþ wōh',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Gecȳþness ymbe {{SITENAME}}',
 'aboutpage' => 'Project:Gecȳþness',
 'copyright' => 'Man mæg innunge under $1 findan.',
@@ -463,9 +476,9 @@ Scēawa þīne wrītunge eft, oþþe [[Special:UserLogin/signup|sciepp nīwe rec
 'loginreqlink' => 'inmeldian',
 'loginreqpagetext' => 'Þū scealt $1 tō sēonne ōðre trametas.',
 'accmailtitle' => 'Þafungword wæs gesended.',
-'accmailtext' => "Hlīetemaced þafungƿord for [[User talk:$1|$1]] ƿæs to $2 sended.
+'accmailtext' => "Nā eahtodlīce geworht þafungword for [[User talk:$1|$1]] wæs tō $2 gesended.
 
-Þū meaht þæt þafungƿord hƿeorfan for þissum nīƿan hordcleofa on þǣre ''[[Special:ChangePassword|change password]]'' sīde æfter inmeldiende.",
+Þū mōst þæt þafungword andwendan for þisse nīwan reccinge on þǣm ''[[Special:ChangePassword|andwendan þafungword]]'' tramete siþþan þū inmeldie.",
 'newarticle' => '(Nīwe)',
 'newarticletext' => "Þu hæfst bende tō tramete gefolgod þe nū gīet ne stendeþ.
 Tō scieppene þone tramet, onginn þyddan in þǣre boxe under (sēo þone [[{{MediaWiki:Helppage}}|helptramet]] for mā gefrǣge).
@@ -965,7 +978,7 @@ Gif se brūcend asifte hine. synderlīce sind ymelan geīwda þǣre þe se brūc
 'month' => 'Fram mōnþe (and ǣror)',
 'year' => 'Fram ȝēare (and ǣror)',
 
-'sp-contributions-talk' => 'gesprec',
+'sp-contributions-talk' => 'mōtung',
 'sp-contributions-search' => 'Sēcan forðunga',
 'sp-contributions-username' => 'IP address oþþe brūcendnama:',
 'sp-contributions-submit' => 'Sēcan',

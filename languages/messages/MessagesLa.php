@@ -372,7 +372,7 @@ $messages = array(
 'jumptonavigation' => 'navigationem',
 'jumptosearch' => 'quaerere',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'De {{grammar:ablative|{{SITENAME}}}}',
 'aboutpage' => 'Project:De {{GRAMMAR:ablative|{{SITENAME}}}}',
 'copyright' => 'Res ad manum sub $1.',
@@ -1290,12 +1290,6 @@ Fortasse [$2 paginam descriptionis fasciculi] ibi sitam recensere vis.',
 'statistics-users-active' => 'Usores activi',
 'statistics-users-active-desc' => 'Usores qui {{PLURAL:$1|proxima die|proximis $1 diebus}} actionem perfecerunt',
 'statistics-mostpopular' => 'Paginae plurimum visae',
-
-'disambiguations' => 'Paginae quae ad paginas discretivas nectunt',
-'disambiguationspage' => 'Template:Discretiva',
-'disambiguations-text' => "Paginae subter ad '''paginam discretivam''' nectunt.
-Eae ad aptas paginas magis nectendae sunt.<br />
-Pagina discretivam esse putatur si formulam adhibet ad quem [[MediaWiki:Disambiguationspage]] nectit.",
 
 'doubleredirects' => 'Redirectiones duplices',
 'double-redirect-fixed-move' => '[[$1]] mota est et nunc redirigit ad [[$2]]',

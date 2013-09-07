@@ -279,7 +279,7 @@ $1',
 'pool-queuefull' => 'Napunnon ti nagyanan ti pagur-urayan',
 'pool-errorunknown' => 'Di am-ammo a biddut',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Maipanggep ti {{SITENAME}}',
 'aboutpage' => 'Project:Maipanggep',
 'copyright' => 'Ti linaon ket magun-od babaen ti $1.',
@@ -1912,12 +1912,6 @@ Laglagipem ti agkita kadagiti sabsabali a silpo ti plantilia sakbay nga ikkatem 
 'statistics-users-active' => 'Dagiti nasiglat nga agar-aramat',
 'statistics-users-active-desc' => 'Dagiti agar-aramat a nagtungpal ti aramid ti napalabas nga {{PLURAL:$1|aldaw|$1 nga al-aldaw}}',
 'statistics-mostpopular' => 'Kaaduan a nabuya a pampanid',
-
-'disambiguations' => 'Dagiti panid a nakasilpo kadagiti panangilawlawag a panid',
-'disambiguationspage' => 'Template:Panangilawlawag',
-'disambiguations-text' => "Dagiti sumaganad a panid ket aglaon ti saan a basbasit ngem maysa a silpo iti '''panangilawlawag a panid'''.
-Dagitoy ket embes a nasken a maisilpoda kadagiti maitutop a panid.<br />
-Ti panid ket matrato a kas panangilawlawag a panid no agusar ti plantilia a nakasilpo manipud idiay [[MediaWiki:Disambiguationspage]].",
 
 'pageswithprop' => 'Pampanid nga adda maysa a tagikua ti panid',
 'pageswithprop-legend' => 'Pampanid nga adda maysa a tagikua ti panid',

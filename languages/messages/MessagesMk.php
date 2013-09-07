@@ -596,7 +596,7 @@ $1',
 'pool-queuefull' => 'Редицата на барања е полна',
 'pool-errorunknown' => 'Непозната грешка',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'За {{SITENAME}}',
 'aboutpage' => 'Project:За {{SITENAME}}',
 'copyright' => 'Сите текстови се достапни под условите на $1.',
@@ -2241,12 +2241,6 @@ $1',
 'statistics-users-active' => 'Активни корисници',
 'statistics-users-active-desc' => 'Корисници кои имаат извршено некое дејство {{PLURAL:$1|претходниот ден|во претходните $1 дена}}',
 'statistics-mostpopular' => 'Најпосетувани страници',
-
-'disambiguations' => 'Страници што водат до појаснителни страници',
-'disambiguationspage' => 'Template:Појаснување',
-'disambiguations-text' => "Следните страници имаат барем по една врска што води до '''појаснителна страница'''.
-Наместо тоа, може да имаат врска до посоодветна страница.<br />
-Една страница се смета за појаснителна ако го користи шаблонот што води од [[MediaWiki:Disambiguationspage]]",
 
 'pageswithprop' => 'Страници со својство',
 'pageswithprop-legend' => 'Страници со својство',

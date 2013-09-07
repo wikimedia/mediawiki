@@ -605,7 +605,7 @@ $1',
 'pool-queuefull' => '请求队列已满',
 'pool-errorunknown' => '未知错误',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '关于{{SITENAME}}',
 'aboutpage' => 'Project:关于',
 'copyright' => '本站全部文字内容使用$1授权。',
@@ -2108,10 +2108,6 @@ $1',
 'statistics-users-active' => '活跃用户',
 'statistics-users-active-desc' => '在前$1天中操作过的用户',
 'statistics-mostpopular' => '浏览最多的页面',
-
-'disambiguations' => '链接至消歧义页面的页面',
-'disambiguationspage' => 'Template:消歧义',
-'disambiguations-text' => "以下页面包含至少一个至'''消歧义页面'''的链接。它们可能应该链接至更适当的页面。<br />如果页面使用了链自[[MediaWiki:Disambiguationspage]]的模板，则被视为消歧义页面。",
 
 'pageswithprop' => '有页面属性的页面',
 'pageswithprop-legend' => '有页面属性的页面',

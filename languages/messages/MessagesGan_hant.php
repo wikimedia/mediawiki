@@ -277,7 +277,7 @@ $messages = array(
 
 $1',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '關於 {{SITENAME}}',
 'aboutpage' => 'Project:關於',
 'copyright' => '箇版嗰內容係根據$1嗰條款發佈。',
@@ -1107,11 +1107,6 @@ $2',
 'statistics-users-active' => '活躍用戶',
 'statistics-users-active-desc' => '頭$1日操作過嗰用戶',
 'statistics-mostpopular' => '眵嗰人頂多嗰頁面',
-
-'disambiguations' => '扤清楚頁',
-'disambiguationspage' => 'Template:舞清楚',
-'disambiguations-text' => "底下嗰頁面都有到'''扤清楚頁'''嗰連結, 但係佢俚應當係連到正當嗰標題。<br />
-如果一隻頁面係連結自[[MediaWiki:Disambiguationspage]]，佢會拕當成扤清楚頁。",
 
 'doubleredirects' => '雙重重定向頁面',
 'doubleredirectstext' => '底下嗰重定向連結到別隻重定向頁面:',

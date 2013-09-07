@@ -246,7 +246,7 @@ $1',
 'pool-queuefull' => 'Ṣeff l-ĥedma ĝamṛa',
 'pool-errorunknown' => 'khata mjhol',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Kolċi ĝla {{SITENAME}}',
 'aboutpage' => 'Project:Meĝlomaṫ',
 'copyright' => 'L-moḫṫawa mojod fe $1',
@@ -1441,9 +1441,6 @@ $1',
 'statistics-views-peredit' => 'l-moċahadaĝ l-koll ṫĝdil',
 'statistics-users-active' => 'mostakhdimon nachtin',
 'statistics-mostpopular' => 'aktar sfahi mochahada',
-
-'disambiguations' => 'sfahi dyal tawdih',
-'disambiguationspage' => 'Template:tawdih',
 
 'doubleredirects' => 'ṫḫwila mḍoḅla',
 'double-redirect-fixed-move' => '[[$1]] ṫnqlaṫ.

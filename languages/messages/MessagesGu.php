@@ -401,7 +401,7 @@ $1',
 'pool-queuefull' => '(Pool) કતાર પૂરી ભરેલી',
 'pool-errorunknown' => 'અજ્ઞાત ત્રુટિ',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} વિષે',
 'aboutpage' => 'Project:વિષે',
 'copyright' => 'માહિતી $1 હેઠળ ઉપલબ્ધ છે.',
@@ -1966,12 +1966,6 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization. જુઓ',
 'statistics-users-active' => 'સક્રીય સભ્યો',
 'statistics-users-active-desc' => 'સભ્ય કે જેમણે છેલ્લા {{PLURAL:$1|દિવસ|$1 દિવસો}}માં ફેરફારો કર્યાં છે',
 'statistics-mostpopular' => 'સૌથી વધુ જોવાયેલા પાના',
-
-'disambiguations' => 'સંદિગ્ધ શીર્ષકવાળાં પાનાં સાથે જોડાતાં પૃષ્ઠો',
-'disambiguationspage' => 'Template:અસંદિગ્ધ',
-'disambiguations-text' => "નીચેના પાના  '''સંદિગ્ધ વાક્યો વાળા પાના''' સાથે ઓછામાં ઓછી એક કડી દ્વારા જોડાયેલા છે.
-તેઓ વધુ યોગ્ય પાનાં સાથે જોડાયેલા હોવા જોઇએ.<br />
-પાનાને સંદિગ્ધ વાક્યો વાળું પાનું ત્યારે કહી શકાય જ્યારે તે [[MediaWiki:Disambiguationspage]] નામના માળખા સાથે જોડાયેલું હોય.",
 
 'pageswithprop' => 'પાનાં ગુણધર્મ સાથેનાં પાનાંઓ',
 'pageswithprop-legend' => 'પાનાં ગુણધર્મ સાથેનાં પાનાંઓ',

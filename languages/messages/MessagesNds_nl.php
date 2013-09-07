@@ -550,7 +550,7 @@ $1",
 'pool-queuefull' => 'De wachtrie van de poel is vol',
 'pool-errorunknown' => 'Onbekende fout',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Over {{SITENAME}}',
 'aboutpage' => 'Project:Info',
 'copyright' => 'De inhoud is beschikbaor onder de $1.',
@@ -949,7 +949,7 @@ Do dit a'j ze per ongelok mit ene edeeld hebben of as onbevoegden toegang ekrege
 'summary' => 'Samenvatting:',
 'subject' => 'Onderwarp:',
 'minoredit' => 'kleine wieziging',
-'watchthis' => 'volg disse zied',
+'watchthis' => 'Volg disse zied',
 'savearticle' => 'Zied opslaon',
 'preview' => 'Naokieken',
 'showpreview' => 'Bewarking naokieken',
@@ -1849,7 +1849,7 @@ t Inlaojen van Java-bestaanden is niet toe-estaon umdat hiermee beveiligingsinst
 'upload-source' => 'Bronbestaand',
 'sourcefilename' => 'Bestaandsnaam op de hardeschieve:',
 'sourceurl' => 'Bronwebadres:',
-'destfilename' => 'Opslaon as (optioneel)',
+'destfilename' => 'Opslaon as:',
 'upload-maxfilesize' => 'Maximale bestaandsgrootte: $1',
 'upload-description' => 'Bestaandsbeschrieving',
 'upload-options' => 'Instellingen veur t opsturen van bestaanden',
@@ -1979,7 +1979,7 @@ Um beveiligingsredens is img_auth.php uutezet.',
 'nolicense' => 'Gien lisensie ekeuzen',
 'license-nopreview' => '(Naokieken is niet meugelik)',
 'upload_source_url' => ' (een geldig, publiek toegankelik webadres)',
-'upload_source_file' => ' (een bestaand op de hardeschieve)',
+'upload_source_file' => ' (n bestaand op de hardeschieve)',
 
 # Special:ListFiles
 'listfiles-summary' => "Op disse spesiale zied ku'j alle bestaanden bekieken die lestens op-estuurd bin.
@@ -2118,12 +2118,6 @@ Vergeet niet de verwiezingen nao te kieken veurda\'j de mal vortdoon.',
 'statistics-users-active' => 'Aktieve gebrukers',
 'statistics-users-active-desc' => 'Gebrukers die de veurbieje {{PLURAL:$1|dag|$1 dagen}} n haandeling uutevoerd hebben',
 'statistics-mostpopular' => 'Meestbekeken ziejen',
-
-'disambiguations' => 'Ziejen die verwiezen naor deurverwiesziejen',
-'disambiguationspage' => 'Template:Dv',
-'disambiguations-text' => "Hieronder staon ziejen mit tenminsten één verwiezing naor n '''deurverwieszied'''. 
-Feitelik mutten ze rechtstreeks verwiezen naor t juuste onderwarp.<br />
-Ziejen wörden ezien as n deurverwieszied, as de mal gebruukt wörden die vermeld steet op [[MediaWiki:Disambiguationspage]].",
 
 'pageswithprop' => 'Ziejen mit n ziedeigenschap',
 'pageswithprop-legend' => 'Ziejen mit n zied-eigenschap',
@@ -2761,7 +2755,7 @@ Op de [[Special:BlockList|blokkeerlieste]] steet n lieste mit alle blokkeringen.
 t Blokkeerlogboek steet hieronder as referensie:',
 'blocklog-showsuppresslog' => 'Disse gebruker is al eerder eblokkeerd en wele bewarkingen van disse gebruker bin verbörgen.
 t Logboek mit onderdrokten versies steet hieronder as referensie:',
-'blocklogentry' => 'blokkeren "[[$1]]" veur $2 $3',
+'blocklogentry' => 'hef "[[$1]]"  eblokkeerd veur $2 $3',
 'reblock-logentry' => 'hef de instellingen veur de blokkering van [[$1]] ewiezigd t Löp noen of over $2 $3',
 'blocklogtext' => "Hier zie'j n lieste van de leste blokkeringen en deblokkeringen. Automatiese blokkeringen en deblokkeringen koemen niet in t logboek te staon. Zie de [[Special:BlockList|blokkeerlieste]] veur de lieste van adressen die noen eblokkeerd bin.",
 'unblocklogentry' => 'blokkering van $1 is op-eheven',
@@ -3460,7 +3454,7 @@ Aandere velden wörden verbörgen.
 'exif-rating' => 'Werdering (op n schaole van 5)',
 'exif-rightscertificate' => 'Rechtenbeheercertificaot',
 'exif-copyrighted' => 'Auteursrechtstaotus',
-'exif-copyrightowner' => 'Auteursrechthouwer',
+'exif-copyrightowner' => 'Auteursrechtenhouwer',
 'exif-usageterms' => 'Gebruuksveurweerden',
 'exif-webstatement' => 'Internetauteursrechverklaoring',
 'exif-originaldocumentid' => 'Uniek ID van t originele dokument',

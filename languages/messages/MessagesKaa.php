@@ -357,7 +357,7 @@ $messages = array(
 'jumptonavigation' => 'navigatsiya',
 'jumptosearch' => 'izlew',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} haqqında',
 'aboutpage' => 'Project:Haqqında',
 'copyright' => "Mag'lıwmat $1 boyınsha alıng'an.",
@@ -1218,9 +1218,6 @@ Barlıq mag'lıwmat tu'rin (sonın' ishinde sa'wbet betlerdi, shablonlardı h.t.
 'statistics-users' => "Registratsiyadan o'tken [[Special:ListUsers|paydalanıwshılar]]",
 'statistics-users-active' => 'Aktiv paydalanıwshılar',
 'statistics-mostpopular' => "En' ko'p ko'rilgen betler",
-
-'disambiguations' => "Ko'p ma'nisli betler",
-'disambiguationspage' => '{{ns:template}}:disambig',
 
 'doubleredirects' => 'Qos burıwshılar',
 'double-redirect-fixer' => "Qayta bag'ıtlawshılardı du'zetiwshi",

@@ -303,7 +303,7 @@ $messages = array(
 'pool-queuefull' => 'ಪ್ರಕ್ರಿಯೆಯನ್ನು ವಿಶೇಷ ಕ್ಯು ಪೂರ್ಣ',
 'pool-errorunknown' => 'ಅಪರಿಚಿತ ದೋಷ',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'ಕನ್ನಡ {{SITENAME}} ಬಗ್ಗೆ',
 'aboutpage' => 'Project:ನಮ್ಮ ಬಗ್ಗೆ',
 'copyright' => 'ಇದು ಈ ಕಾಪಿರೈಟ್‌ನಲ್ಲಿ ಲಭ್ಯವಿದೆ $1.',
@@ -1335,9 +1335,6 @@ $2',
 'statistics-pages' => 'ಪುಟಗಳು',
 'statistics-views-total' => 'ಒಟ್ಟು ವೀಕ್ಷಣೆಗಳು',
 'statistics-mostpopular' => 'ಅತ್ಯಂತ ಹೆಚ್ಚು ವೀಕ್ಷಿತ ಪುಟಗಳು',
-
-'disambiguations' => 'ದ್ವಂದ್ವನಿವಾರಣಾ ಪುಟಗಳು',
-'disambiguationspage' => 'Template:ದ್ವಂದ್ವ ನಿವಾರಣೆ',
 
 'doubleredirects' => 'ಮರುಕಳಿಸಿದ ಪುನರ್ನಿರ್ದೇಶನಗಳು',
 

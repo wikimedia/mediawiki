@@ -214,7 +214,7 @@ $messages = array(
 'jumptosearch' => 'Lava',
 'pool-errorunknown' => 'xiphiqo xoka xingativeki',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'ta {{SITENAME}}',
 'aboutpage' => 'Project:ta',
 'copyright' => 'Matsalwa makumeka ehansi ka $1.',
@@ -641,8 +641,6 @@ Nhlamuselo ya yona leyi nge ndzeni ka [$2 tluka ro hlamusela] hi yona leyi kombi
 
 # Statistics
 'statistics' => 'Mintsengo',
-
-'disambiguationspage' => 'Template:Hambanisa marito',
 
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|wa bayiti|wa tibayit}}',
