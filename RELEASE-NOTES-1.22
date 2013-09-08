@@ -321,6 +321,11 @@ production.
   version of the title.
 * (bug 52538) action=edit will now use empty text instead of the contents
   of section 0 when passed prependtext or appendtext with section=new.
+* (bug 25702) list=allcategories, list=allimages, list=alllinks, list=allpages,
+  list=deletedrevs and list=filearchive did not handle case-sensitivity
+  properly for all parameters.
+* ApiQueryBase::titlePartToKey allows an extra parameter that indicates the
+  namespace in order to properly capitalize the title part.
 
 === Languages updated in 1.22===
 
