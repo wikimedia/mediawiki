@@ -63,4 +63,36 @@ class ApiQueryTest extends ApiTestCase {
 		$this->assertArrayHasKey( 'missing', $data[0]['query']['pages'][-2] );
 		$this->assertArrayHasKey( 'invalid', $data[0]['query']['pages'][-1] );
 	}
+
+	/**
+	 * Test the ApiBase::titlePartToKey function
+	 *
+	 * @param string $titlePart
+	 * @param int $namespace
+	 * @param string $expected
+	 * @param string $description
+	 * @dataProvider provideTestTitlePartToKey
+	 */
+	function testTitlePartToKey( $titlePart, $namespace, $expected, $expectException ) {
+		$api = new MockApiQueryBase();
+		$exceptionCaught = false;
+		try {
+			$this->assertEquals( $expected, $api->titlePartToKey( $titlePart, $namespace ) );
+		} catch ( UsageException $e ) {
+			$exceptionCaught = true;
+		}
+		$this->assertEquals( $expectException, $exceptionCaught,
+				'UsageException thrown by titlePartToKey' );
+	}
+
+	function provideTestTitlePartToKey() {
+		return array(
+			array( 'a  b  c', NS_MAIN, 'A_b_c', false ),
+			array( 'x', NS_MAIN, 'X', false ),
+			array( 'y ', NS_MAIN, 'Y_', false ),
+			array( 'template:foo', NS_CATEGORY, 'Template:foo', false ),
+			array( "\xF7", NS_MAIN, null, true ),
+			array( 'template:foo', NS_MAIN, null, true ),
+		);
+	}
 }

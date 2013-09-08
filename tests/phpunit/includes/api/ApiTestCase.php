@@ -232,6 +232,17 @@ class MockApi extends ApiBase {
 	}
 }
 
+class MockApiQueryBase extends ApiQueryBase {
+	public function execute() {
+	}
+
+	public function getVersion() {
+	}
+
+	public function __construct() {
+	}
+}
+
 class ApiTestContext extends RequestContext {
 
 	/**
