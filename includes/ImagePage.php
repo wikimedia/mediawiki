@@ -765,7 +765,15 @@ EOT
 				break;
 			}
 
-			$link = Linker::linkKnown( Title::makeTitle( $element->page_namespace, $element->page_title ) );
+			$query = array();
+			# Add a redirect=no to make redirect pages reachable
+			if ( isset( $redirects[$element->page_title] ) ) {
+				$query['redirect'] = 'no';
+			}
+			$link = Linker::linkKnown(
+				Title::makeTitle( $element->page_namespace, $element->page_title ),
+				null, array(), $query
+			);
 			if ( !isset( $redirects[$element->page_title] ) ) {
 				# No redirects
 				$liContents = $link;
