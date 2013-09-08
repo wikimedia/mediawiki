@@ -347,6 +347,11 @@ production.
 * (bug 49090) Token-getting functions will fail when using jsonp callbacks.
 * (bug 52699) action=upload returns normalized file name on warning
   "exists-normalized" instead of filename to be uploaded to.
+* (bug 25702) list=allcategories, list=allimages, list=alllinks, list=allpages,
+  list=deletedrevs and list=filearchive did not handle case-sensitivity
+  properly for all parameters.
+* ApiQueryBase::titlePartToKey allows an extra parameter that indicates the
+  namespace in order to properly capitalize the title part.
 
 === Languages updated in 1.22===
 
