@@ -99,12 +99,25 @@ return array(
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 	),
 	'skins.vector.js' => array(
+		'styles' => array(
+			'vector/collapsibleNav.less',
+		),
 		'scripts' => array(
+			'vector/collapsibleNav.js',
 			'vector/collapsibleTabs.js',
 			'vector/vector.js',
 		),
+		'messages' => array(
+			'vector-collapsiblenav-more',
+		),
 		'position' => 'top',
-		'dependencies' => 'jquery.delayedBind',
+		'dependencies' => array(
+			'jquery.delayedBind',
+			'mediawiki.util',
+			'jquery.client',
+			'jquery.cookie',
+			'jquery.tabIndex',
+		),
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 	),
