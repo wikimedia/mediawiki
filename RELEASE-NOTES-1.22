@@ -478,6 +478,8 @@ changes to languages because of Bugzilla reports.
   module instead or base your skin on SkinTemplate.
 * (bug 49629) The hook ExtractThumbParamaters has been deprecated in favour
   of media handler overriding MediaHandler::parseParamString.
+* (bug 46512) The collapsibleNav feature from the Vector extension has been moved
+  to the Vector skin in core.
 
 == Compatibility ==
 
