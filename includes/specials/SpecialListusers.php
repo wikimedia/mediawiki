@@ -358,7 +358,7 @@ class SpecialListUsers extends IncludableSpecialPage {
 	 * Constructor
 	 */
 	public function __construct() {
-		parent::__construct( 'Listusers' );
+		parent::__construct( 'AllUsers' );
 	}
 
 	/**
