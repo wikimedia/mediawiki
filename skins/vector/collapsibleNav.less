@@ -1,6 +1,7 @@
 /**
  * LESS Stylesheet for collapsible nav
  */
+
 #mw-panel.collapsible-nav {
 	.portal {
 		// FIXME: Add embed support
@@ -9,7 +10,8 @@
 		margin: -11px 9px 10px 11px;
 
 		h3 {
-			color: #4D4D4D;
+			font-size: @menu-main-heading-font-size;
+			color: @collapsible-nav-heading-color;
 			font-weight: normal;
 			// FIXME: Add embed support
 			background: url(images/open.png) left center no-repeat;
@@ -17,7 +19,7 @@
 			 * compatibility (browsers able to understand gradient syntax support also SVG) */
 			background-image: -webkit-linear-gradient(transparent, transparent), url(images/open.svg);
 			background-image: linear-gradient(transparent, transparent), url(images/open.svg);
-			padding: 4px 0 3px 1.5em;
+			padding: @collapsible-nav-heading-padding;
 			margin-bottom: 0;
 
 			&:hover {
@@ -26,12 +28,13 @@
 			}
 
 			a {
-				color: #4D4D4D;
+				color: @collapsible-nav-heading-color;
 				text-decoration: none;
 			}
 		}
 
 		.body {
+			margin: @collapsible-nav-body-margin;
 			background-image: none !important;
 			padding-top: 0;
 			display: none;
@@ -70,7 +73,7 @@
 		/* Collapsed */
 		&.collapsed {
 			h3 {
-				color: #0645AD;
+				color: @collapsible-nav-heading-collapsed-color;
 				// FIXME: Add embed support
 				background: url(images/arrow-collapsed-ltr.png) left center no-repeat;
 				/* SVG support using a transparent gradient to guarantee cross-browser
@@ -84,7 +87,7 @@
 				}
 
 				a {
-					color: #0645AD;
+					color: @collapsible-nav-heading-collapsed-color;
 				}
 			}
 		}
