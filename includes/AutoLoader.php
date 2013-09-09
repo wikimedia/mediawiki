@@ -41,6 +41,7 @@ $wgAutoloadLocalClasses = array(
 	'Autopromote' => 'includes/Autopromote.php',
 	'BadTitleError' => 'includes/Exception.php',
 	'BaseTemplate' => 'includes/SkinTemplate.php',
+	'Beta' => 'includes/Beta.php',
 	'Block' => 'includes/Block.php',
 	'CacheHelper' => 'includes/CacheHelper.php',
 	'Category' => 'includes/Category.php',
