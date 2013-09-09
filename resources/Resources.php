@@ -92,7 +92,20 @@ return array(
 			'common/commonElements.css' => array( 'media' => 'screen' ),
 			'common/commonContent.css' => array( 'media' => 'screen' ),
 			'common/commonInterface.css' => array( 'media' => 'screen' ),
-			'vector/screen.less' => array( 'media' => 'screen' ),
+			'vector/vector.less' => array( 'media' => 'screen' ),
+			'vector/screen-hd.css' => array( 'media' => 'screen and (min-width: 982px)' ),
+		),
+		'remoteBasePath' => $GLOBALS['wgStylePath'],
+		'localBasePath' => $GLOBALS['wgStyleDirectory'],
+	),
+	// FIXME: Clone of skins.vector for use in Beta Experiments that should replace skins.vector eventually
+	'skins.vector.beta' => array(
+		'styles' => array(
+			'common/commonElements.css' => array( 'media' => 'screen' ),
+			'common/commonContent.css' => array( 'media' => 'screen' ),
+			'common/commonInterface.css' => array( 'media' => 'screen' ),
+			// Use a special beta version of screen.css
+			'vector/vectorBeta.less' => array( 'media' => 'screen' ),
 			'vector/screen-hd.css' => array( 'media' => 'screen and (min-width: 982px)' ),
 		),
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
@@ -100,7 +113,30 @@ return array(
 	),
 	'skins.vector.js' => array(
 		'styles' => array(
-			'vector/collapsibleNav.less',
+			'vector/vectorJS.less',
+		),
+		'scripts' => array(
+			'vector/collapsibleNav.js',
+			'vector/collapsibleTabs.js',
+			'vector/vector.js',
+		),
+		'messages' => array(
+			'vector-collapsiblenav-more',
+		),
+		'position' => 'top',
+		'dependencies' => array(
+			'jquery.delayedBind',
+			'jquery.client',
+			'jquery.cookie',
+			'jquery.tabIndex',
+		),
+		'remoteBasePath' => $GLOBALS['wgStylePath'],
+		'localBasePath' => $GLOBALS['wgStyleDirectory'],
+	),
+	// FIXME: Clone of skins.vector.js for BetaFeature. Only one should exist after course of experiment
+	'skins.vector.js.beta' => array(
+		'styles' => array(
+			'vector/vectorJSBeta.less',
 		),
 		'scripts' => array(
 			'vector/collapsibleNav.js',
