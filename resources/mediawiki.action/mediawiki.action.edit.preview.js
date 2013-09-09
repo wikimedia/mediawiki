@@ -35,6 +35,7 @@
 			'#p-lang',
 			// Editing-related
 			'.templatesUsed',
+			'.limitreport',
 			'.mw-summary-preview'
 		];
 		$copyElements = $( copySelectors.join( ',' ) );
