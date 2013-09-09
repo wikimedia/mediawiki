@@ -546,8 +546,12 @@ img.thumbborder {
 	border: solid 1px #bbbbbb;
 	display: -moz-inline-block;
 	display: inline-block;
+	display: table;
+
+	/* IE7 and earliers */
 	zoom: 1;
 	*display: inline;
+
 	padding: 7px;
 }
 
