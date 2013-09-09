@@ -1,0 +1,95 @@
+/**
+ * LESS Stylesheet for collapsible nav
+ */
+@import "mediawiki.mixins.less";
+
+#mw-panel.collapsible-nav {
+	.portal {
+		background-position: left top;
+		background-repeat: no-repeat;
+		.background-image('images/portal-break.png');
+		padding: 0.25em 0 !important;
+		margin: -11px 9px 10px 11px;
+
+		h3 {
+			color: #4D4D4D;
+			font-weight: normal;
+			background-position: left center;
+			background-repeat: no-repeat;
+			.background-image('images/open.png');
+			/* SVG support using a transparent gradient to guarantee cross-browser
+			 * compatibility (browsers able to understand gradient syntax support also SVG) */
+			.background-image-gradient('images/open.svg', 'transparent', 'transparent');
+			padding: 4px 0 3px 1.5em;
+			margin-bottom: 0;
+
+			&:hover {
+				cursor: pointer;
+				text-decoration: none;
+			}
+
+			a {
+				color: #4D4D4D;
+				text-decoration: none;
+			}
+		}
+
+		.body {
+			background-image: none !important;
+			padding-top: 0;
+			display: none;
+
+			ul {
+				li {
+					padding: 0.25em 0;
+				}
+			}
+		}
+
+
+		/* First */
+		&.first {
+			background-image: none;
+			margin-top: 0;
+			h3 {
+				display: none;
+			}
+		}
+
+		/* Persistent */
+		&.persistent {
+			.body {
+				display: block;
+				margin-left: 0.5em;
+			}
+
+			h3 {
+				background-image: none !important;
+				padding-left: 0.7em;
+				cursor: default;
+			}
+		}
+
+		/* Collapsed */
+		&.collapsed {
+			h3 {
+				color: #0645AD;
+				background-position: left center;
+				background-repeat: no-repeat;
+				.background-image('images/arrow-collapsed-ltr.png');
+				/* SVG support using a transparent gradient to guarantee cross-browser
+				 * compatibility (browsers able to understand gradient syntax support also SVG) */
+				.background-image-gradient('images/arrow-collapsed-ltr.svg', 'transparent', 'transparent');
+				margin-bottom: 0;
+
+				&:hover {
+					text-decoration: underline;
+				}
+
+				a {
+					color: #0645AD;
+				}
+			}
+		}
+	}
+}

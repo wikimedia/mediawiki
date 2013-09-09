@@ -99,12 +99,48 @@ return array(
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 	),
 	'skins.vector.js' => array(
+		'styles' => array(
+			'vector/vectorCollapsibleNav.less',
+		),
 		'scripts' => array(
+			'vector/collapsibleNav.js',
 			'vector/collapsibleTabs.js',
 			'vector/vector.js',
 		),
+		'messages' => array(
+			'vector-collapsiblenav-more',
+		),
 		'position' => 'top',
-		'dependencies' => 'jquery.delayedBind',
+		'dependencies' => array(
+			'jquery.delayedBind',
+			'jquery.client',
+			'jquery.cookie',
+			'jquery.tabIndex',
+		),
+		'remoteBasePath' => $GLOBALS['wgStylePath'],
+		'localBasePath' => $GLOBALS['wgStyleDirectory'],
+	),
+	// FIXME: Clone of skins.vector.js - to be merged into 'skins.vector.js' after duration of beta experiment
+	'skins.vector.js.beta' => array(
+		'styles' => array(
+			// Alternative stylesheet
+			'vector/vectorCollapsibleNavBeta.less',
+		),
+		'scripts' => array(
+			'vector/collapsibleNav.js',
+			'vector/collapsibleTabs.js',
+			'vector/vector.js',
+		),
+		'messages' => array(
+			'vector-collapsiblenav-more',
+		),
+		'position' => 'top',
+		'dependencies' => array(
+			'jquery.delayedBind',
+			'jquery.client',
+			'jquery.cookie',
+			'jquery.tabIndex',
+		),
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 	),
