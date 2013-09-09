@@ -3384,7 +3384,7 @@ Related messages:
 'right-purge' => '{{doc-right|purge}}
 The right to use <code>&action=purge</code> in the URL, without needing to confirm it (by default, anonymous users need to confirm it).',
 'right-autoconfirmed' => "{{doc-right|autoconfirmed}}
-If your account is older than [[mw:Manual:\$wgAutoConfirmAge|wgAutoConfirmAge]] and if you have at least [[mw:Manual:\$wgAutoConfirmCount|\$wgAutoConfirmCount]] edits, you are in the '''group \"autoconfirmed\"''' (note that you can't see this group at [[Special:ListUsers]]).
+If your account is older than [[mw:Manual:\$wgAutoConfirmAge|wgAutoConfirmAge]] and if you have at least [[mw:Manual:\$wgAutoConfirmCount|\$wgAutoConfirmCount]] edits, you are in the '''group \"autoconfirmed\"''' (note that you can't see this group at [[Special:AllUsers]]).
 If you are in that group, you have (by default) the '''right \"autoconfirmed\"''', which exempts you from certain rate limits (those based on your IP address or otherwise intended solely for new users). Other rate limits may still apply; see {{msg-mw|right-noratelimit}}.",
 'right-bot' => '{{doc-right|bot}}',
 'right-nominornewtalk' => '{{doc-right|nominornewtalk}}
@@ -4786,7 +4786,7 @@ Possible alternatives to the word 'content' are 'subject matter' or 'wiki subjec
 'statistics-views-total' => 'Used in [[Special:Statistics]]',
 'statistics-views-total-desc' => 'This message follows the message {{msg-mw|statistics-views-total}}, in [[Special:Statistics]].',
 'statistics-views-peredit' => 'Used in [[Special:Statistics]]',
-'statistics-users' => '{{doc-important|Do not translate "Special:ListUsers"}}
+'statistics-users' => '{{doc-important|Do not translate "Special:AllUsers"}}
 Used in [[Special:Statistics]].',
 'statistics-users-active' => 'Used in [[Special:Statistics]]',
 'statistics-users-active-desc' => "Description shown beneath ''Active users'' in [[Special:Statistics]]. Parameters:
@@ -4936,13 +4936,13 @@ See the following search results:
 'protectedtitles' => '{{doc-special|ProtectedTitles}}',
 'protectedtitlestext' => 'Shown on top of list of titles on [[Special:ProtectedTitles]]. If the list is empty the message [[MediaWiki:Protectedtitlesempty]] appears instead of this. See the [[mw:Project:Protected_titles|help page on MediaWiki]] for more information.',
 'protectedtitlesempty' => 'Used on [[Special:ProtectedTitles]]. This text appears if the list of protected titles is empty. See the [[mw:Project:Protected_titles|help page on MediaWiki]] for more information.',
-'listusers' => '{{doc-special|ListUsers}}',
-'listusers-editsonly' => 'Option in [[Special:ListUsers]].',
-'listusers-creationsort' => 'Option in [[Special:ListUsers]].',
-'listusers-desc' => 'Used as label for the checkbox.',
-'usereditcount' => 'Shown behind every username on [[Special:ListUsers]]. Parameters:
+'allusers' => '{{doc-special|AllUsers}}',
+'allusers-editsonly' => 'Option in [[Special:AllUsers]].',
+'allusers-creationsort' => 'Option in [[Special:AllUsers]].',
+'allusers-desc' => 'Used as label for the checkbox.',
+'usereditcount' => 'Shown behind every username on [[Special:AllUsers]]. Parameters:
 * $1 - number of edits',
-'usercreated' => 'Used in [[Special:ListUsers]]. Parameters:
+'usercreated' => 'Used in [[Special:AllUsers]]. Parameters:
 * $1 - a date
 * $2 - a time
 * $3 - the name of the user, for use in GENDER',
@@ -5071,7 +5071,7 @@ See also:
 'allpagesnext' => "Allegedly used in [[Special:AllPages]], although I haven't seen it.
 
 {{Identical|Next}}",
-'allpagessubmit' => 'Text on submit button in [[Special:AllPages]], [[Special:RecentChanges]], [[Special:RecentChangesLinked]], [[Special:NewPages]], [[Special:Log]], [[Special:ListUsers]], [[Special:ProtectedPages]], [[Special:ProtectedTitles]], [[Special:WhatLinksHere]] and [[Special:Watchlist]].
+'allpagessubmit' => 'Text on submit button in [[Special:AllPages]], [[Special:RecentChanges]], [[Special:RecentChangesLinked]], [[Special:NewPages]], [[Special:Log]], [[Special:AllUsers]], [[Special:ProtectedPages]], [[Special:ProtectedTitles]], [[Special:WhatLinksHere]] and [[Special:Watchlist]].
 
 {{Identical|Go}}',
 'allpagesprefix' => "Used for the label of the input box of [[Special:PrefixIndex]]. On this page you can either write 'Name of namespace:string from which to begin display in alphabetical order' in the top box, or you can choose a namespace in the bottom box and put 'string from which to begin display in alphabetical order' in the top box. The result will be the same.",
@@ -5143,13 +5143,13 @@ See also:
 
 You can apparently use 'URL' instead of 'hostname'.",
 
-# Special:ListUsers
-'listusersfrom' => 'identical with {{msg-mw|activeusers-from}}',
-'listusers-submit' => 'Text displayed in the submission button of the [[Special:ListUsers]] form.
+# Special:AllUsers
+'allusersfrom' => 'identical with {{msg-mw|activeusers-from}}',
+'allusers-submit' => 'Text displayed in the submission button of the [[Special:AllUsers]] form.
 {{Identical|Go}}
 {{Identical|Show}}',
-'listusers-noresult' => 'identical with {{msg-mw|activeusers-noresult}}',
-'listusers-blocked' => 'Used on [[Special:ActiveUsers]] when a user has been blocked. Parameters:
+'allusers-noresult' => 'identical with {{msg-mw|activeusers-noresult}}',
+'allusers-blocked' => 'Used on [[Special:ActiveUsers]] when a user has been blocked. Parameters:
 * $1 - (Optional) a user name for use with GENDER
 {{Identical|Blocked}}',
 
@@ -5163,7 +5163,7 @@ You can apparently use 'URL' instead of 'hostname'.",
 * $3 is the maximum number of days of the RecentChangesList",
 'activeusers-from' => 'Used as label for checkbox in the form on [[Special:ActiveUsers]].
 
-identical with {{msg-mw|listusersfrom}}
+identical with {{msg-mw|allusersfrom}}
 
 See also:
 * {{msg-mw|activeusers|legend for the form}}
@@ -5181,7 +5181,7 @@ See also:
 * {{msg-mw|activeusers|legend for the form}}
 * {{msg-mw|activeusers-from|label for input box}}
 * {{msg-mw|activeusers-hidebots|label for checkbox}}',
-'activeusers-noresult' => 'identical with {{msg-mw|listusers-noresult}}',
+'activeusers-noresult' => 'identical with {{msg-mw|allusers-noresult}}',
 
 # Special:ListGroupRights
 'listgrouprights' => 'The name of the special page [[Special:ListGroupRights]].',
@@ -5195,7 +5195,7 @@ Refers to {{msg-mw|Listgrouprights-helppage}}.',
 'listgrouprights-rights' => "The title of the column in the table, about user rights (like you can ''edit'' this page).
 {{Identical|Right}}",
 'listgrouprights-helppage' => "The link used on [[Special:ListGroupRights]]. Just translate \"Group rights\", and '''leave the \"Help:\" namespace exactly as it is'''.",
-'listgrouprights-members' => 'Used on [[Special:ListGroupRights]] and [[Special:Statistics]] as a link to [[Special:ListUsers|Special:ListUsers/"group"]], a list of members in that group.',
+'listgrouprights-members' => 'Used on [[Special:ListGroupRights]] and [[Special:Statistics]] as a link to [[Special:AllUsers|Special:AllUsers/"group"]], a list of members in that group.',
 'listgrouprights-right-display' => '{{optional}}
 Parameters:
 * $1 - the text from the "right-..." messages, i.e. {{msg-mw|Right-edit}}
