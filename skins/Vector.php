@@ -65,8 +65,13 @@ class SkinVector extends SkinTemplate {
 	 * @param $out OutputPage object
 	 */
 	function setupSkinUserCss( OutputPage $out ) {
+		global $useVectorBetaExperiments;
 		parent::setupSkinUserCss( $out );
-		$out->addModuleStyles( 'skins.vector' );
+		if ( $useVectorBetaExperiments ) {
+			$out->addModuleStyles( 'skins.vector.beta' );
+		} else {
+			$out->addModuleStyles( 'skins.vector' );
+		}
 	}
 
 	/**
