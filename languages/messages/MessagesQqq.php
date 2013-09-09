@@ -502,6 +502,7 @@ This can also appear in the credits page if the credits feature is enabled,for e
 {{Identical|Undelete}}',
 'vector-action-unprotect' => 'Tab at top of page, in vector skin.
 {{Identical|Change protection}}',
+'vector-collapsiblenav-more' => '{{Identical|More languages}}',
 'vector-simplesearch-preference' => 'Preference for enhanced search suggestion in the Vector skin.',
 'vector-view-create' => 'Tab label in the Vector skin. See for example {{canonicalurl:Foo|useskin=vector}}
 {{Identical|Create}}',
