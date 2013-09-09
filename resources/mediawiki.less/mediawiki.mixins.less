@@ -18,3 +18,13 @@
 .background-image(@url) when not (embeddable(@url)) {
 	background-image: url(@url);
 }
+
+.background-image-gradient(@url, @from, @to) when (embeddable(@url)) {
+	background-image: -webkit-linear-gradient(@from, @to), embed(@url);
+	background-image: linear-gradient(@from, @to), embed(@url);
+}
+
+.background-image-gradient(@url, @from, @to) when not (embeddable(@url)) {
+	background-image: -webkit-linear-gradient(@from, @to), url(@url);
+	background-image: linear-gradient(@from, @to), url(@url);
+}
