@@ -43,7 +43,7 @@ class SkinVector extends SkinTemplate {
 	 * @param $out OutputPage object to initialize
 	 */
 	public function initPage( OutputPage $out ) {
-		global $wgLocalStylePath;
+		global $wgLocalStylePath, $useVectorBetaExperiments;
 
 		parent::initPage( $out );
 
@@ -57,7 +57,11 @@ class SkinVector extends SkinTemplate {
 				"/{$this->stylename}/csshover{$min}.htc\")}</style><![endif]-->"
 		);
 
-		$out->addModules( 'skins.vector.js' );
+		if ( $useVectorBetaExperiments ) {
+			$out->addModules( 'skins.vector.js.beta' );
+		} else {
+			$out->addModules( 'skins.vector.js' );
+		}
 	}
 
 	/**
@@ -65,8 +69,13 @@ class SkinVector extends SkinTemplate {
 	 * @param $out OutputPage object
 	 */
 	function setupSkinUserCss( OutputPage $out ) {
+		global $useVectorBetaExperiments;
 		parent::setupSkinUserCss( $out );
-		$out->addModuleStyles( 'skins.vector' );
+		if ( $useVectorBetaExperiments ) {
+			$out->addModuleStyles( 'skins.vector.beta' );
+		} else {
+			$out->addModuleStyles( 'skins.vector' );
+		}
 	}
 
 	/**

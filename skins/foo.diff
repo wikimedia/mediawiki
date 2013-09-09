@@ -1,0 +1,47 @@
+diff --git a/vector/collapsibleNav.css b/vector/collapsibleNav.css
+index b4fdf3a..3dcd640 100644
+--- a/modules/ext.vector.collapsibleNav.css
++++ b/modules/ext.vector.collapsibleNav.css
+@@ -20,17 +20,21 @@
+ 	background-image: -webkit-linear-gradient(transparent, transparent), url(images/open.svg);
+ 	/* @embed */
+ 	background-image: linear-gradient(transparent, transparent), url(images/open.svg);
+-	padding: 4px 0 3px 1.5em;
++	padding: 5px 0 5px 1.75em;
+ 	margin-bottom: 0;
+ }
+ 
++#mw-panel.collapsible-nav .portal .body {
++	margin-left: 1.25em;
++}
++
+ #mw-panel.collapsible-nav .portal h3:hover {
+ 	cursor: pointer;
+ 	text-decoration: none;
+ }
+ 
+ #mw-panel.collapsible-nav .portal h3 a {
+-	color: #4D4D4D;
++	color: #555;
+ 	text-decoration: none;
+ }
+ 
+@@ -73,7 +77,6 @@
+ /* Collapsed */
+ 
+ #mw-panel.collapsible-nav .portal.collapsed h3 {
+-	color: #0645AD;
+ 	/* @embed */
+ 	background: url(images/closed-ltr.png) left center no-repeat;
+ 	/* SVG support using a transparent gradient to guarantee cross-browser
+@@ -85,10 +88,6 @@
+ 	margin-bottom: 0;
+ }
+ 
+-#mw-panel.collapsible-nav .portal.collapsed h3 a {
+-	color: #0645AD;
+-}
+-
+ #mw-panel.collapsible-nav .portal.collapsed h3:hover {
+ 	text-decoration: underline;
+ }
