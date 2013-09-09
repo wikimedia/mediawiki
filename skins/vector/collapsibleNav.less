@@ -12,7 +12,8 @@
 		margin: -11px 9px 10px 11px;
 
 		h3 {
-			color: #4D4D4D;
+			font-size: @menu-main-heading-font-size;
+			color: @collapsible-nav-heading-color;
 			font-weight: normal;
 			background-position: left center;
 			background-repeat: no-repeat;
@@ -20,7 +21,7 @@
 			/* SVG support using a transparent gradient to guarantee cross-browser
 			 * compatibility (browsers able to understand gradient syntax support also SVG) */
 			.background-image-gradient('images/open.svg', 'transparent', 'transparent');
-			padding: 4px 0 3px 1.5em;
+			padding: @collapsible-nav-heading-padding;
 			margin-bottom: 0;
 
 			&:hover {
@@ -29,12 +30,13 @@
 			}
 
 			a {
-				color: #4D4D4D;
+				color: @collapsible-nav-heading-color;
 				text-decoration: none;
 			}
 		}
 
 		.body {
+			margin: @collapsible-nav-body-margin;
 			background-image: none !important;
 			padding-top: 0;
 			display: none;
@@ -73,7 +75,7 @@
 		/* Collapsed */
 		&.collapsed {
 			h3 {
-				color: #0645AD;
+				color: @collapsible-nav-heading-collapsed-color;
 				background-position: left center;
 				background-repeat: no-repeat;
 				.background-image('images/arrow-collapsed-ltr.png');
@@ -87,7 +89,7 @@
 				}
 
 				a {
-					color: #0645AD;
+					color: @collapsible-nav-heading-collapsed-color;
 				}
 			}
 		}

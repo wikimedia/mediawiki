@@ -92,7 +92,20 @@ return array(
 			'common/commonElements.css' => array( 'media' => 'screen' ),
 			'common/commonContent.css' => array( 'media' => 'screen' ),
 			'common/commonInterface.css' => array( 'media' => 'screen' ),
-			'vector/screen.less' => array( 'media' => 'screen' ),
+			'vector/vector.less' => array( 'media' => 'screen' ),
+			'vector/screen-hd.css' => array( 'media' => 'screen and (min-width: 982px)' ),
+		),
+		'remoteBasePath' => $GLOBALS['wgStylePath'],
+		'localBasePath' => $GLOBALS['wgStyleDirectory'],
+	),
+	// FIXME: Clone of skins.vector for use in Beta Experiments that should replace skins.vector eventually
+	'skins.vector.beta' => array(
+		'styles' => array(
+			'common/commonElements.css' => array( 'media' => 'screen' ),
+			'common/commonContent.css' => array( 'media' => 'screen' ),
+			'common/commonInterface.css' => array( 'media' => 'screen' ),
+			// Use a special beta version of screen.css
+			'vector/vectorBeta.less' => array( 'media' => 'screen' ),
 			'vector/screen-hd.css' => array( 'media' => 'screen and (min-width: 982px)' ),
 		),
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
