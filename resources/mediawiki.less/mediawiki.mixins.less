@@ -18,3 +18,20 @@
 .background-image(@url) when not (embeddable(@url)) {
 	background-image: url(@url);
 }
+
+/* Attempts to render an svg as a background falling back to @fallback when unavailable */
+.background-image-svg(@svg, @fallback) when (embeddable(@svg)) {
+	background-image: url(@fallback);
+	/* SVG support using a transparent gradient to guarantee cross-browser
+	 * compatibility (browsers able to understand gradient syntax support also SVG) */
+	background-image: -webkit-linear-gradient(transparent, transparent), embed(@svg);
+	background-image: linear-gradient(transparent, transparent), embed(@svg);
+}
+
+.background-image-svg(@svg, @fallback) when not (embeddable(@svg)) {
+	background-image: url(@fallback);
+	/* SVG support using a transparent gradient to guarantee cross-browser
+	 * compatibility (browsers able to understand gradient syntax support also SVG) */
+	background-image: -webkit-linear-gradient(transparent, transparent), url(@svg);
+	background-image: linear-gradient(transparent, transparent), url(@svg);
+}
