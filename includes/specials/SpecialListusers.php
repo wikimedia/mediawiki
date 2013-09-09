@@ -1,6 +1,6 @@
 <?php
 /**
- * Implements Special:Listusers
+ * Implements Special:AllUsers
  *
  * Copyright © 2004 Brion Vibber, lcrocker, Tim Starling,
  * Domas Mituzas, Antoine Musso, Jens Frank, Zhengzhu,
@@ -209,7 +209,7 @@ class UsersPager extends AlphabeticPager {
 			$created = ' ' . $this->msg( 'parentheses' )->rawParams( $created )->escaped();
 		}
 		$blocked = !is_null( $row->ipb_deleted ) ?
-			' ' . $this->msg( 'listusers-blocked', $userName )->escaped() :
+			' ' . $this->msg( 'allusers-blocked', $userName )->escaped() :
 			'';
 
 		wfRunHooks( 'SpecialListusersFormatRow', array( &$item, $row ) );
@@ -241,11 +241,11 @@ class UsersPager extends AlphabeticPager {
 			'form',
 			array( 'method' => 'get', 'action' => $wgScript, 'id' => 'mw-listusers-form' )
 		) .
-			Xml::fieldset( $this->msg( 'listusers' )->text() ) .
+			Xml::fieldset( $this->msg( 'allusers' )->text() ) .
 			Html::hidden( 'title', $self );
 
 		# Username field
-		$out .= Xml::label( $this->msg( 'listusersfrom' )->text(), 'offset' ) . ' ' .
+		$out .= Xml::label( $this->msg( 'allusersfrom' )->text(), 'offset' ) . ' ' .
 			Html::input(
 				'username',
 				$this->requestedUser,
@@ -266,21 +266,21 @@ class UsersPager extends AlphabeticPager {
 		}
 		$out .= Xml::closeElement( 'select' ) . '<br />';
 		$out .= Xml::checkLabel(
-			$this->msg( 'listusers-editsonly' )->text(),
+			$this->msg( 'allusers-editsonly' )->text(),
 			'editsOnly',
 			'editsOnly',
 			$this->editsOnly
 		);
 		$out .= '&#160;';
 		$out .= Xml::checkLabel(
-			$this->msg( 'listusers-creationsort' )->text(),
+			$this->msg( 'allusers-creationsort' )->text(),
 			'creationSort',
 			'creationSort',
 			$this->creationSort
 		);
 		$out .= '&#160;';
 		$out .= Xml::checkLabel(
-			$this->msg( 'listusers-desc' )->text(),
+			$this->msg( 'allusers-desc' )->text(),
 			'desc',
 			'desc',
 			$this->mDefaultDirection
@@ -366,7 +366,7 @@ class SpecialListUsers extends IncludableSpecialPage {
 	 * Constructor
 	 */
 	public function __construct() {
-		parent::__construct( 'Listusers' );
+		parent::__construct( 'AllUsers' );
 	}
 
 	/**
@@ -393,7 +393,7 @@ class SpecialListUsers extends IncludableSpecialPage {
 			$s .= Html::rawElement( 'ul', array(), $usersbody );
 			$s .= $up->getNavigationBar();
 		} else {
-			$s .= $this->msg( 'listusers-noresult' )->parseAsBlock();
+			$s .= $this->msg( 'allusers-noresult' )->parseAsBlock();
 		}
 
 		$this->getOutput()->addHTML( $s );
@@ -411,7 +411,7 @@ class SpecialListUsers extends IncludableSpecialPage {
  */
 class SpecialListAdmins extends SpecialRedirectToSpecial {
 	function __construct() {
-		parent::__construct( 'Listadmins', 'Listusers', 'sysop' );
+		parent::__construct( 'Listadmins', 'AllUsers', 'sysop' );
 	}
 }
 
@@ -422,6 +422,6 @@ class SpecialListAdmins extends SpecialRedirectToSpecial {
  */
 class SpecialListBots extends SpecialRedirectToSpecial {
 	function __construct() {
-		parent::__construct( 'Listbots', 'Listusers', 'bot' );
+		parent::__construct( 'Listbots', 'AllUsers', 'bot' );
 	}
 }

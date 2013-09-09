@@ -389,6 +389,7 @@ $specialPageAliases = array(
 	'Allmessages'               => array( 'AllMessages' ),
 	'AllMyUploads'              => array( 'AllMyUploads', 'AllMyFiles' ),
 	'Allpages'                  => array( 'AllPages' ),
+	'AllUsers'                  => array( 'AllUsers', 'ListUsers', 'UserList' ),
 	'Ancientpages'              => array( 'AncientPages' ),
 	'Badtitle'                  => array( 'Badtitle' ),
 	'Blankpage'                 => array( 'BlankPage' ),
@@ -422,7 +423,6 @@ $specialPageAliases = array(
 	'Listfiles'                 => array( 'ListFiles', 'FileList', 'ImageList' ),
 	'Listgrouprights'           => array( 'ListGroupRights', 'UserGroupRights' ),
 	'Listredirects'             => array( 'ListRedirects' ),
-	'Listusers'                 => array( 'ListUsers', 'UserList' ),
 	'Lockdb'                    => array( 'LockDB' ),
 	'Log'                       => array( 'Log', 'Logs' ),
 	'Lonelypages'               => array( 'LonelyPages', 'OrphanedPages' ),
@@ -1020,7 +1020,7 @@ The administrator who locked it offered this explanation: $1',
 This is usually caused by following an outdated diff or history link to a page that has been deleted.
 
 If this is not the case, you may have found a bug in the software.
-Please report this to an [[Special:ListUsers/sysop|administrator]], making note of the URL.',
+Please report this to an [[Special:AllUsers/sysop|administrator]], making note of the URL.',
 'missingarticle-rev'            => '(revision#: $1)',
 'missingarticle-diff'           => '(Diff: $1, $2)',
 'readonly_lag'                  => 'The database has been automatically locked while the slave database servers catch up to the master',
@@ -2388,11 +2388,11 @@ $1',
 'upload-proto-error-text'           => 'Remote upload requires URLs beginning with <code>http://</code> or <code>ftp://</code>.',
 'upload-file-error'                 => 'Internal error',
 'upload-file-error-text'            => 'An internal error occurred when attempting to create a temporary file on the server.
-Please contact an [[Special:ListUsers/sysop|administrator]].',
+Please contact an [[Special:AllUsers/sysop|administrator]].',
 'upload-misc-error'                 => 'Unknown upload error',
 'upload-misc-error-text'            => 'An unknown error occurred during the upload.
 Please verify that the URL is valid and accessible and try again.
-If the problem persists, contact an [[Special:ListUsers/sysop|administrator]].',
+If the problem persists, contact an [[Special:AllUsers/sysop|administrator]].',
 'upload-too-many-redirects'         => 'The URL contained too many redirects',
 'upload-unknown-size'               => 'Unknown size',
 'upload-http-error'                 => 'An HTTP error occurred: $1',
@@ -2651,7 +2651,7 @@ Remember to check for other links to the templates before deleting them.',
 'statistics-views-total'       => 'Views total',
 'statistics-views-total-desc'  => 'Views to non-existing pages and special pages are not included',
 'statistics-views-peredit'     => 'Views per edit',
-'statistics-users'             => 'Registered [[Special:ListUsers|users]]',
+'statistics-users'             => 'Registered [[Special:AllUsers|users]]',
 'statistics-users-active'      => 'Active users',
 'statistics-users-active-desc' => 'Users who have performed an action in the last {{PLURAL:$1|day|$1 days}}',
 'statistics-mostpopular'       => 'Most viewed pages',
@@ -2764,11 +2764,11 @@ It now redirects to [[$2]].',
 'protectedtitles'                 => 'Protected titles',
 'protectedtitles-summary'         => '', # do not translate or duplicate this message to other languages
 'protectedtitlesempty'            => 'No titles are currently protected with these parameters.',
-'listusers'                       => 'User list',
-'listusers-summary'               => '', # do not translate or duplicate this message to other languages
-'listusers-editsonly'             => 'Show only users with edits',
-'listusers-creationsort'          => 'Sort by creation date',
-'listusers-desc'                  => 'Sort in descending order',
+'allusers'                       => 'User list',
+'allusers-summary'               => '', # do not translate or duplicate this message to other languages
+'allusers-editsonly'             => 'Show only users with edits',
+'allusers-creationsort'          => 'Sort by creation date',
+'allusers-desc'                  => 'Sort in descending order',
 'usereditcount'                   => '$1 {{PLURAL:$1|edit|edits}}',
 'usercreated'                     => '{{GENDER:$3|Created}} on $1 at $2',
 'newpages'                        => 'New pages',
@@ -2864,11 +2864,11 @@ Supported {{PLURAL:$2|protocol|protocols}}: <code>$1</code> (defaults to http://
 'linksearch-line'    => '$1 is linked from $2',
 'linksearch-error'   => 'Wildcards may appear only at the start of the hostname.',
 
-# Special:ListUsers
-'listusersfrom'      => 'Display users starting at:',
-'listusers-submit'   => 'Show',
-'listusers-noresult' => 'No user found.',
-'listusers-blocked'  => '(blocked)',
+# Special:allusers
+'allusersfrom'      => 'Display users starting at:',
+'allusers-submit'   => 'Show',
+'allusers-noresult' => 'No user found.',
+'allusers-blocked'  => '(blocked)',
 
 # Special:ActiveUsers
 'activeusers'            => 'Active users list',
