@@ -165,7 +165,8 @@ class UserloginTemplate extends BaseTemplate {
 		</div>
 		<?php if ( $this->haveData( 'createOrLoginHref' ) ) { ?>
 			<div id="mw-createaccount-cta">
-				<h3 id="mw-userloginlink"><?php $this->msg( 'userlogin-noaccount' ); ?><a href="<?php $this->text( 'createOrLoginHref' ); ?>" id="mw-createaccount-join" tabindex="7"  class="mw-ui-button mw-ui-constructive"><?php $this->msg( 'userlogin-joinproject' ); ?></a></h3>
+				<h3 id="mw-userloginlink"><?php $this->msg( 'userlogin-noaccount' ); ?></h3>
+				<div><a href="<?php $this->text( 'createOrLoginHref' ); ?>" id="mw-createaccount-join" tabindex="7"  class="mw-ui-button mw-ui-constructive"><?php $this->msg( 'userlogin-joinproject' ); ?></a></div>
 			</div>
 		<?php } ?>
 <?php if ( $this->haveData( 'uselang' ) ) { ?><input type="hidden" name="uselang" value="<?php $this->text( 'uselang' ); ?>" /><?php } ?>
