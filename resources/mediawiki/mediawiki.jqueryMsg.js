@@ -44,7 +44,7 @@
 			//
 			// Only 'text', 'parse', and 'escaped' are supported, and the
 			// actual escaping for 'escaped' is done by other code (generally
-			// through jqueryMsg).
+			// through mediawiki.js).
 			//
 			// However, note that this default only
 			// applies to direct calls to jqueryMsg. The default for mediawiki.js itself
