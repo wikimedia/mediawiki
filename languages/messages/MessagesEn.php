@@ -1375,8 +1375,7 @@ You should do it if you accidentally shared them with someone or if your account
 'showpreview'                      => 'Show preview',
 'showlivepreview'                  => 'Live preview',
 'showdiff'                         => 'Show changes',
-'anoneditwarning'                  => "'''Warning:''' You are not logged in.
-Your IP address will be recorded in this page's edit history.",
+'anoneditwarning'                  => "'''Warning:''' You are not logged in. Your IP address will be publicly visible if you make any edits. If you '''[{{fullurl:Special:UserLogin|returnto={{FULLPAGENAMEE}}}} log in]''' or '''[{{fullurl:Special:UserLogin/signup|returnto={{FULLPAGENAMEE}}}} create an account]''', your edits will be attributed to your username, along with other benefits.",
 'anonpreviewwarning'               => "''You are not logged in. Saving will record your IP address in this page's edit history.''",
 'missingsummary'                   => "'''Reminder:''' You have not provided an edit summary.
 If you click \"{{int:savearticle}}\" again, your edit will be saved without one.",
