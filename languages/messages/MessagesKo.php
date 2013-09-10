@@ -551,7 +551,7 @@ $messages = array(
 'create-this-page' => '이 문서 만들기',
 'delete' => '삭제',
 'deletethispage' => '이 문서 삭제하기',
-'undeletethispage' => '이 문서 되살리기',
+'undeletethispage' => '이 문서를 되살리기',
 'undelete_short' => '{{PLURAL:$1|편집 $1개}} 되살리기',
 'viewdeleted_short' => '{{PLURAL:$1|삭제된 편집 $1개}} 보기',
 'protect' => '보호',
@@ -956,7 +956,7 @@ $2
 이 비밀번호로 로그인한 후 비밀번호를 바꾸십시오. 만약 당신이 아닌 다른 사람이 요청하였거나,
 원래의 비밀번호를 기억해냈다면, 이 메시지를 무시하고
 이전의 비밀번호를 계속 사용할 수 있습니다.',
-'passwordreset-emailtext-user' => '{{SITENAME}} ($4)의 사용자 $1이 비밀번호 재설정dmf 요청하였습니다.
+'passwordreset-emailtext-user' => '{{SITENAME}} ($4)의 사용자 $1이 비밀번호 재설정을 요청하였습니다.
 이 이메일 주소와 연관된 {{PLURAL:$3|계정}}의 목록입니다:
 
 $2
@@ -1017,7 +1017,7 @@ $2
 # Edit pages
 'summary' => '요약:',
 'subject' => '주제/제목:',
-'minoredit' => '사소한 편집',
+'minoredit' => '이 편집은 사소한 편집입니다',
 'watchthis' => '이 문서 주시하기',
 'savearticle' => '저장',
 'preview' => '미리 보기',
@@ -1802,7 +1802,7 @@ HTML 태그를 확인하세요.',
 'recentchanges-noresult' => '지정한 조건과 일치하는 주어진 기간 동안 바뀜이 없습니다.',
 'recentchanges-feed-description' => '위키의 최근 바뀜이 나와 있습니다.',
 'recentchanges-label-newpage' => '새로운 문서',
-'recentchanges-label-minor' => '사소한 편집',
+'recentchanges-label-minor' => '이 편집은 사소한 편집입니다',
 'recentchanges-label-bot' => '봇의 편집',
 'recentchanges-label-unpatrolled' => '아직 검토하지 않은 편집',
 'rcnote' => "다음은 $4 $5 까지의 {{PLURAL:$2|'''$2'''일}}동안 {{PLURAL:$1|바뀐 문서 '''$1'''개입니다}}.",
@@ -1962,8 +1962,8 @@ $2 {{PLURAL:$3|형식만 사용할 수 있습니다}}.',
 파일에 대해 알기 쉬운 이름을 골라주세요.',
 'filename-prefix-blacklist' => ' #<!-- 이 줄은 그대로 두십시오 --> <pre>
 # 문법은 다음과 같습니다:
-#   * "#"에서 그 줄의 끝까지는 코멘트입니다.
-#   * 비어 있지 않은 줄은 디지털 카메라에서 자동적으로 부여하는 파일 접두어입니다.
+#   * "#" 문자에서 줄의 끝까지는 주석입니다
+#   * 비어 있지 않은 줄은 디지털 카메라에서 자동적으로 부여하는 파일 접두어입니다
 CIMG # 카시오
 DSC_ # 니콘
 DSCF # 후지
@@ -3001,7 +3001,7 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 'cant-move-user-page' => '사용자 문서를 옮길 권한이 없습니다(하위 문서는 예외).',
 'cant-move-to-user-page' => '문서를 사용자 문서로 옮길 권한이 없습니다(하위 문서는 예외).',
 'newtitle' => '새 문서 이름',
-'move-watch' => '문서 주시하기',
+'move-watch' => '원본 문서와 대상 문서를 주시하기',
 'movepagebtn' => '이동',
 'pagemovedsub' => '옮기기 성공',
 'movepage-moved' => '\'\'\'"$1" 문서를 "$2" 문서로 옮겼습니다.\'\'\'',
@@ -3319,7 +3319,7 @@ $2',
 'pageinfo-few-watchers' => '{{PLURAL:$1|주시하는 사용자}} $1명 미만',
 'pageinfo-redirects-name' => '이 문서의 넘겨주기 수',
 'pageinfo-redirects-value' => '$1개',
-'pageinfo-subpages-name' => '이 문서의 하위 문서',
+'pageinfo-subpages-name' => '이 문서의 하위 문서 수',
 'pageinfo-subpages-value' => '$1개 ({{PLURAL:$2|넘겨주기}} $2개, {{PLURAL:$3|넘겨주기 아님}} $3개)',
 'pageinfo-firstuser' => '문서 작성자',
 'pageinfo-firsttime' => '문서 작성 날짜',
@@ -3595,7 +3595,7 @@ Variants for Chinese language
 'exif-gpsareainformation' => 'GPS 구역 이름',
 'exif-gpsdatestamp' => 'GPS 날짜',
 'exif-gpsdifferential' => 'GPS 차이 보정',
-'exif-jpegfilecomment' => 'JPEG 파일의 주석',
+'exif-jpegfilecomment' => 'JPEG 파일 주석',
 'exif-keywords' => '핵심 단어',
 'exif-worldregioncreated' => '사진을 촬영한 곳의 대륙/지역',
 'exif-countrycreated' => '사진을 촬영한 곳의 국가',
@@ -4135,8 +4135,8 @@ $5
 #정규 표현식(// 사이에 있는 부분)을 아래에 입력하세요.
 #이 목록은 바깥 그림의 URL과 대조할 것입니다.
 #이 목록과 일치하는 것은 그림이 직접 보여지지만, 그렇지 않은 경우 그림을 가리키는 링크만 보이게 될 것입니다.
-# "#"으로 시작하는 줄은 주석으로 간주됩니다.
-#이 목록은 대소문자를 구별하지 않습니다.
+#"#" 문자에서 줄의 끝까지는 주석입니다
+#이 목록은 대소문자를 구별하지 않습니다
 
 #모든 정규 표현식은 이 줄 위에 넣어 주십시오. 그리고 이 줄은 그대로 두십시오.</pre>',
 

@@ -1900,6 +1900,7 @@ $1",
 
 # Recent changes
 'nchanges' => '{{PLURAL:$1|لا تغييرات|تغيير واحد|تغييران|$1 تغييرات|$1 تغييرا|$1 تغيير}}',
+'enhancedrc-history' => 'تاريخ',
 'recentchanges' => 'أحدث التغييرات',
 'recentchanges-legend' => 'خيارات أحدث التغييرات',
 'recentchanges-summary' => 'تابع آخر التغييرات في الويكي من هذه الصفحة.',
@@ -2317,6 +2318,7 @@ $1',
 # Random page in category
 'randomincategory' => 'صفحة عشوائية في التصنيف',
 'randomincategory-invalidcategory' => '"$1" ليس اسم تصنيف صالح.',
+'randomincategory-selectcategory' => 'عرض صفحة عشوائية من التصنيف:  $1   $2',
 'randomincategory-selectcategory-submit' => 'اذهب',
 
 # Random redirect
@@ -4270,7 +4272,7 @@ $5
 'version-version' => '(نسخة $1)',
 'version-svn-revision' => '(r$2)',
 'version-license' => 'الرخصة',
-'version-poweredby-credits' => "تدار هذه الويكي ب'''[//www.mediawiki.org/ ميدياويكي]''', حقوق النشر © 2001-$1 $2.",
+'version-poweredby-credits' => "تدار هذه الويكي بواسطة '''[//www.mediawiki.org/ ميدياويكي]'''، حقوق النشر © 2001-$1 $2.",
 'version-poweredby-others' => 'آخرون',
 'version-poweredby-translators' => 'مترجمو translatewiki.net',
 'version-credits-summary' => 'نود أن نعرف بالأشخاص التالية أسماؤهم لمساهمتهم في [[Special:Version|ميدياويكي]].',

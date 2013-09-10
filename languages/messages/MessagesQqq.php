@@ -2147,7 +2147,9 @@ Parameters:
 
 See also:
 * {{msg-mw|Parser-unstrip-loop-warning}}',
-'converter-manual-rule-error' => "This message is shown when a manual conversion rule for the language converter has errors. For example it's not using the correct syntax, or not supplying text in all variants.",
+'converter-manual-rule-error' => "Used as error message when a manual conversion rule for the language converter has errors.
+
+For example it's not using the correct syntax, or not supplying text in all variants.",
 
 # "Undo" feature
 'undo-success' => 'Text on special page to confirm edit revert. You arrive on this page by clicking on the "undo" link on a revision history special page.
@@ -2575,13 +2577,19 @@ See also:
 * {{msg-mw|mergehistory-same-destination}}',
 'mergehistory-autocomment' => 'This message is used as an edit summary when a redirect is automatically created after an entire page history is merged into another page history, and the user who did the merge wrote no comment.
 
-*Parameter $1 is the name of the redirect page which is created
-*Parameter $2 is the target of the redirect',
+Parameters:
+* $1 - the name of the redirect page which is created
+* $2 - the target of the redirect
+See also:
+* {{msg-mw|Mergehistory-comment}}',
 'mergehistory-comment' => 'This message is used as an edit summary when a redirect is automatically created after an entire page history is merged into another page history, and the user who did the merge wrote a comment.
 
-*Parameter $1 is the name of the redirect page which is created
-*Parameter $2 is the target of the redirect
-*Parameter $3 is a log comment for the merge',
+Parameters:
+* $1 - the name of the redirect page which is created
+* $2 - the target of the redirect
+* $3 - a log comment for the merge
+See also:
+* {{msg-mw|Mergehistory-autocomment}}',
 'mergehistory-same-destination' => 'Error message shown on [[Special:MergeHistory]] when the user entered the same page title to both source and destination
 
 See also:
@@ -2605,9 +2613,10 @@ A revision row in the merge history page. Parameters:
 This is the name of a log of merge actions done on [[Special:MergeHistory]]. This special page and this log is not enabled by default.',
 'pagemerge-logentry' => "This log message is used in a merge log entry.
 
-*Parameter $1 is the page name of the source of the content to be merged.
-*Parameter $2 is the page into which the content is merged.
-*Parameter $3 is a date?
+Parameters:
+* $1 - the page name of the source of the content to be merged
+* $2 - the page into which the content is merged
+* $3 - a timestamp of limit
 
 The log and its associated special page 'MergeHistory' is not enabled by default.
 
@@ -2644,13 +2653,18 @@ This message has sometimes a tooltip {{msg-mw|tooltip-undo}}
 'diff-empty' => 'This message appears instead of a "diff" when comparing two revisions that are identical.',
 'diff-multi' => "This message appears in the revision history of a page when comparing two versions which aren't consecutive.
 
-*Parameter $1 is the number of revisions
-*Parameter $2 is the number of distinct users who made those revisions",
+Parameters:
+* $1 - the number of revisions
+* $2 - the number of distinct users who made those revisions
+See also:
+* {{msg-mw|Diff-multi-manyusers}}",
 'diff-multi-manyusers' => "This message appears in the revision history of a page when comparing two versions which aren't consecutive, and the intermediate revisions have been edited by more than 100 users.
 
 Parameters:
 * $1 - the number of revisions, will always be 101 or more
-* $2 - the number of users that were found, which was limited at 100",
+* $2 - the number of users that were found, which was limited at 100
+See also:
+* {{msg-mw|Diff-multi}}",
 'difference-missing-revision' => 'Text displayed when the requested revision does not exist using a diff link.
 
 Example: [{{canonicalurl:Project:News|diff=426850&oldid=99999999}} Diff with invalid revision#]
@@ -3141,8 +3155,8 @@ See example: [[mw:Special:Preferences]].',
 
 {{Identical|Edit user groups}}',
 'editinguser' => 'Appears on [[Special:UserRights]]. Parameters:
-* $1 is a username
-* $2 are user tool links. Example: "(Talk | contribs | block | send e-mail)".',
+* $1 - a username
+* $2 - user tool links. e.g. "(Talk | contribs | block | send email)"',
 'userrights-editusergroup' => 'Parameter:
 * $1 - (Optional) a username, can be used for GENDER
 {{Identical|Edit user groups}}',
@@ -3501,7 +3515,7 @@ See also:
 * {{msg-mw|Rcnotefrom}}',
 'rcnotefrom' => 'This message is displayed at [[Special:RecentChanges]] when viewing recentchanges from some specific time.
 
-The corrosponding message is {{msg-mw|Rclistfrom}} (without split of date and time, [[bugzilla:19104|Bug 19104]]).
+The corresponding message is {{msg-mw|Rclistfrom}} (without split of date and time, [[bugzilla:19104|Bug 19104]]).
 
 Parameters:
 * $1 - the maximum number of changes that are displayed
@@ -3510,7 +3524,12 @@ Parameters:
 * $4 - (Optional) a time
 See also:
 * {{msg-mw|Rcnote}}',
-'rclistfrom' => 'Used on [[Special:RecentChanges]]. Parameter $1 is a link to the revision of a specific date and time. The date and the time are the link description (without split of date and time, [[bugzilla:19104|Bug 19104]]). The corrosponding message is {{msg-mw|Rcnotefrom}}.',
+'rclistfrom' => 'Used on [[Special:RecentChanges]].
+
+Parameters:
+* $1 - a link to the revision of a specific date and time. The date and the time are the link description (without split of date and time, [[bugzilla:19104|Bug 19104]]).
+
+The corresponding message is {{msg-mw|Rcnotefrom}}.',
 'rcshowhideminor' => "Option text in [[Special:RecentChanges]]. Parameters:
 * $1 is the 'show/hide' command, with the text taken from either {{msg-mw|show}} or {{msg-mw|hide}}.",
 'rcshowhidebots' => "Option text in [[Special:RecentChanges]]. Parameters:
@@ -4401,12 +4420,18 @@ Followed by length, filesize, and width x height. e.g. "1.5 s (13 KB)".',
 {{Identical|Comment}}',
 'imagelinks' => 'In top header of the image description page, see for example [[:Image:Yes.png]]. Shows a list of pages where this file is used.',
 'linkstoimage' => 'Used on image description, see for example [[:Image:Yes.png#filelinks]].
-* Parameter $1 is the number of pages that link to the file/image.',
+
+Parameters:
+* $1 - the number of pages that link to the file/image
+See also:
+* {{msg-mw|Linkstoimage-more}}',
 'linkstoimage-more' => 'Shown on an image description page when a file is used/linked more than 100 times on other pages.
 
 Parameters:
 * $1 - limit. At the moment hardcoded at 100
-* $2 - filename',
+* $2 - page title of the file
+See also:
+* {{msg-mw|Linkstoimage}}',
 'nolinkstoimage' => 'Displayed on image description pages, see for exampe [[:Image:Tournesol.png#filelinks]].',
 'morelinkstoimage' => '{{doc-important|Do not translate "Special:WhatLinksHere"}}
 Parameters:
@@ -4752,7 +4777,12 @@ The link points to the page history (action=history).
 
 Parameters:
 * $1 - number of revisions',
-'nviews' => 'This message is used on [[Special:PopularPages]] to say how many times each page has been viewed. Parameter $1 is the number of views.',
+'nviews' => 'This message is used on [[Special:PopularPages]] to say how many times each page has been viewed.
+
+Preceded by the page title, like: Page title ($1 views)
+
+Parameters:
+* $1 - the number of views',
 'nimagelinks' => 'Used on [[Special:MostLinkedFiles]] to indicate how often a specific file is used.
 
 Parameters:
@@ -6402,10 +6432,12 @@ See also:
 See also:
 * {{msg-mw|Unblocklogentry}}
 * {{msg-mw|Reblock-logentry}}',
-'reblock-logentry' => 'This is the text of an entry in the Block log (and Recent Changes), after hour (and date, only in the Block log) and sysop name:
-* $1 is the user being reblocked
-* $2 is the expiry time of the block
-* $3 are extra parameters like "account creation blocked" (they are automatically between brackets)',
+'reblock-logentry' => 'This is the text of an entry in the Block log (and Recent Changes), after hour (and date, only in the Block log) and sysop name.
+
+Parameters:
+* $1 - the user being reblocked
+* $2 - the expiry time of the block
+* $3 - extra parameters like "account creation blocked" (they are automatically between brackets)',
 'blocklogtext' => 'Appears on top of [[Special:Log/block]].',
 'unblocklogentry' => 'This is the text of an entry in the Block log (and Recent Changes), after hour (and date, only in the Block log) and sysop name:
 * $1 is the user being unblocked',
@@ -7989,8 +8021,9 @@ See also:
 # Patrol log
 'patrol-log-page' => '{{doc-logpage}}',
 'patrol-log-header' => 'Text that appears above the log entries on the [[Special:log|patrol log]].',
-'log-show-hide-patrol' => 'Parameters:
-* $1 - link text; one of {{msg-mw|show}} or {{msg-mw|hide}}',
+'log-show-hide-patrol' => 'Used in [[Special:Log]]. Parameters:
+* $1 - link text; one of {{msg-mw|Show}} or {{msg-mw|Hide}}
+{{Related|Log-show-hide}}',
 
 # Image deletion
 'deletedrevision' => 'Used as log comment. Parameters:
@@ -8206,14 +8239,46 @@ Parameters:
 
 Parameters:
 * $1 - number of seconds',
-'monday-at' => 'Phrase for indicating that something occurred at a particular time on the most recent Monday. $1 is the time.',
-'tuesday-at' => 'Phrase for indicating that something occurred at a particular time on the most recent Tuesday. $1 is the time.',
-'wednesday-at' => 'Phrase for indicating that something occurred at a particular time on the most recent Wednesday. $1 is the time.',
-'thursday-at' => 'Phrase for indicating that something occurred at a particular time on the most recent Thursday. $1 is the time.',
-'friday-at' => 'Phrase for indicating that something occurred at a particular time on the most recent Friday. $1 is the time.',
-'saturday-at' => 'Phrase for indicating that something occurred at a particular time on the most recent Saturday. $1 is the time.',
-'sunday-at' => 'Phrase for indicating that something occurred at a particular time on the most recent Sunday. $1 is the time.',
-'yesterday-at' => 'Phrase for indicating that something occurred at a particular time yesterday. $1 is the time.',
+'monday-at' => 'Phrase for indicating that something occurred at a particular time on the most recent Monday.
+
+Parameters:
+* $1 - the time (localized)
+{{Related|Day-at}}',
+'tuesday-at' => 'Phrase for indicating that something occurred at a particular time on the most recent Tuesday.
+
+Parameters:
+* $1 - the time (localized)
+{{Related|Day-at}}',
+'wednesday-at' => 'Phrase for indicating that something occurred at a particular time on the most recent Wednesday.
+
+Parameters:
+* $1 - the time (localized)
+{{Related|Day-at}}',
+'thursday-at' => 'Phrase for indicating that something occurred at a particular time on the most recent Thursday.
+
+Parameters:
+* $1 - the time (localized)
+{{Related|Day-at}}',
+'friday-at' => 'Phrase for indicating that something occurred at a particular time on the most recent Friday.
+
+Parameters:
+* $1 - the time (localized)
+{{Related|Day-at}}',
+'saturday-at' => 'Phrase for indicating that something occurred at a particular time on the most recent Saturday.
+
+Parameters:
+* $1 - the time (localized)
+{{Related|Day-at}}',
+'sunday-at' => 'Phrase for indicating that something occurred at a particular time on the most recent Sunday.
+
+Parameters:
+* $1 - the time (localized)
+{{Related|Day-at}}',
+'yesterday-at' => 'Phrase for indicating that something occurred at a particular time yesterday.
+
+Parameters:
+* $1 - the time (localized)
+{{Related|Day-at}}',
 
 # Bad image list
 'bad_image_list' => 'This message only appears to guide administrators to add links with the right format. This will not appear anywhere else in MediaWiki.',
@@ -9296,17 +9361,21 @@ Parameters:
 
 # Scary transclusion
 'scarytranscludedisabled' => 'Shown when scary transclusion is disabled.',
-'scarytranscludefailed' => 'Shown when the HTTP request for the template failed. Parameters:
-* $1 - URL
-See also:
-* {{msg-mw|Scarytranscludefailed-httpstatus}}',
-'scarytranscludefailed-httpstatus' => 'Identical to {{msg-mw|scarytranscludefailed}}, but shows the HTTP error which was received.
+'scarytranscludefailed' => 'Shown when the HTTP request for the template failed.
+
+Identical to {{msg-mw|Scarytranscludefailed-httpstatus}}, but does not show the HTTP error which was received.
+
+This will not be parsed as wikitext and will appear as is.
 
 Parameters:
-* $1 - URL
-* $2 - HTTP status, integer (other than 200)
-See also:
-* {{msg-mw|Scarytranscludefailed}}',
+* $1 - URL which points to interwiki template',
+'scarytranscludefailed-httpstatus' => 'Identical to {{msg-mw|Scarytranscludefailed}}, but shows the HTTP error which was received.
+
+This will not be parsed as wikitext and will appear as is.
+
+Parameters:
+* $1 - URL which points to interwiki template
+* $2 - HTTP status, integer (other than 200)',
 'scarytranscludetoolong' => 'The URL was too long.',
 
 # Delete conflict

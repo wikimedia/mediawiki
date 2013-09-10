@@ -10,6 +10,7 @@
  * @author Erwin
  * @author Erwin85
  * @author Geitost
+ * @author HanV
  * @author Jens Frank
  * @author Kaganer
  * @author Purodha
@@ -534,7 +535,7 @@ $messages = array(
 'viewtalkpage' => 'Bekiek overlegzied',
 'otherlanguages' => 'Aandere talen',
 'redirectedfrom' => '(deurestuurd vanaof "$1")',
-'redirectpagesub' => 'Deurstuurzied',
+'redirectpagesub' => 'Deurverwieszied',
 'lastmodifiedat' => 'Disse zied is t lest ewiezigd op $1 um $2.',
 'viewcount' => 'Disse zied is $1 {{PLURAL:$1|keer|keer}} bekeken.',
 'protectedpage' => 'Beveiligden zied',
@@ -2774,7 +2775,7 @@ t Logboek mit onderdrokten versies steet hieronder as referensie:',
 'ipb-needreblock' => "$1 is al eblokkeerd.
 Wi'j de instellingen wiezigen?",
 'ipb-otherblocks-header' => 'Aandere {{PLURAL:$1|blokkering|blokkeringen}}',
-'unblock-hideuser' => 'Je kunnen disse gebruker niet deblokkeeren, umdat de gebrukersnaam verbörgen is.',
+'unblock-hideuser' => 'Je kunnen disse gebruker niet deblokkeeren, omdat de gebrukersnaam verbörgen is.',
 'ipb_cant_unblock' => 'Foutmelding: blokkerings-ID $1 niet evunnen, t is misschien al edeblokkeerd.',
 'ipb_blocked_as_range' => 'Fout: t IP-adres $1 is niet drek eblokkeerd en de blokkering kan niet op-eheven wörden.
 De blokkering is onderdeel van de reeks $2, waorvan de blokkering wel op-eheven kan wörden.',

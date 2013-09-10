@@ -656,6 +656,10 @@ I [[Special:SpecialPages|listan över specialsidor]] kan du se vilka specialsido
 # General errors
 'error' => 'Fel',
 'databaseerror' => 'Databasfel',
+'databaseerror-text' => 'Ett fel inträffade vid en databasfråga.
+Detta kan tyda på en bugg i mjukvaran.',
+'databaseerror-textcl' => 'Ett fel inträffade vid en databasfråga.',
+'databaseerror-query' => 'Fråga: $1',
 'databaseerror-function' => 'Funktion: $1',
 'databaseerror-error' => 'Fel: $1',
 'laggedslavemode' => 'Varning: Sidan kan sakna de senaste uppdateringarna.',
@@ -2392,7 +2396,7 @@ Den e-postadress du har angivit i [[Special:Preferences|dina användarinställni
 'emailnotarget' => 'Icke-existerande eller ogiltigt användarnamn för mottagaren.',
 'emailtarget' => 'Ange mottagarens användarnamn',
 'emailusername' => 'Användarnamn:',
-'emailusernamesubmit' => 'Skicka',
+'emailusernamesubmit' => 'Fortsätt',
 'email-legend' => 'Skicka ett mail till en annan användare på {{SITENAME}}',
 'emailfrom' => 'Från:',
 'emailto' => 'Till:',

@@ -2752,7 +2752,7 @@ Automaatselt blokeeritud IP-aadresse siin ei näidata.
 Praegu jõus olevad blokeeringud ja redigeerimiskeelud leiad [[Special:BlockList|blokeerimisnimekirjast]].',
 'unblocklogentry' => 'eemaldas kasutaja $1 blokeeringu',
 'block-log-flags-anononly' => 'ainult anonüümsed kasutajad',
-'block-log-flags-nocreate' => 'kontode loomine on blokeeritud',
+'block-log-flags-nocreate' => 'kontode loomine keelatud',
 'block-log-flags-noautoblock' => 'ei blokeerita automaatselt',
 'block-log-flags-noemail' => 'e-kirjade saatmine keelatud',
 'block-log-flags-nousertalk' => 'ei saa muuta enda arutelulehte',

@@ -195,12 +195,12 @@ $messages = array(
 'tog-hidepatrolled' => 'हाल में हुए बदलावों में जाँचे हुए बदलाव छिपाएँ',
 'tog-newpageshidepatrolled' => 'नए पृष्ठों की सूची में से जाँचे हुए पृष्ठों को छिपाएँ',
 'tog-extendwatchlist' => 'केवल हालिया ही नहीं, बल्कि सभी परिवर्तनों को दिखाने के लिए ध्यानसूची को विस्तारित करें',
-'tog-usenewrc' => 'हाल में हुए परिवर्तनों में और ध्यानसूची में परिवर्तनों को पृष्ठ अनुसार समूहों में बाँटें (जावास्क्रिप्ट आवश्यक)',
+'tog-usenewrc' => 'हाल में हुए परिवर्तनों में और ध्यानसूची में परिवर्तनों को पृष्ठ अनुसार समूहों में बाँटें',
 'tog-numberheadings' => 'शीर्षक स्व-क्रमांकित करें',
-'tog-showtoolbar' => 'सम्पादन औज़ारपट्टी दिखाएँ (जावास्क्रिप्ट की आवश्यकता है)',
-'tog-editondblclick' => 'दुगुने क्लिक पर पृष्ठ संपादित करें (जावास्क्रिप्ट की आवश्यकता है)',
+'tog-showtoolbar' => 'सम्पादन औज़ारपट्टी दिखाएँ',
+'tog-editondblclick' => 'दुगुने क्लिक पर पृष्ठ संपादित करें',
 'tog-editsection' => '[संपादित करें] कड़ियों द्वारा अनुभाग संपादन सक्षम करें',
-'tog-editsectiononrightclick' => 'अनुभाग शीर्षक पर दायाँ क्लिक करने पर अनुभाग सम्पादित करें (जावास्क्रिप्ट की आवश्यकता है)',
+'tog-editsectiononrightclick' => 'अनुभाग शीर्षक पर दायाँ क्लिक करने पर अनुभाग सम्पादित करें',
 'tog-showtoc' => 'अनुक्रम दर्शायें (जिन पृष्ठों पर तीन से अधिक अनुभाग हों)',
 'tog-rememberpassword' => 'इस ब्राउज़र पर मेरा कूटशब्द  (अधिकतम $1 {{PLURAL:$1|दिन|दिनों}} तक) याद रखें',
 'tog-watchcreations' => 'मेरे द्वारा निर्मित पृष्ठों और मेरी अपलोड की फ़ाइलों को मेरी ध्यानसूची में जोड़ें',
@@ -218,7 +218,7 @@ $messages = array(
 'tog-shownumberswatching' => 'ध्यान रखने वाले सदस्यों की संख्या दिखाएँ',
 'tog-oldsig' => 'वर्तमान हस्ताक्षर:',
 'tog-fancysig' => 'हस्ताक्षर का विकिपाठ के समान मानें (बिना स्वचालित कड़ी के)',
-'tog-uselivepreview' => 'सजीवन झलक का उपयोग करें (जावास्क्रिप्ट चाहिए) (प्रयोगक्षम)',
+'tog-uselivepreview' => 'सजीवन झलक का उपयोग करें (प्रयोगात्मक)',
 'tog-forceeditsummary' => 'यदि सम्पादन सारांश ना दिया गया हो तो मुझे सूचित करें',
 'tog-watchlisthideown' => 'मेरी ध्यानसूची से मेरे किए परिवर्तन छिपाएँ',
 'tog-watchlisthidebots' => 'मेरी ध्यानसूची से बॉटों द्वारा किए परिवर्तन छिपाएँ',
@@ -231,6 +231,7 @@ $messages = array(
 'tog-showhiddencats' => 'छिपाई हुई श्रेणियाँ दिखाएँ',
 'tog-norollbackdiff' => 'सम्पादन वापस लेने के बाद अन्तर न दिखाएँ',
 'tog-useeditwarning' => 'जब मैं किसी सम्पादन पृष्ठ को बिना सहेजे बदलावों के साथ छोड़ूँ तो मुझे सूचित करें।',
+'tog-prefershttps' => 'लॉगिन करने के पश्चात् सदैव सुरक्षित कनेक्शन का प्रयोग करें',
 
 'underline-always' => 'सदैव',
 'underline-never' => 'कभी नहीं',
@@ -331,6 +332,7 @@ $messages = array(
 'newwindow' => '(नई विंडो में खुलता है)',
 'cancel' => 'रद्द करें',
 'moredotdotdot' => 'और...',
+'morenotlisted' => 'यह पूरी सूची नहीं है।',
 'mypage' => 'पृष्ठ',
 'mytalk' => 'वार्ता',
 'anontalk' => 'इस आइ॰पी के लिये वार्ता',
@@ -354,7 +356,7 @@ $messages = array(
 'vector-action-protect' => 'सुरक्षित करें',
 'vector-action-undelete' => 'हटाना वापस लें',
 'vector-action-unprotect' => 'सुरक्षा बदलें',
-'vector-simplesearch-preference' => 'संवर्धित खोज सुझाव सक्षम करें। (केवल वॅक्टर स्किन हेतु)',
+'vector-simplesearch-preference' => 'सरलीकृत खोजपट्टी सुझाव सक्षम करें। (केवल वॅक्टर त्वचा हेतु)',
 'vector-view-create' => 'बनाएँ',
 'vector-view-edit' => 'सम्पादन',
 'vector-view-history' => 'इतिहास देखें',
@@ -518,6 +520,12 @@ $1',
 # General errors
 'error' => 'त्रुटि',
 'databaseerror' => 'डाटाबेस त्रुटि',
+'databaseerror-text' => 'डाटाबेस अनुरोध त्रुटि हुई है।
+संभवतः सॉफ़्टवेयर में गड़बड़ी है।',
+'databaseerror-textcl' => 'डाटाबेस अनुरोध त्रुटि हुई है।',
+'databaseerror-query' => 'अनुरोध: $1',
+'databaseerror-function' => 'फ़ंक्शन: $1',
+'databaseerror-error' => 'त्रुटि: $1',
 'laggedslavemode' => "'''चेतावनी:''' यह पृष्ठ अद्यतनीत जानकारी-युक्त ना होने की आशंका है।",
 'readonly' => 'डाटाबेस लॉक किया हुआ है',
 'enterlockreason' => 'लॉक करने का कारण दीजिए, साथ ही लॉक खुलने के समय का लगभग आकलन दिजीये।',
@@ -551,6 +559,7 @@ $1',
 'cannotdelete-title' => '"$1" पृष्ठ को हटाया नहीं जा सकता',
 'delete-hook-aborted' => 'हुक द्वारा हटाना बीच में ही छोड़ा गया।
 इसने कोई कारण नहीं बताया।',
+'no-null-revision' => '"$1" पृष्ठ के लिए बिना बदलावों का नया अवतरण बनाने में असफल।',
 'badtitle' => 'खराब शीर्षक',
 'badtitletext' => 'आपके द्वारा अनुरोधित शीर्षक अयोग्य, ख़ाली या गलत जुड़ा हुआ अंतर-भाषीय या अंतर-विकि शीर्षक है।
 इसमें एक या एक से अधिक ऐसे कॅरेक्टर हो सकते हैं जो शीर्षक में प्रयोग नहीं किये जा सकते।',
@@ -599,16 +608,16 @@ $2',
 'virus-unknownscanner' => 'अज्ञात ऐंटीवायरस:',
 
 # Login and logout pages
-'logouttext' => "'''अब आपका सत्रांत हो चुका है।'''
+'logouttext' => "'''अब आप लॉग आउट कर चुके हैं।'''
 
-आप बेनामी हो के {{SITENAME}} का प्रयोग जारी रख सकते हैं, या उसी या किसी और सदस्य के तौर पर <span class='plainlinks'>[$1 फिर से सत्रारंभ]</span> कर सकते हैं।
-ध्यान दें कि जब तक आप अपनी ब्राउज़र कैशे खाली नहीं करते हैं, कुछ पृष्ठ अब भी ऐसे दिख सकते हैं जैसे कि आपका सत्र अभी भी चल रहा हो।",
+ध्यान दें कि जब तक आप अपनी ब्राउज़र कैशे खाली नहीं करते हैं, कुछ पृष्ठ अब भी ऐसे दिख सकते हैं जैसे कि आप अभी भी लॉगिन हैं।",
 'welcomeuser' => 'आपका स्वागत है, $1!',
 'welcomecreation-msg' => 'आपका खाता बना दिया गया है।
 अपनी [[Special:Preferences|{{SITENAME}} वरीयताएँ]] बदलना ना भूलियेगा।',
 'yourname' => 'सदस्यनाम:',
 'userlogin-yourname' => 'सदस्यनाम',
 'userlogin-yourname-ph' => 'अपना सदस्यनाम लिखें',
+'createacct-another-username-ph' => 'सदस्यनाम प्रदान करें',
 'yourpassword' => 'कूटशब्द:',
 'userlogin-yourpassword' => 'कूटशब्द (पासवर्ड)',
 'userlogin-yourpassword-ph' => 'अपना कूटशब्द लिखें',
@@ -642,10 +651,12 @@ $2',
 'helplogin-url' => 'Help:लॉगिंग इन',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|लॉग इन करने में सहायता]]',
 'createacct-join' => 'अपनी जानकारी नीचे लिखें',
+'createacct-another-join' => 'नए खाते की जानकारी नीचे प्रदान करें।',
 'createacct-emailrequired' => 'ई-मेल पता',
 'createacct-emailoptional' => 'ई-मेल पता (वैकल्पिक)',
 'createacct-email-ph' => 'अपना ई-मेल पता लिखें',
-'createaccountmail' => 'एक अस्थायी यादृच्छिक (रैंडम) कूटशब्द चुनें और उसे निम्नलिखित ई-मेल पते पर भेज दें',
+'createacct-another-email-ph' => 'ईमेल पता प्रदान करें',
+'createaccountmail' => 'एक अस्थायी यादृच्छिक (रैंडम) कूटशब्द चुनें और उसे निर्दिष्ट ई-मेल पते पर भेजें',
 'createacct-realname' => 'असली नाम (वैकल्पिक)',
 'createaccountreason' => 'कारण:',
 'createacct-reason' => 'कारण',
@@ -653,6 +664,7 @@ $2',
 'createacct-captcha' => 'सुरक्षा जाँच',
 'createacct-imgcaptcha-ph' => 'उपरोक्त पाठ लिखें',
 'createacct-submit' => 'अपना खाता बनाएँ',
+'createacct-another-submit' => 'एक अन्य खाता खोलें',
 'createacct-benefit-heading' => '{{SITENAME}} आपके जैसे लोगों द्वारा बनायी गई है।',
 'createacct-benefit-body1' => '{{PLURAL:$1|सम्पादन}}',
 'createacct-benefit-body2' => '{{PLURAL:$1|पृष्ठ}}',
@@ -724,10 +736,12 @@ $2',
 यदि यह खाता गलती से खोला गया है, तो आप इस मेसेज को नज़रंदाज़ कर सकते हैं।',
 'usernamehasherror' => 'सदस्यनाम में हैश कैरैक्टर वर्जित हैं।',
 'login-throttled' => 'आपने हाल ही में कई बार लॉग इन करने के प्रयास किये हैं।
-पुनः प्रयास करने से पहले थोड़ी प्रतीक्षा करें।',
+पुनः प्रयास करने से पहले कृपया $1 प्रतीक्षा करें।',
 'login-abort-generic' => 'आपका सत्रारम्भ असफल रहा - निष्फलित',
 'loginlanguagelabel' => 'भाषा: $1',
 'suspicious-userlogout' => 'अपका लॉग आउट करने का अनुरोध अस्वीकृत कर दिया गया है क्योंकि ऐसा प्रतीत होता है कि यह किसी खराब ब्राउज़र या कैश करने वाली प्रॉक्सी द्वारा भेजा गया था।',
+'createacct-another-realname-tip' => 'असली नाम देना आवश्यक नहीं है।
+यदि आप प्रदान करते हैं तो इसका प्रयोग सदस्य के योगदानों के लिये उनको श्रेय (attribution) देने के लिये किया जायेगा।',
 
 # Email sending
 'php-mail-error-unknown' => 'PHP के mail() फ़ंक्शन में अज्ञात त्रुटि हुई।',
@@ -744,8 +758,7 @@ $2',
 'newpassword' => 'नया कूटशब्द:',
 'retypenew' => 'नया कूटशब्द पुन: लिखें:',
 'resetpass_submit' => 'कूटशब्द बनाएँ और लॉग इन करें',
-'changepassword-success' => 'आपका कूटशब्द बदल दिया गया है!
-अब आपको लॉग इन कर रहे हैं...',
+'changepassword-success' => 'आपका कूटशब्द बदल दिया गया है!',
 'resetpass_forbidden' => 'कूटशब्द बदले नहीं जा सकते',
 'resetpass-no-info' => 'इस पृष्ठ का सीधे प्रयोग करने के लिए आपको लॉग इन करना होगा।',
 'resetpass-submit-loggedin' => 'कूटशब्द बदलें',
@@ -797,6 +810,19 @@ $2
 'changeemail-password' => 'आपका {{SITENAME}} पासवर्ड:',
 'changeemail-submit' => 'ई-मेल बदलें',
 'changeemail-cancel' => 'रद्द करें',
+
+# Special:ResetTokens
+'resettokens' => 'टोकन रीसेट करें',
+'resettokens-text' => 'जो टोकन आपके खाते से सम्बद्ध कुछ विशिष्ट व्यक्तिगत जानकारी प्रदान करते हैं, आप उन्हें यहाँ रीसेट कर सकते हैं।
+
+यदि आपने उन्हें गलती से किसी को दिखा दिया है या फिर आपका खाता हैक हो गया है तो आपको इन्हें रीसेट कर देना चाहिए।',
+'resettokens-no-tokens' => 'रीसेट करने के लिए कोई टोकन नहीं हैं।',
+'resettokens-legend' => 'टोकन रीसेट करें',
+'resettokens-tokens' => 'टोकन:',
+'resettokens-token-label' => '$1 (वर्तमान मूल्य: $2)',
+'resettokens-watchlist-token' => '[[Special:Watchlist|आपकी ध्यानसूची के पृष्ठों में बदलावों]] की वेब फ़ीड (Atom/RSS) हेतु टोकन',
+'resettokens-done' => 'टोकन रीसेट कर दिए गए।',
+'resettokens-resetbutton' => 'चुने हुए टोकन रीसेट करें',
 
 # Edit page toolbar
 'bold_sample' => 'मोटा पाठ',
@@ -877,9 +903,7 @@ $2
 'loginreqlink' => 'लॉग इन',
 'loginreqpagetext' => 'अन्य पृष्ठ देखने के लिये आपको $1 करना आवश्यक है।',
 'accmailtitle' => 'कूटशब्द भेज दिया गया है।',
-'accmailtext' => "[[User talk:$1|$1]] के लिए एक यंत्र जनित कूटशब्द $2 को भेज दिया गया है।
-
-सत्रारंभ करने के बाद नए खाते का कूटशब्द '''[[Special:ChangePassword|कूटशब्द बदलें]]'' वाले पृष्ठ पर बदला जा सकता है।",
+'accmailtext' => "[[User talk:$1|$1]] के लिए एक यंत्र जनित कूटशब्द $2 को भेज दिया गया है। लॉगिन करने के बाद इसे '''[[Special:ChangePassword|कूटशब्द बदलें]]'' वाले पृष्ठ पर बदला जा सकता है।",
 'newarticle' => '(नया)',
 'newarticletext' => "आप ऐसे पृष्ठ पर आए हैं जो अभी तक बनाया नहीं गया है।
 पृष्ठ बनाने के लिये नीचे के बौक्स में पाठ लिखें। अधिक जानकारी के लिये [[{{MediaWiki:Helppage}}|सहायता पृष्ठ]] देखें।
@@ -1231,6 +1255,7 @@ $1",
 'compareselectedversions' => 'चुने हुए अवतरणों की तुलना करें',
 'showhideselectedversions' => 'चयनित अवतरण दिखाएँ/छिपाएँ',
 'editundo' => 'पूर्ववत करें',
+'diff-empty' => '(कोई अंतर नहीं)',
 'diff-multi' => '({{PLURAL:$2|एक योगदानकर्ता|$2 योगदानकर्ताओं}} द्वारा {{PLURAL:$1|किया बीच का एक|किए बीच के $1}} अवतरण दर्शाए नहीं हैं।)',
 'diff-multi-manyusers' => '({{PLURAL:$2|एक योगदानकर्ता|$2 योगदानकर्ताओं}} द्वारा {{PLURAL:$1|किया बीच का एक|किए बीच के $1}} अवतरण दर्शाए नहीं हैं।)',
 'difference-missing-revision' => 'इस अंतर {{PLURAL:$2|का एक अवतरण|के $2 अवतरण}} ($1) नहीं {{PLURAL:$2|पाया गया|पाए गए}}।
@@ -1331,7 +1356,7 @@ $1",
 'prefs-rendering' => 'शक्लोसूरत',
 'saveprefs' => 'संजोएँ',
 'resetprefs' => 'ना संजोये गये बदलाव रद्द करें',
-'restoreprefs' => 'वापस मूल जमावों पर आ जाएँ',
+'restoreprefs' => 'वापिस मूल जमावों पर आ जाएँ (सभी भागों में)',
 'prefs-editing' => 'संपादन',
 'rows' => 'कतारें:',
 'columns' => 'कॉलम:',
@@ -1343,6 +1368,9 @@ $1",
 'recentchangesdays-max' => 'अधिकतम $1 {{PLURAL:$1|दिन}}',
 'recentchangescount' => 'मूल रूप से कितने संपादन दिखाएँ:',
 'prefs-help-recentchangescount' => 'इसमें हाल के बदलाव, पृष्ठ इतिहास व लॉग शामिल हैं।',
+'prefs-help-watchlist-token2' => 'यह आपकी ध्यानसूची की वेब फ़ीड की गोपनीय चाबी है।
+यह जिसके भी पास होगी वह आपकी ध्यानसूची पढ़ सकेगा, इसिलए इसे किसी के साथ बांटियेगा नहीं।
+[[Special:ResetTokens|इसे रीसेट करने के लिए यहाँ क्लिक करें]]।',
 'savedprefs' => 'आपकी वरीयताएँ संजोई गई हैं।',
 'timezonelegend' => 'समयमंडल:',
 'localtime' => 'स्थानीय समय:',
@@ -1388,15 +1416,16 @@ $1",
 HTML टैग की जाँच करें।',
 'badsiglength' => 'यह हस्ताक्षर बहुत बड़ा है।
 यह $1 {{PLURAL:$1|कैरैक्टर}} से अधिक का नहीं होना चाहिए।',
-'yourgender' => 'लिंग',
-'gender-unknown' => 'अनिर्दिष्ट',
-'gender-male' => 'पुरुष',
-'gender-female' => 'स्त्री',
-'prefs-help-gender' => 'वैकल्पिक: यह सॉफ़्टवेयर में लिंग के आधार पर संबोधन के लिए प्रयुक्त होगा।
+'yourgender' => 'आप स्वयं को कैसे वर्णित करना चाहेंगे?',
+'gender-unknown' => 'मैं वर्णन नहीं करना चाहूँगा',
+'gender-male' => 'मैं सम्पादन करता हूँ।',
+'gender-female' => 'मैं सम्पादन करती हूँ।',
+'prefs-help-gender' => 'यह जानकारी देना वैकल्पिक है।
+यह सॉफ़्टवेयर में लिंग के आधार पर आपके लिए सही संबोधन हेतु प्रयुक्त होता है।
 यह जानकारी सार्वजनिक होगी।',
 'email' => 'ई-मेल',
 'prefs-help-realname' => 'आपका असली नाम देना आवश्यक नहीं है।
-यदि आप प्रदान करते हैं तो इसका प्रयोग आपके योगदानों के लिये आपको श्रेय (attribution) देने के लिये प्रयोग किया जायेगा।',
+यदि आप प्रदान करते हैं तो इसका प्रयोग आपके योगदानों के लिये आपको श्रेय (attribution) देने के लिये किया जायेगा।',
 'prefs-help-email' => 'ई-मेल पता वैकल्पिक है, पर यदि आप अपना कूटशब्द भूल जाएँ तो इसके ज़रिए रीसेट किया जा सकता है।',
 'prefs-help-email-others' => 'आप अपनी पहचान उजागर किए बिना अन्य सदस्यों को अपने सदस्य या वार्ता पृष्ठ के द्वारा स्वयं से सम्पर्क करने दे सकते हैं।',
 'prefs-help-email-required' => 'ई-मेल पता आवश्यक है।',
@@ -1405,7 +1434,7 @@ HTML टैग की जाँच करें।',
 'prefs-signature' => 'हस्ताक्षर',
 'prefs-dateformat' => 'तिथि प्रारूप',
 'prefs-timeoffset' => 'समयांतर',
-'prefs-advancedediting' => 'सामान्य',
+'prefs-advancedediting' => 'सामान्य विकल्प',
 'prefs-editor' => 'सम्पादक',
 'prefs-preview' => 'पूर्वावलोकन',
 'prefs-advancedrc' => 'उन्नत विकल्प',
@@ -1415,7 +1444,9 @@ HTML टैग की जाँच करें।',
 'prefs-displayrc' => 'प्रदर्शन विकल्प',
 'prefs-displaysearchoptions' => 'प्रदर्शन विकल्प',
 'prefs-displaywatchlist' => 'प्रदर्शन विकल्प',
+'prefs-tokenwatchlist' => 'टोकन',
 'prefs-diffs' => 'अंतर',
+'prefs-help-prefershttps' => 'यह वरीयता आपके अगले लॉगिन पर प्रभावी होगी।',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'ई-मेल पता वैध प्रतीत होता है',
@@ -1439,10 +1470,10 @@ HTML टैग की जाँच करें।',
 'userrights-no-interwiki' => 'आपको अन्य विकियों पर सदस्य अधिकार बदलने की अनुमति नहीं हैं।',
 'userrights-nodatabase' => 'डाटाबेस $1 या तो मौजूद नहीं है या फिर स्थानीय नहीं है।',
 'userrights-nologin' => 'सदस्य अधिकार बदलने के लिये प्रबंधक खाते से [[Special:UserLogin|लॉग इन]] किया हुआ होना आवश्यक है।',
-'userrights-notallowed' => 'आपके खाते को सदस्य अधिकार जोड़ने या हटाने की अनुमति नहीं है।',
+'userrights-notallowed' => 'आपके पास सदस्य अधिकार जोड़ने या हटाने की अनुमति नहीं है।',
 'userrights-changeable-col' => 'समूह जिन्हें आप बदल सकते हैं',
 'userrights-unchangeable-col' => 'समूह जिन्हें आप नहीं बदल सकते हैं',
-'userrights-conflict' => 'सदस्य अधिकार टकराव! कृपया अपने बदलाव दोबारा लागू करें।',
+'userrights-conflict' => 'सदस्य अधिकार बदलावों में अंतर्विरोध! कृपया अपने बदलाव जाँचें और पुनः सुनिश्चित करें।',
 'userrights-removed-self' => 'आपने सफलतापूर्वक अपने अधिकार हटा दिए हैं। अतः आप अब यह पृष्ठ नहीं देख सकते हैं।',
 
 # Groups
@@ -1507,7 +1538,7 @@ HTML टैग की जाँच करें।',
 'right-hideuser' => 'सदस्यनाम ब्लॉक करें और उसे लोगों से छुपाएँ',
 'right-ipblock-exempt' => 'आइ॰पी ब्लॉक्स, ऑटो-ब्लॉक्स और रेंज ब्लॉक्स को नज़रंदाज़ करें',
 'right-proxyunbannable' => 'स्वचालित प्रौक्सी ब्लॉक्स को नज़रंदाज़ करें',
-'right-unblockself' => 'स्वयं को अनब्लॉक करें',
+'right-unblockself' => 'स्वयं को अनावरुद्ध करें',
 'right-protect' => 'सुरक्षा स्तर बदलें और सीढ़ी-सुरक्षित पृष्ठ सम्पादित करें',
 'right-editprotected' => 'उन सुरक्षित पृष्ठ सम्पादित करें जिनके सम्पादन की "{{int:protect-level-sysop}}"',
 'right-editsemiprotected' => 'उन पृष्ठों को सम्पादित करें जिनका सुरक्षा स्तर है "{{int:protect-level-autoconfirmed}}"',
@@ -1590,6 +1621,8 @@ HTML टैग की जाँच करें।',
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|बदलाव}}',
+'enhancedrc-since-last-visit' => '$1 {{PLURAL:$1|अंतिम बार देखने के बाद से}}',
+'enhancedrc-history' => 'इतिहास',
 'recentchanges' => 'हाल में हुए बदलाव',
 'recentchanges-legend' => 'हाल के परिवर्तन संबंधी विकल्प',
 'recentchanges-summary' => 'इस विकि पर हाल में हुए बदलाव इस पन्ने पर देखे जा सकते हैं।',
@@ -1620,7 +1653,7 @@ HTML टैग की जाँच करें।',
 'rc_categories_any' => 'कोई भी',
 'rc-change-size-new' => 'बदलाव के बाद $1 {{PLURAL:$1|बाइट}}',
 'newsectionsummary' => '/* $1 */ नया अनुभाग',
-'rc-enhanced-expand' => 'विस्तृत जानकारी दिखाएँ (इसके लिए जावास्क्रिप्ट चाहिए)',
+'rc-enhanced-expand' => 'विस्तृत जानकारी दिखाएँ',
 'rc-enhanced-hide' => 'विस्तृत जानकारी छिपाएँ',
 'rc-old-title' => 'मूल रूप से "$1" नाम से बनाया गया था',
 
@@ -1891,8 +1924,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization देखें।',
 'upload_source_file' => ' (आपके कम्प्यूटर से फ़ाइल)',
 
 # Special:ListFiles
-'listfiles-summary' => 'इस विशेष पृष्ठ पर सभी अपलोड की गई फ़ाइलों से पता चलता है
-जब सदस्य द्वारा फ़िल्टर किया जाता है, तो केवल वो फ़ाइलें दिखाई जती हैं जिनमें सदस्य ने सबसे नवीनतम संस्करण अपलोड किया हो।',
+'listfiles-summary' => 'यह विशेष पृष्ठ सभी अपलोड की गई फ़ाइलें दर्शाता है।',
 'listfiles_search_for' => 'मीडिया नाम के लिये खोजें:',
 'imgfile' => 'फ़ाइल',
 'listfiles' => 'फ़ाइल सूची',
@@ -1903,6 +1935,10 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization देखें।',
 'listfiles_size' => 'आकार',
 'listfiles_description' => 'विवरण',
 'listfiles_count' => 'अवतरण',
+'listfiles-show-all' => 'इसमें चित्रों के पुराने अवतरण शामिल हैं',
+'listfiles-latestversion' => 'वर्तमान अवतरण',
+'listfiles-latestversion-yes' => 'हाँ',
+'listfiles-latestversion-no' => 'नहीं',
 
 # File description page
 'file-anchor-link' => 'फ़ाइल',
@@ -1935,11 +1971,16 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization देखें।',
 अधिक जानकारी के लिए कृपया [$2 फ़ाइल विवरण पृष्ठ] देखें।',
 'sharedupload-desc-here' => 'यह फ़ाइल $1 से है और अन्य परियोजनाओं द्वारा भी प्रयोग की जा सकती है।
 वहाँ पर इसके [$2 फ़ाइल विवरण पृष्ठ] में मौजूद विवरण निम्नोक्त है।',
+'sharedupload-desc-edit' => 'यह फ़ाइल $1 से है और अन्य परियोजनाओं द्वारा भी प्रयोग की जा सकती है।
+शायद आप [$2 वहाँ पर इसके फ़ाइल विवरण पृष्ठ] को सम्पादित करना चाहते हैं।',
+'sharedupload-desc-create' => 'यह फ़ाइल $1 से है और अन्य परियोजनाओं द्वारा भी प्रयोग की जा सकती है।
+शायद आप [$2 वहाँ पर इसके फ़ाइल विवरण पृष्ठ] को सम्पादित करना चाहते हैं।',
 'filepage-nofile' => 'इस नाम की कोई फ़ाइल मौजूद नहीं है।',
 'filepage-nofile-link' => 'इस नाम की कोई फ़ाइल मौजूद नहीं है, पर आप उसे [$1 अपलोड कर सकते हैं]।',
 'uploadnewversion-linktext' => 'इस फ़ाइल का नया अवतरण अपलोड करें',
 'shared-repo-from' => '$1 से',
-'shared-repo' => 'एक साझा भंडार',
+'shared-repo' => 'एक साझे भंडार',
+'upload-disallowed-here' => 'आप इस फ़ाइल को अधिलेखित नहीं कर सकते।',
 
 # File reversion
 'filerevert' => '$1 पूर्ववत करें',
@@ -1994,6 +2035,13 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization देखें।',
 # Random page
 'randompage' => 'यादृच्छिक पृष्ठ',
 'randompage-nopages' => 'कोई भी पृष्ठ {{PLURAL:$2|इस नामस्थान|इन नामस्थानों}} में नहीं हैं: $1।',
+
+# Random page in category
+'randomincategory' => 'श्रेणी में यादृच्छिक (रैंडम) पृष्ठ',
+'randomincategory-invalidcategory' => '"$1" एक मान्य श्रेणी नाम नहीं है।',
+'randomincategory-nopages' => '[[:Category:$1|$1]] श्रेणी में कोई पृष्ठ नहीं हैं।',
+'randomincategory-selectcategory' => 'श्रेणी से यादृच्छिक (रैंडम) पृष्ठ खोलें: $1 $2',
+'randomincategory-selectcategory-submit' => 'खोलें',
 
 # Random redirect
 'randomredirect' => 'किसी एक पुनर्निर्देशन पर जाएँ',
@@ -2077,6 +2125,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization देखें।',
 'mostrevisions' => 'सर्वाधिक अवतरणित पृष्ठ',
 'prefixindex' => 'उपसर्ग अनुसार पृष्ठ',
 'prefixindex-namespace' => 'उपसर्ग वाले सभी पृष्ठ ($1 नामस्थान)',
+'prefixindex-strip' => 'सूची में उपसर्ग छुपाएँ',
 'shortpages' => 'छोटे पृष्ठ',
 'longpages' => 'लम्बे पृष्ठ',
 'deadendpages' => 'बंद सिरे पृष्ठ',
@@ -2859,6 +2908,7 @@ $1 को बाध्य करने का कारण है: "$2"',
 'thumbnail_error_remote' => '$1 से त्रुटि सन्देश: $2',
 'djvu_page_error' => 'DjVu पृष्ठ रेंजके बाहर हैं',
 'djvu_no_xml' => 'DjVu फ़ाईलके लिये XML नहीं मिल पाया',
+'thumbnail-temp-create' => 'अस्थायी थम्बनेल फ़ाइल बनाने में असफल',
 'thumbnail_invalid_params' => 'गलत अंगूठानख मापदण्ड',
 'thumbnail_dest_directory' => 'लक्ष्य डाइरेक्टरी बना नहीं पा रहें हैं',
 'thumbnail_image-type' => 'इस प्रकार की छवि समर्थित नहीं है',
@@ -2911,6 +2961,9 @@ $1 को बाध्य करने का कारण है: "$2"',
 'import-error-interwiki' => 'पृष्ठ "$1" आयात नहीं किया गया है क्योंकि इसका नाम अंतरविकी कड़ियाँ बनाने के लिए आरक्षित है।',
 'import-error-special' => 'पृष्ठ "$1" आयात नहीं किया गया है क्योंकि यह एक ऐसे विशेष नामस्थान के अंतर्गत आता है जिसमें पृष्ठ नहीं बनाए जा सकते हैं।',
 'import-error-invalid' => 'पृष्ठ "$1" आयात नहीं किया गया है क्योंकि इसका नाम अमान्य है।',
+'import-options-wrong' => 'गलत {{PLURAL:$2|विकल्प}}: <nowiki>$1</nowiki>',
+'import-rootpage-invalid' => 'दिया गया उपसर्ग पृष्ठ शीर्षक अमान्य है।',
+'import-rootpage-nosubpage' => 'दिए गए उपसर्ग पृष्ठ "$1" के नामस्थान में उप-पृष्ठ नहीं बनाए जा सकते।',
 
 # Import log
 'importlogpage' => 'आयात सूची',
@@ -3007,7 +3060,7 @@ $1 को बाध्य करने का कारण है: "$2"',
 
 # Scripts
 'common.js' => '/* यहां लिखी गई जावास्क्रीप्ट सभी सदस्योंके लिये इस्तेमाल में लाई जायेगी। */',
-'monobook.js' => '/* डिप्रिकेटेड;[[MediaWiki:common.js]] का इस्तेमाल करें */',
+'monobook.js' => '/* यहाँ पर दी गई जावास्क्रिप्ट मोनोबुक त्वचा का प्रयोग कर रहे सदस्यों के लिए लोड होगी */',
 
 # Metadata
 'notacceptable' => 'विकि सर्वर आपके क्लायंटको जिस प्रकारसे डाटा चाहिये उस प्रकारसे नहीं दे सकता।',
@@ -3046,13 +3099,13 @@ $1 को बाध्य करने का कारण है: "$2"',
 'pageinfo-length' => 'पृष्ठ आकार (बाइट्स में)',
 'pageinfo-article-id' => 'पृष्ठ आइ॰डी',
 'pageinfo-language' => 'पृष्ठ सामग्री भाषा',
-'pageinfo-robot-policy' => 'सर्च इंजन स्थिति',
-'pageinfo-robot-index' => 'अनुक्रमणीय',
-'pageinfo-robot-noindex' => 'नहीं अनुक्रमणीय',
+'pageinfo-robot-policy' => 'सर्च इंजन बॉट द्वारा अनुक्रमण',
+'pageinfo-robot-index' => 'अनुमतित',
+'pageinfo-robot-noindex' => 'नहीं अनुमतित',
 'pageinfo-views' => 'दर्शाव की संख्या',
 'pageinfo-watchers' => 'पृष्ठ पर नज़र रखने वालों की संख्या',
 'pageinfo-few-watchers' => '$1 से कम ध्यान देने {{PLURAL:$1|वाला|वाले}}',
-'pageinfo-redirects-name' => 'इस पृष्ठ को पुनर्निर्देश',
+'pageinfo-redirects-name' => 'इस पृष्ठ को पुनर्निर्देशों की संख्या',
 'pageinfo-subpages-name' => 'इस पृष्ठ के उप-पृष्ठ',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|पुनर्निर्देश}}; $3 {{PLURAL:$3|ग़ैर-पुनर्निर्देश}})',
 'pageinfo-firstuser' => 'पृष्ठ निर्माता',
@@ -3164,6 +3217,7 @@ $1',
 'seconds-ago' => '$1 {{PLURAL:$1|सॅकेंड}} पहले',
 'monday-at' => 'सोमवार को $1 बजे',
 'tuesday-at' => 'मंगलवार को $1 बजे',
+'wednesday-at' => 'बुधवार को $1 बजे',
 'thursday-at' => 'गुरूवार को $1 बजे',
 'friday-at' => 'शुक्रवार को $1 बजे',
 'saturday-at' => 'शनिवार को $1 बजे',
@@ -3381,7 +3435,7 @@ $1',
 'exif-compression-4' => 'CCITT ग्रुप 4 फ़ैक्स एनकोडिंग',
 
 'exif-copyrighted-true' => 'कॉपीराईट',
-'exif-copyrighted-false' => 'पब्लिक डोमेन',
+'exif-copyrighted-false' => 'कॉपीराइट स्थिति अनिर्दिष्ट',
 
 'exif-unknowndate' => 'अज्ञात तारीख',
 
@@ -3643,12 +3697,26 @@ $3
 $5
 
 ये पुष्टिकरण लिंक $6 को $7 बजे के बाद काम नहीं करेंगे।',
+'confirmemail_body_set' => 'किसी ने, शायद आपने ही, आई॰पी पते $1 से,
+{{SITENAME}} पर "$2" सदस्य खाते का ई-मेल पता यह ईमेल पता निर्दिष्ट किया है।
+
+इस बात की पुष्टि करने के लिए कि यह सदस्य खाता आपका ही है,
+और {{SITENAME}} पर ईमेल सुविधाएँ शुरू करने के लिए निम्न लिंक अपने ब्राउज़र में खोलें:
+
+$3
+
+यदि यह सदस्य खाता आपका नहीं है, ई-मेल पुष्टि रद्द करने के लिए निम्न लिंक पर जाएँ:
+
+$5
+
+यह पुष्टिकरण लिंक $6 को $7 के बाद काम नहीं करेंगे।',
 'confirmemail_invalidated' => 'इ-मेल एड्रेस प्रमाणिकरण रद्द कर दिया गया हैं',
 'invalidateemail' => 'इ-मेल प्रमाणिकरण रद्द करें',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[आंतरविकि ट्रान्स्क्लुडिंग बंद हैं]',
 'scarytranscludefailed' => '[$1 के लिये साँचा मँगा नहीं पाए]',
+'scarytranscludefailed-httpstatus' => '[$1 के लिये साँचा मँगा नहीं पाए, त्रुटि: HTTP $2]',
 'scarytranscludetoolong' => '[यूआरएल बहुत लंबा है]',
 
 # Delete conflict
@@ -3808,7 +3876,7 @@ $5
 'version-hook-subscribedby' => 'ने सदस्यत्व लिया',
 'version-version' => '(अवतरण $1)',
 'version-license' => 'अनुज्ञापत्र',
-'version-poweredby-credits' => "इस विकि संचालित है  '''[//www.mediawiki.org/ MediaWiki]''', कॉपीराइट © 2001 - $1  $2 ।",
+'version-poweredby-credits' => "यह विकि  '''[//www.mediawiki.org/ MediaWiki]''' द्वारा संचालित है, कॉपीराइट © 2001 - $1  $2 ।",
 'version-poweredby-others' => 'अन्य',
 'version-software' => 'इन्स्टॉल की हुई प्रणाली',
 'version-software-product' => 'प्रोडक्ट',

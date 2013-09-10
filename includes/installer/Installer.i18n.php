@@ -11158,8 +11158,8 @@ php.ini를 확인하고 <code>session.save_path</code>가 적절한 디렉토리
 	'config-help-restart' => '입력한 모든 저장된 데이터를 지우고 설치 과정을 다시 시작하겠습니까?',
 	'config-restart' => '예, 다시 시작합니다',
 	'config-welcome' => '=== 사용 환경 검사 ===
-이 환경이 미디어위키 설치에 적합한지 기본 검사를 실행합니다.
-설치 중 도움이 필요하다면 이 검사 결과를 함께 제공해주어야 합니다.', # Fuzzy
+기본 검사는 지금 이 환경이 미디어위키 설치에 적합한지 수행합니다.
+설치를 완료하는 방법에 대한 지원을 찾는다면 이 정보를 포함해야 하는 것을 기억하세요.',
 	'config-copyright' => "=== 저작권 및 이용 약관 ===
 
 $1
@@ -15130,8 +15130,61 @@ $messages['no'] = array(
 );
 
 /** Occitan (occitan)
+ * @author Cedric31
  */
 $messages['oc'] = array(
+	'config-desc' => 'Lo programa d’installacion de MediaWiki',
+	'config-title' => 'Installacion de MediaWiki $1',
+	'config-information' => 'Informacions',
+	'config-localsettings-key' => 'Clau de mesa a jorn :',
+	'config-localsettings-badkey' => "La clau qu'avètz provesida es incorrècta",
+	'config-session-error' => "Error al moment de l'aviada de la sesilha : $1",
+	'config-your-language' => 'Vòstra lenga :',
+	'config-wiki-language' => 'Lenga del wiki :',
+	'config-back' => '← Retorn',
+	'config-continue' => 'Contunhar →',
+	'config-page-language' => 'Lenga',
+	'config-page-welcome' => 'Benvenguda sus MediaWiki !',
+	'config-page-dbconnect' => 'Se connectar a la banca de donadas',
+	'config-page-dbsettings' => 'Paramètres de la banca de donadas',
+	'config-page-name' => 'Nom',
+	'config-page-options' => 'Opcions',
+	'config-page-install' => 'Installar',
+	'config-page-complete' => 'Acabat !',
+	'config-page-restart' => 'Reaviar l’installacion',
+	'config-page-readme' => 'Legissètz-me',
+	'config-page-releasenotes' => 'Nòtas de version',
+	'config-page-copying' => 'Còpia',
+	'config-page-upgradedoc' => 'Mesa a jorn',
+	'config-page-existingwiki' => 'Wiki existent',
+	'config-restart' => 'Òc, lo reaviar',
+	'config-env-php' => 'PHP $1 es installat.',
+	'config-db-host-oracle' => 'Nom TNS de la banca de donadas :',
+	'config-db-wiki-settings' => 'Identificar aqueste wiki',
+	'config-db-name' => 'Nom de la banca de donadas :',
+	'config-db-name-oracle' => 'Esquèma de banca de donadas :',
+	'config-db-install-account' => "Compte d'utilizaire per l'installacion",
+	'config-db-username' => "Nom d'utilizaire de la banca de donadas :",
+	'config-db-password' => 'Senhal de la banca de donadas :',
+	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0 binari',
+	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
+	'config-charset-mysql4' => 'MySQL 4.0 retrocompatible UTF-8',
+	'config-db-port' => 'Pòrt de la banca de donadas :',
+	'config-db-schema' => 'Esquèma per MediaWiki',
+	'config-header-mysql' => 'Paramètres de MySQL',
+	'config-header-postgres' => 'Paramètres de PostgreSQL',
+	'config-header-sqlite' => 'Paramètres de SQLite',
+	'config-header-oracle' => 'Paramètres d’Oracle',
+	'config-mysql-engine' => "Motor d'emmagazinatge :",
+	'config-mysql-innodb' => 'InnoDB',
+	'config-mysql-myisam' => 'MyISAM',
+	'config-mysql-binary' => 'Binari',
+	'config-mysql-utf8' => 'UTF-8',
+	'config-site-name' => 'Nom del wiki :',
+	'config-ns-generic' => 'Projècte',
+	'config-ns-other-default' => 'MonWiki',
+	'config-admin-name' => 'Vòstre nom :',
+	'config-admin-password' => 'Senhal :',
 	'mainpagetext' => "'''MediaWiki es estat installat amb succès.'''",
 	'mainpagedocfooter' => "Consultatz lo [//meta.wikimedia.org/wiki/Ajuda:Contengut Guida de l'utilizaire] per mai d'entresenhas sus l'utilizacion d'aqueste logicial.
 

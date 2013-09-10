@@ -14,6 +14,7 @@
  * @author Crazymadlover
  * @author Daemorris
  * @author DanielTom
+ * @author Dannyps
  * @author Dicionarista
  * @author Francisco Leandro
  * @author Fúlvio
@@ -463,7 +464,7 @@ $messages = array(
 'newwindow' => '(abre numa janela nova)',
 'cancel' => 'Cancelar',
 'moredotdotdot' => 'Mais...',
-'morenotlisted' => 'Mais não listadas...',
+'morenotlisted' => 'Esta lista não está completa.',
 'mypage' => 'Página',
 'mytalk' => 'Discussão',
 'anontalk' => 'Discussão para este IP',
@@ -1480,7 +1481,7 @@ Note, no entanto, que a indexação da {{SITENAME}} neste motor de busca pode es
 'prefs-rendering' => 'Aparência',
 'saveprefs' => 'Salvar',
 'resetprefs' => 'Eliminar as alterações que não foram gravadas',
-'restoreprefs' => 'Repor todas as configurações padrão',
+'restoreprefs' => 'Repor todas as configurações padrão (em todas as secções)',
 'prefs-editing' => 'Edição',
 'rows' => 'Linhas:',
 'columns' => 'Colunas:',
@@ -2030,8 +2031,7 @@ Verifique se o endereço está correto e o site disponível, por favor.',
 'upload_source_file' => ' (um ficheiro no seu computador)',
 
 # Special:ListFiles
-'listfiles-summary' => 'Esta página especial lista todos os ficheiros carregados.
-Quando filtrada por utilizador, só lista os ficheiros cuja última versão foi carregada pelo utilizador.',
+'listfiles-summary' => 'Esta página especial mostra todos os ficheiros carregados.',
 'listfiles_search_for' => 'Pesquisar por nome de imagem:',
 'imgfile' => 'arquivo',
 'listfiles' => 'Ficheiros',

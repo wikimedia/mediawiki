@@ -525,7 +525,7 @@ Ang mga dato dito ay hindi pa masasariwa sa kasalukuyan.',
 'wrong_wfQuery_params' => 'Maling mga parametro sa wfQuery()<br />
 Tungkulin: $1<br />
 Tanong: $2',
-'viewsource' => 'Tingnan ang pinagmulan',
+'viewsource' => 'Tingnan ang batayan',
 'viewsource-title' => 'Tingnan ang pinagmulan para sa $1',
 'actionthrottled' => 'Hinadlangan ang gawain',
 'actionthrottledtext' => "Bilang paraang panglaban sa ''spam'', pinigalan kang magawa ang galaw na ito nang maraming ulit sa loob ng maikling panahon, at lumabis ka na sa limitasyong ito.
@@ -2852,7 +2852,8 @@ Sagipin mo ito sa iyong kompyuter at papaitaas na ikarga ito rito.',
 'tooltip-ca-talk' => 'Usapan tungkol sa nilalaman ng pahinang ito',
 'tooltip-ca-edit' => 'Maaaring baguhin ang pahinang ito. Paki gamit ang buton ng paunang tingin bago itala.',
 'tooltip-ca-addsection' => 'Magsimula ng isang bagong seksiyon',
-'tooltip-ca-viewsource' => 'Nakaprotekta ang pahinang ito. Makikita mo lamang ang pinagmulan (source) nito.',
+'tooltip-ca-viewsource' => 'Nakasanggalang ang pahinang ito.
+Maaari mong tingnan ang batayan nito.',
 'tooltip-ca-history' => 'Nakaraang bersyon ng pahinang ito.',
 'tooltip-ca-protect' => 'Iprotekta ang pahinang ito',
 'tooltip-ca-unprotect' => 'Baguhin ang pruteksiyon ng pahinang ito',

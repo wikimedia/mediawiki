@@ -21,6 +21,7 @@
  * @author Geitost
  * @author GerardM
  * @author Hamaryns
+ * @author HanV
  * @author Hansmuller
  * @author Jens Liebenau
  * @author JurgenNL
@@ -373,12 +374,12 @@ $messages = array(
 'tog-hidepatrolled' => 'Gemarkeerde wijzigingen verbergen in recente wijzigingen',
 'tog-newpageshidepatrolled' => "Gemarkeerde pagina's verbergen in de lijst met nieuwe pagina's",
 'tog-extendwatchlist' => 'Uitgebreide volglijst gebruiken om alle wijzigingen te bekijken, en niet alleen de laatste',
-'tog-usenewrc' => 'Wijzigingen per pagina weergeven in recente wijzigingen en volglijst (vereist JavaScript)',
+'tog-usenewrc' => 'Wijzigingen per pagina weergeven in recente wijzigingen en volglijst',
 'tog-numberheadings' => 'Koppen automatisch nummeren',
-'tog-showtoolbar' => 'Bewerkingswerkbalk weergeven (vereist JavaScript)',
-'tog-editondblclick' => 'Dubbelklikken voor bewerken (vereist JavaScript)',
+'tog-showtoolbar' => 'Bewerkingswerkbalk weergeven',
+'tog-editondblclick' => 'Dubbelklikken voor bewerken',
 'tog-editsection' => 'Bewerken van deelpagina’s mogelijk maken via [bewerken]-koppelingen',
-'tog-editsectiononrightclick' => 'Bewerken van deelpagina’s mogelijk maken met een rechtermuisklik op een tussenkop (vereist JavaScript)',
+'tog-editsectiononrightclick' => 'Bewerken van deelpagina’s mogelijk maken met een rechtermuisklik op een tussenkop',
 'tog-showtoc' => 'Inhoudsopgave weergeven (voor pagina’s met minstens 3 tussenkoppen)',
 'tog-rememberpassword' => 'Aanmeldgegevens onthouden (maximaal $1 {{PLURAL:$1|dag|dagen}})',
 'tog-watchcreations' => "Pagina's die ik aanmaak en bestanden die ik upload automatisch volgen",
@@ -396,7 +397,7 @@ $messages = array(
 'tog-shownumberswatching' => 'Het aantal gebruikers weergeven dat deze pagina volgt',
 'tog-oldsig' => 'Bestaande ondertekening:',
 'tog-fancysig' => 'Als wikitekst behandelen (zonder automatische koppeling)',
-'tog-uselivepreview' => '"live voorvertoning" gebruiken (vereist JavaScript – experimenteel)',
+'tog-uselivepreview' => '"live voorvertoning" gebruiken (experimenteel)',
 'tog-forceeditsummary' => 'Een melding geven bij een lege bewerkingssamenvatting',
 'tog-watchlisthideown' => 'Eigen bewerkingen op mijn volglijst verbergen',
 'tog-watchlisthidebots' => 'Botbewerkingen op mijn volglijst verbergen',
@@ -893,9 +894,9 @@ dan en blijf uw bestaande wachtwoord gebruiken.',
 Meld u aan nadat u het hebt ontvangen.',
 'blocked-mailpassword' => 'Uw IP-adres is geblokkeerd voor het maken van wijzigingen.
 Om misbruik te voorkomen is het niet mogelijk om een nieuw wachtwoord aan te vragen.',
-'eauthentsent' => 'Er is een bevestigingse-mail naar het opgegeven e-mailadres gezonden.
+'eauthentsent' => 'Er is ter bevestiging een e-mail naar het opgegeven e-mailadres gezonden.
 Volg de aanwijzingen in de e-mail om aan te geven dat het uw e-mailadres is.
-Tot die tijd kunnen er geen e-mails naar het e-mailadres gezonden worden.',
+Tot die tijd worden er geen e-mails naar het e-mailadres gezonden.',
 'throttled-mailpassword' => 'In {{PLURAL:$1|het laatste uur|de laatste $1 uur}} is al een wachtwoordherinnering verzonden.
 Om misbruik te voorkomen wordt er slechts één wachtwoordherinnering per {{PLURAL:$1|uur|$1 uur}} verzonden.',
 'mailerror' => 'Fout bij het verzenden van e-mail: $1',
@@ -1106,7 +1107,7 @@ U kunt [[Special:Search/{{PAGENAME}}|naar deze term zoeken]] in andere pagina\'s
 'missing-revision' => 'De versie #$1 van de pagina "{{PAGENAME}} bestaat niet.
 
 Dit wordt meestal veroorzaakt door het volgen van een verouderde koppeling naar een pagina die is verwijderd.
-Meer gegevens zijn mogelijk te vinden in het [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} verwijderlogboek].',
+Meer gegevens zijn mogelijk te vinden in het [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} verwijderingslogboek].',
 'userpage-userdoesnotexist' => 'U bewerkt een gebruikerspagina van een gebruiker die niet bestaat (gebruiker "$1").
 Controleer of u deze pagina wel wilt aanmaken of bewerken.',
 'userpage-userdoesnotexist-view' => 'De gebruiker "$1" is niet geregistreerd.',
@@ -1326,7 +1327,7 @@ Als u wilt kunt u [$1 de verschillen bekijken].",
 Er kunnen details te vinden zijn in het [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} verbergingslogboek].
 Als u wilt kunt u [$1 deze versie bekijken].",
 'rev-deleted-diff-view' => "Een van de versies voor de verschillen die u hebt opgevraagd, is '''verwijderd'''.
-U kunt deze verschillen bekijken. Er kunnen details te vinden zijn in het [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} verwijderlogboek].",
+U kunt deze verschillen bekijken. Er kunnen details te vinden zijn in het [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} verwijderingslogboek].",
 'rev-suppressed-diff-view' => "Een van de bewerkingen voor de verschillen die u hebt opgevraagd, is '''onderdrukt'''.
 U kunt deze verschillen bekijken. Er kunnen details te vinden zijn in het [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} verbergingslogboek].",
 'rev-delundel' => 'weergeven/verbergen',
@@ -1403,7 +1404,7 @@ In de [[Special:BlockList|blokkadelijst]] zijn de huidige blokkades te bekijken.
 # History merging
 'mergehistory' => "Geschiedenis van pagina's samenvoegen",
 'mergehistory-header' => 'Via deze pagina kunt u versies van de geschiedenis van een bronpagina naar een nieuwere pagina samenvoegen.
-Zorg dat deze wijziging de geschiedenisdoorlopendheid van de pagina behoudt.',
+Zorg dat deze wijziging de geschiedenis van de pagina behoudt.',
 'mergehistory-box' => "Versies van twee pagina's samenvoegen:",
 'mergehistory-from' => 'Bronpagina:',
 'mergehistory-into' => 'Bestemmingspagina:',
@@ -1446,7 +1447,7 @@ Let op dat het gebruiken van de navigatiekoppelingen deze kolom opnieuw instelt.
 'difference-missing-revision' => '{{PLURAL:$2|Eén versie|$2 versies}} van deze verschillen ($1) {{PLURAL:$2|is|zijn}} niet aangetroffen.
 
 Dit wordt meestal veroorzaakt door het volgen van een verouderde koppeling verschillen voor een pagina die is verwijderd.
-Meer gegevens zijn mogelijk te vinden in het [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} verwijderlogboek].',
+Meer gegevens zijn mogelijk te vinden in het [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} verwijderingslogboek].',
 
 # Search results
 'searchresults' => 'Zoekresultaten',
@@ -1796,7 +1797,7 @@ Als u deze opgeeft, kan deze naam gebruikt worden om u erkenning te geven voor u
 'action-protect' => 'het beveiligingsniveau van deze pagina aan te passen',
 'action-rollback' => 'bewerkingen van de laatste gebruiker die een pagina heeft bewerkt snel terugdraaien',
 'action-import' => 'deze pagina van een andere wiki te importeren',
-'action-importupload' => 'deze pagina van een bestandsupload te importeren',
+'action-importupload' => 'deze pagina uit een bestandsupload importeren',
 'action-patrol' => 'bewerkingen van anderen als gecontroleerd te markeren',
 'action-autopatrol' => 'eigen bewerkingen als gecontroleerd te laten markeren',
 'action-unwatchedpages' => "de lijst met pagina's die niet op een volglijst staan te bekijken",
@@ -1845,7 +1846,7 @@ Als u deze opgeeft, kan deze naam gebruikt worden om u erkenning te geven voor u
 'rc_categories_any' => 'Elke',
 'rc-change-size-new' => '$1 {{PLURAL:$1|byte|bytes}} na de wijziging',
 'newsectionsummary' => '/* $1 */ nieuwe subkop',
-'rc-enhanced-expand' => 'Details weergeven (JavaScript verplicht)',
+'rc-enhanced-expand' => 'Details weergeven',
 'rc-enhanced-hide' => 'Details verbergen',
 'rc-old-title' => 'oorspronkelijk aangemaakt als "$1"',
 
@@ -1871,7 +1872,7 @@ Pagina's die op [[Special:Watchlist|uw volglijst]] staan worden '''vet''' weerge
 'uploaderror' => 'Uploadfout',
 'upload-recreate-warning' => "'''Waarschuwing: er is een bestand met deze naam verwijderd of hernoemd.'''
 
-Hieronder worden het verwijderlogboek en het hernoemingslogboek voor deze pagina weergegeven:",
+Hieronder worden het verwijderingslogboek en het hernoemingslogboek voor deze pagina weergegeven:",
 'uploadtext' => "Gebruik het onderstaande formulier om bestanden te uploaden.
 Om eerder toegevoegde bestanden te bekijken of te zoeken kunt u naar de [[Special:FileList|bestandslijst]] gaan.
 Uploads en bestanden die na verwijdering opnieuw worden toegevoegd zijn na te zien in het [[Special:Log/upload|uploadlogboek]].
@@ -1951,7 +1952,7 @@ Upload uw bestand onder een andere naam.
 'fileexists-shared-forbidden' => 'Er bestaat al een bestand met deze naam bij de gedeelde bestanden.
 Als u het bestand alsnog wilt uploaden, ga dan terug en kies een andere naam.
 [[File:$1|thumb|center|$1]]',
-'file-exists-duplicate' => 'Dit bestand is indentiek aan {{PLURAL:$1|het volgende bestand|de volgende bestanden}}:',
+'file-exists-duplicate' => 'Dit bestand is identiek aan {{PLURAL:$1|het volgende bestand|de volgende bestanden}}:',
 'file-deleted-duplicate' => 'Een bestand dat identiek is aan dit bestand ([[:$1]]) is voorheen verwijderd.
 Raadpleeg het verwijderingslogboek voordat u verder gaat.',
 'uploadwarning' => 'Uploadwaarschuwing',
@@ -2288,7 +2289,7 @@ Meestal is de laatste pagina het eigenlijke doel, waar de eerste pagina naar zou
 'double-redirect-fixer' => 'Doorverwijzingen opschonen',
 
 'brokenredirects' => 'Defecte doorverwijzingen',
-'brokenredirectstext' => "De onderstaande doorverwijzigingen verwijzen naar niet-bestaande pagina's.",
+'brokenredirectstext' => "De onderstaande doorverwijzingen verwijzen naar niet-bestaande pagina's.",
 'brokenredirects-edit' => 'bewerken',
 'brokenredirects-delete' => 'verwijderen',
 
@@ -2348,7 +2349,7 @@ De pagina's zijn ook niet als sjabloon opgenomen.",
 'protectedpagesempty' => "Er zijn momenteel geen pagina's beveiligd die aan deze voorwaarden voldoen.",
 'protectedtitles' => 'Beveiligde paginanamen',
 'protectedtitlestext' => 'De volgende paginanamen zijn beveiligd en kunnen niet aangemaakt worden',
-'protectedtitlesempty' => 'Er zijn momenteel geen paginannamen beveiligd die aan deze voorwaarden voldoen.',
+'protectedtitlesempty' => 'Er zijn geen paginanamen beveiligd die aan deze voorwaarden voldoen.',
 'listusers' => 'Gebruikerslijst',
 'listusers-editsonly' => 'Alleen gebruikers met bewerkingen weergeven',
 'listusers-creationsort' => 'Sorteren op registratiedatum',
@@ -2727,7 +2728,7 @@ Het beveiligingsniveau wijzigen heeft geen enkel effect.",
 'viewdeletedpage' => "Verwijderde pagina's bekijken",
 'undeletepagetext' => "Hieronder {{PLURAL:$1|staat de pagina die verwijderd is|staan pagina's die zijn verwijderd}} en vanuit het archief teruggeplaatst {{PLURAL:$1|kan|kunnen}} worden.",
 'undelete-fieldset-title' => 'Versies terugplaatsen',
-'undeleteextrahelp' => "Laat alle vakjess leeg en klik op '''''Terugplaatsen''''' om de hele pagina inclusief alle eerdere versies terug te plaatsen.
+'undeleteextrahelp' => "Laat alle vakjes leeg en klik op '''''Terugplaatsen''''' om de hele pagina inclusief alle eerdere versies terug te plaatsen.
 Vink de terug te plaatsen versies aan en klik op '''''Terugplaatsen''''' om bepaalde versies terug te plaatsen.",
 'undeleterevisions' => '$1 {{PLURAL:$1|versie|versies}} gearchiveerd',
 'undeletehistory' => 'Als u een pagina terugplaatst, worden alle versies hersteld.
@@ -2744,7 +2745,7 @@ Mogelijk hebt u een verkeerde koppeling of is de versie hersteld of verwijderd u
 'undeletebtn' => 'Terugplaatsen',
 'undeletelink' => 'bekijken/terugplaatsen',
 'undeleteviewlink' => 'bekijken',
-'undeletereset' => 'Fomulier wissen',
+'undeletereset' => 'Formulier wissen',
 'undeleteinvert' => 'Selectie omkeren',
 'undeletecomment' => 'Reden:',
 'undeletedrevisions' => '$1 {{PLURAL:$1|versie|versies}} teruggeplaatst',
@@ -2900,7 +2901,7 @@ Zie de [[Special:BlockList|blokkadelijst]] voor recente blokkades.',
 'ipblocklist-otherblocks' => 'Andere {{PLURAL:$1|blokkade|blokkades}}',
 'infiniteblock' => 'onbeperkt',
 'expiringblock' => 'vervalt op $1 om $2',
-'anononlyblock' => 'alleen anoniemen',
+'anononlyblock' => 'alleen anonieme',
 'noautoblockblock' => 'autoblokkeren uitgeschakeld',
 'createaccountblock' => 'registreren gebruikers uitgeschakeld',
 'emailblock' => 'e-mail uitgeschakeld',
@@ -2924,14 +2925,14 @@ Het verbergingslogboek wordt hieronder ter referentie weergegeven:',
 Automatische blokkeringen en deblokkeringen komen niet in het logboek.
 Zie ook de [[Special:BlockList|blokkadelijst]] voor de op dit moment actieve blokkades.',
 'unblocklogentry' => 'heeft de blokkade van $1 opgeheven',
-'block-log-flags-anononly' => 'alleen anoniemen',
+'block-log-flags-anononly' => 'alleen anonieme gebruikers',
 'block-log-flags-nocreate' => 'registreren gebruikers geblokkeerd',
 'block-log-flags-noautoblock' => 'autoblokkeren is uitgeschakeld',
 'block-log-flags-noemail' => 'e-mail uitgeschakeld',
 'block-log-flags-nousertalk' => 'kan eigen overlegpagina niet bewerken',
 'block-log-flags-angry-autoblock' => 'uitgebreide automatische blokkade ingeschakeld',
 'block-log-flags-hiddenname' => 'gebruiker verborgen',
-'range_block_disabled' => 'De mogelijkheid voor beheerders om een groep IP-addressen te blokkeren is uitgeschakeld.',
+'range_block_disabled' => 'De mogelijkheid voor beheerders om een groep IP-adressen te blokkeren is uitgeschakeld.',
 'ipb_expiry_invalid' => 'Ongeldige duur.',
 'ipb_expiry_temp' => 'Blokkades voor verborgen gebruikers moeten permanent zijn.',
 'ipb_hide_invalid' => 'Het is niet mogelijk deze gebruiker te verbergen; mogelijk heeft deze te veel bewerkingen gemaakt.',
@@ -2939,7 +2940,7 @@ Zie ook de [[Special:BlockList|blokkadelijst]] voor de op dit moment actieve blo
 'ipb-needreblock' => '$1 is al geblokkeerd.
 Wilt u de instellingen wijzigen?',
 'ipb-otherblocks-header' => 'Andere {{PLURAL:$1|blokkade|blokkades}}',
-'unblock-hideuser' => 'U kunt deze gebruiker niet deblokkeeren, omdat de gebruikersnaam is verborgen.',
+'unblock-hideuser' => 'U kunt deze gebruiker niet deblokkeren, omdat de gebruikersnaam is verborgen.',
 'ipb_cant_unblock' => 'Fout: blokkadenummer $1 is niet gevonden.
 Misschien is de blokkade al opgeheven.',
 'ipb_blocked_as_range' => 'Fout: het IP-adres $1 is niet direct geblokkeerd en de blokkade kan niet opgeheven worden.
@@ -3031,7 +3032,7 @@ In die gevallen moet u de pagina handmatig hernoemen of samenvoegen.",
 'movepage-moved-noredirect' => 'Er is geen doorverwijzing aangemaakt.',
 'articleexists' => 'De pagina bestaat al of de paginanaam is ongeldig.
 Kies een andere paginanaam.',
-'cantmove-titleprotected' => 'U kunt geen pagina naar deze paginanaam hernoemen, omdat deze paginaam beveiligd is tegen het aanmaken ervan.',
+'cantmove-titleprotected' => 'U kunt geen pagina naar deze naam hernoemen, omdat deze naam beveiligd is tegen het aanmaken ervan.',
 'talkexists' => "'''De pagina is hernoemd, maar de overlegpagina kon niet hernoemd worden omdat er al een pagina met de nieuwe naam bestaat.
 Combineer de overlegpagina's handmatig.'''",
 'movedto' => 'hernoemd naar',

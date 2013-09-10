@@ -1717,7 +1717,7 @@ Ako izaberete da ga unesete, ono će biti korišćeno za pripisivanje vašeg rad
 'rc-change-size' => '$1',
 'rc-change-size-new' => '$1 {{PLURAL:$1|bajt|bajta|bajtova}} posle izmene',
 'newsectionsummary' => '/* $1 */ novi odeljak',
-'rc-enhanced-expand' => 'Prikaži detalje (javaskript)',
+'rc-enhanced-expand' => 'Prikaži detalje',
 'rc-enhanced-hide' => 'Sakrij detalje',
 'rc-old-title' => 'prvobitno napravljeno kao „$1“',
 

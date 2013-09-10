@@ -587,13 +587,13 @@ S'a decid ëd butelo, a sarà dovrà për dé a l'utent ël mérit ëd sò trava
 'resetpass_submit' => 'Argistré la ciav e rintré ant ël sistema',
 'changepassword-success' => "Soa ciav a l'é stàita modificà sensa problema!",
 'resetpass_forbidden' => 'Le ciav as peulo pa cambiesse',
-'resetpass-no-info' => 'It deve esse intrà për andé diretament a sta pàgina.',
-'resetpass-submit-loggedin' => 'Cambia ciav',
-'resetpass-submit-cancel' => 'Scancela',
-'resetpass-wrong-oldpass' => "Ciav a temp o corenta nen bon-a.
-Miraco it l'has già cambià la ciav o it l'has ciamà na neuva ciav a temp.",
-'resetpass-temp-password' => 'Ciav a temp:',
-'resetpass-abort-generic' => "Ël cangiament ëd la ciav a l'é stàit anulà da n'estension.",
+'resetpass-no-info' => 'A dev esse rintrà ant ël sustema për acede diretament a sta pàgina.',
+'resetpass-submit-loggedin' => "Cangé 'd ciav",
+'resetpass-submit-cancel' => 'Anulé',
+'resetpass-wrong-oldpass' => "Ciav provisòria o corenta nen bon-a.
+Peul desse ch'a l'ha già cambià la ciav o a l'ha ciamà na neuva ciav provisòria.",
+'resetpass-temp-password' => 'Ciav provisòria:',
+'resetpass-abort-generic' => "La modìfica ëd la ciav a l'é stàita anulà da n'estension.",
 
 # Special:PasswordReset
 'passwordreset' => 'Cambi ëd ciav',
