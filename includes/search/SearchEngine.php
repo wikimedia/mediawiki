@@ -462,13 +462,16 @@ class SearchEngine {
 		$dbr = null;
 
 		$alternatives = self::getSearchTypes();
-		$type = $type !== null ? $type : $wgSearchType;
+
 		if ( $type && in_array( $type, $alternatives ) ) {
 			$class = $type;
+		} elseif ( $wgSearchType !== null ) {
+			$class = $wgSearchType;
 		} else {
 			$dbr = wfGetDB( DB_SLAVE );
 			$class = $dbr->getSearchEngine();
 		}
+
 		$search = new $class( $dbr );
 		$search->setLimitOffset( 0, 0 );
 		return $search;
