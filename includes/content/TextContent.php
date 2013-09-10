@@ -101,14 +101,24 @@ class TextContent extends AbstractContent {
 	}
 
 	/**
-	 * Returns the text represented by this Content object, as a string.
+	 * @see Content::getNativeData
+	 * Returns the message object, with any parameters already substituted.
 	 *
-	 * @return string: the raw text
+	 * @return Message The message object.
 	 */
 	public function getNativeData() {
-		$text = $this->mText;
-		return $text;
+		return $this->getActualContent();
 	}
+
+	/**
+	 * @see Content::getActualContent
+	 *
+	 * @return string
+	 */
+	public function getActualContent() {
+		return $this->mText;
+	}
+
 
 	/**
 	 * Returns the text represented by this Content object, as a string.

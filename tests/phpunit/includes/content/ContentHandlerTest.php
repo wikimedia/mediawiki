@@ -183,6 +183,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 
 		$text = ContentHandler::getContentText( $content );
 		$this->assertEquals( $content->getNativeData(), $text );
+		$this->assertEquals( $content->getActualContent(), $text );
 	}
 
 	/**
@@ -253,7 +254,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 			}
 
 			$this->assertEquals( $expectedModelId, $content->getModel(), 'bad model id' );
-			$this->assertEquals( $expectedNativeData, $content->getNativeData(), 'bads native data' );
+			$this->assertEquals( $expectedNativeData, $content->getNativeData(), 'bad native data' );
 		} catch ( MWException $ex ) {
 			if ( !$shouldFail ) {
 				$this->fail( "ContentHandler::makeContent failed unexpectedly: " . $ex->getMessage() );
@@ -369,13 +370,20 @@ class DummyContentForTesting extends AbstractContent {
 	}
 
 	/**
-	 * Returns native represenation of the data. Interpretation depends on the data model used,
-	 * as given by getDataModel().
+	 * @see Content::getActualContent
 	 *
-	 * @return mixed the native representation of the content. Could be a string, a nested array
-	 *  structure, an object, a binary blob... anything, really.
+	 * @return mixed The data given to the constructor.
 	 */
 	public function getNativeData() {
+		return $this->getActualContent();
+	}
+
+	/**
+	 * @see Content::getActualContent
+	 *
+	 * @return mixed The data given to the constructor.
+	 */
+	public function getActualContent() {
 		return $this->data;
 	}
 
