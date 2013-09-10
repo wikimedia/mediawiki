@@ -369,13 +369,20 @@ class DummyContentForTesting extends AbstractContent {
 	}
 
 	/**
-	 * Returns native represenation of the data. Interpretation depends on the data model used,
-	 * as given by getDataModel().
+	 * @see Content::getActualContent
 	 *
-	 * @return mixed the native representation of the content. Could be a string, a nested array
-	 *  structure, an object, a binary blob... anything, really.
+	 * @return mixed The data given to the constructor.
 	 */
 	public function getNativeData() {
+		return $this->data;
+	}
+
+	/**
+	 * @see Content::getActualContent
+	 *
+	 * @return mixed The data given to the constructor.
+	 */
+	public function getActualContent() {
 		return $this->data;
 	}
 

@@ -74,6 +74,10 @@ interface Content {
 	 * Returns native representation of the data. Interpretation depends on
 	 * the data model used, as given by getDataModel().
 	 *
+	 * TODO / FIXME: Clarify function documentation. Not all implementations of this are returning
+	 *  the "native representation of the content". The original behavior described here is now
+	 *  subject of "getActualContent" introduced in 1.22.
+	 *
 	 * @since 1.21
 	 *
 	 * @return mixed The native representation of the content. Could be a
@@ -83,6 +87,20 @@ interface Content {
 	 * @note Caller must be aware of content model!
 	 */
 	public function getNativeData();
+
+	/**
+	 * Returns an object representing the content of this content container. Type of the returned
+	 * object depends on the data model used, as given by getDataModel().
+	 *
+	 * @since 1.22
+	 *
+	 * @return mixed The native representation of the content. Could be a
+	 *    string, a nested array structure, an object, a binary blob...
+	 *    anything, really.
+	 *
+	 * @note Caller must be aware of content model!
+	 */
+	public function getActualContent();
 
 	/**
 	 * Returns the content's nominal size in bogo-bytes.
