@@ -291,6 +291,8 @@ production.
 * (bug 51742) Add data-sort-value for better sorting of hitcounts Special:Tags
 * (bug 26811) On DB error pages, server hostnames are now hidden when both
   $wgShowHostnames and $wgShowSQLErrors are false.
+* (bug 53982) Fall back to $wgSearchType if not null in Special:Search when providing
+  the srbackend parameter, before falling back to the Database engine search.
 
 === API changes in 1.22 ===
 * (bug 25553) The JSON output formatter now leaves forward slashes unescaped
