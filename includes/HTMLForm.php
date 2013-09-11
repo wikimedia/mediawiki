@@ -700,7 +700,7 @@ class HTMLForm extends ContextSource {
 	 * @return String HTML.
 	 */
 	function getButtons() {
-		$html = '';
+		$html = '<span class="mw-htmlform-submit-buttons">';
 
 		if ( $this->mShowSubmit ) {
 			$attribs = array();
@@ -749,6 +749,8 @@ class HTMLForm extends ContextSource {
 
 			$html .= Html::element( 'input', $attrs );
 		}
+
+		$html .= '</span>';
 
 		return $html;
 	}
