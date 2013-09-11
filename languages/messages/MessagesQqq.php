@@ -1030,9 +1030,13 @@ See example [{{canonicalurl:Main_page|action=x}} action=x].',
 'nosuchactiontext' => 'This error is shown when trying to open a page with invalid "action" parameter, e.g. [{{canonicalurl:Main_page|action=x}} action=x].
 * The title of this error is the message {{msg-mw|nosuchaction}}.',
 'nosuchspecialpage' => 'The title of the error you get when trying to open a special page which does not exist. The text of the warning is the message {{msg-mw|nospecialpagetext}}. Example: [[Special:Nosuchpage]]',
-'nospecialpagetext' => '{{doc-important|Link <code><nowiki>[[Special:SpecialPages|{{int:specialpages}}]]</nowiki></code> should remain untranslated.}}
+'nospecialpagetext' => '{{doc-important|Do not translate <code><nowiki>[[Special:SpecialPages|{{int:specialpages}}]]</nowiki></code>.}}
 This error is shown when trying to open a special page which does not exist, e.g. [[Special:Nosuchpage]].
-* The title of this error is the message {{msg-mw|nosuchspecialpage}}.',
+
+The title of this error is the message {{msg-mw|Nosuchspecialpage}}.
+
+See also:
+* {{msg-mw|Specialpages}}',
 
 # General errors
 'error' => '{{Identical|Error}}',
@@ -1422,7 +1426,8 @@ Parameters:
 'nocookiesforlogin' => "{{optional}}
 This message is displayed when someone tried to login and the CSRF failed (most likely, the browser doesn't accept cookies).
 
-Defaults to '''nocookieslogin''' ({{int:nocookieslogin}})",
+Default:
+* {{msg-mw|Nocookieslogin}}",
 'noname' => 'Error message.',
 'loginsuccesstitle' => 'The title of the page saying that you are logged in. The content of the page is the message {{msg-mw|Loginsuccess}}.
 {{Identical|Login successful}}',
@@ -1764,38 +1769,55 @@ See also:
 * {{msg-mw|Anonpreviewwarning}}',
 'anonpreviewwarning' => 'See also:
 * {{msg-mw|Anoneditwarning}}',
-'missingsummary' => 'The text "edit summary" is in {{msg-mw|summary}}.
-The text "Save" is in {{msg-mw|savearticle}}.',
+'missingsummary' => 'The text "edit summary" is in {{msg-mw|Summary}}.
+
+See also:
+* {{msg-mw|Missingcommentheader}}
+* {{msg-mw|Savearticle}}',
 'missingcommenttext' => 'This message is shown, when the textbox by a new-section is empty.',
-'missingcommentheader' => 'Edit summary that is shown if you enable "Prompt me when entering a blank summary" and add a new section without headline to a talk page.',
+'missingcommentheader' => 'Edit summary that is shown if you enable "Prompt me when entering a blank summary" and add a new section without headline to a talk page.
+
+See also:
+* {{msg-mw|Missingsummary}}
+* {{msg-mw|Savearticle}}',
 'summary-preview' => 'Preview of the edit summary, shown under the edit summary itself.
 Should match: {{msg-mw|summary}}.',
 'subject-preview' => 'Should match {{msg-mw|subject}}',
 'blockedtitle' => 'Used as title displayed for blocked users. The corresponding message body is one of the following messages:
 * {{msg-mw|Blockedtext|notext=1}}
 * {{msg-mw|Autoblockedtext|notext=1}}',
-'blockedtext' => "Text displayed to blocked users. Parameters:
+'blockedtext' => 'Text displayed to blocked users.
+
+"email this user" should be consistent with {{msg-mw|Emailuser}}.
+
+Parameters:
 * $1 - the blocking sysop (with a link to his/her userpage)
 * $2 - the reason for the block
 * $3 - the current IP address of the blocked user
-* $4 - (Unused) the blocking sysop's username (plain text, without the link)
+* $4 - (Unused) the blocking sysop\'s username (plain text, without the link)
 * $5 - the unique numeric identifier of the applied autoblock
 * $6 - the expiry of the block
 * $7 - the intended target of the block (what the blocking user specified in the blocking form)
 * $8 - the timestamp when the block started
 See also:
-* {{msg-mw|Autoblockedtext}}",
-'autoblockedtext' => "Text displayed to automatically blocked users. Parameters:
+* {{msg-mw|Grouppage-sysop}}
+* {{msg-mw|Autoblockedtext}}',
+'autoblockedtext' => 'Text displayed to automatically blocked users.
+
+"email this user" should be consistent with {{msg-mw|Emailuser}}.
+
+Parameters:
 * $1 - the blocking sysop (with a link to his/her userpage)
 * $2 - the reason for the block (in case of autoblocks: {{msg-mw|autoblocker}})
 * $3 - the current IP address of the blocked user
-* $4 - (Unused) the blocking sysop's username (plain text, without the link). Use it for GENDER.
+* $4 - (Unused) the blocking sysop\'s username (plain text, without the link). Use it for GENDER.
 * $5 - the unique numeric identifier of the applied autoblock
 * $6 - the expiry of the block
 * $7 - the intended target of the block (what the blocking user specified in the blocking form)
 * $8 - the timestamp when the block started
 See also:
-* {{msg-mw|Blockedtext}}",
+* {{msg-mw|Grouppage-sysop}}
+* {{msg-mw|Blockedtext}}',
 'blockednoreason' => 'Substituted with <code>$2</code> in the following message if the reason is not given:
 * {{msg-mw|cantcreateaccount-text}}.
 {{Identical|No reason given}}',
@@ -1836,11 +1858,13 @@ Parameters:
 * $1 - username
 * $2 - email address',
 'newarticle' => '{{Identical|New}}',
-'newarticletext' => "Text displayed above the edit box in editor when trying to create a new page.<br />'''Very important:''' leave <tt><nowiki>{{MediaWiki:Helppage}}</nowiki></tt> exactly as it is!",
+'newarticletext' => '{{doc-important|Do not translate <code><nowiki>{{MediaWiki:Helppage}}</nowiki></code>.}}
+Text displayed above the edit box in editor when trying to create a new page.',
 'anontalkpagetext' => 'Displayed at the bottom of talk pages of anonymous users.',
 'noarticletext' => 'This is the message that you get if you search for a term that has not yet got any entries on the wiki.
 
-See also {{msg-mw|Noarticletext-nopermission}}.',
+See also:
+* {{msg-mw|Noarticletext-nopermission}}',
 'noarticletext-nopermission' => 'See also {{msg-mw|Noarticletext}}.',
 'missing-revision' => 'Text displayed when the requested revision does not exist using a permalink.
 
@@ -1858,11 +1882,25 @@ Parameters:
 Parameters:
 * $1 - (Optional) the name of the blocked user. Can be used for GENDER.',
 'clearyourcache' => 'Text at the top of .js/.css pages',
-'usercssyoucanpreview' => "Text displayed on every css page. The 'Show preview' part should be the same as {{msg-mw|showpreview}} (or you can use <nowiki>{{int:showpreview}}</nowiki>).",
-'userjsyoucanpreview' => 'Text displayed on every js page.',
-'usercsspreview' => 'Text displayed on preview of every user .css subpage',
+'usercssyoucanpreview' => 'Text displayed on every CSS page.
+
+See also:
+* {{msg-mw|Userjsyoucanpreview}}
+* {{msg-mw|Showpreview}}',
+'userjsyoucanpreview' => 'Text displayed on every JavaScript page.
+
+See also:
+* {{msg-mw|Usercssyoucanpreview}}
+* {{msg-mw|Showpreview}}',
+'usercsspreview' => 'Text displayed on preview of every user .css subpage.
+
+See also:
+* {{msg-mw|Sitecsspreview}}',
 'userjspreview' => 'Text displayed on preview of every user .js subpage',
-'sitecsspreview' => 'Text displayed on preview of .css pages in MediaWiki namespace',
+'sitecsspreview' => 'Text displayed on preview of .css pages in MediaWiki namespace.
+
+See also:
+* {{msg-mw|Usercsspreview}}',
 'sitejspreview' => 'Text displayed on preview of .js pages in MediaWiki namespace',
 'userinvalidcssjstitle' => 'Parameters:
 * $1 - skin name',
@@ -1907,7 +1945,10 @@ See also:
 * {{msg-mw|Editingsection}}',
 'editconflict' => 'Used as title of error message. Parameters:
 * $1 - page title',
-'explainconflict' => 'Appears at the top of a page when there is an edit conflict.',
+'explainconflict' => 'Appears at the top of a page when there is an edit conflict.
+
+See also:
+* {{msg-mw|Savearticle}}',
 'yourtext' => 'Used in Diff Preview page. The diff is between {{msg-mw|currentrev}} and {{msg-mw|yourtext}}.
 
 Also used in Edit Conflict page; the diff between {{msg-mw|yourtext}} and {{msg-mw|storedversion}}.',
@@ -2035,9 +2076,15 @@ See also:
 * {{msg-mw|edit-no-change}}',
 'defaultmessagetext' => 'Caption above the default message text shown on the left-hand side of a diff displayed after clicking "Show changes" when creating a new page in the MediaWiki: namespace',
 'content-failed-to-parse' => "Error message indicating that the page's content can not be saved because it is syntactically invalid. This may occurr for content types using serialization or a strict markup syntax.
-*$1 – content model ({{msg-mw|Content-model-wikitext}}, {{msg-mw|Content-model-javascript}}, {{msg-mw|Content-model-css}} or {{msg-mw|Content-model-text}})
-*$2 – content format as MIME type (e.g. <tt>text/css</tt>)
-*$3 – specific error message",
+
+Parameters:
+* $1 – content model, any one of the following messages:
+** {{msg-mw|Content-model-wikitext}}
+** {{msg-mw|Content-model-javascript}}
+** {{msg-mw|Content-model-css}}
+** {{msg-mw|Content-model-text}}
+* $2 – content format as MIME type (e.g. <code>text/css</code>)
+* $3 – specific error message",
 'invalid-content-data' => "Error message indicating that the page's content can not be saved because it is invalid. This may occurr for content types with internal consistency constraints.",
 'content-not-allowed-here' => 'Error message indicating that the desired content model is not supported in given localtion.
 * $1 - the human readable name of the content model: {{msg-mw|Content-model-wikitext}}, {{msg-mw|Content-model-javascript}}, {{msg-mw|Content-model-css}} or {{msg-mw|Content-model-text}}
@@ -2227,7 +2274,12 @@ Parameters:
 'page_last' => "This is part of the navigation message on the top and bottom of Special pages which are lists of things in alphabetical order, e.g. the '[[Special:Categories|Categories]]' special page. It is followed by the message {{msg-mw|Viewprevnext}}.
 
 {{Identical|Last}}",
-'histlegend' => 'Text in history page. Refers to {{msg-mw|cur}}, {{msg-mw|last}}, and {{msg-mw|minoreditletter}}.',
+'histlegend' => 'Text in history page.
+
+See also:
+* {{msg-mw|Cur}}
+* {{msg-mw|Last}}
+* {{msg-mw|Minoreditletter}}',
 'history-fieldset-title' => 'Fieldset label in the edit history pages.',
 'history-show-deleted' => 'CheckBox to show only per [[mw:Manual:RevisionDelete|RevisonDelete]] deleted versions.
 
@@ -2330,11 +2382,13 @@ See also:
 'revdelete-text' => '{{RevisionDelete}}
 This is the introduction explaining the feature.',
 'revdelete-confirm' => 'This message is a part of the [[mw:RevisionDelete|RevisionDelete]] feature.
-[[File:RevDelete Special-RevisionDelete (r60428).png|frame|center|Screenshot of the interface]]
+
+Refers to {{msg-mw|Policy-url}}.
 
 See also:
 * {{msg-mw|Revdelete-suppress}}
-* {{msg-mw|Revdelete-suppress-text}}',
+* {{msg-mw|Revdelete-suppress-text}}
+[[File:RevDelete Special-RevisionDelete (r60428).png|frame|center|Screenshot of the interface]]',
 'revdelete-suppress-text' => 'Used as usage text in [[Special:RevisionDelete]].
 
 See also:
@@ -2680,7 +2734,13 @@ Example: [{{canonicalurl:Project:News|diff=426850&oldid=99999999}} Diff with inv
 
 Parameters:
 * $1 - the search term',
-'searchsubtitle' => 'Parameters:
+'searchresulttext' => '{{doc-important|Do not translate <code><nowiki>[[{{MediaWiki:Helppage}}|{{int:help}}]]</nowiki></code>.}}
+See also:
+* {{msg-mw|Helppage}}
+* {{msg-mw|Help}}',
+'searchsubtitle' => 'Refers to {{msg-mw|Pipe-separator}}.
+
+Parameters:
 * $1 - search term
 See also:
 * {{msg-mw|Searchsubtitleinvalid}}',
@@ -2726,7 +2786,9 @@ It is also used by [[Special:WhatLinksHere|Whatlinkshere]] pages, where ($1) and
 ($3) is made up in all cases of the various proposed numbers of results per page, e.g. "(20 | 50 | 100 | 250 | 500)".
 For Special pages, the navigation bar is prefixed by "({{msg-mw|Page first}} | {{msg-mw|Page last}})" (alphabetical order) or "({{msg-mw|Histfirst}} | {{msg-mw|Histlast}})" (date order).
 
-Viewprevnext is sometimes preceded by the {{msg-mw|Showingresults}} or {{msg-mw|Showingresultsnum}} message (for Special pages) or by the {{msg-mw|Linkshere}} message (for Whatlinkshere pages).',
+Viewprevnext is sometimes preceded by the {{msg-mw|Showingresults}} or {{msg-mw|Showingresultsnum}} message (for Special pages) or by the {{msg-mw|Linkshere}} message (for Whatlinkshere pages).
+
+Refers to {{msg-mw|Pipe-separator}}.',
 'searchmenu-legend' => '{{Identical|Search options}}',
 'searchmenu-exists' => 'An option shown in a menu beside search form offering a link to the existing page having the specified title (when using the default MediaWiki search engine).
 
@@ -3362,9 +3424,13 @@ This user automatically bypasses IP blocks, auto-blocks and range blocks - so I 
 'right-unblockself' => '{{doc-right|unblockself}}',
 'right-protect' => '{{doc-right|protect}}',
 'right-editprotected' => '{{doc-right|editprotected}}
+Refers to {{msg-mw|Protect-level-sysop}}.
+
 See also:
 * {{msg-mw|Right-editsemiprotected}}',
 'right-editsemiprotected' => '{{doc-right|editsemiprotected}}
+Refers to {{msg-mw|Protect-level-autoconfirmed}}.
+
 See also:
 * {{msg-mw|Right-editprotected}}',
 'right-editinterface' => '{{doc-right|editinterface}}',
@@ -5090,7 +5156,9 @@ See also:
 
 # Special:ListGroupRights
 'listgrouprights' => 'The name of the special page [[Special:ListGroupRights]].',
-'listgrouprights-summary' => 'The description used on [[Special:ListGroupRights]].',
+'listgrouprights-summary' => 'The description used on [[Special:ListGroupRights]].
+
+Refers to {{msg-mw|Listgrouprights-helppage}}.',
 'listgrouprights-key' => 'Footer note for the [[Special:ListGroupRights]] page',
 'listgrouprights-group' => "The title of the column in the table, about user groups (like you are in the ''translator'' group).
 
@@ -5396,30 +5464,34 @@ See also:
 * {{msg-mw|Enotif lastvisited}}',
 'enotif_anon_editor' => 'User name in an e-mail notification when referring to an anonymous user. Parameters:
 * $1 is the anonymous user name (i.e. an IP address).',
-'enotif_body' => 'Text of a notification e-mail sent when a watched page has been edited or deleted.[[File:Screenshot_MediaWiki_e-mail_notifier.PNG|150px|right]]
+'enotif_body' => 'Text of a notification email sent when a watched page has been edited or deleted.
+[[File:Screenshot_MediaWiki_e-mail_notifier.PNG|150px|right]]
 
+Refers to {{msg-mw|Helppage}}.
+
+Parameters:
 *$WATCHINGUSERNAME is the username of the user receiving the notification.
 *$PAGEINTRO is the first line of the message, saying what happened. It currently can be either of:
-**{{msg-mw|enotif body intro deleted}}
-**{{msg-mw|enotif body intro created}}
-**{{msg-mw|enotif body intro moved}}
-**{{msg-mw|enotif body intro restored}}
-**{{msg-mw|enotif body intro changed}} (for all the other cases).
+**{{msg-mw|Enotif body intro deleted}}
+**{{msg-mw|Enotif body intro created}}
+**{{msg-mw|Enotif body intro moved}}
+**{{msg-mw|Enotif body intro restored}}
+**{{msg-mw|Enotif body intro changed}} (for all the other cases).
 *$NEWPAGE consists of either
-**if the page is new (in older releases), {{msg-mw|enotif newpagetext}}
+**if the page is new (in older releases), {{msg-mw|Enotif newpagetext}}
 **if the page has a previous revision,
-***{{msg-mw|enotif lastdiff}}
+***{{msg-mw|Enotif lastdiff}}
 ***a newline
-***{{msg-mw|enotif lastvisited}}
-*$PAGEEDITOR_EMAIL and $PAGEEDITOR_WIKI are links respectively to the e-mail user special page and user page for the user who performed the action.
+***{{msg-mw|Enotif lastvisited}}
+*$PAGEEDITOR_EMAIL and $PAGEEDITOR_WIKI are links respectively to the email user special page and user page for the user who performed the action.
 *$PAGEEDITOR is the username of the user who performed the action.
 
-The subject of the e-mail is one of the following messages:
-*{{msg-mw|enotif subject deleted}}
-*{{msg-mw|enotif subject created}}
-*{{msg-mw|enotif subject moved}}
-*{{msg-mw|enotif subject restored}}
-*{{msg-mw|enotif subject changed}}',
+The subject of the email is one of the following messages:
+*{{msg-mw|Enotif subject deleted}}
+*{{msg-mw|Enotif subject created}}
+*{{msg-mw|Enotif subject moved}}
+*{{msg-mw|Enotif subject restored}}
+*{{msg-mw|Enotif subject changed}}',
 'created' => '{{Optional}}
 Possible value for $CHANGEDORCREATED in the following messages:
 * {{msg-mw|enotif_subject}}
@@ -5456,7 +5528,9 @@ Followed by a link which points to the history page.
 
 Parameters:
 * $1 - the <b>approximate</b> number of revisions that the page has, the message should not claim to give an exact count',
-'confirmdeletetext' => 'Introduction shown when deleting a page.',
+'confirmdeletetext' => 'Introduction shown when deleting a page.
+
+Refers to {{msg-mw|Policy-url}}.',
 'actioncomplete' => 'Used in several situations, for example when a page has been deleted.
 
 See also:
@@ -5529,7 +5603,12 @@ See also:
 * {{msg-mw|Notvisiblerev}}
 {{Identical|Revert}}
 {{Identical|Rollback}}',
-'alreadyrolled' => "Appear when there's rollback and/or edit collision. Parameters:
+'alreadyrolled' => "Appear when there's rollback and/or edit collision.
+
+Refers to:
+* {{msg-mw|Pipe-separator}}
+* {{msg-mw|Contribslink}}
+Parameters:
 * $1 - the page to be rolled back
 * $2 - the editor to be rolled-back of that page
 * $3 - the editor that cause collision
@@ -5754,9 +5833,12 @@ See also:
 See also:
 * {{msg-mw|Undelete-no-results}} - if no results',
 'undelete-fieldset-title' => 'Used as the title of the fieldset.',
-'undeleteextrahelp' => "Help message displayed when restoring history of a page.
+'undeleteextrahelp' => 'Help message displayed when restoring history of a page.
 
-In your language, ''Restore'' is called {{msg-mw|Undeletebtn}}, the ''Reset'' button is called {{msg-mw|Undeletereset}}.",
+Refers to {{msg-mw|Undeletebtn}}.
+
+See also:
+* {{msg-mw|Undeletereset}}',
 'undeleterevisions' => 'Enclosed in parentheses and preceded by item name.
 
 Parameters:
@@ -6135,6 +6217,8 @@ See also:
 
 {{Identical|Block user}}',
 'blockiptext' => 'Used in the {{msg-mw|Blockip}} form in [[Special:Block]].
+
+Refers to {{msg-mw|Policy-url}}.
 
 This message may follow the message {{msg-mw|Ipb-otherblocks-header}} and other block messages.
 
@@ -6967,7 +7051,9 @@ Parameters:
 # Export
 'export' => 'Page title of [[Special:Export]], a page where a user can export pages from a wiki to a file.',
 'exporttext' => '{{doc-important|Leave the line <code><nowiki>[[{{#Special:Export}}/{{MediaWiki:Mainpage}}]]</nowiki></code> exactly as it is!}}
-Main text on [[Special:Export]].',
+Main text on [[Special:Export]].
+
+Refers to {{msg-mw|Mainpage}}.',
 'exportall' => 'A label of checkbox option in [[Special:Export]]',
 'exportcuronly' => 'A label of checkbox option in [[Special:Export]]',
 'exportnohistory' => 'Used in [[Special:Export]].',
@@ -7405,7 +7491,7 @@ See also:
 * {{msg-mw|Tooltip-ca-viewsource}}',
 'tooltip-ca-history' => 'Used as tooltip for {{msg-mw|Vector-view-history}}.
 
-See for example [{{canonicalurl:Main_Page|useskin=vector}}]
+See for example [{{canonicalurl:Main Page|useskin=vector}} Main Page]
 
 See also:
 * {{msg-mw|Vector-view-history}}
@@ -9551,7 +9637,8 @@ See also:
 'watchlistedit-normal-title' => 'Title of [[Special:Watchlist/edit|special page]].',
 'watchlistedit-normal-legend' => 'Heading of dialogue box on [[Special:Watchlist/edit]]',
 'watchlistedit-normal-explain' => 'An introduction/explanation about the [[Special:Watchlist/edit|normal edit watchlist function]].
-Hint: the text "Remove Titles" is in {{msg-mw|watchlistedit-normal-submit}}',
+
+Refers to {{msg-mw|Watchlistedit-normal-submit}}.',
 'watchlistedit-normal-submit' => 'Text of submit button on [[Special:Watchlist/edit]].
 
 See also:
@@ -9573,7 +9660,10 @@ See also:
 'watchlistedit-raw-legend' => 'Heading of dialogue box on [[Special:Watchlist/raw]].
 
 {{Identical|Edit raw watchlist}}',
-'watchlistedit-raw-explain' => 'An introduction/explanation about the [[Special:Watchlist/raw|raw edit watchlist function]].',
+'watchlistedit-raw-explain' => '{{doc-important|Do not translate <code><nowiki>{{int:Watchlistedit-raw-submit}}</nowiki></code> and <code>Special:EditWatchlist</code>.}}
+An introduction/explanation about the [[Special:Watchlist/raw|raw edit watchlist function]].
+
+Refers to {{msg-mw|Watchlistedit-raw-submit}}.',
 'watchlistedit-raw-titles' => 'Text above edit box containing items being watched on [[Special:Watchlist/raw]].
 {{Identical|Title}}',
 'watchlistedit-raw-submit' => 'Text of submit button on [[Special:Watchlist/raw]].

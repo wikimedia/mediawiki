@@ -45,6 +45,7 @@
  * @author Luckas Blade
  * @author Malafaya
  * @author ManoDbo
+ * @author Matheus Sousa L.T
  * @author McDutchie
  * @author MetalBrasil
  * @author MisterSanderson
@@ -1566,6 +1567,7 @@ Caso decida fornecê-lo, este será utilizado para dar-lhe crédito pelo seu tra
 'prefs-displayrc' => 'Opções de exibição',
 'prefs-displaysearchoptions' => 'Opções de exibição',
 'prefs-displaywatchlist' => 'Opções de exibição',
+'prefs-tokenwatchlist' => 'Senha',
 'prefs-diffs' => 'Diferenças',
 'prefs-help-prefershttps' => 'Esta preferência terá efeito no seu próximo início de sessão.',
 
@@ -4203,5 +4205,6 @@ Caso contrário, você poderá usar o formulário simplificado a seguir. Seu com
 'limitreport-walltime' => 'Tempo de uso real',
 'limitreport-walltime-value' => '$1 {{PLURAL:$1|segundo|segundos}}',
 'limitreport-postexpandincludesize-value' => '$1/$2 bytes',
+'limitreport-expansiondepth' => 'Máxima profundidade de expansão',
 
 );

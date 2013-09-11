@@ -596,8 +596,10 @@ Peul desse ch'a l'ha già cambià la ciav o a l'ha ciamà na neuva ciav provisò
 'resetpass-abort-generic' => "La modìfica ëd la ciav a l'é stàita anulà da n'estension.",
 
 # Special:PasswordReset
-'passwordreset' => 'Cambi ëd ciav',
-'passwordreset-legend' => 'Cambié la ciav',
+'passwordreset' => 'Ri-inissialisassion ëd la ciav',
+'passwordreset-text-one' => "Ch'a completa 's formolari për reimposté soa ciav.",
+'passwordreset-text-many' => "{{PLURAL:$1|Ch'a compila un dij camp për riamposté soa ciav.}}",
+'passwordreset-legend' => 'Riampostassion ëd la ciav',
 'passwordreset-disabled' => 'Ij cangiament ëd ciav a son stàit disabilità su sta wiki.',
 'passwordreset-username' => 'Stranòm:',
 'passwordreset-domain' => 'Domini:',

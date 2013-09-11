@@ -790,9 +790,9 @@ El administrador que lo ha bloqueado ofrece esta explicación: "$3".',
 # Login and logout pages
 'logouttext' => '"\'Usted está ahora desconectado."\'
 Tenga en cuenta que algunas páginas pueden continuar mostrándose como si todavía estuviera conectado, hasta que borres la caché de tu navegador.',
-'welcomeuser' => '¡Bienvenido, $1!',
-'welcomecreation-msg' => 'Tu cuenta ha sido creada.
-No olvides cambiar tus [[Special:Preferences|preferencias de {{SITENAME}} ]].',
+'welcomeuser' => '¡Te damos la bienvenida, $1!',
+'welcomecreation-msg' => 'Se ha creado tu cuenta.
+No olvides personalizar tus [[Special:Preferences|preferencias de {{SITENAME}}]].',
 'yourname' => 'Nombre de usuario:',
 'userlogin-yourname' => 'Usuario',
 'userlogin-yourname-ph' => 'Escribe tu nombre de usuario',
@@ -1541,9 +1541,9 @@ Mientras tanto puedes buscar mediante Google, pero ten en cuenta que sus índice
 'recentchangesdays-max' => '(máximo {{PLURAL:$1|un día|$1 días}})',
 'recentchangescount' => 'Número de ediciones a mostrar de manera predeterminada:',
 'prefs-help-recentchangescount' => 'Esto incluye cambios recientes, historiales de página, y registros.',
-'prefs-help-watchlist-token2' => 'Esta es la llave secreta al feed de tu lista de seguimiento web.
-Toda persona que la sepa será capaz de leer tu lista, así que no la compartiremos.
-[[Special:ResetTokens|Has clic aquí si necesitas reiniciarlo]].',
+'prefs-help-watchlist-token2' => 'Esta es la clave secreta para el canal de contenido web de tu lista de seguimiento.
+Cualquier persona que la conozca podría leer tu lista, así que no la compartas.
+[[Special:ResetTokens|Pulsa aquí si necesitas restablecerla]].',
 'savedprefs' => 'Tus preferencias han sido guardadas.',
 'timezonelegend' => 'Zona horaria:',
 'localtime' => 'Hora local:',
@@ -3266,7 +3266,7 @@ Esto podría estar causado por un enlace a un sitio externo incluido en la lista
 'pageinfo-length' => 'Longitud de la página (en bytes)',
 'pageinfo-article-id' => 'Identificador ID de la página',
 'pageinfo-language' => 'Idioma de la página',
-'pageinfo-robot-policy' => 'Indexación por robots',
+'pageinfo-robot-policy' => 'Indización por robots',
 'pageinfo-robot-index' => 'Permitido',
 'pageinfo-robot-noindex' => 'No permitido',
 'pageinfo-views' => 'Número de vistas',
@@ -4250,17 +4250,17 @@ En otro caso, puedes usar el siguiente formulario. Tu comentario será añadido 
 'rotate-comment' => 'Imagen girada por $1 {{PLURAL:$1|grado|grados}} en el sentido de las agujas del reloj',
 
 # Limit report
-'limitreport-title' => 'Analizador de datos de perfiles:',
+'limitreport-title' => 'Datos de perfilado del analizador:',
 'limitreport-cputime' => 'Tiempo de uso de CPU',
 'limitreport-cputime-value' => '$1 {{PLURAL:$1|segundo|segundos}}',
-'limitreport-walltime' => 'Tiempo Real de uso',
+'limitreport-walltime' => 'Tiempo real de uso',
 'limitreport-walltime-value' => '$1 {{PLURAL:$1|segundo|segundos}}',
-'limitreport-ppvisitednodes' => 'Preprocesador visitó la cantidad de nodos',
-'limitreport-ppgeneratednodes' => 'Preprocesador genera el número de nodos',
-'limitreport-postexpandincludesize' => 'Post-Expand incluyen el tamaño',
+'limitreport-ppvisitednodes' => 'N.º de nodos visitados por el preprocesador',
+'limitreport-ppgeneratednodes' => 'N.º de nodos generados por el preprocesador',
+'limitreport-postexpandincludesize' => 'Tamaño de inclusión posexpansión',
 'limitreport-postexpandincludesize-value' => '$1/$2 bytes',
 'limitreport-templateargumentsize' => 'Argumento del tamaño de la plantilla',
 'limitreport-templateargumentsize-value' => '$1/$2 bytes',
-'limitreport-expansiondepth' => 'Máxima expansión de profundidad',
+'limitreport-expansiondepth' => 'Profundidad máxima de expansión',
 
 );

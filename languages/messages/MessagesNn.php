@@ -368,8 +368,8 @@ $messages = array(
 'underline-default' => 'Drakt- eller nettlesarstandard',
 
 # Font style option in Special:Preferences
-'editfont-style' => 'Endre stilen for skrifttypen i området:',
-'editfont-default' => 'Nettlesar i utgangspunktet',
+'editfont-style' => 'Skrifttype i endringsboksen:',
+'editfont-default' => 'Nettlesarstandard',
 'editfont-monospace' => 'Skrift med fast breidd',
 'editfont-sansserif' => 'Skrifttype utan seriffar',
 'editfont-serif' => 'Skrifttype med seriffar',

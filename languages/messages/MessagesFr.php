@@ -397,7 +397,7 @@ $messages = array(
 'tog-hidepatrolled' => 'Masquer les modifications surveillées dans les modifications récentes',
 'tog-newpageshidepatrolled' => 'Masquer les pages surveillées dans la liste des nouvelles pages',
 'tog-extendwatchlist' => 'Étendre la liste de suivi pour afficher toutes les modifications et pas uniquement les plus récentes',
-'tog-usenewrc' => 'Grouper les changements dans les modifications récentes et la liste de suivi (nécessite JavaScript)',
+'tog-usenewrc' => 'Grouper les changements par page dans les modifications récentes et la liste de suivi (nécessite JavaScript)',
 'tog-numberheadings' => 'Numéroter automatiquement les titres de section',
 'tog-showtoolbar' => "Montrer la barre d'outils de modification (nécessite JavaScript)",
 'tog-editondblclick' => 'Modifier des pages sur double-clic (nécessite JavaScript)',
@@ -721,6 +721,8 @@ Une liste des pages spéciales valides se trouve sur [[Special:SpecialPages|{{in
 # General errors
 'error' => 'Erreur',
 'databaseerror' => 'Erreur de la base de données',
+'databaseerror-text' => "Une erreur de requête de base de données s'est produite. Cela peut provenir d'un bogue dans le logiciel.",
+'databaseerror-textcl' => "Une erreur de requête de base de données s'est produite.",
 'databaseerror-query' => 'Requête : $1',
 'databaseerror-function' => 'Fonction : $1',
 'databaseerror-error' => 'Erreur : $1',
