@@ -74,6 +74,13 @@ abstract class FileBackendStore extends FileBackend {
 				return StreamFile::contentTypeFromPath( $storagePath ) ?: 'unknown/unknown';
 			};
 		$this->memCache = WANObjectCache::newEmpty(); // disabled by default
+		if ( !$this->isValidContainerName( $this->wikiId ) ) {
+			throw new InvalidArgumentException(
+				"Wiki ID `{$this->wikiId}` is invalid. " .
+				'Please set a valid wikiId value in $wgFileBackends.' );
+		}
+
+		$this->memCache = new EmptyBagOStuff(); // disabled by default
 		$this->cheapCache = new ProcessCacheLRU( self::CACHE_CHEAP_SIZE );
 		$this->expensiveCache = new ProcessCacheLRU( self::CACHE_EXPENSIVE_SIZE );
 	}
@@ -1367,10 +1374,11 @@ abstract class FileBackendStore extends FileBackend {
 	 * Check if a container name is valid.
 	 * This checks for length and illegal characters.
 	 *
+	 * @since 1.26
 	 * @param string $container
 	 * @return bool
 	 */
-	final protected static function isValidContainerName( $container ) {
+	protected function isValidContainerName( $container ) {
 		// This accounts for Swift and S3 restrictions while leaving room
 		// for things like '.xxx' (hex shard chars) or '.seg' (segments).
 		// This disallows directory separators or traversal characters.
@@ -1404,7 +1412,7 @@ abstract class FileBackendStore extends FileBackend {
 				if ( $relPath !== null ) {
 					// Prepend any wiki ID prefix to the container name
 					$container = $this->fullContainerName( $container );
-					if ( self::isValidContainerName( $container ) ) {
+					if ( $this->isValidContainerName( $container ) ) {
 						// Validate and sanitize the container name (backend-specific)
 						$container = $this->resolveContainerName( "{$container}{$cShard}" );
 						if ( $container !== null ) {

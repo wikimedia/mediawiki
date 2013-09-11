@@ -183,6 +183,20 @@ class FSFileBackend extends FileBackendStore {
 		return $ok;
 	}
 
+	/**
+	 * Check if a container name is valid.
+	 * This checks for for length and illegal characters.
+	 *
+	 * @since 1.26
+	 * @param string $container
+	 * @return bool
+	 */
+	protected function isValidContainerName( $container ) {
+		// This class only uses container names as hash keys, so we can allow
+		// almost anything but a slash character, the storage path delimiter
+		return preg_match( '/^[^\/]{0,199}$/', $container );
+	}
+	
 	protected function doCreateInternal( array $params ) {
 		$status = Status::newGood();
 
