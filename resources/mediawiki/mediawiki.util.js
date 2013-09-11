@@ -160,11 +160,18 @@
 		 * Get the link to a page name (relative to `wgServer`),
 		 *
 		 * @param {string} str Page name to get the link for.
+		 * @param {Object} params A mapping of query parameter names to values,
+		 *     e.g. { action: 'edit' }. Optional.
 		 * @return {string} Location for a page with name of `str` or boolean false on error.
 		 */
-		wikiGetlink: function ( str ) {
-			return mw.config.get( 'wgArticlePath' ).replace( '$1',
+		wikiGetlink: function ( str, params ) {
+			var url = mw.config.get( 'wgArticlePath' ).replace( '$1',
 				util.wikiUrlencode( typeof str === 'string' ? str : mw.config.get( 'wgPageName' ) ) );
+			if ( params && !$.isEmptyObject( params ) ) {
+				url.indexOf( '?' ) !== -1 ? url += '&' : url += '?';
+				url += $.param( params );
+			}
+			return url;
 		},
 
 		/**
