@@ -1238,7 +1238,8 @@ class Article implements Page {
 		} elseif ( $this->getTitle()->quickUserCan( 'create', $this->getContext()->getUser() )
 			&& $this->getTitle()->quickUserCan( 'edit', $this->getContext()->getUser() )
 		) {
-			$text = wfMessage( 'noarticletext' )->plain();
+			$message = $this->getContext()->getUser()->isLoggedIn() ? 'noarticletext' : 'noarticletextanon';
+			$text = wfMessage( $message )->plain();
 		} else {
 			$text = wfMessage( 'noarticletext-nopermission' )->plain();
 		}
