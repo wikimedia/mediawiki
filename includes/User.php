@@ -1700,6 +1700,7 @@ class User {
 			return $this->mLocked;
 		}
 		global $wgAuth;
+		StubObject::unstub( $wgAuth );
 		$authUser = $wgAuth->getUserInstance( $this );
 		$this->mLocked = (bool)$authUser->isLocked();
 		return $this->mLocked;
@@ -1717,6 +1718,7 @@ class User {
 		$this->getBlockedStatus();
 		if ( !$this->mHideName ) {
 			global $wgAuth;
+			StubObject::unstub( $wgAuth );
 			$authUser = $wgAuth->getUserInstance( $this );
 			$this->mHideName = (bool)$authUser->isHidden();
 		}
