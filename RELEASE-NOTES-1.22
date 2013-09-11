@@ -347,6 +347,8 @@ production.
 * (bug 49090) Token-getting functions will fail when using jsonp callbacks.
 * (bug 52699) action=upload returns normalized file name on warning
   "exists-normalized" instead of filename to be uploaded to.
+* (bug 53884) action=edit will now return an error when the specified section
+  does not exist in the page.
 
 === Languages updated in 1.22===
 
