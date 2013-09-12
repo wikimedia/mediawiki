@@ -630,6 +630,15 @@ class GlobalTest extends MediaWikiTestCase {
 		return $a;
 	}
 
+	function testWfMkdirParents() {
+		// Should not return true if file exists instead of directory
+		$fname = $this->getNewTempFile();
+		wfSuppressWarnings();
+		$ok = wfMkdirParents( $fname );
+		wfRestoreWarnings();
+		$this->assertFalse( $ok );
+	}
+
 	/**
 	 * @dataProvider provideWfShellMaintenanceCmdList
 	 */
