@@ -2803,5 +2803,9 @@ data. Can be used to post-process the results.
   is an array of metadata tags returned (each tag is either a value, or an array
   of values).
 
+'ResourceLoaderGetLESSVars': Called when obtaining the map of globally
+available LESS variable declarations.
+&$vars: An associative array binding variable names to CSS string values.
+
 More hooks might be available but undocumented, you can execute
 'php maintenance/findHooks.php' to find hidden ones.

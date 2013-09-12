@@ -409,6 +409,7 @@ abstract class ResourceLoaderModule {
 
 	/** @var lessc lazy-initialized; use self::lessCompiler() */
 	private static $lessc;
+	private static $lessVars;
 
 	/**
 	 * Validate a given script file; if valid returns the original source.
@@ -463,7 +464,20 @@ abstract class ResourceLoaderModule {
 	protected static function lessCompiler() {
 		$less = new lessc();
 		$less->setPreserveComments( true );
+		$less->setVariables( self::getLESSVars() );
 		return $less;
+	}
+
+	protected static function getLESSVars() {
+		global $wgLESSVars;
+
+		if ( !self::$lessVars ) {
+			self::$lessVars = $wgLESSVars;
+			wfRunHooks( 'ResourceLoaderGetLESSVars', array( &self::$lessVars ) );
+			// Sort by key to ensure consistent hashing for cache lookups.
+			ksort( self::$lessVars );
+		}
+		return self::$lessVars;
 	}
 
 	/**

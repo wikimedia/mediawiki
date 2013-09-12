@@ -6790,6 +6790,22 @@ $wgSiteTypes = array(
 $wgCompiledFiles = array();
 
 /**
+ * Global LESS variables. An associative array binding variable names
+ * to CSS string values.
+ *
+ * @par Example:
+ * @code
+ *   $wgLESSVars = array(
+ *     'baseFontSize'  => '1em',
+ *     'smallFontSize' => '0.75em',
+ *     'WikimediaBlue' => '#006699',
+ *   );
+ * @endcode
+ * @since 1.22
+ */
+$wgLESSVars = array();
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}
