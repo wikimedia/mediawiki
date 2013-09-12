@@ -2759,9 +2759,10 @@ function wfShellExecDisabled() {
  *                 added to the executed command environment.
  * @param array $limits optional array with limits(filesize, memory, time, walltime)
  *                 this overwrites the global wgShellMax* limits.
- * @return string collected stdout as a string (trailing newlines stripped)
+ * @param Boolean $includeStderr duplicate standard error to stdin (including limit.sh errors)
+ * @return string collected stdout as a string
  */
-function wfShellExec( $cmd, &$retval = null, $environ = array(), $limits = array() ) {
+function wfShellExec( $cmd, &$retval = null, $environ = array(), $limits = array(), $includeStderr = false ) {
 	global $IP, $wgMaxShellMemory, $wgMaxShellFileSize, $wgMaxShellTime,
 		$wgMaxShellWallClockTime, $wgShellCgroup;
 
@@ -2795,6 +2796,10 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(), $limits = array
 	$cmd = $envcmd . $cmd;
 
 	if ( php_uname( 's' ) == 'Linux' ) {
+		$stderrDuplication = '';
+		if ( $includeStderr ) {
+			$stderrDuplication = 'exec 2>&1; ';
+		}
 		$time = intval ( isset( $limits['time'] ) ? $limits['time'] : $wgMaxShellTime );
 		if ( isset( $limits['walltime'] ) ) {
 			$wallTime = intval( $limits['walltime'] );
@@ -2810,17 +2815,21 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(), $limits = array
 			$cmd = '/bin/bash ' . escapeshellarg( "$IP/includes/limit.sh" ) . ' ' .
 				escapeshellarg( $cmd ) . ' ' .
 				escapeshellarg(
+					$stderrDuplication .
 					"MW_CPU_LIMIT=$time; " .
 					'MW_CGROUP=' . escapeshellarg( $wgShellCgroup ) . '; ' .
 					"MW_MEM_LIMIT=$mem; " .
 					"MW_FILE_SIZE_LIMIT=$filesize; " .
 					"MW_WALL_CLOCK_LIMIT=$wallTime"
 				);
+		} else {
+			$cmd .= ' 2>&1';
 		}
+	} elseif ( $includeStderr ) {
+		$cmd .= ' 2>&1';
 	}
 	wfDebug( "wfShellExec: $cmd\n" );
-
-	$retval = 1; // error by default?
+	$retval = 200; // Default to an odd value that shouldn't happen naturally.
 	ob_start();
 	passthru( $cmd, $retval );
 	$output = ob_get_contents();
@@ -2830,6 +2839,24 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(), $limits = array
 		wfDebugLog( 'exec', "Possibly missing executable file: $cmd\n" );
 	}
 	return $output;
+}
+
+/**
+ * Execute a shell command, returning both stdout and stderr. Convenience
+ * function, as all the arguments to wfShellExec can become unwieldy.
+ *
+ * @note This also includes errors from limit.sh, e.g. if $wgMaxShellFileSize is exceeded.
+ * @param string $cmd Command line, properly escaped for shell.
+ * @param &$retval null|Mixed optional, will receive the program's exit code.
+ *                 (non-zero is usually failure)
+ * @param array $environ optional environment variables which should be
+ *                 added to the executed command environment.
+ * @param array $limits optional array with limits(filesize, memory, time, walltime)
+ *                 this overwrites the global wgShellMax* limits.
+ * @return string collected stdout and stderr as a string
+ */
+function wfShellExecWithStderr( $cmd, &$retval = null, $environ = array(), $limits = array() ) {
+	return wfShellExec( $cmd, $retval, $environ, $limits, true );
 }
 
 /**

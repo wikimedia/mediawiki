@@ -75,11 +75,11 @@ class JpegHandler extends ExifBitmapHandler {
 			$cmd = wfEscapeShellArg( $wgJpegTran ) .
 				" -rotate " . wfEscapeShellArg( $rotation ) .
 				" -outfile " . wfEscapeShellArg( $params['dstPath'] ) .
-				" " . wfEscapeShellArg( $params['srcPath'] ) . " 2>&1";
+				" " . wfEscapeShellArg( $params['srcPath'] );
 			wfDebug( __METHOD__ . ": running jpgtran: $cmd\n" );
 			wfProfileIn( 'jpegtran' );
 			$retval = 0;
-			$err = wfShellExec( $cmd, $retval, $env );
+			$err = wfShellExecWithStderr( $cmd, $retval, $env );
 			wfProfileOut( 'jpegtran' );
 			if ( $retval !== 0 ) {
 				$this->logErrorForExternalProcess( $retval, $err, $cmd );

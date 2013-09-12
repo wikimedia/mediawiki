@@ -177,7 +177,7 @@ class SvgHandler extends ImageHandler {
 						wfEscapeShellArg( $srcPath ),
 						wfEscapeShellArg( $dstPath ) ),
 					$wgSVGConverters[$wgSVGConverter]
-				) . " 2>&1";
+				);
 
 				$env = array();
 				if ( $lang !== false ) {
@@ -186,7 +186,7 @@ class SvgHandler extends ImageHandler {
 
 				wfProfileIn( 'rsvg' );
 				wfDebug( __METHOD__ . ": $cmd\n" );
-				$err = wfShellExec( $cmd, $retval, $env );
+				$err = wfShellExecWithStderr( $cmd, $retval, $env );
 				wfProfileOut( 'rsvg' );
 			}
 		}
