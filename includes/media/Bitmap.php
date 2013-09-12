@@ -357,12 +357,12 @@ class BitmapHandler extends ImageHandler {
 			" -depth 8 $sharpen " .
 			" -rotate -$rotation " .
 			" {$animation_post} " .
-			wfEscapeShellArg( $this->escapeMagickOutput( $params['dstPath'] ) ) . " 2>&1";
+			wfEscapeShellArg( $this->escapeMagickOutput( $params['dstPath'] ) );
 
 		wfDebug( __METHOD__ . ": running ImageMagick: $cmd\n" );
 		wfProfileIn( 'convert' );
 		$retval = 0;
-		$err = wfShellExec( $cmd, $retval, $env );
+		$err = wfShellExecWithStderr( $cmd, $retval, $env );
 		wfProfileOut( 'convert' );
 
 		if ( $retval !== 0 ) {
@@ -472,7 +472,7 @@ class BitmapHandler extends ImageHandler {
 		wfDebug( __METHOD__ . ": Running custom convert command $cmd\n" );
 		wfProfileIn( 'convert' );
 		$retval = 0;
-		$err = wfShellExec( $cmd, $retval );
+		$err = wfShellExecWithStderr( $cmd, $retval );
 		wfProfileOut( 'convert' );
 
 		if ( $retval !== 0 ) {
@@ -774,11 +774,11 @@ class BitmapHandler extends ImageHandler {
 				$cmd = wfEscapeShellArg( $wgImageMagickConvertCommand ) . " " .
 					wfEscapeShellArg( $this->escapeMagickInput( $params['srcPath'], $scene ) ) .
 					" -rotate -$rotation " .
-					wfEscapeShellArg( $this->escapeMagickOutput( $params['dstPath'] ) ) . " 2>&1";
+					wfEscapeShellArg( $this->escapeMagickOutput( $params['dstPath'] ) );
 				wfDebug( __METHOD__ . ": running ImageMagick: $cmd\n" );
 				wfProfileIn( 'convert' );
 				$retval = 0;
-				$err = wfShellExec( $cmd, $retval, $env );
+				$err = wfShellExecWithStderr( $cmd, $retval, $env );
 				wfProfileOut( 'convert' );
 				if ( $retval !== 0 ) {
 					$this->logErrorForExternalProcess( $retval, $err, $cmd );
