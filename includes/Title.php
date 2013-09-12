@@ -3620,6 +3620,8 @@ class Title {
 			$createRedirect = true;
 		}
 
+		wfRunHooks( 'TitleMove', array( $this, $nt, $wgUser ) );
+
 		// If it is a file, move it first.
 		// It is done before all other moving stuff is done because it's hard to revert.
 		$dbw = wfGetDB( DB_MASTER );
