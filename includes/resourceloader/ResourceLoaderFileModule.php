@@ -701,7 +701,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @return string: CSS source
 	 */
 	protected function compileLessFile( $fileName ) {
-		$key = wfMemcKey( 'resourceloader', 'less', md5( $fileName ) );
+		$key = wfMemcKey( 'resourceloader', 'less', md5( $fileName . json_encode( self::getLESSVars() ) ) );
 		$cache = wfGetCache( CACHE_ANYTHING );
 
 		// The input to lessc. Either an associative array representing the
