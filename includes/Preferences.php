@@ -390,6 +390,18 @@ class Preferences {
 			}
 		}
 
+		// Stuff from Language::getExtraUserToggles()
+		// FIXME is this dead code? $extraUserToggles doesn't seem to be defined for any language
+		$toggles = $wgContLang->getExtraUserToggles();
+
+		foreach ( $toggles as $toggle ) {
+			$defaultPreferences[$toggle] = array(
+				'type' => 'toggle',
+				'section' => 'personal/i18n',
+				'label-message' => "tog-$toggle",
+			);
+		}
+
 		// show a preview of the old signature first
 		$oldsigWikiText = $wgParser->preSaveTransform( "~~~", $context->getTitle(), $user, ParserOptions::newFromContext( $context ) );
 		$oldsigHTML = $context->getOutput()->parseInline( $oldsigWikiText, true, true );
@@ -696,6 +708,18 @@ class Preferences {
 	 * @param $defaultPreferences Array
 	 */
 	static function renderingPreferences( $user, IContextSource $context, &$defaultPreferences ) {
+		## Diffs ####################################
+		$defaultPreferences['diffonly'] = array(
+			'type' => 'toggle',
+			'section' => 'rendering/diffs',
+			'label-message' => 'tog-diffonly',
+		);
+		$defaultPreferences['norollbackdiff'] = array(
+			'type' => 'toggle',
+			'section' => 'rendering/diffs',
+			'label-message' => 'tog-norollbackdiff',
+		);
+
 		## Page Rendering ##############################
 		global $wgAllowUserCssPrefs;
 		if ( $wgAllowUserCssPrefs ) {
@@ -1068,35 +1092,9 @@ class Preferences {
 	}
 
 	/**
-	 * @param $user User
-	 * @param $context IContextSource
-	 * @param $defaultPreferences Array
+	 * Dummy, kept for backwards-compatibility.
 	 */
 	static function miscPreferences( $user, IContextSource $context, &$defaultPreferences ) {
-		global $wgContLang;
-
-		## Misc #####################################
-		$defaultPreferences['diffonly'] = array(
-			'type' => 'toggle',
-			'section' => 'misc/diffs',
-			'label-message' => 'tog-diffonly',
-		);
-		$defaultPreferences['norollbackdiff'] = array(
-			'type' => 'toggle',
-			'section' => 'misc/diffs',
-			'label-message' => 'tog-norollbackdiff',
-		);
-
-		// Stuff from Language::getExtraUserToggles()
-		$toggles = $wgContLang->getExtraUserToggles();
-
-		foreach ( $toggles as $toggle ) {
-			$defaultPreferences[$toggle] = array(
-				'type' => 'toggle',
-				'section' => 'personal/i18n',
-				'label-message' => "tog-$toggle",
-			);
-		}
 	}
 
 	/**
