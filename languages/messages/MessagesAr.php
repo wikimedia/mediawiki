@@ -2727,7 +2727,7 @@ $UNWATCHURL
 'protectlogtext' => 'بالأسفل قائمة بالتغييرات في حماية الصفحات.
 انظر [[Special:ProtectedPages|قائمة الصفحات المحمية]] لقائمة بعمليات حماية الصفحات المفعلة حاليا.',
 'protectedarticle' => 'حمى "[[$1]]"',
-'modifiedarticleprotection' => 'غير مستوى الحماية ل"[[$1]]"',
+'modifiedarticleprotection' => 'غير مستوى حماية "[[$1]]"',
 'unprotectedarticle' => 'أزال الحماية من "[[$1]]"',
 'movedarticleprotection' => 'نقل إعدادات الحماية من "[[$2]]" إلى "[[$1]]"',
 'protect-title' => 'ضبط مستوى الحماية ل"$1"',

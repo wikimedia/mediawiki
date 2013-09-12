@@ -173,6 +173,7 @@ $messages = array(
 'vector-view-history' => 'Wärsjoonsfolche',
 'vector-view-view' => 'Leesn',
 'vector-view-viewsource' => 'Gwäl-dhägsd ôôgugn',
+'actions' => 'Aggdsione',
 'namespaces' => 'Nôômsrajm',
 'variants' => 'Warjandn',
 
@@ -239,6 +240,7 @@ $1",
 'copyright' => 'Was hiir schdäd däfmâr benudsn nach $1',
 'copyrightpage' => '{{ns:project}}:Uurheewâr-rächde',
 'currentevents' => 'Was grôôd basiird is',
+'currentevents-url' => 'Project:Aggduelle Ereichnisse',
 'disclaimers' => 'Imbräsum',
 'disclaimerpage' => 'Project:Imbräsum',
 'edithelp' => 'Hilfe dsum beärbâdn',
@@ -405,6 +407,10 @@ Hirmid sagsd, das Du den dhägsd '''selbâr gschriim''' hasd, das däär dhägsd
 'hiddencategories' => 'Dii sajdn ghäärd dsu {{PLURAL:$1|aanâr fârschdegdn|$1 fârschdegde}} ghadegoriin:',
 'permissionserrorstext-withaction' => 'Du däfsd ned $2, des{{PLURAL:$1||}}dâsweechn:',
 
+# Parser/template warnings
+'post-expand-template-inclusion-warning' => "'''Obachd:''' dii Gräiß vo dii ajbundna Vorlââng is zgrouß, ajniche Vorlââng kenna ned ajbundn wärrn.",
+'post-expand-template-inclusion-category' => 'Sajdn, ba denne vo dii ajbundna Vorlââng dii Gräiß üba da gräißdmöchlichn Gräiß iss',
+
 # History pages
 'viewpagelogs' => 'Logbicher fär dii sajdn dsajchn',
 'currentrev-asof' => 'Jedsiche wärsjoon, am $2 um $3 gmachd',
@@ -445,6 +451,10 @@ Hirmid sagsd, das Du den dhägsd '''selbâr gschriim''' hasd, das däär dhägsd
 'prevn' => '{{PLURAL:$1|foorichâr|fooriche $1}}',
 'nextn' => '{{PLURAL:$1|nägschdâr|nägschde $1}}',
 'viewprevnext' => 'Dsajch ($1 {{int:pipe-separator}} $2) ($3)',
+'searchprofile-articles' => 'Sajdn dii ann Inhald zajng',
+'searchprofile-images' => 'Muldimedjâ',
+'searchprofile-everything' => 'Âlls',
+'searchprofile-advanced' => 'Erwajderd',
 'search-result-size' => '$1 ({{PLURAL:$2|1 wôrd|$2 wärdâr}})',
 'search-result-score' => 'Âjschleechich: $1 %',
 'search-redirect' => '(Wajdalajdung fon „$1“ häa)',
@@ -602,6 +612,9 @@ S'gajd awâr aa â [[Special:WhatLinksHere/$2|lisdn mid alâ fârwajs]].",
 'sharedupload' => 'Dii dadaj ghumd fo $1, un mär däf se fär annäre brojägd aa ´heernemâ.',
 'sharedupload-desc-there' => 'Dii dadaj ghumd fon $1, un mr däf se fir andârâ brojägd aa nemâ. Genauârs schded uf dr [$2 beschrajwungssajdâ fon dr dadaj].',
 'uploadnewversion-linktext' => 'Â naje wärsjoon fo derä dadaj nauflôôdn',
+
+# Random page
+'randompage' => 'Zufälliche Sajdn',
 
 # Statistics
 'statistics' => 'Schdadisdig',
@@ -860,6 +873,7 @@ Bidde gug's mi´m foorschau-gnobf ôô fôrm schbajchan",
 'tooltip-upload' => 'Loos midm nauflaadn',
 'tooltip-rollback' => 'Hiir glign machd mid am môl alâs riggängich, was däär benudsâr dsledschd af där sajdn gmachd had.',
 'tooltip-undo' => 'Hiir glign machd dii aane ändärung riggängich un dsajchd dan ôô, wiis dan ausschaua dääd. Dann koosd aa no â dsamfassung wisoo un warum dâdsuuschrajm.',
+'tooltip-summary' => 'Dibb schnell a glaane Zusammafassung nei.',
 
 # Stylesheets
 'common.css' => '/* CSS hiir beâjflusd ale schelfn */',

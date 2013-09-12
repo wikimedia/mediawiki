@@ -481,7 +481,7 @@ $messages = array(
 'december-date' => '12月$1日',
 
 # Categories related messages
-'pagecategories' => '$1个分类',
+'pagecategories' => '$1个{{PLURAL:$1|Category|分类}}',
 'category_header' => '分类“$1”中的页面',
 'subcategories' => '子分类',
 'category-media-header' => '分类“$1”中的媒体文件',
@@ -2136,7 +2136,7 @@ $1',
 'fewestrevisions' => '版本最少页面',
 
 # Miscellaneous special pages
-'nbytes' => '$1字节',
+'nbytes' => '$1个{{PLURAL:$1|byte|字节}}',
 'ncategories' => '$1个分类',
 'ninterwikis' => '$1个跨语言链接',
 'nlinks' => '$1个链接',
@@ -3002,7 +3002,7 @@ $2',
 'tooltip-pt-preferences' => '你的设置',
 'tooltip-pt-watchlist' => '你正在监视更改的页面的列表',
 'tooltip-pt-mycontris' => '你的贡献的列表',
-'tooltip-pt-login' => '我们鼓励你登录，不过这不是强制的',
+'tooltip-pt-login' => '我们鼓励您登录，不过这不是强制的',
 'tooltip-pt-anonlogin' => '我们鼓励你登录，不过这不是强制的',
 'tooltip-pt-logout' => '退出登录',
 'tooltip-ca-talk' => '关于内容页面的讨论',

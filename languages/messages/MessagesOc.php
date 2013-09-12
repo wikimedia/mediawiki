@@ -1004,9 +1004,9 @@ o [{{fullurl:{{FULLPAGENAME}}|action=edit}} crear aquesta pagina]</span>.',
 'noarticletext-nopermission' => 'Actualament i a pas cap de tèxte dins aquesta pagina.
 Podètz [[Special:Search/{{PAGENAME}}|far una recèrca sul títol de la pagina]] dins las autras paginas,
 o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} recercar dins los jornals associats]</span>.',
-'missing-revision' => "La rrvision n° $1 de la pagina intitulada « {{PAGENAME}} » existís pas.
+'missing-revision' => "La revision n° $1 de la pagina intitulada « {{PAGENAME}} » existís pas.
 
-Aquò se produsís en general en seguent un ligam istoric obsolèt cap a una pagina qu'es estada suprimida.
+Aquò se produsís en general en seguent un ligam istoric obsolet cap a una pagina qu'es estada suprimida.
 Podètz trobar mai de detalhs dins lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de las supressions].",
 'userpage-userdoesnotexist' => "Lo compte d'utilizaire « <nowiki>$1</nowiki> » es pas enregistrat. Indicatz se volètz crear o editar aquesta pagina.",
 'userpage-userdoesnotexist-view' => "Lo compte d'utilizaire « $1 » es pas enregistrat.",

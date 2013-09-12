@@ -765,8 +765,10 @@ See also:
 * {{msg-mw|Tooltip-n-portal}}',
 'privacy' => 'Used as page name and link at the bottom of each wiki page. The page contains a legal notice providing information about the use of personal information by the website owner.of the site. Example: [[Privacy policy]].
 {{Identical|Privacy policy}}',
-'privacypage' => 'Used as page for that contains the privacy policy. Used at the bottom of every page on the wiki. Example: [[{{MediaWiki:Privacypage}}|{{MediaWiki:Privacy}}]].
-{{doc-important|Do not change the "<tt>Project:</tt>" part.}}',
+'privacypage' => '{{doc-important|Do not change the "<tt>Project:</tt>" part.}}
+Used as page for that contains the privacy policy. Used at the bottom of every page on the wiki.
+
+Example: [[{{MediaWiki:Privacypage}}|{{MediaWiki:Privacy}}]].',
 
 'badaccess' => 'Title shown within page indicating unauthorized access.
 {{Identical|Permission error}}',
