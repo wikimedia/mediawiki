@@ -2521,7 +2521,7 @@ function wfMkdirParents( $dir, $mode = null, $caller = null ) {
 		wfDebug( "$caller: called wfMkdirParents($dir)\n" );
 	}
 
-	if ( strval( $dir ) === '' || file_exists( $dir ) ) {
+	if ( strval( $dir ) === '' || ( file_exists( $dir ) && is_dir( $dir ) ) ) {
 		return true;
 	}
 
@@ -2537,6 +2537,11 @@ function wfMkdirParents( $dir, $mode = null, $caller = null ) {
 	wfRestoreWarnings();
 
 	if ( !$ok ) {
+		//directory may have been created on another request since we last checked
+		if ( is_dir( $dir ) ) {
+			return true;
+		}
+
 		// PHP doesn't report the path in its warning message, so add our own to aid in diagnosis.
 		wfLogWarning( sprintf( "failed to mkdir \"%s\" mode 0%o", $dir, $mode ) );
 	}
