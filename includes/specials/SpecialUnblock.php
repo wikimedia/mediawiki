@@ -211,7 +211,7 @@ class SpecialUnblock extends SpecialPage {
 
 		# Make log entry
 		$log = new LogPage( 'block' );
-		$log->addEntry( 'unblock', $page, $data['Reason'] );
+		$log->addEntry( 'unblock', $page, $data['Reason'], array(), $performer );
 
 		return true;
 	}

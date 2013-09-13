@@ -3694,7 +3694,7 @@ class Title {
 				$comment .= wfMessage( 'colon-separator' )->inContentLanguage()->text() . $reason;
 			}
 			// @todo FIXME: $params?
-			$log->addEntry( 'move_prot', $nt, $comment, array( $this->getPrefixedText() ) );
+			$log->addEntry( 'move_prot', $nt, $comment, array( $this->getPrefixedText() ), $wgUser );
 		}
 
 		# Update watchlists
