@@ -259,8 +259,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/**
 	 * Gets all scripts for a given context concatenated together.
 	 *
-	 * @param $context ResourceLoaderContext: Context in which to generate script
-	 * @return String: JavaScript code for $context
+	 * @param ResourceLoaderContext $context Context in which to generate script
+	 * @return string: JavaScript code for $context
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
 		$files = $this->getScriptFiles( $context );
@@ -268,7 +268,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * @param $context ResourceLoaderContext
+	 * @param ResourceLoaderContext $context
 	 * @return array
 	 */
 	public function getScriptURLsForDebug( ResourceLoaderContext $context ) {
@@ -289,7 +289,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/**
 	 * Gets loader script.
 	 *
-	 * @return String: JavaScript code to be added to startup module
+	 * @return string: JavaScript code to be added to startup module
 	 */
 	public function getLoaderScript() {
 		if ( count( $this->loaderScripts ) == 0 ) {
@@ -301,8 +301,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/**
 	 * Gets all styles for a given context concatenated together.
 	 *
-	 * @param $context ResourceLoaderContext: Context in which to generate styles
-	 * @return String: CSS code for $context
+	 * @param ResourceLoaderContext $context Context in which to generate styles
+	 * @return string: CSS code for $context
 	 */
 	public function getStyles( ResourceLoaderContext $context ) {
 		$styles = $this->readStyleFiles(
@@ -330,7 +330,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * @param $context ResourceLoaderContext
+	 * @param ResourceLoaderContext $context
 	 * @return array
 	 */
 	public function getStyleURLsForDebug( ResourceLoaderContext $context ) {
@@ -347,7 +347,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/**
 	 * Gets list of message keys used by this module.
 	 *
-	 * @return Array: List of message keys
+	 * @return array: List of message keys
 	 */
 	public function getMessages() {
 		return $this->messages;
@@ -356,7 +356,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/**
 	 * Gets the name of the group this module should be loaded in.
 	 *
-	 * @return String: Group name
+	 * @return string: Group name
 	 */
 	public function getGroup() {
 		return $this->group;
@@ -372,7 +372,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/**
 	 * Gets list of names of modules this module depends on.
 	 *
-	 * @return Array: List of module names
+	 * @return array: List of module names
 	 */
 	public function getDependencies() {
 		return $this->dependencies;
@@ -394,9 +394,9 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * calculations on files relevant to the given language, skin and debug
 	 * mode.
 	 *
-	 * @param $context ResourceLoaderContext: Context in which to calculate
+	 * @param ResourceLoaderContext $context Context in which to calculate
 	 *     the modified time
-	 * @return Integer: UNIX timestamp
+	 * @return int: UNIX timestamp
 	 * @see ResourceLoaderModule::getFileDependencies
 	 */
 	public function getModifiedTime( ResourceLoaderContext $context ) {
@@ -455,7 +455,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/* Protected Methods */
 
 	/**
-	 * @param $path string
+	 * @param string $path
 	 * @return string
 	 */
 	protected function getLocalPath( $path ) {
@@ -463,7 +463,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * @param $path string
+	 * @param string $path
 	 * @return string
 	 */
 	protected function getRemotePath( $path ) {
@@ -476,8 +476,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @param array $list List of file paths in any combination of index/path
 	 *     or path/options pairs
 	 * @param string $option option name
-	 * @param $default Mixed: default value if the option isn't set
-	 * @return Array: List of file paths, collated by $option
+	 * @param mixed $default default value if the option isn't set
+	 * @return array: List of file paths, collated by $option
 	 */
 	protected static function collateFilePathListByOption( array $list, $option, $default ) {
 		$collatedFiles = array();
@@ -506,7 +506,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @param array $list List of lists to select from
 	 * @param string $key Key to look for in $map
 	 * @param string $fallback Key to look for in $list if $key doesn't exist
-	 * @return Array: List of elements from $map which matched $key or $fallback,
+	 * @return array: List of elements from $map which matched $key or $fallback,
 	 *     or an empty list in case of no match
 	 */
 	protected static function tryForKey( array $list, $key, $fallback = null ) {
@@ -524,8 +524,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/**
 	 * Gets a list of file paths for all scripts in this module, in order of propper execution.
 	 *
-	 * @param $context ResourceLoaderContext: Context
-	 * @return Array: List of file paths
+	 * @param ResourceLoaderContext $context
+	 * @return array: List of file paths
 	 */
 	protected function getScriptFiles( ResourceLoaderContext $context ) {
 		$files = array_merge(
@@ -543,8 +543,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/**
 	 * Gets a list of file paths for all styles in this module, in order of propper inclusion.
 	 *
-	 * @param $context ResourceLoaderContext: Context
-	 * @return Array: List of file paths
+	 * @param ResourceLoaderContext $context
+	 * @return array: List of file paths
 	 */
 	protected function getStyleFiles( ResourceLoaderContext $context ) {
 		return array_merge_recursive(
@@ -560,7 +560,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 *
 	 * @param array $scripts List of file paths to scripts to read, remap and concetenate
 	 * @throws MWException
-	 * @return String: Concatenated and remapped JavaScript data from $scripts
+	 * @return string: Concatenated and remapped JavaScript data from $scripts
 	 */
 	protected function readScriptFiles( array $scripts ) {
 		global $wgResourceLoaderValidateStaticJS;
@@ -591,9 +591,9 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @param array $styles List of media type/list of file paths pairs, to read, remap and
 	 * concetenate
 	 *
-	 * @param $flip bool
+	 * @param bool $flip
 	 *
-	 * @return Array: List of concatenated and remapped CSS data from $styles,
+	 * @return array: List of concatenated and remapped CSS data from $styles,
 	 *     keyed by media type
 	 */
 	protected function readStyleFiles( array $styles, $flip ) {
@@ -620,9 +620,9 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * This method can be used as a callback for array_map()
 	 *
 	 * @param string $path File path of style file to read
-	 * @param $flip bool
+	 * @param bool $flip
 	 *
-	 * @return String: CSS data in script file
+	 * @return string: CSS data in script file
 	 * @throws MWException if the file doesn't exist
 	 */
 	protected function readStyleFile( $path, $flip ) {
@@ -655,7 +655,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 
 	/**
 	 * Get whether CSS for this module should be flipped
-	 * @param $context ResourceLoaderContext
+	 * @param ResourceLoaderContext $context
 	 * @return bool
 	 */
 	public function getFlip( $context ) {
