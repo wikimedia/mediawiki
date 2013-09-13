@@ -140,10 +140,6 @@ class UpdateMediaWiki extends Maintenance {
 				$updates[] = 'noschema';
 			}
 			$updates[] = 'stats';
-
-			if ( !$this->hasOption( 'nopurge' ) ) {
-				$updates[] = 'purge';
-			}
 		}
 
 		$updater = DatabaseUpdater::newForDb( $db, $shared, $this );
