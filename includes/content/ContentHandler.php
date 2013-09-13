@@ -356,7 +356,7 @@ abstract class ContentHandler {
 	public static function getLocalizedName( $name ) {
 		$key = "content-model-$name";
 
-		$msg = wfMessage( $key );
+		$msg = wfMessage( $key )->inContentLanguage();
 
 		return $msg->exists() ? $msg->plain() : $name;
 	}
