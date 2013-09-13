@@ -605,9 +605,9 @@ Peul desse ch'a l'ha già cambià la ciav o a l'ha ciamà na neuva ciav provisò
 'passwordreset-username' => 'Stranòm:',
 'passwordreset-domain' => 'Domini:',
 'passwordreset-capture' => 'Vëdde ël mëssagi arzultant?',
-'passwordreset-capture-help' => "S'a marca costa casela, ël mëssagi ëd pòsta eletrònica (con la ciav temporania) a-j sarà smonù e ant l'istess temp a sarà mandà a l'utent.",
+'passwordreset-capture-help' => "S'a marca costa casela, ël mëssagi ëd pòsta eletrònica (con la ciav provisòria) a-j sarà smonù e ant l'istess temp a sarà mandà a l'utent.",
 'passwordreset-email' => 'Adrëssa ëd pòsta eletrònica:',
-'passwordreset-emailtitle' => 'Detaj dël cont ansima {{SITENAME}}',
+'passwordreset-emailtitle' => 'Detaj dël cont ansima a {{SITENAME}}',
 'passwordreset-emailtext-ip' => "Quaidun (a l'é bel fé ch'a sia chiel, da l'adrëssa IP $1) a l'ha ciamà d'arcordé ij detaj ëd sò cont për {{SITENAME}} ($4). {{PLURAL:$3|Ël cont utent sì-sota a l'é|Ij cont utent sì-sota a son}} 
 associà a st'adrëssa ëd pòsta eletrònica:
 

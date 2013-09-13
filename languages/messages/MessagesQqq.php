@@ -1035,10 +1035,9 @@ See example [{{canonicalurl:Main_page|action=x}} action=x].',
 'nospecialpagetext' => '{{doc-important|Do not translate <code><nowiki>[[Special:SpecialPages|{{int:specialpages}}]]</nowiki></code>.}}
 This error is shown when trying to open a special page which does not exist, e.g. [[Special:Nosuchpage]].
 
-The title of this error is the message {{msg-mw|Nosuchspecialpage}}.
+Refers to {{msg-mw|Specialpages}}.
 
-See also:
-* {{msg-mw|Specialpages}}',
+The title of this error is the message {{msg-mw|Nosuchspecialpage}}.',
 
 # General errors
 'error' => '{{Identical|Error}}',
@@ -1861,7 +1860,9 @@ Parameters:
 * $2 - email address',
 'newarticle' => '{{Identical|New}}',
 'newarticletext' => '{{doc-important|Do not translate <code><nowiki>{{MediaWiki:Helppage}}</nowiki></code>.}}
-Text displayed above the edit box in editor when trying to create a new page.',
+Text displayed above the edit box in editor when trying to create a new page.
+
+Refers to {{msg-mw|Helppage}}.',
 'anontalkpagetext' => 'Displayed at the bottom of talk pages of anonymous users.',
 'noarticletext' => 'This is the message that you get if you search for a term that has not yet got any entries on the wiki.
 

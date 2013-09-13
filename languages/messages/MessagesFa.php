@@ -34,6 +34,7 @@
  * @author Pouyana
  * @author Reza1615
  * @author Roozbeh Pournader <roozbeh at gmail.com>
+ * @author Rtemis
  * @author Sahim
  * @author Surena
  * @author Taha
@@ -444,7 +445,7 @@ $messages = array(
 'tog-extendwatchlist' => 'گسترش فهرست پی‌گیری‌ها برای نمایش همهٔ تغییرات، نه فقط آخرین‌ها',
 'tog-usenewrc' => 'گروه‌بندی تغییرات بر پایه صفحه در تغییرات اخیر و فهرست پیگیری‌ها (نیازمند جاوااسکریپت)',
 'tog-numberheadings' => 'شماره‌گذاری خودکار عنوان‌ها',
-'tog-showtoolbar' => 'نوار ابزار جعبهٔ ویرایش نمایش یابد (نیازمند جاوااسکریپت)',
+'tog-showtoolbar' => 'نوار ابزار جعبهٔ ویرایش نمایش یابد',
 'tog-editondblclick' => 'ویرایش صفحه‌ها با دوکلیک (نیازمند جاوااسکریپت)',
 'tog-editsection' => 'ویرایش بخش‌ها از طریق پیوندهای [ویرایش] فعال باشد',
 'tog-editsectiononrightclick' => 'امکان ویرایش بخش‌ها با کلیک راست روی عنوان‌های بخش (نیازمند جاوااسکریپت)',
@@ -1893,7 +1894,7 @@ $1",
 'rc_categories_any' => 'هر کدام',
 'rc-change-size-new' => '$1 {{PLURAL:$1|بایت}} پس از تغییر',
 'newsectionsummary' => '/* $1 */ بخش جدید',
-'rc-enhanced-expand' => 'نمایش جزئیات (نیازمند جاوااسکریپت)',
+'rc-enhanced-expand' => 'نمایش جزئیات',
 'rc-enhanced-hide' => 'نهفتن جزئیات',
 'rc-old-title' => 'ایجادشده با عنوان اصلی «$1»',
 

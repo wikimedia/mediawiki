@@ -4029,7 +4029,7 @@ V nasprotnem primeru lahko uporabite preprost obrazec spodaj. Vašo pripombo bom
 'feedback-error2' => 'Napaka: Urejanje je spodletelo',
 'feedback-error3' => 'Napaka: Ni odgovora od API',
 'feedback-thanks' => 'Havala! Vaše povratne informacije smo objavili na strani »[$2 $1]«.',
-'feedback-close' => 'Končano',
+'feedback-close' => 'Urejeno',
 'feedback-bugcheck' => 'Izvrstno! Samo preverite, da ne gre za enega od [$1 že znanih hroščev].',
 'feedback-bugnew' => 'Sem preveril. Prijavi nov hrošč',
 

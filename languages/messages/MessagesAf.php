@@ -352,7 +352,7 @@ $messages = array(
 'newwindow' => '(verskyn in nuwe venster)',
 'cancel' => 'Kanselleer',
 'moredotdotdot' => 'Meer…',
-'morenotlisted' => 'Meer nie gelys nie...',
+'morenotlisted' => 'Die lys is nie volledig nie.',
 'mypage' => 'Gebruikersblad',
 'mytalk' => 'Bespreking',
 'anontalk' => 'Besprekingsblad vir hierdie IP',
@@ -538,6 +538,10 @@ Dit kan ook dui op 'n fout in die sagteware van {{SITENAME}}.",
 # General errors
 'error' => 'Fout',
 'databaseerror' => 'Databasisfout',
+'databaseerror-textcl' => "'n Databasis-versoek het gefaal.",
+'databaseerror-query' => 'SQL-versoek:',
+'databaseerror-function' => 'Funksie: $1',
+'databaseerror-error' => 'Fout: $1',
 'laggedslavemode' => 'Waarskuwing: Onlangse wysigings dalk nie in bladsy vervat nie.',
 'readonly' => 'Databasis gesluit',
 'enterlockreason' => 'Rede vir die sluiting,
@@ -819,6 +823,9 @@ Tydelike wagwoord: $2',
 'changeemail-password' => 'U wagwoord vir {{SITENAME}}:',
 'changeemail-submit' => 'Wysig E-posadres',
 'changeemail-cancel' => 'Kanselleer',
+
+# Special:ResetTokens
+'resettokens-token-label' => '$1 (huidige waarde: $2)',
 
 # Edit page toolbar
 'bold_sample' => 'Vetgedrukte teks',
@@ -1403,9 +1410,9 @@ Die tildes word in u handtekening omgeskakel en die datum en tyd word insluit.',
 'badsiglength' => 'U handtekening is te lank.
 Dit mag nie meer as $1 {{PLURAL:$1|karakter|karakters}} bevat nie.',
 'yourgender' => 'Geslag:',
-'gender-unknown' => 'Nie gespesifiseer',
-'gender-male' => 'Man',
-'gender-female' => 'Vrou',
+'gender-unknown' => 'Ek wil nie sê nie',
+'gender-male' => 'Hy bewerk wikiblaaie',
+'gender-female' => 'Sy bewerk wikiblaaie',
 'prefs-help-gender' => 'Opsioneel: dit word gebruik om gebruikers korrek aan te spreek in die sagteware.
 Die inligting is vir ander gebruikers sigbaar.',
 'email' => 'E-pos',
@@ -1604,6 +1611,8 @@ As u dit verskaf, sal dit gebruik word om erkenning vir u werk te gee.',
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|wysiging|wysigings}}',
+'enhancedrc-since-last-visit' => '$1 {{PLURAL:$1|sedert u laaste besoek}}',
+'enhancedrc-history' => 'geskiedenis',
 'recentchanges' => 'Onlangse wysigings',
 'recentchanges-legend' => 'Opsies vir onlangse wysigings',
 'recentchanges-summary' => 'Volg die mees onlangse wysigings aan die wiki op die bladsy.',
@@ -1635,7 +1644,7 @@ As u dit verskaf, sal dit gebruik word om erkenning vir u werk te gee.',
 'rc_categories_any' => 'Enige',
 'rc-change-size-new' => '$1 {{PLURAL:$1|greep|grepe}} na die wysiging',
 'newsectionsummary' => '/* $1 */ nuwe afdeling',
-'rc-enhanced-expand' => 'Wys details (benodig JavaScript)',
+'rc-enhanced-expand' => 'Wys details',
 'rc-enhanced-hide' => 'Steek details weg',
 'rc-old-title' => 'oorspronklik geskep as "$1"',
 
@@ -1917,6 +1926,8 @@ Kliek op die opskrifte om die tabel te hersorteer.',
 'listfiles_size' => 'Grootte',
 'listfiles_description' => 'Beskrywing',
 'listfiles_count' => 'Weergawes',
+'listfiles-latestversion-yes' => 'Ja',
+'listfiles-latestversion-no' => 'Nee',
 
 # File description page
 'file-anchor-link' => 'Lêer',
@@ -2010,6 +2021,9 @@ Miskien wil u eerder die beskrywing daar op die [$2 lêerbeskrywing] bywerk.',
 # Random page
 'randompage' => 'Lukrake bladsy',
 'randompage-nopages' => 'Daar is geen bladsye in die volgende {{PLURAL:$2|naamruimte|naamruimtes}} nie: $1.',
+
+# Random page in category
+'randomincategory-selectcategory-submit' => 'Gaan',
 
 # Random redirect
 'randomredirect' => 'Lukrake aanstuur',

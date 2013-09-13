@@ -4015,7 +4015,7 @@ A MediaWikit abban a reményben terjesztjük, hogy hasznos lesz, de GARANCIA NÉ
 'api-error-badtoken' => 'Belső hiba: hibás token.',
 'api-error-copyuploaddisabled' => 'Az URL-címes feltöltés nem engedélyezett ezen a kiszolgálón.',
 'api-error-duplicate' => 'Már van {{PLURAL:$1|egy|néhány}} [$2 másik fájl] az oldalon ugyanilyen tartalommal',
-'api-error-duplicate-archive' => 'Az oldalon {{PLURAL:$1|szerepelt|szerepeltek}} más [$2 más {{PLURAL:$1|fájl|fájlok}}] is ugyanezzel a tartalommal, de törlölve {{PLURAL:$1|lett|lettek}}.',
+'api-error-duplicate-archive' => 'Az oldalon {{PLURAL:$1|szerepelt|szerepeltek}} [$2 más {{PLURAL:$1|fájl|fájlok}}] is ugyanezzel a tartalommal, de törölve {{PLURAL:$1|lett|lettek}}.',
 'api-error-duplicate-archive-popup-title' => '{{PLURAL:$1|Az azonos fájl, ami törölve lett|Azonos fájlok, amik törölve lettek}}',
 'api-error-duplicate-popup-title' => '{{PLURAL:$1|Duplikátum|Duplikátumok}}',
 'api-error-empty-file' => 'Az általad elküldött fájl üres volt.',
