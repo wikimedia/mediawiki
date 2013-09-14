@@ -31,6 +31,7 @@
  */
 class SpecialImport extends SpecialPage {
 	private $interwiki = false;
+	private $subproject;
 	private $namespace;
 	private $rootpage = '';
 	private $frompage = '';
@@ -54,6 +55,8 @@ class SpecialImport extends SpecialPage {
 	function execute( $par ) {
 		$this->setHeaders();
 		$this->outputHeader();
+
+		$this->getOutput()->addModules( 'mediawiki.special.import' );
 
 		$user = $this->getUser();
 		if ( !$user->isAllowedAny( 'import', 'importupload' ) ) {
@@ -117,18 +120,27 @@ class SpecialImport extends SpecialPage {
 				throw new PermissionsError( 'import' );
 			}
 			$this->interwiki = $request->getVal( 'interwiki' );
-			if ( !in_array( $this->interwiki, $wgImportSources ) ) {
+			// does this interwiki have subprojects?
+			$hasSubprojects = array_key_exists( $this->interwiki, $wgImportSources );
+			if ( !$hasSubprojects && !in_array( $this->interwiki, $wgImportSources ) ) {
 				$source = Status::newFatal( "import-invalid-interwiki" );
 			} else {
-				$this->history = $request->getCheck( 'interwikiHistory' );
-				$this->frompage = $request->getText( "frompage" );
-				$this->includeTemplates = $request->getCheck( 'interwikiTemplates' );
-				$source = ImportStreamSource::newFromInterwiki(
-					$this->interwiki,
-					$this->frompage,
-					$this->history,
-					$this->includeTemplates,
-					$this->pageLinkDepth );
+				if ( $hasSubprojects ) {
+					$this->subproject = $request->getVal( 'subproject' );
+				}
+				if ( $hasSubprojects && !in_array( $this->subproject, $wgImportSources[$this->interwiki] ) ) {
+					$source = Status::newFatal( "import-invalid-interwiki" );
+				} else {
+					$this->history = $request->getCheck( 'interwikiHistory' );
+					$this->frompage = $request->getText( "frompage" );
+					$this->includeTemplates = $request->getCheck( 'interwikiTemplates' );
+					$source = ImportStreamSource::newFromInterwiki(
+						$this->interwiki . ( $this->subproject ? ( ':' . $this->subproject ) : '' ),
+						$this->frompage,
+						$this->history,
+						$this->includeTemplates,
+						$this->pageLinkDepth );
+				}
 			}
 		} else {
 			$source = Status::newFatal( "importunknownsource" );
@@ -166,7 +178,7 @@ class SpecialImport extends SpecialPage {
 			$reporter = new ImportReporter(
 				$importer,
 				$isUpload,
-				$this->interwiki,
+				$this->interwiki . ( $this->subproject ? ( ':' . $this->subproject ) : '' ),
 				$this->logcomment
 			);
 			$reporter->setContext( $this->getContext() );
@@ -297,7 +309,7 @@ class SpecialImport extends SpecialPage {
 					Xml::openElement( 'table', array( 'id' => 'mw-import-table-interwiki' ) ) .
 					"<tr>
 					<td class='mw-label'>" .
-					Xml::label( $this->msg( 'import-interwiki-source' )->text(), 'interwiki' ) .
+					Xml::label( $this->msg( 'import-interwiki-sourcewiki' )->text(), 'interwiki' ) .
 					"</td>
 					<td class='mw-input'>" .
 					Xml::openElement(
@@ -306,13 +318,63 @@ class SpecialImport extends SpecialPage {
 					)
 			);
 
-			foreach ( $wgImportSources as $prefix ) {
-				$selected = ( $this->interwiki === $prefix ) ? ' selected="selected"' : '';
-				$out->addHTML( Xml::option( $prefix, $prefix, $selected ) );
+			$needSubprojectField = false;
+			foreach ( $wgImportSources as $key => $value ) {
+				if ( is_int( $key ) ) {
+					$key = $value;
+				} else if ( $value !== $key ) {
+					$needSubprojectField = true;
+				}
+
+				$attribs = array(
+					'value' => $key,
+				);
+				if ( is_array( $value ) ) {
+					$attribs['data-subprojects'] = implode( ' ', $value );
+				}
+				if ( $this->interwiki === $key ) {
+					$attribs['selected'] = 'selected';
+				}
+				$out->addHTML( Html::element( 'option', $attribs, $key ) );
 			}
 
 			$out->addHTML(
-				Xml::closeElement( 'select' ) .
+				Xml::closeElement( 'select' )
+			);
+
+			if ( $needSubprojectField ) {
+				$out->addHTML(
+					Xml::openElement(
+						'select',
+						array( 'name' => 'subproject', 'id' => 'subproject' )
+					)
+				);
+
+				$subprojectsToAdd = array();
+				foreach ( $wgImportSources as $key => $value ) {
+					if ( is_array( $value ) ) {
+						$subprojectsToAdd = array_merge( $subprojectsToAdd, $value );
+					}
+				}
+				$subprojectsToAdd = array_unique( $subprojectsToAdd );
+				sort( $subprojectsToAdd );
+				foreach ( $subprojectsToAdd as $subproject ) {
+					$out->addHTML( Xml::option( $subproject, $subproject, $this->subproject === $subproject ) );
+				}
+
+				$out->addHTML(
+					Xml::closeElement( 'select' )
+				);
+			}
+
+			$out->addHTML(
+					"</td>
+				</tr>
+				<tr>
+					<td class='mw-label'>" .
+					Xml::label( $this->msg( 'import-interwiki-sourcepage' )->text(), 'frompage' ) .
+					"</td>
+					<td class='mw-input'>" .
 					Xml::input( 'frompage', 50, $this->frompage, array( 'id' => 'frompage' ) ) .
 					"</td>
 				</tr>
