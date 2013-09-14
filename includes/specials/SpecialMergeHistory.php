@@ -417,7 +417,7 @@ class SpecialMergeHistory extends SpecialPage {
 		$log = new LogPage( 'merge' );
 		$log->addEntry(
 			'merge', $targetTitle, $this->mComment,
-			array( $destTitle->getPrefixedText(), $timestampLimit )
+			array( $destTitle->getPrefixedText(), $timestampLimit ), $this->getUser()
 		);
 
 		$this->getOutput()->addWikiMsg( 'mergehistory-success',

@@ -203,7 +203,7 @@ abstract class RevDel_List extends RevisionListBase {
 		// Actually add the deletion log entry
 		$log = new LogPage( $logType );
 		$logid = $log->addEntry( $this->getLogAction(), $params['title'],
-			$params['comment'], $logParams );
+			$params['comment'], $logParams, $this->getUser() );
 		// Allow for easy searching of deletion log items for revision/log items
 		$log->addRelations( $field, $params['ids'], $logid );
 		$log->addRelations( 'target_author_id', $params['authorIds'], $logid );
