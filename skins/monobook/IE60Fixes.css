@@ -70,15 +70,6 @@ div#footer {
 #portal-personaltools {
 	padding-bottom: 0.1em;
 }
-#bodyContent a.external {
-	background: url(external.png) center right no-repeat;
-	padding-right: 13px;
-}
-
-.rtl #bodyContent a.external {
-	background-image: url(external-rtl.png);
-	padding-right: 13px;
-}
 
 .rtl a.feedlink {
 	background-position: right;
