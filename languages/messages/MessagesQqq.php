@@ -3752,6 +3752,7 @@ See also:
 See also:
 * {{msg-mw|Upload-permitted}}
 * {{msg-mw|Upload-preferred}}',
+'upload-default-description' => 'Do not translate. Default text for the description box on Special:Upload, or "-" to disable.',
 'uploadlogpage' => '{{doc-logpage}}
 
 Page title of [[Special:Log/upload]].',

@@ -141,6 +141,7 @@ $wgIgnoredMessages = array(
 	'statistics-footer',
 	'talkpagetext',
 	'uploadfooter',
+	'upload-default-description',
 	'listgrouprights-link',
 	'search-interwiki-custom',
 	'allpages-summary',
