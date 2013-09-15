@@ -703,8 +703,7 @@ pre, .mw-code {
 	margin-top: 0;
 	font-size: 1.6em;
 }
-div#content a.external,
-div#content a.external[href ^="gopher://"] {
+div#content a.external {
 	/* @embed */
 	background: url(images/external-link-ltr-icon.png) center right no-repeat;
 	padding-right: 13px;
