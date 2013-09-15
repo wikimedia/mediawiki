@@ -1583,7 +1583,7 @@ $1",
 'badsiglength' => 'חתימתכם ארוכה מדי.
 אורך החתימה המרבי הוא {{PLURAL:$1|תו אחד|$1 תווים}}.',
 'yourgender' => 'איזה תיאור מתאים לך?',
-'gender-unknown' => 'איני רוצה לפרט',
+'gender-unknown' => 'איני רוצה לומר',
 'gender-male' => 'הוא עורך דפים בוויקי',
 'gender-female' => 'היא עורכת דפים בוויקי',
 'prefs-help-gender' => 'אין חובה למלא את ההעדפה הזאת.
@@ -2555,7 +2555,7 @@ $UNWATCHURL
 'deletepage' => 'מחיקה',
 'confirm' => 'אישור',
 'excontent' => 'תוכן היה: "$1"',
-'excontentauthor' => 'התוכן היה: "$1" (והתורם היחיד היה "[[Special:Contributions/$2|$2]]")',
+'excontentauthor' => 'התוכן היה: "$1" (וה{{gender:$2|תורם היחיד היה|תורמת היחידה הייתה}} "[[Special:Contributions/$2|$2]]")',
 'exbeforeblank' => 'תוכן לפני שרוקן היה: "$1"',
 'exblank' => 'הדף היה ריק',
 'delete-confirm' => 'מחיקת $1',

@@ -481,7 +481,7 @@ $messages = array(
 'december-date' => '12月$1日',
 
 # Categories related messages
-'pagecategories' => '$1个{{PLURAL:$1|Category|分类}}',
+'pagecategories' => '$1个分类',
 'category_header' => '分类“$1”中的页面',
 'subcategories' => '子分类',
 'category-media-header' => '分类“$1”中的媒体文件',
@@ -2136,7 +2136,7 @@ $1',
 'fewestrevisions' => '版本最少页面',
 
 # Miscellaneous special pages
-'nbytes' => '$1个{{PLURAL:$1|byte|字节}}',
+'nbytes' => '$1字节',
 'ncategories' => '$1个分类',
 'ninterwikis' => '$1个跨语言链接',
 'nlinks' => '$1个链接',

@@ -691,6 +691,7 @@ Mila manaiky cookies ianao raha te hiditra amin'ny {{SITENAME}}.",
 'createaccountreason' => 'Antony :',
 'createacct-reason' => 'Antony',
 'createacct-reason-ph' => 'Inona ny antony hamoronanao kaonty hafa',
+'createacct-captcha' => 'Fitsapana ny antoka',
 'createacct-imgcaptcha-ph' => 'Atsofohy ny teny hitanao eo ambony',
 'createacct-submit' => 'Hamorona ny kaontinao',
 'createacct-another-submit' => 'Hamorona kaonty vaovao',
@@ -1078,6 +1079,7 @@ Ao aorian'ny fivelarana, mety namoaka valy lava loatra angamba izy, ary tsy namp
 'expansion-depth-exceeded-category' => 'Pejy manana halalim-panitarana mihoatra',
 'expansion-depth-exceeded-warning' => 'Pejy manana halalim-panitarana mihoatra',
 'parser-unstrip-loop-warning' => 'Nahitana tondro mifolaka tsy azo vahana',
+'parser-unstrip-recursion-limit' => 'Tafahoatra ny fetra avo ny fetra recursion ($1)',
 'converter-manual-rule-error' => "Nahitana hadisoana ao amin'ny fepetra famadihana tanana ny fiteny.",
 
 # "Undo" feature
@@ -1448,7 +1450,9 @@ Tsy haseho ny adiresy imailakao rehefa manoratra any aminao ny mpikambana hafa."
 'prefs-displayrc' => 'safidim-tseho',
 'prefs-displaysearchoptions' => 'Safidin-tseho',
 'prefs-displaywatchlist' => 'Safidin-tseho',
+'prefs-tokenwatchlist' => 'Token',
 'prefs-diffs' => 'Diff',
+'prefs-help-prefershttps' => "Hihatra amin'ny fidiranao manaraka ity safidy ity.",
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'Adiresy imailaka mameno fepetra',
@@ -1472,10 +1476,10 @@ Tsy haseho ny adiresy imailakao rehefa manoratra any aminao ny mpikambana hafa."
 'userrights-no-interwiki' => "Tsy manana alalana manova ny alalan'ny mpikambana eny amin'ny wiki hafa ianao.",
 'userrights-nodatabase' => 'Tsy eto akaiky na tsy misy ny banky angona « $1 ».',
 'userrights-nologin' => "Tsy maintsy [[Special:UserLogin|miditra]] ary manana kaontim-pandrindra ianao raha hanova ny alalan'ny mpikambana.",
-'userrights-notallowed' => "Tsy afaka manova ny fahafahan'ny mpikambana ny kaontinao.",
+'userrights-notallowed' => 'Tsy manana alalana ny manova na manampy zom-pikambana ianao.',
 'userrights-changeable-col' => 'Ny gropy azonao ovaina',
 'userrights-unchangeable-col' => 'Ny gropy tsy azonao ovaina',
-'userrights-conflict' => 'Fifandonana zom-pikambana! Ampiharo fanindroany ny fanovanao.',
+'userrights-conflict' => 'Fifandonana fanovana zom-pikambana! Avereno vakiana ary marino ny fanovanao.',
 'userrights-removed-self' => "Afakao soa aman-tsara ny zonao. Noho izany, tsy afaka mijery amin'ilay pejy intsony ianao.",
 
 # Groups
@@ -1541,8 +1545,9 @@ Tsy haseho ny adiresy imailakao rehefa manoratra any aminao ny mpikambana hafa."
 'right-ipblock-exempt' => 'Tsy voakasiky ny fanakanana IP, ny fanakanana mandeha ho azy (aotômatika) ary ny fanakanana sampana IP',
 'right-proxyunbannable' => "Tsy voakasiky ny fanakana mande hoazy avy amin'ny proxy",
 'right-unblockself' => "Manala ny hidin'ny tena",
-'right-protect' => "Manova ny fiarovan'ny pejy sy manova ny pejy voaaro",
+'right-protect' => "Manova ny lenta fiarovan'ny pejy sy manova ny pejy voaaro miriana",
 'right-editprotected' => 'Manova pejy voaaro (tsy misy fiarovana en cascade)',
+'right-editsemiprotected' => 'Hanova ny pejy narovna ho "{{int:protect-level-autoconfirmed}}"',
 'right-editinterface' => 'Manova ny interface ny mpikambana',
 'right-editusercssjs' => 'Manova ny rakitra CSS sy JS ny mpikambana hafa',
 'right-editusercss' => 'Manova ny rakitra CSS ny mpikambana hafa',
@@ -1622,6 +1627,7 @@ Tsy haseho ny adiresy imailakao rehefa manoratra any aminao ny mpikambana hafa."
 
 # Recent changes
 'nchanges' => '{{PLURAL:$1|fanovana|fanovana}} $1',
+'enhancedrc-since-last-visit' => '$1 ({{PLURAL:$1|hatry ny famangiana farany}})',
 'enhancedrc-history' => 'tantara',
 'recentchanges' => 'Fanovana farany',
 'recentchanges-legend' => 'Safidy ny fanovàna farany',
@@ -1909,6 +1915,8 @@ Rehefa sivanin'ny mpikambana iray izy ity, ny rakitra izay ahitana santiôna vao
 'listfiles_size' => 'Habe',
 'listfiles_description' => 'Visavisa',
 'listfiles_count' => 'Version',
+'listfiles-latestversion-yes' => 'Eny',
+'listfiles-latestversion-no' => 'Tsia',
 
 # File description page
 'file-anchor-link' => 'Rakitra',
@@ -2027,8 +2035,13 @@ Aza manadino manamarina raha tsy misy rohy makany amin'ny endrika hafa alohan'ny
 'statistics-users-active-desc' => "Mpikambana nanao zavatra teto tanatin'ny $1 andro{{PLURAL:}}.",
 'statistics-mostpopular' => 'Pejy voatsidika',
 
+'pageswithprop' => 'Pejy misy toe-pejy',
+'pageswithprop-legend' => 'Pejy misy toe-pejy',
+'pageswithprop-text' => 'Manalisitra ny pejy mampiasa toe-pejy manokana ity',
 'pageswithprop-prop' => "Anaran'ilay tondro",
 'pageswithprop-submit' => 'Alefa',
+'pageswithprop-prophidden-long' => 'Sandan-toe-dahatsoratra lava miafina ($1)',
+'pageswithprop-prophidden-binary' => 'sandan-toetra roa fototra miafina ($1)',
 
 'doubleredirects' => 'Fihodinana roa',
 'double-redirect-fixed-move' => "Ity fihodinana ity, nanana ny tanjona [[$1]] novaina anarana, dia mitondra mankany amin'ny [[$2]].",
@@ -2877,6 +2890,11 @@ Tsy hita ny rakitra miserana.',
 'import-token-mismatch' => 'Very ny fampahalalàna momba ny kaonty.
 Avereno fanindroany.',
 'import-invalid-interwiki' => "Tsy afaka mampiditra avy any amin'ilay wiki nofidiana.",
+'import-error-edit' => 'Tsy nafarana ny pejy "$1" satria tsy afaka manova azy ianao.',
+'import-error-create' => 'Tsy nafarana ny pejy "$1" satria tsy afaka mamorona azy ianao.',
+'import-error-interwiki' => 'Tsy nafarana ny pejy "$1" satria atokana ho an\'ny rohy interwiki ny anarany.',
+'import-error-special' => 'Tsy nafarana ny pejy "$1" satria amy valan\'anarana tsy mandray pejy ilay izy.',
+'import-error-invalid' => 'Tsy nafarana ny pejy "$1" satria tsy ekena ny anarany.',
 'import-rootpage-invalid' => 'Lohateny tsy azo raisina ny foto-pejy nomenao:',
 
 # Import log
@@ -3178,10 +3196,18 @@ Tokony sary tsy misy na sary tsy izy ny rohy voalohany anaty andalana iray .
 'exif-fnumber' => 'Isa F',
 'exif-exposureprogram' => 'Fomba famakiana',
 'exif-isospeedratings' => 'ISO',
+'exif-shutterspeedvalue' => 'hafaingam-panapenana ny APEX',
 'exif-aperturevalue' => 'Fisanasana APEX',
+'exif-brightnessvalue' => "Hazavan'ny APEX",
+'exif-exposurebiasvalue' => 'fanitsiana ny fanehoana',
+'exif-maxaperturevalue' => 'Fisokafana be indrindra',
+'exif-subjectdistance' => "Halaviran'ny alaina sary",
+'exif-meteringmode' => 'Fomba fandrefesana',
 'exif-lightsource' => 'Loharanon-kazavana',
 'exif-flashenergy' => "Angôvon'akonkazavana",
+'exif-subjectlocation' => "Toeram-pisian'ny alaina sary",
 'exif-filesource' => 'Fangon-drakitra',
+'exif-digitalzoomratio' => "Tahan'ny zoom arak'isa",
 'exif-imageuniqueid' => "ID an'io sary io manokana",
 'exif-gpslatituderef' => 'Laharam-pehintany avaratra na atsimo',
 'exif-gpslatitude' => 'Laharam-pehintany',

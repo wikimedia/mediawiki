@@ -534,6 +534,11 @@ Vegeu la llista de pàgines especials a [[Special:SpecialPages]].',
 # General errors
 'error' => 'Error',
 'databaseerror' => "S'ha produït un error en la base de dades",
+'databaseerror-text' => "S'ha produït un error en la consulta de la base de dades.
+Això pot indicar un error en el programari.",
+'databaseerror-textcl' => "S'ha produït un error en la consulta de la base de dades.",
+'databaseerror-query' => 'Consulta: $1',
+'databaseerror-function' => 'Funció: $1',
 'laggedslavemode' => 'Avís: La pàgina podria mancar de modificacions recents.',
 'readonly' => 'La base de dades es troba bloquejada',
 'enterlockreason' => 'Escriviu una raó pel bloqueig, així com una estimació de quan tindrà lloc el desbloqueig',
@@ -567,6 +572,7 @@ Potser ja ha estat esborrat per algú altre.",
 'cannotdelete-title' => 'No es pot suprimir la pàgina " $1 "',
 'delete-hook-aborted' => 'Un «hook» ha interromput la supressió.
 No ha donat cap explicació.',
+'no-null-revision' => "No s'ha pogut crear una nova revisió nul·la de la pàgina «$1»",
 'badtitle' => 'El títol no és correcte',
 'badtitletext' => 'El títol de la pàgina que heu introduït no és correcte, és en blanc o conté un enllaç trencat amb un altre projecte. També podria contenir algun caràcter no acceptat als títols de pàgina.',
 'perfcached' => "Les dades següents es troben a la memòria cau i podrien no estar al dia. Hi ha un màxim {{PLURAL:$1|d'un resultat|de $1 resultats}} disponibles a la memòria cau.",
@@ -734,6 +740,8 @@ Espereu $1 abans de tornar-ho a provar.",
 'login-abort-generic' => "L'entrada al compte d'usuari no ha reeixit - Abortada",
 'loginlanguagelabel' => 'Llengua: $1',
 'suspicious-userlogout' => "S'ha denegat la vostra petició per tancar la sessió ja què sembla que va ser enviada per un navegador defectuós o un proxy cau.",
+'createacct-another-realname-tip' => "El nom real és opcional.
+Si decidiu proporcionar-lo, s'utilitzarà per a reconèixer a l'usuari el seu treball.",
 
 # Email sending
 'php-mail-error-unknown' => 'Error desconegut en la funció mail() de PHP',
@@ -762,6 +770,7 @@ Deveu haver canviat la vostra contrasenya o demanat una nova contrasenya tempora
 # Special:PasswordReset
 'passwordreset' => 'Restablir contrasenya',
 'passwordreset-text-one' => 'Cal completar aquest formulari per reiniciar la contrasenya',
+'passwordreset-text-many' => '{{PLURAL:$1|Ompliu un dels camps per a reiniciar la vostra contrasenya.}}',
 'passwordreset-legend' => 'Restablir contrasenya',
 'passwordreset-disabled' => "S'ha desactivat el restabliment de contranyes en aquest wiki.",
 'passwordreset-emaildisabled' => 'Les opcions de correu electrònic no estan habilitades en aquest wiki.',
@@ -1852,6 +1861,8 @@ Si filtreu per usuari només es mostraran els fitxers la versió més recent del
 'listfiles_size' => 'Mida (octets)',
 'listfiles_description' => 'Descripció',
 'listfiles_count' => 'Versions',
+'listfiles-latestversion' => 'Versió actual',
+'listfiles-latestversion-yes' => 'Sí',
 
 # File description page
 'file-anchor-link' => 'Fitxer',
@@ -1945,6 +1956,11 @@ Potser voleu modificar-ne la descripció en la seva [$2 pàgina de descripció].
 # Random page
 'randompage' => "Pàgina a l'atzar",
 'randompage-nopages' => "No hi ha cap pàgina en {{PLURAL:$2|l'espai de noms següent|els espais de noms següents}}: $1.",
+
+# Random page in category
+'randomincategory' => 'Pàgina aleatòria en la categoria',
+'randomincategory-invalidcategory' => '«$1» no és un nom de categoria vàlid.',
+'randomincategory-nopages' => 'No hi ha pàgines a la categoria [[:Category:$1|$1]].',
 
 # Random redirect
 'randomredirect' => "Redirecció a l'atzar",

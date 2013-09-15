@@ -1136,9 +1136,11 @@ Uw eigen .css- en .js-pagina's beginnen met een kleine letter, bijvoorbeeld {{ns
 Uw tekst is niet opgeslagen!",
 'continue-editing' => 'Naar het bewerkingsvenster gaan',
 'previewconflict' => 'Deze voorvertoning geeft aan hoe de tekst in het bovenste veld eruit ziet als u deze opslaat.',
-'session_fail_preview' => "'''Excuses, uw bewerking is niet opgeslagen, omdat de sessiegegevens verloren zijn gegaan.'''
-Probeert U het opnieuw.
-Als het dan nog niet lukt, [[Special:UserLogout|meld uzelf dan af]] en vervolgens weer aan.",
+'session_fail_preview' => "'''Excuses, uw bewerking is niet opgeslagen omdat de sessiegegevens verloren zijn gegaan.'''
+Probeer het altublieft opnieuw.
+Als het dan nog niet lukt, [[Special:UserLogout|meld uzelf dan af]] en vervolgens weer aan.
+
+<!-- Aanspreekvorm \"probeert U\" was overbodig; bovendien is de hoofdletter gereserveerd voor het aanspreken van God -->",
 'session_fail_preview_html' => "'''Uw bewerking is niet verwerkt, omdat de sessiegegevens verloren zijn gegaan.'''
 
 ''Omdat in {{SITENAME}} ruwe HTML is ingeschakeld, is een voorvertoning niet mogelijk als bescherming tegen aanvallen met JavaScript.''

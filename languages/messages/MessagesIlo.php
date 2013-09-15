@@ -3734,8 +3734,7 @@ Naka-awatka koman ti [{{SERVER}}{{SCRIPTPATH}}/COPYING kopia iti GNU Sapasap a  
 'specialpages' => 'Espesial a pampanid',
 'specialpages-note' => '----
 * Kadawyan nga espesial a pampanid.
-* <span class="mw-specialpagerestricted">Naiparit nga espesial a pampanid.</span>
-* <span class="mw-specialpagecached">Cached nga espesial a pampanid (baka nagpaso).</span>',
+* <span class="mw-specialpagerestricted">Nagawidan nga espesial a pampanid.</span>',
 'specialpages-group-maintenance' => 'Dagiti padamag ti panagtaripato',
 'specialpages-group-other' => 'Sabsabali pay nga espesial a pampanid',
 'specialpages-group-login' => 'Sumrek / agaramid ti pakabilangan',

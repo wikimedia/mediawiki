@@ -483,9 +483,10 @@ This can also appear in the credits page if the credits feature is enabled,for e
 {{Identical|My pages}}',
 'qbspecialpages' => '{{Identical|Special page}}',
 'faq' => "FAQ is short for ''frequently asked questions''.",
-'faqpage' => "FAQ is short for ''frequently asked questions''. This page is only linked in CologneBlue (an old skin), not in Monobook or Vector.
+'faqpage' => '{{doc-important|Do not translate <code>Project:</code> part.}}
+"FAQ" is short for "frequently asked questions".
 
-{{doc-important|Do not translate <tt>Project:</tt> part.}}",
+This page is only linked in CologneBlue (an old skin), not in Monobook or Vector.',
 
 # Vector skin
 'vector-action-addsection' => 'Used in the Vector skin. See for example {{canonicalurl:Talk:Main_Page|useskin=vector}}',
@@ -658,7 +659,7 @@ See also:
 'viewhelppage' => 'Used as link text in Talk page of help page.',
 'categorypage' => 'Used as link text in Talk page of category page.',
 'viewtalkpage' => 'Used in Standard (a.k.a. Classic) skin as a link to talk page for all namespaces, in edit or history mode.',
-'otherlanguages' => 'This message is shown under the toolbox. It is used if there are interwiki links added to the page, like <tt><nowiki>[[</nowiki>en:Interwiki article]]</tt>.
+'otherlanguages' => 'This message is shown under the toolbox. It is used if there are interwiki links added to the page, like <code><nowiki>[[</nowiki>en:Interwiki article]]</code>.
 {{Identical|Otherlanguages}}',
 'redirectedfrom' => 'The text displayed when a certain page is redirected to another page. Parameters:
 * $1 - the name of the page user came from',
@@ -720,15 +721,18 @@ See also:
 * {{msg-mw|Currentevents}}
 * {{msg-mw|Accesskey-n-currentevents}}
 * {{msg-mw|Tooltip-n-currentevents}}',
-'currentevents-url' => "Target page of ''CurrentEvents'' in the sidebar. See also {{msg-mw|currentevents}}.
-{{doc-important|Do not translate the \"<tt>Project:</tt>\" part.}}",
+'currentevents-url' => '{{doc-important|Do not translate the <code>Project:</code> part.}}
+Target page of "CurrentEvents" in the sidebar.
+
+See also:
+* {{msg-mw|Currentevents}}',
 'disclaimers' => 'Used as display name for the link to [[{{MediaWiki:Disclaimerpage}}]] shown at the bottom of every page on the wiki. Example [[{{MediaWiki:Disclaimerpage}}|{{MediaWiki:Disclaimers}}]].
 {{Identical|Disclaimer}}',
-'disclaimerpage' => 'Used as page for that contains the site disclaimer. Used at the bottom of every page on the wiki. Example: [[{{MediaWiki:Disclaimerpage}}|{{MediaWiki:Disclaimers}}]].
-{{doc-important|Do not change the "<tt>Project:</tt>" part.}}',
+'disclaimerpage' => '{{doc-important|Do not change the <code>Project:</code> part.}}
+Used as page for that contains the site disclaimer. Used at the bottom of every page on the wiki. Example: [[{{MediaWiki:Disclaimerpage}}|{{MediaWiki:Disclaimers}}]].',
 'edithelp' => 'This is the text that appears on the editing help link that is near the bottom of the editing page',
-'helppage' => 'The link destination used by default in the sidebar, and in {{msg-mw|noarticletext}}.
-{{doc-important|Do not change the "<tt>Help:</tt>" part.}}
+'helppage' => '{{doc-important|Do not change the <code>Help:</code> part.}}
+The link destination used by default in the sidebar, and in {{msg-mw|Noarticletext}}.
 {{Identical|HelpContent}}',
 'mainpage' => 'Defines the link and display name of the main page of the wiki. Shown as the top link in the navigation part of the interface. Please do not change it too often, that could break things!
 
@@ -746,8 +750,10 @@ See also:
 * {{msg-mw|Accesskey-n-mainpage-description}}
 * {{msg-mw|Tooltip-n-mainpage-description}}
 {{Identical|Main page}}',
-'policy-url' => 'Description: The URL of the project page describing the policies of the wiki. This is shown below every page (the left link).
-{{doc-important|Do not change the "<tt>Project:</tt>" part.}}',
+'policy-url' => '{{doc-important|Do not change the <code>Project:</code> part.}}
+The URL of the project page describing the policies of the wiki.
+
+This is shown below every page (the left link).',
 'portal' => "Display name for the 'Community portal', shown in the sidebar menu of all pages. The target page is meant to be a portal for users where useful links are to be found about the wiki's operation.
 
 See also:
@@ -755,8 +761,8 @@ See also:
 * {{msg-mw|Portal-url}}
 * {{msg-mw|Accesskey-n-portal}}
 * {{msg-mw|Tooltip-n-portal}}",
-'portal-url' => 'Description: The URL of the community portal. This is shown in the sidebar by default (removed on translatewiki.net).
-{{doc-important|Do not change the "<tt>Project:</tt>" part.}}
+'portal-url' => '{{doc-important|Do not change the <code>Project:</code> part.}}
+Description: The URL of the community portal. This is shown in the sidebar by default (removed on translatewiki.net).
 
 See also:
 * {{msg-mw|Portal}}
@@ -765,7 +771,7 @@ See also:
 * {{msg-mw|Tooltip-n-portal}}',
 'privacy' => 'Used as page name and link at the bottom of each wiki page. The page contains a legal notice providing information about the use of personal information by the website owner.of the site. Example: [[Privacy policy]].
 {{Identical|Privacy policy}}',
-'privacypage' => '{{doc-important|Do not change the "<tt>Project:</tt>" part.}}
+'privacypage' => '{{doc-important|Do not change the <code>Project:</code> part.}}
 Used as page for that contains the privacy policy. Used at the bottom of every page on the wiki.
 
 Example: [[{{MediaWiki:Privacypage}}|{{MediaWiki:Privacy}}]].',
@@ -1603,7 +1609,7 @@ Parameters:
 'passwordreset-emaildisabled' => "Used as error message in changing password when site's email feature is disabled.",
 'passwordreset-username' => '{{Identical|Username}}',
 'passwordreset-domain' => 'A domain like used in Domain Name System (DNS) or more specifically like a domain component in the Lightweight Directory Access Protocol (LDAP)',
-'passwordreset-capture' => 'Label for checkbox asking the user whether they want to see the contents of the password reset email (only shown if they have the <tt>passwordreset</tt> permission',
+'passwordreset-capture' => 'Label for checkbox asking the user whether they want to see the contents of the password reset email (only shown if they have the <code>passwordreset</code> permission).',
 'passwordreset-capture-help' => 'Longer explanatory message for the capture checkbox label.',
 'passwordreset-email' => '{{Identical|E-mail address}}',
 'passwordreset-emailtitle' => 'Used as subject (title) of email.',
@@ -1934,18 +1940,18 @@ See also:
 * {{msg-mw|Token suffix mismatch}}
 * {{msg-mw|Session fail preview}}
 * {{msg-mw|Edit form incomplete}}',
-'editing' => "Shown as page title when editing a page. Parameters:
-* \$1 - the name of the page that is being edited. e.g. \"''Editing Main Page''\"",
-'creating' => "Shown as page title when creating a page. Parameters:
-* \$1 is the name of the page that is being created. Example: \"''Creating Main Page''\".",
+'editing' => 'Shown as page title when editing a page. Parameters:
+* $1 - the name of the page that is being edited. e.g. "Editing Main Page"
+{{Related|Editing}}',
+'creating' => 'Shown as page title when creating a page. Parameters:
+* $1 - the name of the page that is being created. Example: "Creating Main Page".
+{{Related|Editing}}',
 'editingsection' => 'This message displays at the top of the page when a user is editing a page section. Parameters:
 * $1 - page name
-See also:
-* {{msg-mw|Editingcomment}}',
+{{Related|Editing}}',
 'editingcomment' => 'This message displays at the top of the page when a user is creating a new section. Parameters:
 * $1 - page name
-See also:
-* {{msg-mw|Editingsection}}',
+{{Related|Editing}}',
 'editconflict' => 'Used as title of error message. Parameters:
 * $1 - page title',
 'explainconflict' => 'Appears at the top of a page when there is an edit conflict.
@@ -2174,21 +2180,21 @@ Parameters:
 * $2 - (Unused) the value of the max depth limit
 See also:
 * {{msg-mw|Expansion-depth-exceeded-category}}',
-'parser-unstrip-loop-warning' => '{{Doc-important|Do not translate function name "<code>unstrip</code>".}}
-This error is shown when a parser extension tag such as &lt;pre> includes a reference to itself in its own output.
+'parser-unstrip-loop-warning' => '{{Doc-important|Do not translate function name <code>unstrip</code>.}}
+This error is shown when a parser extension tag such as <code><nowiki><pre></nowiki></code> includes a reference to itself in its own output.
 
-The reference must be to the exact same invocation of the tag at the same location in the source, merely writing &lt;pre>&lt;pre>&lt;/pre>&lt;/pre> will not do it.
+The reference must be to the exact same invocation of the tag at the same location in the source, merely writing <code><nowiki><pre><pre></pre></pre></nowiki></code> will not do it.
 
 This is usually impossible and unlikely to happen by accident, so translation is not essential.
 
-"Unstrip" refers to the internal function of the parser, called \'unstrip\', which recursively puts the output of parser functions in the place of the parser function call and which would enter an infinite loop in the situation above.
+"Unstrip" refers to the internal function of the parser, called "unstrip", which recursively puts the output of parser functions in the place of the parser function call and which would enter an infinite loop in the situation above.
 
 See also:
 *{{msg-mw|Parser-unstrip-recursion-limit}}',
-'parser-unstrip-recursion-limit' => '{{doc-important|Do not translate function name "<code>unstrip</code>".}}
+'parser-unstrip-recursion-limit' => '{{doc-important|Do not translate function name <code>unstrip</code>.}}
 This message is shown when the recursion limit for nested parser extension tags is exceeded.
 
-This warning may be encountered due to input text like &lt;ref>&lt;ref>&lt;ref>...&lt;/ref>&lt;/ref>&lt;/ref>.
+This warning may be encountered due to input text like <code><nowiki><ref><ref><ref>...</ref></ref></ref></nowiki></code>.
 
 Parameters:
 * $1 - the depth limit
@@ -3111,7 +3117,10 @@ Used in [[Special:Preferences]]. Parameters are:
 {{Identical|Signature}}',
 'prefs-help-signature' => 'Used in [[Special:Preferences]], tab User profile.',
 'badsig' => 'Error message displayed when entering invalid signature in user preferences',
-'badsiglength' => 'Warning message that is displayed on [[Special:Preferences]] when trying to save a signature that is too long. Parameter $1 is the maximum number of characters that is allowed in a signature (multi-byte characters are counted as one character).',
+'badsiglength' => 'Warning message that is displayed on [[Special:Preferences]] when trying to save a signature that is too long.
+
+Parameters
+* $1 - the maximum number of characters that is allowed in a signature (multi-byte characters are counted as one character)',
 'yourgender' => 'Used in [[Special:Preferences]], first tab, in the Internationalisation section.
 This may be customized for other languages. This should sound like a question, the answer to which can be selected in one of these:
 * {{msg-mw|gender-unknown}}
@@ -3358,7 +3367,7 @@ Related messages:
 * {{msg-mw|right-reupload}}',
 'right-upload_by_url' => '{{doc-right|upload by url}}',
 'right-purge' => '{{doc-right|purge}}
-The right to use <tt>&action=purge</tt> in the URL, without needing to confirm it (by default, anonymous users need to confirm it).',
+The right to use <code>&action=purge</code> in the URL, without needing to confirm it (by default, anonymous users need to confirm it).',
 'right-autoconfirmed' => "{{doc-right|autoconfirmed}}
 If your account is older than [[mw:Manual:\$wgAutoConfirmAge|wgAutoConfirmAge]] and if you have at least [[mw:Manual:\$wgAutoConfirmCount|\$wgAutoConfirmCount]] edits, you are in the '''group \"autoconfirmed\"''' (note that you can't see this group at [[Special:ListUsers]]).
 If you are in that group, you have (by default) the '''right \"autoconfirmed\"''', which exempts you from certain rate limits (those based on your IP address or otherwise intended solely for new users). Other rate limits may still apply; see {{msg-mw|right-noratelimit}}.",
@@ -3458,7 +3467,7 @@ See also:
 'right-rollback' => '{{doc-right|rollback}}
 {{Identical|Rollback}}',
 'right-markbotedits' => '{{doc-right|markbotedits}}
-A user with this right can mark a roll-back edit as a bot edit by adding <tt>&bot=1</tt> to the URL (not by default).',
+A user with this right can mark a roll-back edit as a bot edit by adding <code>&bot=1</code> to the URL (not by default).',
 'right-noratelimit' => '{{doc-right|noratelimit}}
 The rate limits have no effect on the groups that have this right. Rate limits is a restriction that you can only do X actions (edits, moves, etc.) in Y number of seconds (set by [[mw:Manual:$wgRateLimits|$wgRateLimits]]).',
 'right-import' => '{{doc-right|import}}',
@@ -3735,8 +3744,8 @@ See also:
 See also:
 * {{msg-mw|upload-tryagain|Submit text}}',
 'upload-recreate-warning' => 'Used as warning in [[Special:Upload]].',
-'uploadtext' => "{{doc-important|''thumb'' and ''left'' are magic words. Leave them untranslated!}}
-Text displayed when uploading a file using [[Special:Upload]].",
+'uploadtext' => '{{doc-important|<code>thumb</code> and <code>left</code> are magic words. Leave them untranslated!}}
+Text displayed when uploading a file using [[Special:Upload]].',
 'upload-permitted' => 'Used in [[Special:Upload]]. Parameters:
 * $1 - list of file types, defined in the variable [[mw:Special:MyLanguage/Manual:$wgFileExtensions|$wgFileExtensions]]
 See also:
@@ -3752,7 +3761,6 @@ See also:
 See also:
 * {{msg-mw|Upload-permitted}}
 * {{msg-mw|Upload-preferred}}',
-'upload-default-description' => 'Do not translate. Default text for the description box on Special:Upload, or "-" to disable.',
 'uploadlogpage' => '{{doc-logpage}}
 
 Page title of [[Special:Log/upload]].',
@@ -5171,12 +5179,14 @@ Refers to {{msg-mw|Listgrouprights-helppage}}.',
 {{Identical|Right}}",
 'listgrouprights-helppage' => "The link used on [[Special:ListGroupRights]]. Just translate \"Group rights\", and '''leave the \"Help:\" namespace exactly as it is'''.",
 'listgrouprights-members' => 'Used on [[Special:ListGroupRights]] and [[Special:Statistics]] as a link to [[Special:ListUsers|Special:ListUsers/"group"]], a list of members in that group.',
-'listgrouprights-right-display' => "{{optional}}
-* $1 is the text from the 'right-...' messages, i.e. {{msg-mw|right-edit}}
-* $2 is the codename of this right",
-'listgrouprights-right-revoked' => "{{optional}}
-* $1 is the text from the 'right-...' messages, i.e. {{msg-mw|right-edit}}
-* $2 is the codename of this right",
+'listgrouprights-right-display' => '{{optional}}
+Parameters:
+* $1 - the text from the "right-..." messages, i.e. {{msg-mw|Right-edit}}
+* $2 - the codename of this right',
+'listgrouprights-right-revoked' => '{{optional}}
+Parameters:
+* $1 - the text from the "right-..." messages, i.e. {{msg-mw|Right-edit}}
+* $2 - the codename of this right',
 'listgrouprights-addgroup' => 'This is an individual right for groups, used on [[Special:ListGroupRights]].
 * $1 - an enumeration of group names
 * $2 - the number of group names in $1
@@ -5774,8 +5784,8 @@ Parameters:
 {{Identical|Other reason}}',
 'protect-dropdown' => 'Shown on the page protection form as drop down menu for protection reasons.
 
-<tt><nowiki>* Groupname</nowiki></tt> - defines a new group<br />
-<tt><nowiki>** Reason</nowiki></tt> - defines a reason in this group',
+* <code><nowiki>* Groupname</nowiki></code> - defines a new group
+* <code><nowiki>** Reason</nowiki></code> - defines a reason in this group',
 'protect-edit-reasonlist' => 'Shown beneath the page protection form on the right side. It is a link to {{msg-mw|Protect-dropdown|notext=1}}.
 
 See also:
@@ -5866,11 +5876,11 @@ See also:
 Parameters:
 * $1 - deleted page name
 * $2 - (unused)
-* $3 - user name (author of revision, not who deleted it)
-* $4 - date of the revision
-* $5 - time of the revision
-Example:
-* Deleted revision of [[Main Page]] (as of {{CURRENTDAY}} {{CURRENTMONTHNAME}} {{CURRENTYEAR}}, at {{CURRENTTIME}}) by [[User:Username|Username]]:',
+* $3 - username (author of revision, not who deleted it)
+* $4 - date of the revision (localized)
+* $5 - time of the revision (localized)
+Example (in English):
+* Deleted revision of [[Main Page]] (as of 14 September 2013, at 08:17) by [[User:Username|Username]]:',
 'undeleterevision-missing' => 'Used as warning when undeleting the revision.',
 'undelete-nodiff' => 'Used in [[Special:Undelete]].',
 'undeletebtn' => 'Shown on [[Special:Undelete]] as button caption and on [[Special:Log/delete|deletion log]] after each entry (for sysops).
@@ -6631,7 +6641,7 @@ See also:
 * $1 is the original block reason for the IP address matched in the X-Forwarded-For header",
 'cant-see-hidden-user' => 'Used as (red) error message on [[Special:Block]] when you try to change (as sysop without the hideuser right) the block of a hidden user.',
 'ipbblocked' => 'Error message shown when a user tries to alter block settings when they are themselves blocked.',
-'ipbnounblockself' => 'Error message shown when a user without the <tt>unblockself</tt> right tries to unblock themself.',
+'ipbnounblockself' => 'Error message shown when a user without the <code>unblockself</code> right tries to unblock themself.',
 
 # Developer tools
 'lockdb' => 'The title of the special page [[Special:LockDB]].
@@ -6727,7 +6737,12 @@ See also:
 * $3 is the time at which the lock was made',
 
 # Move page
-'move-page' => 'Header of the special page to move pages. $1 is the name of the page to be moved.',
+'move-page' => 'Used as page title of [[Special:MovePage]] to move pages.
+
+See example: [[Special:MovePage/Portal:En]].
+
+Parameters:
+* $1 - the name of the page to be moved (without link)',
 'move-page-legend' => 'Legend of the fieldset around the input form of [[Special:MovePage/testpage]].
 
 See also:
@@ -6899,11 +6914,19 @@ See also:
 'movepage-page-exists' => 'Used as error message when moving page.
 * $1 - page title',
 'movepage-page-moved' => 'Used as success message when moving page.
-* $1 - old page title
-* $2 - new page title',
-'movepage-page-unmoved' => 'Used as error message when moving page.
-* $1 - old page title
-* $2 - new page title',
+
+Can be followed by {{msg-mw|Movepage-max-pages}}.
+
+Parameters:
+* $1 - old page title (with link)
+* $2 - new page title (with link)
+See also:
+* {{msg-mw|Movepage-page-unmoved}}',
+'movepage-page-unmoved' => 'Used as error message when moving page. Parameters:
+* $1 - old page title (with link)
+* $2 - new page title (with link)
+See also:
+* {{msg-mw|Movepage-page-moved}}',
 'movepage-max-pages' => 'PROBABLY (A GUESS): when moving a page, you can select an option of moving its subpages, but there is a maximum that can be moved automatically.
 
 Parameters:
@@ -8239,7 +8262,12 @@ Parameters:
 The variable $1 is the number of individual frames in an animated gif file.
 
 For example of message in use see [[:File:Mouse10.gif]].',
-'file-no-thumb-animation' => 'We cannot animate thumbnails of this file. This notice is shown on the image description page on animated svg files just below {{msg-mw|file-info-size}}. This message may be overridden by a more specific message of the form file-no-thumb-animation-&lt;extension&gt; like {{msg-mw|file-no-thumb-animation-gif}}',
+'file-no-thumb-animation' => 'We cannot animate thumbnails of this file.
+
+This notice is shown on the image description page on animated svg files just below {{msg-mw|File-info-size}}.
+
+This message may be overridden by a more specific message:
+* {{msg-mw|File-no-thumb-animation-gif}}.',
 'file-no-thumb-animation-gif' => 'Cannot animate thumbnails of this gif file, because it has too big a resolution. The cut off resolution can vary between wikis ([[mw:manual:$wgMaxAnimatedGifArea|$wgMaxAnimatedGifArea]]). Note that resolution is calculated as width times height times number of frames. See {{msg-mw|file-no-thumb-animation}}.',
 
 # Special:NewFiles
@@ -10151,7 +10179,7 @@ Parameters:
 * $3 - the name of the log page inside parenthesis',
 'logentry-delete-revision' => '{{Logentry|[[Special:Log/delete]]}}
 {{Logentryparam}}
-* $5 - the number of affected revisions of the page $3.',
+* $5 - the number of affected revisions of the page $3',
 'logentry-delete-event-legacy' => '{{Logentry|[[Special:Log/delete]]}}
 * $3 - the name of the log page inside parenthesis',
 'logentry-delete-revision-legacy' => '{{Logentry|[[Special:Log/delete]]}}',

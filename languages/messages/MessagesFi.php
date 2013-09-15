@@ -18,6 +18,7 @@
  * @author Jaakonam
  * @author Jack Phoenix
  * @author Jafeluv
+ * @author Kaanteli
  * @author Kaganer
  * @author Kulmalukko
  * @author Linnea
@@ -27,6 +28,7 @@
  * @author Ochs
  * @author Olli
  * @author Pxos
+ * @author Samoasambia
  * @author Silvonen
  * @author Snidata
  * @author Str4nd
@@ -4100,7 +4102,14 @@ Muussa tapauksessa voit käyttää alla olevaa helpompaa lomaketta. Kommenttisi 
 'rotate-comment' => 'Kuvaa käännettiin $1 aste{{PLURAL:$1||tta}} myötäpäivään',
 
 # Limit report
+'limitreport-title' => 'Jäsentimen profilointitiedot',
+'limitreport-cputime' => 'Suorittimen ajankäyttö',
 'limitreport-cputime-value' => '$1 {{PLURAL:$1|sekunti|sekuntia}}',
+'limitreport-walltime' => 'Oikea ajankäyttö',
 'limitreport-walltime-value' => '$1 {{PLURAL:$1|sekunti|sekuntia}}',
+'limitreport-postexpandincludesize-value' => '$1/$2 tavua',
+'limitreport-templateargumentsize' => 'Mallin argumenttikoko',
+'limitreport-templateargumentsize-value' => '$1/$2 tavua',
+'limitreport-expansiondepth' => 'Korkein laajennussyvyys',
 
 );

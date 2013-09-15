@@ -3206,6 +3206,7 @@ $messages['ca'] = array(
  */
 $messages['ce'] = array(
 	'config-your-language' => 'Хьан мотт:',
+	'config-continue' => 'Кхин дӀа →',
 	'config-page-language' => 'Мотт',
 	'config-page-name' => 'ЦӀе',
 	'config-no-fts3' => "'''Тергам бе''': SQLite гулйина хуттург йоцуш [//sqlite.org/fts3.html FTS3] — лахар болхбеш хир дац оцу бухца.",

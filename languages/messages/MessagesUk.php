@@ -22,6 +22,7 @@
  * @author Base
  * @author Dim Grits
  * @author DixonD
+ * @author DonDrakon
  * @author Dubyk
  * @author EugeneZelenko
  * @author Geitost
@@ -398,7 +399,7 @@ $messages = array(
 'tog-watchlisthidebots' => 'Приховати редагування ботів у списку спостереження',
 'tog-watchlisthideminor' => 'Приховати незначні редагування у списку спостереження',
 'tog-watchlisthideliu' => 'Приховати редагування зареєстрованих дописувачів у списку спостереження',
-'tog-watchlisthideanons' => 'Приховати редагування анонімів у списку спостереження',
+'tog-watchlisthideanons' => 'Приховати редагування анонімних користувачів у списку спостереження',
 'tog-watchlisthidepatrolled' => 'Приховувати патрульовані редагування у списку спостереження',
 'tog-ccmeonemails' => 'Надсилати мені копії листів, які я надсилаю іншим користувачам',
 'tog-diffonly' => 'Не показувати вміст сторінки під різницею версій',

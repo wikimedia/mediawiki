@@ -71,6 +71,7 @@
  * @author MaxSem
  * @author NBS
  * @author Nemo bis
+ * @author Okras
  * @author Ola
  * @author Ole Yves
  * @author Putnik
@@ -479,7 +480,7 @@ $messages = array(
 'tog-noconvertlink' => 'Отключить ссылку на преобразование заголовка',
 'tog-norollbackdiff' => 'Не показывать разницу версий после выполнения отката',
 'tog-useeditwarning' => 'Предупреждать, когда я покидаю страницу с несохранёнными изменениями',
-'tog-prefershttps' => 'Всегда использовать защищенное соединение при входе в',
+'tog-prefershttps' => 'Всегда использовать защищённое соединение после представления системе',
 
 'underline-always' => 'Всегда',
 'underline-never' => 'Никогда',
@@ -1061,6 +1062,7 @@ $2
 
 # Special:ResetTokens
 'resettokens' => 'Сбросить токены',
+'resettokens-token-label' => '$1 (текущее значение: $2)',
 
 # Edit page toolbar
 'bold_sample' => 'Полужирное начертание',
@@ -1846,7 +1848,7 @@ $1",
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|изменение|изменения|изменений}}',
-'enhancedrc-since-last-visit' => '$1 с последнего посещения',
+'enhancedrc-since-last-visit' => '$1 {{PLURAL:$1|с последнего посещения}}',
 'enhancedrc-history' => 'история',
 'recentchanges' => 'Свежие правки',
 'recentchanges-legend' => 'Настройки свежих правок',
@@ -1880,7 +1882,7 @@ $1",
 'rc_categories_any' => 'Любой',
 'rc-change-size-new' => 'Размер после изменения: $1 {{PLURAL:$1|байт|байта|байт}}',
 'newsectionsummary' => '/* $1 */ новая тема',
-'rc-enhanced-expand' => 'Показать подробности (используется JavaScript)',
+'rc-enhanced-expand' => 'Показать подробности',
 'rc-enhanced-hide' => 'Скрыть подробности',
 'rc-old-title' => 'первоначально созданная как «$1»',
 
@@ -2152,6 +2154,8 @@ $1',
 'listfiles_size' => 'Размер',
 'listfiles_description' => 'Описание',
 'listfiles_count' => 'Версий',
+'listfiles-latestversion-yes' => 'Да',
+'listfiles-latestversion-no' => 'Нет',
 
 # File description page
 'file-anchor-link' => 'Файл',
@@ -2286,7 +2290,7 @@ $1',
 'pageswithprop-prop' => 'Название свойства:',
 'pageswithprop-submit' => 'Найти',
 'pageswithprop-prophidden-long' => 'длинное значение текстового свойства скрыто ($1 килобайт)',
-'pageswithprop-prophidden-binary' => 'значение двоичного свойства скрыто ($1 килобайт)',
+'pageswithprop-prophidden-binary' => 'значение двоичного свойства скрыто ($1)',
 
 'doubleredirects' => 'Двойные перенаправления',
 'doubleredirectstext' => 'На этой странице представлен список перенаправлений на другие перенаправления.
@@ -3324,13 +3328,13 @@ The wiki server can't provide data in a format your client can read.",
 'pageinfo-length' => 'Длина страницы (в байтах)',
 'pageinfo-article-id' => 'Идентификатор страницы',
 'pageinfo-language' => 'Язык страницы',
-'pageinfo-robot-policy' => 'Индексация поисковыми службами',
-'pageinfo-robot-index' => 'Индексируется',
-'pageinfo-robot-noindex' => 'Не индексируется',
+'pageinfo-robot-policy' => 'Индексация поисковыми роботами',
+'pageinfo-robot-index' => 'Разрешено',
+'pageinfo-robot-noindex' => 'Не разрешено',
 'pageinfo-views' => 'Количество просмотров',
 'pageinfo-watchers' => 'Число наблюдающих',
 'pageinfo-few-watchers' => 'Менее $1 {{PLURAL:$1|следящего|следящих}}',
-'pageinfo-redirects-name' => 'Перенаправления на эту страницу',
+'pageinfo-redirects-name' => 'Количество перенаправлений на эту страницу',
 'pageinfo-redirects-value' => '$1',
 'pageinfo-subpages-name' => 'Подстраницы данной страницы',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|перенаправление|перенаправления|перенаправлений}}; $3 {{PLURAL:$3|обычная|обычные|обычных}})',
@@ -4389,5 +4393,9 @@ MediaWiki распространяется в надежде, что она бу
 
 # Image rotation
 'rotate-comment' => 'Изображение повёрнуто на $1 градус{{PLURAL:$1||а|ов}} по часовой стрелке',
+
+# Limit report
+'limitreport-postexpandincludesize-value' => '$1/$2 байт',
+'limitreport-templateargumentsize-value' => '$1/$2 байт',
 
 );

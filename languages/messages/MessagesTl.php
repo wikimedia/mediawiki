@@ -2677,7 +2677,7 @@ Sa mga kasong ganoon, kailangan mong ilipat o pagsamahin/pagsanibin ang pahina s
 pangalang pinili mo ay hindi tanggap.
 Pumili muli ng ibang pangalan.',
 'cantmove-titleprotected' => 'Hindi mo malilipatan ang isang pahina sa lokasyong ito, dahil nakasanggalang sa paglikha ang baong pamagat',
-'talkexists' => "'''Tagumpay na nailipat ang pahina mismo, ngunit hindi mailipat ang pahina ng usapan dahil mayroon ng ganito sa bagong pamagat. Ipagsama ito sa manwal na paraan.'''",
+'talkexists' => "'''Matagumpay na nailipat ang pahina mismo, ngunit hindi mailipat ang pahinang usapan dahil may ganito na sa bagong pamagat.  Mangyaring isanib ito nang manwal.'''",
 'movedto' => 'inilipat sa',
 'movetalk' => 'Ilipat ang kaugnay na pahinang usapan',
 'move-subpages' => 'Ilipat ang kabahaging mga pahina (hanggang sa $1)',
@@ -3749,7 +3749,8 @@ Pakitiyak kung ibig mo talagang likhain muli ang pahinang ito.",
 'livepreview-loading' => 'Ikinakarga...',
 'livepreview-ready' => 'Ikinakarga… Handa na!',
 'livepreview-failed' => 'Nabigo ang umiiral na paunang tingin!  Subukan ang normal/pangkaraniwang paunang tingin.',
-'livepreview-error' => 'Hindi tagumpay ang pagkabit (connect): $1 "$2". Subukan ang karaniwang paunang tingin.',
+'livepreview-error' => 'Hindi matagumpay ang pagkonekta: $1 "$2".
+Subukan ang karaniwang paunang tingin.',
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => 'Maaaring hindi naipapakita sa talaang ito ang mga pagbabagong mas bago pa kaysa $1 {{PLURAL:$1|segundo|mga segundo}}.',
