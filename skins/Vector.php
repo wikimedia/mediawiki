@@ -295,7 +295,8 @@ class VectorTemplate extends BaseTemplate {
 		$msgObj = wfMessage( $msg );
 		?>
 <div class="portal" role="navigation" id='<?php echo Sanitizer::escapeId( "p-$name" ) ?>'<?php echo Linker::tooltip( 'p-' . $name ) ?> aria-labelledby='<?php echo Sanitizer::escapeId( "p-$name-label" ) ?>'>
-	<h3<?php $this->html( 'userlangattributes' ) ?> id='<?php echo Sanitizer::escapeId( "p-$name-label" ) ?>'><?php echo htmlspecialchars( $msgObj->exists() ? $msgObj->text() : $msg ); ?></h3>
+	<label for="<?php echo Sanitizer::escapeId( "p-$name-checkbox" ); ?>" <?php $this->html( 'userlangattributes' ) ?> id='<?php echo Sanitizer::escapeId( "p-$name-label" ) ?>'><?php echo htmlspecialchars( $msgObj->exists() ? $msgObj->text() : $msg ); ?></label>
+	<input type="checkbox" id="<?php echo Sanitizer::escapeId( "p-$name-checkbox" ) ?>" />
 	<div class="body">
 <?php
 		if ( is_array( $content ) ) { ?>
