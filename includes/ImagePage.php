@@ -128,7 +128,7 @@ class ImagePage extends Article {
 				$out->setPageTitle( $this->getTitle()->getPrefixedText() );
 				$out->addHTML( $this->viewRedirect( Title::makeTitle( NS_FILE, $this->mPage->getFile()->getName() ),
 					/* $appendSubtitle */ true, /* $forceKnown */ true ) );
-				$this->mPage->doViewUpdates( $this->getContext()->getUser() );
+				$this->mPage->doViewUpdates( $this->getContext()->getUser(), $this->getOldID() );
 				return;
 			}
 		}
@@ -165,7 +165,7 @@ class ImagePage extends Article {
 			# Just need to set the right headers
 			$out->setArticleFlag( true );
 			$out->setPageTitle( $this->getTitle()->getPrefixedText() );
-			$this->mPage->doViewUpdates( $this->getContext()->getUser() );
+			$this->mPage->doViewUpdates( $this->getContext()->getUser(), $this->getOldID() );
 		}
 
 		# Show shared description, if needed
