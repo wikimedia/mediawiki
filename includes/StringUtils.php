@@ -38,6 +38,9 @@ class StringUtils {
 	 * unit testing our internal implementation.
 	 *
 	 * @since 1.21
+	 * @note In MediaWiki 1.21, this function did not provide proper UTF-8 validation.
+	 * In particular, the pure PHP code path did not in fact check for overlong forms.
+	 * Beware of this when backporting code to that version of MediaWiki.
 	 *
 	 * @param string $value String to check
 	 * @param boolean $disableMbstring Whether to use the pure PHP
@@ -47,26 +50,68 @@ class StringUtils {
 	 * @return boolean Whether the given $value is a valid UTF-8 encoded string
 	 */
 	static function isUtf8( $value, $disableMbstring = false ) {
+		$value = (string)$value;
 
-		if ( preg_match( '/[\x80-\xff]/', $value ) === 0 ) {
-			# no high bit set, this is pure ASCII which is de facto
-			# valid UTF-8
+		// Quick checks:
+		// - ASCII is always valid UTF-8
+		// - The input shouldn't start with a continuation byte
+		// - The input shouldn't contain any illegal byte
+		if ( preg_match( "/[\x80-\xff]/S", $value ) === 0 ) {
 			return true;
+		} elseif ( $value[0] >= "\x80" && $value[0] <= "\xbf" ) {
+			return false;
+		} elseif ( preg_match( "/[\xc0\xc1\xf5-\xff]/S", $value ) !== 0 ) {
+			return false;
 		}
 
+		// If the mbstring extension is loaded, use it. However, before PHP 5.4, values above
+		// U+10FFFF are incorrectly allowed, so we have to check for them separately.
 		if ( !$disableMbstring && function_exists( 'mb_check_encoding' ) ) {
-			return mb_check_encoding( $value, 'UTF-8' );
-		} else {
-			$hasUtf8 = preg_match( '/^(?>
-				  [\x00-\x7f]
-				| [\xc0-\xdf][\x80-\xbf]
-				| [\xe0-\xef][\x80-\xbf]{2}
-				| [\xf0-\xf7][\x80-\xbf]{3}
-				| [\xf8-\xfb][\x80-\xbf]{4}
-				| \xfc[\x84-\xbf][\x80-\xbf]{4}
-			)+$/x', $value );
-			return ( $hasUtf8 > 0 );
+			if ( !mb_check_encoding( $value, 'UTF-8' ) ) {
+				// Definitely invalid
+				return false;
+			} elseif ( !mb_check_encoding( "\xf4\x90\x80\x80", 'UTF-8' ) ) {
+				// New PHP, definitely valid
+				return true;
+			} else {
+				// Old PHP, have to check for values above U+10FFFF
+				// Quick checks have already determined bytes \xf5-\xff are not present
+				return preg_match( "/\xf4[\x90-\xbf]/", $value ) === 0;
+			}
 		}
+
+		// PCRE implements repetition using recursion; to avoid a stack overflow (and segfault)
+		// for large input, we check for invalid sequences (<= 5 bytes) rather than valid
+		// sequences, which can be as long as the input string is.
+		static $slowChecks;
+		if ( $slowChecks === null ) {
+			$cont = "[\x80-\xbf]";
+			$after = "(?!$cont)"; // "(?:[^\x80-\xbf]|$)" would work here
+			$slowChecks = array(
+				// ASCII byte followed by a continuation byte
+				"/[\\x00-\x7f]$cont/S",
+
+				// Invalid 2-byte sequence, or valid one then an extra continuation byte
+				"/[\xc2-\xdf](?!$cont$after)/S",
+
+				// Invalid 3-byte sequence, or valid one then an extra continuation byte
+				"/\xe0(?![\xa0-\xbf]$cont$after)/",
+				"/\xed(?![\x80-\x9f]$cont$after)/",
+				"/[\xe1-\xec\xee\xef](?!$cont{2}$after)/S",
+
+				// Invalid 4-byte sequence, or valid one then an extra continuation byte
+				"/\xf0(?![\x90-\xbf]$cont{2}$after)/",
+				"/\xf4(?![\x80-\x8f]$cont{2}$after)/",
+				"/[\xf1-\xf3](?!$cont{3}$after)/S",
+			);
+		}
+
+		foreach ( $slowChecks as $regex ) {
+			if ( preg_match( $regex, $value ) !== 0 ) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	/**
