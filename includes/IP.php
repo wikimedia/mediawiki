@@ -212,7 +212,7 @@ class IP {
 					$longest = $match;
 					$longestPos = $pos;
 				}
-				$offset += ( $pos + strlen( $match ) ); // advance
+				$offset = ( $pos + strlen( $match ) ); // advance
 			}
 			if ( $longest !== false ) {
 				// Replace this portion of the string with the '::' abbreviation
