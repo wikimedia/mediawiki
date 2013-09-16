@@ -3021,8 +3021,9 @@ class User {
 	 * the next change of the page if it's watched etc.
 	 * @note If the user doesn't have 'editmywatchlist', this will do nothing.
 	 * @param $title Title of the article to look at
+	 * @param int $oldid The revision id being viewed. If not given or 0, latest revision is assumed.
 	 */
-	public function clearNotification( &$title ) {
+	public function clearNotification( &$title, $oldid = 0 ) {
 		global $wgUseEnotif, $wgShowUpdatedMarker;
 
 		// Do nothing if the database is locked to writes
@@ -3035,12 +3036,23 @@ class User {
 			return;
 		}
 
-		if ( $title->getNamespace() == NS_USER_TALK &&
-			$title->getText() == $this->getName() ) {
-			if ( !wfRunHooks( 'UserClearNewTalkNotification', array( &$this ) ) ) {
+		// If we're working on user's talk page, we should update the talk page message indicator
+		if ( $title->getNamespace() == NS_USER_TALK && $title->getText() == $this->getName() ) {
+			if ( !wfRunHooks( 'UserClearNewTalkNotification', array( &$this, $oldid ) ) ) {
 				return;
 			}
-			$this->setNewtalk( false );
+
+			$nextid = $oldid ? $title->getNextRevisionID( $oldid ) : null;
+
+			if ( !$oldid || !$nextid ) {
+				// If we're looking at the latest revision, we should definitely clear it
+				$this->setNewtalk( false );
+			} else {
+				// Otherwise we should update its revision, if it's present
+				if ( $this->getNewtalk() ) {
+					$this->setNewtalk( true, Revision::newFromId( $nextid ) );
+				}
+			}
 		}
 
 		if ( !$wgUseEnotif && !$wgShowUpdatedMarker ) {
@@ -3063,7 +3075,7 @@ class User {
 			$force = 'force';
 		}
 
-		$this->getWatchedItem( $title )->resetNotificationTimestamp( $force );
+		$this->getWatchedItem( $title )->resetNotificationTimestamp( $force, $oldid );
 	}
 
 	/**
@@ -3091,14 +3103,12 @@ class User {
 		if ( $id != 0 ) {
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->update( 'watchlist',
-				array( /* SET */
-					'wl_notificationtimestamp' => null
-				), array( /* WHERE */
-					'wl_user' => $id
-				), __METHOD__
+				array( /* SET */ 'wl_notificationtimestamp' => null ),
+				array( /* WHERE */ 'wl_user' => $id ),
+				__METHOD__
 			);
-		# 	We also need to clear here the "you have new message" notification for the own user_talk page
-		#	This is cleared one page view later in Article::viewUpdates();
+			// We also need to clear here the "you have new message" notification for the own user_talk page;
+			// it's cleared one page view later in WikiPage::doViewUpdates().
 		}
 	}
 
