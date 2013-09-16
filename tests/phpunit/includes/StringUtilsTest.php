@@ -67,32 +67,35 @@ class StringUtilsTest extends MediaWikiTestCase {
 			array( $PASS, 'Some ASCII' ),
 			array( $PASS, "Euro sign €" ),
 
-			# First possible sequences
+			// First possible sequences
 			array( $PASS, "\x00" ),
 			array( $PASS, "\xc2\x80" ),
 			array( $PASS, "\xe0\xa0\x80" ),
 			array( $PASS, "\xf0\x90\x80\x80" ),
-			array( $PASS, "\xf8\x88\x80\x80\x80" ),
-			array( $PASS, "\xfc\x84\x80\x80\x80\x80" ),
+			array( $FAIL, "\xf8\x88\x80\x80\x80" ),
+			array( $FAIL, "\xfc\x84\x80\x80\x80\x80" ),
 
-			# Last possible sequence
+			// Last possible sequence
 			array( $PASS, "\x7f" ),
 			array( $PASS, "\xdf\xbf" ),
 			array( $PASS, "\xef\xbf\xbf" ),
-			array( $PASS, "\xf7\xbf\xbf\xbf" ),
-			array( $PASS, "\xfb\xbf\xbf\xbf\xbf" ),
+			array( $FAIL, "\xf7\xbf\xbf\xbf" ), // U+1FFFFF
+			array( $FAIL, "\xfb\xbf\xbf\xbf\xbf" ),
 			array( $FAIL, "\xfd\xbf\xbf\xbf\xbf\xbf" ),
 
-			# boundaries:
+			// Boundaries
 			array( $PASS, "\xed\x9f\xbf" ),
 			array( $PASS, "\xee\x80\x80" ),
 			array( $PASS, "\xef\xbf\xbd" ),
-			array( $PASS, "\xf4\x8f\xbf\xbf" ),
-			array( $PASS, "\xf4\x90\x80\x80" ),
+			array( $PASS, "\xf2\x80\x80\x80" ),
+			array( $PASS, "\xf3\xbf\xbf\xbf" ), // U+FFFFF
+			array( $PASS, "\xf4\x80\x80\x80" ), // U+100000
+			array( $PASS, "\xf4\x8f\xbf\xbf" ), // U+10FFFF
+			array( $FAIL, "\xf4\x90\x80\x80" ), // U+110000
 
-			# Malformed
+			// Malformed
 			array( $FAIL, "\x80" ),
-			array( $FAIL, "\xBF" ),
+			array( $FAIL, "\xbf" ),
 			array( $FAIL, "\x80\xbf" ),
 			array( $FAIL, "\x80\xbf\x80" ),
 			array( $FAIL, "\x80\xbf\x80\xbf" ),
@@ -100,7 +103,7 @@ class StringUtilsTest extends MediaWikiTestCase {
 			array( $FAIL, "\x80\xbf\x80\xbf\x80\xbf" ),
 			array( $FAIL, "\x80\xbf\x80\xbf\x80\xbf\x80" ),
 
-			# last byte missing
+			// Last byte missing
 			array( $FAIL, "\xc0" ),
 			array( $FAIL, "\xe0\x80" ),
 			array( $FAIL, "\xf0\x80\x80" ),
@@ -112,31 +115,42 @@ class StringUtilsTest extends MediaWikiTestCase {
 			array( $FAIL, "\xfb\xbf\xbf\xbf" ),
 			array( $FAIL, "\xfd\xbf\xbf\xbf\xbf" ),
 
-			# impossible bytes
+			// Extra continuation byte
+			array( $FAIL, "e\xaf" ),
+			array( $FAIL, "\xc3\x89\xaf" ),
+			array( $FAIL, "\xef\xbc\xa5\xaf" ),
+			array( $FAIL, "\xf0\x9d\x99\xb4\xaf" ),
+
+			// Impossible bytes
 			array( $FAIL, "\xfe" ),
 			array( $FAIL, "\xff" ),
 			array( $FAIL, "\xfe\xfe\xff\xff" ),
 
-			/*
-			# The PHP implementation does not handle characters
-			# being represented in a form which is too long :(
-
-			# overlong sequences
+			// Overlong sequences
 			array( $FAIL, "\xc0\xaf" ),
+			array( $FAIL, "\xc1\xaf" ),
 			array( $FAIL, "\xe0\x80\xaf" ),
 			array( $FAIL, "\xf0\x80\x80\xaf" ),
 			array( $FAIL, "\xf8\x80\x80\x80\xaf" ),
 			array( $FAIL, "\xfc\x80\x80\x80\x80\xaf" ),
 
-			# Maximum overlong sequences
+			// Maximum overlong sequences
 			array( $FAIL, "\xc1\xbf" ),
 			array( $FAIL, "\xe0\x9f\xbf" ),
-			array( $FAIL, "\xf0\x8F\xbf\xbf" ),
+			array( $FAIL, "\xf0\x8f\xbf\xbf" ),
 			array( $FAIL, "\xf8\x87\xbf\xbf" ),
 			array( $FAIL, "\xfc\x83\xbf\xbf\xbf\xbf" ),
-			*/
 
-			# non characters
+			// Surrogates
+			array( $PASS, "\xed\x9f\xbf" ), // U+D799
+			array( $PASS, "\xee\x80\x80" ), // U+E000
+			array( $FAIL, "\xed\xa0\x80" ), // U+D800
+			array( $FAIL, "\xed\xaf\xbf" ), // U+DBFF
+			array( $FAIL, "\xed\xb0\x80" ), // U+DC00
+			array( $FAIL, "\xed\xbf\xbf" ), // U+DFFF
+			array( $FAIL, "\xed\xa0\x80\xed\xb0\x80" ), // U+D800 U+DC00
+
+			// Noncharacters
 			array( $PASS, "\xef\xbf\xbe" ),
 			array( $PASS, "\xef\xbf\xbf" ),
 		);
