@@ -1134,9 +1134,10 @@ class WikiPage implements Page, IDBAccessObject {
 
 	/**
 	 * Do standard deferred updates after page view
-	 * @param $user User The relevant user
+	 * @param User $user The relevant user
+	 * @param int $oldid The revision id being viewed. If not given or 0, latest revision is assumed.
 	 */
-	public function doViewUpdates( User $user ) {
+	public function doViewUpdates( User $user, $oldid = 0 ) {
 		global $wgDisableCounters;
 		if ( wfReadOnly() ) {
 			return;
@@ -1149,7 +1150,7 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		// Update newtalk / watchlist notification status
-		$user->clearNotification( $this->mTitle );
+		$user->clearNotification( $this->mTitle, $oldid );
 	}
 
 	/**

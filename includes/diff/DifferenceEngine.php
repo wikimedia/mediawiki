@@ -1042,6 +1042,33 @@ class DifferenceEngine extends ContextSource {
 	}
 
 	/**
+	 * Maps a revision pair definition as accepted by DifferenceEngine constructor
+	 * to a pair of actual integers representing revision ids.
+	 *
+	 * @param int $old Revision id, e.g. from URL parameter 'oldid'
+	 * @param int|string $new Revision id or strings 'next' or 'prev', e.g. from URL parameter 'diff'
+	 * @return array Array of two revision ids, older first, later second.
+	 *     Zero signifies invalid argument passed.
+	 *     false signifies that there is no previous/next revision ($old is the oldest/newest one).
+	 */
+	public function mapDiffPrevNext( $old, $new ) {
+		if ( $new === 'prev' ) {
+			// Show diff between revision $old and the previous one. Get previous one from DB.
+			$newid = intval( $old );
+			$oldid = $this->getTitle()->getPreviousRevisionID( $newid );
+		} elseif ( $new === 'next' ) {
+			// Show diff between revision $old and the next one. Get next one from DB.
+			$oldid = intval( $old );
+			$newid = $this->getTitle()->getNextRevisionID( $oldid );
+		} else {
+			$oldid = intval( $old );
+			$newid = intval( $new );
+		}
+
+		return array( $oldid, $newid );
+	}
+
+	/**
 	 * Load revision IDs
 	 */
 	private function loadRevisionIds() {
@@ -1054,26 +1081,14 @@ class DifferenceEngine extends ContextSource {
 		$old = $this->mOldid;
 		$new = $this->mNewid;
 
-		if ( $new === 'prev' ) {
-			# Show diff between revision $old and the previous one.
-			# Get previous one from DB.
-			$this->mNewid = intval( $old );
-			$this->mOldid = $this->getTitle()->getPreviousRevisionID( $this->mNewid );
-		} elseif ( $new === 'next' ) {
-			# Show diff between revision $old and the next one.
-			# Get next one from DB.
-			$this->mOldid = intval( $old );
-			$this->mNewid = $this->getTitle()->getNextRevisionID( $this->mOldid );
-			if ( $this->mNewid === false ) {
-				# if no result, NewId points to the newest old revision. The only newer
-				# revision is cur, which is "0".
-				$this->mNewid = 0;
-			}
-		} else {
-			$this->mOldid = intval( $old );
-			$this->mNewid = intval( $new );
-			wfRunHooks( 'NewDifferenceEngine', array( $this->getTitle(), &$this->mOldid, &$this->mNewid, $old, $new ) );
+		list( $this->mOldid, $this->mNewid ) = self::mapDiffPrevNext( $old, $new );
+		if ( $new === 'next' && $this->mNewid === false ) {
+			# if no result, NewId points to the newest old revision. The only newer
+			# revision is cur, which is "0".
+			$this->mNewid = 0;
 		}
+
+		wfRunHooks( 'NewDifferenceEngine', array( $this->getTitle(), &$this->mOldid, &$this->mNewid, $old, $new ) );
 	}
 
 	/**

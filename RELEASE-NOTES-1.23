@@ -13,6 +13,10 @@ production.
 === New features in 1.23 ===
 
 === Bug fixes in 1.23 ===
+* (bug 41759) The "updated since last visit" markers (on history pages, recent
+  changes and watchlist) and the talk page message indicator are now correctly
+  updated when the user is viewing old revisions of pages, instead of always
+  acting as if the latest revision was being viewed.
 
 === API changes in 1.23 ===
 
