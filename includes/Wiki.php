@@ -588,6 +588,7 @@ class MediaWiki {
 						$cache->loadFromFileCache( $this->context );
 					}
 					// Do any stats increment/watchlist stuff
+					// Assume we're viewing the latest revision (this should always be the case with file cache)
 					$this->context->getWikiPage()->doViewUpdates( $this->context->getUser() );
 					// Tell OutputPage that output is taken care of
 					$this->context->getOutput()->disable();
