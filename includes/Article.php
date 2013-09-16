@@ -586,7 +586,7 @@ class Article implements Page {
 				wfDebug( __METHOD__ . ": done file cache\n" );
 				# tell wgOut that output is taken care of
 				$outputPage->disable();
-				$this->mPage->doViewUpdates( $user );
+				$this->mPage->doViewUpdates( $user, $oldid );
 				wfProfileOut( __METHOD__ );
 
 				return;
@@ -765,7 +765,7 @@ class Article implements Page {
 		$outputPage->setFollowPolicy( $policy['follow'] );
 
 		$this->showViewFooter();
-		$this->mPage->doViewUpdates( $user );
+		$this->mPage->doViewUpdates( $user, $oldid );
 
 		$outputPage->addModules( 'mediawiki.action.view.postEdit' );
 
@@ -815,10 +815,10 @@ class Article implements Page {
 		$this->mRevIdFetched = $de->mNewid;
 		$de->showDiffPage( $diffOnly );
 
-		if ( $diff == 0 || $diff == $this->mPage->getLatest() ) {
-			# Run view updates for current revision only
-			$this->mPage->doViewUpdates( $user );
-		}
+		// Run view updates for the newer revision being diffed (and shown below the diff if not $diffOnly)
+		list( $old, $new ) = $de->mapDiffPrevNext( $oldid, $diff );
+		// New can be false, convert it to 0 - this conveniently means the latest revision
+		$this->mPage->doViewUpdates( $user, (int)$new );
 	}
 
 	/**
