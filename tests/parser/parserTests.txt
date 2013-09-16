@@ -586,7 +586,7 @@ parsoid
 !! input
 '''foo'''''
 !! result
-<p><b>foo<i></i></b>
+<p><b>foo</b><i></i>
 </p>
 !!end
 
@@ -643,7 +643,7 @@ parsoid
 !! input
 ''''foo'''''
 !! result
-<p>'<b>foo<i></i></b>
+<p>'<b>foo</b><i></i>
 </p>
 !!end
 
@@ -653,24 +653,12 @@ parsoid
 ###
 
 !! test
-Italics and bold: 5-quote opening sequence: (5,2) (php)
+Italics and bold: 5-quote opening sequence: (5,2)
 !! options
-php
 !! input
 '''''foo''
 !! result
 <p><b><i>foo</i></b>
-</p>
-!!end
-# Parsoid reverses the nesting order, compared to the PHP parser
-!! test
-Italics and bold: 5-quote opening sequence: (5,2) (parsoid)
-!! options
-parsoid
-!! input
-'''''foo''
-!! result
-<p><i><b>foo</b></i>
 </p>
 !!end
 
@@ -815,30 +803,13 @@ Italics and bold: other quote tests: (3,2,3,2)
 !!end
 
 
-# The Parsoid team believes the PHP parser's output on this test is wrong.
-# It only checks for convert-to-bold-on-single-character-word when the word
-# matches with a bold tag ("'''") that is *odd* in the list of quote tokens.
-# This means that the bold token in position 2 (0-indexed) gets converted by
-# parsoid, but doesn't get changed by the PHP parser.
 !! test
-Italics and bold: other quote tests: (3,2,3,3) (php)
+Italics and bold: other quote tests: (3,2,3,3)
 !! options
-php
 !! input
 '''this is about ''foo'''s family'''
 !! result
 <p>'<i>this is about </i>foo<b>s family</b>
-</p>
-!!end
-# This is the output the Parsoid team believes to be correct.
-!! test
-Italics and bold: other quote tests: (3,2,3,3) (parsoid)
-!! options
-parsoid
-!! input
-'''this is about ''foo'''s family'''
-!! result
-<p><b>this is about <i>foo'</i>s family</b>
 </p>
 !!end
 
@@ -1042,7 +1013,7 @@ parsoid
 !! input
 {{echo|&ndash;}}
 !! result
-<p><span typeof="mw:Transclusion mw:Entity" data-mw='{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"&amp;ndash;"}},"i":0}'>&ndash;</span>
+<p><span typeof="mw:Transclusion mw:Entity" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"&amp;ndash;"}},"i":0}}]}'>&ndash;</span>
 </p>
 !! end
 
@@ -1698,6 +1669,62 @@ Templates: Indent-Pre: 1f: Wrapping should be based on expanded content
 </pre>
 !!end
 
+# TODO / maybe: fix wt2wt for this
+!! test
+Parsoid: Don't paragraph-wrap fosterable content
+!! options
+parsoid=wt2html
+!! input
+{|
+<td></td>
+<td></td>
+
+
+
+|}
+!! result
+<table>
+
+<tbody>
+<tr>
+<td></td>
+
+<td></td></tr>
+
+
+
+</tbody></table>
+!! end
+
+!! test
+Parsoid: Don't paragraph-wrap fosterable content even if table syntax is unbalanced
+!! options
+parsoid=wt2html
+!! input
+{|
+<td>
+<td>
+</td>
+
+
+
+|}
+!! result
+<table>
+
+<tbody>
+<tr>
+<td></td>
+
+<td>
+</td></tr>
+
+
+
+</tbody></table>
+!! end
+
+
 #--------------------------------------------------------------------
 # Transclusion parameter whitespace stripping tests
 # Behavior is different for positional and named parameters
@@ -1727,7 +1754,6 @@ Templates: Strip leading and trailing whitespace from named-param values
 
 !! test
 Templates: Don't strip whitespace from positional-param values
-!! options
 !! input
 {{echo|a }}
 
@@ -1771,6 +1797,19 @@ Templates: Don't strip whitespace from positional-param values
 </pre>
 !! end
 
+!! test
+Templates: Handle empty comment-and-ws-only lines correctly
+!! input
+{{echo|foo
+<!--should be ignored-->
+ <!--should be ignored as well-->
+bar}}
+!! result
+<p>foo
+bar
+</p>
+!! end
+
 #--------------------------------------------------------------------
 # Transclusion parameter escaping tests
 #--------------------------------------------------------------------
@@ -1782,7 +1821,7 @@ parsoid
 {{echo|[foo]|{{echo|[bar]}}}}
 !! result
 <p about="#mwt1" typeof="mw:Transclusion"
-data-mw="{&quot;target&quot;:{&quot;wt&quot;:&quot;echo&quot;,&quot;href&quot;:&quot;./Template:Echo&quot;},&quot;params&quot;:{&quot;1&quot;:{&quot;wt&quot;:&quot;[foo]&quot;},&quot;2&quot;:{&quot;wt&quot;:&quot;{{echo|[bar]}}&quot;}},&quot;i&quot;:0}">[foo]</p>
+data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"[foo]"},"2":{"wt":"{{echo|[bar]}}"}},"i":0}}]}'>[foo]</p>
 !! end
 
 !! test
@@ -1792,7 +1831,7 @@ parsoid
 !! input
 {{echo|[{{echo|http://example.com}} link]}}
 !! result
-<p><a rel="mw:ExtLink" href="http://example.com" about="#mwt31" typeof="mw:Transclusion" data-mw="{&quot;target&quot;:{&quot;wt&quot;:&quot;echo&quot;,&quot;href&quot;:&quot;./Template:Echo&quot;},&quot;params&quot;:{&quot;1&quot;:{&quot;wt&quot;:&quot;[{{echo|http://example.com}} link]&quot;}},&quot;i&quot;:0}">link</a></p>
+<p><a rel="mw:ExtLink" href="http://example.com" about="#mwt31" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"[{{echo|http://example.com}} link]"}},"i":0}}]}'>link</a></p>
 !! end
 
 !! test
@@ -1804,7 +1843,7 @@ parsoid
 !! result
 <p><a rel="mw:ExtLink" href="http://foo.com/a|b" about="#mwt1"
 typeof="mw:Transclusion"
-data-mw='{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"http://foo.com/a|b"}},"i":0}'>http://foo.com/a|b</a></p>
+data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"http://foo.com/a&amp;#124;b"}},"i":0}}]}'>http://foo.com/a|b</a></p>
 !! end
 
 !! test
@@ -1816,8 +1855,8 @@ parsoid=html2wt,wt2wt
 !! result
 <p><a rel="mw:ExtLink" href="http://foo.com/a|b" about="#mwt1"
 typeof="mw:Transclusion"
-data-mw='{"target":{"wt":"echo","href":"./Template:Echo"},
-"params":{"1":{"wt":"[http://foo.com/a|b a|b]"}},"i":0}'>a|b</a></p>
+data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},
+"params":{"1":{"wt":"[http://foo.com/a|b a|b]"}},"i":0}}]}'>a|b</a></p>
 !! end
 
 !! test
@@ -1829,10 +1868,21 @@ parsoid=html2wt,wt2wt
 {{echo|<nowiki>&lt;div&gt;</nowiki>}}
 {{echo|<nowiki></nowiki>}}
 !! result
-<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"foo<nowiki>|</nowiki>bar"}},"i":0}'}'>foo</span><span typeof="mw:Nowiki" about="#mwt1">|</span><span about="#mwt1">bar</span>
-<span typeof="mw:Transclusion mw:Nowiki" about="#mwt2" data-mw='{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"<nowiki>&amp;lt;div&amp;gt;</nowiki>"}},"i":0}'><span typeof="mw:Entity">&lt;</span>div<span typeof="mw:Entity">&gt;</span></span>
-<span typeof="mw:Transclusion mw:Nowiki" about="#mwt3" data-mw='{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"<nowiki></nowiki>"}},"i":0}'></span>
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"foo<nowiki>|</nowiki>bar"}},"i":0}}]}'}'>foo</span><span typeof="mw:Nowiki" about="#mwt1">|</span><span about="#mwt1">bar</span>
+<span typeof="mw:Transclusion mw:Nowiki" about="#mwt2" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"<nowiki>&amp;lt;div&amp;gt;</nowiki>"}},"i":0}}]}'><span typeof="mw:Entity">&lt;</span>div<span typeof="mw:Entity">&gt;</span></span>
+<span typeof="mw:Transclusion mw:Nowiki" about="#mwt3" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"<nowiki></nowiki>"}},"i":0}}]}'></span>
 </p>
+!! end
+
+## Bug 52824
+!! test
+Templates: '=' char in nested transclusions should not trigger nowiki escapes or conversion to named param
+!! options
+parsoid=html2wt,wt2wt
+!! input
+{{echo|{{echo|1=bar}}}}
+!! result
+<p about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"{{echo|1=bar}}"}},"i":0}}]}'>bar</p>
 !! end
 
 ###
@@ -2089,7 +2139,9 @@ parsoid=wt2html,wt2wt
  [[Category:foo]] <!-- No pre-wrapping -->
 {{echo| [[Category:foo]]}} <!-- No pre-wrapping -->
 !! result
-  <span typeof="mw:Transclusion"> </span> 
+ <link rel="mw:WikiLink/Category" href="./Category:Foo"> <!-- No pre-wrapping -->
+<span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":" [[Category:foo]]"}},"i":0}}]}'> </span>
+<link rel="mw:WikiLink/Category" href="./Category:Foo" about="#mwt1"> <!-- No pre-wrapping -->
 !! end
 
 !! test
@@ -2100,8 +2152,10 @@ parsoid=wt2html,wt2wt
  [[Category:foo]] a
  [[Category:foo]] {{echo|b}}
 !! result
-<pre> a <span typeof="mw:Transclusion">b</span>
-</pre>
+<pre>
+<link rel="mw:WikiLink/Category" href="./Category:Foo"> a
+
+<link rel="mw:WikiLink/Category" href="./Category:Foo"> <span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"b"}},"i":0}}]}'>b</span></pre>
 !! end
 
 ###
@@ -3657,8 +3711,7 @@ Plain ''italic'''s plain
 !! end
 # Parsoid inserts an empty bold tag pair at the end of the line, that the PHP
 # parser strips. The wikitext contains just the first half of the bold
-# quote pair. (There's also a case where Parsoid nests <b> and <i>
-# differently than the PHP parser.)
+# quote pair.
 !! test
 Unclosed and unmatched quotes (parsoid)
 !! options
@@ -3686,7 +3739,7 @@ Normal text.
 Plain ''italic'''s plain
 !! result
 <p><i><b>Bold italic text </b>with bold deactivated<b> in between.</b></i>
-</p><p><i><b>Bold italic text </b></i><b>with italic deactivated<i> in between.</i></b>
+</p><p><b><i>Bold italic text </i>with italic deactivated<i> in between.</i></b>
 </p><p><b>Bold text..</b>
 </p><p>..spanning two paragraphs (should not work).<b></b>
 </p><p><b>Bold tag left open</b>
@@ -4150,10 +4203,13 @@ Template-generated table cell attributes and cell content
 !! input
 {|
 |{{table_attribs}}
+| {{table_attribs}}
 |}
 !! result
 <table>
 <tr>
+<td style="color: red"> Foo
+</td>
 <td style="color: red"> Foo
 </td></tr></table>
 
@@ -4404,22 +4460,18 @@ Parsoid: Default to a newline after tables in new content (bug 51219)
 parsoid=html2wt
 !! input
 {|
-|-
 |foo
 |}
 <nowiki> </nowiki>bar
 {|
-|-
 |baz
 |}
 '''quux'''
 !! result
 <table><tbody>
-<tr>
-<td>foo</td></tr></tbody></table> bar
+<tr><td>foo</td></tr></tbody></table> bar
 <table><tbody>
-<tr>
-<td>baz</td></tr></tbody></table><b>quux</b>
+<tr><td>baz</td></tr></tbody></table><b>quux</b>
 !! end
 
 ###
@@ -5058,6 +5110,12 @@ Interwiki link with fragment (bug 2130)
 </p>
 !! end
 
+
+###
+### Interlanguage links
+### Language links (so that searching for '### language' matches..)
+###
+
 !! test
 Interlanguage link
 !! input
@@ -5116,6 +5174,19 @@ language=ln
 !! end
 
 !! test
+Parsoid bug 53221: Wikilinks should be properly entity-escaped
+!! options
+parsoid=html2wt
+!! input
+He&amp;nbsp;llo [[Foo|He&amp;nbsp;llo]]
+
+He&amp;nbsp;llo [[He&amp;nbsp;llo]]
+!!result
+<p>He&amp;nbsp;llo <a href="Foo" rel="mw:WikiLink">He&amp;nbsp;llo</a></p>
+<p>He&amp;nbsp;llo <a href="He&amp;nbsp;llo" rel="mw:WikiLink">He&amp;nbsp;llo</a></p>
+!! end
+
+!! test
 Parsoid: handle constructor well
 !! options
 parsoid
@@ -5130,9 +5201,30 @@ parsoid
 <p data-parsoid="{&quot;dsr&quot;:[17,36,0,0]}"><a rel="mw:WikiLink" href="./Foo" data-parsoid="{&quot;stx&quot;:&quot;simple&quot;,&quot;a&quot;:{&quot;href&quot;:&quot;./Foo&quot;},&quot;sa&quot;:{&quot;href&quot;:&quot;constructor:foo&quot;},&quot;dsr&quot;:[17,36,2,2]}">constructor:foo</a></p>
 !! end
 
-##
-## Redirects, Parsoid-only
-##
+!! test
+Parsoid: recognize interlanguage links without a target page
+!! options
+parsoid
+!! input
+[[ko:]]
+!! result
+<p>
+<link rel="mw:WikiLink/Language" href="http://ko.wikipedia.org/wiki/"></p>
+!! end
+
+!! test
+Parsoid: recognize interwiki links without a target page
+!! options
+parsoid
+!! input
+[[:ko:]]
+!! result
+<p><a rel="mw:WikiLink/Interwiki" href="http://ko.wikipedia.org/wiki/">ko:</a></p>
+!! end
+
+###
+### Redirects, Parsoid-only
+###
 !! test
 Simple redirect to page
 !! options
@@ -5775,7 +5867,7 @@ parsoid=wt2html,wt2wt
 !!result
 <ul><li> foo</li>
 <li>li-hack</li>
-<li about="#mwt1" typeof="mw:Transclusion" data-mw='{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"<li>templated li-hack"}}}'>templated li-hack</li>
+<li about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"<li>templated li-hack"}}}}]}'>templated li-hack</li>
 <li> <!--foo--> </li><li> li-hack with preceding comments</li></ul>
 
 <ul>
@@ -5807,7 +5899,7 @@ parsoid
 * {{bullet}}
 !! result
 <ul>
-<li> </li><li about="#mwt1" typeof="mw:Transclusion" data-mw='{"target":{"wt":"bullet","href":"./Template:Bullet"},"params":{},"i":0}'> Bar</li>
+<li> </li><li about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"bullet","href":"./Template:Bullet"},"params":{},"i":0}}]}'> Bar</li>
 </ul>
 !! end
 
@@ -5882,6 +5974,23 @@ parsoid
 </small>
 <p><small></small></p>
 !!end
+
+!! test
+Table with missing opening <tr> tag
+!! options
+parsoid=wt2html,wt2wt
+!! input
+<table>
+<td>foo</td>
+</tr>
+</table>
+!! result
+<table>
+<tr>
+<td>foo</td>
+</tr>
+</table>
+!! end
 
 ###
 ### Magic Words
@@ -7265,14 +7374,57 @@ c}}d
 
 b}}
 !! result
-a<span typeof="mw:Transclusion">b</span>
-<table></table><span>c</span>d
-<p typeof="mw:Transclusion">ab</p>
-<table></table>
-<p>cd</p>
-<p typeof="mw:Transclusion">a</p>
-<table></table>
-<p>b</p>
+a<span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"b
+<table></table>c"}},"i":0}}]}'>b</span>
+<table about="#mwt1"></table><span about="#mwt1">c</span>d
+
+
+<p about="#mwt2" typeof="mw:Transclusion" data-mw='{"parts":["a",{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"b\n<table></table>\nc"}},"i":0}},"d"]}'>ab</p><span about="#mwt2">
+</span>
+<table about="#mwt2"></table><span about="#mwt2">
+</span>
+<p about="#mwt2">cd</p>
+
+
+<p about="#mwt3" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"a\n\n<table></table>\n\nb"}},"i":0}}]}'>a</p><span about="#mwt3">
+
+</span>
+<table about="#mwt3"></table><span about="#mwt3">
+
+</span>
+<p about="#mwt3">b</p>
+!! end
+
+!! test
+Parsoid: Merge double tds (bug 50603)
+!! options
+parsoid
+!! input
+{|
+|{{echo|{{!}} foo}}
+|}
+!! result
+<table><tbody>
+<tr><td about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":["|",{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"{{!}} foo"}},"i":0}}]}'> foo</td></tr>
+</tbody></table>
+!! end
+
+!! test
+Parsoid: Merge double tds in nested transclusion content (bug 50603)
+!! options
+parsoid
+!! input
+{{echo|<div>}}
+{|
+|{{echo|{{!}} foo}}
+|}
+{{echo|</div>}}
+!! result
+<div about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"<div>"}},"i":0}},"\n{|\n|",{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"{{!}} foo"}},"i":1}},"\n|}\n",{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"</div>"}},"i":2}}]}'>
+<table><tbody>
+<tr><td data-mw='{"parts":["|"]}'> foo</td></tr>
+</tbody></table>
+</div>
 !! end
 
 ###
@@ -7418,14 +7570,14 @@ bar <div>baz</div>
 !!test
 Templates: P-wrapping: 1d. Template preceded by comment-only line
 !!options
-parsoid=wt2html,wt2wt
+parsoid
 !!input
 <!-- foo -->
 {{echo|Bar}}
 !!result
 <!-- foo -->
-<p typeof="mw:Transclusion">Bar
-</p>
+
+<p about="#mwt223" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"Bar"}},"i":0}}]}'>Bar</p>
 !!end
 
 !!test
@@ -7826,24 +7978,24 @@ Templates: Ugly nesting: 1. Quotes opened/closed across templates (echo)
 Templates: Ugly nesting: 2. Quotes opened/closed across templates (echo_with_span)
 (PHP parser generates misnested html)
 !! options
-parsoid=wt2html,wt2wt
+parsoid
 !!input
 {{echo_with_span|''a}}{{echo_with_span|b''c''d}}{{echo_with_span|''e}}
 !!result
-<p><span typeof="mw:Transclusion"><i>a</i></span><i typeof="mw:Transclusion"><span>b</span></i><span>c</span><i>d</i><span>e</span></p>
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw="{&quot;parts&quot;:[{&quot;template&quot;:{&quot;target&quot;:{&quot;wt&quot;:&quot;echo_with_span&quot;,&quot;href&quot;:&quot;./Template:Echo_with_span&quot;},&quot;params&quot;:{&quot;1&quot;:{&quot;wt&quot;:&quot;''a&quot;}},&quot;i&quot;:0}}]}"><i>a</i></span><i about="#mwt2" typeof="mw:Transclusion" data-mw="{&quot;parts&quot;:[{&quot;template&quot;:{&quot;target&quot;:{&quot;wt&quot;:&quot;echo_with_span&quot;,&quot;href&quot;:&quot;./Template:Echo_with_span&quot;},&quot;params&quot;:{&quot;1&quot;:{&quot;wt&quot;:&quot;b''c''d&quot;}},&quot;i&quot;:0}},{&quot;template&quot;:{&quot;target&quot;:{&quot;wt&quot;:&quot;echo_with_span&quot;,&quot;href&quot;:&quot;./Template:Echo_with_span&quot;},&quot;params&quot;:{&quot;1&quot;:{&quot;wt&quot;:&quot;''e&quot;}},&quot;i&quot;:1}}]}"><span>b</span></i><span about="#mwt2">c</span><i about="#mwt2">d<span></span></i><span about="#mwt2">e</span></p>
 !!end
 
 !!test
 Templates: Ugly nesting: 3. Quotes opened/closed across templates (echo_with_div)
-(PHP parser generates misnested html)
+(PHP parser generates misnested html; Parsoid html2wt mode adds newlines between {{echo}}s)
 !! options
 parsoid=wt2html,wt2wt
 !!input
 {{echo_with_div|''a}}{{echo_with_div|b''c''d}}{{echo_with_div|''e}}
 !!result
-<div typeof="mw:Transclusion"><i>a</i></div>
-<div typeof="mw:Transclusion"><i>b</i>c<i>d</i></div>
-<div typeof="mw:Transclusion">e</div>
+<div about="#mwt1" typeof="mw:Transclusion" data-mw="{&quot;parts&quot;:[{&quot;template&quot;:{&quot;target&quot;:{&quot;wt&quot;:&quot;echo_with_div&quot;,&quot;href&quot;:&quot;./Template:Echo_with_div&quot;},&quot;params&quot;:{&quot;1&quot;:{&quot;wt&quot;:&quot;''a&quot;}},&quot;i&quot;:0}}]}"><i>a</i></div>
+<div about="#mwt2" typeof="mw:Transclusion" data-mw="{&quot;parts&quot;:[{&quot;template&quot;:{&quot;target&quot;:{&quot;wt&quot;:&quot;echo_with_div&quot;,&quot;href&quot;:&quot;./Template:Echo_with_div&quot;},&quot;params&quot;:{&quot;1&quot;:{&quot;wt&quot;:&quot;b''c''d&quot;}},&quot;i&quot;:0}}]}"><i>b</i>c<i>d</i></div>
+<div about="#mwt3" typeof="mw:Transclusion" data-mw="{&quot;parts&quot;:[{&quot;template&quot;:{&quot;target&quot;:{&quot;wt&quot;:&quot;echo_with_div&quot;,&quot;href&quot;:&quot;./Template:Echo_with_div&quot;},&quot;params&quot;:{&quot;1&quot;:{&quot;wt&quot;:&quot;''e&quot;}},&quot;i&quot;:0}}]}">e</div>
 !!end
 
 !!test
@@ -7866,10 +8018,13 @@ parsoid
 |bar
 |}
 !!result
-<table typeof="mw:Transclusion">
+<table about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":["{|\n|",{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"foo</table>"}},"i":0}},"\n|bar\n|}"]}'>
+
 <tbody>
 <tr>
-<td>foo</td></tr></tbody></table><span>bar</span>
+<td>foo</td></tr></tbody></table><span about="#mwt1">
+</span><span about="#mwt1">bar</span><span about="#mwt1">
+</span>
 !!end
 
 !!test
@@ -7898,24 +8053,24 @@ parsoid
   </tr>
 </table>
 !!result
-<table  about="#mwt1" typeof="mw:Transclusion">
-  <tbody><tr >
-    <td >
-    <table >
-      <tbody><tr >
-        <td >1. foo </td></tr></tbody></table></td>
-        <td > bar </td>
-        <td >2. baz </td></tr></tbody></table><span about="#mwt1">
-      </span><span about="#mwt1">
-      
-        abc</span><span about="#mwt1">
-      </span><span about="#mwt1">
-    </span><span about="#mwt1">
-    </span><span about="#mwt1">
-  </span><span about="#mwt1">
-  
-    xyz</span><span about="#mwt1">
-  </span><span about="#mwt1">
+<table about="#mwt2" typeof="mw:Transclusion" data-mw='{"parts":["<table>\n  <tr>\n    <td>\n    <table>\n      <tr>\n        <td>1. ",{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"foo </table>"}},"i":0}},"</td>\n        <td> bar </td>\n        <td>2. ",{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"baz </table>"}},"i":1}},"</td>\n      </tr>\n      <tr>\n        <td>abc</td>\n      </tr>\n    </table>\n    </td>\n  </tr>\n  <tr>\n    <td>xyz</td>\n  </tr>\n</table>"]}'>
+  <tbody><tr>
+    <td>
+    <table>
+      <tbody><tr>
+        <td>1. foo </td></tr></tbody></table></td>
+        <td> bar </td>
+        <td>2. baz </td></tr></tbody></table><span about="#mwt2">
+      </span><span about="#mwt2">
+      </span><span about="#mwt2">
+        </span><span about="#mwt2">abc</span><span about="#mwt2">
+      </span><span about="#mwt2">
+    </span><span about="#mwt2">
+    </span><span about="#mwt2">
+  </span><span about="#mwt2">
+  </span><span about="#mwt2">
+    </span><span about="#mwt2">xyz</span><span about="#mwt2">
+  </span><span about="#mwt2">
 </span>
 !!end
 
@@ -12882,7 +13037,7 @@ parsoid
 !! input
 '''''
 !! result
-<p><i><b></b></i></p>
+<p><b><i></i></b></p>
 !! end
 
 !! test
@@ -15660,10 +15815,10 @@ A <ref>
 
 <references />
 !!result
-<p>A <span about="#mwt1" class="reference" data-mw='{"name":"ref","body":{"html":"This is a <b data-parsoid=\"{&amp;quot;dsr&amp;quot;:[19,40,3,3]}\"><a rel=\"mw:WikiLink\" href=\"./Bolded_link\" data-parsoid=\"{&amp;quot;a&amp;quot;:{&amp;quot;href&amp;quot;:&amp;quot;./Bolded_link&amp;quot;},&amp;quot;sa&amp;quot;:{&amp;quot;href&amp;quot;:&amp;quot;bolded link&amp;quot;},&amp;quot;stx&amp;quot;:&amp;quot;simple&amp;quot;,&amp;quot;dsr&amp;quot;:[22,37,2,2]}\">bolded link</a></b> and this is a <span about=\"#mwt3\" typeof=\"mw:Transclusion\" data-mw=\"{&amp;quot;target&amp;quot;:{&amp;quot;wt&amp;quot;:&amp;quot;echo&amp;quot;,&amp;quot;href&amp;quot;:&amp;quot;./Template:Echo&amp;quot;},&amp;quot;params&amp;quot;:{&amp;quot;1&amp;quot;:{&amp;quot;wt&amp;quot;:&amp;quot;transclusion&amp;quot;}}}\" data-parsoid=\"{&amp;quot;src&amp;quot;:&amp;quot;{{echo|transclusion}}&amp;quot;,&amp;quot;dsr&amp;quot;:[55,76,null,null]}\">transclusion</span>\n"},"attrs":{}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-1">[1]</a></span></p>
+<p>A <span about="#mwt1" class="reference" data-mw='{"name":"ref","body":{"html":"This is a <b data-parsoid=\"{&amp;quot;dsr&amp;quot;:[19,40,3,3]}\"><a rel=\"mw:WikiLink\" href=\"./Bolded_link\" data-parsoid=\"{&amp;quot;stx&amp;quot;:&amp;quot;simple&amp;quot;,&amp;quot;a&amp;quot;:{&amp;quot;href&amp;quot;:&amp;quot;./Bolded_link&amp;quot;},&amp;quot;sa&amp;quot;:{&amp;quot;href&amp;quot;:&amp;quot;bolded link&amp;quot;},&amp;quot;dsr&amp;quot;:[22,37,2,2]}\">bolded link</a></b> and this is a <span about=\"#mwt5\" typeof=\"mw:Transclusion\" data-mw=\"{&amp;quot;parts&amp;quot;:[{&amp;quot;template&amp;quot;:{&amp;quot;target&amp;quot;:{&amp;quot;wt&amp;quot;:&amp;quot;echo&amp;quot;,&amp;quot;href&amp;quot;:&amp;quot;./Template:Echo&amp;quot;},&amp;quot;params&amp;quot;:{&amp;quot;1&amp;quot;:{&amp;quot;wt&amp;quot;:&amp;quot;transclusion&amp;quot;}},&amp;quot;i&amp;quot;:0}}]}\" data-parsoid=\"{&amp;quot;dsr&amp;quot;:[55,76,null,null],&amp;quot;pi&amp;quot;:[[{&amp;quot;k&amp;quot;:&amp;quot;1&amp;quot;,&amp;quot;spc&amp;quot;:[&amp;quot;&amp;quot;,&amp;quot;&amp;quot;,&amp;quot;&amp;quot;,&amp;quot;&amp;quot;]}]]}\">transclusion</span>\n"},"attrs":{}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-1">[1]</a></span></p>
 
-<ol about="#mwt2" class="references" data-mw='{"name":"references","attrs":{}}' typeof="mw:Extension/references">
-<li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> This is a <b><a rel="mw:WikiLink" href="./Bolded_link">bolded link</a></b> and this is a <span about="#mwt3" typeof="mw:Transclusion" data-mw='{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"transclusion"}}}'>transclusion</span>
+<ol class="references" typeof="mw:Extension/references" about="#mwt2" data-mw='{"name":"references","attrs":{}}'>
+<li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> This is a <b><a rel="mw:WikiLink" href="./Bolded_link">bolded link</a></b> and this is a <span about="#mwt3" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"transclusion"}},"i":0}}]}'>transclusion</span>
 </li></ol>
 !!end
 
@@ -15682,7 +15837,7 @@ A <ref>
 !!result
 <p>A <span about="#mwt1" class="reference" data-mw='{"name":"ref","body":{"html":"foo\n bar\n baz\n"},"attrs":{}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-1">[1]</a></span></p>
 
-<ol about="#mwt2" class="references" data-mw='{"name":"references","attrs":{}}' typeof="mw:Extension/references">
+<ol class="references" typeof="mw:Extension/references" about="#mwt3" data-mw='{"name":"references","attrs":{}}'>
 <li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> foo
  bar
  baz
@@ -15690,7 +15845,7 @@ A <ref>
 !!end
 
 !!test
-Ref: 6. No p-wrapping in ref-body
+Ref: 7. No p-wrapping in ref-body
 !!options
 parsoid
 !!input
@@ -15711,7 +15866,7 @@ booz
 !!result
 <p>A <span about="#mwt1" class="reference" data-mw='{"name":"ref","body":{"html":"foo\n\nbar\n\n\nbaz\n\n\n\nbooz\n"},"attrs":{}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-1">[1]</a></span></p>
 
-<ol about="#mwt2" class="references" data-mw='{"name":"references","attrs":{}}' typeof="mw:Extension/references">
+<ol about="#mwt2" class="references" typeof="mw:Extension/references" data-mw='{"name":"references","attrs":{}}'>
 <li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> foo
 
 bar
@@ -15734,9 +15889,9 @@ A <ref> foo {{echo|</ref> B C}}
 
 <references />
 !!result
-<p>A <span about="#mwt1" class="reference" data-mw='{"name":"ref","body":{"html":"foo <span typeof=\"mw:Nowiki\" data-parsoid=\"{&amp;quot;src&amp;quot;:&amp;quot;{{&amp;quot;,&amp;quot;dsr&amp;quot;:[12,14,2,null]}\">{{</span>echo|"},"attrs":{}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-1">[1]</a></span> B C<span typeof="mw:Nowiki">}}</span></p>
+<p>A <span about="#mwt1" class="reference" data-mw='{"name":"ref","body":{"html":"foo <span typeof=\"mw:Nowiki\" data-parsoid=\"{&amp;quot;src&amp;quot;:&amp;quot;{{&amp;quot;,&amp;quot;dsr&amp;quot;:[12,14,0,0]}\">{{</span>echo|"},"attrs":{}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-1">[1]</a></span> B C<span typeof="mw:Nowiki">}}</span></p>
 
-<ol about="#mwt2" class="references" data-mw='{"name":"references","attrs":{}}' typeof="mw:Extension/references">
+<ol about="#mwt2" class="references" typeof="mw:Extension/references" data-mw='{"name":"references","attrs":{}}'>
 <li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> foo <span typeof="mw:Nowiki">{{</span>echo|</li></ol>
 !!end
 
@@ -15751,7 +15906,7 @@ A <ref> foo <!--</ref> B C
 !!result
 <p>A <span about="#mwt1" class="reference" data-mw='{"name":"ref","body":{"html":"foo <!---->"},"attrs":{}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-1">[1]</a></span> B C</p>
 
-<ol about="#mwt2" class="references" data-mw='{"name":"references","attrs":{}}' typeof="mw:Extension/references">
+<ol about="#mwt2" class="references" typeof="mw:Extension/references" data-mw='{"name":"references","attrs":{}}'>
 <li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> foo <!----></li></ol>
 !!end
 
@@ -15766,7 +15921,7 @@ A <ref> <b> foo </ref> B C
 !!result
 <p>A <span about="#mwt1" class="reference" data-mw='{"name":"ref","body":{"html":"<b data-parsoid=\"{&amp;quot;stx&amp;quot;:&amp;quot;html&amp;quot;,&amp;quot;autoInsertedEnd&amp;quot;:true,&amp;quot;dsr&amp;quot;:[8,16,3,0]}\"> foo </b>"},"attrs":{}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-1">[1]</a></span> B C</p>
 
-<ol about="#mwt2" class="references" data-mw='{"name":"references","attrs":{}}' typeof="mw:Extension/references">
+<ol about="#mwt2" class="references" typeof="mw:Extension/references" data-mw='{"name":"references","attrs":{}}'>
 <li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> <b> foo </b></li></ol>
 !!end
 
@@ -15845,7 +16000,7 @@ B1 <ref name="b" /> B2 <ref name="b">bar</ref>
 <p>A1 <span about="#mwt3" class="reference" data-mw='{"name":"ref","body":{"html":"foo"},"attrs":{"name":"a"}}' id="cite_ref-a-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-a-1">[1]</a></span> A2 <span about="#mwt4" class="reference" data-mw='{"name":"ref","attrs":{"name":"a"}}' id="cite_ref-a-1-1" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-a-1">[1]</a></span>
 B1 <span about="#mwt7" class="reference" data-mw='{"name":"ref","attrs":{"name":"b"}}' id="cite_ref-b-2-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-b-2">[2]</a></span> B2 <span about="#mwt8" class="reference" data-mw='{"name":"ref","body":{"html":"bar"},"attrs":{"name":"b"}}' id="cite_ref-b-2-1" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-b-2">[2]</a></span></p>
 
-<ol about="#mwt10" class="references" data-mw='{"name":"references","attrs":{}}' typeof="mw:Extension/references"><li about="#cite_note-a-1" id="cite_note-a-1"><span rel="mw:referencedBy">↑ <a href="#cite_ref-a-1-0">1.0</a> <a href="#cite_ref-a-1-1">1.1</a></span> foo</li><li about="#cite_note-b-2" id="cite_note-b-2"><span rel="mw:referencedBy">↑ <a href="#cite_ref-b-2-0">2.0</a> <a href="#cite_ref-b-2-1">2.1</a></span> bar</li></ol>
+<ol about="#mwt10" class="references" typeof="mw:Extension/references" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-a-1" id="cite_note-a-1"><span rel="mw:referencedBy">↑ <a href="#cite_ref-a-1-0">1.0</a> <a href="#cite_ref-a-1-1">1.1</a></span> foo</li><li about="#cite_note-b-2" id="cite_note-b-2"><span rel="mw:referencedBy">↑ <a href="#cite_ref-b-2-0">2.0</a> <a href="#cite_ref-b-2-1">2.1</a></span> bar</li></ol>
 !!end
 
 !!test
@@ -15855,7 +16010,7 @@ parsoid
 !!input
 <references />
 !!result
-<ol about="#mwt2" class="references" data-mw='{"name":"references","attrs":{}}' typeof="mw:Extension/references"></ol>
+<ol about="#mwt2" class="references" typeof="mw:Extension/references" data-mw='{"name":"references","attrs":{}}'></ol>
 !!end
 
 !!test
@@ -15871,7 +16026,7 @@ B <ref group="b">bar</ref>
 <p>A <span about="#mwt2" class="reference" data-mw='{"name":"ref","body":{"html":"foo"},"attrs":{"group":"a"}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-1">[a 1]</a></span>
 B <span about="#mwt4" class="reference" data-mw='{"name":"ref","body":{"html":"bar"},"attrs":{"group":"b"}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-1">[b 1]</a></span></p>
 
-<ol about="#mwt6" class="references" data-mw='{"name":"references","attrs":{"group":"a"}}' typeof="mw:Extension/references"><li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> foo</li></ol>
+<ol about="#mwt6" class="references" typeof="mw:Extension/references" data-mw='{"name":"references","attrs":{"group":"a"}}'><li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> foo</li></ol>
 !!end
 
 !!test
@@ -15889,11 +16044,11 @@ B <ref>bar</ref>
 !!result
 <p>A <span about="#mwt2" class="reference" data-mw='{"name":"ref","body":{"html":"foo"},"attrs":{}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-1">[1]</a></span></p>
 
-<ol about="#mwt4" class="references" data-mw='{"name":"references","attrs":{}}' typeof="mw:Extension/references"><li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> foo</li></ol>
+<ol about="#mwt4" class="references" typeof="mw:Extension/references" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> foo</li></ol>
 
 <p>B <span about="#mwt6" class="reference" data-mw='{"name":"ref","body":{"html":"bar"},"attrs":{}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-1">[1]</a></span></p>
 
-<ol about="#mwt8" class="references" data-mw='{"name":"references","attrs":{}}' typeof="mw:Extension/references"><li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> bar</li></ol>
+<ol about="#mwt8" class="references" typeof="mw:Extension/references" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> bar</li></ol>
 !!end
 
 !!test
@@ -15913,11 +16068,11 @@ C <ref>cfoo</ref>
 <p>A <span about="#mwt2" class="reference" data-mw='{"name":"ref","body":{"html":"afoo"},"attrs":{"group":"a"}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-1">[a 1]</a></span>
 B <span about="#mwt4" class="reference" data-mw='{"name":"ref","body":{"html":"bfoo"},"attrs":{}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref" data-parsoid='{"src":"<ref>bfoo</ref>","dsr":[30,45,5,6]}'><a href="#cite_note-1">[1]</a></span></p>
 
-<ol about="#mwt6" class="references" data-mw='{"name":"references","attrs":{"group":"a"}}' typeof="mw:Extension/references"><li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> afoo</li></ol>
+<ol about="#mwt6" class="references" typeof="mw:Extension/references" data-mw='{"name":"references","attrs":{"group":"a"}}'><li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> afoo</li></ol>
 
 <p>C <span about="#mwt8" class="reference" data-mw='{"name":"ref","body":{"html":"cfoo"},"attrs":{}}' id="cite_ref-2-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-2">[2]</a></span></p>
 
-<ol about="#mwt10" class="references" data-mw='{"name":"references","attrs":{}}' typeof="mw:Extension/references"><li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> bfoo</li><li about="#cite_note-2" id="cite_note-2"><span rel="mw:referencedBy"><a href="#cite_ref-2-0">↑</a></span> cfoo</li></ol>
+<ol about="#mwt10" class="references" typeof="mw:Extension/references" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> bfoo</li><li about="#cite_note-2" id="cite_note-2"><span rel="mw:referencedBy"><a href="#cite_ref-2-0">↑</a></span> cfoo</li></ol>
 !!end
 
 !!test
@@ -15936,7 +16091,7 @@ This should just get lost.
 <p>A <span about="#mwt2" class="reference" data-mw='{"name":"ref","attrs":{"name":"a"}}' id="cite_ref-a-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-a-1">[1]</a></span>
 B <span about="#mwt4" class="reference" data-mw='{"name":"ref","body":{"html":"bar"},"attrs":{"name":"b"}}' id="cite_ref-b-2-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-b-2">[2]</a></span></p>
 
-<ol class="references" typeof="mw:Extension/references" about="#mwt6" data-mw='{"name":"references","body":{"extsrc":"<ref name=\"a\">foo</ref>\nThis should just get lost.","html":"<span about=\"#mwt8\" class=\"reference\" data-mw=\"{&amp;quot;name&amp;quot;:&amp;quot;ref&amp;quot;,&amp;quot;body&amp;quot;:{&amp;quot;html&amp;quot;:&amp;quot;foo&amp;quot;},&amp;quot;attrs&amp;quot;:{&amp;quot;name&amp;quot;:&amp;quot;a&amp;quot;}}\" rel=\"dc:references\" typeof=\"mw:Extension/ref\"><a href=\"#cite_note-a-1\">[1]</a></span>"},"attrs":{}}'><li about="#cite_note-a-1" id="cite_note-a-1"><span rel="mw:referencedBy"><a href="#cite_ref-a-1-0">↑</a></span> foo</li><li about="#cite_note-b-2" id="cite_note-b-2"><span rel="mw:referencedBy"><a href="#cite_ref-b-2-0">↑</a></span> bar</li></ol>
+<ol class="references" typeof="mw:Extension/references" about="#mwt6" data-mw='{"name":"references","body":{"extsrc":"<ref name=\"a\">foo</ref>\nThis should just get lost.","html":"\n<span about=\"#mwt8\" class=\"reference\" data-mw=\"{&amp;quot;name&amp;quot;:&amp;quot;ref&amp;quot;,&amp;quot;body&amp;quot;:{&amp;quot;html&amp;quot;:&amp;quot;foo&amp;quot;},&amp;quot;attrs&amp;quot;:{&amp;quot;name&amp;quot;:&amp;quot;a&amp;quot;}}\" rel=\"dc:references\" typeof=\"mw:Extension/ref\"><a href=\"#cite_note-a-1\">[1]</a></span>\n"},"attrs":{}}'><li about="#cite_note-a-1" id="cite_note-a-1"><span rel="mw:referencedBy"><a href="#cite_ref-a-1-0">↑</a></span> foo</li><li about="#cite_note-b-2" id="cite_note-b-2"><span rel="mw:referencedBy"><a href="#cite_ref-b-2-0">↑</a></span> bar</li></ol>
 !!end
 
 !!test
@@ -15946,7 +16101,7 @@ parsoid
 !!input
 {{echo|<references />}}
 !!result
-<ol class="references" about="#mwt2" typeof="mw:Transclusion" data-mw='{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"<references />"}},"i":0}'></ol>
+<ol class="references" about="#mwt2" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"<references />"}},"i":0}}]}'></ol>
 !!end
 
 !! test
@@ -15966,10 +16121,12 @@ B <ref name="b" />
 <p>A <span about="#mwt2" class="reference" data-mw='{"name":"ref","body":{"html":"foo bar for a"},"attrs":{}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-1">[1]</a></span>
 B <span about="#mwt4" class="reference" data-mw='{"name":"ref","attrs":{"name":"b"}}' id="cite_ref-b-2-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-b-2">[2]</a></span></p>
 
-<ol class="references" typeof="mw:Extension/references" about="#mwt6" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> foo bar for a</li><li about="#cite_note-b-2" id="cite_note-b-2"><span rel="mw:referencedBy"><a href="#cite_ref-b-2-0">↑</a></span> </li></ol>
+<ol class="references" typeof="mw:Extension/references" about="#mwt6" data-mw='{"name":"references","attrs":{}}'>
+<li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> foo bar for a</li>
+<li about="#cite_note-b-2" id="cite_note-b-2"><span rel="mw:referencedBy"><a href="#cite_ref-b-2-0">↑</a></span> </li></ol>
 
-<ol class="references" typeof="mw:Extension/references" about="#mwt8" data-mw='{"name":"references","body":{"extsrc":"<ref name=\"b\">foo</ref>","html":"\n<span about=\"#mwt10\" class=\"reference\" data-mw=\"{&amp;quot;name&amp;quot;:&amp;quot;ref&amp;quot;,&amp;quot;body&amp;quot;:{&amp;quot;html&amp;quot;:&amp;quot;foo&amp;quot;},&amp;quot;attrs&amp;quot;:{&amp;quot;name&amp;quot;:&amp;quot;b&amp;quot;}}\" rel=\"dc:references\" typeof=\"mw:Extension/ref\"><a href=\"#cite_note-b-1\">[1]</a></span>\n"},"attrs":{}}'><li about="#cite_note-b-1" id="cite_note-b-1"><span rel="mw:referencedBy">↑</span> foo</li></ol>
-
+<ol class="references" typeof="mw:Extension/references" about="#mwt8" data-mw='{"name":"references","body":{"extsrc":"<ref name=\"b\">foo</ref>","html":"\n<span about=\"#mwt10\" class=\"reference\" data-mw=\"{&amp;quot;name&amp;quot;:&amp;quot;ref&amp;quot;,&amp;quot;body&amp;quot;:{&amp;quot;html&amp;quot;:&amp;quot;foo&amp;quot;},&amp;quot;attrs&amp;quot;:{&amp;quot;name&amp;quot;:&amp;quot;b&amp;quot;}}\" rel=\"dc:references\" typeof=\"mw:Extension/ref\"><a href=\"#cite_note-b-1\">[1]</a></span>\n"},"attrs":{}}'>
+<li about="#cite_note-b-1" id="cite_note-b-1"><span rel="mw:referencedBy">↑</span> foo</li></ol>
 !! end
 
 #### ----------------------------------------------------------------
@@ -16556,7 +16713,6 @@ Tables: 4a. Escape -
 parsoid
 !! input
 {|
-|-
 !-bar
 |-
 |<nowiki>-bar</nowiki>
@@ -16574,7 +16730,6 @@ Tables: 4b. Escape +
 parsoid
 !! input
 {|
-|-
 !+bar
 |-
 |<nowiki>+bar</nowiki>
@@ -16592,7 +16747,6 @@ Tables: 4c. No escaping needed
 parsoid
 !! input
 {|
-|-
 |foo-bar
 |foo+bar
 |-
@@ -17225,7 +17379,7 @@ Indented table with an empty td
 Empty TR followed by a template-generated TR
 (Parsoid-specific since PHP parser doesn't handle this mixed tbl-wikitext)
 !!options
-parsoid=wt2html,wt2wt
+parsoid
 !!input
 {|
 |-
@@ -17235,8 +17389,9 @@ parsoid=wt2html,wt2wt
 <table>
 <tbody>
 <tr></tr>
-<tr typeof="mw:Transclusion">
-<td>foo</td></tr></tbody></table>
+<tr about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"<tr><td>foo</td></tr>"}},"i":0}}]}'>
+<td>foo</td></tr>
+</tbody></table>
 !!end
 
 ## PHP and parsoid output differ for this, and since this is primarily
@@ -17255,10 +17410,10 @@ parsoid
 !!result
 <table>
 <tbody>
+<tr></tr>
+ <!--c-->
 <tr>
-<td> <!--c--></td></tr>
-<tr>
-<td><!--c--> <!--d--></td></tr>
+<!--c--> </tr><!--d-->
 </tbody></table>
 
 !!end
@@ -17313,6 +17468,19 @@ parsoid=wt2html
 plain text</pre>
 !!result
 plain text
+!!end
+
+!!test
+Ensure fostered text content is wrapped in spans
+!!options
+parsoid=wt2html
+!!input
+<table>hi</table><table>ho</table>
+!!result
+<span>hi</span>
+<table></table>
+<span>ho</span>
+<table></table>
 !!end
 
 # -----------------------------------------------------------------
@@ -17388,10 +17556,115 @@ Parsoid: Serialize positional parameters with = in them as named parameter
 parsoid=html2wt
 !! input
 {{echo|1 = f=oo}}
+
+{{echo|1 = f=oo|2 = bar}}
+
+<!--Orig params with data-parsoid has heuristics for handling = chars-->
+<!--FIXME: But maybe the heuristic needs fixing to apply to new params as well-->
+{{echo|<nowiki>f=oo</nowiki>|bar}}
 !! result
 <p about="#mwt1" typeof="mw:Transclusion"
-data-mw='{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"f=oo"}},"i":0}'
->foo</p>
+data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"f=oo"}},"i":0}}]}'>foo</p>
+
+<p about="#mwt1" typeof="mw:Transclusion"
+data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"f=oo"}, "2":{"wt":"bar"}},"i":0}}]}'>foo</p>
+
+<!--Orig params with data-parsoid has heuristics for handling = chars-->
+<!--FIXME: But maybe the heuristic needs fixing to apply to new params as well-->
+<p data-parsoid='{"pi":[[{"k":"1","spc":["","","",""]},{"k":"2","spc":["","","",""]}]]}' about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"f=oo"},"2":{"wt":"bar"}},"i":0}}]}'>foo</p>
+!! end
+
+!! test
+Parsoid: Correctly serialize block-node children when they are a combination of text and p-nodes
+!! options
+parsoid=html2wt
+!! input
+<div>a
+b
+</div>
+<div>a
+b
+</div>
+<div>
+a
+
+b
+</div>
+!! result
+<div>a<p>b</p></div>
+<div>a
+<p>b</p></div>
+<div>
+a
+<p>b</p></div>
+!! end
+
+#-----------------------------
+# I/B quote minimization tests
+#-----------------------------
+
+!! test
+1. I/B qoute minimization: wikitext-only tags should be combined
+!! options
+parsoid=html2wt
+!! input
+''AB''
+
+'''AB'''
+
+''A'''B'''''
+
+'''A''B'''''
+
+'''A''BC''D'''
+!! result
+<p><i>A</i><i>B</i></p>
+<p><b>A</b><b>B</b></p>
+<p><i>A</i><b><i>B</i></b></p>
+<p><b>A</b><i><b>B</b></i></p>
+<p><b>A</b><i><b>B</b><b>C</b></i><b>D</b></p>
+!! end
+
+!! test
+2. I/B qoute minimization: wikitext and html tags should not be combined
+!! options
+parsoid=html2wt
+!! input
+''A''<i>B</i>
+
+''A'''''<i>B</i>'''
+!! result
+<p><i>A</i><i data-parsoid='{"stx":"html"}'>B</i></p>
+<p><i>A</i><b><i data-parsoid='{"stx":"html"}'>B</i></b></p>
+!! end
+
+!! test
+3. I/B qoute minimization: templated content stops minimization
+!! options
+parsoid=html2wt
+!! input
+''A''{{echo|''B''}}
+
+''A''{{echo|'''''B'''''}}
+!! result
+<p><i>A</i><i about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"&#39;&#39;B&#39;&#39;"}},"i":0}}]}'>B</i>
+<p><i>A</i><b about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"&#39;&#39;&#39;&#39;&#39;B&#39;&#39;&#39;&#39;&#39;"}},"i":0}}]}'><i>B</i></b>
+!! end
+
+!! test
+4. I/B qoute minimization: new content should be mimimized with adjacent old content
+!! options
+parsoid=html2wt
+!! input
+''AB''
+
+'''AB'''
+
+''A'''B'''''
+!! result
+<p><i>A</i><i data-parsoid='{}'>B</i></p>
+<p><b data-parsoid='{}'>A</b><b>B</b></p>
+<p><i>A</i><b data-parsoid='{}'><i data-parsoid='{}'>B</i></b></p>
 !! end
 
 # -----------------------------------------------------------------
