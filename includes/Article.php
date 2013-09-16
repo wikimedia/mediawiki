@@ -1121,6 +1121,13 @@ class Article implements Page {
 			return false;
 		}
 
+		if ( $rc->getPerformer()->getName() == $user->getName() ) {
+			// Don't show a patrol link for own creations. If the user could
+			// patrol them, they already would be patrolled
+			wfProfileOut( __METHOD__ );
+			return false;
+		}
+
 		$rcid = $rc->getAttribute( 'rc_id' );
 
 		$token = $user->getEditToken( $rcid );
