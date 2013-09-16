@@ -3625,10 +3625,10 @@ The corresponding message is {{msg-mw|Rcnotefrom}}.',
 'rcshowhidemine' => "Option text in [[Special:RecentChanges]]. Parameters:
 * $1 is the 'show/hide' command, with the text taken from either {{msg-mw|show}} or {{msg-mw|hide}}.",
 'rclinks' => "Used on [[Special:RecentChanges]].
-* '''\$1''' is a list of different choices with number of pages to be shown.<br />&nbsp;Example: \"''50{{int:pipe-separator}}100{{int:pipe-separator}}250{{int:pipe-separator}}500\".
-* '''\$2''' is a list of clickable links with a number of days for which recent changes are to be displayed.<br />&nbsp;Example: \"''1{{int:pipe-separator}}3{{int:pipe-separator}}7{{int:pipe-separator}}14{{int:pipe-separator}}30''\".
-* '''\$3''' is a block of text that consists of other messages.<br />&nbsp;Example: \"''Hide minor edits{{int:pipe-separator}}Show bots{{int:pipe-separator}}Hide anonymous users{{int:pipe-separator}}Hide logged-in users{{int:pipe-separator}}Hide patrolled edits{{int:pipe-separator}}Hide my edits''\"
-List elements are separated by {{msg-mw|pipe-separator}} each. Each list element is, or contains, a link.",
+* \$1 - a list of different choices with number of pages to be shown.<br />&nbsp;Example: \"''50{{int:pipe-separator}}100{{int:pipe-separator}}250{{int:pipe-separator}}500\".
+* \$2 - a list of clickable links with a number of days for which recent changes are to be displayed.<br />&nbsp;Example: \"''1{{int:pipe-separator}}3{{int:pipe-separator}}7{{int:pipe-separator}}14{{int:pipe-separator}}30''\".
+* \$3 - a block of text that consists of other messages.<br />&nbsp;Example: \"''Hide minor edits{{int:pipe-separator}}Show bots{{int:pipe-separator}}Hide anonymous users{{int:pipe-separator}}Hide logged-in users{{int:pipe-separator}}Hide patrolled edits{{int:pipe-separator}}Hide my edits''\"
+List elements are separated by {{msg-mw|Pipe-separator}} each. Each list element is, or contains, a link.",
 'diff' => 'Short form of "differences". Used on [[Special:RecentChanges]], [[Special:Watchlist]], ...',
 'hist' => 'Short form of "history". Used on [[Special:RecentChanges]], [[Special:Watchlist]], ...',
 'hide' => '{{doc-actionlink}}

@@ -623,6 +623,8 @@ Käibel olevad erileheküljed on loetletud leheküljel [[Special:SpecialPages|{{
 # General errors
 'error' => 'Viga',
 'databaseerror' => 'Andmebaasi viga',
+'databaseerror-text' => 'Esines andmebaasipäringu tõrge.
+See võib viidata veale tarkvaras.',
 'databaseerror-textcl' => 'Esines andmebaasipäringu tõrge.',
 'databaseerror-query' => 'Päring: $1',
 'databaseerror-function' => 'Funktsioon: $1',

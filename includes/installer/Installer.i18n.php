@@ -12556,8 +12556,11 @@ $messages['lo'] = array(
 
 /** Lithuanian (lietuvių)
  * @author Eitvys200
+ * @author Mantak111
  */
 $messages['lt'] = array(
+	'config-desc' => 'MediaWiki diegimas',
+	'config-title' => 'MediaWiki $1 diegimas',
 	'config-information' => 'Informacija',
 	'config-your-language' => 'Jūsų kalba:',
 	'config-wiki-language' => 'Viki kalba:',
@@ -12565,6 +12568,8 @@ $messages['lt'] = array(
 	'config-continue' => 'Toliau →',
 	'config-page-language' => 'Kalba',
 	'config-page-welcome' => 'Sveiki atvykę į MediaWiki!',
+	'config-page-dbconnect' => 'Prisijungti prie duomenų bazės',
+	'config-page-dbsettings' => 'Duomenų bazės nustatymai',
 	'config-page-name' => 'Vardas',
 	'config-page-options' => 'Parinktys',
 	'config-page-install' => 'Įdiegti',
@@ -12574,7 +12579,18 @@ $messages['lt'] = array(
 	'config-page-copying' => 'Kopijuojama',
 	'config-page-upgradedoc' => 'Atnaujinama',
 	'config-restart' => 'Taip, paleiskite jį iš naujo',
+	'config-env-php' => 'PHP $1 yra įdiegtas.',
+	'config-env-php-toolow' => 'PHP $1 įdiegta.
+Tačiau, MediaWiki reikia PHP $2 ar naujesnės.',
+	'config-db-type' => 'Duomenų bazės tipas:',
+	'config-db-host' => 'Duomenų bazės serveris:',
+	'config-db-name' => 'Duomenų bazės pavadinimas:',
+	'config-db-name-oracle' => 'Duomenų bazės schema:',
+	'config-db-username' => 'Duomenų bazės vartotojo vardas:',
+	'config-db-password' => 'Duomenų bazės slaptažodis:',
 	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
+	'config-db-port' => 'Duomenų bazės prievadas:',
+	'config-db-schema' => 'MediaWiki schema:',
 	'config-header-mysql' => 'MySQL nustatymai',
 	'config-header-postgres' => 'PostgreSQL nustatymai',
 	'config-header-sqlite' => 'SQLite nustatymai',
@@ -12587,6 +12603,7 @@ $messages['lt'] = array(
 	'config-project-namespace' => 'Projekto pavadinimas:',
 	'config-ns-generic' => 'Projektas',
 	'config-ns-site-name' => 'Toks pat kaip viki pavadinimas: $1',
+	'config-ns-other-default' => 'ManoWiki',
 	'config-admin-box' => 'Administratoriaus paskyra',
 	'config-admin-name' => 'Jūsų vardas:',
 	'config-admin-password' => 'Slaptažodis:',
@@ -12610,7 +12627,25 @@ $messages['lt'] = array(
 	'config-install-step-done' => 'atlikta',
 	'config-install-step-failed' => 'nepavyko',
 	'config-install-schema' => 'Kuriama schema',
+	'config-install-tables' => 'Kuriamos lentelės',
+	'config-install-stats' => 'Inicijuojamos statistikos',
 	'config-install-keys' => 'Generuojami slapti raktai',
+	'config-install-done' => "'''Sveikiname!'''
+Jūs sėkmingai įdiegėte MediaWiki.
+
+Įdiegimo programa sukūrė <code>LocalSettings.php</code> failą.
+Jame yra visos jūsų konfigūracijos.
+
+Jums reikės atsisiųsti ir įdėti jį į savo wiki įdiegimo bazę (pačiame kataloge, kaip index.php). Atsisiuntimas turėtų prasidėti automatiškai.
+
+Jei atsisiuntimas nebuvo pasiūlytas, arba jį atšaukėte, galite iš naujo atsisiųsti paspaudę žemiau esančią nuorodą:
+
+<span class=\"notranslate\" versti=\"no\">\$3</span>
+
+'''Pastaba:''' Jei jūs to nepadarysite dabar, tada šis sukurtas konfigūracijos failas nebus galimas vėliau, jei išeisite iš įdiegimo be atsisiuntimo.
+
+Kai baigsite, jūs galėsite '''[\$2 įeiti į savo wiki]'''.",
+	'config-download-localsettings' => 'Atsisiųsti <code>LocalSettings.php</code>',
 	'config-help' => 'pagalba',
 	'mainpagetext' => "'''MediaWiki sėkmingai įdiegta.'''",
 	'mainpagedocfooter' => 'Informacijos apie wiki programinės įrangos naudojimą, ieškokite [//meta.wikimedia.org/wiki/Help:Contents žinyne].

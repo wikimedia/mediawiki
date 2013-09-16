@@ -11,6 +11,7 @@
  * @author Amire80
  * @author Dekel E
  * @author Drorsnir
+ * @author Guycn1
  * @author Hoo
  * @author Ijon
  * @author Inkbug
@@ -2555,7 +2556,7 @@ $UNWATCHURL
 'deletepage' => 'מחיקה',
 'confirm' => 'אישור',
 'excontent' => 'תוכן היה: "$1"',
-'excontentauthor' => 'התוכן היה: "$1" (וה{{gender:$2|תורם היחיד היה|תורמת היחידה הייתה}} "[[Special:Contributions/$2|$2]]")',
+'excontentauthor' => "התוכן היה: '$1' וה{{gender:$2|תורם היחיד היה|תורמת היחידה הייתה}} [[Special:Contributions/$2|$2]] ([[User Talk:$2|ש]])",
 'exbeforeblank' => 'תוכן לפני שרוקן היה: "$1"',
 'exblank' => 'הדף היה ריק',
 'delete-confirm' => 'מחיקת $1',

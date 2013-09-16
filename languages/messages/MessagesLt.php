@@ -1573,7 +1573,7 @@ teisės",
 'rc_categories_any' => 'Bet kokia',
 'rc-change-size-new' => '$1 {{PLURAL:$1|baitas|baitai|baitų}} po pakeitimo',
 'newsectionsummary' => '/* $1 */ naujas skyrius',
-'rc-enhanced-expand' => 'Rodyti detales (reikia JavaScript)',
+'rc-enhanced-expand' => 'Rodyti detales',
 'rc-enhanced-hide' => 'Slėpti detales',
 'rc-old-title' => 'iš pradžių sukurtas kaip " $1 "',
 
