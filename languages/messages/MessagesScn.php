@@ -195,10 +195,11 @@ $messages = array(
 'tog-showhiddencats' => 'Ammustra li catigurìi ammucciati.',
 'tog-norollbackdiff' => "Umettiri li ''diff'' doppu aviri fattu nu ''rollback''",
 'tog-useeditwarning' => 'Avvisa quannu si lasaa na paggina di canci cu canci nu sarbati',
+'tog-prefershttps' => 'Usa sempri na cunnissioni sicura quannu trasi',
 
 'underline-always' => 'sempri',
 'underline-never' => 'mai',
-'underline-default' => 'manteni li mpustazzioni dû browser',
+'underline-default' => 'manteni li mpustazzioni dû browser o dû tema',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Stili da casedda di canciamentu:',
@@ -295,7 +296,7 @@ $messages = array(
 'newwindow' => '(grapi na finestra nova)',
 'cancel' => 'annulla',
 'moredotdotdot' => 'Àutru...',
-'morenotlisted' => 'cchiossai non ntâ lista',
+'morenotlisted' => 'Sta lista è ncumpreta',
 'mypage' => 'Pàggina',
 'mytalk' => 'la mè pàggina di discussioni',
 'anontalk' => 'Discussione pi stu IP',

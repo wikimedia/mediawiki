@@ -1461,7 +1461,7 @@ Chiunque la conosce sarà in grado di leggere i tuoi osservati speciali, per cui
 'prefs-reset-intro' => "È possibile usare questa pagina per reimpostare le proprie preferenze a quelle predefinite del sito.
 L'operazione non può essere annullata.",
 'prefs-emailconfirm-label' => "Conferma dell'e-mail:",
-'youremail' => 'Indirizzo e-mail:',
+'youremail' => 'Indirizzo email:',
 'username' => '{{GENDER:$1|Nome utente}}:',
 'uid' => '{{GENDER:$1|ID utente}}:',
 'prefs-memberingroups' => '{{GENDER:$2|Membro}} {{PLURAL:$1|del gruppo|dei gruppi}}:',
@@ -1625,7 +1625,7 @@ Il tuo indirizzo non viene rivelato quando gli altri utenti ti contattano.',
 'right-userrights-interwiki' => 'Modifica i diritti degli utenti di altre wiki',
 'right-siteadmin' => 'Blocca e sblocca il database',
 'right-override-export-depth' => 'Esporta le pagine includendo le pagine collegate fino ad una profondità di 5',
-'right-sendemail' => 'Invia e-mail ad altri utenti',
+'right-sendemail' => 'Invia email ad altri utenti',
 'right-passwordreset' => 'Vede i messaggi di reimpostazione della password',
 
 # Special:Log/newusers

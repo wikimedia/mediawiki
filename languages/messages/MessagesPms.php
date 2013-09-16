@@ -624,8 +624,8 @@ A dovrìa intré ant ël sistema e serne na ciav neuva adess. Se quaidun d'àutr
 'passwordreset-emailelement' => 'Stranòm: $1
 Ciav provisòria: $2',
 'passwordreset-emailsent' => "Un mëssagi ëd riampostassion ëd la ciav a l'é stàit spedì.",
-'passwordreset-emailsent-capture' => "Un mëssagi ëd pro-memòria a l'é stàit mandà, e a l'é mostrà sì-sota.",
-'passwordreset-emailerror-capture' => "Un mëssagi ëd pro-memòria a l'é stàit generà, e a l'é smonù sì-sota, ma la spedission a l'utent a l'é falìa: $1",
+'passwordreset-emailsent-capture' => "Un mëssagi ëd riampostassion ëd la ciav a l'é stàit mandà, e a l'é mostrà sì-sota.",
+'passwordreset-emailerror-capture' => "Un mëssagi ëd riampostassion ëd la ciav a l'é stàit generà, e a l'é smonù sì-sota, ma la spedission a {{GENDER:$2|l'utent}} a l'é falìa: $1",
 
 # Special:ChangeEmail
 'changeemail' => "Cangé l'adrëssa ëd pòsta eletrònica",
