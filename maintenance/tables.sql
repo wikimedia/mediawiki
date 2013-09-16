@@ -1109,8 +1109,9 @@ CREATE TABLE /*_*/watchlist (
   wl_namespace int NOT NULL default 0,
   wl_title varchar(255) binary NOT NULL default '',
 
-  -- Timestamp when user was last sent a notification e-mail;
-  -- cleared when the user visits the page.
+  -- Timestamp used to send notification e-mails and show "updated since last visit" markers on
+  -- history and recent changes / watchlist. Set to NULL when the user visits the latest revision
+  -- of the page, which means that they should be sent an e-mail on the next change.
   wl_notificationtimestamp varbinary(14)
 
 ) /*$wgDBTableOptions*/;
