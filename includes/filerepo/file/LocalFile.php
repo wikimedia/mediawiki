@@ -610,7 +610,11 @@ class LocalFile extends File {
 		$this->load();
 
 		if ( $this->isMultipage() ) {
-			$dim = $this->getHandler()->getPageDimensions( $this, $page );
+			$handler = $this->getHandler();
+			if ( !$handler ) {
+				return 0;
+			}
+			$dim = $handler->getPageDimensions( $this, $page );
 			if ( $dim ) {
 				return $dim['width'];
 			} else {
@@ -633,7 +637,11 @@ class LocalFile extends File {
 		$this->load();
 
 		if ( $this->isMultipage() ) {
-			$dim = $this->getHandler()->getPageDimensions( $this, $page );
+			$handler = $this->getHandler();
+			if ( !$handler ) {
+				return 0;
+			}
+			$dim = $handler->getPageDimensions( $this, $page );
 			if ( $dim ) {
 				return $dim['height'];
 			} else {

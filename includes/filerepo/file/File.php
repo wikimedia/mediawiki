@@ -842,8 +842,9 @@ abstract class File {
 	protected function transformErrorOutput( $thumbPath, $thumbUrl, $params, $flags ) {
 		global $wgIgnoreImageErrors;
 
-		if ( $wgIgnoreImageErrors && !( $flags & self::RENDER_NOW ) ) {
-			return $this->getHandler()->getTransform( $this, $thumbPath, $thumbUrl, $params );
+		$handler = $this->getHandler();
+		if ( $handler && $wgIgnoreImageErrors && !( $flags & self::RENDER_NOW ) ) {
+			return $handler->getTransform( $this, $thumbPath, $thumbUrl, $params );
 		} else {
 			return new MediaTransformError( 'thumbnail_error',
 				$params['width'], 0, wfMessage( 'thumbnail-dest-create' )->text() );
@@ -1000,7 +1001,7 @@ abstract class File {
 	/**
 	 * Get a MediaHandler instance for this file
 	 *
-	 * @return MediaHandler
+	 * @return MediaHandler|boolean Registered MediaHandler for file's mime type or false if none found
 	 */
 	function getHandler() {
 		if ( !isset( $this->handler ) ) {
