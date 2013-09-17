@@ -80,7 +80,7 @@ class mcTest extends Maintenance {
 			$get = 0;
 			$time_start = $this->microtime_float();
 			for ( $i = 1; $i <= $iterations; $i++ ) {
-				if ( !is_null( $mcc->set( "test$i", $i ) ) ) {
+				if ( $mcc->set( "test$i", $i ) ) {
 					$set++;
 				}
 			}
