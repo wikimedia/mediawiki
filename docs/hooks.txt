@@ -2419,6 +2419,11 @@ $result: Boolean; whether MediaWiki currently thinks this is a wikitext page.
   Hooks may change this value to override the return value of
   Title::isWikitextPage()
 
+'TitleMove': Before moving an article (title).
+$old: old title
+$nt: new title
+$user: user who does the move
+
 'TitleMoveComplete': After moving an article (title).
 $old: old title
 $nt: new title
