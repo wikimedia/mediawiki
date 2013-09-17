@@ -188,7 +188,7 @@ $messages = array(
 # User preference toggles
 'tog-underline' => 'Linken ënnersträichen:',
 'tog-justify' => "Ränner vum Text riichten (''justify'')",
-'tog-hideminor' => 'Kleng Ännerungen an de rezenten Ännerungen verstoppen',
+'tog-hideminor' => 'Kleng Ännerungen an de rezenten Ännerunge verstoppen',
 'tog-hidepatrolled' => 'Iwwerkuckten Ännerungen an de "Rezenten Ännerungen" verstoppen',
 'tog-newpageshidepatrolled' => 'Iwwerkuckte Säiten op der Lëscht vun den "Neie Säite" verstoppen',
 'tog-extendwatchlist' => 'Iwwerwaachungslëscht op all Ännerungen ausbreeden, net nëmmen op déi rezentst',
@@ -535,7 +535,7 @@ Dat geschitt normalerweis duerch e Link op eng Säit déi geläscht oder geréck
 Wann dat net de Fall ass, hutt Dir eventuell e Feeler an der Software fonnt.
 Mellt dëst w.e.g. bei engem [[Special:ListUsers/sysop|Administrateur]] a vergiesst net d'URL unzeginn.",
 'missingarticle-rev' => '(Versiounsnummer: $1)',
-'missingarticle-diff' => '(Ënnerscheed tëschent Versiounen: $1, $2)',
+'missingarticle-diff' => '(Ënnerscheed tëscht Versiounen: $1, $2)',
 'readonly_lag' => "D'Datebank gouf automatesch gespaart fir datt d'Zweetserveren (slaves) nees mat dem Haaptserver (master) synchron geschalt kënne ginn.",
 'internalerror' => 'Interne Feeler',
 'internalerror_info' => 'Interne Feeler: $1',
@@ -682,7 +682,7 @@ Vergewëssert Iech datt Dir Cookien zouloosst, luet dës Säit nei a probéiert 
 'loginsuccesstitle' => 'Umeldung huet geklappt',
 'loginsuccess' => "'''Dir sidd elo als \"\$1\" op {{SITENAME}} ugemellt.'''",
 'nosuchuser' => 'Et gëtt kee Benotzernumm mam Numm "$1".
-Beim Benotzernumm gëtt tëschent groussen a klenge Buschtawen ënnerscheet (casesensitive).
+Beim Benotzernumm gëtt tëscht groussen a klenge Buschtawen ënnerscheet (casesensitive).
 Kuckt w.e.g. op d\'Schreifweis richteg ass, oder [[Special:UserLogin/signup|maacht en neie Benotzerkont op]].',
 'nosuchusershort' => 'De Benotzernumm "$1" gëtt et net.
 Kuckt w.e.g. op d\'Schreifweis richteg ass.',
@@ -997,7 +997,7 @@ Den Administrateur den d'Datebank gespaart huet, huet dës Erklärung ginn: $1",
 'nocreatetext' => "Op {{SITENAME}} gouf d'Schafe vun neie Säite limitéiert. Dir kënnt Säiten déi scho bestinn änneren oder Iech [[Special:UserLogin|umellen]].",
 'nocreate-loggedin' => 'Dir hutt keng Berechtigung fir nei Säiten unzeleeën.',
 'sectioneditnotsupported-title' => 'Ännere vum Abschnitt gëtt net ënnerstëtzt',
-'sectioneditnotsupported-text' => "D'Ännere vun Abschnitten gëtt op dëser Ännerungssäit net ënnerstetzt.",
+'sectioneditnotsupported-text' => "D'Ännere vun Abschnitte gëtt op dëser Ännerungssäit net ënnerstëtzt.",
 'permissionserrors' => 'Net genuch Rechter',
 'permissionserrorstext' => 'Dir hutt net genuch Rechter fir déi Aktioun auszeféieren. {{PLURAL:$1|Grond|Grënn}}:',
 'permissionserrorstext-withaction' => 'Dir sidd, aus {{PLURAL:$1|dësem Grond|dëse Grënn}}, net berechtegt $2 :',
@@ -1226,9 +1226,9 @@ Denkt w.e.g drunn datt d'Navigatiounslinken d'Wiel vun de Versiounen nees zréck
 
 # Diffs
 'history-title' => '$1: Historique vun de Versiounen',
-'difference-title' => '$1: Ënnerscheed tëschent de Versiounen',
-'difference-title-multipage' => '$1 a(n) $2: Ënnerscheed tëschent de Säiten',
-'difference-multipage' => '(Ënnerscheed tëschent Säiten)',
+'difference-title' => '$1: Ënnerscheed tëscht de Versiounen',
+'difference-title-multipage' => '$1 a(n) $2: Ënnerscheed tëscht de Säiten',
+'difference-multipage' => '(Ënnerscheed tëscht Säiten)',
 'lineno' => 'Linn $1:',
 'compareselectedversions' => 'Ausgewielte Versioune vergläichen',
 'showhideselectedversions' => 'Erausgesicht Versioune weisen/verstoppen',
@@ -1501,7 +1501,7 @@ Dës Informatioun ass ëffentlech.",
 'right-deletelogentry' => 'Eenzel Androungen an de Logbicher läschen a restauréieren',
 'right-deleterevision' => 'Spezifesch Versioune vu Säite läschen a restauréieren',
 'right-deletedhistory' => 'Weis geläscht Versiounen am Historique, ouni den associéierten Text',
-'right-deletedtext' => "Geläschten Text an d'Ännerungen tëschent de geläschte Versioune weisen",
+'right-deletedtext' => "Geläschten Text an d'Ännerungen tëscht de geläschte Versioune weisen",
 'right-browsearchive' => 'Geläscht Säite sichen',
 'right-undelete' => 'Eng Säit restauréieren',
 'right-suppressrevision' => 'Virun den Administrateure verstoppte Versiounen nokucken a restauréieren',
@@ -2744,7 +2744,7 @@ Dëst bedeit datt dir eng Säit zréck op deen Numm dee se virdrun hat ëmbenenn
 Dëst kann en drastesche Changement fir eng populär Säit sinn;
 verstitt w.e.g. d'Konsequenze vun ärer Handlung éier Dir dëst maacht.",
 'movepagetalktext' => "D'associéiert Diskussiounssäit, am Fall wou  eng do ass, gëtt automatesch matgeréckelt, '''ausser:'''
-*D'Säit gëtt an een anere Nummraum geréckelt.
+*D'Säit gëtt an een aneren Nummraum geréckelt.
 *Et gëtt schonn eng Diskussiounssäit mat dësem Numm, oder
 *Dir klickt d'Këschtchen ënnendrënner net un.
 
@@ -2767,7 +2767,7 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 'articleexists' => 'Eng Säit mat dësem Numm gëtt et schonns, oder den Numm deen Dir gewielt hutt gëtt net akzeptéiert.
 Wielt w.e.g. en aneren Numm.',
 'cantmove-titleprotected' => "Dir kënnt keng Säit op dës Plaz réckelen, well deen neien Titel fir d'Uleeë gespaart ass.",
-'talkexists' => "D'Säit selwer gouf erfollegräich geréckelt, mä d'Diskussiounssäit konnt net mat eriwwergeholl gi well et schonns eng ënner deem neien Titel gëtt. W.e.g. setzt dës manuell zesummen.",
+'talkexists' => "D'Säit selwer gouf geréckelt, mä d'Diskussiounssäit konnt net mat eriwwergeholl gi well et schonns eng ënner deem neien Titel gëtt. W.e.g. setzt dës manuell zesummen.",
 'movedto' => 'geréckelt op',
 'movetalk' => 'Déi associéiert Diskussiounssäit matréckelen',
 'move-subpages' => 'Ënnersäite (bis zu $1) réckelen',
@@ -2987,7 +2987,7 @@ Späichert en op Ärem Computer of a luet en hei nees erop.',
 'tooltip-save' => 'Ännerunge späicheren',
 'tooltip-preview' => 'Kuckt är Ännerungen ouni ofzespäicheren, Benotzt dëst w.e.g. virum späicheren!',
 'tooltip-diff' => 'Weist wéi eng Ännerungen Dir beim Text gemaach hutt.',
-'tooltip-compareselectedversions' => "D'Ënnerscheeder op dëser Säit tëschent den zwou gewielte Versioune weisen.",
+'tooltip-compareselectedversions' => "D'Ënnerscheeder op dëser Säit tëscht den zwou gewielte Versioune weisen.",
 'tooltip-watch' => 'Dës Säit op Är Iwwerwaachungslëscht bäisetzen',
 'tooltip-watchlistedit-normal-submit' => 'Säiten erofhuelen',
 'tooltip-watchlistedit-raw-submit' => 'Iwwerwaachungslëscht aktualiséieren',
@@ -3152,7 +3152,7 @@ Duerch d'Opmaache vum Fichier kann Äre System beschiedegt ginn.",
 'noimages' => 'Keng Biller fonnt.',
 'ilsubmit' => 'Sichen',
 'bydate' => 'no Datum',
-'sp-newimages-showfrom' => 'Nei Biller weisen, ugefaangen den $1 ëm $2',
+'sp-newimages-showfrom' => 'Nei Biller weisen, ugefaangen de(n) $1 ëm $2',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'seconds' => '{{PLURAL:$1|enger Sekonn|$1 Sekonnen}}',
@@ -3765,7 +3765,7 @@ Dir kënnt och [[Special:EditWatchlist|de Standard Editeur benotzen]].",
 'version-poweredby-others' => 'anerer',
 'version-poweredby-translators' => 'translatewiki.net Iwwersetzer',
 'version-credits-summary' => "Mir soen dëse Persoune 'Merci' fir hir Mataarbecht u [[Special:Version|MediaWiki]].",
-'version-license-info' => "MediaWiki ass fräi Software; Dir kënnt se weiderginn an/oder s'änneren ënner de Bedingungen vun der GNU-General Public License esou wéi se vun der Free Softare Foundation publizéiert ass; entweder ënner der Versioun 2 vun der Lizenz, oder (no Ärem Choix) enger spéiderer Versioun.
+'version-license-info' => "MediaWiki ass fräi Software; Dir kënnt se weiderginn an/oder s'änneren ënner de Bedingunge vun der GNU-General Public License esou wéi se vun der Free Softare Foundation publizéiert ass; entweder ënner der Versioun 2 vun der Lizenz, oder (no Ärem Choix) enger spéiderer Versioun.
 
 MediaWiki gëtt verdeelt an der Hoffnung datt se nëtzlech ass, awer OUNI IERGENDENG GARANTIE; ouni eng implizit Garantie vu Commercialisatioun oder Eegnung fir e bestëmmte Gebrauch. Kuckt d'GPL General Public License fir méi Informatiounen.
 
@@ -3825,11 +3825,11 @@ Dir misst eng [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie vun der GNU General Public
 
 # External image whitelist
 'external_image_whitelist' => "#Dës Zeil genee esou loosse wéi se ass<pre>
-#Schreift hei ënnendrënner Fragmenter vu regulären Ausdréck (just den Deel zwëschen den // aginn)
+#Schreift hei ënnendrënner Fragmenter vu regulären Ausdréck (just den Deel zwëscht den // aginn)
 #Dës gi mat den URLe vu Biller aus externe Quelle verglach
 #Wann d'Resultat positiv ass, gëtt d'Bild gewisen, soss gëtt d'Bild just als Link gewisen
 #Zeilen, déi mat engem # ufänken, ginn als Bemierkung behandelt
-#Et gëtt en Ënnerscheed tëschent groussen a klenge Buschtawe gemaach
+#Et gëtt en Ënnerscheed tëscht groussen a klenge Buschtawe gemaach
 
 #All regulär Ausdréck ënner dëser Zeil androen. Dës Zeil genee esou loosse wéi se ass</pre>",
 

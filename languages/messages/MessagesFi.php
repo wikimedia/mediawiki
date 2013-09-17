@@ -4108,7 +4108,7 @@ Muussa tapauksessa voit käyttää alla olevaa helpompaa lomaketta. Kommenttisi 
 'limitreport-walltime' => 'Oikea ajankäyttö',
 'limitreport-walltime-value' => '$1 {{PLURAL:$1|sekunti|sekuntia}}',
 'limitreport-postexpandincludesize-value' => '$1/$2 tavua',
-'limitreport-templateargumentsize' => 'Mallin argumenttikoko',
+'limitreport-templateargumentsize' => 'Mallineen argumenttien koko',
 'limitreport-templateargumentsize-value' => '$1/$2 tavua',
 'limitreport-expansiondepth' => 'Korkein laajennussyvyys',
 

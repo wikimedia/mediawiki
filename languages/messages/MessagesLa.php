@@ -484,7 +484,7 @@ Pro indice paginarum specialum validarum, vide [[Special:SpecialPages|{{int:spec
 'badarticleerror' => 'Haec actio non perfici potest in hac pagina.',
 'cannotdelete' => 'Pagina vel fasciculus "$1" deleri non potuit.
 Fortasse usor alius iam deleverat.',
-'cannotdelete-title' => 'Paginam "$1" delere non contigit.',
+'cannotdelete-title' => 'Paginam "$1" delere non contigit',
 'badtitle' => 'Titulus malus',
 'badtitletext' => 'Nomen paginae quaestae fuit invalidum, vacuum, aut praeverbium interlingualem vel intervicialem habuit. Fortasse insunt una aut plus litterarum quae in titulis non possunt inscribier.',
 'wrong_wfQuery_params' => 'Parametri incorrectae pro wfQuery()<br />
@@ -808,7 +808,7 @@ Titulus: '''({{int:cur}})''' = dissimilis ab emendatione novissima,
 
 # Revision feed
 'history-feed-title' => 'Historia',
-'history-feed-description' => 'Conspectus recensionum huius paginae',
+'history-feed-description' => 'Historia emendationum huius paginae',
 'history-feed-item-nocomment' => '$1 ad $2',
 
 # Revision deletion
@@ -836,7 +836,7 @@ Titulus: '''({{int:cur}})''' = dissimilis ab emendatione novissima,
 'revdel-restore-visible' => 'Recensiones visibiles',
 'pagehist' => 'Historia paginae',
 'deletedhist' => 'Historia deleta',
-'revdelete-otherreason' => 'Aliae/plures causae:',
+'revdelete-otherreason' => 'Causa alia vel explicatio:',
 'revdelete-reasonotherlist' => 'Causa alia',
 'revdelete-edit-reasonlist' => 'Causas deletionum recensere',
 'revdelete-offender' => 'Auctor emendationis:',
@@ -1014,9 +1014,9 @@ Si vis id dare, opera tua tibi ascribentur.',
 'prefs-signature' => 'Subscriptio',
 'prefs-preview' => 'Praevisum',
 'prefs-advancedwatchlist' => 'Praeferentiae monstrare',
-'prefs-displayrc' => 'Praeferentiae monstrare',
-'prefs-displaysearchoptions' => 'Praeferentiae monstrare',
-'prefs-displaywatchlist' => 'Praeferentiae monstrare',
+'prefs-displayrc' => 'Praeferentiae vultus',
+'prefs-displaysearchoptions' => 'Praeferentiae vultus',
+'prefs-displaywatchlist' => 'Praeferentiae vultus',
 'prefs-diffs' => 'Differentiae',
 
 # User rights

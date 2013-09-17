@@ -597,10 +597,10 @@ $messages = array(
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|بلا تصنيف|تصنيف|تصنيفان|تصنيفات}}',
-'category_header' => 'الصفحات في التصنيف "$1"',
+'category_header' => 'صفحات تصنيف "$1"',
 'subcategories' => 'تصنيفات فرعية',
-'category-media-header' => 'الوسائط في التصنيف "$1"',
-'category-empty' => "''هذا التصنيف لا يحتوي حاليا على صفحات و لا وسائط.''",
+'category-media-header' => 'ملفات تصنيف "$1"',
+'category-empty' => 'هذا التصنيف لا يحتوي حاليا على صفحات أو ملفات.',
 'hidden-categories' => '{{PLURAL:$1|لا تصنيفات مخفية|تصنيف مخفي|تصنيفان مخفيان|تصنيفات مخفية}}',
 'hidden-category-category' => 'تصنيفات مخفية',
 'category-subcat-count' => '{{PLURAL:$2|هذا التصنيف يحوي التصنيف الفرعي التالي|هذا التصنيف يحوي {{PLURAL:$1||التصنيف الفرعي|تصنيفين فرعيين|$1 تصنيفات فرعية}}، من إجمالي $2.}}',
@@ -1391,7 +1391,7 @@ $2
 'histfirst' => 'الأقدم',
 'histlast' => 'الأحدث',
 'historysize' => '({{PLURAL:$1|1 بايت|$1 بايت}})',
-'historyempty' => '(فارغ)',
+'historyempty' => '(فارغة)',
 
 # Revision feed
 'history-feed-title' => 'تاريخ المراجعة',
@@ -4370,8 +4370,8 @@ $5
 'compare-selector' => 'قارن مراجعات الصفحة',
 'compare-page1' => 'صفحة 1',
 'compare-page2' => 'صفحة 2',
-'compare-rev1' => 'مراجعة 1',
-'compare-rev2' => 'مراجعة 2',
+'compare-rev1' => 'نسخة 1',
+'compare-rev2' => 'نسخة 2',
 'compare-submit' => 'قارن',
 'compare-invalid-title' => 'العنوان الذي حددته غير متاح.',
 'compare-title-not-exists' => 'العنوان الذي حددته غير موجود.',

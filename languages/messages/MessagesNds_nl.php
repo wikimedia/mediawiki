@@ -2465,9 +2465,9 @@ Bevestig hieronder dat dit inderdaod de bedoeling is, da'j de gevolgen begriepen
 'deleteotherreason' => 'Aandere/extra reden:',
 'deletereasonotherlist' => 'Aandere reden',
 'deletereason-dropdown' => '*Redens veur t vortdoon van ziejen
-** Op vrage van de auteur
-** Schending van de auteursrechten
-** Vandelisme',
+** Op verzeuk van de auteur
+** Schending van auteursrecht
+** Vandalisme',
 'delete-edit-reasonlist' => 'Redens veur t vortdoon bewarken',
 'delete-toobig' => 'Disse zied hef n lange bewarkingsgeschiedenisse, meer as $1 {{PLURAL:$1|versie|versies}}.
 t Vortdoon van dit soort ziejen is mit rechten bepark um t per ongelok versteuren van de warking van {{SITENAME}} te veurkoemen.',
