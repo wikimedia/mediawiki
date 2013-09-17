@@ -541,6 +541,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$db = wfGetDB( DB_SLAVE );
 		$revSelectFields = Revision::selectFields();
 
+		$row = null;
 		while ( $continue ) {
 			$row = $db->selectRow(
 				array( 'page', 'revision' ),
@@ -1023,8 +1024,8 @@ class WikiPage implements Page, IDBAccessObject {
 
 	/**
 	 * Get the last N authors
-	 * @param $num Integer: number of revisions to get
-	 * @param string $revLatest the latest rev_id, selected from the master (optional)
+	 * @param int $num Number of revisions to get
+	 * @param int|string $revLatest the latest rev_id, selected from the master (optional)
 	 * @return array Array of authors, duplicates not removed
 	 */
 	public function getLastNAuthors( $num, $revLatest = 0 ) {
@@ -1095,8 +1096,8 @@ class WikiPage implements Page, IDBAccessObject {
 	 * The parser cache will be used if possible.
 	 *
 	 * @since 1.19
-	 * @param $parserOptions ParserOptions to use for the parse operation
-	 * @param $oldid Revision ID to get the text from, passing null or 0 will
+	 * @param ParserOptions $parserOptions ParserOptions to use for the parse operation
+	 * @param null|int $oldid Revision ID to get the text from, passing null or 0 will
 	 *               get the current revision (default value)
 	 *
 	 * @return ParserOutput or false if the revision was not found
@@ -1622,7 +1623,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * edit-already-exists error will be returned. These two conditions are also possible with
 	 * auto-detection due to MediaWiki's performance-optimised locking strategy.
 	 *
-	 * @param bool|\the $baseRevId the revision ID this edit was based off, if any
+	 * @param bool|int $baseRevId the revision ID this edit was based off, if any
 	 * @param $user User the user doing the edit
 	 * @param $serialisation_format String: format for storing the content in the database
 	 *
@@ -1710,6 +1711,10 @@ class WikiPage implements Page, IDBAccessObject {
 
 		$editInfo = $this->prepareContentForEdit( $content, null, $user, $serialisation_format );
 		$serialized = $editInfo->pst;
+
+		/**
+		 * @var Content $content
+		 */
 		$content = $editInfo->pstContent;
 		$newsize = $content->getSize();
 
@@ -2174,7 +2179,7 @@ class WikiPage implements Page, IDBAccessObject {
 		ContentHandler::deprecated( __METHOD__, "1.21" );
 
 		$content = ContentHandler::makeContent( $text, $this->getTitle() );
-		return $this->doQuickEditContent( $content, $user, $comment, $minor );
+		$this->doQuickEditContent( $content, $user, $comment, $minor );
 	}
 
 	/**
@@ -3345,7 +3350,7 @@ class WikiPage implements Page, IDBAccessObject {
 	public function viewUpdates() {
 		wfDeprecated( __METHOD__, '1.18' );
 		global $wgUser;
-		return $this->doViewUpdates( $wgUser );
+		$this->doViewUpdates( $wgUser );
 	}
 
 	/**
@@ -3430,7 +3435,7 @@ class PoolWorkArticleView extends PoolCounterWork {
 	/**
 	 * Constructor
 	 *
-	 * @param $page Page
+	 * @param $page Page|WikiPage
 	 * @param $revid Integer: ID of the revision being parsed
 	 * @param $useParserCache Boolean: whether to use the parser cache
 	 * @param $parserOptions parserOptions to use for the parse operation
