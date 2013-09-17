@@ -3,10 +3,15 @@
  * @singleton
  */
 ( function ( mw, $ ) {
-	var callbacks, options, tokens, user;
+	var user,
+		callbacks = {},
+		// Extend the skeleton mw.user from mediawiki.js
+		// This is kind of ugly but we're stuck with this for b/c reasons
+		options = mw.user.options || new mw.Map(),
+		tokens = mw.user.tokens || new mw.Map();
 
 	/**
-	 * Gets the current user's groups or rights.
+	 * Get the current user's groups or rights
 	 *
 	 * @private
 	 * @param {string} info One of 'groups' or 'rights'
@@ -37,19 +42,12 @@
 		} );
 	}
 
-	callbacks = {};
-
-	// Extend the skeleton mw.user from mediawiki.js
-	// This is kind of ugly but we're stuck with this for b/c reasons
-	options = mw.user.options || new mw.Map();
-	tokens = mw.user.tokens || new mw.Map();
-
 	mw.user = user = {
 		options: options,
 		tokens: tokens,
 
 		/**
-		 * Generates a random user session ID (32 alpha-numeric characters).
+		 * Generate a random user session ID (32 alpha-numeric characters)
 		 *
 		 * This information would potentially be stored in a cookie to identify a user during a
 		 * session or series of sessions. Its uniqueness should not be depended on.
@@ -68,9 +66,9 @@
 		},
 
 		/**
-		 * Gets the current user's database id.
+		 * Get the current user's database id
 		 *
-		 * Not to be confused with #id
+		 * Not to be confused with #id.
 		 *
 		 * @return {number} Current user's id, or 0 if user is anonymous
 		 */
@@ -79,7 +77,7 @@
 		},
 
 		/**
-		 * Gets the current user's name.
+		 * Get the current user's name
 		 *
 		 * @return {string|null} User name string or null if user is anonymous
 		 */
@@ -96,7 +94,7 @@
 		},
 
 		/**
-		 * Get date user registered, if available.
+		 * Get date user registered, if available
 		 *
 		 * @return {Date|boolean|null} Date user registered, or false for anonymous users, or
 		 *  null when data is not available
@@ -115,7 +113,7 @@
 		},
 
 		/**
-		 * Checks if the current user is anonymous.
+		 * Whether the current user is anonymous
 		 *
 		 * @return {boolean}
 		 */
@@ -132,7 +130,7 @@
 		},
 
 		/**
-		 * Gets a random ID automatically generated and stored in a session cookie.
+		 * Get an automatically generated random ID (stored in a session cookie)
 		 *
 		 * This ID is ephemeral for everyone, staying in their browser only until they close
 		 * their browser.
@@ -141,46 +139,42 @@
 		 */
 		sessionId: function () {
 			var sessionId = $.cookie( 'mediaWiki.user.sessionId' );
-			if ( typeof sessionId === 'undefined' || sessionId === null ) {
+			if ( sessionId === undefined || sessionId === null ) {
 				sessionId = user.generateRandomSessionId();
-				$.cookie( 'mediaWiki.user.sessionId', sessionId, { 'expires': null, 'path': '/' } );
+				$.cookie( 'mediaWiki.user.sessionId', sessionId, { expires: null, path: '/' } );
 			}
 			return sessionId;
 		},
 
 		/**
-		 * Gets the current user's name or the session ID
+		 * Get the current user's name or the session ID
 		 *
-		 * Not to be confused with #getId
+		 * Not to be confused with #getId.
 		 *
 		 * @return {string} User name or random session ID
 		 */
 		id: function () {
-			var name = user.getName();
-			if ( name ) {
-				return name;
-			}
-			return user.sessionId();
+			return user.getName() || user.sessionId();
 		},
 
 		/**
-		 * Gets the user's bucket, placing them in one at random based on set odds if needed.
+		 * Get the user's bucket (place them in one if not done already)
 		 *
 		 *     mw.user.bucket( 'test', {
-		 *         'buckets': { 'ignored': 50, 'control': 25, 'test': 25 },
-		 *         'version': 1,
-		 *         'expires': 7
+		 *         buckets: { ignored: 50, control: 25, test: 25 },
+		 *         version: 1,
+		 *         expires: 7
 		 *     } );
 		 *
 		 * @param {string} key Name of bucket
 		 * @param {Object} options Bucket configuration options
 		 * @param {Object} options.buckets List of bucket-name/relative-probability pairs (required,
 		 *  must have at least one pair)
-		 * @param {number} options.version Version of bucket test, changing this forces rebucketing
-		 *  (optional, default: 0)
-		 * @param {number} options.expires Length of time (in days) until the user gets rebucketed
-		 *  (optional, default: 30)
-		 * @return {string} Bucket name - the randomly chosen key of the options.buckets object
+		 * @param {number} [options.version=0] Version of bucket test, changing this forces
+		 *  rebucketing
+		 * @param {number} [options.expires=30] Length of time (in days) until the user gets
+		 *  rebucketed
+		 * @return {string} Bucket name - the randomly chosen key of the `options.buckets` object
 		 */
 		bucket: function ( key, options ) {
 			var cookie, parts, version, bucket,
@@ -195,25 +189,30 @@
 			cookie = $.cookie( 'mediaWiki.user.bucket:' + key );
 
 			// Bucket information is stored as 2 integers, together as version:bucket like: "1:2"
-			if ( typeof cookie === 'string' && cookie.length > 2 && cookie.indexOf( ':' ) > 0 ) {
+			if ( typeof cookie === 'string' && cookie.length > 2 && cookie.indexOf( ':' ) !== -1 ) {
 				parts = cookie.split( ':' );
 				if ( parts.length > 1 && Number( parts[0] ) === options.version ) {
 					version = Number( parts[0] );
 					bucket = String( parts[1] );
 				}
 			}
+
 			if ( bucket === undefined ) {
 				if ( !$.isPlainObject( options.buckets ) ) {
-					throw 'Invalid buckets error. Object expected for options.buckets.';
+					throw new Error( 'Invalid bucket. Object expected for options.buckets.' );
 				}
+
 				version = Number( options.version );
+
 				// Find range
 				range = 0;
 				for ( k in options.buckets ) {
 					range += options.buckets[k];
 				}
+
 				// Select random value within range
 				rand = Math.random() * range;
+
 				// Determine which bucket the value landed in
 				total = 0;
 				for ( k in options.buckets ) {
@@ -223,17 +222,19 @@
 						break;
 					}
 				}
+
 				$.cookie(
 					'mediaWiki.user.bucket:' + key,
 					version + ':' + bucket,
-					{ 'path': '/', 'expires': Number( options.expires ) }
+					{ path: '/', expires: Number( options.expires ) }
 				);
 			}
+
 			return bucket;
 		},
 
 		/**
-		 * Gets the current user's groups.
+		 * Get the current user's groups
 		 *
 		 * @param {Function} callback
 		 */
@@ -242,7 +243,7 @@
 		},
 
 		/**
-		 * Gets the current user's rights.
+		 * Get the current user's rights
 		 *
 		 * @param {Function} callback
 		 */
