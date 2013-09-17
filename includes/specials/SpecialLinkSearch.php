@@ -73,14 +73,17 @@ class LinkSearchPage extends QueryPage {
 			// For protocols without '//' like 'mailto:'
 			$protocol = substr( $target2, 0, $pr_cl + 1 );
 			$target2 = substr( $target2, $pr_cl + 1 );
-		} elseif ( $protocol == '' && $target2 != '' ) {
+		} elseif ( $target2 != '' ) {
 			// default
 			$protocol = 'http://';
 		}
 		if ( $protocol != '' && !in_array( $protocol, $protocols_list ) ) {
-			// unsupported protocol, show original search request
+			// Unsupported protocol, show original search request
 			$target2 = $target;
-			$protocol = '';
+			// Since links with unsupported protocols don't end up in
+			// externallinks, assume $protocol is actually part of a link
+			// containing ':' or '//' and default to http as above.
+			$protocol = 'http://';
 		}
 
 		$out->addWikiMsg(
