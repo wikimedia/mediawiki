@@ -93,6 +93,16 @@ if ( !function_exists( 'mb_strrpos' ) ) {
 		return Fallback::mb_strrpos( $haystack, $needle, $offset, $encoding );
 	}
 }
+
+if ( !function_exists( 'gzdecode' ) ) {
+	/**
+	 * @codeCoverageIgnore
+	 * @return string
+	 */
+	function gzdecode( $data ) {
+		return gzinflate( substr( $data, 10, -8 ) );
+	}
+}
 /// @endcond
 
 /**
