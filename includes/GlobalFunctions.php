@@ -93,6 +93,18 @@ if ( !function_exists( 'mb_strrpos' ) ) {
 		return Fallback::mb_strrpos( $haystack, $needle, $offset, $encoding );
 	}
 }
+
+// gzdecode function only exists in PHP >= 5.4.0
+// http://php.net/gzdecode
+if ( !function_exists( 'gzdecode' ) ) {
+	/**
+	 * @codeCoverageIgnore
+	 * @return string
+	 */
+	function gzdecode( $data ) {
+		return gzinflate( substr( $data, 10, -8 ) );
+	}
+}
 /// @endcond
 
 /**
