@@ -80,7 +80,13 @@ class LinkSearchPage extends QueryPage {
 		if ( $protocol != '' && !in_array( $protocol, $protocols_list ) ) {
 			// unsupported protocol, show original search request
 			$target2 = $target;
-			$protocol = '';
+			//if 'protocol' part isn't a valid URI scheme, assume it's 
+			//part of an http url that happens to contain a ':'
+			if (!preg_match('/^[a-z][a-z0-9\+\-\.]*$/i', $protocol)) {
+				$protocol = 'http://';
+			} else {
+				$protocol = '';
+			}
 		}
 
 		$out->addWikiMsg(
