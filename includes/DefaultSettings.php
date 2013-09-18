@@ -3306,11 +3306,7 @@ $wgResourceLoaderLESSVars = array();
  */
 $wgResourceLoaderLESSFunctions = array(
 	/**
-	 * Mark an image URI as embeddable. Expands a URL argument to a CSS
-	 * URL value with a a CSSMin @embed annotation prepended. This
-	 * exploits the fact that the return value of LESS functions is not
-	 * subject to further transformations by the LESS compiler to ensure
-	 * @embed comments are not munged or reordered.
+	 * Convert an image URI to a base64-encoded data URI.
 	 *
 	 * @par Example:
 	 * @code
@@ -3318,12 +3314,24 @@ $wgResourceLoaderLESSFunctions = array(
 	 *       background-image: embed('../images/button-bg.png');
 	 *   }
 	 * @endcode
-	 *
-	 * @todo: 'embed' should invoke CSSMin directly to generate data
-	 * URIs rather than generate comment directives.
 	 */
-	'embed' => function( $arg ) {
-		return '/* @embed */ url(' . $arg[2][0] . ')';
+	'embed' => function( $frame, $less ) {
+		// The last import path is always the path of the current file.
+		$base = $less->importDir[ count( $less->importDir ) - 1 ];
+
+		$url = $frame[2][0];
+		$pre = isset( $frame[2][1] ) ? ' ' . $frame[2][1] : '';
+		$post = isset( $frame[2][2] ) ? $frame[2][2] . ' ' : '';
+		$file = $base . $url;
+
+		if ( file_exists( $file ) ) {
+			$type = CSSMin::getMimeType( $file );
+			if ( $type && filesize( $file ) < CSSMin::EMBED_SIZE_LIMIT ) {
+				$data = base64_encode( file_get_contents( $file ) );
+				return "{$pre}url(data:{$type};base64,{$data}){$post};{$pre}url({$url}){$post}!ie;";
+			}
+		}
+		return "{$pre}url({$url}){$post};";
 	},
 );
 
