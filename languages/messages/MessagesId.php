@@ -2693,7 +2693,7 @@ $1',
 'sp-contributions-logs' => 'log',
 'sp-contributions-talk' => 'bicara',
 'sp-contributions-userrights' => 'pengelolaan hak pengguna',
-'sp-contributions-blocked-notice' => 'Pengguna ini sedang di blok. log pemblokiran terakhir ditampilkan berikut untuk referensi:',
+'sp-contributions-blocked-notice' => 'Pengguna ini sedang diblok. Log pemblokiran terakhir ditampilkan berikut untuk referensi:',
 'sp-contributions-blocked-notice-anon' => 'Alamat IP ini diblokir pada saat ini.
 Catatan log pemblokiran terakhir tersedia di bawah ini sebagai rujukan:',
 'sp-contributions-search' => 'Cari kontribusi',

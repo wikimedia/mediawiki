@@ -1851,7 +1851,7 @@ $1",
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|изменение|изменения|изменений}}',
-'enhancedrc-since-last-visit' => '$1 {{PLURAL:$1|с последнего посещения}}',
+'enhancedrc-since-last-visit' => '$1 с последнего посещения',
 'enhancedrc-history' => 'история',
 'recentchanges' => 'Свежие правки',
 'recentchanges-legend' => 'Настройки свежих правок',

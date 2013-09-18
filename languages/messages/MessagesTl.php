@@ -3605,7 +3605,7 @@ $8',
 'confirmemail_text' => "Pinagagawa ng {{SITENAME}} na patotohanan mo ang iyong adres ng e-liham bago gamitin ang mga kasangkapang-katangian ng e-liham.  Pindutin at buhayin ang pindutan sa ibaba para makapagpadala ng isang makapagpapatotoong e-liham (kompirmasyon) patungo sa iyong adres.
 Makakasama sa liham ang isang kawing na naglalaman ng kodigo;
 Ikarga ang kawing sa iyong pantingin-tingin (''browser'') para mapatotohanang katanggap-tanggap ang iyong adres ng e-liham.",
-'confirmemail_pending' => 'Naipadala na sa iyong e-liham ang kodigo ng pagpapatotoo (kumpirmasyon); kung kamakailan mo lamang nilikha ang iyong kuwenta/akawnt, maaaring ibigin mong maghintay ng ilang minuto para makarating muna ito bago subuking humiling ng isang bagong kodigo.',
+'confirmemail_pending' => 'Naipadala na sa iyong e-liham ang kodigo ng pagpapatotoo (kumpirmasyon); kung kamakailan mo lamang nilikha ang iyong kuwenta, maaaring ibigin mong maghintay ng ilang minuto para makarating muna ito bago subuking humiling ng isang bagong kodigo.',
 'confirmemail_send' => 'Magpadala ng isang kodigo ng pagpapatotoo (kumpirmasyon)',
 'confirmemail_sent' => 'Naipadala na ang magpapatotoong e-liham (kumpirmasyon).',
 'confirmemail_oncreate' => 'Nagpadala na ng isang kodigo ng pagpapatotoo (kumpirmasyon) patungo sa iyong adres ng e-liham.  Hindi kailangan ang kodigong ito para makalagda, ngunit kailangan mong ibigay muna ito bago paganahin/paandarin ang anumang pang e-liham na kasangkapang-katangiang nasa loob ng wiki.',
@@ -3619,19 +3619,19 @@ Ibinalik ng tagapagpadala ang: $1',
 'confirmemail_loggedin' => 'Natiyak na ngayon ang tirahan ng e-liham mo.',
 'confirmemail_error' => 'May nangyaring kamalian sa pagsasagip ng iyong kumpirmasyon.',
 'confirmemail_subject' => 'Kumpirmasyon/pagpapatotoong pang-adres ng e-liham ng {{SITENAME}}',
-'confirmemail_body' => 'May isa, maaaring ikaw, na mula sa adres ng IP na $1,
-ang nagtala ng isang akawnt/kuwentang "$2" na mayroong ganitong adres ng e-liham sa {{SITENAME}}.
+'confirmemail_body' => 'May isa, maaaring ikaw, na mula sa direksiyong IP na $1,
+ang nagtala ng isang kuwentang "$2" na mayroong ganitong direksiyong e-liham sa {{SITENAME}}.
 
-Para patotohanang ikaw nga ang may-ari ng kuwentang ito at para buhayin ang mga kasangkapang-katanginan ng e-liham sa {{SITENAME}}, buksan ang kawing na ito sa iyong pantingin-tingin (\'\'browser\'\'):
+Para patotohanang ikaw nga ang may-ari ng kuwentang ito at para buhayin ang mga kasangkapang-katanginan ng e-liham sa {{SITENAME}}, buksan ang kawing na ito sa iyong pambasa-basa (\'\'browser\'\'):
 
 $3
 
-Kung *hindi* mo itinala/inirehistro ang kuwenta, sundan mo ang kawing na ito
-para kanselahin o huwag nang ituloy ang pagpapatotoo (kumpirmasyon) ng adres ng e-liham:
+Kung *hindi* mo itinala ang kuwenta, sundan mo ang kawing na ito
+para kanselahin o huwag nang ituloy ang pagpapatotoo (kumpirmasyon) ng direksiyong e-liham:
 
 $5
 
-Magwawakas ang pagiging mabisa ng kodigo ng pagpapatotoong ito sa $4.',
+Magwawalang-saysay ang kodigo ng pagpapatotoong ito sa $4.',
 'confirmemail_body_changed' => 'May isa, maaaring ikaw, na mula sa adres ng IP na $1,
 ang nagbago ng adres ng e-liham ng akawnt na "$2" sa ganitong adres sa {{SITENAME}}.
 

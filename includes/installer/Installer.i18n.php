@@ -12330,7 +12330,7 @@ Kuckt Är php.ini no a vergewëssert Iech datt <code>session.save_path</code>  o
 	'config-restart' => 'Jo, neistarten',
 	'config-welcome' => "=== Iwwerpréifung vum Installatiounsenvironnement ===
 Et gi grondsätzlech Iwwerpréifunge gemaach fir ze kucken ob den Environnment gëeegent ass fir MediaWiki z'installéieren.
-Dir sollt d'Resultater vun dëser Iwwerpréifung ugi wann Dir während der Installatioun Hëllef braucht.",
+Dir sollt d'Resultater vun dëser Iwwerpréifung ugi wann Dir während der Installatioun Hëllef braucht.", # Fuzzy
 	'config-sidebar' => '* [//www.mediawiki.org MediaWiki Haaptsäit]
 * [//www.mediawiki.org/wiki/Help:Contents Benotzerguide]
 * [//www.mediawiki.org/wiki/Manual:Contents Guide fir Administrateuren]
@@ -12441,7 +12441,7 @@ Dësen Numm gëtt da gebraucht fir sech an d\'Wiki anzeloggen.',
 Spezifizéiert en anere Benotzernumm.',
 	'config-admin-password-blank' => 'Gitt e Passwuert fir den Adminstateur-Kont an.',
 	'config-admin-password-same' => "D'Passwuert däerf net dat selwecht si wéi de Benotzernumm.",
-	'config-admin-password-mismatch' => 'Déi zwee Passwierder Déi dir aginn stëmmen net iwwerteneen.',
+	'config-admin-password-mismatch' => 'Déi zwee Passwierder Déi Dir aginn hutt stëmmen net iwwereneen.',
 	'config-admin-email' => 'E-Mail-Adress:',
 	'config-admin-error-user' => 'Interne Feeler beim uleeë vun engem Administrateur mam Numm "<nowiki>$1</nowiki>".',
 	'config-admin-error-password' => 'Interne Feeler beim Setze vum Passwuert fir den Admin "<nowiki>$1</nowiki>": <pre>$2</pre>',

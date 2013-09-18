@@ -1512,7 +1512,7 @@ Ako izaberete da ga unesete, ono će biti korišćeno za pripisivanje vašeg rad
 'prefs-i18n' => 'Internacionalizacija',
 'prefs-signature' => 'Potpis',
 'prefs-dateformat' => 'Format datuma',
-'prefs-timeoffset' => 'Vremensko odstupanje',
+'prefs-timeoffset' => 'Vremenska razlika',
 'prefs-advancedediting' => 'Glavna podešavanja',
 'prefs-advancedrc' => 'Napredne postavke',
 'prefs-advancedrendering' => 'Napredne postavke',
