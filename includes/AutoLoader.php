@@ -51,7 +51,6 @@ $wgAutoloadLocalClasses = array(
 	'CurlHttpRequest' => 'includes/HttpFunctions.php',
 	'DeprecatedGlobal' => 'includes/DeprecatedGlobal.php',
 	'DerivativeRequest' => 'includes/WebRequest.php',
-	'DiffHistoryBlob' => 'includes/HistoryBlob.php',
 	'DummyLinker' => 'includes/Linker.php',
 	'Dump7ZipOutput' => 'includes/Export.php',
 	'DumpBZip2Output' => 'includes/Export.php',
