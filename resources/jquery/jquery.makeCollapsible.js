@@ -75,10 +75,10 @@
 					$containers.hide();
 					hookCallback();
 				} else {
-					$.when( $containers.stop( true, true ).fadeOut() ).then( hookCallback );
+					$containers.stop( true, true ).fadeOut().promise().done( hookCallback );
 				}
 			} else {
-				$.when( $containers.stop( true, true ).fadeIn() ).then( hookCallback );
+				$containers.stop( true, true ).fadeIn().promise().done( hookCallback );
 			}
 
 		} else if ( !options.plainMode && ( $collapsible.is( 'ul' ) || $collapsible.is( 'ol' ) ) ) {
@@ -94,10 +94,10 @@
 					$containers.hide();
 					hookCallback();
 				} else {
-					$.when( $containers.stop( true, true ).slideUp() ).then( hookCallback );
+					$containers.stop( true, true ).slideUp().promise().done( hookCallback );
 				}
 			} else {
-				$.when( $containers.stop( true, true ).slideDown() ).then( hookCallback );
+				$containers.stop( true, true ).slideDown().promise().done( hookCallback );
 			}
 
 		} else {
@@ -111,10 +111,10 @@
 						$collapsibleContent.hide();
 						hookCallback();
 					} else {
-						$.when( $collapsibleContent.slideUp() ).then( hookCallback );
+						$collapsibleContent.slideUp().promise().done( hookCallback );
 					}
 				} else {
-					$.when( $collapsibleContent.slideDown() ).then( hookCallback );
+					$collapsibleContent.slideDown().promise().done( hookCallback );
 				}
 
 			// Otherwise assume this is a customcollapse with a remote toggle
@@ -126,16 +126,16 @@
 						hookCallback();
 					} else {
 						if ( $collapsible.is( 'tr' ) || $collapsible.is( 'td' ) || $collapsible.is( 'th' ) ) {
-							$.when( $collapsible.fadeOut() ).then( hookCallback );
+							$collapsible.fadeOut().promise().done( hookCallback );
 						} else {
-							$.when( $collapsible.slideUp() ).then( hookCallback );
+							$collapsible.slideUp().promise().done( hookCallback );
 						}
 					}
 				} else {
 					if ( $collapsible.is( 'tr' ) || $collapsible.is( 'td' ) || $collapsible.is( 'th' ) ) {
-						$.when( $collapsible.fadeIn() ).then( hookCallback );
+						$collapsible.fadeIn().promise().done( hookCallback );
 					} else {
-						$.when( $collapsible.slideDown() ).then( hookCallback );
+						$collapsible.slideDown().promise().done( hookCallback );
 					}
 				}
 			}
