@@ -1144,10 +1144,14 @@ HTML;
 			foreach ( $ipchain as $i => $curIP ) {
 				$curIP = IP::sanitizeIP( IP::canonicalize( $curIP ) );
 				if ( wfIsTrustedProxy( $curIP ) && isset( $ipchain[$i + 1] ) ) {
-					if ( wfIsConfiguredProxy( $curIP ) || // bug 48919
-						( IP::isPublic( $ipchain[$i + 1] ) || $wgUsePrivateIPs )
+					if ( wfIsConfiguredProxy( $curIP ) || // bug 48919; treat IP as sane
+						IP::isPublic( $ipchain[$i + 1] ) ||
+						$wgUsePrivateIPs
 					) {
 						$ip = IP::canonicalize( $ipchain[$i + 1] );
+						if ( !$ip ) {
+							throw new MWException( "Invalid IP given in XFF '$forwardedFor'." );
+						}
 						continue;
 					}
 				}
@@ -1159,7 +1163,7 @@ HTML;
 		wfRunHooks( 'GetIP', array( &$ip ) );
 
 		if ( !$ip ) {
-			throw new MWException( "Unable to determine IP" );
+			throw new MWException( "Unable to determine IP." );
 		}
 
 		wfDebug( "IP: $ip\n" );
