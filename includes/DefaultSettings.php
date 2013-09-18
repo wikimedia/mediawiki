@@ -5894,6 +5894,13 @@ $wgExtensionFunctions = array();
 $wgExtensionMessagesFiles = array();
 
 /**
+ * Array of files with list(s) of extension entry points to be used in
+ * maintenance/mergeMessageFileList.php
+ * @since 1.22
+ */
+$wgExtensionEntryPointListFiles = array();
+
+/**
  * Parser output hooks.
  * This is an associative array where the key is an extension-defined tag
  * (typically the extension name), and the value is a PHP callback.
