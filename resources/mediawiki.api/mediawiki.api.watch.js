@@ -22,9 +22,9 @@
 		var params,
 			d = $.Deferred(),
 			apiPromise;
+
 		// Backwards compatibility (< MW 1.20)
-		d.done( ok );
-		d.fail( err );
+		d.done( ok ).fail( err );
 
 		params = {
 			action: 'watch',

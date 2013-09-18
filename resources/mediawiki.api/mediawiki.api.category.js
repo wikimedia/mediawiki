@@ -16,9 +16,9 @@
 		isCategory: function ( title, ok, err ) {
 			var d = $.Deferred(),
 				apiPromise;
+
 			// Backwards compatibility (< MW 1.20)
-			d.done( ok );
-			d.fail( err );
+			d.done( ok ).fail( err );
 
 			apiPromise = this.get( {
 					prop: 'categoryinfo',
@@ -53,9 +53,9 @@
 		getCategoriesByPrefix: function ( prefix, ok, err ) {
 			var d = $.Deferred(),
 				apiPromise;
+
 			// Backwards compatibility (< MW 1.20)
-			d.done( ok );
-			d.fail( err );
+			d.done( ok ).fail( err );
 
 			// Fetch with allpages to only get categories that have a corresponding description page.
 			apiPromise = this.get( {
@@ -92,9 +92,9 @@
 		getCategories: function ( title, ok, err, async ) {
 			var d = $.Deferred(),
 				apiPromise;
+
 			// Backwards compatibility (< MW 1.20)
-			d.done( ok );
-			d.fail( err );
+			d.done( ok ).fail( err );
 
 			apiPromise = this.get( {
 					prop: 'categories',
