@@ -54,7 +54,6 @@ class Sanitizer {
 	 * List of all named character entities defined in HTML 4.01
 	 * http://www.w3.org/TR/html4/sgml/entities.html
 	 * As well as &apos; which is only defined starting in XHTML1.
-	 * @private
 	 */
 	private static $htmlEntities = array(
 		'Aacute'   => 193,
@@ -322,7 +321,6 @@ class Sanitizer {
 
 	/**
 	 * Lazy-initialised attributes regex, see getAttribsRegex()
-	 * @private
 	 */
 	private static $attribsRegex;
 
