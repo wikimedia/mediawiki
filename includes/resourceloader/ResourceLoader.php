@@ -610,15 +610,7 @@ class ResourceLoader {
 				// See also http://bugs.php.net/bug.php?id=51579
 				// To work around this, we tear down all output buffering before
 				// sending the 304.
-				// On some setups, ob_get_level() doesn't seem to go down to zero
-				// no matter how often we call ob_get_clean(), so instead of doing
-				// the more intuitive while ( ob_get_level() > 0 ) ob_get_clean();
-				// we have to be safe here and avoid an infinite loop.
-				// Caching the level is not an option, need to allow it to
-				// shorten the loop on-the-fly (bug 46836)
-				for ( $i = 0; $i < ob_get_level(); $i++ ) {
-					ob_end_clean();
-				}
+				wfResetOutputBuffers( /* $resetGzipEncoding = */ true );
 
 				header( 'HTTP/1.0 304 Not Modified' );
 				header( 'Status: 304 Not Modified' );
