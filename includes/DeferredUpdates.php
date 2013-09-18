@@ -39,17 +39,19 @@ interface DeferrableUpdate {
  * @since 1.19
  */
 class DeferredUpdates {
-	/**
-	 * Store of updates to be deferred until the end of the request.
-	 */
+	/** @var Array updates to be deferred until the end of the request */
 	private static $updates = array();
+	/** @var integer Unique ID counter */
+	private static $counter = 0;
 
 	/**
 	 * Add an update to the deferred list
 	 * @param $update DeferrableUpdate Some object that implements doUpdate()
+	 * @returns integer Update receipt
 	 */
 	public static function addUpdate( DeferrableUpdate $update ) {
-		array_push( self::$updates, $update );
+		self::$updates[++self::$counter] = $update;
+		return self::$counter;
 	}
 
 	/**
@@ -58,9 +60,10 @@ class DeferredUpdates {
 	 * @see HTMLCacheUpdate::__construct()
 	 * @param $title
 	 * @param $table
+	 * @returns integer Update receipt
 	 */
 	public static function addHTMLCacheUpdate( $title, $table ) {
-		self::addUpdate( new HTMLCacheUpdate( $title, $table ) );
+		return self::addUpdate( new HTMLCacheUpdate( $title, $table ) );
 	}
 
 	/**
@@ -68,9 +71,24 @@ class DeferredUpdates {
 	 * defining a new DeferrableUpdate object is not necessary
 	 * @see MWCallableUpdate::__construct()
 	 * @param callable $callable
+	 * @returns integer Update receipt
 	 */
 	public static function addCallableUpdate( $callable ) {
-		self::addUpdate( new MWCallableUpdate( $callable ) );
+		return self::addUpdate( new MWCallableUpdate( $callable ) );
+	}
+
+	/**
+	 * Cancel a pending deferred update
+	 * @param integer $id Update receipt
+	 * @return bool Whether an update was found
+	 */
+	public static function cancelUpdate( $id ) {
+		if ( isset( self::$updates[$id] ) ) {
+			unset( self::$updates[$id] );
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	/**
