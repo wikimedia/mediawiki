@@ -217,8 +217,8 @@ class StringUtils {
 	/**
 	 * More or less "markup-safe" explode()
 	 * Ignores any instances of the separator inside <...>
-	 * @param $separator String
-	 * @param $text String
+	 * @param string $separator
+	 * @param string $text
 	 * @return array
 	 */
 	static function explodeMarkup( $separator, $text ) {
@@ -244,8 +244,8 @@ class StringUtils {
 	 * Escape a string to make it suitable for inclusion in a preg_replace()
 	 * replacement parameter.
 	 *
-	 * @param $string String
-	 * @return String
+	 * @param string $string
+	 * @return string
 	 */
 	static function escapeRegexReplacement( $string ) {
 		$string = str_replace( '\\', '\\\\', $string );
@@ -256,8 +256,8 @@ class StringUtils {
 	/**
 	 * Workalike for explode() with limited memory usage.
 	 * Returns an Iterator
-	 * @param $separator
-	 * @param $subject
+	 * @param string $separator
+	 * @param string $subject
 	 * @return ArrayIterator|ExplodeIterator
 	 */
 	static function explode( $separator, $subject ) {
@@ -290,14 +290,14 @@ class RegexlikeReplacer extends Replacer {
 	var $r;
 
 	/**
-	 * @param $r string
+	 * @param string $r
 	 */
 	function __construct( $r ) {
 		$this->r = $r;
 	}
 
 	/**
-	 * @param $matches array
+	 * @param array $matches
 	 * @return string
 	 */
 	function replace( $matches ) {
@@ -318,7 +318,7 @@ class DoubleReplacer extends Replacer {
 	/**
 	 * @param $from
 	 * @param $to
-	 * @param $index int
+	 * @param int $index
 	 */
 	function __construct( $from, $to, $index = 0 ) {
 		$this->from = $from;
@@ -327,7 +327,7 @@ class DoubleReplacer extends Replacer {
 	}
 
 	/**
-	 * @param $matches array
+	 * @param array $matches
 	 * @return mixed
 	 */
 	function replace( $matches ) {
@@ -343,7 +343,7 @@ class HashtableReplacer extends Replacer {
 
 	/**
 	 * @param $table
-	 * @param $index int
+	 * @param int $index
 	 */
 	function __construct( $table, $index = 0 ) {
 		$this->table = $table;
@@ -351,7 +351,7 @@ class HashtableReplacer extends Replacer {
 	}
 
 	/**
-	 * @param $matches array
+	 * @param array $matches
 	 * @return mixed
 	 */
 	function replace( $matches ) {
@@ -389,6 +389,7 @@ class ReplacementArray {
 
 	/**
 	 * Set the whole replacement array at once
+	 * @param array $data
 	 */
 	function setArray( $data ) {
 		$this->data = $data;
@@ -404,8 +405,8 @@ class ReplacementArray {
 
 	/**
 	 * Set an element of the replacement array
-	 * @param $from string
-	 * @param $to string
+	 * @param string $from
+	 * @param string $to
 	 */
 	function setPair( $from, $to ) {
 		$this->data[$from] = $to;
@@ -413,7 +414,7 @@ class ReplacementArray {
 	}
 
 	/**
-	 * @param $data array
+	 * @param array $data
 	 */
 	function mergeArray( $data ) {
 		$this->data = array_merge( $this->data, $data );
@@ -421,7 +422,7 @@ class ReplacementArray {
 	}
 
 	/**
-	 * @param $other
+	 * @param ReplacementArray $other
 	 */
 	function merge( $other ) {
 		$this->data = array_merge( $this->data, $other->data );
@@ -429,7 +430,7 @@ class ReplacementArray {
 	}
 
 	/**
-	 * @param $from string
+	 * @param string $from
 	 */
 	function removePair( $from ) {
 		unset( $this->data[$from] );
@@ -437,7 +438,7 @@ class ReplacementArray {
 	}
 
 	/**
-	 * @param $data array
+	 * @param array $data
 	 */
 	function removeArray( $data ) {
 		foreach ( $data as $from => $to ) {
@@ -447,7 +448,7 @@ class ReplacementArray {
 	}
 
 	/**
-	 * @param $subject string
+	 * @param string $subject
 	 * @return string
 	 */
 	function replace( $subject ) {
@@ -494,15 +495,15 @@ class ExplodeIterator implements Iterator {
 
 	/**
 	 * Construct a DelimIterator
-	 * @param $delim string
-	 * @param $s string
+	 * @param string $delim
+	 * @param string $subject
 	 */
-	function __construct( $delim, $s ) {
-		$this->subject = $s;
+	function __construct( $delim, $subject ) {
+		$this->subject = $subject;
 		$this->delim = $delim;
 
 		// Micro-optimisation (theoretical)
-		$this->subjectLength = strlen( $s );
+		$this->subjectLength = strlen( $subject );
 		$this->delimLength = strlen( $delim );
 
 		$this->rewind();
@@ -530,6 +531,9 @@ class ExplodeIterator implements Iterator {
 		return $this->current;
 	}
 
+	/**
+	 * @return int|bool Current position or boolean false if invalid
+	 */
 	function key() {
 		return $this->curPos;
 	}
