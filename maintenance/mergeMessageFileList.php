@@ -36,6 +36,10 @@ $mmfl = false;
  * @ingroup Maintenance
  */
 class MergeMessageFileList extends Maintenance {
+	/**
+	 * @var bool
+	 */
+	protected $hasError;
 
 	function __construct() {
 		parent::__construct();
@@ -48,25 +52,18 @@ class MergeMessageFileList extends Maintenance {
 
 	public function execute() {
 		global $mmfl;
+		$mmfl = array( 'setupFiles' => array() );
 
 		# Add setup files contained in file passed to --list-file
 		$lines = file( $this->getOption( 'list-file' ) );
 		if ( $lines === false ) {
+			$this->hasError = true;
 			$this->error( 'Unable to open list file.' );
-		}
-		$mmfl = array( 'setupFiles' => array() );
-
-		# Strip comments, discard empty lines, and trim leading and trailing
-		# whitespace. Comments start with '#' and extend to the end of the line.
-		foreach ( $lines as $line ) {
-			$line = trim( preg_replace( '/#.*/', '', $line ) );
-			if ( $line !== '' ) {
-				$mmfl['setupFiles'][] = $line;
-			}
+		} else {
+			$mmfl['setupFiles'] = array_merge( $mmfl['setupFiles'], $this->checkFiles( $lines ) );
 		}
 
 		# Now find out files in a directory
-		$hasError = false;
 		if ( $this->hasOption( 'extensions-dir' ) ) {
 			$extdir = $this->getOption( 'extensions-dir' );
 			$entries = scandir( $extdir );
@@ -78,13 +75,18 @@ class MergeMessageFileList extends Maintenance {
 				if ( file_exists( $extfile ) ) {
 					$mmfl['setupFiles'][] = $extfile;
 				} else {
-					$hasError = true;
+					$this->hasError = true;
 					$this->error( "Extension {$extname} in {$extdir} lacks expected {$extname}.php" );
 				}
 			}
 		}
 
-		if ( $hasError ) {
+		global $wgMessageFileList;
+		if ( $wgMessageFileList !== null ) {
+			$mmfl['setupFiles'] = array_merge( $mmfl['setupFiles'], $this->checkFiles( $wgMessageFileList ) );
+		}
+
+		if ( $this->hasError ) {
 			$this->error( "Some files are missing (see above). Giving up.", 1 );
 		}
 
@@ -95,6 +97,29 @@ class MergeMessageFileList extends Maintenance {
 			$mmfl['quiet'] = true;
 		}
 	}
+
+	/**
+	 * @param array $lines
+	 * @return array
+	 */
+	function checkFiles( $lines ) {
+		$files = array();
+		# Strip comments, discard empty lines, and trim leading and trailing
+		# whitespace. Comments start with '#' and extend to the end of the line.
+		foreach ( $lines as $line ) {
+			$line = trim( preg_replace( '/#.*/', '', $line ) );
+			if ( $line !== '' ) {
+				if ( file_exists( $line ) ) {
+					$files[] = $line;
+				} else {
+					$this->hasError = true;
+					$this->error( "Extension {$line} doesn't exist" );
+				}
+			}
+		}
+		return $files;
+	}
+
 }
 
 require_once RUN_MAINTENANCE_IF_MAIN;

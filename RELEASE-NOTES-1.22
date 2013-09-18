@@ -214,6 +214,7 @@ production.
 * Add deferrable update support for callback/closure
 * Add TitleMove hook before page renames
 * Revision deletion backend code is moved out of SpecialRevisiondelete
+* Added $wgMessageFileList for use in mergeMessageFileList.php
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one

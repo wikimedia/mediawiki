@@ -6790,6 +6790,13 @@ $wgSiteTypes = array(
 $wgCompiledFiles = array();
 
 /**
+ * Filename of list of extensions to use in
+ * mergeMessageFileList.php
+ * @since 1.22
+ */
+$wgMessageFileList = null;
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}
