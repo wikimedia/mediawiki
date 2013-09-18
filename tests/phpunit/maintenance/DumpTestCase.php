@@ -60,11 +60,14 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 		if ( $gzipped_contents === false ) {
 			$this->fail( "Could not get contents of $fname" );
 		}
-		// We resort to use gzinflate instead of gzdecode, as gzdecode
-		// need not be available
-		$contents = gzinflate( substr( $gzipped_contents, 10, -8 ) );
-		$this->assertEquals( strlen( $contents ),
-			file_put_contents( $fname, $contents ), "# bytes written" );
+
+		$contents = gzdecode( $gzipped_contents );
+
+		$this->assertEquals(
+			strlen( $contents ),
+			file_put_contents( $fname, $contents ),
+			'# bytes written'
+		);
 	}
 
 	/**
