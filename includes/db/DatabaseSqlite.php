@@ -709,6 +709,8 @@ class DatabaseSqlite extends DatabaseBase {
 	function addQuotes( $s ) {
 		if ( $s instanceof Blob ) {
 			return "x'" . bin2hex( $s->fetch() ) . "'";
+		} elseif ( is_bool( $s ) ) {
+			return (int)$s;
 		} elseif ( strpos( $s, "\0" ) !== false ) {
 			// SQLite doesn't support \0 in strings, so use the hex representation as a workaround.
 			// This is a known limitation of SQLite's mprintf function which PDO should work around,
