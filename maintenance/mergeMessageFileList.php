@@ -36,10 +36,14 @@ $mmfl = false;
  * @ingroup Maintenance
  */
 class MergeMessageFileList extends Maintenance {
+	/**
+	 * @var bool
+	 */
+	protected $hasError;
 
 	function __construct() {
 		parent::__construct();
-		$this->addOption( 'list-file', 'A file containing a list of extension setup files, one per line.', true, true );
+		$this->addOption( 'list-file', 'A file containing a list of extension setup files, one per line.', false, true );
 		$this->addOption( 'extensions-dir', 'Path where extensions can be found.', false, true );
 		$this->addOption( 'output', 'Send output to this file (omit for stdout)', false, true );
 		$this->mDescription = 'Merge $wgExtensionMessagesFiles from various extensions to produce a ' .
@@ -47,26 +51,22 @@ class MergeMessageFileList extends Maintenance {
 	}
 
 	public function execute() {
-		global $mmfl;
-
-		# Add setup files contained in file passed to --list-file
-		$lines = file( $this->getOption( 'list-file' ) );
-		if ( $lines === false ) {
-			$this->error( 'Unable to open list file.' );
-		}
+		global $mmfl, $wgExtensionsEntryPoints;
 		$mmfl = array( 'setupFiles' => array() );
 
-		# Strip comments, discard empty lines, and trim leading and trailing
-		# whitespace. Comments start with '#' and extend to the end of the line.
-		foreach ( $lines as $line ) {
-			$line = trim( preg_replace( '/#.*/', '', $line ) );
-			if ( $line !== '' ) {
-				$mmfl['setupFiles'][] = $line;
-			}
+		if ( !count( $wgExtensionsEntryPoints )
+			&& $this->getOption( 'list-file' )
+			&& $this->getOption( 'extensions-dir' )
+		) {
+			$this->error( "Either \$wgExtensionsEntryPoints needs to be set in LocalSettings.php,"
+				. " or the list-file or extensions-dir paramters should be set", 1
+			);
 		}
 
+		# Add setup files contained in file passed to --list-file
+		$mmfl['setupFiles'] = array_merge( $mmfl['setupFiles'], $this->getOption( 'list-file' ) );
+
 		# Now find out files in a directory
-		$hasError = false;
 		if ( $this->hasOption( 'extensions-dir' ) ) {
 			$extdir = $this->getOption( 'extensions-dir' );
 			$entries = scandir( $extdir );
@@ -78,13 +78,20 @@ class MergeMessageFileList extends Maintenance {
 				if ( file_exists( $extfile ) ) {
 					$mmfl['setupFiles'][] = $extfile;
 				} else {
-					$hasError = true;
+					$this->hasError = true;
 					$this->error( "Extension {$extname} in {$extdir} lacks expected {$extname}.php" );
 				}
 			}
 		}
 
-		if ( $hasError ) {
+		foreach ( $wgExtensionsEntryPoints as $points ) {
+			$mmfl['setupFiles'] = array_merge(
+				$mmfl['setupFiles'],
+				$this->readFile( $points )
+			);
+		}
+
+		if ( $this->hasError ) {
 			$this->error( "Some files are missing (see above). Giving up.", 1 );
 		}
 
@@ -94,6 +101,34 @@ class MergeMessageFileList extends Maintenance {
 		if ( $this->hasOption( 'quiet' ) ) {
 			$mmfl['quiet'] = true;
 		}
+	}
+
+	/**
+	 * @param string $fileName
+	 * @return string
+	 */
+	private function readFile( $fileName ) {
+		$fileLines = file( $fileName );
+		$files = array();
+		if ( $fileLines === false ) {
+			$this->hasError = true;
+			$this->error( 'Unable to open list file.' );
+			return $files;
+		}
+		# Strip comments, discard empty lines, and trim leading and trailing
+		# whitespace. Comments start with '#' and extend to the end of the line.
+		foreach ( $fileLines as $extension ) {
+			$extension = trim( preg_replace( '/#.*/', '', $extension ) );
+			if ( $extension !== '' ) {
+				if ( file_exists( $extension ) ) {
+					$files[] = $extension;
+				} else {
+					$this->hasError = true;
+					$this->error( "Extension {$extension} doesn't exist" );
+				}
+			}
+		}
+		return $files;
 	}
 }
 
