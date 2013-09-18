@@ -239,6 +239,9 @@ production.
    referenced in LESS '@import' statements are looked up here first.
 * ResourceLoader supports hashes as module cache invalidation trigger (instead
   of or in addition to timestamps).
+* Added meta=filerepoinfo API module for getting information about foreign
+  image repositories, and related ForeignAPIRepo methods getInfo and getApiUrl.
+* Added $wgExtensionEntryPointListFiles for use in mergeMessageFileList.php.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
