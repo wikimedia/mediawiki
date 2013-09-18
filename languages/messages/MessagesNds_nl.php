@@ -2540,8 +2540,8 @@ Hier staon de instellingen zo as ze noen bin veur de zied '''$1''':",
 'protect-otherreason' => 'Aandere reden:',
 'protect-otherreason-op' => 'aandere reden',
 'protect-dropdown' => '*Veulveurkomende redens veur beveiliging
-** Vandelisme
-** Ongewunste verwiezingen plaotsen
+** Te veul vandalisme
+** Te veul moekreklame
 ** Bewarkingsoorlog
 ** Zied mit veule bezeukers',
 'protect-edit-reasonlist' => 'Redens veur beveiliging bewarken',
@@ -2676,7 +2676,9 @@ De leste regel uut t blokkeerlogboek steet as referensie',
 'blockip' => 'Gebruker blokkeren',
 'blockip-title' => 'Gebruker blokkeren',
 'blockip-legend' => 'n Gebruker of IP-adres blokkeren',
-'blockiptext' => 'Gebruuk dit formulier um n IP-adres of gebrukersnaam te blokkeren. t Is bedoeld um vandelisme te veurkoemen en mit in akkerderen mit t [[{{MediaWiki:Policy-url}}|beleid]]. Geef hieronder n reden op (bieveurbeeld op welke ziejen de vandelisme epleeg is)',
+'blockiptext' => 'Gebruuk dit formulier um n IP-adres of gebrukersnaam te blokkeren. 
+t Is bedoeld um vandalisme te veurkoemen en mut akkederen mit t [[{{MediaWiki:Policy-url}}|beleid]]. 
+Geef hieronder n reden op (bieveurbeeld op welke ziejen de vandalisme epleegd is).',
 'ipadressorusername' => 'IP-adres of gebrukersnaam',
 'ipbexpiry' => 'Verlöp nao',
 'ipbreason' => 'Reden:',

@@ -2095,6 +2095,10 @@ Dosya açıklamasını düzenlemek isterseniz, [$2 dosya açıklama sayfası] bu
 'randompage' => 'Rastgele sayfa',
 'randompage-nopages' => 'Şu {{PLURAL:$2|ad alanında|ad alanlarında}} hiç bir sayfa yok: $1.',
 
+# Random page in category
+'randomincategory' => 'Kategoriye göre rastgele sayfa',
+'randomincategory-selectcategory' => 'Rastgele sayfa alınacak kategori: $1 $2.',
+
 # Random redirect
 'randomredirect' => 'Rastgele yönlendirme',
 'randomredirect-nopages' => '"$1" ad alanında hiç bir yönlendirme yok.',
@@ -2120,6 +2124,8 @@ Dosya açıklamasını düzenlemek isterseniz, [$2 dosya açıklama sayfası] bu
 'statistics-users-active-desc' => 'Son {{PLURAL:$1|gün|$1 günde}} çalışma yapan kullanıcılar',
 'statistics-mostpopular' => 'En çok ziyaret edilen sayfalar',
 
+'pageswithprop' => 'Bir sayfa özelliğine sahip sayfalar',
+'pageswithprop-text' => 'Bu sayfa belirli bir sayfa özelliğini kullanan sayfaları listeler.',
 'pageswithprop-submit' => 'Git',
 
 'doubleredirects' => 'Çift yönlendirmeler',
@@ -3861,10 +3867,14 @@ Bu programla birlikte [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU Genel Kamu Lisansın
 'version-entrypoints-header-url' => 'URL',
 
 # Special:Redirect
+'redirect' => 'Dosya, kullanıcı veya sayfa ID yönlendirme',
+'redirect-legend' => 'Bir dosya veya sayfaya yönlendirme',
+'redirect-summary' => "Bu özel sayfa sizi bir dosya (dosya adı verilen), bir sayfa (bir revizyon ID'si verilen) veya bir kullanıcı sayfasının (sayısal kullanıcı kimliği verilen) adresine yönlendirir.",
 'redirect-submit' => 'Git',
 'redirect-value' => 'Değer:',
 'redirect-user' => 'Kullanıcı kimliği',
 'redirect-file' => 'Dosya adı',
+'redirect-not-exists' => 'Değer bulunamadı',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Benzer dosyaları ara',
