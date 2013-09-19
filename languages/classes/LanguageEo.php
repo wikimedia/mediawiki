@@ -114,30 +114,6 @@ class LanguageEo extends Language {
 		return strtr( $matches[1], $xu ) . strtr( $matches[2], $xu );
 	}
 
-	/**
-	 * @param $s string
-	 * @return string
-	 */
-	function checkTitleEncoding( $s ) {
-		# Check for X-system backwards-compatibility URLs
-		$ishigh = preg_match( '/[\x80-\xff]/', $s );
-		$isutf = preg_match( '/^([\x00-\x7f]|[\xc0-\xdf][\x80-\xbf]|' .
-			'[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})+$/', $s );
-
-		if ( $ishigh and !$isutf ) {
-			# Assume Latin1
-			$s = utf8_encode( $s );
-		} elseif ( preg_match( '/(\xc4[\x88\x89\x9c\x9d\xa4\xa5\xb4\xb5]' .
-				'|\xc5[\x9c\x9d\xac\xad])/', $s )
-		) {
-			return $s;
-		}
-
-		// if( preg_match( '/[cghjsu]x/i', $s ) )
-		//	return $this->iconv( 'x', 'utf-8', $s );
-		return $s;
-	}
-
 	function initEncoding() {
 		global $wgEditEncoding;
 		$wgEditEncoding = 'x';
