@@ -13,6 +13,7 @@
  * @author Beau
  * @author BeginaFelicysym
  * @author Chrumps
+ * @author Clamira
  * @author Cysioland
  * @author Debeet
  * @author Derbeth
@@ -847,7 +848,7 @@ Poniższe funkcje poczty nie działają.",
 Wpisz poprawny adres e‐mail lub wyczyść pole.',
 'cannotchangeemail' => 'Na tej wiki nie ma możliwości zmiany adresu e‐mail przypisanego do konta.',
 'emaildisabled' => 'Ta witryna nie może wysłać wiadomości e-mail.',
-'accountcreated' => 'Konto zostało utworzone',
+'accountcreated' => 'Utworzono konto',
 'accountcreatedtext' => 'Konto dla [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|dyskusja]]) zostało utworzone.',
 'createaccount-title' => 'Utworzenie konta w {{GRAMMAR:MS.lp|{{SITENAME}}}}',
 'createaccount-text' => 'Ktoś utworzył w {{GRAMMAR:MS.lp|{{SITENAME}}}} ($4), podając Twój adres e‐mail, konto „$2”. Aktualnym hasłem jest „$3”.
@@ -1789,7 +1790,7 @@ Strony z [[Special:Watchlist|listy obserwowanych]] są '''wytłuszczone'''.",
 'upload_directory_missing' => 'Katalog dla przesyłanych plików ($1) nie istnieje i nie może zostać utworzony przez serwer WWW.',
 'upload_directory_read_only' => 'Serwer nie może zapisywać do katalogu ($1) przeznaczonego na przesyłane pliki.',
 'uploaderror' => 'Błąd wysyłania',
-'upload-recreate-warning' => "'''Uwaga – plik o tej nazwie został wcześniej usunięty lub przrniesiony.'''
+'upload-recreate-warning' => "'''Uwaga: plik o tej nazwie został wcześniej usunięty lub przeniesiony.''' 
 
 Poniżej znajduje się rejestr usunięć i zmian nazwy tej strony:",
 'uploadtext' => "Użyj poniższego formularza do przesłania plików.
@@ -2521,9 +2522,9 @@ Zobacz na stronie $2 rejestr ostatnio wykonanych usunięć.',
 ** Naruszenie praw autorskich
 ** Wandalizm',
 'delete-edit-reasonlist' => 'Edytuj listę przyczyn usunięcia',
-'delete-toobig' => 'Ta strona ma bardzo długą historię edycji, ponad $1 {{PLURAL:$1|zmianę|zmiany|zmian}}.
-Usunięcie jej mogłoby spowodować zakłócenia w pracy {{GRAMMAR:D.lp|{{SITENAME}}}} i dlatego zostało ograniczone.',
-'delete-warning-toobig' => 'Ta strona ma bardzo długą historię edycji, ponad $1 {{PLURAL:$1|zmianę|zmiany|zmian}}.
+'delete-toobig' => 'Ta strona ma bardzo długą historię edycji – ponad $1 {{PLURAL:$1|zmianę|zmiany|zmian}}.<br />
+Usuwanie jej zostało ograniczone ze względu na możliwość zakłócenia pracy {{GRAMMAR:D.lp|{{SITENAME}}}}.',
+'delete-warning-toobig' => 'Ta strona ma bardzo długą historię edycji – ponad $1 {{PLURAL:$1|zmianę|zmiany|zmian}}.<br />
 Bądź ostrożny, ponieważ usunięcie jej może spowodować zakłócenia w pracy {{GRAMMAR:D.lp|{{SITENAME}}}}.',
 
 # Rollback

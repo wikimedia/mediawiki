@@ -1611,7 +1611,7 @@ Vær venlig at gennemse og bekræft dine ændringer.',
 'rc-change-size' => '$1 {{PLURAL:$1|Byte|Bytes}}',
 'rc-change-size-new' => '$1 {{PLURAL:$1|byte|bytes}} efter ændring',
 'newsectionsummary' => '/* $1 */ nyt afsnit',
-'rc-enhanced-expand' => 'Vis detaljer (kræver JavaScript)',
+'rc-enhanced-expand' => 'Vis detaljer',
 'rc-enhanced-hide' => 'Skjul detaljer',
 'rc-old-title' => 'oprindeligt oprettet som "$1"',
 

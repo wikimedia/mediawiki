@@ -1063,8 +1063,11 @@ $2
 
 # Special:ResetTokens
 'resettokens' => 'Сбросить токены',
+'resettokens-no-tokens' => 'Нет токенов для сброса.',
+'resettokens-legend' => 'Сбросить токены',
 'resettokens-tokens' => 'Токены:',
 'resettokens-token-label' => '$1 (текущее значение: $2)',
+'resettokens-done' => 'Токены сброшены.',
 'resettokens-resetbutton' => 'Сбросить выбранные токены',
 
 # Edit page toolbar
@@ -1676,7 +1679,7 @@ $1",
 'prefs-displaywatchlist' => 'Настройки отображения',
 'prefs-tokenwatchlist' => 'Токен',
 'prefs-diffs' => 'Разница версий',
-'prefs-help-prefershttps' => 'Эта настройка будет введена в следующий раз когда вы представитесь системе.',
+'prefs-help-prefershttps' => 'Эта настройка будет применена после следующего представления системе.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'Выглядит корректно',
@@ -1851,7 +1854,7 @@ $1",
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|изменение|изменения|изменений}}',
-'enhancedrc-since-last-visit' => '$1 с последнего посещения',
+'enhancedrc-since-last-visit' => '$1 {{PLURAL:$1|с последнего посещения}}',
 'enhancedrc-history' => 'история',
 'recentchanges' => 'Свежие правки',
 'recentchanges-legend' => 'Настройки свежих правок',
@@ -4402,6 +4405,7 @@ MediaWiki распространяется в надежде, что она бу
 
 # Limit report
 'limitreport-postexpandincludesize-value' => '$1/$2 байт',
+'limitreport-templateargumentsize' => 'Размер аргумента шаблона',
 'limitreport-templateargumentsize-value' => '$1/$2 байт',
 
 );

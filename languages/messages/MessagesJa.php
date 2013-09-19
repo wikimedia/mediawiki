@@ -2577,7 +2577,7 @@ contenttype/subtypeの形式で入力してください (例: <code>image/jpeg</
 'enotif_body_intro_changed' => '{{SITENAME}}のページ「$1」が$PAGEEDITDATEに、$2 によって{{GENDER:$2|変更}}されました。現在の版は $3 で閲覧できます。',
 'enotif_lastvisited' => '最終訪問以降のすべての変更は $1 をご覧ください。',
 'enotif_lastdiff' => 'この変更内容を表示するには $1 をご覧ください。',
-'enotif_anon_editor' => '匿名利用者「$1」',
+'enotif_anon_editor' => '匿名利用者 $1',
 'enotif_body' => '$WATCHINGUSERNAMEさん
 
 $PAGEINTRO $NEWPAGE

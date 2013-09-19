@@ -637,7 +637,10 @@ Ciav provisòria: $2',
 'changeemail-none' => '(gnun-a)',
 'changeemail-password' => 'Soa ciav su {{SITENAME}}:',
 'changeemail-submit' => "Cangé l'adrëssa ëd pòsta eletrònica",
-'changeemail-cancel' => 'Scancela',
+'changeemail-cancel' => 'Anulé',
+
+# Special:ResetTokens
+'resettokens' => 'Riamposté ij geton',
 
 # Edit page toolbar
 'bold_sample' => 'Test an grassèt',

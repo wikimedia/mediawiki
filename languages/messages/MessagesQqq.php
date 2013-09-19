@@ -5476,8 +5476,8 @@ See also:
 * $1 - a link which points to a diff, shown as a plain link
 See also:
 * {{msg-mw|Enotif lastvisited}}',
-'enotif_anon_editor' => 'User name in an e-mail notification when referring to an anonymous user. Parameters:
-* $1 is the anonymous user name (i.e. an IP address).',
+'enotif_anon_editor' => 'User name in an email notification when referring to an anonymous user. Parameters:
+* $1 - the anonymous user name (i.e. an IP address).',
 'enotif_body' => 'Text of a notification email sent when a watched page has been edited or deleted.
 [[File:Screenshot_MediaWiki_e-mail_notifier.PNG|150px|right]]
 
