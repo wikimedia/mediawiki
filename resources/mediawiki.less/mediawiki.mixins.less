@@ -10,4 +10,7 @@
  * See <http://lesscss.org/#-mixins> for more information about how to write mixins.
  */
 
-// No mixins yet!
+.embedded-background-image(@url) {
+	background-image: embed(@url);
+	background-image: url(@url) !ie;
+}
