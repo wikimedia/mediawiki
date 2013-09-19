@@ -1111,7 +1111,7 @@ class SearchHighlighter {
 		// prepare regexps
 		foreach ( $terms as $index => $term ) {
 			// manually do upper/lowercase stuff for utf-8 since PHP won't do it
-			if ( preg_match( '/[\x80-\xff]/', $term ) ) {
+			if ( preg_match( '/[\x80-\xff]/S', $term ) ) {
 				$terms[$index] = preg_replace_callback( '/./us', array( $this, 'caseCallback' ), $terms[$index] );
 			} else {
 				$terms[$index] = $term;
