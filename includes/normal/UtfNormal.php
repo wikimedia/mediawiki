@@ -140,7 +140,7 @@ class UtfNormal {
 			return normalizer_normalize( $string, Normalizer::FORM_D );
 		elseif( NORMALIZE_ICU )
 			return utf8_normalize( $string, self::UNORM_NFD );
-		elseif( preg_match( '/[\x80-\xff]/', $string ) )
+		elseif( preg_match( '/[\x80-\xff]/S', $string ) )
 			return UtfNormal::NFD( $string );
 		else
 			return $string;
@@ -159,7 +159,7 @@ class UtfNormal {
 			return normalizer_normalize( $string, Normalizer::FORM_KC );
 		elseif( NORMALIZE_ICU )
 			return utf8_normalize( $string, self::UNORM_NFKC );
-		elseif( preg_match( '/[\x80-\xff]/', $string ) )
+		elseif( preg_match( '/[\x80-\xff]/S', $string ) )
 			return UtfNormal::NFKC( $string );
 		else
 			return $string;
@@ -178,7 +178,7 @@ class UtfNormal {
 			return normalizer_normalize( $string, Normalizer::FORM_KD );
 		elseif( NORMALIZE_ICU )
 			return utf8_normalize( $string, self::UNORM_NFKD );
-		elseif( preg_match( '/[\x80-\xff]/', $string ) )
+		elseif( preg_match( '/[\x80-\xff]/S', $string ) )
 			return UtfNormal::NFKD( $string );
 		else
 			return $string;
@@ -203,7 +203,7 @@ class UtfNormal {
 	static function quickIsNFC( $string ) {
 		# ASCII is always valid NFC!
 		# If it's pure ASCII, let it through.
-		if( !preg_match( '/[\x80-\xff]/', $string ) ) return true;
+		if( !preg_match( '/[\x80-\xff]/S', $string ) ) return true;
 
 		UtfNormal::loadData();
 		$len = strlen( $string );
@@ -247,7 +247,7 @@ class UtfNormal {
 		# ASCII is always valid NFC!
 		# If we're only ever given plain ASCII, we can avoid the overhead
 		# of initializing the decomposition tables by skipping out early.
-		if( !preg_match( '/[\x80-\xff]/', $string ) ) return true;
+		if( !preg_match( '/[\x80-\xff]/S', $string ) ) return true;
 
 		static $checkit = null, $tailBytes = null, $utfCheckOrCombining = null;
 		if( !isset( $checkit ) ) {
