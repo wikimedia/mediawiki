@@ -142,7 +142,7 @@ abstract class Action {
 			return 'view';
 		}
 
-		$action = Action::factory( $actionName, $context->getWikiPage() );
+		$action = Action::factory( $actionName, $context->getWikiPage(), $context );
 		if ( $action instanceof Action ) {
 			return $action->getName();
 		}
@@ -167,8 +167,14 @@ abstract class Action {
 	final public function getContext() {
 		if ( $this->context instanceof IContextSource ) {
 			return $this->context;
+		} else if ( $this->page instanceof Article ) {
+			// NOTE: $this->page can be a WikiPage, which does not have a context.
+			wfDebug( __METHOD__ . ': no context known, falling back to Article\'s context.' );
+			return $this->page->getContext();
 		}
-		return $this->page->getContext();
+
+		wfWarn( __METHOD__ . ': no context known, falling back to RequestContext::getMain().' );
+		return RequestContext::getMain();
 	}
 
 	/**
@@ -255,6 +261,12 @@ abstract class Action {
 	 * @param $context IContextSource
 	 */
 	public function __construct( Page $page, IContextSource $context = null ) {
+		if ( $context === null ) {
+			wfWarn( __METHOD__ . ' called without providing a Context object.' );
+			// NOTE: We could try to initialize $context using $page->getContext(),
+			//      if $page is an Article. That however seems to not work seamlessly.
+		}
+
 		$this->page = $page;
 		$this->context = $context;
 	}
@@ -477,7 +489,7 @@ abstract class FormAction extends Action {
 	public function execute( array $data = null, $captureErrors = true ) {
 		try {
 			// Set a new context so output doesn't leak.
-			$this->context = clone $this->page->getContext();
+			$this->context = clone $this->getContext();
 
 			// This will throw exceptions if there's a problem
 			$this->checkCanExecute( $this->getUser() );
@@ -566,7 +578,7 @@ abstract class FormlessAction extends Action {
 	public function execute( array $data = null, $captureErrors = true ) {
 		try {
 			// Set a new context so output doesn't leak.
-			$this->context = clone $this->page->getContext();
+			$this->context = clone $this->getContext();
 			if ( is_array( $data ) ) {
 				$this->context->setRequest( new FauxRequest( $data, false ) );
 			}
