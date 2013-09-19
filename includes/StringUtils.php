@@ -51,7 +51,7 @@ class StringUtils {
 	 */
 	static function isUtf8( $value, $disableMbstring = false ) {
 		$value = (string)$value;
-		if ( preg_match( "/[\x80-\xff]/S", $value ) === 0 ) {
+		if ( preg_match( '/[\x80-\xff]/S', $value ) === 0 ) {
 			// String contains only ASCII characters, has to be valid
 			return true;
 		}
@@ -65,7 +65,7 @@ class StringUtils {
 			}
 
 			return mb_check_encoding( $value, 'UTF-8' ) &&
-				( $newPHP || preg_match( "/\xf4[\x90-\xbf]|[\xf5-\xff]/S", $value ) === 0 );
+				( $newPHP || preg_match( '/\xf4[\x90-\xbf]|[\xf5-\xff]/S', $value ) === 0 );
 		}
 
 		// PCRE implements repetition using recursion; to avoid a stack overflow (and segfault)
@@ -74,7 +74,7 @@ class StringUtils {
 		// used rather than a single long regex for performance.
 		static $regexes;
 		if ( $regexes === null ) {
-			$cont = "[\x80-\xbf]";
+			$cont = '[\x80-\xbf]';
 			$after = "(?!$cont)"; // "(?:[^\x80-\xbf]|$)" would work here
 			$regexes = array(
 				// Continuation byte at the start
@@ -84,7 +84,7 @@ class StringUtils {
 				"/[\\x00-\x7f]$cont/S",
 
 				// Illegal byte
-				"/[\xc0\xc1\xf5-\xff]/S",
+				'/[\xc0\xc1\xf5-\xff]/S',
 
 				// Invalid 2-byte sequence, or valid one then an extra continuation byte
 				"/[\xc2-\xdf](?!$cont$after)/S",
