@@ -120,7 +120,7 @@ class LanguageEo extends Language {
 	 */
 	function checkTitleEncoding( $s ) {
 		# Check for X-system backwards-compatibility URLs
-		$ishigh = preg_match( '/[\x80-\xff]/', $s );
+		$ishigh = preg_match( '/[\x80-\xff]/S', $s );
 		$isutf = preg_match( '/^([\x00-\x7f]|[\xc0-\xdf][\x80-\xbf]|' .
 			'[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})+$/', $s );
 
