@@ -153,6 +153,7 @@ class ResourceLoader {
 		$cache = wfGetCache( CACHE_ANYTHING );
 		$cacheEntry = $cache->get( $key );
 		if ( is_string( $cacheEntry ) ) {
+			wfIncrStats( "rl-$filter-cache-hits" );
 			wfProfileOut( __METHOD__ );
 			return $cacheEntry;
 		}
@@ -160,6 +161,7 @@ class ResourceLoader {
 		$result = '';
 		// Run the filter - we've already verified one of these will work
 		try {
+			wfIncrStats( "rl-$filter-cache-misses" );
 			switch ( $filter ) {
 				case 'minify-js':
 					$result = JavaScriptMinifier::minify( $data,
