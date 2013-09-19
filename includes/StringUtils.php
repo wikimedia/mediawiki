@@ -64,7 +64,7 @@ class StringUtils {
 				( $newPHP || preg_match( "/\xf4[\x90-\xbf]|[\xf5-\xff]/S", $value ) === 0 );
 		}
 
-		if ( preg_match( "/[\x80-\xff]/S", $value ) === 0 ) {
+		if ( preg_match( '/[\x80-\xff]/S', $value ) === 0 ) {
 			// String contains only ASCII characters, has to be valid
 			return true;
 		}
