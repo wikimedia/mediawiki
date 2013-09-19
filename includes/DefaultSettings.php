@@ -3304,7 +3304,44 @@ $wgResourceLoaderLESSVars = array();
  *
  * @since 1.22
  */
-$wgResourceLoaderLESSFunctions = array();
+$wgResourceLoaderLESSFunctions = array(
+	/**
+	 * Check if an image file reference is suitable for embedding.
+	 *
+	 * An image is embeddable if it (a) exists, (b) has a suitable MIME-type,
+	 * (c) does not exceed IE<9 size limit of 32kb.
+	 * This is a LESS predicate function; it returns a LESS boolean value.
+	 */
+	'embeddable' => function( $frame, $less ) {
+		$base = pathinfo( $less->parser->sourceName, PATHINFO_DIRNAME );
+		$url = $frame[2][0];
+		$file = $base . '/' . $url;
+		$embeddable = ( file_exists( $file )
+			&& filesize( $file ) < CSSMin::EMBED_SIZE_LIMIT
+			&& CSSMin::getMimeType( $file ) !== false ) ? 'true' : 'false';
+		return array( 'keyword', $embeddable );
+	},
+
+	/**
+	 * Convert an image URI to a base64-encoded data URI.
+	 *
+	 * @par Example:
+	 * @code
+	 *   .fancy-button {
+	 *       background-image: embed('../images/button-bg.png');
+	 *   }
+	 * @endcode
+	 */
+	'embed' => function( $frame, $less ) {
+		$base = pathinfo( $less->parser->sourceName, PATHINFO_DIRNAME );
+		$url = $frame[2][0];
+		$file = $base . '/' . $url;
+
+		$data = CSSMin::encodeImageAsDataURI( $file );
+		$less->embeddedImages[ realpath( $file ) ] = filemtime( $file );
+		return 'url(' . $data . ')';
+	},
+);
 
 /**
  * Default import paths for LESS modules. LESS files referenced in @import
