@@ -142,7 +142,7 @@ abstract class Action {
 			return 'view';
 		}
 
-		$action = Action::factory( $actionName, $context->getWikiPage() );
+		$action = Action::factory( $actionName, $context->getWikiPage(), $context );
 		if ( $action instanceof Action ) {
 			return $action->getName();
 		}
@@ -167,8 +167,13 @@ abstract class Action {
 	final public function getContext() {
 		if ( $this->context instanceof IContextSource ) {
 			return $this->context;
+		} else if ( $this->page instanceof Article ) {
+			wfDebug( __METHOD__ . ': no context known, falling back to Article\'s context!' );
+			return $this->page->getContext();
 		}
-		return $this->page->getContext();
+
+		wfWarn( __METHOD__ . ': no context known, falling back to RequestContext::getMain()!' );
+		return RequestContext::getMain();
 	}
 
 	/**
