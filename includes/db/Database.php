@@ -1443,7 +1443,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	public function select( $table, $vars, $conds = '', $fname = __METHOD__,
 		$options = array(), $join_conds = array() ) {
 		$sql = $this->selectSQLText( $table, $vars, $conds, $fname, $options, $join_conds );
-
+var_dump( $sql );
 		return $this->query( $sql, $fname );
 	}
 

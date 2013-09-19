@@ -253,16 +253,13 @@ class LogPager extends ReverseChronologicalPager {
 		# the choices of available indexes. This mainly
 		# avoids site-breaking filesorts.
 		} elseif ( $this->title || $this->pattern || $this->performer ) {
-			$index['logging'] = array( 'page_time', 'user_time' );
-			if ( count( $this->types ) == 1 ) {
-				$index['logging'][] = 'log_user_type_time';
-			}
+			$index['logging'] = array( 'page_time', 'user_time', 'log_user_type_time' );
 		} elseif ( count( $this->types ) == 1 ) {
-			$index['logging'] = 'type_time';
-		} else {
-			$index['logging'] = 'times';
+			$index['logging'] = 'type_time'; // @TODO: sucks for change tags
 		}
-		$options['USE INDEX'] = $index;
+		if ( count( $index ) ) {
+			$options['USE INDEX'] = $index;
+		}
 		# Don't show duplicate rows when using log_search
 		$joins['log_search'] = array( 'INNER JOIN', 'ls_log_id=log_id' );
 
