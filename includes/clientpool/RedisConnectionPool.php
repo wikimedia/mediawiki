@@ -1,6 +1,6 @@
 <?php
 /**
- * PhpRedis client connection pooling manager.
+ * Redis client connection pooling manager.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,7 +23,7 @@
  */
 
 /**
- * Helper class to manage redis connections using PhpRedis.
+ * Helper class to manage Redis connections.
  *
  * This can be used to get handle wrappers that free the handle when the wrapper
  * leaves scope. The maximum number of free handles (connections) is configurable.
@@ -70,9 +70,9 @@ class RedisConnectionPool {
 	 * @param array $options
 	 */
 	protected function __construct( array $options ) {
-		if ( !extension_loaded( 'redis' ) ) {
-			throw new MWException( __CLASS__ . ' requires the phpredis extension: ' .
-				'https://github.com/nicolasff/phpredis' );
+		if ( !class_exists( 'Redis' ) ) {
+			throw new MWException( __CLASS__ . ' requires a Redis client library. ' .
+				'See https://www.mediawiki.org/wiki/Redis#Setup' );
 		}
 		$this->connectTimeout = $options['connectTimeout'];
 		$this->persistent = $options['persistent'];
