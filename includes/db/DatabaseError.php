@@ -66,8 +66,7 @@ class DBError extends MWException {
 		$s = $this->getHTMLContent();
 
 		if ( $wgShowDBErrorBacktrace ) {
-			$s .= '<p>Backtrace:</p><p>' .
-				nl2br( htmlspecialchars( $this->getTraceAsString() ) ) . '</p>';
+			$s .= '<p>Backtrace:</p><pre>' . htmlspecialchars( $this->getTraceAsString() ) . '</pre>';
 		}
 
 		return $s;
@@ -137,15 +136,8 @@ class DBConnectionError extends DBError {
 	 * @return bool
 	 */
 	function getLogMessage() {
-		# Don't send to the exception log
+		// Don't send to the exception log
 		return false;
-	}
-
-	/**
-	 * @return string
-	 */
-	function getPageTitle() {
-		return $this->msg( 'dberr-header', 'This wiki has a problem' );
 	}
 
 	/**
@@ -154,7 +146,7 @@ class DBConnectionError extends DBError {
 	function getHTML() {
 		global $wgShowDBErrorBacktrace, $wgShowHostnames, $wgShowSQLErrors;
 
-		$sorry = htmlspecialchars( $this->msg( 'dberr-problems', "Sorry!\nThis site is experiencing technical difficulties." ) );
+		$sorry = htmlspecialchars( $this->msg( 'dberr-problems', 'Sorry! This site is experiencing technical difficulties.' ) );
 		$again = htmlspecialchars( $this->msg( 'dberr-again', 'Try waiting a few minutes and reloading.' ) );
 
 		if ( $wgShowHostnames || $wgShowSQLErrors ) {
@@ -169,17 +161,16 @@ class DBConnectionError extends DBError {
 		# No database access
 		MessageCache::singleton()->disable();
 
-		$text = "<h1>$sorry</h1><p>$again</p><p><small>$info</small></p>";
+		$html = "<h1>$sorry</h1><p>$again</p><p><small>$info</small></p>";
 
 		if ( $wgShowDBErrorBacktrace ) {
-			$text .= '<p>Backtrace:</p><p>' .
-				nl2br( htmlspecialchars( $this->getTraceAsString() ) ) . '</p>';
+			$html .= '<p>Backtrace:</p><pre>' . htmlspecialchars( $this->getTraceAsString() ) . '</pre>';
 		}
 
-		$text .= '<hr />';
-		$text .= $this->searchForm();
+		$html .= '<hr />';
+		$html .= $this->searchForm();
 
-		return $text;
+		return $html;
 	}
 
 	protected function getTextContent() {
@@ -195,21 +186,21 @@ class DBConnectionError extends DBError {
 	public function reportHTML() {
 		global $wgUseFileCache;
 
-		# Check whether we can serve a file-cached copy of the page with the error underneath
+		// Check whether we can serve a file-cached copy of the page with the error underneath
 		if ( $wgUseFileCache ) {
 			try {
 				$cache = $this->fileCachedPage();
-				# Cached version on file system?
+				// Cached version on file system?
 				if ( $cache !== null ) {
-					# Hack: extend the body for error messages
+					// Hack: extend the body for error messages
 					$cache = str_replace( array( '</html>', '</body>' ), '', $cache );
-					# Add cache notice...
-					$cache .= '<div style="color:red;font-size:150%;font-weight:bold;">' .
+					// Add cache notice...
+					$cache .= '<div style="border:1px solid #ffd0d0;padding:1em;">' .
 						htmlspecialchars( $this->msg( 'dberr-cachederror',
-							'This is a cached copy of the requested page, and may not be up to date. ' ) ) .
+							'This is a cached copy of the requested page, and may not be up to date.' ) ) .
 						'</div>';
 
-					# Output cached page with notices on bottom and re-close body
+					// Output cached page with notices on bottom and re-close body
 					echo "{$cache}<hr />{$this->getHTML()}</body></html>";
 					return;
 				}
@@ -218,7 +209,7 @@ class DBConnectionError extends DBError {
 			}
 		}
 
-		# We can't, cough and die in the usual fashion
+		// We can't, cough and die in the usual fashion
 		parent::reportHTML();
 	}
 
@@ -239,8 +230,8 @@ class DBConnectionError extends DBError {
 
 		$trygoogle = <<<EOT
 <div style="margin: 1.5em">$usegoogle<br />
-<small>$outofdate</small></div>
-<!-- SiteSearch Google -->
+<small>$outofdate</small>
+</div>
 <form method="get" action="//www.google.com/search" id="googlesearch">
 	<input type="hidden" name="domains" value="$server" />
 	<input type="hidden" name="num" value="50" />
@@ -249,12 +240,11 @@ class DBConnectionError extends DBError {
 
 	<input type="text" name="q" size="31" maxlength="255" value="$search" />
 	<input type="submit" name="btnG" value="$googlesearch" />
-  <div>
-	<input type="radio" name="sitesearch" id="gwiki" value="$server" checked="checked" /><label for="gwiki">$sitename</label>
-	<input type="radio" name="sitesearch" id="gWWW" value="" /><label for="gWWW">WWW</label>
-  </div>
+	<p>
+		<label><input type="radio" name="sitesearch" value="$server" checked="checked" />$sitename</label>
+		<label><input type="radio" name="sitesearch" value="" />WWW</label>
+	</p>
 </form>
-<!-- SiteSearch Google -->
 EOT;
 		return $trygoogle;
 	}
@@ -266,15 +256,17 @@ EOT;
 		global $wgTitle, $wgOut, $wgRequest;
 
 		if ( $wgOut->isDisabled() ) {
-			return ''; // Done already?
+			// Done already?
+			return '';
 		}
 
-		if ( $wgTitle ) { // use $wgTitle if we managed to set it
+		if ( $wgTitle ) {
+			// use $wgTitle if we managed to set it
 			$t = $wgTitle->getPrefixedDBkey();
 		} else {
-			# Fallback to the raw title URL param. We can't use the Title
-			# class is it may hit the interwiki table and give a DB error.
-			# We may get a cache miss due to not sanitizing the title though.
+			// Fallback to the raw title URL param. We can't use the Title
+			// class is it may hit the interwiki table and give a DB error.
+			// We may get a cache miss due to not sanitizing the title though.
 			$t = str_replace( ' ', '_', $wgRequest->getVal( 'title' ) );
 			if ( $t == '' ) { // fallback to main page
 				$t = Title::newFromText(
