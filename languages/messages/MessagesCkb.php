@@ -148,6 +148,47 @@ $digitTransformTable = array(
 	',' => '٬', # &#x066c;
 );
 
+$datePreferences = array(
+	'default',
+	'dmy',
+	'ymd',
+	'persian',
+	'hijri',
+	'ISO 8601',
+);
+
+$defaultDateFormat = 'dmy';
+
+$datePreferenceMigrationMap = array(
+	'default',
+	'dmy', // migrate users off mdy - not present in this language
+	'dmy',
+	'ymd'
+);
+
+$dateFormats = array(
+	# Please be cautious not to delete the invisible RLM from the beginning of the strings.
+	'dmy time' => '‏H:i',
+	'dmy date' => '‏jی xg Y',
+	'dmy both' => '‏H:i، jی xg Y',
+
+	'ymd time' => '‏H:i',
+	'ymd date' => '‏Y/n/j',
+	'ymd both' => '‏H:i، Y/n/j',
+
+	'persian time' => '‏H:i',
+	'persian date' => '‏xijی xiFی xiY',
+	'persian both' => '‏H:i، ‏xijی xiFی xiY',
+
+	'hijri time' => '‏H:i',
+	'hijri date' => '‏xmjی xmFی xmY',
+	'hijri both' => '‏H:i، xmjی xmFی xmY',
+
+	'ISO 8601 time' => 'xnH:xni:xns',
+	'ISO 8601 date' => 'xnY-xnm-xnd',
+	'ISO 8601 both' => 'xnY-xnm-xnd"T"xnH:xni:xns',
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline' => 'ھێڵ ھێنان بەژێر بەستەرەکان:',
