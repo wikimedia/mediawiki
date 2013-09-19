@@ -379,7 +379,8 @@ $.suggestions = {
 			preventDefault = false;
 
 		switch ( key ) {
-			case 40: // Arrow down
+			// Arrow down
+			case 40:
 				if ( wasVisible ) {
 					$.suggestions.highlight( context, 'next', true );
 					context.data.selectedWithMouse = false;
@@ -388,21 +389,24 @@ $.suggestions = {
 				}
 				preventDefault = true;
 				break;
-			case 38: // Arrow up
+			// Arrow up
+			case 38:
 				if ( wasVisible ) {
 					$.suggestions.highlight( context, 'prev', true );
 					context.data.selectedWithMouse = false;
 				}
 				preventDefault = wasVisible;
 				break;
-			case 27: // Escape
+			// Escape
+			case 27:
 				context.data.$container.hide();
 				$.suggestions.restore( context );
 				$.suggestions.cancel( context );
 				context.data.$textbox.trigger( 'change' );
 				preventDefault = wasVisible;
 				break;
-			case 13: // Enter
+			// Enter
+			case 13:
 				context.data.$container.hide();
 				preventDefault = wasVisible;
 				selected = context.data.$container.find( '.suggestions-result-current' );
@@ -581,13 +585,15 @@ $.fn.suggestions = function () {
 					switch ( context.data.keypressed ) {
 						// This preventDefault logic is duplicated from
 						// $.suggestions.keypress(), which sucks
-						case 40: // Arrow down
+						// Arrow down
+						case 40:
 							e.preventDefault();
 							e.stopImmediatePropagation();
 							break;
-						case 38: // Arrow up
-						case 27: // Escape
-						case 13: // Enter
+						// Arrow up, Escape and Enter
+						case 38:
+						case 27:
+						case 13:
 							if ( context.data.$container.is( ':visible' ) ) {
 								e.preventDefault();
 								e.stopImmediatePropagation();
