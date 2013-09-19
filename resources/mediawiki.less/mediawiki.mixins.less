@@ -13,4 +13,7 @@
  * LESS mixins.
  */
 
-// No mixins yet!
+.embedded-background-image(@url) {
+	background-image: embed(@url);
+	background-image: url(@url) !ie;
+}

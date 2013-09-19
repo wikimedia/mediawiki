@@ -3304,7 +3304,39 @@ $wgResourceLoaderLESSVars = array();
  *
  * @since 1.22
  */
-$wgResourceLoaderLESSFunctions = array();
+$wgResourceLoaderLESSFunctions = array(
+	/**
+	 * Convert an image URI to a base64-encoded data URI.
+	 *
+	 * The function converts an image file reference into a CSS url() value
+	 * containing a data URI, provided that the referenced file exists, has the
+	 * right MIME-type, and does not exceed CSSMin's size limits. If the file
+	 * canot be located or is unsuitable for embedding, the function returns a
+	 * url() value containing the original URL.
+	 *
+	 * @par Example:
+	 * @code
+	 *   .fancy-button {
+	 *       background-image: embed('../images/button-bg.png');
+	 *   }
+	 * @endcode
+	 */
+	'embed' => function( $frame, $less ) {
+		$url = $frame[2][0];
+		$base = pathinfo( $less->parser->sourceName, PATHINFO_DIRNAME );
+		$file = $base . '/' . $url;
+
+		if ( file_exists( $file ) ) {
+			$data = CSSMin::encodeImageAsDataURI( $file );
+			if ( $data ) {
+				// Tie cache invalidation to the image file's mtime.
+				$less->embeddedImages[ realpath( $file ) ] = filemtime( $file );
+				return 'url(' . $data . ')';
+			}
+		}
+		return 'url(' . $url . ')';
+	},
+);
 
 /**
  * Default import paths for LESS modules. LESS files referenced in @import
