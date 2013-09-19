@@ -428,7 +428,8 @@ class MediaWiki {
 
 		$act = $this->getAction();
 
-		$action = Action::factory( $act, $page );
+		$action = Action::factory( $act, $page, $this->context );
+
 		if ( $action instanceof Action ) {
 			# Let Squid cache things if we can purge them.
 			if ( $wgUseSquid &&
