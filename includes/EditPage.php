@@ -3155,6 +3155,10 @@ HTML
 				return $previewHTML;
 			}
 
+			# provide a anchor link to the editform
+			$continueEditing = '<span class="mw-continue-editing">' .
+				'[[#' . self::EDITFORM_ID . '|' . $wgLang->getArrow() . ' ' .
+				wfMessage( 'continue-editing' )->text() . ']]</span>';
 			if ( $this->mTriedSave && !$this->mTokenOk ) {
 				if ( $this->mTokenOkExceptSuffix ) {
 					$note = wfMessage( 'token_suffix_mismatch' )->plain();
@@ -3165,8 +3169,7 @@ HTML
 			} elseif ( $this->incompleteForm ) {
 				$note = wfMessage( 'edit_form_incomplete' )->plain();
 			} else {
-				$note = wfMessage( 'previewnote' )->plain() .
-					' [[#' . self::EDITFORM_ID . '|' . $wgLang->getArrow() . ' ' . wfMessage( 'continue-editing' )->text() . ']]';
+				$note = wfMessage( 'previewnote' )->plain() . ' ' . $continueEditing;
 			}
 
 			$parserOptions = $this->mArticle->makeParserOptions( $this->mArticle->getContext() );
@@ -3195,7 +3198,9 @@ HTML
 				# Used messages to make sure grep find them:
 				# Messages: usercsspreview, userjspreview, sitecsspreview, sitejspreview
 				if ( $level && $format ) {
-					$note = "<div id='mw-{$level}{$format}preview'>" . wfMessage( "{$level}{$format}preview" )->text() . "</div>";
+					$note = "<div id='mw-{$level}{$format}preview'>" .
+						wfMessage( "{$level}{$format}preview" )->text() .
+						' ' . $continueEditing . "</div>";
 				}
 			}
 
