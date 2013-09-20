@@ -12,11 +12,57 @@
 			magic : {
 				'SITENAME' : mw.config.get( 'wgSiteName' )
 			},
-			// This is a whitelist based on, but simpler than, Sanitizer.php.
-			// Self-closing tags are not currently supported.
+			// This should be kept in sync with htmlpairsStatic in Sanitizer.php.
+			// These are all the tags that are allowed and use <tag>something</tag>
+			// rather than self-closing tags.
 			allowedHtmlElements : [
 				'b',
-				'i'
+				'bdi',
+				'del',
+				'i',
+				'ins',
+				'u',
+				'font',
+				'big',
+				'small',
+				'sub',
+				'sup',
+				'h1',
+				'h2',
+				'h3',
+				'h4',
+				'h5',
+				'h6',
+				'cite',
+				'code',
+				'em',
+				's',
+				'strike',
+				'strong',
+				'tt',
+				'var',
+				'div',
+				'center',
+				'blockquote',
+				'ol',
+				'ul',
+				'dl',
+				'table',
+				'caption',
+				'pre',
+				'ruby',
+				'rt',
+				'rb',
+				'rp',
+				'p',
+				'span',
+				'abbr',
+				'dfn',
+				'kbd',
+				'samp',
+				'data',
+				'time',
+				'mark'
 			],
 			// Key tag name, value allowed attributes for that tag.
 			// See Sanitizer::setupAttributeWhitelist
