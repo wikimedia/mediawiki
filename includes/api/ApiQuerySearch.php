@@ -125,6 +125,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		$titles = array();
 		$count = 0;
 		$result = $matches->next();
+		$user = $this->getUser();
 
 		while ( $result ) {
 			if ( ++ $count > $limit ) {
@@ -145,7 +146,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 				ApiQueryBase::addTitleInfo( $vals, $title );
 
 				if ( isset( $prop['snippet'] ) ) {
-					$vals['snippet'] = $result->getTextSnippet( $terms );
+					$vals['snippet'] = $result->getTextSnippet( $terms, $user );
 				}
 				if ( isset( $prop['size'] ) ) {
 					$vals['size'] = $result->getByteSize();

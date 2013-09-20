@@ -874,14 +874,20 @@ class SearchResult {
 
 	/**
 	 * @param array $terms terms to highlight
+	 * @param User $user The user to use or null for $wgUser
 	 * @return String: highlighted text snippet, null (and not '') if not supported
 	 */
-	function getTextSnippet( $terms ) {
+	function getTextSnippet( $terms, $user = null ) {
 		global $wgUser, $wgAdvancedSearchHighlighting;
+
+		if ( !$user ) {
+			$user = $wgUser;
+		}
+
 		$this->initText();
 
 		// TODO: make highliter take a content object. Make ContentHandler a factory for SearchHighliter.
-		list( $contextlines, $contextchars ) = SearchEngine::userHighlightPrefs( $wgUser );
+		list( $contextlines, $contextchars ) = SearchEngine::userHighlightPrefs( $user );
 		$h = new SearchHighlighter();
 		if ( $wgAdvancedSearchHighlighting ) {
 			return $h->highlightText( $this->mText, $terms, $contextlines, $contextchars );

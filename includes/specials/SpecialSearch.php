@@ -633,7 +633,7 @@ class SpecialSearch extends SpecialPage {
 		}
 
 		// format text extract
-		$extract = "<div class='searchresult'>" . $result->getTextSnippet( $terms ) . "</div>";
+		$extract = "<div class='searchresult'>" . $result->getTextSnippet( $terms, $this->getUser() ) . "</div>";
 
 		$lang = $this->getLanguage();
 
