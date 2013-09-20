@@ -2297,7 +2297,7 @@ $1',
 'pageswithprop-text' => 'Здесь перечислены страницы, у которых были вручную переопределены отдельные свойства.',
 'pageswithprop-prop' => 'Название свойства:',
 'pageswithprop-submit' => 'Найти',
-'pageswithprop-prophidden-long' => 'длинное значение текстового свойства скрыто ($1 килобайт)',
+'pageswithprop-prophidden-long' => 'длинное значение текстового свойства скрыто ($1)',
 'pageswithprop-prophidden-binary' => 'значение двоичного свойства скрыто ($1)',
 
 'doubleredirects' => 'Двойные перенаправления',

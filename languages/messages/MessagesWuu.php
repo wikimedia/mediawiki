@@ -12,6 +12,7 @@
  * @author Reedy
  * @author Wu-chinese.com
  * @author Yfdyh000
+ * @author 十弌
  */
 
 $fallback = 'zh-hans';
@@ -26,10 +27,10 @@ $messages = array(
 'tog-extendwatchlist' => '扩展监控列表，显示所有改动，而弗仅仅是最近个',
 'tog-usenewrc' => '使用强化版个近段辰光个改动（JavaScript）',
 'tog-numberheadings' => '标题自动编号',
-'tog-showtoolbar' => '显示编辑工具条（JavaScript）',
-'tog-editondblclick' => '双击个辰光编辑页面（JavaScript）',
+'tog-showtoolbar' => '顯示編寫傢伙欄',
+'tog-editondblclick' => '雙捺來編寫頁面',
 'tog-editsection' => '允许通过点击【编辑】链接来编辑段落',
-'tog-editsectiononrightclick' => '允许右击标题编辑段落（JavaScript）',
+'tog-editsectiononrightclick' => '用右捺標題編輯段落',
 'tog-showtoc' => '显示目录（针对超过三只标题个页面）',
 'tog-rememberpassword' => '来许箇台电脑上记牢我个密码（可维持$1{{PLURAL:$1|日|日}}）',
 'tog-watchcreations' => '拿我创建个页面添加到我个监控列表里向',
@@ -312,6 +313,11 @@ $1',
 # General errors
 'error' => '错误',
 'databaseerror' => '数据库错误',
+'databaseerror-text' => '一個數據庫討信發生。
+嘸數說明一個bug徠軟件裏向。',
+'databaseerror-textcl' => '一個數據庫討信賺爻發生。',
+'databaseerror-query' => '討信：$1',
+'databaseerror-error' => '賺爻：$1',
 'laggedslavemode' => '警告: 页面可能弗包含最近个更新。',
 'readonly' => '数据库锁定',
 'enterlockreason' => '请输入锁定个原因，包括预计解锁个辰光',
@@ -952,6 +958,7 @@ $1",
 'yourlanguage' => '语言:',
 'yournick' => '绰号:',
 'badsig' => '无效原始签名；检查 HTML 标签。',
+'gender-unknown' => '我弗想講',
 'email' => '电子邮件',
 'prefs-help-email' => '电子邮件是备选个，垃拉侬忘记密码个情况下头可以用得来重置密码。
 侬也可以让别人家通过侬个用户页或者讨论页来联系侬。',
@@ -1005,7 +1012,7 @@ $1",
 'newpageletter' => '新',
 'boteditletter' => '机',
 'newsectionsummary' => '/* $1 */ 新段落',
-'rc-enhanced-expand' => '显示细节（需要JavaScript支持）',
+'rc-enhanced-expand' => '展示零碎',
 'rc-enhanced-hide' => '拿细节囥脱',
 
 # Recent changes linked
@@ -1563,6 +1570,9 @@ Variants for Chinese language
 
 # Special:SpecialPages
 'specialpages' => '特殊页面',
+
+# Database error messages
+'dberr-info-hidden' => '（數據庫服務器連弗上）',
 
 # New logging system
 'revdelete-restricted' => '已将限制应用到管理员',

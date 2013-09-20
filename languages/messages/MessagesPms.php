@@ -641,6 +641,16 @@ Ciav provisòria: $2',
 
 # Special:ResetTokens
 'resettokens' => 'Riamposté ij geton',
+'resettokens-text' => "Ambelessì a peul riamposté ij geton ch'a permëtto d'acede a chèich dàit privà associà a sò cont.
+
+A dovrìa felo si për asar chiel a l'ha partagiaje con cheidun o si sò cont a l'é stàit compromëttù.",
+'resettokens-no-tokens' => 'A-i é gnun geton da riamposté.',
+'resettokens-legend' => 'Riamposté ij geton.',
+'resettokens-tokens' => 'Geton:',
+'resettokens-token-label' => '$1 (valor atual: $2)',
+'resettokens-watchlist-token' => "Geton për ël fluss an sl'aragnà (Atom/RSS) ëd [[Special:Watchlist|modìfiche a le pàgine che as ten sot-euj]]",
+'resettokens-done' => 'Geton riampostà.',
+'resettokens-resetbutton' => 'Riamposté ij geton selessionà',
 
 # Edit page toolbar
 'bold_sample' => 'Test an grassèt',
@@ -651,10 +661,10 @@ Ciav provisòria: $2',
 'link_tip' => 'Anliura interna',
 'extlink_sample' => "http://www.example.com tìtol dl'anliura",
 'extlink_tip' => 'Anliura esterna (che as visa dë buté ël prefiss http://)',
-'headline_sample' => "Antestassion dl'artìcol",
+'headline_sample' => 'Test dël tìtol',
 'headline_tip' => 'Antestassion dë scond livel',
-'nowiki_sample' => 'Che a buta ël test nen formatà ambelessì',
-'nowiki_tip' => 'Lassé un tòch ëd test fòra dla formatassion dla wiki',
+'nowiki_sample' => 'Che a buta ël test brut ambelessì',
+'nowiki_tip' => 'Lassé un tòch ëd test fòra dla sintassi dla wiki',
 'image_sample' => 'Esempi.jpg',
 'image_tip' => 'Figura anglobà ant ël test',
 'media_sample' => 'Esempi.ogg',

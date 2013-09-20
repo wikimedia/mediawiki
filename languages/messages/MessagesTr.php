@@ -1531,7 +1531,7 @@ Aramanızın başına '''all:''' önekini ekleyerek tüm içeriği aramayı (tar
 'prefs-files' => 'Dosyalar',
 'prefs-custom-css' => 'Özel CSS',
 'prefs-custom-js' => 'Özel JS',
-'prefs-common-css-js' => 'Tüm kaplamalar için paylaşılan CSS/JS:',
+'prefs-common-css-js' => 'Tüm temalar için paylaşılan CSS/JS:',
 'prefs-reset-intro' => 'Bu sayfayı tercihlerinizi site varsayılanına döndürmek için kullanabilirsiniz. Bu geri alınamaz.',
 'prefs-emailconfirm-label' => 'E-posta doğrulaması:',
 'youremail' => 'E-posta:',
@@ -1550,7 +1550,7 @@ Aramanızın başına '''all:''' önekini ekleyerek tüm içeriği aramayı (tar
 $1 {{PLURAL:$1|karakterin|karakterin}} altında olmalı.',
 'yourgender' => 'Nasıl açıklamayı tercih edersiniz?',
 'gender-unknown' => 'Söylemek istemiyorsanız',
-'gender-male' => 'Erkek',
+'gender-male' => 'Wiki düzenlemelerinde kadın olarak',
 'gender-female' => 'Bayan',
 'prefs-help-gender' => 'Bu tercih ayarı isteğe bağlıdır.
 Yazılımda söz değerlerinin başlarında bulunan cinsiyete uygun gramerler için kullanılır.

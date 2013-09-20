@@ -1510,6 +1510,8 @@ Ha de tenir com a molt {{PLURAL:$1|un caràcter|$1 caràcters}}.',
 'right-editusercssjs' => "Editar els fitxers de configuració CSS i JS d'altres usuaris",
 'right-editusercss' => "Editar els fitxers de configuració CSS d'altres usuaris",
 'right-edituserjs' => "Editar els fitxers de configuració JS d'altres usuaris",
+'right-viewmywatchlist' => 'Mostra la llista de seguiment pròpia',
+'right-editmyoptions' => 'Edita les pròpies preferències',
 'right-rollback' => "Revertir ràpidament l'últim editor d'una pàgina particular",
 'right-markbotedits' => 'Marcar les reversions com a edicions de bot',
 'right-noratelimit' => "No veure's afectat pels límits d'accions",
@@ -1571,6 +1573,10 @@ Ha de tenir com a molt {{PLURAL:$1|un caràcter|$1 caràcters}}.',
 'action-userrights-interwiki' => "modificar permisos d'usuari en altres wikis",
 'action-siteadmin' => 'bloquejar o desbloquejar la base de dades',
 'action-sendemail' => 'enviar missatges de correu',
+'action-editmywatchlist' => 'edita la llista de seguiment',
+'action-viewmywatchlist' => 'mostra la llista de seguiment',
+'action-viewmyprivateinfo' => 'mostra la informació personal',
+'action-editmyprivateinfo' => 'edita la informació personal',
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|canvi|canvis}}',
@@ -1861,6 +1867,7 @@ Si filtreu per usuari només es mostraran els fitxers la versió més recent del
 'listfiles_size' => 'Mida (octets)',
 'listfiles_description' => 'Descripció',
 'listfiles_count' => 'Versions',
+'listfiles-show-all' => 'Inclou versions antigues de les imatges',
 'listfiles-latestversion' => 'Versió actual',
 'listfiles-latestversion-yes' => 'Sí',
 
@@ -1961,6 +1968,8 @@ Potser voleu modificar-ne la descripció en la seva [$2 pàgina de descripció].
 'randomincategory' => 'Pàgina aleatòria en la categoria',
 'randomincategory-invalidcategory' => '«$1» no és un nom de categoria vàlid.',
 'randomincategory-nopages' => 'No hi ha pàgines a la categoria [[:Category:$1|$1]].',
+'randomincategory-selectcategory' => "Obté una pàgina a l'atzar de la categoria: $1 $2.",
+'randomincategory-selectcategory-submit' => 'Vés-hi',
 
 # Random redirect
 'randomredirect' => "Redirecció a l'atzar",
@@ -2820,6 +2829,8 @@ En el darrer cas, podeu fer servir un enllaç com ara [[{{#Special:Export}}/{{Me
 'thumbnail-more' => 'Amplia',
 'filemissing' => 'Fitxer inexistent',
 'thumbnail_error' => "S'ha produït un error en crear la miniatura: $1",
+'thumbnail_error_remote' => "Missatge d'error de $1:
+$2",
 'djvu_page_error' => "La pàgina DjVu està fora de l'abast",
 'djvu_no_xml' => "No s'ha pogut recollir l'XML per al fitxer DjVu",
 'thumbnail-temp-create' => "No s'ha pogut creat el fitxer de miniatura temporal",
@@ -3768,9 +3779,14 @@ Amb aquest programa heu d'haver rebut [{{SERVER}}{{SCRIPTPATH}}/COPYING una còp
 'version-entrypoints-header-url' => 'URL',
 
 # Special:Redirect
+'redirect' => 'Redirigeix per fitxer, usuari o ID de la revisió',
+'redirect-legend' => 'Redirigeix a un fitxer o a una pàgina',
 'redirect-submit' => 'Vés-hi',
+'redirect-lookup' => 'Consulta:',
 'redirect-value' => 'Valor:',
 'redirect-user' => "ID d'usuari",
+'redirect-revision' => 'Revisió de la pàgina',
+'redirect-file' => 'Nom del fitxer',
 'redirect-not-exists' => "No s'ha trobat el valor",
 
 # Special:FileDuplicateSearch
@@ -3821,6 +3837,7 @@ Amb aquest programa heu d'haver rebut [{{SERVER}}{{SCRIPTPATH}}/COPYING una còp
 'tags' => 'Etiquetes de canvi vàlides',
 'tag-filter' => "Filtre d'[[Special:Tags|etiquetes]]:",
 'tag-filter-submit' => 'Filtra',
+'tag-list-wrapper' => '([[Special:Tags|{{PLURAL:$1|Etiqueta|Etiquetes}}]]: $2)',
 'tags-title' => 'Etiquetes',
 'tags-intro' => 'Aquesta pàgina llista les etiquetes amb les què el programari pot marcar una modificació, i llur significat.',
 'tags-tag' => "Nom de l'etiqueta",
@@ -3847,6 +3864,7 @@ Amb aquest programa heu d'haver rebut [{{SERVER}}{{SCRIPTPATH}}/COPYING una còp
 'dberr-problems' => 'Ho sentim. Aquest lloc web està experimentant dificultats tècniques.',
 'dberr-again' => 'Intenteu esperar uns minuts i tornar a carregar.',
 'dberr-info' => '(No es pot contactar amb el servidor de dades: $1)',
+'dberr-info-hidden' => '(No es pot contactar amb el servidor de la base de dades)',
 'dberr-usegoogle' => 'Podeu intentar fer la cerca via Google mentrestant.',
 'dberr-outofdate' => 'Tingueu en compte que la seva indexació del nostre contingut pot no estar actualitzada.',
 'dberr-cachederror' => 'A continuació hi ha una còpia emmagatzemada de la pàgina demanada, que pot no estar actualitzada.',

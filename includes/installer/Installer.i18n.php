@@ -15358,8 +15358,8 @@ Sprawdź plik php.ini i upewnij się, że <code>session.save_path</code> wskazuj
 	'config-help-restart' => 'Czy chcesz usunąć wszystkie zapisane dane i uruchomić ponownie proces instalacji?',
 	'config-restart' => 'Tak, zacznij od nowa',
 	'config-welcome' => '=== Sprawdzenie środowiska instalacji ===
-Wykonywane są podstawowe testy sprawdzające czy to środowisko jest odpowiednie dla instalacji MediaWiki.
-Jeśli potrzebujesz pomocy podczas instalacji załącz wyniki tych testów.',
+Teraz zostaną wykonane podstawowe testy sprawdzające czy to środowisko jest odpowiednie dla instalacji MediaWiki.
+Jeśli potrzebujesz pomocy podczas instalacji, załącz wyniki tych testów.',
 	'config-copyright' => "=== Prawa autorskie i warunki użytkowania ===
 
 $1

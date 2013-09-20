@@ -430,7 +430,7 @@ $messages = array(
 'category_header' => 'Stranice u kategoriji „$1“',
 'subcategories' => 'Potkategorije',
 'category-media-header' => 'Datoteke u kategoriji „$1“',
-'category-empty' => "''Ova kategorija trenutno ne sadrži stranice ili datoteke.''",
+'category-empty' => "<div style=\"margin:2em 1em 0 1em; padding:0.5em; border:1px solid #AAA; text-align:center;\">''Ova kategorija trenutno ne sadrži stranice ili datoteke.''</div>",
 'hidden-categories' => '{{PLURAL:$1|Sakrivena kategorija|Sakrivene kategorije}}',
 'hidden-category-category' => 'Sakrivene kategorije',
 'category-subcat-count' => '{{PLURAL:$2|Ova kategorija sadrži samo sledeću potkategoriju.|Ova kategorija ima {{PLURAL:$1|sledeću potkategoriju|sledeće $1 potkategorije|sledećih $1 potkategorija}}, od ukupno $2.}}',

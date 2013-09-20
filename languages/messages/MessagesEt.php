@@ -2180,7 +2180,7 @@ Igal real on ära toodud esimene ja teine ümbersuunamisleht ning samuti teise �
 'shortpages' => 'Lühikesed leheküljed',
 'longpages' => 'Pikad leheküljed',
 'deadendpages' => 'Edasipääsuta leheküljed',
-'deadendpagestext' => 'Järgmised leheküljed ei viita ühelegi teisele viki leheküljele.',
+'deadendpagestext' => 'Järgmised leheküljed ei viita ühelegi teisele {{GRAMMAR:genitive|{{SITENAME}}}} leheküljele.',
 'protectedpages' => 'Kaitstud leheküljed',
 'protectedpages-indef' => 'Ainult määramata ajani kaitstud',
 'protectedpages-cascade' => 'Ainult kaskaadkaitsega',

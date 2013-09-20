@@ -289,7 +289,7 @@ $messages = array(
 'tog-extendwatchlist' => 'Proširi spisak praćenja za pogled svih izmjena, ne samo nedavnih',
 'tog-usenewrc' => 'Grupiraj izmjene po stranicama sa nedavnih izmjena i praćenih članaka',
 'tog-numberheadings' => 'Automatski numeriši podnaslove',
-'tog-showtoolbar' => 'Prikaži dugmiće za izmjene (JavaScript)',
+'tog-showtoolbar' => 'Prikaži traku s alatkama za uređivanje',
 'tog-editondblclick' => 'Izmijeni stranice dvostrukim klikom',
 'tog-editsection' => 'Omogući da mijenjam pojedinačne odjeljke putem [uredi] linka',
 'tog-editsectiononrightclick' => 'Uključite uređivanje odjeljka sa pritiskom na desno dugme miša u naslovu odjeljka',
@@ -425,7 +425,7 @@ $messages = array(
 'newwindow' => '(otvara se u novom prozoru)',
 'cancel' => 'Poništite',
 'moredotdotdot' => 'Još...',
-'morenotlisted' => 'Više nije prikazano...',
+'morenotlisted' => 'Ovaj spisak nije kompletan.',
 'mypage' => 'Korisnička stranica',
 'mytalk' => 'Razgovor',
 'anontalk' => 'Razgovor za ovu IP adresu',
@@ -1968,8 +1968,7 @@ Možda možete pokušati kada bude manje opterećenje.',
 'upload_source_file' => ' (datoteka na Vašem računaru)',
 
 # Special:ListFiles
-'listfiles-summary' => 'Ova posebna stranica prikazuje sve postavljene datoteke.
-Kada je filtrirana od strane korisnika, prikazane su samo datoteke ako je korisnik postavio posljednju verziju te datoteke.',
+'listfiles-summary' => 'Ova posebna stranica prikazuje sve postavljene datoteke.',
 'listfiles_search_for' => 'Traži medije po imenu:',
 'imgfile' => 'datoteka',
 'listfiles' => 'Spisak slika',
