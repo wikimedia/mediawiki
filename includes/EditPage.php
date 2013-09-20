@@ -1493,7 +1493,7 @@ class EditPage {
 			wfProfileOut( __METHOD__ );
 			return $status;
 		}
-		if ( $wgUser->pingLimiter() ) {
+		if ( $wgUser->pingLimiter() || $wgUser->pingLimiter( 'linkpurge', 0 ) ) {
 			$status->fatal( 'actionthrottledtext' );
 			$status->value = self::AS_RATE_LIMITED;
 			wfProfileOut( __METHOD__ . '-checks' );
@@ -1771,6 +1771,10 @@ class EditPage {
 		}
 
 		$result['nullEdit'] = $doEditStatus->hasMessage( 'edit-no-change' );
+		if ( $result['nullEdit'] ) {
+			// We don't know if it was a null edit until now, so increment here
+			$wgUser->pingLimiter( 'linkpurge' );
+		}
 		$result['redirect'] = $content->isRedirect();
 		$this->updateWatchlist();
 		wfProfileOut( __METHOD__ );

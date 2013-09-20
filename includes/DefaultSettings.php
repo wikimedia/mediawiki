@@ -4653,6 +4653,13 @@ $wgRateLimits = array(
 	'emailuser' => array(
 		'user' => null,
 	),
+	'linkpurge' => array(
+		'anon' => null,
+		'user' => null,
+		'newbie' => null,
+		'ip' => null,
+		'subnet' => null,
+	),
 );
 
 /**
