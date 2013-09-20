@@ -90,10 +90,11 @@ class LinkFilter {
 	 */
 	public static function makeLikeArray( $filterEntry, $prot = 'http://' ) {
 		$db = wfGetDB( DB_MASTER );
+		$entryNoStar = $filterEntry;
 		if ( substr( $filterEntry, 0, 2 ) == '*.' ) {
 			$subdomains = true;
-			$filterEntry = substr( $filterEntry, 2 );
-			if ( $filterEntry == '' ) {
+			$entryNoStar = substr( $filterEntry, 2 );
+			if ( $entryNoStar == '' ) {
 				// We don't want to make a clause that will match everything,
 				// that could be dangerous
 				return false;
@@ -104,45 +105,39 @@ class LinkFilter {
 		// No stray asterisks, that could cause confusion
 		// It's not simple or efficient to handle it properly so we don't
 		// handle it at all.
-		if ( strpos( $filterEntry, '*' ) !== false ) {
+		if ( strpos( $entryNoStar, '*' ) !== false ) {
 			return false;
 		}
-		$slash = strpos( $filterEntry, '/' );
-		if ( $slash !== false ) {
-			$path = substr( $filterEntry, $slash );
-			$host = substr( $filterEntry, 0, $slash );
+		// Use wfMakeUrlIndexes to be consistent with the logic used to
+		// munge the links on their way into the database.  It has a
+		// funny way of handling mailto links, so we work around it.
+		if ( $prot == 'mailto:' && !strpos( $filterEntry, '@' ) ) {
+			$filterEntry = '@' . $filterEntry;
+			$mailtoDomain = true;
 		} else {
-			$path = '/';
-			$host = $filterEntry;
+			$mailtoDomain = false;
 		}
-		// Reverse the labels in the hostname, convert to lower case
-		// For emails reverse domainpart only
-		if ( $prot == 'mailto:' && strpos( $host, '@' ) ) {
-			// complete email address
-			$mailparts = explode( '@', $host );
-			$domainpart = strtolower( implode( '.', array_reverse( explode( '.', $mailparts[1] ) ) ) );
-			$host = $domainpart . '@' . $mailparts[0];
-			$like = array( "$prot$host", $db->anyString() );
-		} elseif ( $prot == 'mailto:' ) {
-			// domainpart of email address only. do not add '.'
-			$host = strtolower( implode( '.', array_reverse( explode( '.', $host ) ) ) );
-			$like = array( "$prot$host", $db->anyString() );
-		} else {
-			$host = strtolower( implode( '.', array_reverse( explode( '.', $host ) ) ) );
-			if ( substr( $host, -1, 1 ) !== '.' ) {
-				$host .= '.';
-			}
-			$like = array( "$prot$host" );
-
-			if ( $subdomains ) {
-				$like[] = $db->anyString();
-			}
-			if ( !$subdomains || $path !== '/' ) {
-				$like[] = $path;
-				$like[] = $db->anyString();
+		$munged = wfMakeUrlIndexes( $prot . $filterEntry )[0];
+		if ( $mailtoDomain ) {
+			$munged = str_replace( '.*@', '*', $munged );
+			$munged = str_replace( '@.', '@', $munged );
+		}
+		$munged = str_replace( '*.', '*', $munged );
+		// Preserve original trimming of bare '/' path if url
+		// had no slashes or just one at the end.
+		if ( $subdomains && substr( $munged, -1, 1 ) == '/' ) {
+			$slash = strpos( $filterEntry, '/' );
+			if ( $slash === false || $slash == strlen( $filterEntry ) - 1 ) {
+				$munged = substr( $munged, 0, strlen( $munged ) - 1 );
 			}
 		}
-		return $like;
+		$parts = explode( '*', $munged );
+		// Seems like we could just use the first return statement
+		// and get rid of keepOneWildcard. 
+		if ( count( $parts ) == 1 ) {
+			return array ( $parts[0], $db->anyString() );
+		}
+		return array ( $parts[0], $db->anyString(), $parts[1], $db->anyString() );
 	}
 
 	/**
