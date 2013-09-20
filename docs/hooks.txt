@@ -1879,6 +1879,7 @@ $action : Action being performed
 &$result : Whether or not the action should be prevented
 Change $result and return false to give a definitive answer, otherwise
 the built-in rate limiting checks are used, if enabled.
+$incrBy: Amount to increment counter by
 
 'PlaceNewSection': Override placement of new sections. Return false and put the
 merged text into $text to override the default behavior.

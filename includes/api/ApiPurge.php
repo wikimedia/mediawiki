@@ -84,7 +84,7 @@ class ApiPurge extends ApiBase {
 			$r['purged'] = '';
 
 			if ( $forceLinkUpdate || $forceRecursiveLinkUpdate ) {
-				if ( !$this->getUser()->pingLimiter() ) {
+				if ( !$this->getUser()->pingLimiter( 'linkpurge' ) ) {
 					global $wgEnableParserCache;
 
 					$popts = $page->makeParserOptions( 'canonical' );
