@@ -213,6 +213,8 @@ production.
   against allowed proxy lists.
 * Add deferrable update support for callback/closure
 * Add TitleMove hook before page renames
+* Added meta=repoinfo API module for getting information about foreign image
+  repositories, and related ForeignAPIRepo methods getInfo and getApiUrl.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
