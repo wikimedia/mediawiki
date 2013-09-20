@@ -54,6 +54,8 @@ production.
   $wgRCFeeds configuration array. $wgRCFeeds makes both the format and
   destination of recent change notifications customizable, and allows for
   multiple destinations to be specified.
+* (bug 53862) portal-url, currentevents-url and helppage have been removed from the
+  default Sidebar.
 
 === New features in 1.22 ===
 * (bug 44525) mediawiki.jqueryMsg can now parse (whitelisted) HTML elements and attributes.
