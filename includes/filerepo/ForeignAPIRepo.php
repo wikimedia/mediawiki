@@ -81,6 +81,14 @@ class ForeignAPIRepo extends FileRepo {
 	}
 
 	/**
+	 * @return string
+	 * @since 1.22
+	 */
+	function getApiUrl() {
+		return $this->mApiBase;
+	}
+
+	/**
 	 * Per docs in FileRepo, this needs to return false if we don't support versioned
 	 * files. Well, we don't.
 	 *
@@ -414,6 +422,18 @@ class ForeignAPIRepo extends FileRepo {
 	 */
 	public static function getUserAgent() {
 		return Http::userAgent() . " ForeignAPIRepo/" . self::VERSION;
+	}
+
+	/**
+	 * Get information about the repo - overrides/extends the parent
+	 * class's information.
+	 * @return array
+	 * @since 1.22
+	 */
+	function getInfo() {
+		$info = parent::getInfo();
+		$info['apiurl'] = $this->getApiUrl();
+		return $info;
 	}
 
 	/**
