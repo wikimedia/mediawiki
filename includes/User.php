@@ -1489,9 +1489,10 @@ class User {
 	 * last-hit counters will be shared across wikis.
 	 *
 	 * @param string $action Action to enforce; 'edit' if unspecified
+	 * @param integer $incrBy Amount to increment counter by [defaults to 1]
 	 * @return bool True if a rate limiter was tripped
 	 */
-	public function pingLimiter( $action = 'edit' ) {
+	public function pingLimiter( $action = 'edit', $incrBy = 1 ) {
 		// Call the 'PingLimiter' hook
 		$result = false;
 		if ( !wfRunHooks( 'PingLimiter', array( &$this, $action, &$result ) ) ) {
@@ -1585,7 +1586,7 @@ class User {
 				wfDebug( __METHOD__ . ": adding record for $key $summary\n" );
 				$wgMemc->add( $key, 0, intval( $period ) ); // first ping
 			}
-			$wgMemc->incr( $key );
+			$wgMemc->incr( $key, $incrBy );
 		}
 
 		wfProfileOut( __METHOD__ );
