@@ -1716,6 +1716,22 @@ class FileRepo {
 	 * @throws MWException
 	 */
 	protected function assertWritableRepo() {}
+
+
+	/**
+	 * Return information about the repository.
+	 *
+	 * @return array
+	 * @since 1.22
+	 */
+	public function getInfo() {
+		return array(
+			'name' => $this->getName(),
+			'displayname' => $this->getDisplayName(),
+			'rootUrl' => $this->getRootUrl(),
+			'local' => $this->isLocal(),
+		);
+	}
 }
 
 /**
