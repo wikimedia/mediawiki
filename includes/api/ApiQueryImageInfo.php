@@ -43,13 +43,28 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	}
 
 	public function execute() {
+		global $wgForeignFileRepos;
+
 		$params = $this->extractRequestParams();
+		$allowed = $this->getAllowedParams();
+
+		$returnRepos = array_search( 'repo', $params['prop'] );
+		$allRepos = array();
+
+		if ( $returnRepos !== false ) {
+			unset( $params['prop'][$returnRepos] );
+			$returnRepos = true;
+			if ( count( $params['prop'] === 0 ) ) {
+				$params['prop'] = explode( '|', $allowed['prop'][ApiBase::PARAM_DFLT] );
+			}
+		}
 
 		$prop = array_flip( $params['prop'] );
 
 		$scale = $this->getScale( $params );
 
 		$pageIds = $this->getPageSet()->getAllTitlesByNamespace();
+
 		if ( !empty( $pageIds[NS_FILE] ) ) {
 			$titles = array_keys( $pageIds[NS_FILE] );
 			asort( $titles ); // Ensure the order is always the same
@@ -111,10 +126,46 @@ class ApiQueryImageInfo extends ApiQueryBase {
 					break;
 				}
 
+				$repo = $img->getRepo();
+				$repoName = $repo->getName();
+
 				$fit = $result->addValue(
 					array( 'query', 'pages', intval( $pageId ) ),
-					'imagerepository', $img->getRepoName()
+					'imagerepository', $repoName
 				);
+
+				if ( $returnRepos ) {
+					$index = array_search( $repo, $wgForeignFileRepos );
+
+					if ( $index === false ) {
+						// Backup - make sure we don't collide with valid keys.
+						$index = count( $wgForeignFileRepos ) + count( $allRepos );
+					}
+
+					if ( !isset( $allRepos[$index] ) ) {
+						$repoInfo = array(
+							'name' => $repoName,
+							'displayname' => $repo->getDisplayName(),
+							'rootUrl' => $repo->getRootUrl(),
+						);
+
+						if ( $repo->isLocal() ) {
+							$repoInfo['local'] = true;
+						}
+
+						if ( get_class( $repo ) === 'ForeignAPIRepo' || is_subclass_of( $repo, 'ForeignAPIRepo' ) ) {
+							$repoInfo['apiurl'] = $repo->getApiUrl();
+						}
+
+						$allRepos[$index] = $repoInfo;
+
+						$fit = $fit && $result->addValue(
+							array( 'query', 'pages', intval( $pageId ) ),
+							'repositoryid', $index
+						);
+					}
+				}
+
 				if ( !$fit ) {
 					if ( count( $pageIds[NS_FILE] ) == 1 ) {
 						// The user is screwed. imageinfo can't be solely
@@ -196,6 +247,11 @@ class ApiQueryImageInfo extends ApiQueryBase {
 					break;
 				}
 			}
+		}
+
+		if ( $returnRepos === true ) {
+			$result->setIndexedTagName( $allRepos, 'repo' );
+			$result->addValue( 'query', 'repos', $allRepos );
 		}
 	}
 
@@ -567,6 +623,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			'archivename' =>    ' archivename   - Adds the file name of the archive version for non-latest versions',
 			'bitdepth' =>       ' bitdepth      - Adds the bit depth of the version',
 			'uploadwarning' =>  ' uploadwarning - Used by the Special:Upload page to get information about an existing file. Not intended for use outside MediaWiki core',
+			'repo' =>           ' repo          - Returns information about file repositories.',
 		);
 	}
 

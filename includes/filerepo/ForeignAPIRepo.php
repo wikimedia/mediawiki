@@ -81,6 +81,13 @@ class ForeignAPIRepo extends FileRepo {
 	}
 
 	/**
+	 * @return string
+	 */
+	function getApiUrl() {
+		return $this->mApiBase;
+	}
+
+	/**
 	 * Per docs in FileRepo, this needs to return false if we don't support versioned
 	 * files. Well, we don't.
 	 *
