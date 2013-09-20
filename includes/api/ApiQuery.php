@@ -102,6 +102,7 @@ class ApiQuery extends ApiBase {
 		'allmessages' => 'ApiQueryAllMessages',
 		'siteinfo' => 'ApiQuerySiteinfo',
 		'userinfo' => 'ApiQueryUserInfo',
+		'filerepoinfo' => 'ApiQueryFileRepoInfo',
 	);
 
 	/**
