@@ -574,7 +574,7 @@ $wgCacheSharedUploads = true;
 
 /**
  * Allow for upload to be copied from an URL.
- * The timeout for copy uploads is set by $wgHTTPTimeout.
+ * The timeout for copy uploads is set by $wgCopyUploadTimeout.
  * You have to assign the user right 'upload_by_url' to a user group, to use this.
  */
 $wgAllowCopyUploads = false;
