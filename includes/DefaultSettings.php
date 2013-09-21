@@ -4896,7 +4896,7 @@ $wgRedactedFunctionArguments = array(
 	'DatabaseBase::open' => 2,
 
 	'SpecialChangeEmail::attemptChange' => 1,
-	'SpecialChangePassword::attemptReset' => 0,
+	'SpecialChangePassword::attemptReset' => array( 0, 1 ),
 
 	'User::setPassword' => 0,
 	'User::setInternalPassword' => 0,
