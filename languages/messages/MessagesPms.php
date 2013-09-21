@@ -666,10 +666,10 @@ A dovrìa felo si për asar chiel a l'ha partagiaje con cheidun o si sò cont a 
 'nowiki_sample' => 'Che a buta ël test brut ambelessì',
 'nowiki_tip' => 'Lassé un tòch ëd test fòra dla sintassi dla wiki',
 'image_sample' => 'Esempi.jpg',
-'image_tip' => 'Figura anglobà ant ël test',
+'image_tip' => 'Archivi anglobà',
 'media_sample' => 'Esempi.ogg',
 'media_tip' => "Anliura a n'archivi multimedial",
-'sig_tip' => 'Firma butand data e ora',
+'sig_tip' => "Soa signadura con la data e l'ora",
 'hr_tip' => 'Riga orisontal (da dovresse nen tròp soèns)',
 
 # Edit pages

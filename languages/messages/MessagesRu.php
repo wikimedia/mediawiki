@@ -866,7 +866,7 @@ $2',
 'createacct-another-username-ph' => 'Введите имя вашей учётной записи',
 'yourpassword' => 'Пароль:',
 'userlogin-yourpassword' => 'Пароль',
-'userlogin-yourpassword-ph' => 'Введите ваш пароль',
+'userlogin-yourpassword-ph' => 'Введите свой пароль',
 'createacct-yourpassword-ph' => 'Введите пароль',
 'yourpasswordagain' => 'Повторный набор пароля:',
 'createacct-yourpasswordagain' => 'Подтвердите пароль',
@@ -1067,6 +1067,7 @@ $2
 'resettokens-legend' => 'Сбросить токены',
 'resettokens-tokens' => 'Токены:',
 'resettokens-token-label' => '$1 (текущее значение: $2)',
+'resettokens-watchlist-token' => 'Токен для веб-канала (Atom/RSS)  [[Special:Watchlist|изменений страниц в вашем списке наблюдения]]',
 'resettokens-done' => 'Токены сброшены.',
 'resettokens-resetbutton' => 'Сбросить выбранные токены',
 
@@ -1605,6 +1606,8 @@ $1",
 'recentchangesdays-max' => '(не более $1 {{PLURAL:$1|дня|дней|дней}})',
 'recentchangescount' => 'Количество правок, отображаемое по умолчанию:',
 'prefs-help-recentchangescount' => 'Включает свежие правки, истории страниц, журналы.',
+'prefs-help-watchlist-token2' => 'Это секретный ключ для веб-канала вашего списка наблюдений.
+Любой, кто знает его, сможет читать ваш список наблюдения, поэтому не сообщайте его другим. [[Special:ResetTokens|Нажмите здесь, если вам нужно сбросить его]].',
 'savedprefs' => 'Ваши настройки сохранены.',
 'timezonelegend' => 'Часовой пояс:',
 'localtime' => 'Местное время:',
@@ -4404,8 +4407,13 @@ MediaWiki распространяется в надежде, что она бу
 'rotate-comment' => 'Изображение повёрнуто на $1 градус{{PLURAL:$1||а|ов}} по часовой стрелке',
 
 # Limit report
+'limitreport-cputime' => 'Использование времени процессора',
+'limitreport-walltime' => 'Использование в режиме реального времени',
+'limitreport-ppgeneratednodes' => 'Количество сгенерированных препроцессором узлов',
 'limitreport-postexpandincludesize-value' => '$1/$2 байт',
 'limitreport-templateargumentsize' => 'Размер аргумента шаблона',
 'limitreport-templateargumentsize-value' => '$1/$2 байт',
+'limitreport-expansiondepth' => 'Наибольшая глубина расширения',
+'limitreport-expensivefunctioncount' => 'Количество «дорогих» функций анализатора',
 
 );

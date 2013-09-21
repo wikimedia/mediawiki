@@ -810,6 +810,16 @@ Contrasenya temporal: $2",
 'changeemail-submit' => 'Canvia de correu electrònic',
 'changeemail-cancel' => 'Cancel·la',
 
+# Special:ResetTokens
+'resettokens' => 'Reinicia els testimonis',
+'resettokens-no-tokens' => 'No hi ha testimonis per reiniciar.',
+'resettokens-legend' => 'Reinicia els testimonis',
+'resettokens-tokens' => 'Testimonis:',
+'resettokens-token-label' => '$1 (valor actual: $2)',
+'resettokens-watchlist-token' => 'Testimoni del canal web (Atom/RSS) dels [[Special:Watchlist|canvis a la llista de seguiment]]',
+'resettokens-done' => "S'han reiniciat els testimonis.",
+'resettokens-resetbutton' => 'Reinicia els testimonis seleccionats',
+
 # Edit page toolbar
 'bold_sample' => 'Text en negreta',
 'bold_tip' => 'Text en negreta',

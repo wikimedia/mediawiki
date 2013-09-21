@@ -1428,6 +1428,7 @@ Tindakan ini tidak boleh dibatalkan.',
 'prefs-displaysearchoptions' => 'Pilihan paparan',
 'prefs-displaywatchlist' => 'Pilihan paparan',
 'prefs-diffs' => 'Beza',
+'prefs-help-prefershttps' => 'Keutamaan inu akan berkuatkuasa pada lain kali anda log masuk.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'Alamat e-mel adalah sah',
@@ -3916,6 +3917,7 @@ Anda patut telah menerima [{{SERVER}}{{SCRIPTPATH}}/COPYING sebuah salinan bagi 
 'dberr-problems' => 'Harap maaf. Tapak web ini dilanda masalah teknikal.',
 'dberr-again' => 'Cuba tunggu selama beberapa minit dan muat semula.',
 'dberr-info' => '(Tidak dapat menghubungi pelayan pangkalan data: $1)',
+'dberr-info-hidden' => '(Pelayan pangkalan data tidak dapat dihubungi)',
 'dberr-usegoogle' => 'Buat masa ini, anda boleh cuba mencari melalui Google.',
 'dberr-outofdate' => 'Sila ambil perhatian bahawa indeks mereka bagi kandungan kami mungkin sudah ketinggalan zaman.',
 'dberr-cachederror' => 'Yang berikut ialah salinan bagi laman yang diminta yang diambil daripada cache, dan mungkin bukan yang terkini.',
@@ -4052,6 +4054,7 @@ Ataupun, anda boleh menggunakan borang yang mudah di bawah. Ulasan anda akan dic
 'rotate-comment' => 'Imej diputar sebanyak $1 {{PLURAL:$1|darjah|darjah}} mengikut arah jam',
 
 # Limit report
+'limitreport-title' => 'Data pemprofilan penghurai:',
 'limitreport-cputime' => 'Penggunaan masa CPU',
 'limitreport-cputime-value' => '$1 saat',
 'limitreport-walltime' => 'Penggunaan masa nyata',

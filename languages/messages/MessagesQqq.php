@@ -8341,7 +8341,7 @@ Parameters:
 * $1 - the number of years',
 'ago' => 'Phrase for indicating how long ago something happened. Parameters:
 * $1 - some kind of timestamp
-{{Identical|$1 ago}}',
+{{Identical|Ago}}',
 'just-now' => 'Phrase for indicating something happened just now.',
 
 # Human-readable timestamps
