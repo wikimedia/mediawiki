@@ -938,6 +938,7 @@ $wgAutoloadLocalClasses = array(
 	'IPBlockForm' => 'includes/specials/SpecialBlock.php',
 	'LinkSearchPage' => 'includes/specials/SpecialLinkSearch.php',
 	'ListredirectsPage' => 'includes/specials/SpecialListredirects.php',
+	'ListDuplicatedFilesPage' => 'includes/specials/SpecialListDuplicatedFiles.php',
 	'LoginForm' => 'includes/specials/SpecialUserlogin.php',
 	'LonelyPagesPage' => 'includes/specials/SpecialLonelypages.php',
 	'LongPagesPage' => 'includes/specials/SpecialLongpages.php',
