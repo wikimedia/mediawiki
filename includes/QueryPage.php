@@ -77,6 +77,7 @@ abstract class QueryPage extends SpecialPage {
 				array( 'DeadendPagesPage', 'Deadendpages' ),
 				array( 'DoubleRedirectsPage', 'DoubleRedirects' ),
 				array( 'FileDuplicateSearchPage', 'FileDuplicateSearch' ),
+				array( 'ListDuplicatedFilesPage', 'ListDuplicatedFiles'),
 				array( 'LinkSearchPage', 'LinkSearch' ),
 				array( 'ListredirectsPage', 'Listredirects' ),
 				array( 'LonelyPagesPage', 'Lonelypages' ),
