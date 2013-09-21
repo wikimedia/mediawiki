@@ -918,6 +918,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * the provided code.
 	 *
 	 * @since 1.21
+	 * @deprecated since 1.22 Use setExpectedException
 	 *
 	 * @param callable $code
 	 * @param string $expected
