@@ -877,11 +877,11 @@ class SearchResult {
 	 * @return String: highlighted text snippet, null (and not '') if not supported
 	 */
 	function getTextSnippet( $terms ) {
-		global $wgUser, $wgAdvancedSearchHighlighting;
+		global $wgAdvancedSearchHighlighting;
 		$this->initText();
 
 		// TODO: make highliter take a content object. Make ContentHandler a factory for SearchHighliter.
-		list( $contextlines, $contextchars ) = SearchEngine::userHighlightPrefs( $wgUser );
+		list( $contextlines, $contextchars ) = SearchEngine::userHighlightPrefs();
 		$h = new SearchHighlighter();
 		if ( $wgAdvancedSearchHighlighting ) {
 			return $h->highlightText( $this->mText, $terms, $contextlines, $contextchars );
