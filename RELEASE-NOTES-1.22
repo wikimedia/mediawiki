@@ -299,6 +299,8 @@ production.
 * (bug 26811) On DB error pages, server hostnames are now hidden when both
   $wgShowHostnames and $wgShowSQLErrors are false.
 * (bug 6200) line breaks in <blockquote> are handled like they are in <div>
+* Add Special:ListDuplicatedFiles cached query page to list all files with
+  duplicates.
 
 === API changes in 1.22 ===
 * (bug 25553) The JSON output formatter now leaves forward slashes unescaped
