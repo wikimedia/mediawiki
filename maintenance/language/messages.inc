@@ -1684,6 +1684,11 @@ $wgMessageStructure = array(
 		'listredirects',
 		'listredirects-summary',
 	),
+	'listduplicatedfiles' => array(
+		'listduplicatedfiles',
+		'listduplicatedfiles-summary',
+		'listduplicatedfiles-entry',
+	),
 	'unusedtemplates' => array(
 		'unusedtemplates',
 		'unusedtemplates-summary',
@@ -4066,6 +4071,7 @@ future releases. Also note that since each list value is wrapped in a unique
 	'mimesearch'          => 'MIME search',
 	'unwatchedpages'      => 'Unwatched pages',
 	'listredirects'       => 'List redirects',
+	'listduplicatedfiles' => 'List duplicated files special page',
 	'unusedtemplates'     => 'Unused templates',
 	'randompage'          => 'Random page',
 	'randomincategory'    => 'Random page in category',
