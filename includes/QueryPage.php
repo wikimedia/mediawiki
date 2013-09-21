@@ -38,6 +38,7 @@ $wgQueryPages = array(
 	array( 'DoubleRedirectsPage', 'DoubleRedirects' ),
 	array( 'FileDuplicateSearchPage', 'FileDuplicateSearch' ),
 	array( 'LinkSearchPage', 'LinkSearch' ),
+	array( 'ListDuplicatedFilesPage', 'ListDuplicatedFiles'),
 	array( 'ListredirectsPage', 'Listredirects' ),
 	array( 'LonelyPagesPage', 'Lonelypages' ),
 	array( 'LongPagesPage', 'Longpages' ),

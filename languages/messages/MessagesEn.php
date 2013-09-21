@@ -422,6 +422,7 @@ $specialPageAliases = array(
 	'Listfiles'                 => array( 'ListFiles', 'FileList', 'ImageList' ),
 	'Listgrouprights'           => array( 'ListGroupRights', 'UserGroupRights' ),
 	'Listredirects'             => array( 'ListRedirects' ),
+	'ListDuplicatedFiles'       => array( 'ListDuplicatedFiles', 'ListFileDuplicates' ),
 	'Listusers'                 => array( 'ListUsers', 'UserList' ),
 	'Lockdb'                    => array( 'LockDB' ),
 	'Log'                       => array( 'Log', 'Logs' ),
@@ -2615,6 +2616,10 @@ Input: contenttype/subtype, e.g. <code>image/jpeg</code>.',
 # List redirects
 'listredirects'         => 'List of redirects',
 'listredirects-summary' => '', # do not translate or duplicate this message to other languages
+
+'listduplicatedfiles' => 'List of files with duplicates',
+'listduplicatedfiles-summary' => 'This is a list of files where the most recent version of the file is a duplicate of the most recent version of some other file. Only local files are considered.',
+'listduplicatedfiles-entry' => '[[:File:$1|$1]] has [[$3|{{PLURAL:$2|a duplicate|$2 duplicates}}]].',
 
 # Unused templates
 'unusedtemplates'         => 'Unused templates',
