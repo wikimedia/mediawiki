@@ -231,6 +231,8 @@ class MysqlUpdater extends DatabaseUpdater {
 			// 1.22
 			array( 'doIwlinksIndexNonUnique' ),
 			array( 'addIndex', 'iwlinks', 'iwl_prefix_from_title',  'patch-iwlinks-from-title-index.sql' ),
+			array( 'addIndex', 'logging', 'log_user_text_type_time',  'patch-log_user_text_type_time_index.sql' ),
+			array( 'addIndex', 'logging', 'log_user_text_time',  'patch-log_user_text_time_index.sql' ),
 		);
 	}
 
