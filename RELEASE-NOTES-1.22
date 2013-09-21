@@ -219,6 +219,8 @@ production.
 * Add a variable (wgRedactedFunctionArguments) to redact the values sent as certain function
   parameters from exception stack traces.
 * Added {{REVISIONSIZE}} variable to get the current size of a revision.
+* (bug 6092) Add expensive parser functions {{REVISIONID:}}, {{REVISIONUSER:}}
+  and {{REVISIONTIMESTAMP:}} (with friends).
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
