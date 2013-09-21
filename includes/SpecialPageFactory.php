@@ -119,6 +119,7 @@ class SpecialPageFactory {
 		'FileDuplicateSearch'       => 'FileDuplicateSearchPage',
 		'Upload'                    => 'SpecialUpload',
 		'UploadStash'               => 'SpecialUploadStash',
+		'ListDuplicatedFiles'       => 'ListDuplicatedFilesPage',
 
 		// Data and tools
 		'Statistics'                => 'SpecialStatistics',
