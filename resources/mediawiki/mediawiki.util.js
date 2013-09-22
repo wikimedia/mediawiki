@@ -105,6 +105,7 @@
 				return util.$content;
 			} )();
 
+			mw.hook( 'wikipage.content' ).add( function () {
 			// Table of contents toggle
 			$tocTitle = $( '#toctitle' );
 			$tocToggleLink = $( '#togglelink' );
@@ -129,6 +130,7 @@
 					util.toggleToc( $tocToggleLink );
 				}
 			}
+			} );
 		},
 
 		/* Main body */
