@@ -694,11 +694,21 @@ EOT
 		$dbr = wfGetDB( DB_SLAVE );
 
 		return $dbr->select(
-			array( 'imagelinks', 'page' ),
-			array( 'page_namespace', 'page_title', 'page_is_redirect', 'il_to' ),
+			array( 'imagelinks', 'page', 'redirect' ),
+			array( 'page_namespace', 'page_title', 'rd_from', 'il_to' ),
 			array( 'il_to' => $target, 'il_from = page_id' ),
 			__METHOD__,
-			array( 'LIMIT' => $limit + 1, 'ORDER BY' => 'il_from', )
+			array( 'LIMIT' => $limit + 1, 'ORDER BY' => 'il_from', ),
+			array(
+				'redirect' => array(
+					'LEFT JOIN', array(
+						'rd_from = page_id',
+						'rd_namespace' => NS_FILE,
+						'rd_title' => $target,
+						'rd_interwiki = ' . $dbr->addQuotes( '' ) . ' OR rd_interwiki IS NULL'
+					)
+				)
+			)
 		);
 	}
 
@@ -710,7 +720,7 @@ EOT
 		$rows = array();
 		$redirects = array();
 		foreach ( $res as $row ) {
-			if ( $row->page_is_redirect ) {
+			if ( $row->rd_from ) {
 				$redirects[$row->page_title] = array();
 			}
 			$rows[] = $row;

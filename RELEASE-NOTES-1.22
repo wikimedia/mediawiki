@@ -299,6 +299,7 @@ production.
 * (bug 26811) On DB error pages, server hostnames are now hidden when both
   $wgShowHostnames and $wgShowSQLErrors are false.
 * (bug 6200) line breaks in <blockquote> are handled like they are in <div>
+* (bug 50488) Fix redirect detection on image page's "file usages" section.
 
 === API changes in 1.22 ===
 * (bug 25553) The JSON output formatter now leaves forward slashes unescaped
