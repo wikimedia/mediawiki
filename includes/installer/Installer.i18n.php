@@ -12330,7 +12330,7 @@ Kuckt Är php.ini no a vergewëssert Iech datt <code>session.save_path</code>  o
 	'config-restart' => 'Jo, neistarten',
 	'config-welcome' => "=== Iwwerpréifung vum Installatiounsenvironnement ===
 Et gi grondsätzlech Iwwerpréifunge gemaach fir ze kucken ob den Environnment gëeegent ass fir MediaWiki z'installéieren.
-Dir sollt d'Resultater vun dëser Iwwerpréifung ugi wann Dir während der Installatioun Hëllef braucht.", # Fuzzy
+Dir sollt d'Resultater vun dëser Iwwerpréifung ugi wann Dir während der Installatioun Hëllef frot wéi Dir D'Installatioun ofschléisse kënnt.",
 	'config-sidebar' => '* [//www.mediawiki.org MediaWiki Haaptsäit]
 * [//www.mediawiki.org/wiki/Help:Contents Benotzerguide]
 * [//www.mediawiki.org/wiki/Manual:Contents Guide fir Administrateuren]

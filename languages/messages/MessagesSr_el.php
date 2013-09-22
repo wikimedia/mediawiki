@@ -2007,7 +2007,7 @@ Probajte kasnije kada bude manje opterećenje.',
 # File description page
 'file-anchor-link' => 'Datoteka',
 'filehist' => 'Istorija datoteke',
-'filehist-help' => 'Kliknite na datum/vreme da vidite tadašnje izdanje datoteke.',
+'filehist-help' => 'Kliknite na datum/vreme da vidite tadašnju verziju datoteke.',
 'filehist-deleteall' => 'obriši sve',
 'filehist-deleteone' => 'obriši',
 'filehist-revert' => 'vrati',
@@ -3359,7 +3359,7 @@ Variants for Chinese language
 
 # Metadata
 'metadata' => 'Metapodaci',
-'metadata-help' => 'Ova datoteka sadrži dodatne podatke koji verovatno dolaze od digigalnih fotoaparata ili skenera.
+'metadata-help' => 'Ova datoteka sadrži dodatne podatke koji verovatno dolaze od digitalnog fotoaparata ili skenera.
 Ako je prvobitno stanje datoteke promenjeno, moguće je da neki detalji ne opisuju izmenjenu datoteku.',
 'metadata-expand' => 'Prikaži detalje',
 'metadata-collapse' => 'Sakrij detalje',

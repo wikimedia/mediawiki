@@ -1696,7 +1696,7 @@ Musí obsahovať menej ako $1 {{PLURAL:$1|znak|znaky|znakov}}.',
 'rc_categories_any' => 'akékoľvek',
 'rc-change-size-new' => '$1 {{PLURAL:$1|bajt|bajty|bajtov}} po zmene',
 'newsectionsummary' => '/* $1 */ nová sekcia',
-'rc-enhanced-expand' => 'Zobraziť podrobnosti (vyžaduje JavaScript)',
+'rc-enhanced-expand' => 'Zobraziť podrobnosti',
 'rc-enhanced-hide' => 'Skryť podrobnosti',
 'rc-old-title' => 'pôvodne vytvorené ako "$1"',
 
