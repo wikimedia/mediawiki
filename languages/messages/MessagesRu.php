@@ -4408,7 +4408,9 @@ MediaWiki распространяется в надежде, что она бу
 
 # Limit report
 'limitreport-cputime' => 'Использование времени процессора',
+'limitreport-cputime-value' => '$1 {{PLURAL:$1|секунда|секунды|секунд}}',
 'limitreport-walltime' => 'Использование в режиме реального времени',
+'limitreport-walltime-value' => '$1 {{PLURAL:$1|секунда|секунды|секунд}}',
 'limitreport-ppgeneratednodes' => 'Количество сгенерированных препроцессором узлов',
 'limitreport-postexpandincludesize-value' => '$1/$2 байт',
 'limitreport-templateargumentsize' => 'Размер аргумента шаблона',
