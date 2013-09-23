@@ -568,7 +568,7 @@ $1',
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Heqa {{SITENAME}}i de',
 'aboutpage' => 'Project:Heqdê cı',
-'copyright' => 'Zerrek bınê $1 dero.',
+'copyright' => 'Zerrekacı $1 bındı not biya.',
 'copyrightpage' => '{{ns:project}}:Heqa telifi',
 'currentevents' => 'Veng u vac',
 'currentevents-url' => 'Project:Veng u vac',
@@ -657,6 +657,7 @@ Seba lista pelanê xasanê vêrdeyan reca kena: [[Special:SpecialPages|{{int:spe
 # General errors
 'error' => 'Xırab',
 'databaseerror' => 'Xeta serveri',
+'databaseerror-query' => 'Perskerdış:$1',
 'databaseerror-function' => 'Fonksiyon: $1',
 'databaseerror-error' => 'Xırab: $1',
 'laggedslavemode' => 'Diqet: Pel de newe vıraşteyi belka çini .',
@@ -888,6 +889,7 @@ Bıne vındere u newe ra dest pê bıkere.',
 # Special:PasswordReset
 'passwordreset' => 'Parola reset ke',
 'passwordreset-text-one' => 'Na form de parola reset kerdış temamiye',
+'passwordreset-text-many' => '{{PLURAL:$1|Qande parola reset kerdışi cayanra taynın pırkeri}}',
 'passwordreset-legend' => 'Parola reset ke',
 'passwordreset-disabled' => 'Parola reset kerdış ena viki sera qefılneyayo.',
 'passwordreset-username' => 'Nameyê karberi:',
@@ -4341,10 +4343,15 @@ Ena sita dı newke xırabiya teknik esta.',
 'rotate-comment' => 'Resim heta sehata $1 {{PLURAL:$1|derece|derecey}} bi cerx',
 
 # Limit report
+'limitreport-title' => 'Agoznaye malumata profili:',
+'limitreport-cputime' => 'CPU dem karnayış',
 'limitreport-cputime-value' => '$1 {{PLURAL:$1|saniye|saniyeyan}}',
+'limitreport-walltime' => 'Raştay demdı bıkarn',
 'limitreport-walltime-value' => '$1 {{PLURAL:$1|saniye|saniyeyan}}',
 'limitreport-postexpandincludesize-value' => '$1/$2 bayt',
 'limitreport-templateargumentsize' => 'Ebata hacetandi şablonan',
 'limitreport-templateargumentsize-value' => '$1/$2 bayt',
+'limitreport-expansiondepth' => 'Tewr veşi herayina dergbiyayışi',
+'limitreport-expensivefunctioncount' => 'Amoriya fonksiyonde vay agozni',
 
 );

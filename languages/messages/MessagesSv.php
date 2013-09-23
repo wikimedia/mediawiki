@@ -23,6 +23,7 @@
  * @author Habjchen
  * @author Hangsna
  * @author Hannibal
+ * @author Haxpett
  * @author Jon Harald Søby
  * @author Jopparn
  * @author Kaganer
@@ -1355,6 +1356,7 @@ Se till att sidhistorikens kontinuitet behålls när du sammanfogar historik.',
 'mergehistory-comment' => 'Infogade [[:$1]] i [[:$2]]: $3',
 'mergehistory-same-destination' => 'Käll- och målsidor kan inte vara samma',
 'mergehistory-reason' => 'Anledning:',
+'mergehistory-revisionrow' => '$1($2) $3 . .$4 $5 $6',
 
 # Merge log
 'mergelog' => 'Sammanfogningslogg',

@@ -614,7 +614,7 @@ $1',
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Про {{grammar:accusative|{{SITENAME}}}}',
 'aboutpage' => 'Project:Про',
-'copyright' => 'Вміст доступний згідно з $1.',
+'copyright' => 'Вміст доступний на умовах $1, якщо не вказано інше.',
 'copyrightpage' => '{{ns:project}}:Авторське право',
 'currentevents' => 'Поточні події',
 'currentevents-url' => 'Project:Поточні події',

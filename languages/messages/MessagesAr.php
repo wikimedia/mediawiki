@@ -2525,7 +2525,7 @@ $1',
 'linksearch-error' => 'الكروت الخاصة يمكن أن تظهر فقط في بداية اسم المضيف.',
 
 # Special:ListUsers
-'listusersfrom' => 'اعرض المستخدمين بدءاً من:',
+'listusersfrom' => 'اعرض المستخدمين ابتداء من:',
 'listusers-submit' => 'اعرض',
 'listusers-noresult' => 'لم يتم إيجاد مستخدم.',
 'listusers-blocked' => '(ممنوع)',

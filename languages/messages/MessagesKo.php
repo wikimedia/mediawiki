@@ -4141,7 +4141,7 @@ $5
 #모든 정규 표현식은 이 줄 위에 넣어 주십시오. 그리고 이 줄은 그대로 두십시오.</pre>',
 
 # Special:Tags
-'tags' => '올바른 편집 태그',
+'tags' => '유효한 편집 태그',
 'tag-filter' => '[[Special:Tags|태그]] 필터:',
 'tag-filter-submit' => '필터',
 'tag-list-wrapper' => '([[Special:Tags|{{PLURAL:$1|태그}}]]: $2)',

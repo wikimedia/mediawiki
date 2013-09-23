@@ -564,7 +564,7 @@ $1',
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Tietoja {{GRAMMAR:elative|{{SITENAME}}}}',
 'aboutpage' => 'Project:Tietoja',
-'copyright' => 'Sisältö on käytettävissä lisenssillä $1.',
+'copyright' => 'Sisältö on käytettävissä lisenssillä $1, ellei toisin ole mainittu.',
 'copyrightpage' => '{{ns:project}}:Tekijänoikeudet',
 'currentevents' => 'Ajankohtaista',
 'currentevents-url' => 'Project:Ajankohtaista',

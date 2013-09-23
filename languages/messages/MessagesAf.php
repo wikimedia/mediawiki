@@ -19,6 +19,7 @@
  * @author Purodha
  * @author Reedy
  * @author SPQRobin
+ * @author Servien
  * @author Shirayuki
  * @author Spacebirdy
  * @author Xethron
@@ -1573,7 +1574,7 @@ As u dit verskaf, sal dit gebruik word om erkenning vir u werk te gee.',
 'action-edit' => 'hierdie bladsy te wysig nie',
 'action-createpage' => 'skep bladsye',
 'action-createtalk' => 'skep besprekingsblaaie',
-'action-createaccount' => 'skep die genruiker',
+'action-createaccount' => 'skep die gebruiker',
 'action-minoredit' => "merk die wysiging as 'n klein verandering",
 'action-move' => 'skuif die bladsy',
 'action-move-subpages' => 'skuif die bladsy met sy subbladsye',

@@ -359,7 +359,7 @@ $1',
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Um {{SITENAME}}',
 'aboutpage' => 'Project:Um',
-'copyright' => 'Innihald er tøkt undir $1.',
+'copyright' => 'Innihaldið er tøkt undir $1, um ikki annað er viðmerkt.',
 'copyrightpage' => '{{ns:project}}:Upphavsrættur',
 'currentevents' => 'Aktuellar hendingar',
 'currentevents-url' => 'Project:Aktuellar hendingar',

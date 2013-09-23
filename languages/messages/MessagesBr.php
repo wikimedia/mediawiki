@@ -210,7 +210,7 @@ $messages = array(
 'tog-shownumberswatching' => 'Diskouez an niver a lennerien',
 'tog-oldsig' => 'Ar sinadur zo evit poent :',
 'tog-fancysig' => 'Ober gant ar sinadur evel pa vefe wikitestenn (hep liamm emgefre)',
-'tog-uselivepreview' => 'Implijout Rakwelet prim (JavaScript) (taol-arnod)',
+'tog-uselivepreview' => 'Implijout Rakwelet prim (taol-arnod)',
 'tog-forceeditsummary' => 'Kemenn din pa ne skrivan netra er stern diverrañ',
 'tog-watchlisthideown' => "Kuzhat ma c'hemmoù er rollad evezhiañ",
 'tog-watchlisthidebots' => 'Kuzhat kemmoù ar botoù er rollad evezhiañ',
@@ -2008,6 +2008,8 @@ Marteze a-walc'h e fell deoc'h kemmañ an deskrivadur anezhi war ar [$2 bajenn d
 'statistics-users-active-desc' => "Implijerien o deus degaset da nebeutañ ur c'hemm {{PLURAL:$1|an deiz paseet|e-kerzh an $1 deiz diwezhañ}}",
 'statistics-mostpopular' => 'Pajennoù muiañ sellet',
 
+'pageswithprop' => 'Pajennoù gant ur perzh pajenn',
+'pageswithprop-legend' => 'Pajennoù gant ur perzh pajenn',
 'pageswithprop-prop' => 'Anv ar perzh :',
 'pageswithprop-submit' => 'Mont',
 
@@ -3919,7 +3921,7 @@ Sañset oc'h bezañ resevet [{{SERVER}}{{SCRIPTPATH}}/COPYING un eilskrid eus ar
 'logentry-delete-delete' => 'Diverket eo bet ar bajenn $3 gant $1',
 'logentry-delete-restore' => 'Assavet eo bet ar bajenn $3 gant $1',
 'logentry-delete-event' => "Kemmet eo bet gwelusted {{PLURAL:$5|un darvoud eus ar marilh|$5 darvoud eus ar marilh}} d'an $3 gant $1 : $4",
-'logentry-delete-revision' => 'Kemmet eo bet gwelusted {{PLURAL:$5|reizhadenn}} war ar bajenn $3 gant $1 : $4',
+'logentry-delete-revision' => 'Kemmet eo bet gwelusted {{PLURAL:$5|$5reizhadenn}} war ar bajenn $3 gant $1 : $4',
 'logentry-delete-event-legacy' => 'Kemmet eo bet gwelusted darvoudoù ar marilh $3 gant $1',
 'logentry-delete-revision-legacy' => 'Kemmet eo bet gwelusted ar reizhadennoù war ar bajenn $3 gant $1',
 'logentry-suppress-delete' => '$1 {{GENDER:$2|en deus dilamet}} ar bajenn $3',
