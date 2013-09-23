@@ -65,7 +65,11 @@ class HtmlFormatter {
 		if ( !$this->doc ) {
 			$html = mb_convert_encoding( $this->html, 'HTML-ENTITIES', 'UTF-8' );
 
+			// Workaround for bug that caused spaces before references
+			// to disappear during processing:
 			// https://bugzilla.wikimedia.org/show_bug.cgi?id=53086
+			//
+			// Please replace with a better fix if one can be found.
 			$html = str_replace( ' <', '&#32;<', $html );
 
 			libxml_use_internal_errors( true );
@@ -87,7 +91,14 @@ class HtmlFormatter {
 	}
 
 	/**
-	 * Adds one or more selector of content to remove
+	 * Adds one or more selector of content to remove. A subset of CSS selector
+	 * syntax is supported:
+	 *
+	 *   <tag>
+	 *   <tag>.class
+	 *   .<class>
+	 *   #<id>
+	 *
 	 * @param Array|string $selectors: Selector(s) of stuff to remove
 	 */
 	public function remove( $selectors ) {
@@ -97,6 +108,10 @@ class HtmlFormatter {
 	/**
 	 * Adds one or more element name to the list to flatten (remove tag, but not its content)
 	 * Can accept undelimited regexes
+	 *
+	 * Note this interface may fail in surprising unexpected ways due to usage of regexes,
+	 * so should not be relied on for HTML markup security measures.
+	 *
 	 * @param Array|string $elements: Name(s) of tag(s) to flatten
 	 */
 	public function flatten( $elements ) {
@@ -256,6 +271,11 @@ class HtmlFormatter {
 			$html = $this->html;
 		}
 		if ( wfIsWindows() ) {
+			// Appears to be cleanup for CRLF misprocessing of unknown origin
+			// when running server on Windows platform.
+			//
+			// If this error continues in the future, please track it down in the
+			// XML code paths if possible and fix there.
 			$html = str_replace( '&#13;', '', $html );
 		}
 		$html = preg_replace( '/<!--.*?-->|^.*?<body>|<\/body>.*$/s', '', $html );
