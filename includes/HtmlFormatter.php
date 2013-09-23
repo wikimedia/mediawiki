@@ -133,6 +133,7 @@ class HtmlFormatter {
 		$removals = $this->parseItemsToRemove();
 
 		if ( !$removals ) {
+			wfProfileOut( __METHOD__ );
 			return;
 		}
 
