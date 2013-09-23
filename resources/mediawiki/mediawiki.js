@@ -1115,7 +1115,7 @@ var mw = ( function ( $, undefined ) {
 							nestedAddScript( script, markModuleReady, registry[module].async, 0 );
 						} else if ( $.isFunction( script ) ) {
 							registry[module].state = 'ready';
-							script( $ );
+							script( $, $ );
 							handlePending( module );
 						}
 					} catch ( e ) {
