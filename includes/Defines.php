@@ -179,6 +179,15 @@ define( 'RC_EXTERNAL', 5 );
 /**@}*/
 
 /**@{
+ * RecentChange source identifiers
+ */
+define( 'RC_SRC_EDIT', 'mw.edit' );
+define( 'RC_SRC_NEW', 'mw.new' );
+define( 'RC_SRC_LOG', 'mw.log' );
+define( 'RC_SRC_EXTERNAL', 'mw.external' ); // obsolete
+/**@}*/
+
+/**@{
  * Article edit flags
  */
 define( 'EDIT_NEW', 1 );
