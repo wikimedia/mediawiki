@@ -73,6 +73,7 @@ class HtmlFormatter {
 			$html = str_replace( ' <', '&#32;<', $html );
 
 			libxml_use_internal_errors( true );
+			libxml_disable_entity_loader( true );
 			$this->doc = new DOMDocument();
 			$this->doc->strictErrorChecking = false;
 			$this->doc->loadHTML( $html );
