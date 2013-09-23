@@ -137,6 +137,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'addPgField', 'recentchanges', 'rc_new_len',           'INTEGER' ),
 			array( 'addPgField', 'recentchanges', 'rc_old_len',           'INTEGER' ),
 			array( 'addPgField', 'recentchanges', 'rc_params',            'TEXT' ),
+			array( 'addPgField', 'recentchanges', 'rc_source',            "TEXT NOT NULL DEFAULT ''" ),
 			array( 'addPgField', 'redirect',      'rd_interwiki',         'TEXT NULL' ),
 			array( 'addPgField', 'redirect',      'rd_fragment',          'TEXT NULL' ),
 			array( 'addPgField', 'revision',      'rev_deleted',          'SMALLINT NOT NULL DEFAULT 0' ),
