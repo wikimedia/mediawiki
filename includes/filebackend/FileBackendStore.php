@@ -1583,6 +1583,18 @@ abstract class FileBackendStore extends FileBackend {
 		}
 		return $opts;
 	}
+
+	/**
+	 * Get the content type to use in HEAD/GET requests for a file
+	 *
+	 * @param string $storagePath
+	 * @param string|null $content File data
+	 * @param string|null $fsPath File system path
+	 * @return MIME type
+	 */
+	protected function getContentType( $storagePath, $content, $fsPath ) {
+		return StreamFile::contentTypeFromPath( $storagePath ) ?: 'unknown/unknown';
+	}
 }
 
 /**
