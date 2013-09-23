@@ -1115,7 +1115,9 @@ var mw = ( function ( $, undefined ) {
 							nestedAddScript( script, markModuleReady, registry[module].async, 0 );
 						} else if ( $.isFunction( script ) ) {
 							registry[module].state = 'ready';
-							script( $ );
+							// Pass jQuery twice so that the signature of the closure which wraps
+							// the script can bind both '$' and 'jQuery'.
+							script( $, $ );
 							handlePending( module );
 						}
 					} catch ( e ) {
