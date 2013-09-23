@@ -3355,7 +3355,7 @@ $wgResourceLoaderLESSFunctions = array(
 		$file = realpath( $base . '/' . $url );
 
 		$data = CSSMin::encodeImageAsDataURI( $file );
-		$less->embeddedImages[ $file ] = filemtime( $file );
+		$less->embeddedFiles[ $file ] = filemtime( $file );
 		return 'url(' . $data . ')';
 	},
 );

@@ -470,10 +470,10 @@ abstract class ResourceLoaderModule {
 		foreach ( $wgResourceLoaderLESSFunctions as $name => $func ) {
 			$less->registerFunction( $name, $func );
 		}
-		// To ensure embedded images are refreshed when their source files
-		// change, track the names and modification times of image files that
-		// were embedded in the generated CSS source.
-		$less->embeddedImages = array();
+		// To ensure embedded resources are refreshed when their source files
+		// change, track the names and modification times of any files that
+		// were embedded as data URIs in the generated CSS source.
+		$less->embeddedFiles = array();
 		return $less;
 	}
 
