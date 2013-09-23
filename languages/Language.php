@@ -2288,6 +2288,8 @@ class Language {
 			// Timestamp within the past week: show the day of the week and time
 			$format = $this->getDateFormatString( 'time', $user->getDatePreference() ?: 'default' );
 			$weekday = self::$mWeekdayMsgs[$ts->timestamp->format( 'w' )];
+			// Messages:
+			// sunday-at, monday-at, tuesday-at, wednesday-at, thursday-at, friday-at, saturday-at
 			$ts = wfMessage( "$weekday-at" )
 				->inLanguage( $this )
 				->params( $this->sprintfDate( $format, $ts->getTimestamp( TS_MW ) ) )
