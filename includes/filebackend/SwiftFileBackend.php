@@ -252,10 +252,7 @@ class SwiftFileBackend extends FileBackendStore {
 			// The MD5 here will be checked within Swift against its own MD5.
 			$obj->set_etag( md5( $params['content'] ) );
 			// Use the same content type as StreamFile for security
-			$obj->content_type = StreamFile::contentTypeFromPath( $params['dst'] );
-			if ( !strlen( $obj->content_type ) ) { // special case
-				$obj->content_type = 'unknown/unknown';
-			}
+			$obj->content_type = $this->getContentType( $params['dst'], $params['content'], null );
 			// Set any other custom headers if requested
 			if ( isset( $params['headers'] ) ) {
 				$obj->headers += $this->sanitizeHdrs( $params['headers'] );
@@ -329,10 +326,7 @@ class SwiftFileBackend extends FileBackendStore {
 			// The MD5 here will be checked within Swift against its own MD5.
 			$obj->set_etag( md5_file( $params['src'] ) );
 			// Use the same content type as StreamFile for security
-			$obj->content_type = StreamFile::contentTypeFromPath( $params['dst'] );
-			if ( !strlen( $obj->content_type ) ) { // special case
-				$obj->content_type = 'unknown/unknown';
-			}
+			$obj->content_type = $this->getContentType( $params['dst'], null, $params['src'] );
 			// Set any other custom headers if requested
 			if ( isset( $params['headers'] ) ) {
 				$obj->headers += $this->sanitizeHdrs( $params['headers'] );
