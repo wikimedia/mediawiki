@@ -200,7 +200,7 @@ class MWTimestamp {
 		$this->timestamp->sub( $offsetThis );
 		$relativeTo->timestamp->sub( $offsetRel );
 
-		return $ts;
+		return $lang->formatNum( $ts );
 	}
 
 	/**
