@@ -1,7 +1,7 @@
 <?php
 
 /**
- * lessphp v0.4.0
+ * lessphp v0.4.0@785ad53840
  * http://leafo.net/lessphp
  *
  * LESS css compiler, adapted from http://lesscss.org
@@ -11,7 +11,7 @@
  *
  * MIT LICENSE
  *
- * Copyright (c) 2010-2012 Leaf Corcoran, http://leafo.net/lessphp
+ * Copyright 2013, Leaf Corcoran <leafot@gmail.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -1037,8 +1037,14 @@ class lessc {
 	}
 
 	protected function lib_round($arg) {
-		$value = $this->assertNumber($arg);
-		return array("number", round($value), $arg[2]);
+		if($arg[0] != "list") {
+			$value = $this->assertNumber($arg);
+			return array("number", round($value), $arg[2]);
+		} else {
+			$value = $this->assertNumber($arg[2][0]);
+			$precision = $this->assertNumber($arg[2][1]);
+			return array("number", round($value, $precision), $arg[2][0][2]);
+		}
 	}
 
 	protected function lib_unit($arg) {
