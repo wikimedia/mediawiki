@@ -367,6 +367,9 @@ class ThumbnailImage extends MediaTransformOutput {
 		if ( isset( $options['override-width'] ) ) {
 			$attribs['width'] = $options['override-width'];
 		}
+		if ( isset( $options['resource'] ) ) {
+			$attribs['resource'] = $options['resource'];
+		}
 
 		// Additional densities for responsive images, if specified.
 		if ( !empty( $this->responsiveUrls ) ) {
