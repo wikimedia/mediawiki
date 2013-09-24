@@ -280,6 +280,10 @@ class ApiEditPage extends ApiBase {
 			if ( $section == 0 && $params['section'] != '0' && $params['section'] != 'new' ) {
 				$this->dieUsage( "The section parameter must be set to an integer or 'new'", "invalidsection" );
 			}
+			$content = $pageObj->getContent();
+			if ( $section !== 0 && ( !$content || !$content->getSection( $section ) ) ) {
+				$this->dieUsage( "There is no section {$section}.", 'nosuchsection' );
+			}
 			$requestArray['wpSection'] = $params['section'];
 		} else {
 			$requestArray['wpSection'] = '';
