@@ -3358,6 +3358,22 @@ $wgResourceLoaderLESSFunctions = array(
 		$less->embeddedImages[ $file ] = filemtime( $file );
 		return 'url(' . $data . ')';
 	},
+
+	/**
+	 * str_replace(search, replace, subject) implementation for LESS.
+	 *
+	 * @par Example:
+	 * @code
+	 *   -webkit-transition: replace("transform", "-webkit-transform", "@{arguments}");
+	 * @endcode
+	 */
+	'replace' => function( $frame, $less ) {
+		if ( $frame[0] !== 'list' || count( $frame[2] ) !== 3 ) {
+			throw new MWException( 'replace(search, replace, subject) expected three string arguments' );
+		}
+		$args = array_map( function ( $arg ) { return join( '', $arg[2] ); }, $frame[2] );
+		return call_user_func_array( 'str_replace', $args );
+	},
 );
 
 /**
