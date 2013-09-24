@@ -29,3 +29,11 @@
 	background-image: linear-gradient(@from, @to), url(@url);
 }
 
+.list-style-image(@url) when (embeddable(@url)) {
+	list-style-image: embed(@url);
+	list-style-image: url(@url)!ie;
+}
+
+.list-style-image(@url) when not (embeddable(@url)) {
+	list-style-image: url(@url);
+}
