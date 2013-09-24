@@ -3358,6 +3358,43 @@ $wgResourceLoaderLESSFunctions = array(
 		$less->embeddedImages[ $file ] = filemtime( $file );
 		return 'url(' . $data . ')';
 	},
+	
+	/**
+	 * Round a number, optionally to a given number of decimal points.
+	 *
+	 * This is a core function in LESS 1.4.0, but isn't implemented
+	 * in PHP lessc 0.4.0 which we use.
+	 *
+	 * @par Example:
+	 * @code
+	 *   input,
+	 *   textarea {
+	 *     font-size: round( 1em / @fontScalingFactor, 2 );
+	 *   }
+	 * @endcode
+	 */
+	'round' => function( $frame, $less ) {
+		if( $frame[0] === 'list' ) {
+			$number = $frame[2][0];
+			$decimalPlaces = $frame[2][1];
+		} else {
+			$number = $frame;
+			$decimalPlaces = array(
+				'number',
+				0,
+				'' // bare units please!
+			);
+		}
+		if( $number[0] !== 'number' || $decimalPlaces[0] !== 'number' ) {
+			throw new MWException( 'round() expected number or two numbers' );
+		}
+		
+		return array(
+			'number',
+			round( $number[1], $decimalPlaces[1] ),
+			$number[2] // pass through the base number's units
+		);
+	}
 );
 
 /**
