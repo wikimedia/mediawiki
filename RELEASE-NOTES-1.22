@@ -232,6 +232,8 @@ production.
    for more details regarding custom functions.
 ** $wgResourceLoaderLESSImportPaths is an array of file system paths. Files
    referenced in LESS '@import' statements are looked up here first.
+* Image elements produced by the Linker class now have resource attributes according
+  to the Parsoid DOM spec - https://www.mediawiki.org/wiki/Parsoid/MediaWiki_DOM_spec#Images
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one

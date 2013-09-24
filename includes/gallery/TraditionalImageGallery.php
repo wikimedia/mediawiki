@@ -118,7 +118,8 @@ class TraditionalImageGallery extends ImageGalleryBase {
 					'desc-link' => true,
 					'desc-query' => $descQuery,
 					'alt' => $alt,
-					'custom-url-link' => $link
+					'custom-url-link' => $link,
+					'resource' => './' . $nt->getPrefixedURL(),
 				);
 				# In the absence of both alt text and caption, fall back on providing screen readers with the filename as alt text
 				if ( $alt == '' && $text == '' ) {

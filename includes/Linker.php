@@ -595,6 +595,10 @@ class Linker {
 			$fp['class'] = '';
 		}
 
+		if ( $title ) {
+			$fp['resource'] = './' . $title->getPrefixedURL();
+		}
+
 		$prefix = $postfix = '';
 
 		if ( 'center' == $fp['align'] ) {
@@ -679,6 +683,7 @@ class Linker {
 				'alt' => $fp['alt'],
 				'title' => $fp['title'],
 				'valign' => isset( $fp['valign'] ) ? $fp['valign'] : false,
+				'resource' => isset( $fp['resource'] ) ? $fp['resource'] : false,
 				'img-class' => $fp['class'] );
 			if ( isset( $fp['border'] ) ) {
 				// TODO: BUG? Both values are identical
@@ -755,7 +760,8 @@ class Linker {
 		$frameParams = array(
 			'alt' => $alt,
 			'caption' => $label,
-			'align' => $align
+			'align' => $align,
+			'resource' => './' . $title->getPrefixedURL(),
 		);
 		if ( $framed ) {
 			$frameParams['framed'] = true;
@@ -797,6 +803,10 @@ class Linker {
 		}
 		if ( !isset( $fp['caption'] ) ) {
 			$fp['caption'] = '';
+		}
+
+		if ( $title && !isset( $fp['resource'] ) ) {
+			$fp['resource'] = './' . $title->getPrefixedURL();
 		}
 
 		if ( empty( $hp['width'] ) ) {
@@ -870,6 +880,7 @@ class Linker {
 			}
 			$params = array(
 				'alt' => $fp['alt'],
+				'resource' => isset( $fp['resource'] ) ? $fp['resource'] : false,
 				'title' => $fp['title'],
 				'img-class' => ( isset( $fp['class'] ) && $fp['class'] !== '' ) ? $fp['class'] . ' thumbimage' : 'thumbimage'
 			);
