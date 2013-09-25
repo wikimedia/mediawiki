@@ -1206,6 +1206,16 @@ var mw = ( function ( $, undefined ) {
 			/* Public Methods */
 			return {
 				/**
+				 * The module registry is exposed as an aid for debugging and inspecting page
+				 * state; it is not a public interface for modifying the registry.
+				 *
+				 * @see #registry
+				 * @property
+				 * @private
+				 */
+				moduleRegistry: registry,
+
+				/**
 				 * @inheritdoc #newStyleTag
 				 * @method
 				 */
