@@ -1229,6 +1229,15 @@ class SpecialCreateAccount extends SpecialRedirectToSpecial {
 	function __construct() {
 		parent::__construct( 'CreateAccount', 'Userlogin', 'signup', array( 'uselang' ) );
 	}
+
+	// No reason to hide this link on Special:Specialpages
+	public function isListed() {
+		return true;
+	}
+
+	protected function getGroupName() {
+		return 'login';
+	}
 }
 /**
  * SpecialMypage, SpecialMytalk and SpecialMycontributions special pages
