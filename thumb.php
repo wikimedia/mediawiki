@@ -304,6 +304,12 @@ function wfStreamThumb( array $params ) {
 		return;
 	}
 
+	$user = RequestContext::getMain()->getUser();
+	if ( $user->pingLimiter( 'renderfile' ) ) {
+		wfThumbError( 500, wfMessage( 'actionthrottledtext' ) );
+		return;
+	}
+
 	// Thumbnail isn't already there, so create the new thumbnail...
 	try {
 		$thumb = $img->transform( $params, File::RENDER_NOW );
