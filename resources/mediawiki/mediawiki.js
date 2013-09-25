@@ -424,8 +424,6 @@ var mw = ( function ( $, undefined ) {
 			 *         }
 			 *     }
 			 *
-			 * @property
-			 * @private
 			 */
 			var registry = {},
 				//
@@ -1205,6 +1203,15 @@ var mw = ( function ( $, undefined ) {
 
 			/* Public Methods */
 			return {
+				/**
+				 * Mapping of registered modules. The module registry is exposed as an aid for
+				 * debugging and inspecting page state; it is not properly a public interface.
+				 *
+				 * @property
+				 * @private
+				 */
+				registry: registry,
+
 				/**
 				 * @inheritdoc #newStyleTag
 				 * @method
