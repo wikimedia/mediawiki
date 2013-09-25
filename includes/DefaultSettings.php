@@ -4647,13 +4647,20 @@ $wgRateLimits = array(
 		'ip' => null,
 		'subnet' => null,
 	),
-	'mailpassword' => array(
+	'mailpassword' => array( // triggering password resets emails
 		'anon' => null,
 	),
-	'emailuser' => array(
+	'emailuser' => array( // emailing other users using MediaWiki
 		'user' => null,
 	),
-	'linkpurge' => array(
+	'linkpurge' => array( // purges of link tables
+		'anon' => null,
+		'user' => null,
+		'newbie' => null,
+		'ip' => null,
+		'subnet' => null,
+	),
+	'renderfile' => array( // files rendered via thumb.php or thumb_handler.php
 		'anon' => null,
 		'user' => null,
 		'newbie' => null,
