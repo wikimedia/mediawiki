@@ -84,7 +84,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgFormattedNamespaces' => $wgContLang->getFormattedNamespaces(),
 			'wgNamespaceIds' => $namespaceIds,
 			'wgSiteName' => $wgSitename,
-			'wgFileExtensions' => array_values( $wgFileExtensions ),
+			'wgFileExtensions' => array_values( array_unique( $wgFileExtensions ) ),
 			'wgDBname' => $wgDBname,
 			// This sucks, it is only needed on Special:Upload, but I could
 			// not find a way to add vars only for a certain module
