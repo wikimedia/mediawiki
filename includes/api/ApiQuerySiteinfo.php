@@ -473,7 +473,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		global $wgFileExtensions;
 
 		$data = array();
-		foreach ( $wgFileExtensions as $ext ) {
+		foreach ( array_unique( $wgFileExtensions ) as $ext ) {
 			$data[] = array( 'ext' => $ext );
 		}
 		$this->getResult()->setIndexedTagName( $data, 'fe' );

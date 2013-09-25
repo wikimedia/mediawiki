@@ -504,7 +504,7 @@ class ApiUpload extends ApiBase {
 			case UploadBase::FILETYPE_BADTYPE:
 				$extradata = array(
 					'filetype' => $verification['finalExt'],
-					'allowed' => $wgFileExtensions
+					'allowed' => array_values( array_unique( $wgFileExtensions ) )
 				);
 				$this->getResult()->setIndexedTagName( $extradata['allowed'], 'ext' );
 
