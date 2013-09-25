@@ -2347,6 +2347,14 @@ class WikiPage implements Page, IDBAccessObject {
 				}
 			}
 
+			// Clear out legacy restriction fields
+			$dbw->update(
+				'page',
+				array( 'page_restrictions' => '' ),
+				array( 'page_id' => $id ),
+				__METHOD__
+			);
+
 			wfRunHooks( 'NewRevisionFromEditComplete', array( $this, $nullRevision, $latest, $user ) );
 			wfRunHooks( 'ArticleProtectComplete', array( &$this, &$user, $limit, $reason ) );
 		} else { // Protection of non-existing page (also known as "title protection")
