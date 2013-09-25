@@ -963,39 +963,6 @@ h2:lang(te), h3:lang(te), h4:lang(te), h5:lang(te), h6:lang(te) {
 	line-height: 1.2em;
 }
 
-/* Localised ordered list numbering for some languages */
-ol:lang(bcc) li,
-ol:lang(bqi) li,
-ol:lang(fa) li,
-ol:lang(glk) li,
-ol:lang(kk-arab) li,
-ol:lang(mzn) li {
-	list-style-type: -moz-persian;
-	list-style-type: persian;
-}
-
-ol:lang(ckb) li {
-	list-style-type: -moz-arabic-indic;
-	list-style-type: arabic-indic;
-}
-
-ol:lang(hi) li,
-ol:lang(mr) li {
-	list-style-type: -moz-devanagari;
-	list-style-type: devanagari;
-}
-
-ol:lang(as) li,
-ol:lang(bn) li {
-	list-style-type: -moz-bengali;
-	list-style-type: bengali;
-}
-
-ol:lang(or) li {
-	list-style-type: -moz-oriya;
-	list-style-type: oriya;
-}
-
 #toc ul, .toc ul {
 	margin: .3em 0;
 }

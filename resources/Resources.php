@@ -1094,7 +1094,7 @@ return array(
 		'position' => 'top',
 	),
 	'mediawiki.legacy.shared' => array(
-		'styles' => array( 'common/shared.css' => array( 'media' => 'screen' ) ),
+		'styles' => array( 'common/shared.css' => array( 'media' => 'screen' ), 'common/sharedWithPrint.css' ),
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 	),
