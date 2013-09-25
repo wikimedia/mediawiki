@@ -1206,6 +1206,12 @@ var mw = ( function ( $, undefined ) {
 			/* Public Methods */
 			return {
 				/**
+				 * @inheritdoc #registry
+				 * @property
+				 */
+				registry: registry,
+
+				/**
 				 * @inheritdoc #newStyleTag
 				 * @method
 				 */
@@ -1658,6 +1664,31 @@ var mw = ( function ( $, undefined ) {
 						return registry[module].state;
 					}
 					return null;
+				},
+
+				/**
+				 * Get the size in bytes of a module.
+				 *
+				 * @since 1.22
+				 * @param {string} module name
+				 * @return {Object|null} Payload info, or null if module does not exist / has not been loaded.
+				 * @return {Number} return.css Size of CSS payload, in bytes.
+				 * @return {Number} return.js Size of JavaScript payload, in bytes.
+				 */
+				getSize: function ( moduleName ) {
+					var module = registry[moduleName], payload = {css: 0, js: 0};
+					if ( !module || module.state !== 'ready' ) {
+						return null;
+					}
+					if ( $.isArray( module.style.css ) ) {
+						$.each( module.style.css, function ( i, stylesheet ) {
+							payload.css += stylesheet.length;
+						} );
+					}
+					if ( $.isFunction( module.script ) ) {
+						payload.js = module.script.toString().length;
+					}
+					return payload;
 				},
 
 				/**
