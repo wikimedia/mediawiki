@@ -170,7 +170,6 @@ abstract class Installer {
 		'wgMetaNamespace',
 		'wgDeletedDirectory',
 		'wgEnableUploads',
-		'wgLogo',
 		'wgShellLocale',
 		'wgSecretKey',
 		'wgUseInstantCommons',
@@ -211,6 +210,10 @@ abstract class Installer {
 		'_MemCachedServers' => '',
 		'_UpgradeKeySupplied' => false,
 		'_ExistingDBSettings' => false,
+
+		// $wgLogo is probably wrong (bug 48084); set something that will work.
+		// Single quotes work fine here, as LocalSettingsGenerator outputs this unescaped.
+		'wgLogo' => '$wgStylePath/common/images/wiki.png',
 	);
 
 	/**
