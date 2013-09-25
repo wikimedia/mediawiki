@@ -3068,7 +3068,7 @@ class Language {
 	 * Normally we output all numbers in plain en_US style, that is
 	 * 293,291.235 for twohundredninetythreethousand-twohundredninetyone
 	 * point twohundredthirtyfive. However this is not suitable for all
-	 * languages, some such as Pakaran want ੨੯੩,੨੯੫.੨੩੫ and others such as
+	 * languages, some such as Punjabi want ੨੯੩,੨੯੫.੨੩੫ and others such as
 	 * Icelandic just want to use commas instead of dots, and dots instead
 	 * of commas like "293.291,235".
 	 *
