@@ -4660,6 +4660,13 @@ $wgRateLimits = array(
 		'ip' => null,
 		'subnet' => null,
 	),
+	'renderfile' => array(
+		'anon' => null,
+		'user' => null,
+		'newbie' => null,
+		'ip' => null,
+		'subnet' => null,
+	),
 );
 
 /**
