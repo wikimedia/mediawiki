@@ -314,6 +314,8 @@ production.
 * (bug 6200) line breaks in <blockquote> are handled like they are in <div>
 * (bug 14931) Default character set now set to 'utf8' when a new MySQL
   database is created.
+* (bug 48084) Fixed a bug in the installer that could cause $wgLogo to hold
+  the wrong path to the placeholder logo (skins/common/images/wiki.png).
 
 === API changes in 1.22 ===
 * (bug 25553) The JSON output formatter now leaves forward slashes unescaped
