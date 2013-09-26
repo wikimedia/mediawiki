@@ -1,0 +1,75 @@
+// FIXME: This size of this CSS is ridiculous. Please refactor (see bug 54604)
+@import "mediawiki.mixins.less";
+
+div#content a.external {
+	background-position: center right;
+	background-repeat: no-repeat;
+	.background-image('images/external-link-ltr-icon.png');
+	padding-right: 13px;
+}
+div#content a.external[href ^="https://"],
+.link-https {
+	background-position: center right;
+	background-repeat: no-repeat;
+	.background-image('images/lock-icon.png');
+	padding-right: 13px;
+}
+div#content a.external[href ^="mailto:"],
+.link-mailto {
+	background-position: center right;
+	background-repeat: no-repeat;
+	.background-image('images/mail-icon.png');
+	padding-right: 13px;
+}
+div#content a.external[href ^="news:"] {
+	background-position: center right;
+	background-repeat: no-repeat;
+	.background-image('images/news-icon.png');
+	padding-right: 13px;
+}
+div#content a.external[href ^="ftp://"],
+.link-ftp {
+	background-position: center right;
+	background-repeat: no-repeat;
+	.background-image('images/file-icon.png');
+	padding-right: 13px;
+}
+div#content a.external[href ^="irc://"],
+div#content a.external[href ^="ircs://"],
+.link-irc {
+	background-position: center right;
+	background-repeat: no-repeat;
+	.background-image('images/talk-icon.png');
+	padding-right: 13px;
+}
+div#content a.external[href $=".ogg"], div#content a.external[href $=".OGG"],
+div#content a.external[href $=".mid"], div#content a.external[href $=".MID"],
+div#content a.external[href $=".midi"], div#content a.external[href $=".MIDI"],
+div#content a.external[href $=".mp3"], div#content a.external[href $=".MP3"],
+div#content a.external[href $=".wav"], div#content a.external[href $=".WAV"],
+div#content a.external[href $=".wma"], div#content a.external[href $=".WMA"],
+.link-audio {
+	background-position: center right;
+	background-repeat: no-repeat;
+	.background-image('images/audio-icon.png');
+	padding-right: 13px;
+}
+div#content a.external[href $=".ogm"], div#content a.external[href $=".OGM"],
+div#content a.external[href $=".avi"], div#content a.external[href $=".AVI"],
+div#content a.external[href $=".mpeg"], div#content a.external[href $=".MPEG"],
+div#content a.external[href $=".mpg"], div#content a.external[href $=".MPG"],
+.link-video {
+	background-position: center right;
+	background-repeat: no-repeat;
+	.background-image('images/video-icon.png');
+	padding-right: 13px;
+}
+div#content a.external[href $=".pdf"], div#content a.external[href $=".PDF"],
+div#content a.external[href *=".pdf#"], div#content a.external[href *=".PDF#"],
+div#content a.external[href *=".pdf?"], div#content a.external[href *=".PDF?"],
+.link-document {
+	background-position: center right;
+	background-repeat: no-repeat;
+	.background-image('images/document-icon.png');
+	padding-right: 13px;
+}
