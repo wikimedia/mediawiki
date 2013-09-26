@@ -5122,9 +5122,9 @@ Otherwise, you can use the easy form below. Your comment will be added to the pa
 'limitreport-ppgeneratednodes'             => 'Preprocessor generated node count',
 'limitreport-ppgeneratednodes-value'       => '$1/$2', # only translate this message to other languages if you have to change it
 'limitreport-postexpandincludesize'        => 'Post-expand include size',
-'limitreport-postexpandincludesize-value'  => '$1/$2 bytes',
+'limitreport-postexpandincludesize-value'  => '$1/$2 {{PLURAL:$2|byte|bytes}}',
 'limitreport-templateargumentsize'         => 'Template argument size',
-'limitreport-templateargumentsize-value'   => '$1/$2 bytes',
+'limitreport-templateargumentsize-value'   => '$1/$2 {{PLURAL:$2|byte|bytes}}',
 'limitreport-expansiondepth'               => 'Highest expansion depth',
 'limitreport-expansiondepth-value'         => '$1/$2', # only translate this message to other languages if you have to change it
 'limitreport-expensivefunctioncount'       => 'Expensive parser function count',
