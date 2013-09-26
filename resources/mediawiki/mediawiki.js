@@ -1190,7 +1190,7 @@ var mw = ( function ( $, undefined ) {
 			 * @param {Object} moduleMap Module map, see #buildModulesString
 			 * @param {Object} currReqBase Object with other parameters (other than 'modules') to use in the request
 			 * @param {string} sourceLoadScript URL of load.php
-			 * @param {boolean} async If true, use an asynchrounous request even if document ready has not yet occurred
+			 * @param {boolean} async If true, use an asynchronous request even if document ready has not yet occurred
 			 */
 			function doRequest( moduleMap, currReqBase, sourceLoadScript, async ) {
 				var request = $.extend(
