@@ -28,19 +28,6 @@
  * @endcode
  */
 abstract class LanguageClassesTestCase extends MediaWikiTestCase {
-
-	/**
-	 * Regex used to find out the language code out of the class name
-	 * used by setUpBeforeClass
-	 */
-	private static $reExtractLangFromClass = '/Language(.*)Test/';
-
-	/**
-	 * Hold the language code we are going to use. This is extracted
-	 * directly from the extending class.
-	 */
-	private static $LanguageClassCode;
-
 	/**
 	 * Internal language object
 	 *
@@ -57,9 +44,17 @@ abstract class LanguageClassesTestCase extends MediaWikiTestCase {
 	 */
 	private $languageObject;
 
-	public static function setUpBeforeClass() {
-		$found = preg_match( self::$reExtractLangFromClass,
-			get_called_class(), $m );
+	protected function getLang() {
+		return $this->languageObject;
+	}
+
+	/**
+	 * Create a new language object before each test.
+	 */
+	protected function setUp() {
+		parent::setUp();
+		// var_dump( get_called_class() );
+		$found = preg_match( '/Language(.+)Test/', get_called_class(), $m );
 		if ( $found ) {
 			# Normalize language code since classes uses underscores
 			$m[1] = str_replace( '_', '-', $m[1] );
@@ -71,21 +66,7 @@ abstract class LanguageClassesTestCase extends MediaWikiTestCase {
 					. "out of " . get_called_class() . " failling back to 'en'\n"
 			);
 		}
-		// TODO: validate $m[1] which should be a valid language code
-		self::$LanguageClassCode = $m[1];
-	}
-
-	protected function getLang() {
-		return $this->languageObject;
-	}
-
-	/**
-	 * Create a new language object before each test.
-	 */
-	protected function setUp() {
-		parent::setUp();
-		$this->languageObject = Language::factory(
-			self::$LanguageClassCode );
+		$this->languageObject = Language::factory( $m[1] );
 	}
 
 	/**
