@@ -3314,50 +3314,8 @@ $wgResourceLoaderLESSVars = array();
  * @since 1.22
  */
 $wgResourceLoaderLESSFunctions = array(
-	/**
-	 * Check if an image file reference is suitable for embedding.
-	 * An image is embeddable if it (a) exists, (b) has a suitable MIME-type,
-	 * (c) does not exceed IE<9 size limit of 32kb. This is a LESS predicate
-	 * function; it returns a LESS boolean value and can thus be used as a
-	 * mixin guard.
-	 *
-	 * @par Example:
-	 * @code
-	 *   .background-image(@url) when(embeddable(@url)) {
-	 *       background-image: url(@url) !ie;
-	 *   }
-	 * @endcode
-	 */
-	'embeddable' => function( $frame, $less ) {
-		$base = pathinfo( $less->parser->sourceName, PATHINFO_DIRNAME );
-		$url = $frame[2][0];
-		$file = realpath( $base . '/' . $url );
-		$embeddable = ( $file
-			&& strpos( $url, '//' ) === false
-			&& filesize( $file ) < CSSMin::EMBED_SIZE_LIMIT
-			&& CSSMin::getMimeType( $file ) !== false ) ? 'true' : 'false';
-		return array( 'keyword', $embeddable );
-	},
-
-	/**
-	 * Convert an image URI to a base64-encoded data URI.
-	 *
-	 * @par Example:
-	 * @code
-	 *   .fancy-button {
-	 *       background-image: embed('../images/button-bg.png');
-	 *   }
-	 * @endcode
-	 */
-	'embed' => function( $frame, $less ) {
-		$base = pathinfo( $less->parser->sourceName, PATHINFO_DIRNAME );
-		$url = $frame[2][0];
-		$file = realpath( $base . '/' . $url );
-
-		$data = CSSMin::encodeImageAsDataURI( $file );
-		$less->embeddedFiles[ $file ] = filemtime( $file );
-		return 'url(' . $data . ')';
-	},
+	'embeddable' => 'ResourceLoaderLESSFunctions::embeddable',
+	'embed' => 'ResourceLoaderLESSFunctions::embed',
 );
 
 /**

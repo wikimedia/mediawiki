@@ -857,6 +857,7 @@ $wgAutoloadLocalClasses = array(
 	'ResourceLoaderContext' => 'includes/resourceloader/ResourceLoaderContext.php',
 	'ResourceLoaderFileModule' => 'includes/resourceloader/ResourceLoaderFileModule.php',
 	'ResourceLoaderFilePageModule' => 'includes/resourceloader/ResourceLoaderFilePageModule.php',
+	'ResourceLoaderLESSFunctions' => 'includes/resourceloader/ResourceLoaderLESSFunctions.php',
 	'ResourceLoaderModule' => 'includes/resourceloader/ResourceLoaderModule.php',
 	'ResourceLoaderNoscriptModule' => 'includes/resourceloader/ResourceLoaderNoscriptModule.php',
 	'ResourceLoaderSiteModule' => 'includes/resourceloader/ResourceLoaderSiteModule.php',
