@@ -27,3 +27,13 @@
 	background-image: -webkit-linear-gradient(transparent, transparent), url(@svg);
 	background-image: linear-gradient(transparent, transparent), url(@svg);
 }
+
+/* Caution: Does not support localisable images */
+.list-style-image(@url) when (embeddable(@url)) {
+	list-style-image: embed(@url);
+	list-style-image: url(@url)!ie;
+}
+
+.list-style-image(@url) when not (embeddable(@url)) {
+	list-style-image: url(@url);
+}
