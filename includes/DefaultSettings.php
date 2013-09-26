@@ -3314,8 +3314,8 @@ $wgResourceLoaderLESSVars = array();
  * @since 1.22
  */
 $wgResourceLoaderLESSFunctions = array(
-	'embeddable' => 'LESSFunctions::embeddable',
-	'embed' => 'LESSFunctions::embed',
+	'embeddable' => 'ResourceLoaderLESSFunctions::embeddable',
+	'embed' => 'ResourceLoaderLESSFunctions::embed',
 );
 
 /**
