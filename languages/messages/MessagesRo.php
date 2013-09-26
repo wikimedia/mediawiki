@@ -548,7 +548,7 @@ $1',
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Despre {{SITENAME}}',
 'aboutpage' => 'Project:Despre',
-'copyright' => 'Conținutul este disponibil sub $1.',
+'copyright' => 'Conținutul este disponibil sub $1, exceptând cazurile în care se specifică altfel.',
 'copyrightpage' => '{{ns:project}}:Drepturi de autor',
 'currentevents' => 'Discută la cafenea',
 'currentevents-url' => 'Project:Cafenea',

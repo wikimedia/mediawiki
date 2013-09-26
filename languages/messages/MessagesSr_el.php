@@ -1174,7 +1174,7 @@ Razlog koji je naveo {{GENDER:$3|korisnik|korisnica|korisnik}} $3 je ''$2''",
 'currentrevisionlink' => 'Tekuća izmena',
 'cur' => 'tren',
 'next' => 'sled',
-'last' => 'preth',
+'last' => 'razl',
 'page_first' => 'prva',
 'page_last' => 'poslednja',
 'histlegend' => "Izbor razlika: izaberite kutijice izmena za upoređivanje i pritisnite enter ili dugme na dnu.<br />
@@ -2962,7 +2962,7 @@ Posetite [//www.mediawiki.org/wiki/Localisation Medijaviki lokalizaciju] i [//tr
 
 # Thumbnails
 'thumbnail-more' => 'Povećaj',
-'filemissing' => 'Datoteka nedostaje',
+'filemissing' => 'Nedostaje datoteka',
 'thumbnail_error' => 'Greška pri stvaranju minijature: $1',
 'djvu_page_error' => 'DjVu stranica je nedostupna',
 'djvu_no_xml' => 'Ne mogu da preuzmem XML za datoteku DjVu.',

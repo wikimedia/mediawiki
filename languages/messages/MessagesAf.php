@@ -253,6 +253,7 @@ $messages = array(
 'tog-showhiddencats' => 'Wys versteekte kategorië',
 'tog-norollbackdiff' => 'Laat verskille weg na terugrol',
 'tog-useeditwarning' => "Waarsku my as ek 'n gewysigde bladsy verlaat voordat dit gestoor is",
+'tog-prefershttps' => "Gebruik altyd 'n beveiligde verbinding wanneer aangemeld is",
 
 'underline-always' => 'Altyd',
 'underline-never' => 'Nooit',
@@ -456,7 +457,7 @@ $1",
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Inligting oor {{SITENAME}}',
 'aboutpage' => 'Project:Omtrent',
-'copyright' => 'Teks is beskikbaar onderhewig aan $1.',
+'copyright' => 'Inhoud is onderhewig aan $1, tensy anders vermeld',
 'copyrightpage' => '{{ns:project}}:kopiereg',
 'currentevents' => 'Huidige gebeure',
 'currentevents-url' => 'Project:Huidige gebeure',
@@ -540,7 +541,7 @@ Dit kan ook dui op 'n fout in die sagteware van {{SITENAME}}.",
 'error' => 'Fout',
 'databaseerror' => 'Databasisfout',
 'databaseerror-textcl' => "'n Databasis-versoek het gefaal.",
-'databaseerror-query' => 'SQL-versoek:',
+'databaseerror-query' => 'SQL: $1',
 'databaseerror-function' => 'Funksie: $1',
 'databaseerror-error' => 'Fout: $1',
 'laggedslavemode' => 'Waarskuwing: Onlangse wysigings dalk nie in bladsy vervat nie.',
@@ -1927,6 +1928,7 @@ Kliek op die opskrifte om die tabel te hersorteer.',
 'listfiles_size' => 'Grootte',
 'listfiles_description' => 'Beskrywing',
 'listfiles_count' => 'Weergawes',
+'listfiles-latestversion' => 'Huidige weergawe',
 'listfiles-latestversion-yes' => 'Ja',
 'listfiles-latestversion-no' => 'Nee',
 
@@ -2024,6 +2026,8 @@ Miskien wil u eerder die beskrywing daar op die [$2 lêerbeskrywing] bywerk.',
 'randompage-nopages' => 'Daar is geen bladsye in die volgende {{PLURAL:$2|naamruimte|naamruimtes}} nie: $1.',
 
 # Random page in category
+'randomincategory-invalidcategory' => '"$1" is nie \'n geldige kategorienaam nie.',
+'randomincategory-nopages' => 'Daar is geen bladsye in kategorie [[:Category:$1|$1]].',
 'randomincategory-selectcategory-submit' => 'Gaan',
 
 # Random redirect
@@ -3082,12 +3086,12 @@ Hierdie situasie was waarskynlik deur 'n skakel na 'n eksterne webtuiste op ons 
 'pageinfo-article-id' => 'Bladsy-ID',
 'pageinfo-language' => 'Taal vir die bladsy',
 'pageinfo-robot-policy' => 'Status vir soekenjins',
-'pageinfo-robot-index' => 'Indekseerbaar',
-'pageinfo-robot-noindex' => 'Nie indekseerbaar nie',
+'pageinfo-robot-index' => 'Toegestaan',
+'pageinfo-robot-noindex' => 'Nie toegestaan',
 'pageinfo-views' => 'Aantal kere gewys',
 'pageinfo-watchers' => 'Aantal dophouers',
 'pageinfo-few-watchers' => 'Minder as {{PLURAL:$1|dophouer|$1 dophouers}}',
-'pageinfo-redirects-name' => 'Aansture na die bladsy',
+'pageinfo-redirects-name' => 'Aantal aansture na die bladsy',
 'pageinfo-subpages-name' => 'Subblaaie van die bladsy',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|aanstuur|aansture}}; $3 {{PLURAL:$3|nie-aanstuur|nie-aansture}})',
 'pageinfo-firstuser' => 'Gebruiker wat die bladsy geskep het',
@@ -3820,6 +3824,7 @@ U kan ook die [[Special:EditWatchlist|standaard opdaterigskerm gebruik]].',
 'version-license' => 'Lisensie',
 'version-poweredby-credits' => "Hierdie wiki word aangedryf deur '''[//www.mediawiki.org/ MediaWiki]''', kopiereg © 2001-$1 $2.",
 'version-poweredby-others' => 'andere',
+'version-poweredby-translators' => 'translatewiki.net-vertalers',
 'version-credits-summary' => 'Ons erken graag die volgende persone vir hul bydrae aan [[Special:Version|MediaWiki]].',
 'version-license-info' => 'MediaWiki is vrye sagteware, u kan MediaWiki versprei en/of wysig onder die voorwaardes van die "GNU Algemene Publieke Lisensie", soos deur die "Free Software Foundation" gepubliseer; óf weergawe 2 van die lisensie, of (as u wil) enige latere weergawe daarvan.
 
@@ -3920,6 +3925,7 @@ Saam met die program moes u \'n [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van van 
 'dberr-problems' => 'Jammer! Die webwerf ondervind op die oomblik tegniese probleme.',
 'dberr-again' => "Wag 'n paar minute en probeer dan weer.",
 'dberr-info' => '(Kan nie die databasisbediener kontak nie: $1)',
+'dberr-info-hidden' => '(Kan nie die databasisbediener kontak nie)',
 'dberr-usegoogle' => 'Tot tyd en wyl kan u inligting op Google soek.',
 'dberr-outofdate' => 'Let daarop dat hulle indekse van ons inhoud moontlik verouderd mag wees.',
 'dberr-cachederror' => "Hierdie is 'n gekaste kopie van die aangevraagde blad, en dit mag moontlik nie op datum wees nie.",
@@ -4054,5 +4060,18 @@ Anders kan u die eenvoudige vorm hieronder gebruik. U kommentaar sal by die blad
 
 # Image rotation
 'rotate-comment' => 'Beeld $1 {{PLURAL:$1|graad|grade}} kloksgewys gedraai',
+
+# Limit report
+'limitreport-title' => 'Ontleder se prestasie:',
+'limitreport-cputime' => 'Tydsgebruik van SVE',
+'limitreport-cputime-value' => '$1 {{PLURAL:$1|sekonde|sekondes}}',
+'limitreport-walltime' => 'Reëel tydsgebruik',
+'limitreport-walltime-value' => '$1 {{PLURAL:$1|sekonde|sekondes}}',
+'limitreport-ppvisitednodes' => 'Aantal nodes besoek tydens voorverwerking:',
+'limitreport-ppgeneratednodes' => 'Aantal nodes geskep tydens voorverwerking:',
+'limitreport-postexpandincludesize' => 'Inklusiegrootte na uitbreiding',
+'limitreport-postexpandincludesize-value' => '$1/$2 grepe',
+'limitreport-templateargumentsize-value' => '$1/$2 grepe',
+'limitreport-expansiondepth' => 'Hoogste uitbreidingsdiepte',
 
 );

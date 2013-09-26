@@ -3109,13 +3109,13 @@ Tallenna tiedot koneellesi ja tuo ne tällä sivulla.',
 'nocredits' => 'Tämän sivun tekijäluettelotietoja ei löydy.',
 
 # Spam protection
-'spamprotectiontitle' => 'Mainossuodatin',
-'spamprotectiontext' => 'Mainossuodatin on estänyt sivun tallentamisen. Syynä on todennäköisimmin mustalistattu ulkopuoliselle sivustolle osoittava linkki.',
-'spamprotectionmatch' => 'Teksti, joka ei läpäissyt mainossuodatinta: $1',
-'spambot_username' => 'MediaWikin mainospoistaja',
+'spamprotectiontitle' => 'Roskalinkkien suodatin',
+'spamprotectiontext' => 'Roskalinkkien suodatin on estänyt sivun tallentamisen. Syynä on luultavasti mustalla listalla olevalle ulkopuoliselle sivustolle osoittava linkki.',
+'spamprotectionmatch' => 'Seuraava teksti aiheutti osuman roskalinkkien suodattimessa: $1',
+'spambot_username' => 'MediaWikin roskalinkkien puhdistaja',
 'spam_reverting' => 'Palautettu viimeisimpään versioon, joka ei sisällä linkkejä kohteeseen $1.',
 'spam_blanking' => 'Kaikki versiot sisälsivät linkkejä kohteeseen $1. Sivu tyhjennetty.',
-'spam_deleting' => 'Sivun poisto: kaikki versiot sisälsivät linkkejä palvelimeen $1',
+'spam_deleting' => 'Kaikki versiot sisälsivät linkkejä kohteeseen $1, poistetaan',
 
 # Info page
 'pageinfo-title' => 'Tietoja sivusta $1',
@@ -3918,7 +3918,7 @@ Sinun olisi pitänyt saada [{{SERVER}}{{SCRIPTPATH}}/COPYING kopio GNU General P
 'specialpages-group-pagetools' => 'Sivutyökalut',
 'specialpages-group-wiki' => 'Tiedot ja työkalut',
 'specialpages-group-redirects' => 'Ohjaavat toimintosivut',
-'specialpages-group-spam' => 'Mainostenpoistotyökalut',
+'specialpages-group-spam' => 'Roskalinkkien (spam) työkalut',
 
 # Special:BlankPage
 'blankpage' => 'Tyhjä sivu',

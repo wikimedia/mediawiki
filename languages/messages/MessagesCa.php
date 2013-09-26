@@ -451,7 +451,7 @@ $1",
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Quant al projecte {{SITENAME}}',
 'aboutpage' => 'Project:Quant a',
-'copyright' => 'El contingut està disponible sota els termes de la $1.',
+'copyright' => "El contingut està disponible sota la llicència $1 si no s'indica el contrari.",
 'copyrightpage' => "{{ns:project}}:Drets d'autor",
 'currentevents' => 'Actualitat',
 'currentevents-url' => 'Project:Actualitat',

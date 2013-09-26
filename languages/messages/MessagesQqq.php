@@ -1858,12 +1858,12 @@ See also:
 * {{msg-mw|Nocreatetext}}
 * {{msg-mw|Uploadnologintext}}',
 'accmailtitle' => 'Page title when temporary password was sent to a user via email.',
-'accmailtext' => '{{doc-important|Do not translate "<nowiki>[[User talk:$1|$1]]</nowiki>" and \'\'Special:ChangePassword\'\'.}}
-The message shown when a temporary password has been sent to the user\'s email address.
+'accmailtext' => "{{doc-important|Do not translate <code><nowiki>[[User talk:$1|$1]]</nowiki></code> and <code>Special:ChangePassword</code>.}}
+The message shown when a temporary password has been sent to the user's email address.
 
 Parameters:
 * $1 - username
-* $2 - email address',
+* $2 - email address",
 'newarticle' => '{{Identical|New}}',
 'newarticletext' => '{{doc-important|Do not translate <code><nowiki>{{MediaWiki:Helppage}}</nowiki></code>.}}
 Text displayed above the edit box in editor when trying to create a new page.
@@ -2966,7 +2966,8 @@ This message indicates {{msg-mw|prefs-dateformat}} is default (= not specified).
 'prefs-datetime' => '{{Identical|Date}}',
 'prefs-labs' => "Header of a subsection at [[Special:Preferences]], tab ''{{int:prefs-editing}}'', listing features that are experimental",
 'prefs-user-pages' => "Header of a subsection at [[Special:Preferences]], tab ''{{int:prefs-misc}}'', listing features that are related to user pages",
-'prefs-personal' => 'Title of a tab in [[Special:Preferences]].',
+'prefs-personal' => 'Title of a tab in [[Special:Preferences]].
+{{Identical|User profile}}',
 'prefs-rc' => 'Used in user preferences.
 
 {{Identical|Recent changes}}',

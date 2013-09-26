@@ -510,7 +510,7 @@ $1',
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Пра {{GRAMMAR:вінавальны|{{SITENAME}}}}',
 'aboutpage' => 'Project:Пра {{GRAMMAR:вінавальны|{{SITENAME}}}}',
-'copyright' => 'Зьмест даступны на ўмовах $1.',
+'copyright' => 'Зьмест даступны на ўмовах $1, калі не пазначана іншае.',
 'copyrightpage' => '{{ns:project}}:Аўтарскія правы',
 'currentevents' => 'Актуальныя падзеі',
 'currentevents-url' => 'Project:Актуальныя падзеі',

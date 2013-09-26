@@ -677,7 +677,7 @@ A dovrìa felo si për asar chiel a l'ha partagiaje con cheidun o si sò cont a 
 'subject' => 'Sogèt/antestassion:',
 'minoredit' => "Costa a l'é na modìfica cita",
 'watchthis' => 'Ten-e sot euj costa pàgina-sì',
-'savearticle' => 'Salva sta pàgina',
+'savearticle' => 'Salvé la pàgina',
 'preview' => 'Preuva',
 'showpreview' => 'Mostra na preuva',
 'showlivepreview' => "Funsion ''Preuva dal viv''",

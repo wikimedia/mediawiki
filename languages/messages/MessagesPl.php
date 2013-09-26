@@ -557,7 +557,7 @@ $1',
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'O {{GRAMMAR:MS.lp|{{SITENAME}}}}',
 'aboutpage' => 'Project:O {{GRAMMAR:MS.lp|{{SITENAME}}}}',
-'copyright' => 'Treść udostępniana na licencji $1.',
+'copyright' => 'Treść udostępniana na licencji $1, jeśli nie podano inaczej.',
 'copyrightpage' => '{{ns:project}}:Prawa_autorskie',
 'currentevents' => 'Bieżące wydarzenia',
 'currentevents-url' => 'Project:Aktualności',

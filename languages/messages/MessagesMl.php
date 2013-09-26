@@ -588,7 +588,7 @@ $1',
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} സം‌രംഭത്തെക്കുറിച്ച്',
 'aboutpage' => 'Project:വിവരണം',
-'copyright' => 'ഉള്ളടക്കം $1 പ്രകാരം ലഭ്യം.',
+'copyright' => 'പ്രത്യേകം പറയാത്ത പക്ഷം ഉള്ളടക്കം $1 പ്രകാരം ലഭ്യം.',
 'copyrightpage' => '{{ns:project}}:പകർപ്പവകാശം',
 'currentevents' => 'സമകാലികം',
 'currentevents-url' => 'Project:സമകാലികം',

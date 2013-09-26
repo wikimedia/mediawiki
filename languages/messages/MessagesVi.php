@@ -572,7 +572,7 @@ $1',
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Giới thiệu {{SITENAME}}',
 'aboutpage' => 'Project:Giới thiệu',
-'copyright' => 'Bản quyền $1.',
+'copyright' => 'Nội dung được phát hành theo $1, ngoại trừ khi có ghi chú khác.',
 'copyrightpage' => '{{ns:project}}:Bản quyền',
 'currentevents' => 'Tin tức',
 'currentevents-url' => 'Project:Thời sự',

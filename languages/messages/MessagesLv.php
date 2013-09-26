@@ -3206,6 +3206,7 @@ Var arī lietot [[Special:EditWatchlist|standarta izmainīšanas lapu]].',
 'api-error-uploaddisabled' => 'Augšupielāde šajā wiki  ir atslēgta.',
 
 # Limit report
+'limitreport-title' => 'Parsētāja profilēšanas dati:',
 'limitreport-postexpandincludesize-value' => '$1/$2 baiti',
 'limitreport-templateargumentsize-value' => '$1/$2 baiti',
 

@@ -509,7 +509,7 @@ $1',
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '關於 {{SITENAME}}',
 'aboutpage' => 'Project:關於',
-'copyright' => '本站內容以$1條款提供。',
+'copyright' => '除非另有說明，否則本站內容均以$1條款提供。',
 'copyrightpage' => '{{ns:project}}:版權訊息',
 'currentevents' => '新聞動態',
 'currentevents-url' => 'Project:新聞動態',

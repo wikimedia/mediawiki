@@ -448,7 +448,7 @@ $1',
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Perihal {{SITENAME}}',
 'aboutpage' => 'Project:Perihal',
-'copyright' => 'Kandungan disediakan dengan $1.',
+'copyright' => 'Kandungan disediakan di bawah $1 melainkan dinyatakan sebaliknya.',
 'copyrightpage' => '{{ns:project}}:Hak cipta',
 'currentevents' => 'Hal semasa',
 'currentevents-url' => 'Project:Hal semasa',
@@ -4059,7 +4059,13 @@ Ataupun, anda boleh menggunakan borang yang mudah di bawah. Ulasan anda akan dic
 'limitreport-cputime-value' => '$1 saat',
 'limitreport-walltime' => 'Penggunaan masa nyata',
 'limitreport-walltime-value' => '$1 saat',
+'limitreport-ppvisitednodes' => 'Kiraan nod kunjungan pempraproses',
+'limitreport-ppgeneratednodes' => 'Kiraan nod hasilan pempraproses',
+'limitreport-postexpandincludesize' => 'Saiz selepas peluasan',
 'limitreport-postexpandincludesize-value' => '$1/$2 bait',
+'limitreport-templateargumentsize' => 'Saiz parameter templat',
 'limitreport-templateargumentsize-value' => '$1/$2 bait',
+'limitreport-expansiondepth' => 'Kedalaman peluasan terjauh',
+'limitreport-expensivefunctioncount' => 'Kiraan fungsi penghurai muatan tinggi',
 
 );

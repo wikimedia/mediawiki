@@ -221,7 +221,7 @@ $messages = array(
 'history' => 'Trametes stǣr',
 'history_short' => 'Stǣr',
 'updatedmarker' => 'nīwod æfter mīnre lætestan sōcne',
-'printableversion' => 'Ūtmǣlendlicu fadung',
+'printableversion' => 'Ūtmǣlendlīc fadung',
 'permalink' => 'Fæst hlenca',
 'print' => 'Ūtmǣlan',
 'view' => 'Sihþ',
@@ -774,7 +774,7 @@ Gif se brūcend asifte hine. synderlīce sind ymelan geīwda þǣre þe se brūc
 'unusedtemplateswlh' => 'ōðre hlencan',
 
 # Random page
-'randompage' => 'Gelimplic tramet',
+'randompage' => 'Gelimplīc tramet',
 
 # Statistics
 'statistics' => 'Cȳþþu',
@@ -1076,7 +1076,7 @@ Cēos ōðerne naman lā.',
 'tooltip-pt-mycontris' => 'Getæl þīnra forðunga',
 'tooltip-pt-login' => 'Man þē byldeþ to inmeldienne; þēah, þis nis abeden',
 'tooltip-pt-logout' => 'Ūtmeldian',
-'tooltip-ca-talk' => 'Mōtung ymbe þone innungtramet',
+'tooltip-ca-talk' => 'Mōtung ymbe þone innunge tramet',
 'tooltip-ca-edit' => 'Þū meaht þisne tramet adihtan. Brūc lā þone fōrebysene cnæpp ǣr þū hordie.',
 'tooltip-ca-addsection' => 'Beginnan nīwne dǣl',
 'tooltip-ca-viewsource' => 'Þes tramet is borgen.
@@ -1097,7 +1097,7 @@ Cēos ōðerne naman lā.',
 'tooltip-n-portal' => 'Ymbe þæt weorc, hwæt meaht þū dōn, hwǣr man finde þing',
 'tooltip-n-currentevents' => 'Findan ieldran cȳþþe ymbe nīwu gelimp',
 'tooltip-n-recentchanges' => 'Getæl nīwra andwendunga on þǣm wiki',
-'tooltip-n-randompage' => 'Hladan gelimplicne tramet',
+'tooltip-n-randompage' => 'Hladan gelimplīcne tramet',
 'tooltip-n-help' => 'Cunnunge stede',
 'tooltip-t-whatlinkshere' => 'Getæl eallra wiki trameta þā habbaþ hlencan hider',
 'tooltip-t-recentchangeslinked' => 'Nīwa andwendunga in trametum tō þǣm þes tramet hæbbe hlencan',

@@ -684,7 +684,7 @@ $1',
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Описание {{grammar:genitive|{{SITENAME}}}}',
 'aboutpage' => 'Project:Описание',
-'copyright' => 'Содержимое доступно в соответствии с $1.',
+'copyright' => 'Содержимое доступно по лицензии $1 (если не указано иное).',
 'copyrightpage' => '{{ns:project}}:Авторские права',
 'currentevents' => 'Текущие события',
 'currentevents-url' => 'Project:Текущие события',
@@ -1063,6 +1063,9 @@ $2
 
 # Special:ResetTokens
 'resettokens' => 'Сбросить токены',
+'resettokens-text' => 'Вы можете сбросить токены, которые позволяют иметь доступ к некоторым личным данным, которые связаны с вашей учётной записью. 
+
+Вам необходимо сделать это, если вы случайно поделился ими с кем-то, или если ваш аккаунт был взломан.',
 'resettokens-no-tokens' => 'Нет токенов для сброса.',
 'resettokens-legend' => 'Сбросить токены',
 'resettokens-tokens' => 'Токены:',
@@ -4407,11 +4410,14 @@ MediaWiki распространяется в надежде, что она бу
 'rotate-comment' => 'Изображение повёрнуто на $1 градус{{PLURAL:$1||а|ов}} по часовой стрелке',
 
 # Limit report
+'limitreport-title' => 'Данные анализатора:',
 'limitreport-cputime' => 'Использование времени процессора',
 'limitreport-cputime-value' => '$1 {{PLURAL:$1|секунда|секунды|секунд}}',
 'limitreport-walltime' => 'Использование в режиме реального времени',
 'limitreport-walltime-value' => '$1 {{PLURAL:$1|секунда|секунды|секунд}}',
+'limitreport-ppvisitednodes' => 'Количество узлов, посещённых препроцессором',
 'limitreport-ppgeneratednodes' => 'Количество сгенерированных препроцессором узлов',
+'limitreport-postexpandincludesize' => 'Размер раскрытых включений',
 'limitreport-postexpandincludesize-value' => '$1/$2 байт',
 'limitreport-templateargumentsize' => 'Размер аргумента шаблона',
 'limitreport-templateargumentsize-value' => '$1/$2 байт',

@@ -435,7 +435,7 @@ $1',
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} के बारे में',
 'aboutpage' => 'Project:परिचय',
-'copyright' => 'उपलब्ध सामग्री $1 के अधीन है।',
+'copyright' => 'उपलब्ध सामग्री $1 के अधीन है जब तक अलग से उल्लेख ना किया गया हो।',
 'copyrightpage' => '{{ns:project}}:सर्वाधिकार',
 'currentevents' => 'हाल की घटनाएँ',
 'currentevents-url' => 'Project:हाल की घटनाएँ',
