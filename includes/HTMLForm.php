@@ -192,7 +192,7 @@ class HTMLForm extends ContextSource {
 	/**
 	 * Build a new HTMLForm from an array of field attributes
 	 * @param array $descriptor of Field constructs, as described above
-	 * @param $context IContextSource available since 1.18, will become compulsory in 1.18.
+	 * @param $context IContextSource available since 1.18, will become compulsory in 1.23.
 	 *     Obviates the need to call $form->setTitle()
 	 * @param string $messagePrefix a prefix to go in front of default messages
 	 */
@@ -201,12 +201,16 @@ class HTMLForm extends ContextSource {
 			$this->setContext( $context );
 			$this->mTitle = false; // We don't need them to set a title
 			$this->mMessagePrefix = $messagePrefix;
-		} elseif ( is_null( $context ) && $messagePrefix !== '' ) {
-			$this->mMessagePrefix = $messagePrefix;
-		} elseif ( is_string( $context ) && $messagePrefix === '' ) {
-			// B/C since 1.18
-			// it's actually $messagePrefix
-			$this->mMessagePrefix = $context;
+		} else {
+			wfLogWarning( 'HTMLForm constructor will require the $context parameter in MediaWiki 1.23.' );
+
+			if ( is_null( $context ) && $messagePrefix !== '' ) {
+				$this->mMessagePrefix = $messagePrefix;
+			} elseif ( is_string( $context ) && $messagePrefix === '' ) {
+				// B/C since 1.18
+				// it's actually $messagePrefix
+				$this->mMessagePrefix = $context;
+			}
 		}
 
 		// Expand out into a tree.
@@ -325,7 +329,7 @@ class HTMLForm extends ContextSource {
 	function prepareForm() {
 		# Check if we have the info we need
 		if ( !$this->mTitle instanceof Title && $this->mTitle !== false ) {
-			throw new MWException( "You must call setTitle() on an HTMLForm" );
+			throw new MWException( 'You must provide the $context parameter to HTMLForm constructor' );
 		}
 
 		# Load data from the request.
@@ -950,8 +954,10 @@ class HTMLForm extends ContextSource {
 	 * Set the title for form submission
 	 * @param $t Title of page the form is on/should be posted to
 	 * @return HTMLForm $this for chaining calls (since 1.20)
+	 * @deprecated since 1.22. Will be removed in 1.23.
 	 */
 	function setTitle( $t ) {
+		wfDeprecated( __METHOD__, '1.22', 'Pass $context to HTMLForm constructor instead.' );
 		$this->mTitle = $t;
 		return $this;
 	}
