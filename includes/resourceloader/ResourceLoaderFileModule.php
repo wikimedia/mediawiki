@@ -486,6 +486,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/**
 	 * Infer the stylesheet language from a stylesheet file path.
 	 *
+	 * @since 1.22
 	 * @param string $path
 	 * @return string: the stylesheet language name
 	 */
@@ -703,11 +704,13 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 
 	/**
 	 * Generate a cache key for a LESS file.
+	 *
 	 * The cache key varies on the file name, the names and values of global
 	 * LESS variables, and the value of $wgShowExceptionDetails. Varying on
 	 * $wgShowExceptionDetails ensures the CSS comment indicating compilation
 	 * failure shows the right level of detail.
 	 *
+	 * @since 1.22
 	 * @param string $fileName File name of root LESS file.
 	 * @return string: Cache key
 	 */
@@ -728,6 +731,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * that were processed. lessphp compares the cached & current mtimes and
 	 * recompiles as necessary.
 	 *
+	 * @since 1.22
 	 * @param string $fileName File path of LESS source
 	 * @return string: CSS source
 	 */
