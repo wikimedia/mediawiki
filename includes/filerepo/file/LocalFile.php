@@ -788,10 +788,12 @@ class LocalFile extends File {
 
 		$backend = $this->repo->getBackend();
 		$files = array( $dir );
-		$iterator = $backend->getFileList( array( 'dir' => $dir ) );
-		foreach ( $iterator as $file ) {
-			$files[] = $file;
-		}
+		try {
+			$iterator = $backend->getFileList( array( 'dir' => $dir ) );
+			foreach ( $iterator as $file ) {
+				$files[] = $file;
+			}
+		} catch ( FileBackendError $e ) {} // suppress (bug 54674)
 
 		return $files;
 	}
