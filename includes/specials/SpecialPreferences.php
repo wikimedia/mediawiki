@@ -75,10 +75,11 @@ class SpecialPreferences extends SpecialPage {
 
 		$this->getOutput()->addWikiMsg( 'prefs-reset-intro' );
 
-		$htmlForm = new HTMLForm( array(), $this->getContext(), 'prefs-restore' );
+		$context = new DerivativeContext( $this->getContext() );
+		$context->setTitle( $this->getTitle( 'reset' ) ); // Reset subpage
+		$htmlForm = new HTMLForm( array(), $context, 'prefs-restore' );
 
 		$htmlForm->setSubmitTextMsg( 'restoreprefs' );
-		$htmlForm->setTitle( $this->getTitle( 'reset' ) );
 		$htmlForm->setSubmitCallback( array( $this, 'submitReset' ) );
 		$htmlForm->suppressReset();
 

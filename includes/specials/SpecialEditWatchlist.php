@@ -547,8 +547,9 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			$this->toc = false;
 		}
 
-		$form = new EditWatchlistNormalHTMLForm( $fields, $this->getContext() );
-		$form->setTitle( $this->getTitle() );
+		$context = new DerivativeContext( $this->getContext() );
+		$context->setTitle( $this->getTitle() ); // Remove subpage
+		$form = new EditWatchlistNormalHTMLForm( $fields, $context );
 		$form->setSubmitTextMsg( 'watchlistedit-normal-submit' );
 		# Used message keys: 'accesskey-watchlistedit-normal-submit', 'tooltip-watchlistedit-normal-submit'
 		$form->setSubmitTooltip( 'watchlistedit-normal-submit' );
@@ -610,8 +611,9 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				'default' => $titles,
 			),
 		);
-		$form = new HTMLForm( $fields, $this->getContext() );
-		$form->setTitle( $this->getTitle( 'raw' ) );
+		$context = new DerivativeContext( $this->getContext() );
+		$context->setTitle( $this->getTitle( 'raw' ) ); // Reset subpage
+		$form = new HTMLForm( $fields, $context );
 		$form->setSubmitTextMsg( 'watchlistedit-raw-submit' );
 		# Used message keys: 'accesskey-watchlistedit-raw-submit', 'tooltip-watchlistedit-raw-submit'
 		$form->setSubmitTooltip( 'watchlistedit-raw-submit' );

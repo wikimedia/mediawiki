@@ -181,8 +181,9 @@ class NewFilesPager extends ReverseChronologicalPager {
 			unset( $fields['like'] );
 		}
 
-		$form = new HTMLForm( $fields, $this->getContext() );
-		$form->setTitle( $this->getTitle() );
+		$context = new DerivativeContext( $this->getContext() );
+		$context->setTitle( $this->getTitle() ); // Remove subpage
+		$form = new HTMLForm( $fields, $context );
 		$form->setSubmitTextMsg( 'ilsubmit' );
 		$form->setMethod( 'get' );
 		$form->setWrapperLegendMsg( 'newimages-legend' );
