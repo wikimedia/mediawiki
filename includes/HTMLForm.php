@@ -147,7 +147,6 @@ class HTMLForm extends ContextSource {
 	protected $mSubmitText;
 	protected $mSubmitTooltip;
 
-	protected $mTitle;
 	protected $mMethod = 'post';
 
 	/**
@@ -192,26 +191,12 @@ class HTMLForm extends ContextSource {
 	/**
 	 * Build a new HTMLForm from an array of field attributes
 	 * @param array $descriptor of Field constructs, as described above
-	 * @param $context IContextSource available since 1.18, will become compulsory in 1.23.
-	 *     Obviates the need to call $form->setTitle()
+	 * @param $context IContextSource available since 1.18, required since 1.23.
 	 * @param string $messagePrefix a prefix to go in front of default messages
 	 */
-	public function __construct( $descriptor, /*IContextSource*/ $context = null, $messagePrefix = '' ) {
-		if ( !( $context instanceof IContextSource ) ) {
-			wfLogWarning( 'HTMLForm constructor will require the $context parameter in MediaWiki 1.23.' );
-		}
-
-		if ( $context instanceof IContextSource ) {
-			$this->setContext( $context );
-			$this->mTitle = false; // We don't need them to set a title
-			$this->mMessagePrefix = $messagePrefix;
-		} elseif ( is_null( $context ) && $messagePrefix !== '' ) {
-			$this->mMessagePrefix = $messagePrefix;
-		} elseif ( is_string( $context ) && $messagePrefix === '' ) {
-			// B/C since 1.18
-			// it's actually $messagePrefix
-			$this->mMessagePrefix = $context;
-		}
+	public function __construct( $descriptor, IContextSource $context, $messagePrefix = '' ) {
+		$this->setContext( $context );
+		$this->mMessagePrefix = $messagePrefix;
 
 		// Expand out into a tree.
 		$loadedDescriptor = array();
@@ -327,11 +312,6 @@ class HTMLForm extends ContextSource {
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
 	function prepareForm() {
-		# Check if we have the info we need
-		if ( !$this->mTitle instanceof Title && $this->mTitle !== false ) {
-			throw new MWException( 'You must provide the $context parameter to HTMLForm constructor' );
-		}
-
 		# Load data from the request.
 		$this->loadData();
 		return $this;
@@ -951,25 +931,11 @@ class HTMLForm extends ContextSource {
 	}
 
 	/**
-	 * Set the title for form submission
-	 * @param $t Title of page the form is on/should be posted to
-	 * @return HTMLForm $this for chaining calls (since 1.20)
-	 * @deprecated since 1.22. Will be removed in 1.23.
-	 */
-	function setTitle( $t ) {
-		wfDeprecated( __METHOD__, '1.22', 'Pass $context to HTMLForm constructor instead.' );
-		$this->mTitle = $t;
-		return $this;
-	}
-
-	/**
 	 * Get the title
 	 * @return Title
 	 */
 	function getTitle() {
-		return $this->mTitle === false
-			? $this->getContext()->getTitle()
-			: $this->mTitle;
+		return $this->getContext()->getTitle();
 	}
 
 	/**

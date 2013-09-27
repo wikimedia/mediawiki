@@ -1,0 +1,3 @@
+=== Other changes in 1.22 ===
+* BREAKING CHANGE: HTMLForm constructor now requires the $context parameter.
+  HTMLForm#setTitle and protected mTitle property have been removed.
