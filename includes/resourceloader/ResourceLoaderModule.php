@@ -458,6 +458,7 @@ abstract class ResourceLoaderModule {
 	}
 
 	/**
+	 * @since 1.22
 	 * @return lessc
 	 */
 	protected static function lessCompiler() {
@@ -480,6 +481,7 @@ abstract class ResourceLoaderModule {
 	/**
 	 * Get global LESS variables.
 	 *
+	 * @since 1.22
 	 * @return array: Map of variable names to string CSS values.
 	 */
 	protected static function getLESSVars() {
