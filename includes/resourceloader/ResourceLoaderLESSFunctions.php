@@ -20,7 +20,7 @@
  * @file
  */
 
-class LESSFunctions {
+class ResourceLoaderLESSFunctions {
 	/**
 	 * Check if an image file reference is suitable for embedding.
 	 * An image is embeddable if it (a) exists, (b) has a suitable MIME-type,
