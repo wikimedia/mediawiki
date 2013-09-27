@@ -378,7 +378,7 @@ class GenerateSitemap extends Maintenance {
 	function open( $file, $flags ) {
 		$resource = $this->compress ? gzopen( $file, $flags ) : fopen( $file, $flags );
 		if ( $resource === false ) {
-			wfDebugDieBacktrace( __METHOD__ . " error opening file $file with flags $flags. Check permissions?" );
+			throw new MWException( __METHOD__ . " error opening file $file with flags $flags. Check permissions?" );
 		}
 		return $resource;
 	}
@@ -388,7 +388,7 @@ class GenerateSitemap extends Maintenance {
 	 */
 	function write( &$handle, $str ) {
 		if ( $handle === true || $handle === false ) {
-			wfDebugDieBacktrace( __METHOD__ . " was passed a boolean as a file handle.\n" );
+			throw new MWException( __METHOD__ . " was passed a boolean as a file handle.\n" );
 		}
 		if ( $this->compress ) {
 			gzwrite( $handle, $str );

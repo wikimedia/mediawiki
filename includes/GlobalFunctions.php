@@ -1703,10 +1703,12 @@ function wfEmptyMsg( $key ) {
  * Throw a debugging exception. This function previously once exited the process,
  * but now throws an exception instead, with similar results.
  *
+ * @deprecated since 1.22; just throw an MWException yourself
  * @param string $msg message shown when dying.
  * @throws MWException
  */
 function wfDebugDieBacktrace( $msg = '' ) {
+	wfDeprecated( __FUNCTION__, '1.22' );
 	throw new MWException( $msg );
 }
 
