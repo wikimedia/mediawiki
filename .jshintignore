@@ -25,9 +25,5 @@ resources/jquery.ui/
 resources/mediawiki.libs/
 resources/jquery.chosen/chosen.jquery.js
 
-# legacy scripts
-skins/common/IEFixes.js
-skins/common/config.js
-
 # github.com/jshint/jshint/issues/729
 tests/qunit/suites/resources/mediawiki/mediawiki.jscompat.test.js
