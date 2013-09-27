@@ -221,6 +221,8 @@ class SpecialUpload extends SpecialPage {
 	 */
 	protected function getUploadForm( $message = '', $sessionKey = '', $hideIgnoreWarning = false ) {
 		# Initialize form
+		$context = new DerivativeContext( $this->getContext() );
+		$context->setTitle( $this->getTitle() ); // Remove subpage
 		$form = new UploadForm( array(
 			'watch' => $this->getWatchCheck(),
 			'forreupload' => $this->mForReUpload,
@@ -232,8 +234,7 @@ class SpecialUpload extends SpecialPage {
 			'texttop' => $this->uploadFormTextTop,
 			'textaftersummary' => $this->uploadFormTextAfterSummary,
 			'destfile' => $this->mDesiredDestName,
-		), $this->getContext() );
-		$form->setTitle( $this->getTitle() );
+		), $context );
 
 		# Check the token, but only if necessary
 		if (
