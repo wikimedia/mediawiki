@@ -474,6 +474,8 @@ changes to languages because of Bugzilla reports.
   The skins/common/wikiprintable.css file no longer exists. Return value of
   Skin#commonPrintStylesheet is ignored. Please use the 'mediawiki.legacy.commonPrint'
   module instead or base your skin on SkinTemplate.
+* HTMLForm constructor warns if the $context parameter is not given; it will become
+  required in 1.23. HTMLForm#setTitle is deprecated; it will be removed in 1.23.
 
 == Compatibility ==
 
