@@ -35,8 +35,12 @@ class SpecialPreferencesTest extends MediaWikiTestCase {
 			->method( 'getOption' )
 			->will( $this->returnValueMap( array(
 				array( 'nickname', null, false, 'superlongnickname' ),
-			)
-			) );
+			) ) );
+		$user->expects( $this->any() )
+			->method( 'getOptions' )
+			->will( $this->returnValueMap( array(
+				array( array( 'nickname' => 'superlongnickname' ) ),
+			) ) );
 
 		# Validate the mock (FIXME should probably be removed)
 		$this->assertFalse( $user->isAnon() );
