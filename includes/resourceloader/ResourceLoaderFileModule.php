@@ -776,9 +776,6 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			$result['files'] = array( $fileName => self::safeFilemtime( $fileName ) );
 			$result['updated'] = time();
 		}
-		// Tie cache expiry to the names and mtimes of files that were embedded
-		// as data URIs in the generated CSS source.
-		$result['files'] += $compiler->embeddedFiles;
 		$this->localFileRefs += array_keys( $result['files'] );
 		$cache->set( $key, $result, $expire );
 		return $result['compiled'];
