@@ -118,12 +118,12 @@ function wfArrayDiff2( $a, $b ) {
 }
 
 /**
- * @param $a
- * @param $b
+ * @param $a array|string
+ * @param $b array|string
  * @return int
  */
 function wfArrayDiff2_cmp( $a, $b ) {
-	if ( !is_array( $a ) ) {
+	if ( is_string( $a ) && is_string( $b ) ) {
 		return strcmp( $a, $b );
 	} elseif ( count( $a ) !== count( $b ) ) {
 		return count( $a ) < count( $b ) ? -1 : 1;
