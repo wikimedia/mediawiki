@@ -169,7 +169,6 @@ class LoginForm extends SpecialPage {
 		// If logging in and not on HTTPS, either redirect to it or offer a link.
 		global $wgSecureLogin;
 		if (
-			$this->mType !== 'signup' &&
 			WebRequest::detectProtocol() !== 'https'
 		) {
 			$title = $this->getFullTitle();
