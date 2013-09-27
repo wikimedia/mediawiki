@@ -1,7 +1,7 @@
 <?php
 
 /**
- * lessphp v0.4.0@785ad53840
+ * lessphp v0.4.0@6e8e724fc7
  * http://leafo.net/lessphp
  *
  * LESS css compiler, adapted from http://lesscss.org
@@ -89,8 +89,6 @@ class lessc {
 	// so we know how to create error messages
 	protected $sourceParser = null;
 	protected $sourceLoc = null;
-
-	static public $defaultValue = array("keyword", "");
 
 	static protected $nextImportId = 0; // uniquely identify imports
 
@@ -712,8 +710,7 @@ class lessc {
 			$mixins = $this->findBlocks($block, $path, $orderedArgs, $keywordArgs);
 
 			if ($mixins === null) {
-				// fwrite(STDERR,"failed to find block: ".implode(" > ", $path)."\n");
-				break; // throw error here??
+				$this->throwError("{$prop[1][0]} is undefined");
 			}
 
 			foreach ($mixins as $mixin) {
@@ -987,7 +984,7 @@ class lessc {
 				if (isset($items[0])) {
 					return $this->lib_e($items[0]);
 				}
-				return self::$defaultValue;
+				$this->throwError("unrecognised input");
 			case "string":
 				$arg[1] = "";
 				return $arg;
@@ -1415,7 +1412,7 @@ class lessc {
 			}
 
 			$seen[$key] = true;
-			$out = $this->reduce($this->get($key, self::$defaultValue));
+			$out = $this->reduce($this->get($key));
 			$seen[$key] = false;
 			return $out;
 		case "list":
@@ -1774,7 +1771,7 @@ class lessc {
 
 
 	// get the highest occurrence entry for a name
-	protected function get($name, $default=null) {
+	protected function get($name) {
 		$current = $this->env;
 
 		$isArguments = $name == $this->vPrefix . 'arguments';
@@ -1791,7 +1788,7 @@ class lessc {
 			}
 		}
 
-		return $default;
+		$this->throwError("variable $name is undefined");
 	}
 
 	// inject array of unparsed strings into environment as variables
@@ -2027,7 +2024,7 @@ class lessc {
 		return $this->allParsedFiles;
 	}
 
-	protected function addParsedFile($file) {
+	public function addParsedFile($file) {
 		$this->allParsedFiles[realpath($file)] = filemtime($file);
 	}
 
