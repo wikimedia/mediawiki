@@ -88,7 +88,7 @@ class Preferences {
 
 		wfRunHooks( 'GetPreferences', array( $user, &$defaultPreferences ) );
 
-		## Remove preferences that wikis don't want to use
+		// Remove preferences that wikis don't want to use
 		global $wgHiddenPrefs;
 		foreach ( $wgHiddenPrefs as $pref ) {
 			if ( isset( $defaultPreferences[$pref] ) ) {
@@ -96,86 +96,17 @@ class Preferences {
 			}
 		}
 
-		## Make sure that form fields have their parent set. See bug 41337.
-		$dummyForm = new HTMLForm( array(), $context );
-
+		// Disable options if they can't be changed
 		$disable = !$user->isAllowed( 'editmyoptions' );
-
-		## Prod in defaults from the user
 		foreach ( $defaultPreferences as $name => &$info ) {
-			$prefFromUser = self::getOptionFromUser( $name, $info, $user );
 			if ( $disable && !in_array( $name, self::$saveBlacklist ) ) {
 				$info['disabled'] = 'disabled';
-			}
-			$field = HTMLForm::loadInputFromParameters( $name, $info ); // For validation
-			$field->mParent = $dummyForm;
-			$defaultOptions = User::getDefaultOptions();
-			$globalDefault = isset( $defaultOptions[$name] )
-				? $defaultOptions[$name]
-				: null;
-
-			// If it validates, set it as the default
-			if ( isset( $info['default'] ) ) {
-				// Already set, no problem
-				continue;
-			} elseif ( !is_null( $prefFromUser ) && // Make sure we're not just pulling nothing
-					$field->validate( $prefFromUser, $user->getOptions() ) === true ) {
-				$info['default'] = $prefFromUser;
-			} elseif ( $field->validate( $globalDefault, $user->getOptions() ) === true ) {
-				$info['default'] = $globalDefault;
-			} else {
-				throw new MWException( "Global default '$globalDefault' is invalid for field $name" );
 			}
 		}
 
 		self::$defaultPreferences = $defaultPreferences;
 
 		return $defaultPreferences;
-	}
-
-	/**
-	 * Pull option from a user account. Handles stuff like array-type preferences.
-	 *
-	 * @param $name
-	 * @param $info
-	 * @param $user User
-	 * @return array|String
-	 */
-	static function getOptionFromUser( $name, $info, $user ) {
-		$val = $user->getOption( $name );
-
-		// Handling for multiselect preferences
-		if ( ( isset( $info['type'] ) && $info['type'] == 'multiselect' ) ||
-				( isset( $info['class'] ) && $info['class'] == 'HTMLMultiSelectField' ) ) {
-			$options = HTMLFormField::flattenOptions( $info['options'] );
-			$prefix = isset( $info['prefix'] ) ? $info['prefix'] : $name;
-			$val = array();
-
-			foreach ( $options as $value ) {
-				if ( $user->getOption( "$prefix$value" ) ) {
-					$val[] = $value;
-				}
-			}
-		}
-
-		// Handling for checkmatrix preferences
-		if ( ( isset( $info['type'] ) && $info['type'] == 'checkmatrix' ) ||
-				( isset( $info['class'] ) && $info['class'] == 'HTMLCheckMatrix' ) ) {
-			$columns = HTMLFormField::flattenOptions( $info['columns'] );
-			$rows = HTMLFormField::flattenOptions( $info['rows'] );
-			$prefix = isset( $info['prefix'] ) ? $info['prefix'] : $name;
-			$val = array();
-
-			foreach ( $columns as $column ) {
-				foreach ( $rows as $row ) {
-					if ( $user->getOption( "$prefix$column-$row" ) ) {
-						$val[] = "$column-$row";
-					}
-				}
-			}
-		}
-
-		return $val;
 	}
 
 	/**
@@ -1283,10 +1214,26 @@ class Preferences {
 			}
 		}
 
+		// The 'wp' is hardcoded in HTMLFormField constructor…
+		// We need to map over the keys and add 'wp' to each
+		$userOptions = $user->getOptions();
+		$params = array_combine(
+			array_map( function ( $optionName ) {
+				return 'wp' . $optionName;
+			}, array_keys( $userOptions ) ),
+			array_values( $userOptions )
+		);
+
+		$params = $context->getRequest()->getValues() + $params;
+		$req = new DerivativeRequest( $context->getRequest(), $params, true );
+		$context->setRequest( $req );
+
 		/**
 		 * @var $htmlForm PreferencesForm
 		 */
 		$htmlForm = new $formClass( $formDescriptor, $context, 'prefs' );
+		// Load default preferences from the faked request
+		$htmlForm->prepareForm();
 
 		$htmlForm->setModifiedUser( $user );
 		$htmlForm->setId( 'mw-prefs-form' );

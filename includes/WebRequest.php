@@ -1517,4 +1517,8 @@ class DerivativeRequest extends FauxRequest {
 	public function getIP() {
 		return $this->base->getIP();
 	}
+
+	public function getRequestURL() {
+		return $this->base->getRequestURL();
+	}
 }
