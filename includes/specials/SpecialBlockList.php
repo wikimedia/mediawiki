@@ -97,6 +97,10 @@ class SpecialBlockList extends SpecialPage {
 			),
 		);
 		$form = new HTMLForm( $fields, $this->getContext() );
+		
+		echo $form->getTitle();
+		echo $this->getTitle();
+		
 		$form->setTitle( $this->getTitle() ); // Remove subpage
 		$form->setMethod( 'get' );
 		$form->setWrapperLegendMsg( 'ipblocklist-legend' );
