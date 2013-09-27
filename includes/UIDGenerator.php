@@ -33,6 +33,7 @@ class UIDGenerator {
 	protected $nodeId32; // string; node ID in binary (32 bits)
 	protected $nodeId48; // string; node ID in binary (48 bits)
 
+	protected $idFile; // string; local file path
 	protected $lockFile88; // string; local file path
 	protected $lockFile128; // string; local file path
 
@@ -42,8 +43,8 @@ class UIDGenerator {
 	const QUICK_RAND = 1; // get randomness from fast and insecure sources
 
 	protected function __construct() {
-		$idFile = wfTempDir() . '/mw-' . __CLASS__ . '-UID-nodeid';
-		$nodeId = is_file( $idFile ) ? file_get_contents( $idFile ) : '';
+		$this->idFile = wfTempDir() . '/mw-' . __CLASS__ . '-UID-nodeid';
+		$nodeId = is_file( $this->idFile ) ? file_get_contents( $this->idFile ) : '';
 		// Try to get some ID that uniquely identifies this machine (RFC 4122)...
 		if ( !preg_match( '/^[0-9a-f]{12}$/i', $nodeId ) ) {
 			wfSuppressWarnings();
@@ -65,7 +66,7 @@ class UIDGenerator {
 				$nodeId = MWCryptRand::generateHex( 12, true );
 				$nodeId[1] = dechex( hexdec( $nodeId[1] ) | 0x1 ); // set multicast bit
 			}
-			file_put_contents( $idFile, $nodeId ); // cache
+			file_put_contents( $this->idFile, $nodeId ); // cache
 		}
 		$this->nodeId32 = wfBaseConvert( substr( sha1( $nodeId ), 0, 8 ), 16, 2, 32 );
 		$this->nodeId48 = wfBaseConvert( $nodeId, 16, 2, 48 );
@@ -333,5 +334,12 @@ class UIDGenerator {
 
 	function __destruct() {
 		array_map( 'fclose', $this->fileHandles );
+		if ( defined( 'MW_PHPUNIT_TEST' ) ) {
+			wfSuppressWarnings();
+			unlink( $this->idFile );
+			unlink( $this->lockFile88 );
+			unlink( $this->lockFile128 );
+			wfRestoreWarnings();
+		}
 	}
 }
