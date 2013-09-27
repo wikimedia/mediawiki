@@ -95,6 +95,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgCookiePrefix' => $wgCookiePrefix,
 			'wgResourceLoaderMaxQueryLength' => $wgResourceLoaderMaxQueryLength,
 			'wgCaseSensitiveNamespaces' => $caseSensitiveNamespaces,
+			'wgLegalTitleChars' => Title::convertByteClassToUnicodeClass( Title::legalChars() ),
 		);
 
 		wfRunHooks( 'ResourceLoaderGetConfigVars', array( &$vars ) );
