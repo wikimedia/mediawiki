@@ -2966,24 +2966,24 @@ $templates
 	public function getJSVars() {
 		global $wgContLang;
 
-		$latestRevID = 0;
-		$pageID = 0;
-		$canonicalName = false; # bug 21115
+		$curRevisionId = 0;
+		$articleId = 0;
+		$canonicalSpecialPageName = false; # bug 21115
 
 		$title = $this->getTitle();
 		$ns = $title->getNamespace();
-		$nsname = MWNamespace::exists( $ns ) ? MWNamespace::getCanonicalName( $ns ) : $title->getNsText();
+		$canonicalNamespace = MWNamespace::exists( $ns ) ? MWNamespace::getCanonicalName( $ns ) : $title->getNsText();
 
 		// Get the relevant title so that AJAX features can use the correct page name
 		// when making API requests from certain special pages (bug 34972).
 		$relevantTitle = $this->getSkin()->getRelevantTitle();
 
 		if ( $ns == NS_SPECIAL ) {
-			list( $canonicalName, /*...*/ ) = SpecialPageFactory::resolveAlias( $title->getDBkey() );
+			list( $canonicalSpecialPageName, /*...*/ ) = SpecialPageFactory::resolveAlias( $title->getDBkey() );
 		} elseif ( $this->canUseWikiPage() ) {
 			$wikiPage = $this->getWikiPage();
-			$latestRevID = $wikiPage->getLatest();
-			$pageID = $wikiPage->getId();
+			$curRevisionId = $wikiPage->getLatest();
+			$articleId = $wikiPage->getId();
 		}
 
 		$lang = $title->getPageLanguage();
@@ -3005,14 +3005,14 @@ $templates
 		$user = $this->getUser();
 
 		$vars = array(
-			'wgCanonicalNamespace' => $nsname,
-			'wgCanonicalSpecialPageName' => $canonicalName,
+			'wgCanonicalNamespace' => $canonicalNamespace,
+			'wgCanonicalSpecialPageName' => $canonicalSpecialPageName,
 			'wgNamespaceNumber' => $title->getNamespace(),
 			'wgPageName' => $title->getPrefixedDBkey(),
 			'wgTitle' => $title->getText(),
-			'wgCurRevisionId' => $latestRevID,
+			'wgCurRevisionId' => $curRevisionId,
 			'wgRevisionId' => (int)$this->getRevisionId(),
-			'wgArticleId' => $pageID,
+			'wgArticleId' => $articleId,
 			'wgIsArticle' => $this->isArticle(),
 			'wgIsRedirect' => $title->isRedirect(),
 			'wgAction' => Action::getActionName( $this->getContext() ),
