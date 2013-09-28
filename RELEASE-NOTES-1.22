@@ -316,6 +316,8 @@ production.
   database is created.
 * (bug 47191) Fixed "Column 'si_title' cannot be part of FULLTEXT index"
   MySQL error when installing using the binary character set option.
+* (bug 31366) Files in a format not usually renderable in the browser
+  are no longer clickable on image description pages.
 
 === API changes in 1.22 ===
 * (bug 25553) The JSON output formatter now leaves forward slashes unescaped

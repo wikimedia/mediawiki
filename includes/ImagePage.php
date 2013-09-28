@@ -347,7 +347,11 @@ class ImagePage extends Article {
 						# Note that $height <= $maxHeight now, but might not be identical
 						# because of rounding.
 					}
-					$linktext = wfMessage( 'show-big-image' )->escaped();
+					if ( $this->displayImg->mustRender() ) {
+						$linktext = wfMessage( 'show-big-image-original' )->escaped();
+					} else {
+						$linktext = wfMessage( 'show-big-image' )->escaped();
+					}
 					if ( $this->displayImg->getRepo()->canTransformVia404() ) {
 						$thumbSizes = $wgImageLimits;
 					} else {
@@ -408,7 +412,7 @@ class ImagePage extends Article {
 				if ( $thumbnail ) {
 					$options = array(
 						'alt' => $this->displayImg->getTitle()->getPrefixedText(),
-						'file-link' => true,
+						'file-link' => !$this->displayImg->mustRender(),
 					);
 					$out->addHTML( '<div class="fullImageLink" id="file">' .
 						$thumbnail->toHtml( $options ) .
