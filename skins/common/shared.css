@@ -59,9 +59,8 @@ input[dir="rtl"] {
 }
 
 /* Default style for semantic tags */
-abbr,
-acronym,
-.explain {
+abbr[title],
+.explain[title] {
 	border-bottom: 1px dotted;
 	cursor: help;
 }
