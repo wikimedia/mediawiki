@@ -69,6 +69,7 @@ class UsersPager extends AlphabeticPager {
 		$this->editsOnly = $request->getBool( 'editsOnly' );
 		$this->creationSort = $request->getBool( 'creationSort' );
 		$this->including = $including;
+		$this->mDefaultDirection = $request->getBool( 'desc' );
 
 		$this->requestedUser = '';
 
@@ -276,6 +277,13 @@ class UsersPager extends AlphabeticPager {
 			'creationSort',
 			'creationSort',
 			$this->creationSort
+		);
+		$out .= '&#160;';
+		$out .= Xml::checkLabel(
+			$this->msg( 'listusers-desc' )->text(),
+			'desc',
+			'desc',
+			$this->mDefaultDirection
 		);
 		$out .= '<br />';
 

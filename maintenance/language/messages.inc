@@ -1841,6 +1841,7 @@ $wgMessageStructure = array(
 		'listusers-summary',
 		'listusers-editsonly',
 		'listusers-creationsort',
+		'listusers-desc',
 		'usereditcount',
 		'usercreated',
 		'newpages',

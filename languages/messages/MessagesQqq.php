@@ -4924,6 +4924,7 @@ See the following search results:
 'listusers' => '{{doc-special|ListUsers}}',
 'listusers-editsonly' => 'Option in [[Special:ListUsers]].',
 'listusers-creationsort' => 'Option in [[Special:ListUsers]].',
+'listusers-desc' => 'Option in [[Special:ListUsers]].',
 'usereditcount' => 'Shown behind every username on [[Special:ListUsers]]. Parameters:
 * $1 - number of edits',
 'usercreated' => 'Used in [[Special:ListUsers]]. Parameters:
