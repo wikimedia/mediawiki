@@ -2617,7 +2617,7 @@ class Language {
 	 */
 	function checkTitleEncoding( $s ) {
 		if ( is_array( $s ) ) {
-			wfDebugDieBacktrace( 'Given array to checkTitleEncoding.' );
+			throw new MWException( 'Given array to checkTitleEncoding.' );
 		}
 		if ( StringUtils::isUtf8( $s ) ) {
 			return $s;
