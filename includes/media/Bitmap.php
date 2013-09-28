@@ -356,7 +356,7 @@ class BitmapHandler extends ImageHandler {
 
 		if ( $retval !== 0 ) {
 			$this->logErrorForExternalProcess( $retval, $err, $cmd );
-			return $this->getMediaTransformError( $params, $err );
+			return $this->getMediaTransformError( $params, "$err\nError code: $retval" );
 		}
 
 		return false; # No error
