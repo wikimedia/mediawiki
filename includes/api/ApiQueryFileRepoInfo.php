@@ -52,7 +52,17 @@ class ApiQueryFileRepoInfo extends ApiQueryBase {
 		$repoGroup = $this->getInitialisedRepoGroup();
 
 		$repoGroup->forEachForeignRepo( function ( $repo ) use ( &$repos, $props ) {
-			$repos[] = array_intersect_key( $repo->getInfo(), $props );
+			$info = $repo->getInfo();
+
+			if ( isset( $info['foreignRepos'] ) ) {
+				foreach ( $info['foreignRepos'] as $frepo ) {
+					$frepo['from'] = $info['name'];
+					$repos[] = array_intersect_key( $frepo, $props );
+				}
+				unset( $info['foreignRepos'] );
+			}
+
+			$repos[] = array_intersect_key( $info, $props );
 		} );
 
 		$repos[] = array_intersect_key( $repoGroup->localRepo->getInfo(), $props );
@@ -83,8 +93,21 @@ class ApiQueryFileRepoInfo extends ApiQueryBase {
 		$repoGroup = $this->getInitialisedRepoGroup();
 
 		$repoGroup->forEachForeignRepo( function ( $repo ) use ( &$props ) {
-			$props = array_merge( $props, array_keys( $repo->getInfo() ) );
+			$info = $repo->getInfo();
+
+			if ( isset( $info['foreignRepos'] ) ) {
+				unset( $info['foreignRepos'] );
+				$info['from'] = true;
+			}
+
+			$props = array_merge( $props, array_keys( $info ) );
 		} );
+
+		$localInfo = $repoGroup->localRepo->getInfo();
+		if ( isset( $localInfo['foreignRepos'] ) ) {
+			unset( $localInfo['foreignRepos'] );
+			$localInfo['from'] = true;
+		}
 
 		return array_values( array_unique( array_merge( $props, array_keys( $repoGroup->localRepo->getInfo() ) ) ) );
 	}

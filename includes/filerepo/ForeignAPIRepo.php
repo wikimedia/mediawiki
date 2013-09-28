@@ -147,11 +147,38 @@ class ForeignAPIRepo extends FileRepo {
 	}
 
 	/**
+	 * @return array Repository information from repos that are down the line from this one.
+	 */
+	function fetchRepos() {
+		$query = array(
+			'format' => 'json',
+			'action' => 'query',
+			'meta' => 'filerepoinfo',
+		);
+
+		if ( $this->mApiBase ) {
+			$url = wfAppendQuery( $this->mApiBase, $query );
+		} else {
+			$url = $this->makeUrl( $query, 'api' );
+		}
+
+		$data = $this->httpGetCached( 'Repos', $query );
+
+		$data = FormatJson::decode( $data, true );
+
+		if ( $data && isset( $data['query'] ) && isset( $data['query']['repos'] ) ) {
+			return $data['query']['repos'];
+		} else {
+			return null;
+		}
+	}
+
+	/**
 	 * @param $query array
 	 * @return string
 	 */
 	function fetchImageQuery( $query ) {
-		global $wgMemc, $wgLanguageCode;
+		global $wgLanguageCode;
 
 		$query = array_merge( $query,
 			array(
@@ -418,6 +445,12 @@ class ForeignAPIRepo extends FileRepo {
 	function getInfo() {
 		$info = parent::getInfo();
 		$info['apiurl'] = $this->getApiUrl();
+
+		$repos = $this->fetchRepos();
+		if ( $repos ) {
+			$info['foreignRepos'] = $repos;
+		}
+
 		return $info;
 	}
 
