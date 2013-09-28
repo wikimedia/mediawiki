@@ -8236,6 +8236,7 @@ Non-animated images use {{msg-mw|svg-long-desc}}.',
 See also:
 * {{msg-mw|Thumbnail error}}',
 'show-big-image' => 'Displayed under an image at the image description page, when it is displayed smaller there than it was uploaded.',
+'show-big-image-original' => 'Like {{msg-mw|show-big-image}}. Displayed under an image at the image description page, when it is displayed smaller there than it was uploaded, and the file is of a type that usually cannot be viewed in the browser (For example, a tiff image).',
 'show-big-image-preview' => 'Message shown under the image description page thumbnail.
 
 Can be followed by {{msg-mw|Show-big-image-other}}.

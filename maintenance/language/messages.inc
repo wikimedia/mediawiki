@@ -2877,6 +2877,7 @@ $wgMessageStructure = array(
 		'svg-long-desc-animated',
 		'svg-long-error',
 		'show-big-image',
+		'show-big-image-original',
 		'show-big-image-preview',
 		'show-big-image-other',
 		'show-big-image-size',
