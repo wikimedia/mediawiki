@@ -580,6 +580,25 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 
 	/**
+	 * Returns all stlyle files used bt this module
+	 * @return array
+	 */
+	public function getAllStyleFiles() {
+		$files = array();
+		foreach( (array)$this->styles as $key => $value ) {
+			if ( is_array( $value ) ) {
+				$path = $key;
+			} else {
+				$path = $value;
+			}
+			if ( $this->getStyleSheetLang( $path ) === 'less' ) {
+				$files[] = $this->getLocalPath( $path );
+			}
+		}
+		return $files;
+	}
+
+	/**
 	 * Gets the contents of a list of JavaScript files.
 	 *
 	 * @param array $scripts List of file paths to scripts to read, remap and concetenate
@@ -717,7 +736,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	protected static function getLESSCacheKey( $fileName ) {
 		global $wgShowExceptionDetails;
 
-		$vars = json_encode( self::getLESSVars() );
+		$vars = json_encode( ResourceLoader::getLESSVars() );
 		$hash = md5( $fileName . $vars );
 		return wfMemcKey( 'resourceloader', 'less', (string)$wgShowExceptionDetails, $hash );
 	}
@@ -749,7 +768,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			$source = $fileName;
 		}
 
-		$compiler = self::lessCompiler();
+		$compiler = ResourceLoader::getLessCompiler();
 		$expire = 0;
 		try {
 			$result = $compiler->cachedCompile( $source );
