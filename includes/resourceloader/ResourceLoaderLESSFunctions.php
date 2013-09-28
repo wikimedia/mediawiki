@@ -62,7 +62,7 @@ class ResourceLoaderLESSFunctions {
 		$file = realpath( $base . '/' . $url );
 
 		$data = CSSMin::encodeImageAsDataURI( $file );
-		$less->embeddedFiles[ $file ] = filemtime( $file );
+		$less->addParsedFile( $file );
 		return 'url(' . $data . ')';
 	}
 }
