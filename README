@@ -8,10 +8,10 @@ and vibrant community of third-party users and developers.
 
 MediaWiki is:
 
-* Feature-rich and extensible, both on-wiki and with over 2,000 extensions;
-* Scalable and suitable for both small and large sites;
-* Available in your language; and
-* Simple to install, working on most hardware/software combinations.
+* feature-rich and extensible, both on-wiki and with over 2,000 extensions;
+* scalable and suitable for both small and large sites;
+* available in your language; and
+* simple to install, working on most hardware/software combinations.
 
 For system requirements, installation, and upgrade details, see the files
 RELEASE-NOTES, INSTALL, and UPGRADE.
@@ -30,4 +30,4 @@ RELEASE-NOTES, INSTALL, and UPGRADE.
 MediaWiki is the result of global collaboration and cooperation. The CREDITS
 file lists technical contributors to the project. The COPYING file explains
 MediaWiki's copyright and license (GNU General Public License, version 2 or
-later). Many thanks to the MediaWiki regulars for testing and suggestions.
+later). Many thanks to the Wikimedia community for testing and suggestions.
