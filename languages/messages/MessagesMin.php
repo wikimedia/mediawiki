@@ -2609,8 +2609,7 @@ Sanak mustilah alah manarimo [{{SERVER}}{{SCRIPTPATH}}/COPYING salinan Lisensi P
 
 # Database error messages
 'dberr-header' => 'Wiki ko bamasalah',
-'dberr-problems' => 'Maaf!
-Situs ko mangalami masalah teknis.',
+'dberr-problems' => 'Maaf! Situs ko mangalami masalah teknis.',
 
 # HTML forms
 'htmlform-required' => 'Nilai ko diparaluan',

@@ -4172,9 +4172,9 @@ MediaWiki este distribuit în speranța că va fi folositor, dar FĂRĂ VREO GAR
 'limitreport-ppvisitednodes' => 'Număr de noduri de preprocesor vizitate',
 'limitreport-ppgeneratednodes' => 'Număr de noduri de preprocesor generate',
 'limitreport-postexpandincludesize' => 'Mărimea includerii post-expansiune',
-'limitreport-postexpandincludesize-value' => '$1/$2 octeți',
+'limitreport-postexpandincludesize-value' => '$1/$2 {{PLURAL:$2|octet|octeți|de octeți}}',
 'limitreport-templateargumentsize' => 'Mărimea argumentului formatului',
-'limitreport-templateargumentsize-value' => '$1/$2 octeți',
+'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|octet|octeți|de octeți}}',
 'limitreport-expansiondepth' => 'Cea mai mare profunzime a expansiunii',
 'limitreport-expensivefunctioncount' => 'Număr de funcții de analiză costisitoare',
 

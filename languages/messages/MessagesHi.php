@@ -1066,6 +1066,7 @@ $2
 'expansion-depth-exceeded-warning' => 'पृष्ठ में विस्तार गहराई पार की गई है',
 'parser-unstrip-loop-warning' => 'Unstrip लूप पाया गया',
 'parser-unstrip-recursion-limit' => 'Unstrip पुनरावर्तन सीमा पार की गई ($1)',
+'converter-manual-rule-error' => 'मैन्यूअल भाषा परिवर्तन नियम में त्रुटि',
 
 # "Undo" feature
 'undo-success' => 'यह संपादन पूर्ववत किया जा सकता है।

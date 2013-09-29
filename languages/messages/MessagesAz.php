@@ -2895,8 +2895,7 @@ Variants for Chinese language
 
 # Database error messages
 'dberr-header' => 'Bu vikidə problem var',
-'dberr-problems' => 'Üzr istəyirik!
-Bu saytda texniki problemlər var.',
+'dberr-problems' => 'Üzr istəyirik! Bu saytda texniki problemlər var.',
 'dberr-info' => '($1: Məlumat bazası ilə əlaqə yoxdur)',
 
 # HTML forms

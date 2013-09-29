@@ -4450,9 +4450,9 @@ $5
 'limitreport-ppvisitednodes' => 'Бр. на пројдени јазли од предобработувачот',
 'limitreport-ppgeneratednodes' => 'Бр. на создадени јазли од предобработувачот',
 'limitreport-postexpandincludesize' => 'Големина на вклученото по проширувањето',
-'limitreport-postexpandincludesize-value' => '$1/$2 бајти',
+'limitreport-postexpandincludesize-value' => '$1/$2 {{PLURAL:$2|бајт|бајти}}',
 'limitreport-templateargumentsize' => 'Големина на аргументот во шаблонот',
-'limitreport-templateargumentsize-value' => '$1/$2 бајти',
+'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|бајт|бајти}}',
 'limitreport-expansiondepth' => 'Најголема длабочина на проширувањето',
 'limitreport-expensivefunctioncount' => 'Бр. на сложени парсерски функции',
 

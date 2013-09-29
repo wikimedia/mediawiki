@@ -42,6 +42,7 @@
  * @author Servien
  * @author Siebrand
  * @author Slomox
+ * @author Southparkfan
  * @author TBloemink
  * @author Tedjuh10
  * @author Tjcool007
@@ -615,7 +616,7 @@ $1',
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Over {{SITENAME}}',
 'aboutpage' => 'Project:Info',
-'copyright' => 'De inhoud is beschikbaar onder de $1.',
+'copyright' => 'De inhoud is beschikbaar onder de $1 tenzij anders aangegeven.',
 'copyrightpage' => '{{ns:project}}:Auteursrechten',
 'currentevents' => 'In het nieuws',
 'currentevents-url' => 'Project:In het nieuws',
@@ -1136,7 +1137,7 @@ Uw eigen .css- en .js-pagina's beginnen met een kleine letter, bijvoorbeeld {{ns
 Uw tekst is niet opgeslagen!",
 'continue-editing' => 'Naar het bewerkingsvenster gaan',
 'previewconflict' => 'Deze voorvertoning geeft aan hoe de tekst in het bovenste veld eruit ziet als u deze opslaat.',
-'session_fail_preview' => "'''Excuses, uw bewerking is niet opgeslagen omdat de sessiegegevens verloren zijn gegaan.'''
+'session_fail_preview' => "'''Uw bewerking is helaas niet opgeslagen omdat de sessiegegevens verloren zijn gegaan.'''
 Probeer het opnieuw.
 Als het dan nog niet lukt, [[Special:UserLogout|meld uzelf dan af]] en vervolgens weer aan.",
 'session_fail_preview_html' => "'''Uw bewerking is niet verwerkt, omdat de sessiegegevens verloren zijn gegaan.'''
@@ -4343,9 +4344,9 @@ Anders kunt u ook het eenvoudige formulier hieronder gebruiken. Uw reactie wordt
 'limitreport-ppvisitednodes' => 'Aantal nodes bekeken tijdens de voorverwerking:',
 'limitreport-ppgeneratednodes' => 'Aantal nodes aangemaakt tijdens de voorverwerking:',
 'limitreport-postexpandincludesize' => 'Inclusiegrootte na uitbreiden',
-'limitreport-postexpandincludesize-value' => '$1 / $2 bytes',
+'limitreport-postexpandincludesize-value' => '$1/$2 {{PLURAL:$2|byte|bytes}}',
 'limitreport-templateargumentsize' => 'Grootte sjabloonparameters',
-'limitreport-templateargumentsize-value' => '$1 / $2 bytes',
+'limitreport-templateargumentsize-value' => '$1 / $2 {{PLURAL:$2|byte|bytes}}',
 'limitreport-expansiondepth' => 'Hoogste uitbreidingsdiepte',
 'limitreport-expensivefunctioncount' => 'Aantal kostbare parserfuncties',
 

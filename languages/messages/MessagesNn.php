@@ -3014,7 +3014,7 @@ Vitja [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [//trans
 'tooltip-ca-nstab-category' => 'Vis kategoriside',
 'tooltip-minoredit' => 'Merk dette som småplukk',
 'tooltip-save' => 'Lagra endringane dine',
-'tooltip-preview' => 'Førehandsvis endringane dine, bruk denne funksjonen før du lagrar!',
+'tooltip-preview' => 'Førehandsvis endringane dine. Helst brukar du denne funksjonen før du lagrar.',
 'tooltip-diff' => 'Sjå kva endringar du gjorde i teksten',
 'tooltip-compareselectedversions' => 'Sjå endringane mellom dei valde versjonane av denne sida.',
 'tooltip-watch' => 'Legg sida til i overvakingslista di [alt-w]',

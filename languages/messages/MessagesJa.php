@@ -1206,7 +1206,7 @@ $1または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこのブロッ�
 'template-protected' => '（保護）',
 'template-semiprotected' => '(半保護)',
 'hiddencategories' => 'このページは {{PLURAL:$1|$1 個の隠しカテゴリ}}に属しています:',
-'edittools' => '<!-- ここに書いたテキストは編集及びアップロードのフォームの下に表示されます。 -->',
+'edittools' => '<!-- ここに書いたテキストは編集およびアップロードのフォームの下に表示されます。 -->',
 'nocreatetext' => '{{SITENAME}}ではページの新規作成を制限しています。
 元のページに戻って既存のページを編集するか、[[Special:UserLogin|ログインまたはアカウント作成]]をしてください。',
 'nocreate-loggedin' => '新しいページを作成する権限がありません。',
@@ -4336,8 +4336,7 @@ MediaWikiは、有用であることを期待して配布されていますが�
 
 # Database error messages
 'dberr-header' => 'このウィキには問題があります',
-'dberr-problems' => '申し訳ありません!
-このウェブサイトに技術的な障害が発生しています。',
+'dberr-problems' => '申し訳ありません! このウェブサイトに技術的な障害が発生しています。',
 'dberr-again' => '数分間待った後、もう一度読み込んでください。',
 'dberr-info' => '(データベースサーバー $1 に接続できませんでした)',
 'dberr-info-hidden' => '(データベース サーバーと通信できません)',
@@ -4485,9 +4484,9 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'limitreport-ppvisitednodes' => 'プリプロセッサが訪問したノード数',
 'limitreport-ppgeneratednodes' => 'プリプロセッサが生成したノード数',
 'limitreport-postexpandincludesize' => '参照読み込みの展開後のサイズ',
-'limitreport-postexpandincludesize-value' => '$1/$2 バイト',
+'limitreport-postexpandincludesize-value' => '$1/$2 {{PLURAL:$2|バイト}}',
 'limitreport-templateargumentsize' => 'テンプレート引数のサイズ',
-'limitreport-templateargumentsize-value' => '$1/$2 バイト',
+'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|バイト}}',
 'limitreport-expansiondepth' => '展開の最大深さ',
 'limitreport-expensivefunctioncount' => '高負荷パーサー関数の数',
 

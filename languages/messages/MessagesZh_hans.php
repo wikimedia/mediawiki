@@ -2361,7 +2361,7 @@ $1',
 'notanarticle' => '非内容页面',
 'notvisiblerev' => '上次由不同用户所作的修订版本已经删除',
 'watchlist-details' => '不计讨论页面，你的监视列表中有$1个页面。',
-'wlheader-enotif' => '已启用电子邮件通知',
+'wlheader-enotif' => '已启用电子邮件通知。',
 'wlheader-showupdated' => "你上次访问后更改的页面以'''粗体'''显示",
 'watchmethod-recent' => '检查被监视页面的最近编辑',
 'watchmethod-list' => '查看监视页中的最新修改',
@@ -3984,8 +3984,7 @@ MediaWiki发表时预期有用，但对此'''无任何保证'''，亦无隐含�
 
 # Database error messages
 'dberr-header' => '本wiki出现了问题',
-'dberr-problems' => '抱歉！
-本网站出现了一些技术问题。',
+'dberr-problems' => '抱歉！本网站出现了一些技术问题。',
 'dberr-again' => '请等待几分钟后重试。',
 'dberr-info' => '（无法连接到数据库服务器：$1）',
 'dberr-info-hidden' => '（无法连接到数据库服务器）',

@@ -2203,9 +2203,7 @@ Parameters:
 
 See also:
 * {{msg-mw|Parser-unstrip-loop-warning}}',
-'converter-manual-rule-error' => "Used as error message when a manual conversion rule for the language converter has errors.
-
-For example it's not using the correct syntax, or not supplying text in all variants.",
+'converter-manual-rule-error' => "Used as error message when a manual conversion rule for the [[mw:Language_converter|language converter]] has errors. For example it's not using the correct syntax, or not supplying text in all variants.",
 
 # "Undo" feature
 'undo-success' => 'Text on special page to confirm edit revert. You arrive on this page by clicking on the "undo" link on a revision history special page.
@@ -4924,7 +4922,6 @@ See the following search results:
 'listusers' => '{{doc-special|ListUsers}}',
 'listusers-editsonly' => 'Option in [[Special:ListUsers]].',
 'listusers-creationsort' => 'Option in [[Special:ListUsers]].',
-'listusers-desc' => 'Option in [[Special:ListUsers]].',
 'usereditcount' => 'Shown behind every username on [[Special:ListUsers]]. Parameters:
 * $1 - number of edits',
 'usercreated' => 'Used in [[Special:ListUsers]]. Parameters:
@@ -9481,19 +9478,9 @@ Parameters:
 
 # Scary transclusion
 'scarytranscludedisabled' => 'Shown when scary transclusion is disabled.',
-'scarytranscludefailed' => 'Shown when the HTTP request for the template failed.
-
-Identical to {{msg-mw|Scarytranscludefailed-httpstatus}}, but does not show the HTTP error which was received.
-
-This will not be parsed as wikitext and will appear as is.
-
-Parameters:
+'scarytranscludefailed' => 'Shown when the HTTP request for the template failed. Identical to {{msg-mw|Scarytranscludefailed-httpstatus}}, but does not show the HTTP error which was received. This will not be parsed as wikitext and will appear as is. Parameters:
 * $1 - URL which points to interwiki template',
-'scarytranscludefailed-httpstatus' => 'Identical to {{msg-mw|Scarytranscludefailed}}, but shows the HTTP error which was received.
-
-This will not be parsed as wikitext and will appear as is.
-
-Parameters:
+'scarytranscludefailed-httpstatus' => 'Identical to {{msg-mw|Scarytranscludefailed}}, but shows the HTTP error which was received. This will not be parsed as wikitext and will appear as is. Parameters:
 * $1 - URL which points to interwiki template
 * $2 - HTTP status, integer (other than 200)',
 'scarytranscludetoolong' => 'The URL was too long.',
@@ -9909,13 +9896,10 @@ Preceded by the MediaWiki extension name.
 Parameters:
 * $1 - version number of the extension
 {{Identical|Version}}',
-'version-svn-revision' => '{{optional}}
-Used in [[Special:Version]], preceeding the subversion revision numbers of the extensions loaded inside brackets, like this: "({{int:version-revision}} r012345").
-
-Parameters:
+'version-svn-revision' => '{{Identical|Revision}}{{optional}}
+Used in [[Special:Version]], preceeding the Subversion revision numbers of the extensions loaded inside brackets, like this: "({{int:version-revision}} r012345"). Parameters:
 * $1 - (Unused) directory revision number or empty string
-* $2 - checkout revision number
-{{Identical|Revision}}',
+* $2 - checkout revision number',
 'version-license' => '{{Identical|License}}',
 'version-poweredby-credits' => 'Message shown on [[Special:Version]]. Parameters:
 * $1 - the current year
@@ -10468,9 +10452,7 @@ Parameters:
 * $1 - the usage
 * $2 - the maximum',
 'limitreport-postexpandincludesize' => 'Label for the "Post-expand include size" row in the limit report table',
-'limitreport-postexpandincludesize-value' => 'Format for the "Post-expand include size" row in the limit report table.
-
-Parameters:
+'limitreport-postexpandincludesize-value' => 'Format for the "Post-expand include size" row in the limit report table. Parameters:
 * $1 - the usage (in bytes)
 * $2 - the maximum (in bytes)',
 'limitreport-templateargumentsize' => 'Label for the "Template argument size" row in the limit report table',

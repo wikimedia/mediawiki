@@ -71,6 +71,7 @@
  * @author Muro de Aguas
  * @author Omnipaedista
  * @author Orgullomoore
+ * @author Ovruni
  * @author Paucabot
  * @author Penarc
  * @author PerroVerd
@@ -620,7 +621,7 @@ $1',
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Acerca de {{SITENAME}}',
 'aboutpage' => 'Project:Acerca de',
-'copyright' => 'El contenido está disponible bajo los términos de la $1.',
+'copyright' => 'El contenido está disponible bajo  $1  a menos que se indique lo contrario.',
 'copyrightpage' => '{{ns:project}}:Derechos de autor',
 'currentevents' => 'Actualidad',
 'currentevents-url' => 'Project:Actualidad',
@@ -4109,8 +4110,7 @@ Has recibido [{{SERVER}}{{SCRIPTPATH}}/COPYING una copia de la Licencia Pública
 
 # Database error messages
 'dberr-header' => 'Este wiki tiene un problema',
-'dberr-problems' => 'Lo sentimos.
-Este sitio está experimentando dificultades técnicas.',
+'dberr-problems' => 'Lo sentimos. Este sitio está experimentando dificultades técnicas.',
 'dberr-again' => 'Prueba a recargar dentro de unos minutos.',
 'dberr-info' => '(No se puede contactar con la base de datos del servidor: $1)',
 'dberr-info-hidden' => '(No se puede contactar con la base de datos del servidor)',
@@ -4259,9 +4259,9 @@ En otro caso, puedes usar el siguiente formulario. Tu comentario será añadido 
 'limitreport-ppvisitednodes' => 'N.º de nodos visitados por el preprocesador',
 'limitreport-ppgeneratednodes' => 'N.º de nodos generados por el preprocesador',
 'limitreport-postexpandincludesize' => 'Tamaño de inclusión posexpansión',
-'limitreport-postexpandincludesize-value' => '$1/$2 bytes',
+'limitreport-postexpandincludesize-value' => '$1/$2 {{PLURAL:$2|byte|bytes}}',
 'limitreport-templateargumentsize' => 'Argumento del tamaño de la plantilla',
-'limitreport-templateargumentsize-value' => '$1/$2 bytes',
+'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|byte|bytes}}',
 'limitreport-expansiondepth' => 'Profundidad máxima de expansión',
 
 );

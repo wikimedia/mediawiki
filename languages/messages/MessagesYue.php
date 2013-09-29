@@ -3278,8 +3278,7 @@ MediaWiki是基於使用目的而加以發佈，但係就唔會負上任何嘅�
 
 # Database error messages
 'dberr-header' => '呢個 wiki 出咗問題',
-'dberr-problems' => '對唔住！
-呢一版出現咗一啲技術性問題。',
+'dberr-problems' => '對唔住！呢一版出現咗一啲技術性問題。',
 'dberr-again' => '試吓等多幾分種然後開試。',
 'dberr-info' => '(唔能夠連繫個資料伺服器: $1)',
 'dberr-usegoogle' => '響現階段你可以用 Google 去搵嘢。',

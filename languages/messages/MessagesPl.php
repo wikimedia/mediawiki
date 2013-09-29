@@ -4266,9 +4266,9 @@ W przeciwnym wypadku można użyć prostego formularza poniżej. Komentarz zosta
 'limitreport-ppvisitednodes' => 'Liczba odwiedzonych węzłów preprocesora',
 'limitreport-ppgeneratednodes' => 'Liczba wygenerowanych węzłów preprocesora',
 'limitreport-postexpandincludesize' => 'Rozmiar dołączonych elementów po ekspansji',
-'limitreport-postexpandincludesize-value' => '$1/$2 bajtów',
+'limitreport-postexpandincludesize-value' => '$1/$2 {{PLURAL:$2|bajt|bajty|bajtów}}',
 'limitreport-templateargumentsize' => 'Rozmiar argumentów szablonów',
-'limitreport-templateargumentsize-value' => '$1/$2 bajtów',
+'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|bajt|bajty|bajtów}}',
 'limitreport-expansiondepth' => 'Największa głębokość ekspansji',
 'limitreport-expensivefunctioncount' => 'Liczba wywołań kosztownych funkcji parsera',
 

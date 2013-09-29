@@ -3824,8 +3824,7 @@ MediaWiki er útgefin í þeirri von að hann sé gagnlegur, en ÁN ALLRAR ÁBYR
 
 # Database error messages
 'dberr-header' => 'Vandamál við þennan wiki',
-'dberr-problems' => 'Því miður!
-Tæknilegir örðugleikar eru á þessari síðu.',
+'dberr-problems' => 'Því miður!Tæknilegir örðugleikar eru á þessari síðu.',
 'dberr-again' => 'Reyndu að bíða í nokkrar mínútur og endurhladdu síðan síðuna.',
 'dberr-info' => '(Mistókst að hafa samband við gagnaþjón: $1)',
 'dberr-usegoogle' => 'Þú getur notað Google til að leita á meðan.',

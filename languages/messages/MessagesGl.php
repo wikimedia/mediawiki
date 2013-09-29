@@ -4181,9 +4181,9 @@ En caso contrario, pode empregar o formulario sinxelo inferior. O seu comentario
 'limitreport-ppvisitednodes' => 'Número de nodos do preprocesador visitados',
 'limitreport-ppgeneratednodes' => 'Número de nodos do preprocesador xerados',
 'limitreport-postexpandincludesize' => 'Tamaño de inclusión logo da expansión',
-'limitreport-postexpandincludesize-value' => '$1/$2 bytes',
+'limitreport-postexpandincludesize-value' => '$1/$2 {{PLURAL:$2|byte|bytes}}',
 'limitreport-templateargumentsize' => 'Tamaño dos argumentos do modelo',
-'limitreport-templateargumentsize-value' => '$1/$2 bytes',
+'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|byte|bytes}}',
 'limitreport-expansiondepth' => 'Máxima profundidade de expansión',
 'limitreport-expensivefunctioncount' => 'Número de funcións de análise custosas',
 

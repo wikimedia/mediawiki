@@ -10051,8 +10051,8 @@ Controlla il tuo file php.ini ed assicurati che <code>session.save_path</code> �
 	'config-help-restart' => 'Vuoi cancellare tutti i dati salvati che hai inserito e riavviare il processo di installazione?',
 	'config-restart' => 'Sì, riavvia',
 	'config-welcome' => "=== Controllo dell'ambiente ===
-Vengono eseguiti controlli di base per vedere se questo ambiente è adatto per l'installazione di MediaWiki.
-Se hai bisogno di aiuto durante l'installazione, è necessario fornire i risultati di questi controlli.", # Fuzzy
+Saranno eseguiti controlli di base per vedere se questo ambiente è adatto per l'installazione di MediaWiki.
+Ricordati di includere queste informazioni se chiedi assistenza su come completare l'installazione.",
 	'config-sidebar' => '* [//www.mediawiki.org Pagina principale MediaWiki]
 * [//www.mediawiki.org/wiki/Aiuto:Guida ai contenuti per utenti]
 * [//www.mediawiki.org/wiki/Manuale:Guida ai contenuti per admin]
@@ -16444,7 +16444,7 @@ $messages['ps'] = array(
 	'config-site-name-blank' => 'د وېبځي نوم وليکۍ.',
 	'config-project-namespace' => 'د پروژې نوم-تشيال:',
 	'config-ns-generic' => 'پروژه',
-	'config-admin-box' => 'د پازوال ګڼون',
+	'config-admin-box' => 'د پازوال گڼون',
 	'config-admin-name' => 'ستاسې نوم:',
 	'config-admin-password' => 'پټنوم:',
 	'config-admin-password-confirm' => 'پټنوم يو ځل بيا:',
@@ -17524,6 +17524,7 @@ MediaWiki требует поддержки UTF-8 для корректной р
 	'config-mod-security' => "'''Внимание''': на вашем веб-сервере включен [http://modsecurity.org/ mod_security]. При неправильной настройке он может вызывать проблемы для MediaWiki или другого ПО, позволяющего пользователям отправлять на сервер произвольный текст.
 Обратитесь к [http://modsecurity.org/documentation/ документации mod_security] или в поддержку вашего хостера, если при работе возникают непонятные ошибки.",
 	'config-diff3-bad' => 'GNU diff3 не найден.',
+	'config-git-bad' => 'Программное обеспечение по управлению версиями Git не найдено.',
 	'config-imagemagick' => 'Обнаружен ImageMagick: <code>$1</code>.
 Возможно отображение миниатюр изображений, если вы разрешите закачки файлов.',
 	'config-gd' => 'Найдена встроенная графическая библиотека GD.

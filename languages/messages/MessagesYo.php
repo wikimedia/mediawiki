@@ -3530,8 +3530,7 @@ $5
 
 # Database error messages
 'dberr-header' => 'Wiki yìí ní ìsòro',
-'dberr-problems' => 'Àforìjì!
-Ibiìtakùn yìí únkojú ìsòro ìṣìṣẹ́ẹ̀rọ.',
+'dberr-problems' => 'Àforìjì! Ibiìtakùn yìí únkojú ìsòro ìṣìṣẹ́ẹ̀rọ.',
 'dberr-again' => 'Ẹ mú sùúrù fún ìṣẹ́jú díẹ̀ kí ẹ tó tún ṣe ìrùsókè.',
 'dberr-info' => '(Kò le farakan ẹ̀rọ-ìpèsè ibùdó dátà: $1)',
 'dberr-usegoogle' => 'Ẹ le ṣàwárí lórí Google báyìí ná.',

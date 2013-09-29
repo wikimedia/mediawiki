@@ -4191,9 +4191,9 @@ Ce nò, tu puè ausà 'u module facile aqquà sotte. 'U commende tune avène agg
 'limitreport-ppvisitednodes' => "Preprocessore d'u cunde de le node 'ndrucate",
 'limitreport-ppgeneratednodes' => "Preprocessore d'u cunde de le node generate",
 'limitreport-postexpandincludesize' => "Espanzione de apprisse ca 'nglude 'a dimenzione",
-'limitreport-postexpandincludesize-value' => '$1/$2 byte',
+'limitreport-postexpandincludesize-value' => '$1/$2 {{PLURAL:$2|byte}}',
 'limitreport-templateargumentsize' => "Dimenzione de le argomende d'u template",
-'limitreport-templateargumentsize-value' => '$1/$2 byte',
+'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|byte}}',
 'limitreport-expansiondepth' => 'Espanzione massime de profonnetà',
 'limitreport-expensivefunctioncount' => "Analizzatore d'u cunde d'a funzione ca coste assaije",
 

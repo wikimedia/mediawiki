@@ -1899,8 +1899,7 @@ Your e-mail address is not revealed when other users contact you.
 
 # Database error messages
 'dberr-header' => 'ဤဝီကီတွင် ပြဿနာတစ်ခု ရှိနေသည်',
-'dberr-problems' => 'ဝမ်းနည်းပါသည်။
-ဤဆိုက်သည် နည်းပညာပိုင်းဆိုင်ရာ အခက်အခဲများ ကြုံတွေ့နေရပါသည်။',
+'dberr-problems' => 'ဝမ်းနည်းပါသည်။ ဤဆိုက်သည် နည်းပညာပိုင်းဆိုင်ရာ အခက်အခဲများ ကြုံတွေ့နေရပါသည်။',
 
 # HTML forms
 'htmlform-required' => 'ဤတန်ဖိုး လိုအပ်သည်',

@@ -3953,8 +3953,7 @@ Skupaj s programom bi morali bi prejeti [{{SERVER}}{{SCRIPTPATH}}/COPYING kopijo
 
 # Database error messages
 'dberr-header' => 'Ta wiki ima težavo',
-'dberr-problems' => 'Oprostite!
-Ta stran se sooča s tehničnimi težavami.',
+'dberr-problems' => 'Oprostite! Ta stran se sooča s tehničnimi težavami.',
 'dberr-again' => 'Poskusite počakati nekaj minut in ponovno naložite stran.',
 'dberr-info' => '(Ne morem se povezati s strežnikom zbirke podatkov: $1)',
 'dberr-info-hidden' => '(Ne morem se povezati s strežnikom zbirke podatkov)',

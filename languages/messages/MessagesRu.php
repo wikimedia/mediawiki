@@ -4418,9 +4418,9 @@ MediaWiki распространяется в надежде, что она бу
 'limitreport-ppvisitednodes' => 'Количество узлов, посещённых препроцессором',
 'limitreport-ppgeneratednodes' => 'Количество сгенерированных препроцессором узлов',
 'limitreport-postexpandincludesize' => 'Размер раскрытых включений',
-'limitreport-postexpandincludesize-value' => '$1/$2 байт',
+'limitreport-postexpandincludesize-value' => '$1/$2 {{PLURAL:$2|байт|байта|байтов}}',
 'limitreport-templateargumentsize' => 'Размер аргумента шаблона',
-'limitreport-templateargumentsize-value' => '$1/$2 байт',
+'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|байт|байта|байтов}}',
 'limitreport-expansiondepth' => 'Наибольшая глубина расширения',
 'limitreport-expensivefunctioncount' => 'Количество «дорогих» функций анализатора',
 

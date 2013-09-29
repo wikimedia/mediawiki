@@ -158,14 +158,14 @@ $messages = array(
 'tog-hidepatrolled' => 'હાલના સલામતી માટે કરવામાં આવેલાં થયેલા ફેરફારો છુપાવો.',
 'tog-newpageshidepatrolled' => 'નવાં પાનાંની યાદીમાંથી દેખરેખ હેઠળનાં પાનાં છુપાવો',
 'tog-extendwatchlist' => 'ધ્યાનસૂચિને વિસ્તૃત કરો જેથી,ફક્ત તાજેતરનાજ નહીં, બધા આનુષાંગિક ફેરફારો જોઇ શકાય',
-'tog-usenewrc' => 'તાજા ફેરફારોમાં અને ધ્યાનસૂચિમાં ફેરફારોને પાનાં અનુસાર જૂથમાં ગોઠવો (જાવાસ્ક્રીપ્ટ જરૂરી)',
+'tog-usenewrc' => 'તાજા ફેરફારોમાં અને ધ્યાનસૂચિમાં ફેરફારોને પાનાં અનુસાર જૂથમાં ગોઠવો',
 'tog-numberheadings' => 'મથાળાંઓને આપો-આપ ક્રમ (ઑટો નંબર) આપો',
 'tog-showtoolbar' => 'ફેરફાર માટેની ટૂલબાર બતાવો',
-'tog-editondblclick' => 'બે વખત ક્લિક પર પાનાંઓમાં ફેરફાર કરો',
+'tog-editondblclick' => 'બે વખત ક્લિક કરી પાનાંઓમાં ફેરફાર કરો',
 'tog-editsection' => 'વિભાગોમાં [ફેરફાર કરો] કડી દ્વારા વિભાગીય ફેરફાર લાગુ કરો.',
-'tog-editsectiononrightclick' => 'વિભાગના મથાળાં ને રાઇટ ક્લિક દ્વારા ફેરફાર કરવાની રીત અપનાવો. (જાવાસ્ક્રિપ્ટ જરૂરી)',
+'tog-editsectiononrightclick' => 'વિભાગના મથાળાં ને રાઇટ ક્લિક દ્વારા ફેરફાર કરવાની રીત અપનાવો.',
 'tog-showtoc' => 'અનુક્રમણિકા દર્શાવો (૩થી વધુ પેટા-મથાળા વાળા લેખો માટે)',
-'tog-rememberpassword' => 'આ કમ્પ્યૂટર પર મારી લોગ-ઇન વિગતો યાદ રાખો (મહત્તમ $1 {{PLURAL:$1|દિવસ|દિવસ}} માટે)',
+'tog-rememberpassword' => 'આ કમ્પ્યૂટર પર મારી લોગ-ઇન વિગતો યાદ રાખો (મહત્તમ $1 {{PLURAL:$1|દિવસ|દિવસો}} માટે)',
 'tog-watchcreations' => 'મેં બનાવેલાં પાનાં અને અપલોડ કરેલી ફાઇલો મારી ધ્યાનસૂચિમાં ઉમેરો',
 'tog-watchdefault' => 'હું ફેરફાર કરૂં તે પાનાં અને ફાઇલ્સ મારી ધ્યાનસૂચિમાં ઉમેરો',
 'tog-watchmoves' => 'હું ખસેડું તે પાનાં અને ફાઇલ્સ મારી ધ્યાનસૂચિમાં ઉમેરો',
@@ -184,7 +184,7 @@ $messages = array(
 'tog-uselivepreview' => 'જીવંત પૂર્વદર્શન વાપરો (પ્રાયોગીક)',
 'tog-forceeditsummary' => "કોરો 'ફેરફાર સારાંશ' ઉમેરતા પહેલા મને ચેતવો",
 'tog-watchlisthideown' => "'મારી ધ્યાનસુચી'માં મે કરેલા ફેરફારો છુપાવો",
-'tog-watchlisthidebots' => 'ધ્યાનસુચિમાં બોટ દ્વારા થયેલા ફેરફાર સંતાડો.',
+'tog-watchlisthidebots' => 'ધ્યાનસુચીમાં બોટ દ્વારા થયેલા ફેરફાર સંતાડો.',
 'tog-watchlisthideminor' => "'મારી ધ્યાનસુચી'માં નાનાં ફેરફારો છુપાવો",
 'tog-watchlisthideliu' => 'લોગ થયેલા સભ્ય દ્વારા કરવામાં આવેલ ફેરફાર ધ્યાનસુચીમાં છુપાવો.',
 'tog-watchlisthideanons' => 'અજાણ્યાસભ્ય દ્વારા થયેલ ફેરફાર મારી ધ્યાનસુચીમાં છુપાવો.',
@@ -206,7 +206,7 @@ $messages = array(
 'editfont-default' => 'બ્રાઉઝરના સેટીંગ્સ પ્રમાણે',
 'editfont-monospace' => 'મોનોસ્પેસ્ડ ફોન્ટ',
 'editfont-sansserif' => 'સાન્સ-સેરિફ ફોન્ટ',
-'editfont-serif' => 'Serif font',
+'editfont-serif' => 'સેરિફ ફોન્ટ',
 
 # Dates
 'sunday' => 'રવિવાર',
@@ -249,8 +249,8 @@ $messages = array(
 'december-gen' => 'ડિસેમ્બર',
 'jan' => 'જાન્યુ',
 'feb' => 'ફેબ્રુ',
-'mar' => 'મા',
-'apr' => 'એપ્ર',
+'mar' => 'માર્ચ',
+'apr' => 'એપ્રિલ',
 'may' => 'મે',
 'jun' => 'જૂન',
 'jul' => 'જુલા',
@@ -359,7 +359,7 @@ $messages = array(
 'undelete_short' => 'હટાવેલ {{PLURAL:$1|એક ફેરફાર|$1 ફેરફારો}} પરત લાવો.',
 'viewdeleted_short' => '{{PLURAL:$1|ભૂંસી નાખેલો એક|ભૂંસી નાખેલા $1}} ફેરફાર જુઓ',
 'protect' => 'સુરક્ષિત કરો',
-'protect_change' => 'ફેરફાર કરો',
+'protect_change' => 'બદલો',
 'protectthispage' => 'આ પાનું સુરક્ષિત કરો.',
 'unprotect' => 'સુરક્ષા બદલો',
 'unprotectthispage' => 'આ પાનાનું સુરક્ષા  બદલો',
@@ -404,7 +404,7 @@ $1',
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} વિષે',
 'aboutpage' => 'Project:વિષે',
-'copyright' => 'માહિતી $1 હેઠળ ઉપલબ્ધ છે.',
+'copyright' => 'અલગથી ઉલ્લેખ ન કરાયો હોય ત્યાં સુધી માહિતી $1 હેઠળ ઉપલબ્ધ છે.',
 'copyrightpage' => '{{ns:project}}:પ્રકાશનાધિકાર',
 'currentevents' => 'વર્તમાન ઘટનાઓ',
 'currentevents-url' => 'Project:વર્તમાન ઘટનાઓ',
@@ -782,7 +782,7 @@ $2
 'resettokens-legend' => 'નિશાનીઓ ફરી ગોઠવો',
 'resettokens-tokens' => 'નિશાનીઓ:',
 'resettokens-token-label' => '$1 (હાલની કિંમત: $2)',
-'resettokens-watchlist-token' => 'ધ્યાનસૂચિ વેબ ફીડ નિશાની',
+'resettokens-watchlist-token' => '[[Special:Watchlist|તમારી ધ્યાનસૂચિના પાનામાં ફેરફાર ]]ની વેબ ફીડ (Atom/RSS) નિશાની',
 'resettokens-done' => 'નિશાનીઓ ફરી ગોઠવવામાં આવી.',
 'resettokens-resetbutton' => 'પસંદ કરેલ નિશાનીઓ ફરી ગોઠવો',
 
@@ -863,8 +863,7 @@ $2
 'loginreqlink' => 'પ્રવેશ કરો',
 'loginreqpagetext' => 'બીજા પાનાં જોવા માટે જરૂરી છે કે તમે $1.',
 'accmailtitle' => 'ગુપ્તસંજ્ઞા મોકલવામાં આવી છે.',
-'accmailtext' => "[[User talk:$1|$1]] માટે રચેલ ગુપ્તસંજ્ઞા $2 ને મોકલાવી દેવાઇ છે 
-આ નવા ખાતાનીગુપ્તસંજ્ઞા  ''[[Special:ChangePassword|change password]]'' વાપરીને પ્રવેશ કર્યા બાદ બદલી શકાશે.",
+'accmailtext' => "[[User talk:$1|$1]] માટે રચેલ ગુપ્તસંજ્ઞા $2 ને મોકલાવી દેવાઇ છે. આ નવા ખાતાનીગુપ્તસંજ્ઞા પ્રવેશ કર્યા બાદ ''[[Special:ChangePassword|ગુપ્તસંજ્ઞા બદલો]]'' વાપરીને બદલી શકાશે.",
 'newarticle' => '(નવીન)',
 'newarticletext' => "આપ જે કડીને અનુસરીને અહીં પહોંચ્યા છો તે પાનું અસ્તિત્વમાં નથી.
 <br />નવું પાનું બનાવવા માટે નીચે આપેલા ખાનામાં લખવાનું શરૂ કરો (વધુ માહિતિ માટે [[{{MediaWiki:Helppage}}|મદદ]] જુઓ).
@@ -1302,8 +1301,8 @@ $1",
 'prefs-rendering' => 'દેખાવ',
 'saveprefs' => 'સાચવો',
 'resetprefs' => 'બીન સાચવેલ ફેરફારો સાફ કરો',
-'restoreprefs' => 'મૂળ વિકલ્પો ફરી ગોઠવો',
-'prefs-editing' => 'ફેરફાર જારી છે',
+'restoreprefs' => 'મૂળ વિકલ્પો ફરી ગોઠવો (બધાં વિભાગોમાં)',
+'prefs-editing' => 'સંપાદન',
 'rows' => 'પંક્તિઓ',
 'columns' => 'સ્તંભ',
 'searchresultshead' => 'શોધો',
@@ -1363,7 +1362,8 @@ HTML નાકું ચકાસો',
 'gender-unknown' => 'હું વિગતો ન આપવાનું પસંદ કરું છું',
 'gender-male' => 'તેણે વિકિ પાનાંઓમાં ફેરફાર કર્યા',
 'gender-female' => 'તેણીએ વિકિ પાનાંઓમાં ફેરફાર કર્યા',
-'prefs-help-gender' => 'વૈકલ્પિક:  સોફ્ટવેર દ્વારા લિંગ  ઓળખ માટે વપરાયેલ .
+'prefs-help-gender' => 'આ પસંદગી ગોઠવવી વૈકલ્પિક છે.  
+સોફ્ટવેર આ વિગત આપને વ્યાકરણની રીતે લિંગ ઓળખ દ્વારા સંબોધવા માટે વાપરશે.
 આ માહિતી જન સમુદાય માટે જાહેર હશે.',
 'email' => 'ઇ-મેઇલ',
 'prefs-help-realname' => 'સાચું નામ મરજીયાત છે.
@@ -1411,7 +1411,7 @@ HTML નાકું ચકાસો',
 'userrights-no-interwiki' => 'અન્ય વિકિ પર અન્ય સભ્યો ના અધિકારો માં પરિવર્તન કરવાની તમને પરવાનગી નથી',
 'userrights-nodatabase' => 'માહિતીસંચ $1 અસ્તિત્વમાં નથી કે તે સ્થાનીય નથી.',
 'userrights-nologin' => 'સભ્યના અધિકારો આપવા તમે પ્રબંધક તરીકે પ્રવેશ  [[Special:UserLogin|log in]] કરેલ હોવો જરૂરી છે.',
-'userrights-notallowed' => 'તમારું એકાઉન્ટ ઉમેરો કરવા અથવા વપરાશકર્તા અધિકારો દૂર કરવાની પરવાનગી નથી.',
+'userrights-notallowed' => 'તમને વપરાશકર્તા અધિકારો ઉમેરવા કે દૂર કરવાની પરવાનગી નથી.',
 'userrights-changeable-col' => 'તમે બદલી શકો તેવા જૂથ',
 'userrights-unchangeable-col' => 'તમે બદલી ન શકો તેવા જૂથ',
 
@@ -1477,7 +1477,7 @@ HTML નાકું ચકાસો',
 'right-ipblock-exempt' => 'IP દ્વારા, સ્વયં ચાલિત રીતે અને સમૂહ રોકને અવગનીને આગળ વધો',
 'right-proxyunbannable' => 'અવેજીના અવયંચાલિત ખંડોને ટાળો',
 'right-unblockself' => 'તમને જાતે જ અપ્રતિબંધિત કરો',
-'right-protect' => 'સંરક્ષણ સ્તર બદલો અને સંરક્ષિત પાનાઓમાં ફેરફાર કરો.',
+'right-protect' => 'સંરક્ષણ સ્તર બદલો અને ધોધાકાર-સંરક્ષિત પાનાઓમાં ફેરફાર કરો.',
 'right-editprotected' => 'પાનામાં "{{int:protect-level-sysop}}" તરીકે ફેરફાર કરો',
 'right-editinterface' => 'સભ્ય સંભાષણ પટલમાં ફેરફાર કરો',
 'right-editusercssjs' => 'અન્ય સભ્યોની CSS અને JavaScript ફાઇલમાં ફેરફાર કરો',
@@ -1553,6 +1553,7 @@ HTML નાકું ચકાસો',
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|ફેરફાર|ફેરફારો}}',
+'enhancedrc-history' => 'ઇતિહાસ',
 'recentchanges' => 'તાજા ફેરફારો',
 'recentchanges-legend' => 'હાલમાં થયેલા ફેરફારોના વિકલ્પ',
 'recentchanges-summary' => 'વિકિમાં તાજેતરમાં થયેલા ફેરફારો પર અહિંથી નજર રાખો.',
@@ -1583,7 +1584,7 @@ HTML નાકું ચકાસો',
 'rc_categories_any' => 'કોઇ પણ',
 'rc-change-size-new' => 'બદલાયા પછી $1 {{PLURAL:$1|બાઈટ|બાઈટો}}',
 'newsectionsummary' => '/* $1 */ નવો વિભાગ',
-'rc-enhanced-expand' => 'વિગતો બતાવો (જાવા સ્ક્રિપ્ટ જરૂરી છે)',
+'rc-enhanced-expand' => 'વિગતો બતાવો',
 'rc-enhanced-hide' => 'વિગતો છુપાવો',
 
 # Recent changes linked
@@ -1836,8 +1837,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization. જુઓ',
 'upload_source_file' => '(તમારા કોમ્પ્યુટર પરની એક ફાઇલ)',
 
 # Special:ListFiles
-'listfiles-summary' => 'આ વિશિષ્ટ પાનું બધા અપલોડ કરાયેલ ફાઈલો બતાવે છે.
-જ્યારે વપરાશકર્તા દ્વારા ફિલ્ટર, માત્ર ફાઈલો જ્યાં તે વપરાશકર્તા ફાઈલ સૌથી તાજેતરનું વર્ઝન અપલોડ બતાવવામાં આવે છે.',
+'listfiles-summary' => 'આ વિશિષ્ટ પાનું બધી અપલોડ કરાયેલી ફાઈલો દર્શાવે છે.',
 'listfiles_search_for' => 'મિડિયા નામ શોધો:',
 'imgfile' => 'ફાઇલ',
 'listfiles' => 'ફાઇલોની યાદી',
@@ -1848,6 +1848,9 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization. જુઓ',
 'listfiles_size' => 'માપ',
 'listfiles_description' => 'વર્ણન',
 'listfiles_count' => 'આવૃત્તિ',
+'listfiles-latestversion' => 'વર્તમાન આવૃતિ',
+'listfiles-latestversion-yes' => 'હા',
+'listfiles-latestversion-no' => 'ના',
 
 # File description page
 'file-anchor-link' => 'ફાઇલ/દસ્તાવેજ',
@@ -2147,7 +2150,8 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization. જુઓ',
 'listgrouprights' => 'સભ્ય જૂથ ના હક્કો',
 'listgrouprights-summary' => 'નીચે આ વિકિ પર વ્યાખ્યાયિત સભ્ય જૂથોની યાદી, તેમની સાથે સંકળાયેલા હક્કો સાથે આપી છે.
 વ્યક્તિગત હક્કો માટે [[{{MediaWiki:Listgrouprights-helppage}}|વધારાની માહિતી]].',
-'listgrouprights-key' => '* <span class="listgrouprights-granted">અધિકાર અપાયા</span>
+'listgrouprights-key' => 'Legend:
+* <span class="listgrouprights-granted">અધિકાર અપાયા</span>
 * <span class="listgrouprights-revoked">અધિકાર હટાવાયા</span>',
 'listgrouprights-group' => 'જૂથ',
 'listgrouprights-rights' => 'હક્કો',
@@ -2224,7 +2228,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization. જુઓ',
 'watchmethod-recent' => 'હાલમાં ફેરફાર થયેલ પાનાની ચકાસણી જારી',
 'watchmethod-list' => 'હાલમાં થયેલ ફેરફાર માટે નીરીક્ષીત પાના તપાસાય છે',
 'watchlistcontains' => 'તમારી ધ્યાનસૂચીમાં $1 {{PLURAL:$1|પાનું|પાનાં}} છે.',
-'iteminvalidname' => "વસ્તુ '$1' સાથે ગડબડ, અવૈધ નામ...",
+'iteminvalidname' => "વસ્તુ '$1' સાથે સમસ્યા, અવૈધ નામ...",
 'wlnote' => "નીચે $3, $4 વાગ્યા સુધીના છેલ્લા {{PLURAL:$2|એક કલાક|'''$2''' કલાક}}માં થયેલા {{PLURAL:$1|ફેરફાર|'''$1''' ફેરફારો }} દર્શાવ્યા છે.",
 'wlshowlast' => 'છેલ્લા $1 કલાક $2 દિવસ $3 બતાવો',
 'watchlist-options' => 'ધ્યાનસૂચિના વિકલ્પો',
@@ -2997,7 +3001,7 @@ $1',
 'pageinfo-robot-noindex' => 'અમાન્ય',
 'pageinfo-views' => 'જોનારાની સંખ્યા',
 'pageinfo-watchers' => 'પાના નીરીક્ષકોની સંખ્યા',
-'pageinfo-redirects-name' => 'આ પાનાં પર વાળો',
+'pageinfo-redirects-name' => 'આ પાનાં પર દિશાનિર્દેશનોની સંખ્યા',
 'pageinfo-subpages-name' => 'આ પાનાંનું ઉપપાનું',
 'pageinfo-firstuser' => 'પૃષ્ઠ સર્જક',
 'pageinfo-firsttime' => 'પૃષ્ઠ સર્જનની તારીખ',
@@ -3006,9 +3010,12 @@ $1',
 'pageinfo-edits' => 'કુલ સંપાદનોની સંખ્યા',
 'pageinfo-authors' => 'ક્ષેત્રના લેખકોની કુલ સંખ્યા',
 'pageinfo-recent-edits' => 'તાજા ફેરફારોની સંખ્યા (છેલ્લા $1 દરમ્યાન)',
+'pageinfo-recent-authors' => 'અલગ અલગ લેખકોની કુલ સંખ્યા',
+'pageinfo-magic-words' => 'ચમત્કારી {{PLURAL:$1|શબ્દ|શબ્દો}} ($1)',
 'pageinfo-hidden-categories' => 'છુપી {{PLURAL:$1|શ્રેણી|શ્રેણીઓ}} ($1)',
 'pageinfo-templates' => 'પ્રયુક્ત {{PLURAL:$1|ઢાંચો|ઢાંચાઓ}} ($1)',
 'pageinfo-toolboxlink' => 'પૃષ્ઠમાહિતી',
+'pageinfo-redirectsto' => 'તરફ દિશાનિર્દેશન',
 'pageinfo-redirectsto-info' => 'માહિતી',
 'pageinfo-contentpage-yes' => 'હા',
 'pageinfo-protect-cascading-yes' => 'હા',
@@ -3581,13 +3588,13 @@ $5
 
 આ પુષ્ટિ કોડ $4 સુધીજ કામમાં આવશે.',
 'confirmemail_body_set' => 'કોઇકે, કદાચ તમે પોતે જ , IP સરનામા  $1 પરથી,
-{{SITENAME}} પર "$2" ખાતાનું ઇ-મેલ સરનામું બદલ્યું છે.
+{{SITENAME}} પર "$2" ખાતાનું ઇમેલ સરનામું બદલ્યું છે.
 
-એ વાતની પુષ્ટિ કરવા માટે કે આ ઇ-મેલ ખાતું તમારું જ છે અને {{SITENAME}}ના ઇ-મેલ સંબંધિત વિકલ્પો સક્રીય કરવા માટે આપેલી કડીને તમારા બ્રાઉઝરમાં સક્રીય કરો:
+એ વાતની પુષ્ટિ કરવા માટે કે આ ઇમેલ ખાતું તમારું જ છે અને {{SITENAME}}ના ઇમેલ સંબંધિત વિકલ્પો સક્રીય કરવા માટે આપેલી કડીને તમારા બ્રાઉઝરમાં સક્રીય કરો:
 
 $3
 
-જો ખાતું તમારું ના હોય તો, આ કડીને અનુસરી ઈ-મેલ ખાતાની પુષ્ટિની નોંધણીને રદ કરો:
+જો ખાતું તમારું ના હોય તો, આ કડીને અનુસરી ઈમેલ ખાતાની પુષ્ટિની નોંધણીને રદ કરો:
 
 $5
 આ પુષ્ટિ કોડ  $4 સુધીજ કામમાં આવશે.',
@@ -3722,6 +3729,7 @@ $5
 # Special:Redirect
 'redirect-legend' => 'ફાઇલ અથવા પાનાં તરફ વાળો',
 'redirect-submit' => 'જાઓ',
+'redirect-lookup' => 'જુઓ:',
 'redirect-value' => 'કિંમત:',
 'redirect-user' => 'સભ્ય નામ',
 'redirect-revision' => 'પાનાંની આવૃત્તિ',
@@ -3799,8 +3807,7 @@ $5
 
 # Database error messages
 'dberr-header' => 'આ વિકિમાં તકલીફ છે',
-'dberr-problems' => 'દિલગીરી!
-આ સાઇટ તકનિકી અડચણ અનુભવી રહી છે.',
+'dberr-problems' => 'દિલગીરી! આ સાઇટ તકનિકી અડચણ અનુભવી રહી છે.',
 'dberr-again' => 'થોડી વાર રાહ જોઈને ફરી પેજ લોડ કરવાનો પ્રયત્ન કરો.',
 'dberr-info' => '(માહિતી સંચય સર્વર : $1નો સંપર્ક નથી કરી શકાયો)',
 'dberr-usegoogle' => 'તેસમયા દરમ્યાન તમે ગુગલ દ્વારા શોધી શકો',
@@ -3847,9 +3854,9 @@ $5
 'revdelete-restricted' => 'પ્રબઁધકોના ફેરફાર કરવા પર પ્રતિબંધ મુકાયો',
 'revdelete-unrestricted' => 'પ્રબંધકોના ફેરફાર કરવા પર પ્રતિબંધ હટાવાયો.',
 'logentry-move-move' => '$1એ {{GENDER:$2|ખસેડાયું }} પાના $3ને $4 પર ખસેડ્યું',
-'logentry-move-move-noredirect' => '$1એ દિશાનિર્દેશન છોડ્યા વગર પાના $3ને $4 પર વાળ્યું',
-'logentry-move-move_redir' => '$1એ દિશાનિર્દેશન કરીને પાના $3ને $4 પર ખસેડ્યું',
-'logentry-move-move_redir-noredirect' => '$1એ દિશાનિર્દેશન કરીને પાના $3ને $4 પર વાળ્યું પણ પાછળ દિશાનિર્દેશન છોડ્યું નહી',
+'logentry-move-move-noredirect' => '$1 એ દિશાનિર્દેશન છોડ્યા વગર પાના $3ને $4 પર {{GENDER:$2|વાળ્યું}}',
+'logentry-move-move_redir' => '$1એ દિશાનિર્દેશન કરીને પાના $3ને $4 પર {{GENDER:$2|ખસેડ્યું}}',
+'logentry-move-move_redir-noredirect' => '$1એ દિશાનિર્દેશન કરીને પાના $3ને $4 પર {{GENDER:$2|વાળ્યું}} પણ પાછળ દિશાનિર્દેશન છોડ્યું નહી',
 'logentry-patrol-patrol' => '$1 આવૃત્તિ ચિહ્નિત થયેલ પાનાં $4 $3 ચોકી કરવા ફરવા નીકળવું',
 'logentry-patrol-patrol-auto' => '$1 આપોઆપ ચિહ્નિત ચોકી પહેરો કરવા લાગ્યા આવૃત્તિ પાનું $4 $3',
 'logentry-newusers-newusers' => 'સભ્ય ખાતું $1 {{GENDER:$2|બનાવવામાં આવ્યું}}',
@@ -3932,5 +3939,11 @@ $5
 
 # Image rotation
 'rotate-comment' => 'ચિત્ર $1 {{PLURAL:$1|ડિગ્રી|ડિગ્રીઓ}} ઘડિયાળની દિશામાં ફેરવવામાં આવ્યું',
+
+# Limit report
+'limitreport-cputime-value' => '$1 {{PLURAL:$1|સેકંડ|સેકંડો}}',
+'limitreport-walltime-value' => '$1 {{PLURAL:$1|સેકંડ|સેકંડો}}',
+'limitreport-postexpandincludesize-value' => '$1/$2 {{PLURAL:$2|બાઇટ|બાઇટ્સ}}',
+'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|બાઇટ|બાઇટ્સ}}',
 
 );

@@ -1523,8 +1523,7 @@ Hwi a yll [[Special:EditWatchlist|devnydhya an janjyel usadow]] ynwedh.',
 
 # Database error messages
 'dberr-header' => "An wiki-ma a'n jeves kudyn",
-'dberr-problems' => "Drog yw genen!
-An wiasva-ma a's teves kaletter teknogel.",
+'dberr-problems' => "Drog yw genen! An wiasva-ma a's teves kaletter teknogel.",
 'dberr-again' => 'Assayewgh gortos pols ha daskarga.',
 'dberr-info' => '(Ny yllir kestava orth servyer an database: $1)',
 'dberr-usegoogle' => 'Hwi a yll assaya hwilas dre Google.',

@@ -282,7 +282,7 @@ $1',
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Maipanggep ti {{SITENAME}}',
 'aboutpage' => 'Project:Maipanggep',
-'copyright' => 'Ti linaon ket magun-od babaen ti $1.',
+'copyright' => 'Ti linaon ket magun-od babaen ti $1 malaksid no adda sabali a naibaga.',
 'copyrightpage' => '{{ns:project}}:Dagiti karbengan ti kopia',
 'currentevents' => 'Agdama a paspasamak',
 'currentevents-url' => 'Project:Agdama a paspasamak',
@@ -3790,8 +3790,7 @@ Naka-awatka koman ti [{{SERVER}}{{SCRIPTPATH}}/COPYING kopia iti GNU Sapasap a  
 
 # Database error messages
 'dberr-header' => 'Adda ti pakirutna daytoy a wiki',
-'dberr-problems' => 'Pasensian a!
-Daytoy a pagsaadan ket agdadama ti teknikal a pagrigrigatan.',
+'dberr-problems' => 'Pasensian a! Daytoy a pagsaadan ket agdadama ti teknikal a pagrigrigatan.',
 'dberr-again' => 'Padasem ti agururay to manu a minutos ken agikarga.',
 'dberr-info' => '(Saan a makontak ti database server: $1)',
 'dberr-info-hidden' => '(Saan a makontak ti database server)',
@@ -3939,9 +3938,9 @@ Nupay kasta, mau-sarmo ti nakabuklan dita baba. Ti komentario nga itedmo ket mai
 'limitreport-ppvisitednodes' => 'Nabisita a bilang ti nodo ti preproseso',
 'limitreport-ppgeneratednodes' => 'Napataud a bilang ti nodo ti preproseso',
 'limitreport-postexpandincludesize' => 'Pannakairaman a kadakkel ti kalpasan a panagpadakkel',
-'limitreport-postexpandincludesize-value' => 'Dagiti $1/$2 a byte',
+'limitreport-postexpandincludesize-value' => '$1/$2 {{PLURAL:$2|a byte|kadagiti byte}}',
 'limitreport-templateargumentsize' => 'Argumento a kadakkel ti plantilia',
-'limitreport-templateargumentsize-value' => 'Dagiti $1/$2 a byte',
+'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|a byte|kadagiti byte}}',
 'limitreport-expansiondepth' => 'Kangatuan a panagpadakkel ti kauneg',
 'limitreport-expensivefunctioncount' => 'Bilang ti nangina nga annong ti parser',
 

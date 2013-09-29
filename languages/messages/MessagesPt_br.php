@@ -4204,7 +4204,8 @@ Caso contrário, você poderá usar o formulário simplificado a seguir. Seu com
 'limitreport-cputime-value' => '$1 {{PLURAL:$1|segundo|segundos}}',
 'limitreport-walltime' => 'Tempo de uso real',
 'limitreport-walltime-value' => '$1 {{PLURAL:$1|segundo|segundos}}',
-'limitreport-postexpandincludesize-value' => '$1/$2 bytes',
+'limitreport-postexpandincludesize-value' => '$1/$2 {{PLURAL:$2|byte|bytes}}',
+'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|byte|bytes}}',
 'limitreport-expansiondepth' => 'Máxima profundidade de expansão',
 
 );

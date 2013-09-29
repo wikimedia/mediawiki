@@ -4038,8 +4038,7 @@ $5
 
 # Database error messages
 'dberr-header' => 'ഈ വിക്കിയിൽ പ്രശ്നമുണ്ട്',
-'dberr-problems' => 'ക്ഷമിക്കണം! 
-ഈ സൈറ്റിൽ സാങ്കേതിക തകരാറുകൾ അനുഭവപ്പെടുന്നുണ്ട്.',
+'dberr-problems' => 'ക്ഷമിക്കണം! ഈ സൈറ്റിൽ സാങ്കേതിക തകരാറുകൾ അനുഭവപ്പെടുന്നുണ്ട്.',
 'dberr-again' => 'കുറച്ച് മിനിട്ടുകൾ കാത്തിരുന്ന് വീണ്ടും തുറക്കുവാൻ ശ്രമിക്കുക.',
 'dberr-info' => '(വിവരശേഖര സെർവറുമായി ബന്ധപ്പെടാൻ പറ്റിയില്ല: $1)',
 'dberr-info-hidden' => '(ഡേറ്റാബേസ് സെർവറുമായി ബന്ധപ്പെടരുത്)',
@@ -4187,9 +4186,9 @@ $5
 'limitreport-ppvisitednodes' => 'പ്രീപ്രോസസർ സന്ദർശിച്ച നോഡിന്റെ എണ്ണം',
 'limitreport-ppgeneratednodes' => 'പ്രീപ്രോസർ സൃഷ്ടിച്ച നോഡിന്റെ എണ്ണം',
 'limitreport-postexpandincludesize' => 'വികസിപ്പിച്ചതിനു ശേഷമുള്ള ഉൾപ്പെടുത്തൽ വലിപ്പം',
-'limitreport-postexpandincludesize-value' => '$1/$2 ബൈറ്റുകൾ',
+'limitreport-postexpandincludesize-value' => '$1/$2 {{PLURAL:$2|ബൈറ്റ് |ബൈറ്റുകൾ}}',
 'limitreport-templateargumentsize' => 'ഫലകത്തിലെ ചരങ്ങൾക്കനുവദിച്ചിരിക്കുന്ന വലിപ്പം',
-'limitreport-templateargumentsize-value' => '$1/$2 ബൈറ്റുകൾ',
+'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|ബൈറ്റ് |ബൈറ്റുകൾ}}',
 'limitreport-expansiondepth' => 'വികസിപ്പിക്കാനാവുന്ന ഉയർന്ന പരിധി',
 'limitreport-expensivefunctioncount' => 'വ്യയമേറിയ പാഴ്സർ ഫങ്ഷൻ എണ്ണം',
 

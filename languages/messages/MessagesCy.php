@@ -3938,9 +3938,9 @@ Dylech fod wedi derbyn [{{SERVER}}{{SCRIPTPATH}}/COPYING gopi o GNU General Publ
 'limitreport-ppvisitednodes' => "Rhif y nodau ar ymweliadau'r rhagbrosesydd",
 'limitreport-ppgeneratednodes' => 'Rhif y nodau a gynhyrchodd y rhagbrosesydd',
 'limitreport-postexpandincludesize' => 'Uchafswm maint y nodiadau ar ôl eu chwyddo',
-'limitreport-postexpandincludesize-value' => '$1/$2 beit',
+'limitreport-postexpandincludesize-value' => '$1/$2 {{PLURAL:$2|beit|beit|feit|beit}}',
 'limitreport-templateargumentsize' => 'Maint arg y nodyn',
-'limitreport-templateargumentsize-value' => '$1/$2 beit',
+'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|beit|beit|feit|beit}}',
 'limitreport-expansiondepth' => 'Uchafswm dyfnder yr ehangu',
 'limitreport-expensivefunctioncount' => "Nifer y ffwythiannau dosrannu sy'n dreth ar adnoddau",
 

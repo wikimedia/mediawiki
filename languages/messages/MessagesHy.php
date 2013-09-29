@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Ahmed-Najib-Biabani-Ibrahimkhel
  * @author Chaojoker
  * @author Nemo bis
  * @author Pandukht
@@ -1015,7 +1016,7 @@ $2',
 <charinsert>~ | ° ¹ ² ³ ¼ ½ ¾ € $ ¥ £ † × ← → ↔ ↑ ± ≠ © ® ™ ‰ «+» ‹+› „+“ „+” ‚+‘ ¡ ¿ …</charinsert> –
 <charinsert>&amp;nbsp; &nbsp; [[Category:+]] #REDIRECT[[+]] {{msg-mw|+|notext=1}}  ~~~~</charinsert>
 <charinsert>ڈ ڑ ٹ </charinsert>
-<charinsert>ټ څ ځ ډ ړ ږ ښ ګ ڼ ؤ ي ې ۍ ئ </charinsert>
+<charinsert>ټ څ ځ ډ ړ ږ ښ ڼ ؤ ي ې ۍ ئ </charinsert>
 <charinsert>{{{+}}} {{+}} {{subst:+}} <noinclude>+</noinclude></charinsert>
 </p></div>',
 'nocreatetext' => '{{SITENAME}} կայքում էջերի ստեղծման հնարավորությունը սահմանափակված է։

@@ -3129,8 +3129,7 @@ Var arī lietot [[Special:EditWatchlist|standarta izmainīšanas lapu]].',
 
 # Database error messages
 'dberr-header' => 'Šim viki ir problēma',
-'dberr-problems' => 'Atvainojiet! 
-Šai vietnei ir radušās tehniskas problēmas.',
+'dberr-problems' => 'Atvainojiet! Šai vietnei ir radušās tehniskas problēmas.',
 'dberr-again' => 'Uzgaidiet dažas minūtes un pārlādējiet šo lapu.',
 'dberr-info' => '(Nevar sazināties ar datubāzes serveri: $1)',
 'dberr-usegoogle' => 'Pa to laiku Jūs varat izmantot Google meklēšanu.',

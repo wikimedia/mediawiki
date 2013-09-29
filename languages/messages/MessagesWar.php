@@ -2311,8 +2311,7 @@ An iba in daan nakatago.
 
 # Database error messages
 'dberr-header' => 'Ini nga wiki mayda problema',
-'dberr-problems' => 'Pasayloi!
-Ini nga sityo in nageeksperyensya hin mga pagkuri teknikal.',
+'dberr-problems' => 'Pasayloi! Ini nga sityo in nageeksperyensya hin mga pagkuri teknikal.',
 
 # HTML forms
 'htmlform-submit' => 'Isumite',

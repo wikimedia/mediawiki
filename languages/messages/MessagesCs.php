@@ -4266,9 +4266,9 @@ Jinak můžete využít jednoduchý formulář níže. Váš komentář bude př
 'limitreport-ppvisitednodes' => 'Počet uzlů navštívených preprocesorem',
 'limitreport-ppgeneratednodes' => 'Počet uzlů vygenerovaných preprocesorem',
 'limitreport-postexpandincludesize' => 'Velikost vložení po expanzi',
-'limitreport-postexpandincludesize-value' => '$1/$2 bajtů',
+'limitreport-postexpandincludesize-value' => '$1/$2 {{PLURAL:$2|bajt|bajty|bajtů}}',
 'limitreport-templateargumentsize' => 'Velikost argumentů šablon',
-'limitreport-templateargumentsize-value' => '$1/$2 bajtů',
+'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|bajt|bajty|bajtů}}',
 'limitreport-expansiondepth' => 'Největší hloubka expanze',
 'limitreport-expensivefunctioncount' => 'Počet náročných funkcí parseru',
 

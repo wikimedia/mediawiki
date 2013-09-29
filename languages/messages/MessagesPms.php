@@ -678,13 +678,13 @@ A dovrìa felo si për asar chiel a l'ha partagiaje con cheidun o si sò cont a 
 'minoredit' => "Costa a l'é na modìfica cita",
 'watchthis' => 'Ten-e sot euj costa pàgina-sì',
 'savearticle' => 'Salvé la pàgina',
-'preview' => 'Preuva',
-'showpreview' => 'Mostra na preuva',
+'preview' => 'Previsualisassion',
+'showpreview' => 'Mostré na preuva',
 'showlivepreview' => "Funsion ''Preuva dal viv''",
 'showdiff' => 'Smon-me le modìfiche',
-'anoneditwarning' => "A l'é ancó nen rintrà ant ël sistema. Soa adrëssa IP a sarà registrà ant la stòria dle modìfiche dë sta pàgina-sì.",
-'anonpreviewwarning' => "''It ses pa intrà. An salvand a sarà memorisà toa adrëssa IP ant la stòria dle modìfiche dë sta pàgina-sì.''",
-'missingsummary' => "'''Nòta:''' a l'ha pa butà gnun somari dla modìfica. Se a sgnaca Salva n'àutra vira, soa modìfica a resterà salvà sensa pa ëd somari.",
+'anoneditwarning' => "'''Atension:''' A l'é nen rintrà ant ël sistema. Soa adrëssa IP a sarà registrà ant la stòria dle modìfiche ëd sa pàgina.",
+'anonpreviewwarning' => "''A l'é nen rintrà ant ël sistema. An salvand a sarà memorisà soa adrëssa IP ant la stòria dle modìfiche ëd sa pàgina.''",
+'missingsummary' => "'''Nòta:''' a l'ha butà gnun resumé dla modìfica. Se a sgnaca «{{int:savearticle}}» n'àutra vira, soa modìfica a resterà salvà sensa resumé.",
 'missingcommenttext' => 'Për piasì che a buta un coment ambelessì sota.',
 'missingcommentheader' => "'''Ch'a arcòrda:''' A l'ha pa dàit soget o intestassion për sto coment-sì.
 Se a sgnaca torna \"{{int:savearticle}}\", soa modìfica a sarà salvà sensa gnun-a intestassion.",
@@ -3697,8 +3697,7 @@ A dovrìa avèj arseivù [{{SERVER}}{{SCRIPTPATH}}/COPYING na còpia dla Licensa
 
 # Database error messages
 'dberr-header' => "Sta wiki-sì a l'ha un problema",
-'dberr-problems' => "An dëspias!
-Ës sit a l'ha dle dificoltà técniche.",
+'dberr-problems' => "An dëspias! Ës sit a l'ha dle dificoltà técniche.",
 'dberr-again' => "Ch'a speta chèiche minute e ch'a preuva torna a carié.",
 'dberr-info' => '(Conession al servent ëd base ëd dàit impossìbil: $1)',
 'dberr-usegoogle' => 'Antratant a peul prové a sërché con Google.',

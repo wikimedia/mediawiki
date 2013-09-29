@@ -154,11 +154,11 @@ $messages = array(
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Flocc|Floccas}}',
-'category_header' => 'Trametas in flocce "$1"',
+'category_header' => 'Trametas in "$1" flocce',
 'subcategories' => 'Underfloccas',
 'category-media-header' => 'Missenmiddel in flocce "$1"',
 'category-empty' => "''Þes flocc hæfþ nū nǣngu geƿritu oþþe missenmiddel.''",
-'hidden-categories' => '{{PLURAL:$1|Gehȳded flocc|$1 Gehȳdede floccas}}',
+'hidden-categories' => '{{PLURAL:$1|Gehȳded flocc|$1 Gehȳdedra flocca}}',
 'hidden-category-category' => 'Gehȳdede floccas',
 'category-subcat-count' => '{{PLURAL:$2|Þes flocc hæfþ synderlīce þone folgiendan underflocc.|Þes flocc hæfþ {{PLURAL:$1|þone folgiendan underflocc|þā folgiendan $1 underflocca}} - þæt fulle rīm is $2.}}',
 'category-subcat-count-limited' => 'Þes flocc hæfþ {{PLURAL:$1|þisne underflocc|$1 þās underfloccas}}.',
@@ -448,7 +448,7 @@ Scēawa þīne wrītunge eft, oþþe [[Special:UserLogin/signup|sciepp nīwe rec
 'extlink_sample' => 'http://www.example.com hlencan nama',
 'extlink_tip' => 'Ūtanweard hlenca (beþenc þone http:// foredǣl)',
 'headline_sample' => 'Hēafodlīnan traht',
-'headline_tip' => 'Emnet 2 hēafodlīn',
+'headline_tip' => '2. emnettes hēafodlīn',
 'nowiki_sample' => 'Unendebyrdodne traht hēr settan',
 'nowiki_tip' => 'Wiki endebyrdunge forgietan',
 'image_sample' => 'Bisen.jpg',
@@ -459,7 +459,7 @@ Scēawa þīne wrītunge eft, oþþe [[Special:UserLogin/signup|sciepp nīwe rec
 'hr_tip' => 'Brād līn (ne brūc oft)',
 
 # Edit pages
-'summary' => 'Scortnes:',
+'summary' => 'Scortness:',
 'subject' => 'Ymbe/hēafodlīn:',
 'minoredit' => 'Þēos is lytel adihtung',
 'watchthis' => 'Behealdan þisne tramet',
@@ -480,9 +480,9 @@ Scēawa þīne wrītunge eft, oþþe [[Special:UserLogin/signup|sciepp nīwe rec
 
 Þū mōst þæt þafungword andwendan for þisse nīwan reccinge on þǣm ''[[Special:ChangePassword|andwendan þafungword]]'' tramete siþþan þū inmeldie.",
 'newarticle' => '(Nīwe)',
-'newarticletext' => "Þu hæfst bende tō tramete gefolgod þe nū gīet ne stendeþ.
-Tō scieppene þone tramet, onginn þyddan in þǣre boxe under (sēo þone [[{{MediaWiki:Helppage}}|helptramet]] for mā gefrǣge).
-Gif þu hider misfōn cōme, cnoca þā þīnne webbscēaweres '''on bæc''' cnæpp.",
+'newarticletext' => "Þū hæfst hlencan tō tramete þe nū gīet ne stent gefolgod.
+Tō scieppene þone tramet, onginn tō wrītenne in þǣre mearce þe is beneoþan (seoh þone [[{{MediaWiki:Helppage}}|helpes tramet]] ymb mā cȳþþu).
+Gif þū hider be misfēnge cōme, cnoca þīnes webbsēcendes '''on bæc''' cnæpp.",
 'usercssyoucanpreview' => "'''Rǣd:''' Brūc þone \"{{int:Forescēaƿian}}\" cnæpp tō costnienne þīne nīwan css/js wrītunge ǣr hit sīe hordod.",
 'userjsyoucanpreview' => "'''Rǣd:''' Brūc þone 'Forescēawian' cnæpp tō āfandienne þīne nīwe css/js beforan sparunge.",
 'updated' => '(Ednīwed)',
@@ -519,7 +519,7 @@ folcliċum āgnunge oþþe ȝelīċum frēom horde (sēo $1 for āscungum).
 # History pages
 'viewpagelogs' => 'Sēon þisses trametes ealdhold',
 'nohistory' => 'Nis nān adihtunge stǣr for þissum tramete.',
-'currentrev-asof' => 'Nīwost fadung on $1',
+'currentrev-asof' => 'Nīwost fadung on þǣre $3. tīde þæs $2.',
 'revisionasof' => 'Nīwung fram $1',
 'previousrevision' => '← Ieldre fadung',
 'nextrevision' => 'Nīwre fadung →',
@@ -687,7 +687,7 @@ folcliċum āgnunge oþþe ȝelīċum frēom horde (sēo $1 for āscungum).
 'rclinks' => 'Īwan þā nīwostan $1 andwendunga in þissum nīehstum $2 daga<br />$3',
 'diff' => 'scēad',
 'hist' => 'stǣr',
-'hide' => 'hȳdan',
+'hide' => 'Hȳdan',
 'show' => 'Īwan',
 'minoreditletter' => 'ly',
 'newpageletter' => 'N',
@@ -742,7 +742,7 @@ Gif se brūcend asifte hine. synderlīce sind ymelan geīwda þǣre þe se brūc
 # File description page
 'file-anchor-link' => 'Ymele',
 'filehist' => 'Ymelan stǣr',
-'filehist-help' => 'Swing dæg/tīde mid mýs to sēonne þā ymelan swā wæs hēo on þǣre tīde.',
+'filehist-help' => 'Swing dæg/tīde mid mȳs to sēonne þā ymelan swā wæo hēo on þǣre tīde.',
 'filehist-deleteall' => 'forlēosan eall',
 'filehist-deleteone' => 'forlēosan',
 'filehist-revert' => 'undōn',
@@ -966,7 +966,7 @@ Gif se brūcend asifte hine. synderlīce sind ymelan geīwda þǣre þe se brūc
 
 # Namespace form on various pages
 'namespace' => 'Namstede:',
-'invert' => 'Cyre edƿendan',
+'invert' => 'Onhwirfan gecorennesse',
 'blanknamespace' => '(Hēafod)',
 
 # Contributions
@@ -1012,7 +1012,7 @@ Gif se brūcend asifte hine. synderlīce sind ymelan geīwda þǣre þe se brūc
 ** Uncwēme brūcendnama',
 'ipbsubmit' => 'Fortȳnan þisne brūcend',
 'ipbother' => 'Ōðeru tīd',
-'ipboptions' => '2 tīda:2 hours,1 dæg:1 day,3 dagas:3 days,1 wucu:1 week,2 wuca:2 weeks,1 mōnaþ:1 month,3 mōnðas:3 months,6 mōnðas:6 months,1 gēar:1 year,unendiende:infinite',
+'ipboptions' => '2 tīda:2 hours,1 dæg:1 day,3 dagas:3 days,1 wucu:1 week,2 wuca:2 weeks,1 mōnaþ:1 month,3 mōnðas:3 months,6 mōnða:6 months,1 gēar:1 year,unendiende:infinite',
 'ipbotheroption' => 'ōðer',
 'ipbotherreason' => 'Ōðru oþþe nīehst racu:',
 'ipblocklist-submit' => 'Sēcan',
@@ -1089,7 +1089,7 @@ Cēos ōðerne naman lā.',
 'tooltip-ca-watch' => 'Ēacnian þīn behealdungtæl mid þissum tramete',
 'tooltip-ca-unwatch' => 'Animan þisne tramet fram þīnum behealdungtæle',
 'tooltip-search' => 'Sēcan {{SITENAME}}',
-'tooltip-search-go' => 'Gān tō tramete þe hæbbe þisne rihte syndigan naman, gif swilc tramet sīe',
+'tooltip-search-go' => 'Gān tō tramete þe hæbbe þisne rihte syndrigan naman, gif swilc tramet sīe',
 'tooltip-search-fulltext' => 'Sēcan þisne traht on þǣm trametum',
 'tooltip-p-logo' => 'Sēcan þone hēafodtramet',
 'tooltip-n-mainpage' => 'Sēcan þone hēafodtramet',
@@ -1107,7 +1107,7 @@ Cēos ōðerne naman lā.',
 'tooltip-t-emailuser' => 'Sendan spearcǣrend þissum brūcende',
 'tooltip-t-upload' => 'Hladan ymelan forþ',
 'tooltip-t-specialpages' => 'Getæl eallra syndrigra trameta',
-'tooltip-t-print' => 'Gemǣnendlicu fadung þisses trametes',
+'tooltip-t-print' => 'Gemǣnendlīc fadung þisses trametes',
 'tooltip-t-permalink' => 'Fæst hlenca tō þisre fadunge þæs trametes',
 'tooltip-ca-nstab-main' => 'Sēon þone innunge tramet',
 'tooltip-ca-nstab-user' => 'Sēon þone brūcendes tramet',
@@ -1118,9 +1118,9 @@ Cēos ōðerne naman lā.',
 'tooltip-ca-nstab-category' => 'Sēon þone flocces tramet',
 'tooltip-minoredit' => 'Mearcian þās tō lytelre adihtunge',
 'tooltip-save' => 'Hordian þīna andwendunga',
-'tooltip-preview' => 'Seoh fōrebysene þīna andwendunga. Brūc þīs lā ǣr þū hordie!',
-'tooltip-diff' => 'Īwan þā andwendunga þā þū dydest þone traht',
-'tooltip-compareselectedversions' => 'Þā tōdāl sēon betƿēonan þǣre tƿǣm coren fadungum þisse sīdan',
+'tooltip-preview' => 'Seoh fōrebysene þīnra andwendunga. Brūc þis lā ǣr þū hordie!',
+'tooltip-diff' => 'Īwan þā andwendunga þā þū dydest wiþ þone traht',
+'tooltip-compareselectedversions' => 'Sēon þā gescēad betweonan þǣm twǣm gecorenum fadungum þisses trametes',
 'tooltip-watch' => 'Ēacnian þīn behealdungtæl mid þissum tramete',
 'tooltip-undo' => '"Undōn" undēþ þās adihtunge and openaþ þǣre adihtunge bysene tō fōrebysene. Man cann secgan race on þǣre sceortnesse.',
 
@@ -1218,7 +1218,7 @@ Cēos ōðerne naman lā.',
 'exif-gpsdirection-t' => 'Sōþ rihtung',
 
 # External editor support
-'edit-externally-help' => '(Þā [//www.mediawiki.org/wiki/Manual:External_editors ȝearƿunga tyhtas] sēon for mā cȳþþe)',
+'edit-externally-help' => '(Sēon þā [//www.mediawiki.org/wiki/Manual:External_editors gearwunge gewissunga] ymb mā cȳþþe)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'eall',

@@ -655,8 +655,8 @@ $1",
 'privacypage' => 'Project:Confidentialité',
 
 'badaccess' => 'Erreur de permissions',
-'badaccess-group0' => "Vous n'avez pas les droits suffisants pour réaliser l'action demandée.",
-'badaccess-groups' => "L'action que vous essayez de réaliser n'est accessible qu'aux utilisateurs {{PLURAL:$2|du groupe|des groupes}} : $1.",
+'badaccess-group0' => 'Vous n’avez pas les droits suffisants pour réaliser l’action demandée.',
+'badaccess-groups' => 'L’action que vous essayez de réaliser n’est permise qu’aux utilisateurs {{PLURAL:$2|du groupe|des groupes}} : $1.',
 
 'versionrequired' => 'Version $1 de MediaWiki nécessaire',
 'versionrequiredtext' => 'La version $1 de MediaWiki est nécessaire pour utiliser cette page. Consultez [[Special:Version|la page des versions]]',
@@ -754,14 +754,14 @@ Veuillez le signaler à un [[Special:ListUsers/sysop|administrateur]] sans oubli
 'unexpected' => 'Valeur inattendue : « $1 » = « $2 ».',
 'formerror' => 'Erreur : Impossible de soumettre le formulaire.',
 'badarticleerror' => 'Cette action ne peut pas être effectuée sur cette page.',
-'cannotdelete' => "Impossible de supprimer la page ou le fichier « $1 ».
-La suppression a peut-être déjà été effectuée par quelqu'un d'autre.",
+'cannotdelete' => 'Impossible de supprimer la page ou le fichier « $1 ».
+La suppression a peut-être déjà été effectuée par quelqu’un d’autre.',
 'cannotdelete-title' => 'Impossible de supprimer la page « $1 »',
 'delete-hook-aborted' => "Suppression annulée par une extension.
 Aucune explication n'a été fournie.",
 'no-null-revision' => 'Impossible de créer une nouvelle révision vide pour la page « $1 »',
 'badtitle' => 'Mauvais titre',
-'badtitletext' => "Le titre de la page demandée est invalide, vide, ou il s'agit d'un titre inter-langue ou inter-projet mal lié. Il contient peut-être un ou plusieurs caractères qui ne peuvent pas être utilisés dans les titres.",
+'badtitletext' => 'Le titre de la page demandée est invalide, vide, ou il s’agit d’un titre inter-langue ou inter-projet mal formé. Il contient peut-être un ou plusieurs caractères qui ne peuvent pas être utilisés dans les titres.',
 'perfcached' => 'Les données suivantes sont en cache et peuvent ne pas être à jour. Un maximum de {{PLURAL:$1|un résultat|$1 résultats}} est disponible dans le cache.',
 'perfcachedts' => 'Les données suivantes sont en cache et ont été mises à jour pour la dernière fois à $1. Un maximum de {{PLURAL:$4|un résultat|$4 résultats}} est disponible dans le cache.',
 'querypage-no-updates' => 'Les mises à jour pour cette page sont actuellement désactivées. Les données ci-dessous ne sont pas mises à jour.',
@@ -780,8 +780,8 @@ Essayez à nouveau dans quelques minutes.",
 Pour ajouter ou modifier des traductions sur tous les wikis, veuillez utiliser [//translatewiki.net/ translatewiki.net], le projet de localisation de MediaWiki.",
 'editinginterface' => "'''Attention''' : vous êtes en train de modifier une page utilisée pour créer le texte de l’interface du logiciel. Les changements sur cette page se répercuteront sur l’apparence de l’interface utilisateur pour les autres utilisateurs de ce wiki.
 Pour ajouter ou modifier des traductions pour tous les wikis, veuillez utiliser [//translatewiki.net/ translatewiki.net], le projet d’internationalisation de MediaWiki.",
-'cascadeprotected' => "Cette page est protégée car elle est incluse par {{PLURAL:$1|la page suivante, qui a été protégée|les pages suivantes, qui ont été protégées}} avec l'option « protection en cascade » activée :
-$2",
+'cascadeprotected' => 'Cette page est protégée car elle est incluse par {{PLURAL:$1|la page suivante, qui a été protégée|les pages suivantes, qui ont été protégées}} avec l’option « protection en cascade » activée :
+$2',
 'namespaceprotected' => "Vous n'avez pas la permission de modifier les pages de l'espace de noms « '''$1''' ».",
 'customcssprotected' => "Vous n'avez pas la permission de modifier cette page de CSS, car elle contient les paramètres personnels d'un autre utilisateur.",
 'customjsprotected' => "Vous n'avez pas la permission de modifier cette page de JavaScript, car elle contient les paramètres personnels d'un autre utilisateur.",
@@ -854,7 +854,7 @@ N'oubliez pas de modifier [[Special:Preferences|vos préférences pour {{SITENAM
 'createacct-emailoptional' => 'Adresse de courriel (facultative)',
 'createacct-email-ph' => 'Entrez votre adresse de courriel',
 'createacct-another-email-ph' => 'Saisir l’adresse de courriel',
-'createaccountmail' => "Utiliser un mot de passe aléatoire temporaire et l'envoyer à l'adresse de courriel spécifiée",
+'createaccountmail' => 'Utiliser un mot de passe aléatoire temporaire et l’envoyer à l’adresse de courriel spécifiée',
 'createacct-realname' => 'Nom réel (facultatif)',
 'createaccountreason' => 'Motif :',
 'createacct-reason' => 'Motif',
@@ -922,11 +922,11 @@ Entrez une adresse bien formatée ou laissez ce champ vide.',
 'emaildisabled' => 'Ce site ne peut pas envoyer de courriels.',
 'accountcreated' => 'Compte créé',
 'accountcreatedtext' => 'Le compte utilisateur pour [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|discussion]]) a été créé.',
-'createaccount-title' => "Création d'un compte pour {{SITENAME}}",
-'createaccount-text' => "Quelqu'un a créé un compte pour votre adresse de courriel sur {{SITENAME}} ($4) intitulé « $2 », avec le mot de passe « $3 ».
+'createaccount-title' => 'Création d’un compte pour {{SITENAME}}',
+'createaccount-text' => 'Quelqu’un a créé un compte pour votre adresse de courriel sur {{SITENAME}} ($4) intitulé « $2 », avec le mot de passe « $3 ».
 Vous devriez ouvrir une session et modifier dès à présent votre mot de passe.
 
-Ignorez ce message si ce compte a été créé par erreur.",
+Ignorez ce message si ce compte a été créé par erreur.',
 'usernamehasherror' => "Le nom d'utilisateur ne peut pas contenir des caractères de hachage",
 'login-throttled' => "Vous avez tenté un trop grand nombre de connexions dernièrement.
 Veuillez attendre $1 avant d'essayer à nouveau.",
@@ -990,15 +990,15 @@ Mot de passe temporaire : $2",
 'passwordreset-emailerror-capture' => "Un courriel de réinitialisation de mot de passe a été généré, qui est affiché ci-dessous, mais l'envoi à l'{{GENDER:$2|utilisateur}} a échoué : $1",
 
 # Special:ChangeEmail
-'changeemail' => "Changer l'adresse de courriel",
-'changeemail-header' => "Changer l'adresse de courriel du compte",
+'changeemail' => 'Changer l’adresse de courriel',
+'changeemail-header' => 'Changer l’adresse de courriel du compte',
 'changeemail-text' => 'Remplissez ce formulaire pour changer votre adresse de courriel. Vous devrez entrer votre mot de passe pour confirmer ce changement.',
 'changeemail-no-info' => 'Vous devez être connecté pour pouvoir accéder directement à cette page.',
 'changeemail-oldemail' => 'Adresse de courriel actuelle :',
 'changeemail-newemail' => 'Nouvelle adresse de courriel :',
 'changeemail-none' => '(aucune)',
 'changeemail-password' => 'Votre mot de passe sur {{SITENAME}} :',
-'changeemail-submit' => "Changer l'adresse de courriel",
+'changeemail-submit' => 'Changer l’adresse de courriel',
 'changeemail-cancel' => 'Annuler',
 
 # Special:ResetTokens
@@ -1053,7 +1053,7 @@ Si vous cliquez de nouveau sur le bouton « {{int:savearticle}} », la publicati
 Si vous cliquez de nouveau sur « {{int:Savearticle}} », votre modification sera enregistrée sans titre.",
 'summary-preview' => 'Aperçu du résumé :',
 'subject-preview' => 'Prévisualisation du sujet/titre :',
-'blockedtitle' => "L'utilisateur est bloqué.",
+'blockedtitle' => 'L’utilisateur est bloqué.',
 'blockedtext' => "'''Votre compte utilisateur ou votre adresse IP a été bloqué.'''
 
 Le blocage a été effectué par $1.
@@ -1064,7 +1064,7 @@ La raison invoquée est la suivante : ''$2''.
 * Compte bloqué : $7.
 
 Vous pouvez contacter $1 ou un autre [[{{MediaWiki:Grouppage-sysop}}|administrateur]] pour en discuter.
-Vous ne pouvez utiliser la fonction « {{MediaWiki:emailpage}} » que si une adresse de courriel valide est spécifiée dans vos [[Special:Preferences|préférences]] et que cette fonctionnalité n'a pas été bloquée.
+Vous ne pouvez utiliser la fonction « {{MediaWiki:emailpage}} » que si une adresse de courriel valide est spécifiée dans vos [[Special:Preferences|préférences]] et que si cette fonctionnalité n’a pas été bloquée.
 Votre adresse IP actuelle est $3 et votre identifiant de blocage est $5.
 Veuillez préciser ces indications dans toutes les requêtes que vous ferez.",
 'autoblockedtext' => "Votre adresse IP a été bloquée automatiquement car elle a été utilisée par un autre utilisateur, lui-même bloqué par $1.
@@ -1076,9 +1076,9 @@ La raison invoquée est :
 * Expiration du blocage : $6
 * Compte bloqué : $7
 
-Vous pouvez contacter $1 ou l'un des autres [[{{MediaWiki:Grouppage-sysop}}|administrateurs]] pour discuter de ce blocage.
+Vous pouvez contacter $1 ou l’un des autres [[{{MediaWiki:Grouppage-sysop}}|administrateurs]] pour discuter de ce blocage.
 
-Notez que vous ne pourrez utiliser la fonctionnalité d'envoi de courriel que si vous avez une adresse de courriel validée dans vos [[Special:Preferences|préférences]] et que la fonctionnalité n'a pas été désactivée.
+Notez que vous ne pourrez utiliser la fonctionnalité d’envoi de courriel que si vous avez une adresse de courriel validée dans vos [[Special:Preferences|préférences]] et que si cette fonctionnalité n’a pas été désactivée.
 
 Votre adresse IP actuelle est $3, et le numéro de blocage est $5.
 Veuillez préciser ces indications dans toutes les requêtes que vous ferez.",
@@ -1113,8 +1113,8 @@ Cela survient en général en suivant un lien historique obsolète vers une page
 Vous pouvez trouver plus de détails dans le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} journal des suppressions].",
 'userpage-userdoesnotexist' => "Le compte utilisateur « <nowiki>$1</nowiki> » n'est pas enregistré. Veuillez vérifier que vous voulez créer cette page.",
 'userpage-userdoesnotexist-view' => "Le compte utilisateur « $1 » n'est pas enregistré.",
-'blocked-notice-logextract' => "Cet utilisateur est actuellement bloqué.
-La dernière entrée du journal des blocages est indiquée ci-dessous à titre d'information :",
+'blocked-notice-logextract' => 'Cet utilisateur est actuellement bloqué.
+La dernière entrée du journal des blocages est indiquée ci-dessous à titre d’information :',
 'clearyourcache' => "'''Note :''' après avoir enregistré vos modifications, il se peut que vous deviez forcer le rechargement complet du cache de votre navigateur pour voir les changements.
 * '''Firefox / Safari :''' Maintenez la touche ''Maj'' (''Shift'') en cliquant sur le bouton ''Actualiser'' ou pressez ''Ctrl-F5'' ou ''Ctrl-R'' (''⌘-R'' sur un Mac) ;
 * '''Google Chrome :''' Appuyez sur ''Ctrl-Maj-R'' (''⌘-Shift-R'' sur un Mac) ;
@@ -1166,11 +1166,11 @@ Une solution de rechange a été trouvée pour vous permettre de modifier en tou
 'editingold' => "'''Attention : vous êtes en train de modifier une ancienne version de cette page.
 Si vous la publiez, toutes les modifications effectuées depuis cette version seront perdues.'''",
 'yourdiff' => 'Différences',
-'copyrightwarning' => "Toutes les contributions à {{SITENAME}} sont considérées comme publiées sous les termes de la $2 (voir $1 pour plus de détails). Si vous ne désirez pas que vos écrits soient modifiés et distribués à volonté, merci de ne pas les soumettre ici.<br />
-Vous nous promettez aussi que vous avez écrit ceci vous-même, ou que vous l'avez copié d'une source provenant du domaine public, ou d'une ressource libre. '''N'UTILISEZ PAS DE TRAVAUX SOUS DROIT D'AUTEUR SANS AUTORISATION EXPRESSE !'''",
-'copyrightwarning2' => "Toutes les contributions à {{SITENAME}} peuvent être modifiées ou supprimées par d'autres utilisateurs. Si vous ne désirez pas que vos écrits soient modifiés et distribués à volonté, merci de ne pas les soumettre ici.<br />
-Vous nous promettez aussi que vous avez écrit ceci vous-même, ou que vous l'avez copié d'une source provenant du domaine public, ou d'une ressource libre. (voir $1 pour plus de détails).
-'''N'UTILISEZ PAS DE TRAVAUX SOUS DROIT D'AUTEUR SANS AUTORISATION EXPRESSE !'''",
+'copyrightwarning' => "Toutes les contributions à {{SITENAME}} sont considérées comme publiées sous les termes de la $2 (voir $1 pour plus de détails). Si vous ne désirez pas que vos écrits soient modifiés et distribués à volonté, merci de ne pas les soumettre ici.<br 
+/>Vous nous promettez aussi que vous avez écrit ceci vous-même, ou que vous l’avez copié d’une source provenant du domaine public, ou d’une ressource libre. '''N’UTILISEZ PAS DE TRAVAUX SOUS DROIT D’AUTEUR SANS AUTORISATION EXPRESSE !'''",
+'copyrightwarning2' => "Toutes les contributions à {{SITENAME}} peuvent être modifiées ou supprimées par d’autres utilisateurs. Si vous ne désirez pas que vos écrits soient modifiés et distribués à volonté, merci de ne pas les soumettre ici.<br 
+/>Vous nous promettez aussi que vous avez écrit ceci vous-même, ou que vous l’avez copié d’une source provenant du domaine public, ou d’une ressource libre. (voir $1 pour plus de détails).
+'''N’UTILISEZ PAS DE TRAVAUX SOUS DROIT D’AUTEUR SANS AUTORISATION EXPRESSE !'''",
 'longpageerror' => "'''Erreur: Le texte que vous avez soumis fait {{PLURAL:$1|un Kio|$1 Kio}}, ce qui dépasse la limite fixée à {{PLURAL:$2|un Kio|$2 Kio}}.'''
 Il ne peut pas être sauvegardé.",
 'readonlywarning' => "'''AVERTISSEMENT : la base de données a été verrouillée pour des opérations de maintenance. Vous ne pouvez donc pas publier vos modifications pour l’instant.'''
@@ -1180,7 +1180,7 @@ L’administrateur ayant verrouillé la base de données a donné l’explicatio
 'protectedpagewarning' => "'''AVERTISSEMENT : cette page est protégée. Seuls les utilisateurs ayant le statut d'administrateur peuvent la modifier.'''<br />
 La dernière entrée du journal est affichée ci-dessous pour référence :",
 'semiprotectedpagewarning' => "'''Note :''' Cette page a été protégée de telle façon que seuls les contributeurs enregistrés puissent la modifier. La dernière entrée du journal est affichée ci-dessous pour référence :",
-'cascadeprotectedwarning' => "'''ATTENTION :''' Cette page a été protégée de manière à ce que seuls les administrateurs puissent l'éditer. Cette protection est héritée par son inclusion par {{PLURAL:$1|la page protégée suivante, qui a|les pages protégées suivantes, qui ont}} la « protection en cascade » activée :",
+'cascadeprotectedwarning' => "'''ATTENTION :''' Cette page a été protégée de manière à ce que seuls les administrateurs puissent la modifier. Cette protection est héritée par son inclusion par {{PLURAL:$1|la page protégée suivante, qui a|les pages protégées suivantes, qui ont}} la « protection en cascade » activée :",
 'titleprotectedwarning' => "'''ATTENTION : Cette page a été protégée de telle manière que des [[Special:ListGroupRights|droits spécifiques]] sont requis pour pouvoir la créer.''' La dernière entrée du journal est affichée ci-dessous pour référence :",
 'templatesused' => '{{PLURAL:$1|Modèle utilisé|Modèles utilisés}} par cette page :',
 'templatesusedpreview' => '{{PLURAL:$1|Modèle utilisé|Modèles utilisés}} dans cette prévisualisation :',
@@ -1212,9 +1212,9 @@ Il semble qu'elle ait été supprimée.",
 'edit-already-exists' => "La nouvelle page n'a pas pu être créée.
 Elle existe déjà.",
 'defaultmessagetext' => 'Message par défaut',
-'content-failed-to-parse' => "Échec de l'analyse du contenu de $2 pour le modèle $1: $3",
+'content-failed-to-parse' => 'Échec de l’analyse syntaxique du contenu de $2 pour le modèle $1: $3',
 'invalid-content-data' => 'Données du contenu non valides',
-'content-not-allowed-here' => 'Le contenu "$1" n\'est pas autorisé sur la page [[$2]]',
+'content-not-allowed-here' => 'Le contenu « $1 » n’est pas autorisé sur la page [[$2]]',
 'editwarning-warning' => 'Quitter cette page vous fera perdre toutes les modifications que vous avez faites.
 Si vous êtes connecté, vous pouvez désactiver cet avertissement dans la section « Modification » de vos préférences.',
 
@@ -1988,29 +1988,29 @@ Si le problème persiste, contactez un [[Special:ListUsers/sysop|administrateur]
 # File backend
 'backend-fail-stream' => 'Impossible de lire le fichier $1.',
 'backend-fail-backup' => 'Impossible de sauvegarder le fichier $1.',
-'backend-fail-notexists' => "Le fichier $1 n'existe pas.",
-'backend-fail-hashes' => "Impossible d'obtenir les hachages du fichier pour comparaison.",
+'backend-fail-notexists' => 'Le fichier $1 n’existe pas.',
+'backend-fail-hashes' => 'Impossible d’obtenir les hachages du fichier pour comparaison.',
 'backend-fail-notsame' => 'Un fichier différent existe déjà pour $1 .',
-'backend-fail-invalidpath' => "$1 n'est pas un chemin de stockage valide.",
+'backend-fail-invalidpath' => '$1 n’est pas un chemin de stockage valide.',
 'backend-fail-delete' => 'Impossible de supprimer le fichier $1.',
 'backend-fail-describe' => 'Impossible de modifier les métadonnées du fichier "$1".',
 'backend-fail-alreadyexists' => 'Le fichier $1 existe déjà.',
 'backend-fail-store' => 'Impossible de stocker le fichier $1 en $2.',
 'backend-fail-copy' => 'Impossible de copier le fichier $1 en $2.',
 'backend-fail-move' => 'Impossible de déplacer le fichier $1 en $2.',
-'backend-fail-opentemp' => "Impossible d'ouvrir le fichier temporaire.",
-'backend-fail-writetemp' => "Impossible d'écrire dans le fichier temporaire.",
+'backend-fail-opentemp' => 'Impossible d’ouvrir le fichier temporaire.',
+'backend-fail-writetemp' => 'Impossible d’écrire dans le fichier temporaire.',
 'backend-fail-closetemp' => 'Impossible de fermer le fichier temporaire.',
 'backend-fail-read' => 'Impossible de lire le fichier $1.',
-'backend-fail-create' => "Impossible d'écrire le fichier $1.",
-'backend-fail-maxsize' => "Impossible d'écrire le fichier $1 parce qu'il est plus grand {{PLURAL:$2|qu'un octet|que $2 octets}}.",
+'backend-fail-create' => 'Impossible d’écrire le fichier $1.',
+'backend-fail-maxsize' => 'Impossible d’écrire le fichier $1 parce qu’il est plus grand {{PLURAL:$2|qu’un octet|que $2 octets}}.',
 'backend-fail-readonly' => 'Le support de stockage "$1" est actuellement en lecture seule. La raison indiquée est: "$2"',
 'backend-fail-synced' => 'Le fichier "$1" est dans un état incohérent dans les supports de stockage internes',
 'backend-fail-connect' => 'Impossible de se connecter au support de stockage "$1".',
-'backend-fail-internal' => 'Une erreur inconnue s\'est produite dans le support de stockage "$1".',
+'backend-fail-internal' => 'Une erreur inconnue s’est produite dans le support de stockage "$1".',
 'backend-fail-contenttype' => 'Impossible de déterminer le type de contenu du fichier à stocker en "$1".',
 'backend-fail-batchsize' => 'Le support de stockage a fourni un lot de $1 {{PLURAL:$1|opération|opérations}} de fichier; la limite est $2 {{PLURAL:$2|opération|opérations}}.',
-'backend-fail-usable' => "Impossible de lire ou d'écrire le fichier « $1 » en raison de droits insuffisants ou répertoires/conteneurs manquants.",
+'backend-fail-usable' => 'Impossible de lire ou d’écrire le fichier « $1 » en raison de droits insuffisants ou répertoires/conteneurs manquants.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Impossible de se connecter à la base de données du journal pour le terminal de stockage "$1".',
@@ -2337,8 +2337,8 @@ Veuillez noter que d'autres sites peuvent avoir un lien direct vers un fichier, 
 'booksources-search-legend' => 'Rechercher parmi des ouvrages de référence',
 'booksources-isbn' => 'ISBN :',
 'booksources-go' => 'Lister',
-'booksources-text' => "Voici une liste indicative et non exclusive de liens vers d'autres sites vendant des livres neufs et d'occasion et sur lesquels vous trouverez peut-être des informations sur les ouvrages que vous cherchez :",
-'booksources-invalid-isbn' => "L'ISBN donné ne semble pas être correct ; vérifiez si vous avez fait une erreur en copiant la source originale.",
+'booksources-text' => 'Voici une liste indicative de liens vers d’autres sites vendant des livres neufs et d’occasion et sur lesquels vous trouverez peut-être des informations sur les ouvrages que vous cherchez :',
+'booksources-invalid-isbn' => 'L’ISBN donné ne semble pas être correct ; vérifiez si vous avez fait une erreur en copiant la source originale.',
 
 # Special:Log
 'specialloguserlabel' => 'Auteur :',
@@ -2370,7 +2370,7 @@ Vous pouvez personnaliser l'affichage en sélectionnant le type de journal, le n
 'allpages-hide-redirects' => 'Masquer les redirections',
 
 # SpecialCachedPage
-'cachedspecial-viewing-cached-ttl' => "Vous visualisez une version de cette page mise en cache, qui peut être dater d'au plus $1.",
+'cachedspecial-viewing-cached-ttl' => 'Vous visualisez une version de cette page mise en cache, qui peut être datée d’au plus $1.',
 'cachedspecial-viewing-cached-ts' => 'Vous visualisez une version de cette page mise en cache, qui pourrait ne pas être complètement à jour.',
 'cachedspecial-refresh-now' => 'Voir le plus récent.',
 
@@ -2561,7 +2561,7 @@ Retour et assistance :
 'delete-confirm' => 'Supprimer « $1 »',
 'delete-legend' => 'Supprimer',
 'historywarning' => "'''Attention :''' la page que vous êtes sur le point de supprimer a un historique avec environ $1 {{PLURAL:$1|version|versions}} :",
-'confirmdeletetext' => "Vous êtes sur le point de supprimer une page ou un fichier, ainsi que toutes ses versions antérieures historisées. Veuillez confirmer que c'est bien là ce que vous voulez faire, que vous en comprenez les conséquences et que vous faites ceci en accord avec les [[{{MediaWiki:Policy-url}}|règles internes]].",
+'confirmdeletetext' => 'Vous êtes sur le point de supprimer une page ou un fichier, ainsi que toutes ses versions antérieures historisées. Veuillez confirmer que c’est bien là ce que vous voulez faire, que vous en comprenez les conséquences et que vous faites ceci en accord avec les [[{{MediaWiki:Policy-url}}|règles internes]].',
 'actioncomplete' => 'Action effectuée',
 'actionfailed' => "L'action a échoué",
 'deletedtext' => '« $1 » a été supprimée.
@@ -2741,8 +2741,8 @@ $1',
 'blanknamespace' => '(Principal)',
 
 # Contributions
-'contributions' => "Contributions de l'{{GENDER:$1|utilisateur|utilisatrice}}",
-'contributions-title' => "Liste des contributions de l'utilisateur $1",
+'contributions' => 'Contributions de l’{{GENDER:$1|utilisateur|utilisatrice}}',
+'contributions-title' => 'Liste des contributions de l’utilisat{{GENDER:|eur|rice|eur}} $1',
 'mycontris' => 'Contributions',
 'contribsub2' => 'Pour $1 ($2)',
 'nocontribs' => "Aucune modification correspondant à ces critères n'a été trouvée.",
@@ -2788,14 +2788,14 @@ La dernière entrée du journal des blocages est indiquée ci-dessous à titre d
 
 # Block/unblock
 'autoblockid' => 'Blocage automatique #$1',
-'block' => "Bloquer l'utilisateur",
+'block' => 'Bloquer l’utilisateur',
 'unblock' => "Débloquer l'utilisateur",
-'blockip' => "Bloquer l'utilisateur",
-'blockip-title' => "Bloquer l'utilisateur",
-'blockip-legend' => "Bloquer l'utilisateur",
-'blockiptext' => "Utilisez le formulaire ci-dessous pour bloquer l'accès aux modifications faites à partir d'une adresse IP spécifique ou d'un nom d'utilisateur.
+'blockip' => 'Bloquer l’utilisateur',
+'blockip-title' => 'Bloquer l’utilisateur',
+'blockip-legend' => 'Bloquer l’utilisateur',
+'blockiptext' => 'Utilisez le formulaire ci-dessous pour bloquer les tentatives de modification faites à partir d’une adresse IP spécifique ou d’un nom d’utilisateur.
 Une telle mesure ne devrait être prise que pour prévenir le vandalisme et en accord avec les [[{{MediaWiki:Policy-url}}|règles internes]].
-Donnez ci-dessous un motif précis (par exemple en citant les pages qui ont été vandalisées).",
+Donnez ci-dessous un motif précis (par exemple en citant les pages qui ont été vandalisées).',
 'ipadressorusername' => "Adresse IP ou nom d'utilisateur :",
 'ipbexpiry' => 'Durée avant expiration :',
 'ipbreason' => 'Motif :',
@@ -2844,11 +2844,11 @@ Consultez la [[Special:BlockList|liste des blocages]] pour revoir les blocages.'
 'ipblocklist-legend' => 'Chercher un utilisateur bloqué',
 'blocklist-userblocks' => 'Masquer les blocages de comptes',
 'blocklist-tempblocks' => 'Masquer les blocages temporaires',
-'blocklist-addressblocks' => "Masquer les blocages d'adresses IP uniques",
+'blocklist-addressblocks' => 'Masquer les blocages d’adresses IP uniques',
 'blocklist-rangeblocks' => 'Masquer les blocs de portée',
 'blocklist-timestamp' => 'Date et heure',
 'blocklist-target' => 'Cible',
-'blocklist-expiry' => "Date d'expiration",
+'blocklist-expiry' => 'Date d’expiration',
 'blocklist-by' => 'Administrateur ayant effectué le blocage',
 'blocklist-params' => 'Paramètres de blocage',
 'blocklist-reason' => 'Motif',
@@ -2876,9 +2876,9 @@ Le motif fourni pour le blocage de $1 est : « $2 ».',
 'blocklog-showsuppresslog' => 'Cet utilisateur a été bloqué et caché précédemment. Le journal des suppressions est disponible ci-dessous :',
 'blocklogentry' => 'a bloqué [[$1]] ; expiration : $2 $3',
 'reblock-logentry' => 'a modifié les paramètres du blocage de [[$1]] avec une expiration au $2 $3',
-'blocklogtext' => "Ceci est le journal des actions de blocages et déblocages d'utilisateurs.
+'blocklogtext' => 'Ceci est le journal des actions de blocage et déblocage d’utilisateurs.
 Les adresses IP automatiquement bloquées ne sont pas listées.
-Consultez la [[Special:BlockList|liste des blocages]] pour voir les bannissements et blocages effectivement en cours.",
+Consultez la [[Special:BlockList|liste des blocages]] pour voir les bannissements et blocages effectivement en cours.',
 'unblocklogentry' => 'a débloqué $1',
 'block-log-flags-anononly' => 'utilisateurs anonymes seulement',
 'block-log-flags-nocreate' => 'création de compte interdite',
@@ -2886,7 +2886,7 @@ Consultez la [[Special:BlockList|liste des blocages]] pour voir les bannissement
 'block-log-flags-noemail' => 'envoi de courriel interdit',
 'block-log-flags-nousertalk' => 'ne peut modifier sa propre page de discussion',
 'block-log-flags-angry-autoblock' => 'autoblocage amélioré activé',
-'block-log-flags-hiddenname' => "nom d'utilisateur caché",
+'block-log-flags-hiddenname' => 'nom d’utilisateur masqué',
 'range_block_disabled' => 'Le droit administrateur de créer des blocages de plages IP est désactivé.',
 'ipb_expiry_invalid' => "Durée d'expiration incorrecte.",
 'ipb_expiry_temp' => "Les blocages de noms d'utilisateurs cachés doivent être permanents.",
@@ -2911,8 +2911,8 @@ Veuillez contacter votre fournisseur d'accès Internet ou votre support techniqu
 'sorbs_create_account_reason' => 'Votre adresse IP est listée comme mandataire ouvert dans le DNSBL utilisé par {{SITENAME}}.
 Vous ne pouvez pas créer un compte.',
 'xffblockreason' => "Une adresse IP dans l'en-tête X-Forwarded-For, soit la vôtre ou celle d'un serveur proxy que vous utilisez, a été bloquée. La raison du blocage initial est : $1",
-'cant-block-while-blocked' => "Vous ne pouvez pas bloquer d'autres utilisateurs tant que vous êtes bloqué{{GENDER:||e|(e)}}.",
-'cant-see-hidden-user' => "L'utilisateur que vous tentez de bloquer a déjà été bloqué et masqué. N'ayant pas le droit ''hideuser'', vous ne pouvez pas voir ou modifier le blocage de cet utilisateur.",
+'cant-block-while-blocked' => 'Vous ne pouvez pas bloquer d’autres utilisateurs tant que vous êtes bloqué{{GENDER:||e|(e)}}.',
+'cant-see-hidden-user' => "L’utilisateur que vous tentez de bloquer a déjà été bloqué et masqué. N’ayant pas le droit ''hideuser'', vous ne pouvez pas voir ou modifier le blocage de cet utilisateur.",
 'ipbblocked' => "Vous ne pouvez pas bloquer ou débloquer d'autres utilisateurs, parce que vous êtes vous-même bloqué",
 'ipbnounblockself' => "Vous n'êtes pas autorisé à vous débloquer vous-même",
 
@@ -2968,8 +2968,8 @@ Dans ces cas-là, vous devrez renommer ou fusionner cette page de discussion man
 'movenologintext' => "Pour pouvoir renommer une page, vous devez être [[Special:UserLogin|identifié{{GENDER:||e|(e)}}]] avec un compte utilisateur enregistré et d'ancienneté suffisante.",
 'movenotallowed' => "Vous n'avez pas la permission de renommer les pages.",
 'movenotallowedfile' => "Vous n'avez pas la permission de renommer les fichiers.",
-'cant-move-user-page' => "Vous n'avez pas la permission de renommer les pages principales d'utilisateurs (en dehors de leurs sous-pages).",
-'cant-move-to-user-page' => "Vous n'avez pas la permission de renommer une page vers une page utilisateur (à l'exception d'une sous-page).",
+'cant-move-user-page' => 'Vous n’avez pas la permission de renommer les pages principales d’utilisateurs.',
+'cant-move-to-user-page' => 'Vous n’avez pas la permission de renommer une page vers une page utilisateur (à l’exception d’une sous-page).',
 'newtitle' => 'Vers le nouveau titre :',
 'move-watch' => 'Suivre les pages originale et nouvelle',
 'movepagebtn' => 'Renommer la page',
@@ -3415,10 +3415,10 @@ Si vous l'exécutez, votre système peut être compromis.",
 'yesterday-at' => 'Hier à $1',
 
 # Bad image list
-'bad_image_list' => "Le format est le suivant :
+'bad_image_list' => 'Le format est le suivant :
 
-Seules les listes d'énumération (commençant par *) sont prises en compte. Le premier lien d'une ligne doit être celui d'une mauvaise image.
-Les autres liens sur la même ligne sont considérés comme des exceptions, par exemple des pages sur lesquelles l'image peut apparaître.",
+Seules les listes d’énumération (commençant par *) sont prises en compte. Le premier lien d’une ligne doit être celui d’une mauvaise image.
+Les autres liens sur la même ligne sont considérés comme des exceptions, par exemple des pages sur lesquelles l’image peut apparaître.',
 
 # Metadata
 'metadata' => 'Métadonnées',
@@ -3643,6 +3643,9 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-planarconfiguration-1' => 'Données contiguës',
 'exif-planarconfiguration-2' => 'Données séparées',
 
+'exif-xyresolution-i' => '$1 ppp',
+'exif-xyresolution-c' => '$1 p/cm',
+
 'exif-colorspace-65535' => 'Non calibré',
 
 'exif-componentsconfiguration-0' => "N'existe pas",
@@ -3843,8 +3846,8 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'limitall' => 'tous',
 
 # Email address confirmation
-'confirmemail' => "Confirmer l'adresse de courriel",
-'confirmemail_noemail' => "Vous n'avez pas défini une adresse de courriel valide dans vos [[Special:Preferences|préférences]].",
+'confirmemail' => 'Confirmer l’adresse de courriel',
+'confirmemail_noemail' => 'Vous n’avez pas défini une adresse de courriel valide dans vos [[Special:Preferences|préférences]].',
 'confirmemail_text' => 'Ce wiki nécessite la vérification de votre adresse de courriel avant de pouvoir utiliser toute fonction de messagerie.
 Utilisez le bouton ci-dessous pour envoyer un courriel de confirmation à votre adresse.
 Le courriel inclura un lien comportant un code à usage unique et limité dans le temps ;
@@ -3853,39 +3856,39 @@ chargez ce lien dans votre navigateur pour confirmer que votre adresse de courri
 si vous venez de créer votre compte, veuillez attendre quelques minutes que le courriel arrive avant de demander un nouveau code.',
 'confirmemail_send' => 'Envoyer un code de confirmation',
 'confirmemail_sent' => 'Courriel de confirmation envoyé',
-'confirmemail_oncreate' => "Un code de confirmation a été envoyé à votre adresse de courriel.
-Ce code n'est pas requis pour vous identifier sur ce wiki, mais vous devrez le fournir pour activer toute fonction de messagerie.",
-'confirmemail_sendfailed' => "{{SITENAME}} n'a pas pu vous envoyer le courriel de confirmation.
+'confirmemail_oncreate' => 'Un code de confirmation a été envoyé à votre adresse de courriel.
+Ce code n’est pas requis pour vous identifier sur ce wiki, mais vous devrez le fournir pour activer toute fonction de messagerie.',
+'confirmemail_sendfailed' => '{{SITENAME}} n’a pas pu vous envoyer le courriel de confirmation.
 Veuillez vérifiez que votre adresse de courriel ne comprend aucun caractère incorrect.
 
-Le programme d'envoi de courriel a retourné l'indication suivante : $1",
+Le programme d’envoi de courriel a retourné l’indication suivante : $1',
 'confirmemail_invalid' => 'Code de confirmation incorrect.
 Celui-ci a peut-être expiré.',
 'confirmemail_needlogin' => 'Vous devez vous $1 pour confirmer votre adresse de courriel.',
 'confirmemail_success' => 'Votre adresse de courriel a été confirmée.
 Vous pouvez maintenant vous [[Special:UserLogin|{{MediaWiki:Loginreqlink}}]] et profiter du wiki.',
 'confirmemail_loggedin' => 'Votre adresse de courriel est maintenant confirmée.',
-'confirmemail_error' => "Un problème est survenu lors de l'enregistrement de votre confirmation.",
-'confirmemail_subject' => "Confirmation d'adresse de courriel pour {{SITENAME}}",
-'confirmemail_body' => "Quelqu'un, probablement vous, à partir de l'adresse IP $1,
+'confirmemail_error' => 'Un problème est survenu lors de l’enregistrement de votre confirmation.',
+'confirmemail_subject' => 'Confirmation d’adresse de courriel pour {{SITENAME}}',
+'confirmemail_body' => 'Quelqu’un, probablement vous, à partir de l’adresse IP $1,
 a enregistré un compte « $2 » avec cette adresse de courriel
 sur le site {{SITENAME}}.
 
 Pour confirmer que ce compte vous appartient vraiment et afin
-d'activer les fonctions de messagerie sur {{SITENAME}},
+d’activer les fonctions de messagerie sur {{SITENAME}},
 veuillez suivre ce lien dans votre navigateur :
 
 $3
 
-Si vous n'avez *pas* enregistré ce compte, n'ouvrez pas ce lien ;
-vous pouvez suivre l'autre lien ci-dessous pour annuler la
+Si vous n’avez *pas* enregistré ce compte, n’ouvrez pas ce lien ;
+vous pouvez suivre l’autre lien ci-dessous pour annuler la
 confirmation de votre adresse courriel :
 
 $5
 
-Ce code de confirmation expirera le $4.",
-'confirmemail_body_changed' => "Quelqu'un, probablement vous, à partir de l'adresse IP $1,
-a modifié l'adresse de courriel associée au compte « $2 » de {{SITENAME}}
+Ce code de confirmation expirera le $4.',
+'confirmemail_body_changed' => 'Quelqu’un, probablement vous, à partir de l’adresse IP $1,
+a modifié l’adresse de courriel associée au compte « $2 » de {{SITENAME}}
 en cette adresse.
 
 Pour confirmer que ce compte vous appartient vraiment et afin
@@ -3894,13 +3897,13 @@ veuillez suivre ce lien dans votre navigateur :
 
 $3
 
-Si ce compte ne vous appartient *pas*, n'ouvrez pas ce lien ;
-vous pouvez suivre l'autre lien ci-dessous pour annuler la
+Si ce compte ne vous appartient *pas*, n’ouvrez pas ce lien ;
+vous pouvez suivre l’autre lien ci-dessous pour annuler la
 confirmation de votre adresse courriel :
 
 $5
 
-Ce code de confirmation expirera le $4.",
+Ce code de confirmation expirera le $4.',
 'confirmemail_body_set' => 'Quelqu’un, probablement vous, depuis l’adresse IP $1, a modifié l’adresse de courriel du compte « $2 » en celle-ci sur {{SITENAME}}.
 
 Pour confirmer que ce compte vous appartient et réactiver les fonctions de courriel sur {{SITENAME}}, ouvrez ce lien dans votre navigateur Web :
@@ -3912,7 +3915,7 @@ Ce code de confirmation expirera le $4.
 Si le compte ne vous appartient *pas*, suivez plutôt ce lien pour annuler la confirmation de l’adresse de courriel :
 
 $5',
-'confirmemail_invalidated' => "Confirmation de l'adresse courriel annulée",
+'confirmemail_invalidated' => 'Confirmation de l’adresse courriel annulée',
 'invalidateemail' => "Annuler la confirmation de l'adresse de courriel",
 
 # Scary transclusion
@@ -3923,16 +3926,16 @@ $5',
 
 # Delete conflict
 'deletedwhileediting' => "'''Attention''' : cette page a été supprimée après que vous avez commencé à la modifier !",
-'confirmrecreate' => "L'utilisateur [[User:$1|$1]] ([[User talk:$1|Discussion]]) a supprimé cette page, alors que vous aviez commencé à l'éditer, pour le motif suivant :
+'confirmrecreate' => "L’utilisateur [[User:$1|$1]] ([[User talk:$1|Discussion]]) a supprimé cette page, alors que vous aviez commencé à la modifier, pour le motif suivant :
 : ''$2''
 Veuillez confirmer que vous désirez réellement recréer cette page.",
-'confirmrecreate-noreason' => "L'utilisateur [[User:$1|$1]] ([[User talk:$1|Discussion]]) a supprimé cette page, alors que vous aviez commencé à l'éditer. Veuillez confirmer que vous désirez réellement recréer cette page.",
+'confirmrecreate-noreason' => 'L’utilisateur [[User:$1|$1]] ([[User talk:$1|Discussion]]) a supprimé cette page, alors que vous aviez commencé à la modifier. Veuillez confirmer que vous désirez réellement recréer cette page.',
 'recreate' => 'Recréer',
 
 # action=purge
 'confirm_purge_button' => 'Confirmer',
 'confirm-purge-top' => 'Voulez-vous rafraîchir cette page (purger le cache) ?',
-'confirm-purge-bottom' => "Purger une page l'efface du cache de rendu et force sa dernière version à être régénérée et affichée.",
+'confirm-purge-bottom' => 'Purger une page l’efface du cache de rendu et force sa dernière version à être régénérée et affichée.',
 
 # action=watch/unwatch
 'confirm-watch-button' => 'Valider',
@@ -4192,9 +4195,9 @@ Vous devriez avoir reçu [{{SERVER}}{{SCRIPTPATH}}/COPYING une copie de la Licen
 'compare-rev1' => 'Version 1',
 'compare-rev2' => 'Version 2',
 'compare-submit' => 'Comparer',
-'compare-invalid-title' => "Le titre que vous avez spécifié n'est pas valide.",
-'compare-title-not-exists' => "Le titre que vous avez spécifié n'existe pas.",
-'compare-revision-not-exists' => "La révision que vous avez spécifié n'existe pas.",
+'compare-invalid-title' => 'Le titre que vous avez spécifié n’est pas valide.',
+'compare-title-not-exists' => 'Le titre que vous avez spécifié n’existe pas.',
+'compare-revision-not-exists' => 'La révision que vous avez spécifiée n’existe pas.',
 
 # Database error messages
 'dberr-header' => 'Ce wiki a un problème',
@@ -4346,9 +4349,9 @@ Sinon, vous pouvez utiliser le formulaire simplifié ci-dessous. Votre commentai
 'limitreport-ppvisitednodes' => 'Nombre de nœuds de préprocesseur visités',
 'limitreport-ppgeneratednodes' => 'Nombre de nœuds de préprocesseur générés',
 'limitreport-postexpandincludesize' => 'Taille d’inclusion après expansion',
-'limitreport-postexpandincludesize-value' => '$1/$2 octets',
+'limitreport-postexpandincludesize-value' => '$1/$2 {{PLURAL:$2|octet|octets}}',
 'limitreport-templateargumentsize' => 'Taille de l’argument du modèle',
-'limitreport-templateargumentsize-value' => '$1/$2 octets',
+'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|octet|octets}}',
 'limitreport-expansiondepth' => 'Plus grande profondeur d’expansion',
 'limitreport-expensivefunctioncount' => 'Nombre de fonctions d’analyse coûteuses',
 

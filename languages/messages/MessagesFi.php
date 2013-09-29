@@ -4107,9 +4107,9 @@ Muussa tapauksessa voit käyttää alla olevaa helpompaa lomaketta. Kommenttisi 
 'limitreport-cputime-value' => '$1 {{PLURAL:$1|sekunti|sekuntia}}',
 'limitreport-walltime' => 'Oikea ajankäyttö',
 'limitreport-walltime-value' => '$1 {{PLURAL:$1|sekunti|sekuntia}}',
-'limitreport-postexpandincludesize-value' => '$1/$2 tavua',
+'limitreport-postexpandincludesize-value' => '$1/$2 {{PLURAL:$2|tavu|tavua}}',
 'limitreport-templateargumentsize' => 'Mallineen argumenttien koko',
-'limitreport-templateargumentsize-value' => '$1/$2 tavua',
+'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|tavu|tavua}}',
 'limitreport-expansiondepth' => 'Korkein laajennussyvyys',
 
 );

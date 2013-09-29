@@ -4122,9 +4122,9 @@ Questo programma deve essere distribuito assieme ad [{{SERVER}}{{SCRIPTPATH}}/CO
 'limitreport-ppvisitednodes' => 'Numero nodi preprocessore visitati',
 'limitreport-ppgeneratednodes' => 'Numero nodi preprocessore generati',
 'limitreport-postexpandincludesize' => 'Dimensione inclusioni post-espansione',
-'limitreport-postexpandincludesize-value' => '$1/$2 byte',
+'limitreport-postexpandincludesize-value' => '$1/$2 {{PLURAL:$2|byte}}',
 'limitreport-templateargumentsize' => 'Dimensione parametri template',
-'limitreport-templateargumentsize-value' => '$1/$2 byte',
+'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|byte}}',
 'limitreport-expansiondepth' => 'Massima profondità di espansione',
 'limitreport-expensivefunctioncount' => 'Numero funzioni parser dispendiose',
 

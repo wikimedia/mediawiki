@@ -3949,8 +3949,7 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 
 # Database error messages
 'dberr-header' => '這個 wiki 出現了問題',
-'dberr-problems' => '抱歉！
-這個網站出現了一些技術上的問題。',
+'dberr-problems' => '歉！這個網站出現了一些技術上的問題。',
 'dberr-again' => '嘗試等候數分鐘後，然後再試。',
 'dberr-info' => '（無法連繫到資料庫伺服器: $1）',
 'dberr-info-hidden' => '（無法與資料庫伺服器聯繫）',

@@ -3087,8 +3087,7 @@ Huwa unapokea [{{SERVER}}{{SCRIPTPATH}}/COPYING nakala ya GNU General Public Lic
 
 # Database error messages
 'dberr-header' => 'Wiki imekuta tatizo',
-'dberr-problems' => 'Kumradhi!
-Tovuti hii inapata matatatizo wakati huu.',
+'dberr-problems' => 'Kumradhi! Tovuti hii inapata matatatizo wakati huu.',
 'dberr-again' => 'Jaribu tena baada ya kusubiri dakika chache.',
 'dberr-info' => '(Hamna mawasiliano na seva ya hifadhidata: $1)',
 'dberr-usegoogle' => 'Unaposubiri unaweza kujaribu kutafuta kwa kutumia Google.',

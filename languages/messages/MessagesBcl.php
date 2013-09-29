@@ -3811,8 +3811,7 @@ Ika dapat na nakapagresibe na kan [{{SERVER}}{{SCRIPTPATH}}/COPYING sarong kopya
 
 # Database error messages
 'dberr-header' => 'Ining wiki igwa nin sarong problema',
-'dberr-problems' => 'Sori!
-Ining sityo igwang naeksperiyensiyahan na mga kakundian sa teknikal.',
+'dberr-problems' => 'Sori! Ining sityo igwang naeksperiyensiyahan na mga kakundian sa teknikal.',
 'dberr-again' => 'Prubaring maghalat tabi nin nagkapirang minutos asin otrohon ikarga.',
 'dberr-info' => '(Dae makakontak sa serbidor kan datos-sarayan: $1)',
 'dberr-info-hidden' => '(Dae makakontak sa serbidor kan datos-sarayan)',
