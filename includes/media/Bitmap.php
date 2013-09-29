@@ -100,17 +100,6 @@ class BitmapHandler extends ImageHandler {
 	}
 
 	/**
-	 * Function that returns the number of pixels to be thumbnailed.
-	 * Intended for animated GIFs to multiply by the number of frames.
-	 *
-	 * @param File $image
-	 * @return int
-	 */
-	function getImageArea( $image ) {
-		return $image->getWidth() * $image->getHeight();
-	}
-
-	/**
 	 * @param $image File
 	 * @param  $dstPath
 	 * @param  $dstUrl
@@ -712,24 +701,6 @@ class BitmapHandler extends ImageHandler {
 		imagejpeg( $dst_image, $thumbPath, 95 );
 	}
 
-	/**
-	 * On supporting image formats, try to read out the low-level orientation
-	 * of the file and return the angle that the file needs to be rotated to
-	 * be viewed.
-	 *
-	 * This information is only useful when manipulating the original file;
-	 * the width and height we normally work with is logical, and will match
-	 * any produced output views.
-	 *
-	 * The base BitmapHandler doesn't understand any metadata formats, so this
-	 * is left up to child classes to implement.
-	 *
-	 * @param $file File
-	 * @return int 0, 90, 180 or 270
-	 */
-	public function getRotation( $file ) {
-		return 0;
-	}
 
 	/**
 	 * Returns whether the current scaler supports rotation (im and gd do)
