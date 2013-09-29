@@ -643,4 +643,23 @@ abstract class MediaHandler {
 	public static function canRotate() {
 		return false;
 	}
+
+	/**
+	 * On supporting image formats, try to read out the low-level orientation
+	 * of the file and return the angle that the file needs to be rotated to
+	 * be viewed.
+	 *
+	 * This information is only useful when manipulating the original file;
+	 * the width and height we normally work with is logical, and will match
+	 * any produced output views.
+	 *
+	 * For files we don't know, we return 0.
+	 *
+	 * @param $file File
+	 * @return int 0, 90, 180 or 270
+	 */
+	public function getRotation( $file ) {
+		return 0;
+	}
+
 }
