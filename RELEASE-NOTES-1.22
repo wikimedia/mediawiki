@@ -56,6 +56,9 @@ production.
   multiple destinations to be specified.
 * (bug 53862) portal-url, currentevents-url and helppage have been removed from the
   default Sidebar.
+* (bug 54597) $wgBlockOpenProxies, $wgProxyPorts, $wgProxyScriptPath, and
+  $wgProxyMemcExpiry have been removed, along with the open proxy scanner
+  script they were added for.
 
 === New features in 1.22 ===
 * (bug 44525) mediawiki.jqueryMsg can now parse (whitelisted) HTML elements and attributes.
