@@ -357,7 +357,7 @@ $1',
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} сайтны юсюнден',
 'aboutpage' => 'Project:Суратлау',
-'copyright' => 'Информация мунга кёре хайырланады: $1',
+'copyright' => 'Ичиндегиси,  $1 лицензиягъа кёре бериледи (башха белгиленмеген эсе).',
 'copyrightpage' => '{{ns:project}}:Авторлукъ хакъла',
 'currentevents' => 'Бусагъатда бола тургъанла',
 'currentevents-url' => 'Project:Бусагъатда бола тургъанла',

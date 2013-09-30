@@ -167,8 +167,8 @@ $messages = array(
 'tog-extendwatchlist' => 'يوازې د وروستني بدلونونو د ښکاره کولو لپاره نه بلکه د ټولو بدلونونو د ښکاره کولو لپاره کتنلړ غځول',
 'tog-usenewrc' => 'په کتنلړ او وروستي بدلونو مخ باندې ډله ايز بدلونونه (جاوا سکرېپټ ته اړتيا ده)',
 'tog-numberheadings' => 'د سرليکونو خپلکاره شمېرايښودنه',
-'tog-showtoolbar' => 'د سمولو توکپټه ښکاره کول (جاواسکرېپټ)',
-'tog-editondblclick' => 'په دوه کلېک سره د مخونو سمون (د جاواسکرېپټ اړتيا ده)',
+'tog-showtoolbar' => 'د سمون اوزارپټه ښکاره کول',
+'tog-editondblclick' => 'په دوه کلېک سره د مخونو سمون',
 'tog-editsection' => 'د [سمول] تړنې له لوري د يوې ليکنې يوه برخه د سمون وړ گرځول',
 'tog-editsectiononrightclick' => 'د ښي کلېک سره د سرليکونو د برخې سمون چارنول (جاواسکرېپټ ته اړتيا)',
 'tog-showtoc' => 'نيوليک ښکاره کول (د هغو مخونو لپاره چې له ۳ نه ډېر سرليکونه لري)',
@@ -492,7 +492,7 @@ $1',
 'enterlockreason' => 'د بنديز يو سبب وليکۍ، او همداراز د بنديز د ليرې کېدلو يوه اټکليزه نېټه هم څرگنده کړۍ',
 'missing-article' => 'توکبنسټ د "$1" $2 په نامه د ورکړ شوي مخ متن چې بايد موندلی يې وای، و نه موند.
 
-دا ستونزه اکثراً د يوه ړنګ شوي مخ د پېښليک يا توپير د تړنو په څارلو کې رامېنځ ته کېږي.
+دا ستونزه اکثراً د يوه ړنگ شوي مخ د پېښليک يا توپير د تړنو په څارلو کې رامېنځ ته کېږي.
 
 که چېرته داسې نه وي، نو بيا کېدای شي چې په ساوترې کې کومه تېروتنه رابرسېره شوې وي.
 لطفاً د دې چارې راپور د URL په نښه کولو سره يوه [[Special:ListUsers/sysop|پازوال]] ته ورکړۍ.',
@@ -853,15 +853,15 @@ $1',
 'permissionserrors' => 'د پرېښې تېروتنه',
 'permissionserrorstext' => 'تاسې د لاندې {{PLURAL:$1|سبب|سببونو}} پخاطر د دې کړنې اجازه نه لرۍ:',
 'permissionserrorstext-withaction' => 'تاسې د $2 اجازه نه لری، دا د {{PLURAL:$1|دغه سبب|دغو سببونو}} پخاطر:',
-'recreate-moveddeleted-warn' => "'''ګواښنه: تاسې د يوه داسې مخ بياجوړونه کوۍ کوم چې يو ځل پخوا ړنګ شوی وو.'''
+'recreate-moveddeleted-warn' => "'''گواښنه: تاسې د يوه داسې مخ بياجوړونه کوۍ کوم چې يو ځل پخوا ړنگ شوی وو.'''
 
-پکار ده چې تاسې په دې ځان پوه کړۍ چې ايا دا تاسې ته وړ ده چې د همدې مخ جوړول په پرله پسې توګه وکړۍ.
-ستاسې د اسانتياوو لپاره د همدې مخ د ړنګېدلو يادښت هم ورکړ شوی:",
-'moveddeleted-notice' => 'دا مخ ړنګ شوی.
-دلته لاندې د دې مخ د ړنګېدنې او لېږدېدنې يادښت د سرچينې په توګه ورکړ شوی.',
+پکار ده چې تاسې په دې ځان پوه کړۍ چې ايا دا تاسې ته وړ ده چې د همدې مخ جوړول په پرله پسې توگه وکړۍ.
+ستاسې د اسانتياوو لپاره د همدې مخ د ړنگېدلو يادښت هم ورکړ شوی:",
+'moveddeleted-notice' => 'دا مخ ړنگ شوی.
+دلته لاندې د دې مخ د ړنگېدنې او لېږدېدنې يادښت د سرچينې په توگه ورکړ شوی.',
 'log-fulllog' => 'بشپړ يادښت کتل',
 'edit-gone-missing' => 'د دې مخ اوسمهالول و نه کړای شول.
-داسې ښکاري چې دا مخ ړنګ شوی.',
+داسې ښکاري چې دا مخ ړنگ شوی.',
 'edit-conflict' => 'د سمولو خنډ',
 'edit-no-change' => 'ستاسې سمون بابېزه وګڼل شو، دا ځکه چې تاسې په متن کې کوم بدلون نه دی راوستلی.',
 'postedit-confirmation' => 'ستاسې سمون خوندي شو.',
@@ -879,12 +879,12 @@ $1',
 'post-expand-template-inclusion-warning' => "'''ګواښنه:''' دا کينډۍ د خپل ټاکلي بريد نه ډېره لويه ده.
 ځينې کينډۍ به په کې ګډې نه شي.",
 'post-expand-template-inclusion-category' => 'هغه مخونه چې په کې د کارېدلو کينډيو شمېر له ټاکلې کچې ډېر دی',
-'post-expand-template-argument-warning' => "'''ګواښنه:''' دا مخ لږ تر لږه د يوې کينډۍ عاملين لري چې بې حده لوی دی.
-دا عاملين ړنګ شول.",
-'post-expand-template-argument-category' => 'هغه مخونه چې د کينډۍ ړنګ شوي عاملين لري.',
+'post-expand-template-argument-warning' => "'''گواښنه:''' دا مخ لږ تر لږه د يوې کينډۍ عاملين لري چې بې حده لوی دی.
+دا عاملين ړنگ شول.",
+'post-expand-template-argument-category' => 'هغه مخونه چې د کينډۍ ړنگ شوي عاملين لري.',
 
 # "Undo" feature
-'undo-norev' => 'دا سمون ناکړ کېدلای نه شي دا ځکه چې دا سمون نشته او يا هم ړنګ شوی.',
+'undo-norev' => 'دا سمون ناکړل کېدای نه شي دا ځکه چې دا سمون نشته او يا هم ړنگ شوی.',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'گڼون نه شي جوړېدای',
@@ -908,7 +908,7 @@ $1',
 لنډيز: (اوس) = د اوسنۍ بڼې سره توپير،
 (وروست) = د وروستۍ بڼې سره توپير، و = وړه سمونه.',
 'history-fieldset-title' => 'پېښليک سپړل',
-'history-show-deleted' => 'يواځې ړنګ شوي',
+'history-show-deleted' => 'يواځې ړنگ شوي',
 'histfirst' => 'تر ټولو زاړه',
 'histlast' => 'تر ټولو نوي',
 'historysize' => '({{PLURAL:$1|1 بايټ|$1 بايټونه}})',
@@ -918,7 +918,7 @@ $1',
 'history-feed-title' => 'د مخکتنو پېښليک',
 'history-feed-item-nocomment' => '$1 په $2',
 'history-feed-empty' => 'ستاسې غوښتلی مخ نه شته.
-کېدای شي چې دا له ويکي نه ړنګ شوی وي، او يا هم په بل نوم بدل شوی وي.
+کېدای شي چې دا له ويکي نه ړنگ شوی وي، او يا هم په بل نوم بدل شوی وي.
 تاسې په دې ويکي د اړوندو نوؤ مخونو لپاره [[Special:Search|د پلټنې هڅه وکړۍ]].',
 
 # Revision deletion
@@ -933,7 +933,7 @@ $1',
 'revdelete-selected' => "'''د [[:$1]] {{PLURAL:$2|ټاکلې بڼه|ټاکلې بڼې}}:'''",
 'revdelete-legend' => 'د ښکارېدنې محدوديتونه ټاکل',
 'revdelete-hide-text' => 'د مخکتنې متن پټول',
-'revdelete-hide-image' => 'د دوتنې مېنځپانګه پټول',
+'revdelete-hide-image' => 'د دوتنې مېنځپانگه پټول',
 'revdelete-hide-name' => 'کړنه او موخه پټول',
 'revdelete-hide-comment' => 'د سمون لنډيز پټول',
 'revdelete-hide-user' => 'د سمونګر کارن-نوم/آی پي پته پټول',
@@ -1023,8 +1023,8 @@ $1',
 'searchall' => 'ټول',
 'showingresults' => "دلته لاندې تر {{PLURAL:$1|'''1''' پايله|'''$1''' پايلې}} ښکاره شوي پيل له #'''$2''' شوی.",
 'showingresultsheader' => "د «'''$4'''» لپاره {{PLURAL:$5|له '''$1''' نه تر '''$3''' پايله|له '''$1 نه تر $2''' پايلې، ټولې پايلې '''$3''' }}",
-'nonefound' => "'''يادښت''': يوازې يو څو نوم-تشيالونو په تلواليزه توګه پلټل کېږي.
-د ''ټول:'' مختاړي په کارولو سره به ستاسې د پلټنې لپاره، په ټوله مېنځپانګه کې پلټنه وشي (د خبرواترو، کينډۍ او نورو مخونو په ګډون), او يا هم د خپلې خوښې نوم-تشيال د مختاړي په توګه وکاروۍ.",
+'nonefound' => "'''يادښت''': يوازې يو څو نوم-تشيالونو په تلواليزه توگه پلټل کېږي.
+د ''ټول:'' مختاړي په کارولو سره به ستاسې د پلټنې لپاره، په ټوله مېنځپانگه کې پلټنه وشي (د خبرواترو، کينډۍ او نورو مخونو په گډون), او يا هم د خپلې خوښې نوم-تشيال د مختاړي په توگه وکاروۍ.",
 'search-nonefound' => 'ستاسې دغوښتنې اړونده پايلې و نه موندل شوې.',
 'powersearch' => 'ژوره پلټنه',
 'powersearch-legend' => 'ژوره پلټنه',
@@ -1128,7 +1128,7 @@ $1',
 'prefs-signature' => 'لاسليک',
 'prefs-dateformat' => 'د نېټې بڼه',
 'prefs-timeoffset' => 'د وخت واټن',
-'prefs-advancedediting' => 'ټولګړی',
+'prefs-advancedediting' => 'ټولگړی',
 'prefs-editor' => 'سمونګر',
 'prefs-preview' => 'مخليدنه',
 'prefs-advancedrc' => 'پرمختللې خوښنې',
@@ -1200,7 +1200,7 @@ $1',
 'right-writeapi' => 'د API کښنې کارېدنه',
 'right-delete' => 'مخونه ړنگول',
 'right-bigdelete' => 'د اوږدو پېښليکونو مخونه ړنگول',
-'right-browsearchive' => 'ړنګ شوي مخونه پلټل',
+'right-browsearchive' => 'ړنگ شوي مخونه پلټل',
 'right-undelete' => 'يو مخ ناړنګول',
 'right-suppressionlog' => 'شخصي يادښتونه کتل',
 'right-block' => 'پر نورو کارنانو د سمون د آسانتياوؤ بنديز لګول',
@@ -1238,8 +1238,8 @@ $1',
 'action-writeapi' => 'د API کښنه کارول',
 'action-delete' => 'همدا مخ ړنگول',
 'action-deleterevision' => 'دا مخکتنه ړنگول',
-'action-deletedhistory' => 'د دې مخ ړنګ شوی پېښليک کتل',
-'action-browsearchive' => 'ړنګ مخونه پلټل',
+'action-deletedhistory' => 'د دې مخ ړنگ شوی پېښليک کتل',
+'action-browsearchive' => 'ړنگ مخونه پلټل',
 'action-undelete' => 'همدا مخ ناړنګول',
 'action-suppressionlog' => 'دا شخصي يادښت کتل',
 'action-block' => 'پر دې کارن د سمون د آسانتياوؤ بنديز لګول',
@@ -1418,7 +1418,7 @@ $1',
 'filehist-help' => 'په يوې نېټې/يوه وخت وټوکۍ چې د هماغه وخت او نېټې دوتنه چې په هماغه وخت کې څنګه ښکارېده هماغسې درښکاره شي.',
 'filehist-deleteall' => 'ټول ړنگول',
 'filehist-deleteone' => 'ړنگول',
-'filehist-revert' => 'په څټ ګرځول',
+'filehist-revert' => 'په څټ گرځول',
 'filehist-current' => 'اوسنی',
 'filehist-datetime' => 'نېټه/وخت',
 'filehist-thumb' => 'بټنوک',
@@ -1444,7 +1444,7 @@ $1',
 
 # File reversion
 'filerevert-comment' => 'سبب:',
-'filerevert-submit' => 'په څټ ګرځول',
+'filerevert-submit' => 'په څټ گرځول',
 
 # File deletion
 'filedelete' => '$1 ړنگول',
@@ -1452,13 +1452,13 @@ $1',
 'filedelete-intro' => "تاسې د '''[[Media:$1|$1]]''' دوتنې او د ورسره ټول پېښليک د ړنګولو په حال کې ياست.",
 'filedelete-comment' => 'سبب:',
 'filedelete-submit' => 'ړنگول',
-'filedelete-success' => "'''$1''' ړنګ شو.",
+'filedelete-success' => "'''$1''' ړنگ شو.",
 'filedelete-nofile' => "'''$1''' نشته.",
 'filedelete-otherreason' => 'بل/اضافه سبب:',
 'filedelete-reason-otherlist' => 'بل سبب',
-'filedelete-reason-dropdown' => '*د ړنګولو ټولګړی سبب
+'filedelete-reason-dropdown' => '*د ړنگولو ټولگړی سبب
 ** د رښتو نه غاړه غړونه
-** کټ مټ دوه ګونې دوتنه',
+** کټ مټ دوه گونې دوتنه',
 'filedelete-edit-reasonlist' => 'د ړنګولو سببونه سمول',
 'filedelete-maintenance-title' => 'دوتنه نه شي ړنګېدی',
 
@@ -1493,7 +1493,7 @@ $1',
 'statistics-header-hooks' => 'بل شمار',
 'statistics-articles' => 'مېنځپانگيز مخونه',
 'statistics-pages' => 'مخونه',
-'statistics-pages-desc' => 'د ويکي ټول مخونه، د خبرو اترو، مخ ګرځېدنو، او لا نورو مخونو په ګډون.',
+'statistics-pages-desc' => 'د ويکي ټول مخونه، د خبرو اترو، مخ گرځېدنو، او لا نورو مخونو په گډون.',
 'statistics-files' => 'پورته شوې دوتنې',
 'statistics-edits' => 'د {{SITENAME}} د جوړېدو راهيسې د مخونو سمون',
 'statistics-edits-average' => 'پر يوه مخ د سمون منځوۍ کچه',
@@ -1724,12 +1724,12 @@ $1',
 'enotif_mailer' => 'د {{SITENAME}} خبرتيايي برېښليک',
 'enotif_reset' => 'ټول مخونه کتل شوي نخښه کول',
 'enotif_impersonal_salutation' => '{{SITENAME}} کارن',
-'enotif_subject_deleted' => 'د {{SITENAME}} مخ $1 د {{gender:$2|$2}} لخوا ړنګ شوی',
+'enotif_subject_deleted' => 'د {{SITENAME}} مخ $1 د {{gender:$2|$2}} لخوا ړنگ شوی',
 'enotif_subject_created' => 'د {{SITENAME}} مخ $1 د {{gender:$2|$2}} لخوا جوړ شوی',
 'enotif_subject_moved' => 'د {{SITENAME}} مخ $1 د {{gender:$2|$2}} لخوا لېږدول شوی',
 'enotif_subject_restored' => 'د {{SITENAME}} مخ $1 د {{gender:$2|$2}} لخوا بيازېرمل شوی',
 'enotif_subject_changed' => 'د {{SITENAME}} مخ $1 د {{gender:$2|$2}} لخوا بدل شوی',
-'enotif_body_intro_deleted' => 'د {{SITENAME}} مخ $1 په $ د {{gender:$2|$2}} لخوا ړنګ شوی، $3 وګورۍ.',
+'enotif_body_intro_deleted' => 'د {{SITENAME}} مخ $1 په $ د {{gender:$2|$2}} لخوا ړنگ شوی، $3 وگورۍ.',
 'enotif_body_intro_created' => 'د {{SITENAME}} مخ $1 په $PAGEEDITDATE د {{gender:$2|$2}} لخوا جوړ شوی، د اوسنۍ بڼې کتلو لپاره $3 وګورۍ.',
 'enotif_body_intro_moved' => 'د {{SITENAME}} مخ $1 په $PAGEEDITDATE د {{gender:$2|$2}} لخوا لېږدول شوی، د اوسنۍ بڼې کتلو لپاره $3 وګورۍ.',
 'enotif_body_intro_restored' => 'د {{SITENAME}} مخ $1 په $PAGEEDITDATE د {{gender:$2|$2}} لخوا بيازېرمل شوی، د اوسنۍ بڼې کتلو لپاره $3 وګورۍ.',
@@ -1772,8 +1772,8 @@ $UNWATCHURL  نه ليدنه وکړۍ
 # Delete
 'deletepage' => 'مخ ړنگول',
 'confirm' => 'تاييد',
-'excontent' => 'د مخ مېنځپانګه دا وه: "$1"',
-'excontentauthor' => 'د مخ مېنځپانګه دا وه: "$1" (او يواځينی ونډه وال "[[Special:Contributions/$2|$2]]" وه)',
+'excontent' => 'د مخ مېنځپانگه دا وه: "$1"',
+'excontentauthor' => 'د مخ مېنځپانگه دا وه: "$1" (او يواځينی ونډه وال "[[Special:Contributions/$2|$2]]" وه)',
 'exblank' => 'مخ تش وه',
 'delete-confirm' => '"$1" ړنګوول',
 'delete-legend' => 'ړنگول',
@@ -1781,15 +1781,15 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'confirmdeletetext' => 'تاسې د تل لپار يو مخ يا انځور د هغه ټول پېښليک سره د دغه توکبنسټ نه ړنګوۍ. که چېرته تاسې ددې کړنې په پايله پوه ياست او يا ستاسو همدا کړنه د دې پاڼې د [[{{MediaWiki:Policy-url}}|تګلارې]] سره سمون خوري نو لطفاً د دې تاييد وکړی.',
 'actioncomplete' => 'بشپړه کړنه',
 'actionfailed' => 'کړنه نابريالۍ شوه',
-'deletedtext' => '"$1" ړنګ شوی.
-د نوو ړنګ شوو سوانحو لپاره $2 وګورۍ.',
+'deletedtext' => '"$1" ړنگ شوی.
+د نوو ړنگ شوو سوانحو لپاره $2 وگورۍ.',
 'dellogpage' => 'د ړنګولو يادښت',
-'dellogpagetext' => 'دا لاندې د نوو ړنګ شوو کړنو لړليک دی.',
+'dellogpagetext' => 'دا لاندې د نوو ړنگ شوو کړنو لړليک دی.',
 'deletionlog' => 'د ړنګولو يادښت',
 'deletecomment' => 'سبب:',
 'deleteotherreason' => 'بل/اضافه سبب:',
 'deletereasonotherlist' => 'بل سبب',
-'deletereason-dropdown' => '*د ړنګولو ټولګړی سبب
+'deletereason-dropdown' => '*د ړنگولو ټولگړی سبب
 ** د ليکوال غوښتنه
 ** د رښتو تېری
 ** د پوهې سره دښمني',
@@ -1855,9 +1855,9 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'restriction-level-all' => 'هر يو پوړ',
 
 # Undelete
-'undelete' => 'ړنګ شوي مخونه کتل',
-'undeletepage' => 'ړنګ شوي مخونه کتل او بېرته پرځای کول',
-'viewdeletedpage' => 'ړنګ شوي مخونه کتل',
+'undelete' => 'ړنگ شوي مخونه کتل',
+'undeletepage' => 'ړنگ شوي مخونه کتل او بيا پرځای کول',
+'viewdeletedpage' => 'ړنگ شوي مخونه کتل',
 'undeletebtn' => 'بيازېرمل',
 'undeletelink' => 'کتل/بيازېرمل',
 'undeleteviewlink' => 'کتل',
@@ -1866,7 +1866,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'undeletecomment' => 'سبب:',
 'undeletedfiles' => '{{PLURAL:$1|1 دوتنه بيازېرمه شوه|$1 دوتنې بيازېرمه شوې}}',
 'undelete-header' => 'د وروستيو ړنګو شوو مخونو لپاره [[Special:Log/delete|د ړنګولو يادښت]] وګورۍ.',
-'undelete-search-box' => 'ړنګ شوي مخونه لټول',
+'undelete-search-box' => 'ړنگ شوي مخونه لټول',
 'undelete-search-prefix' => 'هغه مخونه ښکاره کړه چې پېلېږي په:',
 'undelete-search-submit' => 'پلټل',
 'undelete-show-file-submit' => 'هو',
@@ -2058,9 +2058,9 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'movesubpagetext' => 'همدا مخ $1 {{PLURAL:$1|څېرمه مخ لري چې لاندې ښودل شوی|څېرمه مخونه لري چې لاندې ښودل شوي}}.',
 'movenosubpage' => 'دا مخ کوم څېرمه مخونه نه لري.',
 'movereason' => 'سبب:',
-'revertmove' => 'په څټ ګرځول',
+'revertmove' => 'په څټ گرځول',
 'delete_and_move' => 'ړنگول او لېږدول',
-'delete_and_move_confirm' => 'هو, دا مخ ړنګ کړه',
+'delete_and_move_confirm' => 'هو, دا مخ ړنگ کړه',
 'immobile-source-page' => 'دا مخ نه لېږدېدنونکی دی',
 'imageinvalidfilename' => 'د موخنې دوتنې نوم سم نه دی',
 'move-leave-redirect' => 'يو ورګرځونکی مخ پر ځای پرېښودل',
@@ -2072,7 +2072,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'exportall' => 'ټول مخونه صادرول',
 'export-submit' => 'صادرول',
 'export-addcattext' => 'مخونو د ورګډولو وېشنيزه:',
-'export-addcat' => 'ورګډول',
+'export-addcat' => 'ورگډول',
 'export-addnstext' => 'د نوم-تشيال نه مخونه ورګډول:',
 'export-addns' => 'ورګډول',
 'export-download' => 'د دوتنې په بڼه خوندي کول',
@@ -2156,7 +2156,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'tooltip-t-specialpages' => 'د ټولو ځانگړو پاڼو لړليک',
 'tooltip-t-print' => 'د دې مخ چاپي بڼه',
 'tooltip-t-permalink' => 'د دې مخ د همدې بڼې تلپاتې تړنه',
-'tooltip-ca-nstab-main' => 'د مخ مېنځپانګه کتل',
+'tooltip-ca-nstab-main' => 'د مخ مېنځپانگه کتل',
 'tooltip-ca-nstab-user' => 'د کارن پاڼه کتل',
 'tooltip-ca-nstab-media' => 'د رسنۍ مخ کتل',
 'tooltip-ca-nstab-special' => 'دا يو ځانگړی مخ دی، تاسې په دې مخ کې سمون نه شی کولای.',
@@ -2210,7 +2210,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'pageinfo-robot-noindex' => 'ليکلړوړ نه',
 'pageinfo-views' => 'د کتنو شمېر',
 'pageinfo-watchers' => 'د مخ د کتونکو شمېر',
-'pageinfo-redirects-name' => 'دې مخ ته ورګرځونې',
+'pageinfo-redirects-name' => 'دې مخ ته د ورگرځونو شمېر',
 'pageinfo-subpages-name' => 'دې مخ ته څېرمه مخونه',
 'pageinfo-firstuser' => 'مخ جوړونکی',
 'pageinfo-firsttime' => 'د مخ جوړېدنې نېټه',
@@ -2546,7 +2546,7 @@ $5
 'table_pager_empty' => 'بې پايلو',
 
 # Auto-summaries
-'autosumm-blank' => 'د مخ مېنځپانګه ليرې شوه',
+'autosumm-blank' => 'مخ تش شو',
 'autosumm-replace' => "دا مخ د '$1' پرځای راوستل",
 'autoredircomment' => '[[$1]] ته وګرځولی شو',
 'autosumm-new' => 'د "$1" تورو مخ جوړ شو',
@@ -2723,10 +2723,10 @@ $5
 'htmlform-yes' => 'هو',
 
 # New logging system
-'logentry-delete-delete' => '$1 د $3 مخ {{GENDER:$2|ړنګ کړ}}',
-'revdelete-content-hid' => 'مېنځپانګه پټېدلې',
+'logentry-delete-delete' => '$1 د $3 مخ {{GENDER:$2|ړنگ کړ}}',
+'revdelete-content-hid' => 'مېنځپانگه پټېدلې',
 'revdelete-uname-hid' => 'کارن نوم پټ شوی',
-'revdelete-content-unhid' => 'مېنځپانګه ښکاره شوی',
+'revdelete-content-unhid' => 'مېنځپانگه ښکاره شوی',
 'revdelete-uname-unhid' => 'ښکاره کارن-نوم',
 'logentry-move-move' => '$1 د $3 مخ $4 ته {{GENDER:$2|ولېږداوه}}',
 'logentry-newusers-newusers' => 'د $1 کارن گڼون {{GENDER:$2|جوړ شو}}',
