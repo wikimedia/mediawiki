@@ -387,6 +387,7 @@ function wfThumbError( $status, $msg ) {
 		header( 'HTTP/1.1 500 Internal server error' );
 	}
 	if ( $wgShowHostnames ) {
+		header( 'X-MW-Thumbnail-Renderer: ' . wfHostname() );
 		$url = htmlspecialchars( isset( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : '' );
 		$hostname = htmlspecialchars( wfHostname() );
 		$debug = "<!-- $url -->\n<!-- $hostname -->\n";
