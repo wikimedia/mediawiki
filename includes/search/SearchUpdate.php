@@ -90,6 +90,9 @@ class SearchUpdate implements DeferrableUpdate {
 		wfProfileIn( __METHOD__ );
 
 		$page = WikiPage::newFromId( $this->id );
+		if ( $page === null ) {
+			$page = WikiPage::newFromId( $this->id, WikiPage::READ_LATEST );
+		}
 		$indexTitle = Title::indexTitle( $this->title->getNamespace(), $this->title->getText() );
 
 		foreach ( SearchEngine::getSearchTypes() as $type ) {
