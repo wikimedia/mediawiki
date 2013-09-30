@@ -472,3 +472,6 @@
 [submodule "extensions/Elastica"]
 	path = extensions/Elastica
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Elastica.git
+[submodule "extensions/MassMessage"]
+	path = extensions/MassMessage
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/MassMessage.git
