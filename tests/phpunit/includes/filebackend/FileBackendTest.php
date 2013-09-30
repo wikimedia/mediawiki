@@ -655,9 +655,16 @@ class FileBackendTest extends MediaWikiTestCase {
 
 		if ( $withSource ) {
 			$status = $this->backend->doOperation(
-				array( 'op' => 'create', 'content' => 'blahblah', 'dst' => $source ) );
+				array( 'op' => 'create', 'content' => 'blahblah', 'dst' => $source,
+					'headers' => array( 'Content-Disposition' => 'xxx' ) ) );
 			$this->assertGoodStatus( $status,
 				"Creation of file at $source succeeded ($backendName)." );
+
+			$this->backend->describe( array( 'src' => $source,
+				'headers' => array( 'Content-Disposition' => '' ) ) ); // remove
+			$attr = $this->backend->getFileXAttributes( array( 'src' => $source ) );
+			$this->assertFalse( isset( $attr['headers']['content-disposition'] ),
+				"File 'Content-Disposition' header removed." );
 		}
 
 		$status = $this->backend->doOperation( $op );
@@ -668,6 +675,20 @@ class FileBackendTest extends MediaWikiTestCase {
 				"Describe of file at $source succeeded ($backendName)." );
 			$this->assertEquals( array( 0 => true ), $status->success,
 				"Describe of file at $source has proper 'success' field in Status ($backendName)." );
+			if ( $this->backend->hasFeatures( FileBackend::ATTR_HEADERS ) ) {
+				$attr = $this->backend->getFileXAttributes( array( 'src' => $source ) );
+				foreach ( $op['headers'] as $n => $v ) {
+					if ( $n !== '' ) {
+						$this->assertTrue( isset( $attr['headers'][strtolower( $n )] ),
+							"File has '$n' header." );
+						$this->assertEquals( $v, isset( $attr['headers'][strtolower( $n )] ),
+							"File has '$n' header value." );
+					} else {
+						$this->assertFalse( isset( $attr['headers'][strtolower( $n )] ),
+							"File does not have '$n' header." );
+					}
+				}
+			}
 		} else {
 			$this->assertEquals( false, $status->isOK(),
 				"Describe of file at $source failed ($backendName)." );
@@ -682,8 +703,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		$source = self::baseStorePath() . '/unittest-cont1/e/myfacefile.txt';
 
 		$op = array( 'op' => 'describe', 'src' => $source,
-			'headers' => array( 'X-Content-Length' => '91.3', 'Content-Old-Header' => '' ),
-			'disposition' => 'inline' );
+			'headers' => array( 'Content-Disposition' => 'inline' ), );
 		$cases[] = array(
 			$op, // operation
 			true, // with source
