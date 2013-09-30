@@ -3936,7 +3936,7 @@ $wgReservedUsernames = array(
 	'ScriptImporter', // Default user name used by maintenance/importSiteScripts.php
 	'msg:double-redirect-fixer', // Automatic double redirect fix
 	'msg:usermessage-editor', // Default user for leaving user messages
-	'msg:proxyblocker', // For Special:Blockme
+	'msg:proxyblocker', // For $wgProxyList and Special:Blockme (removed in 1.22)
 );
 
 /**
@@ -4694,31 +4694,6 @@ $wgPasswordAttemptThrottle = array( 'count' => 5, 'seconds' => 300 );
  * @name   Proxy scanner settings
  * @{
  */
-
-/**
- * If you enable this, every editor's IP address will be scanned for open HTTP
- * proxies.
- *
- * @warning Don't enable this. Many sysops will report "hostile TCP port scans"
- * to your ISP and ask for your server to be shut down.
- * You have been warned.
- */
-$wgBlockOpenProxies = false;
-
-/**
- * Port we want to scan for a proxy
- */
-$wgProxyPorts = array( 80, 81, 1080, 3128, 6588, 8000, 8080, 8888, 65506 );
-
-/**
- * Script used to scan
- */
-$wgProxyScriptPath = "$IP/maintenance/proxyCheck.php";
-
-/**
- * Expiration time for cached proxy IPs
- */
-$wgProxyMemcExpiry = 86400;
 
 /**
  * This should always be customised in LocalSettings.php

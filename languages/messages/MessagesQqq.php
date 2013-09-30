@@ -6619,24 +6619,20 @@ See also:
 * {{msg-mw|Ip range toolarge}}',
 'blockme' => '{{doc-special|BlockMe|unlisted=1}}
 This feature is disabled by default.',
-'proxyblocker' => 'Used in [[Special:BlockMe]].
+'proxyblocker' => 'Username for blocking IP addresses listed in [[mw:Manual:$wgProxyList|$wgProxyList]].
 
 See also:
-* {{msg-mw|proxyblocker-disabled}}
-* {{msg-mw|proxyblockreason}}
-* {{msg-mw|proxyblocksuccess}}',
+* {{msg-mw|proxyblockreason}}',
 'proxyblocker-disabled' => 'Used in [[Special:BlockMe]].
 
 See also:
 * {{msg-mw|proxyblocker}}
 * {{msg-mw|proxyblockreason}}
 * {{msg-mw|proxyblocksuccess}}',
-'proxyblockreason' => 'Used as explanation of the reason in [[Special:BlockMe]].
+'proxyblockreason' => 'Reason for blocking IP addresses listed in [[mw:Manual:$wgProxyList|$wgProxyList]].
 
 See also:
-* {{msg-mw|proxyblocker-disabled}}
-* {{msg-mw|proxyblocker}}
-* {{msg-mw|proxyblocksuccess}}',
+* {{msg-mw|proxyblocker}}',
 'proxyblocksuccess' => 'Used in [[Special:BlockMe]].
 
 See also:

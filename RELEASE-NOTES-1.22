@@ -61,6 +61,9 @@ production.
 * The precise format of metric datagrams produced by the UDP profiler and stats counter
   may now be specified as $wgUDPProfilerFormatString and $wgStatsFormatString,
   respectively.
+* (bug 54597) $wgBlockOpenProxies, $wgProxyPorts, $wgProxyScriptPath, and
+  $wgProxyMemcExpiry have been removed, along with the open proxy scanner
+  script they were added for.
 
 === New features in 1.22 ===
 * (bug 44525) mediawiki.jqueryMsg can now parse (whitelisted) HTML elements and attributes.
