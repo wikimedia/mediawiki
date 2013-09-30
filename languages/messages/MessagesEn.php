@@ -4864,7 +4864,7 @@ You should have received [{{SERVER}}{{SCRIPTPATH}}/COPYING a copy of the GNU Gen
 'redirect'            => 'Redirect by file, user, or revision ID',
 'redirect-legend'     => 'Redirect to a file or page',
 'redirect-text'       => '', # do not translate or duplicate this message to other languages
-'redirect-summary'    => 'This special page redirects to a file (given the file name), a page (given a revision ID), or a user page (given a numeric user ID).',
+'redirect-summary'    => 'This special page redirects to a file (given the file name), a page (given a revision ID), or a user page (given a numeric user ID). Usage: [[Special:Redirect/file/Example.jpg]], [[Special:Redirect/revision/revision ID]], or [[Special:Redirect/user/user ID]].',
 'redirect-submit'     => 'Go',
 'redirect-lookup'     => 'Lookup:',
 'redirect-value'      => 'Value:',
