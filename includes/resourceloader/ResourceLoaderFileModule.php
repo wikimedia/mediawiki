@@ -490,7 +490,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @param string $path
 	 * @return string: the stylesheet language name
 	 */
-	protected function getStyleSheetLang( $path ) {
+	public function getStyleSheetLang( $path ) {
 		return preg_match( '/\.less$/i', $path ) ? 'less' : 'css';
 	}
 
@@ -577,6 +577,23 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 				self::tryForKey( $this->skinStyles, $context->getSkin(), 'default' ), 'media', 'all'
 			)
 		);
+	}
+
+	/**
+	 * Returns all stlyle files used bt this module
+	 * @return array
+	 */
+	public function getAllStyleFiles() {
+		$files = array();
+		foreach( (array)$this->styles as $key => $value ) {
+			if ( is_array( $value ) ) {
+				$path = $key;
+			} else {
+				$path = $value;
+			}
+			$files[] = $this->getLocalPath( $path );
+		}
+		return $files;
 	}
 
 	/**
@@ -717,7 +734,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	protected static function getLESSCacheKey( $fileName ) {
 		global $wgShowExceptionDetails;
 
-		$vars = json_encode( self::getLESSVars() );
+		$vars = json_encode( ResourceLoader::getLESSVars() );
 		$hash = md5( $fileName . $vars );
 		return wfMemcKey( 'resourceloader', 'less', (string)$wgShowExceptionDetails, $hash );
 	}
@@ -749,7 +766,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			$source = $fileName;
 		}
 
-		$compiler = self::lessCompiler();
+		$compiler = ResourceLoader::getLessCompiler();
 		$expire = 0;
 		try {
 			$result = $compiler->cachedCompile( $source );

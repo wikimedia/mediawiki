@@ -1213,4 +1213,41 @@ class ResourceLoader {
 	public static function isValidModuleName( $moduleName ) {
 		return !preg_match( '/[|,!]/', $moduleName ) && strlen( $moduleName ) <= 255;
 	}
+
+	/**
+	 * Returns LESS compiler set up for use with MediaWiki
+	 *
+	 * @since 1.22
+	 * @return lessc
+	 */
+	public static function getLessCompiler() {
+		global $wgResourceLoaderLESSFunctions, $wgResourceLoaderLESSImportPaths;
+
+		$less = new lessc();
+		$less->setPreserveComments( true );
+		$less->setVariables( self::getLESSVars() );
+		$less->setImportDir( $wgResourceLoaderLESSImportPaths );
+		foreach ( $wgResourceLoaderLESSFunctions as $name => $func ) {
+			$less->registerFunction( $name, $func );
+		}
+		return $less;
+	}
+
+	/**
+	 * Get global LESS variables.
+	 *
+	 * $since 1.22
+	 * @return array: Map of variable names to string CSS values.
+	 */
+	public static function getLESSVars() {
+		global $wgResourceLoaderLESSVars;
+
+		static $lessVars = null;
+		if ( $lessVars === null ) {
+			$lessVars = $wgResourceLoaderLESSVars;
+			// Sort by key to ensure consistent hashing for cache lookups.
+			ksort( $lessVars );
+		}
+		return $lessVars;
+	}
 }

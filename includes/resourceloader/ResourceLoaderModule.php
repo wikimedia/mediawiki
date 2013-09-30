@@ -407,9 +407,6 @@ abstract class ResourceLoaderModule {
 	private static $jsParser;
 	private static $parseCacheVersion = 1;
 
-	/** @var array Global LESS variables */
-	private static $lessVars;
-
 	/**
 	 * Validate a given script file; if valid returns the original source.
 	 * If invalid, returns replacement JS source that throws an exception.
@@ -455,40 +452,6 @@ abstract class ResourceLoaderModule {
 			self::$jsParser = new JSParser();
 		}
 		return self::$jsParser;
-	}
-
-	/**
-	 * @since 1.22
-	 * @return lessc
-	 */
-	protected static function lessCompiler() {
-		global $wgResourceLoaderLESSFunctions, $wgResourceLoaderLESSImportPaths;
-
-		$less = new lessc();
-		$less->setPreserveComments( true );
-		$less->setVariables( self::getLESSVars() );
-		$less->setImportDir( $wgResourceLoaderLESSImportPaths );
-		foreach ( $wgResourceLoaderLESSFunctions as $name => $func ) {
-			$less->registerFunction( $name, $func );
-		}
-		return $less;
-	}
-
-	/**
-	 * Get global LESS variables.
-	 *
-	 * @since 1.22
-	 * @return array: Map of variable names to string CSS values.
-	 */
-	protected static function getLESSVars() {
-		global $wgResourceLoaderLESSVars;
-
-		if ( self::$lessVars === null ) {
-			self::$lessVars = $wgResourceLoaderLESSVars;
-			// Sort by key to ensure consistent hashing for cache lookups.
-			ksort( self::$lessVars );
-		}
-		return self::$lessVars;
 	}
 
 	/**
