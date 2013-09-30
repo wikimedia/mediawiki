@@ -4922,6 +4922,7 @@ See the following search results:
 'listusers' => '{{doc-special|ListUsers}}',
 'listusers-editsonly' => 'Option in [[Special:ListUsers]].',
 'listusers-creationsort' => 'Option in [[Special:ListUsers]].',
+'listusers-desc' => 'Used as label for the checkbox.',
 'usereditcount' => 'Shown behind every username on [[Special:ListUsers]]. Parameters:
 * $1 - number of edits',
 'usercreated' => 'Used in [[Special:ListUsers]]. Parameters:
@@ -5643,7 +5644,7 @@ See also:
 In other cases the message {{msg-mw|Revertpage}} is used.
 
 Parameters:
-* $1 - username 1
+* $1 - username 1, can be used for GENDER
 * $2 - (Optional) username 2
 * $3 - (Optional) revision ID of the revision reverted to
 * $4 - (Optional) timestamp of the revision reverted to

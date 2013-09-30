@@ -17032,11 +17032,17 @@ $messages['pt-br'] = array(
 Para atualizar esta instalação, insira no box abaixo o valor de <code>$wgUpgradeKey</code>.
 Essa informação pode ser encontrada no arquivo <code>LocalSettings.php</code>',
 	'config-localsettings-cli-upgrade' => 'Foi detectada a existência do arquivo <code><code>LocalSettings.php</code></code>.
-Esta instalação deverá ser atualizada através do <code>update.php</code>',
+Atualize esta instalação executando o arquivo <code>update.php</code>',
 	'config-localsettings-key' => 'Chave de atualização:',
 	'config-localsettings-badkey' => 'A chave fornecida está incorreta.',
 	'config-upgrade-key-missing' => 'Foi detectada uma instalação existente do MediaWiki.
-Para atualizar esta instalação, por favor insira a seguinte linha na parte inferior do seu <code>LocalSettings.php</code>:
+Para atualizar esta instalação, insira a seguinte linha na parte inferior do seu <code>LocalSettings.php</code>:
+
+$1',
+	'config-localsettings-incomplete' => 'O arquivo <code>LocalSettings.php</code> parece incompleto.
+A variável $1 não está definida.
+Altere seu <code>LocalSettings.php</code> com a definição dessa variável e clique em "{{int:Config-continue}}".',
+	'config-localsettings-connection-error' => 'Ocorreu um erro ao conectar ao banco de dados através das configurações presentes ou no <code>LocalSettings.php</code> ou no <code>AdminSettings.php</code>. Corrija essas configurações e tente novamente.
 
 $1',
 	'config-session-error' => 'Erro ao iniciar a sessão: $1',
@@ -17046,21 +17052,21 @@ Você pode aumentar esta duração configurando <code>session.gc_maxlifetime</co
 Reinicie o processo de instalação.',
 	'config-no-session' => 'Os seus dados de sessão foram perdidos!
 Verifique o seu php.ini e certifique-se de que em <code>session.save_path</code> está definido um diretório apropriado.',
-	'config-your-language' => 'A sua língua:',
-	'config-your-language-help' => 'Selecione a língua que será usada durante o processo de instalação.',
-	'config-wiki-language' => 'Língua da wiki:',
-	'config-wiki-language-help' => 'Selecione a língua que será predominante na wiki.',
+	'config-your-language' => 'Seu idioma:',
+	'config-your-language-help' => 'Selecione o idioma que será usado durante o processo de instalação.',
+	'config-wiki-language' => 'Idioma do wiki:',
+	'config-wiki-language-help' => 'Selecione o idioma em que o wiki será predominantemente escrito.',
 	'config-back' => '← Voltar',
 	'config-continue' => 'Continuar →',
-	'config-page-language' => 'Língua',
+	'config-page-language' => 'Idioma',
 	'config-page-welcome' => 'Bem-vindo(a) ao MediaWiki!',
-	'config-page-dbconnect' => 'Ligar à base de dados',
+	'config-page-dbconnect' => 'Conectar ao banco de dados',
 	'config-page-upgrade' => 'Atualizar a instalação existente',
-	'config-page-dbsettings' => 'Configurações da base de dados',
+	'config-page-dbsettings' => 'Configurações do banco de dados',
 	'config-page-name' => 'Nome',
 	'config-page-options' => 'Opções',
 	'config-page-install' => 'Instalar',
-	'config-page-complete' => 'Terminado!',
+	'config-page-complete' => 'Concluído!',
 	'config-page-restart' => 'Reiniciar a instalação',
 	'config-page-readme' => 'Leia-me',
 	'config-page-releasenotes' => 'Notas de lançamento',
@@ -17069,9 +17075,9 @@ Verifique o seu php.ini e certifique-se de que em <code>session.save_path</code>
 	'config-page-existingwiki' => 'Wiki existente',
 	'config-help-restart' => 'Deseja limpar todos os dados salvos que você introduziu e reiniciar o processo de instalação?',
 	'config-restart' => 'Sim, reiniciar',
-	'config-welcome' => '=== Verificações do ambiente ===
-São realizadas verificações básicas para determinar se este ambiente é apropriado para instalação do MediaWiki.
-Você deverá fornecer os resultados destas verificações se você precisar de ajuda durante a instalação.', # Fuzzy
+	'config-welcome' => '=== Verificações de ambiente ===
+São realizadas verificações básicas para determinar se este ambiente é apropriado para a instalação do MediaWiki.
+Lembre-se de incluir estas informações se for procurar por suporte para a conclusão da instalação.',
 	'config-copyright' => "=== Direitos autorais e Termos de uso ===
 
 $1
@@ -17082,10 +17088,15 @@ Este programa é distribuído na esperança de que seja útil, mas '''sem qualqu
 Consulte a licença GNU General Public License para mais detalhes.
 
 Em conjunto com este programa você deve ter recebido <doclink href=Copying>uma cópia da licença GNU General Public License</doclink>; se não a recebeu, peça-a por escrito para Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA ou [http://www.gnu.org/copyleft/gpl.html leia-a na internet].",
-	'config-sidebar' => '* [//www.mediawiki.org/wiki/MediaWiki/pt Página principal do MediaWiki]
-* [//www.mediawiki.org/wiki/Help:Contents/pt Ajuda]
-* [//www.mediawiki.org/wiki/Manual:Contents/pt Manual técnico]
-* [//www.mediawiki.org/wiki/Manual:FAQ FAQ]', # Fuzzy
+	'config-sidebar' => '* [//www.mediawiki.org/wiki/MediaWiki Página principal do MediaWiki]
+* [//www.mediawiki.org/wiki/Help:Contents Manual de uso]
+* [//www.mediawiki.org/wiki/Manual:Contents Manual administrativo]
+* [//www.mediawiki.org/wiki/Manual:FAQ FAQ]
+----
+* <doclink href=Readme>Leia-me</doclink>
+* <doclink href=ReleaseNotes>Notas de lançamento</doclink>
+* <doclink href=Copying>Licença</doclink>
+* <doclink href=UpgradeDoc>Como fazer upgrade</doclink>',
 	'config-env-good' => 'O ambiente foi verificado.
 Você pode instalar o MediaWiki.',
 	'config-env-bad' => 'O ambiente foi verificado.
@@ -17093,9 +17104,14 @@ Você não pode instalar o MediaWiki.',
 	'config-env-php' => 'O PHP $1 está instalado.',
 	'config-unicode-using-utf8' => 'A usar o utf8_normalize.so, de Brian Viper, para a normalização Unicode.',
 	'config-unicode-using-intl' => 'Usando a [http://pecl.php.net/intl extensão intl PECL] para a normalização Unicode.',
-	'config-unicode-pure-php-warning' => "'''Aviso''': A [http://pecl.php.net/intl extensão intl PECL] não está disponível para efetuar a normalização Unicode.
-Se o seu site tem um alto volume de tráfego, devia informar-se um pouco sobre a [//www.mediawiki.org/wiki/Unicode_normalization_considerations normalização Unicode].", # Fuzzy
-	'config-no-db' => 'Não foi possível encontrar um driver de banco de dados adequado!', # Fuzzy
+	'config-unicode-pure-php-warning' => "'''Aviso''': A [http://pecl.php.net/intl extensão intl PECL] não está disponível para efetuar a normalização Unicode sendo usada, em seu lugar, a lenta implementação de PHP puro.
+Se o seu site tem um alto volume de tráfego, informe-se sobre a [//www.mediawiki.org/wiki/Unicode_normalization_considerations normalização Unicode].",
+	'config-no-db' => 'Não foi possível encontrar um driver de banco de dados adequado! É necessário instalar um driver de banco de dados para o PHP.
+São suportados os seguintes tipos de bancos de dados: $1.
+
+Se estiver em uma hospedagem partilhada, peça à sua empresa de hospedagem para instalar um driver de banco de dados adequado.
+Se você mesmo tiver compilado o PHP, reconfigure-o com um cliente de banco de dados ativado usando, por exemplo, <code>./configure --with-mysql</code>.
+Se você instalou o PHP a partir de um pacote do Debian ou do Ubuntu, instale também o módulo php5-mysql.',
 	'config-no-fts3' => "' ' 'Aviso' ' ': O SQLite foi compilado sem o módulo [//sqlite.org/fts3.html FTS3]; as funcionalidades de pesquisa não estarão disponíveis nesta instalação.",
 	'config-register-globals' => "' ' 'Aviso: A opção <code>[http://php.net/register_globals register_globals]</code> do PHP está ativada.'''
 ' ' 'Desative-a, se puder.'''
@@ -17111,10 +17127,9 @@ O MediaWiki funcionará mesmo assim, mas o seu servidor ficará exposto a potenc
 	'config-admin-name' => 'Seu nome:',
 	'config-admin-password' => 'Senha:',
 	'config-license-pd' => 'Domínio público',
-	'config-logo-help' => 'O tema padrão do MediaWiki inclui espaço para um logotipo de 135x160 pixels no canto superior esquerdo.
-Faça o upload de uma imagem com estas dimensões e introduza aqui a URL dessa imagem.
+	'config-logo-help' => 'Faça o upload de uma imagem de tamanho adequado e insira seu URL aqui.
 
-Se você não pretende usar um logotipo, deixe este campo em branco.', # Fuzzy
+Você pode usar <code>$wgStylePath</code> ou <code>$wgScriptPath</code> se o seu logotipo for associado a esses diretórios.',
 	'config-advanced-settings' => 'Configuração avançada',
 	'config-extensions' => 'Extensões',
 	'config-install-step-done' => 'feito',
