@@ -159,6 +159,10 @@ class SwiftFileBackend extends FileBackendStore {
 		$this->srvCache = $this->srvCache ? $this->srvCache : new EmptyBagOStuff();
 	}
 
+	public function getFeatures() {
+		return ( FileBackend::ATTR_HEADERS | FileBackend::ATTR_METADATA );
+	}
+
 	/**
 	 * @see FileBackendStore::resolveContainerPath()
 	 * @return null
@@ -760,9 +764,12 @@ class SwiftFileBackend extends FileBackendStore {
 			$this->addMissingMetadata( $srcObj, $params['src'] );
 			$stat = array(
 				// Convert dates like "Tue, 03 Jan 2012 22:01:04 GMT" to TS_MW
-				'mtime' => wfTimestamp( TS_MW, $srcObj->last_modified ),
-				'size' => (int)$srcObj->content_length,
-				'sha1' => $srcObj->getMetadataValue( 'Sha1base36' )
+				'mtime'  => wfTimestamp( TS_MW, $srcObj->last_modified ),
+				'size'   => (int)$srcObj->content_length,
+				'sha1'   => $srcObj->getMetadataValue( 'Sha1base36' ),
+				'xattr'  => array(
+					'headers'  => $srcObj->headers,
+					'metadata' => $srcObj->metadata )
 			);
 		} catch ( NoSuchContainerException $e ) {
 		} catch ( NoSuchObjectException $e ) {
@@ -1079,6 +1086,20 @@ class SwiftFileBackend extends FileBackendStore {
 			$names[] = $object->name;
 		}
 		return array_reverse( $names ); // keep the paths in original order
+	}
+
+	protected function doGetFileXAttributes( array $params ) {
+		$stat = $this->getFileStat( $params );
+		if ( $stat ) {
+			if ( !isset( $stat['xattr'] ) ) {
+				// Stat entries filled by file listings don't include metadata/headers
+				$this->clearCache( array( $params['src'] ) );
+				$stat = $this->getFileStat( $params );
+			}
+			return $stat['xattr'];
+		} else {
+			return false;
+		}
 	}
 
 	protected function doGetFileSha1base36( array $params ) {
