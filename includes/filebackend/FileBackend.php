@@ -104,6 +104,10 @@ abstract class FileBackend {
 	/** @var FileJournal */
 	protected $fileJournal;
 
+	/** Flags for supported features */
+	const ATTR_HEADERS  = 1;
+	const ATTR_METADATA = 2;
+
 	/**
 	 * Create a new backend instance from configuration.
 	 * This should only be called from within FileBackendGroup.
@@ -198,6 +202,27 @@ abstract class FileBackend {
 	 */
 	final public function getReadOnlyReason() {
 		return ( $this->readOnly != '' ) ? $this->readOnly : false;
+	}
+
+	/**
+	 * Get the a bitfield of extra features supported by the backend medium
+	 *
+	 * @return integer Bitfield of FileBackend::ATTR_* flags
+	 * @since 1.23
+	 */
+	public function getFeatures() {
+		return 0;
+	}
+
+	/**
+	 * Check if the backend medium supports a field of extra features
+	 *
+	 * @return integer Bitfield of FileBackend::ATTR_* flags
+	 * @return bool
+	 * @since 1.23
+	 */
+	final public function hasFeatures( $bitfield ) {
+		return ( $this->getFeatures() & $bitfield ) === $bitfield;
 	}
 
 	/**
@@ -900,6 +925,26 @@ abstract class FileBackend {
 	 * @since 1.20
 	 */
 	abstract public function getFileContentsMulti( array $params );
+
+	/**
+	 * Get metadata about a file at a storage path in the backend.
+	 * If the file does not exist, then this returns false.
+	 * Otherwise, the result is an associative array that includes:
+	 *   - headers  : map of HTTP headers used for GET/HEAD requests (name => value)
+	 *   - metadata : map of file metadata (name => value)
+	 * Metadata keys and headers names will be returned in all lower-case.
+	 * Additional values may be included for internal use only.
+	 *
+	 * Use FileBackend::hasFeatures() to check how well this is supported.
+	 *
+	 * @param array $params
+	 * $params include:
+	 *   - src    : source storage path
+	 *   - latest : use the latest available data
+	 * @return Array|bool Returns false on failure
+	 * @since 1.23
+	 */
+	abstract public function getFileXAttributes( array $params );
 
 	/**
 	 * Get the size (bytes) of a file at a storage path in the backend.
