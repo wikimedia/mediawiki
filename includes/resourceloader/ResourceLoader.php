@@ -148,25 +148,35 @@ class ResourceLoader {
 			return $data;
 		}
 
-		// Try for cache hit
-		// Use CACHE_ANYTHING since filtering is very slow compared to DB queries
-		$key = wfMemcKey( 'resourceloader', 'filter', $filter, self::$filterCacheVersion, md5( $data ) );
-		$cache = wfGetCache( CACHE_ANYTHING );
-		$cacheEntry = $cache->get( $key );
-		if ( is_string( $cacheEntry ) ) {
-			wfIncrStats( "rl-$filter-cache-hits" );
-			wfProfileOut( __METHOD__ );
-			return $cacheEntry;
+		// Minifying a very small resource might be faster than a cache lookup
+		if ( $filterObj->willBeExpensive( $data ) ) {
+			// Try for cache hit
+			// Use CACHE_ANYTHING since filtering is very slow compared to DB queries
+			$key = wfMemcKey( 'resourceloader', 'filter', $filter, self::$filterCacheVersion, md5( $data ) );
+			$cache = wfGetCache( CACHE_ANYTHING );
+			$cacheEntry = $cache->get( $key );
+			if ( is_string( $cacheEntry ) ) {
+				wfIncrStats( "rl-$filter-cache-hits" );
+				wfProfileOut( __METHOD__ );
+				return $cacheEntry;
+			} else {
+				wfIncrStats( "rl-$filter-cache-misses" );
+			}
+		} else {
+			$cache = null;
+			$key = '(not cached)';
+			wfIncrStats( "rl-$filter-cache-ignores" );
 		}
 
 		// Run the filter
 		try {
-			wfIncrStats( "rl-$filter-cache-misses" );
 			$result = $filterObj->filter( $data );
 			$result .= "\n/* cache key: $key */";
 
 			// Save filtered text to Memcached
-			$cache->set( $key, $result );
+			if ( $cache ) {
+				$cache->set( $key, $result );
+			}
 		} catch ( Exception $exception ) {
 			$exception->logException();
 			wfDebugLog( 'resourceloader', __METHOD__ . ": minification failed: $exception" );
