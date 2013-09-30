@@ -32,6 +32,14 @@ interface IResourceFilter {
 	 * @return string
 	 */
 	function filter( $data );
+
+	/**
+	 * Checks whether filtering a given content will be slower than a cache lookup
+	 *
+	 * @param string $data: Content to filter
+	 * @return bool
+	 */
+	function willBeExpensive( $data );
 }
 
 class CssMinifierFilter implements IResourceFilter {
@@ -41,6 +49,10 @@ class CssMinifierFilter implements IResourceFilter {
 		wfProfileOut( __METHOD__ );
 
 		return $result;
+	}
+
+	public function willBeExpensive( $data ) {
+		return strlen( $data ) > 5000;
 	}
 }
 
@@ -56,5 +68,9 @@ class JsMinifierFilter implements IResourceFilter {
 		wfProfileOut( __METHOD__ );
 
 		return $result;
+	}
+
+	public function willBeExpensive( $data ) {
+		return strlen( $data ) > 200;
 	}
 }
