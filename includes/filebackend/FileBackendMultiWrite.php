@@ -616,6 +616,10 @@ class FileBackendMultiWrite extends FileBackend {
 		return $this->backends[$this->masterIndex]->getFileList( $realParams );
 	}
 
+	public function getFeatures() {
+		return $this->backends[$this->masterIndex]->getFeatures();
+	}
+
 	public function clearCache( array $paths = null ) {
 		foreach ( $this->backends as $backend ) {
 			$realPaths = is_array( $paths ) ? $this->substPaths( $paths, $backend ) : null;

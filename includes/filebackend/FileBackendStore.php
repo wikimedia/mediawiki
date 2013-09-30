@@ -606,6 +606,10 @@ abstract class FileBackendStore extends FileBackend {
 				$this->cheapCache->set( $path, 'sha1',
 					array( 'hash' => $stat['sha1'], 'latest' => $latest ) );
 			}
+			if ( isset( $stat['xattr'] ) ) { // some backends store headers/metadata
+				$this->cheapCache->set( $path, 'xattr',
+					array( 'map' => $stat['xattr'], 'latest' => $latest ) );
+			}
 		} elseif ( $stat === false ) { // file does not exist
 			$this->cheapCache->set( $path, 'stat', $latest ? 'NOT_EXIST_LATEST' : 'NOT_EXIST' );
 			$this->cheapCache->set( $path, 'sha1', // the SHA-1 must be false too
@@ -643,6 +647,38 @@ abstract class FileBackendStore extends FileBackend {
 			wfRestoreWarnings();
 		}
 		return $contents;
+	}
+
+	final public function getFileXAttributes( array $params ) {
+		$path = self::normalizeStoragePath( $params['src'] );
+		if ( $path === null ) {
+			return false; // invalid storage path
+		}
+		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
+		$latest = !empty( $params['latest'] ); // use latest data?
+		if ( $this->cheapCache->has( $path, 'xattr', self::CACHE_TTL ) ) {
+			$stat = $this->cheapCache->get( $path, 'xattr' );
+			// If we want the latest data, check that this cached
+			// value was in fact fetched with the latest available data.
+			if ( !$latest || $stat['latest'] ) {
+				return $stat['map'];
+			}
+		}
+		wfProfileIn( __METHOD__ . '-miss' );
+		wfProfileIn( __METHOD__ . '-miss-' . $this->name );
+		$fields = $this->doGetFileXAttributes( $params );
+		wfProfileOut( __METHOD__ . '-miss-' . $this->name );
+		wfProfileOut( __METHOD__ . '-miss' );
+		$this->cheapCache->set( $path, 'xattr', array( 'map' => $fields, 'latest' => $latest ) );
+		return $fields;
+	}
+
+	/**
+	 * @see FileBackendStore::getFileXAttributes()
+	 * @return bool|string
+	 */
+	protected function doGetFileXAttributes( array $params ) {
+		return array( 'map' => array(), 'latest' => true ); // not supported
 	}
 
 	final public function getFileSha1Base36( array $params ) {
@@ -1559,6 +1595,10 @@ abstract class FileBackendStore extends FileBackend {
 				if ( isset( $val['sha1'] ) ) { // some backends store SHA-1 as metadata
 					$this->cheapCache->set( $path, 'sha1',
 						array( 'hash' => $val['sha1'], 'latest' => $val['latest'] ) );
+				}
+				if ( isset( $val['xattr'] ) ) { // some backends store headers/metadata
+					$this->cheapCache->set( $path, 'xattr',
+						array( 'map' => $val['xattr'], 'latest' => $val['latest'] ) );
 				}
 			}
 		}
