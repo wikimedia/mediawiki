@@ -3518,6 +3518,9 @@ class PoolWorkArticleView extends PoolCounterWork {
 			return false;
 		}
 
+		// Reduce effects of race conditions for slow parses (bug 46014)
+		$cacheTime = wfTimestampNow();
+
 		$time = - microtime( true );
 		$this->parserOutput = $content->getParserOutput( $this->page->getTitle(), $this->revid, $this->parserOptions );
 		$time += microtime( true );
@@ -3529,7 +3532,8 @@ class PoolWorkArticleView extends PoolCounterWork {
 		}
 
 		if ( $this->cacheable && $this->parserOutput->isCacheable() ) {
-			ParserCache::singleton()->save( $this->parserOutput, $this->page, $this->parserOptions );
+			ParserCache::singleton()->save(
+				$this->parserOutput, $this->page, $this->parserOptions, $cacheTime );
 		}
 
 		// Make sure file cache is not used on uncacheable content.
