@@ -232,6 +232,8 @@ production.
    for more details regarding custom functions.
 ** $wgResourceLoaderLESSImportPaths is an array of file system paths. Files
    referenced in LESS '@import' statements are looked up here first.
+* Added meta=filerepoinfo API module for getting information about foreign
+  image repositories, and related ForeignAPIRepo methods getInfo and getApiUrl.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
