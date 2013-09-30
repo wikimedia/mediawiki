@@ -142,6 +142,10 @@ class SwiftFileBackend extends FileBackendStore {
 		$this->srvCache = $this->srvCache ?: new EmptyBagOStuff();
 	}
 
+	public function getFeatures() {
+		return ( FileBackend::ATTR_HEADERS | FileBackend::ATTR_METADATA );
+	}
+
 	protected function resolveContainerPath( $container, $relStoragePath ) {
 		if ( !mb_check_encoding( $relStoragePath, 'UTF-8' ) ) { // mb_string required by CF
 			return null; // not UTF-8, makes it hard to use CF and the swift HTTP API
@@ -179,6 +183,8 @@ class SwiftFileBackend extends FileBackendStore {
 					continue; // blacklisted
 				} elseif ( preg_match( '/^(x-)?content-/', $name ) ) {
 					$headers[$name] = $value; // allowed
+				} elseif ( preg_match( '/^content-(disposition)/', $name ) ) {
+					$headers[$name] = $value; // allowed
 				}
 			}
 		}
@@ -189,7 +195,7 @@ class SwiftFileBackend extends FileBackendStore {
 				$part = trim( $part );
 				$new = ( $disposition === '' ) ? $part : "{$disposition};{$part}";
 				if ( strlen( $new ) <= 255 ) {
-					$res = $new;
+					$disposition = $new;
 				} else {
 					break; // too long; sigh
 				}
@@ -984,6 +990,20 @@ class SwiftFileBackend extends FileBackendStore {
 	 */
 	public function loadListingStatInternal( $path, array $val ) {
 		$this->cheapCache->set( $path, 'stat', $val );
+	}
+
+	protected function doGetFileXAttributes( array $params ) {
+		$stat = $this->getFileStat( $params );
+		if ( $stat ) {
+			if ( !isset( $stat['xattr'] ) ) {
+				// Stat entries filled by file listings don't include metadata/headers
+				$this->clearCache( array( $params['src'] ) );
+				$stat = $this->getFileStat( $params );
+			}
+			return $stat['xattr'];
+		} else {
+			return false;
+		}
 	}
 
 	protected function doGetFileSha1base36( array $params ) {
