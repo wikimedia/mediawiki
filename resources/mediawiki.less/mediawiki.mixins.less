@@ -18,3 +18,12 @@
 .background-image(@url) when not (embeddable(@url)) {
 	background-image: url(@url);
 }
+
+/* Purposely do not embed any images in this mixin to avoid repetition of same svg file due to vendor prefixes */
+.background-image-svg(@svg, @fallback) {
+	background-image: url(@fallback);
+	/* SVG support using a transparent gradient to guarantee cross-browser
+	 * compatibility (browsers able to understand gradient syntax support also SVG) */
+	background-image: -webkit-linear-gradient(transparent, transparent), url(@svg);
+	background-image: linear-gradient(transparent, transparent), url(@svg);
+}
