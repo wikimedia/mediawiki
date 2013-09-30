@@ -131,6 +131,7 @@ abstract class Installer {
 		'envCheckLibicu',
 		'envCheckSuhosinMaxValueLength',
 		'envCheckCtype',
+		'envCheckJSON',
 	);
 
 	/**
@@ -1176,6 +1177,17 @@ abstract class Installer {
 	protected function envCheckCtype() {
 		if ( !function_exists( 'ctype_digit' ) ) {
 			$this->showError( 'config-ctype' );
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * @return bool
+	 */
+	protected function envCheckJSON() {
+		if ( !function_exists( 'json_decode' ) ) {
+			$this->showError( 'config-json' );
 			return false;
 		}
 		return true;
