@@ -293,7 +293,7 @@
 						postFinished = false;
 						periRange = document.selection.createRange().duplicate();
 
-						preRange = rangeForElementIE( e ),
+						preRange = rangeForElementIE( e );
 						// Move the end where we need it
 						preRange.setEndPoint( 'EndToStart', periRange );
 
