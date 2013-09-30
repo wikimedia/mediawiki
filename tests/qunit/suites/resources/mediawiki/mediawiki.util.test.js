@@ -95,8 +95,8 @@
 			'</div>' +
 			'<ul><li></li></ul>' +
 			'</div>';
-		$( tocHtml ).appendTo( '#qunit-fixture' ),
-			$toggleLink = $( '#togglelink' );
+		$( tocHtml ).appendTo( '#qunit-fixture' );
+		$toggleLink = $( '#togglelink' );
 
 		assert.strictEqual( $toggleLink.length, 1, 'Toggle link is appended to the page.' );
 
