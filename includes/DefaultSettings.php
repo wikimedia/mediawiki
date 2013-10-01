@@ -1623,7 +1623,6 @@ $wgSharedTables = array( 'user', 'user_properties' );
  *                  - DBO_DEFAULT -- turns on DBO_TRX only if !$wgCommandLineMode (recommended)
  *                  - DBO_DEBUG -- equivalent of $wgDebugDumpSql
  *                  - DBO_TRX -- wrap entire request in a transaction
- *                  - DBO_IGNORE -- ignore errors (not useful in LocalSettings.php)
  *                  - DBO_NOBUFFER -- turn off buffering (not useful in LocalSettings.php)
  *                  - DBO_PERSISTENT -- enables persistent database connections
  *                  - DBO_SSL -- uses SSL/TLS encryption in database connections, if available
