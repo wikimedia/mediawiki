@@ -284,7 +284,7 @@
 							// Range containing text after the selection
 							postRange;
 
-						preRange = rangeForElementIE( e ),
+						preRange = rangeForElementIE( e );
 						// Move the end where we need it
 						preRange.setEndPoint( 'EndToStart', periRange );
 
