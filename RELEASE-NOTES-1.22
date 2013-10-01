@@ -58,6 +58,9 @@ production.
   default Sidebar.
 * The 'vector-simplesearch' preference is now enabled by default. Previously
   it was only enabled if the Vector extension was installed.
+* The precise format of metric datagrams produced by the UDP profiler and stats counter
+  may now be specified as $wgUDPProfilerFormatString and $wgStatsFormatString,
+  respectively.
 
 === New features in 1.22 ===
 * (bug 44525) mediawiki.jqueryMsg can now parse (whitelisted) HTML elements and attributes.

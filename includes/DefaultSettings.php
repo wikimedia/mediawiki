@@ -5053,6 +5053,17 @@ $wgUDPProfilerHost = '127.0.0.1';
 $wgUDPProfilerPort = '3811';
 
 /**
+ * Format string for the UDP profiler. The UDP profiler invokes sprintf() with
+ * (profile id, count, cpu, cpu_sq, real, real_sq, entry name) as arguments.
+ * You can use sprintf's argument numbering/swapping capability to repeat,
+ * re-order or omit fields.
+ *
+ * @see $wgStatsFormatString
+ * @since 1.22
+ */
+$wgUDPProfilerFormatString = "%s - %d %f %f %f %f %s\n";
+
+/**
  * Detects non-matching wfProfileIn/wfProfileOut calls
  */
 $wgDebugProfiling = false;
@@ -5077,6 +5088,19 @@ $wgStatsMethod = 'cache';
  * will be used.
  */
 $wgAggregateStatsID = false;
+
+/**
+ * When $wgStatsMethod is 'udp', this variable specifies how stats should be
+ * formatted. Its value should be a format string suitable for a sprintf()
+ * invocation with (id, count, key) arguments, where 'id' is either
+ * $wgAggregateStatsID or the DB name, 'count' is the value by which the metric
+ * is being incremented, and 'key' is the metric name.
+ *
+ * @see $wgUDPProfilerFormatString
+ * @see $wgAggregateStatsID
+ * @since 1.22
+ */
+$wgStatsFormatString = "stats/%s - %s 1 1 1 1 %s\n";
 
 /**
  * Whereas to count the number of time an article is viewed.
