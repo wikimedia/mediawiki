@@ -360,6 +360,8 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 * code should use lastErrno() and lastError() to handle the
 	 * situation as appropriate.
 	 *
+	 * Do not use this function outside of the Database classes.
+	 *
 	 * @param $ignoreErrors bool|null
 	 *
 	 * @return bool The previous value of the flag.
@@ -582,7 +584,6 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 * @param $flag Integer: DBO_* constants from Defines.php:
 	 *   - DBO_DEBUG: output some debug info (same as debug())
 	 *   - DBO_NOBUFFER: don't buffer results (inverse of bufferResults())
-	 *   - DBO_IGNORE: ignore errors (same as ignoreErrors())
 	 *   - DBO_TRX: automatically start transactions
 	 *   - DBO_DEFAULT: automatically sets DBO_TRX if not in command line mode
 	 *       and removes it in command line mode
