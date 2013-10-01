@@ -580,7 +580,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * Returns all stlyle files used bt this module
+	 * Returns all style files used by this module
 	 * @return array
 	 */
 	public function getAllStyleFiles() {
