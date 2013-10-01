@@ -1210,7 +1210,7 @@ var mw = ( function ( $, undefined ) {
 				addScript( sourceLoadScript + '?' + $.param( request ) + '&*', null, async );
 			}
 
-			/* Public Methods */
+			/* Public Members */
 			return {
 				/**
 				 * The module registry is exposed as an aid for debugging and inspecting page
@@ -1259,6 +1259,17 @@ var mw = ( function ( $, undefined ) {
 							}
 						}
 					}
+
+					mw.loader.moduleStore.init();
+					batch = $.grep( batch, function ( module ) {
+						var source = mw.loader.moduleStore.get( module, registry[module].version );
+						if ( source ) {
+							$.globalEval( source );
+							return false;
+						}
+						return true;
+					} );
+
 					// Early exit if there's nothing to load...
 					if ( !batch.length ) {
 						return;
@@ -1490,6 +1501,10 @@ var mw = ( function ( $, undefined ) {
 					registry[module].script = script;
 					registry[module].style = style;
 					registry[module].messages = msgs;
+
+					// Queue the module for storage in moduleStore
+					mw.loader.moduleStore.set( module, registry[module] );
+
 					// The module may already have been marked as erroneous
 					if ( $.inArray( registry[module].state, ['error', 'missing'] ) === -1 ) {
 						registry[module].state = 'loaded';
@@ -1709,8 +1724,149 @@ var mw = ( function ( $, undefined ) {
 					mw.loader.using( 'mediawiki.inspect', function () {
 						mw.inspect.inspectModules();
 					} );
-				}
+				},
 
+				/**
+				 * On browsers that implement the localStorage API, the module store serves as a
+				 * smart complement to the browser cache. Unlike the browser cache, the module store
+				 * can slice a concatenated response from ResourceLoader into its constituent
+				 * modules and cache each of them separately, using each module's versioning scheme
+				 * to determine when the cache should be invalidated.
+				 *
+				 * @singleton
+				 * @class mw.loader.moduleStore
+				 */
+				moduleStore: {
+					// The key for the moduleStore object in localStorage.
+					key: 'MediaWikiModuleStore',
+
+					// Whether the moduleStore is in use on this page.
+					enabled: false,
+
+					// Whether there are any pending changes to sync to localStorage.
+					dirty: false,
+
+					// The contents of the store, mapping '[module name]@[version]' keys
+					// to module implementations.
+					items: {},
+
+					/**
+					 * Retrieve a module from the store.
+					 *
+					 * @param {string} module Module name
+					 * @param {string|number} version Version identifier
+					 * @return {string|boolean} Module implementation or false if unavailable
+					 */
+					get: function ( module, version ) {
+						var key = module + '@' + version;
+						return mw.loader.moduleStore.enabled && mw.loader.moduleStore.items[key];
+					},
+
+					/**
+					 * Remove module from the store.
+					 * Removes all copies, regardless of version.
+					 *
+					 * @param {string} module Module name
+					 */
+					remove: function ( module ) {
+						for ( var key in mw.loader.moduleStore.items ) {
+							if ( key.split('@')[0] === module ) {
+								delete mw.loader.moduleStore.items[key];
+								mw.loader.moduleStore.dirty = true;
+							}
+						}
+					},
+
+					/**
+					 * Get a string key on which to vary the module cache.
+					 * @return {string} String of concatenated vary conditions.
+					 */
+					getVaryString: function () {
+						return [
+							mw.config.get( 'skin' ),
+							mw.config.get( 'wgDBname' ),
+							mw.config.get( 'wgResourceLoaderModuleStoreVersion' ),
+							mw.config.get( 'wgUserLanguage' )
+						].join(':');
+					},
+
+					/**
+					 * Initialize the moduleStore by retrieving it from localStorage and (if
+					 * successfully retrieved) decoding the stored JSON value to a plain object.
+					 *
+					 * See the in-line documentation for Modernizr's localStorage feature detection
+					 * code for a full account of why we need a try / catch: <http://git.io/4NEwKg>.
+					 */
+					init: function () {
+						var data, vary;
+
+						try {
+							data = JSON.parse( localStorage.getItem( mw.loader.moduleStore.key ) );
+
+							// If we got this far, localStorage & JSON.parse are available, so we
+							// mark the moduleStore as enabled. This ensures any modules we retrieve
+							// will be synced to localStorage.
+							mw.loader.moduleStore.enabled = true;
+							window.onload = mw.loader.moduleStore.update;
+
+							if ( !data ) {
+								return;
+							}
+
+							// If the decoded object from localStorage is corrupt or if its vary
+							// string does not match the moduleStore's, remove it.
+							vary = mw.loader.moduleStore.getVaryString();
+							if ( !$.isPlainObject( data.items ) || vary !== data.vary ) {
+								localStorage.removeItem( mw.loader.moduleStore.key );
+							}
+							mw.loader.moduleStore.items = data.items;
+						} catch (e) {}
+					},
+
+					/**
+					 * Sync pending changes to the moduleStore back to localStorage.
+					 */
+					update: function () {
+						var data;
+						if ( !( mw.loader.moduleStore.dirty ) ) {
+							return;
+						}
+						try {
+							data = JSON.stringify( {
+								items: mw.loader.moduleStore.items,
+								vary: mw.loader.moduleStore.getVaryString()
+							} );
+							localStorage.setItem( mw.loader.moduleStore.key, data );
+						} catch (e) {}
+					},
+
+					/**
+					 * Set a module implementation in the in-memory store and mark the moduleStore
+					 * dirty. Decline to set unversioned modules and modules in the 'private' group.
+					 *
+					 * @param {string} module Module name
+					 * @param {Object} descriptor The module's descriptor as set in the registry
+					 */
+					set: function ( module, descriptor ) {
+						var args, key = module + '@' + descriptor.version;
+						if ( !descriptor.version || descriptor.group === 'private' || key in mw.loader.moduleStore.items ) {
+							return false;
+						}
+						try {
+							args = [
+								JSON.stringify( module ),
+								String( descriptor.script ),
+								JSON.stringify( descriptor.style ),
+								JSON.stringify( descriptor.messages )
+							];
+						} catch (e) {}
+						// Assume that the module version we got is current and purge any older
+						// copies from the moduleStore.
+						mw.loader.moduleStore.remove( module );
+						mw.loader.moduleStore.items[key] = 'mw.loader.implement( ' + args.join(',') + ')';
+						mw.loader.moduleStore.dirty = true;
+					}
+				}
 			};
 		}() ),
 
