@@ -1210,7 +1210,7 @@ var mw = ( function ( $, undefined ) {
 				addScript( sourceLoadScript + '?' + $.param( request ) + '&*', null, async );
 			}
 
-			/* Public Methods */
+			/* Public Members */
 			return {
 				/**
 				 * The module registry is exposed as an aid for debugging and inspecting page
@@ -1259,6 +1259,19 @@ var mw = ( function ( $, undefined ) {
 							}
 						}
 					}
+
+					mw.loader.store.init();
+					if ( !$.isEmptyObject( mw.loader.store.items ) ) {
+						batch = $.grep( batch, function ( module ) {
+							var source = mw.loader.store.get( module );
+							if ( source ) {
+								$.globalEval( source );
+								return false; // Don't fetch
+							}
+							return true; // Fetch
+						} );
+					}
+
 					// Early exit if there's nothing to load...
 					if ( !batch.length ) {
 						return;
@@ -1490,6 +1503,9 @@ var mw = ( function ( $, undefined ) {
 					registry[module].script = script;
 					registry[module].style = style;
 					registry[module].messages = msgs;
+
+					mw.loader.store.set( module, registry[module] );
+
 					// The module may already have been marked as erroneous
 					if ( $.inArray( registry[module].state, ['error', 'missing'] ) === -1 ) {
 						registry[module].state = 'loaded';
@@ -1709,8 +1725,229 @@ var mw = ( function ( $, undefined ) {
 					mw.loader.using( 'mediawiki.inspect', function () {
 						mw.inspect.inspectModules();
 					} );
-				}
+				},
 
+				/**
+				 * On browsers that implement the localStorage API, the module store serves as a
+				 * smart complement to the browser cache. Unlike the browser cache, the module store
+				 * can slice a concatenated response from ResourceLoader into its constituent
+				 * modules and cache each of them separately, using each module's versioning scheme
+				 * to determine when the cache should be invalidated.
+				 *
+				 * @singleton
+				 * @class mw.loader.store
+				 */
+				store: {
+					// Whether the store is in use on this page.
+					enabled: null,
+
+					// The contents of the store, mapping '[module name]@[version]' keys
+					// to module implementations.
+					items: {},
+
+					// Cache hit stats
+					stats: { hits: 0, misses: 0 },
+
+					/**
+					 * Construct a JSON-serializable object representing the content of the store.
+					 * @return {Object} Module store contents.
+					 */
+					toJSON: function () {
+						return { items: mw.loader.store.items, vary: mw.loader.store.getVary() };
+					},
+
+					/**
+					 * Get the localStorage key for the entire module store. The key references
+					 * $wgDBname to prevent clashes between wikis which share a common host.
+					 *
+					 * @return {string} localStorage item key
+					 */
+					getStoreKey: function () {
+						return 'MediaWikiModuleStore:' + mw.config.get( 'wgDBname' );
+					},
+
+					/**
+					 * Get a string key on which to vary the module cache.
+					 * @return {string} String of concatenated vary conditions.
+					 */
+					getVary: function () {
+						return [
+							mw.config.get( 'skin' ),
+							mw.config.get( 'wgResourceLoaderStorageVersion' ),
+							mw.config.get( 'wgUserLanguage' )
+						].join(':');
+					},
+
+					/**
+					 * Get a string key for a specific module. The key format is '[name]@[version]'.
+					 *
+					 * @param {string} module Module name
+					 * @return {string} Module key
+					 */
+					getModuleKey: function ( module ) {
+						return module + '@' + registry[module].version;
+					},
+
+					/**
+					 * Initialize the store by retrieving it from localStorage and (if successfully
+					 * retrieved) decoding the stored JSON value to a plain object.
+					 *
+					 * See the in-line documentation for Modernizr's localStorage feature detection
+					 * code for a full account of why we need a try / catch: <http://git.io/4NEwKg>.
+					 */
+					init: function () {
+						var raw = null, data;
+
+						if ( mw.loader.store.enabled !== null ) {
+							// #init already ran.
+							return;
+						}
+
+
+						if ( mw.config.get( 'wgResourceLoaderStorageEnabled' ) !== true ) {
+							// Disabled by configuration.
+							mw.loader.store.enabled = false;
+							return;
+						}
+
+						try {
+							raw = localStorage.getItem( mw.loader.store.getStoreKey() );
+							// If we get here, localStorage is available; mark enabled.
+							mw.loader.store.enabled = true;
+							data = JSON.parse( raw );
+							if ( typeof data.items === 'object' && data.vary === mw.loader.store.getVary() ) {
+								mw.loader.store.items = data.items;
+								return;
+							}
+						} catch (e) {}
+
+						// If 'raw' is non-null, it means we retrieved a value from localStorage but
+						// could not decode it or could not match its vary string. We call #update
+						// to ensure the stored value gets replaced.
+						if ( raw !== null ) {
+							mw.loader.store.update();
+						} else {
+							mw.loader.store.enabled = false;  // localStorage failed; disable store.
+						}
+					},
+
+					/**
+					 * Retrieve a module from the store and update cache hit stats.
+					 *
+					 * @param {string} module Module name
+					 * @return {string|boolean} Module implementation or false if unavailable
+					 */
+					get: function ( module ) {
+						var key;
+
+						if ( mw.loader.store.enabled !== true ) {
+							return false;
+						}
+
+						key = mw.loader.store.getModuleKey( module );
+						if ( key in mw.loader.store.items ) {
+							mw.loader.store.stats.hits++;
+							return mw.loader.store.items[key];
+						}
+						mw.loader.store.stats.misses++;
+						return false;
+					},
+
+					/**
+					 * Stringify a module and queue it for storage.
+					 *
+					 * @param {string} module Module name
+					 * @param {Object} descriptor The module's descriptor as set in the registry
+					 */
+					set: function ( module, descriptor ) {
+						var args, key;
+
+						if ( mw.loader.store.enabled !== true ) {
+							return false;
+						}
+
+						key = mw.loader.store.getModuleKey( module );
+
+						if ( key in mw.loader.store.items ) {
+							// Already set; decline to store.
+							return false;
+						}
+
+						if ( !descriptor.version || descriptor.group === 'private' ) {
+							// Unversioned or private; decline to store.
+							return false;
+						}
+
+						try {
+							args = [
+								JSON.stringify( module ),
+								String( descriptor.script ),
+								JSON.stringify( descriptor.style ),
+								JSON.stringify( descriptor.messages )
+							];
+						} catch (e) {
+							return;
+						}
+						// Purge any other copies
+						mw.loader.store.remove( module );
+						mw.loader.store.items[key] = 'mw.loader.implement( ' + args.join(',') + ');';
+						mw.loader.store.update();
+					},
+
+					/**
+					 * Removes all copies of a module from the store, regardless of version.
+					 *
+					 * @param {string} module Module name
+					 */
+					remove: function ( module ) {
+						var key;
+
+						if ( mw.loader.store.enabled !== true ) {
+							return false;
+						}
+
+						for ( key in mw.loader.store.items ) {
+							if ( key.split('@')[0] === module ) {
+								delete mw.loader.store.items[key];
+								mw.loader.store.update();
+							}
+						}
+					},
+
+					/**
+					 * Sync modules to localStorage.
+					 *
+					 * This function debounces localStorage updates. When called multiple times in
+					 * quick succession, the calls are coalesced into a single update operation.
+					 * This allows us to call #update without having to consider the module load
+					 * queue; the call to localStorage.setItem will be naturally deferred until the
+					 * page is quiescent.
+					 *
+					 * Because localStorage is shared by all pages with the same origin, if multiple
+					 * pages are loaded with different module sets, the possibility exists that
+					 * modules saved by one page will be clobbered by another. But the impact would
+					 * be minor and the problem would be corrected by subsequent page views.
+					 */
+					update: ( function () {
+						var timer;
+
+						function flush() {
+							var data;
+							if ( mw.loader.store.enabled !== true ) {
+								return false;
+							}
+							try {
+								data = JSON.stringify( mw.loader.store );
+								localStorage.setItem( mw.loader.store.getStoreKey(), data );
+							} catch (e) {}
+						}
+
+						return function () {
+							clearTimeout( timer );
+							timer = setTimeout( flush, 2000 );
+						};
+					}() )
+				}
 			};
 		}() ),
 
