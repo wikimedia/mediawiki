@@ -56,6 +56,8 @@ production.
   multiple destinations to be specified.
 * (bug 53862) portal-url, currentevents-url and helppage have been removed from the
   default Sidebar.
+* The 'vector-simplesearch' preference is now enabled by default. Previously
+  it was only enabled if the Vector extension was installed.
 
 === New features in 1.22 ===
 * (bug 44525) mediawiki.jqueryMsg can now parse (whitelisted) HTML elements and attributes.
