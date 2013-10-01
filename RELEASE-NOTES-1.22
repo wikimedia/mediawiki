@@ -56,6 +56,9 @@ production.
   multiple destinations to be specified.
 * (bug 53862) portal-url, currentevents-url and helppage have been removed from the
   default Sidebar.
+* The precise format of metric datagrams produced by the UDP profiler and stats counter
+  may now be specified as $wgUDPProfilerFormatString and $wgStatsFormatString,
+  respectively.
 
 === New features in 1.22 ===
 * (bug 44525) mediawiki.jqueryMsg can now parse (whitelisted) HTML elements and attributes.

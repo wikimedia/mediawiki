@@ -91,20 +91,20 @@ class StatCounter {
 	 * @return void
 	 */
 	protected function sendDeltasUDP( array $deltas ) {
-		global $wgUDPProfilerHost, $wgUDPProfilerPort, $wgAggregateStatsID;
+		global $wgUDPProfilerHost, $wgUDPProfilerPort, $wgAggregateStatsID,
+			$wgStatsFormatString;
 
 		$id = strlen( $wgAggregateStatsID ) ? $wgAggregateStatsID : wfWikiID();
 
 		$lines = array();
 		foreach ( $deltas as $key => $count ) {
-			$lines[] = "stats/{$id} - {$count} 1 1 1 1 {$key}\n";
+			$lines[] = sprintf( $wgStatsFormatString, $id, $count, $key );
 		}
 
 		if ( count( $lines ) ) {
 			static $socket = null;
 			if ( !$socket ) {
 				$socket = socket_create( AF_INET, SOCK_DGRAM, SOL_UDP );
-				array_unshift( $lines, "stats/{$id} - 1 1 1 1 1 -total\n" );
 			}
 			$packet = '';
 			$packets = array();
