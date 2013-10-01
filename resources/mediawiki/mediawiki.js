@@ -7,8 +7,125 @@ var mw = ( function ( $, undefined ) {
 
 	/* Private Members */
 
-	var hasOwn = Object.prototype.hasOwnProperty,
-		slice = Array.prototype.slice;
+	var
+
+	hasOwn = Object.prototype.hasOwnProperty,
+
+	slice = Array.prototype.slice,
+
+	/**
+	 * On browsers that implement the localStorage API, the module store serves as a smart
+	 * complement to the browser cache. Unlike the browser cache, the module store can slice a
+	 * concatenated response from ResourceLoader into its constituent modules and cache each of them
+	 * separately, using each module's versioning scheme to determine when the cache should be
+	 * invalidated.
+	 *
+	 * @singleton
+	 */
+	moduleStore = {
+		// The key for the moduleStore object in localStorage.
+		key: 'MediaWikiModuleStore',
+
+		// Whether the moduleStore is in use on this page.
+		enabled: false,
+
+		// Whether there are any pending changes to sync to localStorage.
+		dirty: false,
+
+		/**
+		 * Retrieve a module from the store.
+		 *
+		 * @param {string} module Module name
+		 * @param {string|number} version Version identifier
+		 * @return {string|boolean} Source of module implementation or false if unavailable
+		 */
+		get: function ( module, version ) {
+			var key = module + '@' + version;
+			return moduleStore.enabled && moduleStore.items[ key ];
+		},
+
+		/**
+		 * Get a string key on which to vary the module cache.
+		 *
+		 * @return {string} String of concatenated vary conditions.
+		 */
+		getVaryString: function () {
+			return [
+				mw.config.get( 'skin' ),
+				mw.config.get( 'wgDBname' ),
+				mw.config.get( 'wgResourceLoaderModuleStoreVersion' ),
+				mw.config.get( 'wgUserLanguage' )
+			].join(':');
+		},
+
+		/**
+		 * Initialize the moduleStore by retrieving it from localStorage and (if successfully
+		 * retrieved) decoding the stored JSON value to a plain object.
+		 */
+		init: function () {
+			var data;
+			try {
+				data = JSON.parse( localStorage.getItem( moduleStore.key ) );
+
+				// If we got this far, localStorage & JSON.parse are available, so we mark the
+				// moduleStore as enabled. This ensures any modules we retrieve will be synced
+				// to localStorage.
+				moduleStore.enabled = true;
+				window.onload = moduleStore.update;
+
+				if ( !data ) {
+					return;
+				}
+
+				// If the decoded object from localStorage is corrupt or if its vary string does not
+				// match the module store's, remove the item from the cache.
+				if ( !$.isPlainObject( data.items ) || data.vary !== moduleStore.getVaryString() ) {
+					localStorage.removeItem( moduleStore.key );
+				}
+				moduleStore.items = data && data.items || {};
+			} catch (e) {}
+		},
+
+		/**
+		 * Sync pending changes to the moduleStore back to localStorage.
+		 * Return early if no changes are pending or if the moduleStore is not in use.
+		 */
+		update: function () {
+			if ( !( moduleStore.enabled && moduleStore.dirty ) ) {
+				return;
+			}
+			try {
+				localStorage.setItem( moduleStore.key, JSON.stringify( {
+					items: moduleStore.items,
+					vary: moduleStore.getVaryString()
+				} ) );
+			} catch (e) {}
+		},
+
+		/**
+		 * Set a module implementation in the in-memory store and mark the moduleStore dirty.
+		 * Decline to set modules in the 'private' group.
+		 *
+		 * @param {string} module Module name
+		 * @param {Object} descriptor The module's descriptor as set in the registry
+		 */
+		set: function ( module, descriptor ) {
+			var args, key = module + '@' + descriptor.version;
+			if ( !moduleStore.enabled || descriptor.group === 'private' || key in moduleStore.items ) {
+				return false;
+			}
+			try {
+				args = [
+					JSON.stringify( module ),
+					String( descriptor.script ),
+					JSON.stringify( descriptor.style ),
+					JSON.stringify( descriptor.messages )
+				];
+			} catch (e) {}
+			moduleStore.items[ key ] = 'mw.loader.implement( ' + args.join(',') + ');';
+			moduleStore.dirty = true;
+		},
+	};
 
 	/* Object constructors */
 
@@ -1259,6 +1376,17 @@ var mw = ( function ( $, undefined ) {
 							}
 						}
 					}
+
+					moduleStore.init();
+					batch = $.grep( batch, function ( module ) {
+						var source = moduleStore.get( module, registry[module].version );
+						if ( source ) {
+							$.globalEval( source );
+							return false;
+						}
+						return true;
+					} );
+
 					// Early exit if there's nothing to load...
 					if ( !batch.length ) {
 						return;
@@ -1490,6 +1618,10 @@ var mw = ( function ( $, undefined ) {
 					registry[module].script = script;
 					registry[module].style = style;
 					registry[module].messages = msgs;
+
+					// Queue the module for storage in moduleStore
+					moduleStore.set( module, registry[module] );
+
 					// The module may already have been marked as erroneous
 					if ( $.inArray( registry[module].state, ['error', 'missing'] ) === -1 ) {
 						registry[module].state = 'loaded';
