@@ -35,6 +35,7 @@
  * @author Li-sung
  * @author Locos epraix
  * @author Lyzzy
+ * @author MBq
  * @author MF-Warburg
  * @author Man77
  * @author Melancholie
@@ -894,7 +895,7 @@ Vergiss nicht, deine [[Special:Preferences|{{SITENAME}}-Einstellungen]] zu ände
 'createacct-imgcaptcha-ph' => 'Gib den Text ein, den du oben siehst.',
 'createacct-submit' => 'Dein Benutzerkonto erstellen',
 'createacct-another-submit' => 'Anderes Benutzerkonto erstellen',
-'createacct-benefit-heading' => '{{SITENAME}} wird von Leuten wie dir erstellt.',
+'createacct-benefit-heading' => '{{SITENAME}} wird von Menschen wie dir geschaffen.',
 'createacct-benefit-body1' => '{{PLURAL:$1|Bearbeitung|Bearbeitungen}}',
 'createacct-benefit-body2' => '{{PLURAL:$1|Seite|Seiten}}',
 'createacct-benefit-body3' => '{{PLURAL:$1|aktiver Autor|aktive Autoren}}',
@@ -4127,7 +4128,9 @@ Eine [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie der ''GNU General Public License'']
 'tag-filter-submit' => 'Filter',
 'tag-list-wrapper' => '([[Special:Tags|{{PLURAL:$1|Markierung|Markierungen}}]]: $2)',
 'tags-title' => 'Markierungen',
-'tags-intro' => 'Diese Seite zeigt alle Markierungen, die für Bearbeitungen verwendet werden, sowie deren Bedeutung.',
+'tags-intro' => 'Diese Seite zeigt alle Markierungen, die für Bearbeitungen verwendet wurden, sowie deren Bedeutung. 
+
+Bei entsprechender Einstellung können die Missbrauchfilter beliebige Markierungen in die Versionsgeschichte setzen. Man kann die Versionsgeschichte dann nach den Markierungen filtern.',
 'tags-tag' => 'Markierungsname',
 'tags-display-header' => 'Benennung auf den Änderungslisten',
 'tags-description-header' => 'Vollständige Beschreibung',

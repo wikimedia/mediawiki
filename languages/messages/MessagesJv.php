@@ -1362,7 +1362,7 @@ Alamat layang èlèktronik Sampéyan ora dituduhaké nalika wong liya ngubungi S
 'rc_categories_any' => 'Apa waé',
 'rc-change-size-new' => '$1 {{PLURAL:$1|bita|bita}} sakwisé diowah',
 'newsectionsummary' => '/* $1 */ bagéyan anyar',
-'rc-enhanced-expand' => 'Tuduhaké princèn (merlokaké JavaScript)',
+'rc-enhanced-expand' => 'Tuduhaké princèn',
 'rc-enhanced-hide' => 'Dhelikaké princèn',
 'rc-old-title' => 'wigatiné digawé minangka "$1"',
 
@@ -3584,7 +3584,7 @@ Anda seharusnya telah menerima [{{SERVER}}{{SCRIPTPATH}}/COPYING salinan Lisensi
 'logentry-newusers-create2' => 'Akun panganggo $3 digawé déning $1',
 'logentry-newusers-byemail' => 'Akun pengguna $3 dibuat oleh $1 dan kata sandi dikirim melalui e-mail',
 'logentry-newusers-autocreate' => 'Akun $1 digawé otomatis',
-'logentry-rights-rights' => 'ngganti kaanggotan kelompok kanggo $3 saka $4 dadi $5',
+'logentry-rights-rights' => '$1 {{GENDER:$2|ngganti}} kaanggotan kelompok kanggo $3 saka $4 dadi $5',
 'logentry-rights-rights-legacy' => '$1 mengubah keanggotaan grup $3',
 'logentry-rights-autopromote' => 'otomatis ditawakaké saka $4 nèng $5',
 'rightsnone' => '(ora ana)',

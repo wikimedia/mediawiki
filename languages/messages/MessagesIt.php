@@ -2468,7 +2468,7 @@ Consultare il log delle $2 per un elenco delle pagine cancellate di recente.',
 La modifica più recente alla pagina è stata apportata da [[User:$3|$3]] ([[User talk:$3|discussione]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment' => "L'oggetto della modifica era: \"''\$1''\".",
 'revertpage' => 'Annullate le modifiche di [[Special:Contributions/$2|$2]] ([[User talk:$2|discussione]]), riportata alla versione precedente di [[User:$1|$1]]',
-'revertpage-nouser' => 'Annullate le modifiche di un utente nascosto, riportata alla versione precedente di [[User:$1|$1]]',
+'revertpage-nouser' => 'Annullate le modifiche di un utente nascosto, riportata alla versione precedente di {{GENDER:$1|[[User:$1|$1]]}}',
 'rollback-success' => "Annullate le modifiche di $1; pagina riportata all'ultima versione di $2.",
 
 # Edit tokens

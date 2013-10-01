@@ -685,9 +685,9 @@ A dovrìa felo si për asar chiel a l'ha partagiaje con cheidun o si sò cont a 
 'anoneditwarning' => "'''Atension:''' A l'é nen rintrà ant ël sistema. Soa adrëssa IP a sarà registrà ant la stòria dle modìfiche ëd sa pàgina.",
 'anonpreviewwarning' => "''A l'é nen rintrà ant ël sistema. An salvand a sarà memorisà soa adrëssa IP ant la stòria dle modìfiche ëd sa pàgina.''",
 'missingsummary' => "'''Nòta:''' a l'ha butà gnun resumé dla modìfica. Se a sgnaca «{{int:savearticle}}» n'àutra vira, soa modìfica a resterà salvà sensa resumé.",
-'missingcommenttext' => 'Për piasì che a buta un coment ambelessì sota.',
-'missingcommentheader' => "'''Ch'a arcòrda:''' A l'ha pa dàit soget o intestassion për sto coment-sì.
-Se a sgnaca torna \"{{int:savearticle}}\", soa modìfica a sarà salvà sensa gnun-a intestassion.",
+'missingcommenttext' => 'Për piasì, che a buta un coment sì-sota.',
+'missingcommentheader' => "'''Ch'a arcòrda:''' A l'ha pa dàit ëd soget o d'intestassion për cost coment.
+Se a sgnaca torna «{{int:savearticle}}», soa modìfica a sarà salvà sensa gnun-a intestassion.",
 'summary-preview' => "Preuva dl'oget:",
 'subject-preview' => "Preuva d'oget/intestassion:",
 'blockedtitle' => "Belavans cost ëstranòm-sì a resta col ëd n'utent che a l'é stàit disabilità a fé 'd modìfiche a j'artìcoj.",

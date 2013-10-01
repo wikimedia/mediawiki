@@ -1081,7 +1081,7 @@ $1',
 'timezoneuseserverdefault' => 'د ويکي تلواليزه بڼه کارول ($1)',
 'timezoneuseoffset' => 'بل (توپير ځانگړی کړی)',
 'timezoneoffset' => 'توپير¹:',
-'servertime' => 'د پالنګر وخت:',
+'servertime' => 'د پالنگر وخت:',
 'guesstimezone' => 'له کتنمل نه ډکول',
 'timezoneregion-africa' => 'افريقا',
 'timezoneregion-america' => 'امريکا',
@@ -1213,7 +1213,7 @@ $1',
 'right-edituserjs' => 'د نورو کارنانو د JS (جاوا سکرېپټ) دوتنې سمول',
 'right-unwatchedpages' => 'د ناکتلو مخونو يو لړليک کتل',
 'right-userrights' => 'د کارن ټولې رښتې سمول',
-'right-userrights-interwiki' => 'په نورو ويکي ګانو د نورو کارنانو  کارن-رښتې سمول',
+'right-userrights-interwiki' => 'په نورو ويکي گانو د نورو کارنانو  کارن-رښتې سمول',
 'right-sendemail' => 'نورو کارنانو ته برېښليک لېږل',
 
 # Special:Log/newusers
@@ -1247,7 +1247,7 @@ $1',
 'action-unwatchedpages' => 'د ناکتلو مخونو لړليک کتل',
 'action-mergehistory' => 'د دې مخ پېښليک سره اخږل',
 'action-userrights' => 'د کارن ټولې رښتې سمول',
-'action-userrights-interwiki' => 'په نورو ويکي ګانو د کارنانو رښتې سمول',
+'action-userrights-interwiki' => 'په نورو ويکي گانو د کارنانو رښتې سمول',
 'action-siteadmin' => 'توکبنسټ کولپول يا نه کولپول',
 'action-sendemail' => 'برېښليکونه لېږل',
 
@@ -1471,7 +1471,7 @@ $1',
 'unwatchedpages' => 'ناکتلي مخونه',
 
 # List redirects
-'listredirects' => 'د ورګرځېدنو لړليک',
+'listredirects' => 'د ورگرځېدنو لړليک',
 
 # Unused templates
 'unusedtemplates' => 'ناکارېدلې کينډۍ',
@@ -1482,7 +1482,7 @@ $1',
 'randompage-nopages' => 'په لانديني {{PLURAL:$2|نوم-تشيال|نوم-تشيالونو}} کې هېڅ کوم مخ نشته: $1.',
 
 # Random redirect
-'randomredirect' => 'ناټاکلی ورګرځېدنه',
+'randomredirect' => 'ناټاکلی ورگرځېدنه',
 
 # Statistics
 'statistics' => 'شمار',
@@ -1506,9 +1506,9 @@ $1',
 
 'pageswithprop-submit' => 'ورځه',
 
-'doubleredirects' => 'دوه ځلي ورګرځېدنې',
+'doubleredirects' => 'دوه ځلي ورگرځېدنې',
 
-'brokenredirects' => 'ماتې ورګرځېدنې',
+'brokenredirects' => 'ماتې ورگرځېدنې',
 'brokenredirects-edit' => 'سمول',
 'brokenredirects-delete' => 'ړنگول',
 
@@ -1542,9 +1542,9 @@ $1',
 'wantedfiles' => 'غوښتلې دوتنې',
 'wantedtemplates' => 'غوښتلې کينډۍ',
 'mostlinked' => 'د ډېرو تړنو مخونه',
-'mostlinkedcategories' => 'د ګڼو تړنو وېشنيزې',
+'mostlinkedcategories' => 'د گڼو تړنو وېشنيزې',
 'mostlinkedtemplates' => 'د ډېرو تړنو کينډۍ',
-'mostcategories' => 'د ګڼو وېشنيزو مخونه',
+'mostcategories' => 'د گڼو وېشنيزو مخونه',
 'mostimages' => 'د ډېرو تړنو انځورونه',
 'mostinterwikis' => 'د ډېرو خپلمنځي تړنو مخونه',
 'mostrevisions' => 'ډېر کتلي مخونه',
@@ -1601,7 +1601,7 @@ $1',
 'allpagesnext' => 'راتلونکي',
 'allpagessubmit' => 'ورځه',
 'allpagesprefix' => 'هغه مخونه ښکاره کړه چې مختاړی يې وي:',
-'allpagesbadtitle' => 'ورکړ شوی سرليک سم نه دی او يا هم د ژبو او يا د بېلابېلو ويکي ګانو مختاړی لري. ستاسو په سرليک کې يو يا څو داسې ابېڅې دي کوم چې په سرليک کې نه شي کارېدلی.',
+'allpagesbadtitle' => 'ورکړ شوی سرليک سم نه دی او يا هم د ژبو او يا د بېلابېلو ويکي گانو مختاړی لري. ستاسو په سرليک کې يو يا څو داسې ابېڅې دي کوم چې په سرليک کې نه شي کارېدلی.',
 'allpages-bad-ns' => '{{SITENAME}} د "$1" په نامه هېڅ کوم نوم-تشيال نه لري.',
 'allpages-hide-redirects' => 'مخ ګرځونې پټول',
 
@@ -1775,7 +1775,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'excontent' => 'د مخ مېنځپانگه دا وه: "$1"',
 'excontentauthor' => 'د مخ مېنځپانگه دا وه: "$1" (او يواځينی ونډه وال "[[Special:Contributions/$2|$2]]" وه)',
 'exblank' => 'مخ تش وه',
-'delete-confirm' => '"$1" ړنګوول',
+'delete-confirm' => '"$1" ړنگول',
 'delete-legend' => 'ړنگول',
 'historywarning' => "ګواښنه:''' تاسې چې د کوم مخ د ړنګېدو تکل لری، هغه د نژدې $1 {{PLURAL:$1|بڼې|بڼو}} يو پېښليک لري:",
 'confirmdeletetext' => 'تاسې د تل لپار يو مخ يا انځور د هغه ټول پېښليک سره د دغه توکبنسټ نه ړنګوۍ. که چېرته تاسې ددې کړنې په پايله پوه ياست او يا ستاسو همدا کړنه د دې پاڼې د [[{{MediaWiki:Policy-url}}|تګلارې]] سره سمون خوري نو لطفاً د دې تاييد وکړی.',
@@ -1955,8 +1955,8 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'ipusubmit' => 'دا بنديز ليرې کول',
 'unblocked' => 'له [[User:$1|$1]] بنديز ليري شو',
 'unblocked-range' => 'له $1 بنديز ليرې شو',
-'blocklist' => 'بنديز لګېدلي کارنان',
-'ipblocklist' => 'بنديز لګېدلي کارنان',
+'blocklist' => 'بنديز لگېدلي کارنان',
+'ipblocklist' => 'بنديز لگېدلي کارنان',
 'ipblocklist-legend' => 'يو بنديز شوی کارن موندل',
 'blocklist-userblocks' => 'گڼون بنديزونه پټول',
 'blocklist-tempblocks' => 'لنډمهاله بنديزونه پټول',
@@ -2365,7 +2365,7 @@ $1',
 'exif-giffilecomment' => 'د GIF دوتنې تبصره',
 
 'exif-copyrighted-true' => 'په رښتو سمبال',
-'exif-copyrighted-false' => 'ټولګړی شپول',
+'exif-copyrighted-false' => 'د خپراوي د رښتو دريځ نه دی ټاکل شوی',
 
 'exif-unknowndate' => 'نامالومه نېټه',
 
@@ -2629,7 +2629,7 @@ $5
 
 # Special:Version
 'version' => 'بڼه',
-'version-extensions' => 'لګېدلي شاتاړي',
+'version-extensions' => 'لگېدلي شاتاړي',
 'version-specialpages' => 'ځانگړي مخونه',
 'version-skins' => 'پوښۍ',
 'version-other' => 'بل',
@@ -2647,8 +2647,8 @@ $5
 'version-software-version' => 'بڼه',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch' => 'د دوه ګونو دوتنو پلټنه',
-'fileduplicatesearch-legend' => 'د دوه ګونو دوتنو پلټنه',
+'fileduplicatesearch' => 'د دوه گونو دوتنو پلټنه',
+'fileduplicatesearch-legend' => 'د دوه گونو دوتنو پلټنه',
 'fileduplicatesearch-filename' => 'د دوتنې نوم:',
 'fileduplicatesearch-submit' => 'پلټل',
 'fileduplicatesearch-info' => '<span dir="ltr">$1 × $2</span> پېکسل<br />د دوتنې کچه: $3<br />ډول MIME: $4',

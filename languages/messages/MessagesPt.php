@@ -2532,7 +2532,7 @@ alguém editou ou já reverteu a página.
 A última edição foi de [[User:$3|$3]] ([[User talk:$3|discussão]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment' => "O resumo da edição era: \"''\$1''\".",
 'revertpage' => 'Foram revertidas as edições de [[Special:Contributions/$2|$2]] ([[User talk:$2|disc]]) para a última versão por [[User:$1|$1]]',
-'revertpage-nouser' => 'Revertidas as edições de um usuário ocultado para a última revisão por [[User:$1|$1]]',
+'revertpage-nouser' => 'Revertidas as edições de um usuário ocultado para a última revisão {{GENDER:$1|pelo|pela|por}} [[User:$1|$1]]',
 'rollback-success' => 'Foram revertidas as edições de $1, com o conteúdo passando a estar como na última edição de $2.',
 
 # Edit tokens
