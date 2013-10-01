@@ -253,6 +253,13 @@ production.
   output in a HTML comment.
 * The 'UnwatchArticle' and 'WatchArticle' hooks now support a Status object
   instead of just a boolean return value to abort the hook.
+* ResourceLoader can utilize the Web Storage API to cache modules client-side.
+  Compared to the browser cache, caching in Web Storage allows ResourceLoader
+  to be more granular about evicting stale modules from the cache while
+  retaining the ability to retrieve multiple modules in a single HTTP request.
+  This capability can be enabled by setting $wgResourceLoaderStorageEnabled to
+  true. For 1.22, this feature is considered experimental and should only be
+  enabled with care.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
