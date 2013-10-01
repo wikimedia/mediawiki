@@ -41,7 +41,8 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			$wgVariantArticlePath, $wgActionPaths, $wgVersion,
 			$wgEnableAPI, $wgEnableWriteAPI, $wgDBname,
 			$wgSitename, $wgFileExtensions, $wgExtensionAssetsPath,
-			$wgCookiePrefix, $wgResourceLoaderMaxQueryLength;
+			$wgCookiePrefix, $wgResourceLoaderMaxQueryLength,
+			$wgResourceLoaderStorageEnabled, $wgResourceLoaderStorageVersion;
 
 		$mainPage = Title::newMainPage();
 
@@ -96,6 +97,8 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgResourceLoaderMaxQueryLength' => $wgResourceLoaderMaxQueryLength,
 			'wgCaseSensitiveNamespaces' => $caseSensitiveNamespaces,
 			'wgLegalTitleChars' => Title::convertByteClassToUnicodeClass( Title::legalChars() ),
+			'wgResourceLoaderStorageVersion' => $wgResourceLoaderStorageVersion,
+			'wgResourceLoaderStorageEnabled' => $wgResourceLoaderStorageEnabled,
 		);
 
 		wfRunHooks( 'ResourceLoaderGetConfigVars', array( &$vars ) );
