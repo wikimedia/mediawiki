@@ -290,6 +290,35 @@ var mw = ( function ( $, undefined ) {
 		}
 	};
 
+	function Cache( name ) {
+		this.name = name;
+		return this;
+	}
+
+	Cache.prototype = $.extend( {
+		init: function ( version ) {
+			try {
+				this.values = JSON.parse( localStorage.getItem( this.name ) )
+					|| { version: version };
+				// If the cached version identifier is different than the one
+				// supplied to the constructor, invalidate the cache.
+				if ( this.get( 'version' ) !== version ) {
+					localStorage.removeItem( this.name );
+				}
+			} catch ( e ) {
+				// Pass.
+			}
+		},
+		update: function () {
+			try {
+				localStorage.setItem( this.name, JSON.stringify( this.values ) );
+				return true;
+			} catch ( e ) {
+				return false;
+			}
+		}
+	}, Map.prototype );
+
 	/**
 	 * Base library for MediaWiki.
 	 *
@@ -444,6 +473,8 @@ var mw = ( function ( $, undefined ) {
 				queue = [],
 				// List of callback functions waiting for modules to be ready to be called
 				jobs = [],
+				// Cache of locally-stored module sources
+				cache = new Cache( 'ResourceLoader' ),
 				// Selector cache for the marker element. Use getMarker() to get/use the marker!
 				$marker = null,
 				// Buffer for addEmbeddedCSS.
@@ -451,7 +482,16 @@ var mw = ( function ( $, undefined ) {
 				// Callbacks for addEmbeddedCSS.
 				cssCallbacks = $.Callbacks();
 
+				// Do nothing.
+
 			/* Private methods */
+
+			function makeModuleKey( moduleName ) {
+				if ( !registry[moduleName] ) {
+					return false;
+				}
+				return moduleName + ':' + registry[moduleName].version;
+			}
 
 			function getMarker() {
 				// Cached ?
@@ -1259,6 +1299,21 @@ var mw = ( function ( $, undefined ) {
 							}
 						}
 					}
+
+					cache.init( mw.config.get( 'wgVersion' ) );
+					window.onload = function () {
+						cache.update();
+					}
+
+					batch = $.grep( batch, function ( module ) {
+						source = cache.get( makeModuleKey( module ) );
+						if ( source ) {
+							$.globalEval( source );
+							return false;
+						}
+						return true;
+					} );
+
 					// Early exit if there's nothing to load...
 					if ( !batch.length ) {
 						return;
@@ -1490,6 +1545,19 @@ var mw = ( function ( $, undefined ) {
 					registry[module].script = script;
 					registry[module].style = style;
 					registry[module].messages = msgs;
+
+
+					try {
+						cache.set( makeModuleKey( module ), 'mw.loader.implement(' + [
+							'"' + module + '"',
+							script.toString(),
+							JSON.stringify( style ),
+							JSON.stringify( msgs )
+						].join(',') + ')' );
+					} catch ( e ) {
+						// Pass.
+					}
+
 					// The module may already have been marked as erroneous
 					if ( $.inArray( registry[module].state, ['error', 'missing'] ) === -1 ) {
 						registry[module].state = 'loaded';
