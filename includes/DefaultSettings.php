@@ -3327,6 +3327,15 @@ $wgResourceLoaderLESSImportPaths = array(
 	"$IP/resources/mediawiki.less/",
 );
 
+/**
+ * Cache version for the client-side ResourceLoader module store. You can
+ * trigger invalidation of the contents of the module store by incrementing
+ * this value.
+ *
+ * @since 1.22
+ */
+$wgResourceLoaderModuleStoreVersion = 1;
+
 /** @} */ # End of resource loader settings }
 
 /*************************************************************************//**
