@@ -262,6 +262,13 @@ production.
   Previously in the "SimpleAntiSpam" extension by Ryan Schmidt.
 * populateRevisionLength.php maintenance script updated to also populate
   archive.ar_len field.
+* ResourceLoader can utilize the Web Storage API to cache modules client-side.
+  Compared to the browser cache, caching in Web Storage allows ResourceLoader
+  to be more granular about evicting stale modules from the cache while
+  retaining the ability to retrieve multiple modules in a single HTTP request.
+  This capability can be enabled by setting $wgResourceLoaderStorageEnabled to
+  true. For 1.22, this feature is considered experimental and should only be
+  enabled with care.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
