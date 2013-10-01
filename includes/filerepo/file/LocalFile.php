@@ -1764,6 +1764,16 @@ class LocalFile extends File {
 				$this->lockedOwnTrx = true;
 			}
 			$this->locked++;
+			// Bug 54736: use simple lock to handle when the file does not exist.
+			// SELECT FOR UPDATE only locks records not the gaps where there are none.
+			$cache = wfGetMainCache();
+			$key = $this->getCacheKey();
+			if ( !$cache->lock( $key, 60 ) ) {
+				throw new MWException( "Could not acquire lock for '{$this->getName()}.'" );
+			}
+			$dbw->onTransactionIdle( function() use ( $cache, $key ) {
+				$cache->delete( $key ); // release on commit
+			} );
 		}
 
 		return $dbw->selectField( 'image', '1',
