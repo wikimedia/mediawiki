@@ -178,6 +178,8 @@ class LoginForm extends SpecialPage {
 			if ( $wgSecureLogin && wfCanIPUseHTTPS( $this->getRequest()->getIP() ) ) {
 				$url = wfAppendQuery( $url, 'fromhttp=1' );
 				$this->getOutput()->redirect( $url );
+				// Since we only do this redir to change proto, always vary
+				$this->getOutput()->addVaryHeader( 'X-Forwarded-Proto' );
 				return;
 			} else {
 				// A wiki without HTTPS login support should set $wgServer to

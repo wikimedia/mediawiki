@@ -546,6 +546,8 @@ class MediaWiki {
 			$title = Title::newFromText( NS_MAIN, 'REDIR' );
 			$this->context->setTitle( $title );
 			$output = $this->context->getOutput();
+			// Since we only do this redir to change proto, always send a vary header
+			$output->addVaryHeader( 'X-Forwarded-Proto' );
 			$output->redirect( $redirUrl );
 			$output->output();
 			wfProfileOut( __METHOD__ );
