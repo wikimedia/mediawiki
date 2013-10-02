@@ -376,6 +376,8 @@ production.
   "exists-normalized" instead of filename to be uploaded to.
 * (bug 53884) action=edit will now return an error when the specified section
   does not exist in the page.
+* (bug 54884) action=parse&prop=categories now indicates hidden and missing
+  categories.
 
 === Languages updated in 1.22===
 

@@ -461,12 +461,41 @@ class ApiParse extends ApiBase {
 
 	private function formatCategoryLinks( $links ) {
 		$result = array();
+
+		if ( !$links ) {
+			return $result;
+		}
+
+		// Fetch hiddencat property
+		$lb = new LinkBatch;
+		$lb->setArray( array( NS_CATEGORY => $links ) );
+		$db = $this->getDB();
+		$res = $db->select( array( 'page', 'page_props' ),
+			array( 'page_title', 'pp_propname' ),
+			$lb->constructSet( 'page', $db ),
+			__METHOD__,
+			array(),
+			array( 'page_props' => array(
+				'LEFT JOIN', array( 'pp_propname' => 'hiddencat', 'pp_page = page_id' )
+			) )
+		);
+		$hiddencats = array();
+		foreach ( $res as $row ) {
+			$hiddencats[$row->page_title] = isset( $row->pp_propname );
+		}
+
 		foreach ( $links as $link => $sortkey ) {
 			$entry = array();
 			$entry['sortkey'] = $sortkey;
 			ApiResult::setContent( $entry, $link );
+			if ( !isset( $hiddencats[$link] ) ) {
+				$entry['missing'] = '';
+			} elseif ( $hiddencats[$link] ) {
+				$entry['hidden'] = '';
+			}
 			$result[] = $entry;
 		}
+
 		return $result;
 	}
 
