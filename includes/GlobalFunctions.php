@@ -1952,23 +1952,6 @@ function wfViewPrevNext( $offset, $limit, $link, $query = '', $atend = false ) {
 }
 
 /**
- * Make a list item, used by various special pages
- *
- * @param string $page Page link
- * @param string $details Text between brackets
- * @param $oppositedm Boolean	Add the direction mark opposite to your
- *								language, to display text properly
- * @return String
- * @deprecated since 1.19; use Language::specialList() instead
- */
-function wfSpecialList( $page, $details, $oppositedm = true ) {
-	wfDeprecated( __METHOD__, '1.19' );
-
-	global $wgLang;
-	return $wgLang->specialList( $page, $details, $oppositedm );
-}
-
-/**
  * @todo document
  * @todo FIXME: We may want to blacklist some broken browsers
  *
