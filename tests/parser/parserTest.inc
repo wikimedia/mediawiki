@@ -143,7 +143,7 @@ class ParserTest {
 	static function setUp() {
 		global $wgParser, $wgParserConf, $IP, $messageMemc, $wgMemc,
 			$wgUser, $wgLang, $wgOut, $wgRequest, $wgStyleDirectory, $wgEnableParserCache,
-			$wgNamespaceAliases, $wgNamespaceProtection, $wgLocalFileRepo,
+			$wgExtraNamespaces, $wgNamespaceAliases, $wgNamespaceProtection, $wgLocalFileRepo,
 			$parserMemc, $wgThumbnailScriptPath, $wgScriptPath,
 			$wgArticlePath, $wgScript, $wgStylePath, $wgExtensionAssetsPath,
 			$wgMainCacheType, $wgMessageCacheType, $wgParserCacheType, $wgLockManagers;
@@ -182,6 +182,9 @@ class ParserTest {
 		$wgNamespaceProtection[NS_MEDIAWIKI] = 'editinterface';
 		$wgNamespaceAliases['Image'] = NS_FILE;
 		$wgNamespaceAliases['Image_talk'] = NS_FILE_TALK;
+		# add a namespace shadowing a interwiki link, to test
+		# proper precedence when resolving links. (bug 51680)
+		$wgExtraNamespaces[100] = 'MemoryAlpha';
 
 		// XXX: tests won't run without this (for CACHE_DB)
 		if ( $wgMainCacheType === CACHE_DB ) {
@@ -236,6 +239,11 @@ class ParserTest {
 					'iw_local' => 0 ),
 				'meatball' => array(
 					'iw_url' => 'http://www.usemod.com/cgi-bin/mb.pl?$1',
+					'iw_api' => '',
+					'iw_wikiid' => '',
+					'iw_local' => 0 ),
+				'memoryalpha' => array(
+					'iw_url' => 'http://www.memory-alpha.org/en/index.php/$1',
 					'iw_api' => '',
 					'iw_wikiid' => '',
 					'iw_local' => 0 ),

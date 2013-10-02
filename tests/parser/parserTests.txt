@@ -4634,6 +4634,22 @@ Link to namespaces
 </p>
 !! end
 
+!! article
+MemoryAlpha:AlphaTest
+!! text
+This is an article in the MemoryAlpha namespace
+(which shadows the memoryalpha interwiki link).
+!! endarticle
+
+!! test
+Namespace takes precedence over interwiki link (bug 51680)
+!! input
+[[MemoryAlpha:AlphaTest]]
+!! result
+<p><a href="/wiki/MemoryAlpha:AlphaTest" title="MemoryAlpha:AlphaTest">MemoryAlpha:AlphaTest</a>
+</p>
+!! end
+
 !! test
 Piped link to namespace
 !! input
