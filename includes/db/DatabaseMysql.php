@@ -34,10 +34,23 @@ class DatabaseMysql extends DatabaseMysqlBase {
 	 * @return resource
 	 */
 	protected function doQuery( $sql ) {
+		$isHipHop = wfIsHipHop();
 		if ( $this->bufferResults() ) {
+			if ( $isHipHop ) {
+				wfSuppressWarnings();
+			}
 			$ret = mysql_query( $sql, $this->mConn );
+			if ( $isHipHop ) {
+				wfRestoreWarnings();
+			}
 		} else {
+			if ( $isHipHop ) {
+				wfSuppressWarnings();
+			}
 			$ret = mysql_unbuffered_query( $sql, $this->mConn );
+			if ( $isHipHop ) {
+				wfRestoreWarnings();
+			}
 		}
 		return $ret;
 	}
