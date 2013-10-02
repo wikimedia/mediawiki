@@ -4700,6 +4700,9 @@ $wgRateLimits = array(
 		'ip' => null,
 		'subnet' => null,
 	),
+	'purge' => array(
+		'user' => null,
+	),
 );
 
 /**
