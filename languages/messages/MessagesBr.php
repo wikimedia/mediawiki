@@ -3925,7 +3925,7 @@ Sañset oc'h bezañ resevet [{{SERVER}}{{SCRIPTPATH}}/COPYING un eilskrid eus ar
 'logentry-delete-event-legacy' => 'Kemmet eo bet gwelusted darvoudoù ar marilh $3 gant $1',
 'logentry-delete-revision-legacy' => 'Kemmet eo bet gwelusted ar reizhadennoù war ar bajenn $3 gant $1',
 'logentry-suppress-delete' => '$1 {{GENDER:$2|en deus dilamet}} ar bajenn $3',
-'logentry-suppress-event' => "Kemmet eo bet dre guzh gwelusted {{PLURAL:$5|un darvoud eus ar marilh|$5 darvoudoù eus ar marilh}} d'an $3 gant $1 : $4",
+'logentry-suppress-event' => "Kemmet eo bet dre guzh gwelusted {{PLURAL:$5|un darvoud eus ar marilh|$5 darvoud eus ar marilh}} d'an $3 gant $1 : $4",
 'logentry-suppress-revision' => 'Kemmet eo bet dre guzh gwelusted {{PLURAL:$5|reizhadenn|$5 reizhadenn}} war ar bajenn $3 gant $1 : $4',
 'logentry-suppress-event-legacy' => "Kemmet eo bet dre guzh gwelusted darvoudoù ar marilh d'an $3 gant $1",
 'logentry-suppress-revision-legacy' => 'Kemmet eo bet dre guzh gwelusted ar reizhadennoù war ar bajenn $3 gant $1',
@@ -4029,7 +4029,8 @@ A-hend-all e c'hallit ober gant ar furmskrid eeunaet dindan. Ouzhpennet e vo hoc
 'limitreport-cputime-value' => '$1 {{PLURAL:$1|eiladenn}}',
 'limitreport-walltime' => 'Amzer implij gwirion',
 'limitreport-walltime-value' => '$1 {{PLURAL:$1|eiladenn}}',
-'limitreport-postexpandincludesize-value' => '$1/$2 okted',
-'limitreport-templateargumentsize-value' => '$1/$2 okted',
+'limitreport-postexpandincludesize-value' => '$1/$2 {{PLURAL:$2|okted}}',
+'limitreport-templateargumentsize' => 'Ment arguzenn ar patrom',
+'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|okted}}',
 
 );

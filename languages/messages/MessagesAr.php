@@ -4135,7 +4135,7 @@ $5
 'table_pager_empty' => 'لا نتائج',
 
 # Auto-summaries
-'autosumm-blank' => 'أفرغ الصفحة',
+'autosumm-blank' => 'إفراغ الصفحة',
 'autosumm-replace' => "استبدال الصفحة ب'$1'",
 'autoredircomment' => 'تحويل إلى [[$1]]',
 'autosumm-new' => "أنشأ الصفحة ب'$1'",

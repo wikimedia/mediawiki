@@ -3063,7 +3063,7 @@ $2',
 'markedaspatrollederror' => 'შეუძლებელია ამ სტატიის მოhttp://translatewiki.net/w/i.php?title=MediaWiki:Markedaspatrollederror/ka&action=edit&loadgroup=core&loadtask=untranslatedნიშნვნა პატრულირებულად.',
 'markedaspatrollederrortext' => 'თქვენ უნდა მონიშნოთ ვერსია, რომელიც პატრულირებულად ჩაითვლება.',
 'markedaspatrollederror-noautopatrol' => 'თქვენ ვერ მონიშნავთ თქვენივე შესწორებებს პატრულირებულად.',
-'markedaspatrollednotify' => 'ეს ცვლილება გვერდზე $1 პატრულირებულად მოინიშნა.',
+'markedaspatrollednotify' => 'ეს ცვლილება გვერდზე „$1“ პატრულირებულად მოინიშნა.',
 'markedaspatrollederrornotify' => 'პატრულირებულად მონიშვნა ვერ მოხერხდა.',
 
 # Patrol log

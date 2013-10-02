@@ -598,7 +598,7 @@ $1',
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} 소개',
 'aboutpage' => 'Project:소개',
-'copyright' => '내용은 별도로 표시되지 않을 경우 $1 라이선스에 따라 이용할 수 있습니다.',
+'copyright' => '내용은 별도로 명시하지 않을 경우 $1에 따라 사용할 수 있습니다.',
 'copyrightpage' => '{{ns:project}}:저작권',
 'currentevents' => '요즘 화제',
 'currentevents-url' => 'Project:요즘 화제',
@@ -4318,7 +4318,7 @@ $5
 'limitreport-postexpandincludesize' => '전개한 뒤 포함 크기',
 'limitreport-postexpandincludesize-value' => '$1/$2 {{PLURAL:$2|바이트}}',
 'limitreport-templateargumentsize' => '틀 인수 크기',
-'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|}}바이트',
+'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|바이트}}',
 'limitreport-expansiondepth' => '최대 전개 깊이',
 'limitreport-expensivefunctioncount' => '부하 높은 파서 함수 수',
 

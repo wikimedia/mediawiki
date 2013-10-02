@@ -2743,7 +2743,7 @@ $1',
 
 # Contributions
 'contributions' => 'Contributions de l’{{GENDER:$1|utilisateur|utilisatrice}}',
-'contributions-title' => 'Liste des contributions de l’utilisat{{GENDER:|eur|rice|eur}} $1',
+'contributions-title' => 'Liste des contributions de l’utilisat{{GENDER:$1|eur|rice|eur}} $1',
 'mycontris' => 'Contributions',
 'contribsub2' => 'Pour $1 ($2)',
 'nocontribs' => "Aucune modification correspondant à ces critères n'a été trouvée.",
