@@ -243,7 +243,10 @@ abstract class DatabaseInstaller {
 		if ( $status->isOK() ) {
 			$status->value->setSchemaVars( $this->getSchemaVars() );
 		} else {
-			throw new MWException( __METHOD__ . ': unexpected DB connection error' );
+			$msg = __METHOD__ . ': unexpected error while establishing'
+				. ' a database connection with message: '
+				. $status->getMessage()->plain();
+			throw new MWException( $msg );
 		}
 	}
 
