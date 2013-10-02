@@ -37,3 +37,10 @@
 .list-style-image(@url) when not (embeddable(@url)) {
 	list-style-image: url(@url);
 }
+
+.transition(@property, @duration) {
+	-moz-transition: @property @duration;
+	-webkit-transition: @property @duration;
+	-o-transition: @property @duration;
+	transition: @property @duration;
+}
