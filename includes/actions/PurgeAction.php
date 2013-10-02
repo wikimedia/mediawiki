@@ -67,7 +67,7 @@ class PurgeAction extends FormAction {
 		$this->checkCanExecute( $this->getUser() );
 
 		$user = $this->getUser();
-		if ( $user->isAllowed( 'purge' ) && !$user->isBlocked() ) {
+		if ( $user->isAllowed( 'purge' ) && !$user->isBlocked() && !$user->pingLimiter( 'purge' ) ) {
 			$this->redirectParams = wfArrayToCgi( array_diff_key(
 				$this->getRequest()->getQueryValues(),
 				array( 'title' => null, 'action' => null )
