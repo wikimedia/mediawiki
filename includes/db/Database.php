@@ -1659,12 +1659,10 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 * @return bool
 	 */
 	public function tableExists( $table, $fname = __METHOD__ ) {
-		$table = $this->tableName( $table );
-		$old = $this->ignoreErrors( true );
-		$res = $this->query( "SELECT 1 FROM $table LIMIT 1", $fname );
-		$this->ignoreErrors( $old );
-
-		return (bool)$res;
+		$tableQuoted = $this->addQuotes( $this->tableName( $table, 'raw' ) );
+		$dbNameQuoted = $this->addQuotes( $this->getDBname() );
+		return (bool)$this->query( "SELECT 1 FROM INFORMATION_SCHEMA.TABLES " .
+			"WHERE TABLE_SCHEMA = {$dbNameQuoted} AND TABLE_NAME = {$tableQuoted}", $fname );
 	}
 
 	/**

@@ -867,6 +867,20 @@ class DatabaseSqlite extends DatabaseBase {
 		return $endArray;
 	}
 
+	/**
+	 * Query whether a given table exists
+	 *
+	 * @param $table string
+	 * @param $fname string
+	 *
+	 * @return bool
+	 */
+	public function tableExists( $table, $fname = __METHOD__ ) {
+		$tableQuoted = $this->addQuotes( $table );
+		return (bool)$this->query( "SELECT 1 FROM sqlite_master " .
+				"WHERE type = 'table' AND name = {$tableQuoted}", $fname );
+	}
+
 } // end DatabaseSqlite class
 
 /**
