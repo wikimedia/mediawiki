@@ -614,6 +614,7 @@ class LoginForm extends SpecialPage {
 				// that the UI should show a password reset form; bot inter-
 				// faces etc will probably just fail cleanly here.
 				$retval = self::RESET_PASS;
+				$this->mAbortLoginErrorMsg = 'resetpass_announce';
 			} else {
 				$retval = ( $this->mPassword == '' ) ? self::EMPTY_PASS : self::WRONG_PASS;
 			}
@@ -808,7 +809,7 @@ class LoginForm extends SpecialPage {
 				$this->mainLoginForm( $this->msg( 'wrongpasswordempty' )->text() );
 				break;
 			case self::RESET_PASS:
-				$this->resetLoginForm( $this->msg( 'resetpass_announce' )->text() );
+				$this->resetLoginForm( $this->msg( $this->mAbortLoginErrorMsg )->text() );
 				break;
 			case self::CREATE_BLOCKED:
 				$this->userBlockedMessage( $this->getUser()->isBlockedFromCreateAccount() );
