@@ -990,7 +990,7 @@ return array(
 	),
 	'mediawiki.special.preferences' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.preferences.js',
-		'styles' => 'resources/mediawiki.special/mediawiki.special.preferences.css',
+		'styles' => 'resources/mediawiki.special/mediawiki.special.preferences.less',
 		'position' => 'top',
 	),
 	'mediawiki.special.recentchanges' => array(
