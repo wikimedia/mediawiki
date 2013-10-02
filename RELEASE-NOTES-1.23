@@ -26,6 +26,8 @@ production.
   acting as if the latest revision was being viewed.
 
 === API changes in 1.23 ===
+* (bug 54884) action=parse&prop=categories now indicates hidden and missing
+  categories.
 
 === Languages updated in 1.23===
 
