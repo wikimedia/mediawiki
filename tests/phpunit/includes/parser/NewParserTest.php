@@ -137,9 +137,13 @@ class NewParserTest extends MediaWikiTestCase {
 
 		$this->savedWeirdGlobals['image_alias'] = $wgNamespaceAliases['Image'];
 		$this->savedWeirdGlobals['image_talk_alias'] = $wgNamespaceAliases['Image_talk'];
+		$this->savedWeirdGlobals['namespace_100'] = $wgExtraNamespaces[100];
 
 		$wgNamespaceAliases['Image'] = NS_FILE;
 		$wgNamespaceAliases['Image_talk'] = NS_FILE_TALK;
+		# add a namespace shadowing a interwiki link, to test
+		# proper precedence when resolving links. (bug 51680)
+		$wgExtraNamespaces[100] = 'MemoryAlpha';
 	}
 
 	protected function tearDown() {
@@ -147,6 +151,7 @@ class NewParserTest extends MediaWikiTestCase {
 
 		$wgNamespaceAliases['Image'] = $this->savedWeirdGlobals['image_alias'];
 		$wgNamespaceAliases['Image_talk'] = $this->savedWeirdGlobals['image_talk_alias'];
+		$wgExtraNamespaces[100] = $this->savedWeirdGlobals['namespace_100'];
 
 		// Restore backends
 		RepoGroup::destroySingleton();
