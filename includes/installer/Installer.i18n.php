@@ -134,6 +134,10 @@ MediaWiki requires UTF-8 support to function correctly.",
 This is probably too low.
 The installation may fail!",
 	'config-ctype'                    => "'''Fatal:''' PHP must be compiled with support for the [http://www.php.net/manual/en/ctype.installation.php Ctype extension].",
+	'config-json'                     => "'''Fatal:''' PHP was compiled without JSON support.
+You must install either the PHP JSON extension or the [http://pecl.php.net/package/jsonc PECL jsonc] extension before installing MediaWiki.
+* The PHP extension is included in Red Hat Enterprise Linux (CentOS) 5 and 6, though must be enabled in <code>/etc/php.ini</code> or <code>/etc/php.d/json.ini</code>.
+* Some Linux distributions released after May 2013 omit the PHP extension, instead packaging the PECL extension as <code>php5-json</code> or <code>php-pecl-jsonc</code>.",
 	'config-xcache'                   => '[http://xcache.lighttpd.net/ XCache] is installed',
 	'config-apc'                      => '[http://www.php.net/apc APC] is installed',
 	'config-wincache'                 => '[http://www.iis.net/download/WinCacheForPhp WinCache] is installed',
@@ -656,6 +660,10 @@ Parameters:
 	'config-memory-bad' => 'Parameters:
 * $1 is the configured <code>memory_limit</code>.',
 	'config-ctype' => 'Message if support for [http://www.php.net/manual/en/ctype.installation.php Ctype] is missing from PHP',
+	'config-json' => 'Message if support for [[wikipedia:JSON|JSON]] is missing from PHP.
+* "[[wikipedia:Red Hat Enterprise Linux|Red Hat Enterprise Linux]]" (RHEL) and "[[wikipedia:CentOS|CentOS]]" refer to two almost-identical Linux distributions. "5 and 6" refers to version 5 or 6 of either distribution. Because RHEL 7 likely will not include the PHP extension, do not translate as "5 or newer".
+* "The [http://www.php.net/json PHP extension]" is the JSON extension included with PHP 5.2 and newer.
+* "The [http://pecl.php.net/package/jsonc PECL extension]" is based on the PHP extension, though excludes code some distributions have found unacceptable (see [[bugzilla:47431]]).',
 	'config-xcache' => 'Message indicates if this program is available',
 	'config-apc' => 'Message indicates if this program is available',
 	'config-wincache' => 'Message indicates if this program is available',
