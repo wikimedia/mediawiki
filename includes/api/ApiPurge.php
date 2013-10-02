@@ -47,16 +47,22 @@ class ApiPurge extends ApiBase {
 		$pageSet->execute();
 
 		$result = $pageSet->getInvalidTitlesAndRevisions();
+		$user = $this->getUser();
 
 		foreach ( $pageSet->getGoodTitles() as $title ) {
 			$r = array();
 			ApiQueryBase::addTitleInfo( $r, $title );
 			$page = WikiPage::factory( $title );
-			$page->doPurge(); // Directly purge and skip the UI part of purge().
-			$r['purged'] = true;
+			if ( !$user->pingLimiter( 'purge' ) ) {
+				$page->doPurge(); // Directly purge and skip the UI part of purge().
+				$r['purged'] = true;
+			} else {
+				$error = $this->parseMsg( array( 'actionthrottledtext' ) );
+				$this->setWarning( $error['info'] );
+			}
 
 			if ( $forceLinkUpdate || $forceRecursiveLinkUpdate ) {
-				if ( !$this->getUser()->pingLimiter( 'linkpurge' ) ) {
+				if ( !$user->pingLimiter( 'linkpurge' ) ) {
 					$popts = $page->makeParserOptions( 'canonical' );
 
 					# Parse content; note that HTML generation is only needed if we want to cache the result.
