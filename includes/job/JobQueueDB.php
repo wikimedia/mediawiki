@@ -605,7 +605,9 @@ class JobQueueDB extends JobQueue {
 	}
 
 	public function getCoalesceLocationInternal() {
-		return $this->cluster ? "DBCluster:{$this->cluster}" : "LBFactory:{$this->wiki}";
+		return $this->cluster
+			? "DBCluster:{$this->cluster}:{$this->wiki}"
+			: "LBFactory:{$this->wiki}";
 	}
 
 	protected function doGetSiblingQueuesWithJobs( array $types ) {
