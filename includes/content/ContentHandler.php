@@ -449,10 +449,11 @@ abstract class ContentHandler {
 	 * @since 1.21
 	 *
 	 * @param Title $destination the page to redirect to.
+	 * @param $text string text to include in the redirect, if possible.
 	 *
 	 * @return Content
 	 */
-	public function makeRedirectContent( Title $destination ) {
+	public function makeRedirectContent( Title $destination, $text = '' ) {
 		return null;
 	}
 
