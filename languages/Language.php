@@ -63,6 +63,7 @@ class FakeConverter {
 	function markNoConversion( $text, $noParse = false ) { return $text; }
 	function convertCategoryKey( $key ) { return $key; }
 	function convertLinkToAllVariants( $text ) { return $this->autoConvertToAllVariants( $text ); }
+	/** @deprecated since 1.23 is no longer used */
 	function armourMath( $text ) { return $text; }
 	function validateVariant( $variant = null ) { return $variant === $this->mLang->getCode() ? $variant : null; }
 	function translate( $text, $variant ) { return $text; }
@@ -3811,6 +3812,7 @@ class Language {
 	 *
 	 * @param $text string
 	 * @return string
+	 * @deprecated since 1.23 is no longer used
 	 */
 	public function armourMath( $text ) {
 		return $this->mConverter->armourMath( $text );
