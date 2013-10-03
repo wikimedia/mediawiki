@@ -3,10 +3,10 @@
  * Sanity checks for making sure registered resources are sane.
  *
  * @file
- * @author Niklas Laxström, 2012
- * @author Antoine Musso, 2012
- * @author Santhosh Thottingal, 2012
- * @author Timo Tijhof, 2012
+ * @author Niklas Laxström
+ * @author Antoine Musso
+ * @author Santhosh Thottingal
+ * @author Timo Tijhof
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
  */
 class ResourcesTest extends MediaWikiTestCase {
