@@ -2153,6 +2153,7 @@ URLが正しいものであり、ウェブサイトが稼働していること�
 'listfiles_description' => '概要',
 'listfiles_count' => '版数',
 'listfiles-show-all' => '画像の古い版を含める',
+'listfiles-latestversion' => '現在の版',
 'listfiles-latestversion-yes' => 'はい',
 'listfiles-latestversion-no' => 'いいえ',
 

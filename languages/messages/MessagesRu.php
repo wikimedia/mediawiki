@@ -82,6 +82,7 @@
  * @author Sk
  * @author Soul Train
  * @author Spider
+ * @author Sunpriat
  * @author TarzanASG
  * @author Temuri rajavi
  * @author Vago
@@ -1843,8 +1844,8 @@ $1",
 'action-block' => 'ограничивать возможность редактирования для этого участника',
 'action-protect' => 'изменение уровня защиты этой страницы',
 'action-rollback' => 'быстрый откат изменений участника, который последним редактировал страницу',
-'action-import' => 'импорт этой страницы из другой вики',
-'action-importupload' => 'импорт этой страницы из загруженного файла',
+'action-import' => 'импорт страниц из другой вики',
+'action-importupload' => 'импорт страниц из загруженного файла',
 'action-patrol' => 'отметка чужих правок как отпатрулированных',
 'action-autopatrol' => 'отметка своих правок как отпатрулированных',
 'action-unwatchedpages' => 'просмотр списка страниц, за которыми не следят',
@@ -2666,7 +2667,7 @@ $UNWATCHURL
 Последние изменения {{GENDER:$3|внёс|внесла}} [[User:$3|$3]] ([[User talk:$3|обсуждение]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment' => "Было дано описание изменения: ''$1''.",
 'revertpage' => 'Откат правок [[Special:Contributions/$2|$2]] ([[User talk:$2|обсуждение]]) к версии [[User:$1|$1]]',
-'revertpage-nouser' => 'Правки (имя участника скрыто) откачены к версии [[User:$1|$1]]',
+'revertpage-nouser' => 'Правки (имя участника скрыто) откачены к версии {{GENDER:$1|[[User:$1|$1]]}}',
 'rollback-success' => 'Откачены правки $1; возврат к версии $2.',
 
 # Edit tokens
@@ -4011,6 +4012,8 @@ $5
 'confirm-unwatch-top' => 'Удалить эту страницу из вашего списка наблюдения?',
 
 # Separators for various lists, etc.
+'pipe-separator' => '&#32;|&#32;',
+'word-separator' => '&#32;',
 'ellipsis' => '…',
 'parentheses' => '($1)',
 

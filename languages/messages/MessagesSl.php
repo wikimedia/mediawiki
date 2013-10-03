@@ -435,7 +435,7 @@ $1',
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'O {{GRAMMAR:dajalnik|{{SITENAME}}}}',
 'aboutpage' => 'Project:O {{GRAMMAR:dajalnik|{{SITENAME}}}}',
-'copyright' => 'Besedilo je na razpolago pod pogoji $1.',
+'copyright' => 'Razen, kjer je navedeno drugače, je besedilo na razpolago pod pogoji licence $1.',
 'copyrightpage' => '{{ns:project}}:Avtorske pravice',
 'currentevents' => 'Trenutni dogodki',
 'currentevents-url' => 'Project:Trenutni dogodki',
@@ -1018,7 +1018,7 @@ Lahko se vrnete nazaj in urejate že obstoječe strani, ali pa se [[Special:User
 'sectioneditnotsupported-text' => 'Urejanje razdelkov ni podprto na tej strani.',
 'permissionserrors' => 'Napaka dovoljenja',
 'permissionserrorstext' => 'Za izvedbo dejanja nimate dovoljenja zaradi {{PLURAL:$1|naslednjega razloga|naslednjih razlogov|naslednjih razlogov|naslednjih razlogov|naslednjih razlogov}}:',
-'permissionserrorstext-withaction' => 'Za $2 zaradi {{PLURAL:$1|naslednjega razloga|naslednjih $1 razlogov|naslednjih $1 razlogov|naslednjih $1 razlogov}} nimate dovoljenja:',
+'permissionserrorstext-withaction' => 'Za $2 zaradi {{PLURAL:$1|naslednjega razloga|naslednjih razlogov}} nimate dovoljenja:',
 'recreate-moveddeleted-warn' => "'''Opozorilo: Pišete stran, ki je bila nekoč že izbrisana.'''
 
 Premislite preden nadaljujete s pisanjem, morda bo stran zaradi istih razlogov ponovno odstranjena.
@@ -1604,7 +1604,7 @@ Ko vas drugi uporabniki kontaktirajo, jim vašega e-poštnega naslova ne bomo ra
 'action-block' => 'blokiranje urejanja s tega uporabniškega računa',
 'action-protect' => 'spremembo stopnje zaščite te strani',
 'action-rollback' => 'hitro vračanje urejanj zadnjega uporabnika, ki je urejal določeno stran',
-'action-import' => 'uvoz te strani iz drugega wikija',
+'action-import' => 'uvoz strani iz drugega wikija',
 'action-importupload' => 'uvoz strani iz naložene datoteke',
 'action-patrol' => 'označevanje sprememb drugih kot nadzorovane',
 'action-autopatrol' => 'označevanje svojih urejanj kot nadzorovane',
@@ -2153,6 +2153,7 @@ Sedaj je preusmeritev na [[$2]].',
 'listusers' => 'Seznam uporabnikov',
 'listusers-editsonly' => 'Pokaži samo uporabnike z urejanji',
 'listusers-creationsort' => 'Razvrsti po datumu ustvaritve',
+'listusers-desc' => 'Razvrsti padajoče',
 'usereditcount' => '$1 {{PLURAL:$1|urejanje|urejanji|urejanja|urejanj}}',
 'usercreated' => '{{GENDER:$3|Ustvarjen|Ustvarjena}} dne $1 ob $2',
 'newpages' => 'Nove strani',
@@ -2438,7 +2439,7 @@ stran je spremenil ali vrnil že nekdo drug.
 Zadnji je stran urejal uporabnik [[User:$3|$3]] ([[User talk:$3|pogovor]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment' => "Povzetek urejanja je bil: »''$1''«.",
 'revertpage' => 'vrnitev sprememb uporabnika [[Special:Contributions/$2|$2]] ([[User talk:$2|pogovor]]) na zadnje urejanje uporabnika [[User:$1|$1]]',
-'revertpage-nouser' => 'vrnitev sprememb skritega uporabnika na zadnjo redakcijo uporabnika [[User:$1|$1]]',
+'revertpage-nouser' => 'vrnitev sprememb skritega uporabnika na zadnjo redakcijo {{GENDER:$1|[[User:$1|$1]]}}',
 'rollback-success' => 'Razveljavljene spremembe uporabnika $1;
 vrnjeno na urejanje uporabnika $2.',
 
@@ -4101,9 +4102,9 @@ V nasprotnem primeru lahko uporabite preprost obrazec spodaj. Vašo pripombo bom
 'limitreport-ppvisitednodes' => 'Število predprocesorjevih ogledanih vozlišč',
 'limitreport-ppgeneratednodes' => 'Število predprocesorjevih ustvarjenih vozlišč',
 'limitreport-postexpandincludesize' => 'Velikost vključitve po razširitvi',
-'limitreport-postexpandincludesize-value' => '$1/$2 bajtov',
+'limitreport-postexpandincludesize-value' => '$1/$2 {{PLURAL:$2|bajt|bajta|bajte|bajtov}}',
 'limitreport-templateargumentsize' => 'Velikost argumentov predloge',
-'limitreport-templateargumentsize-value' => '$1/$2 bajtov',
+'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|bajt|bajta|bajte|bajtov}}',
 'limitreport-expansiondepth' => 'Največja globina razširitve',
 'limitreport-expensivefunctioncount' => 'Število dragih funkcij razčlenjevalnika',
 

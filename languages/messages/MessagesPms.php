@@ -688,11 +688,11 @@ A dovrìa felo si për asar chiel a l'ha partagiaje con cheidun o si sò cont a 
 'missingcommenttext' => 'Për piasì, che a buta un coment sì-sota.',
 'missingcommentheader' => "'''Ch'a arcòrda:''' A l'ha pa dàit ëd soget o d'intestassion për cost coment.
 Se a sgnaca torna «{{int:savearticle}}», soa modìfica a sarà salvà sensa gnun-a intestassion.",
-'summary-preview' => "Preuva dl'oget:",
-'subject-preview' => "Preuva d'oget/intestassion:",
-'blockedtitle' => "Belavans cost ëstranòm-sì a resta col ëd n'utent che a l'é stàit disabilità a fé 'd modìfiche a j'artìcoj.",
+'summary-preview' => 'Preuva dël resumé:',
+'subject-preview' => "Preuva dl'oget/intestassion:",
+'blockedtitle' => "L'utent a l'é blocà.",
 'blockedtext' => "'''Sò stranòm ò pura adrëssa IP a l'é stàit blocà.'''
-
+\"
 Ël blocagi a l'é stàit fàit da \$1.
 Coma rason a l'ha butà ''\$2''.
 
@@ -701,7 +701,7 @@ Coma rason a l'ha butà ''\$2''.
 * As veul blochesse: \$7
 
 A peul butesse an contat con \$1 ò pura n'àotr [[{{MediaWiki:Grouppage-sysop}}|aministrator]] për discute ëd sò blocagi.
-Ch'a ten-a present ch'a podrà dovré la fonsion \"mandeje un messagi ëd pòsta a l'utent\" mach s'a l'ha specificà n'adrëssa ëd pòsta vàlida ant [[Special:Preferences|sò gust]] e se sta fonsion a l'é nen ëstàita blocà 'cò chila.
+Ch'a ten-a present ch'a podrà dovré la fonsion «mandeje un messagi ëd pòsta eletrònica a l'utent» mach s'a l'ha specificà n'adrëssa ëd vàlida ant [[Special:Preferences|sò gust]] e se sta fonsion a l'é nen ëstàita blocà 'cò chila.
 Soa adrëssa IP corenta a l'é \$3, e l'identificativ dël blocagi a l'é #\$5.
 Për piasì, ch'a-j buta tut e doj ant soe comunicassion ant sta question-sì.",
 'autoblockedtext' => "Soa adrëssa IP a l'è stàita blocà n'automàtich ën essend ch'a l'era dovrà da n'àutr utent, che a l'é stàit blocà da \$1.

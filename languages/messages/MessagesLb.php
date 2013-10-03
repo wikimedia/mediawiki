@@ -2386,7 +2386,7 @@ een Aneren huet dëst entweder scho gemaach oder nei Ännerungen agedroen.
 Déi lescht Ännerung vun der Säit ass vum [[User:$3|$3]] ([[User talk:$3|Diskussioun]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment' => "De Resumé vun der Ännerung war: \"''\$1''\".",
 'revertpage' => 'Ännerunge vum [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussioun]]) zréckgesat op déi lescht Versioun vum [[User:$1|$1]]',
-'revertpage-nouser' => 'Zréckgesaten Ännerungen duerch e verstoppte Benotzer op déi lescht Versioun vum [[User:$1|$1]]',
+'revertpage-nouser' => 'Zréckgesaten Ännerungen duerch e verstoppte Benotzer op déi lescht Versioun vum {{GENDER:$1|[[User:$1|$1]]}}',
 'rollback-success' => "D'Ännerunge vum $1 goufen zréckgesat op déi lescht Versioun vum $2.",
 
 # Edit tokens
@@ -3843,7 +3843,10 @@ Dir misst eng [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie vun der GNU General Public
 'tags-tag' => 'Numm vun der Markéierung',
 'tags-display-header' => 'Opzielungen op den Ännerungslëschten',
 'tags-description-header' => 'Ganz Beschreiwung vun der Bedeitung',
+'tags-active-header' => 'Aktiv?',
 'tags-hitcount-header' => 'Markéiert Ännerungen',
+'tags-active-yes' => 'Jo',
+'tags-active-no' => 'Neen',
 'tags-edit' => 'änneren',
 'tags-hitcount' => '$1 {{PLURAL:$1|Ännerung|Ännerungen}}',
 

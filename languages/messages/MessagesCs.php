@@ -855,7 +855,8 @@ Ujistěte se, že máte povoleny cookies, obnovte tuto stránku a zkuste to znov
 'nosuchusershort' => 'Neexistuje uživatel se jménem „$1“. Zkontrolujte zápis.',
 'nouserspecified' => 'Musíte zadat uživatelské jméno.',
 'login-userblocked' => 'Tento uživatel je zablokován. Přihlášení není dovoleno.',
-'wrongpassword' => 'Vámi uvedené heslo nesouhlasí. Zkuste to znovu.',
+'wrongpassword' => 'Bylo zadáno nesprávné heslo.
+Zkuste to znovu.',
 'wrongpasswordempty' => 'Bylo zadáno prázdné heslo. Zkuste to znovu.',
 'passwordtooshort' => 'Heslo musí být dlouhé nejméně $1 {{PLURAL:$1|znak|znaky|znaků}}.',
 'password-name-match' => 'Vaše heslo nesmí být stejné jako uživatelské jméno.',
@@ -875,8 +876,8 @@ a používat staré heslo.',
 'noemailcreate' => 'Musíte uvést platnou e-mailovou adresu',
 'passwordsent' => 'Dočasné heslo bylo zasláno na e-mailovou adresu registrovanou pro „$1“. Přihlaste se, prosím, znovu, jakmile ho obdržíte.',
 'blocked-mailpassword' => 'Vaší IP adrese byla zablokována možnost editace, a současně s tím je zablokována funkce pro zaslání nového hesla.',
-'eauthentsent' => 'Potvrzovací e-mail byl zaslán na zadanou adresu.
-Před tím, než vám na tuto adresu budou moci být zasílány další zprávy, následujte instrukce v e-mailu, abyste potvrdili, že tato adresa skutečně patří vám.',
+'eauthentsent' => 'Na zadanou adresu byl zaslán potvrzovací e-mail.
+Žádné další zprávy vám však na tuto adresu nebudou odeslány, dokud podle instrukcí v e-mailu nepotvrdíte, že tato adresa skutečně patří vám.',
 'throttled-mailpassword' => 'Během {{PLURAL:$1|poslední hodiny|posledních $1 hodin}} již bylo heslo jednou zasláno.
 Kvůli prevenci zneužívání lze heslo zaslat jen jednou za $1 {{PLURAL:$1|hodinu|hodiny|hodin}}.',
 'mailerror' => 'Chyba při zasílání e-mailu: $1',
@@ -1593,7 +1594,7 @@ Vaše adresa v takovém případě není prozrazena.',
 'prefs-help-prefershttps' => 'Toto nastavení se projeví při příštím přihlášení.',
 
 # User preference: email validation using jQuery
-'email-address-validity-valid' => 'E-mailová adresa vypadá platně',
+'email-address-validity-valid' => 'E-mailová adresa vypadá jako platná',
 'email-address-validity-invalid' => 'Zadejte platnou e-mailovou adresu',
 
 # User rights

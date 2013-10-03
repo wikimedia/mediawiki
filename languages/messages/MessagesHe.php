@@ -2600,7 +2600,7 @@ $UNWATCHURL
 'editcomment' => "תקציר העריכה היה: \"'''\$1'''\".",
 'revertpage' => 'שוחזר מעריכות של [[Special:Contributions/$2|$2]] ([[User talk:$2|שיחה]]) לעריכה האחרונה של [[User:$1|$1]]',
 'revertpage-nouser' => 'שוחזר מעריכות של משתמש מוסתר לעריכה האחרונה של {{GENDER:$1|[[User:$1|$1]]}}',
-'rollback-success' => 'שוחזר מעריכה של $1 לעריכה האחרונה של $2',
+'rollback-success' => 'שוחזר מעריכות של $1 לעריכה האחרונה של $2',
 
 # Edit tokens
 'sessionfailure-title' => 'בעיה בחיבור',

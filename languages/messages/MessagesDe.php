@@ -4134,7 +4134,10 @@ Bei entsprechender Einstellung können die Missbrauchfilter beliebige Markierung
 'tags-tag' => 'Markierungsname',
 'tags-display-header' => 'Benennung auf den Änderungslisten',
 'tags-description-header' => 'Vollständige Beschreibung',
+'tags-active-header' => 'Aktiv?',
 'tags-hitcount-header' => 'Markierte Änderungen',
+'tags-active-yes' => 'Ja',
+'tags-active-no' => 'Nein',
 'tags-edit' => 'bearbeiten',
 'tags-hitcount' => '$1 {{PLURAL:$1|Änderung|Änderungen}}',
 

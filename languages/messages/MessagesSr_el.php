@@ -1154,7 +1154,7 @@ Ovakve argumente bi trebalo izbegavati.",
 Proverite razlike ispod, pa sačuvajte izmene.',
 'undo-failure' => 'Ne mogu da vratim izmenu zbog postojanja sukobljenih međuizmena.',
 'undo-norev' => 'Ne mogu da vratim izmenu jer ne postoji ili je obrisana.',
-'undo-summary' => 'Vraćena izmena $1 od {{GENDER:$2|korisnika|korisnice|korisnika}} [[Special:Contributions/$2|$2]] ([[User talk:$2|razgovor]])',
+'undo-summary' => 'Poništena izmena $1 {{GENDER:$2|korisnika|korisnice}} [[Special:Contributions/$2|$2]] ([[User talk:$2|razgovor]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Ne mogu da otvorim nalog',
@@ -2483,7 +2483,7 @@ Poslednji autor je ujedno i jedini.',
 
 Poslednju izmenu je {{GENDER:$3|napravio|napravila|napravio}} [[User:$3|$3]] ([[User talk:$3|razgovor]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment' => "Opis izmene: \"''\$1''\".",
-'revertpage' => 'Vraćene su izmene {{GENDER:$2|korisnika|korisnice|korisnika}} [[Special:Contributions/$2|$2]] ([[User talk:$2|razgovor]]) na poslednju izmenu člana [[User:$1|$1]]',
+'revertpage' => 'Vraćene izmene [[Special:Contributions/$2|$2]] ([[User talk:$2|razgovor]]) na poslednju  izmenu korisnika [[User:$1|$1]]',
 'revertpage-nouser' => 'Vraćene su izmene skrivengo korisnika na poslednju izmenu člana [[User:$1|$1]]',
 'rollback-success' => 'Vraćene su izmene {{GENDER:$1|korisnika|korisnice|korisnika}} $1
 na poslednju izmenu {{GENDER:$2|korisnika|korisnice|korisnika}} $2.',

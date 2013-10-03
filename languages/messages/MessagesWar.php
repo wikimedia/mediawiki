@@ -170,6 +170,18 @@ $messages = array(
 'oct' => 'Okt',
 'nov' => 'Nob',
 'dec' => 'Dis',
+'january-date' => 'Enero $1',
+'february-date' => 'Pebrero $1',
+'march-date' => 'Marso $1',
+'april-date' => 'Abril $1',
+'may-date' => 'Mayo $1',
+'june-date' => 'Hunyo $1',
+'july-date' => 'Hulyo $1',
+'august-date' => 'Agosto $1',
+'september-date' => 'Septyembre $1',
+'october-date' => 'Oktubre $1',
+'november-date' => 'Nobyembre $1',
+'december-date' => 'Disyembre $1',
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Kaarangay|Mga kaarangay}}',
@@ -197,7 +209,7 @@ $messages = array(
 'newwindow' => '(nabuklad hin bag-o nga tamboan o bintana)',
 'cancel' => 'Pasagdi',
 'moredotdotdot' => 'Damo pa nga…',
-'morenotlisted' => 'Damo pa nga waray gintalaan...',
+'morenotlisted' => 'Diri kompleto ini nga listahan.',
 'mypage' => 'Pakli',
 'mytalk' => 'Mga akon paghingay',
 'anontalk' => 'Paghingay para hini nga IP',
@@ -253,6 +265,7 @@ $messages = array(
 'create-this-page' => 'Himo-a ini nga pakli',
 'delete' => 'Para-a',
 'deletethispage' => 'Para-a ini nga pakli',
+'undeletethispage' => 'Igbalik an ini nga pakli nga napara',
 'undelete_short' => 'Igkansela an pagpara {{PLURAL:$1|usa nga pagliwat|$1 nga mga pagliwat}}',
 'viewdeleted_short' => '{{PLURAL:$1|usa nga ginpara nga pagliwat|$1 ka ginpara nga mga pagliwat}}',
 'protect' => 'Panalipdi',
@@ -384,6 +397,10 @@ Listahan o talaan hin puyde nga mga pinaurog nga pakli in mabibilngan ha [[Speci
 # General errors
 'error' => 'Sayop',
 'databaseerror' => 'Sayop hin database',
+'databaseerror-text' => 'Nagkamay-ada hin database query error.
+
+Ini in indikasyon nga may-ada bug hini nga software.',
+'databaseerror-textcl' => 'Nagkamay-ada hin database query error.',
 'laggedslavemode' => 'Pahimatngon: It pakli bangin waray mga kabag-ohan nga bag-o.',
 'readonly' => 'Gintrankahan an database',
 'enterlockreason' => 'Pagbutang hin rason para han pagtrangka, upod hin banabana kon san-o kukuha-on an pagtrangka',
@@ -416,6 +433,7 @@ Alayon la igsumat ini ha [[Special:ListUsers/sysop|administrator]], igsurat la a
 Bangin na ini ginpara hin iba.',
 'cannotdelete-title' => 'diri nakakapara han pakli "$1"',
 'delete-hook-aborted' => 'Pagpara ginpugngan han kawil.  Waray eksplenasyon an ginhatag.',
+'no-null-revision' => 'Diri nakakahimo hin bag-o nga null rebisyon para han pakli "$1"',
 'badtitle' => 'Maraot nga titulo',
 'badtitletext' => 'An ginhangyo nga pakli diri puyde, waray sulod, o sayop nga nasumpay nga inter-pinunongan o inter-wiki nga titulo.
 Bangin mayda usa o damo nga mga agi nga diri puyde magamit ha mga titulo.',
@@ -442,6 +460,10 @@ Para makadugang o makabag-o han mga paghubad para han ngatanan nga mga wiki, ala
 'namespaceprotected' => "Diri ka gintutugutan pagliwat han mga pakli ha ngaran-lat'ang nga '''$1'''.",
 'customcssprotected' => 'Diri ka gintutugotan pagliwat hini nga CSS nga pakli, tungod nga nagsusulod ini hin kanan iba nga tawo personal nga karuyagon.',
 'customjsprotected' => 'Diri ka gintutugotan pagliwat hini nga JavaScript nga pakli, tungod nga nagsusulod ini hin kanan iba nga tawo personal nga karuyagon.',
+'mycustomcssprotected' => 'Waray nim pagtugot hin pagliwat hini nga CSS nga pakli.',
+'mycustomjsprotected' => 'Waray nim pagtugot hit pagliwat hini nga JavaScript nga pakli.',
+'myprivateinfoprotected' => 'Waray nim pagtugot hit pagliwat hit imo pribado nga impormasyon.',
+'mypreferencesprotected' => 'Waray nim pagtugot hit pagliwat hit imo mga karuyag.',
 'ns-specialprotected' => 'Diri maliliwat an mga ispisyal nga pakli.',
 'titleprotected' => 'Ini nga titulo pinasalipod ha paghimo ni [[User:$1|$1]].
 An katadungan nga ginhatag amo in "\'\'$2\'\'".',
@@ -461,13 +483,14 @@ An magdudurmara nga nagtrangka hini in naghatag hini nga eksplenasyon: "$3".',
 # Login and logout pages
 'logouttext' => "'''Nakalog-out kana.'''
 
-Puydi ka magpadayon paggamit hin {{SITENAME}} nga diri magpapakilala, o puydi ka gihapon <span class='plainlinks'>[$1 mag-log in utro]</span> ha parehas o iba nga gumaramit.",
+Ginpapasabot ka la nga an iba nga pakli in magpapadayon nga magpakita komo nga ikaw naka-log-in pa, tubtob imo ginlimpyo an imo browser cache.",
 'welcomeuser' => '¡Uswag ngan Dayon, $1!',
 'welcomecreation-msg' => 'An im akawnt in nahimo na.
 Ayaw kalimti pagbalyo han imo [[Special:Preferences|{{SITENAME}} preperensya]].',
 'yourname' => 'Agnay hit gumaramit:',
 'userlogin-yourname' => 'Ngaran han gumaramit',
 'userlogin-yourname-ph' => 'Igbutang an imo ngaran-gumaramit',
+'createacct-another-username-ph' => 'Igbutang an imo agnay-gumaramit',
 'yourpassword' => 'Tigaman-pagsulod:',
 'userlogin-yourpassword' => 'Tigaman pagsakob',
 'userlogin-yourpassword-ph' => 'Igbutang an imo tigaman-pagsakob',
@@ -501,10 +524,12 @@ Ayaw kalimti pagbalyo han imo [[Special:Preferences|{{SITENAME}} preperensya]].'
 'helplogin-url' => 'Help:Pag-log-in',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Bulig han pag-log-in]]',
 'createacct-join' => 'Igbutang an imo impormasyon ha ubos.',
+'createacct-another-join' => 'Igbutang an impormasyon han bag-o nga akwant ha ilarom.',
 'createacct-emailrequired' => 'Email address',
 'createacct-emailoptional' => 'Email address (opsyonal)',
 'createacct-email-ph' => 'Igbutang an imo email address',
-'createaccountmail' => 'Gamiti hin temporaryo nga bisan ano nag password ngan igpadangat ngada ha e-mail address nga nakasurat ha ubos',
+'createacct-another-email-ph' => 'Igbutang an email address',
+'createaccountmail' => 'Gamiti hin temporaryo nga bisan ano nag password ngan igpadangat ngada ha espesipikado nga e-mail address',
 'createacct-realname' => 'Tinuod nga ngaran (opsyonal)',
 'createaccountreason' => 'Rason:',
 'createacct-reason' => 'Rason',
@@ -512,6 +537,7 @@ Ayaw kalimti pagbalyo han imo [[Special:Preferences|{{SITENAME}} preperensya]].'
 'createacct-captcha' => 'Pagkita han seguridad',
 'createacct-imgcaptcha-ph' => 'Igbutang an sinurat nga nakikita mo ha igbaw',
 'createacct-submit' => 'Ighimo an im akawnt',
+'createacct-another-submit' => 'Paghimo hin lain nga akant',
 'createacct-benefit-heading' => '{{SITENAME}} in ginhimo hin tawo nga sugad ha imo.',
 'createacct-benefit-body1' => '{{PLURAL:$1|pagliwat|mga pagliwat}}',
 'createacct-benefit-body2' => '{{PLURAL:$1|ka pakli|ka mga pakli}}',
@@ -604,6 +630,10 @@ Temporaryo nga tigaman han pagsakob: $2',
 'changeemail-password' => 'An imo {{SITENAME}} password:',
 'changeemail-submit' => 'Igbalyo an e-mail',
 'changeemail-cancel' => 'Pasagdi',
+
+# Special:ResetTokens
+'resettokens-tokens' => 'Mga token:',
+'resettokens-token-label' => '$1 (yana nga balor: $2)',
 
 # Edit page toolbar
 'bold_sample' => 'dakmola an agi',
@@ -700,6 +730,7 @@ An taramdan han pagpara ngan pagbalhin para han pakli in ginhahatag ha ubos para
 'log-fulllog' => 'Kitaa an bug-os nga taramdan',
 'edit-conflict' => 'Diri pagkakauroyon han pagliwat.',
 'edit-no-change' => 'Ginpabay-an an im pagliwat, mahitungod nga waray pagbalyo nga nabuhat ha nakasurat.',
+'postedit-confirmation' => 'Natipig an imo ginliwat.',
 'edit-already-exists' => 'Diri nakakahimo hin bag-o nga pakli.
 Aada na ito.',
 'defaultmessagetext' => 'Aada-nga-daan nga teksto han mensahe',
@@ -748,7 +779,7 @@ Leyenda: '''({{int:cur}})''' = kaibhan ha giuurhii nga pag-bag-o, '''({{int:last
 'history-fieldset-title' => 'Kaagi han panngaykay',
 'history-show-deleted' => 'Ginpara la',
 'histfirst' => 'Giunhani',
-'histlast' => 'Giurhii',
+'histlast' => 'Gibag-ohi',
 'historysize' => '({{PLURAL:$1|1 nga byte|$1 ka mga byte}})',
 'historyempty' => '(waray sulod)',
 
@@ -816,6 +847,7 @@ Diri mo ini malalabtan.',
 
 # Diffs
 'history-title' => "Kaagi han pagbag-o han ''$1''",
+'difference-title' => 'An pagkakaiba han mga rebisyon han "$1"',
 'difference-multipage' => '(Kaibhan ha butnga han mga pakli)',
 'lineno' => 'Bagis $1:',
 'compareselectedversions' => 'Igkumpara an mga pinili nga pagbabag-o',

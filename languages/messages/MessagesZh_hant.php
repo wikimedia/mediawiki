@@ -13,6 +13,7 @@
  * @author Bencmq
  * @author Breawycker
  * @author Ch.Andrew
+ * @author Cwlin0416
  * @author Danny0838
  * @author FireJackey
  * @author Frankou
@@ -385,7 +386,7 @@ $messages = array(
 'december-date' => '12月$1日',
 
 # Categories related messages
-'pagecategories' => '$1個分類',
+'pagecategories' => '$1 個分類',
 'category_header' => '「$1」分類中的頁面',
 'subcategories' => '子分類',
 'category-media-header' => '「$1」分類中的媒體',
@@ -1626,8 +1627,8 @@ $1",
 'action-block' => '封鎖這位用戶的編輯',
 'action-protect' => '更改這個頁面的保護等級',
 'action-rollback' => '快速回退最後對特定頁面作出的編輯的用戶的所有編輯',
-'action-import' => '由另一個wiki匯入這個頁面',
-'action-importupload' => '由一個檔案上載中匯入這個頁面',
+'action-import' => '由其他 Wiki 匯入頁面',
+'action-importupload' => '由檔案上傳匯入頁面',
 'action-patrol' => '標示其它的編輯為已巡查的',
 'action-autopatrol' => '將您的編輯標示為已巡查的',
 'action-unwatchedpages' => '檢視未被監視的頁面',
@@ -2090,7 +2091,7 @@ $1',
 
 # Miscellaneous special pages
 'nbytes' => '$1位元組',
-'ncategories' => '$1個分類',
+'ncategories' => '$1 個分類',
 'ninterwikis' => '$1 個跨維基',
 'nlinks' => '$1個連結',
 'nmembers' => '$1個成員',
@@ -2140,6 +2141,7 @@ $1',
 'listusers' => '用戶列表',
 'listusers-editsonly' => '只顯示有編輯的用戶',
 'listusers-creationsort' => '按建立日期排序',
+'listusers-desc' => '使用降冪排序',
 'usereditcount' => '$1 次編輯',
 'usercreated' => '$1 $2{{GENDER:$3|創建}}',
 'newpages' => '最新頁面',
@@ -2420,7 +2422,7 @@ $UNWATCHURL
 該頁最後的編輯者是[[User:$3|$3]]（[[User talk:$3|討論]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]）。',
 'editcomment' => "編輯摘要: \"''\$1''\"。",
 'revertpage' => '已恢復由[[Special:Contributions/$2|$2]]（[[User talk:$2|對話]]）的編輯至[[User:$1|$1]]的最後一個修訂版本',
-'revertpage-nouser' => '取消由隱藏用戶作出的編輯，並恢復到[[User:$1|$1]]的最後一個修訂版本',
+'revertpage-nouser' => '已由隱藏的使用者還原編輯至上個 {{GENDER:$1|[[使用者:$1|$1]]}} 修訂的版本',
 'rollback-success' => '已恢復$1的編輯；
 更改回$2的最後修訂版本。',
 
@@ -2600,7 +2602,7 @@ $1',
 'whatlinkshere-hidetrans' => '$1包含',
 'whatlinkshere-hidelinks' => '$1連結',
 'whatlinkshere-hideimages' => '$1檔案連結',
-'whatlinkshere-filters' => '過濾器',
+'whatlinkshere-filters' => '搜尋',
 
 # Block/unblock
 'autoblockid' => '自動查封 #$1',
@@ -2874,7 +2876,7 @@ $1被封禁的理由是“$2”',
 'allmessagestext' => '這裡列出所有可定製的系統界面。
 如果想貢獻正宗的MediaWiki本地化的話，請參閱[//www.mediawiki.org/wiki/Localisation MediaWiki本地化]以及[//translatewiki.net translatewiki.net]。',
 'allmessagesnotsupportedDB' => "這個頁面無法使用，因為'''\$wgUseDatabaseMessages'''已被設定關閉。",
-'allmessages-filter-legend' => '過濾',
+'allmessages-filter-legend' => '搜尋',
 'allmessages-filter' => '以自定狀況過濾：',
 'allmessages-filter-unmodified' => '未修改',
 'allmessages-filter-all' => '所有',
@@ -3103,7 +3105,7 @@ $2',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|重定向}}; $3 {{PLURAL:$3|非重定向}})',
 'pageinfo-firstuser' => '頁面的建立者',
 'pageinfo-firsttime' => '頁面創建日期',
-'pageinfo-lastuser' => '最近編者',
+'pageinfo-lastuser' => '最近編輯者',
 'pageinfo-lasttime' => '最新編輯日期',
 'pageinfo-edits' => '編輯總次數',
 'pageinfo-authors' => '作者總數',
@@ -3192,7 +3194,7 @@ $1',
 'newimages' => '新建圖片畫廊',
 'imagelisttext' => "以下是按$2排列的'''$1'''個檔案列表。",
 'newimages-summary' => '這個特殊頁面中顯示最後已上傳的檔案。',
-'newimages-legend' => '過濾',
+'newimages-legend' => '搜尋',
 'newimages-label' => '檔案名稱（或它的一部份）:',
 'showhidebots' => '(機器人$1)',
 'noimages' => '無可檢視圖片。',
@@ -3924,7 +3926,7 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 # Special:Tags
 'tags' => '有效標籤',
 'tag-filter' => '[[Special:Tags|標籤]]過濾器:',
-'tag-filter-submit' => '過濾器',
+'tag-filter-submit' => '搜尋',
 'tag-list-wrapper' => '（[[Special:Tags|$1個標籤]]：$2）',
 'tags-title' => '標籤',
 'tags-intro' => '這個頁面列示出在軟件中已標示的編輯，以及它們的解釋。',

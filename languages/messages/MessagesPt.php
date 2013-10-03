@@ -326,7 +326,7 @@ $messages = array(
 'tog-hidepatrolled' => 'Esconder edições patrulhadas nas mudanças recentes',
 'tog-newpageshidepatrolled' => 'Esconder páginas patrulhadas na lista de páginas novas',
 'tog-extendwatchlist' => 'Listagem expandida de todas as mudanças às páginas vigiadas, não apenas das mais recentes',
-'tog-usenewrc' => 'Agrupar alterações por página nas mudanças recentes e páginas vigiadas (requer JavaScript)',
+'tog-usenewrc' => 'Agrupar alterações por página nas mudanças recentes e páginas vigiadas',
 'tog-numberheadings' => 'Auto-numerar cabeçalhos',
 'tog-showtoolbar' => 'Mostrar barra de edição (JavaScript)',
 'tog-editondblclick' => 'Editar páginas quando houver um clique duplo (JavaScript)',
@@ -367,7 +367,7 @@ $messages = array(
 
 'underline-always' => 'Sempre',
 'underline-never' => 'Nunca',
-'underline-default' => 'Aspeto ou padrão do browser',
+'underline-default' => 'Usar opção padrão do tema ou do browser',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Fonte de edição:',
@@ -1758,7 +1758,7 @@ Esta informação será pública.',
 'rc_categories_any' => 'Qualquer',
 'rc-change-size-new' => '$1 {{PLURAL:$1|byte|bytes}} após mudança',
 'newsectionsummary' => '/* $1 */ nova seção',
-'rc-enhanced-expand' => 'Mostrar detalhes (requer JavaScript)',
+'rc-enhanced-expand' => 'Mostrar detalhes',
 'rc-enhanced-hide' => 'Esconder detalhes',
 'rc-old-title' => 'originalmente criado como "$1"',
 

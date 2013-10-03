@@ -1814,7 +1814,7 @@ Przejdź na stronę [[Special:NewFiles|galerii nowych plików]], by zobaczyć pl
 'filestatus' => 'Status prawny',
 'filesource' => 'Źródło',
 'uploadedfiles' => 'Przesłane pliki',
-'ignorewarning' => 'Zignoruj ostrzeżenia i wymuś zapisanie pliku.',
+'ignorewarning' => 'Zignoruj ostrzeżenia i wymuś zapisanie pliku',
 'ignorewarnings' => 'Ignoruj wszystkie ostrzeżenia',
 'minlength1' => 'Nazwa pliku musi składać się co najmniej z jednej litery.',
 'illegalfilename' => 'Nazwa pliku „$1” zawiera znaki niedozwolone w tytułach stron.
@@ -2542,7 +2542,7 @@ Ktoś inny zdążył już to zrobić lub wprowadził własne poprawki do treści
 Autorem ostatniej zmiany jest teraz [[User:$3|$3]] ([[User talk:$3|dyskusja]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment' => "Edycję opisał „''$1''”.",
 'revertpage' => 'Wycofano edycje użytkownika [[Special:Contributions/$2|$2]] ([[User talk:$2|dyskusja]]). Autor przywróconej wersji to [[User:$1|$1]].',
-'revertpage-nouser' => 'Wycofano edycje ukrytego użytkownika. Autor przywróconej wersji to [[User:$1|$1]].',
+'revertpage-nouser' => 'Wycofano edycje ukrytego użytkownika. Autor przywróconej wersji to {{GENDER:$1|[[User:$1|$1]]}}.',
 'rollback-success' => 'Wycofano edycje użytkownika $1;
 przywrócono ostatnią wersję autorstwa $2.',
 
