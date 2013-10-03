@@ -17035,6 +17035,29 @@ a
 	 b</p>
 !! end
 
+#### --------------- Behavior Switches --------------------
+!! test
+1. Valid behavior switches should be escaped
+!! options
+parsoid=html2wt
+!! input
+<nowiki>__TOC__</nowiki>
+!! result
+__TOC__
+!! end
+
+!! test
+2. Invalid behavior switches should not be escaped
+!! options
+parsoid=html2wt
+!! input
+__TOO__
+__|__
+!! result
+__TOO__
+__|__
+!! end
+
 #### --------------- HTML tags ---------------
 #### 1. a tags
 #### 2. other tags
@@ -17499,6 +17522,176 @@ parsoid=wt2html
 <table></table>
 !!end
 
+!!test
+Encapsulation properly handles null DSR information from foster box
+!!options
+parsoid=wt2html,wt2wt
+!!input
+{{echo|<table>foo<tr><td>bar</td></tr></table>}}
+!!result
+<span typeof="mw:Transclusion" data-mw="{&quot;parts&quot;:[{&quot;template&quot;:{&quot;target&quot;:{&quot;wt&quot;:&quot;echo&quot;,&quot;href&quot;:&quot;./Template:Echo&quot;},&quot;params&quot;:{&quot;1&quot;:{&quot;wt&quot;:&quot;
+<table>foo
+<tr>
+<td>bar</td></tr></table>&quot;}},&quot;i&quot;:0}}]}">foo</span>
+<table>
+<tbody>
+<tr>
+<td>bar</td></tr></tbody></table>
+!!end
+
+!!test
+1. Encapsulate foster-parented transclusion content
+!!options
+parsoid=wt2wt,wt2html
+!!input
+<table>{{echo|foo<tr><td>bar</td></tr>}}</table>
+!!result
+<span typeof="mw:Transclusion" data-mw="{&quot;parts&quot;:[&quot;
+<table>&quot;,{&quot;template&quot;:{&quot;target&quot;:{&quot;wt&quot;:&quot;echo&quot;,&quot;href&quot;:&quot;./Template:Echo&quot;},&quot;params&quot;:{&quot;1&quot;:{&quot;wt&quot;:&quot;foo
+<tr>
+<td>bar</td></tr>&quot;}},&quot;i&quot;:0}},&quot;</table>&quot;]}">foo</span>
+<table>
+<tbody>
+<tr>
+<td>bar</td></tr></tbody></table>
+!!end
+
+!!test
+2. Encapsulate foster-parented transclusion content
+!!options
+parsoid=wt2wt,wt2html
+!!input
+<table><div>{{echo|foo}}</div><tr><td>bar</td></tr></table>
+!!result
+<div typeof="mw:Transclusion" data-mw="{&quot;parts&quot;:[&quot;
+<table>
+<div>&quot;,{&quot;template&quot;:{&quot;target&quot;:{&quot;wt&quot;:&quot;echo&quot;,&quot;href&quot;:&quot;./Template:Echo&quot;},&quot;params&quot;:{&quot;1&quot;:{&quot;wt&quot;:&quot;foo&quot;}},&quot;i&quot;:0}},&quot;</div>
+<tr>
+<td>bar</td></tr></table>&quot;]}">foo</div>
+<table>
+<tbody>
+<tr>
+<td>bar</td></tr></tbody></table>
+!!end
+
+!!test
+3. Encapsulate foster-parented transclusion content
+!!options
+parsoid=wt2wt,wt2html
+!!input
+<table><div><p>{{echo|foo</p></div><tr><td>}}bar</td></tr></table>
+!!result
+<div typeof="mw:Transclusion" data-mw="{&quot;parts&quot;:[&quot;
+<table>
+<div>
+<p>&quot;,{&quot;template&quot;:{&quot;target&quot;:{&quot;wt&quot;:&quot;echo&quot;,&quot;href&quot;:&quot;./Template:Echo&quot;},&quot;params&quot;:{&quot;1&quot;:{&quot;wt&quot;:&quot;foo</p></div>
+<tr>
+<td>&quot;}},&quot;i&quot;:0}},&quot;bar</td></tr></table>&quot;]}">
+<p>foo</p></div>
+<table>
+<tbody>
+<tr>
+<td>bar</td></tr></tbody></table>
+!!end
+
+!!test
+4. Encapsulate foster-parented transclusion content
+!!options
+parsoid=wt2wt,wt2html
+!!input
+<table><div><p>{{echo|foo</p></div><tr><td>}}bar</td></tr></table>
+!!result
+<div typeof="mw:Transclusion" data-mw="{&quot;parts&quot;:[&quot;
+<table>
+<div>
+<p>&quot;,{&quot;template&quot;:{&quot;target&quot;:{&quot;wt&quot;:&quot;echo&quot;,&quot;href&quot;:&quot;./Template:Echo&quot;},&quot;params&quot;:{&quot;1&quot;:{&quot;wt&quot;:&quot;foo</p></div>
+<tr>
+<td>&quot;}},&quot;i&quot;:0}},&quot;bar</td></tr></table>&quot;]}">
+<p>foo</p></div>
+<table>
+<tbody>
+<tr>
+<td>bar</td></tr></tbody></table>
+!!end
+
+!!test
+5. Encapsulate foster-parented transclusion content
+!!options
+parsoid=wt2wt,wt2html
+!!input
+<table><tr><td><div><p>{{echo|foo</p></div></td>foo}}</tr></table>
+!!result
+<span typeof="mw:Transclusion" data-mw="{&quot;parts&quot;:[&quot;
+<table>
+<tr>
+<td>
+<div>
+<p>&quot;,{&quot;template&quot;:{&quot;target&quot;:{&quot;wt&quot;:&quot;echo&quot;,&quot;href&quot;:&quot;./Template:Echo&quot;},&quot;params&quot;:{&quot;1&quot;:{&quot;wt&quot;:&quot;foo</p></div></td>foo&quot;}},&quot;i&quot;:0}},&quot;</tr></table>&quot;]}">foo</span>
+<table>
+<tbody>
+<tr>
+<td>
+<div>
+<p>foo</p></div></td></tr></tbody></table>
+!!end
+
+!!test
+6. Encapsulate foster-parented transclusion content
+!!options
+parsoid=wt2wt,wt2html
+!!input
+<table><tr><td><div><p>{{echo|foo</p></div></td>foo</tr></table>}}<p>ok</p>
+!!result
+<span typeof="mw:Transclusion" data-mw="{&quot;parts&quot;:[&quot;
+<table>
+<tr>
+<td>
+<div>
+<p>&quot;,{&quot;template&quot;:{&quot;target&quot;:{&quot;wt&quot;:&quot;echo&quot;,&quot;href&quot;:&quot;./Template:Echo&quot;},&quot;params&quot;:{&quot;1&quot;:{&quot;wt&quot;:&quot;foo</p></div></td>foo</tr></table>&quot;}},&quot;i&quot;:0}}]}">foo</span>
+<table>
+<tbody>
+<tr>
+<td>
+<div>
+<p>foo</p></div></td></tr></tbody></table>
+<p>ok</p>
+!!end
+
+!!test
+7. Encapsulate foster-parented transclusion content
+!!options
+parsoid=wt2wt,wt2html
+!!input
+<table>{{echo|<p>foo</p>}}<td>bar</td></table>
+!!result
+<p typeof="mw:Transclusion" data-mw="{&quot;parts&quot;:[&quot;
+<table>&quot;,{&quot;template&quot;:{&quot;target&quot;:{&quot;wt&quot;:&quot;echo&quot;,&quot;href&quot;:&quot;./Template:Echo&quot;},&quot;params&quot;:{&quot;1&quot;:{&quot;wt&quot;:&quot;
+<p>foo</p>&quot;}},&quot;i&quot;:0}},&quot;
+<td>bar</td></table>&quot;]}">foo</p>
+<table>
+<tbody>
+<tr>
+<td>bar</td></tr></tbody></table>
+!!end
+
+!!test
+8. Encapsulate foster-parented transclusion content
+!!options
+parsoid=wt2wt,wt2html
+!!input
+{{echo|a
+}}{|{{echo|style='color:red'}}
+|-
+|b
+|}
+!!result
+<p typeof="mw:Transclusion" data-mw="{&quot;parts&quot;:[{&quot;template&quot;:{&quot;target&quot;:{&quot;wt&quot;:&quot;echo&quot;,&quot;href&quot;:&quot;./Template:Echo&quot;},&quot;params&quot;:{&quot;1&quot;:{&quot;wt&quot;:&quot;a\n&quot;}},&quot;i&quot;:0}}]}">a</p><span typeof="mw:Transclusion" data-mw="{&quot;parts&quot;:[&quot;{|&quot;,{&quot;template&quot;:{&quot;target&quot;:{&quot;wt&quot;:&quot;echo&quot;,&quot;href&quot;:&quot;./Template:Echo&quot;},&quot;params&quot;:{&quot;style&quot;:{&quot;wt&quot;:&quot;'color:red'&quot;}},&quot;i&quot;:0}},&quot;\n|-\n|b\n|}&quot;]}">{{{1}}}</span>
+<table>
+<tbody>
+<tr>
+<td>b</td></tr></tbody></table>
+!!end
+
 # -----------------------------------------------------------------
 # The following section of tests are primarily to spec requirements
 # around serialization of new/edited content.
@@ -17620,7 +17813,7 @@ a
 #-----------------------------
 
 !! test
-1. I/B qoute minimization: wikitext-only tags should be combined
+1. I/B quote minimization: wikitext-only tags should be combined
 !! options
 parsoid=html2wt
 !! input
@@ -17633,16 +17826,25 @@ parsoid=html2wt
 '''A''B'''''
 
 '''A''BC''D'''
+
+'''''AB'''''
+
+'''''AB'''''
+
+'''''AB'''''
 !! result
 <p><i>A</i><i>B</i></p>
 <p><b>A</b><b>B</b></p>
 <p><i>A</i><b><i>B</i></b></p>
 <p><b>A</b><i><b>B</b></i></p>
 <p><b>A</b><i><b>B</b><b>C</b></i><b>D</b></p>
+<p><i><b>A</b></i><i><b>B</b></i></p>
+<p><i><b>A</b></i><b><i>B</i></b></p>
+<p><b><i>A</i></b><i><b>B</b></i></p>
 !! end
 
 !! test
-2. I/B qoute minimization: wikitext and html tags should not be combined
+2. I/B quote minimization: wikitext and html tags should not be combined
 !! options
 parsoid=html2wt
 !! input
@@ -17655,7 +17857,7 @@ parsoid=html2wt
 !! end
 
 !! test
-3. I/B qoute minimization: templated content stops minimization
+3. I/B quote minimization: templated content stops minimization
 !! options
 parsoid=html2wt
 !! input
@@ -17668,7 +17870,7 @@ parsoid=html2wt
 !! end
 
 !! test
-4. I/B qoute minimization: new content should be mimimized with adjacent old content
+4. I/B quote minimization: new content should be mimimized with adjacent old content
 !! options
 parsoid=html2wt
 !! input
