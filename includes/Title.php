@@ -3840,7 +3840,8 @@ class Title {
 
 		if ( $createRedirect ) {
 			$contentHandler = ContentHandler::getForTitle( $this );
-			$redirectContent = $contentHandler->makeRedirectContent( $nt );
+			$redirectContent = $contentHandler->makeRedirectContent( $nt,
+				wfMessage( 'move-redirect-text' )->inContentLanguage()->plain() );
 
 			// NOTE: If this page's content model does not support redirects, $redirectContent will be null.
 		} else {
