@@ -113,7 +113,7 @@ class UploadStashCleanup extends Maintenance {
 
 		// Apparently lots of stash files are not registered in the DB...
 		$dir = $tempRepo->getZonePath( 'public' );
-		$iterator = $tempRepo->getBackend()->getFileList( array( 'dir' => $dir ) );
+		$iterator = $tempRepo->getBackend()->getFileList( array( 'dir' => $dir, 'adviseStat' => 1 ) );
 		$this->output( "Deleting orphaned temp files...\n" );
 		if ( strpos( $dir, '/local-temp' ) === false ) { // sanity check
 			$this->error( "Temp repo is not using the temp container.", 1 ); // die
