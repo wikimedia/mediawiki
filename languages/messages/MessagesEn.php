@@ -818,6 +818,8 @@ future releases. Also note that since each list value is wrapped in a unique
 'sitesubtitle'   => '', # do not translate or duplicate this message to other languages
 
 # Vector skin
+'vector-beta-feature-typography-message' => 'Vector typography refresh',
+'vector-beta-feature-typography-description' => 'Updates typography of the Vector skin to improve readability, accessibility and consistency.',
 'vector-action-addsection'       => 'Add topic',
 'vector-action-delete'           => 'Delete',
 'vector-action-move'             => 'Move',

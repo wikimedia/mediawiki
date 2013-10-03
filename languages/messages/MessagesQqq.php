@@ -489,6 +489,8 @@ This can also appear in the credits page if the credits feature is enabled,for e
 This page is only linked in CologneBlue (an old skin), not in Monobook or Vector.',
 
 # Vector skin
+'vector-beta-feature-typography-message' => 'Name shown in user preferences for Vector typography beta feature experiment.',
+'vector-beta-feature-typography-description' => 'Brief explanation of Vector typography beta feature experiment.',
 'vector-action-addsection' => 'Used in the Vector skin. See for example {{canonicalurl:Talk:Main_Page|useskin=vector}}',
 'vector-action-delete' => 'Used in the Vector skin, as the name of a tab at the top of the page. See for example {{canonicalurl:Main_Page|useskin=vector}}
 

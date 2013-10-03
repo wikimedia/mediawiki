@@ -27,6 +27,8 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	die( -1 );
 }
 
+
+
 /**
  * SkinTemplate class for Vector skin
  * @ingroup Skins
@@ -57,7 +59,11 @@ class SkinVector extends SkinTemplate {
 				"/{$this->stylename}/csshover{$min}.htc\")}</style><![endif]-->"
 		);
 
-		$out->addModules( array( 'skins.vector.js', 'skins.vector.collapsibleNav' ) );
+		if ( class_exists( 'BetaFeatures' ) && BetaFeatures::isFeatureEnabled( $this->getUser(), 'betafeatures-vector-typography-update' ) ) {
+			$out->addModules( 'skins.vector.js.beta' );
+		} else {
+			$out->addModules( 'skins.vector.js' );
+		}
 	}
 
 	/**
@@ -66,7 +72,11 @@ class SkinVector extends SkinTemplate {
 	 */
 	function setupSkinUserCss( OutputPage $out ) {
 		parent::setupSkinUserCss( $out );
-		$out->addModuleStyles( 'skins.vector' );
+		if ( class_exists( 'BetaFeatures' ) && BetaFeatures::isFeatureEnabled( $this->getUser(), 'betafeatures-vector-typography-update' ) ) {
+			$out->addModuleStyles( 'skins.vector.beta' );
+		} else {
+			$out->addModuleStyles( 'skins.vector' );
+		}
 	}
 
 	/**
