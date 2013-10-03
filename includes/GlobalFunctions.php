@@ -523,10 +523,13 @@ function wfExpandUrl( $url, $defaultProto = PROTO_CURRENT ) {
 
 	if ( substr( $url, 0, 2 ) == '//' ) {
 		$url = $defaultProtoWithoutSlashes . $url;
-	} elseif ( substr( $url, 0, 1 ) == '/' ) {
+	} else {
+		if ( substr( $url, 0, 1 ) != '/' ) {
+			$url = "/" . $url;
+		}
 		// If $serverUrl is protocol-relative, prepend $defaultProtoWithoutSlashes, otherwise leave it alone
 		$url = ( $serverHasProto ? '' : $defaultProtoWithoutSlashes ) . $serverUrl . $url;
-	}
+	} 
 
 	$bits = wfParseUrl( $url );
 	if ( $bits && isset( $bits['path'] ) ) {
