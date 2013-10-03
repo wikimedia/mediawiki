@@ -507,6 +507,7 @@ changes to languages because of Bugzilla reports.
   to addModules() and made protected.
 * Methods WatchAction::doWatch and WatchAction::doUnwatch now return a Status
   object instead of a boolean.
+* Math specific specific code is marked as deprecated.
 
 == Compatibility ==
 
