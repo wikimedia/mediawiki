@@ -27,6 +27,8 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	die( -1 );
 }
 
+
+
 /**
  * SkinTemplate class for Vector skin
  * @ingroup Skins
@@ -35,6 +37,7 @@ class SkinVector extends SkinTemplate {
 
 	protected static $bodyClasses = array( 'vector-animateLayout' );
 
+	protected $inBeta = false;
 	var $skinname = 'vector', $stylename = 'vector',
 		$template = 'VectorTemplate', $useHeadElement = true;
 
@@ -44,6 +47,10 @@ class SkinVector extends SkinTemplate {
 	 */
 	public function initPage( OutputPage $out ) {
 		global $wgLocalStylePath;
+		if ( class_exists( 'BetaFeatures' ) &&
+			BetaFeatures::isFeatureEnabled( $this->getUser(), 'betafeatures-vector-typography-update' ) ) {
+			$this->inBeta = true;
+		}
 
 		parent::initPage( $out );
 
@@ -67,6 +74,11 @@ class SkinVector extends SkinTemplate {
 	function setupSkinUserCss( OutputPage $out ) {
 		parent::setupSkinUserCss( $out );
 		$out->addModuleStyles( 'skins.vector' );
+		if ( $this->inBeta ) {
+			$out->addModuleStyles( 'skins.vector.betaStyles' );
+		} else {
+			$out->addModuleStyles( 'skins.vector.styles' );
+		}
 	}
 
 	/**

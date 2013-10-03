@@ -92,12 +92,24 @@ return array(
 			'common/commonElements.css' => array( 'media' => 'screen' ),
 			'common/commonContent.css' => array( 'media' => 'screen' ),
 			'common/commonInterface.css' => array( 'media' => 'screen' ),
-			'vector/screen.less' => array( 'media' => 'screen' ),
-			'vector/externalLinks.less' => array( 'media' => 'screen' ),
 			'vector/screen-hd.css' => array( 'media' => 'screen and (min-width: 982px)' ),
 		),
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
+	),
+	'skins.vector.styles' => array(
+		'remoteBasePath' => $GLOBALS['wgStylePath'],
+		'localBasePath' => $GLOBALS['wgStyleDirectory'],
+		'styles' => array(
+			'vector/styles.less',
+		),
+	),
+	'skins.vector.betaStyles' => array(
+		'remoteBasePath' => $GLOBALS['wgStylePath'],
+		'localBasePath' => $GLOBALS['wgStyleDirectory'],
+		'styles' => array(
+			'vector/stylesBeta.less',
+		),
 	),
 	'skins.vector.js' => array(
 		'scripts' => array(
@@ -110,9 +122,6 @@ return array(
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 	),
 	'skins.vector.collapsibleNav' => array(
-		'styles' => array(
-			'vector/collapsibleNav.less',
-		),
 		'scripts' => array(
 			'vector/collapsibleNav.js',
 		),

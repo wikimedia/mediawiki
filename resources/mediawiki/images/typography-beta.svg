@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.4, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="264px" height="162px" viewBox="0 0 264 162" enable-background="new 0 0 264 162" xml:space="preserve">
+<g>
+	<polygon fill="#FFFFFF" points="24.833,151.361 13.366,161.357 0.5,151.749 0.5,0.5 263.5,0.5 263.5,152.249 254.5,158.954 
+		254.5,42.5 215.5,42.5 215.5,155.1 211.107,151.369 203.5,156.699 203.5,42.5 48.5,42.5 48.5,153.35 38.749,161.38 	"/>
+	<g>
+		<path fill="#E5E5E5" d="M263,1v150.998l-8,5.96V43v-1h-1h-38h-1v1v111.02l-3.274-2.781l-0.589-0.498l-0.633,0.441L204,155.738V43
+			v-1h-1H49h-1v1v110.1l-9.257,7.66l-13.295-9.57l-0.645-0.463l-0.598,0.521l-10.864,9.47L1,151.499V1H263 M264,0H0v152l13.391,10
+			l11.474-10l13.891,10L49,153.6V43h154v114.66l8.078-5.66l4.922,4.18V43h38v116.95l10-7.45V0L264,0z"/>
+	</g>
+</g>
+<path fill="#E5E5E5" d="M203,157.66V43H49v110.6l2.145-1.6L63.7,162l13.809-10l14.229,10l12.972-10l12.973,10l13.811-10l12.136,10
+	l13.391-10l14.229,10l12.972-10l12.974,10L203,157.66z"/>
+<path id="Ellipse" fill="#E5E5E5" d="M11,36c0-7.732,6.268-14,14-14s14,6.268,14,14s-6.268,14-14,14S11,43.732,11,36z"/>
+<path fill="#E5E5E5" d="M254,159.95V43h-38v113.18l7.551,5.82l13.811-10l13.891,10L254,159.95z"/>
+<path fill="#E5E5E5" d="M38,107V72H13v35H38z"/>
+<path fill="#E5E5E5" d="M232.51,5h26v6h-26V5z"/>
+<rect x="208.51" y="5" fill="#E5E5E5" width="22" height="6"/>
+<path fill="#E5E5E5" d="M142,6v4H50V6H142 M143,5H49v6h94V5L143,5z"/>
+<rect x="184.51" y="5" fill="#E5E5E5" width="22" height="6"/>
+<rect x="161.51" y="5" fill="#E5E5E5" width="13" height="6"/>
+<rect x="176.51" y="5" fill="#E5E5E5" width="6" height="6"/>
+<rect x="153.51" y="5" fill="#E5E5E5" width="6" height="6"/>
+<rect x="9" y="5" fill="#E5E5E5" width="32" height="6"/>
+<path fill="#E5E5E5" stroke="#E5E5E5" d="M2,14.5h260"/>
+<rect x="52" y="7" fill="#E5E5E5" width="2" height="2"/>
+<path fill="#E5E5E5" d="M38,59v-5H13v5H38z"/>
+<g>
+	<text transform="matrix(1 0 0 1 65 118)" fill="#888888" font-family="'HelveticaNeue'" font-size="26">A</text>
+	<text transform="matrix(1 0 0 1 65 81)" fill="#454545" font-family="'Georgia'" font-size="40">A</text>
+	<path fill="#CDCCCC" d="M99,78h88v3H99V78z"/>
+	<path fill="#CDCCCC" d="M87,115h100v3H87V115z"/>
+	<path fill="#CDCCCC" d="M64,125h123v3H64V125z"/>
+	<path fill="#CDCCCC" d="M64,134h123v3H64V134z"/>
+</g>
+</svg>
