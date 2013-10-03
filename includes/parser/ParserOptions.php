@@ -240,6 +240,7 @@ class ParserOptions {
 	function getExternalLinkTarget()            { return $this->mExternalLinkTarget; }
 	function getDisableContentConversion()      { return $this->mDisableContentConversion; }
 	function getDisableTitleConversion()        { return $this->mDisableTitleConversion; }
+	/** @deprecated since 1.23 use $wgUser->getOption('math') instead */
 	function getMath()                          { $this->optionUsed( 'math' );
 												  return $this->mMath; }
 	function getThumbSize()                     { $this->optionUsed( 'thumbsize' );
