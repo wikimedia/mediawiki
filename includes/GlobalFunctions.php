@@ -2459,7 +2459,7 @@ function wfIsWindows() {
  * @return Bool
  */
 function wfIsHipHop() {
-	return function_exists( 'hphp_thread_set_warmup_enabled' );
+	return defined( 'HPHP_VERSION' );
 }
 
 /**
