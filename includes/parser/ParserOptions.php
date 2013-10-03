@@ -240,6 +240,7 @@ class ParserOptions {
 	function getExternalLinkTarget()            { return $this->mExternalLinkTarget; }
 	function getDisableContentConversion()      { return $this->mDisableContentConversion; }
 	function getDisableTitleConversion()        { return $this->mDisableTitleConversion; }
+	/** @deprecated since 1.22 use User::getOption('math') instead */
 	function getMath()                          { $this->optionUsed( 'math' );
 												  return $this->mMath; }
 	function getThumbSize()                     { $this->optionUsed( 'thumbsize' );
@@ -338,6 +339,7 @@ class ParserOptions {
 	function setExternalLinkTarget( $x )        { return wfSetVar( $this->mExternalLinkTarget, $x ); }
 	function disableContentConversion( $x = true ) { return wfSetVar( $this->mDisableContentConversion, $x ); }
 	function disableTitleConversion( $x = true ) { return wfSetVar( $this->mDisableTitleConversion, $x ); }
+	/** @deprecated since 1.22 */
 	function setMath( $x )                      { return wfSetVar( $this->mMath, $x ); }
 	function setUserLang( $x )                  {
 		if ( is_string( $x ) ) {
