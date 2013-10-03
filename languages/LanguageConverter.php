@@ -1103,6 +1103,7 @@ class LanguageConverter {
 	 * @param $text String: text to armour against conversion
 	 * @return String: armoured text where { and } have been converted to
 	 *                 &#123; and &#125;
+	 * @deprecated since 1.23 is no longer used
 	 */
 	public function armourMath( $text ) {
 		// convert '-{' and '}-' to '-&#123;' and '&#125;-' to prevent
