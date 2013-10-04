@@ -1772,7 +1772,7 @@ class LocalFile extends File {
 				throw new MWException( "Could not acquire lock for '{$this->getName()}.'" );
 			}
 			$dbw->onTransactionIdle( function() use ( $cache, $key ) {
-				$cache->delete( $key ); // release on commit
+				$cache->unlock( $key ); // release on commit
 			} );
 		}
 
