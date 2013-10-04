@@ -594,9 +594,11 @@ class SpecialContributions extends SpecialPage {
  */
 class ContribsPager extends ReverseChronologicalPager {
 	public $mDefaultDirection = true;
-	var $messages, $target;
-	var $namespace = '', $mDb;
-	var $preventClickjacking = false;
+	public $messages;
+	public $target;
+	public $namespace = '';
+	public $mDb;
+	public $preventClickjacking = false;
 
 	/**
 	 * @var array
