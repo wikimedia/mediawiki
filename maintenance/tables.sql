@@ -1000,8 +1000,10 @@ CREATE TABLE /*_*/uploadstash (
   -- image-specific properties
   us_image_width int unsigned,
   us_image_height int unsigned,
-  us_image_bits smallint unsigned
+  us_image_bits smallint unsigned,
 
+  -- Custom time at which the file will expire
+  us_expiry varbinary(14) NULL default NULL,
 ) /*$wgDBTableOptions*/;
 
 -- sometimes there's a delete for all of a user's stuff.
