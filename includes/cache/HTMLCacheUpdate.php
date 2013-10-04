@@ -37,8 +37,6 @@ class HTMLCacheUpdate implements DeferrableUpdate {
 	/**
 	 * @param $titleTo
 	 * @param $table
-	 * @param $start bool
-	 * @param $end bool
 	 */
 	function __construct( Title $titleTo, $table ) {
 		$this->mTitle = $titleTo;

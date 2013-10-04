@@ -30,7 +30,7 @@
  * @ingroup Exception
  */
 class MWException extends Exception {
-	var $logId;
+	public $logId;
 
 	/**
 	 * Should the exception use $wgOut to output the error?
@@ -75,7 +75,9 @@ class MWException extends Exception {
 			return null; // Just silently ignore
 		}
 
-		if ( !array_key_exists( $name, $wgExceptionHooks ) || !is_array( $wgExceptionHooks[$name] ) ) {
+		if ( !array_key_exists( $name, $wgExceptionHooks ) ||
+			!is_array( $wgExceptionHooks[$name] )
+		) {
 			return null;
 		}
 
@@ -83,7 +85,11 @@ class MWException extends Exception {
 		$callargs = array_merge( array( $this ), $args );
 
 		foreach ( $hooks as $hook ) {
-			if ( is_string( $hook ) || ( is_array( $hook ) && count( $hook ) >= 2 && is_string( $hook[0] ) ) ) { // 'function' or array( 'class', hook' )
+			if (
+				is_string( $hook ) ||
+				( is_array( $hook ) && count( $hook ) >= 2 && is_string( $hook[0] ) )
+			) {
+				// 'function' or array( 'class', hook' )
 				$result = call_user_func_array( $hook, $callargs );
 			} else {
 				$result = null;
@@ -127,7 +133,8 @@ class MWException extends Exception {
 
 		if ( $wgShowExceptionDetails ) {
 			return '<p>' . nl2br( htmlspecialchars( $this->getMessage() ) ) .
-				'</p><p>Backtrace:</p><p>' . nl2br( htmlspecialchars( MWExceptionHandler::formatRedactedTrace( $this ) ) ) .
+				'</p><p>Backtrace:</p><p>' .
+				nl2br( htmlspecialchars( MWExceptionHandler::formatRedactedTrace( $this ) ) ) .
 				"</p>\n";
 		} else {
 			return "<div class=\"errorbox\">" .
@@ -275,7 +282,10 @@ class MWException extends Exception {
 		$log = $this->getLogMessage();
 		if ( $log ) {
 			if ( $wgLogExceptionBacktrace ) {
-				wfDebugLog( 'exception', $log . "\n" . MWExceptionHandler::formatRedactedTrace( $this ) . "\n" );
+				wfDebugLog(
+					'exception',
+					$log . "\n" .MWExceptionHandler::formatRedactedTrace( $this ) . "\n"
+				);
 			} else {
 				wfDebugLog( 'exception', $log );
 			}
@@ -512,11 +522,11 @@ class UserBlockedError extends ErrorPageError {
 class UserNotLoggedIn extends ErrorPageError {
 
 	/**
-	 * @param $reasonMsg A message key containing the reason for the error.
+	 * @param $reasonMsg string A message key containing the reason for the error.
 	 *        Optional, default: 'exception-nologin-text'
-	 * @param $titleMsg A message key to set the page title.
+	 * @param $titleMsg string A message key to set the page title.
 	 *        Optional, default: 'exception-nologin'
-	 * @param $params Parameters to wfMessage().
+	 * @param $params array Parameters to wfMessage().
 	 *        Optional, default: null
 	 */
 	public function __construct(
@@ -650,10 +660,13 @@ class MWExceptionHandler {
 				}
 			}
 		} else {
-			$message = "Unexpected non-MediaWiki exception encountered, of type \"" . get_class( $e ) . "\"";
+			$message = "Unexpected non-MediaWiki exception encountered, of type \"" .
+				get_class( $e ) . "\"";
 
 			if ( $wgShowExceptionDetails ) {
-				$message .= "\nexception '" . get_class( $e ) . "' in " . $e->getFile() . ":" . $e->getLine() . "\nStack trace:\n" . self::formatRedactedTrace( $e ) . "\n";
+				$message .= "\nexception '" . get_class( $e ) . "' in " .
+					$e->getFile() . ":" . $e->getLine() . "\nStack trace:\n" .
+					self::formatRedactedTrace( $e ) . "\n";
 			}
 
 			if ( $cmdLine ) {
@@ -671,8 +684,9 @@ class MWExceptionHandler {
 	 * @param string $message Failure text
 	 */
 	public static function printError( $message ) {
-		# NOTE: STDERR may not be available, especially if php-cgi is used from the command line (bug #15602).
-		#      Try to produce meaningful output anyway. Using echo may corrupt output to STDOUT though.
+		# NOTE: STDERR may not be available, especially if php-cgi is used from the
+		# command line (bug #15602). Try to produce meaningful output anyway. Using
+		# echo may corrupt output to STDOUT though.
 		if ( defined( 'STDERR' ) ) {
 			fwrite( STDERR, $message );
 		} else {
@@ -710,7 +724,8 @@ class MWExceptionHandler {
 	}
 
 	/**
-	 * Get the stack trace from the exception as a string, redacting certain function arguments in the process
+	 * Get the stack trace from the exception as a string, redacting certain
+	 * function arguments in the process.
 	 * @param Exception $e The exception
 	 * @return string The stack trace as a string
 	 */
@@ -753,7 +768,7 @@ class MWExceptionHandler {
 					$args[] = var_export( $arg, true );
 				}
 			}
-			$finalExceptionText .=  '(' . implode( ', ', $args ) . ")\n";
+			$finalExceptionText .= '(' . implode( ', ', $args ) . ")\n";
 		}
 		return $finalExceptionText . '#' . ( $i + 1 ) . ' {main}';
 	}
