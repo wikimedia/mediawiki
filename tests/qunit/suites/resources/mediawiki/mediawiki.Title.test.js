@@ -195,4 +195,25 @@
 		assert.equal( title.getUrl(), '/wiki/User_talk:John_Doe', 'Escaping in title and namespace for urls' );
 	} );
 
+	QUnit.test( 'fromImgSrc', 9, function ( assert ) {
+		var title;
+
+		// TODO test thumb.php? Need sample URL.
+
+		title = mw.Title.fromImgSrc( '/wiki/images/thumb/9/91/Anticlockwise_heliotrope%27s.jpg/99px-Anticlockwise_heliotrope%27s.jpg' );
+		assert.equal( title.getNameText(), 'Anticlockwise heliotrope\'s' );
+		assert.equal( title.getPrefixedText(), 'File:Anticlockwise heliotrope\'s.jpg' );
+		assert.equal( title.getNamespaceId(), 6 );
+
+		title = mw.Title.fromImgSrc( '//upload.wikimedia.org/wikipedia/commons/thumb/8/80/Wikipedia-logo-v2.svg/150px-Wikipedia-logo-v2.svg.png' );
+		assert.equal( title.getNameText(), 'Wikipedia-logo-v2' );
+		assert.equal( title.getPrefixedText(), 'File:Wikipedia-logo-v2.svg' );
+		assert.equal( title.getNamespaceId(), 6 );
+
+		title = mw.Title.fromImgSrc( '/wiki/images/thumb/9/91/Anticlockwise_heliotrope%27s.jpg' );
+		assert.equal( title.getNameText(), 'Anticlockwise heliotrope\'s' );
+		assert.equal( title.getPrefixedText(), 'File:Anticlockwise heliotrope\'s.jpg' );
+		assert.equal( title.getNamespaceId(), 6 );
+	} );
+
 }( mediaWiki ) );
