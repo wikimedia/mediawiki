@@ -33,16 +33,18 @@
  * message and simultaneously switches off the OK flag.
  */
 class Status {
-	var $ok = true;
-	var $value;
+	public $ok = true;
+	public $value;
 
 	/** Counters for batch operations */
-	public $successCount = 0, $failCount = 0;
+	public $successCount = 0;
+	public $failCount = 0;
+
 	/** Array to indicate which items of the batch operations were successful */
 	public $success = array();
 
-	/*semi-private*/ var $errors = array();
-	/*semi-private*/ var $cleanCallback = false;
+	/*semi-private*/ public $errors = array();
+	/*semi-private*/ public $cleanCallback = false;
 
 	/**
 	 * Factory function for fatal errors

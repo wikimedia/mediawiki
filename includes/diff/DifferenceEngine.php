@@ -80,7 +80,7 @@ class DifferenceEngine extends ContextSource {
 	 * Constructor
 	 * @param $context IContextSource context to use, anything else will be ignored
 	 * @param $old Integer old ID we want to show and diff with.
-	 * @param $new String either 'prev' or 'next'.
+	 * @param $new String|int either 'prev' or 'next'. Default: 0.
 	 * @param $rcid Integer Deprecated, no longer used!
 	 * @param $refreshCache boolean If set, refreshes the diff cache
 	 * @param $unhide boolean If set, allow viewing deleted revs
@@ -581,6 +581,9 @@ class DifferenceEngine extends ContextSource {
 	 * Get the diff text, send it to the OutputPage object
 	 * Returns false if the diff could not be generated, otherwise returns true
 	 *
+	 * @param string|bool $otitle Header for old text or false
+	 * @param string|bool $ntitle Header for new text or false
+	 * @param string $notice
 	 * @return bool
 	 */
 	function showDiff( $otitle, $ntitle, $notice = '' ) {

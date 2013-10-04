@@ -81,7 +81,6 @@ if ( !function_exists( 'mb_strpos' ) ) {
 	function mb_strpos( $haystack, $needle, $offset = 0, $encoding = '' ) {
 		return Fallback::mb_strpos( $haystack, $needle, $offset, $encoding );
 	}
-
 }
 
 if ( !function_exists( 'mb_strrpos' ) ) {

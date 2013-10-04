@@ -28,14 +28,17 @@
  * @author Michael Dale
  */
 class UploadFromChunks extends UploadFromFile {
-	protected $mOffset, $mChunkIndex, $mFileKey, $mVirtualTempPath;
+	protected $mOffset;
+	protected $mChunkIndex;
+	protected $mFileKey;
+	protected $mVirtualTempPath;
 
 	/**
 	 * Setup local pointers to stash, repo and user (similar to UploadFromStash)
 	 *
-	 * @param $user User
-	 * @param $stash UploadStash
-	 * @param $repo FileRepo
+	 * @param $user User|null Default: null
+	 * @param $stash UploadStash|bool Default: false
+	 * @param $repo FileRepo|bool Default: false
 	 */
 	public function __construct( $user = null, $stash = false, $repo = false ) {
 		// user object. sometimes this won't exist, as when running from cron.

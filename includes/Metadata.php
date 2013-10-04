@@ -28,10 +28,10 @@ abstract class RdfMetaData {
 
 	/**
 	 * Constructor
-	 * @param $article Article object
+	 * @param $page Page object
 	 */
-	public function __construct( Page $article ) {
-		$this->mArticle = $article;
+	public function __construct( Page $page ) {
+		$this->mArticle = $page;
 	}
 
 	abstract public function show();
