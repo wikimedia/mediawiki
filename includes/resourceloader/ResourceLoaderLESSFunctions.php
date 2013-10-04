@@ -39,11 +39,10 @@ class ResourceLoaderLESSFunctions {
 		$base = pathinfo( $less->parser->sourceName, PATHINFO_DIRNAME );
 		$url = $frame[2][0];
 		$file = realpath( $base . '/' . $url );
-		$embeddable = ( $file
+		return $less->toBool( $file
 			&& strpos( $url, '//' ) === false
 			&& filesize( $file ) < CSSMin::EMBED_SIZE_LIMIT
-			&& CSSMin::getMimeType( $file ) !== false ) ? 'true' : 'false';
-		return array( 'keyword', $embeddable );
+			&& CSSMin::getMimeType( $file ) !== false );
 	}
 
 	/**
