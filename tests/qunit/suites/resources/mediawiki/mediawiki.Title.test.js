@@ -330,4 +330,56 @@
 		assert.equal( title.getUrl(), '/wiki/User_talk:John_Doe', 'Escaping in title and namespace for urls' );
 	} );
 
+	QUnit.test( 'fromImgSrc', 28, function ( assert ) {
+		var title;
+
+		title = mw.Title.fromImgSrc( '/wiki/images/thumb/9/91/Anticlockwise_heliotrope%27s.jpg/99px-Anticlockwise_heliotrope%27s.jpg' );
+		assert.notStrictEqual( title, undefined, 'Normal hashed upload directory thumbnail URL failed to parse' );
+		assert.equal( title.getNameText(), 'Anticlockwise heliotrope\'s', 'File name is incorrect' );
+		assert.equal( title.getPrefixedText(), 'File:Anticlockwise heliotrope\'s.jpg', 'File page title is incorrect' );
+		assert.equal( title.getNamespaceId(), 6, 'Namespace ID is incorrect' );
+
+		title = mw.Title.fromImgSrc( '//upload.wikimedia.org/wikipedia/commons/thumb/8/80/Wikipedia-logo-v2.svg/150px-Wikipedia-logo-v2.svg.png' );
+		assert.notStrictEqual( title, undefined, 'Commons thumb URL failed to parse' );
+		assert.equal( title.getNameText(), 'Wikipedia-logo-v2', 'File name is incorrect' );
+		assert.equal( title.getPrefixedText(), 'File:Wikipedia-logo-v2.svg', 'File page title is incorrect' );
+		assert.equal( title.getNamespaceId(), 6, 'Namespace ID is incorrect' );
+
+		title = mw.Title.fromImgSrc( '/wiki/images/9/91/Anticlockwise_heliotrope%27s.jpg' );
+		assert.notStrictEqual( title, undefined, 'Full image link failed to parse' );
+		assert.equal( title.getNameText(), 'Anticlockwise heliotrope\'s', 'File name is incorrect' );
+		assert.equal( title.getPrefixedText(), 'File:Anticlockwise heliotrope\'s.jpg', 'File page title is incorrect' );
+		assert.equal( title.getNamespaceId(), 6, 'Namespace ID is incorrect' );
+
+		title = mw.Title.fromImgSrc( 'http://localhost/thumb.php?f=Stuffless_Figaro%27s.jpg&width=180' );
+		assert.notStrictEqual( title, undefined, 'thumb.php URL failed to parse' );
+		assert.equal( title.getNameText(), 'Stuffless Figaro\'s', 'File name is incorrect' );
+		assert.equal( title.getPrefixedText(), 'File:Stuffless Figaro\'s.jpg', 'File page title is incorrect' );
+		assert.equal( title.getNamespaceId(), 6, 'Namespace ID is incorrect' );
+
+		title = mw.Title.fromImgSrc( '/wikipedia/commons/thumb/Wikipedia-logo-v2.svg/150px-Wikipedia-logo-v2.svg.png' );
+		assert.notStrictEqual( title, undefined, 'Commons unhashed thumbnail URL failed to parse' );
+		assert.equal( title.getNameText(), 'Wikipedia-logo-v2', 'File name is incorrect' );
+		assert.equal( title.getPrefixedText(), 'File:Wikipedia-logo-v2.svg', 'File page title is incorrect' );
+		assert.equal( title.getNamespaceId(), 6, 'Namespace ID is incorrect' );
+
+		title = mw.Title.fromImgSrc( '/wiki/images/Anticlockwise_heliotrope%27s.jpg' );
+		assert.notStrictEqual( title, undefined, 'Unhashed local file URL failed to parse' );
+		assert.equal( title.getNameText(), 'Anticlockwise heliotrope\'s', 'File name is incorrect' );
+		assert.equal( title.getPrefixedText(), 'File:Anticlockwise heliotrope\'s.jpg', 'File page title is incorrect' );
+		assert.equal( title.getNamespaceId(), 6, 'Namespace ID is incorrect' );
+
+		title = mw.Title.fromImgSrc( '' );
+		assert.strictEqual( title, undefined, 'Empty string was magically turned into an mw.Title' );
+
+		title = mw.Title.fromImgSrc( 'foo' );
+		assert.strictEqual( title, undefined, 'Apparently "foo" is a valid file URL now' );
+
+		title = mw.Title.fromImgSrc( 'foobar.aoeuao' );
+		assert.strictEqual( title, undefined, '6-character file extension was parsed into an mw.Title' );
+
+		title = mw.Title.fromImgSrc( '/a/a0/Blah blah blah' );
+		assert.strictEqual( title, undefined, 'Zero-length file extension was parsed into an mw.Title' );
+	} );
+
 }( mediaWiki, jQuery ) );
