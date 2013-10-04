@@ -179,12 +179,13 @@ class UploadStash {
 	 *
 	 * @param string $path path to file you want stashed
 	 * @param string $sourceType the type of upload that generated this file (currently, I believe, 'file' or null)
+	 * @param array $opts Options (includes 'expiry' timestamp)
 	 * @throws UploadStashBadPathException
 	 * @throws UploadStashFileException
 	 * @throws UploadStashNotLoggedInException
 	 * @return UploadStashFile: file, or null on failure
 	 */
-	public function stashFile( $path, $sourceType = null ) {
+	public function stashFile( $path, $sourceType = null, array $opts = array() ) {
 		if ( !is_file( $path ) ) {
 			wfDebug( __METHOD__ . " tried to stash file at '$path', but it doesn't exist\n" );
 			throw new UploadStashBadPathException( "path doesn't exist" );
@@ -270,7 +271,8 @@ class UploadStash {
 			'us_image_bits' => $fileProps['bits'],
 			'us_source_type' => $sourceType,
 			'us_timestamp' => $dbw->timestamp(),
-			'us_status' => 'finished'
+			'us_status' => 'finished',
+			'us_expiry' => isset( $opts['expiry'] ) ? $dbw->timestamp( $opts['expiry'] ) : null
 		);
 
 		$dbw->insert(
