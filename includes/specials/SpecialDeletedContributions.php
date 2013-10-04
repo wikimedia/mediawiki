@@ -482,16 +482,7 @@ class DeletedContributionsPage extends SpecialPage {
 			}
 		}
 
-		// Old message 'contribsub' had one parameter, but that doesn't work for
-		// languages that want to put the "for" bit right after $user but before
-		// $links.  If 'contribsub' is around, use it for reverse compatibility,
-		// otherwise use 'contribsub2'.
-		$oldMsg = $this->msg( 'contribsub' );
-		if ( $oldMsg->exists() ) {
-			return $oldMsg->rawParams( "$user ($links)" );
-		}
-
-		return $this->msg( 'contribsub2' )->rawParams( $user, $links );
+		return $this->msg( 'contribsub2' )->rawParams( $user, $links )->params( $userObj->getName() );
 	}
 
 	/**

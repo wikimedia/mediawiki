@@ -267,19 +267,7 @@ class SpecialContributions extends SpecialPage {
 			}
 		}
 
-		// Old message 'contribsub' had one parameter, but that doesn't work for
-		// languages that want to put the "for" bit right after $user but before
-		// $links.  If 'contribsub' is around, use it for reverse compatibility,
-		// otherwise use 'contribsub2'.
-		// @todo Should this be removed at some point?
-		$oldMsg = $this->msg( 'contribsub' );
-		if ( $oldMsg->exists() ) {
-			$linksWithParentheses = $this->msg( 'parentheses' )->rawParams( $links )->escaped();
-
-			return $oldMsg->rawParams( "$user $linksWithParentheses" );
-		}
-
-		return $this->msg( 'contribsub2' )->rawParams( $user, $links );
+		return $this->msg( 'contribsub2' )->rawParams( $user, $links )->params( $userObj->getName() );
 	}
 
 	/**
