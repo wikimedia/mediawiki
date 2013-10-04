@@ -2696,6 +2696,10 @@ class WikiPage implements Page, IDBAccessObject {
 			return $status;
 		}
 
+		if ( !$dbw->cascadingDeletes() ) {
+			$dbw->delete( 'revision', array( 'rev_page' => $id ), __METHOD__ );
+		}
+
 		$this->doDeleteUpdates( $id, $content );
 
 		// Log the deletion, if the page was suppressed, log it at Oversight instead
