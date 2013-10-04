@@ -131,6 +131,7 @@ class SkinTemplate extends Skin {
 	public function getLanguages() {
 		global $wgHideInterlanguageLinks;
 		$out = $this->getOutput();
+		$userLang = $this->getLanguage();
 
 		# Language links
 		$language_urls = array();
@@ -151,10 +152,14 @@ class SkinTemplate extends Skin {
 						$ilLangName = $this->formatLanguageName( $ilLangName );
 					}
 
+					// CLDR extension or similar is required to localize the language name;
+					// otherwise we'll end up with the autonym again.
+					$ilLangLocalName = Language::fetchLanguageName( $ilInterwikiCode, $userLang->getCode() );
+
 					$language_urls[] = array(
 						'href' => $languageLinkTitle->getFullURL(),
 						'text' => $ilLangName,
-						'title' => $languageLinkTitle->getText(),
+						'title' => wfMessage( 'tooltip-iwiki', $languageLinkTitle->getText(), $ilLangLocalName )->escaped(),
 						'class' => $class,
 						'lang' => wfBCP47( $ilInterwikiCode ),
 						'hreflang' => wfBCP47( $ilInterwikiCode ),
