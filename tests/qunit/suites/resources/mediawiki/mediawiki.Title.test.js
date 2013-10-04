@@ -330,4 +330,87 @@
 		assert.equal( title.getUrl(), '/wiki/User_talk:John_Doe', 'Escaping in title and namespace for urls' );
 	} );
 
+	QUnit.test( 'fromImgSrc', 28, function ( assert ) {
+		var title, i, thisCase, prefix,
+			cases = [
+				{
+					url: '/wiki/images/thumb/9/91/Anticlockwise_heliotrope%27s.jpg/99px-Anticlockwise_heliotrope%27s.jpg',
+					typeOfUrl: 'Normal hashed directory thumbnail',
+					nameText: 'Anticlockwise heliotrope\'s',
+					prefixedText: 'File:Anticlockwise heliotrope\'s.jpg'
+				},
+
+				{
+					url: '//upload.wikimedia.org/wikipedia/commons/thumb/8/80/Wikipedia-logo-v2.svg/150px-Wikipedia-logo-v2.svg.png',
+					typeOfUrl: 'Commons thumbnail',
+					nameText: 'Wikipedia-logo-v2',
+					prefixedText: 'File:Wikipedia-logo-v2.svg'
+				},
+
+				{
+					url: '/wiki/images/9/91/Anticlockwise_heliotrope%27s.jpg',
+					typeOfUrl: 'Full image',
+					nameText: 'Anticlockwise heliotrope\'s',
+					prefixedText: 'File:Anticlockwise heliotrope\'s.jpg'
+				},
+
+				{
+					url: 'http://localhost/thumb.php?f=Stuffless_Figaro%27s.jpg&width=180',
+					typeOfUrl: 'thumb.php-based thumbnail',
+					nameText: 'Stuffless Figaro\'s',
+					prefixedText: 'File:Stuffless Figaro\'s.jpg'
+				},
+
+				{
+					url: '/wikipedia/commons/thumb/Wikipedia-logo-v2.svg/150px-Wikipedia-logo-v2.svg.png',
+					typeOfUrl: 'Commons unhashed thumbnail',
+					nameText: 'Wikipedia-logo-v2',
+					prefixedText: 'File:Wikipedia-logo-v2.svg'
+				},
+
+				{
+					url: '/wiki/images/Anticlockwise_heliotrope%27s.jpg',
+					typeOfUrl: 'Unhashed local file',
+					nameText: 'Anticlockwise heliotrope\'s',
+					prefixedText: 'File:Anticlockwise heliotrope\'s.jpg'
+				},
+
+				{
+					url: '',
+					typeOfUrl: 'Empty string'
+				},
+
+				{
+					url: 'foo',
+					typeOfUrl: 'String with only alphabet characters'
+				},
+
+				{
+					url: 'foobar.foobar',
+					typeOfUrl: '6-character file extension'
+				},
+
+				{
+					url: '/a/a0/blah blah blah',
+					typeOfUrl: 'No file extension, space characters'
+				}
+			];
+
+		for ( i = 0; i < cases.length; i++ ) {
+			thisCase = cases[i];
+			title = mw.Title.fromImgSrc( thisCase.url );
+
+			if ( thisCase.nameText !== undefined ) {
+				prefix = '[' + thisCase.typeOfUrl + ' URL' + '] ';
+
+				assert.notStrictEqual( title, undefined, prefix + 'Parses successfully' );
+				assert.equal( title.getNameText(), thisCase.nameText, prefix + 'Filename matches original' );
+				assert.equal( title.getPrefixedText(), thisCase.prefixedText, prefix + 'File page title matches original' );
+				assert.equal( title.getNamespaceId(), 6, prefix + 'Namespace ID matches File namespace' );
+			} else {
+				assert.strictEqual( title, undefined, thisCase.typeOfUrl + ' should not produce an mw.Title object' );
+			}
+		}
+	} );
+
 }( mediaWiki, jQuery ) );
