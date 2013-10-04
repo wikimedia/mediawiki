@@ -81,7 +81,6 @@ if ( !function_exists( 'mb_strpos' ) ) {
 	function mb_strpos( $haystack, $needle, $offset = 0, $encoding = '' ) {
 		return Fallback::mb_strpos( $haystack, $needle, $offset, $encoding );
 	}
-
 }
 
 if ( !function_exists( 'mb_strrpos' ) ) {
@@ -283,8 +282,8 @@ function wfRandom() {
 	# The maximum random value is "only" 2^31-1, so get two random
 	# values to reduce the chance of dupes
 	$max = mt_getrandmax() + 1;
-	$rand = number_format( ( mt_rand() * $max + mt_rand() )
-		/ $max / $max, 12, '.', '' );
+	$rand = number_format( ( mt_rand() * $max + mt_rand() ) / $max / $max, 12, '.', '' );
+
 	return $rand;
 }
 
@@ -330,6 +329,7 @@ function wfRandomString( $length = 32 ) {
  */
 function wfUrlencode( $s ) {
 	static $needle;
+
 	if ( is_null( $s ) ) {
 		$needle = null;
 		return '';
@@ -337,7 +337,9 @@ function wfUrlencode( $s ) {
 
 	if ( is_null( $needle ) ) {
 		$needle = array( '%3B', '%40', '%24', '%21', '%2A', '%28', '%29', '%2C', '%2F' );
-		if ( !isset( $_SERVER['SERVER_SOFTWARE'] ) || ( strpos( $_SERVER['SERVER_SOFTWARE'], 'Microsoft-IIS/7' ) === false ) ) {
+		if ( !isset( $_SERVER['SERVER_SOFTWARE'] ) ||
+			( strpos( $_SERVER['SERVER_SOFTWARE'], 'Microsoft-IIS/7' ) === false )
+		) {
 			$needle[] = '%3A';
 		}
 	}
@@ -470,15 +472,17 @@ function wfAppendQuery( $url, $query ) {
 }
 
 /**
- * Expand a potentially local URL to a fully-qualified URL.  Assumes $wgServer
+ * Expand a potentially local URL to a fully-qualified URL. Assumes $wgServer
  * is correct.
  *
  * The meaning of the PROTO_* constants is as follows:
  * PROTO_HTTP: Output a URL starting with http://
  * PROTO_HTTPS: Output a URL starting with https://
  * PROTO_RELATIVE: Output a URL starting with // (protocol-relative URL)
- * PROTO_CURRENT: Output a URL starting with either http:// or https:// , depending on which protocol was used for the current incoming request
- * PROTO_CANONICAL: For URLs without a domain, like /w/index.php , use $wgCanonicalServer. For protocol-relative URLs, use the protocol of $wgCanonicalServer
+ * PROTO_CURRENT: Output a URL starting with either http:// or https:// , depending
+ *    on which protocol was used for the current incoming request
+ * PROTO_CANONICAL: For URLs without a domain, like /w/index.php , use $wgCanonicalServer.
+ *    For protocol-relative URLs, use the protocol of $wgCanonicalServer
  * PROTO_INTERNAL: Like PROTO_CANONICAL, but uses $wgInternalServer instead of $wgCanonicalServer
  *
  * @todo this won't work with current-path-relative URLs
@@ -486,10 +490,9 @@ function wfAppendQuery( $url, $query ) {
  *
  * @param string $url either fully-qualified or a local path + query
  * @param $defaultProto Mixed: one of the PROTO_* constants. Determines the
- *                             protocol to use if $url or $wgServer is
- *                             protocol-relative
+ *    protocol to use if $url or $wgServer is protocol-relative
  * @return string Fully-qualified URL, current-path-relative URL or false if
- *                no valid URL can be constructed
+ *    no valid URL can be constructed
  */
 function wfExpandUrl( $url, $defaultProto = PROTO_CURRENT ) {
 	global $wgServer, $wgCanonicalServer, $wgInternalServer;
@@ -513,8 +516,9 @@ function wfExpandUrl( $url, $defaultProto = PROTO_CURRENT ) {
 		if ( $serverHasProto ) {
 			$defaultProto = $bits['scheme'] . '://';
 		} else {
-			// $wgCanonicalServer or $wgInternalServer doesn't have a protocol. This really isn't supposed to happen
-			// Fall back to HTTP in this ridiculous case
+			// $wgCanonicalServer or $wgInternalServer doesn't have a protocol.
+			// This really isn't supposed to happen. Fall back to HTTP in this
+			// ridiculous case.
 			$defaultProto = PROTO_HTTP;
 		}
 	}
@@ -524,7 +528,8 @@ function wfExpandUrl( $url, $defaultProto = PROTO_CURRENT ) {
 	if ( substr( $url, 0, 2 ) == '//' ) {
 		$url = $defaultProtoWithoutSlashes . $url;
 	} elseif ( substr( $url, 0, 1 ) == '/' ) {
-		// If $serverUrl is protocol-relative, prepend $defaultProtoWithoutSlashes, otherwise leave it alone
+		// If $serverUrl is protocol-relative, prepend $defaultProtoWithoutSlashes,
+		// otherwise leave it alone.
 		$url = ( $serverHasProto ? '' : $defaultProtoWithoutSlashes ) . $serverUrl . $url;
 	}
 
@@ -739,9 +744,10 @@ function wfUrlProtocolsWithoutProtRel() {
 /**
  * parse_url() work-alike, but non-broken.  Differences:
  *
- * 1) Does not raise warnings on bad URLs (just returns false)
- * 2) Handles protocols that don't use :// (e.g., mailto: and news: , as well as protocol-relative URLs) correctly
- * 3) Adds a "delimiter" element to the array, either '://', ':' or '//' (see (2))
+ * 1) Does not raise warnings on bad URLs (just returns false).
+ * 2) Handles protocols that don't use :// (e.g., mailto: and news:, as well as
+ *    protocol-relative URLs) correctly.
+ * 3) Adds a "delimiter" element to the array, either '://', ':' or '//' (see (2)).
  *
  * @param string $url a URL to parse
  * @return Array: bits of the URL in an associative array, per PHP docs
@@ -749,8 +755,9 @@ function wfUrlProtocolsWithoutProtRel() {
 function wfParseUrl( $url ) {
 	global $wgUrlProtocols; // Allow all protocols defined in DefaultSettings/LocalSettings.php
 
-	// Protocol-relative URLs are handled really badly by parse_url(). It's so bad that the easiest
-	// way to handle them is to just prepend 'http:' and strip the protocol out later
+	// Protocol-relative URLs are handled really badly by parse_url(). It's so
+	// bad that the easiest way to handle them is to just prepend 'http:' and
+	// strip the protocol out later.
 	$wasRelative = substr( $url, 0, 2 ) == '//';
 	if ( $wasRelative ) {
 		$url = "http:$url";
@@ -816,7 +823,11 @@ function wfParseUrl( $url ) {
  * @return string
  */
 function wfExpandIRI( $url ) {
-	return preg_replace_callback( '/((?:%[89A-F][0-9A-F])+)/i', 'wfExpandIRI_callback', wfExpandUrl( $url ) );
+	return preg_replace_callback(
+		'/((?:%[89A-F][0-9A-F])+)/i',
+		'wfExpandIRI_callback',
+		wfExpandUrl( $url )
+	);
 }
 
 /**
@@ -1053,7 +1064,8 @@ function wfLogDBError( $text ) {
  * Throws a warning that $function is deprecated
  *
  * @param $function String
- * @param string|bool $version Version of MediaWiki that the function was deprecated in (Added in 1.19).
+ * @param string|bool $version Version of MediaWiki that the function
+ *    was deprecated in (Added in 1.19).
  * @param string|bool $component Added in 1.19.
  * @param $callerOffset integer: How far up the call stack is the original
  *    caller. 2 = function that called the function that called
@@ -2325,7 +2337,15 @@ function wfSuppressWarnings( $end = false ) {
 		}
 	} else {
 		if ( !$suppressCount ) {
-			$originalLevel = error_reporting( E_ALL & ~( E_WARNING | E_NOTICE | E_USER_WARNING | E_USER_NOTICE | E_DEPRECATED | E_USER_DEPRECATED | E_STRICT ) );
+			$originalLevel = error_reporting( E_ALL & ~(
+				E_WARNING |
+				E_NOTICE |
+				E_USER_WARNING |
+				E_USER_NOTICE |
+				E_DEPRECATED |
+				E_USER_DEPRECATED |
+				E_STRICT
+			) );
 		}
 		++$suppressCount;
 	}
@@ -2656,12 +2676,14 @@ function wfEscapeShellArg() {
 
 		if ( wfIsWindows() ) {
 			// Escaping for an MSVC-style command line parser and CMD.EXE
+			// @codingStandardsIgnoreStart For long URLs
 			// Refs:
 			//  * http://web.archive.org/web/20020708081031/http://mailman.lyra.org/pipermail/scite-interest/2002-March/000436.html
 			//  * http://technet.microsoft.com/en-us/library/cc723564.aspx
 			//  * Bug #13518
 			//  * CR r63214
 			// Double the backslashes before any double quotes. Escape the double quotes.
+			// @codingStandardsIgnoreEnd
 			$tokens = preg_split( '/(\\\\*")/', $arg, -1, PREG_SPLIT_DELIM_CAPTURE );
 			$arg = '';
 			$iteration = 0;
@@ -2736,7 +2758,9 @@ function wfShellExecDisabled() {
  *      
  * @return string collected stdout as a string
  */
-function wfShellExec( $cmd, &$retval = null, $environ = array(), $limits = array(), $options = array() ) {
+function wfShellExec( $cmd, &$retval = null, $environ = array(),
+	$limits = array(), $options = array()
+) {
 	global $IP, $wgMaxShellMemory, $wgMaxShellFileSize, $wgMaxShellTime,
 		$wgMaxShellWallClockTime, $wgShellCgroup;
 
@@ -3222,9 +3246,12 @@ function wfUseMW( $req_ver ) {
  * @return String
  */
 function wfBaseName( $path, $suffix = '' ) {
-	$encSuffix = ( $suffix == '' )
-		? ''
-		: ( '(?:' . preg_quote( $suffix, '#' ) . ')?' );
+	if ( $suffix == '' ) {
+		$encSuffix = '';
+	} else {
+		$encSuffix = '(?:' . preg_quote( $suffix, '#' ) . ')?';
+	}
+
 	$matches = array();
 	if ( preg_match( "#([^/\\\\]*?){$encSuffix}[/\\\\]*$#", $path, $matches ) ) {
 		return $matches[1];
@@ -3305,7 +3332,9 @@ function wfDoUpdates( $commit = '' ) {
  * @param string $engine Either "gmp", "bcmath", or "php"
  * @return string|bool The output number as a string, or false on error
  */
-function wfBaseConvert( $input, $sourceBase, $destBase, $pad = 1, $lowercase = true, $engine = 'auto' ) {
+function wfBaseConvert( $input, $sourceBase, $destBase, $pad = 1,
+	$lowercase = true, $engine = 'auto'
+) {
 	$input = (string)$input;
 	if (
 		$sourceBase < 2 ||
@@ -3315,7 +3344,10 @@ function wfBaseConvert( $input, $sourceBase, $destBase, $pad = 1, $lowercase = t
 		$sourceBase != (int)$sourceBase ||
 		$destBase != (int)$destBase ||
 		$pad != (int)$pad ||
-		!preg_match( "/^[" . substr( '0123456789abcdefghijklmnopqrstuvwxyz', 0, $sourceBase ) . "]+$/i", $input )
+		!preg_match(
+			"/^[" . substr( '0123456789abcdefghijklmnopqrstuvwxyz', 0, $sourceBase ) . "]+$/i",
+			$input
+		)
 	) {
 		return false;
 	}
@@ -3449,9 +3481,11 @@ function wfFixSessionID() {
 	// We treat it as disabled if it doesn't have an entropy length of at least 32
 	$entropyEnabled = wfCheckEntropy();
 
-	// If built-in entropy is not enabled or not sufficient override php's built in session id generation code
+	// If built-in entropy is not enabled or not sufficient override PHP's
+	// built in session id generation code
 	if ( !$entropyEnabled ) {
-		wfDebug( __METHOD__ . ": PHP's built in entropy is disabled or not sufficient, overriding session id generation using our cryptrand source.\n" );
+		wfDebug( __METHOD__ . ": PHP's built in entropy is disabled or not sufficient, " .
+			"overriding session id generation using our cryptrand source.\n" );
 		session_id( MWCryptRand::generateHex( 32 ) );
 	}
 }
@@ -3757,9 +3791,7 @@ function wfBoolToStr( $value ) {
  * @return string
  */
 function wfGetNull() {
-	return wfIsWindows()
-		? 'NUL'
-		: '/dev/null';
+	return wfIsWindows() ? 'NUL' : '/dev/null';
 }
 
 /**
@@ -3769,14 +3801,17 @@ function wfGetNull() {
  * in maintenance scripts, to avoid causing too much lag.  Of course, this is
  * a no-op if there are no slaves.
  *
- * @param $maxLag Integer (deprecated)
- * @param $wiki mixed Wiki identifier accepted by wfGetLB
- * @param $cluster string cluster name accepted by LBFactory
+ * @param int|bool $maxLag (deprecated)
+ * @param mixed $wiki Wiki identifier accepted by wfGetLB
+ * @param string|bool $cluster Cluster name accepted by LBFactory. Default: false.
  */
 function wfWaitForSlaves( $maxLag = false, $wiki = false, $cluster = false ) {
-	$lb = ( $cluster !== false )
-		? wfGetLBFactory()->getExternalLB( $cluster )
-		: wfGetLB( $wiki );
+	if( $cluster !== false ) {
+		$lb = wfGetLBFactory()->getExternalLB( $cluster );
+	} else {
+		$lb = wfGetLB( $wiki );
+	}
+
 	// bug 27975 - Don't try to wait for slaves if there are none
 	// Prevents permission error when getting master position
 	if ( $lb->getServerCount() > 1 ) {
@@ -3831,8 +3866,10 @@ function wfCountDown( $n ) {
  *              characters before hashing.
  * @return string
  * @codeCoverageIgnore
- * @deprecated since 1.20; Please use MWCryptRand for security purposes and wfRandomString for pseudo-random strings
- * @warning This method is NOT secure. Additionally it has many callers that use it for pseudo-random purposes.
+ * @deprecated since 1.20; Please use MWCryptRand for security purposes and
+ * wfRandomString for pseudo-random strings
+ * @warning This method is NOT secure. Additionally it has many callers that
+ * use it for pseudo-random purposes.
  */
 function wfGenerateToken( $salt = '' ) {
 	wfDeprecated( __METHOD__, '1.20' );
