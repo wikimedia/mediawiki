@@ -2428,7 +2428,7 @@ Quaesumus, adfirma ut iterum hanc paginam crees.",
 'tags' => 'Affixa mutationum validarum',
 'tag-filter-submit' => 'Filtrum',
 'tags-title' => 'Affixa',
-'tags-edit' => 'mutatum',
+'tags-edit' => 'recensere',
 'tags-hitcount' => '$1 {{PLURAL:$1|mutatum|mutata}}',
 
 # Special:ComparePages

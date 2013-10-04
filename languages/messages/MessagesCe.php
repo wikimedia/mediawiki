@@ -1758,6 +1758,8 @@ PICT # тайп тайпан
 'sp-contributions-logs' => 'тéптарш',
 'sp-contributions-talk' => 'дийцаре',
 'sp-contributions-userrights' => 'декъашхочун бакъона урхалладар',
+'sp-contributions-blocked-notice-anon' => 'ХӀара IP-адрес хӀинца блоктоьхна ду.
+Лахахь гойту блоктохаршан тептар чура тӀаьхьарлера дӀаяздар:',
 'sp-contributions-search' => 'Къинхьегам лахар',
 'sp-contributions-username' => 'IP-адрес я декъашхочун цӀе:',
 'sp-contributions-toponly' => 'ТӀаьхьара бина хийцамаш гайта',

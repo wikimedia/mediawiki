@@ -2500,7 +2500,7 @@ $1',
 તમરા સંદર્ભ માટે તાજી પ્રતિબંધ યાદિ આપી છે.',
 'sp-contributions-search' => 'યોગદાન શોધો',
 'sp-contributions-username' => 'IP સરનામું અથવા સભ્યનામ:',
-'sp-contributions-toponly' => 'તાજેતરમાં થયેલા ફેરફારો જબતાવો',
+'sp-contributions-toponly' => 'માત્ર છેલ્લી આવૃત્તિના ફેરફારો જ દર્શાવો',
 'sp-contributions-submit' => 'શોધો',
 
 # What links here
@@ -3789,7 +3789,10 @@ $5
 'tags-tag' => 'ટૅગનું નામ',
 'tags-display-header' => 'ફેરફારની યાદિઓમાં દેખાવ',
 'tags-description-header' => 'અર્થનું પૂર્ણ વિવરણ',
+'tags-active-header' => 'સક્રિય?',
 'tags-hitcount-header' => 'અંકિત ફેરફારો',
+'tags-active-yes' => 'હા',
+'tags-active-no' => 'ના',
 'tags-edit' => 'ફેરફાર કરો',
 'tags-hitcount' => '$1 {{PLURAL:$1|ફેરફાર|ફેરફારો}}',
 

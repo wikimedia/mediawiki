@@ -1418,7 +1418,7 @@ $1",
 'mergelogpagetext' => '다음은 한 문서의 역사를 다른 문서의 역사와 합친 최근 기록입니다.',
 
 # Diffs
-'history-title' => '"$1"의 판 내역',
+'history-title' => '"$1"의 바뀜 내력',
 'difference-title' => '"$1"의 두 판 사이의 차이',
 'difference-title-multipage' => '"$1" 문서와 "$2" 문서 사이의 차이',
 'difference-multipage' => '(문서 사이의 차이)',
@@ -4151,7 +4151,10 @@ $5
 'tags-tag' => '태그 이름',
 'tags-display-header' => '바뀜 목록의 모양',
 'tags-description-header' => '태그에 대한 설명',
+'tags-active-header' => '활성하겠습니까?',
 'tags-hitcount-header' => '태그된 바뀜',
+'tags-active-yes' => '예',
+'tags-active-no' => '아니오',
 'tags-edit' => '편집',
 'tags-hitcount' => '$1개 {{PLURAL:$1|바뀜}}',
 

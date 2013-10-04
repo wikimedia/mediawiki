@@ -49,12 +49,12 @@ $messages = array(
 'tog-hidepatrolled' => "Stërmé le modìfiche dzorvejà ant j'ùltime modìfiche",
 'tog-newpageshidepatrolled' => 'Stërmé le pàgine dzorvejà da la lista dle pàgine neuve',
 'tog-extendwatchlist' => "Slarghé la lista ëd ròba che as ten sot-euj an manera che a la smon-a tute le modìfiche, nen mach j'ùltime",
-'tog-usenewrc' => "Argropré le modìfiche për pàgina ant j'ùltime modìfiche e ant la lista dla ròba ch'as ten sot-euj (a-i và JavaScript)",
+'tog-usenewrc' => "Argropré le modìfiche për pàgina ant j'ùltime modìfiche e ant la lista dla ròba ch'as ten sot-euj",
 'tog-numberheadings' => 'Tìtoj ëd paràgraf<br />che as nùmero daspërlor',
-'tog-showtoolbar' => "Smon-e la bara dj'utiss ëd modìfica (a-i va Javascript)",
-'tog-editondblclick' => "Dobia sgnacà për modifiché l'artìcol (a-i va JavaScript)",
+'tog-showtoolbar' => "Smon-e la bara dj'utiss ëd modìfica",
+'tog-editondblclick' => 'Dobia sgnacà për modifiché la pàgina',
 'tog-editsection' => "Abilité le modìfiche ëd session con j'anliure [modifiché]",
-'tog-editsectiononrightclick' => 'Abilité la modìfica dle session ën sgnacand-je ansima al tìtol col tast drit dël rat (a-i va Javascript)',
+'tog-editsectiononrightclick' => 'Abilité la modìfica dle session ën sgnacand-je ansima ai tìtoj col tast drit dël rat',
 'tog-showtoc' => "Smon-e la tàula dij contnù (për le pàgine che l'han pì che 3 session)",
 'tog-rememberpassword' => "Visesse ëd mia ciav ansima a 's navigador (për al pi $1 {{PLURAL:$1|di}})",
 'tog-watchcreations' => "Gionté le pàgine che i creo mi e j'archivi che i cario mi a la lista ëd lòn che im ten-o sot-euj",
@@ -72,7 +72,7 @@ $messages = array(
 'tog-shownumberswatching' => "Smon-e ël nùmer d'utent che as ten-o la pàgina sot-euj",
 'tog-oldsig' => 'Firma esistenta:',
 'tog-fancysig' => "Traté la firma com dël test wiki (sensa n'anliura automàtica)",
-'tog-uselivepreview' => "Dovré la fonsion ''Preuva dal viv'' (a-i va JavaScript) (sperimental)",
+'tog-uselivepreview' => "Dovré la fonsion ''Preuva dal viv'' (sperimental)",
 'tog-forceeditsummary' => "Ciamé conferma se ël resumé dla modìfica a l'é veujd",
 'tog-watchlisthideown' => 'Stërmé mie modìfiche ant la ròba che im ten-o sot-euj',
 'tog-watchlisthidebots' => 'Stërmé le modìfiche fàite daj trigomiro ant la lista dle ròbe che im ten-o sot-euj',
@@ -86,6 +86,7 @@ $messages = array(
 'tog-noconvertlink' => "Disativé la conversion dij tìtoj ant j'anliure",
 'tog-norollbackdiff' => "Fé nen vëdde le diferense apress d'avèj ripristinà",
 'tog-useeditwarning' => 'Aviseme quand che i chito na pàgina ëd modìfiche con dle modìfiche nen salvà',
+'tog-prefershttps' => "Dovré sempe na conession sigura pr'ësté andrinta al sistema",
 
 'underline-always' => 'Sempe',
 'underline-never' => 'Mai',
@@ -149,6 +150,18 @@ $messages = array(
 'oct' => 'otó',
 'nov' => 'nov',
 'dec' => 'dzè',
+'january-date' => '$1 gené',
+'february-date' => '$1 fërvé',
+'march-date' => '$1 mars',
+'april-date' => '$1 avril',
+'may-date' => '$1 maj',
+'june-date' => '$1 giugn',
+'july-date' => '$1 luj',
+'august-date' => '$1 ost',
+'september-date' => '$1 stèmber',
+'october-date' => '$1 otóber',
+'november-date' => '$1 novèmber',
+'december-date' => '$1 dzèmber',
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Categorìa|Categorìe}}',
@@ -174,7 +187,7 @@ $messages = array(
 'newwindow' => '(as deurb ant na fnestra neuva)',
 'cancel' => 'Anulé',
 'moredotdotdot' => 'Ëd pì...',
-'morenotlisted' => "A-i na j'é ëdcò d'àutri nen ant la lista...",
+'morenotlisted' => "Costa lista a l'é nen completa.",
 'mypage' => 'Pàgina',
 'mytalk' => 'Ciaciarade',
 'anontalk' => "Ciaciarade për st'adrëssa IP-sì",
@@ -230,6 +243,7 @@ $messages = array(
 'create-this-page' => 'Creé sta pàgina',
 'delete' => 'Scancelé',
 'deletethispage' => 'Scancelé sa pàgina',
+'undeletethispage' => 'Arcuperé sta pàgina',
 'undelete_short' => 'Arcuperé {{PLURAL:$1|na modìfica|$1 modìfiche}}',
 'viewdeleted_short' => 'Vardé {{PLURAL:$1|na modìfica scancelà|$1 modìfiche scancelà}}',
 'protect' => 'Protege',
@@ -276,7 +290,7 @@ $1",
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'A propòsit ëd {{SITENAME}}',
 'aboutpage' => 'Project:A propòsit',
-'copyright' => 'Ël contnù a resta disponìbil sota a na licensa $1.',
+'copyright' => "Ël contnù a resta disponìbil sota $1 gavà ch'a sia marcà an n'àutra manera.",
 'copyrightpage' => "{{ns:project}}:Drit d'autor",
 'currentevents' => 'Neuve',
 'currentevents-url' => 'Project:Neuve',
@@ -359,6 +373,11 @@ Na lista dle pàgine speciaj bon-e a peul esse trovà ambelessì [[Special:Speci
 # General errors
 'error' => 'Eror',
 'databaseerror' => 'Eror ant la base ëd dat',
+'databaseerror-text' => "A l'é rivaje n'eror d'arcesta ëd base ëd dàit. Sòn a podrìa ven-e da 'n givo ant ël programa.",
+'databaseerror-textcl' => "A l'é rivaje n'eror d'arcesta ëd base ëd dàit.",
+'databaseerror-query' => 'Arcesta: $1',
+'databaseerror-function' => 'Fonsion: $1',
+'databaseerror-error' => 'Eror: $1',
 'laggedslavemode' => "'''Avis:''' la pàgina a podrìa ëdcò nen mostré le modìfiche pi recente.",
 'readonly' => 'Acess a la base ëd dat sërà për chèich temp.',
 'enterlockreason' => 'Che a buta na rason për ël blocagi, con andrinta data e ora ëd quand che a stima che a sarà gavà.',
@@ -392,6 +411,7 @@ Peul desse ch'a l'é già stàit ëscancelà da cheidun d'àutr.",
 'cannotdelete-title' => 'As peul pa scancelesse la pàgina «$1»',
 'delete-hook-aborted' => "Scancelassion anulà da n'estension.
 A l'ha smonù gnun-e spiegassion.",
+'no-null-revision' => 'Impossìbil creé na neuva revision veuida për la pàgina « $1 »',
 'badtitle' => 'Tìtol nen giust',
 'badtitletext' => "Ël tìtol ëd la pàgina che a l'ha ciamà a l'era nen giust, veuid, o un tìtol nen lijà ëd fasson giusta antra le lenghe o antra le wiki. A podrìa conten-e un o pi caràter ch'a peulo nen esse dovrà ant ij tìtoj.",
 'perfcached' => "Ij dat sì-dapress a sòn ëstàit memorisà an local e a peulo esse nen agiornà. Al pi {{PLURAL:$1|n'arzultà a l'é disponìbil|$1 arzultà a son disponìbij}} ant la memòria local.",
@@ -439,7 +459,6 @@ L'aministrator ch'a l'ha blocalo a l'ha lassà sta spiegassion: «$3».",
 # Login and logout pages
 'logouttext' => "'''A l'é surtì da 'nt ël sistema.'''
 
-A peul tiré anans a dovré {{SITENAME}} coma utent anònim, ò pura a peul <span class='plainlinks'>[$1 rintré torna ant ël sistema]</span> con l'istess stranòm che a dovrava prima, ò con un diferent.
 Ch'a nòta che chèiche pàgine a peulo continué a esse visualisà com s'a fussa ancor ant ël sistema, fin ch'a scancela nen la memòria local ëd sò navigador.",
 'welcomeuser' => 'Bin ëvnù, $1!',
 'welcomecreation-msg' => "Sò cont a l'é stàit creà.
@@ -692,35 +711,35 @@ Se a sgnaca torna «{{int:savearticle}}», soa modìfica a sarà salvà sensa gn
 'subject-preview' => "Preuva dl'oget/intestassion:",
 'blockedtitle' => "L'utent a l'é blocà.",
 'blockedtext' => "'''Sò stranòm ò pura adrëssa IP a l'é stàit blocà.'''
-\"
-Ël blocagi a l'é stàit fàit da \$1.
-Coma rason a l'ha butà ''\$2''.
 
-* Blocà a parte dal: \$8
-* Fin al: \$6
-* As veul blochesse: \$7
+Ël blocagi a l'é stàit fàit da $1.
+Coma rason a l'ha butà ''$2''.
 
-A peul butesse an contat con \$1 ò pura n'àotr [[{{MediaWiki:Grouppage-sysop}}|aministrator]] për discute ëd sò blocagi.
+* Blocà a parte dal: $8
+* Fin al: $6
+* As veul blochesse: $7
+
+A peul butesse an contat con $1 ò pura n'àotr [[{{MediaWiki:Grouppage-sysop}}|aministrator]] për discute ëd sò blocagi.
 Ch'a ten-a present ch'a podrà dovré la fonsion «mandeje un messagi ëd pòsta eletrònica a l'utent» mach s'a l'ha specificà n'adrëssa ëd vàlida ant [[Special:Preferences|sò gust]] e se sta fonsion a l'é nen ëstàita blocà 'cò chila.
-Soa adrëssa IP corenta a l'é \$3, e l'identificativ dël blocagi a l'é #\$5.
+Soa adrëssa IP corenta a l'é $3, e l'identificativ dël blocagi a l'é #$5.
 Për piasì, ch'a-j buta tut e doj ant soe comunicassion ant sta question-sì.",
-'autoblockedtext' => "Soa adrëssa IP a l'è stàita blocà n'automàtich ën essend ch'a l'era dovrà da n'àutr utent, che a l'é stàit blocà da \$1.
-La rason butà për ël blocagi a l'é
+'autoblockedtext' => "Soa adrëssa IP a l'è stàita blocà n'automàtich ën essend ch'a l'era dovrà da n'àutr utent, che a l'é stàit blocà da $1.
+La rason ësmonùa a l'é
 
-:''\$2''
+:''$2''
 
-* Ël blocagi a part dël: \$8
-* A va a la fin dël: \$6
-* Antërval ëd blocagi: \$7
+* Ël blocagi a part dai: $8
+* A va a la fin ai: $6
+* As veul blochesse: $7
 
-A peul contaté \$1 ò pura n'àotr dj'[[{{MediaWiki:Grouppage-sysop}}|aministrator]] për discute d'ës blocagi.
+A peul contaté $1 ò pura n'àotr dj'[[{{MediaWiki:Grouppage-sysop}}|aministrator]] për discute d'ës blocagi.
 
-Ch'a varda mach ch'a peul nen dovré l'opsion ëd \"mandeje un messagi a l'utent\" se a l'ha nen n'adrëssa ëd pòsta eletrònica registrà e verificà ant [[Special:Preferences|sò gust]] e se chiel a l'é stàit blocà ëdcò dal dovrela.
+Ch'a varda mach ch'a peul nen dovré l'opsion ëd «mandeje un mëssagi a l'utent» se a l'ha nen n'adrëssa ëd pòsta eletrònica vàlida registrà ant [[Special:Preferences|sò gust]] o se chiel a l'é stàit blocà ëdcò dal dovrela.
 
-Soa adrëssa IP corenta a l'é \$3, e sò nùmer ëd blocagi a l'é \$5.
-Për piasì, ch'a buta sempe tùit ij detaj an tute le comunicassion andova ch'as parla ëd sò blocagi.",
-'blockednoreason' => "a l'han pa butà gnun-a rason",
-'whitelistedittext' => 'A venta $1 për podèj fé dle modìfiche.',
+Soa adrëssa IP corenta a l'é $3, e sò nùmer ëd blocagi a l'é $5.
+Për piasì, ch'a buta sempe tùit ij detaj an tute j'arceste ch'a farà.",
+'blockednoreason' => 'gnun-a rason butà',
+'whitelistedittext' => 'A dev $1 për podèj fé dle modìfiche a le pàgine.',
 'confirmedittext' => 'A dev confermé soa adrëssa ëd pòsta eletrònica, anans che modifiché dle pàgine. Për piasì, che a convàlida soa adrëssa ën dovrand la pàgina [[Special:Preferences|mè gust]].',
 'nosuchsectiontitle' => 'As peul pa trovesse la session',
 'nosuchsectiontext' => "A l'ha provasse a modifiché na session ch'a-i é pa.
@@ -729,9 +748,8 @@ A peul essa stàita tramudà o scancelà an mente ch'a vëdìa la pàgina.",
 'loginreqlink' => 'rintré ant ël sistema',
 'loginreqpagetext' => "Che a pòrta passiensa, ma a dev $1 për podèj vëdde dj'àutre pàgine.",
 'accmailtitle' => 'Ciav spedìa.',
-'accmailtext' => "Na ciav generà a cas për [[User talk:$1|$1]] a l'é stàita mandà a $2.
-
-La ciav për cost neuv cont a peul esse cambià an duvertand la pàgina ''[[Special:ChangePassword|cambia ciav]]''",
+'accmailtext' => "Na ciav generà a l'ancàpit për [[User talk:$1|$1]] a l'é stàita mandà a $2.
+A peul esse modificà an sla pàgina ''[[Special:ChangePassword|modìfica dla ciav]]'' apress esse rintrà ant ël sistema.",
 'newarticle' => '(Neuv)',
 'newarticletext' => "It ses andàit daré a un colegament a na pàgina che a esist ancó pa.
 Për creé la pàgina, ancamin-a a scrive ant lë spassi sì-sota (varda la [[{{MediaWiki:Helppage}}|pàgina d'agiut]] për savèjne ëd pì).
@@ -808,7 +826,7 @@ Ant l'istess temp, ën mandand dël material un as pija la responsabilità dë d
 'longpageerror' => "'''EROR: Ël test che a l'ha mandà a l'é longh {{PLURAL:$1|un kilobyte|$1 kilobyte}} , che a resta pì che ël
 lìmit màssim ëd {{PLURAL:$2|un kilobyte|$2 kilobyte}}. Parèj as peul pa salvesse.",
 'readonlywarning' => "'''Avis: La base dat a l'é stàita blocà për manutension, e donca a podrà pa salvesse soe modìfiche tut sùbit.'''
-A peul esse che a-j ven-a còmod copiesse via sò test e butesslo da na part për salvelo peuj.
+A peul esse che a-j ven-a còmod copiesse via sò test e ancoless-lo an n'archivi ëd test e goernelo për pi tard.
 
 L'aministrator che a l'ha fàit ël blocagi a l'ha dàit costa spiegassion: $1",
 'protectedpagewarning' => "'''Avis: costa pàgina-sì a l'é stàita blocà an manera che mach j'utent con la qualìfica da aministrator a peulo feje dle modìfiche.'''
@@ -889,6 +907,7 @@ Costi paràmeter a son stàit lassà fòra.",
 'undo-failure' => "Sta modìfica a l'é nen podusse scancelé për via che a-i son dle contradission antra version antrames.",
 'undo-norev' => "La modìfica a peul nen esse anulà përchè a esist pa o a l'é stàita anulà.",
 'undo-summary' => 'Gavà la revision $1 fàita da [[Special:Contributions/$2|$2]] ([[User talk:$2|Ciaciarade]])',
+'undo-summary-username-hidden' => "Anulé la revision $1 ëd n'utent ëstërmà",
 
 # Account creation failure
 'cantcreateaccounttitle' => "As peul pa registresse d'utent",
@@ -1067,6 +1086,7 @@ Ch'a varda mach che a-i ven-a nen fòra un rabel ant la continuità stòrica.",
 'compareselectedversions' => 'Paragon-a le version selessionà',
 'showhideselectedversions' => 'Smon-e/stërmé le version selessionà',
 'editundo' => "buta 'me ch'a l'era",
+'diff-empty' => '(Gnun-a diferensa)',
 'diff-multi' => "({{PLURAL:$1|Na revision antërmedia|$1 revision antërmedie}} ëd {{PLURAL:$2|n'utent|$2 utent}} pa mostrà)",
 'diff-multi-manyusers' => "({{PLURAL:$1|Na revision antërmedia|$1 revision antërmedie}} da pi che $2 {{PLURAL:$2|n'utent|utent}} pa mostrà)",
 'difference-missing-revision' => "{{PLURAL:$2|Na revision|$2 revision}} dë sta diferensa ($1) a {{PLURAL:$2|l'é pa stàita|son pa stàite}} trovà.
@@ -1116,7 +1136,7 @@ Sòn a l'é normalment causà da l'andèje dapress a na veja liura stòrica a na
 'search-interwiki-default' => 'Arzultà da $1:',
 'search-interwiki-more' => '(ëd pì)',
 'search-relatedarticle' => 'Corelà',
-'mwsuggest-disable' => 'Disabilité ij sugeriment AJAX',
+'mwsuggest-disable' => "Disabilité ij sugeriment d'arserca",
 'searcheverything-enable' => 'Sërché ant tùit jë spassi nominaj',
 'searchrelated' => 'corelà',
 'searchall' => 'tuti',
@@ -1136,6 +1156,7 @@ Ch'a preuva a gionté dnans a soa arserca ël prefiss ''all:'' për sërché an 
 'powersearch-togglenone' => 'Gnun',
 'search-external' => 'Arserca esterna',
 'searchdisabled' => "L'arserca anterna ëd {{SITENAME}} a l'é nen abilità; për adess a peul prové a dovré un motor d'arserca estern coma Google. (Però che a ten-a da ment che ij contnù ëd {{SITENAME}} listà ant ij motor pùblich a podrìo ëdcò esse nen d'autut agiornà)",
+'search-error' => "A l'é rivaje n'eror durant l'arserca: $1",
 
 # Preferences page
 'preferences' => 'Mè gust',
@@ -1167,7 +1188,7 @@ Ch'a preuva a gionté dnans a soa arserca ël prefiss ''all:'' për sërché an 
 'prefs-rendering' => 'Sembiansa',
 'saveprefs' => 'Salvé ij sò gust',
 'resetprefs' => 'Buté torna ij "mè gust" coma a-i ero al prinsipi',
-'restoreprefs' => "Buté torna j'ampostassion dë stàndard",
+'restoreprefs' => "Buté torna j'ampostassion dë stàndard (an tute le session)",
 'prefs-editing' => 'Quàder ëd modìfica dël test',
 'rows' => 'Righe:',
 'columns' => 'Colòne:',

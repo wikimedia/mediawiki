@@ -723,7 +723,7 @@ Ne zaboravite da prilagodite sebi svoja [[Special:Preferences|{{SITENAME}} pode�
 'userlogout' => 'Odjavi me',
 'notloggedin' => 'Niste prijavljeni',
 'userlogin-noaccount' => 'Nemate korisnički račun?',
-'userlogin-joinproject' => 'Pridružite se {{SITENAME}}',
+'userlogin-joinproject' => 'Pridružite se {{GRAMMAR:dativ|{{SITENAME}}}}',
 'nologin' => 'Nemate korisničko ime? $1.',
 'nologinlink' => 'Napravite nalog',
 'createaccount' => 'Napravi korisnički račun',
@@ -2468,7 +2468,7 @@ nastavite s oprezom.',
 Posljednja izmjena je bila od korisnika [[User:$3|$3]] ([[User talk:$3|razgovor]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment' => "Sažetak izmjene je bio: \"''\$1''\".",
 'revertpage' => 'Vraćene izmjene [[Special:Contributions/$2|$2]] ([[User talk:$2|razgovor]]) na posljednju izmjenu korisnika [[User:$1|$1]]',
-'revertpage-nouser' => 'Vraćene izmjene skrivenog korisnika na posljednju reviziju koju je načinio [[User:$1|$1]]',
+'revertpage-nouser' => 'Vraćene izmjene skrivenog korisnika na posljednju reviziju koju je {{GENDER:$1|načinio|načinila}} [[User:$1|$1]]',
 'rollback-success' => 'Poništene izmjene korisnika $1;
 vraćeno na posljednju verziju koju je sačuvao $2.',
 
@@ -4015,6 +4015,8 @@ Trebali biste dobiti [{{SERVER}}{{SCRIPTPATH}}/KOPIJU GNU opće javne licence] z
 'tags-display-header' => 'Vidljivost na spisku izmjena',
 'tags-description-header' => 'Puni opis značenja',
 'tags-hitcount-header' => 'Označene izmjene',
+'tags-active-yes' => 'Da',
+'tags-active-no' => 'Ne',
 'tags-edit' => 'uređivanje',
 'tags-hitcount' => '$1 {{PLURAL:$1|izmjena|izmjene|izmjena}}',
 
@@ -4169,5 +4171,8 @@ Inače, možete ispuniti jednostavan obrazac ispod. Vaš komentar biti će dodan
 
 # Image rotation
 'rotate-comment' => 'Slika rotirana za $1 {{PLURAL:$1|stepen|stepeni}} u smjeru kazaljke na satu',
+
+# Limit report
+'limitreport-walltime-value' => '$1 {{PLURAL:$1|sekunda|sekunde|sekundi}}',
 
 );

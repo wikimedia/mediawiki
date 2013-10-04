@@ -4101,7 +4101,10 @@ Powinieneś otrzymać [{{SERVER}}{{SCRIPTPATH}}/COPYING kopię licencji GNU Gene
 'tags-tag' => 'Nazwa znacznika',
 'tags-display-header' => 'Wystąpienia na listach zmian',
 'tags-description-header' => 'Pełny opis znaczenia',
+'tags-active-header' => 'Aktywny?',
 'tags-hitcount-header' => 'Oznaczone zmiany',
+'tags-active-yes' => 'Tak',
+'tags-active-no' => 'Nie',
 'tags-edit' => 'edytuj',
 'tags-hitcount' => '$1 {{PLURAL:$1|zmiana|zmiany|zmian}}',
 

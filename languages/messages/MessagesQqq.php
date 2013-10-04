@@ -586,7 +586,8 @@ See also:
 {{Identical|Create}}',
 'editthispage' => 'This is the "edit" link as used in the Cologne Blue skin, at the bottom of the page.
 
-See {{msg-mw|Create-this-page}} for when the page does not exist.',
+See {{msg-mw|Create-this-page}} for when the page does not exist.
+{{Identical|Edit this page}}',
 'create-this-page' => 'In the Cologne Blue skin this is the text for the link leading to the edit form on pages that have not yet been created, at the bottom of the page. See {{msg-mw|editthispage}} for when the page already exists.
 {{Identical|Createpage}}',
 'delete' => 'Name of the Delete tab shown for admins. Should be in the infinitive mood.
@@ -708,8 +709,10 @@ For explanation of 'lock' see [[w:Lock_(computer_science)|wikipedia]].",
 'aboutpage' => 'Used as the target of the link that appears at the footer of every page on the wiki (in most of  the skins) and leads to the page that contains the site description. Therefore the content should be the same with the page name of the site description page. Only the message in the [[mw:Manual:$wgLanguageCode|site language]]  ([[MediaWiki:Aboutpage]]) is used. The link label is {{msg-mw|aboutsite}}.
 
 {{doc-important|Do not translate "Project:" part, for this is the namespace prefix.}}',
-'copyright' => 'Parameters:
-* $1 - license name',
+'copyright' => "Parameters:
+* $1 - license name
+'''See also'''
+* {{msg-mw|Mobile-frontend-copyright}}",
 'copyrightpage' => '{{doc-important|Do not change <nowiki>{{ns:project}}</nowiki>}}
 
 {{Identical|Copyright}}',
@@ -962,9 +965,6 @@ Parameters:
 * $1 - page title',
 'sort-descending' => 'JavaScript message. Used by sortable table script.',
 'sort-ascending' => 'JavaScript message. Used by sortable table script.',
-'tooltip-iwiki' => 'Format of a sidebar interwiki link tooltip. Parameters:
-* $1 - Page name in the target wiki
-* $2 - Target wiki language autonym',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'The name for the tab of the main namespace. Example: [[Example]]
@@ -3500,7 +3500,8 @@ In [[Special:Log]]',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => '{{Doc-action|read}}',
-'action-edit' => '{{Doc-action|edit}}',
+'action-edit' => '{{Doc-action|edit}}
+{{Identical|Edit this page}}',
 'action-createpage' => '{{Doc-action|createpage}}
 {{Identical|Create page}}',
 'action-createtalk' => '{{Doc-action|createtalk}}',
@@ -6033,9 +6034,10 @@ See also:
 * {{msg-mw|Tooltip-pt-mycontris}}
 {{Identical|Contribution}}',
 'contribsub2' => 'Contributions for "user" (links). Parameters:
-* $1 is an IP address or a username, with a link which points to the user page (if registered user).
-* $2 is list of tool links. The list contains a link which has text {{msg-mw|Sp-contributions-talk}}.
-* $3 is a plain text username used for GENDER.
+* $1 - any one of the following:
+** IP address (if anonymous user)
+** username, with a link which points to the user page (if registered user)
+* $2 - list of tool links. The list contains a link which has text {{msg-mw|Sp-contributions-talk}}
 {{Identical|For $1}}',
 'nocontribs' => 'Used in [[Special:Contributions]] and [[Special:DeletedContributions]].
 
@@ -10037,10 +10039,19 @@ Parameters:
 'tags-tag' => 'Caption of a column in [[Special:Tags]]. For more information on tags see [[mw:Manual:Tags|MediaWiki]].',
 'tags-display-header' => 'Caption of a column in [[Special:Tags]]. For more information on tags see [[mw:Manual:Tags|MediaWiki]].',
 'tags-description-header' => 'Caption of a column in [[Special:Tags]]. For more information on tags see [[mw:Manual:Tags|MediaWiki]].',
-'tags-active-header' => 'Caption of a column in [[Special:Tags]]. For more information on tags see [[mw:Manual:Tags|MediaWiki]].',
+'tags-active-header' => 'Caption of a column in [[Special:Tags]]. For more information on tags see [[mw:Manual:Tags|MediaWiki]].
+{{Identical|Active}}',
 'tags-hitcount-header' => 'Caption of a column in [[Special:Tags]]. For more information on tags see [[mw:Manual:Tags|MediaWiki]].',
-'tags-active-yes' => 'Table cell contents if given tag is "active".',
-'tags-active-no' => 'Table cell contents if given tag is not "active".',
+'tags-active-yes' => 'Table cell contents if given tag is "active".
+
+See also:
+* {{msg-mw|Tags-active-no}}
+{{Identical|Yes}}',
+'tags-active-no' => 'Table cell contents if given tag is not "active".
+
+See also:
+* {{msg-mw|Tags-active-yes}}
+{{Identical|No}}',
 'tags-edit' => 'Used on [[Special:Tags]]. Verb. Used as display text on a link to create/edit a description.
 {{Identical|Edit}}',
 'tags-hitcount' => 'Shown in the "{{msg-mw|Tags-hitcount-header}}" column in [[Special:Tags]]. For more information on tags see [[mw:Manual:Tags|MediaWiki]].

@@ -1602,14 +1602,14 @@ Vaše adresa v takovém případě není prozrazena.',
 'userrights-lookup-user' => 'Spravovat uživatelské skupiny',
 'userrights-user-editname' => 'Zadejte uživatelské jméno:',
 'editusergroup' => 'Upravit uživatelské skupiny',
-'editinguser' => "Úprava práv uživatele '''[[User:$1|$1]]''' $2",
+'editinguser' => "Úprava práv {{GENDER:$1|uživatele|uživatelky}} '''[[User:$1|$1]]''' $2",
 'userrights-editusergroup' => 'Upravit uživatelské skupiny',
 'saveusergroups' => 'Uložit uživatelské skupiny',
-'userrights-groupsmember' => 'Člen skupin:',
-'userrights-groupsmember-auto' => 'Automaticky člen skupin:',
-'userrights-groups-help' => 'Můžete měnit skupiny, do nichž je uživatel zařazen.
-* Zaškrtnuté políčko znamená, že uživatel je v dané skupině.
-* Nezaškrtnuté políčko značí, že uživatel v dané skupině není.
+'userrights-groupsmember' => '{{GENDER:$2|Člen|Členka}} {{PLURAL:$1|skupiny|skupin}}:',
+'userrights-groupsmember-auto' => 'Automaticky {{GENDER:$2|člen|členka}} {{PLURAL:$1|skupiny|skupin}}:',
+'userrights-groups-help' => 'Můžete měnit skupiny, do nichž je {{GENDER:$1|uživatel zařazen|uživatelka zařazena}}.
+* Zaškrtnuté políčko znamená, že {{GENDER:$1|uživatel|uživatelka}} je v dané skupině.
+* Nezaškrtnuté políčko značí, že {{GENDER:$1|uživatel|uživatelka}} v dané skupině není.
 * Hvězdička (*) znamená, že nemůžete danou skupinu odstranit, jakmile ji přidáte, nebo naopak.',
 'userrights-reason' => 'Důvod:',
 'userrights-no-interwiki' => 'Nemáte povoleno měnit uživatelská práva na jiných wiki.',
@@ -4102,7 +4102,10 @@ MediaWiki je distribuována v naději, že bude užitečná, avšak BEZ JAKÉKOL
 'tags-tag' => 'Název značky',
 'tags-display-header' => 'Zobrazení na seznamech změn',
 'tags-description-header' => 'Úplný popis významu',
+'tags-active-header' => 'Aktivní?',
 'tags-hitcount-header' => 'Označené změny',
+'tags-active-yes' => 'Ano',
+'tags-active-no' => 'Ne',
 'tags-edit' => 'editovat',
 'tags-hitcount' => '$1 {{PLURAL:$1|změna|změny|změn}}',
 

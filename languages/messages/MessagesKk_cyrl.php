@@ -1048,6 +1048,8 @@ IP-мекенжайыңыз бұл беттің түзету тарихында 
 * Басқа беттерден [[Special:Search/{{PAGENAME}}|бұл бет атауын іздеу]],
 * <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} Журналдардан бұл бетке қатысты сәйкес жазбаларды табу]</span>,
 * <span class=\"plainlinks\">'''[{{fullurl:{{FULLPAGENAME}}|action=edit}} Бұл бетті жаңадан бастау]'''</span>.",
+'noarticletext-nopermission' => 'Ағымда бұл бетте еш мәтін жоқ.
+Сіз [[Special:Search/{{PAGENAME}}|бұл бет атауын]] басқа беттерден іздей аласыз, немесе <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} журналдардан бұл бетке қатысты сәйкес жазбаларды таба аласыз]</span>. Ал бұл бетті жаңадан бастауға сізде рұқсат жоқ.',
 'userpage-userdoesnotexist' => '«<nowiki>$1</nowiki>» қатысушы тіркелгісі жазып алынбаған. Бұл бетті бастау/өңдеу талабыңызды тексеріп шығыңыз.',
 'userpage-userdoesnotexist-view' => '«$1» қатысушы есімі тіркелмеген.',
 'blocked-notice-logextract' => 'Бұл қатысушы қазіргі уақытта  бұғатталған.
@@ -1360,6 +1362,7 @@ $1",
 'searchall' => 'барлық',
 'showingresults' => "Төменде нөмір '''$2''' орнынан бастап барынша '''$1''' нәтиже көрсетіледі.",
 'showingresultsnum' => "Төменде нөмір '''$2''' орнынан бастап '''$3''' нәтиже көрсетіледі.",
+'showingresultsheader' => "«'''$4'''» үшін {{PLURAL:$5|тек '''$1''' нәтиже табылды|табылған '''$3''' нәтиженің '''$1—$2''' аралығы көрсетілген}}",
 'nonefound' => "'''Аңғартпа''': Әдепкіден тек кейбір есім аялардан ізделінеді. Барлық мағлұмат түрін (соның ішінде талқылау беттерді, үлгілерді т.б.) іздеу үшін сұранымыңызды ''барлық:'' деп бастаңыз, немесе қалаған есім аясын бастауыш есебінде қолданыңыз.",
 'search-nonefound' => 'Сұрауға сәйкес нәтижелер табылмады.',
 'powersearch' => 'Кеңейтілген іздеу',
@@ -1686,7 +1689,7 @@ $1",
 'rc_categories_any' => 'Кез келген',
 'rc-change-size-new' => 'Өңдеуден кейінгі көлемі: $1{{PLURAL:$1|байт|байт}}',
 'newsectionsummary' => '/* $1 */ жаңа бөлім',
-'rc-enhanced-expand' => 'Толық ақпаратты көрсету (JavaScript-ті керек етеді)',
+'rc-enhanced-expand' => 'Толық ақпаратты көрсету',
 'rc-enhanced-hide' => 'Толық ақпаратты жасыру',
 'rc-old-title' => 'Бастапқы «$1» сияқты жасалған',
 
@@ -3403,7 +3406,7 @@ $1',
 
 # External editor support
 'edit-externally' => 'Бұл файлды шеттік қондырма арқылы өңдеу',
-'edit-externally-help' => '(көбірек ақпарат үшін [//www.mediawiki.org/wiki/Manual:External_editors орнату нұсқауларын] қараңыз.',
+'edit-externally-help' => '(көбірек ақпарат үшін [//www.mediawiki.org/wiki/Manual:External_editors орнату нұсқауларын] қараңыз)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'барлық',

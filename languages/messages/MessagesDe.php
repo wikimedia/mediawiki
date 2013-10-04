@@ -3230,6 +3230,7 @@ Diese auf dem lokalen Rechner speichern und danach hier hochladen.',
 'tooltip-undo' => 'Macht lediglich diese eine Änderung rückgängig und zeigt das Resultat in der Vorschau an, damit in der Zusammenfassungszeile eine Begründung angegeben werden kann.',
 'tooltip-preferences-save' => 'Einstellungen speichern',
 'tooltip-summary' => 'Gib eine kurze Zusammenfassung ein.',
+'tooltip-iwiki' => '$1 – $2',
 
 # Stylesheets
 'common.css' => '/* Das folgende CSS wird für alle Benutzeroberflächen geladen. */',

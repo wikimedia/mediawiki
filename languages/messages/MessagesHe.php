@@ -4165,7 +4165,10 @@ $5
 'tags-tag' => 'שם התגית',
 'tags-display-header' => 'הופעה ברשימות השינויים',
 'tags-description-header' => 'תיאור מלא של המשמעות',
+'tags-active-header' => 'פעילה?',
 'tags-hitcount-header' => 'שינויים עם תגיות',
+'tags-active-yes' => 'כן',
+'tags-active-no' => 'לא',
 'tags-edit' => 'עריכה',
 'tags-hitcount' => '{{PLURAL:$1|שינוי אחד|$1 שינויים}}',
 

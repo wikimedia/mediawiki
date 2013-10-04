@@ -3958,7 +3958,9 @@ Questo programma deve essere distribuito assieme ad [{{SERVER}}{{SCRIPTPATH}}/CO
 'tags-tag' => "Nome dell'etichetta",
 'tags-display-header' => 'Aspetto nella lista delle modifiche',
 'tags-description-header' => 'Descrizione completa del significato',
+'tags-active-header' => 'Attivo?',
 'tags-hitcount-header' => 'Modifiche che hanno etichetta',
+'tags-active-yes' => 'Sì',
 'tags-edit' => 'modifica',
 'tags-hitcount' => '$1 {{PLURAL:$1|modifica|modifiche}}',
 

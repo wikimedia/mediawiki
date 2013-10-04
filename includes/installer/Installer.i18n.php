@@ -4072,6 +4072,10 @@ MediaWiki benötigt die UTF-8-Unterstützung, um fehlerfrei lauffähig zu sein."
 Dieser Wert ist wahrscheinlich zu niedrig.
 Der Installationsvorgang könnte daher scheitern!",
 	'config-ctype' => "'''Fataler Fehler:''' PHP muss mit Unterstützung für das [http://www.php.net/manual/de/ctype.installation.php Modul ctype] kompiliert werden.",
+	'config-json' => "'''Fatal:''' PHP wurde ohne JSON-Support kompiliert.
+Du musst entweder die PHP-JSON- oder die [http://pecl.php.net/package/jsonc PECL-jsonc]-Erweiterung installieren, bevor du MediaWiki installierst.
+* Die PHP-Erweiterung ist in Red Hat Enterprise Linux (CentOS) 5 und 6 enthalten, muss jedoch in <code>/etc/php.ini</code> oder <code>/etc/php.d/json.ini</code> aktiviert werden.
+* Einige Linux-Distributionen, die nach Mai 2013 veröffentlicht wurden, lassen die PHP-Erweiterung weg, stattdessen wird die PECL-Erweiterung als <code>php5-json</code> oder <code>php-pecl-jsonc</code> mitgeliefert.",
 	'config-xcache' => '[http://xcache.lighttpd.net/ XCache] ist installiert',
 	'config-apc' => '[http://www.php.net/apc APC] ist installiert',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] ist installiert',
@@ -5883,6 +5887,10 @@ MédiaWiki nécessite la gestion d’UTF-8 pour fonctionner correctement.",
 Cette valeur est probablement trop faible.
 Il est possible que l’installation échoue !",
 	'config-ctype' => "'''Fatal ''': PHP doit être compilé avec le support pour l'[http://www.php.net/manual/en/ctype.installation.php extension Ctype].",
+	'config-json' => "'''Erreur fatale :''' PHP a été compilé sans le support de JSON.
+Vous devez soit installez l’extension JSON de PHP ou l’extension [http://pecl.php.net/package/jsonc PECL jsonc] avant d’installer MediaWiki.
+* L’extension PHP est comprise dans Red Hat Enterprise Linux (CentOS) 5 et 6, mais doit être activée dans <code>/etc/php.ini</code> ou <code>/etc/php.d/json.ini</code>.
+* Certaines distributions Linux après mai 2013 ne comprennent pas l’extension PHP, mais oint mis à la place l’extension PECL sous al forme <code>php5-json</code> ou <code>php-pecl-jsonc</code>.",
 	'config-xcache' => '[http://xcache.lighttpd.net/ XCache] est installé',
 	'config-apc' => '[http://www.php.net/apc APC] est installé',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] est installé',
@@ -12950,6 +12958,10 @@ $1
 Ова е веројатно премалку.
 Инсталацијата може да не успее!",
 	'config-ctype' => "'''Фатална грешка''': PHP мора да се состави со поддршка за [http://www.php.net/manual/en/ctype.installation.php додатокот Ctype].",
+	'config-json' => "'''Кобно:''' PHP беше срочен без поддршка од JSON.
+Ќе мора да го инсталирате додатокот за JSON во PHP, или додатокот [http://pecl.php.net/package/jsonc PECL jsonc] пред да го инсталирате МедијаВики.
+* Додатокот за PHP е вклучен во верзиите 5 и 6 на Linux (од Red Hat Enterprise) (CentOS), но мора да се активира во <code>/etc/php.ini</code> или <code>/etc/php.d/json.ini</code>.
+* Некои варијанти на Linux излезени по мај 2013 г. не го содржат додатокот за PHP, туку го пакуваат додатокот PECL како <code>php5-json</code> или <code>php-pecl-jsonc</code>.",
 	'config-xcache' => '[http://xcache.lighttpd.net/ XCache] е инсталиран',
 	'config-apc' => '[http://www.php.net/apc APC] е инсталиран',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] е инсталиран',
@@ -16482,6 +16494,7 @@ $messages['ps'] = array(
  * @author SandroHc
  * @author Waldir
  * @author 아라
+ * @author 555
  */
 $messages['pt'] = array(
 	'config-desc' => 'O instalador do MediaWiki',
@@ -16536,7 +16549,7 @@ Verifique o seu php.ini e certifique-se de que em <code>session.save_path</code>
 	'config-restart' => 'Sim, reiniciar',
 	'config-welcome' => '=== Verificações do ambiente ===
 São realizadas verificações básicas para determinar se este ambiente é apropriado para instalação do MediaWiki.
-Se necessitar de pedir ajuda durante a instalação, deve fornecer os resultados destas verificações.',
+Se necessitar de pedir ajuda durante a instalação, deve fornecer os resultados destas verificações.', # Fuzzy
 	'config-copyright' => "=== Direitos de autor e Condições de uso ===
 
 $1
@@ -16563,7 +16576,7 @@ Não pode instalar o MediaWiki.',
 	'config-env-php' => 'O PHP $1 está instalado.',
 	'config-env-php-toolow' => 'O PHP $1 está instalado.
 No entanto, o MediaWiki requer o PHP $2 ou superior.',
-	'config-unicode-using-utf8' => 'A usar o utf8_normalize.so, por Brian Viper, para a normalização Unicode.',
+	'config-unicode-using-utf8' => 'A usar o utf8_normalize.so, por Brion Vibber, para a normalização Unicode.',
 	'config-unicode-using-intl' => 'A usar a [http://pecl.php.net/intl extensão intl PECL] para a normalização Unicode.',
 	'config-unicode-pure-php-warning' => "'''Aviso''': A [http://pecl.php.net/intl extensão intl PECL] não está disponível para efetuar a normalização Unicode. Irá recorrer-se à implementação em PHP puro, que é mais lenta.
 Se o seu site tem alto volume de tráfego, devia informar-se um pouco sobre a [//www.mediawiki.org/wiki/Unicode_normalization_considerations/pt normalização Unicode].",
@@ -17110,7 +17123,7 @@ Você pode instalar o MediaWiki.',
 	'config-env-bad' => 'O ambiente foi verificado.
 Você não pode instalar o MediaWiki.',
 	'config-env-php' => 'O PHP $1 está instalado.',
-	'config-unicode-using-utf8' => 'A usar o utf8_normalize.so, de Brian Viper, para a normalização Unicode.',
+	'config-unicode-using-utf8' => 'Usando o utf8_normalize.so, de Brion Vibber, para a normalização Unicode.',
 	'config-unicode-using-intl' => 'Usando a [http://pecl.php.net/intl extensão intl PECL] para a normalização Unicode.',
 	'config-unicode-pure-php-warning' => "'''Aviso''': A [http://pecl.php.net/intl extensão intl PECL] não está disponível para efetuar a normalização Unicode sendo usada, em seu lugar, a lenta implementação de PHP puro.
 Se o seu site tem um alto volume de tráfego, informe-se sobre a [//www.mediawiki.org/wiki/Unicode_normalization_considerations normalização Unicode].",
@@ -17124,11 +17137,11 @@ Se você instalou o PHP a partir de um pacote do Debian ou do Ubuntu, instale ta
 	'config-register-globals' => "' ' 'Aviso: A opção <code>[http://php.net/register_globals register_globals]</code> do PHP está ativada.'''
 ' ' 'Desative-a, se puder.'''
 O MediaWiki funcionará mesmo assim, mas o seu servidor ficará exposto a potenciais vulnerabilidades de segurança.",
-	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0 binário',
+	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0 binary',
 	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
 	'config-mysql-innodb' => 'InnoDB',
 	'config-mysql-myisam' => 'MyISAM',
-	'config-mysql-binary' => 'Binário',
+	'config-mysql-binary' => 'Binary',
 	'config-mysql-utf8' => 'UTF-8',
 	'config-ns-generic' => 'Projeto',
 	'config-admin-box' => 'Conta de administrador',

@@ -216,7 +216,7 @@ $messages = array(
 'tog-enotifminoredits' => 'Pošlji e-pošto tudi za manjše spremembe strani in datotek',
 'tog-enotifrevealaddr' => 'V sporočilih z obvestili o spremembah razkrij moj e-poštni naslov',
 'tog-shownumberswatching' => 'Prikaži število uporabnikov, ki spremljajo temo',
-'tog-oldsig' => 'Obstoječi podpis:',
+'tog-oldsig' => 'Trenutni podpis:',
 'tog-fancysig' => 'Obravnavaj podpis kot wikibesedilo (brez samodejne povezave)',
 'tog-uselivepreview' => 'Uporabi hitri predogled (preizkusno)',
 'tog-forceeditsummary' => 'Ob vpisu praznega povzetka urejanja me opozori',
@@ -610,7 +610,7 @@ Administrator, ki ga je zaklenil, je podal naslednje pojasnilo: »$3«.',
 # Login and logout pages
 'logouttext' => "'''Odjavili ste se.'''
 
-Pomnite, da bodo nekatere strani morda še naprej prikazane, kot da ste prijavljeni, dokler ne boste izpraznili predpomnilnika brskalnika.",
+Nekatere strani bodo morda še naprej prikazane, kot da ste prijavljeni, dokler ne boste izpraznili predpomnilnika brskalnika.",
 'welcomeuser' => '$1, dobrodošli!',
 'welcomecreation-msg' => 'Ustvarili ste račun.
 Ne pozabite si prilagoditi vaših [[Special:Preferences|nastavitev {{GRAMMAR:rodilnik|{{SITENAME}}}}]].',
@@ -762,7 +762,7 @@ Za zaključitev prijave, morate tukaj nastaviti novo geslo:',
 'newpassword' => 'Novo geslo:',
 'retypenew' => 'Ponovno vpišite geslo:',
 'resetpass_submit' => 'Nastavi geslo in se prijavi',
-'changepassword-success' => 'Vaše geslo smo uspešno spremenili!',
+'changepassword-success' => 'Vaše geslo je bilo uspešno spremenjeno!',
 'resetpass_forbidden' => 'Gesla ne morete spremeniti',
 'resetpass-no-info' => 'Za neposreden dostop do te strani morate biti prijavljeni.',
 'resetpass-submit-loggedin' => 'Spremenite geslo',
@@ -820,7 +820,7 @@ Začasno geslo: $2',
 'changeemail-oldemail' => 'Trenutni e-poštni naslov:',
 'changeemail-newemail' => 'Novi e-poštni naslov:',
 'changeemail-none' => '(noben)',
-'changeemail-password' => 'Vaše geslo na {{GRAMMAR:orodnik|{{SITENAME}}}}:',
+'changeemail-password' => 'Vaše geslo za {{GRAMMAR:tožilnik|{{SITENAME}}}}:',
 'changeemail-submit' => 'Spremeni e-naslov',
 'changeemail-cancel' => 'Prekliči',
 
@@ -890,17 +890,17 @@ Vedite, da lahko ukaz »Pošlji uporabniku e-pismo« uporabite le, če ste v [[S
 Vaš IP-naslov je $3, številka blokade pa #$5.
 Prosimo, vključite ju v vse morebitne poizvedbe.",
 'autoblockedtext' => "Vaš IP-naslov je bil samodejno blokiran, saj je bil uporabljen s strani drugega uporabnika, ki ga je blokiral $1.
-Podan razlog je:
+Razlog za to je bil naslednji:
 
 :''$2''
 
 * Začetek blokade: $8
-* Prenehanje blokade: $6
-* Predvidena blokada: $7
+* Konec blokade: $6
+* Blokirani uporabnik: $7
 
 Kontaktirate lahko $1 ali katerega od drugih [[{{MediaWiki:Grouppage-sysop}}|administratorjev]], da razpravljate o blokadi.
 
-Pomnite, da ne morete uporabljati funkcije »{{:MediaWiki:Emailuser}}«, dokler ne vnesete veljavnega e-poštnega naslova v vaše [[Special:Preferences|uporabniške nastavitve]] in vam njihova uporaba ni bila preprečena.
+Vedite, da lahko funkcijo »{{:MediaWiki:Emailuser/sl}}« uporabljate le, če ste v svoje [[Special:Preferences|uporabniške nastavitve]] vnesli veljaven e-poštni naslov, in vam njena uporaba ni bila preprečena.
 
 Vaš trenutni IP-naslov je $3, ID blokiranja pa #$5. Prosimo, vključite ta ID v vsako zastavljeno vprašanje.",
 'blockednoreason' => 'razlog ni podan',
@@ -952,7 +952,7 @@ Najnovejši vnos v dnevniku blokad je prikazan spodaj:',
 Vedite, da .css in .js strani po meri uporabljajo naslov z malo začetnico, npr. {{ns:user}}:Blabla/vector.css namesto {{ns:user}}:Blabla/Vector.css.",
 'updated' => '(Posodobljeno)',
 'note' => "'''Opomba:'''",
-'previewnote' => "'''Pomnite, da stran le predogledujete.'''
+'previewnote' => "'''Vedite, da stran le predogledujete.'''
 Vaših sprememb še nismo shranili!",
 'continue-editing' => 'Pojdi na urejevalno območje',
 'previewconflict' => 'V prikazanem predogledu je v zgornjem predelu urejanja navedeno besedilo, kakor se bo prikazalo, če ga boste shranili.',
@@ -1410,17 +1410,17 @@ Tega ni mogoče razveljaviti.',
 'yourlanguage' => 'Jezik:',
 'yourvariant' => 'Jezikovna različica vsebine:',
 'prefs-help-variant' => 'Vaša prednostna različica ali pravopis, v katerem naj bo prikazana vsebina strani tega wikija.',
-'yournick' => 'Nov podpis:',
+'yournick' => 'Novi podpis:',
 'prefs-help-signature' => 'Komentarje na pogovornih straneh je treba podpisati s »<nowiki>~~~~</nowiki>«, kar bo pretvorjeno v vaš podpis s časovnim žigom.',
 'badsig' => 'Neveljaven surovi podpis; preverite oznake HTML.',
 'badsiglength' => 'Vaš podpis je preobsežen.
 Ne sme biti daljši od $1 {{PLURAL:$1|znaka|znakov}}.',
 'yourgender' => 'Kako vam je ljubše, da vas opišemo?',
-'gender-unknown' => 'Ne želim navesti',
-'gender-male' => 'On ureja wikistrani',
-'gender-female' => 'Ona ureja wikistrani',
+'gender-unknown' => 'ne želim navesti',
+'gender-male' => 'On ureja wikistrani.',
+'gender-female' => 'Ona ureja wikistrani.',
 'prefs-help-gender' => 'Nastavitev ni obvezna.
-Programje uporablja njeno vrednost za naslavljanje vas in omenjanje vas drugim v primernem slovničnem spolu.
+Programje uporablja njeno vrednost za vaše naslavljanje in omenjanje v ustreznem slovničnem spolu.
 Podatek bo javno prikazan.',
 'email' => 'E-pošta',
 'prefs-help-realname' => 'Pravo ime ni obvezno.
@@ -1549,7 +1549,7 @@ Ko vas drugi uporabniki kontaktirajo, jim vašega e-poštnega naslova ne bomo ra
 'right-editmyusercss' => 'Uredite svoje uporabniške datoteke CSS',
 'right-editmyuserjs' => 'Uredite svoje uporabniške datoteke JavaScript',
 'right-viewmywatchlist' => 'Ogledovanje svojega spiska nadzorov',
-'right-editmywatchlist' => 'Urejanje svojega spiska nadzorov. Pomnite, da bodo nekatera dejanja dodala strani tudi brez te pravice.',
+'right-editmywatchlist' => 'Urejanje vašega spiska nadzorov. Vedite, da bodo nekatera dejanja dodala strani nanj tudi brez te pravice.',
 'right-viewmyprivateinfo' => 'Ogled svojih zasebnih podatkov (npr. e-poštnega naslova, pravega imena)',
 'right-editmyprivateinfo' => 'Urejanje svojih zasebnih podatkov (npr. e-poštnega naslova, pravega imena)',
 'right-editmyoptions' => 'Urejanje svojih nastavitev',

@@ -3281,6 +3281,7 @@ $2',
 'tooltip-undo' => 'Убрать внесённую правку и показать предпросмотр, с возможностью указать причину отмены',
 'tooltip-preferences-save' => 'Сохранить настройки',
 'tooltip-summary' => 'Введите краткое описание',
+'tooltip-iwiki' => '$1 — $2',
 
 # Stylesheets
 'common.css' => '/* Размещённый здесь CSS будет применяться ко всем темам оформления */',
@@ -4256,7 +4257,10 @@ MediaWiki распространяется в надежде, что она бу
 'tags-tag' => 'Имя метки',
 'tags-display-header' => 'Отображение в списках изменений',
 'tags-description-header' => 'Полное описание значения',
+'tags-active-header' => 'Активна?',
 'tags-hitcount-header' => 'Отмеченные правки',
+'tags-active-yes' => 'Да',
+'tags-active-no' => 'Нет',
 'tags-edit' => 'править',
 'tags-hitcount' => '$1 {{PLURAL:$1|изменение|изменения|изменений}}',
 

@@ -3817,7 +3817,10 @@ Tendría d'haber recibío [{{SERVER}}{{SCRIPTPATH}}/COPYING una copia de la Llic
 'tags-tag' => "Nome d'etiqueta",
 'tags-display-header' => 'Aspeutu nes llistes de cambios',
 'tags-description-header' => 'Descripción completa del significáu',
+'tags-active-header' => '¿Activu?',
 'tags-hitcount-header' => 'Cambios etiquetaos',
+'tags-active-yes' => 'Sí',
+'tags-active-no' => 'Non',
 'tags-edit' => 'editar',
 'tags-hitcount' => '$1 {{PLURAL:$1|cambiu|cambios}}',
 

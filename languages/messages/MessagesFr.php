@@ -4184,7 +4184,10 @@ Vous devriez avoir reçu [{{SERVER}}{{SCRIPTPATH}}/COPYING une copie de la Licen
 'tags-tag' => 'Nom de la balise',
 'tags-display-header' => 'Apparence dans les listes de modifications',
 'tags-description-header' => 'Description complète de la balise',
+'tags-active-header' => 'Actif ?',
 'tags-hitcount-header' => 'Modifications balisées',
+'tags-active-yes' => 'Oui',
+'tags-active-no' => 'Non',
 'tags-edit' => 'modifier',
 'tags-hitcount' => '$1 modification{{PLURAL:$1||s}}',
 

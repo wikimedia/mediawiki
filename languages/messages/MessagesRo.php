@@ -4007,7 +4007,10 @@ MediaWiki este distribuit în speranța că va fi folositor, dar FĂRĂ VREO GAR
 'tags-tag' => 'Numele etichetei',
 'tags-display-header' => 'Apariția în listele cu schimbări',
 'tags-description-header' => 'Descrierea completă a sensului',
+'tags-active-header' => 'Activă?',
 'tags-hitcount-header' => 'Modificări etichetate',
+'tags-active-yes' => 'Da',
+'tags-active-no' => 'Nu',
 'tags-edit' => 'modificare',
 'tags-hitcount' => '$1 {{PLURAL:$1|modificare|modificări}}',
 

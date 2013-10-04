@@ -4285,7 +4285,10 @@ $5
 'tags-tag' => 'Име на ознака',
 'tags-display-header' => 'Изглед во списоците на промени',
 'tags-description-header' => 'Целосен опис на значењето',
+'tags-active-header' => 'Активно?',
 'tags-hitcount-header' => 'Означени промени',
+'tags-active-yes' => 'Да',
+'tags-active-no' => 'Не',
 'tags-edit' => 'уреди',
 'tags-hitcount' => '$1 {{PLURAL:$1|промена|промени}}',
 
