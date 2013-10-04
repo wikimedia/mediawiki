@@ -1039,35 +1039,7 @@ class SkinTemplate extends Skin {
 			wfRunHooks( 'SkinTemplateNavigation', array( &$this, &$content_navigation ) );
 
 			if ( $userCanRead && !$wgDisableLangConversion ) {
-				$pageLang = $title->getPageLanguage();
-				// Gets list of language variants
-				$variants = $pageLang->getVariants();
-				// Checks that language conversion is enabled and variants exist
-				// And if it is not in the special namespace
-				if ( count( $variants ) > 1 ) {
-					// Gets preferred variant (note that user preference is
-					// only possible for wiki content language variant)
-					$preferred = $pageLang->getPreferredVariant();
-					if ( Action::getActionName( $this ) === 'view' ) {
-						$params = $request->getQueryValues();
-						unset( $params['title'] );
-					} else {
-						$params = array();
-					}
-					// Loops over each variant
-					foreach ( $variants as $code ) {
-						// Gets variant name from language code
-						$varname = $pageLang->getVariantname( $code );
-						// Appends variant link
-						$content_navigation['variants'][] = array(
-							'class' => ( $code == $preferred ) ? 'selected' : false,
-							'text' => $varname,
-							'href' => $title->getLocalURL( array( 'variant' => $code ) + $params ),
-							'lang' => wfBCP47( $code ),
-							'hreflang' => wfBCP47( $code ),
-						);
-					}
-				}
+				$content_navigation['variants'] = $this->getVariantLinks();
 			}
 		} else {
 			// If it's not content, it's got to be a special page
@@ -1295,6 +1267,45 @@ class SkinTemplate extends Skin {
 	 */
 	function getNameSpaceKey() {
 		return $this->getTitle()->getNamespaceKey();
+	}
+
+	/**
+	 * Returns array of links used for language variants
+	 * @return array
+	 */
+	public function getVariantLinks() {
+		$title = $this->getRelevantTitle();
+		$pageLang = $title->getPageLanguage();
+		// Gets list of language variants
+		$variants = $pageLang->getVariants();
+		// Checks that language conversion is enabled and variants exist
+		// And if it is not in the special namespace
+		$result = array();
+		if ( count( $variants ) > 1 ) {
+			// Gets preferred variant (note that user preference is
+			// only possible for wiki content language variant)
+			$preferred = $pageLang->getPreferredVariant();
+			if ( Action::getActionName( $this ) === 'view' ) {
+				$params = $this->getRequest()->getQueryValues();
+				unset( $params['title'] );
+			} else {
+				$params = array();
+			}
+			// Loops over each variant
+			foreach ( $variants as $code ) {
+				// Gets variant name from language code
+				$varname = $pageLang->getVariantname( $code );
+				// Appends variant link
+				$result[] = array(
+					'class' => ( $code == $preferred ) ? 'selected' : false,
+					'text' => $varname,
+					'href' => $title->getLocalURL( array( 'variant' => $code ) + $params ),
+					'lang' => wfBCP47( $code ),
+					'hreflang' => wfBCP47( $code ),
+				);
+			}
+		}
+		return $result;
 	}
 }
 
