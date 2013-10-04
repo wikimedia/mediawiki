@@ -42,7 +42,7 @@ class FileRepoStatus extends Status {
 	}
 
 	/**
-	 * @param $repo FileRepo
+	 * @param $repo FileRepo|bool Default: false
 	 * @param $value
 	 * @return FileRepoStatus
 	 */
