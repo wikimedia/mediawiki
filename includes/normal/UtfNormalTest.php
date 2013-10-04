@@ -39,6 +39,7 @@ if( defined( 'PRETTY_UTF8' ) ) {
 } else {
 	/**
 	 * @ignore
+	 * @param string $string
 	 * @return string
 	 */
 	function pretty( $string ) {
