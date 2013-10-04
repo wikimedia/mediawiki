@@ -6030,10 +6030,9 @@ See also:
 * {{msg-mw|Tooltip-pt-mycontris}}
 {{Identical|Contribution}}',
 'contribsub2' => 'Contributions for "user" (links). Parameters:
-* $1 - any one of the following:
-** IP address (if anonymous user)
-** username, with a link which points to the user page (if registered user)
-* $2 - list of tool links. The list contains a link which has text {{msg-mw|Sp-contributions-talk}}
+* $1 is an IP address or a username, with a link which points to the user page (if registered user).
+* $2 is list of tool links. The list contains a link which has text {{msg-mw|Sp-contributions-talk}}.
+* $3 is a plain text username used for GENDER.
 {{Identical|For $1}}',
 'nocontribs' => 'Used in [[Special:Contributions]] and [[Special:DeletedContributions]].
 

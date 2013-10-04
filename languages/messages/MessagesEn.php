@@ -3227,7 +3227,7 @@ $1',
 'contributions-summary' => '', # do not translate or duplicate this message to other languages
 'contributions-title'   => 'User contributions for $1',
 'mycontris'             => 'Contributions',
-'contribsub2'           => 'For $1 ($2)',
+'contribsub2'           => 'For {{GENDER:$3|$1}} ($2)',
 'nocontribs'            => 'No changes were found matching these criteria.',
 'uctop'                 => '(current)',
 'month'                 => 'From month (and earlier):',
