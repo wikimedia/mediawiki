@@ -56,6 +56,7 @@ class UploadStashCleanup extends Maintenance {
 			'uploadstash',
 			'us_key',
 			'us_timestamp < ' . $dbr->addQuotes( $dbr->timestamp( $cutoff ) ),
+			'us_expiry IS NULL OR us_expiry < ' . $dbr->addQuotes( $dbr->timestamp() ),
 			__METHOD__
 		);
 
@@ -112,6 +113,7 @@ class UploadStashCleanup extends Maintenance {
 		$this->output( "$i done\n" );
 
 		// Apparently lots of stash files are not registered in the DB...
+		$sanityCutoff = min( $cutoff, time() - 7*86400 );
 		$dir = $tempRepo->getZonePath( 'public' );
 		$iterator = $tempRepo->getBackend()->getFileList( array( 'dir' => $dir, 'adviseStat' => 1 ) );
 		$this->output( "Deleting orphaned temp files...\n" );
@@ -125,7 +127,8 @@ class UploadStashCleanup extends Maintenance {
 				$this->output( "Skipped non-stash $file\n" );
 				continue;
 			}
-			if ( wfTimestamp( TS_UNIX, $tempRepo->getFileTimestamp( "$dir/$file" ) ) < $cutoff ) {
+			$lastModified = wfTimestamp( TS_UNIX, $tempRepo->getFileTimestamp( "$dir/$file" ) );
+			if ( $lastModified < $sanityCutoff ) {
 				$status = $tempRepo->quickPurge( "$dir/$file" );
 				if ( !$status->isOK() ) {
 					$this->error( print_r( $status->getErrorsArray(), true ) );
