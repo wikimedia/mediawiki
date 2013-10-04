@@ -145,23 +145,4 @@ class ApiWatchTest extends ApiTestCase {
 			}
 		}
 	}
-
-	/**
-	 */
-	function testWatchDelete() {
-		$tokens = $this->getTokens();
-
-		$data = $this->doApiRequest( array(
-			'action' => 'delete',
-			'token' => $tokens['deletetoken'],
-			'title' => 'Help:UTPage' ) );
-		$this->assertArrayHasKey( 'delete', $data[0] );
-		$this->assertArrayHasKey( 'title', $data[0]['delete'] );
-
-		$this->doApiRequest( array(
-			'action' => 'query',
-			'list' => 'watchlist' ) );
-
-		$this->markTestIncomplete( 'This test needs to verify the deleted article was added to the users watchlist' );
-	}
 }
