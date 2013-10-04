@@ -868,8 +868,6 @@ class LinksDeletionUpdate extends SqlDataUpdate {
 
 		# If using cascading deletes, we can skip some explicit deletes
 		if ( !$this->mDb->cascadingDeletes() ) {
-			$this->mDb->delete( 'revision', array( 'rev_page' => $id ), __METHOD__ );
-
 			# Delete outgoing links
 			$this->mDb->delete( 'pagelinks', array( 'pl_from' => $id ), __METHOD__ );
 			$this->mDb->delete( 'imagelinks', array( 'il_from' => $id ), __METHOD__ );
