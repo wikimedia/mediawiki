@@ -38,16 +38,18 @@
  * so that a lack of error-handling will be explicit.
  */
 class Status {
-	var $ok = true;
-	var $value;
+	public $ok = true;
+	public $value;
 
 	/** Counters for batch operations */
-	public $successCount = 0, $failCount = 0;
+	public $successCount = 0;
+	public $failCount = 0;
+
 	/** Array to indicate which items of the batch operations were successful */
 	public $success = array();
 
-	/*semi-private*/ var $errors = array();
-	/*semi-private*/ var $cleanCallback = false;
+	public $errors = array();
+	public $cleanCallback = false;
 
 	/**
 	 * Factory function for fatal errors
@@ -294,7 +296,6 @@ class Status {
 	/**
 	 * Returns a list of status messages of the given type
 	 * @param $type String
-	 *
 	 * @return Array
 	 */
 	protected function getStatusArray( $type ) {
@@ -302,7 +303,10 @@ class Status {
 		foreach ( $this->errors as $error ) {
 			if ( $error['type'] === $type ) {
 				if ( $error['message'] instanceof Message ) {
-					$result[] = array_merge( array( $error['message']->getKey() ), $error['message']->getParams() );
+					$result[] = array_merge(
+						array( $error['message']->getKey() ),
+						$error['message']->getParams()
+					);
 				} elseif ( $error['params'] ) {
 					$result[] = array_merge( array( $error['message'] ), $error['params'] );
 				} else {
@@ -310,6 +314,7 @@ class Status {
 				}
 			}
 		}
+
 		return $result;
 	}
 
