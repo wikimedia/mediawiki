@@ -110,7 +110,7 @@ return array(
 	),
 	'skins.vector.collapsibleNav' => array(
 		'styles' => array(
-			'vector/collapsibleNav.css',
+			'vector/collapsibleNav.less',
 		),
 		'scripts' => array(
 			'vector/collapsibleNav.js',
