@@ -27,8 +27,10 @@
  */
 class DeletedContribsPager extends IndexPager {
 	public $mDefaultDirection = true;
-	var $messages, $target;
-	var $namespace = '', $mDb;
+	public $messages;
+	public $target;
+	public $namespace = '';
+	public $mDb;
 
 	/**
 	 * @var string Navigation bar with paging links.
@@ -358,9 +360,9 @@ class DeletedContributionsPage extends SpecialPage {
 		# If there were contributions, and it was a valid user or IP, show
 		# the appropriate "footer" message - WHOIS tools, etc.
 		if ( $target != 'newbies' ) {
-			$message = IP::isIPAddress( $target )
-				? 'sp-contributions-footer-anon'
-				: 'sp-contributions-footer';
+			$message = IP::isIPAddress( $target ) ?
+				'sp-contributions-footer-anon' :
+				'sp-contributions-footer';
 
 			if ( !$this->msg( $message )->isDisabled() ) {
 				$out->wrapWikiMsg(
