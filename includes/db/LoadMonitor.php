@@ -36,9 +36,9 @@ interface LoadMonitor {
 
 	/**
 	 * Perform pre-connection load ratio adjustment.
-	 * @param $loads array
-	 * @param string $group the selected query group
-	 * @param $wiki String
+	 * @param array $loads
+	 * @param string|bool $group the selected query group. Default: false
+	 * @param string|bool $wiki Default: false
 	 */
 	function scaleLoads( &$loads, $group = false, $wiki = false );
 
@@ -71,6 +71,10 @@ interface LoadMonitor {
 	function getLagTimes( $serverIndexes, $wiki );
 }
 
+/**
+ * @todo FIXME: Should be  LoadMonitorNull per naming conventions.
+ * PHP CodeSniffer Squiz.Classes.ValidClassName.NotCamelCaps
+ */
 class LoadMonitor_Null implements LoadMonitor {
 	function __construct( $parent ) {
 	}
@@ -96,13 +100,14 @@ class LoadMonitor_Null implements LoadMonitor {
  * Uses memcached to cache the replication lag for a short time
  *
  * @ingroup Database
+ * @todo FIXME: Should be  LoadMonitorMySQL per naming conventions.
+ * PHP CodeSniffer Squiz.Classes.ValidClassName.NotCamelCaps
  */
 class LoadMonitor_MySQL implements LoadMonitor {
-
 	/**
 	 * @var LoadBalancer
 	 */
-	var $parent;
+	public $parent;
 
 	/**
 	 * @param LoadBalancer $parent

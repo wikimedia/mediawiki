@@ -28,7 +28,10 @@
  * @author Bryan Tong Minh
  */
 class UploadFromStash extends UploadBase {
-	protected $mFileKey, $mVirtualTempPath, $mFileProps, $mSourceType;
+	protected $mFileKey;
+	protected $mVirtualTempPath;
+	protected $mFileProps;
+	protected $mSourceType;
 
 	// an instance of UploadStash
 	private $stash;
@@ -37,9 +40,9 @@ class UploadFromStash extends UploadBase {
 	private $repo;
 
 	/**
-	 * @param $user User
-	 * @param $stash UploadStash
-	 * @param $repo FileRepo
+	 * @param $user User|bool Default: false
+	 * @param $stash UploadStash|bool Default: false
+	 * @param $repo FileRepo|bool Default: false
 	 */
 	public function __construct( $user = false, $stash = false, $repo = false ) {
 		// user object. sometimes this won't exist, as when running from cron.
@@ -117,7 +120,10 @@ class UploadFromStash extends UploadBase {
 		$fileKey = $request->getText( 'wpFileKey', $request->getText( 'wpSessionKey' ) );
 
 		// chooses one of wpDestFile, wpUploadFile, filename in that order.
-		$desiredDestName = $request->getText( 'wpDestFile', $request->getText( 'wpUploadFile', $request->getText( 'filename' ) ) );
+		$desiredDestName = $request->getText(
+			'wpDestFile',
+			$request->getText( 'wpUploadFile', $request->getText( 'filename' ) )
+		);
 
 		$this->initialize( $fileKey, $desiredDestName );
 	}
