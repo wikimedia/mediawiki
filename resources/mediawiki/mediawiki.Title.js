@@ -300,6 +300,57 @@
 	};
 
 	/**
+	 * Get the file title from a file source link
+	 *
+	 *     var title = mw.Title.newFromImgSrc( $( 'img:first' ).prop( 'src' ) );
+	 *
+	 * @static
+	 * @param {string} src The image src attribute
+	 * @return {mw.Title|undefined} The file title - undefined if unsuccessful.
+	 */
+	Title.newFromImgSrc = function ( src ) {
+		var matches, i, regex, decodedSrc,
+
+			// thumb.php-generated thumbnails
+			thumbPhpRegex = /thumb\.php/,
+
+			regexes = [
+				// Thumbnails
+				/\/[a-f0-9]\/[a-f0-9]{2}\/([^\s\/]+\.[^\s\/]{2,5})\//,
+
+				// Full size images
+				/\/[a-f0-9]\/[a-f0-9]{2}\/([^\s\/]+\.[^\s\/]{2,5})$/,
+
+				// Thumbnails in non-hashed upload directories
+				/\/([^\s\/]+\.[^\s\/]{2,5})\//,
+
+				// Full-size images in non-hashed upload directories
+				/\/([^\s\/]+\.[^\s\/]{2,5})$/
+			],
+
+			recount = regexes.length;
+
+		matches = src.match( thumbPhpRegex );
+
+		if ( matches ) {
+			return mw.Title.newFromText( 'File:' + mw.util.getParamValue( 'f', src ) );
+		}
+
+		decodedSrc = decodeURIComponent( src );
+
+		for ( i = 0; i < recount; i++ ) {
+			regex = regexes[i];
+			matches = decodedSrc.match( regex );
+
+			if ( matches && matches[1] ) {
+				return mw.Title.newFromText( 'File:' + matches[1].replace( /_/g, ' ' ) );
+			}
+		}
+
+		return null;
+	};
+
+	/**
 	 * Whether this title exists on the wiki.
 	 *
 	 * @static
