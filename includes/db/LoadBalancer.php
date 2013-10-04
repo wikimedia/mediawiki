@@ -167,7 +167,7 @@ class LoadBalancer {
 		#wfDebugLog( 'connect', var_export( $loads, true ) );
 
 		# Return a random representative of the remainder
-		return $this->pickRandom( $loads );
+		return ArrayUtils::pickRandom( $loads );
 	}
 
 	/**
@@ -236,7 +236,7 @@ class LoadBalancer {
 			$currentLoads = $nonErrorLoads;
 			while ( count( $currentLoads ) ) {
 				if ( $wgReadOnly || $this->mAllowLagged || $laggedSlaveMode ) {
-					$i = $this->pickRandom( $currentLoads );
+					$i = ArrayUtils::pickRandom( $currentLoads );
 				} else {
 					$i = $this->getRandomNonLagged( $currentLoads, $wiki );
 					if ( $i === false && count( $currentLoads ) != 0 ) {
@@ -244,7 +244,7 @@ class LoadBalancer {
 						wfDebugLog( 'replication', "All slaves lagged. Switch to read-only mode\n" );
 						$wgReadOnly = 'The database has been automatically locked ' .
 							'while the slave database servers catch up to the master';
-						$i = $this->pickRandom( $currentLoads );
+						$i = ArrayUtils::pickRandom( $currentLoads );
 						$laggedSlaveMode = true;
 					}
 				}
