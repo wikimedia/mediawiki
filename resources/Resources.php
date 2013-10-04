@@ -709,7 +709,10 @@ return array(
 	),
 	'mediawiki.Title' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.Title.js',
-		'dependencies' => 'mediawiki.util',
+		'dependencies' => array(
+			'jquery.byteLength',
+			'mediawiki.util',
+		),
 	),
 	'mediawiki.Uri' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.Uri.js',
