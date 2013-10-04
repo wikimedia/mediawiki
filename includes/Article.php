@@ -803,7 +803,7 @@ class Article implements Page {
 		$rev = $this->getRevisionFetched();
 
 		if ( !$rev ) {
-			$this->getContext()->getOutput()->setPageTitle( wfMessage( 'errorpagetitle' ) );
+			$this->getContext()->getOutput()->setPageTitle( $this->getContext()->msg( 'errorpagetitle' ) );
 			$this->getContext()->getOutput()->addWikiMsg( 'difference-missing-revision', $oldid, 1 );
 			return;
 		}
@@ -985,7 +985,7 @@ class Article implements Page {
 					array( 'redirect' => 'no' )
 				);
 
-				$outputPage->addSubtitle( wfMessage( 'redirectedfrom' )->rawParams( $redir ) );
+				$outputPage->addSubtitle( $this->getContext()->msg( 'redirectedfrom' )->rawParams( $redir ) );
 
 				// Set the fragment if one was specified in the redirect
 				if ( strval( $this->getTitle()->getFragment() ) != '' ) {
@@ -1007,7 +1007,7 @@ class Article implements Page {
 			// If it was reported from a trusted site, supply a backlink.
 			if ( $wgRedirectSources && preg_match( $wgRedirectSources, $rdfrom ) ) {
 				$redir = Linker::makeExternalLink( $rdfrom, $rdfrom );
-				$outputPage->addSubtitle( wfMessage( 'redirectedfrom' )->rawParams( $redir ) );
+				$outputPage->addSubtitle( $this->getContext()->msg( 'redirectedfrom' )->rawParams( $redir ) );
 
 				return true;
 			}
@@ -1022,7 +1022,7 @@ class Article implements Page {
 	 */
 	public function showNamespaceHeader() {
 		if ( $this->getTitle()->isTalkPage() ) {
-			if ( !wfMessage( 'talkpageheader' )->isDisabled() ) {
+			if ( !$this->getContext()->msg( 'talkpageheader' )->isDisabled() ) {
 				$this->getContext()->getOutput()->wrapWikiMsg( "<div class=\"mw-talkpageheader\">\n$1\n</div>", array( 'talkpageheader' ) );
 			}
 		}
@@ -1139,7 +1139,7 @@ class Article implements Page {
 
 		$link = Linker::linkKnown(
 			$this->getTitle(),
-			wfMessage( 'markaspatrolledtext' )->escaped(),
+			$this->getContext()->msg( 'markaspatrolledtext' )->escaped(),
 			array(),
 			array(
 				'action' => 'markpatrolled',
@@ -1150,7 +1150,7 @@ class Article implements Page {
 
 		$outputPage->addHTML(
 			"<div class='patrollink'>" .
-				wfMessage( 'markaspatrolledlink' )->rawParams( $link )->escaped() .
+				$this->getContext()->msg( 'markaspatrolledlink' )->rawParams( $link )->escaped() .
 			'</div>'
 		);
 
@@ -1231,16 +1231,16 @@ class Article implements Page {
 		# Show error message
 		$oldid = $this->getOldID();
 		if ( $oldid ) {
-			$text = wfMessage( 'missing-revision', $oldid )->plain();
+			$text = $this->getContext()->msg( 'missing-revision', $oldid )->plain();
 		} elseif ( $this->getTitle()->getNamespace() === NS_MEDIAWIKI ) {
 			// Use the default message text
 			$text = $this->getTitle()->getDefaultMessageText();
 		} elseif ( $this->getTitle()->quickUserCan( 'create', $this->getContext()->getUser() )
 			&& $this->getTitle()->quickUserCan( 'edit', $this->getContext()->getUser() )
 		) {
-			$text = wfMessage( 'noarticletext' )->plain();
+			$text = $this->getContext()->msg( 'noarticletext' )->plain();
 		} else {
-			$text = wfMessage( 'noarticletext-nopermission' )->plain();
+			$text = $this->getContext()->msg( 'noarticletext-nopermission' )->plain();
 		}
 		$text = "<div class='noarticletext'>\n$text\n</div>";
 
@@ -1328,28 +1328,29 @@ class Article implements Page {
 		# Show user links if allowed to see them. If hidden, then show them only if requested...
 		$userlinks = Linker::revUserTools( $revision, !$unhide );
 
-		$infomsg = $current && !wfMessage( 'revision-info-current' )->isDisabled()
+		$infomsg = $current && !$this->getContext()->msg( 'revision-info-current' )->isDisabled()
 			? 'revision-info-current'
 			: 'revision-info';
 
 		$outputPage = $this->getContext()->getOutput();
-		$outputPage->addSubtitle( "<div id=\"mw-{$infomsg}\">" . wfMessage( $infomsg,
-			$td )->rawParams( $userlinks )->params( $revision->getID(), $tddate,
+		$outputPage->addSubtitle( "<div id=\"mw-{$infomsg}\">" .
+			$this->getContext()->msg( $infomsg, $td )->rawParams( $userlinks )
+				->params( $revision->getID(), $tddate,
 			$tdtime, $revision->getUser() )->parse() . "</div>" );
 
 		$lnk = $current
-			? wfMessage( 'currentrevisionlink' )->escaped()
+			? $this->getContext()->msg( 'currentrevisionlink' )->escaped()
 			: Linker::linkKnown(
 				$this->getTitle(),
-				wfMessage( 'currentrevisionlink' )->escaped(),
+				$this->getContext()->msg( 'currentrevisionlink' )->escaped(),
 				array(),
 				$extraParams
 			);
 		$curdiff = $current
-			? wfMessage( 'diff' )->escaped()
+			? $this->getContext()->msg( 'diff' )->escaped()
 			: Linker::linkKnown(
 				$this->getTitle(),
-				wfMessage( 'diff' )->escaped(),
+				$this->getContext()->msg( 'diff' )->escaped(),
 				array(),
 				array(
 					'diff' => 'cur',
@@ -1360,30 +1361,30 @@ class Article implements Page {
 		$prevlink = $prev
 			? Linker::linkKnown(
 				$this->getTitle(),
-				wfMessage( 'previousrevision' )->escaped(),
+				$this->getContext()->msg( 'previousrevision' )->escaped(),
 				array(),
 				array(
 					'direction' => 'prev',
 					'oldid' => $oldid
 				) + $extraParams
 			)
-			: wfMessage( 'previousrevision' )->escaped();
+			: $this->getContext()->msg( 'previousrevision' )->escaped();
 		$prevdiff = $prev
 			? Linker::linkKnown(
 				$this->getTitle(),
-				wfMessage( 'diff' )->escaped(),
+				$this->getContext()->msg( 'diff' )->escaped(),
 				array(),
 				array(
 					'diff' => 'prev',
 					'oldid' => $oldid
 				) + $extraParams
 			)
-			: wfMessage( 'diff' )->escaped();
+			: $this->getContext()->msg( 'diff' )->escaped();
 		$nextlink = $current
-			? wfMessage( 'nextrevision' )->escaped()
+			? $this->getContext()->msg( 'nextrevision' )->escaped()
 			: Linker::linkKnown(
 				$this->getTitle(),
-				wfMessage( 'nextrevision' )->escaped(),
+				$this->getContext()->msg( 'nextrevision' )->escaped(),
 				array(),
 				array(
 					'direction' => 'next',
@@ -1391,10 +1392,10 @@ class Article implements Page {
 				) + $extraParams
 			);
 		$nextdiff = $current
-			? wfMessage( 'diff' )->escaped()
+			? $this->getContext()->msg( 'diff' )->escaped()
 			: Linker::linkKnown(
 				$this->getTitle(),
-				wfMessage( 'diff' )->escaped(),
+				$this->getContext()->msg( 'diff' )->escaped(),
 				array(),
 				array(
 					'diff' => 'next',
@@ -1408,7 +1409,7 @@ class Article implements Page {
 		}
 
 		$outputPage->addSubtitle( "<div id=\"mw-revision-nav\">" . $cdel .
-			wfMessage( 'revision-nav' )->rawParams(
+			$this->getContext()->msg( 'revision-nav' )->rawParams(
 				$prevdiff, $prevlink, $lnk, $curdiff, $nextlink, $nextdiff
 			)->escaped() . "</div>" );
 	}
@@ -1433,7 +1434,7 @@ class Article implements Page {
 
 		if ( $appendSubtitle ) {
 			$out = $this->getContext()->getOutput();
-			$out->addSubtitle( wfMessage( 'redirectpagesub' )->escaped() );
+			$out->addSubtitle( $this->getContext()->msg( 'redirectpagesub' )->escaped() );
 		}
 
 		// the loop prepends the arrow image before the link, so the first case needs to be outside
@@ -1515,7 +1516,7 @@ class Article implements Page {
 		if ( !$this->mPage->exists() ) {
 			$deleteLogPage = new LogPage( 'delete' );
 			$outputPage = $this->getContext()->getOutput();
-			$outputPage->setPageTitle( wfMessage( 'cannotdelete-title', $title->getPrefixedText() ) );
+			$outputPage->setPageTitle( $this->getContext()->msg( 'cannotdelete-title', $title->getPrefixedText() ) );
 			$outputPage->wrapWikiMsg( "<div class=\"error mw-error-cannotdelete\">\n$1\n</div>",
 					array( 'cannotdelete', wfEscapeWikiText( $title->getPrefixedText() ) )
 				);
@@ -1575,9 +1576,9 @@ class Article implements Page {
 			$revisions = $this->mTitle->estimateRevisionCount();
 			// @todo FIXME: i18n issue/patchwork message
 			$this->getContext()->getOutput()->addHTML( '<strong class="mw-delete-warning-revisions">' .
-				wfMessage( 'historywarning' )->numParams( $revisions )->parse() .
-				wfMessage( 'word-separator' )->plain() . Linker::linkKnown( $title,
-					wfMessage( 'history' )->escaped(),
+				$this->getContext()->msg( 'historywarning' )->numParams( $revisions )->parse() .
+				$this->getContext()->msg( 'word-separator' )->plain() . Linker::linkKnown( $title,
+					$this->getContext()->msg( 'history' )->escaped(),
 					array( 'rel' => 'archives' ),
 					array( 'action' => 'history' ) ) .
 				'</strong>'
@@ -1602,7 +1603,7 @@ class Article implements Page {
 		wfDebug( "Article::confirmDelete\n" );
 
 		$outputPage = $this->getContext()->getOutput();
-		$outputPage->setPageTitle( wfMessage( 'delete-confirm', $this->getTitle()->getPrefixedText() ) );
+		$outputPage->setPageTitle( $this->getContext()->msg( 'delete-confirm', $this->getTitle()->getPrefixedText() ) );
 		$outputPage->addBacklinkSubtitle( $this->getTitle() );
 		$outputPage->setRobotPolicy( 'noindex,nofollow' );
 		$outputPage->addWikiMsg( 'confirmdeletetext' );
@@ -1615,7 +1616,7 @@ class Article implements Page {
 			$suppress = "<tr id=\"wpDeleteSuppressRow\">
 					<td></td>
 					<td class='mw-input'><strong>" .
-						Xml::checkLabel( wfMessage( 'revdelete-suppress' )->text(),
+						Xml::checkLabel( $this->getContext()->msg( 'revdelete-suppress' )->text(),
 							'wpSuppress', 'wpSuppress', false, array( 'tabindex' => '4' ) ) .
 					"</strong></td>
 				</tr>";
@@ -1627,11 +1628,11 @@ class Article implements Page {
 		$form = Xml::openElement( 'form', array( 'method' => 'post',
 			'action' => $this->getTitle()->getLocalURL( 'action=delete' ), 'id' => 'deleteconfirm' ) ) .
 			Xml::openElement( 'fieldset', array( 'id' => 'mw-delete-table' ) ) .
-			Xml::tags( 'legend', null, wfMessage( 'delete-legend' )->escaped() ) .
+			Xml::tags( 'legend', null, $this->getContext()->msg( 'delete-legend' )->escaped() ) .
 			Xml::openElement( 'table', array( 'id' => 'mw-deleteconfirm-table' ) ) .
 			"<tr id=\"wpDeleteReasonListRow\">
 				<td class='mw-label'>" .
-					Xml::label( wfMessage( 'deletecomment' )->text(), 'wpDeleteReasonList' ) .
+					Xml::label( $this->getContext()->msg( 'deletecomment' )->text(), 'wpDeleteReasonList' ) .
 				"</td>
 				<td class='mw-input'>" .
 					Xml::listDropDown( 'wpDeleteReasonList',
@@ -1641,7 +1642,7 @@ class Article implements Page {
 			</tr>
 			<tr id=\"wpDeleteReasonRow\">
 				<td class='mw-label'>" .
-					Xml::label( wfMessage( 'deleteotherreason' )->text(), 'wpReason' ) .
+					Xml::label( $this->getContext()->msg( 'deleteotherreason' )->text(), 'wpReason' ) .
 				"</td>
 				<td class='mw-input'>" .
 				Html::input( 'wpReason', $reason, 'text', array(
@@ -1660,7 +1661,7 @@ class Article implements Page {
 			<tr>
 				<td></td>
 				<td class='mw-input'>" .
-					Xml::checkLabel( wfMessage( 'watchthis' )->text(),
+					Xml::checkLabel( $this->getContext()->msg( 'watchthis' )->text(),
 						'wpWatch', 'wpWatch', $checkWatch, array( 'tabindex' => '3' ) ) .
 				"</td>
 			</tr>";
@@ -1671,7 +1672,7 @@ class Article implements Page {
 			<tr>
 				<td></td>
 				<td class='mw-submit'>" .
-					Xml::submitButton( wfMessage( 'deletepage' )->text(),
+					Xml::submitButton( $this->getContext()->msg( 'deletepage' )->text(),
 						array( 'name' => 'wpConfirmB', 'id' => 'wpConfirmB', 'tabindex' => '5' ) ) .
 				"</td>
 			</tr>" .
@@ -1684,7 +1685,7 @@ class Article implements Page {
 				$title = Title::makeTitle( NS_MEDIAWIKI, 'Deletereason-dropdown' );
 				$link = Linker::link(
 					$title,
-					wfMessage( 'delete-edit-reasonlist' )->escaped(),
+					$this->getContext()->msg( 'delete-edit-reasonlist' )->escaped(),
 					array(),
 					array( 'action' => 'edit' )
 				);
@@ -1712,15 +1713,15 @@ class Article implements Page {
 		if ( $status->isGood() ) {
 			$deleted = $this->getTitle()->getPrefixedText();
 
-			$outputPage->setPageTitle( wfMessage( 'actioncomplete' ) );
+			$outputPage->setPageTitle( $this->getContext()->msg( 'actioncomplete' ) );
 			$outputPage->setRobotPolicy( 'noindex,nofollow' );
 
-			$loglink = '[[Special:Log/delete|' . wfMessage( 'deletionlog' )->text() . ']]';
+			$loglink = '[[Special:Log/delete|' . $this->getContext()->msg( 'deletionlog' )->text() . ']]';
 
 			$outputPage->addWikiMsg( 'deletedtext', wfEscapeWikiText( $deleted ), $loglink );
 			$outputPage->returnToMain( false );
 		} else {
-			$outputPage->setPageTitle( wfMessage( 'cannotdelete-title', $this->getTitle()->getPrefixedText() ) );
+			$outputPage->setPageTitle( $this->getContext()->msg( 'cannotdelete-title', $this->getTitle()->getPrefixedText() ) );
 			if ( $error == '' ) {
 				$outputPage->addWikiText(
 					"<div class=\"error mw-error-cannotdelete\">\n" . $status->getWikiText() . "\n</div>"
