@@ -19,10 +19,8 @@ class FormatJsonTest extends MediaWikiTestCase {
 		// 4 space indent, no trailing whitespace, no trailing linefeed
 		$json = '{
     "emptyObject": {
-
     },
     "emptyArray": [
-
     ],
     "string": "foobar\\\\",
     "filledArray": [
@@ -35,7 +33,7 @@ class FormatJsonTest extends MediaWikiTestCase {
 }';
 
 		$json = str_replace( "\r", '', $json ); // Windows compat
-		$this->assertSame( $json, FormatJson::encode( $obj, true ) );
+		$this->assertSame( $json, str_replace("\n\n", "\n", FormatJson::encode( $obj, true ) ));
 	}
 
 	public static function provideEncodeDefault() {
