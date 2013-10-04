@@ -2448,6 +2448,7 @@ $wgMessageStructure = array(
 		'movesubpagetext',
 		'movenosubpage',
 		'movereason',
+		'move-redirect-text',
 		'revertmove',
 		'delete_and_move',
 		'delete_and_move_text',
