@@ -300,6 +300,61 @@
 	};
 
 	/**
+	 * Get the file title from an image element
+	 *
+	 *     var title = mw.Title.newFromImg( $( 'img:first' ) );
+	 *
+	 * @static
+	 * @param {HTMLImageElement|jQuery} img The image to use as a base.
+	 * @return {mw.Title|null} The file title - null if unsuccessful.
+	 */
+	Title.newFromImg = function ( img ) {
+		var matches, i, regex, src, decodedSrc,
+
+			// thumb.php-generated thumbnails
+			thumbPhpRegex = /thumb\.php/,
+
+			regexes = [
+				// Thumbnails
+				/\/[a-f0-9]\/[a-f0-9]{2}\/([^\s\/]+)\/[0-9]+px-\1[^\s\/]*$/,
+
+				// Thumbnails in non-hashed upload directories
+				/\/([^\s\/]+)\/[0-9]+px-\1[^\s\/]*$/,
+
+				// Full size images
+				/\/[a-f0-9]\/[a-f0-9]{2}\/([^\s\/]+)$/,
+
+				// Full-size images in non-hashed upload directories
+				/\/([^\s\/]+)$/
+			],
+
+			recount = regexes.length;
+
+		img = img.jquery ? img.get( 0 ) : img;
+
+		src = img.src;
+
+		matches = src.match( thumbPhpRegex );
+
+		if ( matches ) {
+			return mw.Title.newFromText( 'File:' + mw.util.getParamValue( 'f', src ) );
+		}
+
+		decodedSrc = decodeURIComponent( src );
+
+		for ( i = 0; i < recount; i++ ) {
+			regex = regexes[i];
+			matches = decodedSrc.match( regex );
+
+			if ( matches && matches[1] ) {
+				return mw.Title.newFromText( 'File:' + matches[1] );
+			}
+		}
+
+		return null;
+	};
+
+	/**
 	 * Whether this title exists on the wiki.
 	 *
 	 * @static
