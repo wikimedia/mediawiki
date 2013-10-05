@@ -17953,6 +17953,15 @@ Self closed html pairs (T7487)
 <div><font id="bug2"></font>In div text</div>
 !! end
 
+!! test
+De-escaping CSS character references.
+!! input
+<span style="\110000">x</span>
+!! result
+<p><span style="/* invalid control char */">x</span>
+</p>
+!! end
+
 #
 #
 #
