@@ -14802,6 +14802,15 @@ Self closed html pairs (bug 5487)
 
 !! end
 
+!! test
+De-escaping CSS character references.
+!! input
+<span style="\110000">x</span>
+!! result
+<p><span style="�">x</span>
+</p>
+!! end
+
 #
 #
 #

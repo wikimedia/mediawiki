@@ -976,7 +976,7 @@ class Sanitizer {
 			// Line continuation
 			return '';
 		} elseif ( $matches[2] !== '' ) {
-			$char = codepointToUtf8( hexdec( $matches[2] ) );
+			$char = Sanitizer::decodeChar( hexdec( $matches[2] ) );
 		} elseif ( $matches[3] !== '' ) {
 			$char = $matches[3];
 		} else {
