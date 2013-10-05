@@ -239,6 +239,8 @@ production.
    referenced in LESS '@import' statements are looked up here first.
 * Added meta=filerepoinfo API module for getting information about foreign
   image repositories, and related ForeignAPIRepo methods getInfo and getApiUrl.
+* Added a hook, APIQuerySiteInfoStatisticsInfo, to allow extensions to modify
+  the output of the API query meta=siteinfo&siprop=statistics
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
