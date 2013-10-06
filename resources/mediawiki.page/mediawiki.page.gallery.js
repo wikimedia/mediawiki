@@ -210,14 +210,24 @@
 							$innerDiv: $innerDiv,
 							$imageDiv: $imageDiv,
 							$outerDiv: $outerDiv,
-							resolved: false  /* Did the hook take action */
+							// Whether the hook took action
+							resolved: false
 						};
-						// Allow other media handlers to hook in.
-						// If your hook resizes an image, it is expected it will
-						// set resolved to true. Additionally you should load
-						// your module in position top to ensure it is registered
-						// before this runs (FIXME: there must be a better way?)
-						// See TimedMediaHandler for an example.
+
+						/**
+						 * Gallery resize.
+						 *
+						 * If your handler resizes an image, it is expected you set the
+						 * resolved property to true. Additionally, because this module only exposes
+						 * this logic temporarily, you should load your module in position top to
+						 * ensure it is registered before this runs (FIXME: Don't use mw.hook)
+						 *
+						 * See TimedMediaHandler for an example.
+						 *
+						 * @event mediawiki_page_gallery_resize
+						 * @member mw.hook
+						 * @param {Object} hookInfo
+						 */
 						mw.hook( 'mediawiki.page.gallery.resize' ).fire( hookInfo );
 
 						if ( !hookInfo.resolved ) {
