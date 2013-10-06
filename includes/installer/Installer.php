@@ -158,7 +158,6 @@ abstract class Installer {
 		'wgImageMagickConvertCommand',
 		'wgGitBin',
 		'IP',
-		'wgServer',
 		'wgScriptPath',
 		'wgScriptExtension',
 		'wgMetaNamespace',
@@ -980,9 +979,10 @@ abstract class Installer {
 	 */
 	protected function envCheckServer() {
 		$server = $this->envGetDefaultServer();
-		$this->showMessage( 'config-using-server', $server );
-		$this->setVar( 'wgServer', $server );
-
+		if ( $server !== null ) {
+			$this->showMessage( 'config-using-server', $server );
+			$this->setVar( 'wgServer', $server );
+		}
 		return true;
 	}
 
