@@ -193,10 +193,6 @@ class ApiEditPageTest extends ApiTestCase {
 		$this->assertEquals( $expected, $text );
 	}
 
-	function testEditSection() {
-		$this->markTestIncomplete( "not yet implemented" );
-	}
-
 	/**
 	 * Test action=edit&section=new
 	 * Run it twice so we test adding a new section on a
@@ -234,10 +230,6 @@ class ApiEditPageTest extends ApiTestCase {
 		$this->assertEquals( 'Success', $re2['edit']['result'] );
 		$text = WikiPage::factory( Title::newFromText( $name ) )->getContent( Revision::RAW )->getNativeData();
 		$this->assertEquals( $text, "== header ==\n\ntest\n\n== header ==\n\ntest" );
-	}
-
-	function testUndo() {
-		$this->markTestIncomplete( "not yet implemented" );
 	}
 
 	function testEditConflict() {
