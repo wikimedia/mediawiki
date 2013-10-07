@@ -7,17 +7,28 @@
 
 	// Use the same function for all navigation headings - don't repeat
 	function toggle( $element ) {
+		var isCollapsed = $element.parent().is( '.collapsed' );
+
 		$.cookie(
 			'vector-nav-' + $element.parent().attr( 'id' ),
-			$element.parent().is( '.collapsed' ),
+			isCollapsed,
 			{ 'expires': 30, 'path': '/' }
 		);
+
 		$element
 			.parent()
 			.toggleClass( 'expanded' )
 			.toggleClass( 'collapsed' )
 			.find( '.body' )
 			.slideToggle( 'fast' );
+		isCollapsed = !isCollapsed;
+
+		$element
+			.find( '> a' )
+			.attr( {
+				'aria-pressed': isCollapsed ? 'false' : 'true',
+				'aria-expanded': isCollapsed ? 'false' : 'true'
+			} );
 	}
 
 	/* Browser Support */
@@ -61,8 +72,18 @@
 			.each( function ( i ) {
 				var id = $(this).attr( 'id' ),
 					state = $.cookie( 'vector-nav-' + id );
+				$(this).find( 'ul:first' ).attr( 'id', id + '-list' );
 				// Add anchor tag to heading for better accessibility
-				$( this ).find( 'h3' ).wrapInner( $( '<a href="#"></a>' ).click( false ) );
+				$( this ).find( 'h3' ).wrapInner(
+					$( '<a>' )
+						.attr( {
+							href: '#',
+							'aria-haspopup': 'true',
+							'aria-controls': id + '-list',
+							role: 'button'
+						} )
+						.click( false )
+				);
 				// In the case that we are not showing the new version, let's show the languages by default
 				if (
 					state === 'true' ||
@@ -75,10 +96,20 @@
 						.find( '.body' )
 						.hide() // bug 34450
 						.show();
+					$(this).find( 'h3 > a' )
+						.attr( {
+							'aria-pressed': 'true',
+							'aria-expanded': 'true'
+						} );
 				} else {
 					$(this)
 						.addClass( 'collapsed' )
 						.removeClass( 'expanded' );
+					$(this).find( 'h3 > a' )
+						.attr( {
+							'aria-pressed': 'false',
+							'aria-expanded': 'false'
+						} );
 				}
 				// Re-save cookie
 				if ( state !== null ) {
