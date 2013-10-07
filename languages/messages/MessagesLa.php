@@ -169,7 +169,7 @@ $messages = array(
 'tog-hidepatrolled' => 'Redactiones censae inter nuper mutatas celandae',
 'tog-newpageshidepatrolled' => 'Paginae censae inter nouissime creatas celandae',
 'tog-extendwatchlist' => 'Indicem paginarum obseruandarum cunctas mutatas praeter nouissimas includere decet',
-'tog-usenewrc' => 'Indice nuper mutatarum excelsa uti (JavaScript necesse est)',
+'tog-usenewrc' => 'Indice nuper mutatarum excelsa uti',
 'tog-numberheadings' => 'Subtituli numeris adornandi',
 'tog-showtoolbar' => 'Affigere trabem redigentem',
 'tog-editondblclick' => 'Percussus duplex redactionem hortetur',
@@ -390,7 +390,7 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'De {{grammar:ablative|{{SITENAME}}}}',
 'aboutpage' => 'Project:De {{GRAMMAR:ablative|{{SITENAME}}}}',
-'copyright' => 'Res ad manum sub $1.',
+'copyright' => 'Res ad manum sub $1 nisi aliter denuntiatum est.',
 'copyrightpage' => '{{ns:project}}:Verba privata',
 'currentevents' => 'Novissima',
 'currentevents-url' => 'Project:Novissima',
@@ -1001,7 +1001,7 @@ Conare praefixare tua inquisitionem cum ''all:'' ut quaeras contenta omnia (pagi
 {{PLURAL:$1|Una littera est|$1 litterae sunt}} longitudo maxima.',
 'yourgender' => 'Sexus:',
 'gender-unknown' => 'Indefinitus',
-'gender-male' => 'Mas',
+'gender-male' => 'Masculinum',
 'gender-female' => 'Femina',
 'email' => 'Litterae electronicae',
 'prefs-help-realname' => 'Nomen verum non necesse est.
@@ -1427,7 +1427,7 @@ Fortasse [$2 paginam descriptionis fasciculi] ibi sitam recensere vis.',
 
 # Special:Log
 'specialloguserlabel' => 'Usor:',
-'speciallogtitlelabel' => 'Titulus:',
+'speciallogtitlelabel' => 'Destinatum (titulus aut usor):',
 'log' => 'Acta',
 'all-logs-page' => 'Acta publica omnia',
 'alllogstext' => 'Ostentantur omnia acta {{grammar:genitive|{{SITENAME}}}}.

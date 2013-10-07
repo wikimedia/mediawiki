@@ -2550,7 +2550,7 @@ Tingnan ang [[Special:BlockList|talaan ng mga hinadlangan]] upang suriin ang mga
 'anononlyblock' => 'di kilala lamang',
 'noautoblockblock' => 'hindi gumagana ang awtomatikong pagharang',
 'createaccountblock' => 'isinalanta ang paglikha ng kuwenta',
-'emailblock' => 'Hinarang/hinadlangan ang e-liham',
+'emailblock' => 'Hinarang ang e-liham',
 'blocklist-nousertalk' => 'hindi mo mababago ang iyong pansariling pahina ng usapan',
 'ipblocklist-empty' => 'Walang laman ang talaan ng pagharang/paghadlang.',
 'ipblocklist-no-results' => 'Nakaharang ang hiniling na IP address o bansag.',
@@ -2575,7 +2575,7 @@ Tingnan ang [[Special:BlockList|talaan ng pagharang]] para sa lista ng kasalukuy
 'block-log-flags-anononly' => 'mga di-kilalang tagagamit lamang',
 'block-log-flags-nocreate' => 'isinalanta ang paglikha ng kuwenta',
 'block-log-flags-noautoblock' => 'Nakapatay ang awtomatikong pagharang',
-'block-log-flags-noemail' => 'hinadlangan/hinarang ang e-liham',
+'block-log-flags-noemail' => 'hinarang ang e-liham',
 'block-log-flags-nousertalk' => 'hindi mo mababago ang iyong pansariling pahina ng usapan',
 'block-log-flags-angry-autoblock' => 'pinaandar ang pinainam/pinagibayong kusang paghadlang o awtomatikong pagharang',
 'block-log-flags-hiddenname' => 'nakatago ang pangalan ng tagagamit',
@@ -2584,7 +2584,7 @@ Tingnan ang [[Special:BlockList|talaan ng pagharang]] para sa lista ng kasalukuy
 'ipb_expiry_temp' => 'Kinakailangang pamalagian ang mga nakatagong paghadlang ng pangalan ng tagagamit.',
 'ipb_hide_invalid' => 'Hindi maisupil ang kuwentang ito; maaaring may napakaraming pagbabago ito.',
 'ipb_already_blocked' => 'Nakaharang na ang "$1"',
-'ipb-needreblock' => 'Hinarang/hinadlangan na si $1.  Ibig mo bang baguhin ang mga pagtatakda?',
+'ipb-needreblock' => 'Hinarang na si $1.  Nais mo bang baguhin ang mga pagtatakda?',
 'ipb-otherblocks-header' => 'Ibang {{PLURAL:$1|harang|mga harang}}',
 'unblock-hideuser' => 'Hindi mo matatanggal ang paghadlang sa tagagamit na ito, dahil naitago ang kanilang pangalan ng tagagamit.',
 'ipb_cant_unblock' => 'Kamalian: Hindi natagpuan ang ID ng pagharang/paghadlang na $1.  Maaaring natanggal na ang pagkakaharang nito/paghahadlang dito.',
@@ -4008,12 +4008,12 @@ Dapat na nakatanggap ka ng [{{SERVER}}{{SCRIPTPATH}}/COPYING isang sipi ng Pangk
 'rightsnone' => '(wala)',
 
 # Feedback
-'feedback-bugornote' => 'Kung handa ka nang detalyadong maglarawan ng isang suliraning teknikal mangyaring [$1 iulat ang sira].
-O kaya, maaari mong gamitin ang maginhawang pormularyo sa ibaba. Ang iyong pagpuna ay idaragdag sa pahinang "[$3 $2]", kasama ang iyong pangalan na pangtagagamit at kung anong pantingin-tingin ang ginagamit mo.',
+'feedback-bugornote' => 'Kung handa ka nang detalyadong maglarawan ng isang suliraning teknikal mangyaring [$1 iulat ang kamalian].
+O kaya, maaari mo ring gamitin ang pinadaling pormularyo sa ibaba.  Madadagdagan ang komento mo sa pahinang "[$3 $2]", kasama ang iyong pangalan ng tagagamit.',
 'feedback-subject' => 'Paksa:',
 'feedback-message' => 'Mensahe:',
 'feedback-cancel' => 'Huwag ituloy',
-'feedback-submit' => 'Ipasa ang Pakaing-tugon',
+'feedback-submit' => 'Magbigay ng komento',
 'feedback-adding' => 'Idinaragdag ang pakaing-tugon sa pahina...',
 'feedback-error1' => 'Kamalian: Hindi nakikilalang kinalabasan mula sa API',
 'feedback-error2' => 'Kamalian: Nabigo ang pagpatnugot',

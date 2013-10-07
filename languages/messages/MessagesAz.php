@@ -2880,7 +2880,10 @@ Variants for Chinese language
 'tags-title' => 'Etiketlər',
 'tags-tag' => 'Etiket adı',
 'tags-description-header' => 'Anlamının tam açıqlaması',
+'tags-active-header' => 'Aktiv?',
 'tags-hitcount-header' => 'Etiketli dəyişikliklər',
+'tags-active-yes' => 'Bəli',
+'tags-active-no' => 'Xeyr',
 'tags-edit' => 'redaktə',
 'tags-hitcount' => '$1 {{PLURAL:$1|dəyişiklik|dəyişiklik}}',
 

@@ -740,13 +740,13 @@ Soa adrëssa IP corenta a l'é $3, e sò nùmer ëd blocagi a l'é $5.
 Për piasì, ch'a buta sempe tùit ij detaj an tute j'arceste ch'a farà.",
 'blockednoreason' => 'gnun-a rason butà',
 'whitelistedittext' => 'A dev $1 për podèj fé dle modìfiche a le pàgine.',
-'confirmedittext' => 'A dev confermé soa adrëssa ëd pòsta eletrònica, anans che modifiché dle pàgine. Për piasì, che a convàlida soa adrëssa ën dovrand la pàgina [[Special:Preferences|mè gust]].',
+'confirmedittext' => 'A dev confermé soa adrëssa ëd pòsta eletrònica, anans che modifiché dle pàgine. Për piasì, che a convàlida soa adrëssa ën dovrand la pàgina dij [[Special:Preferences|sò gust]].',
 'nosuchsectiontitle' => 'As peul pa trovesse la session',
 'nosuchsectiontext' => "A l'ha provasse a modifiché na session ch'a-i é pa.
-A peul essa stàita tramudà o scancelà an mente ch'a vëdìa la pàgina.",
-'loginreqtitle' => 'a venta rintré ant ël sistema',
+A peul essa stàita tramudà o scancelà antramentre ch'a vëdìa la pàgina.",
+'loginreqtitle' => 'A venta rintré ant ël sistema',
 'loginreqlink' => 'rintré ant ël sistema',
-'loginreqpagetext' => "Che a pòrta passiensa, ma a dev $1 për podèj vëdde dj'àutre pàgine.",
+'loginreqpagetext' => "A dev $1 për podèj vëdde j'àutre pàgine.",
 'accmailtitle' => 'Ciav spedìa.',
 'accmailtext' => "Na ciav generà a l'ancàpit për [[User talk:$1|$1]] a l'é stàita mandà a $2.
 A peul esse modificà an sla pàgina ''[[Special:ChangePassword|modìfica dla ciav]]'' apress esse rintrà ant ël sistema.",

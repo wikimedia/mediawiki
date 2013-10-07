@@ -941,7 +941,7 @@ Mellombels passord: $2',
 'preview' => 'Førehandsvising',
 'showpreview' => 'Førehandsvis',
 'showlivepreview' => 'Levande førehandsvising',
-'showdiff' => 'Vis skilnader',
+'showdiff' => 'Sjå skilnader',
 'anoneditwarning' => "'''Åtvaring:''' Du er ikkje innlogga.
 IP-adressa di vert lagra i endringshistorikken til sida.",
 'anonpreviewwarning' => "''Du er ikkje innlogga. Lagrar du vil IP-adressa di verta ført opp i endringshistorikken til denne sida.''",

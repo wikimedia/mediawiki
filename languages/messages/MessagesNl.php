@@ -700,6 +700,10 @@ Een lijst met bestaande speciale pagina’s staat op [[Special:SpecialPages|{{in
 # General errors
 'error' => 'Fout',
 'databaseerror' => 'Databasefout',
+'databaseerror-text' => 'Er is een databasefout opgetreden.
+Dit kan duiden op een fout in de software.',
+'databaseerror-textcl' => 'Er is een databasefout opgetreden.',
+'databaseerror-query' => 'Zoekopdracht: $1',
 'databaseerror-function' => 'Functie: $1',
 'databaseerror-error' => 'Fout: $1',
 'laggedslavemode' => "'''Waarschuwing:''' in deze pagina zijn recente wijzigingen mogelijk nog niet verwerkt.",
@@ -828,6 +832,9 @@ Vergeet niet uw [[Special:Preferences|voorkeuren voor {{SITENAME}}]] aan te pass
 'userlogin-resetpassword-link' => 'Uw wachtwoord opnieuw instellen',
 'helplogin-url' => 'Help:Aanmelden',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Hulp bij aanmelden]]',
+'userlogin-loggedin' => 'U bent al aangemeld als {{GENDER:$1|$1}}.
+Gebruik het onderstaande formulier om aan te melden als een andere gebruiker.',
+'userlogin-createanother' => 'Nog een gebruiker aanmaken',
 'createacct-join' => 'Geef uw gegevens hieronder op.',
 'createacct-another-join' => 'Geef hieronder de informatie voor de nieuwe gebruiker op.',
 'createacct-emailrequired' => 'E-mailadres',
@@ -2791,7 +2798,7 @@ $1',
 'contributions' => '{{GENDER:$1|Gebruikersbijdragen}}',
 'contributions-title' => 'Bijdragen van $1',
 'mycontris' => 'Bijdragen',
-'contribsub2' => 'Voor $1 ($2)',
+'contribsub2' => 'Voor {{GENDER:$3|$1}} ($2)',
 'nocontribs' => 'Geen wijzigingen gevonden die aan de gestelde criteria voldoen.',
 'uctop' => '(laatste wijziging)',
 'month' => 'Van maand (en eerder):',
@@ -3278,6 +3285,7 @@ U kunt wel de broncode bekijken.',
 'tooltip-undo' => 'Met "ongedaan maken" draait u deze bewerking terug en komt in het bewerkingsvenster. U kunt in de bewerkingssamenvatting een reden opgeven.',
 'tooltip-preferences-save' => 'Voorkeuren opslaan',
 'tooltip-summary' => 'Voer een korte samenvatting in',
+'tooltip-iwiki' => '$1 – $2',
 
 # Stylesheets
 'common.css' => '/** CSS die hier wordt geplaatst heeft invloed op alle skins */',
@@ -4182,7 +4190,10 @@ Samen met dit programma hoort u een [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van 
 'tags-tag' => 'Labelnaam',
 'tags-display-header' => 'Weergave in wijzigingslijsten',
 'tags-description-header' => 'Volledige beschrijving van betekenis',
+'tags-active-header' => 'Actief?',
 'tags-hitcount-header' => 'Gelabelde bewerkingen',
+'tags-active-yes' => 'Ja',
+'tags-active-no' => 'Nee',
 'tags-edit' => 'bewerken',
 'tags-hitcount' => '$1 {{PLURAL:$1|wijziging|wijzigingen}}',
 
