@@ -511,9 +511,31 @@ class MediaWiki {
 
 		$request = $this->context->getRequest();
 
+		// Send Ajax requests to the Ajax dispatcher.
+		if ( $wgUseAjax && $request->getVal( 'action', 'view' ) == 'ajax' ) {
+
+			// Set a dummy title, because $wgTitle == null might break things
+			$title = Title::makeTitle( NS_MAIN, 'AJAX' );
+			$this->context->setTitle( $title );
+			$wgTitle = $title;
+
+			$dispatcher = new AjaxDispatcher();
+			$dispatcher->performAction();
+			wfProfileOut( __METHOD__ );
+			return;
+		}
+
+		// Get title from request parameters,
+		// is set on the fly by parseTitle the first time.
+		$title = $this->getTitle();
+		$action = $this->getAction();
+		$wgTitle = $title;
+
 		// If the user has forceHTTPS set to true, or if the user
 		// is in a group requiring HTTPS, or if they have the HTTPS
 		// preference set, redirect them to HTTPS.
+		// Note: Do this after $wgTitle is setup, otherwise the hooks run from
+		// isLoggedIn() will do all sorts of weird stuff.
 		if (
 			(
 				$request->getCookie( 'forceHTTPS', '' ) ||
@@ -553,26 +575,6 @@ class MediaWiki {
 			wfProfileOut( __METHOD__ );
 			return;
 		}
-
-		// Send Ajax requests to the Ajax dispatcher.
-		if ( $wgUseAjax && $request->getVal( 'action', 'view' ) == 'ajax' ) {
-
-			// Set a dummy title, because $wgTitle == null might break things
-			$title = Title::makeTitle( NS_MAIN, 'AJAX' );
-			$this->context->setTitle( $title );
-			$wgTitle = $title;
-
-			$dispatcher = new AjaxDispatcher();
-			$dispatcher->performAction();
-			wfProfileOut( __METHOD__ );
-			return;
-		}
-
-		// Get title from request parameters,
-		// is set on the fly by parseTitle the first time.
-		$title = $this->getTitle();
-		$action = $this->getAction();
-		$wgTitle = $title;
 
 		if ( $wgUseFileCache && $title->getNamespace() >= 0 ) {
 			wfProfileIn( 'main-try-filecache' );
