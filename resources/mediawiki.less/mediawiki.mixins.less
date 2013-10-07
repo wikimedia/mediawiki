@@ -38,9 +38,9 @@
 	list-style-image: url(@url);
 }
 
-.transition( ... ) {
-	-moz-transition: @arguments;
-	-webkit-transition: @arguments;
-	-o-transition: @arguments;
-	transition: @arguments;
+.transition(@string) {
+	-webkit-transition: @string;
+	-moz-transition: @string;
+	-o-transition: @string;
+	transition: @string;
 }
