@@ -425,7 +425,7 @@ function wfExtractThumbParams( $file, $params ) {
 	if ( $handler && $fileNamePos !== false ) {
 		$paramString = substr( $thumbname, 0, $fileNamePos - 1 );
 		$extraParams = $handler->parseParamString( $paramString );
-		if ( $handler !== false ) {
+		if ( $extraParams !== false ) {
 			return $params + $extraParams;
 		}
 	}
