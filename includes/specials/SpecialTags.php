@@ -27,6 +27,10 @@
  * @ingroup SpecialPage
  */
 class SpecialTags extends SpecialPage {
+	/**
+	 * @var array List of defined tags
+	 */
+	public $definedTags;
 
 	function __construct() {
 		parent::__construct( 'Tags' );
@@ -55,7 +59,11 @@ class SpecialTags extends SpecialPage {
 			$html .= $this->doTagRow( $tag, $hitcount );
 		}
 
-		$out->addHTML( Xml::tags( 'table', array( 'class' => 'wikitable sortable mw-tags-table' ), $html ) );
+		$out->addHTML( Xml::tags(
+			'table',
+			array( 'class' => 'wikitable sortable mw-tags-table' ),
+			$html
+		) );
 	}
 
 	function doTagRow( $tag, $hitcount ) {
@@ -66,7 +74,10 @@ class SpecialTags extends SpecialPage {
 		$disp = ChangeTags::tagDescription( $tag );
 		if ( $user->isAllowed( 'editinterface' ) ) {
 			$disp .= ' ';
-			$editLink = Linker::link( Title::makeTitle( NS_MEDIAWIKI, "Tag-$tag" ), $this->msg( 'tags-edit' )->escaped() );
+			$editLink = Linker::link(
+				Title::makeTitle( NS_MEDIAWIKI, "Tag-$tag" ),
+				$this->msg( 'tags-edit' )->escaped()
+			);
 			$disp .= $this->msg( 'parentheses' )->rawParams( $editLink )->escaped();
 		}
 		$newRow .= Xml::tags( 'td', null, $disp );
@@ -75,16 +86,26 @@ class SpecialTags extends SpecialPage {
 		$desc = !$msg->exists() ? '' : $msg->parse();
 		if ( $user->isAllowed( 'editinterface' ) ) {
 			$desc .= ' ';
-			$editDescLink = Linker::link( Title::makeTitle( NS_MEDIAWIKI, "Tag-$tag-description" ), $this->msg( 'tags-edit' )->escaped() );
+			$editDescLink = Linker::link(
+				Title::makeTitle( NS_MEDIAWIKI, "Tag-$tag-description" ),
+				$this->msg( 'tags-edit' )->escaped()
+			);
 			$desc .= $this->msg( 'parentheses' )->rawParams( $editDescLink )->escaped();
 		}
 		$newRow .= Xml::tags( 'td', null, $desc );
 
-		$active = $this->msg( isset( $this->definedTags[$tag] ) ? 'tags-active-yes' : 'tags-active-no' )->escaped();
+		$active = isset( $this->definedTags[$tag] ) ? 'tags-active-yes' : 'tags-active-no';
+		$active = $this->msg( $active )->escaped();
 		$newRow .= Xml::tags( 'td', null, $active );
 
 		$hitcountLabel = $this->msg( 'tags-hitcount' )->numParams( $hitcount )->escaped();
-		$hitcountLink = Linker::link( SpecialPage::getTitleFor( 'Recentchanges' ), $hitcountLabel, array(), array( 'tagfilter' => $tag ) );
+		$hitcountLink = Linker::link(
+			SpecialPage::getTitleFor( 'Recentchanges' ),
+			$hitcountLabel,
+			array(),
+			array( 'tagfilter' => $tag )
+		);
+
 		// add raw $hitcount for sorting, because tags-hitcount contains numbers and letters
 		$newRow .= Xml::tags( 'td', array( 'data-sort-value' => $hitcount ), $hitcountLink );
 
