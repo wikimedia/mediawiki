@@ -159,19 +159,22 @@ a.mw-ui-button {
 }
 /* line 36, sourcefiles/scss/components/default/_forms.scss */
 .mw-ui-vform > div input:not([type=button]):not([type=submit]):not([type=file]) {
-  outline: 0;
   border-style: solid;
   border-width: 1px;
   border-color: #c9c9c9;
   color: #252525;
   padding: 0.35em 0 0.35em 0.5em;
 }
-/* line 12, sourcefiles/scss/mixins/_forms.scss */
+/* line 11, sourcefiles/scss/mixins/_forms.scss */
 .mw-ui-vform > div input:not([type=button]):not([type=submit]):not([type=file]):focus {
   box-shadow: #4091ed 0px 0px 5px;
   border-color: #4091ed;
 }
-/* line 38, sourcefiles/scss/components/default/_forms.scss */
+/* line 13, sourcefiles/scss/mixins/_forms.scss */
+.mw-ui-vform > div input:not([type=button]):not([type=submit]):not([type=file]):focus:not([type=checkbox]):not([type=radio]) {
+  outline: 0;
+}
+/* line 40, sourcefiles/scss/components/default/_forms.scss */
 .mw-ui-vform > div label {
   display: block;
   -webkit-box-sizing: border-box;
@@ -183,11 +186,11 @@ a.mw-ui-button {
   margin: 0 0 0.2em 0;
   padding: 0;
 }
-/* line 34, sourcefiles/scss/mixins/_forms.scss */
+/* line 38, sourcefiles/scss/mixins/_forms.scss */
 .mw-ui-vform > div label * {
   font-weight: normal;
 }
-/* line 49, sourcefiles/scss/components/default/_forms.scss */
+/* line 51, sourcefiles/scss/components/default/_forms.scss */
 .mw-ui-vform > div input[type="checkbox"],
 .mw-ui-vform > div input[type="radio"] {
   display: inline;
@@ -197,32 +200,35 @@ a.mw-ui-button {
   width: auto;
 }
 
-/* line 65, sourcefiles/scss/components/default/_forms.scss */
+/* line 67, sourcefiles/scss/components/default/_forms.scss */
 .mw-ui-input {
-  outline: 0;
   border-style: solid;
   border-width: 1px;
   border-color: #c9c9c9;
   color: #252525;
   padding: 0.35em 0 0.35em 0.5em;
 }
-/* line 12, sourcefiles/scss/mixins/_forms.scss */
+/* line 11, sourcefiles/scss/mixins/_forms.scss */
 .mw-ui-input:focus {
   box-shadow: #4091ed 0px 0px 5px;
   border-color: #4091ed;
 }
+/* line 13, sourcefiles/scss/mixins/_forms.scss */
+.mw-ui-input:focus:not([type=checkbox]):not([type=radio]) {
+  outline: 0;
+}
 
-/* line 72, sourcefiles/scss/components/default/_forms.scss */
+/* line 74, sourcefiles/scss/components/default/_forms.scss */
 .mw-ui-label {
   font-size: 0.9em;
   color: #4a4a4a;
 }
-/* line 34, sourcefiles/scss/mixins/_forms.scss */
+/* line 38, sourcefiles/scss/mixins/_forms.scss */
 .mw-ui-label * {
   font-weight: normal;
 }
 
-/* line 81, sourcefiles/scss/components/default/_forms.scss */
+/* line 83, sourcefiles/scss/components/default/_forms.scss */
 .mw-ui-checkbox-label, .mw-ui-radio-label {
   margin-bottom: 0.5em;
   cursor: pointer;
@@ -230,7 +236,7 @@ a.mw-ui-button {
   line-height: normal;
   font-weight: normal;
 }
-/* line 50, sourcefiles/scss/mixins/_forms.scss */
+/* line 54, sourcefiles/scss/mixins/_forms.scss */
 .mw-ui-checkbox-label > input[type="checkbox"], .mw-ui-checkbox-label > input[type="radio"], .mw-ui-radio-label > input[type="checkbox"], .mw-ui-radio-label > input[type="radio"] {
   width: auto;
   height: auto;
