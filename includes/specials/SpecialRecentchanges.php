@@ -424,59 +424,16 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 			return false;
 		}
 
-		// Don't use the new_namespace_time timestamp index if:
-		// (a) "All namespaces" selected
-		// (b) We want pages in more than one namespace (inverted/associated)
-		// (c) There is a tag to filter on (use tag index instead)
-		// (d) UNION + sort/limit is not an option for the DBMS
-		if ( $namespace === ''
-			|| ( $invert || $associated )
-			|| $opts['tagfilter'] != ''
-			|| !$dbr->unionSupportsOrderAndLimit()
-		) {
-			$res = $dbr->select( $tables, $fields, $conds, __METHOD__,
-				array( 'ORDER BY' => 'rc_timestamp DESC', 'LIMIT' => $limit ) +
-					$query_options,
-				$join_conds );
-		} else {
-			// We have a new_namespace_time index! UNION over new=(0,1) and sort result set!
-
-			// New pages
-			$sqlNew = $dbr->selectSQLText(
-				$tables,
-				$fields,
-				array( 'rc_new' => 1 ) + $conds,
-				__METHOD__,
-				array(
-					'ORDER BY' => 'rc_timestamp DESC',
-					'LIMIT' => $limit,
-					'USE INDEX' => array( 'recentchanges' => 'new_name_timestamp' )
-				),
-				$join_conds
-			);
-
-			// Old pages
-			$sqlOld = $dbr->selectSQLText(
-				$tables,
-				$fields,
-				array( 'rc_new' => 0 ) + $conds,
-				__METHOD__,
-				array(
-					'ORDER BY' => 'rc_timestamp DESC',
-					'LIMIT' => $limit,
-					'USE INDEX' => array( 'recentchanges' => 'new_name_timestamp' )
-				),
-				$join_conds
-			);
-
-			# Join the two fast queries, and sort the result set
-			$sql = $dbr->unionQueries( array( $sqlNew, $sqlOld ), false ) .
-				' ORDER BY rc_timestamp DESC';
-			$sql = $dbr->limitResult( $sql, $limit, false );
-			$res = $dbr->query( $sql, __METHOD__ );
-		}
-
-		return $res;
+		// rc_new is not an ENUM, but adding a redundant rc_new IN (0,1) gives mysql enough
+		// knowledge to use an index merge if it wants (it may use some other index though).
+		return $dbr->select(
+			$tables,
+			$fields,
+			$conds + array( 'rc_new' => array( 0, 1 ) ),
+			__METHOD__,
+			array( 'ORDER BY' => 'rc_timestamp DESC', 'LIMIT' => $limit ) + $query_options,
+			$join_conds
+		);
 	}
 
 	/**
