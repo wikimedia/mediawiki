@@ -1,16 +1,15 @@
 /*
  * Any rules which should not be flipped automatically in right-to-left situations should be
- * prepended with @noflip in a comment block. Images that should be embedded as base64 data-URLs
- * should be prepended with @embed in a comment block.
+ * prepended with @noflip in a comment block.
  *
- * This style-sheet employs a few CSS trick to accomplish compatibility with a wide range of web
+ * This stylesheet employs a few CSS trick to accomplish compatibility with a wide range of web
  * browsers. The most common trick is to use some styles in IE6 only. This is accomplished by using
  * a rule that makes things work in IE6, and then following it with a rule that begins with
  * "html > body" or use a child selector ">", which is ignored by IE6 because it does not support
  * the child selector. You can spot this by looking for the "OVERRIDDEN BY COMPLIANT BROWSERS" and
  * "IGNORED BY IE6" comments.
  */
-@import "mediawiki.mixins.less";
+@import "mediawiki.mixins";
 
 /* Framework */
 html,
@@ -46,7 +45,7 @@ div#content {
 #mw-page-base {
 	height: 5em;
 	background-color: white;
-	.background-image('images/page-fade.png');
+	.background-image(images/page-fade.png);
 	background-position: bottom left;
 	background-repeat: repeat-x;
 }
@@ -128,7 +127,7 @@ div.vectorTabs {
 	height: 2.5em;
 }
 div.vectorTabs {
-	.background-image('images/tab-break.png');
+	.background-image(images/tab-break.png);
 	background-position: bottom left;
 	background-repeat: no-repeat;
 	padding-left: 1px;
@@ -156,7 +155,7 @@ div.vectorTabs ul li {
 	margin: 0;
 	padding: 0;
 	background-color: #f3f3f3;
-	.background-image('images/tab-normal-fade.png');
+	.background-image(images/tab-normal-fade.png);
 	background-position: bottom left;
 	background-repeat: repeat-x;
 	white-space: nowrap;
@@ -166,7 +165,7 @@ div.vectorTabs ul > li {
 	display: block;
 }
 div.vectorTabs li.selected {
-	.background-image('images/tab-current-fade.png');
+	.background-image(images/tab-current-fade.png);
 }
 /* OVERRIDDEN BY COMPLIANT BROWSERS */
 div.vectorTabs li a {
@@ -199,7 +198,7 @@ div.vectorTabs span > a {
 }
 div.vectorTabs span {
 	display: inline-block;
-	.background-image('images/tab-break.png');
+	.background-image(images/tab-break.png);
 	background-position: bottom right;
 	background-repeat: no-repeat;
 }
@@ -219,7 +218,7 @@ div.vectorMenu {
 	float: left;
 	/* SVG support using a transparent gradient to guarantee cross-browser
 	 * compatibility (browsers able to understand gradient syntax support also SVG) */
-	.background-image-svg('images/arrow-down-icon.svg', 'images/arrow-down-icon.png');
+	.background-image-svg(images/arrow-down-icon.svg, images/arrow-down-icon.png);
 	background-position: 100% 60%;
 	background-repeat: no-repeat;
 	cursor: pointer;
@@ -227,7 +226,7 @@ div.vectorMenu {
 div.vectorMenuFocus {
 	/* SVG support using a transparent gradient to guarantee cross-browser
 	 * compatibility (browsers able to understand gradient syntax support also SVG) */
-	.background-image-svg('images/arrow-down-focus-icon.svg', 'images/arrow-down-focus-icon.png');
+	.background-image-svg(images/arrow-down-focus-icon.svg, images/arrow-down-focus-icon.png);
 	background-position: 100% 60%;
 }
 /* @noflip */
@@ -238,7 +237,7 @@ body.rtl div.vectorMenu {
 /* @noflip */
 div#mw-head div.vectorMenu h3 {
 	float: left;
-	.background-image('images/tab-break.png');
+	.background-image(images/tab-break.png);
 	background-repeat: no-repeat;
 }
 /* This will be flipped - unlike the one above it */
@@ -267,7 +266,7 @@ div.vectorMenu h3 a {
 	width: 24px;
 	height: 1.9em;
 	text-decoration: none;
-	.background-image('images/tab-break.png');
+	.background-image(images/tab-break.png);
 	background-repeat: no-repeat;
 }
 /* This will be flipped - unlike the one above it */
@@ -380,7 +379,7 @@ div#simpleSearch {
 	border: solid 1px #aaa;
 	color: black;
 	background-color: white;
-	.background-image('images/search-fade.png');
+	.background-image(images/search-fade.png);
 	background-position: top left;
 	background-repeat: repeat-x;
 }
@@ -472,7 +471,7 @@ div#mw-panel div.portal div.body {
 	margin: 0;
 	padding-top: 0.5em;
 	margin-left: 1.25em;
-	.background-image('images/portal-break.png');
+	.background-image(images/portal-break.png);
 	background-repeat: no-repeat;
 	background-position: top left;
 }
@@ -570,7 +569,7 @@ div#footer #footer-places li {
 	clear: both;
 	margin: 0 !important;
 	padding: 0 !important;
-	.background-image('images/preferences-break.png');
+	.background-image(images/preferences-break.png);
 	background-position: bottom left;
 	background-repeat: no-repeat;
 }
@@ -584,7 +583,7 @@ div#footer #footer-places li {
 		white-space: nowrap;
 		list-style-type: none;
 		list-style-image: none;
-		.background-image('images/preferences-break.png');
+		.background-image(images/preferences-break.png);
 		background-position: bottom right;
 		background-repeat: no-repeat;
 	}
@@ -607,7 +606,7 @@ div#footer #footer-places li {
 		text-decoration: underline;
 	}
 	#preftoc li.selected a {
-		.background-image('images/preferences-fade.png');
+		.background-image(images/preferences-fade.png);
 		background-position: bottom;
 		background-repeat: repeat-x;
 		color: #333;
@@ -665,7 +664,7 @@ div#content {
 
 ul {
 	list-style-type: disc;
-	.list-style-image('images/bullet-icon.png');
+	.list-style-image(images/bullet-icon.png);
 }
 
 pre, .mw-code {
@@ -690,7 +689,7 @@ pre, .mw-code {
 	background-repeat: no-repeat;
 	/* SVG support using a transparent gradient to guarantee cross-browser
 	 * compatibility (browsers able to understand gradient syntax support also SVG) */
-	.background-image-svg('images/user-icon.svg', 'images/user-icon.png');
+	.background-image-svg(images/user-icon.svg, images/user-icon.png);
 	padding-left: 15px !important;
 }
 
@@ -742,7 +741,7 @@ div#bodyContent {
 	margin-top: -0.8em !ie;
 	height: 0;
 	overflow: hidden;
-	.background-image('images/watch-icons.png');
+	.background-image(images/watch-icons.png);
 }
 #ca-unwatch.icon a {
 	background-position: -43px 60%;
@@ -760,7 +759,7 @@ div#bodyContent {
 }
 #ca-unwatch.icon a.loading,
 #ca-watch.icon a.loading {
-	.background-image('images/watch-icon-loading.gif');
+	.background-image(images/watch-icon-loading.gif);
 	background-position: 5px 60%;
 }
 #ca-unwatch.icon a span,
@@ -768,7 +767,7 @@ div#bodyContent {
 	display: none;
 }
 div.vectorTabs ul {
-	.background-image('images/tab-break.png');
+	.background-image(images/tab-break.png);
 	background-position: right bottom;
 	background-repeat: no-repeat;
 }
@@ -783,21 +782,26 @@ body.vector-animateLayout {
 	div#content,
 	div#footer,
 	#left-navigation {
-		.transition( margin-left 250ms, padding 250ms; );
+		.transition(margin-left 250ms, padding 250ms;);
 	}
+
 	#p-logo {
-		.transition( left 250ms );
+		.transition(left 250ms);
 	}
+
 	#mw-panel {
-		.transition( padding-right 250ms );
+		.transition(padding-right 250ms);
 	}
+
 	#p-search {
-		.transition( margin-right 250ms );
+		.transition(margin-right 250ms);
 	}
+
 	#p-personal {
-		.transition( right 250ms );
+		.transition(right 250ms);
 	}
+
 	#mw-head-base {
-		.transition( margin-left 250ms );
+		.transition(margin-left 250ms);
 	}
 }
