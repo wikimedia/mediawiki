@@ -1699,7 +1699,18 @@ var mw = ( function ( $, undefined ) {
 				 */
 				go: function () {
 					mw.loader.load( 'mediawiki.user' );
+				},
+
+				/**
+				 * @inheritdoc mw.inspect#inspectLoadedModules
+				 * @method
+				 */
+				inspect: function () {
+					mw.loader.using( 'mediawiki.inspect', function () {
+						mw.inspect.inspectModules();
+					} );
 				}
+
 			};
 		}() ),
 
