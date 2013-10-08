@@ -52,7 +52,7 @@ Options:
 	* mode:  Output format, can be either:
 		* text:   Text output on the console (default)
 		* wiki:   Wiki format, with * at beginning of each line
-		* php:    Output text as PHP syntax in a array $dupeMessages
+		* php:    Output text as PHP syntax in an array named \$dupeMessages
 		* raw:    Raw output for duplicates
 TEXT;
 }
