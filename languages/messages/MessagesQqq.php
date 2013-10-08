@@ -21,6 +21,7 @@
  * @author Aotake
  * @author Bangin
  * @author Bennylin
+ * @author Benojan
  * @author Beta16
  * @author Bilalokms
  * @author Boivie
@@ -8416,7 +8417,7 @@ Parameters:
 {{Related|Day-at}}',
 
 # Bad image list
-'bad_image_list' => 'This message only appears to guide administrators to add links with the right format. This will not appear anywhere else in MediaWiki.',
+'bad_image_list' => '箇条信息只出现在引导管理员用正确个格式加链接。弗会徕Mediawiki别荡处出现。',
 
 /*
 Short names for language variants used for language conversion links.
@@ -8514,7 +8515,7 @@ Varient Option for wikis with variants conversion enabled.',
 'metadata-help' => 'This message is followed by a table with metadata.',
 'metadata-expand' => 'On an image description page, there is mostly a table containing data (metadata) about the image. The most important data are shown, but if you click on this link, you can see more data and information. For the link to hide back the less important data, see {{msg-mw|Metadata-collapse}}.',
 'metadata-collapse' => 'On an image description page, there is mostly a table containing data (metadata) about the image. The most important data are shown, but if you click on the link {{msg-mw|Metadata-expand}}, you can see more data and information. This message is for the link to hide back the less important data.',
-'metadata-fields' => '{{doc-important|Do not translate list items, only translate the text! So leave "<code>* make</code>" and the other items exactly as they are.}}
+'metadata-fields' => '{{doc-important|覅翻译列表项，只翻译上头个文本！畀 "<code>* make</code>" 搭别个列表项正确保留。}}
 The sentences are for explanation only and are not shown to the user.',
 'metadata-langitem' => '{{optional}}
 This is used for constructing the list of translations when a metadata property is translated into multiple languages.

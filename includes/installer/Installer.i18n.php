@@ -11024,7 +11024,7 @@ $messages['kbd-cyrl'] = array(
  * @author Rachitrali
  */
 $messages['khw'] = array(
-	'mainpagetext' => "\"<big>'''میڈیاوکیو کامیابیو سورا چالو کورونو بیتی شیر۔.'''</big>\"",
+	'mainpagetext' => "'''میڈیاوکیو کامیابیو سورا چالو کورونو بیتی شیر۔.'''",
 );
 
 /** Kirmanjki (Kırmancki)
@@ -12656,11 +12656,11 @@ Jums reikės atsisiųsti ir įdėti jį į savo wiki įdiegimo bazę (pačiame k
 
 Jei atsisiuntimas nebuvo pasiūlytas, arba jį atšaukėte, galite iš naujo atsisiųsti paspaudę žemiau esančią nuorodą:
 
-<span class=\"notranslate\" versti=\"no\">\$3</span>
+$3
 
 '''Pastaba:''' Jei jūs to nepadarysite dabar, tada šis sukurtas konfigūracijos failas nebus galimas vėliau, jei išeisite iš įdiegimo be atsisiuntimo.
 
-Kai baigsite, jūs galėsite '''[\$2 įeiti į savo wiki]'''.",
+Kai baigsite, jūs galėsite '''[$2 įeiti į savo wiki]'''.",
 	'config-download-localsettings' => 'Atsisiųsti <code>LocalSettings.php</code>',
 	'config-help' => 'pagalba',
 	'mainpagetext' => "'''MediaWiki sėkmingai įdiegta.'''",
@@ -19904,6 +19904,10 @@ MediaWiki вимагає підтримку UTF-8 для коректної ро
 Імовірно, це замало.
 Встановлення може не вдатись!",
 	'config-ctype' => "'''Помилка''': PHP має бути зібраним з підтримкою [http://www.php.net/manual/en/ctype.installation.php розширення Ctype].",
+	'config-json' => "'''Fatal:''' PHP був скомпільований без підтримки JSON.
+Вам потрібно встановити або розширення PHP JSON або розширення[http://pecl.php.net/package/jsonc PECL jsonc] перед встановлення Медіавікі.
+* Розширення PHP включено у Red Hat Enterprise Linux (CentOS) 5 та 6, хоча має бути доступним у  <code>/etc/php.ini</code> або <code>/etc/php.d/json.ini</code>.
+* Деякі дистрибутиви Лінукса, випущені після травня 2013, пропустили розширення PHP, натомість упакували розширення  PECL як <code>php5-json</code> або <code>php-pecl-jsonc</code>.",
 	'config-xcache' => '[http://xcache.lighttpd.net/ XCache] встановлено',
 	'config-apc' => '[http://www.php.net/apc APC] встановлено',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] встановлено',

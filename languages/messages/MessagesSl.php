@@ -2321,7 +2321,7 @@ E-poštni naslov, ki ste ga vpisali v [[Special:Preferences|uporabniških nastav
 'watchnologintext' => 'Za urejanje spiska nadzorov morate biti [[Special:UserLogin|prijavljeni]].',
 'addwatch' => 'Dodaj na spisek nadzorov',
 'addedwatchtext' => 'Stran »[[:$1]]« je bila dodana na vaš [[Special:Watchlist|spisek nadzorov]].
-Morebitne spremembe te strani in pripadajoče pogovorne strani bodo navedene tukaj.',
+Tam bodo navedene prihodnje spremembe te strani in pripadajoče pogovorne strani.',
 'removewatch' => 'Odstrani s spiska nadzorov',
 'removedwatchtext' => 'Stran »[[:$1]]« je bila odstranjena z vašega [[Special:Watchlist|spiska nadzorov]].',
 'watch' => 'Opazuj',
@@ -4012,8 +4012,8 @@ Skupaj s programom bi morali bi prejeti [{{SERVER}}{{SCRIPTPATH}}/COPYING kopijo
 'logentry-newusers-create2' => '$1 je {{GENDER:$2|ustvaril|ustvarila|ustvaril(-a)}} uporabniški račun $3',
 'logentry-newusers-byemail' => '$1 je {{GENDER:$2|ustvaril|ustvarila|ustvaril(-a)}} uporabniški račun $3; geslo je bilo poslano po e-pošti',
 'logentry-newusers-autocreate' => 'Račun $1 je bil samodejno {{GENDER:$2|ustvarjen}}',
-'logentry-rights-rights' => '$1 je {{GENDER:$2|spremenil|spremenila|spremenil(-a)}} članstvo skupine $3 z $4 na $5',
-'logentry-rights-rights-legacy' => '$1 je {{GENDER:$2|spremenil|spremenila|spremenil(-a)}} članstvo skupine $3',
+'logentry-rights-rights' => '$1 je {{GENDER:$2|spremenil|spremenila|spremenil(-a)}} uporabniške pravice uporabnika $3 z $4 na $5',
+'logentry-rights-rights-legacy' => '$1 je {{GENDER:$2|spremenil|spremenila|spremenil(-a)}} uporabniške pravice uporabnika $3',
 'logentry-rights-autopromote' => '$1 je {{GENDER:$2|bil samodejno povišan|bila samodejno povišana|bil(-a) samodejno povišan(-a)}} z $4 na $5',
 'rightsnone' => '(nobeno)',
 

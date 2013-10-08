@@ -41,6 +41,7 @@
  * @author Saruman
  * @author Servien
  * @author Siebrand
+ * @author Sjoerddebruin
  * @author Slomox
  * @author Southparkfan
  * @author TBloemink
@@ -398,7 +399,7 @@ $messages = array(
 'tog-shownumberswatching' => 'Het aantal gebruikers weergeven dat deze pagina volgt',
 'tog-oldsig' => 'Bestaande ondertekening:',
 'tog-fancysig' => 'Als wikitekst behandelen (zonder automatische koppeling)',
-'tog-uselivepreview' => '"live voorvertoning" gebruiken (experimenteel)',
+'tog-uselivepreview' => '"Live voorvertoning" gebruiken (experimenteel)',
 'tog-forceeditsummary' => 'Een melding geven bij een lege bewerkingssamenvatting',
 'tog-watchlisthideown' => 'Eigen bewerkingen op mijn volglijst verbergen',
 'tog-watchlisthidebots' => 'Botbewerkingen op mijn volglijst verbergen',
@@ -1806,8 +1807,8 @@ Als u deze opgeeft, kan deze naam gebruikt worden om u erkenning te geven voor u
 'action-block' => 'deze gebruiker een bewerkingsblokkade op te leggen',
 'action-protect' => 'het beveiligingsniveau van deze pagina aan te passen',
 'action-rollback' => 'bewerkingen van de laatste gebruiker die een pagina heeft bewerkt snel terugdraaien',
-'action-import' => "pagina's importeren van een andere wiki",
-'action-importupload' => 'deze pagina importeren uit een bestandsupload',
+'action-import' => "pagina's te importeren van een andere wiki",
+'action-importupload' => "pagina's te importeren uit een bestandsupload",
 'action-patrol' => 'bewerkingen van anderen als gecontroleerd te markeren',
 'action-autopatrol' => 'eigen bewerkingen als gecontroleerd te laten markeren',
 'action-unwatchedpages' => "de lijst met pagina's die niet op een volglijst staan te bekijken",

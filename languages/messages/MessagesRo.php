@@ -761,6 +761,9 @@ Nu uitați să vă modificați [[Special:Preferences|preferințele]] pentru {{SI
 'userlogin-resetpassword-link' => 'Resetare parolă',
 'helplogin-url' => 'Help:Autentificare',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Ajutor la autentificare]]',
+'userlogin-loggedin' => 'Sunteți deja {{GENDER:$1|autentificat|autentificată}} ca {{GENDER:$1|$1}}.
+Utilizați formularul de mai jos pentru a vă autentifica cu alt nume de utilizator.',
+'userlogin-createanother' => 'Creează un alt cont',
 'createacct-join' => 'Introduceți-vă informațiile mai jos.',
 'createacct-another-join' => 'Introduceți, mai jos, informațiile noului cont.',
 'createacct-emailrequired' => 'Adresă de e-mail',
