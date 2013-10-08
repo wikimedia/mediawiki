@@ -260,7 +260,7 @@
 					// by setting 'jsonp' to false.
 					// TODO: This concern seems genuine but no other module has it. Is it still
 					// needed and/or should we pass this by default?
-					jsonp: false
+					//jsonp: false
 				} )
 		 	.done( function ( data ) {
 					// If token type is not available for this user,
