@@ -303,7 +303,8 @@ abstract class Installer {
 	/**
 	 * URL to mediawiki-announce subscription
 	 */
-	protected $mediaWikiAnnounceUrl = 'https://lists.wikimedia.org/mailman/subscribe/mediawiki-announce';
+	protected $mediaWikiAnnounceUrl =
+		'https://lists.wikimedia.org/mailman/subscribe/mediawiki-announce';
 
 	/**
 	 * Supported language codes for Mailman
@@ -1001,7 +1002,11 @@ abstract class Installer {
 		$IP = dirname( dirname( __DIR__ ) );
 		$this->setVar( 'IP', $IP );
 
-		$this->showMessage( 'config-using-uri', $this->getVar( 'wgServer' ), $this->getVar( 'wgScriptPath' ) );
+		$this->showMessage(
+			'config-using-uri',
+			$this->getVar( 'wgServer' ),
+			$this->getVar( 'wgScriptPath' )
+		);
 
 		return true;
 	}
@@ -1195,7 +1200,8 @@ abstract class Installer {
 			}
 		}
 
-		// Uses messages 'config-unicode-using-php', 'config-unicode-using-utf8', 'config-unicode-using-intl'
+		// Uses messages 'config-unicode-using-php', 'config-unicode-using-utf8',
+		// 'config-unicode-using-intl'
 		if ( $useNormalizer === 'php' ) {
 			$this->showMessage( 'config-unicode-pure-php-warning' );
 		} else {
