@@ -722,21 +722,17 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/**
 	 * Generate a cache key for a LESS file.
 	 *
-	 * The cache key varies on the file name, the names and values of global
-	 * LESS variables, and the value of $wgShowExceptionDetails. Varying on
-	 * $wgShowExceptionDetails ensures the CSS comment indicating compilation
-	 * failure shows the right level of detail.
+	 * The cache key varies on the file name and the names and values of global
+	 * LESS variables.
 	 *
 	 * @since 1.22
 	 * @param string $fileName File name of root LESS file.
 	 * @return string: Cache key
 	 */
 	protected static function getLESSCacheKey( $fileName ) {
-		global $wgShowExceptionDetails;
-
 		$vars = json_encode( ResourceLoader::getLESSVars() );
 		$hash = md5( $fileName . $vars );
-		return wfMemcKey( 'resourceloader', 'less', (string)$wgShowExceptionDetails, $hash );
+		return wfMemcKey( 'resourceloader', 'less', $hash );
 	}
 
 	/**
@@ -753,8 +749,6 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @return string: CSS source
 	 */
 	protected function compileLESSFile( $fileName ) {
-		global $wgShowExceptionDetails;
-
 		$key = self::getLESSCacheKey( $fileName );
 		$cache = wfGetCache( CACHE_ANYTHING );
 
@@ -767,34 +761,16 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		}
 
 		$compiler = ResourceLoader::getLessCompiler();
-		$expire = 0;
-		try {
-			$result = $compiler->cachedCompile( $source );
-			if ( !is_array( $result ) ) {
-				throw new Exception( 'LESS compiler result has type ' . gettype( $result ) . '; array expected.' );
-			}
-		} catch ( Exception $e ) {
-			// The exception might have been caused by an imported file rather
-			// than the root node. But we don't know which files were imported,
-			// because compilation failed; we thus cannot rely on file mtime to
-			// know when to reattempt compilation. Expire in 5 mins. instead.
-			$expire = 300;
-			wfDebugLog( 'resourceloader', __METHOD__ . ": $e" );
-			$result = array();
-			$result['root'] = $fileName;
+		$result = null;
 
-			if ( $wgShowExceptionDetails ) {
-				$result['compiled'] = ResourceLoader::makeComment( 'LESS error: ' . $e->getMessage() );
-			} else {
-				$result['compiled'] = ResourceLoader::makeComment( 'LESS stylesheet compilation failed. ' .
-					'Set "$wgShowExceptionDetails = true;" to show detailed debugging information.' );
-			}
+		$result = $compiler->cachedCompile( $source );
 
-			$result['files'] = array( $fileName => self::safeFilemtime( $fileName ) );
-			$result['updated'] = time();
+		if ( !is_array( $result ) ) {
+			throw new MWException( 'LESS compiler result has type ' . gettype( $result ) . '; array expected.' );
 		}
+
 		$this->localFileRefs += array_keys( $result['files'] );
-		$cache->set( $key, $result, $expire );
+		$cache->set( $key, $result );
 		return $result['compiled'];
 	}
 }
