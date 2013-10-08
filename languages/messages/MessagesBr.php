@@ -3873,6 +3873,7 @@ Sañset oc'h bezañ resevet [{{SERVER}}{{SCRIPTPATH}}/COPYING un eilskrid eus ar
 'tags-tag' => 'Anv ar valizenn',
 'tags-display-header' => "Neuz e rolloù ar c'hemmoù",
 'tags-description-header' => 'Deskrivadur klok ar valizenn',
+'tags-active-header' => 'Oberiant ?',
 'tags-hitcount-header' => 'Kemmoù balizennet',
 'tags-active-yes' => 'Ya',
 'tags-active-no' => 'Ket',
