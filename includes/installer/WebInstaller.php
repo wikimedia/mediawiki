@@ -124,7 +124,7 @@ class WebInstaller extends Installer {
 	/**
 	 * Constructor.
 	 *
-	 * @param $request WebRequest
+	 * @param WebRequest $request
 	 */
 	public function __construct( WebRequest $request ) {
 		parent::__construct();
@@ -142,7 +142,7 @@ class WebInstaller extends Installer {
 	 *
 	 * @param array $session initial session array
 	 *
-	 * @return Array: new session array
+	 * @return array New session array
 	 */
 	public function execute( array $session ) {
 		$this->session = $session;
@@ -391,7 +391,7 @@ class WebInstaller extends Installer {
 	/**
 	 * Temporary error handler for session start debugging.
 	 * @param $errno
-	 * @param $errstr string
+	 * @param string $errstr
 	 */
 	public function errorHandler( $errno, $errstr ) {
 		$this->phpErrors[] = $errstr;
@@ -424,7 +424,7 @@ class WebInstaller extends Installer {
 	/**
 	 * Get a URL for submission back to the same script.
 	 *
-	 * @param $query array
+	 * @param array $query
 	 * @return string
 	 */
 	public function getUrl( $query = array() ) {
@@ -442,7 +442,7 @@ class WebInstaller extends Installer {
 	/**
 	 * Get a WebInstallerPage by name.
 	 *
-	 * @param $pageName String
+	 * @param string $pageName
 	 * @return WebInstallerPage
 	 */
 	public function getPageByName( $pageName ) {
@@ -454,7 +454,7 @@ class WebInstaller extends Installer {
 	/**
 	 * Get a session variable.
 	 *
-	 * @param $name String
+	 * @param string $name
 	 * @param $default
 	 * @return null
 	 */
@@ -468,8 +468,8 @@ class WebInstaller extends Installer {
 
 	/**
 	 * Set a session variable.
-	 * @param string $name key for the variable
-	 * @param $value Mixed
+	 * @param string $name Key for the variable
+	 * @param mixed $value
 	 */
 	public function setSession( $name, $value ) {
 		$this->session[$name] = $value;
@@ -523,7 +523,7 @@ class WebInstaller extends Installer {
 	/**
 	 * Called by execute() before page output starts, to show a page list.
 	 *
-	 * @param $currentPageName string
+	 * @param string $currentPageName
 	 */
 	private function startPageWrapper( $currentPageName ) {
 		$s = "<div class=\"config-page-wrapper\">\n";
@@ -563,9 +563,9 @@ class WebInstaller extends Installer {
 	/**
 	 * Get a list item for the page list.
 	 *
-	 * @param $pageName string
-	 * @param $enabled boolean
-	 * @param $currentPageName string
+	 * @param string $pageName
+	 * @param bool $enabled
+	 * @param string $currentPageName
 	 *
 	 * @return string
 	 */
@@ -630,7 +630,7 @@ class WebInstaller extends Installer {
 	/**
 	 * Get HTML for an error box with an icon.
 	 *
-	 * @param string $text wikitext, get this with wfMessage()->plain()
+	 * @param string $text Wikitext, get this with wfMessage()->plain()
 	 *
 	 * @return string
 	 */
@@ -641,7 +641,7 @@ class WebInstaller extends Installer {
 	/**
 	 * Get HTML for a warning box with an icon.
 	 *
-	 * @param string $text wikitext, get this with wfMessage()->plain()
+	 * @param string $text Wikitext, get this with wfMessage()->plain()
 	 *
 	 * @return string
 	 */
@@ -652,9 +652,9 @@ class WebInstaller extends Installer {
 	/**
 	 * Get HTML for an info box with an icon.
 	 *
-	 * @param string $text wikitext, get this with wfMessage()->plain()
-	 * @param string $icon icon name, file in skins/common/images
-	 * @param string $class additional class name to add to the wrapper div
+	 * @param string $text Wikitext, get this with wfMessage()->plain()
+	 * @param string|bool $icon Icon name, file in skins/common/images. Default: false
+	 * @param string|bool $class Additional class name to add to the wrapper div. Default: false.
 	 *
 	 * @return string
 	 */
@@ -691,7 +691,7 @@ class WebInstaller extends Installer {
 
 	/**
 	 * Output a help box.
-	 * @param string $msg key for wfMessage()
+	 * @param string $msg Key for wfMessage()
 	 */
 	public function showHelpBox( $msg /*, ... */ ) {
 		$args = func_get_args();
@@ -703,7 +703,7 @@ class WebInstaller extends Installer {
 	 * Show a short informational message.
 	 * Output looks like a list.
 	 *
-	 * @param $msg string
+	 * @param string $msg
 	 */
 	public function showMessage( $msg /*, ... */ ) {
 		$args = func_get_args();
@@ -715,7 +715,7 @@ class WebInstaller extends Installer {
 	}
 
 	/**
-	 * @param $status Status
+	 * @param Status $status
 	 */
 	public function showStatusMessage( Status $status ) {
 		$errors = array_merge( $status->getErrorsArray(), $status->getWarningsArray() );
@@ -731,7 +731,7 @@ class WebInstaller extends Installer {
 	 * @param $msg
 	 * @param $forId
 	 * @param $contents
-	 * @param $helpData string
+	 * @param string $helpData
 	 * @return string
 	 */
 	public function label( $msg, $forId, $contents, $helpData = "" ) {
@@ -764,7 +764,7 @@ class WebInstaller extends Installer {
 	/**
 	 * Get a labelled text box to configure a variable.
 	 *
-	 * @param $params Array
+	 * @param array $params
 	 *    Parameters are:
 	 *      var:         The variable to be configured (required)
 	 *      label:       The message name for the label (required)
@@ -811,7 +811,7 @@ class WebInstaller extends Installer {
 	/**
 	 * Get a labelled textarea to configure a variable
 	 *
-	 * @param $params Array
+	 * @param array $params
 	 *    Parameters are:
 	 *      var:         The variable to be configured (required)
 	 *      label:       The message name for the label (required)
@@ -860,7 +860,7 @@ class WebInstaller extends Installer {
 	 * Get a labelled password box to configure a variable.
 	 *
 	 * Implements password hiding
-	 * @param $params Array
+	 * @param array $params
 	 *    Parameters are:
 	 *      var:         The variable to be configured (required)
 	 *      label:       The message name for the label (required)
@@ -889,7 +889,7 @@ class WebInstaller extends Installer {
 	/**
 	 * Get a labelled checkbox to configure a boolean variable.
 	 *
-	 * @param $params Array
+	 * @param array $params
 	 *    Parameters are:
 	 *      var:         The variable to be configured (required)
 	 *      label:       The message name for the label (required)
@@ -940,7 +940,7 @@ class WebInstaller extends Installer {
 	/**
 	 * Get a set of labelled radio buttons.
 	 *
-	 * @param $params Array
+	 * @param array $params
 	 *    Parameters are:
 	 *      var:             The variable to be configured (required)
 	 *      label:           The message name for the label (required)
@@ -1006,7 +1006,7 @@ class WebInstaller extends Installer {
 	/**
 	 * Output an error or warning box using a Status object.
 	 *
-	 * @param $status Status
+	 * @param Status $status
 	 */
 	public function showStatusBox( $status ) {
 		if ( !$status->isGood() ) {
@@ -1027,8 +1027,8 @@ class WebInstaller extends Installer {
 	 * Assumes that variables containing "password" in the name are (potentially
 	 * fake) passwords.
 	 *
-	 * @param $varNames Array
-	 * @param string $prefix the prefix added to variables to obtain form names
+	 * @param array $varNames
+	 * @param string $prefix The prefix added to variables to obtain form names
 	 *
 	 * @return array
 	 */
@@ -1092,7 +1092,7 @@ class WebInstaller extends Installer {
 	 * @param $text
 	 * @param $attribs
 	 * @param $parser
-	 * @return String Html for download link
+	 * @return string Html for download link
 	 */
 	public function downloadLinkHook( $text, $attribs, $parser ) {
 		$img = Html::element( 'img', array(

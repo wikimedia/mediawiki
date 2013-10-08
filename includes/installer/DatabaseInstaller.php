@@ -438,6 +438,10 @@ abstract class DatabaseInstaller {
 	/**
 	 * Get a labelled checkbox to configure a local boolean variable.
 	 *
+	 * @param string $var
+	 * @param string $label
+	 * @param array $attribs Optional.
+	 * @param string $helpData Optional.
 	 * @return string
 	 */
 	public function getCheckBox( $var, $label, $attribs = array(), $helpData = "" ) {
@@ -544,8 +548,8 @@ abstract class DatabaseInstaller {
 
 	/**
 	 * Get a standard web-user fieldset
-	 * @param string $noCreateMsg Message to display instead of the creation checkbox.
-	 *   Set this to false to show a creation checkbox.
+	 * @param string|bool $noCreateMsg Message to display instead of the creation checkbox.
+	 *   Set this to false to show a creation checkbox (default).
 	 *
 	 * @return String
 	 */

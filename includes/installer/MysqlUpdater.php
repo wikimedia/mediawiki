@@ -247,9 +247,10 @@ class MysqlUpdater extends DatabaseUpdater {
 	 * 1.4 betas were missing the 'binary' marker from logging.log_title,
 	 * which causes a collation mismatch error on joins in MySQL 4.1.
 	 *
-	 * @param string $table table name
-	 * @param string $field field name to check
-	 * @param string $patchFile path to the patch to correct the field
+	 * @param string $table Table name
+	 * @param string $field Field name to check
+	 * @param string $patchFile Path to the patch to correct the field
+	 * @return bool
 	 */
 	protected function checkBin( $table, $field, $patchFile ) {
 		if ( !$this->doTable( $table ) ) {
@@ -267,10 +268,10 @@ class MysqlUpdater extends DatabaseUpdater {
 	/**
 	 * Check whether an index contain a field
 	 *
-	 * @param string $table table name
-	 * @param string $index index name to check
-	 * @param string $field field that should be in the index
-	 * @return Boolean
+	 * @param string $table Table name
+	 * @param string $index Index name to check
+	 * @param string $field Field that should be in the index
+	 * @return bool
 	 */
 	protected function indexHasField( $table, $index, $field ) {
 		if ( !$this->doTable( $table ) ) {
