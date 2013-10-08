@@ -814,7 +814,7 @@ $messages = array(
 'blocklink' => 'ꙁагради',
 'contribslink' => 'добродѣꙗниꙗ',
 'blocklogpage' => 'ꙁаграждєниꙗ їсторїꙗ',
-'blocklogentry' => 'ꙁаградихъ [[$1]] на врѣмѧ $2 $3',
+'blocklogentry' => 'ꙁаградилъ [[$1]] на врѣмѧ $2 $3',
 'block-log-flags-anononly' => 'тъкъмо анѡнѷмьнꙑ польꙃєватєлє',
 
 # Move page

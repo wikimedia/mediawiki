@@ -34,6 +34,7 @@
  * @author Rex
  * @author Rv77ax
  * @author Urhixidur
+ * @author William Surya Permana
  * @author לערי ריינהארט
  */
 
@@ -348,10 +349,10 @@ $messages = array(
 'tog-extendwatchlist' => 'Kembangkan daftar pantauan untuk menunjukkan semua perubahan, tidak hanya yang terbaru',
 'tog-usenewrc' => 'Kelompokkan suntingan di tampilan perubahan terbaru dan daftar pantauan berdasarkan halaman',
 'tog-numberheadings' => 'Beri nomor judul secara otomatis',
-'tog-showtoolbar' => 'Perlihatkan bilah alat penyuntingan',
-'tog-editondblclick' => 'Sunting halaman dengan klik ganda (JavaScript)',
+'tog-showtoolbar' => 'Tampilkan bilah alat penyuntingan',
+'tog-editondblclick' => 'Sunting halaman dengan klik ganda',
 'tog-editsection' => 'Fungsikan penyuntingan subbagian melalui pranala [sunting]',
-'tog-editsectiononrightclick' => 'Fungsikan penyuntingan subbagian dengan mengeklik kanan pada judul bagian (JavaScript)',
+'tog-editsectiononrightclick' => 'Fungsikan penyuntingan bagian dengan mengeklik kanan pada judul bagian',
 'tog-showtoc' => 'Perlihatkan daftar isi (untuk halaman yang mempunyai lebih dari 3 subbagian)',
 'tog-rememberpassword' => 'Ingat kata sandi saya di peramban ini (selama $1 {{PLURAL:$1|hari}})',
 'tog-watchcreations' => 'Tambahkan halaman yang saya buat ke daftar pantauan',
@@ -369,7 +370,7 @@ $messages = array(
 'tog-shownumberswatching' => 'Tunjukkan jumlah pemantau',
 'tog-oldsig' => 'Tanda tangan sekarang:',
 'tog-fancysig' => 'Perlakukan tanda tangan sebagai teks wiki (tanpa suatu pranala otomatis)',
-'tog-uselivepreview' => 'Gunakan pratayang langsung (JavaScript) (eksperimental)',
+'tog-uselivepreview' => 'Gunakan pratayang langsung (eksperimental)',
 'tog-forceeditsummary' => 'Ingatkan saya bila kotak ringkasan suntingan masih kosong',
 'tog-watchlisthideown' => 'Sembunyikan suntingan saya di daftar pantauan',
 'tog-watchlisthidebots' => 'Sembunyikan suntingan bot di daftar pantauan',
@@ -486,7 +487,7 @@ $messages = array(
 'newwindow' => '(buka di jendela baru)',
 'cancel' => 'Batalkan',
 'moredotdotdot' => 'Lainnya...',
-'morenotlisted' => 'Selanjutnya...',
+'morenotlisted' => 'Daftar ini belum lengkap.',
 'mypage' => 'Halaman',
 'mytalk' => 'Pembicaraan',
 'anontalk' => 'Pembicaraan IP ini',
@@ -1777,7 +1778,7 @@ Jika Anda memberikannya, nama asli Anda akan digunakan untuk memberi pengenalan 
 'rc-change-size' => '$1',
 'rc-change-size-new' => '$1 {{PLURAL:$1|bita|bita}} setelah perubahan',
 'newsectionsummary' => '/* $1 */ bagian baru',
-'rc-enhanced-expand' => 'Tampilkan rincian (memerlukan JavaScript)',
+'rc-enhanced-expand' => 'Tampilkan rincian',
 'rc-enhanced-hide' => 'Sembunyikan rincian',
 'rc-old-title' => 'awalnya dibuat sebagai "$1"',
 
@@ -2678,7 +2679,7 @@ $1',
 'contributions' => 'Kontribusi {{GENDER:$1|pengguna}}',
 'contributions-title' => 'Kontribusi pengguna untuk $1',
 'mycontris' => 'Kontribusi',
-'contribsub2' => 'Untuk $1 ($2)',
+'contribsub2' => 'Untuk {{GENDER:$3|$1}} ($2)',
 'nocontribs' => 'Tidak ada perubahan yang sesuai dengan kriteria tersebut.',
 'uctop' => '(saat ini)',
 'month' => 'Sejak bulan (dan sebelumnya):',

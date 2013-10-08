@@ -76,6 +76,7 @@
  * @author Penarc
  * @author PerroVerd
  * @author Pertile
+ * @author Pginer
  * @author Piolinfax
  * @author Platonides
  * @author PoLuX124
@@ -830,6 +831,7 @@ No olvides personalizar tus [[Special:Preferences|preferencias de {{SITENAME}}]]
 'userlogin-resetpassword-link' => 'Restablecer la contraseña',
 'helplogin-url' => 'Help:Inicio de sesión',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Ayuda]]',
+'userlogin-createanother' => 'Crear otra cuenta',
 'createacct-join' => 'Introduce tus datos debajo.',
 'createacct-another-join' => 'Introduzca la información de la nueva cuenta a continuación.',
 'createacct-emailrequired' => 'Dirección de correo electrónico',

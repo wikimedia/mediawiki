@@ -1353,11 +1353,16 @@ See example: [[Special:UserLogin]]
 
 See also:
 * {{msg-mw|Helplogin-url}}',
-'userlogin-loggedin' => 'Used instead of the form on [[Special:UserLogin]] when the current user is already logged in.
+'userlogin-loggedin' => 'Used as warning on [[Special:UserLogin]] when the current user is already logged in.
+
+Followed by the Login form.
+
+See example: [[Special:UserLogin]].
 
 Parameters:
 * $1 - user name (used for display and for gender support)',
-'userlogin-createanother' => 'Button on [[Special:UserLogin]] shown when the current user is already logged in.',
+'userlogin-createanother' => 'Used as label for the button on [[Special:UserLogin]] shown when the current user is already logged in.
+{{Identical|Create another account}}',
 'createacct-join' => 'Subheading of vertical-layout create account form encouraging user to join the wiki.
 
 See example: [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]',
@@ -1398,7 +1403,8 @@ See example: [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?t
 See example: [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]',
 'createacct-another-submit' => 'Submit button of  [[Special:UserLogin/signup]] ([[Special:CreateAccount]]) when accessed by a registered user.
 
-The original means "create an account in addition to the one you already have"; sometimes, but not always, it means you are going to "Create the account on behalf of somebody else" or "Create account for another".',
+The original means "create an account in addition to the one you already have"; sometimes, but not always, it means you are going to "Create the account on behalf of somebody else" or "Create account for another".
+{{Identical|Create another account}}',
 'createacct-benefit-heading' => 'In vertical-layout create account form, the heading for the section describing the benefits of creating an account. See example: [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]
 
 If in your language you need to know the gender of the name for the wiki (which is the subject of the English sentence), please adapt the sentence as much as you need for your translation to fit.',
@@ -6039,10 +6045,9 @@ See also:
 * {{msg-mw|Tooltip-pt-mycontris}}
 {{Identical|Contribution}}',
 'contribsub2' => 'Contributions for "user" (links). Parameters:
-* $1 - any one of the following:
-** IP address (if anonymous user)
-** username, with a link which points to the user page (if registered user)
-* $2 - list of tool links. The list contains a link which has text {{msg-mw|Sp-contributions-talk}}
+* $1 is an IP address or a username, with a link which points to the user page (if registered user).
+* $2 is list of tool links. The list contains a link which has text {{msg-mw|Sp-contributions-talk}}.
+* $3 is a plain text username used for GENDER.
 {{Identical|For $1}}',
 'nocontribs' => 'Used in [[Special:Contributions]] and [[Special:DeletedContributions]].
 
@@ -7847,6 +7852,9 @@ See also:
 * {{msg-mw|Summary}}
 * {{msg-mw|Accesskey-summary}}
 * {{msg-mw|Tooltip-summary}}',
+'tooltip-iwiki' => 'Format of a sidebar interwiki link tooltip. Parameters:
+* $1 - page name in the target wiki
+* $2 - target wiki language autonym',
 
 # Stylesheets
 'common.css' => '{{optional}}
@@ -10044,7 +10052,11 @@ Parameters:
 'tags-tag' => 'Caption of a column in [[Special:Tags]]. For more information on tags see [[mw:Manual:Tags|MediaWiki]].',
 'tags-display-header' => 'Caption of a column in [[Special:Tags]]. For more information on tags see [[mw:Manual:Tags|MediaWiki]].',
 'tags-description-header' => 'Caption of a column in [[Special:Tags]]. For more information on tags see [[mw:Manual:Tags|MediaWiki]].',
-'tags-active-header' => 'Caption of a column in [[Special:Tags]]. For more information on tags see [[mw:Manual:Tags|MediaWiki]].
+'tags-active-header' => 'Caption of a column in [[Special:Tags]]. Values are "Yes" or "No" to indicate if a tag that was ever used is current still registered.
+
+See example: [[mw:Special:Tags]].
+
+For more information on tags see [[mw:Manual:Tags|MediaWiki]].
 {{Identical|Active}}',
 'tags-hitcount-header' => 'Caption of a column in [[Special:Tags]]. For more information on tags see [[mw:Manual:Tags|MediaWiki]].',
 'tags-active-yes' => 'Table cell contents if given tag is "active".

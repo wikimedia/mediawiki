@@ -644,6 +644,9 @@ Vergiesst net fir Är [[Special:Preferences|{{SITENAME}} Astellungen]] z'ännere
 'userlogin-resetpassword-link' => 'Setzt Äert Passwuert zréck',
 'helplogin-url' => 'Help:Aloggen',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Hëllef beim Aloggen]]',
+'userlogin-loggedin' => 'Dir sidd schonn als {{GENDER:$1|$1}} ageloggt.
+Benotzt de Formulaire hei drënner fir Iech als een anere Benotzer anzeloggen.',
+'userlogin-createanother' => 'Maacht een anere Benotzerkont op',
 'createacct-join' => 'Gitt Är Informatioune hei drënner an.',
 'createacct-another-join' => "Gitt d'Informatioune fir den neie Benotzerkont hei drënner an.",
 'createacct-emailrequired' => 'E-Mail-Adress',
@@ -2369,7 +2372,7 @@ W.e.g. confirméiert, datt Dir dëst wierklech wëllt, datt Dir d'Konsequenze ve
 'delete-toobig' => "Dës Säit huet e laangen Historique, méi wéi $1 {{PLURAL:$1|Versioun|Versiounen}}.
 D'Läsche vun esou Säite gouf limitéiert fir ongewollte Stéierungen op {{SITENAME}} ze verhënneren.",
 'delete-warning-toobig' => "Dës Säit huet eng laang Versiounsgeschicht, méi wéi $1 {{PLURAL:$1|Versioun|Versiounen}}.
-D'Läschen dovu kann zu Stéierungen am Funktionnement vun {{SITENAME}} féieren;
+D'Läschen dovu kann zu Stéierungen am Fonctionnement vun {{SITENAME}} féieren;
 dës Aktioun soll mat Virsiicht gemaach ginn.",
 
 # Rollback
@@ -2525,7 +2528,7 @@ $1',
 'contributions' => '{{GENDER:$1|Benotzer}}kontributiounen',
 'contributions-title' => 'Kontributioune vum $1',
 'mycontris' => 'Kontributiounen',
-'contribsub2' => 'Fir $1 ($2)',
+'contribsub2' => "Fir {{GENDER:$3|den $1|d'$1|de Benotzer $1}} ($2)",
 'nocontribs' => 'Et goufe keng Ännerunge fonnt, déi dëse Kritèren entspriechen.',
 'uctop' => '(aktuell)',
 'month' => 'Vum Mount (a virdrun):',
@@ -2998,6 +3001,7 @@ Späichert en op Ärem Computer of a luet en hei nees erop.',
 Erlaabt et e Grond an de Resumé derbäizesetzen.',
 'tooltip-preferences-save' => 'Astellunge späicheren',
 'tooltip-summary' => 'Gitt e kuerze Resumé an',
+'tooltip-iwiki' => '$1 - $2',
 
 # Stylesheets
 'common.css' => "/* Dës CSS huet nëmmen Afloss op de Skin ''Chick''  */",
@@ -3742,7 +3746,7 @@ Dir kënnt och [[Special:EditWatchlist|de Standard Editeur benotzen]].",
 
 # Core parser functions
 'unknown_extension_tag' => 'Onbekannten Erweiderungs-Tag "$1"',
-'duplicate-defaultsort' => '\'\'\'Opgepasst:\'\'\' Den Zortéierschlëssel "$2" iwwerschreift de viregen Standard-Zortéierschlëssel "$1".',
+'duplicate-defaultsort' => '\'\'\'Opgepasst:\'\'\' Den Zortéierschlëssel "$2" iwwerschreift de virege Standard-Zortéierschlëssel "$1".',
 
 # Special:Version
 'version' => 'Versioun',

@@ -19,6 +19,7 @@
  * @author Gjue
  * @author Ha98574
  * @author Hoo
+ * @author Hym411
  * @author IRTC1015
  * @author ITurtle
  * @author Idh0854
@@ -1418,7 +1419,7 @@ $1",
 'mergelogpagetext' => '다음은 한 문서의 역사를 다른 문서의 역사와 합친 최근 기록입니다.',
 
 # Diffs
-'history-title' => '"$1"의 바뀜 내력',
+'history-title' => '"$1"의 편집 역사',
 'difference-title' => '"$1"의 두 판 사이의 차이',
 'difference-title-multipage' => '"$1" 문서와 "$2" 문서 사이의 차이',
 'difference-multipage' => '(문서 사이의 차이)',
@@ -2764,7 +2765,7 @@ $1',
 'contributions' => '{{GENDER:$1|사용자}} 기여',
 'contributions-title' => '$1 사용자의 기여 목록',
 'mycontris' => '기여 목록',
-'contribsub2' => '$1($2)의 기여',
+'contribsub2' => '{{GENDER:$3|$1}}($2)의 기여',
 'nocontribs' => '지정한 조건과 일치하는 바뀜을 찾을 수 없습니다.',
 'uctop' => '(최신)',
 'month' => '월:',
@@ -3250,6 +3251,7 @@ $2',
 'tooltip-undo' => '"편집 취소" 기능을 사용하면 이 편집이 되돌려지고 차이 보기 기능이 미리 보기 형식으로 나타납니다. 편집 요약에 이 편집을 왜 되돌리는지에 대한 이유를 쓸 수 있습니다.',
 'tooltip-preferences-save' => '환경 설정 저장하기',
 'tooltip-summary' => '짧은 요약을 적어주세요',
+'tooltip-iwiki' => '$2 - $1',
 
 # Stylesheets
 'common.css' => '/* 이 CSS 설정은 모든 스킨에 동일하게 적용됩니다 */',

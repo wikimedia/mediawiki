@@ -1443,6 +1443,9 @@ Ezt általában egy elavult, törölt oldalra mutató laptörténeti hivatkozás
 'recentchangesdays-max' => '(maximum {{PLURAL:$1|egy|$1}} nap)',
 'recentchangescount' => 'Az alapértelmezettként mutatott szerkesztések száma:',
 'prefs-help-recentchangescount' => 'Ez vonatkozik a friss változtatásokra, laptörténetekre és naplókra is.',
+'prefs-help-watchlist-token2' => 'Ez a titkos kulcs a figyelőlistádhoz.
+Aki ismeri, meg tudja nézni, milyen lapokat figyelsz, úgyhogy ne oszdd meg másokkal.
+[[Special:ResetTokens|Kattints ide, ha meg akarod változtatni]].',
 'savedprefs' => 'Az új beállításaid érvénybe léptek.',
 'timezonelegend' => 'Időzóna:',
 'localtime' => 'Helyi idő:',

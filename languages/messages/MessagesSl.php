@@ -988,10 +988,10 @@ Za obhod te težave se bodo ne-ASCII-znaki v urejevalnem polju spodaj pojavili k
 'copyrightwarning' => "Vsi prispevki k {{GRAMMAR:dajalnik|{{SITENAME}}}} se obravnavajo kot objave pod pogoji $2 (za podrobnosti glej $1). Če niste pripravljeni na neusmiljeno urejanje in prosto razširjanje vašega gradiva, ga ne prispevajte.<br />
 Poleg tega zagotavljate, da ste prispevke napisali oziroma ustvarili sami ali pa prepisali iz javno dostopnega ali podobnega prostega vira.
 '''Ne dodajajte avtorsko zaščitenega dela brez dovoljenja!'''",
-'copyrightwarning2' => "Prosimo, upoštevajte, da se vsi prispevki k {{GRAMMAR:dajalnik|{{SITENAME}}}} lahko urejajo, spreminjajo ali odstranijo s strani drugih uporabnikov
-Če niste pripravljeni na neusmiljeno urejanje in prosto razširjanje vašega gradiva, ga ne prispevajte.<br />
-Poleg tega zagotavljate, da ste prispevke napisali oziroma ustvarili sami ali pa prepisali iz javno dostopnega ali podobnega prostega vira (za podrobnosti glej $1).
-'''Ne dodajajte avtorsko zaščitenega dela brez dovoljenja!'''",
+'copyrightwarning2' => "Vedite, da lahko drugi urejevalci urejajo, spremenijo ali odstranijo kateri koli prispevek k {{GRAMMAR:dajalnik|{{SITENAME}}}}.
+Če niste pripravljeni na neusmiljeno urejanje svojega gradiva, ga ne objavljajte tukaj.<br />
+Poleg tega jamčite, da ste prispevke napisali oziroma ustvarili sami ali pa prepisali iz vira v javni lasti ali podobnega prostega vira (za podrobnosti glej $1).
+'''Ne objavljajte avtorsko zaščitenega gradiva brez dovoljenja!'''",
 'longpageerror' => "'''Napaka: Predloženo besedilo je dolgo $1 {{PLURAL:$1|kilobajt|kilobajta|kilobajte|kilobajtov}}, s čimer presega največjo dovoljeno dolžino $2 {{PLURAL:$2|kilobajta|kilobajtov|kilobajtov|kilobajtov}}.'''
 Zato ga ni mogoče shraniti.",
 'readonlywarning' => "'''Opozorilo: Zbirka podatkov je zaradi vzdrževanja začasno zaklenjena, kar pomeni, da sprememb trenutno ne morete shraniti. Prosimo, prenesite besedilo v urejevalnik in ga dodajte pozneje.'''
@@ -3189,7 +3189,7 @@ Z njenim zagonom lahko ogrozite vaš sistem.",
 'svg-long-error' => 'Neveljavna datoteka SVG: $1',
 'show-big-image' => 'Slika v višji ločljivosti',
 'show-big-image-preview' => 'Velikost predogleda: $1.',
-'show-big-image-other' => '{{PLURAL:$2|Druga resolucija|Drugi resoluciji|Druge resolucije}}: $1.',
+'show-big-image-other' => '{{PLURAL:$2|Druga ločljivost|Drugi ločljivosti|Druge ločljivosti}}: $1.',
 'show-big-image-size' => '$1 × $2 točk',
 'file-info-gif-looped' => 'ponavljajoče',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|sličica|sličici|sličice|sličic}}',

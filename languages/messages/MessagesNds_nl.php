@@ -314,12 +314,12 @@ $messages = array(
 'tog-hidepatrolled' => 'Wiezigingen die emarkeerd bin verbargen in "Leste wiezigingen"',
 'tog-newpageshidepatrolled' => 'Ziejen die emarkeerd bin, verbargen in de lieste mit nieje artikels',
 'tog-extendwatchlist' => 'Volglieste uutbreien, zodat alle wiezigingen zichtbaor bin, en niet allinnig de leste wieziging',
-'tog-usenewrc' => 'Groepeer wiezigingen per zied in "Leste wiezigingen" en "Mien volglieste" (hierveur he\'j JavaScript neudig)',
+'tog-usenewrc' => 'Groepeer wiezigingen per zied in "Leste wiezigingen" en "Mien volglieste"',
 'tog-numberheadings' => 'Koppen vanzelf nummeren',
 'tog-showtoolbar' => 'Laot de warkbalke zien',
-'tog-editondblclick' => 'Mit dubbelklik bewarken (JavaScript)',
+'tog-editondblclick' => 'Mit dubbelklik bewarken',
 'tog-editsection' => 'Mit bewarkgedeelten',
-'tog-editsectiononrightclick' => 'Bewarkgedeelte mit rechtermuusknoppe bewarken (JavaScript)',
+'tog-editsectiononrightclick' => 'Bewarken van deelziejen meugelik maken mit n rechtermuusklik op n tussenkop',
 'tog-showtoc' => 'Samenvatting laoten zien van de zaken die an bod koemen (mit meer as dree onderwarpen)',
 'tog-rememberpassword' => 'Vanzelf anmelden (hooguut $1 {{PLURAL:$1|dag|dagen}})',
 'tog-watchcreations' => "Spul wa'k anmake op mien volglieste zetten",
@@ -337,7 +337,7 @@ $messages = array(
 'tog-shownumberswatching' => 't Antal gebrukers bekieken die disse zied volgt',
 'tog-oldsig' => 'Bestaonde haandtekening:',
 'tog-fancysig' => 'Ondertekening zien as wikitekste (zonder automatiese verwiezing)',
-'tog-uselivepreview' => 'Gebruuk "rechtstreeks naokieken" (mu\'j JavaScript veur hebben - experimenteel)',
+'tog-uselivepreview' => 'Gebruuk "rechtstreeks naokieken" (experimenteel)',
 'tog-forceeditsummary' => 'Geef n melding bie n lege samenvatting',
 'tog-watchlisthideown' => 'Verbarg mien eigen bewarkingen',
 'tog-watchlisthidebots' => 'Verbarg botgebrukers',
@@ -351,6 +351,7 @@ $messages = array(
 'tog-noconvertlink' => 'Ziednaamkonversie uutschakelen',
 'tog-norollbackdiff' => 'Wiezigingen vortlaoten nao t weerummedreien',
 'tog-useeditwarning' => "Waorschuw mien a'k n bewörken zied aof wil sluten die nog niet op-esleugen is",
+'tog-prefershttps' => "Altied n beveiligde verbiending gebruken a'j an-emeld bin",
 
 'underline-always' => 'Altied',
 'underline-never' => 'Nooit',
@@ -451,7 +452,7 @@ $messages = array(
 'newwindow' => '(niej vienster)',
 'cancel' => 'Aofbreken',
 'moredotdotdot' => 'Meer...',
-'morenotlisted' => 'Meer niet in de lieste...',
+'morenotlisted' => 'Disse lieste is niet kompleet...',
 'mypage' => 'Gebrukerszied',
 'mytalk' => 'Mien overleg',
 'anontalk' => 'Overlegzied veur dit IP-adres',
@@ -542,19 +543,19 @@ $messages = array(
 'jumpto' => 'Gao naor:',
 'jumptonavigation' => 'navigasie',
 'jumptosearch' => 'zeuk',
-'view-pool-error' => "De servers bin noen overbelast.
-Te veule meensen proberen disse zied te bekieken.
-Wacht even veurda'j opniej toegang proberen te kriegen tot disse zied.
+'view-pool-error' => "De servers bin op heden overbelast.
+Te veule gebrukers proberen disse zied te bekieken.
+Wacht effen veurda'j opniej toegang proberen te kriegen tot disse zied.
 
 $1",
-'pool-timeout' => 'Wachttied tiejens t wachten op vergrendeling',
+'pool-timeout' => 'De maximumwachttied veur databankvergrendeling is verleupen.',
 'pool-queuefull' => 'De wachtrie van de poel is vol',
 'pool-errorunknown' => 'Onbekende fout',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Over {{SITENAME}}',
 'aboutpage' => 'Project:Info',
-'copyright' => 'De inhoud is beschikbaor onder de $1.',
+'copyright' => 'De inhoud is beschikbaor onder de $1 as der niks aanders an-egeven is.',
 'copyrightpage' => '{{ns:project}}:Auteursrechten',
 'currentevents' => 'In t niejs',
 'currentevents-url' => 'Project:In t niejs',
@@ -637,6 +638,12 @@ n Lieste mit bestaonde spesiale ziejen ku'j vienen op [[Special:SpecialPages|{{i
 # General errors
 'error' => 'Foutmelding',
 'databaseerror' => 'Fout in de databanke',
+'databaseerror-text' => 'Der is wat mis egaon bie n databankzeukopdrachte.
+Dit kan betekenen dat der n fout in de programmtuur zit.',
+'databaseerror-textcl' => 'Der is wat mis egaon bie n databankzeukopdrachte.',
+'databaseerror-query' => 'Zeukopdrachte: $1',
+'databaseerror-function' => 'Funksie: $1',
+'databaseerror-error' => 'Fout: $1',
 'laggedslavemode' => '<strong>Waorschuwing:</strong> t is meugelik dat leste wiezigingen in de tekste van dit artikel nog niet verwarkt bin.',
 'readonly' => 'De databanke is beveiligd',
 'enterlockreason' => 'Waorumme en veur hoe lange is t eblokkeerd?',
@@ -843,6 +850,8 @@ Je mutten effen $1 wachten veurda'j t opniej proberen.",
 'login-abort-generic' => 'Je bin niet an-emeld. De procedure is aofebreuken.',
 'loginlanguagelabel' => 'Taal: $1',
 'suspicious-userlogout' => 'Joew verzeuk um of te melden is aofewezen umdat t dernaor uutziet dat t verstuurd is deur n kepotte webkieker of tussenopslagbuffer',
+'createacct-another-realname-tip' => "Joew echte naam opgeven is niet verplicht.
+A'j t invullen, dan zu'w t gebruken um erkenning te geven veur joew warkzaamhejen.",
 
 # Email sending
 'php-mail-error-unknown' => 'Der was n onbekende fout mit de mail()-funksie van PHP',
@@ -922,7 +931,7 @@ Do dit a'j ze per ongelok mit ene edeeld hebben of as onbevoegden toegang ekrege
 'resettokens-legend' => 'Tokens ongedaonmaken',
 'resettokens-tokens' => 'Tokens:',
 'resettokens-token-label' => '$1 (aktuele weerde: $2)',
-'resettokens-watchlist-token' => 'Token veur webvoer van volglieste',
+'resettokens-watchlist-token' => 'Token veur webvoer (Atom/RSS) van [[Special:Watchlist|wiezigingen van ziejen die joew volglieste staon]]',
 'resettokens-done' => 'Tokens ongedaonmaken.',
 'resettokens-resetbutton' => 'Ekeuzen tokens ongedaonmaken',
 
@@ -1437,7 +1446,7 @@ Waorschienlik ku'j der meer gegevens over vienen in t [{{fullurl:{{#Special:Log}
 'prefs-rendering' => 'Ziedweergave',
 'saveprefs' => 'Veurkeuren opslaon',
 'resetprefs' => 'Standardveurkeuren herstellen',
-'restoreprefs' => 'Alle standardinstellingen weerummezetten',
+'restoreprefs' => 'Alle standardinstellingen weerummezetten (veur alle seksies)',
 'prefs-editing' => 'Bewarkingsveld',
 'rows' => 'Regels',
 'columns' => 'Kolommen',
@@ -1526,6 +1535,7 @@ Disse informasie is zichtbaor veur aandere gebrukers.',
 'prefs-displaywatchlist' => 'Weergave-instellingen',
 'prefs-tokenwatchlist' => 'Token',
 'prefs-diffs' => 'Verschillen',
+'prefs-help-prefershttps' => "Disse veurkeur wörden toe-epast a'j je eigen de volgende keer anmelden.",
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'Geldig netpostadres',
@@ -1683,8 +1693,8 @@ Disse informasie is zichtbaor veur aandere gebrukers.',
 'action-block' => 'disse gebruker blokkeren',
 'action-protect' => 't beveiligingsnivo van disse zied anpassen',
 'action-rollback' => 'bewarkingen van de leste gebruker die n zied hef ewiezigd rap weerummedreien',
-'action-import' => 'disse zied van n aandere wiki invoeren',
-'action-importupload' => 'disse zied invoeren vanaof n op-estuurd bestaand',
+'action-import' => 'ziejen van n aandere wiki invoeren',
+'action-importupload' => 'ziejen invoeren vanaof n op-estuurd bestaand',
 'action-patrol' => 'bewarkingen van aandere luui op nao-ekeken zetten',
 'action-autopatrol' => 'eigen bewarkingen op nao-ekeken zetten',
 'action-unwatchedpages' => 'bekiek de lieste mit ziejen die niet evolgd wörden',
@@ -1700,6 +1710,8 @@ Disse informasie is zichtbaor veur aandere gebrukers.',
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|wieziging|wiezigingen}}',
+'enhancedrc-since-last-visit' => '$1 {{PLURAL:$1|sinds joew leste bezeuk}}',
+'enhancedrc-history' => 'geschiedenisse',
 'recentchanges' => 'Leste wiezigingen',
 'recentchanges-legend' => 'Opsies veur leste wiezigingen',
 'recentchanges-summary' => "Op disse zied ku'j de leste wiezigingen van disse wiki bekieken.",
@@ -1732,7 +1744,7 @@ Disse informasie is zichtbaor veur aandere gebrukers.',
 'rc_categories_any' => 'alles',
 'rc-change-size-new' => '$1 {{PLURAL:$1|byte|bytes}} nao de wieziging',
 'newsectionsummary' => 'Niej onderwarp: /* $1 */',
-'rc-enhanced-expand' => "Details bekieken (hier he'j JavaScript veur neudig)",
+'rc-enhanced-expand' => 'Details bekieken',
 'rc-enhanced-hide' => 'Details verbargen',
 'rc-old-title' => 'oorspronkelik an-emaakt as "$1"',
 
@@ -1965,14 +1977,14 @@ Um beveiligingsredens is img_auth.php uutezet.',
 'http-invalid-scheme' => 'Webadressen mit de opmaak "$1" wörden niet ondersteund.',
 'http-request-error' => 'Fout bie t verzenden van t verzeuk.',
 'http-read-error' => 'Fout bie t lezen van HTTP',
-'http-timed-out' => 'Wachttied bie t HTTP verzeuk',
+'http-timed-out' => 'Tiedsoverschriejing bie t HTTP-verzeuk',
 'http-curl-error' => 'Fout bie t ophaolen van t webadres: $1',
 'http-bad-status' => 'Der is n probleem mit t HTTP-verzeuk: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'Kon webadres niet bereiken',
 'upload-curl-error6-text' => "t Webadres kon niet bereikt wörden. Kiek effen nao o'j t goeie adres in-evoerd hebben en of de webstee bereikbaor is.",
-'upload-curl-error28' => 'Wachttied veur t versturen van t bestaand',
+'upload-curl-error28' => 'Tiedsoverschriejing veur t versturen van t bestaand',
 'upload-curl-error28-text' => 't Duren te lange veurdat de webstee reageren. Kiek effen nao of de webstee bereikbaor is, wacht effen en probeer t daornao weer. Probeer t aanders as t wat rustiger is.',
 
 'license' => 'Lisensie',
@@ -1983,8 +1995,7 @@ Um beveiligingsredens is img_auth.php uutezet.',
 'upload_source_file' => ' (n bestaand op de hardeschieve)',
 
 # Special:ListFiles
-'listfiles-summary' => "Op disse spesiale zied ku'j alle bestaanden bekieken die lestens op-estuurd bin.
-As disse zied efilterd wörden op gebruker, zie'j allinnig bestaanden waor de gebruker de leste versie van hef op-estuurd.",
+'listfiles-summary' => "Op disse spesiale zied ku'j alle bestaanden bekieken die lestens op-estuurd bin.",
 'listfiles_search_for' => 'Zeuk naor bestaand:',
 'imgfile' => 'bestaand',
 'listfiles' => 'Bestaandslieste',
@@ -1995,6 +2006,10 @@ As disse zied efilterd wörden op gebruker, zie'j allinnig bestaanden waor de ge
 'listfiles_size' => 'Grootte (bytes)',
 'listfiles_description' => 'Beschrieving',
 'listfiles_count' => 'Versies',
+'listfiles-show-all' => 'Ouwe versies van aofbeeldingen opnemen',
+'listfiles-latestversion' => 'Aktuele versie',
+'listfiles-latestversion-yes' => 'Ja',
+'listfiles-latestversion-no' => 'Nee',
 
 # File description page
 'file-anchor-link' => 'Bestaand',
@@ -2125,8 +2140,8 @@ Vergeet niet de verwiezingen nao te kieken veurda\'j de mal vortdoon.',
 'pageswithprop-text' => 'Op disse zied staon ziejen mit n bepaolde ziedeigenschap.',
 'pageswithprop-prop' => 'Naam van de eigenschap:',
 'pageswithprop-submit' => 'Zeuk',
-'pageswithprop-prophidden-long' => 'lange tekste-eigenschapsweerde verbörgen ({{PLURAL:$1|$1 kilobyte}})',
-'pageswithprop-prophidden-binary' => 'binaere eigenschapsweerde verbörgen ({{PLURAL:$1|$1 kilobyte}})',
+'pageswithprop-prophidden-long' => 'lange teksteigenschapsweerde verbörgen ($1)',
+'pageswithprop-prophidden-binary' => 'binaere eigenschapsweerde verbörgen ($1)',
 
 'doubleredirects' => 'Dubbele deurverwiezingen',
 'doubleredirectstext' => 'Op disse lieste staon alle ziejen die deurverwiezen naor aandere deurverwiezingen.
@@ -2200,6 +2215,7 @@ Meestentieds is leste zied de gewunste doelzied, waor oek de eerste zied heer zo
 'listusers' => 'Gebrukerslieste',
 'listusers-editsonly' => 'Allinnig gebrukers mit bewarkingen laoten zien',
 'listusers-creationsort' => 'Sorteren op inschriefdaotum',
+'listusers-desc' => 'Sorteren in aoflopende volgorde',
 'usereditcount' => '$1 {{PLURAL:$1|bewarking|bewarkingen}}',
 'usercreated' => '{{GENDER:$3|Eregistreerd}} op $1 um $2',
 'newpages' => 'Nieje artikels',
@@ -2489,7 +2505,7 @@ n Aander hef disse zied al bewarkt of hersteld naor n eerdere versie.
 De leste bewarking op disse zied is edaon deur [[User:$3|$3]] ([[User talk:$3|Overleg]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment' => "De bewarkingssamenvatting was: ''$1''.",
 'revertpage' => 'Wiezigingen deur [[Special:Contributions/$2|$2]] hersteld tot de versie nao de leste wieziging deur $1',
-'revertpage-nouser' => 'Wiezigingen deur n verbörgen gebruker weerummedreid naor de leste versie deur [[User:$1|$1]]',
+'revertpage-nouser' => 'Wiezigingen deur n verbörgen gebruker weerummedreid naor de leste versie deur {{GENDER:$1|[[User:$1|$1]]}}',
 'rollback-success' => 'Wiezigingen van $1; weerummedreid naor de leste versie van $2.',
 
 # Edit tokens
@@ -2626,7 +2642,7 @@ $1',
 'contributions' => '{{GENDER:$1|Biedragen van disse gebruker}}',
 'contributions-title' => 'Biedragen van $1',
 'mycontris' => 'Mien biedragen',
-'contribsub2' => 'Veur $1 ($2)',
+'contribsub2' => 'Veur {{GENDER:$3|$1}} ($2)',
 'nocontribs' => 'Gien wiezigingen evunnen die an de estelde criteria voldoon.',
 'uctop' => '(leste wieziging)',
 'month' => 'Maond:',
@@ -3101,6 +3117,7 @@ De tiedelike map is niet anwezig.',
 Iej könt in de bewearkingssamenvatting n reden opgeven.',
 'tooltip-preferences-save' => 'Vuurkeuren opsloan',
 'tooltip-summary' => 'Voer ne korte samenvatting in',
+'tooltip-iwiki' => '$1 – $2',
 
 # Metadata
 'notacceptable' => 'De wikiserver kan de gegevens niet leveren in n vorm die joew kliënt kan lezen.',
@@ -3953,7 +3970,10 @@ Samen mit dit programma heur je n [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van de
 'tags-tag' => 'Etiketnaam',
 'tags-display-header' => 'Weergave in wiezigingsliesten',
 'tags-description-header' => 'Beschrieving van de betekenisse',
+'tags-active-header' => 'Aktief?',
 'tags-hitcount-header' => 'Bewarkingen mit etiket',
+'tags-active-yes' => 'Ja',
+'tags-active-no' => 'Nee',
 'tags-edit' => 'bewarking',
 'tags-hitcount' => '$1 {{PLURAL:$1|wieziging|wiezigingen}}',
 
@@ -3974,6 +3994,7 @@ Samen mit dit programma heur je n [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van de
 'dberr-problems' => 't Spiet ons, mer disse webstee hef op t moment wat techniese problemen.',
 'dberr-again' => 'Wach n paor minuten en probeer t daornao opniej.',
 'dberr-info' => '(Kan gien verbiending maken mit de databankeserver: $1)',
+'dberr-info-hidden' => '(Kan gien verbiending maken mit de databankserver)',
 'dberr-usegoogle' => "Misschien ku'j ondertussen zeuken via Google.",
 'dberr-outofdate' => 'Let op: indexen die zee hebben van onze ziejen bin misschien niet aktueel.',
 'dberr-cachederror' => 'Disse zied is n kopie uut t tussengeheugen en is misschien niet aktueel.',
@@ -4111,9 +4132,17 @@ Aanders ku\'j oek t eenvoudige formulier hieronder gebruken. Joew kommentaar zal
 
 # Limit report
 'limitreport-title' => 'Parser-profieldata:',
+'limitreport-cputime' => 'Tiedsgebruuk van de prosessor',
 'limitreport-cputime-value' => '$1 {{PLURAL:$1|sekonde|sekonden}}',
+'limitreport-walltime' => 'Reëel tiedsgebruuk',
 'limitreport-walltime-value' => '$1 {{PLURAL:$1|sekonde|sekonden}}',
-'limitreport-postexpandincludesize-value' => '$1/$2 byte',
-'limitreport-templateargumentsize-value' => '$1/$2 byte',
+'limitreport-ppvisitednodes' => 'Antal verbiendingsknopen bezöcht tiejens de veurverwarking:',
+'limitreport-ppgeneratednodes' => 'Antal verbiedingsknopen an-emaakt tiejens de veurverwarking:',
+'limitreport-postexpandincludesize' => 'Inklusiegrootte nao uutbreien',
+'limitreport-postexpandincludesize-value' => '$1/$2 {{PLURAL:$2|byte|bytes}}',
+'limitreport-templateargumentsize' => 'Grootte van malparameters',
+'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|byte|bytes}}',
+'limitreport-expansiondepth' => 'Hoogste uutbreidingsdiepte',
+'limitreport-expensivefunctioncount' => 'Antal kostbaore parserfunksies',
 
 );

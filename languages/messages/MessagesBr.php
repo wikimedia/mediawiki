@@ -1399,6 +1399,7 @@ Ma skrivit anezhañ e vo implijet evit lakaat war wel ar pezh a vo bet degaset g
 'prefs-displaywatchlist' => 'Dibarzhioù diskwel',
 'prefs-tokenwatchlist' => 'Jedouer',
 'prefs-diffs' => "Diforc'hioù",
+'prefs-help-prefershttps' => "Efediñ a ray an dibarzh-mañ kentañ gwech ma kevreoc'h.",
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => "Reizh eo ar chomlec'h postel war a seblant",
@@ -2516,7 +2517,7 @@ $1',
 'contributions' => 'Degasadennoù an {{GENDER:$1|implijer|implijerez}}',
 'contributions-title' => 'Degasadennoù an implijer evit $1',
 'mycontris' => 'Ma degasadennoù',
-'contribsub2' => 'Evit $1 ($2)',
+'contribsub2' => 'Evit {{GENDER:$3|$1}} ($2)',
 'nocontribs' => "N'eus bet kavet kemm ebet o klotañ gant an dezverkoù-se.",
 'uctop' => '(red)',
 'month' => 'Abaoe miz (hag a-raok) :',
@@ -3873,6 +3874,8 @@ Sañset oc'h bezañ resevet [{{SERVER}}{{SCRIPTPATH}}/COPYING un eilskrid eus ar
 'tags-display-header' => "Neuz e rolloù ar c'hemmoù",
 'tags-description-header' => 'Deskrivadur klok ar valizenn',
 'tags-hitcount-header' => 'Kemmoù balizennet',
+'tags-active-yes' => 'Ya',
+'tags-active-no' => 'Ket',
 'tags-edit' => 'aozañ',
 'tags-hitcount' => '$1 {{PLURAL:$1|kemm|kemm}}',
 
