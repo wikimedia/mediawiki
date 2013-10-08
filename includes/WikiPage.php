@@ -23,7 +23,8 @@
 /**
  * Abstract class for type hinting (accepts WikiPage, Article, ImagePage, CategoryPage)
  */
-interface Page {}
+interface Page {
+}
 
 /**
  * Class representing a MediaWiki article and history.
@@ -1979,16 +1980,18 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Prepare content which is about to be saved.
 	 * Returns a stdclass with source, pst and output members
 	 *
-	 * @param \Content $content
-	 * @param null $revid
-	 * @param null|\User $user
-	 * @param null $serialization_format
+	 * @param Content $content
+	 * @param int|null $revid
+	 * @param User|null $user
+	 * @param string|null $serialization_format
 	 *
 	 * @return bool|object
 	 *
 	 * @since 1.21
 	 */
-	public function prepareContentForEdit( Content $content, $revid = null, User $user = null, $serialization_format = null ) {
+	public function prepareContentForEdit( Content $content, $revid = null, User $user = null,
+		$serialization_format = null
+	) {
 		global $wgContLang, $wgUser;
 		$user = is_null( $user ) ? $wgUser : $user;
 		//XXX: check $user->getId() here???
@@ -2182,13 +2185,15 @@ class WikiPage implements Page, IDBAccessObject {
 	 * The article must already exist; link tables etc
 	 * are not updated, caches are not flushed.
 	 *
-	 * @param $content Content: content submitted
-	 * @param $user User The relevant user
+	 * @param Content $content Content submitted
+	 * @param User $user The relevant user
 	 * @param string $comment comment submitted
-	 * @param $serialisation_format String: format for storing the content in the database
-	 * @param $minor Boolean: whereas it's a minor modification
+	 * @param string $serialisation_format Format for storing the content in the database
+	 * @param bool $minor Whereas it's a minor modification
 	 */
-	public function doQuickEditContent( Content $content, User $user, $comment = '', $minor = 0, $serialisation_format = null ) {
+	public function doQuickEditContent( Content $content, User $user, $comment = '', $minor = false,
+		$serialisation_format = null
+	) {
 		wfProfileIn( __METHOD__ );
 
 		$serialized = $content->serialize( $serialisation_format );
