@@ -218,12 +218,12 @@ class WebInstallerOutput {
 
 	public function outputHeader() {
 		$this->headerDone = true;
-		$dbTypes = $this->parent->getDBTypes();
-
 		$this->parent->request->response()->header( 'Content-Type: text/html; charset=utf-8' );
+
 		if ( !$this->allowFrames ) {
 			$this->parent->request->response()->header( 'X-Frame-Options: DENY' );
 		}
+
 		if ( $this->redirectTarget ) {
 			$this->parent->request->response()->header( 'Location: ' . $this->redirectTarget );
 
