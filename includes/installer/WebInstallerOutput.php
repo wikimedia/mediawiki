@@ -185,6 +185,7 @@ class WebInstallerOutput {
 	 */
 	public function getDir() {
 		global $wgLang;
+
 		return is_object( $wgLang ) ? $wgLang->getDir() : 'ltr';
 	}
 
@@ -193,6 +194,7 @@ class WebInstallerOutput {
 	 */
 	public function getLanguageCode() {
 		global $wgLang;
+
 		return is_object( $wgLang ) ? $wgLang->getCode() : 'en';
 	}
 
@@ -224,14 +226,15 @@ class WebInstallerOutput {
 		}
 		if ( $this->redirectTarget ) {
 			$this->parent->request->response()->header( 'Location: ' . $this->redirectTarget );
+
 			return;
 		}
 
 		if ( $this->useShortHeader ) {
 			$this->outputShortHeader();
+
 			return;
 		}
-
 ?>
 <?php echo Html::htmlHeader( $this->getHeadAttribs() ); ?>
 <head>

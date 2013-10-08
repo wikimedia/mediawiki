@@ -276,11 +276,13 @@ class MysqlUpdater extends DatabaseUpdater {
 			foreach ( $info as $row ) {
 				if ( $row->Column_name == $field ) {
 					$this->output( "...index $index on table $table includes field $field.\n" );
+
 					return true;
 				}
 			}
 		}
 		$this->output( "...index $index on table $table has no field $field; added.\n" );
+
 		return false;
 	}
 
@@ -296,6 +298,7 @@ class MysqlUpdater extends DatabaseUpdater {
 
 		if ( $this->db->tableExists( "interwiki", __METHOD__ ) ) {
 			$this->output( "...already have interwiki table\n" );
+
 			return;
 		}
 
@@ -313,6 +316,7 @@ class MysqlUpdater extends DatabaseUpdater {
 		}
 		if ( $meta->isMultipleKey() ) {
 			$this->output( "...indexes seem up to 20031107 standards.\n" );
+
 			return;
 		}
 
@@ -328,6 +332,7 @@ class MysqlUpdater extends DatabaseUpdater {
 		$info = $this->db->fieldInfo( 'imagelinks', 'il_from' );
 		if ( !$info || $info->type() !== 'string' ) {
 			$this->output( "...il_from OK\n" );
+
 			return;
 		}
 
@@ -344,6 +349,7 @@ class MysqlUpdater extends DatabaseUpdater {
 		$nontalk = $this->db->selectField( 'watchlist', 'count(*)', 'NOT (wl_namespace & 1)', __METHOD__ );
 		if ( $talk == $nontalk ) {
 			$this->output( "...watchlist talk page rows already present.\n" );
+
 			return;
 		}
 
@@ -361,6 +367,7 @@ class MysqlUpdater extends DatabaseUpdater {
 	function doSchemaRestructuring() {
 		if ( $this->db->tableExists( 'page', __METHOD__ ) ) {
 			$this->output( "...page table already exists.\n" );
+
 			return;
 		}
 
@@ -379,7 +386,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			$this->output( sprintf( "<b>      %-60s %3s %5s</b>\n", 'Title', 'NS', 'Count' ) );
 			$duplicate = array();
 			foreach ( $rows as $row ) {
-				if ( ! isset( $duplicate[$row->cur_namespace] ) ) {
+				if ( !isset( $duplicate[$row->cur_namespace] ) ) {
 					$duplicate[$row->cur_namespace] = array();
 				}
 				$duplicate[$row->cur_namespace][] = $row->cur_title;
@@ -552,6 +559,7 @@ class MysqlUpdater extends DatabaseUpdater {
 	protected function doPagelinksUpdate() {
 		if ( $this->db->tableExists( 'pagelinks', __METHOD__ ) ) {
 			$this->output( "...already have pagelinks table.\n" );
+
 			return;
 		}
 
@@ -589,6 +597,7 @@ class MysqlUpdater extends DatabaseUpdater {
 		$duper = new UserDupes( $this->db, array( $this, 'output' ) );
 		if ( $duper->hasUniqueIndex() ) {
 			$this->output( "...already have unique user_name index.\n" );
+
 			return;
 		}
 
@@ -621,6 +630,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			} else {
 				$this->output( "...user_groups table exists and is in current format.\n" );
 			}
+
 			return;
 		}
 
@@ -633,6 +643,7 @@ class MysqlUpdater extends DatabaseUpdater {
 				$this->output( "*** WARNING: couldn't locate user_rights table or field for upgrade.\n" );
 				$this->output( "*** You may need to manually configure some sysops by manipulating\n" );
 				$this->output( "*** the user_groups table.\n" );
+
 				return;
 			}
 		}
@@ -670,6 +681,7 @@ class MysqlUpdater extends DatabaseUpdater {
 		}
 		if ( $info->isNullable() ) {
 			$this->output( "...wl_notificationtimestamp is already nullable.\n" );
+
 			return;
 		}
 
@@ -696,6 +708,7 @@ class MysqlUpdater extends DatabaseUpdater {
 	protected function doTemplatelinksUpdate() {
 		if ( $this->db->tableExists( 'templatelinks', __METHOD__ ) ) {
 			$this->output( "...templatelinks table already exists\n" );
+
 			return;
 		}
 
@@ -719,7 +732,6 @@ class MysqlUpdater extends DatabaseUpdater {
 						'tl_title' => $row->pl_title,
 					), __METHOD__
 				);
-
 			}
 		} else {
 			// Fast update
@@ -739,8 +751,8 @@ class MysqlUpdater extends DatabaseUpdater {
 	protected function doBacklinkingIndicesUpdate() {
 		if ( !$this->indexHasField( 'pagelinks', 'pl_namespace', 'pl_from' ) ||
 			!$this->indexHasField( 'templatelinks', 'tl_namespace', 'tl_from' ) ||
-			!$this->indexHasField( 'imagelinks', 'il_to', 'il_from' ) )
-		{
+			!$this->indexHasField( 'imagelinks', 'il_to', 'il_from' )
+		) {
 			$this->applyPatch( 'patch-backlinkindexes.sql', false, "Updating backlinking indices" );
 		}
 	}
@@ -753,6 +765,7 @@ class MysqlUpdater extends DatabaseUpdater {
 	protected function doRestrictionsUpdate() {
 		if ( $this->db->tableExists( 'page_restrictions', __METHOD__ ) ) {
 			$this->output( "...page_restrictions table already exists.\n" );
+
 			return;
 		}
 
@@ -774,6 +787,7 @@ class MysqlUpdater extends DatabaseUpdater {
 	protected function doCategoryPopulation() {
 		if ( $this->updateRowExists( 'populate category' ) ) {
 			$this->output( "...category table already populated.\n" );
+
 			return;
 		}
 
@@ -807,7 +821,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			return true;
 		}
 
-		if ( $wgProfileToDatabase === true && ! $this->db->tableExists( 'profiling', __METHOD__ ) ) {
+		if ( $wgProfileToDatabase === true && !$this->db->tableExists( 'profiling', __METHOD__ ) ) {
 			$this->applyPatch( 'patch-profiling.sql', false, 'Add profiling table' );
 		}
 	}
@@ -821,8 +835,10 @@ class MysqlUpdater extends DatabaseUpdater {
 			return true;
 		} elseif ( $this->db->fieldExists( 'profiling', 'pf_memory', __METHOD__ ) ) {
 			$this->output( "...profiling table has pf_memory field.\n" );
+
 			return true;
 		}
+
 		return $this->applyPatch( 'patch-profiling-memory.sql', false, "Adding pf_memory field to table profiling" );
 	}
 
@@ -831,6 +847,7 @@ class MysqlUpdater extends DatabaseUpdater {
 		if ( !$info ) {
 			$this->applyPatch( 'patch-filearchive-user-index.sql', false, "Updating filearchive indices" );
 		}
+
 		return true;
 	}
 
@@ -838,10 +855,12 @@ class MysqlUpdater extends DatabaseUpdater {
 		$info = $this->db->indexInfo( 'pagelinks', 'pl_namespace' );
 		if ( is_array( $info ) && !$info[0]->Non_unique ) {
 			$this->output( "...pl_namespace, tl_namespace, il_to indices are already UNIQUE.\n" );
+
 			return true;
 		}
 		if ( $this->skipSchema ) {
 			$this->output( "...skipping schema change (making pl_namespace, tl_namespace and il_to indices UNIQUE).\n" );
+
 			return false;
 		}
 
@@ -851,6 +870,7 @@ class MysqlUpdater extends DatabaseUpdater {
 	protected function doUpdateMimeMinorField() {
 		if ( $this->updateRowExists( 'mime_minor_length' ) ) {
 			$this->output( "...*_mime_minor fields are already long enough.\n" );
+
 			return;
 		}
 
@@ -860,6 +880,7 @@ class MysqlUpdater extends DatabaseUpdater {
 	protected function doClFieldsUpdate() {
 		if ( $this->updateRowExists( 'cl_fields_update' ) ) {
 			$this->output( "...categorylinks up-to-date.\n" );
+
 			return;
 		}
 
@@ -889,6 +910,7 @@ class MysqlUpdater extends DatabaseUpdater {
 		}
 		if ( $info->isNullable() ) {
 			$this->output( "...user_last_timestamp is already nullable.\n" );
+
 			return;
 		}
 
@@ -899,10 +921,12 @@ class MysqlUpdater extends DatabaseUpdater {
 		$info = $this->db->indexInfo( 'iwlinks', 'iwl_prefix_title_from' );
 		if ( is_array( $info ) && $info[0]->Non_unique ) {
 			$this->output( "...iwl_prefix_title_from index is already non-UNIQUE.\n" );
+
 			return true;
 		}
 		if ( $this->skipSchema ) {
 			$this->output( "...skipping schema change (making iwl_prefix_title_from index non-UNIQUE).\n" );
+
 			return false;
 		}
 

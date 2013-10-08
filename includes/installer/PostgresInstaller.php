@@ -107,6 +107,7 @@ class PostgresInstaller extends DatabaseInstaller {
 
 		$this->setVar( 'wgDBuser', $this->getVar( '_InstallUser' ) );
 		$this->setVar( 'wgDBpassword', $this->getVar( '_InstallPassword' ) );
+
 		return Status::newGood();
 	}
 
@@ -115,6 +116,7 @@ class PostgresInstaller extends DatabaseInstaller {
 		if ( $status->isOK() ) {
 			$this->db = $status->value;
 		}
+
 		return $status;
 	}
 
@@ -142,6 +144,7 @@ class PostgresInstaller extends DatabaseInstaller {
 		} catch ( DBConnectionError $e ) {
 			$status->fatal( 'config-connection-error', $e->getMessage() );
 		}
+
 		return $status;
 	}
 
@@ -165,6 +168,7 @@ class PostgresInstaller extends DatabaseInstaller {
 			$conn->commit( __METHOD__ );
 			$this->pgConns[$type] = $conn;
 		}
+
 		return $status;
 	}
 
@@ -215,6 +219,7 @@ class PostgresInstaller extends DatabaseInstaller {
 					$safeRole = $conn->addIdentifierQuotes( $this->getVar( 'wgDBuser' ) );
 					$conn->query( "SET ROLE $safeRole" );
 				}
+
 				return $status;
 			default:
 				throw new MWException( "Invalid special connection type: \"$type\"" );
@@ -267,6 +272,7 @@ class PostgresInstaller extends DatabaseInstaller {
 
 		$row = $conn->selectRow( '"pg_catalog"."pg_roles"', '*',
 			array( 'rolname' => $superuser ), __METHOD__ );
+
 		return $row;
 	}
 
@@ -275,6 +281,7 @@ class PostgresInstaller extends DatabaseInstaller {
 		if ( !$perms ) {
 			return false;
 		}
+
 		return $perms->rolsuper === 't' || $perms->rolcreaterole === 't';
 	}
 
@@ -283,6 +290,7 @@ class PostgresInstaller extends DatabaseInstaller {
 		if ( !$perms ) {
 			return false;
 		}
+
 		return $perms->rolsuper === 't';
 	}
 
@@ -331,6 +339,7 @@ class PostgresInstaller extends DatabaseInstaller {
 			} else {
 				$msg = 'config-install-user-missing';
 			}
+
 			return Status::newFatal( $msg, $this->getVar( 'wgDBuser' ) );
 		}
 
@@ -410,6 +419,7 @@ class PostgresInstaller extends DatabaseInstaller {
 				}
 			}
 		}
+
 		return false;
 	}
 
@@ -454,6 +464,7 @@ class PostgresInstaller extends DatabaseInstaller {
 			$safedb = $conn->addIdentifierQuotes( $dbName );
 			$conn->query( "CREATE DATABASE $safedb", __METHOD__ );
 		}
+
 		return Status::newGood();
 	}
 
@@ -480,11 +491,13 @@ class PostgresInstaller extends DatabaseInstaller {
 
 		// Select the new schema in the current connection
 		$conn->determineCoreSchema( $schema );
+
 		return Status::newGood();
 	}
 
 	function commitChanges() {
 		$this->db->commit( __METHOD__ );
+
 		return Status::newGood();
 	}
 
@@ -529,8 +542,8 @@ class PostgresInstaller extends DatabaseInstaller {
 	function getLocalSettings() {
 		$port = $this->getVar( 'wgDBport' );
 		$schema = $this->getVar( 'wgDBmwschema' );
-		return
-"# Postgres specific settings
+
+		return "# Postgres specific settings
 \$wgDBport = \"{$port}\";
 \$wgDBmwschema = \"{$schema}\";";
 	}
@@ -560,6 +573,7 @@ class PostgresInstaller extends DatabaseInstaller {
 		if ( $conn->tableExists( 'archive' ) ) {
 			$status->warning( 'config-install-tables-exist' );
 			$this->enableLB();
+
 			return $status;
 		}
 
@@ -567,6 +581,7 @@ class PostgresInstaller extends DatabaseInstaller {
 
 		if ( !$conn->schemaExists( $schema ) ) {
 			$status->fatal( 'config-install-pg-schema-not-exist' );
+
 			return $status;
 		}
 		$error = $conn->sourceFile( $conn->getSchemaPath() );
@@ -581,6 +596,7 @@ class PostgresInstaller extends DatabaseInstaller {
 		if ( $status->isOk() ) {
 			$this->enableLB();
 		}
+
 		return $status;
 	}
 
@@ -623,6 +639,7 @@ class PostgresInstaller extends DatabaseInstaller {
 		} else {
 			return Status::newFatal( 'config-pg-no-plpgsql', $this->getVar( 'wgDBname' ) );
 		}
+
 		return Status::newGood();
 	}
 }

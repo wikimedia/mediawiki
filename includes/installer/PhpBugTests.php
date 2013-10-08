@@ -30,6 +30,7 @@
 class PhpXmlBugTester {
 	private $parsedData = '';
 	public $ok = false;
+
 	public function __construct() {
 		$charData = '<b>c</b>';
 		$xml = '<a>' . htmlspecialchars( $charData ) . '</a>';
@@ -39,6 +40,7 @@ class PhpXmlBugTester {
 		$parsedOk = xml_parse( $parser, $xml, true );
 		$this->ok = $parsedOk && ( $this->parsedData == $charData );
 	}
+
 	public function chardata( $parser, $data ) {
 		$this->parsedData .= $data;
 	}

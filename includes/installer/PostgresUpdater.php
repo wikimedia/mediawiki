@@ -371,25 +371,25 @@ class PostgresUpdater extends DatabaseUpdater {
 		# Add missing extension fields
 		foreach ( $wgExtPGNewFields as $fieldRecord ) {
 			$updates[] = array(
-					'addPgField', $fieldRecord[0], $fieldRecord[1],
-					$fieldRecord[2]
-				);
+				'addPgField', $fieldRecord[0], $fieldRecord[1],
+				$fieldRecord[2]
+			);
 		}
 
 		# Change altered columns
 		foreach ( $wgExtPGAlteredFields as $fieldRecord ) {
 			$updates[] = array(
-					'changeField', $fieldRecord[0], $fieldRecord[1],
-					$fieldRecord[2]
-				);
+				'changeField', $fieldRecord[0], $fieldRecord[1],
+				$fieldRecord[2]
+			);
 		}
 
 		# Add missing extension indexes
 		foreach ( $wgExtNewIndexes as $fieldRecord ) {
 			$updates[] = array(
-					'addPgExtIndex', $fieldRecord[0], $fieldRecord[1],
-					$fieldRecord[2]
-				);
+				'addPgExtIndex', $fieldRecord[0], $fieldRecord[1],
+				$fieldRecord[2]
+			);
 		}
 
 		return $updates;
@@ -403,8 +403,8 @@ SELECT attname, attnum FROM pg_namespace, pg_class, pg_attribute
 	  AND relname=%s AND nspname=%s
 END;
 		$res = $this->db->query( sprintf( $q,
-				$this->db->addQuotes( $table ),
-				$this->db->addQuotes( $this->db->getCoreSchema() ) ) );
+			$this->db->addQuotes( $table ),
+			$this->db->addQuotes( $this->db->getCoreSchema() ) ) );
 		if ( !$res ) {
 			return null;
 		}
@@ -412,10 +412,11 @@ END;
 		$cols = array();
 		foreach ( $res as $r ) {
 			$cols[] = array(
-					"name" => $r[0],
-					"ord" => $r[1],
-				);
+				"name" => $r[0],
+				"ord" => $r[1],
+			);
 		}
+
 		return $cols;
 	}
 
@@ -485,11 +486,12 @@ END;
 		if ( !( $row = $this->db->fetchRow( $r ) ) ) {
 			return null;
 		}
+
 		return $row[0];
 	}
 
 	function ruleDef( $table, $rule ) {
-	$q = <<<END
+		$q = <<<END
 SELECT definition FROM pg_rules
 	WHERE schemaname = %s
 	  AND tablename = %s
@@ -508,6 +510,7 @@ END;
 			return null;
 		}
 		$d = $row[0];
+
 		return $d;
 	}
 
@@ -524,6 +527,7 @@ END;
 	protected function renameSequence( $old, $new ) {
 		if ( $this->db->sequenceExists( $new ) ) {
 			$this->output( "...sequence $new already exists.\n" );
+
 			return;
 		}
 		if ( $this->db->sequenceExists( $old ) ) {
@@ -550,6 +554,7 @@ END;
 		// First requirement: the table must exist
 		if ( !$this->db->tableExists( $table, __METHOD__ ) ) {
 			$this->output( "...skipping: '$table' table doesn't exist yet.\n" );
+
 			return;
 		}
 
@@ -557,17 +562,19 @@ END;
 		if ( $this->db->indexExists( $table, $new, __METHOD__ ) ) {
 			$this->output( "...index $new already set on $table table.\n" );
 			if ( !$skipBothIndexExistWarning
-				&& $this->db->indexExists( $table, $old, __METHOD__ ) )
-			{
+				&& $this->db->indexExists( $table, $old, __METHOD__ )
+			) {
 				$this->output( "...WARNING: $old still exists, despite it has been renamed into $new (which also exists).\n" .
 					"            $old should be manually removed if not needed anymore.\n" );
 			}
+
 			return;
 		}
 
 		// Third requirement: the old index must exist
 		if ( !$this->db->indexExists( $table, $old, __METHOD__ ) ) {
 			$this->output( "...skipping: index $old doesn't exist.\n" );
+
 			return;
 		}
 
@@ -578,6 +585,7 @@ END;
 		$fi = $this->db->fieldInfo( $table, $field );
 		if ( !is_null( $fi ) ) {
 			$this->output( "...column '$table.$field' already exists\n" );
+
 			return;
 		} else {
 			$this->output( "Adding column '$table.$field'\n" );
@@ -638,8 +646,7 @@ END;
 			if ( 'NULL' === $null ) {
 				$this->output( "Changing '$table.$field' to allow NULLs\n" );
 				$this->db->query( "ALTER TABLE $table ALTER $field DROP NOT NULL" );
-			}
-			else {
+			} else {
 				$this->output( "...column '$table.$field' is already set as NOT NULL\n" );
 			}
 		}
@@ -671,6 +678,7 @@ END;
 		$fi = $this->db->fieldInfo( $table, $field );
 		if ( is_null( $fi ) ) {
 			$this->output( "WARNING! Column '$table.$field' does not exist but it should! Please report this.\n" );
+
 			return;
 		}
 		if ( $fi->is_deferred() && $fi->is_deferrable() ) {
