@@ -185,7 +185,6 @@ abstract class WebInstallerPage {
 }
 
 class WebInstaller_Language extends WebInstallerPage {
-
 	public function execute() {
 		global $wgLang;
 		$r = $this->parent->request;
