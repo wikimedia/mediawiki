@@ -56,6 +56,13 @@ class FormatJson {
 	const ALL_OK = 3;
 
 	/**
+	 * Regex that matches whitespace inside empty arrays and objects.
+	 *
+	 * @private
+	 */
+	const WS_CLEANUP_REGEX = '/(?<=[[{])\n\s*+(?=[]}])/';
+
+	/**
 	 * Characters problematic in JavaScript.
 	 *
 	 * @note These are listed in ECMA-262 (5.1 Ed.), §7.3 Line Terminators along with U+000A (LF)
@@ -129,6 +136,12 @@ class FormatJson {
 		$json = json_encode( $value, $options );
 		if ( $json === false ) {
 			return false;
+		}
+
+		if ( $pretty ) {
+			// Remove whitespace inside empty arrays/objects; different JSON encoders
+			// vary on this, and we want our output to be consistent across implementations.
+			$json = preg_replace( self::WS_CLEANUP_REGEX, '', $json );
 		}
 		if ( $escaping & self::UTF8_OK ) {
 			$json = str_replace( self::$badChars, self::$badCharsEscaped, $json );
@@ -213,6 +226,7 @@ class FormatJson {
 					$buf .= substr( $json, $i, $skip );
 			}
 		}
-		return str_replace( "\x01", '\"', preg_replace( '/ +$/m', '', $buf ) );
+		$buf = preg_replace( self::WS_CLEANUP_REGEX, '', $buf );
+		return str_replace( "\x01", '\"', $buf );
 	}
 }
