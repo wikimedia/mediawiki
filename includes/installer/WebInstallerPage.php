@@ -704,9 +704,8 @@ class WebInstaller_Name extends WebInstallerPage {
 			) ) .
 			$this->parent->getTextBox( array(
 				'var' => 'wgMetaNamespace',
-				'label' => '', //TODO: Needs a label?
-				'attribs' => array( 'readonly' => 'readonly', 'class' => 'enabledByOther' ),
-
+				'label' => '', // @todo Needs a label?
+				'attribs' => array( 'readonly' => 'readonly', 'class' => 'enabledByOther' )
 			) ) .
 			$this->getFieldSetStart( 'config-admin-box' ) .
 			$this->parent->getTextBox( array(
@@ -865,7 +864,6 @@ class WebInstaller_Name extends WebInstallerPage {
 }
 
 class WebInstaller_Options extends WebInstallerPage {
-
 	public function execute() {
 		if ( $this->getVar( '_SkipOptional' ) == 'skip' ) {
 			return 'skip';
@@ -1255,7 +1253,9 @@ class WebInstaller_Install extends WebInstallerPage {
 	public function startStage( $step ) {
 		// Messages: config-install-database, config-install-tables, config-install-interwiki,
 		// config-install-stats, config-install-keys, config-install-sysop, config-install-mainpage
-		$this->addHTML( "<li>" . wfMessage( "config-install-$step" )->escaped() . wfMessage( 'ellipsis' )->escaped() );
+		$this->addHTML( "<li>" . wfMessage( "config-install-$step" )->escaped() .
+			wfMessage( 'ellipsis' )->escaped() );
+
 		if ( $step == 'extension-tables' ) {
 			$this->startLiveBox();
 		}
@@ -1282,7 +1282,6 @@ class WebInstaller_Install extends WebInstallerPage {
 }
 
 class WebInstaller_Complete extends WebInstallerPage {
-
 	public function execute() {
 		// Pop up a dialog box, to make it difficult for the user to forget
 		// to download the file
