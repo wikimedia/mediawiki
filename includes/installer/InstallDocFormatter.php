@@ -47,7 +47,11 @@ class InstallDocFormatter {
 		// turn (bug nnnn) into links
 		$text = preg_replace_callback( '/bug (\d+)/', array( $this, 'replaceBugLinks' ), $text );
 		// add links to manual to every global variable mentioned
-		$text = preg_replace_callback( '/(\$wg[a-z0-9_]+)/i', array( $this, 'replaceConfigLinks' ), $text );
+		$text = preg_replace_callback(
+			'/(\$wg[a-z0-9_]+)/i',
+			array( $this, 'replaceConfigLinks' ),
+			$text
+		);
 
 		return $text;
 	}
