@@ -11024,7 +11024,7 @@ $messages['kbd-cyrl'] = array(
  * @author Rachitrali
  */
 $messages['khw'] = array(
-	'mainpagetext' => "\"<big>'''میڈیاوکیو کامیابیو سورا چالو کورونو بیتی شیر۔.'''</big>\"",
+	'mainpagetext' => "'''میڈیاوکیو کامیابیو سورا چالو کورونو بیتی شیر۔.'''",
 );
 
 /** Kirmanjki (Kırmancki)
