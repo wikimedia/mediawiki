@@ -59,6 +59,7 @@ class OracleInstaller extends DatabaseInstaller {
 		if ( $this->getVar( 'wgDBserver' ) == 'localhost' ) {
 			$this->parent->setVar( 'wgDBserver', '' );
 		}
+
 		return $this->getTextBox( 'wgDBserver', 'config-db-host-oracle', array(), $this->parent->getHelpBox( 'config-db-host-oracle-help' ) ) .
 			Html::openElement( 'fieldset' ) .
 			Html::element( 'legend', array(), wfMessage( 'config-db-wiki-settings' )->text() ) .
@@ -74,6 +75,7 @@ class OracleInstaller extends DatabaseInstaller {
 	public function submitInstallUserBox() {
 		parent::submitInstallUserBox();
 		$this->parent->setVar( '_InstallDBname', $this->getVar( '_InstallUser' ) );
+
 		return Status::newGood();
 	}
 
@@ -162,6 +164,7 @@ class OracleInstaller extends DatabaseInstaller {
 			$this->connError = $e->db->lastErrno();
 			$status->fatal( 'config-connection-error', $e->getMessage() );
 		}
+
 		return $status;
 	}
 
@@ -181,6 +184,7 @@ class OracleInstaller extends DatabaseInstaller {
 			$this->connError = $e->db->lastErrno();
 			$status->fatal( 'config-connection-error', $e->getMessage() );
 		}
+
 		return $status;
 	}
 
@@ -189,6 +193,7 @@ class OracleInstaller extends DatabaseInstaller {
 		$this->parent->setVar( 'wgDBname', $this->getVar( 'wgDBuser' ) );
 		$retVal = parent::needsUpgrade();
 		$this->parent->setVar( 'wgDBname', $tempDBname );
+
 		return $retVal;
 	}
 
@@ -203,6 +208,7 @@ class OracleInstaller extends DatabaseInstaller {
 
 	public function setupDatabase() {
 		$status = Status::newGood();
+
 		return $status;
 	}
 
@@ -285,13 +291,14 @@ class OracleInstaller extends DatabaseInstaller {
 		foreach ( $varNames as $name ) {
 			$vars[$name] = $this->getVar( $name );
 		}
+
 		return $vars;
 	}
 
 	public function getLocalSettings() {
 		$prefix = $this->getVar( 'wgDBprefix' );
-		return
-"# Oracle specific settings
+
+		return "# Oracle specific settings
 \$wgDBprefix = \"{$prefix}\";
 ";
 	}
@@ -315,5 +322,4 @@ class OracleInstaller extends DatabaseInstaller {
 		$isValid |= preg_match( '/^(?:\/\/)?[\w\-\.]+(?::[\d]+)?(?:\/(?:[\w\-\.]+(?::(pooled|dedicated|shared))?)?(?:\/[\w\-\.]+)?)?$/', $connect_string ); // EZConnect
 		return (bool)$isValid;
 	}
-
 }

@@ -116,6 +116,7 @@ class SqliteUpdater extends DatabaseUpdater {
 		// initial-indexes.sql fails if the indexes are already present, so we perform a quick check if our database is newer.
 		if ( $this->updateRowExists( 'initial_indexes' ) || $this->db->indexExists( 'user', 'user_name', __METHOD__ ) ) {
 			$this->output( "...have initial indexes\n" );
+
 			return;
 		}
 		$this->applyPatch( 'initial-indexes.sql', false, "Adding initial indexes" );
@@ -135,7 +136,7 @@ class SqliteUpdater extends DatabaseUpdater {
 
 	protected function doEnableProfiling() {
 		global $wgProfileToDatabase;
-		if ( $wgProfileToDatabase === true && ! $this->db->tableExists( 'profiling', __METHOD__ ) ) {
+		if ( $wgProfileToDatabase === true && !$this->db->tableExists( 'profiling', __METHOD__ ) ) {
 			$this->applyPatch( 'patch-profiling.sql', false, 'Add profiling table' );
 		}
 	}

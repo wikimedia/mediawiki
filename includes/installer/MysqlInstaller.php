@@ -161,6 +161,7 @@ class MysqlInstaller extends DatabaseInstaller {
 		} catch ( DBConnectionError $e ) {
 			$status->fatal( 'config-connection-error', $e->getMessage() );
 		}
+
 		return $status;
 	}
 
@@ -170,6 +171,7 @@ class MysqlInstaller extends DatabaseInstaller {
 		$status = $this->getConnection();
 		if ( !$status->isOK() ) {
 			$this->parent->showStatusError( $status );
+
 			return;
 		}
 		/**
@@ -243,6 +245,7 @@ class MysqlInstaller extends DatabaseInstaller {
 			}
 		}
 		$engines = array_intersect( $this->supportedEngines, $engines );
+
 		return $engines;
 	}
 
@@ -327,6 +330,7 @@ class MysqlInstaller extends DatabaseInstaller {
 			// Can't grant everything
 			return false;
 		}
+
 		return true;
 	}
 
@@ -350,7 +354,7 @@ class MysqlInstaller extends DatabaseInstaller {
 
 		$s .= Xml::openElement( 'div', array(
 			'id' => 'dbMyisamWarning'
-		));
+		) );
 		$myisamWarning = 'config-mysql-myisam-dep';
 		if ( count( $engines ) === 1 ) {
 			$myisamWarning = 'config-mysql-only-myisam-dep';
@@ -382,7 +386,8 @@ class MysqlInstaller extends DatabaseInstaller {
 						'class' => 'hideShowRadio',
 						'rel' => 'dbMyisamWarning'
 					)
-			)));
+				)
+			) );
 			$s .= $this->parent->getHelpBox( 'config-mysql-engine-help' );
 		}
 
@@ -402,7 +407,7 @@ class MysqlInstaller extends DatabaseInstaller {
 				'label' => 'config-mysql-charset',
 				'itemLabelPrefix' => 'config-mysql-',
 				'values' => $charsets
-			));
+			) );
 			$s .= $this->parent->getHelpBox( 'config-mysql-charset-help' );
 		}
 
@@ -454,6 +459,7 @@ class MysqlInstaller extends DatabaseInstaller {
 		if ( !in_array( $this->getVar( '_MysqlCharset' ), $charsets ) ) {
 			$this->setVar( '_MysqlCharset', reset( $charsets ) );
 		}
+
 		return Status::newGood();
 	}
 
@@ -481,6 +487,7 @@ class MysqlInstaller extends DatabaseInstaller {
 			$conn->selectDB( $dbName );
 		}
 		$this->setupSchemaVars();
+
 		return $status;
 	}
 
@@ -603,11 +610,11 @@ class MysqlInstaller extends DatabaseInstaller {
 		try {
 			$res = $this->db->selectRow( 'mysql.user', array( 'Host', 'User' ),
 				array( 'Host' => $host, 'User' => $user ), __METHOD__ );
+
 			return (bool)$res;
 		} catch ( DBQueryError $dqe ) {
 			return false;
 		}
-
 	}
 
 	/**
@@ -624,6 +631,7 @@ class MysqlInstaller extends DatabaseInstaller {
 		if ( $this->getVar( '_MysqlCharset' ) !== null ) {
 			$options[] = 'DEFAULT CHARSET=' . $this->getVar( '_MysqlCharset' );
 		}
+
 		return implode( ', ', $options );
 	}
 
@@ -645,8 +653,8 @@ class MysqlInstaller extends DatabaseInstaller {
 		$dbmysql5 = wfBoolToStr( $this->getVar( 'wgDBmysql5', true ) );
 		$prefix = LocalSettingsGenerator::escapePhpString( $this->getVar( 'wgDBprefix' ) );
 		$tblOpts = LocalSettingsGenerator::escapePhpString( $this->getTableOptions() );
-		return
-"# MySQL specific settings
+
+		return "# MySQL specific settings
 \$wgDBprefix = \"{$prefix}\";
 
 # MySQL table options to use during installation or update

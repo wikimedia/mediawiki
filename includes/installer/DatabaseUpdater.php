@@ -159,6 +159,7 @@ abstract class DatabaseUpdater {
 		$type = $db->getType();
 		if ( in_array( $type, Installer::getDBTypes() ) ) {
 			$class = ucfirst( $type ) . 'Updater';
+
 			return new $class( $db, $shared, $maintenance );
 		} else {
 			throw new MWException( __METHOD__ . ' called for unsupported $wgDBtype' );
@@ -462,6 +463,7 @@ abstract class DatabaseUpdater {
 			array( 'ul_key' => $key ),
 			__METHOD__
 		);
+
 		return (bool)$row;
 	}
 
@@ -538,21 +540,21 @@ abstract class DatabaseUpdater {
 		foreach ( $wgExtNewFields as $fieldRecord ) {
 			$updates[] = array(
 				'addField', $fieldRecord[0], $fieldRecord[1],
-					$fieldRecord[2], true
+				$fieldRecord[2], true
 			);
 		}
 
 		foreach ( $wgExtNewIndexes as $fieldRecord ) {
 			$updates[] = array(
 				'addIndex', $fieldRecord[0], $fieldRecord[1],
-					$fieldRecord[2], true
+				$fieldRecord[2], true
 			);
 		}
 
 		foreach ( $wgExtModifiedFields as $fieldRecord ) {
 			$updates[] = array(
 				'modifyField', $fieldRecord[0], $fieldRecord[1],
-					$fieldRecord[2], true
+				$fieldRecord[2], true
 			);
 		}
 
@@ -595,6 +597,7 @@ abstract class DatabaseUpdater {
 		if ( fwrite( $this->fileHandle, $line ) === false ) {
 			throw new MWException( "trouble writing file" );
 		}
+
 		return false;
 	}
 
@@ -612,6 +615,7 @@ abstract class DatabaseUpdater {
 		}
 		if ( $this->skipSchema ) {
 			$this->output( "...skipping schema change ($msg).\n" );
+
 			return false;
 		}
 
@@ -626,6 +630,7 @@ abstract class DatabaseUpdater {
 			$this->db->sourceFile( $path );
 		}
 		$this->output( "done.\n" );
+
 		return true;
 	}
 
@@ -647,6 +652,7 @@ abstract class DatabaseUpdater {
 		} else {
 			return $this->applyPatch( $patch, $fullpath, "Creating $name table" );
 		}
+
 		return true;
 	}
 
@@ -671,6 +677,7 @@ abstract class DatabaseUpdater {
 		} else {
 			return $this->applyPatch( $patch, $fullpath, "Adding $field field to table $table" );
 		}
+
 		return true;
 	}
 
@@ -695,6 +702,7 @@ abstract class DatabaseUpdater {
 		} else {
 			return $this->applyPatch( $patch, $fullpath, "Adding index $index to table $table" );
 		}
+
 		return true;
 	}
 
@@ -717,6 +725,7 @@ abstract class DatabaseUpdater {
 		} else {
 			$this->output( "...$table table does not contain $field field.\n" );
 		}
+
 		return true;
 	}
 
@@ -739,6 +748,7 @@ abstract class DatabaseUpdater {
 		} else {
 			$this->output( "...$index key doesn't exist.\n" );
 		}
+
 		return true;
 	}
 
@@ -761,6 +771,7 @@ abstract class DatabaseUpdater {
 		// First requirement: the table must exist
 		if ( !$this->db->tableExists( $table, __METHOD__ ) ) {
 			$this->output( "...skipping: '$table' table doesn't exist yet.\n" );
+
 			return true;
 		}
 
@@ -771,12 +782,14 @@ abstract class DatabaseUpdater {
 				$this->output( "...WARNING: $oldIndex still exists, despite it has been renamed into $newIndex (which also exists).\n" .
 					"            $oldIndex should be manually removed if not needed anymore.\n" );
 			}
+
 			return true;
 		}
 
 		// Third requirement: the old index must exist
 		if ( !$this->db->indexExists( $table, $oldIndex, __METHOD__ ) ) {
 			$this->output( "...skipping: index $oldIndex doesn't exist.\n" );
+
 			return true;
 		}
 
@@ -807,13 +820,13 @@ abstract class DatabaseUpdater {
 				$this->output( "$msg ..." );
 				$this->db->dropTable( $table, __METHOD__ );
 				$this->output( "done.\n" );
-			}
-			else {
+			} else {
 				return $this->applyPatch( $patch, $fullpath, $msg );
 			}
 		} else {
 			$this->output( "...$table doesn't exist.\n" );
 		}
+
 		return true;
 	}
 
@@ -840,8 +853,10 @@ abstract class DatabaseUpdater {
 			$this->output( "...$field in table $table already modified by patch $patch.\n" );
 		} else {
 			$this->insertUpdateRow( $updateKey );
+
 			return $this->applyPatch( $patch, $fullpath, "Modifying $field field of table $table" );
 		}
+
 		return true;
 	}
 
@@ -873,6 +888,7 @@ abstract class DatabaseUpdater {
 			$this->output( "missing ss_total_pages, rebuilding...\n" );
 		} else {
 			$this->output( "done.\n" );
+
 			return;
 		}
 		SiteStatsInit::doAllAndCommit( $this->db );
@@ -904,9 +920,10 @@ abstract class DatabaseUpdater {
 	protected function doLogUsertextPopulation() {
 		if ( !$this->updateRowExists( 'populate log_usertext' ) ) {
 			$this->output(
-			"Populating log_user_text field, printing progress markers. For large\n" .
-			"databases, you may want to hit Ctrl-C and do this manually with\n" .
-			"maintenance/populateLogUsertext.php.\n" );
+				"Populating log_user_text field, printing progress markers. For large\n" .
+				"databases, you may want to hit Ctrl-C and do this manually with\n" .
+				"maintenance/populateLogUsertext.php.\n"
+			);
 
 			$task = $this->maintenance->runChild( 'PopulateLogUsertext' );
 			$task->execute();
@@ -936,6 +953,7 @@ abstract class DatabaseUpdater {
 	protected function doUpdateTranscacheField() {
 		if ( $this->updateRowExists( 'convert transcache field' ) ) {
 			$this->output( "...transcache tc_time already converted.\n" );
+
 			return true;
 		}
 
@@ -954,9 +972,11 @@ abstract class DatabaseUpdater {
 				'COUNT(*)',
 				'cl_collation != ' . $this->db->addQuotes( $wgCategoryCollation ),
 				__METHOD__
-				) == 0 ) {
-					$this->output( "...collations up-to-date.\n" );
-					return;
+				) == 0
+			) {
+				$this->output( "...collations up-to-date.\n" );
+
+				return;
 			}
 
 			$this->output( "Updating category collations..." );

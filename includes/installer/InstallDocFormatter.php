@@ -23,6 +23,7 @@
 class InstallDocFormatter {
 	static function format( $text ) {
 		$obj = new self( $text );
+
 		return $obj->execute();
 	}
 
@@ -47,6 +48,7 @@ class InstallDocFormatter {
 		$text = preg_replace_callback( '/bug (\d+)/', array( $this, 'replaceBugLinks' ), $text );
 		// add links to manual to every global variable mentioned
 		$text = preg_replace_callback( '/(\$wg[a-z0-9_]+)/i', array( $this, 'replaceConfigLinks' ), $text );
+
 		return $text;
 	}
 

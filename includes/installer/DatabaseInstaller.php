@@ -158,6 +158,7 @@ abstract class DatabaseInstaller {
 			$this->db->clearFlag( DBO_TRX );
 			$this->db->commit( __METHOD__ );
 		}
+
 		return $status;
 	}
 
@@ -176,6 +177,7 @@ abstract class DatabaseInstaller {
 		if ( $this->db->tableExists( 'archive', __METHOD__ ) ) {
 			$status->warning( 'config-install-tables-exist' );
 			$this->enableLB();
+
 			return $status;
 		}
 
@@ -194,6 +196,7 @@ abstract class DatabaseInstaller {
 		if ( $status->isOk() ) {
 			$this->enableLB();
 		}
+
 		return $status;
 	}
 
@@ -279,6 +282,7 @@ abstract class DatabaseInstaller {
 		}
 		$up->purgeCache();
 		ob_end_flush();
+
 		return $ret;
 	}
 
@@ -288,14 +292,12 @@ abstract class DatabaseInstaller {
 	 * long after the constructor. Helpful for things like modifying setup steps :)
 	 */
 	public function preInstall() {
-
 	}
 
 	/**
 	 * Allow DB installers a chance to make checks before upgrade.
 	 */
 	public function preUpgrade() {
-
 	}
 
 	/**
@@ -327,6 +329,7 @@ abstract class DatabaseInstaller {
 		wfSuppressWarnings();
 		$compiled = wfDl( $name );
 		wfRestoreWarnings();
+
 		return $compiled;
 	}
 
@@ -371,6 +374,7 @@ abstract class DatabaseInstaller {
 		} elseif ( isset( $internal[$var] ) ) {
 			$default = $internal[$var];
 		}
+
 		return $this->parent->getVar( $var, $default );
 	}
 
@@ -398,6 +402,7 @@ abstract class DatabaseInstaller {
 		if ( !isset( $attribs ) ) {
 			$attribs = array();
 		}
+
 		return $this->parent->getTextBox( array(
 			'var' => $var,
 			'label' => $label,
@@ -424,6 +429,7 @@ abstract class DatabaseInstaller {
 		if ( !isset( $attribs ) ) {
 			$attribs = array();
 		}
+
 		return $this->parent->getPasswordBox( array(
 			'var' => $var,
 			'label' => $label,
@@ -442,6 +448,7 @@ abstract class DatabaseInstaller {
 	public function getCheckBox( $var, $label, $attribs = array(), $helpData = "" ) {
 		$name = $this->getName() . '_' . $var;
 		$value = $this->getVar( $var );
+
 		return $this->parent->getCheckBox( array(
 			'var' => $var,
 			'label' => $label,
@@ -449,7 +456,7 @@ abstract class DatabaseInstaller {
 			'controlName' => $name,
 			'value' => $value,
 			'help' => $helpData
-		));
+		) );
 	}
 
 	/**
@@ -468,6 +475,7 @@ abstract class DatabaseInstaller {
 	public function getRadioSet( $params ) {
 		$params['controlName'] = $this->getName() . '_' . $params['var'];
 		$params['value'] = $this->getVar( $params['var'] );
+
 		return $this->parent->getRadioSet( $params );
 	}
 
@@ -501,6 +509,7 @@ abstract class DatabaseInstaller {
 		if ( !$this->db->selectDB( $this->getVar( 'wgDBname' ) ) ) {
 			return false;
 		}
+
 		return $this->db->tableExists( 'cur', __METHOD__ ) || $this->db->tableExists( 'revision', __METHOD__ );
 	}
 
@@ -523,6 +532,7 @@ abstract class DatabaseInstaller {
 	 */
 	public function submitInstallUserBox() {
 		$this->setVarsFromRequest( array( '_InstallUser', '_InstallPassword' ) );
+
 		return Status::newGood();
 	}
 
@@ -551,6 +561,7 @@ abstract class DatabaseInstaller {
 			$s .= $this->getCheckBox( '_CreateDBAccount', 'config-db-web-create' );
 		}
 		$s .= Html::closeElement( 'div' ) . Html::closeElement( 'fieldset' );
+
 		return $s;
 	}
 
@@ -590,6 +601,7 @@ abstract class DatabaseInstaller {
 
 		if ( $this->db->selectRow( 'interwiki', '*', array(), __METHOD__ ) ) {
 			$status->warning( 'config-install-interwiki-exists' );
+
 			return $status;
 		}
 		global $IP;
@@ -613,6 +625,7 @@ abstract class DatabaseInstaller {
 			);
 		}
 		$this->db->insert( 'interwiki', $interwikis, __METHOD__ );
+
 		return Status::newGood();
 	}
 

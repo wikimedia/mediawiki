@@ -63,6 +63,7 @@ class SqliteInstaller extends DatabaseInstaller {
 		if ( DatabaseSqlite::getFulltextSearchModule() != 'FTS3' ) {
 			$result->warning( 'config-no-fts3' );
 		}
+
 		return $result;
 	}
 
@@ -73,6 +74,7 @@ class SqliteInstaller extends DatabaseInstaller {
 				DIRECTORY_SEPARATOR,
 				dirname( $_SERVER['DOCUMENT_ROOT'] ) . '/data'
 			);
+
 			return array( 'wgSQLiteDataDir' => $path );
 		} else {
 			return array();
@@ -96,6 +98,7 @@ class SqliteInstaller extends DatabaseInstaller {
 		if ( !$result ) {
 			return $path;
 		}
+
 		return $result;
 	}
 
@@ -115,6 +118,7 @@ class SqliteInstaller extends DatabaseInstaller {
 		}
 		# Table prefix is not used on SQLite, keep it empty
 		$this->setVar( 'wgDBprefix', '' );
+
 		return $result;
 	}
 
@@ -173,6 +177,7 @@ class SqliteInstaller extends DatabaseInstaller {
 		} catch ( DBConnectionError $e ) {
 			$status->fatal( 'config-sqlite-connection-error', $e->getMessage() );
 		}
+
 		return $status;
 	}
 
@@ -220,6 +225,7 @@ class SqliteInstaller extends DatabaseInstaller {
 		$this->setVar( 'wgDBuser', '' );
 		$this->setVar( 'wgDBpassword', '' );
 		$this->setupSchemaVars();
+
 		return $this->getConnection();
 	}
 
@@ -228,6 +234,7 @@ class SqliteInstaller extends DatabaseInstaller {
 	 */
 	public function createTables() {
 		$status = parent::createTables();
+
 		return $this->setupSearchIndex( $status );
 	}
 
@@ -246,6 +253,7 @@ class SqliteInstaller extends DatabaseInstaller {
 		} elseif ( !$fts3tTable && $module == 'FTS3' ) {
 			$this->db->sourceFile( "$IP/maintenance/sqlite/archives/searchindex-fts3.sql" );
 		}
+
 		return $status;
 	}
 
@@ -254,8 +262,8 @@ class SqliteInstaller extends DatabaseInstaller {
 	 */
 	public function getLocalSettings() {
 		$dir = LocalSettingsGenerator::escapePhpString( $this->getVar( 'wgSQLiteDataDir' ) );
-		return
-"# SQLite-specific settings
+
+		return "# SQLite-specific settings
 \$wgSQLiteDataDir = \"{$dir}\";";
 	}
 }

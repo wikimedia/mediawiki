@@ -212,6 +212,7 @@ class OracleUpdater extends DatabaseUpdater {
 		$row = $meta->fetchRow();
 		if ( $row['column_name'] == 'PR_ID' ) {
 			$this->output( "seems to be up to date.\n" );
+
 			return;
 		}
 
@@ -247,5 +248,4 @@ class OracleUpdater extends DatabaseUpdater {
 		$this->db->delete( '/*Q*/' . $this->db->tableName( 'objectcache' ), '*', __METHOD__ );
 		$this->output( "done.\n" );
 	}
-
 }
