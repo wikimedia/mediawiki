@@ -416,8 +416,28 @@ class ForeignAPIRepo extends FileRepo {
 	 * @since 1.22
 	 */
 	function getInfo() {
+		global $wgMemc;
+
 		$info = parent::getInfo();
 		$info['apiurl'] = $this->getApiUrl();
+
+		$query = array(
+			'format' => 'json',
+			'action' => 'query',
+			'meta' => 'siteinfo',
+			'siprop' => 'general',
+		);
+
+		$data = $this->httpGetCached( 'SiteInfo', $query, 7200 );
+
+		if ( $data ) {
+			$siteInfo = FormatJson::decode( $data, true );
+			$general = $siteInfo['query']['general'];
+
+			$info['articlepath'] = $general['articlepath'];
+			$info['server'] = $general['server'];
+		}
+
 		return $info;
 	}
 
