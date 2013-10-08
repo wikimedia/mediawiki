@@ -645,6 +645,10 @@ return array(
 		// must be loaded on the bottom
 		'position' => 'bottom',
 	),
+	'mediawiki.inspect' => array(
+		'scripts' => 'resources/mediawiki/mediawiki.inspect.js',
+		'dependencies' => 'jquery.byteLength',
+	),
 	'mediawiki.feedback' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.feedback.js',
 		'styles' => 'resources/mediawiki/mediawiki.feedback.css',
