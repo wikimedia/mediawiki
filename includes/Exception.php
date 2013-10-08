@@ -737,7 +737,11 @@ class MWExceptionHandler {
                 }
             }
 
-            $finalExceptionText .= "#{$i} {$call['file']}({$call['line']}): ";
+            if ( isset( $call['file'] ) ) {
+                $finalExceptionText .= "#{$i} {$call['file']}({$call['line']}): ";
+            } else {
+                $finalExceptionText .= "#{$i} …: ";
+            }
             if ( isset( $call['class'] ) ) {
                 $finalExceptionText .= $call['class'] . $call['type'] . $call['function'];
             } else {
