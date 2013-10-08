@@ -1107,10 +1107,8 @@ class UploadSourceField extends HTMLTextField {
 	 * @return string
 	 */
 	function getLabelHtml( $cellAttributes = array() ) {
-		$id = $this->mParams['id'];
-		$label = Html::rawElement( 'label', array( 'for' => $id ), $this->mLabel );
-
 		if ( !empty( $this->mParams['radio'] ) ) {
+			$id = "wpSourceType{$this->mParams['upload-type']}";
 			$attribs = array(
 				'name' => 'wpSourceType',
 				'type' => 'radio',
@@ -1120,9 +1118,12 @@ class UploadSourceField extends HTMLTextField {
 			if ( !empty( $this->mParams['checked'] ) ) {
 				$attribs['checked'] = 'checked';
 			}
+			$label = Html::rawElement( 'label', array( 'for' => $id ), $this->mLabel );
 			$label .= Html::element( 'input', $attribs );
+		} else {
+			$id = $this->mParams['id'];
+			$label = Html::rawElement( 'label', array( 'for' => $id ), $this->mLabel );
 		}
-
 		return Html::rawElement( 'td', array( 'class' => 'mw-label' ) + $cellAttributes, $label );
 	}
 
