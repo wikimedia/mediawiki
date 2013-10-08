@@ -653,8 +653,8 @@ class WebInstaller extends Installer {
 	 * Get HTML for an info box with an icon.
 	 *
 	 * @param string $text wikitext, get this with wfMessage()->plain()
-	 * @param string $icon icon name, file in skins/common/images
-	 * @param string $class additional class name to add to the wrapper div
+	 * @param string|bool $icon icon name, file in skins/common/images. Default: false
+	 * @param string|bool $class additional class name to add to the wrapper div. Default: false.
 	 *
 	 * @return string
 	 */

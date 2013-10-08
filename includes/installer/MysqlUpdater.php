@@ -246,6 +246,7 @@ class MysqlUpdater extends DatabaseUpdater {
 	 * @param string $table table name
 	 * @param string $field field name to check
 	 * @param string $patchFile path to the patch to correct the field
+	 * @return bool
 	 */
 	protected function checkBin( $table, $field, $patchFile ) {
 		if ( !$this->doTable( $table ) ) {
