@@ -20,6 +20,7 @@
 				"name": "General",
 				"classes": [
 					"mw.Title",
+					"mw.inspect",
 					"mw.notification",
 					"mw.user",
 					"mw.util",
