@@ -31,6 +31,11 @@
  * An operation which is not OK should have errors so that the user can be
  * informed as to what went wrong. Calling the fatal() function sets an error
  * message and simultaneously switches off the OK flag.
+ *
+ * The recommended pattern for Status objects is to return a Status object
+ * unconditionally, i.e. both on success and on failure -- so that the
+ * developer of the calling code is reminded that the function can fail, and
+ * so that a lack of error-handling will be explicit.
  */
 class Status {
 	var $ok = true;
