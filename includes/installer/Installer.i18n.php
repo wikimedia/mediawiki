@@ -12656,7 +12656,7 @@ Jums reikės atsisiųsti ir įdėti jį į savo wiki įdiegimo bazę (pačiame k
 
 Jei atsisiuntimas nebuvo pasiūlytas, arba jį atšaukėte, galite iš naujo atsisiųsti paspaudę žemiau esančią nuorodą:
 
-<span class=\"notranslate\" versti=\"no\">\$3</span>
+$3
 
 '''Pastaba:''' Jei jūs to nepadarysite dabar, tada šis sukurtas konfigūracijos failas nebus galimas vėliau, jei išeisite iš įdiegimo be atsisiuntimo.
 
