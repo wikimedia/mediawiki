@@ -109,8 +109,8 @@ class TableCleanup extends Maintenance {
 		$dbr = wfGetDB( DB_SLAVE );
 
 		if ( array_diff( array_keys( $params ),
-			array( 'table', 'conds', 'index', 'callback' ) ) )
-		{
+			array( 'table', 'conds', 'index', 'callback' ) )
+		) {
 			throw new MWException( __METHOD__ . ': Missing parameter ' . implode( ', ', $params ) );
 		}
 
@@ -119,7 +119,6 @@ class TableCleanup extends Maintenance {
 		$count = $dbr->estimateRowCount( $table, '*', '', __METHOD__ );
 		$this->init( $count, $table );
 		$this->output( "Processing $table...\n" );
-
 
 		$index = (array)$params['index'];
 		$indexConds = array();
