@@ -51,21 +51,24 @@ class TitleCleanup extends TableCleanup {
 		if ( !is_null( $title )
 			&& $title->canExist()
 			&& $title->getNamespace() == $row->page_namespace
-			&& $title->getDBkey() === $row->page_title )
-		{
-			return $this->progress( 0 );  // all is fine
+			&& $title->getDBkey() === $row->page_title
+		) {
+			return $this->progress( 0 ); // all is fine
 		}
 
 		if ( $row->page_namespace == NS_FILE && $this->fileExists( $row->page_title ) ) {
 			$this->output( "file $row->page_title needs cleanup, please run cleanupImages.php.\n" );
+
 			return $this->progress( 0 );
 		} elseif ( is_null( $title ) ) {
 			$this->output( "page $row->page_id ($display) is illegal.\n" );
 			$this->moveIllegalPage( $row );
+
 			return $this->progress( 1 );
 		} else {
 			$this->output( "page $row->page_id ($display) doesn't match self.\n" );
 			$this->moveInconsistentPage( $row, $title );
+
 			return $this->progress( 1 );
 		}
 	}
@@ -75,6 +78,7 @@ class TitleCleanup extends TableCleanup {
 		// This is reasonable, since cleanupImages.php only iterates over the image table.
 		$dbr = wfGetDB( DB_SLAVE );
 		$row = $dbr->selectRow( 'image', array( 'img_name' ), array( 'img_name' => $name ), __METHOD__ );
+
 		return $row !== false;
 	}
 
@@ -104,9 +108,11 @@ class TitleCleanup extends TableCleanup {
 
 		$dest = $title->getDBkey();
 		if ( $this->dryrun ) {
-			$this->output( "DRY RUN: would rename $row->page_id ($row->page_namespace,'$row->page_title') to ($row->page_namespace,'$dest')\n" );
+			$this->output( "DRY RUN: would rename $row->page_id ($row->page_namespace," .
+				"'$row->page_title') to ($row->page_namespace,'$dest')\n" );
 		} else {
-			$this->output( "renaming $row->page_id ($row->page_namespace,'$row->page_title') to ($row->page_namespace,'$dest')\n" );
+			$this->output( "renaming $row->page_id ($row->page_namespace," .
+				"'$row->page_title') to ($row->page_namespace,'$dest')\n" );
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->update( 'page',
 				array( 'page_title' => $dest ),
@@ -145,9 +151,11 @@ class TitleCleanup extends TableCleanup {
 		$dest = $title->getDBkey();
 
 		if ( $this->dryrun ) {
-			$this->output( "DRY RUN: would rename $row->page_id ($row->page_namespace,'$row->page_title') to ($ns,'$dest')\n" );
+			$this->output( "DRY RUN: would rename $row->page_id ($row->page_namespace," .
+				"'$row->page_title') to ($ns,'$dest')\n" );
 		} else {
-			$this->output( "renaming $row->page_id ($row->page_namespace,'$row->page_title') to ($ns,'$dest')\n" );
+			$this->output( "renaming $row->page_id ($row->page_namespace," .
+				"'$row->page_title') to ($ns,'$dest')\n" );
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->update( 'page',
 				array(
