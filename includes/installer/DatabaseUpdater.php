@@ -803,9 +803,9 @@ abstract class DatabaseUpdater {
 	 *
 	 * Public @since 1.20
 	 *
-	 * @param $table string
-	 * @param $patch string|false
-	 * @param $fullpath bool
+	 * @param string $table Table to drop.
+	 * @param string|bool $patch String of patch file that will drop the table. Default: false.
+	 * @param bool $fullpath Wether $patch is a full path. Default: false.
 	 * @return Boolean false if this was skipped because schema changes are skipped
 	 */
 	public function dropTable( $table, $patch = false, $fullpath = false ) {
