@@ -127,7 +127,10 @@
 			);
 		}
 
-		$( '#editform' ).on( 'click', '#wpPreview, #wpDiff', doLivePreview );
+		// This should be moved down to '#editform', but it kept on the body for
+		// now because LiquidThreads is re-using this module with only half the
+		// EditPage (doens't include #editform presumably)
+		$( document.body ).on( 'click', '#wpPreview, #wpDiff', doLivePreview );
 	} );
 
 }( mediaWiki, jQuery ) );
