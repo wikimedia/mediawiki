@@ -147,11 +147,34 @@ class ForeignAPIRepo extends FileRepo {
 	}
 
 	/**
+	 * @return array Repository information from repos that are down the line from this one.
+	 */
+	function fetchRepos() {
+		$query = array(
+			'format' => 'json',
+			'action' => 'query',
+			'meta' => 'filerepoinfo',
+		);
+
+		$data = $this->httpGetCached( 'Repos', $query );
+
+		if ( $data ) {
+			$data = FormatJson::decode( $data, true );
+
+			if ( $data && isset( $data['query'] ) && isset( $data['query']['repos'] ) ) {
+				return $data['query']['repos'];
+			} else {
+				return null;
+			}
+		}
+	}
+
+	/**
 	 * @param $query array
 	 * @return string
 	 */
 	function fetchImageQuery( $query ) {
-		global $wgMemc, $wgLanguageCode;
+		global $wgLanguageCode;
 
 		$query = array_merge( $query,
 			array(
@@ -159,33 +182,18 @@ class ForeignAPIRepo extends FileRepo {
 				'action' => 'query',
 				'redirects' => 'true'
 			) );
+
 		if ( !isset( $query['uselang'] ) ) { // uselang is unset or null
 			$query['uselang'] = $wgLanguageCode;
 		}
-		if ( $this->mApiBase ) {
-			$url = wfAppendQuery( $this->mApiBase, $query );
+
+		$data = $this->httpGetCached( 'Metadata', $query );
+
+		if ( $data ) {
+			return FormatJson::decode( $data, true );
 		} else {
-			$url = $this->makeUrl( $query, 'api' );
+			return null;
 		}
-
-		if ( !isset( $this->mQueryCache[$url] ) ) {
-			$key = $this->getLocalCacheKey( 'ForeignAPIRepo', 'Metadata', md5( $url ) );
-			$data = $wgMemc->get( $key );
-			if ( !$data ) {
-				$data = self::httpGet( $url );
-				if ( !$data ) {
-					return null;
-				}
-				$wgMemc->set( $key, $data, 3600 );
-			}
-
-			if ( count( $this->mQueryCache ) > 100 ) {
-				// Keep the cache from growing infinitely
-				$this->mQueryCache = array();
-			}
-			$this->mQueryCache[$url] = $data;
-		}
-		return FormatJson::decode( $this->mQueryCache[$url], true );
 	}
 
 	/**
@@ -433,6 +441,12 @@ class ForeignAPIRepo extends FileRepo {
 	function getInfo() {
 		$info = parent::getInfo();
 		$info['apiurl'] = $this->getApiUrl();
+
+		$repos = $this->fetchRepos();
+		if ( $repos ) {
+			$info['foreignRepos'] = $repos;
+		}
+
 		return $info;
 	}
 
@@ -464,6 +478,46 @@ class ForeignAPIRepo extends FileRepo {
 		} else {
 			return false;
 		}
+	}
+
+	/**
+	 * HTTP GET request to a mediawiki API (with caching)
+	 * @param $target string Used in cache key creation, mostly
+	 * @param $query array The query parameters for the API request
+	 * @param $cacheTTL int Time to live for the memcached caching
+	 */
+	public function httpGetCached( $target, $query, $cacheTTL = 3600 ) {
+		if ( $this->mApiBase ) {
+			$url = wfAppendQuery( $this->mApiBase, $query );
+		} else {
+			$url = $this->makeUrl( $query, 'api' );
+		}
+
+		if ( !isset( $this->mQueryCache[$url] ) ) {
+			global $wgMemc;
+
+			$key = $this->getLocalCacheKey( get_class( $this ), $target, md5( $url ) );
+			$data = $wgMemc->get( $key );
+
+			if ( !$data ) {
+				$data = self::httpGet( $url );
+
+				if ( !$data ) {
+					return null;
+				}
+
+				$wgMemc->set( $key, $data, $cacheTTL );
+			}
+
+			if ( count( $this->mQueryCache ) > 100 ) {
+				// Keep the cache from growing infinitely
+				$this->mQueryCache = array();
+			}
+
+			$this->mQueryCache[$url] = $data;
+		}
+
+		return $this->mQueryCache[$url];
 	}
 
 	/**
