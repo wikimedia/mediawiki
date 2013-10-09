@@ -90,6 +90,7 @@ class User {
 		'mEmailAuthenticated',
 		'mEmailToken',
 		'mEmailTokenExpires',
+		'mPasswordExpires',
 		'mRegistration',
 		'mEditCount',
 		// user_groups table
@@ -184,7 +185,7 @@ class User {
 	var $mId, $mName, $mRealName, $mPassword, $mNewpassword, $mNewpassTime,
 		$mEmail, $mTouched, $mToken, $mEmailAuthenticated,
 		$mEmailToken, $mEmailTokenExpires, $mRegistration, $mEditCount,
-		$mGroups, $mOptionOverrides;
+		$mGroups, $mOptionOverrides, $mPasswordExpires;
 	//@}
 
 	/**
@@ -736,6 +737,76 @@ class User {
 	}
 
 	/**
+	 * Expire a user's password
+	 * @since 1.23
+	 * @param $ts Mixed: optional timestamp to convert, default 0 for the current time
+	 */
+	public function expirePassword( $ts = 0 ) {
+		$this->load();
+		$timestamp = wfTimestamp( TS_MW, $ts );
+		$this->mPasswordExpires = $timestamp;
+		$this->saveSettings();
+	}
+
+	/**
+	 * Clear the password expiration for a user
+	 * @since 1.23
+	 * @param bool $load ensure user object is loaded first
+	 */
+	public function resetPasswordExpiration( $load = true ) {
+		global $wgPasswordExpirationDays;
+		if ( $load ) {
+			$this->load();
+		}
+		$newExpire = null;
+		if ( $wgPasswordExpirationDays ) {
+			#$expTS = wfTimestamp() + ( $wgPasswordExpirationDays * 24 * 3600 );
+			#$newExpire = wfTimestamp( TS_MW, $expTS );
+			$expInterval = new DateInterval( "P{$wgPasswordExpirationDays}D" );
+			$expTs = new MWTimestamp;
+			$expTs->timestamp->add( $expInterval );
+			$newExpire = $expTS->getTimestamp( TS_MW );
+		}
+		// Give extensions a chance to force an expiration
+		wfRunHooks( 'ResetPasswordExpiration', array( $this, &$newExpire ) );
+		$this->mPasswordExpires = $newExpire;
+	}
+
+	/**
+	 * Check if the user's password is expired.
+	 * TODO: Put this and password length into a PasswordPolicy object
+	 * @since 1.23
+	 * @return string|bool The expiration type, or false if not expired
+	 * 	hard: A password change is required to login
+	 *	soft: Allow login, but encourage password change
+	 *	false: Password is not expired
+	 */
+	public function getPasswordExpired() {
+		global $wgPasswordExpireGrace;
+		$expired = false;
+		$now = wfTimestamp();
+		$expiration = $this->getPasswordExpireDate();
+		$expUnix = wfTimestamp( TS_UNIX, $expiration );
+		if ( $expiration !== null && $expUnix < $now ) {
+			$graceExpired = ( $expUnix + $wgPasswordExpireGrace < $now );
+			$expired = $graceExpired ? 'hard' : 'soft';
+		}
+		return $expired;
+	}
+
+	/**
+	 * Get this user's password expiration date. Since this may be using
+	 * the cached User object, we assume that whatever mechanism is setting
+	 * the expiration date is also expiring the User cache.
+	 * @since 1.23
+	 * @return string|false the datestamp of the expiration, or null if not set
+	 */
+	public function getPasswordExpireDate() {
+		$this->load();
+		return $this->mPasswordExpires;
+	}
+
+	/**
 	 * Does a string look like an e-mail address?
 	 *
 	 * This validates an email address using an HTML5 specification found at:
@@ -890,6 +961,8 @@ class User {
 		$this->mEmailAuthenticated = null;
 		$this->mEmailToken = '';
 		$this->mEmailTokenExpires = null;
+		$this->mPasswordExpires = null;
+		$this->resetPasswordExpiration( false );
 		$this->mRegistration = wfTimestamp( TS_MW );
 		$this->mGroups = array();
 
@@ -1097,6 +1170,7 @@ class User {
 			$this->mEmailAuthenticated = wfTimestampOrNull( TS_MW, $row->user_email_authenticated );
 			$this->mEmailToken = $row->user_email_token;
 			$this->mEmailTokenExpires = wfTimestampOrNull( TS_MW, $row->user_email_token_expires );
+			$this->mPasswordExpires = wfTimestampOrNull( TS_MW, $row->user_password_expires );
 			$this->mRegistration = wfTimestampOrNull( TS_MW, $row->user_registration );
 		} else {
 			$all = false;
@@ -3307,6 +3381,7 @@ class User {
 				'user_token' => strval( $this->mToken ),
 				'user_email_token' => $this->mEmailToken,
 				'user_email_token_expires' => $dbw->timestampOrNull( $this->mEmailTokenExpires ),
+				'user_password_expires' => $dbw->timestampOrNull( $this->mPasswordExpires ),
 			), array( /* WHERE */
 				'user_id' => $this->mId
 			), __METHOD__
@@ -4781,6 +4856,7 @@ class User {
 			'user_email_authenticated',
 			'user_email_token',
 			'user_email_token_expires',
+			'user_password_expires',
 			'user_registration',
 			'user_editcount',
 		);

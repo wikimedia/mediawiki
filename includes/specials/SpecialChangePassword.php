@@ -28,7 +28,7 @@
  */
 class SpecialChangePassword extends UnlistedSpecialPage {
 
-	protected $mUserName, $mOldpass, $mNewpass, $mRetype, $mDomain;
+	protected $mUserName, $mOldpass, $mNewpass, $mRetype, $mDomain, $mMessage;
 
 	public function __construct() {
 		parent::__construct( 'ChangePassword', 'editmyprivateinfo' );
@@ -119,6 +119,15 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 		$this->getOutput()->addHTML( Xml::element( 'p', array( 'class' => 'error' ), $msg ) );
 	}
 
+	/**
+	 * Set a message at the top of the Change Password form
+	 * @since 1.23
+	 * @param Message $msg to parse and add to the form header
+	 */
+	public function setChangeMessage( Message $msg ) {
+		$this->mMessage = $msg;
+	}
+
 	function showForm() {
 		global $wgCookieExpiration;
 
@@ -126,13 +135,58 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 		if ( !$this->mUserName ) {
 			$this->mUserName = $user->getName();
 		}
+
+		$this->getOutput()->addHTML(
+			$this->getForm(
+				$user,
+				$wgCookieExpiration,
+				array(
+					'returnto' => $this->getRequest()->getValues( 'returnto', 'returntoquery' ),
+					'username' => $this->mUserName,
+					'oldpass' => $this->mOldpass,
+					'domain' => $this->mDomain,
+					'message' => $this->mMessage,
+				)
+			)
+		);
+	}
+
+	/**
+	 * Generate the form for the password reset.
+	 *
+	 * @param User $user the user who is performing the reset. May not be the subject of the reset.
+	 * @param int $cookieExpiration cookie expiration for remembermypassword input
+	 * @param array $options an array of options used to generate the form
+	 * 	message: Message object to parse and display at the top of the form
+	 * 	username: The username of the subject of the reset
+	 *	oldpass: The preveous password of the subject, to pre-populate the form
+	 * 	domain: The wgAuth domain
+	 * 	returnto: array of "returnto" and "returntoquery" params for cancel
+	 */
+	public function getForm( User $user, $cookieExpiration, $options ) {
+
+		$defaultOptions = array(
+			'returnto' => array(),
+			'username' => '',
+			'oldpass' => '',
+			'domain' => '',
+			'message' => false,
+		);
+		$options = array_merge( $defaultOptions, $options );
+
+		$form = '';
+
+		if ( $options['message'] instanceof Message ) {
+			$form .= $options['message']->parse();
+		}
+
 		$rememberMe = '';
 		if ( !$user->isLoggedIn() ) {
 			$rememberMe = '<tr>' .
 				'<td></td>' .
 				'<td class="mw-input">' .
 				Xml::checkLabel(
-					$this->msg( 'remembermypassword' )->numParams( ceil( $wgCookieExpiration / ( 3600 * 24 ) ) )->text(),
+					$this->msg( 'remembermypassword' )->numParams( ceil( $cookieExpiration / ( 3600 * 24 ) ) )->text(),
 					'wpRemember', 'wpRemember',
 					$this->getRequest()->getCheck( 'wpRemember' ) ) .
 				'</td>' .
@@ -143,26 +197,28 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 			$oldpassMsg = 'oldpassword';
 			$submitMsg = 'resetpass-submit-loggedin';
 		}
+
 		$extraFields = array();
 		wfRunHooks( 'ChangePasswordForm', array( &$extraFields ) );
 		$prettyFields = array(
-			array( 'wpName', 'username', 'text', $this->mUserName ),
-			array( 'wpPassword', $oldpassMsg, 'password', $this->mOldpass ),
+			array( 'wpName', 'username', 'text', $options['username'] ),
+			array( 'wpPassword', $oldpassMsg, 'password', $options['oldpass'] ),
 			array( 'wpNewPassword', 'newpassword', 'password', null ),
 			array( 'wpRetype', 'retypenew', 'password', null ),
 		);
 		$prettyFields = array_merge( $prettyFields, $extraFields );
 		$hiddenFields = array(
 			'token' => $user->getEditToken(),
-			'wpName' => $this->mUserName,
-			'wpDomain' => $this->mDomain,
-		) + $this->getRequest()->getValues( 'returnto', 'returntoquery' );
+			'wpName' => $options['username'],
+			'wpDomain' => $options['domain'],
+		) + $options['returnto'];
+
 		$hiddenFieldsStr = '';
 		foreach ( $hiddenFields as $fieldname => $fieldvalue ) {
 			$hiddenFieldsStr .= Html::hidden( $fieldname, $fieldvalue ) . "\n";
 		}
-		$this->getOutput()->addHTML(
-			Xml::fieldset( $this->msg( 'resetpass_header' )->text() ) .
+
+		$form .= Xml::fieldset( $this->msg( 'resetpass_header' )->text() ) .
 				Xml::openElement( 'form',
 					array(
 						'method' => 'post',
@@ -182,8 +238,9 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 				"</tr>\n" .
 				Xml::closeElement( 'table' ) .
 				Xml::closeElement( 'form' ) .
-				Xml::closeElement( 'fieldset' ) . "\n"
-		);
+				Xml::closeElement( 'fieldset' ) . "\n";
+
+		return $form;
 	}
 
 	/**
@@ -257,15 +314,22 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 			);
 		}
 
+		if ( !$user->checkTemporaryPassword( $this->mOldpass ) && !$user->checkPassword( $this->mOldpass ) ) {
+			wfRunHooks( 'PrefsPasswordAudit', array( $user, $newpass, 'wrongpassword' ) );
+			throw new PasswordError( $this->msg( 'resetpass-wrong-oldpass' )->text() );
+		}
+
+		// User is resetting their password to their old password
+		if ( $this->mOldpass === $newpass ) {
+			throw new PasswordError( $this->msg( 'resetpass-recycled' )->text() );
+		}
+
+		// Do AbortChangePassword after checking mOldpass, so we don't leak information
+		// by possibly aborting a new password before verifying the old password.
 		$abortMsg = 'resetpass-abort-generic';
 		if ( !wfRunHooks( 'AbortChangePassword', array( $user, $this->mOldpass, $newpass, &$abortMsg ) ) ) {
 			wfRunHooks( 'PrefsPasswordAudit', array( $user, $newpass, 'abortreset' ) );
 			throw new PasswordError( $this->msg( $abortMsg )->text() );
-		}
-
-		if ( !$user->checkTemporaryPassword( $this->mOldpass ) && !$user->checkPassword( $this->mOldpass ) ) {
-			wfRunHooks( 'PrefsPasswordAudit', array( $user, $newpass, 'wrongpassword' ) );
-			throw new PasswordError( $this->msg( 'resetpass-wrong-oldpass' )->text() );
 		}
 
 		// Please reset throttle for successful logins, thanks!
@@ -287,7 +351,7 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 			// changing the password also modifies the user's token.
 			$user->setCookies();
 		}
-
+		$user->resetPasswordExpiration();
 		$user->saveSettings();
 	}
 

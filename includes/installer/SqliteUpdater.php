@@ -117,6 +117,9 @@ class SqliteUpdater extends DatabaseUpdater {
 
 			// 1.22
 			array( 'addField', 'recentchanges', 'rc_source', 'patch-rc_source.sql' ),
+
+			// 1.23
+			array( 'addField', 'user', 'user_password_expires', 'patch-user_password_expire.sql' ),
 		);
 	}
 

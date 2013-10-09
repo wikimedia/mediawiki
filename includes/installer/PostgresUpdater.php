@@ -398,6 +398,9 @@ class PostgresUpdater extends DatabaseUpdater {
 
 			// 1.22
 			array( 'addPgField', 'recentchanges', 'rc_source',            "TEXT NOT NULL DEFAULT ''" ),
+
+			// 1.23
+			array( 'addPgField', 'mwuser', 'user_password_expires', 'TIMESTAMPTZ' ),
 		);
 	}
 
