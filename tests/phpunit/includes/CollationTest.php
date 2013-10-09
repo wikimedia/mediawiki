@@ -2,7 +2,7 @@
 class CollationTest extends MediaWikiLangTestCase {
 	protected function setUp() {
 		parent::setUp();
-		if ( !wfDl( 'intl' ) ) {
+		if ( !extension_loaded( 'intl' ) ) {
 			$this->markTestSkipped( 'These tests require intl extension' );
 		}
 	}

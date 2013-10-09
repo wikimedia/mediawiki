@@ -321,16 +321,11 @@ abstract class DatabaseInstaller {
 	 * Convenience function.
 	 * Check if a named extension is present.
 	 *
-	 * @see wfDl
 	 * @param $name
 	 * @return bool
 	 */
 	protected static function checkExtension( $name ) {
-		wfSuppressWarnings();
-		$compiled = wfDl( $name );
-		wfRestoreWarnings();
-
-		return $compiled;
+		return extension_loaded( $name );
 	}
 
 	/**
