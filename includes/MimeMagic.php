@@ -537,18 +537,9 @@ class MimeMagic {
 	 * based formats like OPC/ODF files).
 	 *
 	 * @param string $file the file to check
-	 * @param $ext Mixed: the file extension, or true (default) to extract it from the filename.
-	 *             Set it to false to ignore the extension. DEPRECATED! Set to false, use
-	 *             improveTypeFromExtension($mime, $ext) later to improve mime type.
-	 *
 	 * @return string the mime type of $file
 	 */
-	public function guessMimeType( $file, $ext = true ) {
-		if ( $ext ) { // TODO: make $ext default to false. Or better, remove it.
-			wfDebug( __METHOD__ . ": WARNING: use of the \$ext parameter is deprecated. " .
-				"Use improveTypeFromExtension(\$mime, \$ext) instead.\n" );
-		}
-
+	public function guessMimeType( $file ) {
 		$mime = $this->doGuessMimeType( $file, $ext );
 
 		if ( !$mime ) {
@@ -568,10 +559,9 @@ class MimeMagic {
 	 * Guess the mime type from the file contents.
 	 *
 	 * @param string $file
-	 * @param mixed $ext
 	 * @return bool|string
 	 */
-	private function doGuessMimeType( $file, $ext ) { // TODO: remove $ext param
+	private function doGuessMimeType( $file ) {
 		// Read a chunk of the file
 		wfSuppressWarnings();
 		// @todo FIXME: Shouldn't this be rb?
