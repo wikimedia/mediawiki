@@ -9,6 +9,7 @@
  *
  * @author Abi Azkia
  * @author Andri.h
+ * @author Ayie7791
  * @author Ezagren
  * @author Fadli Idris
  * @author Meno25
@@ -198,6 +199,8 @@ $messages = array(
 'tog-diffonly' => 'Bek peuleumah asoe halaman di yup beunida neuandam',
 'tog-showhiddencats' => 'Peuleumah kawan teusom',
 'tog-norollbackdiff' => "Bek peudeuh beunida 'oh lheueh geupeuriwang",
+'tog-useeditwarning' => 'Neupeuingat lôn meunyoë meukubah ôn andam ngon hana teukeubah',
+'tog-prefershttps' => 'Sabè neunguy seunambông teulindông meunyoë neutamöng log',
 
 'underline-always' => 'Sabe',
 'underline-never' => "H'an tom",
@@ -261,6 +264,9 @@ $messages = array(
 'oct' => 'Siplôh',
 'nov' => 'Siblaih',
 'dec' => 'Duwa Blaih',
+'january-date' => 'Buleuën Sa',
+'february-date' => 'Buleuën Duwa',
+'march-date' => 'Buleuën Lhèë',
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Kawan|Kawan}}',
@@ -342,6 +348,7 @@ $messages = array(
 'create-this-page' => 'Peugèt ôn nyoe',
 'delete' => 'Sampôh',
 'deletethispage' => 'Sampôh ôn nyoe',
+'undeletethispage' => 'Bèk neusampôh ôn nyoë',
 'undelete_short' => 'Bateuë sampôh {{PLURAL:$1|one edit|$1 edits}}',
 'viewdeleted_short' => 'Eu {{PLURAL:$1|saboh neuandam|$1 neuandam}} nyang geusampoh',
 'protect' => 'Peulindông',
@@ -388,7 +395,7 @@ $1",
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Bhaih {{SITENAME}}',
 'aboutpage' => 'Project:Bhaih',
-'copyright' => 'Asoë nyang na seusuai ngön $1.',
+'copyright' => 'Asoë nyang na saban ngön',
 'copyrightpage' => '{{ns:project}}:Hak karang',
 'currentevents' => 'Haba barô',
 'currentevents-url' => 'Project:Haba barô',
@@ -468,6 +475,7 @@ Dapeuta on kusuih nyang sah jeuet neu'eu bak [[Special:SpecialPages|{{int:specia
 # General errors
 'error' => 'Seunalah',
 'databaseerror' => 'Kesalahan basis data',
+'databaseerror-text' => 'Saboh salah bak nè data ka teujadi. Nyoë meuhat na nyang han paih bak peukakaih droëneuh',
 'laggedslavemode' => 'Peuneugah: On nyoe kadang hana neuubah baro',
 'readonly' => 'Basis data geurok',
 'enterlockreason' => 'Pasoe daleh neurok ngon pajan jeuet geupeuhah',
@@ -515,9 +523,13 @@ Neulakee: $2',
 'actionthrottledtext' => 'Sibagoe saboh seunipat lawan-spam, droeneuh geupeubataih nibak neupeulaku buet nyoe le that go lam watee paneuk, ngon droeneuh ka leubeh nibak bataih.
 Neuci lom lam padum minet.',
 'viewsourcetext' => 'Droëneuh  jeuët neu’eu',
+'viewyourtext' => 'Droëneuh meuidzin kalon ngon neucok nè andam droëneuh u ôn nyoë',
+'ns-specialprotected' => 'Ôn khusuih bèk neuandam',
+'exception-nologin' => 'Hana tamong lom',
 
 # Login and logout pages
 'yourname' => 'Ureuëng nguy:',
+'userlogin-yourname-ph' => 'Peutamöng nan ureuëng nguy droëneuh',
 'yourpassword' => 'Lageuëm:',
 'yourpasswordagain' => 'Pasoë lom lageuëm:',
 'remembermypassword' => 'Ingat lôn tamong bak peuramban nyoë (keu paleng trep $1 {{PLURAL:$1|uroë|uroë}})',

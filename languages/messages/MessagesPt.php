@@ -968,7 +968,7 @@ Você deve fazê-lo se acidentalmente compartilhá-los com alguém ou se sua con
 'subject' => 'Assunto/cabeçalho:',
 'minoredit' => 'Marcar como edição menor',
 'watchthis' => 'Vigiar esta página',
-'savearticle' => 'Salvar página',
+'savearticle' => 'Gravar página',
 'preview' => 'Antevisão',
 'showpreview' => 'Antever resultado',
 'showlivepreview' => 'Antevisão em tempo real',

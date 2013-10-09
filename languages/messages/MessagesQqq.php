@@ -2985,7 +2985,7 @@ This message indicates {{msg-mw|prefs-dateformat}} is default (= not specified).
 
 {{Identical|Recent changes}}',
 'prefs-watchlist' => 'Used in user preferences.
-{{Identical|My watchlist}}',
+{{Identical|Watchlist}}',
 'prefs-watchlist-days' => 'Used in [[Special:Preferences]], tab "Watchlist".',
 'prefs-watchlist-days-max' => 'Shown as hint in [[Special:Preferences]], tab "Watchlist". Parameters:
 * $1 - number of days
@@ -5306,14 +5306,14 @@ Parameters:
 'usermessage-template' => '{{optional}}',
 
 # Watchlist
-'watchlist' => '{{Identical|My watchlist}}',
+'watchlist' => '{{Identical|Watchlist}}',
 'mywatchlist' => 'Link at the upper right corner of the screen.
 
 See also:
 * {{msg-mw|Mywatchlist}}
 * {{msg-mw|Accesskey-pt-watchlist}}
 * {{msg-mw|Tooltip-pt-watchlist}}
-{{Identical|My watchlist}}',
+{{Identical|Watchlist}}',
 'watchlistfor2' => 'Subtitle on [[Special:Watchlist]].
 Parameters:
 * $1 - Username of current user

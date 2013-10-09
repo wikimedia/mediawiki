@@ -643,6 +643,7 @@ Za popis svih posebnih stranica posjetite [[Special:SpecialPages|ovdje]].',
 # General errors
 'error' => 'Pogreška',
 'databaseerror' => 'Pogreška baze podataka',
+'databaseerror-error' => 'Pogrješka: $1',
 'laggedslavemode' => 'Upozorenje: na stranici se možda ne nalaze najnovije promjene.',
 'readonly' => 'Baza podataka je zaključana',
 'enterlockreason' => 'Upiši razlog zaključavanja i procjenu vremena otključavanja',
@@ -720,7 +721,6 @@ Administrator koji je zaključao spremište naveo je sljedeći razlog: "$3".',
 # Login and logout pages
 'logouttext' => "'''Odjavili ste se.'''
 
-Možete nastaviti s korištenjem {{SITENAME}} neprijavljeni, ili se možete ponovo <span class='plainlinks'>[$1 prijaviti]</span> pod istim ili drugim imenom.
 Neke se stranice mogu prikazivati kao da ste još uvijek prijavljeni, sve dok ne očistite međuspremnik svog preglednika.",
 'welcomeuser' => 'Dobrodošli, $1!',
 'welcomecreation-msg' => 'Vaš je suradnički račun otvoren.
@@ -760,13 +760,14 @@ Ne zaboravite prilagoditi Vaše [[Special:Preferences|{{SITENAME}} postavke]].',
 'userlogin-resetlink' => 'Zaboravili ste detalje vaše prijave?',
 'userlogin-resetpassword-link' => 'Ponovno postavi zaporku',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Pomoć pri prijavi]]',
+'userlogin-createanother' => 'Stvori još jedan račun',
 'createacct-join' => 'Upišite ispod svoje podatke.',
 'createacct-another-join' => 'Upišite dolje podatke o novom računu.',
 'createacct-emailrequired' => 'Adresa e-pošte',
 'createacct-emailoptional' => 'Adresa e-pošte',
 'createacct-email-ph' => 'Upišite svoju adresu e-pošte',
 'createacct-another-email-ph' => 'Upišite adresu e-pošte',
-'createaccountmail' => 'Uporabite nasumice odabranu privremenu zaporku i pošaljite ju na dolje navedenu adresu e-pošte',
+'createaccountmail' => 'Uporabite nasumice odabranu privremenu zaporku i pošaljite ju na navedenu adresu e-pošte',
 'createacct-realname' => 'Stvarno ime (neobvezatno)',
 'createaccountreason' => 'Razlog:',
 'createacct-reason' => 'Razlog',
@@ -841,7 +842,7 @@ Molim unesite ispravno oblikovanu adresu ili ostavite polje praznim.',
 Možete zanemariti ovu poruku ako je suradnički račun stvoren nenamjerno.',
 'usernamehasherror' => 'Suradničko ime ne može sadržavati znakove #',
 'login-throttled' => 'Nedavno ste se previše puta pokušali prijaviti.
-Molimo Vas pričekajte prije nego što pokušate ponovno.',
+Molimo Vas pričekajte $1 prije nego što pokušate ponovno.',
 'login-abort-generic' => 'Vaša prijava bila je neuspješna - Prekinuto',
 'loginlanguagelabel' => 'Jezik: $1',
 'suspicious-userlogout' => 'Vaš zahtjev za odjavu je odbijen jer to izgleda kao da je poslan preko pokvarenog preglednika ili keširanog posrednika (proxyja).',
@@ -858,7 +859,7 @@ Molimo Vas pričekajte prije nego što pokušate ponovno.',
 'newpassword' => 'Nova lozinka',
 'retypenew' => 'Ponovno unesite lozinku',
 'resetpass_submit' => 'Postavite lozinku i prijavite se',
-'changepassword-success' => 'Lozinka uspješno postavljena! Prijava u tijeku...',
+'changepassword-success' => 'Zaporka je uspješno postavljena!',
 'resetpass_forbidden' => 'Lozinka ne može biti promijenjena',
 'resetpass-no-info' => 'Morate biti prijavljeni da biste izravno pristupili ovoj stranici.',
 'resetpass-submit-loggedin' => 'Promijeni lozinku',
@@ -1479,7 +1480,7 @@ Više informacija možete pronaći u [{{fullurl:{{#Special:Log}}/delete|page={{F
 'badsiglength' => 'Vaš potpis je predugačak.
 Ne smije biti duži od $1 {{PLURAL:$1|znaka|znaka|znakova}}.',
 'yourgender' => 'Spol:',
-'gender-unknown' => 'Neodređeno',
+'gender-unknown' => 'Neodređeni',
 'gender-male' => 'Muški',
 'gender-female' => 'Ženski',
 'prefs-help-gender' => 'Mogućnost: softver koristi za ispravno oslovljavanje razlikujući spol. Ovaj podatak bit će javan.',
@@ -3426,7 +3427,7 @@ Svaka sljedeća poveznica u istom retku je izuzetak, npr. kod stranica gdje se s
 'exif-compression-4' => 'CCITT Grupa 4 faks kodiranje',
 
 'exif-copyrighted-true' => 'Zaštićeno autorskim pravom',
-'exif-copyrighted-false' => 'Javno dobro',
+'exif-copyrighted-false' => 'Status autorskih prava nije postavljen',
 
 'exif-unknowndate' => 'Datum nepoznat',
 
@@ -3689,19 +3690,19 @@ $5
 
 Valjanost ovog potvrdnog koda istječe $4.',
 'confirmemail_body_set' => 'Netko, najvjerojatnije vi, s IP adrese $1,
-otvorio je suradnički račun pod imenom "$2" s ovom e-mail adresom na {{SITENAME}}.
+otvorio je suradnički račun pod imenom "$2" s ovom adresom e-pošte na {{SITENAME}}.
 
 Kako biste potvrdili da je ovaj suradnički račun uistinu vaš i uključili 
-e-mail naredbe na {{SITENAME}}, otvorite u vašem pregledniku sljedeću poveznicu:
+mogućnosti e-poruka na {{SITENAME}}, otvorite u vašem pregledniku sljedeću poveznicu:
 
 $3
 
 Ako ovaj suradnički račun *ne* pripada vama, slijedite ovaj link 
-kako biste poništili potvrdu e-mail adrese:
+kako biste poništili potvrdu adrese elektroničke pošte:
 
 $5
 
-Valjanost ovog potvrdnog koda istječe u $4',
+Valjanost ovog potvrdnog kȏda istječe u $4',
 'confirmemail_invalidated' => 'Potvrda E-mail adrese je otkazana',
 'invalidateemail' => 'Poništi potvrđivanje elektroničke pošte',
 
@@ -3946,6 +3947,8 @@ Trebali ste primiti [{{SERVER}}{{SCRIPTPATH}}/COPYING kopiju GNU opće javne lic
 'tags-display-header' => 'Izgled na popisima izmjena',
 'tags-description-header' => 'Puni opis značenja',
 'tags-hitcount-header' => 'Označene izmjene',
+'tags-active-yes' => 'Da',
+'tags-active-no' => 'Ne',
 'tags-edit' => 'uredi',
 'tags-hitcount' => '$1 {{PLURAL:$1|promjena|promjene|promjena}}',
 
@@ -3966,6 +3969,7 @@ Trebali ste primiti [{{SERVER}}{{SCRIPTPATH}}/COPYING kopiju GNU opće javne lic
 'dberr-problems' => 'Ispričavamo se! Ova stranica ima tehničkih poteškoća.',
 'dberr-again' => 'Pričekajte nekoliko minuta i ponovno učitajte.',
 'dberr-info' => '(Ne mogu se spojiti na poslužitelj baze: $1)',
+'dberr-info-hidden' => '(Ne mogu se spojiti na poslužitelj baze)',
 'dberr-usegoogle' => 'U međuvremenu pokušajte tražiti putem Googlea.',
 'dberr-outofdate' => 'Imajte na umu da su njihova kazala našeg sadržaja možda zastarjela.',
 'dberr-cachederror' => 'Sljedeće je dohvaćena kopija tražene stranice, te možda nije ažurirana.',
@@ -3983,6 +3987,7 @@ Trebali ste primiti [{{SERVER}}{{SCRIPTPATH}}/COPYING kopiju GNU opće javne lic
 'htmlform-selectorother-other' => 'Drugi',
 'htmlform-no' => 'Ne',
 'htmlform-yes' => 'Da',
+'htmlform-chosen-placeholder' => 'Odaberite opciju',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 s podrškom pretraživanja cijelog teksta',
@@ -4076,6 +4081,7 @@ Inače, možete ispuniti jednostavan obrazac u nastavku. Vaš komentar biti će 
 'api-error-ok-but-empty' => 'Interna pogrješka: Nema odgovora od poslužitelja.',
 'api-error-overwrite' => 'Postavljanje preko postojeće datoteke nije dopušteno.',
 'api-error-stashfailed' => 'Interna pogrješka: Poslužitelj nije uspio spremiti privremenu datoteku.',
+'api-error-publishfailed' => 'Interna pogrješka: Poslužitelj nije uspio objaviti privremenu datoteku.',
 'api-error-timeout' => 'Poslužitelj nije odgovorio unutar očekivanog vrjemena.',
 'api-error-unclassified' => 'Dogodila se nepoznata pogrješka.',
 'api-error-unknown-code' => 'Nepoznata pogrješka: "$1"',
