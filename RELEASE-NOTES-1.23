@@ -86,6 +86,8 @@ production.
 * New user accounts' personal and talk pages are now watched by them by default.
 * Added SkinTemplateGetLanguageLink hook to allow changing the html of language
   links.
+* Admins can expire users users passwords manually, or on a schedule using the
+  $wgPasswordExpirationDays configuration setting.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent

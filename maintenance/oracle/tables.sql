@@ -18,7 +18,8 @@ CREATE TABLE &mw_prefix.mwuser ( -- replace reserved word 'user'
   user_options              CLOB,
   user_touched              TIMESTAMP(6) WITH TIME ZONE,
   user_registration         TIMESTAMP(6) WITH TIME ZONE,
-  user_editcount            NUMBER
+  user_editcount            NUMBER,
+  user_password_expires     TIMESTAMP(6) WITH TIME ZONE NULL DEFAULT NULL
 );
 ALTER TABLE &mw_prefix.mwuser ADD CONSTRAINT &mw_prefix.mwuser_pk PRIMARY KEY (user_id);
 CREATE UNIQUE INDEX &mw_prefix.mwuser_u01 ON &mw_prefix.mwuser (user_name);
