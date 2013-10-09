@@ -61,6 +61,11 @@ class Revision implements IDBAccessObject {
 	 */
 	protected $mContentHandler;
 
+	/**
+	 * @var int
+	 */
+	protected $mQueryFlags = 0;
+
 	// Revision deletion constants
 	const DELETED_TEXT = 1;
 	const DELETED_COMMENT = 2;
@@ -297,6 +302,9 @@ class Revision implements IDBAccessObject {
 				$dbw = wfGetDB( DB_MASTER );
 				$rev = self::loadFromConds( $dbw, $conditions, $flags );
 			}
+		}
+		if ( $rev ) {
+			$rev->mQueryFlags = $flags;
 		}
 		return $rev;
 	}
@@ -1477,20 +1485,30 @@ class Revision implements IDBAccessObject {
 			$dbr = wfGetDB( DB_SLAVE );
 			$row = $dbr->selectRow( 'text',
 				array( 'old_text', 'old_flags' ),
-				array( 'old_id' => $this->getTextId() ),
+				array( 'old_id' => $textId ),
 				__METHOD__ );
 		}
 
-		if ( !$row && wfGetLB()->getServerCount() > 1 ) {
-			// Possible slave lag!
+		// Fallback to the master in case of slave lag. Also use FOR UPDATE if it was
+		// used to fetch this revision to avoid missing the row due to REPEATABLE-READ.
+		$forUpdate = ( $this->mQueryFlags & self::READ_LOCKING == self::READ_LOCKING );
+		if ( !$row && ( $forUpdate || wfGetLB()->getServerCount() > 1 ) ) {
 			$dbw = wfGetDB( DB_MASTER );
 			$row = $dbw->selectRow( 'text',
 				array( 'old_text', 'old_flags' ),
-				array( 'old_id' => $this->getTextId() ),
-				__METHOD__ );
+				array( 'old_id' => $textId ),
+				__METHOD__,
+				$forUpdate ? array( 'FOR UPDATE' ) : array() );
+		}
+
+		if ( !$row ) {
+			wfDebugLog( 'Revision', "No text row with ID '$textId' (revision {$this->getId()})." );
 		}
 
 		$text = self::getRevisionText( $row );
+		if ( $row && $text === false ) {
+			wfDebugLog( 'Revision', "No blob for text row '$textId' (revision {$this->getId()})." );
+		}
 
 		# No negative caching -- negative hits on text rows may be due to corrupted slave servers
 		if ( $wgRevisionCacheExpiry && $text !== false ) {
