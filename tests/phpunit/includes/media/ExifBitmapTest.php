@@ -4,13 +4,14 @@ class ExifBitmapTest extends MediaWikiTestCase {
 
 	protected function setUp() {
 		parent::setUp();
+		if ( !extension_loaded( 'exif' ) ) {
+			$this->markTestSkipped( "This test needs the exif extension." );
+		}
 
 		$this->setMwGlobals( 'wgShowEXIF', true );
 
 		$this->handler = new ExifBitmapHandler;
-		if ( !wfDl( 'exif' ) ) {
-			$this->markTestSkipped( "This test needs the exif extension." );
-		}
+
 	}
 
 	public function testIsOldBroken() {

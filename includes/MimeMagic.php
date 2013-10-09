@@ -169,10 +169,6 @@ class MimeMagic {
 	 */
 	private static $instance;
 
-	/** True if the fileinfo extension has been loaded
-	 */
-	private static $extensionLoaded = false;
-
 	/** Initializes the MimeMagic object. This is called by MimeMagic::singleton().
 	 *
 	 * This constructor parses the mime.types and mime.info files and build internal mappings.
@@ -182,17 +178,12 @@ class MimeMagic {
 		 *   --- load mime.types ---
 		 */
 
-		global $wgMimeTypeFile, $IP, $wgLoadFileinfoExtension;
+		global $wgMimeTypeFile, $IP;
 
 		$types = MM_WELL_KNOWN_MIME_TYPES;
 
 		if ( $wgMimeTypeFile == 'includes/mime.types' ) {
 			$wgMimeTypeFile = "$IP/$wgMimeTypeFile";
-		}
-
-		if ( $wgLoadFileinfoExtension && !self::$extensionLoaded ) {
-			self::$extensionLoaded = true;
-			wfDl( 'fileinfo' );
 		}
 
 		if ( $wgMimeTypeFile ) {

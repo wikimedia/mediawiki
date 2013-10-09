@@ -8,6 +8,10 @@ class ExifRotationTest extends MediaWikiTestCase {
 
 	protected function setUp() {
 		parent::setUp();
+		if ( !extension_loaded( 'exif' ) ) {
+			$this->markTestSkipped( "This test needs the exif extension." );
+		}
+
 		$this->handler = new BitmapHandler();
 		$filePath = __DIR__ . '/../../data/media';
 
@@ -22,9 +26,6 @@ class ExifRotationTest extends MediaWikiTestCase {
 				'containerPaths' => array( 'temp-thumb' => $tmpDir, 'data' => $filePath )
 			) )
 		) );
-		if ( !wfDl( 'exif' ) ) {
-			$this->markTestSkipped( "This test needs the exif extension." );
-		}
 
 		$this->setMwGlobals( array(
 			'wgShowEXIF' => true,
