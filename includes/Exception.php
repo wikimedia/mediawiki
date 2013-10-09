@@ -173,11 +173,12 @@ class MWException extends Exception {
 	 * This allows to link the exception to its corresponding log entry when
 	 * $wgShowExceptionDetails is set to false.
 	 *
+	 * @since 1.20
 	 * @return string
 	 */
 	function getLogId() {
 		if ( $this->logId === null ) {
-			$this->logId = wfRandomString( 8 );
+			$this->logId = MWExceptionHandler::getLogId();
 		}
 		return $this->logId;
 	}
@@ -186,26 +187,13 @@ class MWException extends Exception {
 	 * Return the requested URL and point to file and line number from which the
 	 * exception occurred
 	 *
+	 * @since 1.8
+	 * @deprecated since 1.22 Use MWExceptionHandler::getLogMessage instead.
 	 * @return string
 	 */
 	function getLogMessage() {
-		global $wgRequest;
-
-		$id = $this->getLogId();
-		$file = $this->getFile();
-		$line = $this->getLine();
-		$message = $this->getMessage();
-
-		if ( isset( $wgRequest ) && !$wgRequest instanceof FauxRequest ) {
-			$url = $wgRequest->getRequestURL();
-			if ( !$url ) {
-				$url = '[no URL]';
-			}
-		} else {
-			$url = '[no req]';
-		}
-
-		return "[$id] $url   Exception from line $line of $file: $message";
+		wfDeprecated( __METHOD__, '1.22' );
+		return MWExceptionHandler::getLogMessage( $this, $this->getLogId() );
 	}
 
 	/**
@@ -757,4 +745,65 @@ class MWExceptionHandler {
 		}
 		return $finalExceptionText . '#' . ( $i + 1 ) . ' {main}';
 	}
+
+
+	/**
+	 * @since 1.22
+	 * @param Exception $e
+	 * @return string
+	 */
+	protected static function getLogId( Exception $e ) {
+		return wfRandomString( 8 );
+	}
+
+	/**
+	 * Return the requested URL and point to file and line number from which the
+	 * exception occurred.
+	 *
+	 * @since 1.22
+	 * @param Exception $e
+	 * @return string
+	 */
+	protected static function getLogMessage( Exception $e ) {
+		global $wgRequest;
+
+		$id = self::getLogId();
+		$file = $e->getFile();
+		$line = $e->getLine();
+		$message = $e->getMessage();
+
+		if ( isset( $wgRequest ) && !$wgRequest instanceof FauxRequest ) {
+			$url = $wgRequest->getRequestURL();
+			if ( !$url ) {
+				$url = '[no URL]';
+			}
+		} else {
+			$url = '[no req]';
+		}
+
+		return "[$id] $url   Exception from line $line of $file: $message";
+	}
+
+	/**
+	 * Log an exceptoin to the exception log (if enabled).
+	 *
+	 * This method must not assume the exception is an MWException,
+	 * it is also used to handle PHP errors or errors from other libraries.
+	 *
+	 * @since 1.22
+	 * @param Exception $e
+	 */
+	public static function logException( Exception $e ) {
+		global $wgLogExceptionBacktrace;
+
+		$log = MWExceptionHandler::getLogMessage( $e );
+		if ( $log ) {
+			if ( $wgLogExceptionBacktrace ) {
+				wfDebugLog( 'exception', $log . "\n" . MWExceptionHandler::formatRedactedTrace( $e ) . "\n" );
+			} else {
+				wfDebugLog( 'exception', $log );
+			}
+		}
+	}
+
 }
