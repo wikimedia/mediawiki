@@ -44,6 +44,16 @@ class LinksUpdate extends SqlDataUpdate {
 		$mRecursive;     //!< Whether to queue jobs for recursive updates
 
 	/**
+	 * @var null|array Added links if calculated.
+	 */
+	private $linkInsertions = null;
+
+	/**
+	 * @var null|array Deleted links if calculated.
+	 */
+	private $linkDeletions = null;
+
+	/**
 	 * Constructor
 	 *
 	 * @param $title Title of the page we're updating
@@ -128,8 +138,9 @@ class LinksUpdate extends SqlDataUpdate {
 
 		# Page links
 		$existing = $this->getExistingLinks();
-		$this->incrTableUpdate( 'pagelinks', 'pl', $this->getLinkDeletions( $existing ),
-			$this->getLinkInsertions( $existing ) );
+		$this->linkDeletions = $this->getLinkDeletions( $existing );
+		$this->linkInsertions = $this->getLinkInsertions( $existing );
+		$this->incrTableUpdate( 'pagelinks', 'pl', $this->linkDeletions, $this->linkInsertions );
 
 		# Image links
 		$existing = $this->getExistingImages();
@@ -820,6 +831,40 @@ class LinksUpdate extends SqlDataUpdate {
 				}
 			}
 		}
+	}
+
+	/**
+	 * Fetch page links added by this LinksUpdate.  Only available after the update is complete
+	 * and only if dumb updates are disabled.
+	 * @return null|array of Titles
+	 */
+	public function getAddedLinks() {
+		if ( $this->linkInsertions === null ) {
+			return null;
+		}
+		$result = array();
+		foreach ( $this->linkInsertions as $insertion ) {
+			$result[] = Title::makeTitle( $insertion[ 'pl_namespace' ], $insertion[ 'pl_title' ] );
+		}
+		return $result;
+	}
+
+	/**
+	 * Fetch page links removed by this LinksUpdate.  Only available after the update is complete
+	 * and only if dumb updates are disabled.
+	 * @return null|array of Titles
+	 */
+	public function getRemovedLinks() {
+		if ( $this->linkDeletions === null ) {
+			return null;
+		}
+		$result = array();
+		foreach ( $this->linkDeletions as $ns => $titles ) {
+			foreach ( $titles as $title => $unused ) {
+				$result[] = Title::makeTitle( $ns, $title );
+			}
+		}
+		return $result;
 	}
 }
 
