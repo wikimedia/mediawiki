@@ -86,7 +86,7 @@ class ForeignAPIFile extends File {
 	 * @return string
 	 */
 	static function getProps() {
-		return 'timestamp|user|comment|url|size|sha1|metadata|mime|mediatype';
+		return 'timestamp|user|comment|url|size|sha1|metadata|mime|mediatype|extmetadata';
 	}
 
 	// Dummy functions...
