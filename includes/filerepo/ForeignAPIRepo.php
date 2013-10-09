@@ -32,6 +32,7 @@
  *   'apibase'                => 'http://en.wikipedia.org/w/api.php',
  *   'fetchDescription'       => true, // Optional
  *   'descriptionCacheExpiry' => 3600,
+ *   'iiprop'                 => array( 'url', 'thumbnail', 'extmetadata' ),
  * );
  *
  * @ingroup FileRepo
@@ -78,6 +79,8 @@ class ForeignAPIRepo extends FileRepo {
 		if ( $this->canCacheThumbs() && !$this->thumbUrl ) {
 			$this->thumbUrl = $this->url . '/thumb';
 		}
+
+		$this->mIIProps = isset( $info['iiprop'] ) ? $info['iiprop'] : array( 'url', 'timestamp' );
 	}
 
 	/**
@@ -86,6 +89,14 @@ class ForeignAPIRepo extends FileRepo {
 	 */
 	function getApiUrl() {
 		return $this->mApiBase;
+	}
+
+	/**
+	 * @return string
+	 * @since 1.22
+	 */
+	function getIIProp() {
+		return join( '|', $this->mIIProps );
 	}
 
 	/**
@@ -238,7 +249,7 @@ class ForeignAPIRepo extends FileRepo {
 	function getThumbUrl( $name, $width = -1, $height = -1, &$result = null, $otherParams = '' ) {
 		$data = $this->fetchImageQuery( array(
 			'titles' => 'File:' . $name,
-			'iiprop' => 'url|timestamp',
+			'iiprop' => $this->getIIProp(),
 			'iiurlwidth' => $width,
 			'iiurlheight' => $height,
 			'iiurlparam' => $otherParams,
@@ -265,7 +276,7 @@ class ForeignAPIRepo extends FileRepo {
 	function getThumbError( $name, $width = -1, $height = -1, $otherParams = '', $lang = null ) {
 		$data = $this->fetchImageQuery( array(
 			'titles' => 'File:' . $name,
-			'iiprop' => 'url|timestamp',
+			'iiprop' => $this->getIIProp(),
 			'iiurlwidth' => $width,
 			'iiurlheight' => $height,
 			'iiurlparam' => $otherParams,

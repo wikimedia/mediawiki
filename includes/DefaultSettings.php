@@ -435,6 +435,7 @@ $wgImgAuthPublicTest = true;
  * ForeignAPIRepo:
  *   - apibase              Use for the foreign API's URL
  *   - apiThumbCacheExpiry  How long to locally cache thumbs for
+ *   - iiprop               Array of iiprop values to pass along (default to array( 'url', 'timestamp' ))
  *
  * If you leave $wgLocalFileRepo set to false, Setup will fill in appropriate values.
  * Otherwise, set $wgLocalFileRepo to a repository structure as described above.
