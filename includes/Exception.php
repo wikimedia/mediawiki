@@ -30,7 +30,6 @@
  * @ingroup Exception
  */
 class MWException extends Exception {
-	var $logId;
 
 	/**
 	 * Should the exception use $wgOut to output the error?
@@ -131,7 +130,7 @@ class MWException extends Exception {
 				"</p>\n";
 		} else {
 			return "<div class=\"errorbox\">" .
-				'[' . $this->getLogId() . '] ' .
+				'[' . MWExceptionHandler::getLogId( $this ) . '] ' .
 				gmdate( 'Y-m-d H:i:s' ) .
 				": Fatal exception of type " . get_class( $this ) . "</div>\n" .
 				"<!-- Set \$wgShowExceptionDetails = true; " .
@@ -169,43 +168,28 @@ class MWException extends Exception {
 	}
 
 	/**
-	 * Get a random ID for this error.
-	 * This allows to link the exception to its corresponding log entry when
-	 * $wgShowExceptionDetails is set to false.
+	 * Get a the ID for this error.
 	 *
+	 * @since 1.20
+	 * @deprecated since 1.22 Use MWExceptionHandler::getLogId instead.
 	 * @return string
 	 */
 	function getLogId() {
-		if ( $this->logId === null ) {
-			$this->logId = wfRandomString( 8 );
-		}
-		return $this->logId;
+		wfDeprecated( __METHOD__, '1.22' );
+		return MWExceptionHandler::getLogId( $this );
 	}
 
 	/**
 	 * Return the requested URL and point to file and line number from which the
 	 * exception occurred
 	 *
+	 * @since 1.8
+	 * @deprecated since 1.22 Use MWExceptionHandler::getLogMessage instead.
 	 * @return string
 	 */
 	function getLogMessage() {
-		global $wgRequest;
-
-		$id = $this->getLogId();
-		$file = $this->getFile();
-		$line = $this->getLine();
-		$message = $this->getMessage();
-
-		if ( isset( $wgRequest ) && !$wgRequest instanceof FauxRequest ) {
-			$url = $wgRequest->getRequestURL();
-			if ( !$url ) {
-				$url = '[no URL]';
-			}
-		} else {
-			$url = '[no req]';
-		}
-
-		return "[$id] $url   Exception from line $line of $file: $message";
+		wfDeprecated( __METHOD__, '1.22' );
+		return MWExceptionHandler::getLogMessage( $this );
 	}
 
 	/**
@@ -249,7 +233,7 @@ class MWException extends Exception {
 	function report() {
 		global $wgMimeType;
 
-		$this->logException();
+		MWExceptionHandler::logException( $this );
 
 		if ( defined( 'MW_API' ) ) {
 			// Unhandled API exception, we can't be sure that format printer is alive
@@ -263,22 +247,6 @@ class MWException extends Exception {
 			header( "Content-Type: $wgMimeType; charset=utf-8", true );
 
 			$this->reportHTML();
-		}
-	}
-
-	/**
-	 * Log the error message to the exception log (if enabled)
-	 */
-	function logException() {
-		global $wgLogExceptionBacktrace;
-
-		$log = $this->getLogMessage();
-		if ( $log ) {
-			if ( $wgLogExceptionBacktrace ) {
-				wfDebugLog( 'exception', $log . "\n" . MWExceptionHandler::formatRedactedTrace( $this ) . "\n" );
-			} else {
-				wfDebugLog( 'exception', $log );
-			}
 		}
 	}
 
@@ -765,4 +733,73 @@ class MWExceptionHandler {
 		}
 		return $finalExceptionText . '#' . ( $i + 1 ) . ' {main}';
 	}
+
+
+	/**
+	 * Get the ID for this error.
+	 *
+	 * The ID is saved so that one can match the one output to the user (when
+	 * $wgShowExceptionDetails is set to false), to the entry in the debug log.
+	 *
+	 * @since 1.22
+	 * @param Exception $e
+	 * @return string
+	 */
+	public static function getLogId( Exception $e ) {
+		if ( !isset( $e->_mwLogId ) ) {
+			$e->_mwLogId = wfRandomString( 8 );
+		}
+		return $e->_mwLogId;
+	}
+
+	/**
+	 * Return the requested URL and point to file and line number from which the
+	 * exception occurred.
+	 *
+	 * @since 1.22
+	 * @param Exception $e
+	 * @return string
+	 */
+	public static function getLogMessage( Exception $e ) {
+		global $wgRequest;
+
+		$id = self::getLogId( $e );
+		$file = $e->getFile();
+		$line = $e->getLine();
+		$message = $e->getMessage();
+
+		if ( isset( $wgRequest ) && !$wgRequest instanceof FauxRequest ) {
+			$url = $wgRequest->getRequestURL();
+			if ( !$url ) {
+				$url = '[no URL]';
+			}
+		} else {
+			$url = '[no req]';
+		}
+
+		return "[$id] $url   Exception from line $line of $file: $message";
+	}
+
+	/**
+	 * Log an exception to the exception log (if enabled).
+	 *
+	 * This method must not assume the exception is an MWException,
+	 * it is also used to handle PHP errors or errors from other libraries.
+	 *
+	 * @since 1.22
+	 * @param Exception $e
+	 */
+	public static function logException( Exception $e ) {
+		global $wgLogExceptionBacktrace;
+
+		$log = self::getLogMessage( $e );
+		if ( $log ) {
+			if ( $wgLogExceptionBacktrace ) {
+				wfDebugLog( 'exception', $log . "\n" . self::formatRedactedTrace( $e ) . "\n" );
+			} else {
+				wfDebugLog( 'exception', $log );
+			}
+		}
+	}
+
 }

@@ -178,12 +178,12 @@ class ResourceLoader {
 
 			// Save filtered text to Memcached
 			$cache->set( $key, $result );
-		} catch ( Exception $exception ) {
-			$exception->logException();
-			wfDebugLog( 'resourceloader', __METHOD__ . ": minification failed: $exception" );
+		} catch ( Exception $e ) {
+			MWExceptionHandler::logException( $e );
+			wfDebugLog( 'resourceloader', __METHOD__ . ": minification failed: $e" );
 			$this->hasErrors = true;
 			// Return exception as a comment
-			$result = self::formatException( $exception );
+			$result = self::formatException( $e );
 		}
 
 		wfProfileOut( __METHOD__ );
@@ -477,7 +477,7 @@ class ResourceLoader {
 		try {
 			$this->preloadModuleInfo( array_keys( $modules ), $context );
 		} catch ( Exception $e ) {
-			$e->logException();
+			MWExceptionHandler::logException( $e );
 			wfDebugLog( 'resourceloader', __METHOD__ . ": preloading module info failed: $e" );
 			$this->hasErrors = true;
 			// Add exception to the output as a comment
@@ -497,7 +497,7 @@ class ResourceLoader {
 				// Calculate maximum modified time
 				$mtime = max( $mtime, $module->getModifiedTime( $context ) );
 			} catch ( Exception $e ) {
-				$e->logException();
+				MWExceptionHandler::logException( $e );
 				wfDebugLog( 'resourceloader', __METHOD__ . ": calculating maximum modified time failed: $e" );
 				$this->hasErrors = true;
 				// Add exception to the output as a comment
@@ -724,7 +724,7 @@ class ResourceLoader {
 			try {
 				$blobs = MessageBlobStore::get( $this, $modules, $context->getLanguage() );
 			} catch ( Exception $e ) {
-				$e->logException();
+				MWExceptionHandler::logException( $e );
 				wfDebugLog( 'resourceloader', __METHOD__ . ": pre-fetching blobs from MessageBlobStore failed: $e" );
 				$this->hasErrors = true;
 				// Add exception to the output as a comment
@@ -832,7 +832,7 @@ class ResourceLoader {
 						break;
 				}
 			} catch ( Exception $e ) {
-				$e->logException();
+				MWExceptionHandler::logException( $e );
 				wfDebugLog( 'resourceloader', __METHOD__ . ": generating module package failed: $e" );
 				$this->hasErrors = true;
 				// Add exception to the output as a comment
