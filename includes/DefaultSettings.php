@@ -1359,6 +1359,12 @@ $wgNewPasswordExpiry = 3600 * 24 * 7;
 $wgUserEmailConfirmationTokenExpiry = 7 * 24 * 60 * 60;
 
 /**
+ * If a user's password is expired, the number of seconds when they can still login,
+ * and cancel their password change, but are sent to the password change form on each login.
+ */
+$wgPasswordExpireGrace = 3600 * 24 * 7; // 7 days
+
+/**
  * SMTP Mode.
  *
  * For using a direct (authenticated) SMTP server connection.
