@@ -20,7 +20,7 @@
  * @file
  * @ingroup SpecialPage Watchlist
  */
-class SpecialWatchlist extends SpecialPage {
+class SpecialWatchlist extends SpecialRecentChanges {
 	protected $customFilters;
 
 	/**
@@ -28,6 +28,10 @@ class SpecialWatchlist extends SpecialPage {
 	 */
 	public function __construct( $page = 'Watchlist', $restriction = 'viewmywatchlist' ) {
 		parent::__construct( $page, $restriction );
+	}
+
+	public function isIncludable() {
+		return false;
 	}
 
 	/**
@@ -501,9 +505,5 @@ class SpecialWatchlist extends SpecialPage {
 		$count = $row->count;
 
 		return floor( $count / 2 );
-	}
-
-	protected function getGroupName() {
-		return 'changes';
 	}
 }
