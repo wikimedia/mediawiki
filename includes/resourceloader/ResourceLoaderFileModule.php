@@ -313,7 +313,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	public function getStyles( ResourceLoaderContext $context ) {
 		$styles = $this->readStyleFiles(
 			$this->getStyleFiles( $context ),
-			$this->getFlip( $context )
+			$this->getFlip( $context ),
+			$context
 		);
 		// Collect referenced files
 		$this->localFileRefs = array_unique( $this->localFileRefs );
@@ -633,11 +634,12 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * concetenate
 	 *
 	 * @param bool $flip
+	 * @param ResourceLoaderContext $context
 	 *
 	 * @return array: List of concatenated and remapped CSS data from $styles,
 	 *     keyed by media type
 	 */
-	protected function readStyleFiles( array $styles, $flip ) {
+	protected function readStyleFiles( array $styles, $flip, $context ) {
 		if ( empty( $styles ) ) {
 			return array();
 		}
@@ -648,7 +650,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 				array_map(
 					array( $this, 'readStyleFile' ),
 					$uniqueFiles,
-					array_fill( 0, count( $uniqueFiles ), $flip )
+					array_fill( 0, count( $uniqueFiles ), $flip ),
+					array_fill( 0, count( $uniqueFiles ), $context )
 				)
 			);
 		}
@@ -662,11 +665,12 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 *
 	 * @param string $path File path of style file to read
 	 * @param bool $flip
+	 * @param ResourceLoaderContext $context
 	 *
 	 * @return string: CSS data in script file
 	 * @throws MWException if the file doesn't exist
 	 */
-	protected function readStyleFile( $path, $flip ) {
+	protected function readStyleFile( $path, $flip, $context ) {
 		$localPath = $this->getLocalPath( $path );
 		if ( !file_exists( $localPath ) ) {
 			$msg = __METHOD__ . ": style file not found: \"$localPath\"";
@@ -675,7 +679,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		}
 
 		if ( $this->getStyleSheetLang( $path ) === 'less' ) {
-			$style = $this->compileLESSFile( $localPath );
+			$style = $this->compileLESSFile( $localPath, $context );
 			$this->hasGeneratedStyles = true;
 		} else {
 			$style = file_get_contents( $localPath );
@@ -750,9 +754,10 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 *
 	 * @since 1.22
 	 * @param string $fileName File path of LESS source
+	 * @param ResourceLoaderContext $context
 	 * @return string: CSS source
 	 */
-	protected function compileLESSFile( $fileName ) {
+	protected function compileLESSFile( $fileName, $context ) {
 		global $wgShowExceptionDetails;
 
 		$key = self::getLESSCacheKey( $fileName );
@@ -761,12 +766,15 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		// The input to lessc. Either an associative array representing the
 		// cached results of a previous compilation, or the string file name if
 		// no cache result exists.
-		$source = $cache->get( $key );
+		$source = null;
+		if ( !$context->getDebug() ) {
+			$source = $cache->get( $key );
+		}
 		if ( !is_array( $source ) || !isset( $source['root'] ) ) {
 			$source = $fileName;
 		}
 
-		$compiler = ResourceLoader::getLessCompiler();
+		$compiler = $context->getResourceLoader()->getLessCompiler();
 		$expire = 0;
 		try {
 			$result = $compiler->cachedCompile( $source );

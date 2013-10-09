@@ -85,7 +85,7 @@ class ResourceLoaderTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideResourceLoaderContext
-	 * @covers ResourceLoaderFileModule::compileLessFile
+	 * @covers ResourceLoaderFileModule::compileLESSFile
 	 */
 	public function testLessFileCompilation( $context ) {
 		$basePath = __DIR__ . '/../data/less/module';
@@ -95,6 +95,40 @@ class ResourceLoaderTest extends MediaWikiTestCase {
 		) );
 		$styles = $module->getStyles( $context );
 		$this->assertStringEqualsFile( $basePath . '/styles.css', $styles['all'] );
+	}
+
+	/**
+	 * @covers ResourceLoaderFileModule::compileLESSFile
+	 */
+	 public function testLessFileCompilationErrorWithDebug() {
+		global $wgResourceLoaderDebug;
+		$wgResourceLoaderDebug = true;
+		$basePath = __DIR__ . '/../data/less/module';
+
+		// create a stub for lessc so that we can assert cachedCompile is called twice
+		$lesscStub = $this->getMock( 'lessc', array( 'cachedCompile' ) );
+		$lesscStub
+			->expects( $this->exactly( 2 ) )
+			->method( 'cachedCompile' )
+			->with( $this->equalTo( $basePath . '/dummy.less' ) )
+			->will( $this->throwException( new Exception( 'lessc error' ) ) );
+
+		$resourceLoader = $this->getMock( 'ResourceLoader', array( 'getLessCompiler' ) );
+		$resourceLoader
+			->expects( $this->any() )
+			->method( 'getLessCompiler' )
+			->will( $this->returnValue( $lesscStub ) );
+
+		$request = new FauxRequest();
+		$context = new ResourceLoaderContext( $resourceLoader, $request );
+
+		$module = new ResourceLoaderFileModule( array(
+			'localBasePath' => $basePath,
+			'styles' => array( 'dummy.less' ),
+		) );
+
+		$module->getStyles( $context );
+		$module->getStyles( $context );
 	}
 
 	/**

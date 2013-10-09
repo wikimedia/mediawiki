@@ -1220,7 +1220,7 @@ class ResourceLoader {
 	 * @since 1.22
 	 * @return lessc
 	 */
-	public static function getLessCompiler() {
+	public function getLessCompiler() {
 		global $wgResourceLoaderLESSFunctions, $wgResourceLoaderLESSImportPaths;
 
 		$less = new lessc();

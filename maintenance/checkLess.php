@@ -48,7 +48,7 @@ class CheckLess extends Maintenance {
 					continue;
 				}
 				try {
-					$compiler = ResourceLoader::getLessCompiler();
+					$compiler = $resourceLoader->getLessCompiler();
 					$compiler->compileFile( $file );
 				} catch ( Exception $e ) {
 					if ( !$hadErrors ) {
