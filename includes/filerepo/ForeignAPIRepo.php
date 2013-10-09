@@ -42,6 +42,16 @@ class ForeignAPIRepo extends FileRepo {
 	 * Update the version every time you make breaking or significant changes. */
 	const VERSION = "2.1";
 
+	/**
+	 * List of iiprop values for the thumbnail fetch queries.
+	 * @since 1.22
+	 */
+	static $imageInfoProps = array(
+		'url',
+		'thumbnail',
+		'timestamp',
+	);
+
 	var $fileFactory = array( 'ForeignAPIFile', 'newFromTitle' );
 	/* Check back with Commons after a day */
 	var $apiThumbCacheExpiry = 86400; /* 24*60*60 */
@@ -238,7 +248,7 @@ class ForeignAPIRepo extends FileRepo {
 	function getThumbUrl( $name, $width = -1, $height = -1, &$result = null, $otherParams = '' ) {
 		$data = $this->fetchImageQuery( array(
 			'titles' => 'File:' . $name,
-			'iiprop' => 'url|timestamp',
+			'iiprop' => self::getIIProps(),
 			'iiurlwidth' => $width,
 			'iiurlheight' => $height,
 			'iiurlparam' => $otherParams,
@@ -265,7 +275,7 @@ class ForeignAPIRepo extends FileRepo {
 	function getThumbError( $name, $width = -1, $height = -1, $otherParams = '', $lang = null ) {
 		$data = $this->fetchImageQuery( array(
 			'titles' => 'File:' . $name,
-			'iiprop' => 'url|timestamp',
+			'iiprop' => self::getIIProps(),
 			'iiurlwidth' => $width,
 			'iiurlheight' => $height,
 			'iiurlparam' => $otherParams,
@@ -483,6 +493,14 @@ class ForeignAPIRepo extends FileRepo {
 		} else {
 			return false;
 		}
+	}
+
+	/**
+	 * @return string
+	 * @since 1.22
+	 */
+	static function getIIProps() {
+		return join( '|', self::$imageInfoProps );
 	}
 
 	/**
