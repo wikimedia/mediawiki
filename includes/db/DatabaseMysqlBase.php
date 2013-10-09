@@ -469,7 +469,9 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	 * @return string
 	 */
 	public function addIdentifierQuotes( $s ) {
-		return "`" . $this->strencode( $s ) . "`";
+		// Characters in the range \u0001-\uFFFF are valid in a quoted identifier
+		// Remove NUL bytes and escape backticks by doubling
+		return '`' . str_replace( array( "\0", '`' ), array( '', '``' ), $s )  . '`';
 	}
 
 	/**
