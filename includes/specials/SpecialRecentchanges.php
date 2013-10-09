@@ -26,7 +26,7 @@
  *
  * @ingroup SpecialPage
  */
-class SpecialRecentChanges extends IncludableSpecialPage {
+class SpecialRecentChanges extends SpecialPage {
 	var $rcOptions, $rcSubpage;
 	protected $customFilters;
 
@@ -38,8 +38,12 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	 */
 	protected $feedFormat;
 
-	public function __construct( $name = 'Recentchanges' ) {
-		parent::__construct( $name );
+	public function __construct( $name = 'Recentchanges', $restriction = '' ) {
+		parent::__construct( $name, $restriction );
+	}
+
+	public function isIncludable() {
+		return true;
 	}
 
 	/**
