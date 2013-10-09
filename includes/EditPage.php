@@ -2914,7 +2914,7 @@ HTML
 				if ( !$keyMsg->isDisabled() && !$valueMsg->isDisabled() ) {
 					$limitReport .= Html::openElement( 'tr' ) .
 						Html::rawElement( 'th', null, $keyMsg->parse() ) .
-						Html::rawElement( 'td', null, $valueMsg->params( $value )->parse() ) .
+						Html::rawElement( 'td', null, $valueMsg->numParams( $value )->parse() ) .
 						Html::closeElement( 'tr' );
 				}
 			}
