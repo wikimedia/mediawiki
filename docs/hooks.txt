@@ -1606,6 +1606,11 @@ $password: the password being submitted and found wanting
 $retval: a LoginForm class constant with authenticateUserData() return
   value (SUCCESS, WRONG_PASS, etc.).
 
+'LoginPasswordResetMessage': User is being requested to reset their password on login.
+Use this hook to change the Message that will be output on Special:ChangePassword.
+&$msg: Message object that will be shown to the user
+$username: Username of the user who's password was expired.
+
 'LogLine': Processes a single log entry on Special:Log.
 $log_type: string for the type of log entry (e.g. 'move'). Corresponds to
   logging.log_type database field.
@@ -2024,6 +2029,10 @@ contexts.
 IContextSource $context: The RequestContext the skin is being created for.
 &$skin: A variable reference you may set a Skin instance or string key on to
   override the skin that will be used for the context.
+
+'ResetPasswordExpiration': Allow extensions to set a default password expiration
+$user: The user having their password expiration reset
+&$newExpire: The new expiration date
 
 'ResetSessionID': Called from wfResetSessionID
 $oldSessionID: old session id
