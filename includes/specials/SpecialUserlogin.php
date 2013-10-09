@@ -522,7 +522,7 @@ class LoginForm extends SpecialPage {
 	 * @return int
 	 */
 	public function authenticateUserData() {
-		global $wgUser, $wgAuth;
+		global $wgUser, $wgAuth, $wgPasswordExpireGrace;
 
 		$this->load();
 
@@ -618,6 +618,7 @@ class LoginForm extends SpecialPage {
 				// At this point we just return an appropriate code/ indicating
 				// that the UI should show a password reset form; bot inter-
 				// faces etc will probably just fail cleanly here.
+				$this->mAbortLoginErrorMsg = 'resetpass-temp-emailed';
 				$retval = self::RESET_PASS;
 			} else {
 				$retval = ( $this->mPassword == '' ) ? self::EMPTY_PASS : self::WRONG_PASS;
@@ -625,6 +626,10 @@ class LoginForm extends SpecialPage {
 		} elseif ( $wgBlockDisablesLogin && $u->isBlocked() ) {
 			// If we've enabled it, make it so that a blocked user cannot login
 			$retval = self::USER_BLOCKED;
+		} elseif ( $u->getPasswordExpired() == 'hard' ) {
+			// Force reset now, without logging in
+			$retval = self::RESET_PASS;
+			$this->mAbortLoginErrorMsg = 'resetpass-expired';
 		} else {
 			$wgAuth->updateUser( $u );
 			$wgUser = $u;
@@ -778,7 +783,11 @@ class LoginForm extends SpecialPage {
 					$this->getContext()->setLanguage( $userLang );
 					// Reset SessionID on Successful login (bug 40995)
 					$this->renewSessionId();
-					$this->successfulLogin();
+					if ( $this->getUser()->getPasswordExpired() == 'soft' ) {
+						$this->resetLoginForm( $this->msg( 'resetpass-expired-soft' ) );
+					} else {
+						$this->successfulLogin();
+					}
 				} else {
 					$this->cookieRedirectCheck( 'login' );
 				}
@@ -822,7 +831,7 @@ class LoginForm extends SpecialPage {
 				break;
 			case self::RESET_PASS:
 				$error = $this->mAbortLoginErrorMsg ?: 'resetpass_announce';
-				$this->resetLoginForm( $this->msg( $error )->text() );
+				$this->resetLoginForm( $this->msg( $error ) );
 				break;
 			case self::CREATE_BLOCKED:
 				$this->userBlockedMessage( $this->getUser()->isBlockedFromCreateAccount() );
@@ -848,11 +857,13 @@ class LoginForm extends SpecialPage {
 	}
 
 	/**
-	 * @param $error string
+	 * @param $msg Message
 	 */
-	function resetLoginForm( $error ) {
-		$this->getOutput()->addHTML( Xml::element( 'p', array( 'class' => 'error' ), $error ) );
+	function resetLoginForm( $msg ) {
+		$expDate = $this->getUser()->getPasswordExpireDate();
+		wfRunHooks( 'LoginPasswordResetMessage', array( &$msg, $expDate ) );
 		$reset = new SpecialChangePassword();
+		$reset->setChangeMessage( $msg );
 		$reset->setContext( $this->getContext() );
 		$reset->execute( null );
 	}
