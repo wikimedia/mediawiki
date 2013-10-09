@@ -519,7 +519,7 @@ class JobQueueDB extends JobQueue {
 		// maintained. Having only the de-duplication registration succeed would cause
 		// jobs to become no-ops without any actual jobs that made them redundant.
 		list( $dbw, $scope ) = $this->getMasterDB();
-		$cache = $this->cache;
+		$cache = $this->dupCache;
 		$dbw->onTransactionIdle( function() use ( $cache, $params, $key, $scope ) {
 			$timestamp = $cache->get( $key ); // current last timestamp of this job
 			if ( $timestamp && $timestamp >= $params['rootJobTimestamp'] ) {
