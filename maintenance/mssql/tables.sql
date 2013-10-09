@@ -45,7 +45,8 @@ CREATE TABLE /*$wgDBprefix*/user (
    user_email_token  NCHAR(32) DEFAULT '',
    user_email_token_expires DATETIME DEFAULT NULL,
    user_registration DATETIME DEFAULT NULL,
-   user_editcount    INT NULL
+   user_editcount    INT NULL,
+   user_password_expires DATETIME DEFAULT NULL
 );
 CREATE        INDEX /*$wgDBprefix*/user_email_token ON /*$wgDBprefix*/[user](user_email_token);
 CREATE UNIQUE INDEX /*$wgDBprefix*/[user_name]        ON /*$wgDBprefix*/[user]([user_name]);
