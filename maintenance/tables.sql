@@ -126,7 +126,12 @@ CREATE TABLE /*_*/user (
   -- Meant primarily for heuristic checks to give an impression of whether
   -- the account has been used much.
   --
-  user_editcount int
+  user_editcount int,
+
+  -- Expiration date for user password. Use $user->expirePassword()
+  -- to force a password reset.
+  user_password_expires varbinary(14) DEFAULT NULL
+
 ) /*$wgDBTableOptions*/;
 
 CREATE UNIQUE INDEX /*i*/user_name ON /*_*/user (user_name);

@@ -1383,6 +1383,18 @@ $wgNewPasswordExpiry = 3600 * 24 * 7;
 $wgUserEmailConfirmationTokenExpiry = 7 * 24 * 60 * 60;
 
 /**
+ * The number of days that a user's password is good for. After this number of days, the
+ * user will be asked to reset their password. Set to false to disable password expiration.
+ */
+$wgPasswordExpirationDays = false;
+
+/**
+ * If a user's password is expired, the number of seconds when they can still login,
+ * and cancel their password change, but are sent to the password change form on each login.
+ */
+$wgPasswordExpireGrace = 3600 * 24 * 7; // 7 days
+
+/**
  * SMTP Mode.
  *
  * For using a direct (authenticated) SMTP server connection.

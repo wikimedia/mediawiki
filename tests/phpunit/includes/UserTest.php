@@ -234,4 +234,28 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertEquals( $wgDefaultUserOptions['cols'], $this->user->getOption( 'cols' ) );
 		$this->assertEquals( 'test', $this->user->getOption( 'someoption' ) );
 	}
+
+	/**
+	 * Test password expiration.
+	 * @covers User::getPasswordExpired()
+	 */
+	public function testPasswordExpire() {
+		global $wgPasswordExpireGrace;
+		$wgTemp = $wgPasswordExpireGrace;
+		$wgPasswordExpireGrace = 3600 * 24 * 7; // 7 days
+
+		$user = User::newFromName( 'UnitTestUser' );
+		$user->loadDefaults();
+		$this->assertEquals( false, $user->getPasswordExpired() );
+
+		$ts = time() - ( 3600 * 24 * 1 ); // 1 day ago
+		$user->expirePassword( $ts );
+		$this->assertEquals( 'soft', $user->getPasswordExpired() );
+
+		$ts = time() - ( 3600 * 24 * 10 ); // 10 days ago
+		$user->expirePassword( $ts );
+		$this->assertEquals( 'hard', $user->getPasswordExpired() );
+
+		$wgPasswordExpireGrace = $wgTemp;
+	}
 }
