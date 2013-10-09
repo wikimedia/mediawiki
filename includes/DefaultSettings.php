@@ -1126,13 +1126,6 @@ $wgMimeTypeFile = 'includes/mime.types';
 $wgMimeInfoFile = 'includes/mime.info';
 
 /**
- * Switch for loading the FileInfo extension by PECL at runtime.
- * This should be used only if fileinfo is installed as a shared object
- * or a dynamic library.
- */
-$wgLoadFileinfoExtension = false;
-
-/**
  * Sets an external mime detector program. The command must print only
  * the mime type to standard output.
  * The name of the file to process will be appended to the command given here.

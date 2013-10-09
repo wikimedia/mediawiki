@@ -18,10 +18,10 @@ class BitmapMetadataHandlerTest extends MediaWikiTestCase {
 	 * translation (to en) where XMP should win.
 	 */
 	public function testMultilingualCascade() {
-		if ( !wfDl( 'exif' ) ) {
+		if ( !extension_loaded( 'exif' ) ) {
 			$this->markTestSkipped( "This test needs the exif extension." );
 		}
-		if ( !wfDl( 'xml' ) ) {
+		if ( !extension_loaded( 'xml' ) ) {
 			$this->markTestSkipped( "This test needs the xml extension." );
 		}
 
@@ -115,7 +115,7 @@ class BitmapMetadataHandlerTest extends MediaWikiTestCase {
 	}
 
 	public function testPNGXMP() {
-		if ( !wfDl( 'xml' ) ) {
+		if ( !extension_loaded( 'xml' ) ) {
 			$this->markTestSkipped( "This test needs the xml extension." );
 		}
 		$handler = new BitmapMetadataHandler();

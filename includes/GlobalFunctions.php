@@ -2635,38 +2635,6 @@ function wfIniGetBool( $setting ) {
 }
 
 /**
- * Wrapper function for PHP's dl(). This doesn't work in most situations from
- * PHP 5.3 onward, and is usually disabled in shared environments anyway.
- *
- * @param string $extension A PHP extension. The file suffix (.so or .dll)
- *                          should be omitted
- * @param string $fileName Name of the library, if not $extension.suffix
- * @return Bool - Whether or not the extension is loaded
- */
-function wfDl( $extension, $fileName = null ) {
-	if ( extension_loaded( $extension ) ) {
-		return true;
-	}
-
-	$canDl = false;
-	if ( PHP_SAPI == 'cli' || PHP_SAPI == 'cgi' || PHP_SAPI == 'embed' ) {
-		$canDl = ( function_exists( 'dl' ) && is_callable( 'dl' )
-		&& wfIniGetBool( 'enable_dl' ) && !wfIniGetBool( 'safe_mode' ) );
-	}
-
-	if ( $canDl ) {
-		$fileName = $fileName ? $fileName : $extension;
-		if ( wfIsWindows() ) {
-			$fileName = 'php_' . $fileName;
-		}
-		wfSuppressWarnings();
-		dl( $fileName . '.' . PHP_SHLIB_SUFFIX );
-		wfRestoreWarnings();
-	}
-	return extension_loaded( $extension );
-}
-
-/**
  * Windows-compatible version of escapeshellarg()
  * Windows doesn't recognise single-quotes in the shell, but the escapeshellarg()
  * function puts single quotes in regardless of OS.

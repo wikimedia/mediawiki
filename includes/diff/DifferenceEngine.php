@@ -696,24 +696,6 @@ class DifferenceEngine extends ContextSource {
 	}
 
 	/**
-	 * Make sure the proper modules are loaded before we try to
-	 * make the diff
-	 */
-	private function initDiffEngines() {
-		global $wgExternalDiffEngine;
-		if ( $wgExternalDiffEngine == 'wikidiff' && !function_exists( 'wikidiff_do_diff' ) ) {
-			wfProfileIn( __METHOD__ . '-php_wikidiff.so' );
-			wfDl( 'php_wikidiff' );
-			wfProfileOut( __METHOD__ . '-php_wikidiff.so' );
-		}
-		elseif ( $wgExternalDiffEngine == 'wikidiff2' && !function_exists( 'wikidiff2_do_diff' ) ) {
-			wfProfileIn( __METHOD__ . '-php_wikidiff2.so' );
-			wfDl( 'wikidiff2' );
-			wfProfileOut( __METHOD__ . '-php_wikidiff2.so' );
-		}
-	}
-
-	/**
 	 * Generate a diff, no caching.
 	 *
 	 * This implementation uses generateTextDiffBody() to generate a diff based on the default
@@ -778,8 +760,6 @@ class DifferenceEngine extends ContextSource {
 
 		$otext = str_replace( "\r\n", "\n", $otext );
 		$ntext = str_replace( "\r\n", "\n", $ntext );
-
-		$this->initDiffEngines();
 
 		if ( $wgExternalDiffEngine == 'wikidiff' && function_exists( 'wikidiff_do_diff' ) ) {
 			# For historical reasons, external diff engine expects
