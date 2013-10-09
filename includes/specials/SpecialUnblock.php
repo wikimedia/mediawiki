@@ -42,6 +42,11 @@ class SpecialUnblock extends SpecialPage {
 
 		list( $this->target, $this->type ) = SpecialBlock::getTargetAndType( $par, $this->getRequest() );
 		$this->block = Block::newFromTarget( $this->target );
+		if ( $this->target instanceof User ) {
+			# Set the 'relevant user' in the skin, so it displays links like Contributions,
+			# User logs, UserRights, etc.
+			$this->getSkin()->setRelevantUser( $this->target );
+		}
 
 		$this->setHeaders();
 		$this->outputHeader();
