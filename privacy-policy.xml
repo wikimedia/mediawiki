@@ -1,0 +1,103 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.8/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.8/ http://www.mediawiki.org/xml/export-0.8.xsd" version="0.8" xml:lang="en">
+  <siteinfo>
+    <sitename>testwiki</sitename>
+    <base>http://mwreview-dev9.instance-proxy.wmflabs.org/wiki/Main_Page</base>
+    <generator>MediaWiki 1.22alpha</generator>
+    <case>first-letter</case>
+    <namespaces>
+      <namespace key="-2" case="first-letter">Media</namespace>
+      <namespace key="-1" case="first-letter">Special</namespace>
+      <namespace key="0" case="first-letter" />
+      <namespace key="1" case="first-letter">Talk</namespace>
+      <namespace key="2" case="first-letter">User</namespace>
+      <namespace key="3" case="first-letter">User talk</namespace>
+      <namespace key="4" case="first-letter">Testwiki</namespace>
+      <namespace key="5" case="first-letter">Testwiki talk</namespace>
+      <namespace key="6" case="first-letter">File</namespace>
+      <namespace key="7" case="first-letter">File talk</namespace>
+      <namespace key="8" case="first-letter">MediaWiki</namespace>
+      <namespace key="9" case="first-letter">MediaWiki talk</namespace>
+      <namespace key="10" case="first-letter">Template</namespace>
+      <namespace key="11" case="first-letter">Template talk</namespace>
+      <namespace key="12" case="first-letter">Help</namespace>
+      <namespace key="13" case="first-letter">Help talk</namespace>
+      <namespace key="14" case="first-letter">Category</namespace>
+      <namespace key="15" case="first-letter">Category talk</namespace>
+    </namespaces>
+  </siteinfo>
+  <page>
+    <title>Privacy policy</title>
+    <ns>0</ns>
+    <id>2</id>
+    <revision>
+      <id>3</id>
+      <timestamp>2013-04-26T16:10:46Z</timestamp>
+      <contributor>
+        <username>Admin</username>
+        <id>1</id>
+      </contributor>
+      <text xml:space="preserve" bytes="128">This is a testing wiki governed by the [https://www.mediawiki.org/wiki/Wikimedia_Labs/Terms_of_use Wikimedia Labs terms of Use].</text>
+      <sha1>afk29g4tw638nh1oanuo064ncsh397g</sha1>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+    </revision>
+  </page>
+  <page>
+    <title>Testwiki:Privacy policy</title>
+    <ns>4</ns>
+    <id>3</id>
+    <revision>
+      <id>4</id>
+      <timestamp>2013-04-26T16:10:23Z</timestamp>
+      <contributor>
+        <username>Admin</username>
+        <id>1</id>
+      </contributor>
+      <text xml:space="preserve" bytes="128">This is a testing wiki governed by the [https://www.mediawiki.org/wiki/Wikimedia_Labs/Terms_of_use Wikimedia Labs terms of Use].</text>
+      <sha1>afk29g4tw638nh1oanuo064ncsh397g</sha1>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+    </revision>
+  </page>
+  <page>
+    <title>Testwiki:Copyrights</title>
+    <ns>4</ns>
+    <id>4</id>
+    <revision>
+      <id>5</id>
+      <timestamp>2013-04-26T16:12:22Z</timestamp>
+      <contributor>
+        <username>Admin</username>
+        <id>1</id>
+      </contributor>
+      <comment>Created page with &quot;This is a testing wiki governed by the [https://www.mediawiki.org/wiki/Wikimedia_Labs/Terms_of_use Wikimedia Labs terms of Use].&quot;</comment>
+      <text xml:space="preserve" bytes="128">This is a testing wiki governed by the [https://www.mediawiki.org/wiki/Wikimedia_Labs/Terms_of_use Wikimedia Labs terms of Use].</text>
+      <sha1>afk29g4tw638nh1oanuo064ncsh397g</sha1>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+    </revision>
+  </page>
+  <page>
+    <title>MediaWiki:Copyrightwarning2</title>
+    <ns>8</ns>
+    <id>6</id>
+    <revision>
+      <id>7</id>
+      <timestamp>2013-04-28T14:31:30Z</timestamp>
+      <contributor>
+        <username>Admin</username>
+        <id>1</id>
+      </contributor>
+      <comment>Created page with &quot;Use of this wiki is governed by the [https://www.mediawiki.org/wiki/Wikimedia_Labs/Terms_of_use Wikimedia Labs terms of Use].  Please note that all contributions to {{SITENAME...&quot;</comment>
+      <text xml:space="preserve" bytes="521">Use of this wiki is governed by the [https://www.mediawiki.org/wiki/Wikimedia_Labs/Terms_of_use Wikimedia Labs terms of Use].
+
+Please note that all contributions to {{SITENAME}} may be edited, altered, or removed by other contributors.
+If you do not want your writing to be edited mercilessly, then do not submit it here.&lt;br /&gt;
+You are also promising us that you wrote this yourself, or copied it from a public domain or similar free resource (see $1 for details).
+'''Do not submit copyrighted work without permission!'''</text>
+      <sha1>e7zs6nhitffcrt175x40fkrvg9sb530</sha1>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+    </revision>
+  </page>
+</mediawiki>
