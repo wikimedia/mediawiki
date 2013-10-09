@@ -44,6 +44,16 @@ class LinksUpdate extends SqlDataUpdate {
 		$mRecursive;     //!< Whether to queue jobs for recursive updates
 
 	/**
+	 * @var null|array Added links if calculated.
+	 */
+	private $linkInsertions = null;
+
+	/**
+	 * @var null|array Deleted links if calculated.
+	 */
+	private $linkDeletions = null;
+
+	/**
 	 * Constructor
 	 *
 	 * @param $title Title of the page we're updating
@@ -112,14 +122,8 @@ class LinksUpdate extends SqlDataUpdate {
 	 * Update link tables with outgoing links from an updated article
 	 */
 	public function doUpdate() {
-		global $wgUseDumbLinkUpdate;
-
 		wfRunHooks( 'LinksUpdate', array( &$this ) );
-		if ( $wgUseDumbLinkUpdate ) {
-			$this->doDumbUpdate();
-		} else {
-			$this->doIncrementalUpdate();
-		}
+		$this->doIncrementalUpdate();
 		wfRunHooks( 'LinksUpdateComplete', array( &$this ) );
 	}
 
@@ -128,8 +132,9 @@ class LinksUpdate extends SqlDataUpdate {
 
 		# Page links
 		$existing = $this->getExistingLinks();
-		$this->incrTableUpdate( 'pagelinks', 'pl', $this->getLinkDeletions( $existing ),
-			$this->getLinkInsertions( $existing ) );
+		$this->linkDeletions = $this->getLinkDeletions( $existing );
+		$this->linkInsertions = $this->getLinkInsertions( $existing );
+		$this->incrTableUpdate( 'pagelinks', 'pl', $this->linkDeletions, $this->linkInsertions );
 
 		# Image links
 		$existing = $this->getExistingImages();
@@ -198,46 +203,6 @@ class LinksUpdate extends SqlDataUpdate {
 	}
 
 	/**
-	 * Link update which clears the previous entries and inserts new ones
-	 * May be slower or faster depending on level of lock contention and write speed of DB
-	 * Also useful where link table corruption needs to be repaired, e.g. in refreshLinks.php
-	 */
-	protected function doDumbUpdate() {
-		wfProfileIn( __METHOD__ );
-
-		# Refresh category pages and image description pages
-		$existing = $this->getExistingCategories();
-		$categoryInserts = array_diff_assoc( $this->mCategories, $existing );
-		$categoryDeletes = array_diff_assoc( $existing, $this->mCategories );
-		$categoryUpdates = $categoryInserts + $categoryDeletes;
-		$existing = $this->getExistingImages();
-		$imageUpdates = array_diff_key( $existing, $this->mImages ) + array_diff_key( $this->mImages, $existing );
-
-		$this->dumbTableUpdate( 'pagelinks', $this->getLinkInsertions(), 'pl_from' );
-		$this->dumbTableUpdate( 'imagelinks', $this->getImageInsertions(), 'il_from' );
-		$this->dumbTableUpdate( 'categorylinks', $this->getCategoryInsertions(), 'cl_from' );
-		$this->dumbTableUpdate( 'templatelinks', $this->getTemplateInsertions(), 'tl_from' );
-		$this->dumbTableUpdate( 'externallinks', $this->getExternalInsertions(), 'el_from' );
-		$this->dumbTableUpdate( 'langlinks', $this->getInterlangInsertions(), 'll_from' );
-		$this->dumbTableUpdate( 'iwlinks', $this->getInterwikiInsertions(), 'iwl_from' );
-		$this->dumbTableUpdate( 'page_props', $this->getPropertyInsertions(), 'pp_page' );
-
-		# Update the cache of all the category pages and image description
-		# pages which were changed, and fix the category table count
-		$this->invalidateCategories( $categoryUpdates );
-		$this->updateCategoryCounts( $categoryInserts, $categoryDeletes );
-		$this->invalidateImageDescriptions( $imageUpdates );
-
-		# Refresh links of all pages including this page
-		# This will be in a separate transaction
-		if ( $this->mRecursive ) {
-			$this->queueRecursiveJobs();
-		}
-
-		wfProfileOut( __METHOD__ );
-	}
-
-	/**
 	 * Queue recursive jobs for this page
 	 *
 	 * Which means do LinksUpdate on all templates
@@ -294,21 +259,6 @@ class LinksUpdate extends SqlDataUpdate {
 	 */
 	function invalidateImageDescriptions( $images ) {
 		$this->invalidatePages( NS_FILE, array_keys( $images ) );
-	}
-
-	/**
-	 * @param $table
-	 * @param $insertions
-	 * @param $fromField
-	 */
-	private function dumbTableUpdate( $table, $insertions, $fromField ) {
-		$this->mDb->delete( $table, array( $fromField => $this->mId ), __METHOD__ );
-		if ( count( $insertions ) ) {
-			# The link array was constructed without FOR UPDATE, so there may
-			# be collisions. This may cause minor link table inconsistencies,
-			# which is better than crippling the site with lock contention.
-			$this->mDb->insert( $table, $insertions, __METHOD__, array( 'IGNORE' ) );
-		}
 	}
 
 	/**
@@ -820,6 +770,38 @@ class LinksUpdate extends SqlDataUpdate {
 				}
 			}
 		}
+	}
+
+	/**
+	 * Fetch page links added by this LinksUpdate.  Only available after the update is complete.
+	 * @return null|array of Titles
+	 */
+	public function getAddedLinks() {
+		if ( $this->linkInsertions === null ) {
+			return null;
+		}
+		$result = array();
+		foreach ( $this->linkInsertions as $insertion ) {
+			$result[] = Title::makeTitle( $insertion[ 'pl_namespace' ], $insertion[ 'pl_title' ] );
+		}
+		return $result;
+	}
+
+	/**
+	 * Fetch page links removed by this LinksUpdate.  Only available after the update is complete.
+	 * @return null|array of Titles
+	 */
+	public function getRemovedLinks() {
+		if ( $this->linkDeletions === null ) {
+			return null;
+		}
+		$result = array();
+		foreach ( $this->linkDeletions as $ns => $titles ) {
+			foreach ( $titles as $title => $unused ) {
+				$result[] = Title::makeTitle( $ns, $title );
+			}
+		}
+		return $result;
 	}
 }
 
