@@ -1268,8 +1268,7 @@ If you choose to provide it, this will be used for giving the user attribution f
 'changepassword-summary'    => '', # do not translate or duplicate this message to other languages
 'changepassword-throttled'  => 'You have made too many recent login attempts.
 Please wait $1 before trying again.',
-'resetpass_announce'        => 'You logged in with a temporary emailed code.
-To finish logging in, you must set a new password here:',
+'resetpass_announce'        => 'To finish logging in, you must set a new password.',
 'resetpass_text'            => '<!-- Add text here -->', # only translate this message to other languages if you have to change it
 'resetpass_header'          => 'Change account password',
 'oldpassword'               => 'Old password:',
@@ -1283,8 +1282,13 @@ To finish logging in, you must set a new password here:',
 'resetpass-submit-cancel'   => 'Cancel',
 'resetpass-wrong-oldpass'   => 'Invalid temporary or current password.
 You may have already successfully changed your password or requested a new temporary password.',
+'resetpass-recycled'        => 'Please reset your password to something other than your current password.',
+'resetpass-temp-emailed'    => 'You logged in with a temporary emailed code.
+To finish logging in, you must set a new password here:',
 'resetpass-temp-password'   => 'Temporary password:',
 'resetpass-abort-generic'   => 'Password change has been aborted by an extension.',
+'resetpass-expired' => 'Your password has expired. Please set a new password to login.',
+'resetpass-expired-soft' => 'Your password has expired, and needs to be reset. Please choose a new password now, or click cancel to reset it later.',
 
 # Special:PasswordReset
 'passwordreset'                    => 'Reset password',
