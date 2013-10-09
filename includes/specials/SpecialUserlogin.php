@@ -49,6 +49,7 @@ class LoginForm extends SpecialPage {
 	var $mSkipCookieCheck, $mReturnToQuery, $mToken, $mStickHTTPS;
 	var $mType, $mReason, $mRealName;
 	var $mAbortLoginErrorMsg = null;
+	private $mTempPasswordUsed;
 	private $mLoaded = false;
 	private $mSecureLoginUrl;
 
@@ -632,6 +633,8 @@ class LoginForm extends SpecialPage {
 				// At this point we just return an appropriate code/ indicating
 				// that the UI should show a password reset form; bot inter-
 				// faces etc will probably just fail cleanly here.
+				$this->mAbortLoginErrorMsg = 'resetpass-temp-emailed';
+				$this->mTempPasswordUsed = true;
 				$retval = self::RESET_PASS;
 			} else {
 				$retval = ( $this->mPassword == '' ) ? self::EMPTY_PASS : self::WRONG_PASS;
@@ -639,6 +642,10 @@ class LoginForm extends SpecialPage {
 		} elseif ( $wgBlockDisablesLogin && $u->isBlocked() ) {
 			// If we've enabled it, make it so that a blocked user cannot login
 			$retval = self::USER_BLOCKED;
+		} elseif ( $u->getPasswordExpired() == 'hard' ) {
+			// Force reset now, without logging in
+			$retval = self::RESET_PASS;
+			$this->mAbortLoginErrorMsg = 'resetpass-expired';
 		} else {
 			$wgAuth->updateUser( $u );
 			$wgUser = $u;
@@ -792,7 +799,11 @@ class LoginForm extends SpecialPage {
 					$this->getContext()->setLanguage( $userLang );
 					// Reset SessionID on Successful login (bug 40995)
 					$this->renewSessionId();
-					$this->successfulLogin();
+					if ( $this->getUser()->getPasswordExpired() == 'soft' ) {
+						$this->resetLoginForm( $this->msg( 'resetpass-expired-soft' ) );
+					} else {
+						$this->successfulLogin();
+					}
 				} else {
 					$this->cookieRedirectCheck( 'login' );
 				}
@@ -836,7 +847,7 @@ class LoginForm extends SpecialPage {
 				break;
 			case self::RESET_PASS:
 				$error = $this->mAbortLoginErrorMsg ?: 'resetpass_announce';
-				$this->resetLoginForm( $this->msg( $error )->text() );
+				$this->resetLoginForm( $this->msg( $error ) );
 				break;
 			case self::CREATE_BLOCKED:
 				$this->userBlockedMessage( $this->getUser()->isBlockedFromCreateAccount() );
@@ -862,14 +873,20 @@ class LoginForm extends SpecialPage {
 	}
 
 	/**
-	 * @param $error string
+	 * Show the Special:ChangePassword form, with custom message
+	 * @param Message $msg
 	 */
-	function resetLoginForm( $error ) {
-		$this->getOutput()->addHTML( Xml::element( 'p', array( 'class' => 'error' ), $error ) );
+	protected function resetLoginForm( Message $msg ) {
+		// Allow hooks to explain this password reset in more detail
+		wfRunHooks( 'LoginPasswordResetMessage', array( &$msg, $this->mUsername ) );
 		$reset = new SpecialChangePassword();
 		$derivative = new DerivativeContext( $this->getContext() );
 		$derivative->setTitle( $reset->getPageTitle() );
 		$reset->setContext( $derivative );
+		if ( !$this->mTempPasswordUsed ) {
+			$reset->setOldPasswordMessage( 'oldpassword' );
+		}
+		$reset->setChangeMessage( $msg );
 		$reset->execute( null );
 	}
 
