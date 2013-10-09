@@ -28,7 +28,7 @@
  */
 class SpecialChangePassword extends UnlistedSpecialPage {
 
-	protected $mUserName, $mOldpass, $mNewpass, $mRetype, $mDomain;
+	protected $mUserName, $mOldpass, $mNewpass, $mRetype, $mDomain, $mMessage;
 
 	public function __construct() {
 		parent::__construct( 'ChangePassword', 'editmyprivateinfo' );
@@ -119,6 +119,15 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 		$this->getOutput()->addHTML( Xml::element( 'p', array( 'class' => 'error' ), $msg ) );
 	}
 
+	/**
+	 * Set a message at the top of the Change Password form
+	 * @since 1.22
+	 * @param Message object to parse and add to the form header
+	 */
+	public function setChangeMessage( $msg ) {
+		$this->mMessage = $msg;
+	}
+
 	function showForm() {
 		global $wgCookieExpiration;
 
@@ -126,6 +135,11 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 		if ( !$this->mUserName ) {
 			$this->mUserName = $user->getName();
 		}
+
+		if ( $this->mMessage && $this->mMessage instanceof Message ) {
+			$this->getOutput()->addHTML( $this->mMessage->parse() );
+		}
+
 		$rememberMe = '';
 		if ( !$user->isLoggedIn() ) {
 			$rememberMe = '<tr>' .
@@ -257,15 +271,22 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 			);
 		}
 
+		if ( !$user->checkTemporaryPassword( $this->mOldpass ) && !$user->checkPassword( $this->mOldpass ) ) {
+			wfRunHooks( 'PrefsPasswordAudit', array( $user, $newpass, 'wrongpassword' ) );
+			throw new PasswordError( $this->msg( 'resetpass-wrong-oldpass' )->text() );
+		}
+
+		// User is resetting their password to their old password
+		if ( $this->mOldpass === $newpass ) {
+			throw new PasswordError( $this->msg( 'resetpass-recycled' )->text() );
+		}
+
+		// Do AbortChangePassword after checking mOldpass, so we don't leak information
+		// by possibly aborting a new password before verifying the old password.
 		$abortMsg = 'resetpass-abort-generic';
 		if ( !wfRunHooks( 'AbortChangePassword', array( $user, $this->mOldpass, $newpass, &$abortMsg ) ) ) {
 			wfRunHooks( 'PrefsPasswordAudit', array( $user, $newpass, 'abortreset' ) );
 			throw new PasswordError( $this->msg( $abortMsg )->text() );
-		}
-
-		if ( !$user->checkTemporaryPassword( $this->mOldpass ) && !$user->checkPassword( $this->mOldpass ) ) {
-			wfRunHooks( 'PrefsPasswordAudit', array( $user, $newpass, 'wrongpassword' ) );
-			throw new PasswordError( $this->msg( 'resetpass-wrong-oldpass' )->text() );
 		}
 
 		// Please reset throttle for successful logins, thanks!
@@ -287,7 +308,7 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 			// changing the password also modifies the user's token.
 			$user->setCookies();
 		}
-
+		$user->resetPasswordExpiration();
 		$user->saveSettings();
 	}
 
