@@ -4447,7 +4447,8 @@ class Parser {
 
 			# Add the section to the section tree
 			# Find the DOM node for this header
-			while ( $node && !$isTemplate ) {
+			$noOffset = ( $isTemplate || $sectionIndex === false );
+			while ( $node && !$noOffset ) {
 				if ( $node->getName() === 'h' ) {
 					$bits = $node->splitHeading();
 					if ( $bits['i'] == $sectionIndex ) {
@@ -4465,7 +4466,7 @@ class Parser {
 				'number' => $numbering,
 				'index' => ( $isTemplate ? 'T-' : '' ) . $sectionIndex,
 				'fromtitle' => $titleText,
-				'byteoffset' => ( $isTemplate ? null : $byteOffset ),
+				'byteoffset' => ( $noOffset ? null : $byteOffset ),
 				'anchor' => $anchor,
 			);
 
