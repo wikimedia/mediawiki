@@ -78,13 +78,13 @@ class ProfilerSimple extends Profiler {
 			$this->debug( "Profiling error: $functionname\n" );
 		} else {
 			if ( $functionname == 'close' ) {
-				$message = "Profile section ended by close(): {$ofname}";
+				$message = "Profile section ended by close(): {$ofname}\n";
 				$functionname = $ofname;
 				$this->debug( "$message\n" );
 				$this->mCollated[$message] = $this->errorEntry;
 			}
 			elseif ( $ofname != $functionname ) {
-				$message = "Profiling error: in({$ofname}), out($functionname)";
+				$message = "Profiling error: in({$ofname}), out($functionname)\n";
 				$this->debug( "$message\n" );
 				$this->mCollated[$message] = $this->errorEntry;
 			}

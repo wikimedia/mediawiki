@@ -49,12 +49,12 @@ class ProfilerSimpleTrace extends ProfilerSimple {
 			$this->trace .= "Profiling error: $functionname\n";
 		} else {
 			if ( $functionname == 'close' ) {
-				$message = "Profile section ended by close(): {$ofname}";
+				$message = "Profile section ended by close(): {$ofname}\n";
 				$functionname = $ofname;
 				$this->trace .= $message . "\n";
 			}
 			elseif ( $ofname != $functionname ) {
-				$this->trace .= "Profiling error: in({$ofname}), out($functionname)";
+				$this->trace .= "Profiling error: in({$ofname}), out($functionname)\n";
 			}
 			$elapsedreal = $this->getTime() - $ortime;
 			$this->trace .= sprintf( "%03.6f %6.1f", $elapsedreal, $this->memoryDiff() ) .
