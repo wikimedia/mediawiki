@@ -63,6 +63,13 @@ class Preferences {
 	);
 
 	/**
+	 * @return array
+	 */
+	static function getSaveBlacklist() {
+		return self::$saveBlacklist;
+	}
+
+	/**
 	 * @throws MWException
 	 * @param $user User
 	 * @param $context IContextSource
