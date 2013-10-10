@@ -2361,4 +2361,15 @@ PICT # тайп тайпан
 # Search suggestions
 'searchsuggest-search' => 'Лаха',
 
+# Limit report
+'limitreport-title' => 'АгӀона хӀоттам къасторан хаамаш:',
+'limitreport-cputime' => 'Процессоран хан лелор',
+'limitreport-walltime' => 'Йодуш йолу хенахь лелор',
+'limitreport-ppvisitednodes' => 'Препроцессор хьаьжна шадин дукхалла',
+'limitreport-ppgeneratednodes' => 'Препроцессорс сгенерировать бина шадин дукхалла',
+'limitreport-postexpandincludesize' => 'Схьаяьстина юккъерчаран барам',
+'limitreport-templateargumentsize' => 'Кепан аргументан барам',
+'limitreport-expansiondepth' => 'Шордаларан уггар йокха кӀоргалла',
+'limitreport-expensivefunctioncount' => 'АгӀона хӀоттам къасторан «иза» функцеш',
+
 );

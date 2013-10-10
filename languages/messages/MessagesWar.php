@@ -1945,7 +1945,7 @@ Para pagtrangka o pagtanggal han trangka han database, ini in kinahanglanon magi
 'revertmove' => 'igbalik',
 'delete_and_move' => 'Igapara ngan igbalhin',
 'delete_and_move_confirm' => 'Oo, paraa an pakli',
-'delete_and_move_reason' => 'Ginpara para makahatag hin aragian para makabalhin tikan "[[$1]]"',
+'delete_and_move_reason' => 'Ginpara para makahatag hin aragian para makabalhin tikang ha "[[$1]]"',
 'selfmove' => 'An tinikangan ngan kakadtoan nga mga titulo in parehas;
 diri makakabalhin ha iya kalugaringon ngahaw.',
 'immobile-source-namespace' => 'Diri nababalhin an mga pakli ha ngaran-lat\'ang nga "$1"',

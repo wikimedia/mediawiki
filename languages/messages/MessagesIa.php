@@ -3930,8 +3930,10 @@ Vos deberea haber recipite [{{SERVER}}{{SCRIPTPATH}}/COPYING un exemplar del Lic
 'tags-tag' => 'Nomine del etiquetta',
 'tags-display-header' => 'Apparentia in listas de modificationes',
 'tags-description-header' => 'Description complete del significato',
+'tags-active-header' => 'Active?',
 'tags-hitcount-header' => 'Modificationes etiquettate',
 'tags-active-yes' => 'Si',
+'tags-active-no' => 'No',
 'tags-edit' => 'modificar',
 'tags-hitcount' => '$1 {{PLURAL:$1|modification|modificationes}}',
 

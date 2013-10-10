@@ -1176,7 +1176,7 @@ Həmçinin kimliyinizi gostərmədən belə, başqalarının sizinlə istifadə�
 'action-suppressionlog' => 'xüsusi gündəliyə baxış',
 'action-block' => 'istifadəçinin redaktə etməsini əngəlləmək',
 'action-protect' => 'bu səhifənin mühafizə səviyyəsini dəyişmək',
-'action-import' => 'bu səhifəni başqa vikidən götürmək',
+'action-import' => 'başqa vikidən səhifələrin idxalı',
 'action-importupload' => 'fayl yükləmə vasitəsilə səhifələrin idxalı',
 'action-patrol' => 'Digərlərinin dəyişikliklərini patrullanmış olaraq işarələ',
 'action-autopatrol' => 'öz redaktələrinizi patrullanmış olarq işarələmək',

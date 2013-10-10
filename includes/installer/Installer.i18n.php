@@ -17552,6 +17552,7 @@ MediaWiki требует поддержки UTF-8 для корректной р
 	'config-memory-bad' => "'''Внимание:''' размер PHP <code>memory_limit</code> составляет $1.
 Вероятно, этого слишком мало.
 Установка может потерпеть неудачу!",
+	'config-ctype' => "'''Фатальная ошибка:''' PHP должен быть скомпилирован с поддержкой [http://www.php.net/manual/ru/ctype.installation.php расширения Ctype].",
 	'config-xcache' => '[http://xcache.lighttpd.net/ XCache] установлен',
 	'config-apc' => '[http://www.php.net/apc APC] установлен',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] установлен',
@@ -17560,6 +17561,7 @@ MediaWiki требует поддержки UTF-8 для корректной р
 	'config-mod-security' => "'''Внимание''': на вашем веб-сервере включен [http://modsecurity.org/ mod_security]. При неправильной настройке он может вызывать проблемы для MediaWiki или другого ПО, позволяющего пользователям отправлять на сервер произвольный текст.
 Обратитесь к [http://modsecurity.org/documentation/ документации mod_security] или в поддержку вашего хостера, если при работе возникают непонятные ошибки.",
 	'config-diff3-bad' => 'GNU diff3 не найден.',
+	'config-git' => 'Найдена система контроля версий Git: <code>$1</code>.',
 	'config-git-bad' => 'Программное обеспечение по управлению версиями Git не найдено.',
 	'config-imagemagick' => 'Обнаружен ImageMagick: <code>$1</code>.
 Возможно отображение миниатюр изображений, если вы разрешите закачки файлов.',
@@ -17962,6 +17964,9 @@ $3
 	'config-download-localsettings' => 'Загрузить <code>LocalSettings.php</code>',
 	'config-help' => 'справка',
 	'config-nofile' => 'Файл "$1" не удается найти. Он был удален?',
+	'config-extension-link' => 'Знаете ли вы, что ваш вики-проект поддерживает [//www.mediawiki.org/wiki/Manual:Extensions расширения]?
+
+Вы можете просмотреть [//www.mediawiki.org/wiki/Category:Extensions_by_category расширения по категориям] или [//www.mediawiki.org/wiki/Extension_Matrix матрицу расширений], чтобы увидеть их полный список.',
 	'mainpagetext' => "'''Вики-движок «MediaWiki» успешно установлен.'''",
 	'mainpagedocfooter' => 'Информацию по работе с этой вики можно найти в [//meta.wikimedia.org/wiki/%D0%9F%D0%BE%D0%BC%D0%BE%D1%89%D1%8C:%D0%A1%D0%BE%D0%B4%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D0%B8%D0%B5 справочном руководстве].
 

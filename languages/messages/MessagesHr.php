@@ -21,6 +21,7 @@
  * @author Herr Mlinka
  * @author Kaganer
  * @author Luka Krstulovic
+ * @author MaGa
  * @author MayaSimFan
  * @author Meno25
  * @author Mvrban
@@ -325,7 +326,7 @@ $messages = array(
 'tog-extendwatchlist' => 'Proširi popis praćenih stranica tako da prikaže sve promjene, ne samo najnovije',
 'tog-usenewrc' => 'Rabi poboljšan izgled nedavnih promjena (zahtijeva JavaScript)',
 'tog-numberheadings' => 'Automatski označi naslove brojevima',
-'tog-showtoolbar' => 'Prikaži traku s alatima za uređivanje',
+'tog-showtoolbar' => 'Prikaži traku s alatima za uređivanje (zahtijeva JavaScript)',
 'tog-editondblclick' => 'Dvoklik otvara uređivanje stranice (JavaScript)',
 'tog-editsection' => 'Prikaži poveznice za uređivanje pojedinih odlomaka',
 'tog-editsectiononrightclick' => 'Pritiskom na desnu tipku miša otvori uređivanje pojedinih odlomaka (JavaScript)',
@@ -359,6 +360,7 @@ $messages = array(
 'tog-showhiddencats' => 'Prikaži skrivene kategorije',
 'tog-norollbackdiff' => 'Izostavi razliku nakon upotrebe ukloni',
 'tog-useeditwarning' => 'Upozori me kad napuštam stranicu za uređivanje bez spremanja izmjena',
+'tog-prefershttps' => 'Uvijek koristi sigurnu vezu kod prijave',
 
 'underline-always' => 'Uvijek',
 'underline-never' => 'Nikad',
@@ -995,7 +997,7 @@ Možda je premješten ili izbrisan dok ste pregledavali stranicu.',
 'accmailtitle' => 'Lozinka poslana.',
 'accmailtext' => "Nova lozinka za [[User talk:$1|$1]] je poslana na $2.
 
-Nakon prijave, lozinka za ovaj novi račun može biti promijenjena na stranici ''[[Special:ChangePassword|promijeni lozinku]]''",
+Nakon prijave, lozinka za ovaj novi račun može biti promijenjena na stranici ''[[Special:ChangePassword|promijeni lozinku]]'' nakon prijave.",
 'newarticle' => '(Novo)',
 'newarticletext' => "Došli ste na stranicu koja još ne postoji.
 Ako želite stvoriti tu stranicu, počnite tipkati u prozor ispod ovog teksta (pogledajte [[{{MediaWiki:Helppage}}|stranicu za pomoć]]).
@@ -1494,7 +1496,7 @@ Ne smije biti duži od $1 {{PLURAL:$1|znaka|znaka|znakova}}.',
 'prefs-signature' => 'Potpis',
 'prefs-dateformat' => 'Format datuma',
 'prefs-timeoffset' => 'Vremensko poravnavanje',
-'prefs-advancedediting' => 'Napredne opcije',
+'prefs-advancedediting' => 'Napredne mogućnosti',
 'prefs-editor' => 'Uređivač',
 'prefs-preview' => 'Prikaži kako će izgledati',
 'prefs-advancedrc' => 'Napredne opcije',
