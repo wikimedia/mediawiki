@@ -1787,6 +1787,11 @@ $parser: Parser object
 $text: text to parse
 $stripState: StripState instance being used
 
+'ParserBeforePreprocess': Called before preprocessing text
+$parser: Parser object
+$text: text to preprocess
+$flags: bit flags for preprocessing
+
 'ParserBeforeStrip': Called at start of parsing time.
 TODO: No more strip, deprecated ?
 $parser: parser object

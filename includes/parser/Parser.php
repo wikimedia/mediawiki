@@ -3084,6 +3084,7 @@ class Parser {
 	 * @return PPNode
 	 */
 	function preprocessToDom( $text, $flags = 0 ) {
+		wfRunHooks( 'ParserBeforePreprocess', array( $this, &$text, $flags ) );
 		$dom = $this->getPreprocessor()->preprocessToObj( $text, $flags );
 		return $dom;
 	}

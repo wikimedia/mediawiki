@@ -11,6 +11,8 @@
 // Set a flag which can be used to detect when other scripts have been entered through this entry point or not
 define( 'MW_PHPUNIT_TEST', true );
 
+set_include_path( get_include_path() . PATH_SEPARATOR . '/usr/local/share/pear/' );
+
 // Start up MediaWiki in command-line mode
 require_once dirname( dirname( __DIR__ ) ) . "/maintenance/Maintenance.php";
 
