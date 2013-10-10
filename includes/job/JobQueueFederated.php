@@ -253,7 +253,7 @@ class JobQueueFederated extends JobQueue {
 		foreach ( $uJobsByPartition as $partition => $jobBatch ) {
 			$queue = $this->partitionQueues[$partition];
 			try {
-				$ok = $queue->doBatchPush( $jobBatch, $flags );
+				$ok = $queue->doBatchPush( $jobBatch, $flags | self::QOS_ATOMIC );
 			} catch ( JobQueueError $e ) {
 				$ok = false;
 				wfDebugLog( 'exception', $e->getLogMessage() );
@@ -274,7 +274,7 @@ class JobQueueFederated extends JobQueue {
 			} else {
 				$queue = $this->partitionQueues[$partition];
 				try {
-					$ok = $queue->doBatchPush( $jobBatch, $flags );
+					$ok = $queue->doBatchPush( $jobBatch, $flags | self::QOS_ATOMIC );
 				} catch ( JobQueueError $e ) {
 					$ok = false;
 					wfDebugLog( 'exception', $e->getLogMessage() );
