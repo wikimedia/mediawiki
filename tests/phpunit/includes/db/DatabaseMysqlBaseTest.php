@@ -83,9 +83,6 @@ class DatabaseMysqlBaseTest extends MediaWikiTestCase {
 			// will return with thoses:
 			array( '``', false ),
 			array( '`1`', true ),
-			array( '`Array`', array() ),
-			//array( '`Object`', new stdClass() ),
-			// ^ Error: Object of class stdClass could not be converted to string
 
 			// We never know what could happen
 			array( '`0`', 0 ),
