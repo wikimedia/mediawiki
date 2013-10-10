@@ -292,6 +292,12 @@ changes to languages because of Bugzilla reports.
 * RecentChange::mExtra['lang'] is no longer set and should no longer be used.
   Extensions should read from other configuration variables, including
   $wgLocalInterwikis, to identify the current wiki.
+* Sections in the parser test framework have been renamed and the old
+  section names are deprecated.  Please use "!!wikitext" and "!!html"
+  (or "!!html/php") instead of "!!input" and "!!result".  This allows
+  us to extend parser tests to accommodate additional input/output
+  pairs, such as "!!html/parsoid" (for the output of the Parsoid
+  parser, where it differs from the PHP parser).
 
 ==== Removed classes ====
 * FakeMemCachedClient (deprecated in 1.18)
