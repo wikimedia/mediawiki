@@ -203,7 +203,7 @@ class CliInstaller extends Installer {
 	}
 
 	protected function envGetDefaultServer() {
-		return $this->getVar( 'wgServer' );
+		return null; // Do not guess if installing from CLI
 	}
 
 	public function dirIsExecutable( $dir, $url ) {

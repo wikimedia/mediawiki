@@ -80,7 +80,7 @@ class LocalSettingsGenerator {
 				$val = wfBoolToStr( $val );
 			}
 
-			if ( !in_array( $c, $unescaped ) ) {
+			if ( !in_array( $c, $unescaped ) && $val !== null ) {
 				$val = self::escapePhpString( $val );
 			}
 
@@ -222,6 +222,12 @@ class LocalSettingsGenerator {
 			}
 		}
 
+		$wgServerSetting = "";
+		if ( array_key_exists( 'wgServer', $this->values ) && $this->values['wgServer'] !== null ) {
+			$wgServerSetting = "\n## The protocol and server name to use in fully-qualified URLs\n";
+			$wgServerSetting .= "\$wgServer = \"{$this->values['wgServer']}\";\n";
+		}
+
 		switch ( $this->values['wgMainCacheType'] ) {
 			case 'anything':
 			case 'db':
@@ -265,10 +271,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 ## http://www.mediawiki.org/wiki/Manual:Short_URL
 \$wgScriptPath = \"{$this->values['wgScriptPath']}\";
 \$wgScriptExtension = \"{$this->values['wgScriptExtension']}\";
-
-## The protocol and server name to use in fully-qualified URLs
-\$wgServer = \"{$this->values['wgServer']}\";
-
+${wgServerSetting}
 ## The relative URL path to the skins directory
 \$wgStylePath = \"\$wgScriptPath/skins\";
 
