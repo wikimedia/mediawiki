@@ -467,8 +467,8 @@ class TestFileIterator implements Iterator {
 
 				if ( $this->section == 'end' ) {
 					$this->checkSection( 'test' );
-					$this->checkSection( 'input' );
-					$this->checkSection( 'result' );
+					$this->checkSection( 'wikitext' );
+					$this->checkSection( 'html' );
 
 					if ( !isset( $this->sectionData['options'] ) ) {
 						$this->sectionData['options'] = '';
@@ -501,8 +501,8 @@ class TestFileIterator implements Iterator {
 
 					$this->test = array(
 						'test' => ParserTest::chomp( $this->sectionData['test'] ),
-						'input' => ParserTest::chomp( $this->sectionData['input'] ),
-						'result' => ParserTest::chomp( $this->sectionData['result'] ),
+						'wikitext' => ParserTest::chomp( $this->sectionData['wikitext'] ),
+						'html' => ParserTest::chomp( $this->sectionData['html'] ),
 						'options' => ParserTest::chomp( $this->sectionData['options'] ),
 						'config' => ParserTest::chomp( $this->sectionData['config'] ),
 					);

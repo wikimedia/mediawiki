@@ -387,7 +387,7 @@ class ParserTest {
 
 		foreach ( $filenames as $filename ) {
 			$contents = file_get_contents( $filename );
-			preg_match_all( '/!!\s*input\n(.*?)\n!!\s*result/s', $contents, $matches );
+			preg_match_all( '/!!\s*wikitext\n(.*?)\n!!\s*html/s', $contents, $matches );
 
 			foreach ( $matches[1] as $match ) {
 				$dict .= $match . "\n";
@@ -480,7 +480,7 @@ class ParserTest {
 
 		foreach ( $tests as $t ) {
 			$result =
-				$this->runTest( $t['test'], $t['input'], $t['result'], $t['options'], $t['config'] );
+				$this->runTest( $t['test'], $t['wikitext'], $t['html'], $t['options'], $t['config'] );
 			$ok = $ok && $result;
 			$this->recorder->record( $t['test'], $result );
 		}
