@@ -387,7 +387,7 @@ class ParserTest {
 
 		foreach ( $filenames as $filename ) {
 			$contents = file_get_contents( $filename );
-			preg_match_all( '/!!\s*input\n(.*?)\n!!\s*result/s', $contents, $matches );
+			preg_match_all( '/!!\s*(input|wikitext)\n(.*?)\n!!\s*(result|html)/s', $contents, $matches );
 
 			foreach ( $matches[1] as $match ) {
 				$dict .= $match . "\n";
