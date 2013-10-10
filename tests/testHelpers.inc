@@ -467,8 +467,9 @@ class TestFileIterator implements Iterator {
 
 				if ( $this->section == 'end' ) {
 					$this->checkSection( 'test' );
-					$this->checkSection( 'input' );
-					$this->checkSection( 'result' );
+					$input = $this->checkSectionArray( [ 'input', 'wikitext' ] );
+					$result = $input == 'wikitext' ? 'html' : 'result';
+					$this->checkSection( $result );
 
 					if ( !isset( $this->sectionData['options'] ) ) {
 						$this->sectionData['options'] = '';
@@ -501,8 +502,8 @@ class TestFileIterator implements Iterator {
 
 					$this->test = array(
 						'test' => ParserTest::chomp( $this->sectionData['test'] ),
-						'input' => ParserTest::chomp( $this->sectionData['input'] ),
-						'result' => ParserTest::chomp( $this->sectionData['result'] ),
+						'input' => ParserTest::chomp( $this->sectionData[ $input ] ),
+						'result' => ParserTest::chomp( $this->sectionData[ $result ] ),
 						'options' => ParserTest::chomp( $this->sectionData['options'] ),
 						'config' => ParserTest::chomp( $this->sectionData['config'] ),
 					);
@@ -543,7 +544,8 @@ class TestFileIterator implements Iterator {
 	 * Throw an exception if it is not set, referencing current section
 	 * and adding the current file name and line number
 	 *
-	 * @param $token String: expected token that should have been mentionned before closing this section
+	 * @param $token String: expected token that should have been mentioned
+	 * before closing this section
 	 */
 	private function checkSection( $token ) {
 		if ( is_null( $this->section ) ) {
@@ -560,6 +562,36 @@ class TestFileIterator implements Iterator {
 			) );
 		}
 		return true;
+	}
+
+	/**
+	 * Verify the current section data has some value for one of the given tokens.
+	 * Returns the matching token.
+	 *
+	 * @param $tokens Array: tokens of which one, and only one, should have been
+	 * mentioned before closing this section
+	 */
+	private function checkSectionArray( $tokens ) {
+		if ( is_null( $this->section ) ) {
+			throw new MWException( __METHOD__ . " can not verify a null section!\n" );
+		}
+
+		$tokens = array_filter( $tokens, function ( $token ) {
+			return isset( $this->sectionData[ $token ] );
+		});
+
+		if ( count( $tokens ) != 1 ) {
+			throw new MWException( sprintf(
+				"'%s' with unexpected tokens '%s' at line %s of %s\n",
+				$this->section,
+				implode( ',', $tokens ),
+				$this->lineNum,
+				$this->file
+			) );
+		}
+
+		$tokens = array_values( $tokens );
+		return $tokens[ 0 ];
 	}
 }
 
