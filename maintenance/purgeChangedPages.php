@@ -41,6 +41,7 @@ class PurgeChangedPages extends Maintenance {
 		$this->addOption( 'starttime', 'Starting timestamp', true, true );
 		$this->addOption( 'endtime', 'Ending timestamp', true, true );
 		$this->addOption( 'htcp-dest', 'HTCP announcement destination (IP:port)', false, true );
+		$this->addOption( 'sleep-per-batch', 'Milliseconds to sleep between batches', false, true );
 		$this->addOption( 'dry-run', 'Do not send purge requests' );
 		$this->addOption( 'verbose', 'Show more output', false, false, 'v' );
 		$this->setBatchSize( 100 );
@@ -135,8 +136,13 @@ class PurgeChangedPages extends Maintenance {
 			}
 
 			// Send batch of purge requests out to squids
-			$squid = new SquidUpdate( $urls );
+			$squid = new SquidUpdate( $urls, count( $urls ) );
 			$squid->doUpdate();
+
+			if ( $this->hasOption( 'sleep-per-batch' ) ) {
+				// sleep-per-batch is milliseconds, usleep wants micro seconds.
+				usleep( 1000 * (int)$this->getOption( 'sleep-per-batch' ) );
+			}
 		}
 
 		$this->output( "Done!\n" );
