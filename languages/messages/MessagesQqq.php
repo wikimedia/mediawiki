@@ -107,6 +107,7 @@
  * @author Prometheus.pyrphoros
  * @author Psubhashish
  * @author Purodha
+ * @author Pxos
  * @author Rancher
  * @author Raymond
  * @author Reedy
@@ -2348,7 +2349,7 @@ See [{{canonicalurl:x|feed=atom&action=history}} example].',
 'rev-suppressed-text-unhide' => 'Parameters:
 * $1 - a HTML link to the revision
 {{Related|Rev-deleted-text}}',
-'rev-deleted-text-view' => 'I believe this is an error message which appears if a user tries to view a past revision of a page, where the revision has been hidden from view, although later revisions of the page still exist.',
+'rev-deleted-text-view' => 'This is an error message which appears if a user tries to view a past revision of a page, where the revision has been hidden from view, although later revisions of the page still exist.',
 'rev-suppressed-text-view' => '{{Related|Rev-deleted-text}}',
 'rev-deleted-no-diff' => 'See also:
 * {{msg-mw|Rev-suppressed-no-diff}}',

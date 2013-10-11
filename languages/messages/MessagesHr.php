@@ -852,6 +852,7 @@ Molimo Vas pričekajte $1 prije nego što pokušate ponovno.',
 # Email sending
 'php-mail-error-unknown' => 'Nepoznata pogrješka u funkciji PHP-poruke()',
 'user-mail-no-addy' => 'Pokušaj slanja e-maila bez e-mail adrese.',
+'user-mail-no-body' => 'Pokušali ste poslati e-mail bez sadržaja ili s prekratkim sadržajem.',
 
 # Change password dialog
 'resetpass' => 'Promijeni lozinku',
@@ -3120,6 +3121,7 @@ Razlog je vjerojatno vanjska poveznica koja se nalazi na crnom popisu.',
 'pageinfo-protect-cascading' => 'Prenosiva zaštita počinje od ove stranice',
 'pageinfo-protect-cascading-yes' => 'Da',
 'pageinfo-protect-cascading-from' => 'Prenosiva zaštita počinje od',
+'pageinfo-category-info' => 'Informacije o kategoriji',
 'pageinfo-category-pages' => 'Broj stranica',
 'pageinfo-category-subcats' => 'Broj podkategorija',
 'pageinfo-category-files' => 'Broj datoteka',

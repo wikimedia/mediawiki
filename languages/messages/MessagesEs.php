@@ -831,6 +831,8 @@ No olvides personalizar tus [[Special:Preferences|preferencias de {{SITENAME}}]]
 'userlogin-resetpassword-link' => 'Restablecer la contraseña',
 'helplogin-url' => 'Help:Inicio de sesión',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Ayuda]]',
+'userlogin-loggedin' => 'Ya estás conectado como {{GENDER:$1|$1}}.
+Usa el formulario de abajo para iniciar sesión como otro usuario.',
 'userlogin-createanother' => 'Crear otra cuenta',
 'createacct-join' => 'Introduce tus datos debajo.',
 'createacct-another-join' => 'Introduzca la información de la nueva cuenta a continuación.',
@@ -2734,7 +2736,7 @@ $1',
 'contributions' => 'Contribuciones {{GENDER:$1|del usuario|de la usuaria}}',
 'contributions-title' => 'Contribuciones {{GENDER:$1|del usuario|de la usuaria}} $1',
 'mycontris' => 'Contribuciones',
-'contribsub2' => '$1 ($2)',
+'contribsub2' => 'Para {{GENDER:$3|$1}} ($2)',
 'nocontribs' => 'No se encontraron cambios que cumplieran estos criterios.',
 'uctop' => '(edición actual)',
 'month' => 'Desde el mes (y anteriores):',
@@ -4268,5 +4270,6 @@ En otro caso, puedes usar el siguiente formulario. Tu comentario será añadido 
 'limitreport-templateargumentsize' => 'Argumento del tamaño de la plantilla',
 'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|byte|bytes}}',
 'limitreport-expansiondepth' => 'Profundidad máxima de expansión',
+'limitreport-expensivefunctioncount' => 'Cuenta de la funcion expansiva del analizador',
 
 );

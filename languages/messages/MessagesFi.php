@@ -869,7 +869,7 @@ Jos kuitenkin kerrot sen, nimeä käytetään jotta voidaan kertoa kuka sisält�
 'resetpass_header' => 'Muuta tunnuksen salasana',
 'oldpassword' => 'Vanha salasana:',
 'newpassword' => 'Uusi salasana:',
-'retypenew' => 'Uusi salasana uudelleen',
+'retypenew' => 'Uusi salasana uudelleen:',
 'resetpass_submit' => 'Aseta salasana ja kirjaudu sisään',
 'changepassword-success' => 'Salasanasi vaihtaminen onnistui.',
 'resetpass_forbidden' => 'Salasanoja ei voi vaihtaa.',
@@ -982,7 +982,7 @@ IP-osoitteesi kirjataan tämän sivun muutoshistoriaan.",
 'missingcommentheader' => 'Et ole antanut otsikkoa kommentillesi. Napsauta ”{{int:savearticle}}”, jos et halua antaa otsikkoa.',
 'summary-preview' => 'Yhteenvedon esikatselu:',
 'subject-preview' => 'Otsikon esikatselu:',
-'blockedtitle' => 'Pääsy estetty',
+'blockedtitle' => 'Käyttäjä on estetty',
 'blockedtext' => "'''Käyttäjätunnuksesi tai IP-osoitteesi on estetty.'''
 
 Eston on asettanut $1.
@@ -1033,11 +1033,12 @@ Voit [[Special:Search/{{PAGENAME}}|etsiä sivun nimellä]] muilta sivuilta,
 tai [{{fullurl:{{FULLPAGENAME}}|action=edit}} muokata tätä sivua]</span>.',
 'noarticletext-nopermission' => 'Tällä hetkellä tällä sivulla ei ole tekstiä.
 Voit [[Special:Search/{{PAGENAME}}|etsiä sivun nimellä]] muilta sivuilta tai <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} hakea aiheeseen liittyviä lokeja]</span>, mutta sinulla ei ole oikeutta luoda tätä sivua.',
-'missing-revision' => 'Sivusta {{PAGENAME}} ei ole olemassa versiota $1.
+'missing-revision' => 'Sivusta "{{PAGENAME}}" ei ole olemassa versiota $1.
 
-Useimmiten tämä johtuu vanhentuneesta historialinkistä poistettuun sivuun.
-Lisätietoja löytyy [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} poistolokista].',
-'userpage-userdoesnotexist' => 'Käyttäjätunnusta <nowiki>$1</nowiki> ei ole rekisteröity. Varmista haluatko muokata tätä sivua.',
+Yleensä tämä johtuu vanhentuneesta historialinkistä sivulle, joka on poistettu.
+Tarkempia tietoja löytyy [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} poistolokista].',
+'userpage-userdoesnotexist' => 'Käyttäjätunnusta "$1" ei ole rekisteröity. 
+Varmista, haluatko luoda tämän sivun tai muokata sitä.',
 'userpage-userdoesnotexist-view' => 'Käyttäjätunnusta ”$1” ei ole rekisteröity.',
 'blocked-notice-logextract' => 'Tämä käyttäjä on tällä hetkellä estetty.
 Alla on viimeisin estolokin tapahtuma:',
@@ -1110,11 +1111,12 @@ Alla on viimeisin lokitapahtuma:",
 'sectioneditnotsupported-title' => 'Osioiden muokkaamista ei tueta.',
 'sectioneditnotsupported-text' => 'Osioiden muokkaamista ei tueta tällä sivulla.',
 'permissionserrors' => 'Puutteelliset oikeudet',
-'permissionserrorstext' => 'Sinulla ei ole oikeutta suorittaa toimintoa {{PLURAL:$1|seuraavasta syystä|seuraavista syistä}} johtuen:',
-'permissionserrorstext-withaction' => 'Sinulla ei ole lupaa {{lcfirst:$2}} {{PLURAL:$1|seuraavasta syystä|seuraavista syistä}} johtuen:',
-'recreate-moveddeleted-warn' => "'''Olet luomassa sivua, joka on aikaisemmin poistettu.'''
+'permissionserrorstext' => 'Sinulla ei ole oikeutta suorittaa toimintoa {{PLURAL:$1|seuraavasta syystä|seuraavista syistä}}:',
+'permissionserrorstext-withaction' => 'Sinulla ei ole oikeutta {{lcfirst:$2}} {{PLURAL:$1|seuraavasta syystä|seuraavista syistä}}:',
+'recreate-moveddeleted-warn' => "'''Varoitus: Olet luomassa sellaista sivua, joka on aikaisemmin poistettu.'''
 
-Harkitse, kannattaako sivua luoda uudelleen. Alla on tämän sivun poisto- ja siirtohistoria:",
+Harkitse, kannattaako tätä sivua luoda uudelleen. 
+Alla on tämän sivun poisto- ja siirtohistoria:",
 'moveddeleted-notice' => 'Tämä sivu on poistettu. Alla on tämän sivun poisto- ja siirtohistoria.',
 'log-fulllog' => 'Näytä loki kokonaan',
 'edit-hook-aborted' => 'Laajennuskoodi esti muokkauksen antamatta syytä.',
@@ -1130,7 +1132,7 @@ Se on jo olemassa.',
 'invalid-content-data' => 'Virheellinen sisältö',
 'content-not-allowed-here' => 'Sivun [[$2]] sisältö ei voi olla tyyppiä $1.',
 'editwarning-warning' => 'Tältä sivulta poistuminen saattaa aiheuttaa kaikkien tekemiesi muutosten katoamisen.
-Jos olet kirjautuneena sisään, voit poistaa tämän varoituksen käytöstä asetuksissa osiossa »Muokkaus».',
+Jos olet kirjautuneena sisään, voit poistaa tämän varoituksen käytöstä asetuksissa osiossa "Muokkaus".',
 
 # Content models
 'content-model-wikitext' => 'wikiteksti',
@@ -1160,15 +1162,16 @@ Nämä muuttujat on jätetty käsittelemättä.",
 'converter-manual-rule-error' => 'Kielivarianttisäännössä on virhe',
 
 # "Undo" feature
-'undo-success' => 'Kumoaminen onnistui. Valitse <em>tallenna</em> toteuttaaksesi muutokset.',
-'undo-failure' => 'Muokkausta ei voitu kumota välissä olevien ristiriitaisten muutosten vuoksi. Kumoa muutokset käsin.',
-'undo-norev' => 'Muokkausta ei voitu perua, koska sitä ei ole olemassa tai se on poistettu.',
+'undo-success' => 'Kumoaminen voidaan suorittaa.
+Varmista alla olevasta vertailusta, että haluat saada aikaan tämän lopputuloksen, ja sen jälkeen tallenna alla näkyvät muutokset.',
+'undo-failure' => 'Muokkausta ei voi kumota välissä olevien ristiriitaisten muutosten vuoksi.',
+'undo-norev' => 'Muokkausta ei voida kumota, koska sitä ei ole olemassa tai se on poistettu.',
 'undo-summary' => 'Kumottu muokkaus $1, jonka teki [[Special:Contributions/$2|$2]] ([[User talk:$2|keskustelu]])',
-'undo-summary-username-hidden' => 'Kumoa muutos $1, jonka on tehnyt piilotettu käyttäjä',
+'undo-summary-username-hidden' => 'Kumottu muokkaus $1, jonka on tehnyt piilotettu käyttäjä',
 
 # Account creation failure
-'cantcreateaccounttitle' => 'Tunnuksen luominen epäonnistui',
-'cantcreateaccount-text' => "Käyttäjä [[User:$3|$3]] on estänyt käyttäjätunnusten luomisen tästä IP-osoitteesta ($1).
+'cantcreateaccounttitle' => 'Tunnusta ei voida luoda',
+'cantcreateaccount-text' => "Tunnusten luonti tästä IP-osoitteesta ('''$1''') on estetty. Estäjänä on [[User:$3|$3]].
 
 Käyttäjän $3 antama syy on ''$2''",
 
@@ -1233,7 +1236,7 @@ Voit silti [$1 nähdä tämän muutoksen], jos haluat jatkaa.",
 Voit silti nähdä tämän muutoksen. Lisätietoja löytyy [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} poistolokista].",
 'rev-suppressed-diff-view' => "Yksi tämän muutosvertailun versioista on '''häivytetty'''.
 Voit silti nähdä tämän muutoksen. Lisätietoja löytyy [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} häivytyslokista].",
-'rev-delundel' => 'näytä tai piilota',
+'rev-delundel' => 'muuta näkyvyyttä',
 'rev-showdeleted' => 'näytä',
 'revisiondelete' => 'Poista tai palauta versioita',
 'revdelete-nooldid-title' => 'Ei kohdeversiota',
@@ -1265,10 +1268,10 @@ Muut ylläpitäjät {{GRAMMAR:inessive|{{SITENAME}}}} voivat silti tarkastella p
 'revdelete-radio-unset' => 'Ei',
 'revdelete-suppress' => 'Häivytä tiedot myös ylläpitäjien näkyviltä samalla kun piilotat ne muilta käyttäjiltä',
 'revdelete-unsuppress' => 'Poista rajoitukset palautetuilta versioilta',
-'revdelete-log' => 'Syy',
+'revdelete-log' => 'Syy:',
 'revdelete-submit' => 'Toteuta {{PLURAL:$1|valittuun versioon|valittuihin versioihin}}',
 'revdelete-success' => "'''Version näkyvyys päivitetty.'''",
-'revdelete-failure' => "'''Version näkyvyyttä ei voitu päivittää:'''
+'revdelete-failure' => "'''Version näkyvyyden muuttaminen ei onnistunut:'''
 $1",
 'logdelete-success' => "'''Lokitapahtuman näkyvyyttä on muutettu.'''",
 'logdelete-failure' => "'''Lokin näkyvyyttä ei voitu asettaa:'''
@@ -1291,10 +1294,10 @@ Sinulla ei ole oikeutta siihen.',
 ** Sopimattomat henkilötiedot
 ** Sopimaton käyttäjätunnus
 ** Mahdollinen kunnianloukkaus',
-'revdelete-otherreason' => 'Muu syy tai tarkennus',
+'revdelete-otherreason' => 'Muu syy tai tarkennus:',
 'revdelete-reasonotherlist' => 'Muu syy',
 'revdelete-edit-reasonlist' => 'Muokkaa poistosyitä',
-'revdelete-offender' => 'Version tekijä',
+'revdelete-offender' => 'Version tekijä:',
 
 # Suppression log
 'suppressionlog' => 'Häivytysloki',
@@ -1302,7 +1305,7 @@ Sinulla ei ole oikeutta siihen.',
 [[Special:BlockList|Estolistassa]] on lueteltu voimassa olevat muokkauskiellot ja muokkausestot.',
 
 # History merging
-'mergehistory' => 'Yhdistä muutoshistoriat',
+'mergehistory' => 'Yhdistä sivujen muutoshistoriat',
 'mergehistory-header' => 'Tämä sivu mahdollistaa sivun muutoshistorian yhdistämisen uudemman sivun muutoshistoriaan.
 Uuden ja vanhan sivun muutoksien pitää muodostaa jatkumo – ne eivät saa mennä ristikkäin.',
 'mergehistory-box' => 'Yhdistä kahden sivun muutoshistoria',
@@ -1429,7 +1432,7 @@ Kokeile lisätä haun alkuun ''all:'', niin haku kohdistuu kaikkeen sisältöön
 'prefs-personal' => 'Käyttäjätiedot',
 'prefs-rc' => 'Tuoreet muutokset',
 'prefs-watchlist' => 'Tarkkailulista',
-'prefs-watchlist-days' => 'Näytettävien päivien määrä tarkkailulistalla:',
+'prefs-watchlist-days' => 'Näytettävien päivien määrä tarkkailulistalla',
 'prefs-watchlist-days-max' => 'Enintään $1 {{PLURAL:$1|päivä|päivää}}',
 'prefs-watchlist-edits' => 'Tarkkailulistalla näytettävien muokkausten määrä',
 'prefs-watchlist-edits-max' => 'Enintään 1000',
@@ -1450,7 +1453,7 @@ Kokeile lisätä haun alkuun ''all:'', niin haku kohdistuu kaikkeen sisältöön
 'resultsperpage' => 'Tuloksia sivua kohti',
 'stub-threshold' => '<a href="#" class="stub">Tynkäsivun</a> osoituskynnys',
 'stub-threshold-disabled' => 'Ei käytössä',
-'recentchangesdays' => 'Näytettävien päivien määrä tuoreissa muutoksissa',
+'recentchangesdays' => 'Näytettävien päivien määrä tuoreissa&nbsp;muutoksissa',
 'recentchangesdays-max' => 'Enintään $1 {{PLURAL:$1|päivä|päivää}}',
 'recentchangescount' => 'Näytettävien muutoksien määrä oletuksena',
 'prefs-help-recentchangescount' => 'Tämä sisältää tuoreet muutokset, muutoshistoriat ja lokit.',
@@ -1525,7 +1528,7 @@ Tämä tieto on julkinen.',
 'prefs-displaysearchoptions' => 'Näyttöasetukset',
 'prefs-displaywatchlist' => 'Näyttöasetukset',
 'prefs-tokenwatchlist' => 'Avain',
-'prefs-diffs' => 'Erot',
+'prefs-diffs' => 'Eroavaisuudet',
 'prefs-help-prefershttps' => 'Tämä asetus tulee voimaan seuraavan sisäänkirjautumisesi yhteydessä.',
 
 # User preference: email validation using jQuery
@@ -1534,27 +1537,27 @@ Tämä tieto on julkinen.',
 
 # User rights
 'userrights' => 'Käyttöoikeuksien hallinta',
-'userrights-lookup-user' => 'Käyttöoikeuksien hallinta',
+'userrights-lookup-user' => 'Hallinnoi käyttäjän ryhmiä',
 'userrights-user-editname' => 'Käyttäjätunnus',
 'editusergroup' => 'Muokkaa käyttäjän ryhmiä',
-'editinguser' => "Käyttäjän '''[[User:$1|$1]]''' oikeudet $2",
-'userrights-editusergroup' => 'Käyttäjän ryhmät',
-'saveusergroups' => 'Tallenna',
+'editinguser' => "Muutetaan käyttäjän '''[[User:$1|$1]]''' $2 oikeuksia",
+'userrights-editusergroup' => 'Muuta käyttäjän ryhmiä',
+'saveusergroups' => 'Tallenna nämä käyttäjäryhmät',
 'userrights-groupsmember' => 'Jäsenenä ryhmissä:',
-'userrights-groupsmember-auto' => 'Virtuaaliset ryhmät:',
-'userrights-groups-help' => 'Voit muuttaa ryhmiä, joissa tämä käyttäjä on.
+'userrights-groupsmember-auto' => 'Automaattisesti jäsenenä ryhmissä:',
+'userrights-groups-help' => 'Voit muuttaa ryhmiä, joissa tämä käyttäjä on:
 * Merkattu valintaruutu tarkoittaa, että käyttäjä on kyseisessä ryhmässä.
 * Merkkaamaton valintaruutu tarkoittaa, että käyttäjä ei ole kyseisessä ryhmässä.
-* <nowiki>*</nowiki> tarkoittaa, että et pysty kumoamaan kyseistä operaatiota.',
+* <nowiki>*</nowiki> tarkoittaa, että et pysty poistamaan käyttäjää tästä ryhmästä kun olet hänet siihen lisännyt tai päinvastoin',
 'userrights-reason' => 'Syy:',
-'userrights-no-interwiki' => 'Sinulla ei ole lupaa muokata käyttöoikeuksia muissa wikeissä.',
+'userrights-no-interwiki' => 'Sinulla ei ole oikeutta muokata käyttöoikeuksia muissa wikeissä.',
 'userrights-nodatabase' => 'Tietokantaa $1 ei ole tai se ei ole paikallinen.',
 'userrights-nologin' => 'Sinun täytyy [[Special:UserLogin|kirjautua sisään]] ylläpitäjän tunnuksella, jotta voisit muuttaa käyttöoikeuksia.',
-'userrights-notallowed' => 'Sinulla ei ole lupaa lisätä tai poistaa käyttöoikeuksia.',
+'userrights-notallowed' => 'Sinulla ei ole oikeutta lisätä tai poistaa käyttäjien oikeuksia.',
 'userrights-changeable-col' => 'Ryhmät, joita voit muuttaa',
 'userrights-unchangeable-col' => 'Ryhmät, joita et voi muuttaa',
 'userrights-conflict' => 'Päällekkäinen käyttöoikeuksien muutos! Tarkista tekemäsi muutokset ja vahvista ne.',
-'userrights-removed-self' => 'Poistit onnistuneesti omat oikeutesi. Tämän myötä sinulla ei ole enää oikeutta käyttää tätä sivua.',
+'userrights-removed-self' => 'Poistit onnistuneesti omat oikeutesi. Tämän jälkeen et enää pääse tälle sivulle.',
 
 # Groups
 'group' => 'Ryhmä',
@@ -2716,7 +2719,7 @@ Voimassa olevat estot näkyvät [[Special:BlockList|estolistasta]].',
 'blocklist-userblocks' => 'Piilota tunnusten estot',
 'blocklist-tempblocks' => 'Piilota väliaikaiset estot',
 'blocklist-addressblocks' => 'Piilota yksittäiset IP-estot',
-'blocklist-rangeblocks' => 'Piilota ryhmäestot',
+'blocklist-rangeblocks' => 'Piilota avaruusestot',
 'blocklist-timestamp' => 'Päiväys',
 'blocklist-target' => 'Kohde',
 'blocklist-expiry' => 'Vanhentuu',
@@ -2765,7 +2768,7 @@ Alla on ote häivytyslokista.',
 'ipb_already_blocked' => '”$1” on jo estetty.',
 'ipb-needreblock' => '$1 on jo estetty. Haluatko muuttaa eston asetuksia?',
 'ipb-otherblocks-header' => '{{PLURAL:$1|Muu esto|Muut estot}}',
-'unblock-hideuser' => 'Et voi poistaa estoa tältä käyttäjältä, kun käyttäjänimi on piilotettuna.',
+'unblock-hideuser' => 'Et voi poistaa estoa tältä käyttäjältä, koska hänen käyttäjätunnuksensa on piilotettu.',
 'ipb_cant_unblock' => 'Estoa ”$1” ei löytynyt. Se on saatettu poistaa.',
 'ipb_blocked_as_range' => 'IP-osoite $1 on estetty välillisesti ja sen estoa ei voi poistaa. Se on estetty osana verkkoaluetta $2, jonka eston voi poistaa',
 'ip_range_invalid' => 'Virheellinen IP-alue.',
@@ -2775,30 +2778,33 @@ Alla on ote häivytyslokista.',
 'proxyblocker-disabled' => 'Tämä toiminto ei ole käytössä.',
 'proxyblockreason' => 'IP-osoitteestasi on estetty muokkaukset, koska se on avoin välityspalvelin. Ota yhteyttä Internet-palveluntarjoajaasi tai tekniseen tukeen ja kerro heille tästä tietoturvaongelmasta.',
 'proxyblocksuccess' => 'Valmis.',
-'sorbsreason' => 'IP-osoitteesi on listattu avoimena välityspalvelimena DNSBLin mustalla listalla.',
-'sorbs_create_account_reason' => 'IP-osoitteesi on listattu avoimena välityspalvelimena DNSBLin mustalla listalla. Et voi luoda käyttäjätunnusta.',
+'sorbsreason' => 'IP-osoitteesi on listattu avoimena välityspalvelimena DNSBL:n mustalla listalla sivustolla {{SITENAME}}.',
+'sorbs_create_account_reason' => 'IP-osoitteesi on listattu avoimena välityspalvelimena DNSBL:n mustalla listalla sivustolla {{SITENAME}}. 
+Et voi luoda käyttäjätunnusta.',
 'xffblockreason' => 'Yhteydet IP-osoitteesta, joka löytyy sinun tai käyttämäsi välipalvelimen X-Forwarded-For-otsakkeesta, on estetty. Alkuperäinen estämisen syy oli: $1',
-'cant-block-while-blocked' => 'Et voi estää muita käyttäjiä ollessasi estetty.',
+'cant-block-while-blocked' => 'Et voi estää muita käyttäjiä kun olet itse estetty.',
 'cant-see-hidden-user' => 'Käyttäjä, jota yrität estää on jo estetty ja piilotettu. Koska sinulla ei ole hideuser-oikeutta, et voi nähdä tai muokata käyttäjän estoa.',
 'ipbblocked' => 'Et voi estää tai poistaa estoja muilta käyttäjiltä, koska itse olet estettynä',
 'ipbnounblockself' => 'Et ole oikeutettu poistamaan estoa itseltäsi',
 
 # Developer tools
 'lockdb' => 'Lukitse tietokanta',
-'unlockdb' => 'Vapauta tietokanta',
-'lockdbtext' => 'Tietokannan lukitseminen estää käyttäjiä muokkaamasta sivuja, vaihtamasta asetuksia, muokkaamasta tarkkailulistoja ja tekemästä muita tietokannan muuttamista vaativia toimia. Ole hyvä ja vahvista, että tämä on tarkoituksesi, ja että vapautat tietokannan kun olet suorittanut ylläpitotehtävät.',
-'unlockdbtext' => 'Tietokannan vapauttaminen antaa käyttäjille mahdollisuuden muokata sivuja, vaihtaa asetuksia, muokata tarkkailulistoja ja tehdä muita tietokannan muuttamista vaativia toimia. Ole hyvä ja vahvista, että tämä on tarkoituksesi.',
+'unlockdb' => 'Poista tietokannan lukitus',
+'lockdbtext' => 'Tietokannan lukitseminen estää kaikkia käyttäjiä muokkaamasta sivuja, vaihtamasta asetuksia, muokkaamasta tarkkailulistoja ja tekemästä muita toimia, jotka vaativat tietokannan muuttamista. Ole hyvä ja vahvista, että tämä on tarkoituksesi ja että poistat tietokannan lukituksen kun olet suorittanut huoltotehtävät.',
+'unlockdbtext' => 'Tietokannan lukituksen poistaminen antaa käyttäjille mahdollisuuden muokata sivuja, vaihtaa asetuksia, muokata tarkkailulistoja ja tehdä muita tietokannan muuttamista vaativia toimia. 
+Ole hyvä ja vahvista, että tämä on tarkoituksesi.',
 'lockconfirm' => 'Kyllä, haluan varmasti lukita tietokannan.',
-'unlockconfirm' => 'Kyllä, haluan varmasti vapauttaa tietokannan.',
+'unlockconfirm' => 'Kyllä, haluan varmasti poistaa tietokannan lukituksen.',
 'lockbtn' => 'Lukitse tietokanta',
-'unlockbtn' => 'Vapauta tietokanta',
-'locknoconfirm' => 'Et merkinnyt vahvistuslaatikkoa.',
+'unlockbtn' => 'Poista tietokannan lukitus',
+'locknoconfirm' => 'Et vahvistanut toimenpidettä.',
 'lockdbsuccesssub' => 'Tietokannan lukitseminen onnistui',
-'unlockdbsuccesssub' => 'Tietokannan vapauttaminen onnistui',
-'lockdbsuccesstext' => 'Tietokanta on lukittu.<br />Muista vapauttaa tietokanta ylläpitotoimenpiteiden jälkeen.',
-'unlockdbsuccesstext' => 'Tietokanta on vapautettu.',
+'unlockdbsuccesssub' => 'Tietokannan lukitus on poistettu',
+'lockdbsuccesstext' => 'Tietokanta on lukittu.<br />
+Muista [[Special:UnlockDB|poistaa tietokannan lukitus]] kun huolto on tehty.',
+'unlockdbsuccesstext' => 'Tietokannan lukitus on poistettu.',
 'lockfilenotwritable' => 'Tietokannan lukitustiedostoa ei voi kirjoittaa. Tarkista oikeudet.',
-'databasenotlocked' => 'Tietokanta ei ole lukittu.',
+'databasenotlocked' => 'Tietokantaa ei ole lukittu.',
 'lockedbyandtime' => '(lukinnut {{GENDER:$1|$1}} $2 kello $3)',
 
 # Move page
@@ -2822,21 +2828,20 @@ Huomaa, että sivua '''ei''' siirretä mikäli uusi otsikko on olemassa olevan s
 Tämä tarkoittaa sitä, että voit siirtää sivun takaisin vanhalle nimelleen mikäli teit virheen, mutta et voi kirjoittaa olemassa olevan sivun päälle.
 
 Tämä saattaa olla suuri ja odottamaton muutos suositulle sivulle. Varmista, että tiedät seuraukset ennen kuin siirrät sivun.",
-'movepagetalktext' => "Sivuun mahdollisesti kytketty keskustelusivu siirretään automaattisesti, '''paitsi jos''':
-*Siirrät sivua nimiavaruudesta toiseen
-*Kohdesivulla on olemassa keskustelusivu, joka ei ole tyhjä, tai
-*Kumoat alla olevan ruudun asetuksen.
+'movepagetalktext' => "Sivuun mahdollisesti liittyvä keskustelusivu siirtyy automaattisesti mukana, '''paitsi:'''
+*jos siirron kohdesivulla on olemassa keskustelusivu, joka ei ole tyhjä, tai
+*jos otat pois rastin alla olevasta ruudusta.
 
-Näissä tapauksissa sivut täytyy siirtää tai yhdistää käsin.",
-'movearticle' => 'Siirrettävä sivu',
+Näissä tapauksissa sivu täytyy siirtää tai yhdistää käsin, jos se on tarpeen.",
+'movearticle' => 'Siirrettävä sivu:',
 'moveuserpage-warning' => "'''Varoitus:''' Olet siirtämässä käyttäjäsivua. Huomaa, että vain sivu siirretään ja käyttäjää ''ei'' nimetä uudelleen.",
 'movenologin' => 'Et ole kirjautunut sisään',
 'movenologintext' => 'Sinun pitää olla rekisteröitynyt käyttäjä ja [[Special:UserLogin|kirjautua sisään]], jotta voisit siirtää sivun.',
-'movenotallowed' => 'Sinulla ei ole oikeuksia siirtää sivuja.',
-'movenotallowedfile' => 'Sinulla ei ole oikeuksia siirtää tiedostoja.',
-'cant-move-user-page' => 'Sinulla ei ole lupaa siirtää käyttäjäsivuja (lukuun ottamatta alasivuja).',
-'cant-move-to-user-page' => 'Sinulla ei ole lupaa siirtää sivuja käyttäjäsivuiksi (paitsi alasivuiksi).',
-'newtitle' => 'Uusi nimi sivulle',
+'movenotallowed' => 'Sinulla ei ole oikeutta siirtää sivuja.',
+'movenotallowedfile' => 'Sinulla ei ole oikeutta siirtää tiedostoja.',
+'cant-move-user-page' => 'Sinulla ei ole oikeutta siirtää käyttäjäsivuja (lukuun ottamatta alasivuja).',
+'cant-move-to-user-page' => 'Sinulla ei ole oikeutta siirtää sivua käyttäjäsivuksi (paitsi käyttäjän alasivuksi).',
+'newtitle' => 'Uusi nimi sivulle:',
 'move-watch' => 'Tarkkaile tätä sivua',
 'movepagebtn' => 'Siirrä sivu',
 'pagemovedsub' => 'Siirto onnistui',
@@ -2846,7 +2851,7 @@ Näissä tapauksissa sivut täytyy siirtää tai yhdistää käsin.",
 'articleexists' => 'Kohdesivu on jo olemassa, tai valittu nimi ei ole sopiva. Ole hyvä ja valitse uusi nimi.',
 'cantmove-titleprotected' => 'Sivua ei voi siirtää tälle nimelle, koska tämän nimisen sivun luonti on estetty.',
 'talkexists' => 'Sivun siirto onnistui, mutta keskustelusivua ei voitu siirtää, koska uuden otsikon alla on jo keskustelusivu. Keskustelusivujen sisältö täytyy yhdistää käsin.',
-'movedto' => 'Siirretty uudelle otsikolle',
+'movedto' => 'Siirretty uudelle nimelle',
 'movetalk' => 'Siirrä myös keskustelusivu',
 'move-subpages' => 'Siirrä kaikki alasivut (enintään $1)',
 'move-talk-subpages' => 'Siirrä kaikki keskustelusivun alasivut (enintään $1)',
@@ -2860,11 +2865,13 @@ $1 {{PLURAL:$1|sivu|sivua}} siirrettiin.',
 'movesubpage' => '{{PLURAL:$1|Alasivu|Alasivut}}',
 'movesubpagetext' => 'Tällä sivulla on $1 {{PLURAL:$1|alasivu|alasivua}}, jotka näkyvät alla.',
 'movenosubpage' => 'Tällä sivulla ei ole alasivuja.',
-'movereason' => 'Syy',
-'revertmove' => 'kumoa',
+'movereason' => 'Syy:',
+'revertmove' => 'kumoa siirto',
 'delete_and_move' => 'Poista kohdesivu ja siirrä',
-'delete_and_move_text' => 'Kohdesivu [[:$1]] on jo olemassa. Haluatko poistaa sen, jotta nykyinen sivu voitaisiin siirtää?',
-'delete_and_move_confirm' => 'Poista sivu',
+'delete_and_move_text' => '==Poistamista edellyttävä siirto==
+Kohdesivu [[:$1]] on jo olemassa. 
+Haluatko poistaa sen, jotta nykyinen sivu voitaisiin siirtää?',
+'delete_and_move_confirm' => 'Kyllä, poista kohdesivu',
 'delete_and_move_reason' => 'Sivu on sivun [[$1]] siirron tiellä.',
 'selfmove' => 'Lähde- ja kohdenimi ovat samat.',
 'immobile-source-namespace' => 'Sivuja ei voi siirtää nimiavaruudessa ”$1”',
@@ -2877,7 +2884,7 @@ $1 {{PLURAL:$1|sivu|sivua}} siirrettiin.',
 'nonfile-cannot-move-to-file' => 'Sivuja ei voi siirtää tiedostonimiavaruuteen.',
 'imagetypemismatch' => 'Uusi tiedostopääte ei vastaa tiedoston tyyppiä',
 'imageinvalidfilename' => 'Kohdenimi on virheellinen',
-'fix-double-redirects' => 'Päivitä kaikki tänne viittaavat ohjaukset ohjaamaan uudelle nimelle',
+'fix-double-redirects' => 'Päivitä kaikki vanhalle nimelle viittaavat ohjaukset ohjaamaan uudelle nimelle',
 'move-leave-redirect' => 'Jätä paikalle ohjaus',
 'protectedpagemovewarning' => "'''Varoitus:''' Tämä sivu on lukittu siten, että vain ylläpitäjät voivat siirtää sitä.
 Alla on viimeisin lokitapahtuma:",

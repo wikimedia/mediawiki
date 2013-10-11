@@ -782,6 +782,7 @@ $2
 
 # Special:ResetTokens
 'resettokens' => 'નિશાનીઓ ફરી ગોઠવો',
+'resettokens-no-tokens' => 'અહીં ફરી ગોઠવવા માટેનાં કોઇ ટોકન નથી',
 'resettokens-legend' => 'નિશાનીઓ ફરી ગોઠવો',
 'resettokens-tokens' => 'નિશાનીઓ:',
 'resettokens-token-label' => '$1 (હાલની કિંમત: $2)',
@@ -1406,6 +1407,7 @@ HTML નાકું ચકાસો',
 'saveusergroups' => 'સભ્ય સમુહો સાચવો',
 'userrights-groupsmember' => 'સભ્યપદ:',
 'userrights-groupsmember-auto' => 'આનો અભિપ્રેત સભ્ય:',
+'userrights-groupsmember-type' => ' $1',
 'userrights-groups-help' => 'અ સ્ભ્ય જેનો સભ્ય છે તે સમ્હૂહને બદલી શકો છો:
 * અંકિત કરેલું ખાનું બતાવે છે સભ્ય તેનો સમૂહમાં શામિલ છે.
 * જો ખાનું અંકિત ન હોય તો સભ્ય તે સમૂહમાં શામિલ નથી.

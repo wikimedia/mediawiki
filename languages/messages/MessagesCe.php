@@ -1702,6 +1702,7 @@ PICT # тайп тайпан
 # Restrictions (nouns)
 'restriction-edit' => 'Тадар',
 'restriction-move' => 'ЦӀе хийцар',
+'restriction-create' => 'Кхоллар',
 'restriction-upload' => 'Чуйолуш',
 
 # Restriction levels
@@ -2368,8 +2369,10 @@ PICT # тайп тайпан
 'limitreport-ppvisitednodes' => 'Препроцессор хьаьжна шадин дукхалла',
 'limitreport-ppgeneratednodes' => 'Препроцессорс сгенерировать бина шадин дукхалла',
 'limitreport-postexpandincludesize' => 'Схьаяьстина юккъерчаран барам',
+'limitreport-postexpandincludesize-value' => '$1/$2 {{PLURAL:$2|байт|байташ}}',
 'limitreport-templateargumentsize' => 'Кепан аргументан барам',
+'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|байт|байташ}}',
 'limitreport-expansiondepth' => 'Шордаларан уггар йокха кӀоргалла',
-'limitreport-expensivefunctioncount' => 'АгӀона хӀоттам къасторан «иза» функцеш',
+'limitreport-expensivefunctioncount' => 'АгӀона хӀоттам къасторан «еза» функцеш',
 
 );

@@ -6712,7 +6712,11 @@ MediaWiki necesita soporte UTF-8 para funcionar correctamente.",
 	'config-memory-bad' => "'''Atención:''' O parámetro <code>memory_limit</code> do PHP é $1.
 Probablemente é un valor baixo de máis.
 A instalación pode fallar!",
-	'config-ctype' => "'''Fatal:''' O PHP debe compilarse co soporte para a [http://www.php.net/manual/en/ctype.installation.php extensión Ctype].",
+	'config-ctype' => "'''Erro fatal:''' O PHP debe compilarse co soporte para a [http://www.php.net/manual/en/ctype.installation.php extensión Ctype].",
+	'config-json' => "'''Erro fatal:''' O PHP compilouse sen o soporte de JSON.
+Debe instalar ben a extensión JSON do PHP ou a extensión [http://pecl.php.net/package/jsonc PECL jsonc] antes de instalar MediaWiki.
+* A extensión do PHP está incluída en Red Hat Enterprise Linux (CentOS) 5 e 6, mais debe activarse <code>/etc/php.ini</code> ou <code>/etc/php.d/json.ini</code>.
+* Algunhas distribucións do Linux lanzadas despois de maio de 2013 omiten a extensión do PHP, pero inclúen a extensión PECL como <code>php5-json</code> ou <code>php-pecl-jsonc</code>.",
 	'config-xcache' => '[http://xcache.lighttpd.net/ XCache] está instalado',
 	'config-apc' => '[http://www.php.net/apc APC] está instalado',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] está instalado',
@@ -17553,6 +17557,10 @@ MediaWiki требует поддержки UTF-8 для корректной р
 Вероятно, этого слишком мало.
 Установка может потерпеть неудачу!",
 	'config-ctype' => "'''Фатальная ошибка:''' PHP должен быть скомпилирован с поддержкой [http://www.php.net/manual/ru/ctype.installation.php расширения Ctype].",
+	'config-json' => "'''Фатальная ошибка:''' PHP был скомпилирован без поддержка JSON.
+Вам необходимо установить либо расширение PHP JSON, либо расширение [http://pecl.php.net/package/jsonc PECL jsonc] перед установкой MediaWiki.
+* PHP-расширение входит в состав Red Hat Enterprise Linux (CentOS) 5 и 6, хотя должна быть включено в <code>/etc/php.ini</code> или <code>/etc/php.d/json.ini</code>.
+* Некоторые дистрибутивы Linux, выпущенные после мая 2013 года, не включают расширение PHP, вместо того, чтобы упаковывать расширение PECL как <code>php5-json</code> или <code>php-pecl-jsonc</code>.",
 	'config-xcache' => '[http://xcache.lighttpd.net/ XCache] установлен',
 	'config-apc' => '[http://www.php.net/apc APC] установлен',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] установлен',
@@ -17753,6 +17761,12 @@ chmod a+w $3</pre>',
 
 Если ваша установка MySQL поддерживает InnoDB, настоятельно рекомендуется выбрать этот механизм.
 Если ваша установка MySQL не поддерживает InnoDB, возможно, настало время обновиться.",
+	'config-mysql-only-myisam-dep' => "'''Предупреждение:''' MyISAM является единственной доступной системой хранения данных для MySQL, которая, однако, не рекомендуется для использования с MediaWiki, потому что:
+ * он слабо поддерживает параллелизм из-за блокировки таблиц
+ * она больше других систем подвержена повреждению
+ * кодовая база MediaWiki не всегда обрабатывает MyISAM так, как следует
+
+Ваша MySQL не поддерживает InnoDB, так что, возможно, настало время для обновления.",
 	'config-mysql-engine-help' => "'''InnoDB''' почти всегда предпочтительнее, так как он лучше справляется с параллельным доступом.
 
 '''MyISAM''' может оказаться быстрее для вики с одним пользователем или с минимальным количеством поступающих правок, однако базы данных на нём портятся чаще, чем на InnoDB.",
