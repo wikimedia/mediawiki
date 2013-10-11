@@ -649,6 +649,7 @@ return array(
 	'mediawiki.inspect' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.inspect.js',
 		'dependencies' => 'jquery.byteLength',
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.feedback' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.feedback.js',
