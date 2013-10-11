@@ -134,11 +134,11 @@ class DBConnectionError extends DBError {
 	}
 
 	/**
-	 * @return bool
+	 * @return boolean
 	 */
-	function getLogMessage() {
-		# Don't send to the exception log
-		return false;
+	function isLoggable() {
+		// Don't send to the exception log, already in dberror log
+		return true;
 	}
 
 	/**
@@ -318,15 +318,15 @@ class DBQueryError extends DBError {
 	}
 
 	/**
-	 * @return bool
+	 * @return boolean
 	 */
-	function getLogMessage() {
-		# Don't send to the exception log
-		return false;
+	function isLoggable() {
+		// Don't send to the exception log, already in dberror log
+		return true;
 	}
 
 	/**
-	 * @return String
+	 * @return string
 	 */
 	function getPageTitle() {
 		return $this->msg( 'databaseerror', 'Database error' );
