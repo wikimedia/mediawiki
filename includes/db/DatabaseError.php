@@ -138,6 +138,7 @@ class DBConnectionError extends DBError {
 	 */
 	function getLogMessage() {
 		# Don't send to the exception log
+		# FIXME: Returning false here doesn't change whether it is logged or not.
 		return false;
 	}
 
