@@ -2400,7 +2400,7 @@ $special: the special page object
 &$tables: array of tables to be queried
 &$join_conds: join conditions for the tables
 &$fields: array of query fields
-$values: array of variables with watchlist options
+$opts: A FormOptions object with watchlist options for the current request
 
 'SpecialWatchlistGetNonRevisionTypes': Called when building sql query for
 SpecialWatchlist. Allows extensions to register custom values they have
