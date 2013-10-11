@@ -179,14 +179,6 @@ class SpecialWatchlist extends SpecialPage {
 			$conds[] = 'rc_timestamp > ' . $dbr->addQuotes( $dbr->timestamp( time() - intval( $values['days'] * 86400 ) ) );
 		}
 
-		# If the watchlist is relatively short, it's simplest to zip
-		# down its entirety and then sort the results.
-
-		# If it's relatively long, it may be worth our while to zip
-		# through the time-sorted page list checking for watched items.
-
-		# Up estimate of watched items by 15% to compensate for talk pages...
-
 		# Toggles
 		if ( $values['hideOwn'] ) {
 			$conds[] = 'rc_user != ' . $user->getId();
