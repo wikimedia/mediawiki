@@ -26,32 +26,42 @@
  * @ingroup Cache
  */
 class SquidUpdate {
-	var $urlArr, $mMaxTitles;
 
 	/**
-	 * @param $urlArr array
-	 * @param $maxTitles bool|int
+	 * Collection of URLs to purge.
+	 * @var array
 	 */
-	function __construct( $urlArr = array(), $maxTitles = false ) {
+	protected $urlArr;
+
+	/**
+	 * @param array $urlArr Collection of URLs to purge
+	 * @param bool|int $maxTitles Maximum number of unique URLs to purge
+	 */
+	public function __construct( $urlArr = array(), $maxTitles = false ) {
 		global $wgMaxSquidPurgeTitles;
 		if ( $maxTitles === false ) {
-			$this->mMaxTitles = $wgMaxSquidPurgeTitles;
-		} else {
-			$this->mMaxTitles = $maxTitles;
+			$maxTitles = $wgMaxSquidPurgeTitles;
 		}
-		$urlArr = array_unique( $urlArr ); // Remove duplicates
-		if ( count( $urlArr ) > $this->mMaxTitles ) {
-			$urlArr = array_slice( $urlArr, 0, $this->mMaxTitles );
+
+		// Remove duplicate URLs from list
+		$urlArr = array_unique( $urlArr );
+		if ( count( $urlArr ) > $maxTitles ) {
+			// Truncate to desired maximum URL count
+			$urlArr = array_slice( $urlArr, 0, $maxTitles );
 		}
 		$this->urlArr = $urlArr;
 	}
 
 	/**
-	 * @param $title Title
+	 * Create a SquidUpdate from the given Title object.
 	 *
+	 * The resulting SquidUpdate will purge the given Title's URLs as well as
+	 * the pages that link to it. Capped at $wgMaxSquidPurgeTitles total URLs.
+	 *
+	 * @param Title $title
 	 * @return SquidUpdate
 	 */
-	static function newFromLinksTo( &$title ) {
+	public static function newFromLinksTo( Title $title ) {
 		global $wgMaxSquidPurgeTitles;
 		wfProfileIn( __METHOD__ );
 
@@ -79,12 +89,11 @@ class SquidUpdate {
 	/**
 	 * Create a SquidUpdate from an array of Title objects, or a TitleArray object
 	 *
-	 * @param $titles array
-	 * @param $urlArr array
-	 *
+	 * @param array $titles
+	 * @param array $urlArr
 	 * @return SquidUpdate
 	 */
-	static function newFromTitles( $titles, $urlArr = array() ) {
+	public static function newFromTitles( $titles, $urlArr = array() ) {
 		global $wgMaxSquidPurgeTitles;
 		$i = 0;
 		foreach ( $titles as $title ) {
@@ -97,20 +106,19 @@ class SquidUpdate {
 	}
 
 	/**
-	 * @param $title Title
-	 *
+	 * @param Title $title
 	 * @return SquidUpdate
 	 */
-	static function newSimplePurge( &$title ) {
+	public static function newSimplePurge( Title $title ) {
 		$urlArr = $title->getSquidURLs();
 		return new SquidUpdate( $urlArr );
 	}
 
 	/**
-	 * Purges the list of URLs passed to the constructor
+	 * Purges the list of URLs passed to the constructor.
 	 */
-	function doUpdate() {
-		SquidUpdate::purge( $this->urlArr );
+	public function doUpdate() {
+		self::purge( $this->urlArr );
 	}
 
 	/**
@@ -119,10 +127,9 @@ class SquidUpdate {
 	 * (example: $urlArr[] = 'http://my.host/something')
 	 * XXX report broken Squids per mail or log
 	 *
-	 * @param $urlArr array
-	 * @return void
+	 * @param array $urlArr List of full URLs to purge
 	 */
-	static function purge( $urlArr ) {
+	public static function purge( $urlArr ) {
 		global $wgSquidServers, $wgHTCPRouting;
 
 		if ( !$urlArr ) {
@@ -132,14 +139,18 @@ class SquidUpdate {
 		wfDebugLog( 'squid', __METHOD__ . ': ' . implode( ' ', $urlArr ) . "\n" );
 
 		if ( $wgHTCPRouting ) {
-			SquidUpdate::HTCPPurge( $urlArr );
+			self::HTCPPurge( $urlArr );
 		}
 
 		wfProfileIn( __METHOD__ );
 
-		$urlArr = array_unique( $urlArr ); // Remove duplicates
-		$maxSocketsPerSquid = 8; //  socket cap per Squid
-		$urlsPerSocket = 400; // 400 seems to be a good tradeoff, opening a socket takes a while
+		// Remove duplicate URLs
+		$urlArr = array_unique( $urlArr );
+		// Maximum number of parallel connections per squid
+		$maxSocketsPerSquid = 8;
+		// Number of requests to send per socket
+		// 400 seems to be a good tradeoff, opening a socket takes a while
+		$urlsPerSocket = 400;
 		$socketsPerSquid = ceil( count( $urlArr ) / $urlsPerSocket );
 		if ( $socketsPerSquid > $maxSocketsPerSquid ) {
 			$socketsPerSquid = $maxSocketsPerSquid;
@@ -162,14 +173,17 @@ class SquidUpdate {
 	}
 
 	/**
+	 * Send Hyper Text Caching Protocol (HTCP) CLR requests.
+	 *
 	 * @throws MWException
-	 * @param $urlArr array
+	 * @param array $urlArr Collection of URLs to purge
 	 */
-	static function HTCPPurge( $urlArr ) {
+	public static function HTCPPurge( $urlArr ) {
 		global $wgHTCPRouting, $wgHTCPMulticastTTL;
 		wfProfileIn( __METHOD__ );
 
-		$htcpOpCLR = 4; // HTCP CLR
+		// HTCP CLR operation
+		$htcpOpCLR = 4;
 
 		// @todo FIXME: PHP doesn't support these socket constants (include/linux/in.h)
 		if ( !defined( "IPPROTO_IP" ) ) {
@@ -191,21 +205,23 @@ class SquidUpdate {
 		// Set socket options
 		socket_set_option( $conn, IPPROTO_IP, IP_MULTICAST_LOOP, 0 );
 		if ( $wgHTCPMulticastTTL != 1 ) {
+			// Set multicast time to live (hop count) option on socket
 			socket_set_option( $conn, IPPROTO_IP, IP_MULTICAST_TTL,
 				$wgHTCPMulticastTTL );
 		}
 
-		$urlArr = array_unique( $urlArr ); // Remove duplicates
+		// Remove duplicate URLs from collection
+		$urlArr = array_unique( $urlArr );
 		foreach ( $urlArr as $url ) {
 			if ( !is_string( $url ) ) {
 				wfProfileOut( __METHOD__ );
 				throw new MWException( 'Bad purge URL' );
 			}
-			$url = SquidUpdate::expand( $url );
+			$url = self::expand( $url );
 			$conf = self::getRuleForURL( $url, $wgHTCPRouting );
 			if ( !$conf ) {
 				wfDebugLog( 'squid', __METHOD__ .
-					"No HTCP rule configured for URL $url , skipping\n" );
+					"No HTCP rule configured for URL {$url} , skipping\n" );
 				continue;
 			}
 
@@ -260,11 +276,10 @@ class SquidUpdate {
 	 *
 	 * Client functions should not need to call this.
 	 *
-	 * @param $url string
-	 *
+	 * @param string $url
 	 * @return string
 	 */
-	static function expand( $url ) {
+	public static function expand( $url ) {
 		return wfExpandUrl( $url, PROTO_INTERNAL );
 	}
 
@@ -274,7 +289,7 @@ class SquidUpdate {
 	 * @param array $rules Array of rules, see $wgHTCPRouting for format and behavior
 	 * @return mixed Element of $rules that matched, or false if nothing matched
 	 */
-	static function getRuleForURL( $url, $rules ) {
+	private static function getRuleForURL( $url, $rules ) {
 		foreach ( $rules as $regex => $routing ) {
 			if ( $regex === '' || preg_match( $regex, $url ) ) {
 				return $routing;
