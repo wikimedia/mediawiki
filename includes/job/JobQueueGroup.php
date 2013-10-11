@@ -376,7 +376,7 @@ class JobQueueGroup {
 							++$count;
 						}
 					} catch ( JobQueueError $e ) {
-						wfDebugLog( 'exception', $e->getLogMessage() );
+						MWExceptionHandler::logException( $e );
 					}
 				}
 			}
