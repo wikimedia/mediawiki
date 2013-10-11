@@ -84,6 +84,12 @@ changes to languages because of Bugzilla reports.
   mw.toolbar.insertTags) now emits mw.log.warn when accessed.
 * User::getPageRenderingHash() was deprecated since 1.17 and has been removed.
 * The ExpandTemplates extension has been moved into MediaWiki core.
+* BREAKING CHANGE: A potentially backwards-incompatible change has been made
+  to the 'SpecialWatchlistQuery' hook's last parameter (array $values) to make
+  the hook more consistent with the 'SpecialRecentChangesQuery' one:
+** Several array keys have been renamed: hideMinor → hideminor,
+   hideBots → hidebots, hideAnons → hideanons, hideLiu → hideliu,
+   hidePatrolled → hidepatrolled, hideOwn → hidemyself.
 
 == Compatibility ==
 
