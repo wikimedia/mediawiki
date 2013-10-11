@@ -737,7 +737,13 @@ class MWExceptionHandler {
 				}
 			}
 
-			$finalExceptionText .= "#{$i} {$call['file']}({$call['line']}): ";
+			if ( isset( $call['file'] ) && isset( $call['line'] ) ) {
+				$finalExceptionText .= "#{$i} {$call['file']}({$call['line']}): ";
+			} else {
+				// 'file' and 'line' are inset for calls via call_user_func (bug 55634)
+				$finalExceptionText .= "#{$i} {internal}: ";
+			}
+
 			if ( isset( $call['class'] ) ) {
 				$finalExceptionText .= $call['class'] . $call['type'] . $call['function'];
 			} else {
