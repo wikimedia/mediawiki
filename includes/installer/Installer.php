@@ -1396,6 +1396,22 @@ abstract class Installer {
 	}
 
 	/**
+	 * Load the extension credits for i18n strings.  Very hacky for
+	 * now, but I expect it only be used for 1.22.0 at the most.
+	 */
+	public function getExtensionInfo( $file ) {
+		global $wgExtensionCredits, $wgVersion, $wgResourceModules;
+
+		$wgVersion = "1.22";
+		$wgResourceModules = array();
+		require_once( $file );
+		$e = array_values( $wgExtensionCredits );
+		$ext = array_values( $e[0] );
+		$wgExtensionCredits = array();
+		return $ext[0];
+	}
+
+	/**
 	 * Finds extensions that follow the format /extensions/Name/Name.php,
 	 * and returns an array containing the value for 'Name' for each found extension.
 	 *
@@ -1417,13 +1433,17 @@ abstract class Installer {
 			if ( !is_dir( "$extDir/$file" ) ) {
 				continue;
 			}
-			if ( file_exists( "$extDir/$file/$file.php" ) ) {
-				$exts[] = $file;
+
+			$extFile = "$extDir/$file/$file.php";
+			if ( file_exists( $extFile ) ) {
+				global $wgExtensionMessagesFiles;
+
+				$exts[$file] = $this->getExtensionInfo( $extFile );
+				$wgExtensionMessagesFiles[$file] = "$extDir/$file/$file.i18n.php";
 			}
 		}
 		closedir( $dh );
-		natcasesort( $exts );
-
+		uksort( $exts, 'strnatcasecmp' );
 		return $exts;
 	}
 

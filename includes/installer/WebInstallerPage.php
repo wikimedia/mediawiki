@@ -950,11 +950,19 @@ class WebInstaller_Options extends WebInstallerPage {
 		if ( $extensions ) {
 			$extHtml = $this->getFieldSetStart( 'config-extensions' );
 
+			/* Force a recache, so we load extensions descriptions */
+			global $wgLang;
+			$lc = Language::getLocalisationCache();
+			$lc->initialisedLangs = array();
+			$lc->getItem( $wgLang->mCode, '' );
+
 			foreach ( $extensions as $ext ) {
 				$extHtml .= $this->parent->getCheckBox( array(
-					'var' => "ext-$ext",
-					'rawtext' => $ext,
+					'var' => "ext-{$ext['name']}",
+					/* I'd like to use ->parse() here, but I can't. */
+					'rawtext' => "<b>{$ext['name']}</b>: " . wfMessage( $ext['descriptionmsg'] )->escaped(),
 				) );
+
 			}
 
 			$extHtml .= $this->parent->getHelpBox( 'config-extensions-help' ) .
