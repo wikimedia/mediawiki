@@ -97,6 +97,11 @@
 		}
 	};
 
+	if ( mw.config.get( 'debug' ) ) {
+		inspect.getModuleSize = function () { return null; };
+		mw.log( 'mw.inspect: Module sizes are not available in debug mode.' );
+	}
+
 	mw.inspect = inspect;
 
 }( mediaWiki, jQuery ) );
