@@ -35,11 +35,45 @@ class SpecialWatchlist extends SpecialRecentChanges {
 	}
 
 	/**
+	 * Map old pre-1.23 request parameters Watchlist used to use (different from Recentchanges' ones)
+	 * to the current ones.
+	 *
+	 * This creates derivative context and request, pokes with request's parameters, and sets them as
+	 * the context for this class instance, mapping old keys to new ones completely transparently (as
+	 * long as nothing tries to access the globals instead of current context).
+	 */
+	private function mapCompatibilityRequestParameters() {
+		static $map = array(
+			'hideMinor' => 'hideminor',
+			'hideBots' => 'hidebots',
+			'hideAnons' => 'hideanons',
+			'hideLiu' => 'hideliu',
+			'hidePatrolled' => 'hidepatrolled',
+			'hideOwn' => 'hidemyself',
+		);
+
+		$params = $this->getRequest()->getValues();
+		foreach ( $map as $from => $to ) {
+			if ( isset( $params[$from] ) ) {
+				$params[$to] = $params[$from];
+				unset( $params[$from] );
+			}
+		}
+
+		$context = new DerivativeContext( $this->getContext() );
+		$request = new DerivativeRequest( $context->getRequest(), $params );
+		$context->setRequest( $request );
+		$this->setContext( $context );
+	}
+
+	/**
 	 * Execute
 	 * @param $par Parameter passed to the page
 	 */
 	function execute( $par ) {
 		global $wgRCShowWatchingUsers, $wgEnotifWatchlist, $wgShowUpdatedMarker;
+
+		$this->mapCompatibilityRequestParameters();
 
 		$user = $this->getUser();
 		$output = $this->getOutput();
@@ -96,12 +130,12 @@ class SpecialWatchlist extends SpecialRecentChanges {
 		// @todo use FormOptions!
 		$defaults = array(
 		/* float */ 'days' => floatval( $user->getOption( 'watchlistdays' ) ),
-		/* bool  */ 'hideMinor' => (int)$user->getBoolOption( 'watchlisthideminor' ),
-		/* bool  */ 'hideBots' => (int)$user->getBoolOption( 'watchlisthidebots' ),
-		/* bool  */ 'hideAnons' => (int)$user->getBoolOption( 'watchlisthideanons' ),
-		/* bool  */ 'hideLiu' => (int)$user->getBoolOption( 'watchlisthideliu' ),
-		/* bool  */ 'hidePatrolled' => (int)$user->getBoolOption( 'watchlisthidepatrolled' ),
-		/* bool  */ 'hideOwn' => (int)$user->getBoolOption( 'watchlisthideown' ),
+		/* bool  */ 'hideminor' => (int)$user->getBoolOption( 'watchlisthideminor' ),
+		/* bool  */ 'hidebots' => (int)$user->getBoolOption( 'watchlisthidebots' ),
+		/* bool  */ 'hideanons' => (int)$user->getBoolOption( 'watchlisthideanons' ),
+		/* bool  */ 'hideliu' => (int)$user->getBoolOption( 'watchlisthideliu' ),
+		/* bool  */ 'hidepatrolled' => (int)$user->getBoolOption( 'watchlisthidepatrolled' ),
+		/* bool  */ 'hidemyself' => (int)$user->getBoolOption( 'watchlisthideown' ),
 		/* bool  */ 'extended' => (int)$user->getBoolOption( 'extendwatchlist' ),
 		/* ?     */ 'namespace' => '', //means all
 		/* ?     */ 'invert' => false,
@@ -117,12 +151,12 @@ class SpecialWatchlist extends SpecialRecentChanges {
 		# other default values if these don't exist
 		$values = array();
 		$values['days'] = floatval( $request->getVal( 'days', $defaults['days'] ) );
-		$values['hideMinor'] = (int)$request->getBool( 'hideMinor', $defaults['hideMinor'] );
-		$values['hideBots'] = (int)$request->getBool( 'hideBots', $defaults['hideBots'] );
-		$values['hideAnons'] = (int)$request->getBool( 'hideAnons', $defaults['hideAnons'] );
-		$values['hideLiu'] = (int)$request->getBool( 'hideLiu', $defaults['hideLiu'] );
-		$values['hideOwn'] = (int)$request->getBool( 'hideOwn', $defaults['hideOwn'] );
-		$values['hidePatrolled'] = (int)$request->getBool( 'hidePatrolled', $defaults['hidePatrolled'] );
+		$values['hideminor'] = (int)$request->getBool( 'hideminor', $defaults['hideminor'] );
+		$values['hidebots'] = (int)$request->getBool( 'hidebots', $defaults['hidebots'] );
+		$values['hideanons'] = (int)$request->getBool( 'hideanons', $defaults['hideanons'] );
+		$values['hideliu'] = (int)$request->getBool( 'hideliu', $defaults['hideliu'] );
+		$values['hidemyself'] = (int)$request->getBool( 'hidemyself', $defaults['hidemyself'] );
+		$values['hidepatrolled'] = (int)$request->getBool( 'hidepatrolled', $defaults['hidepatrolled'] );
 		$values['extended'] = (int)$request->getBool( 'extended', $defaults['extended'] );
 		foreach ( $this->customFilters as $key => $params ) {
 			$values[$key] = (int)$request->getBool( $key, $defaults[$key] );
@@ -175,22 +209,22 @@ class SpecialWatchlist extends SpecialRecentChanges {
 		}
 
 		# Toggles
-		if ( $values['hideOwn'] ) {
+		if ( $values['hidemyself'] ) {
 			$conds[] = 'rc_user != ' . $user->getId();
 		}
-		if ( $values['hideBots'] ) {
+		if ( $values['hidebots'] ) {
 			$conds[] = 'rc_bot = 0';
 		}
-		if ( $values['hideMinor'] ) {
+		if ( $values['hideminor'] ) {
 			$conds[] = 'rc_minor = 0';
 		}
-		if ( $values['hideLiu'] ) {
+		if ( $values['hideliu'] ) {
 			$conds[] = 'rc_user = 0';
 		}
-		if ( $values['hideAnons'] ) {
+		if ( $values['hideanons'] ) {
 			$conds[] = 'rc_user != 0';
 		}
-		if ( $user->useRCPatrol() && $values['hidePatrolled'] ) {
+		if ( $user->useRCPatrol() && $values['hidepatrolled'] ) {
 			$conds[] = 'rc_patrolled != 1';
 		}
 		if ( $nameSpaceClause ) {
@@ -312,19 +346,19 @@ class SpecialWatchlist extends SpecialRecentChanges {
 
 		# Spit out some control panel links
 		$filters = array(
-			'hideMinor' => 'rcshowhideminor',
-			'hideBots' => 'rcshowhidebots',
-			'hideAnons' => 'rcshowhideanons',
-			'hideLiu' => 'rcshowhideliu',
-			'hideOwn' => 'rcshowhidemine',
-			'hidePatrolled' => 'rcshowhidepatr'
+			'hideminor' => 'rcshowhideminor',
+			'hidebots' => 'rcshowhidebots',
+			'hideanons' => 'rcshowhideanons',
+			'hideliu' => 'rcshowhideliu',
+			'hidemyself' => 'rcshowhidemine',
+			'hidepatrolled' => 'rcshowhidepatr'
 		);
 		foreach ( $this->customFilters as $key => $params ) {
 			$filters[$key] = $params['msg'];
 		}
 		// Disable some if needed
 		if ( !$user->useNPPatrol() ) {
-			unset( $filters['hidePatrolled'] );
+			unset( $filters['hidepatrolled'] );
 		}
 
 		$links = array();
