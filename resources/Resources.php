@@ -160,6 +160,7 @@ return array(
 	),
 	'jquery.byteLength' => array(
 		'scripts' => 'resources/jquery/jquery.byteLength.js',
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'jquery.byteLimit' => array(
 		'scripts' => 'resources/jquery/jquery.byteLimit.js',
@@ -649,6 +650,7 @@ return array(
 	'mediawiki.inspect' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.inspect.js',
 		'dependencies' => 'jquery.byteLength',
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.feedback' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.feedback.js',
