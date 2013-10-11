@@ -85,7 +85,7 @@ class LocalisationCache {
 	 * initialised. Initialisation includes checking for cache expiry and doing
 	 * any necessary updates.
 	 */
-	private $initialisedLangs = array();
+	public $initialisedLangs = array();
 
 	/**
 	 * An array mapping non-existent pseudo-languages to fallback languages. This
