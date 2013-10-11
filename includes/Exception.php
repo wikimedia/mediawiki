@@ -44,6 +44,15 @@ class MWException extends Exception {
 	}
 
 	/**
+	 * Whether to log this exception in the exception debug log.
+	 *
+	 * @return boolean
+	 */
+	function isLoggable() {
+		return true;
+	}
+
+	/**
 	 * Can the extension use the Message class/wfMessage to get i18n-ed messages?
 	 *
 	 * @return bool
@@ -799,8 +808,8 @@ class MWExceptionHandler {
 	public static function logException( Exception $e ) {
 		global $wgLogExceptionBacktrace;
 
-		$log = self::getLogMessage( $e );
-		if ( $log ) {
+		if ( !( $e instanceof MWException ) || $e->isLoggable() ) {
+			$log = self::getLogMessage( $e );
 			if ( $wgLogExceptionBacktrace ) {
 				wfDebugLog( 'exception', $log . "\n" . self::formatRedactedTrace( $e ) . "\n" );
 			} else {
