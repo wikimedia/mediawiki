@@ -435,6 +435,7 @@ class Message {
 	 */
 	public function useDatabase( $value ) {
 		$this->useDatabase = (bool)$value;
+		LinkCache::singleton()->useDatabase( $value );
 		return $this;
 	}
 
