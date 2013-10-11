@@ -134,14 +134,6 @@ class DBConnectionError extends DBError {
 	}
 
 	/**
-	 * @return bool
-	 */
-	function getLogMessage() {
-		# Don't send to the exception log
-		return false;
-	}
-
-	/**
 	 * @return string
 	 */
 	function getPageTitle() {
@@ -315,14 +307,6 @@ class DBQueryError extends DBError {
 		$this->errno = $errno;
 		$this->sql = $sql;
 		$this->fname = $fname;
-	}
-
-	/**
-	 * @return bool
-	 */
-	function getLogMessage() {
-		# Don't send to the exception log
-		return false;
 	}
 
 	/**
