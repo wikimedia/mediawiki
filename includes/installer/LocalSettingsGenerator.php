@@ -137,14 +137,18 @@ class LocalSettingsGenerator {
 		$localSettings = $this->getDefaultText();
 
 		if ( count( $this->extensions ) ) {
+			$extensions = $this->installer->findExtensions();
 			$localSettings .= "
 # Enabled Extensions. Most extensions are enabled by including the base extension file here
 # but check specific extension documentation for more details
 # The following extensions were automatically enabled:\n";
 
-			foreach ( $this->extensions as $extName ) {
-				$encExtName = self::escapePhpString( $extName );
-				$localSettings .= "require_once \"\$IP/extensions/$encExtName/$encExtName.php\";\n";
+			$ip = $this->installer->getVar( 'IP' );
+			foreach ( $this->extensions as $ext) {
+				$path = '$IP' . DIR_SEPARATOR .
+					self::escapePhpString( str_replace(
+							$ip, '', $extensions[$ext]['path'] ) );
+				$localSettings .= "require_once \"$path\";\n";
 			}
 		}
 
