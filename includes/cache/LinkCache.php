@@ -205,6 +205,17 @@ class LinkCache {
 	}
 
 	/**
+	 * Enable or disable database use.
+	 * @since 1.22
+	 * @param $value Boolean
+	 * @return LinkCache: $this
+	 */
+	public function useDatabase( $value ) {
+		$this->useDatabase = (bool)$value;
+		return $this;
+	}
+
+	/**
 	 * Add a title to the link cache, return the page_id or zero if non-existent
 	 *
 	 * @param $nt Title object to add
@@ -228,6 +239,10 @@ class LinkCache {
 
 		if ( $key === '' ) {
 			wfProfileOut( __METHOD__ );
+			return 0;
+		}
+
+		if( !$this->useDatabase ) {
 			return 0;
 		}
 

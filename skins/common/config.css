@@ -88,7 +88,9 @@
 }
 
 .config-input-check {
-	margin-left: 10em;
+	margin-left: 2.6em;
+	margin-right: 2em;
+	margin-bottom: 0.25em;
 }
 
 .error {
