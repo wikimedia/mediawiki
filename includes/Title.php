@@ -3903,7 +3903,12 @@ class Title {
 			__METHOD__
 		);
 
-		$this->resetArticleID( 0 );
+		// clean up the old title before reset article id - bug 45348
+		if ( !$redirectContent ) {
+			WikiPage::onArticleDelete( $this );
+		}
+
+		$this->resetArticleID( 0 ); // 0 == non existing
 		$nt->resetArticleID( $oldid );
 		$newpage->loadPageData( WikiPage::READ_LOCKING ); // bug 46397
 
@@ -3919,13 +3924,12 @@ class Title {
 		}
 
 		# Recreate the redirect, this time in the other direction.
-		if ( !$redirectContent ) {
-			WikiPage::onArticleDelete( $this );
-		} else {
+		if ( $redirectContent ) {
 			$redirectArticle = WikiPage::factory( $this );
 			$redirectArticle->loadFromRow( false, WikiPage::READ_LOCKING ); // bug 46397
 			$newid = $redirectArticle->insertOn( $dbw );
 			if ( $newid ) { // sanity
+				$this->resetArticleID( $newid );
 				$redirectRevision = new Revision( array(
 					'title' => $this, // for determining the default content model
 					'page' => $newid,
