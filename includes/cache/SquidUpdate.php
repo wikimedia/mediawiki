@@ -26,13 +26,14 @@
  * @ingroup Cache
  */
 class SquidUpdate {
-	var $urlArr, $mMaxTitles;
+	var $urlArr, $mMaxTitles, $htcpDelay;
 
 	/**
 	 * @param $urlArr array
 	 * @param $maxTitles bool|int
+	 * @param $htcpDelay int Number of microseconds to delay between HTCP packets
 	 */
-	function __construct( $urlArr = array(), $maxTitles = false ) {
+	function __construct( $urlArr = array(), $maxTitles = false, $htcpDelay = null ) {
 		global $wgMaxSquidPurgeTitles;
 		if ( $maxTitles === false ) {
 			$this->mMaxTitles = $wgMaxSquidPurgeTitles;
@@ -44,6 +45,7 @@ class SquidUpdate {
 			$urlArr = array_slice( $urlArr, 0, $this->mMaxTitles );
 		}
 		$this->urlArr = $urlArr;
+		$this->htcpDelay = $htcpDelay;
 	}
 
 	/**
@@ -110,7 +112,7 @@ class SquidUpdate {
 	 * Purges the list of URLs passed to the constructor
 	 */
 	function doUpdate() {
-		SquidUpdate::purge( $this->urlArr );
+		SquidUpdate::purge( $this->urlArr, $this->htcpDelay );
 	}
 
 	/**
@@ -120,9 +122,10 @@ class SquidUpdate {
 	 * XXX report broken Squids per mail or log
 	 *
 	 * @param $urlArr array
+	 * @param $htcpDelay int Number of microseconds to delay between HTCP packets
 	 * @return void
 	 */
-	static function purge( $urlArr ) {
+	static function purge( $urlArr, $htcpDelay = null ) {
 		global $wgSquidServers, $wgHTCPRouting;
 
 		if ( !$urlArr ) {
@@ -132,7 +135,7 @@ class SquidUpdate {
 		wfDebugLog( 'squid', __METHOD__ . ': ' . implode( ' ', $urlArr ) . "\n" );
 
 		if ( $wgHTCPRouting ) {
-			SquidUpdate::HTCPPurge( $urlArr );
+			SquidUpdate::HTCPPurge( $urlArr, $htcpDelay );
 		}
 
 		wfProfileIn( __METHOD__ );
@@ -162,10 +165,14 @@ class SquidUpdate {
 	}
 
 	/**
+	 * Send Hyper Text Caching Protocol (HTCP) CLR (clear) packets via muticast
+	 * UDP.
+	 *
 	 * @throws MWException
 	 * @param $urlArr array
+	 * @param $htcpDelay int Number of microseconds to delay between HTCP packets
 	 */
-	static function HTCPPurge( $urlArr ) {
+	static function HTCPPurge( $urlArr, $htcpDelay = null ) {
 		global $wgHTCPRouting, $wgHTCPMulticastTTL;
 		wfProfileIn( __METHOD__ );
 
@@ -244,6 +251,10 @@ class SquidUpdate {
 			foreach ( $conf as $subconf ) {
 				socket_sendto( $conn, $htcpPacket, $htcpLen, 0,
 					$subconf['host'], $subconf['port'] );
+			}
+
+			if ( $htcpDelay !== null ) {
+				usleep( $htcpDelay );
 			}
 		}
 		wfProfileOut( __METHOD__ );

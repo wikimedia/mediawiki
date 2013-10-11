@@ -35,6 +35,12 @@ require_once __DIR__ . '/Maintenance.php';
  */
 class PurgeChangedPages extends Maintenance {
 
+	/**
+	 * Number of microseconds to sleep between HTCP purge packets.
+	 * @var int
+	 */
+	const RATE_LIMIT = 5000;
+
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = 'Send purge requests for edits in date range to squid/varnish';
@@ -135,7 +141,7 @@ class PurgeChangedPages extends Maintenance {
 			}
 
 			// Send batch of purge requests out to squids
-			$squid = new SquidUpdate( $urls );
+			$squid = new SquidUpdate( $urls, count( $urls ), self::RATE_LIMIT );
 			$squid->doUpdate();
 		}
 
