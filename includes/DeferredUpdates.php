@@ -109,7 +109,7 @@ class DeferredUpdates {
 				// be reported to the user since the output is already sent.
 				// Instead we just log them.
 				if ( !$e instanceof ErrorPageError ) {
-					wfDebugLog( 'exception', $e->getLogMessage() );
+					MWExceptionHandler::logException( $e );
 				}
 			}
 		}
