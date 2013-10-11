@@ -121,7 +121,7 @@ class SpecialWatchlist extends SpecialPage {
 		# Extract variables from the request, falling back to user preferences or
 		# other default values if these don't exist
 		$values = array();
-		$values['days'] = $request->getVal( 'days', $defaults['days'] );
+		$values['days'] = floatval( $request->getVal( 'days', $defaults['days'] ) );
 		$values['hideMinor'] = (int)$request->getBool( 'hideMinor', $defaults['hideMinor'] );
 		$values['hideBots'] = (int)$request->getBool( 'hideBots', $defaults['hideBots'] );
 		$values['hideAnons'] = (int)$request->getBool( 'hideAnons', $defaults['hideAnons'] );
@@ -157,18 +157,6 @@ class SpecialWatchlist extends SpecialPage {
 		$values['namespace'] = $nameSpace;
 		$values['invert'] = $invert;
 		$values['associated'] = $associated;
-
-		if ( is_null( $values['days'] ) || !is_numeric( $values['days'] ) ) {
-			$big = 1000; /* The magical big */
-			if ( $nitems > $big ) {
-				# Set default cutoff shorter
-				$values['days'] = $defaults['days'] = ( 12.0 / 24.0 ); # 12 hours...
-			} else {
-				$values['days'] = $defaults['days']; # default cutoff for shortlisters
-			}
-		} else {
-			$values['days'] = floatval( $values['days'] );
-		}
 
 		// Dump everything here
 		$nondefaults = array();
