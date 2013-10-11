@@ -688,7 +688,7 @@ class MediaWiki {
 				// We don't want exceptions thrown during job execution to
 				// be reported to the user since the output is already sent.
 				// Instead we just log them.
-				wfDebugLog( 'exception', $e->getLogMessage() );
+				MWExceptionHandler::logException( $e );
 			}
 		}
 	}
