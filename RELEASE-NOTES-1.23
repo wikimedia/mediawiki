@@ -132,6 +132,12 @@ changes to languages because of Bugzilla reports.
   SpecialPage::getPageTitle.
 * EditPage::spamPage() was deprecated since 1.17 and has been removed.
 * SpecialRecentChanges::feedSetup() was removed.
+* BREAKING CHANGE: A potentially backwards-incompatible change has been made
+  to the 'SpecialWatchlistQuery' hook's last parameter (array $values) to make
+  the hook more consistent with the 'SpecialRecentChangesQuery' one:
+** Several array keys have been renamed: hideMinor → hideminor,
+   hideBots → hidebots, hideAnons → hideanons, hideLiu → hideliu,
+   hidePatrolled → hidepatrolled, hideOwn → hidemyself.
 * Removed classes:
   - TitleDependency
   - TitleListDependency
