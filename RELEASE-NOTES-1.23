@@ -69,6 +69,12 @@ changes to languages because of Bugzilla reports.
 * The global variable $wgArticle has been removed after a lengthy deprecation.
 * mediawiki.util: mw.util.wikiGetlink has been renamed to getUrl. (The old name
   still works, but is deprecated.)
+* BREAKING CHANGE: A potentially backwards-incompatible change has been made
+  to the 'SpecialWatchlistQuery' hook's last parameter (array $values) to make
+  the hook more consistent with the 'SpecialRecentChangesQuery' one:
+** Several array keys have been renamed: hideMinor → hideminor,
+   hideBots → hidebots, hideAnons → hideanons, hideLiu → hideliu,
+   hidePatrolled → hidepatrolled, hideOwn → hidemyself.
 
 == Compatibility ==
 
