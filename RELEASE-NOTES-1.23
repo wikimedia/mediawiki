@@ -111,12 +111,15 @@ changes to languages because of Bugzilla reports.
 * The ExpandTemplates extension has been moved into MediaWiki core.
 * (bug 52812) Removed "Disable search suggestions" from Preference.
 * (bug 52809) Removed "Disable browser page caching" from Preference.
-* BREAKING CHANGE: A potentially backwards-incompatible change has been made
+* BREAKING CHANGE: Two potentially backwards-incompatible changes have been made
   to the 'SpecialWatchlistQuery' hook's last parameter (array $values) to make
   the hook more consistent with the 'SpecialRecentChangesQuery' one:
 ** Several array keys have been renamed: hideMinor → hideminor,
    hideBots → hidebots, hideAnons → hideanons, hideLiu → hideliu,
    hidePatrolled → hidepatrolled, hideOwn → hidemyself.
+** The parameter value is now a FormOptions object, not a plain array (array
+   access operators should continue to work, as it implements the ArrayAccess
+   interface).
 
 == Compatibility ==
 
