@@ -45,6 +45,11 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 		$this->getOutput()->disallowUserJs();
 
 		$request = $this->getRequest();
+
+		if ( !$request->wasPosted() ) {
+			$this->requireLogin( 'resetpass-no-info' );
+		}
+
 		$this->mUserName = trim( $request->getVal( 'wpName' ) );
 		$this->mOldpass = $request->getVal( 'wpPassword' );
 		$this->mNewpass = $request->getVal( 'wpNewPassword' );
@@ -52,11 +57,6 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 		$this->mDomain = $request->getVal( 'wpDomain' );
 
 		$user = $this->getUser();
-		if ( !$request->wasPosted() && !$user->isLoggedIn() ) {
-			$this->error( $this->msg( 'resetpass-no-info' )->text() );
-
-			return;
-		}
 
 		if ( $request->wasPosted() && $request->getBool( 'wpCancel' ) ) {
 			$titleObj = Title::newFromText( $request->getVal( 'returnto' ) );
