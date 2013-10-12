@@ -137,6 +137,7 @@ class FormOptions implements ArrayAccess {
 				return false;
 			}
 		}
+
 		return true;
 	}
 
