@@ -600,6 +600,49 @@ class SpecialPage {
 	}
 
 	/**
+	 * If the user is not logged in, throws UserNotLoggedIn error.
+	 *
+	 * Default error message includes a link to Special:Userlogin with properly set 'returnto' query
+	 * parameter.
+	 *
+	 * @since 1.23
+	 * @param string|Message $reason [optional] Passed on to UserNotLoggedIn constructor instead of
+	 *     default error message. If a string is given, the message will receive a formatted login
+	 *     link (generated using the 'loginreqlink' message) as first parameter. If a Message is
+	 *     given, it will be passed on verbatim.
+	 * @param string|Message $title [optional] Passed on to UserNotLoggedIn constructor
+	 *     instead of default error message.
+	 * @throws UserNotLoggedIn
+	 */
+	public function requireLogin( $reason = null, $title = null ) {
+		if ( $this->getUser()->isAnon() ) {
+			// Use default messages if not given or explicit null passed
+			if ( !$reason ) {
+				$reason = 'exception-nologin-text-manual';
+			}
+			if ( !$title ) {
+				$title = 'exception-nologin';
+			}
+
+			// Convert to Messages with current context
+			if ( is_string( $reason ) ) {
+				$loginreqlink = Linker::linkKnown(
+					SpecialPage::getTitleFor( 'Userlogin' ),
+					$this->msg( 'loginreqlink' )->escaped(),
+					array(),
+					array( 'returnto' => $this->getTitle()->getPrefixedText() )
+				);
+				$reason = $this->msg( $reason )->rawParams( $loginreqlink );
+			}
+			if ( is_string( $title ) ) {
+				$title = $this->msg( $title );
+			}
+
+			throw new UserNotLoggedIn( $reason, $title );
+		}
+	}
+
+	/**
 	 * Sets headers - this should be called from the execute() method of all derived classes!
 	 */
 	function setHeaders() {

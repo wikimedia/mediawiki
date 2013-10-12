@@ -41,18 +41,7 @@ class SpecialWatchlist extends SpecialPage {
 		$output = $this->getOutput();
 
 		# Anons don't get a watchlist
-		if ( $user->isAnon() ) {
-			$output->setPageTitle( $this->msg( 'watchnologin' ) );
-			$output->setRobotPolicy( 'noindex,nofollow' );
-			$llink = Linker::linkKnown(
-				SpecialPage::getTitleFor( 'Userlogin' ),
-				$this->msg( 'loginreqlink' )->escaped(),
-				array(),
-				array( 'returnto' => $this->getTitle()->getPrefixedText() )
-			);
-			$output->addHTML( $this->msg( 'watchlistanontext' )->rawParams( $llink )->parse() );
-			return;
-		}
+		$this->requireLogin( 'watchlistanontext', 'watchnologin' );
 
 		// Check permissions
 		$this->checkPermissions();

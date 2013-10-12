@@ -61,21 +61,10 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	public function execute( $mode ) {
 		$this->setHeaders();
 
-		$out = $this->getOutput();
-
 		# Anons don't get a watchlist
-		if ( $this->getUser()->isAnon() ) {
-			$out->setPageTitle( $this->msg( 'watchnologin' ) );
-			$llink = Linker::linkKnown(
-				SpecialPage::getTitleFor( 'Userlogin' ),
-				$this->msg( 'loginreqlink' )->escaped(),
-				array(),
-				array( 'returnto' => $this->getTitle()->getPrefixedText() )
-			);
-			$out->addHTML( $this->msg( 'watchlistanontext' )->rawParams( $llink )->parse() );
+		$this->requireLogin( 'watchlistanontext', 'watchnologin' );
 
-			return;
-		}
+		$out = $this->getOutput();
 
 		$this->checkPermissions();
 		$this->checkReadOnly();
