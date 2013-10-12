@@ -137,6 +137,14 @@ return array(
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 
+	'eliza' => array(
+		'scripts' => array(
+			'resources/eliza/elizabot.js',
+			'resources/eliza/elizadata.js',
+			'resources/eliza/elizaworker.js',
+		),
+	),
+
 	/* jQuery Plugins */
 
 	'jquery.appear' => array(

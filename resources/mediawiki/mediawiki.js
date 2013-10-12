@@ -12,6 +12,25 @@ var mw = ( function ( $, undefined ) {
 
 	/* Object constructors */
 
+	function blobifyScript( src ) {
+		if ( window.Blob ) {
+			return new Blob( [ src ], { type: 'text/javascript' } );
+		} else if ( window.BlobBuilder ) {
+			var builder = new BlobBuilder();
+			builder.append( src );
+			return builder.getBlob( 'text/javascript' );
+		}
+	}
+
+	function workerFunction( f ) {
+		var src = f.toString(),
+			blob = blobifyScript( src.substring( 12, src.length - 1 ) ),
+			url = URL.createObjectURL( blob ),
+			worker = new Worker( url );
+		URL.revokeObjectURL( url );
+		return worker;
+	}
+
 	/**
 	 * Creates an object that can be read from or written to from prototype functions
 	 * that allow both single and multiple variables at once.
@@ -999,11 +1018,16 @@ var mw = ( function ( $, undefined ) {
 							}, async );
 						};
 
+
 						if ( $.isArray( script ) ) {
 							nestedAddScript( script, markModuleReady, registry[module].async, 0 );
 						} else if ( $.isFunction( script ) ) {
 							registry[module].state = 'ready';
-							script( $ );
+							if ( registry[module].background ) {
+								registry[module].worker = workerFunction( script );
+							} else {
+								script( $ );
+							}
 							handlePending( module );
 						}
 					} catch ( e ) {
@@ -1497,6 +1521,13 @@ var mw = ( function ( $, undefined ) {
 							execute( module );
 						}
 					}
+				},
+
+				worker: function ( module, callback ) {
+					registry[ module ].background = true;
+					mw.loader.using( module, function () {
+						callback( registry[ module ].worker );
+					} );
 				},
 
 				/**
