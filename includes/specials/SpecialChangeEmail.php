@@ -75,11 +75,7 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 		$user = $this->getUser();
 		$request = $this->getRequest();
 
-		if ( !$user->isLoggedIn() ) {
-			$this->error( 'changeemail-no-info' );
-
-			return;
-		}
+		$this->requireLogin( 'changeemail-no-info' );
 
 		if ( $request->wasPosted() && $request->getBool( 'wpCancel' ) ) {
 			$this->doReturnTo();
@@ -92,7 +88,7 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 
 		// This could also let someone check the current email address, so
 		// require both permissions.
-		if ( !$this->getUser()->isAllowed( 'viewmyprivateinfo' ) ) {
+		if ( !$user->isAllowed( 'viewmyprivateinfo' ) ) {
 			throw new PermissionsError( 'viewmyprivateinfo' );
 		}
 

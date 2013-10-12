@@ -37,14 +37,7 @@ class SpecialPreferences extends SpecialPage {
 		$out = $this->getOutput();
 		$out->disallowUserJs(); # Prevent hijacked user scripts from sniffing passwords etc.
 
-		$user = $this->getUser();
-		if ( $user->isAnon() ) {
-			throw new ErrorPageError(
-				'prefsnologin',
-				'prefsnologintext',
-				array( $this->getTitle()->getPrefixedDBkey() )
-			);
-		}
+		$this->requireLogin( 'prefsnologintext2', 'prefsnologin' );
 		$this->checkReadOnly();
 
 		if ( $par == 'reset' ) {
@@ -62,7 +55,7 @@ class SpecialPreferences extends SpecialPage {
 			);
 		}
 
-		$htmlForm = Preferences::getFormObject( $user, $this->getContext() );
+		$htmlForm = Preferences::getFormObject( $this->getUser(), $this->getContext() );
 		$htmlForm->setSubmitCallback( array( 'Preferences', 'tryUISubmit' ) );
 
 		$htmlForm->show();

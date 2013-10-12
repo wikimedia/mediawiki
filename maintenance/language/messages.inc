@@ -434,6 +434,7 @@ $wgMessageStructure = array(
 		'invalidtitle-unknownnamespace',
 		'exception-nologin',
 		'exception-nologin-text',
+		'exception-nologin-text-manual',
 	),
 	'virus' => array(
 		'virus-badscanner',
@@ -1028,7 +1029,7 @@ $wgMessageStructure = array(
 		'mypreferences',
 		'prefs-edits',
 		'prefsnologin',
-		'prefsnologintext',
+		'prefsnologintext2',
 		'changepassword',
 		'changepassword-summary',
 		'prefs-skin',
