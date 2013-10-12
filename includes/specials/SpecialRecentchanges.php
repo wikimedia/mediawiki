@@ -154,7 +154,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		$opts = $this->getOptions();
 		$this->setHeaders();
 		$this->outputHeader();
-		$this->addRecentChangesJS();
+		$this->addModules();
 
 		// Fetch results, prepare a batch link existence check query
 		$conds = $this->buildMainQueryConds( $opts );
@@ -911,9 +911,9 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	}
 
 	/**
-	 * Add JavaScript to the page
+	 * Add page-specific modules.
 	 */
-	function addRecentChangesJS() {
+	protected function addModules() {
 		$this->getOutput()->addModules( array(
 			'mediawiki.special.recentchanges',
 		) );
