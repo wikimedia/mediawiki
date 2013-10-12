@@ -774,6 +774,8 @@ $1',
 'databaseerror' => 'خطای پایگاه داده',
 'databaseerror-text' => 'مشکلی در پایگاه داده ها رخ داده است. 
 این ممکن است نشان دهنده یک مشکل در نرم افزار باشد.',
+'databaseerror-textcl' => 'خطای پایگاه داده پرس و جو رخ داده است.',
+'databaseerror-query' => 'پرس و جو:$1',
 'databaseerror-function' => 'تابع: $1',
 'databaseerror-error' => 'خطا: $1',
 'laggedslavemode' => "'''هشدار:''' صفحه ممکن است به‌روزرسانی‌های اخیر را شامل نشود.",
@@ -1697,6 +1699,7 @@ $1",
 'prefs-displayrc' => 'گزینه‌های نمایش',
 'prefs-displaysearchoptions' => 'گزینه‌های نمایش',
 'prefs-displaywatchlist' => 'گزینه‌های نمایش',
+'prefs-tokenwatchlist' => 'نشانه',
 'prefs-diffs' => 'تفاوت‌ها',
 'prefs-help-prefershttps' => 'تاثیر این ترجیح بعد از ورود بعدی شما اعمال خواهد شد.',
 
@@ -2319,6 +2322,8 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'pageswithprop-text' => 'این صفحه فهرستی است از صفحه‌هایی که از یک خاصیت صفحهٔ خاص استفاده می‌کنند.',
 'pageswithprop-prop' => 'نام خاصیت:',
 'pageswithprop-submit' => 'برو',
+'pageswithprop-prophidden-long' => 'جزییات مخفی متن طولانی ($1)',
+'pageswithprop-prophidden-binary' => 'جزییات مقدار مخفی باینری ($1)',
 
 'doubleredirects' => 'تغییرمسیرهای دوتایی',
 'doubleredirectstext' => 'این صفحه فهرستی از صفحه‌های تغییرمسیری را ارائه می‌کند که به صفحهٔ تغییرمسیر دیگری اشاره می‌کنند.
@@ -2376,6 +2381,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'mostrevisions' => 'صفحه‌های دارای بیشترین نسخه',
 'prefixindex' => 'تمام صفحه‌ها با پیشوند',
 'prefixindex-namespace' => 'همهٔ صفحه‌های دارای پیشوند (فضای‌نام $1)',
+'prefixindex-strip' => ' حذف پیشوند در فهرست',
 'shortpages' => 'صفحه‌های کوتاه',
 'longpages' => 'صفحه‌های بلند',
 'deadendpages' => 'صفحه‌های بن‌بست',
@@ -2678,7 +2684,7 @@ $PAGEINTRO $NEWPAGE
 آخرین ویرایش توسط [[User:$3|$3]] ([[User talk:$3|بحث]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) انجام شده‌است.',
 'editcomment' => "خلاصهٔ ویرایش این بود: «''$1''».",
 'revertpage' => 'ویرایش [[Special:Contributions/$2|$2]] ([[User talk:$2|بحث]]) به آخرین تغییری که [[User:$1|$1]] انجام داده بود واگردانده شد',
-'revertpage-nouser' => 'ویرایش‌های انجام‌شده توسط (کاربری پنهان شده) به آخرین ویرایش [[User:$1|$1]] واگردانی شد.',
+'revertpage-nouser' => 'ویرایش‌های انجام‌شده توسط (نام کاربری حذف شده) به آخرین ویرایش [[User:$1|$1]] واگردانی شد.',
 'rollback-success' => 'ویرایش‌های $1 واگردانی شد؛
 صفحه به آخرین ویرایش $2 برگردانده شد.',
 
@@ -4399,9 +4405,17 @@ $5
 
 # Limit report
 'limitreport-title' => 'داده‌های رخ‌نمانگاری تجزیه‌کننده:',
+'limitreport-cputime' => 'زمان مصرف سی پی یو',
 'limitreport-cputime-value' => '$1 {{PLURAL:$1|ثانیه|ثانیه}}',
+'limitreport-walltime' => 'استفاده زمان واقعی',
 'limitreport-walltime-value' => '$1 {{PLURAL:$1|ثانیه|ثانیه}}',
+'limitreport-ppvisitednodes' => 'شمارش گره پیش پردازنده مشاهده شده',
+'limitreport-ppgeneratednodes' => 'شمارش گره پیش پردازنده تولید شده',
+'limitreport-postexpandincludesize' => 'شامل اندازه پس گسترش',
 'limitreport-postexpandincludesize-value' => '$1/$2 {{PLURAL:$2|بایت|بایت}}',
+'limitreport-templateargumentsize' => 'اندازه عملگر الگو',
 'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|بایت|بایت}}',
+'limitreport-expansiondepth' => 'بیشترین عمق گسترش',
+'limitreport-expensivefunctioncount' => 'تعداد تابع تجزیه گر پرمصرف',
 
 );

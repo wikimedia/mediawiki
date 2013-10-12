@@ -742,8 +742,8 @@ URL を間違って入力したか、正しくないリンクをたどった可�
 理由は不明です。',
 'no-null-revision' => 'ページ「$1」に新しい空編集の版を作成できませんでした。',
 'badtitle' => '正しくないページ名',
-'badtitletext' => '要求されたページ名は、無効、空、正しくない言語間リンク/ウィキ間リンクのページ名、のいずれかです。
-ページ名に使用できない文字が1つ以上含まれている可能性があります。',
+'badtitletext' => '無効または空のページ名が指定されたか、言語間/ウィキ間リンクの方法に誤りがあります。
+ページ名に使用できない文字が含まれている可能性があります。',
 'perfcached' => '以下のデータはキャッシュされており、最新ではない可能性があります。最大 $1 {{PLURAL:$1|件の結果}}がキャッシュされます。',
 'perfcachedts' => '以下のデータはキャッシュされており、最終更新日時は $1 です。最大 $4 {{PLURAL:$4|件の結果}}がキャッシュされます。',
 'querypage-no-updates' => 'ページの更新は無効になっています。
@@ -1345,7 +1345,7 @@ $3が示した理由: ''$2''",
 この差分を閲覧できます。[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 削除記録]に詳細情報があるかもしれません。",
 'rev-suppressed-diff-view' => "この差分の一方の版は'''秘匿されています'''。
 この差分を閲覧できます。[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 秘匿記録]に詳細情報があるかもしれません。",
-'rev-delundel' => '表示/非表示を切り替え',
+'rev-delundel' => '表示/非表示',
 'rev-showdeleted' => '表示',
 'revisiondelete' => '版の削除と復元',
 'revdelete-nooldid-title' => '無効な対象版',
@@ -1455,7 +1455,7 @@ $1",
 'difference-multipage' => '(ページ間の差分)',
 'lineno' => '$1行:',
 'compareselectedversions' => '選択した版同士を比較',
-'showhideselectedversions' => '選択した版の表示/非表示を切り替え',
+'showhideselectedversions' => '選択した版を表示/非表示',
 'editundo' => '取り消し',
 'diff-empty' => '(相違点なし)',
 'diff-multi' => '({{PLURAL:$2|$2人の利用者}}による、{{PLURAL:$1|間の$1版}}が非表示)',
@@ -2407,7 +2407,7 @@ contenttype/subtypeの形式で入力してください (例: <code>image/jpeg</
 記録の種類、実行した利用者 (大文字小文字は区別)、影響を受けたページ (大文字小文字は区別) による絞り込みができます。',
 'logempty' => '該当する記録はありません。',
 'log-title-wildcard' => 'この文字列で始まるページ名を検索',
-'showhideselectedlogentries' => '選択した記録項目の表示/非表示を切り替え',
+'showhideselectedlogentries' => '選択した記録項目を表示/非表示',
 
 # Special:AllPages
 'allpages' => '全ページ',

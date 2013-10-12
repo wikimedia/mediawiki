@@ -1450,6 +1450,7 @@ $1",
 
 # Recent changes
 'nchanges' => '{{PLURAL:$1|ఒక మార్పు|$1 మార్పులు}}',
+'enhancedrc-history' => 'చరితం',
 'recentchanges' => 'ఇటీవలి మార్పులు',
 'recentchanges-legend' => 'ఇటీవలి మార్పుల ఎంపికలు',
 'recentchanges-summary' => 'వికీలో ఇటీవలే జరిగిన మార్పులను ఈ పేజీలో గమనించవచ్చు.',

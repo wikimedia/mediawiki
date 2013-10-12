@@ -2731,12 +2731,12 @@ $1',
 'ipbreasonotherlist' => 'Lý do khác',
 'ipbreason-dropdown' => '*Một số lý do cấm thường gặp
 ** Phá hoại
-** Thêm thông tin sai lệch
-** Xóa nội dung trang
-** Gửi liên kết spam đến trang web bên ngoài
+** Thêm thông tin nội dung sai lệch
+** Tẩy trống nội dung trang
+** Quảng cáo vớ vẩn
+** Đăng liên kết thư rác đến trang web bên ngoài
 ** Cho thông tin rác vào trang
 ** Có thái độ dọa dẫm/quấy rối
-** Dùng nhiều tài khoản
 ** Tên thành viên không được chấp nhận
 ** Tạo nhiều trang mới vi phạm bản quyền, bỏ qua thảo luận và cảnh báo
 ** Truyền nhiều hình ảnh thiếu nguồn gốc hoặc bản quyền
