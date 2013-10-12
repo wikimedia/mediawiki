@@ -481,6 +481,20 @@ class WebRequest {
 	}
 
 	/**
+	 * Fetch a floating point value from the input or return $default if not set.
+	 * Guaranteed to return a float; non-numeric input will typically
+	 * return 0.
+	 *
+	 * @since 1.23
+	 * @param $name String
+	 * @param $default Float
+	 * @return Float
+	 */
+	public function getFloat( $name, $default = 0 ) {
+		return floatval( $this->getVal( $name, $default ) );
+	}
+
+	/**
 	 * Fetch a boolean value from the input or return $default if not set.
 	 * Guaranteed to return true or false, with normal PHP semantics for
 	 * boolean interpretation of strings.
