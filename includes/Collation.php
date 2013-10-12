@@ -149,9 +149,9 @@ class IdentityCollation extends Collation {
 }
 
 class IcuCollation extends Collation {
-	const FIRST_LETTER_VERSION = 1;
+	const FIRST_LETTER_VERSION = 2;
 
-	var $primaryCollator, $mainCollator, $locale;
+	var $primaryCollator, $mainCollator, $locale, $digitTransformLanguage;
 	var $firstLetterData;
 
 	/**
@@ -284,7 +284,12 @@ class IcuCollation extends Collation {
 			throw new MWException( 'An ICU collation was requested, ' .
 				'but the intl extension is not available.' );
 		}
+
 		$this->locale = $locale;
+		// Drop everything after the '@' in locale's name
+		$localeParts = explode( '@', $locale );
+		$this->digitTransformLanguage = Language::factory( $locale === 'root' ? 'en' : $localeParts[0] );
+
 		$this->mainCollator = Collator::create( $locale );
 		if ( !$this->mainCollator ) {
 			throw new MWException( "Invalid ICU locale specified for collation: $locale" );
@@ -364,6 +369,12 @@ class IcuCollation extends Collation {
 			// Remove unnecessary ones, if any
 			if ( isset( self::$tailoringFirstLetters['-' . $this->locale] ) ) {
 				$letters = array_diff( $letters, self::$tailoringFirstLetters['-' . $this->locale] );
+			}
+			// Apply digit transforms
+			$digits = array( '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' );
+			$letters = array_diff( $letters, $digits );
+			foreach ( $digits as $digit ) {
+				$letters[] = $this->digitTransformLanguage->formatNum( $digit, true );
 			}
 		} else {
 			$letters = wfGetPrecompiledData( "first-letters-{$this->locale}.ser" );
