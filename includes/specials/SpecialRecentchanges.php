@@ -41,16 +41,17 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	 */
 	public function getDefaultOptions() {
 		$opts = new FormOptions();
+		$user = $this->getUser();
 
-		$opts->add( 'days', $this->getUser()->getIntOption( 'rcdays' ) );
-		$opts->add( 'limit', $this->getUser()->getIntOption( 'rclimit' ) );
+		$opts->add( 'days', $user->getIntOption( 'rcdays' ) );
+		$opts->add( 'limit', $user->getIntOption( 'rclimit' ) );
 		$opts->add( 'from', '' );
 
-		$opts->add( 'hideminor', $this->getUser()->getBoolOption( 'hideminor' ) );
+		$opts->add( 'hideminor', $user->getBoolOption( 'hideminor' ) );
 		$opts->add( 'hidebots', true );
 		$opts->add( 'hideanons', false );
 		$opts->add( 'hideliu', false );
-		$opts->add( 'hidepatrolled', $this->getUser()->getBoolOption( 'hidepatrolled' ) );
+		$opts->add( 'hidepatrolled', $user->getBoolOption( 'hidepatrolled' ) );
 		$opts->add( 'hidemyself', false );
 
 		$opts->add( 'namespace', '', FormOptions::INTNULL );
