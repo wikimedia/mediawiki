@@ -54,7 +54,7 @@ class ApiOptions extends ApiBase {
 		}
 
 		if ( $params['reset'] ) {
-			$user->resetOptions( $params['resetkinds'] );
+			$user->resetOptions( $params['resetkinds'], $this->getContext() );
 			$changed = true;
 		}
 
