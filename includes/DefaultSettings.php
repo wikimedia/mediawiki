@@ -2881,7 +2881,7 @@ $wgValidateAllHtml = false;
  * This has to be completely lowercase; see the "skins" directory for the list
  * of available skins.
  */
-$wgDefaultSkin = 'vector';
+$wgDefaultSkin = 'pixeled';
 
 /**
  * Specify the name of a skin that should not be presented in the list of
