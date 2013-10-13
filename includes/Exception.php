@@ -752,13 +752,15 @@ class MWExceptionHandler {
 				$finalExceptionText .= $call['function'];
 			}
 			$args = array();
-			foreach ( $call['args'] as $arg ) {
-				if ( is_object( $arg ) ) {
-					$args[] = 'Object(' . get_class( $arg ) . ')';
-				} elseif( is_array( $arg ) ) {
-					$args[] = 'Array';
-				} else {
-					$args[] = var_export( $arg, true );
+			if ( isset( $call['args'] ) ) {
+				foreach ( $call['args'] as $arg ) {
+					if ( is_object( $arg ) ) {
+						$args[] = 'Object(' . get_class( $arg ) . ')';
+					} elseif( is_array( $arg ) ) {
+						$args[] = 'Array';
+					} else {
+						$args[] = var_export( $arg, true );
+					}
 				}
 			}
 			$finalExceptionText .=  '(' . implode( ', ', $args ) . ")\n";
