@@ -368,7 +368,7 @@ class Revision implements IDBAccessObject {
 		);
 		$options = array( 'LIMIT' => 1 );
 		if ( ( $flags & self::READ_LOCKING ) == self::READ_LOCKING ) {
-			$options[] = 'FOR UPDATE';
+		    $options[] = 'FOR UPDATE OF ' . $db->tableName('revision');
 		}
 		return $db->select(
 			array( 'revision', 'page', 'user' ),
