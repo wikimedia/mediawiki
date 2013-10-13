@@ -13,6 +13,29 @@
 	var inspect = {
 
 		/**
+		 * Return a map of all dependency relationships between loaded modules.
+		 *
+		 * @return {Object} Maps module names to objects. Each sub-object has
+		 *  two properties, 'requires' and 'requiredBy'.
+		 */
+		getDependencyGraph: function () {
+			var modules = inspect.getLoadedModules(), graph = {};
+
+			$.each( modules, function ( _, moduleName ) {
+				var dependencies = mw.loader.moduleRegistry[moduleName].dependencies;
+
+				graph[moduleName] = graph[moduleName] || { requiredBy: [] };
+				graph[moduleName].requires = dependencies || [];
+
+				$.each( dependencies, function ( _, dependencyName ) {
+					graph[dependencyName] = graph[dependencyName] || { requiredBy: [] };
+					graph[dependencyName].requiredBy.push( moduleName );
+				} );
+			} );
+			return graph;
+		},
+
+		/**
 		 * Calculate the byte size of a ResourceLoader module.
 		 *
 		 * @param {string} moduleName The name of the module
@@ -64,11 +87,17 @@
 			var console = window.console;
 
 			$( function () {
+				var graph, modules;
+
+				graph = inspect.getDependencyGraph();
+
 				// Map each module to a descriptor object.
-				var modules = $.map( inspect.getLoadedModules(), function ( module ) {
+				modules = $.map( graph, function ( relationships, moduleName ) {
 					return {
-						name: module,
-						size: inspect.getModuleSize( module )
+						name: moduleName,
+						size: inspect.getModuleSize( moduleName ),
+						requires: relationships.requires.join(', '),
+						requiredBy: relationships.requiredBy.join(', ')
 					};
 				} );
 
@@ -88,9 +117,7 @@
 					if ( console.table ) {
 						console.table( modules );
 					} else {
-						$.each( modules, function ( i, module ) {
-							console.log( [ module.name, module.size ].join( '\t' ) );
-						} );
+						console.log( JSON.stringify( modules, null, 2 ).replace( /[{}"],?/g, '' ) );
 					}
 				}
 			} );
