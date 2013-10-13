@@ -1521,13 +1521,13 @@ PICT # тайп тайпан
 'logempty' => 'Тептарш чохь хӀокху агӀона дӀаяздарш дац.',
 
 # Special:AllPages
-'allpages' => 'Массо агlонаш',
+'allpages' => 'Массо агӀонаш',
 'alphaindexline' => 'оцу $1 кху $2',
 'nextpage' => 'Тlаьхьа йогlу агlо ($1)',
 'prevpage' => 'Хьалхалера агlо ($1)',
 'allpagesfrom' => 'Гучé яха агlонаш, йуьлалуш йолу оцу:',
 'allpagesto' => 'Арайахар сацадé оцу:',
-'allarticles' => 'Массо агlонаш',
+'allarticles' => 'Массо агӀонаш',
 'allinnamespace' => 'Массо агlонаш оцу цlери анахь «$1»',
 'allpagesnext' => 'Тlаьхьайогlурш',
 'allpagessubmit' => 'Кхочушдé',

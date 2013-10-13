@@ -165,7 +165,7 @@ $messages = array(
 'tog-hidepatrolled' => 'په وروستيو بدلونونو کې څارل شوې سمونونه پټول',
 'tog-newpageshidepatrolled' => 'د نوؤ مخونو په لړليک کې کتل شوي مخونه پټول',
 'tog-extendwatchlist' => 'يوازې د وروستني بدلونونو د ښکاره کولو لپاره نه بلکه د ټولو بدلونونو د ښکاره کولو لپاره کتنلړ غځول',
-'tog-usenewrc' => 'په کتنلړ او وروستي بدلونو مخ باندې ډله ايز بدلونونه (جاوا سکرېپټ ته اړتيا ده)',
+'tog-usenewrc' => 'په کتنلړ او وروستي بدلونو مخ باندې ډله ايز بدلونونه',
 'tog-numberheadings' => 'د سرليکونو خپلکاره شمېرايښودنه',
 'tog-showtoolbar' => 'د سمون اوزارپټه ښکاره کول',
 'tog-editondblclick' => 'په دوه کلېک سره د مخونو سمون',
@@ -201,6 +201,7 @@ $messages = array(
 'tog-showhiddencats' => 'پټې وېشنيزې ښکاره کول',
 'tog-norollbackdiff' => 'پرشاتمبولو وروسته توپيرونه نه ښودل',
 'tog-useeditwarning' => 'کله چې يو سمون مخ څخه د بدلونونو د خوندي کولو پرته وځم خبر دې شم',
+'tog-prefershttps' => 'د ننوتلو پر مهال تل يوه خوندي اړيکتيا کارول',
 
 'underline-always' => 'تل',
 'underline-never' => 'هېڅکله',
@@ -976,6 +977,7 @@ $1',
 'compareselectedversions' => 'ټاکلې بڼې سره پرتلل',
 'showhideselectedversions' => 'ټاکلې بڼې ښکاره کول/پټول',
 'editundo' => 'ناکړ',
+'diff-empty' => '(بې توپيره)',
 'diff-multi' => ' د ({{PLURAL:$2| يو کارن|$2 کارنانو}} لخوا {{PLURAL:$1|يوه منځګړې بڼه|$1 منځګړې بڼې}}د  نه ده ښکاره شوې)',
 
 # Search results

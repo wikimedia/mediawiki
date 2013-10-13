@@ -3889,7 +3889,10 @@ Du skal ha motteke [{{SERVER}}{{SCRIPTPATH}}/COPYING ein kopi av GNU General Pub
 'tags-tag' => 'Merkenamn',
 'tags-display-header' => 'Utsjånad på endringslister',
 'tags-description-header' => 'Tyding',
+'tags-active-header' => 'Verksamt?',
 'tags-hitcount-header' => 'Merkte endringar',
+'tags-active-yes' => 'Ja',
+'tags-active-no' => 'Nei',
 'tags-edit' => 'endra',
 'tags-hitcount' => '{{PLURAL:$1|éi endring|$1 endringar}}',
 

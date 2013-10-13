@@ -33,6 +33,7 @@
  * @author Liangent
  * @author Liflon
  * @author Littletung
+ * @author Liuxinyu970226
  * @author Mark85296341
  * @author Oapbtommy
  * @author Openerror
@@ -723,6 +724,9 @@ $2',
 'userlogin-resetpassword-link' => '重設密碼',
 'helplogin-url' => 'Help:登入',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|登入幫助]]',
+'userlogin-loggedin' => '您已作為{{GENDER:$1|$1}}登錄。
+利用以下表單以作為另一賬戶登錄。',
+'userlogin-createanother' => '建立另一賬戶',
 'createacct-join' => '輸入您的基本資料：',
 'createacct-another-join' => '在下方輸入新帳號的資訊。',
 'createacct-emailrequired' => '電子郵件',
@@ -2422,7 +2426,7 @@ $UNWATCHURL
 該頁最後的編輯者是[[User:$3|$3]]（[[User talk:$3|討論]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]）。',
 'editcomment' => "編輯摘要: \"''\$1''\"。",
 'revertpage' => '已恢復由[[Special:Contributions/$2|$2]]（[[User talk:$2|對話]]）的編輯至[[User:$1|$1]]的最後一個修訂版本',
-'revertpage-nouser' => '已由隱藏的使用者恢復編輯到上個 {{GENDER:$1|[[使用者:$1|$1]]}} 的修訂版本',
+'revertpage-nouser' => '已由隱藏的使用者恢復編輯到上個{{GENDER:$1|[[User:$1|$1]]}}的修訂版本',
 'rollback-success' => '已恢復 $1 的編輯；
 更變更回 $2 的最後修訂版本。',
 
@@ -3933,6 +3937,7 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'tags-tag' => '標籤名稱',
 'tags-display-header' => '在更改清單中的出現方式',
 'tags-description-header' => '解釋完整描述',
+'tags-active-header' => '存檔？',
 'tags-hitcount-header' => '已加上標籤的更改',
 'tags-edit' => '編輯',
 'tags-hitcount' => '$1次更改',

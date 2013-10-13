@@ -779,10 +779,10 @@ Sòn a l'é normalment causà da l'andèje dapress a na vej liura stòrica a na 
 * '''Internet Explorer:''' Che a ten-a sgnacà ''Ctrl'' antramentre che a sgnaca col rat ansima a ''Agiorné'', ò pura che a sgnaca tut ansema ''Ctrl-F5''
 *'''Opera''' Ch'a dësveuida soa memorisassion andrinta a ''Utiss → Gust''",
 'usercssyoucanpreview' => "'''Drita:''' che a deuvra ël boton «{{int:showpreview}}» për controlé l'efet ëd sò neuv còdes CSS dnans ëd salvelo.",
-'userjsyoucanpreview' => "'''Drita:''' che a deuvra ël boton «{{int:showpreview}}» për controlé l'efet ëd sò còdes JS dnans ëd salvelo.",
-'usercsspreview' => "'''Che a varda che lòn che a s-ciàira a l'é nomach na preuva ëd sò CSS.'''
+'userjsyoucanpreview' => "'''Drita:''' che a deuvra ël boton «{{int:showpreview}}» për controlé l'efet ëd sò neuv còdes JavaScript dnans ëd salvelo.",
+'usercsspreview' => "'''Che a varda che lòn che a s-ciàira a l'é nomach na preuva ëd sò feuj CSS.'''
 '''A l'é ancó nen stàit salvà!'''",
-'userjspreview' => "'''Che as visa che a l'é mach antramentr che as fa na preuva ëd sò Javascript, che a l'é ancó pa stàit salvà!'''",
+'userjspreview' => "'''Che as visa che a l'é mach antramentre che as fa na preuva ëd sò còdes Javascript e che a l'é ancó pa stàit salvà!'''",
 'sitecsspreview' => "'''Che a varda che a l'é mach an mente ch'a preuva sto CSS.'''
 '''A l'é ancó pa stàit salvà!'''",
 'sitejspreview' => "'''Che a varda che a l'é mach an mente ch'a preuva sto còdes JavaScript.'''
@@ -3055,7 +3055,7 @@ An fasend-lo marcé ansima a sò ordinator chiel a podrìa porteje ëd dann a s�
 
 # Human-readable timestamps
 'minutes-ago' => '$1 {{PLURAL:$1|minuta|minute}} fa',
-'seconds-ago' => '$1 {{PLURAL:$1|second|second}} fa',
+'seconds-ago' => '$1 {{PLURAL:$1second}} fa',
 'monday-at' => 'Lùn-es a $1',
 'tuesday-at' => 'Màrtes a $1',
 'wednesday-at' => 'Merco a $1',
@@ -3819,23 +3819,26 @@ A dovrìa avèj arseivù [{{SERVER}}{{SCRIPTPATH}}/COPYING na còpia dla Licensa
 'htmlform-submit' => 'Mandé',
 'htmlform-reset' => 'Gavé le modìfiche',
 'htmlform-selectorother-other' => 'Àutr',
+'htmlform-no' => 'Nò',
+'htmlform-yes' => 'É',
+'htmlform-chosen-placeholder' => "Serne n'opsion",
 
 # SQLite database support
 'sqlite-has-fts' => '$1 con arserca an test pien mantnùa',
 'sqlite-no-fts' => '$1 sensa arserca an test pien mantnùa',
 
 # New logging system
-'logentry-delete-delete' => "$1 a l'ha scancelà la pàgina $3",
-'logentry-delete-restore' => "$1 a l'ha ripristinà la pàgina $3",
-'logentry-delete-event' => "$1 a l'ha modificà la visibilità ëd {{PLURAL:$5|n'event dël registr|$5 event dël registr}} dzora $3: $4",
-'logentry-delete-revision' => "$1 a l'ha modificà la visibilità ëd {{PLURAL:$5|na revision|$5 revision}} dzora la pàgina $3: $4",
-'logentry-delete-event-legacy' => "$1 a l'ha modificà la visibilità dj'eveniment dël registr dzora $3",
-'logentry-delete-revision-legacy' => "$1 a l'ha modificà la visibilità dle revision dzora la pàgina $3",
-'logentry-suppress-delete' => "$1 a l'ha eliminà la pàgina $3",
-'logentry-suppress-event' => "$1 a l'ha modificà segretament la visibilità ëd {{PLURAL:$5|n'eveniment dël registr|$5 eveniment dël registr}} dzora $3: $4",
-'logentry-suppress-revision' => "$1 a l'ha modificà segretament la visibilità ëd {{PLURAL:$5|na revision|$5 revision}} dzora la pàgina $3: $4",
-'logentry-suppress-event-legacy' => "$1 l'ha modificà segretament la visibilità dj'evenimentt dël registr dzora $3",
-'logentry-suppress-revision-legacy' => "$1 a l'ha modificà segretament la visibilità dle revision dzora la pàgina $3",
+'logentry-delete-delete' => "$1 a l'ha {{GENDER:$2|scancelà}} la pàgina $3",
+'logentry-delete-restore' => "$1 {{GENDER:$2|a l'ha ripristinà}} la pàgina $3",
+'logentry-delete-event' => "$1 {{GENDER:$2|a l'ha modificà}} la visibilità ëd {{PLURAL:$5|n'event dël registr|$5 event dël registr}} dzora $3: $4",
+'logentry-delete-revision' => "$1 {{GENDER:$2|a l'ha modificà}} la visibilità ëd {{PLURAL:$5|na revision|$5 revision}} dzora la pàgina $3: $4",
+'logentry-delete-event-legacy' => "$1 {{GENDER:$2|a l'ha modificà}} la visibilità dj'eveniment dël registr dzora $3",
+'logentry-delete-revision-legacy' => "$1 {{GENDER:$2|a l'ha modificà}} la visibilità dle revision dzora la pàgina $3",
+'logentry-suppress-delete' => "$1 {{GENDER:$2|a l'ha eliminà}} la pàgina $3",
+'logentry-suppress-event' => "$1 {{GENDER:$2|a l'ha modificà}} da stërmà la visibilità ëd {{PLURAL:$5|n'eveniment dël registr|$5 eveniment dël registr}} dzora $3: $4",
+'logentry-suppress-revision' => "$1 {{GENDER:$2|a l'ha modificà}} da stërmà la visibilità ëd {{PLURAL:$5|na revision|$5 revision}} dzora la pàgina $3: $4",
+'logentry-suppress-event-legacy' => "$1 {{GENDER:$2|a l'ha modificà}} da stërmà la visibilità dj'eveniment dël registr dzora $3",
+'logentry-suppress-revision-legacy' => "$1 {{GENDER:$2|a l'ha modificà}} da stërmà la visibilità dle revision dzora la pàgina $3",
 'revdelete-content-hid' => 'contnù stërmà',
 'revdelete-summary-hid' => 'resumé dle modìfiche stërmà',
 'revdelete-uname-hid' => 'stranòm stërmà',
@@ -3844,19 +3847,20 @@ A dovrìa avèj arseivù [{{SERVER}}{{SCRIPTPATH}}/COPYING na còpia dla Licensa
 'revdelete-uname-unhid' => 'stranòm dëscoatà',
 'revdelete-restricted' => "restrission aplicà a j'aministrator",
 'revdelete-unrestricted' => "restrission për j'aministrator gavà",
-'logentry-move-move' => "$1 a l'ha tramudà la pàgina $3 a $4",
-'logentry-move-move-noredirect' => "$1 a l'ha tramudà la pàgina $3 a $4 sensa lassé na ridiression",
-'logentry-move-move_redir' => "$1 a l'ha tramudà la pàgina $3 a $4 ansima a na ridiression",
-'logentry-move-move_redir-noredirect' => "$1 a l'ha tramudà la pàgina $3 a $4 ansima a na ridiression sensa lassé na ridiression",
-'logentry-patrol-patrol' => "$1 a l'ha marcà la revision $4 dla pàgina $3 'me controlà",
-'logentry-patrol-patrol-auto' => "$1 a l'ha marcà automaticament la revision $4 dla pàgina $3 'me controlà",
-'logentry-newusers-newusers' => "Ël cont utent $1 a l'é stàit creà",
-'logentry-newusers-create' => "Ël cont utent $1 a l'é stàit creà",
-'logentry-newusers-create2' => "Ël cont utent $3 a l'é stàit creà da $1",
-'logentry-newusers-autocreate' => "Ël cont $1 a l'é stàit creà an automàtich",
-'logentry-rights-rights' => "$1 a l'ha tramudà l'apartenesa a la partìa për $3 da $4 a $5",
-'logentry-rights-rights-legacy' => "$1 a l'ha tramudà l'apartenensa a la partìa për $3",
-'logentry-rights-autopromote' => "$1 a l'é stàit automaticament promovù da $4 a $5",
+'logentry-move-move' => "$1 {{GENDER:$2|a l'ha tramudà}} la pàgina $3 a $4",
+'logentry-move-move-noredirect' => "$1 {{GENDER:$2|a l'ha tramudà}} la pàgina $3 a $4 sensa lassé na ridiression",
+'logentry-move-move_redir' => "$1 {{GENDER:$2|a l'ha tramudà}} la pàgina $3 a $4 ansima a na ridiression",
+'logentry-move-move_redir-noredirect' => "$1 {{GENDER:$2|a l'ha tramudà}} la pàgina $3 a $4 ansima a na ridiression sensa lassé na ridiression",
+'logentry-patrol-patrol' => "$1 {{GENDER:$2|a l'ha marcà}} la revision $4 dla pàgina $3 'me controlà",
+'logentry-patrol-patrol-auto' => "$1 {{GENDER:$2|a l'ha marcà}} an automàtich la revision $4 dla pàgina $3 'me controlà",
+'logentry-newusers-newusers' => "Ël cont utent $1 {{GENDER:$2|a l'é stàit creà}}",
+'logentry-newusers-create' => "Ël cont utent $1 {{GENDER:$2|a l'é stàit creà}}",
+'logentry-newusers-create2' => "Ël cont utent $3 {{GENDER:$2|a l'é stàit creà}} da $1",
+'logentry-newusers-byemail' => "Ël cont utent $3 a l'é {{GENDER:$2|stàit creà}} da $1 e la ciav a l'é stàita mandà për pòsta eletrònica",
+'logentry-newusers-autocreate' => "Ël cont $1 a l'é {{GENDER:$2|stàit creà}} an automàtich",
+'logentry-rights-rights' => "$1 {{GENDER:$2|a l'ha modificà}} l'apartenensa a la partìa për $3 da $4 a $5",
+'logentry-rights-rights-legacy' => "$1 {{GENDER:$2|a l'ha modificà}} l'apartenensa a la partìa për $3",
+'logentry-rights-autopromote' => "$1 a l'é {{GENDER:$2|stàit promovù}} an automàtich da $4 a $5",
 'rightsnone' => '(gnun)',
 
 # Feedback
@@ -3911,6 +3915,7 @@ Dësnò, a peul dovré ël formolari semplificà sì-sota. Sò coment a sarà gi
 'api-error-ok-but-empty' => 'Eror antern: Gnun-a rispòsta dal servent.',
 'api-error-overwrite' => "Dzorascrive ansima a n'archivi esistent a l'é nen përmëttù.",
 'api-error-stashfailed' => "Eror antern: ël servent a l'ha pa podù memorisé l'archivi a temp.",
+'api-error-publishfailed' => "Eror antern: Ël servent a l'ha pa podù publiché l'archivi provisòri.",
 'api-error-timeout' => "Ël servent a l'ha pa rëspondù ant ël temp ëspetà.",
 'api-error-unclassified' => "A l'é capitaje n'eror nen conossù.",
 'api-error-unknown-code' => 'Eror sconossù: «$1».',
@@ -3930,5 +3935,21 @@ Dësnò, a peul dovré ël formolari semplificà sì-sota. Sò coment a sarà gi
 'duration-decades' => "$1 {{PLURAL:$1|desen-a d'agn|desen-e d'agn}}",
 'duration-centuries' => '$1 {{PLURAL:$1|sécol|sécoj}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenari|milenari}}',
+
+# Image rotation
+'rotate-comment' => 'Plancià virà ëd $1 {{PLURAL:$1|gre}} an sens orari',
+
+# Limit report
+'limitreport-title' => "Dàit d'otimisassion ëd l'analisator:",
+'limitreport-cputime' => "Temp CPU d'utilisassion",
+'limitreport-cputime-value' => '$1 {{PLURAL:$1|second}}',
+'limitreport-walltime' => "Temp real d'utilisassion",
+'limitreport-walltime-value' => '$1 {{PLURAL:$1|second}}',
+'limitreport-ppvisitednodes' => 'Cont dij neu ëd prepocessor visità',
+'limitreport-ppgeneratednodes' => 'Cont dij neu ëd preprocessor generà',
+'limitreport-postexpandincludesize' => "Taja d'anclusion dòp espansion",
+'limitreport-postexpandincludesize-value' => '$1/$2 {{PLURAL:$2|byte|bytes}}',
+'limitreport-templateargumentsize' => "Taja dl'argoment ëd lë stamp",
+'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|byte|bytes}}',
 
 );

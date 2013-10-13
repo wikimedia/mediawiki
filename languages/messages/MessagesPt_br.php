@@ -1307,7 +1307,7 @@ Outros administradores no {{SITENAME}} continuarão podendo acessar ao conteúdo
 'revdelete-unsuppress' => 'Remover restrições das edições restauradas',
 'revdelete-log' => 'Motivo:',
 'revdelete-submit' => 'Aplicar {{PLURAL:$1|à revisão selecionada|às revisões selecionadas}}',
-'revdelete-success' => "'''A visibilidade da revisão foi definida com sucesso.'''",
+'revdelete-success' => "'''A visibilidade da revisão foi atualizada.'''",
 'revdelete-failure' => "'''A visibilidade da revisão não foi atualizada:'''
 $1",
 'logdelete-success' => "'''Visibilidade de evento definida com sucesso.'''",
