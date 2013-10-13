@@ -61,6 +61,9 @@ production.
 * The precise format of metric datagrams produced by the UDP profiler and stats counter
   may now be specified as $wgUDPProfilerFormatString and $wgStatsFormatString,
   respectively.
+* 'watchcreations' and 'watchdefault' preferences ("Add pages I create
+  and files I upload to my watchlist", "Add pages and files I edit to
+  my watchlist") are now enabled by default.
 
 === New features in 1.22 ===
 * (bug 44525) mediawiki.jqueryMsg can now parse (whitelisted) HTML elements and attributes.
