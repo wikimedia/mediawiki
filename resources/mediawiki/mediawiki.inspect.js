@@ -21,6 +21,29 @@
 	var inspect = {
 
 		/**
+		 * Return a map of all dependency relationships between loaded modules.
+		 *
+		 * @return {Object} Maps module names to objects. Each sub-object has
+		 *  two properties, 'requires' and 'requiredBy'.
+		 */
+		getDependencyGraph: function () {
+			var modules = inspect.getLoadedModules(), graph = {};
+
+			$.each( modules, function ( moduleIndex, moduleName ) {
+				var dependencies = mw.loader.moduleRegistry[moduleName].dependencies || [];
+
+				graph[moduleName] = graph[moduleName] || { requiredBy: [] };
+				graph[moduleName].requires = dependencies;
+
+				$.each( dependencies, function ( depIndex, depName ) {
+					graph[depName] = graph[depName] || { requiredBy: [] };
+					graph[depName].requiredBy.push( moduleName );
+				} );
+			} );
+			return graph;
+		},
+
+		/**
 		 * Calculate the byte size of a ResourceLoader module.
 		 *
 		 * @param {string} moduleName The name of the module
@@ -184,7 +207,7 @@
 				} );
 				sortByProperty( modules, 'allSelectors', true );
 				return modules;
-			},
+			}
 		}
 	};
 
