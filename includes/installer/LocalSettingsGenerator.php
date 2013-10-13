@@ -62,7 +62,7 @@ class LocalSettingsGenerator {
 				'wgRightsText', 'wgMainCacheType', 'wgEnableUploads',
 				'wgMainCacheType', '_MemCachedServers', 'wgDBserver', 'wgDBuser',
 				'wgDBpassword', 'wgUseInstantCommons', 'wgUpgradeKey', 'wgDefaultSkin',
-				'wgMetaNamespace', 'wgResourceLoaderMaxQueryLength', 'wgLogo',
+				'wgMetaNamespace', 'wgResourceLoaderMaxQueryLength', 'wgLogo', 'wgGitBin',
 			),
 			$db->getGlobalNames()
 		);
@@ -352,6 +352,9 @@ ${wgServerSetting}
 
 # Path to the GNU diff3 utility. Used for conflict resolution.
 \$wgDiff3 = \"{$this->values['wgDiff3']}\";
+
+# Path to the Git version control software.
+\$wgGitBin = \"{$this->values['wgGitBin']}\";
 
 {$groupRights}";
 	}
