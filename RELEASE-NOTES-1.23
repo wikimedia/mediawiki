@@ -9,6 +9,9 @@ MediaWiki 1.23 is an alpha-quality branch and is not recommended for use in
 production.
 
 === Configuration changes in 1.23 ===
+* Preferences 'watchcreations' and 'watchdefault' ("Add pages I create and files
+  I upload to my watchlist", "Add pages and files I edit to my watchlist") are
+  now enabled by default.
 
 === New features in 1.23 ===
 * ResourceLoader can utilize the Web Storage API to cache modules client-side.
