@@ -151,6 +151,9 @@ production.
   message instead of leading the user to make a null edit.
 * (bug 52659) mediawiki.notification: Notification area remained visible when
   empty and thus was stealing pointer events from links on the page.
+* (bug 26811) When a DBUnexpectedError occurs, DB server hostnames are now
+  hidden unless $wgShowExceptionDetails is true, and $wgShowDBErrorBacktrace
+  no longer applies in such cases.
 
 === Web API changes in 1.23 ===
 * (bug 54884) action=parse&prop=categories now indicates hidden and missing

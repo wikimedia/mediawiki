@@ -38,7 +38,16 @@ class DBError extends MWException {
 		$this->db = $db;
 		parent::__construct( $error );
 	}
+}
 
+/**
+ * Base class for the more common types of database errors. These are known to occur
+ * frequently, so we try to give friendly error messages for them.
+ *
+ * @ingroup Database
+ * @since 1.23
+ */
+class DBExpectedError extends DBError {
 	/**
 	 * @return string
 	 */
@@ -80,14 +89,14 @@ class DBError extends MWException {
 	 * @return string
 	 */
 	protected function getHTMLContent() {
-		return '<p>' . nl2br( htmlspecialchars( $this->getMessage() ) ) . '</p>';
+		return '<p>' . nl2br( htmlspecialchars( $this->getTextContent() ) ) . '</p>';
 	}
 }
 
 /**
  * @ingroup Database
  */
-class DBConnectionError extends DBError {
+class DBConnectionError extends DBExpectedError {
 	/** @var string Error text */
 	public $error;
 
@@ -313,7 +322,7 @@ EOT;
 /**
  * @ingroup Database
  */
-class DBQueryError extends DBError {
+class DBQueryError extends DBExpectedError {
 	public $error, $errno, $sql, $fname;
 
 	/**
