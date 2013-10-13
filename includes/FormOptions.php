@@ -174,7 +174,8 @@ class FormOptions implements ArrayAccess {
 	}
 
 	/**
-	 * @todo Document
+	 * Return current option value, based on a structure taken from $options.
+	 *
 	 * @param array $option array structure describing the option
 	 * @return mixed Value or the default value if it is null
 	 */
