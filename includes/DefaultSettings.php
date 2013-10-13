@@ -5002,6 +5002,11 @@ $wgShowExceptionDetails = false;
 
 /**
  * If true, show a backtrace for database errors
+ *
+ * @note This setting only applies when connection errors and query errors are
+ * reported in the normal manner. $wgShowExceptionDetails applies in other cases,
+ * including those in which an uncaught exception is thrown from within the
+ * exception handler.
  */
 $wgShowDBErrorBacktrace = false;
 

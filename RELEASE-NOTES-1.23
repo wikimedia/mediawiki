@@ -142,6 +142,9 @@ production.
 * (bug 60543) Special:PrefixIndex forgot stripprefix=1 for "Next page" link
 * (bug 29762) Undoing an already-undone edit will now display an appropriate
   message instead of leading the user to make a null edit.
+* (bug 26811) When a DBUnexpectedError occurs, DB server hostnames are now
+  hidden unless $wgShowExceptionDetails is true, and $wgShowDBErrorBacktrace
+  no longer applies in such cases.
 
 === Web API changes in 1.23 ===
 * (bug 54884) action=parse&prop=categories now indicates hidden and missing
