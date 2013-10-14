@@ -122,29 +122,58 @@ class WebInstallerOutput {
 			'common/commonElements.css',
 			'common/commonContent.css',
 			'common/commonInterface.css',
-			'vector/screen.css',
+			'vector/styles.less',
 
 			// mw-config specific
 			'common/config.css',
 		);
 
+		$prepend = '';
 		$css = '';
 
 		wfSuppressWarnings();
 		foreach ( $cssFileNames as $cssFileName ) {
 			$fullCssFileName = "$skinDir/$cssFileName";
-			$cssFileContents = file_get_contents( $fullCssFileName );
-			if ( $cssFileContents ) {
-				preg_match( "/^(\w+)\//", $cssFileName, $match );
-				$skinName = $match[1];
-				$css .= str_replace( 'images/', "../skins/$skinName/images/", $cssFileContents );
-			} else {
-				$css .= "/** Your webserver cannot read $fullCssFileName. Please check file permissions. */";
+
+			if ( !file_exists( $fullCssFileName ) ) {
+				$prepend .= ResourceLoader::makeComment( "Unable to find $fullCssFileName." );
+				continue;
+			}
+
+			if ( !is_readable( $fullCssFileName ) ) {
+				$prepend .= ResourceLoader::makeComment( "Unable to read $fullCssFileName. Please check file permissions." );
+				continue;
+			}
+
+			try {
+
+				if ( preg_match( '/\.less$/', $cssFileName ) ) {
+					// Run the LESS compiler for *.less files (bug 55589)
+					$compiler = ResourceLoader::getLessCompiler();
+					$cssFileContents = $compiler->compileFile( $fullCssFileName );
+				} else {
+					// Regular CSS file
+					$cssFileContents = file_get_contents( $fullCssFileName );
+				}
+
+				if ( $cssFileContents ) {
+					preg_match( "/^(\w+)\//", $cssFileName, $match );
+					$skinName = $match[1];
+					$css .= str_replace( 'images/', "../skins/$skinName/images/", $cssFileContents );
+				} else {
+					$prepend .= ResourceLoader::makeComment( "Unable to read $fullCssFileName." );
+				}
+
+			} catch ( Exception $e ) {
+				$prepend .= ResourceLoader::formatException( $e );
 			}
 
 			$css .= "\n";
 		}
 		wfRestoreWarnings();
+
+
+		$css = $prepend . $css;
 
 		if ( $dir == 'rtl' ) {
 			$css = CSSJanus::transform( $css, true );
