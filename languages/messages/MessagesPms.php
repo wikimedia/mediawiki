@@ -783,11 +783,11 @@ Sòn a l'é normalment causà da l'andèje dapress a na vej liura stòrica a na 
 'usercsspreview' => "'''Che a varda che lòn che a s-ciàira a l'é nomach na preuva ëd sò feuj CSS.'''
 '''A l'é ancó nen stàit salvà!'''",
 'userjspreview' => "'''Che as visa che a l'é mach antramentre che as fa na preuva ëd sò còdes Javascript e che a l'é ancó pa stàit salvà!'''",
-'sitecsspreview' => "'''Che a varda che a l'é mach an mente ch'a preuva sto CSS.'''
-'''A l'é ancó pa stàit salvà!'''",
-'sitejspreview' => "'''Che a varda che a l'é mach an mente ch'a preuva sto còdes JavaScript.'''
-'''A l'é ancó pa stàit salvà!'''",
-'userinvalidcssjstitle' => "'''Avis:''' A-i é pa gnun-a pel \"\$1\". Che as visa che le pàgine .css e .js che un as fa daspërchiel a deuvro tute minùscole për tìtol, pr'esempi {{ns:user}}:Scaramacaj/vector.css nopà che {{ns:user}}:Scaramacaj/Vector.css.",
+'sitecsspreview' => "'''Che a varda che a l'é mach an camin ch'a preuva cost CSS.'''
+'''A l'é pa ancora stàit salvà!'''",
+'sitejspreview' => "'''Che a varda che a l'é mach an camin ch'a preuva cost còdes JavaScript.'''
+'''A l'é pa ancora stàit salvà!'''",
+'userinvalidcssjstitle' => "'''Atension:''' A-i é gnun-a pel «$1». Che as visa che le pàgine .css e .js che un as fa daspërchiel a deuvro tute minùscole për tìtol, pr'esempi {{ns:user}}:Scaramacaj/vector.css nopà che {{ns:user}}:Scaramacaj/Vector.css.",
 'updated' => '(Agiornà)',
 'note' => "'''NÒTA:'''",
 'previewnote' => "'''Che a ten-a present che costa-sì a l'é mach na preuva.'''
@@ -3951,5 +3951,7 @@ Dësnò, a peul dovré ël formolari semplificà sì-sota. Sò coment a sarà gi
 'limitreport-postexpandincludesize-value' => '$1/$2 {{PLURAL:$2|byte|bytes}}',
 'limitreport-templateargumentsize' => "Taja dl'argoment ëd lë stamp",
 'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|byte|bytes}}',
+'limitreport-expansiondepth' => "Pi granda përfondità d'espansion",
+'limitreport-expensivefunctioncount' => "Cont ëd le fonsion d'anàlisi care",
 
 );
