@@ -893,6 +893,13 @@ class DatabaseMssql extends DatabaseBase {
 		return $name[0] == '[' && substr( $name, -1, 1 ) == ']';
 	}
 
+	public function removeIdentifierQuotes( $s ) {
+		if( $this->isQuotedIdentifier( $s ) ) {
+			return substr( $s, 1, -1 );
+		}
+		return $s;
+	}
+
 	function selectDB( $db ) {
 		return ( $this->query( "SET DATABASE $db" ) !== false );
 	}
