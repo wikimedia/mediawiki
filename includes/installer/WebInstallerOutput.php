@@ -104,47 +104,83 @@ class WebInstallerOutput {
 
 	/**
 	 * Get the raw vector CSS, flipping if needed
+	 *
+	 * @todo Possibly get rid of this function and use ResourceLoader in the manner it was
+	 *   designed to be used in, rather than just grabbing a list of filenames from it,
+	 *   and not properly handling such details as media types in module definitions.
+	 *
 	 * @param string $dir 'ltr' or 'rtl'
 	 * @return String
 	 */
 	public function getCSS( $dir ) {
-		$skinDir = dirname( dirname( __DIR__ ) ) . '/skins';
-
-		// All these files will be concatenated in sequence and loaded
-		// as one file.
-		// The string 'images/' in the files' contents will be replaced
-		// by '../skins/$skinName/images/', where $skinName is what appears
-		// before the last '/' in each of the strings.
-		$cssFileNames = array(
-
-			// Basically the "skins.vector" ResourceLoader module styles
-			'common/shared.css',
-			'common/commonElements.css',
-			'common/commonContent.css',
-			'common/commonInterface.css',
-			'vector/screen.css',
-
-			// mw-config specific
-			'common/config.css',
+		// All CSS files these modules reference will be concatenated in sequence
+		// and loaded as one file.
+		$moduleNames = array(
+			'mediawiki.legacy.shared',
+			'skins.vector',
+			'mediawiki.legacy.config',
 		);
 
+		$prepend = '';
 		$css = '';
 
-		wfSuppressWarnings();
-		foreach ( $cssFileNames as $cssFileName ) {
-			$fullCssFileName = "$skinDir/$cssFileName";
-			$cssFileContents = file_get_contents( $fullCssFileName );
-			if ( $cssFileContents ) {
-				preg_match( "/^(\w+)\//", $cssFileName, $match );
-				$skinName = $match[1];
-				$css .= str_replace( 'images/', "../skins/$skinName/images/", $cssFileContents );
-			} else {
-				$css .= "/** Your webserver cannot read $fullCssFileName. Please check file permissions. */";
-			}
+		$cssFileNames = array();
+		$resourceLoader = new ResourceLoader();
+		foreach ( $moduleNames as $moduleName ) {
+			$module = $resourceLoader->getModule( $moduleName );
+			$cssFileNames = $module->getAllStyleFiles();
 
-			$css .= "\n";
+			wfSuppressWarnings();
+			foreach ( $cssFileNames as $cssFileName ) {
+				if ( !file_exists( $cssFileName ) ) {
+					$prepend .= ResourceLoader::makeComment( "Unable to find $cssFileName." );
+					continue;
+				}
+
+				if ( !is_readable( $cssFileName ) ) {
+					$prepend .= ResourceLoader::makeComment( "Unable to read $cssFileName. Please check file permissions." );
+					continue;
+				}
+
+				try {
+
+					if ( preg_match( '/\.less$/', $cssFileName ) ) {
+						// Run the LESS compiler for *.less files (bug 55589)
+						$compiler = ResourceLoader::getLessCompiler();
+						$cssFileContents = $compiler->compileFile( $cssFileName );
+					} else {
+						// Regular CSS file
+						$cssFileContents = file_get_contents( $cssFileName );
+					}
+
+					if ( $cssFileContents ) {
+						// Rewrite URLs, though don't bother embedding images. While static image
+						// files may be cached, CSS returned by this function is definitely not.
+						$cssDirName = dirname( $cssFileName );
+						$css .= CSSMin::remap(
+							/* source */ $cssFileContents,
+							/* local */ $cssDirName,
+							/* remote */ '..' . str_replace(
+								array( $GLOBALS['IP'], DIRECTORY_SEPARATOR ),
+								array( '', '/' ),
+								$cssDirName
+							),
+							/* embedData */ false
+						);
+					} else {
+						$prepend .= ResourceLoader::makeComment( "Unable to read $cssFileName." );
+					}
+
+				} catch ( Exception $e ) {
+					$prepend .= ResourceLoader::formatException( $e );
+				}
+
+				$css .= "\n";
+			}
+			wfRestoreWarnings();
 		}
-		wfRestoreWarnings();
+
+		$css = $prepend . $css;
 
 		if ( $dir == 'rtl' ) {
 			$css = CSSJanus::transform( $css, true );
