@@ -87,7 +87,7 @@ return array(
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 	),
 	'skins.vector' => array(
-		// Keep in sync with WebInstallerOutput::getCSS()
+		// Used in the web installer. Test it after modifying this definition!
 		'styles' => array(
 			'common/commonElements.css' => array( 'media' => 'screen' ),
 			'common/commonContent.css' => array( 'media' => 'screen' ),
@@ -1109,8 +1109,9 @@ return array(
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 	),
 	'mediawiki.legacy.config' => array(
+		// Used in the web installer. Test it after modifying this definition!
 		'scripts' => 'common/config.js',
-		'styles' => array( 'common/config.css', 'common/config-cc.css' ),
+		'styles' => array( 'common/config.css' ),
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 		'dependencies' => 'mediawiki.legacy.wikibits',
@@ -1132,6 +1133,7 @@ return array(
 		'position' => 'top',
 	),
 	'mediawiki.legacy.shared' => array(
+		// Used in the web installer. Test it after modifying this definition!
 		'styles' => array( 'common/shared.css' => array( 'media' => 'screen' ) ),
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
