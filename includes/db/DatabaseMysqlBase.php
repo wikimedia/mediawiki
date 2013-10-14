@@ -462,11 +462,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	}
 
 	/**
-	 * MySQL uses `backticks` for identifier quoting instead of the sql standard "double quotes".
-	 *
-	 * @param $s string
-	 *
-	 * @return string
+	 * @see DatabaseBase::addIdentifierQuotes
 	 */
 	public function addIdentifierQuotes( $s ) {
 		// Characters in the range \u0001-\uFFFF are valid in a quoted identifier
@@ -475,11 +471,17 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	}
 
 	/**
-	 * @param $name string
-	 * @return bool
+	 * @see DatabaseBase::isQuotedIdentifier
 	 */
 	public function isQuotedIdentifier( $name ) {
 		return strlen( $name ) && $name[0] == '`' && substr( $name, -1, 1 ) == '`';
+	}
+
+	/**
+	 * @see DatabaseBase::removeIdentifierQuotes
+	 */
+	public function removeIdentifierQuotes( $s ) {
+		return $this->isQuotedIdentifier( $s ) ? str_replace( '``' , '`', substr( $s, 1, -1 ) ) : $s;
 	}
 
 	/**
