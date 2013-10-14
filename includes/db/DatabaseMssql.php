@@ -884,11 +884,17 @@ class DatabaseMssql extends DatabaseBase {
 		}
 	}
 
+	/**
+	 * @see DatabaseBase::addIdentifierQuotes
+	 */
 	public function addIdentifierQuotes( $s ) {
 		// http://msdn.microsoft.com/en-us/library/aa223962.aspx
 		return '[' . $s . ']';
 	}
 
+	/**
+	 * @see DatabaseBase::isQuotedIdentifier
+	 */
 	public function isQuotedIdentifier( $name ) {
 		return $name[0] == '[' && substr( $name, -1, 1 ) == ']';
 	}

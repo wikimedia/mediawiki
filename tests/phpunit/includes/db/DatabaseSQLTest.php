@@ -3,9 +3,14 @@
 /**
  * Test the abstract database layer
  * This is a non DBMS depending test.
+ * @group DatabaseBase
+ * @group Database
  */
 class DatabaseSQLTest extends MediaWikiTestCase {
 
+	/**
+	 * @var DatabaseTestHelper
+	 */
 	private $database;
 
 	protected function setUp() {
