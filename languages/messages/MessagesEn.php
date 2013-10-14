@@ -3056,10 +3056,12 @@ See $2 for a record of recent deletions.',
 'deletecomment'          => 'Reason:',
 'deleteotherreason'      => 'Other/additional reason:',
 'deletereasonotherlist'  => 'Other reason',
-'deletereason-dropdown'  => '*Common delete reasons
-** Author request
+'deletereason-dropdown'  => '* Common delete reasons
+** Spam
+** Vandalism
 ** Copyright violation
-** Vandalism',
+** Author request
+** Broken redirect',
 'delete-edit-reasonlist' => 'Edit deletion reasons',
 'delete-toobig'          => 'This page has a large edit history, over $1 {{PLURAL:$1|revision|revisions}}.
 Deletion of such pages has been restricted to prevent accidental disruption of {{SITENAME}}.',
