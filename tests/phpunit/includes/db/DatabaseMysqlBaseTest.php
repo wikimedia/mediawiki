@@ -62,9 +62,29 @@ class DatabaseMysqlBaseTest extends MediaWikiTestCase {
 	function testAddIdentifierQuotes( $expected, $in ) {
 		$db = new FakeDatabaseMysqlBase();
 		$quoted = $db->addIdentifierQuotes( $in );
-		$this->assertEquals($expected, $quoted);
+		$this->assertEquals( $expected, $quoted );
 	}
 
+	/**
+	 * @dataProvider provideDiapers
+	 */
+	function testIsQuotedIdentifier( $expected, $input ) {
+		$db = new FakeDatabaseMysqlBase();
+		$result = $db->isQuotedIdentifier( $expected );
+		$this->assertTrue( $result );
+	}
+
+	/**
+	 * @dataProvider provideDiapers
+	 */
+	function testRemoveIdentifierQuotes( $expected, $input ) {
+		$db = new FakeDatabaseMysqlBase();
+		$identifier = $db->removeIdentifierQuotes( $expected );
+		$this->assertEquals(
+			self::createUnicodeString( str_replace( '\0', '', $input ) ),
+			self::createUnicodeString( $identifier )
+		);
+	}
 
 	/**
 	 * Feeds testAddIdentifierQuotes
@@ -100,12 +120,12 @@ class DatabaseMysqlBaseTest extends MediaWikiTestCase {
 
 			// unicode chars
 			array(
-				self::createUnicodeString( '`\u0001a\uFFFFb`' ),
-				self::createUnicodeString( '\u0001a\uFFFFb' )
+				self::createUnicodeString( '"' . '`\u0001a\uFFFFb`' . '"' ),
+				self::createUnicodeString( '"' . '\u0001a\uFFFFb' . '"' )
 			),
 			array(
-				self::createUnicodeString( '`\u0001\uFFFF`' ),
-				self::createUnicodeString( '\u0001\u0000\uFFFF\u0000' )
+				self::createUnicodeString( '"' . '`\u0001\uFFFF`' . '"' ),
+				self::createUnicodeString( '"' . '\u0001\u0000\uFFFF\u0000' . '"' )
 			),
 			array( '`☃`', '☃' ),
 			array( '`メインページ`', 'メインページ' ),
@@ -118,8 +138,8 @@ class DatabaseMysqlBaseTest extends MediaWikiTestCase {
 		);
 	}
 
-	private static function createUnicodeString($str) {
-		return json_decode( '"' . $str . '"' );
+	private static function createUnicodeString( $str ) {
+		return json_decode( $str );
 	}
 
 }
