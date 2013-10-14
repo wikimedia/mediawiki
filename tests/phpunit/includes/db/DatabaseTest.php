@@ -5,7 +5,12 @@
  * @group DatabaseBase
  */
 class DatabaseTest extends MediaWikiTestCase {
-	var $db, $functionTest = false;
+
+	/**
+	 * @var DatabaseBase
+	 */
+	protected $db;
+	protected $functionTest = false;
 
 	protected function setUp() {
 		parent::setUp();
@@ -57,6 +62,33 @@ class DatabaseTest extends MediaWikiTestCase {
 		$this->assertEquals(
 			$check,
 			$this->db->addQuotes( "string's cause trouble" ) );
+	}
+
+	function testAddIdentifierQuotes(){
+		$identifier = 'identifierName';
+		$quotedIdentifier = $this->db->addIdentifierQuotes( $identifier );
+		$this->assertEquals( '"identifierName"', $quotedIdentifier );
+	}
+
+	/**
+	 * @dataProvider provideIsQuotedIdentifier
+	 */
+	function testIsQuotedIdentifier( $string, $expected ){
+		$result = $this->db->isQuotedIdentifier( $string );
+		$this->assertEquals( $expected, $result );
+	}
+
+	function provideIsQuotedIdentifier(){
+		return array(
+			array( 'foobar', false ),
+			array( '"foobar"', true ),
+		);
+	}
+
+	function testRemoveIdentifierQuotes(){
+		$quotedIdentifier = '"identifierName"';
+		$identifier = $this->db->removeIdentifierQuotes( $quotedIdentifier );
+		$this->assertEquals( 'identifierName', $identifier );
 	}
 
 	private function getSharedTableName( $table, $database, $prefix, $format = 'quoted' ) {
