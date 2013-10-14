@@ -1223,6 +1223,13 @@ class ResourceLoader {
 	public static function getLessCompiler() {
 		global $wgResourceLoaderLESSFunctions, $wgResourceLoaderLESSImportPaths;
 
+		// When called from the installer, it is possible that a required PHP extension
+		// is missing (at least for now; see bug 47564). If this is the case, throw an
+		// exception (caught by the installer) to prevent a fatal error later on.
+		if ( !function_exists( 'ctype_digit' ) ) {
+			throw new MWException( 'lessc requires the Ctype extension' );
+		}
+
 		$less = new lessc();
 		$less->setPreserveComments( true );
 		$less->setVariables( self::getLESSVars() );
