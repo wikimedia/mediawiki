@@ -23,11 +23,13 @@ class MockDatabaseSqlite extends DatabaseSqliteStandalone {
 
 /**
  * @group sqlite
- * @group Database
- * @group medium
  */
 class DatabaseSqliteTest extends MediaWikiTestCase {
-	var $db;
+
+	/**
+	 * @var MockDatabaseSqlite
+	 */
+	protected $db;
 
 	protected function setUp() {
 		parent::setUp();
@@ -103,6 +105,33 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 		} else {
 			$this->fail( 'query returned no result' );
 		}
+	}
+
+	function testAddIdentifierQuotes() {
+		$identifier = 'identifierName';
+		$quotedIdentifier = $this->db->addIdentifierQuotes( $identifier );
+		$this->assertEquals( '"identifierName"', $quotedIdentifier );
+	}
+
+	/**
+	 * @dataProvider provideIsQuotedIdentifier
+	 */
+	function testIsQuotedIdentifier( $string, $expected ) {
+		$result = $this->db->isQuotedIdentifier( $string );
+		$this->assertEquals( $expected, $result );
+	}
+
+	function provideIsQuotedIdentifier() {
+		return array(
+			array( 'foobar', false ),
+			array( '"foobar"', true ),
+		);
+	}
+
+	function testRemoveIdentifierQuotes() {
+		$quotedIdentifier = '"identifierName"';
+		$identifier = $this->db->removeIdentifierQuotes( $quotedIdentifier );
+		$this->assertEquals( 'identifierName', $identifier );
 	}
 
 	public function testReplaceVars() {

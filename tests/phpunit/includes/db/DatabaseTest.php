@@ -5,7 +5,12 @@
  * @group DatabaseBase
  */
 class DatabaseTest extends MediaWikiTestCase {
-	var $db, $functionTest = false;
+
+	/**
+	 * @var DatabaseBase
+	 */
+	protected $db;
+	protected $functionTest = false;
 
 	protected function setUp() {
 		parent::setUp();

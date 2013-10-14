@@ -1103,6 +1103,9 @@ class DatabaseOracle extends DatabaseBase {
 		return "'" . $this->strencode( $s ) . "'";
 	}
 
+	/**
+	 * @see DatabaseBase::addIdentifierQuotes
+	 */
 	public function addIdentifierQuotes( $s ) {
 		if ( !$this->getFlag( DBO_DDLMODE ) ) {
 			$s = '/*Q*/' . $s;
@@ -1110,10 +1113,16 @@ class DatabaseOracle extends DatabaseBase {
 		return $s;
 	}
 
+	/**
+	 * @see DatabaseBase::removeIdentifierQuotes
+	 */
 	public function removeIdentifierQuotes( $s ) {
 		return strpos( $s, '/*Q*/' ) === false ? $s : substr( $s, 5 );
 	}
 
+	/**
+	 * @see DatabaseBase::isQuotedIdentifier
+	 */
 	public function isQuotedIdentifier( $s ) {
 		return strpos( $s, '/*Q*/' ) !== false;
 	}
