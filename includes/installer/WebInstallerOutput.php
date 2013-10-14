@@ -122,7 +122,7 @@ class WebInstallerOutput {
 			'common/commonElements.css',
 			'common/commonContent.css',
 			'common/commonInterface.css',
-			'vector/screen.css',
+			'vector/screen.less',
 
 			// mw-config specific
 			'common/config.css',
@@ -133,7 +133,26 @@ class WebInstallerOutput {
 		wfSuppressWarnings();
 		foreach ( $cssFileNames as $cssFileName ) {
 			$fullCssFileName = "$skinDir/$cssFileName";
-			$cssFileContents = file_get_contents( $fullCssFileName );
+
+			// Run the LESS compiler for screen.less (bug 55589)
+			if ( preg_match( '/\.less$/', $cssFileName ) ) {
+				if ( function_exists( 'ctype_digit' ) ) {
+					try {
+						$compiler = ResourceLoader::getLessCompiler();
+						$cssFileContents = $compiler->compileFile( $fullCssFileName );
+					} catch ( Exception $e ) {
+						$cssFileContents = false;
+					}
+				} else {
+					// Ctype extension is missing; don't try using lessc. It would cause a
+					// fatal error that would prevent even config.css from loading.
+					$cssFileContents = false;
+				}
+			} else {
+				// Not a LESS file, don't compile it
+				$cssFileContents = file_get_contents( $fullCssFileName );
+			}
+
 			if ( $cssFileContents ) {
 				preg_match( "/^(\w+)\//", $cssFileName, $match );
 				$skinName = $match[1];
