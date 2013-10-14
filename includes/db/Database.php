@@ -2388,6 +2388,20 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	}
 
 	/**
+	 * Removes quotes that are added by addIdentifierQuotes() if the string appears to be quoted
+	 *
+	 * @param string $s
+	 *
+	 * @return string
+	 */
+	public function removeIdentifierQuotes( $s ) {
+		if( $this->isQuotedIdentifier( $s ) ) {
+			return str_replace( '""', '"', substr( $s, 1, -1 ) );
+		}
+		return $s;
+	}
+
+	/**
 	 * @param $s string
 	 * @return string
 	 */
