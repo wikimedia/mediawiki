@@ -461,25 +461,21 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 		return $sQuoted;
 	}
 
-	/**
-	 * MySQL uses `backticks` for identifier quoting instead of the sql standard "double quotes".
-	 *
-	 * @param $s string
-	 *
-	 * @return string
-	 */
 	public function addIdentifierQuotes( $s ) {
 		// Characters in the range \u0001-\uFFFF are valid in a quoted identifier
 		// Remove NUL bytes and escape backticks by doubling
 		return '`' . str_replace( array( "\0", '`' ), array( '', '``' ), $s )  . '`';
 	}
 
-	/**
-	 * @param $name string
-	 * @return bool
-	 */
 	public function isQuotedIdentifier( $name ) {
 		return strlen( $name ) && $name[0] == '`' && substr( $name, -1, 1 ) == '`';
+	}
+
+	public function removeIdentifierQuotes( $s ) {
+		if( $this->isQuotedIdentifier( $s ) ) {
+			return str_replace( '``' , '`', substr( $s, 1, -1 ) );
+		}
+		return $s;
 	}
 
 	/**
