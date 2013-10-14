@@ -6,6 +6,9 @@
  */
 class DatabaseSQLTest extends MediaWikiTestCase {
 
+	/**
+	 * @var DatabaseTestHelper
+	 */
 	private $database;
 
 	protected function setUp() {
