@@ -938,7 +938,7 @@ abstract class ContentHandler {
 	 * @return ParserOptions
 	 */
 	public function makeParserOptions( $context ) {
-		global $wgContLang;
+		global $wgContLang, $wgEnableParserLimitReporting;
 
 		if ( $context instanceof IContextSource ) {
 			$options = ParserOptions::newFromContext( $context );
@@ -950,7 +950,7 @@ abstract class ContentHandler {
 			throw new MWException( "Bad context for parser options: $context" );
 		}
 
-		$options->enableLimitReport(); // show inclusion/loop reports
+		$options->enableLimitReport( $wgEnableParserLimitReporting ); // show inclusion/loop reports
 		$options->setTidy( true ); // fix bad HTML
 
 		return $options;

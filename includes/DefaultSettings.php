@@ -5937,6 +5937,11 @@ $wgExtensionEntryPointListFiles = array();
 $wgParserOutputHooks = array();
 
 /**
+ * Whether to include the NewPP limit report as a HTML comment
+ */
+$wgEnableParserLimitReporting = true;
+
+/**
  * List of valid skin names.
  * The key should be the name in all lower case, the value should be a properly
  * cased name for the skin. This value will be prefixed with "Skin" to create the

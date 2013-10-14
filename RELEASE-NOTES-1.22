@@ -244,6 +244,8 @@ production.
   the output of the API query meta=siteinfo&siprop=statistics
 * Primary keys have been added to both the archive table and the externallinks
   tables.
+* Added $wgEnableParserLimitReporting to control whether the NewPP limit report is
+  output in a HTML comment.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
