@@ -304,8 +304,8 @@
 	 *     var title = mw.Title.newFromImg( $( 'img:first' ) );
 	 *
 	 * @static
-	 * @param {HTMLImageElement|jQuery} img The image to use as a base.
-	 * @return {mw.Title|null} The file title - null if unsuccessful.
+	 * @param {HTMLElement|jQuery} img The image to use as a base
+	 * @return {mw.Title|null} The file title or null if unsuccessful
 	 */
 	Title.newFromImg = function ( img ) {
 		var matches, i, regex, src, decodedSrc,
@@ -329,9 +329,7 @@
 
 			recount = regexes.length;
 
-		img = img.jquery ? img.get( 0 ) : img;
-
-		src = img.src;
+		src = img.jquery ? img[0].src : img.src;
 
 		matches = src.match( thumbPhpRegex );
 
