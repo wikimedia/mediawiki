@@ -25,8 +25,12 @@
  */
 class ResourceLoaderUserGroupsModule extends ResourceLoaderWikiModule {
 
-	/* Protected Methods */
+	/* Protected Members */
+
 	protected $origin = self::ORIGIN_USER_SITEWIDE;
+	protected $targets = array( 'desktop', 'mobile' );
+
+	/* Protected Methods */
 
 	/**
 	 * @param $context ResourceLoaderContext

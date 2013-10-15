@@ -158,6 +158,7 @@ return array(
 	'jquery.autoEllipsis' => array(
 		'scripts' => 'resources/jquery/jquery.autoEllipsis.js',
 		'dependencies' => 'jquery.highlightText',
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'jquery.badge' => array(
 		'scripts' => 'resources/jquery/jquery.badge.js',
@@ -171,6 +172,7 @@ return array(
 	'jquery.byteLimit' => array(
 		'scripts' => 'resources/jquery/jquery.byteLimit.js',
 		'dependencies' => 'jquery.byteLength',
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'jquery.checkboxShiftClick' => array(
 		'scripts' => 'resources/jquery/jquery.checkboxShiftClick.js',
@@ -225,6 +227,7 @@ return array(
 	'jquery.highlightText' => array(
 		'scripts' => 'resources/jquery/jquery.highlightText.js',
 		'dependencies' => 'jquery.mwExtension',
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'jquery.hoverIntent' => array(
 		'scripts' => 'resources/jquery/jquery.hoverIntent.js',
@@ -605,6 +608,7 @@ return array(
 	'mediawiki.api' => array(
 		'scripts' => 'resources/mediawiki.api/mediawiki.api.js',
 		'dependencies' => 'mediawiki.util',
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.api.category' => array(
 		'scripts' => 'resources/mediawiki.api/mediawiki.api.category.js',
@@ -703,6 +707,7 @@ return array(
 		'dependencies' => array(
 			'mediawiki.page.startup',
 		),
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.notify' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.notify.js',
@@ -729,9 +734,11 @@ return array(
 			'jquery.byteLength',
 			'mediawiki.util',
 		),
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.Uri' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.Uri.js',
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.user' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.user.js',
@@ -741,6 +748,7 @@ return array(
 			'user.options',
 			'user.tokens',
 		),
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.util' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.util.js',
@@ -793,6 +801,7 @@ return array(
 	'mediawiki.action.history.diff' => array(
 		'styles' => 'resources/mediawiki.action/mediawiki.action.history.diff.css',
 		'group' => 'mediawiki.action.history',
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.action.view.dblClickEdit' => array(
 		'scripts' => 'resources/mediawiki.action/mediawiki.action.view.dblClickEdit.js',
