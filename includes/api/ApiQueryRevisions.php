@@ -42,7 +42,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 
 	private $fld_ids = false, $fld_flags = false, $fld_timestamp = false, $fld_size = false, $fld_sha1 = false,
 			$fld_comment = false, $fld_parsedcomment = false, $fld_user = false, $fld_userid = false,
-			$fld_content = false, $fld_tags = false, $fld_contentmodel = false;
+			$fld_usergender = false, $fld_content = false, $fld_tags = false, $fld_contentmodel = false;
 
 	private $tokenFunctions;
 
@@ -156,6 +156,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 		$this->fld_sha1 = isset( $prop['sha1'] );
 		$this->fld_contentmodel = isset( $prop['contentmodel'] );
 		$this->fld_userid = isset( $prop['userid'] );
+		$this->fld_usergender = isset( $prop['usergender'] );
 		$this->fld_user = isset( $prop['user'] );
 		$this->token = $params['token'];
 
@@ -405,7 +406,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 			$vals['minor'] = '';
 		}
 
-		if ( $this->fld_user || $this->fld_userid ) {
+		if ( $this->fld_user || $this->fld_userid || $this->fld_usergender ) {
 			if ( $revision->isDeleted( Revision::DELETED_USER ) ) {
 				$vals['userhidden'] = '';
 			} else {
@@ -419,6 +420,15 @@ class ApiQueryRevisions extends ApiQueryBase {
 
 				if ( $this->fld_userid ) {
 					$vals['userid'] = $userid;
+				}
+				
+				if ( $this->fld_usergender ) {
+					if ( $userid ) {
+						$gender = User::newFromID( $userid )->getOption( 'gender' );
+					} else {
+						$gender = 'unknown';
+					}
+					$vals['usergender'] = $gender;
 				}
 			}
 		}
@@ -639,6 +649,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 					'timestamp',
 					'user',
 					'userid',
+					'usergender',
 					'size',
 					'sha1',
 					'contentmodel',
@@ -708,6 +719,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 				' timestamp      - The timestamp of the revision',
 				' user           - User that made the revision',
 				' userid         - User id of revision creator',
+				' usergender     - Gender of the revision creator (male, female, unknown)',
 				' size           - Length (bytes) of the revision',
 				' sha1           - SHA-1 (base 16) of the revision',
 				' contentmodel   - Content model id',
@@ -761,6 +773,11 @@ class ApiQueryRevisions extends ApiQueryBase {
 			'userid' => array(
 				'userhidden' => 'boolean',
 				'userid' => 'integer',
+				'anon' => 'boolean'
+			),
+			'usergender' => array(
+				'userhidden' => 'boolean',
+				'usergender' => 'string',
 				'anon' => 'boolean'
 			),
 			'timestamp' => array(
