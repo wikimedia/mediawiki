@@ -377,6 +377,10 @@ class LinkHolderArray {
 				$key = "$ns:$index";
 				$searchkey = "<!--LINK $key-->";
 				$displayText = $entry['text'];
+				if ( isset( $entry['selflink'] ) ) {
+					$replacePairs[$searchkey] = Linker::makeSelfLinkObj( $title, $displayText, $query );
+					continue;
+				}
 				if ( $displayText === '' ) {
 					$displayText = null;
 				}
@@ -455,6 +459,9 @@ class LinkHolderArray {
 		// single string to all variants. This would improve parser's performance
 		// significantly.
 		foreach ( $this->internals as $ns => $entries ) {
+			if ( $ns == NS_SPECIAL ) {
+				continue;
+			}
 			foreach ( $entries as $index => $entry ) {
 				$pdbk = $entry['pdbk'];
 				// we only deal with new links (in its first query)
@@ -465,6 +472,7 @@ class LinkHolderArray {
 						'ns' => $ns,
 						'key' => "$ns:$index",
 						'titleText' => $titleText,
+						'fragment' => $title->getFragment(),
 					);
 					// separate titles with \0 because it would never appears
 					// in a valid title
@@ -479,19 +487,31 @@ class LinkHolderArray {
 		foreach ( $titlesAllVariants as &$titlesVariant ) {
 			$titlesVariant = explode( "\0", $titlesVariant );
 		}
-		$l = count( $titlesAttrs );
+
 		// Then add variants of links to link batch
-		for ( $i = 0; $i < $l; $i ++ ) {
+		$parentTitleText = $this->parent->getTitle()->getText();
+		for ( $i = 0, $n = count( $titlesAttrs ); $i < $n; ++$i ) {
 			foreach ( $allVariantsName as $variantName ) {
 				$textVariant = $titlesAllVariants[$variantName][$i];
-				if ( $textVariant != $titlesAttrs[$i]['titleText'] ) {
-					$variantTitle = Title::makeTitle( $titlesAttrs[$i]['ns'], $textVariant );
-					if ( is_null( $variantTitle ) ) {
-						continue;
-					}
-					$linkBatch->addObj( $variantTitle );
-					$variantMap[$variantTitle->getPrefixedDBkey()][] = $titlesAttrs[$i]['key'];
+				if ( $textVariant === $titlesAttrs[$i]['titleText'] ) {
+					continue;
 				}
+
+				// Self-link checking for mixed/different variant titles. At this point, we
+				// already know the exact title does not exist, so the link cannot be to a
+				// different, existing variant of the current title.
+				if ( $textVariant === $parentTitleText && $titlesAttrs[$i]['fragment'] === '' ) {
+					list( $ns, $index ) = explode( ':', $titlesAttrs[$i]['key'], 2 );
+					$this->internals[$ns][$index]['selflink'] = true;
+					continue;
+				}
+
+				$variantTitle = Title::makeTitle( $titlesAttrs[$i]['ns'], $textVariant );
+				if ( is_null( $variantTitle ) ) {
+					continue;
+				}
+				$linkBatch->addObj( $variantTitle );
+				$variantMap[$variantTitle->getPrefixedDBkey()][] = $titlesAttrs[$i]['key'];
 			}
 		}
 
