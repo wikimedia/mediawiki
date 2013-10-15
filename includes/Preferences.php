@@ -992,7 +992,12 @@ class Preferences {
 			'section' => 'watchlist/advancedwatchlist',
 			'label-message' => 'tog-watchlisthideliu',
 		);
-
+		$defaultPreferences['watchlistemailer'] = array(
+			'type' => 'info',
+			'label-message' => 'prefs-watchlist-emailprofref',
+			'default' => '',
+			'section' => 'watchlist/displaywatchlist',
+		);
 		if ( $wgUseRCPatrol ) {
 			$defaultPreferences['watchlisthidepatrolled'] = array(
 				'type' => 'toggle',

@@ -2995,6 +2995,7 @@ See also:
 'prefs-watchlist-edits' => 'Used in [[Special:Preferences]], tab "Watchlist".',
 'prefs-watchlist-edits-max' => 'Shown as hint in [[Special:Preferences]], tab "Watchlist"',
 'prefs-watchlist-token' => 'Used in [[Special:Preferences]], tab Watchlist.',
+'prefs-watchlist-emailprofref' => 'Used for informational purposes in [[Special:Preferences]], tab Watchlist',
 'prefs-misc' => 'Tab used on the [[Special:Preferences|user preferences]] special page.',
 'prefs-resetpass' => 'Button on user data tab in user preferences. When you click the button you go to the special page [[Special:ResetPass]].
 
