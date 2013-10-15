@@ -2110,16 +2110,12 @@ class Parser {
 				}
 			}
 
-			# Self-link checking
-			if ( $nt->getFragment() === '' && $ns != NS_SPECIAL ) {
-				if ( $nt->equals( $this->mTitle ) || ( !$nt->isKnown() && in_array(
-					$this->mTitle->getPrefixedText(),
-					$this->getConverterLanguage()->autoConvertToAllVariants( $nt->getPrefixedText() ),
-					true
-				) ) ) {
-					$s .= $prefix . Linker::makeSelfLinkObj( $nt, $text, '', $trail );
-					continue;
-				}
+			# Self-link checking. For some languages, variants of the title are checked in
+			# LinkHolderArray::doVariants() to allow batching the existence checks necessary
+			# for linking to a different variant.
+			if ( $ns != NS_SPECIAL && $nt->equals( $this->mTitle ) && $nt->getFragment() === '' ) {
+				$s .= $prefix . Linker::makeSelfLinkObj( $nt, $text, '', $trail );
+				continue;
 			}
 
 			# NS_MEDIA is a pseudo-namespace for linking directly to a file
