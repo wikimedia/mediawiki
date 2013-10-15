@@ -2603,9 +2603,11 @@ Rückmeldungen und weitere Hilfe: {{canonicalurl:{{MediaWiki:Helppage}}}}',
 'deleteotherreason' => 'Anderer/ergänzender Grund:',
 'deletereasonotherlist' => 'Anderer Grund',
 'deletereason-dropdown' => '* Allgemeine Löschgründe
-** Wunsch des Autors
+** Spam
+** Vandalismus
 ** Urheberrechtsverletzung
-** Vandalismus',
+** Wunsch des Autors
+** Defekte Weiterleitung',
 'delete-edit-reasonlist' => 'Löschgründe bearbeiten',
 'delete-toobig' => 'Diese Seite hat mit mehr als $1 {{PLURAL:$1|Version|Versionen}} eine sehr lange Versionsgeschichte. Das Löschen solcher Seiten wurde eingeschränkt, um eine versehentliche Überlastung der Server zu verhindern.',
 'delete-warning-toobig' => 'Diese Seite hat mit mehr als $1 {{PLURAL:$1|Version|Versionen}} eine sehr lange Versionsgeschichte. Das Löschen kann zu Störungen im Datenbankbetrieb führen.',

@@ -2449,10 +2449,12 @@ Vidu la paĝon $2 por registro de lastatempaj forigoj.',
 'deletecomment' => 'Kialo:',
 'deleteotherreason' => 'Alia/plua kialo:',
 'deletereasonotherlist' => 'Alia kialo',
-'deletereason-dropdown' => '*Oftaj kialoj por forigo
-** Peto de aŭtoro
+'deletereason-dropdown' => '* Oftaj kialoj por forigo
+** Trudmesaĝoj
+** Vandalismo
 ** Neglekto de aŭtorrajto
-** Vandalismo',
+** Postulo de la aŭtoro
+** Nefunkcianta alidirektilo',
 'delete-edit-reasonlist' => 'Redakti kialojn de forigo',
 'delete-toobig' => 'Ĉi tiu paĝo havas grandan redakto-historion, pli ol $1 {{PLURAL:$1|version|versiojn}}. Forigo de ĉi tiaj paĝoj estis limigitaj por preventi akcidentan disrompigon de {{SITENAME}}.',
 'delete-warning-toobig' => 'Ĉi tiu paĝo havas grandan redakto-historion, pli ol $1 {{PLURAL:$1|version|versiojn}}. Forigo de ĝi povas disrompigi operacion de {{SITENAME}}; forigu singarde.',

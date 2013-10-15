@@ -2575,9 +2575,11 @@ Véase $2 para un registro de los borrados recientes.',
 'deleteotherreason' => 'Otro motivo:',
 'deletereasonotherlist' => 'Otro motivo',
 'deletereason-dropdown' => '*Razones comunes de borrado
-** A petición del mismo autor
+** Spam
+** Vandalismo
 ** Violación de copyright
-** Vandalismo',
+** A petición del mismo autor
+** Redirección incorrecta',
 'delete-edit-reasonlist' => 'Editar razones de borrado',
 'delete-toobig' => 'Esta página tiene un historial muy grande, con más de $1 {{PLURAL:$1|revisión|revisiones}}. Borrar este tipo de páginas ha sido restringido para prevenir posibles problemas en {{SITENAME}}.',
 'delete-warning-toobig' => 'Esta página tiene un historial de más de $1 {{PLURAL:$1|revisión|revisiones}}. Eliminarla puede perturbar las operaciones de la base de datos de {{SITENAME}}. Ten cuidado al borrar.',

@@ -359,7 +359,7 @@ $messages = array(
 'tog-hidepatrolled' => 'Son değişikliklerde gözden geçirilen düzenlemeleri gizle',
 'tog-newpageshidepatrolled' => 'Kontrol edilmiş sayfaları yeni sayfalar listesinde gizle',
 'tog-extendwatchlist' => 'İzleme listesini sadece en son değil, tüm değişiklikleri göstermek için genişlet',
-'tog-usenewrc' => 'Son değişiklikler sayfasındaki ve izleme listesindeki değişiklikleri gruplandırma',
+'tog-usenewrc' => 'Son değişiklikler sayfasındaki ve izleme listesindeki değişiklikleri gruplandır',
 'tog-numberheadings' => 'Başlıkları otomatik numaralandır',
 'tog-showtoolbar' => 'Düzenleme yaparken araç çubuğunu göster',
 'tog-editondblclick' => 'Çift tıklayarak sayfaları düzenle',
@@ -1673,6 +1673,7 @@ Diğer kullanıcılar sizinle bu yolla iletişime geçtiğinde e-posta adresiniz
 'right-editusercssjs' => 'Diğer kullanıcıların CSS ve JS dosyalarında değişiklik yap',
 'right-editusercss' => 'Diğer kullanıcıların CSS dosyalarında değişiklik yap',
 'right-edituserjs' => 'Diğer kullanıcıların JS dosyalarında değişiklik yap',
+'right-editmyoptions' => 'tercihlerini düzenle',
 'right-rollback' => 'Belirli bir sayfayı değiştiren son kullanıcının değişikliklerini hızlıca geri döndür',
 'right-markbotedits' => 'Geri döndürülen değişiklikleri, bot değişiklikleri olarak işaretle',
 'right-noratelimit' => 'Derecelendirme sınırlamalarından etkilenme',
@@ -1734,9 +1735,13 @@ Diğer kullanıcılar sizinle bu yolla iletişime geçtiğinde e-posta adresiniz
 'action-userrights-interwiki' => 'diğer vikilerde kullanıcıların, kullanıcı haklarını değiştirmeye',
 'action-siteadmin' => 'veritabanını kilitleyip açmaya',
 'action-sendemail' => 'e-posta gönder',
+'action-editmywatchlist' => 'izleme listeni düzenle',
+'action-viewmywatchlist' => 'izleme listeni gör',
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|değişiklik|değişiklik}}',
+'enhancedrc-since-last-visit' => '$1 {{PLURAL:$1|son ziyaretten bu yana}}',
+'enhancedrc-history' => 'geçmiş',
 'recentchanges' => 'Son değişiklikler',
 'recentchanges-legend' => 'Son değişiklikler seçenekleri',
 'recentchanges-summary' => 'Yapılan en son değişiklikleri bu sayfadan izleyin.',
@@ -1768,7 +1773,7 @@ Diğer kullanıcılar sizinle bu yolla iletişime geçtiğinde e-posta adresiniz
 'rc_categories_any' => 'Herhangi',
 'rc-change-size-new' => '$1 {{PLURAL:$1|bayt|bayt}} değişiklikten sonra',
 'newsectionsummary' => '/* $1 */ yeni başlık',
-'rc-enhanced-expand' => 'Ayrıntıları göster (JavaScript gerekir)',
+'rc-enhanced-expand' => 'Ayrıntıları göster',
 'rc-enhanced-hide' => 'Ayrıntıları gizle',
 'rc-old-title' => 'ilk olarak oluşturulan "$1"',
 
@@ -1788,7 +1793,7 @@ Diğer kullanıcılar sizinle bu yolla iletişime geçtiğinde e-posta adresiniz
 'reuploaddesc' => 'Yükleme formuna geri dön.',
 'upload-tryagain' => 'Değiştirilmiş dosya açıklamasını gönder',
 'uploadnologin' => 'Oturum açık değil',
-'uploadnologintext' => 'Dosya yükleyebilmek için [[Special:UserLogin|oturum aç]]manız gerekiyor.',
+'uploadnologintext' => 'Dosya yükleyebilmek için [[$1|oturum aç]]manız gerekiyor.',
 'upload_directory_missing' => 'Yükleme dizini ($1) kayıp ve websunucusu tarafından oluşturulamıyor.',
 'upload_directory_read_only' => 'Dosya yükleme dizinine ($1) web sunucusunun yazma izni yok.',
 'uploaderror' => 'Yükleme hatası',
@@ -2017,6 +2022,9 @@ Kullanıcı tarafından filtrelendiğinde, sadece o kullanıcı dosyanın en son
 'listfiles_size' => 'Boyut (bayt)',
 'listfiles_description' => 'Tanım',
 'listfiles_count' => 'Sürümler',
+'listfiles-latestversion' => 'Geçerli sürüm',
+'listfiles-latestversion-yes' => 'Evet',
+'listfiles-latestversion-no' => 'Hayır',
 
 # File description page
 'file-anchor-link' => 'Dosya',
@@ -2110,6 +2118,7 @@ Dosya açıklamasını düzenlemek isterseniz, [$2 dosya açıklama sayfası] bu
 # Random page in category
 'randomincategory' => 'Kategoriye göre rastgele sayfa',
 'randomincategory-selectcategory' => 'Rastgele sayfa alınacak kategori: $1 $2.',
+'randomincategory-selectcategory-submit' => 'Getir',
 
 # Random redirect
 'randomredirect' => 'Rastgele yönlendirme',
@@ -3942,7 +3951,10 @@ Bu programla birlikte [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU Genel Kamu Lisansın
 'tags-tag' => 'Etiket adı',
 'tags-display-header' => 'Değişiklik listelerindeki görünüm',
 'tags-description-header' => 'Anlamının tam açıklaması',
+'tags-active-header' => 'Etkin?',
 'tags-hitcount-header' => 'Etiketli değişiklikler',
+'tags-active-yes' => 'Evet',
+'tags-active-no' => 'Hayır',
 'tags-edit' => 'değiştir',
 'tags-hitcount' => '$1 {{PLURAL:$1|değişiklik|değişiklik}}',
 

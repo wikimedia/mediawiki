@@ -907,13 +907,13 @@ Być może właśnie zmienił{{GENDER:|eś|aś|eś(‐aś)}} swoje hasło lub po
 $2
 
 {{PLURAL:$3|Tymczasowego hasła|Tymczasowych haseł}} można użyć w ciągu {{PLURAL:$5|jednego dnia|$5 dni}}.
-Powinieneś zalogować się i zmienić hasło na nowe. Jeśli to ktoś inni poprosił o wysłanie przypomnienia lub jeśli pamiętasz aktualne hasło i nie chce go zmieniać wystarczy, że zignorujesz tę wiadomość i będziesz nadal korzystał ze swojego starego hasła.',
+Powinieneś zalogować się i zmienić hasło na nowe. Jeśli to ktoś inny poprosił o wysłanie przypomnienia lub jeśli pamiętasz aktualne hasło i nie chcesz go zmieniać wystarczy, że zignorujesz tę wiadomość i będziesz nadal korzystać ze swojego starego hasła.',
 'passwordreset-emailtext-user' => 'Użytkownik $1 poprosił o zresetowanie twojego hasła w {{GRAMMAR:MS.lp{{SITENAME}}}} ($4). Z tym adresem e‐mailowym powiązane {{PLURAL:$3|jest konto użytkownika|są następujące konta użytkowników:}}
 
 $2
 
 {{PLURAL:$3|Tymczasowego hasła|Tymczasowych haseł}} można użyć w ciągu {{PLURAL:$5|jednego dnia|$5 dni}}.
-Powinieneś zalogować się i zmienić hasło na nowe. Jeśli to ktoś inni poprosił o wysłanie przypomnienia lub jeśli pamiętasz aktualne hasło i nie chce go zmieniać wystarczy, że zignorujesz tę wiadomość i będziesz nadal korzystał ze swojego starego hasła.',
+Powinieneś zalogować się i zmienić hasło na nowe. Jeśli to ktoś inny poprosił o wysłanie przypomnienia lub jeśli pamiętasz aktualne hasło i nie chcesz go zmieniać wystarczy, że zignorujesz tę wiadomość i będziesz nadal korzystać ze swojego starego hasła.',
 'passwordreset-emailelement' => 'Nazwa użytkownika – $1
 Tymczasowe hasło – $2',
 'passwordreset-emailsent' => 'E‐mail pozwalający na zresetowanie hasła został wysłany.',

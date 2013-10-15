@@ -1610,9 +1610,11 @@ Adfirma quaesumus te paginam re vera delere velle, te consequentias intellere, e
 'deleteotherreason' => 'Causa alia vel explicatio:',
 'deletereasonotherlist' => 'Causa alia',
 'deletereason-dropdown' => '*Causae deletionum communes
-** Desiderium auctoris
+** Spam
+** Vandalismus
 ** Violatio verborum privatorum
-** Vandalismus',
+** Desiderium auctoris
+** Redirectio fracta',
 'delete-edit-reasonlist' => 'Causas deletionum recensere',
 
 # Rollback

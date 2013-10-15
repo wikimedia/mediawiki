@@ -2501,10 +2501,12 @@ Accesați $2 pentru o listă cu elementele recent șterse.',
 'deletecomment' => 'Motiv:',
 'deleteotherreason' => 'Motiv diferit/suplimentar:',
 'deletereasonotherlist' => 'Alt motiv',
-'deletereason-dropdown' => '*Motive uzuale
-** La cererea autorului
+'deletereason-dropdown' => '*Motive uzuale de ștergere
+** Spam
+** Vandalism
 ** Violarea drepturilor de autor
-** Vandalism',
+** La cererea autorului
+** Redirecționare nefuncțională',
 'delete-edit-reasonlist' => 'Modifică motivele ștergerii',
 'delete-toobig' => 'Această pagină are un istoric al modificărilor important, cu mai mult de $1 {{PLURAL:$1|versiune|versiuni|de versiuni}}.
 Ștergerea unei astfel de pagini a fost restricționată pentru a preveni apariția unor erori în {{SITENAME}}.',
@@ -3935,7 +3937,7 @@ Puteți folosi în schimb [[Special:EditWatchlist|editorul standard]].',
 'version-credits-summary' => 'Am dori să amintim următoarele persoane pentru contribuțiile aduse proiectului [[Special:Version|MediaWiki]].',
 'version-license-info' => 'MediaWiki este un software liber pe care îl puteți redistribui și/sau modifica sub termenii Licenței Publice Generale GNU publicată de Free Software Foundation – fie a doua versiune a acesteia, fie, la alegerea dumneavoastră, orice altă versiune ulterioară. 
 
-MediaWiki este distribuit în speranța că va fi folositor, dar FĂRĂ VREO GARANȚIE, nici măcar cea implicită de COMERCIALIZARE sau de ADAPTARE PENTRU UN UN SCOP ANUME. Vedeți Licența Publică Generală GNU pentru mai multe detalii. 
+MediaWiki este distribuit în speranța că va fi folositor, dar FĂRĂ VREO GARANȚIE, nici măcar cea implicită de COMERCIALIZARE sau de ADAPTARE PENTRU UN SCOP ANUME. Vedeți Licența Publică Generală GNU pentru mai multe detalii. 
 
 În cazul în care nu ați primit [{{SERVER}}{{SCRIPTPATH}}/COPYING o copie a  Licenței Publice Generale GNU] împreună cu acest program, scrieți la Free Software Foundation, Inc, 51, Strada Franklin, etajul cinci, Boston, MA 02110-1301, Statele Unite ale Americii sau [//www.gnu.org/licenses/old-licenses/gpl-2.0.html citiți-o online].',
 'version-software' => 'Software instalat',

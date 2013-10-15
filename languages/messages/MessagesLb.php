@@ -2367,7 +2367,9 @@ W.e.g. confirméiert, datt Dir dëst wierklech wëllt, datt Dir d'Konsequenze ve
 'deletereason-dropdown' => '* Heefegst Grënn fir eng Säit ze läschen
 ** Wonsch vum Auteur
 ** Verletzung vun engem Copyright
-** Vandalismus',
+** Vandalismus
+** Futtis Viruleedung
+** Spam',
 'delete-edit-reasonlist' => 'Läschgrënn änneren',
 'delete-toobig' => "Dës Säit huet e laangen Historique, méi wéi $1 {{PLURAL:$1|Versioun|Versiounen}}.
 D'Läsche vu sou Säite gouf limitéiert fir ongewollte Stéierungen op {{SITENAME}} ze verhënneren.",
@@ -2877,6 +2879,7 @@ All Transwiki-Import-Aktioune ginn am [[Special:Log/import|Import-Logbuch]] prot
 'import-interwiki-templates' => 'Mat alle Schablounen',
 'import-interwiki-submit' => 'Import',
 'import-interwiki-namespace' => 'Zil-Nummraum:',
+'import-interwiki-rootpage' => 'Zil-Stamm-Säit (fakultativ):',
 'import-upload-filename' => 'Numm vum Fichier:',
 'import-comment' => 'Bemierkung:',
 'importtext' => 'Exportéiert de Fichier w.e.g. vun der Source-Wiki mat der [[Special:Export|Export-Funktioun]].

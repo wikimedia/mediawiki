@@ -2442,9 +2442,11 @@ $UNWATCHURL
 'deleteotherreason' => '其他/附加原因：',
 'deletereasonotherlist' => '其他原因',
 'deletereason-dropdown' => '*常见删除原因
+** 广告
 ** 作者申请
 ** 侵犯著作权
-** 破坏行为',
+** 破坏行为
+** 损坏重定向',
 'delete-edit-reasonlist' => '编辑删除原因',
 'delete-toobig' => '这个页面有一个十分大量的编辑历史，超过$1次修订。删除此类页面的动作已经被限制，以防止在{{SITENAME}}上的意外扰乱。',
 'delete-warning-toobig' => '这个页面有一个十分大量的编辑历史，超过$1次修订。删除它可能会扰乱{{SITENAME}}的数据库操作；在继续此动作前请小心。',

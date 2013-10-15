@@ -815,6 +815,9 @@ Contrasenya temporal: $2",
 
 # Special:ResetTokens
 'resettokens' => 'Reinicia els testimonis',
+'resettokens-text' => "Des d'aquí podeu reiniciar els testimonis que permeten l'accés a certes dades privades associades amb el vostre compte.
+
+Ho hauríeu de fer si accidentalment els heu compartit amb algú o si el vostre compte ha estat compromès.",
 'resettokens-no-tokens' => 'No hi ha testimonis per reiniciar.',
 'resettokens-legend' => 'Reinicia els testimonis',
 'resettokens-tokens' => 'Testimonis:',
@@ -2361,9 +2364,11 @@ Vegeu $2 per a un registre dels esborrats més recents.',
 'deleteotherreason' => 'Motiu diferent o addicional:',
 'deletereasonotherlist' => 'Altres motius',
 'deletereason-dropdown' => "*Motius freqüents d'esborrat
-** Demanada per l'autor
+** Brossa
+** Vandalisme
 ** Violació del copyright
-** Vandalisme",
+** Demanada per l'autor
+** Redirecció trencada",
 'delete-edit-reasonlist' => "Edita els motius d'eliminació",
 'delete-toobig' => "Aquesta pàgina té un historial d'edicions molt gran, amb més de $1 {{PLURAL:$1|canvi|canvis}}. L'eliminació d'aquestes pàgines està restringida per a prevenir que hi pugui haver un desajustament seriós de la base de dades de tot el projecte {{SITENAME}} per accident.",
 'delete-warning-toobig' => "Aquesta pàgina té un historial d'edicions molt gran, amb més de $1 {{PLURAL:$1|canvi|canvis}}. Eliminar-la podria suposar un seriós desajustament de la base de dades de tot el projecte {{SITENAME}}; aneu en compte abans dur a terme l'acció.",

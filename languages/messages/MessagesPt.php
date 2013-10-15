@@ -654,6 +654,7 @@ Encontra uma lista das páginas especiais válidas em [[Special:SpecialPages|{{i
 'databaseerror-text' => 'Ocorreu um erro na consulta à base de dados.
 Isto pode indicar um defeito no programa.',
 'databaseerror-textcl' => 'Ocorreu um erro na consulta à base de dados.',
+'databaseerror-query' => 'Consulta:$1',
 'databaseerror-error' => 'Erro: $1',
 'laggedslavemode' => "'''Aviso:''' A página pode não conter as atualizações mais recentes.",
 'readonly' => 'Base de dados bloqueada (limitada a leituras)',
@@ -1205,6 +1206,7 @@ Depois grave as alterações, para finalizar e desfazer a edição.',
 'undo-failure' => 'Não foi possível desfazer a edição por conflito com alterações intermédias.',
 'undo-norev' => 'Não foi possível desfazer a edição porque ela não existe ou foi apagada.',
 'undo-summary' => 'Desfeita a edição $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussão]])',
+'undo-summary-username-hidden' => 'Desfazer a revisão  $1  por um usuário oculto',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Não é possível criar uma conta',
@@ -1551,9 +1553,9 @@ Esta operação não pode ser desfeita.',
 'badsig' => 'Assinatura inválida; verifique o código HTML utilizado.',
 'badsiglength' => 'A sua assinatura é demasiado longa.
 Não deverá conter mais de $1 {{PLURAL:$1|carácter|caracteres}}.',
-'yourgender' => 'Sexo:',
-'gender-unknown' => 'Não especificado',
-'gender-male' => 'Masculino',
+'yourgender' => 'Como prefere ser descrito?',
+'gender-unknown' => 'Prefiro não dizer',
+'gender-male' => 'Ele edita páginas wiki',
 'gender-female' => 'Feminino',
 'prefs-help-gender' => 'Opcional: usado pelo programa para ajuste das mensagens ao género do utilizador.
 Esta informação será pública.',

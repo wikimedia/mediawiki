@@ -28,6 +28,7 @@
  * @author Siggis
  * @author Tomasdd
  * @author Urhixidur
+ * @author Vilius2001
  * @author Vpovilaitis
  * @author לערי ריינהארט
  */
@@ -1526,8 +1527,8 @@ teisės",
 'action-block' => 'neleisti šiam naudotojui redaguoti',
 'action-protect' => 'pakeisti apsaugos lygius šiam puslapiui',
 'action-rollback' => 'greitai atmesti paskutinio naudotojo atliktų tam tikro puslapio pakeitimų',
-'action-import' => 'importuoti šį puslapį iš kitos wiki',
-'action-importupload' => 'importuoti šį puslapį iš įkelto failo',
+'action-import' => 'importuoti puslapius iš kitos wiki',
+'action-importupload' => 'importuoti puslapius iš įkelto failo',
 'action-patrol' => 'pažymėti kitų keitimus kaip patikrintus',
 'action-autopatrol' => 'savo keitimų pažymėjimas patikrintais',
 'action-unwatchedpages' => 'žiūrėti nestebimų puslapių sąrašą',
@@ -2302,7 +2303,7 @@ kažkas jau pakeitė puslapį arba suspėjo pirmas atmesti keitimą.
 Paskutimas keitimas darytas naudotojo [[User:$3|$3]] ([[User talk:$3|Aptarimas]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment' => "Redagavimo komentaras: „''$1''“.",
 'revertpage' => 'Atmestas [[Special:Contributions/$2|$2]] ([[User talk:$2|Aptarimas]]) pakeitimas; sugrąžinta [[User:$1|$1]] versija',
-'revertpage-nouser' => 'Atmesti (naudotojo vardas pašalintas) pakeitimai, grąžinta prieš tai buvusi [[User:$1|$1]] versija',
+'revertpage-nouser' => 'Atversti pakeitimai paslėpto vartotojo, grąžino prieš tai buvusią versiją {{GENDER:$1|[[User:$1|$1]]}}',
 'rollback-success' => 'Atmesti $1 pakeitimai;
 grąžinta prieš tai buvusi $2 versija.',
 
@@ -2442,7 +2443,7 @@ $1',
 'contributions' => '{{GENDER:$1|Naudotojo}} įndėlis',
 'contributions-title' => '{{GENDER:$1|Naudotojo|Naudotojos}} $1 indėlis',
 'mycontris' => 'Įnašai',
-'contribsub2' => 'Naudotojo $1 ($2)',
+'contribsub2' => 'Dėl {{GENDER:$3|$1}} ($2)',
 'nocontribs' => 'Jokie keitimai neatitiko šių kriterijų.',
 'uctop' => '(dabartinis)',
 'month' => 'Nuo mėnesio (ir anksčiau):',

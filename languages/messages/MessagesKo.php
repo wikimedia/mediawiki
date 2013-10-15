@@ -805,7 +805,7 @@ $2',
 'userlogin-noaccount' => '계정이 없나요?',
 'userlogin-joinproject' => '{{SITENAME}}에 가입하세요',
 'nologin' => '계정이 없나요? $1.',
-'nologinlink' => '계정을 만들 수 있습니다',
+'nologinlink' => '계정을 만드세요',
 'createaccount' => '계정 만들기',
 'gotaccount' => '계정이 이미 있다면, $1.',
 'gotaccountlink' => '로그인하세요',
@@ -1183,7 +1183,7 @@ IP 주소는 여러 사용자가 공유할 수 있습니다.
 'hiddencategories' => '이 문서는 다음 {{PLURAL:$1|숨은 분류 1개|숨은 분류 $1개}}에 속해 있습니다:',
 'edittools' => '<!-- 이 문서는 편집 창과 파일 올리기 창에 출력됩니다. -->',
 'nocreatetext' => '{{SITENAME}}에서 새로운 문서를 만드는 것은 제한되어 있습니다.
-이미 존재하는 다른 문서를 편집하거나, [[Special:UserLogin|로그인하거나 계정을 만들 수 있습니다]].',
+이미 존재하는 다른 문서를 편집하거나, [[Special:UserLogin|로그인하거나 계정을 만들]] 수 있습니다.',
 'nocreate-loggedin' => '새 문서를 만들 권한이 없습니다.',
 'sectioneditnotsupported-title' => '부분 편집 지원 안됨',
 'sectioneditnotsupported-text' => '이 문서에서는 문단 편집을 지원하지 않습니다.',
@@ -2596,10 +2596,12 @@ $UNWATCHURL
 'deletecomment' => '이유:',
 'deleteotherreason' => '다른 이유/추가적인 이유:',
 'deletereasonotherlist' => '다른 이유',
-'deletereason-dropdown' => '*일반적인 삭제 이유
-** 작성자의 요청
+'deletereason-dropdown' => '* 일반적인 삭제 이유
+** 스팸
+** 훼손 행위
 ** 저작권 침해
-** 훼손 행위',
+** 작성자의 요청
+** 깨진 넘겨주기',
 'delete-edit-reasonlist' => '삭제 이유 편집',
 'delete-toobig' => '이 문서에는 {{PLURAL:$1|편집 역사}}가 $1개 있습니다.
 편집 역사가 긴 문서를 삭제하면 {{SITENAME}}에 큰 혼란을 줄 수 있기 때문에 삭제할 수 없습니다.',

@@ -2577,10 +2577,12 @@ Voir $2 pour une liste des suppressions récentes.',
 'deletecomment' => 'Motif :',
 'deleteotherreason' => 'Motif autre ou supplémentaire :',
 'deletereasonotherlist' => 'Autre motif',
-'deletereason-dropdown' => "* Motifs de suppression les plus courants
-** Demande de l'auteur
-** Violation des droits d'auteur
-** Vandalisme",
+'deletereason-dropdown' => '* Motifs de suppression les plus courants
+** Pourriel
+** Vandalisme
+** Violation des droits d’auteur
+** Demande de l’auteur
+** Redirection erronée',
 'delete-edit-reasonlist' => 'Modifier les motifs de suppression de page',
 'delete-toobig' => 'Cette page possède un historique important de modifications, dépassant $1 version{{PLURAL:$1||s}}.
 La suppression de telles pages a été restreinte pour prévenir des perturbations accidentelles de {{SITENAME}}.',
@@ -3304,7 +3306,7 @@ Vous pouvez toutefois en visualiser la source.',
 'pageinfo-magic-words' => '{{PLURAL:$1|Mot magique|Mots magiques}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Catégorie cachée|Catégories cachées}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Modèle inclu|Modèles inclus}} ($1)',
-'pageinfo-transclusions' => '{{PLURAL:$1|Page traduite|Pages traduites}} sur ($1)',
+'pageinfo-transclusions' => '{{PLURAL:$1|Page dans laquelle|Pages dans lesquelles}} elle est incluse ($1)',
 'pageinfo-toolboxlink' => 'Information sur la page',
 'pageinfo-redirectsto' => 'Rediriger vers',
 'pageinfo-redirectsto-info' => 'info',

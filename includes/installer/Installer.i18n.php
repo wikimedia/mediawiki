@@ -3446,6 +3446,10 @@ MediaWiki vyžaduje ke správné funkci podporu UTF-8.",
 To je pravděpodobně příliš málo.
 Instalace může selhat!",
 	'config-ctype' => "'''Kritická chyba''': PHP musí být přeloženo s podporou pro [http://www.php.net/manual/en/ctype.installation.php rozšíření Ctype].",
+	'config-json' => "'''Kritická chyba:''' PHP bylo přeloženo bez podpory JSON.
+Před instalací MediaWiki musíte buď nainstalovat rozšíření PHP JSON nebo rozšíření [http://pecl.php.net/package/jsonc PECL jsonc].
+* Rozšíření PHP je součástí Red Hat Enterprise Linux (CentOS) 5 a 6, avšak musí se povolit v <code>/etc/php.ini</code> nebo <code>/etc/php.d/json.ini</code>.
+* V některých linuxových distribucích vydaných po květnu 2013 může toto rozšíření PHP chybět a místo toho mohou používat rozšíření PECL jako <code>php5-json</code> nebo <code>php-pecl-jsonc</code>.",
 	'config-xcache' => 'Je nainstalována [http://xcache.lighttpd.net/ XCache]',
 	'config-apc' => 'Je nainstalováno [http://www.php.net/apc APC]',
 	'config-wincache' => 'Je nainstalována [http://www.iis.net/download/WinCacheForPhp WinCache]',

@@ -25,6 +25,7 @@
  * @author Dakrismeno
  * @author Danmaz74
  * @author Darth Kule
+ * @author DexterMorgan
  * @author F. Cosoleto
  * @author Felis
  * @author FollowTheMedia
@@ -291,7 +292,7 @@ $linkTrail = '/^([a-zàéèíîìóòúù]+)(.*)$/sDu';
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Sottolinea i collegamenti:',
-'tog-justify' => 'Allineamento dei paragrafi giustificato',
+'tog-justify' => 'Allineamento giustificato dei paragrafi',
 'tog-hideminor' => 'Nascondi le modifiche minori nelle ultime modifiche',
 'tog-hidepatrolled' => 'Nascondi le modifiche verificate nelle ultime modifiche',
 'tog-newpageshidepatrolled' => "Nascondi le pagine verificate dall'elenco delle pagine più recenti",
@@ -2450,10 +2451,12 @@ Consultare il log delle $2 per un elenco delle pagine cancellate di recente.',
 'deletecomment' => 'Motivo:',
 'deleteotherreason' => 'Altra motivazione o motivazione aggiuntiva:',
 'deletereasonotherlist' => 'Altra motivazione',
-'deletereason-dropdown' => "*Motivazioni più comuni per la cancellazione
-** Richiesta dell'autore
+'deletereason-dropdown' => "* Motivazioni più comuni per la cancellazione
+** Spam
+** Vandalismo
 ** Violazione di copyright
-** Vandalismo",
+** Richiesta dell'autore
+** Redirect rotto",
 'delete-edit-reasonlist' => 'Modifica i motivi di cancellazione',
 'delete-toobig' => 'La cronologia di questa pagina è molto lunga (oltre $1 {{PLURAL:$1|revisione|revisioni}}). La sua cancellazione è stata limitata per evitare di creare accidentalmente dei problemi di funzionamento al database di {{SITENAME}}.',
 'delete-warning-toobig' => 'La cronologia di questa pagina è molto lunga (oltre $1 {{PLURAL:$1|revisione|revisioni}}). La sua cancellazione può creare dei problemi di funzionamento al database di {{SITENAME}}; procedere con cautela.',

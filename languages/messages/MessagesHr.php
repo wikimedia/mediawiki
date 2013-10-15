@@ -461,6 +461,7 @@ $messages = array(
 'newwindow' => '(otvara se u novom prozoru)',
 'cancel' => 'Odustani',
 'moredotdotdot' => 'Više...',
+'morenotlisted' => 'Ovaj popis nije potpun.',
 'mypage' => 'Stranica',
 'mytalk' => 'Moj razgovor',
 'anontalk' => 'Razgovor za ovu IP adresu',
@@ -516,6 +517,7 @@ $messages = array(
 'create-this-page' => 'Započni ovu stranicu',
 'delete' => 'Izbriši',
 'deletethispage' => 'Izbriši ovu stranicu',
+'undeletethispage' => 'Vrati ovu stranicu',
 'undelete_short' => 'Vrati {{PLURAL:$1|$1 uređivanje|$1 uređivanja}}',
 'viewdeleted_short' => 'Prikaži $1 {{plural: $1|izbrisano uređivanje|izbrisana uređivanja|izbrisanih uređivanja}}',
 'protect' => 'Zaštiti',
@@ -1678,6 +1680,7 @@ Ne smije biti duži od $1 {{PLURAL:$1|znaka|znaka|znakova}}.',
 
 # Recent changes
 'nchanges' => '{{PLURAL:$1|$1 promjena|$1 promjene|$1 promjena}}',
+'enhancedrc-history' => 'povijest',
 'recentchanges' => 'Nedavne promjene',
 'recentchanges-legend' => 'Izbornik nedavnih promjena',
 'recentchanges-summary' => 'Na ovoj stranici možete pratiti nedavne promjene u wikiju.',
@@ -1965,6 +1968,8 @@ Kad je filtriran po suradniku, popis prikazuje samo one datoteke čije je poslje
 'listfiles_size' => 'Veličina (u bajtovima)',
 'listfiles_description' => 'Opis',
 'listfiles_count' => 'Inačice',
+'listfiles-latestversion-yes' => 'Da',
+'listfiles-latestversion-no' => 'Ne',
 
 # File description page
 'file-anchor-link' => 'Slika',
@@ -2057,6 +2062,9 @@ Možda želite urediti njen opis na [$2 stranici opisa datoteke].',
 # Random page
 'randompage' => 'Slučajna stranica',
 'randompage-nopages' => 'Nema stranica u {{PLURAL:$2|imenskom prostoru|imenskim prostorima}}: $1.',
+
+# Random page in category
+'randomincategory-selectcategory-submit' => 'Idi',
 
 # Random redirect
 'randomredirect' => 'Slučajno preusmjeravanje',

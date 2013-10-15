@@ -2542,10 +2542,12 @@ Rady a kontakt:
 'deletecomment' => 'Důvod:',
 'deleteotherreason' => 'Jiný/další důvod:',
 'deletereasonotherlist' => 'Jiný důvod',
-'deletereason-dropdown' => '*Obvyklé důvody smazání
-** Na žádost autora
+'deletereason-dropdown' => '* Obvyklé důvody smazání
+** Spam
+** Vandalismus
 ** Porušení autorských práv
-** Vandalismus',
+** Na žádost autora
+** Rozbité přesměrování',
 'delete-edit-reasonlist' => 'Editovat důvody smazání',
 'delete-toobig' => 'Tato stránka má velkou historii editací, přes $1 {{plural:$1|verzi|verze|verzí}}. Mazání takových stránek je omezeno, aby se předešlo nechtěnému narušení {{grammar:2sg|{{SITENAME}}}}.',
 'delete-warning-toobig' => 'Tato stránka má velkou historii editací, přes $1 {{plural:$1|verzi|verze|verzí}}. Mazání takových stránek může narušit databázové operace {{grammar:2sg|{{SITENAME}}}}; postupujte opatrně.',

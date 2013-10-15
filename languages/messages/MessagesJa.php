@@ -2636,9 +2636,11 @@ $UNWATCHURL
 'deleteotherreason' => '他の、または追加の理由:',
 'deletereasonotherlist' => 'その他の理由',
 'deletereason-dropdown' => '*よくある削除理由
-** 投稿者依頼
+** スパム
+** 荒らし
 ** 著作権侵害
-** 荒らし',
+** 投稿者依頼
+** 破損リダイレクト',
 'delete-edit-reasonlist' => '削除理由を編集',
 'delete-toobig' => 'このページには、$1版を超える編集履歴があります。
 このようなページの削除は、{{SITENAME}}の偶発的な問題を避けるため、制限されています。',

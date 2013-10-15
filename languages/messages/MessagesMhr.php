@@ -483,8 +483,8 @@ $messages = array(
 'histlegend' => "Таҥастарашлаш ӱлыл версийыште ойырымаш полдышым да Enter-ым темдал.<br />
 Умылтарымаш: (кызыт) = кызытсе версий деч ойыртем, (ончычсо) = ончычсо версий деч ойыртем, '''и''' = изи тӧрлатымаш.",
 'history-fieldset-title' => 'Эртымгорным ончыкташ',
-'histfirst' => 'Эн тошто',
-'histlast' => 'Эн у',
+'histfirst' => 'эн тошто',
+'histlast' => 'эн у',
 'historyempty' => '(яра)',
 
 # Revision feed
@@ -526,6 +526,8 @@ $messages = array(
 'notextmatches' => 'Лаштык-влакыште икгайлык возымо уке',
 'prevn' => 'кодшо {{PLURAL:$1|$1}}',
 'nextn' => 'весе {{PLURAL:$1|$1}}',
+'prevn-title' => 'Кодшо $1 {{PLURAL:$1|результат}}',
+'nextn-title' => 'Весе $1 {{PLURAL:$1|результат}}',
 'shown-title' => 'Лаштыкыште $1 {{PLURAL:$1|возымаш|возымашым}} ончыкташ',
 'viewprevnext' => 'Ончал ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-new' => "'''Тиде вики-проектыште «[[:$1]]» лӱман лаштыкым ышташ!'''",
@@ -549,6 +551,7 @@ $messages = array(
 'search-interwiki-more' => '(эше)',
 'searchrelated' => 'кылдалтше',
 'searchall' => 'чыла',
+'showingresultsheader' => "'''$4'''лан {{PLURAL:$5|'''$3''' гыч '''$1''' результат|'''$3''' гыч '''$1 - $2''' результат}}",
 'nonefound' => "'''Ешартыш''':  Посна палемдыме огыл гын, кычалмаш южо лӱм-влак коклаште гына эрта. Чыла лаштык-влак коклаште кычалашлан (каҥашымаш, ямдылык-влак да т.м.) шке йодмашыштет ''all:'' префиксым кучылт, але кӱлешан лӱм-влакым палемде.",
 'search-nonefound' => 'Тыйын йодышет почеш нимо муалтын огыл',
 'powersearch' => 'Сайынрак кычал',
@@ -661,7 +664,7 @@ $messages = array(
 'minoreditletter' => 'и',
 'newpageletter' => 'У',
 'boteditletter' => 'б',
-'rc-enhanced-expand' => 'Показать детали  (JavaScript кӱлеш)',
+'rc-enhanced-expand' => 'Тичмашын ончыкташ',
 'rc-enhanced-hide' => 'Рашлык-влакым шылташ',
 
 # Recent changes linked
@@ -793,6 +796,7 @@ $messages = array(
 'linksearch' => 'Ӧрдыж кылвер-влак',
 'linksearch-ns' => 'Лӱм-влакын кумдыкышт:',
 'linksearch-ok' => 'Кычал',
+'linksearch-line' => '$2 лаштыкыште $1 ончыкталтын',
 
 # Special:ListUsers
 'listusers-submit' => 'ончыкташ',
@@ -821,7 +825,7 @@ $messages = array(
 'watchthispage' => 'Тиде лаштыкым эскераш',
 'unwatch' => 'Эскерыман огыл',
 'unwatchthispage' => 'Эскерымым чарнаш',
-'watchlist-details' => 'Эскерымаш лӱмерыштет $1 {{PLURAL:$1|лаштык|лаштык}} (каҥашымаш лаштык-влакым шотлыде)',
+'watchlist-details' => 'Эскерымаш лӱмерыштет $1 {{PLURAL:$1|лаштык}}, каҥашымаш лаштык-влакым шотлыде',
 'watchlistcontains' => 'Тыйын лӱмерыште $1 {{PLURAL:$1|лаштык|лаштык}}.',
 'wlshowlast' => 'Пытартыш $1 шагат $2 кечылан $3 ончыкташ',
 'watchlist-options' => 'Эскерыме лӱмерын келыштарымаш',
@@ -877,6 +881,7 @@ $messages = array(
 
 # Undelete
 'undeletelink' => 'ончалаш/тӧрлатен шындаш',
+'undeleteviewlink' => 'ончыкташ',
 'undelete-search-submit' => 'Кычал',
 
 # Namespace form on various pages
@@ -984,6 +989,7 @@ $messages = array(
 
 # Thumbnails
 'thumbnail-more' => 'Кугемдаш',
+'thumbnail_error' => 'Изи сӱретым ыштыме годым йоҥылыш: $1',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'Тыйын лаштыкет',

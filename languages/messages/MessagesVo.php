@@ -2337,6 +2337,7 @@ Pad luveratiko ninädon yümi lü bevüresodatopäd plödik in blägalised.',
 
 # Info page
 'pageinfo-header-edits' => 'Jenotem redakamas',
+'pageinfo-toolboxlink' => 'Nüns pada',
 'pageinfo-contentpage-yes' => 'Si',
 'pageinfo-protect-cascading-yes' => 'Si',
 

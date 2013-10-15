@@ -789,13 +789,13 @@ Sòn a l'é normalment causà da l'andèje dapress a na vej liura stòrica a na 
 '''A l'é pa ancora stàit salvà!'''",
 'userinvalidcssjstitle' => "'''Atension:''' A-i é gnun-a pel «$1». Che as visa che le pàgine .css e .js che un as fa daspërchiel a deuvro tute minùscole për tìtol, pr'esempi {{ns:user}}:Scaramacaj/vector.css nopà che {{ns:user}}:Scaramacaj/Vector.css.",
 'updated' => '(Agiornà)',
-'note' => "'''NÒTA:'''",
-'previewnote' => "'''Che a ten-a present che costa-sì a l'é mach na preuva.'''
-Ij sò cambi a son anco' pa stàit salvà!",
+'note' => "'''Nòta:'''",
+'previewnote' => "'''Che a ten-a da ment che costa-sì a l'é mach na preuva.'''
+Soe modìfiche a son pa ancora stàite salvà!",
 'continue-editing' => 'Andé a la zòna ëd modìfica',
-'previewconflict' => "Costa preuva a-j mostra ël test dl'artìcol ambelessì dzora. Se a sërn dë salvelo, a l'é parèj che a lo s-ciairëran ëdcò tuti j'àutri Utent.",
-'session_fail_preview' => "'''Darmagi! I l'oma pa podù processé soa modìfica per via che a son përdusse për la stra ij dat ëd session.
-Për piasì che a preuva n'àutra vira. Se a dovèissa mai torna riveje sossì, che a preuva a seurte dal sistema e peuj torna a rintré.'''",
+'previewconflict' => "Costa preuva a mostra ël test dl'artìcol ambelessì-dzora. Se a sern dë salvelo, a l'é parèj che a lo s-ciairëran ëdcò tuti j'àutri Utent.",
+'session_fail_preview' => "'''Darmagi! I l'oma pa podù processé soa modìfica per via che a son përdusse për la stra ij dat ëd session.'''
+Për piasì che a preuva n'àutra vira. Se a dovèissa torna nen marcé, che a preuva a [[Special:UserLogout|seurte dal sistema]] e peuj torna a rintré.",
 'session_fail_preview_html' => "'''Darmagi! I l'oma nen podù processé soa modìfica ën essend che a son përdusse për la stra ij dat ëd session.'''
 
 ''Për via che {{SITENAME}} a lassa mostré còdes HTML nen filtrà, la preuva a l'é stërmà coma precaussion contra a dij possìbij atach fàit an Javascript.''
@@ -2246,9 +2246,11 @@ Che a varda $2 për na lista dle pàgine scancelà ant j'ùltim temp.",
 'deleteotherreason' => 'Rason àutra/adissional:',
 'deletereasonotherlist' => 'Àutra rason',
 'deletereason-dropdown' => "*Rason sòlite ch'a së scancela la ròba
-** A lo ciama l'àutor
+** Rumenta
+** Vandalism
 ** Violassion dij drit d'autor
-** Vandalism",
+** A lo ciama l'àutor
+** Ridiression cioca",
 'delete-edit-reasonlist' => 'Modifiché la rason dlë scancelament',
 'delete-toobig' => "Sta pàgina-sì a l'ha na stòria motobin longa, bele pì che $1 {{PLURAL:$1|revision|revision}}.
 Lë scancelassion ëd pàgine parèj a l'é stàita limità për evité ch'as fasa darmagi për eror a {{SITENAME}}.",

@@ -1031,7 +1031,7 @@ Có thể nó đã bị di chuyển hoặc xóa đi trong khi bạn đang xem tr
 'accmailtitle' => 'Đã gửi mật khẩu.',
 'accmailtext' => "Một mật khẩu được tạo ngẫu nhiên cho [[User talk:$1|$1]] đã được gửi đến $2. Có thể đổi mật khẩu tại trang ''[[Special:ChangePassword|đổi mật khẩu]]'' sau khi đã đăng nhập.",
 'newarticle' => '(Mới)',
-'newarticletext' => "Bạn đi đến đây từ một liên kết đến một trang chưa tồn tại. Để tạo trang, hãy bắt đầu gõ vào ô bên dưới (xem [[{{MediaWiki:Helppage}}|trang trợ giúp]] để có thêm thông tin). Nếu bạn đến đây do nhầm lẫn, chỉ cần nhấn vào nút '''Lùi''' (''Back'') trong trình duyệt của bạn.",
+'newarticletext' => '<div style="margin-top: 0px;" class="emptymwmsg mediawiki_newarticletext"></div>',
 'anontalkpagetext' => "----''Đây là trang thảo luận của một người dùng vô danh chưa tạo tài khoản hoặc có tài khoản nhưng không đăng nhập.
 Do đó chúng ta phải dùng một dãy số gọi là địa chỉ IP để xác định anh/chị ta.
 Một địa chỉ IP như vậy có thể có nhiều người cùng dùng chung.
@@ -2730,17 +2730,13 @@ $1',
 'ipbreason' => 'Lý do:',
 'ipbreasonotherlist' => 'Lý do khác',
 'ipbreason-dropdown' => '*Một số lý do cấm thường gặp
-** Phá hoại
-** Thêm thông tin nội dung sai lệch
-** Tẩy trống nội dung trang
-** Quảng cáo vớ vẩn
-** Đăng liên kết thư rác đến trang web bên ngoài
+** Thêm thông tin sai lệch
+** Xóa nội dung trang
+** Đăng liên kết thư rác đến trang Web bên ngoài
 ** Cho thông tin rác vào trang
 ** Có thái độ dọa dẫm/quấy rối
-** Tên thành viên không được chấp nhận
-** Tạo nhiều trang mới vi phạm bản quyền, bỏ qua thảo luận và cảnh báo
-** Truyền nhiều hình ảnh thiếu nguồn gốc hoặc bản quyền
-** Con rối của thành viên bị cấm',
+** Lạm dụng nhiều tài khoản
+** Tên thành viên không thể chấp nhận',
 'ipb-hardblock' => 'Ngăn không cho thành viên đã đăng nhập sửa đổi từ địa chỉ IP này',
 'ipbcreateaccount' => 'Cấm mở tài khoản',
 'ipbemailban' => 'Không cho gửi thư điện tử',

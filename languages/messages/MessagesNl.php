@@ -2630,9 +2630,11 @@ Zie het $2 voor een overzicht van recente verwijderingen.',
 'deleteotherreason' => 'Andere reden:',
 'deletereasonotherlist' => 'Andere reden',
 'deletereason-dropdown' => '*Veel voorkomende verwijderredenen
-** Op aanvraag van auteur
+** Spam
+** Vandalisme
 ** Schending van auteursrechten
-** Vandalisme',
+** Op aanvraag van auteur
+** Kapotte doorverwijzing',
 'delete-edit-reasonlist' => 'Redenen voor verwijderen bewerken',
 'delete-toobig' => "Deze pagina heeft een lange bewerkingsgeschiedenis, meer dan $1 {{PLURAL:$1|versie|versies}}.
 Het verwijderen van dit soort pagina's is met rechten beperkt om het per ongeluk verstoren van de werking van {{SITENAME}} te voorkomen.",

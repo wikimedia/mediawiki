@@ -1395,6 +1395,9 @@ Vu darfos adjuntar kauso en la rezumo.',
 # Spam protection
 'spamprotectiontitle' => 'Filtrilo kontre spamo',
 
+# Info page
+'pageinfo-toolboxlink' => 'Informo di ca pagino',
+
 # Browsing diffs
 'previousdiff' => '← Plu anciena versiono',
 'nextdiff' => 'Plu recenta versiono →',

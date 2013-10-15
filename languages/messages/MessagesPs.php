@@ -1628,7 +1628,7 @@ $1',
 
 # Special:LinkSearch
 'linksearch' => 'د باندنيو تړنو پلټنه',
-'linksearch-pat' => 'د پلټنې مخبېلګه:',
+'linksearch-pat' => 'د پلټنې مخبېلگه:',
 'linksearch-ns' => 'نوم-تشيال:',
 'linksearch-ok' => 'پلټل',
 'linksearch-line' => '$1 د $2 سره تړل شوی',
@@ -1892,8 +1892,8 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'month' => 'له مياشتې د (او پخواني):',
 'year' => 'له کال د (او پخواني):',
 
-'sp-contributions-newbies' => 'د نوو ګڼونونو ونډې ښکاره کول',
-'sp-contributions-newbies-sub' => 'د نوو ګڼونونو لپاره',
+'sp-contributions-newbies' => 'د نوو گڼونونو ونډې ښکاره کول',
+'sp-contributions-newbies-sub' => 'د نوو گڼونونو لپاره',
 'sp-contributions-blocklog' => 'د بنديز يادښت',
 'sp-contributions-deleted' => 'ړنګې شوې ونډې',
 'sp-contributions-uploads' => 'پورته کېدنې',
@@ -2389,7 +2389,7 @@ $1',
 
 'exif-meteringmode-0' => 'ناجوت',
 'exif-meteringmode-1' => 'منځالی',
-'exif-meteringmode-5' => 'مخبېلګه',
+'exif-meteringmode-5' => 'مخبېلگه',
 'exif-meteringmode-255' => 'نور',
 
 'exif-lightsource-0' => 'ناجوت',
