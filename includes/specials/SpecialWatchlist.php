@@ -208,7 +208,21 @@ class SpecialWatchlist extends SpecialPage {
 			$usePage = false;
 		} else {
 			# Top log Ids for a page are not stored
-			$conds[] = 'rc_this_oldid=page_latest OR rc_type=' . RC_LOG;
+			$nonRevisionTypes = array( RC_LOG );
+			wfRunHooks( 'SpecialWatchlistGetNonRevisionTypes', array( &$nonRevisionTypes ) );
+			if ( $nonRevisionTypes ) {
+				if ( count( $nonRevisionTypes ) === 1 ) {
+					// if only one use an equality instead of IN condition
+					$nonRevisionTypes = reset( $nonRevisionTypes );
+				}
+				$conds[] = $dbr->makeList(
+					array(
+						'rc_this_oldid=page_latest',
+						'rc_type' => $nonRevisionTypes,
+					),
+					LIST_OR
+				);
+			}
 			$limitWatchlist = 0;
 			$usePage = true;
 		}

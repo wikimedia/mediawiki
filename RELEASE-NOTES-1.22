@@ -244,6 +244,9 @@ production.
   the output of the API query meta=siteinfo&siprop=statistics
 * Primary keys have been added to both the archive table and the externallinks
   tables.
+* Added a hook, SpecialWatchlistGetNonRevisionTypes, to allow extensions
+  with custom recentchanges entries to hook into the Watchlist without 
+  clobbering each other.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
