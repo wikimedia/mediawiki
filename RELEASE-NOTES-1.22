@@ -240,6 +240,9 @@ production.
 * ResourceLoader supports hashes as module cache invalidation trigger (instead
   of or in addition to timestamps).
 * Added $wgExtensionEntryPointListFiles for use in mergeMessageFileList.php.
+* Added SpecialWatchlistGetNonRevisionTypes to assist in enabling extensions
+  with custom recentchanges entries to hook into the Watchlist without 
+  clobbering each other.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
