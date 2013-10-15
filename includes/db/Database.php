@@ -2301,8 +2301,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	}
 
 	/**
-	 * If it's a string, adds quotes and backslashes
-	 * Otherwise returns as-is
+	 * Adds quotes and backslashes.
 	 *
 	 * @param $s string
 	 *
