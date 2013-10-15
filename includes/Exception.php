@@ -707,10 +707,12 @@ class MWExceptionHandler {
 
 			if ( isset( $call['file'] ) && isset( $call['line'] ) ) {
 				$finalExceptionText .= "#{$i} {$call['file']}({$call['line']}): ";
-			} else {
+			} elseif ( ($file = $e->getFile() ) && ( $line = $e->getLine() ) ) {
 				// 'file' and 'line' are unset for calls via call_user_func (bug 55634)
-				// This matches behaviour of Exception::getTraceAsString to instead
-				// display "[internal function]".
+				$finalExceptionText .= "#{$i} {$file}({$line}): ";
+			} else {
+				// Same case, and no file/line available
+				// [internal function] is the terminology used by Exception::getTraceAsString.
 				$finalExceptionText .= "#{$i} [internal function]: ";
 			}
 
