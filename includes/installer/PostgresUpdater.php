@@ -205,6 +205,8 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'changeField', 'templatelinks', 'tl_namespace',    'smallint', 'tl_namespace::smallint' ),
 			array( 'changeField', 'user_newtalk',  'user_ip',         'text',     'host(user_ip)' ),
 			array( 'changeField', 'uploadstash',   'us_image_bits',   'smallint', '' ),
+			array( 'changeField', 'profiling',     'pf_time',         'float', '' ),
+			array( 'changeField', 'profiling',     'pf_memory',       'float', '' ),
 
 			# null changes
 			array( 'changeNullableField', 'oldimage', 'oi_bits',       'NULL' ),
