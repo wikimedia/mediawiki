@@ -253,6 +253,9 @@ production.
   output in a HTML comment.
 * The 'UnwatchArticle' and 'WatchArticle' hooks now support a Status object
   instead of just a boolean return value to abort the hook.
+* Added a hook, SpecialWatchlistGetNonRevisionTypes, to allow extensions
+  with custom recentchanges entries to hook into the Watchlist without 
+  clobbering each other.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
