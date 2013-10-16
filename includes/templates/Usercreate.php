@@ -158,9 +158,10 @@ class UsercreateTemplate extends BaseTemplate {
 							'id' => 'wpEmail',
 							'tabindex' => '6',
 							'size' => '20',
+							'required' => $this->data['emailrequired'],
 							'placeholder' => $this->getMsg( $this->data['loggedin'] ?
 								'createacct-another-email-ph' : 'createacct-email-ph' )->text()
-						) + ( $this->data['emailrequired'] ? array() : array( 'required' => '' ) ) );
+						) );
 					?>
 				<?php } ?>
 			</div>
