@@ -72,7 +72,7 @@ class MysqlInstaller extends DatabaseInstaller {
 	 * @return Bool
 	 */
 	public function isCompiled() {
-		return self::checkExtension( 'mysql' );
+		return self::checkExtension( 'mysql' ) || self::checkExtension( 'mysqli' );
 	}
 
 	/**
@@ -149,14 +149,13 @@ class MysqlInstaller extends DatabaseInstaller {
 	public function openConnection() {
 		$status = Status::newGood();
 		try {
-			$db = new DatabaseMysql(
-				$this->getVar( 'wgDBserver' ),
-				$this->getVar( '_InstallUser' ),
-				$this->getVar( '_InstallPassword' ),
-				false,
-				0,
-				$this->getVar( 'wgDBprefix' )
-			);
+			$db = DatabaseBase::factory( 'mysql', array(
+				'host' => $this->getVar( 'wgDBserver' ),
+				'user' => $this->getVar( '_InstallUser' ),
+				'password' => $this->getVar( '_InstallPassword' ),
+				'dbname' => false,
+				'flags' => 0,
+				'tablePrefix' => $this->getVar( 'wgDBprefix' ) ) );
 			$status->value = $db;
 		} catch ( DBConnectionError $e ) {
 			$status->fatal( 'config-connection-error', $e->getMessage() );
@@ -436,14 +435,13 @@ class MysqlInstaller extends DatabaseInstaller {
 		if ( !$create ) {
 			// Test the web account
 			try {
-				new DatabaseMysql(
-					$this->getVar( 'wgDBserver' ),
-					$this->getVar( 'wgDBuser' ),
-					$this->getVar( 'wgDBpassword' ),
-					false,
-					0,
-					$this->getVar( 'wgDBprefix' )
-				);
+				$db = DatabaseBase::factory( 'mysql', array(
+					'host' => $this->getVar( 'wgDBserver' ),
+					'user' => $this->getVar( 'wgDBuser' ),
+					'password' => $this->getVar( 'wgDBpassword' ),
+					'dbname' => false,
+					'flags' => 0,
+					'tablePrefix' => $this->getVar( 'wgDBprefix' ) ) );
 			} catch ( DBConnectionError $e ) {
 				return Status::newFatal( 'config-connection-error', $e->getMessage() );
 			}
@@ -514,14 +512,13 @@ class MysqlInstaller extends DatabaseInstaller {
 		if ( $this->getVar( '_CreateDBAccount' ) ) {
 			// Before we blindly try to create a user that already has access,
 			try { // first attempt to connect to the database
-				new DatabaseMysql(
-					$server,
-					$dbUser,
-					$password,
-					false,
-					0,
-					$this->getVar( 'wgDBprefix' )
-				);
+				$db = DatabaseBase::factory( 'mysql', array(
+					'host' => $server,
+					'user' => $dbUser,
+					'password' => $password,
+					'dbname' => false,
+					'flags' => 0,
+					'tablePrefix' => $this->getVar( 'wgDBprefix' ) ) );
 				$grantableNames[] = $this->buildFullUserName( $dbUser, $server );
 				$tryToCreate = false;
 			} catch ( DBConnectionError $e ) {
