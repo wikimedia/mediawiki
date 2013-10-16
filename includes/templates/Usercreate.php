@@ -21,10 +21,6 @@
  * @ingroup Templates
  */
 
-if ( !defined( 'MEDIAWIKI' ) ) {
-	die( -1 );
-}
-
 class UsercreateTemplate extends BaseTemplate {
 
 	/**
