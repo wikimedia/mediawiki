@@ -525,6 +525,9 @@ Nun t'escaezas de camudar les tos [[Special:Preferences|preferencies de {{SITENA
 'userlogin-resetpassword-link' => 'Reaniciar la contraseña',
 'helplogin-url' => 'Help:Aniciar sesión',
 'userlogin-helplink' => "[[{{MediaWiki:helplogin-url}}|Ayuda p'aniciar sesión]]",
+'userlogin-loggedin' => "Yá anició sesión como {{GENDER:$1|$1}}.
+Utilice'l formulariu de más abaxo p'aniciar sesión como otru usuariu.",
+'userlogin-createanother' => 'Crear otra cuenta',
 'createacct-join' => 'Escriba abaxo la so información.',
 'createacct-another-join' => 'Escriba abaxo la información de la cuenta nueva.',
 'createacct-emailrequired' => 'Direición de corréu electrónicu',
@@ -2288,10 +2291,12 @@ Mira en $2 la llista de les últimes páxines esborraes.',
 'deletecomment' => 'Motivu:',
 'deleteotherreason' => 'Motivu distintu/adicional:',
 'deletereasonotherlist' => 'Otru motivu',
-'deletereason-dropdown' => "*Motivos comunes d'esborráu
+'deletereason-dropdown' => "*Motivos comúnes d'esborráu
+** Puxarra
+** Vandalismu
+** Violación de drechos d'autor
 ** A pidimientu del autor
-** Violación de Copyright
-** Vandalismu",
+** Redireición frañada",
 'delete-edit-reasonlist' => "Editar los motivos d'esborráu",
 'delete-toobig' => "Esta páxina tien un historial d'ediciones grande, más de $1 {{PLURAL:$1|revisión|revisiones}}.
 Restrinxóse l'esborráu d'estes páxines pa evitar perturbaciones accidentales de {{SITENAME}}.",
@@ -2455,7 +2460,7 @@ $1",
 'contributions' => 'Collaboraciones {{GENDER:$1|del usuariu|de la usuaria}}',
 'contributions-title' => "Contribuciones d'usuariu pa $1",
 'mycontris' => 'Collaboraciones',
-'contribsub2' => 'Pa $1 ($2)',
+'contribsub2' => 'Pa {{GENDER:$3|$1}} ($2)',
 'nocontribs' => "Nun s'atoparon cambeos que coincidan con esi criteriu.",
 'uctop' => '(actual)',
 'month' => "Dende'l mes (y anteriores):",

@@ -650,6 +650,9 @@ Ne pozabite si prilagoditi vaših [[Special:Preferences|nastavitev {{GRAMMAR:rod
 'userlogin-resetpassword-link' => 'Ponastavite svoje geslo',
 'helplogin-url' => 'Help:Prijava',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Pomoč pri prijavi]]',
+'userlogin-loggedin' => 'Ste že prijavljeni kot {{GENDER:$1|$1}}.
+Uporabite spodnji obrazec, da se prijavite kot drug uporabnik.',
+'userlogin-createanother' => 'Ustvari drug račun',
 'createacct-join' => 'Spodaj vnesite svoje informacije.',
 'createacct-another-join' => 'Spodaj vnesite informacije o novem računu.',
 'createacct-emailrequired' => 'E-poštni naslov',
@@ -1017,7 +1020,7 @@ Lahko se vrnete nazaj in urejate že obstoječe strani, ali pa se [[Special:User
 'sectioneditnotsupported-title' => 'Urejanje razdelkov ni podprto',
 'sectioneditnotsupported-text' => 'Urejanje razdelkov ni podprto na tej strani.',
 'permissionserrors' => 'Napaka dovoljenja',
-'permissionserrorstext' => 'Za izvedbo dejanja nimate dovoljenja zaradi {{PLURAL:$1|naslednjega razloga|naslednjih razlogov|naslednjih razlogov|naslednjih razlogov|naslednjih razlogov}}:',
+'permissionserrorstext' => 'Za izvedbo dejanja nimate dovoljenja zaradi {{PLURAL:$1|naslednjega razloga|naslednjih razlogov}}:',
 'permissionserrorstext-withaction' => 'Za $2 zaradi {{PLURAL:$1|naslednjega razloga|naslednjih razlogov}} nimate dovoljenja:',
 'recreate-moveddeleted-warn' => "'''Opozorilo: Pišete stran, ki je bila nekoč že izbrisana.'''
 
@@ -2415,9 +2418,11 @@ Za zapise nedavnih brisanj glej $2.',
 'deleteotherreason' => 'Drugi/dodatni razlogi:',
 'deletereasonotherlist' => 'Drug razlog',
 'deletereason-dropdown' => '* Pogosti razlogi za brisanje
-** zahteva avtorja
+** smetenje
+** vandalizem
 ** kršitev avtorskih pravic
-** vandalizem',
+** zahteva avtorja
+** pretrgana preusmeritev',
 'delete-edit-reasonlist' => 'Uredi razloge za brisanje',
 'delete-toobig' => 'Ta stran ima obsežno zgodovino urejanja, tj. čez $1 {{PLURAL:$1|redakcijo|redakciji|redakcije|redakcij}}.
 Izbris takšnih strani je bil omejen v izogib neželenim motnjam {{GRAMMAR:dative|{{SITENAME}}}}.',
@@ -2583,7 +2588,7 @@ $1',
 'contributions' => '{{GENDER:$1|Uporabnikovi|Uporabničini}} prispevki',
 'contributions-title' => 'Prispevki uporabnika $1',
 'mycontris' => 'Prispevki',
-'contribsub2' => 'Uporabnik: $1 ($2)',
+'contribsub2' => 'Za {{GENDER:$3|$1}} ($2)',
 'nocontribs' => 'Ne najdem nobene merilom ustrezajoče spremembe.',
 'uctop' => '(trenutno)',
 'month' => 'Od meseca (in prej):',
@@ -3936,7 +3941,10 @@ Skupaj s programom bi morali bi prejeti [{{SERVER}}{{SCRIPTPATH}}/COPYING kopijo
 'tags-tag' => 'Ime oznake',
 'tags-display-header' => 'Prikaz na seznamu sprememb',
 'tags-description-header' => 'Polni opis pomena',
+'tags-active-header' => 'Dejavno?',
 'tags-hitcount-header' => 'Etiketirane spremembe',
+'tags-active-yes' => 'Da',
+'tags-active-no' => 'Ne',
 'tags-edit' => 'uredi',
 'tags-hitcount' => '$1 {{PLURAL:$1|sprememba|spremembi|spremembe|sprememb|sprememb}}',
 

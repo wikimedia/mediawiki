@@ -2518,10 +2518,12 @@ Zobacz na stronie $2 rejestr ostatnio wykonanych usunięć.',
 'deletecomment' => 'Powód',
 'deleteotherreason' => 'Inny lub dodatkowy powód:',
 'deletereasonotherlist' => 'Inny powód',
-'deletereason-dropdown' => '* Najczęstsze powody usunięcia
+'deletereason-dropdown' => '* Najczęstsze przyczyny usunięcia
+** Spam
+** Wandalizm
+** Naruszenia praw autorskich
 ** Prośba autora
-** Naruszenie praw autorskich
-** Wandalizm',
+** Zerwane przekierowanie',
 'delete-edit-reasonlist' => 'Edytuj listę przyczyn usunięcia',
 'delete-toobig' => 'Ta strona ma bardzo długą historię edycji – ponad $1 {{PLURAL:$1|zmianę|zmiany|zmian}}.<br />
 Usuwanie jej zostało ograniczone ze względu na możliwość zakłócenia pracy {{GRAMMAR:D.lp|{{SITENAME}}}}.',

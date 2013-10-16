@@ -67,6 +67,7 @@
  * @author عصام بايزيدي
  * @author عمرو
  * @author محمد الجداوي
+ * @author مشعل الحربي
  * @author نصوح
  * @author وهراني
  */
@@ -937,6 +938,8 @@ $2',
 'userlogin-resetpassword-link' => 'صفّر كلمة سرّك',
 'helplogin-url' => 'Help:تسجيل الدخول',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|المساعدة في تسجيل الدخول]]',
+'userlogin-loggedin' => 'أنت {{GENDER:$1|مسجل|مسجلة}} الدخول مسبقًا باسم $1. {{GENDER:$1|استخدم|استخدمي}} النموذج بالأسفل لتسجيل الدخول بحساب آخر.',
+'userlogin-createanother' => 'إنشاء حساب آخر',
 'createacct-join' => 'قم بإدخال المعلومات الخاصة بك أدناه.',
 'createacct-another-join' => 'أدخل معلومات الحساب الجديد أدناه.',
 'createacct-emailrequired' => 'عنوان البريد الإلكتروني',

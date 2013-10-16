@@ -800,11 +800,12 @@ Për piasì che a preuva n'àutra vira. Se a dovèissa torna nen marcé, che a p
 
 ''Për via che {{SITENAME}} a lassa mostré còdes HTML nen filtrà, la preuva a l'é stërmà coma precaussion contra a dij possìbij atach fàit an Javascript.''
 
-'''Se sòn a l'era na modìfica normal, për piasì che a preuva a fela n'àutra vira. Se a dovèissa mai torna deje dle gran-e, che a preuva a [[Special:UserLogout|seurte da 'nt ël sistema]] e peuj torna a rintré.'''",
+'''Se costa a l'era na modìfica normal, për piasì che a preuva a fela n'àutra vira. Se a dovèissa mai torna deje dle gran-e, che a preuva a [[Special:UserLogout|seurte da 'nt ël sistema]] e peuj torna a rintré.'''",
 'token_suffix_mismatch' => "'''Soa modìfica a l'é nen stàita acetà përché sò navigator a l'hai fàit ciadel con ij pont e le vìrgole
-ant ël quàder ëd modìfica. La rason che a l'é nen stàit acetà a l'é për evité ch'a-i fasa darmagi al
-test ch'a-i é già. Sossì dle vire a riva quand un a deuvra un programa proxy ëd coj un pòch dla Bajòna.'''",
-'edit_form_incomplete' => "'''Quàich part dël formolari ëd modìfica a l'é pa rivà al sërvent; contròla doe vire che toe modìfiche a-i sio anco' e preuva torna.'''",
+ant ël quàder ëd modìfica.'''
+La rason che a l'é nen stàit acetà a l'é për evité ch'a-j fasa darmagi al
+test ch'a-i é già. Sossì dle vire a riva quand un a deuvra un servent anònim an sl'Aragnà ëd coj un pòch dla Bajòna.",
+'edit_form_incomplete' => "'''Chèiche part dël formolari ëd modìfica a son pa rivà al servent; ch'a contròla për da bin che soe modìfiche a-i sio ancora e ch'a preuva torna.'''",
 'editing' => 'Modìfica ëd $1',
 'creating' => 'Creé $1',
 'editingsection' => 'I soma dapress a modifiché $1 (session)',

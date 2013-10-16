@@ -2485,10 +2485,12 @@ No $2 pode ver unha lista cos borrados máis recentes.',
 'deletecomment' => 'Motivo:',
 'deleteotherreason' => 'Outro motivo:',
 'deletereasonotherlist' => 'Outro motivo',
-'deletereason-dropdown' => '*Motivos frecuentes para borrar
-** Solicitado pola persoa que o creou
+'deletereason-dropdown' => '* Motivos frecuentes para borrar
+** Spam
+** Vandalismo
 ** Violación dos dereitos de autoría
-** Vandalismo',
+** Solicitado pola persoa que creou a páxina
+** Redirección rota',
 'delete-edit-reasonlist' => 'Editar os motivos de borrado',
 'delete-toobig' => 'Esta páxina conta cun historial longo, de máis {{PLURAL:$1|dunha revisión|de $1 revisións}}.
 Limitouse a eliminación destas páxinas para previr problemas de funcionamento accidentais en {{SITENAME}}.',

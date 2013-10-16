@@ -2572,9 +2572,12 @@ Voit palauttaa versioita valikoivasti valitsemalla vain niiden versioiden valint
 'undeletehistory' => 'Jos palautat sivun, kaikki versiot lisätään sivun historiaan. Jos uusi sivu samalla nimellä on luotu poistamisen jälkeen, palautetut versiot lisätään sen historiaan.',
 'undeleterevdel' => 'Palautusta ei tehdä, jos sen seurauksena sivun uusin versio olisi osittain piilotettu. 
 Tässä tilanteessa älä valitse palautettavaksi näkyviin viimeisintä poistettua versiota tai poista version piilotus.',
-'undeletehistorynoadmin' => 'Tämä sivu on poistettu. Syy sivun poistamiseen näkyy yhteenvedossa, jossa on myös tiedot, ketkä ovat muokanneet tätä sivua ennen poistamista. Sivujen varsinainen sisältö on vain ylläpitäjien luettavissa.',
+'undeletehistorynoadmin' => 'Tämä sivu on poistettu. 
+Syy sivun poistamiseen näkyy alla olevassa yhteenvedossa, jossa on myös tiedot, ketkä olivat muokanneet tätä sivua ennen poistamista. 
+Näiden poistettujen versioiden varsinainen tekstisisältö on vain ylläpitäjien luettavissa.',
 'undelete-revision' => 'Poistettu sivu $1 hetkellä $4 kello $5. Tekijä: $3.',
-'undeleterevision-missing' => 'Virheellinen tai puuttuva versio. Se on saatettu palauttaa tai poistaa arkistosta.',
+'undeleterevision-missing' => 'Virheellinen tai puuttuva versio. 
+Sinulla on kenties käytössä väärä linkki, tai sitten versio on saatettu palauttaa tai poistaa arkistosta.',
 'undelete-nodiff' => 'Aikaisempaa versiota ei löytynyt.',
 'undeletebtn' => 'Palauta',
 'undeletelink' => 'näytä tai palauta',

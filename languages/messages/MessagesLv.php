@@ -1195,10 +1195,10 @@ Ja tu izvēlies to norādīt, tas tiks izmantots, lai identificētu tavu darbu (
 'right-move-rootuserpages' => 'Pārvietot saknes lietotāja lapas',
 'right-movefile' => 'Pārvietot failus',
 'right-suppressredirect' => 'Neveidot pāradresāciju no vecā nosaukuma, pārvietojot lapu',
-'right-upload' => 'Augšuplādēt failus',
+'right-upload' => 'Augšupielādēt failus',
 'right-reupload' => 'Pārrakstīt esošu failu',
 'right-reupload-own' => 'Pārrakstīt paša augšuplādētu esošu failu',
-'right-upload_by_url' => 'Augšuplādēt failu no URL',
+'right-upload_by_url' => 'Augšupielādēt failus no URL',
 'right-autoconfirmed' => 'Izmainīt daļēji aizsargātas lapas',
 'right-delete' => 'Dzēst lapas',
 'right-bigdelete' => 'Dzēst lapas ar lielām hronoloģijām',
@@ -1328,8 +1328,8 @@ Lapas, kas ir tavā [[Special:Watchlist|uzraugāmo rakstu sarakstā]] ir '''trek
 'recentchangeslinked-to' => 'Rādīt izmaiņas lapās, kurās ir saites uz šo lapu (nevis lapās uz kurām ir saites no šīs lapas)',
 
 # Upload
-'upload' => 'Augšuplādēt failu',
-'uploadbtn' => 'Augšuplādēt',
+'upload' => 'Augšupielādēt failu',
+'uploadbtn' => 'Augšupielādēt',
 'reuploaddesc' => 'Atcelt augšupielādi un atgriezties pie augšupielādes veidnes.',
 'upload-tryagain' => 'Iesniegt izmainīto faila aprakstu',
 'uploadnologin' => 'Neesi iegājis',
@@ -1342,7 +1342,7 @@ Lapas, kas ir tavā [[Special:Watchlist|uzraugāmo rakstu sarakstā]] ir '''trek
  Dzēšanas un pārvietošanas reģistri šai lapai ir uzskaitīti šeit:",
 'uploadtext' => "Pirms tu kaut ko augšupielādē, noteikti izlasi un ievēro [[Project:Attēlu izmantošanas noteikumi|attēlu izmantošanas noteikumus]].
 
-Lai aplūkotu vai meklētu agrāk augšuplādētus attēlus,
+Lai aplūkotu vai meklētu agrāk augšupielādētus attēlus,
 dodies uz [[Special:FileList|augšupielādēto attēlu sarakstu]].
 Augšupielādes un dzēšanas tiek reģistrētas [[Special:Log/upload|augšupielādes reģistrā]] un [[Special:Log/delete|dzēšanas reģistrā]].
 
@@ -1350,7 +1350,7 @@ Izmanto šo veidni, lai augšupielādētu jaunus attēlu failus, ar kuriem ilust
 Gandrīz visos pārlūkos tev vajadzētu redzēt pogu '''\"Choose...\",''' kuru spiežot parādīsies faila atvēršanas dialogs.
 Izvēloties kādu failu, tā adrese parādīsies ailītē blakus šai pogai.
 Tev ir arī jāatzīmē ailīte, kas apstiprina, ka tu nepārkāp nekādas autortiesības, augšupielādējot šo failu.
-Spied pogu '''Augšuplādēt''', lai pabeigtu augšupielādi.
+Spied pogu '''Augšupielādēt''', lai pabeigtu augšupielādi.
 Tas var ieilgt, ja tavs interneta pieslēgums ir lēns.
 
 Ieteicamie formāti ir:
@@ -1364,7 +1364,7 @@ Lūdzu, pārliecinies, ka faila nosaukums ir pietiekami aprakstošs, lai izvair�
 vai skaņām
 * '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fails.ogg]]</nowiki>'''
 
-Lūdzu, ņem vērā, ka tāpat kā citas wiki lapas arī tevis augšuplādētos failus citi var mainīt vai dzēst, ja uzskata, ka tas nāktu par labu šim projektam, kā arī atceries, ka tev var tikt liegta augšupielādes iespēja, ja tu šo sistēmu.",
+Lūdzu, ņem vērā, ka tāpat kā citas wiki lapas arī tevis augšupielādētos failus citi var mainīt vai dzēst, ja uzskata, ka tas nāktu par labu šim projektam, kā arī atceries, ka tev var tikt liegta augšupielādes iespēja, ja tu šo sistēmu.",
 'upload-permitted' => 'Atļautie failu tipi: $1.',
 'upload-preferred' => 'Ieteicamie failu tipi: $1.',
 'upload-prohibited' => 'Aizliegtie failu tipi: $1.',
@@ -1382,11 +1382,11 @@ Pārskatāmāka versija ir pieejama [[Special:NewFiles|jauno attēlu galerijā]]
 'ignorewarning' => 'Ignorēt brīdinājumu un saglabāt failu',
 'ignorewarnings' => 'Ignorēt visus brīdinājumus',
 'minlength1' => 'Failu vārdiem jābūt vismaz vienu simbolu gariem.',
-'illegalfilename' => 'Faila nosaukumā "$1" ir simboli, kas nav atļauti virsrakstos. Lūdzu, pārdēvē failu un mēģini to vēlreiz augšuplādēt.',
+'illegalfilename' => 'Faila nosaukumā "$1" ir simboli, kas nav atļauti virsrakstos. Lūdzu, pārdēvējiet failu un mēģiniet to vēlreiz augšupielādēt.',
 'filename-toolong' => 'Failu nosaukumi nedrīkst pārsniegt 240 baitus.',
 'badfilename' => 'Attēla nosaukums ir nomainīts, tagad tas ir "$1".',
 'filetype-mime-mismatch' => 'Faila paplašinājums ".$1" neatbilst noteiktajam MIME tipam ($2).',
-'filetype-badmime' => 'Šeit nav atļauts augšuplādēt failus ar MIME tipu "$1".',
+'filetype-badmime' => 'Šeit nav atļauts augšupielādēt failus ar MIME tipu "$1".',
 'filetype-bad-ie-mime' => 'Nevar augšupielādēt šo failu, jo Internet Explorer to uzskatītu kā "$1", kas ir neatļauts un potenciāli bīstams faila tips.',
 'filetype-unwanted-type' => "'''\".\$1\"''' ir nevēlams failu tips.  {{PLURAL:\$3|Ieteicamais faila tips|Ieteicamie failu tipi}} ir \$2.",
 'filetype-banned-type' => "'''\".\$1\"''' nav atļautais failu tips.  {{PLURAL:\$3|Atļautais faila tips|Atļautie failu tipi}} ir \$2.",
@@ -1404,7 +1404,9 @@ Pārskatāmāka versija ir pieejama [[Special:NewFiles|jauno attēlu galerijā]]
 'large-file' => 'Ieteicams, lai faili nebūtu lielāki par $1;
 šī faila izmērs ir $2.',
 'largefileserver' => 'Šis fails ir lielāks nekā serveris ņem pretī.',
-'emptyfile' => 'Šķiet, ka tu esi augšuplādējis tukšu failu. Iespējams, faila nosaukumā esi pieļāvis kļūdu. Lūdzu, pārbaudi, vai tiešām tu vēlies augšuplādēt tieši šo failu.',
+'emptyfile' => 'Šķiet, ka jūs esat augšupielādējis tukšu failu.
+Iespējams, faila nosaukumā esat pieļāvis kļūdu.
+Lūdzu, pārbaudiet, vai tiešām jūs vēlaties augšupielādēt tieši šo failu.',
 'windows-nonascii-filename' => 'Šī viki neatbalsta failu nosaukumus ar īpašām rakstzīmēm.',
 'fileexists' => 'Fails ar šādu nosaukumu jau pastāv, lūdzu, pārbaudi <strong>[[:$1]]</strong>, ja neesi drošs, ka vēlies to mainīt.
 [[$1|thumb]]',
@@ -1416,7 +1418,8 @@ Lūdzu, izvēlieties citu nosaukumu.',
 Izskatās, ka šis ir samazināts attēls ''(thumbnail)''.
 Ja tev ir šis pats attēls pilnā izmērā, augšuplādē to, ja nav, tad nomaini faila vārdu.",
 'fileexists-forbidden' => 'Fails ar šādu nosaukumu jau eksistē un to nevar aizvietot ar jaunu.
-Ja tu joprojām gribi augšuplādēt šo failu, tad mēģini vēlreiz, ar citu faila vārdu. [[File:$1|thumb|center|$1]]',
+Ja jūs joprojām gribat augšupielādēt šo failu, tad mēģiniet vēlreiz ar citu faila nosaukumu.
+[[File:$1|thumb|center|$1]]',
 'file-exists-duplicate' => 'Fails ir kopija {{PLURAL:$1|šim failam|šiem failiem}}:',
 'uploadwarning' => 'Augšupielādes brīdinājums',
 'uploadwarning-text' => 'Lūdzu, pārveido zemāk esošo faila aprakstu un mēģini vēlreiz.',
@@ -1441,8 +1444,8 @@ Java failu augšupielāde nav atļauta, jo tas var radīt iespējas apiet droš�
 'upload-description' => 'Faila apraksts',
 'upload-options' => 'Augšupielādes iestatījumi',
 'watchthisupload' => 'Uzraudzīt šo failu',
-'filewasdeleted' => 'Fails ar šādu nosaukumu jau ir bijis augšuplādēts un pēc tam izdzēsts.
-Apskaties $1 pirms turpini šo failu augšuplādēt atkārtoti.',
+'filewasdeleted' => 'Fails ar šādu nosaukumu jau ir bijis augšupielādēts un pēc tam izdzēsts.
+Apskatiet $1 pirms turpiniet šo failu augšupielādēt atkārtoti.',
 'filename-bad-prefix' => "Faila vārds failam, kuru tu mēģini augšpulādēt, sākas ar '''\"\$1\"''', kas ir neaprakstošs vārds, kādu parasti uzģenerē digitālais fotoaparāts.
 Lūdzu izvēlies aprakstošāku vārdu šim failam.",
 'upload-success-subj' => 'Augšupielāde veiksmīga',
@@ -2018,7 +2021,7 @@ Pašreizējie lapas '''$1''' iestatījumi ir:",
 'restriction-edit' => 'Izmainīt',
 'restriction-move' => 'Pārvietot',
 'restriction-create' => 'Izveidot',
-'restriction-upload' => 'Augšuplādēt',
+'restriction-upload' => 'Augšupielādēt',
 
 # Restriction levels
 'restriction-level-sysop' => 'pilnā aizsardzība',
@@ -2462,7 +2465,7 @@ Lūdzu, mēģiniet vēlreiz.',
 'tooltip-feed-atom' => 'Šīs lapas Atom barotne',
 'tooltip-t-contributions' => 'Apskatīt šā lietotāja ieguldījumu uzskaitījumu.',
 'tooltip-t-emailuser' => 'Sūtīt e-pastu šim lietotājam',
-'tooltip-t-upload' => 'Augšuplādēt attēlus vai multimēdiju failus',
+'tooltip-t-upload' => 'Augšupielādēt failus',
 'tooltip-t-specialpages' => 'Visu īpašo lapu uzskaitījums',
 'tooltip-t-print' => 'Drukājama lapas versija',
 'tooltip-t-permalink' => 'Paliekoša saite uz šo lapas versiju',

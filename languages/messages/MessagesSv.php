@@ -2523,10 +2523,12 @@ Se $2 för noteringar om de senaste raderingarna.',
 'deletecomment' => 'Anledning:',
 'deleteotherreason' => 'Annan/ytterligare anledning:',
 'deletereasonotherlist' => 'Annan anledning',
-'deletereason-dropdown' => '*Vanliga anledningar till radering
-** Författarens begäran
+'deletereason-dropdown' => '* Vanliga anledningar till radering
+** Spam
+** Vandalism
 ** Upphovsrättsbrott
-** Vandalism',
+** Författarens begäran
+** Trasig omdirigering',
 'delete-edit-reasonlist' => 'Redigera anledningar för radering',
 'delete-toobig' => 'Denna sida har en lång redigeringshistorik med mer än $1 {{PLURAL:$1|sidversion|sidversioner}}. Borttagning av sådana sidor har begränsats för att förhindra oavsiktliga driftstörningar på {{SITENAME}}.',
 'delete-warning-toobig' => 'Denna sida har en lång redigeringshistorik med mer än $1 {{PLURAL:$1|sidversion|sidversioner}}. Att radera sidan kan skapa problem med hanteringen av databasen på {{SITENAME}}; var försiktig.',

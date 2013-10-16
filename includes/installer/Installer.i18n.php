@@ -18483,8 +18483,13 @@ Vnesite ime dovoljenja ročno.',
 	'config-download-localsettings' => 'Prenesi <code>LocalSettings.php</code>',
 	'config-help' => 'pomoč',
 	'mainpagetext' => "'''Programje MediaWiki je bilo uspešno nameščeno.'''",
-	'mainpagedocfooter' => 'Za uporabo in pomoč pri nastavitvi, prosimo, preglejte [//meta.wikimedia.org/wiki/MediaWiki_localisation dokumentacijo za prilagajanje vmesnika]
-in [//meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Uporabniški priročnik].', # Fuzzy
+	'mainpagedocfooter' => 'Oglejte si [//meta.wikimedia.org/wiki/Help:Contents Uporabniški priročnik] za informacije o uporabi programja wiki.
+
+== Kako začeti ==
+* [//www.mediawiki.org/wiki/Manual:Configuration_settings Seznam konfiguracijskih nastavitev]
+* [//www.mediawiki.org/wiki/Manual:FAQ Poogsto zastavljena vprašanja MediaWiki]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Poštni seznam izdaj MediaWiki]
+* [//www.mediawiki.org/wiki/Localisation#Translation_resources Prevedite MediaWiki v svoj jezik]',
 );
 
 /** Lower Silesian (Schläsch)
