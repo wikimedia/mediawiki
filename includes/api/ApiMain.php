@@ -816,6 +816,28 @@ class ApiMain extends ApiBase {
 	}
 
 	/**
+	 * Check asserts of the user's rights
+	 * @param $params array
+	 */
+	protected function checkAsserts( $params ) {
+		if ( isset( $params['assert'] ) ) {
+			$user = $this->getUser();
+			switch ( $params['assert'] ) {
+				case 'user':
+					if ( $user->isAnon() ) {
+						$this->dieUsage( 'Assertion that the user is logged in failed', 'assertuserfailed' );
+					}
+					break;
+				case 'bot':
+					if ( !$user->isAllowed( 'bot' ) ) {
+						$this->dieUsage( 'Assertion that the user has the bot right failed', 'assertbotfailed' );
+					}
+					break;
+			}
+		}
+	}
+
+	/**
 	 * Check POST for external response and setup result printer
 	 * @param $module ApiBase An Api module
 	 * @param array $params an array with the request parameters
@@ -856,6 +878,8 @@ class ApiMain extends ApiBase {
 		if ( !$this->mInternalMode ) {
 			$this->setupExternalResponse( $module, $params );
 		}
+
+		$this->checkAsserts( $params );
 
 		// Execute
 		$module->profileIn();
@@ -1046,6 +1070,9 @@ class ApiMain extends ApiBase {
 				ApiBase::PARAM_TYPE => 'integer',
 				ApiBase::PARAM_DFLT => 0
 			),
+			'assert' => array(
+				ApiBase::PARAM_TYPE => array( 'user', 'bot' )
+			),
 			'requestid' => null,
 			'servedby' => false,
 			'origin' => null,
@@ -1071,6 +1098,7 @@ class ApiMain extends ApiBase {
 			),
 			'smaxage' => 'Set the s-maxage header to this many seconds. Errors are never cached',
 			'maxage' => 'Set the max-age header to this many seconds. Errors are never cached',
+			'assert' => 'Verify the user is logged in if set to "user", or has the bot userright if "bot"',
 			'requestid' => 'Request ID to distinguish requests. This will just be output back to you',
 			'servedby' => 'Include the hostname that served the request in the ' .
 				'results. Unconditionally shown on error',
@@ -1143,6 +1171,8 @@ class ApiMain extends ApiBase {
 			array( 'code' => 'unknown_action', 'info' => 'The API requires a valid action parameter' ),
 			array( 'code' => 'maxlag', 'info' => 'Waiting for host: x seconds lagged' ),
 			array( 'code' => 'maxlag', 'info' => 'Waiting for a database server: x seconds lagged' ),
+			array( 'code' => 'assertuserfailed', 'info' => 'Assertion that the user is logged in failed' ),
+			array( 'code' => 'assertbotfailed', 'info' => 'Assertion that the user has the bot right failed' ),
 		) );
 	}
 
