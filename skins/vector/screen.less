@@ -89,10 +89,10 @@ div.emptyPortlet {
 	margin: 0;
 	padding-left: 10em; /* Keep from overlapping logo */
 }
-/* @noflip */
 #p-personal li {
 	line-height: 1.125em;
-	float: left;
+	/* @noflip */
+	 float: left;
 }
 /* This one flips! */
 #p-personal li {
@@ -125,8 +125,8 @@ div.vectorMenu h3 span {
 	display: none;
 }
 /* Namespaces and Views */
-/* @noflip */
 div.vectorTabs {
+	/* @noflip */
 	float: left;
 	height: 2.5em;
 }
@@ -136,8 +136,8 @@ div.vectorTabs {
 	background-repeat: no-repeat;
 	padding-left: 1px;
 }
-/* @noflip */
 div.vectorTabs ul {
+	/* @noflip */
 	float: left;
 }
 div.vectorTabs ul {
@@ -147,8 +147,8 @@ div.vectorTabs ul {
 	margin: 0;
 	padding: 0;
 }
-/* @noflip */
 div.vectorTabs ul li {
+	/* @noflip */
 	float: left;
 }
 /* OVERRIDDEN BY COMPLIANT BROWSERS */
@@ -195,8 +195,8 @@ div.vectorTabs span a  {
 	padding-top: 1.25em;
 }
 /* IGNORED BY IE6 */
-/* @noflip */
 div.vectorTabs span > a {
+	/* @noflip */
 	float: left;
 	display: block;
 }
@@ -216,13 +216,15 @@ div.vectorTabs li.new a:visited{
 	color: #a55858;
 }
 /* Variants and Actions */
-/* @noflip */
 div.vectorMenu {
+	/* @noflip */
 	direction: ltr;
+	/* @noflip */
 	float: left;
 	/* SVG support using a transparent gradient to guarantee cross-browser
 	 * compatibility (browsers able to understand gradient syntax support also SVG) */
 	.background-image-svg('images/arrow-down-icon.svg', 'images/arrow-down-icon.png');
+	/* @noflip */
 	background-position: 100% 60%;
 	background-repeat: no-repeat;
 	cursor: pointer;
@@ -233,19 +235,16 @@ div.vectorMenuFocus {
 	.background-image-svg('images/arrow-down-focus-icon.svg', 'images/arrow-down-focus-icon.png');
 	background-position: 100% 60%;
 }
-/* @noflip */
 body.rtl div.vectorMenu {
+	/* @noflip */
 	direction: rtl;
 }
 /* OVERRIDDEN BY COMPLIANT BROWSERS */
-/* @noflip */
 div#mw-head div.vectorMenu h3 {
+	/* @noflip */
 	float: left;
 	.background-image('images/tab-break.png');
 	background-repeat: no-repeat;
-}
-/* This will be flipped - unlike the one above it */
-div#mw-head div.vectorMenu h3 {
 	background-position: bottom left;
 	margin-left: -1px;
 }
@@ -264,7 +263,6 @@ div.vectorMenu#p-variants #mw-vector-current-variant {
 	border: none;
 }
 /* OVERRIDDEN BY COMPLIANT BROWSERS */
-/* @noflip */
 div.vectorMenu h3 a {
 	display: inline-block;
 	width: 24px;
@@ -288,20 +286,20 @@ div.vectorMenu div.menu {
 	text-align: left;
 }
 /* OVERRIDDEN BY COMPLIANT BROWSERS */
-/* @noflip */
 body.rtl div.vectorMenu div.menu {
+	/* @noflip */
 	margin-left: 24px;
 }
 /* IGNORED BY IE6 */
-/* @noflip */
 body.rtl div.vectorMenu > div.menu {
+	/* @noflip */
 	margin-left: auto;
 }
 /* IGNORED BY IE6 */
 /* Also fixes old versions of FireFox */
-/* @noflip */
 body.rtl div.vectorMenu > div.menu,
 x:-moz-any-link {
+	/* @noflip */
 	margin-left: 23px;
 }
 /* Enable forcing showing of the menu for accessibility */
@@ -360,8 +358,8 @@ div.vectorMenu li.selected a:visited {
 #p-search h3 {
 	display: none;
 }
-/* @noflip */
 #p-search {
+	/* @noflip */
 	float: left;
 }
 #p-search {
@@ -523,8 +521,9 @@ div#footer ul li {
 div#footer #footer-icons {
 	float: right;
 }
-/* @noflip */
+
 body.ltr div#footer #footer-places {
+	/* @noflip */
 	float: left;
 }
 div#footer #footer-info li {
