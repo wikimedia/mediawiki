@@ -60,18 +60,30 @@ class LinksUpdateTest extends MediaWikiTestCase {
 		$po->addLink( Title::newFromText( "linksupdatetest:Foo" ) ); // interwiki link should be ignored
 		$po->addLink( Title::newFromText( "#Foo" ) ); // hash link should be ignored
 
-		$this->assertLinksUpdate( $t, $po, 'pagelinks', 'pl_namespace, pl_title', 'pl_from = 111', array(
+		$update = $this->assertLinksUpdate( $t, $po, 'pagelinks', 'pl_namespace, pl_title', 'pl_from = 111', array(
 			array( NS_MAIN, 'Foo' ),
 		) );
+		$this->assertArrayEquals( array(
+			Title::makeTitle( NS_MAIN, 'Foo' ),  // newFromText doesn't yield the same internal state....
+		), $update->getAddedLinks() );
 
 		$po = new ParserOutput();
 		$po->setTitleText( $t->getPrefixedText() );
 
 		$po->addLink( Title::newFromText( "Bar" ) );
+		$po->addLink( Title::newFromText( "Talk:Bar" ) );
 
-		$this->assertLinksUpdate( $t, $po, 'pagelinks', 'pl_namespace, pl_title', 'pl_from = 111', array(
+		$update = $this->assertLinksUpdate( $t, $po, 'pagelinks', 'pl_namespace, pl_title', 'pl_from = 111', array(
 			array( NS_MAIN, 'Bar' ),
+			array( NS_TALK, 'Bar' ),
 		) );
+		$this->assertArrayEquals( array(
+			Title::makeTitle( NS_MAIN, 'Bar' ),
+			Title::makeTitle( NS_TALK, 'Bar' ),
+		), $update->getAddedLinks() );
+		$this->assertArrayEquals( array(
+			Title::makeTitle( NS_MAIN, 'Foo' ),
+		), $update->getRemovedLinks() );
 	}
 
 	public function testUpdate_externallinks() {
@@ -158,5 +170,6 @@ class LinksUpdateTest extends MediaWikiTestCase {
 		$update->commitTransaction();
 
 		$this->assertSelect( $table, $fields, $condition, $expectedRows );
+		return $update;
 	}
 }

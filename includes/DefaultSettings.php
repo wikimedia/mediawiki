@@ -1880,11 +1880,6 @@ $wgAllowSlowParserFunctions = false;
 $wgAllowSchemaUpdates = true;
 
 /**
- * Do DELETE/INSERT for link updates instead of incremental
- */
-$wgUseDumbLinkUpdate = false;
-
-/**
  * Anti-lock flags - bitfield
  *   - ALF_NO_LINK_LOCK:
  *       Don't use locking reads when updating the link table. This is
