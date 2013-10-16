@@ -173,7 +173,8 @@ class LoginForm extends SpecialPage {
 			$query = array(
 				'returnto' => $this->mReturnTo,
 				'returntoquery' => $this->mReturnToQuery,
-			);
+				'title' => null,
+			) + $this->mRequest->getQueryValues();
 			$url = $title->getFullURL( $query, false, PROTO_HTTPS );
 			if ( $wgSecureLogin && wfCanIPUseHTTPS( $this->getRequest()->getIP() ) ) {
 				$url = wfAppendQuery( $url, 'fromhttp=1' );
