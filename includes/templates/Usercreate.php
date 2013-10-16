@@ -113,17 +113,16 @@ class UsercreateTemplate extends BaseTemplate {
 
 			<?php
 			if ( $this->data['usedomain'] ) {
-				$doms = "";
+				$select = new XmlSelect( 'wpDomain', false, $this->data['domain'] );
+				$select->setAttribute( 'tabindex', 4 );
 				foreach ( $this->data['domainnames'] as $dom ) {
-					$doms .= "<option>" . htmlspecialchars( $dom ) . "</option>";
+					$select->addOption( $dom );
 				}
 			?>
 				<div id="mw-user-domain-section">
 					<label for="wpDomain"><?php $this->msg( 'yourdomainname' ); ?></label>
 					<div class="mw-input">
-						<select name="wpDomain" value="<?php $this->text( 'domain' ); ?>" tabindex="4">
-							<?php echo $doms ?>
-						</select>
+						<?php echo $select->getHTML(); ?>
 					</div>
 				</div>
 			<?php } ?>
