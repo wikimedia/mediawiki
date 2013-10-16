@@ -54,6 +54,10 @@ production.
 * (bug 52005) Special pages RecentChanges, RecentChangesLinked and Watchlist
   now include a legend describing the symbols used in lists of changes.
 * Improved the accessibility of the tabs in Special:Preferences.
+* All API modules now support an assert parameter, which can either be
+  'user' or 'bot'. The API will throw an error if the user is not logged
+  in (user) or does not have the 'bot' userright (bot). Based off of the
+  AssertEdit extension by Steve Sanbeg.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
@@ -79,6 +83,8 @@ production.
 * EditPage::spamPage() was deprecated since 1.17 and has been removed.
 * action=parse&prop=languageshtml was deprecated in 1.18 and will be removed in
   MediaWiki 1.24.
+* All API modules now support an assert parameter. See the new features section
+  for more details.
 
 === Languages updated in 1.23===
 
