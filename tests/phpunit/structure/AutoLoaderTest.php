@@ -9,6 +9,7 @@ class AutoLoaderTest extends MediaWikiTestCase {
 	 */
 	public function testAutoLoadConfig() {
 		$results = self::checkAutoLoadConf();
+		$this->assertTrue(false);
 
 		$this->assertEquals(
 			$results['expected'],
