@@ -744,30 +744,35 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 			'mssql'    => array(),
 		);
 
+		$driver = false;
 		$dbType = strtolower( $dbType );
 		if ( isset( $canonicalDBTypes[$dbType] ) && $canonicalDBTypes[$dbType] ) {
 			$driver = isset( $p['driver'] ) ? $p['driver'] : null;
 			$possibleDrivers = $canonicalDBTypes[$dbType];
-			if ( $driver ) {
-				if ( in_array( $driver, $possibleDrivers ) ) {
-					$dbType = $driver;
+			if ( !empty( $p['driver'] ) ) {
+				if ( in_array( $p['driver'], $possibleDrivers ) ) {
+					$dbType = $p['driver'];
 				} else {
 					throw new MWException( __METHOD__ .
-						" cannot construct Database with type '$dbType' and driver '$driver'" );
+						" cannot construct Database with type '$dbType' and driver '{$p['driver']}'" );
 				}
 			} else {
 				foreach ( $possibleDrivers as $posDriver ) {
 					if ( extension_loaded( $posDriver ) ) {
-						$dbType = $posDriver;
+						$driver = $posDriver;
 						break;
 					}
 				}
-				throw new MWException( __METHOD__ .
-					" no viable database extension found for type '$dbType'" );
 			}
+		} else {
+			$driver = $dbType;
+		}
+		if ( $driver === false ) {
+			throw new MWException( __METHOD__ .
+				" no viable database extension found for type '$dbType'" );
 		}
 
-		$class = 'Database' . ucfirst( $dbType );
+		$class = 'Database' . ucfirst( $driver );
 		if ( class_exists( $class ) && is_subclass_of( $class, 'DatabaseBase' ) ) {
 			return new $class(
 				isset( $p['host'] ) ? $p['host'] : false,
