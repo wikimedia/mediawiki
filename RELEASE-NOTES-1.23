@@ -65,6 +65,10 @@ production.
   its #test method when strings are used in the browser map: version '1.10' is
   now correctly considered larger than '1.2'. Using numbers in the version map
   is not affected.
+* All API modules now support an assert parameter, which can either be
+  'user' or 'bot'. The API will throw an error if the user is not logged
+  in (user) or does not have the 'bot' userright (bot). Based off of the
+  AssertEdit extension by Steve Sanbeg.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
@@ -104,6 +108,8 @@ production.
 * ApiQueryBase::titlePartToKey allows an extra parameter that indicates the
   namespace in order to properly capitalize the title part.
 * (bug 57874) action=feedcontributions no longer has one item more than limit.
+* All API modules now support an assert parameter. See the new features section
+  for more details.
 
 === Languages updated in 1.23 ===
 
