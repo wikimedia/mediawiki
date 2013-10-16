@@ -44,6 +44,21 @@ class ApiEditPage extends ApiBase {
 			$this->dieUsageMsg( 'missingtext' );
 		}
 
+		if ( isset( $params['assert'] ) ) {
+			switch ( $params['assert'] ) {
+				case 'user':
+					if ( $user->isAnon() ) {
+						$this->dieUsage( 'Assertion that the user is logged in failed', 'assertuserfailed' );
+					}
+					break;
+				case 'bot':
+					if ( !$user->isAllowed( 'bot' ) ) {
+						$this->dieUsage( 'Assertion that the user has the bot right failed', 'assertbotfailed' );
+					}
+					break;
+			}
+		}
+
 		$pageObj = $this->getTitleOrPageId( $params );
 		$titleObj = $pageObj->getTitle();
 		$apiResult = $this->getResult();
@@ -520,6 +535,8 @@ class ApiEditPage extends ApiBase {
 														. 'the page\'s content model' ),
 				array( 'customcssprotected' ),
 				array( 'customjsprotected' ),
+				array( 'code' => 'assertuserfailed', 'info' => 'Assertion that the user is logged in failed' ),
+				array( 'code' => 'assertbotfailed', 'info' => 'Assertion that the user has the bot right failed'),
 			)
 		);
 	}
@@ -550,6 +567,9 @@ class ApiEditPage extends ApiBase {
 			'recreate' => false,
 			'createonly' => false,
 			'nocreate' => false,
+			'assert' => array(
+				ApiBase::PARAM_TYPE => array( 'user', 'bot' )
+			),
 			'watch' => array(
 				ApiBase::PARAM_DFLT => false,
 				ApiBase::PARAM_DEPRECATED => true,
@@ -613,6 +633,7 @@ class ApiEditPage extends ApiBase {
 			'recreate' => 'Override any errors about the article having been deleted in the meantime',
 			'createonly' => 'Don\'t edit the page if it exists already',
 			'nocreate' => 'Throw an error if the page doesn\'t exist',
+			'assert' => 'Verify the user is logged in if set to "user", or has the bot userright if "bot"',
 			'watch' => 'Add the page to your watchlist',
 			'unwatch' => 'Remove the page from your watchlist',
 			'watchlist' => 'Unconditionally add or remove the page from your watchlist, use preferences or do not change watch',
