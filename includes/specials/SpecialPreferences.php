@@ -54,6 +54,10 @@ class SpecialPreferences extends SpecialPage {
 		}
 
 		$out->addModules( 'mediawiki.special.preferences' );
+		// FIXME: Add generic method for skins to register additional styles to special pages
+		if ( $this->getSkin()->getSkinName() === 'vector' ) {
+			$out->addModuleStyles( 'skins.vector.special.preferences' );
+		}
 
 		if ( $this->getRequest()->getCheck( 'success' ) ) {
 			$out->wrapWikiMsg(

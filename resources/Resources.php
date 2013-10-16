@@ -86,6 +86,12 @@ return array(
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 	),
+	'skins.vector.special.preferences' => array(
+		'styles' => 'vector/special.preferences.less',
+		'position' => 'top',
+		'remoteBasePath' => $GLOBALS['wgStylePath'],
+		'localBasePath' => $GLOBALS['wgStyleDirectory'],
+	),
 	'skins.vector' => array(
 		// Keep in sync with WebInstallerOutput::getCSS()
 		'styles' => array(
