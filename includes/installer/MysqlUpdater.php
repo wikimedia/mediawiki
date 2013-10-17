@@ -231,7 +231,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			// 1.22
 			array( 'doIwlinksIndexNonUnique' ),
 			array( 'addIndex', 'iwlinks', 'iwl_prefix_from_title',  'patch-iwlinks-from-title-index.sql' ),
-			array( 'addField', 'recentchanges', 'rc_source', 'patch-rc_source.sql' ),
 		);
 	}
 
