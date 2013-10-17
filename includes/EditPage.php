@@ -2859,7 +2859,14 @@ HTML
 		return self::getCopyrightWarning( $this->mTitle );
 	}
 
-	public static function getCopyrightWarning( $title ) {
+	/**
+	 * Get the copyright warning, by default returns wikitext
+	 *
+	 * @param Title $title
+	 * @param bool $html whether to return parsed HTML
+	 * @return string
+	 */
+	public static function getCopyrightWarning( $title, $html = false ) {
 		global $wgRightsText;
 		if ( $wgRightsText ) {
 			$copywarnMsg = array( 'copyrightwarning',
@@ -2872,8 +2879,9 @@ HTML
 		// Allow for site and per-namespace customization of contribution/copyright notice.
 		wfRunHooks( 'EditPageCopyrightWarning', array( $title, &$copywarnMsg ) );
 
+		$format = $html === true ? 'parse' : 'plain';
 		return "<div id=\"editpage-copywarn\">\n" .
-			call_user_func_array( 'wfMessage', $copywarnMsg )->plain() . "\n</div>";
+			call_user_func_array( 'wfMessage', $copywarnMsg )->$format() . "\n</div>";
 	}
 
 	/**
