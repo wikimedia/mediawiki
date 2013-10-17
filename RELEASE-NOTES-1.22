@@ -256,6 +256,9 @@ production.
 * Added a hook, SpecialWatchlistGetNonRevisionTypes, to allow extensions
   with custom recentchanges entries to hook into the Watchlist without 
   clobbering each other.
+* A hidden, empty input field was added to the edit form, and any edit that fills
+  it in will be rejected. This prevents against the simplest form of spambots.
+  Previously in the "SimpleAntiSpam" extension by Ryan Schmidt.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
