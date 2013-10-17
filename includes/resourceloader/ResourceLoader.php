@@ -451,9 +451,9 @@ class ResourceLoader {
 		wfProfileIn( __METHOD__ );
 		$errors = '';
 
-		// Split requested modules into two groups, modules and missing
+		// Find out which modules are missing and instantiate the others
 		$modules = array();
-		$missing = array();
+		$problemStates = array();
 		foreach ( $context->getModules() as $name ) {
 			if ( isset( $this->moduleInfos[$name] ) ) {
 				$module = $this->getModule( $name );
@@ -469,7 +469,7 @@ class ResourceLoader {
 				}
 				$modules[$name] = $module;
 			} else {
-				$missing[] = $name;
+				$problemStates[$name] = 'missing';
 			}
 		}
 
@@ -514,7 +514,7 @@ class ResourceLoader {
 		}
 
 		// Generate a response
-		$response = $this->makeModuleResponse( $context, $modules, $missing );
+		$response = $this->makeModuleResponse( $context, $modules, $problemStates );
 
 		// Prepend comments indicating exceptions
 		$response = $errors . $response;
@@ -527,7 +527,7 @@ class ResourceLoader {
 		}
 
 		// Save response to file cache unless there are errors
-		if ( isset( $fileCache ) && !$errors && !$missing ) {
+		if ( isset( $fileCache ) && !$errors && !count( $problemStates ) ) {
 			// Cache single modules...and other requests if there are enough hits
 			if ( ResourceFileCache::useFileCache( $context ) ) {
 				if ( $fileCache->isCacheWorthy() ) {
@@ -706,15 +706,15 @@ class ResourceLoader {
 	 *
 	 * @param $context ResourceLoaderContext: Context in which to generate a response
 	 * @param array $modules List of module objects keyed by module name
-	 * @param array $missing List of unavailable modules (optional)
-	 * @return String: Response data
+	 * @param array $states States by module name for modules we can't respond to.
+	 * @return string: Response data
 	 */
 	public function makeModuleResponse( ResourceLoaderContext $context,
-		array $modules, $missing = array()
+		array $modules, $states = array()
 	) {
 		$out = '';
 		$exceptions = '';
-		if ( $modules === array() && $missing === array() ) {
+		if ( !count( $modules ) && !count( $states ) ) {
 			return '/* No modules requested. Max made me put this here */';
 		}
 
@@ -838,8 +838,8 @@ class ResourceLoader {
 				// Add exception to the output as a comment
 				$exceptions .= self::formatException( $e );
 
-				// Register module as missing
-				$missing[] = $name;
+				// Respond to client with error-state instead of module implementation
+				$states[$name] = 'error';
 				unset( $modules[$name] );
 			}
 			$isRaw |= $module->isRaw();
@@ -850,12 +850,14 @@ class ResourceLoader {
 		if ( $context->shouldIncludeScripts() && !$context->getRaw() && !$isRaw ) {
 			// Set the state of modules loaded as only scripts to ready
 			if ( count( $modules ) && $context->getOnly() === 'scripts' ) {
-				$out .= self::makeLoaderStateScript(
-					array_fill_keys( array_keys( $modules ), 'ready' ) );
+				foreach ( $modules as $name => $module ) {
+					$states[$name] = 'ready';
+				}
 			}
-			// Set the state of modules which were requested but unavailable as missing
-			if ( is_array( $missing ) && count( $missing ) ) {
-				$out .= self::makeLoaderStateScript( array_fill_keys( $missing, 'missing' ) );
+
+			// Set the state of modules we didn't respond to with mw.loader.implement
+			if ( count( $states ) ) {
+				$out .= self::makeLoaderStateScript( $states );
 			}
 		}
 
