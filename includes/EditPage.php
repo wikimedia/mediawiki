@@ -2443,8 +2443,21 @@ class EditPage {
 				# Then it must be protected based on static groups (regular)
 				$noticeMsg = 'protectedpagewarning';
 			}
+
+			# Get rights needed, and replace BC entries
+			$rights = $this->mTitle->getRestrictions( 'edit' );
+			foreach ( array_keys( $rights, 'sysop' ) as $key ) {
+				$rights[$key] = 'editprotected';
+			}
+			foreach ( array_keys( $rights, 'autoconfirmed' ) as $key ) {
+				$rights[$key] = 'editsemiprotected';
+			}
+			$count = count( $rights );
+			$rights = $wgLang->commaList( $rights );
+
 			LogEventsList::showLogExtract( $wgOut, 'protect', $this->mTitle, '',
-				array( 'lim' => 1, 'msgKey' => array( $noticeMsg ) ) );
+				array( 'lim' => 1, 'msgKey' => array( $noticeMsg, $rights, $count ) )
+			);
 		}
 		if ( $this->mTitle->isCascadeProtected() ) {
 			# Is this page under cascading protection from some source pages?
@@ -2461,10 +2474,21 @@ class EditPage {
 			$wgOut->wrapWikiMsg( $notice, array( 'cascadeprotectedwarning', $cascadeSourcesCount ) );
 		}
 		if ( !$this->mTitle->exists() && $this->mTitle->getRestrictions( 'create' ) ) {
+			# Get rights needed, and replace BC entries
+			$rights = $this->mTitle->getRestrictions( 'create' );
+			foreach ( array_keys( $rights, 'sysop' ) as $key ) {
+				$rights[$key] = 'editprotected';
+			}
+			foreach ( array_keys( $rights, 'autoconfirmed' ) as $key ) {
+				$rights[$key] = 'editsemiprotected';
+			}
+			$count = count( $rights );
+			$rights = $wgLang->commaList( $rights );
+
 			LogEventsList::showLogExtract( $wgOut, 'protect', $this->mTitle, '',
 				array( 'lim' => 1,
 					'showIfEmpty' => false,
-					'msgKey' => array( 'titleprotectedwarning' ),
+					'msgKey' => array( 'titleprotectedwarning', $rights, $count ),
 					'wrap' => "<div class=\"mw-titleprotectedwarning\">\n$1</div>" ) );
 		}
 

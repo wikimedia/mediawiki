@@ -1993,11 +1993,19 @@ Parameters:
 * $2 - maximum size (in kilobytes)',
 'readonlywarning' => 'Parameters:
 * $1 - reason',
-'protectedpagewarning' => '{{Related|Semiprotectedpagewarning}}',
-'semiprotectedpagewarning' => '{{Related|Semiprotectedpagewarning}}',
+'protectedpagewarning' => 'Warning message above the edit form when editing a page that has been protected from editing. Parameters:
+* $1 - User right(s) needed to edit the page
+* $2 - Number of user rights in $1
+{{Related|Semiprotectedpagewarning}}',
+'semiprotectedpagewarning' => 'Warning message above the edit form when editing a page that has been protected from editing at the "semiprotected" level. Parameters:
+* $1 - User right(s) needed to edit the page
+* $2 - Number of user rights in $1
+{{Related|Protectedpagewarning}}',
 'cascadeprotectedwarning' => 'Parameters:
 * $1 - number of pages, for PLURAL support',
-'titleprotectedwarning' => 'Warning message above the edit form when editing a page that has been protected aginst creation.',
+'titleprotectedwarning' => 'Warning message above the edit form when editing a page that has been protected aginst creation. Parameters:
+* $1 - User right(s) needed to edit the page
+* $2 - Number of user rights in $1',
 'templatesused' => 'Displayed below the page when editing it. It indicates a list of templates which are used on that page.
 
 Parameters:

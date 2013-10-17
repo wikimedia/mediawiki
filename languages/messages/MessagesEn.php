@@ -1529,7 +1529,7 @@ It cannot be saved.",
 You may wish to copy and paste your text into a text file and save it for later.
 
 The administrator who locked it offered this explanation: $1",
-'protectedpagewarning'             => "'''Warning: This page has been protected so that only users with administrator privileges can edit it.'''
+'protectedpagewarning'             => "'''Warning: This page has been protected so that [[Special:ListGroupRights|specific rights]] are needed to edit it.'''
 The latest log entry is provided below for reference:",
 'semiprotectedpagewarning'         => "'''Note:''' This page has been protected so that only registered users can edit it.
 The latest log entry is provided below for reference:",
