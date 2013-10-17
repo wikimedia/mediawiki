@@ -1712,8 +1712,8 @@ $1",
 'recentchanges-label-bot' => '该编辑由机器人进行',
 'recentchanges-label-unpatrolled' => '该编辑尚未巡查',
 'rcnote' => "下面是过去'''$2'''天的最后'''$1'''个更改，截至$4 $5。",
-'rcnotefrom' => "下面是自'''$2'''起的更改（最多显示'''$1'''个）。",
-'rclistfrom' => '显示自$1起的新更改',
+'rcnotefrom' => "下面是'''$2'''之后的更改（最多显示'''$1'''个）。",
+'rclistfrom' => '显示$1之后的新更改',
 'rcshowhideminor' => '$1小编辑',
 'rcshowhidebots' => '$1机器人的编辑',
 'rcshowhideliu' => '$1登录用户的编辑',
@@ -2443,10 +2443,10 @@ $UNWATCHURL
 'deletereasonotherlist' => '其他原因',
 'deletereason-dropdown' => '*常见删除原因
 ** 广告
-** 作者申请
-** 侵犯著作权
 ** 破坏行为
-** 损坏重定向',
+** 侵犯著作权
+** 作者申请
+** 损坏的重定向',
 'delete-edit-reasonlist' => '编辑删除原因',
 'delete-toobig' => '这个页面有一个十分大量的编辑历史，超过$1次修订。删除此类页面的动作已经被限制，以防止在{{SITENAME}}上的意外扰乱。',
 'delete-warning-toobig' => '这个页面有一个十分大量的编辑历史，超过$1次修订。删除它可能会扰乱{{SITENAME}}的数据库操作；在继续此动作前请小心。',

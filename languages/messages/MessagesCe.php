@@ -1421,6 +1421,10 @@ PICT # тайп тайпан
 # Random page
 'randompage' => 'Цахууш нисйелла агӀо',
 
+# Random page in category
+'randomincategory' => 'Категори чу цахууш нийса елла агӀо',
+'randomincategory-selectcategory' => 'Категори чу цахууш нийса елла агӀона чу гӀо: $1 $2.',
+
 # Random redirect
 'randomredirect' => 'Цахууш нисделла дIасахьажор',
 
@@ -2003,9 +2007,9 @@ PICT # тайп тайпан
 'tooltip-search' => 'Лаха иза дош',
 'tooltip-search-go' => 'Билгала и санна цlе йолучу агlон чу дехьа вала',
 'tooltip-search-fulltext' => 'Лаха агlонаш ше чулацамехь хlара йоза долуш',
-'tooltip-p-logo' => 'Коьрта агIо',
-'tooltip-n-mainpage' => 'Дехьавалар коьрта агlончу',
-'tooltip-n-mainpage-description' => 'Дехьавалар коьрта агlончу',
+'tooltip-p-logo' => 'Коьрта агӀона дехьа гӀо',
+'tooltip-n-mainpage' => 'Коьрта агӀона дехьа гӀо',
+'tooltip-n-mainpage-description' => 'Коьрта агӀона дехьа гӀо',
 'tooltip-n-portal' => 'Оцу кхолламах, мичахь хlу йу лаьташ а хlудалур ду шуьга',
 'tooltip-n-currentevents' => 'Дlаоьхуш болу хаамашна могlам',
 'tooltip-n-recentchanges' => 'Тlаьххьаралера хийцаман могlам',
@@ -2339,6 +2343,7 @@ PICT # тайп тайпан
 'dberr-outofdate' => 'Хьуна хаалахь, цуьна йолу меттиг хила мега тишйелла черахь.',
 
 # HTML forms
+'htmlform-invalid-input' => 'Ахьа яздинчу цхьан дакхано гӀалат далина',
 'htmlform-submit' => 'ДӀадахьийта',
 'htmlform-reset' => 'Цаоьшу хийцамаш',
 'htmlform-selectorother-other' => 'Кхин',

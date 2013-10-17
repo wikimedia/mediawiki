@@ -2288,9 +2288,11 @@ Gwelwch y $2 am gofnod o\'r dileuon diweddar.',
 'deleteotherreason' => 'Rheswm arall:',
 'deletereasonotherlist' => 'Rheswm arall',
 'deletereason-dropdown' => "*Rhesymau arferol dros ddileu
-** Ar gais yr awdur
+** Sbam
+** Fandaliaeth
 ** Torri'r hawlfraint
-** Fandaliaeth",
+** Ar gais yr awdur
+** Ailgyfeiriad wedi torri",
 'delete-edit-reasonlist' => 'Golygu rhestr y rhesymau dros ddileu',
 'delete-toobig' => "Cafwyd dros $1 {{PLURAL:$1|o olygiadau}} i'r dudalen hon.
 Cyfyngwyd ar y gallu i ddileu tudalennau sydd wedi eu golygu cymaint â hyn, er mwyn osgoi amharu ar weithrediad databas {{SITENAME}} yn ddamweiniol.",

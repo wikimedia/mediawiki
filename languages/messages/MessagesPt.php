@@ -1556,8 +1556,9 @@ Não deverá conter mais de $1 {{PLURAL:$1|carácter|caracteres}}.',
 'yourgender' => 'Como prefere ser descrito?',
 'gender-unknown' => 'Prefiro não dizer',
 'gender-male' => 'Ele edita páginas wiki',
-'gender-female' => 'Feminino',
-'prefs-help-gender' => 'Opcional: usado pelo programa para ajuste das mensagens ao género do utilizador.
+'gender-female' => 'Ela edita páginas wiki',
+'prefs-help-gender' => 'Esta preferência é opcional.
+O software usa o seu valor para o endereçar e para o mencionar a outros usando o género gramatical apropriado.
 Esta informação será pública.',
 'email' => 'Correio electrónico',
 'prefs-help-realname' => 'O fornecimento do nome verdadeiro é opcional.
@@ -1796,7 +1797,7 @@ As suas [[Special:Watchlist|páginas vigiadas]] aparecem a '''negrito'''.",
 'reuploaddesc' => 'Cancelar o envio e voltar ao formulário de carregamento',
 'upload-tryagain' => 'Submeta a descrição do ficheiro modificado',
 'uploadnologin' => 'Não autenticado',
-'uploadnologintext' => 'Tem de estar [[Special:UserLogin|autenticado]] para enviar ficheiros.',
+'uploadnologintext' => 'Tem de $1 para enviar ficheiros.',
 'upload_directory_missing' => 'O diretório de carregamento de ficheiros ($1) não existe e o servidor de internet não conseguiu criá-lo.',
 'upload_directory_read_only' => 'O servidor de internet não possui permissão de escrita no diretório de carregamento de ficheiros ($1).',
 'uploaderror' => 'Erro ao carregar',
@@ -2526,9 +2527,11 @@ Consulte $2 para um registo de eliminações recentes.',
 'deleteotherreason' => 'Outro/motivo adicional:',
 'deletereasonotherlist' => 'Outro motivo',
 'deletereason-dropdown' => '* Motivos de eliminação comuns
-** Pedido do autor
+** Spam
+** Vandalismo
 ** Violação de direitos de autor
-** Vandalismo',
+** Pedido do autor
+** Redirecionamento quebrado',
 'delete-edit-reasonlist' => 'Editar motivos de eliminação',
 'delete-toobig' => 'Esta página tem um histórico longo, com mais de $1 {{PLURAL:$1|edição|edições}}.
 A eliminação de páginas como esta foi restringida na {{SITENAME}}, para evitar problemas acidentais.',
@@ -4208,7 +4211,7 @@ Caso contrário, pode facilmente usar o formulário abaixo. O seu comentário se
 
 # Limit report
 'limitreport-cputime-value' => '$1 {{PLURAL:$1|segundo|segundos}}',
-'limitreport-postexpandincludesize-value' => '$1/$2 bytes',
-'limitreport-templateargumentsize-value' => '$1/$2 bytes',
+'limitreport-postexpandincludesize-value' => '$1/$2 {{PLURAL:$2|byte|bytes}}',
+'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|byte|bytes}}',
 
 );

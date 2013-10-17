@@ -2582,7 +2582,7 @@ Voir $2 pour une liste des suppressions récentes.',
 ** Vandalisme
 ** Violation des droits d’auteur
 ** Demande de l’auteur
-** Redirection erronée',
+** Redirection cassée',
 'delete-edit-reasonlist' => 'Modifier les motifs de suppression de page',
 'delete-toobig' => 'Cette page possède un historique important de modifications, dépassant $1 version{{PLURAL:$1||s}}.
 La suppression de telles pages a été restreinte pour prévenir des perturbations accidentelles de {{SITENAME}}.',

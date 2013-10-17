@@ -808,9 +808,9 @@ test ch'a-i é già. Sossì dle vire a riva quand un a deuvra un servent anònim
 'edit_form_incomplete' => "'''Chèiche part dël formolari ëd modìfica a son pa rivà al servent; ch'a contròla për da bin che soe modìfiche a-i sio ancora e ch'a preuva torna.'''",
 'editing' => 'Modìfica ëd $1',
 'creating' => 'Creé $1',
-'editingsection' => 'I soma dapress a modifiché $1 (session)',
-'editingcomment' => 'I soma dapress a modifiché $1 (neuva session)',
-'editconflict' => "Conflit d'edission: $1",
+'editingsection' => 'Modìfica ëd $1 (session)',
+'editingcomment' => 'Modìfica ëd $1 (neuva session)',
+'editconflict' => 'Conflit ëd modìfica: $1',
 'explainconflict' => "Cheidun d'àutr a l'ha salvà soa version dl'artìcol antramentré che chiel (chila) as prontava la soa.
 Ël quàder ëd modìfica dë dzora a mostra ël test ëd l'artìcol coma a resta adess (visadì, lòn che a-i é ant sla Ragnà). Soe modìfiche a stan ant ël quàder dë sota.
 Ën volend a peul gionté soe modìfiche ant ël quàder dë dzora.

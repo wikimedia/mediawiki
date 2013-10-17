@@ -789,6 +789,8 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências no 
 'userlogin-resetpassword-link' => 'Troque sua senha',
 'helplogin-url' => 'Help:Iniciar sessão',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Ajuda para iniciar sessão]]',
+'userlogin-loggedin' => 'Você já está conectado como {{GENDER:$1|$1}}.
+Use o formulário abaixo para iniciar sessão como outro usuário.',
 'createacct-join' => 'Insira suas informações abaixo.',
 'createacct-another-join' => 'Preeencha as informações para a nova conta',
 'createacct-emailrequired' => 'Endereço de e-mail',
@@ -2539,10 +2541,12 @@ Consulte $2 para um registro de eliminações recentes.',
 'deletecomment' => 'Motivo:',
 'deleteotherreason' => 'Justificativa adicional:',
 'deletereasonotherlist' => 'Outro motivo',
-'deletereason-dropdown' => '* Motivos de eliminação comuns
-** Pedido do autor
+'deletereason-dropdown' => '* Motivos comuns para eliminação
+** Spam
+** Vandalismo
 ** Violação de direitos de autor
-** Vandalismo',
+** A pedido do autor
+** Redirecionamento inválido',
 'delete-edit-reasonlist' => 'Editar motivos de eliminação',
 'delete-toobig' => 'Esta página possui um longo histórico de edições, com mais de $1 {{PLURAL:$1|edição|edições}}.
 A eliminação de tais páginas foi restrita, a fim de se evitarem problemas acidentais em {{SITENAME}}.',
@@ -2703,7 +2707,7 @@ $1',
 'contributions' => 'Contribuições {{GENDER:$1|do usuário|da usuária}}',
 'contributions-title' => 'Contribuições {{GENDER:$1|do usuário|da usuária}} $1',
 'mycontris' => 'Contribuições',
-'contribsub2' => 'Para $1 ($2)',
+'contribsub2' => 'Para {{GENDER:$3|$1}} ($2)',
 'nocontribs' => 'Não foram encontradas mudanças com este critério.',
 'uctop' => '(atual)',
 'month' => 'Mês (inclusive anteriores):',
@@ -4047,7 +4051,10 @@ Em conjunto com este programa deve ter recebido [{{SERVER}}{{SCRIPTPATH}}/COPYIN
 'tags-tag' => 'Nome da etiqueta',
 'tags-display-header' => 'Aparência nas listas de modificações',
 'tags-description-header' => 'Descrição completa do significado',
+'tags-active-header' => 'Ativo?',
 'tags-hitcount-header' => 'Modificações etiquetadas',
+'tags-active-yes' => 'Sim',
+'tags-active-no' => 'Não',
 'tags-edit' => 'editar',
 'tags-hitcount' => '$1 {{PLURAL:$1|modificação|modificações}}',
 
@@ -4212,8 +4219,11 @@ Caso contrário, você poderá usar o formulário simplificado a seguir. Seu com
 'limitreport-walltime-value' => '$1 {{PLURAL:$1|segundo|segundos}}',
 'limitreport-ppvisitednodes' => 'Número de nós visitados pelo pré-processador',
 'limitreport-ppgeneratednodes' => 'Número de nós gerados pelo pré-processador',
+'limitreport-postexpandincludesize' => 'Tamanho de inclusão pós-expansão',
 'limitreport-postexpandincludesize-value' => '$1/$2 {{PLURAL:$2|byte|bytes}}',
+'limitreport-templateargumentsize' => 'Argumento do tamanho da predefinição',
 'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|byte|bytes}}',
 'limitreport-expansiondepth' => 'Máxima profundidade de expansão',
+'limitreport-expensivefunctioncount' => 'Conta da função expansiva do analizador',
 
 );
