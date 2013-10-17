@@ -68,7 +68,8 @@ class ResourceLoader {
 	 */
 	public function preloadModuleInfo( array $modules, ResourceLoaderContext $context ) {
 		if ( !count( $modules ) ) {
-			return; // or else Database*::select() will explode, plus it's cheaper!
+			// Or else Database*::select() will explode, plus it's cheaper!
+			return;
 		}
 		$dbr = wfGetDB( DB_SLAVE );
 		$skin = $context->getSkin();
@@ -451,7 +452,7 @@ class ResourceLoader {
 		wfProfileIn( __METHOD__ );
 		$errors = '';
 
-		// Split requested modules into two groups, modules and missing
+		// Find out which modules are missing and instantiate the others
 		$modules = array();
 		$missing = array();
 		foreach ( $context->getModules() as $name ) {
@@ -527,7 +528,7 @@ class ResourceLoader {
 		}
 
 		// Save response to file cache unless there are errors
-		if ( isset( $fileCache ) && !$errors && !$missing ) {
+		if ( isset( $fileCache ) && !$errors && !count( $missing ) ) {
 			// Cache single modules...and other requests if there are enough hits
 			if ( ResourceFileCache::useFileCache( $context ) ) {
 				if ( $fileCache->isCacheWorthy() ) {
@@ -704,21 +705,24 @@ class ResourceLoader {
 	/**
 	 * Generates code for a response
 	 *
-	 * @param $context ResourceLoaderContext: Context in which to generate a response
+	 * @param $context ResourceLoaderContext Context in which to generate a response
 	 * @param array $modules List of module objects keyed by module name
-	 * @param array $missing List of unavailable modules (optional)
-	 * @return String: Response data
+	 * @param array $missing List of requested module names that are unregistered
+	 * @return string Response data
 	 */
 	public function makeModuleResponse( ResourceLoaderContext $context,
-		array $modules, $missing = array()
+		array $modules, array $missing
 	) {
 		$out = '';
 		$exceptions = '';
-		if ( $modules === array() && $missing === array() ) {
+		$states = array();
+
+		if ( !count( $modules ) && !count( $missing ) ) {
 			return '/* No modules requested. Max made me put this here */';
 		}
 
 		wfProfileIn( __METHOD__ );
+
 		// Pre-fetch blobs
 		if ( $context->shouldIncludeMessages() ) {
 			try {
@@ -732,6 +736,11 @@ class ResourceLoader {
 			}
 		} else {
 			$blobs = array();
+		}
+
+
+		foreach ( $missing as $name ) {
+			$states[$name] = 'missing';
 		}
 
 		// Generate output
@@ -838,8 +847,8 @@ class ResourceLoader {
 				// Add exception to the output as a comment
 				$exceptions .= self::formatException( $e );
 
-				// Register module as missing
-				$missing[] = $name;
+				// Respond to client with error-state instead of module implementation
+				$states[$name] = 'error';
 				unset( $modules[$name] );
 			}
 			$isRaw |= $module->isRaw();
@@ -848,14 +857,17 @@ class ResourceLoader {
 
 		// Update module states
 		if ( $context->shouldIncludeScripts() && !$context->getRaw() && !$isRaw ) {
-			// Set the state of modules loaded as only scripts to ready
 			if ( count( $modules ) && $context->getOnly() === 'scripts' ) {
-				$out .= self::makeLoaderStateScript(
-					array_fill_keys( array_keys( $modules ), 'ready' ) );
+				// Set the state of modules loaded as only scripts to ready as
+				// they don't have an mw.loader.implement wrapper that sets the state
+				foreach ( $modules as $name => $module ) {
+					$states[$name] = 'ready';
+				}
 			}
-			// Set the state of modules which were requested but unavailable as missing
-			if ( is_array( $missing ) && count( $missing ) ) {
-				$out .= self::makeLoaderStateScript( array_fill_keys( $missing, 'missing' ) );
+
+			// Set the state of modules we didn't respond to with mw.loader.implement
+			if ( count( $states ) ) {
+				$out .= self::makeLoaderStateScript( $states );
 			}
 		}
 
