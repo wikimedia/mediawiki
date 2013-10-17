@@ -248,6 +248,9 @@ production.
   output in a HTML comment.
 * The 'UnwatchArticle' and 'WatchArticle' hooks now support a Status object
   instead of just a boolean return value to abort the hook.
+* A hidden, empty input field was added to the edit form, and any edit that fills
+  it in will be rejected. This prevents against the simplest form of spambots.
+  Previously in the "SimpleAntiSpam" extension by Ryan Schmidt.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one

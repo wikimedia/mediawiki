@@ -2779,6 +2779,7 @@ $wgMessageStructure = array(
 		'spam_reverting',
 		'spam_blanking',
 		'spam_deleting',
+		'simpleantispam-label',
 	),
 	'info' => array(
 		'pageinfo-header',

@@ -1382,6 +1382,24 @@ class EditPage {
 			return $status;
 		}
 
+		$spam = $wgRequest->getText( 'wpAntispam' );
+		if ( $spam !== '' ) {
+			wfDebugLog(
+				'SimpleAntiSpam',
+				$wgUser->getName() .
+				' editing "' .
+				$this->mTitle->getPrefixedText() .
+				'" submitted bogus field "' .
+				$spam .
+				'"'
+			);
+			$status->fatal( 'spamprotectionmatch', false );
+			$status->value = self::AS_SPAM_ERROR;
+			wfProfileOut( __METHOD__ . '-checks' );
+			wfProfileOut( __METHOD__ );
+			return $status;
+		}
+
 		try {
 			# Construct Content object
 			$textbox_content = $this->toEditContent( $this->textbox1 );
@@ -2190,6 +2208,14 @@ class EditPage {
 		if ( is_callable( $formCallback ) ) {
 			call_user_func_array( $formCallback, array( &$wgOut ) );
 		}
+
+		// Add an empty field to trip up spambots
+		$wgOut->addHTML(
+			Xml::openElement( 'div', array( 'id' => 'antispam-container', 'style' => 'display: none;' ) )
+			. Html::rawElement( 'label', array( 'for' => 'wpAntiSpam' ), wfMessage( 'simpleantispam-label' )->parse() )
+			. Xml::element( 'input', array( 'type' => 'text', 'name' => 'wpAntispam', 'id' => 'wpAntispam', 'value' => '' ) )
+			. Xml::closeElement( 'div' )
+		);
 
 		wfRunHooks( 'EditPage::showEditForm:fields', array( &$this, &$wgOut ) );
 
