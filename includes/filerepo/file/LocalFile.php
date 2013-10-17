@@ -1507,18 +1507,27 @@ class LocalFile extends File {
 
 		wfDebugLog( 'imagemove', "Finished moving {$this->name}" );
 
-		$this->purgeEverything();
-		foreach ( $archiveNames as $archiveName ) {
-			$this->purgeOldThumbnails( $archiveName );
-		}
+		// Purge the source and target files...
+		$oldTitleFile = wfLocalFile( $this->title );
+		$newTitleFile = wfLocalFile( $target );
+		// Hack: the lock()/unlock() pair is nested in a transaction so the locking is not
+		// tied to BEGIN/COMMIT. To avoid slow purges in the transaction, move them outside.
+		$this->getRepo()->getMasterDB()->onTransactionIdle(
+			function() use ( $oldTitleFile, $newTitleFile, $archiveNames ) {
+				$oldTitleFile->purgeEverything();
+				foreach ( $archiveNames as $archiveName ) {
+					$oldTitleFile->purgeOldThumbnails( $archiveName );
+				}
+				$newTitleFile->purgeEverything();
+			}
+		);
+
 		if ( $status->isOK() ) {
 			// Now switch the object
 			$this->title = $target;
 			// Force regeneration of the name and hashpath
 			unset( $this->name );
 			unset( $this->hashPath );
-			// Purge the new image
-			$this->purgeEverything();
 		}
 
 		return $status;
