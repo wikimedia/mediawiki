@@ -355,7 +355,7 @@ class Parser {
 		 * to internalParse() which does all the real work.
 		 */
 
-		global $wgUseTidy, $wgAlwaysUseTidy;
+		global $wgUseTidy, $wgAlwaysUseTidy, $wgShowHostnames;
 		$fname = __METHOD__ . '-' . wfGetCaller();
 		wfProfileIn( __METHOD__ );
 		wfProfileIn( $fname );
@@ -532,6 +532,9 @@ class Parser {
 			wfRunHooks( 'ParserLimitReportPrepare', array( $this, $this->mOutput ) );
 
 			$limitReport = "NewPP limit report\n";
+			if ( $wgShowHostnames ) {
+				$limitReport .= 'Parsed by ' . wfHostname() . "\n";
+			}
 			foreach ( $this->mOutput->getLimitReportData() as $key => $value ) {
 				if ( wfRunHooks( 'ParserLimitReportFormat',
 					array( $key, $value, &$limitReport, false, false )
