@@ -745,6 +745,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * recompiles as necessary.
 	 *
 	 * @since 1.22
+	 * @throws Exception If Less encounters a parse error
+	 * @throws MWException If Less compilation returns unexpection result
 	 * @param string $fileName File path of LESS source
 	 * @return string: CSS source
 	 */
