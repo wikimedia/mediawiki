@@ -2859,7 +2859,15 @@ HTML
 		return self::getCopyrightWarning( $this->mTitle );
 	}
 
-	public static function getCopyrightWarning( $title ) {
+	/**
+	 * Get the copyright warning, by default returns wikitext
+	 *
+	 * @param Title $title
+	 * @param string $format output format, valid values are any function of
+	 *                       a Message object
+	 * @return string
+	 */
+	public static function getCopyrightWarning( $title, $format = 'plain' ) {
 		global $wgRightsText;
 		if ( $wgRightsText ) {
 			$copywarnMsg = array( 'copyrightwarning',
@@ -2873,7 +2881,7 @@ HTML
 		wfRunHooks( 'EditPageCopyrightWarning', array( $title, &$copywarnMsg ) );
 
 		return "<div id=\"editpage-copywarn\">\n" .
-			call_user_func_array( 'wfMessage', $copywarnMsg )->plain() . "\n</div>";
+			call_user_func_array( 'wfMessage', $copywarnMsg )->$format() . "\n</div>";
 	}
 
 	/**
