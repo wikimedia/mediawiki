@@ -931,14 +931,12 @@ function wfDebug( $text, $logonly = false ) {
 		MWDebug::debugMsg( $text );
 	}
 
-	if ( wfRunHooks( 'Debug', array( $text, null /* no log group */ ) ) ) {
-		if ( $wgDebugLogFile != '' && !$wgProfileOnly ) {
-			# Strip unprintables; they can switch terminal modes when binary data
-			# gets dumped, which is pretty annoying.
-			$text = preg_replace( '![\x00-\x08\x0b\x0c\x0e-\x1f]!', ' ', $text );
-			$text = $wgDebugLogPrefix . $text;
-			wfErrorLog( $text, $wgDebugLogFile );
-		}
+	if ( $wgDebugLogFile != '' && !$wgProfileOnly ) {
+		# Strip unprintables; they can switch terminal modes when binary data
+		# gets dumped, which is pretty annoying.
+		$text = preg_replace( '![\x00-\x08\x0b\x0c\x0e-\x1f]!', ' ', $text );
+		$text = $wgDebugLogPrefix . $text;
+		wfErrorLog( $text, $wgDebugLogFile );
 	}
 }
 
@@ -1013,9 +1011,7 @@ function wfDebugLog( $logGroup, $text, $public = true ) {
 		$time = wfTimestamp( TS_DB );
 		$wiki = wfWikiID();
 		$host = wfHostname();
-		if ( wfRunHooks( 'Debug', array( $text, $logGroup ) ) ) {
-			wfErrorLog( "$time $host $wiki: $text", $wgDebugLogGroups[$logGroup] );
-		}
+		wfErrorLog( "$time $host $wiki: $text", $wgDebugLogGroups[$logGroup] );
 	} elseif ( $public === true ) {
 		wfDebug( "[$logGroup] $text", false );
 	}
