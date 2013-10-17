@@ -87,9 +87,16 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 		$blockEnd = $start + $this->mBatchSize - 1;
 		while ( $blockEnd <= $end ) {
 			$this->output( "...doing $idCol from $blockStart to $blockEnd\n" );
-			$cond = "$idCol BETWEEN $blockStart AND $blockEnd
-				AND $idCol IS NOT NULL AND {$prefix}_sha1 = ''";
-			$res = $db->select( $table, '*', $cond, __METHOD__ );
+			$res = $db->select(
+				$table,
+				'*',
+				array(
+					"$idCol >= $blockStart",
+					"$idCol <= $blockEnd",
+					"{$prefix}_sha1" => '',
+				),
+				__METHOD__
+			);
 
 			$db->begin( __METHOD__ );
 			foreach ( $res as $row ) {
@@ -112,13 +119,17 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 	protected function doSha1LegacyUpdates() {
 		$count = 0;
 		$db = $this->getDB( DB_MASTER );
-		$res = $db->select( 'archive', '*',
-			array( 'ar_rev_id IS NULL', 'ar_sha1' => '' ), __METHOD__ );
+		$res = $db->select(
+			'archive',
+			'*',
+			array( 'ar_rev_id IS NULL', 'ar_sha1' => '' ),
+			__METHOD__
+		);
 
 		$updateSize = 0;
 		$db->begin( __METHOD__ );
 		foreach ( $res as $row ) {
-			if ( $this->upgradeLegacyArchiveRow( $row ) ) {
+			if ( $this->upgradeRow( $row, 'archive', 'ar_id', 'ar_' ) ) {
 				++$count;
 			}
 			if ( ++$updateSize >= 100 ) {
@@ -159,40 +170,6 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 			$db->update( $table,
 				array( "{$prefix}_sha1" => Revision::base36Sha1( $text ) ),
 				array( $idCol => $row->$idCol ),
-				__METHOD__
-			);
-			return true;
-		}
-	}
-
-	/**
-	 * @param $row
-	 * @return bool
-	 */
-	protected function upgradeLegacyArchiveRow( $row ) {
-		$db = $this->getDB( DB_MASTER );
-		try {
-			$rev = Revision::newFromArchiveRow( $row );
-		} catch ( MWException $e ) {
-			$this->output( "Text of revision with timestamp {$row->ar_timestamp} unavailable!\n" );
-			return false; // bug 22624?
-		}
-		$text = $rev->getSerializedData();
-		if ( !is_string( $text ) ) {
-			# This should not happen, but sometimes does (bug 20757)
-			$this->output( "Data of revision with timestamp {$row->ar_timestamp} unavailable!\n" );
-			return false;
-		} else {
-			# Archive table as no PK, but (NS,title,time) should be near unique.
-			# Any duplicates on those should also have duplicated text anyway.
-			$db->update( 'archive',
-				array( 'ar_sha1' => Revision::base36Sha1( $text ) ),
-				array(
-					'ar_namespace' => $row->ar_namespace,
-					'ar_title' => $row->ar_title,
-					'ar_timestamp' => $row->ar_timestamp,
-					'ar_len' => $row->ar_len // extra sanity
-				),
 				__METHOD__
 			);
 			return true;
