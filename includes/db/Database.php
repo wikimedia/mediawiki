@@ -662,6 +662,18 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 
 	/**
 	 * Constructor.
+	 *
+	 * FIXME: It is possible to construct a Database object with no associated
+	 * connection object, by specifying no parameters to __construct(). This
+	 * feature is deprecated and should be removed.
+	 *
+	 * FIXME: The long list of formal parameters here is not really appropriate
+	 * for MySQL, and not at all appropriate for any other DBMS. It should be
+	 * replaced by named parameters as in DatabaseBase::factory().
+	 *
+	 * DatabaseBase subclasses should not be constructed directly in external
+	 * code. DatabaseBase::factory() should be used instead.
+	 *
 	 * @param string $server database server host
 	 * @param string $user database user name
 	 * @param string $password database user password
