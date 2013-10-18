@@ -248,7 +248,7 @@ if ( $count > 0 ) {
 		}
 
 		$commentText = SpecialUpload::getInitialPageText( $commentText, $license );
-		if ( !$summary ) {
+		if ( !isset( $options['summary'] ) ) {
 			$summary = $commentText;
 		}
 
