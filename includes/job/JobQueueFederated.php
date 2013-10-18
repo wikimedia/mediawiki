@@ -140,7 +140,7 @@ class JobQueueFederated extends JobQueue {
 					return false;
 				}
 			} catch ( JobQueueError $e ) {
-				wfDebugLog( 'exception', $e->getLogMessage() );
+				MWExceptionHandler::logException( $e );
 			}
 		}
 
@@ -182,7 +182,7 @@ class JobQueueFederated extends JobQueue {
 			try {
 				$count += $queue->$method();
 			} catch ( JobQueueError $e ) {
-				wfDebugLog( 'exception', $e->getLogMessage() );
+				MWExceptionHandler::logException( $e );
 			}
 		}
 
@@ -242,7 +242,7 @@ class JobQueueFederated extends JobQueue {
 				$ok = $queue->doBatchPush( $jobBatch, $flags | self::QOS_ATOMIC );
 			} catch ( JobQueueError $e ) {
 				$ok = false;
-				wfDebugLog( 'exception', $e->getLogMessage() );
+				MWExceptionHandler::logException( $e );
 			}
 			if ( $ok ) {
 				$key = $this->getCacheKey( 'empty' );
@@ -264,7 +264,7 @@ class JobQueueFederated extends JobQueue {
 				$ok = $queue->doBatchPush( $jobBatch, $flags | self::QOS_ATOMIC );
 			} catch ( JobQueueError $e ) {
 				$ok = false;
-				wfDebugLog( 'exception', $e->getLogMessage() );
+				MWExceptionHandler::logException( $e );
 			}
 			if ( $ok ) {
 				$key = $this->getCacheKey( 'empty' );
@@ -301,7 +301,7 @@ class JobQueueFederated extends JobQueue {
 				$job = $queue->pop();
 			} catch ( JobQueueError $e ) {
 				$job = false;
-				wfDebugLog( 'exception', $e->getLogMessage() );
+				MWExceptionHandler::logException( $e );
 			}
 			if ( $job ) {
 				$job->metadata['QueuePartition'] = $partition;
@@ -353,7 +353,7 @@ class JobQueueFederated extends JobQueue {
 			try {
 				$queue->doDelete();
 			} catch ( JobQueueError $e ) {
-				wfDebugLog( 'exception', $e->getLogMessage() );
+				MWExceptionHandler::logException( $e );
 			}
 		}
 	}
@@ -363,7 +363,7 @@ class JobQueueFederated extends JobQueue {
 			try {
 				$queue->waitForBackups();
 			} catch ( JobQueueError $e ) {
-				wfDebugLog( 'exception', $e->getLogMessage() );
+				MWExceptionHandler::logException( $e );
 			}
 		}
 	}
@@ -426,7 +426,7 @@ class JobQueueFederated extends JobQueue {
 					return null; // not supported on all partitions; bail
 				}
 			} catch ( JobQueueError $e ) {
-				wfDebugLog( 'exception', $e->getLogMessage() );
+				MWExceptionHandler::logException( $e );
 			}
 		}
 		return array_values( array_unique( $result ) );
@@ -445,7 +445,7 @@ class JobQueueFederated extends JobQueue {
 					return null; // not supported on all partitions; bail
 				}
 			} catch ( JobQueueError $e ) {
-				wfDebugLog( 'exception', $e->getLogMessage() );
+				MWExceptionHandler::logException( $e );
 			}
 		}
 		return $result;
