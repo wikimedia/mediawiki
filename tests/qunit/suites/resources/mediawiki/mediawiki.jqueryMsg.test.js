@@ -585,7 +585,7 @@ QUnit.test( 'HTML', 26, function ( assert ) {
 
 	assert.htmlEqual(
 		formatParse( 'jquerymsg-italics-with-link' ),
-		'An <i>italicized <a title="link" href="' + mw.html.escape( mw.util.wikiGetlink( 'link' ) ) + '">wiki-link</i>',
+		'An <i>italicized <a title="link" href="' + mw.html.escape( mw.util.getUrl( 'link' ) ) + '">wiki-link</i>',
 		'Italics with link inside in parse mode'
 	);
 
@@ -625,7 +625,7 @@ QUnit.test( 'HTML', 26, function ( assert ) {
 	mw.messages.set( 'jquerymsg-script-link-msg', '<script>[[Foo|bar]]</script>' );
 	assert.htmlEqual(
 		formatParse( 'jquerymsg-script-link-msg' ),
-		'&lt;script&gt;<a title="Foo" href="' + mw.html.escape( mw.util.wikiGetlink( 'Foo' ) ) + '">bar</a>&lt;/script&gt;',
+		'&lt;script&gt;<a title="Foo" href="' + mw.html.escape( mw.util.getUrl( 'Foo' ) ) + '">bar</a>&lt;/script&gt;',
 		'Script tag text is escaped because that element is not allowed, but link inside is still HTML'
 	);
 
