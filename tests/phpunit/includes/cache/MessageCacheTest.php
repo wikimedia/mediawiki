@@ -3,6 +3,7 @@
 /**
  * @group Database
  * @group Cache
+ * @covers MessageCache
  */
 class MessageCacheTest extends MediaWikiLangTestCase {
 

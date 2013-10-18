@@ -46,6 +46,7 @@ class GenderCacheTest extends MediaWikiLangTestCase {
 	 * test usernames
 	 *
 	 * @dataProvider provideUserGenders
+	 * @covers GenderCache::getGenderOf
 	 */
 	function testUserName( $username, $expectedGender ) {
 		$genderCache = GenderCache::singleton();
@@ -57,6 +58,7 @@ class GenderCacheTest extends MediaWikiLangTestCase {
 	 * genderCache should work with user objects, too
 	 *
 	 * @dataProvider provideUserGenders
+	 * @covers GenderCache::getGenderOf
 	 */
 	function testUserObjects( $username, $expectedGender ) {
 		$genderCache = GenderCache::singleton();
@@ -82,6 +84,7 @@ class GenderCacheTest extends MediaWikiLangTestCase {
 	 * against the never existing username
 	 *
 	 * @dataProvider provideStripSubpages
+	 * @covers GenderCache::getGenderOf
 	 */
 	function testStripSubpages( $pageWithSubpage, $expectedGender ) {
 		$genderCache = GenderCache::singleton();
