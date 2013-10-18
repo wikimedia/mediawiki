@@ -5,7 +5,11 @@
  * @group DatabaseBase
  */
 class DatabaseTest extends MediaWikiTestCase {
-	var $db, $functionTest = false;
+	/**
+	 * @var DatabaseBase
+	 */
+	var $db;
+	var $functionTest = false;
 
 	protected function setUp() {
 		parent::setUp();
@@ -19,7 +23,9 @@ class DatabaseTest extends MediaWikiTestCase {
 			$this->functionTest = false;
 		}
 	}
-
+	/**
+	 * @covers DatabaseBase::dropTable
+	 */
 	function testAddQuotesNull() {
 		$check = "NULL";
 		if ( $this->db->getType() === 'sqlite' || $this->db->getType() === 'oracle' ) {
