@@ -70,6 +70,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider dataGetDefaultModelFor
+	 * @covers ContentHandler::getDefaultModelFor
 	 */
 	public function testGetDefaultModelFor( $title, $expectedModelId ) {
 		$title = Title::newFromText( $title );
@@ -78,6 +79,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider dataGetDefaultModelFor
+	 * @covers ContentHandler::getForTitle
 	 */
 	public function testGetForTitle( $title, $expectedContentModel ) {
 		$title = Title::newFromText( $title );
@@ -97,6 +99,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider dataGetLocalizedName
+	 * @covers ContentHandler::getLocalizedName
 	 */
 	public function testGetLocalizedName( $id, $expected ) {
 		$name = ContentHandler::getLocalizedName( $id );
@@ -131,6 +134,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider dataGetPageLanguage
+	 * @covers ContentHandler::getPageLanguage
 	 */
 	public function testGetPageLanguage( $title, $expected ) {
 		if ( is_string( $title ) ) {
@@ -155,6 +159,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider dataGetContentText_Null
+	 * @covers ContentHandler::getContentText
 	 */
 	public function testGetContentText_Null( $contentHandlerTextFallback ) {
 		$this->setMwGlobals( 'wgContentHandlerTextFallback', $contentHandlerTextFallback );
@@ -175,6 +180,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider dataGetContentText_TextContent
+	 * @covers ContentHandler::getContentText
 	 */
 	public function testGetContentText_TextContent( $contentHandlerTextFallback ) {
 		$this->setMwGlobals( 'wgContentHandlerTextFallback', $contentHandlerTextFallback );
@@ -188,6 +194,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 	/**
 	 * ContentHandler::getContentText should have thrown an exception for non-text Content object
 	 * @expectedException MWException
+	 * @covers ContentHandler::getContentText
 	 */
 	public function testGetContentText_NonTextContent_fail() {
 		$this->setMwGlobals( 'wgContentHandlerTextFallback', 'fail' );
@@ -197,6 +204,9 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		ContentHandler::getContentText( $content );
 	}
 
+	/**
+	 * @covers ContentHandler::getContentText
+	 */
 	public function testGetContentText_NonTextContent_serialize() {
 		$this->setMwGlobals( 'wgContentHandlerTextFallback', 'serialize' );
 
@@ -206,6 +216,9 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		$this->assertEquals( $content->serialize(), $text );
 	}
 
+	/**
+	 * @covers ContentHandler::getContentText
+	 */
 	public function testGetContentText_NonTextContent_ignore() {
 		$this->setMwGlobals( 'wgContentHandlerTextFallback', 'ignore' );
 
@@ -241,6 +254,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider dataMakeContent
+	 * @covers ContentHandler::makeContent
 	 */
 	public function testMakeContent( $data, $title, $modelId, $format, $expectedModelId, $expectedNativeData, $shouldFail ) {
 		$title = Title::newFromText( $title );
@@ -270,6 +284,9 @@ class ContentHandlerTest extends MediaWikiTestCase {
 	}
 	*/
 
+	/**
+	 * @covers ContentHandler::runLegacyHooks
+	 */
 	public function testRunLegacyHooks() {
 		Hooks::register( 'testRunLegacyHooks', __CLASS__ . '::dummyHookHandler' );
 

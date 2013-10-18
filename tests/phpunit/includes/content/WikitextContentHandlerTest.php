@@ -16,6 +16,9 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 		$this->handler = ContentHandler::getForModelID( CONTENT_MODEL_WIKITEXT );
 	}
 
+	/**
+	 * @covers WikitextContentHandler::serializeContent
+	 */
 	public function testSerializeContent() {
 		$content = new WikitextContent( 'hello world' );
 
@@ -30,6 +33,9 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 		}
 	}
 
+	/**
+	 * @covers WikitextContentHandler::unserializeContent
+	 */
 	public function testUnserializeContent() {
 		$content = $this->handler->unserializeContent( 'hello world' );
 		$this->assertEquals( 'hello world', $content->getNativeData() );
@@ -45,6 +51,9 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 		}
 	}
 
+	/**
+	 * @covers WikitextContentHandler::makeEmptyContent
+	 */
 	public function testMakeEmptyContent() {
 		$content = $this->handler->makeEmptyContent();
 
@@ -64,6 +73,7 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideMakeRedirectContent
 	 * @param Title|string $title Title object or string for Title::newFromText()
 	 * @param string $expected Serialized form of the content object built
+	 * @covers WikitextContentHandler::makeRedirectContent
 	 */
 	public function testMakeRedirectContent( $title, $expected ) {
 		global $wgContLang;
@@ -92,6 +102,7 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider dataIsSupportedFormat
+	 * @covers WikitextContentHandler::isSupportedFormat
 	 */
 	public function testIsSupportedFormat( $format, $supported ) {
 		$this->assertEquals( $supported, $this->handler->isSupportedFormat( $format ) );
@@ -131,6 +142,7 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider dataMerge3
+	 * @covers WikitextContentHandler::merge3
 	 */
 	public function testMerge3( $old, $mine, $yours, $expected ) {
 		$this->checkHasDiff3();
@@ -188,6 +200,7 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider dataGetAutosummary
+	 * @covers WikitextContentHandler::getAutosummary
 	 */
 	public function testGetAutosummary( $old, $new, $flags, $expected ) {
 		$oldContent = is_null( $old ) ? null : new WikitextContent( $old );
