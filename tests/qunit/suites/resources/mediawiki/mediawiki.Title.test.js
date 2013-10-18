@@ -324,7 +324,7 @@
 		mw.config.set( 'wgArticlePath', '/wiki/$1' );
 
 		title = new mw.Title( 'Foobar' );
-		assert.equal( title.getUrl(), '/wiki/Foobar', 'Basic functionally, toString passing to wikiGetlink' );
+		assert.equal( title.getUrl(), '/wiki/Foobar', 'Basic functionally, getUrl uses mw.util.getUrl' );
 
 		title = new mw.Title( 'John Doe', 3 );
 		assert.equal( title.getUrl(), '/wiki/User_talk:John_Doe', 'Escaping in title and namespace for urls' );

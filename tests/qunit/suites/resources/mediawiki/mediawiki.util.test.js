@@ -17,22 +17,22 @@
 		assert.equal( mw.util.wikiUrlencode( 'Test:A & B/Here' ), 'Test:A_%26_B/Here' );
 	} );
 
-	QUnit.test( 'wikiGetlink', 4, function ( assert ) {
+	QUnit.test( 'getUrl', 4, function ( assert ) {
 		// Not part of startUp module
 		mw.config.set( 'wgArticlePath', '/wiki/$1' );
 		mw.config.set( 'wgPageName', 'Foobar' );
 
-		var href = mw.util.wikiGetlink( 'Sandbox' );
+		var href = mw.util.getUrl( 'Sandbox' );
 		assert.equal( href, '/wiki/Sandbox', 'Simple title; Get link for "Sandbox"' );
 
-		href = mw.util.wikiGetlink( 'Foo:Sandbox ? 5+5=10 ! (test)/subpage' );
+		href = mw.util.getUrl( 'Foo:Sandbox ? 5+5=10 ! (test)/subpage' );
 		assert.equal( href, '/wiki/Foo:Sandbox_%3F_5%2B5%3D10_%21_%28test%29/subpage',
 			'Advanced title; Get link for "Foo:Sandbox ? 5+5=10 ! (test)/subpage"' );
 
-		href = mw.util.wikiGetlink();
+		href = mw.util.getUrl();
 		assert.equal( href, '/wiki/Foobar', 'Default title; Get link for current page ("Foobar")' );
 
-		href = mw.util.wikiGetlink( 'Sandbox', { action: 'edit' } );
+		href = mw.util.getUrl( 'Sandbox', { action: 'edit' } );
 		assert.equal( href, '/wiki/Sandbox?action=edit',
 			'Simple title with query string; Get link for "Sandbox" with action=edit' );
 	} );
