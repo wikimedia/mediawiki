@@ -1717,6 +1717,10 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * on the link) is present it will be used to generate a tooltip and
 	 * accesskey for the link.
 	 *
+	 * The keys "context" and "primary" are ignored; these keys are used
+	 * internally by skins and are not supposed to be included in the HTML
+	 * output.
+	 *
 	 * If you don't want an accesskey, set $item['tooltiponly'] = true;
 	 *
 	 * @param array $options can be used to affect the output of a link.
@@ -1757,7 +1761,7 @@ abstract class BaseTemplate extends QuickTemplate {
 
 		if ( isset( $item['href'] ) || isset( $options['link-fallback'] ) ) {
 			$attrs = $item;
-			foreach ( array( 'single-id', 'text', 'msg', 'tooltiponly' ) as $k ) {
+			foreach ( array( 'single-id', 'text', 'msg', 'tooltiponly', 'context', 'primary' ) as $k ) {
 				unset( $attrs[$k] );
 			}
 
