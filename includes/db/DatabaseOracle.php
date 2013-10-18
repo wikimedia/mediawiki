@@ -196,12 +196,27 @@ class DatabaseOracle extends DatabaseBase {
 
 	var $mFieldInfoCache = array();
 
-	function __construct( $server = false, $user = false, $password = false, $dbName = false,
-		$flags = 0, $tablePrefix = 'get from global' )
-	{
+	function __construct( $p = null ) {
 		global $wgDBprefix;
-		$tablePrefix = $tablePrefix == 'get from global' ? strtoupper( $wgDBprefix ) : strtoupper( $tablePrefix );
-		parent::__construct( $server, $user, $password, $dbName, $flags, $tablePrefix );
+
+		if ( !is_array( $p ) ) { // legacy calling pattern
+			wfDeprecated( __METHOD__ . " method called without parameter array.", "1.22" );
+			$args = func_get_args();
+			$p = array(
+				'host' => isset( $args[0] ) ? $args[0] : false,
+				'user' => isset( $args[1] ) ? $args[1] : false,
+				'password' => isset( $args[2] ) ? $args[2] : false,
+				'dbname' => isset( $args[3] ) ? $args[3] : false,
+				'flags' => isset( $args[4] ) ? $args[4] : 0,
+				'tablePrefix' => isset( $args[5] ) ? $args[5] : 'get from global',
+				'foreign' => isset( $args[6] ) ? $args[6] : false
+			);
+		}
+		if ( $p['tablePrefix'] == 'get from global' ) {
+			$p['tablePrefix'] = $wgDBprefix;
+		}
+		$p['tablePrefix'] = strtoupper( $p['tablePrefix'] );
+		parent::__construct( $p );
 		wfRunHooks( 'DatabaseOraclePostInit', array( $this ) );
 	}
 
