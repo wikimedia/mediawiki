@@ -31,6 +31,7 @@
  */
 class FakeDatabaseMysqlBase extends DatabaseMysqlBase {
 	// From DatabaseBase
+	function __construct() {}
 	protected function closeConnection() {}
 	protected function doQuery( $sql ) {}
 

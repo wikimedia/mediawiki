@@ -39,23 +39,30 @@ class DatabaseSqlite extends DatabaseBase {
 	 */
 	protected $mConn;
 
-	/**
-	 * Constructor.
-	 * Parameters $server, $user and $password are not used.
-	 * @param $server string
-	 * @param $user string
-	 * @param $password string
-	 * @param $dbName string
-	 * @param $flags int
-	 */
-	function __construct( $server = false, $user = false, $password = false, $dbName = false, $flags = 0 ) {
-		$this->mName = $dbName;
-		parent::__construct( $server, $user, $password, $dbName, $flags );
+	function __construct( $p = null ) {
+		global $wgSharedDB;
+
+		if ( !is_array( $p ) ) { // legacy calling pattern
+			wfDeprecated( __METHOD__ . " method called without parameter array.", "1.22" );
+			$args = func_get_args();
+			$p = array(
+				'host' => isset( $args[0] ) ? $args[0] : false,
+				'user' => isset( $args[1] ) ? $args[1] : false,
+				'password' => isset( $args[2] ) ? $args[2] : false,
+				'dbname' => isset( $args[3] ) ? $args[3] : false,
+				'flags' => isset( $args[4] ) ? $args[4] : 0,
+				'tablePrefix' => isset( $args[5] ) ? $args[5] : 'get from global',
+				'foreign' => isset( $args[6] ) ? $args[6] : false
+			);
+		}
+		$this->mName = $p['dbname'];
+		parent::__construct( $p );
 		// parent doesn't open when $user is false, but we can work with $dbName
-		if ( $dbName && !$this->isOpen() ) {
-			global $wgSharedDB;
-			if ( $this->open( $server, $user, $password, $dbName ) && $wgSharedDB ) {
-				$this->attachDatabase( $wgSharedDB );
+		if ( $p['dbname'] && !$this->isOpen() ) {
+			if ( $this->open( $p['host'], $p['user'], $p['password'], $p['dbname'] ) ) {
+				if ( $wgSharedDB ) {
+					$this->attachDatabase( $wgSharedDB );
+				}
 			}
 		}
 	}
