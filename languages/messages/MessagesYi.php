@@ -658,6 +658,8 @@ $2',
 'userlogin-resetpassword-link' => 'צוריקשטעלן אײַער פאַסווארט',
 'helplogin-url' => 'Help:אריינלאגירן',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|הילף מיט אריינלאגירן]]',
+'userlogin-loggedin' => 'איר זענט שוין אריינלאגירט ווי {{GENDER:$1|$1}}.
+ניצט די פארעם אונטן כדי אריינלאגירן ווי אן אנדער באניצער.',
 'userlogin-createanother' => 'שאפֿן נאך א קאנטע',
 'createacct-join' => 'גיט ארײַן אײַער אינפֿארמאציע אונטן.',
 'createacct-another-join' => 'ארײַנגעבן דער נײַער קאנטעס אינפארמאציע אונטן.',

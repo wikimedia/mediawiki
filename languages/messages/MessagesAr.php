@@ -1744,7 +1744,7 @@ $1",
 'email-address-validity-invalid' => 'أدخل عنوان بريد إلكتروني صالح',
 
 # User rights
-'userrights' => 'إدارة صلاحيات المستخدم',
+'userrights' => 'صلاحيات المستخدم',
 'userrights-lookup-user' => 'أدِر مجموعات المستخدم',
 'userrights-user-editname' => 'أدخل اسم مستخدم:',
 'editusergroup' => 'عدل مجموعات المستخدم',
@@ -2888,7 +2888,7 @@ $1',
 'sp-contributions-uploads' => 'مرفوعات',
 'sp-contributions-logs' => 'سجلات',
 'sp-contributions-talk' => 'نقاش',
-'sp-contributions-userrights' => 'إدارة صلاحيات المستخدم',
+'sp-contributions-userrights' => 'صلاحيات المستخدم',
 'sp-contributions-blocked-notice' => 'هذا المستخدم ممنوع حاليا.
 إن آخر مدخلة في سجل المنع موجودة أدناه كمرجع:',
 'sp-contributions-blocked-notice-anon' => 'عنوان الأيبي هذا ممنوع حاليا.
@@ -4372,7 +4372,10 @@ $5
 'tags-tag' => 'اسم الوسم',
 'tags-display-header' => 'الظهور في قوائم التغييرات',
 'tags-description-header' => 'وصف كامل للمعنى',
+'tags-active-header' => 'نشط؟',
 'tags-hitcount-header' => 'تغييرات موسومة',
+'tags-active-yes' => 'نعم',
+'tags-active-no' => 'لا',
 'tags-edit' => 'عدل',
 'tags-hitcount' => '{{PLURAL:$1|لا تغييرات|تغيير واحد|تغييران|$1 تغييرات|$1 تغييرا|$1 تغيير}}',
 

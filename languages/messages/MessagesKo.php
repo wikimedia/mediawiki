@@ -805,7 +805,7 @@ $2',
 'userlogin-noaccount' => '계정이 없나요?',
 'userlogin-joinproject' => '{{SITENAME}}에 가입하세요',
 'nologin' => '계정이 없나요? $1.',
-'nologinlink' => '계정을 만드세요',
+'nologinlink' => '계정을 만들기',
 'createaccount' => '계정 만들기',
 'gotaccount' => '계정이 이미 있다면, $1.',
 'gotaccountlink' => '로그인하세요',
@@ -2598,7 +2598,7 @@ $UNWATCHURL
 'deletereasonotherlist' => '다른 이유',
 'deletereason-dropdown' => '* 일반적인 삭제 이유
 ** 스팸
-** 훼손 행위
+** 문서 훼손 행위
 ** 저작권 침해
 ** 작성자의 요청
 ** 깨진 넘겨주기',

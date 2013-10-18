@@ -811,13 +811,13 @@ test ch'a-i é già. Sossì dle vire a riva quand un a deuvra un servent anònim
 'editingsection' => 'Modìfica ëd $1 (session)',
 'editingcomment' => 'Modìfica ëd $1 (neuva session)',
 'editconflict' => 'Conflit ëd modìfica: $1',
-'explainconflict' => "Cheidun d'àutr a l'ha salvà soa version dl'artìcol antramentré che chiel (chila) as prontava la soa.
+'explainconflict' => "Cheidun d'àutr a l'ha salvà soa version dl'artìcol antramentre che chiel as prontava la soa.
 Ël quàder ëd modìfica dë dzora a mostra ël test ëd l'artìcol coma a resta adess (visadì, lòn che a-i é ant sla Ragnà). Soe modìfiche a stan ant ël quàder dë sota.
 Ën volend a peul gionté soe modìfiche ant ël quàder dë dzora.
 '''Mach''' ël test ant ël quàder dë dzora a sarà salvà, ën sgnacand ël boton \"{{int:savearticle}}\".",
 'yourtext' => 'Sò test',
-'storedversion' => 'Version memorisà',
-'nonunicodebrowser' => "'''A L'EUJ! Sò programa ëd navigassion (browser) a travaja pa giust con lë stàndard unicode. I soma obligà a dovré dij truschin përchè a peula salvesse sò artìcoj sensa problema: ij caràter che a son nen ASCII a jë s-ciairerà ant ël quàder ëd modìfica test coma còdes esadecimaj.'''",
+'storedversion' => 'La version memorisà',
+'nonunicodebrowser' => "'''A L'EUJ! Sò programa ëd navigassion a marcia pa giust con lë stàndard Unicode. I soma obligà a dovré dij truschin përchè a peula salvesse sò artìcoj sensa problema: ij caràter che a son nen ASCII a jë s-ciairerà ant ël quàder ëd modìfica dël test coma còdes esadecimaj.'''",
 'editingold' => "'''CHE A FASA MACH ATENSION: che a sta fasend-je dle modìfiche a na version nen agiornà dl'artìcol.<br />
 Se a la salva parèj, lòn che a l'era stàit fàit dapress a sta revision-sì as perdrà d'autut.'''",
 'yourdiff' => 'Diferense',
