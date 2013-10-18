@@ -260,7 +260,7 @@
 		);
 		assert.htmlEqual(
 			mw.message( 'mediawiki-italics-with-link' ).parse(),
-			'An <i>italicized <a title="link" href="' + mw.util.wikiGetlink( 'link' ) + '">wiki-link</i>',
+			'An <i>italicized <a title="link" href="' + mw.util.getUrl( 'link' ) + '">wiki-link</i>',
 			'Italics with link inside in parse mode'
 		);
 

@@ -54,6 +54,8 @@ changes to languages because of Bugzilla reports.
 
 === Other changes in 1.23 ===
 * The global variable $wgArticle has been removed after a lengthy deprecation
+* mediawiki.util: mw.util.wikiGetlink has been renamed to getUrl. (The old name still
+  works, but is deprecated.)
 
 == Compatibility ==
 
