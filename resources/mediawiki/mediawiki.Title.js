@@ -550,11 +550,11 @@
 		/**
 		 * Get the URL to this title
 		 *
-		 * @see mw.util#wikiGetlink
+		 * @see mw.util#getUrl
 		 * @return {string}
 		 */
 		getUrl: function () {
-			return mw.util.wikiGetlink( this.toString() );
+			return mw.util.getUrl( this.toString() );
 		},
 
 		/**
