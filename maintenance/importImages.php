@@ -230,14 +230,14 @@ if ( $count > 0 ) {
 		} else {
 			$props = FSFile::getPropsFromPath( $file );
 			$flags = 0;
-			$options = array();
+			$publicOptions = array();
 			$handler = MediaHandler::getHandler( $props['mime'] );
 			if ( $handler ) {
-				$options['headers'] = $handler->getStreamHeaders( $props['metadata'] );
+				$publicOptions['headers'] = $handler->getStreamHeaders( $props['metadata'] );
 			} else {
-				$options['headers'] = array();
+				$publicOptions['headers'] = array();
 			}
-			$archive = $image->publish( $file, $flags, $options );
+			$archive = $image->publish( $file, $flags, $publicOptions );
 			if ( !$archive->isGood() ) {
 				echo "failed. (" .
 					$archive->getWikiText() .
