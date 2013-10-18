@@ -4366,6 +4366,20 @@ $wgRestrictionLevels = array( '', 'autoconfirmed', 'sysop' );
 $wgCascadingRestrictionLevels = array( 'sysop' );
 
 /**
+ * Restriction levels that should be considered "semiprotected"
+ *
+ * Certain places in the interface recognize a dichotomy between "protected"
+ * and "semiprotected", without further distinguishing the specific levels. In
+ * general, if anyone can be eligible to edit a protection level merely by
+ * reaching some condition in $wgAutopromote, it should probably be considered
+ * "semiprotected".
+ *
+ * 'autoconfirmed' is quietly rewritten to 'editsemiprotected' for backwards compatibility.
+ * 'sysop' is not changed, since it really shouldn't be here.
+ */
+$wgSemiprotectedRestrictionLevels = array( 'autoconfirmed' );
+
+/**
  * Set the minimum permissions required to edit pages in each
  * namespace.  If you list more than one permission, a user must
  * have all of them to edit pages in that namespace.
