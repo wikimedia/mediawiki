@@ -83,9 +83,11 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 			$row = $results->next();
 		}
 		$results->free();
-		# Search is not guaranteed to return results in a certain order;
-		# sort them numerically so we will compare simply that we received
-		# the expected matches.
+		# Search is not guaranteed to return results in a certain order, or
+		# even necessarily without duplicates :)
+		# Dedupe and sort them numerically so we will compare simply that we
+		# received the expected matches.
+		$matches = array_unique( $matches );
 		sort( $matches );
 
 		return $matches;
