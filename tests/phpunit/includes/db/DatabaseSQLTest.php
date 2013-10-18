@@ -6,6 +6,9 @@
  */
 class DatabaseSQLTest extends MediaWikiTestCase {
 
+	/**
+	 * @var DatabaseTestHelper
+	 */
 	private $database;
 
 	protected function setUp() {
@@ -22,6 +25,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideSelect
+	 * @covers DatabaseBase::select
 	 */
 	function testSelect( $sql, $sqlText ) {
 		$this->database->select(
@@ -123,6 +127,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideUpdate
+	 * @covers DatabaseBase::update
 	 */
 	function testUpdate( $sql, $sqlText ) {
 		$this->database->update(
@@ -174,6 +179,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideDelete
+	 * @covers DatabaseBase::delete
 	 */
 	function testDelete( $sql, $sqlText ) {
 		$this->database->delete(
@@ -206,6 +212,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideUpsert
+	 * @covers DatabaseBase::upsert
 	 */
 	function testUpsert( $sql, $sqlText ) {
 		$this->database->upsert(
@@ -241,6 +248,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideDeleteJoin
+	 * @covers DatabaseBase::deleteJoin
 	 */
 	function testDeleteJoin( $sql, $sqlText ) {
 		$this->database->deleteJoin(
@@ -287,6 +295,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideInsert
+	 * @covers DatabaseBase::insert
 	 */
 	function testInsert( $sql, $sqlText ) {
 		$this->database->insert(
@@ -339,6 +348,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideInsertSelect
+	 * @covers DatabaseBase::insertSelect
 	 */
 	function testInsertSelect( $sql, $sqlText ) {
 		$this->database->insertSelect(
@@ -401,6 +411,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideReplace
+	 * @covers DatabaseBase::replace
 	 */
 	function testReplace( $sql, $sqlText ) {
 		$this->database->replace(
@@ -515,6 +526,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideNativeReplace
+	 * @covers DatabaseBase::nativeReplace
 	 */
 	function testNativeReplace( $sql, $sqlText ) {
 		$this->database->nativeReplace(
@@ -541,6 +553,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideConditional
+	 * @covers DatabaseBase::conditional
 	 */
 	function testConditional( $sql, $sqlText ) {
 		$this->assertEquals( trim( $this->database->conditional(
@@ -581,6 +594,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideBuildConcat
+	 * @covers DatabaseBase::buildConcat
 	 */
 	function testBuildConcat( $stringList, $sqlText ) {
 		$this->assertEquals( trim( $this->database->buildConcat(
@@ -603,6 +617,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideBuildLike
+	 * @covers DatabaseBase::buildLike
 	 */
 	function testBuildLike( $array, $sqlText ) {
 		$this->assertEquals( trim( $this->database->buildLike(
@@ -633,6 +648,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideUnionQueries
+	 * @covers DatabaseBase::unionQueries
 	 */
 	function testUnionQueries( $sql, $sqlText ) {
 		$this->assertEquals( trim( $this->database->unionQueries(
@@ -667,24 +683,36 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * @covers DatabaseBase::commit
+	 */
 	function testTransactionCommit() {
 		$this->database->begin( __METHOD__ );
 		$this->database->commit( __METHOD__ );
 		$this->assertLastSql( 'BEGIN; COMMIT' );
 	}
 
+	/**
+	 * @covers DatabaseBase::rollback
+	 */
 	function testTransactionRollback() {
 		$this->database->begin( __METHOD__ );
 		$this->database->rollback( __METHOD__ );
 		$this->assertLastSql( 'BEGIN; ROLLBACK' );
 	}
 
+	/**
+	 * @covers DatabaseBase::dropTable
+	 */
 	function testDropTable() {
 		$this->database->setExistingTables( array( 'table' ) );
 		$this->database->dropTable( 'table', __METHOD__ );
 		$this->assertLastSql( 'DROP TABLE table' );
 	}
 
+	/**
+	 * @covers DatabaseBase::dropTable
+	 */
 	function testDropNonExistingTable() {
 		$this->assertFalse(
 			$this->database->dropTable( 'non_existing', __METHOD__ )
