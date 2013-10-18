@@ -493,6 +493,8 @@ changes to languages because of Bugzilla reports.
   to the Vector skin in core.
 * SpecialRecentChanges::addRecentChangesJS() function has been renamed
   to addModules() and made protected.
+* The JavaScript mw.util.wikiGetlink function has been renamed to getUrl.
+  (The old name still works, but is deprecated.)
 
 == Compatibility ==
 

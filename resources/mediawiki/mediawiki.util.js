@@ -165,7 +165,7 @@
 		 *     e.g. { action: 'edit' }. Optional.
 		 * @return {string} Location for a page with name of `str` or boolean false on error.
 		 */
-		wikiGetlink: function ( str, params ) {
+		getUrl: function ( str, params ) {
 			var url = mw.config.get( 'wgArticlePath' ).replace( '$1',
 				util.wikiUrlencode( typeof str === 'string' ? str : mw.config.get( 'wgPageName' ) ) );
 			if ( params && !$.isEmptyObject( params ) ) {
@@ -608,6 +608,8 @@
 				&& address.search( /::/ ) !== -1 && address.search( /::.*::/ ) === -1;
 		}
 	};
+
+	mw.log.deprecate( util, 'wikiGetlink', util.getUrl, 'Use mw.util.getUrl instead.' );
 
 	mw.util = util;
 
