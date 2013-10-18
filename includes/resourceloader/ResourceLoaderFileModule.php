@@ -241,7 +241,11 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 				case 'dependencies':
 				case 'messages':
 				case 'targets':
-					$this->{$member} = (array)$option;
+					// Normalise
+					$option = array_values( array_unique( (array)$option ) );
+					sort( $option );
+
+					$this->{$member} = $option;
 					break;
 				// Single strings
 				case 'group':
@@ -457,12 +461,47 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		wfProfileIn( __METHOD__ . '-filemtime' );
 		$filesMtime = max( array_map( array( __CLASS__, 'safeFilemtime' ), $files ) );
 		wfProfileOut( __METHOD__ . '-filemtime' );
+
 		$this->modifiedTime[$context->getHash()] = max(
 			$filesMtime,
-			$this->getMsgBlobMtime( $context->getLanguage() ) );
+			$this->getMsgBlobMtime( $context->getLanguage() ),
+			$this->getDefinitionMtime( $context )
+		);
 
 		wfProfileOut( __METHOD__ );
 		return $this->modifiedTime[$context->getHash()];
+	}
+
+	/**
+	 * Get the definition summary for this module.
+	 *
+	 * @return Array
+	 */
+	public function getDefinitionSummary( ResourceLoaderContext $context ) {
+		$summary = array(
+			'class' => get_class( $this ),
+		);
+		foreach ( array(
+			'scripts',
+			'debugScripts',
+			'loaderScripts',
+			'styles',
+			'languageScripts',
+			'skinScripts',
+			'skinStyles',
+			'dependencies',
+			'messages',
+			'targets',
+			'group',
+			'position',
+			'localBasePath',
+			'remoteBasePath',
+			'debugRaw',
+			'raw',
+		) as $member ) {
+			$summary[$member] = $this->{$member};
+		};
+		return $summary;
 	}
 
 	/* Protected Methods */

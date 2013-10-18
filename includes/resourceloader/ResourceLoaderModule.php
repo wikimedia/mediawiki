@@ -398,7 +398,8 @@ abstract class ResourceLoaderModule {
 	 * Helper method for calculating when the module's hash (if it has one) changed.
 	 *
 	 * @param ResourceLoaderContext $context
-	 * @return integer: UNIX timestamp or 0 if there is no hash provided
+	 * @return integer: UNIX timestamp or 0 if no hash was provided
+	 *  by getModifiedHash()
 	 */
 	public function getHashMtime( ResourceLoaderContext $context ) {
 		$hash = $this->getModifiedHash( $context );
@@ -425,14 +426,80 @@ abstract class ResourceLoaderModule {
 	}
 
 	/**
-	 * Get the last modification timestamp of the message blob for this
-	 * module in a given language.
+	 * Get the hash for whatever this module may contain.
+	 *
+	 * This is the method subclasses should implement if they want to make
+	 * use of getHashMTime() inside getModifiedTime().
 	 *
 	 * @param ResourceLoaderContext $context
 	 * @return string|null: Hash
 	 */
 	public function getModifiedHash( ResourceLoaderContext $context ) {
 		return null;
+	}
+
+	/**
+	 * Helper method for calculating when the module's definition changed.
+	 * @return integer: UNIX timestamp or 0 if no definition summary was provided
+	 *  by getDefinitionSummary()
+	 */
+	public function getDefinitionMtime( ResourceLoaderContext $context ) {
+		$summary = $this->getDefinitionSummary( $context );
+		if ( $summary === null ) {
+			return 0;
+		}
+
+		$hash = md5( json_encode( $summary ) );
+
+		$cache = wfGetCache( CACHE_ANYTHING );
+		$key = wfMemcKey( 'resourceloader', 'moduleDefinition', $this->getName(), $context->getHash() );
+
+		$data = $cache->get( $key );
+		if ( is_array( $data ) && $data['hash'] === $hash ) {
+			// Hash is still the same, re-use the timestamp of when we first saw this hash.
+			return $data['timestamp'];
+		}
+
+		$timestamp = wfTimestamp();
+		$cache->set( $key, array(
+			'hash' => $hash,
+			'timestamp' => $timestamp,
+		) );
+
+		return $timestamp;
+
+	}
+
+	/**
+	 * Get the definition summary for this module.
+	 *
+	 * This is the method subclasses should implement if they want to make
+	 * use of getDefinitionMTime() inside getModifiedTime().
+	 *
+	 * Return an array of all the significant values that should influence the
+	 * invalidation of its cache. For a module concatenating files, the order matters.
+	 * So it should include the list of file paths here in the order used. That
+	 * way, the module will expire when you re-order or remove files even if the
+	 * aggregated getModifiedTime() of all files remains the same (bug ##).
+	 *
+	 * Avoid including things that are insiginificant (e.g. order of message
+	 * keys is insignificant and should be sorted to avoid unnecessary cache
+	 * invalidation).
+	 *
+	 * Avoid including things already considered by other methods inside your
+	 * getModifiedTime(), such as file mtime timestamps.
+	 *
+	 * Serialisation is done using json_encode, which means object state is not
+	 * taken into account when building the hash. This data structure must only
+	 * contain arrays and scalars as values (avoid object instances) which means
+	 * it requires abstraction.
+	 *
+	 * @return Array|null
+	 */
+	public function getDefinitionSummary( ResourceLoaderContext $context ) {
+		return array(
+			'class' => get_class( $this ),
+		);
 	}
 
 	/**

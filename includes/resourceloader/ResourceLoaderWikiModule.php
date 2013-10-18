@@ -180,8 +180,24 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 		if ( count( $mtimes ) ) {
 			$modifiedTime = max( $modifiedTime, max( $mtimes ) );
 		}
-		$modifiedTime = max( $modifiedTime, $this->getMsgBlobMtime( $context->getLanguage() ) );
+		$modifiedTime = max(
+			$modifiedTime,
+			$this->getMsgBlobMtime( $context->getLanguage() ),
+			$this->getDefinitionMtime( $context )
+		);
 		return $modifiedTime;
+	}
+
+	/**
+	 * Get the definition summary for this module.
+	 *
+	 * @return Array
+	 */
+	public function getDefinitionSummary( ResourceLoaderContext $context ) {
+		return array(
+			'class' => get_class( $this ),
+			'pages' => $this->getPages( $context ),
+		);
 	}
 
 	/**
