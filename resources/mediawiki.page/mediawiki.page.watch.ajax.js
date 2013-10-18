@@ -161,7 +161,7 @@
 					cleanTitle = title.replace( /_/g, ' ' );
 					link = mw.html.element(
 						'a', {
-							href: mw.util.wikiGetlink( title ),
+							href: mw.util.getUrl( title ),
 							title: cleanTitle
 						}, cleanTitle
 					);
