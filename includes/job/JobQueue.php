@@ -40,7 +40,6 @@ abstract class JobQueue {
 	protected $dupCache;
 
 	const QOS_ATOMIC = 1; // integer; "all-or-nothing" job insertions
-	const QoS_Atomic = 1; // integer; "all-or-nothing" job insertions (b/c)
 
 	const ROOTJOB_TTL = 2419200; // integer; seconds to remember root jobs (28 days)
 
