@@ -246,6 +246,8 @@ production.
   tables.
 * Added $wgEnableParserLimitReporting to control whether the NewPP limit report is
   output in a HTML comment.
+* The 'UnwatchArticle' and 'WatchArticle' hooks now support a Status object
+  instead of just a boolean return value to abort the hook.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
@@ -369,7 +371,7 @@ production.
   user blocks.
 * (bug 48201) action=parse&text=foo now assumes wikitext if no title is given,
   rather than using the content model of the page "API".
-* action=watch may now return errors.
+* action=watch no longer silently ignores hook abort.
 * (bug 50785) action=purge with forcelinkupdate=1 no longer queues refreshLinks
   jobs in the job queue for link table updates of pages that use the given page
   as a template. Instead, forcerecursivelinkupdate=1 is introduced and should
@@ -498,6 +500,8 @@ changes to languages because of Bugzilla reports.
   to the Vector skin in core.
 * SpecialRecentChanges::addRecentChangesJS() function has been renamed
   to addModules() and made protected.
+* Methods WatchAction::doWatch and WatchAction::doUnwatch now return a Status
+  object instead of a boolean.
 
 == Compatibility ==
 
