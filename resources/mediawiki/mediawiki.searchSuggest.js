@@ -164,7 +164,10 @@
 				// make sure paste and cut events from the mouse and drag&drop events
 				// trigger the keypress handler and cause the suggestions to update
 				$( this ).trigger( 'keypress' );
-			} );
+			} )
+			// If the forms include any fulltext search thingies, remove them as they
+			// would interfere with selecting suggestions
+			.closest( 'form' ).find( '[name="fulltext"]' ).remove();
 
 		// Ensure that the thing is actually present!
 		if ( $searchRegion.length === 0 ) {

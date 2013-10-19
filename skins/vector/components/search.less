@@ -1,21 +1,20 @@
 /* Search */
+#p-search h3 {
+	display: none;
+}
 #p-search {
 	/* @noflip */
 	float: left;
+}
+#p-search {
 	margin-right: 0.5em;
 	margin-left: 0.5em;
-
-	h3 {
-		display: none;
-	}
-
-	form,
-	input {
-		margin: 0;
-		margin-top: 0.4em;
-	}
 }
-
+#p-search form,
+#p-search input {
+	margin: 0;
+	margin-top: 0.4em;
+}
 div#simpleSearch {
 	display: block;
 	width: 14em;
@@ -29,75 +28,98 @@ div#simpleSearch {
 	.background-image('images/search-fade.png');
 	background-position: top left;
 	background-repeat: repeat-x;
+}
+/* Styles for both the search input and the button */
+div#simpleSearch input {
+	position: absolute;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	color: black;
+	background-color: transparent;
+}
+/* The search input */
+div#simpleSearch #searchInput {
+	top: 0;
+	left: 0;
+	width: 90%;
+	padding: 0.2em 0 0.2em 0.2em;
+	font-size: 13px;
+	direction: ltr;
+}
+div#simpleSearch #searchInput:focus {
+	outline: none;
+}
+div#simpleSearch input {
+	color: black;
+}
+div#simpleSearch #searchInput.placeholder {
+	color: #999;
+}
+div#simpleSearch #searchInput::-webkit-input-placeholder {
+	color: #999;
+}
+div#simpleSearch #searchInput:-moz-placeholder {
+	color: #999;
+}
+div#simpleSearch #searchInput:-ms-input-placeholder {
+	color: #999;
+}
+/* The buttons. They are displayed in the same position, and if both are
+   present the fulltext search one obscures the 'Go' one. */
+div#simpleSearch #searchButton,
+div#simpleSearch #mw-searchButton {
+	top: 0;
+	right: 0;
+	width: 10%;
+	height: 100%;
+	cursor: pointer;
+	/* Hide button text and replace it with the image. */
+	text-indent: 100%;
+	/* Needed to make IE6 respect the text-indent. */
+	line-height: 1;
+	/* Opera 12 on RTL flips the text in a funny way without this. */
+	/* @noflip */
+	direction: ltr;
+	white-space: nowrap;
+	overflow: hidden;
+	/* @embed */
+	background: transparent url(images/search-ltr.png) center center no-repeat;
+}
+div#simpleSearch #mw-searchButton {
+	z-index: 1;
+}
 
-	input {
-		color: black;
-		&:focus {
-			outline: none;
-		}
-
-		// These rules MAY NOT be merged because of how CSS requires browsers
-		// to parse unrecognized selectors!
-		&.placeholder {
-			color: #999;
-		}
-		&:-ms-input-placeholder {
-			color: #999;
-		}
-		&:-moz-placeholder {
-			color: #999;
-		}
-		&::-webkit-input-placeholder {
-			color: #999;
-		}
-
-		&#searchInput {
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 90%;
-			margin: 0;
-			padding: 0;
-			padding-left: 0.2em;
-			padding-top: 0.2em;
-			padding-bottom: 0.2em;
-			outline: none;
-			border: none;
-			/*
-			 * DON'T PANIC! Browsers that won't scale this properly are the same browsers that have JS issues that prevent
-			 * this from ever being shown anyways.
-			*/
-			font-size: 13px;
-			background-color: transparent;
-			direction: ltr;
-		}
-	}
-
-	button#searchButton {
-		position: absolute;
-		width: 10%;
-		right: 0;
-		top: 0;
-		padding: 0;
-		padding-top: 0.3em;
-		padding-bottom: 0.2em;
-		padding-right: 0.4em;
-		margin: 0;
-		border: none;
-		cursor: pointer;
-		background-color: transparent;
-		background-image: none;
-
-		/* OVERRIDDEN BY COMPLIANT BROWSERS */
-		img {
-			border: none;
-			margin: 0;
-			margin-top: -3px;
-			padding: 0;
-		}
-		/* IGNORED BY IE6 */
-		> img {
-			margin: 0;
-		}
-	}
+/* The following styles exist only for backwards-compatibility with
+ * cached HTML and are to be removed before 1.22 release. */
+/* Fix direction changed for awful hacks */
+.sitedir-ltr div#simpleSearch button#searchButton {
+	/* @noflip */
+	direction: ltr;
+}
+.sitedir-rtl div#simpleSearch button#searchButton {
+	/* @noflip */
+	direction: rtl;
+}
+div#simpleSearch button#searchButton {
+	position: absolute;
+	padding: 0;
+	padding-top: 0.3em;
+	padding-bottom: 0.2em;
+	padding-right: 0.4em;
+	margin: 0;
+	border: none;
+	background-image: none;
+	text-indent: 0;
+}
+/* OVERRIDDEN BY COMPLIANT BROWSERS */
+div#simpleSearch button#searchButton img {
+	border: none;
+	margin: 0;
+	margin-top: -3px;
+	padding: 0;
+}
+/* IGNORED BY IE6 */
+div#simpleSearch button#searchButton > img {
+	margin: 0;
 }
