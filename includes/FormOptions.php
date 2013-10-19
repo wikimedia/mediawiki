@@ -144,10 +144,10 @@ class FormOptions implements ArrayAccess {
 	/**
 	 * Use to set the value of an option.
 	 *
-	 * @param string $name option name
-	 * @param mixed $value value for the option
-	 * @param bool $force Whether to set the value when it is equivalent to
-	 * the default value for this option (default false).
+	 * @param string $name Option name
+	 * @param mixed $value Value for the option
+	 * @param bool $force Whether to set the value when it is equivalent to the default value for this
+	 *     option (default false).
 	 */
 	public function setValue( $name, $value, $force = false ) {
 		$this->validateName( $name, true );
@@ -161,10 +161,9 @@ class FormOptions implements ArrayAccess {
 	}
 
 	/**
-	 * Get the value for the given option name.
-	 * Internally use getValueReal()
+	 * Get the value for the given option name. Uses getValueReal() internally.
 	 *
-	 * @param string $name option name
+	 * @param string $name Option name
 	 * @return mixed
 	 */
 	public function getValue( $name ) {
@@ -174,9 +173,10 @@ class FormOptions implements ArrayAccess {
 	}
 
 	/**
-	 * @todo Document
-	 * @param array $option array structure describing the option
-	 * @return mixed Value or the default value if it is null
+	 * Return current option value, based on a structure taken from $options.
+	 *
+	 * @param array $option Array structure describing the option
+	 * @return mixed Value, or the default value if it is null
 	 */
 	protected function getValueReal( $option ) {
 		if ( $option['value'] !== null ) {
