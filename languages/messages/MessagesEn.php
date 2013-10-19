@@ -874,7 +874,7 @@ future releases. Also note that since each list value is wrapped in a unique
 'articlepage'        => 'View content page',
 'talk'               => 'Discussion',
 'views'              => 'Views',
-'toolbox'            => 'Toolbox',
+'toolbox'            => 'Tools',
 'userpage'           => 'View user page',
 'projectpage'        => 'View project page',
 'imagepage'          => 'View file page',
