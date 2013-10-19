@@ -300,6 +300,8 @@ class ThumbnailImage extends MediaTransformOutput {
 	 *     desc-query   String, description link query params
 	 *     override-width     Override width attribute. Should generally not set
 	 *     override-height    Override height attribute. Should generally not set
+	 *     no-dimensions      Boolean, skip width and height attributes (useful if
+	 *                        set in CSS)
 	 *     custom-url-link    Custom URL to link to
 	 *     custom-title-link  Custom Title object to link to
 	 *     custom target-link Value of the target attribute, for custom-target-link
@@ -352,9 +354,11 @@ class ThumbnailImage extends MediaTransformOutput {
 		$attribs = array(
 			'alt' => $alt,
 			'src' => $this->url,
-			'width' => $this->width,
-			'height' => $this->height
 		);
+		if ( empty( $options['no-dimensions'] ) ) {
+			$attribs['width'] = $this->width;
+			$attribs['height'] = $this->height;
+		}
 		if ( !empty( $options['valign'] ) ) {
 			$attribs['style'] = "vertical-align: {$options['valign']}";
 		}
