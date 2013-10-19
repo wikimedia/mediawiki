@@ -403,9 +403,12 @@ Simple list
 * Item 1
 * Item 2
 !! result
-<ul><li> Item 1
-</li><li> Item 2
-</li></ul>
+<ul>
+<li> Item 1
+</li>
+<li> Item 2
+</li>
+</ul>
 
 !! end
 
@@ -428,22 +431,38 @@ Italics and bold
 * plain l'''italic''plain
 * plain l''''bold''' plain
 !! result
-<ul><li> plain
-</li><li> plain<i>italic</i>plain
-</li><li> plain<i>italic</i>plain<i>italic</i>plain
-</li><li> plain<b>bold</b>plain
-</li><li> plain<b>bold</b>plain<b>bold</b>plain
-</li><li> plain<i>italic</i>plain<b>bold</b>plain
-</li><li> plain<b>bold</b>plain<i>italic</i>plain
-</li><li> plain<i>italic<b>bold-italic</b>italic</i>plain
-</li><li> plain<b>bold<i>bold-italic</i>bold</b>plain
-</li><li> plain<i><b>bold-italic</b>italic</i>plain
-</li><li> plain<b><i>bold-italic</i>bold</b>plain
-</li><li> plain<i>italic<b>bold-italic</b></i>plain
-</li><li> plain<b>bold<i>bold-italic</i></b>plain
-</li><li> plain l'<i>italic</i>plain
-</li><li> plain l'<b>bold</b> plain
-</li></ul>
+<ul>
+<li> plain
+</li>
+<li> plain<i>italic</i>plain
+</li>
+<li> plain<i>italic</i>plain<i>italic</i>plain
+</li>
+<li> plain<b>bold</b>plain
+</li>
+<li> plain<b>bold</b>plain<b>bold</b>plain
+</li>
+<li> plain<i>italic</i>plain<b>bold</b>plain
+</li>
+<li> plain<b>bold</b>plain<i>italic</i>plain
+</li>
+<li> plain<i>italic<b>bold-italic</b>italic</i>plain
+</li>
+<li> plain<b>bold<i>bold-italic</i>bold</b>plain
+</li>
+<li> plain<i><b>bold-italic</b>italic</i>plain
+</li>
+<li> plain<b><i>bold-italic</i>bold</b>plain
+</li>
+<li> plain<i>italic<b>bold-italic</b></i>plain
+</li>
+<li> plain<b>bold<i>bold-italic</i></b>plain
+</li>
+<li> plain l'<i>italic</i>plain
+</li>
+<li> plain l'<b>bold</b> plain
+</li>
+</ul>
 
 !! end
 
@@ -985,15 +1004,24 @@ nowiki 3
 *There is not nowiki.
 *There is <nowiki>nowiki</nowiki>.
 !! result
-<dl><dd>There is not nowiki.
-</dd><dd>There is nowiki.
-</dd></dl>
-<ol><li>There is not nowiki.
-</li><li>There is nowiki.
-</li></ol>
-<ul><li>There is not nowiki.
-</li><li>There is nowiki.
-</li></ul>
+<dl>
+<dd>There is not nowiki.
+</dd>
+<dd>There is nowiki.
+</dd>
+</dl>
+<ol>
+<li>There is not nowiki.
+</li>
+<li>There is nowiki.
+</li>
+</ol>
+<ul>
+<li>There is not nowiki.
+</li>
+<li>There is nowiki.
+</li>
+</ul>
 
 !! end
 
@@ -1747,8 +1775,10 @@ Templates: Strip leading and trailing whitespace from named-param values
 </p><p>b
 </p><p>c
 </p>
-<ul><li> d
-</li></ul>
+<ul>
+<li> d
+</li>
+</ul>
 
 !! end
 
@@ -1789,8 +1819,10 @@ Templates: Don't strip whitespace from positional-param values
 </pre>
 <p><br />
 </p>
-<ul><li> f
-</li></ul>
+<ul>
+<li> f
+</li>
+</ul>
 <p><br />
 </p>
 <pre>g
@@ -2240,8 +2272,11 @@ Simple definition
 !! input
 ; name : Definition
 !! result
-<dl><dt> name&#160;</dt><dd> Definition
-</dd></dl>
+<dl>
+<dt> name&#160;</dt>
+<dd> Definition
+</dd>
+</dl>
 
 !! end
 
@@ -2250,8 +2285,10 @@ Definition list for indentation only
 !! input
 : Indented text
 !! result
-<dl><dd> Indented text
-</dd></dl>
+<dl>
+<dd> Indented text
+</dd>
+</dl>
 
 !! end
 
@@ -2260,8 +2297,11 @@ Definition list with no space
 !! input
 ;name:Definition
 !! result
-<dl><dt>name</dt><dd>Definition
-</dd></dl>
+<dl>
+<dt>name</dt>
+<dd>Definition
+</dd>
+</dl>
 
 !!end
 
@@ -2270,8 +2310,11 @@ Definition list with URL link
 !! input
 ; http://example.com/ : definition
 !! result
-<dl><dt> <a rel="nofollow" class="external free" href="http://example.com/">http://example.com/</a>&#160;</dt><dd> definition
-</dd></dl>
+<dl>
+<dt> <a rel="nofollow" class="external free" href="http://example.com/">http://example.com/</a>&#160;</dt>
+<dd> definition
+</dd>
+</dl>
 
 !! end
 
@@ -2280,8 +2323,11 @@ Definition list with bracketed URL link
 !! input
 ;[http://www.example.com/ Example]:Something about it
 !! result
-<dl><dt><a rel="nofollow" class="external text" href="http://www.example.com/">Example</a></dt><dd>Something about it
-</dd></dl>
+<dl>
+<dt><a rel="nofollow" class="external text" href="http://www.example.com/">Example</a></dt>
+<dd>Something about it
+</dd>
+</dl>
 
 !! end
 
@@ -2290,8 +2336,11 @@ Definition list with wikilink containing colon
 !! input
 ; [[Help:FAQ]]: The least-read page on Wikipedia
 !! result
-<dl><dt> <a href="/index.php?title=Help:FAQ&amp;action=edit&amp;redlink=1" class="new" title="Help:FAQ (page does not exist)">Help:FAQ</a></dt><dd> The least-read page on Wikipedia
-</dd></dl>
+<dl>
+<dt> <a href="/index.php?title=Help:FAQ&amp;action=edit&amp;redlink=1" class="new" title="Help:FAQ (page does not exist)">Help:FAQ</a></dt>
+<dd> The least-read page on Wikipedia
+</dd>
+</dl>
 
 !! end
 
@@ -2301,8 +2350,11 @@ Definition list with news link containing colon
 !! input
 ;  news:alt.wikipedia.rox: This isn't even a real newsgroup!
 !! result
-<dl><dt>  <a rel="nofollow" class="external free" href="news:alt.wikipedia.rox">news:alt.wikipedia.rox</a></dt><dd> This isn't even a real newsgroup!
-</dd></dl>
+<dl>
+<dt>  <a rel="nofollow" class="external free" href="news:alt.wikipedia.rox">news:alt.wikipedia.rox</a></dt>
+<dd> This isn't even a real newsgroup!
+</dd>
+</dl>
 
 !! end
 
@@ -2311,8 +2363,10 @@ Malformed definition list with colon
 !! input
 ;  news:alt.wikipedia.rox -- don't crash or enter an infinite loop
 !! result
-<dl><dt>  <a rel="nofollow" class="external free" href="news:alt.wikipedia.rox">news:alt.wikipedia.rox</a> -- don't crash or enter an infinite loop
-</dt></dl>
+<dl>
+<dt>  <a rel="nofollow" class="external free" href="news:alt.wikipedia.rox">news:alt.wikipedia.rox</a> -- don't crash or enter an infinite loop
+</dt>
+</dl>
 
 !! end
 
@@ -2321,8 +2375,11 @@ Definition lists: colon in external link text
 !! input
 ; [http://www.wikipedia2.org/ Wikipedia : The Next Generation]: OK, I made that up
 !! result
-<dl><dt> <a rel="nofollow" class="external text" href="http://www.wikipedia2.org/">Wikipedia&#160;: The Next Generation</a></dt><dd> OK, I made that up
-</dd></dl>
+<dl>
+<dt> <a rel="nofollow" class="external text" href="http://www.wikipedia2.org/">Wikipedia&#160;: The Next Generation</a></dt>
+<dd> OK, I made that up
+</dd>
+</dl>
 
 !! end
 
@@ -2331,8 +2388,10 @@ Definition lists: colon in HTML attribute
 !! input
 ;<b style="display: inline">bold</b>
 !! result
-<dl><dt><b style="display: inline">bold</b>
-</dt></dl>
+<dl>
+<dt><b style="display: inline">bold</b>
+</dt>
+</dl>
 
 !! end
 
@@ -2341,8 +2400,11 @@ Definition lists: self-closed tag
 !! input
 ;one<br/>two : two-line fun
 !! result
-<dl><dt>one<br />two&#160;</dt><dd> two-line fun
-</dd></dl>
+<dl>
+<dt>one<br />two&#160;</dt>
+<dd> two-line fun
+</dd>
+</dl>
 
 !! end
 
@@ -2371,16 +2433,19 @@ Definition and unordered list using wiki syntax nested in unordered list using h
 <ul><li>
 ; term : description
 * unordered
-</li>
-</ul>
+</li></ul>
 !! result
 <ul><li>
-<dl><dt> term&#160;</dt><dd> description
-</dd></dl>
-<ul><li> unordered
-</li></ul>
+<dl>
+<dt> term&#160;</dt>
+<dd> description
+</dd>
+</dl>
+<ul>
+<li> unordered
 </li>
 </ul>
+</li></ul>
 
 !! end
 
@@ -2391,8 +2456,11 @@ Definition list with empty definition and following paragraph
 ; term:
 Paragraph text
 !! result
-<dl><dt> term</dt><dd>
-</dd></dl>
+<dl>
+<dt> term</dt>
+<dd>
+</dd>
+</dl>
 <p>Paragraph text
 </p>
 !! end
@@ -2421,10 +2489,14 @@ Definition Lists: No nesting: Multiple dd's
 :a
 :b
 !! result
-<dl><dt>x
-</dt><dd>a
-</dd><dd>b
-</dd></dl>
+<dl>
+<dt>x
+</dt>
+<dd>a
+</dd>
+<dd>b
+</dd>
+</dl>
 
 !! end
 
@@ -2435,12 +2507,18 @@ Definition Lists: Indentation: Regular
 ::i2
 :::i3
 !! result
-<dl><dd>i1
-<dl><dd>i2
-<dl><dd>i3
-</dd></dl>
-</dd></dl>
-</dd></dl>
+<dl>
+<dd>i1
+<dl>
+<dd>i2
+<dl>
+<dd>i3
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
 
 !! end
 
@@ -2450,11 +2528,17 @@ Definition Lists: Indentation: Missing 1st level
 ::i2
 :::i3
 !! result
-<dl><dd><dl><dd>i2
-<dl><dd>i3
-</dd></dl>
-</dd></dl>
-</dd></dl>
+<dl>
+<dd><dl>
+<dd>i2
+<dl>
+<dd>i3
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
 
 !! end
 
@@ -2463,10 +2547,16 @@ Definition Lists: Indentation: Multi-level indent
 !! input
 :::i3
 !! result
-<dl><dd><dl><dd><dl><dd>i3
-</dd></dl>
-</dd></dl>
-</dd></dl>
+<dl>
+<dd><dl>
+<dd><dl>
+<dd>i3
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
 
 !! end
 
@@ -2501,7 +2591,9 @@ parsoid
 |a
 |} 
 !! result
-<dl><dd> <table><tr><td>a</td></tr></table> </dd></dl>
+<dl>
+<dd> <table><tr><td>a</td></tr></table> </dd>
+</dl>
 !! end
 ## The PHP parser treats : items (dd) without a corresponding ; item (dt)
 ## as an empty dt item.  It also ignores all but the last ";" when followed
@@ -2554,13 +2646,17 @@ Table / list interaction: indented table with lists in table contents
 
 <tr>
 <td> a
-<ul><li> b
-</li></ul>
+<ul>
+<li> b
+</li>
+</ul>
 </td></tr>
 <tr>
 <td> c
-<ul><li> d
-</li></ul>
+<ul>
+<li> d
+</li>
+</ul>
 </td></tr></table></dd></dl>
 
 !! end
@@ -2583,18 +2679,27 @@ Table / list interaction: lists nested in tables nested in indented lists
 <dl><dd><table>
 <tr>
 <td>
-<dl><dd>a
-</dd><dd>b
-</dd></dl>
+<dl>
+<dd>a
+</dd>
+<dd>b
+</dd>
+</dl>
 </td>
 <td>
-<ul><li>c
-</li><li>d
-</li></ul>
+<ul>
+<li>c
+</li>
+<li>d
+</li>
+</ul>
 </td></tr></table></dd></dl>
-<ul><li>e
-</li><li>f
-</li></ul>
+<ul>
+<li>e
+</li>
+<li>f
+</li>
+</ul>
 
 !!end
 
@@ -2682,11 +2787,18 @@ Definition Lists: Nesting: Test 4
 ::;t3
 :::d3
 !! result
-<dl><dd><dl><dd><dl><dt>t3
-</dt><dd>d3
-</dd></dl>
-</dd></dl>
-</dd></dl>
+<dl>
+<dd><dl>
+<dd><dl>
+<dt>t3
+</dt>
+<dd>d3
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
 
 !! end
 
@@ -2703,13 +2815,22 @@ php
 ::* bar
 :; baz
 !! result
-<dl><dd><dl><dt><ul><li> foo
-</li><li> bar
-</li></ul>
-</dt></dl>
-<dl><dt> baz
-</dt></dl>
-</dd></dl>
+<dl>
+<dd><dl>
+<dt><ul>
+<li> foo
+</li>
+<li> bar
+</li>
+</ul>
+</dt>
+</dl>
+<dl>
+<dt> baz
+</dt>
+</dl>
+</dd>
+</dl>
 
 !! end
 !! test
@@ -2721,9 +2842,19 @@ parsoid
 ::* bar
 :; baz
 !! result
-<dl><dd><dl><dt><ul><li> foo
-</li></ul></dt><dd><ul><li> bar
-</li></ul></dd><dt> baz</dt></dl></dd></dl>
+<dl>
+<dd><dl>
+<dt><ul>
+<li> foo
+</li>
+</ul></dt>
+<dd><ul>
+<li> bar
+</li>
+</ul></dd>
+<dt> baz</dt>
+</dl></dd>
+</dl>
 !! end
 
 !! test
@@ -2732,10 +2863,15 @@ Definition Lists: Mixed Lists: Test 2
 *: d1
 *: d2
 !! result
-<ul><li><dl><dd> d1
-</dd><dd> d2
-</dd></dl>
-</li></ul>
+<ul>
+<li><dl>
+<dd> d1
+</dd>
+<dd> d2
+</dd>
+</dl>
+</li>
+</ul>
 
 !! end
 
@@ -2746,12 +2882,21 @@ Definition Lists: Mixed Lists: Test 3
 *::: d1
 *::: d2
 !! result
-<ul><li><dl><dd><dl><dd><dl><dd> d1
-</dd><dd> d2
-</dd></dl>
-</dd></dl>
-</dd></dl>
-</li></ul>
+<ul>
+<li><dl>
+<dd><dl>
+<dd><dl>
+<dd> d1
+</dd>
+<dd> d2
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+</ul>
 
 !! end
 
@@ -2762,10 +2907,17 @@ Definition Lists: Mixed Lists: Test 4
 *;d1 :d2
 *;d3 :d4
 !! result
-<ul><li><dl><dt>d1&#160;</dt><dd>d2
-</dd><dt>d3&#160;</dt><dd>d4
-</dd></dl>
-</li></ul>
+<ul>
+<li><dl>
+<dt>d1&#160;</dt>
+<dd>d2
+</dd>
+<dt>d3&#160;</dt>
+<dd>d4
+</dd>
+</dl>
+</li>
+</ul>
 
 !! end
 
@@ -2776,11 +2928,17 @@ Definition Lists: Mixed Lists: Test 5
 *:d1
 *:: d2
 !! result
-<ul><li><dl><dd>d1
-<dl><dd> d2
-</dd></dl>
-</dd></dl>
-</li></ul>
+<ul>
+<li><dl>
+<dd>d1
+<dl>
+<dd> d2
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+</ul>
 
 !! end
 
@@ -2791,13 +2949,23 @@ Definition Lists: Mixed Lists: Test 6
 #*:d1
 #*::: d3
 !! result
-<ol><li><ul><li><dl><dd>d1
-<dl><dd><dl><dd> d3
-</dd></dl>
-</dd></dl>
-</dd></dl>
-</li></ul>
-</li></ol>
+<ol>
+<li><ul>
+<li><dl>
+<dd>d1
+<dl>
+<dd><dl>
+<dd> d3
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+</ul>
+</li>
+</ol>
 
 !! end
 
@@ -2808,10 +2976,15 @@ Definition Lists: Mixed Lists: Test 7
 :* d1
 :* d2
 !! result
-<dl><dd><ul><li> d1
-</li><li> d2
-</li></ul>
-</dd></dl>
+<dl>
+<dd><ul>
+<li> d1
+</li>
+<li> d2
+</li>
+</ul>
+</dd>
+</dl>
 
 !! end
 
@@ -2822,12 +2995,20 @@ Definition Lists: Mixed Lists: Test 8
 :* d1
 ::* d2
 !! result
-<dl><dd><ul><li> d1
-</li></ul>
-<dl><dd><ul><li> d2
-</li></ul>
-</dd></dl>
-</dd></dl>
+<dl>
+<dd><ul>
+<li> d1
+</li>
+</ul>
+<dl>
+<dd><ul>
+<li> d2
+</li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
 
 !! end
 
@@ -2837,9 +3018,14 @@ Definition Lists: Mixed Lists: Test 9
 !! input
 *;foo :bar
 !! result
-<ul><li><dl><dt>foo&#160;</dt><dd>bar
-</dd></dl>
-</li></ul>
+<ul>
+<li><dl>
+<dt>foo&#160;</dt>
+<dd>bar
+</dd>
+</dl>
+</li>
+</ul>
 
 !! end
 
@@ -2849,10 +3035,17 @@ Definition Lists: Mixed Lists: Test 10
 !! input
 *#;foo :bar
 !! result
-<ul><li><ol><li><dl><dt>foo&#160;</dt><dd>bar
-</dd></dl>
-</li></ol>
-</li></ul>
+<ul>
+<li><ol>
+<li><dl>
+<dt>foo&#160;</dt>
+<dd>bar
+</dd>
+</dl>
+</li>
+</ol>
+</li>
+</ul>
 
 !! end
 
@@ -2869,17 +3062,37 @@ php
 *#*#;*;;foo :bar
 *#*#;boo :baz
 !! result
-<ul><li><ol><li><ul><li><ol><li><dl><dt>foo&#160;</dt><dd><ul><li><dl><dt><dl><dt>bar
-</dt></dl>
-</dd></dl>
-</li></ul>
-</dd></dl>
-<dl><dt>boo&#160;</dt><dd>baz
-</dd></dl>
-</li></ol>
-</li></ul>
-</li></ol>
-</li></ul>
+<ul>
+<li><ol>
+<li><ul>
+<li><ol>
+<li><dl>
+<dt>foo&#160;</dt>
+<dd><ul>
+<li><dl>
+<dt><dl>
+<dt>bar
+</dt>
+</dl>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+<dl>
+<dt>boo&#160;</dt>
+<dd>baz
+</dd>
+</dl>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
 
 !! end
 !! test
@@ -2906,9 +3119,17 @@ parsoid
 <dt>
 <dl>
 <dt>foo<span typeof="mw:Placeholder" data-parsoid='{"src":" "}'>&nbsp;</span></dt>
-<dd data-parsoid='{"stx":"row"}'>bar</dd></dl></dt></dl></li></ul></dt>
+<dd data-parsoid='{"stx":"row"}'>bar</dd>
+</dl></dt>
+</dl></li>
+</ul></dt>
 <dt>boo<span typeof="mw:Placeholder" data-parsoid='{"src":" "}'>&nbsp;</span></dt>
-<dd data-parsoid='{"stx":"row"}'>baz</dd></dl></li></ol></li></ul></li></ol></li></ul>
+<dd data-parsoid='{"stx":"row"}'>baz</dd>
+</dl></li>
+</ol></li>
+</ul></li>
+</ol></li>
+</ul>
 !! end
 
 
@@ -2919,15 +3140,32 @@ php
 !! input
 *#;*::;; foo : bar (who uses this?)
 !! result
-<ul><li><ol><li><dl><dt> foo&#160;</dt><dd><ul><li><dl><dd><dl><dd><dl><dt><dl><dt> bar (who uses this?)
-</dt></dl>
-</dd></dl>
-</dd></dl>
-</dd></dl>
-</li></ul>
-</dd></dl>
-</li></ol>
-</li></ul>
+<ul>
+<li><ol>
+<li><dl>
+<dt> foo&#160;</dt>
+<dd><ul>
+<li><dl>
+<dd><dl>
+<dd><dl>
+<dt><dl>
+<dt> bar (who uses this?)
+</dt>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+</li>
+</ul>
 
 !! end
 !! test
@@ -2953,7 +3191,15 @@ parsoid
 <dt>
 <dl>
 <dt> foo<span typeof="mw:Placeholder" data-parsoid='{"src":" "}'>&nbsp;</span></dt>
-<dd data-parsoid='{"stx":"row"}'> bar (who uses this?)</dd></dl></dt></dl></dd></dl></dd></dl></li></ul></dt></dl></li></ol></li></ul>
+<dd data-parsoid='{"stx":"row"}'> bar (who uses this?)</dd>
+</dl></dt>
+</dl></dd>
+</dl></dd>
+</dl></li>
+</ul></dt>
+</dl></li>
+</ol></li>
+</ul>
 !! end
 
 ###
@@ -4427,7 +4673,9 @@ parsoid=wt2html,wt2wt
 !! result
 <table>
 <tr>
-<td><ul><li>a</li></ul></td>
+<td><ul>
+<li>a</li>
+</ul></td>
 </tr>
 </table>
 !! end
@@ -5111,9 +5359,12 @@ Interwiki link encoding conversion (bug 1636)
 *[[Wikipedia:ro:Olteni&#0355;a]]
 *[[Wikipedia:ro:Olteni&#355;a]]
 !! result
-<ul><li><a href="http://en.wikipedia.org/wiki/ro:Olteni%C5%A3a" class="extiw" title="wikipedia:ro:Olteniţa">Wikipedia:ro:Olteni&#355;a</a>
-</li><li><a href="http://en.wikipedia.org/wiki/ro:Olteni%C5%A3a" class="extiw" title="wikipedia:ro:Olteniţa">Wikipedia:ro:Olteni&#355;a</a>
-</li></ul>
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/ro:Olteni%C5%A3a" class="extiw" title="wikipedia:ro:Olteniţa">Wikipedia:ro:Olteni&#355;a</a>
+</li>
+<li><a href="http://en.wikipedia.org/wiki/ro:Olteni%C5%A3a" class="extiw" title="wikipedia:ro:Olteniţa">Wikipedia:ro:Olteni&#355;a</a>
+</li>
+</ul>
 
 !! end
 
@@ -5541,10 +5792,14 @@ Common list
 * item 2
 *item 3
 !! result
-<ul><li>Common list
-</li><li> item 2
-</li><li>item 3
-</li></ul>
+<ul>
+<li>Common list
+</li>
+<li> item 2
+</li>
+<li>item 3
+</li>
+</ul>
 
 !! end
 
@@ -5555,10 +5810,14 @@ Numbered list
 #item 2
 # item 3
 !! result
-<ol><li>Numbered list
-</li><li>item 2
-</li><li> item 3
-</li></ol>
+<ol>
+<li>Numbered list
+</li>
+<li>item 2
+</li>
+<li> item 3
+</li>
+</ol>
 
 !! end
 
@@ -5581,35 +5840,67 @@ Mixed list
 *** Level 3
 #** Level 3, but ordered
 !! result
-<ul><li>Mixed list
-<ol><li> with numbers
-</li></ol>
-<ul><li> and bullets
-</li></ul>
-<ol><li> and numbers
-</li></ol>
-</li><li>bullets again
-<ul><li>bullet level 2
-<ul><li>bullet level 3
-<ol><li>Number on level 4
-</li></ol>
-</li></ul>
-</li><li>bullet level 2
-<ol><li>Number on level 3
-</li><li>Number on level 3
-</li></ol>
-</li></ul>
-<ol><li>number level 2
-</li></ol>
-</li><li>Level 1
-<ul><li><ul><li> Level 3
-</li></ul>
-</li></ul>
-</li></ul>
-<ol><li><ul><li><ul><li> Level 3, but ordered
-</li></ul>
-</li></ul>
-</li></ol>
+<ul>
+<li>Mixed list
+<ol>
+<li> with numbers
+</li>
+</ol>
+<ul>
+<li> and bullets
+</li>
+</ul>
+<ol>
+<li> and numbers
+</li>
+</ol>
+</li>
+<li>bullets again
+<ul>
+<li>bullet level 2
+<ul>
+<li>bullet level 3
+<ol>
+<li>Number on level 4
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>bullet level 2
+<ol>
+<li>Number on level 3
+</li>
+<li>Number on level 3
+</li>
+</ol>
+</li>
+</ul>
+<ol>
+<li>number level 2
+</li>
+</ol>
+</li>
+<li>Level 1
+<ul>
+<li><ul>
+<li> Level 3
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li><ul>
+<li><ul>
+<li> Level 3, but ordered
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
 
 !! end
 
@@ -5619,10 +5910,14 @@ Nested lists 1
 *foo
 **bar
 !! result
-<ul><li>foo
-<ul><li>bar
-</li></ul>
-</li></ul>
+<ul>
+<li>foo
+<ul>
+<li>bar
+</li>
+</ul>
+</li>
+</ul>
 
 !! end
 
@@ -5632,10 +5927,15 @@ Nested lists 2
 **foo
 *bar
 !! result
-<ul><li><ul><li>foo
-</li></ul>
-</li><li>bar
-</li></ul>
+<ul>
+<li><ul>
+<li>foo
+</li>
+</ul>
+</li>
+<li>bar
+</li>
+</ul>
 
 !! end
 
@@ -5645,10 +5945,14 @@ Nested lists 3 (first element empty)
 *
 **bar
 !! result
-<ul><li>
-<ul><li>bar
-</li></ul>
-</li></ul>
+<ul>
+<li>
+<ul>
+<li>bar
+</li>
+</ul>
+</li>
+</ul>
 
 !! end
 
@@ -5658,10 +5962,15 @@ Nested lists 4 (first element empty)
 **
 *bar
 !! result
-<ul><li><ul><li>
-</li></ul>
-</li><li>bar
-</li></ul>
+<ul>
+<li><ul>
+<li>
+</li>
+</ul>
+</li>
+<li>bar
+</li>
+</ul>
 
 !! end
 
@@ -5671,10 +5980,15 @@ Nested lists 5 (both elements empty)
 **
 *
 !! result
-<ul><li><ul><li>
-</li></ul>
-</li><li>
-</li></ul>
+<ul>
+<li><ul>
+<li>
+</li>
+</ul>
+</li>
+<li>
+</li>
+</ul>
 
 !! end
 
@@ -5684,10 +5998,14 @@ Nested lists 6 (both elements empty)
 *
 **
 !! result
-<ul><li>
-<ul><li>
-</li></ul>
-</li></ul>
+<ul>
+<li>
+<ul>
+<li>
+</li>
+</ul>
+</li>
+</ul>
 
 !! end
 
@@ -5696,10 +6014,16 @@ Nested lists 7 (skip initial nesting levels)
 !! input
 *** foo
 !! result
-<ul><li><ul><li><ul><li> foo
-</li></ul>
-</li></ul>
-</li></ul>
+<ul>
+<li><ul>
+<li><ul>
+<li> foo
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
 !! end
 
@@ -5711,13 +6035,21 @@ Nested lists 8 (multiple nesting transitions)
 ** baz
 * boo
 !! result
-<ul><li> foo
-<ul><li><ul><li> bar
-</li></ul>
-</li><li> baz
-</li></ul>
-</li><li> boo
-</li></ul>
+<ul>
+<li> foo
+<ul>
+<li><ul>
+<li> bar
+</li>
+</ul>
+</li>
+<li> baz
+</li>
+</ul>
+</li>
+<li> boo
+</li>
+</ul>
 
 !! end
 
@@ -5728,10 +6060,14 @@ Nested lists 8 (multiple nesting transitions)
 *<!--cmt-->bar
 <!--cmt-->*baz
 !! result
-<ul><li>foo
-</li><li>bar
-</li><li>baz
-</li></ul>
+<ul>
+<li>foo
+</li>
+<li>bar
+</li>
+<li>baz
+</li>
+</ul>
 
 !! end
 
@@ -5741,9 +6077,12 @@ Nested lists 8 (multiple nesting transitions)
 *foo {{echo|bar
 }}*baz
 !! result
-<ul><li>foo bar
-</li><li>baz
-</li></ul>
+<ul>
+<li>foo bar
+</li>
+<li>baz
+</li>
+</ul>
 
 !! end
 
@@ -5754,10 +6093,14 @@ List items are not parsed correctly following a <pre> block (bug 785)
 * <pre>bar</pre>
 * zar
 !! result
-<ul><li> <pre>foo</pre>
-</li><li> <pre>bar</pre>
-</li><li> zar
-</li></ul>
+<ul>
+<li> <pre>foo</pre>
+</li>
+<li> <pre>bar</pre>
+</li>
+<li> zar
+</li>
+</ul>
 
 !! end
 
@@ -5776,18 +6119,30 @@ List items from template
 * notSOL{{inner list}}
 * item 2
 !! result
-<ul><li> item 1
-</li><li> item 2
-</li></ul>
-<ul><li> item 0
-</li><li> item 1
-</li><li> item 2
-</li></ul>
-<ul><li> item 0
-</li><li> notSOL
-</li><li> item 1
-</li><li> item 2
-</li></ul>
+<ul>
+<li> item 1
+</li>
+<li> item 2
+</li>
+</ul>
+<ul>
+<li> item 0
+</li>
+<li> item 1
+</li>
+<li> item 2
+</li>
+</ul>
+<ul>
+<li> item 0
+</li>
+<li> notSOL
+</li>
+<li> item 1
+</li>
+<li> item 2
+</li>
+</ul>
 
 !! end
 
@@ -5800,14 +6155,22 @@ List interrupted by empty line or heading
 == A heading ==
 * Another list item
 !! result
-<ul><li> foo
-</li></ul>
-<ul><li><ul><li> bar
-</li></ul>
-</li></ul>
+<ul>
+<li> foo
+</li>
+</ul>
+<ul>
+<li><ul>
+<li> bar
+</li>
+</ul>
+</li>
+</ul>
 <h2><span class="mw-headline" id="A_heading">A heading</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: A heading">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-<ul><li> Another list item
-</li></ul>
+<ul>
+<li> Another list item
+</li>
+</ul>
 
 !!end
 
@@ -5837,11 +6200,16 @@ Single-comment whitespace lines dont break lists, and neither do multi-comment w
  <!--foo--> <!----> <!--This line NOT split the list either--> 
 *d
 !!result
-<ul><li>a
-</li><li>b
-</li><li>c
-</li><li>d
-</li></ul>
+<ul>
+<li>a
+</li>
+<li>b
+</li>
+<li>c
+</li>
+<li>d
+</li>
+</ul>
 
 !!end
 
@@ -5857,11 +6225,16 @@ Replacing whitespace with tabs still doesn't break the list (gerrit 78327)
         either-->	 
 *d
 !!result
-<ul><li>a
-</li><li>b
-</li><li>c
-</li><li>d
-</li></ul>
+<ul>
+<li>a
+</li>
+<li>b
+</li>
+<li>c
+</li>
+<li>d
+</li>
+</ul>
 
 !!end
 
@@ -5881,13 +6254,17 @@ parsoid=wt2html,wt2wt
 </li>
 </ul>
 !!result
-<ul><li> foo</li>
+<ul>
+<li> foo</li>
 <li>li-hack</li>
 <li about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"<li>templated li-hack"}}}}]}'>templated li-hack</li>
-<li> <!--foo--> </li><li> li-hack with preceding comments</li></ul>
+<li> <!--foo--> </li>
+<li> li-hack with preceding comments</li>
+</ul>
 
 <ul>
-<li></li><li>not a li-hack
+<li></li>
+<li>not a li-hack
 </li>
 </ul>
 !!end
@@ -5904,7 +6281,19 @@ parsoid
 : foo
 :: bar
 !! result
-<ol><li> foo<ol><li> bar</li></ol></li></ol><ul><li> foo<ul><li> bar</li></ul></li></ul><dl><dd> foo<dl><dd> bar</dd></dl></dd></dl>
+<ol>
+<li> foo<ol>
+<li> bar</li>
+</ol></li>
+</ol><ul>
+<li> foo<ul>
+<li> bar</li>
+</ul></li>
+</ul><dl>
+<dd> foo<dl>
+<dd> bar</dd>
+</dl></dd>
+</dl>
 !! end
 
 !! test
@@ -5935,10 +6324,14 @@ parsoid
 *b</div>
 !! result
 <div>
-<ul><li>a
-</li></ul></div><div>
-<ul><li>b
-</li></ul></div>
+<ul>
+<li>a
+</li>
+</ul></div><div>
+<ul>
+<li>b
+</li>
+</ul></div>
 !! end
 
 !! test
@@ -5953,9 +6346,12 @@ parsoid
 !! result
 <p><span></span>
 </p>
-<ul><li>a<span></span>
-</li><li>b
-</li></ul>
+<ul>
+<li>a<span></span>
+</li>
+<li>b
+</li>
+</ul>
 !! end
 
 !! test
@@ -5967,9 +6363,12 @@ parsoid
 # <s> a
 # b </s>
 !! result
-<ol><li> <s> a </s>
-</li><li> <s> b </s>
-</li></ol>
+<ol>
+<li> <s> a </s>
+</li>
+<li> <s> b </s>
+</li>
+</ol>
 !! end
 
 !!test
@@ -6161,21 +6560,36 @@ Magic Words LOCAL (UTC)
 * {{LOCALDOW}}
 * {{LOCALTIMESTAMP}}
 !! result
-<ul><li> 01
-</li><li> 1
-</li><li> January
-</li><li> January
-</li><li> Jan
-</li><li> 1
-</li><li> 01
-</li><li> Thursday
-</li><li> 1970
-</li><li> 00:02
-</li><li> 00
-</li><li> 1
-</li><li> 4
-</li><li> 19700101000203
-</li></ul>
+<ul>
+<li> 01
+</li>
+<li> 1
+</li>
+<li> January
+</li>
+<li> January
+</li>
+<li> Jan
+</li>
+<li> 1
+</li>
+<li> 01
+</li>
+<li> Thursday
+</li>
+<li> 1970
+</li>
+<li> 00:02
+</li>
+<li> 00
+</li>
+<li> 1
+</li>
+<li> 4
+</li>
+<li> 19700101000203
+</li>
+</ul>
 
 !! end
 
@@ -7975,9 +8389,12 @@ unused}}}}
 *{{echo|b {{nonexistent|
 unused}}}}
 !!result
-<ul><li>a <a href="/index.php?title=Template:Nonexistent&amp;action=edit&amp;redlink=1" class="new" title="Template:Nonexistent (page does not exist)">Template:Nonexistent</a>
-</li><li>b <a href="/index.php?title=Template:Nonexistent&amp;action=edit&amp;redlink=1" class="new" title="Template:Nonexistent (page does not exist)">Template:Nonexistent</a>
-</li></ul>
+<ul>
+<li>a <a href="/index.php?title=Template:Nonexistent&amp;action=edit&amp;redlink=1" class="new" title="Template:Nonexistent (page does not exist)">Template:Nonexistent</a>
+</li>
+<li>b <a href="/index.php?title=Template:Nonexistent&amp;action=edit&amp;redlink=1" class="new" title="Template:Nonexistent (page does not exist)">Template:Nonexistent</a>
+</li>
+</ul>
 
 !!end
 
@@ -11665,8 +12082,10 @@ disabled
 !! result
 <ul>
 <li>One
-</li><li>Two
-</li></ul>
+</li>
+<li>Two
+</li>
+</ul>
 
 !! end
 
@@ -11697,8 +12116,10 @@ disabled
 !! result
 <ol>
 <li>One
-</li><li>Two
-</li></ol>
+</li>
+<li>Two
+</li>
+</ol>
 
 !! end
 
@@ -11743,12 +12164,16 @@ disabled
 !! result
 <ul>
 <li>One
-</li><li>Two:
+</li>
+<li>Two:
 <ul>
 <li>Sub-one
-</li><li>Sub-two
-</li></ul>
-</li></ul>
+</li>
+<li>Sub-two
+</li>
+</ul>
+</li>
+</ul>
 
 !! end
 
@@ -11793,21 +12218,27 @@ disabled
 !! result
 <ol>
 <li>One
-</li><li>Two:
+</li>
+<li>Two:
 <ol>
 <li>Sub-one
-</li><li>Sub-two
-</li></ol>
-</li></ol>
+</li>
+<li>Sub-two
+</li>
+</ol>
+</li>
+</ol>
 
 !! end
 
 !! test
 HTML ordered list item with parameters oddity
 !! input
-<ol><li id="fragment">One</li></ol>
+<ol><li id="fragment">One</li>
+</ol>
 !! result
-<ol><li id="fragment">One</li></ol>
+<ol><li id="fragment">One</li>
+</ol>
 
 !! end
 
@@ -13031,9 +13462,13 @@ Handling of &#x0A; in URLs
 !! input
 **irc://&#x0A;a
 !! result
-<ul><li><ul><li><a rel="nofollow" class="external free" href="irc://%0Aa">irc://%0Aa</a>
-</li></ul>
-</li></ul>
+<ul>
+<li><ul>
+<li><a rel="nofollow" class="external free" href="irc://%0Aa">irc://%0Aa</a>
+</li>
+</ul>
+</li>
+</ul>
 
 !!end
 
@@ -13093,29 +13528,52 @@ title=[[Parser test]]
 * {{SUBJECTSPACEE}}
 * {{Dynamic|{{NUMBEROFUSERS}}|{{NUMBEROFPAGES}}|{{CURRENTVERSION}}|{{CONTENTLANGUAGE}}|{{DIRECTIONMARK}}|{{CURRENTTIMESTAMP}}|{{NUMBEROFARTICLES}}}}
 !! result
-<ul><li> Parser test
-</li><li> Parser_test
-</li><li> Parser test
-</li><li> Parser_test
-</li><li> Parser test
-</li><li> Parser_test
-</li><li> Parser test
-</li><li> Parser_test
-</li><li> Parser test
-</li><li> Parser_test
-</li><li> Talk:Parser test
-</li><li> Talk:Parser_test
-</li><li> Parser test
-</li><li> Parser_test
-</li><li> 
-</li><li> 
-</li><li> 0
-</li><li> Talk
-</li><li> Talk
-</li><li> 
-</li><li> 
-</li><li> <a href="/index.php?title=Template:Dynamic&amp;action=edit&amp;redlink=1" class="new" title="Template:Dynamic (page does not exist)">Template:Dynamic</a>
-</li></ul>
+<ul>
+<li> Parser test
+</li>
+<li> Parser_test
+</li>
+<li> Parser test
+</li>
+<li> Parser_test
+</li>
+<li> Parser test
+</li>
+<li> Parser_test
+</li>
+<li> Parser test
+</li>
+<li> Parser_test
+</li>
+<li> Parser test
+</li>
+<li> Parser_test
+</li>
+<li> Talk:Parser test
+</li>
+<li> Talk:Parser_test
+</li>
+<li> Parser test
+</li>
+<li> Parser_test
+</li>
+<li> 
+</li>
+<li> 
+</li>
+<li> 0
+</li>
+<li> Talk
+</li>
+<li> Talk
+</li>
+<li> 
+</li>
+<li> 
+</li>
+<li> <a href="/index.php?title=Template:Dynamic&amp;action=edit&amp;redlink=1" class="new" title="Template:Dynamic (page does not exist)">Template:Dynamic</a>
+</li>
+</ul>
 
 !! end
 ### Note: Above tests excludes the "{{NUMBEROFADMINS}}" magic word because it generates a MySQL error when included.
@@ -13503,13 +13961,25 @@ disabled
 !! input
 :;;;::
 !! result
-<dl><dd><dl><dt><dl><dt><dl><dt><dl><dd><dl><dd>
-</dd></dl>
-</dd></dl>
-</dt></dl>
-</dt></dl>
-</dt></dl>
-</dd></dl>
+<dl>
+<dd><dl>
+<dt><dl>
+<dt><dl>
+<dt><dl>
+<dd><dl>
+<dd>
+</dd>
+</dl>
+</dd>
+</dl>
+</dt>
+</dl>
+</dt>
+</dl>
+</dt>
+</dl>
+</dd>
+</dl>
 
 !!end
 
@@ -13651,10 +14121,17 @@ Definition list code coverage
 ; title : def
 ;title: def
 !! result
-<dl><dt> title  &#160;</dt><dd> def
-</dd><dt> title&#160;</dt><dd> def
-</dd><dt>title</dt><dd> def
-</dd></dl>
+<dl>
+<dt> title  &#160;</dt>
+<dd> def
+</dd>
+<dt> title&#160;</dt>
+<dd> def
+</dd>
+<dt>title</dt>
+<dd> def
+</dd>
+</dl>
 
 !! end
 
@@ -14330,9 +14807,12 @@ Bug 529: Uncovered bullet
 !! input
 * Foo {{bullet}}
 !! result
-<ul><li> Foo 
-</li><li> Bar
-</li></ul>
+<ul>
+<li> Foo 
+</li>
+<li> Bar
+</li>
+</ul>
 
 !! end
 
@@ -14347,15 +14827,30 @@ Bug 529: Uncovered bullet leaving empty list, normally removed by tidy
 !! input
 ******* Foo {{bullet}}
 !! result
-<ul><li><ul><li><ul><li><ul><li><ul><li><ul><li><ul><li> Foo 
-</li></ul>
-</li></ul>
-</li></ul>
-</li></ul>
-</li></ul>
-</li></ul>
-</li><li> Bar
-</li></ul>
+<ul>
+<li><ul>
+<li><ul>
+<li><ul>
+<li><ul>
+<li><ul>
+<li><ul>
+<li> Foo 
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li> Bar
+</li>
+</ul>
 
 !! end
 
@@ -14387,9 +14882,12 @@ Bug 529: Uncovered bullet in parser function result
 !! input
 * Foo {{lc:{{bullet}} }}
 !! result
-<ul><li> Foo 
-</li><li> bar
-</li></ul>
+<ul>
+<li> Foo 
+</li>
+<li> bar
+</li>
+</ul>
 
 !! end
 
@@ -15756,11 +16254,14 @@ parsoid=wt2html,wt2wt
 {{echo|:a}}
 !!result
 <span about="#mwt1" typeof="mw:Transclusion">
-</span><ul about="#mwt1"><li>a</li></ul>
+</span><ul about="#mwt1"><li>a</li>
+</ul>
 <span about="#mwt2" typeof="mw:Transclusion">
-</span><ol about="#mwt2"><li>a</li></ol>
+</span><ol about="#mwt2"><li>a</li>
+</ol>
 <span about="#mwt3" typeof="mw:Transclusion">
-</span><dl about="#mwt3"><dd>a</dd></dl>
+</span><dl about="#mwt3"><dd>a</dd>
+</dl>
 !!end
 
 #### ----------------------------------------------------------------
@@ -15835,7 +16336,8 @@ A <ref>
 
 <ol class="references" typeof="mw:Extension/references" about="#mwt2" data-mw='{"name":"references","attrs":{}}'>
 <li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> This is a <b><a rel="mw:WikiLink" href="./Bolded_link">bolded link</a></b> and this is a <span about="#mwt3" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"transclusion"}},"i":0}}]}'>transclusion</span>
-</li></ol>
+</li>
+</ol>
 !!end
 
 !!test
@@ -15857,7 +16359,8 @@ A <ref>
 <li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> foo
  bar
  baz
-</li></ol>
+</li>
+</ol>
 !!end
 
 !!test
@@ -15893,7 +16396,8 @@ baz
 
 
 booz
-</li></ol>
+</li>
+</ol>
 !!end
 
 !!test
@@ -15908,7 +16412,8 @@ A <ref> foo {{echo|</ref> B C}}
 <p>A <span about="#mwt1" class="reference" data-mw='{"name":"ref","body":{"html":"foo <span typeof=\"mw:Nowiki\" data-parsoid=\"{&amp;quot;src&amp;quot;:&amp;quot;{{&amp;quot;,&amp;quot;dsr&amp;quot;:[12,14,0,0]}\">{{</span>echo|"},"attrs":{}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-1">[1]</a></span> B C<span typeof="mw:Nowiki">}}</span></p>
 
 <ol about="#mwt2" class="references" typeof="mw:Extension/references" data-mw='{"name":"references","attrs":{}}'>
-<li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> foo <span typeof="mw:Nowiki">{{</span>echo|</li></ol>
+<li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> foo <span typeof="mw:Nowiki">{{</span>echo|</li>
+</ol>
 !!end
 
 !!test
@@ -15923,7 +16428,8 @@ A <ref> foo <!--</ref> B C
 <p>A <span about="#mwt1" class="reference" data-mw='{"name":"ref","body":{"html":"foo <!---->"},"attrs":{}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-1">[1]</a></span> B C</p>
 
 <ol about="#mwt2" class="references" typeof="mw:Extension/references" data-mw='{"name":"references","attrs":{}}'>
-<li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> foo <!----></li></ol>
+<li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> foo <!----></li>
+</ol>
 !!end
 
 !!test
@@ -15938,7 +16444,8 @@ A <ref> <b> foo </ref> B C
 <p>A <span about="#mwt1" class="reference" data-mw='{"name":"ref","body":{"html":"<b data-parsoid=\"{&amp;quot;stx&amp;quot;:&amp;quot;html&amp;quot;,&amp;quot;autoInsertedEnd&amp;quot;:true,&amp;quot;dsr&amp;quot;:[8,16,3,0]}\"> foo </b>"},"attrs":{}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-1">[1]</a></span> B C</p>
 
 <ol about="#mwt2" class="references" typeof="mw:Extension/references" data-mw='{"name":"references","attrs":{}}'>
-<li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> <b> foo </b></li></ol>
+<li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> <b> foo </b></li>
+</ol>
 !!end
 
 !!test
@@ -16000,7 +16507,8 @@ parsoid
 <p><span about="#mwt1" class="reference" data-mw="{&quot;name&quot;:&quot;ref&quot;,&quot;body&quot;:{&quot;html&quot;:&quot;foo &amp;lt;ref&amp;gt;bar&amp;lt;/ref&amp;gt; baz&quot;},&quot;attrs&quot;:{}}" id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-1">[1]</a></span></p>
 
 <ol class="references" typeof="mw:Extension/references" about="#mwt2" data-mw="{&quot;name&quot;:&quot;references&quot;,&quot;attrs&quot;:{}}">
-<li about="#cite_note-1" id="cite_note-1" data-parsoid="{}"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> foo &lt;ref&gt;bar&lt;/ref&gt; baz</li></ol>
+<li about="#cite_note-1" id="cite_note-1" data-parsoid="{}"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> foo &lt;ref&gt;bar&lt;/ref&gt; baz</li>
+</ol>
 !!end
 
 !!test
@@ -16016,7 +16524,8 @@ B1 <ref name="b" /> B2 <ref name="b">bar</ref>
 <p>A1 <span about="#mwt3" class="reference" data-mw='{"name":"ref","body":{"html":"foo"},"attrs":{"name":"a"}}' id="cite_ref-a-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-a-1">[1]</a></span> A2 <span about="#mwt4" class="reference" data-mw='{"name":"ref","attrs":{"name":"a"}}' id="cite_ref-a-1-1" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-a-1">[1]</a></span>
 B1 <span about="#mwt7" class="reference" data-mw='{"name":"ref","attrs":{"name":"b"}}' id="cite_ref-b-2-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-b-2">[2]</a></span> B2 <span about="#mwt8" class="reference" data-mw='{"name":"ref","body":{"html":"bar"},"attrs":{"name":"b"}}' id="cite_ref-b-2-1" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-b-2">[2]</a></span></p>
 
-<ol about="#mwt10" class="references" typeof="mw:Extension/references" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-a-1" id="cite_note-a-1"><span rel="mw:referencedBy">↑ <a href="#cite_ref-a-1-0">1.0</a> <a href="#cite_ref-a-1-1">1.1</a></span> foo</li><li about="#cite_note-b-2" id="cite_note-b-2"><span rel="mw:referencedBy">↑ <a href="#cite_ref-b-2-0">2.0</a> <a href="#cite_ref-b-2-1">2.1</a></span> bar</li></ol>
+<ol about="#mwt10" class="references" typeof="mw:Extension/references" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-a-1" id="cite_note-a-1"><span rel="mw:referencedBy">↑ <a href="#cite_ref-a-1-0">1.0</a> <a href="#cite_ref-a-1-1">1.1</a></span> foo</li><li about="#cite_note-b-2" id="cite_note-b-2"><span rel="mw:referencedBy">↑ <a href="#cite_ref-b-2-0">2.0</a> <a href="#cite_ref-b-2-1">2.1</a></span> bar</li>
+</ol>
 !!end
 
 !!test
@@ -16042,7 +16551,8 @@ B <ref group="b">bar</ref>
 <p>A <span about="#mwt2" class="reference" data-mw='{"name":"ref","body":{"html":"foo"},"attrs":{"group":"a"}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-1">[a 1]</a></span>
 B <span about="#mwt4" class="reference" data-mw='{"name":"ref","body":{"html":"bar"},"attrs":{"group":"b"}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-1">[b 1]</a></span></p>
 
-<ol about="#mwt6" class="references" typeof="mw:Extension/references" data-mw='{"name":"references","attrs":{"group":"a"}}'><li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> foo</li></ol>
+<ol about="#mwt6" class="references" typeof="mw:Extension/references" data-mw='{"name":"references","attrs":{"group":"a"}}'><li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> foo</li>
+</ol>
 !!end
 
 !!test
@@ -16060,11 +16570,13 @@ B <ref>bar</ref>
 !!result
 <p>A <span about="#mwt2" class="reference" data-mw='{"name":"ref","body":{"html":"foo"},"attrs":{}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-1">[1]</a></span></p>
 
-<ol about="#mwt4" class="references" typeof="mw:Extension/references" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> foo</li></ol>
+<ol about="#mwt4" class="references" typeof="mw:Extension/references" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> foo</li>
+</ol>
 
 <p>B <span about="#mwt6" class="reference" data-mw='{"name":"ref","body":{"html":"bar"},"attrs":{}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-1">[1]</a></span></p>
 
-<ol about="#mwt8" class="references" typeof="mw:Extension/references" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> bar</li></ol>
+<ol about="#mwt8" class="references" typeof="mw:Extension/references" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> bar</li>
+</ol>
 !!end
 
 !!test
@@ -16084,11 +16596,13 @@ C <ref>cfoo</ref>
 <p>A <span about="#mwt2" class="reference" data-mw='{"name":"ref","body":{"html":"afoo"},"attrs":{"group":"a"}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-1">[a 1]</a></span>
 B <span about="#mwt4" class="reference" data-mw='{"name":"ref","body":{"html":"bfoo"},"attrs":{}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref" data-parsoid='{"src":"<ref>bfoo</ref>","dsr":[30,45,5,6]}'><a href="#cite_note-1">[1]</a></span></p>
 
-<ol about="#mwt6" class="references" typeof="mw:Extension/references" data-mw='{"name":"references","attrs":{"group":"a"}}'><li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> afoo</li></ol>
+<ol about="#mwt6" class="references" typeof="mw:Extension/references" data-mw='{"name":"references","attrs":{"group":"a"}}'><li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> afoo</li>
+</ol>
 
 <p>C <span about="#mwt8" class="reference" data-mw='{"name":"ref","body":{"html":"cfoo"},"attrs":{}}' id="cite_ref-2-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-2">[2]</a></span></p>
 
-<ol about="#mwt10" class="references" typeof="mw:Extension/references" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> bfoo</li><li about="#cite_note-2" id="cite_note-2"><span rel="mw:referencedBy"><a href="#cite_ref-2-0">↑</a></span> cfoo</li></ol>
+<ol about="#mwt10" class="references" typeof="mw:Extension/references" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> bfoo</li><li about="#cite_note-2" id="cite_note-2"><span rel="mw:referencedBy"><a href="#cite_ref-2-0">↑</a></span> cfoo</li>
+</ol>
 !!end
 
 !!test
@@ -16107,7 +16621,8 @@ This should just get lost.
 <p>A <span about="#mwt2" class="reference" data-mw='{"name":"ref","attrs":{"name":"a"}}' id="cite_ref-a-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-a-1">[1]</a></span>
 B <span about="#mwt4" class="reference" data-mw='{"name":"ref","body":{"html":"bar"},"attrs":{"name":"b"}}' id="cite_ref-b-2-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-b-2">[2]</a></span></p>
 
-<ol class="references" typeof="mw:Extension/references" about="#mwt6" data-mw='{"name":"references","body":{"extsrc":"<ref name=\"a\">foo</ref>\nThis should just get lost.","html":"\n<span about=\"#mwt8\" class=\"reference\" data-mw=\"{&amp;quot;name&amp;quot;:&amp;quot;ref&amp;quot;,&amp;quot;body&amp;quot;:{&amp;quot;html&amp;quot;:&amp;quot;foo&amp;quot;},&amp;quot;attrs&amp;quot;:{&amp;quot;name&amp;quot;:&amp;quot;a&amp;quot;}}\" rel=\"dc:references\" typeof=\"mw:Extension/ref\"><a href=\"#cite_note-a-1\">[1]</a></span>\n"},"attrs":{}}'><li about="#cite_note-a-1" id="cite_note-a-1"><span rel="mw:referencedBy"><a href="#cite_ref-a-1-0">↑</a></span> foo</li><li about="#cite_note-b-2" id="cite_note-b-2"><span rel="mw:referencedBy"><a href="#cite_ref-b-2-0">↑</a></span> bar</li></ol>
+<ol class="references" typeof="mw:Extension/references" about="#mwt6" data-mw='{"name":"references","body":{"extsrc":"<ref name=\"a\">foo</ref>\nThis should just get lost.","html":"\n<span about=\"#mwt8\" class=\"reference\" data-mw=\"{&amp;quot;name&amp;quot;:&amp;quot;ref&amp;quot;,&amp;quot;body&amp;quot;:{&amp;quot;html&amp;quot;:&amp;quot;foo&amp;quot;},&amp;quot;attrs&amp;quot;:{&amp;quot;name&amp;quot;:&amp;quot;a&amp;quot;}}\" rel=\"dc:references\" typeof=\"mw:Extension/ref\"><a href=\"#cite_note-a-1\">[1]</a></span>\n"},"attrs":{}}'><li about="#cite_note-a-1" id="cite_note-a-1"><span rel="mw:referencedBy"><a href="#cite_ref-a-1-0">↑</a></span> foo</li><li about="#cite_note-b-2" id="cite_note-b-2"><span rel="mw:referencedBy"><a href="#cite_ref-b-2-0">↑</a></span> bar</li>
+</ol>
 !!end
 
 !!test
@@ -16139,10 +16654,12 @@ B <span about="#mwt4" class="reference" data-mw='{"name":"ref","attrs":{"name":"
 
 <ol class="references" typeof="mw:Extension/references" about="#mwt6" data-mw='{"name":"references","attrs":{}}'>
 <li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> foo bar for a</li>
-<li about="#cite_note-b-2" id="cite_note-b-2"><span rel="mw:referencedBy"><a href="#cite_ref-b-2-0">↑</a></span> </li></ol>
+<li about="#cite_note-b-2" id="cite_note-b-2"><span rel="mw:referencedBy"><a href="#cite_ref-b-2-0">↑</a></span> </li>
+</ol>
 
 <ol class="references" typeof="mw:Extension/references" about="#mwt8" data-mw='{"name":"references","body":{"extsrc":"<ref name=\"b\">foo</ref>","html":"\n<span about=\"#mwt10\" class=\"reference\" data-mw=\"{&amp;quot;name&amp;quot;:&amp;quot;ref&amp;quot;,&amp;quot;body&amp;quot;:{&amp;quot;html&amp;quot;:&amp;quot;foo&amp;quot;},&amp;quot;attrs&amp;quot;:{&amp;quot;name&amp;quot;:&amp;quot;b&amp;quot;}}\" rel=\"dc:references\" typeof=\"mw:Extension/ref\"><a href=\"#cite_note-b-1\">[1]</a></span>\n"},"attrs":{}}'>
-<li about="#cite_note-b-1" id="cite_note-b-1"><span rel="mw:referencedBy">↑</span> foo</li></ol>
+<li about="#cite_note-b-1" id="cite_note-b-1"><span rel="mw:referencedBy">↑</span> foo</li>
+</ol>
 !! end
 
 #### ----------------------------------------------------------------
@@ -16438,22 +16955,38 @@ Lists: 1. Nested inside html
 
 #<nowiki>;foo</nowiki>
 !! result
-<ul><li>*foo
-</li></ul>
-<ul><li>#foo
-</li></ul>
-<ul><li>:foo
-</li></ul>
-<ul><li>;foo
-</li></ul>
-<ol><li>*foo
-</li></ol>
-<ol><li>#foo
-</li></ol>
-<ol><li>:foo
-</li></ol>
-<ol><li>;foo
-</li></ol>
+<ul>
+<li>*foo
+</li>
+</ul>
+<ul>
+<li>#foo
+</li>
+</ul>
+<ul>
+<li>:foo
+</li>
+</ul>
+<ul>
+<li>;foo
+</li>
+</ul>
+<ol>
+<li>*foo
+</li>
+</ol>
+<ol>
+<li>#foo
+</li>
+</ol>
+<ol>
+<li>:foo
+</li>
+</ol>
+<ol>
+<li>;foo
+</li>
+</ol>
 
 !!end
 
@@ -16469,15 +17002,24 @@ Lists: 2. Inside definition lists
 
 :<nowiki>:foo</nowiki>
 !! result
-<dl><dt>;foo
-</dt></dl>
-<dl><dt>:foo
-</dt></dl>
-<dl><dt>:foo
-</dt><dd>bar
-</dd></dl>
-<dl><dd>:foo
-</dd></dl>
+<dl>
+<dt>;foo
+</dt>
+</dl>
+<dl>
+<dt>:foo
+</dt>
+</dl>
+<dl>
+<dt>:foo
+</dt>
+<dd>bar
+</dd>
+</dl>
+<dl>
+<dd>:foo
+</dd>
+</dl>
 
 !!end
 
@@ -16488,10 +17030,14 @@ Lists: 3. Only bullets at start of text should be escaped
 
 *<nowiki>*foo</nowiki>''it''*bar
 !! result
-<ul><li>*foo*bar
-</li></ul>
-<ul><li>*foo<i>it</i>*bar
-</li></ul>
+<ul>
+<li>*foo*bar
+</li>
+</ul>
+<ul>
+<li>*foo<i>it</i>*bar
+</li>
+</ul>
 
 !!end
 
@@ -16506,12 +17052,18 @@ parsoid
 
 *[[Foo]]: bar
 !! result
-<ul><li>foo*bar
-</li></ul>
-<ul><li><i>foo</i>*bar
-</li></ul>
-<ul><li><a rel="mw:WikiLink" href="Foo">Foo</a>: bar
-</li></ul>
+<ul>
+<li>foo*bar
+</li>
+</ul>
+<ul>
+<li><i>foo</i>*bar
+</li>
+</ul>
+<ul>
+<li><a rel="mw:WikiLink" href="Foo">Foo</a>: bar
+</li>
+</ul>
 !!end
 
 !! test
@@ -16529,18 +17081,30 @@ Lists: 5. No unnecessary escapes
 
 * <s></s>: a
 !! result
-<ul><li> bar <span>[[foo]]</span>
-</li></ul>
-<ul><li>=bar <span>[[foo]]</span>
-</li></ul>
-<ul><li>[[bar <span>[[foo]]</span>
-</li></ul>
-<ul><li>]]bar <span>[[foo]]</span>
-</li></ul>
-<ul><li>=bar <span>foo]]</span>=
-</li></ul>
-<ul><li> <s></s>: a
-</li></ul>
+<ul>
+<li> bar <span>[[foo]]</span>
+</li>
+</ul>
+<ul>
+<li>=bar <span>[[foo]]</span>
+</li>
+</ul>
+<ul>
+<li>[[bar <span>[[foo]]</span>
+</li>
+</ul>
+<ul>
+<li>]]bar <span>[[foo]]</span>
+</li>
+</ul>
+<ul>
+<li>=bar <span>foo]]</span>=
+</li>
+</ul>
+<ul>
+<li> <s></s>: a
+</li>
+</ul>
 
 !!end
 
