@@ -194,6 +194,8 @@ production.
   no longer applies in such cases.
 * (bug 60960) Avoid doing file_exist() checks on data: URIs, as they cause
   warnings to be printed on Windows due to large path length.
+* (bug 43283) action=info lists MediaWiki namespace pages as protected
+  and other namespaces using $wgNamespaceProtection
 
 === Web API changes in 1.23 ===
 * (bug 54884) action=parse&prop=categories now indicates hidden and missing

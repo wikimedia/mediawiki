@@ -194,7 +194,8 @@ class InfoAction extends FormlessAction {
 	 */
 	protected function pageInfo() {
 		global $wgContLang, $wgRCMaxAge, $wgMemc, $wgMiserMode,
-			$wgUnwatchedPageThreshold, $wgPageInfoTransclusionLimit;
+			$wgUnwatchedPageThreshold, $wgPageInfoTransclusionLimit,
+			$wgNamespaceProtection;
 
 		$user = $this->getUser();
 		$lang = $this->getLanguage();
@@ -426,6 +427,24 @@ class InfoAction extends FormlessAction {
 			$pageInfo['header-restrictions'][] = array(
 				$this->msg( "restriction-$restrictionType" ), $message
 			);
+		}
+
+		// Check namespace protection
+		if ( isset( $wgNamespaceProtection[$title->getNamespace()] ) ) {
+			foreach( (array)$wgNamespaceProtection[$title->getNamespace()] as $right ) {
+				if ( $this->page->exists() ) {
+					$pageInfo['header-restrictions'][] = array(
+						$this->msg( 'restriction-edit' ), $this->msg( "protect-level-$right" )->escaped()
+					);
+					$pageInfo['header-restrictions'][] = array(
+						$this->msg( 'restriction-move' ), $this->msg( "protect-level-$right" )->escaped()
+					);
+				} else {
+					$pageInfo['header-restrictions'][] = array(
+						$this->msg( 'restriction-create' ), $this->msg( "protect-level-$right" )->escaped()
+					);
+				}
+			}
 		}
 
 		if ( !$this->page->exists() ) {
