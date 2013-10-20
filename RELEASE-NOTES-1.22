@@ -333,6 +333,8 @@ production.
 * (bug 47191) Fixed "Column 'si_title' cannot be part of FULLTEXT index"
   MySQL error when installing using the binary character set option.
 * (bug 45288) Support mysqli PHP extension
+* (bug 43283) action=info lists MediaWiki namespace pages as protected
+  and other namespaces using $wgNamespaceProtection
 
 === API changes in 1.22 ===
 * (bug 25553) The JSON output formatter now leaves forward slashes unescaped
