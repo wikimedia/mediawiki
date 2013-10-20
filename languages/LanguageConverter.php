@@ -1263,7 +1263,10 @@ class ConverterRule {
 		$variants = $this->mConverter->mVariants;
 		$varsep_pattern = $this->mConverter->getVarSeparatorPattern();
 
+		// Split according to $varsep_pattern, but ignore semicolons from HTML entities
+		$rules = preg_replace( '/(&[#a-zA-Z0-9]+);/', "$1\x01", $rules );
 		$choice = preg_split( $varsep_pattern, $rules );
+		$choice = str_replace( "\x01", ';', $choice );
 
 		foreach ( $choice as $c ) {
 			$v = explode( ':', $c, 2 );
