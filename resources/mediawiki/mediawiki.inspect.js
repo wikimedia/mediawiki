@@ -4,7 +4,19 @@
  * @author Ori Livneh
  * @since 1.22
  */
+/*jshint devel:true */
 ( function ( mw, $ ) {
+
+	/**
+	 * Sort an array in place by the value of a property common to each of its
+	 * elements.
+	 */
+	function sortByProperty( array, prop, descending ) {
+		var order = descending ? -1 : 1;
+		return array.sort( function ( a, b ) {
+			return a[prop] > b[prop] ? order : a[prop] < b[prop] ? -order : 0;
+		} );
+	}
 
 	/**
 	 * @class mw.inspect
@@ -46,6 +58,32 @@
 		},
 
 		/**
+		 * Given CSS source, count both the total number of selectors it
+		 * contains and the number which match some element in the current
+		 * document.
+		 *
+		 * @param {string} css CSS source
+		 * @return Selector counts
+		 * @return {number} return.selectors Total number of selectors
+		 * @return {number} return.matched Number of matched selectors
+		 */
+		auditSelectors: function ( css ) {
+			var selectors = { total: 0, matched: 0 },
+				style = document.createElement( 'style' );
+
+			style.textContent = css;
+			document.body.appendChild( style );
+			$.each( style.sheet.cssRules, function ( index, rule ) {
+				selectors.total++;
+				if ( document.querySelector( rule.selectorText ) !== null ) {
+					selectors.matched++;
+				}
+			} );
+			document.body.removeChild( style );
+			return selectors;
+		},
+
+		/**
 		 * Get a list of all loaded ResourceLoader modules.
 		 *
 		 * @return {Array} List of module names
@@ -57,13 +95,53 @@
 		},
 
 		/**
-		 * Print a breakdown of all loaded modules and their size in kilobytes
-		 * to the debug console. Modules are ordered from largest to smallest.
+		 * Print tabular data to the console, using console.table, console.log,
+		 * or mw.log (in declining order of preference).
+		 *
+		 * @param {array} data Tabular data represented as an array of objects
+		 *  with common properties.
 		 */
-		inspectModules: function () {
-			var console = window.console;
+		dumpTable: function ( data ) {
+			try {
+				// Bartosz made me put this here.
+				if ( window.opera ) { throw window.opera; }
+				console.table( data );
+				return;
+			} catch (e) {}
+			try {
+				console.log( JSON.stringify( data, null, 2 ) );
+				return;
+			} catch (e) {}
+			mw.log( data );
+		},
 
-			$( function () {
+		/**
+		 * Generate and print one more reports. When invoked with no arguments,
+		 * print all reports.
+		 *
+		 * @param {string} [reports] Space-separated report names to run, or
+		 *  unset to print all available reports.
+		 */
+		runReports: function ( reports ) {
+			reports = reports ?
+				reports.split( ' ' )
+				: $.map( inspect.reports, function ( v, k ) { return k; } );
+
+			$.each( reports, function ( index, name ) {
+				inspect.dumpTable( inspect.reports[name]() );
+			} );
+		},
+
+		/**
+		 * @class mw.inspect.reports
+		 * @singleton
+		 */
+		reports: {
+			/**
+			 * Generate a breakdown of all loaded modules and their size in
+			 * kilobytes. Modules are ordered from largest to smallest.
+			 */
+			size: function () {
 				// Map each module to a descriptor object.
 				var modules = $.map( inspect.getLoadedModules(), function ( module ) {
 					return {
@@ -73,9 +151,7 @@
 				} );
 
 				// Sort module descriptors by size, largest first.
-				modules.sort( function ( a, b ) {
-					return b.size - a.size;
-				} );
+				sortByProperty( modules, 'size', true );
 
 				// Convert size to human-readable string.
 				$.each( modules, function ( i, module ) {
@@ -84,22 +160,41 @@
 						( module.size !== null ? module.size + ' B' : null );
 				} );
 
-				if ( console ) {
-					if ( console.table ) {
-						console.table( modules );
-					} else {
-						$.each( modules, function ( i, module ) {
-							console.log( [ module.name, module.size ].join( '\t' ) );
-						} );
-					}
-				}
-			} );
+				return modules;
+			},
+
+			/**
+			 * For each module with styles, count the number of selectors, and
+			 * count how many match against some element currently in the DOM.
+			 */
+			css: function () {
+				var modules = [];
+
+				$.each( inspect.getLoadedModules(), function ( index, name ) {
+					var css, stats, module = mw.loader.moduleRegistry[name];
+
+					try {
+						css = module.style.css.join();
+					} catch (e) { return; } // skip
+
+					stats = inspect.auditSelectors( css );
+					modules.push( {
+						module: name,
+						allSelectors: stats.total,
+						matchedSelectors: stats.matched,
+						percentMatched: stats.total !== 0 ?
+							( stats.matched / stats.total * 100 ).toFixed( 2 )  + '%'
+							: null
+					} );
+				} );
+				sortByProperty( modules, 'allSelectors', true );
+				return modules;
+			},
 		}
 	};
 
 	if ( mw.config.get( 'debug' ) ) {
-		inspect.getModuleSize = function () { return null; };
-		mw.log( 'mw.inspect: Module sizes are not available in debug mode.' );
+		mw.log( 'mw.inspect: reports are not available in debug mode.' );
 	}
 
 	mw.inspect = inspect;
