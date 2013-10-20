@@ -1702,12 +1702,13 @@ var mw = ( function ( $, undefined ) {
 				},
 
 				/**
-				 * @inheritdoc mw.inspect#inspectModules
+				 * @inheritdoc mw.inspect#runReports
 				 * @method
 				 */
 				inspect: function () {
+					var args = slice.call( arguments );
 					mw.loader.using( 'mediawiki.inspect', function () {
-						mw.inspect.inspectModules();
+						mw.inspect.runReports.apply( mw.inspect, args );
 					} );
 				}
 
