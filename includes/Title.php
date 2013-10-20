@@ -4814,12 +4814,17 @@ class Title {
 			return $wgLang;
 		}
 
-		//TODO: use the LinkCache to cache this! Note that this may depend on user settings, so the cache should be only per-request.
-		//NOTE: ContentHandler::getPageLanguage() may need to load the content to determine the page language!
-		$contentHandler = ContentHandler::getForTitle( $this );
-		$pageLang = $contentHandler->getPageLanguage( $this );
+		static $pageLanguageObj = null;
 
-		return wfGetLangObj( $pageLang );
+		if ( !$pageLanguageObj ) {
+			//Note that this may depend on user settings, so the cache should be only per-request.
+			//NOTE: ContentHandler::getPageLanguage() may need to load the content to determine the page language!
+			$contentHandler = ContentHandler::getForTitle( $this );
+			$pageLang = $contentHandler->getPageLanguage( $this );
+			$pageLanguageObj = wfGetLangObj( $pageLang );
+		}
+
+		return $pageLanguageObj;
 	}
 
 	/**
