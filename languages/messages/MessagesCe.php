@@ -456,7 +456,7 @@ $messages = array(
 'index-category' => 'Меттигтерахьйо агlонаш',
 'noindex-category' => 'ДӀахьушйоцу агӀонаш',
 'broken-file-category' => '{{#switch:{{NAMESPACE}}
- |{{ns:0}}=Болх цабеш файланши хьажоригаш йолу агӀонаш}}',
+ |{{ns:0}}=Болх цабеш файлийн хьажорагаш йолу агӀонаш}}',
 
 'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
 
@@ -506,8 +506,8 @@ $messages = array(
 'help' => 'ГӀо',
 'search' => 'Лаха',
 'searchbutton' => 'Лаха',
-'go' => 'Дехьа хьажа',
-'searcharticle' => 'Дехьа хьажа',
+'go' => 'Дехьа гӀо',
+'searcharticle' => 'Дехьа гӀо',
 'history' => 'Истори',
 'history_short' => 'Истори',
 'updatedmarker' => 'Керла яккхина сона гинчултӀаьхьа',
@@ -553,7 +553,7 @@ $messages = array(
 'lastmodifiedat' => 'ХӀокху агӀон тӀаьххьаралера хийцам: $2, $1.',
 'viewcount' => 'ХӀокху агӀонга хьойсина $1 {{PLURAL:$1|за|за|за}}.',
 'protectedpage' => 'ГӀароллийца йолу агӀо',
-'jumpto' => 'ДехьагӀо оцу:',
+'jumpto' => 'Дехьа гӀо:',
 'jumptonavigation' => 'Навигаци',
 'jumptosearch' => 'лаха',
 'view-pool-error' => 'Бехк цабиллар доьха, хӀинц гӀулкхдириг йоьттина ю.
@@ -655,11 +655,11 @@ $1',
 'laggedslavemode' => 'Тергам бе: агӀона чохь керла йаьхинарш ца хила мега.',
 'readonly' => 'Блоктоьхна дӀайаздар хаамийн бухе',
 'enterlockreason' => 'Билгал де блоктохаран бахьна а и чекх йолу хан а.',
-'missing-article' => 'Хlокху чохь кароезаш йолу хьан дехарца йозан агlонаш цакарийна «$1» $2.
+'missing-article' => 'ХӀокху чохь кароезаш йолу хьан дехарца йозан агӀонаш цакарийна «$1» $2.
 
-Иштнарг наггахь хуьлу хьажориг дlайаьккхина йалхь йа хийцам бина тиша хьажоригца дехьа вала гlоьртича.
+Иштнарг наггахь хуьлу хьажораг дӀаяьккхина елахь я хийцам бина тиша хьажорагца дехьа гӀо гӀоьртича.
 
-Нагахьсан гlулкх цуьнах доьзна дацахь, хьуна карийна гlирс латточехь гlалат.
+Нагахьсан гӀулкх цуьнах доьзна дацахь, хьуна карийна гӀирс латточехь гӀалат.
 Дехар до, хаам бе оцуьнах [[Special:ListUsers/sysop|куьйгалхога]], гойтуш URL.',
 'missingarticle-rev' => '(верси № $1)',
 'missingarticle-diff' => '(тейп тайпнара: $1, $2)',
@@ -684,6 +684,8 @@ $1',
 'badtitletext' => 'Дехарца йолу агlонан цlе нийса яц, йаьсса ю, хила мега нийса ца хlоттийна меттаюкъар йа юкъарвики цlе. Хила мега, цlарца цамагош йолу саберг.',
 'perfcached' => 'Лахара хаам схьаэца кэша чура цундела тӀехьарлаьра хийцамаш гойтуш бац. Кэша чохь латтаё оцул $1  кӀезиг {{PLURAL:$1|дӀаяздар|дӀаяздарш}}.',
 'perfcachedts' => 'Лахара хаам схьаэца кэша чура иза тӀаьхьара карла ялла $1. Кэша чохь латта до оцул $4 кӀезиг {{PLURAL:$4|дӀаяздар|дӀаяздарш}}.',
+'querypage-no-updates' => 'ХӀинца хӀара агӀо карлаякхар дӀадайина ду.
+Кхузахь гайтина болу хаамаш карла боккхур бац.',
 'wrong_wfQuery_params' => 'Хилийта йиш йоцу параметраш хӀокху функцин wfQuery()<br />
 Функци: $1<br />
 Жоп дехар: $2',
@@ -812,10 +814,24 @@ $1',
 
 # Special:ChangeEmail
 'changeemail' => 'Хийца электрони почт',
+'changeemail-header' => 'Электрони почтан адрес хийцар',
+'changeemail-text' => 'Юза хӀара форма хьайн электрони почтан адрес хуьйцуш. Ахьа хийцар бакъдан язъян еза пароль.',
 'changeemail-no-info' => 'ХӀара агӀо лело системин чугӀо.',
+'changeemail-oldemail' => 'Карара электронни почтан адрес:',
+'changeemail-newemail' => 'Электрони почтан керла адрес:',
 'changeemail-none' => '(яц)',
+'changeemail-password' => 'Хьан пароль «{{SITENAME}}» проектан:',
 'changeemail-submit' => 'Хийца email',
 'changeemail-cancel' => 'Цаоьшу',
+
+# Special:ResetTokens
+'resettokens-text' => 'Хьан йиш ю токенаш кхосса, цара йиш хуьлуьйту цхьаболу долара хаамашна тӀекхача, уьш ю хьан дӀаяздар ца вовшахтесна. 
+
+Хьона иза оьшу, ахьа хьай токенаш цхьам гучу яьхна елахь я хьан аккаунт йохийна елахь.',
+'resettokens-legend' => 'Токенаш кхоссар',
+'resettokens-token-label' => '$1 (карара маьӀна: $2)',
+'resettokens-watchlist-token' => 'Веб-каналан (Atom/RSS) токен  [[Special:Watchlist|хьан тергаме могӀам чура агӀонашна хийцамаш бар]]',
+'resettokens-resetbutton' => 'Къастина токенаш кхоссар',
 
 # Edit page toolbar
 'bold_sample' => 'Дерстино до йоза',
@@ -825,7 +841,7 @@ $1',
 'link_sample' => 'Хьажориган коьрта могlа',
 'link_tip' => 'Чоьхьа хьажориг',
 'extlink_sample' => 'http://www.example.com хьажориг корта',
-'extlink_tip' => 'Арахьа хьажориг (йиц ма йе хlотталушерг http://)',
+'extlink_tip' => 'Арахьара хьажораг (йиц ма йе хӀотталушерг http://)',
 'headline_sample' => 'Йозан корта',
 'headline_tip' => 'Корта 2-гlа локхаллийца',
 'nowiki_sample' => 'Чудиллийша кхузе барамхlоттонза йоза.',
@@ -1312,6 +1328,7 @@ $1',
 'filesource' => 'Хьост:',
 'ignorewarning' => 'ХӀума дац чуяккха файл',
 'ignorewarnings' => 'ДӀахедар тергал ца дан',
+'badfilename' => 'Файлан цӀе оцу $1.',
 'emptyfile' => 'Ахьа чуйоккхуш йолу файл еса хийла там бу. Иза гӀалат хийла мега файлан цӀе нийса язйина йоцу дела. Дехар до хьажа бакъалла и юьй ахьа чуйоккхуш йолу файл.',
 'file-deleted-duplicate' => 'Иштта файл ([[:$1]]) хӀинцале дӀаяьккхина хилла. Дехар до, юху файл чуяккхале файл дӀаяккхаран историга хьажа.',
 'uploadwarning' => 'Дlахьедар',
@@ -1407,6 +1424,7 @@ PICT # тайп тайпан
 
 # MIME search
 'mimesearch' => 'MIME хула лаха',
+'mimesearch-summary' => 'ХӀокху агӀоно йиш хуьлуьйту MIME-тайпан файлаш харжа. Яздеш долу формат: чулацаман тайп/бухара тайп, масала  <code>image/jpeg</code>.',
 'mimetype' => 'MIME-тайп:',
 
 # Unwatched pages
@@ -1417,6 +1435,8 @@ PICT # тайп тайпан
 
 # Unused templates
 'unusedtemplates' => 'Лелош доцу кепаш',
+'unusedtemplatestext' => 'Кхузахь дагар йина «{{ns:template}}» цӀерийн меттиган агӀонаш, кхечу агӀонийн юкъа тоьхна йоцу.
+Диц ма делахь хьажа кеп агӀонашкахь лелош юй.',
 
 # Random page
 'randompage' => 'Цахууш нисйелла агӀо',
@@ -1424,6 +1444,7 @@ PICT # тайп тайпан
 # Random page in category
 'randomincategory' => 'Категори чу цахууш нийса елла агӀо',
 'randomincategory-selectcategory' => 'Категори чу цахууш нийса елла агӀона чу гӀо: $1 $2.',
+'randomincategory-selectcategory-submit' => 'Дехьа гӀо',
 
 # Random redirect
 'randomredirect' => 'Цахууш нисделла дIасахьажор',
@@ -1455,7 +1476,8 @@ PICT # тайп тайпан
 'brokenredirects-edit' => 'нисйé',
 'brokenredirects-delete' => 'дӀаяккха',
 
-'withoutinterwiki' => 'Кхечу меттанашан хьажориг йоцу агIонаш',
+'withoutinterwiki' => 'Юкъарвики-хьажорагаш йоцу агӀонаш',
+'withoutinterwiki-summary' => 'Лахара агӀонийн юкъарвики-хьажорагаш яц:',
 'withoutinterwiki-submit' => 'Гайта',
 
 'fewestrevisions' => 'ЧIогIа кIезиг башхонаш йолу агIонаш',
@@ -1479,6 +1501,9 @@ PICT # тайп тайпан
 'wantedcategories' => 'Оьшуш йолу категореш',
 'wantedpages' => 'Оьшуш йолу агIонаш',
 'wantedfiles' => 'Оьшуш йолу файлаш',
+'wantedfiletext-cat' => 'Лахара йоцу файлаш лело гӀерта. Оцу могӀам юкъа ца хууш файлаш кхета там бу, кхечу проекташ чохь йолу. Ишта ца хууш юкъа нийса елачарна тӀехула <del>сиз</del> хира ду.
+Кхин йоцу файлаш гойту [[:$1]] чохь',
+'wantedfiletext-nocat' => 'Лахара йоцу файлаш лело гӀерта. Оцу могӀам юкъа ца хууш файлаш кхета там бу, кхечу проекташ чохь йолу. Ишта ца хууш юкъа нийса елачарна тӀехула <del>сиз</del> хира ду.',
 'wantedtemplates' => 'Оьшуш долу кепаш',
 'mostlinked' => 'Дуккха хьажоригаш тIе тоьхна йолу агIонаш',
 'mostlinkedcategories' => 'Дуккха тӀе хьажораш йолу категореш',
@@ -1489,6 +1514,7 @@ PICT # тайп тайпан
 'mostrevisions' => 'Сих сиха нисйина йолу агIонаш',
 'prefixindex' => 'Хьалха агlонашан цlераш хlотто йеза',
 'prefixindex-namespace' => 'Хьалха агӀонашан цӀераш хӀотто еза («{{ns:$1}}»)',
+'prefixindex-strip' => 'Хиламийн могӀам чура префикс къайлаяккха',
 'shortpages' => 'Боцоа яззамаш',
 'longpages' => 'Беха яззамаш',
 'deadendpages' => 'Дика йоцу агIонаш',
@@ -1497,6 +1523,7 @@ PICT # тайп тайпан
 'listusers' => 'Декъашхой могlам',
 'listusers-editsonly' => 'Цхаъ мукъане а хийцам бина декъашхой гайта',
 'listusers-creationsort' => 'Кхолларан хене хьаьжна нисъяр',
+'listusers-desc' => 'Харжа къезиг хиларца',
 'usercreated' => '{{GENDER:$3|дӀавазвелла|дӀаязелла}} $1 $2',
 'newpages' => 'Керла агlонаш',
 'newpages-username' => 'Декъашхо:',
@@ -1553,8 +1580,12 @@ PICT # тайп тайпан
 'sp-deletedcontributions-contribs' => 'къинхьегам',
 
 # Special:LinkSearch
-'linksearch' => 'Арахьа хьажориг',
+'linksearch' => 'Арахьара хьажораг',
+'linksearch-pat' => 'Лаха кеп:',
 'linksearch-ok' => 'Лаха',
+'linksearch-text' => 'Лело мега хӀоттош йолу символаш, масала, <code>*.wikipedia.org</code>.
+Лакхара даржан домен мукъа хила еза , масала<code>*.org</code><br />
+Ловш йолу {{PLURAL:$2|протокол|протоколаш}}: <code>$1</code> (Iад йитарца http://, протокол бакъалла язъен яцахь).',
 'linksearch-line' => '$2 — хьажориг кху $1',
 
 # Special:ListUsers
@@ -1962,6 +1993,8 @@ PICT # тайп тайпан
 'allmessagesname' => 'Хаам',
 'allmessagesdefault' => 'Шаьшха йоза',
 'allmessagescurrent' => 'Карарчу хенан йоза',
+'allmessagestext' => 'ХӀара «MediaWiki» цӀерийн меттигера системан хаамийн могӀа бу.
+Хьайна MediaWiki тая лууш делахь, дехар до, проект [//translatewiki.net translatewiki.net] [//www.mediawiki.org/wiki/Localisation юьйцучу хьажа].',
 'allmessages-filter-legend' => 'Литтар',
 'allmessages-filter' => 'Литтар оцу хьола хийцамца:',
 'allmessages-filter-unmodified' => 'Хийцан йоцурш',
@@ -1969,7 +2002,7 @@ PICT # тайп тайпан
 'allmessages-filter-modified' => 'Хийцнарш',
 'allmessages-prefix' => 'Литтар оцу дешахьалхе:',
 'allmessages-language' => 'Мотт:',
-'allmessages-filter-submit' => 'Дехьа вала',
+'allmessages-filter-submit' => 'Дехьа гӀо',
 
 # Thumbnails
 'thumbnail-more' => 'Доккха де',
@@ -1980,6 +2013,7 @@ PICT # тайп тайпан
 'import-interwiki-source' => 'Вики-хьост/агlо:',
 'import-interwiki-templates' => 'Лата де массо кепаш',
 'import-upload-filename' => 'Файлан цӀе:',
+'import-comment' => 'Билгалдаккхар:',
 'importnosources' => 'Юкъаравики-импортан хьост хаьржина яцара, дуьхьала хийцамашан истори чуяккхар дӀадайина ду.',
 
 # Import log
@@ -2005,7 +2039,7 @@ PICT # тайп тайпан
 'tooltip-ca-watch' => 'Тlетоха хlара агlо сан тергаме могlам юкъа',
 'tooltip-ca-unwatch' => 'Дlайаккха хlара агlо хьай тергаме могlам юкъар',
 'tooltip-search' => 'Лаха иза дош',
-'tooltip-search-go' => 'Билгала и санна цlе йолучу агlон чу дехьа вала',
+'tooltip-search-go' => 'Билгала и санна цӀе йолучу агӀон чу дехьа гӀо',
 'tooltip-search-fulltext' => 'Лаха агlонаш ше чулацамехь хlара йоза долуш',
 'tooltip-p-logo' => 'Коьрта агӀона дехьа гӀо',
 'tooltip-n-mainpage' => 'Коьрта агӀона дехьа гӀо',
@@ -2168,6 +2202,7 @@ PICT # тайп тайпан
 'exif-gpsaltitude' => 'Локхалла',
 'exif-gpsdestlatitude' => 'Объектан дохалла',
 'exif-gpsdatestamp' => 'Терахь',
+'exif-jpegfilecomment' => 'JPEG-файлан билгалдаккхар',
 'exif-keywords' => 'Коьрта дешнаш',
 'exif-objectname' => 'Йоцца цӀе',
 'exif-specialinstructions' => 'Къаьсттина тӀехьажор',
@@ -2179,6 +2214,8 @@ PICT # тайп тайпан
 'exif-originaltransmissionref' => 'ДӀадолалун меттиган код',
 'exif-label' => 'Билгало',
 'exif-datetimemetadata' => 'ТӀехьара метахаамаш хийцина терахь',
+'exif-pngfilecomment' => 'PNG-файлан билгалдаккхар',
+'exif-giffilecomment' => 'GIF-файлан билгалдаккхар',
 
 # Exif attributes
 'exif-compression-1' => 'ТIеIовдан яц',
@@ -2281,11 +2318,17 @@ PICT # тайп тайпан
 'redirect' => 'Декъашхочун файлан тӀера дӀасхьажор',
 'redirect-legend' => 'Файлан я агӀона тӀера дӀасхьажор',
 'redirect-summary' => 'ХӀара агӀо лело йиш ю файлан я агӀона тӀера дӀасхьажош.',
+'redirect-submit' => 'Дехьа гӀо',
+'redirect-lookup' => 'Лаха:',
 'redirect-value' => 'МаьӀна:',
 'redirect-user' => 'Декъашхочун ID',
+'redirect-revision' => 'АгӀона верси',
+'redirect-file' => 'Файлан цӀе',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Лаха цхьатера йолу файлаш',
+'fileduplicatesearch-summary' => 'Лаха цхьатера йолу файлаш хэш-кодаца.',
+'fileduplicatesearch-legend' => 'Цхьатера ерш лахар',
 'fileduplicatesearch-filename' => 'Файлан цӀе:',
 'fileduplicatesearch-submit' => 'Лаха',
 'fileduplicatesearch-info' => '$1 × $2 {{PLURAL:$2|пиксель|пикселш|пикселш}}<br />Файлан барам: $3<br />MIME-тайп: $4',
@@ -2357,6 +2400,7 @@ PICT # тайп тайпан
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|цӀе хийцина|цӀе хийцина}} $3 оцу $4 дӀасахьажоран тӀохул а дӀасахьажийнарг цаюьтуш а',
 'logentry-newusers-newusers' => '{{GENDER:$2|ДӀавазвелла|ДӀаязелла}} керла декъашхо $1',
 'logentry-newusers-create' => '{{GENDER:$2|ДӀавазвелла|ДӀаязелла}} керла декъашхо $1',
+'logentry-newusers-autocreate' => 'Автоматически кхоьллина {{GENDER:$2|декъашхочун}} $1 дӀаяздар',
 'logentry-rights-rights' => '$1 {{GENDER:$2|хийцина}} хӀокхуна $3 бакъо $4 → $5',
 'logentry-rights-rights-legacy' => '$1 {{GENDER:$2|хийцина}} хӏокхуна $3 бакъо',
 'rightsnone' => '(яц)',

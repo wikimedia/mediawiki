@@ -2243,7 +2243,7 @@ Invoer: inhoudstype/subtype, bijvoorbeeld <code>image/jpeg</code>.',
 # Unused templates
 'unusedtemplates' => 'Ongebruikte sjablonen',
 'unusedtemplatestext' => 'Deze pagina geeft alle pagina\'s weer in de naamruimte {{ns:template}} die op geen enkele pagina gebruikt worden.
-Vergeet niet de "Koppelingen naar deze pagina" te controleren alvorens deze sjabloon te verwijderen.',
+Vergeet niet de "Koppelingen naar deze pagina" te controleren alvorens dit sjabloon te verwijderen.',
 'unusedtemplateswlh' => 'andere koppelingen',
 
 # Random page

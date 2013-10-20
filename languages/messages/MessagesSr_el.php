@@ -759,10 +759,10 @@ Imajte na umu da neke stranice mogu nastaviti da se prikazuju kao da ste još pr
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Pomoć pri prijavljivanju]]',
 'createacct-join' => 'Unesite svoje podatke ispod.',
 'createacct-emailrequired' => 'Adresa e-pošte',
-'createacct-emailoptional' => 'Adresa e-pošte (opcijono)',
+'createacct-emailoptional' => 'Adresa e-pošte (opciono)',
 'createacct-email-ph' => 'Unesite vašu adresu e-pоšte',
 'createaccountmail' => 'Koristite privremenu, slučajno stvorenu lozinku i pošaljite na navedenu adresu elektronske pošte',
-'createacct-realname' => 'Pravo ime (opcijono)',
+'createacct-realname' => 'Pravo ime (opciono)',
 'createaccountreason' => 'Razlog:',
 'createacct-reason' => 'Razlog',
 'createacct-reason-ph' => 'Zašto pravite još jedan nalog?',
@@ -3938,7 +3938,7 @@ Potvrdite da stvarno želite da napravite stranicu.",
 
 # Auto-summaries
 'autosumm-blank' => 'Potpuno obrisana stranica',
-'autosumm-replace' => 'Zamena sadržaja sa „$1“',
+'autosumm-replace' => 'Zamena sadržaja stranice sa „$1“',
 'autoredircomment' => 'Preusmerenje na [[$1]]',
 'autosumm-new' => 'Napravljena stranica sa: „$1“',
 

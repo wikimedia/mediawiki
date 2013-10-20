@@ -647,6 +647,8 @@ $1',
 'userlogin-resetpassword-link' => 'ตั้งรหัสผ่านใหม่',
 'helplogin-url' => 'Help:การล็อกอิน',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|คำอธิบายเรื่องการล็อกอิน]]',
+'userlogin-loggedin' => 'คุณล็อกอินในชื่อ {{GENDER:$1|$1}} แล้ว
+ใช้แบบด้านล่างเพื่อล็อกอินเป็นอีกผู้ใช้หนึ่ง',
 'userlogin-createanother' => 'สร้างอีกบัญชี',
 'createacct-join' => 'กรอกสารสนเทศของคุณด้านล่าง',
 'createacct-another-join' => 'กรอกข้อมูลของบัญชีใหม่ด้านล่าง',
@@ -1105,7 +1107,7 @@ $2
 คุณสามารถดูผลต่างนี้ได้ รายละเอียดพบได้ใน[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} ปูมการลบ]",
 'rev-suppressed-diff-view' => "รุ่นหนึ่งของผลต่างนี้'''ถูกยับยั้ง'''
 คุณสามารถดูผลต่างนี้ได้ รายละเอียดพบได้ใน[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} ปูมการยับยั้ง]",
-'rev-delundel' => 'แสดง/ซ่อน',
+'rev-delundel' => 'เปลี่ยนทัศนวิสัย',
 'rev-showdeleted' => 'แสดง',
 'revisiondelete' => 'ลบ/กู้คืนรุ่น',
 'revdelete-nooldid-title' => 'ไม่มีรุ่นที่ต้องการ',
@@ -1429,6 +1431,8 @@ $1",
 'userrights-notallowed' => 'บัญชีของคุณไม่ได้รับอนุญาตให้เพิ่มหรือลดสิทธิผู้ใช้',
 'userrights-changeable-col' => 'กลุ่มที่คุณสามารถเปลี่ยนได้',
 'userrights-unchangeable-col' => 'กลุ่มที่คุณไม่สามารถเปลี่ยนได้',
+'userrights-conflict' => 'พบการเปลี่ยนแปลงสิทธิผู้ใช้ขัดกัน! โปรดทบทวนและยืนยันการเปลี่ยนแปลงของคุณ',
+'userrights-removed-self' => 'คุณเพิกถอนสิทธิของคุณสำเร็จแล้ว ฉะนั้น คุณจึงไม่สามารถเข้าถึงหน้านี้ได้อีกต่อไป',
 
 # Groups
 'group' => 'กลุ่ม:',
@@ -2107,6 +2111,8 @@ $1',
 'allpages-hide-redirects' => 'ซ่อนการเปลี่ยนทาง',
 
 # SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'คุณกำลังดูรุ่นที่เก็บหน่วยความจำแคชของหน้านี้ ซึ่งอาจมีอายุ $1',
+'cachedspecial-viewing-cached-ts' => 'คุณกำลังดูรุ่นที่เก็บหน่วยความจำแคชของหน้านี้ ซึ่งอาจไม่เป็นจริงทั้งหมด',
 'cachedspecial-refresh-now' => 'ดูล่าสุด',
 
 # Special:Categories
@@ -2130,7 +2136,7 @@ $1',
 'linksearch-ok' => 'ค้นหา',
 'linksearch-text' => 'สามารถใช้ตัวแทนเช่น "*.wikipedia.org" ได้
 ต้องการโดเมนระดับบนสุดเป็นอย่างน้อย เช่น "*.org"<br />
-{PLURAL:$2|โพรโทคอล}}ที่รองรับ: <code>$1</code> (ค่าโดยปริยายเป็น http:// หากไม่ระบุโพรโทคอล)',
+{{PLURAL:$2|โพรโทคอล}}ที่รองรับ: <code>$1</code> (ค่าโดยปริยายเป็น http:// หากไม่ระบุโพรโทคอล)',
 'linksearch-line' => '$1 ถูกลิงก์จาก $2',
 'linksearch-error' => 'อักขระตัวแทนอยู่ได้เฉพาะหน้าชื่อโฮสต์เท่านั้น',
 
@@ -2309,9 +2315,11 @@ $UNWATCHURL
 'deleteotherreason' => 'เหตุผลอื่น/เพิ่มเติม:',
 'deletereasonotherlist' => 'เหตุผลอื่น',
 'deletereason-dropdown' => '* เหตุผลการลบทั่วไป
-** รับแจ้งจากผู้เขียน
+** สแปม
+** ก่อกวน
 ** ละเมิดลิขสิทธิ์
-** ก่อกวน',
+** ผู้เขียนร้องขอ
+** การเปลี่ยนทางเสีย',
 'delete-edit-reasonlist' => 'แก้ไขเหตุผลการลบ',
 'delete-toobig' => 'หน้านี้มีประวัติการแก้ไขนาดใหญ่ คือ กว่า $1 รุ่น การลบหน้าเช่นนี้ถูกจำกัดเพื่อป้องกันการรบกวน{{SITENAME}}โดยบังเอิญ',
 'delete-warning-toobig' => 'หน้านี้มีประวัติการแก้ไขขนาดใหญ่ กว่า $1 รุ่น การลบหน้านี้อาจรบกวนการทำงานของฐานข้อมูลของ {{SITENAME}} โปรดดำเนินการด้วยความระมัดระวัง',
@@ -2329,7 +2337,7 @@ $UNWATCHURL
 ผู้แก้ไขล่าสุดของหน้านี้คือ [[User:$3|$3]] ([[User talk:$3|พูดคุย]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]])',
 'editcomment' => "คำอธิบายอย่างย่อคือ: \"''\$1''\"",
 'revertpage' => 'ย้อนการแก้ไขของ [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) ไปยังรุ่นของ [[User:$1|$1]]',
-'revertpage-nouser' => 'ย้อนการแก้ไขโดยผู้ใช้ไม่ระบุชื่อไปยังรุ่นล่าสุดโดย [[User:$1|$1]]',
+'revertpage-nouser' => 'ย้อนการแก้ไขโดยผู้ใช้ไม่ระบุชื่อไปยังรุ่นสุดท้ายโดย {{GENDER:$1|[[User:$1|$1]]}}',
 'rollback-success' => 'ย้อนรุ่นที่แก้ไขโดย $1 ไปยังรุ่นล่าสุดโดย $2',
 
 # Edit tokens
@@ -2471,7 +2479,7 @@ $1',
 'contributions' => 'เรื่องที่เขียนโดย{{GENDER:$1|ผู้ใช้}}นี้',
 'contributions-title' => 'เรื่องที่เขียนโดย $1',
 'mycontris' => 'เรื่องที่เขียน',
-'contribsub2' => 'สำหรับ $1 ($2)',
+'contribsub2' => 'สำหรับ {{GENDER:$3|$1}} ($2)',
 'nocontribs' => 'ไม่พบการเปลี่ยนแปลงตรงกับเงื่อนไขเหล่านี้',
 'uctop' => '(ปัจจุบัน)',
 'month' => 'จากเดือน (และก่อนหน้า):',
@@ -2659,6 +2667,7 @@ $1',
 'unlockdbsuccesstext' => 'ปลดล็อกฐานข้อมูลเรียบร้อย',
 'lockfilenotwritable' => 'ไม่สามารถล็อกฐานข้อมูลได้ เนื่องจากการเขียนลงฐานข้อมูล การล็อกและการปลดล็อกจำเป็นต้องทำที่เว็บเซิร์ฟเวอร์',
 'databasenotlocked' => 'ฐานข้อมูลไม่ได้ล็อก',
+'lockedbyandtime' => '(โดย {{GENDER:$1|$1}} เมื่อวันที่ $2 เวลา $3)',
 
 # Move page
 'move-page' => 'ย้าย $1',
@@ -2898,7 +2907,7 @@ $1',
 'tooltip-t-recentchangeslinked' => 'รายการปรับปรุงล่าสุดในหน้าที่ลิงก์จากหน้านี้',
 'tooltip-feed-rss' => 'ฟีดชนิดอาร์เอสเอส (RSS) ของหน้านี้',
 'tooltip-feed-atom' => 'ฟีดอะตอม (Atom) ของหน้านี้',
-'tooltip-t-contributions' => 'รายการเรื่องที่เขียนโดยผู้ใช้คนนี้',
+'tooltip-t-contributions' => 'รายการเรื่องที่เขียนโดยผู้ใช้นี้',
 'tooltip-t-emailuser' => 'ส่งอีเมลถึงผู้ใช้นี้',
 'tooltip-t-upload' => 'อัปโหลดไฟล์',
 'tooltip-t-specialpages' => 'รายการหน้าพิเศษทั้งหมด',
@@ -3057,8 +3066,8 @@ $1',
 'filedelete-archive-read-only' => 'ไดเรกทอรีกรุชื่อ "$1" ไม่สามารถเขียนลงได้โดยเว็บเซิร์ฟเวอร์',
 
 # Browsing diffs
-'previousdiff' => '← แตกต่างก่อนหน้า',
-'nextdiff' => 'แตกต่างถัดไป →',
+'previousdiff' => '← การแก้ไขก่อนหน้า',
+'nextdiff' => 'การแก้ไขถัดไป →',
 
 # Media information
 'mediawarning' => "'''คำเตือน''': ไฟล์รูปแบบนี้อาจมีโค้ดที่ไม่พึงประสงค์
