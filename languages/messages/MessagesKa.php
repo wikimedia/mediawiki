@@ -15,6 +15,7 @@
  * @author Dawid Deutschland
  * @author ITshnik
  * @author Kaganer
+ * @author MIKHEIL
  * @author Malafaya
  * @author Nemo bis
  * @author Nodar Kherkheulidze
@@ -1583,7 +1584,7 @@ $1",
 'enhancedrc-history' => 'ისტორია',
 'recentchanges' => 'ბოლო ცვლილებები',
 'recentchanges-legend' => 'ბოლო ცვლილებების პარამეტრები',
-'recentchanges-summary' => 'უთვალთვალეთ ვიკიში ბოლო ცვლილებებს ამ გვერდზე.',
+'recentchanges-summary' => 'უთვალთვალეთ ვიკის ბოლო ცვლილებებს ამ გვერდზე.',
 'recentchanges-feed-description' => 'ვიკის უახლესი ცვლილებების მეთვალყურეობა ამ არხში.',
 'recentchanges-label-newpage' => 'ამ რედაქტირებით შეიქმნა ახალი გვერდი',
 'recentchanges-label-minor' => 'ეს არის მცირე შესწორება',
@@ -1877,6 +1878,7 @@ $1',
 'listfiles_description' => 'აღწერილობა',
 'listfiles_count' => 'ვერსიები',
 'listfiles-show-all' => 'სურათების ძველი ვერსიების ჩართვა',
+'listfiles-latestversion' => 'მიმდინარე ვერსია',
 'listfiles-latestversion-yes' => 'დიახ',
 'listfiles-latestversion-no' => 'არა',
 

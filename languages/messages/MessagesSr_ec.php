@@ -863,11 +863,11 @@ $2',
 'createacct-join' => 'Унесите своје податке испод',
 'createacct-another-join' => 'Унесите податке за нови налог испод.',
 'createacct-emailrequired' => 'Адреса е-поште',
-'createacct-emailoptional' => 'Адреса е-поште (опцијоно)',
+'createacct-emailoptional' => 'Адреса е-поште (опционо)',
 'createacct-email-ph' => 'Унесите вашу адресу е-поште',
 'createacct-another-email-ph' => 'Унесите адресу е-поште',
 'createaccountmail' => 'Користите привремену, случајно створену лозинку и пошаљите на наведену адресу електронске поште',
-'createacct-realname' => 'Право име (опцијоно)',
+'createacct-realname' => 'Право име (опционо)',
 'createaccountreason' => 'Разлог:',
 'createacct-reason' => 'Разлог',
 'createacct-reason-ph' => 'Зашто правите још један налог?',
@@ -4103,7 +4103,7 @@ $5
 
 # Auto-summaries
 'autosumm-blank' => 'Потпуно обрисана страница',
-'autosumm-replace' => 'Замена садржаја са „$1“',
+'autosumm-replace' => 'Замена садржаја странице са „$1“',
 'autoredircomment' => 'Преусмерење на [[$1]]',
 'autosumm-new' => 'Направљена страница са: „$1“',
 

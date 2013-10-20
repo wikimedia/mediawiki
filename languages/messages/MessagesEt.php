@@ -749,6 +749,9 @@ Pane tähele, et seni kuni sa pole oma võrgulehitseja puhvrit tühjendanud, võ
 'userlogin-resetpassword-link' => 'Lähtesta oma parool',
 'helplogin-url' => 'Help:Sisselogimine',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Sisselogimisabi]]',
+'userlogin-loggedin' => 'Oled juba sisse logitud nimega {{GENDER:$1|$1}}.
+Kasuta allolevat vormi, et logida sisse teise kasutajaga.',
+'userlogin-createanother' => 'Loo teine konto',
 'createacct-join' => 'Sisesta allapoole oma andmed.',
 'createacct-another-join' => 'Sisesta allpool uue konto andmed.',
 'createacct-emailrequired' => 'E-posti aadress',
@@ -2452,10 +2455,12 @@ Palun kinnita, et tahad seda tõepoolest teha, et sa mõistad tagajärgi ja et s
 'deletecomment' => 'Põhjus:',
 'deleteotherreason' => 'Muu või täiendav põhjus:',
 'deletereasonotherlist' => 'Muu põhjus',
-'deletereason-dropdown' => '*Harilikud kustutamise põhjused
-** Autori palve
+'deletereason-dropdown' => '* Harilikud kustutamise põhjused
+** Rämpspostitus
+** Vandalism
 ** Autoriõiguse rikkumine
-** Vandalism',
+** Autori palve
+** Katkine ümbersuunamine',
 'delete-edit-reasonlist' => 'Redigeeri kustutamise põhjuseid',
 'delete-toobig' => 'See lehekülg on pika redigeerimisajalooga – üle {{PLURAL:$1|ühe muudatuse|$1 muudatuse}}.
 Selle kustutamine on keelatud, et ära hoida ekslikku {{GRAMMAR:genitive|{{SITENAME}}}} töö häirimist.',

@@ -360,7 +360,7 @@ $messages = array(
 'tog-noconvertlink' => 'Älä muunna linkkien otsikoita toiseen kirjoitusjärjestelmään',
 'tog-norollbackdiff' => 'Älä näytä eroavaisuuksia, kun olet palauttanut muokkauksen palauta-työkalulla',
 'tog-useeditwarning' => 'Varoita minua, kun poistun muokkaussivulta tallentamatta muutoksia',
-'tog-prefershttps' => 'Käytä aina turvallista yhteyttä kun olet kirjautunut sisään',
+'tog-prefershttps' => 'Käytä aina suojattua yhteyttä, kun olet kirjautunut sisään',
 
 'underline-always' => 'Aina',
 'underline-never' => 'Ei koskaan',
@@ -809,7 +809,7 @@ Salli evästeiden käyttö, ja sen jälkeen kirjaudu sisään juuri luomallasi k
 'nocookiesfornew' => 'Käyttäjätunnusta ei luotu, koska sen lähdettä ei kyetty varmistamaan. Varmista, että selaimessasi on käytössä evästeet, päivitä tämä sivu ja yritä uudelleen.',
 'noname' => 'Et ole määritellyt kelvollista käyttäjänimeä.',
 'loginsuccesstitle' => 'Sisäänkirjautuminen onnistui',
-'loginsuccess' => "'''Olet nyt kirjautunut sivustolle {{SITENAME}} käyttäjänä $1.'''",
+'loginsuccess' => "'''Olet kirjautunut sivustolle {{SITENAME}} käyttäjänä $1.'''",
 'nosuchuser' => 'Käyttäjää ”$1” ei ole olemassa. Nimet ovat kirjainkoosta riippuvaisia. Tarkista kirjoititko nimen oikein, tai [[Special:UserLogin/signup|luo uusi käyttäjätunnus]].',
 'nosuchusershort' => 'Käyttäjää nimeltä ”$1” ei ole. Kirjoititko nimen oikein?',
 'nouserspecified' => 'Käyttäjätunnusta ei ole määritelty.',
@@ -854,8 +854,8 @@ Odota $1 ennen kuin yrität uudelleen.',
 'login-abort-generic' => 'Kirjautuminen epäonnistui – keskeytetty',
 'loginlanguagelabel' => 'Kieli: $1',
 'suspicious-userlogout' => 'Pyyntösi kirjautua ulos evättiin, koska se näytti rikkinäisen selaimen tai välimuistipalvelimen lähettämältä.',
-'createacct-another-realname-tip' => 'Oikea nimi on vapaaehtoinen.
-Jos kuitenkin kerrot sen, nimeä käytetään jotta voidaan kertoa kuka sisältöä on tuottanut.',
+'createacct-another-realname-tip' => 'Vapaaehtoinen.
+Nimesi näytetään käyttäjätunnuksesi sijasta sivun tekijäluettelossa.',
 
 # Email sending
 'php-mail-error-unknown' => 'Tuntematon virhe PHP:n mail()-funktiossa',
@@ -871,7 +871,7 @@ Jos kuitenkin kerrot sen, nimeä käytetään jotta voidaan kertoa kuka sisält�
 'newpassword' => 'Uusi salasana:',
 'retypenew' => 'Uusi salasana uudelleen:',
 'resetpass_submit' => 'Aseta salasana ja kirjaudu sisään',
-'changepassword-success' => 'Salasanasi vaihtaminen onnistui.',
+'changepassword-success' => 'Salasanan vaihto onnistui.',
 'resetpass_forbidden' => 'Salasanoja ei voi vaihtaa.',
 'resetpass-no-info' => 'Et voi nähdä tätä sivua kirjautumatta sisään.',
 'resetpass-submit-loggedin' => 'Muuta salasana',
@@ -884,7 +884,7 @@ Olet saattanut jo onnistuneesti vaihtaa salasanasi tai pyytää uutta väliaikai
 # Special:PasswordReset
 'passwordreset' => 'Salasanan vaihto',
 'passwordreset-text-one' => 'Täytä tämä lomake vaihtaaksesi salasanasi.',
-'passwordreset-text-many' => '{{PLURAL:$1|Täytä yksi kentistä nollataksesi salasanasi.}}',
+'passwordreset-text-many' => '{{PLURAL:$1|Täytä yksi kentistä alustaaksesi salasanasi.}}',
 'passwordreset-legend' => 'Salasanan vaihto',
 'passwordreset-disabled' => 'Salasanojen vaihtaminen ei ole mahdollista tässä wikissä.',
 'passwordreset-emaildisabled' => 'Sähköpostitoiminnot on poistettu käytöstä tässä wikissä.',
@@ -932,15 +932,15 @@ Väliaikainen salasana: $2',
 'changeemail-cancel' => 'Peruuta',
 
 # Special:ResetTokens
-'resettokens' => 'Uudista tunnisteet',
-'resettokens-text' => 'Tällä sivulla voit uudistaa tunnisteesi, joiden avulla hallitaan pääsyä käyttäjätiliisi liittyviin yksityisiin tietoihin.
+'resettokens' => 'Uudista avaimet',
+'resettokens-text' => 'Tällä sivulla voit uudistaa avaimesi, jotka mahdollistavat pääsyn käyttäjätunnukseesi liittyviin tiettyihin yksityisiin tietoihin.
 
-Sinun pitää tehdä tämä jos olet vahingossa jakanut ne jonkun kanssa tai käyttäjätiliisi on saatettu kajota.',
-'resettokens-no-tokens' => 'Tunnisteita ei löydy uudistettavaksi.',
-'resettokens-legend' => 'Uudista tunnisteet',
-'resettokens-tokens' => 'Tunnisteet:',
+Sinun pitäisi tehdä tämä, jos olet vahingossa jakanut avaimet jonkun kanssa tai jos käyttäjätunnuksesi on vaarannettu.',
+'resettokens-no-tokens' => 'Avaimia ei ole uudistettavaksi.',
+'resettokens-legend' => 'Uudista avaimet',
+'resettokens-tokens' => 'Avaimet:',
 'resettokens-token-label' => '$1 (nykyinen arvo: $2)',
-'resettokens-watchlist-token' => 'Tarkkailulistan verkkosyötteen tunniste',
+'resettokens-watchlist-token' => '[[Special:Watchlist|Tarkkailulistan]] verkkosyötteen (Atom tai RSS) avain',
 'resettokens-done' => 'Avaimet on uudistettu.',
 'resettokens-resetbutton' => 'Uudista valitut avaimet',
 
@@ -1445,7 +1445,7 @@ Kokeile lisätä haun alkuun ''all:'', niin haku kohdistuu kaikkeen sisältöön
 'prefs-rendering' => 'Ulkoasu',
 'saveprefs' => 'Tallenna asetukset',
 'resetprefs' => 'Tyhjennä tallentamattomat muutokset',
-'restoreprefs' => 'Palauta kaikki oletusasetuksiin (kaikissa asetusten osastoissa)',
+'restoreprefs' => 'Palauta kaikki oletusasetuksiin (kaikissa osioissa)',
 'prefs-editing' => 'Muokkaus',
 'rows' => 'Rivejä',
 'columns' => 'Sarakkeita',
@@ -1457,7 +1457,9 @@ Kokeile lisätä haun alkuun ''all:'', niin haku kohdistuu kaikkeen sisältöön
 'recentchangesdays-max' => 'Enintään $1 {{PLURAL:$1|päivä|päivää}}',
 'recentchangescount' => 'Näytettävien muutoksien määrä oletuksena',
 'prefs-help-recentchangescount' => 'Tämä sisältää tuoreet muutokset, muutoshistoriat ja lokit.',
-'prefs-help-watchlist-token2' => 'Tämä on salainen avain tarkkailulistasi verkkosyötteeseen. Kuka tahansa joka tietää sen voi lukea tarkkailulistaasi, joten älä paljasta sitä. [[Special:ResetTokens|Napsauta tästä jos sinun pitää uudistaa se]].',
+'prefs-help-watchlist-token2' => 'Tämä on salainen avain tarkkailulistasi verkkosyötteeseen.
+Kuka tahansa, joka tietää sen voi lukea tarkkailulistaasi, joten älä paljasta sitä.
+[[Special:ResetTokens|Napsauta tästä, jos sinun pitää uudistaa se]].',
 'savedprefs' => 'Asetuksesi tallennettiin onnistuneesti.',
 'timezonelegend' => 'Aikavyöhyke',
 'localtime' => 'Paikallinen aika',
@@ -1545,10 +1547,10 @@ Tämä tieto on julkinen.',
 'saveusergroups' => 'Tallenna nämä käyttäjäryhmät',
 'userrights-groupsmember' => 'Jäsenenä ryhmissä:',
 'userrights-groupsmember-auto' => 'Automaattisesti jäsenenä ryhmissä:',
-'userrights-groups-help' => 'Voit muuttaa ryhmiä, joissa tämä käyttäjä on:
+'userrights-groups-help' => 'Voit muuttaa ryhmiä, joissa tämä käyttäjä on.
 * Merkattu valintaruutu tarkoittaa, että käyttäjä on kyseisessä ryhmässä.
 * Merkkaamaton valintaruutu tarkoittaa, että käyttäjä ei ole kyseisessä ryhmässä.
-* <nowiki>*</nowiki> tarkoittaa, että et pysty poistamaan käyttäjää tästä ryhmästä kun olet hänet siihen lisännyt tai päinvastoin',
+* <nowiki>*</nowiki> tarkoittaa, että et pysty poistamaan käyttäjää tästä ryhmästä, kun olet sen siihen lisännyt tai päinvastoin',
 'userrights-reason' => 'Syy:',
 'userrights-no-interwiki' => 'Sinulla ei ole oikeutta muokata käyttöoikeuksia muissa wikeissä.',
 'userrights-nodatabase' => 'Tietokantaa $1 ei ole tai se ei ole paikallinen.',
@@ -2097,11 +2099,11 @@ Syöte: sisältötyyppi/alatyyppi, esimerkiksi <code>image/jpeg</code>.',
 'randompage-nopages' => '{{PLURAL:$2|Nimiavaruudessa|Nimiavaruuksissa}} $1 ei ole sivuja.',
 
 # Random page in category
-'randomincategory' => 'Satunnainen sivu, joka kuuluu luokkaan',
-'randomincategory-invalidcategory' => '" $1 " ei ole kelvollinen luokan nimi.',
-'randomincategory-nopages' => 'Luokassa [[:Category:$1]] ei ole sivuja.',
-'randomincategory-selectcategory' => 'Etsi satunnainen sivu luokasta: $1 $2.',
-'randomincategory-selectcategory-submit' => 'Etsi',
+'randomincategory' => 'Satunnainen sivu luokasta',
+'randomincategory-invalidcategory' => '$1 ei ole kelvollinen luokan nimi.',
+'randomincategory-nopages' => 'Luokassa [[:Category:$1|$1]] ei ole sivuja.',
+'randomincategory-selectcategory' => 'Hae satunnainen sivu luokasta: $1 $2',
+'randomincategory-selectcategory-submit' => 'Hae',
 
 # Random redirect
 'randomredirect' => 'Satunnainen ohjaus',
@@ -2314,7 +2316,8 @@ Vaaditaan vähintään ylätason verkkotunnus, esimerkiksi "*.org".<br />
 'listgrouprights' => 'Käyttäjäryhmien oikeudet',
 'listgrouprights-summary' => 'Tämä lista sisältää tämän wikin käyttäjäryhmät sekä ryhmiin liitetyt käyttöoikeudet.
 Lisätietoa yksittäisistä käyttäjäoikeuksista saattaa löytyä [[{{MediaWiki:Listgrouprights-helppage}}|erilliseltä ohjesivulta]].',
-'listgrouprights-key' => '* <span class="listgrouprights-granted">Myönnetyt oikeudet</span>
+'listgrouprights-key' => 'Selite:
+* <span class="listgrouprights-granted">Myönnetyt oikeudet</span>
 * <span class="listgrouprights-revoked">Kumotut oikeudet</span>',
 'listgrouprights-group' => 'Ryhmä',
 'listgrouprights-rights' => 'Oikeudet',
@@ -2467,10 +2470,12 @@ Sivulla $2 on lista viimeaikaisista poistoista.',
 'deletecomment' => 'Syy',
 'deleteotherreason' => 'Muu syy tai tarkennus',
 'deletereasonotherlist' => 'Muu syy',
-'deletereason-dropdown' => '*Yleiset poistosyyt
-** Tekijän poistopyyntö
+'deletereason-dropdown' => '* Yleiset poistosyyt
 ** Tekijänoikeusrikkomus
-** Vandalismi',
+** Tekijän poistopyyntö
+** Testisivu
+** Vandalismi
+** Virheellinen ohjaus',
 'delete-edit-reasonlist' => 'Muokkaa poistosyitä',
 'delete-toobig' => 'Tällä sivulla on pitkä muutoshistoria – yli $1 {{PLURAL:$1|versio|versiota}}. Näin suurien muutoshistorioiden poistamista on rajoitettu suorituskykysyistä.',
 'delete-warning-toobig' => 'Tällä sivulla on pitkä muutoshistoria – yli $1 {{PLURAL:$1|versio|versiota}}. Näin suurien muutoshistorioiden poistaminen voi haitata sivuston suorituskykyä.',
@@ -2996,7 +3001,7 @@ Tallenna tiedot koneellesi ja tuo ne tällä sivulla.',
 'import-error-interwiki' => 'Sivua $1 ei voitu tuoda, koska sen nimi on varattu ulkoisen linkittämisen (interwiki).',
 'import-error-special' => 'Sivua $1 ei tuoda, koska se kuuluu nimitilaan, joka ei salli sivuja.',
 'import-error-invalid' => 'Sivua $1 ei tuoda, koska sen nimi ei kelpaa.',
-'import-error-unserialize' => 'Revisiota $2 sivusta "$1" ei voida jakaa osiin. Revision kerrottiin käyttävän sisältömallia $3 ja sarjoitusmuotoilua $4.',
+'import-error-unserialize' => 'Versiota $2 sivusta $1 ei voida jakaa osiin. Version ilmoitettiin käyttävän sisältömallia $3 ja sarjoitusmuotoilua $4.',
 'import-options-wrong' => '{{PLURAL:$2|Väärä asetus|Väärät asetukset}}: <nowiki>$1</nowiki>',
 'import-rootpage-invalid' => 'Annettu sivun nimi ei kelpaa.',
 'import-rootpage-nosubpage' => 'Annetun sivun nimiavaruus $1 ei salli alasivuja.',
@@ -3885,7 +3890,7 @@ Voit myös muokata listaa [[Special:EditWatchlist|tavalliseen tapaan]].',
 'version-license' => 'Lisenssi',
 'version-poweredby-credits' => "Tämä wiki käyttää '''[//www.mediawiki.org/ MediaWikiä]'''. Copyright © 2001–$1 $2.",
 'version-poweredby-others' => 'muut',
-'version-poweredby-translators' => 'translatewiki.net kääntäjät',
+'version-poweredby-translators' => 'translatewiki.net-kääntäjät',
 'version-credits-summary' => 'Haluaisimme kiittää seuraavia henkilöitä heidän panoksestaan [[Special:Version|MediaWiki-ohjelmistoon]].',
 'version-license-info' => 'MediaWiki on vapaa ohjelmisto – voit levittää sitä ja/tai muokata sitä Free Software Foundationin GNU General Public Licensen ehdoilla, joko version 2 tai halutessasi minkä tahansa myöhemmän version mukaisesti.
 
@@ -3900,13 +3905,13 @@ Sinun olisi pitänyt saada [{{SERVER}}{{SCRIPTPATH}}/COPYING kopio GNU General P
 'version-entrypoints-header-url' => 'URL',
 
 # Special:Redirect
-'redirect' => 'Ohjaus tiedostonimen, käyttäjänumeron tai versionumeron mukaan',
-'redirect-legend' => 'Uudelleenohjaa tiedostoon tai sivulle',
-'redirect-summary' => 'Tämä toimintosivu ohjaa tiedostoon (tiedoston nimen mukaan), sivulle (sivun versionumeron mukaan) tai käyttäjäsivulle (käyttäjätunnuksen numeron mukaan).',
+'redirect' => 'Ohjaus tiedostonimen, käyttäjätunnisteen tai versiotunnisteen mukaan',
+'redirect-legend' => 'Ohjaus tiedostoon tai sivulle',
+'redirect-summary' => 'Tämä toimintosivu ohjaa tiedostoon (tiedostonimen mukaan), sivulle (versiotunnisteen mukaan) tai käyttäjäsivulle (käyttäjätunnisteen numeron mukaan).',
 'redirect-submit' => 'Siirry',
 'redirect-lookup' => 'Hae:',
 'redirect-value' => 'Arvo:',
-'redirect-user' => 'Käyttäjän tunnusnumero',
+'redirect-user' => 'Käyttäjätunniste',
 'redirect-revision' => 'Sivun versio',
 'redirect-file' => 'Tiedostonimi',
 'redirect-not-exists' => 'Arvoa ei löytynyt',

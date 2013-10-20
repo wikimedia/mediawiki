@@ -370,8 +370,8 @@ Getæl gengra syndrigra trameta cann man findan be [[Special:SpecialPages|þǣm 
 'cascadeprotected' => 'Þes trament wæs geborgen wiþ adihtunge, for þǣm þe hē is befangen in þissum {{PLURAL:$1|tramente, þe is| tramentum, þe sind}} geborgen settum wyrcende þǣm cyre "cascading": $2',
 
 # Virus scanner
-'virus-badscanner' => "Јастыра конфигурация: Јарты јок сканер ''$1''",
-'virus-unknownscanner' => 'Јарты јок антивирус:',
+'virus-badscanner' => '',
+'virus-unknownscanner' => '',
 
 # Login and logout pages
 'logouttext' => "'''Þū eart nū ūtmeldod.'''
@@ -401,8 +401,8 @@ Cnāw þæt sume trametas mihten gīet wesan geīwde swā þū wǣre gīet inmel
 'logout' => 'Ūtmeldian',
 'userlogout' => 'Ūtmeldian',
 'notloggedin' => 'Nā ingemeldod',
-'userlogin-noaccount' => 'Слерде аккаунт јок по?',
-'userlogin-joinproject' => '{{SITENAME}} кирер',
+'userlogin-noaccount' => '',
+'userlogin-joinproject' => '',
 'nologin' => 'Næfst þū reccinge? $1',
 'nologinlink' => 'Scieppan reccinge',
 'createaccount' => 'Scieppan reccinge',
@@ -497,12 +497,12 @@ Gif þū hider be misfēnge cōme, cnoca þīnes webbsēcendes '''on bæc''' cn�
 'editingold' => "'''WARNUNG: Þū adihtest ealde fadunge þisses trametes.'''
 Gif þū hine hordie, ǣnga andwendunga þā wǣron gedōn æfter þisse fadunge bēoþ sōðes forloren.",
 'yourdiff' => 'Fǣgnessa',
-'copyrightwarning2' => "Bidde behielde þæt man mæȝ ealla forðunga tō {{SITENAME}}
-ādihtan, hƿeorfan, oþþe forniman.
-Ȝif þū ne ƿille man þīn ȝeƿrit ādihtan unmildheorte, þonne hīe hēr ne forþsendan.<br />
-Þū behǣtst ēac þæt þū selfa þis ƿrite, oþþe efenlǣhtest of sumre
-folcliċum āgnunge oþþe ȝelīċum frēom horde (sēo $1 for āscungum).
-'''Ne forþsend efenlǣhtscielded ƿeorc būtan þafunge!'''",
+'copyrightwarning2' => "Bidde behielde þæt man mæg ealla forðunga tō {{SITENAME}}
+ādihtan, hweorfan, oþþe forniman.
+Gif þū ne wille man þīn gewrit ādihtan unmildheorte, þonne hīe hēr ne forþsendan.<br />
+Þū behǣtst ēac þæt þū selfa þis write, oþþe efenlǣhtest of sumre
+folclicum āgnunge oþþe gelīcum frēom horde (sēo $1 for āscungum).
+'''Ne forþsend efenlǣhtscielded weorc būtan þafunge!'''",
 'templatesused' => '{{PLURAL:$1|Þēos bysen is|Þās bysena sind}} gebrocen on þissum tramete:',
 'templatesusedpreview' => '{{PLURAL:$1|Þēos bysen is|Þās bysena sind}} gebrocen on þisre fōrebysene:',
 'template-protected' => '(geborgen)',
@@ -1168,7 +1168,7 @@ Cēos ōðerne naman lā.',
 'exif-sharpness' => 'Scearpnes',
 'exif-gpslatituderef' => 'Norþ oþþe sūþ brǣdu',
 'exif-gpslatitude' => 'Brǣdu',
-'exif-gpslongituderef' => 'Ēast oþþe ƿest lengu',
+'exif-gpslongituderef' => 'Ēast oþþe west lengu',
 'exif-gpslongitude' => 'Lengu',
 'exif-gpsmeasuremode' => 'Mētungmōd',
 'exif-gpsimgdirection' => 'Rihtung þæs biliðes',
@@ -1177,7 +1177,7 @@ Cēos ōðerne naman lā.',
 'exif-compression-1' => 'Unȝeþrycced',
 
 'exif-meteringmode-0' => 'Uncūþ',
-'exif-meteringmode-1' => 'Ȝeþēaƿisc',
+'exif-meteringmode-1' => 'Geþēawisc',
 'exif-meteringmode-6' => 'Sām',
 'exif-meteringmode-255' => 'Ōðer',
 
@@ -1212,7 +1212,7 @@ Cēos ōðerne naman lā.',
 
 # Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
 'exif-gpslongitude-e' => 'Ēast lengu',
-'exif-gpslongitude-w' => 'Ƿest lengu',
+'exif-gpslongitude-w' => 'West lengu',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Sōþ rihtung',
