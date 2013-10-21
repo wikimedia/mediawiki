@@ -330,7 +330,7 @@
 		assert.equal( title.getUrl(), '/wiki/User_talk:John_Doe', 'Escaping in title and namespace for urls' );
 	} );
 
-	QUnit.test( 'newFromImg', 28, function ( assert ) {
+	QUnit.test( 'newFromImg', 36, function ( assert ) {
 		var title, i, thisCase, prefix,
 			cases = [
 				{
@@ -338,6 +338,13 @@
 					typeOfUrl: 'Normal hashed directory thumbnail',
 					nameText: 'Anticlockwise heliotrope\'s',
 					prefixedText: 'File:Anticlockwise heliotrope\'s.jpg'
+				},
+
+				{
+					url: '/wiki/images/thumb/8/80/Wikipedia-logo-v2.svg/langde-150px-Wikipedia-logo-v2.svg.png',
+					typeOfUrl: 'Normal hashed directory thumbnail with complex thumbnail parameters',
+					nameText: 'Wikipedia-logo-v2',
+					prefixedText: 'File:Wikipedia-logo-v2.svg'
 				},
 
 				{
@@ -364,6 +371,13 @@
 				{
 					url: '/wikipedia/commons/thumb/Wikipedia-logo-v2.svg/150px-Wikipedia-logo-v2.svg.png',
 					typeOfUrl: 'Commons unhashed thumbnail',
+					nameText: 'Wikipedia-logo-v2',
+					prefixedText: 'File:Wikipedia-logo-v2.svg'
+				},
+
+				{
+					url: '/wikipedia/commons/thumb/Wikipedia-logo-v2.svg/langde-150px-Wikipedia-logo-v2.svg.png',
+					typeOfUrl: 'Commons unhashed thumbnail with complex thumbnail parameters',
 					nameText: 'Wikipedia-logo-v2',
 					prefixedText: 'File:Wikipedia-logo-v2.svg'
 				},
