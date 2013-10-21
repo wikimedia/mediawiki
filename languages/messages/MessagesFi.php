@@ -1504,8 +1504,8 @@ Kuka tahansa, joka tietää sen voi lukea tarkkailulistaasi, joten älä paljast
 'badsiglength' => 'Allekirjoitus on liian pitkä – sen on oltava alle $1 {{PLURAL:$1|merkki|merkkiä}}.',
 'yourgender' => 'Mikä seuraavista kuvaa sinua?',
 'gender-unknown' => 'En halua määritellä',
-'gender-male' => 'Hän on miespuolinen käyttäjä',
-'gender-female' => 'Hän on naispuolinen käyttäjä',
+'gender-male' => 'Mies',
+'gender-female' => 'Nainen',
 'prefs-help-gender' => 'Tämän asetuksen määrittäminen on vapaaehtoista.
 Ohjelmisto käyttää annettua arvoa viitaten sinuun oikealla kieliopillisella suvulla.
 Tämä tieto on julkinen.',
@@ -2542,7 +2542,7 @@ Viimeisimmän muokkauksen on tehnyt käyttäjä [[User:$3|$3]] ([[User talk:$3|k
 'protect-otherreason-op' => 'Muu syy',
 'protect-dropdown' => '*Yleiset suojaussyyt
 ** Jatkuva vandalismi
-** Jatkuva roskalinkkien lisääminen
+** Jatkuva mainoslinkkien lisääminen
 ** Muokkaussota
 ** Suuri näkyvyys',
 'protect-edit-reasonlist' => 'Muokkaa suojaussyitä',

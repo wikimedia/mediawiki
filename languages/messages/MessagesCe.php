@@ -2199,7 +2199,7 @@ PICT # тайп тайпан
 'show-big-image-size' => '$1 × $2 пикселш',
 
 # Special:NewFiles
-'newimages' => 'Керлачу файланшан галерий',
+'newimages' => 'Керлачу файлийн галерий',
 'newimages-summary' => 'ХӀокху белхан агӀона чохь гойтуш ю дукха хан йоццуш чуйаьхна файлаш.',
 'newimages-legend' => 'Литтар',
 'ilsubmit' => 'Лаха',
