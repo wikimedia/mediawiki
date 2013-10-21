@@ -312,13 +312,12 @@
 
 			// thumb.php-generated thumbnails
 			thumbPhpRegex = /thumb\.php/,
-
 			regexes = [
 				// Thumbnails
-				/\/[a-f0-9]\/[a-f0-9]{2}\/([^\s\/]+)\/[0-9]+px-\1[^\s\/]*$/,
+				/\/[a-f0-9]\/[a-f0-9]{2}\/([^\s\/]+)\/[^\s\/]+-\1[^\s\/]*$/,
 
 				// Thumbnails in non-hashed upload directories
-				/\/([^\s\/]+)\/[0-9]+px-\1[^\s\/]*$/,
+				/\/([^\s\/]+)\/[^\s\/]+-\1[^\s\/]*$/,
 
 				// Full size images
 				/\/[a-f0-9]\/[a-f0-9]{2}\/([^\s\/]+)$/,

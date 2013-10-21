@@ -341,6 +341,13 @@
 				},
 
 				{
+					url: '/wiki/images/thumb/8/80/Wikipedia-logo-v2.svg/langde-150px-Wikipedia-logo-v2.svg.png',
+					typeOfUrl: 'Normal hashed directory thumbnail with complex thumbnail parameters',
+					nameText: 'Wikipedia-logo-v2',
+					prefixedText: 'File:Wikipedia-logo-v2.svg'
+				},
+
+				{
 					url: '//upload.wikimedia.org/wikipedia/commons/thumb/8/80/Wikipedia-logo-v2.svg/150px-Wikipedia-logo-v2.svg.png',
 					typeOfUrl: 'Commons thumbnail',
 					nameText: 'Wikipedia-logo-v2',
@@ -364,6 +371,13 @@
 				{
 					url: '/wikipedia/commons/thumb/Wikipedia-logo-v2.svg/150px-Wikipedia-logo-v2.svg.png',
 					typeOfUrl: 'Commons unhashed thumbnail',
+					nameText: 'Wikipedia-logo-v2',
+					prefixedText: 'File:Wikipedia-logo-v2.svg'
+				},
+
+				{
+					url: '/wikipedia/commons/thumb/Wikipedia-logo-v2.svg/langde-150px-Wikipedia-logo-v2.svg.png',
+					typeOfUrl: 'Commons unhashed thumbnail with complex thumbnail parameters',
 					nameText: 'Wikipedia-logo-v2',
 					prefixedText: 'File:Wikipedia-logo-v2.svg'
 				},
