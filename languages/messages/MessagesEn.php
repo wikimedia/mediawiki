@@ -2873,7 +2873,7 @@ Future changes to this page and its associated talk page will be listed there.',
 'watchmethod-recent'   => 'checking recent edits for watched pages',
 'watchmethod-list'     => 'checking watched pages for recent edits',
 'watchlistcontains'    => 'Your watchlist contains $1 {{PLURAL:$1|page|pages}}.',
-'iteminvalidname'      => "Problem with item '$1', invalid name...",
+'iteminvalidname'      => 'Problem with item "$1", invalid name...',
 'wlnote'               => "Below {{PLURAL:$1|is the last change|are the last '''$1''' changes}} in the last {{PLURAL:$2|hour|'''$2''' hours}}, as of $3, $4.",
 'wlshowlast'           => 'Show last $1 hours $2 days $3',
 'watchlist-options'    => 'Watchlist options',
@@ -2951,10 +2951,12 @@ See $2 for a record of recent deletions.',
 'deletecomment'          => 'Reason:',
 'deleteotherreason'      => 'Other/additional reason:',
 'deletereasonotherlist'  => 'Other reason',
-'deletereason-dropdown'  => '*Common delete reasons
-** Author request
+'deletereason-dropdown'  => '* Common delete reasons
+** Spam
+** Vandalism
 ** Copyright violation
-** Vandalism',
+** Author request
+** Broken redirect',
 'delete-edit-reasonlist' => 'Edit deletion reasons',
 'delete-toobig'          => 'This page has a large edit history, over $1 {{PLURAL:$1|revision|revisions}}.
 Deletion of such pages has been restricted to prevent accidental disruption of {{SITENAME}}.',
@@ -3769,9 +3771,9 @@ This is probably caused by a link to a blacklisted external site.',
 'pageinfo-length'                 => 'Page length (in bytes)',
 'pageinfo-article-id'             => 'Page ID',
 'pageinfo-language'               => 'Page content language',
-'pageinfo-robot-policy'           => 'Search engine status',
-'pageinfo-robot-index'            => 'Indexable',
-'pageinfo-robot-noindex'          => 'Not indexable',
+'pageinfo-robot-policy'           => 'Indexing by robots',
+'pageinfo-robot-index'            => 'Allowed',
+'pageinfo-robot-noindex'          => 'Disallowed',
 'pageinfo-views'                  => 'Number of views',
 'pageinfo-watchers'               => 'Number of page watchers',
 'pageinfo-few-watchers'           => 'Fewer than $1 {{PLURAL:$1|watcher|watchers}}',
