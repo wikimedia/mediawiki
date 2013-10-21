@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @covers ZipDirectoryReader
+ * NOTE: this test is more like an integration test than a unit test
+ */
 class ZipDirectoryReaderTest extends MediaWikiTestCase {
 	var $zipDir, $entries;
 
