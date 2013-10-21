@@ -282,6 +282,20 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	private $mTrxAutomatic = false;
 
 	/**
+	 * Array of levels of atomicity within transactions
+	 *
+	 * @var Array
+	 */
+	private $mTrxAtomicLevels = array();
+
+	/**
+	 * Record if the current transaction was started implicitly by DatabaseBase::startAtomic
+	 *
+	 * @var Bool
+	 */
+	private $mTrxAutomaticAtomic = false;
+
+	/**
 	 * @since 1.21
 	 * @var file handle for upgrade
 	 */
@@ -3185,6 +3199,28 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	}
 
 	/**
+	 * Begin an atomic section of statements
+	 *
+	 * If a transaction has been started already, just keep track of the given
+	 * section name to make sure the transaction is not committed pre-maturely.
+	 * If there is no transaction, start one.
+	 *
+	 * The goal of this function is to create an atomic section of SQL queries
+	 * without having to start a new transaction if it already exists.
+	 *
+	 * @param string $fname
+	 */
+	final public function startAtomic( $fname = __METHOD__ ) {
+		array_push( $this->mTrxAtomicLevels, $fname );
+
+		if ( !$this->mTrxLevel ) {
+			$this->begin( $fname );
+			$this->mTrxAutomatic = true;
+			$this->mTrxAutomaticAtomic = true;
+		}
+	}
+
+	/**
 	 * Begin a transaction. If a transaction is already in progress, that transaction will be committed before the
 	 * new transaction is started.
 	 *
@@ -3240,6 +3276,25 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	protected function doBegin( $fname ) {
 		$this->query( 'BEGIN', $fname );
 		$this->mTrxLevel = 1;
+	}
+
+	/**
+	 * Ends an atomic section of SQL statements
+	 *
+	 * Ends the next section of atomic SQL statements and commits the transaction
+	 * if necessary.
+	 *
+	 * @param string $fname
+	 */
+	final public function endAtomic( $fname = __METHOD__ ) {
+		$lastFname = array_pop( $this->mTrxAtomicLevels );
+		if ( $lastFname !== $fname ) {
+			throw new MWException( 'Invalid atomic section ended.' );
+		}
+
+		if ( !$this->mTrxAtomicLevels && $this->mTrxAutomaticAtomic ) {
+			$this->commit( $fname, 'flush' );
+		}
 	}
 
 	/**
