@@ -54,6 +54,7 @@ class MediaWikiSiteTest extends SiteTest {
 
 	/**
 	 * @dataProvider fileUrlProvider
+	 * @covers MediaWikiSite::getFileUrl
 	 */
 	public function testGetFileUrl( $url, $filePath, $pathArgument, $expected ) {
 		$site = new MediaWikiSite();
@@ -77,6 +78,7 @@ class MediaWikiSiteTest extends SiteTest {
 
 	/**
 	 * @dataProvider provideGetPageUrl
+	 * @covers MediaWikiSite::getPageUrl
 	 */
 	public function testGetPageUrl( $path, $page, $expected ) {
 		$site = new MediaWikiSite();

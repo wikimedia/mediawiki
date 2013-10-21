@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers ZipDirectoryReader
+ */
 class ZipDirectoryReaderTest extends MediaWikiTestCase {
 	var $zipDir, $entries;
 
