@@ -364,7 +364,7 @@ class ApiEditPageTest extends ApiTestCase {
 
 		/*
 		* bug 41990: if the target page has a newer revision than the redirect, then editing the
-		* redirect while specifying 'redirect' and *not* specifying 'basetimestamp' erronously
+		* redirect while specifying 'redirect' and *not* specifying 'basetimestamp' erroneously
 		* caused an edit conflict to be detected.
 		*/
 
