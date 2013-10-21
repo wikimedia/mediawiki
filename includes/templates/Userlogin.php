@@ -69,10 +69,6 @@ class UserloginTemplate extends BaseTemplate {
 				</label>
 				<?php
 				$extraAttrs = array();
-				// Set focus to this field if it's blank.
-				if ( !$this->data['name'] ) {
-					$extraAttrs['autofocus'] = '';
-				}
 				echo Html::input( 'wpName', $this->data['name'], 'text', array(
 					'class' => 'loginText',
 					'id' => 'wpName1',
@@ -80,9 +76,11 @@ class UserloginTemplate extends BaseTemplate {
 					'size' => '20',
 					// 'required' is blacklisted for now in Html.php due to browser issues.
 					// Keeping here in case that changes.
-					'required',
+					'required' => true,
+					// Set focus to this field if it's blank.
+					'autofocus' => !$this->data['name'],
 					'placeholder' => $this->getMsg( 'userlogin-yourname-ph' )->text()
-				) + $extraAttrs );
+				) );
 				?>
 			</div>
 
@@ -101,18 +99,15 @@ class UserloginTemplate extends BaseTemplate {
 					?>
 				</label>
 				<?php
-				$extraAttrs = array();
-				// Set focus to this field if username is filled in.
-				if ( $this->data['name'] ) {
-					$extraAttrs['autofocus'] = '';
-				}
 				echo Html::input( 'wpPassword', null, 'password', array(
 					'class' => 'loginPassword',
 					'id' => 'wpPassword1',
 					'tabindex' => '2',
 					'size' => '20',
+					// Set focus to this field if username is filled in.
+					'autofocus' => (bool)$this->data['name'],
 					'placeholder' => $this->getMsg( 'userlogin-yourpassword-ph' )->text()
-				) + $extraAttrs );
+				) );
 				?>
 			</div>
 
