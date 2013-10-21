@@ -1,8 +1,10 @@
 <?php
 
 class FileRepoTest extends MediaWikiTestCase {
+
 	/**
 	 * @expectedException MWException
+	 * @covers FileRepo::__construct
 	 */
 	function testFileRepoConstructionOptionCanNotBeNull() {
 		new FileRepo();
@@ -10,6 +12,7 @@ class FileRepoTest extends MediaWikiTestCase {
 
 	/**
 	 * @expectedException MWException
+	 * @covers FileRepo::__construct
 	 */
 	function testFileRepoConstructionOptionCanNotBeAnEmptyArray() {
 		new FileRepo( array() );
@@ -17,6 +20,7 @@ class FileRepoTest extends MediaWikiTestCase {
 
 	/**
 	 * @expectedException MWException
+	 * @covers FileRepo::__construct
 	 */
 	function testFileRepoConstructionOptionNeedNameKey() {
 		new FileRepo( array(
@@ -26,6 +30,7 @@ class FileRepoTest extends MediaWikiTestCase {
 
 	/**
 	 * @expectedException MWException
+	 * @covers FileRepo::__construct
 	 */
 	function testFileRepoConstructionOptionNeedBackendKey() {
 		new FileRepo( array(
@@ -33,6 +38,9 @@ class FileRepoTest extends MediaWikiTestCase {
 		) );
 	}
 
+	/**
+	 * @covers FileRepo::__construct
+	 */
 	function testFileRepoConstructionWithRequiredOptions() {
 		$f = new FileRepo( array(
 			'name' => 'FileRepoTestRepository',

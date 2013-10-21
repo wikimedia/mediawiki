@@ -68,6 +68,7 @@ class SiteListTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider siteListProvider
 	 * @param SiteList $sites
+	 * @covers SiteList::isEmpty
 	 */
 	public function testIsEmpty( SiteList $sites ) {
 		$this->assertEquals( count( $sites ) === 0, $sites->isEmpty() );
@@ -76,6 +77,7 @@ class SiteListTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider siteListProvider
 	 * @param SiteList $sites
+	 * @covers SiteList::getSite
 	 */
 	public function testGetSiteByGlobalId( SiteList $sites ) {
 		if ( $sites->isEmpty() ) {
@@ -93,6 +95,7 @@ class SiteListTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider siteListProvider
 	 * @param SiteList $sites
+	 * @covers SiteList::getSiteByInternalId
 	 */
 	public function testGetSiteByInternalId( $sites ) {
 		/**
@@ -110,6 +113,7 @@ class SiteListTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider siteListProvider
 	 * @param SiteList $sites
+	 * @covers SiteList::hasSite
 	 */
 	public function testHasGlobalId( $sites ) {
 		$this->assertFalse( $sites->hasSite( 'non-existing-global-id' ) );
@@ -128,6 +132,7 @@ class SiteListTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider siteListProvider
 	 * @param SiteList $sites
+	 * @covers SiteList::hasInternalId
 	 */
 	public function testHasInternallId( $sites ) {
 		/**
@@ -145,6 +150,7 @@ class SiteListTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider siteListProvider
 	 * @param SiteList $sites
+	 * @covers SiteList::getGlobalIdentifiers
 	 */
 	public function testGetGlobalIdentifiers( SiteList $sites ) {
 		$identifiers = $sites->getGlobalIdentifiers();
@@ -169,6 +175,8 @@ class SiteListTest extends MediaWikiTestCase {
 	 * @since 1.21
 	 *
 	 * @param SiteList $list
+	 * @covers SiteList::getSerializationData
+	 * @covers SiteList::unserialize
 	 */
 	public function testSerialization( SiteList $list ) {
 		$serialization = serialize( $list );

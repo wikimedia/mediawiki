@@ -1,8 +1,6 @@
 <?php
 
 class XmlTest extends MediaWikiTestCase {
-	private static $oldLang;
-	private static $oldNamespaces;
 
 	protected function setUp() {
 		parent::setUp();
@@ -33,6 +31,9 @@ class XmlTest extends MediaWikiTestCase {
 		) );
 	}
 
+	/**
+	 * @covers Xml::expandAttributes
+	 */
 	public function testExpandAttributes() {
 		$this->assertNull( Xml::expandAttributes( null ),
 			'Converting a null list of attributes'
@@ -42,11 +43,17 @@ class XmlTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * @covers Xml::expandAttributes
+	 */
 	public function testExpandAttributesException() {
 		$this->setExpectedException( 'MWException' );
 		Xml::expandAttributes( 'string' );
 	}
 
+	/**
+	 * @covers Xml::element
+	 */
 	function testElementOpen() {
 		$this->assertEquals(
 			'<element>',
@@ -55,6 +62,9 @@ class XmlTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * @covers Xml::element
+	 */
 	function testElementEmpty() {
 		$this->assertEquals(
 			'<element />',
@@ -63,6 +73,9 @@ class XmlTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * @covers Xml::input
+	 */
 	function testElementInputCanHaveAValueOfZero() {
 		$this->assertEquals(
 			'<input name="name" value="0" />',
@@ -71,6 +84,9 @@ class XmlTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * @covers Xml::element
+	 */
 	function testElementEscaping() {
 		$this->assertEquals(
 			'<element>hello &lt;there&gt; you &amp; you</element>',
@@ -79,12 +95,18 @@ class XmlTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * @covers Xml::escapeTagsOnly
+	 */
 	public function testEscapeTagsOnly() {
 		$this->assertEquals( '&quot;&gt;&lt;', Xml::escapeTagsOnly( '"><' ),
 			'replace " > and < with their HTML entitites'
 		);
 	}
 
+	/**
+	 * @covers Xml::element
+	 */
 	function testElementAttributes() {
 		$this->assertEquals(
 			'<element key="value" <>="&lt;&gt;">',
@@ -93,6 +115,9 @@ class XmlTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * @covers Xml::openElement
+	 */
 	function testOpenElement() {
 		$this->assertEquals(
 			'<element k="v">',
@@ -101,10 +126,16 @@ class XmlTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * @covers Xml::closeElement
+	 */
 	function testCloseElement() {
 		$this->assertEquals( '</element>', Xml::closeElement( 'element' ), 'closeElement() shortcut' );
 	}
 
+	/**
+	 * @covers Xml::dateMenu
+	 */
 	public function testDateMenu() {
 		$curYear = intval( gmdate( 'Y' ) );
 		$prevYear = $curYear - 1;
@@ -185,9 +216,9 @@ class XmlTest extends MediaWikiTestCase {
 		);
 	}
 
-	#
-	# textarea
-	#
+	/**
+	 * @covers Xml::textarea
+	 */
 	function testTextareaNoContent() {
 		$this->assertEquals(
 			'<textarea name="name" id="name" cols="40" rows="5"></textarea>',
@@ -196,6 +227,9 @@ class XmlTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * @covers Xml::textarea
+	 */
 	function testTextareaAttribs() {
 		$this->assertEquals(
 			'<textarea name="name" id="name" cols="20" rows="10">&lt;txt&gt;</textarea>',
@@ -204,9 +238,9 @@ class XmlTest extends MediaWikiTestCase {
 		);
 	}
 
-	#
-	# input and label
-	#
+	/**
+	 * @covers Xml::label
+	 */
 	function testLabelCreation() {
 		$this->assertEquals(
 			'<label for="id">name</label>',
@@ -215,6 +249,9 @@ class XmlTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * @covers Xml::label
+	 */
 	function testLabelAttributeCanOnlyBeClassOrTitle() {
 		$this->assertEquals(
 			'<label for="id">name</label>',
@@ -244,6 +281,9 @@ class XmlTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * @covers Xml::languageSelector
+	 */
 	function testLanguageSelector() {
 		$select = Xml::languageSelector( 'en', true, null,
 			array( 'id' => 'testlang' ), wfMessage( 'yourlanguage' ) );
@@ -253,9 +293,9 @@ class XmlTest extends MediaWikiTestCase {
 		);
 	}
 
-	#
-	# JS
-	#
+	/**
+	 * @covers Xml::escapeJsString
+	 */
 	function testEscapeJsStringSpecialChars() {
 		$this->assertEquals(
 			'\\\\\r\n',
@@ -264,6 +304,9 @@ class XmlTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * @covers Xml::encodeJsVar
+	 */
 	function testEncodeJsVarBoolean() {
 		$this->assertEquals(
 			'true',
@@ -272,6 +315,9 @@ class XmlTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * @covers Xml::encodeJsVar
+	 */
 	function testEncodeJsVarNull() {
 		$this->assertEquals(
 			'null',
@@ -280,6 +326,9 @@ class XmlTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * @covers Xml::encodeJsVar
+	 */
 	function testEncodeJsVarArray() {
 		$this->assertEquals(
 			'["a",1]',
@@ -293,6 +342,9 @@ class XmlTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * @covers Xml::encodeJsVar
+	 */
 	function testEncodeJsVarObject() {
 		$this->assertEquals(
 			'{"a":"a","b":1}',
@@ -301,6 +353,9 @@ class XmlTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * @covers Xml::encodeJsVar
+	 */
 	function testEncodeJsVarInt() {
 		$this->assertEquals(
 			'123456',
@@ -309,6 +364,9 @@ class XmlTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * @covers Xml::encodeJsVar
+	 */
 	function testEncodeJsVarFloat() {
 		$this->assertEquals(
 			'1.23456',
@@ -317,6 +375,9 @@ class XmlTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * @covers Xml::encodeJsVar
+	 */
 	function testEncodeJsVarIntString() {
 		$this->assertEquals(
 			'"123456"',
@@ -325,6 +386,9 @@ class XmlTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * @covers Xml::encodeJsVar
+	 */
 	function testEncodeJsVarFloatString() {
 		$this->assertEquals(
 			'"1.23456"',
