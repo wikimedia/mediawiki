@@ -665,7 +665,7 @@ class ApiMain extends ApiBase {
 			);
 			ApiResult::setContent(
 				$errMessage,
-				$wgShowExceptionDetails ? "\n\n{$e->getTraceAsString()}\n\n" : ''
+				$wgShowExceptionDetails ? MWExceptionHandler::formatExceptionDetails( $e, 'text' ) : ''
 			);
 		}
 

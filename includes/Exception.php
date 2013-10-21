@@ -140,9 +140,7 @@ class MWException extends Exception {
 		global $wgShowExceptionDetails;
 
 		if ( $wgShowExceptionDetails ) {
-			return '<p>' . nl2br( htmlspecialchars( MWExceptionHandler::getLogMessage( $this ) ) ) .
-				'</p><p>Backtrace:</p><p>' . nl2br( htmlspecialchars( MWExceptionHandler::getRedactedTraceAsString( $this ) ) ) .
-				"</p>\n";
+			return MWExceptionHandler::formatExceptionDetails( $this, 'html' );
 		} else {
 			return "<div class=\"errorbox\">" .
 				'[' . MWExceptionHandler::getLogId( $this ) . '] ' .
@@ -165,8 +163,7 @@ class MWException extends Exception {
 		global $wgShowExceptionDetails;
 
 		if ( $wgShowExceptionDetails ) {
-			return MWExceptionHandler::getLogMessage( $this ) .
-				"\nBacktrace:\n" . MWExceptionHandler::getRedactedTraceAsString( $this ) . "\n";
+			return MWExceptionHandler::formatExceptionDetails( $this, 'text' );
 		} else {
 			return "Set \$wgShowExceptionDetails = true; " .
 				"in LocalSettings.php to show detailed debugging information.\n";
@@ -605,51 +602,42 @@ class MWExceptionHandler {
 	protected static function report( Exception $e ) {
 		global $wgShowExceptionDetails;
 
-		$cmdLine = MWException::isCommandLine();
+		$format = MWException::isCommandLine() ? 'text' : 'html';
+		$newLine = $format === 'text' ? "\n\n" : "<br><br>";
 
 		if ( $e instanceof MWException ) {
 			try {
 				// Try and show the exception prettily, with the normal skin infrastructure
 				$e->report();
+				return;
 			} catch ( Exception $e2 ) {
 				// Exception occurred from within exception handler
 				// Show a simpler error message for the original exception,
 				// don't try to invoke report()
-				$message = "MediaWiki internal error.\n\n";
+				$message = "MediaWiki internal error.{$newLine}{$newLine}";
 
 				if ( $wgShowExceptionDetails ) {
-					$message .= 'Original exception: ' . self::getLogMessage( $e ) .
-						"\nBacktrace:\n" . self::getRedactedTraceAsString( $e ) .
-						"\n\nException caught inside exception handler: " . self::getLogMessage( $e2 ) .
-						"\nBacktrace:\n" . self::getRedactedTraceAsString( $e2 );
+					$message .= 'Original exception: ' .
+						MWExceptionHandler::formatExceptionDetails( $e, $format ) .
+						"{$newLine}{$newLine}Exception caught inside exception handler: " . 
+						MWExceptionHandler::formatExceptionDetails( $e2, $format );
 				} else {
-					$message .= "Exception caught inside exception handler.\n\n" .
+					$message .= "Exception caught inside exception handler.{$newLine}{$newLine}" .
 						"Set \$wgShowExceptionDetails = true; at the bottom of LocalSettings.php " .
 						"to show detailed debugging information.";
 				}
 
-				$message .= "\n";
-
-				if ( $cmdLine ) {
-					self::printError( $message );
-				} else {
-					echo nl2br( htmlspecialchars( $message ) ) . "\n";
-				}
+				$message .= $newLine;
 			}
 		} else {
-			$message = "Unexpected non-MediaWiki exception encountered, of type \"" .
-				get_class( $e ) . "\"";
+			$message = "Unexpected non-MediaWiki exception encountered:{$newLine}{$newLine}" .
+				MWExceptionHandler::formatExceptionDetails( $e, $format );
+		}
 
-			if ( $wgShowExceptionDetails ) {
-				$message .= "\n" . MWExceptionHandler::getLogMessage( $e ) . "\nBacktrace:\n" .
-					self::getRedactedTraceAsString( $e ) . "\n";
-			}
-
-			if ( $cmdLine ) {
-				self::printError( $message );
-			} else {
-				echo nl2br( htmlspecialchars( $message ) ) . "\n";
-			}
+		if ( $format === 'text' ) {
+			self::printError( $message );
+		} else {
+			echo "$message\n";
 		}
 	}
 
@@ -697,6 +685,44 @@ class MWExceptionHandler {
 
 		// Exit value should be nonzero for the benefit of shell jobs
 		exit( 1 );
+	}
+
+	/**
+	 * Generate a string representation of an exception and all linked previous
+	 * exceptions including class name, exception message, and redacted backtrace.
+	 *
+	 * @param Exception $e
+	 * @param string $output The format to generate output in, either 'html' or 'text' 
+	 * @return string
+	 */
+	public static function formatExceptionDetails( Exception $e, $output = 'html' ) {
+		global $wgShowExceptionDetails;
+
+		$content = array();
+		if ( $wgShowExceptionDetails ) {
+			$depth = 0;
+			$isDeep = (bool)$e->getPrevious();
+			do {
+				$depthMarker = $isDeep ? "(depth $depth) " : "";
+				$class = get_class( $e );
+				$logMessage = MWExceptionHandler::getLogMessage( $e );
+				$trace = MWExceptionHandler::getRedactedTraceAsString( $e );
+
+				if ( $output === 'text' ) {
+					$content[] = "$depthMarker$class : $logMessage\n\n" .
+						"Backtrace:\n$trace\n\n";
+				} else {
+					$content[] = "<p>$depthMarker$class : " .
+						nl2br( htmlspecialchars( $logMessage ) ) .
+						"</p><p>Backtrace:</p><p>" .
+						nl2br( htmlspecialchars( $trace ) ) .
+						"</p>\n";
+				}
+				$depth++;
+			} while ( $e = $e->getPrevious() );
+
+		}
+		return implode( '', array_reverse( $content ) );
 	}
 
 	/**
@@ -864,6 +890,12 @@ class MWExceptionHandler {
 	 * @return string|bool: JSON string if successful; false upon failure
 	 */
 	public static function jsonSerializeException( Exception $e, $pretty = false, $escaping = 0 ) {
+		$exceptionData = self::serializeException( $e );
+
+		return FormatJson::encode( $exceptionData, $pretty, $escaping );
+	}
+
+	public static function serializeException( Exception $e ) {
 		global $wgLogExceptionBacktrace;
 
 		$exceptionData = array(
@@ -884,7 +916,11 @@ class MWExceptionHandler {
 			$exceptionData['backtrace'] = self::getRedactedTrace( $e );
 		}
 
-		return FormatJson::encode( $exceptionData, $pretty, $escaping );
+		if ( $e->getPrevious() ) {
+			$exceptionData['previous'] = self::serializeException( $e->getPrevious() );
+		}
+
+		return $exceptionData;
 	}
 
 	/**
