@@ -628,11 +628,8 @@ XHTML id names.
 'sidebar' => '
 * navigation
 ** mainpage|mainpage-description
-** portal-url|portal
-** currentevents-url|currentevents
 ** recentchanges-url|recentchanges
 ** randompage-url|randompage
-** helppage|help
 * SEARCH
 * TOOLBOX
 * LANGUAGES', # do not translate or duplicate this message to other languages
@@ -644,12 +641,12 @@ XHTML id names.
 'tog-hidepatrolled'           => 'Hide patrolled edits in recent changes',
 'tog-newpageshidepatrolled'   => 'Hide patrolled pages from new page list',
 'tog-extendwatchlist'         => 'Expand watchlist to show all changes, not just the most recent',
-'tog-usenewrc'                => 'Group changes by page in recent changes and watchlist (requires JavaScript)',
+'tog-usenewrc'                => 'Group changes by page in recent changes and watchlist',
 'tog-numberheadings'          => 'Auto-number headings',
-'tog-showtoolbar'             => 'Show edit toolbar (requires JavaScript)',
-'tog-editondblclick'          => 'Edit pages on double click (requires JavaScript)',
+'tog-showtoolbar'             => 'Show edit toolbar',
+'tog-editondblclick'          => 'Edit pages on double click',
 'tog-editsection'             => 'Enable section editing via [edit] links',
-'tog-editsectiononrightclick' => 'Enable section editing by right clicking on section titles (requires JavaScript)',
+'tog-editsectiononrightclick' => 'Enable section editing by right clicking on section titles',
 'tog-showtoc'                 => 'Show table of contents (for pages with more than 3 headings)',
 'tog-rememberpassword'        => 'Remember my login on this browser (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'tog-watchcreations'          => 'Add pages I create and files I upload to my watchlist',
@@ -670,7 +667,7 @@ XHTML id names.
 'tog-externaleditor'          => 'Use external editor by default (for experts only, needs special settings on your computer. [//www.mediawiki.org/wiki/Manual:External_editors More information.])',
 'tog-externaldiff'            => 'Use external diff by default (for experts only, needs special settings on your computer. [//www.mediawiki.org/wiki/Manual:External_editors More information.])',
 'tog-showjumplinks'           => 'Enable "jump to" accessibility links',
-'tog-uselivepreview'          => 'Use live preview (requires JavaScript) (experimental)',
+'tog-uselivepreview'          => 'Use live preview (experimental)',
 'tog-forceeditsummary'        => 'Prompt me when entering a blank edit summary',
 'tog-watchlisthideown'        => 'Hide my edits from the watchlist',
 'tog-watchlisthidebots'       => 'Hide bot edits from the watchlist',
@@ -775,7 +772,7 @@ XHTML id names.
 'newwindow'     => '(opens in new window)',
 'cancel'        => 'Cancel',
 'moredotdotdot' => 'More...',
-'morenotlisted' => 'More not listed...',
+'morenotlisted' => 'This list is not complete.',
 'mypage'        => 'Page',
 'mytalk'        => 'Talk',
 'anontalk'      => 'Talk for this IP address',
@@ -850,7 +847,7 @@ XHTML id names.
 'articlepage'        => 'View content page',
 'talk'               => 'Discussion',
 'views'              => 'Views',
-'toolbox'            => 'Toolbox',
+'toolbox'            => 'Tools',
 'userpage'           => 'View user page',
 'projectpage'        => 'View project page',
 'imagepage'          => 'View file page',
@@ -881,7 +878,7 @@ $1',
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'About {{SITENAME}}',
 'aboutpage'            => 'Project:About',
-'copyright'            => 'Content is available under $1.',
+'copyright'            => 'Content is available under $1 unless otherwise noted.',
 'copyrightpage'        => '{{ns:project}}:Copyrights',
 'currentevents'        => 'Current events',
 'currentevents-url'    => 'Project:Current events',
@@ -1069,7 +1066,6 @@ The administrator who locked it offered this explanation: "$3".',
 # Login and logout pages
 'logouttext'                 => "'''You are now logged out.'''
 
-You can continue to use {{SITENAME}} anonymously, or you can <span class='plainlinks'>[$1 log in again]</span> as the same or as a different user.
 Note that some pages may continue to be displayed as if you were still logged in, until you clear your browser cache.",
 'welcomeuser'                => 'Welcome, $1!',
 'welcomecreation-msg'        => 'Your account has been created.
@@ -1097,7 +1093,7 @@ Do not forget to change your [[Special:Preferences|{{SITENAME}} preferences]].',
 'gotaccount'                 => 'Already have an account? $1.',
 'gotaccountlink'             => 'Log in',
 'userlogin-resetlink'        => 'Forgotten your login details?',
-'createaccountmail'          => 'Use a temporary random password and send it to the email address specified below',
+'createaccountmail'          => 'Use a temporary random password and send it to the specified email address',
 'createaccountreason'        => 'Reason:',
 'badretype'                  => 'The passwords you entered do not match.',
 'userexists'                 => 'Username entered already in use.
@@ -1170,7 +1166,7 @@ Please enter a well-formatted address or empty that field.',
 'cannotchangeemail'          => 'Account email addresses cannot be changed on this wiki.',
 'emaildisabled'              => 'This site cannot send emails.',
 'accountcreated'             => 'Account created',
-'accountcreatedtext'         => 'The user account for $1 has been created.',
+'accountcreatedtext'              => 'The user account for [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|talk]]) has been created.',
 'createaccount-title'        => 'Account creation for {{SITENAME}}',
 'createaccount-text'         => 'Someone created an account for your email address on {{SITENAME}} ($4) named "$2", with password "$3".
 You should log in and change your password now.
@@ -1321,13 +1317,13 @@ The reason given is ''$2''.
 * Intended blockee: $7
 
 You can contact $1 or another [[{{MediaWiki:Grouppage-sysop}}|administrator]] to discuss the block.
-You cannot use the 'email this user' feature unless a valid email address is specified in your [[Special:Preferences|account preferences]] and you have not been blocked from using it.
+You cannot use the \"email this user\" feature unless a valid email address is specified in your [[Special:Preferences|account preferences]] and you have not been blocked from using it.
 Your current IP address is $3, and the block ID is #$5.
 Please include all above details in any queries you make.",
-'autoblockedtext'                  => 'Your IP address has been automatically blocked because it was used by another user, who was blocked by $1.
+'autoblockedtext'                  => "Your IP address has been automatically blocked because it was used by another user, who was blocked by $1.
 The reason given is:
 
-:\'\'$2\'\'
+:''$2''
 
 * Start of block: $8
 * Expiry of block: $6
@@ -1335,10 +1331,10 @@ The reason given is:
 
 You may contact $1 or one of the other [[{{MediaWiki:Grouppage-sysop}}|administrators]] to discuss the block.
 
-Note that you may not use the "email this user" feature unless you have a valid email address registered in your [[Special:Preferences|user preferences]] and you have not been blocked from using it.
+Note that you may not use the \"email this user\" feature unless you have a valid email address registered in your [[Special:Preferences|user preferences]] and you have not been blocked from using it.
 
 Your current IP address is $3, and the block ID is #$5.
-Please include all above details in any queries you make.',
+Please include all above details in any queries you make.",
 'blockednoreason'                  => 'no reason given',
 'whitelistedittext'                => 'You have to $1 to edit pages.',
 'confirmedittext'                  => 'You must confirm your email address before editing pages.
@@ -1350,9 +1346,7 @@ It may have been moved or deleted while you were viewing the page.',
 'loginreqlink'                     => 'log in',
 'loginreqpagetext'                 => 'You must $1 to view other pages.',
 'accmailtitle'                     => 'Password sent',
-'accmailtext'                      => "A randomly generated password for [[User talk:$1|$1]] has been sent to $2.
-
-The password for this new account can be changed on the ''[[Special:ChangePassword|change password]]'' page upon logging in.",
+'accmailtext'                      => "A randomly generated password for [[User talk:$1|$1]] has been sent to $2. It can be changed on the ''[[Special:ChangePassword|change password]]'' page upon logging in.",
 'newarticle'                       => '(New)',
 'newarticletext'                   => "You have followed a link to a page that does not exist yet.
 To create the page, start typing in the box below (see the [[{{MediaWiki:Helppage}}|help page]] for more info).
@@ -1470,7 +1464,7 @@ You can go back and edit an existing page, or [[Special:UserLogin|log in or crea
 'nocreate-loggedin'                => 'You do not have permission to create new pages.',
 'sectioneditnotsupported-title'    => 'Section editing not supported',
 'sectioneditnotsupported-text'     => 'Section editing is not supported in this page.',
-'permissionserrors'                => 'Permissions errors',
+'permissionserrors'                => 'Permission error',
 'permissionserrorstext'            => 'You do not have permission to do that, for the following {{PLURAL:$1|reason|reasons}}:',
 'permissionserrorstext-withaction' => 'You do not have permission to $2, for the following {{PLURAL:$1|reason|reasons}}:',
 'recreate-moveddeleted-warn'       => "'''Warning: You are recreating a page that was previously deleted.'''
@@ -1558,8 +1552,8 @@ Legend: '''({{int:cur}})''' = difference with latest revision, '''({{int:last}})
 'history-fieldset-title' => 'Browse history',
 'history-show-deleted'   => 'Deleted only',
 'history_copyright'      => '-', # do not translate or duplicate this message to other languages
-'histfirst'              => 'Earliest',
-'histlast'               => 'Latest',
+'histfirst'              => 'oldest',
+'histlast'               => 'newest',
 'historysize'            => '({{PLURAL:$1|1 byte|$1 bytes}})',
 'historyempty'           => '(empty)',
 
@@ -1601,7 +1595,7 @@ You can still [$1 view this diff] if you wish to proceed.",
 You can view this diff; details can be found in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].",
 'rev-suppressed-diff-view'    => "One of the revisions of this diff has been '''suppressed'''.
 You can view this diff; details can be found in the [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log].",
-'rev-delundel'                => 'show/hide',
+'rev-delundel'                => 'change visibility',
 'rev-showdeleted'             => 'show',
 'revisiondelete'              => 'Delete/undelete revisions',
 'revdelete-nooldid-title'     => 'Invalid target revision',
@@ -1713,7 +1707,7 @@ Note that using the navigation links will reset this column.',
 'difference-multipage'        => '(Difference between pages)',
 'lineno'                      => 'Line $1:',
 'compareselectedversions'     => 'Compare selected revisions',
-'showhideselectedversions'    => 'Show/hide selected revisions',
+'showhideselectedversions'    => 'Change visibility of selected revisions',
 'editundo'                    => 'undo',
 'diff-multi'                  => '({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} by {{PLURAL:$2|one user|$2 users}} not shown)',
 'diff-multi-manyusers'        => '({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} by more than $2 {{PLURAL:$2|user|users}} not shown)',
@@ -1848,7 +1842,7 @@ Note that their indexes of {{SITENAME}} content may be out of date.',
 'prefs-rendering'               => 'Appearance',
 'saveprefs'                     => 'Save',
 'resetprefs'                    => 'Clear unsaved changes',
-'restoreprefs'                  => 'Restore all default settings',
+'restoreprefs'                  => 'Restore all default settings (in all sections)',
 'prefs-editing'                 => 'Editing',
 'prefs-edit-boxsize'            => 'Size of the edit window.',
 'rows'                          => 'Rows:',
@@ -1912,11 +1906,12 @@ This cannot be undone.',
 Check HTML tags.',
 'badsiglength'                  => 'Your signature is too long.
 It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
-'yourgender'                    => 'Gender:',
-'gender-unknown'                => 'Undisclosed',
-'gender-male'                   => 'Male',
-'gender-female'                 => 'Female',
-'prefs-help-gender'             => 'Optional: Used for gender-correct addressing by the software.
+'yourgender'                    => 'How do you prefer to be described?',
+'gender-unknown'                => 'I prefer not to say',
+'gender-male'                   => 'He edits wiki pages',
+'gender-female'                 => 'She edits wiki pages',
+'prefs-help-gender'             => 'Setting this preference is optional.
+The software uses its value to address you and to mention you to others using the appropriate grammatical gender.
 This information will be public.',
 'email'                         => 'Email',
 'prefs-help-realname'           => 'Real name is optional.
@@ -1930,7 +1925,7 @@ Your email address is not revealed when other users contact you.',
 'prefs-signature'               => 'Signature',
 'prefs-dateformat'              => 'Date format',
 'prefs-timeoffset'              => 'Time offset',
-'prefs-advancedediting'         => 'Advanced options',
+'prefs-advancedediting'         => 'General options',
 'prefs-advancedrc'              => 'Advanced options',
 'prefs-advancedrendering'       => 'Advanced options',
 'prefs-advancedsearchoptions'   => 'Advanced options',
@@ -1964,7 +1959,7 @@ Your email address is not revealed when other users contact you.',
 'userrights-no-interwiki'        => 'You do not have permission to edit user rights on other wikis.',
 'userrights-nodatabase'          => 'Database $1 does not exist or is not local.',
 'userrights-nologin'             => 'You must [[Special:UserLogin|log in]] with an administrator account to assign user rights.',
-'userrights-notallowed'          => 'Your account does not have permission to add or remove user rights.',
+'userrights-notallowed'          => 'You do not have permission to add or remove user rights.',
 'userrights-changeable-col'      => 'Groups you can change',
 'userrights-unchangeable-col'    => 'Groups you cannot change',
 'userrights-irreversible-marker' => '$1*', # only translate this message to other languages if you have to change it
@@ -2011,7 +2006,7 @@ Your email address is not revealed when other users contact you.',
 'right-reupload-shared'       => 'Override files on the shared media repository locally',
 'right-upload_by_url'         => 'Upload files from a URL',
 'right-purge'                 => 'Purge the site cache for a page without confirmation',
-'right-autoconfirmed'         => 'Edit semi-protected pages',
+'right-autoconfirmed'         => 'Not be affected by IP-based rate limits',
 'right-bot'                   => 'Be treated as an automated process',
 'right-nominornewtalk'        => 'Not have minor edits to discussion pages trigger the new messages prompt',
 'right-apihighlimits'         => 'Use higher limits in API queries',
@@ -2031,8 +2026,8 @@ Your email address is not revealed when other users contact you.',
 'right-hideuser'              => 'Block a username, hiding it from the public',
 'right-ipblock-exempt'        => 'Bypass IP blocks, auto-blocks and range blocks',
 'right-proxyunbannable'       => 'Bypass automatic blocks of proxies',
-'right-unblockself'           => 'Unblock themselves',
-'right-protect'               => 'Change protection levels and edit protected pages',
+'right-unblockself'           => 'Unblock oneself',
+'right-protect'               => 'Change protection levels and edit cascade-protected pages',
 'right-editprotected'         => 'Edit protected pages (without cascading protection)',
 'right-editinterface'         => 'Edit the user interface',
 'right-editusercssjs'         => "Edit other users' CSS and JavaScript files",
@@ -2089,9 +2084,9 @@ Your email address is not revealed when other users contact you.',
 'action-block'                => 'block this user from editing',
 'action-protect'              => 'change protection levels for this page',
 'action-rollback'             => 'quickly rollback the edits of the last user who edited a particular page',
-'action-import'               => 'import this page from another wiki',
-'action-importupload'         => 'import this page from a file upload',
-'action-patrol'               => "mark others' edit as patrolled",
+'action-import'               => 'import pages from another wiki',
+'action-importupload'         => 'import pages from a file upload',
+'action-patrol'               => "mark others' edits as patrolled",
 'action-autopatrol'           => 'have your edit marked as patrolled',
 'action-unwatchedpages'       => 'view the list of unwatched pages',
 'action-mergehistory'         => 'merge the history of this page',
@@ -2137,7 +2132,7 @@ Your email address is not revealed when other users contact you.',
 'rc-change-size'                    => '$1', # only translate this message to other languages if you have to change it
 'rc-change-size-new'                => '$1 {{PLURAL:$1|byte|bytes}} after change',
 'newsectionsummary'                 => '/* $1 */ new section',
-'rc-enhanced-expand'                => 'Show details (requires JavaScript)',
+'rc-enhanced-expand'                => 'Show details',
 'rc-enhanced-hide'                  => 'Hide details',
 'rc-old-title'                      => 'originally created as "$1"',
 
@@ -2171,7 +2166,7 @@ To view or search previously uploaded files go to the [[Special:FileList|list of
 
 To include a file in a page, use a link in one of the following forms:
 * '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></code>''' to use the full version of the file
-* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></code>''' to use a 200 pixel wide rendition in a box in the left margin with 'alt text' as description
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></code>''' to use a 200 pixel wide rendition in a box in the left margin with \"alt text\" as description
 * '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code>''' for directly linking to the file without displaying the file",
 'upload-permitted'            => 'Permitted file types: $1.',
 'upload-preferred'            => 'Preferred file types: $1.',
@@ -2420,8 +2415,7 @@ You may want to try at a less busy time.',
 'upload_source_file' => '(a file on your computer)',
 
 # Special:ListFiles
-'listfiles-summary'     => 'This special page shows all uploaded files.
-When filtered by user, only files where that user uploaded the most recent version of the file are shown.',
+'listfiles-summary'     => 'This special page shows all uploaded files.',
 'listfiles_search_for'  => 'Search for media name:',
 'imgfile'               => 'file',
 'listfiles'             => 'File list',
@@ -2720,7 +2714,7 @@ Please note that other web sites may link to a file with a direct URL, and so ma
 You can narrow down the view by selecting a log type, the username (case-sensitive), or the affected page (also case-sensitive).',
 'logempty'                   => 'No matching items in log.',
 'log-title-wildcard'         => 'Search titles starting with this text',
-'showhideselectedlogentries' => 'Show/hide selected log entries',
+'showhideselectedlogentries' => 'Change visibility of selected log entries',
 
 # Special:AllPages
 'allpages'                => 'All pages',
@@ -2795,7 +2789,8 @@ Supported {{PLURAL:$2|protocol|protocols}}: <code>$1</code> (defaults to http://
 'listgrouprights'                      => 'User group rights',
 'listgrouprights-summary'              => 'The following is a list of user groups defined on this wiki, with their associated access rights.
 There may be [[{{MediaWiki:Listgrouprights-helppage}}|additional information]] about individual rights.',
-'listgrouprights-key'                  => '* <span class="listgrouprights-granted">Granted right</span>
+'listgrouprights-key'                  => 'Legend:
+* <span class="listgrouprights-granted">Granted right</span>
 * <span class="listgrouprights-revoked">Revoked right</span>',
 'listgrouprights-group'                => 'Group',
 'listgrouprights-rights'               => 'Rights',
@@ -2982,7 +2977,7 @@ someone else has edited or rolled back the page already.
 The last edit to the page was by [[User:$3|$3]] ([[User talk:$3|talk]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'                => "The edit summary was: \"''\$1''\".",
 'revertpage'                 => 'Reverted edits by [[Special:Contributions/$2|$2]] ([[User talk:$2|talk]]) to last revision by [[User:$1|$1]]',
-'revertpage-nouser'          => 'Reverted edits by (username removed) to last revision by [[User:$1|$1]]',
+'revertpage-nouser'          => 'Reverted edits by a hidden user to last revision by {{GENDER:$1|[[User:$1|$1]]}}',
 'rollback-success'           => 'Reverted edits by $1;
 changed back to last revision by $2.',
 
@@ -3134,7 +3129,7 @@ $1',
 'mycontris'             => 'Contributions',
 'contribsub2'           => 'For $1 ($2)',
 'nocontribs'            => 'No changes were found matching these criteria.',
-'uctop'                 => '(top)',
+'uctop'                 => '(current)',
 'month'                 => 'From month (and earlier):',
 'year'                  => 'From year (and earlier):',
 
@@ -3221,8 +3216,8 @@ Fill in a specific reason below (for example, citing particular pages that were 
 'blockipsuccesssub'               => 'Block succeeded',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] has been blocked.<br />
 See the [[Special:BlockList|block list]] to review blocks.',
-'ipb-blockingself'                => 'You are about to block yourself!  Are you sure you want to do that?',
-'ipb-confirmhideuser'             => 'You are about to block a user with "hide user" enabled.  This will suppress the user\'s name in all lists and log entries.  Are you sure you want to do that?',
+'ipb-blockingself'                => 'You are about to block yourself! Are you sure you want to do that?',
+'ipb-confirmhideuser'             => 'You are about to block a user with "hide user" enabled. This will suppress the user\'s name in all lists and log entries. Are you sure you want to do that?',
 'ipb-edit-dropdown'               => 'Edit block reasons',
 'ipb-unblock-addr'                => 'Unblock $1',
 'ipb-unblock'                     => 'Unblock a username or IP address',
@@ -3780,9 +3775,9 @@ This is probably caused by a link to a blacklisted external site.',
 'pageinfo-views'                  => 'Number of views',
 'pageinfo-watchers'               => 'Number of page watchers',
 'pageinfo-few-watchers'           => 'Fewer than $1 {{PLURAL:$1|watcher|watchers}}',
-'pageinfo-redirects-name'         => 'Redirects to this page',
+'pageinfo-redirects-name'         => 'Number of redirects to this page',
 'pageinfo-redirects-value'        => '$1', # only translate this message to other languages if you have to change it
-'pageinfo-subpages-name'          => 'Subpages of this page',
+'pageinfo-subpages-name'          => 'Number of subpages of this page',
 'pageinfo-subpages-value'         => '$1 ($2 {{PLURAL:$2|redirect|redirects}}; $3 {{PLURAL:$3|non-redirect|non-redirects}})',
 'pageinfo-firstuser'              => 'Page creator',
 'pageinfo-firsttime'              => 'Date of page creation',
@@ -4203,7 +4198,7 @@ $8', # only translate this message to other languages if you have to change it
 'exif-compression-34712' => 'JPEG2000', # only translate this message to other languages if you have to change it
 
 'exif-copyrighted-true'  => 'Copyrighted',
-'exif-copyrighted-false' => 'Public domain',
+'exif-copyrighted-false' => 'Copyright status not set',
 
 'exif-photometricinterpretation-2' => 'RGB', # only translate this message to other languages if you have to change it
 'exif-photometricinterpretation-6' => 'YCbCr', # only translate this message to other languages if you have to change it
@@ -4492,7 +4487,7 @@ This confirmation code will expire at $4.',
 'confirmemail_body_set'     => 'Someone, probably you, from IP address $1,
 has set the email address of the account "$2" to this address on {{SITENAME}}.
 
-To confirm that this account really does belong to you and reactivate
+To confirm that this account really does belong to you and activate
 email features on {{SITENAME}}, open this link in your browser:
 
 $3
@@ -4517,7 +4512,7 @@ This confirmation code will expire at $4.',
 'confirmrecreate'          => "User [[User:$1|$1]] ([[User talk:$1|talk]]) deleted this page after you started editing with reason:
 : ''$2''
 Please confirm that you really want to recreate this page.",
-'confirmrecreate-noreason' => 'User [[User:$1|$1]] ([[User talk:$1|talk]]) deleted this page after you started editing.  Please confirm that you really want to recreate this page.',
+'confirmrecreate-noreason' => 'User [[User:$1|$1]] ([[User talk:$1|talk]]) deleted this page after you started editing. Please confirm that you really want to recreate this page.',
 'recreate'                 => 'Recreate',
 
 'unit-pixel' => 'px', # only translate this message to other languages if you have to change it
