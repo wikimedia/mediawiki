@@ -392,7 +392,6 @@ $specialPageAliases = array(
 	'Badtitle'                  => array( 'Badtitle' ),
 	'Blankpage'                 => array( 'BlankPage' ),
 	'Block'                     => array( 'Block', 'BlockIP', 'BlockUser' ),
-	'Blockme'                   => array( 'BlockMe' ),
 	'Booksources'               => array( 'BookSources' ),
 	'BrokenRedirects'           => array( 'BrokenRedirects' ),
 	'Categories'                => array( 'Categories' ),
@@ -3400,12 +3399,9 @@ See the [[Special:BlockList|block list]] for the list of currently operational b
 It is, however, blocked as part of the range $2, which can be unblocked.',
 'ip_range_invalid'                => 'Invalid IP range.',
 'ip_range_toolarge'               => 'Range blocks larger than /$1 are not allowed.',
-'blockme'                         => 'Block me',
 'proxyblocker'                    => 'Proxy blocker',
-'proxyblocker-disabled'           => 'This function is disabled.',
 'proxyblockreason'                => 'Your IP address has been blocked because it is an open proxy.
 Please contact your Internet service provider or technical support of your organization and inform them of this serious security problem.',
-'proxyblocksuccess'               => 'Done.',
 'sorbs'                           => 'DNSBL', # only translate this message to other languages if you have to change it
 'sorbsreason'                     => 'Your IP address is listed as an open proxy in the DNSBL used by {{SITENAME}}.',
 'sorbs_create_account_reason'     => 'Your IP address is listed as an open proxy in the DNSBL used by {{SITENAME}}.

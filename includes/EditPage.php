@@ -840,7 +840,6 @@ class EditPage {
 		if ( $this->textbox1 === false ) {
 			return false;
 		}
-		wfProxyCheck();
 		return true;
 	}
 

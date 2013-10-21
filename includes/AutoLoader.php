@@ -973,7 +973,6 @@ $wgAutoloadLocalClasses = array(
 	'SpecialBlankpage' => 'includes/specials/SpecialBlankpage.php',
 	'SpecialBlock' => 'includes/specials/SpecialBlock.php',
 	'SpecialBlockList' => 'includes/specials/SpecialBlockList.php',
-	'SpecialBlockme' => 'includes/specials/SpecialBlockme.php',
 	'SpecialBookSources' => 'includes/specials/SpecialBooksources.php',
 	'SpecialCachedPage' => 'includes/specials/SpecialCachedPage.php',
 	'SpecialCategories' => 'includes/specials/SpecialCategories.php',
