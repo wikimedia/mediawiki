@@ -638,7 +638,8 @@ class ApiMain extends ApiBase {
 				'code' => 'internal_api_error_' . get_class( $e ),
 				'info' => $info,
 			);
-			ApiResult::setContent( $errMessage, $wgShowExceptionDetails ? "\n\n{$e->getTraceAsString()}\n\n" : '' );
+			$errDetails = MWExceptionHandler::formatExceptionDetails( $e, /* $html = */ false );
+			ApiResult::setContent( $errMessage, $errDetails );
 		}
 
 		// Remember all the warnings to re-add them later
