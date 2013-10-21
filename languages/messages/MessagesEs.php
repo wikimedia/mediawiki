@@ -41,6 +41,8 @@
  * @author Fibonacci
  * @author Fitoschido
  * @author Fluence
+ * @author Fortega
+ * @author Geitost
  * @author Gustronico
  * @author Hazard-SJ
  * @author Hercule
@@ -56,11 +58,13 @@
  * @author Lin linao
  * @author Linterweb
  * @author Locos epraix
+ * @author Luis Felipe Schenone
  * @author Mahadeva
  * @author Manuelt15
  * @author Maor X
  * @author MarcoAurelio
  * @author McDutchie
+ * @author Miguel2706
  * @author Muro de Aguas
  * @author Omnipaedista
  * @author Orgullomoore
@@ -466,7 +470,7 @@ $messages = array(
 'feb' => 'feb',
 'mar' => 'mar',
 'apr' => 'abr',
-'may' => 'may',
+'may' => 'mayo',
 'jun' => 'jun',
 'jul' => 'jul',
 'aug' => 'ago',
@@ -600,7 +604,7 @@ $1',
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite' => 'Acerca de {{SITENAME}}',
 'aboutpage' => 'Project:Acerca de',
-'copyright' => 'El contenido está disponible bajo los términos de la $1.',
+'copyright' => 'El contenido está disponible bajo  $1  a menos que se indique lo contrario.',
 'copyrightpage' => '{{ns:project}}:Derechos de autor',
 'currentevents' => 'Actualidad',
 'currentevents-url' => 'Project:Actualidad',
@@ -661,7 +665,7 @@ $1',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'Página',
-'nstab-user' => 'Página de usuario',
+'nstab-user' => 'Página {{GENDER:{{ROOTPAGENAME}}|del usuario|de la usuaria}}',
 'nstab-media' => 'Media',
 'nstab-special' => 'Página especial',
 'nstab-project' => 'Página del proyecto',
@@ -774,10 +778,9 @@ El administrador que lo ha bloqueado ofrece esta explicación: "$3".',
 
 Puedes continuar usando {{SITENAME}} de forma anónima, o puedes [[Special:UserLogin|iniciar sesión otra vez]] con el mismo u otro usuario.
 Ten en cuenta que las páginas que tengas abiertas en otras ventanas o pestañas pueden verse como si siguieras identificado hasta que las refresques.",
-'welcomecreation' => '== ¡Bienvenido(a), $1! ==
-
-Tu cuenta ha sido creada.
-No olvides personalizar [[Special:Preferences|tus preferencias]].',
+'welcomecreation' => '== Te damos la bienvenida a {{SITENAME}}, $1. ==
+Se ha creado tu cuenta.
+No olvides personalizar tus [[Special:Preferences|preferencias]].',
 'yourname' => 'Nombre de usuario:',
 'yourpassword' => 'Contraseña:',
 'yourpasswordagain' => 'Confirma la contraseña:',
@@ -859,7 +862,7 @@ Por favor, escribe una dirección en el formato adecuado o deja el campo en blan
 'cannotchangeemail' => 'Las direcciones de la correo electrónico de las cuentas de usuario no puedes cambiarse en esta wiki.',
 'emaildisabled' => 'Este sitio no puede enviar mensajes de correo electrónico.',
 'accountcreated' => 'Cuenta creada',
-'accountcreatedtext' => 'La cuenta de usuario para $1 ha sido creada.',
+'accountcreatedtext' => 'La cuenta de usuario de [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|talk]]) ha sido creada.',
 'createaccount-title' => 'Creación de cuenta para {{SITENAME}}',
 'createaccount-text' => 'Alguien creó en {{SITENAME}} ($4) una cuenta asociada a este correo electrónico con el nombre «$2».
 La contraseña asignada automáticamente es «$3». Por favor entra ahora y cambia tu contraseña.
@@ -884,8 +887,9 @@ Por favor, introduce una nueva contraseña aquí:',
 'oldpassword' => 'Contraseña antigua:',
 'newpassword' => 'Contraseña nueva:',
 'retypenew' => 'Confirmar la contraseña nueva:',
+'resetpass-abort-generic' => 'Una extensión ha cancelado el cambio de la contraseña.',
 'resetpass_submit' => 'Establecer contraseña e iniciar sesión',
-'resetpass_success' => 'La contraseña ha sido cambiada con éxito.
+'resetpass_success' => '¡Tu contraseña se ha cambiado con éxito!
 Iniciando sesión...',
 'resetpass_forbidden' => 'No se pueden cambiar las contraseñas',
 'resetpass-no-info' => 'Debes iniciar sesión para acceder directamente a esta página.',
@@ -907,15 +911,14 @@ Puede que ya hayas cambiado la contraseña o que hayas pedido una temporal.',
 'passwordreset-capture-help' => 'Si marcas esta casilla, se te mostrará el correo electrónico (con la contraseña temporal) además de enviarse al usuario.',
 'passwordreset-email' => 'Dirección de correo electrónico:',
 'passwordreset-emailtitle' => 'Detalles de la cuenta en {{SITENAME}}',
-'passwordreset-emailtext-ip' => 'Alguien (probablemente tú, desde la dirección IP $1) pidió un recordatorio de tus
-datos de cuenta para {{SITENAME}} ($4). {{PLURAL:$3|La siguiente cuenta está asociada|Las siguientes cuentas están asociadas}}
+'passwordreset-emailtext-ip' => 'Alguien (probablemente tú, desde la dirección IP $1) ha solicitado la renovación de tu clave para {{SITENAME}} ($4). {{PLURAL:$3|La siguiente cuenta está asociada|Las siguientes cuentas están asociadas}}
 con esta dirección de correo electrónico:
 
 $2
 
-{{PLURAL:$3|Esta contraseña temporal|Estas contraseñas temporales}} expirarán en {{PLURAL:$5|un día|$5 días}}.
-Deberías iniciar sesión y establecer una contraseña nueva ahora. Si alguien más hizo este pedido,
-o recuerdas tu contraseña original, y no deseas cambiarla, puedes
+{{PLURAL:$3|Esta contraseña temporal|Estas contraseñas temporales}} caducarán en {{PLURAL:$5|un día|$5 días}}.
+Deberías iniciar sesión y establecer una contraseña nueva ahora. Si otra persona ha realizado este solicitud
+o si recuerdas tu contraseña original y no deseas cambiarla, puedes
 ignorar este mensaje y continuar usando tu contraseña anterior.',
 'passwordreset-emailtext-user' => 'El usuario $1 en {{SITENAME}} pidió un recordatorio de tus datos de cuenta para {{SITENAME}}
 ($4). {{PLURAL:$3|La siguiente cuenta está asociada|Las siguientes cuentas están asociadas}} con esta dirección de correo electrónico:
@@ -930,11 +933,11 @@ ignorar este mensaje y continuar usando tu contraseña anterior.',
 Contraseña temporal: $2',
 'passwordreset-emailsent' => 'Se ha enviado un correo electrónico para el restablecimiento de tu contraseña.',
 'passwordreset-emailsent-capture' => 'Se ha enviado un correo para el restablecimiento de la contraseña, el cual se muestra a continuación.',
-'passwordreset-emailerror-capture' => 'Un recordatorio por correo electrónico fue generado, que se muestra a continuación, pero el envío al usuario falló: $1',
+'passwordreset-emailerror-capture' => 'Un correo de recuperación de contraseña se ha generado, que se muestra a continuación, pero falló su envío al {{GENDER:$2|usuario}} error: $1',
 
 # Special:ChangeEmail
 'changeemail' => 'Cambiar la dirección de correo electrónico',
-'changeemail-header' => 'Cambiar la dirección de correo electrónico de la cuenta',
+'changeemail-header' => 'Cambiar la dirección de correo de la cuenta',
 'changeemail-text' => 'Rellena este formulario para cambiar tu dirección de correo electrónico. Debes introducir la contraseña para confirmar este cambio.',
 'changeemail-no-info' => 'Debes iniciar sesión para acceder directamente a esta página.',
 'changeemail-oldemail' => 'Dirección de correo electrónico actual:',
@@ -1123,7 +1126,7 @@ Puede volver atrás y editar una página existente, [[Special:UserLogin|identifi
 'nocreate-loggedin' => 'No tienes permiso para crear páginas nuevas.',
 'sectioneditnotsupported-title' => 'Edición de sección no compatible',
 'sectioneditnotsupported-text' => 'La edición de sección no es compatible con esta página.',
-'permissionserrors' => 'Errores de permisos',
+'permissionserrors' => 'Error de permiso',
 'permissionserrorstext' => 'No tienes permiso para hacer eso, por {{PLURAL:$1|el siguiente motivo|los siguientes motivos}}:',
 'permissionserrorstext-withaction' => 'No tienes permiso para $2, por {{PLURAL:$1|el siguiente motivo|los siguientes motivos}}:',
 'recreate-moveddeleted-warn' => "'''Atención: estás volviendo a crear una página que ha sido borrada anteriormente.'''
@@ -1519,11 +1522,12 @@ Esto no se puede deshacer.',
 'yournick' => 'Nueva firma:',
 'prefs-help-signature' => 'Los comentarios en páginas de discusión deberían firmarse con «<nowiki>~~~~</nowiki>», que se convertirá en tu firma con fecha y hora.',
 'badsig' => 'El código de tu firma no es válido; comprueba las etiquetas HTML.',
-'badsiglength' => 'La firma es muy larga. Debe contener un máximo de {{PLURAL:$1|un carácter|$1 caracteres}}.',
-'yourgender' => 'Género:',
-'gender-unknown' => 'Sin especificar',
-'gender-male' => 'Masculino',
-'gender-female' => 'Femenino',
+'badsiglength' => 'Tu firma es muy larga.
+Debe contener un máximo de {{PLURAL:$1|un carácter|$1 caracteres}}.',
+'yourgender' => '¿Cómo prefieres ser descrito/a?',
+'gender-unknown' => 'Prefiero no especificar',
+'gender-male' => 'Él edita páginas wiki',
+'gender-female' => 'Ella edita páginas wiki',
 'prefs-help-gender' => 'Opcional: empleado para que sea usado correctamente el género por parte del software. Esta información será pública.',
 'email' => 'Correo electrónico',
 'prefs-help-realname' => 'El nombre real es opcional. Si decides proporcionarlo, se usará para dar atribución a tu trabajo.',
@@ -1536,7 +1540,7 @@ Tu dirección de correo no se revela cuando otros usuarios te contactan.',
 'prefs-signature' => 'Firma',
 'prefs-dateformat' => 'Formato de fecha',
 'prefs-timeoffset' => 'Diferencia horaria',
-'prefs-advancedediting' => 'Opciones avanzadas',
+'prefs-advancedediting' => 'Opciones generales',
 'prefs-advancedrc' => 'Opciones avanzadas',
 'prefs-advancedrendering' => 'Opciones avanzadas',
 'prefs-advancedsearchoptions' => 'Opciones avanzadas',
@@ -1551,7 +1555,7 @@ Tu dirección de correo no se revela cuando otros usuarios te contactan.',
 'email-address-validity-invalid' => 'Introduce una dirección de correo válida',
 
 # User rights
-'userrights' => 'Configuración de permisos de usuarios',
+'userrights' => 'Gestión de permisos del usuario',
 'userrights-lookup-user' => 'Configurar grupos de usuarios',
 'userrights-user-editname' => 'Escriba un nombre de usuario:',
 'editusergroup' => 'Modificar grupos de usuarios',
@@ -1568,7 +1572,7 @@ Tu dirección de correo no se revela cuando otros usuarios te contactan.',
 'userrights-no-interwiki' => 'No tienes permiso para editar los grupos a los que pertenece un usuario en otros wikis.',
 'userrights-nodatabase' => 'La base de datos $1 no existe o no es local.',
 'userrights-nologin' => 'Debes [[Special:UserLogin|iniciar sesión]] con una cuenta de administrador para poder editar los grupos de los usuarios.',
-'userrights-notallowed' => 'Tu cuenta no tiene permiso para añadir o retirar permisos de usuario.',
+'userrights-notallowed' => 'No tienes permiso para agregar o quitar derechos de usuario.',
 'userrights-changeable-col' => 'Grupos que puedes cambiar',
 'userrights-unchangeable-col' => 'Grupos que no puedes cambiar',
 
@@ -1614,7 +1618,7 @@ Tu dirección de correo no se revela cuando otros usuarios te contactan.',
 'right-reupload-shared' => 'Sobreescribir localmente ficheros del repositorio multimedia',
 'right-upload_by_url' => 'Subir un archivo a traves de un URL',
 'right-purge' => 'Purgar la caché en el servidor sin tener que dar confirmación',
-'right-autoconfirmed' => 'Editar páginas semiprotegidas',
+'right-autoconfirmed' => 'No ser afectado por los límites de frecuencia basados en el IP',
 'right-bot' => 'Ser tratado como un programa automático',
 'right-nominornewtalk' => 'No accionar el aviso de nuevos mensajes al realizar ediciones menores de páginas de discusión',
 'right-apihighlimits' => 'Tener límites más altos de peticiones a través del API',
@@ -1634,8 +1638,8 @@ Tu dirección de correo no se revela cuando otros usuarios te contactan.',
 'right-hideuser' => 'Bloquear un nombre de usuario, haciéndolo invisible',
 'right-ipblock-exempt' => 'Pasar por encima de bloqueos de IPs, auto-bloqueos y bloqueos de rangos.',
 'right-proxyunbannable' => 'Pasar por encima de bloqueos automáticos de proxies',
-'right-unblockself' => 'Desbloquearse',
-'right-protect' => 'Cambiar niveles de protección y editar páginas protegidas',
+'right-unblockself' => 'Desbloquearse uno mismo',
+'right-protect' => 'Cambiar niveles de protección y editar páginas protegidas en cascada',
 'right-editprotected' => 'Editar páginas protegidas (sin la protección «en cascada»)',
 'right-editinterface' => 'Editar la interfaz de usuario',
 'right-editusercssjs' => 'Editar las páginas de CSS y JS de otros usuarios',
@@ -1691,8 +1695,8 @@ Tu dirección de correo no se revela cuando otros usuarios te contactan.',
 'action-block' => 'bloquear a este usuario para que no edite',
 'action-protect' => 'cambiar los niveles de protección para esta página',
 'action-rollback' => 'revertir rápidamente las ediciones del último usuario que modificó una página en particular',
-'action-import' => 'importar esta página desde otro wiki',
-'action-importupload' => 'importar esta página mediante la carga de un archivo',
+'action-import' => 'importar páginas desde otro wiki',
+'action-importupload' => 'importar páginas mediante la carga de un archivo',
 'action-patrol' => 'marcar ediciones de otros como patrulladas',
 'action-autopatrol' => 'marcar como patrulladas tus propias ediciones',
 'action-unwatchedpages' => 'ver la lista de páginas no vigiladas',
@@ -1734,7 +1738,7 @@ Tu dirección de correo no se revela cuando otros usuarios te contactan.',
 'rc_categories_any' => 'Cualquiera',
 'rc-change-size-new' => '$1 {{PLURAL:$1|byte|bytes}} después del cambio',
 'newsectionsummary' => 'Nueva sección: /* $1 */',
-'rc-enhanced-expand' => 'Mostrar detalles (requiere JavaScript)',
+'rc-enhanced-expand' => 'Mostrar detalles',
 'rc-enhanced-hide' => 'Ocultar detalles',
 'rc-old-title' => 'originalmente creado como "$1"',
 
@@ -1885,9 +1889,9 @@ $1',
 'upload-proto-error' => 'Protocolo incorrecto',
 'upload-proto-error-text' => 'Para subir archivos desde otra página la URL debe comenzar por <code>http://</code> o <code>ftp://</code>.',
 'upload-file-error' => 'Error interno al subir el archivo',
-'upload-file-error-text' => 'Ha ocurrido un error interno mientras se intentaba crear un fichero temporal en el servidor. Por favor, contacta con un [[Special:ListUsers/sysop|administrador del sistema]].',
+'upload-file-error-text' => 'Ha ocurrido un error interno mientras se intentaba crear un fichero temporal en el servidor. Por favor, contacta con un [[Special:ListUsers/sysop|administrador]].',
 'upload-misc-error' => 'Error desconocido en la subida',
-'upload-misc-error-text' => 'Ha ocurrido un error durante la subida. Por favor verifica que la URL es válida y accesible e inténtalo de nuevo. Si el problema persiste, contacta con un [[Special:ListUsers/sysop|administrador del sistema]].',
+'upload-misc-error-text' => 'Ha ocurrido un error durante la subida. Por favor verifica que la URL es válida y accesible e inténtalo de nuevo. Si el problema persiste, contacta con un [[Special:ListUsers/sysop|administrador]].',
 'upload-too-many-redirects' => 'La URL contenía demasiadas redirecciones',
 'upload-unknown-size' => 'Tamaño desconocido',
 'upload-http-error' => 'Ha ocurrido un error HTTP: $1',
@@ -2316,7 +2320,8 @@ Protocolos soportados: <code>$1</code> (si no se especifica ninguno, el protocol
 'listgrouprights' => 'Permisos del grupo de usuarios',
 'listgrouprights-summary' => 'La siguiente es una lista de los grupos de usuario definidos en esta wiki y de sus privilegios de acceso asociados.
 Puede haber información adicional sobre privilegios individuales en [[{{MediaWiki:Listgrouprights-helppage}}]]',
-'listgrouprights-key' => '* <span class="listgrouprights-granted">Derecho concedido</span>
+'listgrouprights-key' => 'Leyenda:
+* <span class="listgrouprights-granted">Derecho concedido</span>
 * <span class="listgrouprights-revoked">Derecho revocado</span>',
 'listgrouprights-group' => 'Grupo',
 'listgrouprights-rights' => 'Derechos',
@@ -2466,9 +2471,11 @@ Véase $2 para un registro de los borrados recientes.',
 'deleteotherreason' => 'Otro motivo:',
 'deletereasonotherlist' => 'Otro motivo',
 'deletereason-dropdown' => '*Razones comunes de borrado
-** A petición del mismo autor
+** Spam
+** Vandalismo
 ** Violación de copyright
-** Vandalismo',
+** A petición del mismo autor
+** Redirección incorrecta',
 'delete-edit-reasonlist' => 'Editar razones de borrado',
 'delete-toobig' => 'Esta página tiene un historial muy grande, con más de $1 {{PLURAL:$1|revisión|revisiones}}. Borrar este tipo de páginas ha sido restringido para prevenir posibles problemas en {{SITENAME}}.',
 'delete-warning-toobig' => 'Esta página tiene un historial de más de $1 {{PLURAL:$1|revisión|revisiones}}. Eliminarla puede perturbar las operaciones de la base de datos de {{SITENAME}}. Ten cuidado al borrar.',
@@ -2488,7 +2495,7 @@ alguien más ya ha editado o revertido esa página.
 La última edición fue hecha por [[User:$3|$3]] ([[User talk:$3|discusión]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment' => "El resumen de la edición fue: ''«$1»''.",
 'revertpage' => 'Revertidos los cambios de [[Special:Contributions/$2|$2]] ([[User talk:$2|disc.]]) a la última edición de [[User:$1|$1]]',
-'revertpage-nouser' => 'Revertidas ediciones hechas por (nombre de usuario eliminado) a la última revisión hecha por [[User:$1|$1]]',
+'revertpage-nouser' => 'Revertidas las ediciones hechas por un usuario oculto a la última revisión hecha por [[User:$1|$1]]',
 'rollback-success' => 'Revertidas las ediciones de $1; recuperada la última versión de $2.',
 
 # Edit tokens
@@ -2610,7 +2617,7 @@ Puede que ya haya sido restaurado.',
 'undelete-error-long' => 'Se encontraron errores mientras se restauraba el archivo:
 
 $1',
-'undelete-show-file-confirm' => '¿Estás seguro que quieres ver una revisión borrada del archivo «<nowiki>$1</nowiki>» del $2 a las $3?',
+'undelete-show-file-confirm' => '¿Estás seguro de que quieres ver una revisión borrada del archivo «<nowiki>$1</nowiki>» del $2 a las $3?',
 'undelete-show-file-submit' => 'Sí',
 
 # Namespace form on various pages
@@ -2627,7 +2634,7 @@ $1',
 'mycontris' => 'Contribuciones',
 'contribsub2' => '$1 ($2)',
 'nocontribs' => 'No se encontraron cambios que cumplieran estos criterios.',
-'uctop' => '(última edición)',
+'uctop' => '(edición actual)',
 'month' => 'Desde el mes (y anteriores):',
 'year' => 'Desde el año (y anteriores):',
 
@@ -3168,12 +3175,12 @@ Esto podría estar causado por un enlace a un sitio externo incluido en la lista
 'pageinfo-default-sort' => 'Criterio de ordenación predeterminado',
 'pageinfo-length' => 'Longitud de la página (en bytes)',
 'pageinfo-article-id' => 'Identificador ID de la página',
-'pageinfo-robot-policy' => 'Estado del motor de búsqueda',
-'pageinfo-robot-index' => 'Indexable',
-'pageinfo-robot-noindex' => 'No indexable',
+'pageinfo-robot-policy' => 'Indización por robots',
+'pageinfo-robot-index' => 'Permitido',
+'pageinfo-robot-noindex' => 'No permitido',
 'pageinfo-views' => 'Número de vistas',
 'pageinfo-watchers' => 'Número de usuarios que vigilan la página',
-'pageinfo-redirects-name' => 'Redirecciones a esta página',
+'pageinfo-redirects-name' => 'Número de redirecciones a esta página',
 'pageinfo-redirects-value' => '$1',
 'pageinfo-subpages-name' => 'Subpáginas de esta página',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|redirección|redirecciones}}; $3 {{PLURAL:$3|no-redirección|no-redirecciones}})',
@@ -3349,7 +3356,7 @@ Existen otros campos que se mantendrán ocultos por defecto.
 'exif-datetimedigitized' => 'Fecha y hora de la digitalización',
 'exif-subsectime' => 'Fecha y hora (precisión por debajo del segundo)',
 'exif-subsectimeoriginal' => 'Fecha y hora de la generación de los datos (precisión por debajo del segundo)',
-'exif-subsectimedigitized' => 'Fecha y hora de la digitalización (precisón por debajo del segundo)',
+'exif-subsectimedigitized' => 'Fecha y hora de la digitalización (precisión por debajo del segundo)',
 'exif-exposuretime' => 'Tiempo de exposición',
 'exif-exposuretime-format' => '$1 seg ($2)',
 'exif-fnumber' => 'Número F',
@@ -3492,7 +3499,7 @@ Existen otros campos que se mantendrán ocultos por defecto.
 'exif-compression-4' => 'Codificación de fax CCITT grupo 4',
 
 'exif-copyrighted-true' => 'Con derechos de autor',
-'exif-copyrighted-false' => 'Dominio público',
+'exif-copyrighted-false' => 'No se ha definido el estado del copyright',
 
 'exif-unknowndate' => 'Fecha desconocida',
 
@@ -3752,7 +3759,7 @@ Este código de confirmación expirará el $4.',
 'confirmemail_body_set' => 'Alguien, probablemente tu desde la dirección IP $1,
 ha cambiado la dirección de correo electrónico de la cuenta $2 a esta dirección en {{SITENAME}}.
 
-Para confirmar que esta cuenta realmente te pertenece y reactivar las capacidades del correo electrónico en {{SITENAME}}, abre este enlace en tu navegador:
+Para confirmar que esta cuenta realmente te pertenece y activar las capacidades del correo electrónico en {{SITENAME}}, abre este enlace en tu navegador:
 
 $3
 
@@ -3881,11 +3888,11 @@ También puedes [[Special:EditWatchlist|usar el editor estándar]].',
 'version-license' => 'Licencia',
 'version-poweredby-credits' => "Este wiki funciona gracias a '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'otros',
-'version-license-info' => 'MediaWiki es software libre; puedes redistribuírlo y/o modificarlo bajo los términos de la Licencia General Pública GNU publicada por la Fundación del Software Libre; ya sea la versión 2 de la licencia, o (a tu elección) cualquier versión posterior.
+'version-license-info' => 'MediaWiki es software libre; puedes redistribuirlo y/o modificarlo bajo los términos de la Licencia General Pública de GNU como la publica la Free Software Foundation; ya sea la versión 2 de la licencia, o (a tu elección) cualquier versión posterior.
 
-MediaWiki es distribuído con la esperanza de que será útil, pero SIN NINGUNA GARANTÍA; ni siquiera con la garantía implícita de COMERCIALIZACIÓN ó ADAPTACIÓN A UN PROPÓSITO PARTICULAR. Véase la Licencia Pública General GNU para mayores detalles.
+MediaWiki se distribuye con la esperanza de que será útil, pero SIN NINGUNA GARANTÍA; sin siquiera con la garantía implícita de COMERCIALIZACIÓN o IDONEIDAD PARA UN PROPÓSITO PARTICULAR. Consulta la Licencia Pública General de GNU para más detalles.
 
-Has recibido [{{SERVER}}{{SCRIPTPATH}}/COPYING una copia de la Licencia Pública General GNU] junto a este programa; si no es así, escríbale a la Fundación del Software Libre, Inc., Calle Franklin 51, Quinto Piso, Boston, MA 02110-1301, EE.UU. ó [//www.gnu.org/licenses/old-licenses/gpl-2.0.html léela en línea].',
+Has recibido [{{SERVER}}{{SCRIPTPATH}}/COPYING una copia de la Licencia Pública General de GNU] junto a este programa; si no es así, escríbele a la Free Software Foundation, Inc., Calle Franklin 51, quinto piso, Boston, MA 02110-1301, EE. UU. o [//www.gnu.org/licenses/old-licenses/gpl-2.0.html léela en línea].',
 'version-software' => 'Software instalado',
 'version-software-product' => 'Producto',
 'version-software-version' => 'Versión',
@@ -3973,8 +3980,7 @@ Las imágenes se muestran en resolución máxima, otros tipos de archivo se inic
 
 # Database error messages
 'dberr-header' => 'Este wiki tiene un problema',
-'dberr-problems' => 'Lo sentimos.
-Este sitio está experimentando dificultades técnicas.',
+'dberr-problems' => 'Lo sentimos. Este sitio está experimentando dificultades técnicas.',
 'dberr-again' => 'Prueba a recargar dentro de unos minutos.',
 'dberr-info' => '(No se puede contactar con la base de datos del servidor: $1)',
 'dberr-usegoogle' => 'Mientras tanto puedes probar buscando a través de Google.',

@@ -11,6 +11,7 @@
  * @author Jeblad
  * @author Kaganer
  * @author Laila
+ * @author Linnea
  * @author Skuolfi
  * @author Teak
  * @author The Evil IP address
@@ -686,6 +687,12 @@ $1 {{int:pipe-separator}} $2',
 'rightslogtext' => 'Vuolábealde lea logga geavaheaddjirivttiid rievdadusain.',
 'rightslogentry' => 'Geavaheaddji $1 rievttit rievdaduvvoi joavkkuin $2 joavkkuide $3',
 'rightsnone' => '(eai rievttit)',
+
+# Associated actions - in the sentence "You do not have permission to X"
+'action-createpage' => 'álggahit siidduid',
+'action-createtalk' => 'álggahit ságastallansiidduid',
+'action-browsearchive' => 'ohcat sihkkojuvvon siidduid',
+'action-sendemail' => 'sáddet e-poasttaid',
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|rievdadus|rievdadusa}}',

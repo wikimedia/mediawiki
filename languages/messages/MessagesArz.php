@@ -9,6 +9,7 @@
  *
  * @author Alnokta
  * @author Dudi
+ * @author Ebraminio
  * @author Ghaly
  * @author Meno25
  * @author Ouda
@@ -518,7 +519,7 @@ $messages = array(
 'lastmodifiedat' => 'الصفحه دى اتعدلت اخر مره فى $1,‏ $2.',
 'viewcount' => 'الصفحة دى اتدخل عليها{{PLURAL:$1|مرة واحدة|مرتين|$1 مرات|$1 مرة}}.',
 'protectedpage' => 'صفحه محميه',
-'jumpto' => 'نُط على:',
+'jumpto' => 'روح على:',
 'jumptonavigation' => 'استكشاف',
 'jumptosearch' => 'تدوير',
 'view-pool-error' => 'متأسفين, السيرفرات عليها حمل كبير دلوقتى.
@@ -766,7 +767,7 @@ $2',
 'invalidemailaddress' => 'مش ممكن نقبل عنوان الايميل لانه مش مظبوط.
 دخل ايميل مظبوط او امسحه من الخانة.',
 'accountcreated' => 'الحساب اتفتح',
-'accountcreatedtext' => 'اتفتح حساب لليوزر ب$1.',
+'accountcreatedtext' => 'حساب اليوزر  [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|talk]])اتفتح .',
 'createaccount-title' => 'فتح حساب فى {{SITENAME}}',
 'createaccount-text' => 'فى واحد فتح حساب باسم الايمل بتاعك على {{SITENAME}} ($4) بالاسم "$2"، وبباسورد "$3". لازم تسجل دخولك دلوقتى و تغير الباسورد بتاعتك.
 
@@ -2331,7 +2332,7 @@ $1',
 'mycontris' => 'تعديلاتى',
 'contribsub2' => 'لليوزر $1 ($2)',
 'nocontribs' => 'مالقيناش   تغييرات تطابق المحددات دي.',
-'uctop' => '(فوق)',
+'uctop' => '(آخر تعديل)',
 'month' => 'من شهر (واللى قبل كده):',
 'year' => 'من سنة (واللى قبل كده):',
 
@@ -2704,7 +2705,7 @@ $1',
 'tooltip-search' => 'دور فى {{SITENAME}}',
 'tooltip-search-go' => 'روح لصفحه بالاسم دا بالظبط لو موجوده',
 'tooltip-search-fulltext' => 'دور فى الصفحات على النَص دا',
-'tooltip-p-logo' => 'الصفحه الرئيسيه',
+'tooltip-p-logo' => 'زور الصفحه الرئيسيه',
 'tooltip-n-mainpage' => 'زور الصفحه الرئيسيه',
 'tooltip-n-mainpage-description' => 'زور الصفحه الرئيسيه',
 'tooltip-n-portal' => 'عن المشروع, ممكن تعمل ايه, و فين تلاقى اللى بتدور عليه',

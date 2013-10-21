@@ -13,6 +13,7 @@
  * @author DracoRoboter
  * @author Flavio05
  * @author GatoSelvadego
+ * @author Geitost
  * @author Insübrich
  * @author Kemmótar
  * @author Malafaya
@@ -436,7 +437,7 @@ Tegné cünt che certi paginn pödass che i seguiten a vedess tant 'me se a füd
 'logout' => 'Va fö',
 'userlogout' => 'Và fö',
 'notloggedin' => 'Te seet minga dent in del sistema',
-'nologin' => "Gh'avii anmò da registrav? '''$1'''.",
+'nologin' => "Gh'avii anmò da registrav? $1.",
 'nologinlink' => 'Creé un cünt!',
 'createaccount' => 'Creá un cünt',
 'gotaccount' => "Gh'hee-t giamò un cünt? '''$1'''.",

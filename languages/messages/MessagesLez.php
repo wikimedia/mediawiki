@@ -1308,7 +1308,7 @@ Cиягьда авай анжах (* лишандихъ галаз эгечIза
 'version-other' => 'Муькуьбур',
 
 # Special:SpecialPages
-'specialpages' => 'КьетIен  ччинар',
+'specialpages' => 'КьетӀен ччинар',
 
 # External image whitelist
 'external_image_whitelist' => ' #И цӀар авайд хьиз тур<pre>

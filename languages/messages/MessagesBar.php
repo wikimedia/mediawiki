@@ -9,6 +9,7 @@
  *
  * @author Als-Holder
  * @author Bua333
+ * @author Geitost
  * @author Malafaya
  * @author Man77
  * @author Merlissimo
@@ -435,7 +436,7 @@ Vagiss bittscheh néd, deine [[Special:Preferences|{{SITENAME}}-Eishtellungen]] 
 'logout' => 'Obmöden',
 'userlogout' => 'Auslogga',
 'notloggedin' => 'Ned ågmödt',
-'nologin' => "Du host koa Nutzakonto? '''$1'''.",
+'nologin' => 'Du host koa Nutzakonto? $1.',
 'nologinlink' => 'A neichs Nutzakonto olegn',
 'createaccount' => 'Nutzakonto olegn',
 'gotaccount' => "Hosd scho a Nutzakonto? '''$1'''.",

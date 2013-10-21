@@ -13,10 +13,12 @@
  * @author Frigotoni
  * @author GatoSelvadego
  * @author Kaganer
+ * @author Malafaya
  * @author Nick1915
  * @author Omnipaedista
  * @author OrbiliusMagister
  * @author Reedy
+ * @author Shirayuki
  * @author Urhixidur
  * @author Vajotwo
  * @author לערי ריינהארט
@@ -310,7 +312,7 @@ $messages = array(
 'vector-simplesearch-preference' => "Abiłita ła sbara par ła riserca senplifegà (soło che par l'interfacia Vector)",
 'vector-view-create' => 'Crea',
 'vector-view-edit' => 'Canbia',
-'vector-view-history' => "Varda ła 'storia",
+'vector-view-history' => 'Varda ła storia',
 'vector-view-view' => 'Lezi',
 'vector-view-viewsource' => 'Varda el testo',
 'actions' => 'Asion',
@@ -622,7 +624,9 @@ Se no te sì mìa stà ti a far la domanda, opure t\'è vegnù in mente la passw
 Par piaser, fà subito un login \'pena che la te riva.',
 'blocked-mailpassword' => 'Per prevegner abusi, no se pol mìa doparar la funzion "Invia nova password" da un indirizo IP blocà.',
 'eauthentsent' => "Na email de conferma la xè stà invià a l'indirizzo che te ghè indicà. Prima che qualunque altra mail te vegna invià, te ghè da seguir le istrussioni contegnùe ne la mail ricevuta, par confermar che quel'indirizzo el xè dal bon el tuo.",
-'throttled-mailpassword' => 'Na password nova la xe zà stà mandà da manco de {{PLURAL:$1|$1 ora|$1 ore}}. Par prevegner abusi, la funzion "Invia nova password" la pol èssar doparà solo na volta ogni {{PLURAL:$1|$1 ora|$1 ore}}.',
+'throttled-mailpassword' => 'Na password nova la xe zà stà mandà da manco de {{PLURAL:$1|$1 ora|$1 ore}}. 
+
+Par prevegner abusi, se pol farse mandar na password nova solo na volta ogni {{PLURAL:$1|$1 ora|$1 ore}}.',
 'mailerror' => "Ghe xè stà un eror nel mandare l'email: $1",
 'acct_creation_throttle_hit' => "Dei utenti de sta wiki col to stesso indirisso IP i gà creà {{PLURAL:$1|1 utensa|$1 utense}} ne l'ultimo zorno, che xe el massimo consentìo in sto periodo de tenpo. Perciò, i utenti che dòpara sto indirisso IP no i pode crear altre utense par el momento.",
 'emailauthenticated' => "El to indirisso de e-mail l'è stado autenticado su $2 el $3.",
@@ -634,7 +638,7 @@ Inserissi un indirisso valido o svoda la casèła.",
 'cannotchangeemail' => "I indirisi de posta ełetronega de l'account no połe esare canbiadi inte sto projeto wiki.",
 'emaildisabled' => 'Sto sito no połe spedire mesaji de posta ełetronega.',
 'accountcreated' => 'Acesso creà',
-'accountcreatedtext' => "Xè stà creà un acesso par l'utente $1.",
+'accountcreatedtext' => 'Xè stà creà na utensa par [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|msg]]).',
 'createaccount-title' => 'Creazion de un acesso a {{SITENAME}}',
 'createaccount-text' => 'Qualcheduni gà creà un acesso a {{SITENAME}} ($4) a nome de $2, associà a sto indirizo de posta eletronica.
 La password par l\'utente "$2" la xe inpostà a "$3". Xe oportuno eseguir un acesso quanto prima e canbiar la password subito dopo.
@@ -659,6 +663,7 @@ Spèta un tocheto prima de proàr da novo.',
 'oldpassword' => 'Vecia password:',
 'newpassword' => 'Nova password:',
 'retypenew' => 'Riscrivi la password nova:',
+'resetpass-abort-generic' => "La modifica de la password la xe sta anulà da un'estension.",
 'resetpass_submit' => 'Inposta la password e acedi al sito',
 'resetpass_success' => 'La password la xe stà modificà. Acesso in corso...',
 'resetpass_forbidden' => 'No se pol modificar le password',
@@ -671,7 +676,7 @@ Forse te ghè zà canbià la to password o te ghè domandà na password tenporan
 
 # Special:PasswordReset
 'passwordreset' => 'Rinposta ła password',
-'passwordreset-text' => 'Conpleta sto moduło par riçevare i detaji del to account via posta ełetronega.',
+'passwordreset-text' => 'Conpleta sto moduło par resetar la to password.',
 'passwordreset-legend' => 'Rinposta ła password',
 'passwordreset-disabled' => 'Ła rinpostasion deła password xe stà dixabiłità so sto projeto wiki.',
 'passwordreset-pretext' => '{{PLURAL:$1|| Inserisi una dełe porsion de dati cua soto}}',
@@ -686,21 +691,19 @@ Forse te ghè zà canbià la to password o te ghè domandà na password tenporan
 $2
 
 {{PLURAL:$3|Sta password tenporanea ła scadarà|Ste password tenporanee łe scadarà}} dopo {{PLURAL:$5|un dì|$5 dì}}.
-Sarìa mejo acedare e deçidare na nova password sùito. 
 
-Se no te si stà ti a fare ła richiesta, o se te te ghe ricordà ła password originałe e no te vołi pi canbiarla, te połi ignorare sto mesajo e continuar doparare ła to password vecia.",
-'passwordreset-emailtext-user' => "El utente $1 da {{SITENAME}} (probabilmente ti steso) ga richiesto l'invio dei to detaji del profiło par {{SITENAME}} ($4). {{PLURAL:$3|El profiło utente asocià|I profiłi utenti asociadi}} a sto indiriso de posta ełetronega łi xe:
+Sarìa mejo acedare e deçidare na nova password sùito. Se no te si stà ti a fare ła richiesta, o se te te ghe ricordà ła password originałe e no te vołi pi canbiarla, te połi ignorare sto mesajo e continuar doparare ła to password vecia.",
+'passwordreset-emailtext-user' => "El utente $1 da {{SITENAME}} (probabilmente ti steso) ga richiesto l'invio de na password nova par {{SITENAME}} ($4). {{PLURAL:$3|El profiło utente asocià|I profiłi utenti asociadi}} a sto indiriso de posta ełetronega łi xe:
 
 $2
 
 {{PLURAL:$3|Sta password tenporanea ła scadarà|Ste password tenporanee łe scadarà}} dopo {{PLURAL:$5|un dì|$5 dì}}.
-Sarìa mejo acedare e deçidare na nova password sùito. 
 
-Se no te si stà ti a fare ła richiesta, o se te te ghe ricordà ła password originałe e no te vołi pi canbiarla, te połi ignorare sto mesajo e continuar doparare ła to password vecia.",
+Sarìa mejo acedare e deçidare na nova password sùito. Se no te si stà ti a fare ła richiesta, o se te te ghe ricordà ła password originałe e no te vołi pi canbiarla, te połi ignorare sto mesajo e continuar doparare ła to password vecia.",
 'passwordreset-emailelement' => 'Nome utente: $1
 Password tenporanea: $2',
-'passwordreset-emailsent' => 'Xe stà invià on promemoria via posta eletronega.',
-'passwordreset-emailsent-capture' => 'Xe stà invià un promemoria via posta eletronega: el contegù xe riportà cuà de seguito.',
+'passwordreset-emailsent' => 'Xe stà invià na mail de reset password.',
+'passwordreset-emailsent-capture' => 'Xe stà invià na mail de reset password: el contegù xe riportà cuà de seguito.',
 'passwordreset-emailerror-capture' => "Xe stà generà el promemoria riportà cuà de seguito. L'invio al utente no xe riusido: $1",
 
 # Special:ChangeEmail
@@ -1157,7 +1160,7 @@ I detaji i pol esar catai inte'l [{{fullurl:{{#Special:Log}}/delete|page={{FULLP
 'search-interwiki-default' => 'Risultati da $1:',
 'search-interwiki-more' => '(altro)',
 'search-relatedarticle' => 'Ligà',
-'mwsuggest-disable' => 'Disabilita sugerimenti AJAX',
+'mwsuggest-disable' => 'Disabilita sugerimenti de riserca',
 'searcheverything-enable' => 'Serca in tuti quanti i namespace',
 'searchrelated' => 'ligà',
 'searchall' => 'tuti',
@@ -1218,7 +1221,7 @@ Prova a métarghe \"all:\" davanti al testo che te serchi par vardar in tuti i n
 'saveprefs' => 'Salva le preferense',
 'resetprefs' => 'Reinposta le preferense',
 'restoreprefs' => 'Ripristina le inpostassion predefinìe',
-'prefs-editing' => 'Dimension de la casela de modifica',
+'prefs-editing' => 'Canbiamento',
 'prefs-edit-boxsize' => 'Dimension de la finestra de modìfega.',
 'rows' => 'Righe:',
 'columns' => 'Cołone:',
@@ -1277,7 +1280,7 @@ Sta operassion no la pol èssar anulà.',
 'badsiglength' => 'La to firma la xe massa longa.
 La gà da verghe al massimo $1 {{PLURAL:$1|caràtere|caràteri}}.',
 'yourgender' => 'Sesso:',
-'gender-unknown' => 'Mia spesificà',
+'gender-unknown' => 'Preferisso no dìrvelo mia',
 'gender-male' => 'Mas-cio',
 'gender-female' => 'Fémena',
 'prefs-help-gender' => "Opzional: doparà par l'indicassion del gènare dal software. Sta informassion la sarà visìbile da tuti.",
@@ -1390,8 +1393,8 @@ Co qualcheduni te scrivarà, nol vedarà mia el to indirizo.',
 'right-hideuser' => 'Bloca un nome utente, scondéndolo al publico',
 'right-ipblock-exempt' => "Scavalca i blochi de l'IP, i auto-blochi e i blochi de grupi de IP",
 'right-proxyunbannable' => 'Salta via i blochi sui proxy',
-'right-unblockself' => 'Sbloca se steso',
-'right-protect' => 'Canbia i livèi de protezion',
+'right-unblockself' => 'Desblocar se steso',
+'right-protect' => 'Canbiar i livèi de protezion e modificar le pagine protete ricorsivamente',
 'right-editprotected' => 'Modifica pagine protete',
 'right-editinterface' => "Modifica l'interfacia utente",
 'right-editusercssjs' => 'Modifica i file CSS e JS de altri utenti',
@@ -1469,7 +1472,7 @@ Co qualcheduni te scrivarà, nol vedarà mia el to indirizo.',
 'recentchanges-label-bot' => 'Sta modifica el la ga fata un bot',
 'recentchanges-label-unpatrolled' => 'Sta modifica no la xe stà gnancora verificà',
 'rcnote' => "Qua soto se vede {{PLURAL:$1|l'ultimo canbiamento|i ultimi '''$1''' canbiamenti}} {{PLURAL:$2|in te l'ultimo zorno|in tei ultimi '''$2''' zorni}}, fin a le $5 del $4.",
-'rcnotefrom' => " Qui di seguito sono elencate le modifiche da '''$2''' (fino a '''$1''').",
+'rcnotefrom' => "Qui di seguito sono elencate le modifiche da '''$2''' (fino a '''$1''').",
 'rclistfrom' => 'Fà védar i canbiamenti fati dal $1',
 'rcshowhideminor' => '$1 i canbiamenti picenini',
 'rcshowhidebots' => '$1 i bot',
@@ -1488,7 +1491,7 @@ Co qualcheduni te scrivarà, nol vedarà mia el to indirizo.',
 'number_of_watching_users_pageview' => '[osservà da {{PLURAL:$1|un utente|$1 utenti}}]',
 'rc_categories' => 'Limita a le categorie (separà da "|")',
 'rc_categories_any' => 'Qualsiasi',
-'rc-change-size-new' => '$1 {{PLURAL:$|byte}} dopo ła modifega',
+'rc-change-size-new' => '$1 {{PLURAL:$1|byte}} dopo ła modifega',
 'newsectionsummary' => '/* $1 */ sezion nova',
 'rc-enhanced-expand' => 'Mostra detaji (richiede JavaScript)',
 'rc-enhanced-hide' => 'Scondi detaji',
@@ -1896,12 +1899,12 @@ Le righe <del>sbarà</del> le xe xà stà sistemà.',
 'fewestrevisions' => 'Pagine con manco revision',
 
 # Miscellaneous special pages
-'nbytes' => '$1 {{PLURAL:$1|byte|byte}}',
+'nbytes' => '$1 {{PLURAL:$1|byte}}',
 'ncategories' => '$1 {{PLURAL:$1|categoria|categorie}}',
 'ninterwikis' => '$1 {{PLURAL:$1|interwiki}}',
 'nlinks' => '$1 {{PLURAL:$1|colegamento|colegamenti}}',
 'nmembers' => '$1 {{PLURAL:$1|elemento|elementi}}',
-'nrevisions' => '$1 {{PLURAL:$1|revision|revision}}',
+'nrevisions' => '$1 {{PLURAL:$1|revision}}',
 'nviews' => '$1 {{PLURAL:$1|visita|visite}}',
 'nimagelinks' => 'Doparà su $1 {{PLURAL:$1|pagina|pagine}}',
 'ntransclusions' => 'doparà su $1 {{PLURAL:$1|pagina|pagine}}',
@@ -2188,7 +2191,7 @@ Par riscontri e ulteriore assistensa:
 'exblank' => "ła pàxena l'era voda",
 'delete-confirm' => 'Scancela "$1"',
 'delete-legend' => 'Scancela',
-'historywarning' => "'''Ocio:''' La pàxena che te sì drio scancełar la gà na cronołogia con circa $1 {{PLURAL:$1|revision|revision}}:",
+'historywarning' => "'''Ocio:''' La pàxena che te sì drio scancełar la gà na cronołogia con circa $1 {{PLURAL:$1|revision}}:",
 'confirmdeletetext' => 'Te ste par scansełare na pajina co tuta ła so cronołosia. Par cortesia, conferma che xè to intension prosedere a tałe scansełasion, che te ghe piena consapevołeza de łe conseguense de ła to axion e che esa xè conforme a łe linee guida stabiłie en [[{{MediaWiki:Policy-url}}]].',
 'actioncomplete' => 'Asion conpletà',
 'actionfailed' => 'Asion mia riussìa',
@@ -2923,7 +2926,7 @@ La so esecuzion la podarìa danegiar el to computer.",
 'show-big-image-other' => '{{PLURAL:$2|Altra risołusion|Altre risołusion}}: $1.',
 'show-big-image-size' => '$1 × $2 pixel',
 'file-info-gif-looped' => 'ripetù',
-'file-info-gif-frames' => '$1 {{PLURAL:$1|frame|frame}}',
+'file-info-gif-frames' => '$1 {{PLURAL:$1|frame}}',
 'file-info-png-looped' => 'ripetù',
 'file-info-png-repeat' => 'ripetù $1 {{PLURAL:$1|olta|olte}}',
 'file-info-png-frames' => '$1 {{PLURAL:$1|fotograma|fotogrami}}',

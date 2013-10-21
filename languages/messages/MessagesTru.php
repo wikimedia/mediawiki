@@ -854,8 +854,7 @@ Others will be hidden by default.
 'compare-page2' => 'Faṭo 2',
 
 # Database error messages
-'dberr-problems' => 'Şubqono!
-iFaṭaṭe u3do kitla Qaṫre.',
+'dberr-problems' => 'Şubqono! iFaṭaṭe u3do kitla Qaṫre.',
 
 # HTML forms
 'htmlform-submit' => 'Mqayad',

@@ -10,6 +10,7 @@
  * @author Hazard-SJ
  * @author Ukabia
  * @author Yocahuna
+ * @author គីមស៊្រុន
  */
 
 $messages = array(
@@ -245,7 +246,7 @@ $1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite' => 'Habowt {{SITENAME}}',
-'aboutpage' => 'Project: About',
+'aboutpage' => 'Project: អំពី',
 'copyright' => 'Kantent avielobl anda $1.',
 'copyrightpage' => '{{ns:project}}:Kapirait',
 'currentevents' => 'Korant ivent',

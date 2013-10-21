@@ -3488,8 +3488,7 @@ the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 
 
 # Database error messages
 'dberr-header' => 'ایس وکی چ کوئی مسلہ اے۔',
-'dberr-problems' => 'معاف کرنا !
-ایس صفے تے تکنیکی مسلے آرۓ نیں۔',
+'dberr-problems' => 'معاف کرنا ! ایس صفے تے تکنیکی مسلے آرۓ نیں۔',
 'dberr-again' => 'تھو ڑے منٹ انتظار کرو تے دوبارہ لوڈ کرو۔',
 'dberr-info' => '(ڈیٹابیس سرور نال میل نئیں ہوسکیا:$1)',
 'dberr-usegoogle' => 'تسیں گوکل راہیں کھوج کر سکدے او۔',

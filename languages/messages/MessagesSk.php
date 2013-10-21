@@ -9,6 +9,7 @@
  *
  * @author Chiak
  * @author Danny B.
+ * @author Geitost
  * @author Helix84
  * @author Kaganer
  * @author Kusavica
@@ -22,6 +23,7 @@
  * @author Reedy
  * @author Rudko
  * @author Sp5uhe
+ * @author Sudo77(new)
  * @author Tchoř
  * @author Teslaton
  * @author Urhixidur
@@ -287,14 +289,14 @@ $messages = array(
 'tog-hideminor' => 'V posledných úpravách nezobrazovať drobné úpravy',
 'tog-hidepatrolled' => 'Skryť strážené úpravy v Posledných úpravách',
 'tog-newpageshidepatrolled' => 'Skryť strážené stránky zo zoznamu nových stránok',
-'tog-extendwatchlist' => 'Rozšíriť zoznam sledovaných, aby zobrazoval všetky zmeny, nie len posledné',
-'tog-usenewrc' => 'Zoskupiť zmeny v posledných úpravách a zoznamoch sledovaných (vyžaduje JavaScript)',
+'tog-extendwatchlist' => 'Rozšíriť zoznam sledovaných stránok, aby zobrazoval všetky zmeny, nie len posledné',
+'tog-usenewrc' => 'Zoskupiť v posledných úpravách a na zozname sledovaných stránok podľa stránky (vyžaduje JavaScript)',
 'tog-numberheadings' => 'Automaticky číslovať nadpisy',
 'tog-showtoolbar' => 'Zobraziť panel nástrojov úprav',
-'tog-editondblclick' => 'Upravovať stránky po dvojitom kliknutí (JavaScript)',
-'tog-editsection' => 'Umožniť úpravu sekcie pomocu odkazov [upraviť]',
-'tog-editsectiononrightclick' => 'Umožniť upravovať sekcie po kliknutí pravým tlačidlom na nadpisy sekcií (JavaScript)',
-'tog-showtoc' => 'Zobrazovať obsah (pre stránky s viac ako 3 nadpismi)',
+'tog-editondblclick' => 'Upravovať stránky po dvojitom kliknutí',
+'tog-editsection' => 'Umožniť upravovanie sekcie prostredníctvom odkazov [upraviť]',
+'tog-editsectiononrightclick' => 'Umožniť upravovanie sekcie pravým kliknutím na nadpisy sekcií',
+'tog-showtoc' => 'Zobrazovať tabuľku s obsahom (pre stránky s viac ako 3 nadpismi)',
 'tog-rememberpassword' => 'Zapamätať si prihlásenie na tomto počítači (najviac $1 {{PLURAL:$1|deň|dni|dní}})',
 'tog-watchcreations' => 'Pridávať stránky, ktoré vytvorím a súbory, ktoré nahrám medzi sledované',
 'tog-watchdefault' => 'Pridávať stránky a súbory, ktoré upravím medzi sledované',
@@ -314,7 +316,7 @@ $messages = array(
 'tog-externaleditor' => 'Používať štandardne externý editor (iba pre expertov, vyžaduje špeciálne nastavenie vášho počítača. [//www.mediawiki.org/wiki/Manual:External_editors Ďalšie informácie.])',
 'tog-externaldiff' => 'Používať štandardne externý diff (iba pre expertov, vyžaduje špeciálne nastavenie vášho počítača. [//www.mediawiki.org/wiki/Manual:External_editors Ďalšie informácie.])',
 'tog-showjumplinks' => 'Používať odkazy „skočiť na“ pre lepšiu dostupnosť',
-'tog-uselivepreview' => 'Používať živý náhľad (JavaScript) (experimentálna funkcia)',
+'tog-uselivepreview' => 'Používať živý náhľad(experimentálna funkcia)',
 'tog-forceeditsummary' => 'Upozoriť ma, keď nevyplním zhrnutie úprav',
 'tog-watchlisthideown' => 'Skryť moje úpravy zo zoznamu sledovaných',
 'tog-watchlisthidebots' => 'Skryť úpravy botov zo zoznamu sledovaných',
@@ -516,7 +518,7 @@ $1',
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite' => 'O {{GRAMMAR:lokál|{{SITENAME}}}}',
 'aboutpage' => 'Project:Úvod',
-'copyright' => 'Obsah je k dispozícii za licenčných podmienok $1.',
+'copyright' => 'Obsah je dostupný pod $1, pokiaľ nie je uvedené inak.',
 'copyrightpage' => '{{ns:project}}:Autorské práva',
 'currentevents' => 'Aktuality',
 'currentevents-url' => 'Project:Aktuality',
@@ -711,7 +713,7 @@ Nezabudnite si nastaviť svoje [[Special:Preferences|používateľské nastaveni
 'logout' => 'Odhlásiť',
 'userlogout' => 'Odhlásiť',
 'notloggedin' => 'Neprihlásený/á',
-'nologin' => "Nemáte ešte účet? '''$1'''.",
+'nologin' => 'Nemáte ešte účet? $1.',
 'nologinlink' => 'Vytvoriť nový účet',
 'createaccount' => 'Vytvoriť nový účet',
 'gotaccount' => "Máte už vytvorený účet? '''$1'''.",
@@ -773,7 +775,7 @@ Z tohto dôvodu nemôžu návštevníci z tejto IP adresy momentálne vytvoriť 
 'cannotchangeemail' => 'Na tejto wiki nie je možné meniť e-mailové adresy používateľského účtu.',
 'emaildisabled' => 'Táto lokalita nedokáže posielať emaily.',
 'accountcreated' => 'Účet vytvorený',
-'accountcreatedtext' => 'Používateľský účet $1 bol vytvorený.',
+'accountcreatedtext' => 'Používateľský účet [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|diskusia]]) bol vytvorený.',
 'createaccount-title' => 'Vytvorenie účtu na {{GRAMMAR:lokál|{{SITENAME}}}}',
 'createaccount-text' => 'Niekto vytvoril účet pre vašu emailovú adresu na {{GRAMMAR:lokál|{{SITENAME}}}}
 ($4) s názvom „$2“, s heslom „$3“. Mali by ste sa prihlásiť a svoje heslo teraz zmeniť.
@@ -798,6 +800,7 @@ Prosím, počkajte predtým, než to skúsite znova.',
 'oldpassword' => 'Staré heslo:',
 'newpassword' => 'Nové heslo:',
 'retypenew' => 'Nové heslo (ešte raz):',
+'resetpass-abort-generic' => 'Zmena hesla bola zablokovaná rozšírením.',
 'resetpass_submit' => 'Nastaviť heslo a prihlásiť sa',
 'resetpass_success' => 'Vaše heslo bolo úspešne zmenené! Prebieha prihlasovanie...',
 'resetpass_forbidden' => 'Heslá nie je možné zmeniť',
@@ -1039,7 +1042,7 @@ Teraz sa môžete vrátiť späť a upravovať existujúcu stránku alebo [[Spec
 'nocreate-loggedin' => 'Nemáte povolenie vytvárať nové stránky.',
 'sectioneditnotsupported-title' => 'Úprava sekcie nie je podporovaná',
 'sectioneditnotsupported-text' => 'Táto stránka úprav nepodporuje úpravu sekcie.',
-'permissionserrors' => 'Chyba povolení',
+'permissionserrors' => 'Chyba oprávnenia',
 'permissionserrorstext' => 'Na to nemáte povolenie z {{PLURAL:$1|nasledujúceho dôvodu|nasledujúcich dôvodov}}:',
 'permissionserrorstext-withaction' => 'Nemáte oprávnenie $2 z {{PLURAL:$1|nasledovného dôvodu|nasledovných dôvodov}}:',
 'recreate-moveddeleted-warn' => "'''Upozornenie: Opätovne vytvárate stránku, ktorá bola predtým zmazaná.'''
@@ -1113,8 +1116,8 @@ Legenda: (aktuálna) = rozdiel oproti aktuálnej verzii,
 (posledná) = rozdiel oproti predchádzajúcej verzii, D = drobná úprava',
 'history-fieldset-title' => 'Prechádzať históriou',
 'history-show-deleted' => 'Iba zmazané',
-'histfirst' => 'najskoršie',
-'histlast' => 'posledné',
+'histfirst' => 'najstaršie',
+'histlast' => 'najnovšie',
 'historysize' => '(({{PLURAL:$1|jeden bajt|$1 bajty|$1 bajtov}}))',
 'historyempty' => '(prázdne)',
 
@@ -1646,7 +1649,7 @@ Musí obsahovať menej ako $1 {{PLURAL:$1|znak|znaky|znakov}}.',
 'rc_categories_any' => 'akékoľvek',
 'rc-change-size-new' => '$1 {{PLURAL:$1|bajt|bajty|bajtov}} po zmene',
 'newsectionsummary' => '/* $1 */ nová sekcia',
-'rc-enhanced-expand' => 'Zobraziť podrobnosti (vyžaduje JavaScript)',
+'rc-enhanced-expand' => 'Zobraziť podrobnosti',
 'rc-enhanced-hide' => 'Skryť podrobnosti',
 'rc-old-title' => 'pôvodne vytvorené ako "$1"',
 
@@ -1910,8 +1913,7 @@ Aby bolo zabezpečenie optimálne, img_auth.php je vypnutý.',
 'upload_source_file' => ' (súbor na vašom počítači)',
 
 # Special:ListFiles
-'listfiles-summary' => 'Táto špeciálna stránka zobrazuje všetky nahrané súbory.
-Pri filtrovaní podľa používateľa sa zobrazia iba súbory, ktorých najnovšiu verziu nahral dotyčný používateľ.',
+'listfiles-summary' => 'Táto špeciálna stránka zobrazuje všetky nahrané súbory.',
 'listfiles_search_for' => 'Hľadať názov súboru:',
 'imgfile' => 'súbor',
 'listfiles' => 'Zoznam obrázkov',
@@ -2531,7 +2533,7 @@ $1',
 'mycontris' => 'Príspevky',
 'contribsub2' => 'Príspevky $1 ($2)',
 'nocontribs' => 'Neboli nájdené úpravy, ktoré by zodpovedali týmto kritériám.',
-'uctop' => '(posledná úprava)',
+'uctop' => '(aktuálne)',
 'month' => 'Mesiac:',
 'year' => 'Rok:',
 
@@ -3401,7 +3403,7 @@ Ostatné budú predvolene skryté.
 'exif-compression-4' => 'CCITT Group 4 faxové kódovanie',
 
 'exif-copyrighted-true' => 'Chránené autorským právom',
-'exif-copyrighted-false' => 'Voľné dielo',
+'exif-copyrighted-false' => 'Príznak ochrany autorským právom nenastavený',
 
 'exif-unknowndate' => 'Neznámy dátum',
 

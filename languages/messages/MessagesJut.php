@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Geitost
  * @author Huslåke
  * @author Urhixidur
  * @author Ælsån
@@ -314,7 +315,7 @@ Førespørgsel: $2',
 'userlogin' => 'Åpret æ konto æller loĝ på',
 'logout' => 'Loĝ åf',
 'userlogout' => 'Loĝ åf',
-'nologin' => "Du har engen brugerkonto? '''$1'''.",
+'nologin' => 'Du har engen brugerkonto? $1.',
 'nologinlink' => 'Åpret ny brugerkonto',
 'createaccount' => 'Åpret en ny konto',
 'gotaccount' => "Du har ålerede en brugerkonto? '''$1'''.",
