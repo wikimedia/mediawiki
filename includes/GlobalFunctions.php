@@ -1774,8 +1774,8 @@ function wfReportTime() {
 	$elapsed = microtime( true ) - $wgRequestTime;
 
 	return $wgShowHostnames ?
-		sprintf( '<!-- Served by %s in %01.3f secs. -->', wfHostname(), $elapsed ) :
-		sprintf( '<!-- Served in %01.3f secs. -->', $elapsed );
+		? sprintf( '<!-- Served by %s in %01.3f secs. -->', wfHostname(), $elapsed )
+		: sprintf( '<!-- Served in %01.3f secs. -->', $elapsed );
 }
 
 /**
