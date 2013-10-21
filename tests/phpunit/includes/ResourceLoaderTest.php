@@ -99,6 +99,7 @@ class ResourceLoaderTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider providePackedModules
+	 * @covers ResourceLoader::makePackedModulesString
 	 */
 	public function testMakePackedModulesString( $desc, $modules, $packed ) {
 		$this->assertEquals( $packed, ResourceLoader::makePackedModulesString( $modules ), $desc );
@@ -106,6 +107,7 @@ class ResourceLoaderTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider providePackedModules
+	 * @covers ResourceLoaderContext::expandModuleNames
 	 */
 	public function testexpandModuleNames( $desc, $modules, $packed ) {
 		$this->assertEquals( $modules, ResourceLoaderContext::expandModuleNames( $packed ), $desc );

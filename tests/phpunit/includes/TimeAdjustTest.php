@@ -8,8 +8,9 @@ class TimeAdjustTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * Test offset usage for a given language::userAdjust
+	 * Test offset usage for a given Language::userAdjust
 	 * @dataProvider dataUserAdjust
+	 * @covers Language::userAdjust
 	 */
 	public function testUserAdjust( $date, $localTZoffset, $expected ) {
 		global $wgContLang;

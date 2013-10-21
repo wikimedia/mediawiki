@@ -2,6 +2,7 @@
 
 /**
  * @group Database
+ * @todo covers tags
  */
 class TitlePermissionTest extends MediaWikiLangTestCase {
 
@@ -68,7 +69,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		}
 	}
 
-	function setUserPerm( $perm ) {
+	protected function setUserPerm( $perm ) {
 		// Setting member variables is evil!!!
 
 		if ( is_array( $perm ) ) {
@@ -78,11 +79,11 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		}
 	}
 
-	function setTitle( $ns, $title = "Main_Page" ) {
+	protected function setTitle( $ns, $title = "Main_Page" ) {
 		$this->title = Title::makeTitle( $ns, $title );
 	}
 
-	function setUser( $userName = null ) {
+	protected function setUser( $userName = null ) {
 		if ( $userName === 'anon' ) {
 			$this->user = $this->anonUser;
 		} elseif ( $userName === null || $userName === $this->userName ) {
@@ -92,7 +93,8 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		}
 	}
 
-	function testQuickPermissions() {
+	//TODO This test method should be split up into separate test methods and data providers
+	public function testQuickPermissions() {
 		global $wgContLang;
 		$prefix = $wgContLang->getFormattedNsText( NS_PROJECT );
 
@@ -320,7 +322,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		}
 	}
 
-	function runGroupPermissions( $action, $result, $result2 = null ) {
+	protected function runGroupPermissions( $action, $result, $result2 = null ) {
 		global $wgGroupPermissions;
 
 		if ( $result2 === null ) {
@@ -348,7 +350,8 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $result2, $res );
 	}
 
-	function testSpecialsAndNSPermissions() {
+	//TODO This test method should be split up into separate test methods and data providers
+	public function testSpecialsAndNSPermissions() {
 		global $wgNamespaceProtection;
 		$this->setUser( $this->userName );
 
@@ -399,7 +402,8 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 			$this->title->userCan( 'bogus', $this->user ) );
 	}
 
-	function testCssAndJavascriptPermissions() {
+	//TODO This test method should be split up into separate test methods and data providers
+	public function testCssAndJavascriptPermissions() {
 		$this->setUser( $this->userName );
 
 		$this->setTitle( NS_USER, $this->userName . '/test.js' );
@@ -448,7 +452,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		);
 	}
 
-	function runCSSandJSPermissions( $result0, $result1, $result2, $result3, $result4 ) {
+	protected function runCSSandJSPermissions( $result0, $result1, $result2, $result3, $result4 ) {
 		$this->setUserPerm( '' );
 		$this->assertEquals( $result0,
 			$this->title->getUserPermissionsErrors( 'bogus',
@@ -485,7 +489,8 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 				$this->user ) );
 	}
 
-	function testPageRestrictions() {
+	//TODO This test method should be split up into separate test methods and data providers
+	public function testPageRestrictions() {
 		global $wgContLang;
 
 		$prefix = $wgContLang->getFormattedNsText( NS_PROJECT );
@@ -576,7 +581,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 				$this->user ) );
 	}
 
-	function testCascadingSourcesRestrictions() {
+	public function testCascadingSourcesRestrictions() {
 		$this->setTitle( NS_MAIN, "test page" );
 		$this->setUserPerm( array( "edit", "bogus" ) );
 
@@ -596,7 +601,8 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 			$this->title->getUserPermissionsErrors( 'edit', $this->user ) );
 	}
 
-	function testActionPermissions() {
+	//TODO This test method should be split up into separate test methods and data providers
+	public function testActionPermissions() {
 		$this->setUserPerm( array( "createpage" ) );
 		$this->setTitle( NS_MAIN, "test page" );
 		$this->title->mTitleProtection['pt_create_perm'] = '';
@@ -667,7 +673,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 			$this->title->userCan( 'move-target', $this->user ) );
 	}
 
-	function testUserBlock() {
+	public function testUserBlock() {
 		global $wgEmailConfirmToEdit, $wgEmailAuthentication;
 		$wgEmailConfirmToEdit = true;
 		$wgEmailAuthentication = true;

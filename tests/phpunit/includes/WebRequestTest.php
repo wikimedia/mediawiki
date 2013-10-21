@@ -20,6 +20,7 @@ class WebRequestTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideDetectServer
+	 * @covers WebRequest::detectServer
 	 */
 	function testDetectServer( $expected, $input, $description ) {
 		$_SERVER = $input;
@@ -103,6 +104,7 @@ class WebRequestTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideGetIP
+	 * @covers WebRequest::getIP
 	 */
 	function testGetIP( $expected, $input, $squid, $xffList, $private, $description ) {
 		$_SERVER = $input;
@@ -272,6 +274,7 @@ class WebRequestTest extends MediaWikiTestCase {
 
 	/**
 	 * @expectedException MWException
+	 * @covers WebRequest::getIP
 	 */
 	function testGetIpLackOfRemoteAddrThrowAnException() {
 		$request = new WebRequest();
@@ -297,6 +300,7 @@ class WebRequestTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideLanguageData
+	 * @covers WebRequest::getAcceptLang
 	 */
 	function testAcceptLang( $acceptLanguageHeader, $expectedLanguages, $description ) {
 		$_SERVER = array( 'HTTP_ACCEPT_LANGUAGE' => $acceptLanguageHeader );

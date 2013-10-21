@@ -2,6 +2,7 @@
 /**
  * Tests for IP validity functions. Ported from /t/inc/IP.t by avar.
  * @group IP
+ * TODO test methods in this call should be split into a method and a dataprovider
  */
 
 class IPTest extends MediaWikiTestCase {

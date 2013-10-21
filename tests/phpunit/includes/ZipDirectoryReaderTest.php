@@ -5,7 +5,8 @@
  * NOTE: this test is more like an integration test than a unit test
  */
 class ZipDirectoryReaderTest extends MediaWikiTestCase {
-	var $zipDir, $entries;
+	protected $zipDir;
+	protected $entries;
 
 	protected function setUp() {
 		parent::setUp();

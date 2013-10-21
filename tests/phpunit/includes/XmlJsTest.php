@@ -1,9 +1,24 @@
 <?php
+
+/**
+ * @group Xml
+ */
 class XmlJs extends MediaWikiTestCase {
-	public function testConstruction() {
-		$obj = new XmlJsCode( null );
-		$this->assertNull( $obj->value );
-		$obj = new XmlJsCode( '' );
-		$this->assertSame( $obj->value, '' );
+
+	/**
+	 * @covers XmlJsCode::__construct
+	 * @dataProvider provideConstruction
+	 */
+	public function testConstruction( $value ) {
+		$obj = new XmlJsCode( $value );
+		$this->assertEquals( $value, $obj->value );
 	}
+
+	public function provideConstruction(){
+		return array(
+			array( null ),
+			array( '' ),
+		);
+	}
+
 }

@@ -7,7 +7,7 @@
  */
 class WikiPageTest_ContentHandlerUseDB extends WikiPageTest {
 
-	function setUp() {
+	protected function setUp() {
 		parent::setUp();
 		$this->setMwGlobals( 'wgContentHandlerUseDB', false );
 
@@ -26,6 +26,9 @@ class WikiPageTest_ContentHandlerUseDB extends WikiPageTest {
 		}
 	}
 
+	/**
+	 * @covers WikiPage::getContentModel
+	 */
 	public function testGetContentModel() {
 		$page = $this->createPage( "WikiPageTest_testGetContentModel", "some text", CONTENT_MODEL_JAVASCRIPT );
 
@@ -36,6 +39,9 @@ class WikiPageTest_ContentHandlerUseDB extends WikiPageTest {
 		$this->assertEquals( CONTENT_MODEL_WIKITEXT, $page->getContentModel() );
 	}
 
+	/**
+	 * @covers WikiPage::getContentHandler
+	 */
 	public function testGetContentHandler() {
 		$page = $this->createPage( "WikiPageTest_testGetContentHandler", "some text", CONTENT_MODEL_JAVASCRIPT );
 
