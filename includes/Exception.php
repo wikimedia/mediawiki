@@ -125,9 +125,21 @@ class MWException extends Exception {
 		global $wgShowExceptionDetails;
 
 		if ( $wgShowExceptionDetails ) {
-			return '<p>' . nl2br( htmlspecialchars( $this->getMessage() ) ) .
-				'</p><p>Backtrace:</p><p>' . nl2br( htmlspecialchars( MWExceptionHandler::formatRedactedTrace( $this ) ) ) .
-				"</p>\n";
+			$depth = 0;
+			$e = $this;
+			$html = array();
+			$isDeep = (bool) $this->getPrevious();
+			do {
+				$html[] = "<p>" . ( $isDeep ? "(depth $depth) " : "" ) .
+					get_class( $e ) . ": " .
+					nl2br( htmlspecialchars( $e->getMessage() ) ) .
+					"</p><p>Backtrace:</p><p>" .
+					nl2br( htmlspecialchars( MWExceptionHandler::formatRedactedTrace( $e ) ) ) .
+					"</p>\n";
+				$depth++;
+			} while( $e = $e->getPrevious() );
+
+			return implode( '', array_reverse( $html ) );
 		} else {
 			return "<div class=\"errorbox\">" .
 				'[' . MWExceptionHandler::getLogId( $this ) . '] ' .
@@ -601,7 +613,20 @@ class MWExceptionHandler {
 				$message = "MediaWiki internal error.\n\n";
 
 				if ( $wgShowExceptionDetails ) {
-					$message .= 'Original exception: ' . self::formatRedactedTrace( $e ) . "\n\n" .
+					$depth = 0;
+					$details = array();
+					$isDeep = (bool) $e->getPrevious();
+					do {
+						if ( $depth === 0 ) {
+							$piece = 'Original exception: ';
+						} else {
+							$piece = "Nested exception $depth: ";
+						}
+						$message[] = $piece . $e->getMessage() . "\n" . self::formatRedactedTrace( $e );
+						$depth++;
+					} while( $e = $e->getPrevious() );
+
+					$message .= implode( "\n", array_reverse( $details ) ) . "\n\n" .
 						'Exception caught inside exception handler: ' . $e2->__toString();
 				} else {
 					$message .= "Exception caught inside exception handler.\n\n" .
@@ -610,25 +635,33 @@ class MWExceptionHandler {
 				}
 
 				$message .= "\n";
-
-				if ( $cmdLine ) {
-					self::printError( $message );
-				} else {
-					echo nl2br( htmlspecialchars( $message ) ) . "\n";
-				}
 			}
 		} else {
 			$message = "Unexpected non-MediaWiki exception encountered, of type \"" . get_class( $e ) . "\"";
 
 			if ( $wgShowExceptionDetails ) {
-				$message .= "\nexception '" . get_class( $e ) . "' in " . $e->getFile() . ":" . $e->getLine() . "\nStack trace:\n" . self::formatRedactedTrace( $e ) . "\n";
-			}
+				$depth = 0;
+				$details = array();
+				$isDeep = (bool) $e->getPrevious();
+				do {
+					$piece = "\n";
+					if ( $isDeep ) {
+						$piece .= "exception (depth $depth) '";
+					} else {
+						$piece .= "exception '";
+					}
+					$piece .=  get_class( $e ) . "' in " . $e->getFile() . ":" . $e->getLine() . "\n" . $e->getMessage() . "\nStack trace:\n" . self::formatRedactedTrace( $e ) . "\n";
+					$details[] = $piece;
+					$depth++;
+				} while( $e = $e->getPrevious() );
 
-			if ( $cmdLine ) {
-				self::printError( $message );
-			} else {
-				echo nl2br( htmlspecialchars( $message ) ) . "\n";
+				$message .= implode( '', array_reverse( $details ) );
 			}
+		}
+		if ( $cmdLine ) {
+			self::printError( $message );
+		} else {
+			echo nl2br( htmlspecialchars( $message ) ) . "\n";
 		}
 	}
 

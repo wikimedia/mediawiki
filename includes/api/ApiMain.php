@@ -643,7 +643,25 @@ class ApiMain extends ApiBase {
 				'code' => 'internal_api_error_' . get_class( $e ),
 				'info' => $info,
 			);
-			ApiResult::setContent( $errMessage, $wgShowExceptionDetails ? "\n\n{$e->getTraceAsString()}\n\n" : '' );
+			if ( $wgShowExceptionDetails ) {
+				if ( $e->getPrevious() ) {
+					$errDetails = array();
+					$nested = $e;
+					$depth = 0;
+					do {
+						$errDetails[] = get_class( $nested ) . " at depth $depth: "
+							. $nested->getMessage() . "\n"
+							. $nested->getTraceAsString() . "\n";
+						$depth++;
+					} while( $nested = $nested->getPrevious() );
+					$errDetails = implode( "\n", array_reverse( $errDetails ) );
+				} else {
+					$errDetails = "\n\n{$e->getTraceAsString()}\n\n";
+				}
+			} else {
+				$errDetails = '';
+			}
+			ApiResult::setContent( $errMessage, $errDetails );
 		}
 
 		// Remember all the warnings to re-add them later
