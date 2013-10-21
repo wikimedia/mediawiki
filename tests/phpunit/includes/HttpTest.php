@@ -5,8 +5,9 @@
 class HttpTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider cookieDomains
+	 * @covers Cookie::validateCookieDomain
 	 */
-	function testValidateCookieDomain( $expected, $domain, $origin = null ) {
+	public function testValidateCookieDomain( $expected, $domain, $origin = null ) {
 		if ( $origin ) {
 			$ok = Cookie::validateCookieDomain( $domain, $origin );
 			$msg = "$domain against origin $origin";
@@ -50,6 +51,7 @@ class HttpTest extends MediaWikiTestCase {
 	 * Test Http::isValidURI()
 	 * @bug 27854 : Http::isValidURI is too lax
 	 * @dataProvider provideURI
+	 * @covers Http::isValidURI
 	 */
 	function testIsValidUri( $expect, $URI, $message = '' ) {
 		$this->assertEquals(
@@ -132,7 +134,7 @@ class HttpTest extends MediaWikiTestCase {
 	 * rewritten when bug 29232 is taken care of (high-level handling of
 	 * HTTP redirects).
 	 */
-	function testRelativeRedirections() {
+	public function testRelativeRedirections() {
 		$h = MWHttpRequestTester::factory( 'http://oldsite/file.ext' );
 
 		# Forge a Location header

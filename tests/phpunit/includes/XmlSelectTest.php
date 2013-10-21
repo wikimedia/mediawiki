@@ -1,7 +1,13 @@
 <?php
 
-// TODO
+/**
+ * @group Xml
+ */
 class XmlSelectTest extends MediaWikiTestCase {
+
+	/**
+	 * @var XmlSelect
+	 */
 	protected $select;
 
 	protected function setUp() {
@@ -17,8 +23,9 @@ class XmlSelectTest extends MediaWikiTestCase {
 		$this->select = null;
 	}
 
-	### START OF TESTS ###
-
+	/**
+	 * @covers XmlSelect::__construct
+	 */
 	public function testConstructWithoutParameters() {
 		$this->assertEquals( '<select></select>', $this->select->getHTML() );
 	}
@@ -26,6 +33,7 @@ class XmlSelectTest extends MediaWikiTestCase {
 	/**
 	 * Parameters are $name (false), $id (false), $default (false)
 	 * @dataProvider provideConstructionParameters
+	 * @covers XmlSelect::__construct
 	 */
 	public function testConstructParameters( $name, $id, $default, $expected ) {
 		$this->select = new XmlSelect( $name, $id, $default );
@@ -39,7 +47,6 @@ class XmlSelectTest extends MediaWikiTestCase {
 	 *  - $id      (default: false)
 	 *  - $default (default: false)
 	 * Provides a fourth parameters representing the expected HTML output
-	 *
 	 */
 	public static function provideConstructionParameters() {
 		return array(
@@ -60,29 +67,41 @@ class XmlSelectTest extends MediaWikiTestCase {
 		);
 	}
 
-	# Begin XmlSelect::addOption() similar to Xml::option
+	/**
+	 * @covers XmlSelect::addOption
+	 */
 	public function testAddOption() {
 		$this->select->addOption( 'foo' );
 		$this->assertEquals( '<select><option value="foo">foo</option></select>', $this->select->getHTML() );
 	}
 
+	/**
+	 * @covers XmlSelect::addOption
+	 */
 	public function testAddOptionWithDefault() {
 		$this->select->addOption( 'foo', true );
 		$this->assertEquals( '<select><option value="1">foo</option></select>', $this->select->getHTML() );
 	}
 
+	/**
+	 * @covers XmlSelect::addOption
+	 */
 	public function testAddOptionWithFalse() {
 		$this->select->addOption( 'foo', false );
 		$this->assertEquals( '<select><option value="foo">foo</option></select>', $this->select->getHTML() );
 	}
 
+	/**
+	 * @covers XmlSelect::addOption
+	 */
 	public function testAddOptionWithValueZero() {
 		$this->select->addOption( 'foo', 0 );
 		$this->assertEquals( '<select><option value="0">foo</option></select>', $this->select->getHTML() );
 	}
 
-	# End XmlSelect::addOption() similar to Xml::option
-
+	/**
+	 * @covers XmlSelect::setDefault
+	 */
 	public function testSetDefault() {
 		$this->select->setDefault( 'bar1' );
 		$this->select->addOption( 'foo1' );
@@ -98,6 +117,7 @@ class XmlSelectTest extends MediaWikiTestCase {
 	 * Adding default later on should set the correct selection or
 	 * raise an exception.
 	 * To handle this, we need to render the options in getHtml()
+	 * @covers XmlSelect::setDefault
 	 */
 	public function testSetDefaultAfterAddingOptions() {
 		$this->select->addOption( 'foo1' );
@@ -110,6 +130,10 @@ class XmlSelectTest extends MediaWikiTestCase {
 				'<option value="foo2">foo2</option></select>', $this->select->getHTML() );
 	}
 
+	/**
+	 * @covers XmlSelect::setAttribute
+	 * @covers XmlSelect::getAttribute
+	 */
 	public function testGetAttributes() {
 		# create some attributes
 		$this->select->setAttribute( 'dummy', 0x777 );

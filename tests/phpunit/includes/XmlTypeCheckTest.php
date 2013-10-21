@@ -2,7 +2,7 @@
 /**
  * PHPUnit tests for XMLTypeCheck.
  * @author physikerwelt
- * @group ?
+ * @group Xml
  * @covers XMLTypeCheck
  */
 class XmlTypeCheckTest extends MediaWikiTestCase {
