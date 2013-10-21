@@ -7,6 +7,8 @@
  * @ingroup Language
  * @file
  *
+ * @author Geitost
+ * @author Murma174
  * @author Purodha
  * @author Slomox
  * @author Wikipeeta
@@ -253,7 +255,7 @@ Bitte schriew eene Notiz aun [[Special:ListUsers/sysop|administrator]], en lot d
 'logout'                  => 'Rut hia',
 'userlogout'              => 'Rut hia',
 'notloggedin'             => 'Nich aunjemaldt',
-'nologin'                 => "Hast tjeen Bruckakonto? '''$1'''.",
+'nologin'                 => 'Hast tjeen Bruckakonto? $1.',
 'nologinlink'             => 'Nieet Bruckakonto moake',
 'createaccount'           => 'Bruckakonto moake',
 'gotaccount'              => "Hast aul een Bruckakonto? '''$1'''.",
@@ -380,7 +382,7 @@ Bitte nemm eenen aundren.',
 'imagelinks'          => 'Links',
 
 # MIME search
-'mimesearch' => 'MIME-Säkj',
+'mimesearch' => 'Schük efter MIME-Typ',
 
 # List redirects
 'listredirects' => 'Wiedawiesinje wiese',

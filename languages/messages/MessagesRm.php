@@ -3557,8 +3557,7 @@ Endatescha il num da datoteca senza il prefix "{{ns:file}}:".',
 
 # Database error messages
 'dberr-header'      => 'Questa wiki ha in problem',
-'dberr-problems'    => 'Stgisa!
-Questa pagina ha actualmain difficultads tecnicas.',
+'dberr-problems'    => 'Stgisa! Questa pagina ha actualmain difficultads tecnicas.',
 'dberr-again'       => 'Spetga in per minutas ed emprova alura da chargiar danovamain.',
 'dberr-info'        => '(Betg pussaivel da contactar il server da la banca da datas: $1)',
 'dberr-usegoogle'   => 'Ti pos empruvar da tschertgar cun Google en il fratemp.',
