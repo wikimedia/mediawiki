@@ -125,9 +125,7 @@ class MWException extends Exception {
 		global $wgShowExceptionDetails;
 
 		if ( $wgShowExceptionDetails ) {
-			return '<p>' . nl2br( htmlspecialchars( $this->getMessage() ) ) .
-				'</p><p>Backtrace:</p><p>' . nl2br( htmlspecialchars( MWExceptionHandler::formatRedactedTrace( $this ) ) ) .
-				"</p>\n";
+			return self::getHTMLRecursive( $this );
 		} else {
 			return "<div class=\"errorbox\">" .
 				'[' . MWExceptionHandler::getLogId( $this ) . '] ' .
@@ -137,6 +135,23 @@ class MWException extends Exception {
 				"at the bottom of LocalSettings.php to show detailed " .
 				"debugging information. -->";
 		}
+	}
+
+	protected static function getHTMLRecursive( Exception $e, $depth = 0 ) {
+		$html = array();
+		if ( $e->getPrevious() ) {
+			$html[] = self::getHTMLRecursive( $e->getPrevious(), $depth + 1 );
+		}
+
+		$html[] = '<p>';
+		if ( $e->getPrevious() || $depth > 0 ) {
+			$html[] = "(depth $depth) ";
+		}
+		$html[] = nl2br( htmlspecialchars( $e->getMessage() ) ) .
+			'</p><p>Backtrace:</p><p>' . nl2br( htmlspecialchars( MWExceptionHandler::formatRedactedTrace( $e ) ) ) .
+			"</p>\n";
+
+		return implode( '', $html );
 	}
 
 	/**
@@ -601,7 +616,7 @@ class MWExceptionHandler {
 				$message = "MediaWiki internal error.\n\n";
 
 				if ( $wgShowExceptionDetails ) {
-					$message .= 'Original exception: ' . self::formatRedactedTrace( $e ) . "\n\n" .
+					$message .= self::formatInternalExceptionDetails( $e ) . "\n\n" .
 						'Exception caught inside exception handler: ' . $e2->__toString();
 				} else {
 					$message .= "Exception caught inside exception handler.\n\n" .
@@ -621,7 +636,7 @@ class MWExceptionHandler {
 			$message = "Unexpected non-MediaWiki exception encountered, of type \"" . get_class( $e ) . "\"";
 
 			if ( $wgShowExceptionDetails ) {
-				$message .= "\nexception '" . get_class( $e ) . "' in " . $e->getFile() . ":" . $e->getLine() . "\nStack trace:\n" . self::formatRedactedTrace( $e ) . "\n";
+				$message .= self::formatExceptionDetails( $e );
 			}
 
 			if ( $cmdLine ) {
@@ -630,6 +645,36 @@ class MWExceptionHandler {
 				echo nl2br( htmlspecialchars( $message ) ) . "\n";
 			}
 		}
+	}
+
+	protected static function formatInternalExceptionDetails( Exception $e, $depth = 0 ) {
+		$message = array();
+		if ( $e->getPrevious() ) {
+			$message[] = self::formatInternalExceptionDetails( $e, $depth + 1 );
+		}
+		if ( $depth === 0 ) {
+			$message[] = 'Original exception: ';
+		} else {
+			$message[] = "Nested exception $depth: ";
+		}
+		$message[] = self::formatRedactedTrace( $e );
+	}
+
+	protected static function formatExternalExceptionDetails( Exception $e, $depth = 0 ) {
+		$message = array();
+		if ( $e->getPrevious() ) {
+			$message[] = self::formatExternalExceptionDetails( $e->getPrevious(), $depth + 1 );
+		}
+
+		$message[] = "\n";
+		if ( $e->getPrevious() || $depth > 0 ) {
+			$message[] = "exception (depth $depth) '";
+		} else {
+			$message[] = "exception '";
+		}
+		$message[] =  get_class( $e ) . "' in " . $e->getFile() . ":" . $e->getLine() . "\nStack trace:\n" . self::formatRedactedTrace( $e ) . "\n";
+
+		return implode( '', $message );
 	}
 
 	/**
