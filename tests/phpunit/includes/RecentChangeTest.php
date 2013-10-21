@@ -9,7 +9,7 @@ class RecentChangeTest extends MediaWikiTestCase {
 	protected $user_comment;
 	protected $context;
 
-	function __construct() {
+	public function __construct() {
 		parent::__construct();
 
 		$this->title = Title::newFromText( 'SomeTitle' );
@@ -56,7 +56,7 @@ class RecentChangeTest extends MediaWikiTestCase {
 	/**
 	 * @covers LogFormatter::getIRCActionText
 	 */
-	function testIrcMsgForLogTypeBlock() {
+	public function testIrcMsgForLogTypeBlock() {
 		$sep = $this->context->msg( 'colon-separator' )->text();
 
 		# block/block
@@ -78,7 +78,7 @@ class RecentChangeTest extends MediaWikiTestCase {
 	/**
 	 * @covers LogFormatter::getIRCActionText
 	 */
-	function testIrcMsgForLogTypeDelete() {
+	public function testIrcMsgForLogTypeDelete() {
 		$sep = $this->context->msg( 'colon-separator' )->text();
 
 		# delete/delete
@@ -101,7 +101,7 @@ class RecentChangeTest extends MediaWikiTestCase {
 	/**
 	 * @covers LogFormatter::getIRCActionText
 	 */
-	function testIrcMsgForLogTypeNewusers() {
+	public function testIrcMsgForLogTypeNewusers() {
 		$this->assertIRCComment(
 			'New user account',
 			'newusers', 'newusers',
@@ -127,7 +127,7 @@ class RecentChangeTest extends MediaWikiTestCase {
 	/**
 	 * @covers LogFormatter::getIRCActionText
 	 */
-	function testIrcMsgForLogTypeMove() {
+	public function testIrcMsgForLogTypeMove() {
 		$move_params = array(
 			'4::target' => $this->target->getPrefixedText(),
 			'5::noredir' => 0,
@@ -154,7 +154,7 @@ class RecentChangeTest extends MediaWikiTestCase {
 	/**
 	 * @covers LogFormatter::getIRCActionText
 	 */
-	function testIrcMsgForLogTypePatrol() {
+	public function testIrcMsgForLogTypePatrol() {
 		# patrol/patrol
 		$this->assertIRCComment(
 			$this->context->msg( 'patrol-log-line', 'revision 777', '[[SomeTitle]]', '' )->plain(),
@@ -170,7 +170,7 @@ class RecentChangeTest extends MediaWikiTestCase {
 	/**
 	 * @covers LogFormatter::getIRCActionText
 	 */
-	function testIrcMsgForLogTypeProtect() {
+	public function testIrcMsgForLogTypeProtect() {
 		$protectParams = array(
 			'[edit=sysop] (indefinite) ‎[move=sysop] (indefinite)'
 		);
@@ -204,7 +204,7 @@ class RecentChangeTest extends MediaWikiTestCase {
 	/**
 	 * @covers LogFormatter::getIRCActionText
 	 */
-	function testIrcMsgForLogTypeUpload() {
+	public function testIrcMsgForLogTypeUpload() {
 		$sep = $this->context->msg( 'colon-separator' )->text();
 
 		# upload/upload
@@ -230,19 +230,19 @@ class RecentChangeTest extends MediaWikiTestCase {
 	 * --
 	 */
 	/*
-	function testIrcMsgForBlankingAES() {
+	public function testIrcMsgForBlankingAES() {
 		// $this->context->msg( 'autosumm-blank', .. );
 	}
 
-	function testIrcMsgForReplaceAES() {
+	public function testIrcMsgForReplaceAES() {
 		// $this->context->msg( 'autosumm-replace', .. );
 	}
 
-	function testIrcMsgForRollbackAES() {
+	public function testIrcMsgForRollbackAES() {
 		// $this->context->msg( 'revertpage', .. );
 	}
 
-	function testIrcMsgForUndoAES() {
+	public function testIrcMsgForUndoAES() {
 		// $this->context->msg( 'undo-summary', .. );
 	}
 	*/
@@ -251,10 +251,11 @@ class RecentChangeTest extends MediaWikiTestCase {
 	 * @param $expected String Expected IRC text without colors codes
 	 * @param $type String Log type (move, delete, suppress, patrol ...)
 	 * @param $action String A log type action
+	 * @param $params
 	 * @param $comment String (optional) A comment for the log action
 	 * @param $msg String (optional) A message for PHPUnit :-)
 	 */
-	function assertIRCComment( $expected, $type, $action, $params, $comment = null, $msg = '' ) {
+	protected function assertIRCComment( $expected, $type, $action, $params, $comment = null, $msg = '' ) {
 
 		$logEntry = new ManualLogEntry( $type, $action );
 		$logEntry->setPerformer( $this->user );

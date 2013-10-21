@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @group Xml
+ */
 class XmlTest extends MediaWikiTestCase {
 
 	protected function setUp() {

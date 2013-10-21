@@ -24,7 +24,11 @@ function getSiteParams( $conf, $wiki ) {
 }
 
 class SiteConfigurationTest extends MediaWikiTestCase {
-	var $mConf;
+
+	/**
+	 * @var SiteConfiguration
+	 */
+	protected $mConf;
 
 	protected function setUp() {
 		parent::setUp();
@@ -95,7 +99,10 @@ class SiteConfigurationTest extends MediaWikiTestCase {
 		$GLOBALS['global'] = array( 'global' => 'global' );
 	}
 
-	function testSiteFromDb() {
+	/**
+	 * @covers SiteConfiguration::siteFromDB
+	 */
+	public function testSiteFromDb() {
 		$this->assertEquals(
 			array( 'wikipedia', 'en' ),
 			$this->mConf->siteFromDB( 'enwiki' ),
@@ -120,7 +127,10 @@ class SiteConfigurationTest extends MediaWikiTestCase {
 		);
 	}
 
-	function testGetLocalDatabases() {
+	/**
+	 * @covers SiteConfiguration::getLocalDatabases
+	 */
+	public function testGetLocalDatabases() {
 		$this->assertEquals(
 			array( 'enwiki', 'dewiki', 'frwiki' ),
 			$this->mConf->getLocalDatabases(),
@@ -128,7 +138,10 @@ class SiteConfigurationTest extends MediaWikiTestCase {
 		);
 	}
 
-	function testGetConfVariables() {
+	/**
+	 * @covers SiteConfiguration::get
+	 */
+	public function testGetConfVariables() {
 		$this->assertEquals(
 			'enwiki',
 			$this->mConf->get( 'simple', 'enwiki', 'wiki' ),
@@ -240,7 +253,10 @@ class SiteConfigurationTest extends MediaWikiTestCase {
 		);
 	}
 
-	function testSiteFromDbWithCallback() {
+	/**
+	 * @covers SiteConfiguration::siteFromDB
+	 */
+	public function testSiteFromDbWithCallback() {
 		$this->mConf->siteParamsCallback = 'getSiteParams';
 
 		$this->assertEquals(
@@ -260,7 +276,10 @@ class SiteConfigurationTest extends MediaWikiTestCase {
 		);
 	}
 
-	function testParameterReplacement() {
+	/**
+	 * @covers SiteConfiguration::get
+	 */
+	public function testParameterReplacement() {
 		$this->mConf->siteParamsCallback = 'getSiteParams';
 
 		$this->assertEquals(
@@ -290,7 +309,10 @@ class SiteConfigurationTest extends MediaWikiTestCase {
 		);
 	}
 
-	function testGetAllGlobals() {
+	/**
+	 * @covers SiteConfiguration::getAll
+	 */
+	public function testGetAllGlobals() {
 		$this->mConf->siteParamsCallback = 'getSiteParams';
 
 		$getall = array(

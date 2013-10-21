@@ -7,7 +7,7 @@
  */
 class RevisionTest_ContentHandlerUseDB extends RevisionStorageTest {
 
-	function setUp() {
+	protected function setUp() {
 		$this->setMwGlobals( 'wgContentHandlerUseDB', false );
 
 		$dbw = wfGetDB( DB_MASTER );

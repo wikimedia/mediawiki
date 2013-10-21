@@ -14,8 +14,9 @@ class TimestampTest extends MediaWikiLangTestCase {
 	/**
 	 * Test parsing of valid timestamps and outputing to MW format.
 	 * @dataProvider provideValidTimestamps
+	 * @covers MWTimestamp::getTimestamp
 	 */
-	function testValidParse( $format, $original, $expected ) {
+	public function testValidParse( $format, $original, $expected ) {
 		$timestamp = new MWTimestamp( $original );
 		$this->assertEquals( $expected, $timestamp->getTimestamp( TS_MW ) );
 	}
@@ -23,8 +24,9 @@ class TimestampTest extends MediaWikiLangTestCase {
 	/**
 	 * Test outputting valid timestamps to different formats.
 	 * @dataProvider provideValidTimestamps
+	 * @covers MWTimestamp::getTimestamp
 	 */
-	function testValidOutput( $format, $expected, $original ) {
+	public function testValidOutput( $format, $expected, $original ) {
 		$timestamp = new MWTimestamp( $original );
 		$this->assertEquals( $expected, (string)$timestamp->getTimestamp( $format ) );
 	}
@@ -32,16 +34,18 @@ class TimestampTest extends MediaWikiLangTestCase {
 	/**
 	 * Test an invalid timestamp.
 	 * @expectedException TimestampException
+	 * @covers MWTimestamp
 	 */
-	function testInvalidParse() {
+	public function testInvalidParse() {
 		new MWTimestamp( "This is not a timestamp." );
 	}
 
 	/**
 	 * Test requesting an invalid output format.
 	 * @expectedException TimestampException
+	 * @covers MWTimestamp::getTimestamp
 	 */
-	function testInvalidOutput() {
+	public function testInvalidOutput() {
 		$timestamp = new MWTimestamp( '1343761268' );
 		$timestamp->getTimestamp( 98 );
 	}
@@ -69,8 +73,8 @@ class TimestampTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @test
 	 * @dataProvider provideHumanTimestampTests
+	 * @covers MWTimestamp::getHumanTimestamp
 	 */
 	public function testHumanTimestamp(
 		$tsTime, // The timestamp to format
@@ -202,8 +206,8 @@ class TimestampTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @test
 	 * @dataProvider provideRelativeTimestampTests
+	 * @covers MWTimestamp::getRelativeTimestamp
 	 */
 	public function testRelativeTimestamp(
 		$tsTime, // The timestamp to format

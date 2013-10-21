@@ -1,8 +1,11 @@
 <?php
 
 class UIDGeneratorTest extends MediaWikiTestCase {
+
 	/**
 	 * @dataProvider provider_testTimestampedUID
+	 * @covers UIDGenerator::newTimestampedUID128
+	 * @covers UIDGenerator::newTimestampedUID88
 	 */
 	public function testTimestampedUID( $method, $digitlen, $bits, $tbits, $hostbits ) {
 		$id = call_user_func( array( 'UIDGenerator', $method ) );
@@ -46,6 +49,7 @@ class UIDGeneratorTest extends MediaWikiTestCase {
 
 	/**
 	 * array( method, length, bits, hostbits )
+	 * NOTE: When adding a new method name here please update the covers tags for the tests!
 	 */
 	public static function provider_testTimestampedUID() {
 		return array(
@@ -55,22 +59,40 @@ class UIDGeneratorTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * @covers UIDGenerator::newUUIDv4
+	 */
 	public function testUUIDv4() {
 		for ( $i = 0; $i < 100; $i++ ) {
 			$id = UIDGenerator::newUUIDv4();
 			$this->assertEquals( true,
 				preg_match( '!^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$!', $id ),
 				"UID $id has the right format" );
+		}
+	}
 
+	/**
+	 * @covers UIDGenerator::newRawUUIDv4
+	 */
+	public function testRawUUIDv4() {
+		for ( $i = 0; $i < 100; $i++ ) {
 			$id = UIDGenerator::newRawUUIDv4();
 			$this->assertEquals( true,
 				preg_match( '!^[0-9a-f]{12}4[0-9a-f]{3}[89ab][0-9a-f]{15}$!', $id ),
 				"UID $id has the right format" );
+		}
+	}
 
+	/**
+	 * @covers UIDGenerator::newRawUUIDv4
+	 */
+	public function testRawUUIDv4QuickRand() {
+		for ( $i = 0; $i < 100; $i++ ) {
 			$id = UIDGenerator::newRawUUIDv4( UIDGenerator::QUICK_RAND );
 			$this->assertEquals( true,
 				preg_match( '!^[0-9a-f]{12}4[0-9a-f]{3}[89ab][0-9a-f]{15}$!', $id ),
 				"UID $id has the right format" );
 		}
 	}
+
 }

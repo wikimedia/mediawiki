@@ -1,7 +1,6 @@
 <?php
 
 /**
- *
  * @group Database
  *        ^--- needed for language cache stuff
  */
@@ -19,7 +18,10 @@ class TitleTest extends MediaWikiTestCase {
 		) );
 	}
 
-	function testLegalChars() {
+	/**
+	 * @covers Title::legalChars
+	 */
+	public function testLegalChars() {
 		$titlechars = Title::legalChars();
 
 		foreach ( range( 1, 255 ) as $num ) {
@@ -34,8 +36,10 @@ class TitleTest extends MediaWikiTestCase {
 
 	/**
 	 * See also mediawiki.Title.test.js
+	 * @covers Title::secureAndSplit
+	 * @todo This method should be split into 2 separate tests each with a provider
 	 */
-	function testSecureAndSplit() {
+	public function testSecureAndSplit() {
 		// Valid
 		foreach ( array(
 			'Sandbox',
@@ -171,15 +175,17 @@ class TitleTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideConvertByteClassToUnicodeClass
+	 * @covers Title::convertByteClassToUnicodeClass
 	 */
-	function testConvertByteClassToUnicodeClass( $byteClass, $unicodeClass ) {
+	public function testConvertByteClassToUnicodeClass( $byteClass, $unicodeClass ) {
 		$this->assertEquals( $unicodeClass, Title::convertByteClassToUnicodeClass( $byteClass ) );
 	}
 
 	/**
 	 * @dataProvider provideBug31100
+	 * @covers Title::fixSpecialName
 	 */
-	function testBug31100FixSpecialName( $text, $expectedParam ) {
+	public function testBug31100FixSpecialName( $text, $expectedParam ) {
 		$title = Title::newFromText( $text );
 		$fixed = $title->fixSpecialName();
 		$stuff = explode( '/', $fixed->getDBkey(), 2 );
@@ -205,10 +211,11 @@ class TitleTest extends MediaWikiTestCase {
 	 * @group Database
 	 * @param string $source
 	 * @param string $target
-	 * @param array|string|true $expected Required error
+	 * @param array|string|bool $expected Required error
 	 * @dataProvider provideTestIsValidMoveOperation
+	 * @covers Title::isValidMoveOperation
 	 */
-	function testIsValidMoveOperation( $source, $target, $expected ) {
+	public function testIsValidMoveOperation( $source, $target, $expected ) {
 		$title = Title::newFromText( $source );
 		$nt = Title::newFromText( $target );
 		$errors = $title->isValidMoveOperation( $nt, false );
@@ -225,7 +232,7 @@ class TitleTest extends MediaWikiTestCase {
 	/**
 	 * Provides test parameter values for testIsValidMoveOperation()
 	 */
-	function dataTestIsValidMoveOperation() {
+	public function dataTestIsValidMoveOperation() {
 		return array(
 			array( 'Test', 'Test', 'selfmove' ),
 			array( 'File:Test.jpg', 'Page', 'imagenocrossnamespace' )
@@ -238,12 +245,12 @@ class TitleTest extends MediaWikiTestCase {
 	 * @param array $whitelistRegexp
 	 * @param string $source
 	 * @param string $action
-	 * @param array|string|true $expected Required error
+	 * @param array|string|bool $expected Required error
 	 *
 	 * @covers Title::checkReadPermissions
 	 * @dataProvider dataWgWhitelistReadRegexp
 	 */
-	function testWgWhitelistReadRegexp( $whitelistRegexp, $source, $action, $expected ) {
+	public function testWgWhitelistReadRegexp( $whitelistRegexp, $source, $action, $expected ) {
 		// $wgWhitelistReadRegexp must be an array. Since the provided test cases
 		// usually have only one regex, it is more concise to write the lonely regex
 		// as a string. Thus we cast to an array() to honor $wgWhitelistReadRegexp
@@ -300,7 +307,7 @@ class TitleTest extends MediaWikiTestCase {
 	/**
 	 * Provides test parameter values for testWgWhitelistReadRegexp()
 	 */
-	function dataWgWhitelistReadRegexp() {
+	public function dataWgWhitelistReadRegexp() {
 		$ALLOWED = true;
 		$DISALLOWED = false;
 
@@ -336,7 +343,7 @@ class TitleTest extends MediaWikiTestCase {
 		);
 	}
 
-	function flattenErrorsArray( $errors ) {
+	public function flattenErrorsArray( $errors ) {
 		$result = array();
 		foreach ( $errors as $error ) {
 			$result[] = $error[0];
@@ -353,9 +360,10 @@ class TitleTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider provideCasesForGetpageviewlanguage
+	 * @dataProvider provideGetPageViewLanguage
+	 * @covers Title::getPageViewLanguage
 	 */
-	function testGetpageviewlanguage( $expected, $titleText, $contLang, $lang, $variant, $msg = '' ) {
+	public function testGetPageViewLanguage( $expected, $titleText, $contLang, $lang, $variant, $msg = '' ) {
 		global $wgLanguageCode, $wgContLang, $wgLang, $wgDefaultLanguageVariant, $wgAllowUserJs;
 
 		// Setup environnement for this test
@@ -375,7 +383,7 @@ class TitleTest extends MediaWikiTestCase {
 		);
 	}
 
-	public static function provideCasesForGetpageviewlanguage() {
+	public static function provideGetPageViewLanguage() {
 		# Format:
 		# - expected
 		# - Title name
@@ -416,8 +424,9 @@ class TitleTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideBaseTitleCases
+	 * @covers Title::getBaseText
 	 */
-	function testExtractingBaseTextFromTitle( $title, $expected, $msg = '' ) {
+	public function testGetBaseText( $title, $expected, $msg = '' ) {
 		$title = Title::newFromText( $title );
 		$this->assertEquals( $expected,
 			$title->getBaseText(),
@@ -435,8 +444,9 @@ class TitleTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideRootTitleCases
+	 * @covers Title::getRootText
 	 */
-	function testExtractingRootTextFromTitle( $title, $expected, $msg = '' ) {
+	public function testGetRootText( $title, $expected, $msg = '' ) {
 		$title = Title::newFromText( $title );
 		$this->assertEquals( $expected,
 			$title->getRootText(),
@@ -455,8 +465,9 @@ class TitleTest extends MediaWikiTestCase {
 	/**
 	 * @todo Handle $wgNamespacesWithSubpages cases
 	 * @dataProvider provideSubpageTitleCases
+	 * @covers Title::getSubpageText
 	 */
-	function testExtractingSubpageTextFromTitle( $title, $expected, $msg = '' ) {
+	public function testGetSubpageText( $title, $expected, $msg = '' ) {
 		$title = Title::newFromText( $title );
 		$this->assertEquals( $expected,
 			$title->getSubpageText(),
