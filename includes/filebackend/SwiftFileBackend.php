@@ -24,7 +24,7 @@
  */
 
 /**
- * @brief Class for an OpenStack Swift based file backend.
+ * @brief Class for an OpenStack Swift (or Ceph RGW) based file backend.
  *
  * This requires the SwiftCloudFiles MediaWiki extension, which includes
  * the php-cloudfiles library (https://github.com/rackspace/php-cloudfiles).
