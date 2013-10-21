@@ -65,12 +65,12 @@ $messages = array(
 'tog-previewontop' => 'Näütäq proovikaehust inne, mitte perän toimõnduskasti',
 'tog-previewonfirst' => 'Näütäq edimädse toimõndusõ aigo proovikaehust',
 'tog-nocache' => 'Pästku-i lehekülgi võrgokaeja vaihõmällo',
-'tog-enotifwatchlistpages' => 'Saadaq mullõ e-kiri, ku muq perräkaetavat lehte muudõtas',
+'tog-enotifwatchlistpages' => 'Saadaq mullõ e-kiri, ku muq perräkaetavat lehte vai teedüstüt muudõtas',
 'tog-enotifusertalkpages' => 'Saadaq mullõ e-kiri, ku mu arotuslehte muudõtas',
-'tog-enotifminoredits' => 'Saadaq mullõ e-kiri ka väikeisi muutmiisi kotsilõ',
+'tog-enotifminoredits' => 'Saadaq mullõ e-kiri ka lehti ja failõ väikeisi muutmiisi kotsilõ',
 'tog-enotifrevealaddr' => 'Näütäq mu e-postiaadrõssit tõisilõ saadõtuin teedüssin',
 'tog-shownumberswatching' => "Näütäq, ku pall'o pruukjit taa lehe perrä kaes",
-'tog-oldsig' => 'Parhilladsõ alakirotusõ proomikaehus:',
+'tog-oldsig' => 'Parhillanõ alakirotus:',
 'tog-fancysig' => 'Pruugiq vikiteksti moodulist alakirotust (ilma automaatsõ lingildä)',
 'tog-externaleditor' => "Pruugiq vaikimiisi välist tekstitoimõndajat (õnnõ as'atundjilõ, nõud suq puutri ümbresäädmist, kaeq [//www.mediawiki.org/wiki/Manual:External_editors More information.])",
 'tog-externaldiff' => "Pruugiq vaikimiisi välist võrrõlusprogrammi (õnnõ as'atundjilõ, nõud su puutri ümbresäädmist, kaeq [//www.mediawiki.org/wiki/Manual:External_editors More information.])",
@@ -90,7 +90,7 @@ $messages = array(
 
 'underline-always' => 'Kõgõ',
 'underline-never' => 'Ei kunagi',
-'underline-default' => 'Võrgokaeja perrä',
+'underline-default' => 'Kujondusõ vai võrgokaeja perrä',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Toimõndamiskotusõ kirätüüp:',
@@ -168,6 +168,7 @@ $messages = array(
 'listingcontinuesabbrev' => 'lätt edesi',
 'index-category' => 'Indeksiga leheq',
 'noindex-category' => 'Indeksildä leheq',
+'broken-file-category' => 'Katskiidsi pildilinkega leheküleq',
 
 'about' => 'Pääteedüs',
 'article' => 'Sisu',

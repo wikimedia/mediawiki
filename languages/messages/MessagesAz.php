@@ -989,7 +989,7 @@ $1",
 'prefs-rendering' => 'Görünüş',
 'saveprefs' => 'Qeyd et',
 'resetprefs' => 'Yarat',
-'restoreprefs' => 'Bütün nizamlamaları bərpa et',
+'restoreprefs' => 'Bütün nizamlamaları bərpa et (bütün bölmələrdə)',
 'prefs-editing' => 'Redaktə',
 'prefs-edit-boxsize' => 'Redaktə pəncərəsinin həcmi',
 'rows' => 'Sıralar:',
@@ -1208,7 +1208,7 @@ Həmçinin kimliyinizi gostərmədən belə, başqalarının sizinlə istifadə�
 'action-suppressionlog' => 'xüsusi gündəliyə baxış',
 'action-block' => 'istifadəçinin redaktə etməsini əngəlləmək',
 'action-protect' => 'bu səhifənin mühafizə səviyyəsini dəyişmək',
-'action-import' => 'bu səhifəni başqa vikidən götürmək',
+'action-import' => 'başqa vikidən səhifələrin idxalı',
 'action-importupload' => 'fayl yükləmə vasitəsilə səhifələrin idxalı',
 'action-patrol' => 'Digərlərinin dəyişikliklərini patrullanmış olaraq işarələ',
 'action-autopatrol' => 'öz redaktələrinizi patrullanmış olarq işarələmək',
@@ -2956,8 +2956,7 @@ Variants for Chinese language
 
 # Database error messages
 'dberr-header' => 'Bu vikidə problem var',
-'dberr-problems' => 'Üzr istəyirik!
-Bu saytda texniki problemlər var.',
+'dberr-problems' => 'Üzr istəyirik! Bu saytda texniki problemlər var.',
 'dberr-info' => '($1: Məlumat bazası ilə əlaqə yoxdur)',
 
 # HTML forms

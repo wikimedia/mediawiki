@@ -8,6 +8,7 @@
  * @file
  *
  * @author Imdadb
+ * @author Southparkfan
  */
 
 $messages = array(
@@ -113,6 +114,7 @@ $messages = array(
 'delete' => 'Mesa',
 'protect' => 'Rakk',
 'protect_change' => 'badal kar',
+'protectthispage' => '',
 'newpage' => 'Púskuno panna',
 'talkpage' => 'Dá panna ná bárav aŧ ítgap kabo',
 'talkpagelinktext' => 'Ítgap',

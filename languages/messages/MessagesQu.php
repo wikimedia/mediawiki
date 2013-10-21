@@ -749,7 +749,7 @@ Ama hina kaspa, chaskispaykiqa ruraqpa sutiykita nispa musuqmanta yaykuy.',
 'cannotchangeemail' => 'Ruraqpa rakiqunanpi e-chaski imamaytakunaqa kay wikipi manam hukchanallachu.',
 'emaildisabled' => 'Kay tiyayqa e-chaskita manam kachayta atinchu.',
 'accountcreated' => 'Rakiqunaqa kichasqañam',
-'accountcreatedtext' => '$1 sutiyuq ruraqpa rakiqunanqa kichasqañam.',
+'accountcreatedtext' => '[[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|rimanakuy]]) sutiyuq ruraqpa rakiqunanqa kichasqañam.',
 'createaccount-title' => '{{SITENAME}}paq musuq rakiqunata kichariy',
 'createaccount-text' => 'Pipas e-chaski imamaytaykipaq {{SITENAME}}pi ($4) "$2" sutiyuq rakiqunatam kicharqan, "$3" nisqa yaykuna rimayuq. Yaykuspayki yaykuna rimaykita hukchanaykim tiyanman.
 
@@ -782,6 +782,7 @@ Kay willay pantasqa kaptinqa, qhawarparillay.',
 'resetpass-wrong-oldpass' => "Mit'alla icha kunan yaykuna rimaqa manam allinchu.
 Yaykuna rimaykitaqa aypalla hukcharqunkiñachá icha huk mit'alla yaykuna rimata mañakurqunkiñachá.",
 'resetpass-temp-password' => "Mit'alla yaykuna rima:",
+'resetpass-abort-generic' => "Yaykuna rima hukchaytaqa yapa wakichim p'itirqan.",
 
 # Special:PasswordReset
 'passwordreset' => 'Yaykuna rimata kutichiy',
@@ -1016,6 +1017,7 @@ Qullusqachá.",
 'edit-already-exists' => "Manam atinichu musuq p'anqata kamariyta.
 Kachkañam.",
 'defaultmessagetext' => 'Ñawpaq qillqa',
+'content-failed-to-parse' => "Manam atinichu $2 samiqta $1 kikinchapaq t'ikrayta: $3",
 'invalid-content-data' => 'Samiqmanta willaykunaqa manam allinchu',
 'content-not-allowed-here' => '"$1" nisqa samiqqa [[$2]] sutiyuq p\'anqapi manam saqillasqachu',
 
@@ -2480,7 +2482,7 @@ $1',
 'mycontris' => "Llamk'apusqaykuna",
 'contribsub2' => '$1 ($2)',
 'nocontribs' => 'Manam kay hina hukchasqakuna kanchu.',
-'uctop' => ' (qhipaq hukchasqa)',
+'uctop' => '(qhipaq hukchasqa)',
 'month' => 'Kay killamanta (ñawpaqmantapas):',
 'year' => 'Kay watamanta (ñawpaqmantapas):',
 
@@ -2843,6 +2845,7 @@ Tukuy hawa wikimanta chaskisqakunaqa [[Special:Log/import|hawamanta chaskiy hall
 'import-error-interwiki' => '"$1" sutiyuq p\'anqaqa hawamanta manam chaskisqachu, sutin wikipura (interwiki) nisqapaq hallch\'asqa kaptinmi.',
 'import-error-special' => '"$1" sutiyuq p\'anqaqa hawamanta manam chaskisqachu, mana p\'anqapaq kaq sapaq suti k\'itiman kapuspanmi.',
 'import-error-invalid' => '"$1" sutiyuq p\'anqaqa hawamanta manam chaskisqachu, sutin mana allin kaptinmi.',
+'import-error-unserialize' => '"$1" nisqa p\'anqapi $2 musuqchasqataqa manam ñiqirayta atinichu. Kay musuqchasqaqa $4 hina ñiqichasqa $3 kikinchatas llamk\'achin.',
 'import-options-wrong' => 'Pantasqa {{PLURAL:$2|akllasqa|akllasqakuna}}: <nowiki>$1</nowiki>',
 'import-rootpage-invalid' => "Qusqa saphi p'anqaqa manam allin sutichu.",
 'import-rootpage-nosubpage' => 'Saphi p\'anqap "$1" sutisuyunpiqa urin p\'anqakuna manam kanqachu.',

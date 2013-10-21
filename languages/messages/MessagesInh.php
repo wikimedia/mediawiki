@@ -185,8 +185,8 @@ $messages = array(
 'help' => 'Куцтохкам',
 'search' => 'Лахаp',
 'searchbutton' => 'Хьалаха',
-'go' => 'Дехьавала',
-'searcharticle' => 'Дехьавала',
+'go' => 'Дехьа гӀо',
+'searcharticle' => 'Дехьа гӀо',
 'history' => 'искар',
 'history_short' => 'Искар',
 'updatedmarker' => 'Со ханача денца хувцамаш хиннaд',
@@ -231,7 +231,7 @@ $messages = array(
 'lastmodifiedat' => 'Укх оагӀув тӀехьара  хувцам: $2, $1.',
 'viewcount' => 'Укх оагӀув тӀа бӀаргтасса хиннад {{PLURAL:$1|цхьазза|$1 шозза}}.',
 'protectedpage' => 'Лорама оагӀув',
-'jumpto' => 'Укхаза дехьавала/яла:',
+'jumpto' => 'Укхаза дехьа гӀо:',
 'jumptonavigation' => 'никътохкарг',
 'jumptosearch' => 'леха',
 'pool-timeout' => 'ЧIегатохара сабаран ха чакхаяьннай',
@@ -967,7 +967,7 @@ $messages = array(
 'allmessagesdefault' => 'Сатийна улла яздам',
 'allmessages-filter-all' => 'Дерригаш',
 'allmessages-language' => 'Мотт:',
-'allmessages-filter-submit' => 'Дехьавала/яла',
+'allmessages-filter-submit' => 'Дехьа гӀо',
 
 # Thumbnails
 'thumbnail-more' => 'Хьадоккхаде',
@@ -1113,7 +1113,7 @@ $messages = array(
 'confirm_purge_button' => 'ХIаа',
 
 # Multipage image navigation
-'imgmultigo' => 'Дехьавала/яла!',
+'imgmultigo' => 'Дехьа гӀо!',
 'imgmultigoto' => '$1 оагIув тIа дехьавала',
 
 # Table pager
@@ -1136,7 +1136,7 @@ $messages = array(
 # Special:FilePath
 'filepath' => 'Паьлачу никъ',
 'filepath-page' => 'Паьл:',
-'filepath-submit' => 'Дехьавала/яла',
+'filepath-submit' => 'Дехьа гӀо',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-filename' => 'ПаьлацIи:',

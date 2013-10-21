@@ -3694,8 +3694,7 @@ Gambar ditampaiakan dalam risulusi hibak, janis barakas lain dimula lawan prugra
 
 # Database error messages
 'dberr-header' => 'Wiki ngini baisi sabuah masalah',
-'dberr-problems' => 'Ampun!
-Situs ngini mangalami kangalihan teknik.',
+'dberr-problems' => 'Ampun!Situs ngini mangalami kangalihan teknik.',
 'dberr-again' => 'Cuba hadangi babarapa manit wan muat-pulang.',
 'dberr-info' => '(Kada kawa tasambung ka server databasis: $1)',
 'dberr-usegoogle' => 'Pian kawa mancuba manggagai lung Google wayah pahadangan ngini.',

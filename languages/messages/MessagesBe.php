@@ -8,6 +8,7 @@
  * @file
  *
  * @author Cesco
+ * @author Geitost
  * @author Jim-by
  * @author Kaganer
  * @author LexArt
@@ -222,6 +223,7 @@ $messages = array(
 'newwindow' => '(адкрыецца ў новым акне)',
 'cancel' => 'Нічога',
 'moredotdotdot' => 'Яшчэ...',
+'morenotlisted' => 'Больш нічога няма...',
 'mypage' => 'Уласная старонка',
 'mytalk' => 'Размовы',
 'anontalk' => 'Размова для гэтага IP',
@@ -255,6 +257,7 @@ $messages = array(
 'namespaces' => 'Прасторы імёнаў',
 'variants' => 'Варыянты',
 
+'navigation-heading' => 'Навігацыя',
 'errorpagetitle' => 'Памылка',
 'returnto' => 'Вярнуцца да $1.',
 'tagline' => 'З пляцоўкі {{SITENAME}}.',
@@ -352,6 +355,8 @@ $1',
 'youhavenewmessages' => 'Вы маеце $1 ($2).',
 'newmessageslink' => 'новыя паведамленні',
 'newmessagesdifflink' => 'розн. з найноўшай версіяй',
+'youhavenewmessagesfromusers' => 'Вы атрымалі $1 ад {{PLURAL:$3|$3 ўдзельніка|$3 удзельнікаў}} ($2).',
+'youhavenewmessagesmanyusers' => 'Вы атрымалі $1 ад мноства карыстальнікаў ($2).',
 'youhavenewmessagesmulti' => 'У вас ёсць новыя паведамленні на $1',
 'editsection' => 'правіць',
 'editold' => 'правіць',
@@ -501,7 +506,7 @@ $2',
 'logout' => 'Выйсці з сістэмы',
 'userlogout' => 'Выйсці з сістэмы',
 'notloggedin' => 'Не ўвайшоў',
-'nologin' => "Не маеце рахунку? '''$1'''.",
+'nologin' => 'Не маеце рахунку? $1.',
 'nologinlink' => 'Завесці рахунак',
 'createaccount' => 'Стварыць рахунак',
 'gotaccount' => "Ужо маеце рахунак? '''$1'''.",
@@ -743,6 +748,7 @@ $2
 'updated' => '(абноўлена)',
 'note' => "'''Заўвага:'''",
 'previewnote' => "'''Памятайце, гэта папярэдні паказ; праўкі яшчэ не замацаваныя!'''",
+'continue-editing' => 'Працягнуць рэдагаванне',
 'previewconflict' => 'Гэта папярэдні паказ магчымага выніку замацоўвання актуальнага стану крынічнага тэксту ў верхнім тэкставым полі.',
 'session_fail_preview' => "'''Не ўдалося апрацаваць вашую праўку, таму што сервер згубіў звесткі аб вашым сеансе.
 Паспрабуйце, калі ласка, ізноў. Калі і тады не атрымаецца, паспрабуйце [[Special:UserLogout|выйсці з сістэмы]] і зайсці ізноў.'''",
@@ -815,6 +821,12 @@ $2
 'edit-no-change' => 'Вашая праўка была праігнараваная, таму што не мяняўся тэкст.',
 'edit-already-exists' => 'Не ўдалося стварыць новую старонку.
 Такая ўжо існуе.',
+
+# Content models
+'content-model-wikitext' => 'вікі-тэкст',
+'content-model-text' => 'звычайны тэкст',
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "Увага: На старонцы занадта шмат працаёмістых зваротаў да парсера.
@@ -1125,7 +1137,7 @@ $1",
 'recentchangesdays' => 'За колькі дзён паказваць {{lc:{{:{{ns:mediawiki}}:recentchanges/be}}}}:',
 'recentchangesdays-max' => '(найбольш $1 {{PLURAL:$1|дзень|дзён}})',
 'recentchangescount' => 'Прадвызначаная колькасць правак дзеля паказу:',
-'prefs-help-recentchangescount' => 'Гэта ўключае ў сябе нядаўнія змяненні, гісторыі старонак, журналы.',
+'prefs-help-recentchangescount' => 'Гэта ўключае ў сябе апошнія змены, гісторыі старонак, журналы.',
 'prefs-help-watchlist-token' => 'Упісанне сакрэтнага ключа ў гэтае поле створыць RSS-струмень з вашага спісу назіранага. 
 Кожны, каму вядомы гэты ключ, зможа чытаць ваш спіс назіранага, таму выбірайце бяспечныя ключы. 
 Вось аўта-згенераваны ключ, які можна выкарыстаць: $1',
@@ -1356,7 +1368,7 @@ $1",
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|змена|змены|зменаў}}',
-'recentchanges' => 'Нядаўнія змяненні',
+'recentchanges' => 'Апошнія змены',
 'recentchanges-legend' => 'Магчымасці паказу',
 'recentchanges-summary' => 'Гэта апошнія мены на пляцоўцы {{SITENAME}}.',
 'recentchanges-feed-description' => 'Сачыць за найбольш актуальнымі змяненнямі ў віксе праз гэты струмень навін.',
@@ -1372,7 +1384,7 @@ $1",
 'rcshowhideliu' => '$1 пазнаных удзельнікаў',
 'rcshowhideanons' => '$1 ананімных удзельнікаў',
 'rcshowhidepatr' => '$1 ухваленых правак',
-'rcshowhidemine' => '$1 уласных правак',
+'rcshowhidemine' => '$1 ўласных правак',
 'rclinks' => 'Паказаць апошнія $1 зменаў за мінулыя $2 дзён<br />$3',
 'diff' => 'розн.',
 'hist' => 'гіст.',
@@ -1516,9 +1528,9 @@ $1',
 'upload-proto-error' => 'Няправільны пратакол',
 'upload-proto-error-text' => 'Укладанне файла зводдаль патрабуе URL, які пачынаецца з <code>http://</code> або <code>ftp://</code>.',
 'upload-file-error' => 'Унутраная памылка',
-'upload-file-error-text' => 'Унутраная памылка пры спробе стварыць на серверы тымчасовы файл. Звярніцеся да аднаго з [[Special:ListUsers/sysop|сістэмных адміністратараў]].',
+'upload-file-error-text' => 'Унутраная памылка пры спробе стварыць на серверы тымчасовы файл. Звярніцеся да аднаго з [[Special:ListUsers/sysop|адміністратараў]].',
 'upload-misc-error' => 'Нявызначаная памылка пры ўкладанні',
-'upload-misc-error-text' => 'Нявызначаная памылка пры ўкладанні. Праверце правільнасць і даступнасць URL і паспрабуйце ізноў. Калі праблема трывалая, звярніцеся да аднаго з [[Special:ListUsers/sysop|сістэмных адміністратараў]].',
+'upload-misc-error-text' => 'Нявызначаная памылка пры ўкладанні. Праверце правільнасць і даступнасць URL і паспрабуйце ізноў. Калі праблема трывалая, звярніцеся да аднаго з [[Special:ListUsers/sysop|адміністратараў]].',
 'upload-too-many-redirects' => 'Занадта шмат перасылак за гэтым адрасам (URL)',
 'upload-unknown-size' => 'Невядомы памер',
 'upload-http-error' => 'Памылка HTTP: $1',
@@ -1933,6 +1945,7 @@ $1',
 'mailnologin' => 'Няма эл.адрасу',
 'mailnologintext' => 'Трэба [[Special:UserLogin|ўвайсці ў сістэму]] і мець пацверджаны адрас эл.пошты ў сваіх [[Special:Preferences|настáўленнях]], каб слаць эл.пошту іншым удзельнікам.',
 'emailuser' => 'Эл.пошта ўдзельніка',
+'emailuser-title-notarget' => 'Напісанне электроннага ліста ўдзельніку',
 'emailpage' => 'Зварот да ўдзельніка праз эл.пошту',
 'emailpagetext' => 'Тут можна выслаць эл.пошту гэтаму ўдзельніку.
 Адрас эл.пошты, уведзены вамі ў [[Special:Preferences|сваіх настаўленнях]], з\'явіцца ў полі "From" вашага ліста, і атрымальнік зможа адказаць на ваш ліст.',
@@ -2224,7 +2237,7 @@ $1',
 'sp-contributions-newbies' => 'Паказваць толькі ўклады з новых рахункаў',
 'sp-contributions-newbies-sub' => 'З новых рахункаў',
 'sp-contributions-newbies-title' => 'Уклады ўдзельнікаў з новых рахункаў',
-'sp-contributions-blocklog' => 'Журнал забаронаў',
+'sp-contributions-blocklog' => 'блакіроўкі',
 'sp-contributions-deleted' => 'сцёрты ўклад удзельніка',
 'sp-contributions-uploads' => 'Загрузкі',
 'sp-contributions-logs' => 'журналы',
@@ -2710,11 +2723,16 @@ $1',
 
 # Info page
 'pageinfo-title' => 'Інфармацыя для "$1"',
-'pageinfo-header-edits' => 'Змены',
+'pageinfo-header-basic' => 'Агульныя звесткі',
+'pageinfo-header-edits' => 'Гісторыя правак',
+'pageinfo-robot-index' => 'Індэксуюцца',
+'pageinfo-robot-noindex' => 'Не індэксуюцца',
 'pageinfo-views' => 'Колькасць праглядаў',
 'pageinfo-watchers' => 'Колькасць назіральнікаў',
-'pageinfo-edits' => 'Колькасць правак:',
-'pageinfo-authors' => 'Колькасць розных аўтараў',
+'pageinfo-lastuser' => 'Апошні рэдактар',
+'pageinfo-lasttime' => 'Дата апошняй праўкі',
+'pageinfo-edits' => 'Агульная колькасць правак',
+'pageinfo-authors' => 'Агульная колькасць розных аўтараў',
 
 # Skin names
 'skinname-standard' => 'Класіка',
@@ -3395,6 +3413,8 @@ MediaWiki распаўсюджваецца, спадзеючыся на прыд
 'version-software' => 'Устаноўленыя праграмныя прадукты',
 'version-software-product' => 'Прадукт',
 'version-software-version' => 'Версія',
+'version-entrypoints-header-entrypoint' => 'Кропка ўваходу',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'Шлях да файла',
@@ -3423,7 +3443,7 @@ MediaWiki распаўсюджваецца, спадзеючыся на прыд
 'specialpages-group-maintenance' => 'Звесткі аб працы',
 'specialpages-group-other' => 'Іншыя адмысловыя старонкі',
 'specialpages-group-login' => 'Прадстаўленне / рэгістрацыя',
-'specialpages-group-changes' => 'Нядаўнія змяненні і журналы',
+'specialpages-group-changes' => 'Апошнія змены і журналы',
 'specialpages-group-media' => 'Укладзеныя файлы і звесткі пра іх',
 'specialpages-group-users' => 'Удзельнікі і дазволы',
 'specialpages-group-highuse' => 'Старонкі частага карыстання',

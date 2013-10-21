@@ -12,8 +12,10 @@
  * @author Evertype
  * @author Kscanne
  * @author Kwekubo
+ * @author Leftmostcat
  * @author Moilleadóir
  * @author Moydow
+ * @author Pksofttec
  * @author Reedy
  * @author Spacebirdy
  * @author Stifle
@@ -140,8 +142,8 @@ $messages = array(
 'tog-showhiddencats' => 'Taispeáin chatagóirí folaithe',
 'tog-norollbackdiff' => 'Fág an difr ar lár tar éis athruithe a rolladh siar',
 
-'underline-always' => 'Ar siúl i gcónaí',
-'underline-never' => 'Múchta',
+'underline-always' => 'I gcónaí',
+'underline-never' => 'Riamh',
 'underline-default' => 'Mar atá réamhshocraithe sa bhrabhsálaí',
 
 # Font style option in Special:Preferences
@@ -175,8 +177,8 @@ $messages = array(
 'august' => 'Lúnasa',
 'september' => 'Meán Fómhair',
 'october' => 'Deireadh Fómhair',
-'november' => 'Mí na Samhna',
-'december' => 'Mí na Nollag',
+'november' => 'Samhain',
+'december' => 'Nollaig',
 'january-gen' => 'Eanáir',
 'february-gen' => 'Feabhra',
 'march-gen' => 'an Mhárta',
@@ -226,7 +228,7 @@ $messages = array(
 'newwindow' => '(a osclófar i bhfuinneog nua)',
 'cancel' => 'Cealaigh',
 'moredotdotdot' => 'Tuilleadh...',
-'mypage' => 'Mo leathanach',
+'mypage' => 'Leathanach',
 'mytalk' => 'Plé',
 'anontalk' => 'Plé don seoladh IP seo',
 'navigation' => 'Nascleanúint',
@@ -477,6 +479,8 @@ An fáth ná ''$2''.",
 
 Is féidir leat an {{SITENAME}} a úsáid fós gan ainm, nó is féidir leat <span class='plainlinks'>[$1 logáil isteach arís]</span> mar an úsáideoir céanna, nó mar úsáideoir eile.
 Tabhair faoi deara go taispeáinfear roinnt leathanaigh mar atá tú logáilte isteach fós, go dtí go ghlanfá amach do taisce líonleitheora.",
+'welcomeuser' => 'Fáilte, $1!',
+'welcomecreation-msg' => 'Cruthaíodh do chuntas.',
 'yourname' => "D'ainm úsáideora",
 'yourpassword' => "D'fhocal faire",
 'yourpasswordagain' => "Athiontráil d'fhocal faire",
@@ -565,7 +569,7 @@ Iontráil seoladh dea-fhormáidte le do thoil, nó glan an réimse sin.',
 'resetpass_announce' => "Tá tú logáilte isteach le cód sealadach a seoladh chugat i r-phost.
 Chun d'iarratas logáil isteach a chríochnú, caithfidh tú focal faire nua a roghnú anseo:",
 'resetpass_text' => '<!-- Cur téacs anseo -->',
-'resetpass_header' => 'Athshocraigh pasfhocail chuntais',
+'resetpass_header' => 'Athraigh focal faire an chuntais',
 'oldpassword' => 'Focal faire reatha:',
 'newpassword' => 'Focal faire nua:',
 'retypenew' => 'Athiontráil an focal nua faire:',
@@ -578,8 +582,11 @@ Chun d'iarratas logáil isteach a chríochnú, caithfidh tú focal faire nua a r
 
 # Special:PasswordReset
 'passwordreset-username' => 'Ainm úsáideora:',
+'passwordreset-email' => 'Seoladh ríomhphoist:',
 
 # Special:ChangeEmail
+'changeemail-none' => '(neamhní)',
+'changeemail-password' => "D'fhocal faire {{SITENAME}}:",
 'changeemail-cancel' => 'Cealaigh',
 
 # Edit page toolbar
@@ -752,6 +759,7 @@ Treoir: (rth) = difríocht ón leagan reatha, (rmh) = difríocht ón leagan roim
 'logdelete-selected' => "'''{{PLURAL:$1|Teagmhas log roghnaithe|Teagmhais log roghnaithe}}:'''",
 'revdelete-hide-text' => 'Folaigh leagan téacs',
 'revdelete-radio-same' => 'ná hathraigh',
+'revdelete-radio-set' => 'Is ea',
 'revdelete-radio-unset' => 'Ní',
 'revdel-restore' => 'athraigh infheictheacht',
 'pagehist' => 'Stair leathanach',

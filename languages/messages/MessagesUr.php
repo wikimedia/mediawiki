@@ -11,6 +11,7 @@
  * @author Istabani
  * @author Meno25
  * @author Muhammad Shuaib
+ * @author Noor2020
  * @author O.bangash
  * @author Rachitrali
  * @author Reedy
@@ -268,7 +269,7 @@ $messages = array(
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|زمرہ|زمرہ جات}}',
 'category_header' => 'زمرہ "$1" میں مضامین',
-'subcategories' => 'ذیلی ذمرہ جات',
+'subcategories' => 'ذیلی زمرہ جات',
 'category-media-header' => 'زمرہ "$1" میں وسیط',
 'category-empty' => '‘‘اِس زمرہ میں ابھی کوئی صفحات یا وسیط موجود نہیں.’’',
 'hidden-categories' => '{{PLURAL:$1|پوشیدہ زمرہ|پوشیدہ زمرہ جات}}',
@@ -309,7 +310,7 @@ $messages = array(
 'vector-view-create' => 'تخلیق',
 'vector-view-edit' => 'ترمیم',
 'vector-view-history' => 'تاریخ',
-'vector-view-view' => 'پڑھیں',
+'vector-view-view' => 'مطالعہ',
 'vector-view-viewsource' => 'مسودہ',
 'actions' => 'ایکشنز',
 'namespaces' => 'جائے نام',
@@ -377,7 +378,7 @@ $1',
 'pool-errorunknown' => 'نامعلوم خطا',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite' => 'کا تعارف {{SITENAME}}',
+'aboutsite' => 'تعارف {{SITENAME}}',
 'aboutpage' => 'Project:تعارف',
 'copyright' => 'تمام مواد $1 کے تحت میسر ہے۔',
 'copyrightpage' => '{{ns:project}}:حقوق تصانیف',
@@ -914,7 +915,7 @@ $1",
 'searchprofile-project-tooltip' => '$1 میں تلاش',
 'searchprofile-images-tooltip' => 'تلاش برائے ملفات',
 'searchprofile-everything-tooltip' => ' تلاش تمام مشمولات (بشمول تبادلۂ خیال صفحات) میں',
-'searchprofile-advanced-tooltip' => 'اپنی پسند کے فضائے نام میں تلاش',
+'searchprofile-advanced-tooltip' => 'اپنی پسند کے جائے نام میں تلاش',
 'search-result-size' => '$1 ({{PLURAL:$2|1 لفظ|$2 الفاظ}})',
 'search-result-category-size' => '{{PLURAL:$1|1 رُکن|$1 اراکین}} ({{PLURAL:$2|1 ذیلی زمرہ|$2 ذیلی زمرہ جات}}, {{PLURAL:$3|1 ملف|$3 ملفات}})',
 'search-result-score' => 'توافق: $1%',
@@ -1140,7 +1141,7 @@ HTML tags جانچئے.',
 'recentchangeslinked-page' => 'صفحۂ منصوبہ دیکھئے',
 
 # Upload
-'upload' => 'فائل بھیجیں',
+'upload' => 'فائل اثقال',
 'uploadbtn' => 'زبراثقال ملف (اپ لوڈ فائل)',
 'reuploaddesc' => 'زبراثقال ورقہ (فارم) کیجانب واپس۔',
 'uploadnologin' => 'آپ داخل شدہ حالت میں نہیں',
@@ -1389,7 +1390,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 
 'sp-contributions-newbies' => 'صرف نئے کھاتوں کے مساہمات دکھاؤ',
 'sp-contributions-blocklog' => 'نوشتۂ پابندی',
-'sp-contributions-uploads' => 'آپلوڈ',
+'sp-contributions-uploads' => 'اثقالات',
 'sp-contributions-logs' => 'نوشتہ جات',
 'sp-contributions-talk' => 'گفتگو',
 'sp-contributions-userrights' => 'صارف کے حقوق کا انتظام',
@@ -1399,7 +1400,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'sp-contributions-submit' => 'تلاش',
 
 # What links here
-'whatlinkshere' => 'ادھر کس کا جوڑ ہے',
+'whatlinkshere' => 'ادھر کونسا ربط ہے',
 'whatlinkshere-title' => '"$1" سے مربوط صفحات',
 'whatlinkshere-page' => 'صفحہ:',
 'linkshere' => "'''[[:$1]]''' سے درج ذیل صفحات مربوط ہیں:",
@@ -1407,7 +1408,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'isredirect' => 'لوٹایا گیا صفحہ',
 'istemplate' => 'شامل شدہ',
 'isimage' => 'ربطِ ملف',
-'whatlinkshere-links' => 'روابط',
+'whatlinkshere-links' => 'روابط ←',
 'whatlinkshere-hideredirs' => 'رجوع مکررات $1',
 'whatlinkshere-hidetrans' => 'تضمینات',
 'whatlinkshere-hidelinks' => 'روابط $1',
@@ -1534,7 +1535,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'tooltip-ca-nstab-category' => 'زمرہ‌جاتی صفحہ دیکھئے',
 'tooltip-minoredit' => 'اِس تدوین کو بطورِ معمولی ترمیم نشانزد کیجئے',
 'tooltip-save' => 'تبدیلیاں محفوظ کیجئے',
-'tooltip-preview' => 'برائے مہربانی! محفوظ کرنے سے پہلے تبدیلیوں کا پیشمنظر دیکھئے',
+'tooltip-preview' => 'برائے مہربانی! محفوظ کرنے سے پہلے تبدیلیوں کا پیش منظر دیکھيے',
 'tooltip-diff' => 'دیکھئے کہ اپنے متن میں کیا تبدیلیاں کیں',
 'tooltip-compareselectedversions' => 'اِس صفحہ کی دو منتخب نظرثانیوں میں فرق دیکھئے',
 'tooltip-watch' => 'اِس صفحہ کو اپنی زیرِنظرفہرست میں شامل کریں',

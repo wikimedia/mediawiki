@@ -238,7 +238,7 @@ $messages = array(
 'category-subcat-count-limited' => "'Sta categorîa a contegne {{PLURAL:$1|ûnn-a sottocategorîa, indicaa|$1 sottocategorîe, indicæ}} chì inzû.",
 'category-article-count' => "{{PLURAL:$2|Questa categoria a contegne solo sta pagina chì.|Questa categoria a contegne {{PLURAL:$1|a pagina indicâ|e $1 pagine indicæ}} chì de sotta , insce 'n totale de $2.}}",
 'category-article-count-limited' => "'Sta categorîa a contegne {{PLURAL:$1|'sta paggina|'ste $1 paggine}}.",
-'category-file-count' => "{{PLURAL:$2|Sta categoria a contegne sôlo sto file.|{{PLURAL:$1|Sto file o l'é|Sti $1 file son}} inte sta categoria, pe in totale de $2.}}",
+'category-file-count' => "{{PLURAL:$2|Sta categoria a conten solo sto file.|{{PLURAL:$1|Sto file o l'é|Sti $1 file son}} inte sta categoria, pe 'n totale de $2.}}",
 'category-file-count-limited' => 'Questa categoria a contegne {{PLURAL:$1|o file indicao|i $1 file indicæ}} chi de sotta.',
 'listingcontinuesabbrev' => 'cont.',
 'index-category' => 'Paggine indiçizzæ',
@@ -479,6 +479,7 @@ A raxon a l'è: ''$2''.",
 'gotaccount' => "Ti ghe l'æ za 'n' utensa? '''$1'''.",
 'gotaccountlink' => 'Intra',
 'userlogin-resetlink' => "T'æ ascordòu i teu dæti de acesso?",
+'createaccountmail' => "Doeuvia una password temporanea abrettio e mandila a l'adresso de posta elettronica speçificou",
 'createaccountreason' => 'Raxon:',
 'badretype' => "E paròlle d'ordine che t'hæ scrîo son despægie.",
 'userexists' => "O nomme ûtente inserîo o l'è za doeuviao.<br />
@@ -513,13 +514,18 @@ Pe abilitâ l'invîo de messaggi e-mail pe quest'accesso, o se deive seguî l'is
 'mailerror' => "Errô inte l'invio do messaggio: $1",
 'acct_creation_throttle_hit' => "Ne dispiâxe, ma t'hæ zà creòu $1 accesci. No ti pêu creâne ciû!",
 'emailauthenticated' => "O teu indirisso de posta elettronica o l'è stæto autenticou o $2 a $3.",
+'noemailprefs' => "Pe attivâ ste fonçioin ti g'hæ da mette n'adresso e-mail inte preferençe.",
 'emailconfirmlink' => 'Conferma o teu indirisso de posta elettronega',
 'accountcreated' => 'Graçie pe esëte registroö!!!',
-'accountcreatedtext' => "Utente $1, ti te guägno l'açeiso!",
+'accountcreatedtext' => "L'utensa pe [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|msg]]) a l'é stæta creâ.",
 'createaccount-title' => "Creaçion de 'n conto pe {{SITENAME}}",
 'usernamehasherror' => 'O nomme utente o no poeu contegnî di caratteri hash',
 'login-abort-generic' => "O to accesso o no l'ha avuo successo - Abortio",
 'loginlanguagelabel' => 'Lengoa: $1',
+
+# Email sending
+'user-mail-no-addy' => "T'hæ çercou de mandâ un' e-mail sensa mettighe l'adresso",
+'user-mail-no-body' => "T'hæ çercou de mandâ un'e-mail troppo curta o proppio voeua",
 
 # Change password dialog
 'resetpass' => 'Cangia a pòula segretta',
@@ -530,15 +536,23 @@ Pe abilitâ l'invîo de messaggi e-mail pe quest'accesso, o se deive seguî l'is
 'retypenew' => "Ripette a nêuva paròlla d'ordine:",
 'resetpass_submit' => 'Çerni a poula segretta e intra',
 'resetpass_forbidden' => "No l'é poscìbile cangiâ e paròlle segrétte",
+'resetpass-submit-loggedin' => 'Cangia a password',
+'resetpass-submit-cancel' => 'Anulla',
 
 # Special:PasswordReset
+'passwordreset-username' => 'Nomme utente',
 'passwordreset-email' => 'Addresso e-mail:',
 'passwordreset-emailtitle' => 'Dettaggi account sciu {{SITENAME}}',
 'passwordreset-emailelement' => 'Nomme utente: $1
 Poula segretta temporannia: $2',
 
 # Special:ChangeEmail
+'changeemail' => "Cangia l'adresso e-mail",
+'changeemail-header' => "Cangia l'adresso e-mail de questa utensa",
+'changeemail-newemail' => 'Noeuvo adresso e-mail',
 'changeemail-none' => '(nisciun)',
+'changeemail-password' => 'A to password pe {{SITENAME}}:',
+'changeemail-submit' => 'Cangia e-mail',
 'changeemail-cancel' => 'Annulla',
 
 # Edit page toolbar
@@ -571,20 +585,22 @@ Poula segretta temporannia: $2',
 'showpreview' => "Veddi l'anteprimma",
 'showdiff' => 'Veddi i cangiamenti',
 'anoneditwarning' => "'''Attension:''' No t'ê intròu. Inta stoia di cangiamenti da paggina ghe saiâ misso o têu adresso IP.",
+'anonpreviewwarning' => "No t'hæ fæto l'accesso. Se ti sarvi inta stoia da paggina ghe saiâ solo o to adresso IP",
+'missingcommenttext' => 'Scrivi un commento chi de sotta',
 'summary-preview' => 'Anteprimma oggetto:',
 'blockedtitle' => "L'utente o l'é bloccòu",
-'blockedtext' => "''''Sto nomme d'ûtente ou indirisso IP o l'è stæto bloccòu.'''
+'blockedtext' => "''''O to nomme utente ò adresso IP o l'è stæto bloccòu.'''
 
 O blòcco o l'è stæto fæto da \$1. A raxon dæta a l'è ''\$2''.
 
-* Iniçio de l'affermassion: \$8
-* Iniçio de l'affermassion: \$6
-* Intervallo de l'affermassion: \$7
+* Iniçio do blocco: \$8
+* Fin do blocco: \$6
+* Utente blocou: \$7
 
-O l'è poscibbile contattâ \$1 o 'n âtro [[{{MediaWiki:Grouppage-sysop}}|amministratô]] pe discûtte inscio blòcco.
-O no se pêu ûsâ o comando \"Inviâ 'na léttia elettronega a quest'ûtente\" se ti no ti g'hæ 'n indirisso e-mail registròu inte têu [[Special:Preferences|preferense]] e se o no l'è stæto bloccòu ascì.
-O têu indirisso IP o l'è \$3, e o têu blòcco ID o l'è #\$5.
-Pe piaxei mettighe ûn di doî in tûtte e domande che ti fæ.",
+L'è poscibbile contattâ \$1 o un âtro [[{{MediaWiki:Grouppage-sysop}}|amministratô]] pe discûtte inscio blòcco.
+No ti poeu doeuviâ o comando \"Manda un'e-mail a st'ûtente\" se no ti g'hæ 'n adresso e-mail registròu inte to [[Special:Preferences|preferençe]] e se no t'ê stæto bloccòu ascì.
+O to adresso IP o l'è \$3, e o to blòcco ID o l'è #\$5.
+Pe piaxei, pe domandâ informaçioin, speçifficali tutti doî.",
 'autoblockedtext' => "O têu indirisso IP o l'è stæto bloccòu outomaticamente perché o l'ea za ûsòu da 'n âtro ûtente, bloccòu da \$1.
 A raxon dæta a l'è stæta:
 
@@ -601,8 +617,12 @@ Dagghe a mente a che no ti pêu ûsâ o comando \"manda na littia elettronega a 
 O têu blòcco ID o l'è \$5. Pe piaxei metti 'sto ID in tûtte e domande che ti fæ.",
 'whitelistedittext' => 'Pe cangia sta pagina devvi $1.',
 'loginreqtitle' => "Besêugna registrâse primma de modificâ 'sta paggina.",
+'loginreqlink' => 'intra',
+'loginreqpagetext' => "Pe amiâ di atre paggine gh'è da $1",
 'accmailtitle' => 'Pòula segretta spedïa',
-'accmailtext' => 'A pòula segretta pe-o utente "$1" a l\'è stæta spedïa a o indirisso $2.',
+'accmailtext' => "Una password abrettio pe [[User talk:$1|$1]] a l'è stæta mandâ a $2.
+
+Sta password a poeu ese cangiâ inta paggina pe ''[[Special:ChangePassword|cangiâ a password]]'' subbito doppo l'acesso.",
 'newarticle' => '(Nêuvo)',
 'newarticletext' => "Sto colegaménto o corisponde a 'na pàgina ch'a no l'existe ancon.
 
@@ -610,8 +630,11 @@ Se se vêu creâ a pàgina òua, se pêu comensâ a scrive into spàçio chì so
 (amia e [[{{MediaWiki:Helppage}}|paggine d'agiûtto]] pe ciû informaçioìn).
 
 Se t'ê intròu chì pe sballio,  sciacca '''Inderê''' into navegatô.",
+'anontalkpagetext' => "----
+''Sta chì a l'è a paggina de discuscion de un utente anonnimo, ch'o no l'ha ancon creou un'utensa o comunque o no a doeuvia oua. Pe identificâlo l'è quindi necessaio doeuviâ o nummero do so adresso IP. I adresci IP poeuan però ese condivixi da ciù utenti. Se t'ê un utente anonimo e ti ritegni che i commenti inte sta pagina no se riferiscian a ti, [[Special:UserLogin/signup|crea una noeuva utensa]] o donque [[Special:UserLogin|intra con quella che ti g'hæ za]] pe evitâ de chì avanti de ese confuzo con di atri utenti anonnimi .''",
 'noarticletext' => "Inte sto momento a pagina çercâ a l'è vêua. O l'è poscibbile [[Special:Search/{{PAGENAME}}|çercâ 'sto tittolo]] inte âtre pagine do scîto opû [{{fullurl:{{FULLPAGENAME}}|action=edit}} cangiâ a pagina òua].",
 'noarticletext-nopermission' => "Òua a pàgina çercâ a l'è vêua. L'è poscìbile [[Special:Search/{{PAGENAME}}|çercâ sto tìtolo]] inte di âtre pàgine do scîto o <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} çercâ inti registri corelæ]</span>, ma no ti gh'hæ i outorizzaçioin pe creâ sta paggina.",
+'userpage-userdoesnotexist-view' => 'L\'utensa "$1" a no l\'è registrâ.',
 'previewnote' => "'''Questa chì a l'è solo 'n'anteprimma; i cangiamenti no son ancon stæti sarvæ!'''",
 'editing' => 'Modiffica de $1',
 'editingsection' => 'Càngio de $1 (seçión)',
@@ -668,8 +691,8 @@ A razon dæta a l'è ''$2''",
 Legenda: (corr) = differense co-a verscion corrente, (prec) = differense co-a verscion precedente, '''m''' = modiffica minô",
 'history-fieldset-title' => 'Véddi a stöia',
 'history-show-deleted' => 'Sôlo scancelæ',
-'histfirst' => 'Prìmmo',
-'histlast' => 'Ùrtimo',
+'histfirst' => 'primma',
+'histlast' => 'urtima',
 'historyempty' => '(vêua)',
 
 # Revision feed
@@ -678,6 +701,7 @@ Legenda: (corr) = differense co-a verscion corrente, (prec) = differense co-a ve
 
 # Revision deletion
 'rev-delundel' => 'fanni védde/ascondi',
+'revdelete-radio-set' => 'Sci',
 'revdel-restore' => 'càngia a vixibilitæ',
 'revdel-restore-deleted' => 'Revixioìn scancelæ',
 'revdel-restore-visible' => 'revixioìn che se peuan védde',
@@ -1203,6 +1227,7 @@ Inte 'sti câxi, se o se vêu fâ coscì, o se deive stramûâ ò azzonze manual
 'allmessagescurrent' => 'Testo corrente',
 'allmessagestext' => "Sta chie a l'è unn-a lista de messaggi do scistema in ta MediaWiki.",
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' o non ti te peu vedde, perchè '''\$wgUseDatabaseMessages''' o non l'è attivo.",
+'allmessages-language' => 'Lengua:',
 
 # Thumbnails
 'thumbnail-more' => 'Ciù grande',
@@ -1276,6 +1301,11 @@ Inte 'sti câxi, se o se vêu fâ coscì, o se deive stramûâ ò azzonze manual
 'anonymous' => 'Utente anonimmo de {{SITENAME}}',
 'lastmodifiedatby' => "Sta pagina a l'è stæta cangiâ l'urtima votta a e $2 do $1 da $3.",
 
+# Info page
+'pageinfo-language' => 'Lengua do contegnuo da paggina',
+'pageinfo-contentpage-yes' => 'Sci',
+'pageinfo-protect-cascading-yes' => 'Sci',
+
 # Browsing diffs
 'previousdiff' => '← Diferensa precedénte',
 'nextdiff' => 'Pròscima diferensa →',
@@ -1323,6 +1353,7 @@ I inganci sucescivi, in scia mæxima riga, van conscideræ comme eceçioìn (pag
 'exif-artist' => 'Autô',
 'exif-copyright' => "Diritti d'autô de",
 'exif-filesource' => 'Reixe do papê',
+'exif-languagecode' => 'Lengua',
 
 # External editor support
 'edit-externally' => 'Càngia sto file co-in programma esterno',
@@ -1349,10 +1380,10 @@ I inganci sucescivi, in scia mæxima riga, van conscideræ comme eceçioìn (pag
 'table_pager_empty' => 'Nisciun resultato',
 
 # Auto-summaries
-'autosumm-blank' => 'Scassa tutti i contenùi da a pagina',
+'autosumm-blank' => 'Pagina svuâ',
 'autosumm-replace' => "Sostituçion da pagina con '$1'",
 'autoredircomment' => 'Reindirissoö a [[$1]]',
-'autosumm-new' => 'Neuva pagina: $1',
+'autosumm-new' => 'Paggina creâ con "$1"',
 
 # Live preview
 'livepreview-loading' => 'Camallando…',

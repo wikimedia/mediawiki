@@ -593,6 +593,7 @@ Ita-nia mudansa la armazenadu seidauk!",
 'shortpages' => 'Pájina badak',
 'longpages' => 'Pájina naruk',
 'listusers' => "Lista uza-na'in",
+'usercreated' => '{{GENDER:$3|registradu}} loron $1, oras $2',
 'newpages' => 'Pájina foun',
 'newpages-username' => "Naran uza-na'in:",
 'ancientpages' => 'Pájina tuan liu hotu sira',
@@ -769,6 +770,7 @@ Ita-nia mudansa la armazenadu seidauk!",
 'blocklink' => 'blokeiu',
 'unblocklink' => 'la blokeiu',
 'contribslink' => 'kontribuisaun',
+'blocklogentry' => 'blokeiu [[$1]] ba tempu $2 $3',
 'block-log-flags-nocreate' => 'la bele kria konta foun',
 'block-log-flags-noemail' => 'korreiu eletróniku blokeiu',
 'block-log-flags-nousertalk' => 'la bele edita pájina diskusaun rasik',
@@ -821,6 +823,7 @@ Ita-nia mudansa la armazenadu seidauk!",
 'tooltip-ca-addsection' => 'Tau tan seksaun foun ida.',
 'tooltip-ca-viewsource' => "Ema ruma proteje tiha pájina ne'e.
 Ó bele lee testu.",
+'tooltip-ca-history' => 'Versaun tuan pájina nian',
 'tooltip-ca-protect' => "Proteje pájina ne'e",
 'tooltip-ca-delete' => "Halakon pájina ne'e",
 'tooltip-ca-move' => "Book pájina ne'e",
@@ -993,5 +996,8 @@ Ligasaun seluk iha liña - ne'e pájina sira iha ne'ebé bele inklui imajen aat.
 
 # New logging system
 'rightsnone' => '(mamuk)',
+
+# Search suggestions
+'searchsuggest-search' => 'Buka',
 
 );

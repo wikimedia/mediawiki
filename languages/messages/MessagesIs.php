@@ -10,6 +10,7 @@
  * @author Bjarki S
  * @author Cessator
  * @author Friðrik Bragi Dýrfjörð
+ * @author Geitost
  * @author Gott wisst
  * @author Jóna Þórunn
  * @author Kaganer
@@ -316,10 +317,10 @@ $messages = array(
 'october' => 'október',
 'november' => 'nóvember',
 'december' => 'desember',
-'january-gen' => 'janúars',
-'february-gen' => 'febrúars',
+'january-gen' => 'janúar',
+'february-gen' => 'febrúar',
 'march-gen' => 'mars',
-'april-gen' => 'apríls',
+'april-gen' => 'apríl',
 'may-gen' => 'maí',
 'june-gen' => 'júní',
 'july-gen' => 'júlí',
@@ -663,7 +664,7 @@ Ekki gleyma að breyta [[Special:Preferences|{{SITENAME}} stillingunum]] þínum
 'logout' => 'Útskráning',
 'userlogout' => 'Útskrá',
 'notloggedin' => 'Ekki innskráð(ur)',
-'nologin' => "Ekki með aðgang? '''$1'''.",
+'nologin' => 'Ekki með aðgang? $1.',
 'nologinlink' => 'Stofnaðu aðgang',
 'createaccount' => 'Nýskrá',
 'gotaccount' => "Nú þegar með notandanafn? '''$1'''.",
@@ -727,7 +728,7 @@ Gjörðu svo vel og settu inn netfang á gildu formi eða tæmdu reitinn.',
 'cannotchangeemail' => 'Ekki er hægt að breyta netföngum notenda á þessum wiki',
 'emaildisabled' => 'Þessi síða getur ekki sent tölvupóst.',
 'accountcreated' => 'Aðgangur búinn til',
-'accountcreatedtext' => 'Notandaaðgangur fyrir $1 er tilbúinn.',
+'accountcreatedtext' => 'Notandaaðgangurinn fyrir [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|spjall]]) hefur verið búinn til.',
 'createaccount-title' => 'Innskráningagerð á {{SITENAME}}',
 'createaccount-text' => 'Einhver bjó til aðgang fyrir netfangið þitt á {{SITENAME}} ($4) undir nafninu „$2“, með lykilorðið „$3“.
 Þú ættir að skrá þig inn og breyta lykilorðinu núna.
@@ -763,6 +764,7 @@ Til að klára að skrá þig inn, verður þú að endurstilla lykilorðið hé
 'resetpass-wrong-oldpass' => 'Vitlaust tímabundið eða núverandi lykilorð.
 Þú gætir þegar verið búin/n að breyta lykilorðinu eða sótt um nýtt tímabundið lykilorð',
 'resetpass-temp-password' => 'Tímabundið lykilorð:',
+'resetpass-abort-generic' => 'Breytingum á lykilorðum hefur verið hætt með viðbót.',
 
 # Special:PasswordReset
 'passwordreset' => 'Endurstilla lykilorð',
@@ -1756,7 +1758,7 @@ $1',
 'upload-proto-error-text' => 'Upphlöðun frá öðrum vefþjón þarfnast vefslóðar sem byrjar á <code>http://</code> eða <code>ftp://</code>.',
 'upload-file-error' => 'Innri villa',
 'upload-file-error-text' => 'Innri villa: Gat ekki búið til tímabundna skrá á vefþjóni.
-Vinsamlegast hafðu samband við [[Special:ListUsers/sysop|möppudýr]].',
+Vinsamlegast hafðu samband við [[Special:ListUsers/sysop|stjórnanda]].',
 'upload-misc-error' => 'Óþekkt innhleðsluvilla',
 'upload-misc-error-text' => 'Upphal þitt mistókst vegna óþekktrar villu.
 Athugaðu hvort vefslóðin sé rétt og aðgengileg og að því loknu reyndu aftur.
@@ -2013,6 +2015,8 @@ Leitarstrengurinn á að vera á þessu formi: efnistag/myndasnið, t.d. <code>i
 Laga ætti tenglanna og láta þá vísa á rétta síðu.<br />
 Farið er með síðu sem aðgreiningarsíðu ef að hún inniheldur snið sem vísað er í frá [[MediaWiki:Disambiguationspage]]",
 
+'pageswithprop-submit' => 'Áfram',
+
 'doubleredirects' => 'Tvöfaldar tilvísanir',
 'doubleredirectstext' => 'Þessi síða er listi yfir skrár sem eru tilvísanir á aðrar tilvísanir.
 Hver lína inniheldur tengla á fyrstu og aðra tilvísun auk þeirrar síðu sem seinni tilvísunin beinist að, sem er oftast sú síða sem allar tilvísanirnar eiga að benda á.
@@ -2251,7 +2255,7 @@ Póstfangið sem þú tilgreindir í [[Special:Preferences|stillingunum þínum]
 'watchnologintext' => 'Þú verður að vera [[Special:UserLogin|innskáð(ur)]] til að geta breytt vaktlistanum.',
 'addwatch' => 'Bæta á vaktlistann',
 'addedwatchtext' => 'Síðunni „[[:$1]]“ hefur verið bætt á [[Special:Watchlist|vaktlistann]] þinn.
-Frekari breytingar á henni eða spallsíðu hennar munu verða sýndar þar.',
+Frekari breytingar á henni eða spjallsíðu hennar munu verða sýndar þar.',
 'removewatch' => 'Fjarlægja af vaktlistanum',
 'removedwatchtext' => 'Síðan „[[:$1]]“ hefur verið fjarlægð af [[Special:Watchlist|vaktlistanum þínum]].',
 'watch' => 'Vakta',
@@ -2517,7 +2521,7 @@ $1',
 'mycontris' => 'Framlög',
 'contribsub2' => 'Eftir $1 ($2)',
 'nocontribs' => 'Engar breytingar fundnar sem passa við þessa viðmiðun.',
-'uctop' => '(nýjast)',
+'uctop' => '(núverandi)',
 'month' => 'Frá mánuðinum (og fyrr):',
 'year' => 'Frá árinu (og fyrr):',
 
@@ -3798,8 +3802,7 @@ Myndir eru sýndar í fullri upplausn og önnur skráarsnið eru ræst í sjálf
 
 # Database error messages
 'dberr-header' => 'Vandamál við þennan wiki',
-'dberr-problems' => 'Því miður!
-Tæknilegir örðugleikar eru á þessari síðu.',
+'dberr-problems' => 'Því miður!Tæknilegir örðugleikar eru á þessari síðu.',
 'dberr-again' => 'Reyndu að bíða í nokkrar mínútur og endurhladdu síðan síðuna.',
 'dberr-info' => '(Mistókst að hafa samband við gagnaþjón: $1)',
 'dberr-usegoogle' => 'Þú getur notað Google til að leita á meðan.',

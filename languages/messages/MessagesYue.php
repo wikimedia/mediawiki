@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Anson2812
  * @author Horacewai2
  * @author Justincheng12345
  * @author Kaganer
@@ -16,6 +17,7 @@
  * @author Waihorace
  * @author William915
  * @author Wong128hk
+ * @author Yfdyh000
  */
 
 $namespaceNames = array(
@@ -826,7 +828,7 @@ $1',
 '''佢嘅內容重未儲存！'''",
 'userinvalidcssjstitle' => "'''警告：''' 無叫做 \"\$1\" 嘅畫面。請記住自訂介面的 .css 和 .js 頁面時應使用細楷，例如：{{ns:user}}:Foo/vector.css 而唔係 {{ns:user}}:Foo/Vector.css 。",
 'updated' => '(己更新)',
-'note' => "'''留意:'''",
+'note' => "'''留意：'''",
 'previewnote' => "'''請記住呢個只係預覽。'''
 更改嘅内容重未儲存！",
 'previewconflict' => '呢個預覽係反映如果你選擇儲存嘅話，嘅上面嘅文字編輯區裏面嘅字會儲存落嚟。',
@@ -892,7 +894,7 @@ $1',
 
 你應該要考慮吓繼續編輯呢一版係唔係適合嘅。
 為咗方便起見，呢一版嘅刪除同搬版記錄已經響下面提供:",
-'moveddeleted-notice' => '呢一版已經刪除咗。
+'moveddeleted-notice' => '呢一版已經刪咗。
 呢版嘅刪除同搬版日誌響下面提供咗以便參考。',
 'log-fulllog' => '睇成個日誌',
 'edit-hook-aborted' => '編輯由鈎取消咗。
@@ -1199,7 +1201,7 @@ $1",
 'resetprefs' => '清除未保存嘅更改',
 'restoreprefs' => '恢復全部預設設定',
 'prefs-editing' => '編輯中',
-'prefs-edit-boxsize' => '編輯框大細',
+'prefs-edit-boxsize' => '編寫框大細',
 'rows' => '列：',
 'columns' => '行：',
 'searchresultshead' => '搵嘢',
@@ -1242,7 +1244,7 @@ $1",
 'prefs-common-css-js' => '共有嘅CSS同埋JavaScript畀所有畫面用：',
 'prefs-reset-intro' => '你可以用呢版去重設你嘅喜好設定到網站預設值。呢個動作無得番轉頭。',
 'prefs-emailconfirm-label' => '電郵確認:',
-'prefs-textboxsize' => '編輯窗大細',
+'prefs-textboxsize' => '編寫框大細',
 'youremail' => '電郵:',
 'username' => '用戶名:',
 'uid' => '用戶 ID:',
@@ -3333,8 +3335,7 @@ MediaWiki是基於使用目的而加以發佈，但係就唔會負上任何嘅�
 
 # Database error messages
 'dberr-header' => '呢個 wiki 出咗問題',
-'dberr-problems' => '對唔住！
-呢一版出現咗一啲技術性問題。',
+'dberr-problems' => '對唔住！呢一版出現咗一啲技術性問題。',
 'dberr-again' => '試吓等多幾分種然後開試。',
 'dberr-info' => '(唔能夠連繫個資料伺服器: $1)',
 'dberr-usegoogle' => '響現階段你可以用 Google 去搵嘢。',

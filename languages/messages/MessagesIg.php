@@ -1742,8 +1742,7 @@ Nke ozor gí zonari na áká onwe ha.
 
 # Database error messages
 'dberr-header' => 'Wiki nka nwere nsogbu',
-'dberr-problems' => 'Ndó!
-Ámá nka nwere nsogbu ime ime.',
+'dberr-problems' => 'Ndó! Ámá nka nwere nsogbu ime ime.',
 
 # HTML forms
 'htmlform-required' => 'Ọgụgụ nke gi dị',

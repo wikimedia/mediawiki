@@ -9,6 +9,7 @@
  *
  * @author Freeyak
  * @author Jason (on bo.wikipedia.org)
+ * @author Shirayuki
  * @author YeshiTuhden
  */
 
@@ -394,7 +395,7 @@ $messages = array(
 'editingsection' => ' $1 (སྡེ་ཚན) ལ་རྩོམ་སྒྲིག་བྱེད་བཞིན་པ།',
 'yourtext' => 'ཁྱོད་ཀྱི་ཡིག་འབྲུ།',
 'yourdiff' => 'མི་འདྲ་ས།',
-'templatesused' => 'ཤོག་ངོས་འདིར་སྤྱད་པའི་ {{PLURAL:$1|དཔེ་པང་།|དཔེ་པང་།}}',
+'templatesused' => 'ཤོག་ངོས་འདིར་སྤྱད་པའི་ {{PLURAL:$1|དཔེ་པང་།}}',
 'template-protected' => 'སྲུང་སྐྱོབ་འོག་ཡོད་པ།',
 'nocreate-loggedin' => 'ཤོག་ངོས་གསར་བཟོའི་ཆོག་མཆན་མི་འདུག',
 'recreate-moveddeleted-warn' => "'''ཉེན་བརྡ་:རང་གིས་སུབ་ཚར་བའི་ཤོག་ལེ་ཞིག་བསྐྱར་བཟོ་བྱེད་ཀྱི་འདུག་ '''
@@ -650,14 +651,14 @@ $messages = array(
 'brokenredirects-delete' => 'གསུབ་པ།',
 
 # Miscellaneous special pages
-'nbytes' => '{{PLURAL:$1|ཡིག་ཚགས།|ཡིག་ཚགས།}} $1',
+'nbytes' => '{{PLURAL:$1|ཡིག་ཚགས།}} $1',
 'shortpages' => 'ཤོག་ངོས་ཐུང་ངུ་།',
 'newpages' => 'ཤོག་ངོས་གསར་བ།',
 'newpages-username' => 'དྲ་མིང་།:',
 'move' => 'སྤོར་བ།',
 'movethispage' => 'ཤོག་ངོས་འདི་སྤོར།',
-'pager-newer-n' => '{{PLURAL：$1|གསར་བ་1|གསར་བ་$1}}',
-'pager-older-n' => '{{PLURAL：$1|རྙིང་པ་1|རྙིང་པ་$1}}',
+'pager-newer-n' => '{{PLURAL:$1|གསར་བ་1|གསར་བ་$1}}',
+'pager-older-n' => '{{PLURAL:$1|རྙིང་པ་1|རྙིང་པ་$1}}',
 
 # Book sources
 'booksources' => 'དཔེ་ཆའི་ཁུངས།',

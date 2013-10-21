@@ -636,7 +636,7 @@ Prjedy hač so druha e-mejlka na konto pósćele, dyrbiš so po instrukcijach w 
 'cannotchangeemail' => 'Kontowe e-mejlowe adresy njehodźa so na tutym wikiju změnić.',
 'emaildisabled' => 'Tute sydło njemóže e-mejle pósłać.',
 'accountcreated' => 'Wužiwarske konto załožene',
-'accountcreatedtext' => 'Wužiwarske konto za $1 bu załožene.',
+'accountcreatedtext' => 'Wužiwarske konto za [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|diskusiju]]) bu załožene.',
 'createaccount-title' => 'Wutworjenje wužiwarskeho konta za {{SITENAME}}',
 'createaccount-text' => 'Něchtó je wužiwarske konto za twoju e-mejlowu adresu na {{SITENAME}} ($4) z mjenom "$2" z hesłom "$3" wutworił. Ty měł so nětko přizjewić a swoje hesło změnić.
 
@@ -669,6 +669,7 @@ Móžeš tutu zdźělenku ignorować, jeli so wužiwarske konto zmylnje wutwori�
 'resetpass-wrong-oldpass' => 'Njepłaćiwe nachwilne abo aktualne hesło.
 Snano sy swoje hesło hižo wuspěšnje změnił abo nowe nachwilne hesło požadał.',
 'resetpass-temp-password' => 'Nachwilne hesło:',
+'resetpass-abort-generic' => 'Měnjenje hesła je so přez rozšěrjenje přetorhnyło.',
 
 # Special:PasswordReset
 'passwordreset' => 'Hesło wróćo stajić',
@@ -883,7 +884,7 @@ Najnowši protokolowy zapisk je deleka jako referenca podaty:",
 'nocreate-loggedin' => 'Nimaš prawo, zo by nowe strony wutworił.',
 'sectioneditnotsupported-title' => 'Wobdźěłowanje wotrězka so njepodpěruje',
 'sectioneditnotsupported-text' => 'Wobdźěłowanje wotrězka so na tutej wobdźěłowanskej stronje njepodpěruje.',
-'permissionserrors' => 'Woprawnjenske zmylki',
+'permissionserrors' => 'Woprawnjenski zmylk',
 'permissionserrorstext' => 'Nimaš prawo, zo by tutu akciju wuwjedł. {{PLURAL:$1|Přičina|Přičiny}}:',
 'permissionserrorstext-withaction' => 'Nimaš prawo $2. {{PLURAL:$1|Přičina|Přičinje|Přičiny|Přičiny}}:',
 'recreate-moveddeleted-warn' => "'''Kedźbu: Wutworiš stronu, kiž bu prjedy wušmórnjena.'''
@@ -1298,7 +1299,7 @@ Smě mjenje hač $1 {{PLURAL:$1|znamješko|znamješce|znamješka|znamješkow}} d
 'prefs-signature' => 'Podpis',
 'prefs-dateformat' => 'Datumowy format',
 'prefs-timeoffset' => 'Časowe wotchilenje',
-'prefs-advancedediting' => 'Rozšěrjene opcije',
+'prefs-advancedediting' => 'Powšitkowny',
 'prefs-advancedrc' => 'Rozšěrjene opcije',
 'prefs-advancedrendering' => 'Rozšěrjene opcije',
 'prefs-advancedsearchoptions' => 'Rozšěrjene opcije',
@@ -2387,7 +2388,7 @@ $1',
 'mycontris' => 'Přinoški',
 'contribsub2' => 'za wužiwarja $1 ($2)',
 'nocontribs' => 'Žane změny, kotrež podatym kriterijam wotpowěduja.',
-'uctop' => '(aktualnje)',
+'uctop' => '(aktualny)',
 'month' => 'wot měsaca (a do toho):',
 'year' => 'wot lěta (a do toho):',
 

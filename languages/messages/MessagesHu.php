@@ -21,6 +21,7 @@
  * @author Dj
  * @author Dorgan
  * @author Enbéká
+ * @author Geitost
  * @author Glanthor Reviol
  * @author Gondnok
  * @author Hunyadym
@@ -320,12 +321,12 @@ $messages = array(
 'tog-hidepatrolled' => 'Az ellenőrzött szerkesztések elrejtése a friss változtatások lapon',
 'tog-newpageshidepatrolled' => 'Ellenőrzött lapok elrejtése az új lapok listájáról',
 'tog-extendwatchlist' => 'A figyelőlistán az összes változtatás látszódjon, ne csak az utolsó',
-'tog-usenewrc' => 'Szerkesztések csoportosítása oldal szerint a friss változtatásokban és a figyelőlistán (JavaScript-alapú)',
+'tog-usenewrc' => 'Szerkesztések csoportosítása oldal szerint a friss változtatásokban és a figyelőlistán',
 'tog-numberheadings' => 'Fejezetcímek automatikus számozása',
-'tog-showtoolbar' => 'Szerkesztőeszközsor megjelenítése (JavaScript-alapú)',
-'tog-editondblclick' => 'A lapok szerkesztése dupla kattintásra (JavaScript-alapú)',
+'tog-showtoolbar' => 'Szerkesztőeszközsor megjelenítése',
+'tog-editondblclick' => 'A lapok szerkesztése dupla kattintásra',
 'tog-editsection' => '[szerkesztés] linkek az egyes szakaszok szerkesztéséhez',
-'tog-editsectiononrightclick' => 'Szakaszok szerkesztése a szakaszcímre való jobb kattintással (JavaScript-alapú)',
+'tog-editsectiononrightclick' => 'Szakaszok szerkesztése a szakaszcímre való jobb kattintással',
 'tog-showtoc' => 'Tartalomjegyzék megjelenítése a három fejezetnél többel rendelkező cikkeknél',
 'tog-rememberpassword' => 'Emlékezzen rám ezzel a böngészővel (legfeljebb {{PLURAL:$1|egy|$1}} napig)',
 'tog-watchcreations' => 'Az általam létrehozott lapok és feltöltött fájlok felvétele a figyelőlistámra',
@@ -346,7 +347,7 @@ $messages = array(
 'tog-externaleditor' => 'Külső szerkesztőprogram használata (Csak haladók számára, speciális beállításokra van szükség a számítógépen. [//www.mediawiki.org/wiki/Manual:External_editors További információ angolul.])',
 'tog-externaldiff' => 'Külső diff program használata (Csak haladók számára, speciális beállításokra van szükség a számítógépen. [//www.mediawiki.org/wiki/Manual:External_editors További információ angolul.])',
 'tog-showjumplinks' => 'Helyezzen el hivatkozást („Ugrás”) a beépített eszköztárra',
-'tog-uselivepreview' => 'Élő előnézet használata (JavaScript-alapú, kísérleti)',
+'tog-uselivepreview' => 'Élő előnézet használata (kísérleti)',
 'tog-forceeditsummary' => 'Figyelmeztessen, ha nem adok meg szerkesztési összefoglalót',
 'tog-watchlisthideown' => 'Saját szerkesztések elrejtése',
 'tog-watchlisthidebots' => 'Robotok szerkesztéseinek elrejtése',
@@ -446,7 +447,7 @@ $messages = array(
 'newwindow' => '(új ablakban nyílik meg)',
 'cancel' => 'Mégse',
 'moredotdotdot' => 'Tovább…',
-'morenotlisted' => 'Tovább…',
+'morenotlisted' => 'A lista nem teljes.',
 'mypage' => 'Lapom',
 'mytalk' => 'Vitalap',
 'anontalk' => 'Az IP-címhez tartozó vitalap',
@@ -547,7 +548,7 @@ $1',
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite' => 'A {{SITENAME}} wikiről',
 'aboutpage' => 'Project:Rólunk',
-'copyright' => 'A tartalom a(z) $1 feltételei szerint használható fel.',
+'copyright' => 'A tartalom további jelölés hiányában a(z) $1 feltételei szerint használható fel.',
 'copyrightpage' => '{{ns:project}}:Szerzői jogok',
 'currentevents' => 'Aktuális események',
 'currentevents-url' => 'Project:Friss események',
@@ -577,10 +578,10 @@ További információkat a [[Special:Version|verzióinformációs lapon]] talál
 'youhavenewmessages' => '$1 a vitalapodon! ($2 külön is megtekintheted.)',
 'newmessageslink' => 'új üzenet vár',
 'newmessagesdifflink' => 'az utolsó üzenetet',
-'youhavenewmessagesfromusers' => '$1 a vitalapodon {{PLURAL:$3|egy|$3}} szerkesztőtől! ($2 külön is megtekintheted.)',
-'youhavenewmessagesmanyusers' => '$1ed van több szerkesztőtől ($2).',
-'newmessageslinkplural' => '{{PLURAL:$1|Új üzenet vár|Új üzenetek várnak}}',
-'newmessagesdifflinkplural' => 'Az utolsó {{PLURAL:$1|változtatást|változtatásokat}}',
+'youhavenewmessagesfromusers' => '$2 kaptál {{PLURAL:$3|egy|$3}} szerkesztőtől $1!',
+'youhavenewmessagesmanyusers' => '$2 kaptál több szerkesztőtől $1.',
+'newmessageslinkplural' => '{{PLURAL:$1||}}a vitalapodon',
+'newmessagesdifflinkplural' => '{{PLURAL:$1|Új üzenetet|Új üzeneteket}}',
 'youhavenewmessagesmulti' => 'Új üzenet vár a(z) $1 wikin',
 'editsection' => 'szerkesztés',
 'editold' => 'szerkesztés',
@@ -717,7 +718,6 @@ A lezárást végrehajtó rendszergazda az alábbi indoklást adta meg: "$3".',
 # Login and logout pages
 'logouttext' => "'''Sikeresen kijelentkeztél.'''
 
-Folytathatod névtelenül  a(z) {{SITENAME}} használatát, vagy <span class='plainlinks'>[$1 ismét bejelentkezhetsz]</span> ugyanezzel, vagy egy másik névvel.
 Lehetséges, hogy néhány oldalon továbbra is azt látod, be vagy jelentkezve, mindaddig, amíg nem üríted a böngésződ gyorsítótárát.",
 'welcomeuser' => 'Üdvözlünk, $1!',
 'welcomecreation-msg' => 'A felhasználói fiókod elkészült.
@@ -738,13 +738,13 @@ Ne felejtsd el módosítani a [[Special:Preferences|{{SITENAME}} beállításaid
 'logout' => 'Kijelentkezés',
 'userlogout' => 'Kijelentkezés',
 'notloggedin' => 'Nem vagy bejelentkezve',
-'nologin' => "Nem rendelkezel még felhasználói fiókkal? '''$1'''.",
+'nologin' => 'Nem rendelkezel még felhasználói fiókkal? $1.',
 'nologinlink' => 'Itt regisztrálhatsz',
 'createaccount' => 'Regisztráció',
 'gotaccount' => "Ha már korábban regisztráltál, '''$1'''.",
 'gotaccountlink' => 'Bejelentkezés',
 'userlogin-resetlink' => 'Elfelejtetted a bejelentkezési adataidat?',
-'createaccountmail' => 'Átmeneti, véletlenszerű jelszó használata és kiküldése az alábbi e-mail címre',
+'createaccountmail' => 'Átmeneti, véletlenszerű jelszó beállítása és kiküldése a megadott e-mail címre',
 'createaccountreason' => 'Indoklás:',
 'badretype' => 'A megadott jelszavak nem egyeznek.',
 'userexists' => 'A megadott felhasználónév már foglalt.
@@ -799,7 +799,7 @@ A visszaélések elkerülése végett {{PLURAL:$1|egy|$1}} óránként csak egy 
 'cannotchangeemail' => 'Ezen a wikin nem módosítható a fiókhoz tartozó e-mail cím.',
 'emaildisabled' => 'Ez az oldal nem küld e-maileket.',
 'accountcreated' => 'Felhasználói fiók létrehozva',
-'accountcreatedtext' => '$1 felhasználói fiókja sikeresen létrejött.',
+'accountcreatedtext' => '[[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|vita]]) felhasználói fiókja sikeresen létrejött.',
 'createaccount-title' => 'Új {{SITENAME}}-azonosító létrehozása',
 'createaccount-text' => 'Valaki létrehozott számodra egy "$2" nevű {{SITENAME}}-azonosítót ($4).
 A hozzá tartozó jelszó "$3", melyet a bejelentkezés után minél előbb változtass meg.
@@ -834,6 +834,7 @@ Várj egy kicsit, mielőtt újra próbálkozol.',
 'resetpass-wrong-oldpass' => 'Nem megfelelő ideiglenes vagy jelenlegi jelszó.
 Lehet, hogy már sikeresen megváltoztattad a jelszavad, vagy pedig időközben új ideiglenes jelszót kértél.',
 'resetpass-temp-password' => 'Ideiglenes jelszó:',
+'resetpass-abort-generic' => 'A jelszómódosítást megszakította egy kiterjesztés.',
 
 # Special:PasswordReset
 'passwordreset' => 'Jelszó törlése',
@@ -847,20 +848,20 @@ Lehet, hogy már sikeresen megváltoztattad a jelszavad, vagy pedig időközben 
 'passwordreset-capture-help' => 'Ha kipipálod a dobozt, elmegy az üzenet a felhasználónak és megjelenik számodra (az ideiglenes jelszóval együtt).',
 'passwordreset-email' => 'E-mail cím:',
 'passwordreset-emailtitle' => 'A(z) {{SITENAME}}-fiók adatai',
-'passwordreset-emailtext-ip' => 'Valaki (vélhetően Te, a $1 IP-címről) emlékeztetőt kért a {{SITENAME}} ($4) oldalon felvett fiókokról. A következő felhasználói {{PLURAL:$3|fiók van|fiókok vannak}} hozzárendelve ehhez az e-mail címhez:
+'passwordreset-emailtext-ip' => 'Valaki (vélhetően Te, a $1 IP-címről) a jelszavad visszaállítását kérte a {{SITENAME}} ($4) oldalon felvett {{PLURAL:$3|fiókban|fiókokban}}. A következő felhasználói {{PLURAL:$3|fiók van|fiókok vannak}} hozzárendelve ehhez az e-mail címhez:
 
 $2
 
 {{PLURAL:$3|Ez az ideiglenes jelszó|Ezek az ideiglenes jelszavak}} $5 nap múlva {{PLURAL:$3|jár|járnak}} le. Jelentkezz be, és cseréld le a jelszavadat. Ha valaki más kérte az emlékeztetőt, vagy eszedbe jutott a régi jelszó, és nem akarod lecserélni a jelszavadat, hagyd figyelmen kívül ezt az üzenetet, és használd a régi jelszavadat.',
-'passwordreset-emailtext-user' => '$1 felhasználó emlékeztetők kért a {{SITENAME}} ($4) oldalon felvett fiókokról. A következő felhasználói {{PLURAL:$3|fiók van|fiókok vannak}} hozzárendelve ehhez az e-mail címhez:
+'passwordreset-emailtext-user' => '$1 felhasználó jelszó-visszaállítást kért a {{SITENAME}} ($4) oldalon felvett {{PLURAL:$3|fiókban|fiókokban}}. A következő felhasználói {{PLURAL:$3|fiók van|fiókok vannak}} hozzárendelve ehhez az e-mail címhez:
 
 $2
 
 {{PLURAL:$3|Ez az ideiglenes jelszó|Ezek az ideiglenes jelszavak}} $5 nap múlva {{PLURAL:$3|jár|járnak}} le. Jelentkezz be, és cseréld le a jelszavadat. Ha valaki más kérte az emlékeztetőt, vagy eszedbe jutott a régi jelszó, és nem akarod lecserélni a jelszavadat, hagyd figyelmen kívül ezt az üzenetet, és használd a régi jelszavadat.',
 'passwordreset-emailelement' => 'Felhasználónév: $1
 Ideiglenes jelszó: $2',
-'passwordreset-emailsent' => 'Emlékeztető e-mail elküldve.',
-'passwordreset-emailsent-capture' => 'Az alább látható emlékeztető e-mail lett elküldve.',
+'passwordreset-emailsent' => 'Jelszó-visszaállító e-mail elküldve.',
+'passwordreset-emailsent-capture' => 'Az alább látható jelszó-visszaállító e-mail lett elküldve.',
 'passwordreset-emailerror-capture' => 'Az emlékeztető levél generálása megtörtént, mint az alább látszik, de elküldése a szerkesztőnek nem sikerült: $1',
 
 # Special:ChangeEmail
@@ -1466,7 +1467,7 @@ A műveletet nem lehet visszavonni.',
 'prefs-signature' => 'Aláírás',
 'prefs-dateformat' => 'Dátumformátum',
 'prefs-timeoffset' => 'Időeltérés',
-'prefs-advancedediting' => 'Haladó beállítások',
+'prefs-advancedediting' => 'Általános',
 'prefs-advancedrc' => 'Haladó beállítások',
 'prefs-advancedrendering' => 'Haladó beállítások',
 'prefs-advancedsearchoptions' => 'Haladó beállítások',
@@ -1564,7 +1565,7 @@ A műveletet nem lehet visszavonni.',
 'right-ipblock-exempt' => 'IP-, auto- és tartományblokkok megkerülése',
 'right-proxyunbannable' => 'proxyk automatikus blokkjainak megkerülése',
 'right-unblockself' => 'saját felhasználói fiók blokkjának feloldása',
-'right-protect' => 'védelmi szintek megváltoztatása és védett lapok szerkesztése',
+'right-protect' => 'védelmi szintek megváltoztatása és kaszkádolt védelemmel rendelkező lapok szerkesztése',
 'right-editprotected' => 'kaszkád védelem nélküli védett lapok szerkesztése',
 'right-editinterface' => 'felhasználói felület szerkesztése',
 'right-editusercssjs' => 'más felhasználók CSS és JS fájljainak szerkesztése',
@@ -1664,7 +1665,7 @@ A műveletet nem lehet visszavonni.',
 'rc_categories_any' => 'Bármelyik',
 'rc-change-size-new' => '{{PLURAL:$1| egy bájt|$1 bájt}} módosítás után',
 'newsectionsummary' => '/* $1 */ (új szakasz)',
-'rc-enhanced-expand' => 'Részletek megjelenítése (JavaScript szükséges)',
+'rc-enhanced-expand' => 'Részletek megjelenítése',
 'rc-enhanced-hide' => 'Részletek elrejtése',
 'rc-old-title' => 'eredetileg létrehozott " $1 "',
 
@@ -1818,7 +1819,7 @@ $1',
 'upload-file-error-text' => 'Belső hiba történt egy ideiglenes fájl szerveren történő létrehozásakor.
 Kérjük, hogy lépj kapcsolatba egy  [[Special:ListUsers/sysop|adminisztrátorral]].',
 'upload-misc-error' => 'Ismeretlen feltöltési hiba',
-'upload-misc-error-text' => 'A feltöltés során ismeretlen hiba történt.  Kérjük, ellenőrizd, hogy az URL érvényes-e és hozzáférhető-e, majd próbáld újra.  Ha a probléma továbbra is fennáll, akkor lépj kapcsolatba a rendszergazdával.',
+'upload-misc-error-text' => 'A feltöltés során ismeretlen hiba történt.  Kérjük, ellenőrizd, hogy az URL érvényes-e és hozzáférhető-e, majd próbáld újra.  Ha a probléma továbbra is fennáll, akkor lépj kapcsolatba a [[Special:ListUsers/sysop|adminisztrátorral]].',
 'upload-too-many-redirects' => 'Az URL túl sokszor volt átirányítva',
 'upload-unknown-size' => 'Ismeretlen méretű',
 'upload-http-error' => 'HTTP-hiba történt: $1',
@@ -1853,6 +1854,7 @@ Kérjük, hogy lépj kapcsolatba egy  [[Special:ListUsers/sysop|adminisztrátorr
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Nem sikerült csatlakozni a napló adatbázis "$1 " háttér tárolójához.',
+'filejournal-fail-dbquery' => 'Nem sikerült frissíteni a naplóadatbázis "$1 " háttértárolóját.',
 
 # Lock manager
 'lockmanager-notlocked' => 'Nem lehet a zárolást feloldani: „$1”; nincs zárolva.',
@@ -2311,7 +2313,7 @@ Ezután minden, a lapon vagy annak vitalapján történő változást ott fogsz 
 'watchnochange' => 'Egyik figyelt lap sem változott a megadott időintervallumon belül.',
 'watchlist-details' => 'A vitalapokon kívül {{PLURAL:$1|egy|$1}} lap van a figyelőlistádon.',
 'wlheader-enotif' => '* Az e-mailen keresztül történő értesítés engedélyezve.',
-'wlheader-showupdated' => "* Azok a lapok, amelyek megváltoztak, mióta utoljára megnézted őket, '''vastagon''' láthatóak.",
+'wlheader-showupdated' => "* Azok a lapok, amelyek megváltoztak, mióta utoljára megnézted őket, '''vastagon''' láthatók.",
 'watchmethod-recent' => 'a figyelt lapokon belüli legfrissebb szerkesztések',
 'watchmethod-list' => 'a legfrissebb szerkesztésekben található figyelt lapok',
 'watchlistcontains' => 'A figyelőlistádon {{PLURAL:$1|egy|$1}} lap szerepel.',
@@ -2559,7 +2561,7 @@ $1',
 'mycontris' => 'Közreműködések',
 'contribsub2' => '$1 ($2)',
 'nocontribs' => 'Nem található a feltételeknek megfelelő változtatás.',
-'uctop' => ' (utolsó)',
+'uctop' => '(aktuális)',
 'month' => 'E hónap végéig:',
 'year' => 'Eddig az évig:',
 
@@ -3700,9 +3702,7 @@ A megerősítésre szánt kód felhasználhatósági idejének lejárata: $4.',
 'confirmemail_body_set' => 'Valaki, valószínűleg te, ezt az email címet adta meg
 „$2” nevű {{SITENAME}}-fiókjához a következő IP-címről: $1.
 
-Ha meg szeretnéd erősíteni, hogy a fiók valóban hozzád tartozik,
-így aktiválva a(z) {{SITENAME}} e-mailes funkcióit, nyisd meg az
-alábbi linket a böngésződben:
+Ha meg szeretnéd erősíteni, hogy a fiók valóban hozzád tartozik, így aktiválva a(z) {{SITENAME}} e-mailes funkcióit, nyisd meg az alábbi linket a böngésződben:
 
 $3
 
@@ -4003,7 +4003,7 @@ A képek teljes méretben jelennek meg, más fájltípusok közvetlenül a hozz�
 'api-error-badtoken' => 'Belső hiba: hibás token.',
 'api-error-copyuploaddisabled' => 'Az URL-címes feltöltés nem engedélyezett ezen a kiszolgálón.',
 'api-error-duplicate' => 'Már van {{PLURAL:$1|egy|néhány}} [$2 másik fájl] az oldalon ugyanilyen tartalommal',
-'api-error-duplicate-archive' => 'Az oldalon {{PLURAL:$1|szerepelt|szerepeltek}} más [$2 más {{PLURAL:$1|fájl|fájlok}}] is ugyanezzel a tartalommal, de törlölve {{PLURAL:$1|lett|lettek}}.',
+'api-error-duplicate-archive' => 'Az oldalon {{PLURAL:$1|szerepelt|szerepeltek}} [$2 más {{PLURAL:$1|fájl|fájlok}}] is ugyanezzel a tartalommal, de törölve {{PLURAL:$1|lett|lettek}}.',
 'api-error-duplicate-archive-popup-title' => '{{PLURAL:$1|Az azonos fájl, ami törölve lett|Azonos fájlok, amik törölve lettek}}',
 'api-error-duplicate-popup-title' => '{{PLURAL:$1|Duplikátum|Duplikátumok}}',
 'api-error-empty-file' => 'Az általad elküldött fájl üres volt.',

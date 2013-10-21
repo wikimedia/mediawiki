@@ -11,12 +11,14 @@
  * @author Derbeth
  * @author Dunak
  * @author Dundak
+ * @author Geitost
  * @author Kaganer
  * @author Michawiki
  * @author Murjarik
  * @author Nepl1
  * @author Pe7er
  * @author Qualia
+ * @author Shirayuki
  * @author Tlustulimu
  * @author Tlustulimu Nepl1
  */
@@ -582,7 +584,7 @@ Móžoš {{SITENAME}} anomymnje dalej wužywaś abo móžoš <span class='plainl
 'logout' => 'wótzjawiś se',
 'userlogout' => 'wótzjawiś se',
 'notloggedin' => 'Njepśizjawjony(a)',
-'nologin' => "Njamaš wužywarske konto? '''$1'''.",
+'nologin' => 'Njamaš wužywarske konto? $1.',
 'nologinlink' => 'Nowe wužywarske konto załožyś',
 'createaccount' => 'Wužywarske konto załožyś',
 'gotaccount' => "Maš južo wužywarske konto? '''$1'''.",
@@ -609,7 +611,7 @@ Pśeglěduj pšawopis abo [[Special:UserLogin/signup|załož nowe konto]].',
 'login-userblocked' => 'Toś ten wužywaŕ jo blokěrowany. Pśizjawjenje njejo dowólone.',
 'wrongpassword' => 'Zapódane šćitne gronidło njejo pšawe. Pšosym wopytaj hyšći raz.',
 'wrongpasswordempty' => 'Šćitne gronidło jo było prozne. Pšosym zapódaj jo hyšći raz.',
-'passwordtooshort' => 'Gronidła deje nanejmjenjej {{PLURAL:$|1 znamuško|$1 znamušce|$1 znamuška|$1 znamuškow}} měś.',
+'passwordtooshort' => 'Gronidła deje nanejmjenjej {{PLURAL:$1|1 znamuško|$1 znamušce|$1 znamuška|$1 znamuškow}} měś.',
 'password-name-match' => 'Twójo gronidło musy se wót swójogo wužywarskego mjenja rozeznaś.',
 'password-login-forbidden' => 'Wužywanje toś togo wužywarskego mjenja a gronidła jo zakazane.',
 'mailmypassword' => 'Nowe gronidło pśipósłaś',
@@ -638,7 +640,7 @@ Woglědowarje, kótarež wužywaju toś tu IP-adresu njamógu tuchylu dalšne ko
 'cannotchangeemail' => 'Kontowe e-mailowe adrese njedaju se změniś na toś tom wikiju.',
 'emaildisabled' => 'Toś to sedło njamóžo e-maile pósłaś.',
 'accountcreated' => 'Wužywarske konto jo se wutwóriło.',
-'accountcreatedtext' => 'Wužywarske konto $1 jo se wutwóriło.',
+'accountcreatedtext' => 'Wužywarske konto [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|diskusiju]]) jo se załožyło.',
 'createaccount-title' => 'Wužywarske konto za {{SITENAME}} nawarjone',
 'createaccount-text' => 'Něchten jo konto za twóje e-mailowu adresu na {{GRAMMAR:lokatiw|{{SITENAME}}}} ($4) z mjenim "$2", z pótajmnym słowom "$3", wutwórił. Dejš se pśizjawiś a swóje pótajmne słowo něnt změniś.
 
@@ -1644,7 +1646,7 @@ $1',
 'upload-proto-error' => 'Njekorektny protokol',
 'upload-proto-error-text' => 'URL musy zachopiś z <code>http://</code> abo <code>ftp://</code>.',
 'upload-file-error' => 'Interna zmólka',
-'upload-file-error-text' => 'Pśi napóranju temporarneje dataje na serwerje jo nastała interna zmólka. Pšosym staj se ze [[Special:ListUsers/sysop|systemowym administratorom]] do zwiska.',
+'upload-file-error-text' => 'Pśi napóranju temporarneje dataje na serwerje jo nastała interna zmólka. Pšosym staj se ze [[Special:ListUsers/sysop|administratorom]] do zwiska.',
 'upload-misc-error' => 'Njeznata zmólka pśi nagrawanju.',
 'upload-misc-error-text' => 'Pśi nagrawanju jo nastała njeznata zmólka. Kontrolěruj pšosym, lěc URL jo płaśiwy a pśistupny a wopytaj hyšći raz. Jolic problem dalej eksistěrujo, staj se z [[Special:ListUsers/sysop|administratorom]] do zwiska.',
 'upload-too-many-redirects' => 'URL jo pśewjele dalejpósrědnjenja wopśimjeł',
