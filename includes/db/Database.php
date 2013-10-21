@@ -282,6 +282,20 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	private $mTrxAutomatic = false;
 
 	/**
+	 * Array of levels of atomicity within transactions
+	 *
+	 * @var SplStack
+	 */
+	private $mTrxAtomicLevels;
+
+	/**
+	 * Record if the current transaction was started implicitly by DatabaseBase::startAtomic
+	 *
+	 * @var Bool
+	 */
+	private $mTrxAutomaticAtomic = false;
+
+	/**
 	 * @since 1.21
 	 * @var file handle for upgrade
 	 */
@@ -687,6 +701,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	) {
 		global $wgDBprefix, $wgCommandLineMode, $wgDebugDBTransactions;
 
+		$this->mTrxAtomicLevels = new SplStack;
 		$this->mFlags = $flags;
 
 		if ( $this->mFlags & DBO_DEFAULT ) {
@@ -3185,6 +3200,39 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	}
 
 	/**
+	 * Begin an atomic section of statements
+	 *
+	 * If a transaction has been started already, just keep track of the given
+	 * section name to make sure the transaction is not committed pre-maturely.
+	 * This function can be used in layers (with sub-sections), so use a stack
+	 * to keep track of the different atomic sections. If there is no transaction,
+	 * start one implicitly.
+	 *
+	 * The goal of this function is to create an atomic section of SQL queries
+	 * without having to start a new transaction if it already exists.
+	 *
+	 * Atomic sections are more strict than transactions. With transactions,
+	 * attempting to begin a new transaction when one is already running results
+	 * in MediaWiki issuing a brief warning and doing an implicit commit. All
+	 * atomic levels *must* be explicitly closed using DatabaseBase::endAtomic(),
+	 * and any database transactions cannot be began or committed until all atomic
+	 * levels are closed. There is no such thing as implicitly opening or closing
+	 * an atomic section.
+	 *
+	 * @since 1.23
+	 * @param string $fname
+	 */
+	final public function startAtomic( $fname = __METHOD__ ) {
+		if ( !$this->mTrxLevel ) {
+			$this->begin( $fname );
+			$this->mTrxAutomatic = true;
+			$this->mTrxAutomaticAtomic = true;
+		}
+
+		$this->mTrxAtomicLevels->push( $fname );
+	}
+
+	/**
 	 * Begin a transaction. If a transaction is already in progress, that transaction will be committed before the
 	 * new transaction is started.
 	 *
@@ -3200,7 +3248,13 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		global $wgDebugDBTransactions;
 
 		if ( $this->mTrxLevel ) { // implicit commit
-			if ( !$this->mTrxAutomatic ) {
+			if ( !$this->mTrxAtomicLevels->isEmpty() ) {
+				// If the current transaction was an automatic atomic one, then we definitely have
+				// a problem. Same if there is any unclosed atomic level.
+				throw new DBUnexpectedError( $this,
+					"Attempted to start explicit transaction when atomic levels are still open."
+				);
+			} elseif ( !$this->mTrxAutomatic ) {
 				// We want to warn about inadvertently nested begin/commit pairs, but not about
 				// auto-committing implicit transactions that were started by query() via DBO_TRX
 				$msg = "$fname: Transaction already in progress (from {$this->mTrxFname}), " .
@@ -3229,6 +3283,8 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		$this->mTrxFname = $fname;
 		$this->mTrxDoneWrites = false;
 		$this->mTrxAutomatic = false;
+		$this->mTrxAutomaticAtomic = false;
+		$this->mTrxAtomicLevels = new SplStack;
 	}
 
 	/**
@@ -3240,6 +3296,28 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	protected function doBegin( $fname ) {
 		$this->query( 'BEGIN', $fname );
 		$this->mTrxLevel = 1;
+	}
+
+	/**
+	 * Ends an atomic section of SQL statements
+	 *
+	 * Ends the next section of atomic SQL statements and commits the transaction
+	 * if necessary.
+	 *
+	 * @since 1.23
+	 * @see DatabaseBase::startAtomic
+	 * @param string $fname
+	 */
+	final public function endAtomic( $fname = __METHOD__ ) {
+		if ( $this->mTrxAtomicLevels->isEmpty() ||
+			$this->mTrxAtomicLevels->pop() !== $fname
+		) {
+			throw new DBUnexpectedError( $this, 'Invalid atomic section ended.' );
+		}
+
+		if ( $this->mTrxAtomicLevels->isEmpty() && $this->mTrxAutomaticAtomic ) {
+			$this->commit( $fname, 'flush' );
+		}
 	}
 
 	/**
@@ -3255,6 +3333,11 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 *        that it is safe to ignore these warnings in your context.
 	 */
 	final public function commit( $fname = __METHOD__, $flush = '' ) {
+		if ( !$this->mTrxAtomicLevels->isEmpty() ) {
+			// There are still atomic sections open. This cannot be ignored
+			throw new DBUnexpectedError( $this, "Attempted to commit transaction while atomic sections are still open" );
+		}
+
 		if ( $flush != 'flush' ) {
 			if ( !$this->mTrxLevel ) {
 				wfWarn( "$fname: No transaction to commit, something got out of sync!" );
@@ -3305,6 +3388,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		$this->doRollback( $fname );
 		$this->mTrxIdleCallbacks = array(); // cancel
 		$this->mTrxPreCommitCallbacks = array(); // cancel
+		$this->mTrxAtomicLevels = new SplStack;
 		if ( $this->mTrxDoneWrites ) {
 			Profiler::instance()->transactionWritingOut( $this->mServer, $this->mDBname );
 		}
