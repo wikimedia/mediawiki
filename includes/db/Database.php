@@ -3111,7 +3111,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 * @since 1.20
 	 */
 	final public function onTransactionIdle( $callback ) {
-		$this->mTrxIdleCallbacks[] = $callback;
+		$this->mTrxIdleCallbacks[] = array( $callback, wfGetCaller() );
 		if ( !$this->mTrxLevel ) {
 			$this->runOnTransactionIdleCallbacks();
 		}
@@ -3130,7 +3130,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 */
 	final public function onTransactionPreCommitOrIdle( $callback ) {
 		if ( $this->mTrxLevel ) {
-			$this->mTrxPreCommitCallbacks[] = $callback;
+			$this->mTrxPreCommitCallbacks[] = array( $callback, wfGetCaller() );
 		} else {
 			$this->onTransactionIdle( $callback ); // this will trigger immediately
 		}
@@ -3150,8 +3150,9 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 			$this->mTrxIdleCallbacks = array(); // recursion guard
 			foreach ( $callbacks as $callback ) {
 				try {
+					list( $phpCallback ) = $callback;
 					$this->clearFlag( DBO_TRX ); // make each query its own transaction
-					call_user_func( $callback );
+					call_user_func( $phpCallback );
 					$this->setFlag( $autoTrx ? DBO_TRX : 0 ); // restore automatic begin()
 				} catch ( Exception $e ) {}
 			}
@@ -3174,7 +3175,8 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 			$this->mTrxPreCommitCallbacks = array(); // recursion guard
 			foreach ( $callbacks as $callback ) {
 				try {
-					call_user_func( $callback );
+					list( $phpCallback ) = $callback;
+					call_user_func( $phpCallback );
 				} catch ( Exception $e ) {}
 			}
 		} while ( count( $this->mTrxPreCommitCallbacks ) );
@@ -3274,6 +3276,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		if ( $this->mTrxDoneWrites ) {
 			Profiler::instance()->transactionWritingOut( $this->mServer, $this->mDBname );
 		}
+		$this->mTrxDoneWrites = false;
 		$this->runOnTransactionIdleCallbacks();
 	}
 
@@ -3308,6 +3311,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		if ( $this->mTrxDoneWrites ) {
 			Profiler::instance()->transactionWritingOut( $this->mServer, $this->mDBname );
 		}
+		$this->mTrxDoneWrites = false;
 	}
 
 	/**
@@ -3892,9 +3896,21 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		return (string)$this->mConn;
 	}
 
+	/**
+	 * Run a few simple sanity checks
+	 */
 	public function __destruct() {
+		if ( $this->mTrxLevel && $this->mTrxDoneWrites ) {
+			trigger_error( "Uncommitted DB writes (transaction from {$this->mTrxFname})." );
+		}
 		if ( count( $this->mTrxIdleCallbacks ) || count( $this->mTrxPreCommitCallbacks ) ) {
-			trigger_error( "Transaction idle or pre-commit callbacks still pending." ); // sanity
+			$callers = array();
+			foreach ( $this->mTrxIdleCallbacks as $callbackInfo ) {
+				$callers[] = $callbackInfo[0];
+
+			}
+			$callers = implode( ', ', $callers );
+			trigger_error( "DB transaction  callbacks still pending (from $callers)." );
 		}
 	}
 }
