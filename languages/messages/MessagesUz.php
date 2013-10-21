@@ -1463,7 +1463,6 @@ Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 'blocklogentry' => '$2 muddatga [[$1]]ni chetlashtirdi $3',
 'block-log-flags-nocreate' => 'hisob ochish toʻxtatilgan',
 'block-log-flags-nousertalk' => "o'zining munozara sahifasini tahrirlay olmaydi",
-'proxyblocksuccess' => 'Bajarildi.',
 
 # Move page
 'move-page' => '$1 — qayta nomlash',

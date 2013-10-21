@@ -1309,7 +1309,6 @@ To include a file in a page, use a link in one of the following forms:
 'block-log-flags-nocreate' => 'эсеп жазуусун жаратуу өчүрүлгөн',
 'block-log-flags-noemail' => 'кат жөнөтүүгө тыюу салынган',
 'block-log-flags-hiddenname' => 'колдонуучу аты жашырылган',
-'blockme' => 'Мени бөгөттө',
 'proxyblocker' => 'Проксини блокировкалоо',
 
 # Developer tools

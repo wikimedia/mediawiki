@@ -1580,8 +1580,6 @@ Basqa bloklawlar ushın [[Special:BlockList|IP bloklaw dizimin]] ko'rip shıg'ı
 'block-log-flags-noemail' => "e-mail bloklang'an",
 'ipb_expiry_invalid' => "Ku'shin joytıw waqtı nadurıs.",
 'ipb_already_blocked' => '"$1" a\'lle qashan bloklang\'an',
-'proxyblocker-disabled' => "Bul funktsiya o'shirilgen.",
-'proxyblocksuccess' => 'Tamamlandı.',
 
 # Developer tools
 'lockdb' => "Mag'lıwmatlar bazasın qulpla",

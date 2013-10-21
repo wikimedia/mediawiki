@@ -2396,12 +2396,9 @@ Mangga mirsani [[Special:BlockList|daftar panganggo sing diblokir]] kanggo dafta
 'ipb_blocked_as_range' => 'Kaluputan: IP $1 ora diblokir sacara langsung lan ora bisa dijabel blokiré. IP $1 diblokir mawa bagéyan saka pamblokiran kelompok IP $2, sing bisa dijabel pamblokirané.',
 'ip_range_invalid' => 'Blok IP ora absah.',
 'ip_range_toolarge' => 'Jangkahé blokiran luwih gedhé saka /$1 ora dililakaké.',
-'blockme' => 'Blokiren aku',
 'proxyblocker' => 'Pamblokir proxy',
-'proxyblocker-disabled' => 'Fungsi iki saiki lagi dipatèni.',
 'proxyblockreason' => "Alamat IP panjenengan wis diblokir amerga alamat IP panjenengan iku ''open proxy''.
 Mangga ngubungi sing nyedyakaké dines internèt panjenengan utawa pitulungan tèknis lan aturana masalah kaamanan sérius iki.",
-'proxyblocksuccess' => 'Bubar.',
 'sorbsreason' => "Alamat IP panjenengan didaftar minangka ''open proxy'' ing DNSBL.",
 'sorbs_create_account_reason' => "Alamat IP panjenengan didaftar minangka ''open proxy'' ing DNSBL. Panjenengan ora bisa nggawé akun utawa rékening.",
 'cant-block-while-blocked' => 'Panjenengan ora bisa mblokir panganggo liya nalika panjenengan dhéwé pinuju diblokir.',

@@ -1978,12 +1978,9 @@ Ağımdağı belsendi tïımdar men buğattawlardı [[{{#special:Ipblocklist}}|I
 'ipb_blocked_as_range' => 'Qatelik: IP $1 tikeleý buğattalmağan jäne buğattawı öşirilmeýdi.
 Biraq, bul buğattawı öşirilwi mümkin $2 awqımı böligi bop buğattalğan.',
 'ip_range_invalid' => 'IP mekenjaý awqımı jaramsız.',
-'blockme' => 'Özdiktik_buğattaw',
 'proxyblocker' => 'Proksï serverlerdi buğattawış',
-'proxyblocker-disabled' => 'Bul jete öşirilgen.',
 'proxyblockreason' => 'IP mekenjaýıñız aşıq proksï serverge jatatındıqtan buğattalğan.
 Ïnternet qızmetin jabdıqtawşıñızben, ne texnïkalıq qoldaw qızmetimen qatınasıñız, jäne olarğa osı ote kürdeli qawıpsizdik şataq twralı aqparat beriñiz.',
-'proxyblocksuccess' => 'Bitti.',
 'sorbsreason' => 'IP mekenjaýıñız {{SITENAME}} torabında qoldanılğan DNSBL qara tizimindegi aşıq proksï-server dep tabıladı.',
 'sorbs_create_account_reason' => 'IP mekenjaýıñız {{SITENAME}} torabında qoldanılğan DNSBL qara tizimindegi aşıq proksï-server dep tabıladı.
 Jaña tirkelgi jasaý almaýsız.',

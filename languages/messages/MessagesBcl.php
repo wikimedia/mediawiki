@@ -2611,11 +2611,8 @@ Hilngon sa [[Special:BlockList|listahan nin kubkob]] para sa listahan kan presen
 Ini, baya, pinagkubkob bilang parte kan hidwas $2, na mapuwedeng daemakukubkob.',
 'ip_range_invalid' => 'Dai pwede ining serye nin IP.',
 'ip_range_toolarge' => 'An hidwas kan mga kubkob dakulaon kesa /$1 dae pinagtutugutan.',
-'blockme' => 'Kubkuba ako',
 'proxyblocker' => 'Parabagát na karibay',
-'proxyblocker-disabled' => 'Ining punksyon pinag-untok.',
 'proxyblockreason' => 'Binagat an saimong direccion nin IP ta ini sarong bukas na proxy. Apodon tabi an saimong Internet service provider o tech support asin ipaaram sainda ining seriosong problema nin seguridad.',
-'proxyblocksuccess' => 'Tapos.',
 'sorbsreason' => 'An saimong IP na estada pinaglista bilang sarong bukas na proksi sa lang kan DNSBL na ginagamit kan {{SITENAME}}.',
 'sorbs_create_account_reason' => 'An saimong IP na estada pinaglista bilang sarong bukas na proksi sa laog kan DNSBL na ginagamit kan {{SITENAME}}.
 Ika dae makakamukna nin sarong panindog.',

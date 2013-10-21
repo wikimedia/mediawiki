@@ -2767,11 +2767,8 @@ Consultare l'[[Special:BlockList|elenco dei blocchi]] per l'elenco dei bandi o b
 'ipb_blocked_as_range' => "Errore: L'indirizzo IP $1 non è soggetto a blocco individuale e non può essere sbloccato. Il blocco è invece attivo a livello dell'intervallo $2, che può essere sbloccato.",
 'ip_range_invalid' => 'Intervallo di indirizzi IP non valido.',
 'ip_range_toolarge' => 'Non è possibile bloccare range superiori al /$1',
-'blockme' => 'Bloccami',
 'proxyblocker' => 'Blocco dei proxy aperti',
-'proxyblocker-disabled' => 'Questa funzione è disabilitata.',
 'proxyblockreason' => 'Questo indirizzo IP è stato bloccato perché risulta essere un proxy aperto. Si prega di contattare il proprio fornitore di accesso a Internet o il supporto tecnico e informarli di questo grave problema di sicurezza.',
-'proxyblocksuccess' => 'Fatto.',
 'sorbsreason' => 'Questo indirizzo IP è elencato come proxy aperto nella blacklist DNSBL utilizzata da {{SITENAME}}.',
 'sorbs_create_account_reason' => 'Non è possibile creare nuovi accessi da questo indirizzo IP perché è elencato come proxy aperto nella blacklist DNSBL utilizzata da {{SITENAME}}.',
 'xffblockreason' => "Un indirizzo IP presente nell'intestazione X-Forwarded-For, tuo o del server proxy che stai utilizzando, è stato bloccato. La motivazione originale del blocco è: $1",
@@ -3785,7 +3782,7 @@ Per favore, conferma che vuoi veramente ricreare questa pagina.",
 'confirm-unwatch-top' => 'Elimina questa pagina dalla tua lista degli osservati speciali?',
 
 # Separators for various lists, etc.
-'percent' => '$1&nbsp;%',
+'percent' => '$1&#160;%',
 
 # Multipage image navigation
 'imgmultipageprev' => '← pagina precedente',

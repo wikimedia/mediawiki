@@ -1509,8 +1509,6 @@ Your e-mail address is not revealed when other users contact you.
 'block-log-flags-hiddenname' => 'အသုံးပြုသူအမည် ဝှက်ထားသည်',
 'ipb_expiry_invalid' => 'သက်တမ်းကုန်လွန်မည့် အချိန်သည် တရားမဝင်ပါ။',
 'ipb_already_blocked' => '"$1" ကို အစကတည်းက ပိတ်ထားသည်',
-'blockme' => 'ကျွန်ုပ်ကို ပိတ်ရန်',
-'proxyblocksuccess' => 'ပြီးပါပြီ။',
 
 # Move page
 'move-page' => '$1 ကို ရွှေ့ရန်',

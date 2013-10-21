@@ -1173,8 +1173,6 @@ Xiquitta $2 ic yancuīc tlapololiztli.',
 'change-blocklink' => 'Ticpatlaz tlatzacualli',
 'contribslink' => 'tlapatlaliztli',
 'blocklogpage' => 'Tlatequitiltilīlli ōmotzacuili',
-'blockme' => 'Timitzcuilīz',
-'proxyblocksuccess' => 'Ōmochīuh.',
 
 # Move page
 'move-page' => 'Ticzacāz $1',

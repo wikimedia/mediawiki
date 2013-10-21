@@ -734,7 +734,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'blocklink' => 'ފިޔަވަޅުއަޅުއްވާ',
 'unblocklink' => 'ފިޔަވަޅުއެޅުން ބަދަލުކުރައްވާ',
 'contribslink' => 'ޙިއްޞާ',
-'proxyblocksuccess' => 'ފުރިހަމަވެއްޖެ.',
 
 # Developer tools
 'lockdb' => 'ކޮށާރު ބަންދުކުރައްވާ',

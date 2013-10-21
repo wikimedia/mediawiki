@@ -1041,7 +1041,6 @@ Biéj do [[Special:BlockList|lëstë zascëgónëch adresów IP]] abë òbaczëc
 'blocklogentry' => 'zablokòwôł [[$1]], czas blokadë: $2 $3',
 'unblocklogentry' => 'òdblokòwôł $1',
 'block-log-flags-nocreate' => 'blokada ùsôdzaniô kònta',
-'proxyblocksuccess' => 'Fertich.',
 
 # Developer tools
 'lockbtn' => 'Zascëgôj bazã pòdôwków',

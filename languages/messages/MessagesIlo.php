@@ -2596,12 +2596,9 @@ Kitaen ti [[Special:BlockList|Listaan ti lapden nga IP]] para iti listaan kadagi
 Ngem, nupay kasta, naserran a kas paset ti sakup ti $2, a mabalin a malukatan ti serrana.',
 'ip_range_invalid' => 'Imbalido a sakup ti IP.',
 'ip_range_toolarge' => 'Dagiti serra a nasakup a dakdakkel ngem /$1 ket saan a maipalubos.',
-'blockme' => 'Serraannak',
 'proxyblocker' => 'Pannakbagi a panagserra',
-'proxyblocker-disabled' => 'Daytoy a panagaramid ket nabaldado.',
 'proxyblockreason' => 'Ti IP a pagtaengam ket naserraan ngamin ket daytoy ket nakalukat a panakbagi.
 Pangngaasi ta kontakem ti agit-ited ti serbisio ti Internetmo wenno teknikal a suporta ti kaurnusam ken ibagam kaniada ti nakaro a parikut ti seguridad.',
-'proxyblocksuccess' => 'Nalpasen.',
 'sorbsreason' => 'Ti IP a pagtaengam ket nakalista a kasla "nalukatan a pannakbagi" idiay DNSBL nga inusar ti {{SITNAME}}.',
 'sorbs_create_account_reason' => 'Ti IP a pagtaengam ket nakalista a kasla "nalukatan a pannakbagi" idiay DNSBL nga inusar ti {{SITNAME}}.
 Saanka a makaaramid ti pakabilangan',

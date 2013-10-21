@@ -2857,11 +2857,8 @@ Vizte též [[Special:BlockList|seznam všech probíhajících bloků]].',
 'ipb_blocked_as_range' => 'Chyba: IP adresa $1 není blokována přímo a tak ji nelze odblokovat. Je částí zablokovaného rozsahu $2, který může být odblokován.',
 'ip_range_invalid' => 'Neplatný IP rozsah.',
 'ip_range_toolarge' => 'Blokování rozsahů větších než /$1 není dovoleno.',
-'blockme' => 'Zablokuj mě',
 'proxyblocker' => 'Blokování proxy serverů',
-'proxyblocker-disabled' => 'Tato funkce je vypnuta.',
 'proxyblockreason' => 'Vaše IP adresa byla zablokována, protože funguje jako otevřený proxy server. Kontaktujte svého poskytovatele internetového připojení nebo technickou podporu a informujte je o tomto vážném bezpečnostním problému.',
-'proxyblocksuccess' => 'Hotovo.',
 'sorbsreason' => 'Vaše IP adresa je uvedena na seznamu DNSBL jako otevřený proxy server.',
 'sorbs_create_account_reason' => 'Vaše IP adresa je uvedena na seznamu DNSBL jako otevřený proxy server. Z této adresy si nemůžete založit účet',
 'xffblockreason' => 'IP adresa uvedená v hlavičce X-Forwarded-For, ať už vaše, nebo patřící proxy serveru, který používáte, byla zablokována. Zdůvodnění tohoto zablokování: $1',
@@ -3880,7 +3877,7 @@ Opravdu si přejete znovu tuto stránku založit?',
 
 # Separators for various lists, etc.
 'ellipsis' => '…',
-'percent' => '$1&nbsp;%',
+'percent' => '$1&#160;%',
 
 # Multipage image navigation
 'imgmultipageprev' => '← předchozí stránka',

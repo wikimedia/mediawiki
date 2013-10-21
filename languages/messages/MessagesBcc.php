@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Ebraminio
  * @author Huji
  * @author Kaganer
  * @author Mostafadaneshvar
@@ -2079,12 +2080,9 @@ $1',
 'ipb_blocked_as_range' => 'حطا: ای پی  $1 مستقیما محدود نهنت و نه تونیت رفع محدودیت بیت.
 بله آی جزی چه محدوده  $2 محدود بوتت که تونیت رفع محدودیت بیت.',
 'ip_range_invalid' => 'نامعتبر محدوده آی پی',
-'blockme' => 'مناء محدود کن',
 'proxyblocker' => 'محدود کننده ی پروکسی',
-'proxyblocker-disabled' => 'ای عمگر غیرفعالنت.',
 'proxyblockreason' => 'شمی آدرس آی پی محدود بوتت په چی که ایء یک پچین پروکسی ات.
 لطفا گون وتی اینترنتی شرکت تماس گریت یا حمایت تکنیکی و آیانا چی ای مشکل امنیتی شدید سهی کنیت.',
-'proxyblocksuccess' => 'انجام بوت.',
 'sorbs' => 'دی ان اس بی ال',
 'sorbsreason' => 'شمی آدرس آی پی لیست بوتت په داب پچین پروکسی ته  DNSBL که استفاده بیت گون {{SITENAME}}.',
 'sorbs_create_account_reason' => 'شمی آدرس آی پی لیست بوتت په داب پچین پروکسی ته  دی ان ای بی ال که استفاده بیت گون {{SITENAME}}.

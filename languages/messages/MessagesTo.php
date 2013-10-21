@@ -890,7 +890,6 @@ Vakai ki he [[Special:Log/delete|hokohoko tāmateʻi]] ki he lekooti ʻo e ngaah
 'ipb_already_blocked' => 'Kuo ʻosi taʻofi ʻa e "$1"',
 'ipb_cant_unblock' => 'Hala: naʻe ʻikai ʻilo ko e taʻofi fika $1. Mahalo pē kuo ʻosi ʻene taʻetaʻofi.',
 'ip_range_invalid' => 'ʻOku taʻeʻaonga ʻa e fakavā IP',
-'proxyblocksuccess' => 'Kuo fai.',
 
 # Developer tools
 'lockdb' => 'Lokaʻi ʻa e tānekingaʻilo',

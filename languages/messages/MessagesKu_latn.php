@@ -1711,8 +1711,6 @@ Sedemekê binivîse!",
 'ipb_already_blocked' => '"$1" berê hatîye astengkirin',
 'ipb-needreblock' => '$1 berê hatiye astengkirin. Tu dixwazî eyaran biguherînî?',
 'ipb_cant_unblock' => "Şaşbûn: ID'ya astengkirinê $1 nehate dîtin. Astengkirinê xwe niha belkî hatîye rakirin.",
-'blockme' => 'Min astengbike',
-'proxyblocksuccess' => 'Çêbû.',
 'sorbsreason' => "Adrêsa IP ya te ji DNSBL'a {{SITENAME}} wek proxy'eka vekirî tê naskirin.",
 'sorbs_create_account_reason' => "Adrêsa IP ya te ji DNSBL'a {{SITENAME}} wek proxy'eka vekirî tê naskirin. Tu nikarê account'ekê ji xwe ra çêkê.",
 

@@ -2929,12 +2929,9 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 하지만 $2로 광역 차단되었기 때문에, 광역 차단 해제로 차단을 해제할 수 있습니다.',
 'ip_range_invalid' => 'IP 범위가 잘못되었습니다.',
 'ip_range_toolarge' => '/$1보다 넓은 범위의 광역 차단을 할 수 없습니다.',
-'blockme' => '자가 차단',
 'proxyblocker' => '프록시 차단',
-'proxyblocker-disabled' => '이 기능은 비활성되어 있습니다.',
 'proxyblockreason' => '당신의 IP 주소는 공개 프록시로 밝혀져 자동으로 차단됩니다.
 만약 인터넷 사용에 문제가 있다면 인터넷 서비스 공급자나 기술 지원팀에게 문의해주세요.',
-'proxyblocksuccess' => '완료.',
 'sorbsreason' => '당신의 IP 주소는 {{SITENAME}}에서 사용하는 DNSBL 공개 프록시 목록에 들어 있습니다.',
 'sorbs_create_account_reason' => '당신의 IP 주소는 {{SITENAME}}에서 사용하는 DNSBL 공개 프록시 목록에 들어 있습니다.
 계정을 만들 수 없습니다.',

@@ -2722,12 +2722,9 @@ Die blokkade is moontlik reeds opgehef.',
 Die blokkade is 'n onderdeel van die reeks $2, waarvan die blokkade wel opgehef kan word.",
 'ip_range_invalid' => 'Ongeldige IP waardegebied.',
 'ip_range_toolarge' => 'Reeks-blokkades groter as /$1 word nie toegelaat nie.',
-'blockme' => 'Versper my',
 'proxyblocker' => 'Proxyblokker',
-'proxyblocker-disabled' => 'Die funksie is gedeaktiveer.',
 'proxyblockreason' => "U IP-adres is geblokkeer omdat dit van 'n oop instaanbediener (proxy) gebruik maak.
 Kontak asseblief u internet-diensverskaffer of tegniese ondersteuning en lig hulle van hierdie ernstige sekuriteitsprobleem in.",
-'proxyblocksuccess' => 'Voltooi.',
 'sorbsreason' => "U IP-adres is gelys as 'n oop instaanbediener (proxy) in die DNS-swartlys wat op {{SITENAME}} gebruik word.",
 'sorbs_create_account_reason' => "U IP-adres is gelys as 'n oop instaanbediener (proxy) in die DNS-swartlys wat op {{SITENAME}} gebruik word.
 U kan nie 'n rekening skep nie.",

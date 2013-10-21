@@ -790,7 +790,6 @@ Guck $2 fer e Lischt vun de letscht Leschunge.',
 'infiniteblock' => 'fer immer',
 'blocklink' => 'Aabinne',
 'contribslink' => 'Ardickele',
-'proxyblocksuccess' => 'Geduh.',
 
 # Move page
 'move-page' => '„$1“ ziehe',
@@ -935,7 +934,7 @@ Guck $2 fer e Lischt vun de letscht Leschunge.',
 
 # Separators for various lists, etc.
 'ellipsis' => '…',
-'percent' => '$1&nbsp;%',
+'percent' => '$1&#160;%',
 
 # Multipage image navigation
 'imgmultipageprev' => '← letscht Blatt',

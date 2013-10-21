@@ -274,7 +274,7 @@ $messages = array(
 'august-date' => '$1 Buleuën Lapan',
 'september-date' => '$1 Buleuën Sikureuëng',
 'october-date' => '$1 Buleuën Siplôh',
-'november-date' => '$ Buleuën Siblaih',
+'november-date' => '$1 Buleuën Siblaih',
 'december-date' => '$1 Buleuën Duwa Blaih',
 
 # Categories related messages
@@ -525,7 +525,7 @@ Hana jeuneulaih.",
 'badtitle' => 'Nan hana sah',
 'badtitletext' => 'Nan ôn nyang neulakèë hana sah, soh, atawa nan antarabahsa atawa antarawiki nyang salah sambông.',
 'perfcached' => 'Data di yup nyoe geupeusom ngon kadang kon data baro. {{PLURAL:$1|saboh hase|$1 hase}} maksimum na lam beujana.',
-'perfcachedts' => 'Data di yup nyoe geupeusom, ngon geupeubaro keuneulheueh bak $1. {{PLURAL:$1||}}$1 hase maksimal na lam beuen.',
+'perfcachedts' => 'Data di yup nyoe geupeusom, ngon geupeubaro seuneulheueh bak $1. {{PLURAL:$4|saboh hase|$4 hase}} paleng le na lam beujana.',
 'querypage-no-updates' => "Beunaro keu on nyoe hat nyoe teungoh h'an jeuet.
 Data sinoe h'an geupasoe ulang.",
 'wrong_wfQuery_params' => 'Parameter salah u wfQuery()<br />
@@ -536,8 +536,11 @@ Neulakee: $2',
 'actionthrottled' => 'Buet geupeubataih',
 'actionthrottledtext' => 'Sibagoe saboh seunipat lawan-spam, droeneuh geupeubataih nibak neupeulaku buet nyoe le that go lam watee paneuk, ngon droeneuh ka leubeh nibak bataih.
 Neuci lom lam padum minet.',
+'protectedpagetext' => 'Laman nyoe ka geupeulindong mangat bek jeuet geuandam',
 'viewsourcetext' => 'Droëneuh  jeuët neu’eu',
 'viewyourtext' => 'Droëneuh meuidzin kalon ngon neucok nè andam droëneuh u ôn nyoë',
+'protectedinterface' => 'Halaman nyoe na teks muka keu muka keu peukakaih leumiek ngon geupeulindong mangat bek jeuet jipeureuloh.
+Keu neuk tamah atawa ubah teujeumah keu ban dum wiki, neungui [//translatewiki.net/ translatewiki.net], proyek lokalisasi MediaWiki.',
 'ns-specialprotected' => 'Ôn khusuih bèk neuandam',
 'exception-nologin' => 'Hana tamong lom',
 

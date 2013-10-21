@@ -1833,10 +1833,7 @@ Commodule notatio obstructionum subter datur.',
 'ipb_already_blocked' => '"$1" iam obstructus est',
 'ipb-needreblock' => '$1 iam obstructus est. Visne obstructionem modificare?',
 'ip_range_invalid' => 'Latitudo IP irrita.',
-'blockme' => 'Usor obstructus',
 'proxyblocker' => 'Instrumentum obstructionis moderatorum',
-'proxyblocker-disabled' => 'Haec functio prohibita est.',
-'proxyblocksuccess' => 'Factum.',
 'cant-block-while-blocked' => 'Dum obstructus es, non potes usores alios obstruere.',
 
 # Developer tools

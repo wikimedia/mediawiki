@@ -1214,7 +1214,6 @@ Siiddus $2 lea listu maŋimus sihkomiin.',
 'blocklink' => 'hehtte',
 'contribslink' => 'rievdadusat',
 'blocklogentry' => 'esttii geavaheaddji dahje IP-čujuhusa [[$1]], eastima bistin lea $2 $3',
-'proxyblocksuccess' => 'Gárvvis.',
 
 # Developer tools
 'lockdb' => 'Gidde diehtovuođu',

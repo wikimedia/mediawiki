@@ -1230,7 +1230,6 @@ tae an afore-blockit IP address or uisername.',
 'block-log-flags-nocreate' => 'accoont-makkin blockit',
 'range_block_disabled' => 'The administrator abeility tae mak range blocks is disabled.',
 'proxyblockreason' => 'Yer IP address haes been blockit sith it is an open proxy. Please contact yer Internet service provider or tech support an inform them o this serious security problem.',
-'proxyblocksuccess' => 'Duin',
 'sorbsreason' => 'Yer IP address is leetit as an open proxy in the DNSBL.',
 'sorbs_create_account_reason' => 'Yer IP address is leetit as an open proxy in the DNSBL. Ye canna mak an accoont',
 

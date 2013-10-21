@@ -1024,7 +1024,6 @@ Gif se brūcend asifte hine. synderlīce sind ymelan geīwda þǣre þe se brūc
 'contribslink' => 'forðunga',
 'unblocklogentry' => 'unfortȳnde $1',
 'block-log-flags-nocreate' => 'Forbēad tō scieppenne reccinge',
-'proxyblocksuccess' => 'Gedōn.',
 
 # Move page
 'movearticle' => 'Wegan tramet:',

@@ -1545,7 +1545,6 @@ $1",
 'blocklogtext' => '箇是用戶封搭解封操作個記錄。自動封個IP地址弗排。到[[Special:BlockList|IP 封表]]裏望目前生效個封表。',
 'unblocklogentry' => '$1已经拨解封',
 'block-log-flags-nocreate' => '建账号禁用哉',
-'proxyblocksuccess' => '好哉。',
 
 # Developer tools
 'lockdb' => '鎖數據庫',

@@ -2028,10 +2028,7 @@ Bloklama şərtlərini dəyişmək istəyirsiniz?',
 'unblock-hideuser' => 'İstifadəçi adı gizli olduğu üçün, bi bloku götürə bilməzsiniz.',
 'ipb_cant_unblock' => 'Xəta: Bloklama IDsi $1 tapılmadı. Bloklamanın götürülməsi mümkündür.',
 'ip_range_invalid' => 'Yanlış IP',
-'blockme' => 'Məni blokla',
 'proxyblocker' => 'Proksi bloklayıcı',
-'proxyblocker-disabled' => 'Bu funksiya əngəlləndi.',
-'proxyblocksuccess' => 'Oldu.',
 'sorbs' => 'DNSBL',
 
 # Developer tools

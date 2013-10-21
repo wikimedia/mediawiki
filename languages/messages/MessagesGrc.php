@@ -1811,10 +1811,7 @@ $1',
 'ipb_cant_unblock' => 'Σφάλμα: Ἡ φραγὴ τῆς ID $1 οὐχ εὑρέθη.
 Εἰκότως ἀποπεφραγμένη ἤδη ἐστίν.',
 'ip_range_invalid' => 'Ἄκυρον IP-εὖρος.',
-'blockme' => 'Φράξον με',
 'proxyblocker' => 'Ἐργαλεῖον φραγῆς διακομιστῶν',
-'proxyblocker-disabled' => 'Ἥδε ἡ ἐνέργεια κατεσταλμένη εστίν.',
-'proxyblocksuccess' => 'Γενομένη.',
 'cant-block-while-blocked' => 'Οὐκ ἔξεστί σοι φράττειν ἑτέρους χρωμένους ἐν ὅσῳ πεφραγμένος εἶ.',
 
 # Developer tools

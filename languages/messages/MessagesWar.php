@@ -1899,8 +1899,6 @@ Tanggala an pagpugong $1',
 'block-log-flags-nousertalk' => 'diri makakaliwat hit kalugaringon nga hiruhimangraw nga pakli',
 'block-log-flags-hiddenname' => 'nakatago an agnay-hit-gumaramit',
 'ipb_already_blocked' => '"$1" in ginpugngan na',
-'blockme' => 'Pugngi ako',
-'proxyblocksuccess' => 'Human na.',
 'ipbnounblockself' => 'Diri ka gintutugotan hin pagtanggal hit pagpugong ha kalugaringon',
 
 # Developer tools

@@ -2058,9 +2058,7 @@ Caliak [[Special:BlockList|daftar sakek]] untuak kasado pangguno nan kini kanai 
 'ipb_already_blocked' => '"$1" alah disakek',
 'ipb-needreblock' => '$1 alah tasakek. Apo nio diubah pangaturannyo?',
 'ipb-otherblocks-header' => '{{PLURAL:$1|Sakek}} lain',
-'blockme' => 'Sakek denai',
 'proxyblocker' => 'Sakek proksi',
-'proxyblocker-disabled' => 'Fungsi ko dimatian',
 
 # Developer tools
 'lockdb' => 'Kunci basis data',

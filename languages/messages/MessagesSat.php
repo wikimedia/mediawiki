@@ -1035,8 +1035,6 @@ Noa reaḱ pasnao katha [$2 rẽt pasnao sakam] latare emena',
 'block-log-flags-nocreate' => 'Ekaunṭ benao do bondogeya',
 'block-log-flags-noemail' => 'E-mail do esetgea',
 'block-log-flags-hiddenname' => 'Beoharićaḱ ńutum do ukugea',
-'blockme' => 'Esedińmẽ',
-'proxyblocksuccess' => 'Hoena',
 
 # Move page
 'movepagebtn' => 'Sakam ocogmẽ, Sakam kulmẽ',

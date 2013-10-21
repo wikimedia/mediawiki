@@ -1460,7 +1460,7 @@ Kokeile lisätä haun alkuun ''all:'', niin haku kohdistuu kaikkeen sisältöön
 'prefs-help-watchlist-token2' => 'Tämä on salainen avain tarkkailulistasi verkkosyötteeseen.
 Kuka tahansa, joka tietää sen voi lukea tarkkailulistaasi, joten älä paljasta sitä.
 [[Special:ResetTokens|Napsauta tästä, jos sinun pitää uudistaa se]].',
-'savedprefs' => 'Asetuksesi tallennettiin onnistuneesti.',
+'savedprefs' => 'Asetuksesi on tallennettu.',
 'timezonelegend' => 'Aikavyöhyke',
 'localtime' => 'Paikallinen aika',
 'timezoneuseserverdefault' => 'Käytä oletusta ($1)',
@@ -1550,7 +1550,7 @@ Tämä tieto on julkinen.',
 'userrights-groups-help' => 'Voit muuttaa ryhmiä, joissa tämä käyttäjä on.
 * Merkattu valintaruutu tarkoittaa, että käyttäjä on kyseisessä ryhmässä.
 * Merkkaamaton valintaruutu tarkoittaa, että käyttäjä ei ole kyseisessä ryhmässä.
-* <nowiki>*</nowiki> tarkoittaa, että et pysty poistamaan käyttäjää tästä ryhmästä, kun olet sen siihen lisännyt tai päinvastoin',
+* <nowiki>*</nowiki> tarkoittaa, että et pysty poistamaan käyttäjää tästä ryhmästä, kun olet hänet siihen lisännyt tai päinvastoin',
 'userrights-reason' => 'Syy:',
 'userrights-no-interwiki' => 'Sinulla ei ole oikeutta muokata käyttöoikeuksia muissa wikeissä.',
 'userrights-nodatabase' => 'Tietokantaa $1 ei ole tai se ei ole paikallinen.',
@@ -2781,11 +2781,8 @@ Alla on ote häivytyslokista.',
 'ipb_blocked_as_range' => 'IP-osoite $1 on estetty välillisesti ja sen estoa ei voi poistaa. Se on estetty osana verkkoaluetta $2, jonka eston voi poistaa',
 'ip_range_invalid' => 'Virheellinen IP-alue.',
 'ip_range_toolarge' => 'Suuremmat osoitealue-estot kuin /$1 eivät ole sallittuja.',
-'blockme' => 'Estä minut',
 'proxyblocker' => 'Välityspalvelinesto',
-'proxyblocker-disabled' => 'Tämä toiminto ei ole käytössä.',
 'proxyblockreason' => 'IP-osoitteestasi on estetty muokkaukset, koska se on avoin välityspalvelin. Ota yhteyttä Internet-palveluntarjoajaasi tai tekniseen tukeen ja kerro heille tästä tietoturvaongelmasta.',
-'proxyblocksuccess' => 'Valmis.',
 'sorbsreason' => 'IP-osoitteesi on listattu avoimena välityspalvelimena DNSBL:n mustalla listalla sivustolla {{SITENAME}}.',
 'sorbs_create_account_reason' => 'IP-osoitteesi on listattu avoimena välityspalvelimena DNSBL:n mustalla listalla sivustolla {{SITENAME}}. 
 Et voi luoda käyttäjätunnusta.',
@@ -3797,7 +3794,7 @@ Varmista, että haluat luoda sivun uudelleen.",
 'confirm-unwatch-top' => 'Poistetaanko tämä sivu tarkkailulistaltasi?',
 
 # Separators for various lists, etc.
-'percent' => '$1&nbsp;%',
+'percent' => '$1&#160;%',
 
 # Multipage image navigation
 'imgmultipageprev' => '← edellinen sivu',

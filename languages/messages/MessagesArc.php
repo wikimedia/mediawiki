@@ -1461,8 +1461,6 @@ $1',
 'ipb_already_blocked' => '"$1" ܡܚܪܡܐ ܗܘ ܡܢ ܟܕܘ',
 'ipb-needreblock' => '"$1" ܡܚܪܡܐ ܗܘ ܡܢ ܟܕܘ
 Do you want to change the settings?',
-'blockme' => 'ܚܪܘܡ ܠܝ',
-'proxyblocksuccess' => 'ܒܪܐ',
 
 # Move page
 'move-page' => 'ܫܢܝ $1',

@@ -1873,10 +1873,7 @@ Imken lek ṫbeddel l-mosṫawa de l-ḫimaya dyal had ṣ-ṣefḫa bla ma i\'e
 'ipb_expiry_temp' => 'L-Blokaj dyal s-smiyyaṫ dyal l-mosṫeĥdimin l-mĥebbyin ĥaṣṣo ybqa dima.',
 'ipb_already_blocked' => '"$1" rah fayeṫ mbloki',
 'ipb-otherblocks-header' => 'Blokaj {{PLURAL:$1|weḫdaĥor|weḫdaĥrin}}',
-'blockme' => 'blokini',
 'proxyblocker' => 'blokør dl-proksi',
-'proxyblocker-disabled' => 'had l-ĥaṣṣiyya ma mtloqa-ċ',
-'proxyblocksuccess' => 'ṣafi.',
 'sorbs' => 'DNSBL',
 
 # Developer tools

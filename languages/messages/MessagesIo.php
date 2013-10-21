@@ -1246,7 +1246,6 @@ Videz [[Special:BlockList|IP-blokuslisto]] por revizor blokusadi.',
 'unblocklogentry' => 'desblokusis "$1"',
 'ipb_expiry_invalid' => 'Nevalida expiro-tempo.',
 'ip_range_invalid' => 'Nevalida IP-rango.',
-'proxyblocksuccess' => 'Facita.',
 
 # Developer tools
 'lockdb' => 'Blokusar datumaro',

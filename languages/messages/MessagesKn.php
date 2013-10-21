@@ -1711,8 +1711,6 @@ $2',
 'block-log-flags-nocreate' => 'ಖಾತೆ ಸೃಷ್ಟಿ ತಡೆಹಿಡಿಯಲಾಗಿದೆ',
 'block-log-flags-noemail' => 'ಇ-ಅಂಚೆ ತಡೆಹಿಡಿಯಲಾಗಿದೆ',
 'ipb_already_blocked' => '"$1" ಆಗಲೆ ತಡೆ ಹಿಡಿಯಲಾಗಿದೆ',
-'blockme' => 'ನನ್ನನ್ನು ತಡೆಹಿಡಿ',
-'proxyblocksuccess' => 'ಮುಗಿಯಿತು.',
 
 # Developer tools
 'lockdb' => 'ಡೇಟಾಬೇಸ್ ಅನ್ನು ಮುಚ್ಚು',

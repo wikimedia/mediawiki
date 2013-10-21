@@ -2832,12 +2832,9 @@ O est possiblo qu’un dèblocâjo èye ja étâ fêt.',
 Portant, el est avouéc la plage $2 que pôt étre dèblocâ.',
 'ip_range_invalid' => 'Plage d’adrèces IP fôssa.',
 'ip_range_toolarge' => 'Los blocâjos de plages d’adrèces IP ples grantes que /$1 sont pas ôtorisâs.',
-'blockme' => 'Blocâd-mè',
 'proxyblocker' => "Bloquior de sèrvors mandatèros (''proxies'')",
-'proxyblocker-disabled' => 'Cela fonccion est dèsactivâ.',
 'proxyblockreason' => "Voutra adrèce IP at étâ blocâ perce qu’o est un sèrvor mandatèro (''proxy'') uvèrt.
 Vos volyéd veriér vers voutron fornissor d’accès u Malyâjo ou ben voutra assistance tècnica et l’enformar de cél problèmo de sècuritât sèriox.",
-'proxyblocksuccess' => 'Chavonâ.',
 'sorbsreason' => "Voutra adrèce IP est listâ coment sèrvor mandatèro (''proxy'') uvèrt dens lo DNSBL utilisâ per {{SITENAME}}.",
 'sorbs_create_account_reason' => "Voutra adrèce IP est listâ coment sèrvor mandatèro (''proxy'') uvèrt dens lo DNSBL utilisâ per {{SITENAME}}.
 Vos pouede pas fâre un compto.",
@@ -3846,7 +3843,7 @@ Volyéd confirmar que vos voléd franc refâre cela pâge.",
 # Separators for various lists, etc.
 'semicolon-separator' => '&nbsp;;&#32;',
 'colon-separator' => '&nbsp;:&#32;',
-'percent' => '$1&nbsp;%',
+'percent' => '$1&#160;%',
 
 # Multipage image navigation
 'imgmultipageprev' => '← pâge devant',

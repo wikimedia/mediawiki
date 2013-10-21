@@ -1687,7 +1687,6 @@ $1',
 'ipb_expiry_invalid' => 'İskärü waqıtı xatalı.',
 'ip_range_invalid' => 'Xatalı IP arası.',
 'proxyblocker' => 'Proksi tıyu',
-'proxyblocksuccess' => 'Eşlände',
 'sorbsreason' => 'Sezneñ IP adresığız DNSBLda açıq proksi dip sanala.',
 
 # Developer tools

@@ -1285,8 +1285,6 @@ Ngá bu ihe hé mèkwàrà nà ihü '''$1''':",
 'unblocklogentry' => 'àkwáchị gị $1',
 'block-log-flags-nocreate' => "Í ké ọ'bànifé bàchìrì",
 'block-log-flags-noemail' => 'ha kwàchịrị e-mail',
-'blockme' => 'Kwàchím',
-'proxyblocksuccess' => 'Ọméchá.',
 
 # Developer tools
 'lockdb' => 'Gbàchí uche nsónùsòrò',

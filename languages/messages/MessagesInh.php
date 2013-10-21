@@ -909,8 +909,6 @@ $messages = array(
 'blocklogentry' => '[[$1]] чIега белаб,  $2 $3 ха ялалца',
 'unblocklogentry' => '$1 юха яста я',
 'block-log-flags-nocreate' => 'ЛархIамий дагарчена цIи яьккхар пурам янза я.',
-'blockme' => 'ЧIега бола сона',
-'proxyblocksuccess' => 'Хьадаьд.',
 
 # Move page
 'move-page-legend' => 'ОагIува цIи хувца',

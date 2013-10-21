@@ -1427,7 +1427,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'contribslink' => 'شـراکـت',
 'blocklogpage' => 'نوشتۂ پابندی',
 'block-log-flags-nocreate' => 'کھاتے کی تخلیق غیرفعال',
-'proxyblocksuccess' => 'کردیا.',
 
 # Move page
 'move-page' => 'منتقلی',

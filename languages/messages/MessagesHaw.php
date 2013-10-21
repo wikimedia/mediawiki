@@ -736,7 +736,6 @@ E ʻike iā $2 no ka papa o nā kāpae ʻana hou.',
 'unblocklink' => 'mai pale',
 'change-blocklink' => 'hoʻololi ka palena',
 'contribslink' => 'nā ha‘awina',
-'blockme' => 'E ke‘a ia‘u',
 
 # Move page
 'move-page-legend' => 'Hoʻoneʻe i ka ʻaoʻao',

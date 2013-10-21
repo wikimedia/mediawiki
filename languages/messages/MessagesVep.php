@@ -2075,12 +2075,9 @@ Alemba om anttud blokiruindaiglehtez:',
 'ipb_cant_unblock' => 'Petuz: ei voi löuta ID $1:n blokiruindad.
 Voib olda, se om jo heittud.',
 'ip_range_invalid' => 'Vär IP-diapazon.',
-'blockme' => 'Blokiruigat mindai',
 'proxyblocker' => 'Proxy-blokator',
-'proxyblocker-disabled' => 'Nece funkcii ei ole kävutamas.',
 'proxyblockreason' => 'Teiden IP-adres om blokiruidud, sikš miše se om avoin proksi.
 Olgat hüväd, säkat pagin teiden Internet-provaideranke i kirjutagat hänele necen varuitomuden problemas.',
-'proxyblocksuccess' => 'Vaumiž.',
 'sorbsreason' => 'Teiden IP-adres om ozutadud kut avaitud proksi {{SITENAME}}-saitan DNSBL-an mustas nimikirjuteses.',
 'cant-block-while-blocked' => 'Teile ei sa blokiruida toižid kävutajid, sikš miše tö iče olet blokiruidud.',
 

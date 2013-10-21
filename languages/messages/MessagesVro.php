@@ -1562,7 +1562,6 @@ Perämäidsi kistutuisi ja tagasitegemiisi saat kaiaq [[Special:Log/delete|kistu
 'ip_range_invalid' => 'Viganõ puutri võrgoaadrõsi kujo.',
 'proxyblocker' => 'Vaihõserveri kinniqpidämine',
 'proxyblockreason' => "Su puutri võrgoaadrõs om kinniq peet, selle et taa om avalik vaihõserver. Otsiq üles uma võrgoliini pakja vai puutrias'atundja ja kõnõlõq näile taast hädäst.",
-'proxyblocksuccess' => 'Valmis.',
 'sorbsreason' => 'Su puutri võrgoaadrõs om SORBS-i mustan nimekirän ku avalik vaihõserver.',
 'sorbs_create_account_reason' => 'Su puutri võrgoaadrõs om pant SORBS-i musta nimekirjä ku avalik vaihõserver. Sa saa-i pruukjanimme tetäq',
 

@@ -2192,12 +2192,9 @@ Blokirlemesi eýýäm aýyrylan bolmagy mümkin.',
 Emma, bu adres $2 diapazonynyň bir bölegi hökmünde blokirlenipdir, diapazon blokirlemesini aýryp bilersiňiz.',
 'ip_range_invalid' => 'Nädogry IP diapazony.',
 'ip_range_toolarge' => '/$1 blokdan uly aralyk blokirlemelere rugsat berilmeýär',
-'blockme' => 'Meni blokirle',
 'proxyblocker' => 'Proksi blokirleýji',
-'proxyblocker-disabled' => 'Bu funksiýa ýapyk.',
 'proxyblockreason' => 'IP adresiňiz açyk proksidigi sebäpli blokirlenipdir.
 Internet üpjün edijiňiz ýa-da goldaw gullugy bilen habarlaşyp, olary bu çynlakaý howpsuzlyk problemasy barada habardar ediň.',
-'proxyblocksuccess' => 'Ýerine ýetirildi.',
 'sorbsreason' => 'IP adresiňiz {{SITENAME}} tarapyndan ulanylýan DNSBL-de açyk proksi hökmünde sanawa goşulypdyr.',
 'sorbs_create_account_reason' => 'IP adresiňiz {{SITENAME}} tarapyndan ulanylýan DNSBL-de açyk proksi hökmünde sanawa goşulypdyr.
 Hasap açyp bilmeýärsiňiz.',

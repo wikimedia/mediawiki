@@ -2787,12 +2787,9 @@ Tekuće zabrane i blokiranja možete naći [[Special:BlockList|ovde]].',
 Ona je blokirana kao deo blokade $2, koja može biti deblokirana.',
 'ip_range_invalid' => 'Neispravan raspod IP adresa.',
 'ip_range_toolarge' => 'Opsežna blokiranja veća od /$1 nisu dozvoljena.',
-'blockme' => 'Blokiraj me',
 'proxyblocker' => 'Bloker posrednika',
-'proxyblocker-disabled' => 'Ova funkcija je onemogućena.',
 'proxyblockreason' => 'Vaša IP adresa je blokirana jer predstavlja otvoreni posrednik.
 Obratite se vašem dobavljaču internet usluga ili tehničku podršku i obavestite ih o ovom ozbiljnom bezbednosnom problemu.',
-'proxyblocksuccess' => 'Urađeno.',
 'sorbs' => 'DNSBL',
 'sorbsreason' => 'Vaša IP adresa je navedena kao otvoreni posrednik u DNSBL-u koji koristi {{SITENAME}}.',
 'sorbs_create_account_reason' => 'Vaša IP adresa je navedena kao otvoreni posrednik u DNSBL-u koji koristi {{SITENAME}}.

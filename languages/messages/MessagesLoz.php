@@ -837,7 +837,6 @@ Petohoni di petulo '''$1''' sa:",
 'contribslink' => 'afina',
 'blocklogpage' => 'Desu di bolok',
 'blocklogentry' => 'sa bolok [[$1]] e simpekile sa $2 $3',
-'proxyblocksuccess' => 'Afi.',
 
 # Move page
 'move-page-legend' => 'Nyanganyisize petulo',

@@ -1655,12 +1655,9 @@ Lon me ing [[Special:BlockList|IP block list]] para king tala da reng kasalungsu
 'ipb_blocked_as_range' => 'Mali: E diretsung makasabat ing IP $1, at e maliaring ilako pangasabat.
 Pero makasabat ya antimong kayabe king range $2, a maliaring ilako pangasabat.',
 'ip_range_invalid' => 'E matatanggap a IP range.',
-'blockme' => 'Sabatan muku',
 'proxyblocker' => 'Maniabat a proxy',
-'proxyblocker-disabled' => 'Makapatda (disabled) ya ing gamit (function) a ini.',
 'proxyblockreason' => 'Mesabat ya ing kekang IP address uling metung yang open proxy.
 Pakiyaus me ing kekang Internet service provider o tech support at pabaluan me kaniting mabayat a prublema king seguridad.',
-'proxyblocksuccess' => 'Merapat na.',
 'sorbsreason' => 'Makalista ya ing kekang IP address antimong open proxy king DNSBL a gagamitan ning {{SITENAME}}.',
 'sorbs_create_account_reason' => 'Makalista yang open proxy king DNSBL a gagamitan ning {{SITENAME}} ing kekang IP address.
 E ka maliaring maglalang account.',

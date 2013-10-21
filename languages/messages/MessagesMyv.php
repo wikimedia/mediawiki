@@ -1638,8 +1638,6 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'block-log-flags-noemail' => 'е-сёрма озавтозь саймес',
 'block-log-flags-hiddenname' => 'лисиенть-совиенть лемезэ кекшезь',
 'ipb_already_blocked' => '"$1" уш саймас саезь',
-'blockme' => 'Озавтомак саймес',
-'proxyblocksuccess' => 'Озавтовсь.',
 
 # Developer tools
 'lockdb' => 'Сёлгомс датабазанть',

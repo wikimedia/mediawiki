@@ -2844,11 +2844,8 @@ Se [[Special:BlockList|blockeringslistan]] för en översikt av gällande blocke
 'ipb_blocked_as_range' => 'Fel: IP-adressen $1 är inte direkt blockerad, och kan därför inte avblockeras. Adressen är blockerad som en del av IP-intervallet $2, som kan avblockeras.',
 'ip_range_invalid' => 'Ogiltigt IP-intervall.',
 'ip_range_toolarge' => 'Blockering av block större än /$1 är inte tillåtna.',
-'blockme' => 'Blockera mig',
 'proxyblocker' => 'Proxy-block',
-'proxyblocker-disabled' => 'Den här funktionen är avaktiverad.',
 'proxyblockreason' => 'Din IP-adress har blivit blockerad eftersom den tillhör en öppen proxy. Kontakta din internetleverantör eller din organisations eller företags tekniska support, och informera dem om denna allvarliga säkerhetsrisk.',
-'proxyblocksuccess' => 'Gjort.',
 'sorbsreason' => 'Din IP-adress är listad som öppen proxy i den DNSBL {{SITENAME}} använder.',
 'sorbs_create_account_reason' => 'Din IP-adress är listad som en öppen proxy i den DNSBL som används av {{SITENAME}}.
 Du får inte skapa ett användarkonto',

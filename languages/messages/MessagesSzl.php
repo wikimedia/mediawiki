@@ -2002,12 +2002,9 @@ Coby přejřeć lista uobecńy aktywnych zawarć, přyńdź na zajta [[Special:B
 'ipb_blocked_as_range' => 'Feler: Adres IP $1 ńy zostou zawarty bezpośredńo i ńy može zostać uodymkńjynty.
 Noležy uůn do zawartygo zakresu adresůw $2. Uodymknůńć možno ino couki zakres.',
 'ip_range_invalid' => 'Ńypoprowny zakres adresów IP.',
-'blockme' => 'Zawryj mi sprowjyńa',
 'proxyblocker' => 'Zawjyrańe proxy',
-'proxyblocker-disabled' => 'Ta fůnkcyjo je wůuůnčůna.',
 'proxyblockreason' => 'Twůj adres IP zostou zawarty, bo je to adres uotwartygo proxy.
 Sprawa noležy wyjaśńić s dostawcům Internetu abo půmocům techńičnům informujůnc uo tym powažnym problymje s bezpječyństwym.',
-'proxyblocksuccess' => 'Wykůnane.',
 'sorbsreason' => 'Twůj adres IP znojdowo śe na liśće serwerůw open proxy w DNSBL, užywanej bez {{GRAMMAR:B.lp|{{SITENAME}}}}.',
 'sorbs_create_account_reason' => 'Twůj adres IP znojdowo śe na liśće serwerůw open proxy w DNSBL, užywanej bez {{GRAMMAR:B.lp|{{SITENAME}}}}.
 Ńy možeš utwořić kůnta',

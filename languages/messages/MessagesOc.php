@@ -2745,11 +2745,8 @@ Consultatz la [[Special:BlockList|lista dels utilizaires blocats]] per veire los
 'ipb_blocked_as_range' => "Error : L'adreça IP $1 es pas estada blocada dirèctament e doncas pòt pas èsser deblocada. Çaquelà, es estada blocada per la plaja $2 la quala pòt èsser deblocada.",
 'ip_range_invalid' => 'Plaja IP incorrècta.',
 'ip_range_toolarge' => 'Los blocatges de plajas mai grandas que /$1 son pas autorizadas.',
-'blockme' => 'Blocatz-me',
 'proxyblocker' => 'Blocaire de mandatari (proxy)',
-'proxyblocker-disabled' => 'Aquesta foncion es desactivada.',
 'proxyblockreason' => "Vòstra ip es estada blocada perque s’agís d’un proxy dobèrt. Mercé de contactar vòstre fornidor d’accès internet o vòstre supòrt tecnic e de l’informar d'aqueste problèma de seguretat.",
-'proxyblocksuccess' => 'Acabat.',
 'sorbsreason' => 'Vòstra adreça IP es listada en tant que mandatari (proxy) dobèrt DNSBL per {{SITENAME}}.',
 'sorbs_create_account_reason' => 'Vòstra adreça IP es listada en tant que mandatari (proxy) dobèrt DNSBL per {{SITENAME}}.
 Podètz pas crear un compte',

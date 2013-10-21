@@ -2558,12 +2558,9 @@ Saait iske pahile khol dewa gais hoi.',
 Lekin iske, as part of the range $2, block karaa gais hai, jiske unblock karaa jaawe sake hai.',
 'ip_range_invalid' => 'IP ke range me galti hai.',
 'ip_range_toolarge' => '/$1 se barraa range blocks ke ijajat nai hae.',
-'blockme' => 'Ham ke roko',
 'proxyblocker' => 'Proxy roke waala',
-'proxyblocker-disabled' => 'Ii function pe rukawat hai.',
 'proxyblockreason' => 'Aap ke IP address ke block kar dewa gais hai kahe ki ii ek open proxy hai.
 Meharbaani kar ke aap aapan Internet service provider, nai to tech support, ke contact kar ke ii serious security problem ke baare me batao.',
-'proxyblocksuccess' => 'Hoe gais hai.',
 'sorbsreason' => 'DNSBL used by {{SITENAME}} me aap ke IP address ke as an open proxy list karaa gais hai.',
 'sorbs_create_account_reason' => 'DNSBL used by {{SITENAME}} me aap ke IP address ke as an open proxy list karaa gais hai.
 Aap ke ek account banae ke ijajat nai hai',

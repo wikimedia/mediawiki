@@ -2239,7 +2239,6 @@ Asekcem aneggaru n useklas n ikyafen yella ddaw agi :',
 'block-log-flags-anononly' => 'Imseqdacen udrigen kan',
 'block-log-flags-nocreate' => 'asnulfu n umiḍan yessegdel',
 'proxyblockreason' => 'Tansa n IP inek teɛkel axaṭer nettat "open proxy". G leɛnayek, meslay akk d provider inek.',
-'proxyblocksuccess' => 'D ayen.',
 'sorbsreason' => 'Tansa IP inek/inem tella deg yiwen umuɣ am "open proxy" deg DNSBL yettuseqdac deg {{SITENAME}}.',
 'sorbs_create_account_reason' => 'Tansa IP inek/inem tella deg yiwen umuɣ am "open proxy" deg DNSBL yettuseqdac deg {{SITENAME}}.
 Ur tezmireḍ ara ad snulfuḍ amiḍan.',

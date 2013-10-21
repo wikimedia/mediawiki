@@ -2053,12 +2053,9 @@ Logolös blokamis e xilis anu lonöfölis in [[Special:BlockList|lised blokamas]
 'ipb_blocked_as_range' => 'Pöl: ladet-IP $1 no peblokon stedöfiko e no kanon pasäblokön.
 Peblokon ye as dil ladetema: $2, kel kanon pasäblokön.',
 'ip_range_invalid' => 'Ladetem-IP no lonöföl.',
-'blockme' => 'Blokolöd obi',
 'proxyblocker' => 'Bloköm pladulömas',
-'proxyblocker-disabled' => 'Dun at penemogükon.',
 'proxyblockreason' => 'Ladet-IP olik peblokon bi binon pladulöm maifik.
 Kosikolös ko dünigevan bevüresodik u kaenastütans olik e nunolös ones sefasäkädi fefik at.',
-'proxyblocksuccess' => 'Peledunon.',
 'sorbsreason' => 'Ladet-IP olik palisedon as pladulöm maifik pö el DNSBL fa {{SITENAME}} pageböl.',
 'sorbs_create_account_reason' => 'Ladet-IP olik palisedon as pladulöm maifik pö el DNSBL fa {{SITENAME}} pageböl.
 No dalol jafön kali.',

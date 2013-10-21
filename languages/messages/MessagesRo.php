@@ -2824,12 +2824,9 @@ Jurnalul suprimărilor este indicat mai jos:',
 Face parte din area de blocare $2, care nu poate fi deblocată.',
 'ip_range_invalid' => 'Serie IP invalidă.',
 'ip_range_toolarge' => 'Blocările mai mari de /$1 nu sunt permise.',
-'blockme' => 'Blochează-mă',
 'proxyblocker' => 'Blocaj de proxy',
-'proxyblocker-disabled' => 'Această funcție este dezactivată.',
 'proxyblockreason' => 'Adresa dumneavoastră IP a fost blocată pentru că este un proxy deschis.
 Vă rugăm să vă contactați furnizorul de servicii Internet sau tehnicienii IT și să-i informați asupra acestei probleme serioase de securitate.',
-'proxyblocksuccess' => 'Realizat.',
 'sorbsreason' => 'Adresa dumneavoastră IP este listată ca un proxy deschis în DNSBL.',
 'sorbs_create_account_reason' => 'Adresa dumneavoastră IP este listată ca un proxy deschis în lista neagră DNS.
 Nu vă puteți crea un cont',

@@ -2860,14 +2860,11 @@ Automattesch jesperrte <i lang="en>IP</i>-Addräße sin nit heh, ävver en de [[
 'ipb_blocked_as_range' => 'Dat jeit nit. De IP-Adress „$1“ es nit tirek jesperrt. Se es ävver en däm jesperrte Bereich „$2“ dren. Die Sperr kam_mer ophevve. Donoh kam_mer och kleiner Aandeile fun däm Bereich widder neu sperre. Di Adress alleins kam_mer ävver nit freijevve.',
 'ip_range_invalid' => 'Dä Bereich vun IP_Adresse es nit en Oodnung.',
 'ip_range_toolarge' => 'Berette övver /$1 ze sperre is nit zohjelohße, bloß kleiner.',
-'blockme' => 'Open_Proxy_Blocker',
 'proxyblocker' => 'Open_Proxy_Blocker',
-'proxyblocker-disabled' => 'Di Funxjon es ußjeschalldt.',
 'proxyblockreason' => 'Unger Ding IP_Adress läuf ene offe Proxy.
 Dröm kanns De heh em Wiki nix maache.
 Schwaad met Dingem System-Minsch udder Netzwerk-Techniker udder ISP (<i lang="en">Internet Service Provider</i>)
 un verzäll dänne vun däm ärrje Risiko för de Secherheit fun dänne ehr Rääschnere!',
-'proxyblocksuccess' => 'Jedonn.',
 'sorbs' => '<i lang="en">DNSBL</i>',
 'sorbsreason' => 'Ding IP-Adress weed en de DNSbl als ene offe Proxy jeliss. Schwaad met Dingem System-Minsch oder Netzwerk-Techniker (ISP Internet Service Provider) drüvver, un verzäll dänne vun däm Risiko för ehr Secherheit!',
 'sorbs_create_account_reason' => 'Ding IP-Adress weed en de DNSbl als ene offe Proxy jeliss. Dröm kanns De Dich heh em Wiki nit als ene neue Metmaacher aanmelde. Schwaad met Dingem System-Minsch oder Netzwerk-Techniker oder (ISP Internet Service Provider) drüvver, un verzäll dänne vun däm Risiko för ehr Secherheit!',

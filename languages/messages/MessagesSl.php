@@ -2746,12 +2746,9 @@ Ali želite spremeniti nastavitve blokade?',
 Je pa blokiran kot del območja $2, ki ga lahko odblokirate.',
 'ip_range_invalid' => 'Neveljaven IP-razpon.',
 'ip_range_toolarge' => 'Območja blokade večja od /$1 niso dovoljena.',
-'blockme' => 'Blokiraj me',
 'proxyblocker' => 'Blokator posredniških strežnikov',
-'proxyblocker-disabled' => 'Funkcija je onemogočena.',
 'proxyblockreason' => 'Ker uporabljate odprti posredniški strežnik, je urejanje z vašega IP-naslova preprečeno.
 Gre za resno varnostno težavo, o kateri obvestite svojega internetnega ponudnika ali tehnično podporo.',
-'proxyblocksuccess' => 'Storjeno.',
 'sorbsreason' => 'Vaš IP-naslov je v DNSBL uvrščen med odprte posredniške strežnike.',
 'sorbs_create_account_reason' => 'Vaš IP-naslov je v DNSBL, ki ga uporablja {{GRAMMAR:tožilnik|{{SITENAME}}}}, naveden kot odprti posredniški strežnik (proxy).
 Računa žal ne morete ustvariti.',
@@ -3769,7 +3766,7 @@ Prosimo, potrdite, da jo resnično želite znova ustvariti.",
 'confirm-unwatch-top' => 'Odstranim stran z vašega spiska nadzorov?',
 
 # Separators for various lists, etc.
-'percent' => '$1 %',
+'percent' => '$1&#160;%',
 
 # Multipage image navigation
 'imgmultipageprev' => '← prejšnja stran',

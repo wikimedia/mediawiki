@@ -2615,12 +2615,9 @@ Pò essere ca ha state già sbloccate.",
 Jidde ha state bloccate cumme parte de l'indervalle $2, ca pò essere sbloccate.",
 'ip_range_invalid' => "L'indervalle de l'IP non g'è valide.",
 'ip_range_toolarge' => 'Le indervalle de le blocche cchiù larie de /$1 non ge sonde permesse.',
-'blockme' => 'Bloccheme',
 'proxyblocker' => 'Bloccaore de proxy',
-'proxyblocker-disabled' => "'A funzione ha state disabbilitete.",
 'proxyblockreason' => "L'indirizze IP tue ha state bloccate purcè jè 'nu proxy apirte.
 Pe piacere condatte 'u provider de Indernette tue o 'u supporte tecniche e 'mbormescele de stu serie probbleme de securezze.",
-'proxyblocksuccess' => 'Spicciete.',
 'sorbs' => 'DNSBL',
 'sorbsreason' => "L'indirizze IP tue jè elegate cumme a 'nu proxy apirte jndr'à DNSBL ausate da {{SITENAME}}.",
 'sorbs_create_account_reason' => "L'indirizze IP tue jè elegate cumme a 'nu proxy apirte jndr'à DNSBL ausate da {{SITENAME}}.

@@ -2294,8 +2294,6 @@ Andika sababu ya kuzuia chini (kwa mfano, kwa kutaja mifano ya kurasa zilizohari
 'block-log-flags-noemail' => 'barua pepe imezuiliwa',
 'block-log-flags-hiddenname' => 'jina la mtumiaji limefichwa',
 'ipb_already_blocked' => '"$1" tayari imeshazuiwa',
-'blockme' => 'Nizuie',
-'proxyblocksuccess' => 'Tayari.',
 
 # Developer tools
 'lockdb' => 'Funga hifadhidata',

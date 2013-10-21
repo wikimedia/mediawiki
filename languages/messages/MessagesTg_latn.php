@@ -1507,11 +1507,8 @@ Baroi fehristi mahrumijatho va basta şudanhoi amalijoti kununī ba [[Special:Bl
 'ipb_cant_unblock' => 'Xato: Nişonai basta şudani $1 joft naşud. Mumkin ast peştar boz şuda boşad.',
 'ipb_blocked_as_range' => 'Xato: Nişonai IP-i $1 ba şakli mustaqim basta naşudaast va nametavonad boz şavad. In nişona hamrohi $2, basta şuda qobili boz şudan ast.',
 'ip_range_invalid' => "Safi IP nomū'tabar ast.",
-'blockme' => 'Dastrasiji manro qatь kun',
 'proxyblocker' => 'Proksiband',
-'proxyblocker-disabled' => "In amal ƣajrifa'ol şudaast.",
 'proxyblockreason' => "Az sababi peşkor boz (open proxy) budanaş, nişonai IP-i şumo basta şudaast. Lutfan bo ta'minkunandai xizmathoi Internetiji xud jo puştiboni texnikī tamos bigired va onhoro bo in muşkiliji amnijatiji muhim ogoh kuned.",
-'proxyblocksuccess' => 'Ançom şud.',
 'sorbsreason' => 'Nişonai IP-i şumo hamcun jak proksiji kuşoda dar DNSBL fehrist şudaast, ki az tarafi {{SITENAME}} istifoda meşavad.',
 'sorbs_create_account_reason' => 'Nişonai IP-i şumo hamcun proksiji kuşoda dar DNSBL, ki az tarafi {{SITENAME}} istifoda meşavad, fehrist şudaast. Şumo nametavoned hisobi korabariero eçod kuned',
 

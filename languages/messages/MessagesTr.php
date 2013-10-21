@@ -2789,12 +2789,9 @@ Engelleme kaldırılmış olabilir.',
 Ancak, bu adres $2 aralığının parçası olarak engellenmiş, aralık engellemesini kaldırabilirsiniz.',
 'ip_range_invalid' => 'Geçersiz IP aralığı.',
 'ip_range_toolarge' => '/$1 bloktan daha büyük aralık bloklarına izin verilmez.',
-'blockme' => 'Beni engelle',
 'proxyblocker' => 'Proxy engelleyici',
-'proxyblocker-disabled' => 'Bu işlev devre dışı bırakıldı.',
 'proxyblockreason' => 'IP adresiniz açık bir proxy olduğu için engellendi.
 Lütfen İnternet sevis sağlayınız ile ya da teknik destek ile irtibat kurun ve bu ciddi güvenlik probleminden haberdar edin.',
-'proxyblocksuccess' => 'Tamamlanmıştır.',
 'sorbsreason' => "IP adresiniz, {{SITENAME}} sitesi tarafından kullanılan DNSBL'de açık proxy olarak listelenmiş.",
 'sorbs_create_account_reason' => "IP adresiniz {{SITENAME}} sitesi tarafından kullanılan DNSBL'de açık proxy olarak listelenmiş.
 Hesap oluşturamazsınız",

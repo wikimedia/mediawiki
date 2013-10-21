@@ -219,7 +219,7 @@ $messages = array(
 'tog-enotifwatchlistpages' => 'Send mig en e-mail ved ændringer til en side eller fil på min overvågningsliste',
 'tog-enotifusertalkpages' => 'Send mig en e-mail når min brugerdiskussionsside ændres',
 'tog-enotifminoredits' => 'Send mig også en e-mail ved mindre ændringer af sider og filer på min overvågningsliste',
-'tog-enotifrevealaddr' => 'Vis min e-mail-adresse i mails med besked om ændringer',
+'tog-enotifrevealaddr' => 'Vis min e-mailadresse i e-mails med besked om ændringer',
 'tog-shownumberswatching' => 'Vis antal brugere, der overvåger',
 'tog-oldsig' => 'Nuværende signatur:',
 'tog-fancysig' => 'Behandl signatur som wikitekst uden automatisk henvisning',
@@ -361,7 +361,7 @@ $messages = array(
 'vector-action-move' => 'Flyt',
 'vector-action-protect' => 'Beskyt',
 'vector-action-undelete' => 'Gendan',
-'vector-action-unprotect' => 'Ændr beskyttelse',
+'vector-action-unprotect' => 'Ændre beskyttelse',
 'vector-simplesearch-preference' => 'Aktivér forenklet søgefelt (kun Vector-udseendet)',
 'vector-view-create' => 'Opret',
 'vector-view-edit' => 'Redigér',
@@ -398,10 +398,10 @@ $messages = array(
 'undelete_short' => 'Fortryd sletning af {{PLURAL:$1|én version|$1 versioner}}',
 'viewdeleted_short' => 'Vis {{PLURAL:$1|en slettet redigering|$1 slettede redigeringer}}',
 'protect' => 'Beskyt',
-'protect_change' => 'ændr',
+'protect_change' => 'ændre',
 'protectthispage' => 'Beskyt side',
-'unprotect' => 'Ændr beskyttelse',
-'unprotectthispage' => 'Ændr beskyttelsen af denne side',
+'unprotect' => 'Ændre beskyttelse',
+'unprotectthispage' => 'Ændre beskyttelsen af denne side',
 'newpage' => 'Ny side',
 'talkpage' => 'Diskussion',
 'talkpagelinktext' => 'diskussion',
@@ -706,13 +706,13 @@ Din midlertidige adgangskode vil udløbe om {{PLURAL:$5|en dag|$5 dage}}.
 
 Hvis en anden har bestilt den nye adgangskode, eller hvis du er kommet i tanke om din gamle adgangskode og ikke længere vil ændre den,
 kan du bare ignorere denne e-mail og fortsætte med at bruge din gamle adgangskode.',
-'noemail' => 'Der er ikke oplyst en e-mail-adresse for bruger "$1".',
+'noemail' => 'Der er ikke oplyst en e-mailadresse for bruger "$1".',
 'noemailcreate' => 'Du skal angive en gyldig e-mailadresse',
 'passwordsent' => 'En ny adgangskode er sendt til e-mail-adressen,
 som er registreret for "$1".
 Du bør logge på og ændre din adgangskode straks efter du har modtaget e-mailen.',
 'blocked-mailpassword' => 'Din IP-adresse er spærret for ændring af sider. For at forhindre misbrug, er det heller ikke muligt, at bestille et nyt password.',
-'eauthentsent' => 'En bekræftelsesmail er sendt til den angivne e-mail-adresse.
+'eauthentsent' => 'En bekræftelsesmail er sendt til den angivne e-mailadresse.
 
 Før en e-mail kan modtages af andre brugere af {{SITENAME}}-mailfunktionen, skal adressen og dens tilhørsforhold til denne bruger bekræftes. Følg venligst anvisningerne i denne mail.',
 'throttled-mailpassword' => 'Indenfor {{PLURAL:$1|den sidste time|de sidste $1 timer}} er der allerede sendt en ny adgangskode. For at forhindre misbrug af funktionen, kan der kun bestilles en ny adgangskode én gang for hver {{PLURAL:$1|time|$1 timer}}.',
@@ -721,9 +721,9 @@ Før en e-mail kan modtages af andre brugere af {{SITENAME}}-mailfunktionen, ska
 Derfor kan besøgende ikke oprette flere kontoer fra denne IP-adresse i øjeblikket.',
 'emailauthenticated' => 'Din e-mail-adresse blev bekræftet $2 $3.',
 'emailnotauthenticated' => 'Din e-mail-adresse er endnu ikke bekræftet og de avancerede e-mail-funktioner er slået fra indtil bekræftelse har fundet sted (d.u.a.). Log ind med den midlertidige adgangskode, der er blevet sendt til dig, for at bekræfte, eller bestil et nyt på loginsiden.',
-'noemailprefs' => 'Angiv en e-mail-adresse, så følgende funktioner er til rådighed.',
+'noemailprefs' => 'Angiv en e-mailadresse, så følgende funktioner er til rådighed.',
 'emailconfirmlink' => 'Bekræft e-mail-adressen (autentificering).',
-'invalidemailaddress' => 'E-mail-adressen kan ikke accepteres da den tilsyneladende har et ugyldigt format. Skriv venligst en e-mail-adresse med et korrekt format eller tøm feltet.',
+'invalidemailaddress' => 'E-mailadressen kan ikke accepteres da den tilsyneladende har et ugyldigt format. Skriv venligst en e-mailadresse med et korrekt format eller tøm feltet.',
 'cannotchangeemail' => 'De email-adresser, der er tilknyttet brugerkontoer, kan ikke ændres på denne wiki.',
 'emaildisabled' => 'Denne hjemmeside kan ikke sende emails.',
 'accountcreated' => 'Brugerkonto oprettet',
@@ -744,7 +744,7 @@ Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit
 
 # Email sending
 'php-mail-error-unknown' => "Ukendt fejl i PHP's mail()-funtion",
-'user-mail-no-addy' => 'Forsøgte at sende email uden en email-adresse',
+'user-mail-no-addy' => 'Forsøgte at sende e-mail uden en e-mailadresse',
 'user-mail-no-body' => 'Forsøgte at sende en e-mail med tomt eller urimeligt kort indhold.',
 
 # Change password dialog
@@ -775,9 +775,9 @@ Du har muligvis allerede skiftet din adgangskode eller anmodet om en ny midlerti
 'passwordreset-emaildisabled' => 'E-mailfunktioner er slået fra på denne wiki.',
 'passwordreset-username' => 'Brugernavn:',
 'passwordreset-domain' => 'Domæne:',
-'passwordreset-capture' => 'Se den resulterende email?',
+'passwordreset-capture' => 'Se den resulterende e-mail?',
 'passwordreset-capture-help' => 'Hvis du krydser dette felt af, vil emailen (med den midlertidige adgangskode) blive vist til dig i tillæg til at blive sendt til brugeren.',
-'passwordreset-email' => 'E-mail adresse:',
+'passwordreset-email' => 'E-mailadresse:',
 'passwordreset-emailtitle' => 'Kontooplysninger på {{SITENAME}}',
 'passwordreset-emailtext-ip' => 'Nogen (sandsynligvis dig, fra IP-adressen $1) har anmodet om at få nulstillet din adgangskode til {{SITENAME}} ($4). {{PLURAL:$3|Den følgende brugerkonto er associeret|De følgende brugerkonti er associerede}} med denne e-mail-adresse:
 
@@ -798,15 +798,15 @@ Midlertidig adgangskode: $2',
 'passwordreset-emailerror-capture' => 'En mail om nulstilling af adgangskode, som vist nedenfor, blev genereret, men det lykkedes ikke at sende den til {{GENDER:$2|bruger}}: $1',
 
 # Special:ChangeEmail
-'changeemail' => 'Ændr email-adresse',
-'changeemail-header' => 'Ændr kontoens email-adresse',
-'changeemail-text' => 'Udfyld denne formular for at ændre din email-adresse. Du skal indtaste dit kodeord for at bekræfte denne ændring.',
+'changeemail' => 'Ændre e-mailadresse',
+'changeemail-header' => 'Ændre kontoens e-mailadresse',
+'changeemail-text' => 'Udfyld denne formular for at ændre din e-mailadresse. Du skal indtaste dit kodeord for at bekræfte denne ændring.',
 'changeemail-no-info' => 'Du skal være logget på for at komme direkte til denne side.',
-'changeemail-oldemail' => 'Nuværende email-adresse:',
-'changeemail-newemail' => 'Ny email-adresse:',
+'changeemail-oldemail' => 'Nuværende e-mailadresse:',
+'changeemail-newemail' => 'Ny e-mailadresse:',
 'changeemail-none' => '(ingen)',
 'changeemail-password' => 'Din adgangskode til {{SITENAME}}:',
-'changeemail-submit' => 'Ændr email',
+'changeemail-submit' => 'Ændre email',
 'changeemail-cancel' => 'Afbryd',
 
 # Special:ResetTokens
@@ -886,13 +886,13 @@ Begrundelsen for det er:
 
 Du kan kontakte $1 eller en af de andre [[{{MediaWiki:Grouppage-sysop}}|administratorer]] for at diskutere blokeringen.
 
-Bemærk at du ikke kan bruge funktionen "e-mail til denne bruger" medmindre du har en gyldig e-mail-adresse registreret i din [[Special:Preferences|brugerindstilling]], og du ikke er blevet blokeret fra at bruge den.
+Bemærk at du ikke kan bruge funktionen "e-mail til denne bruger" medmindre du har en gyldig e-mailadresse registreret i din [[Special:Preferences|brugerindstilling]], og du ikke er blevet blokeret fra at bruge den.
 
 Din nuværende IP-adresse er $3, og blokerings-id\'et er #$5.
 Angiv venligst alle de ovenstående detaljer ved eventuelle henvendelser.',
 'blockednoreason' => 'ingen begrundelse givet',
 'whitelistedittext' => 'Du skal $1 for at kunne redigere sider.',
-'confirmedittext' => 'Du skal først bekræfte e-mail-adressen, før du kan lave ændringer. Udfyld og bekræft din e-mail-adresse i dine [[Special:Preferences|Indstillinger]].',
+'confirmedittext' => 'Du skal først bekræfte e-mailadressen, før du kan lave ændringer. Udfyld og bekræft din e-mailadresse i dine [[Special:Preferences|indstillinger]].',
 'nosuchsectiontitle' => 'Kan ikke finde afsnittet',
 'nosuchsectiontext' => 'Du forsøgte at ændre et ikke-eksisterende afsnit. Det kan være flyttet eller slettet, siden du hentede siden.',
 'loginreqtitle' => 'Log på nødvendigt',
@@ -1152,7 +1152,7 @@ Andre administratorer på {{SITENAME}} vil fortsat være i stand til at se det s
 'revdelete-hide-comment' => 'Skjul ændringskommentar',
 'revdelete-hide-user' => 'Skjul brugerens brugernavn/IP',
 'revdelete-hide-restricted' => 'Skjul også informationen for administratorer',
-'revdelete-radio-same' => '(ændr ikke)',
+'revdelete-radio-same' => '(ikke ændre)',
 'revdelete-radio-set' => 'Ja',
 'revdelete-radio-unset' => 'Nej',
 'revdelete-suppress' => 'Skjul også informationen for administratorer',
@@ -1331,8 +1331,8 @@ Du kan prøve at bruge \"all:\" som præfiks for at søge i alt indhold (inkl. d
 'prefs-watchlist-token' => 'Overvågningslistenøgle:',
 'prefs-misc' => 'Forskelligt',
 'prefs-resetpass' => 'Skift adgangskode',
-'prefs-changeemail' => 'Ændr email',
-'prefs-setemail' => 'Angiv en email-adresse',
+'prefs-changeemail' => 'Ændre e-mailadresse',
+'prefs-setemail' => 'Angiv en e-mailadresse',
 'prefs-email' => 'Indstillinger for e-mail',
 'prefs-rendering' => 'Udseende',
 'saveprefs' => 'Gem indstillinger',
@@ -1405,7 +1405,7 @@ Informationen vil være offentlig.',
 'email' => 'E-mail',
 'prefs-help-realname' => 'Angivelse af rigtigt navn er valgfrit.
 Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit arbejde.',
-'prefs-help-email' => 'Angivelse af e-mail-adresse er valgfrit. Det gør det muligt at sende dig en ny adgangskode hvis du glemmer den.',
+'prefs-help-email' => 'Angivelse af e-mailadresse er valgfrit, men den gør det muligt at sende dig en ny adgangskode hvis du glemmer den.',
 'prefs-help-email-others' => 'Du kan også vælge at lade andre kontakte dig gennem din bruger eller diskussions side uden at behøve at afsløre din identitet.',
 'prefs-help-email-required' => 'E-mail-adresse er krævet.',
 'prefs-info' => 'Grundlæggende information',
@@ -1429,7 +1429,7 @@ Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'E-mailadressen ser ud til at være gyldig',
-'email-address-validity-invalid' => 'Indtast en gyldig e-mail adresse',
+'email-address-validity-invalid' => 'Indtast en gyldig e-mailadresse',
 
 # User rights
 'userrights' => 'Håndtering af brugerrettigheder',
@@ -2243,16 +2243,16 @@ Der findes muligvis [[{{MediaWiki:Listgrouprights-helppage}}|yderligere informat
 'mailnologin' => 'Du er ikke logget på',
 'mailnologintext' => 'Du skal være [[Special:UserLogin|logget på]] og have en gyldig e-mailadresse sat i dine [[Special:Preferences|indstillinger]] for at sende e-mail til andre brugere.',
 'emailuser' => 'E-mail til denne bruger',
-'emailuser-title-target' => 'Send email til denne {{GENDER:$1|bruger}}',
-'emailuser-title-notarget' => 'Send email til en bruger',
+'emailuser-title-target' => 'Send e-mail til denne {{GENDER:$1|bruger}}',
+'emailuser-title-notarget' => 'Send e-mail til en bruger',
 'emailpage' => 'E-mail bruger',
 'emailpagetext' => 'Du kan bruge formularen nedenfor til at sende en e-mail til denne {{GENDER:$1|bruger}}.
 Den e-mail-adresse, du har angivet i [[Special:Preferences|dine indstillinger]], vil dukke op i "fra"-feltet på e-mailen, så modtageren kan svare dig.',
 'usermailererror' => 'E-mail-modulet returnerede en fejl:',
-'defemailsubject' => '{{SITENAME}}-email fra brugeren "$1"',
+'defemailsubject' => '{{SITENAME}}-e-mail fra brugeren "$1"',
 'usermaildisabled' => 'Bruger-e-mail deaktiveret',
 'usermaildisabledtext' => 'Du kan ikke sende e-mails til andre brugere på denne wiki',
-'noemailtitle' => 'Ingen e-mail-adresse',
+'noemailtitle' => 'Ingen e-mailadresse',
 'noemailtext' => 'Denne bruger har ikke angivet en gyldig e-mail-adresse.',
 'nowikiemailtitle' => 'E-mail er ikke tilladt',
 'nowikiemailtext' => 'Denne bruger har valgt ikke at modtage e-mail fra andre brugere.',
@@ -2417,7 +2417,7 @@ Se [[Special:ProtectedPages|listen over beskyttede sider]] for listen over sideb
 'modifiedarticleprotection' => 'ændrede beskyttelsen af "[[$1]]"',
 'unprotectedarticle' => 'fjernede beskyttelse af "[[$1]]"',
 'movedarticleprotection' => 'flyttede beskyttelsesindstillinger fra "[[$2]]" til "[[$1]]"',
-'protect-title' => 'Ændr beskyttelse af "$1"',
+'protect-title' => 'Ændre beskyttelse af "$1"',
 'protect-title-notallowed' => 'Få vist beskyttelsesniveauet af "$1"',
 'prot_1movedto2' => '$1 flyttet til $2',
 'protect-badnamespace-title' => 'Navnerum, der ikke kan beskyttes',
@@ -2662,7 +2662,7 @@ Se [[Special:BlockList|blokeringslisten]] for alle blokeringer.',
 'ipblocklist-no-results' => 'Den angivene IP-addresse eller brugernavn er ikke blokeret.',
 'blocklink' => 'bloker',
 'unblocklink' => 'ophæv blokering',
-'change-blocklink' => 'ændr blokering',
+'change-blocklink' => 'ændre blokering',
 'contribslink' => 'bidrag',
 'emaillink' => 'send e-mail',
 'autoblocker' => 'Du er automatisk blokeret, fordi du deler IP-adresse med "[[User:$1|$1]]".
@@ -2697,11 +2697,8 @@ Se [[Special:BlockList|blokeringslisten]] for den nuværende liste med aktuelle 
 'ipb_blocked_as_range' => 'Fejl: IP-adressen $1 er ikke direkte blokeret. Derfor kan en blokering ikke ophæves. Adressen er blokeret som en del af intervallet $2. Denne blokering kan ophæves.',
 'ip_range_invalid' => 'Ugyldigt IP-interval.',
 'ip_range_toolarge' => 'Blokeringer af IP-serier større end /$1 er ikke tilladte.',
-'blockme' => 'Bloker mig',
 'proxyblocker' => 'Proxy-blokering',
-'proxyblocker-disabled' => 'Denne funktion er ikke i brug.',
 'proxyblockreason' => "Din IP-adresse er blevet blokeret fordi den er en såkaldt ''åben proxy''. Kontakt din Internet-udbyder eller tekniske hotline og oplyse dem om dette alvorlige sikkerhedsproblem.",
-'proxyblocksuccess' => 'Færdig.',
 'sorbsreason' => 'IP-adressen er opført i DNSBL på {{SITENAME}} som åben PROXY.',
 'sorbs_create_account_reason' => 'IP-adressen er opført i DNSBL på {{SITENAME}} som åben PROXY. Oprettelse af nye brugere er ikke mulig.',
 'xffblockreason' => 'En IP-adresse der er indeholdt i X-Fremsendt-Til hovedet, enten din egen eller en på en proxy-server, du bruger, er blevet blokeret. Den oprindelige grund til blokeringen var:$1',
@@ -2958,7 +2955,7 @@ Alle Transwiki import-aktioner protokolleres i [[Special:Log/import|import-logge
 Du kan se på kildeteksten.',
 'tooltip-ca-history' => 'Tidligere versioner af denne side',
 'tooltip-ca-protect' => 'Beskyt denne side',
-'tooltip-ca-unprotect' => 'Ændr beskyttelsen af denne side',
+'tooltip-ca-unprotect' => 'Ændre beskyttelsen af denne side',
 'tooltip-ca-delete' => 'Slet denne side',
 'tooltip-ca-undelete' => 'Gendan de redigeringer der blev lavet på denne side før den blev slettet',
 'tooltip-ca-move' => 'Flyt denne side',
@@ -3618,12 +3615,12 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 
 # Email address confirmation
 'confirmemail' => 'Bekræft e-mail-adressen',
-'confirmemail_noemail' => 'Du har ikke angivet en gyldig e-mail-adresse i din [[Special:Preferences|brugerprofil]].',
+'confirmemail_noemail' => 'Du har ikke angivet en gyldig e-mailadresse i din [[Special:Preferences|brugerprofil]].',
 'confirmemail_text' => '{{SITENAME}} kræver, at du bekræfter en e-mail-adresse (autentificering), før du kan bruge de udvidede e-mail-funktioner. Med et klik på kontrolfeltet forneden sendes en e-mail til dig. Denne e-mail indeholder et link med en bekræftelseskode. Med et klik på dette link bekræftes, at e-mail-adressen er gyldig.',
 'confirmemail_pending' => 'En bekræftelsesmail er allerede sendt til dig. Hvis du først for nylig har oprettet brugerkontoen, vent da et par minutter på denne e-mail, før du bestiller en ny kode.',
 'confirmemail_send' => 'Send bekræftelseskode',
 'confirmemail_sent' => 'Bekræftelses-e-mail afsendt.',
-'confirmemail_oncreate' => 'En bekræftelseskode er sendt til din e-mail-adresse. Denne kode skal ikke bruges til anmeldelsen, den kræves dog til aktiveringen af e-mail-funktionerne indenfor Wikien.',
+'confirmemail_oncreate' => 'En bekræftelseskode er sendt til din e-mailadresse. Denne kode skal ikke bruges til at logge på, den kræves til aktivering af e-mailfunktionerne i Wikien.',
 'confirmemail_sendfailed' => 'Bekræftelsesmailen kunne ikke afsendes. Kontroller at e-mail-adressen er korrekt.
 
 Svarbesked fra mailserveren: $1',
@@ -3635,13 +3632,13 @@ Svarbesked fra mailserveren: $1',
 'confirmemail_subject' => '[{{SITENAME}}] - bekræftelse af e-mail-adressen',
 'confirmemail_body' => 'Hej,
 
-Nogen med IP-adresse $1, sandsynligvis dig, har bestilt en bekræftelse af denne e-mail-adresse til brugerkontoen "$2" på {{SITENAME}}.
+Nogen med IP-adresse $1, sandsynligvis dig, har bestilt en bekræftelse af denne e-mailadresse til brugerkontoen "$2" på {{SITENAME}}.
 
-For at aktivere e-mail-funktionen for {{SITENAME}} (igen) og for at bekræfte, at denne brugerkonto virkelig hører til din e-mail-adresse og dermed til dig, bedes du åbne det følgende link i din browser: $3
+For at aktivere e-mailfunktionen for {{SITENAME}} og for at bekræfte, at denne brugerkonto virkelig hører til din e-mailadresse og dermed til dig, bedes du åbne det følgende link i din browser: $3
 
 Bekræftelseskoden er gyldig indtil følgende tidspunkt: $4
 
-Hvis denne e-mail-adresse *ikke* hører til den anførte brugerkonto, skal du i stedet åbne dette link i din browser: $5
+Hvis denne e-mailadresse *ikke* hører til den anførte brugerkonto, skal du i stedet åbne dette link i din browser: $5
 
 --
 {{SITENAME}}: {{fullurl:{{Mediawiki:mainpage}}}}',

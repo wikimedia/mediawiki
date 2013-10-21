@@ -752,7 +752,6 @@ Fey ñi chumngen mülelu ($2 fey ñi chumngen wülngiñ) pengeli tüfa mew.',
 'blocklogentry' => 'Katrüntukufi [[$1]] $2 antü/ora mew, $3',
 'block-log-flags-nocreate' => 'Pepi dewmangelay konün',
 'block-log-flags-hiddenname' => 'Üy kellufe ellkan',
-'proxyblocksuccess' => 'Dewmangey.',
 
 # Move page
 'move-page' => 'Nengümün $1',

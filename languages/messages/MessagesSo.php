@@ -1300,8 +1300,6 @@ Eeg [[Special:BlockList|Mamnuucyada]] si aad u aragto liiska mamnuucyada ee hadd
 'block-log-flags-nocreate' => 'sameynta gudagalah lamaogola',
 'block-log-flags-noemail' => 'e-mailka laga mamnuucay',
 'ipb-needreblock' => '$1 mar hore aa la mamnuucay. marabtaa in aad wax ka bedesho habka?',
-'blockme' => 'I mamnuuc',
-'proxyblocksuccess' => 'waa la sameeyay.',
 
 # Move page
 'movenologin' => 'Gudaha kuma jirtid',

@@ -2452,12 +2452,9 @@ Eventualmain è ella gia vegnida annulada.",
 Ella e bloccada en la zona d'adressas IP $2 che po vegnir debloccà.",
 'ip_range_invalid' => "Zona d'adressas IP nunvalida.",
 'ip_range_toolarge' => "Zonas da bloccadas pli grondas che /$1 n'èn betg lubidas.",
-'blockme' => 'Bloccar mai',
 'proxyblocker' => 'Bloccar proxys',
-'proxyblocker-disabled' => 'Questa funcziun è deactivada.',
 'proxyblockreason' => "Tia adressa IP è vegnida bloccada perquai ch'ella è in proxy avert. 
 Contactescha tes provider dals survetschs d'internet u ils administraturs dal sistem ed als infurmescha davart quest problem da segirezza pussaivel.",
-'proxyblocksuccess' => 'Terminà.',
 'sorbsreason' => 'Tia adressa IP fa part da la glista da proxys averts da DNSBL che vegn utilisada da {{SITENAME}}.',
 'sorbs_create_account_reason' => "Tia adressa IP fa part da la glista da proxys averts da DNSBL che vegn utilisada da {{SITENAME}}.
 Ti na pos betg crear in conto d'utilisader.",

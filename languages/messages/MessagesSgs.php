@@ -1532,7 +1532,6 @@ onkstiau ožbluokoutam IP adresō a nauduotuojō.',
 'ipb_expiry_invalid' => 'Galiuojėma čiesos nelaistėns.',
 'ipb_already_blocked' => '„$1“ jau ožblokouts',
 'ipb-needreblock' => '$1 jau īr ožblokouts. A nuorėt pakeistė nustatīmus?',
-'proxyblocksuccess' => 'Padarīt.',
 
 # Developer tools
 'unlockdbtext' => 'Atrakėnos doumenū baze grōžėns galimībe vėsėm

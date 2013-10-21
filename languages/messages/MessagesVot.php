@@ -734,7 +734,6 @@ Cüľľellä $2 on spiiska viimeiziss pühcimühsiiss.',
 'blocklogentry' => 'piätteli cäüttijää vai IP-cislaa [[$1]]. Piättelemin lõpub $2 $3',
 'unblocklogentry' => 'rooci cäüttijält $1 muutuzpiäsüss',
 'block-log-flags-nocreate' => 'lukuloomin piäteltü',
-'proxyblocksuccess' => 'On tehtü.',
 
 # Move page
 'movepagetext' => "Alla õlõvall ruumõll võitta anta cüľľelle uutt nimiä; kõik cüľľee istori leeb liikutõttu uuvvõ nimee alle.

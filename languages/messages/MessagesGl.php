@@ -471,7 +471,7 @@ $messages = array(
 'articlepage' => 'Ver a páxina de contido',
 'talk' => 'Conversa',
 'views' => 'Vistas',
-'toolbox' => 'Caixa de ferramentas',
+'toolbox' => 'Ferramentas',
 'userpage' => 'Ver a páxina {{GENDER:{{BASEPAGENAME}}|do usuario|da usuaria}}',
 'projectpage' => 'Ver a páxina do proxecto',
 'imagepage' => 'Ver a páxina do ficheiro',
@@ -2810,12 +2810,9 @@ Olle a [[Special:BlockList|lista de bloqueos]] para comprobar os bloqueos vixent
 'ipb_blocked_as_range' => 'Erro: O enderezo IP $1 non está bloqueado directamente e non se pode desbloquear. Porén, está bloqueado por estar no rango $2, que si se pode desbloquear.',
 'ip_range_invalid' => 'Rango IP non válido.',
 'ip_range_toolarge' => 'Non están permitidos os rangos de bloqueo maiores que /$1.',
-'blockme' => 'Bloquearme',
 'proxyblocker' => 'Bloqueador de proxy',
-'proxyblocker-disabled' => 'Esta función está desactivada.',
 'proxyblockreason' => 'O seu enderezo IP foi bloqueado porque é un proxy aberto.
 Por favor, contacte co seu fornecedor de acceso á Internet ou co seu soporte técnico e informe deste grave problema de seguridade.',
-'proxyblocksuccess' => 'Feito.',
 'sorbsreason' => 'O seu enderezo IP está rexistrado como un proxy aberto na lista DNSBL usada por {{SITENAME}}.',
 'sorbs_create_account_reason' => 'O seu enderezo IP está rexistrado como un proxy aberto na lista DNSBL usada por {{SITENAME}}.
 Polo tanto, non pode crear unha conta',

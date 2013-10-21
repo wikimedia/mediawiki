@@ -1102,8 +1102,6 @@ $messages = array(
 'blocklogentry' => 'εσπάλισεν [[$1]] για $2 $3',
 'unblocklogentry' => 'άνοιγμαν ασπαλιγματί τη $1',
 'block-log-flags-nocreate' => "ποίσιμον λογαρίας 'κ ίνεται",
-'blockme' => 'Ασπάλισον με',
-'proxyblocksuccess' => 'Εγέντον.',
 
 # Developer tools
 'lockdb' => 'Ασπάλιγμαν βάσης δογμενίων',

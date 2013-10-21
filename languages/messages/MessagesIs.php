@@ -2689,12 +2689,9 @@ Sjá [[Special:BlockList|ítarlegri lista]] fyrir öll núgildandi bönn.',
 Vistfangið var bannað sem hluti af fjöldabanninu $2, sem er hægt að afbanna.',
 'ip_range_invalid' => 'Ógilt vistfangasvið.',
 'ip_range_toolarge' => 'Fjöldabönn stærri en /$1 eru óheimil.',
-'blockme' => 'Banna mig',
 'proxyblocker' => 'Vefsels bann',
-'proxyblocker-disabled' => 'Þessi virkni er óvirk.',
 'proxyblockreason' => 'Vistfangið þitt hefur verið bannað því það er opið vefsel.
 Vinsamlegast hafðu samband við internetþjónustuaðilann þinn eða netstjóra félagsins og láttu þá vita af þessu alvarlegu öryggisvandamáli.',
-'proxyblocksuccess' => 'Búinn.',
 'sorbsreason' => 'Vistfangið þitt er á lista yfir opin vefsel í DNSBL sem er í notkun á {{SITENAME}}.',
 'sorbs_create_account_reason' => 'Vistfangið þitt er á lista yfir opin vefsel í DNSBL sem er notað af {{SITENAME}}.
 Þú getur ekki stofnað aðgang.',

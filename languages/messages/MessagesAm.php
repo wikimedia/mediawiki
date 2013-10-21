@@ -1848,9 +1848,6 @@ $1',
 'ipb_expiry_invalid' => 'የሚያልቅበት ግዜ አይሆንም።',
 'ipb_already_blocked' => '«$1» ገና ከዚህ በፊት ታግዶ ነው።',
 'ipb-needreblock' => '$1 አሁን ገና ታግዷል። ዝርዝሩን ማስተካከል ፈለጉ?',
-'blockme' => 'ልታገድ',
-'proxyblocker-disabled' => 'ይህ ተግባር እንደማይሠራ ተደርጓል።',
-'proxyblocksuccess' => 'ተደርጓል።',
 'cant-block-while-blocked' => 'እርስዎ እየታገዱ ሌላ ተጠቃሚ ለማገድ አይችሉም።',
 
 # Developer tools

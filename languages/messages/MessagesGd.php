@@ -1450,7 +1450,6 @@ Seo roghainnean làithreach na duilleige '''$1''':",
 'block-log-flags-nocreate' => 'cruthachadh de chunntasan ùra à comas',
 'ipb_expiry_invalid' => 'Tha an t-àm-crìochnachaidh mì-dhligheach.',
 'ip_range_invalid' => 'Raon IP neo-iomchaidh.',
-'proxyblocksuccess' => 'Dèanta.',
 
 # Developer tools
 'lockdb' => 'Glais an stòr-dàta',

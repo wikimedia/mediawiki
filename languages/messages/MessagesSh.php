@@ -2708,12 +2708,9 @@ Možda je već deblokirana.',
 Međutim, možda je blokirana kao dio bloka $2, koji se može deblokirati.',
 'ip_range_invalid' => 'Netačan raspon IP adresa.',
 'ip_range_toolarge' => 'Grupne blokade veće od /$1 nisu dozvoljene.',
-'blockme' => 'Blokiraj me',
 'proxyblocker' => 'Bloker proksija',
-'proxyblocker-disabled' => 'Ova funkcija je onemogućena.',
 'proxyblockreason' => 'Vaša IP adresa je blokirana jer je ona otvoreni proksi.  
 Molimo vas da kontaktirate vašeg davatelja internetskih usluga (Internet Service Provider-a) ili tehničku podršku i obavijestite ih o ovom ozbiljnom sigurnosnom problemu.',
-'proxyblocksuccess' => 'Proksi uspješno blokiran.',
 'sorbsreason' => 'Vaša IP adresa je prikazana kao otvoreni proxy u DNSBL koji koristi {{SITENAME}}.',
 'sorbs_create_account_reason' => 'Vaša IP adresa je prikazana kao otvoreni proxy u DNSBL korišten od {{SITENAME}}.
 Ne možete napraviti račun',

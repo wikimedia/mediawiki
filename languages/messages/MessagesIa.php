@@ -2725,12 +2725,9 @@ Vide le [[Special:BlockList|lista de blocadas]] pro le lista de bannimentos e bl
 Illo es, nonobstante, blocate como parte del intervallo $2, le qual pote esser disblocate.',
 'ip_range_invalid' => 'Intervallo de adresses IP invalide.',
 'ip_range_toolarge' => 'Non es permittite blocar un gamma de adresses IP plus grande que /$1.',
-'blockme' => 'Blocar me',
 'proxyblocker' => 'Blocator de proxy',
-'proxyblocker-disabled' => 'Iste function es disactivate.',
 'proxyblockreason' => 'Tu adresse IP ha essite blocate proque illo es un proxy aperte.
 Per favor contacta tu providitor de servicio internet o supporto technic e informa les de iste problema grave de securitate.',
-'proxyblocksuccess' => 'Succedite.',
 'sorbsreason' => 'Tu adresse IP es listate como proxy aperte in le DNSBL usate per {{SITENAME}}.',
 'sorbs_create_account_reason' => 'Tu adresse IP es listate como proxy aperte in le DNSBL usate per {{SITENAME}}.
 Tu non pote crear un conto',

@@ -1855,10 +1855,7 @@ Jaīs en [[Special:BlockList|IP blōkisenin listin]] ki widālai wissans tēnti 
 Sta ast, šlāit, blōkitan kāigi delīks stesse $2 ebīmtan, kawīdan mazzi būtwei etblōkitan.',
 'ip_range_invalid' => 'Nitikrōmiskas IP ebīmtan.',
 'ip_range_toolarge' => 'Ebīmtas blōkisenei mūiseisan nikāi /$1 ni ast preiēminan.',
-'blockme' => 'Blōkis min',
 'proxyblocker' => 'Proxy blōkisna',
-'proxyblocker-disabled' => 'Šī funkciōni ast izklaūtan.',
-'proxyblocksuccess' => 'Segītan.',
 'sorbsreason' => 'Twajā IP adressi ast en listei stēisan open proxy sērwerin en DBSBL, tērpautan pra {{SITENAME}}.',
 'sorbs_create_account_reason' => 'Twajā IP adressi ast en listei stēisan open proxy sērwerin en DBSBL, tērpautan pra {{SITENAME}}.
 Tū ni mazzi teīktun rekkenan',

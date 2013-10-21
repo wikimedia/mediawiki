@@ -1913,7 +1913,6 @@ Meld de krekte reden! Neam bygelyks de siden dy't oantaaste waarden.",
 'ipb_expiry_invalid' => 'Tiid fan ferrinnen is net goed.',
 'ipb_already_blocked' => '"$1" is al útsluten',
 'ipb_cant_unblock' => 'Flater: It útsluten fan ID $1 kin net fûn wurde. It is miskien al net mear útsluten.',
-'proxyblocksuccess' => 'Dien.',
 
 # Developer tools
 'lockdb' => "Meitsje de database 'Net-skriuwe'",

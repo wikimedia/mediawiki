@@ -2002,8 +2002,6 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'ipb-needreblock' => 'پر $1 د پخوا نه بنديز لگېدلی.
 آيا تاسې د امستنو بدلول غواړۍ؟',
 'ipb-otherblocks-header' => '{{PLURAL:$1|بل بنديز|نور بنديزونه}}',
-'blockme' => 'پر ما بنديز لگول',
-'proxyblocksuccess' => 'ترسره شو.',
 
 # Developer tools
 'lockdb' => 'توکبنسټ تړل',

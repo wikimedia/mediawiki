@@ -1028,7 +1028,6 @@ Seemo sa go lota ga letlakala '''$1''':",
 'unblocklogentry' => 'Gago thibelo $1',
 'block-log-flags-nocreate' => 'Go hloma tšhupaleloko gago dumelege',
 'block-log-flags-noemail' => 'e-mail e thibilwe',
-'proxyblocksuccess' => 'Phetilwe.',
 
 # Move page
 'move-page-legend' => 'Huduša letlakala',

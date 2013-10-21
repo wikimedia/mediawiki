@@ -1560,7 +1560,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'ip_range_invalid' => '無效嘅IP範圍。',
 'proxyblocker' => '代理封鎖器',
 'proxyblockreason' => '汝嘅IP地址係一隻開放嘅代理，其已經分封鎖。請聯繫汝嘅網際網路服務提供商或技術支援者並講佢兜聽邇隻嚴重嘅安全問題。',
-'proxyblocksuccess' => '完成。',
 'sorbsreason' => 'Ngì-ke IP chhô-vi pûn DNSBL lie̍t-vi su̍k-yî khôi-fong thoi-lî fu̍k-vu-khí.',
 'sorbs_create_account_reason' => 'Ngì-ke IP chhô-vi pûn DNSBL lie̍t-vi su̍k-yî khôi-fong thoi-lî fu̍k-vu-khí. Só-yî ngì mò-fap kien-li̍p chong-ho.',
 

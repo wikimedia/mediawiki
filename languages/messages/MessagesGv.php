@@ -1186,7 +1186,6 @@ Shoh ny reaghaghyn roie da'n duillag '''$1''':",
 'unblocklogentry' => '$1 er ny neughlassey magh',
 'block-log-flags-anononly' => 'ymmydeyryn neuenmyssit ynrican',
 'block-log-flags-nocreate' => 'gyn kiart coontyssyn y chroo',
-'proxyblocksuccess' => 'Jeant.',
 
 # Move page
 'move-page' => '$1 y scughey',

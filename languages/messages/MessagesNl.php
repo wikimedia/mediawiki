@@ -2961,12 +2961,9 @@ Misschien is de blokkade al opgeheven.',
 De blokkade is onderdeel van de reeks $2, waarvan de blokkade wel opgeheven kan worden.',
 'ip_range_invalid' => 'Ongeldige IP-reeks.',
 'ip_range_toolarge' => 'Reeksblokkades groter dan /$1 zijn niet toegestaan.',
-'blockme' => 'Mij blokkeren',
 'proxyblocker' => 'Proxyblocker',
-'proxyblocker-disabled' => 'Deze functie is uitgeschakeld.',
 'proxyblockreason' => 'Uw IP-adres is geblokkeerd, omdat u gebruik maakt van een open proxyserver.
 Neem contact op met uw internetprovider of uw helpdesk en stel die op de hoogte van dit ernstige beveiligingsprobleem.',
-'proxyblocksuccess' => 'Afgerond.',
 'sorbsreason' => 'Uw IP-adres staat bekend als open proxyserver in de DNS-blacklist die {{SITENAME}} gebruikt.',
 'sorbs_create_account_reason' => 'Uw IP-adres staat bekend als open proxyserver in de DNS-blacklist die {{SITENAME}} gebruikt.
 U kunt geen gebruiker registreren.',

@@ -653,7 +653,7 @@ See also:
 \'\'\'Note:\'\'\' This is "views" as in "appearances"/"representations", \'\'\'not\'\'\' as in "visits"/"accesses".
 {{Identical|View}}',
 'toolbox' => 'The title of the toolbox below the search menu.
-{{Identical|Toolbox}}',
+{{Identical|Tool}}',
 'userpage' => '',
 'projectpage' => 'Used as link text in Talk page of project page.',
 'imagepage' => 'Used as link text in Talk page of file page.',
@@ -4508,7 +4508,8 @@ Example: [[:Image:Addon-icn.png]]',
 'filehist-dimensions' => 'Used as label in file description page.
 
 Followed by length, filesize, and width x height. e.g. "1.5 s (13 KB)".',
-'filehist-filesize' => 'In image description page',
+'filehist-filesize' => 'Used in image description page.
+{{Identical|File size}}',
 'filehist-comment' => 'In file description page
 
 {{Identical|Comment}}',
@@ -6617,29 +6618,18 @@ See also:
 * {{msg-mw|Range block disabled}}
 * {{msg-mw|Ip range invalid}}
 * {{msg-mw|Ip range toolarge}}',
-'blockme' => '{{doc-special|BlockMe|unlisted=1}}
-This feature is disabled by default.',
-'proxyblocker' => 'Username for blocking IP addresses listed in [[mw:Manual:$wgProxyList|$wgProxyList]].
+'proxyblocker' => 'Used in [[Special:BlockMe]].
 
 See also:
-* {{msg-mw|proxyblockreason}}',
-'proxyblocker-disabled' => 'Used in [[Special:BlockMe]].
-
-See also:
-* {{msg-mw|proxyblocker}}
+* {{msg-mw|proxyblocker-disabled}}
 * {{msg-mw|proxyblockreason}}
 * {{msg-mw|proxyblocksuccess}}',
-'proxyblockreason' => 'Reason for blocking IP addresses listed in [[mw:Manual:$wgProxyList|$wgProxyList]].
-
-See also:
-* {{msg-mw|proxyblocker}}',
-'proxyblocksuccess' => 'Used in [[Special:BlockMe]].
+'proxyblockreason' => 'Used as explanation of the reason in [[Special:BlockMe]].
 
 See also:
 * {{msg-mw|proxyblocker-disabled}}
 * {{msg-mw|proxyblocker}}
-* {{msg-mw|proxyblockreason}}
-{{Identical|Done}}',
+* {{msg-mw|proxyblocksuccess}}',
 'sorbs' => '{{optional}}',
 'sorbsreason' => 'See also:
 * {{msg-mw|Sorbsreason}}

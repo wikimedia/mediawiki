@@ -1551,7 +1551,6 @@ liosta a fháil de coisc atá i bhfeidhm faoi láthair.',
 'proxyblockreason' => "Coisceadh do sheoladh IP dá bharr gur seachfhreastalaí
 neamhshlándála is ea é. Déan teagmháil le do chomhlacht idirlín nó le do lucht cabhrach teicneolaíochta
 go mbeidh 'fhios acu faoin fadhb slándála tábhachtach seo.",
-'proxyblocksuccess' => 'Rinneadh.',
 'sorbsreason' => 'Liostalaítear do sheoladh IP mar sheachfhreastalaí oscailte sa DNSBL.',
 
 # Developer tools

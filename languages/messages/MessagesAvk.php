@@ -1716,11 +1716,8 @@ male abdion elekayane IP mane.',
 'ipb_expiry_invalid' => "temps d'expiration invalide.",
 'ipb_already_blocked' => '"$1" ixam tir elekan',
 'ip_range_invalid' => 'IP elega mewadafa.',
-'blockme' => 'Zo eleká !',
 'proxyblocker' => 'Elekasiki va proxy',
-'proxyblocker-disabled' => 'Bati fli tir metegirafi.',
 'proxyblockreason' => "Votre ip a été bloquée car c'est un proxy ouvert. Merci de contacter votre fournisseur d'accès internet ou votre support technique et de l'informer de ce problème de sécurité.",
-'proxyblocksuccess' => 'Tenuweyes.',
 'sorbsreason' => "Rinafe IP mane wetce fenkunafi 'proxy' koe DNSBL faveni gan {{SITENAME}} zo vexalar.",
 
 # Developer tools

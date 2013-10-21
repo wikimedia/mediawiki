@@ -2687,7 +2687,7 @@ $1',
 'contributions' => 'Wkład {{GENDER:$1|użytkownika|użytkowniczki}}',
 'contributions-title' => 'Wkład {{GENDER:$1|użytkownika|użytkowniczki}} $1',
 'mycontris' => 'Edycje',
-'contribsub2' => 'Dla {{GENDER:$3|użytkownika|użytkowniczki}}$1 ($2)',
+'contribsub2' => 'Dla {{GENDER:$3|użytkownika|użytkowniczki}} $1 ($2)',
 'nocontribs' => 'Brak zmian odpowiadających tym kryteriom.',
 'uctop' => '(ostatnia)',
 'month' => 'Do miesiąca (włącznie)',
@@ -2845,12 +2845,9 @@ By przejrzeć listę obecnie aktywnych blokad, przejdź na stronę [[Special:Blo
 Należy on do zablokowanego zakresu adresów $2. Odblokować można tylko cały zakres.',
 'ip_range_invalid' => 'Niepoprawny zakres adresów IP.',
 'ip_range_toolarge' => 'Zakresy IP większe niż /$1 są niedozwolone.',
-'blockme' => 'Zablokuj mnie',
 'proxyblocker' => 'Blokowanie proxy',
-'proxyblocker-disabled' => 'Ta funkcja jest wyłączona.',
 'proxyblockreason' => 'Twój adres IP został zablokowany, ponieważ jest to adres otwartego proxy.
 O tym poważnym problemie dotyczącym bezpieczeństwa należy poinformować dostawcę Internetu lub pomoc techniczną.',
-'proxyblocksuccess' => 'Wykonano.',
 'sorbsreason' => 'Twój adres IP znajduje się na liście serwerów open proxy w DNSBL, używanej przez {{GRAMMAR:B.lp|{{SITENAME}}}}.',
 'sorbs_create_account_reason' => 'Twój adres IP znajduje się na liście serwerów open proxy w DNSBL, używanej przez {{GRAMMAR:B.lp|{{SITENAME}}}}.
 Nie możesz utworzyć konta',
@@ -3891,7 +3888,7 @@ Czy na pewno chcesz ją ponownie utworzyć?",
 'confirm-unwatch-top' => 'Usunąć tę stronę z listy obserwowanych?',
 
 # Separators for various lists, etc.
-'percent' => '$1&nbsp;%',
+'percent' => '$1&#160;%',
 
 # Multipage image navigation
 'imgmultipageprev' => '← poprzednia strona',

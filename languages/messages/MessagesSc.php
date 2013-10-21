@@ -1208,8 +1208,6 @@ Abbàida sa [[Special:BlockList|lista de IP bloccados]] pro bìder sas bloccadur
 'blocklogentry' => 'bloccau [[$1]] pro unu tempu de $2 $3',
 'unblocklogentry' => 'at sbloccau $1',
 'block-log-flags-nocreate' => 'creatzione account bloccada',
-'blockme' => 'Blocca·mi',
-'proxyblocksuccess' => 'Fatu.',
 'sorbs' => 'DNSBL',
 
 # Developer tools

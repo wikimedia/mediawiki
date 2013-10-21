@@ -608,7 +608,7 @@ $messages = array(
 'articlepage' => 'Voir la page de contenu',
 'talk' => 'Discussion',
 'views' => 'Affichages',
-'toolbox' => 'Boîte à outils',
+'toolbox' => 'Outils',
 'userpage' => 'Page utilisateur',
 'projectpage' => 'Page méta',
 'imagepage' => 'Voir la page du fichier',
@@ -2907,12 +2907,9 @@ Il est possible qu'un déblocage ait déjà été effectué.",
 Elle fait cependant partie de la plage $2 qui, elle, peut être débloquée.",
 'ip_range_invalid' => 'Plage IP incorrecte.',
 'ip_range_toolarge' => 'Les blocages de plages plus grandes que /$1 ne sont pas autorisées.',
-'blockme' => 'Bloquez-moi',
 'proxyblocker' => 'Bloqueur de mandataires',
-'proxyblocker-disabled' => 'Cette fonction est désactivée.',
 'proxyblockreason' => "Votre adresse IP a été bloquée car il s'agit d'un mandataire ouvert.
 Veuillez contacter votre fournisseur d'accès Internet ou votre support technique et l'informer de ce sérieux problème de sécurité.",
-'proxyblocksuccess' => 'Fait.',
 'sorbsreason' => 'Votre adresse IP est listée comme mandataire ouvert dans le DNSBL utilisé par {{SITENAME}}.',
 'sorbs_create_account_reason' => 'Votre adresse IP est listée comme mandataire ouvert dans le DNSBL utilisé par {{SITENAME}}.
 Vous ne pouvez pas créer un compte.',
@@ -3953,7 +3950,7 @@ Veuillez confirmer que vous désirez réellement recréer cette page.",
 # Separators for various lists, etc.
 'semicolon-separator' => '&nbsp;;&#32;',
 'colon-separator' => '&nbsp;:&#32;',
-'percent' => '$1&nbsp;%',
+'percent' => '$1&#160;%',
 
 # Multipage image navigation
 'imgmultipageprev' => '← page précédente',

@@ -1663,11 +1663,8 @@ Escrebi una razón concreta embahu (pol sabulugal, almientandu páhinas qu'aigan
 'ipb_cant_unblock' => "Marru: Nu s'á alcuentrau el tarugu con ID $1. Es posibri que ya aiga siu desatarugau.",
 'ipb_blocked_as_range' => "Marru: La IP $1 nu s'alcuentra atarugá diretamenti, polo que nu puei sel desatarugá. Nu ostanti, hue atarugá cumu parti el intervalu $2, que puei sel desatarugau.",
 'ip_range_invalid' => "Rangu d'IP nu premitiu.",
-'blockme' => 'Atarugami',
 'proxyblocker' => 'Tarugaol de proxys',
-'proxyblocker-disabled' => "Esta hunción s'alcuentra desativá.",
 'proxyblockreason' => "La tu direción IP á siu atarugá polque es un proxy abiertu. Pol favol, contauta con el tu proveol de sirvicius d'Internet u con el tu sirviciu d'asisténcia télefónica i enhórmalus desti gravi pobrema e seguráncia.",
-'proxyblocksuccess' => 'Hechu.',
 'sorbsreason' => 'La tu direción IP apaici ena lista e proxys abiertus en DNSBL gastá pol {{SITENAME}}.',
 'sorbs_create_account_reason' => 'La tu direción IP apaici ena lista e proxys abiertus en DNSBL gastá pol {{SITENAME}}. Nu se te premiti crial una cuenta',
 

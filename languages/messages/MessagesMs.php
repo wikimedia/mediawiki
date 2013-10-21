@@ -2699,12 +2699,9 @@ Sila lihat juga [[Special:BlockList|senarai sekatan]] untuk senarai larangan dan
 'ipb_blocked_as_range' => 'Ralat: IP $1 tidak boleh dinyahsekat kerana ia tidak disekat secara langsung. Sebaliknya, ia disekat kerana merupakan sebahagian daripada sekatan julat $2, yang mana boleh dinyahsekat.',
 'ip_range_invalid' => 'Julat IP tidak sah.',
 'ip_range_toolarge' => 'Sekatan julat yang lebih luas daripada /$1 adalah tidak dibenarkan.',
-'blockme' => 'Sekat saya',
 'proxyblocker' => 'Penyekat proksi',
-'proxyblocker-disabled' => 'Fungsi ini dimatikan.',
 'proxyblockreason' => 'Alamat IP anda telah disekat kerana ia merupakan proksi terbuka.
 Sila hubungi penyedia perkhidmatan Internet anda atau pihak sokongan teknikal dan beritahu mereka mengenai masalah keselamatan yang berat ini.',
-'proxyblocksuccess' => 'Berjaya.',
 'sorbsreason' => 'Alamat IP anda telah disenaraikan sebagai proksi terbuka dalam DNSBL yang digunakan oleh {{SITENAME}}.',
 'sorbs_create_account_reason' => 'Alamat IP anda telah disenaraikan sebagai proksi terbuka dalam DNSBL yang digunakan oleh {{SITENAME}}. Oleh itu, anda tidak dibenarkan membuka akaun baru.',
 'xffblockreason' => 'Alamat IP yang terdapat dalam pengepala X-Forwarded-For, sama ada milik anda ataupun pelayan proksi yang anda gunakan, telah disekat. Sebab asal sekatan adalah: $1',

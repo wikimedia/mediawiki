@@ -2509,12 +2509,9 @@ Janaki [[Special:BlockList|daptar diblukir]] gasan daptar uprasi dibabat wan pam
 Ngini, kayapa pun, diblukir sawagai palihan wilayah $2, nang kawa-ai dilapas-blukirnya.',
 'ip_range_invalid' => 'Jarak IP kada sah.',
 'ip_range_toolarge' => 'Jarak blukir taganal pada /$1 kada dibulihakan.',
-'blockme' => 'Blokir ulun',
 'proxyblocker' => 'Pamblukir pruksi',
-'proxyblocker-disabled' => 'Pungsi ngini dipajahakan.',
 'proxyblockreason' => 'Alamat IP Pian diblukir karana ngini sabuah pruksi tabuka.
 Muhun hubungi Panyadia Layan Internet Pian atawa sukungan tiknik wan padahi sidin pasal masalah ka-amanan sarius ngini.',
-'proxyblocksuccess' => 'Sudah.',
 'sorbsreason' => 'Alamat IP Pian tadaptar sawagai pruksi tabuka dalam DNSBL dipuruk ulih {{SITENAME}}.',
 'sorbs_create_account_reason' => 'Alamat IP Pian tadaptar sawagai pruksi tabuka dalam DNSBL dipuruk ulih {{SITENAME}}.
 Pian kada kawa maulah sabuah akun',

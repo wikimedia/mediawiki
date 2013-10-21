@@ -1992,7 +1992,6 @@ $1',
 'block-log-flags-noemail' => 'хат җибәрү тыелган',
 'block-log-flags-hiddenname' => 'кулланучының исеме яшерелгән',
 'proxyblocker' => 'Прокси тыю',
-'proxyblocksuccess' => 'Эшләнде',
 'sorbsreason' => 'Сезнең IP адресыгыз DNSBLда ачык прокси дип санала.',
 
 # Developer tools
