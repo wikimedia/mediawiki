@@ -2714,9 +2714,9 @@ function wfShellExecDisabled() {
 			$functions = explode( ',', ini_get( 'disable_functions' ) );
 			$functions = array_map( 'trim', $functions );
 			$functions = array_map( 'strtolower', $functions );
-			if ( in_array( 'passthru', $functions ) ) {
-				wfDebug( "passthru is in disabled_functions\n" );
-				$disabled = 'passthru';
+			if ( in_array( 'proc_open', $functions ) ) {
+				wfDebug( "proc_open is in disabled_functions\n" );
+				$disabled = 'disabled';
 			}
 		}
 	}
@@ -2728,13 +2728,16 @@ function wfShellExecDisabled() {
  * configuration if supported.
  * @param string $cmd Command line, properly escaped for shell.
  * @param &$retval null|Mixed optional, will receive the program's exit code.
- *                 (non-zero is usually failure)
+ *                 (non-zero is usually failure). If there is an error from
+ *                 read, select, or proc_open(), this will be set to -1.
  * @param array $environ optional environment variables which should be
  *                 added to the executed command environment.
  * @param array $limits optional array with limits(filesize, memory, time, walltime)
  *                 this overwrites the global wgShellMax* limits.
- * @param array $options Array of options. Only one is "duplicateStderr" => true, which
- *                 Which duplicates stderr to stdout, including errors from limit.sh
+ * @param array $options Array of options:
+ *    - duplicateStderr: Set this to true to duplicate stderr to stdout, 
+ *      including errors from limit.sh
+ *      
  * @return string collected stdout as a string
  */
 function wfShellExec( $cmd, &$retval = null, $environ = array(), $limits = array(), $options = array() ) {
@@ -2746,7 +2749,7 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(), $limits = array
 		$retval = 1;
 		return $disabled == 'safemode' ?
 			'Unable to run external programs in safe mode.' :
-			'Unable to run external programs, passthru() is disabled.';
+			'Unable to run external programs, proc_open() is disabled.';
 	}
 
 	$includeStderr = isset( $options['duplicateStderr'] ) && $options['duplicateStderr'];
@@ -2772,6 +2775,7 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(), $limits = array
 	}
 	$cmd = $envcmd . $cmd;
 
+	$useLogPipe = false;
 	if ( php_uname( 's' ) == 'Linux' ) {
 		$time = intval ( isset( $limits['time'] ) ? $limits['time'] : $wgMaxShellTime );
 		if ( isset( $limits['walltime'] ) ) {
@@ -2793,8 +2797,10 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(), $limits = array
 					'MW_CGROUP=' . escapeshellarg( $wgShellCgroup ) . '; ' .
 					"MW_MEM_LIMIT=$mem; " .
 					"MW_FILE_SIZE_LIMIT=$filesize; " .
-					"MW_WALL_CLOCK_LIMIT=$wallTime"
+					"MW_WALL_CLOCK_LIMIT=$wallTime; " .
+					"MW_USE_LOG_PIPE=yes"
 				);
+			$useLogPipe = true;
 		} elseif ( $includeStderr ) {
 			$cmd .= ' 2>&1';
 		}
@@ -2803,19 +2809,119 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(), $limits = array
 	}
 	wfDebug( "wfShellExec: $cmd\n" );
 
-	// Default to an unusual value that shouldn't happen naturally,
-	// so in the unlikely event of a weird php bug, it would be
-	// more obvious what happened.
-	$retval = 200;
-	ob_start();
-	passthru( $cmd, $retval );
-	$output = ob_get_contents();
-	ob_end_clean();
-
-	if ( $retval == 127 ) {
-		wfDebugLog( 'exec', "Possibly missing executable file: $cmd\n" );
+	$desc = array(
+		0 => array( 'file', 'php://stdin', 'r' ),
+		1 => array( 'pipe', 'w' ),
+		2 => array( 'file', 'php://stderr', 'w' ) );
+	if ( $useLogPipe ) {
+		$desc[3] = array( 'pipe', 'w' );
 	}
-	return $output;
+	$pipes = null;
+	$proc = proc_open( $cmd, $desc, $pipes );
+	if ( !$proc ) {
+		wfDebugLog( 'exec', "proc_open() failed: $cmd\n" );
+		$retval = -1;
+		return '';
+	}
+	$outBuffer = $logBuffer = '';
+	$read = $write = $except = array();
+	$status = false;
+	$logMsg = false;
+
+	// According to the documentation, it is possible for stream_select()
+	// to fail due to EINTR. I haven't managed to induce this in testing 
+	// despite sending various signals. If it did happen, the error 
+	// message would take the form: 
+	//
+	// stream_select(): unable to select [4]: Interrupted system call (max_fd=5)
+	//
+	// where [4] is the value of the macro EINTR and "Interrupted system
+	// call" is string which according to the Linux manual is "possibly"
+	// localised according to LC_MESSAGES.
+	$eintr = defined( 'SOCKET_EINTR' ) ? SOCKET_EINTR : 4;
+	$eintrMessage = "stream_select(): unable to select [$eintr]";
+
+	while ( true ) {
+		$status = proc_get_status( $proc );
+		if ( !$status['running'] ) {
+			break;
+		}
+		$status = false;
+
+		$readyPipes = $pipes;
+
+		// Clear last error
+		@trigger_error( '' );
+		if ( @stream_select( $readyPipes, $write, $except, null ) === false ) {
+			$error = error_get_last();
+			if ( substr( $error['message'], 0, strlen( $eintrMessage ) ) === $eintrMessage ) {
+				continue;
+			} else {
+				trigger_error( $error['message'], E_USER_WARNING );
+				$logMsg = $error['message'];
+				break;
+			}
+		}
+		foreach ( $readyPipes as $fd => $pipe ) {
+			$block = fread( $pipe, 65536 );
+			if ( $block === '' ) {
+				// End of file
+				fclose( $pipes[$fd] );
+				unset( $pipes[$fd] );
+				if ( !$pipes ) {
+					break 2;
+				}
+			} elseif ( $block === false ) {
+				// Read error
+				$logMsg = "Error reading from pipe";
+				break 2;
+			} elseif ( $fd == 1 ) {
+				// From stdout
+				$outBuffer .= $block;
+			} elseif ( $fd == 3 ) {
+				// From log FD
+				$logBuffer .= $block;
+				if ( strpos( $block, "\n" ) !== false ) {
+					$lines = explode( "\n", $logBuffer );
+					$logBuffer = array_pop( $lines );
+					foreach ( $lines as $line ) {
+						wfDebugLog( 'exec', $line );
+					}
+				}
+			}
+		}
+	}
+	foreach ( $pipes as $pipe ) {
+		fclose( $pipe );
+	}
+	// Use the status previously collected if possible, since proc_get_status()
+	// just calls waitpid() which will not return anything useful the second time.
+	if ( $status === false ) {
+		$status = proc_get_status( $proc );
+	}
+	if ( $logMsg ) {
+		// Read/select error
+		$retval = -1;
+		proc_close( $proc );
+	} elseif ( $status['signaled'] ) {
+		$logMsg = "Exited with signal {$status['termsig']}";
+		$retval = 128 + $status['termsig'];
+		proc_close( $proc );
+	} elseif ( $status['running'] ) {
+		$retval = proc_close( $proc );
+	} else {
+		$retval = $status['exitcode'];
+		proc_close( $proc );
+	}
+	if ( $retval == 127 ) {
+		$logMsg = "Possibly missing executable file";
+	} elseif ( $retval >= 129 && $retval <= 192 ) {
+		$logMsg = "Probably exited with signal " . ( $retval - 128 );
+	}
+	if ( $logMsg !== false ) {
+		wfDebugLog( 'exec', "$logMsg: $cmd\n" );
+	}
+	return $outBuffer;
 }
 
 /**
