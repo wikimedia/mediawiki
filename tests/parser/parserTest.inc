@@ -33,22 +33,22 @@
  */
 class ParserTest {
 	/**
-	 * boolean $color whereas output should be colorized
+	 * @var bool $color whereas output should be colorized
 	 */
 	private $color;
 
 	/**
-	 * boolean $showOutput Show test output
+	 * @var bool $showOutput Show test output
 	 */
 	private $showOutput;
 
 	/**
-	 * boolean $useTemporaryTables Use temporary tables for the temporary database
+	 * @var bool $useTemporaryTables Use temporary tables for the temporary database
 	 */
 	private $useTemporaryTables = true;
 
 	/**
-	 * boolean $databaseSetupDone True if the database has been set up
+	 * @var bool $databaseSetupDone True if the database has been set up
 	 */
 	private $databaseSetupDone = false;
 
@@ -65,7 +65,7 @@ class ParserTest {
 	private $dbClone;
 
 	/**
-	 * string $oldTablePrefix Original table prefix
+	 * @var string $oldTablePrefix Original table prefix
 	 */
 	private $oldTablePrefix;
 

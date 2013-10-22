@@ -2,7 +2,7 @@
 
 class ParserOutputTest extends MediaWikiTestCase {
 
-	function dataIsLinkInternal() {
+	public static function provideIsLinkInternal() {
 		return array(
 			// Different domains
 			array( false, 'http://example.org', 'http://mediawiki.org' ),
@@ -29,13 +29,17 @@ class ParserOutputTest extends MediaWikiTestCase {
 
 	/**
 	 * Test to make sure ParserOutput::isLinkInternal behaves properly
-	 * @dataProvider dataIsLinkInternal
+	 * @dataProvider provideIsLinkInternal
+	 * @covers ParserOutput::isLinkInternal
 	 */
-	function testIsLinkInternal( $shouldMatch, $server, $url ) {
-
+	public function testIsLinkInternal( $shouldMatch, $server, $url ) {
 		$this->assertEquals( $shouldMatch, ParserOutput::isLinkInternal( $server, $url ) );
 	}
 
+	/**
+	 * @covers ParserOutput::setExtensionData
+	 * @covers ParserOutput::getExtensionData
+	 */
 	public function testExtensionData() {
 		$po = new ParserOutput();
 

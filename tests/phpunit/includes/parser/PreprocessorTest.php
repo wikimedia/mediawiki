@@ -1,9 +1,16 @@
 <?php
 
 class PreprocessorTest extends MediaWikiTestCase {
-	var $mTitle = 'Page title';
-	var $mPPNodeCount = 0;
-	var $mOptions;
+	protected $mTitle = 'Page title';
+	protected $mPPNodeCount = 0;
+	/**
+	 * @var ParserOptions
+	 */
+	protected $mOptions;
+	/**
+	 * @var Preprocessor
+	 */
+	protected $mPreprocessor;
 
 	protected function setUp() {
 		global $wgParserConf, $wgContLang;
@@ -12,10 +19,6 @@ class PreprocessorTest extends MediaWikiTestCase {
 		$name = isset( $wgParserConf['preprocessorClass'] ) ? $wgParserConf['preprocessorClass'] : 'Preprocessor_DOM';
 
 		$this->mPreprocessor = new $name( $this );
-	}
-
-	function getStripList() {
-		return array( 'gallery', 'display map' /* Used by Maps, see r80025 CR */, '/foo' );
 	}
 
 	public static function provideCases() {
@@ -115,7 +118,7 @@ class PreprocessorTest extends MediaWikiTestCase {
 	 * @param string $wikiText
 	 * @return string
 	 */
-	function preprocessToXml( $wikiText ) {
+	protected function preprocessToXml( $wikiText ) {
 		if ( method_exists( $this->mPreprocessor, 'preprocessToXml' ) ) {
 			return $this->normalizeXml( $this->mPreprocessor->preprocessToXml( $wikiText ) );
 		}
@@ -134,14 +137,15 @@ class PreprocessorTest extends MediaWikiTestCase {
 	 * @param string $xml
 	 * @return string
 	 */
-	function normalizeXml( $xml ) {
+	protected function normalizeXml( $xml ) {
 		return preg_replace( '!<([a-z]+)/>!', '<$1></$1>', str_replace( ' />', '/>', $xml ) );
 	}
 
 	/**
 	 * @dataProvider provideCases
+	 * @covers Preprocessor_DOM::preprocessToXml
 	 */
-	function testPreprocessorOutput( $wikiText, $expectedXml ) {
+	public function testPreprocessorOutput( $wikiText, $expectedXml ) {
 		$this->assertEquals( $this->normalizeXml( $expectedXml ), $this->preprocessToXml( $wikiText ) );
 	}
 
@@ -160,8 +164,9 @@ class PreprocessorTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideFiles
+	 * @covers Preprocessor_DOM::preprocessToXml
 	 */
-	function testPreprocessorOutputFiles( $filename ) {
+	public function testPreprocessorOutputFiles( $filename ) {
 		$folder = __DIR__ . "/../../../parser/preprocess";
 		$wikiText = file_get_contents( "$folder/$filename.txt" );
 		$output = $this->preprocessToXml( $wikiText );
@@ -222,6 +227,7 @@ class PreprocessorTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideHeadings
+	 * @covers Preprocessor_DOM::preprocessToXml
 	 */
 	function testHeadings( $wikiText, $expectedXml ) {
 		$this->assertEquals( $this->normalizeXml( $expectedXml ), $this->preprocessToXml( $wikiText ) );
