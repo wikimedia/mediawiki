@@ -6,6 +6,10 @@
  *
  *   $wgProfiler['class'] = 'Profiler';
  *
+ * or for the external xhprof profiler(via pecl):
+ *
+ *   $wgProfiler['class'] = 'ProfilerXhprof';
+ *
  * Or for a sampling profiler:
  *   if ( !mt_rand( 0, 100 ) ) {
  *       $wgProfiler['class'] = 'Profiler';

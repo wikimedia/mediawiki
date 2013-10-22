@@ -5009,6 +5009,11 @@ $wgProfileCallTree = false;
 $wgProfilePerHost = false;
 
 /**
+ * Where should ProfilerXhprof write its profiles
+ */
+$wgProfileXhprofDir = '/tmp';
+
+/**
  * Host for UDP profiler.
  *
  * The host should be running a daemon which can be obtained from MediaWiki
