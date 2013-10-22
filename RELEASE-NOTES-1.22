@@ -76,6 +76,8 @@ production.
   version of the Vector extension as this feature may conflict.
 * New 'mediawiki.ui' CSS module providing mw-ui-* styles for buttons and a
   compact vertical form layout.
+* HTMLForm supports a new display format 'vform' which applies this compact vertical
+  layout and button styling. Special:PasswordReset uses this format.
 * New versions of login (Special:UserLogin) and create account
   (Special:UserLogin/signup) forms using the "vform" compact vertical form layout.
   These forms use new messages that assume a "Help logging in" link, see
