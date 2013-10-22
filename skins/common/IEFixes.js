@@ -1,9 +1,12 @@
-// IE fixes javascript
+// IE fixes javascript loaded by wikibits.js for IE <= 6.0
 ( function ( mw, $ ) {
 
 var doneIEAlphaFix, doneIETransform, expandedURLs, fixalpha, isMSIE55,
-	relativeforfloats, setrelative;
+	relativeforfloats, setrelative, hasClass;
 
+// Also returns true for IE6, 7, 8, 9 and 10. createPopup is removed in IE11.
+// Good thing this is only loaded for IE <= 6 by wikibits.
+// Might as well set it to true.
 isMSIE55 = window.isMSIE55 = ( window.showModalDialog && window.clipboardData && window.createPopup );
 doneIETransform = window.doneIETransform = undefined;
 doneIEAlphaFix = window.doneIEAlphaFix = undefined;
@@ -99,8 +102,8 @@ setrelative = window.setrelative = function ( nodes ) {
 };
 
 // Expand links for printing
-String.prototype.hasClass = function ( classWanted ) {
-	var i = 0, classArr = this.split(/\s/);
+hasClass = function ( classText, classWanted ) {
+	var i = 0, classArr = classText.split(/\s/);
 	for ( i = 0; i < classArr.length; i++ ) {
 		if ( classArr[i].toLowerCase() === classWanted.toLowerCase() ) {
 			return true;
@@ -121,7 +124,7 @@ window.onbeforeprint = function () {
 		allLinks = contentEl.getElementsByTagName( 'a' );
 
 		for ( i = 0; i < allLinks.length; i++ ) {
-			if ( allLinks[i].className.hasClass( 'external' ) && !allLinks[i].className.hasClass( 'free' ) ) {
+			if ( hasClass( allLinks[i].className, 'external' ) && !hasClass( allLinks[i].className, 'free' ) ) {
 				expandedLink = document.createElement( 'span' );
 				expandedText = document.createTextNode( ' (' + allLinks[i].href + ')' );
 				expandedLink.appendChild( expandedText );
