@@ -5,7 +5,10 @@
  */
 class SideBarTest extends MediaWikiLangTestCase {
 
-	/** A skin template, reinitialized before each test */
+	/**
+	 * A skin template, reinitialized before each test
+	 * @var SkinTemplate
+	 */
 	private $skin;
 	/** Local cache for sidebar messages */
 	private $messages;
@@ -36,16 +39,12 @@ class SideBarTest extends MediaWikiLangTestCase {
 		$this->skin->getContext()->setLanguage( Language::factory( 'en' ) );
 	}
 
-	protected function tearDown() {
-		parent::tearDown();
-		$this->skin = null;
-	}
-
 	/**
 	 * Internal helper to test the sidebar
 	 * @param $expected
 	 * @param $text
 	 * @param $message (Default: '')
+	 * @todo this assert method to should be converted to a test using a dataprovider..
 	 */
 	private function assertSideBar( $expected, $text, $message = '' ) {
 		$bar = array();
@@ -53,7 +52,10 @@ class SideBarTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $expected, $bar, $message );
 	}
 
-	function testSidebarWithOnlyTwoTitles() {
+	/**
+	 * @covers SkinTemplate::addToSidebarPlain
+	 */
+	public function testSidebarWithOnlyTwoTitles() {
 		$this->assertSideBar(
 			array(
 				'Title1' => array(),
@@ -65,7 +67,10 @@ class SideBarTest extends MediaWikiLangTestCase {
 		);
 	}
 
-	function testExpandMessages() {
+	/**
+	 * @covers SkinTemplate::addToSidebarPlain
+	 */
+	public function testExpandMessages() {
 		$this->assertSidebar(
 			array( 'Title' => array(
 				array(
@@ -81,7 +86,10 @@ class SideBarTest extends MediaWikiLangTestCase {
 		);
 	}
 
-	function testExternalUrlsRequireADescription() {
+	/**
+	 * @covers SkinTemplate::addToSidebarPlain
+	 */
+	public function testExternalUrlsRequireADescription() {
 		$this->assertSidebar(
 			array( 'Title' => array(
 				# ** http://www.mediawiki.org/| Home
@@ -105,8 +113,9 @@ class SideBarTest extends MediaWikiLangTestCase {
 	/**
 	 * bug 33321 - Make sure there's a | after transforming.
 	 * @group Database
+	 * @covers SkinTemplate::addToSidebarPlain
 	 */
-	function testTrickyPipe() {
+	public function testTrickyPipe() {
 		$this->assertSidebar(
 			array( 'Title' => array(
 				# The first 2 are skipped
@@ -151,7 +160,7 @@ class SideBarTest extends MediaWikiLangTestCase {
 	/**
 	 * Simple test to verify our helper assertAttribs() is functional
 	 */
-	function testTestAttributesAssertionHelper() {
+	public function testTestAttributesAssertionHelper() {
 		$this->setMwGlobals( array(
 			'wgNoFollowLinks' => true,
 			'wgExternalLinkTarget' => false,
@@ -167,7 +176,7 @@ class SideBarTest extends MediaWikiLangTestCase {
 	/**
 	 * Test $wgNoFollowLinks in sidebar
 	 */
-	function testRespectWgnofollowlinks() {
+	public function testRespectWgnofollowlinks() {
 		$this->setMwGlobals( 'wgNoFollowLinks', false );
 
 		$attribs = $this->getAttribs();
@@ -180,7 +189,7 @@ class SideBarTest extends MediaWikiLangTestCase {
 	 * Test $wgExternaLinkTarget in sidebar
 	 * @dataProvider dataRespectExternallinktarget
 	 */
-	function testRespectExternallinktarget( $externalLinkTarget ) {
+	public function testRespectExternallinktarget( $externalLinkTarget ) {
 		$this->setMwGlobals( 'wgExternalLinkTarget', $externalLinkTarget );
 
 		$attribs = $this->getAttribs();
@@ -188,7 +197,7 @@ class SideBarTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $attribs['target'], $externalLinkTarget );
 	}
 
-	function dataRespectExternallinktarget() {
+	public static function dataRespectExternallinktarget() {
 		return array(
 			array( '_blank' ),
 			array( '_self' ),
