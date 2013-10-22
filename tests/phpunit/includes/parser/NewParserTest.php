@@ -6,6 +6,8 @@
  * @group Database
  * @group Parser
  * @group Stub
+ *
+ * @todo covers tags
  */
 class NewParserTest extends MediaWikiTestCase {
 	static protected $articles = array(); // Array of test articles defined by the tests

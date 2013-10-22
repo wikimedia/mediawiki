@@ -4,12 +4,14 @@
  * CSSJanus libary:
  * http://code.google.com/p/cssjanus/source/browse/trunk/cssjanus_test.py
  * Ported to PHP for ResourceLoader and has been extended since.
+ *
+ * @covers CSSJanus
  */
 class CSSJanusTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideTransformCases
 	 */
-	function testTransform( $cssA, $cssB = null ) {
+	public function testTransform( $cssA, $cssB = null ) {
 
 		if ( $cssB ) {
 			$transformedA = CSSJanus::transform( $cssA );
@@ -28,7 +30,7 @@ class CSSJanusTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideTransformAdvancedCases
 	 */
-	function testTransformAdvanced( $code, $expectedOutput, $options = array() ) {
+	public function testTransformAdvanced( $code, $expectedOutput, $options = array() ) {
 		$swapLtrRtlInURL = isset( $options['swapLtrRtlInURL'] ) ? $options['swapLtrRtlInURL'] : false;
 		$swapLeftRightInURL = isset( $options['swapLeftRightInURL'] ) ? $options['swapLeftRightInURL'] : false;
 
@@ -44,7 +46,7 @@ class CSSJanusTest extends MediaWikiTestCase {
 	 * @dataProvider provideTransformBrokenCases
 	 * @group Broken
 	 */
-	function testTransformBroken( $code, $expectedOutput ) {
+	public function testTransformBroken( $code, $expectedOutput ) {
 		$flipped = CSSJanus::transform( $code );
 
 		$this->assertEquals( $expectedOutput, $flipped, 'Test flipping' );
