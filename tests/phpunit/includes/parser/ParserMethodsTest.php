@@ -15,6 +15,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider providePreSaveTransform
+	 * @covers Parser::preSaveTransform
 	 */
 	public function testPreSaveTransform( $text, $expected ) {
 		global $wgParser;
@@ -28,6 +29,9 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $expected, $text );
 	}
 
+	/**
+	 * @covers Parser::callParserFunction
+	 */
 	public function testCallParserFunction() {
 		global $wgParser;
 
@@ -45,6 +49,10 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 		), $ret, 'callParserFunction works for {{#tag:pre|foo|style=margin-left: 1.6em}}' );
 	}
 
+	/**
+	 * @covers Parser::parse
+	 * @covers ParserOutput::getSections
+	 */
 	public function testGetSections() {
 		global $wgParser;
 
@@ -83,5 +91,5 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 			),
 		), $out->getSections(), 'getSections() with proper value when <h2> is used' );
 	}
-	// TODO: Add tests for cleanSig() / cleanSigInSig(), getSection(), replaceSection(), getPreloadText()
+	//@Todo Add tests for cleanSig() / cleanSigInSig(), getSection(), replaceSection(), getPreloadText()
 }

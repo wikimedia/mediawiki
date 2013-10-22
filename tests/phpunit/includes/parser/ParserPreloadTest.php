@@ -4,8 +4,17 @@
  * @author Antoine Musso
  */
 class ParserPreloadTest extends MediaWikiTestCase {
+	/**
+	 * @var Parser
+	 */
 	private $testParser;
+	/**
+	 * @var ParserOptions
+	 */
 	private $testParserOptions;
+	/**
+	 * @var Title
+	 */
 	private $title;
 
 	protected function setUp() {
@@ -31,14 +40,14 @@ class ParserPreloadTest extends MediaWikiTestCase {
 	/**
 	 * @covers Parser::getPreloadText
 	 */
-	function testPreloadSimpleText() {
+	public function testPreloadSimpleText() {
 		$this->assertPreloaded( 'simple', 'simple' );
 	}
 
 	/**
 	 * @covers Parser::getPreloadText
 	 */
-	function testPreloadedPreIsUnstripped() {
+	public function testPreloadedPreIsUnstripped() {
 		$this->assertPreloaded(
 			'<pre>monospaced</pre>',
 			'<pre>monospaced</pre>',
@@ -49,7 +58,7 @@ class ParserPreloadTest extends MediaWikiTestCase {
 	/**
 	 * @covers Parser::getPreloadText
 	 */
-	function testPreloadedNowikiIsUnstripped() {
+	public function testPreloadedNowikiIsUnstripped() {
 		$this->assertPreloaded(
 			'<nowiki>[[Dummy title]]</nowiki>',
 			'<nowiki>[[Dummy title]]</nowiki>',
@@ -57,7 +66,7 @@ class ParserPreloadTest extends MediaWikiTestCase {
 		);
 	}
 
-	function assertPreloaded( $expected, $text, $msg = '' ) {
+	protected function assertPreloaded( $expected, $text, $msg = '' ) {
 		$this->assertEquals(
 			$expected,
 			$this->testParser->getPreloadText(
