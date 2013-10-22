@@ -2769,10 +2769,6 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(), $limits = array
 	$cmd = $envcmd . $cmd;
 
 	if ( php_uname( 's' ) == 'Linux' ) {
-		$stderrDuplication = '';
-		if ( $includeStderr ) {
-			$stderrDuplication = 'exec 2>&1; ';
-		}
 		$time = intval ( isset( $limits['time'] ) ? $limits['time'] : $wgMaxShellTime );
 		if ( isset( $limits['walltime'] ) ) {
 			$wallTime = intval( $limits['walltime'] );
@@ -2788,14 +2784,14 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(), $limits = array
 			$cmd = '/bin/bash ' . escapeshellarg( "$IP/includes/limit.sh" ) . ' ' .
 				escapeshellarg( $cmd ) . ' ' .
 				escapeshellarg(
-					$stderrDuplication .
+					"MW_INCLUDE_STDERR=" . ( $includeStderr ? '1' : '' ) . ';' .
 					"MW_CPU_LIMIT=$time; " .
 					'MW_CGROUP=' . escapeshellarg( $wgShellCgroup ) . '; ' .
 					"MW_MEM_LIMIT=$mem; " .
 					"MW_FILE_SIZE_LIMIT=$filesize; " .
 					"MW_WALL_CLOCK_LIMIT=$wallTime"
 				);
-		} else {
+		} elseif ( $includeStderr ) {
 			$cmd .= ' 2>&1';
 		}
 	} elseif ( $includeStderr ) {
