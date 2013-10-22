@@ -527,6 +527,11 @@ changes to languages because of Bugzilla reports.
   to addModules() and made protected.
 * Methods WatchAction::doWatch and WatchAction::doUnwatch now return a Status
   object instead of a boolean.
+* BREAKING CHANGE: The module 'mediawiki.legacy.IEFixes' has been removed as it was
+  unused. The file skins/common/IEFixes.js remains but is only used by wikibits.
+  The file never contained any re-usable components. To use it in a skin, load
+  'mediawiki.legacy.wikibits' (which IEFixes depends on) and that will import
+  IEFixes automatically if user agent conditions are met.
 
 == Compatibility ==
 
