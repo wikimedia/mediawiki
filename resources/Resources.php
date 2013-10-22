@@ -1119,12 +1119,6 @@ return array(
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 		'dependencies' => 'mediawiki.legacy.wikibits',
 	),
-	'mediawiki.legacy.IEFixes' => array(
-		'scripts' => 'common/IEFixes.js',
-		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => $GLOBALS['wgStyleDirectory'],
-		'dependencies' => 'mediawiki.legacy.wikibits',
-	),
 	'mediawiki.legacy.protect' => array(
 		'scripts' => 'common/protect.js',
 		'remoteBasePath' => $GLOBALS['wgStylePath'],

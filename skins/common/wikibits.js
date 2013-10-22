@@ -1,89 +1,236 @@
 /**
  * MediaWiki legacy wikibits
  */
-/*jshint quotmark:false, onevar:false */
 ( function ( mw, $ ) {
-	var isIE6, isGecko,
+	var msg,
+		win = window,
 		ua = navigator.userAgent.toLowerCase(),
-		uaMsg = 'Use feature detection or module jquery.client instead.';
+		isIE6 = ( /msie ([0-9]{1,}[\.0-9]{0,})/.exec( ua ) && parseFloat( RegExp.$1 ) <= 6.0 ),
+		isGecko = /gecko/.test( ua ) && !/khtml|spoofer|netscape\/7\.0/.test( ua ),
+		onloadFuncts = [];
+
+if ( mw.config.get( 'wgBreakFrames' ) ) {
+	// Note: In IE < 9 strict comparison to window is non-standard (the standard didn't exist yet)
+	// it works only comparing to window.self or window.window (http://stackoverflow.com/q/4850978/319266)
+	if ( win.top !== win.self ) {
+		// Un-trap us from framesets
+		win.top.location = win.location;
+	}
+}
+
+win.redirectToFragment = function ( fragment ) {
+	var webKitVersion,
+		match = navigator.userAgent.match( /AppleWebKit\/(\d+)/ );
+	if ( match ) {
+		webKitVersion = parseInt( match[1], 10 );
+		if ( webKitVersion < 420 ) {
+			// Released Safari w/ WebKit 418.9.1 messes up horribly
+			// Nightlies of 420+ are ok
+			return;
+		}
+	}
+	if ( !win.location.hash ) {
+		win.location.hash = fragment;
+
+		// Mozilla needs to wait until after load, otherwise the window doesn't
+		// scroll.  See <https://bugzilla.mozilla.org/show_bug.cgi?id=516293>.
+		// There's no obvious way to detect this programmatically, so we use
+		// version-testing.  If Firefox fixes the bug, they'll jump twice, but
+		// better twice than not at all, so make the fix hit future versions as
+		// well.
+		if ( isGecko ) {
+			$( function () {
+				if ( win.location.hash === fragment ) {
+					win.location.hash = fragment;
+				}
+			} );
+		}
+	}
+};
 
 /**
  * User-agent sniffing.
  * To be removed in MediaWiki 1.23.
  *
- * @deprecated since 1.17 Use jquery.client instead.
+ * @deprecated since 1.17 Use jquery.client instead
  */
-mw.log.deprecate( window, 'clientPC', ua, uaMsg );
-$.each([
-		'is_gecko',
-		'is_chrome_mac',
-		'is_chrome',
-		'webkit_version',
-		'is_safari_win',
-		'is_safari',
-		'webkit_match',
-		'is_ff2',
-		'ff2_bugs',
-		'is_ff2_win',
-		'is_ff2_x11',
-		'opera95_bugs',
-		'opera7_bugs',
-		'opera6_bugs',
-		'is_opera_95',
-		'is_opera_preseven',
-		'is_opera',
-		'ie6_bugs'
-	],
-	function ( i, key ) {
-		mw.log.deprecate( window, key, false, uaMsg );
-	}
-);
-if ( /msie ([0-9]{1,}[\.0-9]{0,})/.exec( ua ) && parseFloat( RegExp.$1 ) <= 6.0 ) {
-	isIE6 = true;
-}
-isGecko = /gecko/.test( ua ) && !/khtml|spoofer|netscape\/7\.0/.test( ua );
 
-// add any onload functions in this hook (please don't hard-code any events in the xhtml source)
-window.doneOnloadHook = undefined;
+msg = 'Use feature detection or module jquery.client instead';
 
-if ( !window.onloadFuncts ) {
-	window.onloadFuncts = [];
-}
+mw.log.deprecate( win, 'clientPC', ua, msg );
 
-window.addOnloadHook = function( hookFunct ) {
-	// Allows add-on scripts to add onload functions
-	if( !window.doneOnloadHook ) {
-		window.onloadFuncts[window.onloadFuncts.length] = hookFunct;
+// Ignored dummy values
+mw.log.deprecate( win, 'is_gecko', false, msg );
+mw.log.deprecate( win, 'is_chrome_mac', false, msg );
+mw.log.deprecate( win, 'is_chrome', false, msg );
+mw.log.deprecate( win, 'webkit_version', false, msg );
+mw.log.deprecate( win, 'is_safari_win', false, msg );
+mw.log.deprecate( win, 'is_safari', false, msg );
+mw.log.deprecate( win, 'webkit_match', false, msg );
+mw.log.deprecate( win, 'is_ff2', false, msg );
+mw.log.deprecate( win, 'ff2_bugs', false, msg );
+mw.log.deprecate( win, 'is_ff2_win', false, msg );
+mw.log.deprecate( win, 'is_ff2_x11', false, msg );
+mw.log.deprecate( win, 'opera95_bugs', false, msg );
+mw.log.deprecate( win, 'opera7_bugs', false, msg );
+mw.log.deprecate( win, 'opera6_bugs', false, msg );
+mw.log.deprecate( win, 'is_opera_95', false, msg );
+mw.log.deprecate( win, 'is_opera_preseven', false, msg );
+mw.log.deprecate( win, 'is_opera', false, msg );
+mw.log.deprecate( win, 'ie6_bugs', false, msg );
+
+/**
+ * DOM utilities for handling of events, text nodes and selecting elements
+ *
+ * To be removed in MediaWiki 1.23.
+ *
+ * @deprecated since 1.17 Use jQuery instead
+ */
+msg = 'Use jQuery instead';
+
+// Ignored dummy values
+mw.log.deprecate( win, 'doneOnloadHook', undefined );
+mw.log.deprecate( win, 'onloadFuncts', [] );
+mw.log.deprecate( win, 'runOnloadHook', $.noop );
+mw.log.deprecate( win, 'changeText', $.noop );
+mw.log.deprecate( win, 'killEvt', $.noop );
+mw.log.deprecate( win, 'addHandler', $.noop );
+mw.log.deprecate( win, 'hookEvent', $.noop );
+mw.log.deprecate( win, 'addClickHandler', $.noop );
+mw.log.deprecate( win, 'removeHandler', $.noop );
+mw.log.deprecate( win, 'getElementsByClassName', function () { return []; } );
+mw.log.deprecate( win, 'getInnerText', function () { return ''; } );
+
+// Run a function after the window onload event is fired
+mw.log.deprecate( win, 'addOnloadHook', function ( hookFunct ) {
+	if ( onloadFuncts ) {
+		onloadFuncts.push(hookFunct);
 	} else {
-		hookFunct(); // bug in MSIE script loading
+		// If func queue is gone the event has happened already,
+		// run immediately instead of queueing.
+		hookFunct();
 	}
-};
+} );
 
-window.importScript = function( page ) {
+$( win ).on( 'load', function () {
+	var i, functs;
+
+	// Don't run twice
+	if ( !onloadFuncts ) {
+		return;
+	}
+
+	// Deference and clear onloadFuncts before running any
+	// hooks to make sure we don't miss any addOnloadHook
+	// calls.
+	functs = onloadFuncts.slice();
+	onloadFuncts = undefined;
+
+	// Execute the queued functions
+	for ( i = 0; i < functs.length; i++ ) {
+		functs[i]();
+	}
+} );
+
+/**
+ * Toggle checkboxes with shift selection
+ *
+ * To be removed in MediaWiki 1.23.
+ *
+ * @deprecated since 1.17 Use jquery.checkboxShiftClick instead
+ */
+msg = 'Use jquery.checkboxShiftClick instead';
+mw.log.deprecate( win, 'checkboxes', [], msg );
+mw.log.deprecate( win, 'lastCheckbox', null, msg );
+mw.log.deprecate( win, 'setupCheckboxShiftClick', $.noop, msg );
+mw.log.deprecate( win, 'addCheckboxClickHandlers', $.noop, msg );
+mw.log.deprecate( win, 'checkboxClickHandler', $.noop, msg );
+
+/**
+ * Add a button to the default editor toolbar
+ *
+ * To be removed in MediaWiki 1.23.
+ *
+ * @deprecated since 1.17 Use mw.toolbar instead
+ */
+mw.log.deprecate( win, 'mwEditButtons', [], 'Use mw.toolbar instead' );
+mw.log.deprecate( win, 'mwCustomEditButtons', [], 'Use mw.toolbar instead' );
+
+/**
+ * Spinner creation, injection and removal
+ *
+ * To be removed in MediaWiki 1.23.
+ *
+ * @deprecated since 1.18 Use jquery.spinner instead
+ */
+mw.log.deprecate( win, 'injectSpinner', $.noop, 'Use jquery.spinner instead' );
+mw.log.deprecate( win, 'removeSpinner', $.noop, 'Use jquery.spinner instead' );
+
+/**
+ * Escape utilities
+ *
+ * To be removed in MediaWiki 1.23.
+ *
+ * @deprecated since 1.18 Use mw.html instead
+ */
+mw.log.deprecate( win, 'escapeQuotes', $.noop,'Use mw.html instead' );
+mw.log.deprecate( win, 'escapeQuotesHTML', $.noop,'Use mw.html instead' );
+
+/**
+ * Display a message to the user
+ *
+ * To be removed in MediaWiki 1.23.
+ *
+ * @deprecated since 1.17 Use mediawiki.notify instead
+ * @param {string|HTMLElement} message To be put inside the message box
+ */
+mw.log.deprecate( win, 'jsMsg', mw.util.jsMessage, 'Use mediawiki.notify instead' );
+
+/**
+ * Misc. utilities
+ *
+ * To be removed in MediaWiki 1.23.
+ *
+ * @deprecated since 1.17 Use mediawiki.util instead
+ */
+msg = 'Use mediawiki.util instead';
+mw.log.deprecate( win, 'tooltipAccessKeyPrefix', 'alt-', msg );
+mw.log.deprecate( win, 'tooltipAccessKeyRegexp', /\[(alt-)?(.)\]$/, msg );
+mw.log.deprecate( win, 'updateTooltipAccessKeys', mw.util.updateTooltipAccessKeys, msg );
+mw.log.deprecate( win, 'addPortletLink', mw.util.addPortletLink, msg );
+mw.log.deprecate( win, 'appendCSS', mw.util.addCSS );
+
+/**
+ * Wikipage import methods
+ */
+
+// included-scripts tracker
+win.loadedScripts = {};
+
+win.importScript = function ( page ) {
 	var uri = mw.config.get( 'wgScript' ) + '?title=' +
 		mw.util.wikiUrlencode( page ) +
 		'&action=raw&ctype=text/javascript';
-	return window.importScriptURI( uri );
+	return win.importScriptURI( uri );
 };
 
-window.loadedScripts = {}; // included-scripts tracker
-window.importScriptURI = function( url ) {
-	if ( window.loadedScripts[url] ) {
+win.importScriptURI = function ( url ) {
+	if ( win.loadedScripts[url] ) {
 		return null;
 	}
-	window.loadedScripts[url] = true;
+	win.loadedScripts[url] = true;
 	var s = document.createElement( 'script' );
 	s.setAttribute( 'src', url );
 	s.setAttribute( 'type', 'text/javascript' );
-	document.getElementsByTagName('head')[0].appendChild( s );
+	document.getElementsByTagName( 'head' )[0].appendChild( s );
 	return s;
 };
 
-window.importStylesheet = function( page ) {
-	return window.importStylesheetURI( mw.config.get( 'wgScript' ) + '?action=raw&ctype=text/css&title=' + mw.util.wikiUrlencode( page ) );
+win.importStylesheet = function( page ) {
+	return win.importStylesheetURI( mw.config.get( 'wgScript' ) + '?action=raw&ctype=text/css&title=' + mw.util.wikiUrlencode( page ) );
 };
 
-window.importStylesheetURI = function( url, media ) {
+win.importStylesheetURI = function( url, media ) {
 	var l = document.createElement( 'link' );
 	l.rel = 'stylesheet';
 	l.href = url;
@@ -94,408 +241,8 @@ window.importStylesheetURI = function( url, media ) {
 	return l;
 };
 
-window.appendCSS = function( text ) {
-	var s = document.createElement( 'style' );
-	s.type = 'text/css';
-	s.rel = 'stylesheet';
-	if ( s.styleSheet ) {
-		s.styleSheet.cssText = text; // IE
-	} else {
-		s.appendChild( document.createTextNode( text + '' ) ); // Safari sometimes borks on null
-	}
-	document.getElementsByTagName('head')[0].appendChild( s );
-	return s;
-};
-
-if ( mw.config.get( 'wgBreakFrames' ) ) {
-	// Note: In IE < 9 strict comparison to window is non-standard (the standard didn't exist yet)
-	// it works only comparing to window.self or window.window (http://stackoverflow.com/q/4850978/319266)
-	if ( window.top !== window.self ) {
-		// Un-trap us from framesets
-		window.top.location = window.location;
-	}
-}
-
-window.changeText = function( el, newText ) {
-	// Safari work around
-	if ( el.innerText ) {
-		el.innerText = newText;
-	} else if ( el.firstChild && el.firstChild.nodeValue ) {
-		el.firstChild.nodeValue = newText;
-	}
-};
-
-window.killEvt = function( evt ) {
-	evt = evt || window.event || window.Event; // W3C, IE, Netscape
-	if ( typeof evt.preventDefault !== 'undefined' ) {
-		evt.preventDefault(); // Don't follow the link
-		evt.stopPropagation();
-	} else {
-		evt.cancelBubble = true; // IE
-	}
-	return false; // Don't follow the link (IE)
-};
-
-window.mwEditButtons = [];
-mw.log.deprecate( window, 'mwCustomEditButtons', [], 'Use mw.toolbar.addButton instead.' );
-
-window.escapeQuotes = function( text ) {
-	var re = new RegExp( "'", "g" );
-	text = text.replace( re, "\\'" );
-	re = new RegExp( "\\n", "g" );
-	text = text.replace( re, "\\n" );
-	return window.escapeQuotesHTML( text );
-};
-
-window.escapeQuotesHTML = function( text ) {
-	var re = new RegExp( '&', "g" );
-	text = text.replace( re, "&amp;" );
-	re = new RegExp( '"', "g" );
-	text = text.replace( re, "&quot;" );
-	re = new RegExp( '<', "g" );
-	text = text.replace( re, "&lt;" );
-	re = new RegExp( '>', "g" );
-	text = text.replace( re, "&gt;" );
-	return text;
-};
-
-/**
- * Accesskey prefix utilities.
- * To be removed in MediaWiki 1.23.
- *
- * @deprecated since 1.17 Use mediawiki.util instead.
- */
-mw.log.deprecate( window, 'tooltipAccessKeyPrefix', 'alt-', 'Use mediawiki.util instead.' );
-mw.log.deprecate( window, 'tooltipAccessKeyRegexp', /\[(alt-)?(.)\]$/, 'Use mediawiki.util instead.' );
-mw.log.deprecate( window, 'updateTooltipAccessKeys', mw.util.updateTooltipAccessKeys, 'Use mediawiki.util instead.' );
-
-/**
- * Add a link to one of the portlet menus on the page, including:
- *
- * p-cactions: Content actions (shown as tabs above the main content in Monobook)
- * p-personal: Personal tools (shown at the top right of the page in Monobook)
- * p-navigation: Navigation
- * p-tb: Toolbox
- *
- * This function exists for the convenience of custom JS authors.  All
- * but the first three parameters are optional, though providing at
- * least an id and a tooltip is recommended.
- *
- * By default the new link will be added to the end of the list.  To
- * add the link before a given existing item, pass the DOM node of
- * that item (easily obtained with document.getElementById()) as the
- * nextnode parameter; to add the link _after_ an existing item, pass
- * the node's nextSibling instead.
- *
- * @param portlet String id of the target portlet ("p-cactions", "p-personal", "p-navigation" or "p-tb")
- * @param href String link URL
- * @param text String link text (will be automatically lowercased by CSS for p-cactions in Monobook)
- * @param id String id of the new item, should be unique and preferably have the appropriate prefix ("ca-", "pt-", "n-" or "t-")
- * @param tooltip String text to show when hovering over the link, without accesskey suffix
- * @param accesskey String accesskey to activate this link (one character, try to avoid conflicts)
- * @param nextnode Node the DOM node before which the new item should be added, should be another item in the same list
- *
- * @return Node -- the DOM node of the new item (an LI element) or null
- */
-window.addPortletLink = function( portlet, href, text, id, tooltip, accesskey, nextnode ) {
-	var root = document.getElementById( portlet );
-	if ( !root ) {
-		return null;
-	}
-	var uls = root.getElementsByTagName( 'ul' );
-	var node;
-	if ( uls.length > 0 ) {
-		node = uls[0];
-	} else {
-		node = document.createElement( 'ul' );
-		var lastElementChild = null;
-		for ( var i = 0; i < root.childNodes.length; ++i ) { /* get root.lastElementChild */
-			if ( root.childNodes[i].nodeType === 1 ) {
-				lastElementChild = root.childNodes[i];
-			}
-		}
-		if ( lastElementChild && lastElementChild.nodeName.match( /div/i ) ) {
-			/* Insert into the menu divs */
-			lastElementChild.appendChild( node );
-		} else {
-			root.appendChild( node );
-		}
-	}
-	if ( !node ) {
-		return null;
-	}
-
-	// unhide portlet if it was hidden before
-	root.className = root.className.replace( /(^| )emptyPortlet( |$)/, "$2" );
-
-	var link = document.createElement( 'a' );
-	link.appendChild( document.createTextNode( text ) );
-	link.href = href;
-
-	// Wrap in a span - make it work with vector tabs and has no effect on any other portlets
-	var span = document.createElement( 'span' );
-	span.appendChild( link );
-
-	var item = document.createElement( 'li' );
-	item.appendChild( span );
-	if ( id ) {
-		item.id = id;
-	}
-
-	if ( accesskey ) {
-		link.setAttribute( 'accesskey', accesskey );
-		tooltip += ' [' + accesskey + ']';
-	}
-	if ( tooltip ) {
-		link.setAttribute( 'title', tooltip );
-	}
-	if ( accesskey && tooltip ) {
-		mw.util.updateTooltipAccessKeys( [link] );
-	}
-
-	if ( nextnode && nextnode.parentNode === node ) {
-		node.insertBefore( item, nextnode );
-	} else {
-		node.appendChild( item );  // IE compatibility (?)
-	}
-
-	return item;
-};
-
-window.getInnerText = function( el ) {
-	if ( typeof el === 'string' ) {
-		return el;
-	}
-	if ( typeof el === 'undefined' ) {
-		return el;
-	}
-	// Custom sort value through 'data-sort-value' attribute
-	// (no need to prepend hidden text to change sort value)
-	if ( el.nodeType && el.getAttribute( 'data-sort-value' ) !== null ) {
-		// Make sure it's a valid DOM element (.nodeType) and that the attribute is set (!null)
-		return el.getAttribute( 'data-sort-value' );
-	}
-	if ( el.textContent ) {
-		return el.textContent; // not needed but it is faster
-	}
-	if ( el.innerText ) {
-		return el.innerText; // IE doesn't have textContent
-	}
-	var str = '';
-
-	var cs = el.childNodes;
-	var l = cs.length;
-	for ( var i = 0; i < l; i++ ) {
-		switch ( cs[i].nodeType ) {
-			case 1: // ELEMENT_NODE
-				str += window.getInnerText( cs[i] );
-				break;
-			case 3:	// TEXT_NODE
-				str += cs[i].nodeValue;
-				break;
-		}
-	}
-	return str;
-};
-
-/**
- * Toggle checkboxes with shift selection.
- * To be removed in MediaWiki 1.23.
- *
- * @deprecated since 1.17 Use jquery.checkboxShiftClick instead.
- */
-$.each({
-	checkboxes: [],
-	lastCheckbox: null,
-	setupCheckboxShiftClick: $.noop,
-	addCheckboxClickHandlers: $.noop,
-	checkboxClickHandler: $.noop
-}, function ( key, val ) {
-	mw.log.deprecate( window, key, val, 'Use jquery.checkboxShiftClick instead.' );
-} );
-
-/*
-	Written by Jonathan Snook, http://www.snook.ca/jonathan
-	Add-ons by Robert Nyman, http://www.robertnyman.com
-	Author says "The credit comment is all it takes, no license. Go crazy with it!:-)"
-	From http://www.robertnyman.com/2005/11/07/the-ultimate-getelementsbyclassname/
-*/
-window.getElementsByClassName = function( oElm, strTagName, oClassNames ) {
-	var arrReturnElements = [];
-	if ( typeof oElm.getElementsByClassName === 'function' ) {
-		/* Use a native implementation where possible FF3, Saf3.2, Opera 9.5 */
-		var arrNativeReturn = oElm.getElementsByClassName( oClassNames );
-		if ( strTagName === '*' ) {
-			return arrNativeReturn;
-		}
-		for ( var h = 0; h < arrNativeReturn.length; h++ ) {
-			if( arrNativeReturn[h].tagName.toLowerCase() === strTagName.toLowerCase() ) {
-				arrReturnElements[arrReturnElements.length] = arrNativeReturn[h];
-			}
-		}
-		return arrReturnElements;
-	}
-	var arrElements = ( strTagName === '*' && oElm.all ) ? oElm.all : oElm.getElementsByTagName( strTagName );
-	var arrRegExpClassNames = [];
-	if( typeof oClassNames === 'object' ) {
-		for( var i = 0; i < oClassNames.length; i++ ) {
-			arrRegExpClassNames[arrRegExpClassNames.length] =
-				new RegExp("(^|\\s)" + oClassNames[i].replace(/\-/g, "\\-") + "(\\s|$)");
-		}
-	} else {
-		arrRegExpClassNames[arrRegExpClassNames.length] =
-			new RegExp("(^|\\s)" + oClassNames.replace(/\-/g, "\\-") + "(\\s|$)");
-	}
-	var oElement;
-	var bMatchesAll;
-	for( var j = 0; j < arrElements.length; j++ ) {
-		oElement = arrElements[j];
-		bMatchesAll = true;
-		for( var k = 0; k < arrRegExpClassNames.length; k++ ) {
-			if( !arrRegExpClassNames[k].test( oElement.className ) ) {
-				bMatchesAll = false;
-				break;
-			}
-		}
-		if( bMatchesAll ) {
-			arrReturnElements[arrReturnElements.length] = oElement;
-		}
-	}
-	return ( arrReturnElements );
-};
-
-window.redirectToFragment = function( fragment ) {
-	var webKitVersion,
-		match = navigator.userAgent.match(/AppleWebKit\/(\d+)/);
-	if ( match ) {
-		webKitVersion = parseInt( match[1], 10 );
-		if ( webKitVersion < 420 ) {
-			// Released Safari w/ WebKit 418.9.1 messes up horribly
-			// Nightlies of 420+ are ok
-			return;
-		}
-	}
-	if ( !window.location.hash ) {
-		window.location.hash = fragment;
-
-		// Mozilla needs to wait until after load, otherwise the window doesn't
-		// scroll.  See <https://bugzilla.mozilla.org/show_bug.cgi?id=516293>.
-		// There's no obvious way to detect this programmatically, so we use
-		// version-testing.  If Firefox fixes the bug, they'll jump twice, but
-		// better twice than not at all, so make the fix hit future versions as
-		// well.
-		if ( isGecko ) {
-			$( function () {
-				if ( window.location.hash === fragment ) {
-					window.location.hash = fragment;
-				}
-			} );
-		}
-	}
-};
-
-/**
- * Add a cute little box at the top of the screen to inform the user of
- * something, replacing any preexisting message.
- *
- * @deprecated since 1.17 Use the 'mediawiki.notify' module instead.
- * @param {string|HTMLElement} message To be put inside the message box.
- */
-mw.log.deprecate( window, 'jsMsg', mw.util.jsMessage, 'Use mediawiki.notify instead.' );
-
-/**
- * Inject a cute little progress spinner after the specified element
- *
- * @param element Element to inject after
- * @param id Identifier string (for use with removeSpinner(), below)
- */
-window.injectSpinner = function( element, id ) {
-	var spinner = document.createElement( 'img' );
-	spinner.id = 'mw-spinner-' + id;
-	spinner.src = mw.config.get( 'stylepath' ) + '/common/images/spinner.gif';
-	spinner.alt = spinner.title = '...';
-	if( element.nextSibling ) {
-		element.parentNode.insertBefore( spinner, element.nextSibling );
-	} else {
-		element.parentNode.appendChild( spinner );
-	}
-};
-
-/**
- * Remove a progress spinner added with injectSpinner()
- *
- * @param id Identifier string
- */
-window.removeSpinner = function( id ) {
-	var spinner = document.getElementById( 'mw-spinner-' + id );
-	if( spinner ) {
-		spinner.parentNode.removeChild( spinner );
-	}
-};
-
-window.runOnloadHook = function() {
-	// don't run anything below this for non-dom browsers
-	if ( window.doneOnloadHook || !( document.getElementById && document.getElementsByTagName ) ) {
-		return;
-	}
-
-	// set this before running any hooks, since any errors below
-	// might cause the function to terminate prematurely
-	window.doneOnloadHook = true;
-
-	// Run any added-on functions
-	for ( var i = 0; i < window.onloadFuncts.length; i++ ) {
-		window.onloadFuncts[i]();
-	}
-};
-
-/**
- * Add an event handler to an element
- *
- * @param element Element to add handler to
- * @param attach String Event to attach to
- * @param handler callable Event handler callback
- */
-window.addHandler = function( element, attach, handler ) {
-	if( element.addEventListener ) {
-		element.addEventListener( attach, handler, false );
-	} else if( element.attachEvent ) {
-		element.attachEvent( 'on' + attach, handler );
-	}
-};
-
-window.hookEvent = function( hookName, hookFunct ) {
-	window.addHandler( window, hookName, hookFunct );
-};
-
-/**
- * Add a click event handler to an element
- *
- * @param element Element to add handler to
- * @param handler callable Event handler callback
- */
-window.addClickHandler = function( element, handler ) {
-	window.addHandler( element, 'click', handler );
-};
-
-/**
- * Removes an event handler from an element
- *
- * @param element Element to remove handler from
- * @param remove String Event to remove
- * @param handler callable Event handler callback to remove
- */
-window.removeHandler = function( element, remove, handler ) {
-	if( window.removeEventListener ) {
-		element.removeEventListener( remove, handler, false );
-	} else if( window.detachEvent ) {
-		element.detachEvent( 'on' + remove, handler );
-	}
-};
-window.hookEvent( 'load', window.runOnloadHook );
-
 if ( isIE6 ) {
-	window.importScriptURI( mw.config.get( 'stylepath' ) + '/common/IEFixes.js' );
+	win.importScriptURI( mw.config.get( 'stylepath' ) + '/common/IEFixes.js' );
 }
 
 }( mediaWiki, jQuery ) );
