@@ -461,6 +461,23 @@ if ( $wgDonationInterfaceEnableAdyen === true ) {
 	);
 }
 
+/* * ***********
+ * Error Pages *
+ * *********** */
+
+$forms_whitelist['error-default'] = array (
+	'file' => $form_dirs['default'] . '/error-cc.html',
+	'gateway' => array ( 'globalcollect', 'adyen', 'amazon', 'paypal' ),
+	'special_type' => 'error', //buuuurble
+);
+
+$forms_whitelist['error-cc'] = array (
+	'file' => $form_dirs['default'] . '/error-cc.html',
+	'gateway' => array ( 'globalcollect', 'adyen' ),
+	'payment_methods' => array ( 'cc' => 'ALL' ),
+	'special_type' => 'error',
+);
+
 //Yes: We definitely want to blow away everything that didn't come from this file.
 $wgDonationInterfaceAllowedHtmlForms = $forms_whitelist;
 $wgDonationInterfaceFormDirs = $form_dirs;
