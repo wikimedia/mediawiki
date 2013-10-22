@@ -276,7 +276,7 @@ class BackupDumper {
 		}
 
 		$this->lb = wfGetLBFactory()->newMainLB();
-		$db = $this->lb->getConnection( DB_SLAVE, 'backup' );
+		$db = $this->lb->getConnection( DB_SLAVE, 'dump' );
 
 		// Discourage the server from disconnecting us if it takes a long time
 		// to read out the big ol' batch query.
