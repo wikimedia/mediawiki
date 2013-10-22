@@ -7,8 +7,11 @@
 
 /** Tests for MediaWiki languages/classes/LanguageGd.php */
 class LanguageGdTest extends LanguageClassesTestCase {
-	/** @dataProvider providerPlural */
-	function testPlural( $result, $value ) {
+	/**
+	 * @dataProvider providerPlural
+	 * @covers Language::convertPlural
+	*/
+	public function testPlural( $result, $value ) {
 		$forms = array( 'one', 'two', 'few', 'other' );
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
@@ -26,8 +29,11 @@ class LanguageGdTest extends LanguageClassesTestCase {
 		);
 	}
 
-	/** @dataProvider providerPluralExplicit */
-	function testExplicitPlural( $result, $value ) {
+	/**
+	 * @dataProvider providerPluralExplicit
+	 * @covers Language::convertPlural
+	 */
+	public function testExplicitPlural( $result, $value ) {
 		$forms = array( 'one', 'two', 'few', 'other', '11=Form11', '12=Form12' );
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}

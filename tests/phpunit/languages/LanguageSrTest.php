@@ -10,11 +10,18 @@
  * @author Antoine Musso <hashar at free dot fr>
  * @copyright Copyright © 2011, Antoine Musso <hashar at free dot fr>
  * @file
+ *
+ * @todo methods in test class should be tidied:
+ *  - Should be split into separate test methods and data providers
+ *  - Tests for LanguageConverter and Language should probably be separate..
  */
 
 /** Tests for MediaWiki languages/LanguageSr.php */
 class LanguageSrTest extends LanguageClassesTestCase {
-	function testEasyConversions() {
+	/**
+	 * @covers LanguageConverter::convertTo
+	 */
+	public function testEasyConversions() {
 		$this->assertCyrillic(
 			'шђчћжШЂЧЋЖ',
 			'Cyrillic guessing characters'
@@ -25,7 +32,10 @@ class LanguageSrTest extends LanguageClassesTestCase {
 		);
 	}
 
-	function testMixedConversions() {
+	/**
+	 * @covers LanguageConverter::convertTo
+	 */
+	public function testMixedConversions() {
 		$this->assertCyrillic(
 			'шђчћжШЂЧЋЖ - šđčćž',
 			'Mostly cyrillic characters'
@@ -36,7 +46,10 @@ class LanguageSrTest extends LanguageClassesTestCase {
 		);
 	}
 
-	function testSameAmountOfLatinAndCyrillicGetConverted() {
+	/**
+	 * @covers LanguageConverter::convertTo
+	 */
+	public function testSameAmountOfLatinAndCyrillicGetConverted() {
 		$this->assertConverted(
 			'4 latin: šđčć | 4 cyrillic: шђчћ',
 			'sr-ec'
@@ -49,8 +62,9 @@ class LanguageSrTest extends LanguageClassesTestCase {
 
 	/**
 	 * @author Nikola Smolenski
+	 * @covers LanguageConverter::convertTo
 	 */
-	function testConversionToCyrillic() {
+	public function testConversionToCyrillic() {
 		//A simple convertion of Latin to Cyrillic
 		$this->assertEquals( 'абвг',
 			$this->convertToCyrillic( 'abvg' )
@@ -89,7 +103,10 @@ class LanguageSrTest extends LanguageClassesTestCase {
 		);
 	}
 
-	function testConversionToLatin() {
+	/**
+	 * @covers LanguageConverter::convertTo
+	 */
+	public function testConversionToLatin() {
 		//A simple convertion of Latin to Latin
 		$this->assertEquals( 'abcd',
 			$this->convertToLatin( 'abcd' )
@@ -108,14 +125,20 @@ class LanguageSrTest extends LanguageClassesTestCase {
 		);
 	}
 
-	/** @dataProvider providePlural */
-	function testPlural( $result, $value ) {
+	/**
+	 * @dataProvider providePlural
+	 * @covers Language::convertPlural
+	 */
+	public function testPlural( $result, $value ) {
 		$forms = array( 'one', 'few', 'many', 'other' );
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
-	/** @dataProvider providePlural */
-	function testGetPluralRuleType( $result, $value ) {
+	/**
+	 * @dataProvider providePlural
+	 * @covers Language::getPluralRuleType
+	 */
+	public function testGetPluralRuleType( $result, $value ) {
 		$this->assertEquals( $result, $this->getLang()->getPluralRuleType( $value ) );
 	}
 
@@ -135,8 +158,11 @@ class LanguageSrTest extends LanguageClassesTestCase {
 		);
 	}
 
-	/** @dataProvider providePluralTwoForms */
-	function testPluralTwoForms( $result, $value ) {
+	/**
+	 * @dataProvider providePluralTwoForms
+	 * @covers Language::convertPlural
+	 */
+	public function testPluralTwoForms( $result, $value ) {
 		$forms = array( 'one', 'other' );
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
@@ -157,7 +183,7 @@ class LanguageSrTest extends LanguageClassesTestCase {
 	 * @param $variant string Language variant 'sr-ec' or 'sr-el'
 	 * @param $msg string Optional message
 	 */
-	function assertUnConverted( $text, $variant, $msg = '' ) {
+	protected function assertUnConverted( $text, $variant, $msg = '' ) {
 		$this->assertEquals(
 			$text,
 			$this->convertTo( $text, $variant ),
@@ -171,7 +197,7 @@ class LanguageSrTest extends LanguageClassesTestCase {
 	 * @param $variant string Language variant 'sr-ec' or 'sr-el'
 	 * @param $msg string Optional message
 	 */
-	function assertConverted( $text, $variant, $msg = '' ) {
+	protected function assertConverted( $text, $variant, $msg = '' ) {
 		$this->assertNotEquals(
 			$text,
 			$this->convertTo( $text, $variant ),
@@ -184,7 +210,7 @@ class LanguageSrTest extends LanguageClassesTestCase {
 	 * using the cyrillic variant and converted to Latin when using
 	 * the Latin variant.
 	 */
-	function assertCyrillic( $text, $msg = '' ) {
+	protected function assertCyrillic( $text, $msg = '' ) {
 		$this->assertUnConverted( $text, 'sr-ec', $msg );
 		$this->assertConverted( $text, 'sr-el', $msg );
 	}
@@ -194,14 +220,14 @@ class LanguageSrTest extends LanguageClassesTestCase {
 	 * using the Latin variant and converted to Cyrillic when using
 	 * the Cyrillic variant.
 	 */
-	function assertLatin( $text, $msg = '' ) {
+	protected function assertLatin( $text, $msg = '' ) {
 		$this->assertUnConverted( $text, 'sr-el', $msg );
 		$this->assertConverted( $text, 'sr-ec', $msg );
 	}
 
 
 	/** Wrapper for converter::convertTo() method*/
-	function convertTo( $text, $variant ) {
+	protected function convertTo( $text, $variant ) {
 		return $this->getLang()
 			->mConverter
 			->convertTo(
@@ -209,11 +235,11 @@ class LanguageSrTest extends LanguageClassesTestCase {
 			);
 	}
 
-	function convertToCyrillic( $text ) {
+	protected function convertToCyrillic( $text ) {
 		return $this->convertTo( $text, 'sr-ec' );
 	}
 
-	function convertToLatin( $text ) {
+	protected function convertToLatin( $text ) {
 		return $this->convertTo( $text, 'sr-el' );
 	}
 }

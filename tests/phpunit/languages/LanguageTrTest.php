@@ -17,7 +17,7 @@ class LanguageTrTest extends LanguageClassesTestCase {
 	 * @see http://en.wikipedia.org/wiki/Dotted_and_dotless_I
 	 * @dataProvider provideDottedAndDotlessI
 	 */
-	function testDottedAndDotlessI( $func, $input, $inputCase, $expected ) {
+	public function testDottedAndDotlessI( $func, $input, $inputCase, $expected ) {
 		if ( $func == 'ucfirst' ) {
 			$res = $this->getLang()->ucfirst( $input );
 		} elseif ( $func == 'lcfirst' ) {

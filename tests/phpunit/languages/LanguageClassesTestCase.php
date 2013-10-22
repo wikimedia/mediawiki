@@ -35,6 +35,9 @@ abstract class LanguageClassesTestCase extends MediaWikiTestCase {
 	 */
 	private $languageObject;
 
+	/**
+	 * @return Language
+	 */
 	protected function getLang() {
 		return $this->languageObject;
 	}
@@ -56,7 +59,7 @@ abstract class LanguageClassesTestCase extends MediaWikiTestCase {
 					. "out of " . get_called_class() . " failling back to 'en'\n"
 			);
 		}
-		// TODO: validate $m[1] which should be a valid language code
+		// @todo validate $m[1] which should be a valid language code
 		$this->languageObject = Language::factory( $m[1] );
 	}
 
