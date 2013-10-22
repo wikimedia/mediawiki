@@ -828,12 +828,15 @@ $1',
 'changeemail-cancel' => 'Цаоьшу',
 
 # Special:ResetTokens
+'resettokens' => 'Токенаш кхоссар',
 'resettokens-text' => 'Хьан йиш ю токенаш кхосса, цара йиш хуьлуьйту цхьаболу долара хаамашна тӀекхача, уьш ю хьан дӀаяздар ца вовшахтесна. 
 
 Хьона иза оьшу, ахьа хьай токенаш цхьам гучу яьхна елахь я хьан аккаунт йохийна елахь.',
 'resettokens-legend' => 'Токенаш кхоссар',
+'resettokens-tokens' => 'Токенаш:',
 'resettokens-token-label' => '$1 (карара маьӀна: $2)',
 'resettokens-watchlist-token' => 'Веб-каналан (Atom/RSS) токен  [[Special:Watchlist|хьан тергаме могӀам чура агӀонашна хийцамаш бар]]',
+'resettokens-done' => 'Токенаш кхиссина.',
 'resettokens-resetbutton' => 'Къастина токенаш кхоссар',
 
 # Edit page toolbar
@@ -1129,6 +1132,7 @@ $1',
 'prefs-email' => 'Электронан почтан параметраш',
 'prefs-rendering' => 'Арахьара хатl',
 'saveprefs' => 'lалашдан',
+'resetprefs' => 'Кхоссар',
 'restoreprefs' => 'МеттахӀоттабе гӀирс Iад битарца',
 'prefs-editing' => 'Тадар',
 'rows' => 'МогӀанаш:',
@@ -2199,9 +2203,10 @@ PICT # тайп тайпан
 'show-big-image-size' => '$1 × $2 пикселш',
 
 # Special:NewFiles
-'newimages' => 'Керлачу файланшан галерий',
+'newimages' => 'Керлачу файлийн галерий',
 'newimages-summary' => 'ХӀокху белхан агӀона чохь гойтуш ю дукха хан йоццуш чуйаьхна файлаш.',
 'newimages-legend' => 'Литтар',
+'showhidebots' => '$1 шабелхалой',
 'ilsubmit' => 'Лаха',
 'sp-newimages-showfrom' => 'Гайта керла файлаш $2, $1 тӀера дуьйна',
 

@@ -544,7 +544,7 @@ $messages = array(
 'articlepage' => 'Visa innehållssida',
 'talk' => 'Diskussion',
 'views' => 'Visningar',
-'toolbox' => 'Verktygslåda',
+'toolbox' => 'Verktyg',
 'userpage' => 'Visa användarsida',
 'projectpage' => 'Visa projektsida',
 'imagepage' => 'Visa filsida',
@@ -1547,7 +1547,7 @@ Programvaran använder detta värde för att adressera dig till andra med rätt 
 'prefs-help-realname' => 'Riktigt namn behöver inte anges.
 Om du väljer att ange ditt riktiga namn, kommer det att användas för att tillskriva dig ditt arbete.',
 'prefs-help-email' => 'Att ange e-postadress är valfritt, men gör det möjligt att få ditt lösenord mejlat till dig om du glömmer det.',
-'prefs-help-email-others' => 'Du kan också välja att låta andra användare kontakta dig genom din användar-eller diskussionssida utan att avslöja din identitet.',
+'prefs-help-email-others' => 'Du kan också välja att låta andra användare kontakta dig genom din användar- eller diskussionssida utan att avslöja din identitet.',
 'prefs-help-email-required' => 'E-postadress måste anges.',
 'prefs-info' => 'Grundläggande information',
 'prefs-i18n' => 'Internationalisering',
