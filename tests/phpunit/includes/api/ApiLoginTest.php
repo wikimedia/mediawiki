@@ -4,59 +4,10 @@
  * @group API
  * @group Database
  * @group medium
+ *
+ * @covers ApiLogin
  */
-class ApiTest extends ApiTestCase {
-
-	public function testRequireOnlyOneParameterDefault() {
-		$mock = new MockApi();
-
-		$this->assertEquals(
-			null, $mock->requireOnlyOneParameter( array( "filename" => "foo.txt",
-			"enablechunks" => false ), "filename", "enablechunks" ) );
-	}
-
-	/**
-	 * @expectedException UsageException
-	 */
-	public function testRequireOnlyOneParameterZero() {
-		$mock = new MockApi();
-
-		$this->assertEquals(
-			null, $mock->requireOnlyOneParameter( array( "filename" => "foo.txt",
-			"enablechunks" => 0 ), "filename", "enablechunks" ) );
-	}
-
-	/**
-	 * @expectedException UsageException
-	 */
-	public function testRequireOnlyOneParameterTrue() {
-		$mock = new MockApi();
-
-		$this->assertEquals(
-			null, $mock->requireOnlyOneParameter( array( "filename" => "foo.txt",
-			"enablechunks" => true ), "filename", "enablechunks" ) );
-	}
-
-	/**
-	 * Test that the API will accept a FauxRequest and execute. The help action
-	 * (default) throws a UsageException. Just validate we're getting proper XML
-	 *
-	 * @expectedException UsageException
-	 */
-	public function testApi() {
-		$api = new ApiMain(
-			new FauxRequest( array( 'action' => 'help', 'format' => 'xml' ) )
-		);
-		$api->execute();
-		$api->getPrinter()->setBufferResult( true );
-		$api->printResult( false );
-		$resp = $api->getPrinter()->getBuffer();
-
-		libxml_use_internal_errors( true );
-		$sxe = simplexml_load_string( $resp );
-		$this->assertNotInternalType( "bool", $sxe );
-		$this->assertThat( $sxe, $this->isInstanceOf( "SimpleXMLElement" ) );
-	}
+class ApiLoginTest extends ApiTestCase {
 
 	/**
 	 * Test result of attempted login with an empty username
@@ -155,7 +106,7 @@ class ApiTest extends ApiTestCase {
 	/**
 	 * @group Broken
 	 */
-	public function testApiGotCookie() {
+	public function testApiLoginGotCookie() {
 		$this->markTestIncomplete( "The server can't do external HTTP requests, and the internal one won't give cookies" );
 
 		global $wgServer, $wgScriptPath;
@@ -197,8 +148,6 @@ class ApiTest extends ApiTestCase {
 		$serializedCookie = $cj->serializeToHttpRequest( $wgScriptPath, $serverName );
 		$this->assertNotEquals( '', $serializedCookie );
 		$this->assertRegexp( '/_session=[^;]*; .*UserID=[0-9]*; .*UserName=' . $user->userName . '; .*Token=/', $serializedCookie );
-
-		return $cj;
 	}
 
 	public function testRunLogin() {
@@ -223,37 +172,6 @@ class ApiTest extends ApiTestCase {
 		$this->assertArrayHasKey( "result", $data[0]['login'] );
 		$this->assertEquals( "Success", $data[0]['login']['result'] );
 		$this->assertArrayHasKey( 'lgtoken', $data[0]['login'] );
-
-		return $data;
 	}
 
-	public function testGettingToken() {
-		foreach ( self::$users as $user ) {
-			$this->runTokenTest( $user );
-		}
-	}
-
-	function runTokenTest( $user ) {
-		$tokens = $this->getTokenList( $user );
-
-		$rights = $user->user->getRights();
-
-		$this->assertArrayHasKey( 'edittoken', $tokens );
-		$this->assertArrayHasKey( 'movetoken', $tokens );
-
-		if ( isset( $rights['delete'] ) ) {
-			$this->assertArrayHasKey( 'deletetoken', $tokens );
-		}
-
-		if ( isset( $rights['block'] ) ) {
-			$this->assertArrayHasKey( 'blocktoken', $tokens );
-			$this->assertArrayHasKey( 'unblocktoken', $tokens );
-		}
-
-		if ( isset( $rights['protect'] ) ) {
-			$this->assertArrayHasKey( 'protecttoken', $tokens );
-		}
-
-		return $tokens;
-	}
-}
+} 
