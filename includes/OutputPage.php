@@ -669,7 +669,7 @@ class OutputPage extends ContextSource {
 	 *
 	 * @param $timestamp string
 	 *
-	 * @return Boolean: true iff cache-ok headers was sent.
+	 * @return Boolean: true if cache-ok headers was sent.
 	 */
 	public function checkLastModified( $timestamp ) {
 		global $wgCachePages, $wgCacheEpoch, $wgUseSquid, $wgSquidMaxage;

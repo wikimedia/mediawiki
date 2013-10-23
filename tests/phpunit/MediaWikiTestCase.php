@@ -777,7 +777,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * Returns true iff the given namespace defaults to Wikitext
+	 * Returns true if the given namespace defaults to Wikitext
 	 * according to $wgNamespaceContentModels
 	 *
 	 * @param int $ns The namespace ID to check
