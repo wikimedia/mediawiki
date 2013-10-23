@@ -362,7 +362,7 @@ $messages = array(
 'articlepage' => 'Vider pagina de contento',
 'talk' => 'Discussion',
 'views' => 'Representationes',
-'toolbox' => 'Instrumentario',
+'toolbox' => 'Instrumentos',
 'userpage' => 'Vider pagina del usator',
 'projectpage' => 'Vider pagina de projecto',
 'imagepage' => 'Vider le pagina del file',
@@ -2392,10 +2392,12 @@ Tote le horas es in le fuso horari del servitor.',
 'deletecomment' => 'Motivo:',
 'deleteotherreason' => 'Motivo altere/additional:',
 'deletereasonotherlist' => 'Altere motivo',
-'deletereason-dropdown' => '*Motivos habitual pro deler paginas
-** Requesta del autor
+'deletereason-dropdown' => '*Motivos commun pro deler
+** Spam
+** Vandalismo
 ** Violation de copyright
-** Vandalismo',
+** Requesta del autor
+** Redirection rupte',
 'delete-edit-reasonlist' => 'Modificar le motivos pro deletion',
 'delete-toobig' => 'Iste pagina ha un grande historia de modificationes con plus de $1 {{PLURAL:$1|version|versiones}}.
 Le deletion de tal paginas ha essite restringite pro impedir le disruption accidental de {{SITENAME}}.',

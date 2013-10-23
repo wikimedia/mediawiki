@@ -658,7 +658,7 @@ Brug formularen nedenfor til at logge på som en anden bruger.',
 'createacct-emailrequired' => 'Mailadresse',
 'createacct-emailoptional' => 'Mailadresse (valgfri)',
 'createacct-email-ph' => 'Indtast din mailadresse',
-'createacct-another-email-ph' => 'Indtast e-mail-adresse',
+'createacct-another-email-ph' => 'Indtast e-mailadresse',
 'createaccountmail' => 'Brug en midlertidig tilfældig adgangskode og send den til den angivne e-mailadresse',
 'createacct-realname' => 'Dit rigtige navn',
 'createaccountreason' => 'Begrundelse:',
@@ -708,8 +708,7 @@ Hvis en anden har bestilt den nye adgangskode, eller hvis du er kommet i tanke o
 kan du bare ignorere denne e-mail og fortsætte med at bruge din gamle adgangskode.',
 'noemail' => 'Der er ikke oplyst en e-mailadresse for bruger "$1".',
 'noemailcreate' => 'Du skal angive en gyldig e-mailadresse',
-'passwordsent' => 'En ny adgangskode er sendt til e-mail-adressen,
-som er registreret for "$1".
+'passwordsent' => 'En ny adgangskode er sendt til e-mailadressen, som er registreret for "$1".
 Du bør logge på og ændre din adgangskode straks efter du har modtaget e-mailen.',
 'blocked-mailpassword' => 'Din IP-adresse er spærret for ændring af sider. For at forhindre misbrug, er det heller ikke muligt, at bestille et nyt password.',
 'eauthentsent' => 'En bekræftelsesmail er sendt til den angivne e-mailadresse.
@@ -719,12 +718,12 @@ Før en e-mail kan modtages af andre brugere af {{SITENAME}}-mailfunktionen, ska
 'mailerror' => 'Fejl ved afsendelse af e-mail: $1',
 'acct_creation_throttle_hit' => 'Besøgende med samme IP-adresse som dig har oprettet {{PLURAL:$1|en konto|$1 kontoer}} det sidste døgn, og det er ikke tilladt at oprette flere.
 Derfor kan besøgende ikke oprette flere kontoer fra denne IP-adresse i øjeblikket.',
-'emailauthenticated' => 'Din e-mail-adresse blev bekræftet $2 $3.',
+'emailauthenticated' => 'Din e-mailadresse blev bekræftet $2 $3.',
 'emailnotauthenticated' => 'Din e-mail-adresse er endnu ikke bekræftet og de avancerede e-mail-funktioner er slået fra indtil bekræftelse har fundet sted (d.u.a.). Log ind med den midlertidige adgangskode, der er blevet sendt til dig, for at bekræfte, eller bestil et nyt på loginsiden.',
 'noemailprefs' => 'Angiv en e-mailadresse, så følgende funktioner er til rådighed.',
-'emailconfirmlink' => 'Bekræft e-mail-adressen (autentificering).',
+'emailconfirmlink' => 'Bekræft din e-mailadresse',
 'invalidemailaddress' => 'E-mailadressen kan ikke accepteres da den tilsyneladende har et ugyldigt format. Skriv venligst en e-mailadresse med et korrekt format eller tøm feltet.',
-'cannotchangeemail' => 'De email-adresser, der er tilknyttet brugerkontoer, kan ikke ændres på denne wiki.',
+'cannotchangeemail' => 'De e-mailadresser, der er tilknyttet brugerkontoer, kan ikke ændres på denne wiki.',
 'emaildisabled' => 'Denne hjemmeside kan ikke sende emails.',
 'accountcreated' => 'Brugerkonto oprettet',
 'accountcreatedtext' => 'Brugerkontoen for [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|diskussion]]) er oprettet.',
@@ -779,18 +778,18 @@ Du har muligvis allerede skiftet din adgangskode eller anmodet om en ny midlerti
 'passwordreset-capture-help' => 'Hvis du krydser dette felt af, vil emailen (med den midlertidige adgangskode) blive vist til dig i tillæg til at blive sendt til brugeren.',
 'passwordreset-email' => 'E-mailadresse:',
 'passwordreset-emailtitle' => 'Kontooplysninger på {{SITENAME}}',
-'passwordreset-emailtext-ip' => 'Nogen (sandsynligvis dig, fra IP-adressen $1) har anmodet om at få nulstillet din adgangskode til {{SITENAME}} ($4). {{PLURAL:$3|Den følgende brugerkonto er associeret|De følgende brugerkonti er associerede}} med denne e-mail-adresse:
+'passwordreset-emailtext-ip' => 'Nogen (sandsynligvis dig, fra IP-adressen $1) har anmodet om at få nulstillet din adgangskode til {{SITENAME}} ($4). {{PLURAL:$3|Den følgende brugerkonto er associeret|De følgende brugerkonti er associerede}} med denne e-mailadresse:
 
 $2
 
 {{PLURAL:$3|Denne midlertidige adgangskode|Disse midlertidige adgangskoder}} vil udløbe om {{PLURAL:$5|en dag|$5 dage}}.
-Du bør logge på og vælge en ny adgangskode nu. Hvis en anden end dig har gjort denne anmodning, eller hvis du er kommet i tanke om din oprindelig adgangskode og ikke længere ønsker at ændre den, kan du ignorere denne meddelelse og fortsætte med at bruge din gamle adgangskode.',
-'passwordreset-emailtext-user' => 'Brugeren $1 på {{SITENAME}} har anmodet om at få nulstillet din adgangskode til {{SITENAME}} ($4). {{PLURAL:$3|Den følgende brugerkonto er associeret|De følgende brugerkonti er associerede}} med denne e-mail-adresse:
+Du bør logge på og vælge en ny adgangskode nu. Hvis en anden end dig har lavet denne anmodning, eller hvis du er kommet i tanke om din oprindelig adgangskode og ikke længere ønsker at ændre den, kan du ignorere denne meddelelse og fortsætte med at bruge din gamle adgangskode.',
+'passwordreset-emailtext-user' => 'Brugeren $1 på {{SITENAME}} har anmodet om at få nulstillet din adgangskode til {{SITENAME}} ($4). {{PLURAL:$3|Den følgende brugerkonto er associeret|De følgende brugerkonti er associerede}} med denne e-mailadresse:
 
 $2
 
 {{PLURAL:$3|Denne midlertidige adgangskode|Disse midlertidige adgangskoder}} vil udløbe om {{PLURAL:$5|en dag|$5 dage}}.
-Du bør logge på og vælge en ny adgangskode nu. Hvis en anden end dig har gjort denne anmodning, eller hvis du er kommet i tanke om din oprindelig adgangskode og ikke længere ønsker at ændre den, kan du ignorere denne meddelelse og fortsætte med at bruge din gamle adgangskode.',
+Du bør logge på og vælge en ny adgangskode nu. Hvis en anden end dig har lavet denne anmodning, eller hvis du er kommet i tanke om din oprindelig adgangskode og ikke længere ønsker at ændre den, kan du ignorere denne meddelelse og fortsætte med at bruge din gamle adgangskode.',
 'passwordreset-emailelement' => 'Brugernavn: $1
 Midlertidig adgangskode: $2',
 'passwordreset-emailsent' => 'En e-mail om nulstilling af adgangskode er blevet sendt.',
@@ -806,7 +805,7 @@ Midlertidig adgangskode: $2',
 'changeemail-newemail' => 'Ny e-mailadresse:',
 'changeemail-none' => '(ingen)',
 'changeemail-password' => 'Din adgangskode til {{SITENAME}}:',
-'changeemail-submit' => 'Ændre email',
+'changeemail-submit' => 'Ændre e-mail',
 'changeemail-cancel' => 'Afbryd',
 
 # Special:ResetTokens
@@ -1407,7 +1406,7 @@ Informationen vil være offentlig.',
 Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit arbejde.',
 'prefs-help-email' => 'Angivelse af e-mailadresse er valgfrit, men den gør det muligt at sende dig en ny adgangskode hvis du glemmer den.',
 'prefs-help-email-others' => 'Du kan også vælge at lade andre kontakte dig gennem din bruger eller diskussions side uden at behøve at afsløre din identitet.',
-'prefs-help-email-required' => 'E-mail-adresse er krævet.',
+'prefs-help-email-required' => 'E-mailadresse er krævet.',
 'prefs-info' => 'Grundlæggende information',
 'prefs-i18n' => 'Internationalisering:',
 'prefs-signature' => 'Signatur',
@@ -1530,8 +1529,8 @@ Vær venlig at gennemse og bekræft dine ændringer.',
 'right-editmyuserjs' => 'Redigere dine egne JavaScript-filer',
 'right-viewmywatchlist' => 'Se din egen overvågningsliste',
 'right-editmywatchlist' => 'Redigere din egen overvågningsliste. Bemærk nogle handlinger tilføjer sider selv uden denne rettelse.',
-'right-viewmyprivateinfo' => 'Se dine egen private data (f.eks. e-mail-adresse, rigtige navn)',
-'right-editmyprivateinfo' => 'Redigere din egen private data (f.eks. e-mail-adresse, rigtige navn)',
+'right-viewmyprivateinfo' => 'Se dine egne private data (f.eks. e-mailadresse, rigtige navn)',
+'right-editmyprivateinfo' => 'Redigere dine egne private data (f.eks. e-mailadresse, rigtige navn)',
 'right-editmyoptions' => 'Redigere dine egne indstillinger',
 'right-rollback' => 'Hurtig gendannelse af alle redigeringer foretaget af den seneste bruger',
 'right-markbotedits' => 'Markere gendannelser som ændringer foretaget af en robot',
@@ -1593,7 +1592,7 @@ Vær venlig at gennemse og bekræft dine ændringer.',
 'action-userrights' => 'ændre alle brugerrettigheder',
 'action-userrights-interwiki' => 'ændre brugerrettigheder for brugere på andre wikier',
 'action-siteadmin' => 'låse eller låse databasen op',
-'action-sendemail' => 'sende email',
+'action-sendemail' => 'sende e-mail',
 'action-editmywatchlist' => 'rediger din overvågningsliste',
 'action-viewmywatchlist' => 'se din overvågningsliste',
 'action-viewmyprivateinfo' => 'se din private information',
@@ -2253,7 +2252,7 @@ Den e-mail-adresse, du har angivet i [[Special:Preferences|dine indstillinger]],
 'usermaildisabled' => 'Bruger-e-mail deaktiveret',
 'usermaildisabledtext' => 'Du kan ikke sende e-mails til andre brugere på denne wiki',
 'noemailtitle' => 'Ingen e-mailadresse',
-'noemailtext' => 'Denne bruger har ikke angivet en gyldig e-mail-adresse.',
+'noemailtext' => 'Denne bruger har ikke angivet en gyldig e-mailadresse.',
 'nowikiemailtitle' => 'E-mail er ikke tilladt',
 'nowikiemailtext' => 'Denne bruger har valgt ikke at modtage e-mail fra andre brugere.',
 'emailnotarget' => 'Ikke-eksisterende eller ugyldigt brugernavn for modtageren.',
@@ -3614,22 +3613,24 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 'limitall' => 'alle',
 
 # Email address confirmation
-'confirmemail' => 'Bekræft e-mail-adressen',
+'confirmemail' => 'Bekræft e-mailadresse',
 'confirmemail_noemail' => 'Du har ikke angivet en gyldig e-mailadresse i din [[Special:Preferences|brugerprofil]].',
-'confirmemail_text' => '{{SITENAME}} kræver, at du bekræfter en e-mail-adresse (autentificering), før du kan bruge de udvidede e-mail-funktioner. Med et klik på kontrolfeltet forneden sendes en e-mail til dig. Denne e-mail indeholder et link med en bekræftelseskode. Med et klik på dette link bekræftes, at e-mail-adressen er gyldig.',
+'confirmemail_text' => '{{SITENAME}} kræver, at du bekræfter en e-mailadresse (autentificering), før du kan bruge de udvidede e-mailfunktioner. Med et klik på kontrolfeltet forneden sendes en e-mail til dig. Denne e-mail indeholder et link med en bekræftelseskode. Med et klik på dette link bekræftes, at e-mailadressen er gyldig.',
 'confirmemail_pending' => 'En bekræftelsesmail er allerede sendt til dig. Hvis du først for nylig har oprettet brugerkontoen, vent da et par minutter på denne e-mail, før du bestiller en ny kode.',
 'confirmemail_send' => 'Send bekræftelseskode',
 'confirmemail_sent' => 'Bekræftelses-e-mail afsendt.',
 'confirmemail_oncreate' => 'En bekræftelseskode er sendt til din e-mailadresse. Denne kode skal ikke bruges til at logge på, den kræves til aktivering af e-mailfunktionerne i Wikien.',
-'confirmemail_sendfailed' => 'Bekræftelsesmailen kunne ikke afsendes. Kontroller at e-mail-adressen er korrekt.
+'confirmemail_sendfailed' => '{{SITENAME}} kunne ikke afsende din bekræftelsesmail.
+Kontroller at e-mailadressen er korrekt.
 
-Svarbesked fra mailserveren: $1',
+Besked fra mailserveren: $1',
 'confirmemail_invalid' => 'Ugyldig bekræftelseskode. Kodens gyldighed er muligvis udløbet.',
-'confirmemail_needlogin' => 'Du skal $1 for at bekræfte e-mail-adressen.',
-'confirmemail_success' => 'E-mail-adressen er nu bekræftet. Du kan nu logge på.',
-'confirmemail_loggedin' => 'E-mail-adressen er nu bekræftet.',
-'confirmemail_error' => 'Der skete en fejl ved bekræftelsen af e-mail-adressen.',
-'confirmemail_subject' => '[{{SITENAME}}] - bekræftelse af e-mail-adressen',
+'confirmemail_needlogin' => 'Du skal $1 for at bekræfte din e-mailadresse.',
+'confirmemail_success' => 'E-mailadressen er blevet bekræftet.
+Du kan nu [[Special:UserLogin|logge på]].',
+'confirmemail_loggedin' => 'Din e-mailadresse er nu bekræftet.',
+'confirmemail_error' => 'Der skete en fejl under lagring af din bekræftelse.',
+'confirmemail_subject' => '[{{SITENAME}}] - bekræftelse af e-mailadresse',
 'confirmemail_body' => 'Hej,
 
 Nogen med IP-adresse $1, sandsynligvis dig, har bestilt en bekræftelse af denne e-mailadresse til brugerkontoen "$2" på {{SITENAME}}.
@@ -3642,9 +3643,9 @@ Hvis denne e-mailadresse *ikke* hører til den anførte brugerkonto, skal du i s
 
 --
 {{SITENAME}}: {{fullurl:{{Mediawiki:mainpage}}}}',
-'confirmemail_body_changed' => 'Der er nogen, sandsynligvis dig, fra ip-adressen $1, der har ændret emailadressen for kontoen "$2" til denne adresse på {{SITENAME}}.
+'confirmemail_body_changed' => 'Der er nogen, sandsynligvis dig, fra ip-adressen $1, der har ændret e-mailadressen for kontoen "$2" til denne adresse på {{SITENAME}}.
 
-For at bekræfte, at denne konto virkeligt tilhører dig og for at genaktivere emailfunktionerne på {{SITENAME}}, bedes du åbne følgende link i en browser:
+For at bekræfte, at denne konto virkeligt tilhører dig og for at genaktivere e-mailfunktionerne på {{SITENAME}}, bedes du åbne følgende link i en browser:
 
 $3
 

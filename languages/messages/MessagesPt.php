@@ -1391,6 +1391,7 @@ Note que, se usar os links de navegação, os botões de opção voltarão aos v
 'compareselectedversions' => 'Comparar as versões selecionadas',
 'showhideselectedversions' => 'Mostrar/ocultar versões selecionadas',
 'editundo' => 'desfazer',
+'diff-empty' => '(Sem diferenças)',
 'diff-multi' => '({{PLURAL:$1|Uma edição intermédia|$1 edições intermédias}} de {{PLURAL:$2|um utilizador|$2 utilizadores}} {{PLURAL:$1|não apresentada|não apresentadas}})',
 'diff-multi-manyusers' => '({{PLURAL:$1|Uma edição intermédia|$1 edições intermédias}} de mais de {{PLURAL:$2|um utilizador|$2 utilizadores}} não {{PLURAL:$1|apresentada|apresentadas}})',
 'difference-missing-revision' => '{{PLURAL:$2|Uma revisão|$2 revisões}} desta diferença ($1) não {{PLURAL:$2|foi encontrada|foram encontradas}}.
@@ -2061,6 +2062,8 @@ Verifique se o endereço está correto e o site disponível, por favor.',
 'listfiles_size' => 'Tamanho',
 'listfiles_description' => 'Descrição',
 'listfiles_count' => 'Versões',
+'listfiles-show-all' => 'Incluir versões antigas de imagens',
+'listfiles-latestversion-no' => 'Não',
 
 # File description page
 'file-anchor-link' => 'Ficheiro',
@@ -2156,6 +2159,7 @@ Talvez queira editar a descrição na [$2 página original de descrição do fic
 'randompage-nopages' => 'Não há páginas {{PLURAL:$2|no seguinte espaço nominal|nos seguintes espaços nominais}}: $1.',
 
 # Random page in category
+'randomincategory-nopages' => 'Não há páginas na categoria [[:Category:$1|$1]].',
 'randomincategory-selectcategory-submit' => 'Ir',
 
 # Random redirect
@@ -4050,6 +4054,7 @@ Em conjunto com este programa deve ter recebido [{{SERVER}}{{SCRIPTPATH}}/COPYIN
 'tags-tag' => 'Nome da etiqueta',
 'tags-display-header' => 'Aparência nas listas de modificações',
 'tags-description-header' => 'Descrição completa do significado',
+'tags-active-header' => 'Ativa?',
 'tags-hitcount-header' => 'Modificações etiquetadas',
 'tags-edit' => 'editar',
 'tags-hitcount' => '$1 {{PLURAL:$1|modificação|modificações}}',
@@ -4209,6 +4214,7 @@ Caso contrário, pode facilmente usar o formulário abaixo. O seu comentário se
 # Limit report
 'limitreport-cputime-value' => '$1 {{PLURAL:$1|segundo|segundos}}',
 'limitreport-postexpandincludesize-value' => '$1/$2 {{PLURAL:$2|byte|bytes}}',
+'limitreport-templateargumentsize' => 'Tamanho dos argumentos da predefinição',
 'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|byte|bytes}}',
 
 );

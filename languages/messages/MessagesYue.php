@@ -663,7 +663,7 @@ $1',
 'passwordsent' => '新嘅密碼已經寄咗畀呢位用戶 "$1" 嘅電郵地址。收到之後請重新登入。',
 'blocked-mailpassword' => '你嘅IP地址被鎖住，唔可以用密碼復原功能以防止濫用。',
 'eauthentsent' => '確認電郵已經傳送到指定嘅電郵地址。喺其它嘅郵件傳送到呢個戶口之前，你需要按電郵嘅指示，嚟確認呢個戶口真係屬於你嘅。',
-'throttled-mailpassword' => '一個密碼提醒已經響$1個鐘頭之前發送咗。為咗防止濫用，響$1個鐘頭之內只可以發送一個密碼提醒。',
+'throttled-mailpassword' => '一個密碼提醒已經響$1{{PLURAL:$1|個鐘頭}}之前發送咗。為咗防止濫用，響$1{{PLURAL:$1|個鐘頭}}之內只可以發送一個密碼提醒。',
 'mailerror' => '傳送電郵錯誤： $1',
 'acct_creation_throttle_hit' => '利用你呢個IP地址嘅訪客響上一日已經開咗 $1 個戶口，係響呢段時間嘅上限。
 結果，利用呢個IP地址嘅訪客唔可以響呢段時間再開多個戶口。',
@@ -2712,6 +2712,12 @@ $1',
 'bydate' => '以時間',
 'sp-newimages-showfrom' => '顯示由$1 $2嘅新檔',
 
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'hours' => '$1{{PLURAL:$1|個鐘}}',
+
+# Human-readable timestamps
+'hours-ago' => '$1{{PLURAL:$1|個鐘}}之前',
+
 # Bad image list
 'bad_image_list' => '請根據下面嘅格式去寫:
 
@@ -3016,7 +3022,7 @@ Variants for Chinese language
 'exif-gpsmeasuremode-3' => '三維量度',
 
 # Pseudotags used for GPSSpeedRef
-'exif-gpsspeed-k' => '千米/小時',
+'exif-gpsspeed-k' => '公里/小時',
 'exif-gpsspeed-m' => '英里/小時',
 'exif-gpsspeed-n' => '浬/小時',
 
@@ -3306,5 +3312,8 @@ MediaWiki是基於使用目的而加以發佈，但係就唔會負上任何嘅�
 # Search suggestions
 'searchsuggest-search' => '搵嘢',
 'searchsuggest-containing' => '名單傳送緊...',
+
+# Durations
+'duration-hours' => '$1{{PLURAL:$1|個鐘}}',
 
 );

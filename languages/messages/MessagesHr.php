@@ -3955,6 +3955,7 @@ Trebali ste primiti [{{SERVER}}{{SCRIPTPATH}}/COPYING kopiju GNU opće javne lic
 'tags' => 'Valjane oznake izmjena',
 'tag-filter' => 'Filtar [[Special:Tags|oznaka]]:',
 'tag-filter-submit' => 'Filtar',
+'tag-list-wrapper' => '([[Special:Tags|{{PLURAL:$1|Oznaka|Oznake}}]]: $2)',
 'tags-title' => 'Oznake',
 'tags-intro' => 'Ova je stranica popis oznaka s kojima softver može označiti promjenu te njihovo značenje.',
 'tags-tag' => 'Naziv oznake',

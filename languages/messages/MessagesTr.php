@@ -36,6 +36,7 @@
  * @author LuCKY
  * @author Mach
  * @author Manco Capac
+ * @author Meelo
  * @author Metal Militia
  * @author Mirzali
  * @author Mskyrider
@@ -1550,8 +1551,8 @@ Aramanızın başına '''all:''' önekini ekleyerek tüm içeriği aramayı (tar
 $1 {{PLURAL:$1|karakterin|karakterin}} altında olmalı.',
 'yourgender' => 'Nasıl açıklamayı tercih edersiniz?',
 'gender-unknown' => 'Söylemek istemiyorsanız',
-'gender-male' => 'Wiki düzenlemelerinde erkek olarak',
-'gender-female' => 'Wiki düzenlemelerinde kadın olarak',
+'gender-male' => 'Viki sayfalarını erkek olarak düzenliyorum',
+'gender-female' => 'Viki sayfalarını kadın olarak düzenliyorum',
 'prefs-help-gender' => 'Bu tercih ayarı isteğe bağlıdır.
 Yazılımda söz değerlerinin başlarında bulunan cinsiyete uygun gramerler için kullanılır.
 Bu bilgiler herkes tarafından görülebilir.',

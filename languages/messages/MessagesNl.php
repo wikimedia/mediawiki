@@ -1637,7 +1637,7 @@ Als u deze opgeeft, kan deze naam gebruikt worden om u erkenning te geven voor u
 'prefs-signature' => 'Ondertekening',
 'prefs-dateformat' => 'Datumopmaak:',
 'prefs-timeoffset' => 'Tijdverschil',
-'prefs-advancedediting' => 'Algemene opties',
+'prefs-advancedediting' => 'Algemene instellingen',
 'prefs-editor' => 'Tekstverwerker',
 'prefs-preview' => 'Voorvertoning',
 'prefs-advancedrc' => 'Gevorderde instellingen',

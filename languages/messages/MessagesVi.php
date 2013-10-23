@@ -854,7 +854,7 @@ Hãy nhập một địa chỉ có định dạng đúng hoặc bỏ trống ô 
 
 Xin hãy bỏ qua thông điệp này nếu tài khoản này không phải do bạn tạo ra.',
 'usernamehasherror' => 'Tên người dùng không thể chứa dấu rào',
-'login-throttled' => 'Bạn đã hết quyền thử mật khẩu tài khoản này vì bạn đã nhập sai quá nhiều. Xin hãy đợi $1 giây rồi hãy thử lại.',
+'login-throttled' => 'Bạn đã hết quyền thử mật khẩu tài khoản này vì bạn đã nhập sai quá nhiều. Xin hãy đợi $1 rồi hãy thử lại.',
 'login-abort-generic' => 'Thất bại khi đăng nhập',
 'loginlanguagelabel' => 'Ngôn ngữ: $1',
 'suspicious-userlogout' => 'Đã bỏ qua yêu cầu đăng xuất bạn, hình như được gửi từ trình duyệt hoặc máy proxy nhớ đệm hư.',
@@ -1030,7 +1030,7 @@ Có thể nó đã bị di chuyển hoặc xóa đi trong khi bạn đang xem tr
 'accmailtitle' => 'Đã gửi mật khẩu.',
 'accmailtext' => "Một mật khẩu được tạo ngẫu nhiên cho [[User talk:$1|$1]] đã được gửi đến $2. Có thể đổi mật khẩu tại trang ''[[Special:ChangePassword|đổi mật khẩu]]'' sau khi đã đăng nhập.",
 'newarticle' => '(Mới)',
-'newarticletext' => '<div style="margin-top: 0px;" class="emptymwmsg mediawiki_newarticletext[[{{MediaWiki:Helppage}}|help page]]"></div>',
+'newarticletext' => "Bạn đi đến đây từ một liên kết đến một trang chưa tồn tại. Để tạo trang, hãy bắt đầu gõ vào ô bên dưới (xem [[{{MediaWiki:Helppage}}|trang trợ giúp]] để có thêm thông tin). Nếu bạn đến đây do nhầm lẫn, chỉ cần nhấn vào nút '''Lùi''' (''Back'') trong trình duyệt của bạn.",
 'anontalkpagetext' => "----''Đây là trang thảo luận của một người dùng vô danh chưa tạo tài khoản hoặc có tài khoản nhưng không đăng nhập.
 Do đó chúng ta phải dùng một dãy số gọi là địa chỉ IP để xác định anh/chị ta.
 Một địa chỉ IP như vậy có thể có nhiều người cùng dùng chung.
@@ -2511,8 +2511,8 @@ Xin xác nhận việc bạn định làm, và hiểu rõ những hệ lụy c�
 'deletereason-dropdown' => '*Các lý do xóa phổ biến
 ** Đăng tỉ thư rác
 ** Phá hoại
-** Vi phạ bản quyền
-** Thiếu tôn trọng tác giả
+** Vi phạm bản quyền
+** Tác giả yêu cầu
 ** Chuyển hướng sai',
 'delete-edit-reasonlist' => 'Sửa lý do xóa',
 'delete-toobig' => 'Trang này có lịch sử sửa đổi lớn, đến hơn {{PLURAL:$1|lần|lần}} sửa đổi.
@@ -2731,17 +2731,13 @@ $1',
 'ipbreason' => 'Lý do:',
 'ipbreasonotherlist' => 'Lý do khác',
 'ipbreason-dropdown' => '*Một số lý do cấm thường gặp
-** Phá hoại
-** Thêm thông tin nội dung sai lệch
-** Tẩy trống nội dung trang
-** Quảng cáo vớ vẩn
-** Đăng liên kết thư rác đến trang web bên ngoài
+** Thêm thông tin sai lệch
+** Xóa nội dung trang
+** Đăng liên kết thư rác đến trang Web bên ngoài
 ** Cho thông tin rác vào trang
 ** Có thái độ dọa dẫm/quấy rối
-** Tên thành viên không được chấp nhận
-** Tạo nhiều trang mới vi phạm bản quyền, bỏ qua thảo luận và cảnh báo
-** Truyền nhiều hình ảnh thiếu nguồn gốc hoặc bản quyền
-** Con rối của thành viên bị cấm',
+** Lạm dụng nhiều tài khoản
+** Tên thành viên không thể chấp nhận',
 'ipb-hardblock' => 'Ngăn không cho thành viên đã đăng nhập sửa đổi từ địa chỉ IP này',
 'ipbcreateaccount' => 'Cấm mở tài khoản',
 'ipbemailban' => 'Không cho gửi thư điện tử',

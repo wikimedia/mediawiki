@@ -1939,10 +1939,12 @@ Papildinformācija:
 'deletecomment' => 'Iemesls:',
 'deleteotherreason' => 'Cits/papildu iemesls:',
 'deletereasonotherlist' => 'Cits iemesls',
-'deletereason-dropdown' => '*Izplatīti dzēšanas iemesli
-** Autora pieprsījums
+'deletereason-dropdown' => '* Izplatīti dzēšanas iemesli
+** Spams
+** Vandālisms
 ** Autortiesību pārkāpums
-** Vandālisms',
+** Autora pieprasījums
+** Nederīga pāradresācija',
 'delete-edit-reasonlist' => 'Izmainīt dzēšanas iemeslus',
 'delete-toobig' => 'Šai lapai ir liela izmaiņu hronoloģija, vairāk nekā $1 {{PLURAL:$1|versija|versijas}}.
 Šādu lapu dzēšana ir atslēgta, lai novērstu nejaušus traucējumus {{grammar:lokatīvs|{{SITENAME}}}}.',
@@ -2079,6 +2081,7 @@ $1',
 # Namespace form on various pages
 'namespace' => 'Vārdtelpa:',
 'invert' => 'Izvēlēties pretēji',
+'namespace_association' => 'Saistītā vārdtelpa',
 'blanknamespace' => '(Pamatlapa)',
 
 # Contributions
@@ -2638,6 +2641,7 @@ Pārējie lauki, pēc noklusējuma, būs paslēpti.
 'exif-imagelength' => 'augstums',
 'exif-bitspersample' => 'biti komponentē',
 'exif-compression' => 'Saspiešanas veids',
+'exif-photometricinterpretation' => 'Pikseļu sastāvs',
 'exif-orientation' => 'Orientācija',
 'exif-samplesperpixel' => 'Komponentu skaits',
 'exif-planarconfiguration' => 'Datu izkārtojums',

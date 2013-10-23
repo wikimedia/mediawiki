@@ -2085,7 +2085,7 @@ $1',
 
 # Random redirect
 'randomredirect' => '随机重定向',
-'randomredirect-nopages' => '在 "$1" 名字空间中没有重定向页面。',
+'randomredirect-nopages' => '“$1”名字空间中没有重定向。',
 
 # Statistics
 'statistics' => '统计',
