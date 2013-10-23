@@ -39,11 +39,6 @@ class SpecialRecentchangesTest extends MediaWikiTestCase {
 		);
 	}
 
-	/** return false if condition begin with 'rc_timestamp ' */
-	private static function filterOutRcTimestampCondition( $var ) {
-		return ( false === strpos( $var, 'rc_timestamp ' ) );
-	}
-
 	public function testRcNsFilter() {
 		$this->assertConditions(
 			array( # expected

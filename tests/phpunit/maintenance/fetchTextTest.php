@@ -100,10 +100,10 @@ class FetchTextTest extends MediaWikiTestCase {
 	 * Adds a revision to a page, while returning the resuting text's id
 	 *
 	 * @param $page WikiPage The page to add the revision to
-	 * @param $text String The revisions text
 	 * @param $text String The revisions summare
+	 * @param $summary
 	 *
-	 * @throws MWExcepion
+	 * @throws MWException
 	 */
 	private function addRevision( $page, $text, $summary ) {
 		$status = $page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle() ), $summary );

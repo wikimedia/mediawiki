@@ -115,6 +115,6 @@ EOT;
 	 * @param string $msg Message to log
 	 */
 	protected static function debug( $msg ) {
-		return wfDebugLog( 'tests-parser', wfGetCaller() . ' ' . $msg );
+		wfDebugLog( 'tests-parser', wfGetCaller() . ' ' . $msg );
 	}
 }

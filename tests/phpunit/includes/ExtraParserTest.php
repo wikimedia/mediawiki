@@ -5,6 +5,11 @@
  */
 class ExtraParserTest extends MediaWikiTestCase {
 
+	/** @var ParserOptions */
+	protected $options;
+	/** @var Parser */
+	protected $parser;
+
 	protected function setUp() {
 		parent::setUp();
 

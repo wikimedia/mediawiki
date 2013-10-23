@@ -952,9 +952,12 @@ class NewParserTest extends MediaWikiTestCase {
 
 	/**
 	 * Use a regex to find out the value of an option
+	 *
 	 * @param $key String: name of option val to retrieve
 	 * @param $opts Options array to look in
 	 * @param $default Mixed: default value returned if not found
+	 *
+	 * @return Mixed
 	 */
 	protected static function getOptionValue( $key, $opts, $default ) {
 		$key = strtolower( $key );

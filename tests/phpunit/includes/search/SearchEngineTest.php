@@ -97,6 +97,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 	 * @param $pageName String: page name
 	 * @param $text String: page's content
 	 * @param $n Integer: unused
+	 * @return bool
 	 */
 	function insertPage( $pageName, $text, $ns ) {
 		$title = Title::newFromText( $pageName, $ns );

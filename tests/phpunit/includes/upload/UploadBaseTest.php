@@ -7,6 +7,7 @@ class UploadBaseTest extends MediaWikiTestCase {
 
 	/** @var UploadTestHandler */
 	protected $upload;
+	protected $hooks;
 
 	protected function setUp() {
 		global $wgHooks;

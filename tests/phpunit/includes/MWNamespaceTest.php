@@ -552,7 +552,7 @@ class MWNamespaceTest extends MediaWikiTestCase {
 			$expect = ( $m[2] === '' );
 			$expect_name = $expect ? 'TRUE' : 'FALSE';
 
-			return $this->assertEquals( $expect,
+			$this->assertEquals( $expect,
 				MWNamespace::$nsMethod( $ns, $msg ),
 				"MWNamespace::$nsMethod( $ns_name ) should returns $expect_name"
 			);

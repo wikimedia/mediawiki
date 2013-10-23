@@ -10,19 +10,15 @@ class HtmlCheckMatrixTest extends MediaWikiTestCase {
 		'fieldname' => 'test',
 	);
 
+	/**
+	 * @expectedException HTMLFormFieldRequiredOptionsException
+	 */
 	public function testPlainInstantiation() {
-		try {
-			$form = new HTMLCheckMatrix( array() );
-		} catch ( MWException $e ) {
-			$this->assertInstanceOf( 'HTMLFormFieldRequiredOptionsException', $e );
-			return;
-		}
-
-		$this->fail( 'Expected MWException indicating missing parameters but none was thrown.' );
+		new HTMLCheckMatrix( array() );
 	}
 
 	public function testInstantiationWithMinimumRequiredParameters() {
-		$form = new HTMLCheckMatrix( self::$defaultOptions );
+		new HTMLCheckMatrix( self::$defaultOptions );
 		$this->assertTrue( true ); // form instantiation must throw exception on failure
 	}
 

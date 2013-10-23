@@ -65,7 +65,7 @@ class ApiUploadTest extends ApiTestCaseUpload {
 	/**
 	 * @depends testLogin
 	 */
-	public function testUploadRequiresToken( $session ) {
+	public function testUploadRequiresToken() {
 		$exception = false;
 		try {
 			$this->doApiRequest( array(

@@ -60,7 +60,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 	 * expected and actual texts.
 	 */
 	function assertEditedTextEquals( $expected, $actual, $msg = '' ) {
-		return $this->assertEquals( rtrim( $expected ), rtrim( $actual ), $msg );
+		$this->assertEquals( rtrim( $expected ), rtrim( $actual ), $msg );
 	}
 
 	/**

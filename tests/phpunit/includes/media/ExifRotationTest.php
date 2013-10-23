@@ -6,6 +6,11 @@
  */
 class ExifRotationTest extends MediaWikiTestCase {
 
+	/** @var BitmapHandler */
+	protected $handler;
+	/** @var FSRepo */
+	protected $repo;
+
 	protected function setUp() {
 		parent::setUp();
 		if ( !extension_loaded( 'exif' ) ) {

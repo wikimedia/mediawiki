@@ -1,6 +1,8 @@
 <?php
 class GIFMetadataExtractorTest extends MediaWikiTestCase {
 
+	protected $mediaPath;
+
 	protected function setUp() {
 		parent::setUp();
 

@@ -33,6 +33,8 @@ require_once 'ApiQueryTestBase.php';
  * @group medium
  */
 class ApiQueryBasicTest extends ApiQueryTestBase {
+	protected $exceptionFromAddDBData;
+
 	/**
 	 * Create a set of pages. These must not change, otherwise the tests might give wrong results.
 	 * @see MediaWikiTestCase::addDBData()

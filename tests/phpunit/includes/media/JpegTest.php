@@ -1,6 +1,8 @@
 <?php
 class JpegTest extends MediaWikiTestCase {
 
+	protected $filePath;
+
 	protected function setUp() {
 		parent::setUp();
 		if ( !extension_loaded( 'exif' ) ) {

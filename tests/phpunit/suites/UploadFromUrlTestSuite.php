@@ -160,42 +160,6 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 		}
 	}
 
-	/**
-	 * Create a dummy uploads directory which will contain a couple
-	 * of files in order to pass existence tests.
-	 *
-	 * @return String: the directory
-	 */
-	private function setupUploadDir() {
-		global $IP;
-
-		if ( $this->keepUploads ) {
-			$dir = wfTempDir() . '/mwParser-images';
-
-			if ( is_dir( $dir ) ) {
-				return $dir;
-			}
-		} else {
-			$dir = wfTempDir() . "/mwParser-" . mt_rand() . "-images";
-		}
-
-		wfDebug( "Creating upload directory $dir\n" );
-
-		if ( file_exists( $dir ) ) {
-			wfDebug( "Already exists!\n" );
-
-			return $dir;
-		}
-
-		wfMkdirParents( $dir . '/3/3a', null, __METHOD__ );
-		copy( "$IP/skins/monobook/headbg.jpg", "$dir/3/3a/Foobar.jpg" );
-
-		wfMkdirParents( $dir . '/0/09', null, __METHOD__ );
-		copy( "$IP/skins/monobook/headbg.jpg", "$dir/0/09/Bad.jpg" );
-
-		return $dir;
-	}
-
 	public static function suite() {
 		// Hack to invoke the autoloader required to get phpunit to recognize
 		// the UploadFromUrlTest class

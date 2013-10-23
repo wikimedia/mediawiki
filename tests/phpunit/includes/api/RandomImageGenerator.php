@@ -112,10 +112,13 @@ class RandomImageGenerator {
 		return $filenames;
 	}
 
-
 	/**
 	 * Figure out how we write images. This is a factor of both format and the local system
+	 *
 	 * @param $format (a typical extension like 'svg', 'jpg', etc.)
+	 *
+	 * @throws Exception
+	 * @return string
 	 */
 	function getImageWriteMethod( $format ) {
 		global $wgUseImageMagick, $wgImageMagickConvertCommand;
@@ -222,9 +225,12 @@ class RandomImageGenerator {
 	/**
 	 * Based on image specification, write a very simple SVG file to disk.
 	 * Ignores the background spec because transparency is cool. :)
-	 * @param $spec: spec describing background and shapes to draw
-	 * @param $format: file format to write (which is obviously always svg here)
-	 * @param $filename: filename to write to
+	 *
+	 * @param $spec : spec describing background and shapes to draw
+	 * @param $format : file format to write (which is obviously always svg here)
+	 * @param $filename : filename to write to
+	 *
+	 * @throws Exception
 	 */
 	public function writeSvg( $spec, $format, $filename ) {
 		$svg = new SimpleXmlElement( '<svg/>' );
@@ -355,7 +361,6 @@ class RandomImageGenerator {
 		);
 	}
 
-
 	/**
 	 * Based on an image specification, write such an image to disk, using the command line ImageMagick program ('convert').
 	 *
@@ -365,9 +370,11 @@ class RandomImageGenerator {
 	 *   -draw 'fill rgb(99,123,231) circle 59,39 56,57' \
 	 *   -draw 'fill rgb(240,12,32)  circle 50,21 50,3'  filename.png
 	 *
-	 * @param $spec: spec describing background and shapes to draw
-	 * @param $format: file format to write (unused by this method but kept so it has the same signature as writeImageWithApi)
-	 * @param $filename: filename to write to
+	 * @param $spec : spec describing background and shapes to draw
+	 * @param $format : file format to write (unused by this method but kept so it has the same signature as writeImageWithApi)
+	 * @param $filename : filename to write to
+	 *
+	 * @return bool
 	 */
 	public function writeImageWithCommandLine( $spec, $format, $filename ) {
 		global $wgImageMagickConvertCommand;
@@ -427,6 +434,8 @@ class RandomImageGenerator {
 	 * Will throw exception if the file could not be read or if it had fewer lines than requested.
 	 *
 	 * @param $number_desired Integer: number of lines desired
+	 *
+	 * @throws Exception
 	 * @return Array: of exactly n elements, drawn randomly from lines the file
 	 */
 	private function getRandomLines( $number_desired ) {

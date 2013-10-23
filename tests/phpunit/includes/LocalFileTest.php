@@ -7,6 +7,19 @@
 
 class LocalFileTest extends MediaWikiTestCase {
 
+	/** @var LocalRepo */
+	protected $repo_hl0;
+	/** @var LocalRepo */
+	protected $repo_hl2;
+	/** @var LocalRepo */
+	protected $repo_lc;
+	/** @var File */
+	protected $file_hl0;
+	/** @var File */
+	protected $file_hl2;
+	/** @var File */
+	protected $file_lc;
+
 	protected function setUp() {
 		parent::setUp();
 

@@ -26,18 +26,20 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 	protected $xml = null;
 
 	/**
-	 * Adds a revision to a page, while returning the resuting revision's id
+	 * Adds a revision to a page, while returning the resulting revision's id
 	 *
-	 * @param $page WikiPage: page to add the revision to
-	 * @param $text string: revisions text
-	 * @param $text string: revisions summare
+	 * @param Page|WikiPage $page WikiPage: page to add the revision to
+	 * @param $text string: revisions summary
+	 * @param $summary
 	 *
-	 * @throws MWExcepion
+	 * @throws MWException
+	 * @return array
 	 */
 	protected function addRevision( Page $page, $text, $summary ) {
 		$status = $page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle() ), $summary );
 		if ( $status->isGood() ) {
 			$value = $status->getValue();
+			/** @var Revision $revision */
 			$revision = $value['revision'];
 			$revision_id = $revision->getId();
 			$text_id = $revision->getTextId();

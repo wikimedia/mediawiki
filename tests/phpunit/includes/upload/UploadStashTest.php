@@ -7,6 +7,7 @@ class UploadStashTest extends MediaWikiTestCase {
 	 * @var Array of UploadStashTestUser
 	 */
 	public static $users;
+	protected $bug29408File;
 
 	protected function setUp() {
 		parent::setUp();

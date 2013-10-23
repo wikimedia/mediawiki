@@ -520,7 +520,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	}
 
 	private function assertEmpty2( $value, $msg ) {
-		return $this->assertTrue( $value == '', $msg );
+		$this->assertTrue( $value == '', $msg );
 	}
 
 	private static function unprefixTable( $tableName ) {
@@ -799,6 +799,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * Returns the ID of a namespace that defaults to Wikitext.
 	 * Throws an MWException if there is none.
 	 *
+	 * @throws MWException
 	 * @return int the ID of the wikitext Namespace
 	 * @since 1.21
 	 */
