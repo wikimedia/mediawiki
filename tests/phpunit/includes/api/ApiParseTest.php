@@ -4,6 +4,8 @@
  * @group API
  * @group Database
  * @group medium
+ *
+ * @covers ApiParse
  */
 class ApiParseTest extends ApiTestCase {
 
@@ -12,7 +14,7 @@ class ApiParseTest extends ApiTestCase {
 		$this->doLogin();
 	}
 
-	function testParseNonexistentPage() {
+	public function testParseNonexistentPage() {
 		$somePage = mt_rand();
 
 		try {
