@@ -32,7 +32,7 @@ abstract class DatabaseInstaller {
 	/**
 	 * The Installer object.
 	 *
-	 * TODO: naming this parent is confusing, 'installer' would be clearer.
+	 * @todo Naming this parent is confusing, 'installer' would be clearer.
 	 *
 	 * @var WebInstaller
 	 */
@@ -505,7 +505,8 @@ abstract class DatabaseInstaller {
 			return false;
 		}
 
-		return $this->db->tableExists( 'cur', __METHOD__ ) || $this->db->tableExists( 'revision', __METHOD__ );
+		return $this->db->tableExists( 'cur', __METHOD__ ) ||
+			$this->db->tableExists( 'revision', __METHOD__ );
 	}
 
 	/**
@@ -516,8 +517,18 @@ abstract class DatabaseInstaller {
 	public function getInstallUserBox() {
 		return Html::openElement( 'fieldset' ) .
 			Html::element( 'legend', array(), wfMessage( 'config-db-install-account' )->text() ) .
-			$this->getTextBox( '_InstallUser', 'config-db-username', array( 'dir' => 'ltr' ), $this->parent->getHelpBox( 'config-db-install-username' ) ) .
-			$this->getPasswordBox( '_InstallPassword', 'config-db-password', array( 'dir' => 'ltr' ), $this->parent->getHelpBox( 'config-db-install-password' ) ) .
+			$this->getTextBox(
+				'_InstallUser',
+				'config-db-username',
+				array( 'dir' => 'ltr' ),
+				$this->parent->getHelpBox( 'config-db-install-username' )
+			) .
+			$this->getPasswordBox(
+				'_InstallPassword',
+				'config-db-password',
+				array( 'dir' => 'ltr' ),
+				$this->parent->getHelpBox( 'config-db-install-password' )
+			) .
 			Html::closeElement( 'fieldset' );
 	}
 

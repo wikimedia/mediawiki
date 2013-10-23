@@ -60,12 +60,22 @@ class OracleInstaller extends DatabaseInstaller {
 			$this->parent->setVar( 'wgDBserver', '' );
 		}
 
-		return $this->getTextBox( 'wgDBserver', 'config-db-host-oracle', array(), $this->parent->getHelpBox( 'config-db-host-oracle-help' ) ) .
+		return $this->getTextBox(
+			'wgDBserver',
+			'config-db-host-oracle',
+			array(),
+			$this->parent->getHelpBox( 'config-db-host-oracle-help' )
+		) .
 			Html::openElement( 'fieldset' ) .
 			Html::element( 'legend', array(), wfMessage( 'config-db-wiki-settings' )->text() ) .
 			$this->getTextBox( 'wgDBprefix', 'config-db-prefix' ) .
 			$this->getTextBox( '_OracleDefTS', 'config-oracle-def-ts' ) .
-			$this->getTextBox( '_OracleTempTS', 'config-oracle-temp-ts', array(), $this->parent->getHelpBox( 'config-db-oracle-help' ) ) .
+			$this->getTextBox(
+				'_OracleTempTS',
+				'config-oracle-temp-ts',
+				array(),
+				$this->parent->getHelpBox( 'config-db-oracle-help' )
+			) .
 			Html::closeElement( 'fieldset' ) .
 			$this->parent->getWarningBox( wfMessage( 'config-db-account-oracle-warn' )->text() ) .
 			$this->getInstallUserBox() .
@@ -81,7 +91,12 @@ class OracleInstaller extends DatabaseInstaller {
 
 	public function submitConnectForm() {
 		// Get variables from the request
-		$newValues = $this->setVarsFromRequest( array( 'wgDBserver', 'wgDBprefix', 'wgDBuser', 'wgDBpassword' ) );
+		$newValues = $this->setVarsFromRequest(
+			'wgDBserver',
+			'wgDBprefix',
+			'wgDBuser',
+			'wgDBpassword'
+		);
 		$this->parent->setVar( 'wgDBname', $this->getVar( 'wgDBuser' ) );
 
 		// Validate them
@@ -318,8 +333,11 @@ class OracleInstaller extends DatabaseInstaller {
 	 * @return bool Whether the connection string is valid.
 	 */
 	public static function checkConnectStringFormat( $connect_string ) {
+		// @@codingStandardsIgnoreStart Long lines with regular expressions.
+		// @todo Very long regular expression. Make more readable?
 		$isValid = preg_match( '/^[[:alpha:]][\w\-]*(?:\.[[:alpha:]][\w\-]*){0,2}$/', $connect_string ); // TNS name
 		$isValid |= preg_match( '/^(?:\/\/)?[\w\-\.]+(?::[\d]+)?(?:\/(?:[\w\-\.]+(?::(pooled|dedicated|shared))?)?(?:\/[\w\-\.]+)?)?$/', $connect_string ); // EZConnect
+		// @@codingStandardsIgnoreEnd
 		return (bool)$isValid;
 	}
 }

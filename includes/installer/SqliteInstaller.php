@@ -82,8 +82,17 @@ class SqliteInstaller extends DatabaseInstaller {
 	}
 
 	public function getConnectForm() {
-		return $this->getTextBox( 'wgSQLiteDataDir', 'config-sqlite-dir', array(), $this->parent->getHelpBox( 'config-sqlite-dir-help' ) ) .
-			$this->getTextBox( 'wgDBname', 'config-db-name', array(), $this->parent->getHelpBox( 'config-sqlite-name-help' ) );
+		return $this->getTextBox(
+			'wgSQLiteDataDir',
+			'config-sqlite-dir', array(),
+			$this->parent->getHelpBox( 'config-sqlite-dir-help' )
+		) .
+		$this->getTextBox(
+			'wgDBname',
+			'config-db-name',
+			array(),
+			$this->parent->getHelpBox( 'config-sqlite-name-help' )
+		);
 	}
 
 	/**
@@ -132,9 +141,16 @@ class SqliteInstaller extends DatabaseInstaller {
 			if ( !is_writable( dirname( $dir ) ) ) {
 				$webserverGroup = Installer::maybeGetWebserverPrimaryGroup();
 				if ( $webserverGroup !== null ) {
-					return Status::newFatal( 'config-sqlite-parent-unwritable-group', $dir, dirname( $dir ), basename( $dir ), $webserverGroup );
+					return Status::newFatal(
+						'config-sqlite-parent-unwritable-group',
+						$dir, dirname( $dir ), basename( $dir ),
+						$webserverGroup
+					);
 				} else {
-					return Status::newFatal( 'config-sqlite-parent-unwritable-nogroup', $dir, dirname( $dir ), basename( $dir ) );
+					return Status::newFatal(
+						'config-sqlite-parent-unwritable-nogroup',
+						$dir, dirname( $dir ), basename( $dir )
+					);
 				}
 			}
 

@@ -64,10 +64,6 @@ class MysqlInstaller extends DatabaseInstaller {
 		return 'mysql';
 	}
 
-	public function __construct( $parent ) {
-		parent::__construct( $parent );
-	}
-
 	/**
 	 * @return Bool
 	 */
@@ -86,7 +82,12 @@ class MysqlInstaller extends DatabaseInstaller {
 	 * @return string
 	 */
 	public function getConnectForm() {
-		return $this->getTextBox( 'wgDBserver', 'config-db-host', array(), $this->parent->getHelpBox( 'config-db-host-help' ) ) .
+		return $this->getTextBox(
+			'wgDBserver',
+			'config-db-host',
+			array(),
+			$this->parent->getHelpBox( 'config-db-host-help' )
+		) .
 			Html::openElement( 'fieldset' ) .
 			Html::element( 'legend', array(), wfMessage( 'config-db-wiki-settings' )->text() ) .
 			$this->getTextBox( 'wgDBname', 'config-db-name', array( 'dir' => 'ltr' ),
@@ -481,7 +482,10 @@ class MysqlInstaller extends DatabaseInstaller {
 		$conn = $status->value;
 		$dbName = $this->getVar( 'wgDBname' );
 		if ( !$conn->selectDB( $dbName ) ) {
-			$conn->query( "CREATE DATABASE " . $conn->addIdentifierQuotes( $dbName ) . "CHARACTER SET utf8", __METHOD__ );
+			$conn->query(
+				"CREATE DATABASE " . $conn->addIdentifierQuotes( $dbName ) . "CHARACTER SET utf8",
+				__METHOD__
+			);
 			$conn->selectDB( $dbName );
 		}
 		$this->setupSchemaVars();
