@@ -965,7 +965,7 @@ class Language {
 	 * @return array
 	 */
 	function getMonthNamesArray() {
-		$monthNames = array( '' );
+		$monthNames = array();
 		for ( $i = 1; $i < 13; $i++ ) {
 			$monthNames[] = $this->getMonthName( $i );
 		}
@@ -992,7 +992,7 @@ class Language {
 	 * @return array
 	 */
 	function getMonthAbbreviationsArray() {
-		$monthNames = array( '' );
+		$monthNames = array();
 		for ( $i = 1; $i < 13; $i++ ) {
 			$monthNames[] = $this->getMonthAbbreviation( $i );
 		}
