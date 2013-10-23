@@ -97,6 +97,7 @@ $dateFormats = array(
 );
 
 $linkTrail = '/^([a-zабвгдеєжѕзїіıићклмнопсстѹфхѡѿцчшщъыьѣюѥѧѩѫѭѯѱѳѷѵґѓђёјйљњќуўџэ҄я“»]+)(.*)$/sDu';
+$linkPrefixCharset = '„«';
 
 $messages = array(
 # User preference toggles
@@ -179,8 +180,6 @@ $messages = array(
 'hidden-category-category' => 'съкрꙑтꙑ катигорїѩ',
 'category-subcat-count' => '{{PLURAL:$2|Сѥи катигорїи тъкъмо сꙗ подъкатигорїꙗ ѥстъ|Сѥи катигорїи {{PLURAL:$1|ѥдина подъкатигорїꙗ ѥстъ|2 подъкатигорїи ѥстє|$1 подъкатигорїѩ сѫтъ}} · а вьсѩ жє подъкатигорїѩ число $2 ѥстъ}}',
 'listingcontinuesabbrev' => '· вѧщє',
-
-'linkprefix' => '/^((?>.*(?<!(?:„|«)$)))(.+)$/sDu',
 
 'about' => 'опьсаниѥ',
 'article' => 'члѣнъ',

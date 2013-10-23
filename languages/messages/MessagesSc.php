@@ -177,8 +177,6 @@ $messages = array(
 'index-category' => 'Pàginas indicizadas',
 'noindex-category' => 'Pàginas no indicitzadas',
 
-'linkprefix' => '/^((?>.*(?<![a-zA-Z\\x80-\\xff])))(.+)$/sD',
-
 'about' => 'A propòsitu de',
 'article' => 'Artìculu',
 'newwindow' => '(aberit in una bentana noa)',

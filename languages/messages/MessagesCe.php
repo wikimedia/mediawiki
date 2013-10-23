@@ -458,8 +458,6 @@ $messages = array(
 'broken-file-category' => '{{#switch:{{NAMESPACE}}
  |{{ns:0}}=Болх цабеш файлийн хьажорагаш йолу агӀонаш}}',
 
-'linkprefix' => '/^((?>.*(?<![a-zA-Z\\x80-\\xff])))(.+)$/sD',
-
 'about' => 'Цуьнах лаьцна',
 'article' => 'Яззам',
 'newwindow' => '(керлачу корехь)',

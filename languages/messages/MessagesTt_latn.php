@@ -216,8 +216,6 @@ $messages = array(
 'index-category' => 'İndekslanğan bitlär',
 'noindex-category' => 'İndekslanmağan bitlär',
 
-'linkprefix' => '/^((?>.*(?<![a-zA-Z\\x80-\\xff])))(.+)$/sD',
-
 'about' => 'Taswirlama',
 'article' => 'Mäqälä',
 'newwindow' => '(yaña täräzädä açıla)',

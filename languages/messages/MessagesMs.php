@@ -338,8 +338,6 @@ $messages = array(
 'noindex-category' => 'Laman tak diindeks',
 'broken-file-category' => 'Laman yang ada pautan fail yang terputus',
 
-'linkprefix' => '/^((?>.*(?<![a-zA-Z\\x80-\\xff])))(.+)$/sD',
-
 'about' => 'Perihal',
 'article' => 'Laman kandungan',
 'newwindow' => '(dibuka di tetingkap baru)',

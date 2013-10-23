@@ -206,8 +206,6 @@ $messages = array(
 'noindex-category' => 'İndeksləşdirilməyən səhifələr',
 'broken-file-category' => 'İşləməyən fayl keçidləri olan səhifələr',
 
-'linkprefix' => '/^((?>.*(?<![a-zA-Z\\x80-\\xff])))(.+)$/sD',
-
 'about' => 'Haqqında',
 'article' => 'Mündəricat',
 'newwindow' => '(yeni pəncərədə açılır)',

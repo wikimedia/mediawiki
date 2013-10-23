@@ -103,6 +103,7 @@ $dateFormats = array(
 
 $separatorTransformTable = array( ','  => '.', '.' => ',' );
 $linkTrail = '/^([a-zâçğıñöşüа-яё“»]+)(.*)$/sDu';
+$linkPrefixCharset = 'a-zâçğıñöşüA-ZÂÇĞİÑÖŞÜa-яёА-ЯЁ«„';
 
 $messages = array(
 # User preference toggles
@@ -229,8 +230,6 @@ $messages = array(
 'index-category' => 'Индексли саифелер',
 'noindex-category' => 'Индекссиз саифелер',
 'broken-file-category' => 'Ичинде бозукъ файл багълантылары олгъан саифелер',
-
-'linkprefix' => '/^((?>.*(?<![a-zâçğıñöşüA-ZÂÇĞİÑÖŞÜa-яёА-ЯЁ«„])))(.+)$/sDu',
 
 'about' => 'Акъкъында',
 'article' => 'Саифе',

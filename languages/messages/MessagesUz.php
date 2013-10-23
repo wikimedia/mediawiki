@@ -107,6 +107,7 @@ $magicWords = array(
 );
 
 $linkTrail = '/^([a-zʻʼ“»]+)(.*)$/sDu';
+$linkPrefixCharset = 'a-zA-Z\\x80-\\xffʻʼ«„';
 
 $messages = array(
 # User preference toggles
@@ -235,8 +236,6 @@ $messages = array(
 'index-category' => 'Indekslanadigan sahifalar',
 'noindex-category' => 'Indekslanmaydigan sahifalar',
 'broken-file-category' => 'Ishlamaydigan fayl havolalari bor sahifalar',
-
-'linkprefix' => '/^((?>.*(?<![a-zA-Z\\x80-\\xffʻʼ«„])))(.+)$/sDu',
 
 'about' => 'Haqida',
 'article' => 'Sahifa',

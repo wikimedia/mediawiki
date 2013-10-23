@@ -536,8 +536,6 @@ $messages = array(
 'noindex-category' => 'Непописане странице',
 'broken-file-category' => 'Странице с неисправним везама до датотека',
 
-'linkprefix' => '/^((?>.*(?<![a-zA-Z\\x80-\\xff])))(.+)$/sD',
-
 'about' => 'О нама',
 'article' => 'Страница са садржајем',
 'newwindow' => '(отвара се у новом прозору)',

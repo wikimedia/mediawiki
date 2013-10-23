@@ -231,6 +231,7 @@ $specialPageAliases = array(
 $separatorTransformTable = array( ',' => '.', '.' => ',' );
 $linkPrefixExtension = true;
 $linkTrail = '/^([áðéíóúýþæöa-z-–]+)(.*)$/sDu';
+$linkPrefixCharset = 'áÁðÐéÉíÍóÓúÚýÝþÞæÆöÖA-Za-z–-';
 
 $messages = array(
 # User preference toggles
@@ -370,8 +371,6 @@ $messages = array(
 'index-category' => 'Raðaðar skrár',
 'noindex-category' => 'Óraðaðar skrár',
 'broken-file-category' => 'Síður með brotna myndatengla',
-
-'linkprefix' => '/^((?>.*(?<![áÁðÐéÉíÍóÓúÚýÝþÞæÆöÖA-Za-z-–])))(.+)$/sDu',
 
 'about' => 'Um',
 'article' => 'Efnissíða',

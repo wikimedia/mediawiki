@@ -361,6 +361,7 @@ $magicWords = array(
 );
 
 $linkTrail = '/^([a-zабвгґдеєжзиіїйклмнопрстуфхцчшщьєюяёъы“»]+)(.*)$/sDu';
+$linkPrefixCharset = '„«';
 
 $messages = array(
 # User preference toggles
@@ -503,8 +504,6 @@ $messages = array(
 'noindex-category' => 'Неіндексовані сторінки',
 'broken-file-category' => 'Сторінки, що посилаються на неіснуючі файли',
 'categoryviewer-pagedlinks' => '($1) ($2)',
-
-'linkprefix' => '/^((?>.*(?<!(?:„|«)$)))(.+)$/sDu',
 
 'about' => 'Про',
 'article' => 'Стаття',

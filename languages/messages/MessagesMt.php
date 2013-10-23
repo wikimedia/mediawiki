@@ -271,6 +271,8 @@ $magicWords = array(
 	'formatdate'                => array( '0', 'formatdata', 'dataformat', 'formatdate', 'dateformat' ),
 );
 
+$linkPrefixCharset = 'A-\\x{10ffff}';
+
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Ħoloq sottolinjati:',
@@ -410,8 +412,6 @@ $messages = array(
 'index-category' => 'Paġni indiċjati',
 'noindex-category' => 'Paġni mhux indiċizzati',
 'broken-file-category' => "Paġni b'ħoloq lejn fajls miksura",
-
-'linkprefix' => '/^((?>.*(?<![a-żA-Ż\\x80-\\xff])))(.+)$/sD',
 
 'about' => 'Dwar',
 'article' => 'artiklu',
