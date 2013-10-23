@@ -251,9 +251,8 @@ class LinkHolderArray {
 	}
 
 	/**
-	 * @todo FIXME: Update documentation. makeLinkObj() is deprecated.
 	 * Replace <!--LINK--> link placeholders with actual links, in the buffer
-	 * Placeholders created in Skin::makeLinkObj()
+	 *
 	 * @return array of link CSS classes, indexed by PDBK.
 	 */
 	function replace( &$text ) {
