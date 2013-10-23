@@ -20,7 +20,7 @@ class CollationTest extends MediaWikiLangTestCase {
 	 *
 	 * @dataProvider prefixDataProvider
 	 */
-	function testIsPrefix( $lang, $base, $extended ) {
+	public function testIsPrefix( $lang, $base, $extended ) {
 		$cp = Collator::create( $lang );
 		$cp->setStrength( Collator::PRIMARY );
 		$baseBin = $cp->getSortKey( $base );
@@ -53,7 +53,7 @@ class CollationTest extends MediaWikiLangTestCase {
 	 *
 	 * @dataProvider notPrefixDataProvider
 	 */
-	function testNotIsPrefix( $lang, $base, $extended ) {
+	public function testNotIsPrefix( $lang, $base, $extended ) {
 		$cp = Collator::create( $lang );
 		$cp->setStrength( Collator::PRIMARY );
 		$baseBin = $cp->getSortKey( $base );
@@ -81,7 +81,7 @@ class CollationTest extends MediaWikiLangTestCase {
 	 *
 	 * @dataProvider firstLetterProvider
 	 */
-	function testGetFirstLetter( $collation, $string, $firstLetter ) {
+	public function testGetFirstLetter( $collation, $string, $firstLetter ) {
 		$col = Collation::factory( $collation );
 		$this->assertEquals( $firstLetter, $col->getFirstLetter( $string ) );
 	}

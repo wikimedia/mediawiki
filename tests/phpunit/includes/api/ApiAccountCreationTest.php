@@ -20,7 +20,7 @@ class ApiCreateAccountTest extends ApiTestCase {
 	 * a bit slow. Raise the default timeout.
 	 * @group medium
 	 */
-	function testValid() {
+	public function testValid() {
 		global $wgServer;
 
 		if ( !isset( $wgServer ) ) {
@@ -109,7 +109,7 @@ class ApiCreateAccountTest extends ApiTestCase {
 	 * Make sure requests with no names are invalid.
 	 * @expectedException UsageException
 	 */
-	function testNoName() {
+	public function testNoName() {
 		$this->doApiRequest( array(
 			'action' => 'createaccount',
 			'token' => LoginForm::getCreateaccountToken(),
@@ -121,7 +121,7 @@ class ApiCreateAccountTest extends ApiTestCase {
 	 * Make sure requests with no password are invalid.
 	 * @expectedException UsageException
 	 */
-	function testNoPassword() {
+	public function testNoPassword() {
 		$this->doApiRequest( array(
 			'action' => 'createaccount',
 			'name' => 'testName',
@@ -133,7 +133,7 @@ class ApiCreateAccountTest extends ApiTestCase {
 	 * Make sure requests with existing users are invalid.
 	 * @expectedException UsageException
 	 */
-	function testExistingUser() {
+	public function testExistingUser() {
 		$this->doApiRequest( array(
 			'action' => 'createaccount',
 			'name' => 'Apitestsysop',
@@ -147,7 +147,7 @@ class ApiCreateAccountTest extends ApiTestCase {
 	 * Make sure requests with invalid emails are invalid.
 	 * @expectedException UsageException
 	 */
-	function testInvalidEmail() {
+	public function testInvalidEmail() {
 		$this->doApiRequest( array(
 			'action' => 'createaccount',
 			'name' => 'Test User',

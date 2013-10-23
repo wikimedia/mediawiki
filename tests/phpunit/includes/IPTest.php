@@ -392,7 +392,7 @@ class IPTest extends MediaWikiTestCase {
 	 * representing the network mask and the bit mask.
 	 * @covers IP::parseCIDR
 	 */
-	function testCIDRParsing() {
+	public function testCIDRParsing() {
 		$this->assertFalseCIDR( '192.0.2.0', "missing mask" );
 		$this->assertFalseCIDR( '192.0.2.0/', "missing bitmask" );
 
@@ -489,7 +489,7 @@ class IPTest extends MediaWikiTestCase {
 	 * Test for IP::splitHostAndPort().
 	 * @dataProvider provideSplitHostAndPort
 	 */
-	function testSplitHostAndPort( $expected, $input, $description ) {
+	public function testSplitHostAndPort( $expected, $input, $description ) {
 		$this->assertEquals( $expected, IP::splitHostAndPort( $input ), $description );
 	}
 
@@ -516,7 +516,7 @@ class IPTest extends MediaWikiTestCase {
 	 * Test for IP::combineHostAndPort()
 	 * @dataProvider provideCombineHostAndPort
 	 */
-	function testCombineHostAndPort( $expected, $input, $description ) {
+	public function testCombineHostAndPort( $expected, $input, $description ) {
 		list( $host, $port, $defaultPort ) = $input;
 		$this->assertEquals(
 			$expected,
@@ -540,7 +540,7 @@ class IPTest extends MediaWikiTestCase {
 	 * Test for IP::sanitizeRange()
 	 * @dataProvider provideIPCIDRs
 	 */
-	function testSanitizeRange( $input, $expected, $description ) {
+	public function testSanitizeRange( $input, $expected, $description ) {
 		$this->assertEquals( $expected, IP::sanitizeRange( $input ), $description );
 	}
 
@@ -564,7 +564,7 @@ class IPTest extends MediaWikiTestCase {
 	 * Test for IP::prettifyIP()
 	 * @dataProvider provideIPsToPrettify
 	 */
-	function testPrettifyIP( $ip, $prettified ) {
+	public function testPrettifyIP( $ip, $prettified ) {
 		$this->assertEquals( $prettified, IP::prettifyIP( $ip ), "Prettify of $ip" );
 	}
 

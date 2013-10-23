@@ -12,7 +12,7 @@ class ApiParseTest extends ApiTestCase {
 		$this->doLogin();
 	}
 
-	function testParseNonexistentPage() {
+	public function testParseNonexistentPage() {
 		$somePage = mt_rand();
 
 		try {

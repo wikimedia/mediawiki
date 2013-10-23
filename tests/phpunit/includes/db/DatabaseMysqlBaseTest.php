@@ -60,7 +60,7 @@ class DatabaseMysqlBaseTest extends MediaWikiTestCase {
 	 * @dataProvider provideDiapers
 	 * @covers DatabaseMysqlBase::addIdentifierQuotes
 	 */
-	function testAddIdentifierQuotes( $expected, $in ) {
+	public function testAddIdentifierQuotes( $expected, $in ) {
 		$db = new FakeDatabaseMysqlBase();
 		$quoted = $db->addIdentifierQuotes( $in );
 		$this->assertEquals($expected, $quoted);

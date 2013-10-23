@@ -10,7 +10,7 @@ class TemplateCategoriesTest extends MediaWikiLangTestCase {
 	/**
 	 * @covers Title::getParentCategories
 	 */
-	function testTemplateCategories() {
+	public function testTemplateCategories() {
 		$title = Title::newFromText( "Categorized from template" );
 		$page = WikiPage::factory( $title );
 		$user = new User();

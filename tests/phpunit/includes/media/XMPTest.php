@@ -75,7 +75,7 @@ class XMPTest extends MediaWikiTestCase {
 	 * @todo This is based on what the standard says. Need to find a real
 	 * world example file to double check the support for this is right.
 	 */
-	function testExtendedXMP() {
+	public function testExtendedXMP() {
 		$xmpPath = __DIR__ . '/../../data/xmp/';
 		$standardXMP = file_get_contents( $xmpPath . 'xmpExt.xmp' );
 		$extendedXMP = file_get_contents( $xmpPath . 'xmpExt2.xmp' );
@@ -105,7 +105,7 @@ class XMPTest extends MediaWikiTestCase {
 	 * This test has an extended XMP block with a wrong guid (md5sum)
 	 * and thus should only return the StandardXMP, not the ExtendedXMP.
 	 */
-	function testExtendedXMPWithWrongGUID() {
+	public function testExtendedXMPWithWrongGUID() {
 		$xmpPath = __DIR__ . '/../../data/xmp/';
 		$standardXMP = file_get_contents( $xmpPath . 'xmpExt.xmp' );
 		$extendedXMP = file_get_contents( $xmpPath . 'xmpExt2.xmp' );
@@ -134,7 +134,7 @@ class XMPTest extends MediaWikiTestCase {
 	 * Have a high offset to simulate a missing packet,
 	 * which should cause it to ignore the ExtendedXMP packet.
 	 */
-	function testExtendedXMPMissingPacket() {
+	public function testExtendedXMPMissingPacket() {
 		$xmpPath = __DIR__ . '/../../data/xmp/';
 		$standardXMP = file_get_contents( $xmpPath . 'xmpExt.xmp' );
 		$extendedXMP = file_get_contents( $xmpPath . 'xmpExt2.xmp' );

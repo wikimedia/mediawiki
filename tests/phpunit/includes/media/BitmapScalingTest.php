@@ -14,7 +14,7 @@ class BitmapScalingTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideNormaliseParams
 	 */
-	function testNormaliseParams( $fileDimensions, $expectedParams, $params, $msg ) {
+	public function testNormaliseParams( $fileDimensions, $expectedParams, $params, $msg ) {
 		$file = new FakeDimensionFile( $fileDimensions );
 		$handler = new BitmapHandler;
 		$valid = $handler->normaliseParams( $file, $params );
@@ -102,7 +102,7 @@ class BitmapScalingTest extends MediaWikiTestCase {
 		);
 	}
 
-	function testTooBigImage() {
+	public function testTooBigImage() {
 		$file = new FakeDimensionFile( array( 4000, 4000 ) );
 		$handler = new BitmapHandler;
 		$params = array( 'width' => '3700' ); // Still bigger than max size.
@@ -110,7 +110,7 @@ class BitmapScalingTest extends MediaWikiTestCase {
 			get_class( $handler->doTransform( $file, 'dummy path', '', $params ) ) );
 	}
 
-	function testTooBigMustRenderImage() {
+	public function testTooBigMustRenderImage() {
 		$file = new FakeDimensionFile( array( 4000, 4000 ) );
 		$file->mustRender = true;
 		$handler = new BitmapHandler;
@@ -119,7 +119,7 @@ class BitmapScalingTest extends MediaWikiTestCase {
 			get_class( $handler->doTransform( $file, 'dummy path', '', $params ) ) );
 	}
 
-	function testImageArea() {
+	public function testImageArea() {
 		$file = new FakeDimensionFile( array( 7, 9 ) );
 		$handler = new BitmapHandler;
 		$this->assertEquals( 63, $handler->getImageArea( $file ) );

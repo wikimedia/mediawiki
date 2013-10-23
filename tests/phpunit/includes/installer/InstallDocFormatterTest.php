@@ -9,7 +9,7 @@ class InstallDocFormatterTest extends MediaWikiTestCase {
 	 * @covers InstallDocFormatter::format
 	 * @dataProvider provideDocFormattingTests
 	 */
-	function testFormat( $expected, $unformattedText, $message = '' ) {
+	public function testFormat( $expected, $unformattedText, $message = '' ) {
 		$this->assertEquals(
 			$expected,
 			InstallDocFormatter::format( $unformattedText ),

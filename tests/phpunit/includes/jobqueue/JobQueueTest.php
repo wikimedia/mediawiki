@@ -71,7 +71,7 @@ class JobQueueTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provider_queueLists
 	 */
-	function testProperties( $queue, $recycles, $desc ) {
+	public function testProperties( $queue, $recycles, $desc ) {
 		$queue = $this->$queue;
 		if ( !$queue ) {
 			$this->markTestSkipped( $desc );
@@ -84,7 +84,7 @@ class JobQueueTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provider_queueLists
 	 */
-	function testBasicOperations( $queue, $recycles, $desc ) {
+	public function testBasicOperations( $queue, $recycles, $desc ) {
 		$queue = $this->$queue;
 		if ( !$queue ) {
 			$this->markTestSkipped( $desc );
@@ -158,7 +158,7 @@ class JobQueueTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provider_queueLists
 	 */
-	function testBasicDeduplication( $queue, $recycles, $desc ) {
+	public function testBasicDeduplication( $queue, $recycles, $desc ) {
 		$queue = $this->$queue;
 		if ( !$queue ) {
 			$this->markTestSkipped( $desc );
@@ -215,7 +215,7 @@ class JobQueueTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provider_queueLists
 	 */
-	function testRootDeduplication( $queue, $recycles, $desc ) {
+	public function testRootDeduplication( $queue, $recycles, $desc ) {
 		$queue = $this->$queue;
 		if ( !$queue ) {
 			$this->markTestSkipped( $desc );
@@ -268,7 +268,7 @@ class JobQueueTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provider_fifoQueueLists
 	 */
-	function testJobOrder( $queue, $recycles, $desc ) {
+	public function testJobOrder( $queue, $recycles, $desc ) {
 		$queue = $this->$queue;
 		if ( !$queue ) {
 			$this->markTestSkipped( $desc );

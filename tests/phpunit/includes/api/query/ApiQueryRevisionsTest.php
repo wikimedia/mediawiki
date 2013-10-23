@@ -10,7 +10,7 @@ class ApiQueryRevisionsTest extends ApiTestCase {
 	/**
 	 * @group medium
 	 */
-	function testContentComesWithContentModelAndFormat() {
+	public function testContentComesWithContentModelAndFormat() {
 		$pageName = 'Help:' . __METHOD__;
 		$title = Title::newFromText( $pageName );
 		$page = WikiPage::factory( $title );

@@ -18,7 +18,7 @@ class SpecialSearchTest extends MediaWikiTestCase {
 	 * @param $expectedProfile An expected search profile name
 	 * @param $expectedNs Array Expected namespaces
 	 */
-	function testProfileAndNamespaceLoading(
+	public function testProfileAndNamespaceLoading(
 		$requested, $userOptions, $expectedProfile, $expectedNS,
 		$message = 'Profile name and namespaces mismatches!'
 	) {
@@ -112,7 +112,7 @@ class SpecialSearchTest extends MediaWikiTestCase {
 	 * Verify we do not expand search term in <title> on search result page
 	 * https://gerrit.wikimedia.org/r/4841
 	 */
-	function testSearchTermIsNotExpanded() {
+	public function testSearchTermIsNotExpanded() {
 
 		# Initialize [[Special::Search]]
 		$search = new SpecialSearch();

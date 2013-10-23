@@ -14,7 +14,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 	/**
 	 * @dataProvider provideExtractSectionTitle
 	 */
-	function testExtractSectionTitle( $section, $title ) {
+	public function testExtractSectionTitle( $section, $title ) {
 		$extracted = EditPage::extractSectionTitle( $section );
 		$this->assertEquals( $title, $extracted );
 	}

@@ -672,7 +672,7 @@ class NewParserTest extends MediaWikiTestCase {
 	 *
 	 * @group ParserFuzz
 	 */
-	function testFuzzTests() {
+	public function testFuzzTests() {
 		global $wgParserTestFiles;
 
 		$files = $wgParserTestFiles;

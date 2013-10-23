@@ -33,7 +33,7 @@ class TestSample extends MediaWikiLangTestCase {
 	 * "Agile Documentation" at
 	 * http://www.phpunit.de/manual/3.4/en/other-uses-for-tests.html
 	 */
-	function testTitleObjectStringConversion() {
+	public function testTitleObjectStringConversion() {
 		$title = Title::newFromText( "text" );
 		$this->assertInstanceOf( 'Title', $title, "Title creation" );
 		$this->assertEquals( "Text", $title, "Automatic string conversion" );
@@ -98,7 +98,7 @@ class TestSample extends MediaWikiLangTestCase {
 	 * @expectedException MWException object
 	 * See http://www.phpunit.de/manual/3.4/en/appendixes.annotations.html#appendixes.annotations.expectedException
 	 */
-	function testTitleObjectFromObject() {
+	public function testTitleObjectFromObject() {
 		$title = Title::newFromText( Title::newFromText( "test" ) );
 		$this->assertEquals( "Test", $title->isLocal() );
 	}
