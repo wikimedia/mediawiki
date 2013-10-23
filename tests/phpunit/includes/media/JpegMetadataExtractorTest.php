@@ -5,8 +5,11 @@
  * serve as a very good "test". (Adobe photoshop probably creates such files
  * but it costs money). The implementation of it currently in MediaWiki is based
  * solely on reading the standard, without any real world test files.
+ * @todo covers tags
  */
 class JpegMetadataExtractorTest extends MediaWikiTestCase {
+
+	protected $filePath;
 
 	protected function setUp() {
 		parent::setUp();
@@ -18,7 +21,7 @@ class JpegMetadataExtractorTest extends MediaWikiTestCase {
 	 * We also use this test to test padding bytes don't
 	 * screw stuff up
 	 *
-	 * @param $file filename
+	 * @param string $file filename
 	 *
 	 * @dataProvider provideUtf8Comment
 	 */

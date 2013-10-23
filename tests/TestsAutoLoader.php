@@ -78,6 +78,9 @@ $wgAutoloadClasses += array(
 	# tests/phpunit/includes/libs
 	'GenericArrayObjectTest' => "$testDir/phpunit/includes/libs/GenericArrayObjectTest.php",
 
+	# tests/phpunit/media
+	'FakeDimensionFile' => "$testDir/phpunit/includes/media/FakeDimensionFile.php",
+
 	# tests/phpunit/includes/site
 	'SiteTest' => "$testDir/phpunit/includes/site/SiteTest.php",
 	'TestSites' => "$testDir/phpunit/includes/site/TestSites.php",

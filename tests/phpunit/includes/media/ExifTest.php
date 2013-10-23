@@ -1,6 +1,9 @@
 <?php
 class ExifTest extends MediaWikiTestCase {
 
+	/** @var string */
+	protected $mediaPath;
+
 	protected function setUp() {
 		parent::setUp();
 		if ( !extension_loaded( 'exif' ) ) {

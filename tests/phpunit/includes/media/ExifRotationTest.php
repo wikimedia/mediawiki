@@ -3,6 +3,8 @@
  * Tests related to auto rotation.
  *
  * @group medium
+ *
+ * @todo covers tags
  */
 class ExifRotationTest extends MediaWikiTestCase {
 
@@ -34,10 +36,9 @@ class ExifRotationTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 *
 	 * @dataProvider provideFiles
 	 */
-	function testMetadata( $name, $type, $info ) {
+	public function testMetadata( $name, $type, $info ) {
 		if ( !BitmapHandler::canRotate() ) {
 			$this->markTestSkipped( "This test needs a rasterizer that can auto-rotate." );
 		}
@@ -50,7 +51,7 @@ class ExifRotationTest extends MediaWikiTestCase {
 	 *
 	 * @dataProvider provideFiles
 	 */
-	function testRotationRendering( $name, $type, $info, $thumbs ) {
+	public function testRotationRendering( $name, $type, $info, $thumbs ) {
 		if ( !BitmapHandler::canRotate() ) {
 			$this->markTestSkipped( "This test needs a rasterizer that can auto-rotate." );
 		}
@@ -129,7 +130,7 @@ class ExifRotationTest extends MediaWikiTestCase {
 	 * Same as before, but with auto-rotation disabled.
 	 * @dataProvider provideFilesNoAutoRotate
 	 */
-	function testMetadataNoAutoRotate( $name, $type, $info ) {
+	public function testMetadataNoAutoRotate( $name, $type, $info ) {
 		$this->setMwGlobals( 'wgEnableAutoRotation', false );
 
 		$file = $this->dataFile( $name, $type );
@@ -141,7 +142,7 @@ class ExifRotationTest extends MediaWikiTestCase {
 	 *
 	 * @dataProvider provideFilesNoAutoRotate
 	 */
-	function testRotationRenderingNoAutoRotate( $name, $type, $info, $thumbs ) {
+	public function testRotationRenderingNoAutoRotate( $name, $type, $info, $thumbs ) {
 		$this->setMwGlobals( 'wgEnableAutoRotation', false );
 
 		foreach ( $thumbs as $size => $out ) {
@@ -216,7 +217,7 @@ class ExifRotationTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideBitmapExtractPreRotationDimensions
 	 */
-	function testBitmapExtractPreRotationDimensions( $rotation, $expected ) {
+	public function testBitmapExtractPreRotationDimensions( $rotation, $expected ) {
 		$result = $this->handler->extractPreRotationDimensions( array(
 			'physicalWidth' => self::TEST_WIDTH,
 			'physicalHeight' => self::TEST_HEIGHT,
