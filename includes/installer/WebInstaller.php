@@ -660,7 +660,9 @@ class WebInstaller extends Installer {
 	 */
 	public function getInfoBox( $text, $icon = false, $class = false ) {
 		$text = $this->parse( $text, true );
-		$icon = ( $icon == false ) ? '../skins/common/images/info-32.png' : '../skins/common/images/' . $icon;
+		$icon = ( $icon == false ) ?
+			'../skins/common/images/info-32.png' :
+			'../skins/common/images/' . $icon;
 		$alt = wfMessage( 'config-information' )->text();
 
 		return Html::infoBox( $text, $icon, $alt, $class, false );

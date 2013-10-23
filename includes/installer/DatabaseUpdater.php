@@ -130,7 +130,8 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
-	 * Loads LocalSettings.php, if needed, and initialises everything needed for LoadExtensionSchemaUpdates hook
+	 * Loads LocalSettings.php, if needed, and initialises everything needed for
+	 * LoadExtensionSchemaUpdates hook.
 	 */
 	private function loadExtensions() {
 		if ( !defined( 'MEDIAWIKI_INSTALL' ) ) {
@@ -289,11 +290,22 @@ abstract class DatabaseUpdater {
 	 * @param string $tableName The table name
 	 * @param string $oldIndexName The old index name
 	 * @param string $newIndexName The new index name
-	 * @param $skipBothIndexExistWarning Boolean: Whether to warn if both the old and the new indexes exist. [facultative; by default, false]
+	 * @param $skipBothIndexExistWarning Boolean: Whether to warn if both the old
+	 * and the new indexes exist. [facultative; by default, false]
 	 * @param string $sqlPath The path to the SQL change path
 	 */
-	public function renameExtensionIndex( $tableName, $oldIndexName, $newIndexName, $sqlPath, $skipBothIndexExistWarning = false ) {
-		$this->extensionUpdates[] = array( 'renameIndex', $tableName, $oldIndexName, $newIndexName, $skipBothIndexExistWarning, $sqlPath, true );
+	public function renameExtensionIndex( $tableName, $oldIndexName, $newIndexName,
+		$sqlPath, $skipBothIndexExistWarning = false
+	) {
+		$this->extensionUpdates[] = array(
+			'renameIndex',
+			$tableName,
+			$oldIndexName,
+			$newIndexName,
+			$skipBothIndexExistWarning,
+			$sqlPath,
+			true
+		);
 	}
 
 	/**
@@ -758,12 +770,15 @@ abstract class DatabaseUpdater {
 	 * @param string $table Name of the table to modify
 	 * @param string $oldIndex Old name of the index
 	 * @param string $newIndex New name of the index
-	 * @param $skipBothIndexExistWarning Boolean: Whether to warn if both the old and the new indexes exist.
+	 * @param $skipBothIndexExistWarning Boolean: Whether to warn if both the
+	 * old and the new indexes exist.
 	 * @param string $patch Path to the patch file
 	 * @param $fullpath Boolean: Whether to treat $patch path as a relative or not
 	 * @return Boolean false if this was skipped because schema changes are skipped
 	 */
-	protected function renameIndex( $table, $oldIndex, $newIndex, $skipBothIndexExistWarning, $patch, $fullpath = false ) {
+	protected function renameIndex( $table, $oldIndex, $newIndex,
+		$skipBothIndexExistWarning, $patch, $fullpath = false
+	) {
 		if ( !$this->doTable( $table ) ) {
 			return true;
 		}
@@ -778,8 +793,11 @@ abstract class DatabaseUpdater {
 		// Second requirement: the new index must be missing
 		if ( $this->db->indexExists( $table, $newIndex, __METHOD__ ) ) {
 			$this->output( "...index $newIndex already set on $table table.\n" );
-			if ( !$skipBothIndexExistWarning && $this->db->indexExists( $table, $oldIndex, __METHOD__ ) ) {
-				$this->output( "...WARNING: $oldIndex still exists, despite it has been renamed into $newIndex (which also exists).\n" .
+			if ( !$skipBothIndexExistWarning &&
+				$this->db->indexExists( $table, $oldIndex, __METHOD__ )
+			) {
+				$this->output( "...WARNING: $oldIndex still exists, despite it has " .
+					"been renamed into $newIndex (which also exists).\n" .
 					"            $oldIndex should be manually removed if not needed anymore.\n" );
 			}
 
@@ -794,7 +812,11 @@ abstract class DatabaseUpdater {
 		}
 
 		// Requirements have been satisfied, patch can be applied
-		return $this->applyPatch( $patch, $fullpath, "Renaming index $oldIndex into $newIndex to table $table" );
+		return $this->applyPatch(
+			$patch,
+			$fullpath,
+			"Renaming index $oldIndex into $newIndex to table $table"
+		);
 	}
 
 	/**
@@ -848,7 +870,8 @@ abstract class DatabaseUpdater {
 		if ( !$this->db->tableExists( $table, __METHOD__ ) ) {
 			$this->output( "...$table table does not exist, skipping modify field patch.\n" );
 		} elseif ( !$this->db->fieldExists( $table, $field, __METHOD__ ) ) {
-			$this->output( "...$field field does not exist in $table table, skipping modify field patch.\n" );
+			$this->output( "...$field field does not exist in $table table, " .
+				"skipping modify field patch.\n" );
 		} elseif ( $this->updateRowExists( $updateKey ) ) {
 			$this->output( "...$field in table $table already modified by patch $patch.\n" );
 		} else {

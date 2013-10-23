@@ -42,8 +42,8 @@ class PostgresInstaller extends DatabaseInstaller {
 		'_InstallUser' => 'postgres',
 	);
 
-	var $minimumVersion = '8.3';
-	var $maxRoleSearchDepth = 5;
+	public $minimumVersion = '8.3';
+	public $maxRoleSearchDepth = 5;
 
 	protected $pgConns = array();
 
@@ -56,12 +56,27 @@ class PostgresInstaller extends DatabaseInstaller {
 	}
 
 	function getConnectForm() {
-		return $this->getTextBox( 'wgDBserver', 'config-db-host', array(), $this->parent->getHelpBox( 'config-db-host-help' ) ) .
+		return $this->getTextBox(
+			'wgDBserver',
+			'config-db-host',
+			array(),
+			$this->parent->getHelpBox( 'config-db-host-help' )
+		) .
 			$this->getTextBox( 'wgDBport', 'config-db-port' ) .
 			Html::openElement( 'fieldset' ) .
 			Html::element( 'legend', array(), wfMessage( 'config-db-wiki-settings' )->text() ) .
-			$this->getTextBox( 'wgDBname', 'config-db-name', array(), $this->parent->getHelpBox( 'config-db-name-help' ) ) .
-			$this->getTextBox( 'wgDBmwschema', 'config-db-schema', array(), $this->parent->getHelpBox( 'config-db-schema-help' ) ) .
+			$this->getTextBox(
+				'wgDBname',
+				'config-db-name',
+				array(),
+				$this->parent->getHelpBox( 'config-db-name-help' )
+			) .
+			$this->getTextBox(
+				'wgDBmwschema',
+				'config-db-schema',
+				array(),
+				$this->parent->getHelpBox( 'config-db-schema-help' )
+			) .
 			Html::closeElement( 'fieldset' ) .
 			$this->getInstallUserBox();
 	}
