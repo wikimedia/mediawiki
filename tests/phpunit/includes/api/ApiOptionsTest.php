@@ -4,10 +4,18 @@
  * @group API
  * @group Database
  * @group medium
+ *
+ * @covers ApiOptions
  */
 class ApiOptionsTest extends MediaWikiLangTestCase {
 
-	private $mTested, $mUserMock, $mContext, $mSession;
+	/** @var PHPUnit_Framework_MockObject_MockObject */
+	private $mUserMock ;
+	/** @var ApiOptions */
+	private $mTested;
+	private $mSession;
+	/** @var DerivativeContext */
+	private $mContext;
 
 	private $mOldGetPreferencesHooks = false;
 
