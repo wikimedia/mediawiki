@@ -165,8 +165,6 @@ $messages = array(
 'broken-file-category' => 'Pàggene cu collegaminde a le file scuasciate',
 'categoryviewer-pagedlinks' => '($1) ($2)',
 
-'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
-
 'about' => 'Sus a',
 'article' => 'Pàgene de le condenute',
 'newwindow' => "(iapre jndr'à 'na fenestra nova)",

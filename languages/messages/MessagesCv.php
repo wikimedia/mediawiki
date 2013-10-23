@@ -42,6 +42,7 @@ $namespaceGenderAliases = array();
 
 $linkPrefixExtension = true;
 $linkTrail = '/^([a-zа-яĕçăӳ"»]+)(.*)$/sDu';
+$linkPrefixCharset = 'a-zA-Z"\\x{80}-\\x{10ffff}';
 
 $messages = array(
 # User preference toggles
@@ -152,8 +153,6 @@ $messages = array(
 'category-file-count' => '{{PLURAL:$2|Ку категоринче пĕр файл кăна.|Ку категоринчи $2 файлтан $1 кăтартнă.}}',
 'category-file-count-limited' => 'Ку категоринче $1 файл.',
 'listingcontinuesabbrev' => '(малалли)',
-
-'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff«"]+)$/sD',
 
 'about' => 'Ăнлантаркăч',
 'article' => 'Статья',

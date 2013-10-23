@@ -153,8 +153,12 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		}
 
 		if ( $wgContLang->linkPrefixExtension() ) {
-			$data['linkprefix'] = wfMessage( 'linkprefix' )->inContentLanguage()->text();
+			$linkPrefixCharset = $wgContLang->linkPrefixCharset();
+			$data['linkprefixcharset'] = $linkPrefixCharset;
+			// For backwards compatability
+			$data['linkprefix'] = "/^((?>.*[^$linkPrefixCharset]|))(.+)$/sDu";
 		} else {
+			$data['linkprefixcharset'] = '';
 			$data['linkprefix'] = '';
 		}
 

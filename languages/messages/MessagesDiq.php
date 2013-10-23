@@ -458,8 +458,6 @@ $messages = array(
 'broken-file-category' => 'Peleye ke gıreyê dosyeyanê ğeletan muhtewa kenê',
 'categoryviewer-pagedlinks' => '($1) ($2)',
 
-'linkprefix' => "'''MediaWiki niya ro.'''",
-
 'about' => 'Heqa cı de',
 'article' => 'Wesiqe',
 'newwindow' => '(pençereyê newey de beno a)',

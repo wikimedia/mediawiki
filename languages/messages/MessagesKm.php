@@ -402,8 +402,6 @@ $messages = array(
 'broken-file-category' => 'ទំព័រទាំងឡាយដែលដាច់តំណភ្ជាប់',
 'categoryviewer-pagedlinks' => '($1) ($2)',
 
-'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
-
 'about' => 'អំពី',
 'article' => 'មាតិកាអត្ថបទ',
 'newwindow' => '(បើក​លើ​បង្អួច​ថ្មី)',

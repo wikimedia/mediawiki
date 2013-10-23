@@ -142,8 +142,6 @@ $messages = array(
 'noindex-category' => 'shat mamfhtsach',
 'broken-file-category' => 'ṣfaḫi fiha wṣlat milffaṫ mhrrsa',
 
-'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
-
 'about' => 'ala',
 'article' => 'sfht mohtawa',
 'newwindow' => '(kayṫḫell fe ċerjem weḫdaĥor)',
