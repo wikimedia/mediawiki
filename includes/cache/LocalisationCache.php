@@ -106,7 +106,7 @@ class LocalisationCache {
 		'fallback', 'namespaceNames', 'bookstoreList',
 		'magicWords', 'messages', 'rtl', 'capitalizeAllNouns', 'digitTransformTable',
 		'separatorTransformTable', 'fallback8bitEncoding', 'linkPrefixExtension',
-		'linkTrail', 'namespaceAliases',
+		'linkTrail', 'linkPrefixCharset', 'namespaceAliases',
 		'dateFormats', 'datePreferences', 'datePreferenceMigrationMap',
 		'defaultDateFormat', 'extraUserToggles', 'specialPageAliases',
 		'imageFiles', 'preloadedMessages', 'namespaceGenderAliases',

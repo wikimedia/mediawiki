@@ -97,6 +97,7 @@ $dateFormats = array(
 
 $separatorTransformTable = array( ',' => '.', '.' => ',' );
 $linkTrail = '/^([a-zâçğıñöşüа-яё“»]+)(.*)$/sDu';
+$linkPrefixCharset = 'a-zâçğıñöşüA-ZÂÇĞİÑÖŞÜa-яёА-ЯЁ«„';
 
 $messages = array(
 # User preference toggles
@@ -223,8 +224,6 @@ $messages = array(
 'index-category' => 'İndeksli saifeler',
 'noindex-category' => 'İndekssiz saifeler',
 'broken-file-category' => 'İçinde bozuq fayl bağlantıları olğan saifeler',
-
-'linkprefix' => '/^(.*?)([a-zâçğıñöşüA-ZÂÇĞİÑÖŞÜa-яёА-ЯЁ«„]+)$/sDu',
 
 'about' => 'Aqqında',
 'article' => 'Saife',

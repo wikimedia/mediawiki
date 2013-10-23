@@ -3950,6 +3950,16 @@ class Language {
 	}
 
 	/**
+	 * A regular expression character set to match legal word-prefixing
+	 * characters which should be merged onto a link of the form foo[[bar]].
+	 *
+	 * @return string
+	 */
+	public function linkPrefixCharset() {
+		return self::$dataCache->getItem( $this->mCode, 'linkPrefixCharset' );
+	}
+
+	/**
 	 * @return Language
 	 */
 	function getLangObj() {

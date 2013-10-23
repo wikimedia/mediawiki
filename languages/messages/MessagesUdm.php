@@ -44,6 +44,7 @@ $namespaceAliases = array(
 $namespaceGenderAliases = array();
 
 $linkTrail = '/^([a-zа-яёӝӟӥӧӵ“»]+)(.*)$/sDu';
+$linkPrefixCharset = '„«';
 $fallback8bitEncoding = 'windows-1251';
 $separatorTransformTable = array( ',' => "\xc2\xa0", '.' => ',' );
 
@@ -150,8 +151,6 @@ $messages = array(
 'listingcontinuesabbrev' => 'азьлань',
 'index-category' => 'Индексировать кароно бамъёс',
 'noindex-category' => 'Индексировать каронтэм бамъёс',
-
-'linkprefix' => '/^(.*?)(„|«)$/sDu',
 
 'about' => 'Та сярысь',
 'article' => 'Статья',

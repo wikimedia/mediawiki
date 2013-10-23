@@ -438,8 +438,6 @@ $messages = array(
 'noindex-category' => 'Pagini neindexate',
 'broken-file-category' => 'Pagini cu legături invalide către fișiere',
 
-'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
-
 'about' => 'Despre',
 'article' => 'Articol',
 'newwindow' => '(se deschide într-o fereastră nouă)',
