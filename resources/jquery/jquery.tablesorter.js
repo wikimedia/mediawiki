@@ -481,10 +481,10 @@
 			var name = mw.language.months.names[i].toLowerCase();
 			ts.monthNames[name] = i + 1;
 			regex.push( $.escapeRE( name ) );
-			name = mw.language.months.genitive[i].toLowerCase().replace( '.', '' );
+			name = mw.language.months.genitive[i].toLowerCase();
 			ts.monthNames[name] = i + 1;
 			regex.push( $.escapeRE( name ) );
-			name = mw.language.months.abbrev[i].toLowerCase();
+			name = mw.language.months.abbrev[i].toLowerCase().replace( '.', '' );
 			ts.monthNames[name] = i + 1;
 			regex.push( $.escapeRE( name ) );
 		}
