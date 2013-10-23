@@ -6615,7 +6615,7 @@ $wgCrossSiteAJAXdomainExceptions = array();
 /**
  * Maximum amount of virtual memory available to shell processes under linux, in KB.
  */
-$wgMaxShellMemory = 102400;
+$wgMaxShellMemory = 307200;
 
 /**
  * Maximum file size created by shell processes under linux, in KB
