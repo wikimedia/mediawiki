@@ -600,7 +600,7 @@ EOT
 		$this->loadFile();
 
 		$descUrl = $this->mPage->getFile()->getDescriptionUrl();
-		$descText = $this->mPage->getFile()->getDescriptionText();
+		$descText = $this->mPage->getFile()->getDescriptionText( $this->getContext()->getLanguage() );
 
 		/* Add canonical to head if there is no local page for this shared file */
 		if ( $descUrl && $this->mPage->getID() == 0 ) {
