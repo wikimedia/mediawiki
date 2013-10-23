@@ -901,7 +901,7 @@ class PhpHttpRequest extends MWHttpRequest {
 		}
 
 		$scheme = $this->parsedUrl['scheme'];
-		$context = stream_context_create( array( "$scheme" => $options ) );
+		$context = stream_context_create( array( "http" => $options ) );
 
 		$this->headerList = array();
 		$reqCount = 0;
