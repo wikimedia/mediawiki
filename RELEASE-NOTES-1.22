@@ -64,6 +64,7 @@ production.
 * (bug 54597) $wgBlockOpenProxies, $wgProxyPorts, $wgProxyScriptPath, and
   $wgProxyMemcExpiry have been removed, along with the open proxy scanner
   script they were added for.
+* Default value of $wgMaxShellMemory has been tripled (it's now 300 MB).
 
 === New features in 1.22 ===
 * (bug 44525) mediawiki.jqueryMsg can now parse (whitelisted) HTML elements and attributes.
