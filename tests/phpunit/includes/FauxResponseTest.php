@@ -30,13 +30,13 @@ class FauxResponseTest extends MediaWikiTestCase {
 		$this->response = new FauxResponse;
 	}
 
-	function testCookie() {
+	public function testCookie() {
 		$this->assertEquals( null, $this->response->getcookie( 'key' ), 'Non-existing cookie' );
 		$this->response->setcookie( 'key', 'val' );
 		$this->assertEquals( 'val', $this->response->getcookie( 'key' ), 'Existing cookie' );
 	}
 
-	function testHeader() {
+	public function testHeader() {
 		$this->assertEquals( null, $this->response->getheader( 'Location' ), 'Non-existing header' );
 
 		$this->response->header( 'Location: http://localhost/' );
@@ -52,7 +52,7 @@ class FauxResponseTest extends MediaWikiTestCase {
 		$this->assertEquals( 'http://localhost/', $this->response->getheader( 'LOCATION' ), 'Get header case insensitive' );
 	}
 
-	function testResponseCode() {
+	public function testResponseCode() {
 		$this->response->header( 'HTTP/1.1 200' );
 		$this->assertEquals( 200, $this->response->getStatusCode(), 'Header with no message' );
 

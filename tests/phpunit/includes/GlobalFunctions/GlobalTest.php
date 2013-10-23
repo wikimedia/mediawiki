@@ -53,25 +53,25 @@ class GlobalTest extends MediaWikiTestCase {
 		);
 	}
 
-	function testRandom() {
+	public function testRandom() {
 		# This could hypothetically fail, but it shouldn't ;)
 		$this->assertFalse(
 			wfRandom() == wfRandom() );
 	}
 
-	function testUrlencode() {
+	public function testUrlencode() {
 		$this->assertEquals(
 			"%E7%89%B9%E5%88%A5:Contributions/Foobar",
 			wfUrlencode( "\xE7\x89\xB9\xE5\x88\xA5:Contributions/Foobar" ) );
 	}
 
-	function testExpandIRI() {
+	public function testExpandIRI() {
 		$this->assertEquals(
 			"https://te.wikibooks.org/wiki/ఉబుంటు_వాడుకరి_మార్గదర్శని",
 			wfExpandIRI( "https://te.wikibooks.org/wiki/%E0%B0%89%E0%B0%AC%E0%B1%81%E0%B0%82%E0%B0%9F%E0%B1%81_%E0%B0%B5%E0%B0%BE%E0%B0%A1%E0%B1%81%E0%B0%95%E0%B0%B0%E0%B0%BF_%E0%B0%AE%E0%B0%BE%E0%B0%B0%E0%B1%8D%E0%B0%97%E0%B0%A6%E0%B0%B0%E0%B1%8D%E0%B0%B6%E0%B0%A8%E0%B0%BF" ) );
 	}
 
-	function testReadOnlyEmpty() {
+	public function testReadOnlyEmpty() {
 		global $wgReadOnly;
 		$wgReadOnly = null;
 
@@ -79,7 +79,7 @@ class GlobalTest extends MediaWikiTestCase {
 		$this->assertFalse( wfReadOnly() );
 	}
 
-	function testReadOnlySet() {
+	public function testReadOnlySet() {
 		global $wgReadOnly, $wgReadOnlyFile;
 
 		$f = fopen( $wgReadOnlyFile, "wt" );
@@ -97,7 +97,7 @@ class GlobalTest extends MediaWikiTestCase {
 		$this->assertFalse( wfReadOnly() );
 	}
 
-	function testQuotedPrintable() {
+	public function testQuotedPrintable() {
 		$this->assertEquals(
 			"=?UTF-8?Q?=C4=88u=20legebla=3F?=",
 			UserMailer::quotedPrintable( "\xc4\x88u legebla?", "UTF-8" ) );
@@ -124,12 +124,12 @@ class GlobalTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideArrayToCGI
 	 */
-	function testArrayToCGI( $array, $result ) {
+	public function testArrayToCGI( $array, $result ) {
 		$this->assertEquals( $result, wfArrayToCgi( $array ) );
 	}
 
 
-	function testArrayToCGI2() {
+	public function testArrayToCGI2() {
 		$this->assertEquals(
 			"baz=bar&foo=bar",
 			wfArrayToCgi(
@@ -155,7 +155,7 @@ class GlobalTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideCgiToArray
 	 */
-	function testCgiToArray( $cgi, $result ) {
+	public function testCgiToArray( $cgi, $result ) {
 		$this->assertEquals( $result, wfCgiToArray( $cgi ) );
 	}
 
@@ -175,11 +175,11 @@ class GlobalTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideCgiRoundTrip
 	 */
-	function testCgiRoundTrip( $cgi ) {
+	public function testCgiRoundTrip( $cgi ) {
 		$this->assertEquals( $cgi, wfArrayToCgi( wfCgiToArray( $cgi ) ) );
 	}
 
-	function testMimeTypeMatch() {
+	public function testMimeTypeMatch() {
 		$this->assertEquals(
 			'text/html',
 			mimeTypeMatch( 'text/html',
@@ -201,7 +201,7 @@ class GlobalTest extends MediaWikiTestCase {
 					'image/svg+xml' => 0.5 ) ) );
 	}
 
-	function testNegotiateType() {
+	public function testNegotiateType() {
 		$this->assertEquals(
 			'text/html',
 			wfNegotiateType(
@@ -242,7 +242,7 @@ class GlobalTest extends MediaWikiTestCase {
 				array( 'application/xhtml+xml' => 1.0 ) ) );
 	}
 
-	function testFallbackMbstringFunctions() {
+	public function testFallbackMbstringFunctions() {
 
 		if ( !extension_loaded( 'mbstring' ) ) {
 			$this->markTestSkipped( "The mb_string functions must be installed to test the fallback functions" );
@@ -308,7 +308,7 @@ class GlobalTest extends MediaWikiTestCase {
 	}
 
 
-	function testDebugFunctionTest() {
+	public function testDebugFunctionTest() {
 
 		global $wgDebugLogFile, $wgDebugTimestamps;
 
@@ -342,7 +342,7 @@ class GlobalTest extends MediaWikiTestCase {
 		$wgDebugTimestamps = $old_wgDebugTimestamps;
 	}
 
-	function testClientAcceptsGzipTest() {
+	public function testClientAcceptsGzipTest() {
 
 		$settings = array(
 			'gzip' => true,
@@ -373,7 +373,7 @@ class GlobalTest extends MediaWikiTestCase {
 		}
 	}
 
-	function testSwapVarsTest() {
+	public function testSwapVarsTest() {
 		$var1 = 1;
 		$var2 = 2;
 
@@ -386,7 +386,7 @@ class GlobalTest extends MediaWikiTestCase {
 		$this->assertEquals( $var2, 1, 'var2 is swapped' );
 	}
 
-	function testWfPercentTest() {
+	public function testWfPercentTest() {
 
 		$pcts = array(
 			array( 6 / 7, '0.86%', 2, false ),
@@ -550,7 +550,7 @@ class GlobalTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideMakeUrlIndexes()
 	 */
-	function testMakeUrlIndexes( $url, $expected ) {
+	public function testMakeUrlIndexes( $url, $expected ) {
 		$index = wfMakeUrlIndexes( $url );
 		$this->assertEquals( $expected, $index, "wfMakeUrlIndexes(\"$url\")" );
 	}
@@ -607,7 +607,7 @@ class GlobalTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideWfMatchesDomainList
 	 */
-	function testWfMatchesDomainList( $url, $domains, $expected, $description ) {
+	public function testWfMatchesDomainList( $url, $domains, $expected, $description ) {
 		$actual = wfMatchesDomainList( $url, $domains );
 		$this->assertEquals( $expected, $actual, $description );
 	}
@@ -630,7 +630,7 @@ class GlobalTest extends MediaWikiTestCase {
 		return $a;
 	}
 
-	function testWfMkdirParents() {
+	public function testWfMkdirParents() {
 		// Should not return true if file exists instead of directory
 		$fname = $this->getNewTempFile();
 		wfSuppressWarnings();
@@ -642,7 +642,7 @@ class GlobalTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideWfShellMaintenanceCmdList
 	 */
-	function testWfShellMaintenanceCmd( $script, $parameters, $options, $expected, $description ) {
+	public function testWfShellMaintenanceCmd( $script, $parameters, $options, $expected, $description ) {
 		if ( wfIsWindows() ) {
 			// Approximation that's good enough for our purposes just now
 			$expected = str_replace( "'", '"', $expected );

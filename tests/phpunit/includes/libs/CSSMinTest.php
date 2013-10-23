@@ -21,7 +21,7 @@ class CSSMinTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideMinifyCases
 	 */
-	function testMinify( $code, $expectedOutput ) {
+	public function testMinify( $code, $expectedOutput ) {
 		$minified = CSSMin::minify( $code );
 
 		$this->assertEquals( $expectedOutput, $minified, 'Minified output should be in the form expected.' );
@@ -70,7 +70,7 @@ class CSSMinTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideRemapCases
 	 */
-	function testRemap( $message, $params, $expectedOutput ) {
+	public function testRemap( $message, $params, $expectedOutput ) {
 		$remapped = call_user_func_array( 'CSSMin::remap', $params );
 
 		$messageAdd = " Case: $message";
@@ -115,7 +115,7 @@ class CSSMinTest extends MediaWikiTestCase {
 	 * @group Broken
 	 * @dataProvider provideStringCases
 	 */
-	function testMinifyWithCSSStringValues( $code, $expectedOutput ) {
+	public function testMinifyWithCSSStringValues( $code, $expectedOutput ) {
 		$this->testMinifyOutput( $code, $expectedOutput );
 	}
 

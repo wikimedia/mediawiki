@@ -4,7 +4,7 @@
  * @group HashRing
  */
 class HashRingTest extends MediaWikiTestCase {
-	function testHashRing() {
+	public function testHashRing() {
 		$ring = new HashRing( array( 's1' => 1, 's2' => 1, 's3' => 2, 's4' => 2, 's5' => 2, 's6' => 3 ) );
 
 		$locations = array();

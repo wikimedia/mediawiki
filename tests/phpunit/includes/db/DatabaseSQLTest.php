@@ -27,7 +27,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 	 * @dataProvider provideSelect
 	 * @covers DatabaseBase::select
 	 */
-	function testSelect( $sql, $sqlText ) {
+	public function testSelect( $sql, $sqlText ) {
 		$this->database->select(
 			$sql['tables'],
 			$sql['fields'],
@@ -129,7 +129,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 	 * @dataProvider provideUpdate
 	 * @covers DatabaseBase::update
 	 */
-	function testUpdate( $sql, $sqlText ) {
+	public function testUpdate( $sql, $sqlText ) {
 		$this->database->update(
 			$sql['table'],
 			$sql['values'],
@@ -181,7 +181,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 	 * @dataProvider provideDelete
 	 * @covers DatabaseBase::delete
 	 */
-	function testDelete( $sql, $sqlText ) {
+	public function testDelete( $sql, $sqlText ) {
 		$this->database->delete(
 			$sql['table'],
 			$sql['conds'],
@@ -214,7 +214,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 	 * @dataProvider provideUpsert
 	 * @covers DatabaseBase::upsert
 	 */
-	function testUpsert( $sql, $sqlText ) {
+	public function testUpsert( $sql, $sqlText ) {
 		$this->database->upsert(
 			$sql['table'],
 			$sql['rows'],
@@ -250,7 +250,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 	 * @dataProvider provideDeleteJoin
 	 * @covers DatabaseBase::deleteJoin
 	 */
-	function testDeleteJoin( $sql, $sqlText ) {
+	public function testDeleteJoin( $sql, $sqlText ) {
 		$this->database->deleteJoin(
 			$sql['delTable'],
 			$sql['joinTable'],
@@ -297,7 +297,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 	 * @dataProvider provideInsert
 	 * @covers DatabaseBase::insert
 	 */
-	function testInsert( $sql, $sqlText ) {
+	public function testInsert( $sql, $sqlText ) {
 		$this->database->insert(
 			$sql['table'],
 			$sql['rows'],
@@ -350,7 +350,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 	 * @dataProvider provideInsertSelect
 	 * @covers DatabaseBase::insertSelect
 	 */
-	function testInsertSelect( $sql, $sqlText ) {
+	public function testInsertSelect( $sql, $sqlText ) {
 		$this->database->insertSelect(
 			$sql['destTable'],
 			$sql['srcTable'],
@@ -413,7 +413,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 	 * @dataProvider provideReplace
 	 * @covers DatabaseBase::replace
 	 */
-	function testReplace( $sql, $sqlText ) {
+	public function testReplace( $sql, $sqlText ) {
 		$this->database->replace(
 			$sql['table'],
 			$sql['uniqueIndexes'],
@@ -528,7 +528,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 	 * @dataProvider provideNativeReplace
 	 * @covers DatabaseBase::nativeReplace
 	 */
-	function testNativeReplace( $sql, $sqlText ) {
+	public function testNativeReplace( $sql, $sqlText ) {
 		$this->database->nativeReplace(
 			$sql['table'],
 			$sql['rows'],
@@ -555,7 +555,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 	 * @dataProvider provideConditional
 	 * @covers DatabaseBase::conditional
 	 */
-	function testConditional( $sql, $sqlText ) {
+	public function testConditional( $sql, $sqlText ) {
 		$this->assertEquals( trim( $this->database->conditional(
 			$sql['conds'],
 			$sql['true'],
@@ -596,7 +596,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 	 * @dataProvider provideBuildConcat
 	 * @covers DatabaseBase::buildConcat
 	 */
-	function testBuildConcat( $stringList, $sqlText ) {
+	public function testBuildConcat( $stringList, $sqlText ) {
 		$this->assertEquals( trim( $this->database->buildConcat(
 			$stringList
 		) ), $sqlText );
@@ -619,7 +619,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 	 * @dataProvider provideBuildLike
 	 * @covers DatabaseBase::buildLike
 	 */
-	function testBuildLike( $array, $sqlText ) {
+	public function testBuildLike( $array, $sqlText ) {
 		$this->assertEquals( trim( $this->database->buildLike(
 			$array
 		) ), $sqlText );
@@ -650,7 +650,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 	 * @dataProvider provideUnionQueries
 	 * @covers DatabaseBase::unionQueries
 	 */
-	function testUnionQueries( $sql, $sqlText ) {
+	public function testUnionQueries( $sql, $sqlText ) {
 		$this->assertEquals( trim( $this->database->unionQueries(
 			$sql['sqls'],
 			$sql['all']
@@ -686,7 +686,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 	/**
 	 * @covers DatabaseBase::commit
 	 */
-	function testTransactionCommit() {
+	public function testTransactionCommit() {
 		$this->database->begin( __METHOD__ );
 		$this->database->commit( __METHOD__ );
 		$this->assertLastSql( 'BEGIN; COMMIT' );
@@ -695,7 +695,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 	/**
 	 * @covers DatabaseBase::rollback
 	 */
-	function testTransactionRollback() {
+	public function testTransactionRollback() {
 		$this->database->begin( __METHOD__ );
 		$this->database->rollback( __METHOD__ );
 		$this->assertLastSql( 'BEGIN; ROLLBACK' );
@@ -704,7 +704,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 	/**
 	 * @covers DatabaseBase::dropTable
 	 */
-	function testDropTable() {
+	public function testDropTable() {
 		$this->database->setExistingTables( array( 'table' ) );
 		$this->database->dropTable( 'table', __METHOD__ );
 		$this->assertLastSql( 'DROP TABLE table' );
@@ -713,7 +713,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 	/**
 	 * @covers DatabaseBase::dropTable
 	 */
-	function testDropNonExistingTable() {
+	public function testDropNonExistingTable() {
 		$this->assertFalse(
 			$this->database->dropTable( 'non_existing', __METHOD__ )
 		);

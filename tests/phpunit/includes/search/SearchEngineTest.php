@@ -115,7 +115,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 		return true;
 	}
 
-	function testFullWidth() {
+	public function testFullWidth() {
 		$this->assertEquals(
 			array( 'FullOneUp', 'FullTwoLow', 'HalfOneUp', 'HalfTwoLow' ),
 			$this->fetchIds( $this->search->searchText( 'AZ' ) ),
@@ -134,14 +134,14 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 			"Search for normalized from Full-width Lower" );
 	}
 
-	function testTextSearch() {
+	public function testTextSearch() {
 		$this->assertEquals(
 			array( 'Smithee' ),
 			$this->fetchIds( $this->search->searchText( 'smithee' ) ),
 			"Plain search failed" );
 	}
 
-	function testTextPowerSearch() {
+	public function testTextPowerSearch() {
 		$this->search->setNamespaces( array( 0, 1, 4 ) );
 		$this->assertEquals(
 			array(
@@ -152,7 +152,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 			"Power search failed" );
 	}
 
-	function testTitleSearch() {
+	public function testTitleSearch() {
 		$this->assertEquals(
 			array(
 				'Alan Smithee',
@@ -162,7 +162,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 			"Title search failed" );
 	}
 
-	function testTextTitlePowerSearch() {
+	public function testTextTitlePowerSearch() {
 		$this->search->setNamespaces( array( 0, 1, 4 ) );
 		$this->assertEquals(
 			array(

@@ -25,14 +25,14 @@ class ArticleTest extends MediaWikiTestCase {
 		$this->article = null;
 	}
 
-	function testImplementsGetMagic() {
+	public function testImplementsGetMagic() {
 		$this->assertEquals( false, $this->article->mLatest, "Article __get magic" );
 	}
 
 	/**
 	 * @depends testImplementsGetMagic
 	 */
-	function testImplementsSetMagic() {
+	public function testImplementsSetMagic() {
 		$this->article->mLatest = 2;
 		$this->assertEquals( 2, $this->article->mLatest, "Article __set magic" );
 	}
@@ -40,13 +40,13 @@ class ArticleTest extends MediaWikiTestCase {
 	/**
 	 * @depends testImplementsSetMagic
 	 */
-	function testImplementsCallMagic() {
+	public function testImplementsCallMagic() {
 		$this->article->mLatest = 33;
 		$this->article->mDataLoaded = true;
 		$this->assertEquals( 33, $this->article->getLatest(), "Article __call magic" );
 	}
 
-	function testGetOrSetOnNewProperty() {
+	public function testGetOrSetOnNewProperty() {
 		$this->article->ext_someNewProperty = 12;
 		$this->assertEquals( 12, $this->article->ext_someNewProperty,
 			"Article get/set magic on new field" );
@@ -59,7 +59,7 @@ class ArticleTest extends MediaWikiTestCase {
 	/**
 	 * Checks for the existence of the backwards compatibility static functions (forwarders to WikiPage class)
 	 */
-	function testStaticFunctions() {
+	public function testStaticFunctions() {
 		$this->hideDeprecated( 'Article::getAutosummary' );
 		$this->hideDeprecated( 'WikiPage::getAutosummary' );
 		$this->hideDeprecated( 'CategoryPage::getAutosummary' ); // Inherited from Article
@@ -76,7 +76,7 @@ class ArticleTest extends MediaWikiTestCase {
 			"Article static functions" );
 	}
 
-	function testWikiPageFactory() {
+	public function testWikiPageFactory() {
 		$title = Title::makeTitle( NS_FILE, 'Someimage.png' );
 		$page = WikiPage::factory( $title );
 		$this->assertEquals( 'WikiFilePage', get_class( $page ) );

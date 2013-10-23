@@ -66,7 +66,7 @@ class BlockTest extends MediaWikiLangTestCase {
 		}
 	}
 
-	function testInitializerFunctionsReturnCorrectBlock() {
+	public function testInitializerFunctionsReturnCorrectBlock() {
 		// $this->dumpBlocks();
 
 		$this->assertTrue( $this->block->equals( Block::newFromTarget( 'UTBlockee' ) ), "newFromTarget() returns the same block as the one that was made" );
@@ -77,7 +77,7 @@ class BlockTest extends MediaWikiLangTestCase {
 	/**
 	 * per bug 26425
 	 */
-	function testBug26425BlockTimestampDefaultsToTime() {
+	public function testBug26425BlockTimestampDefaultsToTime() {
 		// delta to stop one-off errors when things happen to go over a second mark.
 		$delta = abs( $this->madeAt - $this->block->mTimestamp );
 		$this->assertLessThan( 2, $delta, "If no timestamp is specified, the block is recorded as time()" );
@@ -91,7 +91,7 @@ class BlockTest extends MediaWikiLangTestCase {
 	 *
 	 * @dataProvider provideBug29116Data
 	 */
-	function testBug29116LoadWithEmptyIp( $vagueTarget ) {
+	public function testBug29116LoadWithEmptyIp( $vagueTarget ) {
 		$this->hideDeprecated( 'Block::load' );
 
 		$uid = User::idFromName( 'UTBlockee' );
@@ -111,7 +111,7 @@ class BlockTest extends MediaWikiLangTestCase {
 	 *
 	 * @dataProvider provideBug29116Data
 	 */
-	function testBug29116NewFromTargetWithEmptyIp( $vagueTarget ) {
+	public function testBug29116NewFromTargetWithEmptyIp( $vagueTarget ) {
 		$block = Block::newFromTarget( 'UTBlockee', $vagueTarget );
 		$this->assertTrue( $this->block->equals( $block ), "newFromTarget() returns the same block as the one that was made when given empty vagueTarget param " . var_export( $vagueTarget, true ) );
 	}
@@ -124,7 +124,7 @@ class BlockTest extends MediaWikiLangTestCase {
 		);
 	}
 
-	function testBlockedUserCanNotCreateAccount() {
+	public function testBlockedUserCanNotCreateAccount() {
 		$username = 'BlockedUserToCreateAccountWith';
 		$u = User::newFromName( $username );
 		$u->setPassword( 'NotRandomPass' );
@@ -184,7 +184,7 @@ class BlockTest extends MediaWikiLangTestCase {
 		);
 	}
 
-	function testCrappyCrossWikiBlocks() {
+	public function testCrappyCrossWikiBlocks() {
 		// Delete the last round's block if it's still there
 		$oldBlock = Block::newFromTarget( 'UserOnForeignWiki' );
 		if ( $oldBlock ) {
@@ -344,7 +344,7 @@ class BlockTest extends MediaWikiLangTestCase {
 	/**
 	 * @dataProvider providerXff
 	 */
-	function testBlocksOnXff( $xff, $exCount, $exResult ) {
+	public function testBlocksOnXff( $xff, $exCount, $exResult ) {
 		$list = array_map( 'trim', explode( ',', $xff ) );
 		$xffblocks = Block::getBlocksForIPList( $list, true );
 		$this->assertEquals( $exCount, count( $xffblocks ), 'Number of blocks for ' . $xff );

@@ -119,7 +119,7 @@ class JavaScriptMinifierTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideCases
 	 */
-	function testJavaScriptMinifierOutput( $code, $expectedOutput ) {
+	public function testJavaScriptMinifierOutput( $code, $expectedOutput ) {
 		$minified = JavaScriptMinifier::minify( $code );
 
 		// JSMin+'s parser will throw an exception if output is not valid JS.
@@ -153,7 +153,7 @@ class JavaScriptMinifierTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideBug32548
 	 */
-	function testBug32548Exponent( $num ) {
+	public function testBug32548Exponent( $num ) {
 		// Long line breaking was being incorrectly done between the base and
 		// exponent part of a number, causing a syntax error. The line should
 		// instead break at the start of the number.
