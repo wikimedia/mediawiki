@@ -10,14 +10,14 @@ class SVGMetadataExtractorTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideSvgFiles
 	 */
-	function testGetMetadata( $infile, $expected ) {
+	public function testGetMetadata( $infile, $expected ) {
 		$this->assertMetadata( $infile, $expected );
 	}
 
 	/**
 	 * @dataProvider provideSvgFilesWithXMLMetadata
 	 */
-	function testGetXMLMetadata( $infile, $expected ) {
+	public function testGetXMLMetadata( $infile, $expected ) {
 		$r = new XMLReader();
 		if ( !method_exists( $r, 'readInnerXML' ) ) {
 			$this->markTestSkipped( 'XMLReader::readInnerXML() does not exist (libxml >2.6.20 needed).' );

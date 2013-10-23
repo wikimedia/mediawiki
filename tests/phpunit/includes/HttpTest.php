@@ -53,7 +53,7 @@ class HttpTest extends MediaWikiTestCase {
 	 * @dataProvider provideURI
 	 * @covers Http::isValidURI
 	 */
-	function testIsValidUri( $expect, $URI, $message = '' ) {
+	public function testIsValidUri( $expect, $URI, $message = '' ) {
 		$this->assertEquals(
 			$expect,
 			(bool)Http::isValidURI( $URI ),

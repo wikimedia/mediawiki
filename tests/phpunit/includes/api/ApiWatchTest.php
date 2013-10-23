@@ -18,7 +18,7 @@ class ApiWatchTest extends ApiTestCase {
 
 	/**
 	 */
-	function testWatchEdit() {
+	public function testWatchEdit() {
 		$tokens = $this->getTokens();
 
 		$data = $this->doApiRequest( array(
@@ -37,7 +37,7 @@ class ApiWatchTest extends ApiTestCase {
 	/**
 	 * @depends testWatchEdit
 	 */
-	function testWatchClear() {
+	public function testWatchClear() {
 		$tokens = $this->getTokens();
 
 		$data = $this->doApiRequest( array(
@@ -67,7 +67,7 @@ class ApiWatchTest extends ApiTestCase {
 
 	/**
 	 */
-	function testWatchProtect() {
+	public function testWatchProtect() {
 		$tokens = $this->getTokens();
 
 		$data = $this->doApiRequest( array(
@@ -85,7 +85,7 @@ class ApiWatchTest extends ApiTestCase {
 
 	/**
 	 */
-	function testGetRollbackToken() {
+	public function testGetRollbackToken() {
 		$this->getTokens();
 
 		if ( !Title::newFromText( 'Help:UTPage' )->exists() ) {
@@ -121,7 +121,7 @@ class ApiWatchTest extends ApiTestCase {
 	 *
 	 * @depends testGetRollbackToken
 	 */
-	function testWatchRollback( $data ) {
+	public function testWatchRollback( $data ) {
 		$keys = array_keys( $data[0]['query']['pages'] );
 		$key = array_pop( $keys );
 		$pageinfo = $data[0]['query']['pages'][$key];

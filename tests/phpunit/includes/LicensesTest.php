@@ -2,7 +2,7 @@
 
 class LicensesTest extends MediaWikiTestCase {
 
-	function testLicenses() {
+	public function testLicenses() {
 		$str = "
 * Free licenses:
 ** GFDL|Debian disagrees

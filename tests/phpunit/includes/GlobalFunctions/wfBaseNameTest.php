@@ -6,7 +6,7 @@ class WfBaseNameTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider providePaths
 	 */
-	function testBaseName( $fullpath, $basename ) {
+	public function testBaseName( $fullpath, $basename ) {
 		$this->assertEquals( $basename, wfBaseName( $fullpath ),
 			"wfBaseName('$fullpath') => '$basename'" );
 	}

@@ -43,7 +43,7 @@ class ApiEditPageTest extends ApiTestCase {
 		parent::tearDown();
 	}
 
-	function testEdit() {
+	public function testEdit() {
 		$name = 'Help:ApiEditPageTest_testEdit'; // assume Help namespace to default to wikitext
 
 		// -- test new page --------------------------------------------
@@ -97,7 +97,7 @@ class ApiEditPageTest extends ApiTestCase {
 		);
 	}
 
-	function testNonTextEdit() {
+	public function testNonTextEdit() {
 		$name = 'Dummy:ApiEditPageTest_testNonTextEdit';
 		$data = serialize( 'some bla bla text' );
 
@@ -150,7 +150,7 @@ class ApiEditPageTest extends ApiTestCase {
 	/**
 	 * @dataProvider provideEditAppend
 	 */
-	function testEditAppend( $text, $op, $append, $expected ) {
+	public function testEditAppend( $text, $op, $append, $expected ) {
 		static $count = 0;
 		$count++;
 
@@ -196,7 +196,7 @@ class ApiEditPageTest extends ApiTestCase {
 	/**
 	 * Test editing of sections
 	 */
-	function testEditSection() {
+	public function testEditSection() {
 		$name = 'Help:ApiEditPageTest_testEditSection';
 		$page = WikiPage::factory( Title::newFromText( $name ) );
 		$text = "==section 1==\ncontent 1\n==section 2==\ncontent2";
@@ -233,7 +233,7 @@ class ApiEditPageTest extends ApiTestCase {
 	 * page that doesn't exist (bug 52830) and one that
 	 * does exist
 	 */
-	function testEditNewSection() {
+	public function testEditNewSection() {
 		$name = 'Help:ApiEditPageTest_testEditNewSection';
 
 		// Test on a page that does not already exist
@@ -266,7 +266,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$this->assertEquals( $text, "== header ==\n\ntest\n\n== header ==\n\ntest" );
 	}
 
-	function testEditConflict() {
+	public function testEditConflict() {
 		static $count = 0;
 		$count++;
 
@@ -302,7 +302,7 @@ class ApiEditPageTest extends ApiTestCase {
 		}
 	}
 
-	function testEditConflict_redirect() {
+	public function testEditConflict_redirect() {
 		static $count = 0;
 		$count++;
 
@@ -358,7 +358,7 @@ class ApiEditPageTest extends ApiTestCase {
 		}
 	}
 
-	function testEditConflict_bug41990() {
+	public function testEditConflict_bug41990() {
 		static $count = 0;
 		$count++;
 

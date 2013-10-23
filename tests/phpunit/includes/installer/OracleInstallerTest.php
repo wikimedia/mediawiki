@@ -13,7 +13,7 @@ class OracleInstallerTest extends MediaWikiTestCase {
 	 * @dataProvider provideOracleConnectStrings
 	 * @covers OracleInstaller::checkConnectStringFormat
 	 */
-	function testCheckConnectStringFormat( $expected, $connectString, $msg = '' ) {
+	public function testCheckConnectStringFormat( $expected, $connectString, $msg = '' ) {
 		$validity = $expected ? 'should be valid' : 'should NOT be valid';
 		$msg = "'$connectString' ($msg) $validity.";
 		$this->assertEquals( $expected,

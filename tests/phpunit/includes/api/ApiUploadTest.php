@@ -31,7 +31,7 @@ class ApiUploadTest extends ApiTestCaseUpload {
 	 * Testing login
 	 * XXX this is a funny way of getting session context
 	 */
-	function testLogin() {
+	public function testLogin() {
 		$user = self::$users['uploader'];
 
 		$params = array(

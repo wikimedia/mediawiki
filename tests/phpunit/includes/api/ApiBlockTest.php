@@ -34,7 +34,7 @@ class ApiBlockTest extends ApiTestCase {
 	 * Which made the Block/Unblock API to actually verify the token
 	 * previously always considered valid (bug 34212).
 	 */
-	function testMakeNormalBlock() {
+	public function testMakeNormalBlock() {
 		$tokens = $this->getTokens();
 
 		$user = User::newFromName( 'UTApiBlockee' );
@@ -70,7 +70,7 @@ class ApiBlockTest extends ApiTestCase {
 	 * @dataProvider provideBlockUnblockAction
 	 * @expectedException UsageException
 	 */
-	function testBlockingActionWithNoToken( $action ) {
+	public function testBlockingActionWithNoToken( $action ) {
 		$this->doApiRequest(
 			array(
 				'action' => $action,

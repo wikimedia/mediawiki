@@ -5,7 +5,7 @@
  */
 class ArticleTablesTest extends MediaWikiLangTestCase {
 
-	function testbug14404() {
+	public function testbug14404() {
 		global $wgContLang, $wgLanguageCode, $wgLang;
 
 		$title = Title::newFromText( 'Bug 14404' );

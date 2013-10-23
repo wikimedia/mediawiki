@@ -9,7 +9,7 @@ class StringUtilsTest extends MediaWikiTestCase {
 	 * @covers StringUtils::isUtf8
 	 * @dataProvider provideStringsForIsUtf8Check
 	 */
-	function testIsUtf8WithMbstring( $expected, $string ) {
+	public function testIsUtf8WithMbstring( $expected, $string ) {
 		if ( !function_exists( 'mb_check_encoding' ) ) {
 			$this->markTestSkipped( 'Test requires the mbstring PHP extension' );
 		}
@@ -27,7 +27,7 @@ class StringUtilsTest extends MediaWikiTestCase {
 	 * @covers StringUtils::isUtf8
 	 * @dataProvider provideStringsForIsUtf8Check
 	 */
-	function testIsUtf8WithPhpFallbackImplementation( $expected, $string ) {
+	public function testIsUtf8WithPhpFallbackImplementation( $expected, $string ) {
 		$this->assertEquals( $expected,
 			StringUtils::isUtf8( $string, /** disable mbstring: */true ),
 			'Testing string "' . $this->escaped( $string ) . '" with pure PHP implementation'

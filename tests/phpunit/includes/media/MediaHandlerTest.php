@@ -1,7 +1,7 @@
 <?php
 
 class MediaHandlerTest extends MediaWikiTestCase {
-	function testFitBoxWidth() {
+	public function testFitBoxWidth() {
 		$vals = array(
 			array(
 				'width' => 50,

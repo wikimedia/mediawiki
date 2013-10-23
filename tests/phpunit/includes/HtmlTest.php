@@ -250,7 +250,7 @@ class HtmlTest extends MediaWikiTestCase {
 	 * Test feature added by r96188, let pass attributes values as
 	 * a PHP array. Restricted to class,rel, accesskey.
 	 */
-	function testExpandAttributesSpaceSeparatedAttributesWithBoolean() {
+	public function testExpandAttributesSpaceSeparatedAttributesWithBoolean() {
 		$this->assertEquals(
 			' class="booltrue one"',
 			Html::expandAttributes( array( 'class' => array(
@@ -274,7 +274,7 @@ class HtmlTest extends MediaWikiTestCase {
 	 *
 	 * Feature added by r96188
 	 */
-	function testValueIsAuthoritativeInSpaceSeparatedAttributesArrays() {
+	public function testValueIsAuthoritativeInSpaceSeparatedAttributesArrays() {
 		$this->assertEquals(
 			' class=""',
 			Html::expandAttributes( array( 'class' => array(
@@ -285,7 +285,7 @@ class HtmlTest extends MediaWikiTestCase {
 		);
 	}
 
-	function testNamespaceSelector() {
+	public function testNamespaceSelector() {
 		$this->assertEquals(
 			'<select id=namespace name=namespace>' . "\n" .
 				'<option value=0>(Main)</option>' . "\n" .
@@ -364,7 +364,7 @@ class HtmlTest extends MediaWikiTestCase {
 		);
 	}
 
-	function testCanFilterOutNamespaces() {
+	public function testCanFilterOutNamespaces() {
 		$this->assertEquals(
 			'<select id=namespace name=namespace>' . "\n" .
 				'<option value=2>User</option>' . "\n" .
@@ -386,7 +386,7 @@ class HtmlTest extends MediaWikiTestCase {
 		);
 	}
 
-	function testCanDisableANamespaces() {
+	public function testCanDisableANamespaces() {
 		$this->assertEquals(
 			'<select id=namespace name=namespace>' . "\n" .
 				'<option disabled value=0>(Main)</option>' . "\n" .
@@ -416,7 +416,7 @@ class HtmlTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideHtml5InputTypes
 	 */
-	function testHtmlElementAcceptsNewHtml5TypesInHtml5Mode( $HTML5InputType ) {
+	public function testHtmlElementAcceptsNewHtml5TypesInHtml5Mode( $HTML5InputType ) {
 		$this->assertEquals(
 			'<input type=' . $HTML5InputType . '>',
 			Html::element( 'input', array( 'type' => $HTML5InputType ) ),
@@ -457,7 +457,7 @@ class HtmlTest extends MediaWikiTestCase {
 	 * @covers Html::dropDefaults
 	 * @dataProvider provideElementsWithAttributesHavingDefaultValues
 	 */
-	function testDropDefaults( $expected, $element, $attribs, $message = '' ) {
+	public function testDropDefaults( $expected, $element, $attribs, $message = '' ) {
 		$this->assertEquals( $expected, Html::element( $element, $attribs ), $message );
 	}
 

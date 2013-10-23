@@ -233,7 +233,7 @@ class PreprocessorTest extends MediaWikiTestCase {
 	 * @dataProvider provideHeadings
 	 * @covers Preprocessor_DOM::preprocessToXml
 	 */
-	function testHeadings( $wikiText, $expectedXml ) {
+	public function testHeadings( $wikiText, $expectedXml ) {
 		$this->assertEquals( $this->normalizeXml( $expectedXml ), $this->preprocessToXml( $wikiText ) );
 	}
 }

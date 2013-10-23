@@ -24,7 +24,7 @@ class DiffHistoryBlobTest extends MediaWikiTestCase {
 	 * Test for DiffHistoryBlob::xdiffAdler32()
 	 * @dataProvider provideXdiffAdler32
 	 */
-	function testXdiffAdler32( $input ) {
+	public function testXdiffAdler32( $input ) {
 		$xdiffHash = substr( xdiff_string_rabdiff( $input, '' ), 0, 4 );
 		$dhb = new DiffHistoryBlob;
 		$myHash = $dhb->xdiffAdler32( $input );
