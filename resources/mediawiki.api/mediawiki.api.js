@@ -206,6 +206,8 @@
 							tokenCache[tokenType] = params.token = undefined;
 							return api.post( params );
 						}
+						// Pass the promise forward, so the caller gets error codes
+						return this;
 					}
 				);
 			} else {
