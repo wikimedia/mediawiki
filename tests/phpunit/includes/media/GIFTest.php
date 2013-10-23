@@ -1,6 +1,15 @@
 <?php
 class GIFHandlerTest extends MediaWikiTestCase {
 
+	/** @var FSFileBackend */
+	protected $backend;
+	/** @var GIFHandler */
+	protected $handler;
+	/** @var FSRepo */
+	protected $repo;
+	/** @var string */
+	protected $filePath;
+
 	protected function setUp() {
 		parent::setUp();
 
@@ -18,6 +27,9 @@ class GIFHandlerTest extends MediaWikiTestCase {
 		$this->handler = new GIFHandler();
 	}
 
+	/**
+	 * @covers GIFHandler::getMetadata
+	 */
 	public function testInvalidFile() {
 		$res = $this->handler->getMetadata( null, $this->filePath . '/README' );
 		$this->assertEquals( GIFHandler::BROKEN_FILE, $res );
@@ -27,6 +39,7 @@ class GIFHandlerTest extends MediaWikiTestCase {
 	 * @param $filename String basename of the file to check
 	 * @param $expected boolean Expected result.
 	 * @dataProvider provideIsAnimated
+	 * @covers GIFHandler::isAnimatedImage
 	 */
 	public function testIsAnimanted( $filename, $expected ) {
 		$file = $this->dataFile( $filename, 'image/gif' );
@@ -45,6 +58,7 @@ class GIFHandlerTest extends MediaWikiTestCase {
 	 * @param $filename String
 	 * @param $expected Integer Total image area
 	 * @dataProvider provideGetImageArea
+	 * @covers GIFHandler::getImageArea
 	 */
 	public function testGetImageArea( $filename, $expected ) {
 		$file = $this->dataFile( $filename, 'image/gif' );
@@ -63,6 +77,7 @@ class GIFHandlerTest extends MediaWikiTestCase {
 	 * @param $metadata String Serialized metadata
 	 * @param $expected Integer One of the class constants of GIFHandler
 	 * @dataProvider provideIsMetadataValid
+	 * @covers GIFHandler::isMetadataValid
 	 */
 	public function testIsMetadataValid( $metadata, $expected ) {
 		$actual = $this->handler->isMetadataValid( null, $metadata );
@@ -83,6 +98,7 @@ class GIFHandlerTest extends MediaWikiTestCase {
 	 * @param $filename String
 	 * @param $expected String Serialized array
 	 * @dataProvider provideGetMetadata
+	 * @covers GIFHandler::getMetadata
 	 */
 	public function testGetMetadata( $filename, $expected ) {
 		$file = $this->dataFile( $filename, 'image/gif' );

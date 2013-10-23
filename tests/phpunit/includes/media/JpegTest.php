@@ -1,4 +1,7 @@
 <?php
+/**
+ * @todo covers tags
+ */
 class JpegTest extends MediaWikiTestCase {
 
 	protected function setUp() {

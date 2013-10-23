@@ -3,8 +3,9 @@ class XMPValidateTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideDates
+	 * @covers XMPValidate::validateDate
 	 */
-	function testValidateDate( $value, $expected ) {
+	public function testValidateDate( $value, $expected ) {
 		// The method should modify $value.
 		XMPValidate::validateDate( array(), $value, true );
 		$this->assertEquals( $expected, $value );
