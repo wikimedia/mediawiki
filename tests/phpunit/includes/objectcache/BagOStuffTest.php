@@ -119,7 +119,7 @@ class BagOStuffTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers HashBagOStuff::incr
+	 * @covers BagOStuff::incr
 	 */
 	public function testIncr() {
 		$key = wfMemcKey( 'test' );
