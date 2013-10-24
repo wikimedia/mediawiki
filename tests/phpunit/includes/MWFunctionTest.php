@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers MWFunction
+ */
 class MWFunctionTest extends MediaWikiTestCase {
 	public function testNewObjFunction() {
 		$arg1 = 'Foo';
