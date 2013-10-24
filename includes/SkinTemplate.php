@@ -1998,9 +1998,10 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * body and html tags.
 	 */
 	function printTrail() { ?>
+<?php echo MWDebug::getDebugHTML( $this->getSkin()->getContext() ); ?>
 <?php $this->html( 'bottomscripts' ); /* JS call to runBodyOnloadHook */ ?>
 <?php $this->html( 'reporttime' ) ?>
-<?php echo MWDebug::getDebugHTML( $this->getSkin()->getContext() );
+<?php
 	}
 
 }
