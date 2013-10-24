@@ -51,10 +51,6 @@ var language = {
 			equalsPosition,
 			pluralFormIndex = 0;
 
-		if ( !forms || forms.length === 0 ) {
-			return '';
-		}
-
 		// Handle for explicit n= forms
 		for ( index = 0; index < forms.length; index++ ) {
 			form = forms[index];
@@ -72,6 +68,10 @@ var language = {
 		forms = $.map( forms, function ( form ) {
 			return form;
 		} );
+
+		if ( forms.length === 0 ) {
+			return '';
+		}
 
 		pluralRules = mw.language.getData( mw.config.get( 'wgUserLanguage' ), 'pluralRules' );
 		if ( !pluralRules ) {
