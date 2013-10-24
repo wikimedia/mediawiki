@@ -26,11 +26,13 @@
 
 require_once 'ApiQueryTestBase.php';
 
-/** These tests validate basic functionality of the api query module
+/**
+ * These tests validate basic functionality of the api query module
  *
  * @group API
  * @group Database
  * @group medium
+ * @covers ApiQuery
  */
 class ApiQueryBasicTest extends ApiQueryTestBase {
 	/**
