@@ -1035,7 +1035,7 @@ abstract class FileBackendStore extends FileBackend {
 		// Clear any file cache entries
 		$this->clearCache();
 
-		$supportedOps = array( 'create', 'store', 'copy', 'move', 'delete', 'null' );
+		$supportedOps = array( 'create', 'store', 'copy', 'move', 'delete', 'describe', 'null' );
 		$async = ( $this->parallelize === 'implicit' && count( $ops ) > 1 );
 		$maxConcurrency = $this->concurrency; // throttle
 
