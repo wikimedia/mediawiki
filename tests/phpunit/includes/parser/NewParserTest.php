@@ -631,6 +631,7 @@ class NewParserTest extends MediaWikiTestCase {
 			$out = $parser->getPreloadText( $input, $title, $options );
 		} else {
 			$output = $parser->parse( $input, $title, $options, true, true, 1337 );
+			$output->setTOCEnabled( !isset( $opts['notoc'] ) );
 			$out = $output->getText();
 
 			if ( isset( $opts['showtitle'] ) ) {

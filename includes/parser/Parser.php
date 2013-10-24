@@ -115,6 +115,10 @@ class Parser {
 	# Marker Suffix needs to be accessible staticly.
 	const MARKER_SUFFIX = "-QINU\x7f";
 
+	# Markers used for wrapping the table of contents
+	const TOC_START = '<mw:toc>';
+	const TOC_END = '</mw:toc>';
+
 	# Persistent:
 	var $mTagHooks = array();
 	var $mTransparentTagHooks = array();
@@ -2462,7 +2466,7 @@ class Parser {
 				$openmatch = preg_match( '/(?:<table|<h1|<h2|<h3|<h4|<h5|<h6|<pre|<tr|<p|<ul|<ol|<dl|<li|<\\/tr|<\\/td|<\\/th)/iS', $t );
 				$closematch = preg_match(
 					'/(?:<\\/table|<\\/h1|<\\/h2|<\\/h3|<\\/h4|<\\/h5|<\\/h6|' .
-					'<td|<th|<\\/?blockquote|<\\/?div|<hr|<\\/pre|<\\/p|' . $this->mUniqPrefix . '-pre|<\\/li|<\\/ul|<\\/ol|<\\/dl|<\\/?center)/iS', $t );
+					'<td|<th|<\\/?blockquote|<\\/?div|<hr|<\\/pre|<\\/p|<\\/mw:|' . $this->mUniqPrefix . '-pre|<\\/li|<\\/ul|<\\/ol|<\\/dl|<\\/?center)/iS', $t );
 				if ( $openmatch or $closematch ) {
 					$paragraphStack = false;
 					# TODO bug 5718: paragraph closed
@@ -4516,6 +4520,7 @@ class Parser {
 			}
 			$toc = Linker::tocList( $toc, $this->mOptions->getUserLangObj() );
 			$this->mOutput->setTOCHTML( $toc );
+			$toc = self::TOC_START . $toc . self::TOC_END;
 		}
 
 		if ( $isMain ) {
