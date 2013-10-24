@@ -4,7 +4,7 @@
  */
 ( function ( mw, $ ) {
 	var user,
-		callbacks = {},
+		deferreds = {},
 		// Extend the skeleton mw.user from mediawiki.js
 		// This is kind of ugly but we're stuck with this for b/c reasons
 		options = mw.user.options || new mw.Map(),
@@ -15,31 +15,34 @@
 	 *
 	 * @private
 	 * @param {string} info One of 'groups' or 'rights'
-	 * @param {Function} callback
+	 * @param {Function} [callback]
+	 * @return {jQuery.Promise}
 	 */
 	function getUserInfo( info, callback ) {
 		var api;
-		if ( callbacks[info] ) {
-			callbacks[info].add( callback );
-			return;
+		if ( !deferreds[info] ) {
+
+			deferreds.rights = $.Deferred();
+			deferreds.groups = $.Deferred();
+
+			api = new mw.Api();
+			api.get( {
+				action: 'query',
+				meta: 'userinfo',
+				uiprop: 'rights|groups'
+			} ).always( function ( data ) {
+				var rights, groups;
+				if ( data.query && data.query.userinfo ) {
+					rights = data.query.userinfo.rights;
+					groups = data.query.userinfo.groups;
+				}
+				deferreds.rights.resolve( rights || [] );
+				deferreds.groups.resolve( groups || [] );
+			} );
+
 		}
-		callbacks.rights = $.Callbacks('once memory');
-		callbacks.groups = $.Callbacks('once memory');
-		callbacks[info].add( callback );
-		api = new mw.Api();
-		api.get( {
-			action: 'query',
-			meta: 'userinfo',
-			uiprop: 'rights|groups'
-		} ).always( function ( data ) {
-			var rights, groups;
-			if ( data.query && data.query.userinfo ) {
-				rights = data.query.userinfo.rights;
-				groups = data.query.userinfo.groups;
-			}
-			callbacks.rights.fire( rights || [] );
-			callbacks.groups.fire( groups || [] );
-		} );
+
+		return deferreds[info].done( callback ).promise();
 	}
 
 	mw.user = user = {
@@ -236,19 +239,21 @@
 		/**
 		 * Get the current user's groups
 		 *
-		 * @param {Function} callback
+		 * @param {Function} [callback]
+		 * @return {jQuery.Promise}
 		 */
 		getGroups: function ( callback ) {
-			getUserInfo( 'groups', callback );
+			return getUserInfo( 'groups', callback );
 		},
 
 		/**
 		 * Get the current user's rights
 		 *
-		 * @param {Function} callback
+		 * @param {Function} [callback]
+		 * @return {jQuery.Promise}
 		 */
 		getRights: function ( callback ) {
-			getUserInfo( 'rights', callback );
+			return getUserInfo( 'rights', callback );
 		}
 	};
 
