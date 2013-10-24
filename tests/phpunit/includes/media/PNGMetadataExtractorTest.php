@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @todo covers tags
+ * @covers PNGMetadataExtractor
  */
 class PNGMetadataExtractorTest extends MediaWikiTestCase {
 

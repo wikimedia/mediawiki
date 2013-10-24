@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @todo covers tags
+ * @covers SVGMetadataExtractor
  */
 class SVGMetadataExtractorTest extends MediaWikiTestCase {
 

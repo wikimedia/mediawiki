@@ -5,7 +5,8 @@
  * serve as a very good "test". (Adobe photoshop probably creates such files
  * but it costs money). The implementation of it currently in MediaWiki is based
  * solely on reading the standard, without any real world test files.
- * @todo covers tags
+ *
+ * @covers JpegMetadataExtractor
  */
 class JpegMetadataExtractorTest extends MediaWikiTestCase {
 

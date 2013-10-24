@@ -1,8 +1,10 @@
 <?php
 /**
- * @todo covers tags
+ * @covers JpegHandler
  */
 class JpegTest extends MediaWikiTestCase {
+
+	protected $filePath;
 
 	protected function setUp() {
 		parent::setUp();
