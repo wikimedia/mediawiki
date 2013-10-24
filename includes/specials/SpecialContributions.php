@@ -954,7 +954,7 @@ class ContribsPager extends ReverseChronologicalPager {
 			} else {
 				$parentLen = 0;
 				if ( isset( $this->mParentLens[$row->rev_parent_id] ) ) {
-					$this->mParentLens[$row->rev_parent_id];
+					$parentLen = $this->mParentLens[$row->rev_parent_id];
 				}
 
 				$chardiff = ' <span class="mw-changeslist-separator">. .</span> ';
