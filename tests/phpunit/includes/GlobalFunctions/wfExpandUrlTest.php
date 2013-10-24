@@ -1,9 +1,11 @@
 <?php
 /**
- * Tests for wfExpandUrl()
+ * @covers ::wfExpandUrl
  */
 class WfExpandUrlTest extends MediaWikiTestCase {
-	/** @dataProvider provideExpandableUrls */
+	/**
+	 * @dataProvider provideExpandableUrls
+	 */
 	public function testWfExpandUrl( $fullUrl, $shortUrl, $defaultProto, $server, $canServer, $httpsMode, $message ) {
 		// Fake $wgServer and $wgCanonicalServer
 		$this->setMwGlobals( array(

@@ -1,6 +1,6 @@
 <?php
 /**
- * Tests for wfBCP47()
+ * @covers ::wfBCP47
  */
 class WfBCP47Test extends MediaWikiTestCase {
 	/**
