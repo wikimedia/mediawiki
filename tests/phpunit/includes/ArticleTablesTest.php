@@ -5,6 +5,10 @@
  */
 class ArticleTablesTest extends MediaWikiLangTestCase {
 
+	/**
+	 * @covers Title::getTemplateLinksFrom
+	 * @covers Title::getLinksFrom
+	 */
 	public function testbug14404() {
 		global $wgContLang, $wgLanguageCode, $wgLang;
 

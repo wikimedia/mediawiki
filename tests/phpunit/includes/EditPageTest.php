@@ -13,6 +13,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideExtractSectionTitle
+	 * @covers EditPage::extractSectionTitle
 	 */
 	public function testExtractSectionTitle( $section, $title ) {
 		$extracted = EditPage::extractSectionTitle( $section );
@@ -59,7 +60,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 	 * wrapper around assertEquals() which calls rrtrim() to normalize the
 	 * expected and actual texts.
 	 */
-	function assertEditedTextEquals( $expected, $actual, $msg = '' ) {
+	protected function assertEditedTextEquals( $expected, $actual, $msg = '' ) {
 		return $this->assertEquals( rtrim( $expected ), rtrim( $actual ), $msg );
 	}
 
@@ -172,6 +173,10 @@ class EditPageTest extends MediaWikiLangTestCase {
 		return $page;
 	}
 
+	/**
+	 * @todo split into a dataprovider and test method
+	 * @covers EditPage
+	 */
 	public function testCreatePage() {
 		$this->assertEdit(
 			'EditPageTest_testCreatePage',
@@ -338,6 +343,7 @@ hello
 
 	/**
 	 * @dataProvider provideSectionEdit
+	 * @covers EditPage
 	 */
 	public function testSectionEdit( $base, $section, $text, $summary, $expected ) {
 		$edit = array(
@@ -432,6 +438,7 @@ hello
 
 	/**
 	 * @dataProvider provideAutoMerge
+	 * @covers EditPage
 	 */
 	public function testAutoMerge( $baseUser, $text, $adamsEdit, $bertasEdit,
 		$expectedCode, $expectedText, $message = null

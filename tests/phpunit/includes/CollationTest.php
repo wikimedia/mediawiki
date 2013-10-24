@@ -1,4 +1,12 @@
 <?php
+
+/**
+ * Class CollationTest
+ * @covers Collation
+ * @covers IcuCollation
+ * @covers IdentityCollation
+ * @covers UppercaseCollation
+ */
 class CollationTest extends MediaWikiLangTestCase {
 	protected function setUp() {
 		parent::setUp();
@@ -30,7 +38,7 @@ class CollationTest extends MediaWikiLangTestCase {
 		$this->assertStringStartsWith( $baseBin, $extendedBin, "$base is not a prefix of $extended" );
 	}
 
-	function prefixDataProvider() {
+	public static function prefixDataProvider() {
 		return array(
 			array( 'en', 'A', 'AA' ),
 			array( 'en', 'A', 'AAA' ),
@@ -63,7 +71,7 @@ class CollationTest extends MediaWikiLangTestCase {
 		$this->assertStringStartsNotWith( $baseBin, $extendedBin, "$base is a prefix of $extended" );
 	}
 
-	function notPrefixDataProvider() {
+	public static function notPrefixDataProvider() {
 		return array(
 			array( 'en', 'A', 'B' ),
 			array( 'en', 'AC', 'ABC' ),
