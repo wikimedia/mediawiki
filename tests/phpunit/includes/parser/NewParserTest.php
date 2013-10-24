@@ -618,7 +618,7 @@ class NewParserTest extends MediaWikiTestCase {
 			$out = $parser->preSaveTransform( $input, $title, $user, $options );
 		} elseif ( isset( $opts['msg'] ) ) {
 			$out = $parser->transformMsg( $input, $options, $title );
-		} elseif ( isset( $opts['section'] ) ) {
+		} elseif ( isset( $opts['section'] ) )
 			$section = $opts['section'];
 			$out = $parser->getSection( $input, $section );
 		} elseif ( isset( $opts['replace'] ) ) {

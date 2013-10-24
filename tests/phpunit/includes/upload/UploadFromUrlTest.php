@@ -4,6 +4,8 @@
  * @group Broken
  * @group Upload
  * @group Database
+ *
+ * @covers UploadFromUrl
  */
 class UploadFromUrlTest extends ApiTestCase {
 	protected function setUp() {
@@ -48,6 +50,8 @@ class UploadFromUrlTest extends ApiTestCase {
 	/**
 	 * @todo Document why we test login, since the $wgUser hack used doesn't
 	 * require login
+	 *
+	 * @coversNothing
 	 */
 	public function testLogin() {
 		$data = $this->doApiRequest( array(
