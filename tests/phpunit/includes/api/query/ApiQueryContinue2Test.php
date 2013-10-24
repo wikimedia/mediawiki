@@ -24,6 +24,7 @@ require_once 'ApiQueryContinueTestBase.php';
  * @group API
  * @group Database
  * @group medium
+ * @covers ApiQuery
  */
 class ApiQueryContinue2Test extends ApiQueryContinueTestBase {
 	/**
