@@ -101,11 +101,14 @@
 			try {
 				// Bartosz made me put this here.
 				if ( window.opera ) { throw window.opera; }
-				console.table( data );
+				// Use Function.prototype#call to force an exception on Firefox,
+				// which doesn't define console#table but doesn't complain if you
+				// try to invoke it.
+				console.table.call( console.table, data );
 				return;
 			} catch (e) {}
 			try {
-				console.log( JSON.stringify( data, null, 2 ) );
+				console.log( $.toJSON( data, null, 2 ) );
 				return;
 			} catch (e) {}
 			mw.log( data );

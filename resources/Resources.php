@@ -655,7 +655,10 @@ return array(
 	),
 	'mediawiki.inspect' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.inspect.js',
-		'dependencies' => 'jquery.byteLength',
+		'dependencies' => array(
+			'jquery.byteLength',
+			'jquery.json',
+		),
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.feedback' => array(
