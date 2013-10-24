@@ -1,9 +1,11 @@
 <?php
 /**
- * Tests for wfAssembleUrl()
+ * @covers ::wfAssembleUrl
  */
 class WfAssembleUrlTest extends MediaWikiTestCase {
-	/** @dataProvider provideURLParts */
+	/**
+	 * @dataProvider provideURLParts
+	 */
 	public function testWfAssembleUrl( $parts, $output ) {
 		$partsDump = print_r( $parts, true );
 		$this->assertEquals(

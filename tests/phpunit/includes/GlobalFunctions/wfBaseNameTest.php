@@ -1,6 +1,6 @@
 <?php
 /**
- * Tests for wfBaseName()
+ * @covers ::wfBaseName
  */
 class WfBaseNameTest extends MediaWikiTestCase {
 	/**

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers ::wfGetCaller
+ */
 class WfGetCallerTest extends MediaWikiTestCase {
 
 	public function testZero() {
