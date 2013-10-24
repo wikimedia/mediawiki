@@ -238,8 +238,14 @@ class Status {
 			}
 		} else {
 			$msgs =  $this->getErrorMessageArray( $this->errors );
-			$wrapper = new RawMessage( '* $' . implode( "\n* \$", range( 1, count( $msgs ) + 1 ) ) );
-			$wrapper->params( $msgs )->parse();
+			$msgCount = count( $msgs );
+
+			if ( $shortContext ) {
+				$msgCount++;
+			}
+
+			$wrapper = new RawMessage( '* $' . implode( "\n* \$", range( 1, $msgCount ) ) );
+			$s = $wrapper->params( $msgs )->parse();
 
 			if ( $longContext ) {
 				$s = wfMessage( $longContext, $wrapper );
@@ -249,6 +255,7 @@ class Status {
 				$s = wfMessage( $shortContext, $wrapper );
 			}
 		}
+
 		return $s;
 	}
 
