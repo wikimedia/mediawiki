@@ -1071,4 +1071,21 @@ more stuff
 
 		$this->assertEquals( $expected, $text );
 	}
+
+	/**
+	 * @covers WikiPage::factory
+	 */
+	public function testWikiPageFactory() {
+		$title = Title::makeTitle( NS_FILE, 'Someimage.png' );
+		$page = WikiPage::factory( $title );
+		$this->assertEquals( 'WikiFilePage', get_class( $page ) );
+
+		$title = Title::makeTitle( NS_CATEGORY, 'SomeCategory' );
+		$page = WikiPage::factory( $title );
+		$this->assertEquals( 'WikiCategoryPage', get_class( $page ) );
+
+		$title = Title::makeTitle( NS_MAIN, 'SomePage' );
+		$page = WikiPage::factory( $title );
+		$this->assertEquals( 'WikiPage', get_class( $page ) );
+	}
 }
