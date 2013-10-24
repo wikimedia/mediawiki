@@ -65,11 +65,15 @@
 		 */
 		auditSelectors: function ( css ) {
 			var selectors = { total: 0, matched: 0 },
-				style = document.createElement( 'style' );
+				style = document.createElement( 'style' ),
+				sheet, rules;
 
 			style.textContent = css;
 			document.body.appendChild( style );
-			$.each( style.sheet.cssRules, function ( index, rule ) {
+			// Standards-compliant browsers use .sheet.cssRules, IE8 uses .styleSheet.rules…
+			sheet = style.sheet || style.styleSheet;
+			rules = sheet.cssRules || sheet.rules;
+			$.each( rules, function ( index, rule ) {
 				selectors.total++;
 				if ( document.querySelector( rule.selectorText ) !== null ) {
 					selectors.matched++;
