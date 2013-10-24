@@ -479,8 +479,10 @@ class ImportReporter extends ContextSource {
 				}
 				$log->addEntry( 'upload', $title, $detail, array(), $this->getUser() );
 			} else {
-				$interwiki = '[[:' . $this->mInterwiki . ':' .
-					$origTitle->getPrefixedText() . ']]';
+				$iwNamespace = ( $origTitle->inNamespace( NS_MAIN ) ? '' :
+					MWNamespace::getCanonicalName( $origTitle->getNamespace() ) . ':' );
+				$interwiki = '[[:' . $this->mInterwiki . ':' . $iwNamespace .
+					$origTitle->getText() . ']]';
 				$detail = $this->msg( 'import-logentry-interwiki-detail' )->numParams(
 					$successCount )->params( $interwiki )->inContentLanguage()->text();
 				if ( $this->reason ) {
