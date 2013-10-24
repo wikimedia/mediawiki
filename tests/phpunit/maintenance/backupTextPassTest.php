@@ -7,6 +7,7 @@ require_once __DIR__ . "/../../../maintenance/backupTextPass.inc";
  *
  * @group Database
  * @group Dump
+ * @covers TextPassDumper
  */
 class TextPassDumperTest extends DumpTestCase {
 

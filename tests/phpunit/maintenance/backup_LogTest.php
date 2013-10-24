@@ -4,6 +4,7 @@
  *
  * @group Database
  * @group Dump
+ * @covers BackupDumper
  */
 class BackupDumperLoggerTest extends DumpTestCase {
 

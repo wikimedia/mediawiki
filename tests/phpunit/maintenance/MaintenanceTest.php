@@ -130,6 +130,9 @@ class MaintenanceFixup extends Maintenance {
 	}
 }
 
+/**
+ * @covers Maintenance
+ */
 class MaintenanceTest extends MediaWikiTestCase {
 
 
