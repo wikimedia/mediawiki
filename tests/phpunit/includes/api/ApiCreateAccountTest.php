@@ -4,9 +4,11 @@
  * @group Database
  * @group API
  * @group medium
+ *
+ * @covers ApiCreateAccount
  */
 class ApiCreateAccountTest extends ApiTestCase {
-	function setUp() {
+	protected function setUp() {
 		parent::setUp();
 		LoginForm::setCreateaccountToken();
 		$this->setMwGlobals( array( 'wgEnableEmail' => true ) );
