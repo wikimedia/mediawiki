@@ -6,6 +6,7 @@
 class GlobalWithDBTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideWfIsBadImageList
+	 * @covers ::wfIsBadImage
 	 */
 	public function testWfIsBadImage( $name, $title, $blacklist, $expected, $desc ) {
 		$this->assertEquals( $expected, wfIsBadImage( $name, $title, $blacklist ), $desc );
