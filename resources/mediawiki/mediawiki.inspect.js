@@ -69,7 +69,8 @@
 
 			style.textContent = css;
 			document.body.appendChild( style );
-			$.each( style.sheet.cssRules, function ( index, rule ) {
+			// Standards-compliant browsers use 'cssRules', IE8 uses 'rules', some support both
+			$.each( style.sheet.cssRules || style.sheet.rules, function ( index, rule ) {
 				selectors.total++;
 				if ( document.querySelector( rule.selectorText ) !== null ) {
 					selectors.matched++;
