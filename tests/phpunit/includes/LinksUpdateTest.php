@@ -52,6 +52,9 @@ class LinksUpdateTest extends MediaWikiTestCase {
 		return array( $t, $po );
 	}
 
+	/**
+	 * @covers LinksUpdate::addLink
+	 */
 	public function testUpdate_pagelinks() {
 		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", 111 );
 
@@ -86,6 +89,9 @@ class LinksUpdateTest extends MediaWikiTestCase {
 		), $update->getRemovedLinks() );
 	}
 
+	/**
+	 * @covers LinksUpdate::addExternalLink
+	 */
 	public function testUpdate_externallinks() {
 		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", 111 );
 
@@ -96,6 +102,9 @@ class LinksUpdateTest extends MediaWikiTestCase {
 		) );
 	}
 
+	/**
+	 * @covers LinksUpdate::addCategory
+	 */
 	public function testUpdate_categorylinks() {
 		$this->setMwGlobals( 'wgCategoryCollation', 'uppercase' );
 
@@ -108,6 +117,9 @@ class LinksUpdateTest extends MediaWikiTestCase {
 		) );
 	}
 
+	/**
+	 * @covers LinksUpdate::addInterwikiLink
+	 */
 	public function testUpdate_iwlinks() {
 		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", 111 );
 
@@ -119,6 +131,9 @@ class LinksUpdateTest extends MediaWikiTestCase {
 		) );
 	}
 
+	/**
+	 * @covers LinksUpdate::addTemplate
+	 */
 	public function testUpdate_templatelinks() {
 		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", 111 );
 
@@ -129,6 +144,9 @@ class LinksUpdateTest extends MediaWikiTestCase {
 		) );
 	}
 
+	/**
+	 * @covers LinksUpdate::addImage
+	 */
 	public function testUpdate_imagelinks() {
 		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", 111 );
 
@@ -139,6 +157,9 @@ class LinksUpdateTest extends MediaWikiTestCase {
 		) );
 	}
 
+	/**
+	 * @covers LinksUpdate::addLanguageLink
+	 */
 	public function testUpdate_langlinks() {
 		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", 111 );
 
@@ -149,6 +170,9 @@ class LinksUpdateTest extends MediaWikiTestCase {
 		) );
 	}
 
+	/**
+	 * @covers LinksUpdate::setProperty
+	 */
 	public function testUpdate_page_props() {
 		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", 111 );
 
