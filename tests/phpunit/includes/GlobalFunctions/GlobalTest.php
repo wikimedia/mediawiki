@@ -29,7 +29,10 @@ class GlobalTest extends MediaWikiTestCase {
 		parent::tearDown();
 	}
 
-	/** @dataProvider provideForWfArrayDiff2 */
+	/**
+	 * @dataProvider provideForWfArrayDiff2
+	 * @covers ::wfArrayDiff2
+	 */
 	public function testWfArrayDiff2( $a, $b, $expected ) {
 		$this->assertEquals(
 			wfArrayDiff2( $a, $b ), $expected
@@ -53,24 +56,36 @@ class GlobalTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * @covers ::wfRandom
+	 */
 	public function testRandom() {
 		# This could hypothetically fail, but it shouldn't ;)
 		$this->assertFalse(
 			wfRandom() == wfRandom() );
 	}
 
+	/**
+	 * @covers ::wfUrlencode
+	 */
 	public function testUrlencode() {
 		$this->assertEquals(
 			"%E7%89%B9%E5%88%A5:Contributions/Foobar",
 			wfUrlencode( "\xE7\x89\xB9\xE5\x88\xA5:Contributions/Foobar" ) );
 	}
 
+	/**
+	 * @covers ::wfExpandIRI
+	 */
 	public function testExpandIRI() {
 		$this->assertEquals(
 			"https://te.wikibooks.org/wiki/ఉబుంటు_వాడుకరి_మార్గదర్శని",
 			wfExpandIRI( "https://te.wikibooks.org/wiki/%E0%B0%89%E0%B0%AC%E0%B1%81%E0%B0%82%E0%B0%9F%E0%B1%81_%E0%B0%B5%E0%B0%BE%E0%B0%A1%E0%B1%81%E0%B0%95%E0%B0%B0%E0%B0%BF_%E0%B0%AE%E0%B0%BE%E0%B0%B0%E0%B1%8D%E0%B0%97%E0%B0%A6%E0%B0%B0%E0%B1%8D%E0%B0%B6%E0%B0%A8%E0%B0%BF" ) );
 	}
 
+	/**
+	 * @covers ::wfReadOnly
+	 */
 	public function testReadOnlyEmpty() {
 		global $wgReadOnly;
 		$wgReadOnly = null;
@@ -79,6 +94,9 @@ class GlobalTest extends MediaWikiTestCase {
 		$this->assertFalse( wfReadOnly() );
 	}
 
+	/**
+	 * @covers ::wfReadOnly
+	 */
 	public function testReadOnlySet() {
 		global $wgReadOnly, $wgReadOnlyFile;
 
@@ -95,12 +113,6 @@ class GlobalTest extends MediaWikiTestCase {
 
 		$this->assertFalse( wfReadOnly() );
 		$this->assertFalse( wfReadOnly() );
-	}
-
-	public function testQuotedPrintable() {
-		$this->assertEquals(
-			"=?UTF-8?Q?=C4=88u=20legebla=3F?=",
-			UserMailer::quotedPrintable( "\xc4\x88u legebla?", "UTF-8" ) );
 	}
 
 	public static function provideArrayToCGI() {
@@ -123,12 +135,16 @@ class GlobalTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideArrayToCGI
+	 * @covers ::wfArrayToCgi
 	 */
 	public function testArrayToCGI( $array, $result ) {
 		$this->assertEquals( $result, wfArrayToCgi( $array ) );
 	}
 
 
+	/**
+	 * @covers ::testWfArrayDiff2
+	 */
 	public function testArrayToCGI2() {
 		$this->assertEquals(
 			"baz=bar&foo=bar",
@@ -154,6 +170,7 @@ class GlobalTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideCgiToArray
+	 * @covers ::wfCgiToArray
 	 */
 	public function testCgiToArray( $cgi, $result ) {
 		$this->assertEquals( $result, wfCgiToArray( $cgi ) );
@@ -174,11 +191,15 @@ class GlobalTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideCgiRoundTrip
+	 * @covers ::wfArrayToCgi
 	 */
 	public function testCgiRoundTrip( $cgi ) {
 		$this->assertEquals( $cgi, wfArrayToCgi( wfCgiToArray( $cgi ) ) );
 	}
 
+	/**
+	 * @covers ::mimeTypeMatch
+	 */
 	public function testMimeTypeMatch() {
 		$this->assertEquals(
 			'text/html',
@@ -201,6 +222,9 @@ class GlobalTest extends MediaWikiTestCase {
 					'image/svg+xml' => 0.5 ) ) );
 	}
 
+	/**
+	 * @covers ::wfNegotiateType
+	 */
 	public function testNegotiateType() {
 		$this->assertEquals(
 			'text/html',
@@ -242,72 +266,10 @@ class GlobalTest extends MediaWikiTestCase {
 				array( 'application/xhtml+xml' => 1.0 ) ) );
 	}
 
-	public function testFallbackMbstringFunctions() {
-
-		if ( !extension_loaded( 'mbstring' ) ) {
-			$this->markTestSkipped( "The mb_string functions must be installed to test the fallback functions" );
-		}
-
-		$sampleUTF = "Östergötland_coat_of_arms.png";
-
-		//mb_substr
-		$substr_params = array(
-			array( 0, 0 ),
-			array( 5, -4 ),
-			array( 33 ),
-			array( 100, -5 ),
-			array( -8, 10 ),
-			array( 1, 1 ),
-			array( 2, -1 )
-		);
-
-		foreach ( $substr_params as $param_set ) {
-			$old_param_set = $param_set;
-			array_unshift( $param_set, $sampleUTF );
-
-			$this->assertEquals(
-				call_user_func_array( 'mb_substr', $param_set ),
-				call_user_func_array( 'Fallback::mb_substr', $param_set ),
-				'Fallback mb_substr with params ' . implode( ', ', $old_param_set )
-			);
-		}
-
-		//mb_strlen
-		$this->assertEquals(
-			mb_strlen( $sampleUTF ),
-			Fallback::mb_strlen( $sampleUTF ),
-			'Fallback mb_strlen'
-		);
-
-		//mb_str(r?)pos
-		$strpos_params = array(
-			//array( 'ter' ),
-			//array( 'Ö' ),
-			//array( 'Ö', 3 ),
-			//array( 'oat_', 100 ),
-			//array( 'c', -10 ),
-			//Broken for now
-		);
-
-		foreach ( $strpos_params as $param_set ) {
-			$old_param_set = $param_set;
-			array_unshift( $param_set, $sampleUTF );
-
-			$this->assertEquals(
-				call_user_func_array( 'mb_strpos', $param_set ),
-				call_user_func_array( 'Fallback::mb_strpos', $param_set ),
-				'Fallback mb_strpos with params ' . implode( ', ', $old_param_set )
-			);
-
-			$this->assertEquals(
-				call_user_func_array( 'mb_strrpos', $param_set ),
-				call_user_func_array( 'Fallback::mb_strrpos', $param_set ),
-				'Fallback mb_strrpos with params ' . implode( ', ', $old_param_set )
-			);
-		}
-	}
-
-
+	/**
+	 * @covers ::wfDebug
+	 * @covers ::wfDebugMem
+	 */
 	public function testDebugFunctionTest() {
 
 		global $wgDebugLogFile, $wgDebugTimestamps;
@@ -342,6 +304,9 @@ class GlobalTest extends MediaWikiTestCase {
 		$wgDebugTimestamps = $old_wgDebugTimestamps;
 	}
 
+	/**
+	 * @covers ::wfClientAcceptsGzip
+	 */
 	public function testClientAcceptsGzipTest() {
 
 		$settings = array(
@@ -373,6 +338,9 @@ class GlobalTest extends MediaWikiTestCase {
 		}
 	}
 
+	/**
+	 * @covers ::swap
+	 */
 	public function testSwapVarsTest() {
 		$var1 = 1;
 		$var2 = 2;
@@ -386,6 +354,9 @@ class GlobalTest extends MediaWikiTestCase {
 		$this->assertEquals( $var2, 1, 'var2 is swapped' );
 	}
 
+	/**
+	 * @covers ::wfPercent
+	 */
 	public function testWfPercentTest() {
 
 		$pcts = array(
@@ -414,6 +385,7 @@ class GlobalTest extends MediaWikiTestCase {
 	/**
 	 * test @see wfShorthandToInteger()
 	 * @dataProvider provideShorthand
+	 * @covers ::wfShorthandToInteger
 	 */
 	public function testWfShorthandToInteger( $shorthand, $expected ) {
 		$this->assertEquals( $expected,
@@ -474,6 +446,7 @@ class GlobalTest extends MediaWikiTestCase {
 	 *
 	 * @dataProvider provideMerge()
 	 * @group medium
+	 * @covers ::wfMerge
 	 */
 	public function testMerge( $old, $mine, $yours, $expectedMergeResult, $expectedText ) {
 		$this->checkHasDiff3();
@@ -549,6 +522,7 @@ class GlobalTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideMakeUrlIndexes()
+	 * @covers ::wfMakeUrlIndexes
 	 */
 	public function testMakeUrlIndexes( $url, $expected ) {
 		$index = wfMakeUrlIndexes( $url );
@@ -606,6 +580,7 @@ class GlobalTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideWfMatchesDomainList
+	 * @covers ::wfMatchesDomainList
 	 */
 	public function testWfMatchesDomainList( $url, $domains, $expected, $description ) {
 		$actual = wfMatchesDomainList( $url, $domains );
@@ -630,6 +605,9 @@ class GlobalTest extends MediaWikiTestCase {
 		return $a;
 	}
 
+	/**
+	 * @covers ::wfMkdirParents
+	 */
 	public function testWfMkdirParents() {
 		// Should not return true if file exists instead of directory
 		$fname = $this->getNewTempFile();
@@ -641,6 +619,7 @@ class GlobalTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideWfShellMaintenanceCmdList
+	 * @covers ::wfShellMaintenanceCmd
 	 */
 	public function testWfShellMaintenanceCmd( $script, $parameters, $options, $expected, $description ) {
 		if ( wfIsWindows() ) {
@@ -669,5 +648,5 @@ class GlobalTest extends MediaWikiTestCase {
 				"Called eval.php --help --test with wrapper and php option" ),
 		);
 	}
-	/* TODO: many more! */
+	/* @TODO many more! */
 }
