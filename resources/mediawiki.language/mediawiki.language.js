@@ -73,6 +73,10 @@ var language = {
 			return form;
 		} );
 
+		if ( forms.length === 0 ) {
+			return '';
+		}
+
 		pluralRules = mw.language.getData( mw.config.get( 'wgUserLanguage' ), 'pluralRules' );
 		if ( !pluralRules ) {
 			// default fallback.
