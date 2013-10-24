@@ -1,8 +1,5 @@
 <?php
 
-/**
- * @todo covers tags
- */
 class FormatMetadataTest extends MediaWikiTestCase {
 
 	/** @var FSFileBackend */
@@ -31,6 +28,9 @@ class FormatMetadataTest extends MediaWikiTestCase {
 		$this->setMwGlobals( 'wgShowEXIF', true );
 	}
 
+	/**
+	 * @covers File::formatMetadata
+	 */
 	public function testInvalidDate() {
 		$file = $this->dataFile( 'broken_exif_date.jpg', 'image/jpeg' );
 
