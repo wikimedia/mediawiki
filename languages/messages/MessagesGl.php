@@ -3176,6 +3176,8 @@ Isto, probabelmente, se debe a unha ligazón cara a un sitio externo que está n
 'spam_reverting' => 'Revertida á última edición sen ligazóns a "$1"',
 'spam_blanking' => 'Limpáronse todas as revisións con ligazóns a "$1"',
 'spam_deleting' => 'Borráronse todas as revisións con ligazóns a "$1"',
+'simpleantispam-label' => "Comprobación antispam.
+'''NON''' encha isto!",
 
 # Info page
 'pageinfo-title' => 'Información sobre "$1"',

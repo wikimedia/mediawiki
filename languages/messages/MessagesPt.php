@@ -3215,6 +3215,8 @@ Este bloqueio foi provavelmente causado por um link para um site externo que con
 'spam_reverting' => 'A reverter para a última revisão que não contém links para $1',
 'spam_blanking' => 'Todas as revisões continham links para $1; a esvaziar',
 'spam_deleting' => 'Todas as revisões continham links para $1; a eliminar',
+'simpleantispam-label' => "Verificação de spam
+'''NÃO''' preencha isto!",
 
 # Info page
 'pageinfo-title' => 'Informações sobre "$1"',

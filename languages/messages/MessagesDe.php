@@ -3282,6 +3282,8 @@ Das liegt wahrscheinlich an einem Link auf eine externe Seite.',
 'spam_reverting' => 'Letzte Version ohne Links zu $1 wiederhergestellt.',
 'spam_blanking' => 'Alle Versionen mit einem Link zu $1 wurden bereinigt.',
 'spam_deleting' => 'Alle Versionen mit einem Link zu $1 wurden gelöscht.',
+'simpleantispam-label' => "Spamschutzprüfung.
+Hier '''NICHTS''' eintragen!",
 
 # Info page
 'pageinfo-title' => 'Informationen zu „$1“',

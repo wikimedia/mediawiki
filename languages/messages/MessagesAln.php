@@ -1504,6 +1504,9 @@ Lejon dhânien e arsyes në përmbledhje.',
 'siteusers' => '{{SITENAME}} {{PLURAL:$2|përdorues|përdorues}} $1',
 'creditspage' => 'Kreditat e faqes',
 
+# Spam protection
+'simpleantispam-label' => "Anti-spam kontrolloni. A'''''NUK' plotësoni këtë!",
+
 # Browsing diffs
 'previousdiff' => '← Redaktim mâ i vjetër',
 'nextdiff' => 'Redaktim ma i ri →',

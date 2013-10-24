@@ -2901,6 +2901,8 @@ $2',
 'spam_reverting' => 'wróćo na poslednju wersiju, kotraž wotkazy na $1 njewobsahuje',
 'spam_blanking' => 'Wšě wersije z wotkazami do $1 so porjedźeja',
 'spam_deleting' => 'Wšě wersije z wotkazami do $1 so zhašeja',
+'simpleantispam-label' => "Kontrola přećiwo spamej.
+Tu '''ničo''' njezapisać!",
 
 # Info page
 'pageinfo-title' => 'Informacije za stronu "$1"',

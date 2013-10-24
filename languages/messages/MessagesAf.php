@@ -3070,6 +3070,8 @@ Hierdie situasie was waarskynlik deur 'n skakel na 'n eksterne webtuiste op ons 
 'spam_reverting' => 'Besig met terugrol na die laaste weergawe wat nie skakels na $1 bevat nie',
 'spam_blanking' => "Alle weergawes met 'n skakel na $1 word verwyder",
 'spam_deleting' => 'Alle weergawes bevat verwysings na $1. Bladsy verwyder',
+'simpleantispam-label' => "Anti-spam kontrole.
+'''Moenie''' die veld invul nie!",
 
 # Info page
 'pageinfo-title' => 'Inligting oor "$1"',

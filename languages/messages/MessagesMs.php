@@ -338,7 +338,7 @@ $messages = array(
 'noindex-category' => 'Laman tak diindeks',
 'broken-file-category' => 'Laman yang ada pautan fail yang terputus',
 
-'linkprefix' => '/^((?>.*(?<![a-zA-Z\\x80-\\xff])))(.+)$/sD',
+'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
 
 'about' => 'Perihal',
 'article' => 'Laman kandungan',
@@ -3050,6 +3050,7 @@ Simpan dalam komputer anda dan muat naiknya di sini.',
 'spam_reverting' => 'Membalikkan kepada versi terakhir yang tidak mengandungi pautan ke $1',
 'spam_blanking' => 'Mengosongkan semua semakan yang mengandungi pautan ke $1',
 'spam_deleting' => 'Menghapuskan semua semakan yang mengandungi pautan ke $1',
+'simpleantispam-label' => "Pemeriksaan anti-spam. '''JANGAN''' isi ruangan ini!",
 
 # Info page
 'pageinfo-title' => 'Maklumat untuk "$1"',

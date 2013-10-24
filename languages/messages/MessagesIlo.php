@@ -252,7 +252,7 @@ $messages = array(
 'articlepage' => 'Kitaen ti naglaon a panid',
 'talk' => 'Pagtungtungan',
 'views' => 'Dagiti pangkitaan',
-'toolbox' => 'Kahon ti ramit',
+'toolbox' => 'Ramramit',
 'userpage' => 'Kitaen ti panid ti agar-aramat',
 'projectpage' => 'Kitaen ti panid ti gandat',
 'imagepage' => 'Kitaen ti panid ti papeles',
@@ -498,6 +498,9 @@ Dimo liplipatan a sukatan dagiti kakaykayatam idiay [[Special:Preferences|{{SITE
 'userlogin-resetpassword-link' => 'Iyasentar manen ti kontrasenias',
 'helplogin-url' => 'Help:Panagserrek',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Tulong iti panagserrek]]',
+'userlogin-loggedin' => 'Nakastrekkan a kas ni {{GENDER:$1|$1}}.
+Usaren ti porma dita baba tapno sumrek a kas sabali nga agar-aramat.',
+'userlogin-createanother' => 'Agaramid pay ti sabali a pakabilangan',
 'createacct-join' => 'Ikabil ti pakaammom dita baba.',
 'createacct-another-join' => 'Ikabil ti pakaammo ti baro a pakabilangan dita baba.',
 'createacct-emailrequired' => 'Esurat a pagtaengan',
@@ -2265,10 +2268,12 @@ Kitaen ti $2 para iti pannakrehistro dagiti naudi a naikkat.',
 'deletecomment' => 'Rason:',
 'deleteotherreason' => 'Sabali/maipatinayon a rason:',
 'deletereasonotherlist' => 'Sabali a rason',
-'deletereason-dropdown' => '*Kadawyan a rasrason ti panagikkat
-** Kiddaw ti mannurat
+'deletereason-dropdown' => '* Kadawyan a rasrason ti panagikkat
+** Spam
+** Bandalismo
 ** Panaglabsing iti karbengan ti panagipablaak
-** Bandalismo',
+** Kiddaw ti mannurat
+** Naputed a baw-ing',
 'delete-edit-reasonlist' => 'Urnosen dagiti rason ti panagikkat',
 'delete-toobig' => 'Daytoy a panid ket dakkel ti pakasaritaanna, sumurok a  $1 {{PLURAL:a panagbaliwan|dagiti panagbaliwan}}.
 Ti panagikkat ti kastoy a pammpanid ket naparitan tapno mapawilan ti saan nga inkarkaro a pannakadadael ti {{SITENAME}}.',
@@ -2945,6 +2950,8 @@ Daytoy ket mabalin a gapuanan babaen ti silpo a naiparit ti akin ruar a pagsaada
 'spam_reverting' => 'Ipasubli ti kinaudi a panagbaliw nga awan dagiti linaon a silpo idiay $1',
 'spam_blanking' => 'Dagiti amin a panagbaliw ket aglaon kadagiti silpo idiay $1, iblanko',
 'spam_deleting' => 'Dagiti amin a panagbaliw ket naglaon kadagiti silpo idiay $1, ik-ikkaten',
+'simpleantispam-label' => "Kontra-spam a panagkita.
+ '''Saan''' mo a suratan daytoy!",
 
 # Info page
 'pageinfo-title' => 'Pakaammo para iti "$1"',

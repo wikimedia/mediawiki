@@ -61,6 +61,7 @@
  * @author Sir Lestaty de Lioncourt
  * @author Teles
  * @author TheGabrielZaum
+ * @author Titoncio
  * @author Urhixidur
  * @author Vivaelcelta
  * @author Vuln
@@ -3212,6 +3213,8 @@ Tal bloqueio foi provavelmente causado por uma ligação para um ''website'' ext
 'spam_reverting' => 'Revertendo para a última versão que não contém links para $1',
 'spam_blanking' => 'Todas revisões contendo links para $1, limpando',
 'spam_deleting' => 'Eliminada por todas as suas edições conterem links para $1',
+'simpleantispam-label' => "Verificação de spam
+'''NÃO''' preencha isto!",
 
 # Info page
 'pageinfo-title' => 'Informações sobre "$1"',

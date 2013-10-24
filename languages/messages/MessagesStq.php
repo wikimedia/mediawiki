@@ -2547,6 +2547,7 @@ Do ap dän lokoale Reekener spiekerje un deerätter hier hoochleede.',
 'spambot_username' => 'MediaWiki Spam-Süüwerenge',
 'spam_reverting' => 'Lääste Version sunner Links tou $1 wier häärstoald.',
 'spam_blanking' => 'Aal Versione äntheelden Links tou $1, skeenmoaked.',
+'simpleantispam-label' => "Spamskuts-Wröige. Hier '''niks''' iendreege!",
 
 # Info page
 'pageinfo-title' => 'Informatione tou „$1“',

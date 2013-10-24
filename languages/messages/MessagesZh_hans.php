@@ -578,7 +578,7 @@ $messages = array(
 'articlepage' => '查看内容页面',
 'talk' => '讨论',
 'views' => '查看',
-'toolbox' => '工具箱',
+'toolbox' => '工具',
 'userpage' => '查看用户页面',
 'projectpage' => '查看项目页面',
 'imagepage' => '查看文件页面',
@@ -3111,6 +3111,8 @@ $2',
 'spam_reverting' => '恢复到不包含链接的最近修订版本$1',
 'spam_blanking' => '消隐所有包含链接至$1的修订',
 'spam_deleting' => '正在删除所有包含至$1的版本',
+'simpleantispam-label' => "反垃圾检查。
+'''不要'''加入这个！",
 
 # Info page
 'pageinfo-title' => '“$1”的信息',

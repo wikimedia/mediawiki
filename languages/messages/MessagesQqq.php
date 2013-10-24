@@ -7990,6 +7990,9 @@ Used when a page is deleted because all revisions contained a particular link.
 
 Parameters:
 * $1 - a spammed domain name',
+'simpleantispam-label' => 'Used as label for the input box in "Edit" page.
+
+The label and the input box are always hidden.',
 
 # Info page
 'pageinfo-title' => 'Page title for action=info. Parameters:

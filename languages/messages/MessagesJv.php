@@ -2728,6 +2728,8 @@ Mbokmanawa iki disebabaké anané pranala jaba sing klebu daftar ireng.',
 'spam_reverting' => 'Mbalèkaké menyang vèrsi pungkasan sing ora ana pranalané menyang $1',
 'spam_blanking' => 'Kabèh révisi sing duwé pranala menyang $1, pangosongan',
 'spam_deleting' => 'Kabèh benahan sing nduwé pranala nèng $1, dibusaki',
+'simpleantispam-label' => "Pamariksan anti-spam.
+'''Aja''' diisèkaké!",
 
 # Info page
 'pageinfo-title' => 'Inpormasi kanggo "$1"',

@@ -3336,6 +3336,8 @@ The wiki server can't provide data in a format your client can read.",
 'spam_reverting' => 'Откат к последней версии, не содержащей ссылки на $1',
 'spam_blanking' => 'Все версии содержат ссылки на $1, очистка',
 'spam_deleting' => 'Все версии содержали ссылки на $1, производится удаление',
+'simpleantispam-label' => 'Анти-спам проверка.
+НЕ заполняйте это!',
 
 # Info page
 'pageinfo-title' => 'Сведения по «$1»',

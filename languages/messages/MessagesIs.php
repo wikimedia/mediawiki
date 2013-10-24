@@ -371,7 +371,7 @@ $messages = array(
 'noindex-category' => 'Óraðaðar skrár',
 'broken-file-category' => 'Síður með brotna myndatengla',
 
-'linkprefix' => '/^((?>.*(?<![áÁðÐéÉíÍóÓúÚýÝþÞæÆöÖA-Za-z-–])))(.+)$/sDu',
+'linkprefix' => '/^(.*?)([áÁðÐéÉíÍóÓúÚýÝþÞæÆöÖA-Za-z-–]+)$/sDu',
 
 'about' => 'Um',
 'article' => 'Efnissíða',
@@ -3036,6 +3036,8 @@ Vinsamlegast reyndu aftur.',
 'spam_reverting' => 'Tek aftur síðustu breytingu sem inniheldur ekki tengil á $1',
 'spam_blanking' => 'Allar útgáfur innihéldu tengla á $1, tæmi síðuna',
 'spam_deleting' => 'Allar útgáfur innihéldu tengla á $1, eyði síðunni',
+'simpleantispam-label' => 'Kæfuvörn.
+Ekki fylla þetta út!',
 
 # Info page
 'pageinfo-title' => 'Upplýsingar um $1',

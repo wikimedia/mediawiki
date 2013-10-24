@@ -285,7 +285,7 @@ $messages = array(
 'broken-file-category' => 'Mga pahina na may sirang mga kawing ng talaksan',
 'categoryviewer-pagedlinks' => '($1) ($2)',
 
-'linkprefix' => '/^((?>.*(?<![a-zA-Z\\x80-\\xff])))(.+)$/sD',
+'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
 
 'about' => 'Patungkol',
 'article' => 'Pahina ng nilalaman',
@@ -2953,6 +2953,8 @@ Maaaring dahil ito sa isang kawing sa isang nakatalang hinarang dahil di-kinaisn
 'spam_reverting' => "Ibinabalik sa huling bersyon na 'di-naglalaman ng mga kawing sa $1",
 'spam_blanking' => 'Lahat ng mga pagbabago ay naglalaman ng mga kawing sa $1, pagpapatlang',
 'spam_deleting' => 'Lahat ng mga pagbabago ay naglalaman ng mga kawing sa $1, binubura',
+'simpleantispam-label' => "Pagsusuring panlaban sa \"manlulusob\" (''spam'').
+'''HUWAG''' itong lagyan ng laman!",
 
 # Info page
 'pageinfo-title' => 'Kabatiran para sa "$1"',

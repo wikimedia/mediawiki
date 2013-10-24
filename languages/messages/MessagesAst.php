@@ -2981,6 +2981,8 @@ Probablemente tea causao por un enllaz a un sitiu esternu de la llista prieta.',
 'spam_reverting' => 'Revirtiendo a la cabera versión que nun contién enllaces a $1',
 'spam_blanking' => 'Toles revisiones teníen enllaces a $1; dexando en blanco',
 'spam_deleting' => 'Toles revisiones teníen enllaces a $1, desaniciando',
+'simpleantispam-label' => "Control anti-spam.
+¡'''NUN''' rellenes esto!",
 
 # Info page
 'pageinfo-title' => 'Información sobro "$1"',

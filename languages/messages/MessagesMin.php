@@ -2253,6 +2253,8 @@ Sanak hanyo buliah mancaliak sumbernyo sajo',
 # Spam protection
 'spam_blanking' => 'Sado revisi nan ado pautan ka $1, kosong',
 'spam_deleting' => 'Sado revisi nan ado pautan ka $1, dihapuih',
+'simpleantispam-label' => "Pamarisoan anti-spam.
+Masukan ko '''DILARANG'''!",
 
 # Info page
 'pageinfo-title' => 'Informasi untuak "$1"',

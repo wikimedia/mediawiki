@@ -2933,6 +2933,8 @@ Ju lutemi provoni përsëri.',
 'spam_reverting' => "U kthye tek versioni i fundit që s'ka lidhje tek $1",
 'spam_blanking' => 'U boshatis sepse të gjitha versionet kanë lidhje tek $1',
 'spam_deleting' => 'Të gjitha inspektimet përmbanin lidhje në $1, duke fshirë',
+'simpleantispam-label' => "Kontroll anti-spam.
+'''MOS''' e plotësoni këtë!",
 
 # Info page
 'pageinfo-title' => 'Informacion për " $1 "',

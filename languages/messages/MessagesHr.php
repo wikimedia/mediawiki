@@ -1443,6 +1443,7 @@ Više informacija možete pronaći u [{{fullurl:{{#Special:Log}}/delete|page={{F
 'recentchangesdays-max' => '(maksimalno $1 {{PLURAL:$1|dan|dana}})',
 'recentchangescount' => 'Zadani broj izmjena koje se prikazuju:',
 'prefs-help-recentchangescount' => 'Ovo uključuje nedavne promjene, stare izmjene, i evidencije.',
+'prefs-help-watchlist-token2' => 'Ovo je tajni ključ prema sažetku vašeg popisa praćenja. Svaki suradnik kojem je poznat, moći će čitati vaš popis praćenih stranica. Ne dijelite ga ni s kim. [[Special:ResetTokens|Kliknite ovdje ako ga želite ponovo postaviti]].',
 'savedprefs' => 'Vaše postavke su sačuvane.',
 'timezonelegend' => 'Vremenska zona:',
 'localtime' => 'Lokalno vrijeme:',
@@ -3091,6 +3092,8 @@ Razlog je vjerojatno vanjska poveznica koja se nalazi na crnom popisu.',
 'spam_reverting' => 'Vraćam na zadnju inačicu koja ne sadrži poveznice na $1',
 'spam_blanking' => 'Sve inačice sadrže poveznice na $1, brišem cjelokupni sadržaj',
 'spam_deleting' => 'Sve inačice sadržale su poveznice na $1, brišem cjelokupni sadržaj',
+'simpleantispam-label' => "Anti-spam provjera.
+'''Ne''' ispunjavajte ovo!",
 
 # Info page
 'pageinfo-title' => 'Podatci o stranici "$1"',

@@ -3212,6 +3212,8 @@ Uložte jej na svůj disk a nahrajte ho sem.',
 'spam_reverting' => 'Revert na poslední verzi neobsahující odkazy na $1',
 'spam_blanking' => 'Všechny verze obsahovaly odkazy na $1, vyprázdněno',
 'spam_deleting' => 'Všechny verze obsahovaly odkazy na $1, smazáno',
+'simpleantispam-label' => "Antispamová kontrola.
+'''NEVYPLŇUJTE''' následující!",
 
 # Info page
 'pageinfo-title' => 'Informace o stránce „$1“',

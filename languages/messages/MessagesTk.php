@@ -2488,6 +2488,8 @@ Mazmun üçin bir sebäp goşmaga rugsat berýär',
 'spambot_username' => 'MediaWiki spam arassalaýyş',
 'spam_reverting' => '$1 sahypasyna çykgytlary bolmadyk iň soňky wersiýasyna yzyna getirilýär',
 'spam_blanking' => 'Ähli wersiýalarda $1 sahypasyna çykgytlar bar, boşadylýar',
+'simpleantispam-label' => "Anti-spam barlagy.
+Muny '''DOLDURMAŇ'''!",
 
 # Patrolling
 'markaspatrolleddiff' => 'Patrullyk edilen diýip belle',

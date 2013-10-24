@@ -3237,6 +3237,7 @@ Esu kam_mer noch en Aanmärkong en „{{int:summary}}“ maache.',
 'spam_reverting' => 'De letzte Version ohne de Links op „$1“ widder zerröckjehollt.',
 'spam_blanking' => 'All die Versione hatte Links op „$1“, die sin jetz erus jemaht.',
 'spam_deleting' => 'All di Versione met Lenks op „$1“ wääde fott jeschmeße',
+'simpleantispam-label' => 'SPAMschotz — donn hee nix endraare!',
 
 # Info page
 'pageinfo-title' => 'Övver di Sigg: „$1“',

@@ -2777,6 +2777,8 @@ Meistal wörd dit door 'ne zwarte externe link veroorzaak.",
 'spam_reverting' => 'Bezig mit trökdrèjje nao de letste versie die gein verwiezing haet nao $1',
 'spam_blanking' => "Alle wieziginge mit 'ne link nao $1 waere verwiederd",
 'spam_deleting' => 'Alle wieziginge hawwe links nao $1, wuuertj gewösj',
+'simpleantispam-label' => "Antispemcontrole.
+Vol dit veld '''NEET''' in!",
 
 # Info page
 'pageinfo-title' => 'Informatie euver "$1"',

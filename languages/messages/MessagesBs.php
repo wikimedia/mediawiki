@@ -3128,6 +3128,8 @@ Ovo je vjerovatno izazvao vezom ka vanjskoj nepoželjnoj stranici.',
 'spam_reverting' => 'Vraćanje na zadnju verziju koja ne sadrži linkove ka $1',
 'spam_blanking' => 'Sve revizije koje sadrže linkove ka $1, očisti',
 'spam_deleting' => 'Sve revizije koje sadrže linkove na $1, brišem',
+'simpleantispam-label' => "Provjera protiv spama.
+'''NE''' popunjavaj ovo!",
 
 # Info page
 'pageinfo-title' => 'Informacije za "$1"',

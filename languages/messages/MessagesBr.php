@@ -3027,6 +3027,8 @@ Sur a-walc'h abalamour d'ul liamm enni a gas d'ul lec'hienn ziavaez berzet.",
 'spam_reverting' => "Distreiñ d'ar stumm diwezhañ hep liamm davet $1",
 'spam_blanking' => 'Diverkañ an holl stummoù enno liammoù davet $1',
 'spam_deleting' => 'An holl stummoù enno liammoù war-zu $1, o tiverkañ',
+'simpleantispam-label' => "Taol gwiriañ eneb-strob.
+'''Arabat''' merkañ tra pe dra amañ !",
 
 # Info page
 'pageinfo-title' => 'Titouroù evit "$1"',

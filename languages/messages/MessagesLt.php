@@ -2957,6 +2957,8 @@ Leidžia pridėti atmetimo priežastį komentaruose',
 'spam_reverting' => 'Atkuriama į ankstesnę versiją, neturinčios nuorodų į $1',
 'spam_blanking' => 'Visos versijos turėjo nuorodų į $1, išvaloma',
 'spam_deleting' => 'Visos versijos turėjo nuorodų į $1, ištrinama',
+'simpleantispam-label' => "Anti-spam patikra.
+'''NE'''pildykite!",
 
 # Info page
 'pageinfo-title' => '„$1“ informacija',

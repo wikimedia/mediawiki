@@ -362,6 +362,7 @@ $messages = array(
 'tog-noconvertlink' => 'Хааман хьажориг кхуллу гlирс дlабайа',
 'tog-norollbackdiff' => 'Юха яккхиначул тӀаьхьа ма гайта версешан башхо',
 'tog-useeditwarning' => 'Хаамбе бина хийцамаш дӀаязцабеш аса болх дӀатосучу хенахь',
+'tog-prefershttps' => 'Даима лела йе лардина системин чудалар',
 
 'underline-always' => 'Даимна',
 'underline-never' => 'Цкъа а',
@@ -458,7 +459,7 @@ $messages = array(
 'broken-file-category' => '{{#switch:{{NAMESPACE}}
  |{{ns:0}}=Болх цабеш файлийн хьажорагаш йолу агӀонаш}}',
 
-'linkprefix' => '/^((?>.*(?<![a-zA-Z\\x80-\\xff])))(.+)$/sD',
+'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
 
 'about' => 'Цуьнах лаьцна',
 'article' => 'Яззам',
@@ -1146,6 +1147,8 @@ $1',
 'recentchangesdays-max' => 'Къезиг  $1 {{PLURAL:$1|дена}}',
 'recentchangescount' => 'Iад йитарца гойтуш долу нисдаршан дукхалла',
 'prefs-help-recentchangescount' => 'Гойту керла нисдарш, агӀонашан истори, тептарш.',
+'prefs-help-watchlist-token2' => 'Иза хьан тергаме могӀан къайла догӀа ду.
+Муьлха и хуучунна йиш ю хьан тергаме могӀам беша, цундела ма хаийта иза кхечаьрга. [[Special:ResetTokens|ТӀетаӀа йе кхуза и хьайга кхосса лууш делахь]].',
 'savedprefs' => 'Хьан гӀирс Ӏалашбина.',
 'timezonelegend' => 'Сахьатан аса:',
 'localtime' => 'Меттигера хан:',
@@ -2461,7 +2464,7 @@ PICT # тайп тайпан
 'htmlform-selectorother-other' => 'Кхин',
 
 # New logging system
-'logentry-delete-delete' => '$1 {{GENDER:$2|дӀаякхина|дӀаякхина}} агӀо $3',
+'logentry-delete-delete' => '$1 {{GENDER:$2|дӀаяьккхина}} агӀо $3',
 'logentry-delete-restore' => '$1 {{GENDER:$2|меттахӀоттайина|меттахӀоттайина}} агӀо $3',
 'logentry-move-move' => '$1 {{GENDER:$2|цӀе хийцина|цӀе хийцина}} $3 оцу $4',
 'logentry-move-move-noredirect' => '$1 {{GENDER:$2|цӀе хийцина|цӀе хийцина}} $3 оцу $4 дӀасахьажийнарг цаюьтуш',

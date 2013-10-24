@@ -35,6 +35,7 @@
  * @author Morten LJ
  * @author Najami
  * @author Nghtwlkr
+ * @author Overlaet
  * @author Palnatoke
  * @author Peter Alberti
  * @author Peter Andersen
@@ -3039,6 +3040,8 @@ Dette skyldes sandsynligvis en henvisning til et sortlistet eksternt websted.',
 'spam_reverting' => 'Sidste version uden henvisning til $1 gendannet.',
 'spam_blanking' => 'Alle versioner, som indeholdt henvisninger til $1, er renset.',
 'spam_deleting' => 'Alle versioner indeholder henvisninger til $1, sletter',
+'simpleantispam-label' => "Anti-spam tjek.
+Udfyld ''' ikke ''' dette!",
 
 # Info page
 'pageinfo-title' => 'Information om "$1"',

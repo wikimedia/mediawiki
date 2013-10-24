@@ -165,7 +165,7 @@ $messages = array(
 'broken-file-category' => 'Pàggene cu collegaminde a le file scuasciate',
 'categoryviewer-pagedlinks' => '($1) ($2)',
 
-'linkprefix' => '/^((?>.*(?<![a-zA-Z\\x80-\\xff])))(.+)$/sD',
+'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
 
 'about' => 'Sus a',
 'article' => 'Pàgene de le condenute',
@@ -2991,6 +2991,8 @@ Stu fatte ha state causate da 'nu collegamende a 'nu site esterne ca appartene a
 'spam_reverting' => "Turnanne a l'urtema revisione no ge condiene collegaminde a $1",
 'spam_blanking' => 'Tutte le revisiune condènene collegaminde a $1, vacande',
 'spam_deleting' => 'Tutte le revisiune condènene collegaminde a $1, stoche a scangelle',
+'simpleantispam-label' => "Verifiche andi-spam.
+'''NO''' anghiè quiste!",
 
 # Info page
 'pageinfo-title' => '\'Mbormaziune pe "$1"',

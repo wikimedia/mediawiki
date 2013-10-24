@@ -3164,6 +3164,8 @@ Dette er sannsynligvis forårsaket av en lenke til et svartelistet eksternt nett
 'spam_reverting' => 'Tilbakestiller til siste versjon uten lenke til $1',
 'spam_blanking' => 'Alle revisjoner inneholdt lenke til $1, tømmer siden',
 'spam_deleting' => 'Sletter alle revisjoner med lenker til $1',
+'simpleantispam-label' => "Antispamsjekk.
+'''IKKE''' fyll inn dette feltet!",
 
 # Info page
 'pageinfo-title' => 'Informasjon om «$1»',

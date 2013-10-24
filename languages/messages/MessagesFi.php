@@ -3138,6 +3138,7 @@ Voit katsella sivun lähteenä olevaa wikitekstiä.',
 'spam_reverting' => 'Palautettu viimeisimpään versioon, joka ei sisällä linkkejä kohteeseen $1.',
 'spam_blanking' => 'Kaikki versiot sisälsivät linkkejä kohteeseen $1. Sivu tyhjennetty.',
 'spam_deleting' => 'Kaikki versiot sisälsivät linkkejä kohteeseen $1, poistetaan',
+'simpleantispam-label' => "Mainostenvastainen tarkistus. '''ÄLÄ''' täytä tätä!",
 
 # Info page
 'pageinfo-title' => 'Tietoja sivusta $1',

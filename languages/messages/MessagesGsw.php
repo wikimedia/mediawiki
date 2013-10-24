@@ -2778,6 +2778,7 @@ Die uf em lokale Rächner spychere un derno do uffelade.',
 'spam_reverting' => 'Letschti Version ohni Links zue $1 widerhärgstellt.',
 'spam_blanking' => 'In allene Versione het s Links zue $1 gha, sufer gmacht.',
 'spam_deleting' => 'Alli Versione mit eme Link zue $1 sin glescht woret.',
+'simpleantispam-label' => "Spamschutz-Priefig. Do '''nyt''' yytrage!",
 
 # Info page
 'pageinfo-title' => 'Informatione zue „$1“',
