@@ -7,6 +7,9 @@
  *
  */
 
+/**
+ * @covers SpecialPreferences
+ */
 class SpecialPreferencesTest extends MediaWikiTestCase {
 
 	/**
