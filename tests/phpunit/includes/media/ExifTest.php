@@ -1,4 +1,8 @@
 <?php
+
+/**
+ * @covers Exif
+ */
 class ExifTest extends MediaWikiTestCase {
 
 	/** @var string */

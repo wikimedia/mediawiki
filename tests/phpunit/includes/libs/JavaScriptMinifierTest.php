@@ -118,6 +118,7 @@ class JavaScriptMinifierTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideCases
+	 * @covers JavaScriptMinifier::minify
 	 */
 	public function testJavaScriptMinifierOutput( $code, $expectedOutput ) {
 		$minified = JavaScriptMinifier::minify( $code );
@@ -152,6 +153,7 @@ class JavaScriptMinifierTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideBug32548
+	 * @covers JavaScriptMinifier::minify
 	 */
 	public function testBug32548Exponent( $num ) {
 		// Long line breaking was being incorrectly done between the base and
