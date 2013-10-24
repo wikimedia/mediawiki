@@ -164,10 +164,8 @@ class SVGReader {
 			} elseif ( $tag !== '#text' ) {
 				$this->debug( "Unhandled top-level XML tag $tag" );
 
-				if ( !isset( $this->metadata['animated'] ) ) {
-					// Recurse into children of current tag, looking for animation.
-					$this->animateFilter( $tag );
-				}
+				// Recurse into children of current tag, looking for animation and languages.
+				$this->animateFilterAndLang( $tag );
 			}
 
 			// Goto next element, which is sibling of current (Skip children).
@@ -222,11 +220,13 @@ class SVGReader {
 	}
 
 	/**
-	 * Filter all children, looking for animate elements
+	 * Filter all children, looking for animated elements.
+	 * Also get a list of languages that can be targeted.
 	 *
 	 * @param string $name of the element that we are reading from
 	 */
-	private function animateFilter( $name ) {
+	private function animateFilterAndLang( $name ) {
+		$languages = array();
 		$this->debug( "animate filter for tag $name" );
 		if ( $this->reader->nodeType != XmlReader::ELEMENT ) {
 			return;
@@ -241,6 +241,17 @@ class SVGReader {
 				&& $this->reader->nodeType == XmlReader::END_ELEMENT ) {
 				break;
 			} elseif ( $this->reader->namespaceURI == self::NS_SVG && $this->reader->nodeType == XmlReader::ELEMENT ) {
+
+				$sysLang = $this->reader->getAttribute( 'systemLanguage' );
+				if ( !is_null( $sysLang ) && $sysLang !== '' ) {
+					// See http://www.w3.org/TR/SVG/struct.html#SystemLanguageAttribute
+					$langList = explode( ',', $sysLang );
+					foreach( $langList as $langItem ) {
+						if ( Language::isWellFormedLanguageTag( $langItem ) ) {
+							$languages[$langItem] = true;
+						}
+					}
+				}
 				switch ( $this->reader->localName ) {
 					case 'script':
 						// Normally we disallow files with
@@ -259,6 +270,7 @@ class SVGReader {
 			}
 			$keepReading = $this->reader->read();
 		}
+		$this->metadata['translations'] = array_keys( $languages );
 	}
 
 	private function throwXmlError( $err ) {
