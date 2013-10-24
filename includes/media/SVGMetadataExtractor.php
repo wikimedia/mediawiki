@@ -42,10 +42,14 @@ class SVGReader {
 	const DEFAULT_WIDTH = 512;
 	const DEFAULT_HEIGHT = 512;
 	const NS_SVG = 'http://www.w3.org/2000/svg';
+	const LANG_PREFIX_MATCH = 1;
+	const LANG_FULL_MATCH = 2;
 
 	private $reader = null;
 	private $mDebug = false;
-	private $metadata = Array();
+	private $metadata = array();
+	private $languages = array();
+	private $languagePrefixes = array();
 
 	/**
 	 * Constructor
@@ -164,10 +168,8 @@ class SVGReader {
 			} elseif ( $tag !== '#text' ) {
 				$this->debug( "Unhandled top-level XML tag $tag" );
 
-				if ( !isset( $this->metadata['animated'] ) ) {
-					// Recurse into children of current tag, looking for animation.
-					$this->animateFilter( $tag );
-				}
+				// Recurse into children of current tag, looking for animation and languages.
+				$this->animateFilterAndLang( $tag );
 			}
 
 			// Goto next element, which is sibling of current (Skip children).
@@ -175,6 +177,8 @@ class SVGReader {
 		}
 
 		$this->reader->close();
+
+		$this->metadata['translations'] = $this->languages + $this->languagePrefixes;
 
 		return true;
 	}
@@ -222,11 +226,12 @@ class SVGReader {
 	}
 
 	/**
-	 * Filter all children, looking for animate elements
+	 * Filter all children, looking for animated elements.
+	 * Also get a list of languages that can be targeted.
 	 *
 	 * @param string $name of the element that we are reading from
 	 */
-	private function animateFilter( $name ) {
+	private function animateFilterAndLang( $name ) {
 		$this->debug( "animate filter for tag $name" );
 		if ( $this->reader->nodeType != XmlReader::ELEMENT ) {
 			return;
@@ -241,6 +246,32 @@ class SVGReader {
 				&& $this->reader->nodeType == XmlReader::END_ELEMENT ) {
 				break;
 			} elseif ( $this->reader->namespaceURI == self::NS_SVG && $this->reader->nodeType == XmlReader::ELEMENT ) {
+
+				$sysLang = $this->reader->getAttribute( 'systemLanguage' );
+				if ( !is_null( $sysLang ) && $sysLang !== '' ) {
+					// See http://www.w3.org/TR/SVG/struct.html#SystemLanguageAttribute
+					$langList = explode( ',', $sysLang );
+					foreach( $langList as $langItem ) {
+						$langItem = trim( $langItem );
+						if ( Language::isWellFormedLanguageTag( $langItem ) ) {
+							$this->languages[$langItem] = self::LANG_FULL_MATCH;
+						}
+						// Note, the standard says that any prefix should work,
+						// here we do only the initial prefix, since that will catch
+						// 99% of cases, and we are going to compare against fallbacks.
+						// This differs mildly from how the spec says languages should be
+						// handled, however it matches better how the MediaWiki language
+						// preference is generally handled.
+						$dash = strpos( $langItem, '-' );
+						// Intentionally checking both !false and > 0 at the same time.
+						if ( $dash ) {
+							$itemPrefix = substr( $langItem, 0, $dash );
+							if ( Language::isWellFormedLanguageTag( $itemPrefix ) ) {
+								$this->languagePrefixes[$itemPrefix] = self::LANG_PREFIX_MATCH;
+							}
+						}
+					}
+				}
 				switch ( $this->reader->localName ) {
 					case 'script':
 						// Normally we disallow files with
