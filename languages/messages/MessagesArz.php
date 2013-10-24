@@ -2736,6 +2736,8 @@ $1',
 'spambot_username' => 'تنظيف سبام ميدياويكى',
 'spam_reverting' => 'ترجيع آخر نسخة مافيهاش لينكات لـ $1',
 'spam_blanking' => 'كل النسخ فيها لينكات ل $1، فضيها',
+'simpleantispam-label' => "اختبار انتي-سبام.
+'''ماتعبيش''' دا!",
 
 # Skin names
 'skinname-cologneblue' => 'كولون بلو',

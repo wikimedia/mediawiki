@@ -3070,6 +3070,8 @@ Aquò es probablament causat per un ligam sus lista negra que punta cap a un sit
 'spam_reverting' => 'Restabliment de la darrièra version que conten pas de ligam cap a $1',
 'spam_blanking' => 'Totas las versions que contenon de ligams cap a $1 son blanquidas',
 'spam_deleting' => 'Totas las versions contenonián de ligams cap a $1, supression',
+'simpleantispam-label' => "Verificacion antispam.
+Inscrigatz '''PAS RES''' dedins !",
 
 # Info page
 'pageinfo-title' => 'Informacions per « $1 »',

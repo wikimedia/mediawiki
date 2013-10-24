@@ -3130,6 +3130,8 @@ See on ilmselt põhjustatud linkimisest mustas nimekirjas olevasse välisvõrguk
 'spam_reverting' => 'Taastan viimase versiooni, mis ei sisalda linke aadressile $1.',
 'spam_blanking' => 'Kõik versioonid sisaldasid linke veebilehele $1. Lehekülg tühjendatud.',
 'spam_deleting' => 'Kustutatud kõik redaktsioonid, mis viitasid aadressile $1.',
+'simpleantispam-label' => "Rämpspostikontroll.
+'''ÄRA''' täida seda välja!",
 
 # Info page
 'pageinfo-title' => 'Teave lehekülje "$1" kohta',

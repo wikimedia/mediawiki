@@ -2847,6 +2847,8 @@ W zespominanju dajo se pśicyna pódaś.',
 'spam_reverting' => 'Nawrośijo se slědna wersija, kótaraž njejo wopśimjeła wótkaz na $1.',
 'spam_blanking' => 'Wšykne wersije su wopśimowali wótkaze na $1, do rěcha spórane.',
 'spam_deleting' => 'Wšykne wersije z wótkazami do $1 so lašuju',
+'simpleantispam-label' => "Antispamowa kontrola.
+How '''NIC''' zapisaś!",
 
 # Info page
 'pageinfo-title' => 'Informacije za bok "$1"',

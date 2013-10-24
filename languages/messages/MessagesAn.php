@@ -2718,6 +2718,8 @@ Puede veyer-ne, manimenos, o codigo fuent.',
 'spambot_username' => 'Esporga de spam de MediaWiki',
 'spam_reverting' => "Tornando t'a zaguera versión sin de vinclos ta $1",
 'spam_blanking' => 'Todas as versions teneban vinclos ta $1, se deixa en blanco',
+'simpleantispam-label' => "Preba anti-spam.
+'''NO''' replene esto!",
 
 # Info page
 'pageinfo-title' => 'Información ta «$1»',

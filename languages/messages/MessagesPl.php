@@ -769,6 +769,9 @@ Nie zapomnij dostosować [[Special:Preferences|preferencji]].',
 'userlogin-resetpassword-link' => 'Nie pamiętasz hasła?',
 'helplogin-url' => 'Help:Logowanie',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Pomoc z logowaniem]]',
+'userlogin-loggedin' => 'Zalogowano jako {{GENDER:$1|$1}}.
+Użyj poniższego formularza, aby zalogować się jako inny użytkownik.',
+'userlogin-createanother' => 'Załóż nowe konto',
 'createacct-join' => 'Wpisz poniżej swoje dane.',
 'createacct-another-join' => 'Wprowadź szczegóły nowego konta poniżej.',
 'createacct-emailrequired' => 'Adres e‐mail',
@@ -3209,6 +3212,8 @@ Najprawdopodobniej zostało to spowodowane przez link do zewnętrznej strony int
 'spam_reverting' => 'Przywracanie ostatniej wersji nie zawierającej linków do $1',
 'spam_blanking' => 'Wszystkie wersje zawierały odnośniki do $1. Czyszczenie strony.',
 'spam_deleting' => 'Wszystkie wersje zawierały linki do $1, usuwam.',
+'simpleantispam-label' => "Filtr antyspamowy.
+'''NIE''' wpisuj tu nic!",
 
 # Info page
 'pageinfo-title' => 'Informacje o „$1“',

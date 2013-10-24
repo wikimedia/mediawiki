@@ -3013,6 +3013,8 @@ The wiki server cannot provide data in a format your client can read.',
 'spam_reverting' => '$1 һылтанмаһыҙ һуңғы өлгөгә ҡайтарыу',
 'spam_blanking' => 'Бөтә өлгөләрҙә лә $1 һылтанмаһы бар, таҙартыу',
 'spam_deleting' => 'Бөтә өлгөләрҙә лә $1 һылтанма бар, таҙартыу бара',
+'simpleantispam-label' => "Спамға ҡаршы тикшереү.
+Быны '''ТУЛТЫРМАҒЫҘ'''!",
 
 # Info page
 'pageinfo-title' => '«$1» буйынса мәғлүмәт',

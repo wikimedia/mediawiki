@@ -3095,6 +3095,8 @@ Omogoča vnos pojasnila v povzetku urejanja.',
 'spam_reverting' => 'Vračanje na zadnjo redakcijo brez povezav na $1',
 'spam_blanking' => 'Vse redakcije so vsebovale povezave na $1, izpraznjujem',
 'spam_deleting' => 'Vse redakcije so vsebovale povezave na $1, brišem',
+'simpleantispam-label' => "Preverjanje proti smetju.
+'''NE''' izpolnite tega!",
 
 # Info page
 'pageinfo-title' => 'Informacije o »$1«',

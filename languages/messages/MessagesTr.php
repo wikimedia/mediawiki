@@ -2053,12 +2053,14 @@ Sıradaki liste sadece bu dosyaya bağlantı veren {{PLURAL:$1|ilk dosyayı|ilk 
 'morelinkstoimage' => 'Bu dosyaya [[Special:WhatLinksHere/$1|daha fazla bağlantıları]] gör.',
 'linkstoimage-redirect' => '$1 (dosya yönlendirme) $2',
 'duplicatesoffile' => 'Şu {{PLURAL:$1|dosya|$1 dosya}}, bu dosyanın kopyası ([[Special:FileDuplicateSearch/$2|daha fazla ayrıntı]]):',
-'sharedupload' => 'Bu dosya $1 deposundan ve diğer projelerde kullanılıyor olabilir.',
+'sharedupload' => 'Bu dosya $1 projesinden olup, diğer projelerde kullanılıyor olabilir.',
 'sharedupload-desc-there' => 'Bu dosya $1 deposundan ve diğer projeler tarafından kullanılıyor olabilir. Daha fazla bilgi için lütfen [$2 dosya açıklama sayfasına] bakın.',
 'sharedupload-desc-here' => 'Bu dosya $1 deposundan ve diğer projeler tarafından kullanılıyor olabilir.
 Aşağıda [$2 dosya açıklama sayfasındaki] açıklama gösteriliyor.',
-'sharedupload-desc-create' => 'Bu dosya, $1 ve diğer projeler tarafından kullanılıyor olabilir. 
-Dosya açıklamasını düzenlemek isterseniz, [$2 dosya açıklama sayfası] bulunmaktadır.',
+'sharedupload-desc-edit' => 'Bu dosya $1 projesinden olup, diğer projelerde kullanılıyor olabilir.
+Dosyanın açıklama sayfasında değişiklik yapmak için ilgili sayfaya [$2 buradan] gidebilirsiniz.',
+'sharedupload-desc-create' => 'Bu dosya $1 projesinden olup, diğer projelerde kullanılıyor olabilir.
+Dosyanın açıklama sayfasında değişiklik yapmak için ilgili sayfaya [$2 buradan] gidebilirsiniz.',
 'filepage-nofile' => 'Bu isimde bir dosya yok.',
 'filepage-nofile-link' => 'Bu isimde bir dosya yok, ama siz [$1 yükleyebilirsiniz].',
 'uploadnewversion-linktext' => 'Dosyanın yenisini yükleyin',
@@ -3116,6 +3118,8 @@ Geçici dosya kayıp.',
 'spambot_username' => 'Medyaviki spam temizleme',
 'spam_reverting' => '$1 ile bağlantı içermeyen son sürüme geri dönülüyor',
 'spam_blanking' => 'Tüm revizyonlar $1 sayfasına bağlantı içeriyor, boşaltılıyor',
+'simpleantispam-label' => "Anti-spam denetimi.
+Bunu '''doldurmayın'''!",
 
 # Info page
 'pageinfo-title' => 'Bilgi için "$1"',

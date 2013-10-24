@@ -504,7 +504,7 @@ $messages = array(
 'broken-file-category' => 'Сторінки, що посилаються на неіснуючі файли',
 'categoryviewer-pagedlinks' => '($1) ($2)',
 
-'linkprefix' => '/^((?>.*(?<!(?:„|«)$)))(.+)$/sDu',
+'linkprefix' => '/^(.*?)(„|«)$/sD',
 
 'about' => 'Про',
 'article' => 'Стаття',
@@ -3278,6 +3278,8 @@ The wiki server can't provide data in a format your client can read.",
 'spam_reverting' => 'Відкинути до останньої версії, що не містить посилання на $1',
 'spam_blanking' => 'Всі версії містять посилання на $1, очистка',
 'spam_deleting' => 'Все версії, що містили посилання на $1, вилучаються',
+'simpleantispam-label' => "Перевірка на спам.
+'''НЕ''' заповнюйте це!",
 
 # Info page
 'pageinfo-title' => 'Інформація про " $1 "',

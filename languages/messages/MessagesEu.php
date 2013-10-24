@@ -2741,6 +2741,8 @@ Baliteke zerrenda beltzean dagoen kanpo lotura batek sortzea arazo hori.',
 'spambot_username' => 'MediaWikiren spam garbiketa',
 'spam_reverting' => '$1(e)rako loturarik ez daukan azken bertsiora itzultzen',
 'spam_blanking' => 'Berrikuspen guztiek $1(e)rako lotura zeukaten, husten',
+'simpleantispam-label' => "Anti-spam egiaztapena.
+Atal hau '''EZ''' bete!",
 
 # Info page
 'pageinfo-title' => '"$1"(r)entzako informazioa',

@@ -2902,6 +2902,8 @@ Questo xe probabilmente dovùo a la presenza de un colegamento a un sito foresto
 'spam_reverting' => "Ripristinà l'ultima version priva de colegamenti a $1",
 'spam_blanking' => 'Pàxena svodà, tute łe version le contegneva cołegamenti a $1',
 'spam_deleting' => 'Pàjina scansełà, tute łe version łe contegneva ligamenti a $1',
+'simpleantispam-label' => "Controlo anti spam.
+'''NO STA''' scrivar gnente qua de soto!",
 
 # Info page
 'pageinfo-title' => 'Informasion par "$1"',

@@ -3036,6 +3036,8 @@ Això deu ser degut per un enllaç a un lloc extern inclòs a la llista negra.',
 'spam_reverting' => 'Es reverteix a la darrera versió que no conté enllaços a $1',
 'spam_blanking' => "Totes les revisions contenien enllaços $1, s'està deixant en blanc",
 'spam_deleting' => "S'estan suprimint totes les revisions que contenien enllaços a $1",
+'simpleantispam-label' => "Comprovació anti-spam.
+'''NO''' ho ompliu!",
 
 # Info page
 'pageinfo-title' => 'Informació de «$1»',

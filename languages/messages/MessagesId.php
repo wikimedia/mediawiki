@@ -481,7 +481,7 @@ $messages = array(
 'broken-file-category' => 'Halaman dengan gambar rusak',
 'categoryviewer-pagedlinks' => '($1) ($2)',
 
-'linkprefix' => '/^((?>.*(?<![a-zA-Z\\x80-\\xff])))(.+)$/sD',
+'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
 
 'about' => 'Tentang',
 'article' => 'Halaman isi',
@@ -3218,6 +3218,8 @@ Ini mungkin disebabkan oleh pranala ke situs luar yang termasuk dalam daftar hit
 'spam_reverting' => 'Membatalkan ke versi terakhir yang tak memiliki pranala ke $1',
 'spam_blanking' => 'Semua revisi yang memiliki pranala ke $1, kosong',
 'spam_deleting' => 'Semua revisi yang memiliki pranala ke $1, penghapusan',
+'simpleantispam-label' => "Pemeriksaan anti-spam.
+Masukan ini '''DILARANG'''!",
 
 # Info page
 'pageinfo-title' => 'Informasi untuk "$1"',

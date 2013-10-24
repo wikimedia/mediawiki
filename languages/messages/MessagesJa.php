@@ -3344,6 +3344,8 @@ $2',
 'spam_reverting' => '$1へのリンクを含まない最新の版に差し戻し',
 'spam_blanking' => 'すべての版が$1へのリンクを含んでいます。白紙化します。',
 'spam_deleting' => 'すべての版が$1へのリンクを含んでいます。削除します。',
+'simpleantispam-label' => "SPAM防止チェックです。
+決してここに値を入力'''しない'''でください。",
 
 # Info page
 'pageinfo-title' => '「$1」の情報',

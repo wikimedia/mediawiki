@@ -236,7 +236,7 @@ $messages = array(
 'noindex-category' => 'Indekslanmaydigan sahifalar',
 'broken-file-category' => 'Ishlamaydigan fayl havolalari bor sahifalar',
 
-'linkprefix' => '/^((?>.*(?<![a-zA-Z\\x80-\\xffʻʼ«„])))(.+)$/sDu',
+'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xffʻʼ«„]+)$/sDu',
 
 'about' => 'Haqida',
 'article' => 'Sahifa',

@@ -457,7 +457,7 @@ $messages = array(
 'noindex-category' => 'Ikkje-indekserte sider',
 'broken-file-category' => 'Sider med brotne fillenkjer',
 
-'linkprefix' => '/^((?>.*(?<![a-zA-Z\\x80-\\xff])))(.+)$/sD',
+'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
 
 'about' => 'Om',
 'article' => 'Innhaldsside',
@@ -3060,6 +3060,8 @@ Vitja [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [//trans
 'spam_reverting' => 'Attenderullar til siste versjon utan lenkje til $1',
 'spam_blanking' => 'Alle versjonar inneheldt lenkje til $1, tømmer sida',
 'spam_deleting' => 'Alle versjonane inneheldt lenkjer til $1, slettar.',
+'simpleantispam-label' => "Antispam-kontroll.
+'''IKKJE''' fyll ut dette feltet!",
 
 # Info page
 'pageinfo-title' => 'Informasjon om «$1»',

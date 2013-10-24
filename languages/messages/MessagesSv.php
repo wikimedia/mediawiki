@@ -3211,6 +3211,8 @@ Detta orsakades troligen av en länk till en svartlistad webbplats.',
 'spam_reverting' => 'Återställer till den senaste versionen som inte innehåller länkar till $1',
 'spam_blanking' => 'Alla versioner innehöll en länk till $1, blankar',
 'spam_deleting' => 'Alla ändringar innehöll länkar till $1, raderar',
+'simpleantispam-label' => "Anti-spam koll.
+Fyll '''INTE''' i det här!",
 
 # Info page
 'pageinfo-title' => 'Information om "$1"',

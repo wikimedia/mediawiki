@@ -3191,6 +3191,8 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 'spam_reverting' => 'Lùi lại đến phiên bản cuối không chứa liên kết đến $1',
 'spam_blanking' => 'Tất cả các phiên bản có liên kết đến $1; tẩy trống',
 'spam_deleting' => 'Tất cả các phiên bản có liên kết đến $1; xóa',
+'simpleantispam-label' => "Kiểm tra chống spam.
+Xin '''ĐỪNG''' điền gì vào!",
 
 # Info page
 'pageinfo-title' => 'Thông tin về “$1”',

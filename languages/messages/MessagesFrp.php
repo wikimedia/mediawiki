@@ -3194,6 +3194,8 @@ O est probâblament diu a un lim de vers un seto de defôr qu’aparêt sur la l
 'spam_reverting' => 'Rètablissement de la dèrriére vèrsion que contint gins de lim de vers $1',
 'spam_blanking' => 'Totes les vèrsions que contegnont des lims de vers $1 sont blanchies',
 'spam_deleting' => 'Totes les vèrsions que contegnont des lims de vers $1 sont suprimâs',
+'simpleantispam-label' => "Contrôlo anti-spame.
+Enscrîde '''REN''' ique !",
 
 # Info page
 'pageinfo-title' => 'Enformacions por « $1 »',

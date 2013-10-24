@@ -3152,6 +3152,8 @@ Tı eşkeno yew sebeb bınus.',
 'spam_reverting' => 'agêriyeno revizyon o ke tawayê $1 ıney piya çiniyo',
 'spam_blanking' => 'Revizyonê gredê $1 vineyay, wa weng kero',
 'spam_deleting' => 'Revizyonê gredê $1 vineyay, wa besterneyê',
+'simpleantispam-label' => "tehqiqatê Anti-spami.
+no '''de mekerê'''!",
 
 # Info page
 'pageinfo-title' => 'Heq tê "$1"\'i',

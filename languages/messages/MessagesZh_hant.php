@@ -3084,6 +3084,8 @@ $2',
 'spam_reverting' => '恢復到不包含連結至$1的最近修訂版本',
 'spam_blanking' => '所有包含連結至$1的修訂，清空',
 'spam_deleting' => '所有包含連結至$1的修訂，刪除中',
+'simpleantispam-label' => "反垃圾檢查。
+'''不要'''加入這個！",
 
 # Info page
 'pageinfo-title' => '「$1」的信息',

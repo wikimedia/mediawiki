@@ -3270,6 +3270,8 @@ Vous pouvez toutefois en visualiser la source.',
 'spam_reverting' => 'Rétablissement de la dernière version ne contenant pas de lien vers $1',
 'spam_blanking' => 'Toutes les versions contenant des liens vers $1 sont blanchies',
 'spam_deleting' => 'Toutes les versions contenaient des liens vers $1, suppression',
+'simpleantispam-label' => "Vérification anti-spam.
+Ne '''RIEN''' inscrire ici !",
 
 # Info page
 'pageinfo-title' => 'Informations pour « $1 »',

@@ -3132,6 +3132,8 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 'spam_reverting' => 'Restarigo de lasta versio ne entenante ligilojn al $1',
 'spam_blanking' => 'Forviŝo de ĉiuj versioj entenantaj ligilojn al $1',
 'spam_deleting' => 'Ĉiuj versioj enhavis ligilojn al $1 - forigante',
+'simpleantispam-label' => 'Kontrolo kontraŭ spamo.
+NE ENIGU ion ajn!',
 
 # Info page
 'pageinfo-title' => 'Informoj por "$1"',

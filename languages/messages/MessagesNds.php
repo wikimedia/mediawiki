@@ -2477,6 +2477,7 @@ All Transwiki-Import-Akschonen staht later ok in dat [[Special:Log/import|Import
 'spambot_username' => 'MediaWiki Spam-Oprümen',
 'spam_reverting' => 'Trüchdreiht na de letzte Version ahn Lenken na $1.',
 'spam_blanking' => 'All Versionen harrn Lenken na $1, rein maakt.',
+'simpleantispam-label' => "Antispam-Kuntrull. Hier '''nix''' indragen!",
 
 # Info page
 'pageinfo-title' => 'Informatschoon för "$1"',

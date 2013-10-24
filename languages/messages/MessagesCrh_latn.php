@@ -224,7 +224,7 @@ $messages = array(
 'noindex-category' => 'İndekssiz saifeler',
 'broken-file-category' => 'İçinde bozuq fayl bağlantıları olğan saifeler',
 
-'linkprefix' => '/^((?>.*(?<![a-zâçğıñöşüA-ZÂÇĞİÑÖŞÜa-яёА-ЯЁ«„])))(.+)$/sDu',
+'linkprefix' => '/^(.*?)([a-zâçğıñöşüA-ZÂÇĞİÑÖŞÜa-яёА-ЯЁ«„]+)$/sDu',
 
 'about' => 'Aqqında',
 'article' => 'Saife',

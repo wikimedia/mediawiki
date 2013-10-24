@@ -3136,6 +3136,8 @@ Pravdepodobne to spôsobil odkaz na externú internetovú lokalitu, ktorá sa na
 'spam_reverting' => 'Vraciam poslednú verziu, ktorá neobsahuje odkazy na $1',
 'spam_blanking' => 'Všetky revízie obsahovali odkaz na $1, odstraňujem obsah',
 'spam_deleting' => 'Všetky revízie obsahovali odkaz na $1, odstraňuje sa',
+'simpleantispam-label' => "Antispamová kontrola.
+'''NEVYPĹŇAJTE''' nasledovné!",
 
 # Info page
 'pageinfo-title' => 'Informácie o „$1“',

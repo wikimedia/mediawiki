@@ -3036,6 +3036,8 @@ Dëst wahrscheinlech duerch en externe Link den op der schwaarzer Lëscht (black
 'spam_reverting' => 'Déi lescht Versioun ouni Linken op $1 restauréieren.',
 'spam_blanking' => 'An alle Versioune ware Linken op $1, et ass elo alles gebotzt.',
 'spam_deleting' => 'All Versioune mat Linken op $1 gi geläscht',
+'simpleantispam-label' => "Anti-Spam Kontroll.
+Fëllt '''näischt''' hei ënnendrënner aus!",
 
 # Info page
 'pageinfo-title' => 'Informatioun iwwer "$1"',

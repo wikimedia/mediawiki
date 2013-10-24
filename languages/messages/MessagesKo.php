@@ -3302,6 +3302,8 @@ $2',
 'spam_reverting' => '$1(을)를 포함하지 않는 최신 버전으로 되돌림',
 'spam_blanking' => '모든 버전에 $1 링크를 포함하고 있어 차단함',
 'spam_deleting' => '모든 버전에 $1 링크를 포함하고 있어 삭제함',
+'simpleantispam-label' => "스팸 방지 검사입니다.
+이것을 입력하지 '''마세요'''!",
 
 # Info page
 'pageinfo-title' => '"$1" 문서에 대한 정보',

@@ -2515,6 +2515,8 @@ To visticamāk izraisīja ārēja saite uz melnajā sarakstā esošu interneta v
 'spamprotectionmatch' => 'Spama filtram radās iebildumi pret šo tekstu: $1',
 'spambot_username' => 'MediaWiki surogātpasta tīrīšana',
 'spam_reverting' => 'Atjauno iepriekšējo versiju, kas nesatur saiti uz $1',
+'simpleantispam-label' => "Pretspama pārbaude. 
+ '''NEAIZPILDĪT!'''",
 
 # Info page
 'pageinfo-title' => 'Informācija par "$1"',

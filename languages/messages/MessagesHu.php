@@ -3113,6 +3113,8 @@ Ez valószínűleg egy olyan link miatt van, ami egy feketelistán lévő oldalr
 'spam_reverting' => 'Visszatérés a $1 lapra mutató hivatkozásokat nem tartalmazó utolsó változathoz',
 'spam_blanking' => 'Az összes változat tartalmazott a $1 lapra mutató hivatkozásokat, kiürítés',
 'spam_deleting' => 'Minden változat tartalmazott $1-re mutató hivatkozást, törlöm',
+'simpleantispam-label' => "Spam elleni ellenőrzés.
+'''NE''' töltsd ezt ki!",
 
 # Info page
 'pageinfo-title' => 'Információk a(z) „$1” lapról',

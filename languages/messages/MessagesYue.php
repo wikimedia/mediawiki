@@ -2645,6 +2645,8 @@ $1',
 'spambot_username' => 'MediaWiki垃圾清除',
 'spam_reverting' => '恢復返去最後一個唔包含指去$1嘅連結嘅嗰個修訂。',
 'spam_blanking' => '全部版本都含有指去$1嘅連結，留空',
+'simpleantispam-label' => "反垃圾檢查。
+'''唔好'''加入呢個！",
 
 # Skin names
 'skinname-cologneblue' => '科隆藍',

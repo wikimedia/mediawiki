@@ -2960,6 +2960,8 @@ Ini hurot na pinagkausa nin sarong sugpunan pasiring sa sarong pinagbawal na pan
 'spam_reverting' => 'Mabalik sa huring bersion na mayong takod sa $1',
 'spam_blanking' => 'An gabos na mga pahirá na may takod sa $1, pigblablanko',
 'spam_deleting' => 'An gabos na mga rebisyon na igwang mga kasugpunan sa $1, pinupura',
+'simpleantispam-label' => 'Narikisa kan anti-espam.
+"Dae" ka magkaag nin laman digde!',
 
 # Info page
 'pageinfo-title' => 'Impormasyon para sa "$1"',

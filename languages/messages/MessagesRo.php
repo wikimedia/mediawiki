@@ -438,7 +438,7 @@ $messages = array(
 'noindex-category' => 'Pagini neindexate',
 'broken-file-category' => 'Pagini cu legături invalide către fișiere',
 
-'linkprefix' => '/^((?>.*(?<![a-zA-Z\\x80-\\xff])))(.+)$/sD',
+'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
 
 'about' => 'Despre',
 'article' => 'Articol',
@@ -3181,6 +3181,8 @@ Permite adăugarea unui motiv în descrierea modificărilor',
 'spam_reverting' => 'Revenire la ultima versiune care nu conține legături către $1',
 'spam_blanking' => 'Toate versiunile conținând legături către $1 au fost golite',
 'spam_deleting' => 'Toate versiunile conținând legături către $1 au fost șterse',
+'simpleantispam-label' => "Verificare antispam.
+'''NU''' completați !",
 
 # Info page
 'pageinfo-title' => 'Informații pentru „$1”',

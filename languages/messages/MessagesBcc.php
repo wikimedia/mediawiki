@@ -2370,6 +2370,8 @@ $1',
 'spambot_username' => 'اسپم پاک کنوک مدیا وی کی',
 'spam_reverting' => 'عوض کتن په آهری نسحه که شامل لینکان می بیت په $1',
 'spam_blanking' => 'کل بازبینی آن شامل لینکان په $1, بوتت  هالیکی',
+'simpleantispam-label' => "کنترل ضد اسپم.
+ای شیء پر ''مکن''",
 
 # Skin names
 'skinname-cologneblue' => 'نیلی کولاجن',

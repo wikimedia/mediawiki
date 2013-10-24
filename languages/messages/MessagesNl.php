@@ -3335,6 +3335,8 @@ Meestal wordt dit door een externe koppeling op een zwarte lijst veroorzaakt.',
 'spam_reverting' => 'Teruggedraaid naar de laatste versie die geen koppeling bevat naar $1',
 'spam_blanking' => 'Alle versies bevatten een koppeling naar $1. Pagina leeggemaakt',
 'spam_deleting' => 'Alle versies bevatten koppelingen naar $1. Pagina verwijderd',
+'simpleantispam-label' => "Antispamcontrole.
+Vul dit veld '''NIET''' in!",
 
 # Info page
 'pageinfo-title' => 'Informatie over "$1"',

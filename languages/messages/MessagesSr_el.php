@@ -444,7 +444,7 @@ $messages = array(
 'noindex-category' => 'Nepopisane stranice',
 'broken-file-category' => 'Stranice s neispravnim vezama do datoteka',
 
-'linkprefix' => '/^((?>.*(?<![a-zA-Z\\x80-\\xff])))(.+)$/sD',
+'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
 
 'about' => 'O nama',
 'article' => 'Stranica sa sadržajem',
@@ -3158,6 +3158,7 @@ Ovo je verovatno izazvano vezom do spoljašnjeg sajta koji se nalazi na crnoj li
 'spam_reverting' => 'Vraćam na poslednju izmenu koja ne sadrži veze do $1',
 'spam_blanking' => 'Sve izmene sadrže veze do $1. Čistim',
 'spam_deleting' => 'Sve izmene sadrže veze do $1. Brišem',
+'simpleantispam-label' => "Provera spama. '''NE''' popunjavaj ovo unutra!",
 
 # Info page
 'pageinfo-title' => 'Podaci o „$1“',

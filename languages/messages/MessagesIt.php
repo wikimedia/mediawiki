@@ -3115,6 +3115,8 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'spam_reverting' => "Ripristinata l'ultima versione priva di collegamenti a $1",
 'spam_blanking' => 'Pagina svuotata, tutte le versioni contenevano collegamenti a $1',
 'spam_deleting' => 'Pagina cancellata, tutte le versioni contenevano collegamenti a $1',
+'simpleantispam-label' => "Controllo anti-spam.
+'''NON''' riempire!",
 
 # Info page
 'pageinfo-title' => 'Informazioni per "$1"',

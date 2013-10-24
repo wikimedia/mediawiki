@@ -173,7 +173,7 @@ $messages = array(
 'broken-file-category' => 'ھۆججەت ئۇلىنىشى بۇزۇلغان بەتلەر',
 'categoryviewer-pagedlinks' => '($1) ($2)',
 
-'linkprefix' => '/^((?>.*(?<![a-zA-Z\\x80-\\xff])))(.+)$/sD',
+'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
 
 'about' => 'ھەققىدە',
 'article' => 'مۇندەرىجە',
