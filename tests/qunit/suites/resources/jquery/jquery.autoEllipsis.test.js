@@ -55,4 +55,20 @@
 		}
 	} );
 
+	QUnit.test( 'Multiline', 2, function ( assert ) {
+		var $span, baseHeight, heightAdd,
+			origText = 'This is a really immensely long string that will not only not fit in 100 pixels on one line, but will almost certainly not even fit on two lines in 100 pixels.',
+			$wrapper = createWrappedDiv( origText, '100px' );
+
+		$( '#qunit-fixture' ).append( $wrapper );
+
+		baseHeight = $( '<span>' ).html( '&nbsp;' ).appendTo( $( '#qunit-fixture' ) ).height();
+		heightAdd = $( '<span>' ).html( '&nbsp;<br />&nbsp;' ).appendTo( $( '#qunit-fixture' ) ).height() - baseHeight;
+
+		assert.gt( $wrapper.height(), baseHeight + heightAdd, 'String starts out being too long for two lines' );
+
+		$wrapper.autoEllipsis( { lines: 2 } );
+		$span = $wrapper.find( '> span' );
+		assert.equal( $span.height(), baseHeight + heightAdd, 'String is successfully truncated to two lines' );
+	} );
 }( jQuery ) );
