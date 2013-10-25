@@ -686,6 +686,9 @@ class MWExceptionHandler {
 		global $wgRedactedFunctionArguments;
 		$finalExceptionText = '';
 
+		// Unique value to indicate redacted parameters
+		$redacted = new stdClass();
+
 		foreach ( $e->getTrace() as $i => $call ) {
 			$checkFor = array();
 			if ( isset( $call['class'] ) ) {
@@ -700,7 +703,7 @@ class MWExceptionHandler {
 			foreach ( $checkFor as $check ) {
 				if ( isset( $wgRedactedFunctionArguments[$check] ) ) {
 					foreach ( (array)$wgRedactedFunctionArguments[$check] as $argNo ) {
-						$call['args'][$argNo] = 'REDACTED';
+						$call['args'][$argNo] = $redacted;
 					}
 				}
 			}
@@ -722,7 +725,9 @@ class MWExceptionHandler {
 			$args = array();
 			if ( isset( $call['args'] ) ) {
 				foreach ( $call['args'] as $arg ) {
-					if ( is_object( $arg ) ) {
+					if ( $arg === $redacted ) {
+						$args[] = 'REDACTED';
+					} elseif ( is_object( $arg ) ) {
 						$args[] = 'Object(' . get_class( $arg ) . ')';
 					} elseif( is_array( $arg ) ) {
 						$args[] = 'Array';
