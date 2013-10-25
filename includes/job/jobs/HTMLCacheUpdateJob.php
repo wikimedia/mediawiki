@@ -245,6 +245,9 @@ class HTMLCacheUpdateJob extends Job {
 				array( 'page_id' => $batch ) + $touchedCond,
 				__METHOD__
 			);
+			if ( PHP_SAPI == 'cli' ) {
+				sleep( 1 );
+			}
 		}
 
 		# Update squid
