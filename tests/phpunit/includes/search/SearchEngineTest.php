@@ -3,9 +3,16 @@
 /**
  * @group Search
  * @group Database
+ *
+ * @covers SearchEngine<extended>
+ * @note Coverage will only ever show one of on of the Search* classes
  */
 class SearchEngineTest extends MediaWikiLangTestCase {
-	protected $search, $pageList;
+	/**
+	 * @var SearchEngine
+	 */
+	protected $search;
+	protected $pageList;
 
 	/**
 	 * Checks for database type & version.

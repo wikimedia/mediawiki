@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers FormatJson
+ */
 class FormatJsonTest extends MediaWikiTestCase {
 
 	public function testEncoderPrettyPrinting() {

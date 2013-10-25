@@ -31,6 +31,9 @@
  * @ingroup UtfNormal
  * @group Large
  *
+ * @todo covers tags, will be UtfNormal::cleanUp once the below is resolved
+ * @todo split me into test methods and providers per the below comment
+ *
  * We ignore code coverage for this test suite until they are rewritten
  * to use data providers (bug 46561).
  * @codeCoverageIgnore

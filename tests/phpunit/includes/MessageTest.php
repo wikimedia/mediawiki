@@ -10,6 +10,9 @@ class MessageTest extends MediaWikiLangTestCase {
 		) );
 	}
 
+	/**
+	 * @covers Message::exists
+	 */
 	public function testExists() {
 		$this->assertTrue( wfMessage( 'mainpage' )->exists() );
 		$this->assertTrue( wfMessage( 'mainpage' )->params( array() )->exists() );
@@ -19,6 +22,9 @@ class MessageTest extends MediaWikiLangTestCase {
 		$this->assertFalse( wfMessage( 'i-dont-exist-evar' )->rawParams( 'foo', 123 )->exists() );
 	}
 
+	/**
+	 * @covers Message::__construct
+	 */
 	public function testKey() {
 		$this->assertInstanceOf( 'Message', wfMessage( 'mainpage' ) );
 		$this->assertInstanceOf( 'Message', wfMessage( 'i-dont-exist-evar' ) );
@@ -28,6 +34,9 @@ class MessageTest extends MediaWikiLangTestCase {
 		$this->assertEquals( '&lt;i-dont-exist-evar&gt;', wfMessage( 'i-dont-exist-evar' )->escaped() );
 	}
 
+	/**
+	 * @covers Message::inLanguage
+	 */
 	public function testInLanguage() {
 		$this->assertEquals( 'Main Page', wfMessage( 'mainpage' )->inLanguage( 'en' )->text() );
 		$this->assertEquals( 'Заглавная страница', wfMessage( 'mainpage' )->inLanguage( 'ru' )->text() );
@@ -35,6 +44,9 @@ class MessageTest extends MediaWikiLangTestCase {
 		$this->assertEquals( 'Заглавная страница', wfMessage( 'mainpage' )->inLanguage( Language::factory( 'ru' ) )->text() );
 	}
 
+	/**
+	 * @covers Message::__construct
+	 */
 	public function testMessageParams() {
 		$this->assertEquals( 'Return to $1.', wfMessage( 'returnto' )->text() );
 		$this->assertEquals( 'Return to $1.', wfMessage( 'returnto', array() )->text() );
@@ -42,6 +54,10 @@ class MessageTest extends MediaWikiLangTestCase {
 		$this->assertEquals( 'You have foo (bar).', wfMessage( 'youhavenewmessages', array( 'foo', 'bar' ) )->text() );
 	}
 
+	/**
+	 * @covers Message::__construct
+	 * @covers Message::rawParams
+	 */
 	public function testMessageParamSubstitution() {
 		$this->assertEquals( '(Заглавная страница)', wfMessage( 'parentheses', 'Заглавная страница' )->plain() );
 		$this->assertEquals( '(Заглавная страница $1)', wfMessage( 'parentheses', 'Заглавная страница $1' )->plain() );
@@ -49,6 +65,10 @@ class MessageTest extends MediaWikiLangTestCase {
 		$this->assertEquals( '(Заглавная страница $1)', wfMessage( 'parentheses' )->rawParams( 'Заглавная страница $1' )->plain() );
 	}
 
+	/**
+	 * @covers Message::__construct
+	 * @covers Message::params
+	 */
 	public function testDeliciouslyManyParams() {
 		$msg = new RawMessage( '$1$2$3$4$5$6$7$8$9$10$11$12' );
 		// One less than above has placeholders
@@ -59,6 +79,13 @@ class MessageTest extends MediaWikiLangTestCase {
 	/**
 	 * FIXME: This should not need database, but Language#formatExpiry does (bug 55912)
 	 * @group Database
+	 * @todo this should be split up into multiple test methods
+	 * @covers Message::numParams
+	 * @covers Message::durationParams
+	 * @covers Message::expiryParams
+	 * @covers Message::timeperiodParams
+	 * @covers Message::sizeParams
+	 * @covers Message::bitrateParams
 	 */
 	public function testMessageParamTypes() {
 		$lang = Language::factory( 'en' );
@@ -106,12 +133,18 @@ class MessageTest extends MediaWikiLangTestCase {
 		);
 	}
 
+	/**
+	 * @covers Message::inContentLanguage
+	 */
 	public function testInContentLanguageDisabled() {
 		$this->setMwGlobals( 'wgLang', Language::factory( 'fr' ) );
 
 		$this->assertEquals( 'Main Page', wfMessage( 'mainpage' )->inContentLanguage()->plain(), 'ForceUIMsg disabled' );
 	}
 
+	/**
+	 * @covers Message::inContentLanguage
+	 */
 	public function testInContentLanguageEnabled() {
 		$this->setMwGlobals( array(
 			'wgLang' => Language::factory( 'fr' ),
@@ -123,6 +156,7 @@ class MessageTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @expectedException MWException
+	 * @covers Message::inLanguage
 	 */
 	public function testInLanguageThrows() {
 		wfMessage( 'foo' )->inLanguage( 123 );

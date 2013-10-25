@@ -15,6 +15,9 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 global $IP;
 require_once "$IP/includes/QueryPage.php"; // Needed to populate $wgQueryPages
 
+/**
+ * @covers QueryPage<extended>
+ */
 class QueryAllSpecialPagesTest extends MediaWikiTestCase {
 
 	/** List query pages that can not be tested automatically */

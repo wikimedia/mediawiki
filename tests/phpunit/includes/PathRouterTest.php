@@ -1,10 +1,10 @@
 <?php
+
 /**
  * Tests for the PathRouter parsing.
  *
- * @todo Add covers tags.
+ * @covers PathRouter
  */
-
 class PathRouterTest extends MediaWikiTestCase {
 
 	/**
