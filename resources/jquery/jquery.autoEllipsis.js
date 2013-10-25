@@ -17,13 +17,16 @@ $.fn.autoEllipsis = function ( options ) {
 		tooltip: false,
 		restoreText: false,
 		hasSpan: false,
+		// Use lines: 2 (anything above 1) to signify a height limit,
+		// instead of a width limit. Will truncate last line that fits.
+		lines: null,
 		matchText: null
 	}, options );
 
 	return this.each( function () {
 		var $trimmableText,
 			text, trimmableText, w, pw,
-			l, r, i, side, m,
+			l, r, i, side, m, h,
 			// container element - used for measuring against
 			$container = $(this);
 
@@ -38,6 +41,12 @@ $.fn.autoEllipsis = function ( options ) {
 		// trimmable text element - only the text within this element will be trimmed
 		if ( options.hasSpan ) {
 			$trimmableText = $container.children( options.selector );
+		} else if ( options.lines && options.lines > 1 ) {
+			$trimmableText = $( '<span>' )
+				.text( $container.text() );
+			$container
+				.empty()
+				.append( $trimmableText );
 		} else {
 			$trimmableText = $( '<span>' )
 				.css( 'whiteSpace', 'nowrap' )
@@ -49,6 +58,33 @@ $.fn.autoEllipsis = function ( options ) {
 
 		text = $container.text();
 		trimmableText = $trimmableText.text();
+
+		if ( options.lines && options.lines > 1 ) {
+			// Figure out how much height a normal line has, then
+			// multiply by the number of lines we want - add 1 because
+			// otherwise it truncates too soon.
+			h = ( options.lines + 1 ) * $trimmableText.html( '&nbsp;' ).height();
+			$trimmableText.text( trimmableText );
+
+			l = 0;
+			r = trimmableText.length;
+
+			if ( $trimmableText.height() > h ) {
+				while ( l < r ) {
+					m = Math.ceil( ( l + r ) / 2 );
+					$trimmableText.text( trimmableText.substr( 0, m ) + '...' );
+
+					if ( $trimmableText.height() > h ) {
+						r = m - 1;
+					} else {
+						l = m;
+					}
+				}
+
+				$trimmableText.text( trimmableText.substr( 0, l ) + '...' );
+			}
+		}
+
 		w = $container.width();
 		pw = 0;
 
