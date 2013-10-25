@@ -3906,7 +3906,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		if ( count( $this->mTrxIdleCallbacks ) || count( $this->mTrxPreCommitCallbacks ) ) {
 			$callers = array();
 			foreach ( $this->mTrxIdleCallbacks as $callbackInfo ) {
-				$callers[] = $callbackInfo[0];
+				$callers[] = $callbackInfo[1];
 
 			}
 			$callers = implode( ', ', $callers );
