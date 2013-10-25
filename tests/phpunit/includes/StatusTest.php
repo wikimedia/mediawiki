@@ -35,10 +35,10 @@ class StatusTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers Status:newFatal
+	 * @covers Status::newFatal
 	 * @covers Status::isGood
 	 * @covers Status::isOK
-	 * @covers Status:getMessage
+	 * @covers Status::getMessage
 	 */
 	public function testNewFatalWithMessage() {
 		$message = $this->getMockBuilder( 'Message' )
@@ -52,10 +52,10 @@ class StatusTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers Status:newFatal
+	 * @covers Status::newFatal
 	 * @covers Status::isGood
 	 * @covers Status::isOK
-	 * @covers Status:getMessage
+	 * @covers Status::getMessage
 	 */
 	public function testNewFatalWithString() {
 		$message = 'foo';
