@@ -15,28 +15,30 @@ class FormatJsonTest extends MediaWikiTestCase {
 					123,
 					456,
 				),
+				// Nested json works without problems
 				'"7":["8",{"9":"10"}]',
+				// Whitespace clean up doesn't touch strings that look alike
+				"{\n\t\"emptyObject\": {\n\t},\n\t\"emptyArray\": [ ]\n}",
 			),
 		);
 
 		// 4 space indent, no trailing whitespace, no trailing linefeed
 		$json = '{
-    "emptyObject": {
-    },
-    "emptyArray": [
-    ],
+    "emptyObject": {},
+    "emptyArray": [],
     "string": "foobar\\\\",
     "filledArray": [
         [
             123,
             456
         ],
-        "\"7\":[\"8\",{\"9\":\"10\"}]"
+        "\"7\":[\"8\",{\"9\":\"10\"}]",
+        "{\n\t\"emptyObject\": {\n\t},\n\t\"emptyArray\": [ ]\n}"
     ]
 }';
 
 		$json = str_replace( "\r", '', $json ); // Windows compat
-		$this->assertSame( $json, str_replace("\n\n", "\n", FormatJson::encode( $obj, true ) ));
+		$this->assertSame( $json, FormatJson::encode( $obj, true ) );
 	}
 
 	public static function provideEncodeDefault() {
