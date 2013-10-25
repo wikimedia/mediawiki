@@ -232,7 +232,7 @@ class ChangeTags {
 		}
 
 		$data = array( Html::rawElement( 'label', array( 'for' => 'tagfilter' ), wfMessage( 'tag-filter' )->parse() ),
-			Xml::input( 'tagfilter', 20, $selected, array( 'class' => 'mw-tagfilter-input' ) ) );
+			Xml::input( 'tagfilter', 20, $selected, array( 'class' => 'mw-tagfilter-input', 'id' => 'tagfilter' ) ) );
 
 		if ( !$fullForm ) {
 			return $data;
