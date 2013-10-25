@@ -4,6 +4,9 @@
  * @file
  */
 
+/**
+ * @covers CLDRPluralRuleEvaluator
+ */
 class CLDRPluralRuleEvaluatorTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider validTestCases

@@ -2,7 +2,9 @@
 
 /**
  * @group Database
- * @todo covers tags
+ *
+ * @covers Title::getUserPermissionsErrors
+ * @covers Title::getUserPermissionsErrorsInternal
  */
 class TitlePermissionTest extends MediaWikiLangTestCase {
 

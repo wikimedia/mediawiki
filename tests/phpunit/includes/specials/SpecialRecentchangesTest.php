@@ -6,6 +6,8 @@
  *
  * @author Antoine Musso
  * @group Database
+ *
+ * @covers SpecialRecentChanges
  */
 class SpecialRecentchangesTest extends MediaWikiTestCase {
 
