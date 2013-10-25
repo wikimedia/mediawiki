@@ -539,14 +539,32 @@ class ChangesList extends ContextSource {
 	}
 
 	protected function showAsUnpatrolled( RecentChange $rc ) {
-		$unpatrolled = false;
-		if ( !$rc->mAttribs['rc_patrolled'] ) {
-			if ( $this->getUser()->useRCPatrol() ) {
-				$unpatrolled = true;
-			} elseif ( $this->getUser()->useNPPatrol() && $rc->mAttribs['rc_type'] == RC_NEW ) {
-				$unpatrolled = true;
+		return self::isUnpatrolled( $rc, $this->getUser() );
+	}
+
+	/**
+	 * @param object|RecentChange $rc Database row from recentchanges or a RecentChange object
+	 * @param User $user
+	 * @return bool
+	 */
+	public static function isUnpatrolled( $rc, User $user ) {
+		if ( $rc instanceof RecentChange ) {
+			$isPatrolled = $rc->mAttribs['rc_patrolled'];
+			$rcType = $rc->mAttribs['rc_type'];
+		} else {
+			$isPatrolled = $rc->rc_patrolled;
+			$rcType = $rc->rc_type;
+		}
+
+		if ( !$isPatrolled ) {
+			if ( $user->useRCPatrol() ) {
+				return true;
+			}
+			if ( $user->useNPPatrol() && $rcType == RC_NEW ) {
+				return true;
 			}
 		}
-		return $unpatrolled;
+
+		return false;
 	}
 }
