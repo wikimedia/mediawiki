@@ -191,6 +191,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 					|| ( isset( $show['anon'] ) && isset( $show['!anon'] ) )
 					|| ( isset( $show['redirect'] ) && isset( $show['!redirect'] ) )
 					|| ( isset( $show['patrolled'] ) && isset( $show['!patrolled'] ) )
+					|| ( isset( $show['patrolled'] ) && isset( $show['unpatrolled'] ) )
 			) {
 				$this->dieUsageMsg( 'show' );
 			}
@@ -212,6 +213,16 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			$this->addWhereIf( 'rc_patrolled = 0', isset( $show['!patrolled'] ) );
 			$this->addWhereIf( 'rc_patrolled != 0', isset( $show['patrolled'] ) );
 			$this->addWhereIf( 'page_is_redirect = 1', isset( $show['redirect'] ) );
+
+			if ( isset( $show['unpatrolled'] ) ) {
+				// See ChangesList:isUnpatrolled
+				if ( $user->useRCPatrol() ) {
+					$this->addWhere('rc_patrolled = 0');
+				} elseif ( $user->useNPPatrol() ) {
+					$this->addWhere('rc_patrolled = 0');
+					$this->addWhereFld('rc_type', RC_NEW);
+				}
+			}
 
 			// Don't throw log entries out the window here
 			$this->addWhereIf( 'page_is_redirect = 0 OR page_is_redirect IS NULL', isset( $show['!redirect'] ) );
@@ -614,7 +625,8 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 					'redirect',
 					'!redirect',
 					'patrolled',
-					'!patrolled'
+					'!patrolled',
+					'unpatrolled'
 				)
 			),
 			'limit' => array(
