@@ -517,8 +517,8 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		}
 
 		if ( $rows->numRows() === 0 ) {
-			$this->getOutput()->wrapWikiMsg(
-				"<div class='mw-changeslist-empty'>\n$1\n</div>", 'recentchanges-noresult'
+			$this->getOutput()->addHtml(
+				'<div class="mw-changeslist-empty">' . $this->msg( 'recentchanges-noresult' )->parse() . '</div>'
 			);
 		} else {
 			$this->getOutput()->addHTML( $rclistOutput );
