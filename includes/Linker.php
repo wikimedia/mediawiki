@@ -2116,9 +2116,10 @@ class Linker {
 			$accesskey = self::accesskey( $name );
 			if ( $accesskey !== false ) {
 				if ( $tooltip === false || $tooltip === '' ) {
-					$tooltip = "[$accesskey]";
+					$tooltip = wfMessage( 'brackets', $accesskey )->escaped();
 				} else {
-					$tooltip .= " [$accesskey]";
+					$tooltip .= wfMessage( 'word-separator' )->escaped();
+					$tooltip .= wfMessage( 'brackets', $accesskey )->escaped();
 				}
 			}
 		}
