@@ -831,22 +831,18 @@ var mw = ( function ( $, undefined ) {
 						j -= 1;
 						try {
 							if ( hasErrors ) {
-								throw new Error( 'Module ' + module + ' failed.');
+								if ( $.isFunction( job.error ) ) {
+									job.error( new Error( 'Module ' + module + ' has failed dependencies' ), [module] );
+								}
 							} else {
 								if ( $.isFunction( job.ready ) ) {
 									job.ready();
 								}
 							}
 						} catch ( e ) {
-							if ( $.isFunction( job.error ) ) {
-								try {
-									job.error( e, [module] );
-								} catch ( ex ) {
-									// A user-defined operation raised an exception. Swallow to protect
-									// our state machine!
-									log( 'Exception thrown by job.error', ex );
-								}
-							}
+							// A user-defined callback raised an exception.
+							// Swallow it to protect our state machine!
+							log( 'Exception thrown by job.error', e );
 						}
 					}
 				}
