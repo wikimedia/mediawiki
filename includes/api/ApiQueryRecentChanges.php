@@ -456,6 +456,10 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			$vals['patrolled'] = '';
 		}
 
+		if ( $this->fld_patrolled && ChangesList::isUnpatrolled( $row, $this->getUser() ) ) {
+			$vals['unpatrolled'] = '';
+		}
+
 		if ( $this->fld_loginfo && $row->rc_type == RC_LOG ) {
 			$vals['logid'] = intval( $row->rc_logid );
 			$vals['logtype'] = $row->rc_log_type;
@@ -655,7 +659,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 				' ids            - Adds the page ID, recent changes ID and the new and old revision ID',
 				' sizes          - Adds the new and old page length in bytes',
 				' redirect       - Tags edit if page is a redirect',
-				' patrolled      - Tags edits that have been patrolled',
+				' patrolled      - Tags patrollable edits as being patrolled or unpatrolled',
 				' loginfo        - Adds log information (logid, logtype, etc) to log entries',
 				' tags           - Lists tags for the entry',
 				' sha1           - Adds the content checksum for entries associated with a revision',
@@ -741,7 +745,8 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 				'redirect' => 'boolean'
 			),
 			'patrolled' => array(
-				'patrolled' => 'boolean'
+				'patrolled' => 'boolean',
+				'unpatrolled' => 'boolean'
 			),
 			'loginfo' => array(
 				'logid' => array(
