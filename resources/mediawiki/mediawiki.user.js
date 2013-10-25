@@ -10,6 +10,7 @@
 		options = mw.user.options || new mw.Map(),
 		tokens = mw.user.tokens || new mw.Map();
 
+
 	/**
 	 * Get the current user's groups or rights
 	 *
