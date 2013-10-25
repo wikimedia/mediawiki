@@ -66,11 +66,38 @@ class DerivativeContext extends ContextSource {
 	private $skin;
 
 	/**
+	 * @var SiteConfiguration
+	 */
+	private $config;
+
+	/**
 	 * Constructor
 	 * @param IContextSource $context Context to inherit from
 	 */
 	public function __construct( IContextSource $context ) {
 		$this->setContext( $context );
+	}
+
+	/**
+	 * Set the SiteConfiguration object
+	 *
+	 * @param SiteConfiguration $c
+	 */
+	public function setConfig( SiteConfiguration $s ) {
+		$this->config = $s;
+	}
+
+	/**
+	 * Get the SiteConfiguration object
+	 *
+	 * @return SiteConfiguration
+	 */
+	public function getConfig() {
+		if ( !is_null( $this->config ) ) {
+			return $this->config;
+		} else {
+			return $this->getContext()->getConfig();
+		}
 	}
 
 	/**

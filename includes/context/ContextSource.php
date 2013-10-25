@@ -58,6 +58,16 @@ abstract class ContextSource implements IContextSource {
 	}
 
 	/**
+	 * Get the SiteConfiguration object
+	 *
+	 * @since 1.23
+	 * @return SiteConfiguration
+	 */
+	public function getConfig() {
+		return $this->getContext()->getConfig();
+	}
+
+	/**
 	 * Get the WebRequest object
 	 *
 	 * @since 1.18

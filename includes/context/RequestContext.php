@@ -64,6 +64,33 @@ class RequestContext implements IContextSource {
 	private $skin;
 
 	/**
+	 * @var SiteConfiguration
+	 */
+	private $config;
+
+	/**
+	 * Set the SiteConfiguration object
+	 *
+	 * @param SiteConfiguration $c
+	 */
+	public function setConfig( SiteConfiguration $c ) {
+		$this->config = $c;
+	}
+
+	/**
+	 * Get the SiteConfiguration object
+	 *
+	 * @return SiteConfiguration
+	 */
+	public function getConfig() {
+		if ( $this->config === null ) {
+			global $wgConf;
+			$this->config = $wgConf;
+		}
+		return $this->config;
+	}
+
+	/**
 	 * Set the WebRequest object
 	 *
 	 * @param WebRequest $r

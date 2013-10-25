@@ -100,6 +100,14 @@ interface IContextSource {
 	public function getSkin();
 
 	/**
+	 * Get the site configuration
+	 *
+	 * @since 1.23
+	 * @return SiteConfiguration
+	 */
+	public function getConfig();
+
+	/**
 	 * Get a Message object with context set
 	 *
 	 * @return Message
