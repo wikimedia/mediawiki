@@ -1,5 +1,9 @@
-/*
- * Core MediaWiki JavaScript Library
+/**
+ * Base library for MediaWiki.
+ *
+ * @class mw
+ * @alternateClassName mediaWiki
+ * @singleton
  */
 
 var mw = ( function ( $, undefined ) {
@@ -9,6 +13,30 @@ var mw = ( function ( $, undefined ) {
 
 	var hasOwn = Object.prototype.hasOwnProperty,
 		slice = Array.prototype.slice;
+
+	/**
+	 * Log a message to window.console, if possible. Useful to force logging of some
+	 * errors that are otherwise hard to detect (I.e., this logs also in production mode).
+	 * Gets console references in each invocation, so that delayed debugging tools work
+	 * fine. No need for optimization here, which would only result in losing logs.
+	 *
+	 * @private
+	 * @param {string} msg text for the log entry.
+	 * @param {Error} [e]
+	 */
+	function log( msg, e ) {
+		var console = window.console;
+		if ( console && console.log ) {
+			console.log( msg );
+			// If we have an exception object, log it through .error() to trigger
+			// proper stacktraces in browsers that support it. There are no (known)
+			// browsers that don't support .error(), that do support .log() and
+			// have useful exception handling through .log().
+			if ( e && console.error ) {
+				console.error( String( e ), e );
+			}
+		}
+	}
 
 	/* Object constructors */
 
@@ -290,13 +318,6 @@ var mw = ( function ( $, undefined ) {
 		}
 	};
 
-	/**
-	 * Base library for MediaWiki.
-	 *
-	 * @class mw
-	 * @alternateClassName mediaWiki
-	 * @singleton
-	 */
 	return {
 		/* Public Members */
 
@@ -592,7 +613,7 @@ var mw = ( function ( $, undefined ) {
 							try {
 								styleEl.styleSheet.cssText += cssText; // IE
 							} catch ( e ) {
-								log( 'addEmbeddedCSS fail\ne.message: ' + e.message, e );
+								log( 'addEmbeddedCSS fail', e );
 							}
 						} else {
 							styleEl.appendChild( document.createTextNode( String( cssText ) ) );
@@ -771,30 +792,6 @@ var mw = ( function ( $, undefined ) {
 			}
 
 			/**
-			 * Log a message to window.console, if possible. Useful to force logging of some
-			 * errors that are otherwise hard to detect (I.e., this logs also in production mode).
-			 * Gets console references in each invocation, so that delayed debugging tools work
-			 * fine. No need for optimization here, which would only result in losing logs.
-			 *
-			 * @private
-			 * @param {string} msg text for the log entry.
-			 * @param {Error} [e]
-			 */
-			function log( msg, e ) {
-				var console = window.console;
-				if ( console && console.log ) {
-					console.log( msg );
-					// If we have an exception object, log it through .error() to trigger
-					// proper stacktraces in browsers that support it. There are no (known)
-					// browsers that don't support .error(), that do support .log() and
-					// have useful exception handling through .log().
-					if ( e && console.error ) {
-						console.error( e );
-					}
-				}
-			}
-
-			/**
 			 * A module has entered state 'ready', 'error', or 'missing'. Automatically update pending jobs
 			 * and modules that depend upon this module. if the given module failed, propagate the 'error'
 			 * state up the dependency tree; otherwise, execute all jobs/modules that now have all their
@@ -847,7 +844,7 @@ var mw = ( function ( $, undefined ) {
 								} catch ( ex ) {
 									// A user-defined operation raised an exception. Swallow to protect
 									// our state machine!
-									log( 'Exception thrown by job.error()', ex );
+									log( 'Exception thrown by job.error', ex );
 								}
 							}
 						}
@@ -1009,7 +1006,7 @@ var mw = ( function ( $, undefined ) {
 					} catch ( e ) {
 						// This needs to NOT use mw.log because these errors are common in production mode
 						// and not in debug mode, such as when a symbol that should be global isn't exported
-						log( 'Exception thrown by ' + module + ': ' + e.message, e );
+						log( 'Exception thrown by ' + module, e );
 						registry[module].state = 'error';
 						handlePending( module );
 					}
