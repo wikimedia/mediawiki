@@ -1609,7 +1609,7 @@ Se optar por revelá-lo, ele será utilizado para atribuir-lhe crédito pelo seu
 'userrights-notallowed' => 'A sua conta não tem permissão para adicionar ou remover privilégios a utilizadores.',
 'userrights-changeable-col' => 'Grupos que pode alterar',
 'userrights-unchangeable-col' => 'Grupos que não pode alterar',
-'userrights-conflict' => 'Conflito com os privilégios dos utilizadores! Por favor, aplique as suas mudanças novamente.',
+'userrights-conflict' => 'Conflito entre alterações de privilégios de utilizador! Por favor, revise e confirme as suas mudanças.',
 'userrights-removed-self' => 'Você removeu com sucesso os seus privilégios. Como resultado disso, já não consegue aceder a esta página.',
 
 # Groups
@@ -1734,8 +1734,8 @@ Se optar por revelá-lo, ele será utilizado para atribuir-lhe crédito pelo seu
 'action-block' => 'impedir este utilizador de editar',
 'action-protect' => 'alterar os níveis de proteção desta página',
 'action-rollback' => 'reverter rapidamente as edições do último utilizador que editou uma dada página',
-'action-import' => 'importar esta página a partir de outra wiki',
-'action-importupload' => 'importar esta página a partir de um ficheiro xml',
+'action-import' => 'importar páginas a partir de outra wiki',
+'action-importupload' => 'importar páginas por meio do envio de um ficheiro',
 'action-patrol' => 'marcar as edições de outros utilizadores como patrulhadas',
 'action-autopatrol' => 'marcar como patrulhadas as suas próprias edições',
 'action-unwatchedpages' => 'ver a lista de páginas não-vigiadas',
@@ -2192,8 +2192,8 @@ Talvez queira editar a descrição na [$2 página original de descrição do fic
 'pageswithprop-text' => 'Esta página lista páginas que usam uma propriedade em particular.',
 'pageswithprop-prop' => 'Nome da propriedade:',
 'pageswithprop-submit' => 'Avançar',
-'pageswithprop-prophidden-long' => 'foi ocultado o valor da propriedade por ser um texto muito longo ($1 kilobytes)',
-'pageswithprop-prophidden-binary' => 'foi ocultado o valor da propriedade por ser binário ($1 kilobytes)',
+'pageswithprop-prophidden-long' => 'foi ocultado o valor da propriedade por ser um texto muito longo ($1)',
+'pageswithprop-prophidden-binary' => 'foi ocultado o valor da propriedade por ser binário ($1)',
 
 'doubleredirects' => 'Redirecionamentos duplos',
 'doubleredirectstext' => 'Esta página lista todas as páginas que redirecionam para outras páginas de redirecionamento.
@@ -3215,7 +3215,7 @@ Este bloqueio foi provavelmente causado por um link para um site externo que con
 'spam_reverting' => 'A reverter para a última revisão que não contém links para $1',
 'spam_blanking' => 'Todas as revisões continham links para $1; a esvaziar',
 'spam_deleting' => 'Todas as revisões continham links para $1; a eliminar',
-'simpleantispam-label' => "Verificação de spam
+'simpleantispam-label' => "Verificação contra spam
 '''NÃO''' preencha isto!",
 
 # Info page

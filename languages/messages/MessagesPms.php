@@ -850,10 +850,10 @@ L'ùltima vos dël registr a l'é smonùa sì-sota për arferiment:",
 'nocreatetext' => "{{SITENAME}} a l'ha limità la possibilità ëd creé dle pàgine neuve.
 A peul torné andaré e modifiché na pàgina che a-i é già, ò pura [[Special:UserLogin|rintré ant ël sistema ò deurb-se un cont]].",
 'nocreate-loggedin' => "A l'ha pa ël përmess ëd creé dle pàgine neuve.",
-'sectioneditnotsupported-title' => "La modìfica dla session a l'é nen prevëdùa",
-'sectioneditnotsupported-text' => "La modìfica dla session a l'é nen prevëdùa an costa pàgina ëd modìfica.",
+'sectioneditnotsupported-title' => "La modìfica ëd session a l'é nen mantnùa",
+'sectioneditnotsupported-text' => "La modìfica ëd na session a l'é nen mantnùa për costa pàgina.",
 'permissionserrors' => 'Eror ant ij përmess',
-'permissionserrorstext' => "A l'ha pa ij përmess dont a fa da manca për {{PLURAL:$1|via che|via che}}:",
+'permissionserrorstext' => "A l'ha pa ij përmess dont a fa da manca për {{PLURAL:$1|via che}}:",
 'permissionserrorstext-withaction' => "It l'has nen ij përmess për $2, për {{PLURAL:$1|cost motiv|costi motiv}}:",
 'recreate-moveddeleted-warn' => "A l'é an camin ch'a crea torna na pàgina ch'a l'era stàita scancelà.'''
 
@@ -2924,8 +2924,8 @@ Sòn a l'é motobin belfé che a sia rivà përchè a-i era n'anliura a un sit e
 'spam_reverting' => "Butà andaré a l'ùltima version che a l'avèissa pa andrinta dj'anliure a $1",
 'spam_blanking' => "Pàgina dësvujdà, che tute le version a l'avìo andrinta dj'anliure a $1",
 'spam_deleting' => 'Scancelà, dagià che tute le revision a contnisìo dle liure a $1',
-'simpleantispam-label' => "Control anti-spam.
-Vemp '''PA''' sòn-sì!",
+'simpleantispam-label' => "Contròl contra la rumenta.
+Compilé '''NEN''' sòn!",
 
 # Info page
 'pageinfo-title' => 'Anformassion për «$1»',

@@ -3182,7 +3182,7 @@ Permite adăugarea unui motiv în descrierea modificărilor',
 'spam_blanking' => 'Toate versiunile conținând legături către $1 au fost golite',
 'spam_deleting' => 'Toate versiunile conținând legături către $1 au fost șterse',
 'simpleantispam-label' => "Verificare antispam.
-'''NU''' completați !",
+'''NU''' completați!",
 
 # Info page
 'pageinfo-title' => 'Informații pentru „$1”',
