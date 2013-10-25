@@ -48,37 +48,6 @@ class UploadFromUrlTest extends ApiTestCase {
 	}
 
 	/**
-	 * @todo Document why we test login, since the $wgUser hack used doesn't
-	 * require login
-	 *
-	 * @coversNothing
-	 */
-	public function testLogin() {
-		$data = $this->doApiRequest( array(
-			'action' => 'login',
-			'lgname' => $this->user->userName,
-			'lgpassword' => $this->user->passWord ) );
-		$this->assertArrayHasKey( "login", $data[0] );
-		$this->assertArrayHasKey( "result", $data[0]['login'] );
-		$this->assertEquals( "NeedToken", $data[0]['login']['result'] );
-		$token = $data[0]['login']['token'];
-
-		$data = $this->doApiRequest( array(
-			'action' => 'login',
-			"lgtoken" => $token,
-			'lgname' => $this->user->userName,
-			'lgpassword' => $this->user->passWord ) );
-
-		$this->assertArrayHasKey( "login", $data[0] );
-		$this->assertArrayHasKey( "result", $data[0]['login'] );
-		$this->assertEquals( "Success", $data[0]['login']['result'] );
-		$this->assertArrayHasKey( 'lgtoken', $data[0]['login'] );
-
-		return $data;
-	}
-
-	/**
-	 * @depends testLogin
 	 * @depends testClearQueue
 	 */
 	public function testSetupUrlDownload( $data ) {
@@ -152,7 +121,6 @@ class UploadFromUrlTest extends ApiTestCase {
 	}
 
 	/**
-	 * @depends testLogin
 	 * @depends testClearQueue
 	 */
 	public function testAsyncUpload( $data ) {
@@ -171,7 +139,6 @@ class UploadFromUrlTest extends ApiTestCase {
 	}
 
 	/**
-	 * @depends testLogin
 	 * @depends testClearQueue
 	 */
 	public function testAsyncUploadWarning( $data ) {
@@ -201,7 +168,6 @@ class UploadFromUrlTest extends ApiTestCase {
 	}
 
 	/**
-	 * @depends testLogin
 	 * @depends testClearQueue
 	 */
 	public function testSyncDownload( $data ) {
@@ -333,9 +299,6 @@ class UploadFromUrlTest extends ApiTestCase {
 		return $data;
 	}
 
-	/**
-	 *
-	 */
 	protected function deleteFile( $name ) {
 		$t = Title::newFromText( $name, NS_FILE );
 		$this->assertTrue( $t->exists(), "File '$name' exists" );
