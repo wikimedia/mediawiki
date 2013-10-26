@@ -191,6 +191,19 @@ return array(
 	'jquery.colorUtil' => array(
 		'scripts' => 'resources/jquery/jquery.colorUtil.js',
 	),
+	'jquery.confirmable' => array(
+		'scripts' => array(
+			'resources/jquery/jquery.confirmable.js',
+			'resources/jquery/jquery.confirmable.mediawiki.js',
+		),
+		'messages' => array(
+			'confirmable-confirm',
+			'confirmable-yes',
+			'confirmable-no',
+		),
+		'styles' => 'resources/jquery/jquery.confirmable.css',
+		'dependencies' => 'mediawiki.jqueryMsg',
+	),
 	'jquery.cookie' => array(
 		'scripts' => 'resources/jquery/jquery.cookie.js',
 		'targets' => array( 'desktop', 'mobile' ),
@@ -639,6 +652,14 @@ return array(
 	),
 	'mediawiki.icon' => array(
 		'styles' => 'resources/mediawiki/mediawiki.icon.css',
+	),
+	'mediawiki.confirmable.rollback' => array(
+		'scripts' => 'resources/mediawiki/mediawiki.confirmable.rollback.js',
+		'styles' => 'resources/mediawiki/mediawiki.confirmable.rollback.css',
+		'messages' => array(
+			'confirmable-confirm-rollback',
+		),
+		'dependencies' => 'jquery.confirmable',
 	),
 	'mediawiki.debug' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.debug.js',
