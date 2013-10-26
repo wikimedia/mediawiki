@@ -177,6 +177,17 @@ class StatusTest extends MediaWikiTestCase {
 		$this->assertEquals( 2, count( $status1->getWarningsArray() ) + count( $status1->getErrorsArray() ) );
 	}
 
+	/**
+	 * @covers Status::hasMessage
+	 */
+	public function testHasMessage() {
+		$status = new Status();
+		$status->fatal( 'bad' );
+		$this->assertTrue( $status->hasMessage( 'bad' ) );
+		$this->assertFalse( $status->hasMessage( 'good' ) );
+
+	}
+
 	//todo test cleanParams
 	//todo test getWikiText
 	//todo test getMessage
@@ -185,7 +196,6 @@ class StatusTest extends MediaWikiTestCase {
 	//todo test getErrorMessageArray
 	//todo test getStatusArray
 	//todo test getErrorsByType
-	//todo test hasMessage
 	//todo test replaceMessage
 	//todo test replaceMessage
 
