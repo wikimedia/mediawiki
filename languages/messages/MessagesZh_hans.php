@@ -1176,7 +1176,7 @@ $2
 # "Undo" feature
 'undo-success' => '该编辑可以被撤销。请检查下面的对比以核实你想要撤销的内容，然后保存下面的更改以完成撤销。',
 'undo-failure' => '因存在冲突的中间编辑，本编辑不能撤销。',
-'undo-norev' => '由于其修订版本不存在或已删除，此编辑不能撤销。',
+'undo-norev' => '该编辑无法撤消，因为它不存在或已被删除。',
 'undo-summary' => '撤销[[Special:Contributions/$2|$2]]（[[User talk:$2|讨论]]）的版本$1',
 'undo-summary-username-hidden' => '取消由一匿名用户所作的修订$1',
 
@@ -2465,7 +2465,7 @@ $UNWATCHURL
 'editcomment' => '编辑摘要："<i>$1</i>"。',
 'revertpage' => '已恢复[[Special:Contributions/$2|$2]]（[[User talk:$2|讨论]]）的编辑至[[User:$1|$1]]的最后一个修订版本',
 'revertpage-nouser' => '恢复由隐藏用户的编辑到{{GENDER:$1|[[User:$1|$1]]}}的最后一个修订版本',
-'rollback-success' => '已恢复$1的编辑，更改回$2的最后修订版本。',
+'rollback-success' => '已恢复$1的编辑，更改回$2的最后版本。',
 
 # Edit tokens
 'sessionfailure-title' => '会话无效',
@@ -3051,7 +3051,7 @@ $2',
 'tooltip-save' => '保存你的更改',
 'tooltip-preview' => '预览您的更改，请在保存前使用此功能！',
 'tooltip-diff' => '显示您对该文字所做的更改',
-'tooltip-compareselectedversions' => '查看此页面两个选定的修订版本间的差异。',
+'tooltip-compareselectedversions' => '查看该页面两个选定的版本之间的差异。',
 'tooltip-watch' => '添加本页面至你的监视列表',
 'tooltip-watchlistedit-normal-submit' => '删除标题',
 'tooltip-watchlistedit-raw-submit' => '更新监视列表',
@@ -3786,7 +3786,7 @@ $5
 # action=purge
 'confirm_purge_button' => '确定',
 'confirm-purge-top' => '要清除此页面的缓存吗?',
-'confirm-purge-bottom' => '清理一页将会清除快取以及强迫显示最现时之修订版本。',
+'confirm-purge-bottom' => '清除页面数据会清除缓存并强制显示最近的版本。',
 
 # action=watch/unwatch
 'confirm-watch-button' => '确定',
@@ -3906,12 +3906,12 @@ MediaWiki发表时预期有用，但对此'''无任何保证'''，亦无隐含�
 # Special:Redirect
 'redirect' => '重定向（按文件、用户或版本ID）',
 'redirect-legend' => '重定向至文件或页面',
-'redirect-summary' => '本特殊页面会重定向到一个文件（给予文件名），一个页面（给予修订版本ID），或一个用户页面（给予用户数字ID）。',
+'redirect-summary' => '本特殊页面可以跳转至一个文件（提供文件名）、页面（提供版本ID）或用户页面（提供数字用户ID）。',
 'redirect-submit' => '提交',
 'redirect-lookup' => '基于：',
 'redirect-value' => '值：',
 'redirect-user' => '用户ID',
-'redirect-revision' => '页面修订',
+'redirect-revision' => '页面版本ID',
 'redirect-file' => '文件名',
 'redirect-not-exists' => '没找到相应值',
 

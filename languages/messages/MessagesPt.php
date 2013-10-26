@@ -655,6 +655,7 @@ Encontra uma lista das páginas especiais válidas em [[Special:SpecialPages|{{i
 Isto pode indicar um defeito no programa.',
 'databaseerror-textcl' => 'Ocorreu um erro na consulta à base de dados.',
 'databaseerror-query' => 'Consulta:$1',
+'databaseerror-function' => 'Função: $1',
 'databaseerror-error' => 'Erro: $1',
 'laggedslavemode' => "'''Aviso:''' A página pode não conter as atualizações mais recentes.",
 'readonly' => 'Base de dados bloqueada (limitada a leituras)',
@@ -1573,6 +1574,7 @@ Se optar por revelá-lo, ele será utilizado para atribuir-lhe crédito pelo seu
 'prefs-dateformat' => 'Formato de data',
 'prefs-timeoffset' => 'Desvio horário',
 'prefs-advancedediting' => 'Opções gerais',
+'prefs-editor' => 'Editor',
 'prefs-preview' => 'Antevisão',
 'prefs-advancedrc' => 'Opções avançadas',
 'prefs-advancedrendering' => 'Opções avançadas',
@@ -1583,6 +1585,7 @@ Se optar por revelá-lo, ele será utilizado para atribuir-lhe crédito pelo seu
 'prefs-displaywatchlist' => 'Opções de apresentação',
 'prefs-tokenwatchlist' => 'Chave',
 'prefs-diffs' => 'Diferenças',
+'prefs-help-prefershttps' => 'Esta preferência terá efeito no seu próximo início de sessão.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'Parece válido',
@@ -1677,12 +1680,16 @@ Se optar por revelá-lo, ele será utilizado para atribuir-lhe crédito pelo seu
 'right-unblockself' => 'Desbloquearem-se a si próprios',
 'right-protect' => 'Mudar níveis de proteção e editar páginas protegidas em cascata',
 'right-editprotected' => 'Editar páginas protegidas como "{{int:protect-level-sysop}}"',
+'right-editsemiprotected' => 'Editar páginas protegidas como "{{int:protect-level-autoconfirmed}}"',
 'right-editinterface' => 'Editar a interface de utilizador',
 'right-editusercssjs' => 'Editar os ficheiros CSS e JS de outros utilizadores',
 'right-editusercss' => 'Editar os ficheiros CSS de outros utilizadores',
 'right-edituserjs' => 'Editar os ficheiros JS de outros utilizadores',
 'right-editmyusercss' => 'Editar os seus próprios ficheiros CSS de utilizador',
 'right-editmyuserjs' => 'Editar os seus próprios ficheiros JavaScript de utilizador',
+'right-viewmyprivateinfo' => 'Ver os seus próprios dados privados (ex.: endereço de e-mail, nome real)',
+'right-editmyprivateinfo' => 'Editar os seus próprios dados privados (ex.: endereço de e-mail, nome real)',
+'right-editmyoptions' => 'Editar as suas próprias preferências',
 'right-rollback' => 'Reverter rapidamente as edições do último utilizador que editou uma página em particular',
 'right-markbotedits' => 'Marcar edições revertidas como edições de bot',
 'right-noratelimit' => 'Não ser afetado pelos limites de velocidade de operação',
@@ -1747,6 +1754,8 @@ Se optar por revelá-lo, ele será utilizado para atribuir-lhe crédito pelo seu
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|alteração|alterações}}',
+'enhancedrc-since-last-visit' => '$1 {{PLURAL:$1|desde a última visita}}',
+'enhancedrc-history' => 'histórico',
 'recentchanges' => 'Mudanças recentes',
 'recentchanges-legend' => 'Opções das mudanças recentes',
 'recentchanges-summary' => 'Acompanhe nesta página as mudanças mais recentes da wiki.',
@@ -2063,6 +2072,8 @@ Verifique se o endereço está correto e o site disponível, por favor.',
 'listfiles_description' => 'Descrição',
 'listfiles_count' => 'Versões',
 'listfiles-show-all' => 'Incluir versões antigas de imagens',
+'listfiles-latestversion' => 'Versão atual',
+'listfiles-latestversion-yes' => 'Sim',
 'listfiles-latestversion-no' => 'Não',
 
 # File description page
@@ -4058,6 +4069,8 @@ Em conjunto com este programa deve ter recebido [{{SERVER}}{{SCRIPTPATH}}/COPYIN
 'tags-description-header' => 'Descrição completa do significado',
 'tags-active-header' => 'Ativa?',
 'tags-hitcount-header' => 'Modificações etiquetadas',
+'tags-active-yes' => 'Sim',
+'tags-active-no' => 'Não',
 'tags-edit' => 'editar',
 'tags-hitcount' => '$1 {{PLURAL:$1|modificação|modificações}}',
 
@@ -4078,6 +4091,7 @@ Em conjunto com este programa deve ter recebido [{{SERVER}}{{SCRIPTPATH}}/COPYIN
 'dberr-problems' => 'Desculpe! Este site está com dificuldades técnicas.',
 'dberr-again' => 'Experimente esperar alguns minutos e atualizar.',
 'dberr-info' => '(Não foi possível contactar o servidor da base de dados: $1)',
+'dberr-info-hidden' => '(Não foi possível contactar o servidor de base de dados)',
 'dberr-usegoogle' => 'Pode tentar pesquisar no Google entretanto.',
 'dberr-outofdate' => 'Note que os seus índices relativos ao nosso conteúdo podem estar desatualizados.',
 'dberr-cachederror' => 'A seguinte página é uma cópia em cache da página pedida e pode não estar atualizada.',
@@ -4215,6 +4229,7 @@ Caso contrário, pode facilmente usar o formulário abaixo. O seu comentário se
 
 # Limit report
 'limitreport-cputime-value' => '$1 {{PLURAL:$1|segundo|segundos}}',
+'limitreport-walltime-value' => '$1 {{PLURAL:$1|segundo|segundos}}',
 'limitreport-postexpandincludesize-value' => '$1/$2 {{PLURAL:$2|byte|bytes}}',
 'limitreport-templateargumentsize' => 'Tamanho dos argumentos da predefinição',
 'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|byte|bytes}}',

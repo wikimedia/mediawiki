@@ -854,13 +854,13 @@ A peul torné andaré e modifiché na pàgina che a-i é già, ò pura [[Special
 'sectioneditnotsupported-text' => "La modìfica ëd na session a l'é nen mantnùa për costa pàgina.",
 'permissionserrors' => 'Eror ant ij përmess',
 'permissionserrorstext' => "A l'ha pa ij përmess dont a fa da manca për {{PLURAL:$1|via che}}:",
-'permissionserrorstext-withaction' => "It l'has nen ij përmess për $2, për {{PLURAL:$1|cost motiv|costi motiv}}:",
-'recreate-moveddeleted-warn' => "A l'é an camin ch'a crea torna na pàgina ch'a l'era stàita scancelà.'''
+'permissionserrorstext-withaction' => "A l'ha nen ij përmess për $2, për {{PLURAL:$1|cost motiv|costi motiv}}:",
+'recreate-moveddeleted-warn' => "'''Atension: a l'é an camin ch'a crea torna na pàgina ch'a l'era stàita scancelà.'''
 
 Ch'a varda d'esse sigur ch'a vala la pen-a ëd travajé an sna pàgina parèj.
 Për soa comodità i-j mostroma la lista djë scancelament ch'a toco sta pàgina-sì:",
 'moveddeleted-notice' => "Sta pàgina-sì a l'é stàita scancelà.
-Ël registr ëd le scancelassion e dij tramud a l'é arportà sota për arferiment.",
+Ël registr ëd le scancelassion e dij tramud a l'é arportà sì-sota për arferiment.",
 'log-fulllog' => 'Varda tut ël registr',
 'edit-hook-aborted' => "Modìfica anulà da n'estension.
 A-i é pa gnun-e spiegassion.",

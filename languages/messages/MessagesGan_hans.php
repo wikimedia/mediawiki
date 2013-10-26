@@ -1051,7 +1051,7 @@ $2',
 'unwatchedpages' => '冇眏到𠮶页面',
 
 # List redirects
-'listredirects' => '重定向页面列表',
+'listredirects' => '重定向列表',
 
 # Unused templates
 'unusedtemplates' => '冇使用𠮶模板',
@@ -1086,7 +1086,7 @@ $2',
 'statistics-users-active-desc' => '头$1日操作过𠮶用户',
 'statistics-mostpopular' => '眵𠮶人最多𠮶页面',
 
-'doubleredirects' => '双重重定向页面',
+'doubleredirects' => '双重重定向',
 'doubleredirectstext' => '底下𠮶重定向链接到别只重定向页面:',
 'double-redirect-fixed-move' => '[[$1]]拕移动正，佢个下拕重定向到[[$2]]。',
 'double-redirect-fixer' => '重定向𠮶修正器',

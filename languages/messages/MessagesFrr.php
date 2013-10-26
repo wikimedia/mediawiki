@@ -267,7 +267,7 @@ $1',
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Auer {{SITENAME}}',
 'aboutpage' => 'Project:Auer',
-'copyright' => 'Det stäänt oner det lisens $1.',
+'copyright' => 'Det sidj as tu fun oner $1 , wan diar niks ööders stäänt.',
 'copyrightpage' => '{{ns:project}}:Copyrights',
 'currentevents' => 'Aktuels',
 'currentevents-url' => 'Project:Aktuels',
@@ -482,6 +482,9 @@ Ferjid det ei, an aachte üüb din [[Special:Preferences|{{SITENAME}} iinstelang
 'userlogin-resetpassword-link' => 'Paaswurd turagsaat',
 'helplogin-url' => 'Help:Uunmelde',
 'userlogin-helplink' => "[[{{MediaWiki:helplogin-url}}|Halep bi't uunmeldin]]",
+'userlogin-loggedin' => 'Du beest al üs {{GENDER:$1|$1}} uunmeldet.
+Brük det formulaar diar oner, am di mä en öödern nööm uuntumeldin.',
+'userlogin-createanother' => 'En ööder brükerkonto iinracht',
 'createacct-join' => 'Du oner din dooten iin.',
 'createacct-another-join' => "Skriiw oner a dooten för't nei brükerkonto hen",
 'createacct-emailrequired' => 'E-mail adres',
@@ -1408,7 +1411,7 @@ Arken koon det lees.',
 'action-protect' => 'det seekerhaid faan sidjen tu feranrin',
 'action-rollback' => 'feranrangen faan di leetst brüker gau turagtusaaten',
 'action-import' => 'sidjen faan en ööder Wiki tu importiarin',
-'action-importupload' => 'sidjen auer det huuchschüüren faan datein tu importiarin',
+'action-importupload' => 'sidjen auer det huuchschüüren faan en datei tu importiarin',
 'action-patrol' => 'det werk faan ööder brükern üs kontroliaret tu kääntiaknin',
 'action-autopatrol' => 'aanj feranrangen üs kontroliaret tu kääntiaknin',
 'action-unwatchedpages' => 'det list faan sidjen uuntulukin, diar näämen üüb aachtet',
@@ -1712,6 +1715,7 @@ För a seekerhaid as img_auth.php ei aktiwiaret.',
 'listfiles_count' => 'Werjuunen',
 'listfiles-show-all' => 'Ual bilwerjuunen mä iinslütj',
 'listfiles-latestversion' => 'Aktuel werjuun',
+'listfiles-latestversion-yes' => 'Ja',
 'listfiles-latestversion-no' => 'Naan',
 
 # File description page
@@ -1920,6 +1924,7 @@ Uun arke rä stun ferwisangen tu't iarst an ööder widjerfeerang an uk tu det s
 'listusers' => 'Brükerfertiaknis',
 'listusers-editsonly' => 'Wise bluas aktiif brükern',
 'listusers-creationsort' => 'Sortiare efter dootem',
+'listusers-desc' => 'Sortiare amdeel',
 'usereditcount' => '{{PLURAL:$1|feranrang|$1 feranrangen}}',
 'usercreated' => '{{GENDER:$3|Maaget}} di $1 am a klook $2',
 'newpages' => 'Nei sidjen',
@@ -2172,9 +2177,11 @@ Halep an muar diartu: {{canonicalurl:{{MediaWiki:Helppage}}}}',
 'deleteotherreason' => 'Ööder/noch en grünj:',
 'deletereasonotherlist' => 'Ööder grünj',
 'deletereason-dropdown' => "*Algemian grünjer för't striken
-** Di skriiwer wul det so
+** Spam / dom tjüch
+** Wandaalen onerwais
 ** Copyright as ei beaachtet
-** Wandaalen onerwais",
+** Di skriiwer wul det so
+** Widjerfeerang uunstaken",
 'delete-edit-reasonlist' => "Grünjer för't striken bewerke",
 'delete-toobig' => 'Detdiar sidj hää muar üs $1 {{PLURAL:$1|werjuun|werjuunen}} . Sok sidjen kön ei so gau stregen wurd, ööders san a servers plaat.',
 'delete-warning-toobig' => "Detdiar sidj hää muar üs $1 {{PLURAL:$1|werjuun|werjuunen}} . Det striken koon komer maage bi't dootenbeenk.",
@@ -2192,7 +2199,7 @@ Halep an muar diartu: {{canonicalurl:{{MediaWiki:Helppage}}}}',
 Det leetst feranrang as faan [[User:$3|$3]] ([[User talk:$3|Diskusjuun]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment' => "Tuupfaadet feranrang: ''„$1“''.",
 'revertpage' => 'Feranrangen faan [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskusjuun]]) san üüb di leetst stant faan [[User:$1|$1]] turagsaat wurden.',
-'revertpage-nouser' => 'Feranrangen faan en ferbürgenen brüker turagsaat an det leetst werjuun faan [[User:$1|$1]] weder iinsteld.',
+'revertpage-nouser' => 'Feranrangen faan en ferbürgenen brüker turagsaat an det leetst werjuun faan {{GENDER:$1|[[User:$1|$1]]}} weder iinsteld.',
 'rollback-success' => 'Feranrangen faan $1 turagsaat an det leetst werjuun faan $2 weder iinsteld.',
 
 # Edit tokens
@@ -2332,7 +2339,7 @@ $1",
 'contributions' => '{{GENDER:$1|Brüker}} bidracher',
 'contributions-title' => 'Brükerbidracher för "$1"',
 'mycontris' => 'Bidracher',
-'contribsub2' => 'För $1 ($2)',
+'contribsub2' => 'För {{GENDER:$3|$1}} ($2)',
 'nocontribs' => 'Diar wiar nian paasin brükerbidracher',
 'uctop' => '(aktuel)',
 'month' => 'faan muun (of iarer):',
@@ -2818,6 +2825,8 @@ Dü könst di kweltekst uunluke.',
 'spam_reverting' => 'Leetst werjuun saner ferwisangen tu $1 weder iinsteld.',
 'spam_blanking' => 'Aal a werjuunen mä en ferwisang tu $1 san apklaaret wurden.',
 'spam_deleting' => 'Aal a werjuunen mä en ferwisung tu $1 san stregen wurden.',
+'simpleantispam-label' => "Anti-spam preew.
+Heer '''NIKS''' iindreeg!",
 
 # Info page
 'pageinfo-title' => 'Informatjuun tu „$1“',
@@ -3634,7 +3643,10 @@ You should have received [{{SERVER}}{{SCRIPTPATH}}/COPYING a copy of the GNU Gen
 'tags-tag' => 'Kääntiaken-nööm',
 'tags-display-header' => 'Nööm üüb feranrangslisten',
 'tags-description-header' => 'Widjloftag beskriiwang',
+'tags-active-header' => 'Aktiif?',
 'tags-hitcount-header' => 'Kääntiakent feranrangen',
+'tags-active-yes' => 'Ja',
+'tags-active-no' => 'Naan',
 'tags-edit' => 'bewerke',
 'tags-hitcount' => '$1 {{PLURAL:$1|feranrang|feranrangen}}',
 
@@ -3801,9 +3813,9 @@ You should have received [{{SERVER}}{{SCRIPTPATH}}/COPYING a copy of the GNU Gen
 'limitreport-ppvisitednodes' => 'Taal faan ferbinjangsknooter för di föörproseser',
 'limitreport-ppgeneratednodes' => 'Faan di föörproseser bereegent ferbinjangsknooter',
 'limitreport-postexpandincludesize' => "Grate faan iinbinjangen efter't ütjwidjin",
-'limitreport-postexpandincludesize-value' => '$1/$2 bytes',
+'limitreport-postexpandincludesize-value' => '$1/$2 {{PLURAL:$2|byte|bytes}}',
 'limitreport-templateargumentsize' => "Grate faan't föörlaagenargument",
-'limitreport-templateargumentsize-value' => '$1/$2 bytes',
+'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|byte|bytes}}',
 'limitreport-expansiondepth' => 'Maksimaal ütjwidjangsjipde',
 'limitreport-expensivefunctioncount' => 'Taal faan apwendag parser-funktjuunen',
 

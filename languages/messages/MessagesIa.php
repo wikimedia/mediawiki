@@ -3091,7 +3091,7 @@ Le causa es probabilemente un ligamine verso un sito externe que es presente in 
 'spam_reverting' => 'Revertite al ultime version que non contine ligamines a $1',
 'spam_blanking' => 'Tote le versiones contineva ligamines a $1. Le pagina es vacuate.',
 'spam_deleting' => 'Tote le versiones contineva ligamines a $1. Le pagina es delite.',
-'simpleantispam-label' => "Verification antispam.
+'simpleantispam-label' => "Verification anti-spam.
 '''NON''' completa isto!",
 
 # Info page

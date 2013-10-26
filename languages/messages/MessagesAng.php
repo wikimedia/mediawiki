@@ -370,8 +370,8 @@ Getæl gengra syndrigra trameta cann man findan be [[Special:SpecialPages|þǣm 
 'cascadeprotected' => 'Þes trament wæs geborgen wiþ adihtunge, for þǣm þe hē is befangen in þissum {{PLURAL:$1|tramente, þe is| tramentum, þe sind}} geborgen settum wyrcende þǣm cyre "cascading": $2',
 
 # Virus scanner
-'virus-badscanner' => '',
-'virus-unknownscanner' => '',
+'virus-badscanner' => 'Bad configuration: Unknown virus scanner: $1',
+'virus-unknownscanner' => 'unknown antivirus:',
 
 # Login and logout pages
 'logouttext' => "'''Þū eart nū ūtmeldod.'''
@@ -401,8 +401,8 @@ Cnāw þæt sume trametas mihten gīet wesan geīwde swā þū wǣre gīet inmel
 'logout' => 'Ūtmeldian',
 'userlogout' => 'Ūtmeldian',
 'notloggedin' => 'Nā ingemeldod',
-'userlogin-noaccount' => '',
-'userlogin-joinproject' => '',
+'userlogin-noaccount' => "Don't have an account?",
+'userlogin-joinproject' => 'Join {{SITENAME}}',
 'nologin' => 'Næfst þū reccinge? $1',
 'nologinlink' => 'Scieppan reccinge',
 'createaccount' => 'Scieppan reccinge',

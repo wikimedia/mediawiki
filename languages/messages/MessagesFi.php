@@ -824,7 +824,7 @@ Salli evästeiden käyttö, ja sen jälkeen kirjaudu sisään juuri luomallasi k
 'passwordremindertext' => 'Joku IP-osoitteesta $1 pyysi {{GRAMMAR:partitive|{{SITENAME}}}} ($4) lähettämään uuden salasanan. Väliaikainen salasana käyttäjälle $2 on nyt $3. Kirjaudu sisään ja vaihda salasana. Väliaikainen salasana vanhenee {{PLURAL:$5|yhden päivän|$5 päivän}} kuluttua.
 
 Jos joku muu on tehnyt tämän pyynnön, tai jos olet muistanut salasanasi ja et halua vaihtaa sitä, voit jättää tämän viestin huomiotta ja jatkaa vanhan salasanan käyttöä.',
-'noemail' => 'Käyttäjälle "$1" ei ole määritelty sähköpostiosoitetta.',
+'noemail' => 'Käyttäjälle $1 ei ole määritelty sähköpostiosoitetta.',
 'noemailcreate' => 'Sinun on annettava voimassa oleva sähköpostiosoite',
 'passwordsent' => 'Uusi salasana on lähetetty käyttäjän <b>$1</b> sähköpostiosoitteeseen.
 Ole hyvä ja kirjaudu sisään kun olet saanut sen.',
@@ -3138,7 +3138,8 @@ Voit katsella sivun lähteenä olevaa wikitekstiä.',
 'spam_reverting' => 'Palautettu viimeisimpään versioon, joka ei sisällä linkkejä kohteeseen $1.',
 'spam_blanking' => 'Kaikki versiot sisälsivät linkkejä kohteeseen $1. Sivu tyhjennetty.',
 'spam_deleting' => 'Kaikki versiot sisälsivät linkkejä kohteeseen $1, poistetaan',
-'simpleantispam-label' => "Mainostenvastainen tarkistus. '''ÄLÄ''' täytä tätä!",
+'simpleantispam-label' => "Mainostenvastainen varmistus.
+'''ÄLÄ''' täytä tätä!",
 
 # Info page
 'pageinfo-title' => 'Tietoja sivusta $1',

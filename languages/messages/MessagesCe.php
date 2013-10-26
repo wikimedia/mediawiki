@@ -2211,6 +2211,9 @@ PICT # тайп тайпан
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'seconds-abbrev' => '$1оцу',
 
+# Human-readable timestamps
+'hours-ago' => '$1 {{PLURAL:$1|сахьат}} хьалха',
+
 # Bad image list
 'bad_image_list' => 'Барам хила беза ишта:
 
