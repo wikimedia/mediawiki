@@ -5954,6 +5954,11 @@ $wgSpecialPages = array();
 $wgAutoloadClasses = array();
 
 /**
+ * Switch controlling legacy case-insensitive classloading.
+ */
+$wgAutoloadAttemptLowercase = true;
+
+/**
  * An array of extension types and inside that their names, versions, authors,
  * urls, descriptions and pointers to localized description msgs. Note that
  * the version, url, description and descriptionmsg key can be omitted.

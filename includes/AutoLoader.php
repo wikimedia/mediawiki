@@ -1145,7 +1145,8 @@ class AutoLoader {
 	 * as well.
 	 */
 	static function autoload( $className ) {
-		global $wgAutoloadClasses, $wgAutoloadLocalClasses;
+		global $wgAutoloadClasses, $wgAutoloadLocalClasses,
+			$wgAutoloadAttemptLowercase;
 
 		// Workaround for PHP bug <https://bugs.php.net/bug.php?id=49143> (5.3.2. is broken, it's
 		// fixed in 5.3.6). Strip leading backslashes from class names. When namespaces are used,
@@ -1160,26 +1161,33 @@ class AutoLoader {
 			$filename = $wgAutoloadLocalClasses[$className];
 		} elseif ( isset( $wgAutoloadClasses[$className] ) ) {
 			$filename = $wgAutoloadClasses[$className];
-		} else {
+		} elseif ( $wgAutoloadAttemptLowercase ) {
 			# Try a different capitalisation
 			# The case can sometimes be wrong when unserializing PHP 4 objects
 			$filename = false;
 			$lowerClass = strtolower( $className );
+			static $autoloadLocalClassesLower = null;
 
-			foreach ( $wgAutoloadLocalClasses as $class2 => $file2 ) {
-				if ( strtolower( $class2 ) == $lowerClass ) {
-					$filename = $file2;
-				}
+			if ( is_null( $autoloadLocalClassesLower ) ) {
+				$autoloadLocalClassesLower = array_map( 'strtolower', $wgAutoloadLocalClasses );
 			}
 
-			if ( !$filename ) {
-				if ( function_exists( 'wfDebug' ) ) {
-					wfDebug( "Class {$className} not found; skipped loading\n" );
+			if ( isset( $autoloadLocalClassesLower[$lowerClass] ) ) {
+				if ( function_exists( 'wfWarn' ) ) {
+					wfWarn( "Class {$className} was loaded using forced lowercase.\n" );
 				}
-
-				# Give up
-				return false;
+				$filename = $autoloadLocalClassesLower[$lowerClass];
 			}
+		}
+
+		if ( !$filename ) {
+			if ( function_exists( 'wfDebug' ) ) {
+				# FIXME: This is not very polite.  Assume we do not manage the class.
+				wfDebug( "Class {$className} not found; skipped loading\n" );
+			}
+
+			# Give up
+			return false;
 		}
 
 		# Make an absolute path, this improves performance by avoiding some stat calls
