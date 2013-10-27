@@ -389,11 +389,11 @@ class Parser {
 			$this->mRevisionSize = null;
 		}
 
-		wfRunHooks( 'ParserBeforeStrip', array( &$this, &$text, &$this->mStripState ) );
+		wfRunHooks( 'ParserBeforeStrip', array( $this, &$text, $this->mStripState ) );
 		# No more strip!
-		wfRunHooks( 'ParserAfterStrip', array( &$this, &$text, &$this->mStripState ) );
+		wfRunHooks( 'ParserAfterStrip', array( $this, &$text, $this->mStripState ) );
 		$text = $this->internalParse( $text );
-		wfRunHooks( 'ParserAfterParse', array( &$this, &$text, &$this->mStripState ) );
+		wfRunHooks( 'ParserAfterParse', array( $this, &$text, $this->mStripState ) );
 
 		$text = $this->mStripState->unstripGeneral( $text );
 
@@ -453,7 +453,7 @@ class Parser {
 
 		$text = $this->mStripState->unstripNoWiki( $text );
 
-		wfRunHooks( 'ParserBeforeTidy', array( &$this, &$text ) );
+		wfRunHooks( 'ParserBeforeTidy', array( $this, &$text ) );
 
 		$text = $this->replaceTransparentTags( $text );
 		$text = $this->mStripState->unstripGeneral( $text );
@@ -497,7 +497,7 @@ class Parser {
 			);
 		}
 
-		wfRunHooks( 'ParserAfterTidy', array( &$this, &$text ) );
+		wfRunHooks( 'ParserAfterTidy', array( $this, &$text ) );
 
 		# Information on include size limits, for the benefit of users who try to skirt them
 		if ( $this->mOptions->getEnableLimitReport() ) {
@@ -597,8 +597,8 @@ class Parser {
 	 */
 	function recursiveTagParse( $text, $frame = false ) {
 		wfProfileIn( __METHOD__ );
-		wfRunHooks( 'ParserBeforeStrip', array( &$this, &$text, &$this->mStripState ) );
-		wfRunHooks( 'ParserAfterStrip', array( &$this, &$text, &$this->mStripState ) );
+		wfRunHooks( 'ParserBeforeStrip', array( $this, &$text, $this->mStripState ) );
+		wfRunHooks( 'ParserAfterStrip', array( $this, &$text, $this->mStripState ) );
 		$text = $this->internalParse( $text, false, $frame );
 		wfProfileOut( __METHOD__ );
 		return $text;
@@ -615,8 +615,8 @@ class Parser {
 		if ( $revid !== null ) {
 			$this->mRevisionId = $revid;
 		}
-		wfRunHooks( 'ParserBeforeStrip', array( &$this, &$text, &$this->mStripState ) );
-		wfRunHooks( 'ParserAfterStrip', array( &$this, &$text, &$this->mStripState ) );
+		wfRunHooks( 'ParserBeforeStrip', array( $this, &$text, $this->mStripState ) );
+		wfRunHooks( 'ParserAfterStrip', array( $this, &$text, $this->mStripState ) );
 		$text = $this->replaceVariables( $text );
 		$text = $this->mStripState->unstripBoth( $text );
 		wfProfileOut( __METHOD__ );
@@ -1191,7 +1191,7 @@ class Parser {
 		$origText = $text;
 
 		# Hook to suspend the parser in this state
-		if ( !wfRunHooks( 'ParserBeforeInternalParse', array( &$this, &$text, &$this->mStripState ) ) ) {
+		if ( !wfRunHooks( 'ParserBeforeInternalParse', array( $this, &$text, $this->mStripState ) ) ) {
 			wfProfileOut( __METHOD__ );
 			return $text;
 		}
@@ -1212,9 +1212,9 @@ class Parser {
 			$text = $this->replaceVariables( $text );
 		}
 
-		wfRunHooks( 'InternalParseBeforeSanitize', array( &$this, &$text, &$this->mStripState ) );
+		wfRunHooks( 'InternalParseBeforeSanitize', array( $this, &$text, $this->mStripState ) );
 		$text = Sanitizer::removeHTMLtags( $text, array( &$this, 'attributeStripCallback' ), false, array_keys( $this->mTransparentTagHooks ) );
-		wfRunHooks( 'InternalParseBeforeLinks', array( &$this, &$text, &$this->mStripState ) );
+		wfRunHooks( 'InternalParseBeforeLinks', array( $this, &$text, $this->mStripState ) );
 
 		# Tables need to come after variable replacement for things to work
 		# properly; putting them before other transformations should keep
