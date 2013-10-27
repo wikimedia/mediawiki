@@ -861,10 +861,10 @@ Ch'a varda d'esse sigur ch'a vala la pen-a ëd travajé an sna pàgina parèj.
 Për soa comodità i-j mostroma la lista djë scancelament ch'a toco sta pàgina-sì:",
 'moveddeleted-notice' => "Sta pàgina-sì a l'é stàita scancelà.
 Ël registr ëd le scancelassion e dij tramud a l'é arportà sì-sota për arferiment.",
-'log-fulllog' => 'Varda tut ël registr',
+'log-fulllog' => 'Vëdde tut ël registr',
 'edit-hook-aborted' => "Modìfica anulà da n'estension.
-A-i é pa gnun-e spiegassion.",
-'edit-gone-missing' => 'As peul nen modifiché la pàgina.
+A-i é pa dë spiegassion.",
+'edit-gone-missing' => 'As peul nen agiornesse la pàgina.
 A smija che a sia stàita scancelà.',
 'edit-conflict' => "Conflit d'edission.",
 'edit-no-change' => "Toa modìfica a l'é stàita ignorà, përchè a l'é pa stàit fàit gnun cambiament al test.",
