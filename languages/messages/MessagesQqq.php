@@ -1816,7 +1816,7 @@ Should match: {{msg-mw|summary}}.',
 Parameters:
 * $1 - the blocking sysop (with a link to his/her userpage)
 * $2 - the reason for the block
-* $3 - the current IP address of the blocked user
+* $3 - empty, do not use
 * $4 - (Unused) the blocking sysop\'s username (plain text, without the link)
 * $5 - the unique numeric identifier of the applied autoblock
 * $6 - the expiry of the block
@@ -1832,7 +1832,7 @@ See also:
 Parameters:
 * $1 - the blocking sysop (with a link to his/her userpage)
 * $2 - the reason for the block (in case of autoblocks: {{msg-mw|autoblocker}})
-* $3 - the current IP address of the blocked user
+* $3 - empty, do not use
 * $4 - (Unused) the blocking sysop\'s username (plain text, without the link). Use it for GENDER.
 * $5 - the unique numeric identifier of the applied autoblock
 * $6 - the expiry of the block
