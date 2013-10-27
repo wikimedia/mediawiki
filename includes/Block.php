@@ -1409,7 +1409,12 @@ class Block {
 
 		/* $ip returns who *is* being blocked, $intended contains who was meant to be blocked.
 		 * This could be a username, an IP range, or a single IP. */
-		$intended = $this->getTarget();
+		if ( $this->mAuto ) {
+			$parent = $this->mParentBlockId;
+			$intended = self::newFromId( $parent )->getRedactedName();
+		} else {
+			$intended = $this->getRedactedName();
+		}
 
 		$lang = $context->getLanguage();
 		return array(
