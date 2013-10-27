@@ -654,8 +654,8 @@ class DifferenceEngine extends ContextSource {
 		// Cacheable?
 		$key = false;
 		if ( $this->mOldid && $this->mNewid ) {
-			$key = wfMemcKey( 'diff', 'version', MW_DIFF_VERSION,
-				'oldid', $this->mOldid, 'newid', $this->mNewid );
+			$key = $this->getDiffBodyCacheKey();
+
 			// Try cache
 			if ( !$this->mRefreshCache ) {
 				$difftext = $wgMemc->get( $key );
@@ -693,6 +693,22 @@ class DifferenceEngine extends ContextSource {
 		}
 		wfProfileOut( __METHOD__ );
 		return $difftext;
+	}
+
+	/**
+	 * Returns the cache key for diff body text or content.
+	 *
+	 * @return string
+	 * @since 1.23
+	 * @throws MWException
+	 */
+	protected function getDiffBodyCacheKey() {
+		if ( !$this->mOldid || !$this->mNewid ) {
+			throw new MWException( 'mOldid and mNewid must be set to get diff cache key.' );
+		}
+
+		return wfMemcKey( 'diff', 'version', MW_DIFF_VERSION,
+			'oldid', $this->mOldid, 'newid', $this->mNewid );
 	}
 
 	/**
