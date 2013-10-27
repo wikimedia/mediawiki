@@ -17,6 +17,7 @@ production.
   changes and watchlist) and the talk page message indicator are now correctly
   updated when the user is viewing old revisions of pages, instead of always
   acting as if the latest revision was being viewed.
+* Parser dies early if called recursively
 
 === API changes in 1.23 ===
 

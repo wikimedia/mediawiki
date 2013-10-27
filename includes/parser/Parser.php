@@ -212,6 +212,11 @@ class Parser {
 	var $mLangLinkLanguages;
 
 	/**
+	 * @var boolean Recursive call protection.
+	 */
+	private $mInParse = false;
+
+	/**
 	 * Constructor
 	 *
 	 * @param $conf array
@@ -360,10 +365,15 @@ class Parser {
 		 */
 
 		global $wgUseTidy, $wgAlwaysUseTidy, $wgShowHostnames;
+		if ( $this->mInParse ) {
+			throw new MWException( "Parser::Parse is not allowed to be called recursively" );
+		}
+
 		$fname = __METHOD__ . '-' . wfGetCaller();
 		wfProfileIn( __METHOD__ );
 		wfProfileIn( $fname );
 
+		$this->mInParse = true;
 		$this->startParse( $title, $options, self::OT_HTML, $clearState );
 
 		$this->mInputSize = strlen( $text );
@@ -578,6 +588,7 @@ class Parser {
 		$this->mRevisionUser = $oldRevisionUser;
 		$this->mRevisionSize = $oldRevisionSize;
 		$this->mInputSize = false;
+		$this->mInParse = false;
 		wfProfileOut( $fname );
 		wfProfileOut( __METHOD__ );
 
