@@ -1297,7 +1297,7 @@ class User {
 		# user is not immune to autoblocks/hardblocks, and they are the current user so we
 		# know which IP address they're actually coming from
 		if ( !$this->isAllowed( 'ipblock-exempt' ) && $this->getID() == $wgUser->getID() ) {
-			$ip = $this->getRequest()->getIP();
+			$ip = $this->getUserIP();
 		} else {
 			$ip = null;
 		}
@@ -1472,7 +1472,7 @@ class User {
 	 */
 	public function isPingLimitable() {
 		global $wgRateLimitsExcludedIPs;
-		if ( in_array( $this->getRequest()->getIP(), $wgRateLimitsExcludedIPs ) ) {
+		if ( in_array( $this->getUserIP(), $wgRateLimitsExcludedIPs ) ) {
 			// No other good way currently to disable rate limits
 			// for specific IPs. :P
 			// But this is a crappy hack and should die.
@@ -1529,11 +1529,11 @@ class User {
 				$keys[wfMemcKey( 'limiter', $action, 'user', $id )] = $limits['newbie'];
 			}
 			if ( isset( $limits['ip'] ) ) {
-				$ip = $this->getRequest()->getIP();
+				$ip = $this->getUserIP();
 				$keys["mediawiki:limiter:$action:ip:$ip"] = $limits['ip'];
 			}
 			if ( isset( $limits['subnet'] ) ) {
-				$ip = $this->getRequest()->getIP();
+				$ip = $this->getUserIP();
 				$matches = array();
 				$subnet = false;
 				if ( IP::isIPv6( $ip ) ) {
@@ -1687,7 +1687,7 @@ class User {
 		if ( IP::isIPAddress( $this->getName() ) ) {
 			$ip = $this->getName();
 		} elseif ( !$ip ) {
-			$ip = $this->getRequest()->getIP();
+			$ip = $this->getUserIP();
 		}
 		$blocked = false;
 		wfRunHooks( 'UserIsBlockedGlobally', array( &$this, $ip, &$blocked ) );
@@ -1766,7 +1766,7 @@ class User {
 			$this->load();
 			if ( $this->mName === false ) {
 				// Clean up IPs
-				$this->mName = IP::sanitizeIP( $this->getRequest()->getIP() );
+				$this->mName = IP::sanitizeIP( $this->getUserIP() );
 			}
 			return $this->mName;
 		}
@@ -2620,7 +2620,7 @@ class User {
 			$https = $this->getBoolOption( 'prefershttps' );
 			wfRunHooks( 'UserRequiresHTTPS', array( $this, &$https ) );
 			if ( $https ) {
-				$https = wfCanIPUseHTTPS( $this->getRequest()->getIP() );
+				$https = wfCanIPUseHTTPS( $this->getUserIP() );
 			}
 			return $https;
 		}
@@ -3491,7 +3491,7 @@ class User {
 			return false;
 		}
 
-		return (bool)$userblock->doAutoblock( $this->getRequest()->getIP() );
+		return (bool)$userblock->doAutoblock( $this->getUserIP() );
 	}
 
 	/**
@@ -3558,7 +3558,7 @@ class User {
 		# blocked with createaccount disabled, prevent new account creation there even
 		# when the user is logged in
 		if ( $this->mBlockedFromCreateAccount === false && !$this->isAllowed( 'ipblock-exempt' ) ) {
-			$this->mBlockedFromCreateAccount = Block::newFromTarget( null, $this->getRequest()->getIP() );
+			$this->mBlockedFromCreateAccount = Block::newFromTarget( null, $this->getUserIP() );
 		}
 		return $this->mBlockedFromCreateAccount instanceof Block && $this->mBlockedFromCreateAccount->prevents( 'createaccount' )
 			? $this->mBlockedFromCreateAccount
@@ -3789,7 +3789,7 @@ class User {
 
 		return $this->sendMail( wfMessage( 'confirmemail_subject' )->text(),
 			wfMessage( $message,
-				$this->getRequest()->getIP(),
+				$this->getUserIP(),
 				$this->getName(),
 				$url,
 				$wgLang->timeanddate( $expiration, false ),
@@ -4794,5 +4794,19 @@ class User {
 		} else {
 			return Status::newFatal( 'badaccess-group0' );
 		}
+	}
+
+	/** 
+	 * Allow user objects to override which IP address gets used as the users' IP
+	 *
+	 * @since 1.22
+	 * @param WebRequest
+	 * @return string
+	 */
+	public function getUserIP( $request = null ) {
+		if( is_null( $request ) ) {
+			$request = $this->getRequest();
+		}
+		return $request->getIP();
 	}
 }
