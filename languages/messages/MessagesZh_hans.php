@@ -3061,7 +3061,7 @@ $2',
 'tooltip-undo' => '“撤销”可以恢复该编辑并在预览模式下打开编辑表单。它允许在摘要中加入原因。',
 'tooltip-preferences-save' => '保存系统设置',
 'tooltip-summary' => '请输入简短的摘要',
-'tooltip-iwiki' => '$1——$2',
+'tooltip-iwiki' => '$1 – 2',
 
 # Stylesheets
 'common.css' => '/* 此处的 CSS 将应用于所有的皮肤 */',
