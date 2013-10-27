@@ -5954,6 +5954,13 @@ $wgSpecialPages = array();
 $wgAutoloadClasses = array();
 
 /**
+ * Switch controlling legacy case-insensitive classloading.
+ * Do not disable if your wiki must support data created by PHP4, or by
+ * MediaWiki 1.4 or earlier.
+ */
+$wgAutoloadAttemptLowercase = true;
+
+/**
  * An array of extension types and inside that their names, versions, authors,
  * urls, descriptions and pointers to localized description msgs. Note that
  * the version, url, description and descriptionmsg key can be omitted.
