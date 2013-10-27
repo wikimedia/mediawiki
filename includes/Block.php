@@ -1424,7 +1424,7 @@ class Block {
 			$this->mAuto ? 'autoblockedtext' : 'blockedtext',
 			$link,
 			$reason,
-			$context->getRequest()->getIP(),
+			'',
 			$this->getByName(),
 			$this->getId(),
 			$lang->formatExpiry( $this->mExpiry ),
