@@ -1211,7 +1211,7 @@ continue using your old password.',
 'passwordsent'                    => 'A new password has been sent to the email address registered for "$1".
 Please log in again after you receive it.',
 'blocked-mailpassword'            => 'Your IP address is blocked from editing, and so is not allowed to use the password recovery function to prevent abuse.',
-'eauthentsent'                    => 'A confirmation email has been sent to the nominated email address.
+'eauthentsent'                    => 'A confirmation email has been sent to the specified email address.
 Before any other email is sent to the account, you will have to follow the instructions in the email, to confirm that the account is actually yours.',
 'throttled-mailpassword'          => 'A password reset email has already been sent, within the last {{PLURAL:$1|hour|$1 hours}}.
 To prevent abuse, only one password reset email will be sent per {{PLURAL:$1|hour|$1 hours}}.',
