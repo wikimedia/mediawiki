@@ -254,6 +254,9 @@ class Parser {
 	 * Allow extensions to clean up when the parser is cloned
 	 */
 	function __clone() {
+		if ( isset( $this->mPreprocessor ) ) {
+			$this->mPreprocessor->parser = $this;
+		}
 		wfRunHooks( 'ParserCloned', array( $this ) );
 	}
 
