@@ -1136,6 +1136,8 @@ $wgAutoloadLocalClasses = array(
 );
 
 class AutoLoader {
+	static $autoloadLocalClassesLower = null;
+
 	/**
 	 * autoload - take a class name and attempt to load it
 	 *
@@ -1145,7 +1147,8 @@ class AutoLoader {
 	 * as well.
 	 */
 	static function autoload( $className ) {
-		global $wgAutoloadClasses, $wgAutoloadLocalClasses;
+		global $wgAutoloadClasses, $wgAutoloadLocalClasses,
+			$wgAutoloadAttemptLowercase;
 
 		// Workaround for PHP bug <https://bugs.php.net/bug.php?id=49143> (5.3.2. is broken, it's
 		// fixed in 5.3.6). Strip leading backslashes from class names. When namespaces are used,
@@ -1160,26 +1163,37 @@ class AutoLoader {
 			$filename = $wgAutoloadLocalClasses[$className];
 		} elseif ( isset( $wgAutoloadClasses[$className] ) ) {
 			$filename = $wgAutoloadClasses[$className];
-		} else {
-			# Try a different capitalisation
-			# The case can sometimes be wrong when unserializing PHP 4 objects
+		} elseif ( $wgAutoloadAttemptLowercase ) {
+			/*
+			 * Try a different capitalisation.
+			 *
+			 * PHP 4 objects are always serialized with the classname coerced to lowercase,
+			 * and we are plagued with several legacy uses created by MediaWiki < 1.5, see
+			 * https://wikitech.wikimedia.org/wiki/Text_storage_data
+			 */
 			$filename = false;
 			$lowerClass = strtolower( $className );
 
-			foreach ( $wgAutoloadLocalClasses as $class2 => $file2 ) {
-				if ( strtolower( $class2 ) == $lowerClass ) {
-					$filename = $file2;
-				}
+			if ( self::$autoloadLocalClassesLower === null ) {
+				self::$autoloadLocalClassesLower = array_change_key_case( $wgAutoloadLocalClasses, CASE_LOWER );
 			}
 
-			if ( !$filename ) {
+			if ( isset( self::$autoloadLocalClassesLower[$lowerClass] ) ) {
 				if ( function_exists( 'wfDebug' ) ) {
-					wfDebug( "Class {$className} not found; skipped loading\n" );
+					wfDebug( "Class {$className} was loaded using incorrect case.\n" );
 				}
-
-				# Give up
-				return false;
+				$filename = self::$autoloadLocalClassesLower[$lowerClass];
 			}
+		}
+
+		if ( !$filename ) {
+			if ( function_exists( 'wfDebug' ) ) {
+				# FIXME: This is not very polite.  Assume we do not manage the class.
+				wfDebug( "Class {$className} not found; skipped loading\n" );
+			}
+
+			# Give up
+			return false;
 		}
 
 		# Make an absolute path, this improves performance by avoiding some stat calls
