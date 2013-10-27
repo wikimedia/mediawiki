@@ -212,6 +212,12 @@ class Parser {
 	var $mLangLinkLanguages;
 
 	/**
+	 * @var boolean Recursive call protection.
+	 * This variable should be treated as if it were private.
+	 */
+	public $mInParse = false;
+
+	/**
 	 * Constructor
 	 *
 	 * @param array $conf
@@ -254,6 +260,7 @@ class Parser {
 	 * Allow extensions to clean up when the parser is cloned
 	 */
 	function __clone() {
+		$this->mInParse = false;
 		wfRunHooks( 'ParserCloned', array( $this ) );
 	}
 
@@ -363,6 +370,10 @@ class Parser {
 		$fname = __METHOD__ . '-' . wfGetCaller();
 		wfProfileIn( __METHOD__ );
 		wfProfileIn( $fname );
+
+		if ( $clearState ) {
+			$magicScopeVariable = $this->lock();
+		}
 
 		$this->startParse( $title, $options, self::OT_HTML, $clearState );
 
@@ -615,6 +626,7 @@ class Parser {
 	 */
 	function preprocess( $text, Title $title = null, ParserOptions $options, $revid = null ) {
 		wfProfileIn( __METHOD__ );
+		$magicScopeVariable = $this->lock();
 		$this->startParse( $title, $options, self::OT_PREPROCESS, true );
 		if ( $revid !== null ) {
 			$this->mRevisionId = $revid;
@@ -662,6 +674,7 @@ class Parser {
 		$text = $msg->params( $params )->plain();
 
 		# Parser (re)initialisation
+		$magicScopeVariable = $this->lock();
 		$this->startParse( $title, $options, self::OT_PLAIN, true );
 
 		$flags = PPFrame::NO_ARGS | PPFrame::NO_TEMPLATES;
@@ -4593,6 +4606,9 @@ class Parser {
 	 * @return string The altered wiki markup
 	 */
 	public function preSaveTransform( $text, Title $title, User $user, ParserOptions $options, $clearState = true ) {
+		if ( $clearState ) {
+			$magicScopeVariable = $this->lock();
+		}
 		$this->startParse( $title, $options, self::OT_WIKI, $clearState );
 		$this->setUser( $user );
 
@@ -4767,6 +4783,7 @@ class Parser {
 	public function cleanSig( $text, $parsing = false ) {
 		if ( !$parsing ) {
 			global $wgTitle;
+			$magicScopeVariable = $this->lock();
 			$this->startParse( $wgTitle, new ParserOptions, self::OT_PREPROCESS, true );
 		}
 
@@ -5627,6 +5644,8 @@ class Parser {
 	 */
 	private function extractSections( $text, $section, $mode, $newText = '' ) {
 		global $wgTitle; # not generally used but removes an ugly failure mode
+
+		$magicScopeVariable = $this->lock();
 		$this->startParse( $wgTitle, new ParserOptions, self::OT_PLAIN, true );
 		$outText = '';
 		$frame = $this->getPreprocessor()->newFrame();
@@ -5972,6 +5991,7 @@ class Parser {
 	 * @return string
 	 */
 	function testSrvus( $text, Title $title, ParserOptions $options, $outputType = self::OT_HTML ) {
+		$magicScopeVariable = $this->lock();
 		$this->startParse( $title, $options, $outputType, true );
 
 		$text = $this->replaceVariables( $text );
@@ -6148,5 +6168,28 @@ class Parser {
 			$parsedWidthParam['width'] = $width;
 		}
 		return $parsedWidthParam;
+	}
+
+	/**
+	 * Lock the current instance of the parser.
+	 *
+	 * This is meant to stop someone from calling the parser
+	 * recursively and messing up all the strip state.
+	 *
+	 * @throws MWException If parser is in a parse
+	 * @return ScopedCallback The lock will be released once the return value goes out of scope.
+	 */
+	protected function lock() {
+		if ( $this->mInParse ) {
+			throw new MWException( "Parser state cleared while parsing. Did you call Parser::parse recursively?" );
+		}
+		$this->mInParse = true;
+
+		$that = $this;
+		$recursiveCheck = new ScopedCallback( function() use ( $that ) {
+			$that->mInParse = false;
+		} );
+
+		return $recursiveCheck;
 	}
 }

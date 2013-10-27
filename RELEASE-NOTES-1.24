@@ -30,6 +30,7 @@ production.
   which used to collapse some sidebar elements by default.
 * (bug 890) Links in Special:RecentChanges and Special:Watchlist no longer
   follow redirects to their target pages.
+* Parser now dies early if called recursively, instead of producing subtle bugs.
 
 === Web API changes in 1.24 ===
 * action=parse API now supports prop=modules, which provides the list of
