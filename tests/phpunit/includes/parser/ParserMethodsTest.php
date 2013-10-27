@@ -30,6 +30,25 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 	}
 
 	/**
+	 * @expectedException MWException
+	 * @expectedExceptionMessage Parser::parse is not allowed to be called recursively
+	 */
+	public function testRecursiveParse() {
+		global $wgParser;
+		$title = Title::newFromText( 'foo' );
+		$po = new ParserOptions;
+		$wgParser->setHook( 'recursivecallparser', array( $this, 'helperParserFunc' ) );
+		$wgParser->parse( '<recursivecallparser>baz</recursivecallparser>', $title, $po );
+	}
+
+	public function helperParserFunc( $input, $args, $parser) {
+		$title = Title::newFromText( 'foo' );
+		$po = new ParserOptions;
+		$parser->parse( $input, $title, $po );
+		return 'bar';
+	}
+
+	/**
 	 * @covers Parser::callParserFunction
 	 */
 	public function testCallParserFunction() {
