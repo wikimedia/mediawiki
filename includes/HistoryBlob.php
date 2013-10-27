@@ -290,7 +290,7 @@ class HistoryBlobStub {
  * of megabytes of data during the conversion downtime.
  *
  * Serialized HistoryBlobCurStub objects will be inserted into the text table
- * on conversion if $wgFastSchemaUpgrades is set to true.
+ * on conversion if $wgLegacySchemaConversion is set to true.
  */
 class HistoryBlobCurStub {
 	var $mCurId;
