@@ -11,6 +11,7 @@ production.
 === Configuration changes in 1.23 ===
 
 === New features in 1.23 ===
+* Added new javascript variable $wgRelevantUserName from skin
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
