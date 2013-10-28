@@ -338,6 +338,7 @@ $wgMessageStructure = array(
 		'confirmable-confirm',
 		'confirmable-yes',
 		'confirmable-no',
+		'confirmable-confirm-rollback',
 		'thisisdeleted',
 		'viewdeleted',
 		'restorelink',
