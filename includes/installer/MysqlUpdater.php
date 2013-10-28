@@ -239,6 +239,7 @@ class MysqlUpdater extends DatabaseUpdater {
 				'patch-iwlinks-from-title-index.sql' ),
 			array( 'addField', 'archive', 'ar_id', 'patch-archive-ar_id.sql' ),
 			array( 'addField', 'externallinks', 'el_id', 'patch-externallinks-el_id.sql' ),
+			array( 'addField', 'recentchanges', 'rc_source', 'patch-rc_source.sql' ),
 		);
 	}
 
