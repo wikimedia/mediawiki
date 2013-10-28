@@ -778,6 +778,14 @@ return array(
 			'user.tokens',
 		),
 	),
+	'mediawiki.confirmable.rollback' => array(
+		'scripts' => 'resources/src/mediawiki/mediawiki.confirmable.rollback.js',
+		'styles' => 'resources/src/mediawiki/mediawiki.confirmable.rollback.css',
+		'messages' => array(
+			'confirmable-confirm-rollback',
+		),
+		'dependencies' => 'jquery.confirmable',
+	),
 	'mediawiki.debug' => array(
 		'scripts' => array(
 			'resources/src/mediawiki/mediawiki.debug.js',
