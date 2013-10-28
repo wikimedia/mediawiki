@@ -66,6 +66,8 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'addSequence', 'logging', false, 'logging_log_id_seq' ),
 			array( 'addSequence', 'page_restrictions', false, 'page_restrictions_pr_id_seq' ),
 			array( 'addSequence', 'filearchive', 'fa_id', 'filearchive_fa_id_seq' ),
+			array( 'addSequence', 'archive', false, 'archive_ar_id_seq' ),
+			array( 'addSequence', 'externallinks', false, 'externallinks_el_id_seq' ),
 
 			# new tables
 			array( 'addTable', 'category', 'patch-category.sql' ),
