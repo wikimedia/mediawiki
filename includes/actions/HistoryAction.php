@@ -211,6 +211,8 @@ class HistoryAction extends FormlessAction {
 		);
 		$out->preventClickjacking( $pager->getPreventClickjacking() );
 
+		$out->addModules( 'mediawiki.confirmable.rollback' );
+
 		wfProfileOut( __METHOD__ );
 	}
 
