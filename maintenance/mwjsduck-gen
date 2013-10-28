@@ -6,7 +6,7 @@ then
 	JSDUCK_MWVERSION="$2"
 elif [[ "$*" != "" ]]
 then
-	echo "Usage $0: [--version <mediawiki version>]"
+	echo "Usage: $0 [--version <mediawiki version>]"
 	echo
 	exit 1
 fi
