@@ -683,30 +683,9 @@ class MWExceptionHandler {
 	 * @return string The stack trace as a string
 	 */
 	public static function formatRedactedTrace( Exception $e ) {
-		global $wgRedactedFunctionArguments;
 		$finalExceptionText = '';
 
-		// Unique value to indicate redacted parameters
-		$redacted = new stdClass();
-
 		foreach ( $e->getTrace() as $i => $call ) {
-			$checkFor = array();
-			if ( isset( $call['class'] ) ) {
-				$checkFor[] = $call['class'] . '::' . $call['function'];
-				foreach ( class_parents( $call['class'] ) as $parent ) {
-					$checkFor[] = $parent . '::' . $call['function'];
-				}
-			} else {
-				$checkFor[] = $call['function'];
-			}
-
-			foreach ( $checkFor as $check ) {
-				if ( isset( $wgRedactedFunctionArguments[$check] ) ) {
-					foreach ( (array)$wgRedactedFunctionArguments[$check] as $argNo ) {
-						$call['args'][$argNo] = $redacted;
-					}
-				}
-			}
 
 			if ( isset( $call['file'] ) && isset( $call['line'] ) ) {
 				$finalExceptionText .= "#{$i} {$call['file']}({$call['line']}): ";
@@ -722,25 +701,66 @@ class MWExceptionHandler {
 			} else {
 				$finalExceptionText .= $call['function'];
 			}
-			$args = array();
-			if ( isset( $call['args'] ) ) {
-				foreach ( $call['args'] as $arg ) {
-					if ( $arg === $redacted ) {
-						$args[] = 'REDACTED';
-					} elseif ( is_object( $arg ) ) {
-						$args[] = 'Object(' . get_class( $arg ) . ')';
-					} elseif( is_array( $arg ) ) {
-						$args[] = 'Array';
-					} else {
-						$args[] = var_export( $arg, true );
-					}
-				}
-			}
-			$finalExceptionText .=  '(' . implode( ', ', $args ) . ")\n";
+
+			$args = self::expandArgumentsInCall( $call );
+			$finalExceptionText .= '(' . implode( ', ', $args ) . ")\n";
 		}
 		return $finalExceptionText . '#' . ( $i + 1 ) . ' {main}';
 	}
 
+	/**
+	 * Export/redact arguments of a stacktrace call.
+	 *
+	 * See also $wgRedactedFunctionArguments to control which functions
+	 * arguments ends up being redacted.
+	 *
+	 * @param Array $call A backtrace call entry, should have a 'args' key.
+	 * @return Array Formatted arguments. Empty array whenever there is no
+	 * arguments.
+	 */
+	public static function expandArgumentsInCall( $call ) {
+		global $wgRedactedFunctionArguments;
+
+		if( !isset( $call['args'] ) ) {
+			return array();
+		}
+
+		// Unique value to indicate redacted parameters
+		$redacted = new stdClass();
+		$checkFor = array();
+
+		if ( isset( $call['class'] ) ) {
+			$checkFor[] = $call['class'] . '::' . $call['function'];
+			foreach ( class_parents( $call['class'] ) as $parent ) {
+				$checkFor[] = $parent . '::' . $call['function'];
+			}
+		} else {
+			$checkFor[] = $call['function'];
+		}
+
+		foreach ( $checkFor as $check ) {
+			if ( isset( $wgRedactedFunctionArguments[$check] ) ) {
+				foreach ( (array)$wgRedactedFunctionArguments[$check] as $argNo ) {
+					$call['args'][$argNo] = $redacted;
+				}
+			}
+		}
+
+		$args = array();
+		foreach ( $call['args'] as $arg ) {
+			if ( $arg === $redacted ) {
+				$args[] = 'REDACTED';
+			} elseif ( is_object( $arg ) ) {
+				$args[] = 'Object(' . get_class( $arg ) . ')';
+			} elseif( is_array( $arg ) ) {
+				$args[] = 'Array';
+			} else {
+				$args[] = var_export( $arg, true );
+			}
+		}
+
+		return $args;
+	}
 
 	/**
 	 * Get the ID for this error.
