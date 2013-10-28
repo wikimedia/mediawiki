@@ -1,0 +1,11 @@
+/*!
+ * Inline confirmation for rollback links.
+ */
+
+/* Use the styling required by jquery.confirmable */
+.mw-rollback-link,
+.mw-rollback-link a {
+	white-space: nowrap;
+	display: inline-block;
+	vertical-align: bottom;
+}

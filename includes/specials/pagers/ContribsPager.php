@@ -458,6 +458,7 @@ class ContribsPager extends RangeChronologicalPager {
 					&& $page->quickUserCan( 'edit', $user )
 				) {
 					$this->preventClickjacking();
+					$this->getOutput()->addModules( 'mediawiki.confirmable.rollback' );
 					$topmarktext .= ' ' . Linker::generateRollback( $rev, $this->getContext() );
 				}
 			}

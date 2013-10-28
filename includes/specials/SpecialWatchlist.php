@@ -571,6 +571,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			$changeLine = $list->recentChangesLine( $rc, $updated, $counter );
 			if ( $changeLine !== false ) {
 				$s .= $changeLine;
+				$output->addModules( 'mediawiki.confirmable.rollback' );
 			}
 		}
 		$s .= $list->endRecentChangesList();

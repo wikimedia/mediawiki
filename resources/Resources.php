@@ -939,6 +939,14 @@ return [
 			'mediawiki.api',
 		],
 	],
+	'mediawiki.confirmable.rollback' => [
+		'scripts' => 'resources/src/mediawiki/mediawiki.confirmable.rollback.js',
+		'styles' => 'resources/src/mediawiki/mediawiki.confirmable.rollback.css',
+		'messages' => [
+			'confirmable-confirm-rollback',
+		],
+		'dependencies' => 'jquery.confirmable',
+	],
 	'mediawiki.content.json' => [
 		'styles' => 'resources/src/mediawiki/mediawiki.content.json.less',
 	],
