@@ -368,6 +368,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			if ( $changeLine !== false ) {
 				$rclistOutput .= $changeLine;
 				--$limit;
+				$this->getOutput()->addModules( 'mediawiki.confirmable.rollback' );
 			}
 		}
 		$rclistOutput .= $list->endRecentChangesList();

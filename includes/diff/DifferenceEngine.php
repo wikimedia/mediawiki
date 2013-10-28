@@ -301,6 +301,7 @@ class DifferenceEngine extends ContextSource {
 					$rollbackLink = Linker::generateRollback( $this->mNewRev, $this->getContext() );
 					if ( $rollbackLink ) {
 						$out->preventClickjacking();
+						$out->addModules( 'mediawiki.confirmable.rollback' );
 						$rollback = '&#160;&#160;&#160;' . $rollbackLink;
 					}
 				}
