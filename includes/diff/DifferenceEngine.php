@@ -1150,26 +1150,37 @@ class DifferenceEngine extends ContextSource {
 			$this->mOldPage = $this->mOldRev->getTitle();
 		}
 
-		// Load tags information for both revisions
-		$dbr = wfGetDB( DB_SLAVE );
-		if ( $this->mOldid !== false ) {
-			$this->mOldTags = $dbr->selectField(
-				'tag_summary',
-				'ts_tags',
-				array( 'ts_rev_id' => $this->mOldid ),
-				__METHOD__
-			);
-		} else {
-			$this->mOldTags = false;
-		}
-		$this->mNewTags = $dbr->selectField(
-			'tag_summary',
-			'ts_tags',
-			array( 'ts_rev_id' => $this->mNewid ),
-			__METHOD__
-		);
+		$this->loadRevisionTags();
 
 		return true;
+	}
+
+	/**
+	 * Load tags information for both revisions
+	 */
+	protected function loadRevisionTags() {
+		$this->mOldTags = $this->getRevisionTags( $this->mOldId );
+		$this->mNewTags = $this->getRevisionTags( $this->mNewId );
+	}
+
+	/**
+	 * Get revision tags for a revision id
+	 *
+	 * @return bool|mixed
+	 */
+	protected function getRevisionTags( $revId ) {
+		if ( $revId !== false ) {
+			$dbr = wfGetDB( DB_SLAVE );
+
+			return $dbr->selectField(
+				'tag_summary',
+				'ts_tags',
+				array( 'ts_rev_id' => $revId ),
+				__METHOD__
+			);
+		}
+
+		return false;
 	}
 
 	/**
