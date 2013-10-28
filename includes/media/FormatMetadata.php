@@ -48,6 +48,23 @@
 class FormatMetadata extends ContextSource {
 
 	/**
+	 * Only output a single language for multi-language fields
+	 * @var boolean
+	 * @since 1.23
+	 */
+	protected $singleLang = false;
+
+	/**
+	 * Trigger only outputting single language for multilanguage fields
+	 *
+	 * @param Boolean $val
+	 * @since 1.23
+	 */
+	public function setSingleLanguage( $val ) {
+		$this->singleLang = $val;
+	}
+
+	/**
 	 * Numbers given by Exif user agents are often magical, that is they
 	 * should be replaced by a detailed explanation depending on their
 	 * value which most of the time are plain integers. This function
@@ -946,7 +963,7 @@ class FormatMetadata extends ContextSource {
 
 				$content = '';
 
-				$cLang = $this->getLanguage()->getCode();
+				$priorityLanguages = $this->getPriorityLanguages();
 				$defaultItem = false;
 				$defaultLang = false;
 
@@ -961,18 +978,24 @@ class FormatMetadata extends ContextSource {
 					$defaultItem = $vals['x-default'];
 					unset( $vals['x-default'] );
 				}
-				// Do contentLanguage.
-				if ( isset( $vals[$cLang] ) ) {
-					$isDefault = false;
-					if ( $vals[$cLang] === $defaultItem ) {
-						$defaultItem = false;
-						$isDefault = true;
-					}
-					$content .= $this->langItem(
-						$vals[$cLang], $cLang,
-						$isDefault, $noHtml );
+				foreach( $priorityLanguages as $pLang ) {
+					if ( isset( $vals[$pLang] ) ) {
+						$isDefault = false;
+						if ( $vals[$pLang] === $defaultItem ) {
+							$defaultItem = false;
+							$isDefault = true;
+						}
+						$content .= $this->langItem(
+							$vals[$pLang], $pLang,
+							$isDefault, $noHtml );
 
-					unset( $vals[$cLang] );
+						unset( $vals[$pLang] );
+
+						if ( $this->singleLang ) {
+							return Html::rawElement( 'span',
+								array( 'lang' => $pLang ), $vals[$pLang] );
+						}
+					}
 				}
 
 				// Now do the rest.
@@ -983,11 +1006,18 @@ class FormatMetadata extends ContextSource {
 					}
 					$content .= $this->langItem( $item,
 						$lang, false, $noHtml );
+					if ( $this->singleLang ) {
+						return Html::rawElement( 'span',
+							array( 'lang' => $lang ), $item );
+					}
 				}
 				if ( $defaultItem !== false ) {
 					$content = $this->langItem( $defaultItem,
 						$defaultLang, true, $noHtml ) .
 						$content;
+					if ( $this->singleLang ) {
+						return $defaultItem;
+					}
 				}
 				if ( $noHtml ) {
 					return $content;
@@ -1456,6 +1486,7 @@ class FormatMetadata extends ContextSource {
 		$cacheKey = wfMemcKey(
 			'getExtendedMetadata',
 			$this->getLanguage()->getCode(),
+			(int) $this->singleLang,
 			$file->getSha1()
 		);
 
@@ -1469,6 +1500,9 @@ class FormatMetadata extends ContextSource {
 			$maxCacheTime = ( $file instanceof ForeignAPIFile ) ? 60 * 60 * 12 : 60 * 60 * 24 * 30;
 			$fileMetadata = $this->getExtendedMetadataFromFile( $file );
 			$extendedMetadata = $this->getExtendedMetadataFromHook( $file, $fileMetadata, $maxCacheTime );
+			if ( $this->singleLang ) {
+				$this->resolveMultilangMetadata( $extendedMetadata );
+			}
 			// Make sure the metadata won't break the API when an XML format is used.
 			// This is an API-specific function so it would be cleaner to call it from
 			// outside fetchExtendedMetadata, but this way we don't need to redo the
@@ -1558,6 +1592,7 @@ class FormatMetadata extends ContextSource {
 			&$extendedMetadata,
 			$file,
 			$this->getContext(),
+			$this->singleLang,
 			&$maxCacheTime
 		) );
 
@@ -1570,6 +1605,64 @@ class FormatMetadata extends ContextSource {
 
 		wfProfileOut( __METHOD__ );
 		return $extendedMetadata;
+	}
+
+	/**
+	 * Turns an XMP-style multilang array into a single value.
+	 * If the value is not a multilang array, it is returned unchanged.
+	 * See mediawiki.org/wiki/Manual:File_metadata_handling#Multi-language_array_format
+	 * @param mixed $value
+	 * @return mixed value in best language, null if there were no languages at all
+	 * @since 1.23
+	 */
+	protected function resolveMultilangValue( $value )
+	{
+		if (
+			!is_array( $value )
+			|| !isset( $value['_type'] )
+			|| $value['_type'] != 'lang'
+		) {
+			return $value; // do nothing if not a multilang array
+		}
+
+		// choose the language best matching user or site settings
+		$priorityLanguages = $this->getPriorityLanguages();
+		foreach( $priorityLanguages as $lang ) {
+			if ( isset( $value[$lang] ) ) {
+				return $value[$lang];
+			}
+		}
+
+		// otherwise go with the default language, if set
+		if ( isset( $value['x-default'] ) ) {
+			return $value['x-default'];
+		}
+
+		// otherwise just return any one language
+		unset($value['_type']);
+		if (!empty($value)) {
+			return reset($value);
+		}
+
+		// this should not happen; signal error
+		return null;
+	}
+
+	/**
+	 * Takes an array returned by the getExtendedMetadata* functions,
+	 * and resolves multi-language values in it.
+	 * @param array $metadata
+	 * @since 1.23
+	 */
+	protected function resolveMultilangMetadata( &$metadata ) {
+		if ( !is_array( $metadata ) ) {
+			return;
+		}
+		foreach ( $metadata as &$field ) {
+			if ( isset( $field['value'] ) ) {
+				$field['value'] = $this->resolveMultilangValue( $field['value'] );
+			}
+		}
 	}
 
 	/**

@@ -51,6 +51,8 @@ class ApiQueryImageInfo extends ApiQueryBase {
 
 		$metadataOpts = array(
 			'version' => $params['metadataversion'],
+			'language' => $params['extmetadatalanguage'],
+			'multilang' => $params['extmetadatamultilang'],
 		);
 
 		$pageIds = $this->getPageSet()->getAllTitlesByNamespace();
@@ -305,12 +307,18 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	 * @param string|array $metadataOpts Options for metadata fetching.
 	 *   This is an array consisting of the keys:
 	 *    'version': The metadata version for the metadata option
+	 *    'language': The language for extmetadata property
+	 *    'multilang': Return all translations in extmetadata property
 	 * @return Array: result array
 	 */
 	static function getInfo( $file, $prop, $result, $thumbParams = null, $metadataOpts = false ) {
+		global $wgContLang;
+
 		if ( !$metadataOpts || is_string( $metadataOpts ) ) {
 			$metadataOpts = array(
 				'version' => $metadataOpts ?: 'latest',
+				'language' => $wgContLang,
+				'multilang' => false,
 			);
 		}
 		$version = $metadataOpts['version'];
@@ -437,6 +445,8 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			// start with a letter, and all the values are strings.
 			// Thus there should be no issue with format=xml.
 			$format = new FormatMetadata;
+			$format->setSingleLanguage( !$metadataOpts['multilang'] );
+			$format->getContext()->setLanguage( $metadataOpts['language'] );
 			$extmetaArray = $format->fetchExtendedMetadata( $file );
 			$vals['extmetadata'] = $extmetaArray;
 		}
@@ -515,6 +525,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	}
 
 	public function getAllowedParams() {
+		global $wgContLang;
 		return array(
 			'prop' => array(
 				ApiBase::PARAM_ISMULTI => true,
@@ -545,6 +556,14 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			'metadataversion' => array(
 				ApiBase::PARAM_TYPE => 'string',
 				ApiBase::PARAM_DFLT => '1',
+			),
+			'extmetadatalanguage' => array(
+				ApiBase::PARAM_TYPE => 'string',
+				ApiBase::PARAM_DFLT => $wgContLang->getCode(),
+			),
+			'extmetadatamultilang' => array(
+				ApiBase::PARAM_TYPE => 'boolean',
+				ApiBase::PARAM_DFLT => false,
 			),
 			'urlparam' => array(
 				ApiBase::PARAM_DFLT => '',
@@ -628,6 +647,10 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			'end' => 'Timestamp to stop listing at',
 			'metadataversion' => array( "Version of metadata to use. if 'latest' is specified, use latest version.",
 						"Defaults to '1' for backwards compatibility" ),
+			'extmetadatalanguage' => array( 'What language to fetch extmetadata in. This affects both which',
+						'translation to fetch, if multiple are available, as well as how things',
+						'like numbers and various values are formatted.' ),
+			'extmetadatamultilang' => 'If translations for extmetadata property are available, fetch all of them.',
 			'continue' => 'If the query response includes a continue value, use it here to get another page of results',
 			'localonly' => 'Look only for files in the local repository',
 		);
