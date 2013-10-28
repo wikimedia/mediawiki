@@ -126,7 +126,7 @@ class MWException extends Exception {
 
 		if ( $wgShowExceptionDetails ) {
 			return '<p>' . nl2br( htmlspecialchars( $this->getMessage() ) ) .
-				'</p><p>Backtrace:</p><p>' . nl2br( htmlspecialchars( MWExceptionHandler::formatRedactedTrace( $this ) ) ) .
+				'</p><p>Backtrace:</p><p>' . nl2br( htmlspecialchars( MWExceptionHandler::getRedactedTraceAsString( $this ) ) ) .
 				"</p>\n";
 		} else {
 			return "<div class=\"errorbox\">" .
@@ -151,7 +151,7 @@ class MWException extends Exception {
 
 		if ( $wgShowExceptionDetails ) {
 			return $this->getMessage() .
-				"\nBacktrace:\n" . MWExceptionHandler::formatRedactedTrace( $this ) . "\n";
+				"\nBacktrace:\n" . MWExceptionHandler::getRedactedTraceAsString( $this ) . "\n";
 		} else {
 			return "Set \$wgShowExceptionDetails = true; " .
 				"in LocalSettings.php to show detailed debugging information.\n";
@@ -601,7 +601,7 @@ class MWExceptionHandler {
 				$message = "MediaWiki internal error.\n\n";
 
 				if ( $wgShowExceptionDetails ) {
-					$message .= 'Original exception: ' . self::formatRedactedTrace( $e ) . "\n\n" .
+					$message .= 'Original exception: ' . self::getRedactedTraceAsString( $e ) . "\n\n" .
 						'Exception caught inside exception handler: ' . $e2->__toString();
 				} else {
 					$message .= "Exception caught inside exception handler.\n\n" .
@@ -621,7 +621,7 @@ class MWExceptionHandler {
 			$message = "Unexpected non-MediaWiki exception encountered, of type \"" . get_class( $e ) . "\"";
 
 			if ( $wgShowExceptionDetails ) {
-				$message .= "\nexception '" . get_class( $e ) . "' in " . $e->getFile() . ":" . $e->getLine() . "\nStack trace:\n" . self::formatRedactedTrace( $e ) . "\n";
+				$message .= "\nexception '" . get_class( $e ) . "' in " . $e->getFile() . ":" . $e->getLine() . "\nStack trace:\n" . self::getRedactedTraceAsString( $e ) . "\n";
 			}
 
 			if ( $cmdLine ) {
@@ -678,69 +678,70 @@ class MWExceptionHandler {
 	}
 
 	/**
-	 * Get the stack trace from the exception as a string, redacting certain function arguments in the process
-	 * @param Exception $e The exception
-	 * @return string The stack trace as a string
+	 * Generate a string representation of an exception's stack trace
+	 *
+	 * Like Exception::getTraceAsString, but replaces argument values with
+	 * argument type or class name.
+	 *
+	 * @param Exception $e
+	 * @return string
 	 */
-	public static function formatRedactedTrace( Exception $e ) {
-		global $wgRedactedFunctionArguments;
-		$finalExceptionText = '';
+	public static function getRedactedTraceAsString( Exception $e ) {
+		$text = '';
 
-		// Unique value to indicate redacted parameters
-		$redacted = new stdClass();
-
-		foreach ( $e->getTrace() as $i => $call ) {
-			$checkFor = array();
-			if ( isset( $call['class'] ) ) {
-				$checkFor[] = $call['class'] . '::' . $call['function'];
-				foreach ( class_parents( $call['class'] ) as $parent ) {
-					$checkFor[] = $parent . '::' . $call['function'];
-				}
-			} else {
-				$checkFor[] = $call['function'];
-			}
-
-			foreach ( $checkFor as $check ) {
-				if ( isset( $wgRedactedFunctionArguments[$check] ) ) {
-					foreach ( (array)$wgRedactedFunctionArguments[$check] as $argNo ) {
-						$call['args'][$argNo] = $redacted;
-					}
-				}
-			}
-
-			if ( isset( $call['file'] ) && isset( $call['line'] ) ) {
-				$finalExceptionText .= "#{$i} {$call['file']}({$call['line']}): ";
+		foreach ( self::getRedactedTrace( $e ) as $level => $frame ) {
+			if ( isset( $frame['file'] ) && isset( $frame['line'] ) ) {
+				$text .= "#{$level} {$frame['file']}({$frame['line']}): ";
 			} else {
 				// 'file' and 'line' are unset for calls via call_user_func (bug 55634)
 				// This matches behaviour of Exception::getTraceAsString to instead
 				// display "[internal function]".
-				$finalExceptionText .= "#{$i} [internal function]: ";
+				$text .= "#{$level} [internal function]: ";
 			}
 
-			if ( isset( $call['class'] ) ) {
-				$finalExceptionText .= $call['class'] . $call['type'] . $call['function'];
+			if ( isset( $frame['class'] ) ) {
+				$text .= $frame['class'] . $frame['type'] . $frame['function'];
 			} else {
-				$finalExceptionText .= $call['function'];
+				$text .= $frame['function'];
 			}
-			$args = array();
-			if ( isset( $call['args'] ) ) {
-				foreach ( $call['args'] as $arg ) {
-					if ( $arg === $redacted ) {
-						$args[] = 'REDACTED';
-					} elseif ( is_object( $arg ) ) {
-						$args[] = 'Object(' . get_class( $arg ) . ')';
-					} elseif( is_array( $arg ) ) {
-						$args[] = 'Array';
-					} else {
-						$args[] = var_export( $arg, true );
-					}
-				}
+
+			if ( isset( $frame['args'] ) ) {
+				$text .= '(' . implode( ', ', $frame['args'] ) . ")\n";
+			} else {
+				$text .= "()\n";
 			}
-			$finalExceptionText .=  '(' . implode( ', ', $args ) . ")\n";
 		}
-		return $finalExceptionText . '#' . ( $i + 1 ) . ' {main}';
+
+		$level = $level + 1;
+		$text .= "#{$level} {main}";
+
+		return $text;
 	}
 
+	/**
+	 * Return a copy of an exception's backtrace as an array.
+	 *
+	 * Like Exception::getTrace, but replaces each element in each frame's
+	 * argument array with the name of its class (if the element is an object)
+	 * or its type (if the element is a PHP primitive).
+	 *
+	 * @since 1.22
+	 * @param Exception $e
+	 * @return array
+	 */
+	public static function getRedactedTrace( Exception $e ) {
+		$trace = $e->getTrace();
+		foreach ( $trace as $frame_n => $frame ) {
+			if ( isset( $frame['args'] ) ) {
+				foreach ( $frame['args'] as $arg_n => $arg ) {
+					$trace[$frame_n]['args'][$arg_n] =
+						is_object( $arg ) ?
+						get_class( $arg ) : gettype( $arg );
+				}
+			}
+		}
+		return $trace;
+	}
 
 	/**
 	 * Get the ID for this error.
@@ -802,7 +803,7 @@ class MWExceptionHandler {
 		$log = self::getLogMessage( $e );
 		if ( $log ) {
 			if ( $wgLogExceptionBacktrace ) {
-				wfDebugLog( 'exception', $log . "\n" . self::formatRedactedTrace( $e ) . "\n" );
+				wfDebugLog( 'exception', $log . "\n" . self::getRedactedTraceAsString( $e ) . "\n" );
 			} else {
 				wfDebugLog( 'exception', $log );
 			}
