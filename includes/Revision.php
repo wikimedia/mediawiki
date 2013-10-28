@@ -434,6 +434,40 @@ class Revision implements IDBAccessObject {
 	}
 
 	/**
+	 * Return the list of archive fields that should be selected to create
+	 * a revision pulled from the archive attic (via newFromArchiveRow)
+	 * @return array
+	 */
+	public static function selectArchiveFields() {
+		global $wgContentHandlerUseDB;
+
+		$fields = array(
+			'ar_page_id',
+			'ar_rev_id',
+			'ar_comment',
+			'ar_user',
+			'ar_user_text',
+			'ar_timestamp',
+			'ar_minor_edit',
+			'ar_text_id',
+			'ar_text',
+			'ar_deleted',
+			'ar_len',
+			'ar_sha1',
+			'ar_namespace',
+			'ar_title',
+		);
+
+		if ( $wgContentHandlerUseDB ) {
+			$fields[] = 'ar_content_format';
+			$fields[] = 'ar_content_model';
+		}
+
+		return $fields;
+	}
+
+
+	/**
 	 * Return the list of text fields that should be selected to read the
 	 * revision text
 	 * @return array

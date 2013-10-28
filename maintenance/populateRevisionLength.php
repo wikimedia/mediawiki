@@ -53,10 +53,10 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 		}
 
 		$this->output( "Populating rev_len column\n" );
-		$rev = $this->doLenUpdates( 'revision', 'rev_id', 'rev' );
+		$rev = $this->doLenUpdates( 'revision', 'rev_id', 'rev', Revision::selectFields() );
 
 		$this->output( "Populating ar_len column\n" );
-		$ar = $this->doLenUpdates( 'archive', 'ar_id', 'ar' );
+		$ar = $this->doLenUpdates( 'archive', 'ar_id', 'ar', Revision::selectArchiveFields() );
 
 		$this->output( "rev_len and ar_len population complete [$rev revision rows, $ar archive rows].\n" );
 		return true;
@@ -68,7 +68,7 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 	 * @param $prefix
 	 * @return int
 	 */
-	protected function doLenUpdates( $table, $idCol, $prefix ) {
+	protected function doLenUpdates( $table, $idCol, $prefix, $fields ) {
 		$db = $this->getDB( DB_MASTER );
 		$start = $db->selectField( $table, "MIN($idCol)", false, __METHOD__ );
 		$end = $db->selectField( $table, "MAX($idCol)", false, __METHOD__ );
@@ -81,9 +81,8 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 		$blockStart = intval( $start );
 		$blockEnd = intval( $start ) + $this->mBatchSize - 1;
 		$count = 0;
-		$fields = Revision::selectFields();
 		while ( $blockStart <= $end ) {
-			$this->output( "...doing rev_id from $blockStart to $blockEnd\n" );
+			$this->output( "...doing {$idCol} from $blockStart to $blockEnd\n" );
 			$res = $db->select(
 				$table,
 				$fields,
