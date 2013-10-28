@@ -1731,6 +1731,8 @@ class Linker {
 			$inner = $context->msg( 'brackets' )->rawParams( $inner )->escaped();
 		}
 
+		$context->getOutput()->addModules( 'mediawiki.confirmable.rollback' );
+
 		return '<span class="mw-rollback-link">' . $inner . '</span>';
 	}
 
