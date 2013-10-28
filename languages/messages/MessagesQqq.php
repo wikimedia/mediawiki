@@ -931,6 +931,13 @@ Text of a button that will cancel triggering of a potentially uncancellable acti
 See also:
 * {{msg-mw|confirmable-confirm}}
 * {{msg-mw|confirmable-yes}}',
+'confirmable-confirm-rollback' => 'Question asking the user to confirm rollbacking an edit.
+"Yes" and "No" buttons are displayed beside it.
+
+See also:
+* {{msg-mw|confirmable-confirm}}
+* {{msg-mw|confirmable-yes}}
+* {{msg-mw|confirmable-no}}',
 'thisisdeleted' => 'Message shown on a deleted page when the user has the undelete right. Parameters:
 * $1 - a link to [[Special:Undelete]], with {{msg-mw|restorelink}} as the text
 See also:
