@@ -735,7 +735,7 @@ Wann dëse Benotzerkont ongewollt ugeluecht gouf, kënnt Dir dës Noriicht einfa
 Waart w.e.g. $1 ier Dir et nach eng Kéier probéiert.',
 'login-abort-generic' => 'Dir sidd net ageloggt - Aloggen ofgebrach',
 'loginlanguagelabel' => 'Sprooch: $1',
-'suspicious-userlogout' => 'Är Ufro fir Iech auszeloggen gouf refuséiert well et sou ausgesäit wéi wa se vun engem Futtise Browser oder Proxy-Tëschespäicher kënnt.',
+'suspicious-userlogout' => 'Är Ufro fir Iech auszeloggen gouf refuséiert well et sou ausgesäit wéi wa se vun engem futtise Browser oder Proxy-Tëschespäicher kënnt.',
 'createacct-another-realname-tip' => "De richtegen Numm ass fakultativ.
 
 Wann Dir en ugitt, gëtt e benotzt fir d'Benotzerattributiounen fir Är Aarbecht zouzeuerdnen.",

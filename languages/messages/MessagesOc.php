@@ -623,6 +623,7 @@ Una lista de las paginas especialas pòt èsser trobada sus [[Special:SpecialPag
 # General errors
 'error' => 'Error',
 'databaseerror' => 'Error de la banca de donadas',
+'databaseerror-text' => "Una error de requèsta de banca de donadas s'es producha. Aquò pòt provenir d'un bug dins lo logicial.",
 'databaseerror-textcl' => "Una error de requèsta de banca de donadas s'es produsida.",
 'databaseerror-query' => 'Requèsta : $1',
 'databaseerror-function' => 'Foncion : $1',
@@ -747,6 +748,8 @@ Doblidetz pas de modificar [[Special:Preferences|vòstras preferéncias per {{SI
 'userlogin-resetpassword-link' => 'Reïnicializar lo senhal',
 'helplogin-url' => 'Help:Connexion',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Ajuda a la connexion]]',
+'userlogin-loggedin' => 'Sètz ja connectat en tant que {{GENDER:$1|$1}}.
+Utilizatz lo formulari çaijós per vos connectar amb un autre utilizaire.',
 'userlogin-createanother' => 'Crear un autre compte',
 'createacct-join' => 'Entratz vòstras informacions çaijós.',
 'createacct-another-join' => 'Picar las informacions del novèl compte çaijós.',
@@ -1507,6 +1510,7 @@ Tanben podètz causir de permetre a d’autres de vos contactar per vòstra pagi
 'prefs-displaywatchlist' => "Opcions d'afichatge",
 'prefs-tokenwatchlist' => 'Geton',
 'prefs-diffs' => 'Diferéncias',
+'prefs-help-prefershttps' => 'Aquesta preferéncia serà efectiva al moment de vòstra connexion que ven.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => "L'adreça electronica sembla bona",
@@ -1533,6 +1537,7 @@ Tanben podètz causir de permetre a d’autres de vos contactar per vòstra pagi
 'userrights-notallowed' => "Avètz pas la permission d'apondre o suprimir de dreches d'utilizaire.",
 'userrights-changeable-col' => 'Los gropes que podètz cambiar',
 'userrights-unchangeable-col' => 'Los gropes que podètz pas cambiar',
+'userrights-conflict' => "Conflicte de modificacion de dreches d'utilizaire ! Relegissètz e confirmatz vòstras modificacions.",
 
 # Groups
 'group' => 'Grop :',
@@ -2486,6 +2491,7 @@ Consultatz la [[Special:ProtectedPages|lista de las paginas protegidas]] per la 
 'protect-title-notallowed' => 'Veire lo nivèl de proteccion de « $1 »',
 'prot_1movedto2' => 'a renomenat [[$1]] en [[$2]]',
 'protect-badnamespace-title' => 'Espaci de noms pas protegible',
+'protect-badnamespace-text' => 'Las paginas dins aqueste espaci de noms pòdon pas èsser protegidas.',
 'protect-norestrictiontypes-title' => 'Pagina pas protegibla',
 'protect-legend' => 'Confirmar la proteccion',
 'protectcomment' => 'Rason :',
@@ -2949,6 +2955,7 @@ Salvatz-lo sus vòstre disc dur puèi importatz-lo aicí.",
 'import-token-mismatch' => 'Pèrda de las donadas de sesilha. Tornatz ensajar.',
 'import-invalid-interwiki' => "Impossible d'importar dempuèi lo wiki especificat.",
 'import-options-wrong' => '{{PLURAL:$2|Marrida opcion|Marridas opcions}} : <nowiki>$1</nowiki>',
+'import-rootpage-invalid' => 'La pagina raiç provesida es un títol invalid.',
 
 # Import log
 'importlogpage' => 'Istoric de las importacions de paginas',
@@ -2961,6 +2968,7 @@ Salvatz-lo sus vòstre disc dur puèi importatz-lo aicí.",
 # JavaScriptTest
 'javascripttest' => 'Tèst de JavaScript',
 'javascripttest-title' => 'Execucion dels tèsts $1',
+'javascripttest-pagetext-noframework' => "Aquesta pagina es reservada per l'execucion dels tèsts JavaScript.",
 'javascripttest-pagetext-unknownframework' => 'Estructura « $1 » desconeguda.',
 'javascripttest-pagetext-frameworks' => 'Causissètz una de las estructuras de tèst seguentas : $1',
 'javascripttest-pagetext-skins' => 'Causissètz un abilhatge amb lo qual cal aviar los tèsts :',
@@ -4019,8 +4027,12 @@ Ensajatz la previsualizacion normala.',
 'api-error-filetype-missing' => "L'extension del fichièr es mancanta.",
 'api-error-hookaborted' => "La modificacion qu'avètz ensajat de realizar es estada anullada per una extension.",
 'api-error-illegal-filename' => 'Lo nom del fichièr es pas autorizat.',
+'api-error-mustbeloggedin' => 'Vos cal èsser connectat per telecargar de fichièrs.',
+'api-error-mustbeposted' => 'Error intèrna : aquesta requèsta necessita lo metòde HTTP POST.',
 'api-error-nomodule' => 'Error intèrna : cap de modul de versament pas definit.',
 'api-error-ok-but-empty' => 'Error intèrna : Lo servidor a pas respondut.',
+'api-error-overwrite' => 'Espotir un fichièr existent es pas autorizat.',
+'api-error-stashfailed' => 'Error intèrna : lo servidor a pas pogut enregistrar lo fichièr temporari.',
 'api-error-unclassified' => "Una error desconeguda s'es producha.",
 'api-error-unknown-code' => 'Error desconeguda : « $1 »',
 'api-error-unknown-warning' => 'Avertiment desconegut : $1',

@@ -329,7 +329,7 @@ $messages = array(
 'articlepage' => 'Vís síðu við innihaldi',
 'talk' => 'Kjak',
 'views' => 'Skoðanir',
-'toolbox' => 'Amboðskassi',
+'toolbox' => 'Tól',
 'userpage' => 'Vís brúkarasíðu',
 'projectpage' => 'Vís verkætlanarsíðu',
 'imagepage' => 'Vís fílusíðuna',
@@ -1486,8 +1486,8 @@ Tín t-post adressa verður ikki avdúkað, tá aðrir brúkarir seta seg í sam
 'action-block' => 'noktað hesum brúkara at rætta',
 'action-protect' => 'broyt verjustøðuna hjá hesi síðu',
 'action-rollback' => 'rulla skjótt aftur rættingarnar hjá tí seinasta brúkaranum, sum rættaði eina ávísa síðu',
-'action-import' => 'innflyt hesa síðu frá aðrari wiki',
-'action-importupload' => 'innflyt hesa síðuna frá einari fílu sum er løgd út',
+'action-import' => 'innflyt síður frá aðrari wiki',
+'action-importupload' => 'innflyt síður frá einari fílu sum er løgd út',
 'action-patrol' => 'markað rætting hjá øðrum sum eftirhugda',
 'action-autopatrol' => 'fá tina rætting merkta sum eftirhugda',
 'action-unwatchedpages' => 'Síggj listan yvir síður sum ikki eru eftiransaðar',
@@ -1503,6 +1503,7 @@ Tín t-post adressa verður ikki avdúkað, tá aðrir brúkarir seta seg í sam
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|broyting|broytingar}}',
+'enhancedrc-history' => 'søga',
 'recentchanges' => 'Seinastu broytingar',
 'recentchanges-legend' => 'Nýligar broytingar møguleikar',
 'recentchanges-summary' => 'Á hesi síðu kanst tú fylgja teimum nýggjastu broytingunum á hesi wiki.',
@@ -2205,10 +2206,12 @@ Sí $2 fyri fulla skráseting av strikingum.',
 'deletecomment' => 'Orsøk:',
 'deleteotherreason' => 'Onnur orsøk:',
 'deletereasonotherlist' => 'Onnur orsøk',
-'deletereason-dropdown' => '*Vanligar orsøkir til striking
-** Umbøn frá høvunda
+'deletereason-dropdown' => '* Vanligar orsøkir til striking
+** Spamm
+** Herverk (Vandalisma)
 ** Brot á upphavsrættin
-** Herverk (Vandalisma)',
+** Umbøn frá høvunda
+** Brotin víðaristilling',
 'delete-edit-reasonlist' => 'Rætta orsøkir til striking',
 'delete-toobig' => 'Henda síðan hevur eina langa rættingar søgu, meira enn $1 {{PLURAL:$1|versjón|versjónir}}. 
 Striking av slíkum síðum er avmarkað fyri at forða fyri at onkur av óvart kemur til at forstýra {{SITENAME}}.',
@@ -2228,7 +2231,7 @@ onkur annar hevur longu rættað ella rullað síðuna aftur.
 Seinasta broytingin á síðuni var av [[User:$3|$3]] ([[User talk:$3|kjak]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment' => "Rættingarfrágreiðingin var: \"''\$1''\".",
 'revertpage' => 'Tók burtur rættingar hjá [[Special:Contributions/$2|$2]] ([[User talk:$2|kjak]]) til seinastu versjón hjá [[User:$1|$1]]',
-'revertpage-nouser' => 'Tók burtur rættingar hjá einum fjaldum brúkara til seinastu versjón hjá [[User:$1|$1]]',
+'revertpage-nouser' => 'Tók burtur rættingar hjá einum fjaldum brúkara til seinastu versjón hjá  {{GENDER:$1|[[User:$1|$1]]}}',
 'rollback-success' => 'Tók burtur rættingar hjá $1;
 broytti tað aftur til seinastu versjón hjá $2.',
 
@@ -2341,7 +2344,7 @@ Sí [[Special:Log/delete|slettingarloggin]] fyri at síggja seinastu strikingar 
 'contributions' => '{{GENDER:$1|Brúkaraíkøst}}',
 'contributions-title' => 'Brúkaraíkøst fyri $1',
 'mycontris' => 'Íkøst',
-'contribsub2' => 'Eftir $1 ($2)',
+'contribsub2' => 'Fyri {{GENDER:$3|$1}} ($2)',
 'nocontribs' => 'Ongar broytingar vóru funnar, sum samsvaraðu hesar treytirnar.',
 'uctop' => '(verandi)',
 'month' => 'Frá mánaði (og áðrenn):',

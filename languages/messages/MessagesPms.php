@@ -866,9 +866,9 @@ Për soa comodità i-j mostroma la lista djë scancelament ch'a toco sta pàgina
 A-i é pa dë spiegassion.",
 'edit-gone-missing' => 'As peul nen agiornesse la pàgina.
 A smija che a sia stàita scancelà.',
-'edit-conflict' => "Conflit d'edission.",
-'edit-no-change' => "Toa modìfica a l'é stàita ignorà, përchè a l'é pa stàit fàit gnun cambiament al test.",
-'postedit-confirmation' => "Soa modìfica a l'é stàita salvà!",
+'edit-conflict' => 'Conflit ëd modìfiche.',
+'edit-no-change' => "Soa modìfica a l'é stàita ignorà, përchè gnun cambiament a l'é stàit fàit al test.",
+'postedit-confirmation' => "Soa modìfica a l'é stàita salvà.",
 'edit-already-exists' => 'As peul nen creesse la pàgina.
 A esist già.',
 'defaultmessagetext' => "Test che a-i sarìa se a-i fusso pa 'd modìfiche",

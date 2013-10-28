@@ -2483,10 +2483,12 @@ Bevestig hieronder dat dit inderdaod de bedoeling is, da'j de gevolgen begriepen
 'deletecomment' => 'Reden:',
 'deleteotherreason' => 'Aandere/extra reden:',
 'deletereasonotherlist' => 'Aandere reden',
-'deletereason-dropdown' => '*Redens veur t vortdoon van ziejen
+'deletereason-dropdown' => '* Redens veur t vortdoon van ziejen
+** Spam
+** Vandalisme
+** Schending van auteursrechten
 ** Op verzeuk van de auteur
-** Schending van auteursrecht
-** Vandalisme',
+** Ebreuken deurverwiezing',
 'delete-edit-reasonlist' => 'Redens veur t vortdoon bewarken',
 'delete-toobig' => 'Disse zied hef n lange bewarkingsgeschiedenisse, meer as $1 {{PLURAL:$1|versie|versies}}.
 t Vortdoon van dit soort ziejen is mit rechten bepark um t per ongelok versteuren van de warking van {{SITENAME}} te veurkoemen.',
@@ -3143,6 +3145,8 @@ Meestentieds kömp dit deur n uutgaonde verwiezing die op de zwarte lieste steet
 'spam_reverting' => 'Bezig mit t weerummezetten naor de leste versie die gien verwiezing hef naor $1',
 'spam_blanking' => 'Alle wiezigingen mit n verwiezing naor $1 wörden vortehaold',
 'spam_deleting' => 'In alle versies staon verwiezingen naor $1. Zied vortedaon',
+'simpleantispam-label' => "Antispamkontraole.
+Hier '''NIKS''' invullen!",
 
 # Info page
 'pageinfo-title' => 'Informasie over "$1"',
@@ -3944,7 +3948,7 @@ Samen mit dit programma heur je n [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van de
 'specialpages-group-pagetools' => 'Ziedhulpmiddels',
 'specialpages-group-wiki' => 'Gegevens en hulpmiddels',
 'specialpages-group-redirects' => 'Deurverwiezende spesiale ziejen',
-'specialpages-group-spam' => 'Hulpmiddels tegen ongewunste bewarkingen',
+'specialpages-group-spam' => 'Spam-hulpmiddels',
 
 # Special:BlankPage
 'blankpage' => 'Lege zied',

@@ -384,7 +384,7 @@ $messages = array(
 'searcharticle' => 'Gå til',
 'history' => 'Historik',
 'history_short' => 'Historik',
-'updatedmarker' => '(ændret)',
+'updatedmarker' => 'opdateret siden sidste besøg',
 'printableversion' => 'Udskriftsvenlig udgave',
 'permalink' => 'Permanent henvisning',
 'print' => 'Udskriv',
@@ -533,9 +533,9 @@ Dette kan indikere en fejl i softwaren.',
 'laggedslavemode' => "'''Bemærk:''' Den viste side indeholder muligvis ikke de nyeste ændringer.",
 'readonly' => 'Databasen er skrivebeskyttet',
 'enterlockreason' => 'Skriv en begrundelse for skrivebeskyttelsen, med samt en vurdering af, hvornår skrivebeskyttelsen ophæves igen',
-'readonlytext' => 'Databasen er midlertidigt skrivebeskyttet. Forsøg venligst senere.
+'readonlytext' => 'Databasen er i øjeblikket låst for nye poster og andre ændringer, sandsynligvis for rutinemæssig databasevedligeholdelse, hvorefter den vil være tilbage til normal.
 
-Årsag til spærringen: $1',
+Den administrator som har låst, gav denne forklaring: $1',
 'missing-article' => 'Databasen burde indeholde siden "$1" $2, men det gør den ikke.
 
 Den sandsynlige årsag er at du har fulgt et forældet link til en forskel eller en gammel version af en side der er blevet slettet.
@@ -591,10 +591,10 @@ $2',
 'customjsprotected' => 'Du har ikke tilladelse til at redigere denne JavaScript-side, da den indeholder en anden brugers personlige indstillinger.',
 'mycustomcssprotected' => 'Du har ikke rettigheder til at redigere denne CSS-side.',
 'mycustomjsprotected' => 'Du har ikke rettigheder til at redigere denne JavaScript-side.',
-'myprivateinfoprotected' => 'Du har ikke tilladelse til at redigere dine private oplysninger.',
-'mypreferencesprotected' => 'Du har ikke tilladelse til at redigere dine præferencer.',
+'myprivateinfoprotected' => 'Du har ikke rettigheder til at redigere dine private oplysninger.',
+'mypreferencesprotected' => 'Du har ikke rettigheder til at redigere dine indstillinger.',
 'ns-specialprotected' => 'Sider i navnerummet {{ns:special}} kan ikke redigeres.',
-'titleprotected' => "Dette sidenavn er beskyttet mod oprettelse af [[User:$1|$1]]. Begrundelsen for beskyttelsen er ''$2''.",
+'titleprotected' => 'Dette sidenavn er blevet beskyttet mod oprettelse af [[User:$1|$1]]. Begrundelsen for beskyttelsen er "\'\'$2\'\'".',
 'filereadonlyerror' => 'Ude af stand til at redigere filen "$1", fordi fildatabasen "$2" er skrivebeskyttet.
 
 Administratoren, som skrivebeskyttede den, gav følgende begrundelse: "$3".',
@@ -622,10 +622,10 @@ Glem ikke at ændre dine [[Special:Preferences|{{SITENAME}} indstillinger]].',
 'yourpassword' => 'Din adgangskode:',
 'userlogin-yourpassword' => 'Adgangskode',
 'userlogin-yourpassword-ph' => 'Indtast din adgangskode',
-'createacct-yourpassword-ph' => 'Indtast kodeord',
+'createacct-yourpassword-ph' => 'Indtast en adgangskode',
 'yourpasswordagain' => 'Gentag adgangskode',
-'createacct-yourpasswordagain' => 'Bekræft kodeord',
-'createacct-yourpasswordagain-ph' => 'Indtast kodeord igen',
+'createacct-yourpasswordagain' => 'Bekræft adgangskode',
+'createacct-yourpasswordagain-ph' => 'Indtast adgangskode igen',
 'remembermypassword' => 'Husk mit brugernavn i denne browser (højst $1 {{PLURAL:$1|dag|dage}})',
 'userlogin-remembermypassword' => 'Husk mig',
 'userlogin-signwithsecure' => 'Brug sikker forbindelse',
@@ -656,19 +656,19 @@ Brug formularen nedenfor til at logge på som en anden bruger.',
 'userlogin-createanother' => 'Opret en anden konto',
 'createacct-join' => 'Indtast dine oplysninger nedenfor.',
 'createacct-another-join' => 'Angiv den nye kontos oplysninger nedenfor.',
-'createacct-emailrequired' => 'Mailadresse',
-'createacct-emailoptional' => 'Mailadresse (valgfri)',
-'createacct-email-ph' => 'Indtast din mailadresse',
+'createacct-emailrequired' => 'E-mailadresse',
+'createacct-emailoptional' => 'E-mailadresse (valgfri)',
+'createacct-email-ph' => 'Indtast din e-mailadresse',
 'createacct-another-email-ph' => 'Indtast e-mailadresse',
 'createaccountmail' => 'Brug en midlertidig tilfældig adgangskode og send den til den angivne e-mailadresse',
-'createacct-realname' => 'Dit rigtige navn',
+'createacct-realname' => 'Dit rigtige navn (valgfrit)',
 'createaccountreason' => 'Begrundelse:',
 'createacct-reason' => 'Årsag',
-'createacct-reason-ph' => 'Hvorfor vil du oprette endnu en konto',
+'createacct-reason-ph' => 'Hvorfor du vil oprette endnu en konto',
 'createacct-captcha' => 'Sikkerhedskontrol',
 'createacct-imgcaptcha-ph' => 'Indtast venligst ovenstående tekst',
 'createacct-submit' => 'Opret din konto',
-'createacct-another-submit' => 'Oprette en anden konto',
+'createacct-another-submit' => 'Opret en anden konto',
 'createacct-benefit-heading' => '{{SITENAME}} laves af mennesker som dig.',
 'createacct-benefit-body1' => '{{PLURAL:$1|redigering|redigeringer}}',
 'createacct-benefit-body2' => '{{PLURAL:$1|side|sider}}',
@@ -679,7 +679,7 @@ Vælg venligst et andet brugernavn.',
 'loginerror' => 'Logon mislykket',
 'createacct-error' => 'Fejl ved kontooprettelse',
 'createaccounterror' => 'Kunne ikke oprette brugerkonto: $1',
-'nocookiesnew' => 'Din brugerkonto er nu oprettet, men du er ikke logget på. {{SITENAME}} bruger cookies til at logge brugere på. Du har slået cookies fra. Vær venlig at slå cookies til, og derefter kan du logge på med dit nye brugernavn og kodeord.',
+'nocookiesnew' => 'Din brugerkonto er nu oprettet, men du er ikke logget på. {{SITENAME}} bruger cookies til at logge brugere på. Du har slået cookies fra. Vær venlig at slå cookies til, og derefter kan du logge på med dit nye brugernavn og adgangskode.',
 'nocookieslogin' => '{{SITENAME}} bruger cookies til at logge brugere på. Du har slået cookies fra. Slå dem venligst til og prøv igen.',
 'nocookiesfornew' => 'Denne brugerkonto er ikke oprettet, da vi ikke kunne bekræfte dens kilde.
 Sørg for, at du har aktivereret cookies, genindlæs siden og prøv igen.',
@@ -691,18 +691,18 @@ Der skelnes mellem store og bogstaver i brugernavne.
 Kontrollér stavemåden, eller [[Special:UserLogin/signup|opret en ny konto]].',
 'nosuchusershort' => 'Der er ingen bruger ved navn "$1". Tjek din stavning.',
 'nouserspecified' => 'Angiv venligst et brugernavn.',
-'login-userblocked' => 'Denne bruger er blokeret. Login er ikke tilladt',
+'login-userblocked' => 'Denne bruger er blokeret. Det er ikke tilladt at logge på.',
 'wrongpassword' => 'Den indtastede adgangskode var forkert. Prøv igen.',
-'wrongpasswordempty' => 'Du glemte at indtaste password. Prøv igen.',
+'wrongpasswordempty' => 'Du glemte at indtaste adgangskode. Prøv igen.',
 'passwordtooshort' => 'Adgangskoden skal mindst være på $1 {{PLURAL:$1|tegn|tegn}}.',
-'password-name-match' => 'Kodeordet må ikke være det samme som brugernavnet.',
+'password-name-match' => 'Adgangskoden må ikke være det samme som brugernavnet.',
 'password-login-forbidden' => 'Brugen af dette brugernavn og adgangskode er blevet forbudt.',
-'mailmypassword' => 'Send nyt password',
-'passwordremindertitle' => 'Nyt password til {{SITENAME}}',
+'mailmypassword' => 'Send ny adgangskode',
+'passwordremindertitle' => 'Ny midlertidig adgangskode til {{SITENAME}}',
 'passwordremindertext' => 'Nogen (sandsynligvis dig, fra IP-adressen $1)
 har bedt om at vi sender dig en ny adgangskode til at logge på {{SITENAME}} ($4).
 En midlertidig adgangskode for bruger "$2" er blevet lavet, den er "$3".
-Hvis dette var din mening, skal du logge ind og vælge en ny adgangskode nu.
+Hvis dette var din mening, skal du logge på og vælge en ny adgangskode nu.
 Din midlertidige adgangskode vil udløbe om {{PLURAL:$5|en dag|$5 dage}}.
 
 Hvis en anden har bestilt den nye adgangskode, eller hvis du er kommet i tanke om din gamle adgangskode og ikke længere vil ændre den,
@@ -711,7 +711,7 @@ kan du bare ignorere denne e-mail og fortsætte med at bruge din gamle adgangsko
 'noemailcreate' => 'Du skal angive en gyldig e-mailadresse',
 'passwordsent' => 'En ny adgangskode er sendt til e-mailadressen, som er registreret for "$1".
 Du bør logge på og ændre din adgangskode straks efter du har modtaget e-mailen.',
-'blocked-mailpassword' => 'Din IP-adresse er spærret for ændring af sider. For at forhindre misbrug, er det heller ikke muligt, at bestille et nyt password.',
+'blocked-mailpassword' => 'Din IP-adresse er spærret for ændring af sider. For at forhindre misbrug, er det heller ikke muligt, at bestille en ny adgangskode.',
 'eauthentsent' => 'En bekræftelsesmail er sendt til den angivne e-mailadresse.
 
 Før en e-mail kan modtages af andre brugere af {{SITENAME}}-mailfunktionen, skal adressen og dens tilhørsforhold til denne bruger bekræftes. Følg venligst anvisningerne i denne mail.',
@@ -749,7 +749,7 @@ Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit
 
 # Change password dialog
 'resetpass' => 'Skift adgangskode',
-'resetpass_announce' => 'Log på med den via e-mail tilsendte password. For at afslutte tilmeldingen, skal du nu vælge et nyt password.',
+'resetpass_announce' => 'Du loggede på med den via e-mail tilsendte adgangskode. For at afslutte tilmeldingen, skal du nu vælge en ny adgangskode.',
 'resetpass_text' => '<!-- Tilføj tekst her -->',
 'resetpass_header' => 'Skift adgangskode',
 'oldpassword' => 'Gammel adgangskode:',
@@ -764,14 +764,14 @@ Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit
 'resetpass-wrong-oldpass' => 'Ugyldig midlertidig eller gældende adgangskode.
 Du har muligvis allerede skiftet din adgangskode eller anmodet om en ny midlertidig kode.',
 'resetpass-temp-password' => 'Midlertidig adgangskode',
-'resetpass-abort-generic' => 'Ændring af kodeord er blevet afbrudt af udvidelse',
+'resetpass-abort-generic' => 'Ændring af adgangskode er blevet afbrudt af en udvidelse',
 
 # Special:PasswordReset
 'passwordreset' => 'Nulstil adgangskode',
 'passwordreset-text-one' => 'Udfyld denne formular for at nulstille din adgangskode.',
 'passwordreset-text-many' => '{{PLURAL:$1|Udfyld en af felterne nedenfor for at nulstille din adgangskode.}}',
 'passwordreset-legend' => 'Nulstil adgangskode',
-'passwordreset-disabled' => 'Nulstilling af kodeord er slået fra på denne wiki.',
+'passwordreset-disabled' => 'Nulstilling af adgangskode er slået fra på denne wiki.',
 'passwordreset-emaildisabled' => 'E-mailfunktioner er slået fra på denne wiki.',
 'passwordreset-username' => 'Brugernavn:',
 'passwordreset-domain' => 'Domæne:',
@@ -800,7 +800,7 @@ Midlertidig adgangskode: $2',
 # Special:ChangeEmail
 'changeemail' => 'Ændre e-mailadresse',
 'changeemail-header' => 'Ændre kontoens e-mailadresse',
-'changeemail-text' => 'Udfyld denne formular for at ændre din e-mailadresse. Du skal indtaste dit kodeord for at bekræfte denne ændring.',
+'changeemail-text' => 'Udfyld denne formular for at ændre din e-mailadresse. Du skal indtaste din adgangskode for at bekræfte denne ændring.',
 'changeemail-no-info' => 'Du skal være logget på for at komme direkte til denne side.',
 'changeemail-oldemail' => 'Nuværende e-mailadresse:',
 'changeemail-newemail' => 'Ny e-mailadresse:',
@@ -2378,11 +2378,12 @@ Bekræft venligst at du virkelig vil gøre dette, at du forstår konsekvenserne,
 'deletecomment' => 'Begrundelse:',
 'deleteotherreason' => 'Anden/uddybende begrundelse:',
 'deletereasonotherlist' => 'Anden begrundelse',
-'deletereason-dropdown' => '
-*Hyppige sletningsårsager
-** Efter forfatters ønske
+'deletereason-dropdown' => '* Hyppige sletningsårsager
+** Spam
+** Hærværk
 ** Overtrædelse af ophavsret
-** Hærværk',
+** Efter forfatters ønske
+** Brudt omdirigering',
 'delete-edit-reasonlist' => 'Rediger sletningsårsager',
 'delete-toobig' => 'Denne side har en stor historik, over {{PLURAL:$1|en version|$1 versioner}}. Sletning af sådanne sider er begrænset, for at forhindre utilsigtet forstyrrelse af {{SITENAME}}.',
 'delete-warning-toobig' => 'Denne side har en stor historik, over {{PLURAL:$1|en version|$1 versioner}} versioner, slettes den kan det forstyrre driften af {{SITENAME}}, gå forsigtigt frem.',
@@ -3041,7 +3042,7 @@ Dette skyldes sandsynligvis en henvisning til et sortlistet eksternt websted.',
 'spam_blanking' => 'Alle versioner, som indeholdt henvisninger til $1, er renset.',
 'spam_deleting' => 'Alle versioner indeholder henvisninger til $1, sletter',
 'simpleantispam-label' => "Anti-spam tjek.
-Udfyld ''' ikke ''' dette!",
+Udfyld '''IKKE''' dette!",
 
 # Info page
 'pageinfo-title' => 'Information om "$1"',

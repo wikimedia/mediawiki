@@ -4101,7 +4101,7 @@ Powinieneś otrzymać [{{SERVER}}{{SCRIPTPATH}}/COPYING kopię licencji GNU Gene
 'tag-filter-submit' => 'Filtr',
 'tag-list-wrapper' => '([[Special:Tags|{{PLURAL:$1|Znacznik|Znaczniki}}]]: $2)',
 'tags-title' => 'Znaczniki',
-'tags-intro' => 'Na tej stronie znajduje się lista wzorców tekstu, dla których oprogramowanie może oznaczyć edycje, dodatkowo wskazując ich znaczenie.',
+'tags-intro' => 'Na tej stronie znajduje się lista znaczników, którymi oprogramowanie może oznaczyć edycje, oraz ich opisów.',
 'tags-tag' => 'Nazwa znacznika',
 'tags-display-header' => 'Wystąpienia na listach zmian',
 'tags-description-header' => 'Pełny opis znaczenia',
