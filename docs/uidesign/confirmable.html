@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+	<meta charset="utf-8">
+	<!--
+	The jquery.confirmable module uses some additional modules and files
+	for internationalization support. These are omitted here for simplicity.
+	-->
+	<script type="text/javascript" src="../../resources/lib/jquery/jquery.js"></script>
+	<link rel="stylesheet" href="../../resources/src/jquery/jquery.confirmable.css">
+	<script type="text/javascript" src="../../resources/src/jquery/jquery.confirmable.js"></script>
+	<style>
+	body {
+		font: small sans-serif;
+	}
+	.mw-rollback-link a,
+	.mw-unwatch-link a,
+	.mw-thanks-thank-link a {
+		background: #ccf;
+	}
+	</style>
+</head>
+<body>
+	<h2>Introduction</h2>
+
+	<p>The jquery.confirmable module provides a simple inline confirmation script for potentially destructive or uncancellable actions.</p>
+
+	<p>Possible uses include confirmable "rollback" links in histories, confirmable "unwatch" links on watchlists, or confirmable "thanks" links (provided by the Echo extension).</p>
+
+	<p>Shown below is a demo of how each of those could work on history and watchlist entries, in an LTR and RTL language. The enhanced links are highlighted in blue.</p>
+
+	<h2>Examples</h2>
+
+	<h3>LTR (English)</h3>
+
+	<p>Watchlist:</p>
+
+	<ul lang="en" dir="ltr">
+		<li class="mw-line-even mw-changeslist-line-not-watched">
+			(<a href="#">diff</a> | <a href="#">hist</a>)
+			<span class="mw-changeslist-separator">. .</span>
+			<span class="mw-title"><a href="#" class="mw-changeslist-title">Example page</a></span>; <span class="mw-changeslist-date">13:38</span>
+			<span class="mw-changeslist-separator">. .</span>
+			<span class="mw-plusminus-neg">(-130)</span>
+			<span class="mw-changeslist-separator">. .</span>
+			<a href="#" class="mw-userlink">Example user</a>
+			<span class="mw-usertoollinks">(<a href="#">Talk</a> | <a href="#">contribs</a> | <a href="#">block</a>)</span>
+			<span class="comment">(example edit)</span>
+			<span class="mw-rollback-link">[<a href="https://www.mediawiki.org/wiki/Random_ideas_for_rollback_to_be_shelved_and_forgotten_about">rollback</a>]</span>
+			(<span class="mw-unwatch-link"><a href="#">unwatch</a></span>)
+		</li>
+	</ul>
+
+	<p>History:</p>
+
+	<ul lang="en" dir="ltr">
+		<li>
+			<span class="mw-history-histlinks">(cur | <a href="#">prev</a>)</span>
+			<input type="radio" style="visibility: hidden;" /><input type="radio" checked />
+			<a href="#" class="mw-changeslist-date">13:38, 28 October 2013</a>
+			<span class='history-user'>
+				<a href="#" class="mw-userlink">Example user</a>
+				<span class="mw-usertoollinks">(<a href="#">Talk</a> | <a href="#">contribs</a> | <a href="#">block</a>)</span>
+			</span>
+			<span class="mw-changeslist-separator">. .</span>
+			<span class="history-size">(1,654 bytes)</span>
+			<span class="mw-plusminus-neg">(-130)</span>
+			<span class="mw-changeslist-separator">. .</span>
+			<span class="comment">(example edit)</span>
+			(<span class="mw-rollback-link"><a href="https://www.mediawiki.org/wiki/Random_ideas_for_rollback_to_be_shelved_and_forgotten_about">rollback 1 edit</a></span> | <span class="mw-history-undo"><a href="#">undo</a></span> | <span class="mw-thanks-thank-link"><a href="#">thank</a></span>)
+		</li>
+	</ul>
+
+	<script type="text/javascript">
+		$( 'ul[lang="en"] .mw-rollback-link a' )
+			.confirmable({ i18n: { confirm: 'Are you sure you want to rollback?' } });
+		$( 'ul[lang="en"] .mw-unwatch-link a' )
+			.confirmable({ handler: function(){ alert('Unwatched!') } });
+		$( 'ul[lang="en"] .mw-thanks-thank-link a' )
+			.confirmable({ handler: function(){ alert('Thanked!') } });
+	</script>
+
+	<h3>RTL (Hebrew)</h3>
+	<!-- All of the Hebrew text below has been basically pulled out of my hat. -->
+
+	<p>Watchlist:</p>
+
+	<ul lang="he" dir="rtl">
+		<li class="mw-line-even mw-changeslist-line-not-watched">
+			(<a href="#">הבדל</a> | <a href="#">היסטוריה</a>)
+			<span class="mw-changeslist-separator">. .</span>
+			<span class="mw-title"><a href="#" class="mw-changeslist-title">דף דוגמה</a></span>; <span class="mw-changeslist-date">13:38</span>
+			<span class="mw-changeslist-separator">. .</span>
+			<span class="mw-plusminus-neg">(-57)</span>
+			<span class="mw-changeslist-separator">. .</span>
+			<a href="#" class="mw-userlink">דוגמא אדם</a>
+			<span class="mw-usertoollinks">(<a href="#">שיחה</a> | <a href="#">תרומות</a> | <a href="#">חסימה</a>)</span>
+			<span class="comment">(עריכה לדוגמה)</span>
+			<span class="mw-rollback-link">[<a href="https://www.mediawiki.org/wiki/Random_ideas_for_rollback_to_be_shelved_and_forgotten_about">שחזור</a>]</span>
+			(<span class="mw-unwatch-link"><a href="#">הפסקת מעקב</a></span>)
+		</li>
+	</ul>
+
+	<p>History:</p>
+
+	<ul lang="he" dir="rtl">
+		<li>
+			<span class="mw-history-histlinks">(נוכחית | <a href="#">קודמת</a>)</span>
+			<input type="radio" style="visibility: hidden;" /><input type="radio" checked />
+			<a href="#" class="mw-changeslist-date">23:41, 12 במאי 2012</a>
+			<span class='history-user'>
+				<a href="#" class="mw-userlink">דוגמא אדם</a>
+				<span class="mw-usertoollinks">(<a href="#">שיחה</a> | <a href="#">תרומות</a> | <a href="#">חסימה</a>)</span>
+			</span>
+			<span class="mw-changeslist-separator">. .</span>
+			<span class="history-size">(1,762 בתים)</span>
+			<span class="mw-plusminus-neg">(-57)</span>
+			<span class="mw-changeslist-separator">. .</span>
+			<span class="comment">(עריכה לדוגמה)</span>
+			(<span class="mw-rollback-link"><a href="https://www.mediawiki.org/wiki/Random_ideas_for_rollback_to_be_shelved_and_forgotten_about">שחזור עריכה אחת</a></span> | <span class="mw-history-undo"><a href="#">ביטול</a></span> | <span class="mw-thanks-thank-link"><a href="#">תודה</a></span>)
+		</li>
+	</ul>
+
+	<script type="text/javascript">
+		var hebrewI18n = {
+			confirm: 'האם ברצונך להמשיך?',
+			yes: 'כן',
+			no: 'לא',
+		}
+
+		$( 'ul[lang="he"] .mw-rollback-link a' )
+			.confirmable({ i18n: $.extend( {}, hebrewI18n, { confirm: 'האם ברצונך לשחזר?' } ) });
+		$( 'ul[lang="he"] .mw-unwatch-link a' )
+			.confirmable({ i18n: hebrewI18n, handler: function(){ alert('Unwatched!') } });
+		$( 'ul[lang="he"] .mw-thanks-thank-link a' )
+			.confirmable({ i18n: hebrewI18n, handler: function(){ alert('Thanked!') } });
+	</script>
+	<style type="text/css">
+		/* This is normally handled by CSSJanus. */
+		ul[dir=rtl] .jquery-confirmable-button {
+			margin-left: 0;
+			margin-right: 1ex;
+		}
+	</style>
+</body>
+</html>
+

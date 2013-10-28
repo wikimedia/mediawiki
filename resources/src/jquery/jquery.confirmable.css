@@ -1,0 +1,28 @@
+.jquery-confirmable-button {
+	/* Automatically flipped */
+	margin-left: 1ex;
+}
+
+.jquery-confirmable-wrapper {
+	/* Line breaks within the interface text are unpleasant */
+	white-space: nowrap;
+	/* Hiding the original text when it slides to the left */
+	overflow: hidden;
+}
+
+.jquery-confirmable-wrapper,
+.jquery-confirmable-element,
+.jquery-confirmable-interface {
+	/* We need inline-block to be able to size the elements and calculate their dimensions */
+	display: inline-block;
+	/* inline-block elements in this context align to baseline by default */
+	vertical-align: bottom;
+}
+
+.jquery-confirmable-element {
+	transition: margin 250ms cubic-bezier(0.2, 0.8, 0.2, 0.8);
+}
+
+.jquery-confirmable-interface {
+	transition: width 250ms cubic-bezier(0.2, 0.8, 0.2, 0.8);
+}
