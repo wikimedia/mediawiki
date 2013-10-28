@@ -74,11 +74,11 @@ var mw = ( function ( $, undefined ) {
 	 * @class mw.Map
 	 *
 	 * @constructor
-	 * @param {boolean} [global=false] Whether to store the values in the global window
-	 *  object or a exclusively in the object property 'values'.
+	 * @param {Object|boolean} [values] Value-bearing object to map, or boolean
+	 *  true to map over the global object. Defaults to an empty object.
 	 */
-	function Map( global ) {
-		this.values = global === true ? window : {};
+	function Map( values ) {
+		this.values = values === true ? window : ( values || {} );
 		return this;
 	}
 

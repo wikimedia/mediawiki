@@ -102,6 +102,8 @@
 			'lorem': 'ipsum'
 		}, 'Map.get returns multiple values correctly as an object' );
 
+		assert.deepEqual( conf, new mw.Map( someValues ), 'new mw.Map maps over existing values-bearing object' );
+
 		assert.deepEqual( conf.get( ['foo', 'notExist'] ), {
 			'foo': 'bar',
 			'notExist': null
