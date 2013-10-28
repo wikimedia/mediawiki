@@ -815,6 +815,14 @@ return array(
 			'user.tokens',
 		),
 	),
+	'mediawiki.confirmable.rollback' => array(
+		'scripts' => 'resources/src/mediawiki/mediawiki.confirmable.rollback.js',
+		'styles' => 'resources/src/mediawiki/mediawiki.confirmable.rollback.css',
+		'messages' => array(
+			'confirmable-confirm-rollback',
+		),
+		'dependencies' => 'jquery.confirmable',
+	),
 	'mediawiki.content.json' => array(
 		'styles' => 'resources/src/mediawiki/mediawiki.content.json.css',
 	),
@@ -1427,7 +1435,7 @@ return array(
 	'mediawiki.legacy.commonPrint' => array(
 		'styles' => array(
 			'resources/src/mediawiki.legacy/commonPrint.css' => array( 'media' => 'print' )
-		),
+	),
 	),
 	'mediawiki.legacy.protect' => array(
 		'scripts' => 'resources/src/mediawiki.legacy/protect.js',
