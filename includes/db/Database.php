@@ -1472,9 +1472,9 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 * in $conds. However, it is useful for doing a LEFT JOIN.
 	 *
 	 * The key of the array contains the table name or alias. The value is an
-	 * array with two elements, numbered 0 and 1. The first gives the type of
-	 * join, the second is an SQL fragment giving the join condition for that
-	 * table. For example:
+	 * array of two or more elements: the first one gives the type of the join
+	 * and the subsequent ones are SQL fragments providing the join conditions
+	 * for that table. For example:
 	 *
 	 *    array( 'page' => array( 'LEFT JOIN', 'page_latest=rev_id' ) )
 	 *
