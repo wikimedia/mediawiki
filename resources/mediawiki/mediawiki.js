@@ -225,7 +225,7 @@ var mw = ( function ( $, undefined ) {
 		},
 
 		/**
-		 * Converts message object to it's string form based on the state of format.
+		 * Converts message object to its string form based on the state of format.
 		 *
 		 * @return {string} Message as a string in the current form or `<key>` if key does not exist.
 		 */
