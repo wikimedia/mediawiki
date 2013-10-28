@@ -957,7 +957,7 @@ class FormatMetadata extends ContextSource {
 
 				$content = '';
 
-				$cLang = $this->getLanguage()->getCode();
+				$priorityLanguages = $this->getPriorityLanguages();
 				$defaultItem = false;
 				$defaultLang = false;
 
@@ -972,18 +972,24 @@ class FormatMetadata extends ContextSource {
 					$defaultItem = $vals['x-default'];
 					unset( $vals['x-default'] );
 				}
-				// Do contentLanguage.
-				if ( isset( $vals[$cLang] ) ) {
-					$isDefault = false;
-					if ( $vals[$cLang] === $defaultItem ) {
-						$defaultItem = false;
-						$isDefault = true;
-					}
-					$content .= $this->langItem(
-						$vals[$cLang], $cLang,
-						$isDefault, $noHtml );
+				foreach( $priorityLanguages as $pLang ) {
+					if ( isset( $vals[$pLang] ) ) {
+						$isDefault = false;
+						if ( $vals[$pLang] === $defaultItem ) {
+							$defaultItem = false;
+							$isDefault = true;
+						}
+						$content .= $this->langItem(
+							$vals[$pLang], $pLang,
+							$isDefault, $noHtml );
 
-					unset( $vals[$cLang] );
+						unset( $vals[$pLang] );
+
+						if ( $this->singleLang ) {
+							return Html::rawElement( 'span',
+								array( 'lang' => $pLang ), $vals[$pLang] );
+						}
+					}
 				}
 
 				// Now do the rest.
@@ -994,11 +1000,18 @@ class FormatMetadata extends ContextSource {
 					}
 					$content .= $this->langItem( $item,
 						$lang, false, $noHtml );
+					if ( $this->singleLang ) {
+						return Html::rawElement( 'span',
+							array( 'lang' => $lang ), $item );
+					}
 				}
 				if ( $defaultItem !== false ) {
 					$content = $this->langItem( $defaultItem,
 						$defaultLang, true, $noHtml ) .
 						$content;
+					if ( $this->singleLang ) {
+						return $defaultItem;
+					}
 				}
 				if ( $noHtml ) {
 					return $content;

@@ -1162,6 +1162,9 @@ underscore) magic words. Called by MagicWord.
 'value' => prop value, 'source' => 'name of hook' ).
 $file: File object of file in question
 $context: RequestContext (including language to use)
+$single: Only extract the current language; if false, the prop value should
+be in the metadata multi-language array format:
+mediawiki.org/wiki/Manual:File_metadata_handling#Multi-language_array_format
 
 'GetFullURL': Modify fully-qualified URLs used in redirects/export/offsite data.
 $title: Title object of page
