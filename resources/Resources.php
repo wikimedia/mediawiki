@@ -191,6 +191,19 @@ return array(
 	'jquery.colorUtil' => array(
 		'scripts' => 'resources/jquery/jquery.colorUtil.js',
 	),
+	'jquery.confirmable' => array(
+		'scripts' => array(
+			'resources/jquery/jquery.confirmable.js',
+			'resources/jquery/jquery.confirmable.mediawiki.js',
+		),
+		'messages' => array(
+			'confirmable-confirm',
+			'confirmable-yes',
+			'confirmable-no',
+		),
+		'styles' => 'resources/jquery/jquery.confirmable.css',
+		'dependencies' => 'mediawiki.jqueryMsg',
+	),
 	'jquery.cookie' => array(
 		'scripts' => 'resources/jquery/jquery.cookie.js',
 		'targets' => array( 'desktop', 'mobile' ),

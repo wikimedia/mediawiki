@@ -913,6 +913,24 @@ See also:
 
 See the following example:
 {{Identical|Expand}}',
+'confirmable-confirm' => 'Question asking the user to confirm a potentially uncancellable action.
+"Yes" and "No" buttons are displayed beside it.
+
+See also:
+* {{msg-mw|confirmable-yes}}
+* {{msg-mw|confirmable-no}}',
+'confirmable-yes' => '{{Doc-actionlink}}
+Text of a button that will confirm triggering of a potentially uncancellable action.
+
+See also:
+* {{msg-mw|confirmable-confirm}}
+* {{msg-mw|confirmable-no}}',
+'confirmable-no' => '{{Doc-actionlink}}
+Text of a button that will cancel triggering of a potentially uncancellable action.
+
+See also:
+* {{msg-mw|confirmable-confirm}}
+* {{msg-mw|confirmable-yes}}',
 'thisisdeleted' => 'Message shown on a deleted page when the user has the undelete right. Parameters:
 * $1 - a link to [[Special:Undelete]], with {{msg-mw|restorelink}} as the text
 See also:
