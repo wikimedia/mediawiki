@@ -240,6 +240,19 @@ return array(
 	'jquery.colorUtil' => array(
 		'scripts' => 'resources/src/jquery/jquery.colorUtil.js',
 	),
+	'jquery.confirmable' => array(
+		'scripts' => array(
+			'resources/src/jquery/jquery.confirmable.js',
+			'resources/src/jquery/jquery.confirmable.mediawiki.js',
+		),
+		'messages' => array(
+			'confirmable-confirm',
+			'confirmable-yes',
+			'confirmable-no',
+		),
+		'styles' => 'resources/src/jquery/jquery.confirmable.css',
+		'dependencies' => 'mediawiki.jqueryMsg',
+	),
 	'jquery.cookie' => array(
 		'scripts' => 'resources/lib/jquery/jquery.cookie.js',
 		'targets' => array( 'desktop', 'mobile' ),
