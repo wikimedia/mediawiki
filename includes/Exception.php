@@ -722,25 +722,39 @@ class MWExceptionHandler {
 			} else {
 				$finalExceptionText .= $call['function'];
 			}
-			$args = array();
-			if ( isset( $call['args'] ) ) {
-				foreach ( $call['args'] as $arg ) {
-					if ( $arg === $redacted ) {
-						$args[] = 'REDACTED';
-					} elseif ( is_object( $arg ) ) {
-						$args[] = 'Object(' . get_class( $arg ) . ')';
-					} elseif( is_array( $arg ) ) {
-						$args[] = 'Array';
-					} else {
-						$args[] = var_export( $arg, true );
-					}
-				}
-			}
-			$finalExceptionText .=  '(' . implode( ', ', $args ) . ")\n";
+
+			$args = self::formatArgumentsInCall( $call );
+			$finalExceptionText .= '(' . implode( ', ', $args ) . ")\n";
 		}
 		return $finalExceptionText . '#' . ( $i + 1 ) . ' {main}';
 	}
 
+	/**
+	 * Format arguments of a stacktrace call.
+	 *
+	 * @param Array $call A backtrace call entry, should have a 'args' key.
+	 * @return Array Formatted arguments. Empty array whenever there is no
+	 * arguments.
+	 */
+	public static function formatArgumentsInCall( $call ) {
+		if( !isset( $call['args'] ) ) {
+			return array();
+		}
+
+		$args = array();
+		foreach ( $call['args'] as $arg ) {
+			if ( $arg === $redacted ) {
+				$args[] = 'REDACTED';
+			} elseif ( is_object( $arg ) ) {
+				$args[] = 'Object(' . get_class( $arg ) . ')';
+			} elseif( is_array( $arg ) ) {
+				$args[] = 'Array';
+			} else {
+				$args[] = var_export( $arg, true );
+			}
+		}
+		return $args;
+	}
 
 	/**
 	 * Get the ID for this error.
