@@ -227,8 +227,6 @@ production.
 * Add deferrable update support for callback/closure.
 * Add TitleMove hook before page renames.
 * Revision deletion backend code is moved out of SpecialRevisiondelete
-* Add a variable (wgRedactedFunctionArguments) to redact the values sent as certain function
-  parameters from exception stack traces.
 * Added {{REVISIONSIZE}} variable to get the current size of a revision.
 * Add support for the LESS stylesheet language to ResourceLoader. LESS is a
   stylesheet language that compiles into CSS. ResourceLoader file modules may
