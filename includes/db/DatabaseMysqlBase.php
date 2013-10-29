@@ -274,7 +274,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 
 	/**
 	 * @param $res ResultWrapper
-	 * @param $n string
+	 * @param $n int
 	 * @return string
 	 */
 	function fieldName( $res, $n ) {
@@ -292,6 +292,29 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	 * @return string
 	 */
 	abstract protected function mysqlFieldName( $res, $n );
+
+	/**
+	 * mysql_field_type() wrapper
+	 * @param $res
+	 * @param $n int
+	 * @return string
+	 */
+	public function fieldType( $res, $n ) {
+		if ( $res instanceof ResultWrapper ) {
+			$res = $res->result;
+		}
+
+		return $this->mysqlFieldType( $res, $n );
+	}
+
+	/**
+	 * Get the type of the specified field in a result
+	 *
+	 * @param $res Raw result
+	 * @param $n int
+	 * @return string
+	 */
+	abstract protected function mysqlFieldType( $res, $n );
 
 	/**
 	 * @param $res ResultWrapper

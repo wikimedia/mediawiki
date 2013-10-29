@@ -349,6 +349,7 @@ production.
 * (bug 45288) Support mysqli PHP extension
 * (bug 55818) BREAKING CHANGE: Removed undocumented 'Debug' hook in wfDebug.
   This resolves an infinite loop when using $wgDebugFunctionEntry = true.
+* Fixed some bugs that affected upgrading from versions 1.1 - 1.3.
 
 === API changes in 1.22 ===
 * (bug 25553) The JSON output formatter now leaves forward slashes unescaped
