@@ -126,7 +126,7 @@ class MWException extends Exception {
 
 		if ( $wgShowExceptionDetails ) {
 			return '<p>' . nl2br( htmlspecialchars( $this->getMessage() ) ) .
-				'</p><p>Backtrace:</p><p>' . nl2br( htmlspecialchars( MWExceptionHandler::formatRedactedTrace( $this ) ) ) .
+				'</p><p>Backtrace:</p><p>' . nl2br( htmlspecialchars( $this->getTraceAsString() ) ) .
 				"</p>\n";
 		} else {
 			return "<div class=\"errorbox\">" .
@@ -151,7 +151,7 @@ class MWException extends Exception {
 
 		if ( $wgShowExceptionDetails ) {
 			return $this->getMessage() .
-				"\nBacktrace:\n" . MWExceptionHandler::formatRedactedTrace( $this ) . "\n";
+				"\nBacktrace:\n" . $this->getTraceAsString() . "\n";
 		} else {
 			return "Set \$wgShowExceptionDetails = true; " .
 				"in LocalSettings.php to show detailed debugging information.\n";
@@ -601,7 +601,7 @@ class MWExceptionHandler {
 				$message = "MediaWiki internal error.\n\n";
 
 				if ( $wgShowExceptionDetails ) {
-					$message .= 'Original exception: ' . self::formatRedactedTrace( $e ) . "\n\n" .
+					$message .= 'Original exception: ' . $e->__toString() . "\n\n" .
 						'Exception caught inside exception handler: ' . $e2->__toString();
 				} else {
 					$message .= "Exception caught inside exception handler.\n\n" .
@@ -618,10 +618,11 @@ class MWExceptionHandler {
 				}
 			}
 		} else {
-			$message = "Unexpected non-MediaWiki exception encountered, of type \"" . get_class( $e ) . "\"";
+			$message = "Unexpected non-MediaWiki exception encountered, of type \"" . get_class( $e ) . "\"\n" .
+				$e->__toString() . "\n";
 
 			if ( $wgShowExceptionDetails ) {
-				$message .= "\nexception '" . get_class( $e ) . "' in " . $e->getFile() . ":" . $e->getLine() . "\nStack trace:\n" . self::formatRedactedTrace( $e ) . "\n";
+				$message .= "\n" . $e->getTraceAsString() . "\n";
 			}
 
 			if ( $cmdLine ) {
@@ -676,71 +677,6 @@ class MWExceptionHandler {
 		// Exit value should be nonzero for the benefit of shell jobs
 		exit( 1 );
 	}
-
-	/**
-	 * Get the stack trace from the exception as a string, redacting certain function arguments in the process
-	 * @param Exception $e The exception
-	 * @return string The stack trace as a string
-	 */
-	public static function formatRedactedTrace( Exception $e ) {
-		global $wgRedactedFunctionArguments;
-		$finalExceptionText = '';
-
-		// Unique value to indicate redacted parameters
-		$redacted = new stdClass();
-
-		foreach ( $e->getTrace() as $i => $call ) {
-			$checkFor = array();
-			if ( isset( $call['class'] ) ) {
-				$checkFor[] = $call['class'] . '::' . $call['function'];
-				foreach ( class_parents( $call['class'] ) as $parent ) {
-					$checkFor[] = $parent . '::' . $call['function'];
-				}
-			} else {
-				$checkFor[] = $call['function'];
-			}
-
-			foreach ( $checkFor as $check ) {
-				if ( isset( $wgRedactedFunctionArguments[$check] ) ) {
-					foreach ( (array)$wgRedactedFunctionArguments[$check] as $argNo ) {
-						$call['args'][$argNo] = $redacted;
-					}
-				}
-			}
-
-			if ( isset( $call['file'] ) && isset( $call['line'] ) ) {
-				$finalExceptionText .= "#{$i} {$call['file']}({$call['line']}): ";
-			} else {
-				// 'file' and 'line' are unset for calls via call_user_func (bug 55634)
-				// This matches behaviour of Exception::getTraceAsString to instead
-				// display "[internal function]".
-				$finalExceptionText .= "#{$i} [internal function]: ";
-			}
-
-			if ( isset( $call['class'] ) ) {
-				$finalExceptionText .= $call['class'] . $call['type'] . $call['function'];
-			} else {
-				$finalExceptionText .= $call['function'];
-			}
-			$args = array();
-			if ( isset( $call['args'] ) ) {
-				foreach ( $call['args'] as $arg ) {
-					if ( $arg === $redacted ) {
-						$args[] = 'REDACTED';
-					} elseif ( is_object( $arg ) ) {
-						$args[] = 'Object(' . get_class( $arg ) . ')';
-					} elseif( is_array( $arg ) ) {
-						$args[] = 'Array';
-					} else {
-						$args[] = var_export( $arg, true );
-					}
-				}
-			}
-			$finalExceptionText .=  '(' . implode( ', ', $args ) . ")\n";
-		}
-		return $finalExceptionText . '#' . ( $i + 1 ) . ' {main}';
-	}
-
 
 	/**
 	 * Get the ID for this error.
@@ -802,7 +738,7 @@ class MWExceptionHandler {
 		$log = self::getLogMessage( $e );
 		if ( $log ) {
 			if ( $wgLogExceptionBacktrace ) {
-				wfDebugLog( 'exception', $log . "\n" . self::formatRedactedTrace( $e ) . "\n" );
+				wfDebugLog( 'exception', $log . "\n" . $this->getTraceAsString() . "\n" );
 			} else {
 				wfDebugLog( 'exception', $log );
 			}
