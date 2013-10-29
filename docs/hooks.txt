@@ -1157,6 +1157,13 @@ $title: Title object that we need to get a sortkey for
 underscore) magic words. Called by MagicWord.
 &$doubleUnderscoreIDs: array of strings
 
+'GetExtendedMetadata': Get extended file metadata for the API
+&$combinedMeta: Array of the form: 'MetadataPropName' => array(
+'value' => prop value, 'source' => 'name of hook' ).
+$file: File object of file in question
+$context: RequestContext (including language to use)
+&$maxCacheTime: how long the results can be cached
+
 'GetFullURL': Modify fully-qualified URLs used in redirects/export/offsite data.
 $title: Title object of page
 $url: string value as output (out parameter, can modify)
@@ -2743,6 +2750,12 @@ authentication timestamp
 $userId: User id of the current user
 $userText: User name of the current user
 &$items: Array of user tool links as HTML fragments
+
+'ValidateExtendedMetadataCache': Called to validate the cached metadata in
+FormatMetadata::getExtendedMeta (return false means cache will be
+invalidated and GetExtendedMetadata hook called again).
+$timestamp: The timestamp metadata was generated
+$file: The file the metadata is for
 
 'WantedPages::getQueryInfo': Called in WantedPagesPage::getQueryInfo(), can be
 used to alter the SQL query which gets the list of wanted pages.
