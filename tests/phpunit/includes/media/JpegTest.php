@@ -45,6 +45,10 @@ class JpegTest extends MediaWikiTestCase {
 		// Unserialize in case serialization format ever changes.
 		$this->assertEquals( unserialize( $expected ), unserialize( $res ) );
 	}
+
+	/**
+	 * @covers JpegHandler::getCommonMetaArray
+	 */
 	public function testGetIndependentMetaArray() {
 		$file = $this->dataFile( 'test.jpg', 'image/jpeg' );
 		$res = $this->handler->getCommonMetaArray( $file );

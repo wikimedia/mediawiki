@@ -117,6 +117,7 @@ class GIFHandlerTest extends MediaWikiTestCase {
 	 * @param $filename String
 	 * @param $expected String Serialized array
 	 * @dataProvider provideGetIndependentMetaArray
+	 * @covers GIFHandler::getCommonMetaArray
 	 */
 	public function testGetIndependentMetaArray( $filename, $expected ) {
 		$file = $this->dataFile( $filename, 'image/gif' );
