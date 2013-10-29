@@ -527,6 +527,8 @@ changes to languages because of Bugzilla reports.
   to addModules() and made protected.
 * Methods WatchAction::doWatch and WatchAction::doUnwatch now return a Status
   object instead of a boolean.
+* Information boxes (CSS classes errorbox, warningbox, successbox) have been
+  made more subtle.
 
 == Compatibility ==
 
