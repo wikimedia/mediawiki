@@ -78,9 +78,10 @@ class DifferenceEngine extends ContextSource {
 
 	/**
 	 * Constructor
+	 *
 	 * @param $context IContextSource context to use, anything else will be ignored
 	 * @param $old Integer old ID we want to show and diff with.
-	 * @param $new String either 'prev' or 'next'.
+	 * @param $new String|int either revision ID or 'prev' or 'next'.
 	 * @param $rcid Integer Deprecated, no longer used!
 	 * @param $refreshCache boolean If set, refreshes the diff cache
 	 * @param $unhide boolean If set, allow viewing deleted revs
@@ -227,7 +228,6 @@ class DifferenceEngine extends ContextSource {
 		}
 
 		$rollback = '';
-		$undoLink = '';
 
 		$query = array();
 		# Carry over 'diffonly' param via navigation links
@@ -581,6 +581,10 @@ class DifferenceEngine extends ContextSource {
 	 * Get the diff text, send it to the OutputPage object
 	 * Returns false if the diff could not be generated, otherwise returns true
 	 *
+	 * @param string|bool $otitle Header for old text or false
+	 * @param string|bool $ntitle Header for new text or false
+	 * @param string $notice HTML between diff header and body
+	 *
 	 * @return bool
 	 */
 	function showDiff( $otitle, $ntitle, $notice = '' ) {
@@ -825,6 +829,9 @@ class DifferenceEngine extends ContextSource {
 	/**
 	 * Generate a debug comment indicating diff generating time,
 	 * server node, and generator backend.
+	 *
+	 * @param String $generator: What diff engine was used
+	 *
 	 * @return string
 	 */
 	protected function debug( $generator = "internal" ) {
@@ -837,16 +844,20 @@ class DifferenceEngine extends ContextSource {
 			$data[] = wfHostname();
 		}
 		$data[] = wfTimestamp( TS_DB );
-		return "<!-- diff generator: " .
-		implode( " ",
-		array_map(
+		return "<!-- diff generator: "
+			. implode( " ",
+				array_map(
 					"htmlspecialchars",
-		$data ) ) .
-			" -->\n";
+				$data )
+			)
+			. " -->\n";
 	}
 
 	/**
 	 * Replace line numbers with the text in the user's language
+	 *
+	 * @param String $text
+	 *
 	 * @return mixed
 	 */
 	function localiseLineNumbers( $text ) {
@@ -960,6 +971,12 @@ class DifferenceEngine extends ContextSource {
 
 	/**
 	 * Add the header to a diff body
+	 *
+	 * @param String $diff: Diff body
+	 * @param String $otitle: Old revision header
+	 * @param String $ntitle: New revision header
+	 * @param String $multi: Notice telling user that there are intermediate revisions between the ones being compared
+	 * @param String $notice: Other notices, e.g. that user is viewing deleted content
 	 *
 	 * @return string
 	 */
