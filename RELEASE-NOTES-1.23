@@ -11,6 +11,13 @@ production.
 === Configuration changes in 1.23 ===
 
 === New features in 1.23 ===
+* ResourceLoader can utilize the Web Storage API to cache modules client-side.
+  Compared to the browser cache, caching in Web Storage allows ResourceLoader
+  to be more granular about evicting stale modules from the cache while
+  retaining the ability to retrieve multiple modules in a single HTTP request.
+  This capability can be enabled by setting $wgResourceLoaderStorageEnabled to
+  true. This feature is currently considered experimental and should only be
+  enabled with care.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
