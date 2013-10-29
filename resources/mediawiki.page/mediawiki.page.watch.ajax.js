@@ -17,12 +17,13 @@
 	 * @param state {String} [optional] 'idle' or 'loading'. Default is 'idle'.
 	 */
 	function updateWatchLink( $link, action, state ) {
-		var accesskeyTip, msgKey, $li, otherAction;
+		var accesskeyTip, msgKey, $li, otherAction, titleAttr;
 
 		// message keys 'watch', 'watching', 'unwatch' or 'unwatching'.
 		msgKey = state === 'loading' ? action + 'ing' : action;
 		otherAction = action === 'watch' ? 'unwatch' : 'watch';
-		accesskeyTip = $link.attr( 'title' ).match( mw.util.tooltipAccessKeyRegexp );
+		titleAttr = $link.attr( 'title' );
+		accesskeyTip = titleAttr && titleAttr.match( mw.util.tooltipAccessKeyRegexp );
 		$li = $link.closest( 'li' );
 
 		/**
