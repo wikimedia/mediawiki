@@ -94,14 +94,14 @@
 	 * Create a property in a host object that, when accessed, will produce
 	 * a deprecation warning in the console with backtrace.
 	 *
-	 * If Object.defineProperty is missing, equivalent to `obj[key] = val`.
-	 *
 	 * @param {Object} obj Host object of deprecated property
 	 * @param {string} key Name of property to create in `obj`
 	 * @param {Mixed} val The value this property should return when accessed
 	 * @param {string} [msg] Optional text to include in the deprecation message.
 	 */
-	mw.log.deprecate = function ( obj, key, val, msg ) {
+	mw.log.deprecate = !Object.defineProperty ? function ( obj, key, val ) {
+		obj[key] = val;
+	} : function ( obj, key, val, msg ) {
 		msg = 'MWDeprecationWarning: Use of "' + key + '" property is deprecated.' +
 			( msg ? ( ' ' + msg ) : '' );
 		try {
@@ -118,7 +118,7 @@
 				}
 			} );
 		} catch ( err ) {
-			// Object.defineProperty missing or the call threw an error (it can do it on IE8)
+			// IE8 can throw on Object.defineProperty
 			obj[key] = val;
 		}
 	};
