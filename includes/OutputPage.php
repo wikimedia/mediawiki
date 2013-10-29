@@ -2980,9 +2980,11 @@ $templates
 		$ns = $title->getNamespace();
 		$canonicalNamespace = MWNamespace::exists( $ns ) ? MWNamespace::getCanonicalName( $ns ) : $title->getNsText();
 
+		$sk = $this->getSkin();
 		// Get the relevant title so that AJAX features can use the correct page name
 		// when making API requests from certain special pages (bug 34972).
-		$relevantTitle = $this->getSkin()->getRelevantTitle();
+		$relevantTitle = $sk->getRelevantTitle();
+		$relevantUser = $sk->getRelevantUser();
 
 		if ( $ns == NS_SPECIAL ) {
 			list( $canonicalSpecialPageName, /*...*/ ) = SpecialPageFactory::resolveAlias( $title->getDBkey() );
@@ -3058,6 +3060,9 @@ $templates
 		}
 		if ( $this->mRedirectedFrom ) {
 			$vars['wgRedirectedFrom'] = $this->mRedirectedFrom->getPrefixedDBkey();
+		}
+		if ( $relevantUser ) {
+			$vars['wgRelevantUserName'] = $relevantUser->getName();
 		}
 
 		// Allow extensions to add their custom variables to the mw.config map.
