@@ -2450,11 +2450,11 @@ function wfIsWindows() {
 }
 
 /**
- * Check if we are running under HipHop
+ * Check if we are running under HHVM
  *
  * @return Bool
  */
-function wfIsHipHop() {
+function wfIsHHVM() {
 	return defined( 'HPHP_VERSION' );
 }
 

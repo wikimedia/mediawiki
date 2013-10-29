@@ -70,7 +70,7 @@ while ( ( $line = Maintenance::readconsole() ) !== false ) {
 		readline_write_history( $historyFile );
 	}
 	$val = eval( $line . ";" );
-	if ( wfIsHipHop() || is_null( $val ) ) {
+	if ( wfIsHHVM() || is_null( $val ) ) {
 		echo "\n";
 	} elseif ( is_string( $val ) || is_numeric( $val ) ) {
 		echo "$val\n";
