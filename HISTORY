@@ -122,6 +122,8 @@ production.
   correctly.
 * (bug 45803) Whitespace within == Headline == syntax and within <hN> headings
   is now non-significant and not preserved in the HTML output.
+* Added Article::MissingArticleConditions hook to give extensions a chance to
+  hide their (unrelated) log entries.
 
 === Bug fixes in 1.21 ===
 * (bug 40353) SpecialDoubleRedirect should support interwiki redirects.
