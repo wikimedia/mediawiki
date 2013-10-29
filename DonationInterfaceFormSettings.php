@@ -457,6 +457,7 @@ if ( $wgDonationInterfaceEnableAdyen === true ) {
 		'countries' => array( '+' => 'US',),
 		'currencies' => array( '+' => 'USD',),
 		'payment_methods' => array('cc' => array( 'visa', 'mc', 'amex', 'discover' )),
+		'selection_weight' => 0
 	);
 }
 
