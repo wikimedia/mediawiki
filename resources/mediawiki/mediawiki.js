@@ -1231,7 +1231,7 @@ var mw = ( function ( $, undefined ) {
 				 */
 				work: function () {
 					var	reqBase, splits, maxQueryLength, q, b, bSource, bGroup, bSourceGroup,
-						source, group, g, i, modules, maxVersion, sourceLoadScript,
+						source, concatSource, group, g, i, modules, maxVersion, sourceLoadScript,
 						currReqBase, currReqBaseLength, moduleMap, l,
 						lastDotIndex, prefix, suffix, bytesAdded, async;
 
@@ -1260,14 +1260,16 @@ var mw = ( function ( $, undefined ) {
 
 					mw.loader.store.init();
 					if ( mw.loader.store.enabled ) {
+						concatSource = [];
 						batch = $.grep( batch, function ( module ) {
 							var source = mw.loader.store.get( module );
 							if ( source ) {
-								$.globalEval( source );
-								return false; // Don't fetch
+								concatSource.push( source );
+								return false;
 							}
-							return true; // Fetch
+							return true;
 						} );
+						$.globalEval( concatSource.join( ';' ) );
 					}
 
 					// Early exit if there's nothing to load...
