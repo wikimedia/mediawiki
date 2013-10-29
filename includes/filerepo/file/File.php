@@ -513,6 +513,17 @@ abstract class File {
 	}
 
 	/**
+	 * Like getMetadata but returns a handler independent array of common values.
+	 * @see MediaHandler::getCommonMetaArray()
+	 * @return Array or false if not supported
+	 * @since 1.23
+	 */
+	public function getCommonMetaArray() {
+		$handler = $this->getHandler();
+		return $handler->getCommonMetaArray( $this );
+	}
+
+	/**
 	 * get versioned metadata
 	 *
 	 * @param $metadata Mixed Array or String of (serialized) metadata
