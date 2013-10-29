@@ -3910,7 +3910,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 
 			}
 			$callers = implode( ', ', $callers );
-			trigger_error( "DB transaction  callbacks still pending (from $callers)." );
+			trigger_error( "DB transaction callbacks still pending (from $callers)." );
 		}
 	}
 }
