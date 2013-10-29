@@ -1256,13 +1256,9 @@ var mw = ( function ( $, undefined ) {
 
 					mw.loader.store.init();
 					if ( mw.loader.store.enabled ) {
+						$.globalEval( $.map( batch, mw.loader.store.get ).join( ';' ) );
 						batch = $.grep( batch, function ( module ) {
-							var source = mw.loader.store.get( module );
-							if ( source ) {
-								$.globalEval( source );
-								return false; // Don't fetch
-							}
-							return true; // Fetch
+							return registry[module].script === undefined;
 						} );
 					}
 
