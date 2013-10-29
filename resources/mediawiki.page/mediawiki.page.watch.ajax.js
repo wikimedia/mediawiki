@@ -22,7 +22,7 @@
 		// message keys 'watch', 'watching', 'unwatch' or 'unwatching'.
 		msgKey = state === 'loading' ? action + 'ing' : action;
 		otherAction = action === 'watch' ? 'unwatch' : 'watch';
-		accesskeyTip = $link.attr( 'title' ).match( mw.util.tooltipAccessKeyRegexp );
+		accesskeyTip = $link.attr( 'title' ) && $link.attr( 'title' ).match( mw.util.tooltipAccessKeyRegexp );
 		$li = $link.closest( 'li' );
 
 		/**
