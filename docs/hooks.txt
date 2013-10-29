@@ -457,6 +457,12 @@ types.
 &$tokenTypes: supported token types in format 'type' => callback function
 used to retrieve this type of tokens.
 
+'Article::MissingArticleConditions': Before fetching deletion & move log entries
+to display a message of a non-existing page being deleted/moved, give extensions
+a chance to hide their (unrelated) log entries.
+&$conds: Array of query conditions
+$logTypes: Array of log types being queried
+
 'ArticleAfterFetchContent': After fetching content of an article from the
 database. DEPRECATED, use ArticleAfterFetchContentObject instead.
 $article: the article (object) being loaded from the database

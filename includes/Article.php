@@ -1201,10 +1201,15 @@ class Article implements Page {
 
 		wfRunHooks( 'ShowMissingArticle', array( $this ) );
 
+		// Give extensions a chance to hide their (unrelated) log entries
+		$logTypes = array( 'delete', 'move' );
+		$conds = array( "log_action != 'revision'" );
+		wfRunHooks( 'Article::MissingArticleConditions', array( &$conds, $logTypes ) );
+
 		# Show delete and move logs
-		LogEventsList::showLogExtract( $outputPage, array( 'delete', 'move' ), $this->getTitle(), '',
+		LogEventsList::showLogExtract( $outputPage, $logTypes, $this->getTitle(), '',
 			array( 'lim' => 10,
-				'conds' => array( "log_action != 'revision'" ),
+				'conds' => $conds,
 				'showIfEmpty' => false,
 				'msgKey' => array( 'moveddeleted-notice' ) )
 		);
