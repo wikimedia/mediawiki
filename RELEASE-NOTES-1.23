@@ -18,6 +18,8 @@ production.
   This capability can be enabled by setting $wgResourceLoaderStorageEnabled to
   true. This feature is currently considered experimental and should only be
   enabled with care.
+* Add "wgRelevantUserName" to mw.config containing the current
+  Skin::getRelevantUser value
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
