@@ -3229,6 +3229,10 @@ Used in [[Special:Preferences]], tab "Watchlist".
 The checkbox has the label {{msg-mw|Tog-prefershttps}}.
 
 See example: [[mw:Special:Preferences]].',
+'prefswarning-warning' => "Warning shown (except in Firefox) when attempting to leave [[Special:Preferences]] with unsaved changes.
+
+Parameters:
+* $1 - Text of {{msg-mw|saveprefs}}, as <nowiki>{{int:saveprefs}}</nowiki> cannot be used directly.",
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'Used as hint for {{msg-mw|changeemail-newemail}} field in [[Special:ChangeEmail]], when the provided E-mail address is valid.',

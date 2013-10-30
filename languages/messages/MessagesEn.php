@@ -2019,6 +2019,8 @@ Your email address is not revealed when other users contact you.',
 'prefs-tokenwatchlist'          => 'Token',
 'prefs-diffs'                   => 'Diffs',
 'prefs-help-prefershttps'       => 'This preference will take effect on your next login.',
+'prefswarning-warning'          => "You've made changes to your preferences that have not been saved yet.
+If you leave this page without clicking $1 your preferences will not be updated.",
 
 # User preference: email validation using jQuery
 'email-address-validity-valid'   => 'Email address appears valid',

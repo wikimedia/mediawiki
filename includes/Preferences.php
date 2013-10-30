@@ -1597,7 +1597,9 @@ class PreferencesForm extends HTMLForm {
 		if ( $this->getModifiedUser()->isAllowed( 'editmyoptions' ) ) {
 			$t = SpecialPage::getTitleFor( 'Preferences', 'reset' );
 
-			$html .= "\n" . Linker::link( $t, $this->msg( 'restoreprefs' )->escaped() );
+			$html .= "\n" . Linker::link( $t, $this->msg( 'restoreprefs' )->escaped(), array(
+				'id' => 'mw-prefs-restoreprefs',
+			) );
 
 			$html = Xml::tags( 'div', array( 'class' => 'mw-prefs-buttons' ), $html );
 		}
