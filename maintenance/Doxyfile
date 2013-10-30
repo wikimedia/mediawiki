@@ -65,6 +65,10 @@ ALIASES =	"type{1}=<b> \1 </b>:" \
 		"public=\access public" \
 		"copyright=\note" \
 		"license=\note" \
+		"expectedException=\see Expected to throw: \ref" \
+		"depends=\see Depends on test: \ref" \
+		"dataProvider=\see Data provider: \ref" \
+		"covers=\see Covers: \ref" \
 		"codeCoverageIgnore="
 TCL_SUBST              =
 OPTIMIZE_OUTPUT_FOR_C  = NO
