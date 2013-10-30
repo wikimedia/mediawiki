@@ -92,7 +92,7 @@ return array(
 			'common/commonElements.css' => array( 'media' => 'screen' ),
 			'common/commonContent.css' => array( 'media' => 'screen' ),
 			'common/commonInterface.css' => array( 'media' => 'screen' ),
-			'vector/styles.less',
+			'vector/styles.less' => array( 'media' => 'screen' ),
 		),
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
