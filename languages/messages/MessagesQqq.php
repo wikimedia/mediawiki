@@ -426,8 +426,6 @@ The pagination links in category viewer. Parameters:
 * $1 - the previous link, uses {{msg-mw|Prevn}}
 * $2 - the next link, uses {{msg-mw|Nextn}}',
 
-'linkprefix' => '{{optional}}',
-
 'about' => '{{Identical|About}}',
 'article' => "A 'content page' is a page that forms part of the purpose of the wiki. It includes the main page and pages in the main namespace and any other namespaces that are included when the wiki is customised. For example on Wikimedia Commons 'content pages' include pages in the file and category namespaces. On Wikinews 'content pages' include pages in the Portal namespace. For technical definition of 'content namespaces' see [[mw:Manual:Using_custom_namespaces#Content_namespaces|MediaWiki]].
 

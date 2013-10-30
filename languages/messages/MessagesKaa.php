@@ -151,6 +151,7 @@ $dateFormats = array(
 );
 
 $linkTrail = "/^((?:[a-zıʼ’“»]|'(?!'))+)(.*)$/sDu";
+$linkPrefixCharset = 'a-zıA-Zİ\\x80-\\xff';
 
 $messages = array(
 # User preference toggles
@@ -263,8 +264,6 @@ $messages = array(
 'category-file-count' => "{{PLURAL:$2|Bul kategoriyada tek to'mendegi fayl bar.|Bul kategoriyada to'mendegi $1 fayl bar (barlıg'ı $2).}}",
 'category-file-count-limited' => "Usı kategoriyada to'mendegi {{PLURAL:$1|fayl|$1 fayl}} bar.",
 'listingcontinuesabbrev' => 'dawamı',
-
-'linkprefix' => '/^(.*?)([a-zıA-Zİ\\x80-\\xff]+)$/sDu',
 
 'about' => 'Haqqında',
 'article' => "Mag'lıwmat beti",

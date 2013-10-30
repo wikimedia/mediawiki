@@ -193,8 +193,6 @@ $messages = array(
 'noindex-category' => 'क्रमांकन नगरिएका पृष्ठहरु',
 'broken-file-category' => 'टुटेको फाइल लिंकसितको पृष्ठ',
 
-'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
-
 'about' => 'बारेमा',
 'article' => 'सामाग्री पृष्ठ',
 'newwindow' => '(नयाँ विन्डोमा खुल्छ)',

@@ -495,6 +495,12 @@ $specialPageAliases = array(
 $linkTrail = '/^([a-z]+)(.*)$/sD';
 
 /**
+ * Regular expression charset matching the "link prefix", e.g. "foo" in
+ * foo[[bar]]. UTF-8 characters may be used.
+ */
+$linkPrefixCharset = 'a-zA-Z\\x{80}-\\x{10ffff}';
+
+/**
  * List of filenames for some ui images that can be overridden per language
  * basis if needed.
 */
@@ -789,8 +795,6 @@ future releases. Also note that since each list value is wrapped in a unique
 'noindex-category'               => 'Noindexed pages',
 'broken-file-category'           => 'Pages with broken file links',
 'categoryviewer-pagedlinks'      => '($1) ($2)', # only translate this message to other languages if you have to change it
-
-'linkprefix' => '/^((?>.*(?<![a-zA-Z\\x80-\\xff])))(.+)$/sD', # only translate this message to other languages if you have to change it
 
 'about'         => 'About',
 'article'       => 'Content page',

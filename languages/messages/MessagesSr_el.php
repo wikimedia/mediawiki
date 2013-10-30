@@ -444,8 +444,6 @@ $messages = array(
 'noindex-category' => 'Nepopisane stranice',
 'broken-file-category' => 'Stranice s neispravnim vezama do datoteka',
 
-'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
-
 'about' => 'O nama',
 'article' => 'Stranica sa sadržajem',
 'newwindow' => '(otvara u novom prozoru)',
