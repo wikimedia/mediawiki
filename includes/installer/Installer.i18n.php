@@ -374,7 +374,7 @@ Specify a different project namespace.',
 	'config-ns-conflict'               => 'The specified namespace "<nowiki>$1</nowiki>" conflicts with a default MediaWiki namespace.
 Specify a different project namespace.',
 	'config-admin-box'                => 'Administrator account',
-	'config-admin-name'               => 'Your name:',
+	'config-admin-name'               => 'Your username:',
 	'config-admin-password'           => 'Password:',
 	'config-admin-password-confirm'   => 'Password again:',
 	'config-admin-help'               => 'Enter your preferred username here, for example "Joe Bloggs".
