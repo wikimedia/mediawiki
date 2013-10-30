@@ -105,7 +105,7 @@ Date Formatter:
 	expiry: one hour
 
 Difference Engine:
-	key: $wgDBname:diff:version:{MW_DIFF_VERSION}:oldid:$old:newid:$new
+	key: $wgDBname:diff:version:{DifferenceEngine::CACHE_VERSION}:oldid:$old:newid:$new
 	ex: wikidb:diff:version:1.11a:oldid:1:newid:2
 	stores: body of a difference
 	cleared by: nothing
