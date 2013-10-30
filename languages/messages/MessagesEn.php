@@ -4960,8 +4960,7 @@ You should have received [{{SERVER}}{{SCRIPTPATH}}/COPYING a copy of the GNU Gen
 
 # Database error messages
 'dberr-header'      => 'This wiki has a problem',
-'dberr-problems'    => 'Sorry!
-This site is experiencing technical difficulties.',
+'dberr-problems'    => 'Sorry! This site is experiencing technical difficulties.',
 'dberr-again'       => 'Try waiting a few minutes and reloading.',
 'dberr-info'        => '(Cannot contact the database server: $1)',
 'dberr-info-hidden' => '(Cannot contact the database server)',

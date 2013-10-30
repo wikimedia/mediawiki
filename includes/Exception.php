@@ -164,7 +164,8 @@ class MWException extends Exception {
 	 * @return string
 	 */
 	function getPageTitle() {
-		return $this->msg( 'internalerror', "Internal error" );
+		global $wgSitename;
+		return $this->msg( 'pagetitle', "$1 - $wgSitename", $this->msg( 'internalerror', 'Internal error' ) );
 	}
 
 	/**
@@ -209,13 +210,14 @@ class MWException extends Exception {
 
 			$wgOut->output();
 		} else {
-			header( "Content-Type: text/html; charset=utf-8" );
-			echo "<!doctype html>\n" .
+			header( 'Content-Type: text/html; charset=utf-8' );
+			echo "<!DOCTYPE html>\n" .
 				'<html><head>' .
 				'<title>' . htmlspecialchars( $this->getPageTitle() ) . '</title>' .
+				'<style>body { font-family: sans-serif; margin: 0; padding: 0.5em 2em; }</style>' .
 				"</head><body>\n";
 
-			$hookResult = $this->runHooks( get_class( $this ) . "Raw" );
+			$hookResult = $this->runHooks( get_class( $this ) . 'Raw' );
 			if ( $hookResult ) {
 				echo $hookResult;
 			} else {
@@ -242,8 +244,8 @@ class MWException extends Exception {
 		} elseif ( self::isCommandLine() ) {
 			MWExceptionHandler::printError( $this->getText() );
 		} else {
-			header( "HTTP/1.1 500 MediaWiki exception" );
-			header( "Status: 500 MediaWiki exception", true );
+			header( 'HTTP/1.1 500 MediaWiki exception' );
+			header( 'Status: 500 MediaWiki exception', true );
 			header( "Content-Type: $wgMimeType; charset=utf-8", true );
 
 			$this->reportHTML();
