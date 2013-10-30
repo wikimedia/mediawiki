@@ -596,7 +596,7 @@ usando la contraseña antigua.",
 Por favor vuelvi a aniciar sesión depués de recibila.',
 'blocked-mailpassword' => 'Ta bloquiada la edición dende la to direición IP, polo que pa evitar abusos nun se pue usar la función de recuperación de contraseña.',
 'eauthentsent' => "Unvióse un corréu electrónicu de confirmación a la direición indicada.
-Enantes de que s'unvie nengún otru corréu a la cuenta, has de siguir les instrucciones del corréu electrónicu pa confirmar que la cuenta ye de to.",
+Enantes de que s'unvie nengún otru corréu a la cuenta, has de siguir les instrucciones d'esi corréu pa confirmar que la cuenta ye daveres de to.",
 'throttled-mailpassword' => "Yá s'unvió un corréu de reaniciu la clave {{PLURAL:$1|na postrer hora|nes postreres $1 hores}}.
 Pa evitar abusos, namái s'unviará un corréu de reaniciu cada {{PLURAL:$1|hora|$1 hores}}.",
 'mailerror' => 'Fallu al unviar el corréu: $1',
@@ -2981,7 +2981,7 @@ Probablemente tea causao por un enllaz a un sitiu esternu de la llista prieta.',
 'spam_reverting' => 'Revirtiendo a la cabera versión que nun contién enllaces a $1',
 'spam_blanking' => 'Toles revisiones teníen enllaces a $1; dexando en blanco',
 'spam_deleting' => 'Toles revisiones teníen enllaces a $1, desaniciando',
-'simpleantispam-label' => "Control anti-spam.
+'simpleantispam-label' => "Comprobación anti-spam.
 ¡'''NUN''' rellenes esto!",
 
 # Info page

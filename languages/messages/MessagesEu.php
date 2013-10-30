@@ -1117,7 +1117,7 @@ Kontura zaitez nabigazio loturek, zutabea ezabatu dezakela.',
 
 # Diffs
 'history-title' => '"$1" orrialdearen historia berrikuspena',
-'difference-title' => '"$1"-en berrikuspenen arteko aldaketa',
+'difference-title' => '«$1»: berrikuspenen arteko aldeak',
 'difference-title-multipage' => '"$1" eta "$2" orrialdeen arteko ezberditasunak',
 'difference-multipage' => '(Orrialdeen arteko ezberdintasunak)',
 'lineno' => '$1. lerroa:',

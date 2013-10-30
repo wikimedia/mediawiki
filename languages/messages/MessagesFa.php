@@ -2267,7 +2267,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'mimesearch-summary' => 'با کمک این صفحه شما می‌توانید پرونده‌هایی که یک نوع MIME به خصوص دارند را پیدا کنید.
 ورودی: به صورت contenttype/subtype ، نظیر <code>image/jpeg</code>.',
 'mimetype' => 'نوع MIME:',
-'download' => 'بارگیری',
+'download' => 'دریافت',
 
 # Unwatched pages
 'unwatchedpages' => 'صفحه‌های پی‌گیری‌نشده',

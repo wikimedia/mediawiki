@@ -644,7 +644,7 @@ $1',
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'О пројекту {{SITENAME}}',
 'aboutpage' => 'Project:О нама',
-'copyright' => 'Садржај је доступан под лиценцом $1.',
+'copyright' => 'Садржај је доступан под лиценцом $1 осим ако је другачије наведено.',
 'copyrightpage' => '{{ns:project}}:Ауторска права',
 'currentevents' => 'Актуелности',
 'currentevents-url' => 'Project:Новости',
@@ -2606,6 +2606,7 @@ $UNWATCHURL
 'deleteotherreason' => 'Други/додатни разлог:',
 'deletereasonotherlist' => 'Други разлог',
 'deletereason-dropdown' => '*Најчешћи разлози за брисање
+** Спам
 ** Захтев аутора
 ** Кршење ауторских права
 ** Вандализам',
@@ -2629,7 +2630,7 @@ $UNWATCHURL
 Последњу измену је {{GENDER:$3|направио|направила|направио}} [[User:$3|$3]] ([[User talk:$3|разговор]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment' => "Опис измене: \"''\$1''\".",
 'revertpage' => 'Враћене измене [[Special:Contributions/$2|$2]] ([[User talk:$2|разговор]]) на последњу измену корисника [[User:$1|$1]]',
-'revertpage-nouser' => 'Враћене су измене скривеног корисника на последњу измену члана [[User:$1|$1]]',
+'revertpage-nouser' => 'Враћене су измене скривеног корисника на последњу измену члана {{GENDER:$1|[[User:$1|$1]]}}',
 'rollback-success' => 'Враћене су измене {{GENDER:$1|корисника|кориснице|корисника}} $1
 на последњу измену {{GENDER:$2|корисника|кориснице|корисника}} $2.',
 
@@ -4356,17 +4357,17 @@ $5
 'sqlite-no-fts' => '$1 без подршке претраге целог текста',
 
 # New logging system
-'logentry-delete-delete' => '$1 је {{GENDER:|обрисао|обрисала}} $3',
+'logentry-delete-delete' => '$1 је {{GENDER:|обрисао|обрисала}} страницу $3',
 'logentry-delete-restore' => '$1 је {{GENDER:$2|вратио|вратила}} страницу $3',
 'logentry-delete-event' => '$1 је {{GENDER:$2|променио|променила}} видљивост {{PLURAL:$5|догађаја|$5 догађаја}} у дневнику на $3: $4',
 'logentry-delete-revision' => '$1 је {{GENDER:$2|променио|променила}} видљивост {{PLURAL:$5|измене|$5 измена}} на страници $3: $4',
 'logentry-delete-event-legacy' => '$1 је {{GENDER:$2|променио|променила}} видљивост догађаја у дневнику на $3',
-'logentry-delete-revision-legacy' => '$1 је {{GENDER:$2|променио|променила}} видљивост изменâ на страници $3',
+'logentry-delete-revision-legacy' => '$1 је {{GENDER:$2|променио|променила}} видљивост измена на страници $3',
 'logentry-suppress-delete' => '$1 је {{GENDER:$2|потиснуо|потиснула}} страницу $3',
-'logentry-suppress-event' => '$1 је потајно {{GENDER:$2|променио|променила}} видљивост {{PLURAL:$5|догађаја|$5 догађаја}} у дневнику на $3: $4',
-'logentry-suppress-revision' => '$1 је потајно {{GENDER:$2|променио|променила}} видљивост {{PLURAL:$5|измене|$5 измена}} на страници $3: $4',
+'logentry-suppress-event' => '$1 је тајно {{GENDER:$2|променио|променила}} видљивост {{PLURAL:$5|догађаја|$5 догађаја}} у дневнику на $3: $4',
+'logentry-suppress-revision' => '$1 је тајно {{GENDER:$2|променио|променила}} видљивост {{PLURAL:$5|измене|$5 измена}} на страници $3: $4',
 'logentry-suppress-event-legacy' => '$1 је потајно {{GENDER:$2|променио|променила}} видљивост догађаја у дневнику на $3',
-'logentry-suppress-revision-legacy' => '$1 је потајно {{GENDER:$2|променио|променила}} видљивост измена на страници $3',
+'logentry-suppress-revision-legacy' => '$1 је тајно {{GENDER:$2|променио|променила}} видљивост измена на страници $3',
 'revdelete-content-hid' => 'садржај је сакривен',
 'revdelete-summary-hid' => 'опис измене је сакривен',
 'revdelete-uname-hid' => 'корисничко име је сакривено',

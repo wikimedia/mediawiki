@@ -1281,7 +1281,8 @@ $1",
 'revdel-restore-visible' => 'näkyvät versiot',
 'pagehist' => 'Sivun muutoshistoria',
 'deletedhist' => 'Poistettujen versioiden historia',
-'revdelete-hide-current' => 'Virhe tapahtui $2, $1 päivätyn kohteen piilottamisessa: tämä on nykyinen versio. Sitä ei voi piilottaa.',
+'revdelete-hide-current' => 'Virhe tapahtui $2, $1 päivätyn kohteen piilottamisessa: Tämä on uusin versio. 
+Sitä ei voi piilottaa.',
 'revdelete-show-no-access' => 'Virhe näyttäessä kohtaa $2 kello $1: kohta on merkitty ”rajoitetuksi”.
 Sinulla ei ole oikeutta siihen.',
 'revdelete-modify-no-access' => 'Virhe tapahtui $2, $1 kohteen muokkauksessa: tämä kohde on merkitty "rajoitetuksi". Sinulla ei ole oikeuksia sen muokkaukseen.',

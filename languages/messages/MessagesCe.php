@@ -747,6 +747,9 @@ $1',
 'userlogin-resetpassword-link' => 'Пароль кхоссар',
 'helplogin-url' => 'Help:Системин довзийтар',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Системин чудаха гӀодар]]',
+'userlogin-loggedin' => 'Хьо {{GENDER:$1|$1}} цӀарца чохь ву/ю.
+Лахара форманца кхин цӀарца чугӀо.',
+'userlogin-createanother' => 'Кхолла декъашхочун кхин дӀаяздар',
 'createacct-join' => 'ДӀаязбе лахахь хай хаам.',
 'createacct-emailrequired' => 'Электронни почтан адрес',
 'createacct-emailoptional' => 'Электронни почтан адрес (ца яздича мега)',
@@ -944,7 +947,7 @@ $1',
 'template-semiprotected' => '(дуьззина доцуш гlаролла)',
 'hiddencategories' => 'ХӀара агӀо чуйогӀуш ю оцу $1 {{PLURAL:$1|къайлаха категори чу|къайлаха категореш чу}}:',
 'edittools' => '<!-- Кхузе буха диллина йоза гуш хир ду редоккхуче бухахь а хlума чуйоккхуче бухахь. -->',
-'permissionserrors' => 'ТӀекхачарехь гӀалат',
+'permissionserrors' => 'ТӀекхачаре бакъона гӀалат',
 'permissionserrorstext' => 'Хьан бакъо яц кхочуш хилийта хийцам оцу {{PLURAL:$1|шолгlа бахьанца|шолгlа бахьанашца}}:',
 'permissionserrorstext-withaction' => "Хьан бакъо яц хlумда «'''$2'''» оцу {{PLURAL:$1|шолгlа бахьанца|шолгlа бахьанашца}}:",
 'recreate-moveddeleted-warn' => "'''Тидам бе. Ахьа кхуллуш ю, хьалхо дӀаяккхина йолу агӀо.'''
@@ -1536,10 +1539,13 @@ PICT # тайп тайпан
 'pageswithprop-text' => 'Кхузахь гойтуш ю агӀонаш цхьадолу къастамаш куьйга юху билгал даьхнарш.',
 'pageswithprop-prop' => 'Къастаман цӀе:',
 
-'doubleredirects' => 'ШалгIа дIасахьажийнарш',
+'doubleredirects' => 'Шалха дIасахьажийнарш',
+'doubleredirectstext' => 'ХӀокху агӀонехь ю дӀасахьажорашан тӀе хьажийна йолу дӀасахьажораш.
+<del>ТӀехула сиз хаькхна </del>нисйина чарна.',
 'double-redirect-fixed-move' => 'Агlон [[$1]] цlе хийцна, хlинца иза дlахьажийна оцу [[$2]]',
 
 'brokenredirects' => 'ДIахаьдна долу дIасахьажораш',
+'brokenredirectstext' => 'Лахара дӀасахьажийнарш ю йоцучу агӀонийн тӀе хьажийна:',
 'brokenredirects-edit' => 'нисйé',
 'brokenredirects-delete' => 'дӀаяккха',
 
@@ -1559,6 +1565,7 @@ PICT # тайп тайпан
 'ntransclusions' => 'лелош ю $1 {{PLURAL:$1|агӀоначохь|агӀонашкахь|агӀонашкахь}}',
 'specialpage-empty' => 'Дехаро хӀумма ца елла.',
 'lonelypages' => 'Байлахь йисина агIонаш',
+'lonelypagestext' => 'Кхузахь ю {{grammar:genitive|{{SITENAME}}}} кхечу агӀонашкахь тӀе хьажийна хьажорагаш йоцу агӀонаш.',
 'uncategorizedpages' => 'Категореш йоцу агIонаш',
 'uncategorizedcategories' => 'Категореш йоцу категореш',
 'uncategorizedimages' => 'Категореш йоцу файлаш',
@@ -2199,7 +2206,7 @@ PICT # тайп тайпан
 'show-big-image-size' => '$1 × $2 пикселш',
 
 # Special:NewFiles
-'newimages' => 'Керлачу файлийн галерий',
+'newimages' => 'Керлачу файлийн галерей',
 'newimages-summary' => 'ХӀокху белхан агӀона чохь гойтуш ю дукха хан йоццуш чуйаьхна файлаш.',
 'newimages-legend' => 'Литтар',
 'showhidebots' => '$1 шабелхалой',

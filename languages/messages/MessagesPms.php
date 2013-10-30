@@ -869,14 +869,14 @@ A smija che a sia stàita scancelà.',
 'edit-conflict' => 'Conflit ëd modìfiche.',
 'edit-no-change' => "Soa modìfica a l'é stàita ignorà, përchè gnun cambiament a l'é stàit fàit al test.",
 'postedit-confirmation' => "Soa modìfica a l'é stàita salvà.",
-'edit-already-exists' => 'As peul nen creesse la pàgina.
-A esist già.',
+'edit-already-exists' => "La neuva pàgina a l'ha nen podù creesse.
+A esist già.",
 'defaultmessagetext' => "Test che a-i sarìa se a-i fusso pa 'd modìfiche",
 'content-failed-to-parse' => "Faliment ëd l'anàlisi dël contnù ëd $2 për ël model $1: $3",
 'invalid-content-data' => 'Dat dël contnù pa bon',
 'content-not-allowed-here' => "Ël contnù «$1» a l'é nen autorisà an sla pàgina [[$2]]",
 'editwarning-warning' => "Chité sta pàgina-sì a peul feje perde tute le modìfiche ch'a l'ha fàit.
-S'a l'é rintrà ant ël sistema, a peul disabilité st'avis ant la session «Modìfiche» dij sò gust.",
+S'a l'é rintrà ant ël sistema, a peul disabilité st'avis ant la session «Modìfica» dij sò gust.",
 
 # Content models
 'content-model-wikitext' => 'test wiki',

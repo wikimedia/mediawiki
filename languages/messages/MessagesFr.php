@@ -909,8 +909,8 @@ pouvez ignorer ce message et continuer à utiliser votre ancien mot de passe.",
 'noemailcreate' => 'Vous devez fournir une adresse de courriel valide',
 'passwordsent' => "Un nouveau mot de passe a été envoyé à l'adresse de courriel de l'utilisateur « $1 ». Veuillez vous reconnecter après l'avoir reçu.",
 'blocked-mailpassword' => 'Votre adresse IP est bloquée en écriture, la fonction de rappel du mot de passe est donc désactivée pour éviter les abus.',
-'eauthentsent' => "Un courriel de confirmation a été envoyé à l'adresse indiquée.
-Avant qu'un autre courriel ne soit envoyé à ce compte, vous devrez suivre les instructions du courriel et confirmer que le compte est bien le vôtre.",
+'eauthentsent' => 'Un courriel de confirmation a été envoyé à l’adresse indiquée.
+Avant qu’un autre courriel ne soit envoyé à ce compte, vous devrez suivre les instructions du courriel et confirmer que le compte est bien le vôtre.',
 'throttled-mailpassword' => "Un courriel de réinitialisation de votre mot de passe a déjà été envoyé durant {{PLURAL:$1|la dernière heure|les $1 dernières heures}}. Afin d'éviter les abus, un seul courriel de réinitialisation de votre mot de passe sera envoyé par {{PLURAL:$1|heure|intervalle de $1 heures}}.",
 'mailerror' => "Erreur lors de l'envoi du courriel : $1",
 'acct_creation_throttle_hit' => "Quelqu'un utilisant votre adresse IP a créé {{PLURAL:$1|un compte|$1 comptes}} au cours des dernières 24 heures, ce qui constitue la limite autorisée dans cet intervalle de temps.
@@ -3270,8 +3270,8 @@ Vous pouvez toutefois en visualiser la source.',
 'spam_reverting' => 'Rétablissement de la dernière version ne contenant pas de lien vers $1',
 'spam_blanking' => 'Toutes les versions contenant des liens vers $1 sont blanchies',
 'spam_deleting' => 'Toutes les versions contenaient des liens vers $1, suppression',
-'simpleantispam-label' => "Vérification anti-spam.
-Ne '''RIEN''' inscrire ici !",
+'simpleantispam-label' => "Vérification anti-pourriel.
+Ne '''RIEN''' inscrire ici !",
 
 # Info page
 'pageinfo-title' => 'Informations pour « $1 »',

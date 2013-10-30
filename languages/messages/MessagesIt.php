@@ -805,8 +805,8 @@ Se non sei stato tu a fare la richiesta, oppure hai ritrovato la password e non 
 'passwordsent' => 'Una nuova password è stata inviata all\'indirizzo e-mail registrato per l\'utente "$1".
 Per favore, effettua un accesso non appena la ricevi.',
 'blocked-mailpassword' => 'Per prevenire abusi, non è consentito usare la funzione "Invia nuova password" da un indirizzo IP bloccato.',
-'eauthentsent' => "Un messaggio e-mail di conferma è stato spedito all'indirizzo indicato.
-Per abilitare l'invio di messaggi e-mail per questo accesso è necessario seguire le istruzioni che vi sono indicate, in modo da confermare che si è i legittimi proprietari dell'indirizzo",
+'eauthentsent' => "Un messaggio email di conferma è stato spedito all'indirizzo indicato.
+Per abilitare l'invio di messaggi email per questo utente è necessario seguire le istruzioni che vi sono indicate, in modo da confermare che si è i legittimi proprietari dell'indirizzo.",
 'throttled-mailpassword' => 'Una email di reimpostazione della password è già stata inviata da meno di {{PLURAL:$1|1 ora|$1 ore}}.
 Per prevenire abusi, la funzione di reimpostazione della password può essere usata solo una volta ogni {{PLURAL:$1|ora|$1 ore}}.',
 'mailerror' => "Errore nell'invio del messaggio: $1",

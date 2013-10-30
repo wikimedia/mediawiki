@@ -279,7 +279,7 @@ $messages = array(
 'vector-view-history' => 'Logön jenotemi',
 'vector-view-view' => 'Reidön',
 'vector-view-viewsource' => 'Logön fonäti',
-'actions' => 'Duns',
+'actions' => 'Dunots',
 'namespaces' => 'Nemaspads',
 
 'errorpagetitle' => 'Pöl',

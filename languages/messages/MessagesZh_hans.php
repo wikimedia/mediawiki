@@ -26,6 +26,7 @@
  * @author Fengchao
  * @author Franklsf95
  * @author Gaoxuewei
+ * @author GeneralNFS
  * @author Gzdavidwong
  * @author Happy
  * @author Hercule
@@ -397,7 +398,7 @@ $messages = array(
 'tog-watchlisthideliu' => '隐藏监视列表中的登录用户的编辑',
 'tog-watchlisthideanons' => '隐藏监视列表中的匿名用户的编辑',
 'tog-watchlisthidepatrolled' => '隐藏监视列表中的已巡查编辑',
-'tog-ccmeonemails' => '给我发送我发送给其他用户的电子邮件的副本',
+'tog-ccmeonemails' => '把我给其他用户发送的电子邮件的副本发送给我',
 'tog-diffonly' => '不在差异下面显示页面内容',
 'tog-showhiddencats' => '显示隐藏分类',
 'tog-noconvertlink' => '停用链接文字转换',
@@ -3061,7 +3062,7 @@ $2',
 'tooltip-undo' => '“撤销”可以恢复该编辑并在预览模式下打开编辑表单。它允许在摘要中加入原因。',
 'tooltip-preferences-save' => '保存系统设置',
 'tooltip-summary' => '请输入简短的摘要',
-'tooltip-iwiki' => '$1 – 2',
+'tooltip-iwiki' => '$1 – $2',
 
 # Stylesheets
 'common.css' => '/* 此处的 CSS 将应用于所有的皮肤 */',
