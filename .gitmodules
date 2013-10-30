@@ -1,0 +1,6 @@
+[submodule "extensions/BetaFeatures"]
+	path = extensions/BetaFeatures
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/BetaFeatures
+[submodule "extensions/MultimediaViewer"]
+	path = extensions/MultimediaViewer
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/MultimediaViewer
