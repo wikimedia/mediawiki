@@ -1806,6 +1806,12 @@ var mw = ( function ( $, undefined ) {
 							return;
 						}
 
+						// Allow users to opt-in during mw.loader.store test phase by manually
+						// setting a cookie.
+						if ( /ResourceLoaderStorageEnabled=1/.test( document.cookie ) ) {
+							mw.config.set( 'wgResourceLoaderStorageEnabled', true );
+						}
+
 						if ( !mw.config.get( 'wgResourceLoaderStorageEnabled' ) || mw.config.get( 'debug' ) ) {
 							// Disabled by configuration, or because debug mode is set.
 							mw.loader.store.enabled = false;
