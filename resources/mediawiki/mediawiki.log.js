@@ -109,10 +109,12 @@
 				configurable: true,
 				enumerable: true,
 				get: function () {
+					mw.hook( 'mediaWiki.deprecated' ).fire( [ obj, key, val, msg ] );
 					mw.log.warn( msg );
 					return val;
 				},
 				set: function ( newVal ) {
+					mw.hook( 'mediaWiki.deprecated' ).fire( [ obj, key, val, msg ] );
 					mw.log.warn( msg );
 					val = newVal;
 				}
