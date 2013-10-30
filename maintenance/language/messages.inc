@@ -1143,6 +1143,8 @@ $wgMessageStructure = array(
 		'prefs-tokenwatchlist',
 		'prefs-diffs',
 		'prefs-help-prefershttps',
+
+		'prefswarning-warning',
 	),
 	'preferences-email' => array(
 		'email-address-validity-valid',

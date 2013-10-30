@@ -1014,6 +1014,9 @@ return array(
 		'skinStyles' => array(
 			'vector' => 'skins/vector/special.preferences.less',
 		),
+		'messages' => array(
+			'prefswarning-warning',
+		),
 	),
 	'mediawiki.special.recentchanges' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.recentchanges.js',

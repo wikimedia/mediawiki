@@ -196,4 +196,44 @@ jQuery( function ( $ ) {
 			sessionStorage.setItem( 'mediawikiPreferencesTab', storageData );
 		} );
 	}
+
+	// Set up a message to notify users if they try to leave the page without
+	// saving.
+	$( '#mw-prefs-form' ).data( 'origdata', $( '#mw-prefs-form' ).serialize() );
+	var savedWindowOnBeforeUnload;
+	$( window )
+		.on( 'beforeunload.prefswarning', function () {
+			var retval;
+
+			// Check if anything changed
+			if ( $( '#mw-prefs-form' ).serialize() !== $( '#mw-prefs-form' ).data( 'origdata' ) ) {
+				// Return our message
+				retval = mw.msg( 'prefswarning-warning' );
+			}
+
+			// Unset the onbeforeunload handler so we don't break page caching in Firefox
+			savedWindowOnBeforeUnload = window.onbeforeunload;
+			window.onbeforeunload = null;
+			if ( retval !== undefined ) {
+				// ...but if the user chooses not to leave the page, we need to rebind it
+				setTimeout( function () {
+					window.onbeforeunload = savedWindowOnBeforeUnload;
+				}, 1 );
+				return retval;
+			}
+		} )
+		.on( 'pageshow.prefswarning', function () {
+			// Re-add onbeforeunload handler
+			if ( !window.onbeforeunload ) {
+				window.onbeforeunload = savedWindowOnBeforeUnload;
+			}
+		} );
+	$( '#mw-prefs-form' ).submit( function () {
+		// Unbind our beforeunload handler
+		$( window ).off( '.prefswarning' );
+	} );
+	$( '#mw-prefs-restoreprefs' ).click( function () {
+		// Unbind our beforeunload handler
+		$( window ).off( '.prefswarning' );
+	} );
 } );
