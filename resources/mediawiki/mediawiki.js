@@ -1799,14 +1799,18 @@ var mw = ( function ( $, undefined ) {
 					 * code for a full account of why we need a try / catch: <http://git.io/4NEwKg>.
 					 */
 					init: function () {
-						var raw, data;
+						var raw, data, optedIn;
 
 						if ( mw.loader.store.enabled !== null ) {
 							// #init already ran.
 							return;
 						}
 
-						if ( !mw.config.get( 'wgResourceLoaderStorageEnabled' ) || mw.config.get( 'debug' ) ) {
+						// Temporarily allow users to opt-in during mw.loader.store test phase by
+						// manually setting a cookie (bug 56397).
+						optedIn = /ResourceLoaderStorageEnabled=1/.test( document.cookie );
+
+						if ( !( mw.config.get( 'wgResourceLoaderStorageEnabled' ) || optedIn ) || mw.config.get( 'debug' ) ) {
 							// Disabled by configuration, or because debug mode is set.
 							mw.loader.store.enabled = false;
 							return;
