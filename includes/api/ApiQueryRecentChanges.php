@@ -139,8 +139,11 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 	 */
 	public function run( $resultPageSet = null ) {
 		$user = $this->getUser();
-		/* Get the parameters of the request. */
+		$result = $this->getResult();
 		$params = $this->extractRequestParams();
+
+		$pageSet = $this->getPageSet();
+		$pageSet->execute();
 
 		/* Build our basic query. Namely, something along the lines of:
 		 * SELECT * FROM recentchanges WHERE rc_timestamp > $start
@@ -177,6 +180,26 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 		$this->addWhereFld( 'rc_namespace', $params['namespace'] );
 		$this->addWhereFld( 'rc_deleted', 0 );
+
+
+		// Recent changes stores titles separetely from pageids (they are a snapshot from the
+		// time the edit was made), therefor we need to adjust the query depending on the
+		// data source. E.g. if "Foo" was renamed to "Bar", quering for "Foo" would return
+		// edits from before the rename, and edits made to the redirect page after the rename.
+		// FIXME: Though using rc_title/rc_namespace performs better than rc_cur_id queries,
+		// in most cases this is probably confusing since quering for "Bar" should return
+		// all edits made to that page, regardless of whether it was named differently in the past.
+		// Maybe turn this into a separate flag that can be enabled by the user.
+		// FIXME: rc_cur_id queries like these are not indexed.
+		if ( $pageSet->getDataSource() === 'titles' ) {
+			$titles = $pageSet->getTitles(); // 0 => Title object
+			$lb = new LinkBatch( $titles );
+			// rc_namespace, rc_title
+			$this->addWhere( $lb->constructSet( 'rc', $this->getDB() ) );
+		} else {
+			$titles = $pageSet->getGoodTitles(); // page_id => Title object
+			$this->addWhereFld( 'rc_cur_id', array_keys( $titles ) );
+		}
 
 		if ( !is_null( $params['type'] ) ) {
 			$this->addWhereFld( 'rc_type', $this->parseRCType( $params['type'] ) );
@@ -307,7 +330,6 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 		$titles = array();
 
-		$result = $this->getResult();
 
 		/* Iterate through the rows, adding data extracted from them to our query result. */
 		foreach ( $res as $row ) {
