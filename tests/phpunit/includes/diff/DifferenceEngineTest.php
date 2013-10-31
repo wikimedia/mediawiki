@@ -87,8 +87,8 @@ class DifferenceEngineTest extends MediaWikiTestCase {
 			$diffEngine = new DifferenceEngine( $this->context, $old, $new, 2, true, false );
 			$diffEngine->loadRevisionData();
 
-			$this->assertEquals( $diffEngine->mOldid, $expectedOld, $message );
-			$this->assertEquals( $diffEngine->mNewid, $expectedNew, $message );
+			$this->assertEquals( $diffEngine->getOldid(), $expectedOld, $message );
+			$this->assertEquals( $diffEngine->getNewid(), $expectedNew, $message );
 		}
 	}
 
