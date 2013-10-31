@@ -138,7 +138,7 @@
 				// Use Function.prototype#call to force an exception on Firefox,
 				// which doesn't define console#table but doesn't complain if you
 				// try to invoke it.
-				console.table.call( console.table, data );
+				console.table.call( console, data );
 				return;
 			} catch (e) {}
 			try {
