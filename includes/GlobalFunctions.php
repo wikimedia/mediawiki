@@ -3187,6 +3187,14 @@ function wfUsePHP( $req_ver ) {
  * This is useful for extensions which due to their nature are not kept in sync
  * with releases
  *
+ * Note: Due to the behavior of PHP's version_compare() which is used in this
+ * fuction, if you want to allow the 'wmf' development versions add a 'c' (or
+ * any single letter other than 'a', 'b' or 'p') as a post-fix to your
+ * targeted version number. For example if you wanted to allow any variation
+ * of 1.22 use `wfUseMW( '1.22c' )`. Using an 'a' or 'b' instead of 'c' will
+ * not result in the same comparison due to the internal logic of
+ * version_compare().
+ *
  * @see perldoc -f use
  *
  * @param $req_ver Mixed: the version to check, can be a string, an integer, or
