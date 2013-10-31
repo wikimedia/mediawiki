@@ -564,7 +564,7 @@ class SearchEngine {
 
 	/**
 	 * If an implementation of SearchEngine handles all of its own text processing
-	 * in getTextFromContent() and doesn't require SearchUpdate::updateText()'s
+	 * in getTextFromContent() and doesn't require SearchUpdateJob::updateText()'s
 	 * rather silly handling, it should return true here instead.
 	 *
 	 * @return bool

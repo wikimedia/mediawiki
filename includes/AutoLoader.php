@@ -686,6 +686,7 @@ $wgAutoloadLocalClasses = array(
 	'NullJob' => 'includes/job/jobs/NullJob.php',
 	'RefreshLinksJob' => 'includes/job/jobs/RefreshLinksJob.php',
 	'RefreshLinksJob2' => 'includes/job/jobs/RefreshLinksJob.php',
+	'SearchUpdateJob' => 'includes/job/jobs/SearchUpdateJob.php',
 	'UploadFromUrlJob' => 'includes/job/jobs/UploadFromUrlJob.php',
 	'AssembleUploadChunksJob' => 'includes/job/jobs/AssembleUploadChunksJob.php',
 	'PublishStashedFileJob' => 'includes/job/jobs/PublishStashedFileJob.php',
@@ -909,7 +910,6 @@ $wgAutoloadLocalClasses = array(
 	'SearchResultSet' => 'includes/search/SearchEngine.php',
 	'SearchResultTooMany' => 'includes/search/SearchEngine.php',
 	'SearchSqlite' => 'includes/search/SearchSqlite.php',
-	'SearchUpdate' => 'includes/search/SearchUpdate.php',
 	'SqliteSearchResultSet' => 'includes/search/SearchSqlite.php',
 	'SqlSearchResultSet' => 'includes/search/SearchEngine.php',
 

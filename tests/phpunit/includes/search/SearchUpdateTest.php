@@ -27,7 +27,7 @@ class SearchUpdateTest extends MediaWikiTestCase {
 	}
 
 	function updateText( $text ) {
-		return trim( SearchUpdate::updateText( $text ) );
+		return trim( SearchUpdateJob::updateText( $text ) );
 	}
 
 	/**

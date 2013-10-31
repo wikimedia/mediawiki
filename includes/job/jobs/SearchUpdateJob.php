@@ -2,8 +2,6 @@
 /**
  * Search index updater
  *
- * See deferred.txt
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -20,26 +18,20 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Search
+ * @ingroup JobQueue
  */
 
 /**
  * Database independant search index updater
  *
- * @ingroup Search
+ * @ingroup JobQueue
  */
-class SearchUpdate implements DeferrableUpdate {
+class SearchUpdateJob extends Job {
 	/**
 	 * Page id being updated
 	 * @var int
 	 */
-	private $id = 0;
-
-	/**
-	 * Title we're updating
-	 * @var Title
-	 */
-	private $title;
+	private $pageId = 0;
 
 	/**
 	 * Content of the page (not text)
@@ -56,40 +48,26 @@ class SearchUpdate implements DeferrableUpdate {
 	 *  If a Content object, text will be gotten from it. String is for back-compat.
 	 *  Passing false tells the backend to just update the title, not the content
 	 */
-	public function __construct( $id, $title, $c = false ) {
-		if ( is_string( $title ) ) {
-			$nt = Title::newFromText( $title );
-		} else {
-			$nt = $title;
-		}
-
-		if ( $nt ) {
-			$this->id = $id;
-			// is_string() check is back-compat for ApprovedRevs
-			if ( is_string( $c ) ) {
-				$this->content = new TextContent( $c );
-			} else {
-				$this->content = $c ?: false;
-			}
-			$this->title = $nt;
-		} else {
-			wfDebug( "SearchUpdate object created with invalid title '$title'\n" );
-		}
+	public function __construct( $title, $params = array(), $id = null ) {
+		parent::__construct( 'SearchUpdate', $title, $params, $id );
 	}
 
 	/**
 	 * Perform actual update for the entry
 	 */
-	public function doUpdate() {
+	public function run() {
 		global $wgDisableSearchUpdate;
 
-		if ( $wgDisableSearchUpdate || !$this->id ) {
+		$this->pageId = isset( $this->params['pageId'] ) ? $this->params['pageId'] : false;
+		$this->content = isset( $this->params['content'] ) ? $this->params['content'] : false;
+
+		if ( $wgDisableSearchUpdate || !$this->pageId ) {
 			return;
 		}
 
 		wfProfileIn( __METHOD__ );
 
-		$page = WikiPage::newFromId( $this->id, WikiPage::READ_LATEST );
+		$page = WikiPage::newFromId( $this->pageId, WikiPage::READ_LATEST );
 		$indexTitle = Title::indexTitle( $this->title->getNamespace(), $this->title->getText() );
 
 		foreach ( SearchEngine::getSearchTypes() as $type ) {
@@ -101,10 +79,10 @@ class SearchUpdate implements DeferrableUpdate {
 			$normalTitle = $search->normalizeText( $indexTitle );
 
 			if ( $page === null ) {
-				$search->delete( $this->id, $normalTitle );
+				$search->delete( $this->pageId, $normalTitle );
 				continue;
 			} elseif ( $this->content === false ) {
-				$search->updateTitle( $this->id, $normalTitle );
+				$search->updateTitle( $this->pageId, $normalTitle );
 				continue;
 			}
 
@@ -114,7 +92,7 @@ class SearchUpdate implements DeferrableUpdate {
 			}
 
 			# Perform the actual update
-			$search->update( $this->id, $normalTitle, $search->normalizeText( $text ) );
+			$search->update( $this->pageId, $normalTitle, $search->normalizeText( $text ) );
 		}
 
 		wfProfileOut( __METHOD__ );
@@ -124,6 +102,10 @@ class SearchUpdate implements DeferrableUpdate {
 	 * Clean text for indexing. Only really suitable for indexing in databases.
 	 * If you're using a real search engine, you'll probably want to override
 	 * this behavior and do something nicer with the original wikitext.
+	 *
+	 * @todo @fixme This belongs somewhere else, maybe SearchEngine? Maybe a
+	 * shared SearchEngineDB that all database-backed ones can subclass? Then
+	 * we could get rid of the stupid textAlreadyUpdatedForIndex() hack
 	 */
 	public static function updateText( $text ) {
 		global $wgContLang;
