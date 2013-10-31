@@ -76,12 +76,17 @@ class ApiOptions extends ApiBase {
 		$prefs = Preferences::getPreferences( $user, $this->getContext() );
 		$prefsKinds = $user->getOptionKinds( $this->getContext(), $changes );
 
+		$changedOptions = array();
 		foreach ( $changes as $key => $value ) {
+			$changedOption = array( 'name' => $key );
 			switch ( $prefsKinds[$key] ) {
 				case 'registered':
 					// Regular option.
 					$field = HTMLForm::loadInputFromParameters( $key, $prefs[$key] );
 					$validation = $field->validate( $value, $user->getOptions() );
+					if ( $validation !== true ) {
+						$changedOption['invalidvalue'] = $validation;
+					}
 					break;
 				case 'registered-multiselect':
 				case 'registered-checkmatrix':
@@ -98,18 +103,32 @@ class ApiOptions extends ApiBase {
 					} else {
 						$validation = true;
 					}
+					if ( $validation !== true ) {
+						$changedOption['invalidvalue'] = $validation;
+					}
 					break;
 				case 'unused':
 				default:
+					$changedOption['invalid'] = '';
 					$validation = "not a valid preference";
 					break;
 			}
 			if ( $validation === true ) {
+				$oldValue = $user->getOption( $key );
 				$user->setOption( $key, $value );
+				// compare is not type safe, because some default settings are integer,
+				// but this will always set a string
+				if ( $oldValue == $value ) {
+					$changedOption['nochange'] = '';
+				} else {
+					$changedOption['oldvalue'] = $oldValue;
+					$changedOption['newvalue'] = $value;
+				}
 				$changed = true;
 			} else {
 				$this->setWarning( "Validation error for '$key': $validation" );
 			}
+			$changedOptions[] = $changedOption;
 		}
 
 		if ( $changed ) {
@@ -118,6 +137,8 @@ class ApiOptions extends ApiBase {
 		}
 
 		$this->getResult()->addValue( null, $this->getModuleName(), 'success' );
+		$this->getResult()->setIndexedTagName( $changedOptions, 'change' );
+		$this->getResult()->addValue( null, 'changes', $changedOptions );
 	}
 
 	public function mustBePosted() {
