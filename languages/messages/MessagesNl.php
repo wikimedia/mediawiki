@@ -16,6 +16,7 @@
  * @author Erwin
  * @author Erwin85
  * @author Extended by Hendrik Maryns <hendrik.maryns@uni-tuebingen.de>, March 2007.
+ * @author Flightmare
  * @author Fryed-peach
  * @author Galwaygirl
  * @author Geitost

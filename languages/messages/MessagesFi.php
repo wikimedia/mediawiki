@@ -829,7 +829,8 @@ Jos joku muu on tehnyt tämän pyynnön, tai jos olet muistanut salasanasi ja et
 'passwordsent' => 'Uusi salasana on lähetetty käyttäjän <b>$1</b> sähköpostiosoitteeseen.
 Ole hyvä ja kirjaudu sisään kun olet saanut sen.',
 'blocked-mailpassword' => 'Osoitteellesi on asetettu muokkausesto, joka estää käyttämästä salasanamuistutustoimintoa.',
-'eauthentsent' => 'Varmennussähköposti on lähetetty annettuun sähköpostiosoitteeseen. Muita viestejä ei lähetetä, ennen kuin olet toiminut viestin ohjeiden mukaan ja varmistanut, että sähköpostiosoite kuuluu sinulle.',
+'eauthentsent' => 'Varmennussähköposti on lähetetty annettuun sähköpostiosoitteeseen.
+Muita viestejä ei lähetetä, ennen kuin olet toiminut viestin ohjeiden mukaan ja varmistanut, että sähköpostiosoite kuuluu sinulle.',
 'throttled-mailpassword' => 'Salasananpalautusviesti on lähetetty {{PLURAL:$1|kuluvan|kuluvien $1}} tunnin aikana. Salasananpalautusviestejä lähetetään enintään {{PLURAL:$1|tunnin|$1 tunnin}} välein.',
 'mailerror' => 'Virhe lähetettäessä sähköpostia: $1',
 'acct_creation_throttle_hit' => 'IP-osoitteestasi on luotu tähän wikiin jo {{PLURAL:$1|yksi tunnus|$1 tunnusta}} päivän aikana, joka suurin sallittu määrä tälle ajalle.
@@ -1281,12 +1282,12 @@ $1",
 'revdel-restore-visible' => 'näkyvät versiot',
 'pagehist' => 'Sivun muutoshistoria',
 'deletedhist' => 'Poistettujen versioiden historia',
-'revdelete-hide-current' => 'Virhe tapahtui $2, $1 päivätyn kohteen piilottamisessa: Tämä on uusin versio. 
+'revdelete-hide-current' => 'Virhe piilotettaessa $1 kello $2 päivättyä kohdetta: Tämä on uusin versio.
 Sitä ei voi piilottaa.',
 'revdelete-show-no-access' => 'Virhe näyttäessä kohtaa $2 kello $1: kohta on merkitty ”rajoitetuksi”.
 Sinulla ei ole oikeutta siihen.',
 'revdelete-modify-no-access' => 'Virhe tapahtui $2, $1 kohteen muokkauksessa: tämä kohde on merkitty "rajoitetuksi". Sinulla ei ole oikeuksia sen muokkaukseen.',
-'revdelete-modify-missing' => 'Virhe muuttaessa kohdetta, jonka tunnus on $1: Se puuttuu tietokannasta.',
+'revdelete-modify-missing' => 'Virhe muuttaessa kohdetta, jonka tunniste on $1: Se puuttuu tietokannasta.',
 'revdelete-no-change' => "'''Varoitus:''' kohteessa $2 kello $1 on jo valmiiksi haluamasi näkyvyysasetukset.",
 'revdelete-concurrent-change' => 'Virhe $2, $1 päivätyn kohteen muokkauksessa: sen tilan on näköjään muuttanut joku sillä aikaa kun yritit muokata sitä. Ole hyvä ja tarkista lokit.',
 'revdelete-only-restricted' => 'Virhe piilotettaessa $1 kello $2 päivättyä kohdetta: Et voi poistaa kohteita ylläpitäjien näkyviltä valitsematta myös jotain muuta näkyvyysasetusta.',
@@ -3474,7 +3475,7 @@ Kaikki muut linkit ovat poikkeuksia eli toisin sanoen sivuja, joissa tiedostoa s
 'exif-copyrightowner' => 'Tekijänoikeuden haltija',
 'exif-usageterms' => 'Käyttöehdot',
 'exif-webstatement' => 'Verkossa oleva tekijänoikeustieto',
-'exif-originaldocumentid' => 'Alkuperäisen asiakirjan tunnusnumero',
+'exif-originaldocumentid' => 'Alkuperäisen asiakirjan tunniste',
 'exif-licenseurl' => 'Tekijänoikeuslisenssin URL',
 'exif-morepermissionsurl' => 'Vaihtoehtoiset lisenssitiedot',
 'exif-attributionurl' => 'Kun kuvaa käytetään, linkitä tähän osoitteeseen',
@@ -3907,7 +3908,7 @@ Sinun olisi pitänyt saada [{{SERVER}}{{SCRIPTPATH}}/COPYING kopio GNU General P
 # Special:Redirect
 'redirect' => 'Ohjaus tiedostonimen, käyttäjätunnisteen tai versiotunnisteen mukaan',
 'redirect-legend' => 'Ohjaus tiedostoon tai sivulle',
-'redirect-summary' => 'Tämä toimintosivu ohjaa tiedostoon (tiedostonimen mukaan), sivulle (versiotunnisteen mukaan) tai käyttäjäsivulle (käyttäjätunnisteen numeron mukaan).',
+'redirect-summary' => 'Tämä toimintosivu ohjaa tiedostoon (tiedostonimen mukaan), sivulle (versiotunnisteen mukaan) tai käyttäjäsivulle (käyttäjätunnisteen mukaan). Käyttö: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]] tai [[{{#Special:Redirect}}/user/101]].',
 'redirect-submit' => 'Siirry',
 'redirect-lookup' => 'Hae:',
 'redirect-value' => 'Arvo:',

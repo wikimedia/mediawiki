@@ -4126,7 +4126,7 @@ Vous devriez avoir reçu [{{SERVER}}{{SCRIPTPATH}}/COPYING une copie de la Licen
 # Special:Redirect
 'redirect' => 'Redirigé par fichier, utilisateur, ou ID de révision',
 'redirect-legend' => 'Rediriger vers une page ou un fichier',
-'redirect-summary' => "Cette page spéciale redirige vers un fichier (nom donné au fichier), une page (ID attribuée à la révision) ou une page d'utilisateur (identifiant numérique attribué à l'utilisateur).",
+'redirect-summary' => 'Cette page spéciale redirige vers un fichier (nom de fichier fourni), une page (ID de révision fourni) ou une page d’utilisateur (identifiant numérique de l’utilisateur fourni). Utilisation : [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]], ou [[{{#Special:Redirect}}/user/101]].',
 'redirect-submit' => 'Valider',
 'redirect-lookup' => 'Recherche :',
 'redirect-value' => 'Valeur :',

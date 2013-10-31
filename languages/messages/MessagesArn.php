@@ -21,8 +21,8 @@ $messages = array(
 # User preference toggles
 'tog-underline' => 'Miñcewirilpe lasun',
 'tog-justify' => 'Xvrvmpe cijkantvkun',
-'tog-showtoolbar' => 'Pengelün kümeelün ñi chemkün (JavaScript duamyengey)',
-'tog-editondblclick' => 'Wirin pakina epu klik mew (JavaScript)',
+'tog-showtoolbar' => 'Pengelün kümeelün ñi chemkün',
+'tog-editondblclick' => 'Wirin pakina epu klik mew',
 'tog-rememberpassword' => 'Amulen tañi nülküwküleael tüfa mew (alürumechi $1 {{PLURAL:$1 antü}})',
 
 'underline-always' => 'Rumel',
@@ -430,7 +430,7 @@ Rulpakünuy feychi kangelkülelu dungu.",
 'powersearch-field' => 'Kintun',
 
 # Preferences page
-'mypreferences' => 'Tami dullin',
+'mypreferences' => 'Dullin',
 'prefs-edits' => 'Rakin Wirin:',
 'prefsnologin' => 'Mülelay Konün',
 'skin-preview' => 'Pen chum müley',

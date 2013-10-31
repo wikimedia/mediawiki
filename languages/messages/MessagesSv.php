@@ -844,8 +844,8 @@ fortsätta använda ditt gamla lösenord.',
 'noemailcreate' => 'Du måste ange en giltig e-postadress',
 'passwordsent' => 'Ett nytt lösenord har skickats till den e-postadress som användaren "$1" har registrerat. När du får meddelandet, var god logga in igen.',
 'blocked-mailpassword' => 'Din IP-adress är blockerad, därför kan den inte användas för att få ett nytt lösenord.',
-'eauthentsent' => 'Ett e-brev för bekräftelse har skickats till den e-postadress som angivits.
-Innan någon annan e-post kan skickas härifrån till kontot, måste du följa instruktionerna i e-brevet för att bekräfta att kontot verkligen är ditt.',
+'eauthentsent' => 'Ett e-postmeddelande för bekräftelse har skickats till den angivna e-postadressen.
+Innan någon annan e-post kan skickas till kontot, måste du följa instruktionerna i e-postmeddelandet för att bekräfta att kontot verkligen är ditt.',
 'throttled-mailpassword' => 'En lösenordsåterställning har redan skickats för mindre än {{PLURAL:$1|en timme|$1 timmar}} sedan.
 För att förhindra missbruk skickas bara en lösenordsåterställning per {{PLURAL:$1|timme|$1-timmarsperiod}}.',
 'mailerror' => 'Fel vid skickande av e-post: $1',

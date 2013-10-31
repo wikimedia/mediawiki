@@ -885,11 +885,11 @@ S'a l'é rintrà ant ël sistema, a peul disabilité st'avis ant la session «Mo
 'content-model-css' => 'CSS',
 
 # Parser/template warnings
-'expensive-parserfunction-warning' => "'''Atension:''' Costa pàgina a l'ha tròpe ciamà costose a le fonsions ëd parser.
+'expensive-parserfunction-warning' => "'''Atension:''' Costa pàgina a l'ha tròpe ciamà costose a le fonsions d'anàlisi sintàtica.
 
-A dovrìa essnie men che {{PLURAL:$2|$2|$2}}, adess a-i na j'é {{PLURAL:$1|$1|$1}}.",
-'expensive-parserfunction-category' => 'Pàgine con tròpe ciamà costose a le fonsion parser',
-'post-expand-template-inclusion-warning' => "'''Atension:''' La dimension djë stamp anserì a l'é tròp gròssa.
+A dovrìa essnie men che {{PLURAL:$2|$2}}, adess a-i na j'é {{PLURAL:$1|$1}}.",
+'expensive-parserfunction-category' => "Pàgine con tròpe ciamà costose ëd fonsion ëd l'analisator sintàtich",
+'post-expand-template-inclusion-warning' => "'''Atension:''' La dimension dj'anseriment dë stamp a l'é tròp gròssa.
 Chèich stamp a saran nen anserì.",
 'post-expand-template-inclusion-category' => "Pàgine andoa la dimension djë stamp anserì a l'é tròpa",
 'post-expand-template-argument-warning' => "'''Atension:''' Costa pàgina a conten almanch un paràmeter dë stamp che a l'ha n'espansion tròp gròssa.
@@ -3717,7 +3717,7 @@ A dovrìa avèj arseivù [{{SERVER}}{{SCRIPTPATH}}/COPYING na còpia dla Licensa
 # Special:Redirect
 'redirect' => 'Ridirigiù da archivi, utent o ID ëd revision',
 'redirect-legend' => "Ridirige a n'archivi o na pàgina",
-'redirect-summary' => "Costa pàgina special a ponta a n'archivi (dàit un nòm d'archivi), na pàgina (dàita n'ID a la revision) o na pàgina d'utent (dàit n'identificativ numérich a l'utent).",
+'redirect-summary' => "Costa pàgina special a ponta a n'archivi (dàit ël nòm dl'archivi), na pàgina (dàita n'ID a la revision) o na pàgina d'utent (dàit n'identificativ numérich a l'utent). Usagi: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]], or [[{{#Special:Redirect}}/user/101]].",
 'redirect-submit' => 'Andé',
 'redirect-lookup' => 'Arserca:',
 'redirect-value' => 'Valor:',

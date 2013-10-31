@@ -4074,7 +4074,7 @@ Eine [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie der ''GNU General Public License'']
 # Special:Redirect
 'redirect' => 'Weiterleitung auf Benutzerseite, Seitenversion oder Datei',
 'redirect-legend' => 'Weiterleitung auf eine Benutzerseite, Seitenversion oder Datei',
-'redirect-summary' => 'Diese Spezialseite leitet auf eine Benutzerseite (numerische Benutzerkennung angegeben), Seitenversion (Versionskennung angegeben) oder Datei (Dateiname angegeben) weiter.',
+'redirect-summary' => 'Diese Spezialseite leitet auf eine Benutzerseite (numerische Benutzerkennung angegeben), Seitenversion (Versionskennung angegeben) oder Datei (Dateiname angegeben) weiter. Benutzung: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]] oder [[{{#Special:Redirect}}/user/101]].',
 'redirect-submit' => 'Los',
 'redirect-lookup' => 'Suchen:',
 'redirect-value' => 'Kennung oder Dateiname:',

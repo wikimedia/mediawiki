@@ -1053,6 +1053,7 @@ $1',
 'compareselectedversions' => 'Хаьржина версеш муха ю хьажа',
 'showhideselectedversions' => 'Гайта/къайлайаха хаьржина башхонаш',
 'editundo' => 'цаоьшу',
+'diff-empty' => '(башхалла яц)',
 'diff-multi' => '({{PLURAL:$1|гайтина яц $1 юккъера верси|гайтина яц $1 юккъера версеш}} {{PLURAL:$2|$2 декъашхочун|$2 декъашхой}})',
 
 # Search results

@@ -784,7 +784,7 @@ continuar a utilizar o seu contrasinal vello.',
 'passwordsent' => 'Enviouse un contrasinal novo ao enderezo de correo electrónico rexistrado de "$1".
 Por favor, acceda ao sistema de novo tras recibilo.',
 'blocked-mailpassword' => 'O seu enderezo IP está bloqueado e ten restrinxida a edición de artigos. Tampouco se lle permite usar a función de recuperación do contrasinal para evitar abusos do sistema.',
-'eauthentsent' => 'Envióuselle un correo electrónico de confirmación ao enderezo mencionado.
+'eauthentsent' => 'Envióuselle un correo electrónico de confirmación ao enderezo especificado.
 Antes de que se lle envíe calquera outro correo a esta conta terá que seguir as instrucións que aparecen nesa mensaxe para confirmar que a conta é realmente súa.',
 'throttled-mailpassword' => 'Enviouse un correo electrónico de restablecemento do contrasinal {{PLURAL:$1|na última hora|nas últimas $1 horas}}.
 Para evitar o abuso do sistema só se enviará unha mensaxe de restablecemento cada {{PLURAL:$1|hora|$1 horas}}.',
@@ -3958,7 +3958,7 @@ Debería recibir [{{SERVER}}{{SCRIPTPATH}}/COPYING unha copia da licenza públic
 # Special:Redirect
 'redirect' => 'Redirixir por nome de ficheiro, ID de usuario ou ID de revisión',
 'redirect-legend' => 'Redirixir a un ficheiro ou unha páxina',
-'redirect-summary' => 'Esta páxina especial redirixe cara a un ficheiro (dado o nome), unha páxina (dado o ID dunha revisión) ou unha páxina de usuario (dado o ID dun usuario).',
+'redirect-summary' => 'Esta páxina especial redirixe cara a un ficheiro (dado o nome), unha páxina (dado o ID dunha revisión) ou unha páxina de usuario (dado o ID dun usuario). Utilización: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]], or [[{{#Special:Redirect}}/user/101]].',
 'redirect-submit' => 'Continuar',
 'redirect-lookup' => 'Procurar:',
 'redirect-value' => 'Valor:',
