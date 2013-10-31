@@ -2120,7 +2120,11 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		DeferredUpdates::addUpdate( new SiteStatsUpdate( 0, 1, $good, $total ) );
-		DeferredUpdates::addUpdate( new SearchUpdate( $id, $title, $content ) );
+		$searchUpdateJob = new SearchUpdateJob(
+			$title,
+			array( 'pageId' => $id, 'content' => $content )
+		);
+		JobQueueGroup::singleton()->push( $searchUpdateJob );
 
 		// If this is another user's talk page, update newtalk.
 		// Don't do this if $options['changed'] = false (null-edits) nor if
@@ -2754,7 +2758,9 @@ class WikiPage implements Page, IDBAccessObject {
 		$this->loadFromRow( false, self::READ_LATEST );
 
 		// Search engine
-		DeferredUpdates::addUpdate( new SearchUpdate( $id, $this->mTitle ) );
+		$searchUpdateJob = new SearchUpdateJob( $this->mTitle,
+			array( 'pageId' => $id ) );
+		JobQueueGroup::singleton()->push( $searchUpdateJob );
 	}
 
 	/**

@@ -6060,7 +6060,8 @@ $wgJobClasses = array(
 	'uploadFromUrl' => 'UploadFromUrlJob',
 	'AssembleUploadChunks' => 'AssembleUploadChunksJob',
 	'PublishStashedFile' => 'PublishStashedFileJob',
-	'null' => 'NullJob'
+	'null' => 'NullJob',
+	'SearchUpdate' => 'SearchUpdateJob',
 );
 
 /**
