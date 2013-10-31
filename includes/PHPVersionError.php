@@ -38,7 +38,7 @@
  * version are hardcoded here
  */
 function wfPHPVersionError( $type ) {
-	$mwVersion = '1.22';
+	$mwVersion = '1.23';
 	$minimumVersionPHP = '5.3.2';
 
 	$phpVersion = phpversion();
