@@ -1186,7 +1186,7 @@ class AutoLoader {
 			}
 		}
 
-		if ( !$filename ) {
+		if ( !isset( $filename ) || !$filename ) {
 			if ( function_exists( 'wfDebug' ) ) {
 				# FIXME: This is not very polite.  Assume we do not manage the class.
 				wfDebug( "Class {$className} not found; skipped loading\n" );
