@@ -65,9 +65,10 @@ abstract class ContentHandler {
 	protected static $enableDeprecationWarnings = false;
 
 	/**
-	 * Convenience function for getting flat text from a Content object. This
-	 * should only be used in the context of backwards compatibility with code
-	 * that is not yet able to handle Content objects!
+	 * Convenience function for getting flat text from a Content object.
+	 *
+	 * NOTE: This should only be used with content that is known to be TextContent, for
+	 * example, a wikitext revision.
 	 *
 	 * If $content is null, this method returns the empty string.
 	 *
