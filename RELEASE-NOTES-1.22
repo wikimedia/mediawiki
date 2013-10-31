@@ -422,6 +422,8 @@ changes to languages because of Bugzilla reports.
 * (bug 46751) Made Buryat (Russia) (буряад) (bxr) fallback to Russian.
 
 === Other changes in 1.22 ===
+* You can now install extensions using Composer.
+  See https://www.mediawiki.org/wiki/Composer
 * BREAKING CHANGE: Implementation of MediaWiki's JS and JSON value encoding
   has changed:
 ** MediaWiki no longer supports PHP installations in which the native JSON
