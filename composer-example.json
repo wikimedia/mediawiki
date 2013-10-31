@@ -1,0 +1,11 @@
+{
+	"require": {
+		"php": ">=5.3.2"
+	},
+	"suggest": {
+		"ext-fileinfo": "*",
+		"ext-mbstring": "*",
+		"ext-wikidiff2": "*",
+		"ext-apc": "*"
+	}
+}
