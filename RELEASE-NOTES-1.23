@@ -34,6 +34,7 @@ regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Bugzilla reports.
 
 === Other changes in 1.23 ===
+* The global variable $wgArticle has been removed after a lengthy deprecation
 
 == Compatibility ==
 

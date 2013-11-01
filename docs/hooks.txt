@@ -1608,7 +1608,7 @@ $wcOnlySysopsCanPatrol: config setting indicating whether the user must be a
 something completely different, after the basic globals have been set up, but
 before ordinary actions take place.
 $output: $wgOut
-$article: $wgArticle
+$article: Article on which the action will be performed
 $title: $wgTitle
 $user: $wgUser
 $request: $wgRequest
