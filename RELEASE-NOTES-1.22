@@ -264,6 +264,7 @@ production.
   archive.ar_len field.
 
 === Bug fixes in 1.22 ===
+* (bug 47271) $wgContentHandlerUseDB should be set to false during the upgrade
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
   could still navigate to the page by entering the URL directly.
 * (bug 47138) Fixed a fatal error when a blocked user tries to automatically
