@@ -19,8 +19,6 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 
 	private $mOldGetPreferencesHooks = false;
 
-	private static $Success = array( 'options' => 'success' );
-
 	protected function setUp() {
 		parent::setUp();
 
@@ -227,7 +225,10 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 
 		$response = $this->executeQuery( $request );
 
-		$this->assertEquals( self::$Success, $response );
+		$this->assertEquals( array(
+			'options' => 'success',
+			'changes' => array()
+		), $response );
 	}
 
 	public function testResetKinds() {
@@ -245,7 +246,10 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 
 		$response = $this->executeQuery( $request );
 
-		$this->assertEquals( self::$Success, $response );
+		$this->assertEquals( array(
+			'options' => 'success',
+			'changes' => array()
+		), $response );
 	}
 
 	public function testOptionWithValue() {
@@ -263,7 +267,12 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 
 		$response = $this->executeQuery( $request );
 
-		$this->assertEquals( self::$Success, $response );
+		$this->assertEquals( array(
+			'options' => 'success',
+			'changes' => array(
+				0 => array( 'name' => 'name', 'nochange' => '' )
+			)
+		), $response );
 	}
 
 	public function testOptionResetValue() {
@@ -280,7 +289,12 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 		$request = $this->getSampleRequest( array( 'optionname' => 'name' ) );
 		$response = $this->executeQuery( $request );
 
-		$this->assertEquals( self::$Success, $response );
+		$this->assertEquals( array(
+			'options' => 'success',
+			'changes' => array(
+				0 => array( 'name' => 'name', 'nochange' => '' )
+			)
+		), $response );
 	}
 
 	public function testChange() {
@@ -315,7 +329,14 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 
 		$response = $this->executeQuery( $request );
 
-		$this->assertEquals( self::$Success, $response );
+		$this->assertEquals( array(
+			'options' => 'success',
+			'changes' => array(
+				0 => array( 'name' => 'willBeNull', 'nochange' => '' ),
+				1 => array( 'name' => 'willBeEmpty', 'nochange' => '' ),
+				2 => array( 'name' => 'willBeHappy', 'nochange' => '' ),
+			)
+		), $response );
 	}
 
 	public function testResetChangeOption() {
@@ -348,7 +369,13 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 
 		$response = $this->executeQuery( $this->getSampleRequest( $args ) );
 
-		$this->assertEquals( self::$Success, $response );
+		$this->assertEquals( array(
+			'options' => 'success',
+			'changes' => array(
+				0 => array( 'name' => 'willBeHappy', 'nochange' => '' ),
+				1 => array( 'name' => 'name', 'nochange' => '' )
+			)
+		), $response );
 	}
 
 	public function testMultiSelect() {
@@ -380,7 +407,12 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 
 		$response = $this->executeQuery( $request );
 
-		$this->assertEquals( self::$Success, $response );
+		$this->assertEquals( array(
+			'options' => 'success',
+			'changes' => array(
+				0 => array( 'name' => 'testmultiselect-opt1', 'oldvalue' => '', 'newvalue' => '1' )
+			)
+		), $response );
 	}
 
 	public function testUnknownOption() {
@@ -402,6 +434,9 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 				'options' => array(
 					'*' => "Validation error for 'unknownOption': not a valid preference"
 				)
+			),
+			'changes' => array(
+				0 => array( 'name' => 'unknownOption', 'invalid' => '' )
 			)
 		), $response );
 	}
@@ -423,6 +458,11 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 
 		$response = $this->executeQuery( $request );
 
-		$this->assertEquals( self::$Success, $response );
+		$this->assertEquals( array(
+			'options' => 'success',
+			'changes' => array(
+				0 => array( 'name' => 'userjs-option', 'nochange' => '' )
+			)
+		), $response );
 	}
 }
