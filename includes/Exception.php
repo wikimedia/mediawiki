@@ -135,7 +135,7 @@ class MWException extends Exception {
 		global $wgShowExceptionDetails;
 
 		if ( $wgShowExceptionDetails ) {
-			return '<p>' . nl2br( htmlspecialchars( $this->getMessage() ) ) .
+			return '<p>' . nl2br( htmlspecialchars( MWExceptionHandler::getLogMessage( $this ) ) ) .
 				'</p><p>Backtrace:</p><p>' . nl2br( htmlspecialchars( MWExceptionHandler::getRedactedTraceAsString( $this ) ) ) .
 				"</p>\n";
 		} else {
@@ -160,7 +160,7 @@ class MWException extends Exception {
 		global $wgShowExceptionDetails;
 
 		if ( $wgShowExceptionDetails ) {
-			return $this->getMessage() .
+			return MWExceptionHandler::getLogMessage( $this ) .
 				"\nBacktrace:\n" . MWExceptionHandler::getRedactedTraceAsString( $this ) . "\n";
 		} else {
 			return "Set \$wgShowExceptionDetails = true; " .
@@ -633,8 +633,7 @@ class MWExceptionHandler {
 			$message = "Unexpected non-MediaWiki exception encountered, of type \"" . get_class( $e ) . "\"";
 
 			if ( $wgShowExceptionDetails ) {
-				$message .= "\nexception '" . get_class( $e ) . "' in " .
-					$e->getFile() . ":" . $e->getLine() . "\nStack trace:\n" .
+				$message .= "\n" . MWExceptionHandler::getLogMessage( $e ) . "\nBacktrace:\n" .
 					self::getRedactedTraceAsString( $e ) . "\n";
 			}
 
