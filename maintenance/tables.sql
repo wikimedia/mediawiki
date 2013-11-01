@@ -1062,10 +1062,6 @@ CREATE TABLE /*_*/recentchanges (
   -- The type of change entry (RC_EDIT,RC_NEW,RC_LOG,RC_EXTERNAL)
   rc_type tinyint unsigned NOT NULL default 0,
 
-  -- The source of the change entry (replaces rc_type)
-  -- default of '' is temporary, needed for initial migration
-  rc_source varchar(16) binary not null default '',
-
   -- If the Recent Changes Patrol option is enabled,
   -- users may mark edits as having been reviewed to
   -- remove a warning flag on the RC list.

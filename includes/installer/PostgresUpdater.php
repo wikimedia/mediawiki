@@ -395,9 +395,6 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'addInterwikiType' ),
 			# end
 			array( 'tsearchFixes' ),
-
-			// 1.22
-			array( 'addPgField', 'recentchanges', 'rc_source',            "TEXT NOT NULL DEFAULT ''" ),
 		);
 	}
 
