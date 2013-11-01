@@ -111,7 +111,7 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 				ApiQueryBase::addTitleInfo( $vals, $t );
 				if ( isset( $prop['changed'] ) && !is_null( $row->wl_notificationtimestamp ) )
 				{
-					$vals['changed'] = wfTimestamp( TS_ISO_8601, $row->wl_notificationtimestamp );
+					$vals['changed'] = $this->timestamp( $row->wl_notificationtimestamp );
 				}
 				$fit = $this->getResult()->addValue( $this->getModuleName(), null, $vals );
 				if ( !$fit ) {

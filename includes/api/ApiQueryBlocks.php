@@ -186,7 +186,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 				$block['byid'] = $row->ipb_by;
 			}
 			if ( $fld_timestamp ) {
-				$block['timestamp'] = wfTimestamp( TS_ISO_8601, $row->ipb_timestamp );
+				$block['timestamp'] = $this->timestamp( $row->ipb_timestamp );
 			}
 			if ( $fld_expiry ) {
 				$block['expiry'] = $wgContLang->formatExpiry( $row->ipb_expiry, TS_ISO_8601 );

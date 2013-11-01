@@ -151,7 +151,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 				$file['sha1'] = wfBaseConvert( $row->fa_sha1, 36, 16, 40 );
 			}
 			if ( $fld_timestamp ) {
-				$file['timestamp'] = wfTimestamp( TS_ISO_8601, $row->fa_timestamp );
+				$file['timestamp'] = $this->timestamp( $row->fa_timestamp );
 			}
 			if ( $fld_user ) {
 				$file['userid'] = $row->fa_user;

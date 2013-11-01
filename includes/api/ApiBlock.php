@@ -101,7 +101,7 @@ class ApiBlock extends ApiBase {
 		if ( $block instanceof Block ) {
 			$res['expiry'] = $block->mExpiry == $this->getDB()->getInfinity()
 				? 'infinite'
-				: wfTimestamp( TS_ISO_8601, $block->mExpiry );
+				: $this->timestamp( $block->mExpiry );
 			$res['id'] = $block->getId();
 		} else {
 			# should be unreachable

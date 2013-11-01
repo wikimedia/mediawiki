@@ -221,7 +221,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 					$vals['type'] = $row->cl_type;
 				}
 				if ( $fld_timestamp ) {
-					$vals['timestamp'] = wfTimestamp( TS_ISO_8601, $row->cl_timestamp );
+					$vals['timestamp'] = $this->timestamp( $row->cl_timestamp );
 				}
 				$fit = $result->addValue( array( 'query', $this->getModuleName() ),
 						null, $vals );

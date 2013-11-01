@@ -153,7 +153,7 @@ class ApiQueryUsers extends ApiQueryBase {
 				}
 
 				if ( isset( $this->prop['registration'] ) ) {
-					$data[$name]['registration'] = wfTimestampOrNull( TS_ISO_8601, $user->getRegistration() );
+					$data[$name]['registration'] = $this->timestampOrNull( $user->getRegistration() );
 				}
 
 				if ( isset( $this->prop['groups'] ) ) {

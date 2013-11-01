@@ -433,7 +433,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 		/* Add the timestamp. */
 		if ( $this->fld_timestamp ) {
-			$vals['timestamp'] = wfTimestamp( TS_ISO_8601, $row->rc_timestamp );
+			$vals['timestamp'] = $this->timestamp( $row->rc_timestamp );
 		}
 
 		/* Add edit summary / log summary. */

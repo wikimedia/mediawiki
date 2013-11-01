@@ -136,7 +136,7 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 					$r = array(
 						'name' => $dupName,
 						'user' => $dupFile->getUser( 'text' ),
-						'timestamp' => wfTimestamp( TS_ISO_8601, $dupFile->getTimestamp() )
+						'timestamp' => $this->timestamp( $dupFile->getTimestamp() )
 					);
 					if ( !$dupFile->isLocal() ) {
 						$r['shared'] = '';

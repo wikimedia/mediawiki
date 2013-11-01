@@ -215,7 +215,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			}
 
 			$rev = array();
-			$rev['timestamp'] = wfTimestamp( TS_ISO_8601, $row->ar_timestamp );
+			$rev['timestamp'] = $this->timestamp( $row->ar_timestamp );
 			if ( $fld_revid ) {
 				$rev['revid'] = intval( $row->ar_rev_id );
 			}

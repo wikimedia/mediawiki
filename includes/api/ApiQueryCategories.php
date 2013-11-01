@@ -151,7 +151,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 					$vals['sortkeyprefix'] = $row->cl_sortkey_prefix;
 				}
 				if ( isset( $prop['timestamp'] ) ) {
-					$vals['timestamp'] = wfTimestamp( TS_ISO_8601, $row->cl_timestamp );
+					$vals['timestamp'] = $this->timestamp( $row->cl_timestamp );
 				}
 				if ( isset( $prop['hidden'] ) && !is_null( $row->pp_propname ) ) {
 					$vals['hidden'] = '';

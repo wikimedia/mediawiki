@@ -241,7 +241,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				}
 				if ( $fld_registration ) {
 					$lastUserData['registration'] = $row->user_registration ?
-						wfTimestamp( TS_ISO_8601, $row->user_registration ) : '';
+						$this->timestamp( $row->user_registration ) : '';
 				}
 			}
 

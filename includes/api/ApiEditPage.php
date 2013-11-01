@@ -448,8 +448,7 @@ class ApiEditPage extends ApiBase {
 				} else {
 					$r['oldrevid'] = intval( $oldRevId );
 					$r['newrevid'] = intval( $newRevId );
-					$r['newtimestamp'] = wfTimestamp( TS_ISO_8601,
-						$pageObj->getTimestamp() );
+					$r['newtimestamp'] = $this->timestamp( $pageObj->getTimestamp() );
 				}
 				break;
 

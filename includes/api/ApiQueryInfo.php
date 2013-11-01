@@ -358,7 +358,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		if ( $titleExists ) {
 			global $wgDisableCounters;
 
-			$pageInfo['touched'] = wfTimestamp( TS_ISO_8601, $this->pageTouched[$pageid] );
+			$pageInfo['touched'] = $this->timestamp( $this->pageTouched[$pageid] );
 			$pageInfo['lastrevid'] = intval( $this->pageLatest[$pageid] );
 			$pageInfo['counter'] = $wgDisableCounters
 				? ''
@@ -375,7 +375,7 @@ class ApiQueryInfo extends ApiQueryBase {
 
 		if ( !is_null( $this->params['token'] ) ) {
 			$tokenFunctions = $this->getTokenFunctions();
-			$pageInfo['starttimestamp'] = wfTimestamp( TS_ISO_8601, time() );
+			$pageInfo['starttimestamp'] = $this->timestamp( time() );
 			foreach ( $this->params['token'] as $t ) {
 				$val = call_user_func( $tokenFunctions[$t], $pageid, $title );
 				if ( $val === false ) {
@@ -410,7 +410,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		if ( $this->fld_notificationtimestamp ) {
 			$pageInfo['notificationtimestamp'] = '';
 			if ( isset( $this->notificationtimestamps[$ns][$dbkey] ) ) {
-				$pageInfo['notificationtimestamp'] = wfTimestamp( TS_ISO_8601, $this->notificationtimestamps[$ns][$dbkey] );
+				$pageInfo['notificationtimestamp'] = $this->timestamp( $this->notificationtimestamps[$ns][$dbkey] );
 			}
 		}
 

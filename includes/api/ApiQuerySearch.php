@@ -154,7 +154,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 					$vals['wordcount'] = $result->getWordCount();
 				}
 				if ( isset( $prop['timestamp'] ) ) {
-					$vals['timestamp'] = wfTimestamp( TS_ISO_8601, $result->getTimestamp() );
+					$vals['timestamp'] = $this->timestamp( $result->getTimestamp() );
 				}
 				if ( !is_null( $result->getScore() ) && isset( $prop['score'] ) ) {
 					$vals['score'] = $result->getScore();

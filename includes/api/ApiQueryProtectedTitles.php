@@ -91,7 +91,7 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 				$vals = array();
 				ApiQueryBase::addTitleInfo( $vals, $title );
 				if ( isset( $prop['timestamp'] ) ) {
-					$vals['timestamp'] = wfTimestamp( TS_ISO_8601, $row->pt_timestamp );
+					$vals['timestamp'] = $this->timestamp( $row->pt_timestamp );
 				}
 
 				if ( isset( $prop['user'] ) && !is_null( $row->user_name ) ) {

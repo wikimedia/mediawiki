@@ -301,7 +301,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		}
 
 		if ( $this->fld_timestamp ) {
-			$vals['timestamp'] = wfTimestamp( TS_ISO_8601, $row->rc_timestamp );
+			$vals['timestamp'] = $this->timestamp( $row->rc_timestamp );
 		}
 
 		if ( $this->fld_sizes ) {
@@ -312,7 +312,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		if ( $this->fld_notificationtimestamp ) {
 			$vals['notificationtimestamp'] = ( $row->wl_notificationtimestamp == null )
 				? ''
-				: wfTimestamp( TS_ISO_8601, $row->wl_notificationtimestamp );
+				: $this->timestamp( $row->wl_notificationtimestamp );
 		}
 
 		if ( $this->fld_comment && isset( $row->rc_comment ) ) {

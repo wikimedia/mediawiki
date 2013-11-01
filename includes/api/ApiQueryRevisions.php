@@ -424,7 +424,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 		}
 
 		if ( $this->fld_timestamp ) {
-			$vals['timestamp'] = wfTimestamp( TS_ISO_8601, $revision->getTimestamp() );
+			$vals['timestamp'] = $this->timestamp( $revision->getTimestamp() );
 		}
 
 		if ( $this->fld_size ) {

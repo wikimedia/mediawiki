@@ -95,7 +95,7 @@ class ApiSetNotificationTimestamp extends ApiBase {
 				__METHOD__
 			);
 
-			$result['notificationtimestamp'] = ( is_null( $timestamp ) ? '' : wfTimestamp( TS_ISO_8601, $timestamp ) );
+			$result['notificationtimestamp'] = ( is_null( $timestamp ) ? '' : $this->timestamp( $timestamp ) );
 		} else {
 			// First, log the invalid titles
 			foreach ( $pageSet->getInvalidTitles() as $title ) {
@@ -151,7 +151,7 @@ class ApiSetNotificationTimestamp extends ApiBase {
 				if ( isset( $timestamps[$ns] ) && array_key_exists( $dbkey, $timestamps[$ns] ) ) {
 					$r['notificationtimestamp'] = '';
 					if ( $timestamps[$ns][$dbkey] !== null ) {
-						$r['notificationtimestamp'] = wfTimestamp( TS_ISO_8601, $timestamps[$ns][$dbkey] );
+						$r['notificationtimestamp'] = $this->timestamp( $timestamps[$ns][$dbkey] );
 					}
 				} else {
 					$r['notwatched'] = '';

@@ -127,6 +127,18 @@ class ApiMain extends ApiBase {
 		)
 	);
 
+	private static $timestampFormats = array(
+		'unix' => TS_UNIX,
+		'mw' => TS_MW,
+		'mysql' => TS_DB,
+		'rfc2822' => TS_RFC2822,
+		'iso8601' => TS_ISO_8601,
+		'iso8601-basic' => TS_ISO_8601_BASIC,
+		'exif' => TS_EXIF,
+		'oracle' => TS_ORACLE,
+		'postgres' => TS_POSTGRES,
+	);
+
 	/**
 	 * @var ApiFormatBase
 	 */
@@ -140,6 +152,7 @@ class ApiMain extends ApiBase {
 	private $mCacheMode = 'private';
 	private $mCacheControl = array();
 	private $mParamsUsed = array();
+	private $mTimestampFormat = false;
 
 	/**
 	 * Constructs an instance of ApiMain that utilizes the module and format specified by $request.
@@ -210,6 +223,24 @@ class ApiMain extends ApiBase {
 	 */
 	public function getResult() {
 		return $this->mResult;
+	}
+
+	/**
+	 * @return int|null
+	 */
+	public function getTimestampFormat() {
+		if ( $this->mTimestampFormat === false ) {
+			$params = $this->extractRequestParams();
+			if ( isset( $params['timestamps'] ) ) {
+				if ( !isset( self::$timestampFormats[$params['timestamps']] ) ) {
+					throw new MWException( "Unexpected timestamp format: {$params['timestamps']}" );
+				}
+				$this->mTimestampFormat = self::$timestampFormats[$params['timestamps']];
+			} else {
+				$this->mTimestampFormat = null;
+			}
+		}
+		return $this->mTimestampFormat;
 	}
 
 	/**
@@ -1011,6 +1042,19 @@ class ApiMain extends ApiBase {
 			'requestid' => null,
 			'servedby' => false,
 			'origin' => null,
+			'timestamps' => array(
+				ApiBase::PARAM_TYPE => array(
+					'unix',
+					'mw',
+					'mysql',
+					'rfc2822',
+					'iso8601',
+					'iso8601-basic',
+					'exif',
+					'oracle',
+					'postgres',
+				),
+			),
 		);
 	}
 
@@ -1041,6 +1085,19 @@ class ApiMain extends ApiBase {
 				'This must match one of the origins in the Origin: header exactly, so it has to be set to something like http://en.wikipedia.org or https://meta.wikimedia.org .',
 				'If this parameter does not match the Origin: header, a 403 response will be returned.',
 				'If this parameter matches the Origin: header and the origin is whitelisted, an Access-Control-Allow-Origin header will be set.',
+			),
+			'timestamps' => array(
+				'Timestamps format:',
+				' unix          - Unix, see https://en.wikipedia.org/wiki/Unix_time',
+				' mw            - MediaWiki format, e.g. 20131031235959',
+				' mysql         - MySQL timestamp format e.g. 2013-10-31 23:59:59, see https://dev.mysql.com/doc/refman/5.5/en/datetime.html',
+				' rfc2822       - RFC 2822, see https://tools.ietf.org/html/rfc2822',
+				' iso8601       - ISO 8601 e.g. 2013-10-31T23:59:59Z, see https://en.wikipedia.org/wiki/ISO_8601',
+				' iso8601-basic - ISO 8601 basic without a timezone, e.g. 20131031T235959',
+				' exif          - EXIF, see http://exif.org/Exif2-2.PDF',
+				' oracle        - Oracle format',
+				' postgres      - PostgreSQL format',
+				'Some API modules might choose to ignore this parameter.'
 			),
 		);
 	}

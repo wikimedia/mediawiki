@@ -233,7 +233,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data['variantarticlepath'] = $GLOBALS['wgVariantArticlePath'];
 		$data['server'] = $GLOBALS['wgServer'];
 		$data['wikiid'] = wfWikiID();
-		$data['time'] = wfTimestamp( TS_ISO_8601, time() );
+		$data['time'] = $this->timestamp( time() );
 
 		if ( $GLOBALS['wgMiserMode'] ) {
 			$data['misermode'] = '';

@@ -136,6 +136,26 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
+	 * Returns this module's default timestamp format, can be overridden with
+	 * timestamps=... api.php parameter
+	 * @since 1.23
+	 *
+	 * @return int
+	 */
+	public function getDefaultTimestampFormat() {
+		return TS_ISO_8601;
+	}
+
+	/**
+	 * Returns timestamp format as globally requested or this module's defaults if no format specified
+	 * @return int
+	 */
+	public function getTimestampFormat() {
+		$format = $this->mMainModule->getTimestampFormat();
+		return $format === null ? $this->getDefaultTimestampFormat() : $format;
+	}
+
+	/**
 	 * Get the module manager, or null if this module has no sub-modules
 	 * @since 1.21
 	 * @return ApiModuleManager
@@ -1808,5 +1828,31 @@ abstract class ApiBase extends ContextSource {
 			print "\n" . wfBacktrace();
 		}
 		print "\n</pre>\n";
+	}
+
+	/**
+	 * Formats timestamps in a globally requested format using this module's defaults if no format specified
+	 * Use wfTimestamp() if you need to return a specific format
+	 * @since 1.23
+	 *
+	 * @param int $timestamp
+	 *
+	 * @return string|bool: Formatted timestamp or false, same as wfTimestamp()
+	 */
+	public function timestamp( $timestamp = 0 ) {
+		return wfTimestamp( $this->getTimestampFormat(), $timestamp );
+	}
+
+	/**
+	 * same as timestamp() but returns null if input was null
+	 * Use wfTimestamp() if you need to return a specific format
+	 * @since 1.23
+	 *
+	 * @param int $timestamp
+	 *
+	 * @return string|bool|null: Formatted timestamp or false or null, same as wfTimestampOrNull()
+	 */
+	public function timestampOrNull( $timestamp = 0 ) {
+		return wfTimestampOrNull( $this->getTimestampFormat(), $timestamp );
 	}
 }

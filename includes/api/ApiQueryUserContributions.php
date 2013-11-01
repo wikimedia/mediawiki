@@ -309,7 +309,7 @@ class ApiQueryContributions extends ApiQueryBase {
 		}
 
 		if ( $this->fld_timestamp ) {
-			$vals['timestamp'] = wfTimestamp( TS_ISO_8601, $row->rev_timestamp );
+			$vals['timestamp'] = $this->timestamp( $row->rev_timestamp );
 		}
 
 		if ( $this->fld_flags ) {
@@ -366,7 +366,7 @@ class ApiQueryContributions extends ApiQueryBase {
 
 	private function continueStr( $row ) {
 		return $row->rev_user_text . '|' .
-			wfTimestamp( TS_ISO_8601, $row->rev_timestamp );
+		$this->timestamp( $row->rev_timestamp );
 	}
 
 	public function getCacheMode( $params ) {

@@ -26,6 +26,8 @@ production.
   acting as if the latest revision was being viewed.
 
 === API changes in 1.23 ===
+* By using the timestamps parameter, it is now possible to select the format of
+  timestamps returned by the API.
 
 === Languages updated in 1.23===
 

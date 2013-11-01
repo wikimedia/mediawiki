@@ -80,7 +80,7 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 				$r['cached'] = '';
 				$ts = $qp->getCachedTimestamp();
 				if ( $ts ) {
-					$r['cachedtimestamp'] = wfTimestamp( TS_ISO_8601, $ts );
+					$r['cachedtimestamp'] = $this->timestamp( $ts );
 				}
 				$r['maxresults'] = $wgQueryCacheLimit;
 			}
@@ -106,7 +106,7 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 			if ( is_null( $resultPageSet ) ) {
 				$data = array( 'value' => $row->value );
 				if ( $qp->usesTimestamps() ) {
-					$data['timestamp'] = wfTimestamp( TS_ISO_8601, $row->value );
+					$data['timestamp'] = $this->timestamp( $row->value );
 				}
 				self::addTitleInfo( $data, $title );
 
