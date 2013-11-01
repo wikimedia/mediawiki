@@ -30,7 +30,6 @@
  *  rc_namespace    namespace #
  *  rc_title        non-prefixed db key
  *  rc_type         is new entry, used to determine whether updating is necessary
- *  rc_source       string representation of change source
  *  rc_minor        is minor
  *  rc_cur_id       page_id of associated page entry
  *  rc_user         user id who made the entry
@@ -65,14 +64,6 @@
  * @todo document functions and variables
  */
 class RecentChange {
-
-	// Constants for the rc_source field.  Extensions may also have
-	// their own source constants.
-	const SRC_EDIT = 'mw.edit';
-	const SRC_NEW = 'mw.new';
-	const SRC_LOG = 'mw.log';
-	const SRC_EXTERNAL = 'mw.external'; // obsolete
-
 	var $mAttribs = array(), $mExtra = array();
 
 	/**
@@ -168,7 +159,6 @@ class RecentChange {
 			'rc_this_oldid',
 			'rc_last_oldid',
 			'rc_type',
-			'rc_source',
 			'rc_patrolled',
 			'rc_ip',
 			'rc_old_len',
@@ -499,7 +489,6 @@ class RecentChange {
 			'rc_namespace'  => $title->getNamespace(),
 			'rc_title'      => $title->getDBkey(),
 			'rc_type'       => RC_EDIT,
-			'rc_source'     => self::SRC_EDIT,
 			'rc_minor'      => $minor ? 1 : 0,
 			'rc_cur_id'     => $title->getArticleID(),
 			'rc_user'       => $user->getId(),
@@ -559,7 +548,6 @@ class RecentChange {
 			'rc_namespace'      => $title->getNamespace(),
 			'rc_title'          => $title->getDBkey(),
 			'rc_type'           => RC_NEW,
-			'rc_source'         => self::SRC_NEW,
 			'rc_minor'          => $minor ? 1 : 0,
 			'rc_cur_id'         => $title->getArticleID(),
 			'rc_user'           => $user->getId(),
@@ -669,7 +657,6 @@ class RecentChange {
 			'rc_namespace'  => $target->getNamespace(),
 			'rc_title'      => $target->getDBkey(),
 			'rc_type'       => RC_LOG,
-			'rc_source'     => self::SRC_LOG,
 			'rc_minor'      => 0,
 			'rc_cur_id'     => $target->getArticleID(),
 			'rc_user'       => $user->getId(),
@@ -729,7 +716,6 @@ class RecentChange {
 			'rc_comment' => $row->rev_comment,
 			'rc_minor' => $row->rev_minor_edit ? 1 : 0,
 			'rc_type' => $row->page_is_new ? RC_NEW : RC_EDIT,
-			'rc_source' => $row->page_is_new ? self::SRC_NEW : self::SRC_EDIT,
 			'rc_cur_id' => $row->page_id,
 			'rc_this_oldid' => $row->rev_id,
 			'rc_last_oldid' => isset( $row->rc_last_oldid ) ? $row->rc_last_oldid : 0,
