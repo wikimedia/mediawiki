@@ -14,10 +14,11 @@ class MWExceptionHandlerTest extends MediaWikiTestCase {
 	 * @covers MWExceptionHandler::getRedactedTrace
 	 */
 	function testGetRedactedTrace() {
+		$refvar = 'value';
 		try {
 			$array = array( 'a', 'b' );
 			$object = new StdClass();
-			self::helperThrowAnException( $array, $object );
+			self::helperThrowAnException( $array, $object, $refvar );
 		} catch (Exception $e) {
 		}
 
@@ -58,16 +59,18 @@ class MWExceptionHandlerTest extends MediaWikiTestCase {
 				$this->assertNotInternalType( 'object', $arg);
 			}
 		}
+
+		$this->assertEquals( 'value', $refvar, 'Ensuring reference variable wasn\'t changed' );
 	}
 
 	/**
 	 * Helper function for testExpandArgumentsInCall
 	 *
-	 * Pass it an object and an array :-)
+	 * Pass it an object and an array, and something by reference :-)
 	 *
 	 * @throws Exception
 	 */
-	protected static function helperThrowAnException( $a, $b ) {
+	protected static function helperThrowAnException( $a, $b, &$c ) {
 		throw new Exception();
 	}
 }
