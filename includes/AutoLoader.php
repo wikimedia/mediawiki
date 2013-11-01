@@ -65,9 +65,6 @@ $wgAutoloadLocalClasses = array(
 	'Cookie' => 'includes/Cookie.php',
 	'CookieJar' => 'includes/Cookie.php',
 	'CurlHttpRequest' => 'includes/HttpFunctions.php',
-	'DeferrableUpdate' => 'includes/DeferredUpdates.php',
-	'DeferredUpdates' => 'includes/DeferredUpdates.php',
-	'MWCallableUpdate' => 'includes/CallableUpdate.php',
 	'DeprecatedGlobal' => 'includes/DeprecatedGlobal.php',
 	'DerivativeRequest' => 'includes/WebRequest.php',
 	'DiffHistoryBlob' => 'includes/HistoryBlob.php',
@@ -155,8 +152,6 @@ $wgAutoloadLocalClasses = array(
 	'Licenses' => 'includes/Licenses.php',
 	'Linker' => 'includes/Linker.php',
 	'LinkFilter' => 'includes/LinkFilter.php',
-	'LinksUpdate' => 'includes/LinksUpdate.php',
-	'LinksDeletionUpdate' => 'includes/LinksUpdate.php',
 	'LocalisationCache' => 'includes/cache/LocalisationCache.php',
 	'LocalisationCache_BulkLoad' => 'includes/cache/LocalisationCache.php',
 	'MagicWord' => 'includes/MagicWord.php',
@@ -212,14 +207,11 @@ $wgAutoloadLocalClasses = array(
 	'RevisionList' => 'includes/RevisionList.php',
 	'RSSFeed' => 'includes/Feed.php',
 	'Sanitizer' => 'includes/Sanitizer.php',
-	'DataUpdate' => 'includes/DataUpdate.php',
-	'SqlDataUpdate' => 'includes/SqlDataUpdate.php',
 	'ScopedCallback' => 'includes/ScopedCallback.php',
 	'ScopedPHPTimeout' => 'includes/ScopedPHPTimeout.php',
 	'SiteConfiguration' => 'includes/SiteConfiguration.php',
 	'SiteStats' => 'includes/SiteStats.php',
 	'SiteStatsInit' => 'includes/SiteStats.php',
-	'SiteStatsUpdate' => 'includes/SiteStats.php',
 	'Skin' => 'includes/Skin.php',
 	'SkinTemplate' => 'includes/SkinTemplate.php',
 	'SpecialCreateAccount' => 'includes/SpecialPage.php',
@@ -261,7 +253,6 @@ $wgAutoloadLocalClasses = array(
 	'UserCache' => 'includes/cache/UserCache.php',
 	'UserMailer' => 'includes/UserMailer.php',
 	'UserRightsProxy' => 'includes/UserRightsProxy.php',
-	'ViewCountUpdate' => 'includes/ViewCountUpdate.php',
 	'WantedQueryPage' => 'includes/QueryPage.php',
 	'WatchedItem' => 'includes/WatchedItem.php',
 	'WebRequest' => 'includes/WebRequest.php',
@@ -287,21 +278,6 @@ $wgAutoloadLocalClasses = array(
 	'ZhClient' => 'includes/ZhClient.php',
 	'ZipDirectoryReader' => 'includes/ZipDirectoryReader.php',
 	'ZipDirectoryReaderError' => 'includes/ZipDirectoryReader.php',
-
-	# content handler
-	'AbstractContent' => 'includes/content/AbstractContent.php',
-	'ContentHandler' => 'includes/content/ContentHandler.php',
-	'Content' => 'includes/content/Content.php',
-	'CssContentHandler' => 'includes/content/CssContentHandler.php',
-	'CssContent' => 'includes/content/CssContent.php',
-	'JavaScriptContentHandler' => 'includes/content/JavaScriptContentHandler.php',
-	'JavaScriptContent' => 'includes/content/JavaScriptContent.php',
-	'MessageContent' => 'includes/content/MessageContent.php',
-	'MWContentSerializationException' => 'includes/content/ContentHandler.php',
-	'TextContentHandler' => 'includes/content/TextContentHandler.php',
-	'TextContent' => 'includes/content/TextContent.php',
-	'WikitextContentHandler' => 'includes/content/WikitextContentHandler.php',
-	'WikitextContent' => 'includes/content/WikitextContent.php',
 
 	# includes/actions
 	'CachedAction' => 'includes/actions/CachedAction.php',
@@ -440,7 +416,6 @@ $wgAutoloadLocalClasses = array(
 	'FileDependency' => 'includes/cache/CacheDependency.php',
 	'GenderCache' => 'includes/cache/GenderCache.php',
 	'GlobalDependency' => 'includes/cache/CacheDependency.php',
-	'HTMLCacheUpdate' => 'includes/cache/HTMLCacheUpdate.php',
 	'HTMLFileCache' => 'includes/cache/HTMLFileCache.php',
 	'LinkBatch' => 'includes/cache/LinkBatch.php',
 	'LinkCache' => 'includes/cache/LinkCache.php',
@@ -448,7 +423,6 @@ $wgAutoloadLocalClasses = array(
 	'ObjectFileCache' => 'includes/cache/ObjectFileCache.php',
 	'ProcessCacheLRU' => 'includes/cache/ProcessCacheLRU.php',
 	'ResourceFileCache' => 'includes/cache/ResourceFileCache.php',
-	'SquidUpdate' => 'includes/cache/SquidUpdate.php',
 	'TitleDependency' => 'includes/cache/CacheDependency.php',
 	'TitleListDependency' => 'includes/cache/CacheDependency.php',
 
@@ -462,6 +436,21 @@ $wgAutoloadLocalClasses = array(
 	# includes/clientpool
 	'RedisConnectionPool' => 'includes/clientpool/RedisConnectionPool.php',
 	'RedisConnRef' => 'includes/clientpool/RedisConnectionPool.php',
+
+	# includes/content
+	'AbstractContent' => 'includes/content/AbstractContent.php',
+	'ContentHandler' => 'includes/content/ContentHandler.php',
+	'Content' => 'includes/content/Content.php',
+	'CssContentHandler' => 'includes/content/CssContentHandler.php',
+	'CssContent' => 'includes/content/CssContent.php',
+	'JavaScriptContentHandler' => 'includes/content/JavaScriptContentHandler.php',
+	'JavaScriptContent' => 'includes/content/JavaScriptContent.php',
+	'MessageContent' => 'includes/content/MessageContent.php',
+	'MWContentSerializationException' => 'includes/content/ContentHandler.php',
+	'TextContentHandler' => 'includes/content/TextContentHandler.php',
+	'TextContent' => 'includes/content/TextContent.php',
+	'WikitextContentHandler' => 'includes/content/WikitextContentHandler.php',
+	'WikitextContent' => 'includes/content/WikitextContent.php',
 
 	# includes/context
 	'ContextSource' => 'includes/context/ContextSource.php',
@@ -529,6 +518,20 @@ $wgAutoloadLocalClasses = array(
 
 	# includes/debug
 	'MWDebug' => 'includes/debug/Debug.php',
+
+	# includes/deferred
+	'DataUpdate' => 'includes/deferred/DataUpdate.php',
+	'DeferrableUpdate' => 'includes/deferred/DeferredUpdates.php',
+	'DeferredUpdates' => 'includes/deferred/DeferredUpdates.php',
+	'HTMLCacheUpdate' => 'includes/deferred/HTMLCacheUpdate.php',
+	'LinksDeletionUpdate' => 'includes/deferred/LinksUpdate.php',
+	'LinksUpdate' => 'includes/deferred/LinksUpdate.php',
+	'MWCallableUpdate' => 'includes/deferred/CallableUpdate.php',
+	'SearchUpdate' => 'includes/deferred/SearchUpdate.php',
+	'SiteStatsUpdate' => 'includes/deferred/SiteStatsUpdate.php',
+	'SqlDataUpdate' => 'includes/deferred/SqlDataUpdate.php',
+	'SquidUpdate' => 'includes/deferred/SquidUpdate.php',
+	'ViewCountUpdate' => 'includes/deferred/ViewCountUpdate.php',
 
 	# includes/diff
 	'_DiffEngine' => 'includes/diff/DairikiDiff.php',
@@ -909,7 +912,6 @@ $wgAutoloadLocalClasses = array(
 	'SearchResultSet' => 'includes/search/SearchEngine.php',
 	'SearchResultTooMany' => 'includes/search/SearchEngine.php',
 	'SearchSqlite' => 'includes/search/SearchSqlite.php',
-	'SearchUpdate' => 'includes/search/SearchUpdate.php',
 	'SqliteSearchResultSet' => 'includes/search/SearchSqlite.php',
 	'SqlSearchResultSet' => 'includes/search/SearchEngine.php',
 
