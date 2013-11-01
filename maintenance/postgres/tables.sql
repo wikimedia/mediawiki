@@ -411,7 +411,6 @@ CREATE TABLE recentchanges (
   rc_this_oldid      INTEGER      NOT NULL,
   rc_last_oldid      INTEGER      NOT NULL,
   rc_type            SMALLINT     NOT NULL  DEFAULT 0,
-  rc_source          TEXT         NOT NULL,
   rc_patrolled       SMALLINT     NOT NULL  DEFAULT 0,
   rc_ip              CIDR,
   rc_old_len         INTEGER,
