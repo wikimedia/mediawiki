@@ -102,7 +102,7 @@
 	'crh' => 'qırımtatarca',   # Crimean Tatar (multiple scripts - defaults to Latin)
 	'crh-latn' => "qırımtatarca (Latin)\xE2\x80\x8E",       # Crimean Tatar (Latin)
 	'crh-cyrl' => "къырымтатарджа (Кирилл)\xE2\x80\x8E",       # Crimean Tatar (Cyrillic)
-	'cs' => 'česky',	# Czech
+	'cs' => 'čeština',	# Czech
 	'csb' => 'kaszëbsczi',	# Cassubian
 	'cu' => 'словѣ́ньскъ / ⰔⰎⰑⰂⰡⰐⰠⰔⰍⰟ',	# Old Church Slavonic (ancient language)
 	'cv' => 'Чӑвашла',	# Chuvash
