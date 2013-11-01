@@ -63,44 +63,27 @@ abstract class FileOp {
 	 */
 	final public function __construct( FileBackendStore $backend, array $params ) {
 		$this->backend = $backend;
-		list( $required, $optional ) = $this->allowedParams();
-		// @todo normalizeAnyStoragePaths() calls are overzealous, use a parameter list
+		list( $required, $optional, $paths ) = $this->allowedParams();
 		foreach ( $required as $name ) {
 			if ( isset( $params[$name] ) ) {
-				// Normalize paths so the paths to the same file have the same string
-				$this->params[$name] = self::normalizeAnyStoragePaths( $params[$name] );
+				$this->params[$name] = $params[$name];
 			} else {
 				throw new MWException( "File operation missing parameter '$name'." );
 			}
 		}
 		foreach ( $optional as $name ) {
 			if ( isset( $params[$name] ) ) {
-				// Normalize paths so the paths to the same file have the same string
-				$this->params[$name] = self::normalizeAnyStoragePaths( $params[$name] );
+				$this->params[$name] = $params[$name];
 			}
 		}
-		$this->params = $params;
+		foreach ( $paths as $name ) {
+			if ( isset( $this->params[$name] ) ) {
+				// Normalize paths so the paths to the same file have the same string
+				$this->params[$name] = self::normalizeIfValidStoragePath( $this->params[$name] );
+			}
+		}
 	}
 
-	/**
-	 * Normalize $item or anything in $item that is a valid storage path
-	 *
-	 * @param string $item|array
-	 * @return string|Array
-	 */
-	protected function normalizeAnyStoragePaths( $item ) {
-		if ( is_array( $item ) ) {
-			$res = array();
-			foreach ( $item as $k => $v ) {
-				$k = self::normalizeIfValidStoragePath( $k );
-				$v = self::normalizeIfValidStoragePath( $v );
-				$res[$k] = $v;
-			}
-			return $res;
-		} else {
-			return self::normalizeIfValidStoragePath( $item );
-		}
-	}
 
 	/**
 	 * Normalize a string if it is a valid storage path
@@ -308,10 +291,10 @@ abstract class FileOp {
 	/**
 	 * Get the file operation parameters
 	 *
-	 * @return Array (required params list, optional params list)
+	 * @return Array (required params list, optional params list, list of params that are paths)
 	 */
 	protected function allowedParams() {
-		return array( array(), array() );
+		return array( array(), array(), array() );
 	}
 
 	/**
@@ -459,8 +442,11 @@ abstract class FileOp {
  */
 class CreateFileOp extends FileOp {
 	protected function allowedParams() {
-		return array( array( 'content', 'dst' ),
-			array( 'overwrite', 'overwriteSame', 'headers' ) );
+		return array(
+			array( 'content', 'dst' ),
+			array( 'overwrite', 'overwriteSame', 'headers' ),
+			array( 'dst' )
+		);
 	}
 
 	protected function doPrecheck( array &$predicates ) {
@@ -511,8 +497,11 @@ class CreateFileOp extends FileOp {
  */
 class StoreFileOp extends FileOp {
 	protected function allowedParams() {
-		return array( array( 'src', 'dst' ),
-			array( 'overwrite', 'overwriteSame', 'headers' ) );
+		return array(
+			array( 'src', 'dst' ),
+			array( 'overwrite', 'overwriteSame', 'headers' ),
+			array( 'src', 'dst' )
+		);
 	}
 
 	protected function doPrecheck( array &$predicates ) {
@@ -573,8 +562,11 @@ class StoreFileOp extends FileOp {
  */
 class CopyFileOp extends FileOp {
 	protected function allowedParams() {
-		return array( array( 'src', 'dst' ),
-			array( 'overwrite', 'overwriteSame', 'ignoreMissingSource', 'headers' ) );
+		return array(
+			array( 'src', 'dst' ),
+			array( 'overwrite', 'overwriteSame', 'ignoreMissingSource', 'headers' ),
+			array( 'src', 'dst' )
+		);
 	}
 
 	protected function doPrecheck( array &$predicates ) {
@@ -639,8 +631,11 @@ class CopyFileOp extends FileOp {
  */
 class MoveFileOp extends FileOp {
 	protected function allowedParams() {
-		return array( array( 'src', 'dst' ),
-			array( 'overwrite', 'overwriteSame', 'ignoreMissingSource', 'headers' ) );
+		return array(
+			array( 'src', 'dst' ),
+			array( 'overwrite', 'overwriteSame', 'ignoreMissingSource', 'headers' ),
+			array( 'src', 'dst' )
+		);
 	}
 
 	protected function doPrecheck( array &$predicates ) {
@@ -715,7 +710,7 @@ class MoveFileOp extends FileOp {
  */
 class DeleteFileOp extends FileOp {
 	protected function allowedParams() {
-		return array( array( 'src' ), array( 'ignoreMissingSource' ) );
+		return array( array( 'src' ), array( 'ignoreMissingSource' ), array( 'src' ) );
 	}
 
 	protected function doPrecheck( array &$predicates ) {
@@ -760,7 +755,7 @@ class DeleteFileOp extends FileOp {
  */
 class DescribeFileOp extends FileOp {
 	protected function allowedParams() {
-		return array( array( 'src' ), array( 'headers' ) );
+		return array( array( 'src' ), array( 'headers' ), array( 'src' ) );
 	}
 
 	protected function doPrecheck( array &$predicates ) {
