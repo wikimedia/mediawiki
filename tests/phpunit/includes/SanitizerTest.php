@@ -235,7 +235,7 @@ class SanitizerTest extends MediaWikiTestCase {
 			array( 'align="left"', 'tr' ),
 			array( 'align="center"', 'div' ),
 			array( 'align="left"', 'h1' ),
-			array( 'align="left"', 'span' ),
+			array( 'align="left"', 'p' ),
 		);
 	}
 
