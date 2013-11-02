@@ -76,12 +76,17 @@ class ApiOptions extends ApiBase {
 		$prefs = Preferences::getPreferences( $user, $this->getContext() );
 		$prefsKinds = $user->getOptionKinds( $this->getContext(), $changes );
 
+		$changedOptions = array();
 		foreach ( $changes as $key => $value ) {
+			$changedOption = array( 'name' => $key );
 			switch ( $prefsKinds[$key] ) {
 				case 'registered':
 					// Regular option.
 					$field = HTMLForm::loadInputFromParameters( $key, $prefs[$key] );
 					$validation = $field->validate( $value, $user->getOptions() );
+					if ( $validation !== true ) {
+						$changedOption['invalidvalue'] = $validation;
+					}
 					break;
 				case 'registered-multiselect':
 				case 'registered-checkmatrix':
@@ -98,18 +103,25 @@ class ApiOptions extends ApiBase {
 					} else {
 						$validation = true;
 					}
+					if ( $validation !== true ) {
+						$changedOption['invalidvalue'] = $validation;
+					}
 					break;
 				case 'unused':
 				default:
 					$validation = "not a valid preference";
+					$changedOption['invalid'] = '';
 					break;
 			}
 			if ( $validation === true ) {
 				$user->setOption( $key, $value );
+				// User::getOption will set null values to default
+				$changedOption['value'] = $user->getOption( $key );
 				$changed = true;
 			} else {
 				$this->setWarning( "Validation error for '$key': $validation" );
 			}
+			$changedOptions[] = $changedOption;
 		}
 
 		if ( $changed ) {
@@ -118,6 +130,8 @@ class ApiOptions extends ApiBase {
 		}
 
 		$this->getResult()->addValue( null, $this->getModuleName(), 'success' );
+		$this->getResult()->setIndexedTagName( $changedOptions, 'change' );
+		$this->getResult()->addValue( null, 'changes', $changedOptions );
 	}
 
 	public function mustBePosted() {
