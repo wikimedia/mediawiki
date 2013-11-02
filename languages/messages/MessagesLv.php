@@ -3200,7 +3200,7 @@ Var arī lietot [[Special:EditWatchlist|standarta izmainīšanas lapu]].',
 'logentry-newusers-newusers' => 'Lietotāja konts $1 tika {{GENDER:$2|izveidots}}',
 'logentry-newusers-create' => 'Lietotāja konts $1 tika {{GENDER:$2|izveidots}}',
 'logentry-newusers-create2' => '$1 {{GENDER:$2|izveidoja}} lietotāja kontu $3',
-'logentry-newusers-autocreate' => 'Konts $1 tika {GENDER:$2|izveidots}} automātiski',
+'logentry-newusers-autocreate' => 'Lietotaja konts $1 tika {{GENDER:$2|izveidots}} automātiski',
 'rightsnone' => '(nav)',
 
 # Feedback

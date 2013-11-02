@@ -820,7 +820,8 @@ să folosiți vechea parolă.',
 'noemailcreate' => 'Trebuie oferită o adresă e e-mail validă.',
 'passwordsent' => 'O nouă parolă a fost trimisă la adresa de e-mail a utilizatorului "$1". Te rugăm să te autentifici pe {{SITENAME}} după ce o primești.',
 'blocked-mailpassword' => 'Această adresă IP este blocată la editare, și deci nu este permisă utilizarea funcției de recuperare a parolei pentru a preveni abuzul.',
-'eauthentsent' => 'Un email de confirmare a fost trimis adresei nominalizate. Înainte de a fi trimis orice alt email acestui cont, trebuie să urmați intrucțiunile din email, pentru a confirma că acest cont este într-adevăr al dvs.',
+'eauthentsent' => 'Un e-mail de confirmare a fost trimis către adresa specificată.
+Înainte ca orice alt e-mail să mai fie trimis către acel cont, trebuie să urmați instrucțiunile prezente în e-mail pentru a confirma că acest cont este într-adevăr al dumneavoastră.',
 'throttled-mailpassword' => 'Un e-mail pentru resetarea parolei a fost deja trimis în {{PLURAL:$1|ultima oră|ultimele $1 ore|ultimele $1 de ore}}. Pentru a preveni abuzul, se va trimite doar un e-mail de resetare a parolei la un interval de o {{PLURAL:$1|o oră|$1 ore|$1 de ore}}.',
 'mailerror' => 'Eroare la trimitere e-mail: $1',
 'acct_creation_throttle_hit' => 'De la această adresă IP, vizitatorii sitului au creat {{PLURAL:$1|1 cont|$1 conturi|$1 de conturi}} de utilizator în ultimele zile, acest număr de noi conturi fiind maximul admis în această perioadă de timp.
@@ -3947,7 +3948,7 @@ MediaWiki este distribuit în speranța că va fi folositor, dar FĂRĂ VREO GAR
 # Special:Redirect
 'redirect' => 'Redirecționare după fișier, utilizator sau ID-ul versiunii',
 'redirect-legend' => 'Redirecționare către un fișier sau o pagină',
-'redirect-summary' => 'Această pagină specială vă redirecționează către un fișier (dat fiind un nume de fișier), o pagină (dat fiind ID-ul unei versiuni) sau o pagină de utilizator (dat fiind un ID numeric al utilizatorului).',
+'redirect-summary' => 'Această pagină specială vă redirecționează către un fișier (dat fiind un nume de fișier), o pagină (dat fiind ID-ul unei versiuni) sau o pagină de utilizator (dat fiind un ID numeric al utilizatorului). Utilizare: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]] sau [[{{#Special:Redirect}}/user/101]].',
 'redirect-submit' => 'Du-te',
 'redirect-lookup' => 'Căutare:',
 'redirect-value' => 'Valoare:',

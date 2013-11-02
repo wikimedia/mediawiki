@@ -1,5 +1,5 @@
 <?php
-/** Czech (česky)
+/** Czech (čeština)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -4044,7 +4044,7 @@ MediaWiki je distribuována v naději, že bude užitečná, avšak BEZ JAKÉKOL
 # Special:Redirect
 'redirect' => 'Přesměrování podle souboru, uživatele nebo ID revize',
 'redirect-legend' => 'Přesměrování na soubor či stránku',
-'redirect-summary' => 'Tato speciální stránka přesměrovává na soubor (podle názvu), stránku (podle ID revize) nebo uživatele (podle číselného uživatelského ID).',
+'redirect-summary' => 'Tato speciální stránka přesměrovává na soubor (podle názvu), stránku (podle ID revize) nebo uživatele (podle číselného uživatelského ID). Použití: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]] nebo [[{{#Special:Redirect}}/user/101]].',
 'redirect-submit' => 'Přejít',
 'redirect-lookup' => 'Najít:',
 'redirect-value' => 'Hodnota:',

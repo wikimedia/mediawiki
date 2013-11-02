@@ -4107,7 +4107,7 @@ $5
 # Special:Redirect
 'redirect' => 'הפניה לפי שם קובץ, מספר משתמש או מספר גרסה',
 'redirect-legend' => 'הפניה לקובץ או לדף',
-'redirect-summary' => 'דף מיוחד זה מפנה לקובץ (בהינתן שם הקובץ), לדף (בהינתן מספר גרסה), או לדף משתמש (בהינתן מספר משתמש).',
+'redirect-summary' => 'דף מיוחד זה מפנה לקובץ (בהינתן שם הקובץ), לדף (בהינתן מספר גרסה), או לדף משתמש (בהינתן מספר משתמש). דוגמאות לשימוש: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]], או [[{{#Special:Redirect}}/user/101]].',
 'redirect-submit' => 'מעבר',
 'redirect-lookup' => 'סוג:',
 'redirect-value' => 'ערך:',

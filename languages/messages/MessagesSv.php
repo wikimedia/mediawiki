@@ -3985,7 +3985,7 @@ Du bör ha fått [{{SERVER}}{{SCRIPTPATH}}/COPYING en kopia av GNU General Publi
 # Special:Redirect
 'redirect' => 'Omdirigering efter filnamn, användar-ID eller versions-ID',
 'redirect-legend' => 'Omdirigera till en fil eller sida',
-'redirect-summary' => 'Den här specialsidan omdirigerar till en fil (efter filnamn), en sida (efter versions-id) eller en användarsida (efter användar-id).',
+'redirect-summary' => 'Den här specialsidan omdirigerar till en fil (efter filnamn), en sida (efter versions-id) eller en användarsida (efter användar-id). Användning: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]], eller [[{{#Special:Redirect}}/user/101]].',
 'redirect-submit' => 'Kör',
 'redirect-lookup' => 'Slå upp:',
 'redirect-value' => 'Värde:',

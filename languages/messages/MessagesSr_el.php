@@ -2004,6 +2004,10 @@ Probajte kasnije kada bude manje opterećenje.',
 'listfiles_size' => 'Veličina',
 'listfiles_description' => 'Opis',
 'listfiles_count' => 'Verzije',
+'listfiles-show-all' => 'Obuhvati stare verzije slika',
+'listfiles-latestversion' => 'Trenutna verzija',
+'listfiles-latestversion-yes' => 'Da',
+'listfiles-latestversion-no' => 'Ne',
 
 # File description page
 'file-anchor-link' => 'Datoteka',
@@ -4109,8 +4113,7 @@ Trebalo bi da ste primili [{{SERVER}}{{SCRIPTPATH}}/COPYING primerak GNU-ove op�
 'specialpages' => 'Posebne stranice',
 'specialpages-note' => '----
 * obične posebne stranice
-* <span class="mw-specialpagerestricted">ograničene posebne stranice</span>
-* <span class="mw-specialpagecached">privremeno memorisane posebne stranice</span>',
+* <span class="mw-specialpagerestricted">ograničene posebne stranice</span>',
 'specialpages-group-maintenance' => 'Izveštaji održavanja',
 'specialpages-group-other' => 'Ostale posebne stranice',
 'specialpages-group-login' => 'Prijava/registracija',

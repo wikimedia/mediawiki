@@ -308,7 +308,7 @@ $messages = array(
 'tog-prefershttps' => 'ប្រើប្រាស់ការតភ្ជាប់មានសុវត្ថិភាពជានិច្ចពេលកត់ឈ្មោះចូល',
 
 'underline-always' => 'ជានិច្ច',
-'underline-never' => 'កុំអោយសោះ',
+'underline-never' => 'កុំឲ្យសោះ',
 'underline-default' => 'តាមលំនាំដើមនៃ​កម្មវិធី​រុករក​',
 
 # Font style option in Special:Preferences
@@ -480,7 +480,7 @@ $messages = array(
 'articlepage' => 'មើលខ្លឹមសារទំព័រ​',
 'talk' => 'ការពិភាក្សា',
 'views' => 'គំហើញ',
-'toolbox' => 'ប្រអប់​ឧបករណ៍',
+'toolbox' => '​ឧបករណ៍',
 'userpage' => 'មើលទំព័រអ្នកប្រើប្រាស់',
 'projectpage' => 'មើល​ទំព័រគម្រោង',
 'imagepage' => 'មើល​ទំព័រ​ឯកសារ',
@@ -600,6 +600,7 @@ $1',
 # General errors
 'error' => 'មានបញ្ហា',
 'databaseerror' => 'មូលដ្ឋានទិន្នន័យមានបញ្ហា',
+'databaseerror-error' => 'កំហុស៖ $1',
 'laggedslavemode' => "'''ប្រយ័ត្ន៖''' ទំព័រនេះ​ប្រហែលជាគ្មានព័ត៌មានទាន់សម័យទេ។",
 'readonly' => 'មូលដ្ឋានទិន្នន័យត្រូវបានចាក់សោ',
 'enterlockreason' => 'សូមផ្ដល់ហេតុផលសម្រាប់ការជាប់សោ ព្រមទាំងកាលបរិច្ឆេទដោះសោវិញ',
@@ -722,6 +723,7 @@ $2',
 'userlogin-resetpassword-link' => 'ស្ដារពាក្យសម្ងាត់របស់អ្នក',
 'helplogin-url' => 'Help:ការកត់ឈ្មោះចូល',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|ជំនួយក្នុងការកត់ឈ្មោះចូល]]',
+'userlogin-createanother' => 'បង្កើតគណនីមួយទៀត',
 'createacct-join' => 'បំពេញព័ត៌មានរបស់អ្នកខាងក្រោម។',
 'createacct-another-join' => 'បញ្ចូលព័ត៌មានគណនីថ្មីខាងក្រោម។',
 'createacct-emailrequired' => 'អាសយដ្ឋានអ៊ីមែល',

@@ -4183,7 +4183,7 @@ $5
 # Special:Redirect
 'redirect' => 'تغییرمسیر توسط پرونده، کاربر یا شناسهٔ نسخه',
 'redirect-legend' => 'تغییرمسیر به یک پرونده یا صفحه',
-'redirect-summary' => 'این صفحهٔ ویژه به پرونده (نام پرونده داده‌شده)، صفحه (شماره شناسهٔ صفحه داده‌شده) یا صفحهٔ کاربری (شناسهٔ عددی کاربری داده‌شده) تغییرمسیر می‌یابد',
+'redirect-summary' => 'این صفحهٔ ویژه به پرونده (نام پرونده داده‌شده)، صفحه (شماره شناسهٔ صفحه داده‌شده) یا صفحهٔ کاربری (شناسهٔ عددی کاربری داده‌شده) تغییرمسیر می‌یابد. طرز استفاده: [[{{#Special:Redirect}}/file/Example.jpg]]، [[{{#Special:Redirect}}/revision/328429]] یا [[{{#Special:Redirect}}/user/101]].',
 'redirect-submit' => 'برو',
 'redirect-lookup' => 'جستجو:',
 'redirect-value' => 'مقدار:',
@@ -4296,7 +4296,7 @@ $5
 # New logging system
 'logentry-delete-delete' => '$1 صفحهٔ $3 را {{GENDER:$2|حذف کرد}}',
 'logentry-delete-restore' => '$1 صفحهٔ $3 را {{GENDER:$2|احیا کرد}}',
-'logentry-delete-event' => '$1 پیدایی {{PLURAL:$5|یک مورد سیاهه|$5 مورد سیاهه}} را در $3 {{GENDER:$2|تغییر داد}} : $4',
+'logentry-delete-event' => '$1 پیدایی {{PLURAL:$5|یک مورد سیاهه|$5 مورد سیاهه}} را در $3 {{GENDER:$2|تغییر داد}}: $4',
 'logentry-delete-revision' => '$1 پیدایی {{PLURAL:$5|یک نسخه|$5 نسخه}} صفحه $3 را {{GENDER:$2|تغییر داد}}: $4',
 'logentry-delete-event-legacy' => '$1 پیدایی موارد سیاهه را در $3 {{GENDER:$2|تغییر داد}}',
 'logentry-delete-revision-legacy' => '$1 پیدایی نسخه‌های $3 را {{GENDER:$2|تغییر داد}}',

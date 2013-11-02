@@ -2128,6 +2128,7 @@ $1',
 'listfiles_size' => 'Величина',
 'listfiles_description' => 'Опис',
 'listfiles_count' => 'Верзије',
+'listfiles-show-all' => 'Обухвати старе верзије слика',
 'listfiles-latestversion' => 'Тренутна верзија',
 'listfiles-latestversion-yes' => 'Да',
 'listfiles-latestversion-no' => 'Не',
@@ -4273,8 +4274,7 @@ $5
 'specialpages' => 'Посебне странице',
 'specialpages-note' => '----
 * обичне посебне странице
-* <span class="mw-specialpagerestricted">ограничене посебне странице</span>
-* <span class="mw-specialpagecached">привремено меморисане посебне странице</span>',
+* <span class="mw-specialpagerestricted">ограничене посебне странице</span>',
 'specialpages-group-maintenance' => 'Извештаји одржавања',
 'specialpages-group-other' => 'Остале посебне странице',
 'specialpages-group-login' => 'Пријава/регистрација',

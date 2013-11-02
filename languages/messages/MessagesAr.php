@@ -625,7 +625,7 @@ $messages = array(
 'mypage' => 'صفحة',
 'mytalk' => 'نقاش',
 'anontalk' => 'نقاش عنوان الآي بي',
-'navigation' => 'إبحار',
+'navigation' => 'تصفح',
 'and' => '&#32;و',
 
 # Cologne Blue skin

@@ -629,7 +629,7 @@ Os mai rhywun arall a holodd am y cyfrinair, ynteu eich bod wedi cofio\'r hen gy
 'passwordsent' => 'Mae cyfrinair newydd wedi\'i ddanfon at gyfeiriad e-bost cofrestredig "$1". Mewngofnodwch eto ar ôl i chi dderbyn y cyfrinair, os gwelwch yn dda.',
 'blocked-mailpassword' => 'Gan fod eich cyfeiriad IP wedi ei atal rhag golygu, ni ellir adfer y cyfrinair.',
 'eauthentsent' => 'Anfonwyd e-bost o gadarnhâd at y cyfeiriad a benwyd.
-Cyn y gellir anfon unrhywbeth arall at y cyfeiriad hwnnw rhaid i chi ddilyn y cyfarwyddiadau yn yr e-bost hwnnw er mwyn cadarnhau bod y cyfeiriad yn un dilys.',
+Cyn y gellir anfon unrhywbeth arall at y cyfeiriad hwnnw rhaid i chi ddilyn y cyfarwyddiadau yn yr e-bost er mwyn cadarnhau mai chi sydd berchen y cyfeiriad hwnnw.',
 'throttled-mailpassword' => "Anfonwyd e-bost atoch eisoes i'ch atgoffa o'ch cyfrinair, a hynny yn ystod y $1 {{PLURAL:$1|awr}} diwethaf.
 Er mwyn rhwystro camddefnydd, dim ond un e-bost i'ch atgoffa o'ch cyfrinair gaiff ei anfon bob yn $1 {{PLURAL:$1|awr}}.",
 'mailerror' => 'Gwall wrth ddanfon yr e-bost: $1',
@@ -3716,7 +3716,9 @@ Dylech fod wedi derbyn [{{SERVER}}{{SCRIPTPATH}}/COPYING gopi o GNU General Publ
 # Special:Redirect
 'redirect' => 'Ailgyfeirio yn ôl enw ffeil, ID defnyddiwr neu ID diwygiad tudalen',
 'redirect-legend' => 'Ailgyfeirio i ffeil neu dudalen',
-'redirect-summary' => "Mae'r dudalen arbennig hon yn arwain at ffeil (o roi enw'r ffeil), at dudalen (o roi ID rhyw ddidwygiad o'r dudalen), neu at dudalen defnyddiwr (o roi rhif y defnyddiwr).",
+'redirect-summary' => "Mae'r dudalen arbennig hon yn ailgyfeirio at ffeil (o roi enw'r ffeil), at dudalen (o roi ID rhyw ddiwygiad o'r dudalen), neu at dudalen defnyddiwr (o roi rhif ID y defnyddiwr).
+Defnydd: 
+[[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]], neu [[{{#Special:Redirect}}/user/101]].",
 'redirect-submit' => 'Ati',
 'redirect-lookup' => 'Chwilio drwy:',
 'redirect-value' => 'Chwilio am:',

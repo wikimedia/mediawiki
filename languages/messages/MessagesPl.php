@@ -4043,7 +4043,7 @@ Powinieneś otrzymać [{{SERVER}}{{SCRIPTPATH}}/COPYING kopię licencji GNU Gene
 # Special:Redirect
 'redirect' => 'Przekierowanie według pliku, użytkownika albo identyfikatora wersji',
 'redirect-legend' => 'Przekieruj do pliku lub strony',
-'redirect-summary' => 'Ta strona specjalna przekierowuje do pliku (wg nazwy pliku), do strony (wg numeru wersji) albo do strony użytkownika (wg liczbowego identyfikatora użytkownika)',
+'redirect-summary' => 'Ta strona specjalna przekierowuje do: pliku (o podanej nazwie), do strony (o podanym numerze wersji) albo do strony użytkownika (o podanym identyfikatorze numerycznym). Sposób użycia: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]] albo [[{{#Special:Redirect}}/user/103]].',
 'redirect-submit' => 'Przejdź',
 'redirect-lookup' => 'Wyszukaj:',
 'redirect-value' => 'Wartość:',

@@ -540,7 +540,7 @@ Mellt dëst w.e.g. bei engem [[Special:ListUsers/sysop|Administrateur]] a vergie
 'internalerror' => 'Interne Feeler',
 'internalerror_info' => 'Interne Feeler: $1',
 'fileappenderrorread' => '"$1" konnt während dem Derbäisetze net gelies ginn.',
-'fileappenderror' => '"$1" konnt net bäi "$2" derbäigesat ginn.',
+'fileappenderror' => '"$1" konnt net bei "$2" derbäigesat ginn.',
 'filecopyerror' => 'De Fichier "$1" konnt net op "$2" kopéiert ginn.',
 'filerenameerror' => 'De Fichier "$1" konnt net op "$2" ëmbenannt ginn.',
 'filedeleteerror' => 'De Fichier "$1" konnt net geläscht ginn.',
@@ -597,7 +597,7 @@ Den Administrateur den d\'Schreiwe gespaart huet, huet dës Erklärung uginn: "$
 'exception-nologin-text' => 'Dës Säit oder Aktioun erfuerdert datt Dir op dëser Wiki ageloggt sidd.',
 
 # Virus scanner
-'virus-badscanner' => "Schlecht Configuratioun: onbekannte  Virescanner: ''$1''",
+'virus-badscanner' => "Schlecht Konfiguratioun: onbekannte Virescanner: ''$1''",
 'virus-scanfailed' => 'De Scan huet net funktionéiert (Code $1)',
 'virus-unknownscanner' => 'onbekannten Antivirus:',
 
@@ -634,7 +634,7 @@ Vergiesst net fir Är [[Special:Preferences|{{SITENAME}} Astellungen]] z'ännere
 'userlogout' => 'Ausloggen',
 'notloggedin' => 'Net ageloggt',
 'userlogin-noaccount' => 'Hutt Dir kee Benotzerkont?',
-'userlogin-joinproject' => 'Maacht mat bäi {{SITENAME}}',
+'userlogin-joinproject' => 'Maacht mat bei {{SITENAME}}',
 'nologin' => 'Hutt Dir kee Benotzerkont? $1.',
 'nologinlink' => 'Neie Benotzerkont maachen',
 'createaccount' => 'Neie Kont opmaachen',
@@ -707,7 +707,8 @@ Wann een aneren dës Ufro sollt gemaach hunn oder wann Dir Iech an der Zwëschen
 'passwordsent' => 'Een neit Passwuert gouf un déi fir de Benotzer "$1" gespäichert E-Mailadress geschéckt.
 Mellt Iech w.e.g. domat un, soubal Dir et kritt hutt.',
 'blocked-mailpassword' => "Déi vun Iech benotzten IP-Adress ass fir d'Ännere vu Säite gespaart. Fir Mëssbrauch ze verhënneren, gouf d'Méiglechkeet fir een neit Passwuert unzefroen och gespaart.",
-'eauthentsent' => "Eng Confirmatiouns-E-Mail gouf un déi Adress geschéckt déi Dir uginn hutt.<br />
+'eauthentsent' => "Eng Confirmatiouns-E-Mail gouf un déi Adress geschéckt déi Dir uginn hutt.
+
 Ier iergendeng E-Mail vun anere Benotzer op dee Kont geschéckt ka ginn, musst Dir als éischt d'Instructiounen an der Confirmatiouns-E-Mail befollegen, fir ze bestätegen datt de Kont wierklech Ären eegenen ass.",
 'throttled-mailpassword' => "An {{PLURAL:$1|der leschter Stonn|de leschte(n) $1 Stonnen}} eng E-Mail verschéckt fir d'Passwuert zréckzesetzen.
 Fir de Mëssbrauch vun dëser Funktioun ze verhënneren kann nëmmen all {{PLURAL:$1|Stonn|$1 Stonnen}} sou eng Mail verschéckt ginn.",
@@ -718,7 +719,7 @@ Dofir kënne Visiteure déi dës IP-Adress benotzen den Ament keng Benotzerkonte
 'emailnotauthenticated' => 'Är E-Mail Adress gouf <strong>nach net confirméiert</strong>.<br />
 Dowéinst ass et bis ewell net méiglech, fir déi folgend Funktiounen E-Mailen ze schécken oder ze kréien.',
 'noemailprefs' => 'Gitt eng E-Mailadress bei Ären Astellungen un, fir datt déi Funktioune funktionéieren.',
-'emailconfirmlink' => 'Confirméiert är E-Mailadress w.e.g..',
+'emailconfirmlink' => 'Confirméiert Är E-Mailadress w.e.g.',
 'invalidemailaddress' => 'Dës E-Mail-Adress gëtt net akzeptéiert well se en ongëltegt Format (z. B. ongëlteg Zeechen) ze hu schéngt.
 Gitt eng valabel E-Mail-Adress an oder loosst dëst Feld eidel.',
 'cannotchangeemail' => 'Mailadresse vu Benotzerkonte kënnen op dëser Wiki net geännert ginn.',
@@ -996,7 +997,7 @@ Den Administrateur den d'Datebank gespaart huet, huet dës Erklärung ginn: $1",
 'template-protected' => '(gespaart)',
 'template-semiprotected' => '(gespaart fir net-ugemellten an nei Benotzer)',
 'hiddencategories' => 'Dës Säit gehéiert zu {{PLURAL:$1|1 verstoppter Kategorie|$1 verstoppte Kategorien}}:',
-'edittools' => '<!-- Dësen Text gëtt ënner dem "Ännere"Formulaire esouwéi dem "Eropluede"-Formulaire ugewisen. -->',
+'edittools' => '<!-- Dësen Text gëtt ënner dem "Ännere"-Formulaire souwéi dem "Eropluede"-Formulaire ugewisen. -->',
 'nocreatetext' => "Op {{SITENAME}} gouf d'Schafe vun neie Säite limitéiert. Dir kënnt Säiten déi scho bestinn änneren oder Iech [[Special:UserLogin|umellen]].",
 'nocreate-loggedin' => 'Dir hutt keng Berechtigung fir nei Säiten unzeleeën.',
 'sectioneditnotsupported-title' => 'Ännere vum Abschnitt gëtt net ënnerstëtzt',
@@ -1850,7 +1851,7 @@ Kuckt  https://www.mediawiki.org/wiki/Manual:Image_Authorization',
 Nèemmen Datenofruff ass erlaabt.',
 'img-auth-streaming' => '"$1" lueden.',
 'img-auth-public' => "D'Funktioun img_auth.php erlaabt et fir Fichieren vun enger privater Wiki erauszeginn.
-Dës Wiki ass als ëffentlech Wiki configuréiert.
+Dës Wiki ass als ëffentlech Wiki konfiguréiert.
 Fir eng optimal Sécherheet ass img_auth.php ausgeschalt.",
 'img-auth-noread' => 'De Benotzer hut keen Zougang fir "$1" ze liesen',
 'img-auth-bad-query-string' => "D'URL huet eng net valabel Rei vun Zeechen.",
@@ -2281,7 +2282,7 @@ All weider Ännerungen op dëser Säit an der associéierter Diskussiounssäit g
 'watchmethod-recent' => 'Rezent Ännerunge ginn op iwwerwaacht Säiten iwwerpréift',
 'watchmethod-list' => 'Iwwerwaachte Säite ginn op rezent Ännerungen iwwerpréift',
 'watchlistcontains' => 'Op ärer Iwwerwaachungslëscht $1 {{PLURAL:$1|steet $1 Säit|stinn $1 Säiten}}.',
-'iteminvalidname' => "Problem mat dem Objet '$1', ongëltegen Numm ...",
+'iteminvalidname' => "Problem mam Element '$1', ongëltegen Numm ...",
 'wlnote' => "Hei {{PLURAL:$1|ass déi lescht Ännerung|sinn déi lescht '''$1''' Ännerunge}} vun {{PLURAL:$2|der leschter Stonn|de leschte(n) '''$2''' Stonnen}}, Stand: $3 ëm $4 Auer.",
 'wlshowlast' => "D'Ännerunge vun de leschte(n) $1 Stonnen, $2 Deeg oder $3 (an de leschten 30 Deeg) weisen.",
 'watchlist-options' => 'Optioune vun der Iwwerwaachungslëscht',
@@ -2396,9 +2397,9 @@ Déi lescht Ännerung vun der Säit ass vum [[User:$3|$3]] ([[User talk:$3|Disku
 
 # Edit tokens
 'sessionfailure-title' => 'Setzungsfeeler',
-'sessionfailure' => 'Et schéngt e Problem mat ärer Loginséance ze ginn;
-Dës Aktioun gouf aus Sécherheetsgrënn ofgebrach, fir ze verhënneren datt är Séance piratéiert ka ginn.
-Klickt w.e.g. op "Zréck" a lued déi Säit vun där Dir komm sidd nei, a versicht et dann nach eng Kéier.',
+'sessionfailure' => 'Et schéngt e Problem mat Ärer Loginseance ze ginn;
+Dës Aktioun gouf aus Sécherheetsgrënn ofgebrach, fir ze verhënneren datt Är Seance piratéiert ka ginn.
+Klickt w.e.g. op "Zréck" a luet déi Säit vun där Dir komm sidd nei, a versicht et dann nach eng Kéier.',
 
 # Protect
 'protectlogpage' => 'Protektiounslogbuch',
@@ -2962,7 +2963,7 @@ Späichert en op Ärem Computer of a luet en hei nees erop.',
 'tooltip-n-mainpage' => "Besicht d'Haaptsäit",
 'tooltip-n-mainpage-description' => "Besicht d'Haaptsäit",
 'tooltip-n-portal' => 'Iwwer de Portal, wat Dir maache kënnt, wou wat ze fannen ass',
-'tooltip-n-currentevents' => "D'Aktualitéit a wat derhanner ass",
+'tooltip-n-currentevents' => "D'Aktualitéit a wat dohanner ass",
 'tooltip-n-recentchanges' => 'Lëscht vun de rezenten Ännerungen op {{SITENAME}}.',
 'tooltip-n-randompage' => 'Zoufälleg Säit',
 'tooltip-n-help' => 'Hëllefsäiten weisen.',
@@ -3786,7 +3787,8 @@ Dir misst eng [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie vun der GNU General Public
 # Special:Redirect
 'redirect' => 'Viruleedung duerch e Fichier, Benotzer oder Versiouns-ID',
 'redirect-legend' => 'Viruleedung op ee Fichier oder eng Säit',
-'redirect-summary' => 'Dës Spezialsäit ass eng Viruleedung op e Fichier (Fichiersnumm uginn), eng Säit (Versiounsnummer uginn) oder eng Benotzersäit (numeresch Benotzeridentifikatioun uginn).',
+'redirect-summary' => 'Dës Spezialsäit ass eng Viruleedung op e Fichier (Fichiersnumm uginn), eng Säit (Versiounsnummer uginn) oder eng Benotzersäit (numeresch Benotzeridentifikatioun uginn).
+Gebrauch: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]], oder [[{{#Special:Redirect}}/user/101]].',
 'redirect-submit' => 'Lass',
 'redirect-lookup' => 'Nosichen:',
 'redirect-value' => 'Wäert:',
@@ -3940,7 +3942,7 @@ Soss kënnt Dir den einfache Formulär hei drënner benotzen. Är Bemierkung gë
 'feedback-message' => 'Message:',
 'feedback-cancel' => 'Ofbriechen',
 'feedback-submit' => 'Feedback schécken',
-'feedback-adding' => "Feedback gëtt bäi d'Säit derbäigesat...",
+'feedback-adding' => "Feedback gëtt bei d'Säit derbäigesat...",
 'feedback-error1' => 'Feeler: Resultat vum API gouf net erkannt',
 'feedback-error2' => "Feeler: D'Ännerung gouf net gespäichert",
 'feedback-error3' => 'Feeler: Keng Äntwert vum API',

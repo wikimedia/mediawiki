@@ -674,8 +674,8 @@ e continuar a usar le contrasigno original.',
 'passwordsent' => 'Un nove contrasigno ha essite inviate al adresse de e-mail registrate pro "$1".
 Per favor aperi session de novo post reciper lo.',
 'blocked-mailpassword' => 'Tu adresse IP es blocate de facer modificationes, e pro impedir le abuso, le uso del function pro recuperar contrasignos es equalmente blocate.',
-'eauthentsent' => 'Un e-mail de confirmation ha essite inviate al adresse de e-mail specificate.
-Pro poter reciper altere e-mail a iste conto, tu debe sequer le instructiones in iste e-mail pro confirmar que le conto es realmente tue.',
+'eauthentsent' => 'Un message de confirmation ha essite inviate al adresse de e-mail specificate.
+Pro permitter que le systema invia altere messages a iste adresse, tu debe sequer le instructiones in iste message pro confirmar que le adresse es realmente tue.',
 'throttled-mailpassword' => 'Un message pro le reinitialisation del contrasigno ha jam essite inviate intra le ultime {{PLURAL:$1|hora|$1 horas}}.
 Pro prevenir le abuso, solmente un message pro le reinitialisation del contrasigno essera inviate per {{PLURAL:$1|hora|$1 horas}}.',
 'mailerror' => 'Error de inviar e-mail: $1',
@@ -3868,7 +3868,7 @@ Vos deberea haber recipite [{{SERVER}}{{SCRIPTPATH}}/COPYING un exemplar del Lic
 # Special:Redirect
 'redirect' => 'Rediriger per nomine de file, ID de usator o ID de version',
 'redirect-legend' => 'Rediriger a un file o pagina',
-'redirect-summary' => 'Iste pagina special redirige a un file (si es date le nomine de un file), a un pagina (si es date un ID de version) o a un pagina de usator (si es date un ID de usator numeric).',
+'redirect-summary' => 'Iste pagina special redirige a un file (si es date le nomine de un file), a un pagina (si es date un ID de version) o a un pagina de usator (si es date un ID de usator numeric). Usage: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]] o [[{{#Special:Redirect}}/user/101]].',
 'redirect-submit' => 'Va',
 'redirect-lookup' => 'Cercar:',
 'redirect-value' => 'Valor:',
