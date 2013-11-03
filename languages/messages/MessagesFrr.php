@@ -3580,7 +3580,8 @@ You should have received [{{SERVER}}{{SCRIPTPATH}}/COPYING a copy of the GNU Gen
 # Special:Redirect
 'redirect' => 'Widjerfeerang üüb en brükersidj, sidjenwerjuun of datei.',
 'redirect-legend' => 'Widjerfeerang üüb en sidjenwerjuun of datei.',
-'redirect-summary' => 'Det spezial-sidj feert widjer üüb en brükersidj, sidjenwerjuun of datei.',
+'redirect-summary' => 'Detdiar spezial-sidj feert widjer üüb en brükersidj, sidjenwerjuun of datei.
+An det woort so brükt: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]], of [[{{#Special:Redirect}}/user/101]].',
 'redirect-submit' => 'Widjer',
 'redirect-lookup' => 'Schük:',
 'redirect-value' => 'Käänang of dateinööm:',

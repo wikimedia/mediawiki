@@ -302,7 +302,7 @@ $messages = array(
 $1',
 'pool-timeout' => 'Za dugi czas uoczekiwańo na blokada',
 'pool-queuefull' => 'Kolyjność zadań je pełno',
-'pool-errorunknown' => 'Feler ńyznany',
+'pool-errorunknown' => 'Feler ńyznony',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Uo {{GRAMMAR:MS.lp|{{SITENAME}}}}',
@@ -441,9 +441,9 @@ Zapytańy: $2',
 'viewyourtext' => 'We tekst zdrzůduowy tyj zajty możno dali filować, idźe go tyż kopjować.',
 'protectedinterface' => 'Na tyj zajće znojduje śe tekst interfejsu uoprogramowańo, bestůż uůna je zawarto uod sprowjańo. Coby doćepnůńć abo sprowjić tůmaczyńa wszyskich serwerůw, użyj [//translatewiki.net/ translatewiki.net], průjyktu lokalizacyji MediaWiki.',
 'editinginterface' => "''''Dej pozůr:''' Sprowjosz zajta, na keryj je tekst interfejsu uoprogramowańo. Pomjyńyńa na tyj zajće zmjyńům wyglůnd interfejsu lo inkszych użytkowńikůw. Coby doćepnůńć abo sprowjić tůmaczyńa, użyj [//translatewiki.net/wiki/Main_Page?setlang=szl translatewiki.net].",
-'cascadeprotected' => 'Ta zajta je zawarto uod sprowjańo, po takymu, co uůna je zauončono na {{PLURAL:$1|nastympujůncyj zajće, kero zostaua zawarto|nastympujůncych zajtach, kere zostauy zawarte}} ze zauončonům opcyjům dźedźičyńo:
+'cascadeprotected' => 'Ta zajta je zawarto uod sprowjańo, po takymu, co uůna je załůnczůno na {{PLURAL:$1|nastympujůncyj zajće, kero zostoła zawarto|nastympujůncych zajtach, kere zostoły zawarte}} ze załůnczůnům uopcyjům dźedźiczyńo:
 $2',
-'namespaceprotected' => "Ńy moš uprowńyń, coby sprowjać zajty we přestřeńi mjan '''$1'''.",
+'namespaceprotected' => "Ńy mosz uprowńyń, coby sprowjać zajty we raumje mjan '''$1'''.",
 'customcssprotected' => 'Ńy mosz uprawńyń do sprowjańo tyj zajty, bo na ńij sům uosobiste sztalowańo inkszego użytkowńika.',
 'customjsprotected' => 'Ńy mosz uprawńyń do sprowjańo tyj zajty, bo na ńij sům uosobiste sztalowańo inkszego użytkowńika.',
 'mycustomcssprotected' => 'Ńy mosz uprawńyń do sprowjańo tyj zajty CSS.',
@@ -466,7 +466,6 @@ Administrator kery zawarł wćepał kůmyntorz: "$3".',
 # Login and logout pages
 'logouttext' => "'''Terozki jeżeś wylůgowany'''.
 
-Możesz dali sam sprowjać zajty we {{SITENAME}} kej ńyzalůgowany sprowjorz, abo <span class='plainlinks'>[$1 zalůgować śe nazod]</span> kej tyn som abo inkszy używocz.
 Dej pozůr, co na ńykerych zajtach przeglůndarka może dali pokozywać co jeżeś zalůgowany, a bydźe tak aże uodśwjyżysz jeij cache.",
 'welcomeuser' => 'Witej, $1',
 'welcomecreation-msg' => 'Uotwarli my sam lo Ćebje kůnto.
@@ -486,10 +485,10 @@ Pamjyntej coby posztalować [[Special:Preferences|preferencyji]]',
 'userlogin-signwithsecure' => 'Użyj bezpjecznygo połůnczyńa',
 'yourdomainname' => 'Twoja domyna',
 'password-change-forbidden' => 'Ńy można půmjyńać haseł na tyj wiki.',
-'externaldberror' => 'Je jaki feler we zewnyntřnyj baźe autentyfikacyjnyj, abo ńy moš uprawńyń potřebnych do aktualizacyji zewnyntřnego kůnta.',
+'externaldberror' => 'Je jaki feler we zewnyntrznyj baźe autentyfikacyjnyj, abo ńy mosz uprawńyń potrzebnych do aktualizacyji zewnyntrznego kůnta.',
 'login' => 'Zaloguj śe',
 'nav-login-createaccount' => 'Logowańy / Tworzyńy kůnta',
-'loginprompt' => 'Muśisz mjeć zołůnczůne cookies coby můc śe sam zalůgować.',
+'loginprompt' => 'Muśisz mjeć załůnczůne cookies coby můc śe sam zalogować.',
 'userlogin' => 'Logowańy / Tworzyńy kůnta',
 'userloginnocreate' => 'Zaloguj śe',
 'logout' => 'Wyloguj',
@@ -503,13 +502,34 @@ Pamjyntej coby posztalować [[Special:Preferences|preferencyji]]',
 'gotaccount' => "Mosz już kůnto? '''$1'''.",
 'gotaccountlink' => 'Naloguj śe',
 'userlogin-resetlink' => 'Zapomńoł żeś dane lo nalogowańo?',
+'userlogin-resetpassword-link' => 'Ńy pamjyntosz hasła?',
+'helplogin-url' => 'Help:Logowańy',
+'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Hilfa ze logowańym]]',
+'userlogin-loggedin' => 'Zalogowano kej {{GENDER:$1|$1}}. Użyj formulara půńiżyj, coby zalogować śe kej inkszy używocz.',
+'userlogin-createanother' => 'Twůrz inksze kůnto',
+'createacct-join' => 'Wszkryflej půńiżyj swoje dane.',
+'createacct-another-join' => 'Wszkryflej půńiżyj szczegůły nowygo kůnta.',
+'createacct-emailrequired' => 'E-brif',
+'createacct-emailoptional' => 'E-brif (uopcjůnalne)',
+'createacct-email-ph' => 'Wszkryflej swůj adres do e-brifa',
+'createacct-another-email-ph' => 'Nastow e-brif',
 'createaccountmail' => 'Użyj chwilowygo hasła losowo genyrowanygo a wyślij je na wrychtowany adres e-brifa.',
 'createacct-realname' => 'Prawdźiwe imje a nazwisko (uopcjůnalńe)',
 'createaccountreason' => 'Kůmyntorz:',
 'createacct-reason' => 'Powůd:',
+'createacct-reason-ph' => 'Pojakymu tworzisz nowe kůnta',
+'createacct-captcha' => 'Zicherkontrola',
+'createacct-imgcaptcha-ph' => 'Wszkryflej tekst, kery widoć powyżyj',
+'createacct-submit' => 'Twůrz kůnto',
+'createacct-another-submit' => 'Twůrz inksze kůnto',
+'createacct-benefit-heading' => '{{grammar:B.lp|{{SITENAME}}}} tworzům perzůny take kej Ty.',
+'createacct-benefit-body1' => '{{PLURAL:$1|edycyjo|edycyje|edycyji}}',
+'createacct-benefit-body2' => '{{PLURAL:$1|zajta|zajty|zajt}}',
+'createacct-benefit-body3' => '{{PLURAL:$1|używocz|używoczůw}} we uostatńim czaśe',
 'badretype' => 'Hasła kere żeś naszkryfloł ńy zgodzajům śe jydne ze drugim.',
 'userexists' => 'Mjano użytkowńika, kere żeś wybroł, je zajynte. Wybjer, prosza, inksze mjano.',
 'loginerror' => 'Feler przi logowańu',
+'createacct-error' => 'Feler tworzyńo kůnta',
 'createaccounterror' => 'Ńy możno stworzić konta $1',
 'nocookiesnew' => 'Kůnto użytkowńika zostoło utworzůne, nale ńy jeżeś zalůgowany. {{SITENAME}} używo ćosteczek do logůwańo. Mosz wyłůnczone ćosteczka. Coby śe zalůgować, uodymknij ćosteczka a podej mjano a hasło swojigo kůnta.',
 'nocookieslogin' => '{{SITENAME}} używo ćosteczek do logowańo użytkowńikůw. Mosz zablokowano jejich uobsłůga. Sprůbuj zaś kej załůnczysz uobsłůga ćosteczek.',
@@ -543,31 +563,33 @@ Jak ftoś inkszy chćoł nowe hasło abo jak Ci śe przipůmńouo stare a ńy ch
 Zaloguj śe zaś jak dostańysz tygo brifa.',
 'blocked-mailpassword' => 'Twůj adres IP zostoł zawarty a ńy moższ używać funkcyje uodzyskiwańo hasła skuli mogebnośći jeji nadużywańo.',
 'eauthentsent' => 'Potwjerdzeńy zostoło posłane na e-brifa.
-Jak bydźesz chćoł, coby wysyłouo Ći e-brify, pjyrwyj go przeczytej. Bydźesz tam mjoł instrukcyjo co mosz zrobić, coby pokozać, aże tyn ausdruk je Twůj.',
+Jak bydźesz chćoł, coby wysyłoło Ći e-brify, pjyrwyj go przeczytej. Bydźesz tam mjoł instrukcyjo co mosz zrobić, coby pokozać, aże tyn ausdruk je Twůj.',
 'throttled-mailpassword' => 'Przipůmńyńy hasła bůło już wysłane bez {{PLURAL:$1|uostatńo godźina|uostatńe $1 godźin}}.
 Coby powstrzimać nadużyća, mogebność wysyłańo przipůmńyń nasztalowano na jydne bez {{PLURAL:$1|godźina|$1 godźiny}}.',
 'mailerror' => 'Przi wysyłańu e-brifa zdorził śe feler: $1',
 'acct_creation_throttle_hit' => 'Przikro nom, założůł(a)żeś już {{PLURAL:$1|1 kůnto|$1 kůnta}}. Ńy możesz założyć kolejnygo.',
 'emailauthenticated' => 'Twůj adres e-brifa zostoł uwjerzitelńůny $2 uo $3.',
-'emailnotauthenticated' => 'Twůj adres e-brifa ńy je uwjeřitelńůny. Půnižše funkcyje počty ńy bydům dźauać.',
+'emailnotauthenticated' => 'Twůj adres e-brifa ńy je uwjerzitelńůny. Půniższe funkcyje poczty ńy bydům dźołać.',
 'noemailprefs' => 'Muśisz podać adres e-brifa, coby te funkcyje dźołały.',
-'emailconfirmlink' => 'Potwjerdź swůj adres e-brifa',
+'emailconfirmlink' => 'Potwjyrdź swůj adres e-brifa',
 'invalidemailaddress' => 'E-brif ńy bydźe zaakceptůwany skiż tygo co jigo format ńy spełńo formalnych wymagań. Prosza naszkryflać poprowny adres e-brifa abo wyczyśćić pole.',
 'cannotchangeemail' => 'Ńy możno pomjyńyc ausdruku e-mail.',
 'emaildisabled' => 'Ta zajta ńy je mogebna posyłać e-brify.',
 'accountcreated' => 'Utwůrzůno kůnto',
 'accountcreatedtext' => 'Kůnto lo [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|dyskusyjo]]) je utwůrzůne.',
 'createaccount-title' => 'Stworzyńy kůnta na {{GRAMMAR:MS.lp|{{SITENAME}}}}',
-'createaccount-text' => 'Ktoś utworził na {{GRAMMAR:MS.lp|{{SITENAME}}}} ($4) dla Twojego adresa e-brif kůnto "$2". Aktualne hasło to "$3". Powińeżeś śe terozki zalogůwać a je zmjyńić.',
+'createaccount-text' => 'Ftoś utworził na {{GRAMMAR:MS.lp|{{SITENAME}}}} ($4) lo Twojigo adresa e-brif kůnto "$2". Aktuelne hasło to "$3". Powińeżeś śe terozki zalogůwać a je zmjyńić.',
 'usernamehasherror' => 'Nazwa sprowjorza ńy może mjyć buchsztaby "#".',
 'login-throttled' => 'Wykonołżeś za wjela průb zalůgowańo śe na te kůnto. Uodczekej $1 ńym zaś sprůbujesz.',
 'login-abort-generic' => 'Felerne logowańe',
 'loginlanguagelabel' => 'Godka: $1',
-'suspicious-userlogout' => 'Żądanie wylogowania zostało odrzucone ponieważ wygląda na to, że zostało wysłane przez uszkodzoną przeglądarkę lub buforujący serwer proxy.',
+'suspicious-userlogout' => 'Polecyńe wylogowańo uostoło uodćepńynte skiż tygo co wyglůnda, aże uostoło posłane bez uszkodzůna przeglůndarka abo buforujůncy serwer proxy.',
+'createacct-another-realname-tip' => 'Wszkryflańy twojigo mjana a nazwiska ńy je końyczne.
+Kej bydźesz chćoł je podoć, bydům użyte, coby dokůmyntowoć Twoje autorstwo.',
 
 # Email sending
 'php-mail-error-unknown' => 'Ńyznany feler we funkcyji mail()',
-'user-mail-no-addy' => 'Próba wysłania e‐maila bez adresu odbiorcy',
+'user-mail-no-addy' => 'Průba posłańo e‐brifa bez adresu uodbjorcy',
 
 # Change password dialog
 'resetpass' => 'Pomjyńaj hasło',
@@ -596,31 +618,31 @@ Możliwe co właśńy zmjyńiłżeś swoje hasło abo poprosiłżeś uo nowe tym
 'passwordreset-capture-help' => 'Eli zaznaczysz to pole, łoboczysz wjadomość e-mail z hasłem.',
 'passwordreset-email' => 'E-brif:',
 'passwordreset-emailtitle' => 'Kůnto na {{GRAMMAR:MS.lp|{{SITENAME}}}}',
-'passwordreset-emailtext-ip' => 'Ftůś (cheba Ty, s IP $1)
+'passwordreset-emailtext-ip' => 'Ftoś (cheba Ty, s IP $1)
 pado, aże chce informacyji lo konta do {{GRAMMAR:MS.lp{{SITENAME}}}} ($4).
-Z tem ausdrukiem sum powjonzyne konta:
+Ze tym ausdrukym sům powjůnzane kůnta:
 $2
 
-{{PLURAL:$3|Tymczasowygo hasła|Tymczasowych haseł}} możno użyć w ciągu {{PLURAL:$5|jednego dnia|$5 dni}}.
+{{PLURAL:$3|Tymczasowygo hasła|Tymczasowych hasył}} możno użyć we {{PLURAL:$5|jedyn dźyń|$5 dńi}}.
 
-Jak chćołżeś gynał to zrobjyć, to zalůgůj śe terozki a podej swoje hasło.
+Jak chćołżeś gynał to zrobjyć, to zaloguj śe terozki a podej swoje hasło.
 
-Jak ktůś inkszy chćoł nowe hasło abo jak Ci śe przipůmńouo stare a ńy chcesz nowygo, to zignoruj to a używej starygo hasła.',
-'passwordreset-emailelement' => 'Nazwa sprowjorza: $1
+Jak ftoś inkszy chćoł nowe hasło abo jak Ci śe przipůmńoło stare a ńy chcysz nowygo, to zignoruj to a używej starygo hasła.',
+'passwordreset-emailelement' => 'Mjano sprowjorza: $1
 Tymczasowe hasło: $2',
 'passwordreset-emailsent' => 'E-brif posłany.',
 'passwordreset-emailsent-capture' => 'E-brif posłony, kerego widać niżej.',
-'passwordreset-emailerror-capture' => 'Ńy udało sie wysłać wjadomości lo sprowjorza: $1',
+'passwordreset-emailerror-capture' => 'Ńy udoło śe posłać wjadomości lo {{GENDER:$2|używocza|używoczki}}: $1',
 
 # Special:ChangeEmail
 'changeemail' => 'Pomjyno ausdruka e-mail',
 'changeemail-header' => 'Pomjyno ausduku e-mail',
 'changeemail-text' => 'Wypełnij formularz, podej nowy ausdruk a hasło.',
-'changeemail-no-info' => 'Muśysz być zalogowany, coby uzyskać bezpostrzedńi dostymp do tyj zajty.',
+'changeemail-no-info' => 'Muśisz być zalogowany, coby uzyskać bezpostrzedńi dostymp do tyj zajty.',
 'changeemail-oldemail' => 'Uobecny ausdruk:',
 'changeemail-newemail' => 'Nowy adresu e-brif',
 'changeemail-none' => 'podstawowo',
-'changeemail-submit' => 'Zapisz nowy',
+'changeemail-submit' => 'Spamjyntej nowy',
 'changeemail-cancel' => 'Uodćepej',
 
 # Edit page toolbar
@@ -638,37 +660,37 @@ Tymczasowe hasło: $2',
 'nowiki_tip' => 'Zignoruj formatowańy wiki',
 'image_tip' => 'Plik uosadzůny we zajće',
 'media_tip' => 'Link do plika',
-'sig_tip' => 'Twůj podpis z datumym i czasym',
+'sig_tip' => 'Twojo szrajbka ze datum a czasym',
 'hr_tip' => 'Poźůmo lińijo (używej mjyrńy)',
 
 # Edit pages
 'summary' => 'Popis půmjyńań:',
-'subject' => 'Tymat/naguůwek:',
+'subject' => 'Tyjma/iberszryft:',
 'minoredit' => 'To je ńywjelge sprowjyńy',
 'watchthis' => 'Dej pozůr',
 'savearticle' => 'Spamjyntej',
 'preview' => 'Uobźyrańy',
 'showpreview' => 'Uobźyrej',
-'showlivepreview' => 'Dynamičny podglůnd',
+'showlivepreview' => 'Dynamiczny podglůnd',
 'showdiff' => 'Pozdrzyj na půmjyńańy',
-'anoneditwarning' => 'Ńy jeżeś nalogowany. We gyszichće sprowjyń tyj zajty bydźe naszkryflůny twůj adres IP.',
-'anonpreviewwarning' => 'Ńy jeżeś zalogowany. Twój adres IP łostonie zapisany, eli ty bydzies sprowjać zajte.',
-'missingsummary' => "'''Připomńyńy:''' Ńy wprowadźiužeś uopisu pomjyńań. Kej go ńy chceš wprowadzać, naćiś knefel Škryflej ješče roz.",
-'missingcommenttext' => 'Wćepej kůmyntoř půńižyj.',
-'missingcommentheader' => "'''Dej pozůr:''' Treść nagłůwka je pusto - uzupeuńij go! Jeli tego ńy zrobisz, Twůj kůmyntorz bydźe naszkryflany bez naguůwka.",
+'anoneditwarning' => 'Ńy jeżeś terozki zalogowany. We gyszichće sprowjyń tyj zajty bydźe naszkryflůny twůj ausdruk IP.',
+'anonpreviewwarning' => 'Ńy jeżeś zalogowany. Twój IP ausdruk uostańy spamjyntany, eli ty bydźesz sprowjać zajte.',
+'missingsummary' => "'''Pozůr:''' Ńy wprowadźůł żeś uopisu pomjyńań. Kej go ńy chcesz wprowadzać, naćiś knefel Spamjyntej jeszcze roz.",
+'missingcommenttext' => 'Wćepej kůmyntorz půńiżyj.',
+'missingcommentheader' => "'''Dej pozůr:''' Treść nagłůwka je blank - uzupełńij go! Jeli tego ńy zrobisz, Twůj kůmyntorz bydźe naszkryflony bez nagłůwka.",
 'summary-preview' => 'Podglůnd uopisu:',
-'subject-preview' => 'Podglůnd tematu/naguůwka:',
-'blockedtitle' => 'Užytkowńik je zawarty uod sprowjyń',
-'blockedtext' => '\'\'\'Twoje kůnto abo adres IP sům zawarte.\'\'\'
+'subject-preview' => 'Podglůnd tyjmy/nagłůwka:',
+'blockedtitle' => 'Użytkowńik je zawarty uod sprowjyń',
+'blockedtext' => '\'\'\'Twoje kůnto abo IP ausdruk sům zawarte.\'\'\'
 
-Uo zawarću zdecydowou $1. Pado, aže skuli: \'\'$2\'\'.
+Uo zawarću zdecydowoł $1. Pado, aże skuli: \'\'$2\'\'.
 
 * Zawarte uod: $8
 * Uodymkńe śe: $6
-* Bez cůž: $7
+* Zawarće skiż: $7
 
-Coby wyjaśńić sprawa zawarćo, naškryflej do $1 abo inkšygo [[{{MediaWiki:Grouppage-sysop}}|admińistratora]].
-Ńy možeš posuać e-brifa bez "poślij e-brifa tymu užytkowńikowi", jak žeś ńy podou dobrygo adresa e-brifa we [[Special:Preferences|preferencyjach kůnta]], abo jak e-brify moš tyž zawarte. Terozki moš adres IP $3 a nůmer zawarća to #$5. Prošymy podać jedyn abo uobadwa jak chceš pouosprawjać uo zawarću.',
+Coby wyjaśńić sprawa zawarćo, naszkryflej do $1 abo inkszygo [[{{MediaWiki:Grouppage-sysop}}|admińistratora]].
+Ńy możesz posłać e-brifa bez "poślij e-brifa tymu użytkowńikowi", jak żeś ńy podoł dobrygo ausdruku e-brifa we [[Special:Preferences|preferencyjach kůnta]], abo jak e-brify mosz tyż zawarte. Terozki mosz ausdruk IP $3 a nůmera zawarćo to #$5. Proszymy podać jedyn abo uoba jak chcysz połosprawjać uo zawarću.',
 'autoblockedtext' => 'Tyn adres IP zostou zawarty automatyčńy, gdyž kořisto s ńygo inkšy užytkowńik, zawarty uod sprowjyń bez administratora $1.
 Powůd zawarćo:
 
@@ -678,12 +700,8 @@ Powůd zawarćo:
 * Zawarće wygaso: $6
 * Zawarće je skiž: $7
 
-Možyš skůntaktować śe s $1 abo jednym s pozostauych [[{{MediaWiki:Grouppage-sysop}}|admińistratorůw]] kejbyś chćou uzyskać informacyje uo zawarću.
-
-Pozůr: Kejžeś we [[Special:Preferences|preferencyjach]] ńy naštalowou prowiduowygo adresa e-brifa, abo e-brify moš tyž zawarte, ńy možeš skožystać s uopcyje "Poślij e-brifa tymu užytkowńikowi".
-
-Twůj adres IP je terozki $3. Idyntyfikator Twojij blokady to $5. Zanotuj śe go a podej admińistratorowi.',
-'blockednoreason' => 'ńy podano skuli čego',
+* Zawarte uod: $8 * Uodymkńe śe: $6 * Zawarće skiż: $7 Coby wyjaśńić sprawa zawarćo, naszkryflej do $1 abo inkszygo [[{{MediaWiki:Grouppage-sysop}}|admińistratora]]. Ńy możesz posłać e-brifa bez "poślij e-brifa tymu użytkowńikowi", jak żeś ńy podoł dobrygo ausdruku e-brifa we [[Special:Preferences|preferencyjach kůnta]], abo jak e-brify mosz tyż zawarte. Terozki mosz ausdruk IP $3 a nůmera zawarćo to #$5. Proszymy podać jedyn abo uoba jak chcysz połosprawjać uo zawarću.',
+'blockednoreason' => 'ńy podano skuli czygo',
 'whitelistedittext' => 'Muśiš $1 coby můc sprowjać artikle.',
 'confirmedittext' => 'Muśiš podać a potwjerdźić swůj e-brif, coby můc sam sprowjać.
 Možeš to zrobić we [[Special:Preferences|swojich štalowańach]].',

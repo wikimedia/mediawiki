@@ -38,6 +38,7 @@
  * @author Smeira
  * @author ThomasPusch
  * @author Tlustulimu
+ * @author Umbert'
  * @author Urhixidur
  * @author Yekrats
  * @author Александр Сигачёв
@@ -570,7 +571,7 @@ $1',
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Pri {{SITENAME}}',
 'aboutpage' => 'Project:Enkonduko',
-'copyright' => 'La enhavo estas disponebla laŭ $1.',
+'copyright' => 'La enhavo estas disponebla laŭ $1, se ne estas alia indiko.',
 'copyrightpage' => '{{ns:project}}:Aŭtorrajto',
 'currentevents' => 'Aktualaĵoj',
 'currentevents-url' => 'Project:Aktualaĵoj',
@@ -653,6 +654,7 @@ Listo de validaj specialaj paĝoj estas trovebla ĉe [[Special:SpecialPages|{{in
 # General errors
 'error' => 'Eraro',
 'databaseerror' => 'Datumbaza eraro',
+'databaseerror-error' => 'Eraro: $1',
 'laggedslavemode' => 'Avertu: la paĝo eble ne enhavas lastatempajn ĝisdatigojn.',
 'readonly' => 'Datumaro ŝlosita, nurlega',
 'enterlockreason' => 'Bonvolu klarigi, kial oni ŝlosas la datumaron, kaj
@@ -778,7 +780,7 @@ Ne forgesu ŝanĝi viajn [[Special:Preferences|{{SITENAME}}-preferojn]]',
 'createacct-emailrequired' => 'Retpoŝta adreso',
 'createacct-emailoptional' => 'Retpoŝta adreso (nedeviga)',
 'createacct-email-ph' => 'Enigu vian retpoŝtan adreson',
-'createaccountmail' => 'Uzi provizoran hazardsignan pasvorton kaj sendi ĝin al la retpoŝto suben',
+'createaccountmail' => 'Uzi provizoran hazardsignan pasvorton kaj sendi ĝin al la retpoŝta adreso ĉi-suba',
 'createacct-realname' => 'Vera nomo (nedeviga)',
 'createaccountreason' => 'Kialo:',
 'createacct-reason' => 'Kialo',
@@ -795,6 +797,7 @@ Ne forgesu ŝanĝi viajn [[Special:Preferences|{{SITENAME}}-preferojn]]',
 'userexists' => 'Salutnomo enigita jam estas uzata.
 Bonvolu elekti alian nomon.',
 'loginerror' => 'Ensaluta eraro',
+'createacct-error' => 'Eraro pri kreado de konto',
 'createaccounterror' => 'Ne eblis krei konton: $1',
 'nocookiesnew' => 'La uzantokonto estis kreita sed vi ne estas ensalutinta. *** E-igo lcfirst {{SITENAME}} uzas kuketojn por akcepti uzantojn. Kuketoj esta malaktivigitaj ĉe vi. Bonvolu aktivigi ilin kaj ensalutu per viaj novaj salutnomo kaj pasvorto.',
 'nocookieslogin' => '{{SITENAME}} uzas kuketojn por akcepti uzantojn. Kuketoj esta malaktivigitaj ĉe vi. Bonvolu aktivigi ilin kaj provu denove.',
@@ -830,7 +833,7 @@ registrita por "$1".
 Bonvolu saluti denove ricevinte ĝin.',
 'blocked-mailpassword' => 'Via IP adreso estas forbarita de redaktado, kaj tial
 ne rajtas uzi la pasvorto-rekovran funkcion por malebligi misuzon.',
-'eauthentsent' => 'Konfirma retmesaĝo estas sendita al la nomita retadreso. Antaŭ ol iu ajn alia mesaĝo estos sendita al la konto, vi devos sekvi la instrukciojn en la mesaĝo por konfirmi ke la konto ja estas la via.',
+'eauthentsent' => 'Konfirma retmesaĝo estis sendita al la nomita retadreso. Antaŭ ol iu ajn alia mesaĝo estos sendita al la konto, vi devos sekvi la instrukciojn en la mesaĝo por konfirmi ke la konto ja estas via.',
 'throttled-mailpassword' => 'Retpoŝto kun reŝargita pasvorto estis jam sendita ene de la {{PLURAL:$1|lasta horo|lastaj $1 horoj}}.
 Por preventi misuzon, nur unu reŝargita pasvorto estos sendita dum {{PLURAL:$1|horo|$1 horoj}}.',
 'mailerror' => 'Okazis eraro sendante retpoŝtaĵon: $1',
@@ -852,11 +855,13 @@ Enigi bone formatita adreso aŭ malplenigi tiun kampon.',
 
 Vi povas ignori ĉi mesaĝon, se ĉi konto estis kreita erare.',
 'usernamehasherror' => 'Salutnomo ne povas enhavi kriphaketaĵajn signojn',
-'login-throttled' => 'Vi tro ofte provis ensaluti.
-Bonvolu ĝisatendi antaŭ retrovi.',
+'login-throttled' => 'Vi ĵus tro ofte provis ensaluti.
+Bonvolu ĝisatendi $1 antaŭ reprovi.',
 'login-abort-generic' => 'Via ensaluto malsukcesis - Ĉesigita',
 'loginlanguagelabel' => 'Lingvo: $1',
 'suspicious-userlogout' => 'Via peto por elsaluti estis malpermesita ĉar verŝajne ĝi estis sendita de trompita retumilo aŭ kaŝiganta proksima servilo.',
+'createacct-another-realname-tip' => 'La vera nomo estas nenecesa.
+Se vi decidas indiki ĝin, ĝi estos uzata por montri atribuadon de viaj kontribuoj.',
 
 # Email sending
 'php-mail-error-unknown' => 'Nekonata eraro en la funkcio mail() de PHP',
@@ -872,7 +877,7 @@ Bonvolu ĝisatendi antaŭ retrovi.',
 'newpassword' => 'Nova pasvorto',
 'retypenew' => 'Retajpi novan pasvorton',
 'resetpass_submit' => 'Fari pasvorton kaj ensaluti',
-'changepassword-success' => 'Via pasvorto estis sukcese ŝanĝita! Nun ensalutanta vin...',
+'changepassword-success' => 'Via pasvorto estis sukcese ŝanĝita!',
 'resetpass_forbidden' => 'Pasvortoj ne estas ŝanĝeblaj',
 'resetpass-no-info' => 'Vi devas ensaluti por atingi ĉi tiun paĝon rekte.',
 'resetpass-submit-loggedin' => 'Ŝanĝi pasvorton',
@@ -884,6 +889,7 @@ Vi eble jam ŝanĝis vian pasvorton aŭ petis novan provizoran pasvorton.',
 
 # Special:PasswordReset
 'passwordreset' => 'Restarigo de pasvorto',
+'passwordreset-text-one' => 'Plenigu ĉi tiun formularon por renovigi vian pasvorton.',
 'passwordreset-legend' => 'Refari pasvorton',
 'passwordreset-disabled' => 'Pasvortaj restarigoj estis malŝaltitaj en ĉi tiu vikio.',
 'passwordreset-emaildisabled' => 'Retpoŝtaj funkcioj estas malfunkciigitaj en tiu ĉi vikio.',
@@ -915,7 +921,7 @@ aŭ se vi memoris vian originalan pasvorton, kaj vi ne plu volas ŝanĝi
 Provizora pasvorto: $2',
 'passwordreset-emailsent' => 'Renovigita pasvorto estis retpoŝte sendita.',
 'passwordreset-emailsent-capture' => 'Retpoŝto kun renovigita pasvorto estis sendita, kiu estas montrata sube.',
-'passwordreset-emailerror-capture' => 'Retpoŝto kun renovigita pasvorto estis generita, montrata sube, sed sendado al uzanto malsukcesis: $1',
+'passwordreset-emailerror-capture' => 'Retpoŝto kun renovigita pasvorto estis generita, montrata sube, sed sendado al la {{GENDER:$2|uzanto}} malsukcesis: $1',
 
 # Special:ChangeEmail
 'changeemail' => 'Ŝanĝi retpoŝtadreson',
@@ -928,6 +934,14 @@ Provizora pasvorto: $2',
 'changeemail-password' => 'Via {{SITENAME}}-ensalutado:',
 'changeemail-submit' => 'Ŝanĝi retpoŝtadreson',
 'changeemail-cancel' => 'Nuligi',
+
+# Special:ResetTokens
+'resettokens-no-tokens' => 'Ne estas ŝlosiloj renovigeblaj.',
+'resettokens-legend' => 'Renovigi ŝlosilojn',
+'resettokens-tokens' => 'Ŝlosiloj:',
+'resettokens-token-label' => '$1 (nuna valoro: $2)',
+'resettokens-done' => 'Ŝlosiloj renovigitaj.',
+'resettokens-resetbutton' => 'Renovigi elektitajn ŝlosilojn',
 
 # Edit page toolbar
 'bold_sample' => 'Grasa teksto',
@@ -1135,7 +1149,7 @@ Verŝajne ĝi estis forigita.',
 'content-failed-to-parse' => 'Oni malsukcesis analizi $2-entenon laŭ la $1-modelo: $3',
 'invalid-content-data' => 'Enhavo estas malvalida',
 'content-not-allowed-here' => 'Enhavo de $1 ne estas permesita en paĝo [[$2]]',
-'editwarning-warning' => 'Forlasante ĉi tiun paĝon kaŭzos al vi perdi iun ajn ŝanĝojn kiujn vi faris.
+'editwarning-warning' => 'Forlaso de ĉi tiu paĝo kaŭzos al vi perdi iun ajn ŝanĝojn kiujn vi faris.
 Se vi ensalutas, vi povas malŝalti ĉi tiun averton en la sekcio "{{int:prefs-editing}}" de viaj preferoj.',
 
 # Content models
@@ -1172,6 +1186,7 @@ Bonvolu konfirmi la jenan komparaĵon por verigi ĉi tiel vi volas, kaj konservi
 'undo-failure' => 'Ne povis nuligi redakton pro konfliktaj intermezaj redaktoj.',
 'undo-norev' => 'La redakto ne eblis esti malfarita ĉar ĝi aŭ ne ekzistas aŭ estis forigita.',
 'undo-summary' => 'Nuligis version $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskuto]] | [[Special:Contributions/$2|{{MediaWiki:Contribslink}}]])',
+'undo-summary-username-hidden' => 'Malfari ŝanĝon $1 de kaŝita uzulo',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Ne povas krei konton',
@@ -1269,8 +1284,8 @@ Aliaj administrantoj ĉe {{SITENAME}} plu povos aliri la kaŝitan entenon kaj re
 'revdelete-hide-user' => 'Kaŝi nomon aŭ IP-adreson de redaktinto',
 'revdelete-hide-restricted' => 'Subpremi ĉi tiujn datenojn de administrantoj kaj ankaŭ aliaj',
 'revdelete-radio-same' => '(ne ŝanĝi)',
-'revdelete-radio-set' => 'Jes',
-'revdelete-radio-unset' => 'Ne',
+'revdelete-radio-set' => 'Videbla',
+'revdelete-radio-unset' => 'Kaŝita',
 'revdelete-suppress' => 'Subpremi datenojn de kaj administrantoj kaj aliaj',
 'revdelete-unsuppress' => 'Forigi limigojn al restarigitaj versioj',
 'revdelete-log' => 'Kialo:',
@@ -1535,6 +1550,7 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 'prefs-displaywatchlist' => 'Montraj opcioj',
 'prefs-tokenwatchlist' => 'Ĵetono',
 'prefs-diffs' => 'Diferencoj',
+'prefs-help-prefershttps' => 'Ĉi tiu agordo ekefikos je via sekva ensaluto.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'Ŝajnas ke la retpoŝtadreso estas valida',
@@ -1561,6 +1577,7 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 'userrights-notallowed' => 'Via konto ne rajtas doni aŭ forigi uzanto-rajtojn.',
 'userrights-changeable-col' => 'Grupoj kiujn vi povas ŝanĝi',
 'userrights-unchangeable-col' => 'Grupoj kiujn vi ne povas ŝanĝi',
+'userrights-removed-self' => 'Vi sukcese nuligis viajn proprajn rajtojn. Do vi ne plu rajtas aliri ĉi tiun paĝon.',
 
 # Groups
 'group' => 'Grupo:',
@@ -1634,6 +1651,8 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 'right-editmyusercss' => 'Redakti viajn proprajn CSS-dosierojn',
 'right-editmyuserjs' => 'Redakti viajn proprajn JavaScript-dosierojn',
 'right-viewmywatchlist' => 'Rigardi vian atentaron',
+'right-viewmyprivateinfo' => 'Vidi viajn proprajn privatajn informojn (ekz. retpoŝtan adreson, veran nomon)',
+'right-editmyprivateinfo' => 'Redakti viajn proprajn privatajn informojn (ekz. retpoŝtan adreson, veran nomon)',
 'right-rollback' => 'Tuj malfari la redaktojn de la lasta uzanto kiu redaktis specifan paĝon',
 'right-markbotedits' => 'Marki restarigitajn redaktojn kiel robotajn redaktojn',
 'right-noratelimit' => 'Ne influita de po-limoj',
@@ -1685,7 +1704,7 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 'action-block' => 'forari ĉi tiun uzanton de redaktado',
 'action-protect' => 'ŝanĝi la protektan nivelon por ĉi tiu paĝo',
 'action-rollback' => 'tuj malfari la redaktojn de la lasta uzanto kiu redaktis specifan paĝon',
-'action-import' => 'importi ĉi tiun paĝon de alia vikio',
+'action-import' => 'enporti paĝojn de alia vikio',
 'action-importupload' => 'importi ĉi tiun paĝon de dosiera alŝuto',
 'action-patrol' => 'marki redakton de alia persono kiel patrolitan',
 'action-autopatrol' => 'fari vian redakton markitan kiel patrolitan',
@@ -1695,12 +1714,18 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 'action-userrights-interwiki' => 'redakti la rajtojn de uzantoj en aliaj vikioj',
 'action-siteadmin' => 'ŝlosi aŭ malŝlosi la datumbazon',
 'action-sendemail' => 'sendi retpoŝtojn',
+'action-editmywatchlist' => 'modifi vian atento-liston',
+'action-viewmywatchlist' => 'vidi vian atento-liston',
+'action-viewmyprivateinfo' => 'vidi viajn privatajn informojn',
+'action-editmyprivateinfo' => 'redakti viajn privatajn informojn',
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|ŝanĝo|ŝanĝoj}}',
+'enhancedrc-history' => 'historio',
 'recentchanges' => 'Lastaj ŝanĝoj',
 'recentchanges-legend' => 'Opcioj pri lastaj ŝanĝoj',
 'recentchanges-summary' => 'Per ĉi tiu paĝo vi povas sekvi la plej lastajn ŝanĝojn en la {{SITENAME}}.',
+'recentchanges-noresult' => 'En la donita tempo ne estis ŝanĝoj, kiuj konformas al la kriterioj.',
 'recentchanges-feed-description' => 'Sekvi la plej lastatempajn ŝanĝojn al la vikio en ĉi tiu fonto.',
 'recentchanges-label-newpage' => 'Ĉi tiu redakto kreis novan paĝon',
 'recentchanges-label-minor' => 'Ĉi tiu estas eta redakto',

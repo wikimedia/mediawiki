@@ -1155,15 +1155,15 @@ Els altres administradors de {{SITENAME}} encara podran accedir al contingut ama
 * Informació personal inapropiada
 *: ''adreces personals, números de telèfon, números de la seguretat social, etc.''",
 'revdelete-legend' => 'Defineix restriccions en la visibilitat',
-'revdelete-hide-text' => 'Amaga el text de revisió',
+'revdelete-hide-text' => 'Text de la revisió',
 'revdelete-hide-image' => 'Amaga el contingut del fitxer',
 'revdelete-hide-name' => "Acció d'amagar i objectiu",
-'revdelete-hide-comment' => "Amaga el comentari de l'edició",
-'revdelete-hide-user' => "Amaga el nom d'usuari o la IP de l'editor",
+'revdelete-hide-comment' => 'Modifica el resum',
+'revdelete-hide-user' => "Nom d'usuari / adreça IP de l'editor",
 'revdelete-hide-restricted' => 'Suprimir les dades als administradors així com a la resta.',
 'revdelete-radio-same' => '(no modificar)',
-'revdelete-radio-set' => 'Si',
-'revdelete-radio-unset' => 'No',
+'revdelete-radio-set' => 'Visible',
+'revdelete-radio-unset' => 'Oculta',
 'revdelete-suppress' => 'Suprimeix també les dades dels administradors',
 'revdelete-unsuppress' => 'Suprimir les restriccions de les revisions restaurades',
 'revdelete-log' => 'Motiu:',
@@ -3036,7 +3036,7 @@ Això deu ser degut per un enllaç a un lloc extern inclòs a la llista negra.',
 'spam_reverting' => 'Es reverteix a la darrera versió que no conté enllaços a $1',
 'spam_blanking' => "Totes les revisions contenien enllaços $1, s'està deixant en blanc",
 'spam_deleting' => "S'estan suprimint totes les revisions que contenien enllaços a $1",
-'simpleantispam-label' => "Comprovació anti-spam.
+'simpleantispam-label' => "Comprovació antispam.
 '''NO''' ho ompliu!",
 
 # Info page
@@ -3810,7 +3810,7 @@ Amb aquest programa heu d'haver rebut [{{SERVER}}{{SCRIPTPATH}}/COPYING una còp
 # Special:Redirect
 'redirect' => 'Redirigeix per fitxer, usuari o ID de la revisió',
 'redirect-legend' => 'Redirigeix a un fitxer o a una pàgina',
-'redirect-summary' => "Aquesta pàgina especial redirigeix a un fitxer (donat el nom del fitxer), una pàgina (donada un ID de la revisió), o a una pàgina d'usuari (donat un ID numèric d'usuari).",
+'redirect-summary' => "Aquesta pàgina especial redirigeix a un fitxer (donat el nom del fitxer), una pàgina (donada un ID de la revisió), o a una pàgina d'usuari (donat un ID numèric d'usuari). Ús: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]], or [[{{#Special:Redirect}}/user/101]].",
 'redirect-submit' => 'Vés-hi',
 'redirect-lookup' => 'Consulta:',
 'redirect-value' => 'Valor:',

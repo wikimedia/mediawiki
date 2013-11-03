@@ -1483,6 +1483,9 @@ $1',
 'randompage' => 'ناټاکلی مخ',
 'randompage-nopages' => 'په لانديني {{PLURAL:$2|نوم-تشيال|نوم-تشيالونو}} کې هېڅ کوم مخ نشته: $1.',
 
+# Random page in category
+'randomincategory-selectcategory' => 'يو ناټاکلی مخ له وېشنيزې موندل: $1 $2.',
+
 # Random redirect
 'randomredirect' => 'ناټاکلی ورگرځېدنه',
 
@@ -1684,7 +1687,7 @@ $1',
 'emailsubject' => 'سکالو:',
 'emailmessage' => 'پيغام:',
 'emailsend' => 'لېږل',
-'emailccme' => 'زما د پيغام يوه بېلګه دې ماته هم برېښليک شي.',
+'emailccme' => 'زما د پيغام يوه بېلگه دې ماته هم برېښليک شي.',
 'emailccsubject' => '$1 ته ستاسو د پيغام لمېسه: $2',
 'emailsent' => 'برېښليک مو ولېږل شو',
 'emailsenttext' => 'ستاسو برېښليکي پيغام ولېږل شو.',
@@ -2562,7 +2565,7 @@ $5
 # Size units
 'size-bytes' => '$1 بايټ',
 'size-kilobytes' => '$1 کيلوبايټ',
-'size-megabytes' => '$1 مېګابايټ',
+'size-megabytes' => '$1 مېگابايټ',
 'size-gigabytes' => '$1 ګېګابايټ',
 'size-terabytes' => '$1 ټېرابايټ',
 'size-petabytes' => '$1 پېبي بايټ',

@@ -4094,7 +4094,7 @@ $5
 # Special:Redirect
 'redirect' => '파일, 사용자나 판 ID별 넘겨주기',
 'redirect-legend' => '파일이나 문서로 넘겨주기',
-'redirect-summary' => '이 특수 문서는 파일(파일 이름을 지정), 문서(판 ID를 지정)나 사용자 문서(사용자 ID를 정수로 지정)로 넘겨줍니다.',
+'redirect-summary' => '이 특수 문서는 파일(파일 이름을 지정), 문서(판 ID를 지정)나 사용자 문서(사용자 ID를 정수로 지정)로 넘겨줍니다. 사용법: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]], 혹은 [[{{#Special:Redirect}}/user/101]].',
 'redirect-submit' => '찾기',
 'redirect-lookup' => '찾을 종류:',
 'redirect-value' => '값:',
