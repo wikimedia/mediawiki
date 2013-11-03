@@ -1521,7 +1521,7 @@ Parameters:
 * $3 - time',
 'emailnotauthenticated' => 'Message in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.
 
-It appears after saving your email address but before it has been authenticated.',
+It appears after saving your email address but before you confirm it.',
 'noemailprefs' => 'Message appearing in the "Email options" section of the "User profile" page in [[Special:Preferences|Preferences]], when no user email address has been entered.',
 'emailconfirmlink' => 'Link to [[Special:ConfirmEmail]].
 
