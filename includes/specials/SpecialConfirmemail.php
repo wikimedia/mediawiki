@@ -90,19 +90,17 @@ class EmailConfirmation extends UnlistedSpecialPage {
 			} else {
 				$out->addWikiText( $status->getWikiText( 'confirmemail_sendfailed' ) );
 			}
+		} elseif ( $user->isEmailConfirmed() ) {
+			// date and time are separate parameters to facilitate localisation.
+			// $time is kept for backward compat reasons.
+			// 'emailauthenticated' is also used in SpecialPreferences.php
+			$lang = $this->getLanguage();
+			$emailAuthenticated = $user->getEmailAuthenticationTimestamp();
+			$time = $lang->userTimeAndDate( $emailAuthenticated, $user );
+			$d = $lang->userDate( $emailAuthenticated, $user );
+			$t = $lang->userTime( $emailAuthenticated, $user );
+			$out->addWikiMsg( 'emailauthenticated', $time, $d, $t );
 		} else {
-			if ( $user->isEmailConfirmed() ) {
-				// date and time are separate parameters to facilitate localisation.
-				// $time is kept for backward compat reasons.
-				// 'emailauthenticated' is also used in SpecialPreferences.php
-				$lang = $this->getLanguage();
-				$emailAuthenticated = $user->getEmailAuthenticationTimestamp();
-				$time = $lang->userTimeAndDate( $emailAuthenticated, $user );
-				$d = $lang->userDate( $emailAuthenticated, $user );
-				$t = $lang->userTime( $emailAuthenticated, $user );
-				$out->addWikiMsg( 'emailauthenticated', $time, $d, $t );
-			}
-
 			if ( $user->isEmailConfirmationPending() ) {
 				$out->wrapWikiMsg(
 					"<div class=\"error mw-confirmemail-pending\">\n$1\n</div>",

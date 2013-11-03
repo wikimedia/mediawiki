@@ -24,6 +24,10 @@ production.
   changes and watchlist) and the talk page message indicator are now correctly
   updated when the user is viewing old revisions of pages, instead of always
   acting as if the latest revision was being viewed.
+* (bug 56443) Special:ConfirmEmail no longer shows a "Mail a confirmation code"
+  when the email address is already confirmed. Also, consistently use
+  "confirmed", rather than "authenticated", when messaging whether or not the
+  user has confirmed an email address.
 
 === API changes in 1.23 ===
 
