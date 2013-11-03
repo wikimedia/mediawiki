@@ -533,6 +533,7 @@ changes to languages because of Bugzilla reports.
   The file never contained any re-usable components. To use it in a skin, load
   'mediawiki.legacy.wikibits' (which IEFixes depends on) and that will import
   IEFixes automatically if user agent conditions are met.
+* Code specific to the Math extension was marked as deprecated.
 
 == Compatibility ==
 
