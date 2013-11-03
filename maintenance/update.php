@@ -81,6 +81,7 @@ class UpdateMediaWiki extends Maintenance {
 	}
 
 	function execute() {
+		$time1 = time();
 		global $wgVersion, $wgTitle, $wgLang, $wgAllowSchemaUpdates;
 
 		if ( !$wgAllowSchemaUpdates && !( $this->hasOption( 'force' ) || $this->hasOption( 'schema' ) || $this->hasOption( 'noschema' ) ) ) {
@@ -130,6 +131,7 @@ class UpdateMediaWiki extends Maintenance {
 		if ( !$this->hasOption( 'quick' ) ) {
 			$this->output( "Abort with control-c in the next five seconds (skip this countdown with --quick) ... " );
 			wfCountDown( 5 );
+			$time1 = time();
 		}
 
 		$shared = $this->hasOption( 'doshared' );
@@ -164,8 +166,10 @@ class UpdateMediaWiki extends Maintenance {
 		if ( !$this->hasOption( 'nopurge' ) ) {
 			$updater->purgeCache();
 		}
+		$time2 = time();
 
 		$this->output( "\nDone.\n" );
+		$this->output( "\nThe job took ". gmdate( "i:s", $time2-$time1 ). "\n" );
 	}
 
 	function afterFinalSetup() {
