@@ -675,7 +675,7 @@ future releases. Also note that since each list value is wrapped in a unique
 'tog-watchdeletion'           => 'Add pages and files I delete to my watchlist',
 'tog-minordefault'            => 'Mark all edits minor by default',
 'tog-previewontop'            => 'Show preview before edit box',
-'tog-previewonfirst'          => 'Show preview on first edit',
+'tog-previewonfirst'          => 'Show preview at least once before saving',
 'tog-nocache'                 => 'Disable browser page caching',
 'tog-enotifwatchlistpages'    => 'Email me when a page or file on my watchlist is changed',
 'tog-enotifusertalkpages'     => 'Email me when my user talk page is changed',
