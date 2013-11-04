@@ -2,8 +2,8 @@
 
 /**
  * Test the CDB reader/writer
- * @covers CdbWriter_PHP
- * @covers CdbWriter_DBA
+ * @covers CdbWriterPHP
+ * @covers CdbWriterDBA
  */
 class CdbTest extends MediaWikiTestCase {
 
@@ -26,8 +26,8 @@ class CdbTest extends MediaWikiTestCase {
 		$phpcdbfile = $this->getNewTempFile();
 		$dbacdbfile = $this->getNewTempFile();
 
-		$w1 = new CdbWriter_PHP( $phpcdbfile );
-		$w2 = new CdbWriter_DBA( $dbacdbfile );
+		$w1 = new CdbWriterPHP( $phpcdbfile );
+		$w2 = new CdbWriterDBA( $dbacdbfile );
 
 		$data = array();
 		for ( $i = 0; $i < 1000; $i++ ) {
@@ -50,8 +50,8 @@ class CdbTest extends MediaWikiTestCase {
 			'same hash'
 		);
 
-		$r1 = new CdbReader_PHP( $phpcdbfile );
-		$r2 = new CdbReader_DBA( $dbacdbfile );
+		$r1 = new CdbReaderPHP( $phpcdbfile );
+		$r2 = new CdbReaderDBA( $dbacdbfile );
 
 		foreach ( $data as $key => $value ) {
 			if ( $key === '' ) {
