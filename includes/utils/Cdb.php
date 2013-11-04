@@ -126,7 +126,7 @@ abstract class CdbWriter {
  * Reader class which uses the DBA extension
  */
 class CdbReader_DBA {
-	var $handle;
+	public $handle;
 
 	function __construct( $fileName ) {
 		$this->handle = dba_open( $fileName, 'r-', 'cdb' );
@@ -151,7 +151,7 @@ class CdbReader_DBA {
  * Writer class which uses the DBA extension
  */
 class CdbWriter_DBA {
-	var $handle, $realFileName, $tmpFileName;
+	public $handle, $realFileName, $tmpFileName;
 
 	function __construct( $fileName ) {
 		$this->realFileName = $fileName;

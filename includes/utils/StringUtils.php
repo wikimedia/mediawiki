@@ -24,7 +24,6 @@
  * A collection of static methods to play with strings.
  */
 class StringUtils {
-
 	/**
 	 * Test whether a string is valid UTF-8.
 	 *
@@ -166,7 +165,9 @@ class StringUtils {
 	 * @throws MWException
 	 * @return string
 	 */
-	static function delimiterReplaceCallback( $startDelim, $endDelim, $callback, $subject, $flags = '' ) {
+	static function delimiterReplaceCallback( $startDelim, $endDelim, $callback,
+		$subject, $flags = ''
+	) {
 		$inputPos = 0;
 		$outputPos = 0;
 		$output = '';
@@ -320,7 +321,6 @@ class StringUtils {
  * StringUtils::delimiterReplaceCallback()
  */
 class Replacer {
-
 	/**
 	 * @return array
 	 */
@@ -333,7 +333,7 @@ class Replacer {
  * Class to replace regex matches with a string similar to that used in preg_replace()
  */
 class RegexlikeReplacer extends Replacer {
-	var $r;
+	public $r;
 
 	/**
 	 * @param string $r
@@ -360,7 +360,6 @@ class RegexlikeReplacer extends Replacer {
  * Class to perform secondary replacement within each replacement string
  */
 class DoubleReplacer extends Replacer {
-
 	/**
 	 * @param $from
 	 * @param $to
@@ -385,7 +384,7 @@ class DoubleReplacer extends Replacer {
  * Class to perform replacement based on a simple hashtable lookup
  */
 class HashtableReplacer extends Replacer {
-	var $table, $index;
+	public $table, $index;
 
 	/**
 	 * @param $table
@@ -410,8 +409,8 @@ class HashtableReplacer extends Replacer {
  * Supports lazy initialisation of FSS resource
  */
 class ReplacementArray {
-	/*mostly private*/ var $data = false;
-	/*mostly private*/ var $fss = false;
+	/*mostly private*/ public $data = false;
+	/*mostly private*/ public $fss = false;
 
 	/**
 	 * Create an object with the specified replacement array
@@ -526,19 +525,19 @@ class ReplacementArray {
  */
 class ExplodeIterator implements Iterator {
 	// The subject string
-	var $subject, $subjectLength;
+	public $subject, $subjectLength;
 
 	// The delimiter
-	var $delim, $delimLength;
+	public $delim, $delimLength;
 
 	// The position of the start of the line
-	var $curPos;
+	public $curPos;
 
 	// The position after the end of the next delimiter
-	var $endPos;
+	public $endPos;
 
 	// The current token
-	var $current;
+	public $current;
 
 	/**
 	 * Construct a DelimIterator
