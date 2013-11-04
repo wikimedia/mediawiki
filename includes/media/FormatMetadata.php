@@ -1563,11 +1563,13 @@ class FormatMetadata extends ContextSource {
 
 		$common = $file->getCommonMetaArray();
 
-		foreach ( $common as $key => $value ) {
-			$fileMetadata[$key] = array(
-				'value' => $value,
-				'source' => 'file-metadata',
-			);
+		if ( $common !== false ) {
+			foreach ( $common as $key => $value ) {
+				$fileMetadata[$key] = array(
+					'value' => $value,
+					'source' => 'file-metadata',
+				);
+			}
 		}
 
 		wfProfileOut( __METHOD__ );
