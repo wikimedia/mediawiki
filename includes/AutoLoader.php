@@ -843,12 +843,14 @@ $wgAutoloadLocalClasses = array(
 	'ResourceLoaderNoscriptModule' => 'includes/resourceloader/ResourceLoaderNoscriptModule.php',
 	'ResourceLoaderSiteModule' => 'includes/resourceloader/ResourceLoaderSiteModule.php',
 	'ResourceLoaderStartUpModule' => 'includes/resourceloader/ResourceLoaderStartUpModule.php',
-	'ResourceLoaderUserCSSPrefsModule' => 'includes/resourceloader/ResourceLoaderUserCSSPrefsModule.php',
+	'ResourceLoaderUserCSSPrefsModule' =>
+		'includes/resourceloader/ResourceLoaderUserCSSPrefsModule.php',
 	'ResourceLoaderUserGroupsModule' => 'includes/resourceloader/ResourceLoaderUserGroupsModule.php',
 	'ResourceLoaderUserModule' => 'includes/resourceloader/ResourceLoaderUserModule.php',
 	'ResourceLoaderUserOptionsModule' => 'includes/resourceloader/ResourceLoaderUserOptionsModule.php',
 	'ResourceLoaderUserTokensModule' => 'includes/resourceloader/ResourceLoaderUserTokensModule.php',
-	'ResourceLoaderLanguageDataModule' => 'includes/resourceloader/ResourceLoaderLanguageDataModule.php',
+	'ResourceLoaderLanguageDataModule' =>
+		'includes/resourceloader/ResourceLoaderLanguageDataModule.php',
 	'ResourceLoaderWikiModule' => 'includes/resourceloader/ResourceLoaderWikiModule.php',
 
 	# includes/revisiondelete
@@ -1140,7 +1142,7 @@ $wgAutoloadLocalClasses = array(
 );
 
 class AutoLoader {
-	static $autoloadLocalClassesLower = null;
+	static public $autoloadLocalClassesLower = null;
 
 	/**
 	 * autoload - take a class name and attempt to load it
