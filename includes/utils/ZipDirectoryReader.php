@@ -93,27 +93,27 @@ class ZipDirectoryReader {
 	}
 
 	/** The file name */
-	var $fileName;
+	public $fileName;
 
 	/** The opened file resource */
-	var $file;
+	public $file;
 
 	/** The cached length of the file, or null if it has not been loaded yet. */
-	var $fileLength;
+	public $fileLength;
 
 	/** A segmented cache of the file contents */
-	var $buffer;
+	public $buffer;
 
 	/** The file data callback */
-	var $callback;
+	public $callback;
 
 	/** The ZIP64 mode */
-	var $zip64 = false;
+	public $zip64 = false;
 
 	/** Stored headers */
-	var $eocdr, $eocdr64, $eocdr64Locator;
+	public $eocdr, $eocdr64, $eocdr64Locator;
 
-	var $data;
+	public $data;
 
 	/** The "extra field" ID for ZIP64 central directory entries */
 	const ZIP64_EXTRA_HEADER = 0x0001;
@@ -247,8 +247,8 @@ class ZipDirectoryReader {
 		);
 		$structSize = $this->getStructSize( $info );
 
-		$block = $this->getBlock( $this->getFileLength() - $this->eocdr['EOCDR size']
-			- $structSize, $structSize );
+		$start = $this->getFileLength() - $this->eocdr['EOCDR size'] - $structSize;
+		$block = $this->getBlock( $start, $structSize );
 		$this->eocdr64Locator = $data = $this->unpack( $block, $info );
 
 		if ( $data['signature'] !== "PK\x06\x07" ) {
@@ -704,7 +704,7 @@ class ZipDirectoryReader {
  * Internal exception class. Will be caught by private code.
  */
 class ZipDirectoryReaderError extends Exception {
-	var $errorCode;
+	public $errorCode;
 
 	function __construct( $code ) {
 		$this->errorCode = $code;

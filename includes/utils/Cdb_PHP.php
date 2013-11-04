@@ -73,7 +73,8 @@ class CdbFunctions {
 	 */
 	public static function hash( $s ) {
 		$h = 5381;
-		for ( $i = 0; $i < strlen( $s ); $i++ ) {
+		$len = strlen( $s );
+		for ( $i = 0; $i < $len; $i++ ) {
 			$h5 = ( $h << 5 ) & 0xffffffff;
 			// Do a 32-bit sum
 			// Inlined here for speed
@@ -98,33 +99,33 @@ class CdbFunctions {
 /**
  * CDB reader class
  */
-class CdbReader_PHP extends CdbReader {
+class CdbReaderPHP extends CdbReader {
 	/** The filename */
-	var $fileName;
+	public $fileName;
 
 	/** The file handle */
-	var $handle;
+	public $handle;
 
 	/* number of hash slots searched under this key */
-	var $loop;
+	public $loop;
 
 	/* initialized if loop is nonzero */
-	var $khash;
+	public $khash;
 
 	/* initialized if loop is nonzero */
-	var $kpos;
+	public $kpos;
 
 	/* initialized if loop is nonzero */
-	var $hpos;
+	public $hpos;
 
 	/* initialized if loop is nonzero */
-	var $hslots;
+	public $hslots;
 
 	/* initialized if findNext() returns true */
-	var $dpos;
+	public $dpos;
 
 	/* initialized if cdb_findnext() returns 1 */
-	var $dlen;
+	public $dlen;
 
 	/**
 	 * @param $fileName string
@@ -289,11 +290,11 @@ class CdbReader_PHP extends CdbReader {
 /**
  * CDB writer class
  */
-class CdbWriter_PHP extends CdbWriter {
-	var $handle, $realFileName, $tmpFileName;
+class CdbWriterPHP extends CdbWriter {
+	public $handle, $realFileName, $tmpFileName;
 
-	var $hplist;
-	var $numentries, $pos;
+	public $hplist;
+	public $numentries, $pos;
 
 	/**
 	 * @param $fileName string

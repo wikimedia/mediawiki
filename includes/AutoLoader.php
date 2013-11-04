@@ -843,12 +843,14 @@ $wgAutoloadLocalClasses = array(
 	'ResourceLoaderNoscriptModule' => 'includes/resourceloader/ResourceLoaderNoscriptModule.php',
 	'ResourceLoaderSiteModule' => 'includes/resourceloader/ResourceLoaderSiteModule.php',
 	'ResourceLoaderStartUpModule' => 'includes/resourceloader/ResourceLoaderStartUpModule.php',
-	'ResourceLoaderUserCSSPrefsModule' => 'includes/resourceloader/ResourceLoaderUserCSSPrefsModule.php',
+	'ResourceLoaderUserCSSPrefsModule' =>
+		'includes/resourceloader/ResourceLoaderUserCSSPrefsModule.php',
 	'ResourceLoaderUserGroupsModule' => 'includes/resourceloader/ResourceLoaderUserGroupsModule.php',
 	'ResourceLoaderUserModule' => 'includes/resourceloader/ResourceLoaderUserModule.php',
 	'ResourceLoaderUserOptionsModule' => 'includes/resourceloader/ResourceLoaderUserOptionsModule.php',
 	'ResourceLoaderUserTokensModule' => 'includes/resourceloader/ResourceLoaderUserTokensModule.php',
-	'ResourceLoaderLanguageDataModule' => 'includes/resourceloader/ResourceLoaderLanguageDataModule.php',
+	'ResourceLoaderLanguageDataModule' =>
+		'includes/resourceloader/ResourceLoaderLanguageDataModule.php',
 	'ResourceLoaderWikiModule' => 'includes/resourceloader/ResourceLoaderWikiModule.php',
 
 	# includes/revisiondelete
@@ -1046,11 +1048,11 @@ $wgAutoloadLocalClasses = array(
 	'ArrayUtils' => 'includes/utils/ArrayUtils.php',
 	'CdbFunctions' => 'includes/utils/Cdb_PHP.php',
 	'CdbReader' => 'includes/utils/Cdb.php',
-	'CdbReader_DBA' => 'includes/utils/Cdb.php',
-	'CdbReader_PHP' => 'includes/utils/Cdb_PHP.php',
+	'CdbReaderDBA' => 'includes/utils/Cdb.php',
+	'CdbReaderPHP' => 'includes/utils/Cdb_PHP.php',
 	'CdbWriter' => 'includes/utils/Cdb.php',
-	'CdbWriter_DBA' => 'includes/utils/Cdb.php',
-	'CdbWriter_PHP' => 'includes/utils/Cdb_PHP.php',
+	'CdbWriterDBA' => 'includes/utils/Cdb.php',
+	'CdbWriterPHP' => 'includes/utils/Cdb_PHP.php',
 	'ConfEditor' => 'includes/utils/ConfEditor.php',
 	'ConfEditorParseError' => 'includes/utils/ConfEditor.php',
 	'ConfEditorToken' => 'includes/utils/ConfEditor.php',
@@ -1140,7 +1142,7 @@ $wgAutoloadLocalClasses = array(
 );
 
 class AutoLoader {
-	static $autoloadLocalClassesLower = null;
+	static public $autoloadLocalClassesLower = null;
 
 	/**
 	 * autoload - take a class name and attempt to load it
