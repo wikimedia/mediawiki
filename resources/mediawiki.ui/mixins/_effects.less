@@ -1,0 +1,63 @@
+/* Mixins for visual effects in CSS3 */
+
+@import "../settings/_colors.less";
+
+// ----------------------------------------------------------------------------
+// Gradients
+// ----------------------------------------------------------------------------
+.vertical-gradient(@startColor: lighten(@agoraGray, 95%), @endColor: @agoraGray) {
+	// Fallback
+    background-color: @endColor;
+    *background-color: @endColor; // IE7
+
+    // IE6-8
+    .filter-gradient(@startColor, @endColor, vertical);
+
+    // IE9+, Opera, Gecko, WebKit
+    .background-image(linear-gradient(top, @startColor, @endColor));
+}
+
+// ----------------------------------------------------------------------------
+// Button styling
+// ----------------------------------------------------------------------------
+
+.buttonColors(@baseColor: @agoraGray) {
+	// Background color
+	.vertical-gradient(lighten(@baseColor, 7.5%), @baseColor);
+
+	.button-colors-text-dark() when (@baseColor == @agoraGray);
+	.button-colors-text-light() when (@baseColor != @agoraGray);
+
+	border: 1px solid darken(@baseColor, 2%);
+
+	&:hover,
+	&.mw-ui-hover {
+		.vertical-gradient(lighten(@baseColor, 12.5%), lighten(@baseColor, 7.5%));
+		text-decoration: none;
+	}
+
+	&:active,
+	&.mw-ui-active {
+		background-image: none;
+		background-color: darken(@baseColor, 3%);
+		text-shadow: none;
+	}
+
+	&:disabled,
+	&.mw-ui-disabled {
+		background-image: none;
+		background-color: @baseColor;
+		opacity: 0.5;
+		text-shadow: none;
+	}
+}
+
+.buttonColors(@baseColor: @agoraGray) when (lightness(@baseColor) >= 50%) {
+	color: #000;
+	.text-shadow(0 1px 1px rgba(@baseColor, 0.3));
+}
+
+.buttonColors(@baseColor: @agoraGray) when (lightness(@baseColor) < 50%) {
+	color: #fff;
+	.text-shadow(0 1px 1px rgba(@baseColor, 0.75));
+}

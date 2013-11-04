@@ -1162,8 +1162,8 @@ return array(
 	),
 	'mediawiki.ui' => array(
 		'skinStyles' => array(
-			'default' => 'resources/mediawiki.ui/mediawiki.ui.default.css',
-			'vector' => 'resources/mediawiki.ui/mediawiki.ui.vector.css',
+			'default' => 'resources/mediawiki.ui/mediawiki.ui.default.less',
+			'vector' => 'resources/mediawiki.ui/mediawiki.ui.vector.less',
 		),
 		'position' => 'top',
 	),
