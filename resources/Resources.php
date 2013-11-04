@@ -1161,9 +1161,23 @@ return array(
 		'position' => 'top',
 	),
 	'mediawiki.ui' => array(
+		'styles' => array(
+			'resources/mediawiki.ui/mixins/utilities.less',
+			'resources/mediawiki.ui/mixins/type.less',
+			'resources/mediawiki.ui/mixins/effects.less',
+			'resources/mediawiki.ui/mixins/forms.less',
+			'resources/mediawiki.ui/components/positioning.less',
+			'resources/mediawiki.ui/components/buttons.less',
+			'resources/mediawiki.ui/components/forms.less',
+			
+		),
 		'skinStyles' => array(
-			'default' => 'resources/mediawiki.ui/mediawiki.ui.default.css',
-			'vector' => 'resources/mediawiki.ui/mediawiki.ui.vector.css',
+			'default' => 'resources/mediawiki.ui/components/default.less',
+			'vector' => array(
+				'resources/mediawiki.ui/components/vector/buttons.less',
+				'resources/mediawiki.ui/components/vector/forms.less',
+				'resources/mediawiki.ui/components/vector/containers.less',
+			),
 		),
 		'position' => 'top',
 	),
