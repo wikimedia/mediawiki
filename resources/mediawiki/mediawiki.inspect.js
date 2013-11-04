@@ -14,6 +14,13 @@
 		} );
 	}
 
+	function humanSize( bytes ) {
+		if ( !$.isNumeric( bytes ) || bytes === 0 ) { return bytes; }
+		var i = 0, units = [ '', ' kB', ' MB', ' GB', ' TB', ' PB' ];
+		for ( ; bytes >= 1024; bytes /= 1024 ) { i++; }
+		return bytes.toFixed( 1 ) + units[i];
+	}
+
 	/**
 	 * @class mw.inspect
 	 * @singleton
@@ -181,9 +188,7 @@
 
 				// Convert size to human-readable string.
 				$.each( modules, function ( i, module ) {
-					module.size = module.size > 1024 ?
-						( module.size / 1024 ).toFixed( 2 ) + ' KB' :
-						( module.size !== null ? module.size + ' B' : null );
+					module.size = humanSize( module.size );
 				} );
 
 				return modules;
@@ -214,6 +219,23 @@
 				} );
 				sortByProperty( modules, 'allSelectors', true );
 				return modules;
+			},
+
+			/**
+			 * Report stats on mw.loader.store: the number of localStorage
+			 * cache hits and misses, the number of items purged from the
+			 * cache, and the total size of the module blob in localStorage.
+			 */
+			store: function () {
+				var raw, stats = { enabled: mw.loader.store.enabled };
+				if ( stats.enabled ) {
+					$.extend( stats, mw.loader.store.stats );
+					try {
+						raw = localStorage.getItem( mw.loader.store.getStoreKey() );
+						stats.totalSize = humanSize( $.byteLength( raw ) );
+					} catch (e) {}
+				}
+				return [stats];
 			}
 		}
 	};
