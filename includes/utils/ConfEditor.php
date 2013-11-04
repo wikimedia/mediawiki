@@ -37,34 +37,34 @@
  */
 class ConfEditor {
 	/** The text to parse */
-	var $text;
+	public $text;
 
 	/** The token array from token_get_all() */
-	var $tokens;
+	public $tokens;
 
 	/** The current position in the token array */
-	var $pos;
+	public $pos;
 
 	/** The current 1-based line number */
-	var $lineNum;
+	public $lineNum;
 
 	/** The current 1-based column number */
-	var $colNum;
+	public $colNum;
 
 	/** The current 0-based byte number */
-	var $byteNum;
+	public $byteNum;
 
 	/** The current ConfEditorToken object */
-	var $currentToken;
+	public $currentToken;
 
 	/** The previous ConfEditorToken object */
-	var $prevToken;
+	public $prevToken;
 
 	/**
 	 * The state machine stack. This is an array of strings where the topmost
 	 * element will be popped off and become the next parser state.
 	 */
-	var $stateStack;
+	public $stateStack;
 
 	/**
 	 * The path stack is a stack of associative arrays with the following elements:
@@ -82,24 +82,24 @@ class ConfEditor {
 	 *    hasComma          True if the array element ends with a comma
 	 *    arrowByte         The byte offset of the "=>", or false if there isn't one
 	 */
-	var $pathStack;
+	public $pathStack;
 
 	/**
 	 * The elements of the top of the pathStack for every path encountered, indexed
 	 * by slash-separated path.
 	 */
-	var $pathInfo;
+	public $pathInfo;
 
 	/**
 	 * Next serial number for whitespace placeholder paths (\@extra-N)
 	 */
-	var $serial;
+	public $serial;
 
 	/**
 	 * Editor state. This consists of the internal copy/insert operations which
 	 * are applied to the source string to obtain the destination string.
 	 */
-	var $edits;
+	public $edits;
 
 	/**
 	 * Simple entry point for command-line testing
@@ -444,7 +444,8 @@ class ConfEditor {
 			$this->nextToken();
 		}
 		$regionEnd = $path['endByte']; // past the end
-		for ( $offset = 0; $offset < count( $this->tokens ) - $this->pos; $offset++ ) {
+		$count = count( $this->tokens );
+		for ( $offset = 0; $offset < $count - $this->pos; $offset++ ) {
 			$token = $this->getTokenAhead( $offset );
 			if ( !$token->isSkip() ) {
 				break;
@@ -1071,7 +1072,7 @@ class ConfEditor {
  * Exception class for parse errors
  */
 class ConfEditorParseError extends MWException {
-	var $lineNum, $colNum;
+	public $lineNum, $colNum;
 
 	function __construct( $editor, $msg ) {
 		$this->lineNum = $editor->lineNum;
@@ -1096,10 +1097,10 @@ class ConfEditorParseError extends MWException {
  * Class to wrap a token from the tokenizer.
  */
 class ConfEditorToken {
-	var $type, $text;
+	public $type, $text;
 
-	static $scalarTypes = array( T_LNUMBER, T_DNUMBER, T_STRING, T_CONSTANT_ENCAPSED_STRING );
-	static $skipTypes = array( T_WHITESPACE, T_COMMENT, T_DOC_COMMENT );
+	static public $scalarTypes = array( T_LNUMBER, T_DNUMBER, T_STRING, T_CONSTANT_ENCAPSED_STRING );
+	static public $skipTypes = array( T_WHITESPACE, T_COMMENT, T_DOC_COMMENT );
 
 	static function newEnd() {
 		return new self( 'END', '' );
