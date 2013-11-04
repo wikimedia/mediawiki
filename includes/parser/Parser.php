@@ -5762,8 +5762,9 @@ class Parser {
 	 * Get the revision object for $this->mRevisionId
 	 *
 	 * @return Revision|null either a Revision object or null
+	 * @since 1.23 (public since 1.23)
 	 */
-	protected function getRevisionObject() {
+	public function getRevisionObject() {
 		if ( !is_null( $this->mRevisionObject ) ) {
 			return $this->mRevisionObject;
 		}
