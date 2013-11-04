@@ -738,7 +738,7 @@ class SpecialSearch extends SpecialPage {
 	 *
 	 * @return string
 	 */
-	protected function showInterwiki( &$matches, $query ) {
+	protected function showInterwiki( $matches, $query ) {
 		global $wgContLang;
 		wfProfileIn( __METHOD__ );
 		$terms = $wgContLang->convertForSearchResult( $matches->termMatches() );
