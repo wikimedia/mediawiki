@@ -1,0 +1,20 @@
+@import "../default/buttons.less"; // Layer Vector on top of the default settings.
+@import "../../mixins/type.less";
+
+.mw-ui-button {
+    // Button colors determined by function.
+    // -----------------------------------------
+    &.mw-ui-primary {
+        .buttonColors(@agoraBlue);
+    }
+
+    &.mw-ui-constructive {
+        .buttonColors(@agoraGreen);
+    }
+
+    &.mw-ui-destructive {
+        .buttonColors(@agoraRed);
+    }
+
+    .vector-type();
+}
