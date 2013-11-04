@@ -812,7 +812,7 @@ class UploadForm extends HTMLForm {
 		$this->mMaxUploadSize['file'] = UploadBase::getMaxUploadSize( 'file' );
 		# Limit to upload_max_filesize unless we are running under HipHop and
 		# that setting doesn't exist
-		if ( !wfIsHipHop() ) {
+		if ( !wfIsHHVM() ) {
 			$this->mMaxUploadSize['file'] = min( $this->mMaxUploadSize['file'],
 				wfShorthandToInteger( ini_get( 'upload_max_filesize' ) ),
 				wfShorthandToInteger( ini_get( 'post_max_size' ) )

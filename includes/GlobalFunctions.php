@@ -2470,12 +2470,12 @@ function wfIsWindows() {
 }
 
 /**
- * Check if we are running under HipHop
+ * Check if we are running under HHVM
  *
  * @return Bool
  */
-function wfIsHipHop() {
-	return defined( 'HPHP_VERSION' );
+function wfIsHHVM() {
+	return defined( 'HHVM_VERSION' );
 }
 
 /**
