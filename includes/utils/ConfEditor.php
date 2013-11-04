@@ -444,7 +444,8 @@ class ConfEditor {
 			$this->nextToken();
 		}
 		$regionEnd = $path['endByte']; // past the end
-		for ( $offset = 0; $offset < count( $this->tokens ) - $this->pos; $offset++ ) {
+		$count = count( $this->tokens );
+		for ( $offset = 0; $offset < $count - $this->pos; $offset++ ) {
 			$token = $this->getTokenAhead( $offset );
 			if ( !$token->isSkip() ) {
 				break;

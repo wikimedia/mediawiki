@@ -247,8 +247,8 @@ class ZipDirectoryReader {
 		);
 		$structSize = $this->getStructSize( $info );
 
-		$block = $this->getBlock( $this->getFileLength() - $this->eocdr['EOCDR size']
-			- $structSize, $structSize );
+		$start = $this->getFileLength() - $this->eocdr['EOCDR size'] - $structSize;
+		$block = $this->getBlock( $start, $structSize );
 		$this->eocdr64Locator = $data = $this->unpack( $block, $info );
 
 		if ( $data['signature'] !== "PK\x06\x07" ) {

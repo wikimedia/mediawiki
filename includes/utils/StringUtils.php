@@ -24,7 +24,6 @@
  * A collection of static methods to play with strings.
  */
 class StringUtils {
-
 	/**
 	 * Test whether a string is valid UTF-8.
 	 *
@@ -166,7 +165,9 @@ class StringUtils {
 	 * @throws MWException
 	 * @return string
 	 */
-	static function delimiterReplaceCallback( $startDelim, $endDelim, $callback, $subject, $flags = '' ) {
+	static function delimiterReplaceCallback( $startDelim, $endDelim, $callback,
+		$subject, $flags = ''
+	) {
 		$inputPos = 0;
 		$outputPos = 0;
 		$output = '';
@@ -320,7 +321,6 @@ class StringUtils {
  * StringUtils::delimiterReplaceCallback()
  */
 class Replacer {
-
 	/**
 	 * @return array
 	 */
@@ -360,7 +360,6 @@ class RegexlikeReplacer extends Replacer {
  * Class to perform secondary replacement within each replacement string
  */
 class DoubleReplacer extends Replacer {
-
 	/**
 	 * @param $from
 	 * @param $to
