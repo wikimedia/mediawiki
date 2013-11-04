@@ -1046,13 +1046,13 @@ $wgAutoloadLocalClasses = array(
 
 	# includes/utils
 	'ArrayUtils' => 'includes/utils/ArrayUtils.php',
-	'CdbFunctions' => 'includes/utils/Cdb_PHP.php',
+	'CdbFunctions' => 'includes/utils/CdbPHP.php',
 	'CdbReader' => 'includes/utils/Cdb.php',
-	'CdbReader_DBA' => 'includes/utils/Cdb.php',
-	'CdbReader_PHP' => 'includes/utils/Cdb_PHP.php',
+	'CdbReaderDBA' => 'includes/utils/Cdb.php',
+	'CdbReaderPHP' => 'includes/utils/CdbPHP.php',
 	'CdbWriter' => 'includes/utils/Cdb.php',
-	'CdbWriter_DBA' => 'includes/utils/Cdb.php',
-	'CdbWriter_PHP' => 'includes/utils/Cdb_PHP.php',
+	'CdbWriterDBA' => 'includes/utils/Cdb.php',
+	'CdbWriterPHP' => 'includes/utils/CdbPHP.php',
 	'ConfEditor' => 'includes/utils/ConfEditor.php',
 	'ConfEditorParseError' => 'includes/utils/ConfEditor.php',
 	'ConfEditorToken' => 'includes/utils/ConfEditor.php',
