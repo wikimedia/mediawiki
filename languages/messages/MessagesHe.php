@@ -986,7 +986,7 @@ $2
 
 # Special:ChangeEmail
 'changeemail' => 'שינוי כתובת דוא"ל',
-'changeemail-header' => 'שינוי כתוב דוא"ל של חשבון',
+'changeemail-header' => 'שינוי כתובת הדואר האלקטרוני בחשבון',
 'changeemail-text' => 'מלאו טופס זה כדי לשנות את כתובת הדואר האלקטרוני שלכם. יהיה עליכם למלא סיסמה כדי לאשר את השינוי.',
 'changeemail-no-info' => 'עליכם להיכנס לחשבון כדי לגשת לדף זה ישירות.',
 'changeemail-oldemail' => 'כתובת דוא"ל נוכחית:',
@@ -1334,15 +1334,15 @@ $2
 * חשיפת מידע אישי
 *: '''כתובות בתים ומספרי טלפון, מספרי ביטוח לאומי, וכדומה'''",
 'revdelete-legend' => 'הגדרת הגבלות התצוגה',
-'revdelete-hide-text' => 'הסתרת תוכן הגרסה',
+'revdelete-hide-text' => 'תוכן הגרסה',
 'revdelete-hide-image' => 'הסתרת תוכן הקובץ',
 'revdelete-hide-name' => 'הסתרת הפעולה ודף היעד',
-'revdelete-hide-comment' => 'הסתרת תקציר העריכה',
-'revdelete-hide-user' => 'הסתרת שם המשתמש או כתובת ה־IP של העורך',
+'revdelete-hide-comment' => 'תקציר העריכה',
+'revdelete-hide-user' => 'שם המשתמש או כתובת ה־IP של העורך',
 'revdelete-hide-restricted' => 'הסתרת המידע גם ממפעילי המערכת',
 'revdelete-radio-same' => '(ללא שינוי)',
-'revdelete-radio-set' => 'כן',
-'revdelete-radio-unset' => 'לא',
+'revdelete-radio-set' => 'גלוי',
+'revdelete-radio-unset' => 'מוסתר',
 'revdelete-suppress' => 'הסתרת המידע גם ממפעילי המערכת',
 'revdelete-unsuppress' => 'הסרת הגבלות בגרסאות המשוחזרות',
 'revdelete-log' => 'סיבה:',
@@ -2248,7 +2248,8 @@ $1',
 'doubleredirectstext' => 'בדף הזה מופיעה רשימת דפי הפניה שמפנים לדפי הפניה אחרים.
 כל שורה מכילה קישור לשתי ההפניות הראשונות, וכן את היעד של ההפניה השנייה, שהיא לרוב היעד ה"אמיתי" של ההפניה, שההפניה הראשונה אמורה להצביע אליו.
 פריטים <del>מחוקים</del> כבר תוקנו.',
-'double-redirect-fixed-move' => '[[$1]] הועבר. כעת הוא הפניה לדף [[$2]].',
+'double-redirect-fixed-move' => '[[$1]] הועבר.
+כעת זאת הפניה לדף [[$2]].',
 'double-redirect-fixed-maintenance' => 'תיקון הפניה כפולה מ[[$1]] ל[[$2]].',
 'double-redirect-fixer' => 'מתקן הפניות',
 

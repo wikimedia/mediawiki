@@ -2446,14 +2446,14 @@ There are three radio buttons in each row, and the captions above each column re
 * {{msg-mw|Revdelete-radio-same}}
 * {{msg-mw|Revdelete-radio-set}}
 * {{msg-mw|Revdelete-radio-unset}}
-{{Identical|Yes}}',
+{{Identical|Visible}}',
 'revdelete-radio-unset' => 'This message is a part of the [[mw:RevisionDelete|RevisionDelete]] feature. The message is a caption for a column of radioboxes inside a box with {{msg-mw|Revdelete-legend}} as a title.
 [[File:RevDelete Special-RevisionDelete (r60428).png|frame|center|Screenshot of the interface]]
 There are three radio buttons in each row, and the captions above each column read:
 * {{msg-mw|Revdelete-radio-same}}
 * {{msg-mw|Revdelete-radio-set}}
 * {{msg-mw|Revdelete-radio-unset}}
-{{Identical|No}}',
+{{Identical|Hidden}}',
 'revdelete-suppress' => 'Option for oversight; used in [[Special:RevisionDelete]].
 
 See also:

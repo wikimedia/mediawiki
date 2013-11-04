@@ -1072,7 +1072,7 @@ Naslednji argumenti so bili izpuščeni.",
 'converter-manual-rule-error' => 'Odkril sem napako v ročnem pravilu pretvorbe jezikov',
 
 # "Undo" feature
-'undo-success' => 'Urejanje ste razveljavili. Prosim, potrdite in nato shranite spodnje spremembe.',
+'undo-success' => 'Urejanje ste razveljavili. Prosimo, preverite prikazano primerjavo redakcij in, če ustrezajo, shranite spremembe.',
 'undo-failure' => 'Zaradi navzkrižij urejanj, ki so se vmes pojavila, tega urejanja ni moč razveljaviti.',
 'undo-norev' => 'Urejanja ni mogoče razveljaviti, ker ne obstaja ali je bilo izbrisano.',
 'undo-summary' => 'Redakcija $1 uporabnika [[Special:Contributions/$2|$2]] ([[User talk:$2|pogovor]]) razveljavljena',
