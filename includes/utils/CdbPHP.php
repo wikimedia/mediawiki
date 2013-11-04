@@ -98,7 +98,7 @@ class CdbFunctions {
 /**
  * CDB reader class
  */
-class CdbReader_PHP extends CdbReader {
+class CdbReaderPHP extends CdbReader {
 	/** The filename */
 	var $fileName;
 
@@ -289,7 +289,7 @@ class CdbReader_PHP extends CdbReader {
 /**
  * CDB writer class
  */
-class CdbWriter_PHP extends CdbWriter {
+class CdbWriterPHP extends CdbWriter {
 	var $handle, $realFileName, $tmpFileName;
 
 	var $hplist;
