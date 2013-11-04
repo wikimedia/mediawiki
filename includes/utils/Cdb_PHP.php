@@ -40,6 +40,7 @@ class CdbFunctions {
 	public static function unsignedMod( $a, $b ) {
 		if ( $a & 0x80000000 ) {
 			$m = ( $a & 0x7fffffff ) % $b + 2 * ( 0x40000000 % $b );
+
 			return $m % $b;
 		} else {
 			return $a % $b;
@@ -89,6 +90,7 @@ class CdbFunctions {
 			$h ^= ord( $s[$i] );
 			$h &= 0xffffffff;
 		}
+
 		return $h;
 	}
 }
@@ -164,6 +166,7 @@ class CdbReader_PHP extends CdbReader {
 	 */
 	protected function match( $key, $pos ) {
 		$buf = $this->read( strlen( $key ), $pos );
+
 		return $buf === $key;
 	}
 
@@ -193,6 +196,7 @@ class CdbReader_PHP extends CdbReader {
 			throw new MWException(
 				'Read from CDB file failed, file "' . $this->fileName . '" may be corrupted.' );
 		}
+
 		return $buf;
 	}
 
@@ -208,6 +212,7 @@ class CdbReader_PHP extends CdbReader {
 			throw new MWException(
 				'Error in CDB file "' . $this->fileName . '", integer too big.' );
 		}
+
 		return $data[1];
 	}
 
@@ -218,6 +223,7 @@ class CdbReader_PHP extends CdbReader {
 	 */
 	protected function unpackSigned( $s ) {
 		$data = unpack( 'va/vb', $s );
+
 		return $data['a'] | ( $data['b'] << 16 );
 	}
 
@@ -260,10 +266,12 @@ class CdbReader_PHP extends CdbReader {
 					// Found
 					$this->dlen = $this->unpack31( substr( $buf, 4 ) );
 					$this->dpos = $pos + 8 + $keyLen;
+
 					return true;
 				}
 			}
 		}
+
 		return false;
 	}
 
@@ -273,6 +281,7 @@ class CdbReader_PHP extends CdbReader {
 	 */
 	protected function find( $key ) {
 		$this->findStart();
+
 		return $this->findNext( $key );
 	}
 }
@@ -411,7 +420,7 @@ class CdbWriter_PHP extends CdbWriter {
 		// Calculate the number of items that will be in each hashtable
 		$counts = array_fill( 0, 256, 0 );
 		foreach ( $this->hplist as $item ) {
-			++ $counts[255 & $item['h']];
+			++$counts[255 & $item['h']];
 		}
 
 		// Fill in $starts with the *end* indexes

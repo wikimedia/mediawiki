@@ -30,6 +30,7 @@ class MWFunction {
 	public static function call( $callback ) {
 		wfDeprecated( __METHOD__, '1.22' );
 		$args = func_get_args();
+
 		return call_user_func_array( 'call_user_func', $args );
 	}
 
@@ -41,6 +42,7 @@ class MWFunction {
 	 */
 	public static function callArray( $callback, $argsarams ) {
 		wfDeprecated( __METHOD__, '1.22' );
+
 		return call_user_func_array( $callback, $argsarams );
 	}
 
@@ -55,7 +57,7 @@ class MWFunction {
 		}
 
 		$ref = new ReflectionClass( $class );
+
 		return $ref->newInstanceArgs( $args );
 	}
-
 }

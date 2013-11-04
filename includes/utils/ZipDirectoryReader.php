@@ -88,6 +88,7 @@ class ZipDirectoryReader {
 	 */
 	public static function read( $fileName, $callback, $options = array() ) {
 		$zdr = new self( $fileName, $callback, $options );
+
 		return $zdr->execute();
 	}
 
@@ -159,8 +160,8 @@ class ZipDirectoryReader {
 			} else {
 				if ( $this->eocdr['CD size'] == 0xffffffff
 					|| $this->eocdr['CD offset'] == 0xffffffff
-					|| $this->eocdr['CD entries total'] == 0xffff )
-				{
+					|| $this->eocdr['CD entries total'] == 0xffff
+				) {
 					$this->error( 'zip-unsupported', 'Central directory header indicates ZIP64, ' .
 						'but we are in legacy mode. Rejecting this upload is necessary to avoid ' .
 						'opening vulnerabilities on clients using OpenJDK 7 or later.' );
@@ -174,6 +175,7 @@ class ZipDirectoryReader {
 		}
 
 		fclose( $this->file );
+
 		return $status;
 	}
 
@@ -221,8 +223,8 @@ class ZipDirectoryReader {
 			$this->error( 'zip-bad', 'trailing bytes after the end of the file comment' );
 		}
 		if ( $this->eocdr['disk'] !== 0
-			|| $this->eocdr['CD start disk'] !== 0 )
-		{
+			|| $this->eocdr['CD start disk'] !== 0
+		) {
 			$this->error( 'zip-unsupported', 'more than one disk (in EOCDR)' );
 		}
 		$this->eocdr += $this->unpack(
@@ -263,8 +265,8 @@ class ZipDirectoryReader {
 	 */
 	function readZip64EndOfCentralDirectoryRecord() {
 		if ( $this->eocdr64Locator['eocdr64 start disk'] != 0
-			|| $this->eocdr64Locator['number of disks'] != 0 )
-		{
+			|| $this->eocdr64Locator['number of disks'] != 0
+		) {
 			$this->error( 'zip-unsupported', 'more than one disk (in EOCDR64 locator)' );
 		}
 
@@ -287,8 +289,8 @@ class ZipDirectoryReader {
 			$this->error( 'zip-bad', 'wrong signature on Zip64 end of central directory record' );
 		}
 		if ( $data['disk'] !== 0
-			|| $data['CD start disk'] !== 0 )
-		{
+			|| $data['CD start disk'] !== 0
+		) {
 			$this->error( 'zip-unsupported', 'more than one disk (in EOCDR64)' );
 		}
 	}
@@ -310,6 +312,7 @@ class ZipDirectoryReader {
 			$this->error( 'zip-bad', 'the central directory does not immediately precede the end ' .
 				'of central directory record' );
 		}
+
 		return array( $offset, $size );
 	}
 
@@ -329,8 +332,8 @@ class ZipDirectoryReader {
 		$endPos = $this->eocdr['position'];
 		if ( $size == 0xffffffff
 			|| $offset == 0xffffffff
-			|| $numEntries == 0xffff )
-		{
+			|| $numEntries == 0xffff
+		) {
 			$this->readZip64EndOfCentralDirectoryLocator();
 
 			if ( isset( $this->eocdr64Locator['eocdr64 offset'] ) ) {
@@ -348,6 +351,7 @@ class ZipDirectoryReader {
 			$this->error( 'zip-bad', 'the central directory does not immediately precede the end ' .
 				'of central directory record' );
 		}
+
 		return array( $offset, $size );
 	}
 
@@ -396,10 +400,10 @@ class ZipDirectoryReader {
 			$pos += $this->getStructSize( $variableInfo );
 
 			if ( $this->zip64 && (
-				   $data['compressed size'] == 0xffffffff
-				|| $data['uncompressed size'] == 0xffffffff
-				|| $data['local header offset'] == 0xffffffff ) )
-			{
+					$data['compressed size'] == 0xffffffff
+					|| $data['uncompressed size'] == 0xffffffff
+					|| $data['local header offset'] == 0xffffffff )
+			) {
 				$zip64Data = $this->unpackZip64Extra( $data['extra field'] );
 				if ( $zip64Data ) {
 					$data = $zip64Data + $data;
@@ -427,8 +431,8 @@ class ZipDirectoryReader {
 
 			// Convert the character set in the file name
 			if ( !function_exists( 'iconv' )
-				|| $this->testBit( $data['general bits'], self::GENERAL_UTF8 ) )
-			{
+				|| $this->testBit( $data['general bits'], self::GENERAL_UTF8 )
+			) {
 				$name = $data['name'];
 			} else {
 				$name = iconv( 'CP437', 'UTF-8', $data['name'] );
@@ -487,6 +491,7 @@ class ZipDirectoryReader {
 			$stat = fstat( $this->file );
 			$this->fileLength = $stat['size'];
 		}
+
 		return $this->fileLength;
 	}
 
@@ -548,6 +553,7 @@ class ZipDirectoryReader {
 			$bytePos = $segIndex * self::SEGSIZE;
 			if ( $bytePos >= $this->getFileLength() ) {
 				$this->buffer[$segIndex] = '';
+
 				return '';
 			}
 			if ( fseek( $this->file, $bytePos ) ) {
@@ -559,6 +565,7 @@ class ZipDirectoryReader {
 			}
 			$this->buffer[$segIndex] = $seg;
 		}
+
 		return $this->buffer[$segIndex];
 	}
 
@@ -576,6 +583,7 @@ class ZipDirectoryReader {
 				$size += $type;
 			}
 		}
+
 		return $size;
 	}
 
@@ -613,12 +621,12 @@ class ZipDirectoryReader {
 			if ( is_array( $type ) ) {
 				list( $typeName, $fieldSize ) = $type;
 				switch ( $typeName ) {
-				case 'string':
-					$data[$key] = substr( $string, $pos, $fieldSize );
-					$pos += $fieldSize;
-					break;
-				default:
-					throw new MWException( __METHOD__ . ": invalid type \"$typeName\"" );
+					case 'string':
+						$data[$key] = substr( $string, $pos, $fieldSize );
+						$pos += $fieldSize;
+						break;
+					default:
+						throw new MWException( __METHOD__ . ": invalid type \"$typeName\"" );
 				}
 			} else {
 				// Unsigned little-endian integer

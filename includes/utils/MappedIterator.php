@@ -81,16 +81,19 @@ class MappedIterator extends FilterIterator {
 		if ( $ok ) {
 			$this->cache['current'] = $value;
 		}
+
 		return $ok;
 	}
 
 	public function key() {
 		$this->init();
+
 		return parent::key();
 	}
 
 	public function valid() {
 		$this->init();
+
 		return parent::valid();
 	}
 

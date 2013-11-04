@@ -115,6 +115,7 @@ class ConfEditor {
 		} catch ( ConfEditorParseError $e ) {
 			return $e->getMessage() . "\n" . $e->highlight( $text );
 		}
+
 		return "OK";
 	}
 
@@ -174,78 +175,78 @@ class ConfEditor {
 			$key = isset( $op['key'] ) ? $op['key'] : null;
 
 			switch ( $type ) {
-			case 'delete':
-				list( $start, $end ) = $this->findDeletionRegion( $path );
-				$this->replaceSourceRegion( $start, $end, false );
-				break;
-			case 'set':
-				if ( isset( $this->pathInfo[$path] ) ) {
-					list( $start, $end ) = $this->findValueRegion( $path );
-					$encValue = $value; // var_export( $value, true );
-					$this->replaceSourceRegion( $start, $end, $encValue );
+				case 'delete':
+					list( $start, $end ) = $this->findDeletionRegion( $path );
+					$this->replaceSourceRegion( $start, $end, false );
 					break;
-				}
-				// No existing path, fall through to append
-				$slashPos = strrpos( $path, '/' );
-				$key = var_export( substr( $path, $slashPos + 1 ), true );
-				$path = substr( $path, 0, $slashPos );
-				// Fall through
-			case 'append':
-				// Find the last array element
-				$lastEltPath = $this->findLastArrayElement( $path );
-				if ( $lastEltPath === false ) {
-					throw new MWException( "Can't find any element of array \"$path\"" );
-				}
-				$lastEltInfo = $this->pathInfo[$lastEltPath];
+				case 'set':
+					if ( isset( $this->pathInfo[$path] ) ) {
+						list( $start, $end ) = $this->findValueRegion( $path );
+						$encValue = $value; // var_export( $value, true );
+						$this->replaceSourceRegion( $start, $end, $encValue );
+						break;
+					}
+					// No existing path, fall through to append
+					$slashPos = strrpos( $path, '/' );
+					$key = var_export( substr( $path, $slashPos + 1 ), true );
+					$path = substr( $path, 0, $slashPos );
+					// Fall through
+				case 'append':
+					// Find the last array element
+					$lastEltPath = $this->findLastArrayElement( $path );
+					if ( $lastEltPath === false ) {
+						throw new MWException( "Can't find any element of array \"$path\"" );
+					}
+					$lastEltInfo = $this->pathInfo[$lastEltPath];
 
-				// Has it got a comma already?
-				if ( strpos( $lastEltPath, '@extra' ) === false && !$lastEltInfo['hasComma'] ) {
-					// No comma, insert one after the value region
-					list( , $end ) = $this->findValueRegion( $lastEltPath );
-					$this->replaceSourceRegion( $end - 1, $end - 1, ',' );
-				}
+					// Has it got a comma already?
+					if ( strpos( $lastEltPath, '@extra' ) === false && !$lastEltInfo['hasComma'] ) {
+						// No comma, insert one after the value region
+						list( , $end ) = $this->findValueRegion( $lastEltPath );
+						$this->replaceSourceRegion( $end - 1, $end - 1, ',' );
+					}
 
-				// Make the text to insert
-				list( $start, $end ) = $this->findDeletionRegion( $lastEltPath );
+					// Make the text to insert
+					list( $start, $end ) = $this->findDeletionRegion( $lastEltPath );
 
-				if ( $key === null ) {
-					list( $indent, ) = $this->getIndent( $start );
-					$textToInsert = "$indent$value,";
-				} else {
-					list( $indent, $arrowIndent ) =
-						$this->getIndent( $start, $key, $lastEltInfo['arrowByte'] );
-					$textToInsert = "$indent$key$arrowIndent=> $value,";
-				}
-				$textToInsert .= ( $indent === false ? ' ' : "\n" );
+					if ( $key === null ) {
+						list( $indent, ) = $this->getIndent( $start );
+						$textToInsert = "$indent$value,";
+					} else {
+						list( $indent, $arrowIndent ) =
+							$this->getIndent( $start, $key, $lastEltInfo['arrowByte'] );
+						$textToInsert = "$indent$key$arrowIndent=> $value,";
+					}
+					$textToInsert .= ( $indent === false ? ' ' : "\n" );
 
-				// Insert the item
-				$this->replaceSourceRegion( $end, $end, $textToInsert );
-				break;
-			case 'insert':
-				// Find first array element
-				$firstEltPath = $this->findFirstArrayElement( $path );
-				if ( $firstEltPath === false ) {
-					throw new MWException( "Can't find array element of \"$path\"" );
-				}
-				list( $start, ) = $this->findDeletionRegion( $firstEltPath );
-				$info = $this->pathInfo[$firstEltPath];
+					// Insert the item
+					$this->replaceSourceRegion( $end, $end, $textToInsert );
+					break;
+				case 'insert':
+					// Find first array element
+					$firstEltPath = $this->findFirstArrayElement( $path );
+					if ( $firstEltPath === false ) {
+						throw new MWException( "Can't find array element of \"$path\"" );
+					}
+					list( $start, ) = $this->findDeletionRegion( $firstEltPath );
+					$info = $this->pathInfo[$firstEltPath];
 
-				// Make the text to insert
-				if ( $key === null ) {
-					list( $indent, ) = $this->getIndent( $start );
-					$textToInsert = "$indent$value,";
-				} else {
-					list( $indent, $arrowIndent ) =
-						$this->getIndent( $start, $key, $info['arrowByte'] );
-					$textToInsert = "$indent$key$arrowIndent=> $value,";
-				}
-				$textToInsert .= ( $indent === false ? ' ' : "\n" );
+					// Make the text to insert
+					if ( $key === null ) {
+						list( $indent, ) = $this->getIndent( $start );
+						$textToInsert = "$indent$value,";
+					} else {
+						list( $indent, $arrowIndent ) =
+							$this->getIndent( $start, $key, $info['arrowByte'] );
+						$textToInsert = "$indent$key$arrowIndent=> $value,";
+					}
+					$textToInsert .= ( $indent === false ? ' ' : "\n" );
 
-				// Insert the item
-				$this->replaceSourceRegion( $start, $start, $textToInsert );
-				break;
-			default:
-				throw new MWException( "Unrecognised operation: \"$type\"" );
+					// Insert the item
+					$this->replaceSourceRegion( $start, $start, $textToInsert );
+					break;
+				default:
+					throw new MWException( "Unrecognised operation: \"$type\"" );
 			}
 		}
 
@@ -268,6 +269,7 @@ class ConfEditor {
 				"Sorry, ConfEditor broke the file during editing and it won't parse anymore: " .
 				$e->getMessage() );
 		}
+
 		return $out;
 	}
 
@@ -302,6 +304,7 @@ class ConfEditor {
 			$this->setVar( $vars, $parentPath, $name,
 				$this->parseScalar( $value ) );
 		}
+
 		return $vars;
 	}
 
@@ -359,6 +362,7 @@ class ConfEditor {
 		if ( substr( $str, 0, 4 ) == 'null' ) {
 			return null;
 		}
+
 		// Must be some kind of numeric value, so let PHP's weak typing
 		// be useful for a change
 		return $str;
@@ -454,6 +458,7 @@ class ConfEditor {
 				break;
 			}
 		}
+
 		return array( $regionStart, $regionEnd );
 	}
 
@@ -475,6 +480,7 @@ class ConfEditor {
 		if ( $path['valueStartByte'] === false || $path['valueEndByte'] === false ) {
 			throw new MWException( "Can't find value region for path \"$pathName\"" );
 		}
+
 		return array( $path['valueStartByte'], $path['valueEndByte'] );
 	}
 
@@ -512,6 +518,7 @@ class ConfEditor {
 				break;
 			}
 		}
+
 		return $extraPath;
 	}
 
@@ -538,6 +545,7 @@ class ConfEditor {
 				return $candidatePath;
 			}
 		}
+
 		return false;
 	}
 
@@ -560,6 +568,7 @@ class ConfEditor {
 				$arrowIndent = str_repeat( ' ', $arrowIndentLength );
 			}
 		}
+
 		return array( $indent, $arrowIndent );
 	}
 
@@ -580,32 +589,137 @@ class ConfEditor {
 			}
 
 			switch ( $state ) {
-			case 'file':
-				$this->expect( T_OPEN_TAG );
-				$token = $this->skipSpace();
-				if ( $token->isEnd() ) {
-					break 2;
-				}
-				$this->pushState( 'statement', 'file 2' );
-				break;
-			case 'file 2':
-				$token = $this->skipSpace();
-				if ( $token->isEnd() ) {
-					break 2;
-				}
-				$this->pushState( 'statement', 'file 2' );
-				break;
-			case 'statement':
-				$token = $this->skipSpace();
-				if ( !$this->validatePath( $token->text ) ) {
-					$this->error( "Invalid variable name \"{$token->text}\"" );
-				}
-				$this->nextPath( $token->text );
-				$this->expect( T_VARIABLE );
-				$this->skipSpace();
-				$arrayAssign = false;
-				if ( $this->currentToken()->type == '[' ) {
-					$this->nextToken();
+				case 'file':
+					$this->expect( T_OPEN_TAG );
+					$token = $this->skipSpace();
+					if ( $token->isEnd() ) {
+						break 2;
+					}
+					$this->pushState( 'statement', 'file 2' );
+					break;
+				case 'file 2':
+					$token = $this->skipSpace();
+					if ( $token->isEnd() ) {
+						break 2;
+					}
+					$this->pushState( 'statement', 'file 2' );
+					break;
+				case 'statement':
+					$token = $this->skipSpace();
+					if ( !$this->validatePath( $token->text ) ) {
+						$this->error( "Invalid variable name \"{$token->text}\"" );
+					}
+					$this->nextPath( $token->text );
+					$this->expect( T_VARIABLE );
+					$this->skipSpace();
+					$arrayAssign = false;
+					if ( $this->currentToken()->type == '[' ) {
+						$this->nextToken();
+						$token = $this->skipSpace();
+						if ( !$token->isScalar() ) {
+							$this->error( "expected a string or number for the array key" );
+						}
+						if ( $token->type == T_CONSTANT_ENCAPSED_STRING ) {
+							$text = $this->parseScalar( $token->text );
+						} else {
+							$text = $token->text;
+						}
+						if ( !$this->validatePath( $text ) ) {
+							$this->error( "Invalid associative array name \"$text\"" );
+						}
+						$this->pushPath( $text );
+						$this->nextToken();
+						$this->skipSpace();
+						$this->expect( ']' );
+						$this->skipSpace();
+						$arrayAssign = true;
+					}
+					$this->expect( '=' );
+					$this->skipSpace();
+					$this->startPathValue();
+					if ( $arrayAssign ) {
+						$this->pushState( 'expression', 'array assign end' );
+					} else {
+						$this->pushState( 'expression', 'statement end' );
+					}
+					break;
+				case 'array assign end':
+				case 'statement end':
+					$this->endPathValue();
+					if ( $state == 'array assign end' ) {
+						$this->popPath();
+					}
+					$this->skipSpace();
+					$this->expect( ';' );
+					$this->nextPath( '@extra-' . ( $this->serial++ ) );
+					break;
+				case 'expression':
+					$token = $this->skipSpace();
+					if ( $token->type == T_ARRAY ) {
+						$this->pushState( 'array' );
+					} elseif ( $token->isScalar() ) {
+						$this->nextToken();
+					} elseif ( $token->type == T_VARIABLE ) {
+						$this->nextToken();
+					} else {
+						$this->error( "expected simple expression" );
+					}
+					break;
+				case 'array':
+					$this->skipSpace();
+					$this->expect( T_ARRAY );
+					$this->skipSpace();
+					$this->expect( '(' );
+					$this->skipSpace();
+					$this->pushPath( '@extra-' . ( $this->serial++ ) );
+					if ( $this->isAhead( ')' ) ) {
+						// Empty array
+						$this->pushState( 'array end' );
+					} else {
+						$this->pushState( 'element', 'array end' );
+					}
+					break;
+				case 'array end':
+					$this->skipSpace();
+					$this->popPath();
+					$this->expect( ')' );
+					break;
+				case 'element':
+					$token = $this->skipSpace();
+					// Look ahead to find the double arrow
+					if ( $token->isScalar() && $this->isAhead( T_DOUBLE_ARROW, 1 ) ) {
+						// Found associative element
+						$this->pushState( 'assoc-element', 'element end' );
+					} else {
+						// Not associative
+						$this->nextPath( '@next' );
+						$this->startPathValue();
+						$this->pushState( 'expression', 'element end' );
+					}
+					break;
+				case 'element end':
+					$token = $this->skipSpace();
+					if ( $token->type == ',' ) {
+						$this->endPathValue();
+						$this->markComma();
+						$this->nextToken();
+						$this->nextPath( '@extra-' . ( $this->serial++ ) );
+						// Look ahead to find ending bracket
+						if ( $this->isAhead( ")" ) ) {
+							// Found ending bracket, no continuation
+							$this->skipSpace();
+						} else {
+							// No ending bracket, continue to next element
+							$this->pushState( 'element' );
+						}
+					} elseif ( $token->type == ')' ) {
+						// End array
+						$this->endPathValue();
+					} else {
+						$this->error( "expected the next array element or the end of the array" );
+					}
+					break;
+				case 'assoc-element':
 					$token = $this->skipSpace();
 					if ( !$token->isScalar() ) {
 						$this->error( "expected a string or number for the array key" );
@@ -618,120 +732,15 @@ class ConfEditor {
 					if ( !$this->validatePath( $text ) ) {
 						$this->error( "Invalid associative array name \"$text\"" );
 					}
-					$this->pushPath( $text );
+					$this->nextPath( $text );
 					$this->nextToken();
 					$this->skipSpace();
-					$this->expect( ']' );
+					$this->markArrow();
+					$this->expect( T_DOUBLE_ARROW );
 					$this->skipSpace();
-					$arrayAssign = true;
-				}
-				$this->expect( '=' );
-				$this->skipSpace();
-				$this->startPathValue();
-				if ( $arrayAssign ) {
-					$this->pushState( 'expression', 'array assign end' );
-				} else {
-					$this->pushState( 'expression', 'statement end' );
-				}
-				break;
-			case 'array assign end':
-			case 'statement end':
-				$this->endPathValue();
-				if ( $state == 'array assign end' ) {
-					$this->popPath();
-				}
-				$this->skipSpace();
-				$this->expect( ';' );
-				$this->nextPath( '@extra-' . ( $this->serial++ ) );
-				break;
-			case 'expression':
-				$token = $this->skipSpace();
-				if ( $token->type == T_ARRAY ) {
-					$this->pushState( 'array' );
-				} elseif ( $token->isScalar() ) {
-					$this->nextToken();
-				} elseif ( $token->type == T_VARIABLE ) {
-					$this->nextToken();
-				} else {
-					$this->error( "expected simple expression" );
-				}
-				break;
-			case 'array':
-				$this->skipSpace();
-				$this->expect( T_ARRAY );
-				$this->skipSpace();
-				$this->expect( '(' );
-				$this->skipSpace();
-				$this->pushPath( '@extra-' . ( $this->serial++ ) );
-				if ( $this->isAhead( ')' ) ) {
-					// Empty array
-					$this->pushState( 'array end' );
-				} else {
-					$this->pushState( 'element', 'array end' );
-				}
-				break;
-			case 'array end':
-				$this->skipSpace();
-				$this->popPath();
-				$this->expect( ')' );
-				break;
-			case 'element':
-				$token = $this->skipSpace();
-				// Look ahead to find the double arrow
-				if ( $token->isScalar() && $this->isAhead( T_DOUBLE_ARROW, 1 ) ) {
-					// Found associative element
-					$this->pushState( 'assoc-element', 'element end' );
-				} else {
-					// Not associative
-					$this->nextPath( '@next' );
 					$this->startPathValue();
-					$this->pushState( 'expression', 'element end' );
-				}
-				break;
-			case 'element end':
-				$token = $this->skipSpace();
-				if ( $token->type == ',' ) {
-					$this->endPathValue();
-					$this->markComma();
-					$this->nextToken();
-					$this->nextPath( '@extra-' . ( $this->serial++ ) );
-					// Look ahead to find ending bracket
-					if ( $this->isAhead( ")" ) ) {
-						// Found ending bracket, no continuation
-						$this->skipSpace();
-					} else {
-						// No ending bracket, continue to next element
-						$this->pushState( 'element' );
-					}
-				} elseif ( $token->type == ')' ) {
-					// End array
-					$this->endPathValue();
-				} else {
-					$this->error( "expected the next array element or the end of the array" );
-				}
-				break;
-			case 'assoc-element':
-				$token = $this->skipSpace();
-				if ( !$token->isScalar() ) {
-					$this->error( "expected a string or number for the array key" );
-				}
-				if ( $token->type == T_CONSTANT_ENCAPSED_STRING ) {
-					$text = $this->parseScalar( $token->text );
-				} else {
-					$text = $token->text;
-				}
-				if ( !$this->validatePath( $text ) ) {
-					$this->error( "Invalid associative array name \"$text\"" );
-				}
-				$this->nextPath( $text );
-				$this->nextToken();
-				$this->skipSpace();
-				$this->markArrow();
-				$this->expect( T_DOUBLE_ARROW );
-				$this->skipSpace();
-				$this->startPathValue();
-				$this->pushState( 'expression' );
-				break;
+					$this->pushState( 'expression' );
+					break;
 			}
 		}
 		if ( count( $this->stateStack ) ) {
@@ -763,6 +772,7 @@ class ConfEditor {
 		} else {
 			$this->currentToken = $this->newTokenObj( $this->tokens[$this->pos] );
 		}
+
 		return $this->currentToken;
 	}
 
@@ -787,6 +797,7 @@ class ConfEditor {
 		$this->lineNum = 1;
 		$this->colNum = 1;
 		$this->byteNum = 0;
+
 		return $this->currentToken;
 	}
 
@@ -814,6 +825,7 @@ class ConfEditor {
 		}
 		$this->prevToken = $this->currentToken;
 		$this->setPos( $this->pos + 1 );
+
 		return $this->currentToken;
 	}
 
@@ -838,6 +850,7 @@ class ConfEditor {
 		while ( $this->currentToken && $this->currentToken->isSkip() ) {
 			$this->nextToken();
 		}
+
 		return $this->currentToken;
 	}
 
@@ -1028,6 +1041,7 @@ class ConfEditor {
 				return false;
 			}
 		}
+
 		return false;
 	}
 
@@ -1058,6 +1072,7 @@ class ConfEditor {
  */
 class ConfEditorParseError extends MWException {
 	var $lineNum, $colNum;
+
 	function __construct( $editor, $msg ) {
 		$this->lineNum = $editor->lineNum;
 		$this->colNum = $editor->colNum;
@@ -1072,9 +1087,9 @@ class ConfEditorParseError extends MWException {
 				return "$line\n" . str_repeat( ' ', $this->colNum - 1 ) . "^\n";
 			}
 		}
+
 		return '';
 	}
-
 }
 
 /**

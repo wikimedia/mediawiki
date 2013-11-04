@@ -63,6 +63,7 @@ class ArrayUtils {
 				break;
 			}
 		}
+
 		return $i;
 	}
 }

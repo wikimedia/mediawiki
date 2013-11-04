@@ -38,6 +38,7 @@ abstract class CdbReader {
 			return new CdbReader_DBA( $fileName );
 		} else {
 			wfDebug( "Warning: no dba extension found, using emulation.\n" );
+
 			return new CdbReader_PHP( $fileName );
 		}
 	}
@@ -55,6 +56,7 @@ abstract class CdbReader {
 		if ( !in_array( 'cdb', $handlers ) || !in_array( 'cdb_make', $handlers ) ) {
 			return false;
 		}
+
 		return true;
 	}
 
@@ -94,6 +96,7 @@ abstract class CdbWriter {
 			return new CdbWriter_DBA( $fileName );
 		} else {
 			wfDebug( "Warning: no dba extension found, using emulation.\n" );
+
 			return new CdbWriter_PHP( $fileName );
 		}
 	}
