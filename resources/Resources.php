@@ -1161,9 +1161,14 @@ return array(
 		'position' => 'top',
 	),
 	'mediawiki.ui' => array(
+		// TODO: remove when LESS is valid, this is only for
+		// maintenance/checkLess.php to be able to see it
+		'styles' => array(
+			'resources/mediawiki.ui/mediawiki.ui.vector.less'
+		),
 		'skinStyles' => array(
-			'default' => 'resources/mediawiki.ui/mediawiki.ui.default.css',
-			'vector' => 'resources/mediawiki.ui/mediawiki.ui.vector.css',
+			'default' => 'resources/mediawiki.ui/mediawiki.ui.default.less',
+			'vector' => 'resources/mediawiki.ui/mediawiki.ui.vector.less',
 		),
 		'position' => 'top',
 	),
