@@ -25,7 +25,6 @@
  */
 
 class MWCryptRand {
-
 	/**
 	 * Minimum number of iterations we want to make in our drift calculations.
 	 */
@@ -86,10 +85,11 @@ class MWCryptRand {
 		$files[] = __DIR__;
 		$files[] = dirname( __DIR__ );
 
-		// The config file is likely the most often edited file we know should be around
-		// so include its stat info into the state.
-		// The constant with its location will almost always be defined, as WebStart.php defines
-		// MW_CONFIG_FILE to $IP/LocalSettings.php unless being configured with MW_CONFIG_CALLBACK (eg. the installer)
+		// The config file is likely the most often edited file we know should
+		// be around so include its stat info into the state.
+		// The constant with its location will almost always be defined, as
+		// WebStart.php defines MW_CONFIG_FILE to $IP/LocalSettings.php unless
+		// being configured with MW_CONFIG_CALLBACK (e.g. the installer).
 		if ( defined( 'MW_CONFIG_FILE' ) ) {
 			$files[] = MW_CONFIG_FILE;
 		}
@@ -153,7 +153,8 @@ class MWCryptRand {
 	 * @author Tim Starling
 	 */
 	protected function driftHash( $data ) {
-		// Minimum number of iterations (to avoid slow operations causing the loop to gather little entropy)
+		// Minimum number of iterations (to avoid slow operations causing the
+		// loop to gather little entropy)
 		$minIterations = self::MIN_ITERATIONS;
 		// Duration of time to spend doing calculations (in seconds)
 		$duration = ( self::MSEC_PER_BYTE / 1000 ) * $this->hashLength();
@@ -296,7 +297,8 @@ class MWCryptRand {
 	public function realGenerate( $bytes, $forceStrong = false ) {
 		wfProfileIn( __METHOD__ );
 
-		wfDebug( __METHOD__ . ": Generating cryptographic random bytes for " . wfGetAllCallers( 5 ) . "\n" );
+		wfDebug( __METHOD__ . ": Generating cryptographic random bytes for " .
+			wfGetAllCallers( 5 ) . "\n" );
 
 		$bytes = floor( $bytes );
 		static $buffer = '';
@@ -320,15 +322,17 @@ class MWCryptRand {
 					wfDebug( __METHOD__ . ": mcrypt_create_iv returned false.\n" );
 				} else {
 					$buffer .= $iv;
-					wfDebug( __METHOD__ . ": mcrypt_create_iv generated " . strlen( $iv ) . " bytes of randomness.\n" );
+					wfDebug( __METHOD__ . ": mcrypt_create_iv generated " . strlen( $iv ) .
+						" bytes of randomness.\n" );
 				}
 				wfProfileOut( __METHOD__ . '-mcrypt' );
 			}
 		}
 
 		if ( strlen( $buffer ) < $bytes ) {
-			// If available make use of openssl's random_pseudo_bytes method to attempt to generate randomness.
-			// However don't do this on Windows with PHP < 5.3.4 due to a bug:
+			// If available make use of openssl's random_pseudo_bytes method to
+			// attempt to generate randomness. However don't do this on Windows
+			// with PHP < 5.3.4 due to a bug:
 			// http://stackoverflow.com/questions/1940168/openssl-random-pseudo-bytes-is-slow-php
 			// http://git.php.net/?p=php-src.git;a=commitdiff;h=cd62a70863c261b07f6dadedad9464f7e213cad5
 			if ( function_exists( 'openssl_random_pseudo_bytes' )
@@ -341,7 +345,9 @@ class MWCryptRand {
 					wfDebug( __METHOD__ . ": openssl_random_pseudo_bytes returned false.\n" );
 				} else {
 					$buffer .= $openssl_bytes;
-					wfDebug( __METHOD__ . ": openssl_random_pseudo_bytes generated " . strlen( $openssl_bytes ) . " bytes of " . ( $openssl_strong ? "strong" : "weak" ) . " randomness.\n" );
+					wfDebug( __METHOD__ . ": openssl_random_pseudo_bytes generated " .
+						strlen( $openssl_bytes ) . " bytes of " .
+						( $openssl_strong ? "strong" : "weak" ) . " randomness.\n" );
 				}
 				if ( strlen( $buffer ) >= $bytes ) {
 					// openssl tells us if the random source was strong, if some of our data was generated
@@ -353,11 +359,14 @@ class MWCryptRand {
 		}
 
 		// Only read from urandom if we can control the buffer size or were passed forceStrong
-		if ( strlen( $buffer ) < $bytes && ( function_exists( 'stream_set_read_buffer' ) || $forceStrong ) ) {
+		if ( strlen( $buffer ) < $bytes &&
+			( function_exists( 'stream_set_read_buffer' ) || $forceStrong )
+		) {
 			wfProfileIn( __METHOD__ . '-fopen-urandom' );
 			$rem = $bytes - strlen( $buffer );
 			if ( !function_exists( 'stream_set_read_buffer' ) && $forceStrong ) {
-				wfDebug( __METHOD__ . ": Was forced to read from /dev/urandom without control over the buffer size.\n" );
+				wfDebug( __METHOD__ . ": Was forced to read from /dev/urandom " .
+					"without control over the buffer size.\n" );
 			}
 			// /dev/urandom is generally considered the best possible commonly
 			// available random source, and is available on most *nix systems.
@@ -382,7 +391,9 @@ class MWCryptRand {
 				$random_bytes = fread( $urandom, max( $chunk_size, $rem ) );
 				$buffer .= $random_bytes;
 				fclose( $urandom );
-				wfDebug( __METHOD__ . ": /dev/urandom generated " . strlen( $random_bytes ) . " bytes of randomness.\n" );
+				wfDebug( __METHOD__ . ": /dev/urandom generated " . strlen( $random_bytes ) .
+					" bytes of randomness.\n" );
+
 				if ( strlen( $buffer ) >= $bytes ) {
 					// urandom is always strong, set to true if all our data was generated using it
 					$this->strong = true;
@@ -400,7 +411,8 @@ class MWCryptRand {
 		// We hash the random state with more salt to avoid the state from leaking
 		// out and being used to predict the /randomness/ that follows.
 		if ( strlen( $buffer ) < $bytes ) {
-			wfDebug( __METHOD__ . ": Falling back to using a pseudo random state to generate randomness.\n" );
+			wfDebug( __METHOD__ .
+				": Falling back to using a pseudo random state to generate randomness.\n" );
 		}
 		while ( strlen( $buffer ) < $bytes ) {
 			wfProfileIn( __METHOD__ . '-fallback' );
@@ -417,7 +429,8 @@ class MWCryptRand {
 		$generated = substr( $buffer, 0, $bytes );
 		$buffer = substr( $buffer, $bytes );
 
-		wfDebug( __METHOD__ . ": " . strlen( $buffer ) . " bytes of randomness leftover in the buffer.\n" );
+		wfDebug( __METHOD__ . ": " . strlen( $buffer ) .
+			" bytes of randomness leftover in the buffer.\n" );
 
 		wfProfileOut( __METHOD__ );
 

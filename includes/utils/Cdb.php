@@ -35,11 +35,11 @@ abstract class CdbReader {
 	 */
 	public static function open( $fileName ) {
 		if ( self::haveExtension() ) {
-			return new CdbReader_DBA( $fileName );
+			return new CdbReaderDBA( $fileName );
 		} else {
 			wfDebug( "Warning: no dba extension found, using emulation.\n" );
 
-			return new CdbReader_PHP( $fileName );
+			return new CdbReaderPHP( $fileName );
 		}
 	}
 
@@ -89,15 +89,15 @@ abstract class CdbWriter {
 	 *
 	 * @param $fileName string
 	 *
-	 * @return CdbWriter_DBA|CdbWriter_PHP
+	 * @return CdbWriterDBA|CdbWriterPHP
 	 */
 	public static function open( $fileName ) {
 		if ( CdbReader::haveExtension() ) {
-			return new CdbWriter_DBA( $fileName );
+			return new CdbWriterDBA( $fileName );
 		} else {
 			wfDebug( "Warning: no dba extension found, using emulation.\n" );
 
-			return new CdbWriter_PHP( $fileName );
+			return new CdbWriterPHP( $fileName );
 		}
 	}
 
@@ -125,8 +125,8 @@ abstract class CdbWriter {
 /**
  * Reader class which uses the DBA extension
  */
-class CdbReader_DBA {
-	var $handle;
+class CdbReaderDBA {
+	public $handle;
 
 	function __construct( $fileName ) {
 		$this->handle = dba_open( $fileName, 'r-', 'cdb' );
@@ -150,8 +150,8 @@ class CdbReader_DBA {
 /**
  * Writer class which uses the DBA extension
  */
-class CdbWriter_DBA {
-	var $handle, $realFileName, $tmpFileName;
+class CdbWriterDBA {
+	public $handle, $realFileName, $tmpFileName;
 
 	function __construct( $fileName ) {
 		$this->realFileName = $fileName;
