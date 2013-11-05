@@ -8,6 +8,9 @@
  */
 class ApiFormatWddxTest extends ApiFormatTestBase {
 
+	/**
+	 * @requires function wddx_deserialize
+	 */
 	public function testValidSyntax( ) {
 		$data = $this->apiRequest( 'wddx', array( 'action' => 'query', 'meta' => 'siteinfo' ) );
 
