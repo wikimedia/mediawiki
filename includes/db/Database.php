@@ -243,7 +243,6 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	protected $mTablePrefix;
 	protected $mFlags;
 	protected $mForeign;
-	protected $mTrxLevel = 0;
 	protected $mErrorCount = 0;
 	protected $mLBInfo = array();
 	protected $mFakeSlaveLag = null, $mFakeMaster = false;
@@ -255,6 +254,14 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	protected $htmlErrors;
 
 	protected $delimiter = ';';
+
+	/**
+	 * Either 1 if a transaction is active or 0 otherwise.
+	 * The other Trx fields may not be meaningfull if this is 0.
+	 *
+	 * @var int
+	 */
+	protected $mTrxLevel = 0;
 
 	/**
 	 * Remembers the function name given for starting the most recent transaction via begin().
@@ -385,16 +392,15 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	}
 
 	/**
-	 * Gets or sets the current transaction level.
+	 * Gets the current transaction level.
 	 *
 	 * Historically, transactions were allowed to be "nested". This is no
 	 * longer supported, so this function really only returns a boolean.
 	 *
-	 * @param int $level An integer (0 or 1), or omitted to leave it unchanged.
 	 * @return int The previous value
 	 */
-	public function trxLevel( $level = null ) {
-		return wfSetVar( $this->mTrxLevel, $level );
+	public function trxLevel() {
+		return $this->mTrxLevel;
 	}
 
 	/**
@@ -1023,9 +1029,9 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		# Try reconnecting if the connection was lost
 		if ( false === $ret && $this->wasErrorReissuable() ) {
 			# Transaction is gone, like it or not
+			$hadTrx = $this->mTrxLevel; // possible lost transaction
+			wfDebug( "Connection lost, reconnecting...\n" );
 			$this->mTrxLevel = 0;
-			$this->mTrxIdleCallbacks = array(); // cancel
-			$this->mTrxPreCommitCallbacks = array(); // cancel
 			wfDebug( "Connection lost, reconnecting...\n" );
 
 			if ( $this->ping() ) {
@@ -1038,7 +1044,10 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 					# Not a database error to lose a transaction after a minute or two
 					wfLogDBError( "Connection lost and reconnected after {$elapsed}s, query: $sqlx\n" );
 				}
-				$ret = $this->doQuery( $commentedSql );
+				if ( !$hadTrx ) {
+					# Should be safe to silently retry
+					$ret = $this->doQuery( $commentedSql );
+				}
 			} else {
 				wfDebug( "Failed\n" );
 			}
@@ -3223,6 +3232,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 *
 	 * @since 1.23
 	 * @param string $fname
+	 * @throws DBError
 	 */
 	final public function startAtomic( $fname = __METHOD__ ) {
 		if ( !$this->mTrxLevel ) {
@@ -3232,6 +3242,32 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		}
 
 		$this->mTrxAtomicLevels->push( $fname );
+	}
+
+	/**
+	 * Ends an atomic section of SQL statements
+	 *
+	 * Ends the next section of atomic SQL statements and commits the transaction
+	 * if necessary.
+	 *
+	 * @since 1.23
+	 * @see DatabaseBase::startAtomic
+	 * @param string $fname
+	 * @throws DBError
+	 */
+	final public function endAtomic( $fname = __METHOD__ ) {
+		if ( !$this->mTrxLevel ) {
+			throw new DBUnexpectedError( $this, 'No atomic transaction is open.' );
+		}
+		if ( $this->mTrxAtomicLevels->isEmpty() ||
+			$this->mTrxAtomicLevels->pop() !== $fname
+		) {
+			throw new DBUnexpectedError( $this, 'Invalid atomic section ended.' );
+		}
+
+		if ( $this->mTrxAtomicLevels->isEmpty() && $this->mTrxAutomaticAtomic ) {
+			$this->commit( $fname, 'flush' );
+		}
 	}
 
 	/**
@@ -3245,6 +3281,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 * transaction was started automatically because of the DBO_TRX flag.
 	 *
 	 * @param $fname string
+	 * @throws DBError
 	 */
 	final public function begin( $fname = __METHOD__ ) {
 		global $wgDebugDBTransactions;
@@ -3287,6 +3324,8 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		$this->mTrxAutomatic = false;
 		$this->mTrxAutomaticAtomic = false;
 		$this->mTrxAtomicLevels = new SplStack;
+		$this->mTrxIdleCallbacks = array();
+		$this->mTrxPreCommitCallbacks = array();
 	}
 
 	/**
@@ -3298,28 +3337,6 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	protected function doBegin( $fname ) {
 		$this->query( 'BEGIN', $fname );
 		$this->mTrxLevel = 1;
-	}
-
-	/**
-	 * Ends an atomic section of SQL statements
-	 *
-	 * Ends the next section of atomic SQL statements and commits the transaction
-	 * if necessary.
-	 *
-	 * @since 1.23
-	 * @see DatabaseBase::startAtomic
-	 * @param string $fname
-	 */
-	final public function endAtomic( $fname = __METHOD__ ) {
-		if ( $this->mTrxAtomicLevels->isEmpty() ||
-			$this->mTrxAtomicLevels->pop() !== $fname
-		) {
-			throw new DBUnexpectedError( $this, 'Invalid atomic section ended.' );
-		}
-
-		if ( $this->mTrxAtomicLevels->isEmpty() && $this->mTrxAutomaticAtomic ) {
-			$this->commit( $fname, 'flush' );
-		}
 	}
 
 	/**
@@ -3359,7 +3376,6 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		if ( $this->mTrxDoneWrites ) {
 			Profiler::instance()->transactionWritingOut( $this->mServer, $this->mDBname );
 		}
-		$this->mTrxDoneWrites = false;
 		$this->runOnTransactionIdleCallbacks();
 	}
 
@@ -3395,7 +3411,6 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		if ( $this->mTrxDoneWrites ) {
 			Profiler::instance()->transactionWritingOut( $this->mServer, $this->mDBname );
 		}
-		$this->mTrxDoneWrites = false;
 	}
 
 	/**
