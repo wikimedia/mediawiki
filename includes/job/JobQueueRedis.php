@@ -70,7 +70,7 @@ class JobQueueRedis extends JobQueue {
 	/**
 	 * @params include:
 	 *   - redisConfig : An array of parameters to RedisConnectionPool::__construct().
-	 *                   Note that the serializer option is ignored "none" is always used.
+	 *                   Note that the serializer option is ignored as "none" is always used.
 	 *   - redisServer : A hostname/port combination or the absolute path of a UNIX socket.
 	 *                   If a hostname is specified but no port, the standard port number
 	 *                   6379 will be used. Required.
