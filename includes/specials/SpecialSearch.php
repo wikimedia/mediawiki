@@ -318,13 +318,9 @@ class SpecialSearch extends SpecialPage {
 			)
 		);
 		$out->addHtml(
-			Xml::openElement( 'table', array( 'id' => 'mw-search-top-table', 'cellpadding' => 0, 'cellspacing' => 0 ) ) .
-			Xml::openElement( 'tr' ) .
-			Xml::openElement( 'td' ) . "\n" .
+			Xml::openElement( 'div', array( 'id' => 'mw-search-top-table' ) ) .
 			$this->shortDialog( $term ) .
-			Xml::closeElement( 'td' ) .
-			Xml::closeElement( 'tr' ) .
-			Xml::closeElement( 'table' )
+			Xml::closeElement( 'div' )
 		);
 
 		// Sometimes the search engine knows there are too many hits
