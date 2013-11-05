@@ -1008,7 +1008,12 @@ function wfDebugMem( $exact = false ) {
 
 /**
  * Send a line to a supplementary debug log file, if configured, or main debug log if not.
- * $wgDebugLogGroups[$logGroup] should be set to a filename to send to a separate log.
+ * To configure a supplementary log file, set $wgDebugLogGroups[$logGroup] to a string
+ * filename or an associative array mapping 'target' to the desired filename. The
+ * associative array may also contain a 'sample' key with an integer value, specifying
+ * a sampling factor.
+ *
+ * @since 1.23 support for sampling log messages via $wgDebugLogGroups.
  *
  * @param $logGroup String
  * @param $text String
@@ -1018,14 +1023,28 @@ function wfDebugMem( $exact = false ) {
 function wfDebugLog( $logGroup, $text, $public = true ) {
 	global $wgDebugLogGroups;
 	$text = trim( $text ) . "\n";
-	if ( isset( $wgDebugLogGroups[$logGroup] ) ) {
-		$time = wfTimestamp( TS_DB );
-		$wiki = wfWikiID();
-		$host = wfHostname();
-		wfErrorLog( "$time $host $wiki: $text", $wgDebugLogGroups[$logGroup] );
-	} elseif ( $public === true ) {
-		wfDebug( "[$logGroup] $text", false );
+
+	if ( !isset( $wgDebugLogGroups[$logGroup] ) ) {
+		if ( $public === true ) {
+			wfDebug( "[$logGroup] $text", false );
+		}
+		return;
 	}
+
+	$logConfig = $wgDebugLogGroups[$logGroup];
+	if ( is_array( $logConfig ) ) {
+		if ( isset( $logConfig['sample'] ) && mt_rand( 1, $logConfig['sample'] ) !== 1 ) {
+			return;
+		}
+		$destination = $logConfig['destination'];
+	} else {
+		$destination = strval( $logConfig );
+	}
+
+	$time = wfTimestamp( TS_DB );
+	$wiki = wfWikiID();
+	$host = wfHostname();
+	wfErrorLog( "$time $host $wiki: $text", $destination );
 }
 
 /**
