@@ -1302,15 +1302,15 @@ Outros administradores da {{SITENAME}} continuarão a poder aceder ao conteúdo 
 * Informação pessoal imprópria
 *: ''endereços de domicílio e números de telefone, números da segurança social, etc''",
 'revdelete-legend' => 'Definir restrições de visibilidade',
-'revdelete-hide-text' => 'Ocultar texto da edição',
+'revdelete-hide-text' => 'Revisão do texto',
 'revdelete-hide-image' => 'Ocultar conteúdo do ficheiro',
 'revdelete-hide-name' => 'Ocultar operação e destino',
-'revdelete-hide-comment' => 'Ocultar resumo da edição',
-'revdelete-hide-user' => 'Ocultar nome de utilizador/IP',
+'revdelete-hide-comment' => 'Resumo da edição',
+'revdelete-hide-user' => 'Nome de utilizador/endereço de IP',
 'revdelete-hide-restricted' => 'Ocultar dados dos administradores e de todos os outros',
 'revdelete-radio-same' => '(manter)',
-'revdelete-radio-set' => 'Sim',
-'revdelete-radio-unset' => 'Não',
+'revdelete-radio-set' => 'Visível',
+'revdelete-radio-unset' => 'Escondido',
 'revdelete-suppress' => 'Ocultar dados dos administradores e de todos os outros',
 'revdelete-unsuppress' => 'Remover restrições das revisões restauradas',
 'revdelete-log' => 'Motivo:',
@@ -1687,6 +1687,8 @@ Se optar por revelá-lo, ele será utilizado para atribuir-lhe crédito pelo seu
 'right-edituserjs' => 'Editar os ficheiros JS de outros utilizadores',
 'right-editmyusercss' => 'Editar os seus próprios ficheiros CSS de utilizador',
 'right-editmyuserjs' => 'Editar os seus próprios ficheiros JavaScript de utilizador',
+'right-viewmywatchlist' => 'Ver sua própria lista de páginas vigiadas',
+'right-editmywatchlist' => 'Editar sua própria lista de páginas vigiadas. Observe que algumas ações seguirão adicionando páginas, mesmo sem este direito.',
 'right-viewmyprivateinfo' => 'Ver os seus próprios dados privados (ex.: endereço de e-mail, nome real)',
 'right-editmyprivateinfo' => 'Editar os seus próprios dados privados (ex.: endereço de e-mail, nome real)',
 'right-editmyoptions' => 'Editar as suas próprias preferências',
@@ -1751,6 +1753,10 @@ Se optar por revelá-lo, ele será utilizado para atribuir-lhe crédito pelo seu
 'action-userrights-interwiki' => 'editar privilégios de utilizadores de outras wikis',
 'action-siteadmin' => 'bloquear ou desbloquear a base de dados',
 'action-sendemail' => 'enviar e-mails',
+'action-editmywatchlist' => 'Editar sua lista de páginas vigiadas',
+'action-viewmywatchlist' => 'Ver sua lista de páginas vigiadas',
+'action-viewmyprivateinfo' => 'Ver sua informação privada',
+'action-editmyprivateinfo' => 'Editar sua informação privada',
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|alteração|alterações}}',
@@ -2171,6 +2177,7 @@ Talvez queira editar a descrição na [$2 página original de descrição do fic
 
 # Random page in category
 'randomincategory-nopages' => 'Não há páginas na categoria [[:Category:$1|$1]].',
+'randomincategory-selectcategory' => 'Obter página aleatória da categoria: $1 $2',
 'randomincategory-selectcategory-submit' => 'Ir',
 
 # Random redirect
@@ -2279,6 +2286,7 @@ Agora redirecciona para [[$2]].',
 'listusers' => 'Utilizadores',
 'listusers-editsonly' => 'Mostrar apenas utilizadores com edições',
 'listusers-creationsort' => 'Ordenar por data de criação',
+'listusers-desc' => 'Ordenar de forma decrescente',
 'usereditcount' => '$1 {{PLURAL:$1|edição|edições}}',
 'usercreated' => '{{GENDER:$3|Criado|Criada}} em $1 às $2',
 'newpages' => 'Páginas recentes',
@@ -4005,7 +4013,7 @@ Em conjunto com este programa deve ter recebido [{{SERVER}}{{SCRIPTPATH}}/COPYIN
 # Special:Redirect
 'redirect' => 'Redirecionar pelo ID do ficheiro, utilizador ou revisão',
 'redirect-legend' => 'Redirecionar para um ficheiro ou página',
-'redirect-summary' => 'Esta página especial redireciona a um ficheiro (dado o nome do ficheiro), a uma página (dado um ID de revisão) ou a uma página de utilizador (dado o ID do utilizador).',
+'redirect-summary' => 'Esta página especial redireciona a um ficheiro (dado o nome do ficheiro), a uma página (dado um ID de revisão) ou a uma página de utilizador (dado o ID do utilizador). Utilização: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]] ou [[{{#Special:Redirect}}/user/101]].',
 'redirect-submit' => 'Ir',
 'redirect-lookup' => 'Pesquisa:',
 'redirect-value' => 'Valor:',
@@ -4228,6 +4236,7 @@ Caso contrário, pode facilmente usar o formulário abaixo. O seu comentário se
 'rotate-comment' => 'Imagem rodada em $1 {{PLURAL:$1|grau|graus}} no sentido dos ponteiros do relógio',
 
 # Limit report
+'limitreport-title' => 'Dados de perfis do analisador:',
 'limitreport-cputime-value' => '$1 {{PLURAL:$1|segundo|segundos}}',
 'limitreport-walltime-value' => '$1 {{PLURAL:$1|segundo|segundos}}',
 'limitreport-postexpandincludesize-value' => '$1/$2 {{PLURAL:$2|byte|bytes}}',

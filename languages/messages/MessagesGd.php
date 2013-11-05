@@ -670,6 +670,9 @@ Bu chòir dhut seo a dhèanamh ma thug thu do chuideigin e air mhearachd no ma b
 'resettokens-legend' => 'Ath-shuidhich na tòcanan',
 'resettokens-tokens' => 'Tòcanan:',
 'resettokens-token-label' => "$1 ('s e $2 an luach làithreach)",
+'resettokens-watchlist-token' => "Tòcan airson an inbhir-lìn (Atom/RSS) a sheallas dhut [[Special:Watchlist|atharraichean air duilleagan a tha air a' chlàr-fhaire agad]]",
+'resettokens-done' => 'Chaidh na tòcanan ath-shuidheachadh.',
+'resettokens-resetbutton' => 'Ath-shuidhich na tòcanan a chaidh a thaghadh',
 
 # Edit page toolbar
 'bold_sample' => 'Teacs trom',
@@ -878,6 +881,7 @@ Cha deach adhbhar a thoirt seachad.',
 Tha coltas gun deach a sguabadh às.",
 'edit-conflict' => 'Còmhstri deasachaidh.',
 'edit-no-change' => "Chaidh an obair-dheasachaidh agad a leigeil seachad a chionn 's nach do dh'atharraich thu dad.",
+'postedit-confirmation' => 'Chaidh na dheasaich thu a shàbhaladh.',
 'edit-already-exists' => "Cha b' urrainn dhuinn an duilleag ùr a chruthachadh.
 Tha e ann mu thràth.",
 'defaultmessagetext' => 'Teacsa bunaiteach na teachdaireachd',
@@ -905,10 +909,29 @@ Cha dèid cuid dhith a ghabhail a-steach.",
 Chaidh na h-argamaidean sinn a leigeil seachad.",
 'post-expand-template-argument-category' => 'Duilleagan air an deach argamaidean teamplaidean fhàgail às',
 'parser-template-loop-warning' => 'Mhothaicheadh do lùb teamplaid: [[$1]]',
+'parser-template-recursion-depth-warning' => 'Chaidh thu thairis air crìoch doimhne nan ath-chùrsaidhean teamplaid ($1)',
+'language-converter-depth-warning' => 'Chaidh thu thairis air crìoch doimhne an iompachair chànain ($1)',
+'node-count-exceeded-category' => 'Duilleagan far an deachas thairis air cunntas nan nòdan',
+'node-count-exceeded-warning' => 'Chaidh an duilleag thairis air cunntas nan nòdan',
+'expansion-depth-exceeded-category' => "Duilleagan far an deachas thairis air a' chrìoch leudachaidh",
+'expansion-depth-exceeded-warning' => 'Chaidh an duilleag thairis air an doimhne leudachaidh',
 'parser-unstrip-loop-warning' => 'Mhothaich sinn do lùb unstrip',
+'parser-unstrip-recursion-limit' => 'Chaidheas thairis air crìoch unstrip recursion ($1)',
+'converter-manual-rule-error' => 'Mhothaich sinn do mhearachd san riaghailt iompachadh làimhe airson cànan',
+
+# "Undo" feature
+'undo-success' => "Gabhaidh an deasachadh seo a neo-dhèanamh.
+Thoir sùil air a' choimeas gu h-ìosal is dearbh gur e sin a tha fa-near dhut agus sàbhail na h-atharraichean gu h-ìosal gus neo-dhèanamh an deasachaidh a choileanadh.",
+'undo-failure' => "Cha b' urrainn dhuinn an deasachadh a neo-dhèanamh air sgàth 's gun robh deasachaidhean eile sa mheadhan.",
+'undo-norev' => "Cha b' urrainn dhuinn an deasachadh a neo-dhèanamh a chionn 's nach robh e ann no gun deach a sguabadh às.",
+'undo-summary' => 'Neo-dhèan mùthadh $1 le [[Special:Contributions/$2|$2]] ([[User talk:$2|Deasbaireachd]])',
+'undo-summary-username-hidden' => 'Neo-dhèan am mùthadh $1 le cleachdaiche falaichte',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Cha ghabh an cunntas a chruthachadh',
+'cantcreateaccount-text' => "Chuir [[User:$3|$3]] bacadh air cruthachadh chunntasan on t-seòladh IP seo ('''$1''').
+
+Dh'innise $3 gun do rinn iad seo air sgàth: ''$2''",
 
 # History pages
 'viewpagelogs' => 'Seall logaichean na duilleige seo',
@@ -946,20 +969,70 @@ Feuch is [[Special:Search|lorg duilleagan ùra iomachaidh air an uici]]",
 'rev-deleted-comment' => '(chaidh gearr-chunntas an deasachaidh a thoirt air falbh)',
 'rev-deleted-user' => '(chaidh an t-ainm-cleachdaiche a thoirt air falbh)',
 'rev-deleted-event' => '(chaidh gnìomh an loga a thoirt air falbh)',
+'rev-deleted-user-contribs' => '[chaidh an t-ainm-cleachdaiche no an seòladh IP a thoirt air falbh - chan fhaic na com-pàirtichean an deasachadh]',
+'rev-deleted-text-permission' => "Chaidh mùthadh na duilleige seo '''a sguabadh às'''.
+Gheibh thu mion-fhiosrachadh air [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} ann an loga nan rudan a chaidh a sguabadh às].",
+'rev-deleted-text-unhide' => "Chaidh mùthadh na duilleige seo '''a sguabadh às'''.
+Gheibh thu mion-fhiosrachadh air [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} ann an loga nan rudan a chaidh a sguabadh às].
+'S urrainn dhut [$1 am mùthadh seo fhaicinn fhathast] ma tha thu airson leantainn air adhart.",
+'rev-suppressed-text-unhide' => "Chaidh mùthadh na duilleige seo '''a mhùchadh'''.
+Gheibh thu mion-fhiosrachadh air [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} ann an loga nan rudan a chaidh a mhùchadh].
+'S urrainn dhut [$1 am mùthadh seo fhaicinn fhathast] ma tha thu airson leantainn air adhart.",
+'rev-deleted-text-view' => "Chaidh mùthadh na duilleige seo '''a sguabadh às'''.
+'S urrainn dhut coimhead air, gheibh thu mion-fhiosrachadh air [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} ann an loga nan rudan a chaidh a sguabadh às].",
+'rev-suppressed-text-view' => "Chaidh mùthadh na duilleige seo '''a mhùchadh'''.
+'S urrainn dhut coimhead air, gheibh thu mion-fhiosrachadh air [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} ann an loga nan rudan a chaidh a mhùchadh].",
+'rev-deleted-no-diff' => "Chan fhaic thu an diff seo a chionn 's gun deach aon dhe na mùthaidhean '''a sguabadh às'''.
+Gheibh thu mion-fhiosrachadh air [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} ann an loga nan rudan a chaidh a sguabadh às].",
+'rev-suppressed-no-diff' => "Chan fhaic thu an diff seo a chionn 's gun deach aon dhe na mùthaidhean '''a sguabadh às'''.",
+'rev-deleted-unhide-diff' => "Chaidh mùthadh dhen diff seo '''a sguabadh às'''.
+Gheibh thu mion-fhiosrachadh air [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} ann an loga nan rudan a chaidh a sguabadh às].
+'S urrainn dhut [$1 coimhead air an diff seo fhathast] ma tha thu airson leantainn air adhart.",
+'rev-suppressed-unhide-diff' => "Chaidh mùthadh an diff seo '''a mhùchadh'''.
+Gheibh thu mion-fhiosrachadh air [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} ann an loga nan rudan a chaidh a mhùchadh].
+'S urrainn dhut [$1 coimhead air an diff seo fhathast] ma tha thu airson leantainn air adhart.",
+'rev-deleted-diff-view' => "Chaidh mùthadh an diff seo '''a sguabadh às'''.
+'S urrainn dhut coimhead air an diff seo, gheibh thu mion-fhiosrachadh air [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} ann an loga nan rudan a chaidh a sguabadh às].",
+'rev-suppressed-diff-view' => "Chaidh mùthadh an diff seo '''a mhùchadh'''.
+'S urrainn dhut coimhead air an diff seo, gheibh thu mion-fhiosrachadh air [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} ann an loga nan rudan a chaidh a mhùchadh].",
 'rev-delundel' => 'seall/falaich',
 'rev-showdeleted' => 'seall',
+'revisiondelete' => 'Sguab às/neo-dhèan sguabadh às mhùthaidhean',
+'revdelete-nooldid-title' => 'Tha am mùthadh seo mì-dhligheach',
+'revdelete-nooldid-text' => "Cha do shònraich thu mùthadh airson seo a dhèanamh, chan eil e ann no tha thu a' feuchainn ris am mùthadh làithreach a chur am falach.",
+'revdelete-nologtype-title' => 'Cha deach seòrsa an loga a shònrachadh',
+'revdelete-nologtype-text' => 'Cha do shònraich thu seòrsa an loga air an dèanar seo.',
+'revdelete-nologid-title' => 'Innteart mì-dhligheach an loga',
+'revdelete-nologid-text' => 'Cha do shònraich thu tachartas loga targaide gus seo a dhèanamh no chan eil an t-innteart seo ann.',
+'revdelete-no-file' => 'Chan eil am faidhle a shònraich thu ann.',
+'revdelete-show-file-confirm' => 'A bheil thu cinnteach gu bheil thu airson coimhead air mùthadh an fhaidhle "<nowiki>$1</nowiki>" a chaidh a sguabadh às $2 aig $3?',
+'revdelete-show-file-submit' => 'Tha',
 'revdelete-selected' => "'''{{PLURAL:$2|Lèirmheas|Lèirmheasan}} de [[:$1]] a thagh thu:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|An tachartas loga|Na tachartasan loga}} a thagh thu:'''",
+'revdelete-hide-text' => "Teacsa a' mhùthaidh",
+'revdelete-hide-image' => 'Falaich susbaint an fhaidhle',
+'revdelete-hide-name' => 'Falaich an gnìomh agus an targaid',
+'revdelete-hide-comment' => 'Gearr-chunntas an deasachaidh',
 'revdelete-hide-user' => 'Ainm-cleachdaiche/seòladh IP an deasaiche',
+'revdelete-hide-restricted' => 'Mùch dàta o rianairean agus càch',
 'revdelete-radio-same' => '(na atharraich)',
 'revdelete-radio-set' => 'Ri fhaicinn',
 'revdelete-radio-unset' => 'Falaichte',
+'revdelete-suppress' => 'Mùch dàta o rianairean agus càch',
+'revdelete-unsuppress' => 'Thoir air falbh na bacaidhean air mùthaidhean a chaidh aiseag',
 'revdelete-log' => 'Adhbhar:',
 'revdelete-submit' => 'Cuir air {{PLURAL:$1|an lèirmheas|na lèirmheasan}} a thagh thu',
+'revdelete-success' => "'''Chaidh so-fhaicsinneachd a' mhùthaidh ùrachadh.'''",
+'revdelete-failure' => "'''Cha b' urrainn dhuinn so-fhaicsinneachd a' mhùthaidh ùrachadh:'''
+$1",
+'logdelete-success' => "'''Chaidh faicsinneachd an loga a shuidheachadh.'''",
+'logdelete-failure' => "'''Cha b' urrainn dhuinn faicsinneachd an loga a shuidheachadh:'''
+$1",
 'revdel-restore' => 'mùth follaiseachd',
 'revdel-restore-deleted' => 'mùthaidhean a chaidh a sguabadh às',
 'revdel-restore-visible' => 'mùthaidhean faicsinneach',
 'pagehist' => 'Eachdraidh na duilleige',
+'deletedhist' => 'Eachdraidh a chaidh a sguabadh às',
 'revdelete-otherreason' => 'Adhbhar eile/a bharrachd:',
 'revdelete-reasonotherlist' => 'Adhbhar eile',
 'revdelete-edit-reasonlist' => 'Deasaich adhbharan an sguabaidh às',
@@ -967,9 +1040,12 @@ Feuch is [[Special:Search|lorg duilleagan ùra iomachaidh air an uici]]",
 
 # History merging
 'mergehistory-from' => 'An duilleag thùsail:',
+'mergehistory-autocomment' => 'Chaidh [[:$1]] a cho-aonadh dha [[:$2]]',
+'mergehistory-comment' => 'Chaidh [[:$1]] a cho-aonadh dha [[:$2]]: $3',
 'mergehistory-reason' => 'Adhbhar:',
 
 # Merge log
+'mergelog' => "Loga a' cho-aonaidh",
 'revertmerge' => 'Dì-aontaich',
 
 # Diffs
@@ -979,6 +1055,7 @@ Feuch is [[Special:Search|lorg duilleagan ùra iomachaidh air an uici]]",
 'compareselectedversions' => 'Dèan coimeas eadar na mùthaidhean a thagh thu',
 'showhideselectedversions' => 'Seall/Falaich na lèirmheasan a thagh thu',
 'editundo' => 'neo-dhèan',
+'diff-empty' => '(Gun diofar eatarra)',
 'diff-multi' => '({{PLURAL:$1|Aon lèirmheas eadar-mheadhanach||$1 lèirmheasan eadar-mheadhanach|$1 lèirmheas eadar-mheadhanach}} le {{PLURAL:$2|aon chleachdaiche|$2 chleachdaiche|$2 cleachdaichean|$2 cleachdaiche}} gun sealltainn)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Aon lèirmheas eadar-mheadhanach||$1 lèirmheasan eadar-mheadhanach|$1 lèirmheas eadar-mheadhanach}} le {{PLURAL:$2|aon chleachdaiche|$2 chleachdaiche|$2 cleachdaichean|$2 cleachdaiche}} gun sealltainn)',
 
@@ -1064,6 +1141,9 @@ Faodaidh gum bi inneacsan susbaint {{SITENAME}} tuilleadh 's sean ge-tà.",
 'prefs-watchlist' => 'An clàr-faire',
 'prefs-watchlist-days' => "Co mheud latha a sheallar air a' chlàr-fhaire:",
 'prefs-watchlist-days-max' => "{{PLURAL:$1|latha|latha|làithean|latha}} air a' char as motha",
+'prefs-watchlist-edits-max' => 'Àireamh as motha: 1000',
+'prefs-watchlist-token' => "Tòcan a' chlàir-fhaire:",
+'prefs-misc' => 'Measgachadh',
 'prefs-resetpass' => 'Atharraich am facal-faire',
 'prefs-changeemail' => 'Atharraich am post-d',
 'prefs-setemail' => 'Suidhich seòladh puist-d',
@@ -1077,10 +1157,14 @@ Faodaidh gum bi inneacsan susbaint {{SITENAME}} tuilleadh 's sean ge-tà.",
 'columns' => 'Colbhan',
 'searchresultshead' => 'Lorg',
 'stub-threshold-disabled' => 'À comas',
+'recentchangesdays-max' => "{{PLURAL:$1|latha|latha|làithean|latha}} air a' char as motha",
+'recentchangescount' => 'Uiread a dheasachaidhean a thèid a shealltainn a ghnàth:',
 'savedprefs' => 'Tha na roghainnean agad air an sàbhaladh.',
 'timezonelegend' => 'Roinn-tìde:',
 'localtime' => 'An t-àm ionadail:',
+'timezoneuseserverdefault' => 'Cleachd bun-roghainn na h-Uicipeid ($1)',
 'servertime' => 'Àm an fhrithealaichte:',
+'guesstimezone' => 'Lìon on bhrabhsair',
 'timezoneregion-africa' => 'Afraga',
 'timezoneregion-america' => 'Aimeireaga',
 'timezoneregion-antarctica' => 'An Antartaig',
@@ -1091,6 +1175,8 @@ Faodaidh gum bi inneacsan susbaint {{SITENAME}} tuilleadh 's sean ge-tà.",
 'timezoneregion-europe' => 'An Roinn-Eòrpa',
 'timezoneregion-indian' => 'An Cuan Innseanach',
 'timezoneregion-pacific' => 'An Cuan Sèimh',
+'allowemail' => 'Ceadaich post-d o chleachdaichean eile',
+'prefs-searchoptions' => 'Lorg',
 'prefs-namespaces' => 'Namespaces',
 'default' => 'an roghainn bhunaiteach',
 'prefs-files' => 'Faidhlichean',
@@ -1129,6 +1215,8 @@ Chan fhaicear an seòladh fhèin nuair a chuireas cuideigin post-dealain thugad.
 'prefs-dateformat' => "Fòrmat a' chinn-là",
 'prefs-timeoffset' => 'Diofar ama',
 'prefs-advancedediting' => 'Roghainnean coitcheann',
+'prefs-editor' => 'Deasaiche',
+'prefs-preview' => 'Ro-shealladh',
 'prefs-advancedrc' => 'Roghainnean adhartach',
 'prefs-advancedrendering' => 'Roghainnean adhartach',
 'prefs-advancedsearchoptions' => 'Roghainnean adhartach',
@@ -1136,6 +1224,7 @@ Chan fhaicear an seòladh fhèin nuair a chuireas cuideigin post-dealain thugad.
 'prefs-displayrc' => 'Roghainnean taisbeanaidh',
 'prefs-displaysearchoptions' => 'Roghainnean taisbeanaidh',
 'prefs-displaywatchlist' => 'Roghainnean taisbeanaidh',
+'prefs-tokenwatchlist' => 'Tòcan',
 'prefs-diffs' => 'Diffs',
 
 # User preference: email validation using jQuery

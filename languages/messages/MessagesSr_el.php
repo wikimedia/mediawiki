@@ -701,8 +701,7 @@ $2',
 'customcssprotected' => 'Nemate dozvolu da menjate ovu CSS stranicu jer sadrži lične postavke drugog korisnika.',
 'customjsprotected' => 'Nemate dozvolu da menjate ovu stranicu javaskripta jer sadrži lične postavke drugog korisnika.',
 'ns-specialprotected' => 'Posebne stranice se ne mogu uređivati.',
-'titleprotected' => "Ovaj naslov je {{GENDER:$1|zaštitio korisnik|zaštitila korisnica|zaštitio korisnik}} [[User:$1|$1]].
-Navedeni razlog: ''$2''.",
+'titleprotected' => "Ovaj naziv je [[User:$1|$1]] zaštitio od pravljenja. Razlog: ''$2''.",
 'filereadonlyerror' => 'Ne mogu da izmenim datoteku „$1“ jer je riznica „$2“ u režimu za čitanje.
 
 Administrator koji ju je zaključao ponudio je sledeće objašnjenje: „$3“.',
@@ -1321,7 +1320,7 @@ Korišćenje navigacionih veza će poništiti ovu kolonu.',
 'mergehistory-reason' => 'Razlog:',
 
 # Merge log
-'mergelog' => 'Dnevnik spajanja',
+'mergelog' => 'Istorija spajanja',
 'pagemerge-logentry' => 'stranica [[$1]] je spojena u [[$2]] (sve do izmene $3)',
 'revertmerge' => 'rastavi',
 'mergelogpagetext' => 'Ispod se nalazi spisak skorašnjih spajanja istorija stranica.',
@@ -2446,7 +2445,7 @@ Podrška i dalja pomoć:
 'deletepage' => 'Obriši stranicu',
 'confirm' => 'Potvrdi',
 'excontent' => 'sadržaj je bio: „$1“',
-'excontentauthor' => 'sadržaj je bio: „$1“ (jedinu izmenu {{GENDER:|napravio je|napravila je|napravio je}} [[Special:Contributions/$2|$2]])',
+'excontentauthor' => 'sadržaj je bio: „$1“ (a jedini uređivač je bio „[[Special:Contributions/$2|$2]]“)',
 'exbeforeblank' => 'sadržaj pre brisanja je bio: „$1“',
 'exblank' => 'stranica je bila prazna',
 'delete-confirm' => 'Brisanje stranice „$1“',
@@ -2458,7 +2457,7 @@ Potvrdite svoju nameru, da razumete posledice i da ovo radite u skladu s [[{{Med
 'actionfailed' => 'Radnja nije uspela',
 'deletedtext' => "Stranica „$1“ je obrisana.
 Pogledajte ''$2'' za više detalja.",
-'dellogpage' => 'Dnevnik brisanja',
+'dellogpage' => 'Istorija brisanja',
 'dellogpagetext' => 'Ispod je spisak poslednjih brisanja.',
 'deletionlog' => 'dnevnik brisanja',
 'reverted' => 'Vraćeno na raniju izmenu',
@@ -3198,6 +3197,7 @@ Ovo je verovatno izazvano vezom do spoljašnjeg sajta koji se nalazi na crnoj li
 'pageinfo-magic-words' => '{{PLURAL:$1|Magična reč|Magične reči}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Sakrivena kategorija|Sakrivene kategorije}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Uključeni šablon|Uključeni šabloni}} ($1)',
+'pageinfo-transclusions' => '{{PLURAL:$1|Stranica|Stranice}} uključene u ($1)',
 'pageinfo-toolboxlink' => 'Podaci o stranici',
 'pageinfo-redirectsto' => 'Preusmerava na',
 'pageinfo-redirectsto-info' => 'podaci',
@@ -4151,7 +4151,9 @@ Trebalo bi da ste primili [{{SERVER}}{{SCRIPTPATH}}/COPYING primerak GNU-ove op�
 'tags-tag' => 'Naziv oznake',
 'tags-display-header' => 'Izgled na spiskovima izmena',
 'tags-description-header' => 'Opis značenja',
+'tags-active-header' => 'Aktivna?',
 'tags-hitcount-header' => 'Označene izmene',
+'tags-active-yes' => 'Da',
 'tags-edit' => 'uredi',
 'tags-hitcount' => '$1 {{PLURAL:$1|izmena|izmene|izmena}}',
 
