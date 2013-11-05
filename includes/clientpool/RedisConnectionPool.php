@@ -336,7 +336,8 @@ class RedisConnRef {
 		}
 
 		if ( $conn->getLastError() ) { // script bug?
-			wfDebugLog( 'redis', "Lua script error: " . $conn->getLastError() );
+			$server = $this->server;
+			wfDebugLog( 'redis', "Lua script error on server $server: " . $conn->getLastError() );
 		}
 
 		return $res;
