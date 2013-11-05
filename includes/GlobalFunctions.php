@@ -1009,7 +1009,7 @@ function wfDebugMem( $exact = false ) {
 /**
  * Send a line to a supplementary debug log file, if configured, or main debug log if not.
  * To configure a supplementary log file, set $wgDebugLogGroups[$logGroup] to a string
- * filename or an associative array mapping 'target' to the desired filename. The
+ * filename or an associative array mapping 'destination' to the desired filename. The
  * associative array may also contain a 'sample' key with an integer value, specifying
  * a sampling factor.
  *

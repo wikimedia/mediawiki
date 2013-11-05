@@ -4902,7 +4902,7 @@ $wgDebugDumpSql = false;
  * in production.
  *
  * Log destinations may be string values specifying a filename or URI, or they
- * may be filename or an associative array mapping 'target' to the desired
+ * may be filename or an associative array mapping 'destination' to the desired
  * filename. The associative array may also contain a 'sample' key with an
  * integer value, specifying a sampling factor.
  *
@@ -4914,7 +4914,7 @@ $wgDebugDumpSql = false;
  * @par Advanced example:
  * @code
  * $wgDebugLogGroups['memcached'] = (
- *     'target' => '/var/log/mediawiki/memcached.log',
+ *     'destination' => '/var/log/mediawiki/memcached.log',
  *     'sample' => 1000,  // log 1 message out of every 1,000.
  * );
  * @endcode
