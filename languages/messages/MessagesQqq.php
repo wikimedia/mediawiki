@@ -9547,6 +9547,7 @@ Most languages use a space, but some Asian languages, such as Thai and Chinese, 
 'percent' => '{{optional}}',
 'parentheses' => '{{optional}}',
 'brackets' => '{{Optional}}',
+'quotation-marks' => '{{optional}}',
 
 # Multipage image navigation
 'imgmultipageprev' => '{{Identical|Previous page}}',

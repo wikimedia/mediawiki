@@ -3525,6 +3525,7 @@ $wgMessageStructure = array(
 		'percent',
 		'parentheses',
 		'brackets',
+		'quotation-marks',
 	),
 	'imgmulti' => array(
 		'imgmultipageprev',
