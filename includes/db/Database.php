@@ -385,16 +385,15 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	}
 
 	/**
-	 * Gets or sets the current transaction level.
+	 * Gets the current transaction level.
 	 *
 	 * Historically, transactions were allowed to be "nested". This is no
 	 * longer supported, so this function really only returns a boolean.
 	 *
-	 * @param int $level An integer (0 or 1), or omitted to leave it unchanged.
 	 * @return int The previous value
 	 */
-	public function trxLevel( $level = null ) {
-		return wfSetVar( $this->mTrxLevel, $level );
+	public function trxLevel() {
+		return $this->mTrxLevel;
 	}
 
 	/**
@@ -1021,11 +1020,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		MWDebug::queryTime( $queryId );
 
 		# Try reconnecting if the connection was lost
-		if ( false === $ret && $this->wasErrorReissuable() ) {
-			# Transaction is gone, like it or not
-			$this->mTrxLevel = 0;
-			$this->mTrxIdleCallbacks = array(); // cancel
-			$this->mTrxPreCommitCallbacks = array(); // cancel
+		if ( false === $ret && !$this->mTrxLevel && $this->wasErrorReissuable() ) {
 			wfDebug( "Connection lost, reconnecting...\n" );
 
 			if ( $this->ping() ) {
