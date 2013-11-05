@@ -714,7 +714,7 @@ class RecentChange {
 	/**
 	 * Makes a pseudo-RC entry from a cur row
 	 *
-	 * @deprected in 1.22
+	 * @deprecated in 1.22
 	 * @param $row
 	 */
 	public function loadFromCurRow( $row ) {
