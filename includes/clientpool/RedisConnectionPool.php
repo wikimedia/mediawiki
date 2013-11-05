@@ -316,6 +316,17 @@ class RedisConnectionPool {
 
 		return true;
 	}
+
+	/**
+	 * Make sure connections are closed for sanity
+	 */
+	function __destruct() {
+		foreach ( $this->connections as $server => &$serverConnections ) {
+			foreach ( $serverConnections as $key => &$connection ) {
+				$connection['conn']->close();
+			}
+		}
+	}
 }
 
 /**
