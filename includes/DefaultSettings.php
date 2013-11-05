@@ -4895,10 +4895,29 @@ $wgDebugDBTransactions = false;
 $wgDebugDumpSql = false;
 
 /**
- * Set to an array of log group keys to filenames.
+ * Map of string log group names to log destinations.
+ *
  * If set, wfDebugLog() output for that group will go to that file instead
  * of the regular $wgDebugLogFile. Useful for enabling selective logging
  * in production.
+ *
+ * Log destinations may be string values specifying a filename or URI, or they
+ * may be filename or an associative array mapping 'target' to the desired
+ * filename. The associative array may also contain a 'sample' key with an
+ * integer value, specifying a sampling factor.
+ *
+ * @par Example:
+ * @code
+ * $wgDebugLogGroups['redis'] = '/var/log/mediawiki/redis.log';
+ * @endcode
+ *
+ * @par Advanced example:
+ * @code
+ * $wgDebugLogGroups['memcached'] = (
+ *     'target' => '/var/log/mediawiki/memcached.log',
+ *     'sample' => 1000,  // log 1 message out of every 1,000.
+ * );
+ * @endcode
  */
 $wgDebugLogGroups = array();
 
