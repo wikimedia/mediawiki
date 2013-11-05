@@ -283,6 +283,25 @@ class RedisConnectionPool {
 			}
 		}
 	}
+
+	/**
+	 * Resend an AUTH request to the redis server (useful after disconnects)
+	 *
+	 * This method is for internal use only
+	 *
+	 * @param string $server
+	 * @param Redis $conn
+	 * @return bool Success
+	 */
+	public function reauthenticateConnection( $server, Redis $conn ) {
+		if ( $this->password !== null ) {
+			if ( !$conn->auth( $this->password ) ) {
+				wfDebugLog( 'redis', "Authentication error connecting to $server" );
+				return false;
+			}
+		}
+		return true;
+	}
 }
 
 /**
@@ -324,10 +343,21 @@ class RedisConnRef {
 	public function luaEval( $script, array $params, $numKeys ) {
 		$sha1 = sha1( $script ); // 40 char hex
 		$conn = $this->conn; // convenience
+		$server = $this->server; // convenience
 
 		// Try to run the server-side cached copy of the script
 		$conn->clearLastError();
 		$res = $conn->evalSha( $sha1, $params, $numKeys );
+		// If we got a permission error reply that means that (a) we are not in
+		// multi()/pipeline() and (b) some connection problem likely occured. If
+		// the password the client gave was just wrong, an exception should have
+		// been thrown back in getConnection() previously.
+		if ( preg_match( '/^ERR operation not permitted\b/', $conn->getLastError() ) ) {
+			$this->pool->reauthenticateConnection( $server, $conn );
+			$conn->clearLastError();
+			$res = $conn->eval( $script, $params, $numKeys );
+			wfDebugLog( 'redis', "Used automatic re-authentication for Lua script $sha1." );
+		}
 		// If the script is not in cache, use eval() to retry and cache it
 		if ( preg_match( '/^NOSCRIPT/', $conn->getLastError() ) ) {
 			$conn->clearLastError();
@@ -336,7 +366,6 @@ class RedisConnRef {
 		}
 
 		if ( $conn->getLastError() ) { // script bug?
-			$server = $this->server;
 			wfDebugLog( 'redis', "Lua script error on server $server: " . $conn->getLastError() );
 		}
 
