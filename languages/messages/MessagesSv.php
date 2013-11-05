@@ -1216,7 +1216,7 @@ Anledningen till blockeringen var "$2".',
 'next' => 'nästa',
 'last' => 'föregående',
 'page_first' => 'första',
-'page_last' => 'senaste',
+'page_last' => 'sista',
 'histlegend' => "Val av diff: markera i klickrutorna för att jämföra versioner och tryck enter eller knappen längst ner.<br />
 Förklaring: (nuvarande) = skillnad mot nuvarande version; (föregående) = skillnad mot föregående version; '''m''' = mindre ändring.",
 'history-fieldset-title' => 'Bläddra i historiken',

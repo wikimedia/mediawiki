@@ -2216,6 +2216,8 @@ PICT # тайп тайпан
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'seconds-abbrev' => '$1оцу',
+'days' => '{{PLURAL:$1|$1 де}}',
+'ago' => '$1 хьалха',
 
 # Human-readable timestamps
 'hours-ago' => '$1 {{PLURAL:$1|сахьат}} хьалха',
@@ -2485,6 +2487,9 @@ PICT # тайп тайпан
 
 # Search suggestions
 'searchsuggest-search' => 'Лаха',
+
+# Durations
+'duration-days' => '$1 {{PLURAL:$1|де}}',
 
 # Limit report
 'limitreport-title' => 'АгӀона хӀоттам къасторан хаамаш:',
