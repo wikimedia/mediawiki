@@ -1134,7 +1134,7 @@ Do not forget to change your [[Special:Preferences|{{SITENAME}} preferences]].',
 'gotaccount'                      => 'Already have an account? $1.',
 'gotaccountlink'                  => 'Log in',
 'userlogin-resetlink'             => 'Forgotten your login details?',
-'userlogin-resetpassword-link'    => 'Reset your password',
+'userlogin-resetpassword-link'    => 'Forgot your password?',
 'helplogin-url'                   => 'Help:Logging in',
 'userlogin-helplink'              => '[[{{MediaWiki:helplogin-url}}|Help with logging in]]',
 'userlogin-loggedin'              => 'You are already logged in as {{GENDER:$1|$1}}.
