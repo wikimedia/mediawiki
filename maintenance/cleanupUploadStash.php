@@ -120,7 +120,9 @@ class UploadStashCleanup extends Maintenance {
 		$i = 0;
 		foreach ( $iterator as $file ) {
 			// Absolute sanity check for stashed files and file segments
-			if ( !preg_match( '#(^\d{14}!|\.\d+\.\w+\.\d+$)#', basename( $file ) ) ) {
+			$base = basename( $file );
+			// @TODO: why are there thumbnails stored in here?
+			if ( !preg_match( '#(^\d{14}!|\.\d+\.\w+\.\d+$|-\w{12}\.\w{6}\.\d+\.)#', $base ) ) {
 				$this->output( "Skipped non-stash $file\n" );
 				continue;
 			}
