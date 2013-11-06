@@ -907,6 +907,10 @@ abstract class ContentHandler {
 		$undo_content = $undo->getContent();
 		$undoafter_content = $undoafter->getContent();
 
+		if ( !$undo_content || !$undoafter_content ) {
+			return false; // no content to undo
+		}
+
 		$this->checkModelID( $cur_content->getModel() );
 		$this->checkModelID( $undo_content->getModel() );
 		$this->checkModelID( $undoafter_content->getModel() );
