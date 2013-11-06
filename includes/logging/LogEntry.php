@@ -498,16 +498,12 @@ class ManualLogEntry extends LogEntryBase {
 	}
 
 	/**
-	 * Publishes the log entry.
-	 * @param int $newId id of the log entry.
-	 * @param string $to rcandudp (default), rc, udp
+	 * Get a RecentChanges object for the log entry
+	 * @param int $newId
+	 * @return RecentChange
+	 * @since 1.23
 	 */
-	public function publish( $newId, $to = 'rcandudp' ) {
-		$log = new LogPage( $this->getType() );
-		if ( $log->isRestricted() ) {
-			return;
-		}
-
+	public function getRecentChange( $newId = 0 ) {
 		$formatter = LogFormatter::newFromEntry( $this );
 		$context = RequestContext::newExtraneousContext( $this->getTarget() );
 		$formatter->setContext( $context );
@@ -524,7 +520,7 @@ class ManualLogEntry extends LogEntryBase {
 				$ip = $user->getName();
 			}
 		}
-		$rc = RecentChange::newLogEntry(
+		return RecentChange::newLogEntry(
 			$this->getTimestamp(),
 			$logpage,
 			$user,
@@ -538,6 +534,21 @@ class ManualLogEntry extends LogEntryBase {
 			$newId,
 			$formatter->getIRCActionComment() // Used for IRC feeds
 		);
+
+	}
+
+	/**
+	 * Publishes the log entry.
+	 * @param int $newId id of the log entry.
+	 * @param string $to rcandudp (default), rc, udp
+	 */
+	public function publish( $newId, $to = 'rcandudp' ) {
+		$log = new LogPage( $this->getType() );
+		if ( $log->isRestricted() ) {
+			return;
+		}
+
+		$rc = $this->getRecentChange( $newId );
 
 		if ( $to === 'rc' || $to === 'rcandudp' ) {
 			$rc->save( 'pleasedontudp' );
