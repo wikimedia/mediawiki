@@ -47,7 +47,7 @@
 	'als' => 'Alemannisch',	# Alemannic -- not a valid code, for compatibility. See gsw.
 	'am' => 'አማርኛ',	# Amharic
 	'an' => 'aragonés',	# Aragonese
-	'ang' => 'Ænglisc',	# Old English (Bug 23283)
+	'ang' => 'Ænglisc',	# Old English, bug 23283
 	'anp' => 'अङ्गिका',	# Angika
 	'ar' => 'العربية',	# Arabic
 	'arc' => 'ܐܪܡܝܐ',	# Aramaic
@@ -70,9 +70,9 @@
 	'bcl' => 'Bikol Central', # Bikol: Central Bicolano language
 	'be' => 'беларуская',	#  Belarusian normative
 	'be-tarask' => "беларуская (тарашкевіца)\xE2\x80\x8E",	# Belarusian in Taraskievica orthography
-	'be-x-old' => "беларуская (тарашкевіца)\xE2\x80\x8E",	# Belarusian in Taraskievica orthography; compat link
+	'be-x-old' => "беларуская (тарашкевіца)\xE2\x80\x8E",	# (be-tarask compat)
 	'bg' => 'български',	# Bulgarian
-	'bh' => 'भोजपुरी',	# Bihari macro language. Falls back to Bhojpuri (bho). The name actually says "Bhojpuri".
+	'bh' => 'भोजपुरी',	# Bihari macro language. Falls back to Bhojpuri (bho)
 	'bho' => 'भोजपुरी',	# Bhojpuri
 	'bi' => 'Bislama',		# Bislama
 	'bjn' => 'Bahasa Banjar',	# Banjarese
@@ -177,14 +177,14 @@
 	'ig' => 'Igbo',			# Igbo
 	'ii' => 'ꆇꉙ',	# Sichuan Yi
 	'ik' => 'Iñupiak',	# Inupiak (Inupiatun, Northwest Alaska / Inupiatun, North Alaskan)
-	'ike-cans' => 'ᐃᓄᒃᑎᑐᑦ',	# Inuktitut, Eastern Canadian/Eastern Canadian "Eskimo"/"Eastern Arctic Eskimo"/Inuit (Unified Canadian Aboriginal Syllabics)
+	'ike-cans' => 'ᐃᓄᒃᑎᑐᑦ',	# Inuktitut, Eastern Canadian (Unified Canadian Aboriginal Syllabics)
 	'ike-latn' => 'inuktitut',	# Inuktitut, Eastern Canadian (Latin script)
 	'ilo' => 'Ilokano',	# Ilokano
 	'inh' => 'ГӀалгӀай',    # Ingush
 	'io' => 'Ido',			# Ido
 	'is' => 'íslenska',	# Icelandic
 	'it' => 'italiano',		# Italian
-	'iu' => 'ᐃᓄᒃᑎᑐᑦ/inuktitut',	# Inuktitut (macro language - do no localise, see ike/ikt - falls back to ike-cans)
+	'iu' => 'ᐃᓄᒃᑎᑐᑦ/inuktitut',	# Inuktitut (macro language, see ike/ikt, falls back to ike-cans)
 	'ja' => '日本語',	# Japanese
 	'jam' => 'Patois',	# Jamaican Creole English
 	'jbo' => 'Lojban',		# Lojban
@@ -245,7 +245,7 @@
 	'ltg' => 'latgaļu', 	# Latgalian
 	'lus' => 'Mizo ţawng', # Mizo/Lushai
 	'lv' => 'latviešu',	# Latvian
-	'lzh' => '文言',	# Literary Chinese -- (bug 8217) lzh instead of zh-classical, http://www.sil.org/iso639-3/codes.asp?order=639_3&letter=l
+	'lzh' => '文言',	# Literary Chinese, bug 8217
 	'lzz' => 'Lazuri',	# Laz
 	'mai' => 'मैथिली', # Maithili
 	'map-bms' => 'Basa Banyumasan', # Banyumasan
@@ -269,8 +269,8 @@
 	'myv' => 'эрзянь',	# Erzya
 	'mzn' => 'مازِرونی',		# Mazanderani
 	'na' => 'Dorerin Naoero',		# Nauruan
-	'nah' => 'Nāhuatl',		# Nahuatl, en:Wikipedia writes Nahuatlahtolli, while another form is Náhuatl
-	'nan' => 'Bân-lâm-gú', # Min-nan -- (bug 8217) nan instead of zh-min-nan, http://www.sil.org/iso639-3/codes.asp?order=639_3&letter=n
+	'nah' => 'Nāhuatl',		# Nahuatl (not in ISO 639-3)
+	'nan' => 'Bân-lâm-gú', # Min-nan, bug 8217
 	'nap' => 'Napulitano',	# Neapolitan, bug 43793
 	'nb' => "norsk bokmål",		# Norwegian (Bokmal)
 	'nds' => 'Plattdüütsch',	# Low German ''or'' Low Saxon
@@ -291,7 +291,7 @@
 	'oc' => 'occitan',		# Occitan
 	'om' => 'Oromoo',		# Oromo
 	'or' => 'ଓଡ଼ିଆ',		# Oriya
-	'os' => 'Ирон', # Ossetic -- fixed per bug 29091
+	'os' => 'Ирон', # Ossetic, bug 29091
 	'pa' => 'ਪੰਜਾਬੀ', # Eastern Punjabi (Gurmukhi script) (pan)
 	'pag' => 'Pangasinan',	# Pangasinan
 	'pam' => 'Kapampangan',   # Pampanga
@@ -311,7 +311,7 @@
 	'pt' => 'português',	# Portuguese
 	'pt-br' => 'português do Brasil',	# Brazilian Portuguese
 	'qu' => 'Runa Simi',	# Southern Quechua
-	'qug' => 'Runa shimi',	# Kichwa/Northern Quechua (one of the codes it covers; temporarily used until Kichwa has its own)
+	'qug' => 'Runa shimi',	# Kichwa/Northern Quechua (temporarily used until Kichwa has its own)
 	'rgn' => 'Rumagnôl',	# Romagnol
 	'rif' => 'Tarifit',	# Tarifit
 	'rm' => 'rumantsch',	# Raeto-Romance
@@ -411,12 +411,12 @@
 	'war' => 'Winaray', # Waray-Waray
 	'wo' => 'Wolof',		# Wolof
 	'wuu' => '吴语',		# Wu Chinese
-	'xal' => 'хальмг',		# Kalmyk-Oirat (Kalmuk, Kalmuck, Kalmack, Qalmaq, Kalmytskii Jazyk, Khal:mag, Oirat, Volga Oirat, European Oirat, Western Mongolian)
+	'xal' => 'хальмг',		# Kalmyk-Oirat
 	'xh' => 'isiXhosa',		# Xhosan
 	'xmf' => 'მარგალური',	# Mingrelian
 	'yi' => 'ייִדיש',	# Yiddish
 	'yo' => 'Yorùbá',	# Yoruba
-	'yue' => '粵語',	# Cantonese -- (bug 8217) yue instead of zh-yue, http://www.sil.org/iso639-3/codes.asp?order=639_3&letter=y
+	'yue' => '粵語',	# Cantonese
 	'za' => 'Vahcuengh',	# Zhuang
 	'zea' => 'Zeêuws',	# Zeeuws/Zeaws
 	'zh' => '中文',						# (Zhōng Wén) - Chinese
