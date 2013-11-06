@@ -2855,6 +2855,15 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(),
 	if ( $useLogPipe ) {
 		$desc[3] = array( 'pipe', 'w' );
 	}
+
+	# TODO/FIXME: This is a bad hack to workaround an HHVM bug that prevents
+	# proc_open() from opening stdin/stdout, so use /dev/null *for now*
+	# See bug 56597 / https://github.com/facebook/hhvm/issues/1247 for more info
+	if ( wfIsHHVM() ) {
+		$desc[0] = array( 'file', '/dev/null', 'r' );
+		$desc[2] = array( 'file', '/dev/null', 'w' );
+	}
+
 	$pipes = null;
 	$proc = proc_open( $cmd, $desc, $pipes );
 	if ( !$proc ) {
