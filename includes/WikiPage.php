@@ -2747,6 +2747,9 @@ class WikiPage implements Page, IDBAccessObject {
 		$updates = $this->getDeletionUpdates( $content );
 		DataUpdate::runUpdates( $updates );
 
+		// Reparse any pages transcluding this page
+		LinksUpdate::queueRecursiveJobsForTable( $this->mTitle, 'templatelinks' );
+
 		// Clear caches
 		WikiPage::onArticleDelete( $this->mTitle );
 
