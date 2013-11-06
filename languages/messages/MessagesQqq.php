@@ -7190,6 +7190,7 @@ See also:
 'allmessages-filter-submit' => 'Used on [[Special:Allmessages]].
 
 {{Identical|Go}}',
+'allmessages-filter-translate' => 'Used on [[Special:Allmessages]]. Label for a link to translatewiki.net for a message to translate.',
 
 # Thumbnails
 'thumbnail-more' => '[[Image:Yes.png|thumb|This:]]
