@@ -10,6 +10,7 @@
  * @author AK
  * @author Aitolos
  * @author Assassingr
+ * @author Astralnet
  * @author Azimout
  * @author Badseed
  * @author Chomwitt
@@ -3934,6 +3935,7 @@ $5
 'version-license' => 'Άδεια χρήσης',
 'version-poweredby-credits' => "Αυτό το wiki λειτουργεί με το λογισμικό '''[//www.mediawiki.org/ MediaWiki]''', πνευματική ιδιοκτησία © 2001-$1 $2.",
 'version-poweredby-others' => 'άλλοι',
+'version-poweredby-translators' => 'translatewiki.net μεταφραστές',
 'version-credits-summary' => 'Θα θέλαμε να αναγνωρίσουμε τη συμβολή των παρακάτω προσώπων στο [[Special:Version|MediaWiki]].',
 'version-license-info' => "Το MediaWiki είναι ελεύθερο λογισμικό. Μπορείτε να το αναδιανείμετε ή/και να το τροποποιήσετε υπό τους όρους της άδειας GNU General Public License όπως αυτή εκδόθηκε από το Free Software Foundation· είτε της δεύτερης έκδοσης της άδειας, είτε (κατ' επιλογή σας) οποιασδήποτε επόμενης έκδοσης.
 
@@ -4010,6 +4012,8 @@ $5
 'tags-display-header' => 'Εμφάνιση στις λίστες αλλαγής',
 'tags-description-header' => 'Πλήρης περιγραφή του νοήματος',
 'tags-hitcount-header' => 'Αλλαγές με ετικέτα',
+'tags-active-yes' => 'Ναι',
+'tags-active-no' => 'Όχι',
 'tags-edit' => 'επεξεργασία',
 'tags-hitcount' => '$1 {{PLURAL:$1|αλλαγή|αλλαγές}}',
 

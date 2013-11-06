@@ -13,6 +13,7 @@
  * @author Jetlag
  * @author Mnemonic kek
  * @author Urhixidur
+ * @author Xiaomingyan
  */
 
 $messages = array(
@@ -1809,7 +1810,7 @@ Please visit [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and 
 'file-info-size' => '$1 × $2像素，文件大小：$3，MIME類型：$4',
 'file-nohires' => '無做得提供嘅還較高分辨率。',
 'svg-long-desc' => 'SVG文件，尺寸：$1×$2像素，文件大細：$3',
-'show-big-image' => '完全分辨率',
+'show-big-image' => '完整分辨率',
 
 # Special:NewFiles
 'newimages' => 'Sîn-kien thù-chhiong ke va̍k-lòng',

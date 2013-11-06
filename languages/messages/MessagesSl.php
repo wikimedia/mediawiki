@@ -574,7 +574,7 @@ Poizvedba: $2',
 'actionthrottledtext' => 'Kot ukrep proti smetju, je število izvajanj tega dejanja v časovnem obdobju omejeno, in vi ste ta limit presegli.
 Prosimo, poskusite znova čez nekaj minut.',
 'protectedpagetext' => 'Ta stran je bila zaklenjena za preprečitev urejanja ali drugih dejanj.',
-'viewsourcetext' => 'Lahko si ogledate in kopirate vsebino te strani:',
+'viewsourcetext' => 'Vsebino te strani si lahko ogledate in kopirate:',
 'viewyourtext' => "Lahko si ogledate in kopirate vsebino '''vaših urejanj''' te strani:",
 'protectedinterface' => 'Prikazana stran vsebuje besedilo vmesnika programja na tem wikiju in je zaradi preprečevanja zlorab zaščitena.
 
@@ -650,7 +650,7 @@ Ne pozabite si prilagoditi vaših [[Special:Preferences|nastavitev {{GRAMMAR:rod
 'userlogin-resetpassword-link' => 'Ponastavite svoje geslo',
 'helplogin-url' => 'Help:Prijava',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Pomoč pri prijavi]]',
-'userlogin-loggedin' => 'Ste že prijavljeni kot {{GENDER:$1|$1}}.
+'userlogin-loggedin' => 'Prijavljeni ste že kot {{GENDER:$1|$1}}.
 Uporabite spodnji obrazec, da se prijavite kot drug uporabnik.',
 'userlogin-createanother' => 'Ustvari drug račun',
 'createacct-join' => 'Spodaj vnesite svoje informacije.',
@@ -879,17 +879,17 @@ To storite, če ste po nesreči žetone z nekom delili, ali če je bil vaš rač
 'summary-preview' => 'Predogled povzetka',
 'subject-preview' => 'Predogled zadeve/naslova:',
 'blockedtitle' => 'Uporabnik je blokiran',
-'blockedtext' => "'''Urejanje z vašim uporabniškim imenom oziroma IP-naslovom je bilo onemogočeno.'''
+'blockedtext' => "'''Urejanje z vašim uporabniškim imenom oziroma IP-naslovom je onemogočeno.'''
 
 Blokiral vas je $1.
-Podan razlog je ''$2''.
+Podani razlog je ''$2''.
 
-* Začetek blokade: $8
-* Potek blokade: $6
-* Namen blokade: $7
+* začetek blokade: $8
+* potek blokade: $6
+* blokirani uporabnik: $7
 
-O blokiranju se lahko pogovorite z $1 ali katerim drugim [[{{MediaWiki:Grouppage-sysop}}|administratorjem]].
-Vedite, da lahko ukaz »Pošlji uporabniku e-pismo« uporabite le, če ste v [[Special:Preferences|nastavitvah]] vpisali in potrdili svoj elektronski naslov ter le-ta ni bil blokiran.
+O blokiranju se lahko pogovorite z uporabnikom/-co $1 ali katerim drugim [[{{MediaWiki:Grouppage-sysop}}|administratorjem]].
+Vedite, da lahko ukaz »Pošlji uporabniku e-pismo« uporabite le, če ste v [[Special:Preferences|nastavitvah]] vpisali in potrdili svoj elektronski naslov in ta ni blokiran.
 Vaš IP-naslov je $3, številka blokade pa #$5.
 Prosimo, vključite ju v vse morebitne poizvedbe.",
 'autoblockedtext' => "Vaš IP-naslov je bil samodejno blokiran, saj je bil uporabljen s strani drugega uporabnika, ki ga je blokiral $1.
@@ -1080,9 +1080,9 @@ Naslednji argumenti so bili izpuščeni.",
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Računa ni moč ustvariti',
-'cantcreateaccount-text' => "Registracija novega uporabnika iz tega IP-naslova ('''$1''') je bila blokirana s strani [[User:$3|$3]].
+'cantcreateaccount-text' => "Registracije z IP-naslova ('''$1''') je administrator(ka) [[User:$3|$3]] blokiral(a).
 
-Razlog, ki ga je podal $3, je ''$2''.",
+Razlog, ki ga je $3 podal(a), je ''$2''.",
 
 # History pages
 'viewpagelogs' => 'Poglej dnevniške zapise o strani',
@@ -2722,7 +2722,7 @@ Za sklicevanje so tule navedeni vnosi v dnevniku blokiranja:',
 'blocklog-showsuppresslog' => 'Ta uporabnik je že bil blokiran in skrit.
 Dnevnik skrivanja je na voljo spodaj:',
 'blocklogentry' => '[[$1]] blokiran s časom poteka blokade $2 $3',
-'reblock-logentry' => 'spremenil nastavitve blokade za [[$1]] z iztekom dne $2 ob $3',
+'reblock-logentry' => 'je spremenil(a) nastavitve blokade za [[$1]] na čas $2 $3',
 'blocklogtext' => 'Prikazan je dnevnik blokiranja in deblokiranja uporabnikov. Samodejno blokirani IP-naslovi niso navedeni. Trenutno veljavna blokiranja so navedena na [[Special:BlockList|seznamu blokad]].',
 'unblocklogentry' => 'je deblokiral(-a) »$1«',
 'block-log-flags-anononly' => 'samo za brezimne uporabnike',

@@ -771,7 +771,7 @@ Huomaa, että jotkut sivut saattavat näkyä edelleen kuin olisit kirjautunut si
 'gotaccount' => "Jos sinulla on jo tunnus, voit '''$1'''.",
 'gotaccountlink' => 'kirjautua sisään',
 'userlogin-resetlink' => 'Unohditko salasanasi?',
-'userlogin-resetpassword-link' => 'Vaihda salasanaasi',
+'userlogin-resetpassword-link' => 'Unohditko salasanasi?',
 'helplogin-url' => 'Help:Sisäänkirjautuminen',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Auta sisäänkirjautumisessa]]',
 'userlogin-loggedin' => 'Olet jo kirjautunut sisään tunnuksella {{GENDER:$1|$1}}.

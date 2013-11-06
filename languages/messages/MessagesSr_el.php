@@ -2288,7 +2288,7 @@ Pogledajte i [[Special:WantedCategories|tražene kategorije]].',
 'linksearch-ok' => 'Pretraži',
 'linksearch-text' => 'Mogu se koristiti džokeri poput „*.wikipedia.org“.<br />
 Potreban je najviši domen, kao „*.org“.<br />
-Podržani protokoli: <code>$1</code> (zadaje http:// ako ne navedete protokol).',
+{{PLURAL:$2|Podržan protokol|Podržani protokoli}}: <code>$1</code> (zadaje http:// ako ne navedete protokol).',
 'linksearch-line' => '$1 veza u $2',
 'linksearch-error' => 'Džokeri se mogu pojaviti samo na početku adrese.',
 
@@ -2445,7 +2445,7 @@ Podrška i dalja pomoć:
 'deletepage' => 'Obriši stranicu',
 'confirm' => 'Potvrdi',
 'excontent' => 'sadržaj je bio: „$1“',
-'excontentauthor' => 'sadržaj je bio: „$1“ (a jedini uređivač je bio „[[Special:Contributions/$2|$2]]“)',
+'excontentauthor' => 'sadržaj je bio: „$1“ (a jedini urednik je bio „[[Special:Contributions/$2|$2]]“)',
 'exbeforeblank' => 'sadržaj pre brisanja je bio: „$1“',
 'exblank' => 'stranica je bila prazna',
 'delete-confirm' => 'Brisanje stranice „$1“',
@@ -2578,8 +2578,8 @@ Arhiva se povremeno čisti od ovakvih stranica.',
 'undeleteextrahelp' => "Da biste vratili celu istoriju stranice, ostavite sve kućice neoznačene i kliknite na dugme '''''{{int:undeletebtn}}'''''.
 Ako želite da vratite određene izmene, označite ih i kliknite na '''''{{int:undeletebtn}}'''''.",
 'undeleterevisions' => '$1 {{PLURAL:$1|izmena je arhivirana|izmene su arhivirane|izmena je arhivirano}}',
-'undeletehistory' => 'Ako vratite stranicu, sve izmene će biti vraćene njenoj istoriji.
-Ako je u međuvremenu napravljena nova stranica s istim nazivom, vraćene izmene će se pojaviti u ranijom istoriji.',
+'undeletehistory' => 'Ako vratite stranicu, sve revizije će biti vraćene njenoj istoriji.
+Ako je u međuvremenu napravljena nova stranica s istim nazivom, vraćene izmene će se pojaviti u njenoj ranijoj istoriji.',
 'undeleterevdel' => 'Vraćanje neće biti izvršeno ako je rezultat toga delimično brisanje poslednje izmene.
 U takvim slučajevima morate isključiti ili otkriti najnovije obrisane izmene.',
 'undeletehistorynoadmin' => 'Ova stranica je obrisana.
@@ -3944,7 +3944,7 @@ Potvrdite da stvarno želite da napravite stranicu.",
 'autosumm-blank' => 'Potpuno obrisana stranica',
 'autosumm-replace' => 'Zamena sadržaja stranice sa „$1“',
 'autoredircomment' => 'Preusmerenje na [[$1]]',
-'autosumm-new' => 'Napravljena stranica sa: „$1“',
+'autosumm-new' => 'Nova stranica: $1',
 
 # Size units
 'size-bytes' => '$1 B',
@@ -4221,7 +4221,7 @@ Trebalo bi da ste primili [{{SERVER}}{{SCRIPTPATH}}/COPYING primerak GNU-ove op�
 'logentry-move-move-noredirect' => '$1 je {{GENDER:$2|premestio|premestila}} stranicu $3 na $4 bez ostavljanja preusmerenja',
 'logentry-move-move_redir' => '$1 je {{GENDER:$2|premestio|premestila}} stranicu $3 na $4 preko preusmerenja',
 'logentry-move-move_redir-noredirect' => '$1 je {{GENDER:|premestio|premestila}} stranicu $3 na $4 preko preusmerenja bez ostavljanja preusmerenja',
-'logentry-patrol-patrol' => '$1 je {{GENDER:$2|osznačio|označila}} izenu $4 stranice $3 kao patroliranu',
+'logentry-patrol-patrol' => '$1 je {{GENDER:$2|označio|označila}} izmenu $4 stranice $3 kao patroliranu',
 'logentry-patrol-patrol-auto' => '$1 je automatski {{GENDER:$2|označio|označila}} izmenu $4 stranice $3 kao pregledanu',
 'logentry-newusers-newusers' => '$1 je {{GENDER:$2|otvorio|otvorila}} korisnički nalog',
 'logentry-newusers-create' => '$1 je {{GENDER:$2|otvorio|otvorila}} korisnički nalog',

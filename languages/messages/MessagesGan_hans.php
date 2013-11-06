@@ -1063,7 +1063,7 @@ $2',
 'randompage-nopages' => '个只名字空间冇𠮶页面。',
 
 # Random redirect
-'randomredirect' => '随机重定向页面',
+'randomredirect' => '随机重定向',
 'randomredirect-nopages' => '个只名字空间冇重定向页面。',
 
 # Statistics
@@ -1438,7 +1438,7 @@ $1',
 'linkshere' => '下底𠮶页面链接到[[:$1]]：',
 'nolinkshere' => '冇页面链接到[[:$1]]。',
 'nolinkshere-ns' => '选正𠮶空间名内冇页面链接到[[:$1]]。',
-'isredirect' => '重定向页',
+'isredirect' => '重定向页面',
 'istemplate' => '含到',
 'isimage' => '档案连结',
 'whatlinkshere-prev' => '先$1只',

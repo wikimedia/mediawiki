@@ -9354,7 +9354,8 @@ See: http://www.awaresystems.be/imaging/tiff/tifftags/ycbcrpositioning.html
 'exif-dc-publisher' => 'One or more publisher of resource.
 {{Identical|Publisher}}',
 'exif-dc-relation' => "Something related to this image. Often a list of URL's to related images.",
-'exif-dc-rights' => 'Copyright information about the image/media given in informal language.',
+'exif-dc-rights' => 'Copyright information about the image/media given in informal language.
+{{Identical|Right}}',
 'exif-dc-source' => 'Source of the image. This is another image that this image is based on. This does not refer to the person who provided the image.',
 'exif-dc-type' => 'Type or genre of image/media. This might be something like painting or photograph.',
 

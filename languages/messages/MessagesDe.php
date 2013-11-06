@@ -877,7 +877,7 @@ Vergiss nicht, deine [[Special:Preferences|{{SITENAME}}-Einstellungen]] zu ände
 'gotaccount' => "Du hast bereits ein Benutzerkonto? '''$1'''.",
 'gotaccountlink' => 'Anmelden',
 'userlogin-resetlink' => 'Die Anmeldedaten vergessen?',
-'userlogin-resetpassword-link' => 'Passwort zurücksetzen',
+'userlogin-resetpassword-link' => 'Passwort vergessen?',
 'helplogin-url' => 'Help:Anmelden',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Hilfe beim Anmelden]]',
 'userlogin-loggedin' => 'Du bist bereits als {{GENDER:$1|$1}} angemeldet.

@@ -348,7 +348,7 @@ $messages = array(
 'history_short' => 'Riwayat',
 'updatedmarker' => 'geuubah yoh seunaweue keuneulheueh lon phon kon',
 'printableversion' => 'Seunalén rakam',
-'permalink' => 'Seuneumat teutap',
+'permalink' => 'Peunawôt teutap',
 'print' => 'Rakam',
 'view' => 'Beuet',
 'edit' => 'Andam',
@@ -859,7 +859,7 @@ Ceunatat: (bida) = neuubah, (riwayat) = riwayat teumuléh, '''B''' = ôn barô, 
 # Recent changes linked
 'recentchangeslinked' => 'Neuubah meuhubông',
 'recentchangeslinked-feed' => 'Neuubah meuhubông',
-'recentchangeslinked-toolbox' => 'Neuubah meuhubông',
+'recentchangeslinked-toolbox' => "Neuubah teukaw'èt",
 'recentchangeslinked-title' => 'Neuubah nyang meuhubông ngön $1',
 'recentchangeslinked-summary' => "Nyoë nakeuh dapeuta neuubah nyang geupeugèt ban-ban nyoë keu on-on nyang meuhubông nibak ôn ka kusuih (atawa keu anggèëta kawan kusuih).
 Ôn-ôn bak [[Special:Watchlist|keunalon droeneuh]] geucitak '''teubay'''.",
@@ -968,7 +968,7 @@ Teuneurang bak [$2 on teuneurangjih] geupeuleumah di yup nyoe.",
 'specialloguserlabel' => 'Ureuëng nguy:',
 'speciallogtitlelabel' => 'Nan:',
 'log' => 'Log',
-'all-logs-page' => 'Ban dum log',
+'all-logs-page' => 'Ban dum log umom',
 
 # Special:AllPages
 'allpages' => 'Dapeuta ôn',
@@ -1085,7 +1085,7 @@ Droëneuh jeuët neugantoë tingkat lindông keu ôn nyoë, tapi nyan hana peung
 'sp-contributions-submit' => 'Mita',
 
 # What links here
-'whatlinkshere' => 'Hubông balék',
+'whatlinkshere' => 'Peunawôt balék',
 'whatlinkshere-title' => 'Ôn nyang na neuhubông u $1',
 'whatlinkshere-page' => 'Ôn:',
 'linkshere' => "Ôn-ôn nyoë meuhubông u '''[[:$1]]''':",
@@ -1214,6 +1214,9 @@ Droëneuh jeuët neu’eu nèjih.',
 'tooltip-rollback' => 'Peuriwang neu’andam-neu’andam bak ôn nyoë u nyang tuléh keuneulheuëh lam sigo teugön',
 'tooltip-undo' => 'Peuriwang geunantoë nyoë ngön peuhah plôk neu’andam ngön cara eu dilèë. Choë jeuët geupeutamah bak plôk ehtisa.',
 'tooltip-summary' => 'Pasoë éhtisa paneuk',
+
+# Info page
+'pageinfo-toolboxlink' => 'Teuneurang laman',
 
 # Browsing diffs
 'previousdiff' => '← Bida away',
