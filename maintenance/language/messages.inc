@@ -2501,6 +2501,7 @@ $wgMessageStructure = array(
 		'allmessages-prefix',
 		'allmessages-language',
 		'allmessages-filter-submit',
+		'allmessages-filter-translate',
 	),
 	'thumbnails' => array(
 		'thumbnail-more',

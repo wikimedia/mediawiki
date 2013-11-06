@@ -3576,6 +3576,7 @@ Please visit [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and 
 'allmessages-prefix'            => 'Filter by prefix:',
 'allmessages-language'          => 'Language:',
 'allmessages-filter-submit'     => 'Go',
+'allmessages-filter-translate'  => 'Translate',
 
 # Thumbnails
 'thumbnail-more'           => 'Enlarge',
