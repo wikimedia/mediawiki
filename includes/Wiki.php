@@ -540,7 +540,7 @@ class MediaWiki {
 					&& $this->context->getUser()->requiresHTTPS()
 				)
 			) &&
-			$request->detectProtocol() == 'http'
+			$request->getProtocol() == 'http'
 		) {
 			$oldUrl = $request->getFullRequestURL();
 			$redirUrl = str_replace( 'http://', 'https://', $oldUrl );
