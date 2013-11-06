@@ -77,7 +77,7 @@ abstract class DatabaseUpdater {
 	/**
 	 * File handle for SQL output.
 	 *
-	 * @var Filehandle
+	 * @var resource
 	 */
 	protected $fileHandle = null;
 
@@ -96,9 +96,9 @@ abstract class DatabaseUpdater {
 	/**
 	 * Constructor
 	 *
-	 * @param $db DatabaseBase object to perform updates on
+	 * @param DatabaseBase $db To perform updates on
 	 * @param bool $shared Whether to perform updates on shared tables
-	 * @param $maintenance Maintenance Maintenance object which created us
+	 * @param Maintenance $maintenance Maintenance object which created us
 	 */
 	protected function __construct( DatabaseBase &$db, $shared, Maintenance $maintenance = null ) {
 		$this->db = $db;
@@ -204,7 +204,7 @@ abstract class DatabaseUpdater {
 	 *
 	 * @since 1.17
 	 *
-	 * @param array $update the update to run. Format is the following:
+	 * @param array $update The update to run. Format is the following:
 	 *                first item is the callback function, it also can be a
 	 *                simple string with the name of a function in this class,
 	 *                following elements are parameters to the function.
@@ -388,7 +388,7 @@ abstract class DatabaseUpdater {
 	/**
 	 * Do all the updates
 	 *
-	 * @param array $what what updates to perform
+	 * @param array $what What updates to perform
 	 */
 	public function doUpdates( $what = array( 'core', 'extensions', 'stats' ) ) {
 		global $wgVersion;
@@ -423,7 +423,7 @@ abstract class DatabaseUpdater {
 	 * Helper function for doUpdates()
 	 *
 	 * @param array $updates of updates to run
-	 * @param $passSelf Boolean: whether to pass this object we calling external
+	 * @param bool $passSelf Whether to pass this object we calling external
 	 *                  functions
 	 */
 	private function runUpdates( array $updates, $passSelf ) {
@@ -450,8 +450,8 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
-	 * @param $version
-	 * @param $updates array
+	 * @param string $version
+	 * @param array $updates
 	 */
 	protected function setAppliedUpdates( $version, $updates = array() ) {
 		$this->db->clearFlag( DBO_DDLMODE );
@@ -470,7 +470,6 @@ abstract class DatabaseUpdater {
 	 * Obviously, only use this for updates that occur after the updatelog table was
 	 * created!
 	 * @param string $key Name of the key to check for
-	 *
 	 * @return bool
 	 */
 	public function updateRowExists( $key ) {
@@ -489,7 +488,7 @@ abstract class DatabaseUpdater {
 	 * Obviously, only use this for updates that occur after the updatelog table was
 	 * created!
 	 * @param string $key Name of key to insert
-	 * @param string $val [optional] value to insert along with the key
+	 * @param string $val [optional] Value to insert along with the key
 	 */
 	public function insertUpdateRow( $key, $val = null ) {
 		$this->db->clearFlag( DBO_DDLMODE );
@@ -519,7 +518,7 @@ abstract class DatabaseUpdater {
 	 * Updates will be prevented if the table is a shared table and it is not
 	 * specified to run updates on shared tables.
 	 *
-	 * @param string $name table name
+	 * @param string $name Table name
 	 * @return bool
 	 */
 	protected function doTable( $name ) {
@@ -584,7 +583,7 @@ abstract class DatabaseUpdater {
 	 * 1.13...) with the values being arrays of updates, identical to how
 	 * updaters.inc did it (for now)
 	 *
-	 * @return Array
+	 * @return array
 	 */
 	abstract protected function getCoreUpdateList();
 
@@ -605,8 +604,8 @@ abstract class DatabaseUpdater {
 	 *
 	 * This is used as a callback for for sourceLine().
 	 *
-	 * @param string $line text to append to the file
-	 * @return Boolean false to skip actually executing the file
+	 * @param string $line Text to append to the file
+	 * @return bool False to skip actually executing the file
 	 * @throws MWException
 	 */
 	public function appendLine( $line ) {
@@ -624,7 +623,7 @@ abstract class DatabaseUpdater {
 	 * @param string $path Path to the patch file
 	 * @param $isFullPath Boolean Whether to treat $path as a relative or not
 	 * @param string $msg Description of the patch
-	 * @return boolean false if patch is skipped.
+	 * @return bool False if patch is skipped.
 	 */
 	protected function applyPatch( $path, $isFullPath = false, $msg = null ) {
 		if ( $msg === null ) {
@@ -656,8 +655,8 @@ abstract class DatabaseUpdater {
 	 *
 	 * @param string $name Name of the new table
 	 * @param string $patch Path to the patch file
-	 * @param $fullpath Boolean Whether to treat $patch path as a relative or not
-	 * @return Boolean false if this was skipped because schema changes are skipped
+	 * @param bool $fullpath Whether to treat $patch path as a relative or not
+	 * @return bool False if this was skipped because schema changes are skipped
 	 */
 	protected function addTable( $name, $patch, $fullpath = false ) {
 		if ( !$this->doTable( $name ) ) {
@@ -679,8 +678,8 @@ abstract class DatabaseUpdater {
 	 * @param string $table Name of the table to modify
 	 * @param string $field Name of the new field
 	 * @param string $patch Path to the patch file
-	 * @param $fullpath Boolean Whether to treat $patch path as a relative or not
-	 * @return Boolean false if this was skipped because schema changes are skipped
+	 * @param bool $fullpath Whether to treat $patch path as a relative or not
+	 * @return bool False if this was skipped because schema changes are skipped
 	 */
 	protected function addField( $table, $field, $patch, $fullpath = false ) {
 		if ( !$this->doTable( $table ) ) {
@@ -704,8 +703,8 @@ abstract class DatabaseUpdater {
 	 * @param string $table Name of the table to modify
 	 * @param string $index Name of the new index
 	 * @param string $patch Path to the patch file
-	 * @param $fullpath Boolean Whether to treat $patch path as a relative or not
-	 * @return Boolean false if this was skipped because schema changes are skipped
+	 * @param bool $fullpath Whether to treat $patch path as a relative or not
+	 * @return bool False if this was skipped because schema changes are skipped
 	 */
 	protected function addIndex( $table, $index, $patch, $fullpath = false ) {
 		if ( !$this->doTable( $table ) ) {
@@ -729,8 +728,8 @@ abstract class DatabaseUpdater {
 	 * @param string $table Name of the table to modify
 	 * @param string $field Name of the old field
 	 * @param string $patch Path to the patch file
-	 * @param $fullpath Boolean Whether to treat $patch path as a relative or not
-	 * @return Boolean false if this was skipped because schema changes are skipped
+	 * @param bool $fullpath Whether to treat $patch path as a relative or not
+	 * @return bool False if this was skipped because schema changes are skipped
 	 */
 	protected function dropField( $table, $field, $patch, $fullpath = false ) {
 		if ( !$this->doTable( $table ) ) {
@@ -752,8 +751,8 @@ abstract class DatabaseUpdater {
 	 * @param string $table Name of the table to modify
 	 * @param string $index Name of the index
 	 * @param string $patch Path to the patch file
-	 * @param $fullpath Boolean: Whether to treat $patch path as a relative or not
-	 * @return Boolean false if this was skipped because schema changes are skipped
+	 * @param bool $fullpath Whether to treat $patch path as a relative or not
+	 * @return bool False if this was skipped because schema changes are skipped
 	 */
 	protected function dropIndex( $table, $index, $patch, $fullpath = false ) {
 		if ( !$this->doTable( $table ) ) {
@@ -778,8 +777,8 @@ abstract class DatabaseUpdater {
 	 * @param $skipBothIndexExistWarning Boolean: Whether to warn if both the
 	 * old and the new indexes exist.
 	 * @param string $patch Path to the patch file
-	 * @param $fullpath Boolean: Whether to treat $patch path as a relative or not
-	 * @return Boolean false if this was skipped because schema changes are skipped
+	 * @param bool $fullpath Whether to treat $patch path as a relative or not
+	 * @return bool False if this was skipped because schema changes are skipped
 	 */
 	protected function renameIndex( $table, $oldIndex, $newIndex,
 		$skipBothIndexExistWarning, $patch, $fullpath = false
@@ -830,10 +829,10 @@ abstract class DatabaseUpdater {
 	 *
 	 * Public @since 1.20
 	 *
-	 * @param $table string
-	 * @param $patch string|false
-	 * @param $fullpath bool
-	 * @return Boolean false if this was skipped because schema changes are skipped
+	 * @param string $table Table to drop.
+	 * @param string|bool $patch String of patch file that will drop the table. Default: false.
+	 * @param bool $fullpath Whether $patch is a full path. Default: false.
+	 * @return bool False if this was skipped because schema changes are skipped
 	 */
 	public function dropTable( $table, $patch = false, $fullpath = false ) {
 		if ( !$this->doTable( $table ) ) {
@@ -860,11 +859,11 @@ abstract class DatabaseUpdater {
 	/**
 	 * Modify an existing field
 	 *
-	 * @param string $table name of the table to which the field belongs
-	 * @param string $field name of the field to modify
-	 * @param string $patch path to the patch file
-	 * @param $fullpath Boolean: whether to treat $patch path as a relative or not
-	 * @return Boolean false if this was skipped because schema changes are skipped
+	 * @param string $table Name of the table to which the field belongs
+	 * @param string $field Name of the field to modify
+	 * @param string $patch Path to the patch file
+	 * @param bool $fullpath Whether to treat $patch path as a relative or not
+	 * @return bool False if this was skipped because schema changes are skipped
 	 */
 	public function modifyField( $table, $field, $patch, $fullpath = false ) {
 		if ( !$this->doTable( $table ) ) {

@@ -1301,8 +1301,13 @@ abstract class Installer {
 	/**
 	 * Same as locateExecutable(), but checks in getPossibleBinPaths() by default
 	 * @see locateExecutable()
-	 * @param $names
-	 * @param $versionInfo bool
+	 * @param array $names Array of possible names.
+	 * @param array|bool $versionInfo Default: false or array with two members:
+	 *         0 => Command to run for version check, with $1 for the full executable name
+	 *         1 => String to compare the output with
+	 *
+	 * If $versionInfo is not false, only executables with a version
+	 * matching $versionInfo[1] will be returned.
 	 * @return bool|string
 	 */
 	public static function locateExecutableInDefaultPaths( $names, $versionInfo = false ) {
