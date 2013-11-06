@@ -1,0 +1,81 @@
+/**
+ * Stylesheet for the CategoryTree extension.
+ *
+ * @file
+ * @ingroup Extensions
+ * @author Daniel Kinzler, brightbyte.de
+ * @copyright © 2006 Daniel Kinzler
+ * @licence GNU General Public Licence 2.0 or later
+ */
+
+#mw-subcategories ul {
+	list-style: none none;
+	margin-left: 0.25em;
+}
+
+.CategoryTreeChildren {
+	margin-left: 1.25em;
+}
+
+.CategoryTreeBullet {
+	cursor: pointer;
+}
+
+.CategoryTreeEmptyBullet {
+	cursor: default;
+	color: #C0C0C0;
+}
+
+.CategoryTreeBullet a,
+.CategoryTreeBullet a:link,
+.CategoryTreeBullet a:active,
+.CategoryTreeBullet a:visited {
+	text-decoration: none;
+	color: inherit;
+	speak: none;
+}
+
+.CategoryTreeToggle {
+	color: #0645AD;
+}
+
+.CategoryTreeLabelPage {
+	font-style: italic;
+}
+
+.CategoryTreeParents {
+	margin-top: 1.5ex;
+	font-style: italic;
+}
+
+.CategoryTreeResult {
+	margin-top: 1.5ex;
+}
+
+.CategoryTreeTag {
+	margin-top: 0.5ex;
+	margin-bottom: 0.5ex;
+        font-size: 0.75em;
+        line-height: 1.50em;
+}
+
+.CategoryTreeNotice {
+	font-style: italic;
+}
+
+.CategoryTreeCategoryBarItem {
+	/* yes, specify display twice! quirk for FF2 */
+	display: -moz-inline-box;
+	display: inline-block;
+	/* why is the -0.5ex needed? */
+	margin: -0.5ex 0 0 1ex;
+	padding:0;
+	vertical-align: top;
+	/* IE6-7 Hack for display: inline-block */
+	zoom: 1;
+	*display: inline;
+}
+
+.CategoryTreeSection {
+	direction: ltr;
+}
