@@ -1519,7 +1519,15 @@ Parameters:
 * $1 - (Unused) obsolete, date and time
 * $2 - date
 * $3 - time',
+'emailconfirmed' => 'In user preferences ([[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}) and on [[Special:ConfirmEmail]].
+
+Parameters:
+* $1 - date
+* $2 - time',
 'emailnotauthenticated' => 'Message in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.
+
+It appears after saving your email address but before it has been authenticated.',
+'emailnotconfirmed' => 'Message in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.
 
 It appears after saving your email address but before it has been authenticated.',
 'noemailprefs' => 'Message appearing in the "Email options" section of the "User profile" page in [[Special:Preferences|Preferences]], when no user email address has been entered.',

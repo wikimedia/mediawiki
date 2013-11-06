@@ -472,20 +472,18 @@ class Preferences {
 				if ( $user->getEmail() ) {
 					if ( $user->getEmailAuthenticationTimestamp() ) {
 						// date and time are separate parameters to facilitate localisation.
-						// $time is kept for backward compat reasons.
-						// 'emailauthenticated' is also used in SpecialConfirmemail.php
+						// 'emailconfirmed' is also used in SpecialConfirmemail.php
 						$displayUser = $context->getUser();
 						$emailTimestamp = $user->getEmailAuthenticationTimestamp();
-						$time = $lang->userTimeAndDate( $emailTimestamp, $displayUser );
 						$d = $lang->userDate( $emailTimestamp, $displayUser );
 						$t = $lang->userTime( $emailTimestamp, $displayUser );
-						$emailauthenticated = $context->msg( 'emailauthenticated',
-							$time, $d, $t )->parse() . '<br />';
+						$emailauthenticated = $context->msg( 'emailconfirmed',
+							$d, $t )->parse() . '<br />';
 						$disableEmailPrefs = false;
 						$emailauthenticationclass = 'mw-email-authenticated';
 					} else {
 						$disableEmailPrefs = true;
-						$emailauthenticated = $context->msg( 'emailnotauthenticated' )->parse() . '<br />' .
+						$emailauthenticated = $context->msg( 'emailnotconfirmed' )->parse() . '<br />' .
 							Linker::linkKnown(
 								SpecialPage::getTitleFor( 'Confirmemail' ),
 								$context->msg( 'emailconfirmlink' )->escaped()

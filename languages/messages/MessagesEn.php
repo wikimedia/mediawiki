@@ -1229,7 +1229,10 @@ To prevent abuse, only one password reset email will be sent per {{PLURAL:$1|hou
 'acct_creation_throttle_hit'      => 'Visitors to this wiki using your IP address have created {{PLURAL:$1|1 account|$1 accounts}} in the last day, which is the maximum allowed in this time period.
 As a result, visitors using this IP address cannot create any more accounts at the moment.',
 'emailauthenticated'              => 'Your email address was authenticated on $2 at $3.',
+'emailconfirmed'                  => 'Your email address was confirmed on $1 at $2.',
 'emailnotauthenticated'           => 'Your email address is not yet authenticated.
+No email will be sent for any of the following features.',
+'emailnotconfirmed'               => 'Your email address is not yet confirmed.
 No email will be sent for any of the following features.',
 'noemailprefs'                    => 'Specify an email address in your preferences for these features to work.',
 'emailconfirmlink'                => 'Confirm your email address',
