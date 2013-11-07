@@ -931,10 +931,10 @@ class SwiftFileBackend extends FileBackendStore {
 	 *
 	 * @param string $fullCont Resolved container name
 	 * @param string $dir Resolved storage directory with no trailing slash
-	 * @param string|null $after Storage path of file to list items after
+	 * @param string|null $after Resolved container relative path to list items after
 	 * @param integer $limit Max number of items to list
 	 * @param array $params Parameters for getDirectoryList()
-	 * @return Array List of resolved paths of directories directly under $dir
+	 * @return Array List of container relative resolved paths of directories directly under $dir
 	 * @throws FileBackendError
 	 */
 	public function getDirListPageInternal( $fullCont, $dir, &$after, $limit, array $params ) {
@@ -1006,14 +1006,14 @@ class SwiftFileBackend extends FileBackendStore {
 	 *
 	 * @param string $fullCont Resolved container name
 	 * @param string $dir Resolved storage directory with no trailing slash
-	 * @param string|null $after Storage path of file to list items after
+	 * @param string|null $after Resolved container relative path of file to list items after
 	 * @param integer $limit Max number of items to list
 	 * @param array $params Parameters for getDirectoryList()
-	 * @return Array List of resolved paths of files under $dir
+	 * @return Array List of resolved container relative paths of files under $dir
 	 * @throws FileBackendError
 	 */
 	public function getFileListPageInternal( $fullCont, $dir, &$after, $limit, array $params ) {
-		$files = array();
+		$files = array(); // list of (path, stat array or null) entries
 		if ( $after === INF ) {
 			return $files; // nothing more
 		}
@@ -1022,38 +1022,33 @@ class SwiftFileBackend extends FileBackendStore {
 		try {
 			$container = $this->getContainer( $fullCont );
 			$prefix = ( $dir == '' ) ? null : "{$dir}/";
+			$objects = array(); // list of unfiltered names or CF_Object items
 			// Non-recursive: only list files right under $dir
-			if ( !empty( $params['topOnly'] ) ) { // files and dirs
+			if ( !empty( $params['topOnly'] ) ) {
 				if ( !empty( $params['adviseStat'] ) ) {
-					$limit = min( $limit, self::CACHE_CHEAP_SIZE );
 					// Note: get_objects() does not include directories
-					$objects = $this->loadObjectListing( $params, $dir,
-						$container->get_objects( $limit, $after, $prefix, null, '/' ) );
-					$files = $objects;
+					$objects = $container->get_objects( $limit, $after, $prefix, null, '/' );
 				} else {
+					// Note: list_objects() includes directories here
 					$objects = $container->list_objects( $limit, $after, $prefix, null, '/' );
-					foreach ( $objects as $object ) { // files and directories
-						if ( substr( $object, -1 ) !== '/' ) {
-							$files[] = $object; // directories end in '/'
-						}
-					}
 				}
+				$files = $this->buildFileObjectListing( $params, $dir, $objects );
 			// Recursive: list all files under $dir and its subdirs
-			} else { // files
+			} else {
+				// Note: get_objects()/list_objects() here only return file objects
 				if ( !empty( $params['adviseStat'] ) ) {
-					$limit = min( $limit, self::CACHE_CHEAP_SIZE );
-					$objects = $this->loadObjectListing( $params, $dir,
-						$container->get_objects( $limit, $after, $prefix ) );
+					$objects = $container->get_objects( $limit, $after, $prefix );
 				} else {
 					$objects = $container->list_objects( $limit, $after, $prefix );
 				}
-				$files = $objects;
+				$files = $this->buildFileObjectListing( $params, $dir, $objects );
 			}
 			// Page on the unfiltered object listing (what is returned may be filtered)
 			if ( count( $objects ) < $limit ) {
 				$after = INF; // avoid a second RTT
 			} else {
 				$after = end( $objects ); // update last item
+				$after = is_object( $after ) ? $after->name : $after;
 			}
 		} catch ( NoSuchContainerException $e ) {
 		} catch ( CloudFilesException $e ) { // some other exception?
@@ -1066,34 +1061,42 @@ class SwiftFileBackend extends FileBackendStore {
 	}
 
 	/**
-	 * Load a list of objects that belong under $dir into stat cache
-	 * and return a list of the names of the objects in the same order.
+	 * Build a list of file objects, filtering out any directories
+	 * and extracting any stat info if provided in $objects (for CF_Objects)
 	 *
 	 * @param array $params Parameters for getDirectoryList()
 	 * @param string $dir Resolved container directory path
-	 * @param array $cfObjects List of CF_Object items
-	 * @return array List of object names
+	 * @param array $objects List of CF_Object items or object names
+	 * @return array List of (names,stat array or null) entries
 	 */
-	private function loadObjectListing( array $params, $dir, array $cfObjects ) {
+	private function buildFileObjectListing( array $params, $dir, array $objects ) {
 		$names = array();
-		$storageDir = rtrim( $params['dir'], '/' );
-		$suffixStart = ( $dir === '' ) ? 0 : strlen( $dir ) + 1; // size of "path/to/dir/"
-		// Iterate over the list *backwards* as this primes the stat cache, which is LRU.
-		// If this fills the cache and the caller stats an uncached file before stating
-		// the ones on the listing, there would be zero cache hits if this went forwards.
-		for ( end( $cfObjects ); key( $cfObjects ) !== null; prev( $cfObjects ) ) {
-			$object = current( $cfObjects );
-			$path = "{$storageDir}/" . substr( $object->name, $suffixStart );
-			$val = array(
-				// Convert various random Swift dates to TS_MW
-				'mtime'  => $this->convertSwiftDate( $object->last_modified, TS_MW ),
-				'size'   => (int)$object->content_length,
-				'latest' => false // eventually consistent
-			);
-			$this->cheapCache->set( $path, 'stat', $val );
-			$names[] = $object->name;
+		foreach ( $objects as $object ) {
+			if ( is_object( $object ) ) {
+				$stat = array(
+					// Convert various random Swift dates to TS_MW
+					'mtime'  => $this->convertSwiftDate( $object->last_modified, TS_MW ),
+					'size'   => (int)$object->content_length,
+					'latest' => false // eventually consistent
+				);
+				$names[] = array( $object->name, $stat );
+			} elseif ( substr( $object, -1 ) !== '/' ) {
+				// Omit directories, which end in '/' in listings
+				$names[] = array( $object, null );
+			}
 		}
-		return array_reverse( $names ); // keep the paths in original order
+		return $names;
+	}
+
+	/**
+	 * Do not call this function outside of SwiftFileBackendFileList
+	 *
+	 * @param string $path Storage path
+	 * @param array $val Stat value
+	 * @return void
+	 */
+	public function loadListingStatInternal( $path, array $val ) {
+		$this->cheapCache->set( $path, 'stat', $val );
 	}
 
 	protected function doGetFileSha1base36( array $params ) {
@@ -1571,7 +1574,7 @@ class SwiftFileOpHandle extends FileBackendStoreOpHandle {
  * @ingroup FileBackend
  */
 abstract class SwiftFileBackendList implements Iterator {
-	/** @var Array */
+	/** @var Array List of path or (path,stat array) entries */
 	protected $bufferIter = array();
 	protected $bufferAfter = null; // string; list items *after* this path
 	protected $pos = 0; // integer
@@ -1699,7 +1702,13 @@ class SwiftFileBackendFileList extends SwiftFileBackendList {
 	 * @return string|bool String (relative path) or false
 	 */
 	public function current() {
-		return substr( current( $this->bufferIter ), $this->suffixStart );
+		list( $path, $stat ) = current( $this->bufferIter );
+		$relPath = substr( $path, $this->suffixStart );
+		if ( is_array( $stat ) ) {
+			$storageDir = rtrim( $this->params['dir'], '/' );
+			$this->backend->loadListingStatInternal( "$storageDir/$path", $stat );
+		}
+		return $relPath;
 	}
 
 	/**
