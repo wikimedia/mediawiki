@@ -43,7 +43,7 @@
 		assert.strictEqual( window.mw, window.mediaWiki, 'mw alias to mediaWiki' );
 	} );
 
-	QUnit.test( 'mw.Map', 27, function ( assert ) {
+	QUnit.test( 'mw.Map', 28, function ( assert ) {
 		var arry, conf, funky, globalConf, nummy, someValues;
 
 		conf = new mw.Map();
@@ -101,6 +101,8 @@
 			'foo': 'bar',
 			'lorem': 'ipsum'
 		}, 'Map.get returns multiple values correctly as an object' );
+
+		assert.deepEqual( conf, new mw.Map( conf.values ), 'new mw.Map maps over existing values-bearing object' );
 
 		assert.deepEqual( conf.get( ['foo', 'notExist'] ), {
 			'foo': 'bar',
