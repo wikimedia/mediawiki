@@ -409,8 +409,8 @@ class HashtableReplacer extends Replacer {
  * Supports lazy initialisation of FSS resource
  */
 class ReplacementArray {
-	/*mostly private*/ var $data = false;
-	/*mostly private*/ var $fss = false;
+	private $data = false;
+	private $fss = false;
 
 	/**
 	 * Create an object with the specified replacement array
