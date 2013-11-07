@@ -1,6 +1,6 @@
 <?php
-class AutoLoaderTest extends MediaWikiTestCase {
 
+class AutoLoaderTest extends MediaWikiTestCase {
 	protected function setUp() {
 		global $wgAutoloadLocalClasses, $wgAutoloadClasses;
 
@@ -13,7 +13,7 @@ class AutoLoaderTest extends MediaWikiTestCase {
 			'TestAutoloadedSerializedClass' => __DIR__ . '/../data/autoloader/TestAutoloadedSerializedClass.php',
 		);
 		$this->setMwGlobals( 'wgAutoloadLocalClasses', $this->testLocalClasses + $wgAutoloadLocalClasses );
-		InstrumentedAutoLoader::resetAutoloadLocalClassesLower();
+		AutoLoader::resetAutoloadLocalClassesLower();
 
 		$this->testExtensionClasses = array(
 			'TestAutoloadedClass' => __DIR__ . '/../data/autoloader/TestAutoloadedClass.php',
@@ -91,14 +91,5 @@ class AutoLoaderTest extends MediaWikiTestCase {
 		$uncerealized = unserialize( $dummyCereal );
 		$this->assertFalse( $uncerealized instanceof __PHP_Incomplete_Class,
 			"unserialize() can load classes case-insensitively.");
-	}
-}
-
-/**
- * Cheater to poke protected members
- */
-class InstrumentedAutoLoader extends AutoLoader {
-	static function resetAutoloadLocalClassesLower() {
-		self::$autoloadLocalClassesLower = null;
 	}
 }
