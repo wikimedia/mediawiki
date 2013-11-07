@@ -93,27 +93,27 @@ class ZipDirectoryReader {
 	}
 
 	/** The file name */
-	var $fileName;
+	protected $fileName;
 
 	/** The opened file resource */
-	var $file;
+	protected $file;
 
 	/** The cached length of the file, or null if it has not been loaded yet. */
-	var $fileLength;
+	protected $fileLength;
 
 	/** A segmented cache of the file contents */
-	var $buffer;
+	protected $buffer;
 
 	/** The file data callback */
-	var $callback;
+	protected $callback;
 
 	/** The ZIP64 mode */
-	var $zip64 = false;
+	protected $zip64 = false;
 
 	/** Stored headers */
-	var $eocdr, $eocdr64, $eocdr64Locator;
+	protected $eocdr, $eocdr64, $eocdr64Locator;
 
-	var $data;
+	protected $data;
 
 	/** The "extra field" ID for ZIP64 central directory entries */
 	const ZIP64_EXTRA_HEADER = 0x0001;
