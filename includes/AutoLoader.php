@@ -1047,6 +1047,7 @@ $wgAutoloadLocalClasses = array(
 	# includes/utils
 	'ArrayUtils' => 'includes/utils/ArrayUtils.php',
 	'CdbFunctions' => 'includes/utils/CdbPHP.php',
+	'CdbHandle' => 'includes/utils/Cdb.php',
 	'CdbReader' => 'includes/utils/Cdb.php',
 	'CdbReaderDBA' => 'includes/utils/Cdb.php',
 	'CdbReaderPHP' => 'includes/utils/CdbPHP.php',
