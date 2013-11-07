@@ -89,17 +89,17 @@ mw.log.deprecate( win, 'ie6_bugs', false, msg );
 msg = 'Use jQuery instead';
 
 // Ignored dummy values
-mw.log.deprecate( win, 'doneOnloadHook', undefined );
-mw.log.deprecate( win, 'onloadFuncts', [] );
-mw.log.deprecate( win, 'runOnloadHook', $.noop );
-mw.log.deprecate( win, 'changeText', $.noop );
-mw.log.deprecate( win, 'killEvt', $.noop );
-mw.log.deprecate( win, 'addHandler', $.noop );
-mw.log.deprecate( win, 'hookEvent', $.noop );
-mw.log.deprecate( win, 'addClickHandler', $.noop );
-mw.log.deprecate( win, 'removeHandler', $.noop );
-mw.log.deprecate( win, 'getElementsByClassName', function () { return []; } );
-mw.log.deprecate( win, 'getInnerText', function () { return ''; } );
+mw.log.deprecate( win, 'doneOnloadHook', undefined, msg );
+mw.log.deprecate( win, 'onloadFuncts', [], msg );
+mw.log.deprecate( win, 'runOnloadHook', $.noop, msg );
+mw.log.deprecate( win, 'changeText', $.noop, msg );
+mw.log.deprecate( win, 'killEvt', $.noop, msg );
+mw.log.deprecate( win, 'addHandler', $.noop, msg );
+mw.log.deprecate( win, 'hookEvent', $.noop, msg );
+mw.log.deprecate( win, 'addClickHandler', $.noop, msg );
+mw.log.deprecate( win, 'removeHandler', $.noop, msg );
+mw.log.deprecate( win, 'getElementsByClassName', function () { return []; }, msg );
+mw.log.deprecate( win, 'getInnerText', function () { return ''; }, msg );
 
 // Run a function after the window onload event is fired
 mw.log.deprecate( win, 'addOnloadHook', function ( hookFunct ) {
@@ -110,7 +110,7 @@ mw.log.deprecate( win, 'addOnloadHook', function ( hookFunct ) {
 		// run immediately instead of queueing.
 		hookFunct();
 	}
-} );
+}, msg );
 
 $( win ).on( 'load', function () {
 	var i, functs;
@@ -198,7 +198,7 @@ mw.log.deprecate( win, 'tooltipAccessKeyPrefix', 'alt-', msg );
 mw.log.deprecate( win, 'tooltipAccessKeyRegexp', /\[(alt-)?(.)\]$/, msg );
 mw.log.deprecate( win, 'updateTooltipAccessKeys', mw.util.updateTooltipAccessKeys, msg );
 mw.log.deprecate( win, 'addPortletLink', mw.util.addPortletLink, msg );
-mw.log.deprecate( win, 'appendCSS', mw.util.addCSS );
+mw.log.deprecate( win, 'appendCSS', mw.util.addCSS, msg );
 
 /**
  * Wikipage import methods
