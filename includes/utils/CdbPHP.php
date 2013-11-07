@@ -69,7 +69,7 @@ class CdbFunctions {
 	 *
 	 * @param $s string
 	 *
-	 * @return
+	 * @return int
 	 */
 	public static function hash( $s ) {
 		$h = 5381;
@@ -322,9 +322,8 @@ class CdbWriterPHP extends CdbWriter {
 	}
 
 	/**
-	 * @param $key
-	 * @param $value
-	 * @return
+	 * @param string $key
+	 * @param string $value
 	 */
 	public function set( $key, $value ) {
 		if ( strval( $key ) === '' ) {
