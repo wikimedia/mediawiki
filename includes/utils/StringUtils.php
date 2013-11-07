@@ -525,19 +525,19 @@ class ReplacementArray {
  */
 class ExplodeIterator implements Iterator {
 	// The subject string
-	var $subject, $subjectLength;
+	private $subject, $subjectLength;
 
 	// The delimiter
-	var $delim, $delimLength;
+	private $delim, $delimLength;
 
 	// The position of the start of the line
-	var $curPos;
+	private $curPos;
 
 	// The position after the end of the next delimiter
-	var $endPos;
+	private $endPos;
 
 	// The current token
-	var $current;
+	private $current;
 
 	/**
 	 * Construct a DelimIterator
