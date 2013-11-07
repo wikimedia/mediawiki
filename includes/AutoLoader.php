@@ -1140,7 +1140,7 @@ $wgAutoloadLocalClasses = array(
 );
 
 class AutoLoader {
-	static $autoloadLocalClassesLower = null;
+	static protected  $autoloadLocalClassesLower = null;
 
 	/**
 	 * autoload - take a class name and attempt to load it
@@ -1221,6 +1221,14 @@ class AutoLoader {
 	 */
 	static function loadClass( $class ) {
 		return class_exists( $class );
+	}
+
+	/**
+	 * Method to clear the protected class property $autoloadLocalClassesLower.
+	 * Used in tests.
+	 */
+	static function resetAutoloadLocalClassesLower() {
+		self::$autoloadLocalClassesLower = null;
 	}
 }
 
