@@ -196,6 +196,8 @@ production.
   to multiple Config instances.
 * Update CSSJanus to v1.1.0.
 * Added FormatJson::parse() returning status with result or localized error message
+* (bug 31313) Add a preference for watching uploads by default, also applies
+  to API-based upload tools.
 
 === Bug fixes in 1.24 ===
 * (bug 50572) MediaWiki:Blockip should support gender
