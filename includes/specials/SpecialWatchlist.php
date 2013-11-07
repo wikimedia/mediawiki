@@ -35,38 +35,6 @@ class SpecialWatchlist extends SpecialRecentChanges {
 	}
 
 	/**
-	 * Map old pre-1.23 request parameters Watchlist used to use (different from Recentchanges' ones)
-	 * to the current ones.
-	 *
-	 * This creates derivative context and request, pokes with request's parameters, and sets them as
-	 * the context for this class instance, mapping old keys to new ones completely transparently (as
-	 * long as nothing tries to access the globals instead of current context).
-	 */
-	private function mapCompatibilityRequestParameters() {
-		static $map = array(
-			'hideMinor' => 'hideminor',
-			'hideBots' => 'hidebots',
-			'hideAnons' => 'hideanons',
-			'hideLiu' => 'hideliu',
-			'hidePatrolled' => 'hidepatrolled',
-			'hideOwn' => 'hidemyself',
-		);
-
-		$params = $this->getRequest()->getValues();
-		foreach ( $map as $from => $to ) {
-			if ( isset( $params[$from] ) ) {
-				$params[$to] = $params[$from];
-				unset( $params[$from] );
-			}
-		}
-
-		$context = new DerivativeContext( $this->getContext() );
-		$request = new DerivativeRequest( $context->getRequest(), $params );
-		$context->setRequest( $request );
-		$this->setContext( $context );
-	}
-
-	/**
 	 * Get a FormOptions object containing the default options
 	 *
 	 * @return FormOptions
@@ -88,6 +56,40 @@ class SpecialWatchlist extends SpecialRecentChanges {
 		// Add new ones
 		$opts->add( 'extended', $user->getBoolOption( 'extendwatchlist' ) );
 
+		return $opts;
+	}
+
+	/**
+	 * Fetch values for a FormOptions object from the WebRequest associated with this instance.
+	 *
+	 * Maps old pre-1.23 request parameters Watchlist used to use (different from Recentchanges' ones)
+	 * to the current ones.
+	 *
+	 * @param FormOptions $parameters
+	 * @return FormOptions
+	 */
+	protected function fetchOptionsFromRequest( $opts ) {
+		static $compatibilityMap = array(
+			'hideMinor' => 'hideminor',
+			'hideBots' => 'hidebots',
+			'hideAnons' => 'hideanons',
+			'hideLiu' => 'hideliu',
+			'hidePatrolled' => 'hidepatrolled',
+			'hideOwn' => 'hidemyself',
+		);
+
+		$params = $this->getRequest()->getValues();
+		foreach ( $compatibilityMap as $from => $to ) {
+			if ( isset( $params[$from] ) ) {
+				$params[$to] = $params[$from];
+				unset( $params[$from] );
+			}
+		}
+
+		// Not the prettiest way to achieve this… FormOptions internally depends on data sanitization
+		// methods defined on WebRequest and removing this dependency would cause some code duplication.
+		$request = new DerivativeRequest( $this->getRequest(), $params );
+		$opts->fetchValuesFromRequest( $request );
 		return $opts;
 	}
 
@@ -131,8 +133,6 @@ class SpecialWatchlist extends SpecialRecentChanges {
 	 */
 	function execute( $par ) {
 		global $wgRCShowWatchingUsers, $wgEnotifWatchlist, $wgShowUpdatedMarker;
-
-		$this->mapCompatibilityRequestParameters();
 
 		$user = $this->getUser();
 		$output = $this->getOutput();
