@@ -1,0 +1,9 @@
+Verified+2: jenkins-bot
+Code-Review+2: Siebrand <siebrand@wikimedia.org>
+Code-Review+1: Cscott <cananian@wikimedia.org>
+Code-Review+1: Lord Farin <lord_farin@proofwiki.org>
+Submitted-by: jenkins-bot
+Submitted-at: Thu, 07 Nov 2013 16:39:56 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/78330
+Project: mediawiki/core
+Branch: refs/heads/master
