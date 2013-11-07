@@ -80,7 +80,18 @@ function wfIsTrustedProxy( $ip ) {
  */
 function wfIsConfiguredProxy( $ip ) {
 	global $wgSquidServers, $wgSquidServersNoPurge;
-	$trusted = in_array( $ip, $wgSquidServers ) ||
-		in_array( $ip, $wgSquidServersNoPurge );
+
+	// quick check of known proxy servers
+	$trusted = in_array( $ip, $wgSquidServers );
+
+	if ( !$trusted ) {
+		// slightly slower check to see if the ip is listed directly or in a CIDR
+		// block in $wgSquidServersNoPurge
+		foreach ( $wgSquidServersNoPurge as $block ) {
+			if ( IP::isInRange( $ip, $block ) ) {
+				return true;
+			}
+		}
+	}
 	return $trusted;
 }
