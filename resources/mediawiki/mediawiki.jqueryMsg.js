@@ -946,7 +946,7 @@
 			var page, anchor, url;
 
 			page = nodes[0];
-			url = mw.util.wikiGetlink( page );
+			url = mw.util.getUrl( page );
 
 			// [[Some Page]] or [[Namespace:Some Page]]
 			if ( nodes.length === 1 ) {
