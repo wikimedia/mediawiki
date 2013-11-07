@@ -3431,19 +3431,6 @@ function wfBaseConvert( $input, $sourceBase, $destBase, $pad = 1,
 }
 
 /**
- * Create an object with a given name and an array of construct parameters
- *
- * @param $name String
- * @param array $p parameters
- * @return object
- * @deprecated since 1.18, warnings in 1.18, removal in 1.20
- */
-function wfCreateObject( $name, $p ) {
-	wfDeprecated( __FUNCTION__, '1.18' );
-	return MWFunction::newObj( $name, $p );
-}
-
-/**
  * @return bool
  */
 function wfHttpOnlySafe() {
