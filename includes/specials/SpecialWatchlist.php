@@ -74,18 +74,12 @@ class SpecialWatchlist extends SpecialPage {
 
 		$mode = SpecialEditWatchlist::getMode( $request, $par );
 		if ( $mode !== false ) {
-			# TODO: localise?
-			switch ( $mode ) {
-				case SpecialEditWatchlist::EDIT_CLEAR:
-					$mode = 'clear';
-					break;
-				case SpecialEditWatchlist::EDIT_RAW:
-					$mode = 'raw';
-					break;
-				default:
-					$mode = null;
+			if ( $mode === SpecialEditWatchlist::EDIT_RAW ) {
+				$title = SpecialPage::getTitleFor( 'EditWatchlist', 'raw' );
+			} else {
+				$title = SpecialPage::getTitleFor( 'EditWatchlist' );
 			}
-			$title = SpecialPage::getTitleFor( 'EditWatchlist', $mode );
+
 			$output->redirect( $title->getLocalURL() );
 			return;
 		}

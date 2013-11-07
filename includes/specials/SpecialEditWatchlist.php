@@ -36,7 +36,8 @@
  */
 class SpecialEditWatchlist extends UnlistedSpecialPage {
 	/**
-	 * Editing modes
+	 * Editing modes. EDIT_CLEAR is no longer used; the "Clear" link scared people
+	 * too much. Now it's passed on to the raw editor, from which it's very easy to clear.
 	 */
 	const EDIT_CLEAR = 1;
 	const EDIT_RAW = 2;
@@ -95,10 +96,6 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		$mode = self::getMode( $this->getRequest(), $mode );
 
 		switch ( $mode ) {
-			case self::EDIT_CLEAR:
-				// The "Clear" link scared people too much.
-				// Pass on to the raw editor, from which it's very easy to clear.
-
 			case self::EDIT_RAW:
 				$out->setPageTitle( $this->msg( 'watchlistedit-raw-title' ) );
 				$form = $this->getRawForm();
@@ -638,7 +635,6 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		switch ( $mode ) {
 			case 'clear':
 			case self::EDIT_CLEAR:
-				return self::EDIT_CLEAR;
 			case 'raw':
 			case self::EDIT_RAW:
 				return self::EDIT_RAW;
