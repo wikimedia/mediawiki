@@ -269,6 +269,28 @@ class WebRequestTest extends MediaWikiTestCase {
 				false,
 				'With X-Forwaded-For and private IP and hook (disallowed)'
 			),
+			array(
+				'12.0.0.1',
+				array(
+					'REMOTE_ADDR' => 'abcd:0001:002:03:4:555:6666:7777',
+					'HTTP_X_FORWARDED_FOR' => '12.0.0.1, abcd:0001:002:03:4:555:6666:7777',
+				),
+				array( 'ABCD:1:2:3::/64' ),
+				array(),
+				false,
+				'IPv6 CIDR'
+			),
+			array(
+				'12.0.0.3',
+				array(
+					'REMOTE_ADDR' => '12.0.0.1',
+					'HTTP_X_FORWARDED_FOR' => '12.0.0.3, 12.0.0.2'
+				),
+				array( '12.0.0.0/24' ),
+				array(),
+				false,
+				'IPv4 CIDR'
+			),
 		);
 	}
 
@@ -277,6 +299,14 @@ class WebRequestTest extends MediaWikiTestCase {
 	 * @covers WebRequest::getIP
 	 */
 	public function testGetIpLackOfRemoteAddrThrowAnException() {
+		// ensure that local install state doesn't interfere with test
+		$this->setMwGlobals( array(
+			'wgSquidServersNoPurge' => array(),
+			'wgSquidServers' => array(),
+			'wgUsePrivateIPs' => false,
+			'wgHooks' => array(),
+		) );
+
 		$request = new WebRequest();
 		# Next call throw an exception about lacking an IP
 		$request->getIP();
