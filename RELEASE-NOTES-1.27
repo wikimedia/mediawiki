@@ -181,6 +181,8 @@ HHVM 3.1.
   and error messages. It is available client-side via mw.config.get( 'wgRequestId' ).
   The request ID supplants exception IDs. Accordingly, MWExceptionHandler::getLogId()
   is deprecated.
+* (bug 31313) Add a preference for watching uploads by default, also applies
+  to API-based upload tools.
 
 === External library changes in 1.27 ===
 
