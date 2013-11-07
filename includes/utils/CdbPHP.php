@@ -103,9 +103,6 @@ class CdbReaderPHP extends CdbReader {
 	/** The filename */
 	var $fileName;
 
-	/** The file handle */
-	var $handle;
-
 	/* number of hash slots searched under this key */
 	var $loop;
 
@@ -129,18 +126,18 @@ class CdbReaderPHP extends CdbReader {
 
 	/**
 	 * @param $fileName string
-	 * @throws MWException
+	 * @throws Exception
 	 */
-	function __construct( $fileName ) {
+	public function __construct( $fileName ) {
 		$this->fileName = $fileName;
 		$this->handle = fopen( $fileName, 'rb' );
 		if ( !$this->handle ) {
-			throw new MWException( 'Unable to open CDB file "' . $this->fileName . '".' );
+			self::throwException( 'Unable to open CDB file "' . $this->fileName . '".' );
 		}
 		$this->findStart();
 	}
 
-	function close() {
+	public function close() {
 		if ( isset( $this->handle ) ) {
 			fclose( $this->handle );
 		}
@@ -176,7 +173,7 @@ class CdbReaderPHP extends CdbReader {
 	}
 
 	/**
-	 * @throws MWException
+	 * @throws Exception
 	 * @param $length
 	 * @param $pos
 	 * @return string
@@ -184,7 +181,7 @@ class CdbReaderPHP extends CdbReader {
 	protected function read( $length, $pos ) {
 		if ( fseek( $this->handle, $pos ) == -1 ) {
 			// This can easily happen if the internal pointers are incorrect
-			throw new MWException(
+			self::throwException(
 				'Seek failed, file "' . $this->fileName . '" may be corrupted.' );
 		}
 
@@ -194,7 +191,7 @@ class CdbReaderPHP extends CdbReader {
 
 		$buf = fread( $this->handle, $length );
 		if ( $buf === false || strlen( $buf ) !== $length ) {
-			throw new MWException(
+			self::throwException(
 				'Read from CDB file failed, file "' . $this->fileName . '" may be corrupted.' );
 		}
 
@@ -204,13 +201,13 @@ class CdbReaderPHP extends CdbReader {
 	/**
 	 * Unpack an unsigned integer and throw an exception if it needs more than 31 bits
 	 * @param $s
-	 * @throws MWException
+	 * @throws Exception
 	 * @return mixed
 	 */
 	protected function unpack31( $s ) {
 		$data = unpack( 'V', $s );
 		if ( $data[1] > 0x7fffffff ) {
-			throw new MWException(
+			self::throwException(
 				'Error in CDB file "' . $this->fileName . '", integer too big.' );
 		}
 
@@ -291,33 +288,25 @@ class CdbReaderPHP extends CdbReader {
  * CDB writer class
  */
 class CdbWriterPHP extends CdbWriter {
-	var $handle, $realFileName, $tmpFileName;
-
 	var $hplist;
 	var $numentries, $pos;
 
 	/**
 	 * @param $fileName string
 	 */
-	function __construct( $fileName ) {
+	public function __construct( $fileName ) {
 		$this->realFileName = $fileName;
 		$this->tmpFileName = $fileName . '.tmp.' . mt_rand( 0, 0x7fffffff );
 		$this->handle = fopen( $this->tmpFileName, 'wb' );
 		if ( !$this->handle ) {
-			$this->throwException(
+			self::throwException(
 				'Unable to open CDB file "' . $this->tmpFileName . '" for write.' );
 		}
 		$this->hplist = array();
 		$this->numentries = 0;
 		$this->pos = 2048; // leaving space for the pointer array, 256 * 8
 		if ( fseek( $this->handle, $this->pos ) == -1 ) {
-			$this->throwException( 'fseek failed in file "' . $this->tmpFileName . '".' );
-		}
-	}
-
-	function __destruct() {
-		if ( isset( $this->handle ) ) {
-			$this->close();
+			self::throwException( 'fseek failed in file "' . $this->tmpFileName . '".' );
 		}
 	}
 
@@ -338,7 +327,7 @@ class CdbWriterPHP extends CdbWriter {
 	}
 
 	/**
-	 * @throws MWException
+	 * @throws Exception
 	 */
 	public function close() {
 		$this->finish();
@@ -349,30 +338,30 @@ class CdbWriterPHP extends CdbWriter {
 			unlink( $this->realFileName );
 		}
 		if ( !rename( $this->tmpFileName, $this->realFileName ) ) {
-			$this->throwException( 'Unable to move the new CDB file into place.' );
+			self::throwException( 'Unable to move the new CDB file into place.' );
 		}
 		unset( $this->handle );
 	}
 
 	/**
-	 * @throws MWException
+	 * @throws Exception
 	 * @param $buf
 	 */
 	protected function write( $buf ) {
 		$len = fwrite( $this->handle, $buf );
 		if ( $len !== strlen( $buf ) ) {
-			$this->throwException( 'Error writing to CDB file "' . $this->tmpFileName . '".' );
+			self::throwException( 'Error writing to CDB file "' . $this->tmpFileName . '".' );
 		}
 	}
 
 	/**
-	 * @throws MWException
+	 * @throws Exception
 	 * @param $len
 	 */
 	protected function posplus( $len ) {
 		$newpos = $this->pos + $len;
 		if ( $newpos > 0x7fffffff ) {
-			$this->throwException(
+			self::throwException(
 				'A value in the CDB file "' . $this->tmpFileName . '" is too large.' );
 		}
 		$this->pos = $newpos;
@@ -396,23 +385,23 @@ class CdbWriterPHP extends CdbWriter {
 	}
 
 	/**
-	 * @throws MWException
+	 * @throws Exception
 	 * @param $keylen
 	 * @param $datalen
 	 */
 	protected function addbegin( $keylen, $datalen ) {
 		if ( $keylen > 0x7fffffff ) {
-			$this->throwException( 'Key length too long in file "' . $this->tmpFileName . '".' );
+			self::throwException( 'Key length too long in file "' . $this->tmpFileName . '".' );
 		}
 		if ( $datalen > 0x7fffffff ) {
-			$this->throwException( 'Data length too long in file "' . $this->tmpFileName . '".' );
+			self::throwException( 'Data length too long in file "' . $this->tmpFileName . '".' );
 		}
 		$buf = pack( 'VV', $keylen, $datalen );
 		$this->write( $buf );
 	}
 
 	/**
-	 * @throws MWException
+	 * @throws Exception
 	 */
 	protected function finish() {
 		// Hack for DBA cross-check
@@ -482,7 +471,7 @@ class CdbWriterPHP extends CdbWriter {
 		// Write the pointer array at the start of the file
 		rewind( $this->handle );
 		if ( ftell( $this->handle ) != 0 ) {
-			$this->throwException( 'Error rewinding to start of file "' . $this->tmpFileName . '".' );
+			self::throwException( 'Error rewinding to start of file "' . $this->tmpFileName . '".' );
 		}
 		$this->write( $final );
 	}
@@ -491,13 +480,13 @@ class CdbWriterPHP extends CdbWriter {
 	 * Clean up the temp file and throw an exception
 	 *
 	 * @param $msg string
-	 * @throws MWException
+	 * @throws Exception
 	 */
-	protected function throwException( $msg ) {
+	protected static function throwException( $msg ) {
 		if ( $this->handle ) {
 			fclose( $this->handle );
 			unlink( $this->tmpFileName );
 		}
-		throw new MWException( $msg );
+		parent::throwException( $msg );
 	}
 }
