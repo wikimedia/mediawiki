@@ -181,6 +181,7 @@
 	"tog-watchdefault": "[[Special:Preferences]], tab 'Watchlist'. Offers user to add edited pages to watchlist. {{Gender}}",
 	"tog-watchmoves": "[[Special:Preferences]], tab 'Watchlist'. Offers user to add moved pages to watchlist. {{Gender}}",
 	"tog-watchdeletion": "[[Special:Preferences]], tab 'Watchlist'. Offers user to add deleted pages to watchlist. {{Gender}}",
+	"tog-watchuploads": "[[Special:Preferences]], tab 'Watchlist'. Offers user to add their uploaded files to watchlist. {{Gender}}",
 	"tog-watchrollback": "[[Special:Preferences]], tab 'Watchlist'. Offers user to add pages where the user has rollbacked an edit to watchlist. {{Gender}}\n\nSee also {{msg-mw|tog-watchdefault}}, {{msg-mw|tog-watchcreations}}.",
 	"tog-minordefault": "[[Special:Preferences]], tab 'Edit'. Offers user to mark all edits minor by default.  {{Gender}}",
 	"tog-previewontop": "Toggle option used in [[Special:Preferences]]. {{Gender}}",

@@ -992,6 +992,10 @@ class Preferences {
 			$watchTypes['rollback'] = 'watchrollback';
 		}
 
+		if ( $user->isAllowed( 'upload' ) ) {
+			$watchTypes['upload'] = 'watchuploads';
+		}
+
 		foreach ( $watchTypes as $action => $pref ) {
 			if ( $user->isAllowed( $action ) ) {
 				// Messages:
