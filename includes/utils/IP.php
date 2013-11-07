@@ -175,6 +175,7 @@ class IP {
 		}
 		// Remove leading zeros from each bloc as needed
 		$ip = preg_replace( '/(^|:)0+(' . RE_IPV6_WORD . ')/', '$1$2', $ip );
+
 		return $ip;
 	}
 
@@ -218,6 +219,7 @@ class IP {
 			// Convert to lower case to make it more readable
 			$ip = strtolower( $ip );
 		}
+
 		return $ip;
 	}
 
@@ -270,6 +272,7 @@ class IP {
 				return false;
 			}
 		}
+
 		// Plain hostname
 		return array( $both, false );
 	}
@@ -336,6 +339,7 @@ class IP {
 		}
 		// NO leading zeroes
 		$ip_oct = preg_replace( '/(^|:)0+(' . RE_IPV6_WORD . ')/', '$1$2', $ip_oct );
+
 		return $ip_oct;
 	}
 
@@ -356,6 +360,7 @@ class IP {
 			}
 			$s .= base_convert( substr( $ip_hex, $i * 2, 2 ), 16, 10 );
 		}
+
 		return $s;
 	}
 
@@ -400,6 +405,7 @@ class IP {
 				return false;
 			}
 		}
+
 		return true;
 	}
 
@@ -426,6 +432,7 @@ class IP {
 				return false;
 			}
 		}
+
 		return true;
 	}
 
@@ -449,6 +456,7 @@ class IP {
 				$n = wfBaseConvert( $n, 10, 16, 8, false );
 			}
 		}
+
 		return $n;
 	}
 
@@ -467,6 +475,7 @@ class IP {
 		foreach ( explode( ':', $ip ) as $v ) {
 			$r_ip .= str_pad( $v, 4, 0, STR_PAD_LEFT );
 		}
+
 		return $r_ip;
 	}
 
@@ -492,6 +501,7 @@ class IP {
 				}
 			}
 		}
+
 		return $n;
 	}
 
@@ -534,6 +544,7 @@ class IP {
 			$network = false;
 			$bits = false;
 		}
+
 		return array( $network, $bits );
 	}
 
@@ -546,9 +557,9 @@ class IP {
 	 *     1.2.3.4 - 1.2.3.5   Explicit range
 	 *     1.2.3.4             Single IP
 	 *
-	 *     2001:0db8:85a3::7344/96          			 CIDR
+	 *     2001:0db8:85a3::7344/96                       CIDR
 	 *     2001:0db8:85a3::7344 - 2001:0db8:85a3::7344   Explicit range
-	 *     2001:0db8:85a3::7344             			 Single IP
+	 *     2001:0db8:85a3::7344                          Single IP
 	 * @param string $range IP range
 	 * @return array(string, string)
 	 */
@@ -626,6 +637,7 @@ class IP {
 			$network = false;
 			$bits = false;
 		}
+
 		return array( $network, (int)$bits );
 	}
 
@@ -634,9 +646,9 @@ class IP {
 	 * start and end of the range in hexadecimal. For IPv6.
 	 *
 	 * Formats are:
-	 *     2001:0db8:85a3::7344/96          			 CIDR
+	 *     2001:0db8:85a3::7344/96                       CIDR
 	 *     2001:0db8:85a3::7344 - 2001:0db8:85a3::7344   Explicit range
-	 *     2001:0db8:85a3::7344/96             			 Single IP
+	 *     2001:0db8:85a3::7344/96                       Single IP
 	 *
 	 * @param $range
 	 *
@@ -662,7 +674,7 @@ class IP {
 				$start = "v6-$start";
 				$end = "v6-$end";
 			}
-		// Explicit range notation...
+	// Explicit range notation...
 		} elseif ( strpos( $range, '-' ) !== false ) {
 			list( $start, $end ) = array_map( 'trim', explode( '-', $range, 2 ) );
 			$start = self::toUnsigned6( $start );
@@ -697,6 +709,7 @@ class IP {
 	public static function isInRange( $addr, $range ) {
 		$hexIP = self::toHex( $addr );
 		list( $start, $end ) = self::parseRange( $range );
+
 		return ( strcmp( $hexIP, $start ) >= 0 &&
 			strcmp( $hexIP, $end ) <= 0 );
 	}
@@ -735,8 +748,8 @@ class IP {
 			return $m[1];
 		}
 		if ( preg_match( '/^' . RE_IPV6_V4_PREFIX . RE_IPV6_WORD .
-			':' . RE_IPV6_WORD . '$/i', $addr, $m ) )
-		{
+			':' . RE_IPV6_WORD . '$/i', $addr, $m )
+		) {
 			return long2ip( ( hexdec( $m[1] ) << 16 ) + hexdec( $m[2] ) );
 		}
 
@@ -756,6 +769,7 @@ class IP {
 		if ( $bits === false ) {
 			return $start; // wasn't actually a range
 		}
+
 		return "$start/$bits";
 	}
 }

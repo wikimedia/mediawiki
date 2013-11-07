@@ -82,6 +82,7 @@ class UIDGenerator {
 		if ( self::$instance === null ) {
 			self::$instance = new self();
 		}
+
 		return self::$instance;
 	}
 
@@ -106,6 +107,7 @@ class UIDGenerator {
 		}
 		$gen = self::singleton();
 		$time = $gen->getTimestampAndDelay( 'lockFile88', 1, 1024 );
+
 		return wfBaseConvert( $gen->getTimestampedID88( $time ), 2, $base );
 	}
 
@@ -125,6 +127,7 @@ class UIDGenerator {
 		if ( strlen( $id_bin ) !== 88 ) {
 			throw new MWException( "Detected overflow for millisecond timestamp." );
 		}
+
 		return $id_bin;
 	}
 
@@ -148,6 +151,7 @@ class UIDGenerator {
 		}
 		$gen = self::singleton();
 		$time = $gen->getTimestampAndDelay( 'lockFile128', 16384, 1048576 );
+
 		return wfBaseConvert( $gen->getTimestampedID128( $time ), 2, $base );
 	}
 
@@ -169,6 +173,7 @@ class UIDGenerator {
 		if ( strlen( $id_bin ) !== 128 ) {
 			throw new MWException( "Detected overflow for millisecond timestamp." );
 		}
+
 		return $id_bin;
 	}
 
@@ -320,6 +325,7 @@ class UIDGenerator {
 			throw new MWException( __METHOD__ .
 				': sorry, this function doesn\'t work after the year 144680' );
 		}
+
 		return substr( wfBaseConvert( $ts, 10, 2, 46 ), -46 );
 	}
 
@@ -328,6 +334,7 @@ class UIDGenerator {
 	 */
 	protected static function millitime() {
 		list( $msec, $sec ) = explode( ' ', microtime() );
+
 		return array( (int)$sec, (int)( $msec * 1000 ) );
 	}
 

@@ -107,6 +107,7 @@ class StringUtils {
 				return false;
 			}
 		}
+
 		return true;
 	}
 
@@ -139,6 +140,7 @@ class StringUtils {
 				$output .= $replace . substr( $s, $endDelimPos + strlen( $endDelim ) );
 			}
 		}
+
 		return $output;
 	}
 
@@ -176,13 +178,13 @@ class StringUtils {
 		$m = array();
 
 		while ( $inputPos < strlen( $subject ) &&
-			preg_match( "!($encStart)|($encEnd)!S$flags", $subject, $m, PREG_OFFSET_CAPTURE, $inputPos ) )
-		{
+			preg_match( "!($encStart)|($encEnd)!S$flags", $subject, $m, PREG_OFFSET_CAPTURE, $inputPos )
+		) {
 			$tokenOffset = $m[0][1];
 			if ( $m[1][0] != '' ) {
 				if ( $foundStart &&
-					$strcmp( $endDelim, substr( $subject, $tokenOffset, $endLength ) ) == 0 )
-				{
+					$strcmp( $endDelim, substr( $subject, $tokenOffset, $endLength ) ) == 0
+				) {
 					# An end match is present at the same location
 					$tokenType = 'end';
 					$tokenLength = $endLength;
@@ -219,7 +221,7 @@ class StringUtils {
 					$output .= call_user_func( $callback, array(
 						substr( $subject, $outputPos, $tokenOffset + $tokenLength - $outputPos ),
 						substr( $subject, $contentPos, $tokenOffset - $contentPos )
-					));
+					) );
 					$foundStart = false;
 				} else {
 					# Non-matching end, write it out
@@ -233,6 +235,7 @@ class StringUtils {
 		if ( $outputPos < strlen( $subject ) ) {
 			$output .= substr( $subject, $outputPos );
 		}
+
 		return $output;
 	}
 
@@ -251,6 +254,7 @@ class StringUtils {
 	 */
 	static function delimiterReplace( $startDelim, $endDelim, $replace, $subject, $flags = '' ) {
 		$replacer = new RegexlikeReplacer( $replace );
+
 		return self::delimiterReplaceCallback( $startDelim, $endDelim,
 			$replacer->cb(), $subject, $flags );
 	}
@@ -291,6 +295,7 @@ class StringUtils {
 	static function escapeRegexReplacement( $string ) {
 		$string = str_replace( '\\', '\\\\', $string );
 		$string = str_replace( '$', '\\$', $string );
+
 		return $string;
 	}
 
@@ -346,9 +351,9 @@ class RegexlikeReplacer extends Replacer {
 		foreach ( $matches as $i => $match ) {
 			$pairs["\$$i"] = $match;
 		}
+
 		return strtr( $this->r, $pairs );
 	}
-
 }
 
 /**
@@ -505,6 +510,7 @@ class ReplacementArray {
 			$result = strtr( $subject, $this->data );
 			wfProfileOut( __METHOD__ . '-strtr' );
 		}
+
 		return $result;
 	}
 }
@@ -594,6 +600,7 @@ class ExplodeIterator implements Iterator {
 			}
 		}
 		$this->refreshCurrent();
+
 		return $this->current;
 	}
 

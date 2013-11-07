@@ -189,6 +189,7 @@ class MWCryptRand {
 			"(time-taken=" . ( $timeTaken * 1000 ) . "ms, " .
 			"iterations=$iterations, " .
 			"time-per-iteration=" . ( $timeTaken / $iterations * 1e6 ) . "us)\n" );
+
 		return $data;
 	}
 
@@ -207,6 +208,7 @@ class MWCryptRand {
 		// Generate a new random state based on the initial random state or previous
 		// random state by combining it with clock drift
 		$state = $this->driftHash( $state );
+
 		return $state;
 	}
 
@@ -227,6 +229,7 @@ class MWCryptRand {
 			if ( in_array( $algorithm, $algos ) ) {
 				$this->algo = $algorithm;
 				wfDebug( __METHOD__ . ": Using the {$this->algo} hash algorithm.\n" );
+
 				return $this->algo;
 			}
 		}
@@ -249,6 +252,7 @@ class MWCryptRand {
 		if ( is_null( $this->hashLength ) ) {
 			$this->hashLength = strlen( $this->hash( '' ) );
 		}
+
 		return $this->hashLength;
 	}
 
@@ -282,6 +286,7 @@ class MWCryptRand {
 		if ( is_null( $this->strong ) ) {
 			throw new MWException( __METHOD__ . ' called before generation of random data' );
 		}
+
 		return $this->strong;
 	}
 
@@ -415,6 +420,7 @@ class MWCryptRand {
 		wfDebug( __METHOD__ . ": " . strlen( $buffer ) . " bytes of randomness leftover in the buffer.\n" );
 
 		wfProfileOut( __METHOD__ );
+
 		return $generated;
 	}
 
@@ -428,6 +434,7 @@ class MWCryptRand {
 		$bytes = ceil( $chars / 2 );
 		// Generate the data and then convert it to a hex string
 		$hex = bin2hex( $this->generate( $bytes, $forceStrong ) );
+
 		// A bit of paranoia here, the caller asked for a specific length of string
 		// here, and it's possible (eg when given an odd number) that we may actually
 		// have at least 1 char more than they asked for. Just in case they made this
@@ -448,6 +455,7 @@ class MWCryptRand {
 		if ( is_null( self::$singleton ) ) {
 			self::$singleton = new self;
 		}
+
 		return self::$singleton;
 	}
 
@@ -493,5 +501,4 @@ class MWCryptRand {
 	public static function generateHex( $chars, $forceStrong = false ) {
 		return self::singleton()->realGenerateHex( $chars, $forceStrong );
 	}
-
 }
