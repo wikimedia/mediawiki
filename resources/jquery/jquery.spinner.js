@@ -1,7 +1,9 @@
 /**
- * jQuery spinner
+ * jQuery Spinner
  *
  * Simple jQuery plugin to create, inject and remove spinners.
+ *
+ * @class jQuery.plugin.spinner
  */
 ( function ( $ ) {
 
@@ -15,36 +17,37 @@
 
 	$.extend({
 		/**
-		 * Creates a spinner element.
+		 * Create a spinner element
 		 *
 		 * The argument is an object with options used to construct the spinner. These can be:
 		 *
 		 * It is a good practice to keep a reference to the created spinner to be able to remove it later.
-		 * Alternatively one can use the id option and removeSpinner() (but make sure to choose an id
+		 * Alternatively one can use the id option and #removeSpinner (but make sure to choose an id
 		 * that's unlikely to cause conflicts, e.g. with extensions, gadgets or user scripts).
 		 *
 		 * CSS classes used:
-		 *   .mw-spinner for every spinner
-		 *   .mw-spinner-small / .mw-spinner-large for size
-		 *   .mw-spinner-block / .mw-spinner-inline for display types
+		 * - .mw-spinner for every spinner
+		 * - .mw-spinner-small / .mw-spinner-large for size
+		 * - .mw-spinner-block / .mw-spinner-inline for display types
 		 *
-		 * @example
 		 *   // Create a large spinner reserving all available horizontal space.
 		 *   var $spinner = $.createSpinner({ size: 'large', type: 'block' });
 		 *   // Insert above page content.
 		 *   $( '#mw-content-text' ).prepend( $spinner );
-		 * @example
+		 *
 		 *   // Place a small inline spinner next to the "Save" button
 		 *   var $spinner = $.createSpinner({ size: 'small', type: 'inline' });
 		 *   // Alternatively, just `$.createSpinner();` as these are the default options.
 		 *   $( '#wpSave' ).after( $spinner );
-		 * @example
+		 *
 		 *   // The following two are equivalent:
 		 *   $.createSpinner( 'magic' );
 		 *   $.createSpinner({ id: 'magic' });
 		 *
-		 * @param {Object|String} opts [optional] ID string or options:
-		 *  - id: If given, spinner will be given an id of "mw-spinner-<id>"
+		 * @static
+		 * @inheritable
+		 * @param {Object|string} [opts] ID string or options:
+		 *  - id: If given, spinner will be given an id of "mw-spinner-{id}"
 		 *  - size: 'small' (default) or 'large' for a 20-pixel or 32-pixel spinner
 		 *  - type: 'inline' (default) or 'block'. Inline creates an inline-block with width and
 		 *    height equal to spinner size. Block is a block-level element with width 100%, height
@@ -72,10 +75,12 @@
 		},
 
 		/**
-		 * Removes a spinner element.
+		 * Remove a spinner element
 		 *
-		 * @param {String} id [optional] Id of the spinner, as passed to createSpinner.
-		 * @return {jQuery} The (now detached) spinner.
+		 * @static
+		 * @inheritable
+		 * @param {string} id Id of the spinner, as passed to #createSpinner
+		 * @return {jQuery} The (now detached) spinner element
 		 */
 		removeSpinner: function ( id ) {
 			return $( '#mw-spinner-' + id ).remove();
@@ -83,13 +88,21 @@
 	});
 
 	/**
-	 * Injects a spinner after the elements in the jQuery collection
-	 * (as siblings, not children). Collection contents remain unchanged.
+	 * Inject a spinner after each element in the collection
 	 *
-	 * @param {Object|String} opts See createSpinner() for description.
+	 * Inserts spinner as siblings, not children, of the target elements.
+	 * Collection contents remain unchanged.
+	 *
+	 * @param {Object|string} [opts] See #createSpinner
 	 * @return {jQuery}
 	 */
 	$.fn.injectSpinner = function ( opts ) {
 		return this.after( $.createSpinner( opts ) );
 	};
+
+	/**
+	 * @class jQuery
+	 * @mixins jQuery.plugin.spinner
+	 */
+
 }( jQuery ) );
