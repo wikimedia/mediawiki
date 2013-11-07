@@ -177,6 +177,13 @@ abstract class CdbWriter extends CdbHandle {
 			$this->close();
 		}
 	}
+
+	/**
+	 * Are we running on Windows?
+	 */
+	protected function isWindows() {
+		return substr( php_uname(), 0, 7 ) == 'Windows';
+	}
 }
 
 /**
@@ -223,7 +230,7 @@ class CdbWriterDBA extends CdbWriter {
 		if ( isset( $this->handle ) ) {
 			dba_close( $this->handle );
 		}
-		if ( wfIsWindows() ) {
+		if ( $this->isWindows() ) {
 			unlink( $this->realFileName );
 		}
 		if ( !rename( $this->tmpFileName, $this->realFileName ) ) {
