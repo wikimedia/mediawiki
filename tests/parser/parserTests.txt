@@ -14923,6 +14923,64 @@ language=sr
 !!end
 
 !! test
+Don't break link parsing if language converter markup is in the caption.
+!! options
+language=sr variant=sr-ec
+!! input
+[[Main Page|-{R|main page}-]]
+!! result
+<p><a href="/wiki/Main_Page" title="Маин Паге">main page</a>
+</p>
+!! end
+
+# This test is currently broken in the PHP parser (bug 52661)
+!! test
+Don't break image parsing if language converter markup is in the caption.
+!! options
+language=sr
+disabled
+!! input
+[[File:Foobar.jpg|-{R|caption}-]]
+!! result
+<p><a href="/wiki/File:Foobar.jpg" class="image" title="caption"><img alt="caption" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a>
+</p>
+!! end
+
+# This test is currently broken in the PHP parser (bug 52661)
+!! test
+Don't break list handling if language converter markup is in the item.
+!! options
+language=zh variant=zh-cn
+disabled
+!! input
+;-{zh-cn:AAA;zh-tw:BBB}-
+!! result
+<dl><dt>AAA
+</dt></dl>
+
+!! end
+
+# This test is currently broken in the PHP parser (bug 52661)
+!! test
+Don't break table handling if language converter markup is in the cell.
+!! options
+language=sr variant=sr-ec
+disabled
+!! input
+{|
+|-
+| -{R|B}-
+|}
+!! result
+<table>
+
+<tr>
+<td> B
+</td></tr></table>
+
+!! end
+
+!! test
 Bug 529: Uncovered bullet
 !! input
 * Foo {{bullet}}
