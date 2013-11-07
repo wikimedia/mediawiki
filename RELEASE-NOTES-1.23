@@ -29,6 +29,8 @@ production.
   enabled with care.
 * (bug 6092) Add expensive parser functions {{REVISIONID:}}, {{REVISIONUSER:}}
   and {{REVISIONTIMESTAMP:}} (with friends).
+* (bug 31313) Add a preference for watching uploads by default, also applies
+  to API-based upload tools.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent

@@ -842,8 +842,11 @@ abstract class ApiBase extends ContextSource {
 					$userOption = $titleObj->exists()
 							? 'watchdefault' : 'watchcreations';
 				}
-				# Watch the article based on the user preference
-				return $this->getUser()->getBoolOption( $userOption );
+				# Watch the article based on the user preferences
+				$userWatchesDefault = $this->getUser()->getBoolOption( $userOption );
+				$watchUploads = $this->getUser()->getBoolOption( 'watchuploads' );
+				$isNewFile = $titleObj->inNamespace( NS_FILE ) && ( !$titleObj->exists() || !wfLocalFile( $titleObj )->exists() );
+				return ( $userWatchesDefault || ( $isNewFile && $watchUploads ) );
 
 			case 'nochange':
 				return $userWatching;
