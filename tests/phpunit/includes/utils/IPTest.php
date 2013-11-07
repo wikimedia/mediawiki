@@ -21,8 +21,14 @@ class IPTest extends MediaWikiTestCase {
 		$this->assertFalse( IP::isIPAddress( 'abc' ), 'Garbage IP string' );
 		$this->assertFalse( IP::isIPAddress( ':' ), 'Single ":" is not an IP' );
 		$this->assertFalse( IP::isIPAddress( '2001:0DB8::A:1::1' ), 'IPv6 with a double :: occurrence' );
-		$this->assertFalse( IP::isIPAddress( '2001:0DB8::A:1::' ), 'IPv6 with a double :: occurrence, last at end' );
-		$this->assertFalse( IP::isIPAddress( '::2001:0DB8::5:1' ), 'IPv6 with a double :: occurrence, firt at beginning' );
+		$this->assertFalse(
+			IP::isIPAddress( '2001:0DB8::A:1::' ),
+			'IPv6 with a double :: occurrence, last at end'
+		);
+		$this->assertFalse(
+			IP::isIPAddress( '::2001:0DB8::5:1' ),
+			'IPv6 with a double :: occurrence, firt at beginning'
+		);
 		$this->assertFalse( IP::isIPAddress( '124.24.52' ), 'IPv4 not enough quads' );
 		$this->assertFalse( IP::isIPAddress( '24.324.52.13' ), 'IPv4 out of range' );
 		$this->assertFalse( IP::isIPAddress( '.24.52.13' ), 'IPv4 starts with period' );
@@ -58,7 +64,10 @@ class IPTest extends MediaWikiTestCase {
 		$this->assertTrue( IP::isIPv6( 'fc:100:a:d:1:e:ac::' ) );
 
 		$this->assertFalse( IP::isIPv6( 'fc:100:a:d:1:e:ac:0::' ), 'IPv6 with 8 words ending with "::"' );
-		$this->assertFalse( IP::isIPv6( 'fc:100:a:d:1:e:ac:0:1::' ), 'IPv6 with 9 words ending with "::"' );
+		$this->assertFalse(
+			IP::isIPv6( 'fc:100:a:d:1:e:ac:0:1::' ),
+			'IPv6 with 9 words ending with "::"'
+		);
 
 		$this->assertFalse( IP::isIPv6( ':::' ) );
 		$this->assertFalse( IP::isIPv6( '::0:' ), 'IPv6 ending in a lone ":"' );
@@ -154,8 +163,14 @@ class IPTest extends MediaWikiTestCase {
 		$this->assertTrue( IP::isValid( 'fc::100:a:d:1' ), 'IPv6 with "::" and 5 words' );
 		$this->assertTrue( IP::isValid( 'fc::100:a:d:1:e:ac' ), 'IPv6 with "::" and 7 words' );
 
-		$this->assertFalse( IP::isValid( 'fc:100:a:d:1:e:ac:0::' ), 'IPv6 with 8 words ending with "::"' );
-		$this->assertFalse( IP::isValid( 'fc:100:a:d:1:e:ac:0:1::' ), 'IPv6 with 9 words ending with "::"' );
+		$this->assertFalse(
+			IP::isValid( 'fc:100:a:d:1:e:ac:0::' ),
+			'IPv6 with 8 words ending with "::"'
+		);
+		$this->assertFalse(
+			IP::isValid( 'fc:100:a:d:1:e:ac:0:1::' ),
+			'IPv6 with 9 words ending with "::"'
+		);
 	}
 
 	/**
