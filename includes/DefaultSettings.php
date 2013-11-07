@@ -2285,7 +2285,8 @@ $wgSquidServers = array();
 
 /**
  * As above, except these servers aren't purged on page changes; use to set a
- * list of trusted proxies, etc.
+ * list of trusted proxies, etc. Supports both individual IP addresses and
+ * CIDR blocks.
  */
 $wgSquidServersNoPurge = array();
 
