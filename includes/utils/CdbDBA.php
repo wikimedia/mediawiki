@@ -64,7 +64,7 @@ class CdbWriterDBA extends CdbWriter {
 		if ( isset( $this->handle ) ) {
 			dba_close( $this->handle );
 		}
-		if ( wfIsWindows() ) {
+		if ( $this->isWindows() ) {
 			unlink( $this->realFileName );
 		}
 		if ( !rename( $this->tmpFileName, $this->realFileName ) ) {
