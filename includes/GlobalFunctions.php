@@ -3845,21 +3845,6 @@ function wfWaitForSlaves( $maxLag = false, $wiki = false, $cluster = false ) {
 }
 
 /**
- * Used to be used for outputting text in the installer/updater
- * @deprecated since 1.18, warnings in 1.18, remove in 1.20
- */
-function wfOut( $s ) {
-	wfDeprecated( __FUNCTION__, '1.18' );
-	global $wgCommandLineMode;
-	if ( $wgCommandLineMode ) {
-		echo $s;
-	} else {
-		echo htmlspecialchars( $s );
-	}
-	flush();
-}
-
-/**
  * Count down from $n to zero on the terminal, with a one-second pause
  * between showing each number. For use in command-line scripts.
  * @codeCoverageIgnore
