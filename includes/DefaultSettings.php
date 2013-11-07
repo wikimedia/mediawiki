@@ -4286,6 +4286,7 @@ $wgDefaultUserOptions = array(
 	'watchcreations' => 1,
 	'watchdefault' => 1,
 	'watchdeletion' => 0,
+	'watchuploads' => 0,
 	'watchlistdays' => 3.0,
 	'watchlisthideanons' => 0,
 	'watchlisthidebots' => 0,
