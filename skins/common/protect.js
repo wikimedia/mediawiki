@@ -38,15 +38,16 @@ var ProtectionForm = window.ProtectionForm = {
 			check = document.createElement( 'input' );
 			check.id = 'mwProtectUnchained';
 			check.type = 'checkbox';
-			cell.appendChild( check );
-			window.addClickHandler( check, function () {
+			$( check ).click( function () {
 				ProtectionForm.onChainClick();
 			} );
 
-			cell.appendChild( document.createTextNode( ' ' ) );
 			label = document.createElement( 'label' );
 			label.htmlFor = 'mwProtectUnchained';
 			label.appendChild( document.createTextNode( opts.labelText ) );
+
+			cell.appendChild( check );
+			cell.appendChild( document.createTextNode( ' ' ) );
 			cell.appendChild( label );
 
 			check.checked = !this.areAllTypesMatching();
