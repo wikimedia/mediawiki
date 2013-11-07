@@ -384,7 +384,7 @@ class DoubleReplacer extends Replacer {
  * Class to perform replacement based on a simple hashtable lookup
  */
 class HashtableReplacer extends Replacer {
-	var $table, $index;
+	private $table, $index;
 
 	/**
 	 * @param $table
