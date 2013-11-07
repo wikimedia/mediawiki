@@ -294,9 +294,8 @@ class WebInstallerOutput {
 
 	public function outputFooter() {
 		if ( $this->useShortHeader ) {
-?>
-</body></html>
-<?php
+			echo Html::closeElement( 'body' ) . Html::closeElement( 'html' );
+
 			return;
 		}
 ?>
@@ -317,9 +316,8 @@ class WebInstallerOutput {
 	</div></div>
 </div>
 
-</body>
-</html>
 <?php
+		echo Html::closeElement( 'body' ) . Html::closeElement( 'html' );
 	}
 
 	public function outputShortHeader() {
