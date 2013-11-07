@@ -845,7 +845,7 @@ N'oubliez pas de modifier [[Special:Preferences|vos préférences pour {{SITENAM
 'gotaccount' => "Vous avez déjà un compte ? '''$1'''.",
 'gotaccountlink' => 'Connectez-vous',
 'userlogin-resetlink' => 'Vous avez oublié vos détails de connexion ?',
-'userlogin-resetpassword-link' => 'Réinitialiser le mot de passe',
+'userlogin-resetpassword-link' => 'Mot de passe oublié ?',
 'helplogin-url' => 'Help:Connexion',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Aide à la connexion]]',
 'userlogin-loggedin' => 'Vous êtes déjà connecté en tant que {{GENDER:$1|$1}}.
@@ -915,8 +915,8 @@ Avant qu’un autre courriel ne soit envoyé à ce compte, vous devrez suivre le
 'mailerror' => "Erreur lors de l'envoi du courriel : $1",
 'acct_creation_throttle_hit' => "Quelqu'un utilisant votre adresse IP a créé {{PLURAL:$1|un compte|$1 comptes}} au cours des dernières 24 heures, ce qui constitue la limite autorisée dans cet intervalle de temps.
 Par conséquent, la création de compte a été temporairement désactivée pour cette adresse IP.",
-'emailauthenticated' => 'Votre adresse de courriel a été authentifiée le $2 à $3.',
-'emailnotauthenticated' => "Votre adresse de courriel n'est <strong>pas encore authentifiée</strong>. Aucun courriel ne sera envoyé pour chacune des fonctions suivantes.",
+'emailauthenticated' => 'Votre adresse de courriel a été confirmée le $2 à $3.',
+'emailnotauthenticated' => "Votre adresse de courriel n'est pas encore confirmée. Aucun courriel ne sera envoyé pour chacune des fonctions suivantes.",
 'noemailprefs' => 'Indiquez une adresse de courriel dans vos préférences pour utiliser ces fonctions.',
 'emailconfirmlink' => 'Confirmez votre adresse de courriel',
 'invalidemailaddress' => 'Cette adresse courriel ne peut pas être acceptée car elle semble avoir un format incorrect.

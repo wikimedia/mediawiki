@@ -569,7 +569,7 @@ Sylwer y bydd rhai tudalennau yn parhau i ymddangos fel ag yr oeddent pan oeddec
 'gotaccount' => 'Oes cyfrif gennych eisoes? $1.',
 'gotaccountlink' => 'Mewngofnodi',
 'userlogin-resetlink' => 'Ydych chi wedi anghofio eich manylion mewngofnodi?',
-'userlogin-resetpassword-link' => 'Ailosod eich cyfrinair',
+'userlogin-resetpassword-link' => 'Wedi anghofio eich cyfrinair?',
 'helplogin-url' => 'Help:Mewngofnodi',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Cymorth i fewngofnodi]]',
 'userlogin-loggedin' => 'Rydych eisoes wedi mewngofnodi wrth yr enw {{GENDER:$1|$1}}.
@@ -636,7 +636,7 @@ Er mwyn rhwystro camddefnydd, dim ond un e-bost i'ch atgoffa o'ch cyfrinair gaif
 'acct_creation_throttle_hit' => "Mae ymwelwyr sy'n defnyddio'ch cyfeiriad IP wedi creu $1 {{PLURAL:$1|cyfrif|cyfrif|gyfrif|chyfrif|chyfrif|cyfrif}} yn ystod y diwrnod diwethaf, sef y mwyafswm a ganiateir mewn diwrnod.
 Felly ni chaiff defnyddwyr sy'n defnyddio'r cyfeiriad IP hwn greu rhagor o gyfrifon ar hyn o bryd.",
 'emailauthenticated' => 'Cadarnhawyd eich cyfeiriad e-bost am $3 ar $2.',
-'emailnotauthenticated' => "Nid yw eich cyfeiriad e-bost wedi'i ddilysu eto. Ni fydd unrhyw negeseuon e-bost yn cael eu hanfon atoch ar gyfer y nodweddion canlynol.",
+'emailnotauthenticated' => "Nid yw eich cyfeiriad e-bost wedi'i gadarnhau eto. Ni fydd unrhyw negeseuon e-bost yn cael eu hanfon atoch ar gyfer y nodweddion canlynol.",
 'noemailprefs' => "Mae'n rhaid i chi gynnig cyfeiriad e-bost er mwyn i'r nodweddion hyn weithio.",
 'emailconfirmlink' => 'Cadarnhewch eich cyfeiriad e-bost',
 'invalidemailaddress' => 'Ni allwn dderbyn y cyfeiriad e-bost gan fod ganddo fformat annilys. Mewnbynnwch cyfeiriad dilys neu gwagiwch y maes hwnnw, os gwelwch yn dda.',

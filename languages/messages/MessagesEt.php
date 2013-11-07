@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author AivoK
  * @author Avjoska
  * @author Cylly1512
  * @author Geitost
@@ -746,7 +747,7 @@ Pane tähele, et seni kuni sa pole oma võrgulehitseja puhvrit tühjendanud, võ
 'gotaccount' => "Kui sul on juba konto, '''$1'''.",
 'gotaccountlink' => 'logi sisse',
 'userlogin-resetlink' => 'Kas oled unustanud oma sisselogimisandmed?',
-'userlogin-resetpassword-link' => 'Lähtesta oma parool',
+'userlogin-resetpassword-link' => 'Unustasid parooli?',
 'helplogin-url' => 'Help:Sisselogimine',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Sisselogimisabi]]',
 'userlogin-loggedin' => 'Oled juba sisse logitud nimega {{GENDER:$1|$1}}.

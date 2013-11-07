@@ -746,7 +746,7 @@ Non dimenticare di personalizzare le [[Special:Preferences|preferenze di {{SITEN
 'gotaccount' => 'Hai già un accesso? $1.',
 'gotaccountlink' => 'Entra',
 'userlogin-resetlink' => 'Hai dimenticato i tuoi dati di accesso?',
-'userlogin-resetpassword-link' => 'Reimposta la tua password',
+'userlogin-resetpassword-link' => 'Hai dimenticato la password?',
 'helplogin-url' => 'Help:Login',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Aiuto con il login]]',
 'userlogin-loggedin' => 'Sei già connesso come {{GENDER:$1|$1}}.

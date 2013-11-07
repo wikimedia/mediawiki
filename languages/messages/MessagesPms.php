@@ -496,7 +496,7 @@ Che a dësmentia pa ëd cambié ij [[Special:Preferences|sò gust për {{SITENAM
 'gotaccount' => 'Ha-lo già un sò cont? $1.',
 'gotaccountlink' => "Ch'a rintra ant ël sistema",
 'userlogin-resetlink' => "A l'ha dësmentià ij sò detaj për intré ant ël sistema?",
-'userlogin-resetpassword-link' => 'Riamposté la ciav',
+'userlogin-resetpassword-link' => 'Ciav dësmentià?',
 'helplogin-url' => 'Help:Conession',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Agiut con la conession]]',
 'userlogin-loggedin' => "A l'é già rintrà an ël sistema tanme {{GENDER:$1|$1}}.
@@ -569,8 +569,8 @@ Anans che qualsëssìa àutr messagi ëd pòsta a ven-a mandà a 's cont-sì, a 
 'mailerror' => 'Eror ën mandand via un mëssagi ëd pòsta eletrònica: $1',
 'acct_creation_throttle_hit' => "Dij visitador ëd costa wiki, an dovrand soa adrëssa IP a l'han creà {{PLURAL:$1|1 cont|$1 cont}} ant l'ùltim di, che a l'é tut lòn che as peul fesse ant cost temp.
 Ëd conseguensa, ij visitador che a deuvro costa adrëssa IP a peulo pì nen fé dij cont al moment.",
-'emailauthenticated' => "Soa adrëssa ëd pòsta eletrònica a l'é stàita autenticà ël $2 a $3.",
-'emailnotauthenticated' => "Soa adrëssa ëd pòsta eletrònica a l'é pa ancó stàita autenticà.
+'emailauthenticated' => "Soa adrëssa ëd pòsta eletrònica a l'é stàita confirmà ël $2 a $3.",
+'emailnotauthenticated' => "Soa adrëssa ëd pòsta eletrònica a l'é pa ancó stàita confirmà.
 Për qualsëssìa ëd coste funsion a sarà mandà gnun mëssagi.",
 'noemailprefs' => "Che a specìfica n'adrëssa ëd pòsta eletrònica se a veul dovré coste funsion-sì.",
 'emailconfirmlink' => 'Che a conferma soa adrëssa ëd pòsta eletrònica',

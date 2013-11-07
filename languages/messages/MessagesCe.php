@@ -2221,6 +2221,7 @@ PICT # тайп тайпан
 
 # Human-readable timestamps
 'hours-ago' => '$1 {{PLURAL:$1|сахьат}} хьалха',
+'minutes-ago' => '$1 {{PLURAL:$1|минут}} хьалха',
 'yesterday-at' => 'селхана $1 даьлча',
 
 # Bad image list

@@ -4154,6 +4154,7 @@ Trebalo bi da ste primili [{{SERVER}}{{SCRIPTPATH}}/COPYING primerak GNU-ove op�
 'tags-active-header' => 'Aktivna?',
 'tags-hitcount-header' => 'Označene izmene',
 'tags-active-yes' => 'Da',
+'tags-active-no' => 'Ne',
 'tags-edit' => 'uredi',
 'tags-hitcount' => '$1 {{PLURAL:$1|izmena|izmene|izmena}}',
 
@@ -4201,7 +4202,7 @@ Trebalo bi da ste primili [{{SERVER}}{{SCRIPTPATH}}/COPYING primerak GNU-ove op�
 'logentry-delete-delete' => '$1 je {{GENDER:$2|obrisao|obrisala}} stranicu $3',
 'logentry-delete-restore' => '$1 je {{GENDER:$2|vratio|vratila}} stranicu $3',
 'logentry-delete-event' => '$1 je {{GENDER:$2|promenio|promenila}} vidljivost {{PLURAL:$5|događaja|$5 daogađaja}} u dnevniku na $3: $4',
-'logentry-delete-revision' => '$1 je {{GENDER:$2|promenio|promenila}} vidljivost {{PLURAL:$5|izmene|$5 izmjena}} na stranici $3: $4',
+'logentry-delete-revision' => '$1 je {{GENDER:$2|promenio|promenila}} vidljivost {{PLURAL:$5|izmene|$5 izmena}} na stranici $3: $4',
 'logentry-delete-event-legacy' => '$1 je {{GENDER:$2|promenio|promenila}} vidljivost događaja u dnevniku na $3',
 'logentry-delete-revision-legacy' => '$1 je {{GENDER:$2|promenio|promenila}} vidljivost izmena na stranici $3',
 'logentry-suppress-delete' => '$1 je {{GENDER:$2|potisnuo|potisnula}} stranicu $3',

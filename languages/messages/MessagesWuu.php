@@ -12,6 +12,7 @@
  * @author O
  * @author Reedy
  * @author Wu-chinese.com
+ * @author Xiaomingyan
  * @author Yfdyh000
  * @author 十弌
  */
@@ -1342,7 +1343,7 @@ $1",
 
 # Book sources
 'booksources' => '书源',
-'booksources-search-legend' => '搜索网络书源',
+'booksources-search-legend' => '搜索图书来源',
 'booksources-go' => '去',
 
 # Special:Log

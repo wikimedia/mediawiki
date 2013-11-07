@@ -820,7 +820,7 @@ $2',
 'gotaccount' => 'כבר נרשמתם? $1.',
 'gotaccountlink' => 'כניסה לחשבון',
 'userlogin-resetlink' => 'שכחת את פרטי הכניסה?',
-'userlogin-resetpassword-link' => 'איפוס הסיסמה',
+'userlogin-resetpassword-link' => 'שכחת את הסיסמה?',
 'helplogin-url' => 'Help:כניסה לחשבון',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|עזרה בכניסה לחשבון]]',
 'userlogin-loggedin' => 'אתם כבר מחוברים לחשבון {{GENDER:$1|$1}}.
@@ -899,7 +899,7 @@ $2',
 לפיכך, מבקרים דרך כתובת ה־IP הזו לא יכולים ליצור חשבונות נוספים ברגע זה.',
 'emailauthenticated' => 'כתובת הדוא"ל שלך אומתה ב־$3, $2.',
 'emailnotauthenticated' => 'כתובת הדוא"ל שלכם עדיין לא אומתה.
-לא יישלח אליכם דוא"ל עבור אף אחת מהאפשרויות הבאות.',
+לא יישלח אליכם דוא"ל עבור אף אחת מהתכונות הבאות.',
 'noemailprefs' => 'אנא ציינו כתובת דוא"ל בהעדפות שלכם כדי שתכונות אלה יעבדו.',
 'emailconfirmlink' => 'אישור כתובת הדוא"ל שלך',
 'invalidemailaddress' => 'כתובת הדוא"ל אינה מתקבלת כיוון שנראה שהיא בפורמט לא נכון.

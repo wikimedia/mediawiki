@@ -829,7 +829,7 @@ $2',
 'gotaccount' => 'アカウントを既に持っている場合、$1。',
 'gotaccountlink' => 'ログインしてください',
 'userlogin-resetlink' => 'ログイン情報をお忘れですか?',
-'userlogin-resetpassword-link' => 'パスワードを再設定',
+'userlogin-resetpassword-link' => 'パスワードをお忘れですか?',
 'helplogin-url' => 'Help:ログイン',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|ログインのヘルプ]]',
 'userlogin-loggedin' => '{{GENDER:$1|$1}} として既にログインしています。
@@ -908,9 +908,9 @@ Cookieを有効にしていることを確認して、このページを再読�
 'mailerror' => 'メールを送信する際にエラーが発生しました: $1',
 'acct_creation_throttle_hit' => 'あなたと同じ IP アドレスでこのウィキに訪れた人が、最近 24 時間で {{PLURAL:$1|$1 アカウント}}を作成しており、これはこの期間で作成が許可されている最大数です。
 そのため、現在この IP アドレスではアカウントをこれ以上作成できません。',
-'emailauthenticated' => 'メールアドレスは$2 $3に認証済みです。',
-'emailnotauthenticated' => 'メールアドレスが認証されていません。
-認証されるまで、以下のいかなる機能でもメールは送信されません。',
+'emailauthenticated' => 'メールアドレスは$2 $3に確認済みです。',
+'emailnotauthenticated' => 'メールアドレスが確認されていません。
+確認されるまで、以下のいかなる機能でもメールは送信されません。',
 'noemailprefs' => 'これらの機能を有効にするには、個人設定でメールアドレスを登録してください。',
 'emailconfirmlink' => 'あなたのメールアドレスを確認',
 'invalidemailaddress' => '入力されたメールアドレスが正しい形式に従っていないため、受け付けられません。

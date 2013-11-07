@@ -566,9 +566,12 @@ Gloym ikki at broyta tínar [[Special:Preferences|{{SITENAME}}-innstillingar]].'
 'gotaccount' => "Hevur tú longu eina kontu? '''$1'''.",
 'gotaccountlink' => 'Rita inn',
 'userlogin-resetlink' => 'Hevur tú gloymt tínar logg inn upplýsingar',
-'userlogin-resetpassword-link' => 'Nullstilla títt loyniorð',
+'userlogin-resetpassword-link' => 'Hevur tú gloymt títt loyniorð?',
 'helplogin-url' => 'Help:Innritan',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Hjálp til innritan]]',
+'userlogin-loggedin' => 'Tú ert longu innritað/ur sum {{GENDER:$1|$1}}.
+Nýt formularin niðanfyri fyri at rita inn sum ein annar brúkari.',
+'userlogin-createanother' => 'Stovna eina aðra kontu',
 'createacct-join' => 'Skrivað tínar upplýsingar niðanfyri.',
 'createacct-another-join' => 'Skriva upplýsingarnar fyri tað nýggju kontuna niðanfyri.',
 'createacct-emailrequired' => 'Teldupost adressa',
@@ -631,16 +634,16 @@ og tú ikki longur ynskir at broyta tað, so skal tú síggja burtur frá hesum 
 sum er skrásett fyri "$1".
 Vinarliga rita inn eftir at tú hevur fingið hana.',
 'blocked-mailpassword' => 'Tín IP adressa er stongd fyri at gera rættingar á síðum, og tí er tað ikki loyvt at brúka funkuna fyri endurskapan av loyniorði, hetta fyri at forða fyri misnýtslu.',
-'eauthentsent' => '↓ Ein váttanar t-postur er sendur til givna t-post bústaðin.
-Áðrenn aðrir teldupostar verða sendir til kontuna, mást tú fylgja leiðbeiningunum í t-postinum, fyri at vátta at kontoin veruliga er tín.',
+'eauthentsent' => 'Ein váttanar teldupostur er sendur til givna teldupost bústaðin.
+Áðrenn nakað annað teldubræv verður sent til kontuna, mást tú fylgja leiðbeiningunum í teldupostinum, fyri at vátta at kontoin veruliga er tín.',
 'throttled-mailpassword' => 'Ein teldupostur har loyniorðið verður nullstillað er longu sendur fyri bert {{PLURAL:$1|tíma|$1 tímum}} síðan.
 Fyri at fyribyrja misnýtslu, verður bert ein teldupostur við nullstillaðum loyniorði sendur fyri pr. {{PLURAL:$1|tíma|$1 tímar}}.',
 'mailerror' => 'Villa tá t-postur var sendur: $1',
 'acct_creation_throttle_hit' => 'Vitjandi á hesi wiki, sum nýta tína IP addressu, hava stovnað {{PLURAL:$1|1 kontu|$1 kontur}} seinastu dagarnar, sum er mest loyvda hetta tíðarskeið.
 Sum eitt úrslit av hesum, kunnu vitjandi sum brúka hesa IP adressuna ikki stovna fleiri kontur í løtuni.',
-'emailauthenticated' => 'Tín t-post adressa varð váttað hin $2 kl. $3.',
-'emailnotauthenticated' => 'Tín t-post adressa er enn ikki komin í gildi. Ongin t-postur
-verður sendur fyri nakað av fylgjandi hentleikum.',
+'emailauthenticated' => 'Tín teldupost adressa varð váttað hin $2 kl. $3.',
+'emailnotauthenticated' => 'Tín teldupost adressa er enn ikki váttað. Ongin teldupostur
+verður sendur fyri nakran av fylgjandi hentleikum.',
 'noemailprefs' => 'Skriva eina t-post adressu, so hesar funktiónir fara at virka.',
 'emailconfirmlink' => 'Vátta tína t-post adressu',
 'invalidemailaddress' => 'T-post bústaðurin kann ikki verða góðtikin, tí hann sær út til at hava ógyldugt format.
@@ -1066,15 +1069,15 @@ Tú kanst síggja munin; smálutir eru at finna í [{{fullurl:{{#Special:Log}}/s
 'logdelete-selected' => "'''{{PLURAL:$1|Útvald logghending|Útvaldar logghendingar}}:'''",
 'revdelete-confirm' => 'Vinarliga vátta, at tú ætlar at gera hetta, at tú skilir avleiðingarnar, og at tú ger hetta í samsvari við [[{{MediaWiki:Policy-url}}|mannagongdirnar]].',
 'revdelete-legend' => 'Set avmarkinga fyri sjónligheit',
-'revdelete-hide-text' => 'Goym burtur tekstin á hesi versjónini',
+'revdelete-hide-text' => 'Versjónstekstur',
 'revdelete-hide-image' => 'Fjal fílu innihald',
 'revdelete-hide-name' => 'Fjal handling og mál',
-'revdelete-hide-comment' => 'Fjal rættingar frágreiðing',
-'revdelete-hide-user' => 'Fjal brúkaranavn/IP adressu hjá tí sum rættar',
+'revdelete-hide-comment' => 'Samandráttur um rættingar',
+'revdelete-hide-user' => 'Brúkaranavn/IP adressa hjá tí sum rættar',
 'revdelete-hide-restricted' => 'Síggj burtur frá data frá administratorum líka væl sum frá øðrum',
 'revdelete-radio-same' => '(ikki broyta)',
-'revdelete-radio-set' => 'Ja',
-'revdelete-radio-unset' => 'Nei',
+'revdelete-radio-set' => 'Sjónligt',
+'revdelete-radio-unset' => 'Fjalt',
 'revdelete-suppress' => 'Síggj burtur frá data frá administratorum líka væl sum frá øðrum',
 'revdelete-unsuppress' => 'Tak burtur avmarkingar á endurskaptum versjónum',
 'revdelete-log' => 'Orsøk:',

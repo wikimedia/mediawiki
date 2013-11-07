@@ -4314,6 +4314,7 @@ $5
 'tags-active-header' => 'Активна?',
 'tags-hitcount-header' => 'Означене измене',
 'tags-active-yes' => 'Да',
+'tags-active-no' => 'Не',
 'tags-edit' => 'уреди',
 'tags-hitcount' => '$1 {{PLURAL:$1|измена|измене|измена}}',
 

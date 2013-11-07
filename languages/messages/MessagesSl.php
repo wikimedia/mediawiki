@@ -647,7 +647,7 @@ Ne pozabite si prilagoditi vaših [[Special:Preferences|nastavitev {{GRAMMAR:rod
 'gotaccount' => 'Račun že imate? $1.',
 'gotaccountlink' => 'Prijavite se',
 'userlogin-resetlink' => 'Ste pozabili svoje prijavne podatke?',
-'userlogin-resetpassword-link' => 'Ponastavite svoje geslo',
+'userlogin-resetpassword-link' => 'Ste pozabili svoje geslo?',
 'helplogin-url' => 'Help:Prijava',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Pomoč pri prijavi]]',
 'userlogin-loggedin' => 'Prijavljeni ste že kot {{GENDER:$1|$1}}.
@@ -777,8 +777,8 @@ Morda ste že uspešno spremenili geslo ali pa ste zahtevali novo začasno geslo
 
 # Special:PasswordReset
 'passwordreset' => 'Ponastavitev gesla',
-'passwordreset-text-one' => 'Izpolnite obrazec, da ponastavite svoje geslo.',
-'passwordreset-text-many' => 'Izpolnite {{PLURAL:$1|polje|enega od polj}}, da ponastavite svoje geslo.',
+'passwordreset-text-one' => 'Da ponastavite svoje geslo, izpolnite naslednji obrazec.',
+'passwordreset-text-many' => '{{PLURAL:$1|Da ponastavite svoje geslo, izpolnite eno od polj.}}',
 'passwordreset-legend' => 'Ponastavitev gesla',
 'passwordreset-disabled' => 'Ponastavljanje gesla je na tem wikiju onemogočeno.',
 'passwordreset-emaildisabled' => 'Na tem wikiju so možnosti e-pošte onemogočene.',

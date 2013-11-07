@@ -777,7 +777,7 @@ Hãy nhớ thay đổi [[Special:Preferences|tùy chọn cá nhân {{SITENAME}}]
 'gotaccount' => "Đã mở tài khoản rồi? '''$1'''.",
 'gotaccountlink' => 'Đăng nhập',
 'userlogin-resetlink' => 'Quên mất thông tin đăng nhập?',
-'userlogin-resetpassword-link' => 'Đặt lại mật khẩu của bạn',
+'userlogin-resetpassword-link' => 'Quên mật khẩu?',
 'helplogin-url' => 'Help:Đăng nhập',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Trợ giúp đăng nhập]]',
 'userlogin-loggedin' => 'Bạn đã đăng nhập với tên {{GENDER:$1}}$1.
@@ -1285,7 +1285,7 @@ Các quản lý khác ở {{SITENAME}} vẫn có thể truy nhập vào nội du
 'revdelete-hide-restricted' => 'Ẩn giấu thông tin khỏi các Quản lý lẫn thành viên khác',
 'revdelete-radio-same' => '(không đổi)',
 'revdelete-radio-set' => 'Có',
-'revdelete-radio-unset' => 'Không',
+'revdelete-radio-unset' => 'Ẩn',
 'revdelete-suppress' => 'Che dữ liệu đối với bảo quản viên cũng như các thành viên khác',
 'revdelete-unsuppress' => 'Bỏ các hạn chế trên các phiên bản được phục hồi',
 'revdelete-log' => 'Lý do:',

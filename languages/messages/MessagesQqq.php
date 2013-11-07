@@ -482,7 +482,8 @@ This can also appear in the credits page if the credits feature is enabled,for e
 'qbmyoptions' => 'Heading in the Cologne Blue skin user menu containing links to user (talk) page, preferences, watchlist, etc.
 {{Identical|My pages}}',
 'qbspecialpages' => '{{Identical|Special page}}',
-'faq' => "FAQ is short for ''frequently asked questions''.",
+'faq' => "FAQ is short for ''frequently asked questions''.
+{{Identical|FAQ}}",
 'faqpage' => '{{doc-important|Do not translate <code>Project:</code> part.}}
 "FAQ" is short for "frequently asked questions".
 
@@ -1341,7 +1342,8 @@ The link points to the local [[Special:PasswordReset]].
 
 See example: [[Special:UserLogin]]
 
-userlogin-resetpassword-link may have to be shorter than the old {{msg-mw|userlogin-resetlink}}',
+userlogin-resetpassword-link may have to be shorter than the old {{msg-mw|userlogin-resetlink}}.
+{{Identical|Forgot your password}}',
 'helplogin-url' => '{{doc-important|Do not translate the namespace name <code>Help</code>.}}
 Used as name of the page that provides information about logging into the wiki.
 
@@ -3012,7 +3014,8 @@ See also:
 * {{msg-mw|prefs-help-email-others|help}}
 * {{msg-mw|prefs-changeemail|link title}}',
 'prefs-email' => 'Used as section name in [[Special:Preferences]].',
-'prefs-rendering' => 'Title of tab in [[Special:Preferences]].',
+'prefs-rendering' => 'Title of tab in [[Special:Preferences]].
+{{Identical|Appearance}}',
 'saveprefs' => 'Button for saving changes in the preferences page.
 
 See also:

@@ -555,7 +555,7 @@ Dae malingaw na liwaton an saimong [[Special:Preferences|{{SITENAME}} mga kamuya
 'gotaccount' => 'Igwa ka na tabi nin panindog? $1.',
 'gotaccountlink' => 'Maglaog',
 'userlogin-resetlink' => 'Nakalingaw ka sa panlaog mong detalye?',
-'userlogin-resetpassword-link' => 'Pakibaguha an saimong sekretong panlaog',
+'userlogin-resetpassword-link' => 'Nalingawan mo an saimong pasa-taramon?',
 'helplogin-url' => 'Help:Paglalaog',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Tabang sa paglalaog]]',
 'userlogin-loggedin' => 'Ika nakalaog na tabi bilang si {{GENDER:$1|$1}}.
@@ -630,9 +630,9 @@ Tangarig malikayan an abuso, saro sanang e-surat sa pagliliwat kan sekretong pan
 'mailerror' => 'Salâ an pagpadará kan koreo: $1',
 'acct_creation_throttle_hit' => 'Mga bisita kaining wiki na ginagamit an saimong IP address nagmukna nin {{PLURAL:$1|1 panindog|$1 mga panindog}} sa nakaaging aldaw, na iyo ngani an maximum na pinagtutugot sa laog kan peryodong panahon.
 Bilang resulta, an mga bisita na naggagamit kaining IP address dae nguna makakamukna nin mga panindog.',
-'emailauthenticated' => 'An saimong e-koreo awtentikado kan $2 sa $3.',
-'emailnotauthenticated' => 'An saimong e-surat dae pa tabi pinagpatunayan. 
-Mayong e-surat an ipapadara para sa arinman kan minasunod na estima.',
+'emailauthenticated' => 'An saimong e-surat na estada pinagkumpirma kan $2 mga alas $3.',
+'emailnotauthenticated' => 'An saimong e-surat na estada dae pa tabi pinagkumpirma.
+Mayo tabing e-surat na ipagpapadara para sa arinman kan mga minasunod na mga estima.',
 'noemailprefs' => 'Magkaag nin sarong e-koreong address sa saimong mga kabotan para gumana ining mga estima.',
 'emailconfirmlink' => 'Kompirmaron tabî an saimong e-koreong address',
 'invalidemailaddress' => 'An e-koreo dae akseptado habang ini minapahiling na igwa nin imbalidong panugmad.

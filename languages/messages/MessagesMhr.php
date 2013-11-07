@@ -333,6 +333,7 @@ $messages = array(
 
 # General errors
 'error' => 'Йоҥылыш',
+'databaseerror-error' => 'Йоҥылыш: $1',
 'missing-article' => 'Тыгай текст дене возымо лаштык базыште муалтын огыл, "$1" $2.
 
 Кунам тый тоштемше кылвер почеш шӧрымӧ вашталтымаш лаштыкыш (але эртымгорно лаштыкыш) куснет, тыге лийын кертеш.
@@ -355,9 +356,13 @@ $messages = array(
 'virus-unknownscanner' => 'палыдыме антивирус:',
 
 # Login and logout pages
+'welcomeuser' => 'Пагален ӱжына, $1!',
 'yourname' => 'Пайдаланышын лӱмжӧ:',
 'yourpassword' => 'Шолыпмут:',
+'createacct-yourpassword-ph' => 'Шолыпмутым пурто',
 'yourpasswordagain' => 'Шолыпмутым угыч пуртымаш:',
+'createacct-yourpasswordagain' => 'Шолыпмутым пеҥгыдемде',
+'createacct-yourpasswordagain-ph' => 'Шолыпмутым угыч пурто',
 'remembermypassword' => 'Тиде компьютерыште мыйым шарнаш (эн шуко $1 {{PLURAL:$1|кечылан|кечылан}})',
 'yourdomainname' => 'Тендан домен:',
 'login' => 'Шке денет палымым ыште',
@@ -372,7 +377,9 @@ $messages = array(
 'gotaccount' => "Тый регистрацийым эртенат? '''$1'''.",
 'gotaccountlink' => 'Шке денет палымым ыште',
 'userlogin-resetlink' => 'Лӱмдам але шолыпмутдам монденда?',
+'userlogin-resetpassword-link' => 'Шолыпмутым монденат?',
 'createaccountmail' => 'Кӱчык жаплан чокым ыштыме шолыпмутым мылам e-mail дене колташ',
+'createacct-benefit-heading' => '{{SITENAME}} тендан гаяк еҥ-влак дене ыштен шындалтын.',
 'nosuchuser' => '"$1" лӱман пайдаланыше уке.
 Пайдаланышын лӱмыштӧ йӱкпале-влакын кугытшо тӱрыс лийшаш.
 Лӱмым чын возымым терге але [[Special:UserLogin/signup|регистрацийым эрте]].',

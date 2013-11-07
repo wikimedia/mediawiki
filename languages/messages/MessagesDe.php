@@ -949,7 +949,8 @@ Bevor eine E-Mail von anderen Benutzern über die E-Mail-Funktion empfangen werd
 
 Besucher, die diese IP-Adresse verwenden, können momentan keine Benutzerkonten mehr erstellen.',
 'emailauthenticated' => 'Deine E-Mail-Adresse wurde am $2 um $3 Uhr bestätigt.',
-'emailnotauthenticated' => 'Deine E-Mail-Adresse ist noch nicht bestätigt. Die folgenden E-Mail-Funktionen stehen erst nach erfolgreicher Bestätigung zur Verfügung.',
+'emailnotauthenticated' => 'Deine E-Mail-Adresse ist noch nicht bestätigt.
+Die folgenden E-Mail-Funktionen stehen erst nach erfolgreicher Bestätigung zur Verfügung.',
 'noemailprefs' => 'Gib eine E-Mail-Adresse in den Einstellungen an, damit die nachfolgenden Funktionen zur Verfügung stehen.',
 'emailconfirmlink' => 'E-Mail-Adresse bestätigen (authentifizieren).',
 'invalidemailaddress' => 'Die E-Mail-Adresse wird nicht akzeptiert, weil sie ein ungültiges Format (eventuell ungültige Zeichen) zu haben scheint. Bitte gib eine korrekte Adresse ein oder leere das Feld.',
