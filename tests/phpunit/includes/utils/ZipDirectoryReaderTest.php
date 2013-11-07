@@ -10,7 +10,7 @@ class ZipDirectoryReaderTest extends MediaWikiTestCase {
 
 	protected function setUp() {
 		parent::setUp();
-		$this->zipDir = __DIR__ . '/../data/zip';
+		$this->zipDir = __DIR__ . '/../../data/zip';
 	}
 
 	function zipCallback( $entry ) {
