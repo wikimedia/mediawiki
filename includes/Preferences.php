@@ -1012,6 +1012,10 @@ class Preferences {
 			$watchTypes['read'] = 'watchcreations';
 		}
 
+		if ( $user->isAllowed( 'upload' ) ) {
+			$watchTypes['upload'] = 'watchuploads';
+		}
+
 		foreach ( $watchTypes as $action => $pref ) {
 			if ( $user->isAllowed( $action ) ) {
 				// Messages:

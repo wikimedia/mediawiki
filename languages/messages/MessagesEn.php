@@ -673,6 +673,7 @@ future releases. Also note that since each list value is wrapped in a unique
 'tog-watchdefault'            => 'Add pages and files I edit to my watchlist',
 'tog-watchmoves'              => 'Add pages and files I move to my watchlist',
 'tog-watchdeletion'           => 'Add pages and files I delete to my watchlist',
+'tog-watchuploads'            => 'Add files I upload to my watchlist',
 'tog-minordefault'            => 'Mark all edits minor by default',
 'tog-previewontop'            => 'Show preview before edit box',
 'tog-previewonfirst'          => 'Show preview on first edit',
