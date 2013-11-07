@@ -87,12 +87,11 @@ class SpecialRecentChanges extends SpecialPage {
 		global $wgFeedLimit;
 
 		$opts = $this->getDefaultOptions();
-
 		foreach ( $this->getCustomFilters() as $key => $params ) {
 			$opts->add( $key, $params['default'] );
 		}
 
-		$opts->fetchValuesFromRequest( $this->getRequest() );
+		$opts = $this->fetchOptionsFromRequest( $opts );
 
 		// Give precedence to subpage syntax
 		if ( $parameters !== null ) {
@@ -101,6 +100,19 @@ class SpecialRecentChanges extends SpecialPage {
 
 		$opts->validateIntBounds( 'limit', 0, $this->feedFormat ? $wgFeedLimit : 5000 );
 
+		return $opts;
+	}
+
+	/**
+	 * Fetch values for a FormOptions object from the WebRequest associated with this instance.
+	 *
+	 * Intended for subclassing, e.g. to add a backwards-compatibility layer.
+	 *
+	 * @param FormOptions $parameters
+	 * @return FormOptions
+	 */
+	protected function fetchOptionsFromRequest( $opts ) {
+		$opts->fetchValuesFromRequest( $this->getRequest() );
 		return $opts;
 	}
 
