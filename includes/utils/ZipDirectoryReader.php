@@ -704,7 +704,7 @@ class ZipDirectoryReader {
  * Internal exception class. Will be caught by private code.
  */
 class ZipDirectoryReaderError extends Exception {
-	var $errorCode;
+	protected $errorCode;
 
 	function __construct( $code ) {
 		$this->errorCode = $code;
