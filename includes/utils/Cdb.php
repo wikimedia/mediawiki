@@ -145,6 +145,13 @@ abstract class CdbWriter {
 			$this->close();
 		}
 	}
+
+	/**
+	 * Are we running on Windows?
+	 */
+	protected function isWindows() {
+		return substr( php_uname(), 0, 7 ) == 'Windows';
+	}
 }
 
 /**
