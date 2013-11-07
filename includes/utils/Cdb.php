@@ -21,11 +21,46 @@
  */
 
 /**
+ * Base class for all CDB operations. Doesn't do much other
+ * than abstracting some error handling/debug stuff
+ */
+abstract class CdbHandle {
+	/**
+	 * The file handle
+	 */
+	protected $handle;
+
+	/**
+	 * Something to call when we've got debug output
+	 * @var string
+	 */
+	protected static $debugCallback = 'wfDebug';
+
+	/**
+	 * Create the object and open the file
+	 *
+	 * @param $fileName string
+	 */
+	abstract public function __construct( $fileName );
+
+	/**
+	 * Log a debug message
+	 *
+	 * @param string $msg Debug message
+	 */
+	protected static function debug( $msg ) {
+		if ( $this->debugCallback ) {
+			call_user_func_array( self::$debugCallback, array( $msg ) );
+		}
+	}
+}
+
+/**
  * Read from a CDB file.
  * Native and pure PHP implementations are provided.
  * http://cr.yp.to/cdb.html
  */
-abstract class CdbReader {
+abstract class CdbReader extends CdbHandle {
 	/**
 	 * Open a file and return a subclass instance
 	 *
@@ -37,8 +72,7 @@ abstract class CdbReader {
 		if ( self::haveExtension() ) {
 			return new CdbReaderDBA( $fileName );
 		} else {
-			wfDebug( "Warning: no dba extension found, using emulation.\n" );
-
+			self::debug( "Warning: no dba extension found, using emulation.\n" );
 			return new CdbReaderPHP( $fileName );
 		}
 	}
@@ -61,14 +95,9 @@ abstract class CdbReader {
 	}
 
 	/**
-	 * Construct the object and open the file
-	 */
-	abstract function __construct( $fileName );
-
-	/**
 	 * Close the file. Optional, you can just let the variable go out of scope.
 	 */
-	abstract function close();
+	abstract public function close();
 
 	/**
 	 * Get a value with a given key. Only string values are supported.
@@ -82,7 +111,19 @@ abstract class CdbReader {
  * Write to a CDB file.
  * Native and pure PHP implementations are provided.
  */
-abstract class CdbWriter {
+abstract class CdbWriter extends CdbHandle {
+	/**
+	 * File we'll be writing to when we're done
+	 * @var string
+	 */
+	protected $realFileName;
+
+	/**
+	 * File we write to temporarily until we're done
+	 * @var string
+	 */
+	protected $tmpFileName;
+
 	/**
 	 * Open a writer and return a subclass instance.
 	 * The user must have write access to the directory, for temporary file creation.
@@ -95,18 +136,10 @@ abstract class CdbWriter {
 		if ( CdbReader::haveExtension() ) {
 			return new CdbWriterDBA( $fileName );
 		} else {
-			wfDebug( "Warning: no dba extension found, using emulation.\n" );
-
+			self::debug( "Warning: no dba extension found, using emulation.\n" );
 			return new CdbWriterPHP( $fileName );
 		}
 	}
-
-	/**
-	 * Create the object and open the file
-	 *
-	 * @param $fileName string
-	 */
-	abstract function __construct( $fileName );
 
 	/**
 	 * Set a key to a given value. The value will be converted to string.
@@ -120,68 +153,18 @@ abstract class CdbWriter {
 	 * goes out of scope, to write out the final hashtables.
 	 */
 	abstract public function close();
-}
 
-/**
- * Reader class which uses the DBA extension
- */
-class CdbReaderDBA {
-	var $handle;
-
-	function __construct( $fileName ) {
-		$this->handle = dba_open( $fileName, 'r-', 'cdb' );
-		if ( !$this->handle ) {
-			throw new MWException( 'Unable to open CDB file "' . $fileName . '"' );
-		}
-	}
-
-	function close() {
-		if ( isset( $this->handle ) ) {
-			dba_close( $this->handle );
-		}
-		unset( $this->handle );
-	}
-
-	function get( $key ) {
-		return dba_fetch( $key, $this->handle );
-	}
-}
-
-/**
- * Writer class which uses the DBA extension
- */
-class CdbWriterDBA {
-	var $handle, $realFileName, $tmpFileName;
-
-	function __construct( $fileName ) {
-		$this->realFileName = $fileName;
-		$this->tmpFileName = $fileName . '.tmp.' . mt_rand( 0, 0x7fffffff );
-		$this->handle = dba_open( $this->tmpFileName, 'n', 'cdb_make' );
-		if ( !$this->handle ) {
-			throw new MWException( 'Unable to open CDB file for write "' . $fileName . '"' );
-		}
-	}
-
-	function set( $key, $value ) {
-		return dba_insert( $key, $value, $this->handle );
-	}
-
-	function close() {
-		if ( isset( $this->handle ) ) {
-			dba_close( $this->handle );
-		}
-		if ( wfIsWindows() ) {
-			unlink( $this->realFileName );
-		}
-		if ( !rename( $this->tmpFileName, $this->realFileName ) ) {
-			throw new MWException( 'Unable to move the new CDB file into place.' );
-		}
-		unset( $this->handle );
-	}
-
-	function __destruct() {
+	/**
+	 * If the object goes out of scope, close it for sanity
+	 */
+	public function __destruct() {
 		if ( isset( $this->handle ) ) {
 			$this->close();
 		}
 	}
 }
+
+/**
+ * Exception for Cdb errors
+ */
+class CdbException extends MWException {}
