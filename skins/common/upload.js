@@ -2,7 +2,8 @@
 ( function ( mw, $ ) {
 var	licenseSelectorCheck, wgUploadWarningObj, wgUploadLicenseObj, fillDestFilename,
 	ajaxUploadDestCheck = mw.config.get( 'wgAjaxUploadDestCheck' ),
-	fileExtensions = mw.config.get( 'wgFileExtensions' );
+	fileExtensions = mw.config.get( 'wgFileExtensions' ),
+	$spinnerDestCheck, $spinnerLicense;
 
 licenseSelectorCheck = window.licenseSelectorCheck = function () {
 	var selector = document.getElementById( 'wpLicense' ),
@@ -151,7 +152,7 @@ wgUploadWarningObj = window.wgUploadWarningObj = {
 		if ( !ajaxUploadDestCheck || this.nameToCheck === '' ) {
 			return;
 		}
-		window.injectSpinner( document.getElementById( 'wpDestFile' ), 'destcheck' );
+		$spinnerDestCheck = $.createSpinner().insertAfter( '#wpDestFile' );
 
 		var uploadWarningObj = this;
 		( new mw.Api() ).get( {
@@ -170,7 +171,8 @@ wgUploadWarningObj = window.wgUploadWarningObj = {
 	},
 
 	processResult: function ( result, fileName ) {
-		window.removeSpinner( 'destcheck' );
+		$spinnerDestCheck.remove();
+		$spinnerDestCheck = undefined;
 		this.setWarning( result.html );
 		this.responseCache[fileName] = result.html;
 	},
@@ -179,7 +181,7 @@ wgUploadWarningObj = window.wgUploadWarningObj = {
 		var warningElt = document.getElementById( 'wpDestFile-warning' ),
 			ackElt = document.getElementsByName( 'wpDestFileWarningAck' );
 
-		this.setInnerHTML(warningElt, warning);
+		this.setInnerHTML( warningElt, warning );
 
 		// Set a value in the form indicating that the warning is acknowledged and
 		// doesn't need to be redisplayed post-upload
@@ -314,7 +316,8 @@ wgUploadLicenseObj = window.wgUploadLicenseObj = {
 				return;
 			}
 		}
-		window.injectSpinner( document.getElementById( 'wpLicense' ), 'license' );
+
+		$spinnerLicense = $.createSpinner().insertAfter( '#wpLicense' );
 
 		title = document.getElementById( 'wpDestFile' ).value;
 		if ( !title ) {
@@ -333,7 +336,8 @@ wgUploadLicenseObj = window.wgUploadLicenseObj = {
 	},
 
 	processResult: function ( result, license ) {
-		window.removeSpinner( 'license' );
+		$spinnerLicense.remove();
+		$spinnerLicense = undefined;
 		this.responseCache[license] = result.parse.text['*'];
 		this.showPreview( this.responseCache[license] );
 	},
