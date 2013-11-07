@@ -759,8 +759,8 @@ class SwiftFileBackend extends FileBackendStore {
 			$srcObj = $contObj->get_object( $srcRel, $this->headersFromParams( $params ) );
 			$this->addMissingMetadata( $srcObj, $params['src'] );
 			$stat = array(
-				// Convert dates like "Tue, 03 Jan 2012 22:01:04 GMT" to TS_MW
-				'mtime' => wfTimestamp( TS_MW, $srcObj->last_modified ),
+				// Convert various random Swift dates to TS_MW
+				'mtime' => $this->convertSwiftDate( $srcObj->last_modified, TS_MW ),
 				'size' => (int)$srcObj->content_length,
 				'sha1' => $srcObj->getMetadataValue( 'Sha1base36' )
 			);
@@ -772,6 +772,24 @@ class SwiftFileBackend extends FileBackendStore {
 		}
 
 		return $stat;
+	}
+
+	/**
+	 * Convert dates like "Tue, 03 Jan 2012 22:01:04 GMT" to TS_MW.
+	 * Dates might also come in like "2013-05-11T07:37:27.678360" from Swift listing,
+	 * missing the timezone suffix (though Ceph RGW does not appear to have this bug).
+	 *
+	 * @param string $ts
+	 * @param int $format Output format (TS_* constant)
+	 * @return string
+	 * @throws MWException
+	 */
+	protected function convertSwiftDate( $ts, $format = TS_MW ) {
+		if ( preg_match( '/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})(?:\.*\d*)$/', $ts ) ) {
+			$ts .= 'Z'; // almost TS_ISO_8601; assume UTC (this makes MWTimestamp not barf)
+		}
+		$timestamp = new MWTimestamp( $ts );
+		return $timestamp->getTimestamp( $format );
 	}
 
 	/**
@@ -1070,8 +1088,8 @@ class SwiftFileBackend extends FileBackendStore {
 			$object = current( $cfObjects );
 			$path = "{$storageDir}/" . substr( $object->name, $suffixStart );
 			$val = array(
-				// Convert dates like "Tue, 03 Jan 2012 22:01:04 GMT" to TS_MW
-				'mtime'  => wfTimestamp( TS_MW, $object->last_modified ),
+				// Convert various random Swift dates to TS_MW
+				'mtime'  => $this->convertSwiftDate( $object->last_modified, TS_MW ),
 				'size'   => (int)$object->content_length,
 				'latest' => false // eventually consistent
 			);
