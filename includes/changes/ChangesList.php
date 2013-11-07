@@ -50,19 +50,6 @@ class ChangesList extends ContextSource {
 	}
 
 	/**
-	 * Fetch an appropriate changes list class for the main context
-	 * This first argument used to be an User object.
-	 *
-	 * @deprecated in 1.18; use newFromContext() instead
-	 * @param string|User $unused Unused
-	 * @return ChangesList|EnhancedChangesList|OldChangesList derivative
-	 */
-	public static function newFromUser( $unused ) {
-		wfDeprecated( __METHOD__, '1.18' );
-		return self::newFromContext( RequestContext::getMain() );
-	}
-
-	/**
 	 * Fetch an appropriate changes list class for the specified context
 	 * Some users might want to use an enhanced list format, for instance
 	 *
