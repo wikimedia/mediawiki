@@ -4,6 +4,7 @@
  *
  * Copyright © 2008, Niklas Laxström
  * Copyright © 2011, Antoine Musso
+ * Copyright © 2013, Bartosz Dziewoński
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -42,6 +43,9 @@ class FormOptions implements ArrayAccess {
 	const STRING = 0;
 	/** Integer type, maps guessType() to WebRequest::getInt() */
 	const INT = 1;
+	/** Float type, maps guessType() to WebRequest::getFloat()
+	  * @since 1.23 */
+	const FLOAT = 4;
 	/** Boolean type, maps guessType() to WebRequest::getBool() */
 	const BOOL = 2;
 	/** Integer type or null, maps to WebRequest::getIntOrNull()
@@ -112,6 +116,8 @@ class FormOptions implements ArrayAccess {
 			return self::BOOL;
 		} elseif ( is_int( $data ) ) {
 			return self::INT;
+		} elseif ( is_float( $data ) ) {
+			return self::FLOAT;
 		} elseif ( is_string( $data ) ) {
 			return self::STRING;
 		} else {
@@ -234,19 +240,29 @@ class FormOptions implements ArrayAccess {
 	}
 
 	/**
-	 * Validate and set an option integer value
-	 * The value will be altered to fit in the range.
-	 *
-	 * @param string $name option name
-	 * @param int $min minimum value
-	 * @param int $max maximum value
-	 * @throws MWException If option is not of type INT
+	 * @see validateBounds()
 	 */
 	public function validateIntBounds( $name, $min, $max ) {
-		$this->validateName( $name, true );
+		$this->validateBounds( $name, $min, $max );
+	}
 
-		if ( $this->options[$name]['type'] !== self::INT ) {
-			throw new MWException( "Option $name is not of type int" );
+	/**
+	 * Constrain a numeric value for a given option to a given range. The value will be altered to fit
+	 * in the range.
+	 *
+	 * @since 1.23
+	 *
+	 * @param string $name Option name
+	 * @param int|float $min Minimum value
+	 * @param int|float $max Maximum value
+	 * @throws MWException If option is not of type INT
+	 */
+	public function validateBounds( $name, $min, $max ) {
+		$this->validateName( $name, true );
+		$type = $this->options[$name]['type'];
+
+		if ( $type !== self::INT && $type !== self::FLOAT ) {
+			throw new MWException( "Option $name is not of type INT or FLOAT" );
 		}
 
 		$value = $this->getValueReal( $this->options[$name] );
@@ -332,6 +348,9 @@ class FormOptions implements ArrayAccess {
 					break;
 				case self::INT:
 					$value = $r->getInt( $name, $default );
+					break;
+				case self::FLOAT:
+					$value = $r->getFloat( $name, $default );
 					break;
 				case self::STRING:
 					$value = $r->getText( $name, $default );
