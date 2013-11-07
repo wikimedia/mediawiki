@@ -3325,18 +3325,6 @@ function wfRelativePath( $path, $from ) {
 }
 
 /**
- * Do any deferred updates and clear the list
- *
- * @deprecated since 1.19
- * @see DeferredUpdates::doUpdate()
- * @param $commit string
- */
-function wfDoUpdates( $commit = '' ) {
-	wfDeprecated( __METHOD__, '1.19' );
-	DeferredUpdates::doUpdates( $commit );
-}
-
-/**
  * Convert an arbitrarily-long digit string from one numeric base
  * to another, optionally zero-padding to a minimum column width.
  *
