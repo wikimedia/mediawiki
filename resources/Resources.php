@@ -1043,7 +1043,10 @@ return array(
 			'size-gigabytes',
 			'largefileserver',
 		),
-		'dependencies' => array( 'mediawiki.libs.jpegmeta', 'mediawiki.util' ),
+		'dependencies' => array(
+			'mediawiki.libs.jpegmeta',
+			'mediawiki.util',
+		),
 	),
 	'mediawiki.special.userlogin' => array(
 		'styles' => array(
@@ -1124,7 +1127,6 @@ return array(
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 		'dependencies' => array(
-			'mediawiki.legacy.wikibits',
 			'jquery.byteLimit',
 		),
 		'position' => 'top',
@@ -1145,9 +1147,9 @@ return array(
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 		'dependencies' => array(
+			'jquery.spinner',
 			'mediawiki.api',
 			'mediawiki.Title',
-			'mediawiki.legacy.wikibits',
 			'mediawiki.util',
 		),
 	),
