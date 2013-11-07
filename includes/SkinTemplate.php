@@ -217,15 +217,6 @@ class SkinTemplate extends Skin {
 	 * @param $out OutputPage
 	 */
 	function outputPage( OutputPage $out = null ) {
-		global $wgContLang;
-		global $wgScript, $wgStylePath;
-		global $wgMimeType, $wgJsMimeType;
-		global $wgXhtmlNamespaces, $wgHtml5Version;
-		global $wgDisableCounters, $wgSitename, $wgLogo;
-		global $wgMaxCredits, $wgShowCreditsIfMax;
-		global $wgPageShowWatchingUsers;
-		global $wgArticlePath, $wgScriptPath, $wgServer;
-
 		wfProfileIn( __METHOD__ );
 		Profiler::instance()->setTemplated( true );
 
@@ -237,14 +228,40 @@ class SkinTemplate extends Skin {
 		}
 
 		$out = $this->getOutput();
-		$request = $this->getRequest();
 		$user = $this->getUser();
-		$title = $this->getTitle();
 
 		wfProfileIn( __METHOD__ . '-init' );
 		$this->initPage( $out );
 		wfProfileOut( __METHOD__ . '-init' );
+		$tpl = $this->prepareTemplate( $out );
+		// execute template
+		wfProfileIn( __METHOD__ . '-execute' );
+		$res = $tpl->execute();
+		wfProfileOut( __METHOD__ . '-execute' );
 
+		// result may be an error
+		$this->printOrError( $res );
+
+		if ( $oldContext ) {
+			$this->setContext( $oldContext );
+		}
+	}
+
+	/**
+	 * initialize various variables and generate the template
+	 *
+	 * @param $out OutputPage
+	 * @return QuickTemplate the template to be executed by outputPage
+	 */
+	protected function prepareTemplate( OutputPage $out = null ) {
+		global $wgContLang, $wgScript, $wgStylePath,
+			$wgMimeType, $wgJsMimeType, $wgXhtmlNamespaces, $wgHtml5Version,
+			$wgDisableCounters, $wgSitename, $wgLogo, $wgMaxCredits,
+			$wgShowCreditsIfMax, $wgPageShowWatchingUsers, $wgArticlePath,
+			$wgScriptPath, $wgServer;
+
+		$title = $this->getTitle();
+		$request = $this->getRequest();
 		$tpl = $this->setupTemplateForOutput();
 
 		wfProfileIn( __METHOD__ . '-stuff-head' );
@@ -523,18 +540,8 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'dataAfterContent', $this->afterContentHook() );
 		wfProfileOut( __METHOD__ . '-stuff5' );
 
-		// execute template
-		wfProfileIn( __METHOD__ . '-execute' );
-		$res = $tpl->execute();
-		wfProfileOut( __METHOD__ . '-execute' );
-
-		// result may be an error
-		$this->printOrError( $res );
-
-		if ( $oldContext ) {
-			$this->setContext( $oldContext );
-		}
 		wfProfileOut( __METHOD__ );
+		return $tpl;
 	}
 
 	/**
