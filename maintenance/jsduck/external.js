@@ -5,6 +5,7 @@
 
 /**
  * @method ajax
+ * @static
  * @source <http://api.jquery.com/jQuery.ajax/>
  * @return {jqXHR}
  */
