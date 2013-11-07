@@ -333,7 +333,7 @@ class Replacer {
  * Class to replace regex matches with a string similar to that used in preg_replace()
  */
 class RegexlikeReplacer extends Replacer {
-	var $r;
+	private $r;
 
 	/**
 	 * @param string $r
