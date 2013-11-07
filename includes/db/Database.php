@@ -687,29 +687,37 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 * connection object, by specifying no parameters to __construct(). This
 	 * feature is deprecated and should be removed.
 	 *
-	 * FIXME: The long list of formal parameters here is not really appropriate
-	 * for MySQL, and not at all appropriate for any other DBMS. It should be
-	 * replaced by named parameters as in DatabaseBase::factory().
-	 *
 	 * DatabaseBase subclasses should not be constructed directly in external
 	 * code. DatabaseBase::factory() should be used instead.
 	 *
-	 * @param string $server database server host
-	 * @param string $user database user name
-	 * @param string $password database user password
-	 * @param string $dbName database name
-	 * @param $flags
-	 * @param string $tablePrefix database table prefixes. By default use the prefix gave in LocalSettings.php
-	 * @param bool $foreign disable some operations specific to local databases
+	 * @param array Parameters passed from DatabaseBase::factory()
 	 */
-	function __construct( $server = false, $user = false, $password = false, $dbName = false,
-		$flags = 0, $tablePrefix = 'get from global', $foreign = false
-	) {
+	function __construct( $params = null ) {
 		global $wgDBprefix, $wgCommandLineMode, $wgDebugDBTransactions;
 
 		$this->mTrxAtomicLevels = new SplStack;
-		$this->mFlags = $flags;
 
+		if ( is_array( $params ) ) { // MW 1.22
+			$server = $params['host'];
+			$user = $params['user'];
+			$password = $params['password'];
+			$dbName = $params['dbname'];
+			$flags = $params['flags'];
+			$tablePrefix = $params['tablePrefix'];
+			$foreign = $params['foreign'];
+		} else { // legacy calling pattern
+			wfDeprecated( __METHOD__ . " method called without parameter array.", "1.22" );
+			$args = func_get_args();
+			$server = isset( $args[0] ) ? $args[0] : false;
+			$user = isset( $args[1] ) ? $args[1] : false;
+			$password = isset( $args[2] ) ? $args[2] : false;
+			$dbName = isset( $args[3] ) ? $args[3] : false;
+			$flags = isset( $args[4] ) ? $args[4] : 0;
+			$tablePrefix = isset( $args[5] ) ? $args[5] : 'get from global';
+			$foreign = isset( $args[6] ) ? $args[6] : false;
+		}
+
+		$this->mFlags = $flags;
 		if ( $this->mFlags & DBO_DEFAULT ) {
 			if ( $wgCommandLineMode ) {
 				$this->mFlags &= ~DBO_TRX;
@@ -806,15 +814,16 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 
 		$class = 'Database' . ucfirst( $driver );
 		if ( class_exists( $class ) && is_subclass_of( $class, 'DatabaseBase' ) ) {
-			return new $class(
-				isset( $p['host'] ) ? $p['host'] : false,
-				isset( $p['user'] ) ? $p['user'] : false,
-				isset( $p['password'] ) ? $p['password'] : false,
-				isset( $p['dbname'] ) ? $p['dbname'] : false,
-				isset( $p['flags'] ) ? $p['flags'] : 0,
-				isset( $p['tablePrefix'] ) ? $p['tablePrefix'] : 'get from global',
-				isset( $p['foreign'] ) ? $p['foreign'] : false
+			$params = array(
+				'host' => isset( $p['host'] ) ? $p['host'] : false,
+				'user' => isset( $p['user'] ) ? $p['user'] : false,
+				'password' => isset( $p['password'] ) ? $p['password'] : false,
+				'dbname' => isset( $p['dbname'] ) ? $p['dbname'] : false,
+				'flags' => isset( $p['flags'] ) ? $p['flags'] : 0,
+				'tablePrefix' => isset( $p['tablePrefix'] ) ? $p['tablePrefix'] : 'get from global',
+				'foreign' => isset( $p['foreign'] ) ? $p['foreign'] : false
 			);
+			return new $class( $params );
 		} else {
 			return null;
 		}
