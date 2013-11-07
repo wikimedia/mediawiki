@@ -88,7 +88,7 @@ class SpecialSearch extends SpecialPage {
 		$this->outputHeader();
 		$out = $this->getOutput();
 		$out->allowClickjacking();
-		$out->addModuleStyles( 'mediawiki.special' );
+		$out->addModuleStyles( array( 'mediawiki.special', 'mediawiki.ui' ) );
 
 		// Strip underscores from title parameter; most of the time we'll want
 		// text form here. But don't strip underscores from actual text params!
@@ -1094,10 +1094,14 @@ class SpecialSearch extends SpecialPage {
 		$out .= Html::input( 'search', $term, 'search', array(
 			'id' => $this->profile === 'advanced' ? 'powerSearchText' : 'searchText',
 			'size' => '50',
-			'autofocus'
+			'autofocus',
+			'class' => 'mw-ui-input',
 		) ) . "\n";
 		$out .= Html::hidden( 'fulltext', 'Search' ) . "\n";
-		$out .= Xml::submitButton( $this->msg( 'searchbutton' )->text() ) . "\n";
+		$out .= Xml::submitButton(
+			$this->msg( 'searchbutton' )->text(),
+			array( 'class' => array( 'mw-ui-button', 'mw-ui-primary' ) )
+		) . "\n";
 		return $out . $this->didYouMeanHtml;
 	}
 
