@@ -4480,7 +4480,7 @@ class Language {
 			$nlink = htmlspecialchars( $next );
 		} else {
 			$nlink = $this->numLink( $title, $offset + $limit, $limit,
-				$query, $next, 'prevn-title', 'mw-nextlink' );
+				$query, $next, 'nextn-title', 'mw-nextlink' );
 		}
 
 		# Make links to set number of items per page
