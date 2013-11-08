@@ -97,8 +97,7 @@ class SideBarTest extends MediaWikiLangTestCase {
 					'text' => 'Home',
 					'href' => 'http://www.mediawiki.org/',
 					'id' => 'n-Home',
-					'active' => null,
-					'rel' => 'nofollow',
+					'active' => false,
 				),
 				# ** http://valid.no.desc.org/
 				# ... skipped since it is missing a pipe with a description
