@@ -168,6 +168,13 @@ class BitmapHandler extends ImageHandler {
 
 		# Transform functions and binaries need a FS source file
 		$scalerParams['srcPath'] = $image->getLocalRefPath();
+		if ( $scalerParams['srcPath'] === false ) { // Failed to get local copy
+			wfDebugLog( 'thumbnail',
+				sprintf( 'Thumbnail failed on %s: could not get local copy of "%s"',
+					wfHostname(), $image->getName() ) );
+			return new MediaTransformError( 'thumbnail_error',
+				$scalerParams['clientWidth'], $scalerParams['clientHeight'] );
+		}
 
 		# Try a hook
 		$mto = null;
