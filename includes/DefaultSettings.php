@@ -3792,7 +3792,7 @@ $wgExternalLinkTarget = false;
  * they should not be followed for ranking purposes as they
  * are user-supplied and thus subject to spamming.
  */
-$wgNoFollowLinks = true;
+$wgNoFollowLinks = false;
 
 /**
  * Namespaces in which $wgNoFollowLinks doesn't apply.
