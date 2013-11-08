@@ -641,7 +641,7 @@ Vergiesst net fir Är [[Special:Preferences|{{SITENAME}} Astellungen]] z'ännere
 'gotaccount' => "Dir hutt schonn e Benotzerkont? '''$1'''.",
 'gotaccountlink' => 'Umellen',
 'userlogin-resetlink' => "Hutt Dir d'Detailer vun Ärem Login vergiess?",
-'userlogin-resetpassword-link' => 'Setzt Äert Passwuert zréck',
+'userlogin-resetpassword-link' => 'Hutt Dir Äert Passwuert vergiess?',
 'helplogin-url' => 'Help:Aloggen',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Hëllef beim Aloggen]]',
 'userlogin-loggedin' => 'Dir sidd schonn als {{GENDER:$1|$1}} ageloggt.
@@ -716,8 +716,8 @@ Fir de Mëssbrauch vun dëser Funktioun ze verhënneren kann nëmmen all {{PLURA
 'acct_creation_throttle_hit' => 'Visiteure vun dëser Wiki déi Är IP-Adress hu {{PLURAL:$1|schonn $1 Benotzerkont|scho(nn) $1 Benotzerkonten}} an de leschten Deeg opgemaach, dëst ass déi maximal Zuel déi an dësem Zäitraum erlaabt ass.
 Dofir kënne Visiteure déi dës IP-Adress benotzen den Ament keng Benotzerkonten opmaachen.',
 'emailauthenticated' => 'Är E-Mail-Adress gouf den $2 ëm $3 Auer bestätegt.',
-'emailnotauthenticated' => 'Är E-Mail Adress gouf <strong>nach net confirméiert</strong>.<br />
-Dowéinst ass et bis ewell net méiglech, fir déi folgend Funktiounen E-Mailen ze schécken oder ze kréien.',
+'emailnotauthenticated' => 'Är E-Mail Adress gouf nach net confirméiert.
+Dowéinst gëtt fir keng vun dëse Funktiounen E-Maile geschéckt.',
 'noemailprefs' => 'Gitt eng E-Mailadress bei Ären Astellungen un, fir datt déi Funktioune funktionéieren.',
 'emailconfirmlink' => 'Confirméiert Är E-Mailadress w.e.g.',
 'invalidemailaddress' => 'Dës E-Mail-Adress gëtt net akzeptéiert well se en ongëltegt Format (z. B. ongëlteg Zeechen) ze hu schéngt.

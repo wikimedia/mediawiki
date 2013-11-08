@@ -3032,7 +3032,8 @@ When changing this message, please also update {{msg-mw|vector-editwarning-warni
 {{Identical|Editing}}',
 'rows' => 'Used on [[Special:Preferences]], "Editing" section in the "Size of editing window" fieldset.
 {{Identical|Row}}',
-'columns' => 'Used on [[Special:Preferences]], "Editing" section in the "Size of editing window" fieldset',
+'columns' => 'Used on [[Special:Preferences]], "Editing" section in the "Size of editing window" fieldset.
+{{Identical|Column}}',
 'searchresultshead' => 'This is the label of the tab in [[Special:Preferences|my preferences]] which contains options for searching the wiki.
 
 {{Identical|Search}}',
@@ -9925,7 +9926,8 @@ Used at the end of {{msg-mw|version-poweredby-credits}} on [[Special:Version]].'
 'version-license-info' => '[[wikipedia:GNU GPL|GNU GPL]] notice shown at [[Special:Version]]. See //www.gnu.org/licenses/old-licenses/gpl-2.0-translations.html for available translations.',
 'version-software' => 'Message shown on [[Special:Version]].
 This message is followed by the list of installed software (MediaWiki, PHP and MySQL).',
-'version-software-product' => 'Shown in [[Special:Version]]',
+'version-software-product' => 'Shown in [[Special:Version]].
+{{Identical|Product}}',
 'version-software-version' => '{{Identical|Version}}',
 'version-entrypoints' => 'Header on [[Special:Version]] above a table that lists the URLs of various entry points in this MediaWiki installation. Entry points are the "places" where the wiki\'s content and information can be accessed in various ways, for instance the standard index.php which shows normal pages, histories etc.',
 'version-entrypoints-header-entrypoint' => 'Header for the first column in the entry points table on [[Special:Version]].
@@ -10040,7 +10042,8 @@ It appears that the word 'valid' describes 'tags', not 'change'. It also appears
 Parameters:
 * $1 - number of distinct tags for given edit
 * $2 - comma-separated list of tags for given edit',
-'tags-title' => 'The title of [[Special:Tags]]',
+'tags-title' => 'The title of [[Special:Tags]].
+{{Identical|Tag}}',
 'tags-intro' => 'Explanation on top of [[Special:Tags]]. For more information on tags see [[mw:Manual:Tags|MediaWiki]].',
 'tags-tag' => 'Caption of a column in [[Special:Tags]]. For more information on tags see [[mw:Manual:Tags|MediaWiki]].',
 'tags-display-header' => 'Caption of a column in [[Special:Tags]]. For more information on tags see [[mw:Manual:Tags|MediaWiki]].',

@@ -601,7 +601,7 @@ Kej bydźesz chćoł je podoć, bydům użyte, coby dokůmyntowoć Twoje autorst
 'resetpass_submit' => 'Nasztaluj hasło a zaloguj',
 'changepassword-success' => 'Twoje hasło zostoło půmyślńy půmjyńone!',
 'resetpass_forbidden' => 'Ńy idźe sam půmjyńyć hasłůw.',
-'resetpass-no-info' => 'Muśysz być zalogowany, coby uzyskać bezpostrzedńi dostymp do tyj zajty.',
+'resetpass-no-info' => 'Muśisz być zalogowany, coby uzyskoć bezpostrzedńi dostymp do tyj zajty.',
 'resetpass-submit-loggedin' => 'Zmjyń hasło',
 'resetpass-submit-cancel' => 'Uodćepej',
 'resetpass-wrong-oldpass' => 'Felerne tymczasowe abo aktualne hasło.
@@ -614,8 +614,8 @@ Możliwe co właśńy zmjyńiłżeś swoje hasło abo poprosiłżeś uo nowe tym
 'passwordreset-disabled' => 'No tyj wiki zamkńynto resytowańy hasył.',
 'passwordreset-username' => 'Mjano używacza:',
 'passwordreset-domain' => 'Domyna:',
-'passwordreset-capture' => 'Czy pokazywać treść wiadomości e‐mail?',
-'passwordreset-capture-help' => 'Eli zaznaczysz to pole, łoboczysz wjadomość e-mail z hasłem.',
+'passwordreset-capture' => 'Pokozać treść e-brifa?',
+'passwordreset-capture-help' => 'Eli zaznaczysz to pole, uobejrzisz wjadůmość e-brifa ze hasłym.',
 'passwordreset-email' => 'E-brif:',
 'passwordreset-emailtitle' => 'Kůnto na {{GRAMMAR:MS.lp|{{SITENAME}}}}',
 'passwordreset-emailtext-ip' => 'Ftoś (cheba Ty, s IP $1)
@@ -702,20 +702,20 @@ Powůd zawarćo:
 
 * Zawarte uod: $8 * Uodymkńe śe: $6 * Zawarće skiż: $7 Coby wyjaśńić sprawa zawarćo, naszkryflej do $1 abo inkszygo [[{{MediaWiki:Grouppage-sysop}}|admińistratora]]. Ńy możesz posłać e-brifa bez "poślij e-brifa tymu użytkowńikowi", jak żeś ńy podoł dobrygo ausdruku e-brifa we [[Special:Preferences|preferencyjach kůnta]], abo jak e-brify mosz tyż zawarte. Terozki mosz ausdruk IP $3 a nůmera zawarćo to #$5. Proszymy podać jedyn abo uoba jak chcysz połosprawjać uo zawarću.',
 'blockednoreason' => 'ńy podano skuli czygo',
-'whitelistedittext' => 'Muśiš $1 coby můc sprowjać artikle.',
-'confirmedittext' => 'Muśiš podać a potwjerdźić swůj e-brif, coby můc sam sprowjać.
-Možeš to zrobić we [[Special:Preferences|swojich štalowańach]].',
+'whitelistedittext' => 'Muśisz $1 coby můc sprowjać artikle.',
+'confirmedittext' => 'Muśisz podać a potwjerdźić swůj e-brif, coby můc sam sprowjać.
+Możesz to zrobić we [[Special:Preferences|swojich sztalowańach]].',
 'nosuchsectiontitle' => 'Ńy mo takij tajli',
 'nosuchsectiontext' => 'Průbowołżeś sprowjać tajla kero ńy istńeje.',
-'loginreqtitle' => 'Muśiš śe zalůgować',
-'loginreqlink' => 'zalůguj śe',
-'loginreqpagetext' => 'Muśiš $1 coby můc přeglůndać inkše zajty.',
-'accmailtitle' => 'Hasuo wysuane.',
+'loginreqtitle' => 'Muśisz śe zalogować',
+'loginreqlink' => 'zaloguj śe',
+'loginreqpagetext' => 'Muśisz $1 coby můc przeglůndać inksze zajty.',
+'accmailtitle' => 'Hasło posłane.',
 'accmailtext' => '!Hasło użytkowńika "[[User talk:$1|$1]]" zostauo wysłane pod adres $2.
 
 Hasło można pomjyńyć [[Special:ChangePassword|tu]].',
 'newarticle' => '(Nowy)',
-'newarticletext' => 'Ńy mo sam jeszcze artikla uo takijj titli. Eli chcesz go sprowjać, naszkryflej niżyj jego tekst (wjyncy informacyj nojdźesz [[{{MediaWiki:Helppage}}|na zajće půmocy]]). Eli żeś chćoł zrobić cosik inksze, naćiś ino knefel "Nazod".',
+'newarticletext' => 'Ńy mo sam jeszcze artikla uo takijj titli. Eli chcesz go sprowjać, naszkryflej niżyj jego tekst (wjyncy informacyj nojdźesz [[{{MediaWiki:Helppage}}|na zajće půmocy]]). Eli żeś chćoł zrobić cośik inksze, naćiś ino knefel "Nazod".',
 'anontalkpagetext' => "---- ''To je zajta godki lo anůnimowych używoczy  - takich, kerzi ńy majům jeszcze swojigo kůnta abo ńy chcům go terozki używać.
 By jejich idyntyfikować, używomy numerůw IP.
 Eli jeżeś anůnimowym używoczym a wydowo Ći śe, aże zamjyszczůne sam kůmyntorze ńy sům skjyrowane do Ćebje, [[Special:UserLogin|utwůrz prosza kůnto]] abo [[Special:UserLogin|zalůguj śe]] - beztůż uńikńesz potym podobnych ńyporozumjyń.''",
@@ -723,24 +723,25 @@ Eli jeżeś anůnimowym używoczym a wydowo Ći śe, aże zamjyszczůne sam kům
 'noarticletext-nopermission' => 'Na tyj zajće ńy mo jeszcze artikla.
 Mogesz [[Special:Search/{{PAGENAME}}|wysznupać ta titla]] we treśći inkszych zajtůw
 abo <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} przesznupać powjůnzane logi].</span>',
-'userpage-userdoesnotexist' => 'Užytkowńik "<nowiki>$1</nowiki>" ńy je zareještrowany. Sprowdź eli na pewno chćoužeś stwořyć/pomjynić gynau ta zajta.',
+'userpage-userdoesnotexist' => 'Użytkowńik "<nowiki>$1</nowiki>" ńy je zarejesztrowany. Sprowdź eli na pewno chćołżeś stworzyć/pomjynić gynał ta zajta.',
 'userpage-userdoesnotexist-view' => "Konto sprowjorza ''$1'' ńy istnieje.",
 'blocked-notice-logextract' => '{{GENDER:$1|Tyn sprowjorz|Ta sprowjorka}} mo zawrzite sprowjyńa.',
 'clearyourcache' => "'''Dej pozůr:''' Coby uobejrzeć pomjyńańo pů naszkryflańu nowych sztalowań poleć przeglůndorce wyczyśćić zawartość pamjyńći podryncznyj (cache). '''Mozilla / Firefox / Safari:''' przitrzimej ''Shift'' klikajůnc na ''Uodśwjyž'' abo wciś ''Ctrl-Shift-R'' (''Cmd-Shift-R'' na Macu), '''IE :''' przitrzimej ''Ctrl'' klikajůnc na ''Uodśwjyž'' abo wciś ''Ctrl-F5''; '''Konqueror:''': kliknij knefel ''Uodśwjyž'' abo wciś ''F5''; użytkowńicy '''Opery''' mogům być zmuszeńi coby cołkym wyczyśćić jejich pamjyńć podrynczno we menu ''Werkcojgi→Preferencyje''.; '''Internet Explorer:''' trzim ''Ctrl'' a wćiś ''Uodśwjyż'', abo wćiś ''Ctrl-F5''.",
 'usercssyoucanpreview' => "!'''Podpowjydź:''' Użyj knefla \"Podglůnd\", coby przetestować Twůj nowy arkusz stylůw CSS abo kod JavaScript przed jego zaszrajbowańym.",
 'userjsyoucanpreview' => "!'''Podpowjydź:''' Użyj knefla \"Podglůnd\", coby przetestować Twůj nowy arkusz stylůw CSS abo kod JavaScript przed jego zaszrajbowańym.",
-'usercsspreview' => "'''Pamjyntej, aže to je na raźe ino podglůnd Twojego arkuša stylůw CSS.'''
-'''Ńic ješče ńy zostouo naškryflone!'''",
-'userjspreview' => "'''Pamjyntej, aže to je na raźe ino podglůnd Twojego JavaScriptu - nic ješče ńy zostouo naškryflone!'''",
+'usercsspreview' => "'''Pamjyntej, aże to je no raźe ino podglůnd Twojego arkusza stylůw CSS.'''
+'''Ńic jeszcze ńy zostoło naszkryflane!'''",
+'userjspreview' => "'''Pamjyntej, aże to je no raźe ino podglůnd Twojego arkusza stylůw JavaScriptu.'''
+'''Ńic jeszcze ńy zostoło naszkryflane!'''",
 'sitecsspreview' => "'''Pamjyntej, aże to je na raźe ino podglůnd Twojego arkusza stylůw CSS.'''
-'''Ńic jeszczče ńy zostoło naszkryflone!'''",
-'sitejspreview' => "'''Pamjyntej, aże to je na raźe ino podglůnd Twojego JavaScriptu - nic jeszcze ńy zostoło naškryflone!'''",
+'''Ńic jeszcze ńy zostoło naszkryflane!'''",
+'sitejspreview' => "'''Pamjyntej, aże to je na raźe ino podglůnd Twojego JavaScriptu - nic jeszcze ńy zostoło naszkryflane!'''",
 'userinvalidcssjstitle' => "'''Pozůr:''' Ńy mo skůrki uo mjańe \"\$1\". Pamjyntej, aže zajty užytkowńika zawjyrajůnce CSS i JavaScript powinny začynać śe mouům buchštabům, np. {{ns:user}}:Foo/vector.css.",
 'updated' => '(Pomjyńano)',
 'note' => "'''Pozůr:'''",
 'previewnote' => "'''To je ino podglůnd - artikel jeszcze ńy je spamjyntany!'''",
 'continue-editing' => 'Sprowjej dalej',
-'previewconflict' => 'Wersyjo podglůndano uodnośi śe do tekstu s pola edycyje na wjyrchu. Tak bydźe wyglůndać zajta jeli zdecyduješ śe jům naškryflać.',
+'previewconflict' => 'Wersyjo podglůndano uodnośi śe do tekstu ze pola edycyje na wjyrchu. Tak bydźe wyglůndać zajta jeli zdecydujesz śe jům naszkryflać.',
 'session_fail_preview' => "'''Přeprašomy! Serwer ńy može přetwořyć tygo sprowjyńo skuli utraty danych ze sesyji. Sprůbuj ješče roz. Kejby to ńy pomoguo - wylůguj śe i zalogůj uod nowa.'''",
 'session_fail_preview_html' => "'''Přeprašomy! Serwer ńy može přetwořyć tygo sprowjyńo skuli utraty danych ze sesyji.'''
 

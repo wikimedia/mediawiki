@@ -721,7 +721,7 @@ $2',
 'gotaccount' => '已經擁有帳號？$1。',
 'gotaccountlink' => '登入',
 'userlogin-resetlink' => '忘記了您的登入細節？',
-'userlogin-resetpassword-link' => '重設密碼',
+'userlogin-resetpassword-link' => '忘記您的密碼？',
 'helplogin-url' => 'Help:登入',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|登入幫助]]',
 'userlogin-loggedin' => '您已作為{{GENDER:$1|$1}}登錄。
@@ -783,14 +783,16 @@ $2',
 'passwordsent' => '用戶「$1」的新密碼已經寄往所登記的電子郵件地址。
 請在收到後再登入。',
 'blocked-mailpassword' => '您的IP地址處於查封狀態而不允許編輯，為了安全起見，密碼恢復功能已被禁用。',
-'eauthentsent' => '一封確認信已經發送到所示的地址。在發送其它郵件到此賬戶前，您必須首先依照這封信中的指導確認這個電子郵件信箱真實有效。',
+'eauthentsent' => '一封確認信已遞送至您設定的電郵位址。
+在發送其它郵件到此賬戶前，您必須首先依照這封信中的指導確認這個電子郵件信箱真實有效。',
 'throttled-mailpassword' => '密碼提醒已經在前$1小時內發送。
 為防止濫用，限定在$1小時內僅發送一次密碼提醒。',
 'mailerror' => '發送郵件錯誤: $1',
 'acct_creation_throttle_hit' => '在這個wiki上的訪客利用您的IP地址在昨天創建了$1個賬戶，是在這段時間中的上限。
 結果利用這個IP地址的訪客在這段時間中不能創建更多的賬戶。',
-'emailauthenticated' => '您的電子郵件位址已於 $2 $3 確認有效。',
-'emailnotauthenticated' => '您的郵箱位址<strong>還沒被認証</strong>。以下功能將不會發送任何郵件。',
+'emailauthenticated' => '您的電子郵件位址已於$2在$3確認。',
+'emailnotauthenticated' => '您的電郵位址尚未確認。
+將不會發送與以下功能相關的電郵。',
 'noemailprefs' => '在您的參數設置中指定一個電子郵件地址以使用此功能。',
 'emailconfirmlink' => '確認您的電子郵件位址',
 'invalidemailaddress' => '郵箱地址格式不正確，請輸入正確的郵箱位址或清空該輸入框。',
@@ -1203,15 +1205,15 @@ $2
 * 不合適的個人資料
 *: ''住家地址、電話號碼、社群保安號碼等。''",
 'revdelete-legend' => '設定可見性之限制',
-'revdelete-hide-text' => '隱藏修訂文字',
+'revdelete-hide-text' => '修訂文字',
 'revdelete-hide-image' => '隱藏檔案內容',
 'revdelete-hide-name' => '隱藏動作和目標',
-'revdelete-hide-comment' => '隱藏編輯摘要',
-'revdelete-hide-user' => '隱藏編輯者的用戶名/IP地址',
+'revdelete-hide-comment' => '編輯摘要',
+'revdelete-hide-user' => '編輯者的用戶名/IP位址',
 'revdelete-hide-restricted' => '同時廢止由操作員以及其他用戶的資料',
 'revdelete-radio-same' => '（不要更改）',
-'revdelete-radio-set' => '是',
-'revdelete-radio-unset' => '否',
+'revdelete-radio-set' => '可見',
+'revdelete-radio-unset' => '隱藏',
 'revdelete-suppress' => '同時廢止由操作員以及其他用戶的資料',
 'revdelete-unsuppress' => '在已恢復的修訂中移除限制',
 'revdelete-log' => '理由：',
@@ -1453,7 +1455,7 @@ $1",
 'email' => '電子郵件',
 'prefs-help-realname' => '真實姓名是可選的。
 如果您選擇提供它，它會用於貢獻署名。',
-'prefs-help-email' => '電子郵件是可選的，但當您忘記您的密碼時需要將新密碼重設，就會用電郵寄回給您。',
+'prefs-help-email' => "<nowiki>*</nowiki> 您不一定要提供電子郵件，但如果您遺失密碼，將'''無法'''再次登入。您可以隨時在此提供電子郵件，或更改資料。如您更改電子郵件，您將需要[[Help:电子邮件确认|重新確認]]。",
 'prefs-help-email-others' => '您亦可以在您沒有公開自己的用戶身分時透過您的用戶頁或用戶討論頁與您聯繫。',
 'prefs-help-email-required' => '電子郵件地址是必填項目。',
 'prefs-info' => '基本資料',
@@ -3085,7 +3087,7 @@ $2',
 'spam_reverting' => '恢復到不包含連結至$1的最近修訂版本',
 'spam_blanking' => '所有包含連結至$1的修訂，清空',
 'spam_deleting' => '所有包含連結至$1的修訂，刪除中',
-'simpleantispam-label' => "反垃圾檢查。
+'simpleantispam-label' => "反濫發電郵檢查。
 '''不要'''加入這個！",
 
 # Info page
@@ -3876,7 +3878,7 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 # Special:Redirect
 'redirect' => '重定向檔案、用戶ID或頁面修訂ID',
 'redirect-legend' => '重定向到檔案或頁面',
-'redirect-summary' => '此特殊頁面重定向到檔案（指定的檔案名稱）、頁面 （指定的頁面修訂ID） 或用戶頁面（指定的用戶ID數值）。',
+'redirect-summary' => '此特殊頁面重定向到檔案（指定的檔案名稱）、頁面 （指定的頁面修訂ID） 或用戶頁面（指定的用戶ID數值）。用法：[[{{#Special:Redirect}}/file/Example.jpg]]、[[{{#Special:Redirect}}/revision/328429]]或[[{{#Special:Redirect}}/user/101]]。',
 'redirect-submit' => '提交',
 'redirect-lookup' => '尋找：',
 'redirect-value' => '值：',
