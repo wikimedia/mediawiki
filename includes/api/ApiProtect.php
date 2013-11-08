@@ -98,7 +98,7 @@ class ApiProtect extends ApiBase {
 		$cascade = $params['cascade'];
 
 		$watch = $params['watch'] ? 'watch' : $params['watchlist'];
-		$this->setWatch( $watch, $titleObj );
+		$this->setWatch( $watch, $titleObj, 'watchdefault' );
 
 		$status = $pageObj->doUpdateRestrictions( $protections, $expiryarray, $cascade, $params['reason'], $this->getUser() );
 

@@ -818,7 +818,7 @@ abstract class ApiBase extends ContextSource {
 	 * @param string $watchlist Valid values: 'watch', 'unwatch', 'preferences', 'nochange'
 	 * @param $titleObj Title the page under consideration
 	 * @param string $userOption The user option to consider when $watchlist=preferences.
-	 * 	If not set will magically default to either watchdefault or watchcreations
+	 * 	If not set will use watchdefault always and watchcreations if $titleObj doesn't exist.
 	 * @return bool
 	 */
 	protected function getWatchlistValue( $watchlist, $titleObj, $userOption = null ) {
@@ -837,10 +837,10 @@ abstract class ApiBase extends ContextSource {
 				if ( $userWatching ) {
 					return true;
 				}
-				# If no user option was passed, use watchdefault or watchcreations
+				# If no user option was passed, use watchdefault and watchcreations
 				if ( is_null( $userOption ) ) {
-					$userOption = $titleObj->exists()
-							? 'watchdefault' : 'watchcreations';
+					return $this->getUser()->getBoolOption( 'watchdefault' ) ||
+						$this->getUser()->getBoolOption( 'watchcreations' ) && !$titleObj->exists();
 				}
 				# Watch the article based on the user preference
 				return $this->getUser()->getBoolOption( $userOption );

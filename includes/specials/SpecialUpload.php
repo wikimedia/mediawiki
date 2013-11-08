@@ -60,7 +60,7 @@ class SpecialUpload extends SpecialPage {
 
 	/** User input variables from the root section **/
 	public $mIgnoreWarning;
-	public $mWatchThis;
+	public $mWatchthis;
 	public $mCopyrightStatus;
 	public $mCopyrightSource;
 
@@ -74,8 +74,6 @@ class SpecialUpload extends SpecialPage {
 	/** Text injection points for hooks not using HTMLForm **/
 	public $uploadFormTextTop;
 	public $uploadFormTextAfterSummary;
-
-	public $mWatchthis;
 
 	/**
 	 * Initialize instance variables from request and create an Upload handler
@@ -517,11 +515,17 @@ class SpecialUpload extends SpecialPage {
 			return true;
 		}
 
+		$desiredTitleObj = Title::makeTitleSafe( NS_FILE, $this->mDesiredDestName );
+		if ( $desiredTitleObj instanceof Title && $this->getUser()->isWatched( $desiredTitleObj ) ) {
+			// Already watched, don't change that
+			return true;
+		}
+
 		$local = wfLocalFile( $this->mDesiredDestName );
 		if ( $local && $local->exists() ) {
 			// We're uploading a new version of an existing file.
 			// No creation, so don't watch it if we're not already.
-			return $this->getUser()->isWatched( $local->getTitle() );
+			return false;
 		} else {
 			// New page should get watched if that's our option.
 			return $this->getUser()->getOption( 'watchcreations' );
@@ -1011,7 +1015,7 @@ class UploadForm extends HTMLForm {
 					'id' => 'wpWatchthis',
 					'label-message' => 'watchthisupload',
 					'section' => 'options',
-					'default' => $user->getOption( 'watchcreations' ),
+					'default' => $this->mWatch,
 				)
 			);
 		}
