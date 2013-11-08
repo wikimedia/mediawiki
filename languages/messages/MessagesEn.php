@@ -1425,7 +1425,7 @@ Note that you may not use the \"email this user\" feature unless you have a vali
 Your current IP address is $3, and the block ID is #$5.
 Please include all above details in any queries you make.",
 'blockednoreason'                  => 'no reason given',
-'whitelistedittext'                => 'You have to $1 to edit pages.',
+'whitelistedittext'                => 'Please $1 to edit pages.',
 'confirmedittext'                  => 'You must confirm your email address before editing pages.
 Please set and validate your email address through your [[Special:Preferences|user preferences]].',
 'nosuchsectiontitle'               => 'Cannot find section',
@@ -1433,7 +1433,7 @@ Please set and validate your email address through your [[Special:Preferences|us
 It may have been moved or deleted while you were viewing the page.',
 'loginreqtitle'                    => 'Login required',
 'loginreqlink'                     => 'log in',
-'loginreqpagetext'                 => 'You must $1 to view other pages.',
+'loginreqpagetext'                 => 'Please $1 to view other pages.',
 'accmailtitle'                     => 'Password sent',
 'accmailtext'                      => "A randomly generated password for [[User talk:$1|$1]] has been sent to $2. It can be changed on the ''[[Special:ChangePassword|change password]]'' page upon logging in.",
 'newarticle'                       => '(New)',
@@ -1899,7 +1899,7 @@ Note that their indexes of {{SITENAME}} content may be out of date.',
 'preferences-summary'           => '', # do not translate or duplicate this message to other languages
 'mypreferences'                 => 'Preferences',
 'prefs-edits'                   => 'Number of edits:',
-'prefsnologintext2'             => 'Please $1 to set user preferences.',
+'prefsnologintext2'             => 'Please $1 to change your preferences.',
 'changepassword'                => 'Change password',
 'changepassword-summary'        => '', # do not translate or duplicate this message to other languages
 'prefs-skin'                    => 'Skin',
@@ -2254,7 +2254,7 @@ Pages on [[Special:Watchlist|your watchlist]] are '''bold'''.",
 'reuploaddesc'                => 'Cancel upload and return to the upload form',
 'upload-tryagain'             => 'Submit modified file description',
 'uploadnologin'               => 'Not logged in',
-'uploadnologintext'           => 'You must $1 to upload files.',
+'uploadnologintext'           => 'Please $1 to upload files.',
 'upload_directory_missing'    => 'The upload directory ($1) is missing and could not be created by the webserver.',
 'upload_directory_read_only'  => 'The upload directory ($1) is not writable by the webserver.',
 'uploaderror'                 => 'Upload error',
@@ -4562,7 +4562,7 @@ Please check your email address for invalid characters.
 Mailer returned: $1',
 'confirmemail_invalid'      => 'Invalid confirmation code.
 The code may have expired.',
-'confirmemail_needlogin'    => 'You need to $1 to confirm your email address.',
+'confirmemail_needlogin'    => 'Please $1 to confirm your email address.',
 'confirmemail_success'      => 'Your email address has been confirmed.
 You may now [[Special:UserLogin|log in]] and enjoy the wiki.',
 'confirmemail_loggedin'     => 'Your email address has now been confirmed.',
