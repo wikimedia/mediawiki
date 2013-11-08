@@ -18,18 +18,137 @@
  * @file
  */
 class RCCacheEntry extends RecentChange {
-	var $secureName, $link;
-	var $curlink, $difflink, $lastlink, $usertalklink, $versionlink;
-	var $userlink, $timestamp, $watched;
+
+	/**
+	 * @var string
+	 */
+	public $secureName;
+
+	/**
+	 * @var string
+	 */
+	public $link;
+
+	/**
+	 * @var string
+	 */
+	public $curlink;
+
+	/**
+	 * @var string
+	 */
+	public $difflink;
+
+	/**
+	 * @var string
+	 */
+	public $lastlink;
+
+	/**
+	 * @var string
+	 */
+	public $userlink;
+
+	/**
+	 * @var string
+	 */
+	public $usertalklink;
+
+	/**
+	 * @var string
+	 */
+	public $versionlink;
+
+	/**
+	 * @var	string
+	 */
+	public $timestamp;
+
+	/**
+	 * @var boolean
+	 */
+	public $watched;
 
 	/**
 	 * @param $rc RecentChange
 	 * @return RCCacheEntry
 	 */
 	static function newFromParent( $rc ) {
-		$rc2 = new RCCacheEntry;
-		$rc2->mAttribs = $rc->mAttribs;
-		$rc2->mExtra = $rc->mExtra;
-		return $rc2;
+		$cacheEntry = new RCCacheEntry;
+		$cacheEntry->mAttribs = $rc->mAttribs;
+		$cacheEntry->mExtra = $rc->mExtra;
+
+		return $cacheEntry;
 	}
+
+	/**
+	 * @param string $secureName
+	 */
+	public function setSecureName( $secureName ) {
+		$this->secureName = $secureName;
+	}
+
+	/**
+	 * @param string $link
+	 */
+	public function setLink( $link ) {
+		$this->link = $link;
+	}
+
+	/**
+	 * @param string $curlink
+	 */
+	public function setCurLink( $curlink ) {
+		$this->curlink = $curlink;
+	}
+
+	/**
+	 * @param string $difflink
+	 */
+	public function setDiffLink( $difflink ) {
+		$this->difflink = $difflink;
+	}
+
+	/**
+	 * @param string $lastlink
+	 */
+	public function setLastLink( $lastlink ) {
+		$this->lastlink = $lastlink;
+	}
+
+	/**
+	 * @param string $userlink
+	 */
+	public function setUserLink( $userlink ) {
+		$this->userlink = $userlink;
+	}
+
+	/**
+	 * @param string $usertalklink
+	 */
+	public function setUserTalkLink( $usertalklink ) {
+		$this->usertalklink = $usertalklink;
+	}
+
+	/**
+	 * @param string $versionlink
+	 */
+	public function setVersionLink( $versionlink ) {
+		$this->versionlink = $versionlink;
+	}
+
+	/**
+	 * @param string $timestamp
+	 */
+	public function setTimestamp( $timestamp ) {
+		$this->timestamp = $timestamp;
+	}
+
+	/**
+	 * @param boolean $watched
+	 */
+	public function setWatched( $watched ) {
+		$this->watched = $watched;
+	}
+
 }
