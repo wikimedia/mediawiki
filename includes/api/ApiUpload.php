@@ -587,7 +587,19 @@ class ApiUpload extends ApiBase {
 
 		/** @var $file File */
 		$file = $this->mUpload->getLocalFile();
-		$watch = $this->getWatchlistValue( $this->mParams['watchlist'], $file->getTitle() );
+
+		// For preferences mode, we want to watch if 'watchdefault' is set or
+		// if the *file* doesn't exist and 'watchcreations' is set. But
+		// getWatchlistValue()'s automatic handling checks if the *title*
+		// exists or not, so we need to check both prefs manually.
+		$watch = $this->getWatchlistValue(
+			$this->mParams['watchlist'], $file->getTitle(), 'watchdefault'
+		);
+		if ( !$watch && $this->mParams['watchlist'] == 'preferences' && !$file->exists() ) {
+			$watch = $this->getWatchlistValue(
+				$this->mParams['watchlist'], $file->getTitle(), 'watchcreations'
+			);
+		}
 
 		// Deprecated parameters
 		if ( $this->mParams['watch'] ) {
