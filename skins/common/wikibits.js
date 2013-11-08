@@ -18,6 +18,12 @@ if ( mw.config.get( 'wgBreakFrames' ) ) {
 	}
 }
 
+/**
+ * legacy function to scroll to a id while viewing the page over a redirect
+ * Superseeded by module 'mediawiki.action.view.redirectToFragment' in version 1.23
+ * Kepted because cache can contains still inline script calls to this function.
+ * Should be removed in version 1.24
+ */
 win.redirectToFragment = function ( fragment ) {
 	var webKitVersion,
 		match = navigator.userAgent.match( /AppleWebKit\/(\d+)/ );
