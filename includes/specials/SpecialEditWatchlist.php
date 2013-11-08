@@ -62,7 +62,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		$this->setHeaders();
 
 		# Anons don't get a watchlist
-		$this->requireLogin( 'watchlistanontext', 'watchnologin' );
+		$this->requireLogin( 'watchlistanontext' );
 
 		$out = $this->getOutput();
 

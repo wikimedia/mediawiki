@@ -2966,7 +2966,6 @@ See also:
 * {{msg-mw|Tooltip-pt-preferences}}
 {{Identical|Preferences}}',
 'prefs-edits' => 'In user preferences.',
-'prefsnologin' => '{{Identical|Not logged in}}',
 'prefsnologintext2' => 'Parameters:
 * $1 - a link to [[Special:UserLogin]] with {{msg-mw|loginreqlink}} as link description',
 'changepassword' => "Section heading on [[Special:Preferences]], tab 'User profile'.

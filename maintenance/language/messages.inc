@@ -1028,7 +1028,6 @@ $wgMessageStructure = array(
 		'preferences-summary',
 		'mypreferences',
 		'prefs-edits',
-		'prefsnologin',
 		'prefsnologintext2',
 		'changepassword',
 		'changepassword-summary',
