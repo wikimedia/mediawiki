@@ -45,7 +45,10 @@ class WikiImporter {
 	function __construct( $source ) {
 		$this->reader = new XMLReader();
 
-		stream_wrapper_register( 'uploadsource', 'UploadSourceAdapter' );
+		if ( !$this->assertStreamWrapperExists( 'uploadsource' ) ) {
+			stream_wrapper_register( 'uploadsource', 'UploadSourceAdapter' );
+		}
+
 		$id = UploadSourceAdapter::registerSource( $source );
 		if ( defined( 'LIBXML_PARSEHUGE' ) ) {
 			$this->reader->open( "uploadsource://$id", null, LIBXML_PARSEHUGE );
@@ -58,6 +61,13 @@ class WikiImporter {
 		$this->setUploadCallback( array( $this, 'importUpload' ) );
 		$this->setLogItemCallback( array( $this, 'importLogItem' ) );
 		$this->setPageOutCallback( array( $this, 'finishImportPage' ) );
+	}
+
+	/**
+	 * @since 1.23
+	 */
+	private function assertStreamWrapperExists( $wrapper ) {
+		return in_array( $wrapper, stream_get_wrappers() );
 	}
 
 	private function throwXmlError( $err ) {
