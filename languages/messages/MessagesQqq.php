@@ -2966,7 +2966,6 @@ See also:
 * {{msg-mw|Tooltip-pt-preferences}}
 {{Identical|Preferences}}',
 'prefs-edits' => 'In user preferences.',
-'prefsnologin' => '{{Identical|Not logged in}}',
 'prefsnologintext2' => 'Parameters:
 * $1 - a link to [[Special:UserLogin]] with {{msg-mw|loginreqlink}} as link description',
 'changepassword' => "Section heading on [[Special:Preferences]], tab 'User profile'.
@@ -5329,14 +5328,7 @@ Parameters:
 'nowatchlist' => 'Displayed when there is no pages in the watchlist.',
 'watchlistanontext' => 'Parameters:
 * $1 - a link to [[Special:UserLogin]] with {{msg-mw|loginreqlink}} as link description',
-'watchnologin' => 'Used as error page title.
-
-The error message for this title is:
-* {{msg-mw|Watchnologintext}}
-{{Identical|Not logged in}}',
-'watchnologintext' => 'Used as error message.
-
-The title for this error is {{msg-mw|Watchnologin}}.',
+'watchnologintext' => 'Used as error message.',
 'addwatch' => 'Link to a dialog box, displayed at the end of the list of categories at the foot of each page.
 
 See also:
