@@ -94,7 +94,7 @@ class UploadStashCleanup extends Maintenance {
 
 		// Delete all the corresponding thumbnails...
 		$dir = $tempRepo->getZonePath( 'thumb' );
-		$iterator = $tempRepo->getBackend()->getFileList( array( 'dir' => $dir ) );
+		$iterator = $tempRepo->getBackend()->getFileList( array( 'dir' => $dir, 'adviseStat' => 1 ) );
 		$this->output( "Deleting old thumbnails...\n" );
 		$i = 0;
 		foreach ( $iterator as $file ) {
