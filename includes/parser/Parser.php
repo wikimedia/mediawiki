@@ -2283,13 +2283,13 @@ class Parser {
 		$result = $this->closeParagraph();
 
 		if ( '*' === $char ) {
-			$result .= "<ul>\n<li>";
+			$result .= '<ul><li>';
 		} elseif ( '#' === $char ) {
-			$result .= "<ol>\n<li>";
+			$result .= '<ol><li>';
 		} elseif ( ':' === $char ) {
-			$result .= "<dl>\n<dd>";
+			$result .= '<dl><dd>';
 		} elseif ( ';' === $char ) {
-			$result .= "<dl>\n<dt>";
+			$result .= '<dl><dt>';
 			$this->mDTopen = true;
 		} else {
 			$result = '<!-- ERR 1 -->';
@@ -2307,11 +2307,11 @@ class Parser {
 	 */
 	function nextItem( $char ) {
 		if ( '*' === $char || '#' === $char ) {
-			return "</li>\n<li>";
+			return '</li><li>';
 		} elseif ( ':' === $char || ';' === $char ) {
-			$close = "</dd>\n";
+			$close = '</dd>';
 			if ( $this->mDTopen ) {
-				$close = "</dt>\n";
+				$close = '</dt>';
 			}
 			if ( ';' === $char ) {
 				$this->mDTopen = true;
@@ -2333,15 +2333,15 @@ class Parser {
 	 */
 	function closeList( $char ) {
 		if ( '*' === $char ) {
-			$text = "</li>\n</ul>";
+			$text = '</li></ul>';
 		} elseif ( '#' === $char ) {
-			$text = "</li>\n</ol>";
+			$text = '</li></ol>';
 		} elseif ( ':' === $char ) {
 			if ( $this->mDTopen ) {
 				$this->mDTopen = false;
-				$text = "</dt>\n</dl>";
+				$text = '</dt></dl>';
 			} else {
-				$text = "</dd>\n</dl>";
+				$text = '</dd></dl>';
 			}
 		} else {
 			return '<!-- ERR 3 -->';
