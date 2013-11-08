@@ -75,7 +75,7 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 		$user = $this->getUser();
 		$request = $this->getRequest();
 
-		if ( !$request->wasPosted() && !$user->isLoggedIn() ) {
+		if ( !$user->isLoggedIn() ) {
 			$this->error( 'changeemail-no-info' );
 
 			return;
