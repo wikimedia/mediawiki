@@ -1899,7 +1899,6 @@ Note that their indexes of {{SITENAME}} content may be out of date.',
 'preferences-summary'           => '', # do not translate or duplicate this message to other languages
 'mypreferences'                 => 'Preferences',
 'prefs-edits'                   => 'Number of edits:',
-'prefsnologin'                  => 'Not logged in',
 'prefsnologintext2'             => 'Please $1 to set user preferences.',
 'changepassword'                => 'Change password',
 'changepassword-summary'        => '', # do not translate or duplicate this message to other languages
@@ -2963,7 +2962,6 @@ The email address you entered in [[Special:Preferences|your user preferences]] w
 'watchlistfor2'        => 'For $1 $2',
 'nowatchlist'          => 'You have no items on your watchlist.',
 'watchlistanontext'    => 'Please $1 to view or edit items on your watchlist.',
-'watchnologin'         => 'Not logged in',
 'watchnologintext'     => 'You must be [[Special:UserLogin|logged in]] to modify your watchlist.',
 'addwatch'             => 'Add to watchlist',
 'addedwatchtext'       => 'The page "[[:$1]]" has been added to your [[Special:Watchlist|watchlist]].
