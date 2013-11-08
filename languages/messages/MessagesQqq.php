@@ -1594,7 +1594,10 @@ Used on the account creation form when creating another user's account. Similar 
 'resetpass_submit' => 'Submit button on [[Special:ChangePassword]]',
 'changepassword-success' => 'Used in [[Special:ChangePassword]].',
 'resetpass_forbidden' => "Used as error message in changing password. Maybe the external auth plugin won't allow local password changes.",
-'resetpass-no-info' => 'Error message for [[Special:ChangePassword]].',
+'resetpass-no-info' => 'Error message for [[Special:ChangePassword]].
+
+Parameters:
+* $1 (unused) - a link to [[Special:UserLogin]] with {{msg-mw|loginreqlink}} as link description',
 'resetpass-submit-loggedin' => 'Button on [[Special:ResetPass]] to submit new password.
 
 {{Identical|Change password}}',
@@ -1665,7 +1668,10 @@ See also:
 'changeemail' => 'Title of [[Special:ChangeEmail|special page]].',
 'changeemail-header' => 'Header on [[Special:ChangeEmail]].',
 'changeemail-text' => 'Text of [[Special:ChangeEmail]].',
-'changeemail-no-info' => 'Error message for [[Special:ChangeEmail]].',
+'changeemail-no-info' => 'Error message for [[Special:ChangeEmail]].
+
+Parameters:
+* $1 (unused) - a link to [[Special:UserLogin]] with {{msg-mw|loginreqlink}} as link description',
 'changeemail-oldemail' => 'Label for e-mail address field in [[Special:ChangeEmail]].',
 'changeemail-newemail' => 'Label for e-mail address field in [[Special:ChangeEmail]].',
 'changeemail-none' => "Probably appears in 'Current E-mail address' field when no address held, in [[Special:ChangeEmail]].
@@ -1856,10 +1862,14 @@ See also:
 {{Identical|Login required}}',
 'loginreqlink' => 'Take a look on inflection. Used as <code>$1</code> in the following messages:
 * {{msg-mw|loginreqpagetext}}
+* {{msg-mw|exception-nologin-text-manual}}
 * {{msg-mw|whitelistedittext}}
 * {{msg-mw|Uploadnologintext}}
-* {{msg-mw|watchlistanontext‎}}
-* {{msg-mw|Confirmemail needlogin}}
+* {{msg-mw|watchlistanontext}}
+* {{msg-mw|confirmemail_needlogin}}
+* {{msg-mw|changeemail-no-info}}
+* {{msg-mw|resetpass-no-info}}
+* {{msg-mw|prefsnologintext2}}
 {{Identical|Log in}}',
 'loginreqpagetext' => 'This message is displayed if an anonymous reader attempts to access a page which is only available to logged-in users.
 
@@ -9454,7 +9464,9 @@ See also:
 * {{msg-mw|Confirmemail oncreate}}',
 'confirmemail_invalid' => 'Error message on [[Special:ConfirmEmail]] on error of confirmation.',
 'confirmemail_needlogin' => 'Used on [[Special:ConfirmEmail]] when you are logged out.
-* $1 is a link to [[Special:UserLogin]] with {{msg-mw|loginreqlink}} as link description',
+
+Parameters:
+* $1 - a link to [[Special:UserLogin]] with {{msg-mw|loginreqlink}} as link description',
 'confirmemail_success' => 'Explanation on [[Special:ConfirmEmail]] on completion of confirmation.',
 'confirmemail_loggedin' => 'Explanation on [[Special:ConfirmEmail]] on completion of confirmation.',
 'confirmemail_error' => 'Error message on [[Special:ConfirmEmail]]',
