@@ -67,6 +67,8 @@ production.
 * Default value of $wgMaxShellMemory has been tripled (it's now 300 MB).
 
 === New features in 1.22 ===
+* You can now install extensions using Composer.
+  See https://www.mediawiki.org/wiki/Composer
 * (bug 44525) mediawiki.jqueryMsg can now parse (whitelisted) HTML elements and attributes.
 * (bug 33454) Language::sprintfDate now has a timezone parameter, and supports
   the "eIOPTZ" formatting characters.
@@ -253,7 +255,7 @@ production.
 * The 'UnwatchArticle' and 'WatchArticle' hooks now support a Status object
   instead of just a boolean return value to abort the hook.
 * Added a hook, SpecialWatchlistGetNonRevisionTypes, to allow extensions
-  with custom recentchanges entries to hook into the Watchlist without 
+  with custom recentchanges entries to hook into the Watchlist without
   clobbering each other.
 * A hidden, empty input field was added to the edit form, and any edit that fills
   it in will be rejected. This prevents against the simplest form of spambots.
@@ -351,6 +353,7 @@ production.
 * (bug 45288) Support mysqli PHP extension
 * (bug 55818) BREAKING CHANGE: Removed undocumented 'Debug' hook in wfDebug.
   This resolves an infinite loop when using $wgDebugFunctionEntry = true.
+* (bug 56707) Correct tooltip of "Next n results" on query special pages.
 
 === API changes in 1.22 ===
 * (bug 25553) The JSON output formatter now leaves forward slashes unescaped
@@ -423,15 +426,6 @@ changes to languages because of Bugzilla reports.
 * (bug 46751) Made Buryat (Russia) (буряад) (bxr) fallback to Russian.
 
 === Other changes in 1.22 ===
-* The rc_type field in the recentchanges table has been superseded by a new
-  rc_source field.  The rc_source field is a string representation of the
-  change type where rc_type was a numeric constant.  This field is not yet
-  queried but will be in a future point release of 1.22.  
-** Utilize update.php to create and populate this new field.  On larger wiki's
-   which do not wish to update recentchanges table in one large update please
-   review the sql and comments in maintenance/archives/patch-rc_source.sql.
-** The rc_type field of recentchanges will be deprecated in a future point
-   release.
 * BREAKING CHANGE: Implementation of MediaWiki's JS and JSON value encoding
   has changed:
 ** MediaWiki no longer supports PHP installations in which the native JSON
