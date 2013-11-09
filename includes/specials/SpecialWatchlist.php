@@ -60,15 +60,21 @@ class SpecialWatchlist extends SpecialPage {
 		// Add feed links
 		$wlToken = $user->getTokenFromOption( 'watchlisttoken' );
 		if ( $wlToken ) {
-			$this->addFeedLinks( array( 'action' => 'feedwatchlist', 'allrev' => 'allrev',
-								'wlowner' => $user->getName(), 'wltoken' => $wlToken ) );
+			$this->addFeedLinks( array(
+				'action' => 'feedwatchlist',
+				'allrev' => 1,
+				'wlowner' => $user->getName(),
+				'wltoken' => $wlToken,
+			) );
 		}
 
 		$this->setHeaders();
 		$this->outputHeader();
 
-		$output->addSubtitle( $this->msg( 'watchlistfor2', $user->getName()
-			)->rawParams( SpecialEditWatchlist::buildTools( null ) ) );
+		$output->addSubtitle(
+			$this->msg( 'watchlistfor2', $user->getName() )
+				->rawParams( SpecialEditWatchlist::buildTools( null ) )
+		);
 
 		$request = $this->getRequest();
 
@@ -205,10 +211,6 @@ class SpecialWatchlist extends SpecialPage {
 			$nonRevisionTypes = array( RC_LOG );
 			wfRunHooks( 'SpecialWatchlistGetNonRevisionTypes', array( &$nonRevisionTypes ) );
 			if ( $nonRevisionTypes ) {
-				if ( count( $nonRevisionTypes ) === 1 ) {
-					// if only one use an equality instead of IN condition
-					$nonRevisionTypes = reset( $nonRevisionTypes );
-				}
 				$conds[] = $dbr->makeList(
 					array(
 						'rc_this_oldid=page_latest',
