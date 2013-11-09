@@ -135,7 +135,7 @@ class EditPage {
 	const AS_OK = 230;
 
 	/**
-	 * Status: WikiPage::doEdit() was unsuccessful
+	 * Status: WikiPage::doEdit() failed due to a conflict
 	 */
 	const AS_END = 231;
 
@@ -1243,6 +1243,7 @@ class EditPage {
 		# Allow bots to exempt some edits from bot flagging
 		$bot = $wgUser->isAllowed( 'bot' ) && $this->bot;
 		$status = $this->internalAttemptSave( $resultDetails, $bot );
+		wfRunHooks( 'EditPage::afterAttemptSave', array( $this->mArticle, $status, $this->oldid ) );
 
 		return $this->handleStatus( $status, $resultDetails );
 	}

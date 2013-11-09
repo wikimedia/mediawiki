@@ -395,6 +395,7 @@ class ApiEditPage extends ApiBase {
 		$wgRequest = $req;
 
 		$status = $ep->internalAttemptSave( $result, $user->isAllowed( 'bot' ) && $params['bot'] );
+		wfRunHooks( 'EditPage::afterAttemptSave', array( $articleObject, $status ) );
 		$wgRequest = $oldRequest;
 		global $wgMaxArticleSize;
 
