@@ -1015,6 +1015,7 @@ class EditPage {
 			return $handler->makeEmptyContent();
 		}
 		$content = $revision->getContent();
+		$this->oldid = $revision->getId();
 		return $content;
 	}
 
@@ -1769,7 +1770,7 @@ class EditPage {
 			( $bot ? EDIT_FORCE_BOT : 0 );
 
 			$doEditStatus = $this->mArticle->doEditContent( $content, $this->summary, $flags,
-															false, null, $this->contentFormat );
+															$this->oldid, null, $this->contentFormat );
 
 		if ( !$doEditStatus->isOK() ) {
 			// Failure from doEdit()
