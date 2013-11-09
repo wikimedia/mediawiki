@@ -45,16 +45,6 @@ class EditPageTest extends MediaWikiLangTestCase {
 		);
 	}
 
-	protected function forceRevisionDate( WikiPage $page, $timestamp ) {
-		$dbw = wfGetDB( DB_MASTER );
-
-		$dbw->update( 'revision',
-			array( 'rev_timestamp' => $dbw->timestamp( $timestamp ) ),
-			array( 'rev_id' => $page->getLatest() ) );
-
-		$page->clear();
-	}
-
 	/**
 	 * User input text is passed to rtrim() by edit page. This is a simple
 	 * wrapper around assertEquals() which calls rrtrim() to normalize the
@@ -75,12 +65,10 @@ class EditPageTest extends MediaWikiLangTestCase {
 	 *              * wpTextbox1: the text to submit
 	 *              * wpSummary: the edit summary
 	 *              * wpEditToken: the edit token (will be inserted if not provided)
-	 *              * wpEdittime: timestamp of the edit's base revision (will be inserted
-	 *                if not provided)
-	 *              * wpStarttime: timestamp when the edit started (will be inserted if not provided)
 	 *              * wpSectionTitle: the section to edit
 	 *              * wpMinorEdit: mark as minor edit
 	 *              * wpWatchthis: whether to watch the page
+	 *              * oldid: base revision ID for this edit
 	 * @param int|null $expectedCode The expected result code (EditPage::AS_XXX constants).
 	 *                  Set to null to skip the check. Defaults to EditPage::AS_OK.
 	 * @param string|null $expectedText The text expected to be on the page after the edit.
@@ -110,7 +98,6 @@ class EditPageTest extends MediaWikiLangTestCase {
 		if ( $baseText !== null ) {
 			$content = ContentHandler::makeContent( $baseText, $title );
 			$page->doEditContent( $content, "base text for test" );
-			$this->forceRevisionDate( $page, '20120101000000' );
 
 			//sanity check
 			$page->clear();
@@ -119,6 +106,10 @@ class EditPageTest extends MediaWikiLangTestCase {
 			# EditPage rtrim() the user input, so we alter our expected text
 			# to reflect that.
 			$this->assertEditedTextEquals( $baseText, $currentText );
+		}
+
+		if ( !isset( $edit['oldid'] ) ) {
+			$edit['oldid'] = $page->getLatest();
 		}
 
 		if ( $user == null ) {
@@ -131,17 +122,10 @@ class EditPageTest extends MediaWikiLangTestCase {
 			$edit['wpEditToken'] = $user->getEditToken();
 		}
 
-		if ( !isset( $edit['wpEdittime'] ) ) {
-			$edit['wpEdittime'] = $page->exists() ? $page->getTimestamp() : '';
-		}
-
-		if ( !isset( $edit['wpStarttime'] ) ) {
-			$edit['wpStarttime'] = wfTimestampNow();
-		}
-
 		$req = new FauxRequest( $edit, true ); // session ??
 
 		$ep = new EditPage( new Article( $title ) );
+		$ep->setBaseRevisionId( $edit['oldid'] );
 		$ep->setContextTitle( $title );
 		$ep->importFormData( $req );
 
@@ -275,8 +259,6 @@ class EditPageTest extends MediaWikiLangTestCase {
 			EditPage::AS_SUCCESS_UPDATE, $text,
 			"expected successfull update with given text" );
 
-		$this->forceRevisionDate( $page, '20120101000000' );
-
 		$text = "two";
 		$edit = array(
 			'wpTextbox1' => $text,
@@ -364,11 +346,9 @@ hello
 			"Elmo", # base edit user
 			"one\n\ntwo\n\nthree\n",
 			array( #adam's edit
-				'wpStarttime' => 1,
 				'wpTextbox1' => "ONE\n\ntwo\n\nthree\n",
 			),
 			array( #berta's edit
-				'wpStarttime' => 2,
 				'wpTextbox1' => "(one)\n\ntwo\n\nthree\n",
 			),
 			EditPage::AS_CONFLICT_DETECTED, # expected code
@@ -380,11 +360,9 @@ hello
 			"Elmo", # base edit user
 			"one\n\ntwo\n\nthree\n",
 			array( #adam's edit
-				'wpStarttime' => 1,
 				'wpTextbox1' => "ONE\n\ntwo\n\nthree\n",
 			),
 			array( #berta's edit
-				'wpStarttime' => 2,
 				'wpTextbox1' => "one\n\ntwo\n\nTHREE\n",
 			),
 			EditPage::AS_SUCCESS_UPDATE, # expected code
@@ -408,12 +386,10 @@ hello
 			"Elmo", # base edit user
 			$text,
 			array( #adam's edit
-				'wpStarttime' => 1,
 				'wpTextbox1' => str_replace( 'one', 'ONE', $section ),
 				'wpSection' => '1'
 			),
 			array( #berta's edit
-				'wpStarttime' => 2,
 				'wpTextbox1' => str_replace( 'three', 'THREE', $section ),
 				'wpSection' => '1'
 			),
@@ -460,38 +436,13 @@ hello
 
 		$page = $this->assertEdit( 'EditPageTest_testAutoMerge', null,
 			$baseUser, $baseEdit, null, null, __METHOD__ );
+		$baseRevId = $page->getLatest();
 
-		$this->forceRevisionDate( $page, '20120101000000' );
-
-		$edittime = $page->getTimestamp();
-
-		// start timestamps for conflict detection
-		if ( !isset( $adamsEdit['wpStarttime'] ) ) {
-			$adamsEdit['wpStarttime'] = 1;
-		}
-
-		if ( !isset( $bertasEdit['wpStarttime'] ) ) {
-			$bertasEdit['wpStarttime'] = 2;
-		}
-
-		$starttime = wfTimestampNow();
-		$adamsTime = wfTimestamp(
-			TS_MW,
-			(int)wfTimestamp( TS_UNIX, $starttime ) + (int)$adamsEdit['wpStarttime']
-		);
-		$bertasTime = wfTimestamp(
-			TS_MW,
-			(int)wfTimestamp( TS_UNIX, $starttime ) + (int)$bertasEdit['wpStarttime']
-		);
-
-		$adamsEdit['wpStarttime'] = $adamsTime;
-		$bertasEdit['wpStarttime'] = $bertasTime;
+		$adamsEdit['oldid'] = $baseRevId;
+		$bertasEdit['oldid'] = $baseRevId;
 
 		$adamsEdit['wpSummary'] = 'Adam\'s edit';
 		$bertasEdit['wpSummary'] = 'Bertas\'s edit';
-
-		$adamsEdit['wpEdittime'] = $edittime;
-		$bertasEdit['wpEdittime'] = $edittime;
 
 		// first edit
 		$this->assertEdit( 'EditPageTest_testAutoMerge', null, 'Adam', $adamsEdit,
