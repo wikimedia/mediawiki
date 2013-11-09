@@ -1029,8 +1029,9 @@ abstract class Skin extends ContextSource {
 	 * @private
 	 */
 	function editUrlOptions() {
-		$options = array( 'action' => 'edit' );
-
+		$options = array(
+			'action' => 'edit',
+		);
 		if ( !$this->isRevisionCurrent() ) {
 			$options['oldid'] = intval( $this->getRevisionId() );
 		}
