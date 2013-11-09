@@ -1706,7 +1706,7 @@ class SwiftFileBackendFileList extends SwiftFileBackendList {
 		$relPath = substr( $path, $this->suffixStart );
 		if ( is_array( $stat ) ) {
 			$storageDir = rtrim( $this->params['dir'], '/' );
-			$this->backend->loadListingStatInternal( "$storageDir/$path", $stat );
+			$this->backend->loadListingStatInternal( "$storageDir/$relPath", $stat );
 		}
 		return $relPath;
 	}
