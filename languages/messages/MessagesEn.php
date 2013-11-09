@@ -1169,6 +1169,7 @@ Use the form below to log in as another user.',
 'badretype'                       => 'The passwords you entered do not match.',
 'userexists'                      => 'Username entered already in use.
 Please choose a different name.',
+'newuserfailedvalidation'         => 'Your new account settings are invalid.',
 'loginerror'                      => 'Login error',
 'createacct-error'                => 'Account creation error',
 'createaccounterror'              => 'Could not create account: $1',
