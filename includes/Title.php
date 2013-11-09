@@ -1859,7 +1859,9 @@ class Title {
 		if ( $this->isExternal() ) {
 			return '';
 		}
-		$s = $this->getLocalURL( 'action=edit' );
+		$s = $this->getLocalURL( array(
+			'action' => 'edit',
+		) );
 
 		return $s;
 	}
