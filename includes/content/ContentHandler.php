@@ -350,10 +350,12 @@ abstract class ContentHandler {
 	 * @param string $name The content model ID, as given by a CONTENT_MODEL_XXX
 	 *    constant or returned by Revision::getContentModel().
 	 *
-	 * @return string The content format's localized name.
+	 * @return string The content model's localized name.
 	 * @throws MWException if the model id isn't known.
 	 */
 	public static function getLocalizedName( $name ) {
+		// Messages: content-model-wikitext, content-model-text,
+		// content-model-javascript, content-model-css
 		$key = "content-model-$name";
 
 		$msg = wfMessage( $key );
