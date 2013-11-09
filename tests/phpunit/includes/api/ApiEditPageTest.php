@@ -326,26 +326,23 @@ class ApiEditPageTest extends ApiTestCase {
 		// base edit for content
 		$page->doEditContent( new WikitextContent( "Foo" ),
 			"testing 1", EDIT_NEW, false, self::$users['sysop']->user );
-		$this->forceRevisionDate( $page, '20120101000000' );
-		$baseTime = $page->getRevision()->getTimestamp();
 
 		// base edit for redirect
 		$rpage->doEditContent( new WikitextContent( "#REDIRECT [[$name]]" ),
 			"testing 1", EDIT_NEW, false, self::$users['sysop']->user );
-		$this->forceRevisionDate( $rpage, '20120101000000' );
+		$oldId = $rpage->getRevision()->getId();
 
 		// conflicting edit to redirect
 		$rpage->doEditContent( new WikitextContent( "#REDIRECT [[$name]]\n\n[[Category:Test]]" ),
-			"testing 2", EDIT_UPDATE, $page->getLatest(), self::$users['uploader']->user );
-		$this->forceRevisionDate( $rpage, '20120101020202' );
+			"testing 2", EDIT_UPDATE, $rpage->getLatest(), self::$users['uploader']->user );
 
 		// try to save edit; should work, because we follow the redirect
 		list( $re, , ) = $this->doApiRequestWithToken( array(
 			'action' => 'edit',
 			'title' => $rname,
 			'text' => 'nix bar!',
-			'basetimestamp' => $baseTime,
 			'redirect' => true,
+			'oldid' => $oldId,
 		), null, self::$users['sysop']->user );
 
 		$this->assertEquals( 'Success', $re['edit']['result'],
@@ -357,7 +354,7 @@ class ApiEditPageTest extends ApiTestCase {
 				'action' => 'edit',
 				'title' => $rname,
 				'text' => 'nix bar!',
-				'basetimestamp' => $baseTime,
+				'oldid' => $oldId,
 			), null, self::$users['sysop']->user );
 
 			$this->fail( 'edit conflict expected' );

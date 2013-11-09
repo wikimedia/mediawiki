@@ -1755,7 +1755,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$old_content = $this->getContent( Revision::RAW ); // current revision's content
 
 		$oldsize = $old_content ? $old_content->getSize() : 0;
-		$oldid = $this->getLatest();
+		$oldid = $baseRevId ? $baseRevId : $this->getLatest();
 		$oldIsRedirect = $this->isRedirect();
 		$oldcountable = $this->isCountable();
 
