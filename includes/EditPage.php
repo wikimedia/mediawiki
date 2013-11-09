@@ -280,6 +280,9 @@ class EditPage {
 	/** @var bool Has a summary been preset using GET parameter &summary= ? */
 	public $hasPresetSummary = false;
 
+	/** @var integer|bool Revision ID of old content loaded into the edit box */
+	public $oldid = false;
+
 	/** @var bool */
 	public $mBaseRevision = false;
 
@@ -317,9 +320,6 @@ class EditPage {
 
 	/** @var bool */
 	public $nosummary = false;
-
-	/** @var string */
-	public $edittime = '';
 
 	/** @var string */
 	public $section = '';
@@ -770,7 +770,6 @@ class EditPage {
 			$this->sectiontitle = $wgContLang->truncate( $request->getText( 'wpSectionTitle' ), 255 );
 			$this->sectiontitle = preg_replace( '/^\s*=+\s*(.*?)\s*=+\s*$/', '$1', $this->sectiontitle );
 
-			$this->edittime = $request->getVal( 'wpEdittime' );
 			$this->starttime = $request->getVal( 'wpStarttime' );
 
 			$undidRev = $request->getInt( 'wpUndidRevision' );
@@ -826,9 +825,6 @@ class EditPage {
 				}
 			}
 			$this->save = !$this->preview && !$this->diff;
-			if ( !preg_match( '/^\d{14}$/', $this->edittime ) ) {
-				$this->edittime = null;
-			}
 
 			if ( !preg_match( '/^\d{14}$/', $this->starttime ) ) {
 				$this->starttime = null;
@@ -859,7 +855,6 @@ class EditPage {
 			$this->textbox1 = '';
 			$this->summary = '';
 			$this->sectiontitle = '';
-			$this->edittime = '';
 			$this->starttime = wfTimestampNow();
 			$this->edit = false;
 			$this->preview = false;
@@ -944,7 +939,6 @@ class EditPage {
 	 */
 	function initialiseForm() {
 		global $wgUser;
-		$this->edittime = $this->mArticle->getTimestamp();
 
 		$content = $this->getContentObject( false ); #TODO: track content object?!
 		if ( $content === false ) {
@@ -1126,7 +1120,21 @@ class EditPage {
 			return $handler->makeEmptyContent();
 		}
 		$content = $revision->getContent( Revision::FOR_THIS_USER, $user );
+		$this->oldid = $revision->getId();
 		return $content;
+	}
+
+	/**
+	 * Specify the base revision that we are editing
+	 *
+	 * If the page's latest revision has been incremented, we know an edit
+	 * conflict may have occurred.
+	 *
+	 * @since 1.25
+	 * @param int $oldid Revision ID that will be used as the parent
+	 */
+	public function setOldId( $oldid ) {
+		$this->oldid = $oldid;
 	}
 
 	/**
@@ -1675,6 +1683,12 @@ class EditPage {
 		$this->mArticle->loadPageData( 'fromdbmaster' );
 		$new = !$this->mArticle->exists();
 
+		// Freeze the target article revision.
+		//
+		// We will be able to fast-forward to this oldid on content save if we
+		// can show that the merge is possible and prepare a resolution.
+		$articleLatestId = $this->mArticle->getLatest();
+
 		if ( $new ) {
 			// Late check for create permission, just in case *PARANOIA*
 			if ( !$this->mTitle->userCan( 'create', $wgUser ) ) {
@@ -1726,11 +1740,10 @@ class EditPage {
 			# Article exists. Check for edit conflict.
 
 			$this->mArticle->clear(); # Force reload of dates, etc.
-			$timestamp = $this->mArticle->getTimestamp();
 
-			wfDebug( "timestamp: {$timestamp}, edittime: {$this->edittime}\n" );
+			wfDebug( "latest: {$articleLatestId}, oldid: {$this->oldid}\n" );
 
-			if ( $timestamp != $this->edittime ) {
+			if ( $articleLatestId != $this->oldid ) {
 				$this->isConflict = true;
 				if ( $this->section == 'new' ) {
 					if ( $this->mArticle->getUserText() == $wgUser->getName() &&
@@ -1746,15 +1759,6 @@ class EditPage {
 						$this->isConflict = false;
 						wfDebug( __METHOD__ . ": conflict suppressed; new section\n" );
 					}
-				} elseif ( $this->section == ''
-					&& Revision::userWasLastToEdit(
-						DB_MASTER, $this->mTitle->getArticleID(),
-						$wgUser->getId(), $this->edittime
-					)
-				) {
-					# Suppress edit conflict with self, except for section edits where merging is required.
-					wfDebug( __METHOD__ . ": Suppressing edit conflict, same user.\n" );
-					$this->isConflict = false;
 				}
 			}
 
@@ -1768,24 +1772,11 @@ class EditPage {
 			$content = null;
 
 			if ( $this->isConflict ) {
-				wfDebug( __METHOD__
-					. ": conflict! getting section '{$this->section}' for time '{$this->edittime}'"
-					. " (article time '{$timestamp}')\n" );
-
-				$content = $this->mArticle->replaceSectionContent(
-					$this->section,
-					$textbox_content,
-					$sectionTitle,
-					$this->edittime
-				);
+				wfDebug( __METHOD__ . ": conflict! getting section '{$this->section}' at revision '{$articleLatestId}'\n" );
 			} else {
 				wfDebug( __METHOD__ . ": getting section '{$this->section}'\n" );
-				$content = $this->mArticle->replaceSectionContent(
-					$this->section,
-					$textbox_content,
-					$sectionTitle
-				);
 			}
+			$content = $this->mArticle->replaceSectionAtRev( $this->section, $textbox_content, $sectionTitle, $articleLatestId );
 
 			if ( is_null( $content ) ) {
 				wfDebug( __METHOD__ . ": activating conflict; section replace failed.\n" );
@@ -1796,6 +1787,7 @@ class EditPage {
 				if ( $this->mergeChangesIntoContent( $content ) ) {
 					// Successful merge! Maybe we should tell the user the good news?
 					$this->isConflict = false;
+					// FIXME: fast-forward oldid here, but consider well changing the class member
 					wfDebug( __METHOD__ . ": Suppressing edit conflict, successful merge.\n" );
 				} else {
 					$this->section = '';
@@ -1899,7 +1891,7 @@ class EditPage {
 			$content,
 			$this->summary,
 			$flags,
-			false,
+			$articleLatestId,
 			null,
 			$content->getDefaultFormat()
 		);
@@ -1999,8 +1991,13 @@ class EditPage {
 	function getBaseRevision() {
 		if ( !$this->mBaseRevision ) {
 			$db = wfGetDB( DB_MASTER );
-			$this->mBaseRevision = Revision::loadFromTimestamp(
-				$db, $this->mTitle, $this->edittime );
+
+			if ( $this->oldid ) {
+				$this->mBaseRevision = Revision::loadFromId( $db, $this->oldid );
+			} else {
+				// FIXME: reconsider impact
+				$this->mBaseRevision = Revision::loadFromId( $db, $this->mArticle->getLatest() );
+			}
 		}
 		return $this->mBaseRevision;
 	}
@@ -2559,7 +2556,6 @@ class EditPage {
 
 		if ( $this->isConflict ) {
 			$wgOut->wrapWikiMsg( "<div class='mw-explainconflict'>\n$1\n</div>", 'explainconflict' );
-			$this->edittime = $this->mArticle->getTimestamp();
 		} else {
 			if ( $this->section != '' && !$this->isSectionEditSupported() ) {
 				// We use $this->section to much before this and getVal('wgSection') directly in other places
@@ -2857,7 +2853,6 @@ class EditPage {
 		$wgOut->addHTML( <<<HTML
 <input type='hidden' value="{$section}" name="wpSection"/>
 <input type='hidden' value="{$this->starttime}" name="wpStarttime" />
-<input type='hidden' value="{$this->edittime}" name="wpEdittime" />
 <input type='hidden' value="{$this->scrolltop}" name="wpScrolltop" id="wpScrolltop" />
 
 HTML
@@ -3067,9 +3062,9 @@ HTML
 
 		$textboxContent = $this->toEditContent( $this->textbox1 );
 
-		$newContent = $this->mArticle->replaceSectionContent(
+		$newContent = $this->mArticle->replaceSectionAtRev(
 							$this->section, $textboxContent,
-							$this->summary, $this->edittime );
+							$this->summary, $this->oldid );
 
 		if ( $newContent ) {
 			ContentHandler::runLegacyHooks( 'EditPageGetDiffText', array( $this, &$newContent ) );
@@ -3330,9 +3325,7 @@ HTML
 
 	/**
 	 * Check if a page was deleted while the user was editing it, before submit.
-	 * Note that we rely on the logging table, which hasn't been always there,
-	 * but that doesn't matter, because this only applies to brand new
-	 * deletes.
+	 *
 	 * @return bool
 	 */
 	protected function wasDeletedSinceLastEdit() {
@@ -3342,13 +3335,9 @@ HTML
 
 		$this->deletedSinceEdit = false;
 
-		if ( $this->mTitle->isDeletedQuick() ) {
-			$this->lastDelete = $this->getLastDelete();
-			if ( $this->lastDelete ) {
-				$deleteTime = wfTimestamp( TS_MW, $this->lastDelete->log_timestamp );
-				if ( $deleteTime > $this->starttime ) {
-					$this->deletedSinceEdit = true;
-				}
+		if ( $this->oldid && $this->mTitle->isDeletedQuick() ) {
+			if ( $this->getLastDeletedRevId() >= $this->oldid ) {
+				$this->deletedSinceEdit = true;
 			}
 		}
 
@@ -3356,45 +3345,22 @@ HTML
 	}
 
 	/**
+	 * Return the last revision at which this article was in the deleted state, or false if never
+	 *
 	 * @return bool|stdClass
 	 */
-	protected function getLastDelete() {
+	protected function getLastDeletedRevId() {
 		$dbr = wfGetDB( DB_SLAVE );
 		$data = $dbr->selectRow(
-			array( 'logging', 'user' ),
+			array( 'archive' ),
+			array( 'last_deleted_rev_id' => 'MAX( ar_rev_id )' ),
 			array(
-				'log_type',
-				'log_action',
-				'log_timestamp',
-				'log_user',
-				'log_namespace',
-				'log_title',
-				'log_comment',
-				'log_params',
-				'log_deleted',
-				'user_name'
-			), array(
-				'log_namespace' => $this->mTitle->getNamespace(),
-				'log_title' => $this->mTitle->getDBkey(),
-				'log_type' => 'delete',
-				'log_action' => 'delete',
-				'user_id=log_user'
+				'ar_namespace' => $this->mTitle->getNamespace(),
+				'ar_title' => $this->mTitle->getDBkey(),
 			),
-			__METHOD__,
-			array( 'LIMIT' => 1, 'ORDER BY' => 'log_timestamp DESC' )
+			__METHOD__
 		);
-		// Quick paranoid permission checks...
-		if ( is_object( $data ) ) {
-			if ( $data->log_deleted & LogPage::DELETED_USER ) {
-				$data->user_name = wfMessage( 'rev-deleted-user' )->escaped();
-			}
-
-			if ( $data->log_deleted & LogPage::DELETED_COMMENT ) {
-				$data->log_comment = wfMessage( 'rev-deleted-comment' )->escaped();
-			}
-		}
-
-		return $data;
+		return $data->last_deleted_rev_id;
 	}
 
 	/**
