@@ -28,7 +28,9 @@
  * A module that allows for editing and creating pages.
  *
  * Currently, this wraps around the EditPage class in an ugly way,
- * EditPage.php should be rewritten to provide a cleaner interface
+ * EditPage.php should be rewritten to provide a cleaner interface,
+ * see T20654 if you're inspired to fix this.
+ *
  * @ingroup API
  */
 class ApiEditPage extends ApiBase {
@@ -85,6 +87,9 @@ class ApiEditPage extends ApiBase {
 
 				// Since the page changed, update $pageObj
 				$pageObj = WikiPage::factory( $titleObj );
+
+				// Assume the caller couldn't have known details about the target page.
+				$params['parentrevid'] = null;
 			}
 		}
 
@@ -275,18 +280,40 @@ class ApiEditPage extends ApiBase {
 			$requestArray['wpUndidRevision'] = $params['undo'];
 		}
 
-		// Watch out for basetimestamp == ''
-		// wfTimestamp() treats it as NOW, almost certainly causing an edit conflict
-		if ( !is_null( $params['basetimestamp'] ) && $params['basetimestamp'] != '' ) {
-			$requestArray['wpEdittime'] = wfTimestamp( TS_MW, $params['basetimestamp'] );
-		} else {
-			$requestArray['wpEdittime'] = $pageObj->getTimestamp();
+		// @deprecated in 1.25
+		// Backwards-compatibility to estimate the parentRevId based on a timestamp.
+		if ( !$params['parentrevid'] ) {
+			$this->setWarning( 'The parentrevid parameter should be provided.' );
+
+			$deprecatedParams = array();
+
+			if ( $params['basetimestamp'] ) {
+				// The edittime is more accurate than starttime, so prefer if available.
+				$timestamp = wfTimestamp( TS_MW, $params['basetimestamp'] );
+				$deprecatedParams[] = 'basetimestamp';
+			} elseif ( $params['starttimestamp'] ) {
+				$timestamp = wfTimestamp( TS_MW, $params['starttimestamp'] );
+				$deprecatedParams[] = 'starttimestamp';
+			} else {
+				// Use time of last edit, or the current time for a new article.
+				$timestamp = $pageObj->getTimestamp();
+			}
+
+			if ( $deprecatedParams ) {
+				$this->logFeatureUsage( 'action=edit&' . implode( '&', $deprecatedParams ) );
+			}
+
+			$revision = $titleObj->getRevisionAtTime( $timestamp );
+			if ( $revision ) {
+				$params['parentrevid'] = $revision->getId();
+			}
 		}
 
-		if ( !is_null( $params['starttimestamp'] ) && $params['starttimestamp'] != '' ) {
-			$requestArray['wpStarttime'] = wfTimestamp( TS_MW, $params['starttimestamp'] );
+		$parentRev = Revision::newFromId( $params['parentrevid'] );
+		if ( !is_null( $parentRev ) ) {
+			$requestArray['parentRevId'] = $parentRev->getId();
 		} else {
-			$requestArray['wpStarttime'] = wfTimestampNow(); // Fake wpStartime
+			$requestArray['parentRevId'] = 0;
 		}
 
 		if ( $params['minor'] || ( !$params['notminor'] && $user->getOption( 'minordefault' ) ) ) {
@@ -356,6 +383,7 @@ class ApiEditPage extends ApiBase {
 
 		$ep->setContextTitle( $titleObj );
 		$ep->importFormData( $req );
+
 		$content = $ep->textbox1;
 
 		// The following is needed to give the hook the full content of the
@@ -373,10 +401,11 @@ class ApiEditPage extends ApiBase {
 
 			$contentObj = $contentHandler->unserializeContent( $content, $contentFormat );
 
-			$fullContentObj = $articleObject->replaceSectionContent(
+			$fullContentObj = $articleObject->replaceSectionAtRev(
 				$params['section'],
 				$contentObj,
-				$sectionTitle
+				$sectionTitle,
+				$parentRev->getId()
 			);
 			if ( $fullContentObj ) {
 				$content = $fullContentObj->serialize( $contentFormat );
@@ -402,7 +431,6 @@ class ApiEditPage extends ApiBase {
 		}
 
 		// Do the actual save
-		$oldRevId = $articleObject->getRevIdFetched();
 		$result = null;
 		// Fake $wgRequest for some hooks inside EditPage
 		// @todo FIXME: This interface SUCKS
@@ -483,10 +511,10 @@ class ApiEditPage extends ApiBase {
 				$r['title'] = $titleObj->getPrefixedText();
 				$r['contentmodel'] = $titleObj->getContentModel();
 				$newRevId = $articleObject->getLatest();
-				if ( $newRevId == $oldRevId ) {
+				if ( $newRevId == $requestArray['parentRevId'] ) {
 					$r['nochange'] = '';
 				} else {
-					$r['oldrevid'] = intval( $oldRevId );
+					$r['oldrevid'] = intval( $requestArray['parentRevId'] );
 					$r['newrevid'] = intval( $newRevId );
 					$r['newtimestamp'] = wfTimestamp( TS_ISO_8601,
 						$pageObj->getTimestamp() );
@@ -523,6 +551,11 @@ class ApiEditPage extends ApiBase {
 			'pageid' => array(
 				ApiBase::PARAM_TYPE => 'integer',
 			),
+			'parentrevid' => array(
+				ApiBase::PARAM_TYPE => 'integer',
+				// TODO: This should be a required param, once we can finish
+				// deprecating timestamp-based edit conflict detection.
+			),
 			'section' => null,
 			'sectiontitle' => array(
 				ApiBase::PARAM_TYPE => 'string',
@@ -532,8 +565,14 @@ class ApiEditPage extends ApiBase {
 			'minor' => false,
 			'notminor' => false,
 			'bot' => false,
-			'basetimestamp' => null,
-			'starttimestamp' => null,
+			'basetimestamp' => array(
+				ApiBase::PARAM_DFLT => null,
+				ApiBase::PARAM_DEPRECATED => true,
+			),
+			'starttimestamp' => array(
+				ApiBase::PARAM_DFLT => null,
+				ApiBase::PARAM_DEPRECATED => true,
+			),
 			'recreate' => false,
 			'createonly' => false,
 			'nocreate' => false,
@@ -587,13 +626,13 @@ class ApiEditPage extends ApiBase {
 	protected function getExamplesMessages() {
 		return array(
 			'action=edit&title=Test&summary=test%20summary&' .
-				'text=article%20content&basetimestamp=2007-08-24T12:34:54Z&token=123ABC'
+				'text=article%20content&parentrevid=13600&token=123ABC'
 				=> 'apihelp-edit-example-edit',
 			'action=edit&title=Test&summary=NOTOC&minor=&' .
-				'prependtext=__NOTOC__%0A&basetimestamp=2007-08-24T12:34:54Z&token=123ABC'
+				'prependtext=__NOTOC__%0A&parentrevid=13600&token=123ABC'
 				=> 'apihelp-edit-example-prepend',
 			'action=edit&title=Test&undo=13585&undoafter=13579&' .
-				'basetimestamp=2007-08-24T12:34:54Z&token=123ABC'
+				'parentrevid=13600&token=123ABC'
 				=> 'apihelp-edit-example-undo',
 		);
 	}
