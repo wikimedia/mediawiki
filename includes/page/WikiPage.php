@@ -1514,7 +1514,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * or 'new' for a new section.
 	 * @param Content $sectionContent New content of the section.
 	 * @param string $sectionTitle New section's subject, only if $section is "new".
-	 * @param int|null $baseRevId
+	 * @param int|null $parentRevId
 	 *
 	 * @throws MWException
 	 * @return Content New complete article content, or null if error.
@@ -1522,7 +1522,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @since 1.24
 	 */
 	public function replaceSectionAtRev( $sectionId, Content $sectionContent,
-		$sectionTitle = '', $baseRevId = null
+		$sectionTitle = '', $parentRevId = null
 	) {
 
 		if ( strval( $sectionId ) === '' ) {
@@ -1535,12 +1535,12 @@ class WikiPage implements Page, IDBAccessObject {
 			}
 
 			// Bug 30711: always use current version when adding a new section
-			if ( is_null( $baseRevId ) || $sectionId === 'new' ) {
+			if ( $parentRevId === null || $sectionId === 'new' ) {
 				$oldContent = $this->getContent();
 			} else {
 				// TODO: try DB_SLAVE first
 				$dbw = wfGetDB( DB_MASTER );
-				$rev = Revision::loadFromId( $dbw, $baseRevId );
+				$rev = Revision::loadFromId( $dbw, $parentRevId );
 
 				if ( !$rev ) {
 					wfDebug( __METHOD__ . " asked for bogus section (page: " .
