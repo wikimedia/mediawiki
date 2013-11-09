@@ -388,6 +388,7 @@ class ApiEditPage extends ApiBase {
 
 		// Do the actual save
 		$oldRevId = $articleObject->getRevIdFetched();
+		// FIXME: set $ep->oldid, to params['oldid'] || above oldRevId
 		$result = null;
 		// Fake $wgRequest for some hooks inside EditPage
 		// @todo FIXME: This interface SUCKS
@@ -559,6 +560,10 @@ class ApiEditPage extends ApiBase {
 			),
 			'pageid' => array(
 				ApiBase::PARAM_TYPE => 'integer',
+			),
+			'oldid' => array(
+				ApiBase::PARAM_TYPE => 'integer',
+				// FIXME: this should be a required param... but how would we handle backward-compatibility?
 			),
 			'section' => null,
 			'sectiontitle' => array(

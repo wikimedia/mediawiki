@@ -1859,7 +1859,11 @@ class Title {
 		if ( $this->isExternal() ) {
 			return '';
 		}
-		$s = $this->getLocalURL( 'action=edit' );
+		$s = $this->getLocalURL( array(
+			'action' => 'edit',
+			// FIXME: is this guaranteed to === the revision of the owning Article object, or might we be ahead?
+			'oldid' => $this->mLatestID,
+		) );
 
 		return $s;
 	}

@@ -3275,13 +3275,13 @@ $templates
 					'rel' => 'alternate',
 					'type' => 'application/x-wiki',
 					'title' => $msg,
-					'href' => $this->getTitle()->getLocalURL( 'action=edit' )
+					'href' => $this->getTitle()->getEditURL(),
 				) );
 				// Alternate edit link
 				$tags['alternative-edit'] = Html::element( 'link', array(
 					'rel' => 'edit',
 					'title' => $msg,
-					'href' => $this->getTitle()->getLocalURL( 'action=edit' )
+					'href' => $this->getTitle()->getEditURL(),
 				) );
 			}
 		}
