@@ -38,6 +38,7 @@ class UploadStashCleanup extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Clean up abandoned files in temporary uploaded file stash";
+		$this->setBatchSize( 50 );
 	}
 
 	public function execute() {
@@ -97,16 +98,21 @@ class UploadStashCleanup extends Maintenance {
 		$iterator = $tempRepo->getBackend()->getFileList( array( 'dir' => $dir ) );
 		$this->output( "Deleting old thumbnails...\n" );
 		$i = 0;
+		$batch = array(); // operation batch
 		foreach ( $iterator as $file ) {
 			if ( wfTimestamp( TS_UNIX, $tempRepo->getFileTimestamp( "$dir/$file" ) ) < $cutoff ) {
-				$status = $tempRepo->quickPurge( "$dir/$file" );
-				if ( !$status->isOK() ) {
-					$this->error( print_r( $status->getErrorsArray(), true ) );
-				}
-				if ( ( ++$i % 100 ) == 0 ) {
+				$batch[] = array( 'op' => 'delete', 'src' => "$dir/$file" );
+				if ( count( $batch ) >= $this->mBatchSize ) {
+					$this->doOperations( $tempRepo, $batch );
+					$i += count( $batch );
+					$batch = array();
 					$this->output( "$i\n" );
 				}
 			}
+		}
+		if ( count( $batch ) ) {
+			$this->doOperations( $tempRepo, $batch );
+			$i += count( $batch );
 		}
 		$this->output( "$i done\n" );
 
@@ -118,6 +124,7 @@ class UploadStashCleanup extends Maintenance {
 			$this->error( "Temp repo is not using the temp container.", 1 ); // die
 		}
 		$i = 0;
+		$batch = array(); // operation batch
 		foreach ( $iterator as $file ) {
 			// Absolute sanity check for stashed files and file segments
 			$base = basename( $file );
@@ -127,16 +134,27 @@ class UploadStashCleanup extends Maintenance {
 				continue;
 			}
 			if ( wfTimestamp( TS_UNIX, $tempRepo->getFileTimestamp( "$dir/$file" ) ) < $cutoff ) {
-				$status = $tempRepo->quickPurge( "$dir/$file" );
-				if ( !$status->isOK() ) {
-					$this->error( print_r( $status->getErrorsArray(), true ) );
-				}
-				if ( ( ++$i % 100 ) == 0 ) {
+				$batch[] = array( 'op' => 'delete', 'src' => "$dir/$file" );
+				if ( count( $batch ) >= $this->mBatchSize ) {
+					$this->doOperations( $tempRepo, $batch );
+					$i += count( $batch );
+					$batch = array();
 					$this->output( "$i\n" );
 				}
 			}
 		}
+		if ( count( $batch ) ) {
+			$this->doOperations( $tempRepo, $batch );
+			$i += count( $batch );
+		}
 		$this->output( "$i done\n" );
+	}
+
+	protected function doOperations( FileRepo $tempRepo, array $ops ) {
+		$status = $tempRepo->getBackend()->doQuickOperations( $ops );
+		if ( !$status->isOK() ) {
+			$this->error( print_r( $status->getErrorsArray(), true ) );
+		}
 	}
 }
 
