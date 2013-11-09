@@ -44,6 +44,7 @@
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #dcdcdc), color-stop(100%, #c9c9c9));
   background-image: -webkit-linear-gradient(top, #dcdcdc, #c9c9c9);
   background-image: -moz-linear-gradient(top, #dcdcdc, #c9c9c9);
+  background-image: -ms-linear-gradient(top, #dcdcdc, #c9c9c9);
   background-image: -o-linear-gradient(top, #dcdcdc, #c9c9c9);
   background-image: linear-gradient(top, #dcdcdc, #c9c9c9);
   color: black;
@@ -51,8 +52,6 @@
   border: 1px solid #c4c4c4;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
-  -ms-border-radius: 3px;
-  -o-border-radius: 3px;
   border-radius: 3px;
   vertical-align: middle;
   text-align: center;
@@ -69,6 +68,7 @@
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #e9e9e9), color-stop(100%, #dcdcdc));
   background-image: -webkit-linear-gradient(top, #e9e9e9, #dcdcdc);
   background-image: -moz-linear-gradient(top, #e9e9e9, #dcdcdc);
+  background-image: -ms-linear-gradient(top, #e9e9e9, #dcdcdc);
   background-image: -o-linear-gradient(top, #e9e9e9, #dcdcdc);
   background-image: linear-gradient(top, #e9e9e9, #dcdcdc);
   text-decoration: none;
@@ -109,26 +109,24 @@ a.mw-ui-button {
 .mw-ui-button-group > * {
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
-  -ms-border-radius: 0;
-  -o-border-radius: 0;
   border-radius: 0;
   float: left;
 }
 /* line 60, sourcefiles/scss/components/default/_buttons.scss */
 .mw-ui-button-group > *:first-child {
-  -moz-border-radius-topleft: 3px;
+  -moz-border-top-left-radius: 3px;
   -webkit-border-top-left-radius: 3px;
   border-top-left-radius: 3px;
-  -moz-border-radius-bottomleft: 3px;
+  -moz-border-bottom-left-radius: 3px;
   -webkit-border-bottom-left-radius: 3px;
   border-bottom-left-radius: 3px;
 }
 /* line 65, sourcefiles/scss/components/default/_buttons.scss */
 .mw-ui-button-group > *:last-child {
-  -moz-border-radius-topright: 3px;
+  -moz-border-top-right-radius: 3px;
   -webkit-border-top-right-radius: 3px;
   border-top-right-radius: 3px;
-  -moz-border-radius-bottomright: 3px;
+  -moz-border-bottom-right-radius: 3px;
   -webkit-border-bottom-right-radius: 3px;
   border-bottom-right-radius: 3px;
 }
@@ -147,6 +145,7 @@ a.mw-ui-button {
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #4779cd), color-stop(100%, #3366bb));
   background-image: -webkit-linear-gradient(top, #4779cd, #3366bb);
   background-image: -moz-linear-gradient(top, #4779cd, #3366bb);
+  background-image: -ms-linear-gradient(top, #4779cd, #3366bb);
   background-image: -o-linear-gradient(top, #4779cd, #3366bb);
   background-image: linear-gradient(top, #4779cd, #3366bb);
   color: white;
@@ -162,6 +161,7 @@ a.mw-ui-button {
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #5b88d2), color-stop(100%, #4779cd));
   background-image: -webkit-linear-gradient(top, #5b88d2, #4779cd);
   background-image: -moz-linear-gradient(top, #5b88d2, #4779cd);
+  background-image: -ms-linear-gradient(top, #5b88d2, #4779cd);
   background-image: -o-linear-gradient(top, #5b88d2, #4779cd);
   background-image: linear-gradient(top, #5b88d2, #4779cd);
   text-decoration: none;
@@ -188,6 +188,7 @@ a.mw-ui-button {
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #2ec977), color-stop(100%, #27aa65));
   background-image: -webkit-linear-gradient(top, #2ec977, #27aa65);
   background-image: -moz-linear-gradient(top, #2ec977, #27aa65);
+  background-image: -ms-linear-gradient(top, #2ec977, #27aa65);
   background-image: -o-linear-gradient(top, #2ec977, #27aa65);
   background-image: linear-gradient(top, #2ec977, #27aa65);
   color: white;
@@ -203,6 +204,7 @@ a.mw-ui-button {
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #3ed384), color-stop(100%, #2ec977));
   background-image: -webkit-linear-gradient(top, #3ed384, #2ec977);
   background-image: -moz-linear-gradient(top, #3ed384, #2ec977);
+  background-image: -ms-linear-gradient(top, #3ed384, #2ec977);
   background-image: -o-linear-gradient(top, #3ed384, #2ec977);
   background-image: linear-gradient(top, #3ed384, #2ec977);
   text-decoration: none;
@@ -229,6 +231,7 @@ a.mw-ui-button {
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f20000), color-stop(100%, #cc0000));
   background-image: -webkit-linear-gradient(top, #f20000, #cc0000);
   background-image: -moz-linear-gradient(top, #f20000, #cc0000);
+  background-image: -ms-linear-gradient(top, #f20000, #cc0000);
   background-image: -o-linear-gradient(top, #f20000, #cc0000);
   background-image: linear-gradient(top, #f20000, #cc0000);
   color: white;
@@ -244,6 +247,7 @@ a.mw-ui-button {
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ff0d0d), color-stop(100%, #f20000));
   background-image: -webkit-linear-gradient(top, #ff0d0d, #f20000);
   background-image: -moz-linear-gradient(top, #ff0d0d, #f20000);
+  background-image: -ms-linear-gradient(top, #ff0d0d, #f20000);
   background-image: -o-linear-gradient(top, #ff0d0d, #f20000);
   background-image: linear-gradient(top, #ff0d0d, #f20000);
   text-decoration: none;
