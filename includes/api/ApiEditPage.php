@@ -48,8 +48,12 @@ class ApiEditPage extends ApiBase {
 		$apiResult = $this->getResult();
 
 		if ( $params['redirect'] ) {
-			if ( $params['prependtext'] === null && $params['appendtext'] === null && $params['section'] !== 'new' ) {
-				$this->dieUsage( 'You have attempted to edit using the "redirect"-following mode, which must be used in conjuction with section=new, prependtext, or appendtext.', 'redirect-appendonly' );
+			if ( $params['prependtext'] === null && $params['appendtext'] === null
+				&& $params['section'] !== 'new'
+			) {
+				$this->dieUsage( 'You have attempted to edit using the "redirect"-following'
+					. ' mode, which must be used in conjuction with section=new, prependtext'
+					. ', or appendtext.', 'redirect-appendonly' );
 			}
 			if ( $titleObj->isRedirect() ) {
 				$oldTitle = $titleObj;
@@ -81,6 +85,9 @@ class ApiEditPage extends ApiBase {
 
 				// Since the page changed, update $pageObj
 				$pageObj = WikiPage::factory( $titleObj );
+
+				// Assume the caller couldn't have known details about the target page.
+				$params['parentrevid'] = null;
 			}
 		}
 
@@ -296,10 +303,13 @@ class ApiEditPage extends ApiBase {
 		if ( !is_null( $params['section'] ) ) {
 			$section = $params['section'];
 			if ( !preg_match( '/^((T-)?\d+|new)$/', $section ) ) {
-				$this->dieUsage( "The section parameter must be a valid section id or 'new'", "invalidsection" );
+				$this->dieUsage( "The section parameter must be a valid section id or 'new'",
+					"invalidsection" );
 			}
 			$content = $pageObj->getContent();
-			if ( $section !== '0' && $section != 'new' && ( !$content || !$content->getSection( $section ) ) ) {
+			if ( $section !== '0' && $section != 'new'
+				&& ( !$content || !$content->getSection( $section ) )
+			) {
 				$this->dieUsage( "There is no section {$section}.", 'nosuchsection' );
 			}
 			$requestArray['wpSection'] = $params['section'];
@@ -349,6 +359,14 @@ class ApiEditPage extends ApiBase {
 
 		$ep->setContextTitle( $titleObj );
 		$ep->importFormData( $req );
+
+		if ( $params['parentrevid'] ) {
+			$oldRevId = $params['parentrevid'];
+		} else {
+			$oldRevId = $articleObject->getRevIdFetched();
+		}
+		$ep->setParentRevId( $oldRevId );
+
 		$content = $ep->textbox1;
 
 		// The following is needed to give the hook the full content of the
@@ -366,10 +384,11 @@ class ApiEditPage extends ApiBase {
 
 			$contentObj = $contentHandler->unserializeContent( $content, $contentFormat );
 
-			$fullContentObj = $articleObject->replaceSectionContent(
+			$fullContentObj = $articleObject->replaceSectionAtRev(
 				$params['section'],
 				$contentObj,
-				$sectionTitle
+				$sectionTitle,
+				$oldRevId
 			);
 			if ( $fullContentObj ) {
 				$content = $fullContentObj->serialize( $contentFormat );
@@ -395,7 +414,6 @@ class ApiEditPage extends ApiBase {
 		}
 
 		// Do the actual save
-		$oldRevId = $articleObject->getRevIdFetched();
 		$result = null;
 		// Fake $wgRequest for some hooks inside EditPage
 		// @todo FIXME: This interface SUCKS
@@ -515,6 +533,10 @@ class ApiEditPage extends ApiBase {
 			),
 			'pageid' => array(
 				ApiBase::PARAM_TYPE => 'integer',
+			),
+			'parentrevid' => array(
+				ApiBase::PARAM_TYPE => 'integer',
+				// FIXME: this should be a required param... but how would we handle backward-compatibility?
 			),
 			'section' => null,
 			'sectiontitle' => array(
