@@ -420,13 +420,12 @@ class ApiEditPageTest extends ApiTestCase {
 		// base edit
 		$page->doEditContent( new WikitextContent( "Foo" ),
 			"testing 1", EDIT_NEW, false, self::$users['sysop']->user );
-		$this->forceRevisionDate( $page, '20120101000000' );
-		$baseTime = $page->getRevision()->getTimestamp();
 
 		// conflicting edit
 		$page->doEditContent( new WikitextContent( "Foo bar" ),
 			"testing 2", EDIT_UPDATE, $page->getLatest(), self::$users['uploader']->user );
 		$this->forceRevisionDate( $page, '20120101020202' );
+		$oldId = $rpage->getRevision()->getId();
 
 		// try to save edit, expect no conflict
 		list( $re, , ) = $this->doApiRequestWithToken( array(
@@ -435,6 +434,8 @@ class ApiEditPageTest extends ApiTestCase {
 			'text' => 'nix bar!',
 			'basetimestamp' => $baseTime,
 			'section' => 'new',
+			'redirect' => true,
+			'oldid' => $oldId,
 		), null, self::$users['sysop']->user );
 
 		$this->assertEquals( 'Success', $re['edit']['result'],
