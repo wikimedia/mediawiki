@@ -8914,7 +8914,8 @@ See 2:30 of http://www.iptc.org/std/IIM/4.1/specification/IIMV4.1.pdf',
 'exif-originaltransmissionref' => 'This is basically a job ID. This could help an individual keep track of for what reason the image was created.
 
 See Job Id on page 19 of http://www.iptc.org/std/photometadata/specification/IPTC-PhotoMetadata-201007_1.pdf',
-'exif-identifier' => 'A formal identifier for the image. Often this is a URL.',
+'exif-identifier' => 'A formal identifier for the image. Often this is a URL.
+{{Identical|Identifier}}',
 'exif-lens' => 'Description of lens used. This is taken from aux:Lens XMP property. See http://www.adobe.com/content/dam/Adobe/en/devnet/xmp/pdfs/XMPSpecificationPart2.pdf',
 'exif-serialnumber' => 'Serial number of camera. See aux:SerialNumber in http://www.adobe.com/content/dam/Adobe/en/devnet/xmp/pdfs/XMPSpecificationPart2.pdf',
 'exif-cameraownername' => 'Who owns the camera.',

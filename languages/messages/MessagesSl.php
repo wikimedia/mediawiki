@@ -1360,7 +1360,7 @@ Upoštevajte, da so njihovi podatki vsebine {{GRAMMAR:rodilnik|{{SITENAME}}}} mo
 'prefs-rendering' => 'Videz',
 'saveprefs' => 'Shrani',
 'resetprefs' => 'Počisti neshranjene spremembe',
-'restoreprefs' => 'Obnovi vse privzete nastavitve (v vseh razdelkih)',
+'restoreprefs' => 'obnova vseh privzetih nastavitev (v vseh razdelkih)',
 'prefs-editing' => 'Urejanje',
 'rows' => 'Vrstic:',
 'columns' => 'Stolpcev:',

@@ -495,7 +495,7 @@ Dimo liplipatan a sukatan dagiti kakaykayatam idiay [[Special:Preferences|{{SITE
 'gotaccount' => 'Addaanka kadin ti pakabilangam? $1.',
 'gotaccountlink' => 'Sumrek',
 'userlogin-resetlink' => 'Nalipatam dagiti salaysay ti pagserrekmo?',
-'userlogin-resetpassword-link' => 'Iyasentar manen ti kontrasenias',
+'userlogin-resetpassword-link' => 'Nalipatam ti kontraseniasmo?',
 'helplogin-url' => 'Help:Panagserrek',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Tulong iti panagserrek]]',
 'userlogin-loggedin' => 'Nakastrekkan a kas ni {{GENDER:$1|$1}}.
@@ -568,16 +568,16 @@ No sabali ti nagkiddaw, wenno no malagipmo pay ti kontrasenias mo ket dimon kaya
 'passwordsent' => 'Naipatuloden ti baro a kontrasenias iti esurat a pagtaengan a nairehistro kenni "$1".
 Pangngaasi a sumrekka manen kalpasan ti pannakaawatmo.',
 'blocked-mailpassword' => 'Ti IP a pagtaengam ket naserraan manipud ti panag-urnos, isunga saan a mapalubosan nga agusar ti annong ti panagipulang ti kontrasenias tapno mapawilan ti panag-abuso.',
-'eauthentsent' => 'Naipatuloden ti pammasingked nga esurat iti naited nga esurat a pagtaengan.
-Sakbay ti ania man nga esurat ti maipatulod iti pakabilangan, masapul a surotem dagiti maibagbaga iti esurat, tapno mapasingkedan a ti pakabilangan ket agpayso a kukuam.',
+'eauthentsent' => 'Naipatuloden ti pammatalged nga esurat iti naikeddeng nga esurat a pagtaengan.
+Sakbay a maipatulod ti aniaman nga esurat iti pakabilangan, masapul a surotem dagiti maibagbaga iti esurat, tapno mapatalgedan ti pakabilangan ket agpayso a kukuam.',
 'throttled-mailpassword' => 'Ti panangiyasentar manen ti kontrasenias ket naipatuloden, iti kaunegan ti napalabas a {{PLURAL:$1|nga oras|$1 nga or-oras}}.
 Tapno maipawilan ti panag-abuso, maysa laeng a panangiyasentar manen ti kontrasenias ti maipatulod iti kada {{PLURAL:$1|nga oras|$1 nga or-oras}}.',
 'mailerror' => 'Biddut iti panangipatulod ti surat: $1',
 'acct_creation_throttle_hit' => 'Dagiti sumarungkar ti daytoy a wiki nga agus-usar ti IP a pagtaengan ket nakaaramid {{PLURAL:$1|iti 1 a pakabilangan|kadagiti $1 a pakabilangan}} iti nasakbayan nga aldaw, nga isu laeng ti kaadu a maipalubos iti daytoy a paset ti panawen.
 A kas ti nagbanagan, dagiti agsarsarungkar nga agus-usar ti IP a pagtaengan ket agdama a saanda a mabalin a makaaramid kadagiti pakabilangan.',
-'emailauthenticated' => 'Napasingkedan ti esurat a pagtaengan idi $2 idi $3.',
-'emailnotauthenticated' => 'Saan pay a napasingkedan ti esuratmo.
-Awan ti esurat a naipatulod para kadagiti sumaganad a langa.',
+'emailauthenticated' => 'Ti esurat a pagtaengam ket napatalgedan idi $2 idi $3.',
+'emailnotauthenticated' => 'Saan pay a napatalgedan ti esuratmo a pagtaengan.
+Awanto ti esurat a maipatulod para kadagiti sumaganad a langa.',
 'noemailprefs' => 'Ipanaganan ti esurat a pagtaengan tapno agbalin dagitoy a langa.',
 'emailconfirmlink' => 'Pasingkedam ti esurat a pagtaengam',
 'invalidemailaddress' => 'Ti esurat a pagtaengan ket saan a maawat ngamin ket kasla adda ti saan a napudno a porma.
@@ -1030,15 +1030,15 @@ Dagiti sabsabali nga administrador idiay {{SITENAME}} ket mabalinda a serrekan t
 * Di maiparbeng a  kabukbukodan a pakaammo
 * : ''dagiti pagtaengan ken numero ti telepono, numero ti sosial a seguridad, ken dadduma pay.''",
 'revdelete-legend' => 'Ikabil dagiti panagiparit ti panagkita',
-'revdelete-hide-text' => 'Ilemmeng ti testo ti binaliwan',
+'revdelete-hide-text' => 'Testo ti binaliwan',
 'revdelete-hide-image' => 'Ilemmeng ti linaon ti papeles',
 'revdelete-hide-name' => 'Ilemmeng ti aramid ken puntaan',
-'revdelete-hide-comment' => 'Ilemmeng ti pakabuklan ti inurnos',
-'revdelete-hide-user' => 'Ilemmeng ti nagan ti agar-amat/ti IP a pagtaengan',
+'revdelete-hide-comment' => 'Pakabuklan ti inurnos',
+'revdelete-hide-user' => 'Nagan ti agar-amat/ti IP a pagtaengan',
 'revdelete-hide-restricted' => 'Depdepen ti datos a naggapu kadagiti administrador ken dagiti sabsabali',
 'revdelete-radio-same' => '(saan a sukatan)',
-'revdelete-radio-set' => 'Wen',
-'revdelete-radio-unset' => 'Saan',
+'revdelete-radio-set' => 'Makita',
+'revdelete-radio-unset' => 'Nailemmeng',
 'revdelete-suppress' => 'Depdepen ti datos manipud kadagiti administrador ken dagiti sabsabali',
 'revdelete-unsuppress' => 'Ikkaten dagiti pannakaiparit kadagiti naisubli a binaliwan',
 'revdelete-log' => 'Rason:',
@@ -2951,7 +2951,7 @@ Daytoy ket mabalin a gapuanan babaen ti silpo a naiparit ti akin ruar a pagsaada
 'spam_blanking' => 'Dagiti amin a panagbaliw ket aglaon kadagiti silpo idiay $1, iblanko',
 'spam_deleting' => 'Dagiti amin a panagbaliw ket naglaon kadagiti silpo idiay $1, ik-ikkaten',
 'simpleantispam-label' => "Kontra-spam a panagkita.
- '''Saan''' mo a suratan daytoy!",
+ '''Saan''' a suratan daytoy!",
 
 # Info page
 'pageinfo-title' => 'Pakaammo para iti "$1"',
@@ -2985,7 +2985,7 @@ Daytoy ket mabalin a gapuanan babaen ti silpo a naiparit ti akin ruar a pagsaada
 'pageinfo-magic-words' => 'Salamangka  {{PLURAL:$1|a balikas|a balbalikas}} ($1)',
 'pageinfo-hidden-categories' => 'Nailemmeng {{PLURAL:$1|a kategoria|a katkategoria}} ($1)',
 'pageinfo-templates' => 'Nailak-am {{PLURAL:$1|a plantilia|a planplantilia}} ($1)',
-'pageinfo-transclusions' => '{{PLURAL:$1|A panid|A pampanid}} ti nailak-am idiay ($1)',
+'pageinfo-transclusions' => '{{PLURAL:$1|Panid|Pampanid}} a nakailak-aman ($1)',
 'pageinfo-toolboxlink' => 'Pakaammo ti panid',
 'pageinfo-redirectsto' => 'Maibaw-ing idiay',
 'pageinfo-redirectsto-info' => 'pakaammo',
@@ -3715,7 +3715,10 @@ Naka-awatka koman ti [{{SERVER}}{{SCRIPTPATH}}/COPYING kopia iti GNU Sapasap a  
 # Special:Redirect
 'redirect' => 'Ibaw-ing babaen ti papeles, agar-aramat, wenno ID ti panagbaliw',
 'redirect-legend' => 'Ibaw-ing iti papeles wenno panid',
-'redirect-summary' => 'Daytoy nga espesial a panid ket maibaw-ing iti papeles (iti nagan ti papeles), ti panid (iti ID ti panagbaliw), wenno ti panid ti agar-aramat (iti numeriko nga ID ti agar-aramat).',
+'redirect-summary' => 'Daytoy nga espesial a panid ket maibaw-ing iti papeles (iti nagan ti papeles), ti panid (iti ID ti panagbaliw), wenno ti panid ti agar-aramat (iti numeriko nga ID ti agar-aramat). Panag-usar:
+[[{{#Special:Redirect}}/file/Example.jpg]], 
+[[{{#Special:Redirect}}/revision/328429]], wenno
+[[{{#Special:Redirect}}/user/101]].',
 'redirect-submit' => 'Inkan',
 'redirect-lookup' => 'Kitaen:',
 'redirect-value' => 'Pateg:',

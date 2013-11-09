@@ -790,6 +790,8 @@ $1',
 'noemailcreate' => 'Ахьа нийса электронни почтан адрес дӀаяздан деза',
 'passwordsent' => 'Керла пароль декъашхочун $1 электронни адрес тӀе дӀахьажина. Дехар до, керла пароль еъча юху системин чугӀо.',
 'blocked-mailpassword' => 'Хьан IP-адрес ца тадарш дан магийна дац, цуьндела пароль меттахӀотош йолу функци блоктоьхна ю.',
+'throttled-mailpassword' => 'Пароль дага йоуьйту функци {{PLURAL:$1|тӀехьара $1 сахьтехь}} лелина.
+Зулам цахилийта $1 {{PLURAL:$1|сахьтан чохь}} цӀа бен функци лело йиш яц.',
 'mailerror' => 'Кехат дохьуьйтуш гӀалат ду: $1',
 'emailauthenticated' => 'Хьан почтан адрес бакъдина $2 $3.',
 'accountcreated' => 'Декъашхочун дӀаяздар кхоьллина',
@@ -2221,6 +2223,7 @@ PICT # тайп тайпан
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'seconds-abbrev' => '$1оцу',
+'hours' => '{{PLURAL:$1|1 сахьат}}',
 'days' => '{{PLURAL:$1|$1 де}}',
 'ago' => '$1 хьалха',
 
@@ -2495,6 +2498,7 @@ PICT # тайп тайпан
 'searchsuggest-search' => 'Лаха',
 
 # Durations
+'duration-hours' => '$1 {{PLURAL:$1|сахьат}}',
 'duration-days' => '$1 {{PLURAL:$1|де}}',
 
 # Limit report

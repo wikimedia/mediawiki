@@ -828,7 +828,7 @@ No olvides personalizar tus [[Special:Preferences|preferencias de {{SITENAME}}]]
 'gotaccount' => '¿Ya tienes una cuenta? $1.',
 'gotaccountlink' => 'Entrar',
 'userlogin-resetlink' => '¿Olvidaste tus datos de acceso?',
-'userlogin-resetpassword-link' => 'Restablecer la contraseña',
+'userlogin-resetpassword-link' => '¿Has olvidado tu contraseña?',
 'helplogin-url' => 'Help:Inicio de sesión',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Ayuda]]',
 'userlogin-loggedin' => 'Ya estás conectado como {{GENDER:$1|$1}}.
@@ -901,7 +901,7 @@ Para evitar los abusos, solo se enviará un recordatorio de contraseña cada {{P
 'mailerror' => 'Error al enviar correo: $1',
 'acct_creation_throttle_hit' => 'Los visitantes a este wiki usando tu dirección IP han creado {{PLURAL:$1|una cuenta|$1 cuentas}} en el último día, lo cual es lo máximo permitido en este periodo de tiempo.
 Como resultado, los visitantes usando esta dirección IP no pueden crear más cuentas en este momento.',
-'emailauthenticated' => 'Tu dirección de correo electrónico fue autenticada el $2 a $3.',
+'emailauthenticated' => 'Tu dirección de correo electrónico fue confirmada el $2 a las $3.',
 'emailnotauthenticated' => 'Aún no has confirmado tu dirección de correo electrónico.
 Hasta que lo hagas, las siguientes funciones no estarán disponibles.',
 'noemailprefs' => 'Especifica una dirección electrónica para habilitar estas características.',
@@ -1343,15 +1343,15 @@ Otros administradores de {{SITENAME}} aún podrán acceder al contenido oculto y
 * Información personal inapropiada, tal como:
 *: ''nombres, domicilios, números de teléfono, números de la seguridad social e información análoga.",
 'revdelete-legend' => 'Establecer restricciones de revisión:',
-'revdelete-hide-text' => 'Ocultar el texto de la revisión',
+'revdelete-hide-text' => 'Texto de la revisión',
 'revdelete-hide-image' => 'Ocultar el contenido del archivo',
 'revdelete-hide-name' => 'Ocultar acción y objetivo',
-'revdelete-hide-comment' => 'Ocultar el resumen de edición',
-'revdelete-hide-user' => 'Ocultar el nombre/IP del editor',
+'revdelete-hide-comment' => 'Resumen de edición',
+'revdelete-hide-user' => 'Nombre/IP del editor',
 'revdelete-hide-restricted' => 'Suprimir datos a los administradores así como al resto',
 'revdelete-radio-same' => '(no cambiar)',
-'revdelete-radio-set' => 'Sí',
-'revdelete-radio-unset' => 'No',
+'revdelete-radio-set' => 'Visible',
+'revdelete-radio-unset' => 'Oculto',
 'revdelete-suppress' => 'Suprimir datos a los administradores así como al resto',
 'revdelete-unsuppress' => 'Eliminar restricciones de revisiones restauradas',
 'revdelete-log' => 'Motivo:',

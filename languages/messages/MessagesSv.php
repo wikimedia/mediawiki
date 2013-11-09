@@ -781,7 +781,7 @@ Glöm inte att justera dina [[Special:Preferences|{{SITENAME}}-inställningar]].
 'gotaccount' => "Har du redan ett användarkonto? '''$1'''.",
 'gotaccountlink' => 'Logga in',
 'userlogin-resetlink' => 'Har du glömt dina inloggningsuppgifter?',
-'userlogin-resetpassword-link' => 'Återställ ditt lösenord',
+'userlogin-resetpassword-link' => 'Glömt ditt lösenord?',
 'helplogin-url' => 'Help:Logga in',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Hjälp med inloggning]]',
 'userlogin-loggedin' => 'Du är redan inloggad som {{GENDER:$1|$1}}.
@@ -852,7 +852,7 @@ För att förhindra missbruk skickas bara en lösenordsåterställning per {{PLU
 'acct_creation_throttle_hit' => 'Besökare till den här wikin som har använt din IP-adress har skapat {{PLURAL:$1|1 användarkonto|$1 användarkonton}} under det senaste dygnet, vilket är det maximalt tillåtna inom den tidsperioden.
 Som ett resultat kan besökare som använder den här IP-adressen inte skapa några fler användarkonton just nu.',
 'emailauthenticated' => 'Din e-postadress bekräftades den $2 kl. $3.',
-'emailnotauthenticated' => 'Din e-postadress är ännu inte bekräftad. Ingen e-post kommer att skickas vad gäller det följande:',
+'emailnotauthenticated' => 'Din e-postadress är ännu inte bekräftad. Ingen e-post kommer att skickas vad gäller det följande funktionerna.',
 'noemailprefs' => 'Uppge en e-postadress i dina inställningar för att få dessa funktioner att fungera.',
 'emailconfirmlink' => 'Bekräfta din e-postadress',
 'invalidemailaddress' => 'E-postadressen kan inte godtas då formatet verkar vara felaktigt.
