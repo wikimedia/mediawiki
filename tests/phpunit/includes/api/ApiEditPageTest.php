@@ -382,6 +382,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$page->doEditContent( new WikitextContent( "Foo" ),
 			"testing 1", EDIT_NEW, false, self::$users['sysop']->user );
 		$this->forceRevisionDate( $page, '20120101000000' );
+		$oldId = $page->getRevision()->getId();
 		$baseTime = $page->getRevision()->getTimestamp();
 
 		// conflicting edit
@@ -396,6 +397,7 @@ class ApiEditPageTest extends ApiTestCase {
 				'title' => $name,
 				'text' => 'nix bar!',
 				'basetimestamp' => $baseTime,
+				'oldid' => $oldId,
 			), null, self::$users['sysop']->user );
 
 			$this->fail( 'edit conflict expected' );
@@ -420,7 +422,7 @@ class ApiEditPageTest extends ApiTestCase {
 		// base edit
 		$page->doEditContent( new WikitextContent( "Foo" ),
 			"testing 1", EDIT_NEW, false, self::$users['sysop']->user );
-		$this->forceRevisionDate( $page, '20120101000000' );
+		$oldId = $page->getRevision()->getId();
 		$baseTime = $page->getRevision()->getTimestamp();
 
 		// conflicting edit
@@ -435,6 +437,8 @@ class ApiEditPageTest extends ApiTestCase {
 			'text' => 'nix bar!',
 			'basetimestamp' => $baseTime,
 			'section' => 'new',
+			'redirect' => true,
+			'oldid' => $oldId,
 		), null, self::$users['sysop']->user );
 
 		$this->assertEquals( 'Success', $re['edit']['result'],
