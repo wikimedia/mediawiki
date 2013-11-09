@@ -1026,7 +1026,9 @@ CREATE TABLE /*_*/recentchanges (
   rc_timestamp varbinary(14) NOT NULL default '',
 
   -- This is no longer used
-  rc_cur_time varbinary(14) NOT NULL default '',
+  -- @deprecated 1.23
+  -- Field kept in database for downgrades; add drop patch with 1.24
+  -- rc_cur_time varbinary(14) NOT NULL default '',
 
   -- As in revision
   rc_user int unsigned NOT NULL default 0,
