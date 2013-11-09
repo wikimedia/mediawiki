@@ -161,38 +161,38 @@ class CSSMinTest extends MediaWikiTestCase {
 			array(
 				'Can not embed remote URLs',
 				'foo { /* @embed */ background: url(http://example.org/w/foo.png); }',
-				'foo { /* @embed */ background: url(http://example.org/w/foo.png); }',
+				'foo { background: url(http://example.org/w/foo.png); }',
 			),
-			// array( // Not supported :(
-			// 	'Embedded file (inline @embed)',
-			// 	'foo { background: /* @embed */ url(red.gif); }',
-			// 	"foo { background: url($red); background: url(http://localhost/w/red.gif?timestamp)!ie; }",
-			// ),
+			array(
+				'Embedded file (inline @embed)',
+				'foo { background: /* @embed */ url(red.gif); }',
+				"foo { background: url($red); background: url(http://localhost/w/red.gif?timestamp)!ie; }",
+			),
 			array(
 				'Can not embed large files',
 				'foo { /* @embed */ background: url(mediawiki.png); }',
-				"foo { /* @embed */ background: url(http://localhost/w/mediawiki.png?timestamp); }",
+				"foo { background: url(http://localhost/w/mediawiki.png?timestamp); }",
 			),
-			// array( // Not supported :(
-			// 	'Two regular files in one rule',
-			// 	'foo { background: url(red.gif), url(green.gif); }',
-			// 	'foo { background: url(http://localhost/w/red.gif?timestamp), url(http://localhost/w/green.gif?timestamp); }',
-			// ),
-			// array( // Not supported :(
-			// 	'Two embedded files in one rule',
-			// 	'foo { /* @embed */ background: url(red.gif), url(green.gif); }',
-			// 	"foo { background: url($red), url($green); background: url(http://localhost/w/red.gif?timestamp), url(http://localhost/w/green.gif?timestamp)!ie; }",
-			// ),
-			// array( // Not supported :(
-			// 	'Two embedded files in one rule (inline @embed)',
-			// 	'foo { background: /* @embed */ url(red.gif), /* @embed */ url(green.gif); }',
-			// 	"foo { background: url($red), url($green); background: url(http://localhost/w/red.gif?timestamp), url(http://localhost/w/green.gif?timestamp)!ie; }",
-			// ),
-			// array( // Not supported :(
-			// 	'Two embedded files in one rule (inline @embed), one too large',
-			// 	'foo { background: /* @embed */ url(red.gif), /* @embed */ url(mediawiki.png); }',
-			// 	"foo { background: url($red), url(http://localhost/w/mediawiki.png?timestamp); background: url(http://localhost/w/red.gif?timestamp), url(http://localhost/w/mediawiki.png?timestamp)!ie; }",
-			// ),
+			array(
+				'Two regular files in one rule',
+				'foo { background: url(red.gif), url(green.gif); }',
+				'foo { background: url(http://localhost/w/red.gif?timestamp), url(http://localhost/w/green.gif?timestamp); }',
+			),
+			array(
+				'Two embedded files in one rule',
+				'foo { /* @embed */ background: url(red.gif), url(green.gif); }',
+				"foo { background: url($red), url($green); background: url(http://localhost/w/red.gif?timestamp), url(http://localhost/w/green.gif?timestamp)!ie; }",
+			),
+			array(
+				'Two embedded files in one rule (inline @embed)',
+				'foo { background: /* @embed */ url(red.gif), /* @embed */ url(green.gif); }',
+				"foo { background: url($red), url($green); background: url(http://localhost/w/red.gif?timestamp), url(http://localhost/w/green.gif?timestamp)!ie; }",
+			),
+			array(
+				'Two embedded files in one rule (inline @embed), one too large',
+				'foo { background: /* @embed */ url(red.gif), /* @embed */ url(mediawiki.png); }',
+				"foo { background: url($red), url(http://localhost/w/mediawiki.png?timestamp); background: url(http://localhost/w/red.gif?timestamp), url(http://localhost/w/mediawiki.png?timestamp)!ie; }",
+			),
 			array(
 				'Practical example with some noise',
 				'foo { /* @embed */ background: #f9f9f9 url(red.gif) 0 0 no-repeat; }',
@@ -211,13 +211,13 @@ class CSSMinTest extends MediaWikiTestCase {
 			array(
 				'Spacing and miscellanea not changed (2)',
 				'foo {background:url(red.gif)}',
-				'foo {background:url(http://localhost/w/red.gif?timestamp)};', // <-- This trailing semicolon should not be here!
+				'foo {background:url(http://localhost/w/red.gif?timestamp)}',
 			),
-			// array( // Not supported :(
-			// 	'Spaces within url() parentheses are ignored',
-			// 	'foo { background: url( red.gif ); }',
-			// 	'foo { background: url(http://localhost/w/red.gif?timestamp); }',
-			// ),
+			array(
+				'Spaces within url() parentheses are ignored',
+				'foo { background: url( red.gif ); }',
+				'foo { background: url(http://localhost/w/red.gif?timestamp); }',
+			),
 		);
 	}
 
