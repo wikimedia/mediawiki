@@ -1797,7 +1797,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$old_content = $this->getContent( Revision::RAW ); // current revision's content
 
 		$oldsize = $old_content ? $old_content->getSize() : 0;
-		$oldid = $this->getLatest();
+		$oldid = $baseRevId ? $baseRevId : $this->getLatest();
 		$oldIsRedirect = $this->isRedirect();
 		$oldcountable = $this->isCountable();
 
@@ -1867,7 +1867,7 @@ class WikiPage implements Page, IDBAccessObject {
 				$dbw->begin( __METHOD__ );
 				try {
 
-					$prepStatus = $content->prepareSave( $this, $flags, $baseRevId, $user );
+					$prepStatus = $content->prepareSave( $this, $flags, $oldid, $user );
 					$status->merge( $prepStatus );
 
 					if ( !$status->isOK() ) {
@@ -1893,7 +1893,7 @@ class WikiPage implements Page, IDBAccessObject {
 						return $status;
 					}
 
-					wfRunHooks( 'NewRevisionFromEditComplete', array( $this, $revision, $baseRevId, $user ) );
+					wfRunHooks( 'NewRevisionFromEditComplete', array( $this, $revision, $oldid, $user ) );
 					// Update recentchanges
 					if ( !( $flags & EDIT_SUPPRESS_RC ) ) {
 						// Mark as patrolled if the user can do so
@@ -1948,7 +1948,7 @@ class WikiPage implements Page, IDBAccessObject {
 			$dbw->begin( __METHOD__ );
 			try {
 
-				$prepStatus = $content->prepareSave( $this, $flags, $baseRevId, $user );
+				$prepStatus = $content->prepareSave( $this, $flags, $oldid, $user );
 				$status->merge( $prepStatus );
 
 				if ( !$status->isOK() ) {
@@ -2041,7 +2041,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$status->value['revision'] = $revision;
 
 		$hook_args = array( &$this, &$user, $content, $summary,
-							$flags & EDIT_MINOR, null, null, &$flags, $revision, &$status, $baseRevId );
+							$flags & EDIT_MINOR, null, null, &$flags, $revision, &$status, $oldid );
 
 		ContentHandler::runLegacyHooks( 'ArticleSaveComplete', $hook_args );
 		wfRunHooks( 'PageContentSaveComplete', $hook_args );
