@@ -319,9 +319,6 @@ class EditPage {
 	public $nosummary = false;
 
 	/** @var string */
-	public $edittime = '';
-
-	/** @var string */
 	public $section = '';
 
 	/** @var string */
@@ -770,7 +767,6 @@ class EditPage {
 			$this->sectiontitle = $wgContLang->truncate( $request->getText( 'wpSectionTitle' ), 255 );
 			$this->sectiontitle = preg_replace( '/^\s*=+\s*(.*?)\s*=+\s*$/', '$1', $this->sectiontitle );
 
-			$this->edittime = $request->getVal( 'wpEdittime' );
 			$this->starttime = $request->getVal( 'wpStarttime' );
 
 			$undidRev = $request->getInt( 'wpUndidRevision' );
@@ -826,9 +822,6 @@ class EditPage {
 				}
 			}
 			$this->save = !$this->preview && !$this->diff;
-			if ( !preg_match( '/^\d{14}$/', $this->edittime ) ) {
-				$this->edittime = null;
-			}
 
 			if ( !preg_match( '/^\d{14}$/', $this->starttime ) ) {
 				$this->starttime = null;
@@ -859,7 +852,6 @@ class EditPage {
 			$this->textbox1 = '';
 			$this->summary = '';
 			$this->sectiontitle = '';
-			$this->edittime = '';
 			$this->starttime = wfTimestampNow();
 			$this->edit = false;
 			$this->preview = false;
@@ -944,7 +936,6 @@ class EditPage {
 	 */
 	function initialiseForm() {
 		global $wgUser;
-		$this->edittime = $this->mArticle->getTimestamp();
 
 		$content = $this->getContentObject( false ); #TODO: track content object?!
 		if ( $content === false ) {
@@ -1127,6 +1118,33 @@ class EditPage {
 		}
 		$content = $revision->getContent( Revision::FOR_THIS_USER, $user );
 		return $content;
+	}
+
+	/**
+	 * Set this edit's parent revision ID
+	 *
+	 * If the page's latest revision is greater than this ID, we know to check
+	 * for edit conflicts.
+	 *
+	 * @since 1.25
+	 * @param int $parentRevId Revision ID to use as the parent
+	 */
+	public function setParentRevId( $parentRevId ) {
+		$this->parentRevId = $parentRevId;
+	}
+
+	/**
+	 * Get the edit's parent revision ID
+	 *
+	 * @since 1.25
+	 * @return int Revision ID
+	 */
+	public function getParentRevId() {
+		if ( $this->parentRevId ) {
+			return $this->parentRevId;
+		} else {
+			return $this->mArticle->getRevIdFetched();
+		}
 	}
 
 	/**
@@ -1675,6 +1693,10 @@ class EditPage {
 		$this->mArticle->loadPageData( 'fromdbmaster' );
 		$new = !$this->mArticle->exists();
 
+		// Freeze the target article revision.  If we can fast-forward to this
+		// ID during content save, we can assume the merge is sane.
+		$articleLatestId = $this->mArticle->getLatest();
+
 		if ( $new ) {
 			// Late check for create permission, just in case *PARANOIA*
 			if ( !$this->mTitle->userCan( 'create', $wgUser ) ) {
@@ -1726,11 +1748,10 @@ class EditPage {
 			# Article exists. Check for edit conflict.
 
 			$this->mArticle->clear(); # Force reload of dates, etc.
-			$timestamp = $this->mArticle->getTimestamp();
 
-			wfDebug( "timestamp: {$timestamp}, edittime: {$this->edittime}\n" );
+			wfDebug( "latest: {$articleLatestId}, parentRevId: {$this->getParentRevId()}\n" );
 
-			if ( $timestamp != $this->edittime ) {
+			if ( $articleLatestId !== $this->getParentRevId() ) {
 				$this->isConflict = true;
 				if ( $this->section == 'new' ) {
 					if ( $this->mArticle->getUserText() == $wgUser->getName() &&
@@ -1746,15 +1767,6 @@ class EditPage {
 						$this->isConflict = false;
 						wfDebug( __METHOD__ . ": conflict suppressed; new section\n" );
 					}
-				} elseif ( $this->section == ''
-					&& Revision::userWasLastToEdit(
-						DB_MASTER, $this->mTitle->getArticleID(),
-						$wgUser->getId(), $this->edittime
-					)
-				) {
-					# Suppress edit conflict with self, except for section edits where merging is required.
-					wfDebug( __METHOD__ . ": Suppressing edit conflict, same user.\n" );
-					$this->isConflict = false;
 				}
 			}
 
@@ -1768,24 +1780,11 @@ class EditPage {
 			$content = null;
 
 			if ( $this->isConflict ) {
-				wfDebug( __METHOD__
-					. ": conflict! getting section '{$this->section}' for time '{$this->edittime}'"
-					. " (article time '{$timestamp}')\n" );
-
-				$content = $this->mArticle->replaceSectionContent(
-					$this->section,
-					$textbox_content,
-					$sectionTitle,
-					$this->edittime
-				);
+				wfDebug( __METHOD__ . ": conflict! getting section '{$this->section}' at revision '{$articleLatestId}'\n" );
 			} else {
 				wfDebug( __METHOD__ . ": getting section '{$this->section}'\n" );
-				$content = $this->mArticle->replaceSectionContent(
-					$this->section,
-					$textbox_content,
-					$sectionTitle
-				);
 			}
+			$content = $this->mArticle->replaceSectionAtRev( $this->section, $textbox_content, $sectionTitle, $articleLatestId );
 
 			if ( is_null( $content ) ) {
 				wfDebug( __METHOD__ . ": activating conflict; section replace failed.\n" );
@@ -1796,6 +1795,7 @@ class EditPage {
 				if ( $this->mergeChangesIntoContent( $content ) ) {
 					// Successful merge! Maybe we should tell the user the good news?
 					$this->isConflict = false;
+					// TODO: Update $this->parentRevId to the rev we successfully merged.
 					wfDebug( __METHOD__ . ": Suppressing edit conflict, successful merge.\n" );
 				} else {
 					$this->section = '';
@@ -1899,7 +1899,7 @@ class EditPage {
 			$content,
 			$this->summary,
 			$flags,
-			false,
+			$articleLatestId,
 			null,
 			$content->getDefaultFormat()
 		);
@@ -1994,13 +1994,17 @@ class EditPage {
 	}
 
 	/**
+	 * Fetch the revision the edit started with
+	 *
+	 * TODO: This naming convention should agree with that of "parentRevId".
+	 *
 	 * @return Revision
 	 */
-	function getBaseRevision() {
+	public function getBaseRevision() {
 		if ( !$this->mBaseRevision ) {
 			$db = wfGetDB( DB_MASTER );
-			$this->mBaseRevision = Revision::loadFromTimestamp(
-				$db, $this->mTitle, $this->edittime );
+
+			$this->mBaseRevision = Revision::loadFromId( $db, $this->getParentRevId() );
 		}
 		return $this->mBaseRevision;
 	}
@@ -2442,8 +2446,7 @@ class EditPage {
 		$wgOut->addHTML( Html::hidden( 'wpAutoSummary', $autosumm ) );
 
 		$wgOut->addHTML( Html::hidden( 'oldid', $this->oldid ) );
-		$wgOut->addHTML( Html::hidden( 'parentRevId',
-			$this->parentRevId ?: $this->mArticle->getRevIdFetched() ) );
+		$wgOut->addHTML( Html::hidden( 'parentRevId', $this->getParentRevId() ) );
 
 		$wgOut->addHTML( Html::hidden( 'format', $this->contentFormat ) );
 		$wgOut->addHTML( Html::hidden( 'model', $this->contentModel ) );
@@ -2559,7 +2562,6 @@ class EditPage {
 
 		if ( $this->isConflict ) {
 			$wgOut->wrapWikiMsg( "<div class='mw-explainconflict'>\n$1\n</div>", 'explainconflict' );
-			$this->edittime = $this->mArticle->getTimestamp();
 		} else {
 			if ( $this->section != '' && !$this->isSectionEditSupported() ) {
 				// We use $this->section to much before this and getVal('wgSection') directly in other places
@@ -2857,7 +2859,6 @@ class EditPage {
 		$wgOut->addHTML( <<<HTML
 <input type='hidden' value="{$section}" name="wpSection"/>
 <input type='hidden' value="{$this->starttime}" name="wpStarttime" />
-<input type='hidden' value="{$this->edittime}" name="wpEdittime" />
 <input type='hidden' value="{$this->scrolltop}" name="wpScrolltop" id="wpScrolltop" />
 
 HTML
@@ -3067,9 +3068,9 @@ HTML
 
 		$textboxContent = $this->toEditContent( $this->textbox1 );
 
-		$newContent = $this->mArticle->replaceSectionContent(
+		$newContent = $this->mArticle->replaceSectionAtRev(
 							$this->section, $textboxContent,
-							$this->summary, $this->edittime );
+							$this->summary, $this->getParentRevId() );
 
 		if ( $newContent ) {
 			ContentHandler::runLegacyHooks( 'EditPageGetDiffText', array( $this, &$newContent ) );
