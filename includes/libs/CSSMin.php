@@ -38,7 +38,8 @@ class CSSMin {
 	 * which when base64 encoded will result in a 1/3 increase in size.
 	 */
 	const EMBED_SIZE_LIMIT = 24576;
-	const URL_REGEX = 'url\(\s*[\'"]?(?P<file>[^\?\)\'"]*)(?P<query>\??[^\)\'"]*)[\'"]?\s*\)';
+	const URL_REGEX = 'url\(\s*[\'"]?(?P<file>[^\?\)\'"]*?)(?P<query>\??[^\)\'"]*?)[\'"]?\s*\)';
+	const EMBED_REGEX = '\/\*\s*\@embed\s*\*\/';
 
 	/* Protected Static Members */
 
@@ -140,8 +141,8 @@ class CSSMin {
 	}
 
 	/**
-	 * Remaps CSS URL paths and automatically embeds data URIs for URL rules
-	 * preceded by an /* @embed * / comment
+	 * Remaps CSS URL paths and automatically embeds data URIs for CSS rules or url() values
+	 * preceded by an / * @embed * / comment.
 	 *
 	 * @param string $source CSS data to remap
 	 * @param string $local File path where the source was read from
@@ -150,89 +151,120 @@ class CSSMin {
 	 * @return string Remapped CSS data
 	 */
 	public static function remap( $source, $local, $remote, $embedData = true ) {
-		$pattern = '/((?P<embed>\s*\/\*\s*\@embed\s*\*\/)(?P<pre>[^\;\}]*))?' .
-			self::URL_REGEX . '(?P<post>[^;]*)[\;]?/';
-		$offset = 0;
-		while ( preg_match( $pattern, $source, $match, PREG_OFFSET_CAPTURE, $offset ) ) {
-			// Skip fully-qualified URLs and data URIs
-			$urlScheme = parse_url( $match['file'][0], PHP_URL_SCHEME );
-			if ( $urlScheme ) {
-				// Move the offset to the end of the match, leaving it alone
-				$offset = $match[0][1] + strlen( $match[0][0] );
-				continue;
-			}
-			// URLs with absolute paths like /w/index.php need to be expanded
-			// to absolute URLs but otherwise left alone
-			if ( $match['file'][0] !== '' && $match['file'][0][0] === '/' ) {
-				// Replace the file path with an expanded (possibly protocol-relative) URL
-				// ...but only if wfExpandUrl() is even available.
-				// This will not be the case if we're running outside of MW
-				$lengthIncrease = 0;
-				if ( function_exists( 'wfExpandUrl' ) ) {
-					$expanded = wfExpandUrl( $match['file'][0], PROTO_RELATIVE );
-					$origLength = strlen( $match['file'][0] );
-					$lengthIncrease = strlen( $expanded ) - $origLength;
-					$source = substr_replace( $source, $expanded,
-						$match['file'][1], $origLength
-					);
-				}
-				// Move the offset to the end of the match, leaving it alone
-				$offset = $match[0][1] + strlen( $match[0][0] ) + $lengthIncrease;
-				continue;
-			}
+		// High-level overview:
+		// * For each CSS rule in $source that includes at least one url() value:
+		//   * Check for an @embed comment at the start indicating that all URIs should be embedded
+		//   * For each url() value:
+		//     * Check for an @embed comment directly preceding the value
+		//     * If either @embed comment exists:
+		//       * Embedding the URL as data: URI, if it's possible / allowed
+		//       * Otherwise remap the URL to work in generated stylesheets
 
-			// Guard against double slashes, because "some/remote/../foo.png"
-			// resolves to "some/remote/foo.png" on (some?) clients (bug 27052).
-			if ( substr( $remote, -1 ) == '/' ) {
-				$remote = substr( $remote, 0, -1 );
-			}
-
-			// Shortcuts
-			$embed = $match['embed'][0];
-			$pre = $match['pre'][0];
-			$post = $match['post'][0];
-			$query = $match['query'][0];
-			$url = "{$remote}/{$match['file'][0]}";
-			$file = "{$local}/{$match['file'][0]}";
-
-			$replacement = false;
-
-			if ( $local !== false && file_exists( $file ) ) {
-				// Add version parameter as a time-stamp in ISO 8601 format,
-				// using Z for the timezone, meaning GMT
-				$url .= '?' . gmdate( 'Y-m-d\TH:i:s\Z', round( filemtime( $file ), -2 ) );
-				// Embedding requires a bit of extra processing, so let's skip that if we can
-				if ( $embedData && $embed && $match['embed'][1] > 0 ) {
-					$data = self::encodeImageAsDataURI( $file );
-					if ( $data !== false ) {
-						// Build 2 CSS properties; one which uses a base64 encoded data URI in place
-						// of the @embed comment to try and retain line-number integrity, and the
-						// other with a remapped an versioned URL and an Internet Explorer hack
-						// making it ignored in all browsers that support data URIs
-						$replacement = "{$pre}url({$data}){$post};{$pre}url({$url}){$post}!ie;";
-					}
-				}
-				if ( $replacement === false ) {
-					// Assume that all paths are relative to $remote, and make them absolute
-					$replacement = "{$embed}{$pre}url({$url}){$post};";
-				}
-			} elseif ( $local === false ) {
-				// Assume that all paths are relative to $remote, and make them absolute
-				$replacement = "{$embed}{$pre}url({$url}{$query}){$post};";
-			}
-			if ( $replacement !== false ) {
-				// Perform replacement on the source
-				$source = substr_replace(
-					$source, $replacement, $match[0][1], strlen( $match[0][0] )
-				);
-				// Move the offset to the end of the replacement in the source
-				$offset = $match[0][1] + strlen( $replacement );
-				continue;
-			}
-			// Move the offset to the end of the match, leaving it alone
-			$offset = $match[0][1] + strlen( $match[0][0] );
+		// Guard against trailing slashes, because "some/remote/../foo.png"
+		// resolves to "some/remote/foo.png" on (some?) clients (bug 27052).
+		if ( substr( $remote, -1 ) == '/' ) {
+			$remote = substr( $remote, 0, -1 );
 		}
+
+		// Note: This will not correctly handle cases where ';', '{' or '}' appears in the rule itself,
+		// e.g. in a quotes string. You are advised not to use such characters in file names.
+		$pattern = '/(?<=[;{])[^;}]*' . CSSMin::URL_REGEX . '[^;}]*(?=[;}])/';
+		return preg_replace_callback( $pattern, function ( $matchOuter ) use ( $local, $remote, $embedData ) {
+			$rule = $matchOuter[0];
+
+			// Check for global @embed comment and remove it
+			$embedAll = false;
+			preg_replace( '/^(\s*)' . CSSMin::EMBED_REGEX . '\s*/', '$1', $rule, 1, $embedAll );
+
+			// Build two versions of current rule: with remapped URLs and with embedded data: URIs (where possible)
+			$pattern = '/(?P<embed>' . CSSMin::EMBED_REGEX . '\s*|)' . CSSMin::URL_REGEX . '/';
+
+			$ruleWithRemapped = preg_replace_callback( $pattern, function ( $match ) use ( $local, $remote ) {
+				$remapped = CSSMin::remapOne( $match['file'], $match['query'], $local, $remote, false );
+				return "url({$remapped})";
+			}, $rule );
+
+			$ruleWithEmbedded = preg_replace_callback( $pattern, function ( $match ) use ( $embedData, $embedAll, $local, $remote ) {
+				$embed = $embedData && ( $embedAll || $match['embed'] );
+				$embedded = CSSMin::remapOne( $match['file'], $match['query'], $local, $remote, $embed );
+				return "url({$embedded})";
+			}, $rule );
+
+			if ( $ruleWithEmbedded !== $ruleWithRemapped ) {
+				// Build 2 CSS properties; one which uses a base64 encoded data URI in place
+				// of the @embed comment to try and retain line-number integrity, and the
+				// other with a remapped an versioned URL and an Internet Explorer hack
+				// making it ignored in all browsers that support data URIs
+				return "$ruleWithEmbedded;$ruleWithRemapped!ie";
+			} else {
+				// No reason to repeat twice
+				return $ruleWithEmbedded;
+			}
+		}, $source );
+
 		return $source;
+	}
+
+	/**
+	 * Remap or embed a CSS URL path.
+	 *
+	 * @param string $file URL to remap/embed
+	 * @param string $query
+	 * @param string $local File path where the source was read from
+	 * @param string $remote URL path to the file
+	 * @param bool $embed Whether to do any data URI embedding
+	 * @return string Remapped/embedded URL data
+	 */
+	public static function remapOne( $file, $query, $local, $remote, $embed ) {
+		// Skip fully-qualified URLs and data URIs
+		$urlScheme = parse_url( $file, PHP_URL_SCHEME );
+		if ( $urlScheme ) {
+			return $file;
+		}
+
+		// URLs with absolute paths like /w/index.php need to be expanded
+		// to absolute URLs but otherwise left alone
+		if ( $file !== '' && $file[0] === '/' ) {
+			// Replace the file path with an expanded (possibly protocol-relative) URL
+			// ...but only if wfExpandUrl() is even available.
+			// This will not be the case if we're running outside of MW
+			if ( function_exists( 'wfExpandUrl' ) ) {
+				return wfExpandUrl( $file, PROTO_RELATIVE );
+			} else {
+				return $file;
+			}
+		}
+
+		$url = "{$remote}/{$file}";
+		$file = "{$local}/{$file}";
+
+		$replacement = false;
+
+		if ( $local !== false && file_exists( $file ) ) {
+			// Add version parameter as a time-stamp in ISO 8601 format,
+			// using Z for the timezone, meaning GMT
+			$url .= '?' . gmdate( 'Y-m-d\TH:i:s\Z', round( filemtime( $file ), -2 ) );
+			if ( $embed ) {
+				$data = self::encodeImageAsDataURI( $file );
+				if ( $data !== false ) {
+					// Build 2 CSS properties; one which uses a base64 encoded data URI in place
+					// of the @embed comment to try and retain line-number integrity, and the
+					// other with a remapped an versioned URL and an Internet Explorer hack
+					// making it ignored in all browsers that support data URIs
+					return $data;
+				} else {
+					return $url;
+				}
+			} else {
+				// Assume that all paths are relative to $remote, and make them absolute
+				return $url;
+			}
+		} elseif ( $local === false ) {
+			// Assume that all paths are relative to $remote, and make them absolute
+			return $url . $query;
+		} else {
+			return $file;
+		}
 	}
 
 	/**
