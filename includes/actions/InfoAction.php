@@ -277,6 +277,11 @@ class InfoAction extends FormlessAction {
 			Language::fetchLanguageName( $pageLang, $lang->getCode() )
 			. ' ' . $this->msg( 'parentheses', $pageLang ) );
 
+		// Content model of the page
+		$pageInfo['header-basic'][] = array(
+			$this->msg( 'pageinfo-content-model' ), ContentHandler::getLocalizedName( $title->getContentModel() )
+		);
+
 		// Search engine status
 		$pOutput = new ParserOutput();
 		if ( isset( $pageProperties['noindex'] ) ) {

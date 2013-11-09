@@ -8010,6 +8010,13 @@ The label and the input box are always hidden.',
 'pageinfo-length' => 'The length of the page, in bytes.',
 'pageinfo-article-id' => 'The numeric identifier of the page.',
 'pageinfo-language' => 'Language in which the page content is written.',
+'pageinfo-content-model' => 'The model in which the page content is written.
+
+Used as label. Followed by one of the following messages:
+* {{msg-mw|Content-model-wikitext}}
+* {{msg-mw|Content-model-javascript}}
+* {{msg-mw|Content-model-css}}
+* {{msg-mw|Content-model-text}}',
 'pageinfo-robot-policy' => 'The search engine status of the page.
 
 Used as label. Followed by any one of the following messages:
