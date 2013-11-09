@@ -1,16 +1,19 @@
-[July 22nd 2008]
+/docs Directory README
+======================
 
 The 'docs' directory contain various text files that should help you understand
 the most important parts of the code of MediaWiki. More in-depth documentation
-can be found at http://www.mediawiki.org/wiki/Manual:Code.
+can be found at:
+  https://www.mediawiki.org/wiki/Manual:Code
 
 API documentation is automatically generated and updated daily at:
-  http://svn.wikimedia.org/doc/
+  https://doc.wikimedia.org/mediawiki-core/master/php/html/
 
 You can get a fresh version using 'make doc' or mwdocgen.php in the
 ../maintenance/ directory.
 
 
-For end user / administrators, most of the documentation is located online at:
-  http://www.mediawiki.org/wiki/Help:Contents
-  http://www.mediawiki.org/wiki/Manual:Contents
+For end users, most of the documentation is located online at:
+  https://www.mediawiki.org/wiki/Help:Contents
+Documentation for MediaWiki site administrators is at:
+  https://www.mediawiki.org/wiki/Manual:Contents
