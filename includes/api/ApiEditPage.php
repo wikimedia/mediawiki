@@ -81,6 +81,9 @@ class ApiEditPage extends ApiBase {
 
 				// Since the page changed, update $pageObj
 				$pageObj = WikiPage::factory( $titleObj );
+
+				// Assume the caller couldn't have known details about the target page.
+				$params['oldid'] = null;
 			}
 		}
 
@@ -344,6 +347,10 @@ class ApiEditPage extends ApiBase {
 
 		$ep->setContextTitle( $titleObj );
 		$ep->importFormData( $req );
+
+		$oldRevId = ( $params['oldid'] ?: $articleObject->getRevIdFetched() );
+		$ep->setBaseRevisionId( $oldRevId );
+
 		$content = $ep->textbox1;
 
 		// The following is needed to give the hook the full content of the
@@ -390,7 +397,6 @@ class ApiEditPage extends ApiBase {
 		}
 
 		// Do the actual save
-		$oldRevId = $articleObject->getRevIdFetched();
 		$result = null;
 		// Fake $wgRequest for some hooks inside EditPage
 		// @todo FIXME: This interface SUCKS
@@ -566,6 +572,10 @@ class ApiEditPage extends ApiBase {
 			),
 			'pageid' => array(
 				ApiBase::PARAM_TYPE => 'integer',
+			),
+			'oldid' => array(
+				ApiBase::PARAM_TYPE => 'integer',
+				// FIXME: this should be a required param... but how would we handle backward-compatibility?
 			),
 			'section' => null,
 			'sectiontitle' => array(

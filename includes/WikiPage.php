@@ -1387,6 +1387,8 @@ class WikiPage implements Page, IDBAccessObject {
 	 * If the given revision is newer than the currently set page_latest,
 	 * update the page record. Otherwise, do nothing.
 	 *
+	 * TODO: deprecate
+	 *
 	 * @param DatabaseBase $dbw
 	 * @param Revision $revision
 	 * @return bool
@@ -1528,9 +1530,43 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return Content New complete article content, or null if error.
 	 *
 	 * @since 1.21
+	 * @deprecated 1.24
 	 */
 	public function replaceSectionContent( $section, Content $sectionContent, $sectionTitle = '',
 		$edittime = null ) {
+		wfProfileIn( __METHOD__ );
+
+		$revId = null;
+		if ( $edittime && $section !== 'new' ) {
+			$dbw = wfGetDB( DB_MASTER );
+			$rev = Revision::loadFromTimestamp( $dbw, $this->mTitle, $edittime );
+			if ( !$rev ) {
+				wfDebug( __METHOD__ . " given bad revision time for page " .
+					$this->getId() . "; edittime: $edittime)\n" );
+				wfProfileOut( __METHOD__ );
+				return null;
+			}
+			$revId = $rev->getId();
+		}
+
+		wfProfileOut( __METHOD__ );
+		return $this->replaceSectionAtRev( $section, $sectionContent, $sectionTitle, $revId );
+	}
+
+	/**
+	 * @param string|null|bool $section Null/false, a section number (0, 1, 2, T1, T2, ...) or "new".
+	 * @param Content $sectionContent New content of the section.
+	 * @param string $sectionTitle New section's subject, only if $section is "new".
+	 * @param string $baseRevId integer|null
+	 *
+	 * @throws MWException
+	 * @return Content New complete article content, or null if error.
+	 *
+	 * @since 1.24
+	 */
+	public function replaceSectionAtRev( $section, Content $sectionContent,
+		$sectionTitle = '', $baseRevId = null
+	) {
 		wfProfileIn( __METHOD__ );
 
 		if ( strval( $section ) == '' ) {
@@ -1544,11 +1580,12 @@ class WikiPage implements Page, IDBAccessObject {
 			}
 
 			// Bug 30711: always use current version when adding a new section
-			if ( is_null( $edittime ) || $section == 'new' ) {
+			if ( is_null( $baseRevId ) || $section == 'new' ) {
 				$oldContent = $this->getContent();
 			} else {
+				// FIXME: try DB_READ first
 				$dbw = wfGetDB( DB_MASTER );
-				$rev = Revision::loadFromTimestamp( $dbw, $this->mTitle, $edittime );
+				$rev = Revision::loadFromId( $dbw, $baseRevId );
 
 				if ( !$rev ) {
 					wfDebug( "WikiPage::replaceSection asked for bogus section (page: " .
@@ -1755,7 +1792,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$old_content = $this->getContent( Revision::RAW ); // current revision's content
 
 		$oldsize = $old_content ? $old_content->getSize() : 0;
-		$oldid = $this->getLatest();
+		$oldid = $baseRevId ? $baseRevId : $this->getLatest();
 		$oldIsRedirect = $this->isRedirect();
 		$oldcountable = $this->isCountable();
 
@@ -1825,7 +1862,7 @@ class WikiPage implements Page, IDBAccessObject {
 				$dbw->begin( __METHOD__ );
 				try {
 
-					$prepStatus = $content->prepareSave( $this, $flags, $baseRevId, $user );
+					$prepStatus = $content->prepareSave( $this, $flags, $oldid, $user );
 					$status->merge( $prepStatus );
 
 					if ( !$status->isOK() ) {
@@ -1838,11 +1875,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 					// Update page
 					//
-					// Note that we use $this->mLatest instead of fetching a value from the master DB
-					// during the course of this function. This makes sure that EditPage can detect
-					// edit conflicts reliably, either by $ok here, or by $article->getTimestamp()
-					// before this function is called. A previous function used a separate query, this
-					// creates a window where concurrent edits can cause an ignored edit conflict.
+					// We check for conflicts by comparing $oldid with the current latest revision ID.
 					$ok = $this->updateRevisionOn( $dbw, $revision, $oldid, $oldIsRedirect );
 
 					if ( !$ok ) {
@@ -1855,7 +1888,7 @@ class WikiPage implements Page, IDBAccessObject {
 						return $status;
 					}
 
-					wfRunHooks( 'NewRevisionFromEditComplete', array( $this, $revision, $baseRevId, $user ) );
+					wfRunHooks( 'NewRevisionFromEditComplete', array( $this, $revision, $oldid, $user ) );
 					// Update recentchanges
 					if ( !( $flags & EDIT_SUPPRESS_RC ) ) {
 						// Mark as patrolled if the user can do so
@@ -1910,7 +1943,7 @@ class WikiPage implements Page, IDBAccessObject {
 			$dbw->begin( __METHOD__ );
 			try {
 
-				$prepStatus = $content->prepareSave( $this, $flags, $baseRevId, $user );
+				$prepStatus = $content->prepareSave( $this, $flags, $oldid, $user );
 				$status->merge( $prepStatus );
 
 				if ( !$status->isOK() ) {
@@ -2003,7 +2036,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$status->value['revision'] = $revision;
 
 		$hook_args = array( &$this, &$user, $content, $summary,
-							$flags & EDIT_MINOR, null, null, &$flags, $revision, &$status, $baseRevId );
+							$flags & EDIT_MINOR, null, null, &$flags, $revision, &$status, $oldid );
 
 		ContentHandler::runLegacyHooks( 'ArticleSaveComplete', $hook_args );
 		wfRunHooks( 'PageContentSaveComplete', $hook_args );
