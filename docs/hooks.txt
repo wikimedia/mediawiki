@@ -1,7 +1,7 @@
 hooks.txt
 
 This document describes how event hooks work in MediaWiki; how to add hooks for
-an event; and how to run hooks for an event.
+an event; how to run hooks for an event; and exhaustively lists extant hooks.
 
 ==Glossary==
 
@@ -1014,6 +1014,13 @@ new pages
 'EditFormInitialText': Allows modifying the edit form when editing existing
 pages
 $editPage: EditPage	object
+
+'EditPage::afterAttemptSave': Called after we know whether saving a page
+succeeded or failed.  Can be used to produce diagnostics about edit conflicts,
+and so on.
+$article: Article that we attempted to save
+$status: Status outcome of the save operation
+return value is ignored (should always return true)
 
 'EditPage::attemptSave': Called before an article is
 saved, that is before WikiPage::doEditContent() is called
