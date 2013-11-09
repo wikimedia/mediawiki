@@ -216,6 +216,7 @@ class EditPage {
 	var $allowBlankSummary = false;
 	var $autoSumm = '';
 	var $hookError = '';
+	var $oldid = 0;
 	#var $mPreviewTemplates;
 
 	/**
@@ -237,7 +238,7 @@ class EditPage {
 	var $minoredit = false, $watchthis = false, $recreate = false;
 	var $textbox1 = '', $textbox2 = '', $summary = '', $nosummary = false;
 	var $edittime = '', $section = '', $sectiontitle = '', $starttime = '';
-	var $oldid = 0, $editintro = '', $scrolltop = null, $bot = true;
+	var $editintro = '', $scrolltop = null, $bot = true;
 	var $contentModel = null, $contentFormat = null;
 
 	# Placeholders for text injection by hooks (must be HTML)
@@ -1040,7 +1041,22 @@ class EditPage {
 			return $handler->makeEmptyContent();
 		}
 		$content = $revision->getContent( Revision::FOR_THIS_USER, $user );
+		$content = $revision->getContent();
+		$this->oldid = $revision->getId();
 		return $content;
+	}
+
+	/**
+	 * Specify the base revision that we are editing
+	 * 
+	 * If the page's latest revision has been incremented, we know an edit
+	 * conflict may have occurred.
+	 *
+	 * @since 1.23
+	 * @param int $oldid Revision ID of the page to be changed.
+	 */
+	public function setBaseRevisionId( $oldid ) {
+		$this->oldid = $oldid;
 	}
 
 	/**
@@ -1817,7 +1833,7 @@ class EditPage {
 			( $bot ? EDIT_FORCE_BOT : 0 );
 
 			$doEditStatus = $this->mArticle->doEditContent( $content, $this->summary, $flags,
-															false, null, $this->contentFormat );
+															$this->oldid, null, $this->contentFormat );
 
 		if ( !$doEditStatus->isOK() ) {
 			// Failure from doEdit()
