@@ -69,6 +69,8 @@ class CSSMinTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * This tests funky parameters to CSSMin::remap. testRemapRemapping tests the basic functionality.
+	 *
 	 * @dataProvider provideRemapCases
 	 * @covers CSSMin::remap
 	 */
@@ -108,6 +110,114 @@ class CSSMinTest extends MediaWikiTestCase {
 				array( 'foo { prop: url(/w/skin/images/bar.png); }', false, 'http://example.org/quux', false ),
 				'foo { prop: url(http://doc.example.org/w/skin/images/bar.png); }',
 			),
+		);
+	}
+
+	/**
+	 * This tests basic functionality of CSSMin::remap. testRemapRemapping tests funky parameters.
+	 *
+	 * @dataProvider provideRemapRemappingCases
+	 * @covers CSSMin::remap
+	 */
+	public function testRemapRemapping( $message, $input, $expectedOutput ) {
+		$localPath = __DIR__ . '/../../data/media/';
+		$remotePath = 'http://localhost/w/';
+
+		$realOutput = CSSMin::remap( $input, $localPath, $remotePath );
+
+		$this->assertEquals(
+			$expectedOutput,
+			preg_replace( '/\d+-\d+-\d+T\d+:\d+:\d+Z/', 'timestamp', $realOutput ),
+			"CSSMin::remap: $message"
+		);
+	}
+
+	public static function provideRemapRemappingCases() {
+		// red.gif and green.gif are one-pixel 35-byte GIFs.
+		// mediawiki.png is a 30K PNG that should be non-embeddable.
+		// Full paths start with http://localhost/w/.
+		// Timestamps in output are replaced with 'timestamp'.
+
+		// data: URIs for red.gif and green.gif
+		$red   = 'data:image/gif;base64,R0lGODlhAQABAIAAAP8AADAAACwAAAAAAQABAAACAkQBADs=';
+		$green = 'data:image/gif;base64,R0lGODlhAQABAIAAAACAADAAACwAAAAAAQABAAACAkQBADs=';
+
+		return array(
+			array(
+				'Regular file',
+				'foo { background: url(red.gif); }',
+				'foo { background: url(http://localhost/w/red.gif?timestamp); }',
+			),
+			array(
+				'Remote URL',
+				'foo { background: url(http://example.org/w/foo.png); }',
+				'foo { background: url(http://example.org/w/foo.png); }',
+			),
+			array(
+				'Embedded file',
+				'foo { /* @embed */ background: url(red.gif); }',
+				"foo { background: url($red); background: url(http://localhost/w/red.gif?timestamp)!ie; }",
+			),
+			array(
+				'Can not embed remote URLs',
+				'foo { /* @embed */ background: url(http://example.org/w/foo.png); }',
+				'foo { /* @embed */ background: url(http://example.org/w/foo.png); }',
+			),
+			// array( // Not supported :(
+			// 	'Embedded file (inline @embed)',
+			// 	'foo { background: /* @embed */ url(red.gif); }',
+			// 	"foo { background: url($red); background: url(http://localhost/w/red.gif?timestamp)!ie; }",
+			// ),
+			array(
+				'Can not embed large files',
+				'foo { /* @embed */ background: url(mediawiki.png); }',
+				"foo { /* @embed */ background: url(http://localhost/w/mediawiki.png?timestamp); }",
+			),
+			// array( // Not supported :(
+			// 	'Two regular files in one rule',
+			// 	'foo { background: url(red.gif), url(green.gif); }',
+			// 	'foo { background: url(http://localhost/w/red.gif?timestamp), url(http://localhost/w/green.gif?timestamp); }',
+			// ),
+			// array( // Not supported :(
+			// 	'Two embedded files in one rule',
+			// 	'foo { /* @embed */ background: url(red.gif), url(green.gif); }',
+			// 	"foo { background: url($red), url($green); background: url(http://localhost/w/red.gif?timestamp), url(http://localhost/w/green.gif?timestamp)!ie; }",
+			// ),
+			// array( // Not supported :(
+			// 	'Two embedded files in one rule (inline @embed)',
+			// 	'foo { background: /* @embed */ url(red.gif), /* @embed */ url(green.gif); }',
+			// 	"foo { background: url($red), url($green); background: url(http://localhost/w/red.gif?timestamp), url(http://localhost/w/green.gif?timestamp)!ie; }",
+			// ),
+			// array( // Not supported :(
+			// 	'Two embedded files in one rule (inline @embed), one too large',
+			// 	'foo { background: /* @embed */ url(red.gif), /* @embed */ url(mediawiki.png); }',
+			// 	"foo { background: url($red), url(http://localhost/w/mediawiki.png?timestamp); background: url(http://localhost/w/red.gif?timestamp), url(http://localhost/w/mediawiki.png?timestamp)!ie; }",
+			// ),
+			array(
+				'Practical example with some noise',
+				'foo { /* @embed */ background: #f9f9f9 url(red.gif) 0 0 no-repeat; }',
+				"foo { background: #f9f9f9 url($red) 0 0 no-repeat; background: #f9f9f9 url(http://localhost/w/red.gif?timestamp) 0 0 no-repeat!ie; }",
+			),
+			array(
+				'Does not mess with other properties',
+				'foo { color: red; background: url(red.gif); font-size: small; }',
+				'foo { color: red; background: url(http://localhost/w/red.gif?timestamp); font-size: small; }',
+			),
+			array(
+				'Spacing and miscellanea not changed (1)',
+				'foo {   background:    url(red.gif);  }',
+				'foo {   background:    url(http://localhost/w/red.gif?timestamp);  }',
+			),
+			array(
+				'Spacing and miscellanea not changed (2)',
+				'foo {background:url(red.gif)}',
+				'foo {background:url(http://localhost/w/red.gif?timestamp)};', // <-- This trailing semicolon should not be here!
+			),
+			// array( // Not supported :(
+			// 	'Spaces within url() parentheses are ignored',
+			// 	'foo { background: url( red.gif ); }',
+			// 	'foo { background: url(http://localhost/w/red.gif?timestamp); }',
+			// ),
 		);
 	}
 
