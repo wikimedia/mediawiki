@@ -756,7 +756,7 @@ Nu uitați să vă modificați [[Special:Preferences|preferințele]] pentru {{SI
 'gotaccount' => "Aveți deja un cont de utilizator? '''$1'''.",
 'gotaccountlink' => 'Autentificați-vă',
 'userlogin-resetlink' => 'Ați uitat datele de autentificare?',
-'userlogin-resetpassword-link' => 'Resetare parolă',
+'userlogin-resetpassword-link' => 'V-ați uitat parola?',
 'helplogin-url' => 'Help:Autentificare',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Ajutor la autentificare]]',
 'userlogin-loggedin' => 'Sunteți deja {{GENDER:$1|autentificat|autentificată}} ca {{GENDER:$1|$1}}.
@@ -827,7 +827,7 @@ să folosiți vechea parolă.',
 'acct_creation_throttle_hit' => 'De la această adresă IP, vizitatorii sitului au creat {{PLURAL:$1|1 cont|$1 conturi|$1 de conturi}} de utilizator în ultimele zile, acest număr de noi conturi fiind maximul admis în această perioadă de timp.
 Prin urmare, vizitatorii care folosesc același IP nu mai pot crea alte conturi pentru moment.',
 'emailauthenticated' => 'Adresa de e-mail a fost autentificată pe $2, la $3.',
-'emailnotauthenticated' => 'Adresa de email <strong>nu este autentificată încă</strong>. Nici un email nu va fi trimis pentru nici una din întrebuințările următoare.',
+'emailnotauthenticated' => 'Adresa dumneavoastră de e-mail nu este autentificată încă. Nici un e-mail nu va fi trimis pentru nici una din întrebuințările următoare.',
 'noemailprefs' => 'Nu a fost specificată o adresă email, următoarele nu vor funcționa.',
 'emailconfirmlink' => 'Confirmați adresa dvs. de email',
 'invalidemailaddress' => 'Adresa de email nu a putut fi acceptată pentru că pare a avea un format invalid. Vă rugăm să reintroduceți o adresă bine formatată sau să goliți acel câmp.',
@@ -3762,7 +3762,7 @@ Altele vor fi ascunse implicit.
 'limitall' => 'toate',
 
 # Email address confirmation
-'confirmemail' => 'Confirmă adresa de e-mail',
+'confirmemail' => 'Confirmare adresă e-mail',
 'confirmemail_noemail' => 'Nu aveți o adresă de e-mail validă setată la [[Special:Preferences|preferințe]].',
 'confirmemail_text' => '{{SITENAME}} solicită validarea adresei de e-mail înaintea utilizării funcțiilor specifice poștei electronice.
 Apăsați butonul de mai jos pentru ca un e-mail de confirmare să fie trimis către adresa dumneavoastră.

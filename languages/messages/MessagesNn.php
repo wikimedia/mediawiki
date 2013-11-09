@@ -763,7 +763,7 @@ Gløym ikkje å endra [[Special:Preferences|innstillingane dine for {{SITENAME}}
 'gotaccount' => "Har du ein brukarkonto? '''$1'''.",
 'gotaccountlink' => 'Logg inn',
 'userlogin-resetlink' => 'Har du gløymd påloggingsopplysingane dine?',
-'userlogin-resetpassword-link' => 'Attendestill passordet ditt',
+'userlogin-resetpassword-link' => 'Gløymt passordet ditt?',
 'helplogin-url' => 'Help:Innlogging',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Hjelp med innlogging]]',
 'createacct-join' => 'Skriv inn informasjonen din under.',
@@ -1221,7 +1221,8 @@ Du kan sjå skilnaden; detaljar finst i [{{fullurl:{{#Special:Log}}/suppcess|pag
 'revdelete-text' => "Sletta versjonar og oppføringar vert framleis synlege i sidehistorikken og loggane, men delar av innhaldet deira vert ikkje lenger offentleggjort.'''
 Andre administratorar på {{SITENAME}} kan framleis sjå det gøymde innhaldet og attopprette det, med mindre fleire avgrensingar vert lagde inn av sideoperatørane.",
 'revdelete-confirm' => 'Stadfest at du ynskjer å gjera dette, at du skjønar konsekvensane, og at du gjer det i samsvar med [[{{MediaWiki:Policy-url}}|retningslinene]].',
-'revdelete-suppress-text' => "Løyning av sideversjonar bør '''berre''' verta nytta i dei fylgjande tilfella:
+'revdelete-suppress-text' => "Løyning av sideversjonar bør '''berre''' nyttast i desse tilfella:
+* Mogeleg ærekrenkjande informasjon
 * Upassanda personleg informasjon
 *: ''heimeadresser og -telefonnummer,  personnummer, osb.''",
 'revdelete-legend' => 'Vel avgrensing for synlegdom',
@@ -2056,7 +2057,7 @@ Du vil kan henda endra skildringa på [$2 filskildringssida] hennar der.',
 
 # Random page
 'randompage' => 'Tilfeldig side',
-'randompage-nopages' => 'Det finst ingen sider i {{PLURAL:$2|det fylgjande namneromet|dei fylgjande namneroma}}: $1.',
+'randompage-nopages' => 'Det finst ingen sider i {{PLURAL:$2|dette namnerommet|desse namneromma}}: $1.',
 
 # Random redirect
 'randomredirect' => 'Tilfeldig omdirigering',
@@ -2165,9 +2166,9 @@ Du vil kan henda endra skildringa på [$2 filskildringssida] hennar der.',
 'ancientpages' => 'Eldste sider',
 'move' => 'Flytt',
 'movethispage' => 'Flytt denne sida',
-'unusedimagestext' => 'Dei fylgjande filene finst, men vert ikkje nytta på noka side.
+'unusedimagestext' => 'Desse filene finst, men vert ikkje nytta på noka side.
 Merk at andre internettsider kan ha direkte lenkjer til filer, og difor kan filene vera nytta aktivt trass i at dei er lista opp her.',
-'unusedcategoriestext' => 'Dei følgjande kategorisidene er oppretta, sjølv om ingen artikkel eller kategori brukar dei.',
+'unusedcategoriestext' => 'Desse kategorisidene er oppretta, sjølv om ingen artikkel eller kategori brukar dei.',
 'notargettitle' => 'Inkje mål',
 'notargettext' => 'Du har ikkje spesifisert noka målside eller nokon brukar å bruke denne funksjonen på.',
 'nopagetitle' => 'Målsida finst ikkje',
@@ -3912,7 +3913,7 @@ Du skal ha motteke [{{SERVER}}{{SCRIPTPATH}}/COPYING ein kopi av GNU General Pub
 'dberr-info' => '(Kan ikkje kontakta databasetenaren: $1)',
 'dberr-usegoogle' => 'Du kan søkja gjennom Google i mellomtida.',
 'dberr-outofdate' => 'Merk at versjonane deira av innhaldet vårt kan vera forelda.',
-'dberr-cachederror' => 'Fylgjande er ein mellomlagra kopi av den etterspurde sida, og er, kan henda, ikkje den siste versjonen av ho.',
+'dberr-cachederror' => 'Dette er ein mellomlagra kopi av den etterspurde sida og er mogelegvis ikkje den gjeldande versjonen av henne.',
 
 # HTML forms
 'htmlform-invalid-input' => 'Det finst problem med innskrivinga di',

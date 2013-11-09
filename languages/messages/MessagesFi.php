@@ -836,7 +836,8 @@ Muita viestejä ei lähetetä, ennen kuin olet toiminut viestin ohjeiden mukaan 
 'acct_creation_throttle_hit' => 'IP-osoitteestasi on luotu tähän wikiin jo {{PLURAL:$1|yksi tunnus|$1 tunnusta}} päivän aikana, joka suurin sallittu määrä tälle ajalle.
 Tästä johtuen tästä IP-osoitteesta ei voi tällä hetkellä luoda uusia tunnuksia.',
 'emailauthenticated' => 'Sähköpostiosoitteesi varmennettiin $2 kello $3.',
-'emailnotauthenticated' => 'Sähköpostiosoitettasi ei ole vielä varmennettu. Sähköpostia ei lähetetä liittyen alla oleviin toimintoihin.',
+'emailnotauthenticated' => 'Sähköpostiosoitettasi ei ole vielä varmennettu.
+Sähköpostia ei lähetetä liittyen alla oleviin toimintoihin.',
 'noemailprefs' => 'Sähköpostiosoitetta ei ole määritelty.',
 'emailconfirmlink' => 'Varmenna sähköpostiosoite',
 'invalidemailaddress' => 'Sähköpostiosoitetta ei voida hyväksyä, koska se ei ole oikeassa muodossa. Ole hyvä ja anna oikea sähköpostiosoite tai jätä kenttä tyhjäksi.',
