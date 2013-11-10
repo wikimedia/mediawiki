@@ -70,6 +70,7 @@ class SpecialWatchlist extends SpecialPage {
 
 		$this->setHeaders();
 		$this->outputHeader();
+		$this->addModules();
 
 		$output->addSubtitle(
 			$this->msg( 'watchlistfor2', $user->getName() )
@@ -366,7 +367,7 @@ class SpecialWatchlist extends SpecialPage {
 		$form .= Xml::checkLabel(
 			$this->msg( 'namespace_association' )->text(),
 			'associated',
-			'associated',
+			'nsassociated',
 			$associated,
 			array( 'title' => $this->msg( 'tooltip-namespace_association' )->text() )
 		) . '&#160;';
