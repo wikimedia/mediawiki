@@ -3206,11 +3206,6 @@ class User {
 			'UserID' => $this->mId,
 			'UserName' => $this->getName(),
 		);
-		if ( 1 == $this->getOption( 'rememberpassword' ) ) {
-			$cookies['Token'] = $this->mToken;
-		} else {
-			$cookies['Token'] = false;
-		}
 
 		wfRunHooks( 'UserSetCookies', array( $this, &$session, &$cookies ) );
 
@@ -3233,14 +3228,10 @@ class User {
 		 * standard time setting, based on if rememberme was set.
 		 */
 		if ( $request->getCheck( 'wpStickHTTPS' ) || $this->requiresHTTPS() ) {
-			$time = null;
-			if ( ( 1 == $this->getOption( 'rememberpassword' ) ) ) {
-				$time = 0; // set to $wgCookieExpiration
-			}
 			$this->setCookie(
 				'forceHTTPS',
 				'true',
-				$time,
+				null,
 				false,
 				array( 'prefix' => '' ) // no prefix
 			);
@@ -4694,8 +4685,7 @@ class User {
 			array( 'up_user' => $userId ), __METHOD__ );
 
 		if ( $hasRows ) {
-			// Only do this delete if there is something there. A very large portion of
-			// calls to this function are for setting 'rememberpassword' for new accounts.
+			// Only do this delete if there is something there.
 			// Doing this delete for new accounts with no rows in the table rougly causes
 			// gap locks on [max user ID,+infinity) which causes high contention since many
 			// updates will pile up on each other since they are for higher (newer) user IDs.
