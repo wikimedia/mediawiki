@@ -354,6 +354,7 @@ production.
 * (bug 55818) BREAKING CHANGE: Removed undocumented 'Debug' hook in wfDebug.
   This resolves an infinite loop when using $wgDebugFunctionEntry = true.
 * (bug 56707) Correct tooltip of "Next n results" on query special pages.
+* (bug 56770) mw.util.addPortletLink: Check length before access array index.
 
 === API changes in 1.22 ===
 * (bug 25553) The JSON output formatter now leaves forward slashes unescaped
