@@ -515,7 +515,6 @@ class LoginForm extends SpecialPage {
 
 		$wgAuth->initUser( $u, $autocreate );
 
-		$u->setOption( 'rememberpassword', $this->mRemember ? 1 : 0 );
 		$u->saveSettings();
 
 		// Update user count
@@ -759,12 +758,6 @@ class LoginForm extends SpecialPage {
 			case self::SUCCESS:
 				# We've verified now, update the real record
 				$user = $this->getUser();
-				if ( (bool)$this->mRemember != $user->getBoolOption( 'rememberpassword' ) ) {
-					$user->setOption( 'rememberpassword', $this->mRemember ? 1 : 0 );
-					$user->saveSettings();
-				} else {
-					$user->invalidateCache();
-				}
 
 				if ( $user->requiresHTTPS() ) {
 					$this->mStickHTTPS = true;
@@ -1208,7 +1201,7 @@ class LoginForm extends SpecialPage {
 		$template->set( 'resetlink', $resetLink );
 		$template->set( 'canremember', ( $wgCookieExpiration > 0 ) );
 		$template->set( 'usereason', $user->isLoggedIn() );
-		$template->set( 'remember', $user->getOption( 'rememberpassword' ) || $this->mRemember );
+		$template->set( 'remember', $this->mRemember );
 		$template->set( 'cansecurelogin', ( $wgSecureLogin === true ) );
 		$template->set( 'stickhttps', (int)$this->mStickHTTPS );
 		$template->set( 'loggedin', $user->isLoggedIn() );
