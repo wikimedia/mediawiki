@@ -170,6 +170,7 @@ class SpecialWatchlist extends SpecialRecentChanges {
 
 		$this->setHeaders();
 		$this->outputHeader();
+		$this->addModules();
 
 		// Add feed links
 		$wlToken = $user->getTokenFromOption( 'watchlisttoken' );
@@ -408,7 +409,7 @@ class SpecialWatchlist extends SpecialRecentChanges {
 		$form .= Xml::checkLabel(
 			$this->msg( 'namespace_association' )->text(),
 			'associated',
-			'associated',
+			'nsassociated',
 			$opts['associated'],
 			array( 'title' => $this->msg( 'tooltip-namespace_association' )->text() )
 		) . '&#160;';
