@@ -409,16 +409,6 @@ class LoginForm extends SpecialPage {
 			return Status::newFatal( 'userexists' );
 		}
 
-		$validateError = '';
-		// Make sure that our extensions like the input for this user
-		if ( !wfRunHooks( 'ValidateNewUser', array( $u, &$validateError ) ) ) {
-			wfDebug( "New user failed hook validation.\n" );
-			if ( !$validateError ) {
-			    return Status::newFatal( 'newuserfailedvalidation' );
-			}
-			return Status::newFatal( $validateError );
-		}
-
 		if ( $this->mCreateaccountMail ) {
 			# do not force a password for account creation by email
 			# set invalid password, it will be replaced later by a random generated password
