@@ -3325,11 +3325,13 @@ class Language {
 				$length -= $eLength;
 				$string = substr( $string, 0, $length ); // xyz...
 				$string = $this->removeBadCharLast( $string );
+				$string = rtrim( $string );
 				$string = $string . $ellipsis;
 			} else {
 				$length += $eLength;
 				$string = substr( $string, $length ); // ...xyz
 				$string = $this->removeBadCharFirst( $string );
+				$string = ltrim( $string );
 				$string = $ellipsis . $string;
 			}
 		}
