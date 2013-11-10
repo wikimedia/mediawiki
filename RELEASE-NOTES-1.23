@@ -223,6 +223,7 @@ changes to languages because of Bugzilla reports.
 * Thumbnails that keep failing to render in thumb.php will be rate-limited
   againt further render attempts for 1 hour. $wgAttemptFailureEpoch can be
   altered to reset all rate-limited thumbnails at once.
+* (bug 52342) Preference "Remember my login" was removed.
 
 ==== Removed classes ====
 * FakeMemCachedClient (deprecated in 1.18)
