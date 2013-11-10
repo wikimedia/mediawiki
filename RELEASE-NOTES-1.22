@@ -410,6 +410,7 @@ production.
   MySQL error when installing using the binary character set option.
 * (bug 45288) Support mysqli PHP extension
 * (bug 56707) Correct tooltip of "Next n results" on query special pages.
+* (bug 56770) mw.util.addPortletLink: Check length before access array index.
 
 === API changes in 1.22 ===
 * (bug 25553) The JSON output formatter now leaves forward slashes unescaped
