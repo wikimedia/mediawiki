@@ -261,6 +261,8 @@ class SkinTemplate extends Skin {
 			$wgShowCreditsIfMax, $wgPageShowWatchingUsers, $wgArticlePath,
 			$wgScriptPath, $wgServer;
 
+		wfProfileIn( __METHOD__ );
+
 		$title = $this->getTitle();
 		$request = $this->getRequest();
 		$tpl = $this->setupTemplateForOutput();
