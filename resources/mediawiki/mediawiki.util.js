@@ -448,7 +448,7 @@
 					// nextnode is a DOM element (was the only option before MW 1.17, in wikibits.js)
 					// or nextnode is a CSS selector for jQuery
 					nextnode = $ul.find( nextnode );
-				} else if ( !nextnode.jquery || nextnode[0].parentNode !== $ul[0] ) {
+				} else if ( !nextnode.jquery || ( nextnode.length && nextnode[0].parentNode !== $ul[0] ) ) {
 					// Fallback
 					$ul.append( $item );
 					return $item[0];
