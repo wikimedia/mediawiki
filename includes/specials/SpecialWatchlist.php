@@ -145,27 +145,8 @@ class SpecialWatchlist extends SpecialRecentChanges {
 		// Check permissions
 		$this->checkPermissions();
 
-		// Add feed links
-		$wlToken = $user->getTokenFromOption( 'watchlisttoken' );
-		if ( $wlToken ) {
-			$this->addFeedLinks( array(
-				'action' => 'feedwatchlist',
-				'allrev' => 1,
-				'wlowner' => $user->getName(),
-				'wltoken' => $wlToken,
-			) );
-		}
-
-		$opts = $this->getOptions();
-		$this->setHeaders();
-		$this->outputHeader();
-
-		$output->addSubtitle(
-			$this->msg( 'watchlistfor2', $user->getName() )
-				->rawParams( SpecialEditWatchlist::buildTools( null ) )
-		);
-
 		$request = $this->getRequest();
+		$opts = $this->getOptions();
 
 		$mode = SpecialEditWatchlist::getMode( $request, $par );
 		if ( $mode !== false ) {
@@ -179,7 +160,40 @@ class SpecialWatchlist extends SpecialRecentChanges {
 			return;
 		}
 
+		if ( ( $wgEnotifWatchlist || $wgShowUpdatedMarker ) && $request->getVal( 'reset' ) &&
+			$request->wasPosted() )
+		{
+			$user->clearAllNotifications();
+			$output->redirect( $this->getTitle()->getFullURL( $opts->getChangedValues() ) );
+			return;
+		}
+
+		$this->setHeaders();
+		$this->outputHeader();
+
+		// Add feed links
+		$wlToken = $user->getTokenFromOption( 'watchlisttoken' );
+		if ( $wlToken ) {
+			$this->addFeedLinks( array(
+				'action' => 'feedwatchlist',
+				'allrev' => 1,
+				'wlowner' => $user->getName(),
+				'wltoken' => $wlToken,
+			) );
+		}
+
+		$output->addSubtitle(
+			$this->msg( 'watchlistfor2', $user->getName() )
+				->rawParams( SpecialEditWatchlist::buildTools( null ) )
+		);
+
 		$dbr = wfGetDB( DB_SLAVE, 'watchlist' );
+
+		# Show a message about slave lag, if applicable
+		$lag = wfGetLB()->safeGetLag( $dbr );
+		if ( $lag > 0 ) {
+			$output->showLagWarning( $lag );
+		}
 
 		$nitems = $this->countItems( $dbr );
 		if ( $nitems == 0 ) {
@@ -206,17 +220,6 @@ class SpecialWatchlist extends SpecialRecentChanges {
 			}
 		} else {
 			$nameSpaceClause = '';
-		}
-
-		// Dump everything here
-		$nondefaults = $opts->getChangedValues();
-
-		if ( ( $wgEnotifWatchlist || $wgShowUpdatedMarker ) && $request->getVal( 'reset' )
-			&& $request->wasPosted()
-		) {
-			$user->clearAllNotifications();
-			$output->redirect( $this->getTitle()->getFullURL( $nondefaults ) );
-			return;
 		}
 
 		# Possible where conditions
@@ -270,51 +273,6 @@ class SpecialWatchlist extends SpecialRecentChanges {
 			$usePage = true;
 		}
 
-		# Show a message about slave lag, if applicable
-		$lag = wfGetLB()->safeGetLag( $dbr );
-		if ( $lag > 0 ) {
-			$output->showLagWarning( $lag );
-		}
-
-		# Create output
-		$form = '';
-
-		# Show watchlist header
-		$form .= "<p>";
-		$form .= $this->msg( 'watchlist-details' )->numParams( $nitems )->parse() . "\n";
-		if ( $wgEnotifWatchlist && $user->getOption( 'enotifwatchlistpages' ) ) {
-			$form .= $this->msg( 'wlheader-enotif' )->parse() . "\n";
-		}
-		if ( $wgShowUpdatedMarker ) {
-			$form .= $this->msg( 'wlheader-showupdated' )->parse() . "\n";
-		}
-		$form .= "</p>";
-
-		if ( $wgShowUpdatedMarker ) {
-			$form .= Xml::openElement( 'form', array( 'method' => 'post',
-				'action' => $this->getTitle()->getLocalURL(),
-				'id' => 'mw-watchlist-resetbutton' ) ) . "\n" .
-			Xml::submitButton( $this->msg( 'enotif_reset' )->text(), array( 'name' => 'dummy' ) ) . "\n" .
-			Html::hidden( 'reset', 'all' ) . "\n";
-			foreach ( $nondefaults as $key => $value ) {
-				$form .= Html::hidden( $key, $value ) . "\n";
-			}
-			$form .= Xml::closeElement( 'form' ) . "\n";
-		}
-
-		$form .= Xml::openElement( 'form', array(
-			'method' => 'post',
-			'action' => $this->getTitle()->getLocalURL(),
-			'id' => 'mw-watchlist-form'
-		) );
-		$form .= Xml::fieldset(
-			$this->msg( 'watchlist-options' )->text(),
-			false,
-			array( 'id' => 'mw-watchlist-options' )
-		);
-
-		$form .= SpecialRecentChanges::makeLegend( $this->getContext() );
-
 		$tables = array( 'recentchanges', 'watchlist' );
 		$fields = RecentChange::selectFields();
 		$join_conds = array(
@@ -360,6 +318,7 @@ class SpecialWatchlist extends SpecialRecentChanges {
 				$lang->userDate( $timestamp, $user ), $lang->userTime( $timestamp, $user ) )->parse() . "<br />\n";
 		}
 
+		$nondefaults = $opts->getChangedValues();
 		$cutofflinks = $this->cutoffLinks( $opts['days'], $nondefaults ) . "<br />\n";
 
 		# Spit out some control panel links
@@ -388,6 +347,43 @@ class SpecialWatchlist extends SpecialRecentChanges {
 		unset( $hiddenFields['namespace'] );
 		unset( $hiddenFields['invert'] );
 		unset( $hiddenFields['associated'] );
+
+		# Create output
+		$form = '';
+
+		# Show watchlist header
+		$form .= "<p>";
+		$form .= $this->msg( 'watchlist-details' )->numParams( $nitems )->parse() . "\n";
+		if ( $wgEnotifWatchlist && $user->getOption( 'enotifwatchlistpages' ) ) {
+			$form .= $this->msg( 'wlheader-enotif' )->parse() . "\n";
+		}
+		if ( $wgShowUpdatedMarker ) {
+			$form .= $this->msg( 'wlheader-showupdated' )->parse() . "\n";
+		}
+		$form .= "</p>";
+
+		if ( $wgShowUpdatedMarker ) {
+			$form .= Xml::openElement( 'form', array( 'method' => 'post',
+				'action' => $this->getTitle()->getLocalURL(),
+				'id' => 'mw-watchlist-resetbutton' ) ) . "\n" .
+			Xml::submitButton( $this->msg( 'enotif_reset' )->text(), array( 'name' => 'dummy' ) ) . "\n" .
+			Html::hidden( 'reset', 'all' ) . "\n";
+			foreach ( $nondefaults as $key => $value ) {
+				$form .= Html::hidden( $key, $value ) . "\n";
+			}
+			$form .= Xml::closeElement( 'form' ) . "\n";
+		}
+
+		$form .= Xml::openElement( 'form', array(
+			'method' => 'post',
+			'action' => $this->getTitle()->getLocalURL(),
+			'id' => 'mw-watchlist-form'
+		) );
+		$form .= Xml::fieldset(
+			$this->msg( 'watchlist-options' )->text(),
+			false,
+			array( 'id' => 'mw-watchlist-options' )
+		);
 
 		# Namespace filter and put the whole form together.
 		$form .= $wlInfo;
