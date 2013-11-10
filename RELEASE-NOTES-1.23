@@ -252,6 +252,7 @@ changes to languages because of Bugzilla reports.
   object expects this column to exist. Use update.php to create this new field.
 * The jquery.delayedBind ResourceLoader module was deprecated in favor of the
   jquery.throttle-debounce module. It will be removed in MediaWiki 1.24.
+* (bug 52342) Preference "Remember my login" was removed.
 
 ==== Removed classes ====
 * FakeMemCachedClient (deprecated in 1.18)

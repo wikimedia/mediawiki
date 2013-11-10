@@ -86,7 +86,6 @@ class ApiLogin extends ApiBase {
 			case LoginForm::SUCCESS:
 				$user = $context->getUser();
 				$this->getContext()->setUser( $user );
-				$user->setOption( 'rememberpassword', 1 );
 				$user->setCookies( $this->getRequest() );
 
 				ApiQueryInfo::resetTokenCache();
