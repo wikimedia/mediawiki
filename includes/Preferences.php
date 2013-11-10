@@ -301,14 +301,6 @@ class Preferences {
 				'section' => 'personal/info',
 			);
 		}
-		if ( $wgCookieExpiration > 0 ) {
-			$defaultPreferences['rememberpassword'] = array(
-				'type' => 'toggle',
-				'label' => $context->msg( 'tog-rememberpassword' )->numParams(
-					ceil( $wgCookieExpiration / ( 3600 * 24 ) ) )->text(),
-				'section' => 'personal/info',
-			);
-		}
 		// Only show prefershttps if secure login is turned on
 		if ( $wgSecureLogin && wfCanIPUseHTTPS( $context->getRequest()->getIP() ) ) {
 			$defaultPreferences['prefershttps'] = array(

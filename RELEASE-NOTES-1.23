@@ -361,6 +361,7 @@ changes to languages because of Bugzilla reports.
   scope (like Zepto.js or document.querySelectorAll, for example) you will need
   to use different names to or re-bind them at the top of each
   ResourceLoader-loaded module.
+* (bug 52342) Preference "Remember my login" was removed.
 
 ==== Removed classes ====
 * FakeMemCachedClient (deprecated in 1.18)
