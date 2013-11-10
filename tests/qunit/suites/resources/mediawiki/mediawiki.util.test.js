@@ -141,8 +141,9 @@
 	 * Previously, test elements where invisible to the selector since only
 	 * one element can have a given id.
 	 */
-	QUnit.test( 'addPortletLink', 11, function ( assert ) {
-		var pTestTb, pCustom, vectorTabs, tbRL, cuQuux, $cuQuux, tbMW, $tbMW, tbRLDM, caFoo, addedAfter;
+	QUnit.test( 'addPortletLink', 13, function ( assert ) {
+		var pTestTb, pCustom, vectorTabs, tbRL, cuQuux, $cuQuux, tbMW, $tbMW, tbRLDM,
+			tbRLDMunknown, tbRLDMunknownJ, caFoo, addedAfter;
 
 		pTestTb = '\
 		<div class="portlet" id="p-test-tb">\
@@ -223,6 +224,18 @@
 
 		addedAfter = mw.util.addPortletLink( 'p-test-tb', '#', 'After foo', 'post-foo', 'After foo', null, $( tbRL ) );
 		assert.strictEqual( $( addedAfter ).next()[0], tbRL, 'Link is in the correct position (by passing a jQuery object as nextnode)' );
+
+		// test case - unknown id as next node
+		tbRLDMunknown = mw.util.addPortletLink( 'p-test-tb', '//mediawiki.org/wiki/RL/DM',
+				'Default modules', 't-rldm-unknown', 'List of all default modules ', 'd', '#t-rl-unknown' );
+
+		assert.equal( tbRLDMunknown, $( '#p-test-tb li:last' )[0], 'Invalid id as nextnode adds the portlet add end' );
+
+		// test case - empty jquery object as next node
+		tbRLDMunknownJ = mw.util.addPortletLink( 'p-test-tb', '//mediawiki.org/wiki/RL/DM',
+				'Default modules', 't-rldm-unknown-j', 'List of all default modules ', 'd', $( '#t-rl-unknown-j' ) );
+
+		assert.equal( tbRLDMunknownJ, $( '#p-test-tb li:last' )[0], 'Empty jquery as nextnode adds the portlet add end' );
 	} );
 
 	QUnit.test( 'jsMessage', 1, function ( assert ) {
