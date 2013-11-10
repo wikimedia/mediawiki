@@ -201,27 +201,6 @@ class SpecialWatchlist extends SpecialRecentChanges {
 			return;
 		}
 
-		# Get namespace value, if supplied, and prepare a WHERE fragment
-		$nameSpace = $opts['namespace'];
-		$invert = $opts['invert'];
-		$associated = $opts['associated'];
-
-		if ( $nameSpace !== '' ) {
-			$eq_op = $invert ? '!=' : '=';
-			$bool_op = $invert ? 'AND' : 'OR';
-			if ( !$associated ) {
-				$nameSpaceClause = "rc_namespace $eq_op $nameSpace";
-			} else {
-				$associatedNS = MWNamespace::getAssociated( $nameSpace );
-				$nameSpaceClause =
-					"rc_namespace $eq_op $nameSpace " .
-					$bool_op .
-					" rc_namespace $eq_op $associatedNS";
-			}
-		} else {
-			$nameSpaceClause = '';
-		}
-
 		# Possible where conditions
 		$conds = array();
 
@@ -248,8 +227,26 @@ class SpecialWatchlist extends SpecialRecentChanges {
 		if ( $user->useRCPatrol() && $opts['hidepatrolled'] ) {
 			$conds[] = 'rc_patrolled != 1';
 		}
-		if ( $nameSpaceClause ) {
-			$conds[] = $nameSpaceClause;
+		# Namespace filtering
+		if ( $opts['namespace'] !== '' ) {
+			$selectedNS = $dbr->addQuotes( $opts['namespace'] );
+			$operator = $opts['invert'] ? '!=' : '=';
+			$boolean = $opts['invert'] ? 'AND' : 'OR';
+
+			# namespace association (bug 2429)
+			if ( !$opts['associated'] ) {
+				$condition = "rc_namespace $operator $selectedNS";
+			} else {
+				# Also add the associated namespace
+				$associatedNS = $dbr->addQuotes(
+					MWNamespace::getAssociated( $opts['namespace'] )
+				);
+				$condition = "(rc_namespace $operator $selectedNS "
+					. $boolean
+					. " rc_namespace $operator $associatedNS)";
+			}
+
+			$conds[] = $condition;
 		}
 
 		# Toggle watchlist content (all recent edits or just the latest)
@@ -305,8 +302,8 @@ class SpecialWatchlist extends SpecialRecentChanges {
 		ChangeTags::modifyDisplayQuery( $tables, $fields, $conds, $join_conds, $options, '' );
 		wfRunHooks( 'SpecialWatchlistQuery', array( &$conds, &$tables, &$join_conds, &$fields, $opts ) );
 
-		$res = $dbr->select( $tables, $fields, $conds, __METHOD__, $options, $join_conds );
-		$numRows = $res->numRows();
+		$rows = $dbr->select( $tables, $fields, $conds, __METHOD__, $options, $join_conds );
+		$numRows = $rows->numRows();
 
 		/* Start bottom header */
 
@@ -394,7 +391,7 @@ class SpecialWatchlist extends SpecialRecentChanges {
 		$form .= "<hr />\n<p>";
 		$form .= Html::namespaceSelector(
 			array(
-				'selected' => $nameSpace,
+				'selected' => $opts['namespace'],
 				'all' => '',
 				'label' => $this->msg( 'namespace' )->text()
 			), array(
@@ -407,14 +404,14 @@ class SpecialWatchlist extends SpecialRecentChanges {
 			$this->msg( 'invert' )->text(),
 			'invert',
 			'nsinvert',
-			$invert,
+			$opts['invert'],
 			array( 'title' => $this->msg( 'tooltip-invert' )->text() )
 		) . '&#160;';
 		$form .= Xml::checkLabel(
 			$this->msg( 'namespace_association' )->text(),
 			'associated',
 			'associated',
-			$associated,
+			$opts['associated'],
 			array( 'title' => $this->msg( 'tooltip-namespace_association' )->text() )
 		) . '&#160;';
 		$form .= Xml::submitButton( $this->msg( 'allpagessubmit' )->text() ) . "</p>\n";
@@ -436,25 +433,22 @@ class SpecialWatchlist extends SpecialRecentChanges {
 		/* End bottom header */
 
 		/* Do link batch query */
-		$linkBatch = new LinkBatch;
-		foreach ( $res as $row ) {
-			$userNameUnderscored = str_replace( ' ', '_', $row->rc_user_text );
-			if ( $row->rc_user != 0 ) {
-				$linkBatch->add( NS_USER, $userNameUnderscored );
-			}
-			$linkBatch->add( NS_USER_TALK, $userNameUnderscored );
-
-			$linkBatch->add( $row->rc_namespace, $row->rc_title );
+		$batch = new LinkBatch;
+		foreach ( $rows as $row ) {
+			$batch->add( NS_USER, $row->rc_user_text );
+			$batch->add( NS_USER_TALK, $row->rc_user_text );
+			$batch->add( $row->rc_namespace, $row->rc_title );
 		}
-		$linkBatch->execute();
-		$dbr->dataSeek( $res, 0 );
+		$batch->execute();
+
+		$dbr->dataSeek( $rows, 0 );
 
 		$list = ChangesList::newFromContext( $this->getContext() );
 		$list->setWatchlistDivs();
 
 		$s = $list->beginRecentChangesList();
 		$counter = 1;
-		foreach ( $res as $obj ) {
+		foreach ( $rows as $obj ) {
 			# Make RC entry
 			$rc = RecentChange::newFromRow( $obj );
 			$rc->counter = $counter++;
@@ -549,9 +543,9 @@ class SpecialWatchlist extends SpecialRecentChanges {
 	 */
 	protected function countItems( $dbr ) {
 		# Fetch the raw count
-		$res = $dbr->select( 'watchlist', array( 'count' => 'COUNT(*)' ),
+		$rows = $dbr->select( 'watchlist', array( 'count' => 'COUNT(*)' ),
 			array( 'wl_user' => $this->getUser()->getId() ), __METHOD__ );
-		$row = $dbr->fetchObject( $res );
+		$row = $dbr->fetchObject( $rows );
 		$count = $row->count;
 
 		return floor( $count / 2 );
