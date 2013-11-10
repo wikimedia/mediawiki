@@ -291,7 +291,7 @@ class EnhancedChangesList extends ChangesList {
 			array_push( $users, $text );
 		}
 
-		$users = ' <span class="changedby">'
+		$users = '<span class="changedby">'
 			. $this->msg( 'brackets' )->rawParams(
 				implode( $this->message['semicolon-separator'], $users )
 			)->escaped() . '</span>';
@@ -402,8 +402,6 @@ class EnhancedChangesList extends ChangesList {
 			$r .= $this->msg( 'parentheses' )->rawParams( $logtext )->escaped();
 		}
 
-		$r .= ' <span class="mw-changeslist-separator">. .</span> ';
-
 		# Character difference (does not apply if only log items)
 		if ( $wgRCShowChangedSize && !$allLogs ) {
 			$last = 0;
@@ -418,15 +416,20 @@ class EnhancedChangesList extends ChangesList {
 			# Get net change
 			$chardiff = $this->formatCharacterDifference( $block[$first], $block[$last] );
 
-			if ( $chardiff == '' ) {
-				$r .= ' ';
-			} else {
-				$r .= ' ' . $chardiff . ' <span class="mw-changeslist-separator">. .</span> ';
+			if ( $chardiff ) {
+				$r .= ' <span class="mw-changeslist-separator">. .</span> ' . $chardiff;
 			}
 		}
 
-		$r .= $users;
-		$r .= $this->numberofWatchingusers( $block[0]->numberofWatchingusers );
+		$r .= ' <span class="mw-changeslist-separator">. .</span> ' . $users;
+
+		# This is not shown by default, see $wgRCShowWatchingUsers
+		$watchingUsers = $this->numberofWatchingusers( $block[0]->numberofWatchingusers );
+		if ( $watchingUsers ) {
+			$r .= ' <span class="mw-changeslist-separator">. .</span> ' . $watchingUsers;
+		}
+
+		$r .= '</td></tr>';
 
 		# Sub-entries
 		foreach ( $block as $rcObj ) {
