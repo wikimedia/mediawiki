@@ -2788,6 +2788,7 @@ $wgMessageStructure = array(
 		'pageinfo-length',
 		'pageinfo-article-id',
 		'pageinfo-language',
+		'pageinfo-content-model',
 		'pageinfo-robot-policy',
 		'pageinfo-robot-index',
 		'pageinfo-robot-noindex',

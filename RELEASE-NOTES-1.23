@@ -34,6 +34,7 @@ production.
   and {{REVISIONTIMESTAMP:}} (with friends).
 * Add "wgRelevantUserName" to mw.config containing the current
   Skin::getRelevantUser value.
+* (bug 56033) Add content model to the page information.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
