@@ -11,7 +11,9 @@ production.
 === Configuration changes in 1.23 ===
 * When $wgJobRunRate is higher that zero, jobs are now executed via an
   asynchronous HTTP request to a MediaWiki entry point. This may require
-  increasing the number of server worker threads.
+  increasing the number of server worker threads. $wgRunJobsAsync has been
+  added to disable this feature if needed, falling back to executing the job
+  on the same process but making the execution synchronously.
 * $wgDebugLogGroups values may be set to an associative array with a
   'destination' key specifying the log destination. The array may also contain
   a 'sample' key with a positive integer value N indicating that the log group
@@ -41,6 +43,20 @@ production.
 * $wgSkipSkin, which has been replaceable by $wgSkipSkins since 2005 (r9249), is
   now formally deprecated.
 * Removed deprecated $wgDisabledActions as it is hardly used anywhere.
+* $wgRateLimitLog has been deprecated and replaced by
+  $wgDebugLogGroup['ratelimit'].
+* $wgLocalInterwikis is an array containing multiple local interwiki prefixes
+  (interwiki prefixes that point back to the current wiki). This effectively
+  allows more than one value of $wgLocalInterwiki to be specified and
+  understood by the parser. The value of $wgLocalInterwiki is automatically
+  prepended to the start of this array.
+* $wgQueryPages has been removed. Query Pages should be added to by using the
+  wgQueryPages hook.
+* $wgHttpOnlyBlacklist has been removed.
+* $wgLicenseTerms has been removed as it was unused.
+* $wgProfileOnly is now deprecated; set the log file in
+  $wgDebugLogGroups['profileoutput'] to replace it.
+* $wgMaxBacklinksInvalidate was removed; use $wgJobBackoffThrottling instead
 
 === New features in 1.23 ===
 * ResourceLoader can utilize the Web Storage API to cache modules client-side.
@@ -114,6 +130,26 @@ production.
   whether to send a watchlist email notification.
 * (bug 42026) Special:Contributions now includes an option to filter page
   creations, similar to the topOnly option.
+* Add mediawiki.ui.button styling to all pages so wiki content can use styled
+  buttons.
+* Special:UserLogin/signup now does AJAX checks for invalid and taken usernames,
+  displaying the error live.
+* Added BaseTemplateAfterPortlet hook to allow injecting html after portlets in skins.
+* Support has been added for a JSON based localisation file format. The
+  installer has been updated to use it.
+* Changes to content typography (fonts, line-height, etc.). See
+  https://www.mediawiki.org/wiki/Typography_refresh for further information.
+* The Vector skin's visual treatment of external links has been simplified to a
+  single icon (from nine). This should not affect local rules unless they were
+  re-using these icons, which have now been deleted.
+* ResourceLoader: mw.loader.using() now implements a Promise interface.
+* Add new hook ChangesListInitRows accessed via ChangesList::initChangesListRows.
+  If called by the ChangesList consumer this gives extensions a chance to batch
+  process the result set prior to rendering.
+* A PoolCounterRedis class was added which can be make use of in $wgPoolCounterConf.
+  This requires at least one Redis 2.6+ server.
+* $wgProfileToDatabase was removed. Set $wgProfiler to ProfilerSimpleDB
+  in StartProfiler.php instead of using this.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
@@ -124,6 +160,10 @@ production.
   when the email address is already confirmed. Also, consistently use
   "confirmed", rather than "authenticated", when messaging whether or not the
   user has confirmed an email address.
+* (bug 19415) action=render no longer shows section edit links. This affects
+  behavior of several other features where (bogus) section edit links will
+  disappear, such as file description pages loaded via $wgUseInstantCommons or
+  pages transcluded cross-wiki via $wgEnableScaryTranscluding.
 * (bug 56912) Show correct link color on cached result of Special:DeadendPages.
 * Classes TitleListDependency and TitleDependency have been removed, as they
   have been found unused in core and extensions for a long time.
@@ -151,6 +191,11 @@ production.
   message instead of leading the user to make a null edit.
 * (bug 52659) mediawiki.notification: Notification area remained visible when
   empty and thus was stealing pointer events from links on the page.
+* (bug 26811) When a DBUnexpectedError occurs, DB server hostnames are now
+  hidden unless $wgShowExceptionDetails is true, and $wgShowDBErrorBacktrace
+  no longer applies in such cases.
+* (bug 60960) Avoid doing file_exist() checks on data: URIs, as they cause
+  warnings to be printed on Windows due to large path length.
 
 === Web API changes in 1.23 ===
 * (bug 54884) action=parse&prop=categories now indicates hidden and missing
@@ -201,6 +246,12 @@ production.
 * (bug 42026) Added ucshow={new,!new,top,!top} to list=usercontribs.
   Also added newonly to action=feedcontributions.
 * (bug 42026) Deprecated uctoponly in favor of ucshow=top.
+* list=search no longer has a "srredirects" parameter. Redirects are now
+  included in all searches.
+* Added list=prefixsearch that works like action=opensearch but can be used as
+  a generator.
+* (bug 24782) Various modules will now use unique continuation parameters.
+* (bug 63249) Cache RecentChanges Atom feed in varnish for 15 seconds.
 
 === Languages updated in 1.23 ===
 
@@ -208,6 +259,8 @@ MediaWiki supports over 350 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Bugzilla reports.
 
+* Support was added for Algerian Spoken Arabic (arq).
+* Support was added for Riograndenser Hunsrückisch (hrx).
 * Support was added for Northern Luri (lrc).
 
 === Other changes in 1.23 ===
@@ -265,6 +318,37 @@ changes to languages because of Bugzilla reports.
 * The jquery.delayedBind ResourceLoader module was deprecated in favor of the
   jquery.throttle-debounce module. It will be removed in MediaWiki 1.24.
 * mw.user.bucket has been deprecated.
+* On Special:PrefixIndex, a table#mw-prefixindex-list-table was changed to
+  table.mw-prefixindex-list-table to avoid duplicate ids when the special page
+  is transcluded.
+* (bug 62198) window.$j has been deprecated.
+* Preference "Disable link title conversion" was removed.
+* SpecialRecentChanges no longer includes any functionality for generating feeds
+  - it has been factored out to ApiFeedRecentChanges. Old URLs redirect to new
+  ones.
+* RecentChange::mExtra['lang'] is no longer set and should no longer be used.
+  Extensions should read from other configuration variables, including
+  $wgLocalInterwikis, to identify the current wiki.
+* Sections in the parser test framework have been renamed and the old
+  section names are deprecated.  Please use "!!wikitext" and "!!html"
+  (or "!!html/php") instead of "!!input" and "!!result".  This allows
+  us to extend parser tests to accommodate additional input/output
+  pairs, such as "!!html/parsoid" (for the output of the Parsoid
+  parser, where it differs from the PHP parser).
+* Special:Search no longer has an "include redirects" option on the advanced
+  tab. Redirects are now included in all searches.
+* mediawiki.api.category's getCategories() 'async' parameter was deprecated.
+* The locations of resources have been split between upstream libraries, now in
+  resources/lib/, local libaries in resources/src/, and local forks of upstream
+  libraries, also in resources/src/.
+* BREAKING CHANGE: The automatically-generated function closure with which
+  ResourceLoader wraps all modules' JavaScript code now binds the identifier
+  names 'jQuery' and '$' to the jQuery object of the version of jQuery that is
+  bundled with MediaWiki. If you bind these names to other objects in global
+  scope (like Zepto.js or document.querySelectorAll, for example) you will need
+  to use different names to or re-bind them at the top of each
+  ResourceLoader-loaded module.
+* (bug 52342) Preference "Remember my login" was removed.
 
 ==== Removed classes ====
 * FakeMemCachedClient (deprecated in 1.18)

@@ -84,8 +84,8 @@ class Preferences {
 
 		self::profilePreferences( $user, $context, $defaultPreferences );
 		self::skinPreferences( $user, $context, $defaultPreferences );
-		self::filesPreferences( $user, $context, $defaultPreferences );
 		self::datetimePreferences( $user, $context, $defaultPreferences );
+		self::filesPreferences( $user, $context, $defaultPreferences );
 		self::renderingPreferences( $user, $context, $defaultPreferences );
 		self::editingPreferences( $user, $context, $defaultPreferences );
 		self::rcPreferences( $user, $context, $defaultPreferences );
@@ -193,7 +193,7 @@ class Preferences {
 	 */
 	static function profilePreferences( $user, IContextSource $context, &$defaultPreferences ) {
 		global $wgAuth, $wgContLang, $wgParser, $wgCookieExpiration, $wgLanguageCode,
-			$wgDisableTitleConversion, $wgDisableLangConversion, $wgMaxSigChars,
+			$wgDisableLangConversion, $wgMaxSigChars,
 			$wgEnableEmail, $wgEmailConfirmToEdit, $wgEnableUserEmail, $wgEmailAuthentication,
 			$wgEnotifWatchlist, $wgEnotifUserTalk, $wgEnotifRevealEditorAddress,
 			$wgSecureLogin;
@@ -301,15 +301,7 @@ class Preferences {
 				'section' => 'personal/info',
 			);
 		}
-		if ( $wgCookieExpiration > 0 ) {
-			$defaultPreferences['rememberpassword'] = array(
-				'type' => 'toggle',
-				'label' => $context->msg( 'tog-rememberpassword' )->numParams(
-					ceil( $wgCookieExpiration / ( 3600 * 24 ) ) )->text(),
-				'section' => 'personal/info',
-			);
-		}
-		// Only show preferhttps if secure login is turned on
+		// Only show prefershttps if secure login is turned on
 		if ( $wgSecureLogin && wfCanIPUseHTTPS( $context->getRequest()->getIP() ) ) {
 			$defaultPreferences['prefershttps'] = array(
 				'type' => 'toggle',
@@ -381,14 +373,6 @@ class Preferences {
 						'section' => 'personal/i18n',
 						'help-message' => 'prefs-help-variant',
 					);
-
-					if ( !$wgDisableTitleConversion ) {
-						$defaultPreferences['noconvertlink'] = array(
-							'type' => 'toggle',
-							'section' => 'personal/i18n',
-							'label-message' => 'tog-noconvertlink',
-						);
-					}
 				} else {
 					$defaultPreferences["variant-$langCode"] = array(
 						'type' => 'api',
@@ -656,7 +640,7 @@ class Preferences {
 				'type' => 'radio',
 				'options' => $dateOptions,
 				'label' => '&#160;',
-				'section' => 'datetime/dateformat',
+				'section' => 'rendering/dateformat',
 			);
 		}
 
@@ -673,7 +657,7 @@ class Preferences {
 			'raw' => 1,
 			'label-message' => 'servertime',
 			'default' => $nowserver,
-			'section' => 'datetime/timeoffset',
+			'section' => 'rendering/timeoffset',
 		);
 
 		$defaultPreferences['nowlocal'] = array(
@@ -681,7 +665,7 @@ class Preferences {
 			'raw' => 1,
 			'label-message' => 'localtime',
 			'default' => $nowlocal,
-			'section' => 'datetime/timeoffset',
+			'section' => 'rendering/timeoffset',
 		);
 
 		// Grab existing pref.
@@ -711,7 +695,7 @@ class Preferences {
 			'options' => $tzOptions,
 			'default' => $tzSetting,
 			'size' => 20,
-			'section' => 'datetime/timeoffset',
+			'section' => 'rendering/timeoffset',
 		);
 	}
 
@@ -1073,9 +1057,8 @@ class Preferences {
 		$mptitle = Title::newMainPage();
 		$previewtext = $context->msg( 'skin-preview' )->text();
 
-		# Only show members of Skin::getSkinNames() rather than
-		# $skinNames (skins is all skin names from Language.php)
-		$validSkinNames = Skin::getUsableSkins();
+		# Only show skins that aren't disabled in $wgSkipSkins
+		$validSkinNames = Skin::getAllowedSkins();
 
 		# Sort by UI skin name. First though need to update validSkinNames as sometimes
 		# the skinkey & UI skinname differ (e.g. "standard" skinkey is "Classic" in the UI).
@@ -1418,7 +1401,7 @@ class Preferences {
 
 		// Fortunately, the realname field is MUCH simpler
 		// (not really "private", but still shouldn't be edited without permission)
-		if ( !in_array( 'realname', $wgHiddenPrefs ) && $user->isAllowed( 'editmyprivateinfo' ) ) {
+		if ( !in_array( 'realname', $wgHiddenPrefs ) && $user->isAllowed( 'editmyprivateinfo' ) && array_key_exists( 'realname', $formData ) ) {
 			$realName = $formData['realname'];
 			$user->setRealName( $realName );
 		}

@@ -697,6 +697,7 @@ class User {
 		return $this->getPasswordValidity( $password ) === true;
 	}
 
+
 	/**
 	 * Given unvalidated password input, return error message on failure.
 	 *
@@ -704,6 +705,33 @@ class User {
 	 * @return mixed: true on success, string or array of error message on failure
 	 */
 	public function getPasswordValidity( $password ) {
+		$result = $this->checkPasswordValidity( $password );
+		if ( $result->isGood() ) {
+			return true;
+		} else {
+			$messages = array();
+			foreach ( $result->getErrorsByType( 'error' ) as $error ) {
+				$messages[] = $error['message'];
+			}
+			foreach ( $result->getErrorsByType( 'warning' ) as $warning ) {
+				$messages[] = $warning['message'];
+			}
+			if ( count( $messages ) === 1 ) {
+				return $messages[0];
+			}
+			return $messages;
+		}
+	}
+
+	/**
+	 * Check if this is a valid password for this user. Status will be good if
+	 * the password is valid, or have an array of error messages if not.
+	 *
+	 * @param string $password Desired password
+	 * @return Status
+	 * @since 1.23
+	 */
+	public function checkPasswordValidity( $password ) {
 		global $wgMinimalPasswordLength, $wgContLang;
 
 		static $blockedLogins = array(
@@ -711,30 +739,37 @@ class User {
 			'Apitestsysop' => 'testpass', 'Apitestuser' => 'testpass' # r75605
 		);
 
+		$status = Status::newGood();
+
 		$result = false; //init $result to false for the internal checks
 
 		if ( !wfRunHooks( 'isValidPassword', array( $password, &$result, $this ) ) ) {
-			return $result;
+			$status->error( $result );
+			return $status;
 		}
 
 		if ( $result === false ) {
 			if ( strlen( $password ) < $wgMinimalPasswordLength ) {
-				return 'passwordtooshort';
+				$status->error( 'passwordtooshort', $wgMinimalPasswordLength );
+				return $status;
 			} elseif ( $wgContLang->lc( $password ) == $wgContLang->lc( $this->mName ) ) {
-				return 'password-name-match';
+				$status->error( 'password-name-match' );
+				return $status;
 			} elseif ( isset( $blockedLogins[$this->getName()] ) && $password == $blockedLogins[$this->getName()] ) {
-				return 'password-login-forbidden';
+				$status->error( 'password-login-forbidden' );
+				return $status;
 			} else {
-				//it seems weird returning true here, but this is because of the
+				//it seems weird returning a Good status here, but this is because of the
 				//initialization of $result to false above. If the hook is never run or it
 				//doesn't modify $result, then we will likely get down into this if with
 				//a valid password.
-				return true;
+				return $status;
 			}
 		} elseif ( $result === true ) {
-			return true;
+			return $status;
 		} else {
-			return $result; //the isValidPassword hook set a string $result and returned true
+			$status->error( $result );
+			return $status; //the isValidPassword hook set a string $result and returned true
 		}
 	}
 
@@ -1088,7 +1123,7 @@ class User {
 		} else {
 			$result = 0;
 			for ( $i = 0; $i < strlen( $answer ); $i++ ) {
-				$result |= ord( $answer{$i} ) ^ ord( $test{$i} );
+				$result |= ord( $answer[$i] ) ^ ord( $test[$i] );
 			}
 			$passwordCorrect = ( $result == 0 );
 		}
@@ -1602,7 +1637,7 @@ class User {
 			return false;
 		}
 
-		global $wgMemc, $wgRateLimitLog;
+		global $wgMemc;
 		wfProfileIn( __METHOD__ );
 
 		$limits = $wgRateLimits[$action];
@@ -1665,12 +1700,7 @@ class User {
 			// Already pinged?
 			if ( $count ) {
 				if ( $count >= $max ) {
-					wfDebug( __METHOD__ . ": tripped! $key at $count $summary\n" );
-					if ( $wgRateLimitLog ) {
-						wfSuppressWarnings();
-						file_put_contents( $wgRateLimitLog, wfTimestamp( TS_MW ) . ' ' . wfWikiID() . ': ' . $this->getName() . " tripped $key at $count $summary\n", FILE_APPEND );
-						wfRestoreWarnings();
-					}
+					wfDebugLog( 'ratelimit', $this->getName() . " tripped! $key at $count $summary" );
 					$triggered = true;
 				} else {
 					wfDebug( __METHOD__ . ": ok. $key at $count $summary\n" );
@@ -3289,8 +3319,9 @@ class User {
 	 * @param $request WebRequest object to use; $wgRequest will be used if null
 	 *        is passed.
 	 * @param bool $secure Whether to force secure/insecure cookies or use default
+	 * @param bool $rememberMe Whether to add a Token cookie for elongated sessions
 	 */
-	public function setCookies( $request = null, $secure = null ) {
+	public function setCookies( $request = null, $secure = null, $rememberMe = false ) {
 		if ( $request === null ) {
 			$request = $this->getRequest();
 		}
@@ -3316,7 +3347,7 @@ class User {
 			'UserID' => $this->mId,
 			'UserName' => $this->getName(),
 		);
-		if ( 1 == $this->getOption( 'rememberpassword' ) ) {
+		if ( $rememberMe ) {
 			$cookies['Token'] = $this->mToken;
 		} else {
 			$cookies['Token'] = false;
@@ -3343,14 +3374,10 @@ class User {
 		 * standard time setting, based on if rememberme was set.
 		 */
 		if ( $request->getCheck( 'wpStickHTTPS' ) || $this->requiresHTTPS() ) {
-			$time = null;
-			if ( ( 1 == $this->getOption( 'rememberpassword' ) ) ) {
-				$time = 0; // set to $wgCookieExpiration
-			}
 			$this->setCookie(
 				'forceHTTPS',
 				'true',
-				$time,
+				$rememberMe ? 0 : null,
 				false,
 				array( 'prefix' => '' ) // no prefix
 			);
@@ -3692,14 +3719,9 @@ class User {
 		global $wgAuth, $wgLegacyEncoding;
 		$this->load();
 
-		// Even though we stop people from creating passwords that
-		// are shorter than this, doesn't mean people wont be able
-		// to. Certain authentication plugins do NOT want to save
+		// Certain authentication plugins do NOT want to save
 		// domain passwords in a mysql database, so we should
 		// check this (in case $wgAuth->strict() is false).
-		if ( !$this->isValidPassword( $password ) ) {
-			return false;
-		}
 
 		if ( $wgAuth->authenticate( $this->getName(), $password ) ) {
 			return true;
@@ -4741,28 +4763,37 @@ class User {
 			// Don't bother storing default values
 			$defaultOption = self::getDefaultOption( $key );
 			if ( ( is_null( $defaultOption ) &&
-					!( $value === false || is_null( $value ) ) ) ||
-					$value != $defaultOption ) {
+				!( $value === false || is_null( $value ) ) ) ||
+				$value != $defaultOption
+			) {
 				$insert_rows[] = array(
-						'up_user' => $userId,
-						'up_property' => $key,
-						'up_value' => $value,
-					);
+					'up_user' => $userId,
+					'up_property' => $key,
+					'up_value' => $value,
+				);
 			}
 		}
 
 		$dbw = wfGetDB( DB_MASTER );
-		$hasRows = $dbw->selectField( 'user_properties', '1',
-			array( 'up_user' => $userId ), __METHOD__ );
-
-		if ( $hasRows ) {
-			// Only do this delete if there is something there. A very large portion of
-			// calls to this function are for setting 'rememberpassword' for new accounts.
-			// Doing this delete for new accounts with no rows in the table rougly causes
-			// gap locks on [max user ID,+infinity) which causes high contention since many
-			// updates will pile up on each other since they are for higher (newer) user IDs.
-			$dbw->delete( 'user_properties', array( 'up_user' => $userId ), __METHOD__ );
+		// Find and delete any prior preference rows...
+		$res = $dbw->select( 'user_properties',
+			array( 'up_property' ), array( 'up_user' => $userId ), __METHOD__ );
+		$priorKeys = array();
+		foreach ( $res as $row ) {
+			$priorKeys[] = $row->up_property;
 		}
+		if ( count( $priorKeys ) ) {
+			// Do the DELETE by PRIMARY KEY for prior rows.
+			// In the past a very large portion of calls to this function was for setting
+			//'rememberpassword' for new accounts ( a preference that has been removed ).
+			// Doing a blanket per-user DELETE for new accounts with no rows in the table
+			// caused gap locks on [max user ID,+infinity) which caused high contention since
+			// updates would pile up on each other as they are for higher (newer) user IDs.
+			// It might not be necessary these days, but it shouldn't hurt either.
+			$dbw->delete( 'user_properties',
+				array( 'up_user' => $userId, 'up_property' => $priorKeys ), __METHOD__ );
+		}
+		// Insert the new preference rows
 		$dbw->insert( 'user_properties', $insert_rows, __METHOD__, array( 'IGNORE' ) );
 	}
 
