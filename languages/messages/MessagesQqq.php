@@ -4480,7 +4480,8 @@ See also:
 'file-anchor-link' => '{{Identical|File}}',
 'filehist' => 'Text shown on a media description page. Heads the section where the different versions of the file are displayed.',
 'filehist-help' => 'In file description page',
-'filehist-deleteall' => 'Link in image description page for admins.',
+'filehist-deleteall' => 'Link in image description page for admins.
+{{Identical|Delete all}}',
 'filehist-deleteone' => 'Link description on file description page to delete an earlier version of a file.
 
 {{Identical|Delete}}',

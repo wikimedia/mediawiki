@@ -907,7 +907,7 @@ Gif se brūcend asifte hine. synderlīce sind ymelan geīwda þǣre þe se brūc
 # Delete
 'deletepage' => 'Forlēosan tramet',
 'excontent' => 'innung wæs: "$1"',
-'excontentauthor' => 'innung wæs: \'$1\' (and se āna forðiend wæs "[[Special:Contributions/$2|$2]")',
+'excontentauthor' => 'innung wæs: \'$1\' (and se āna forðiend wæs "[[Special:Contributions/$2|$2]]")',
 'exblank' => 'tramet wæs æmettig',
 'historywarning' => "'''Warnung''': Se tramet þe þū wilt forlēosan hafaþ stǣr mid nēan $1 {{PLURAL:$1|fadunge|fadunga}}:",
 'actioncomplete' => 'Dǣd  is fulfyled',

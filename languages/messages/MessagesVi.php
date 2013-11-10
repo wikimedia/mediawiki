@@ -1030,7 +1030,7 @@ Có thể nó đã bị di chuyển hoặc xóa đi trong khi bạn đang xem tr
 'accmailtitle' => 'Đã gửi mật khẩu.',
 'accmailtext' => "Một mật khẩu được tạo ngẫu nhiên cho [[User talk:$1|$1]] đã được gửi đến $2. Có thể đổi mật khẩu tại trang ''[[Special:ChangePassword|đổi mật khẩu]]'' sau khi đã đăng nhập.",
 'newarticle' => '(Mới)',
-'newarticletext' => "Bạn đi đến đây từ một liên kết đến một trang chưa tồn tại. Để tạo trang, hãy bắt đầu gõ vào ô bên dưới (xem [[{{MediaWiki:Helppage}}|trang trợ giúp]] để có thêm thông tin). Nếu bạn đến đây do nhầm lẫn, chỉ cần nhấn vào nút '''Lùi''' (''Back'') trong trình duyệt của bạn.",
+'newarticletext' => "Bạn đi đến đây từ một liên kết đến một trang chưa tồn tại. Để tạo trang, hãy bắt đầu gõ vào ô bên dưới (xem [[{{MediaWiki:Helppage}}|trang trợ giúp]] để có thêm thông tin). Nếu bạn đến đây do nhầm lẫn, chỉ cần nhấn vào nút '''Back''' trong trình duyệt của bạn.",
 'anontalkpagetext' => "----''Đây là trang thảo luận của một người dùng vô danh chưa tạo tài khoản hoặc có tài khoản nhưng không đăng nhập.
 Do đó chúng ta phải dùng một dãy số gọi là địa chỉ IP để xác định anh/chị ta.
 Một địa chỉ IP như vậy có thể có nhiều người cùng dùng chung.
@@ -2731,9 +2731,10 @@ $1',
 'ipbreason' => 'Lý do:',
 'ipbreasonotherlist' => 'Lý do khác',
 'ipbreason-dropdown' => '*Một số lý do cấm thường gặp
+** Phá hoại
 ** Thêm thông tin sai lệch
-** Xóa nội dung trang
-** Đăng liên kết thư rác đến trang Web bên ngoài
+** Tẩy trống nội dung trang
+** Đăng liên kết thư rác dẫn đến trang web độc hại
 ** Cho thông tin rác vào trang
 ** Có thái độ dọa dẫm/quấy rối
 ** Lạm dụng nhiều tài khoản

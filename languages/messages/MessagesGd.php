@@ -492,7 +492,7 @@ Na dìochuimhnich na [[Special:Preferences|roghainnean agad air {{SITENAME}}]] a
 'gotaccount' => 'A bheil cunntas agad mu thràth? $1.',
 'gotaccountlink' => 'Log a-steach',
 'userlogin-resetlink' => "Na dhìochuimhnich thu d' ainm is facal-faire?",
-'userlogin-resetpassword-link' => 'Ath-shuidhich am facal-faire agad',
+'userlogin-resetpassword-link' => 'Na dhìochuimhnich thu am facal-faire agad?',
 'helplogin-url' => "Help:A' clàradh a-steach",
 'userlogin-helplink' => "[[{{MediaWiki:helplogin-url}}|Cobhair leis a' chlàradh a-steach]]",
 'userlogin-loggedin' => 'Chaidh do chlàradh mar {{GENDER:$1|$1}} mu thràth.
@@ -569,7 +569,7 @@ Mus dèid post-d sam bith eile a chur dhan chunntas, feumaidh tu leantainn ris a
 Gus casg a chur air mì-ghnàthachadh, cha chuir sinn ach aon chuimhneachan facail-fhaire gach {{PLURAL:$1|uair|$1 uair|$1 uairean|$1 uair}} a thìde.',
 'mailerror' => "Mearachd a' cur post: $1",
 'acct_creation_throttle_hit' => "Chruthaich na h-aoighean air an Uici seo {{PLURAL:$1|1 chunntas|$1 chunntas|$1 cunntasan|$1 cunntas}} fon IP agad an-dè agus sin an àireamh as motha a tha ceadaichte. Chan urrainn do dh'aoighean eile on IP seo barrachd chunntasan a chruthachadh air sgàth sin.",
-'emailauthenticated' => 'Chaidh an seòladh puist-dhealain agad a dhearbhadh $2 aig $3.',
+'emailauthenticated' => 'Chaidh an seòladh puist-d agad a dhearbhadh $2 aig $3.',
 'emailnotauthenticated' => 'Cha deach am post-d agad a dhearbhadh fhathast.
 Cha dèid post-d a chur airson gin dhe na feartan a leanas.',
 'noemailprefs' => 'Sònraich post-d sna roghainnean agad gus na feartan seo a chur an comas.',
@@ -1009,6 +1009,14 @@ Gheibh thu mion-fhiosrachadh air [{{fullurl:{{#Special:Log}}/suppress|page={{FUL
 'revdelete-show-file-submit' => 'Tha',
 'revdelete-selected' => "'''{{PLURAL:$2|Lèirmheas|Lèirmheasan}} de [[:$1]] a thagh thu:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|An tachartas loga|Na tachartasan loga}} a thagh thu:'''",
+'revdelete-text' => "'''Nochdaidh lèirmheasan is tachartasan fhathast ann an eachdraidh 's logaichean na duilleige ach bidh cuid a shusbaint ann nach fhaic am poball.'''
+Gheibh rianairean eile air {{SITENAME}} greim fhathast air an t-susbaint fhalaichte agus gabhaidh an sguabadh às a neo-dhèanamh a-rithist san aon eadar-aghaidh mur an deach cuingeachaidhean eile a shuidheachadh.",
+'revdelete-confirm' => "Dearbh gu bheil thu airson seo a dhèanamh, gu bheil thu a' tuigsinn na thachras ri linn agus gu bheil thu a' dèanamh seo a-rèir [[{{MediaWiki:Policy-url}}|a' phoileasaidh]].",
+'revdelete-suppress-text' => "Cha bu chòir dhut mùchadh a chleachdadh '''ach''' ann an suidheachaidhean mar seo:
+* Fiosrachadh a dh'fhaodadh a bhith dìteachail
+* Fiosrachadh pearsanta a tha cearr
+*: ''seòladh taige, àireamhan fòn, àireamhan NI is msaa.''",
+'revdelete-legend' => 'Suidhich cuingeachaidhean na faicsinneachd',
 'revdelete-hide-text' => "Teacsa a' mhùthaidh",
 'revdelete-hide-image' => 'Falaich susbaint an fhaidhle',
 'revdelete-hide-name' => 'Falaich an gnìomh agus an targaid',
@@ -1033,6 +1041,7 @@ $1",
 'revdel-restore-visible' => 'mùthaidhean faicsinneach',
 'pagehist' => 'Eachdraidh na duilleige',
 'deletedhist' => 'Eachdraidh a chaidh a sguabadh às',
+'revdelete-hide-current' => "Mearachd a' cur am falach an nì dhen $2, $1: Seo an lèirmheas làithreach. Cha ghabh a chur am falach.",
 'revdelete-otherreason' => 'Adhbhar eile/a bharrachd:',
 'revdelete-reasonotherlist' => 'Adhbhar eile',
 'revdelete-edit-reasonlist' => 'Deasaich adhbharan an sguabaidh às',

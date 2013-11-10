@@ -1240,7 +1240,7 @@ Ang imo adres sang e-mail wala ginapakita kon kontakon ka sang iban.',
 'group-all' => '(tanan)',
 
 'group-user-member' => '{{GENDER:$1|naga-usar}}',
-'group-autoconfirmed-member' => '{GENDER:$1|naga-usar nga awtomatikong nakompirma}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|naga-usar nga awtomatikong nakompirma}}',
 'group-bot-member' => '{{GENDER:$1|bot}}',
 'group-sysop-member' => '{{GENDER:$1|tagdumala}}',
 'group-bureaucrat-member' => '{{GENDER:$1|byurokratiko}}',
@@ -1417,7 +1417,7 @@ Mga Pahina sa [[Special:Watchlist|imo lista-lantaw]] ay '''dukot'''.",
 'upload-recreate-warning' => "'''Abiso: Ang isa ka file nga amo ang iya ngalan ginpanas na ukon ginsaylo'''
 
 Ang log sang pagpanas kag pagsaylo para sa sini nga panid ginahatag diri para sa imo nga kombinyensya.",
-'uploadtext' => "Usaron ang porma sa idalum para makakarga sang mga file. Para matan-aw ukon mapangita ang mga file nga ginkarga na, kadto sa:[Special:FileList|lista sang mga files nga ginkarga]], ang mga ginkarga liwat nakalista sa: [[Special:Log/upload|lista sang mga ginkarga]], ang mga ginpanas [[Special:Log/delete|lista sang mga ginpanas]].
+'uploadtext' => "Usaron ang porma sa idalum para makakarga sang mga file. Para matan-aw ukon mapangita ang mga file nga ginkarga na, kadto sa:[[Special:FileList|lista sang mga files nga ginkarga]], ang mga ginkarga liwat nakalista sa: [[Special:Log/upload|lista sang mga ginkarga]], ang mga ginpanas [[Special:Log/delete|lista sang mga ginpanas]].
 
 Para maupod ang isa ka file sa isa ka panid, usaron ang sini nga sugpon sa mga masunod nga mga porma:
 * '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></code>''' para mausar ang bilog nga bersyon sang file

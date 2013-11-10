@@ -2264,7 +2264,7 @@ Támogatott {{PLURAL:$2|protokoll|protokollok}}: <code>$1</code> (http:// az ala
 
 # Special:ActiveUsers
 'activeusers' => 'Aktív szerkesztők listája',
-'activeusers-intro' => 'Ez a lap azon felhasználók listáját tartalmazza, akik csináltak valamilyen tevékenységet az elmúlt {{PLURAL:$1|egy|$1}} napban.',
+'activeusers-intro' => 'Ez a lap azon felhasználók listáját tartalmazza, akik végeztek valamilyen tevékenységet az elmúlt {{PLURAL:$1|egy|$1}} napban.',
 'activeusers-count' => '$1 szerkesztés az utolsó $3 napban',
 'activeusers-from' => 'Szerkesztők listázása a következő névtől kezdve:',
 'activeusers-hidebots' => 'Botok elrejtése',

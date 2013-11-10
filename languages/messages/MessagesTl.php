@@ -1654,9 +1654,9 @@ bumalik at ikarga ang talaksan na ito sa bagong pangalan. [[File:$1|thumb|center
 'uploadscripted' => 'Naglalaman ang talaksan na ito ng HTML o kodigong script na maaaring mali ang pagkaintindi ng isang web browser.',
 'uploadvirus' => 'Naglalaman ng virus ang talaksan! Mga detalye: $1',
 'uploadjava' => 'Ang talaksan ay isang talaksang ZIP na naglalaman ng isang .klase ng talaksan. na Java.  Hindi pinapayagan ang pagkakarga ng mga talaksang Java, dahil nakasasanhi sila ng mga paglilimita ng kaligtasan na kailangang lampasan.',
-'upload-source' => 'Pinagmulang talaksan',
+'upload-source' => 'Batayang talaksan',
 'sourcefilename' => 'Pangalan ng panggagalingang talaksan:',
-'sourceurl' => 'Pinagmulang URL:',
+'sourceurl' => 'Batayang URL:',
 'destfilename' => 'Pangalan ng patutunguhang talaksan:',
 'upload-maxfilesize' => 'Pinakamataas na sukat ng talaksan: $1',
 'upload-description' => 'Paglalarawan ng talaksan',
@@ -2029,12 +2029,11 @@ Pakitandaan lamang na ang iba mga websayt ay maaaring nakakawing sa isang talaks
 'querypage-disabled' => 'Hindi pinagagana ang natatanging pahinang ito para sa mga dahilan ng pagganap.',
 
 # Book sources
-'booksources' => 'Mapagkukuhanang mga aklat',
+'booksources' => 'Mga mapagkukunang aklat',
 'booksources-search-legend' => 'Maghanap ng mapagkukunang aklat',
 'booksources-isbn' => 'ISBN:',
-'booksources-go' => 'Punta',
-'booksources-text' => 'Matatagpuan sa ibaba ang mga tala ng mga ugnay sa ibang mga websayt na nagbebenta ng bago at nagamit na mga aklat, at maaring mayroon din
-na iba pang impormasyon tungkol sa mga aklat na hinahanap mo:',
+'booksources-go' => 'Puntahan',
+'booksources-text' => 'Matatagpuan sa ibaba ang isang tala ng mga kawing patungo sa ibang mga websayt na nanininda ng mga bago at gamit na aklat, at maaaring may iba pang impormasyon ito tungkol sa mga aklat na hinahanap mo:',
 'booksources-invalid-isbn' => 'Tila mukhang hindi yata katanggap-tanggap ang ibinigay na ISBN; pakisuri kung may mga kamalian ang pagkakasip/pagkakakopya mula sa orihinal na pinagmulan.',
 
 # Special:Log
@@ -2773,7 +2772,7 @@ Pakidalaw ang [//www.mediawiki.org/wiki/Localisation Lokalisasyong MediaWiki] at
 'import-interwiki-text' => 'Pumili ng isang wiki at pamagat ng pahina na iaangkat.
 Mapapanatili ang mga petsa ng pagbabago at mga pangalan ng patnugot.
 Naitatala sa [[Special:Log/import|tala ng inangkat]] ang lahat ng mga transwiking aksyon para sa pag-angkat.',
-'import-interwiki-source' => 'Pinagmulang wiki/pahina:',
+'import-interwiki-source' => 'Batayang wiki/pahina:',
 'import-interwiki-history' => 'Kopyahin ang lahat ng mga bersyon ng kasaysayan para sa pahinang ito',
 'import-interwiki-templates' => 'Isama ang lahat ng mga suleras',
 'import-interwiki-submit' => 'Mag-angkat',

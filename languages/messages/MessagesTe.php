@@ -1334,7 +1334,7 @@ $1",
 'group-bot-member' => '{{GENDER:$1|బాట్}}',
 'group-sysop-member' => '{{GENDER:$1|నిర్వాహకుడు|నిర్వాహకురాలు}}',
 'group-bureaucrat-member' => '{{GENDER:$1|అధికారి|అధికారిణి}}',
-'group-suppress-member' => '{{GENDER:$1| పూర్తి   తొలగింపు}}',
+'group-suppress-member' => 'పూర్తి   తొలగింపు',
 
 'grouppage-user' => '{{ns:project}}:వాడుకరులు',
 'grouppage-autoconfirmed' => '{{ns:project}}:ఆటోమాటిగ్గా నిర్ధారించబడిన వాడుకరులు',

@@ -1491,7 +1491,7 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 'recentchangescount' => 'Antal redigeringar som visas som standard:',
 'prefs-help-recentchangescount' => 'Detta inkluderar senaste ändringarna, sidhistorik och loggar.',
 'prefs-help-watchlist-token2' => 'Detta är den hemliga nyckeln till webbflödet i din bevakningslista.
-Någon som vet den kommer att kunna läsa din bevakningslista, så inte dela ut den.
+Någon som vet den kommer att kunna läsa din bevakningslista, så dela inte ut den.
 [[Special:ResetTokens|Klicka här om du behöver återställa den]].',
 'savedprefs' => 'Dina inställningar har sparats',
 'timezonelegend' => 'Tidszon:',
