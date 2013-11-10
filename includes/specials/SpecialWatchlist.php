@@ -172,39 +172,57 @@ class SpecialWatchlist extends SpecialRecentChanges {
 		$this->outputHeader();
 		$this->addModules();
 
-		// Add feed links
-		$wlToken = $user->getTokenFromOption( 'watchlisttoken' );
-		if ( $wlToken ) {
-			$this->addFeedLinks( array(
-				'action' => 'feedwatchlist',
-				'allrev' => 1,
-				'wlowner' => $user->getName(),
-				'wltoken' => $wlToken,
-			) );
-		}
-
-		$output->addSubtitle(
-			$this->msg( 'watchlistfor2', $user->getName() )
-				->rawParams( SpecialEditWatchlist::buildTools( null ) )
-		);
-
 		$dbr = wfGetDB( DB_SLAVE, 'watchlist' );
 
-		# Show a message about slave lag, if applicable
-		$lag = wfGetLB()->safeGetLag( $dbr );
-		if ( $lag > 0 ) {
-			$output->showLagWarning( $lag );
-		}
-
-		$nitems = $this->countItems( $dbr );
-		if ( $nitems == 0 ) {
+		$this->numItems = $this->countItems( $dbr ); // TODO kill me
+		if ( $this->numItems == 0 ) {
 			$output->addWikiMsg( 'nowatchlist' );
 			return;
 		}
 
-		# Possible where conditions
-		$conds = array();
+		// Fetch results, prepare a batch link existence check query
+		$conds = $this->buildMainQueryConds( $opts );
+		$rows = $this->doMainQuery( $conds, $opts );
+		$this->numRows = $rows->numRows(); // TODO kill me
+		if ( $rows === false ) {
+			$this->doHeader( $opts );
 
+			return;
+		}
+
+		$feedFormat = $this->getRequest()->getVal( 'feed' );
+		if ( !$feedFormat ) {
+			$batch = new LinkBatch;
+			foreach ( $rows as $row ) {
+				$batch->add( NS_USER, $row->rc_user_text );
+				$batch->add( NS_USER_TALK, $row->rc_user_text );
+				$batch->add( $row->rc_namespace, $row->rc_title );
+			}
+			$batch->execute();
+		}
+		if ( $feedFormat ) {
+			list( $changesFeed, $formatter ) = $this->getFeedObject( $feedFormat );
+			/** @var ChangesFeed $changesFeed */
+			$changesFeed->execute( $formatter, $rows, $lastmod, $opts );
+		} else {
+			$this->webOutput( $rows, $opts );
+		}
+
+		$rows->free();
+	}
+
+	/**
+	 * Return an array of conditions depending of options set in $opts
+	 *
+	 * @param FormOptions $opts
+	 * @return array
+	 */
+	public function buildMainQueryConds( FormOptions $opts ) {
+		$dbr = wfGetDB( DB_SLAVE, 'watchlist' );
+		$conds = array();
+		$user = $this->getUser();
+
+		// Calculate cutoff
 		if ( $opts['days'] > 0 ) {
 			$conds[] = 'rc_timestamp > ' . $dbr->addQuotes( $dbr->timestamp( time() - intval( $opts['days'] * 86400 ) ) );
 		}
@@ -228,6 +246,7 @@ class SpecialWatchlist extends SpecialRecentChanges {
 		if ( $user->useRCPatrol() && $opts['hidepatrolled'] ) {
 			$conds[] = 'rc_patrolled != 1';
 		}
+
 		# Namespace filtering
 		if ( $opts['namespace'] !== '' ) {
 			$selectedNS = $dbr->addQuotes( $opts['namespace'] );
@@ -250,6 +269,21 @@ class SpecialWatchlist extends SpecialRecentChanges {
 			$conds[] = $condition;
 		}
 
+		return $conds;
+	}
+
+	/**
+	 * Process the query
+	 *
+	 * @param array $conds
+	 * @param FormOptions $opts
+	 * @return bool|ResultWrapper Result or false (for Recentchangeslinked only)
+	 */
+	public function doMainQuery( $conds, $opts ) {
+		global $wgShowUpdatedMarker;
+
+		$dbr = wfGetDB( DB_SLAVE, 'watchlist' );
+		$user = $this->getUser();
 		# Toggle watchlist content (all recent edits or just the latest)
 		if ( $opts['extended'] ) {
 			$limitWatchlist = $user->getIntOption( 'wllimit' );
@@ -320,144 +354,20 @@ class SpecialWatchlist extends SpecialRecentChanges {
 		ChangeTags::modifyDisplayQuery( $tables, $fields, $conds, $join_conds, $options, '' );
 		wfRunHooks( 'SpecialWatchlistQuery', array( &$conds, &$tables, &$join_conds, &$fields, $opts ) );
 
-		$rows = $dbr->select( $tables, $fields, $conds, __METHOD__, $options, $join_conds );
-		$numRows = $rows->numRows();
+		return $dbr->select( $tables, $fields, $conds, __METHOD__, $options, $join_conds );
+	}
 
-		/* Start bottom header */
+	/**
+	 * Send output to the OutputPage object, only called if not used feeds
+	 *
+	 * @param array $rows Database rows
+	 * @param FormOptions $opts
+	 */
+	public function webOutput( $rows, $opts ) {
+		global $wgShowUpdatedMarker, $wgRCShowWatchingUsers;
 
-		$lang = $this->getLanguage();
-		$wlInfo = '';
-		if ( $opts['days'] > 0 ) {
-			$timestamp = wfTimestampNow();
-			$wlInfo = $this->msg( 'wlnote' )->numParams( $numRows, round( $opts['days'] * 24 ) )->params(
-				$lang->userDate( $timestamp, $user ), $lang->userTime( $timestamp, $user ) )->parse() . "<br />\n";
-		}
-
-		$nondefaults = $opts->getChangedValues();
-		$cutofflinks = $this->cutoffLinks( $opts['days'], $nondefaults ) . "<br />\n";
-
-		# Spit out some control panel links
-		$filters = array(
-			'hideminor' => 'rcshowhideminor',
-			'hidebots' => 'rcshowhidebots',
-			'hideanons' => 'rcshowhideanons',
-			'hideliu' => 'rcshowhideliu',
-			'hidemyself' => 'rcshowhidemine',
-			'hidepatrolled' => 'rcshowhidepatr'
-		);
-		foreach ( $this->getCustomFilters() as $key => $params ) {
-			$filters[$key] = $params['msg'];
-		}
-		// Disable some if needed
-		if ( !$user->useNPPatrol() ) {
-			unset( $filters['hidepatrolled'] );
-		}
-
-		$links = array();
-		foreach ( $filters as $name => $msg ) {
-			$links[] = $this->showHideLink( $nondefaults, $msg, $name, $opts[$name] );
-		}
-
-		$hiddenFields = $nondefaults;
-		unset( $hiddenFields['namespace'] );
-		unset( $hiddenFields['invert'] );
-		unset( $hiddenFields['associated'] );
-
-		# Create output
-		$form = '';
-
-		# Show watchlist header
-		$form .= "<p>";
-		$form .= $this->msg( 'watchlist-details' )->numParams( $nitems )->parse() . "\n";
-		if ( $wgEnotifWatchlist && $user->getOption( 'enotifwatchlistpages' ) ) {
-			$form .= $this->msg( 'wlheader-enotif' )->parse() . "\n";
-		}
-		if ( $wgShowUpdatedMarker ) {
-			$form .= $this->msg( 'wlheader-showupdated' )->parse() . "\n";
-		}
-		$form .= "</p>";
-
-		if ( $wgShowUpdatedMarker ) {
-			$form .= Xml::openElement( 'form', array( 'method' => 'post',
-				'action' => $this->getPageTitle()->getLocalURL(),
-				'id' => 'mw-watchlist-resetbutton' ) ) . "\n" .
-			Xml::submitButton( $this->msg( 'enotif_reset' )->text(), array( 'name' => 'dummy' ) ) . "\n" .
-			Html::hidden( 'reset', 'all' ) . "\n";
-			foreach ( $nondefaults as $key => $value ) {
-				$form .= Html::hidden( $key, $value ) . "\n";
-			}
-			$form .= Xml::closeElement( 'form' ) . "\n";
-		}
-
-		$form .= Xml::openElement( 'form', array(
-			'method' => 'post',
-			'action' => $this->getPageTitle()->getLocalURL(),
-			'id' => 'mw-watchlist-form'
-		) );
-		$form .= Xml::fieldset(
-			$this->msg( 'watchlist-options' )->text(),
-			false,
-			array( 'id' => 'mw-watchlist-options' )
-		);
-
-		$form .= SpecialRecentChanges::makeLegend( $this->getContext() );
-
-		# Namespace filter and put the whole form together.
-		$form .= $wlInfo;
-		$form .= $cutofflinks;
-		$form .= $lang->pipeList( $links ) . "\n";
-		$form .= "<hr />\n<p>";
-		$form .= Html::namespaceSelector(
-			array(
-				'selected' => $opts['namespace'],
-				'all' => '',
-				'label' => $this->msg( 'namespace' )->text()
-			), array(
-				'name' => 'namespace',
-				'id' => 'namespace',
-				'class' => 'namespaceselector',
-			)
-		) . '&#160;';
-		$form .= Xml::checkLabel(
-			$this->msg( 'invert' )->text(),
-			'invert',
-			'nsinvert',
-			$opts['invert'],
-			array( 'title' => $this->msg( 'tooltip-invert' )->text() )
-		) . '&#160;';
-		$form .= Xml::checkLabel(
-			$this->msg( 'namespace_association' )->text(),
-			'associated',
-			'nsassociated',
-			$opts['associated'],
-			array( 'title' => $this->msg( 'tooltip-namespace_association' )->text() )
-		) . '&#160;';
-		$form .= Xml::submitButton( $this->msg( 'allpagessubmit' )->text() ) . "</p>\n";
-		foreach ( $hiddenFields as $key => $value ) {
-			$form .= Html::hidden( $key, $value ) . "\n";
-		}
-		$form .= Xml::closeElement( 'fieldset' ) . "\n";
-		$form .= Xml::closeElement( 'form' ) . "\n";
-		$output->addHTML( $form );
-
-		# If there's nothing to show, stop here
-		if ( $numRows == 0 ) {
-			$output->wrapWikiMsg(
-				"<div class='mw-changeslist-empty'>\n$1\n</div>", 'recentchanges-noresult'
-			);
-			return;
-		}
-
-		/* End bottom header */
-
-		/* Do link batch query */
-		$batch = new LinkBatch;
-		foreach ( $rows as $row ) {
-			$batch->add( NS_USER, $row->rc_user_text );
-			$batch->add( NS_USER_TALK, $row->rc_user_text );
-			$batch->add( $row->rc_namespace, $row->rc_title );
-		}
-		$batch->execute();
+		$dbr = wfGetDB( DB_SLAVE, 'watchlist' );
+		$user = $this->getUser();
 
 		$dbr->dataSeek( $rows, 0 );
 
@@ -496,7 +406,182 @@ class SpecialWatchlist extends SpecialRecentChanges {
 		}
 		$s .= $list->endRecentChangesList();
 
-		$output->addHTML( $s );
+		// Print things out
+
+		$output = $this->getOutput();
+
+		$output->addSubtitle(
+			$this->msg( 'watchlistfor2', $user->getName() )
+				->rawParams( SpecialEditWatchlist::buildTools( null ) )
+		);
+
+		// Output options box
+		$this->doHeader( $opts );
+
+		// Add feed links
+		$wlToken = $user->getTokenFromOption( 'watchlisttoken' );
+		if ( $wlToken ) {
+			$this->addFeedLinks( array(
+				'action' => 'feedwatchlist',
+				'allrev' => 1,
+				'wlowner' => $user->getName(),
+				'wltoken' => $wlToken,
+			) );
+		}
+
+		# Show a message about slave lag, if applicable
+		$lag = wfGetLB()->safeGetLag( $dbr );
+		if ( $lag > 0 ) {
+			$output->showLagWarning( $lag );
+		}
+
+		if ( $rows->numRows() == 0 ) {
+			$output->wrapWikiMsg(
+				"<div class='mw-changeslist-empty'>\n$1\n</div>", 'recentchanges-noresult'
+			);
+		} else {
+			$output->addHTML( $s );
+		}
+	}
+
+	function setTopText( FormOptions $opts ) {
+		global $wgEnotifWatchlist, $wgShowUpdatedMarker;
+
+		$nondefaults = $opts->getChangedValues();
+		$form = "";
+
+		# Show watchlist header
+		$form .= "<p>";
+		$form .= $this->msg( 'watchlist-details' )->numParams( $this->numItems )->parse() . "\n";
+		if ( $wgEnotifWatchlist && $user->getOption( 'enotifwatchlistpages' ) ) {
+			$form .= $this->msg( 'wlheader-enotif' )->parse() . "\n";
+		}
+		if ( $wgShowUpdatedMarker ) {
+			$form .= $this->msg( 'wlheader-showupdated' )->parse() . "\n";
+		}
+		$form .= "</p>";
+
+		if ( $wgShowUpdatedMarker ) {
+			$form .= Xml::openElement( 'form', array( 'method' => 'post',
+				'action' => $this->getPageTitle()->getLocalURL(),
+				'id' => 'mw-watchlist-resetbutton' ) ) . "\n" .
+			Xml::submitButton( $this->msg( 'enotif_reset' )->text(), array( 'name' => 'dummy' ) ) . "\n" .
+			Html::hidden( 'reset', 'all' ) . "\n";
+			foreach ( $nondefaults as $key => $value ) {
+				$form .= Html::hidden( $key, $value ) . "\n";
+			}
+			$form .= Xml::closeElement( 'form' ) . "\n";
+		}
+
+		$form .= Xml::openElement( 'form', array(
+			'method' => 'post',
+			'action' => $this->getPageTitle()->getLocalURL(),
+			'id' => 'mw-watchlist-form'
+		) );
+		$form .= Xml::fieldset(
+			$this->msg( 'watchlist-options' )->text(),
+			false,
+			array( 'id' => 'mw-watchlist-options' )
+		);
+
+		$form .= SpecialRecentChanges::makeLegend( $this->getContext() );
+
+		$this->getOutput()->addHTML( $form );
+	}
+
+	/**
+	 * Return the text to be displayed above the changes
+	 *
+	 * @param FormOptions $opts
+	 * @return string XHTML
+	 */
+	public function doHeader( $opts ) {
+		global $wgScript;
+
+		$user = $this->getUser();
+
+		$this->setTopText( $opts );
+
+		$lang = $this->getLanguage();
+		$wlInfo = '';
+		if ( $opts['days'] > 0 ) {
+			$timestamp = wfTimestampNow();
+			$wlInfo = $this->msg( 'wlnote' )->numParams( $this->numRows, round( $opts['days'] * 24 ) )->params(
+				$lang->userDate( $timestamp, $user ), $lang->userTime( $timestamp, $user ) )->parse() . "<br />\n";
+		}
+
+		$nondefaults = $opts->getChangedValues();
+		$cutofflinks = $this->cutoffLinks( $opts['days'], $nondefaults ) . "<br />\n";
+
+		# Spit out some control panel links
+		$filters = array(
+			'hideminor' => 'rcshowhideminor',
+			'hidebots' => 'rcshowhidebots',
+			'hideanons' => 'rcshowhideanons',
+			'hideliu' => 'rcshowhideliu',
+			'hidemyself' => 'rcshowhidemine',
+			'hidepatrolled' => 'rcshowhidepatr'
+		);
+		foreach ( $this->getCustomFilters() as $key => $params ) {
+			$filters[$key] = $params['msg'];
+		}
+		// Disable some if needed
+		if ( !$user->useNPPatrol() ) {
+			unset( $filters['hidepatrolled'] );
+		}
+
+		$links = array();
+		foreach ( $filters as $name => $msg ) {
+			$links[] = $this->showHideLink( $nondefaults, $msg, $name, $opts[$name] );
+		}
+
+		$hiddenFields = $nondefaults;
+		unset( $hiddenFields['namespace'] );
+		unset( $hiddenFields['invert'] );
+		unset( $hiddenFields['associated'] );
+
+		# Create output
+		$form = '';
+
+		# Namespace filter and put the whole form together.
+		$form .= $wlInfo;
+		$form .= $cutofflinks;
+		$form .= $lang->pipeList( $links ) . "\n";
+		$form .= "<hr />\n<p>";
+		$form .= Html::namespaceSelector(
+			array(
+				'selected' => $opts['namespace'],
+				'all' => '',
+				'label' => $this->msg( 'namespace' )->text()
+			), array(
+				'name' => 'namespace',
+				'id' => 'namespace',
+				'class' => 'namespaceselector',
+			)
+		) . '&#160;';
+		$form .= Xml::checkLabel(
+			$this->msg( 'invert' )->text(),
+			'invert',
+			'nsinvert',
+			$opts['invert'],
+			array( 'title' => $this->msg( 'tooltip-invert' )->text() )
+		) . '&#160;';
+		$form .= Xml::checkLabel(
+			$this->msg( 'namespace_association' )->text(),
+			'associated',
+			'nsassociated',
+			$opts['associated'],
+			array( 'title' => $this->msg( 'tooltip-namespace_association' )->text() )
+		) . '&#160;';
+		$form .= Xml::submitButton( $this->msg( 'allpagessubmit' )->text() ) . "</p>\n";
+		foreach ( $hiddenFields as $key => $value ) {
+			$form .= Html::hidden( $key, $value ) . "\n";
+		}
+		$form .= Xml::closeElement( 'fieldset' ) . "\n";
+		$form .= Xml::closeElement( 'form' ) . "\n";
+		$this->getOutput()->addHTML( $form );
+
+		$this->setBottomText( $opts );
 	}
 
 	protected function showHideLink( $options, $message, $name, $value ) {
