@@ -210,6 +210,7 @@ changes to languages because of Bugzilla reports.
   3 headings)" was removed.
 * (bug 52810) Preference "Justify paragraphs" was removed.
 * OutputPage::showErrorPage raises a notice if arguments are incoherent.
+* (bug 52342) Preference "Remember my login" was removed.
 
 ==== Removed classes ====
 * FakeMemCachedClient (deprecated in 1.18)
