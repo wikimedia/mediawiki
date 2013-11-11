@@ -70,7 +70,7 @@ class LanguageConverter {
 	public $mMaxDepth = 10;
 	public $mVarSeparatorPattern;
 
-	const CACHE_VERSION_KEY = 'VERSION 6';
+	const CACHE_VERSION_KEY = 'VERSION 7';
 
 	/**
 	 * Constructor
