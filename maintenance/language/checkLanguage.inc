@@ -182,21 +182,25 @@ class CheckLanguageCLI {
 		return array(
 			'untranslated' => '$1 message(s) of $2 are not translated to $3, but exist in en:',
 			'duplicate' => '$1 message(s) of $2 are translated the same in en and $3:',
-			'obsolete' => '$1 message(s) of $2 do not exist in en or are in the ignore list, but exist in $3:',
+			'obsolete' =>
+				'$1 message(s) of $2 do not exist in en or are in the ignore list, but exist in $3:',
 			'variables' => '$1 message(s) of $2 in $3 don\'t match the variables used in en:',
 			'plural' => '$1 message(s) of $2 in $3 don\'t use {{plural}} while en uses:',
 			'empty' => '$1 message(s) of $2 in $3 are empty or -:',
 			'whitespace' => '$1 message(s) of $2 in $3 have trailing whitespace:',
 			'xhtml' => '$1 message(s) of $2 in $3 contain illegal XHTML:',
-			'chars' => '$1 message(s) of $2 in $3 include hidden chars which should not be used in the messages:',
+			'chars' =>
+				'$1 message(s) of $2 in $3 include hidden chars which should not be used in the messages:',
 			'links' => '$1 message(s) of $2 in $3 have problematic link(s):',
 			'unbalanced' => '$1 message(s) of $2 in $3 have unbalanced {[]}:',
 			'namespace' => '$1 namespace name(s) of $2 are not translated to $3, but exist in en:',
-			'projecttalk' => '$1 namespace name(s) and alias(es) in $3 are project talk namespaces without the parameter:',
+			'projecttalk' =>
+				'$1 namespace name(s) and alias(es) in $3 are project talk namespaces without the parameter:',
 			'magic' => '$1 magic word(s) of $2 are not translated to $3, but exist in en:',
 			'magic-old' => '$1 magic word(s) of $2 do not exist in en, but exist in $3:',
 			'magic-over' => '$1 magic word(s) of $2 in $3 do not contain the original en word(s):',
-			'magic-case' => '$1 magic word(s) of $2 in $3 change the case-sensitivity of the original en word:',
+			'magic-case' =>
+				'$1 magic word(s) of $2 in $3 change the case-sensitivity of the original en word:',
 			'special' => '$1 special page alias(es) of $2 are not translated to $3, but exist in en:',
 			'special-old' => '$1 special page alias(es) of $2 do not exist in en, but exist in $3:',
 		);
@@ -216,35 +220,49 @@ Parameters:
 	--all: Check all customized languages.
 	--level: Show the following display level (default: 2):
 		* 0: Skip the checks (useful for checking syntax).
-		* 1: Show only the stub headers and number of wrong messages, without list of messages.
-		* 2: Show only the headers and the message keys, without the message values.
-		* 3: Show both the headers and the complete messages, with both keys and values.
+		* 1: Show only the stub headers and number of wrong messages, without
+		     list of messages.
+		* 2: Show only the headers and the message keys, without the message
+		     values.
+		* 3: Show both the headers and the complete messages, with both keys and
+		     values.
 	--links: Link the message values (default off).
 	--prefix: prefix to add to links.
-	--wikilang: For the links, what is the content language of the wiki to display the output in (default en).
-	--noexif: Do not check for Exif messages (a bit hard and boring to translate), if you know
-		that they are currently not translated and want to focus on other problems (default off).
+	--wikilang: For the links, what is the content language of the wiki to
+	    display the output in (default en).
+	--noexif: Do not check for Exif messages (a bit hard and boring to
+	    translate), if you know what they are currently not translated and want
+	    to focus on other problems (default off).
 	--whitelist: Do only the following checks (form: code,code).
 	--blacklist: Do not do the following checks (form: code,code).
-	--easy: Do only the easy checks, which can be treated by non-speakers of the language.
+	--easy: Do only the easy checks, which can be treated by non-speakers of
+	    the language.
 
-Check codes (ideally, all of them should result 0; all the checks are executed by default (except language-specific check blacklists in checkLanguage.inc):
-	* untranslated: Messages which are required to translate, but are not translated.
-	* duplicate: Messages which translation equal to fallback
-	* obsolete: Messages which are untranslatable or do not exist, but are translated.
-	* variables: Messages without variables which should be used, or with variables which should not be used.
+Check codes (ideally, all of them should result 0; all the checks are executed
+by default (except language-specific check blacklists in checkLanguage.inc):
+	* untranslated: Messages which are required to translate, but are not
+	  translated.
+	* duplicate: Messages which translation equal to fallback.
+	* obsolete: Messages which are untranslatable or do not exist, but are
+	  translated.
+	* variables: Messages without variables which should be used, or with
+	  variables which should not be used.
 	* empty: Empty messages and messages that contain only -.
 	* whitespace: Messages which have trailing whitespace.
-	* xhtml: Messages which are not well-formed XHTML (checks only few common errors).
+	* xhtml: Messages which are not well-formed XHTML (checks only few common
+	  errors).
 	* chars: Messages with hidden characters.
 	* links: Messages which contains broken links to pages (does not find all).
-	* unbalanced: Messages which contains unequal numbers of opening {[ and closing ]}.
+	* unbalanced: Messages which contains unequal numbers of opening {[ and
+	  closing ]}.
 	* namespace: Namespace names that were not translated.
-	* projecttalk: Namespace names and aliases where the project talk does not contain $1.
+	* projecttalk: Namespace names and aliases where the project talk does not
+	  contain $1.
 	* magic: Magic words that were not translated.
 	* magic-old: Magic words which do not exist.
 	* magic-over: Magic words that override the original English word.
-	* magic-case: Magic words whose translation changes the case-sensitivity of the original English word.
+	* magic-case: Magic words whose translation changes the case-sensitivity of
+	  the original English word.
 	* special: Special page names that were not translated.
 	* special-old: Special page names which do not exist.
 
@@ -457,7 +475,8 @@ ENDS;
 	 */
 	function outputWiki() {
 		$detailText = '';
-		$rows[] = '! Language !! Code !! Total !! ' . implode( ' !! ', array_diff( $this->checks, $this->nonMessageChecks() ) );
+		$rows[] = '! Language !! Code !! Total !! ' .
+			implode( ' !! ', array_diff( $this->checks, $this->nonMessageChecks() ) );
 		foreach ( $this->results as $code => $results ) {
 			$detailTextForLang = "==$code==\n";
 			$numbers = array();
@@ -497,6 +516,7 @@ ENDS;
 		$tableRows = implode( "\n|-\n", $rows );
 
 		$version = SpecialVersion::getVersion( 'nodb' );
+		// @codingStandardsIgnoreStart Long line.
 		echo <<<EOL
 '''Check results are for:''' <code>$version</code>
 
@@ -508,6 +528,7 @@ $tableRows
 $detailText
 
 EOL;
+		// @codingStandardsIgnoreEnd
 	}
 
 	/**
@@ -653,34 +674,50 @@ class CheckExtensionsCLI extends CheckLanguageCLI {
 	 */
 	protected function help() {
 		return <<<ENDS
-Run this script to check the status of a specific language in extensions, or all of them.
-Command line settings are in form --parameter[=value], except for the first one.
+Run this script to check the status of a specific language in extensions, or
+all of them. Command line settings are in form --parameter[=value], except for
+the first one.
 Parameters:
-	* First parameter (mandatory): Extension name, multiple extension names (separated by commas), "all" for all the extensions, "wikimedia" for extensions used by Wikimedia or "flaggedrevs" for all FLaggedRevs extension messages.
+	* First parameter (mandatory): Extension name, multiple extension names
+	  (separated by commas), "all" for all the extensions, "wikimedia" for
+	  extensions used by Wikimedia or "flaggedrevs" for all FLaggedRevs
+	  extension messages.
 	* lang: Language code (default: the installation default language).
 	* help: Show this help.
 	* level: Show the following display level (default: 2).
 	* links: Link the message values (default off).
-	* wikilang: For the links, what is the content language of the wiki to display the output in (default en).
+	* wikilang: For the links, what is the content language of the wiki to
+	  display the output in (default en).
 	* whitelist: Do only the following checks (form: code,code).
 	* blacklist: Do not perform the following checks (form: code,code).
-	* easy: Do only the easy checks, which can be treated by non-speakers of the language.
-Check codes (ideally, all of them should result 0; all the checks are executed by default (except language-specific check blacklists in checkLanguage.inc):
-	* untranslated: Messages which are required to translate, but are not translated.
-	* duplicate: Messages which translation equal to fallback
+	* easy: Do only the easy checks, which can be treated by non-speakers of
+	  the language.
+
+Check codes (ideally, all of them should result 0; all the checks are executed
+by default (except language-specific check blacklists in checkLanguage.inc):
+	* untranslated: Messages which are required to translate, but are not
+	  translated.
+	* duplicate: Messages which translation equal to fallback.
 	* obsolete: Messages which are untranslatable, but translated.
-	* variables: Messages without variables which should be used, or with variables which should not be used.
+	* variables: Messages without variables which should be used, or with
+	  variables which should not be used.
 	* empty: Empty messages.
 	* whitespace: Messages which have trailing whitespace.
-	* xhtml: Messages which are not well-formed XHTML (checks only few common errors).
+	* xhtml: Messages which are not well-formed XHTML (checks only few common
+	  errors).
 	* chars: Messages with hidden characters.
 	* links: Messages which contains broken links to pages (does not find all).
-	* unbalanced: Messages which contains unequal numbers of opening {[ and closing ]}.
+	* unbalanced: Messages which contains unequal numbers of opening {[ and
+	  closing ]}.
+
 Display levels (default: 2):
 	* 0: Skip the checks (useful for checking syntax).
-	* 1: Show only the stub headers and number of wrong messages, without list of messages.
-	* 2: Show only the headers and the message keys, without the message values.
-	* 3: Show both the headers and the complete messages, with both keys and values.
+	* 1: Show only the stub headers and number of wrong messages, without list
+	  of messages.
+	* 2: Show only the headers and the message keys, without the message
+	  values.
+	* 3: Show both the headers and the complete messages, with both keys and
+	  values.
 
 ENDS;
 	}
