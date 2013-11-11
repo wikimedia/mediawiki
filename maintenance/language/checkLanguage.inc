@@ -315,7 +315,9 @@ ENDS;
 			return $blacklist;
 		}
 
+		// @codingStandardsIgnoreStart Ignore that globals should have a "wg" prefix.
 		global $checkBlacklist;
+		// @codingStandardsIgnoreEnd
 
 		$blacklist = $checkBlacklist;
 
