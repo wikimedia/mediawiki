@@ -24,7 +24,7 @@
 /**
  * @ingroup MaintenanceLanguage
  */
-class languages {
+class Languages {
 	/** @var array List of languages */
 	protected $mLanguages; #
 
@@ -788,7 +788,7 @@ class languages {
 	}
 }
 
-class extensionLanguages extends languages {
+class ExtensionLanguages extends Languages {
 	/**
 	 * @var MessageGroup
 	 */
