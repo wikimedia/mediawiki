@@ -70,7 +70,7 @@ class LanguageConverter {
 	public $mMaxDepth = 10;
 	public $mVarSeparatorPattern;
 
-	const CACHE_VERSION_KEY = 'VERSION 6';
+	const CACHE_VERSION_KEY = 'VERSION 7';
 
 	/**
 	 * Constructor
@@ -344,12 +344,14 @@ class LanguageConverter {
 			$toVariant = $this->getPreferredVariant();
 			if ( !$toVariant ) {
 				wfProfileOut( __METHOD__ );
+				var_dump( 'abb' );
 				return $text;
 			}
 		}
 
 		if ( $this->guessVariant( $text, $toVariant ) ) {
 			wfProfileOut( __METHOD__ );
+			var_dump( 'cbb' );
 			return $text;
 		}
 
@@ -433,6 +435,7 @@ class LanguageConverter {
 		}
 
 		// Do the main translation batch
+		var_dump( 'saatana' );
 		$translatedBlob = $this->translate( $sourceBlob, $toVariant );
 
 		// Put the output back together
@@ -464,7 +467,9 @@ class LanguageConverter {
 		// If $text is empty or only includes spaces, do nothing
 		// Otherwise translate it
 		if ( trim( $text ) ) {
+			var_dump( 'wtf' );
 			$this->loadTables();
+			var_dump( $this->mTables[$variant] );
 			$text = $this->mTables[$variant]->replace( $text );
 		}
 		wfProfileOut( __METHOD__ );
