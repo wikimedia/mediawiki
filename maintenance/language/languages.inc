@@ -25,19 +25,38 @@
  * @ingroup MaintenanceLanguage
  */
 class languages {
-	protected $mLanguages; # List of languages
+	/** @var array List of languages */
+	protected $mLanguages; #
 
-	protected $mRawMessages; # Raw list of the messages in each language
-	protected $mMessages; # Messages in each language (except for English), divided to groups
-	protected $mFallback; # Fallback language in each language
-	protected $mGeneralMessages; # General messages in English, divided to groups
-	protected $mIgnoredMessages; # All the messages which should be exist only in the English file
-	protected $mOptionalMessages; # All the messages which may be translated or not, depending on the language
+	/** @var array Raw list of the messages in each language  */
+	protected $mRawMessages;
 
-	protected $mNamespaceNames; # Namespace names
-	protected $mNamespaceAliases; # Namespace aliases
-	protected $mMagicWords; # Magic words
-	protected $mSpecialPageAliases; # Special page aliases
+	/** @var array Messages in each language (except for English), divided to groups */
+	protected $mMessages;
+
+	/** @var array Fallback language in each language */
+	protected $mFallback;
+
+	/** @var array General messages in English, divided to groups */
+	protected $mGeneralMessages;
+
+	/** @var array All the messages which should be exist only in the English file */
+	protected $mIgnoredMessages;
+
+	/** @var array All the messages which may be translated or not, depending on the language */
+	protected $mOptionalMessages;
+
+	/** @var array Namespace names */
+	protected $mNamespaceNames;
+
+	/** @var array Namespace aliases */
+	protected $mNamespaceAliases;
+
+	/** @var array Magic words */
+	protected $mMagicWords;
+
+	/** @var  array Special page aliases */
+	protected $mSpecialPageAliases;
 
 	/**
 	 * Load the list of languages: all the Messages*.php
@@ -131,12 +150,16 @@ class languages {
 	}
 
 	/**
-	 * Load the messages for a specific language (which is not English) and divide them to groups:
+	 * Load the messages for a specific language (which is not English) and divide them to
+	 * groups:
 	 * all - all the messages.
 	 * required - messages which should be translated in order to get a complete translation.
-	 * optional - messages which can be translated, the fallback translation is used if not translated.
-	 * obsolete - messages which should not be translated, either because they do not exist, or they are ignored messages.
-	 * translated - messages which are either required or optional, but translated from English and needed.
+	 * optional - messages which can be translated, the fallback translation is used if not
+	 *   translated.
+	 * obsolete - messages which should not be translated, either because they do not exist,
+	 *   or they are ignored messages.
+	 * translated - messages which are either required or optional, but translated from
+	 *   English and needed.
 	 *
 	 * @param $code string The language code.
 	 */
@@ -167,10 +190,13 @@ class languages {
 	/**
 	 * Load the messages for English and divide them to groups:
 	 * all - all the messages.
-	 * required - messages which should be translated to other languages in order to get a complete translation.
-	 * optional - messages which can be translated to other languages, but it's not required for a complete translation.
+	 * required - messages which should be translated to other languages in order to get a
+	 *   complete translation.
+	 * optional - messages which can be translated to other languages, but it's not required
+	 *   for a complete translation.
 	 * ignored - messages which should not be translated to other languages.
-	 * translatable - messages which are either required or optional, but can be translated from English.
+	 * translatable - messages which are either required or optional, but can be translated
+	 *   from English.
 	 */
 	private function loadGeneralMessages() {
 		if ( isset( $this->mGeneralMessages ) ) {
@@ -200,9 +226,12 @@ class languages {
 	 * fallback language messages, divided to groups:
 	 * all - all the messages.
 	 * required - messages which should be translated in order to get a complete translation.
-	 * optional - messages which can be translated, the fallback translation is used if not translated.
-	 * obsolete - messages which should not be translated, either because they do not exist, or they are ignored messages.
-	 * translated - messages which are either required or optional, but translated from English and needed.
+	 * optional - messages which can be translated, the fallback translation is used if not
+	 *   translated.
+	 * obsolete - messages which should not be translated, either because they do not exist,
+	 *   or they are ignored messages.
+	 * translated - messages which are either required or optional, but translated from
+	 *   English and needed.
 	 *
 	 * @param $code string The language code.
 	 *
@@ -217,10 +246,13 @@ class languages {
 	/**
 	 * Get all the general English messages, divided to groups:
 	 * all - all the messages.
-	 * required - messages which should be translated to other languages in order to get a complete translation.
-	 * optional - messages which can be translated to other languages, but it's not required for a complete translation.
+	 * required - messages which should be translated to other languages in
+	 *   order to get a complete translation.
+	 * optional - messages which can be translated to other languages, but it's
+	 *   not required for a complete translation.
 	 * ignored - messages which should not be translated to other languages.
-	 * translatable - messages which are either required or optional, but can be translated from English.
+	 * translatable - messages which are either required or optional, but can be
+	 *   translated from English.
 	 *
 	 * @return array The general English messages.
 	 */
@@ -389,7 +421,9 @@ class languages {
 		$this->loadMessages( $code );
 		$messagesWithoutPlural = array();
 		foreach ( $this->mMessages[$code]['translated'] as $key => $value ) {
-			if ( stripos( $this->mGeneralMessages['translatable'][$key], '{{plural:' ) !== false && stripos( $value, '{{plural:' ) === false ) {
+			if ( stripos( $this->mGeneralMessages['translatable'][$key], '{{plural:' ) !== false &&
+				stripos( $value, '{{plural:' ) === false
+			) {
 				$messagesWithoutPlural[$key] = $value;
 			}
 		}
@@ -519,7 +553,8 @@ class languages {
 		foreach ( $this->mMessages[$code]['translated'] as $key => $value ) {
 			$matches = array();
 			preg_match_all( "/\[\[([{$tc}]+)(?:\\|(.+?))?]]/sDu", $value, $matches );
-			for ( $i = 0; $i < count( $matches[0] ); $i++ ) {
+			$numMatches = count( $matches[0] );
+			for ( $i = 0; $i < $numMatches; $i++ ) {
 				if ( preg_match( "/.*project.*/isDu", $matches[1][$i] ) ) {
 					$messages[$key][] = $matches[0][$i];
 				}
@@ -754,7 +789,6 @@ class languages {
 }
 
 class extensionLanguages extends languages {
-
 	/**
 	 * @var MessageGroup
 	 */
