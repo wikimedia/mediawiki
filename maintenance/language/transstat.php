@@ -59,13 +59,13 @@ TEXT;
 # Select an output engine
 switch ( $options['output'] ) {
 	case 'wiki':
-		$output = new wikiStatsOutput();
+		$output = new WikiStatsOutput();
 		break;
 	case 'text':
-		$output = new textStatsOutput();
+		$output = new TextStatsOutput();
 		break;
 	case 'csv':
-		$output = new csvStatsOutput();
+		$output = new CsvStatsOutput();
 		break;
 	default:
 		showUsage();

@@ -1114,13 +1114,13 @@ $wgAutoloadLocalClasses = array(
 	'UserDupes' => 'maintenance/userDupes.inc',
 
 	# maintenance/language
-	'csvStatsOutput' => 'maintenance/language/StatOutputs.php',
+	'CsvStatsOutput' => 'maintenance/language/StatOutputs.php',
 	'ExtensionLanguages' => 'maintenance/language/languages.inc',
 	'Languages' => 'maintenance/language/languages.inc',
 	'MessageWriter' => 'maintenance/language/writeMessagesArray.inc',
-	'statsOutput' => 'maintenance/language/StatOutputs.php',
-	'textStatsOutput' => 'maintenance/language/StatOutputs.php',
-	'wikiStatsOutput' => 'maintenance/language/StatOutputs.php',
+	'StatsOutput' => 'maintenance/language/StatOutputs.php',
+	'TextStatsOutput' => 'maintenance/language/StatOutputs.php',
+	'WikiStatsOutput' => 'maintenance/language/StatOutputs.php',
 
 	# maintenance/term
 	'AnsiTermColorer' => 'maintenance/term/MWTerm.php',
