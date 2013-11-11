@@ -126,7 +126,7 @@ $wgRemoveDuplicateMessages = isset( $options['remove-duplicates'] );
 $messagesFolder = isset( $options['messages-folder'] ) ? $options['messages-folder'] : false;
 
 # Get language objects
-$languages = new languages();
+$languages = new Languages();
 
 # Write all the language
 if ( $wgCode == 'all' ) {
