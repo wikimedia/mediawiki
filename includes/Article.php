@@ -812,7 +812,7 @@ class Article implements Page {
 		$de = $contentHandler->createDifferenceEngine( $this->getContext(), $oldid, $diff, $rcid, $purge, $unhide );
 
 		// DifferenceEngine directly fetched the revision:
-		$this->mRevIdFetched = $de->getNewid();
+		$this->mRevIdFetched = $de->mNewid;
 		$de->showDiffPage( $diffOnly );
 
 		// Run view updates for the newer revision being diffed (and shown below the diff if not $diffOnly)
