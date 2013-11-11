@@ -2664,7 +2664,7 @@ Se [[Special:BlockList|blokeringslisten]] for alle blokeringer.',
 'ipblocklist-no-results' => 'Den angivene IP-addresse eller brugernavn er ikke blokeret.',
 'blocklink' => 'bloker',
 'unblocklink' => 'ophæv blokering',
-'change-blocklink' => 'ændre blokering',
+'change-blocklink' => 'ændr blokering',
 'contribslink' => 'bidrag',
 'emaillink' => 'send e-mail',
 'autoblocker' => 'Du er automatisk blokeret, fordi du deler IP-adresse med "[[User:$1|$1]]".

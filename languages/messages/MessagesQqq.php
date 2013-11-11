@@ -8013,7 +8013,7 @@ The label and the input box are always hidden.',
 'pageinfo-language' => 'Language in which the page content is written.',
 'pageinfo-content-model' => 'The model in which the page content is written.
 
-Used as label. Followed by one of the following messages:
+Used as label at [{{fullurl:Main Page|action=info}} action=info]. Followed by one of the following messages:
 * {{msg-mw|Content-model-wikitext}}
 * {{msg-mw|Content-model-javascript}}
 * {{msg-mw|Content-model-css}}

@@ -4213,7 +4213,7 @@ $5
 * صفحه‌های ویژهٔ عادی.
 * <strong class="mw-specialpagerestricted">صفحه‌های ویژهٔ محدودشده.</strong>',
 'specialpages-group-maintenance' => 'گزارش‌های نگهداری',
-'specialpages-group-other' => 'صفحه‌های ویژهٔ دیگر',
+'specialpages-group-other' => 'سایر صفحه‌های ویژه',
 'specialpages-group-login' => 'ورود / ثبت نام',
 'specialpages-group-changes' => 'تغییرات اخیر و سیاهه‌ها',
 'specialpages-group-media' => 'گزارش بارگذاری رسانه‌ها',

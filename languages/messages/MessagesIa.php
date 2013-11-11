@@ -602,7 +602,7 @@ Non oblida personalisar tu [[Special:Preferences|preferentias in {{SITENAME}}]].
 'gotaccount' => "Tu jam ha un conto? '''$1'''.",
 'gotaccountlink' => 'Aperir session',
 'userlogin-resetlink' => 'Datos de authentication oblidate?',
-'userlogin-resetpassword-link' => 'Reinitialisar contrasigno',
+'userlogin-resetpassword-link' => 'Contrasigno oblidate?',
 'helplogin-url' => 'Help:Aperir session',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Adjuta a aperir session]]',
 'userlogin-loggedin' => 'Tu ha jam aperite session como {{GENDER:$1|$1}}.
@@ -3106,6 +3106,7 @@ Le causa es probabilemente un ligamine verso un sito externe que es presente in 
 'pageinfo-length' => 'Dimension del pagina (in bytes)',
 'pageinfo-article-id' => 'ID del pagina',
 'pageinfo-language' => 'Lingua del contento del pagina',
+'pageinfo-content-model' => 'Modello de contento de pagina',
 'pageinfo-robot-policy' => 'Indexation per robots',
 'pageinfo-robot-index' => 'Permittite',
 'pageinfo-robot-noindex' => 'Non permittite',

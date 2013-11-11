@@ -1042,6 +1042,14 @@ $1",
 'pagehist' => 'Eachdraidh na duilleige',
 'deletedhist' => 'Eachdraidh a chaidh a sguabadh às',
 'revdelete-hide-current' => "Mearachd a' cur am falach an nì dhen $2, $1: Seo an lèirmheas làithreach. Cha ghabh a chur am falach.",
+'revdelete-show-no-access' => 'Mearachd a\' sealltainn an nì on $2, $1: Tha comharra ann a dh\'innseas gu bheil e "cuingichte".
+Chan eil cothrom agad air.',
+'revdelete-modify-no-access' => 'Mearachd ag atharrachadh an nì on $2, $1: Tha comharra ann a dh\'innseas gu bheil e "cuingichte".
+Chan eil cothrom agad air.',
+'revdelete-modify-missing' => 'Mearachd ag atharrachadh an nì leis an ID $1: Chan eil e san stòr-dàta!',
+'revdelete-no-change' => "'''Rabhadh:''' Bha na roghainnean faicsinneachd a dh'iarr thu aig an nì dhen $2, $1 mu thràth.",
+'revdelete-concurrent-change' => "Mearachd ag atharrachadh an nì on $2, $1: Tha coltas gun deach a staid atharrachadh le cuideigin dìreach nuair a dh'fheuch thusa ri atharrachadh.
+Thoir sùil air na logaichean.",
 'revdelete-otherreason' => 'Adhbhar eile/a bharrachd:',
 'revdelete-reasonotherlist' => 'Adhbhar eile',
 'revdelete-edit-reasonlist' => 'Deasaich adhbharan an sguabaidh às',

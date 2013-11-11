@@ -71,6 +71,7 @@
  * @author Omnipaedista
  * @author Peter17
  * @author PieRRoMaN
+ * @author ProgVal
  * @author Quentinv57
  * @author Rastus Vernon
  * @author Remember the dot
@@ -417,7 +418,7 @@ $messages = array(
 'tog-enotifusertalkpages' => "M'avertir par courriel si ma page de discussion est modifiée",
 'tog-enotifminoredits' => "M'avertir par courriel pour les modifications mineures de pages ou de fichiers également",
 'tog-enotifrevealaddr' => 'Afficher mon adresse de courriel dans les courriels de notification',
-'tog-shownumberswatching' => "Afficher le nombre d'utilisateurs qui suivent la page",
+'tog-shownumberswatching' => 'Afficher le nombre d’utilisateurs et d’utilisatrices qui suivent la page',
 'tog-oldsig' => 'Signature existante :',
 'tog-fancysig' => 'Traiter la signature comme du wikitexte (sans lien automatique)',
 'tog-uselivepreview' => 'Utiliser l’aperçu rapide (expérimental)',
@@ -434,7 +435,7 @@ $messages = array(
 'tog-noconvertlink' => 'Désactiver la conversion des titres',
 'tog-norollbackdiff' => "Ne pas afficher le diff lors d'une révocation",
 'tog-useeditwarning' => "M'avertir quand je quitte une page de modification sans publier les changements",
-'tog-prefershttps' => 'Toujours utiliser une connexion sécurisée en étant connecté',
+'tog-prefershttps' => 'Toujours utiliser une connexion sécurisée en étant connecté(e)',
 
 'underline-always' => 'Toujours',
 'underline-never' => 'Jamais',
@@ -609,7 +610,7 @@ $messages = array(
 'talk' => 'Discussion',
 'views' => 'Affichages',
 'toolbox' => 'Outils',
-'userpage' => 'Page utilisateur',
+'userpage' => 'Page utilisateur/utilisatrice',
 'projectpage' => 'Page méta',
 'imagepage' => 'Voir la page du fichier',
 'mediawikipage' => 'Voir la page du message',
@@ -666,7 +667,7 @@ $1",
 'youhavenewmessages' => 'Vous avez $1 ($2).',
 'newmessageslink' => 'de nouveaux messages',
 'newmessagesdifflink' => 'dernière modification',
-'youhavenewmessagesfromusers' => "Vous avez $1 {{PLURAL:$3|d'un autre utilisateur|de $3 autres utilisateurs}} ($2).",
+'youhavenewmessagesfromusers' => "Vous avez $1 {{PLURAL:$3|d'un(e) autre utilisateur/utilisatrice|de $3 autres utilisateurs/utilisatrices}} ($2).",
 'youhavenewmessagesmanyusers' => 'Vous avez $1 de nombreux utilisateurs ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|un message|de nouveaux messages}}',
 'newmessagesdifflinkplural' => '{{PLURAL:$1|dernière modification|dernières modifications}}',
@@ -783,8 +784,8 @@ Pour ajouter ou modifier des traductions pour tous les wikis, veuillez utiliser 
 'cascadeprotected' => 'Cette page est protégée car elle est incluse par {{PLURAL:$1|la page suivante, qui a été protégée|les pages suivantes, qui ont été protégées}} avec l’option « protection en cascade » activée :
 $2',
 'namespaceprotected' => "Vous n'avez pas la permission de modifier les pages de l'espace de noms « '''$1''' ».",
-'customcssprotected' => "Vous n'avez pas la permission de modifier cette page de CSS, car elle contient les paramètres personnels d'un autre utilisateur.",
-'customjsprotected' => "Vous n'avez pas la permission de modifier cette page de JavaScript, car elle contient les paramètres personnels d'un autre utilisateur.",
+'customcssprotected' => "Vous n'avez pas la permission de modifier cette page de CSS, car elle contient les paramètres personnels d'un autre utilisateur ou utilisatrice.",
+'customjsprotected' => "Vous n'avez pas la permission de modifier cette page de JavaScript, car elle contient les paramètres personnels d'un autre utilisateur ou utilisatrice.",
 'mycustomcssprotected' => 'Vous n’avez pas le droit de modifier cette page CSS.',
 'mycustomjsprotected' => 'Vous n’avez pas le droit de modifier cette page JavaScript.',
 'myprivateinfoprotected' => 'Vous n’avez pas les droits pour modifier vos informations personnelles.',
@@ -797,7 +798,7 @@ Le motif avancé est « ''$2'' ».",
 L'administrateur qui l'a verrouillé a fourni ce motif : « $3 ».",
 'invalidtitle-knownnamespace' => "Titre invalide avec l'espace de noms « $2 » et l'intitulé « $3 »",
 'invalidtitle-unknownnamespace' => "Titre invalide avec le numéro d'espace de noms $1 et l'intitulé « $2 » inconnus",
-'exception-nologin' => 'Non connecté',
+'exception-nologin' => 'Non connecté(e)',
 'exception-nologin-text' => "Cette page ou cette action nécessite d'être connecté sur ce wiki.",
 
 # Virus scanner
@@ -814,8 +815,8 @@ Notez que certaines pages peuvent être encore affichées comme si vous étiez t
 N'oubliez pas de modifier [[Special:Preferences|vos préférences pour {{SITENAME}}]].",
 'yourname' => "Nom d'utilisateur :",
 'userlogin-yourname' => "Nom d'utilisateur",
-'userlogin-yourname-ph' => "Entrez votre nom d'utilisateur",
-'createacct-another-username-ph' => 'Saisir le nom d’utilisateur',
+'userlogin-yourname-ph' => "Entrez votre nom d'utilisateur ou d'utilisatrice",
+'createacct-another-username-ph' => 'Saisir le nom d’utilisateur ou d’utilisatrice',
 'yourpassword' => 'Mot de passe&nbsp;:',
 'userlogin-yourpassword' => 'Mot de passe',
 'userlogin-yourpassword-ph' => 'Entrez votre mot de passe',
@@ -839,7 +840,7 @@ N'oubliez pas de modifier [[Special:Preferences|vos préférences pour {{SITENAM
 'notloggedin' => 'Non connecté',
 'userlogin-noaccount' => "Vous n'avez pas de compte ?",
 'userlogin-joinproject' => 'Rejoignez {{SITENAME}}',
-'nologin' => "Vous n'êtes pas encore inscrit ? $1.",
+'nologin' => "Vous n'avez pas de compte ? $1.",
 'nologinlink' => 'Créer un compte',
 'createaccount' => 'Créer un compte',
 'gotaccount' => "Vous avez déjà un compte ? '''$1'''.",
@@ -848,8 +849,8 @@ N'oubliez pas de modifier [[Special:Preferences|vos préférences pour {{SITENAM
 'userlogin-resetpassword-link' => 'Mot de passe oublié ?',
 'helplogin-url' => 'Help:Connexion',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Aide à la connexion]]',
-'userlogin-loggedin' => 'Vous êtes déjà connecté en tant que {{GENDER:$1|$1}}.
-Utilisez le formulaire ci-dessous pour vous connecter avec un autre utilisateur.',
+'userlogin-loggedin' => 'Vous êtes déjà connecté{{GENDER:$1||e|(e)}} en tant que {{GENDER:$1|$1}}.
+Utilisez le formulaire ci-dessous pour vous connecter avec un autre compte utilisateur.',
 'userlogin-createanother' => 'Créer un autre compte',
 'createacct-join' => 'Entrez vos informations ci-dessous.',
 'createacct-another-join' => 'Saisir les informations du nouveau compte ci-dessous.',
@@ -871,7 +872,7 @@ Utilisez le formulaire ci-dessous pour vous connecter avec un autre utilisateur.
 'createacct-benefit-body2' => '{{PLURAL:$1|article|articles}}',
 'createacct-benefit-body3' => '{{PLURAL:$1|contributeur récent|contributeurs récents}}',
 'badretype' => 'Les mots de passe que vous avez saisis ne correspondent pas.',
-'userexists' => "Nom d'utilisateur entré déjà utilisé.
+'userexists' => "Nom d'utilisateur/utilisatrice entré déjà utilisé.
 Veuillez choisir un nom différent.",
 'loginerror' => 'Erreur de connexion',
 'createacct-error' => 'Erreur lors de la création du compte',
@@ -880,20 +881,20 @@ Veuillez choisir un nom différent.",
 'nocookieslogin' => '{{SITENAME}} utilise des cookies pour la connexion mais vous les avez désactivés. Veuillez les activer et vous reconnecter.',
 'nocookiesfornew' => "Le compte utilisateur n'a pas été créé, car nous n'avons pas pu identifier son origine.
 Vérifiez que vous avez activé les cookies, rechargez la page et réessayez.",
-'noname' => "Vous n'avez pas saisi un nom d'utilisateur valide.",
+'noname' => "Vous n'avez pas saisi un nom d'utilisateur/utilisatrice valide.",
 'loginsuccesstitle' => 'Connexion réussie',
 'loginsuccess' => 'Vous êtes maintenant connecté{{GENDER:$1||e|(e)}} à {{SITENAME}} en tant que « $1 ».',
 'nosuchuser' => "L'utilisateur « $1 » n'existe pas.
 Les noms d'utilisateurs sont sensibles à la casse.
 Vérifiez l'orthographe, ou [[Special:UserLogin/signup|créez un nouveau compte]].",
-'nosuchusershort' => "Il n'y a pas de contributeur avec le nom « $1 ». Veuillez vérifier l'orthographe.",
-'nouserspecified' => "Vous devez saisir un nom d'utilisateur.",
-'login-userblocked' => 'Cet utilisateur est bloqué. Connexion non autorisée.',
+'nosuchusershort' => "Il n'y a pas de contributeur ni de contributrice avec le nom « $1 ». Veuillez vérifier l'orthographe.",
+'nouserspecified' => "Vous devez saisir un nom d'utilisateur/utilisatrice.",
+'login-userblocked' => 'Cet {{GENDER:$1|utilisateur|utilisatrice|utilisateur/utilisatrice}} est bloqué. Connexion non autorisée.',
 'wrongpassword' => 'Le mot de passe est incorrect. Veuillez essayer à nouveau.',
 'wrongpasswordempty' => "Vous n'avez pas entré de mot de passe. Veuillez essayer à nouveau.",
 'passwordtooshort' => 'Votre mot de passe doit contenir au moins $1 caractère{{PLURAL:$1||s}}.',
-'password-name-match' => "Votre mot de passe doit être différent de votre nom d'utilisateur.",
-'password-login-forbidden' => "L'utilisation de ce nom d'utilisateur et de ce mot de passe a été interdite.",
+'password-name-match' => "Votre mot de passe doit être différent de votre nom d'utilisateur/utilisatrice.",
+'password-login-forbidden' => "L'utilisation de ce nom d'utilisateur/utilisatrice et de ce mot de passe a été interdite.",
 'mailmypassword' => 'Recevoir un nouveau mot de passe par courriel',
 'passwordremindertitle' => 'Nouveau mot de passe temporaire pour {{SITENAME}}',
 'passwordremindertext' => "Quelqu'un (probablement vous, ayant l'adresse IP $1) a demandé un nouveau mot de
@@ -930,7 +931,7 @@ Entrez une adresse bien formatée ou laissez ce champ vide.',
 Vous devriez ouvrir une session et modifier dès à présent votre mot de passe.
 
 Ignorez ce message si ce compte a été créé par erreur.',
-'usernamehasherror' => "Le nom d'utilisateur ne peut pas contenir des caractères de hachage",
+'usernamehasherror' => "Le nom d'utilisateur/utilisatrice ne peut pas contenir des caractères de hachage",
 'login-throttled' => "Vous avez tenté un trop grand nombre de connexions dernièrement.
 Veuillez attendre $1 avant d'essayer à nouveau.",
 'login-abort-generic' => 'Votre tentative de connexion a échoué',
@@ -955,7 +956,7 @@ Si vous décidez de le fournir, il sera utilisé pour attribuer à l’utilisate
 'resetpass_submit' => 'Changer le mot de passe et se connecter',
 'changepassword-success' => 'Votre mot de passe a été changé avec succès !',
 'resetpass_forbidden' => 'Les mots de passe ne peuvent pas être changés',
-'resetpass-no-info' => 'Vous devez être connecté pour avoir accès à cette page.',
+'resetpass-no-info' => 'Vous devez être connecté(e) pour avoir accès à cette page.',
 'resetpass-submit-loggedin' => 'Changer de mot de passe',
 'resetpass-submit-cancel' => 'Annuler',
 'resetpass-wrong-oldpass' => 'Mot de passe actuel ou temporaire invalide.
@@ -970,7 +971,7 @@ Vous avez peut-être déjà changé votre mot de passe ou demandé un nouveau mo
 'passwordreset-legend' => 'Remise à zéro du mot de passe',
 'passwordreset-disabled' => 'La réinitialisation des mots de passe a été désactivée sur ce wiki.',
 'passwordreset-emaildisabled' => 'Les fonctionnalités e-mail ont été désactivées sur ce wiki.',
-'passwordreset-username' => "Nom d'utilisateur :",
+'passwordreset-username' => "Nom d'utilisateur/utilisatrice :",
 'passwordreset-domain' => 'Domaine :',
 'passwordreset-capture' => 'Voir le courriel résultant?',
 'passwordreset-capture-help' => "Si vous cochez cette case, le courriel (avec le mot de passe temporaire) vous sera affiché en même temps qu'il sera envoyé à l'utilisateur.",
@@ -986,17 +987,17 @@ $2
 $2
 
 {{PLURAL:$3|Ce mot de passe temporaire expirera|Ces mots de passe temporaires expireront}} dans {{PLURAL:$5|un jour|$5 jours}}. Vous devez maintenant vous connecter et choisir un nouveau mot de passe. Si cette demande ne provient pas de vous, ou que vous vous êtes souvenu de votre mot de passe initial, et ne souhaitez plus le modifier, vous pouvez ignorer ce message et continuer à utiliser votre ancien mot de passe.",
-'passwordreset-emailelement' => "Nom d'utilisateur : $1
+'passwordreset-emailelement' => "Nom d'{{GENDER:$1|utilisateur|utilisatrice|utilisateur/utilisatrice}} : $1
 Mot de passe temporaire : $2",
 'passwordreset-emailsent' => 'Un courriel de réinitialisation de mot de passe a été envoyé.',
 'passwordreset-emailsent-capture' => 'Un courriel de réinitialisation de mot de passe a été envoyé, qui est affiché ci-dessous.',
-'passwordreset-emailerror-capture' => "Un courriel de réinitialisation de mot de passe a été généré, qui est affiché ci-dessous, mais l'envoi à l'{{GENDER:$2|utilisateur}} a échoué : $1",
+'passwordreset-emailerror-capture' => "Un courriel de réinitialisation de mot de passe a été généré, qui est affiché ci-dessous, mais l'envoi à l'{{GENDER:$2|utilisateur|utilisatrice|utilisateur/utilisatrice}} a échoué : $1",
 
 # Special:ChangeEmail
 'changeemail' => 'Changer l’adresse de courriel',
 'changeemail-header' => 'Changer l’adresse de courriel du compte',
 'changeemail-text' => 'Remplissez ce formulaire pour changer votre adresse de courriel. Vous devrez entrer votre mot de passe pour confirmer ce changement.',
-'changeemail-no-info' => 'Vous devez être connecté pour pouvoir accéder directement à cette page.',
+'changeemail-no-info' => 'Vous devez être connecté(e) pour pouvoir accéder directement à cette page.',
 'changeemail-oldemail' => 'Adresse de courriel actuelle :',
 'changeemail-newemail' => 'Nouvelle adresse de courriel :',
 'changeemail-none' => '(aucune)',
@@ -1048,7 +1049,7 @@ Vous devriez le faire si vous les avez partagés accidentellement avec quelqu'un
 'showlivepreview' => 'Aperçu rapide',
 'showdiff' => 'Voir les modifications',
 'anoneditwarning' => "'''Attention :''' vous n'êtes pas identifié(e). Votre adresse IP sera enregistrée dans l'historique de cette page.",
-'anonpreviewwarning' => "''Vous n'êtes pas identifié. Sauvegarder enregistrera votre adresse IP dans l'historique des modifications de la page.''",
+'anonpreviewwarning' => "''Vous n'êtes pas identifié(e). Sauvegarder enregistrera votre adresse IP dans l'historique des modifications de la page.''",
 'missingsummary' => "'''Rappel :''' vous n'avez pas encore fourni le résumé de votre modification.
 Si vous cliquez de nouveau sur le bouton « {{int:savearticle}} », la publication sera faite sans nouvel avertissement.",
 'missingcommenttext' => 'Veuillez entrer un commentaire ci-dessous.',
@@ -1066,7 +1067,7 @@ La raison invoquée est la suivante : ''$2''.
 * Expiration du blocage : $6
 * Compte bloqué : $7.
 
-Vous pouvez contacter $1 ou un autre [[{{MediaWiki:Grouppage-sysop}}|administrateur]] pour en discuter.
+Vous pouvez contacter $1 ou un autre [[{{MediaWiki:Grouppage-sysop}}|administrateur ou administratrice]] pour en discuter.
 Vous ne pouvez utiliser la fonction « {{MediaWiki:emailpage}} » que si une adresse de courriel valide est spécifiée dans vos [[Special:Preferences|préférences]] et que si cette fonctionnalité n’a pas été bloquée.
 Votre adresse IP actuelle est $3 et votre identifiant de blocage est $5.
 Veuillez préciser ces indications dans toutes les requêtes que vous ferez.",
@@ -1079,7 +1080,7 @@ La raison invoquée est :
 * Expiration du blocage : $6
 * Compte bloqué : $7
 
-Vous pouvez contacter $1 ou l’un des autres [[{{MediaWiki:Grouppage-sysop}}|administrateurs]] pour discuter de ce blocage.
+Vous pouvez contacter $1 ou l’un des autres [[{{MediaWiki:Grouppage-sysop}}|administrateurs et administratrices]] pour discuter de ce blocage.
 
 Notez que vous ne pourrez utiliser la fonctionnalité d’envoi de courriel que si vous avez une adresse de courriel validée dans vos [[Special:Preferences|préférences]] et que si cette fonctionnalité n’a pas été désactivée.
 
@@ -1180,10 +1181,10 @@ Il ne peut pas être sauvegardé.",
 Vous pouvez copier et coller votre texte dans un fichier texte et l’enregistrer pour plus tard.
 
 L’administrateur ayant verrouillé la base de données a donné l’explication suivante : $1",
-'protectedpagewarning' => "'''AVERTISSEMENT : cette page est protégée. Seuls les utilisateurs ayant le statut d'administrateur peuvent la modifier.'''<br />
+'protectedpagewarning' => "'''AVERTISSEMENT : cette page est protégée. Seuls les utilisateurs et utilisatrices ayant le statut administrateur peuvent la modifier.'''<br />
 La dernière entrée du journal est affichée ci-dessous pour référence :",
-'semiprotectedpagewarning' => "'''Note :''' Cette page a été protégée de telle façon que seuls les contributeurs enregistrés puissent la modifier. La dernière entrée du journal est affichée ci-dessous pour référence :",
-'cascadeprotectedwarning' => "'''ATTENTION :''' Cette page a été protégée de manière à ce que seuls les administrateurs puissent la modifier. Cette protection est héritée par son inclusion par {{PLURAL:$1|la page protégée suivante, qui a|les pages protégées suivantes, qui ont}} la « protection en cascade » activée :",
+'semiprotectedpagewarning' => "'''Note :''' Cette page a été protégée de telle façon que seuls les contributeurs et contributrices enregistré(e)s puissent la modifier. La dernière entrée du journal est affichée ci-dessous pour référence :",
+'cascadeprotectedwarning' => "'''ATTENTION :''' Cette page a été protégée de manière à ce que seul(e)s les administrateurs et administratrices puissent la modifier. Cette protection est héritée par son inclusion par {{PLURAL:$1|la page protégée suivante, qui a|les pages protégées suivantes, qui ont}} la « protection en cascade » activée :",
 'titleprotectedwarning' => "'''ATTENTION : Cette page a été protégée de telle manière que des [[Special:ListGroupRights|droits spécifiques]] sont requis pour pouvoir la créer.''' La dernière entrée du journal est affichée ci-dessous pour référence :",
 'templatesused' => '{{PLURAL:$1|Modèle utilisé|Modèles utilisés}} par cette page :',
 'templatesusedpreview' => '{{PLURAL:$1|Modèle utilisé|Modèles utilisés}} dans cette prévisualisation :',
@@ -1252,7 +1253,7 @@ Il devrait y avoir moins de $2 appel{{PLURAL:$2||s}}, alors qu'il y en a mainten
 'undo-failure' => 'Cette modification ne peut pas être défaite : cela entrerait en conflit avec les modifications intermédiaires.',
 'undo-norev' => "La modification n'a pas pu être défaite parce qu'elle est inexistante ou qu'elle a été supprimée.",
 'undo-summary' => 'Annulation des modifications $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|discussion]])',
-'undo-summary-username-hidden' => 'Annuler la révision $1 par un utilisateur masqué',
+'undo-summary-username-hidden' => 'Annuler la révision $1 par un(e) utilisateur/utilisatrice masqué(e)',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Vous ne pouvez pas créer de compte.',
@@ -1293,9 +1294,9 @@ Essayez de [[Special:Search|rechercher sur le wiki]] pour trouver des pages en r
 
 # Revision deletion
 'rev-deleted-comment' => '(résumé de modification retiré)',
-'rev-deleted-user' => "(nom d'utilisateur retiré)",
+'rev-deleted-user' => "(nom d'utilisateur/utilisatrice retiré)",
 'rev-deleted-event' => '(entrée retirée)',
-'rev-deleted-user-contribs' => "[nom d'utilisateur ou adresse IP retiré - modification masquée sur les contributions]",
+'rev-deleted-user-contribs' => "[nom d'utilisateur/utilisatrice ou adresse IP retiré - modification masquée sur les contributions]",
 'rev-deleted-text-permission' => "Cette version de la page a été '''effacée'''.
 Des détails sont disponibles dans le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} journal des effacements].",
 'rev-deleted-text-unhide' => "Cette version de la page a été '''effacée'''.
@@ -1346,8 +1347,8 @@ Les autres administrateurs de {{SITENAME}} pourront toujours accéder au contenu
 'revdelete-hide-image' => 'Masquer le contenu du fichier',
 'revdelete-hide-name' => "Masquer l'action et la cible",
 'revdelete-hide-comment' => 'Modifier le résumé',
-'revdelete-hide-user' => 'Nom d’utilisateur/Adresse IP de l’éditeur',
-'revdelete-hide-restricted' => "Supprimer ces données aux administrateurs ainsi qu'aux autres",
+'revdelete-hide-user' => 'Nom d’utilisateur/utilisatrice ou adresse IP de l’éditeur/éditrice',
+'revdelete-hide-restricted' => "Supprimer ces données aux administrateurs et administratrices ainsi bien qu'aux autres",
 'revdelete-radio-same' => '(ne pas changer)',
 'revdelete-radio-set' => 'Visible',
 'revdelete-radio-unset' => 'Masqué',
@@ -1376,7 +1377,7 @@ Vous n'y avez pas accès.",
 'revdelete-no-change' => "'''Attention :''' L'élément daté du $1 à $2 a déjà les paramètres de visibilité demandés.",
 'revdelete-concurrent-change' => "Erreur lors de la modification de l'élément daté du $1 à $2 : son statut a été changé par quelqu'un d'autre pendant que vous le modifiez.
 Vérifiez les journaux.",
-'revdelete-only-restricted' => "Erreur lors de la suppression de l'entrée datée du $1 à $2 : vous ne pouvez pas supprimer ces éléments aux administrateurs sans également sélectionner des autres options de suppression.",
+'revdelete-only-restricted' => "Erreur lors de la suppression de l'entrée datée du $1 à $2 : vous ne pouvez pas supprimer ces éléments aux administrateurs et administratrices sans également sélectionner des autres options de suppression.",
 'revdelete-reason-dropdown' => "* Raisons courantes de suppression :
 ** Violation des droits d'auteurs ;
 ** Commentaires ou renseignements personnels inappropriés ;
@@ -3285,6 +3286,7 @@ Ne '''RIEN''' inscrire ici !",
 'pageinfo-length' => 'Taille de la page (en octets)',
 'pageinfo-article-id' => 'Numéro de la page',
 'pageinfo-language' => 'Langue du contenu de la page',
+'pageinfo-content-model' => 'Modèle de contenu de la page',
 'pageinfo-robot-policy' => 'Indexation par robots',
 'pageinfo-robot-index' => 'Autorisée',
 'pageinfo-robot-noindex' => 'Interdite',

@@ -2451,7 +2451,7 @@ $1',
 
 # Contributions
 'contributions' => "{{GENDER:$1|Cyfraniadau'r defnyddiwr}}",
-'contributions-title' => "Cyfraniadau'r defnyddiwr am $1",
+'contributions-title' => "Cyfraniadau'r defnyddiwr $1",
 'mycontris' => 'Cyfraniadau',
 'contribsub2' => 'Gan {{GENDER:$3|$1}} ($2)',
 'nocontribs' => "Heb ddod o hyd i newidiadau gyda'r meini prawf hyn.",

@@ -932,7 +932,7 @@ Privremena lozinka: $2',
 'watchthis' => 'nadgledaj ovu stranicu',
 'savearticle' => 'Sačuvaj stranicu',
 'preview' => 'Pregled',
-'showpreview' => 'Pregledaj',
+'showpreview' => 'Prikaži pretpregled',
 'showlivepreview' => 'Trenutni pregled',
 'showdiff' => 'Prikaži izmene',
 'anoneditwarning' => "'''Upozorenje:''' niste prijavljeni.

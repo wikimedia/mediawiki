@@ -730,9 +730,11 @@ Ne zaboravite da prilagodite sebi svoja [[Special:Preferences|{{SITENAME}} pode�
 'gotaccount' => 'Već imate korisnički račun? $1.',
 'gotaccountlink' => 'Prijavi se',
 'userlogin-resetlink' => 'Zaboravili ste detalje vaše prijave?',
-'userlogin-resetpassword-link' => 'Resetirajte svoju šifru/lozinku',
+'userlogin-resetpassword-link' => 'Zaboravili ste šifru/lozinku?',
 'helplogin-url' => 'Help:Prijavljivanje',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Pomoć pri prijavljivanju]]',
+'userlogin-loggedin' => 'Već ste prijavljeni kao {{GENDER:$1|$1}}.
+Koristite donji obrazac da biste se prijavili kao drugi korisnik.',
 'userlogin-createanother' => 'Napravi još jedan račun',
 'createacct-join' => 'Unesite svoje podatke ispod.',
 'createacct-another-join' => 'Unesite informacije o novom računu ispod.',
@@ -790,16 +792,16 @@ Ako je neko drugi napravio ovaj zahtjev ili ako ste se sjetili vaše šifre i ne
 'passwordsent' => 'Nova šifra je poslata na adresu e-pošte korisnika "$1".
 Molimo Vas da se prijavite pošto je primite.',
 'blocked-mailpassword' => 'Da bi se spriječila nedozvoljena akcija, Vašoj IP adresi je onemogućeno uređivanje stranica kao i mogućnost zahtijevanje nove šifre.',
-'eauthentsent' => 'Na navedenu adresu poslan je e-mail s potvrdom.
-Prije nego što pošaljemo daljnje poruke, molimo vas da otvorite e-mail i slijedite u njemu sadržana uputstva da potvrdite da ste vi kreirali korisnički račun.',
+'eauthentsent' => 'Na navedenu adresu poslana je e-poruka s potvrdom.
+Prije nego što pošaljemo daljnje poruke, pratite uputstva s e-pošte da biste potvrdili da je račun zaista Vaša.',
 'throttled-mailpassword' => 'Već Vam je poslan e-mail za promjenu šifre u {{PLURAL:$1|zadnjih sat vremena|zadnja $1 sata|zadnjih $1 sati}}.
 Da bi se spriječila zloupotreba, može se poslati samo jedan e-mail za promjenu šifre {{PLURAL:$1|svakih sat vremena|svaka $1 sata|svakih $1 sati}}.',
 'mailerror' => 'Greška pri slanju e-pošte: $1',
 'acct_creation_throttle_hit' => 'Posjetioci na ovoj wiki koji koriste Vašu IP adresu su već napravili {{PLURAL:$1|$1 račun|$1 računa}} u zadnjih nekoliko dana, što je najveći broj dopuštenih napravljenih računa za ovaj period.
 Kao rezultat, posjetioci koji koriste ovu IP adresu ne mogu trenutno praviti više računa.',
-'emailauthenticated' => 'Vaša e-mail adresa je autentificirana na $2 u $3.',
-'emailnotauthenticated' => 'Vaša e-mail adresa još nije autentificirana.
-Nijedan e-mail neće biti poslan za bilo koju uslugu od slijedećih.',
+'emailauthenticated' => 'Vaša adresa e-pošte je potvrđena $2 u $3.',
+'emailnotauthenticated' => 'Vaša adresa e-pošte još nije potvrđena.
+Nijedna e-poruka neće biti poslana za bilo koju uslugu od slijedećih.',
 'noemailprefs' => 'Unesite e-mail adresu za osposobljavanje slijedećih usluga.',
 'emailconfirmlink' => 'Potvrdite Vašu e-mail adresu',
 'invalidemailaddress' => 'Ova e-mail adresa ne može biti prihvaćena jer je u neodgovarajućem obliku.
@@ -4015,6 +4017,7 @@ Trebali biste dobiti [{{SERVER}}{{SCRIPTPATH}}/KOPIJU GNU opće javne licence] z
 'tags-tag' => 'Naziv oznake',
 'tags-display-header' => 'Vidljivost na spisku izmjena',
 'tags-description-header' => 'Puni opis značenja',
+'tags-active-header' => 'Aktivna?',
 'tags-hitcount-header' => 'Označene izmjene',
 'tags-active-yes' => 'Da',
 'tags-active-no' => 'Ne',

@@ -3130,6 +3130,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'pageinfo-length' => 'Lunghezza della pagina (in byte)',
 'pageinfo-article-id' => 'ID della pagina',
 'pageinfo-language' => 'Lingua del contenuto della pagina',
+'pageinfo-content-model' => 'Modello del contenuto della pagina',
 'pageinfo-robot-policy' => 'Indicizzazione per i robot',
 'pageinfo-robot-index' => 'Consentito',
 'pageinfo-robot-noindex' => 'Non consentito',
