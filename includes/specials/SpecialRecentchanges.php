@@ -685,7 +685,6 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	/**
 	 * Creates the choose namespace selection
 	 *
-	 * @todo Uses radio buttons (HASHAR)
 	 * @param FormOptions $opts
 	 * @return string
 	 */
