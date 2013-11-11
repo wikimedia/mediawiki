@@ -29,7 +29,10 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 /** A general output object. Need to be overriden */
 class statsOutput {
 	function formatPercent( $subset, $total, $revert = false, $accuracy = 2 ) {
-		return @sprintf( '%.' . $accuracy . 'f%%', 100 * $subset / $total );
+		wfSuppressWarnings();
+		$return = sprintf( '%.' . $accuracy . 'f%%', 100 * $subset / $total );
+		wfRestoreWarnings();
+		return $return;
 	}
 
 	# Override the following methods
@@ -86,7 +89,10 @@ class wikiStatsOutput extends statsOutput {
 	}
 
 	function formatPercent( $subset, $total, $revert = false, $accuracy = 2 ) {
-		$v = @round( 255 * $subset / $total );
+		wfSuppressWarnings();
+		$v = round( 255 * $subset / $total );
+		wfRestoreWarnings();
+
 		if ( $revert ) {
 			# Weigh reverse with factor 20 so coloring takes effect more quickly as
 			# this option is used solely for reporting 'bad' percentages.
