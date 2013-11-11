@@ -765,7 +765,7 @@ $output: OutputPage object in use
 'CanIPUseHTTPS': Determine whether the client at a given source IP is likely
 to be able to access the wiki via HTTPS.
 $ip: The IP address in human-readable form
-&$canDo: This reference should be set to false if the client may not be able 
+&$canDo: This reference should be set to false if the client may not be able
 to use HTTPS
 
 'CanonicalNamespaces': For extensions adding their own namespaces or altering
@@ -1533,6 +1533,11 @@ cache.
 $cache: The LocalisationCache object
 $code: language code
 &$alldata: The localisation data from core and extensions
+
+'LocalisationChecksBlacklist': When fetching the blacklist of
+localisation checks.
+&$blacklist: array of checks to blacklist. See the bottom of
+  maintenance/language/checkLanguage.inc for the format of this variable.
 
 'LogEventsListShowLogExtract': Called before the string is added to OutputPage.
 Returning false will prevent the string from being added to the OutputPage.
@@ -2377,7 +2382,7 @@ $special: the special page object
 $values: array of variables with watchlist options
 
 'SpecialWatchlistGetNonRevisionTypes': Called when building sql query for
-SpecialWatchlist. Allows extensions to register custom values they have 
+SpecialWatchlist. Allows extensions to register custom values they have
 inserted to rc_type so they can be returned as part of the watchlist.
 &$nonRevisionTypes: array of values in the rc_type field of recentchanges table
 

@@ -291,6 +291,17 @@ ENDS;
 				$this->results[$this->code] = $this->checkLanguage( $this->code );
 			}
 		}
+
+		$results = $this->results;
+		foreach( $results as $code => $checks ) {
+			foreach ( $checks as $check => $messages ) {
+				foreach ( $messages as $key => $details ) {
+					if ( $this->isCheckBlacklisted( $check, $code, $key ) ) {
+						unset( $this->results[$code][$check][$key] );
+					}
+				}
+			}
+		}
 	}
 
 	/**
@@ -298,9 +309,51 @@ ENDS;
 	 * @return array The list of checks which should not be executed.
 	 */
 	protected function getCheckBlacklist() {
+		static $blacklist = null;
+
+		if ( $blacklist !== null ) {
+			return $blacklist;
+		}
+
 		global $checkBlacklist;
 
-		return $checkBlacklist;
+		$blacklist = $checkBlacklist;
+
+		wfRunHooks( 'LocalisationChecksBlacklist', array( &$blacklist ) );
+
+		return $blacklist;
+	}
+
+	/**
+	 * Verify whether a check is blacklisted.
+	 *
+	 * @param string $check Check name
+	 * @param string $code Language code
+	 * @param string|bool $message Message name, or False for a whole language
+	 * @return bool Whether the check is blacklisted
+	 */
+	protected function isCheckBlacklisted( $check, $code, $message ) {
+		$blacklist = $this->getCheckBlacklist();
+
+		foreach( $blacklist as $item ) {
+			if ( isset( $item['check'] ) && $check !== $item['check'] ) {
+				continue;
+			}
+
+			if ( isset( $item['code'] ) && !in_array( $code, $item['code'] ) ) {
+				continue;
+			}
+
+			if ( isset( $item['message'] ) &&
+				( $message === false || !in_array( $message, $item['message'] ) )
+			) {
+				continue;
+			}
+
+			return true;
+		}
+
+		return false;
 	}
 
 	/**
@@ -319,11 +372,8 @@ ENDS;
 		}
 
 		$checkFunctions = $this->getChecks();
-		$checkBlacklist = $this->getCheckBlacklist();
 		foreach ( $this->checks as $check ) {
-			if ( isset( $checkBlacklist[$code] ) &&
-				in_array( $check, $checkBlacklist[$code] )
-			) {
+			if ( $this->isCheckBlacklisted( $check, $code, false ) ) {
 				$results[$check] = array();
 				continue;
 			}
@@ -675,52 +725,21 @@ ENDS;
 	}
 }
 
-# Blacklist some checks for some languages
+// Blacklist some checks for some languages or some messages
+// Possible keys of the sub arrays are: 'check', 'code' and 'message'.
 $checkBlacklist = array(
-#'code'        => array( 'check1', 'check2' ... )
-	'az' => array( 'plural' ),
-	'bo' => array( 'plural' ),
-	'cdo' => array( 'plural' ),
-	'dz' => array( 'plural' ),
-	'id' => array( 'plural' ),
-	'fa' => array( 'plural' ),
-	'gan' => array( 'plural' ),
-	'gan-hans' => array( 'plural' ),
-	'gan-hant' => array( 'plural' ),
-	'gn' => array( 'plural' ),
-	'hak' => array( 'plural' ),
-	'hu' => array( 'plural' ),
-	'ja' => array( 'plural' ), // Does not use plural
-	'jv' => array( 'plural' ),
-	'ka' => array( 'plural' ),
-	'kk-arab' => array( 'plural' ),
-	'kk-cyrl' => array( 'plural' ),
-	'kk-latn' => array( 'plural' ),
-	'km' => array( 'plural' ),
-	'kn' => array( 'plural' ),
-	'ko' => array( 'plural' ),
-	'lzh' => array( 'plural' ),
-	'mn' => array( 'plural' ),
-	'ms' => array( 'plural' ),
-	'my' => array( 'plural', 'chars' ), // Uses a lot zwnj
-	'sah' => array( 'plural' ),
-	'sq' => array( 'plural' ),
-	'tet' => array( 'plural' ),
-	'th' => array( 'plural' ),
-	'to' => array( 'plural' ),
-	'tr' => array( 'plural' ),
-	'vi' => array( 'plural' ),
-	'wuu' => array( 'plural' ),
-	'xmf' => array( 'plural' ),
-	'yo' => array( 'plural' ),
-	'yue' => array( 'plural' ),
-	'zh' => array( 'plural' ),
-	'zh-classical' => array( 'plural' ),
-	'zh-cn' => array( 'plural' ),
-	'zh-hans' => array( 'plural' ),
-	'zh-hant' => array( 'plural' ),
-	'zh-hk' => array( 'plural' ),
-	'zh-sg' => array( 'plural' ),
-	'zh-tw' => array( 'plural' ),
-	'zh-yue' => array( 'plural' ),
+	array(
+		'check' => 'plural',
+		'code' => array( 'az', 'bo', 'cdo', 'dz', 'id', 'fa', 'gan', 'gan-hans',
+			'gan-hant', 'gn', 'hak', 'hu', 'ja', 'jv', 'ka', 'kk-arab',
+			'kk-cyrl', 'kk-latn', 'km', 'kn', 'ko', 'lzh', 'mn', 'ms',
+			'my', 'sah', 'sq', 'tet', 'th', 'to', 'tr', 'vi', 'wuu', 'xmf',
+			'yo', 'yue', 'zh', 'zh-classical', 'zh-cn', 'zh-hans',
+			'zh-hant', 'zh-hk', 'zh-sg', 'zh-tw', 'zh-yue'
+		),
+	),
+	array(
+		'check' => 'chars',
+		'code' => array( 'my' ),
+	),
 );
