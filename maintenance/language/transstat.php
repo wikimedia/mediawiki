@@ -72,7 +72,7 @@ switch ( $options['output'] ) {
 }
 
 # Languages
-$wgLanguages = new languages();
+$wgLanguages = new Languages();
 
 # Header
 $output->heading();

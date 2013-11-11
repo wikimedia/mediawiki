@@ -89,7 +89,7 @@ class CheckLanguageCLI {
 			$this->output = $options['output'];
 		}
 
-		$this->L = new languages( $this->includeExif );
+		$this->L = new Languages( $this->includeExif );
 	}
 
 	/**
@@ -610,19 +610,19 @@ class CheckExtensionsCLI extends CheckLanguageCLI {
 		if ( $extension == 'all' ) {
 			foreach ( MessageGroups::singleton()->getGroups() as $group ) {
 				if ( strpos( $group->getId(), 'ext-' ) === 0 && !$group->isMeta() ) {
-					$this->extensions[] = new extensionLanguages( $group );
+					$this->extensions[] = new ExtensionLanguages( $group );
 				}
 			}
 		} elseif ( $extension == 'wikimedia' ) {
 			$wikimedia = MessageGroups::getGroup( 'ext-0-wikimedia' );
 			foreach ( $wikimedia->wmfextensions() as $extension ) {
 				$group = MessageGroups::getGroup( $extension );
-				$this->extensions[] = new extensionLanguages( $group );
+				$this->extensions[] = new ExtensionLanguages( $group );
 			}
 		} elseif ( $extension == 'flaggedrevs' ) {
 			foreach ( MessageGroups::singleton()->getGroups() as $group ) {
 				if ( strpos( $group->getId(), 'ext-flaggedrevs-' ) === 0 && !$group->isMeta() ) {
-					$this->extensions[] = new extensionLanguages( $group );
+					$this->extensions[] = new ExtensionLanguages( $group );
 				}
 			}
 		} else {
@@ -630,7 +630,7 @@ class CheckExtensionsCLI extends CheckLanguageCLI {
 			foreach ( $extensions as $extension ) {
 				$group = MessageGroups::getGroup( 'ext-' . $extension );
 				if ( $group ) {
-					$extension = new extensionLanguages( $group );
+					$extension = new ExtensionLanguages( $group );
 					$this->extensions[] = $extension;
 				} else {
 					print "No such extension $extension.\n";

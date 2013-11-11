@@ -788,7 +788,7 @@ class languages {
 	}
 }
 
-class extensionLanguages extends languages {
+class ExtensionLanguages extends Languages {
 	/**
 	 * @var MessageGroup
 	 */
