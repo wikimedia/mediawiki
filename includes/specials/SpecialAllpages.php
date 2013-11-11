@@ -50,6 +50,16 @@ class SpecialAllpages extends IncludableSpecialPage {
 	protected $maxPageLength = 70;
 
 	/**
+	 * Maximum number of pages in a hierarchical ("top level") list.
+	 *
+	 * Traversal of the entire page list by spidering the top levels is thought
+	 * to require O(N^3) DB CPU time where N is the number of pages on the wiki.
+	 * See bug 56840. If this limit is exceeded, the behaviour becomes like a
+	 * simple alphabetic pager.
+	 */
+	protected $maxTopLevelPages = 50000;
+
+	/**
 	 * Determines, which message describes the input field 'nsfrom'.
 	 *
 	 * @var string $nsfromMsg
@@ -201,6 +211,14 @@ class SpecialAllpages extends IncludableSpecialPage {
 		$lines = $wgMemc->get( $key );
 
 		$count = $dbr->estimateRowCount( 'page', '*', $where, __METHOD__ );
+
+		// Don't show a hierarchical list if the number of pages is very large,
+		// since generating it will cause a lot of scanning
+		if ( $count > $this->maxTopLevelPages ) {
+			$this->showChunk( $namespace, $from, $to, $hideredirects );
+			return;
+		}
+
 		$maxPerSubpage = intval( $count / $this->maxLineCount );
 		$maxPerSubpage = max( $maxPerSubpage, $this->maxPerPage );
 
