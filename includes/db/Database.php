@@ -706,7 +706,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 			$tablePrefix = $params['tablePrefix'];
 			$foreign = $params['foreign'];
 		} else { // legacy calling pattern
-			wfDeprecated( __METHOD__ . " method called without parameter array.", "1.22" );
+			wfDeprecated( __METHOD__ . " method called without parameter array.", "1.23" );
 			$args = func_get_args();
 			$server = isset( $args[0] ) ? $args[0] : false;
 			$user = isset( $args[1] ) ? $args[1] : false;
