@@ -25,14 +25,14 @@
  * @ingroup MaintenanceLanguage
  */
 class MessageWriter {
-	static $optionalComment =
+	protected static $optionalComment =
 		'only translate this message to other languages if you have to change it';
-	static $ignoredComment = "do not translate or duplicate this message to other languages";
+	protected static $ignoredComment = "do not translate or duplicate this message to other languages";
 
-	static $messageStructure;
-	static $blockComments;
-	static $ignoredMessages;
-	static $optionalMessages;
+	protected static $messageStructure;
+	protected static $blockComments;
+	protected static $ignoredMessages;
+	protected static $optionalMessages;
 
 	/**
 	 * Write a messages array as a PHP text and write it to the messages file.
