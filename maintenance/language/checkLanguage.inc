@@ -293,7 +293,7 @@ ENDS;
 		}
 
 		$results = $this->results;
-		foreach( $results as $code => $checks ) {
+		foreach ( $results as $code => $checks ) {
 			foreach ( $checks as $check => $messages ) {
 				foreach ( $messages as $key => $details ) {
 					if ( $this->isCheckBlacklisted( $check, $code, $key ) ) {
@@ -335,7 +335,7 @@ ENDS;
 	protected function isCheckBlacklisted( $check, $code, $message ) {
 		$blacklist = $this->getCheckBlacklist();
 
-		foreach( $blacklist as $item ) {
+		foreach ( $blacklist as $item ) {
 			if ( isset( $item['check'] ) && $check !== $item['check'] ) {
 				continue;
 			}

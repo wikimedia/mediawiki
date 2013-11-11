@@ -104,15 +104,15 @@ class GenerateNormalizerData extends Maintenance {
 
 			$code = base_convert( $data['Code'], 16, 10 );
 			if ( ( $code >= 0xFB50 && $code <= 0xFDFF ) # Arabic presentation forms A
-				|| ( $code >= 0xFE70 && $code <= 0xFEFF ) ) # Arabic presentation forms B
-			{
+				|| ( $code >= 0xFE70 && $code <= 0xFEFF ) # Arabic presentation forms B
+			) {
 				if ( $data['Decomposition_Type_Mapping'] === '' ) {
 					// No decomposition
 					continue;
 				}
 				if ( !preg_match( '/^ *(<\w*>) +([0-9A-F ]*)$/',
-					$data['Decomposition_Type_Mapping'], $m ) )
-				{
+					$data['Decomposition_Type_Mapping'], $m )
+				) {
 					$this->error( "Can't parse Decomposition_Type/Mapping on line $lineNum" );
 					$this->error( $line );
 					continue;

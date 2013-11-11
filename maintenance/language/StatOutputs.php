@@ -35,12 +35,16 @@ class statsOutput {
 	# Override the following methods
 	function heading() {
 	}
+
 	function footer() {
 	}
+
 	function blockstart() {
 	}
+
 	function blockend() {
 	}
+
 	function element( $in, $heading = false ) {
 	}
 }
@@ -64,18 +68,23 @@ class wikiStatsOutput extends statsOutput {
 		echo ".\n\n"; # dot to end sentence
 		echo '{| class="sortable wikitable" border="2" style="background-color: #F9F9F9; border: 1px #AAAAAA solid; border-collapse: collapse; clear:both; width:100%;"' . "\n";
 	}
+
 	function footer() {
 		echo "|}\n";
 	}
+
 	function blockstart() {
 		echo "|-\n";
 	}
+
 	function blockend() {
 		echo '';
 	}
+
 	function element( $in, $heading = false ) {
 		echo ( $heading ? '!' : '|' ) . "$in\n";
 	}
+
 	function formatPercent( $subset, $total, $revert = false, $accuracy = 2 ) {
 		$v = @round( 255 * $subset / $total );
 		if ( $revert ) {
@@ -100,6 +109,7 @@ class wikiStatsOutput extends statsOutput {
 		$color = $red . $green . $blue;
 
 		$percent = parent::formatPercent( $subset, $total, $revert, $accuracy );
+
 		return 'style="background-color:#' . $color . ';"|' . $percent;
 	}
 }
@@ -109,6 +119,7 @@ class textStatsOutput extends statsOutput {
 	function element( $in, $heading = false ) {
 		echo $in . "\t";
 	}
+
 	function blockend() {
 		echo "\n";
 	}
@@ -119,6 +130,7 @@ class csvStatsOutput extends statsOutput {
 	function element( $in, $heading = false ) {
 		echo $in . ";";
 	}
+
 	function blockend() {
 		echo "\n";
 	}

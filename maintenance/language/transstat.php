@@ -32,7 +32,6 @@ require_once __DIR__ . '/../commandLine.inc';
 require_once 'languages.inc';
 require_once __DIR__ . '/StatOutputs.php';
 
-
 if ( isset( $options['help'] ) ) {
 	showUsage();
 }
@@ -56,8 +55,6 @@ Example: php maintenance/transstat.php --output=text
 TEXT;
 	exit( 1 );
 }
-
-
 
 # Select an output engine
 switch ( $options['output'] ) {
@@ -97,7 +94,8 @@ $wgRequiredMessagesNumber = count( $wgGeneralMessages['required'] );
 foreach ( $wgLanguages->getLanguages() as $code ) {
 	# Don't check English, RTL English or dummy language codes
 	if ( $code == 'en' || $code == 'enRTL' || ( is_array( $wgDummyLanguageCodes ) &&
-		isset( $wgDummyLanguageCodes[$code] ) ) ) {
+			isset( $wgDummyLanguageCodes[$code] ) )
+	) {
 		continue;
 	}
 

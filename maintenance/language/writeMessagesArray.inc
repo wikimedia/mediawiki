@@ -162,6 +162,7 @@ $messages = array(
 		}
 		$messagesText .= ");
 ";
+
 		return array( $messagesText, $sortedMessages );
 	}
 

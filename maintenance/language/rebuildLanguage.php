@@ -71,6 +71,7 @@ function removeDupes( $oldMsgArray, $dupeMsgSource ) {
 			unset( $newMsgArray[$key] );
 		}
 	}
+
 	return $newMsgArray;
 }
 

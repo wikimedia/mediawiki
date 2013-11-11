@@ -96,7 +96,8 @@ class languages {
 			isset( $this->mNamespaceNames[$code] ) &&
 			isset( $this->mNamespaceAliases[$code] ) &&
 			isset( $this->mMagicWords[$code] ) &&
-			isset( $this->mSpecialPageAliases[$code] ) ) {
+			isset( $this->mSpecialPageAliases[$code] )
+		) {
 			return;
 		}
 		$this->mRawMessages[$code] = array();
@@ -209,6 +210,7 @@ class languages {
 	 */
 	public function getMessages( $code ) {
 		$this->loadMessages( $code );
+
 		return $this->mMessages[$code];
 	}
 
@@ -224,6 +226,7 @@ class languages {
 	 */
 	public function getGeneralMessages() {
 		$this->loadGeneralMessages();
+
 		return $this->mGeneralMessages;
 	}
 
@@ -236,6 +239,7 @@ class languages {
 	 */
 	public function getFallback( $code ) {
 		$this->loadFile( $code );
+
 		return $this->mFallback[$code];
 	}
 
@@ -248,6 +252,7 @@ class languages {
 	 */
 	public function getNamespaceNames( $code ) {
 		$this->loadFile( $code );
+
 		return $this->mNamespaceNames[$code];
 	}
 
@@ -260,6 +265,7 @@ class languages {
 	 */
 	public function getNamespaceAliases( $code ) {
 		$this->loadFile( $code );
+
 		return $this->mNamespaceAliases[$code];
 	}
 
@@ -272,6 +278,7 @@ class languages {
 	 */
 	public function getMagicWords( $code ) {
 		$this->loadFile( $code );
+
 		return $this->mMagicWords[$code];
 	}
 
@@ -284,6 +291,7 @@ class languages {
 	 */
 	public function getSpecialPageAliases( $code ) {
 		$this->loadFile( $code );
+
 		return $this->mSpecialPageAliases[$code];
 	}
 
@@ -297,6 +305,7 @@ class languages {
 	public function getUntranslatedMessages( $code ) {
 		$this->loadGeneralMessages();
 		$this->loadMessages( $code );
+
 		return array_diff_key( $this->mGeneralMessages['required'], $this->mMessages[$code]['required'] );
 	}
 
@@ -316,6 +325,7 @@ class languages {
 				$duplicateMessages[$key] = $value;
 			}
 		}
+
 		return $duplicateMessages;
 	}
 
@@ -329,6 +339,7 @@ class languages {
 	public function getObsoleteMessages( $code ) {
 		$this->loadGeneralMessages();
 		$this->loadMessages( $code );
+
 		return $this->mMessages[$code]['obsolete'];
 	}
 
@@ -348,11 +359,13 @@ class languages {
 			$missing = false;
 			foreach ( $variables as $var ) {
 				if ( preg_match( "/$var/sU", $this->mGeneralMessages['translatable'][$key] ) &&
-					!preg_match( "/$var/sU", $value ) ) {
+					!preg_match( "/$var/sU", $value )
+				) {
 					$missing = true;
 				}
 				if ( !preg_match( "/$var/sU", $this->mGeneralMessages['translatable'][$key] ) &&
-					preg_match( "/$var/sU", $value ) ) {
+					preg_match( "/$var/sU", $value )
+				) {
 					$missing = true;
 				}
 			}
@@ -360,6 +373,7 @@ class languages {
 				$mismatchMessages[$key] = $value;
 			}
 		}
+
 		return $mismatchMessages;
 	}
 
@@ -379,6 +393,7 @@ class languages {
 				$messagesWithoutPlural[$key] = $value;
 			}
 		}
+
 		return $messagesWithoutPlural;
 	}
 
@@ -398,6 +413,7 @@ class languages {
 				$emptyMessages[$key] = $value;
 			}
 		}
+
 		return $emptyMessages;
 	}
 
@@ -417,6 +433,7 @@ class languages {
 				$messagesWithWhitespace[$key] = $value;
 			}
 		}
+
 		return $messagesWithWhitespace;
 	}
 
@@ -445,6 +462,7 @@ class languages {
 				$nonXHTMLMessages[$key] = $value;
 			}
 		}
+
 		return $nonXHTMLMessages;
 	}
 
@@ -482,6 +500,7 @@ class languages {
 				$wrongCharsMessages[$key] = $value;
 			}
 		}
+
 		return $wrongCharsMessages;
 	}
 
@@ -506,11 +525,11 @@ class languages {
 				}
 			}
 
-
 			if ( isset( $messages[$key] ) ) {
 				$messages[$key] = implode( $messages[$key], ", " );
 			}
 		}
+
 		return $messages;
 	}
 
@@ -547,8 +566,8 @@ class languages {
 			if ( $a !== $b || $c !== $d ) {
 				$messages[$key] = "$a, $b, $c, $d";
 			}
-
 		}
+
 		return $messages;
 	}
 
@@ -566,6 +585,7 @@ class languages {
 		if ( isset( $namespacesDiff[NS_MAIN] ) ) {
 			unset( $namespacesDiff[NS_MAIN] );
 		}
+
 		return $namespacesDiff;
 	}
 
@@ -614,6 +634,7 @@ class languages {
 				$magicWords[$key] = $value[1];
 			}
 		}
+
 		return $magicWords;
 	}
 
@@ -633,6 +654,7 @@ class languages {
 				$magicWords[$key] = $value[1];
 			}
 		}
+
 		return $magicWords;
 	}
 
@@ -662,6 +684,7 @@ class languages {
 				}
 			}
 		}
+
 		return $magicWords;
 	}
 
@@ -685,6 +708,7 @@ class languages {
 				$magicWords[$key] = $local[0];
 			}
 		}
+
 		return $magicWords;
 	}
 
@@ -704,6 +728,7 @@ class languages {
 				$specialPageAliases[$key] = $value[0];
 			}
 		}
+
 		return $specialPageAliases;
 	}
 
@@ -723,6 +748,7 @@ class languages {
 				$specialPageAliases[$key] = $value[0];
 			}
 		}
+
 		return $specialPageAliases;
 	}
 }
