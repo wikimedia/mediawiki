@@ -456,7 +456,6 @@ $wgOptionalMessages = array(
 	'percent',
 	'parentheses',
 	'brackets',
-	'quotation-marks',
 	'listgrouprights-right-display',
 	'listgrouprights-right-revoked',
 	'timezone-utc',
