@@ -1165,6 +1165,8 @@ class AutoLoader {
 		// do not strip the leading backlash in this case, causing autoloading to fail.
 		$className = ltrim( $className, '\\' );
 
+		$filename = false;
+
 		if ( isset( $wgAutoloadLocalClasses[$className] ) ) {
 			$filename = $wgAutoloadLocalClasses[$className];
 		} elseif ( isset( $wgAutoloadClasses[$className] ) ) {
@@ -1177,7 +1179,6 @@ class AutoLoader {
 			 * and we are plagued with several legacy uses created by MediaWiki < 1.5, see
 			 * https://wikitech.wikimedia.org/wiki/Text_storage_data
 			 */
-			$filename = false;
 			$lowerClass = strtolower( $className );
 
 			if ( self::$autoloadLocalClassesLower === null ) {
