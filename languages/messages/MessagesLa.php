@@ -1449,7 +1449,7 @@ Adspectum graciliorem potes facere modum indicum, nomen usoris (cave litteras ma
 'allnotinnamespace' => 'Omnes paginae (quibus in spatio nominali $1 exclusis)',
 'allpagesprev' => 'Superior',
 'allpagesnext' => 'Proxima',
-'allpagessubmit' => 'Ire',
+'allpagessubmit' => 'Adhibere',
 'allpagesprefix' => 'Monstrare paginas quibus est praeverbium:',
 'allpagesbadtitle' => 'Nomen paginae datum fuit invalidum aut praverbium interlinguale vel interviciale habuit. Fortasse insunt una aut plus litterarum quae in titulis non possunt inscribier.',
 'allpages-bad-ns' => 'Non est spatium nominale "$1" apud {{grammar:accusative|{{SITENAME}}}}.',
@@ -1719,6 +1719,7 @@ Si pagina nova cum ipso nomine post deletionem creata est, emendationes restitut
 # Namespace form on various pages
 'namespace' => 'Spatium nominale:',
 'invert' => 'Selectionem invertere',
+'namespace_association' => 'Spatium nominale pertinens',
 'blanknamespace' => '(principale)',
 
 # Contributions

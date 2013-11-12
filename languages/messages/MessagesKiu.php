@@ -8,6 +8,7 @@
  * @file
  *
  * @author Erdemaslancan
+ * @author Gorizon
  * @author Mirzali
  */
 
@@ -280,7 +281,7 @@ $1',
 'pool-errorunknown' => 'Xeta nêzanıtiye',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
-'aboutsite' => 'Heqa {{SITENAME}} de',
+'aboutsite' => 'Heqdé {{SITENAME}}',
 'aboutpage' => 'Project:Heqa',
 'copyright' => 'Zerrek bınê $1 dero.',
 'copyrightpage' => '{{ns:project}}:Telifheqiye',

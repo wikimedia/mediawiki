@@ -2965,6 +2965,7 @@ Daytoy ket mabalin a gapuanan babaen ti silpo a naiparit ti akin ruar a pagsaada
 'pageinfo-length' => 'Kaatiddog ti panid (kadagiti byte)',
 'pageinfo-article-id' => 'ID ti panid',
 'pageinfo-language' => 'Pagsasao ti naglaon a panid',
+'pageinfo-content-model' => 'Modelo ti linaon ti panid',
 'pageinfo-robot-policy' => 'Panagpasurot babaen dagiti robot',
 'pageinfo-robot-index' => 'Maipalubos',
 'pageinfo-robot-noindex' => 'Saan a maipalubos',

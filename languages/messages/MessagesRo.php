@@ -1263,8 +1263,9 @@ funcție, fie versiunea specificată nu există, ori sunteți pe cale să ascund
 'revdelete-text' => "'''Versiunile șterse vor apărea în istoricul paginii, dar conținutul lor nu va fi accesibil publicului.''' Administratorii {{SITENAME}} pot accesa conținutul șters și îl pot recupera prin aceeași interfață, dacă nu este impusă altă restricție de către operatorii sitului.",
 'revdelete-confirm' => 'Vă rugăm să confirmați că intenționați să faceți acest lucru, că înțelegeți consecințele și că faceți asta în conformitate cu [[{{MediaWiki:Policy-url}}|politica]].',
 'revdelete-suppress-text' => "Suprimarea trebuie folosită '''doar''' în următoarele cazuri:
+* Informații potențial calomnioase
 * Informații personale inadecvate
-*: ''adrese și numere de telefon personale, CNP, numere de securitate socială, etc.''",
+*: ''adrese și numere de telefon personale, CNP, numere de securitate socială etc.''",
 'revdelete-legend' => 'Restricții de afișare',
 'revdelete-hide-text' => 'Textul versiunii',
 'revdelete-hide-image' => 'Șterge conținutul fișierului',
@@ -3147,7 +3148,7 @@ Un dosar temporar lipsește.',
 Permite adăugarea unui motiv în descrierea modificărilor',
 'tooltip-preferences-save' => 'Salvează preferințele',
 'tooltip-summary' => 'Descrieți pe scurt modificarea',
-'tooltip-iwiki' => '$1 – $2',
+'interlanguage-link-title' => '$1 – $2',
 
 # Stylesheets
 'common.css' => '/** CSS plasate aici vor fi aplicate tuturor aparițiilor */',
@@ -3844,6 +3845,9 @@ Vă rugăm să confirmați faptul că într-adevăr doriți să recreați acest 
 'confirm-watch-top' => 'Adăugați această pagină la lista de pagini urmărite?',
 'confirm-unwatch-button' => 'OK',
 'confirm-unwatch-top' => 'Eliminați această pagină din lista de pagini urmărite?',
+
+# Separators for various lists, etc.
+'quotation-marks' => '„$1”',
 
 # Multipage image navigation
 'imgmultipageprev' => '← pagina anterioară',

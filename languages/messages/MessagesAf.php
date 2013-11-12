@@ -3042,6 +3042,7 @@ Die lêer is slegs gedeeltelik opgelaai.',
 U kan daar \'n wysigingsopsomming byvoeg.',
 'tooltip-preferences-save' => 'Stoor voorkeure',
 'tooltip-summary' => "Verskaf 'n kort opsomming",
+'interlanguage-link-title' => '$1 – $2',
 
 # Stylesheets
 'common.css' => '/** Gemeenskaplike CSS vir alle omslae */',

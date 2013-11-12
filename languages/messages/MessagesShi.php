@@ -264,7 +264,7 @@ $1',
 Ẓr [[Special:Version|ayyaw tasna]].',
 
 'ok' => 'Waxxa',
-'pagetitle' => '(MediaWiki)$1 - {{SITENAME}}',
+'pagetitle' => '$1 - {{SITENAME}}',
 'pagetitle-view-mainpage' => '{{SITENAME}}',
 'retrievedfrom' => 'Yurrid z "$1"',
 'youhavenewmessages' => 'Illa dark $1 ($2).',

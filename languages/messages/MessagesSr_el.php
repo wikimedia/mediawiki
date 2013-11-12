@@ -752,7 +752,7 @@ Imajte na umu da neke stranice mogu nastaviti da se prikazuju kao da ste još pr
 'gotaccount' => 'Već imate nalog? Idite na stranicu „$1“.',
 'gotaccountlink' => 'Prijava',
 'userlogin-resetlink' => 'Zaboravili ste podatke za prijavu?',
-'userlogin-resetpassword-link' => 'Resetuj lozinku',
+'userlogin-resetpassword-link' => 'Zaboravili ste lozinku?',
 'helplogin-url' => 'Help:Logging in',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Pomoć pri prijavljivanju]]',
 'createacct-join' => 'Unesite svoje podatke ispod.',
@@ -1320,7 +1320,7 @@ Korišćenje navigacionih veza će poništiti ovu kolonu.',
 'mergehistory-reason' => 'Razlog:',
 
 # Merge log
-'mergelog' => 'Istorija spajanja',
+'mergelog' => 'Dnevnik spajanja',
 'pagemerge-logentry' => 'stranica [[$1]] je spojena u [[$2]] (sve do izmene $3)',
 'revertmerge' => 'rastavi',
 'mergelogpagetext' => 'Ispod se nalazi spisak skorašnjih spajanja istorija stranica.',
@@ -2457,7 +2457,7 @@ Potvrdite svoju nameru, da razumete posledice i da ovo radite u skladu s [[{{Med
 'actionfailed' => 'Radnja nije uspela',
 'deletedtext' => "Stranica „$1“ je obrisana.
 Pogledajte ''$2'' za više detalja.",
-'dellogpage' => 'Istorija brisanja',
+'dellogpage' => 'Dnevnik brisanja',
 'dellogpagetext' => 'Ispod je spisak poslednjih brisanja.',
 'deletionlog' => 'dnevnik brisanja',
 'reverted' => 'Vraćeno na raniju izmenu',
@@ -3941,7 +3941,7 @@ Potvrdite da stvarno želite da napravite stranicu.",
 'table_pager_empty' => 'Nema rezultata',
 
 # Auto-summaries
-'autosumm-blank' => 'Potpuno obrisana stranica',
+'autosumm-blank' => 'Uklonjen celokupan sadržaja stranice',
 'autosumm-replace' => 'Zamena sadržaja stranice sa „$1“',
 'autoredircomment' => 'Preusmerenje na [[$1]]',
 'autosumm-new' => 'Nova stranica: $1',

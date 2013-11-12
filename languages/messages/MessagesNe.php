@@ -849,6 +849,11 @@ $2
 'edit-already-exists' => 'नयाँ पृष्ठ बनाउन सकिएन ।
 यो पहिले देखि नै रहेको छ।',
 
+# Content models
+'content-model-wikitext' => 'विकिपाठ',
+'content-model-text' => 'साधारण पाठ',
+'content-model-javascript' => 'जाभास्क्रिप्ट',
+
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''चेतावनी:''' यस पृष्टका अति धेरै संख्याका महँगा पार्सर फंक्सन कल्स (expensive parser function calls)  छन्।
 यसमा $2 भन्दा कम {{PLURAL:$2|कल|कल्स}} हुनुपर्छ,  यहाँ {{PLURAL:$1|अहिले $1 कल छ|अहिले $1 कल्स छ्न्}}.",
@@ -952,10 +957,10 @@ $2
 'revdelete-selected' => "'''[[:$1]]को {{PLURAL:$2|छानिएको संस्करण|छानिएका संस्करणहरु}}  :'''",
 'logdelete-selected' => "'''{{PLURAL:$1|छानिएको लग घटना|छानिएका लग घटनाहरु}}:'''",
 'revdelete-legend' => 'दृष्टि बन्देज मिलाउने',
-'revdelete-hide-text' => 'पुनरावलोकन पाठ लुकाउने',
+'revdelete-hide-text' => 'पुनरावलोकन पाठ',
 'revdelete-hide-image' => 'फाइल कमेन्ट लुकाउने',
 'revdelete-hide-name' => 'कार्य र गन्तब्य लुकाउने',
-'revdelete-hide-comment' => 'सम्पादन टिप्पणी लुकाउने',
+'revdelete-hide-comment' => 'सम्पादन टिप्पणी',
 'revdelete-hide-user' => 'सम्पादकको प्रयोगकर्ता नाम/IP लुकाउने',
 'revdelete-hide-restricted' => 'प्रवन्धक वा अरुबाट डेटा कम लिने',
 'revdelete-radio-same' => '(परिवर्तन नगर्नुहोस्)',
@@ -1115,6 +1120,7 @@ $1",
 'prefs-beta' => 'बिटा गुणहरु',
 'prefs-datetime' => 'मिति र समय',
 'prefs-labs' => 'प्रयोगशाला गुणहरु',
+'prefs-user-pages' => 'प्रयोगकर्ता पृष्ठहरू',
 'prefs-personal' => 'प्रयोगकर्ताको विवरण',
 'prefs-rc' => 'नयाँ परिवर्तनहरु',
 'prefs-watchlist' => 'अवलोकन पृष्ठ',
@@ -1207,6 +1213,8 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'prefs-dateformat' => 'मिति ढाँचा',
 'prefs-timeoffset' => 'समय अफसेट',
 'prefs-advancedediting' => 'सामान्य विकल्पहरू',
+'prefs-editor' => 'सम्पादक',
+'prefs-preview' => 'पूर्वावलोकन',
 'prefs-advancedrc' => 'उन्नत विकल्पहरू',
 'prefs-advancedrendering' => 'उन्नत विकल्पहरु',
 'prefs-advancedsearchoptions' => 'उन्नत विकल्पहरू',
@@ -1214,6 +1222,7 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'prefs-displayrc' => 'प्रदर्शन विकल्पहरू',
 'prefs-displaysearchoptions' => 'प्रदर्शन विकल्पहरू',
 'prefs-displaywatchlist' => 'प्रदर्शन विकल्पहरू',
+'prefs-tokenwatchlist' => 'टोकन',
 'prefs-diffs' => 'diffs(भिन्नता)',
 
 # User preference: email validation using jQuery
@@ -1372,6 +1381,7 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|परिवर्तन|परिवर्तनहरु}}',
+'enhancedrc-history' => 'इतिहास',
 'recentchanges' => 'नयाँ परिवर्तनहरु',
 'recentchanges-legend' => 'हालैको परिवर्तन विकल्पहरु',
 'recentchanges-summary' => 'विकिका भर्खरका परिवर्तनहरुलाई यस पृष्ठमा पहिल्याउने',
@@ -1587,6 +1597,8 @@ $1',
 'listfiles_size' => 'आकार',
 'listfiles_description' => 'वर्णन',
 'listfiles_count' => 'संस्करणहरु',
+'listfiles-latestversion-yes' => 'हो',
+'listfiles-latestversion-no' => 'हैन',
 
 # File description page
 'file-anchor-link' => 'फाईल',

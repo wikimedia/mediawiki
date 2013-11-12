@@ -1159,8 +1159,8 @@ $2
 
 它应该少过$2次呼叫，现在有$1次呼叫。',
 'expensive-parserfunction-category' => '页面中有太多耗费的语法功能呼叫',
-'post-expand-template-inclusion-warning' => '警告：包含模板大小过大。
-一些模板将不会包含。',
+'post-expand-template-inclusion-warning' => "'''警告：'''包含模板大小过大。
+一些模板将不会包含。",
 'post-expand-template-inclusion-category' => '模板包含上限已经超过的页面',
 'post-expand-template-argument-warning' => "'''警告：'''本页面包含至少一个模板参数有过大扩展大小。这些参数会被略过。",
 'post-expand-template-argument-category' => '包含着略过模板参数的页面',
@@ -2208,7 +2208,7 @@ $1',
 'querypage-disabled' => '本特殊页面因性能问题而停用。',
 
 # Book sources
-'booksources' => '图书来源',
+'booksources' => '网络书源',
 'booksources-search-legend' => '搜索图书来源',
 'booksources-isbn' => 'ISBN：',
 'booksources-go' => '提交',
@@ -3059,7 +3059,7 @@ $2',
 'tooltip-undo' => '“撤销”可以恢复该编辑并在预览模式下打开编辑表单。它允许在摘要中加入原因。',
 'tooltip-preferences-save' => '保存系统设置',
 'tooltip-summary' => '请输入简短的摘要',
-'tooltip-iwiki' => '$1 – $2',
+'interlanguage-link-title' => '$1 – $2',
 
 # Stylesheets
 'common.css' => '/* 此处的 CSS 将应用于所有的皮肤 */',
@@ -3124,6 +3124,7 @@ $2',
 'pageinfo-length' => '页面长度（字节）',
 'pageinfo-article-id' => '页面ID',
 'pageinfo-language' => '页面内容语言',
+'pageinfo-content-model' => '页面内容模式',
 'pageinfo-robot-policy' => '爬虫索引',
 'pageinfo-robot-index' => '允许',
 'pageinfo-robot-noindex' => '不允许',

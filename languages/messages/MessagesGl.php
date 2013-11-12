@@ -561,7 +561,7 @@ $1',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'Páxina',
-'nstab-user' => 'Páxina de {{GENDER:{{#titleparts:{{BASEPAGENAME}}|1}}|usuario|usuaria}}',
+'nstab-user' => 'Páxina de {{GENDER:{{ROOTPAGENAME}}|usuario|usuaria}}',
 'nstab-media' => 'Páxina multimedia',
 'nstab-special' => 'Páxina especial',
 'nstab-project' => 'Páxina do proxecto',
@@ -711,7 +711,7 @@ Non esqueza personalizar as súas [[Special:Preferences|preferencias de {{SITENA
 'gotaccount' => 'Xa ten unha conta? $1.',
 'gotaccountlink' => 'Acceda ao sistema',
 'userlogin-resetlink' => 'Esqueceu os seus datos de rexistro?',
-'userlogin-resetpassword-link' => 'Restablecer o seu contrasinal',
+'userlogin-resetpassword-link' => 'Esqueceu o contrasinal?',
 'helplogin-url' => 'Help:Rexistro',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Axuda co rexistro]]',
 'userlogin-loggedin' => 'Xa accedeu ao sistema como {{GENDER:$1|$1}}.
@@ -791,8 +791,9 @@ Para evitar o abuso do sistema só se enviará unha mensaxe de restablecemento c
 'mailerror' => 'Produciuse un erro ao enviar o correo electrónico: $1',
 'acct_creation_throttle_hit' => 'Alguén que visitou este wiki co seu enderezo IP creou, no último día, {{PLURAL:$1|unha conta|$1 contas}}, que é o máximo permitido neste período de tempo.
 Como resultado, os visitantes que usen este enderezo IP non poden crear máis contas nestes intres.',
-'emailauthenticated' => 'O seu enderezo de correo electrónico foi autenticado o $2 ás $3.',
-'emailnotauthenticated' => 'O seu enderezo de correo electrónico aínda <strong>non foi autenticado</strong>. Non se enviou ningunha mensaxe por algunha das seguintes razóns.',
+'emailauthenticated' => 'O seu enderezo de correo electrónico foi confirmado o $2 ás $3.',
+'emailnotauthenticated' => 'O seu enderezo de correo electrónico aínda non foi confirmado.
+Non se enviará ningunha mensaxe por ningunha das seguintes características.',
 'noemailprefs' => 'Especifique un enderezo de correo electrónico se quere que funcione esta opción.',
 'emailconfirmlink' => 'Confirmar o enderezo de correo electrónico',
 'invalidemailaddress' => 'Non se pode aceptar o enderezo de correo electrónico porque semella ter un formato incorrecto.
@@ -1237,15 +1238,15 @@ Os demais administradores de {{SITENAME}} poderán acceder ao contido agochado e
 * Información persoal inapropiada
 *: ''domicilios e números de teléfono, números da seguridade social, etc.''",
 'revdelete-legend' => 'Aplicar restricións de visibilidade',
-'revdelete-hide-text' => 'Agochar o texto da revisión',
+'revdelete-hide-text' => 'Texto da revisión',
 'revdelete-hide-image' => 'Agochar o contido do ficheiro',
 'revdelete-hide-name' => 'Agochar a acción e o destino',
-'revdelete-hide-comment' => 'Agochar o resumo de edición',
-'revdelete-hide-user' => 'Agochar o nome de usuario ou o enderezo IP do editor',
+'revdelete-hide-comment' => 'Resumo de edición',
+'revdelete-hide-user' => 'Nome de usuario ou enderezo IP do editor',
 'revdelete-hide-restricted' => 'Eliminar os datos da vista dos administradores así coma da doutros',
 'revdelete-radio-same' => '(non cambiar)',
-'revdelete-radio-set' => 'Si',
-'revdelete-radio-unset' => 'Non',
+'revdelete-radio-set' => 'Visible',
+'revdelete-radio-unset' => 'Agochado',
 'revdelete-suppress' => 'Eliminar os datos da vista dos administradores así coma da doutros',
 'revdelete-unsuppress' => 'Retirar as restricións sobre as revisións restauradas',
 'revdelete-log' => 'Motivo:',
@@ -3127,6 +3128,7 @@ Pode ver o código fonte.',
 'tooltip-undo' => '"Desfacer" reverte esta edición e abre o formulario de edición nun modo previo. Permite engadir un motivo no resumo de edición.',
 'tooltip-preferences-save' => 'Gardar as preferencias',
 'tooltip-summary' => 'Escriba un breve resumo',
+'interlanguage-link-title' => '$1 – $2',
 
 # Stylesheets
 'common.css' => '/** O CSS que se coloque aquí será aplicado a todas as aparencias */',
@@ -3191,6 +3193,7 @@ Isto, probabelmente, se debe a unha ligazón cara a un sitio externo que está n
 'pageinfo-length' => 'Lonxitude da páxina (en bytes)',
 'pageinfo-article-id' => 'ID da páxina',
 'pageinfo-language' => 'Lingua do contido da páxina',
+'pageinfo-content-model' => 'Modelo do contido da páxina',
 'pageinfo-robot-policy' => 'Indexación por robots',
 'pageinfo-robot-index' => 'Permitida',
 'pageinfo-robot-noindex' => 'Non permitida',

@@ -112,7 +112,7 @@ $messages = array(
 'vector-action-move' => 'Fuddem voch',
 'vector-action-protect' => 'Rakh',
 'vector-view-create' => 'Roch',
-'vector-view-edit' => 'sudar',
+'vector-view-edit' => 'Sudar',
 'vector-view-history' => 'Itihas polloi',
 'vector-view-view' => 'Vach',
 'vector-view-viewsource' => 'Mull polloi',
@@ -397,7 +397,7 @@ Dusre tuje xim sompork kortat tednam tuzo email potto tankam kollchenam.',
 'newuserlogpage' => 'Vapurpi rochnnechem sotr',
 
 # Associated actions - in the sentence "You do not have permission to X"
-'action-edit' => 'hem pan bodol',
+'action-edit' => 'hem pan sudar',
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|bodlop|bodlopam}}',

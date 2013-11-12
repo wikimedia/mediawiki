@@ -3894,6 +3894,7 @@ Czy na pewno chcesz ją ponownie utworzyć?",
 
 # Separators for various lists, etc.
 'percent' => '$1&#160;%',
+'quotation-marks' => '„$1”',
 
 # Multipage image navigation
 'imgmultipageprev' => '← poprzednia strona',

@@ -2931,7 +2931,7 @@ Mae ffolder dros dro yn eisiau.',
 Gellir ychwanegu rheswm dros y dadwneud yn y crynodeb.',
 'tooltip-preferences-save' => 'Rhodder y dewisiadau ar gadw',
 'tooltip-summary' => 'Rhowch grynodeb byr',
-'tooltip-iwiki' => '$1 - $2',
+'interlanguage-link-title' => '$1 - $2',
 
 # Metadata
 'notacceptable' => "Dydy gweinydd y wici ddim yn medru rhoi'r data mewn fformat darllenadwy i'ch cleient.",

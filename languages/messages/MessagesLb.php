@@ -3002,7 +3002,7 @@ Späichert en op Ärem Computer of a luet en hei nees erop.',
 Erlaabt et e Grond an de Resumé derbäizesetzen.',
 'tooltip-preferences-save' => 'Astellunge späicheren',
 'tooltip-summary' => 'Gitt e kuerze Resumé an',
-'tooltip-iwiki' => '$1 - $2',
+'interlanguage-link-title' => '$1 - $2',
 
 # Stylesheets
 'common.css' => "/* Dës CSS huet nëmmen Afloss op de Skin ''Chick''  */",

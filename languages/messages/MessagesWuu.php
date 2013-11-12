@@ -1666,7 +1666,7 @@ $1",
 'tooltip-rollback' => '揿一记“回转”就回退到上一位贡献者个编辑状态',
 'tooltip-undo' => '“撤销”可以恢复该编辑并且垃拉预览模式下头打开编辑表单。渠允许垃拉摘要里向说明原因。',
 'tooltip-summary' => '打进短摘要',
-'tooltip-iwiki' => '̩$1 - $2',
+'interlanguage-link-title' => '̩$1 - $2',
 
 # Attribution
 'anonymous' => '{{SITENAME}}浪个匿名用户',

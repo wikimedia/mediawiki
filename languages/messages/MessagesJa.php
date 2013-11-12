@@ -3295,6 +3295,7 @@ $2',
 'tooltip-undo' => '「取り消し」はこの編集を差し戻し、編集画面をプレビュー付きで開きます。要約欄に理由を追加できます。',
 'tooltip-preferences-save' => '設定を保存する',
 'tooltip-summary' => '短い要約を入力してください',
+'interlanguage-link-title' => '$1 – $2',
 
 # Stylesheets
 'common.css' => '/* ここに記述したCSSはすべての外装に反映されます */',

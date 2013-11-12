@@ -1375,6 +1375,7 @@ Du kannst diesen Versionsunterschied einsehen, sofern du möchtest. Nähere Anga
 Andere Administratoren auf {{SITENAME}} haben Zugriff auf den versteckten Inhalt und können ihn mit der gleichen Seite wiederherstellen, sofern nicht zusätzliche Einschränkungen bestehen.",
 'revdelete-confirm' => 'Bitte bestätige, dass du beabsichtigst, dies zu tun, die Konsequenzen verstehst und es in Übereinstimmung mit den [[{{MediaWiki:Policy-url}}|Richtlinien]] tust.',
 'revdelete-suppress-text' => "Unterdrückungen sollten '''nur''' in den folgenden Fällen vorgenommen werden:
+* Potentiell beleidigende Informationen
 * Unangebrachte persönliche Informationen
 *: ''Adressen, Telefonnummern, Sozialversicherungsnummern etc.''",
 'revdelete-legend' => 'Setzen der Sichtbarkeitseinschränkungen',
@@ -3233,7 +3234,7 @@ Diese auf dem lokalen Rechner speichern und danach hier hochladen.',
 'tooltip-undo' => 'Macht lediglich diese eine Änderung rückgängig und zeigt das Resultat in der Vorschau an, damit in der Zusammenfassungszeile eine Begründung angegeben werden kann.',
 'tooltip-preferences-save' => 'Einstellungen speichern',
 'tooltip-summary' => 'Gib eine kurze Zusammenfassung ein.',
-'tooltip-iwiki' => '$1 – $2',
+'interlanguage-link-title' => '$1 – $2',
 
 # Stylesheets
 'common.css' => '/* Das folgende CSS wird für alle Benutzeroberflächen geladen. */',
@@ -3953,6 +3954,7 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 # Separators for various lists, etc.
 'ellipsis' => '…',
 'percent' => '$1&#160;%',
+'quotation-marks' => '„$1“',
 
 # Multipage image navigation
 'imgmultipageprev' => '← vorherige Seite',

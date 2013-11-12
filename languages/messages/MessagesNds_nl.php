@@ -3119,7 +3119,7 @@ De tiedelike map is niet anwezig.',
 Iej könt in de bewearkingssamenvatting n reden opgeven.',
 'tooltip-preferences-save' => 'Vuurkeuren opsloan',
 'tooltip-summary' => 'Voer ne korte samenvatting in',
-'tooltip-iwiki' => '$1 – $2',
+'interlanguage-link-title' => '$1 – $2',
 
 # Metadata
 'notacceptable' => 'De wikiserver kan de gegevens niet leveren in n vorm die joew kliënt kan lezen.',

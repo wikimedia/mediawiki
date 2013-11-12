@@ -3041,7 +3041,7 @@ $2',
 'tooltip-undo' => '「復原」可以在編輯模式上開啟編輯表格以便恢復。它容許在摘要中加入原因。',
 'tooltip-preferences-save' => '儲存使用偏好',
 'tooltip-summary' => '輸入一個簡短的摘要',
-'tooltip-iwiki' => '$1 – $2',
+'interlanguage-link-title' => '$1 – $2',
 
 # Stylesheets
 'common.css' => '/* 此處的 CSS 將應用於所有的面板 */',

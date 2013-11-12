@@ -727,8 +727,8 @@ Za preprečevanje zlorab lahko na {{PLURAL:$1|uro|$1 uri|$1 ure|$1 ur}} pošljem
 
 Če urejate prek AOL ali iz Bližnjega vzhoda, Afrike, Avstralije, Nove Zelandije ali iz šole, knjižnice ali podjetja, si IP-naslov morda delite z drugimi uporabniki. Če je tako, ste to sporočilo morda prejeli, čeprav niste ustvarili še nobenega računa. Znova se lahko poskusite registrirati po nekaj urah.',
 'emailauthenticated' => 'Vaš e-poštni naslov je bil potrjen dne $2 ob $3.',
-'emailnotauthenticated' => 'Vaš e-poštni naslov še ni potrjen. Za navedene
-možnosti se e-pošte ne bo pošiljalo.',
+'emailnotauthenticated' => 'Vaš e-poštni naslov še ni potrjen.
+Za navedene možnosti e-pošte ne bomo pošiljali.',
 'noemailprefs' => 'E-poštnega naslova niste vnesli, zato naslednje možnosti ne bodo delovale.',
 'emailconfirmlink' => 'Potrdite svoj e-poštni naslov',
 'invalidemailaddress' => 'E-poštni naslov zaradi neveljavne oblike ni sprejemljiv.
@@ -1168,15 +1168,15 @@ Do skrite vsebine bodo še vedno lahko dostopali drugi administratorji {{GRAMMAR
 * Neprimerni osebni podatki
 *: ''domači naslovi in telefonske številke, številke socialnega zavarovanja, etc.''",
 'revdelete-legend' => 'Nastavi omejitve vidnosti',
-'revdelete-hide-text' => 'Skrij besedilo redakcije',
+'revdelete-hide-text' => 'Besedilo redakcije',
 'revdelete-hide-image' => 'Skrij vsebino datoteke.',
 'revdelete-hide-name' => 'Skrij dejanje in cilj',
-'revdelete-hide-comment' => 'Skrij povzetek urejanja',
-'revdelete-hide-user' => 'Skrij uporabniško ime/IP-naslov urejevalca',
+'revdelete-hide-comment' => 'Povzetek urejanja',
+'revdelete-hide-user' => 'Uporabniško ime/IP-naslov urejevalca',
 'revdelete-hide-restricted' => 'Zadrži podatke od administratorjev kakor tudi od ostalih',
 'revdelete-radio-same' => '(ne spremeni)',
-'revdelete-radio-set' => 'Da',
-'revdelete-radio-unset' => 'Ne',
+'revdelete-radio-set' => 'Vidno',
+'revdelete-radio-unset' => 'Skrito',
 'revdelete-suppress' => 'Zadrži podatke od administratorjev kakor tudi od ostalih',
 'revdelete-unsuppress' => 'Odpraviti omejitve na obnovljenih redakcijah.',
 'revdelete-log' => 'Razlog:',
@@ -3071,6 +3071,7 @@ Prosimo, poskusite znova.',
 Omogoča vnos pojasnila v povzetku urejanja.',
 'tooltip-preferences-save' => 'Shrani nastavitve',
 'tooltip-summary' => 'Vnesite kratek povzetek',
+'interlanguage-link-title' => '$1 – $2',
 
 # Metadata
 'notacceptable' => 'V obliki, ki jo lahko bere vaš odjemalec, wikistrežnik podatkov ne more ponuditi.',
@@ -3110,6 +3111,7 @@ Omogoča vnos pojasnila v povzetku urejanja.',
 'pageinfo-length' => 'Dolžina strani (v bajtih)',
 'pageinfo-article-id' => 'ID strani',
 'pageinfo-language' => 'Jezik vsebine strani',
+'pageinfo-content-model' => 'Model vsebine strani',
 'pageinfo-robot-policy' => 'Robotsko indeksiranje',
 'pageinfo-robot-index' => 'Dovoljeno',
 'pageinfo-robot-noindex' => 'Nedovoljeno',
@@ -3877,7 +3879,7 @@ Skupaj s programom bi morali bi prejeti [{{SERVER}}{{SCRIPTPATH}}/COPYING kopijo
 # Special:Redirect
 'redirect' => 'Preusmeri po datoteki, uporabniku ali ID-ju redakcije',
 'redirect-legend' => 'Preusmeritev na datoteko ali stran',
-'redirect-summary' => 'Posebna stran preusmeri na datoteko (če podate ime datoteke), stran (če podate ID redakcije) ali uporabniško stran (če podatek številski ID uporabnika).',
+'redirect-summary' => 'Posebna stran preusmeri na datoteko (če podate ime datoteke), stran (če podate ID redakcije) ali uporabniško stran (če podate številski ID uporabnika). Primer: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]] ali [[{{#Special:Redirect}}/user/101]].',
 'redirect-submit' => 'Pojdi',
 'redirect-lookup' => 'Iskanje:',
 'redirect-value' => 'Vrednost:',

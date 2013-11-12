@@ -3763,6 +3763,9 @@ Per favor confirma que tu realmente vole recrear iste pagina.",
 'confirm-unwatch-button' => 'OK',
 'confirm-unwatch-top' => 'Remover iste pagina de tu observatorio?',
 
+# Separators for various lists, etc.
+'quotation-marks' => '“$1”',
+
 # Multipage image navigation
 'imgmultipageprev' => '← precedente pagina',
 'imgmultipagenext' => 'sequente pagina →',

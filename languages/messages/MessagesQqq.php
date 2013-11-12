@@ -70,6 +70,7 @@
  * @author Lejonel
  * @author Li-sung
  * @author Liangent
+ * @author Liuxinyu970226
  * @author Lloffiwr
  * @author MF-Warburg
  * @author Malafaya
@@ -5912,6 +5913,7 @@ Example (in English):
 {{Identical|View}}
 {{Identical|Restore}}',
 'undeleteviewlink' => 'First part of {{msg-mw|undeletelink}}.
+Display name of link to view a deleted page used on [[Special:Log/delete]].
 {{Identical|View}}',
 'undeletereset' => 'Shown on [[Special:Undelete]] as button caption.
 {{Identical|Reset}}',
@@ -9559,9 +9561,12 @@ Most languages use a space, but some Asian languages, such as Thai and Chinese, 
 'percent' => '{{optional}}',
 'parentheses' => '{{optional}}',
 'brackets' => '{{Optional}}',
-'quotation-marks' => 'Quotation marks, for citing, sometimes titles etc., depending on the language.
+'quotation-marks' => 'Quotation marks, for quoting, sometimes titles etc., depending on the language.
 
-See: https://en.wikipedia.org/wiki/Non-English_usage_of_quotation_marks',
+See: [[w:Non-English usage of quotation marks|Non-English usage of quotation marks on Wikipedia]].
+
+Parameters: 
+* $1 - text to be wrapped in quotation marks',
 
 # Multipage image navigation
 'imgmultipageprev' => '{{Identical|Previous page}}',

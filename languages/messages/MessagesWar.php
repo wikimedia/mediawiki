@@ -2076,7 +2076,7 @@ Makikit-an nimo an ginkuhaaan',
 'tooltip-undo' => '"Igpawara an ginbuhat (undo)" in nagbabalik hinin nga pagliwat ngan nabuklad hin pagliwat nga porma ha pahiuna-nga-paggawas nga kahimtang.  Natugot liwat pagdugang hin katadungan ha dinalikyat nga sumat.',
 'tooltip-preferences-save' => 'Tipiga an mga karuyag',
 'tooltip-summary' => 'Pagbutang hin dalikyat nga sumat',
-'tooltip-iwiki' => '$1 – $2',
+'interlanguage-link-title' => '$1 – $2',
 
 # Attribution
 'siteuser' => '{{SITENAME}} gumaramit $1',

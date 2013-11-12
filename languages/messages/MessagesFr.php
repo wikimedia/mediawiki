@@ -3222,7 +3222,7 @@ Vous pouvez toutefois en visualiser la source.',
 'tooltip-undo' => '« Annuler » rétablit la modification précédente et ouvre la fenêtre de modification en mode prévisualisation. Il est possible d’ajouter une raison dans le résumé.',
 'tooltip-preferences-save' => 'Sauvegarder les préférences',
 'tooltip-summary' => 'Entrez un bref résumé',
-'tooltip-iwiki' => '$1 — $2',
+'interlanguage-link-title' => '$1 — $2',
 
 # Stylesheets
 'common.css' => '/* Le CSS placé ici sera appliqué à tous les habillages. */',

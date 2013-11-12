@@ -3161,7 +3161,7 @@ Vänligen använd förhandsgranskningsknappen innan du sparar.',
 Ger möjlighet att skriva en motivering i redigeringssammanfattningen',
 'tooltip-preferences-save' => 'Spara inställningar',
 'tooltip-summary' => 'Skriv en kort sammanfattning',
-'tooltip-iwiki' => '$1 - $2',
+'interlanguage-link-title' => '$1 - $2',
 
 # Stylesheets
 'common.css' => '/* CSS som skrivs här påverkar alla skal */',
