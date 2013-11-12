@@ -1213,6 +1213,9 @@ without any fancy queries or variants.
 $title: Title object of page
 &$url: string value as output (out parameter, can modify)
 
+'GetLogTypesOnUser': Add log types where the target is a userpage
+&$types: Array of log types
+
 'GetMetadataVersion': Modify the image metadata version currently in use. This
 is used when requesting image metadata from a ForeignApiRepo. Media handlers
 that need to have versioned metadata should add an element to the end of the
