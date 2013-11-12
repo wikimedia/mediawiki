@@ -1749,6 +1749,31 @@ var mw = ( function ( $, undefined ) {
 					// Cache hit stats
 					stats: { hits: 0, misses: 0, expired: 0 },
 
+					// Group assignment for module storage experiment.
+					//
+					// Assignment may be 0 (not in experiment), 1 (control group), or 2 (experimental
+					// group). Browsers that don't implement all the prerequisite APIs (JSON, Navigation
+					// Timing, or Web Storage) are ineligible. Eligible browsers have a 0.1% chance of
+					// being included in the experiment, in which case they are equally likely to be
+					// assigned to either the experimental or control group.
+					experimentGroup: ( function () {
+						var bucket, random;
+
+						if ( !window.JSON || !window.performance || !window.performance.timing ) {
+							return 0;
+						}
+
+						try {
+							bucket = JSON.parse( localStorage.getItem( 'moduleStorageBucket' ) );
+							if ( !( bucket === 0 || bucket === 1 || bucket === 2 ) ) {
+								random = Math.floor( Math.random() * 2000 );
+								bucket = random === 1 || random === 2 ? random : 0;
+								localStorage.setItem( 'moduleStorageBucket', bucket );
+							}
+						} catch ( e ) {}
+						return bucket === 1 || bucket === 2 ? bucket : 0;
+					}() ),
+
 					/**
 					 * Construct a JSON-serializable object representing the content of the store.
 					 * @return {Object} Module store contents.
@@ -1799,18 +1824,15 @@ var mw = ( function ( $, undefined ) {
 					 * code for a full account of why we need a try / catch: <http://git.io/4NEwKg>.
 					 */
 					init: function () {
-						var raw, data, optedIn;
+						var raw, data, inExperimentalGroup;
 
 						if ( mw.loader.store.enabled !== null ) {
 							// #init already ran.
 							return;
 						}
 
-						// Temporarily allow users to opt-in during mw.loader.store test phase by
-						// manually setting a cookie (bug 56397).
-						optedIn = /ResourceLoaderStorageEnabled=1/.test( document.cookie );
-
-						if ( !( mw.config.get( 'wgResourceLoaderStorageEnabled' ) || optedIn ) || mw.config.get( 'debug' ) ) {
+						inExperimentalGroup = mw.loader.store.experimentGroup === 2;
+						if ( !( mw.config.get( 'wgResourceLoaderStorageEnabled' ) || inExperimentalGroup ) || mw.config.get( 'debug' ) ) {
 							// Disabled by configuration, or because debug mode is set.
 							mw.loader.store.enabled = false;
 							return;
