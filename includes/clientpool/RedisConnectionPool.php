@@ -285,9 +285,16 @@ class RedisConnectionPool {
 	}
 
 	/**
-	 * Resend an AUTH request to the redis server (useful after disconnects)
+	 * Re-send an AUTH request to the redis server (useful after disconnects).
 	 *
-	 * This method is for internal use only
+	 * This works around an upstream bug in phpredis. phpredis hides disconnects by transparently
+	 * reconnecting, but it neglects to re-authenticate the new connection. To the user of the
+	 * phpredis client API this manifests as a seemingly random tendency of connections to lose
+	 * their authentication status.
+	 *
+	 * This method is for internal use only.
+	 *
+	 * @see https://github.com/nicolasff/phpredis/issues/403
 	 *
 	 * @param string $server
 	 * @param Redis $conn
@@ -330,7 +337,18 @@ class RedisConnRef {
 	}
 
 	public function __call( $name, $arguments ) {
-		return call_user_func_array( array( $this->conn, $name ), $arguments );
+		$conn = $this->conn; // convenience
+
+		$conn->clearLastError();
+		$res = call_user_func_array( array( $conn, $name ), $arguments );
+		if ( preg_match( '/^ERR operation not permitted\b/', $conn->getLastError() ) ) {
+			$this->pool->reauthenticateConnection( $this->server, $conn );
+			$conn->clearLastError();
+			$res = call_user_func_array( array( $conn, $name ), $arguments );
+			wfDebugLog( 'redis', "Used automatic re-authentication for method '$name'." );
+		}
+
+		return $res;
 	}
 
 	/**
