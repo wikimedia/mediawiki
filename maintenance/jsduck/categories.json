@@ -9,7 +9,6 @@
 					"mw.Map",
 					"mw.Message",
 					"mw.loader",
-					"mw.loader.store",
 					"mw.log",
 					"mw.html",
 					"mw.html.Cdata",

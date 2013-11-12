@@ -23,13 +23,6 @@ production.
   addresses that should be trusted to provide X-Forwarded-For headers.
 
 === New features in 1.23 ===
-* ResourceLoader can utilize the Web Storage API to cache modules client-side.
-  Compared to the browser cache, caching in Web Storage allows ResourceLoader
-  to be more granular about evicting stale modules from the cache while
-  retaining the ability to retrieve multiple modules in a single HTTP request.
-  This capability can be enabled by setting $wgResourceLoaderStorageEnabled to
-  true. This feature is currently considered experimental and should only be
-  enabled with care.
 * (bug 6092) Add expensive parser functions {{REVISIONID:}}, {{REVISIONUSER:}}
   and {{REVISIONTIMESTAMP:}} (with friends).
 * Add "wgRelevantUserName" to mw.config containing the current
