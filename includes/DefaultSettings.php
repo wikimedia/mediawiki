@@ -3323,22 +3323,6 @@ $wgResourceLoaderLESSImportPaths = array(
 	"$IP/resources/mediawiki.less/",
 );
 
-/**
- * Whether ResourceLoader should attempt to persist modules in localStorage on
- * browsers that support the Web Storage API.
- *
- * @since 1.23 - Client-side module persistence is experimental. Exercise care.
- */
-$wgResourceLoaderStorageEnabled = false;
-
-/**
- * Cache version for client-side ResourceLoader module storage. You can trigger
- * invalidation of the contents of the module store by incrementing this value.
- *
- * @since 1.23
- */
-$wgResourceLoaderStorageVersion = 1;
-
 /** @} */ # End of resource loader settings }
 
 /*************************************************************************//**
