@@ -220,23 +220,6 @@
 				sortByProperty( modules, 'allSelectors', true );
 				return modules;
 			},
-
-			/**
-			 * Report stats on mw.loader.store: the number of localStorage
-			 * cache hits and misses, the number of items purged from the
-			 * cache, and the total size of the module blob in localStorage.
-			 */
-			store: function () {
-				var raw, stats = { enabled: mw.loader.store.enabled };
-				if ( stats.enabled ) {
-					$.extend( stats, mw.loader.store.stats );
-					try {
-						raw = localStorage.getItem( mw.loader.store.getStoreKey() );
-						stats.totalSize = humanSize( $.byteLength( raw ) );
-					} catch (e) {}
-				}
-				return [stats];
-			}
 		}
 	};
 
