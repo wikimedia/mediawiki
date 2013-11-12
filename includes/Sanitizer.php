@@ -854,6 +854,27 @@ class Sanitizer {
 		$value = preg_replace_callback( $decodeRegex,
 			array( __CLASS__, 'cssDecodeCallback' ), $value );
 
+		// Normalize Halfwidth and Fullwidth Unicode block that IE6 might treat as ascii
+		$value = preg_replace_callback(
+			'/[！-ｚ]/u', // U+FF01 to U+FF5A
+			function ( $matches ) {
+				$cp = utf8ToCodepoint( $matches[0] );
+				if ( $cp === false ) {
+					return '';
+				}
+				return chr( $cp - 65248 ); // ASCII range \x21-\x7A
+			},
+			$value
+		);
+
+		// Convert more characters IE6 might treat as ascii
+		// U+0280, U+0274, U+207F, U+029F, U+026A, U+207D, U+208D
+		$value = str_replace(
+			array( 'ʀ', 'ɴ', 'ⁿ', 'ʟ', 'ɪ', '⁽', '₍' ),
+			array( 'r', 'n', 'n', 'l', 'i', '(', '(' ),
+			$value
+		);
+
 		// Remove any comments; IE gets token splitting wrong
 		// This must be done AFTER decoding character references and
 		// escape sequences, because those steps can introduce comments
@@ -869,8 +890,24 @@ class Sanitizer {
 			$value = substr( $value, 0, $commentPos );
 		}
 
+		// S followed by repeat, iteration, or prolonged sound marks,
+		// which IE will treat as "ss"
+		$value = preg_replace(
+			'/s(?:
+				\xE3\x80\xB1 | # U+3031
+				\xE3\x82\x9D | # U+309D
+				\xE3\x83\xBC | # U+30FC
+				\xE3\x83\xBD | # U+30FD
+				\xEF\xB9\xBC | # U+FE7C
+				\xEF\xB9\xBD | # U+FE7D
+				\xEF\xBD\xB0   # U+FF70
+			)/ix',
+			'ss',
+			$value
+		);
+
 		// Reject problematic keywords and control characters
-		if ( preg_match( '/[\000-\010\016-\037\177]/', $value ) ) {
+		if ( preg_match( '/[\000-\010\013\016-\037\177]/', $value ) ) {
 			return '/* invalid control char */';
 		} elseif ( preg_match( '! expression | filter\s*: | accelerator\s*: | url\s*\( | image\s*\( | image-set\s*\( !ix', $value ) ) {
 			return '/* insecure input */';

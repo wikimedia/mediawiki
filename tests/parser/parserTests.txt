@@ -8470,6 +8470,70 @@ MSIE CSS safety test: comment in expression
 
 !! end
 
+!! test
+CSS safety test: vertical tab
+!! input
+<p style="font-size: 100px; background-image:url\b(https://www.google.com/images/srpr/logo6w.png)">A</p>
+!! result
+<p style="/* invalid control char */">A</p>
+
+!! end
+
+!! test
+MSIE CSS safety test: Fullwidth
+!! input
+<p style="font-size: 100px; color: ｅｘｐｒｅｓｓｉｏｎ((title='XSSed'),'red')">A</p>
+<div style="top:ＥＸＰＲＥＳＳＩＯＮ(alert())">B</div>
+!! result
+<p style="/* insecure input */">A</p>
+<div style="/* insecure input */">B</div>
+
+!! end
+
+!! test
+MSIE CSS safety test: IPA extensions
+!! input
+<div style="background-image:uʀʟ(javascript:alert())">A</div>
+<p style="font-size: 100px; color: expʀessɪoɴ((title='XSSed'),'red')">B</p>
+!! result
+<div style="/* insecure input */">A</div>
+<p style="/* insecure input */">B</p>
+
+!! end
+
+!! test
+MSIE CSS safety test: sup/sub script
+!! input
+<div style="background-image:url⁽javascript:alert())">A</div>
+<div style="background-image:url₍javascript:alert())">B</div>
+<p style="font-size: 100px; color: expressioⁿ((title='XSSed'),'red')">C</p>
+!! result
+<div style="/* insecure input */">A</div>
+<div style="/* insecure input */">B</div>
+<p style="/* insecure input */">C</p>
+
+!! end
+
+!! test
+MSIE CSS safety test: Repetition markers
+!! input
+<p style="font-size: 100px; color: expres〱ion((title='XSSed'),'red')">A</p>
+<p style="font-size: 100px; color: expresゝion((title='XSSed'),'red')">B</p>
+<p style="font-size: 100px; color: expresーion((title='XSSed'),'red')">C</p>
+<p style="font-size: 100px; color: expresヽion((title='XSSed'),'red')">D</p>
+<p style="font-size: 100px; color: expresﹽion((title='XSSed'),'red')">E</p>
+<p style="font-size: 100px; color: expresﹼion((title='XSSed'),'red')">F</p>
+<p style="font-size: 100px; color: expresｰion((title='XSSed'),'red')">G</p>
+!! result
+<p style="/* insecure input */">A</p>
+<p style="/* insecure input */">B</p>
+<p style="/* insecure input */">C</p>
+<p style="/* insecure input */">D</p>
+<p style="/* insecure input */">E</p>
+<p style="/* insecure input */">F</p>
+<p style="/* insecure input */">G</p>
+
+!! end
 
 !! test
 Table attribute legitimate extension
