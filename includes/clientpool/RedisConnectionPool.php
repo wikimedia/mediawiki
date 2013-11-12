@@ -285,7 +285,8 @@ class RedisConnectionPool {
 	}
 
 	/**
-	 * Resend an AUTH request to the redis server (useful after disconnects)
+	 * Resend an AUTH request to the redis server (useful after disconnects).
+	 * This handles https://github.com/nicolasff/phpredis/issues/403.
 	 *
 	 * This method is for internal use only
 	 *
@@ -330,7 +331,18 @@ class RedisConnRef {
 	}
 
 	public function __call( $name, $arguments ) {
-		return call_user_func_array( array( $this->conn, $name ), $arguments );
+		$conn = $this->conn; // convenience
+
+		$conn->clearLastError();
+		$res = call_user_func_array( array( $conn, $name ), $arguments );
+		if ( preg_match( '/^ERR operation not permitted\b/', $conn->getLastError() ) ) {
+			$this->pool->reauthenticateConnection( $this->server, $conn );
+			$conn->clearLastError();
+			$res = call_user_func_array( array( $conn, $name ), $arguments );
+			wfDebugLog( 'redis', "Used automatic re-authentication for method '$name'." );
+		}
+
+		return $res;
 	}
 
 	/**
