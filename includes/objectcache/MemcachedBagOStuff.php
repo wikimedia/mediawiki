@@ -137,8 +137,13 @@ class MemcachedBagOStuff extends BagOStuff {
 	 * @return string
 	 */
 	public function encodeKey( $key ) {
-		return preg_replace_callback( '/[\x00-\x20\x25\x7f]+/',
+		$encKey = preg_replace_callback( '/[\x00-\x20\x25\x7f]+/',
 			array( $this, 'encodeKeyCallback' ), $key );
+		if ( strlen( $encKey ) > 250 ) { // handle poorly generated cache keys
+			wfDebugLog( 'memcached-serious', "KEY '$encKey' TOO LONG, USING SHA-1" );
+			$encKey = sha1( $encKey );
+		}
+		return $encKey;
 	}
 
 	/**
