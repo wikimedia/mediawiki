@@ -35,7 +35,8 @@ require_once __DIR__ . '/Maintenance.php';
  * @ingroup Maintenance
  */
 class CopyFileBackend extends Maintenance {
-	protected $statCache = array();
+	/** @var Array|null (path sha1 => stat) Pre-computed dst stat entries from listings */
+	protected $statCache = null;
 
 	public function __construct() {
 		parent::__construct();
@@ -98,7 +99,7 @@ class CopyFileBackend extends Maintenance {
 				if ( $dstPathsRel === null ) {
 					$this->error( "Could not list files in $container.", 1 ); // die
 				}
-				$this->statCache = array(); // clear
+				$this->statCache = array();
 				foreach ( $dstPathsRel as $dstPathRel ) {
 					$path = $dst->getRootStoragePath() . "/$backendRel/$dstPathRel";
 					$this->statCache[sha1( $path )] = $dst->getFileStat( array( 'src' => $path ) );
@@ -338,9 +339,14 @@ class CopyFileBackend extends Maintenance {
 		$skipHash = $this->hasOption( 'skiphash' );
 		$srcStat = $src->getFileStat( array( 'src' => $sPath ) );
 		$dPathSha1 = sha1( $dPath );
-		$dstStat = isset( $this->statCache[$dPathSha1] )
-			? $this->statCache[$dPathSha1]
-			: $dst->getFileStat( array( 'src' => $dPath ) );
+		if ( $this->statCache !== null ) {
+			// All dst files are already in stat cache
+			$dstStat = isset( $this->statCache[$dPathSha1] )
+				? $this->statCache[$dPathSha1]
+				: false;
+		} else {
+			$dstStat = $dst->getFileStat( array( 'src' => $dPath ) );
+		}
 		return (
 			is_array( $srcStat ) // sanity check that source exists
 			&& is_array( $dstStat ) // dest exists
