@@ -2720,7 +2720,7 @@ $wgMessageStructure = array(
 		'tooltip-undo',
 		'tooltip-preferences-save',
 		'tooltip-summary',
-		'tooltip-iwiki',
+		'interlanguage-link-title',
 	),
 	'stylesheets' => array(
 		'common.css',

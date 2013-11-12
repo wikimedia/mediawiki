@@ -159,7 +159,7 @@ class SkinTemplate extends Skin {
 					$language_urls[] = array(
 						'href' => $languageLinkTitle->getFullURL(),
 						'text' => $ilLangName,
-						'title' => wfMessage( 'tooltip-iwiki', $languageLinkTitle->getText(), $ilLangLocalName )->text(),
+						'title' => wfMessage( 'interlanguage-link-title', $languageLinkTitle->getText(), $ilLangLocalName )->text(),
 						'class' => $class,
 						'lang' => wfBCP47( $ilInterwikiCode ),
 						'hreflang' => wfBCP47( $ilInterwikiCode ),
