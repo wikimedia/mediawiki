@@ -119,13 +119,6 @@ class UploadStashCleanup extends Maintenance {
 		}
 		$i = 0;
 		foreach ( $iterator as $file ) {
-			// Absolute sanity check for stashed files and file segments
-			$base = basename( $file );
-			// @TODO: why are there thumbnails stored in here?
-			if ( !preg_match( '#(^\d{14}!|\.\d+\.\w+\.\d+$|-\w{12}\.\w{6}\.\d+\.)#', $base ) ) {
-				$this->output( "Skipped non-stash $file\n" );
-				continue;
-			}
 			if ( wfTimestamp( TS_UNIX, $tempRepo->getFileTimestamp( "$dir/$file" ) ) < $cutoff ) {
 				$status = $tempRepo->quickPurge( "$dir/$file" );
 				if ( !$status->isOK() ) {
