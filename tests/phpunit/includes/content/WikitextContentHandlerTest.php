@@ -79,6 +79,8 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 		global $wgContLang;
 		$wgContLang->resetNamespaces();
 
+		MagicWord::clearCache();
+
 		if ( is_string( $title ) ) {
 			$title = Title::newFromText( $title );
 		}
