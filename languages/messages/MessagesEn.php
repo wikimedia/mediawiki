@@ -1708,7 +1708,7 @@ Other administrators on {{SITENAME}} will still be able to access the hidden con
 'revdelete-suppress-text'     => "Suppression should '''only''' be used for the following cases:
 * Potentially libelous information
 * Inappropriate personal information
-*: ''home addresses and telephone numbers, social security numbers, etc.''",
+*: ''home addresses and telephone numbers, national identification numbers, etc.''",
 'revdelete-legend'            => 'Set visibility restrictions',
 'revdelete-hide-text'         => 'Revision text',
 'revdelete-hide-image'        => 'Hide file content',
