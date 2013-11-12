@@ -4,6 +4,8 @@
  * even the most ancient of browsers, so be very careful when editing.
  */
 
+var mediaWikiLoadStart = ( new Date() ).getTime();
+
 /**
  * Returns false when run in a black-listed browser
  *
