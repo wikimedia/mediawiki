@@ -891,7 +891,10 @@ class OutputPage extends ContextSource {
 		$this->mPagetitle = $nameWithTags;
 
 		# change "<i>foo&amp;bar</i>" to "foo&bar"
-		$this->setHTMLTitle( $this->msg( 'pagetitle' )->rawParams( Sanitizer::stripAllTags( $nameWithTags ) ) );
+		$this->setHTMLTitle(
+			$this->msg( 'pagetitle' )->rawParams( Sanitizer::stripAllTags( $nameWithTags ) )
+				->inContentLanguage()
+		);
 	}
 
 	/**
@@ -2491,7 +2494,7 @@ $templates
 		$ret = Html::htmlHeader( array( 'lang' => $this->getLanguage()->getHtmlCode(), 'dir' => $userdir, 'class' => 'client-nojs' ) );
 
 		if ( $this->getHTMLTitle() == '' ) {
-			$this->setHTMLTitle( $this->msg( 'pagetitle', $this->getPageTitle() ) );
+			$this->setHTMLTitle( $this->msg( 'pagetitle', $this->getPageTitle() )->inContentLanguage() );
 		}
 
 		$openHead = Html::openElement( 'head' );
