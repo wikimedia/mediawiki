@@ -1,6 +1,10 @@
 # Generated documentation
 docs/html/
 docs/js/
+resources/mediawiki.ui/docs
+
+# kss template for mediawiki ui documentation
+resources/styleguide-template
 
 # third-party libs
 extensions/

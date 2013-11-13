@@ -1,9 +1,21 @@
 @import "../../settings/typography";
 @import "../../mixins/effects";
 
+// Buttons
+//
+// Styleguide 2.
+
 @buttonBorderRadius: 3px;
 
 // Button styling
+//
+// Basic button styling to be used on desktop skins. Can be any element.
+// Due to a lack of a CSS reset, the exact styling of the button depends on what type of element is used.
+//
+// Markup:
+// <div class="mw-ui-button">button.mw-ui-button</div>
+//
+// Styleguide 2.1.
 .mw-ui-button {
 	// Container layout
 	display: inline-block;
@@ -54,6 +66,18 @@ a.mw-ui-button {
 }
 
 // Button groups
+//
+// Group of buttons. Make sure you clear the floating after using a mw-ui-button-group.
+//
+// Markup:
+// <div class="mw-ui-button-group">
+//   <div class="mw-ui-button">A</div>
+//   <div class="mw-ui-button">B</div>
+//   <div class="mw-ui-button">C</div>
+//   <div class="mw-ui-button">D</div>
+// </div><div style="clear:both"></div>
+//
+// Styleguide 2.2.
 .mw-ui-button-group > * {
 	border-radius: 0;
 	float: left;
