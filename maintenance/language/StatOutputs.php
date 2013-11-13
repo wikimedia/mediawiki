@@ -24,7 +24,7 @@
  */
 
 /** A general output object. Need to be overriden */
-class statsOutput {
+class StatsOutput {
 	function formatPercent( $subset, $total, $revert = false, $accuracy = 2 ) {
 		wfSuppressWarnings();
 		$return = sprintf( '%.' . $accuracy . 'f%%', 100 * $subset / $total );
@@ -50,7 +50,7 @@ class statsOutput {
 }
 
 /** Outputs WikiText */
-class wikiStatsOutput extends statsOutput {
+class WikiStatsOutput extends statsOutput {
 	function heading() {
 		global $wgDummyLanguageCodes;
 		$version = SpecialVersion::getVersion( 'nodb' );
@@ -123,7 +123,7 @@ class wikiStatsOutput extends statsOutput {
 }
 
 /** Output text. To be used on a terminal for example. */
-class textStatsOutput extends statsOutput {
+class TextStatsOutput extends statsOutput {
 	function element( $in, $heading = false ) {
 		echo $in . "\t";
 	}
@@ -134,7 +134,7 @@ class textStatsOutput extends statsOutput {
 }
 
 /** csv output. Some people love excel */
-class csvStatsOutput extends statsOutput {
+class CsvStatsOutput extends statsOutput {
 	function element( $in, $heading = false ) {
 		echo $in . ";";
 	}
