@@ -1,0 +1,91 @@
+ <ul class="mw-ui-button-group">
+   <li class="mw-ui-button"><a href="/w/index.php/Special:StyleGuide">0.0: Overview</a></li>
+   
+   <li class="mw-ui-button"><a href="/w/index.php/Special:StyleGuide/section-1">1.0: Buttons</a></li>
+   
+   <li class="mw-ui-button"><a href="/w/index.php/Special:StyleGuide/section-2">2.0: Forms</a></li>
+   
+ </ul>
+ <div role="main" id="kss-main" style="clear:both">
+   <article id="kss-content">
+     
+
+       
+       
+         
+           <h1 class="kss-title"><span class="kss-ref">2.0</span> - Forms</h1>
+         
+           
+               <strong><p>Style a compact vertical stacked form using .mw-ui-vform and the elements in divs
+within it.</p>
+</strong>
+               <table class="kss-mod-list">
+                 <tr class="kss-mod-desc-group">
+                   <td class="kss-mod-desc"><em>Default styling</em></td>
+                   <td class="kss-mod-name"></td>
+                 </tr>
+                 <tr class="kss-mod-example">
+                   <td colspan="2"><form class="mw-ui-vform">
+  <div>DIV</div>
+  <label>label</label>
+  <input value="input">
+  <input type="checkbox" checked>
+  <input type="radio" checked>
+  <button class="mw-ui-button">Button in vform</button>
+</form></td>
+                 </tr>
+               
+               </table>
+               <strong>Example markup</strong>
+               <div class="kss-markup">
+                 <pre class="prettyprint lang-html">&lt;form class=&quot;mw-ui-vform&quot;&gt;
+  &lt;div&gt;DIV&lt;/div&gt;
+  &lt;label&gt;label&lt;/label&gt;
+  &lt;input value=&quot;input&quot;&gt;
+  &lt;input type=&quot;checkbox&quot; checked&gt;
+  &lt;input type=&quot;radio&quot; checked&gt;
+  &lt;button class=&quot;mw-ui-button&quot;&gt;Button in vform&lt;/button&gt;
+&lt;/form&gt;</pre>
+               </div>
+           
+          
+       
+         
+          <section class="kss-depth-2">
+           <h2 class="kss-title"><span class="kss-ref">2.1</span> - Form errors</h2>
+         
+           
+               <strong><p>HTMLForm uses error, SpecialUserlogin (login and create account) uses
+errorbox.
+TODO move errorbox from mediawiki.special.vforms.css into here.</p>
+</strong>
+               <table class="kss-mod-list">
+                 <tr class="kss-mod-desc-group">
+                   <td class="kss-mod-desc"><em>Default styling</em></td>
+                   <td class="kss-mod-name"></td>
+                 </tr>
+                 <tr class="kss-mod-example">
+                   <td colspan="2"><form class="mw-ui-vform">
+  <div class="error">An error occurred</div>
+  <input type="text" value="input">
+  <button class="mw-ui-button">Button in vform</button>
+</form></td>
+                 </tr>
+               
+               </table>
+               <strong>Example markup</strong>
+               <div class="kss-markup">
+                 <pre class="prettyprint lang-html">&lt;form class=&quot;mw-ui-vform&quot;&gt;
+  &lt;div class=&quot;error&quot;&gt;An error occurred&lt;/div&gt;
+  &lt;input type=&quot;text&quot; value=&quot;input&quot;&gt;
+  &lt;button class=&quot;mw-ui-button&quot;&gt;Button in vform&lt;/button&gt;
+&lt;/form&gt;</pre>
+               </div>
+           
+         
+           </section>
+         
+       
+     
+   </article>
+ </div>
