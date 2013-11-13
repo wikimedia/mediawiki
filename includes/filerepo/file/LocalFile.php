@@ -680,6 +680,41 @@ class LocalFile extends File {
 	}
 
 	/**
+	 * Get the categories this file belongs to.
+	 * Unlike $file->getOriginalTitle()->getParentCategories(),
+	 * this will return the categories on the wiki where the image is hosted.
+	 *
+	 * @return Array of parents in the form:
+	 *	  $parent => $currentarticle
+	 */
+	public function getParentCategories() {
+		global $wgContLang;
+
+		$categories = array();
+
+		$title = $this->getOriginalTitle();
+		$dbr = $this->repo->getSlaveDB();
+
+		$res = $dbr->select(
+			array( 'page', 'categorylinks' ),
+			array( 'cl_to' ),
+			array(
+				'page_namespace' => $title->getNamespace(),
+				'page_title' => $title->getDBkey(),
+			),
+			__METHOD__,
+			array(),
+			array( 'categorylinks' => array( 'JOIN', 'page_id = cl_from' ) )
+		);
+
+		$categoryNamespace = $wgContLang->getNsText( NS_CATEGORY );
+		foreach ( $res as $row ) {
+			$categories[ $categoryNamespace . ':' . $row->cl_to ] = $title->getFullText();
+		}
+		return $categories;
+	}
+
+	/**
 	 * @return int
 	 */
 	function getBitDepth() {
