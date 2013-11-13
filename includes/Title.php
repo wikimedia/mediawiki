@@ -1112,6 +1112,27 @@ class Title {
 	}
 
 	/**
+	 * Checks if this is a CSS/JS subpage for a skin
+	 * e.g. "User:Example/monobook.css"
+	 *
+	 * @since 1.23
+	 * @return bool
+	 */
+	public function isSkinCssJsSubpage() {
+		if ( $this->isCssJsSubpage() ) {
+			$name = $this->getSkinFromCssJsSubpage();
+			$skins = array_merge(
+				array_keys( Skin::getSkinNames() ),
+				array( 'common' )
+			);
+			return !in_array( $name, $skins );
+		} else {
+			return false;
+		}
+	}
+
+
+	/**
 	 * Is this a .css subpage of a user page?
 	 *
 	 * @return Bool
@@ -3521,6 +3542,16 @@ class Title {
 			$variants = $pageLang->getVariants();
 			foreach ( $variants as $vCode ) {
 				$urls[] = $this->getInternalURL( '', $vCode );
+			}
+		}
+
+		if ( $this->isSkinCssJsSubpage() ) {
+			// If we are looking at a css/js subpage not associated with
+			// a skin (and hence RL), purge the action=raw.
+			if ( $this->isJsSubpage() ) {
+				$urls[] = $this->getInternalUrl( 'action=raw&ctype=text/javascript' );
+			} elseif ( $this->isCssSubpage() ) {
+				$urls[] = $this->getInternalUrl( 'action=raw&ctype=text/css' );
 			}
 		}
 
