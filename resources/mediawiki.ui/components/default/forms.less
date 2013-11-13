@@ -12,8 +12,22 @@
 @captchaContainerWidth: 290px;
 @defaultFormWidth: @captchaContainerWidth;
 
-// Style a compact vertical stacked form ("VForm") and the elements in divs
+// Forms
+//
+// Style a compact vertical stacked form using .mw-ui-vform and the elements in divs
 // within it.
+//
+// Markup:
+// <form class="mw-ui-vform">
+//   <div>DIV</div>
+//   <label>label</label>
+//   <input value="input">
+//   <input type="checkbox" checked>
+//   <input type="radio" checked>
+//   <button class="mw-ui-button">Button in vform</button>
+// </form>
+//
+// Styleguide 2
 .mw-ui-vform {
 	.box-sizing(border-box);
 
@@ -60,9 +74,20 @@
 
 	}
 
-	// HTMLForm uses error, SpecialUserlogin (login and create account) uses
-	// errorbox.
-	// TODO move errorbox from mediawiki.special.vforms.css into here.
+	// Form errors
+  //
+  // HTMLForm uses error, SpecialUserlogin (login and create account) uses
+  // errorbox.
+  // TODO move errorbox from mediawiki.special.vforms.css into here.
+  //
+  // Markup:
+  // <form class="mw-ui-vform">
+  //   <div class="error">An error occurred</div>
+  //   <input type="text" value="input">
+  //   <button class="mw-ui-button">Button in vform</button>
+  // </form>
+  //
+  // Styleguide 2.1
 	.error {
 		.box-sizing(border-box);
 		font-size: 0.9em;

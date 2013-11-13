@@ -1,0 +1,84 @@
+ <ul class="mw-ui-button-group">
+	<li class="mw-ui-button"><a href="/w/index.php/Special:StyleGuide">0.0: Overview</a></li>
+	
+	<li class="mw-ui-button"><a href="/w/index.php/Special:StyleGuide/section-1">1.0: Buttons</a></li>
+	
+	<li class="mw-ui-button"><a href="/w/index.php/Special:StyleGuide/section-2">2.0: Forms</a></li>
+	
+</ul>
+<div role="main" id="kss-main" style="clear:both">
+	<article id="kss-content">
+		
+		
+			<h2><span>2</span> - Forms</h2>
+			
+			
+			
+			
+			<p><p>Style a compact vertical stacked form using .mw-ui-vform and the elements in divs
+within it.</p>
+</p>
+			<h3>Output</h3>
+			
+			
+			
+			<form class="mw-ui-vform">
+  <div>DIV</div>
+  <label>label</label>
+  <input value="input">
+  <input type="checkbox" checked>
+  <input type="radio" checked>
+  <button class="mw-ui-button">Button in vform</button>
+</form>
+			
+			<h3>Sample HTML</h3>
+			
+			
+			
+			<pre class="prettyprint lang-html">&lt;form class=&quot;mw-ui-vform&quot;&gt;
+  &lt;div&gt;DIV&lt;/div&gt;
+  &lt;label&gt;label&lt;/label&gt;
+  &lt;input value=&quot;input&quot;&gt;
+  &lt;input type=&quot;checkbox&quot; checked&gt;
+  &lt;input type=&quot;radio&quot; checked&gt;
+  &lt;button class=&quot;mw-ui-button&quot;&gt;Button in vform&lt;/button&gt;
+&lt;/form&gt;</pre>
+			 
+			 
+			
+			
+			<h3><span>2.1</span> - Form errors</h3>
+			
+			
+			
+			<p><p>HTMLForm uses error, SpecialUserlogin (login and create account) uses
+errorbox.
+TODO move errorbox from mediawiki.special.vforms.css into here.</p>
+</p>
+			
+			<h4>Output</h4>
+			
+			
+			<form class="mw-ui-vform">
+  <div class="error">An error occurred</div>
+  <input type="text" value="input">
+  <button class="mw-ui-button">Button in vform</button>
+</form>
+			
+			
+			<h4>Sample HTML</h4>
+			
+			
+			<pre class="prettyprint lang-html">&lt;form class=&quot;mw-ui-vform&quot;&gt;
+  &lt;div class=&quot;error&quot;&gt;An error occurred&lt;/div&gt;
+  &lt;input type=&quot;text&quot; value=&quot;input&quot;&gt;
+  &lt;button class=&quot;mw-ui-button&quot;&gt;Button in vform&lt;/button&gt;
+&lt;/form&gt;</pre>
+			 
+			
+				</section>
+			
+			
+		
+	</article>
+</div>
