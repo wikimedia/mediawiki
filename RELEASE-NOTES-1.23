@@ -9,9 +9,6 @@ MediaWiki 1.23 is an alpha-quality branch and is not recommended for use in
 production.
 
 === Configuration changes in 1.23 ===
-* $wgSquidServersNoPurge now supports the use of Classless Inter-Domain
-  Routing (CIDR) notation to specify contiguous blocks of IPv4 and/or IPv6
-  addresses that should be trusted to provide X-Forwarded-For headers.
 
 === New features in 1.23 ===
 * ResourceLoader can utilize the Web Storage API to cache modules client-side.
