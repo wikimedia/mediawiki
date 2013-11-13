@@ -3538,6 +3538,13 @@ class Title {
 			}
 		}
 
+		// If we are looking at a css/js user subpage, purge the action=raw.
+		if ( $this->isJsSubpage() ) {
+			$urls[] = $this->getInternalUrl( 'action=raw&ctype=text/javascript' );
+		} elseif ( $this->isCssSubpage() ) {
+			$urls[] = $this->getInternalUrl( 'action=raw&ctype=text/css' );
+		}
+
 		wfRunHooks( 'TitleSquidURLs', array( $this, &$urls ) );
 		return $urls;
 	}

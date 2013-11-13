@@ -226,8 +226,11 @@ win.importScriptURI = function ( url ) {
 	return s;
 };
 
-win.importStylesheet = function( page ) {
-	return win.importStylesheetURI( mw.config.get( 'wgScript' ) + '?action=raw&ctype=text/css&title=' + mw.util.wikiUrlencode( page ) );
+win.importStylesheet = function ( page ) {
+	var uri = mw.config.get( 'wgScript' ) + '?title=' +
+		mw.util.wikiUrlencode( page ) +
+		'&action=raw&ctype=text/css';
+	return win.importStylesheetURI( uri );
 };
 
 win.importStylesheetURI = function( url, media ) {
