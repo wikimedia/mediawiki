@@ -1,0 +1,161 @@
+@import 'markdown';
+
+#kss-nav {
+	width:20%;
+	background-color:#eee;
+
+	nav>ul {
+		padding:0;
+		margin:2em;
+    margin-top:2.5em;
+		list-style-type:none;
+	}
+
+	box-shadow: inset -15px 0px 15px -15px rgba(45, 45, 45, 0.25);
+}
+
+#kss-header h1 {
+  font-size:1.5em;
+  margin-top:5/3em;
+  margin-left:4/3em;
+}
+
+#kss-main, #kss-nav {
+	position:absolute;
+	top:0;
+	left:0;
+}
+
+#kss-main {
+	padding-left:2.5%;
+	width:77.5%;
+	max-width:48em;
+	left:20%;
+}
+
+.kss-mod-list {
+  width:100%;
+}
+
+.kss-mod-name {
+  text-align:right;
+  width:20%;
+  font-size:0.75em;
+}
+
+.kss-mod-example {
+  padding-bottom:20px;
+         
+         display:block;
+  &>td { display:block; }
+}
+
+.kss-markup {
+  margin-bottom:40px;
+}
+
+.kss-depth-1 > h1 { font-size: 2.5em * 0.950; }
+.kss-depth-2 > h1 { font-size: 2.5em * 0.900; }
+.kss-depth-3 > h1 { font-size: 2.5em * 0.850; }
+.kss-depth-4 > h1 { font-size: 2.5em * 0.800; }
+.kss-depth-5 > h1 { font-size: 2.5em * 0.750; }
+.kss-depth-6 > h1 { font-size: 2.5em * 0.700; }
+
+// ------------------------------------------------------------------------------
+//   @group prettyprint.js styling
+// ------------------------------------------------------------------------------
+/* Pretty printing styles. Used with prettify.js. */
+
+/* SPAN elements with the classes below are added by prettyprint. */
+.pln { color: #000 }  /* plain text */
+
+@media screen {
+  .str { color: #080 }  /* string content */
+  .kwd { color: #008 }  /* a keyword */
+  .com { color: #800 }  /* a comment */
+  .typ { color: #606 }  /* a type name */
+  .lit { color: #066 }  /* a literal value */
+  /* punctuation, lisp open bracket, lisp close bracket */
+  .pun, .opn, .clo { color: #660 }
+  .tag { color: #008 }  /* a markup tag name */
+  .atn { color: #606 }  /* a markup attribute name */
+  .atv { color: #080 }  /* a markup attribute value */
+  .dec, .var { color: #606 }  /* a declaration; a variable name */
+  .fun { color: red }  /* a function name */
+}
+
+/* Use higher contrast and text-weight for printable form. */
+@media print, projection {
+  .str { color: #060 }
+  .kwd { color: #006; font-weight: bold }
+  .com { color: #600; font-style: italic }
+  .typ { color: #404; font-weight: bold }
+  .lit { color: #044 }
+  .pun, .opn, .clo { color: #440 }
+  .tag { color: #006; font-weight: bold }
+  .atn { color: #404 }
+  .atv { color: #060 }
+}
+
+/* Put a border around prettyprinted code snippets. */
+/*pre.prettyprint { padding: 2px; border: 1px solid #888 }*/
+
+/* Specify class=linenums on a pre to get line numbering */
+ol.linenums { margin-top: 0; margin-bottom: 0 } /* IE indents via margin-left */
+li.L0,
+li.L1,
+li.L2,
+li.L3,
+li.L5,
+li.L6,
+li.L7,
+li.L8 { list-style-type: none }
+/* Alternate shading for lines */
+li.L1,
+li.L3,
+li.L5,
+li.L7,
+li.L9 { background: #eee }
+
+// ------------------------------------------------------------------------------
+//   @group Mobile/Tablet Styling
+// ------------------------------------------------------------------------------
+@media screen and (max-width: 768px) {
+  #kss-main {
+    position:static;
+    width:90%;
+    margin:0 auto;
+    padding-left:0;
+  }
+
+  #kss-nav {
+    position:static;
+    display:block;
+    width:auto;
+    margin:0;
+    background:0;
+    box-shadow:none;
+    border-bottom:1px solid #ddd;
+    nav>ul {
+      margin-top:0.5em;
+      margin-bottom:0.5em;
+
+      &>li {
+        display:inline-block;
+        padding-right:1.5em;
+      }
+    }
+  }
+
+  #kss-header>hgroup>h1 {
+    margin-top:0;
+    margin-bottom:0;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  #kss-github {
+    display:none;
+  }
+}
+// @end
