@@ -77,6 +77,7 @@ function wfIsTrustedProxy( $ip ) {
  * Checks if an IP matches a proxy we've configured.
  * @param $ip String
  * @return bool
+ * @since 1.23 Supports CIDR ranges in $wgSquidServersNoPurge
  */
 function wfIsConfiguredProxy( $ip ) {
 	global $wgSquidServers, $wgSquidServersNoPurge;
@@ -89,7 +90,7 @@ function wfIsConfiguredProxy( $ip ) {
 		// slightly slower check to see if the ip is listed directly or in a CIDR
 		// block in $wgSquidServersNoPurge
 		foreach ( $wgSquidServersNoPurge as $block ) {
-			if ( IP::isInRange( $ip, $block ) ) {
+			if ( strpos( $block, '/' ) !== false && IP::isInRange( $ip, $block ) ) {
 				$trusted = true;
 				break;
 			}
