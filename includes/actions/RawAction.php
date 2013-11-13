@@ -77,7 +77,8 @@ class RawAction extends FormlessAction {
 
 		$contentType = $this->getContentType();
 
-		# Force caching for CSS and JS raw content, default: 5 minutes
+		# Force caching for CSS and JS raw content, default: 5 minutes.
+		# Note: If using a canonical url for userpage css/js, we send an HTCP purge.
 		if ( $smaxage === null ) {
 			if ( $contentType == 'text/css' || $contentType == 'text/javascript' ) {
 				$smaxage = intval( $wgForcedRawSMaxage );
