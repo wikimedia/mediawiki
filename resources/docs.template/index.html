@@ -1,0 +1,63 @@
+ <ul class="mw-ui-button-group">
+   <li class="mw-ui-button"><a href="/w/index.php/Special:StyleGuide">0.0: Overview</a></li>
+   {{#eachRoot}}
+   <li class="mw-ui-button"><a href="/w/index.php/Special:StyleGuide/section-{{reference}}">{{reference}}.0: {{header}}</a></li>
+   {{/eachRoot}}
+ </ul>
+ <div role="main" id="kss-main" style="clear:both">
+   <article id="kss-content">
+     {{#if overview}}
+       {{html overview}}
+     {{else}}
+
+       {{!
+         Find each section, in order.
+         If there's no markup or modifiers supplied, use a Markdown-only
+         layout instead.
+
+         The "root" element comes first in this loop, and can be detected using
+         the "#whenDepth 1" block as seen below.
+       }}
+       {{#eachSection rootNumber}}
+         {{#whenDepth 1}}
+           <h2 class="kss-title"><span class="kss-ref">{{ reference }}.0</span> - {{ header }}</h2>
+         {{else}}
+          <section class="kss-depth-{{ refDepth }}">
+           <h2 class="kss-title"><span class="kss-ref">{{ reference }}</span> - {{ header }}</h2>
+         {{/whenDepth}}
+           {{#ifAny markup modifiers}}
+               <strong>{{html description}}</strong>
+               <table class="kss-mod-list">
+                 <tr class="kss-mod-desc-group">
+                   <td class="kss-mod-desc"><em>Default styling</em></td>
+                   <td class="kss-mod-name"></td>
+                 </tr>
+                 <tr class="kss-mod-example">
+                   <td colspan="2">{{modifierMarkup}}</td>
+                 </tr>
+               {{#eachModifier}}
+                 <tr class="kss-mod-desc-group">
+                   <td class="kss-mod-desc">{{html description}}</td>
+                   <td class="kss-mod-name"><p>{{name}}</p></td>
+                 </tr>
+                 <tr class="kss-mod-example">
+                   <td colspan="2">{{modifierMarkup}}</td>
+                 </tr>
+               {{/eachModifier}}
+               </table>
+               <strong>Example markup</strong>
+               <div class="kss-markup">
+                 <pre class="prettyprint lang-html">{{markup}}</pre>
+               </div>
+           {{else}}
+               {{#if description}}
+                 {{html description}}
+               {{/if}}
+           {{/ifAny}}
+         {{#whenDepth 1}} {{else}}
+           </section>
+         {{/whenDepth}}
+       {{/eachSection}}
+     {{/if}}
+   </article>
+ </div>
