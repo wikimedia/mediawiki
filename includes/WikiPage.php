@@ -61,7 +61,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 */
 	protected $mDataLoadedFrom = self::READ_NONE;
 
-	/**
+	/**777
 	 * @var Title
 	 */
 	protected $mRedirectTarget = null;
