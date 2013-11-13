@@ -189,4 +189,44 @@ class WikiFilePage extends WikiPage {
 		}
 		return parent::doPurge();
 	}
+
+	/**
+	 * Get the categories this file is a member of on the wiki where it was uploaded.
+	 * For local files, this is the same as getCategories().
+	 * For foreign API files (InstantCommons), this is not supported currently.
+	 * Results will include hidden categories.
+	 *
+	 * @return TitleArray|Title[]
+	 */
+	public function getForeignCategories() {
+		$this->loadFile();
+		$title = $this->mTitle;
+		$file = $this->mFile;
+
+		if ( ! $file instanceof LocalFile ) {
+			wfDebug(__CLASS__ . '::' . __METHOD__ . ' is not supported for this file');
+			return TitleArray::newFromResult( new FakeResultWrapper( array() ) );
+		}
+
+		/** @var LocalRepo $repo */
+		$repo = $file->getRepo();
+		$dbr = $repo->getSlaveDB();
+
+		$res = $dbr->select(
+			array( 'page', 'categorylinks' ),
+			array(
+				'page_title' => 'cl_to',
+				'page_namespace' => NS_CATEGORY,
+			),
+			array(
+				'page_namespace' => $title->getNamespace(),
+				'page_title' => $title->getDBkey(),
+			),
+			__METHOD__,
+			array(),
+			array( 'categorylinks' => array( 'JOIN', 'page_id = cl_from' ) )
+		);
+
+		return TitleArray::newFromResult( $res );
+	}
 }
