@@ -1143,7 +1143,7 @@ $wgAutoloadLocalClasses = array(
 );
 
 class AutoLoader {
-	static protected  $autoloadLocalClassesLower = null;
+	static protected $autoloadLocalClassesLower = null;
 
 	/**
 	 * autoload - take a class name and attempt to load it
