@@ -82,7 +82,8 @@ function wfIsConfiguredProxy( $ip ) {
 	global $wgSquidServers, $wgSquidServersNoPurge;
 
 	// quick check of known proxy servers
-	$trusted = in_array( $ip, $wgSquidServers );
+	$trusted = in_array( $ip, $wgSquidServers )
+		|| in_array( $ip, $wgSquidServersNoPurge );
 
 	if ( !$trusted ) {
 		// slightly slower check to see if the ip is listed directly or in a CIDR
