@@ -1045,6 +1045,11 @@ return array(
 			'powersearch-togglenone',
 		),
 	),
+	'mediawiki.special.styleGuide' => array(
+		'styles' => array(
+			'resources/mediawiki.ui/default.less',
+		),
+	),
 	'mediawiki.special.undelete' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.undelete.js',
 	),

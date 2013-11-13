@@ -154,6 +154,9 @@ class SpecialPageFactory {
 		// Other
 		'Booksources'               => 'SpecialBookSources',
 
+		// Design
+		'StyleGuide'                => 'SpecialStyleGuide',
+
 		// Unlisted / redirects
 		'Blankpage'                 => 'SpecialBlankpage',
 		'Emailuser'                 => 'SpecialEmailUser',
