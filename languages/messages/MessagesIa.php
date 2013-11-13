@@ -1136,7 +1136,8 @@ function, o le version specificate non existe, o tu essaya celar le version actu
 Altere administratores in {{SITENAME}} continuara a poter acceder al contento celate e pote restaurar lo per medio de iste mesme interfacie, si non se ha definite restrictiones additional.",
 'revdelete-confirm' => 'Per favor confirma que tu ha le intention de facer isto, que tu comprende le consequentias, e que tu face isto in accordo con [[{{MediaWiki:Policy-url}}|le politica]].',
 'revdelete-suppress-text' => "Le suppression debe '''solmente''' esser usate pro le sequente casos:
-* Informationes personal inappropriate
+* Information potentialmente diffamatori
+* Information personal inappropriate
 *: ''adresses de domicilio e numeros de telephono, numeros de securitate social, etc.''",
 'revdelete-legend' => 'Definir restrictiones de visibilitate',
 'revdelete-hide-text' => 'Texto del version',

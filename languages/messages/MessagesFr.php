@@ -1340,6 +1340,7 @@ Vous pouvez voir ce diff ; des détails sont disponibles dans le [{{fullurl:{{#S
 Les autres administrateurs de {{SITENAME}} pourront toujours accéder au contenu caché et le restaurer à travers cette même interface, à moins que des restrictions supplémentaires ne soient mises en place.",
 'revdelete-confirm' => 'Confirmez que vous voulez effectuer cette action, que vous en comprenez les conséquences, et que vous le faites en accord avec [[{{MediaWiki:Policy-url}}|les règles]].',
 'revdelete-suppress-text' => "La suppression ne doit être utilisée '''que''' dans les cas suivants :
+* Informations potentiellement diffamatoires
 * Informations personnelles inappropriées
 *: ''adresse, numéro de téléphone, numéro de sécurité sociale, …''",
 'revdelete-legend' => 'Mettre en place des restrictions de visibilité :',
@@ -3955,6 +3956,7 @@ Veuillez confirmer que vous désirez réellement recréer cette page.",
 'semicolon-separator' => '&nbsp;;&#32;',
 'colon-separator' => '&nbsp;:&#32;',
 'percent' => '$1&#160;%',
+'quotation-marks' => '« $1 »',
 
 # Multipage image navigation
 'imgmultipageprev' => '← page précédente',

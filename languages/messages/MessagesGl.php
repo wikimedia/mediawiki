@@ -1234,9 +1234,10 @@ función, a revisión especificada non existe ou está intentando agochar a revi
 'revdelete-text' => "'''As revisións borradas seguirán aparecendo no historial da páxina e nos rexistros, pero partes do seu contido serán inaccesibles de cara ao público.'''
 Os demais administradores de {{SITENAME}} poderán acceder ao contido agochado e poderán restaurar a páxina de novo a través desta mesma interface, a non ser que se estableza algunha restrición adicional.",
 'revdelete-confirm' => 'Por favor, confirme que quere levar a cabo esta acción, que comprende as consecuencias e que o fai de acordo [[{{MediaWiki:Policy-url}}|coas políticas]].',
-'revdelete-suppress-text' => "A eliminación '''só''' debería ser usada nos seguintes casos:
+'revdelete-suppress-text' => "A eliminación '''unicamente''' debería utilizarse nos seguintes casos:
+* Información potencialmente difamatoria
 * Información persoal inapropiada
-*: ''domicilios e números de teléfono, números da seguridade social, etc.''",
+*: ''domicilios e números de teléfono, números da seguridade social etc.''",
 'revdelete-legend' => 'Aplicar restricións de visibilidade',
 'revdelete-hide-text' => 'Texto da revisión',
 'revdelete-hide-image' => 'Agochar o contido do ficheiro',

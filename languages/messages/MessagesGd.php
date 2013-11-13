@@ -1050,19 +1050,49 @@ Chan eil cothrom agad air.',
 'revdelete-no-change' => "'''Rabhadh:''' Bha na roghainnean faicsinneachd a dh'iarr thu aig an nì dhen $2, $1 mu thràth.",
 'revdelete-concurrent-change' => "Mearachd ag atharrachadh an nì on $2, $1: Tha coltas gun deach a staid atharrachadh le cuideigin dìreach nuair a dh'fheuch thusa ri atharrachadh.
 Thoir sùil air na logaichean.",
+'revdelete-only-restricted' => "Mearachd a' cur an nì on $2, $1 am falach: Chan urrainn dhut nithean le rianairean a mhùchadh gun a bhith a' taghadh aon dhe na roghainnean faicsinneachd eile cuideachd.",
+'revdelete-reason-dropdown' => "*Adhbharan cumanta airson sguabadh às rudan
+** Briseadh còrach-lethbhreac
+** Beachd no fiosrachadh pearsanta mì-iomchaidh
+** Ainm-cleachdaiche mì-iomchaidh
+** Fiosrachadh a dh'fhaodadh a bhith dìteachail",
 'revdelete-otherreason' => 'Adhbhar eile/a bharrachd:',
 'revdelete-reasonotherlist' => 'Adhbhar eile',
 'revdelete-edit-reasonlist' => 'Deasaich adhbharan an sguabaidh às',
 'revdelete-offender' => "Ùghdar a' mhùthaidh:",
 
+# Suppression log
+'suppressionlog' => 'Loga nam mùchaidhean',
+'suppressionlogtext' => "Chì thu liosta nan rudan a chaidh a sguabadh às agus a bhacadh gu h-ìosal, a' gabhail a-steach stuth a chaidh fhalach o rianairean. Faic [[Special:BlockList|liosta nam bacaidhean]] airson liosta nan toirmeasgan is bacaidhean beò.",
+
 # History merging
+'mergehistory' => 'Co-aonaich eachdraidhean na duilleige',
+'mergehistory-header' => 'Leigidh an duilleag seo leat na lèirmheasan aig aon duilleag a cho-aonadh le duilleag nas ùire.
+Dèan cinnteach gun glèidh an t-atharrachadh seo leantainneachd eachdraidh na duilleige.',
+'mergehistory-box' => 'Co-aonaich na lèirmheasan aig dà dhuilleag:',
 'mergehistory-from' => 'An duilleag thùsail:',
+'mergehistory-into' => 'An duilleag targaide:',
+'mergehistory-list' => 'Eachdraidh nan deasachaidhean a ghabhas a cho-aonadh',
+'mergehistory-merge' => 'Gabhaidh na lèirmheasan a leanas aig [[:$1]] a cho-aonadh le [[:$2]].
+Cleachd colbh nam putanan-rèidio gus dìreach na lèirmheasan a cho-aonadh a chaidh a chruthachadh aig an àm a chaidh a shònrachadh no roimhe sin.
+Thoir an aire gun dèid an colbh seo ath-shuidheachadh ma chleachdas tu ceanglaichean na seòladaireachd.',
+'mergehistory-go' => 'Seall na deasachaidhean a ghabhas a cho-aonadh',
+'mergehistory-submit' => 'Co-aonaich na lèirmheasan',
+'mergehistory-empty' => 'Chan eil lèirmheas sam bith ann a ghabhas a cho-aonadh.',
+'mergehistory-success' => 'Chaidh $3 {{PLURAL:$3|lèirmheas|lèirmheas|lèirmheasan|lèirmheas}} de [[:$1]] a cho-aonadh dha [[:$2]].',
+'mergehistory-fail' => "Cha ghabh an eachdraidh a cho-aonadh, thoir sùil air paramadairean na duilleige 's an ama.",
+'mergehistory-no-source' => 'Chan eil an tùs-duilleag $1 ann.',
+'mergehistory-no-destination' => 'Chan eil an an duilleag targaide $1 ann.',
+'mergehistory-invalid-source' => "Feumaidh an tùs-duilleag a bhith 'na thiotal dligheach.",
+'mergehistory-invalid-destination' => "Feumaidh an duilleag targaide a bhith 'na thiotal dligheach.",
 'mergehistory-autocomment' => 'Chaidh [[:$1]] a cho-aonadh dha [[:$2]]',
 'mergehistory-comment' => 'Chaidh [[:$1]] a cho-aonadh dha [[:$2]]: $3',
+'mergehistory-same-destination' => 'Chan fhaod an tùs-duilleag is an duilleag targaide a bhith co-ionnann',
 'mergehistory-reason' => 'Adhbhar:',
 
 # Merge log
 'mergelog' => "Loga a' cho-aonaidh",
+'pagemerge-logentry' => 'chaidh [[$1]] a cho-aonadh dha [[$2]] (lèirmheasan suas ri $3)',
 'revertmerge' => 'Dì-aontaich',
 
 # Diffs

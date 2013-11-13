@@ -835,12 +835,12 @@ Nếu bạn không yêu cầu gửi mật khẩu mới, hoặc bạn đã nhớ 
 'noemailcreate' => 'Bạn cần cung cấp một địa chỉ thư điện tử hợp lệ',
 'passwordsent' => 'Mật khẩu mới đã được gửi tới thư điện tử của thành viên “$1”. Xin đăng nhập lại sau khi nhận thư.',
 'blocked-mailpassword' => 'Địa chỉ IP của bạn bị cấm không được sửa đổi, do đó cũng không được phép dùng chức năng phục hồi mật khẩu để tránh sai phạm.',
-'eauthentsent' => 'Thư xác nhận đã được gửi. Trước khi dùng chức năng nhận thư, bạn cần thực hiện hướng dẫn trong thư xác nhận, để đảm bảo tài khoản thuộc về bạn.',
+'eauthentsent' => 'Thư xác nhận đã được gửi cho địa chỉ thư điện tử được chỉ định. Trước khi bạn có thể nhận thư, bạn cần thực hiện hướng dẫn trong thư để xác nhận tài khoản thuộc về bạn.',
 'throttled-mailpassword' => 'Mật khẩu đã được gửi đến cho bạn trong vòng {{PLURAL:$1|$1 giờ|$1 giờ}} đồng hồ trở lại. Để tránh lạm dụng, chỉ có thể gửi mật khẩu $1 giờ đồng hồ một lần.',
 'mailerror' => 'Lỗi gửi thư : $1',
 'acct_creation_throttle_hit' => 'Ai đó cùng [[địa chỉ IP]] với bạn đã mở {{PLURAL:$1|một tài khoản|$1 tài khoản}} ở đây trong vòng 24 giờ. Vì quy định hạn chế số tài khoản mở trên một địa chỉ IP nên bạn hiện không thể mở thêm được nữa dùng địa chỉ IP này.',
 'emailauthenticated' => 'Địa chỉ thư điện tử của bạn được xác nhận vào lúc $3 $2.',
-'emailnotauthenticated' => 'Địa chỉ thư điện tử của bạn chưa được xác nhận. Chức năng thư điện tử chưa bật.',
+'emailnotauthenticated' => 'Địa chỉ thư điện tử của bạn chưa được xác nhận. Các chức năng sau sẽ không gửi thư điện tử.',
 'noemailprefs' => 'Hãy ghi một địa chỉ thư điện tử trong tùy chọn cá nhân để có thể sử dụng tính năng này.',
 'emailconfirmlink' => 'Xác nhận địa chỉ thư điện tử',
 'invalidemailaddress' => 'Địa chỉ thư điện tử không được chấp nhận vì định dạng thư có vẻ sai.
@@ -1275,16 +1275,16 @@ Các quản lý khác ở {{SITENAME}} vẫn có thể truy nhập vào nội du
 'revdelete-suppress-text' => "Việc ẩn giấu '''chỉ''' nên dùng trong các trường hợp sau:
 * Thông tin có thể phỉ báng
 * Thông tin cá nhân không thích hợp
-*: ''địa chỉ nhà và số điện thoại, số an sinh xã hội, v.v.''",
+*: ''địa chỉ nhà và số điện thoại, số chứng minh nhân dân, số an sinh xã hội, v.v.''",
 'revdelete-legend' => 'Thiết lập hạn chế khả kiến',
-'revdelete-hide-text' => 'Ẩn nội dung phiên bản',
+'revdelete-hide-text' => 'Nội dung phiên bản',
 'revdelete-hide-image' => 'Ẩn nội dung tập tin',
 'revdelete-hide-name' => 'Ẩn tác vụ và đích của tác vụ',
-'revdelete-hide-comment' => 'Ẩn tóm lược sửa đổi',
-'revdelete-hide-user' => 'Ẩn tên người dùng hay địa chỉ IP của người viết trang',
+'revdelete-hide-comment' => 'Tóm lược sửa đổi',
+'revdelete-hide-user' => 'Tên người dùng hay địa chỉ IP của người viết trang',
 'revdelete-hide-restricted' => 'Ẩn giấu thông tin khỏi các Quản lý lẫn thành viên khác',
 'revdelete-radio-same' => '(không đổi)',
-'revdelete-radio-set' => 'Có',
+'revdelete-radio-set' => 'Xem được',
 'revdelete-radio-unset' => 'Ẩn',
 'revdelete-suppress' => 'Che dữ liệu đối với bảo quản viên cũng như các thành viên khác',
 'revdelete-unsuppress' => 'Bỏ các hạn chế trên các phiên bản được phục hồi',
@@ -3207,6 +3207,7 @@ Xin '''ĐỪNG''' điền gì vào!",
 'pageinfo-length' => 'Chiều dài của trang (byte)',
 'pageinfo-article-id' => 'Mã số trang',
 'pageinfo-language' => 'Ngôn ngữ nội dung trang',
+'pageinfo-content-model' => 'Kiểu nội dung trang',
 'pageinfo-robot-policy' => 'Ghi chỉ mục bởi robot',
 'pageinfo-robot-index' => 'Cho phép',
 'pageinfo-robot-noindex' => 'Không cho phép',
@@ -3914,6 +3915,7 @@ Xin hãy xác nhận bạn thực sự muốn tạo lại trang này.",
 
 # Separators for various lists, etc.
 'ellipsis' => '…',
+'quotation-marks' => '“$1”',
 
 # Multipage image navigation
 'imgmultipageprev' => '← trang trước',
@@ -4081,7 +4083,7 @@ hoặc [//www.gnu.org/licenses/old-licenses/gpl-2.0.html đọc nó trực tuy�
 # Special:Redirect
 'redirect' => 'Đổi hướng đến tập tin, người dùng, hoặc số phiên bản',
 'redirect-legend' => 'Đổi hướng đến tập tin hoặc trang',
-'redirect-summary' => 'Trang đặc biệt này đổi hướng đến một tập tin (theo tên tập tin được cho vào), trang (theo số phiên bản được cho vào), hoặc trang cá nhân (theo số thành viên).',
+'redirect-summary' => 'Trang đặc biệt này đổi hướng đến một tập tin (theo tên tập tin được cho vào), trang (theo số phiên bản được cho vào), hoặc trang cá nhân (theo số thành viên). Cách sử dụng: [[{{#Special:Redirect}}/file/Ví dụ.jpg]], [[{{#Special:Redirect}}/revision/328429]], hoặc [[{{#Special:Redirect}}/user/101]].',
 'redirect-submit' => 'Đi',
 'redirect-lookup' => 'Tra cứu:',
 'redirect-value' => 'Giá trị:',

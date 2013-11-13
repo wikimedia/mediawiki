@@ -1233,8 +1233,9 @@ In quanto amministratore puoi visualizzare questo confronto di versioni; potrebb
 'revdelete-text' => "'''Le versioni cancellate restano visibili nella cronologia della pagina, mentre il testo contenuto non è accessibile al pubblico.'''
 Gli altri amministratori di {{SITENAME}} potranno accedere comunque ai contenuti nascosti e ripristinarli attraverso questa stessa interfaccia, se non sono state impostate altre limitazioni in fase di installazione del sito.",
 'revdelete-confirm' => 'Per favore conferma che questo è quanto intendi fare, che sei consapevole delle conseguenze, e che stai facendo questo nel rispetto delle [[{{MediaWiki:Policy-url}}|linee guida]].',
-'revdelete-suppress-text' => "La rimozione deve essere utilizzata '''unicamente''' nei seguenti casi:
-* Dati personali inopportuni
+'revdelete-suppress-text' => "La rimozione dovrebbe essere utilizzata '''unicamente''' nei seguenti casi:
+* informazioni potenzialmente diffamatorie
+* dati personali inopportuni
 *: ''indirizzi, numeri di telefono, codici fiscali, ecc.''",
 'revdelete-legend' => 'Imposta le seguenti limitazioni sulle versioni cancellate:',
 'revdelete-hide-text' => 'Testo della versione',

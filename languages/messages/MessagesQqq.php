@@ -8292,7 +8292,9 @@ This message may be overridden by a more specific message:
 
 # Special:NewFiles
 'newimages' => 'Page title of [[Special:NewImages]].',
-'imagelisttext' => 'This is text on [[Special:NewImages]]. $1 is the number of files. $2 is the message {{msg-mw|Bydate}}.',
+'imagelisttext' => 'This is text on [[Special:NewImages]]. Parameters:
+* $1 - the number of files
+* $2 - the message {{msg-mw|Bydate}}',
 'newimages-summary' => 'This message is displayed at the top of [[Special:NewImages]] to explain what is shown on that special page.',
 'newimages-legend' => 'Caption of the fieldset for the filter on [[Special:NewImages]]
 

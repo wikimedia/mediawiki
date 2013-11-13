@@ -216,6 +216,7 @@ $messages = array(
 'nstab-category' => 'Vorg',
 
 # General errors
+'error' => 'Chuk',
 'missing-article' => 'Totv-kox (Database) hantun mellunk zai aslem tem mozkur "$1" $2 mellunk-nam.
 
 Horxim, oxem ek pornem frk vo eka panachem itihasachem zodd vogllailem, tedna zata.
@@ -223,6 +224,7 @@ Horxim, oxem ek pornem frk vo eka panachem itihasachem zodd vogllailem, tedna za
 Oxem nhoi zalear, tuka softwer-an chuk sampodlam zait.
 Upkar korun eka [[Special:ListUsers/sysop|karbhari]]chea nodrek hadd, Internet Zago Sodpi (URL) hachi nond gheun.',
 'missingarticle-rev' => '(uzollnni#: $1)',
+'missingarticle-diff' => '(Frk: $1, $2)',
 'badtitle' => 'Chukichem nanv',
 'badtitletext' => 'Tuven maglelem panache nanv chukichem, rintem, vo ek sarkem zodunk-naslelem bhase-modlem vo wiki-modlem nanv.
 
@@ -233,6 +235,7 @@ Tantun ek vo sabaar okxor asot jenka nanvanim uzar korunk zainan.',
 'welcomeuser' => 'Ievkar, $1!',
 'yourname' => 'Vapuddpeachem nanv:',
 'yourpassword' => 'Gupitutor:',
+'userlogin-yourpassword' => 'Gupitutor',
 'yourpasswordagain' => 'Gupit utor porot boroi:',
 'remembermypassword' => 'Hea internet browseran mhojem sotrachem ugdas dovor (chodan chod $1 {{PLURAL:$1|disak|disank}})',
 'login' => 'Sotrromb kor',

@@ -1465,8 +1465,8 @@ Is an téacs as na leagan scriosta seo ar fáil do riarthóirí amháin.',
 'sp-contributions-submit' => 'Cuardaigh',
 
 # What links here
-'whatlinkshere' => 'Naisc go dtí an lch seo',
-'whatlinkshere-title' => 'Naisc chuig $1',
+'whatlinkshere' => 'Naisc leis an lch seo',
+'whatlinkshere-title' => 'Naisc le $1',
 'whatlinkshere-page' => 'Leathanach:',
 'linkshere' => "Tá nasc chuig '''[[:$1]]''' ar na leathanaigh seo a leanas:",
 'nolinkshere' => "Níl leathanach ar bith ann a bhfuil nasc chuig '''[[:$1]]''' air.",
@@ -1758,6 +1758,9 @@ ní féidir uaslódála staire díreacha a dhéanamh faoi láthair.",
 iarradh sábháil. Is dócha gur nasc chuig suíomh seachtrach ba chúis leis.',
 'spamprotectionmatch' => 'Truicear ár scagaire dramhála ag an téacs seo a leanas: $1',
 'spambot_username' => 'MediaWiki turscar glanadh',
+
+# Info page
+'pageinfo-toolboxlink' => 'Faoin leathanach seo',
 
 # Skin names
 'skinname-cologneblue' => 'Gorm Köln',

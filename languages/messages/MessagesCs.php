@@ -3165,6 +3165,7 @@ Uložte jej na svůj disk a nahrajte ho sem.',
 'tooltip-undo' => '„Zrušit editaci“ otevře okno editace, které neobsahuje změny provedené v rušené editaci. Je možné doplnit zdůvodnění do shrnutí editace.',
 'tooltip-preferences-save' => 'Uložit nastavení',
 'tooltip-summary' => 'Zadejte stručné shrnutí',
+'interlanguage-link-title' => '$1 – $2',
 
 # Stylesheets
 'common.css' => '/* Zde uvedené CSS bude ovlivňovat všechny styly */',
@@ -3882,6 +3883,7 @@ Opravdu si přejete znovu tuto stránku založit?',
 # Separators for various lists, etc.
 'ellipsis' => '…',
 'percent' => '$1&#160;%',
+'quotation-marks' => '„$1“',
 
 # Multipage image navigation
 'imgmultipageprev' => '← předchozí stránka',

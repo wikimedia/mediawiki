@@ -2293,11 +2293,8 @@ Aukeratutako leheneratze bat burutzeko, leheneratu nahi dituzun berrikuspenen ko
 'undeleterevisions' => '$1 {{PLURAL:$1|berrikuspen|berrikuspen}} artxibatuta',
 'undeletehistory' => 'Orrialdea leheneratzen baduzu, berrikuspena guztiak leheneratuko dira historian.
 Ezabatu ondoren izen berdina duen orrialde berri bat sortzen bada leheneratutako berrikuspenak azalduko dira historian.',
-'undeleterevdel' => 'Berrezarpena ez da egingo goreneko orrialde edo fitxategia partzialki ezabatua suertatzen bada.
-Kasu horietan ezabatutako azken aldaketen aukeraketa kendu edo agertarazi beharko dituzu.
-
-Undeletion will not be performed if it will result in the top page or file revision being partially deleted.
-In such cases, you must uncheck or unhide the newest deleted revision.',
+'undeleterevdel' => 'Desezabatzea ez da egingo, baldin horren ondorioz goreneko orria edo fitxategia partzialki ezabatuko bada.
+Halakoetan, ezabatutako azken aldaketak desaukeratu edo atzera agerrarazi beharko dituzu.',
 'undeletehistorynoadmin' => 'Artikulua ezabatu egin da. Ezabatzeko azalpena beheko laburpenean erakusten da, ezabatu aurretik parte hartu zuten erabiltzaileen xehetasunekin batera. Ezabatutako berrikuspenen oraingo testua administratzaileek bakarrik ikus dezakete.',
 'undelete-revision' => '$1(e)n berrikuspen $3(e)k ezabatu du ($4(e)ko $5(e)tan):',
 'undeleterevision-missing' => 'Baliogabeko berrikuspena. Baliteke lotura ezegokia izatea, edo berriskupena leheneratu edo kendu izana.',
@@ -2306,7 +2303,7 @@ In such cases, you must uncheck or unhide the newest deleted revision.',
 'undeletelink' => 'ikusi/leheneratu',
 'undeleteviewlink' => 'ikusi',
 'undeletereset' => 'Hasieratu',
-'undeleteinvert' => 'Aukeraketa alderanztu',
+'undeleteinvert' => 'Alderanztu aukera',
 'undeletecomment' => 'Arrazoia:',
 'undeletedrevisions' => '{{PLURAL:$1|Berrikuspen 1 leheneratu da|$1 berrikuspen leheneratu dira}}',
 'undeletedrevisions-files' => '{{PLURAL:$1|berrikuspen|berrikuspen}} eta {{PLURAL:$2|fitxategi|fitxategi}} leheneratu dira',

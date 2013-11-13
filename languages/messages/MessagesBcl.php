@@ -1060,10 +1060,10 @@ Ika puwedeng makakatanaw kaining diff; mga detalye puwedeng mananagboan sa [{{fu
 'revdelete-text' => "'''Pinagpurang mga pagbabago asin mga pangyayari mahihiling pa man sa historiyang pahina asin mga talaan, pero an mga parte kan saindang laman dae puwedeng magamit kan publiko.'''
 An ibang administrador sa {{SITENAME}} puwede pa man makagamit sa pinagtagong laman asin balewalaon an pagpura kaini giraray sa paagi nin kaparehong panlaog-olay, laen lang kun may kadagdagang pangilin an inilapat.",
 'revdelete-confirm' => 'Pakikumpirma tabi na ika tuyong gumibo kaini, na saimong naintindihan an mga konsekuwensiya, asin ta ika pinaghihimo ini na uyon sa [[{{MediaWiki:Policy-url}}|an palisiya]].',
-'revdelete-suppress-text' => "An paglulubog dapat '''sana''' makakagamit sana para sa minasunod na mga kaso:
+'revdelete-suppress-text' => "An paglulubog dapat '''sana''' magagamit para sa minasunod na mga kaso:
 *Potensiyal na libeloso an impormasyon
 *Bakong angay an personal na impormasyon
-*: ''mga address kan harong asin mga numero kan telepono, sosyal na seguridad, iba pa.''",
+*:''mga estada nin ini-erokan asin mga numero kan telepono, nasyunal na numero nin kabistohan, asin iba pa.''",
 'revdelete-legend' => 'Ilapat an mga restriksyon sa bisibilidad',
 'revdelete-hide-text' => 'Teksto nin rebisyon',
 'revdelete-hide-image' => 'Tagoon an laog kan file',
@@ -2933,6 +2933,7 @@ Ika makakatanaw kan pinaggikanan',
 'tooltip-undo' => '"Gibohang ibalik" an mga pinagbagong pagliliwat asin bukasi an porma nin pagliliwat sa modong patanaw. Ini minatugot na magdadagdag nin rason sa sumaryo.',
 'tooltip-preferences-save' => 'Itagama an mga kagustuhan',
 'tooltip-summary' => 'Magkaag nin sarong halipot na sumaryo',
+'interlanguage-link-title' => '$1 - $2',
 
 # Stylesheets
 'common.css' => '/** an CSS na pigbugtak digdi maiaaplikar sa gabos na mga skin */',
@@ -2981,6 +2982,7 @@ Giboha na '''DAE''' paglaogan digde!",
 'pageinfo-length' => 'Kalabaan kan pahina (yaon sa mga bayta)',
 'pageinfo-article-id' => 'ID kan pahina',
 'pageinfo-language' => 'Lengguwahe kan laog sa pahina',
+'pageinfo-content-model' => 'Modelo nin kalamnan nin pahina',
 'pageinfo-robot-policy' => 'Pinaghuhukdo sa paagi nin mga robot',
 'pageinfo-robot-index' => 'Pinagtutugotan',
 'pageinfo-robot-noindex' => 'Dae pinagtutugotan',

@@ -3227,6 +3227,7 @@ Najprawdopodobniej zostało to spowodowane przez link do zewnętrznej strony int
 'pageinfo-length' => 'Długość strony (w bajtach)',
 'pageinfo-article-id' => 'Identyfikator strony',
 'pageinfo-language' => 'Język zawartości strony',
+'pageinfo-content-model' => 'Model zawartości',
 'pageinfo-robot-policy' => 'Indeksowanie przez roboty',
 'pageinfo-robot-index' => 'Dozwolone',
 'pageinfo-robot-noindex' => 'Niedozwolone',
@@ -4044,7 +4045,7 @@ Powinieneś otrzymać [{{SERVER}}{{SCRIPTPATH}}/COPYING kopię licencji GNU Gene
 # Special:Redirect
 'redirect' => 'Przekierowanie według pliku, użytkownika albo identyfikatora wersji',
 'redirect-legend' => 'Przekieruj do pliku lub strony',
-'redirect-summary' => 'Ta strona specjalna przekierowuje do: pliku (o podanej nazwie), do strony (o podanym numerze wersji) albo do strony użytkownika (o podanym identyfikatorze numerycznym). Sposób użycia: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]] albo [[{{#Special:Redirect}}/user/103]].',
+'redirect-summary' => 'Ta strona specjalna przekierowuje do: pliku (o podanej nazwie), do strony (o podanym numerze wersji) albo do strony użytkownika (o podanym identyfikatorze numerycznym). Sposób użycia: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]] albo [[{{#Special:Redirect}}/user/101]].',
 'redirect-submit' => 'Przejdź',
 'redirect-lookup' => 'Wyszukaj:',
 'redirect-value' => 'Wartość:',

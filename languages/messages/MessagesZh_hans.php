@@ -512,7 +512,7 @@ $messages = array(
 'mytalk' => '讨论',
 'anontalk' => '该IP地址的讨论',
 'navigation' => '导航',
-'and' => '和',
+'and' => '&#32;和',
 
 # Cologne Blue skin
 'qbfind' => '查找',
@@ -1254,10 +1254,10 @@ $3的理由是''$2''",
 'revdelete-text' => "'''删除的版本仍将显示在页面历史及日志中，但公众已不能访问其文本内容。'''
 在{{SITENAME}}的其他管理员将仍能访问隐藏的内容并通过该界面恢复删除的版本，除非进行了额外限制。",
 'revdelete-confirm' => '请确认该操作，明白其后果，并确保该操作符合[[{{MediaWiki:Policy-url}}|方针]]。',
-'revdelete-suppress-text' => "阻止应该'''只'''在以下情形使用：
-*潜在的诽谤信息
-*不合适的个人信息
-*:''家庭地址、电话号码和社保号码等。''",
+'revdelete-suppress-text' => "阻止应'''仅'''用于以下情况：
+* 潜在的诽谤信息
+* 不合适的个人信息
+*: ''家庭地址、电话号码和社保号码等。''",
 'revdelete-legend' => '设置可见性之限制',
 'revdelete-hide-text' => '修订文字',
 'revdelete-hide-image' => '隐藏文件内容',
@@ -1396,7 +1396,7 @@ $1",
 'searchall' => '所有',
 'showingresults' => "下面显示从第'''$2'''条结果开始的'''$1'''条结果。",
 'showingresultsnum' => "下面显示从第'''$2'''条结果开始的'''$3'''条结果。",
-'showingresultsheader' => "关于'''$4'''的{{PLURAL:$5|第'''$1'''条结果，共'''$3'''条结果|第'''$1-$2'''条结果，共'''$3'''条结果}}",
+'showingresultsheader' => "关于'''$4'''的{{PLURAL:$5|第'''$1'''条结果，共'''$3'''条结果|第'''$1~$2'''条结果，共'''$3'''条结果}}",
 'nonefound' => "'''注意'''：只有某些名字空间被默认搜索。请尝试给你的搜索内容添加前缀“all:”以搜索全部内容（包括讨论页面、模板等）或使用期望的名字空间作为前缀。",
 'search-nonefound' => '找不到和查询相匹配的结果。',
 'powersearch' => '高级搜索',
@@ -3005,14 +3005,15 @@ $2',
 'tooltip-ca-talk' => '关于内容页面的讨论',
 'tooltip-ca-edit' => '你可以编辑本页面。请在保存前使用预览按钮',
 'tooltip-ca-addsection' => '开始新段落',
-'tooltip-ca-viewsource' => '本页面受到保护。你可以查看其源代码。',
+'tooltip-ca-viewsource' => '本页面受到保护。
+您可以查看其源代码',
 'tooltip-ca-history' => '本页面过去的版本',
 'tooltip-ca-protect' => '保护本页',
 'tooltip-ca-unprotect' => '更改本页面的保护',
 'tooltip-ca-delete' => '删除本页',
 'tooltip-ca-undelete' => '将这个页面恢复到被删除以前的状态',
 'tooltip-ca-move' => '移动本页',
-'tooltip-ca-watch' => '添加本页面至你的监视列表',
+'tooltip-ca-watch' => '添加本页面至您的监视列表',
 'tooltip-ca-unwatch' => '从你的监视列表删除本页面',
 'tooltip-search' => '搜索{{SITENAME}}',
 'tooltip-search-go' => '如果相同的标题存在的话便直接前往该页面',
@@ -3798,6 +3799,7 @@ $5
 'colon-separator' => '：',
 'word-separator' => '',
 'parentheses' => '（$1）',
+'quotation-marks' => '“$1”',
 
 # Multipage image navigation
 'imgmultipageprev' => '← 上一页',

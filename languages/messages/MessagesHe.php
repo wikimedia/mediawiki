@@ -689,7 +689,7 @@ $1',
 'nosuchspecialpage' => 'אין דף מיוחד בשם זה',
 'nospecialpagetext' => '<strong>ביקשתם דף מיוחד שאינו קיים.</strong>
 
-ראו גם את [[Special:SpecialPages|רשימת הדפים המיוחדים התקינים]].',
+ראו את [[Special:SpecialPages|רשימת הדפים המיוחדים התקינים]].',
 
 # General errors
 'error' => 'שגיאה',
@@ -1021,7 +1021,7 @@ $2
 'headline_sample' => 'כותרת',
 'headline_tip' => 'כותרת – דרגה 2',
 'nowiki_sample' => 'טקסט לא מעוצב',
-'nowiki_tip' => 'טקסט לא מעוצב (התעלם מסימני ויקי)',
+'nowiki_tip' => 'טקסט לא מעוצב (התעלמות מסימני ויקי)',
 'image_tip' => 'קובץ המוצג בתוך הדף',
 'media_tip' => 'קישור לקובץ מדיה',
 'sig_tip' => 'חתימה + שעה',
@@ -2760,9 +2760,9 @@ $1',
 'sp-contributions-talk' => 'שיחה',
 'sp-contributions-userrights' => 'ניהול הרשאות משתמש',
 'sp-contributions-blocked-notice' => 'משתמש זה חסום כרגע.
-הפעולה האחרונה ביומן החסימות מוצגת להלן:',
+פעולת יומן החסימות האחרונה מוצגת להלן:',
 'sp-contributions-blocked-notice-anon' => 'כתובת IP זו חסומה כרגע.
-הפעולה האחרונה ביומן החסימות מוצגת להלן:',
+פעולת יומן החסימות האחרונה מוצגת להלן:',
 'sp-contributions-search' => 'חיפוש תרומות',
 'sp-contributions-username' => 'שם משתמש או כתובת IP:',
 'sp-contributions-toponly' => 'הצגת עריכות שהן הגרסאות האחרונות בלבד',

@@ -37,6 +37,7 @@
  * @author Protnet
  * @author Reedy
  * @author Remember the dot
+ * @author Sfyrakis
  * @author Sinopeus
  * @author Tifa93
  * @author Urhixidur
@@ -812,7 +813,7 @@ $2',
 'gotaccount' => 'Έχετε ήδη λογαριασμό; $1.',
 'gotaccountlink' => 'Είσοδος',
 'userlogin-resetlink' => 'Ξεχάσατε τα στοιχεία εισόδου σας;',
-'userlogin-resetpassword-link' => 'Έκδοση νέου κωδικού πρόσβασης',
+'userlogin-resetpassword-link' => 'Ξεχλασατε τον κωδικό πρόσβασης',
 'helplogin-url' => 'Help:Σύνδεση',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Βοήθεια για τη σύνδεσή σας]]',
 'createacct-join' => 'Εισάγετε τα στοιχεία σας παρακάτω.',
@@ -1309,8 +1310,8 @@ Mπορείτε να δείτε αυτή την διαφορά. Λεπτομέρ
 'revdelete-hide-user' => 'Κρύψε όνομα χρήστη/IP συντάκτη',
 'revdelete-hide-restricted' => 'Απόκρυψη δεδομένων από διαχειριστές καθώς και από άλλους',
 'revdelete-radio-same' => '(μην αλλάξετε)',
-'revdelete-radio-set' => 'Ναι',
-'revdelete-radio-unset' => 'Όχι',
+'revdelete-radio-set' => 'Εμφανές',
+'revdelete-radio-unset' => 'Κρυφό',
 'revdelete-suppress' => 'Απόκρυψε δεδομένα από διαχειριστές όπως και από άλλους',
 'revdelete-unsuppress' => 'Αφαίρεσε περιορισμούς στις αποκατεστημένες αναθεωρήσεις',
 'revdelete-log' => 'Αιτία:',
