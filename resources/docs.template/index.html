@@ -1,0 +1,43 @@
+ <ul class="mw-ui-button-group">
+	<li class="mw-ui-button"><a href="/w/index.php/Special:StyleGuide">0.0: Overview</a></li>
+	{{#eachRoot}}<li class="mw-ui-button"><a href="/w/index.php/Special:StyleGuide/section-{{reference}}">{{reference}}.0: {{header}}</a></li>{{/eachRoot}}
+</ul>
+<div role="main" id="kss-main" style="clear:both">
+	<article id="kss-content">
+		{{#if overview}}
+		{{html overview}}
+		{{else}}
+		{{#eachSection rootNumber}}
+			{{#whenDepth 1}}<h2><span>{{ reference }}</span> - {{ header }}</h2>{{/whenDepth}}
+			{{#whenDepth 2}}<h3><span>{{ reference }}</span> - {{ header }}</h3>{{/whenDepth}}
+			{{#whenDepth 3}}<h4><span>{{ reference }}</span> - {{ header }}</h4>{{/whenDepth}}
+			{{#whenDepth 4}}<h5><span>{{ reference }}</span> - {{ header }}</h5>{{/whenDepth}}
+			{{#ifAny markup modifiers}}
+			<p>{{html description}}</p>
+			{{#whenDepth 1}}<h3>Output</h3>{{/whenDepth}}
+			{{#whenDepth 2}}<h4>Output</h4>{{/whenDepth}}
+			{{#whenDepth 3}}<h5>Output</h5>{{/whenDepth}}
+			{{#whenDepth 4}}<h6>Output</h6>{{/whenDepth}}
+			{{modifierMarkup}}
+			{{#eachModifier}}
+			{{html description}}
+			{{name}}
+			{{modifierMarkup}}
+			{{/eachModifier}}
+			{{#whenDepth 1}}<h3>Sample HTML</h3>{{/whenDepth}}
+			{{#whenDepth 2}}<h4>Sample HTML</h4>{{/whenDepth}}
+			{{#whenDepth 3}}<h5>Sample HTML</h5>{{/whenDepth}}
+			{{#whenDepth 4}}<h6>Sample HTML</h6>{{/whenDepth}}
+			<pre class="prettyprint lang-html">{{markup}}</pre>
+			 {{else}}
+				{{#if description}}
+					{{html description}}
+				{{/if}}
+			{{/ifAny}}
+			{{#whenDepth 1}} {{else}}
+				</section>
+			{{/whenDepth}}
+			{{/eachSection}}
+		{{/if}}
+	</article>
+</div>
