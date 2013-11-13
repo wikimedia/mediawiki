@@ -1002,6 +1002,7 @@ $wgAutoloadLocalClasses = array(
 	'SpecialSearch' => 'includes/specials/SpecialSearch.php',
 	'SpecialSpecialpages' => 'includes/specials/SpecialSpecialpages.php',
 	'SpecialStatistics' => 'includes/specials/SpecialStatistics.php',
+	'SpecialStyleGuide' => 'includes/specials/SpecialStyleGuide.php',
 	'SpecialTags' => 'includes/specials/SpecialTags.php',
 	'SpecialUnblock' => 'includes/specials/SpecialUnblock.php',
 	'SpecialUndelete' => 'includes/specials/SpecialUndelete.php',
