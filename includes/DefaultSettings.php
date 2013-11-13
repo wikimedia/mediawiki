@@ -362,6 +362,22 @@ $wgImgAuthDetails = false;
 $wgImgAuthPublicTest = true;
 
 /**
+ * Map of relative URL directories to match to internal mwstore:// base storage paths.
+ * For img_auth.php requests, everything after "img_auth.php/" is checked to see
+ * if starts with any of the prefixes defined here. The prefixes should not overlap.
+ * The prefix that matches has a corresponding storage path, which the rest of the URL
+ * is assumed to be relative to. The file at that path (or a 404) is send to the client.
+ *
+ * Example:
+ * $wgImgAuthUrlPathMap['/timeline/'] = 'mwstore://local-fs/timeline-render/';
+ * The above maps ".../img_auth.php/timeline/X" to "mwstore://local-fs/timeline-render/".
+ * The name "local-fs" should correspond by name to an entry in $wgFileBackends.
+ *
+ * @see $wgFileBackends
+ */
+$wgImgAuthUrlPathMap = array();
+
+/**
  * File repository structures
  *
  * $wgLocalFileRepo is a single repository structure, and $wgForeignFileRepos is
