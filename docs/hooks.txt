@@ -2852,4 +2852,4 @@ data. Can be used to post-process the results.
   of values).
 
 More hooks might be available but undocumented, you can execute
-'php maintenance/findHooks.php' to find hidden ones.
+"php maintenance/findHooks.php" to find hidden ones.
