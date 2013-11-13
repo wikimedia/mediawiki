@@ -245,6 +245,8 @@ class SkinTemplate extends Skin {
 		if ( $oldContext ) {
 			$this->setContext( $oldContext );
 		}
+
+		wfProfileOut( __METHOD__ );
 	}
 
 	/**
