@@ -303,6 +303,8 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		header( "Content-Type: $contentType", true );
 		header( 'Content-Transfer-Encoding: binary', true );
 		header( 'Expires: Sun, 17-Jan-2038 19:14:07 GMT', true );
+		// Bug 53032 - It shouldn't be a problem here, but let's be safe and not cache
+		header( 'Cache-Control: private' );
 		header( "Content-Length: $size", true );
 	}
 

@@ -94,6 +94,9 @@ class RawAction extends FormlessAction {
 		# Output may contain user-specific data;
 		# vary generated content for open sessions on private wikis
 		$privateCache = !User::groupHasPermission( '*', 'read' ) && ( $smaxage == 0 || session_id() != '' );
+		// Bug 53032 - make this private if user is logged in,
+		// so we don't accidentally cache cookies
+		$privateCache = $privateCache ?: $this->getUser()->isLoggedIn();
 		# allow the client to cache this for 24 hours
 		$mode = $privateCache ? 'private' : 'public';
 		$response->header( 'Cache-Control: ' . $mode . ', s-maxage=' . $smaxage . ', max-age=' . $maxage );
