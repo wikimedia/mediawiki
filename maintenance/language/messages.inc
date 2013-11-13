@@ -3992,7 +3992,8 @@ future releases. Also note that since each list value is wrapped in a unique
 	'cologneblue' => 'Cologne Blue skin',
 	'vector' => 'Vector skin',
 	'miscellaneous2' => '',
-	'links' => 'All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).',
+	'links' => 'All link text and link target definitions of links into project namespace ' .
+		'that get used by other message strings, with the exception of user group pages (see grouppage).',
 	'badaccess' => '',
 	'versionrequired' => '',
 	'miscellaneous3' => '',
@@ -4042,7 +4043,8 @@ future releases. Also note that since each list value is wrapped in a unique
 	'uploadstash' => 'Special:UploadStash',
 	'img-auth' => 'img_auth script messages',
 	'http-errors' => 'HTTP errors',
-	'upload-curl-errors' => 'Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>',
+	'upload-curl-errors' => 'Some likely curl errors. More could be added from ' .
+		'<http://curl.haxx.se/libcurl/c/libcurl-errors.html>',
 	'licenses' => '',
 	'filelist' => 'Special:ListFiles',
 	'filedescription' => 'File description page',
@@ -4112,7 +4114,8 @@ future releases. Also note that since each list value is wrapped in a unique
 	'imagedeletion' => 'Image deletion',
 	'browsediffs' => 'Browsing diffs',
 	'newfiles' => 'Special:NewFiles',
-	'video-info' => 'Video information, used by Language::formatTimePeriod() to format lengths in the above messages',
+	'video-info' => 'Video information, used by Language::formatTimePeriod() to ' .
+		'format lengths in the above messages',
 	'human-timestamps' => 'Human-readable timestamps',
 	'badimagelist' => 'Bad image list',
 	'variantname-zh' => "Short names for language variants used for language conversion links.

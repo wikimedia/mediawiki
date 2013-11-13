@@ -44,7 +44,8 @@ class GenerateNormalizerData extends Maintenance {
 		if ( !$this->hasOption( 'unicode-data-file' ) ) {
 			$this->dataFile = 'UnicodeData.txt';
 			if ( !file_exists( $this->dataFile ) ) {
-				$this->error( "Unable to find UnicodeData.txt. Please specify its location with --unicode-data-file=<FILE>" );
+				$this->error( "Unable to find UnicodeData.txt. Please specify " .
+					"its location with --unicode-data-file=<FILE>" );
 				exit( 1 );
 			}
 		} else {
