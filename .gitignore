@@ -47,6 +47,9 @@ node_modules/
 /composer.lock
 /composer.json
 
+# MediaWiki UI documentation
+resources/mediawiki.ui/docs
+
 # Operating systems
 ## Mac OS X
 .DS_Store
