@@ -1769,7 +1769,7 @@ $baseRevId: the rev ID (or false) this edit was based on
 $article: the article that the history is loading for
 $context: RequestContext object
 
-'PageHistoryLineEnding' : Right before the end <li> is added to a history line.
+'PageHistoryLineEnding': Right before the end <li> is added to a history line.
 $row: the revision row for this line
 $s: the string representing this parsed line
 $classes: array containing the <li> element classes
