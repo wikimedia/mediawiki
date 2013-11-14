@@ -112,7 +112,8 @@ class ApiPageSet extends ApiBase {
 
 	/**
 	 * Populate the PageSet from the request parameters.
-	 * @param bool $isDryRun If true, instantiates generator, but only to mark relevant parameters as used
+	 * @param bool $isDryRun If true, instantiates generator, but only to mark
+	 *    relevant parameters as used
 	 */
 	private function executeInternal( $isDryRun ) {
 		$this->profileIn();
@@ -200,8 +201,9 @@ class ApiPageSet extends ApiBase {
 						break;
 					case 'revids':
 						if ( $this->mResolveRedirects ) {
-							$this->setWarning( 'Redirect resolution cannot be used together with the revids= parameter. ' .
-								'Any redirects the revids= point to have not been resolved.' );
+							$this->setWarning( 'Redirect resolution cannot be used ' .
+								'together with the revids= parameter. Any redirects ' .
+								'the revids= point to have not been resolved.' );
 						}
 						$this->mResolveRedirects = false;
 						$this->initFromRevIDs( $this->mParams['revids'] );
@@ -870,7 +872,12 @@ class ApiPageSet extends ApiBase {
 		foreach ( $res as $row ) {
 			$rdfrom = intval( $row->rd_from );
 			$from = $this->mPendingRedirectIDs[$rdfrom]->getPrefixedText();
-			$to = Title::makeTitle( $row->rd_namespace, $row->rd_title, $row->rd_fragment, $row->rd_interwiki );
+			$to = Title::makeTitle(
+				$row->rd_namespace,
+				$row->rd_title,
+				$row->rd_fragment,
+				$row->rd_interwiki
+			);
 			unset( $this->mPendingRedirectIDs[$rdfrom] );
 			if ( !$to->isExternal() && !isset( $this->mAllPages[$row->rd_namespace][$row->rd_title] ) ) {
 				$lb->add( $row->rd_namespace, $row->rd_title );
@@ -1086,19 +1093,34 @@ class ApiPageSet extends ApiBase {
 			'titles' => 'A list of titles to work on',
 			'pageids' => 'A list of page IDs to work on',
 			'revids' => 'A list of revision IDs to work on',
-			'generator' => array( 'Get the list of pages to work on by executing the specified query module.',
-				'NOTE: generator parameter names must be prefixed with a \'g\', see examples' ),
+			'generator' => array(
+				'Get the list of pages to work on by executing the specified query module.',
+				'NOTE: generator parameter names must be prefixed with a \'g\', see examples'
+			),
 			'redirects' => 'Automatically resolve redirects',
-			'converttitles' => array( 'Convert titles to other variants if necessary. Only works if the wiki\'s content language supports variant conversion.',
-				'Languages that support variant conversion include ' . implode( ', ', LanguageConverter::$languagesWithVariants ) ),
+			'converttitles' => array(
+				'Convert titles to other variants if necessary. Only works if ' .
+					'the wiki\'s content language supports variant conversion.',
+				'Languages that support variant conversion include ' .
+					implode( ', ', LanguageConverter::$languagesWithVariants )
+			),
 		);
 	}
 
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
-			array( 'code' => 'multisource', 'info' => "Cannot use 'pageids' at the same time as 'dataSource'" ),
-			array( 'code' => 'multisource', 'info' => "Cannot use 'revids' at the same time as 'dataSource'" ),
-			array( 'code' => 'badgenerator', 'info' => 'Module $generatorName cannot be used as a generator' ),
+			array(
+				'code' => 'multisource',
+				'info' => "Cannot use 'pageids' at the same time as 'dataSource'"
+			),
+			array(
+				'code' => 'multisource',
+				'info' => "Cannot use 'revids' at the same time as 'dataSource'"
+			),
+			array(
+				'code' => 'badgenerator',
+				'info' => 'Module $generatorName cannot be used as a generator'
+			),
 		) );
 	}
 }

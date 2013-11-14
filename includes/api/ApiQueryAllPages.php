@@ -49,7 +49,11 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 	 */
 	public function executeGenerator( $resultPageSet ) {
 		if ( $resultPageSet->isResolvingRedirects() ) {
-			$this->dieUsage( 'Use "gapfilterredir=nonredirects" option instead of "redirects" when using allpages as a generator', 'params' );
+			$this->dieUsage(
+				'Use "gapfilterredir=nonredirects" option instead of "redirects" ' .
+					'when using allpages as a generator',
+				'params'
+			);
 		}
 
 		$this->run( $resultPageSet );
@@ -88,7 +92,8 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 		$this->addWhereRange( 'page_title', $dir, $from, $to );
 
 		if ( isset( $params['prefix'] ) ) {
-			$this->addWhere( 'page_title' . $db->buildLike( $this->titlePartToKey( $params['prefix'] ), $db->anyString() ) );
+			$this->addWhere( 'page_title' .
+				$db->buildLike( $this->titlePartToKey( $params['prefix'] ), $db->anyString() ) );
 		}
 
 		if ( is_null( $resultPageSet ) ) {
@@ -186,7 +191,8 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 		$result = $this->getResult();
 		foreach ( $res as $row ) {
 			if ( ++$count > $limit ) {
-				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
+				// We've reached the one extra which shows that there are
+				// additional pages to be had. Stop here...
 				$this->setContinueEnumParameter( 'continue', $row->page_title );
 				break;
 			}
@@ -303,7 +309,8 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 			'maxsize' => 'Limit to pages with at most this many bytes',
 			'prtype' => 'Limit to protected pages only',
 			'prlevel' => "The protection level (must be used with {$p}prtype= parameter)",
-			'prfiltercascade' => "Filter protections based on cascadingness (ignored when {$p}prtype isn't set)",
+			'prfiltercascade'
+				=> "Filter protections based on cascadingness (ignored when {$p}prtype isn't set)",
 			'filterlanglinks' => array(
 				'Filter based on whether a page has langlinks',
 				'Note that this may not consider langlinks added by extensions.',
@@ -334,7 +341,11 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
-			array( 'code' => 'params', 'info' => 'Use "gapfilterredir=nonredirects" option instead of "redirects" when using allpages as a generator' ),
+			array(
+				'code' => 'params',
+				'info' => 'Use "gapfilterredir=nonredirects" option instead of ' .
+					'"redirects" when using allpages as a generator'
+			),
 			array( 'code' => 'params', 'info' => 'prlevel may not be used without prtype' ),
 		) );
 	}
@@ -349,9 +360,9 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 				'Using as Generator',
 				'Show info about 4 pages starting at the letter "T"',
 			),
-			'api.php?action=query&generator=allpages&gaplimit=2&gapfilterredir=nonredirects&gapfrom=Re&prop=revisions&rvprop=content' => array(
-				'Show content of first 2 non-redirect pages beginning at "Re"',
-			)
+			'api.php?action=query&generator=allpages&gaplimit=2&' .
+				'gapfilterredir=nonredirects&gapfrom=Re&prop=revisions&rvprop=content'
+				=> array( 'Show content of first 2 non-redirect pages beginning at "Re"' )
 		);
 	}
 
