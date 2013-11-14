@@ -72,8 +72,8 @@ class ApiQueryBlocks extends ApiQueryBase {
 		$this->addFieldsIf( 'ipb_reason', $fld_reason );
 		$this->addFieldsIf( array( 'ipb_range_start', 'ipb_range_end' ), $fld_range );
 		$this->addFieldsIf( array( 'ipb_anon_only', 'ipb_create_account', 'ipb_enable_autoblock',
-									'ipb_block_email', 'ipb_deleted', 'ipb_allow_usertalk' ),
-							$fld_flags );
+			'ipb_block_email', 'ipb_deleted', 'ipb_allow_usertalk' ),
+			$fld_flags );
 
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
 		$this->addTimestampWhereRange( 'ipb_timestamp', $params['dir'], $params['start'], $params['end'] );
@@ -134,9 +134,9 @@ class ApiQueryBlocks extends ApiQueryBase {
 
 			/* Check for conflicting parameters. */
 			if ( ( isset( $show['account'] ) && isset( $show['!account'] ) )
-					|| ( isset( $show['ip'] ) && isset( $show['!ip'] ) )
-					|| ( isset( $show['range'] ) && isset( $show['!range'] ) )
-					|| ( isset( $show['temp'] ) && isset( $show['!temp'] ) )
+				|| ( isset( $show['ip'] ) && isset( $show['!ip'] ) )
+				|| ( isset( $show['range'] ) && isset( $show['!range'] ) )
+				|| ( isset( $show['temp'] ) && isset( $show['!temp'] ) )
 			) {
 				$this->dieUsageMsg( 'show' );
 			}
@@ -309,6 +309,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 	public function getParamDescription() {
 		global $wgBlockCIDRLimit;
 		$p = $this->getModulePrefix();
+
 		return array(
 			'start' => 'The timestamp to start enumerating from',
 			'end' => 'The timestamp to stop enumerating at',
@@ -402,6 +403,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 
 	public function getPossibleErrors() {
 		global $wgBlockCIDRLimit;
+
 		return array_merge( parent::getPossibleErrors(),
 			$this->getRequireOnlyOneParameterErrorMessages( array( 'users', 'ip' ) ),
 			array(

@@ -131,8 +131,10 @@ abstract class ApiQueryBase extends ApiBase {
 	protected function addFieldsIf( $value, $condition ) {
 		if ( $condition ) {
 			$this->addFields( $value );
+
 			return true;
 		}
+
 		return false;
 	}
 
@@ -168,8 +170,10 @@ abstract class ApiQueryBase extends ApiBase {
 	protected function addWhereIf( $value, $condition ) {
 		if ( $condition ) {
 			$this->addWhere( $value );
+
 			return true;
 		}
+
 		return false;
 	}
 
@@ -292,6 +296,7 @@ abstract class ApiQueryBase extends ApiBase {
 		if ( $rowcount > $wgAPIMaxDBRows ) {
 			return false;
 		}
+
 		return true;
 	}
 
@@ -332,6 +337,7 @@ abstract class ApiQueryBase extends ApiBase {
 	protected function addPageSubItems( $pageId, $data ) {
 		$result = $this->getResult();
 		$result->setIndexedTagName( $data, $this->getModulePrefix() );
+
 		return $result->addValue( array( 'query', 'pages', intval( $pageId ) ),
 			$this->getModuleName(),
 			$data );
@@ -356,7 +362,8 @@ abstract class ApiQueryBase extends ApiBase {
 			return false;
 		}
 		$result->setIndexedTagName_internal( array( 'query', 'pages', $pageId,
-				$this->getModuleName() ), $elemname );
+			$this->getModuleName() ), $elemname );
+
 		return true;
 	}
 
@@ -382,6 +389,7 @@ abstract class ApiQueryBase extends ApiBase {
 		if ( is_null( $this->mDb ) ) {
 			$this->mDb = $this->getQuery()->getDB();
 		}
+
 		return $this->mDb;
 	}
 
@@ -419,6 +427,7 @@ abstract class ApiQueryBase extends ApiBase {
 		if ( !$t ) {
 			$this->dieUsageMsg( array( 'invalidtitle', $title ) );
 		}
+
 		return $t->getPrefixedDBkey();
 	}
 
@@ -437,6 +446,7 @@ abstract class ApiQueryBase extends ApiBase {
 		if ( !$t ) {
 			$this->dieUsageMsg( array( 'invalidtitle', $key ) );
 		}
+
 		return $t->getPrefixedText();
 	}
 
@@ -446,7 +456,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @return string Title part with underscores
 	 */
 	public function titlePartToKey( $titlePart ) {
-		return substr( $this->titleToKey( $titlePart . 'x' ), 0, - 1 );
+		return substr( $this->titleToKey( $titlePart . 'x' ), 0, -1 );
 	}
 
 	/**
@@ -455,7 +465,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @return string Key part with underscores
 	 */
 	public function keyPartToTitle( $keyPart ) {
-		return substr( $this->keyToTitle( $keyPart . 'x' ), 0, - 1 );
+		return substr( $this->keyToTitle( $keyPart . 'x' ), 0, -1 );
 	}
 
 	/**
@@ -467,10 +477,10 @@ abstract class ApiQueryBase extends ApiBase {
 	 */
 	public function getDirectionDescription( $p = '', $extraDirText = '' ) {
 		return array(
-				"In which direction to enumerate{$extraDirText}",
-				" newer          - List oldest first. Note: {$p}start has to be before {$p}end.",
-				" older          - List newest first (default). Note: {$p}start has to be later than {$p}end.",
-			);
+			"In which direction to enumerate{$extraDirText}",
+			" newer          - List oldest first. Note: {$p}start has to be before {$p}end.",
+			" older          - List newest first (default). Note: {$p}start has to be later than {$p}end.",
+		);
 	}
 
 	/**
@@ -491,6 +501,7 @@ abstract class ApiQueryBase extends ApiBase {
 			}
 
 			$likeQuery = LinkFilter::keepOneWildcard( $likeQuery );
+
 			return 'el_index ' . $db->buildLike( $likeQuery );
 		} elseif ( !is_null( $protocol ) ) {
 			return 'el_index ' . $db->buildLike( "$protocol", $db->anyString() );
@@ -553,6 +564,7 @@ abstract class ApiQueryBase extends ApiBase {
 			array( 'invalidtitle', 'title' ),
 			array( 'invalidtitle', 'key' ),
 		) );
+
 		return $errors;
 	}
 }
@@ -587,6 +599,7 @@ abstract class ApiQueryGeneratorBase extends ApiQueryBase {
 		if ( $this->mGeneratorPageSet !== null ) {
 			return $this->mGeneratorPageSet;
 		}
+
 		return parent::getPageSet();
 	}
 

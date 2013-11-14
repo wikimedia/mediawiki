@@ -193,7 +193,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 			$redirNs = $t->getNamespace();
 			$redirDBkey = $t->getDBkey();
 			$titleWhere[] = "{$this->bl_title} = " . $db->addQuotes( $redirDBkey ) .
-					( $this->hasNS ? " AND {$this->bl_ns} = {$redirNs}" : '' );
+				( $this->hasNS ? " AND {$this->bl_ns} = {$redirNs}" : '' );
 			$allRedirNs[] = $redirNs;
 			$allRedirDBkey[] = $redirDBkey;
 		}
@@ -209,14 +209,14 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 			$from = $this->redirID;
 			if ( $this->hasNS ) {
 				$this->addWhere( "{$this->bl_ns} $op $ns OR " .
-						"({$this->bl_ns} = $ns AND " .
-						"({$this->bl_title} $op $title OR " .
-						"({$this->bl_title} = $title AND " .
-						"{$this->bl_from} $op= $from)))" );
+					"({$this->bl_ns} = $ns AND " .
+					"({$this->bl_title} $op $title OR " .
+					"({$this->bl_title} = $title AND " .
+					"{$this->bl_from} $op= $from)))" );
 			} else {
 				$this->addWhere( "{$this->bl_title} $op $title OR " .
-						"({$this->bl_title} = $title AND " .
-						"{$this->bl_from} $op= $from)" );
+					"({$this->bl_title} = $title AND " .
+					"{$this->bl_from} $op= $from)" );
 			}
 		}
 		if ( $this->params['filterredir'] == 'redirects' ) {
@@ -268,7 +268,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		$count = 0;
 
 		foreach ( $res as $row ) {
-			if ( ++ $count > $this->params['limit'] ) {
+			if ( ++$count > $this->params['limit'] ) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
 				// Continue string preserved in case the redirect query doesn't pass the limit
 				$this->continueStr = $this->getContinueStr( $row->page_id );
@@ -428,7 +428,6 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 			return;
 		}
 		$this->redirID = $redirID;
-
 	}
 
 	protected function getContinueStr( $lastPageID ) {
@@ -481,6 +480,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 			return $retval;
 		}
 		$retval['redirect'] = false;
+
 		return $retval;
 	}
 
@@ -499,6 +499,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 				'limit' => "How many total pages to return. If {$this->bl_code}redirect is enabled, limit applies to each level separately (which means you may get up to 2 * limit results)."
 			) );
 		}
+
 		return array_merge( $retval, array(
 			'filterredir' => 'How to filter for redirects',
 			'limit' => 'How many total pages to return'
