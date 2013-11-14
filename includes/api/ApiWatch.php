@@ -49,21 +49,26 @@ class ApiWatch extends ApiBase {
 
 		$res = array( 'title' => $title->getPrefixedText() );
 
-		// Currently unnecessary, code to act as a safeguard against any change in current behavior of uselang
+		// Currently unnecessary, code to act as a safeguard against any change
+		// in current behavior of uselang.
 		// Copy from ApiParse
 		$oldLang = null;
-		if ( isset( $params['uselang'] ) && $params['uselang'] != $this->getContext()->getLanguage()->getCode() ) {
+		if ( isset( $params['uselang'] ) &&
+			$params['uselang'] != $this->getContext()->getLanguage()->getCode()
+		) {
 			$oldLang = $this->getContext()->getLanguage(); // Backup language
 			$this->getContext()->setLanguage( Language::factory( $params['uselang'] ) );
 		}
 
 		if ( $params['unwatch'] ) {
 			$res['unwatched'] = '';
-			$res['message'] = $this->msg( 'removedwatchtext', $title->getPrefixedText() )->title( $title )->parseAsBlock();
+			$res['message'] = $this->msg( 'removedwatchtext', $title->getPrefixedText() )
+				->title( $title )->parseAsBlock();
 			$status = UnwatchAction::doUnwatch( $title, $user );
 		} else {
 			$res['watched'] = '';
-			$res['message'] = $this->msg( 'addedwatchtext', $title->getPrefixedText() )->title( $title )->parseAsBlock();
+			$res['message'] = $this->msg( 'addedwatchtext', $title->getPrefixedText() )
+				->title( $title )->parseAsBlock();
 			$status = WatchAction::doWatch( $title, $user );
 		}
 

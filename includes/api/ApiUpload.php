@@ -574,7 +574,9 @@ class ApiUpload extends ApiBase {
 			if ( isset( $warnings['exists'] ) ) {
 				$warning = $warnings['exists'];
 				unset( $warnings['exists'] );
-				$localFile = isset( $warning['normalizedFile'] ) ? $warning['normalizedFile'] : $warning['file'];
+				$localFile = isset( $warning['normalizedFile'] )
+					? $warning['normalizedFile']
+					: $warning['file'];
 				$warnings[$warning['warning']] = $localFile->getName();
 			}
 		}
@@ -751,16 +753,19 @@ class ApiUpload extends ApiBase {
 		$params = array(
 			'filename' => 'Target filename',
 			'token' => 'Edit token. You can get one of these through prop=info',
-			'comment' => 'Upload comment. Also used as the initial page text for new files if "text" is not specified',
+			'comment' => 'Upload comment. Also used as the initial page text for new ' .
+				'files if "text" is not specified',
 			'text' => 'Initial page text for new files',
 			'watch' => 'Watch the page',
-			'watchlist' => 'Unconditionally add or remove the page from your watchlist, use preferences or do not change watch',
+			'watchlist' => 'Unconditionally add or remove the page from your watchlist, ' .
+				'use preferences or do not change watch',
 			'ignorewarnings' => 'Ignore any warnings',
 			'file' => 'File contents',
 			'url' => 'URL to fetch the file from',
 			'filekey' => 'Key that identifies a previous upload that was stashed temporarily.',
 			'sessionkey' => 'Same as filekey, maintained for backward compatibility.',
-			'stash' => 'If set, the server will not add the file to the repository and stash it temporarily.',
+			'stash' => 'If set, the server will not add the file to the repository ' .
+				'and stash it temporarily.',
 
 			'chunk' => 'Chunk contents',
 			'offset' => 'Offset of chunk in bytes',
@@ -858,7 +863,8 @@ class ApiUpload extends ApiBase {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=upload&filename=Wiki.png&url=http%3A//upload.wikimedia.org/wikipedia/en/b/bc/Wiki.png'
+			'api.php?action=upload&filename=Wiki.png' .
+			'&url=http%3A//upload.wikimedia.org/wikipedia/en/b/bc/Wiki.png'
 				=> 'Upload from a URL',
 			'api.php?action=upload&filename=Wiki.png&filekey=filekey&ignorewarnings=1'
 				=> 'Complete an upload that failed due to warnings',
