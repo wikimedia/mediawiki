@@ -883,9 +883,11 @@ class HistoryPager extends ReverseChronologicalPager {
  * Backwards-compatibility alias
  */
 class HistoryPage extends HistoryAction {
-	public function __construct( Page $article ) { # Just to make it public
+	// @codingStandardsIgnoreStart Needed "useless" override to make it public.
+	public function __construct( Page $article ) {
 		parent::__construct( $article );
 	}
+	// @codingStandardsIgnoreEnd
 
 	public function history() {
 		$this->onView();
