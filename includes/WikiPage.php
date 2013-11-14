@@ -48,8 +48,10 @@ class WikiPage implements Page, IDBAccessObject {
 	public $mDataLoaded = false;         // !< Boolean
 	public $mIsRedirect = false;         // !< Boolean
 	public $mLatest = false;             // !< Integer (false means "not loaded")
-	public $mPreparedEdit = false;       // !< Array
 	/**@}}*/
+
+	/** @var stdclass Map of cache fields (text, parser output, ect) for a proposed/new edit */
+	protected $mPreparedEdit = false;
 
 	/**
 	 * @var int
@@ -242,7 +244,9 @@ class WikiPage implements Page, IDBAccessObject {
 		$this->mTimestamp = '';
 		$this->mIsRedirect = false;
 		$this->mLatest = false;
-		$this->mPreparedEdit = false;
+		// Bug 57026: do not clear mPreparedEdit since prepareTextForEdit() already checks
+		// the requested rev ID and immutable content against the cached one.
+		// Clearing it can cause extra parses on edit for no reason.
 	}
 
 	/**
