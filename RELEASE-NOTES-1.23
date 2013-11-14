@@ -63,6 +63,7 @@ production.
   categories.
 * action=query&meta=filerepoinfo now returns additional information for each
   repo.
+* Added prop=contributors to fetch the list of contributors to the page.
 
 === Languages updated in 1.23===
 
