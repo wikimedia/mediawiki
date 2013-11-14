@@ -53,6 +53,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			'version' => $params['metadataversion'],
 			'language' => $params['extmetadatalanguage'],
 			'multilang' => $params['extmetadatamultilang'],
+			'extmetadatafilter' => $params['extmetadatafilter'],
 		);
 
 		$pageIds = $this->getPageSet()->getAllTitlesByNamespace();
@@ -321,6 +322,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				'version' => $metadataOpts ?: 'latest',
 				'language' => $wgContLang,
 				'multilang' => false,
+				'extmetadatafilter' => array(),
 			);
 		}
 		$version = $metadataOpts['version'];
@@ -451,6 +453,11 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			$format->setSingleLanguage( !$metadataOpts['multilang'] );
 			$format->getContext()->setLanguage( $metadataOpts['language'] );
 			$extmetaArray = $format->fetchExtendedMetadata( $file );
+			if ( $metadataOpts['extmetadatafilter'] ) {
+				$extmetaArray = array_intersect_key(
+					$extmetaArray, array_flip( $metadataOpts['extmetadatafilter'] )
+				);
+			}
 			$vals['extmetadata'] = $extmetaArray;
 		}
 
@@ -571,6 +578,10 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				ApiBase::PARAM_TYPE => 'boolean',
 				ApiBase::PARAM_DFLT => false,
 			),
+			'extmetadatafilter' => array(
+				ApiBase::PARAM_TYPE => 'string',
+				ApiBase::PARAM_ISMULTI => true,
+			),
 			'urlparam' => array(
 				ApiBase::PARAM_DFLT => '',
 				ApiBase::PARAM_TYPE => 'string',
@@ -658,6 +669,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				'translation to fetch, if multiple are available, as well as how things',
 				'like numbers and various values are formatted.' ),
 			'extmetadatamultilang' => 'If translations for extmetadata property are available, fetch all of them.',
+			'extmetadatafilter' => "If specified and non-empty, only these keys will be returned for {$p}prop=extmetadata",
 			'continue' => 'If the query response includes a continue value, use it here to get another page of results',
 			'localonly' => 'Look only for files in the local repository',
 		);
