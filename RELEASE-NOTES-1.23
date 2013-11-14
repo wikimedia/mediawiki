@@ -110,6 +110,7 @@ production.
 * (bug 57874) action=feedcontributions no longer has one item more than limit.
 * All API modules now support an assert parameter. See the new features section
   for more details.
+* Added prop=contributors to fetch the list of contributors to the page.
 
 === Languages updated in 1.23 ===
 
