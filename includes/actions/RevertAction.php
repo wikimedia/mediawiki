@@ -69,7 +69,11 @@ class RevertFileAction extends FormAction {
 			throw new ErrorPageError( 'internalerror', 'unexpected', array( 'oldimage', $oldimage ) );
 		}
 
-		$this->oldFile = RepoGroup::singleton()->getLocalRepo()->newFromArchiveName( $this->getTitle(), $oldimage );
+		$this->oldFile = RepoGroup::singleton()->getLocalRepo()->newFromArchiveName(
+			$this->getTitle(),
+			$oldimage
+		);
+
 		if ( !$this->oldFile->exists() ) {
 			throw new ErrorPageError( '', 'filerevert-badversion' );
 		}
@@ -100,8 +104,10 @@ class RevertFileAction extends FormAction {
 				'raw' => true,
 				'default' => $this->msg( 'filerevert-intro',
 					$this->getTitle()->getText(), $userDate, $userTime,
-					wfExpandUrl( $this->page->getFile()->getArchiveUrl( $this->getRequest()->getText( 'oldimage' ) ),
-						PROTO_CURRENT ) )->parseAsBlock()
+					wfExpandUrl(
+						$this->page->getFile()->getArchiveUrl( $this->getRequest()->getText( 'oldimage' ) ),
+						PROTO_CURRENT
+					) )->parseAsBlock()
 			),
 			'comment' => array(
 				'type' => 'text',
@@ -113,11 +119,21 @@ class RevertFileAction extends FormAction {
 	}
 
 	public function onSubmit( $data ) {
-		$source = $this->page->getFile()->getArchiveVirtualUrl( $this->getRequest()->getText( 'oldimage' ) );
+		$source = $this->page->getFile()->getArchiveVirtualUrl(
+			$this->getRequest()->getText( 'oldimage' )
+		);
 		$comment = $data['comment'];
 
 		// TODO: Preserve file properties from database instead of reloading from file
-		return $this->page->getFile()->upload( $source, $comment, $comment, 0, false, false, $this->getUser() );
+		return $this->page->getFile()->upload(
+			$source,
+			$comment,
+			$comment,
+			0,
+			false,
+			false,
+			$this->getUser()
+		);
 	}
 
 	public function onSuccess() {

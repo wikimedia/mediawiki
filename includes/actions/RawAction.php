@@ -96,7 +96,9 @@ class RawAction extends FormlessAction {
 		$privateCache = !User::isEveryoneAllowed( 'read' ) && ( $smaxage == 0 || session_id() != '' );
 		# allow the client to cache this for 24 hours
 		$mode = $privateCache ? 'private' : 'public';
-		$response->header( 'Cache-Control: ' . $mode . ', s-maxage=' . $smaxage . ', max-age=' . $maxage );
+		$response->header(
+			'Cache-Control: ' . $mode . ', s-maxage=' . $smaxage . ', max-age=' . $maxage
+		);
 
 		$text = $this->getRawText();
 
@@ -135,8 +137,9 @@ class RawAction extends FormlessAction {
 
 		// If it's a MediaWiki message we can just hit the message cache
 		if ( $request->getBool( 'usemsgcache' ) && $title->getNamespace() == NS_MEDIAWIKI ) {
-			// The first "true" is to use the database, the second is to use the content langue
-			// and the last one is to specify the message key already contains the language in it ("/de", etc.)
+			// The first "true" is to use the database, the second is to use
+			// the content langue and the last one is to specify the message
+			// key already contains the language in it ("/de", etc.).
 			$text = MessageCache::singleton()->get( $title->getDBkey(), true, true, true );
 			// If the message doesn't exist, return a blank
 			if ( $text === false ) {
@@ -178,7 +181,11 @@ class RawAction extends FormlessAction {
 		}
 
 		if ( $text !== false && $text !== '' && $request->getVal( 'templates' ) === 'expand' ) {
-			$text = $wgParser->preprocess( $text, $title, ParserOptions::newFromContext( $this->getContext() ) );
+			$text = $wgParser->preprocess(
+				$text,
+				$title,
+				ParserOptions::newFromContext( $this->getContext() )
+			);
 		}
 
 		return $text;

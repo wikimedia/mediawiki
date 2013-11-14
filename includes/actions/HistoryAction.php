@@ -180,7 +180,10 @@ class HistoryAction extends FormlessAction {
 			) .
 			Html::hidden( 'title', $this->getTitle()->getPrefixedDBkey() ) . "\n" .
 			Html::hidden( 'action', 'history' ) . "\n" .
-			Xml::dateMenu( ( $year == null ? MWTimestamp::getLocalInstance()->format( 'Y' ) : $year ), $month ) . '&#160;' .
+			Xml::dateMenu(
+				( $year == null ? MWTimestamp::getLocalInstance()->format( 'Y' ) : $year ),
+				$month
+			) . '&#160;' .
 			( $tagSelector ? ( implode( '&#160;', $tagSelector ) . '&#160;' ) : '' ) .
 			$checkDeleted .
 			Xml::submitButton( $this->msg( 'allpagessubmit' )->text() ) . "\n" .
@@ -535,10 +538,12 @@ class HistoryPager extends ReverseChronologicalPager {
 	 * @todo document some more, and maybe clean up the code (some params redundant?)
 	 *
 	 * @param $row Object: the database row corresponding to the previous line.
-	 * @param $next Mixed: the database row corresponding to the next line. (chronologically previous)
+	 * @param $next Mixed: the database row corresponding to the next line
+	 *   (chronologically previous)
 	 * @param $notificationtimestamp
 	 * @param $latest Boolean: whether this row corresponds to the page's latest revision.
-	 * @param $firstInList Boolean: whether this row corresponds to the first displayed on this history page.
+	 * @param $firstInList Boolean: whether this row corresponds to the first
+	 *   displayed on this history page.
 	 * @return String: HTML output for the row
 	 */
 	function historyLine( $row, $next, $notificationtimestamp = false,
@@ -555,12 +560,14 @@ class HistoryPager extends ReverseChronologicalPager {
 
 		$curlink = $this->curLink( $rev, $latest );
 		$lastlink = $this->lastLink( $rev, $next );
-		$diffButtons = $this->diffButtons( $rev, $firstInList );
+		$curLastlinks = $curlink . $this->historyPage->message['pipe-separator'] . $lastlink;
 		$histLinks = Html::rawElement(
 			'span',
 			array( 'class' => 'mw-history-histlinks' ),
-			$this->msg( 'parentheses' )->rawParams( $curlink . $this->historyPage->message['pipe-separator'] . $lastlink )->escaped()
+			$this->msg( 'parentheses' )->rawParams( $curLastlinks )->escaped()
 		);
+
+		$diffButtons = $this->diffButtons( $rev, $firstInList );
 		$s = $histLinks . $diffButtons;
 
 		$link = $this->revLink( $rev );
@@ -634,7 +641,11 @@ class HistoryPager extends ReverseChronologicalPager {
 		if ( $prevRev && $this->getTitle()->quickUserCan( 'edit', $user ) ) {
 			if ( $latest && $this->getTitle()->quickUserCan( 'rollback', $user ) ) {
 				// Get a rollback link without the brackets
-				$rollbackLink = Linker::generateRollback( $rev, $this->getContext(), array( 'verify', 'noBrackets' ) );
+				$rollbackLink = Linker::generateRollback(
+					$rev,
+					$this->getContext(),
+					array( 'verify', 'noBrackets' )
+				);
 				if ( $rollbackLink ) {
 					$this->preventClickjacking();
 					$tools[] = $rollbackLink;
