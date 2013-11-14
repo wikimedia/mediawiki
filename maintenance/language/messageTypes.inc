@@ -484,7 +484,7 @@ $wgOptionalMessages = array(
 	'limitreport-ppgeneratednodes-value',
 	'limitreport-expansiondepth-value',
 	'limitreport-expensivefunctioncount-value',
-	'tooltip-iwiki',
+	'interlanguage-link-title',
 );
 
 /** Exif messages, which may be set as optional in several checks, but are generally mandatory */
