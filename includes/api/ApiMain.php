@@ -951,7 +951,7 @@ class ApiMain extends ApiBase {
 			// Printer has not yet executed; don't warn that its parameters are unused
 			$printerParams = array_map(
 				array( $this->mPrinter, 'encodeParamName' ),
-				array_keys( $this->mPrinter->getFinalParams() ? : array() )
+				array_keys( $this->mPrinter->getFinalParams() ?: array() )
 			);
 			$unusedParams = array_diff( $allParams, $paramsUsed, $printerParams );
 		} else {
