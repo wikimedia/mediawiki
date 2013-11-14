@@ -61,8 +61,8 @@ class ApiMove extends ApiBase {
 
 		if ( $toTitle->getNamespace() == NS_FILE
 			&& !RepoGroup::singleton()->getLocalRepo()->findFile( $toTitle )
-			&& wfFindFile( $toTitle ) )
-		{
+			&& wfFindFile( $toTitle )
+		) {
 			if ( !$params['ignorewarnings'] && $user->isAllowed( 'reupload-shared' ) ) {
 				$this->dieUsageMsg( 'sharedfile-exists' );
 			} elseif ( !$user->isAllowed( 'reupload-shared' ) ) {
@@ -115,7 +115,7 @@ class ApiMove extends ApiBase {
 		// Move subpages
 		if ( $params['movesubpages'] ) {
 			$r['subpages'] = $this->moveSubpages( $fromTitle, $toTitle,
-					$params['reason'], $params['noredirect'] );
+				$params['reason'], $params['noredirect'] );
 			$result->setIndexedTagName( $r['subpages'], 'subpage' );
 
 			if ( $params['movetalk'] ) {
@@ -167,6 +167,7 @@ class ApiMove extends ApiBase {
 				$retval[] = $r;
 			}
 		}
+
 		return $retval;
 	}
 
@@ -219,6 +220,7 @@ class ApiMove extends ApiBase {
 
 	public function getParamDescription() {
 		$p = $this->getModulePrefix();
+
 		return array(
 			'from' => "Title of the page you want to move. Cannot be used together with {$p}fromid",
 			'fromid' => "Page ID of the page you want to move. Cannot be used together with {$p}from",

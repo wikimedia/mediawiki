@@ -97,6 +97,7 @@ class ApiModuleManager extends ContextSource {
 				// cache this instance in case it is needed later
 				$this->mInstances[$moduleName] = $instance;
 			}
+
 			return $instance;
 		}
 	}
@@ -116,6 +117,7 @@ class ApiModuleManager extends ContextSource {
 				$result[] = $name;
 			}
 		}
+
 		return $result;
 	}
 
@@ -131,6 +133,7 @@ class ApiModuleManager extends ContextSource {
 				$result[$name] = $grpCls[1];
 			}
 		}
+
 		return $result;
 	}
 

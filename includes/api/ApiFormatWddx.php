@@ -40,8 +40,9 @@ class ApiFormatWddx extends ApiFormatBase {
 		// to avoid this.
 		$expected = "<wddxPacket version='1.0'><header/><data><string>\xc2\xa0</string></data></wddxPacket>";
 		if ( function_exists( 'wddx_serialize_value' )
-				&& !$this->getIsHtml()
-				&& wddx_serialize_value( "\xc2\xa0" ) == $expected ) {
+			&& !$this->getIsHtml()
+			&& wddx_serialize_value( "\xc2\xa0" ) == $expected
+		) {
 			$this->printText( wddx_serialize_value( $this->getResultData() ) );
 		} else {
 			// Don't do newlines and indentation if we weren't asked

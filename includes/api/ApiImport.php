@@ -99,6 +99,7 @@ class ApiImport extends ApiBase {
 
 	public function getAllowedParams() {
 		global $wgImportSources;
+
 		return array(
 			'token' => array(
 				ApiBase::PARAM_TYPE => 'string',
