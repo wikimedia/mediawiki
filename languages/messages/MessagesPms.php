@@ -999,8 +999,9 @@ Chiel a peul ancora s-ciairé costa diferensa; a peulo essje pì 'd detaj ant ë
 'revdelete-text' => "Le version scancelà e j'event a së s-ciaireran sempe ant la stòria dla pàgina e ant ij registr, ma sò test al pùblich a j'andrà pì nen.'''
 J'àutri aministrator dzora a {{SITENAME}} a saran ancó sempe bon a s-ciairé ël contnù stërmà e a podran disdëscancelelo andré con la midema antërfacia, sempe che a sia nen stàita butà na restrission adissional.",
 'revdelete-confirm' => "Për piasì, ch'a confema ch'a veul fé sòn, ch'as rend cont dle conseguense, e ch'a lo fa an acòrd con [[{{MediaWiki:Policy-url}}|le régole]].",
-'revdelete-suppress-text' => "La scancelassion a dovrìa '''mach''' esse dovrà për cost cas:
-* Anformassion përsonaj nen aproprià
+'revdelete-suppress-text' => "La scancelassion a dovrìa '''mach''' esse dovrà an costi cas:
+* Anformassion ch'a podrìo esse difamatòrie
+* Anformassion përsonaj inapropià
 *: ''adrësse ëd ca e nùmer ëd teléfon, còdes fiscaj, e via fòrt''",
 'revdelete-legend' => 'But-je coste limitassion-sì a le version scancelà:',
 'revdelete-hide-text' => 'Test dla revision',
@@ -3592,6 +3593,9 @@ Për piasì, che an conferma che da bon a veul torna creélo.",
 'confirm-watch-top' => 'Gionté sta pàgina-sì a la lista dle ròbe che as ten-o sot euj?',
 'confirm-unwatch-button' => 'Va bin',
 'confirm-unwatch-top' => 'Gavé sta pàgina-sì da la lista dle ròbe che as ten-o sot euj?',
+
+# Separators for various lists, etc.
+'quotation-marks' => '«$1»',
 
 # Multipage image navigation
 'imgmultipageprev' => '← pàgina andré',

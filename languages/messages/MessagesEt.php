@@ -806,15 +806,16 @@ Kui uut parooli palus keegi teine või sulle meenus vana parool ja sa ei soovi s
 'passwordsent' => 'Uus parool on saadetud kasutaja $1 registreeritud e-postiaadressil.
 Pärast parooli saamist logige palun sisse.',
 'blocked-mailpassword' => 'Sinu IP-aadressi jaoks on toimetamine blokeeritud, seetõttu ei saa sa kasutada ka parooli meeldetuletamise funktsiooni.',
-'eauthentsent' => 'Sisestatud e-posti aadressile on saadetud kinnituse e-kiri.
-Enne kui su kontole ükskõik milline muu e-kiri saadetakse, pead sa e-kirjas olevat juhist järgides kinnitama, et konto on tõepoolest sinu.',
+'eauthentsent' => 'Määratud e-posti aadressile on saadetud kinnituse e-kiri.
+Enne kui su kontole ükskõik milline muu e-kiri saadetakse, pead e-kirjas olevat juhist järgides kinnitama, et konto on tõepoolest sinu.',
 'throttled-mailpassword' => 'Parooli lähtestamise e-kiri saadetud viimase {{PLURAL:$1|tunni|$1 tunni}} jooksul.
 Väärtarvitamise vältimiseks saadetakse {{PLURAL:$1|tunni|$1 tunni}} jooksul ainult üks lähtestamise e-kiri.',
 'mailerror' => 'Viga kirja saatmisel: $1',
 'acct_creation_throttle_hit' => 'Selle viki külastajad, kes kasutavad sinu IP-aadressi, on viimase ööpäeva jooksul loonud {{PLURAL:$1|ühe konto|$1 kontot}}, mis on selles ajavahemikus ülemmääraks.
 Seetõttu ei saa seda IP-aadressi kasutades hetkel rohkem kontosid luua.',
 'emailauthenticated' => 'Sinu e-posti aadressi kinnitamisaeg: $2 kell $3.',
-'emailnotauthenticated' => 'Sinu e-posti aadress <strong>pole veel kinnitatud</strong>. Järgnevate funktsioonidega seotud e-kirju kinnitamata aadressile ei saadeta.',
+'emailnotauthenticated' => 'Sinu e-posti aadress pole veel kinnitatud.
+Järgnevate funktsioonidega seotud e-kirju ei saadeta.',
 'noemailprefs' => 'Järgnevate võimaluste toimimiseks on vaja sisestada e-posti aadress.',
 'emailconfirmlink' => 'Kinnita oma e-posti aadress',
 'invalidemailaddress' => 'E-posti aadress ei ole aktsepteeritav, sest see on vigaselt kirjutatud.
@@ -1120,15 +1121,15 @@ Tundub, et see on kustutatud.',
 See on juba olemas.',
 'defaultmessagetext' => 'Sõnumi vaiketekst',
 'invalid-content-data' => 'Vigased sisuandmed',
-'content-not-allowed-here' => 'Lehekülg [[$2]] ei või sisaldada $1.',
+'content-not-allowed-here' => 'Lehekülg [[$2]] ei või sisaldada $1i.',
 'editwarning-warning' => 'Sellelt leheküljelt lahkumise tõttu võivad tehtud muudatused kaotsi minna.
 Kui oled sisse loginud, saad selle hoiatuse eelistuste alaosas "Toimetamine" keelata.',
 
 # Content models
-'content-model-wikitext' => 'vikiteksti',
-'content-model-text' => 'lihtteksti',
-'content-model-javascript' => 'JavaScripti',
-'content-model-css' => 'CSSi',
+'content-model-wikitext' => 'vikitekst',
+'content-model-text' => 'lihttekst',
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''Hoiatus:''' See lehekülg kasutab liialt palju aeglustavaid laiendusfunktsioone. Neid võiks kasutada vähem kui {{PLURAL:$2|ühel|$2}} korral, praegu on kasutatud {{PLURAL:$1|ühel|$1}} korral.",
@@ -1240,18 +1241,19 @@ Saad seda muudatust vaadata. [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAG
 {{GRAMMAR:genitive|{{SITENAME}}}} administraatorid saavad peidetud sisu siiski vaadata ning seda vajadusel selle liidese kaudu taastada, kui see pole just täiendavalt keelatud.",
 'revdelete-confirm' => 'Kinnita, et soovid tõesti seda teha ning et saad aru tagajärgedest ja tegevus on kooskõlas [[{{MediaWiki:Policy-url}}|siinsete kokkulepetega]].',
 'revdelete-suppress-text' => "Andmed tuleks varjata '''ainult''' järgnevatel juhtudel:
+* Võimalik laim
 * Sobimatu isiklik teave
-*: ''kodune aadress ja telefoninumber, sotsiaalhoolekandenumber jne''",
+*: ''kodune aadress ja telefoninumber, isikukood jne''",
 'revdelete-legend' => 'Nähtavuse piirangute seadmine',
-'revdelete-hide-text' => 'Peida redaktsiooni tekst',
+'revdelete-hide-text' => 'Redaktsiooni tekst',
 'revdelete-hide-image' => 'Peida faili sisu',
 'revdelete-hide-name' => 'Peida toiming ja sihtmärk',
-'revdelete-hide-comment' => 'Peida resümee',
-'revdelete-hide-user' => 'Peida toimetaja kasutajanimi või IP-aadress',
+'revdelete-hide-comment' => 'Resümee',
+'revdelete-hide-user' => 'Toimetaja kasutajanimi või IP-aadress',
 'revdelete-hide-restricted' => 'Varja andmeid nii administraatorite kui ka teiste eest.',
 'revdelete-radio-same' => '(ära muuda)',
-'revdelete-radio-set' => 'Jah',
-'revdelete-radio-unset' => 'Ei',
+'revdelete-radio-set' => 'Nähtav',
+'revdelete-radio-unset' => 'Peidetud',
 'revdelete-suppress' => 'Varja andmed nii administraatorite kui ka teiste eest',
 'revdelete-unsuppress' => 'Eemalda taastatud redaktsioonidelt piirangud',
 'revdelete-log' => 'Põhjus:',
@@ -2890,6 +2892,7 @@ Kas kustutad selle, et luua võimalus teisaldamiseks?',
 'immobile-target-namespace-iw' => 'Keelelink ei ole sobiv koht lehekülje teisaldamiseks.',
 'immobile-source-page' => 'Lehekülg ei ole teisaldatav.',
 'immobile-target-page' => 'Soovitud pealkirja alla ei saa teisaldada.',
+'bad-target-model' => 'Soovitud sihtlehekülje sisumudel on erinev. {{ucfirst:$1}}i ei saa teisendada $2iks.',
 'imagenocrossnamespace' => 'Faili ei saa teisaldada mõnda muusse nimeruumi.',
 'nonfile-cannot-move-to-file' => 'Failinimeruumi saab ainult faile teisaldada.',
 'imagetypemismatch' => 'Uus faililaiend ei sobi selle tüübiga',
@@ -3146,6 +3149,7 @@ See on ilmselt põhjustatud linkimisest mustas nimekirjas olevasse välisvõrguk
 'pageinfo-length' => 'Lehekülje pikkus (baitides)',
 'pageinfo-article-id' => 'Lehekülje identifikaator',
 'pageinfo-language' => 'Lehekülje sisu keel',
+'pageinfo-content-model' => 'Lehekülje sisumudel',
 'pageinfo-robot-policy' => 'Robotindekseering',
 'pageinfo-robot-index' => 'Lubatud',
 'pageinfo-robot-noindex' => 'Keelatud',
@@ -3868,7 +3872,7 @@ GNU Üldise Avaliku Litsentsi [{{SERVER}}{{SCRIPTPATH}}/COPYING eksemplar] peaks
 # Special:Redirect
 'redirect' => 'Ümbersuunamine faili, kasutaja või redaktsiooni identifikaatori järgi',
 'redirect-legend' => 'Ümbersuunamine faili juurde või leheküljele',
-'redirect-summary' => 'See erilehekülg suunab ümber faili (toodud failinimi), lehekülje (toodud redaktsiooni identifikaator) või kasutajalehekülje (toodud numbriline kasutaja identfikaator) juurde.',
+'redirect-summary' => 'See erilehekülg suunab ümber faili (toodud failinimi), lehekülje (toodud redaktsiooni identifikaator) või kasutajalehekülje (toodud numbriline kasutaja identfikaator) juurde. Kasutamine: [[{{#Special:Redirect}}/file/Näide.jpg]], [[{{#Special:Redirect}}/revision/328429]] või [[{{#Special:Redirect}}/user/101]].',
 'redirect-submit' => 'Mine',
 'redirect-lookup' => 'Leia:',
 'redirect-value' => 'Väärtus:',

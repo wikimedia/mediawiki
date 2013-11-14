@@ -7845,7 +7845,8 @@ See also:
 * {{msg-mw|Summary}}
 * {{msg-mw|Accesskey-summary}}
 * {{msg-mw|Tooltip-summary}}',
-'interlanguage-link-title' => 'Format of a sidebar interwiki link tooltip. Parameters:
+'interlanguage-link-title' => '{{Optional}}
+Format of a sidebar interwiki link tooltip. Parameters:
 * $1 - page name in the target wiki
 * $2 - target wiki language autonym',
 

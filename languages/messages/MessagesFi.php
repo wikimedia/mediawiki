@@ -1404,7 +1404,7 @@ $1 {{int:pipe-separator}} $2',
 'searchall' => 'kaikki',
 'showingresults' => "{{PLURAL:$1|'''Yksi''' tulos|'''$1''' tulosta}} tuloksesta '''$2''' alkaen.",
 'showingresultsnum' => "Alla on {{PLURAL:$3|'''Yksi''' hakutulos|'''$3''' hakutulosta}} alkaen '''$2.''' tuloksesta.",
-'showingresultsheader' => "{{PLURAL:$5|Tulokset '''$1'''–'''$3'''|Tulokset '''$1'''–'''$2''' kaikkiaan '''$3''' osuman joukosto}} haulle '''$4'''",
+'showingresultsheader' => "{{PLURAL:$5|Tulokset '''$1'''–'''$3'''|Tulokset '''$1'''–'''$2''' kaikkiaan '''$3''' osuman joukosta}} haulle '''$4'''",
 'nonefound' => "'''Huomautus''': Haku kohdistuu oletuksena vain tiettyihin nimiavaruuksiin.
 Kokeile lisätä haun alkuun ''all:'', niin haku kohdistuu kaikkeen sisältöön (mukaan lukien keskustelut, mallineet jne.) tai kohdista haku haluttuun nimiavaruuteen.",
 'search-nonefound' => 'Hakusi ei tuottanut tulosta.',
