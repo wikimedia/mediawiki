@@ -98,8 +98,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 		if ( isset( $show['hidden'] ) && isset( $show['!hidden'] ) ) {
 			$this->dieUsageMsg( 'show' );
 		}
-		if ( isset( $show['hidden'] ) || isset( $show['!hidden'] ) || isset( $prop['hidden'] ) )
-		{
+		if ( isset( $show['hidden'] ) || isset( $show['!hidden'] ) || isset( $prop['hidden'] ) ) {
 			$this->addOption( 'STRAIGHT_JOIN' );
 			$this->addTables( array( 'page', 'page_props' ) );
 			$this->addFieldsIf( 'pp_propname', isset( $prop['hidden'] ) );
@@ -126,9 +125,9 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 			$this->addOption( 'ORDER BY', 'cl_to' . $sort );
 		} else {
 			$this->addOption( 'ORDER BY', array(
-						'cl_from' . $sort,
-						'cl_to' . $sort
-			));
+				'cl_from' . $sort,
+				'cl_to' . $sort
+			) );
 		}
 
 		$res = $this->select( __METHOD__ );

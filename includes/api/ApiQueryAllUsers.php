@@ -90,6 +90,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			// no group with the given right(s) exists, no need for a query
 			if ( !count( $groups ) ) {
 				$this->getResult()->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), '' );
+
 				return;
 			}
 
@@ -111,7 +112,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			// Filter only users that belong to a given group
 			$this->addTables( 'user_groups', 'ug1' );
 			$this->addJoinConds( array( 'ug1' => array( 'INNER JOIN', array( 'ug1.ug_user=user_id',
-					'ug1.ug_group' => $params['group'] ) ) ) );
+				'ug1.ug_group' => $params['group'] ) ) ) );
 		}
 
 		if ( !is_null( $params['excludegroup'] ) && count( $params['excludegroup'] ) ) {
@@ -126,8 +127,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			}
 			$this->addJoinConds( array( 'ug1' => array( 'LEFT OUTER JOIN',
 				array_merge( array( 'ug1.ug_user=user_id' ), $exclude )
-				)
-			) );
+			) ) );
 			$this->addWhere( 'ug1.ug_user IS NULL' );
 		}
 
@@ -201,7 +201,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				// Save the last pass's user data
 				if ( is_array( $lastUserData ) ) {
 					$fit = $result->addValue( array( 'query', $this->getModuleName() ),
-							null, $lastUserData );
+						null, $lastUserData );
 
 					$lastUserData = null;
 
@@ -312,6 +312,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 
 	public function getAllowedParams() {
 		$userGroups = User::getAllGroups();
+
 		return array(
 			'from' => null,
 			'to' => null,
@@ -360,6 +361,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 
 	public function getParamDescription() {
 		global $wgActiveUserDays;
+
 		return array(
 			'from' => 'The user name to start enumerating from',
 			'to' => 'The user name to stop enumerating at',
@@ -376,7 +378,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				' rights         - Lists rights that the user has',
 				' editcount      - Adds the edit count of the user',
 				' registration   - Adds the timestamp of when the user registered if available (may be blank)',
-				),
+			),
 			'limit' => 'How many total user names to return',
 			'witheditsonly' => 'Only list users who have made edits',
 			'activeusers' => "Only list users active in the last {$wgActiveUserDays} days(s)"

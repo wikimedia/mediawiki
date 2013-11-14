@@ -177,7 +177,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		$count = 0;
 		$result = $this->getResult();
 		foreach ( $res as $row ) {
-			if ( ++ $count > $limit ) {
+			if ( ++$count > $limit ) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
 				if ( $params['unique'] ) {
 					$this->setContinueEnumParameter( 'continue', $row->pl_title );
@@ -258,6 +258,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		if ( !$this->hasNamespace ) {
 			unset( $allowedParams['namespace'] );
 		}
+
 		return $allowedParams;
 	}
 
@@ -287,6 +288,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		if ( !$this->hasNamespace ) {
 			unset( $paramDescription['namespace'] );
 		}
+
 		return $paramDescription;
 	}
 
@@ -309,6 +311,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 	public function getPossibleErrors() {
 		$m = $this->getModuleName();
 		$what = $this->descriptionWhat;
+
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'code' => 'params', 'info' => "{$m} cannot return corresponding page ids in unique {$what}s mode" ),
 		) );
@@ -319,20 +322,22 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		$name = $this->getModuleName();
 		$what = $this->descriptionWhat;
 		$targets = $this->descriptionTargets;
+
 		return array(
 			"api.php?action=query&list={$name}&{$p}from=B&{$p}prop=ids|title"
-					=> "List $targets with page ids they are from, including missing ones. Start at B",
+				=> "List $targets with page ids they are from, including missing ones. Start at B",
 			"api.php?action=query&list={$name}&{$p}unique=&{$p}from=B"
-					=> "List unique $targets",
+				=> "List unique $targets",
 			"api.php?action=query&generator={$name}&g{$p}unique=&g{$p}from=B"
-					=> "Gets all $targets, marking the missing ones",
+				=> "Gets all $targets, marking the missing ones",
 			"api.php?action=query&generator={$name}&g{$p}from=B"
-					=> "Gets pages containing the {$what}s",
+				=> "Gets pages containing the {$what}s",
 		);
 	}
 
 	public function getHelpUrls() {
 		$name = ucfirst( $this->getModuleName() );
+
 		return "https://www.mediawiki.org/wiki/API:{$name}";
 	}
 }
