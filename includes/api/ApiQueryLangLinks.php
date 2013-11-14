@@ -86,9 +86,9 @@ class ApiQueryLangLinks extends ApiQueryBase {
 				$this->addOption( 'ORDER BY', 'll_lang' . $sort );
 			} else {
 				$this->addOption( 'ORDER BY', array(
-							'll_from' . $sort,
-							'll_lang' . $sort
-				));
+					'll_from' . $sort,
+					'll_lang' . $sort
+				) );
 			}
 		}
 

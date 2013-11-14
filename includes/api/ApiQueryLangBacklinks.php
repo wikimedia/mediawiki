@@ -92,14 +92,14 @@ class ApiQueryLangBacklinks extends ApiQueryGeneratorBase {
 				$this->addOption( 'ORDER BY', array(
 					'll_title' . $sort,
 					'll_from' . $sort
-				));
+				) );
 			}
 		} else {
 			$this->addOption( 'ORDER BY', array(
 				'll_lang' . $sort,
 				'll_title' . $sort,
 				'll_from' . $sort
-			));
+			) );
 		}
 
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
@@ -111,7 +111,7 @@ class ApiQueryLangBacklinks extends ApiQueryGeneratorBase {
 		$count = 0;
 		$result = $this->getResult();
 		foreach ( $res as $row ) {
-			if ( ++ $count > $params['limit'] ) {
+			if ( ++$count > $params['limit'] ) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
 				// Continue string preserved in case the redirect query doesn't pass the limit
 				$this->setContinueEnumParameter( 'continue', "{$row->ll_lang}|{$row->ll_title}|{$row->ll_from}" );
