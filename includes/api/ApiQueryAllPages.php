@@ -145,7 +145,6 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 			}
 
 			$this->addOption( 'DISTINCT' );
-
 		} elseif ( isset( $params['prlevel'] ) ) {
 			$this->dieUsage( 'prlevel may not be used without prtype', 'params' );
 		}
@@ -186,7 +185,7 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 		$count = 0;
 		$result = $this->getResult();
 		foreach ( $res as $row ) {
-			if ( ++ $count > $limit ) {
+			if ( ++$count > $limit ) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
 				$this->setContinueEnumParameter( 'continue', $row->page_title );
 				break;
@@ -291,6 +290,7 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 
 	public function getParamDescription() {
 		$p = $this->getModulePrefix();
+
 		return array(
 			'from' => 'The page title to start enumerating from',
 			'continue' => 'When more results are available, use this to continue',
