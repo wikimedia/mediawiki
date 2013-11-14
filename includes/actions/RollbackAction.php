@@ -53,7 +53,9 @@ class RollbackAction extends FormlessAction {
 			throw new ThrottledError;
 		}
 
-		if ( isset( $result[0][0] ) && ( $result[0][0] == 'alreadyrolled' || $result[0][0] == 'cantrollback' ) ) {
+		if ( isset( $result[0][0] ) &&
+			( $result[0][0] == 'alreadyrolled' || $result[0][0] == 'cantrollback' )
+		) {
 			$this->getOutput()->setPageTitle( $this->msg( 'rollbackfailed' ) );
 			$errArray = $result[0];
 			$errMsg = array_shift( $errArray );
@@ -91,12 +93,21 @@ class RollbackAction extends FormlessAction {
 
 		$old = Linker::revUserTools( $current );
 		$new = Linker::revUserTools( $target );
-		$this->getOutput()->addHTML( $this->msg( 'rollback-success' )->rawParams( $old, $new )->parseAsBlock() );
+		$this->getOutput()->addHTML( $this->msg( 'rollback-success' )->rawParams( $old, $new )
+			->parseAsBlock() );
 		$this->getOutput()->returnToMain( false, $this->getTitle() );
 
-		if ( !$request->getBool( 'hidediff', false ) && !$this->getUser()->getBoolOption( 'norollbackdiff', false ) ) {
+		if ( !$request->getBool( 'hidediff', false ) &&
+			!$this->getUser()->getBoolOption( 'norollbackdiff', false )
+		) {
 			$contentHandler = $current->getContentHandler();
-			$de = $contentHandler->createDifferenceEngine( $this->getContext(), $current->getId(), $newId, false, true );
+			$de = $contentHandler->createDifferenceEngine(
+				$this->getContext(),
+				$current->getId(),
+				$newId,
+				false,
+				true
+			);
 			$de->showDiff( '', '' );
 		}
 	}
