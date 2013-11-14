@@ -34,8 +34,9 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	private static $transformCount = 0;
 
 	public function __construct( $query, $moduleName, $prefix = 'ii' ) {
-		// We allow a subclass to override the prefix, to create a related API module.
-		// Some other parts of MediaWiki construct this with a null $prefix, which used to be ignored when this only took two arguments
+		// We allow a subclass to override the prefix, to create a related API
+		// module. Some other parts of MediaWiki construct this with a null
+		// $prefix, which used to be ignored when this only took two arguments
 		if ( is_null( $prefix ) ) {
 			$prefix = 'ii';
 		}
@@ -176,7 +177,8 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				/** @var $oldie File */
 				foreach ( $oldies as $oldie ) {
 					if ( ++$count > $params['limit'] ) {
-						// We've reached the extra one which shows that there are additional pages to be had. Stop here...
+						// We've reached the extra one which shows that there are
+						// additional pages to be had. Stop here...
 						// Only set a query-continue if there was only one title
 						if ( count( $pageIds[NS_FILE] ) == 1 ) {
 							$this->setContinueEnumParameter( 'start',
@@ -287,7 +289,8 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		if ( isset( $paramList['width'] ) ) {
 			if ( intval( $paramList['width'] ) != intval( $thumbParams['width'] ) ) {
 				$this->setWarning( "Ignoring width value set in {$p}urlparam ({$paramList['width']}) "
-					. "in favor of width value derived from {$p}urlwidth/{$p}urlheight ({$thumbParams['width']})" );
+					. "in favor of width value derived from {$p}urlwidth/{$p}urlheight "
+					. "({$thumbParams['width']})" );
 			}
 		}
 
@@ -616,18 +619,22 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			'comment' =>        ' comment       - Comment on the version',
 			'parsedcomment' =>  ' parsedcomment - Parse the comment on the version',
 			'url' =>            ' url           - Gives URL to the image and the description page',
-			'size' =>           ' size          - Adds the size of the image in bytes and the height, width and page count (if applicable)',
-			'dimensions' =>     ' dimensions    - Alias for size', // For backwards compatibility with Allimages
+			'size' =>           ' size          - Adds the size of the image in bytes ' .
+				'and the height, width and page count (if applicable)',
+			'dimensions' =>     ' dimensions    - Alias for size', // B/C with Allimages
 			'sha1' =>           ' sha1          - Adds SHA-1 hash for the image',
 			'mime' =>           ' mime          - Adds MIME type of the image',
 			'thumbmime' =>      ' thumbmime     - Adds MIME type of the image thumbnail' .
 				' (requires url and param ' . $modulePrefix . 'urlwidth)',
 			'mediatype' =>      ' mediatype     - Adds the media type of the image',
 			'metadata' =>       ' metadata      - Lists Exif metadata for the version of the image',
-			'extmetadata' =>    ' extmetadata   - Lists formatted metadata combined from multiple sources. Results are HTML formatted.',
-			'archivename' =>    ' archivename   - Adds the file name of the archive version for non-latest versions',
+			'extmetadata' =>    ' extmetadata   - Lists formatted metadata combined ' .
+				'from multiple sources. Results are HTML formatted.',
+			'archivename' =>    ' archivename   - Adds the file name of the archive ' .
+				'version for non-latest versions',
 			'bitdepth' =>       ' bitdepth      - Adds the bit depth of the version',
-			'uploadwarning' =>  ' uploadwarning - Used by the Special:Upload page to get information about an existing file. Not intended for use outside MediaWiki core',
+			'uploadwarning' =>  ' uploadwarning - Used by the Special:Upload page to ' .
+				'get information about an existing file. Not intended for use outside MediaWiki core',
 		);
 	}
 
@@ -654,22 +661,29 @@ class ApiQueryImageInfo extends ApiQueryBase {
 
 		return array(
 			'prop' => self::getPropertyDescriptions( array(), $p ),
-			'urlwidth' => array( "If {$p}prop=url is set, a URL to an image scaled to this width will be returned.",
+			'urlwidth' => array(
+				"If {$p}prop=url is set, a URL to an image scaled to this width will be returned.",
 				'For performance reasons if this option is used, ' .
-					'no more than ' . self::TRANSFORM_LIMIT . ' scaled images will be returned.' ),
+					'no more than ' . self::TRANSFORM_LIMIT . ' scaled images will be returned.'
+			),
 			'urlheight' => "Similar to {$p}urlwidth.",
 			'urlparam' => array( "A handler specific parameter string. For example, pdf's ",
 				"might use 'page15-100px'. {$p}urlwidth must be used and be consistent with {$p}urlparam" ),
 			'limit' => 'How many image revisions to return per image',
 			'start' => 'Timestamp to start listing from',
 			'end' => 'Timestamp to stop listing at',
-			'metadataversion' => array( "Version of metadata to use. if 'latest' is specified, use latest version.",
+			'metadataversion'
+				=> array( "Version of metadata to use. if 'latest' is specified, use latest version.",
 				"Defaults to '1' for backwards compatibility" ),
-			'extmetadatalanguage' => array( 'What language to fetch extmetadata in. This affects both which',
+			'extmetadatalanguage' => array(
+				'What language to fetch extmetadata in. This affects both which',
 				'translation to fetch, if multiple are available, as well as how things',
-				'like numbers and various values are formatted.' ),
-			'extmetadatamultilang' => 'If translations for extmetadata property are available, fetch all of them.',
-			'extmetadatafilter' => "If specified and non-empty, only these keys will be returned for {$p}prop=extmetadata",
+				'like numbers and various values are formatted.'
+			),
+			'extmetadatamultilang'
+				=>'If translations for extmetadata property are available, fetch all of them.',
+			'extmetadatafilter'
+				=> "If specified and non-empty, only these keys will be returned for {$p}prop=extmetadata",
 			'continue' => 'If the query response includes a continue value, use it here to get another page of results',
 			'localonly' => 'Look only for files in the local repository',
 		);
@@ -817,7 +831,8 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	public function getExamples() {
 		return array(
 			'api.php?action=query&titles=File:Albert%20Einstein%20Head.jpg&prop=imageinfo',
-			'api.php?action=query&titles=File:Test.jpg&prop=imageinfo&iilimit=50&iiend=20071231235959&iiprop=timestamp|user|url',
+			'api.php?action=query&titles=File:Test.jpg&prop=imageinfo&iilimit=50&' .
+				'iiend=20071231235959&iiprop=timestamp|user|url',
 		);
 	}
 
