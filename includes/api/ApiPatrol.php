@@ -123,7 +123,8 @@ class ApiPatrol extends ApiBase {
 					'code' => 'notpatrollable',
 					'info' => "The revision can't be patrolled as it's too old"
 				)
-		) );
+			)
+		);
 	}
 
 	public function needsToken() {

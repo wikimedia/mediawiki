@@ -244,6 +244,7 @@ class ApiPageSet extends ApiBase {
 		if ( isset( $this->mParams['revids'] ) ) {
 			return 'revids';
 		}
+
 		return null;
 	}
 
@@ -289,6 +290,7 @@ class ApiPageSet extends ApiBase {
 		$this->mRequestedPageFields = array_diff_key( $this->mRequestedPageFields, $pageFlds );
 
 		$pageFlds = array_merge( $pageFlds, $this->mRequestedPageFields );
+
 		return array_keys( $pageFlds );
 	}
 
@@ -391,6 +393,7 @@ class ApiPageSet extends ApiBase {
 		if ( !empty( $values ) && $result ) {
 			$result->setIndexedTagName( $values, 'r' );
 		}
+
 		return $values;
 	}
 
@@ -421,6 +424,7 @@ class ApiPageSet extends ApiBase {
 		if ( !empty( $values ) && $result ) {
 			$result->setIndexedTagName( $values, 'n' );
 		}
+
 		return $values;
 	}
 
@@ -451,6 +455,7 @@ class ApiPageSet extends ApiBase {
 		if ( !empty( $values ) && $result ) {
 			$result->setIndexedTagName( $values, 'c' );
 		}
+
 		return $values;
 	}
 
@@ -487,6 +492,7 @@ class ApiPageSet extends ApiBase {
 		if ( !empty( $values ) && $result ) {
 			$result->setIndexedTagName( $values, 'i' );
 		}
+
 		return $values;
 	}
 
@@ -522,6 +528,7 @@ class ApiPageSet extends ApiBase {
 		if ( !empty( $values ) && $result ) {
 			$result->setIndexedTagName( $values, 'rev' );
 		}
+
 		return $values;
 	}
 
@@ -642,7 +649,7 @@ class ApiPageSet extends ApiBase {
 		// Get pageIDs data from the `page` table
 		$this->profileDBIn();
 		$res = $db->select( 'page', $this->getPageTableFields(), $set,
-					__METHOD__ );
+			__METHOD__ );
 		$this->profileDBOut();
 
 		// Hack: get the ns:titles stored in array(ns => array(titles)) format
@@ -676,7 +683,7 @@ class ApiPageSet extends ApiBase {
 			// Get pageIDs data from the `page` table
 			$this->profileDBIn();
 			$res = $db->select( 'page', $this->getPageTableFields(), $set,
-						__METHOD__ );
+				__METHOD__ );
 			$this->profileDBOut();
 		}
 
@@ -886,6 +893,7 @@ class ApiPageSet extends ApiBase {
 				unset( $this->mPendingRedirectIDs[$id] );
 			}
 		}
+
 		return $lb;
 	}
 
@@ -941,8 +949,9 @@ class ApiPageSet extends ApiBase {
 				// Variants checking
 				global $wgContLang;
 				if ( $this->mConvertTitles &&
-						count( $wgContLang->getVariants() ) > 1 &&
-						!$titleObj->exists() ) {
+					count( $wgContLang->getVariants() ) > 1 &&
+					!$titleObj->exists()
+				) {
 					// Language::findVariantLink will modify titleText and titleObj into
 					// the canonical variant if possible
 					$titleText = is_string( $title ) ? $title : $titleObj->getPrefixedText();
@@ -1040,6 +1049,7 @@ class ApiPageSet extends ApiBase {
 				$result['generator'] = null;
 			}
 		}
+
 		return $result;
 	}
 
@@ -1067,6 +1077,7 @@ class ApiPageSet extends ApiBase {
 			sort( $gens );
 			self::$generators = $gens;
 		}
+
 		return self::$generators;
 	}
 

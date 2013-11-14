@@ -139,6 +139,7 @@ class ApiPurge extends ApiBase {
 		if ( !isset( $this->mPageSet ) ) {
 			$this->mPageSet = new ApiPageSet( $this );
 		}
+
 		return $this->mPageSet;
 	}
 
@@ -159,6 +160,7 @@ class ApiPurge extends ApiBase {
 		if ( $flags ) {
 			$result += $this->getPageSet()->getFinalParams( $flags );
 		}
+
 		return $result;
 	}
 

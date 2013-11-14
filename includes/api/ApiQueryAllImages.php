@@ -107,7 +107,7 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 				}
 			}
 			if ( $params['filterbots'] != 'all' ) {
-					$this->dieUsage( "Parameter '{$prefix}filterbots' can only be used with {$prefix}sort=timestamp", 'badparams' );
+				$this->dieUsage( "Parameter '{$prefix}filterbots' can only be used with {$prefix}sort=timestamp", 'badparams' );
 			}
 
 			// Pagination
@@ -156,7 +156,7 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 						'ug_user = img_user'
 					)
 				) ) );
-				$groupCond = ( $params['filterbots'] == 'nobots' ? 'NULL': 'NOT NULL' );
+				$groupCond = ( $params['filterbots'] == 'nobots' ? 'NULL' : 'NOT NULL' );
 				$this->addWhere( "ug_group IS $groupCond" );
 			}
 		}
@@ -222,7 +222,7 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 		$count = 0;
 		$result = $this->getResult();
 		foreach ( $res as $row ) {
-			if ( ++ $count > $limit ) {
+			if ( ++$count > $limit ) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
 				if ( $params['sort'] == 'name' ) {
 					$this->setContinueEnumParameter( 'continue', $row->img_name );
@@ -326,6 +326,7 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 
 	public function getParamDescription() {
 		$p = $this->getModulePrefix();
+
 		return array(
 			'sort' => 'Property to sort by',
 			'dir' => 'The direction in which to list',
@@ -368,6 +369,7 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 
 	public function getPossibleErrors() {
 		$p = $this->getModulePrefix();
+
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'code' => 'params', 'info' => 'Use "gaifilterredir=nonredirects" option instead of "redirects" when using allimages as a generator' ),
 			array( 'code' => 'badparams', 'info' => "Parameter'{$p}start' can only be used with {$p}sort=timestamp" ),
