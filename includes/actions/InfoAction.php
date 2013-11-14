@@ -763,6 +763,7 @@ class InfoAction extends FormlessAction {
 		$anon_ips = array();
 
 		# Sift for real versus user names
+		/** @var $user User */
 		foreach ( $contributors as $user ) {
 			$page = $user->isAnon()
 				? SpecialPage::getTitleFor( 'Contributions', $user->getName() )

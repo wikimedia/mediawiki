@@ -48,6 +48,9 @@ class RevertAction extends Action {
  * @ingroup Actions
  */
 class RevertFileAction extends FormAction {
+	/**
+	 * @var OldLocalFile
+	 */
 	protected $oldFile;
 
 	public function getName() {
