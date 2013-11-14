@@ -127,6 +127,7 @@ class CreditsAction extends FormlessAction {
 		$anon_ips = array();
 
 		# Sift for real versus user names
+		/** @var $user User */
 		foreach ( $contributors as $user ) {
 			$cnt--;
 			if ( $user->isLoggedIn() ) {
