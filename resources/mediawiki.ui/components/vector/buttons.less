@@ -1,19 +1,20 @@
 @import "../default/buttons"; // Layer Vector on top of the default settings.
+@import "../../mixins/type";
 
 .mw-ui-button {
     // Button colors determined by function.
     // -----------------------------------------
     &.mw-ui-primary {
-        @include buttonColors($agoraBlue);
+        .buttonColors(@agoraBlue);
     }
 
     &.mw-ui-constructive {
-        @include buttonColors($agoraGreen);
+        .buttonColors(@agoraGreen);
     }
 
     &.mw-ui-destructive {
-        @include buttonColors($agoraRed);
+        .buttonColors(@agoraRed);
     }
 
-    @include vector-type;
+    .vector-type();
 }

@@ -41,7 +41,6 @@ sftp-config.json
 
 # Building & testing
 node_modules/
-.sass-cache/
 
 # Composer
 /vendor
