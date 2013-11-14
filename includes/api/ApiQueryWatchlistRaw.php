@@ -100,7 +100,8 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 		$count = 0;
 		foreach ( $res as $row ) {
 			if ( ++$count > $params['limit'] ) {
-				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
+				// We've reached the one extra which shows that there are
+				// additional pages to be had. Stop here...
 				$this->setContinueEnumParameter( 'continue', $row->wl_namespace . '|' . $row->wl_title );
 				break;
 			}
@@ -182,7 +183,8 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 			),
 			'show' => 'Only list items that meet these criteria',
 			'owner' => 'The name of the user whose watchlist you\'d like to access',
-			'token' => 'Give a security token (settable in preferences) to allow access to another user\'s watchlist',
+			'token' => 'Give a security token (settable in preferences) to allow ' .
+				'access to another user\'s watchlist',
 			'dir' => 'Direction to sort the titles and namespaces in',
 		);
 	}
@@ -211,7 +213,11 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 			array( 'code' => 'notloggedin', 'info' => 'You must be logged-in to have a watchlist' ),
 			array( 'show' ),
 			array( 'code' => 'bad_wlowner', 'info' => 'Specified user does not exist' ),
-			array( 'code' => 'bad_wltoken', 'info' => 'Incorrect watchlist token provided -- please set a correct token in Special:Preferences' ),
+			array(
+				'code' => 'bad_wltoken',
+				'info' => 'Incorrect watchlist token provided -- ' .
+					'please set a correct token in Special:Preferences'
+			),
 		) );
 	}
 

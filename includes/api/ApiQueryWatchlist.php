@@ -44,9 +44,11 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		$this->run( $resultPageSet );
 	}
 
-	private $fld_ids = false, $fld_title = false, $fld_patrol = false, $fld_flags = false,
-		$fld_timestamp = false, $fld_user = false, $fld_comment = false, $fld_parsedcomment = false, $fld_sizes = false,
-		$fld_notificationtimestamp = false, $fld_userid = false, $fld_loginfo = false;
+	private $fld_ids = false, $fld_title = false, $fld_patrol = false,
+		$fld_flags = false, $fld_timestamp = false, $fld_user = false,
+		$fld_comment = false, $fld_parsedcomment = false, $fld_sizes = false,
+		$fld_notificationtimestamp = false, $fld_userid = false,
+		$fld_loginfo = false;
 
 	/**
 	 * @param $resultPageSet ApiPageSet
@@ -103,7 +105,10 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$this->addFieldsIf( 'rc_patrolled', $this->fld_patrol );
 			$this->addFieldsIf( array( 'rc_old_len', 'rc_new_len' ), $this->fld_sizes );
 			$this->addFieldsIf( 'wl_notificationtimestamp', $this->fld_notificationtimestamp );
-			$this->addFieldsIf( array( 'rc_logid', 'rc_log_type', 'rc_log_action', 'rc_params' ), $this->fld_loginfo );
+			$this->addFieldsIf(
+				array( 'rc_logid', 'rc_log_type', 'rc_log_action', 'rc_params' ),
+				$this->fld_loginfo
+			);
 		} elseif ( $params['allrev'] ) {
 			$this->addFields( 'rc_this_oldid' );
 		} else {
@@ -156,7 +161,10 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			if ( isset( $show['patrolled'] ) || isset( $show['!patrolled'] ) ) {
 				$user = $this->getUser();
 				if ( !$user->useRCPatrol() && !$user->useNPPatrol() ) {
-					$this->dieUsage( 'You need the patrol right to request the patrolled flag', 'permissiondenied' );
+					$this->dieUsage(
+						'You need the patrol right to request the patrolled flag',
+						'permissiondenied'
+					);
 				}
 			}
 
@@ -186,7 +194,10 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		}
 
 		// This is an index optimization for mysql, as done in the Special:Watchlist page
-		$this->addWhereIf( "rc_timestamp > ''", !isset( $params['start'] ) && !isset( $params['end'] ) && $db->getType() == 'mysql' );
+		$this->addWhereIf(
+			"rc_timestamp > ''",
+			!isset( $params['start'] ) && !isset( $params['end'] ) && $db->getType() == 'mysql'
+		);
 
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
 
@@ -196,8 +207,12 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 		foreach ( $res as $row ) {
 			if ( ++$count > $params['limit'] ) {
-				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
-				$this->setContinueEnumParameter( 'start', wfTimestamp( TS_ISO_8601, $row->rc_timestamp ) );
+				// We've reached the one extra which shows that there are
+				// additional pages to be had. Stop here...
+				$this->setContinueEnumParameter(
+					'start',
+					wfTimestamp( TS_ISO_8601, $row->rc_timestamp )
+				);
 				break;
 			}
 
@@ -219,7 +234,10 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		}
 
 		if ( is_null( $resultPageSet ) ) {
-			$this->getResult()->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'item' );
+			$this->getResult()->setIndexedTagName_internal(
+				array( 'query', $this->getModuleName() ),
+				'item'
+			);
 		} elseif ( $params['allrev'] ) {
 			$resultPageSet->populateFromRevisionIDs( $ids );
 		} else {
@@ -485,7 +503,8 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 				' log            - Log entries',
 			),
 			'owner' => 'The name of the user whose watchlist you\'d like to access',
-			'token' => 'Give a security token (settable in preferences) to allow access to another user\'s watchlist'
+			'token' => 'Give a security token (settable in preferences) to ' .
+				'allow access to another user\'s watchlist'
 		);
 	}
 
@@ -578,11 +597,18 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'code' => 'bad_wlowner', 'info' => 'Specified user does not exist' ),
-			array( 'code' => 'bad_wltoken', 'info' => 'Incorrect watchlist token provided -- please set a correct token in Special:Preferences' ),
+			array(
+				'code' => 'bad_wltoken',
+				'info' => 'Incorrect watchlist token provided -- ' .
+					'please set a correct token in Special:Preferences'
+			),
 			array( 'code' => 'notloggedin', 'info' => 'You must be logged-in to have a watchlist' ),
 			array( 'code' => 'patrol', 'info' => 'patrol property is not available' ),
 			array( 'show' ),
-			array( 'code' => 'permissiondenied', 'info' => 'You need the patrol right to request the patrolled flag' ),
+			array(
+				'code' => 'permissiondenied',
+				'info' => 'You need the patrol right to request the patrolled flag'
+			),
 			array( 'code' => 'user-excludeuser', 'info' => 'user and excludeuser cannot be used together' ),
 		) );
 	}
