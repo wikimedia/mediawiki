@@ -882,7 +882,7 @@ class ApiMain extends ApiBase {
 			}
 		}
 		$s .= "\n";
-		wfDebugLog( 'api', $s, false );
+		wfDebugLog( 'api', $s, 'private' );
 	}
 
 	/**

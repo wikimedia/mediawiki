@@ -135,7 +135,7 @@ class MWDebug {
 	 * @since 1.19
 	 * @param $msg string
 	 * @param $callerOffset int
-	 * @param $level int A PHP error level. See sendWarning()
+	 * @param $level int A PHP error level. See sendMessage()
 	 * @param $log string: 'production' will always trigger a php error, 'auto'
 	 *        will trigger an error if $wgDevelopmentWarnings is true, and 'debug'
 	 *        will only write to the debug log(s).
@@ -155,7 +155,7 @@ class MWDebug {
 
 		$callerDescription = self::getCallerDescription( $callerOffset );
 
-		self::sendWarning( $msg, $callerDescription, $level );
+		self::sendMessage( $msg, $callerDescription, 'warning', $level );
 
 		if ( self::$enabled ) {
 			self::$log[] = array(
@@ -227,7 +227,7 @@ class MWDebug {
 
 		if ( $sendToLog ) {
 			global $wgDevelopmentWarnings; // we could have a more specific $wgDeprecationWarnings setting.
-			self::sendWarning( $msg, $callerDescription, $wgDevelopmentWarnings ? E_USER_DEPRECATED : false );
+			self::sendMessage( $msg, $callerDescription, 'deprecated', $wgDevelopmentWarnings ? E_USER_DEPRECATED : false );
 		}
 
 		if ( self::$enabled ) {
@@ -282,21 +282,22 @@ class MWDebug {
 	}
 
 	/**
-	 * Send a warning to the debug log and optionally also trigger a PHP
+	 * Send a message to the debug log and optionally also trigger a PHP
 	 * error, depending on the $level argument.
 	 *
 	 * @param $msg string Message to send
 	 * @param $caller array caller description get from getCallerDescription()
+	 * @param $group string log group on which to send the message
 	 * @param $level int|bool error level to use; set to false to not trigger an error
 	 */
-	private static function sendWarning( $msg, $caller, $level ) {
+	private static function sendMessage( $msg, $caller, $group, $level ) {
 		$msg .= ' [Called from ' . $caller['func'] . ' in ' . $caller['file'] . ']';
 
 		if ( $level !== false ) {
 			trigger_error( $msg, $level );
 		}
 
-		wfDebug( "$msg\n" );
+		wfDebugLog( $group, $msg, 'log' );
 	}
 
 	/**
