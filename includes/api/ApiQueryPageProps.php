@@ -135,7 +135,8 @@ class ApiQueryPageProps extends ApiQueryBase {
 	public function getParamDescription() {
 		return array(
 			'continue' => 'When more results are available, use this to continue',
-			'prop' => 'Only list these props. Useful for checking whether a certain page uses a certain page prop',
+			'prop' => 'Only list these props. Useful for checking whether a ' .
+				'certain page uses a certain page prop',
 		);
 	}
 
