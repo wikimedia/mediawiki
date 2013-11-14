@@ -532,6 +532,8 @@ changes to languages because of Bugzilla reports.
   'mediawiki.legacy.wikibits' (which IEFixes depends on) and that will import
   IEFixes automatically if user agent conditions are met.
 * Code specific to the Math extension was marked as deprecated.
+* mediawiki.util: mw.util.wikiGetlink has been renamed to getUrl. (The old name
+  still works, but is deprecated.)
 
 == Compatibility ==
 
