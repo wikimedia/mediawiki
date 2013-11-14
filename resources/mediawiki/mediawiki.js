@@ -1944,14 +1944,19 @@ var mw = ( function ( $, undefined ) {
 						var timer;
 
 						function flush() {
-							var data;
+							var data, key = mw.loader.store.getStoreKey();
 							if ( mw.loader.store.enabled !== true ) {
 								return false;
 							}
 							mw.loader.store.prune();
 							try {
+								// Replacing the content of the module store might fail if the new
+								// contents would exceed the browser's localStorage size limit. To
+								// avoid clogging the browser with stale data, always remove the old
+								// value before attempting to set the new one.
+								localStorage.removeItem( key );
 								data = JSON.stringify( mw.loader.store );
-								localStorage.setItem( mw.loader.store.getStoreKey(), data );
+								localStorage.setItem( key, data );
 							} catch (e) {}
 						}
 
