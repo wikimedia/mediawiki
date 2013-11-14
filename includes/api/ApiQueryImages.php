@@ -79,9 +79,9 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 			$this->addOption( 'ORDER BY', 'il_to' . $sort );
 		} else {
 			$this->addOption( 'ORDER BY', array(
-						'il_from' . $sort,
-						'il_to' . $sort
-			));
+				'il_from' . $sort,
+				'il_to' . $sort
+			) );
 		}
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
 

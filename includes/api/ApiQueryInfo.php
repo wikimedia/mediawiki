@@ -104,6 +104,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			'watch' => array( 'ApiQueryInfo', 'getWatchToken' ),
 		);
 		wfRunHooks( 'APIQueryInfoTokens', array( &$this->tokenFunctions ) );
+
 		return $this->tokenFunctions;
 	}
 
@@ -333,8 +334,8 @@ class ApiQueryInfo extends ApiQueryBase {
 			), $pageid, $pageInfo );
 			if ( !$fit ) {
 				$this->setContinueEnumParameter( 'continue',
-						$title->getNamespace() . '|' .
-						$title->getText() );
+					$title->getNamespace() . '|' .
+					$title->getText() );
 				break;
 			}
 		}
@@ -465,7 +466,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			$this->resetQueryParams();
 			$this->addTables( 'page_restrictions' );
 			$this->addFields( array( 'pr_page', 'pr_type', 'pr_level',
-					'pr_expiry', 'pr_cascade' ) );
+				'pr_expiry', 'pr_cascade' ) );
 			$this->addWhereFld( 'pr_page', array_keys( $this->titles ) );
 
 			$res = $this->select( __METHOD__ );
@@ -556,8 +557,8 @@ class ApiQueryInfo extends ApiQueryBase {
 			$this->resetQueryParams();
 			$this->addTables( array( 'page_restrictions', 'page', 'templatelinks' ) );
 			$this->addFields( array( 'pr_type', 'pr_level', 'pr_expiry',
-					'page_title', 'page_namespace',
-					'tl_title', 'tl_namespace' ) );
+				'page_title', 'page_namespace',
+				'tl_title', 'tl_namespace' ) );
 			$this->addWhere( $lb->constructSet( 'tl', $db ) );
 			$this->addWhere( 'pr_page = page_id' );
 			$this->addWhere( 'pr_page = tl_from' );
@@ -580,7 +581,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			$this->resetQueryParams();
 			$this->addTables( array( 'page_restrictions', 'page', 'imagelinks' ) );
 			$this->addFields( array( 'pr_type', 'pr_level', 'pr_expiry',
-					'page_title', 'page_namespace', 'il_to' ) );
+				'page_title', 'page_namespace', 'il_to' ) );
 			$this->addWhere( 'pr_page = page_id' );
 			$this->addWhere( 'pr_page = il_from' );
 			$this->addWhereFld( 'pr_cascade', 1 );
@@ -633,10 +634,10 @@ class ApiQueryInfo extends ApiQueryBase {
 		foreach ( $res as $row ) {
 			if ( MWNamespace::isTalk( $row->page_namespace ) ) {
 				$this->talkids[MWNamespace::getSubject( $row->page_namespace )][$row->page_title] =
-						intval( $row->page_id );
+					intval( $row->page_id );
 			} else {
 				$this->subjectids[MWNamespace::getTalk( $row->page_namespace )][$row->page_title] =
-						intval( $row->page_id );
+					intval( $row->page_id );
 			}
 		}
 	}
@@ -761,6 +762,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		if ( !is_null( $params['token'] ) ) {
 			return 'private';
 		}
+
 		return 'public';
 	}
 
