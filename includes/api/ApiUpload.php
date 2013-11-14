@@ -141,6 +141,7 @@ class ApiUpload extends ApiBase {
 			// Stash the file and get stash result
 			return $this->getStashResult( $warnings );
 		}
+
 		// This is the most common case -- a normal upload with no warnings
 		// performUpload will return a formatted properly for the API with status
 		return $this->performUpload( $warnings );
@@ -165,6 +166,7 @@ class ApiUpload extends ApiBase {
 		} catch ( MWException $e ) {
 			$this->dieUsage( $e->getMessage(), 'stashfailed' );
 		}
+
 		return $result;
 	}
 
@@ -185,6 +187,7 @@ class ApiUpload extends ApiBase {
 		} catch ( MWException $e ) {
 			$result['warnings']['stashfailed'] = $e->getMessage();
 		}
+
 		return $result;
 	}
 
@@ -217,6 +220,7 @@ class ApiUpload extends ApiBase {
 				$chunkPath, $chunkSize, $this->mParams['offset'] );
 			if ( !$status->isGood() ) {
 				$this->dieUsage( $status->getWikiText(), 'stashfailed' );
+
 				return array();
 			}
 		}
@@ -252,6 +256,7 @@ class ApiUpload extends ApiBase {
 				$status = $this->mUpload->concatenateChunks();
 				if ( !$status->isGood() ) {
 					$this->dieUsage( $status->getWikiText(), 'stashfailed' );
+
 					return array();
 				}
 
@@ -265,6 +270,7 @@ class ApiUpload extends ApiBase {
 		}
 		$result['filekey'] = $filekey;
 		$result['offset'] = $this->mParams['offset'] + $chunkSize;
+
 		return $result;
 	}
 
@@ -287,6 +293,7 @@ class ApiUpload extends ApiBase {
 			wfDebug( __METHOD__ . ' ' . $message . "\n" );
 			throw new MWException( $message );
 		}
+
 		return $fileKey;
 	}
 
@@ -341,6 +348,7 @@ class ApiUpload extends ApiBase {
 			}
 			unset( $progress['status'] ); // remove Status object
 			$this->getResult()->addValue( null, $this->getModuleName(), $progress );
+
 			return false;
 		}
 
@@ -357,6 +365,7 @@ class ApiUpload extends ApiBase {
 				$sessionData['sessionkey'] = $this->mParams['statuskey'];
 			}
 			$this->getResult()->addValue( null, $this->getModuleName(), $sessionData );
+
 			return false;
 		}
 
@@ -481,7 +490,7 @@ class ApiUpload extends ApiBase {
 				break;
 			case UploadBase::ILLEGAL_FILENAME:
 				$this->dieRecoverableError( 'illegal-filename', 'filename',
-						array( 'filename' => $verification['filtered'] ) );
+					array( 'filename' => $verification['filtered'] ) );
 				break;
 			case UploadBase::FILENAME_TOO_LONG:
 				$this->dieRecoverableError( 'filename-toolong', 'filename' );
@@ -521,15 +530,15 @@ class ApiUpload extends ApiBase {
 			case UploadBase::VERIFICATION_ERROR:
 				$this->getResult()->setIndexedTagName( $verification['details'], 'detail' );
 				$this->dieUsage( 'This file did not pass file verification', 'verification-error',
-						0, array( 'details' => $verification['details'] ) );
+					0, array( 'details' => $verification['details'] ) );
 				break;
 			case UploadBase::HOOK_ABORTED:
 				$this->dieUsage( "The modification you tried to make was aborted by an extension hook",
-						'hookaborted', 0, array( 'error' => $verification['error'] ) );
+					'hookaborted', 0, array( 'error' => $verification['error'] ) );
 				break;
 			default:
 				$this->dieUsage( 'An unknown error occurred', 'unknown-error',
-						0, array( 'code' => $verification['status'] ) );
+					0, array( 'code' => $verification['status'] ) );
 				break;
 		}
 	}
@@ -569,6 +578,7 @@ class ApiUpload extends ApiBase {
 				$warnings[$warning['warning']] = $localFile->getName();
 			}
 		}
+
 		return $warnings;
 	}
 
@@ -764,7 +774,6 @@ class ApiUpload extends ApiBase {
 		);
 
 		return $params;
-
 	}
 
 	public function getResultProperties() {
