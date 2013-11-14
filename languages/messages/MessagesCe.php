@@ -1286,7 +1286,7 @@ $1',
 'right-nominornewtalk' => 'агӀонашкахь къезиг нисдарш цахиларо хуьлуьйту керла хаамийн хӀоттам',
 'right-apihighlimits' => 'API-дехарш кхочушдан кӀезиг дихкар',
 'right-writeapi' => 'дӀаяздеш лелойо API',
-'right-delete' => 'агӀош дӀаяхар',
+'right-delete' => 'агӀонаш дӀаяхар',
 'right-bigdelete' => 'еха хийцаман истори йолу агӀонаш дӀаяхар',
 'right-deletelogentry' => 'тептар чура билгала дӀаяздарш дӀадахар а меттахӀиттадар а.',
 'right-deleterevision' => 'агӀонийн билгала версеш дӀаяхар а меттахӀиттаяр а',
@@ -1497,6 +1497,7 @@ PICT # тайп тайпан
 'filerevert-success' => "Юхаерзина файл '''[[Media:$1|$1]]''' оцу [$4 верси $3, $2].",
 
 # File deletion
+'filedelete' => '$1 — дӀаяккхар',
 'filedelete-legend' => 'ДӀаяккха файл',
 'filedelete-intro' => "Хьо файл '''[[Media:$1|$1]]''' дӀаяккха гӀерта цунна массо истори цхьан.",
 'filedelete-comment' => 'Бахьан:',
@@ -1704,6 +1705,8 @@ PICT # тайп тайпан
 'emailuser' => 'Декъашхочун хааман кехат',
 'emailuser-title-target' => 'Декъашхочунга кехат яздар',
 'emailuser-title-notarget' => 'Декъашхочунга кехат яздар',
+'emailpagetext' => 'ХӀокху агӀона гӀоьнца йиш ю {{GENDER:$1|декъашхочун}} электронан почте хаам бахьийта.
+Хьоьга жоп лур ду ахьа [[Special:Preferences|хьайн гӀирса чу]] дӀаяздина долу адрес тӀе.',
 'defemailsubject' => 'Хаам {{grammar:genitive|{{SITENAME}}}} чура бу',
 'emailusername' => 'Декъашхочун цӀе:',
 'emailusernamesubmit' => 'ДӀадахьийта',
@@ -1711,6 +1714,8 @@ PICT # тайп тайпан
 'emailfrom' => 'Хьаьнгара',
 'emailto' => 'Хьаьнга:',
 'emailmessage' => 'Хаам:',
+'emailsend' => 'ДӀадахьийта',
+'emailccme' => 'Соьга а кхосса хааман копи.',
 'emailsent' => 'Кехат дӏадахьийтина',
 'emailsenttext' => 'Хьан электроннан хаам дӏабахьийтина.',
 

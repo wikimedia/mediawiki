@@ -8,6 +8,7 @@
  * @file
  *
  * @author Abhishek Jacob
+ * @author Akhilan
  * @author Anoopan
  * @author Chrisportelli
  * @author Deepugn
@@ -2169,6 +2170,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization കാണുക.',
 
 'pageswithprop' => 'താളിന്റെ സവിശേഷതകളുള്ള താളുകൾ',
 'pageswithprop-legend' => 'ഒരു താൾ സവിശേഷതയുള്ള താളുകൾ',
+'pageswithprop-prop' => 'ഗുണം:',
 'pageswithprop-submit' => 'പോകൂ',
 
 'doubleredirects' => 'ഇരട്ട തിരിച്ചുവിടലുകൾ',

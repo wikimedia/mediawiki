@@ -578,7 +578,7 @@ Wees so gud an teew $1, iar dü det noch ans ferschükst.',
 'createacct-another-realname-tip' => 'Stäänt tu wool. Wan dü dan rochten nööm uundääst, koon hi mä din feranrangen ferbünjen wurd.',
 
 # Email sending
-'php-mail-error-unknown' => 'Ünbekäänd feeler mä det funktsjuun mail() faan PHP.',
+'php-mail-error-unknown' => 'Ünbekäänd feeler mä det funktjuun mail() faan PHP.',
 'user-mail-no-addy' => 'Küd nian e-mail schüür saner e-mail-adres.',
 'user-mail-no-body' => 'Dü wulst en e-mail saner tekst wechsjüür.',
 
@@ -693,7 +693,7 @@ Wan dü det sidj seekerst, woort det saner auerskraft auernimen.",
 'summary-preview' => 'Föörskau faan det tuupfaadang:',
 'subject-preview' => 'Föörskau faan det auerskraft:',
 'blockedtitle' => 'Brüker as speret',
-'blockedtext' => "'''Dan brükernööm of IP adres as speret wurden.'''
+'blockedtext' => "'''Dan brükernööm of din IP-adres as speret wurden.'''
 
 Det as maaget wurden faan $1.
 Di grünj as ''$2''.
@@ -704,11 +704,11 @@ Di grünj as ''$2''.
 
 Dü könst $1 kontaktiare of uk en [[{{MediaWiki:Grouppage-sysop}}|administraator]] am det tu diskutiarin.
 
-Dü könst ei det E-Mail-funktsjuun 'E-mail tu dideere brüker' brük, so loong dü nian E-Mail-adres uun din [[Special:Preferences|brükerkonto iinstelangen]] uunden heest of wan det E-Mail-funktsjuun för di speret wurden as.
+Dü könst ei det e-mail-funktjuun 'E-mail tu didiar brüker' brük, so loong dü nian e-mail-adres uun din [[Special:Preferences|brükerkonto-iinstelangen]] uunden heest of wan det e-mail-funktjuun för di speret wurden as.
 
-Uugenblakelk as din IP addres $3, an det sper ID as #$5.
-För arke uunfraag wurd aal jo informatsjuunen boowen brükt.",
-'autoblockedtext' => "'''Din IP adres as speret wurden, auer det faan en öödern spereten brüker brükt wurden as.'''
+Uugenblakelk as din IP-addres $3, an det sper-ID as #$5.
+För arke uunfraag wurd aal jo informatjuunen boowen brükt.",
+'autoblockedtext' => "'''Din IP-adres as speret wurden, auer det faan en öödern spereten brüker brükt wurden as.'''
 
 Di grünj as:
 : ''$2''.
@@ -719,10 +719,10 @@ Di grünj as:
 
 Dü könst $1 kontaktiare of uk en [[{{MediaWiki:Grouppage-sysop}}|administraator]] am det tu diskutiarin.
 
-Dü könst ei det E-Mail-funktsjuun 'E-mail tu dideere brüker' brük, so loong dü nian E-Mail-adres uun din [[Special:Preferences|brükerkonto iinstelangen]] uunden heest of wan det E-Mail-funktsjuun för di speret wurden as.
+Dü könst ei det e-mail-funktjuun 'E-mail tu didiar brüker' brük, so loong dü nian e-mail-adres uun din [[Special:Preferences|brükerkonto-iinstelangen]] uunden heest of wan det e-mail-funktjuun för di speret wurden as.
 
-Uugenblakelk as din IP addres $3, an det sper ID as #$5.
-För arke uunfraag wurd aal jo informatsjuunen boowen brükt.",
+Uugenblakelk as din IP-addres $3, an det sper-ID as #$5.
+För arke uunfraag wurd aal jo informatjuunen boowen brükt.",
 'blockednoreason' => 'nään grünj uunden',
 'whitelistedittext' => 'Dü skel di $1, am sidjen tu bewerkin.',
 'confirmedittext' => 'Dü skel iarst din e-mail-adres gudkään, iar dü began könst tu werkin. Maage det üüb det sidj mä din persöönelk [[Special:Preferences|iinstelangen]].',
@@ -1556,7 +1556,7 @@ Gung noch ans turag an schüür det datei mä en öödern nööm huuch.
 'file-exists-duplicate' => 'Detdiar datei as en duplikaat faan {{PLURAL:$1|detdiar datei|$1 datein}}:',
 'file-deleted-duplicate' => "En duplikaat faan detdiar datei ([[:$1]]) as al ans stregen wurden. Luke iin uun logbuk för't striken, iar dü det noch ans huuchsjüürst.",
 'uploadwarning' => 'Wäärnang',
-'uploadwarning-text' => 'Feranre det datei-beskriiwang an fersjük det noch ans nei.',
+'uploadwarning-text' => 'Feranre det datei-beskriiwang an ferschük det noch ans nei.',
 'savefile' => 'Datei seekre',
 'uploadedimage' => 'hää "[[$1]]" huuchschüürd',
 'overwroteimage' => 'hää en nei werjuun faan „[[$1]]“ huuchschüürd',
@@ -1692,7 +1692,7 @@ För a seekerhaid as img_auth.php ei aktiwiaret.',
 'upload-curl-error6' => 'URL küd ei fünjen wurd',
 'upload-curl-error6-text' => 'Det URL küd ei fünjen wurd. Luke di det URL noch ans uun, an of det sidj uk würelk diar as.',
 'upload-curl-error28' => 'Det huuchschüüren hää tu loong düüret (time-out).',
-'upload-curl-error28-text' => 'Det sidj hää tu loong ei swaaret (time-out). Luke noch ans efter, of det sidj uk würelk diar as. Fersjük det beeder leeder noch ans weder.',
+'upload-curl-error28-text' => 'Det sidj hää tu loong ei swaaret (time-out). Luke noch ans efter, of det sidj uk würelk diar as. Ferschük det beeder leeder noch ans weder.',
 
 'license' => 'Lisens:',
 'license-header' => 'Lisens',
