@@ -51,6 +51,7 @@ class WatchAction extends FormAction {
 		wfProfileIn( __METHOD__ );
 		self::doWatch( $this->getTitle(), $this->getUser() );
 		wfProfileOut( __METHOD__ );
+
 		return true;
 	}
 
@@ -105,6 +106,7 @@ class WatchAction extends FormAction {
 				return self::doUnwatch( $title, $user );
 			}
 		}
+
 		return Status::newGood();
 	}
 
@@ -129,6 +131,7 @@ class WatchAction extends FormAction {
 			$user->addWatch( $title, $checkRights );
 			wfRunHooks( 'WatchArticleComplete', array( &$user, &$page ) );
 		}
+
 		return $status;
 	}
 
@@ -152,6 +155,7 @@ class WatchAction extends FormAction {
 			$user->removeWatch( $title );
 			wfRunHooks( 'UnwatchArticleComplete', array( &$user, &$page ) );
 		}
+
 		return $status;
 	}
 
@@ -220,6 +224,7 @@ class UnwatchAction extends WatchAction {
 		wfProfileIn( __METHOD__ );
 		self::doUnwatch( $this->getTitle(), $this->getUser() );
 		wfProfileOut( __METHOD__ );
+
 		return true;
 	}
 

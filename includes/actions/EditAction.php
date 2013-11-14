@@ -49,9 +49,7 @@ class EditAction extends FormlessAction {
 			$editor = new EditPage( $page );
 			$editor->edit();
 		}
-
 	}
-
 }
 
 /**
@@ -75,5 +73,4 @@ class SubmitAction extends EditAction {
 
 		parent::show();
 	}
-
 }

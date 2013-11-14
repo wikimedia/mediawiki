@@ -74,6 +74,7 @@ class CreditsAction extends FormlessAction {
 		}
 
 		wfProfileOut( __METHOD__ );
+
 		return $s;
 	}
 
@@ -94,6 +95,7 @@ class CreditsAction extends FormlessAction {
 			$d = '';
 			$t = '';
 		}
+
 		return $this->msg( 'lastmodifiedatby', $d, $t )->rawParams(
 			$this->userLink( $user ) )->params( $user->getName() )->escaped();
 	}
@@ -175,6 +177,7 @@ class CreditsAction extends FormlessAction {
 		}
 
 		$count = count( $fulllist );
+
 		# "Based on work by ..."
 		return $count
 			? $this->msg( 'othercontribs' )->rawParams(

@@ -38,7 +38,8 @@ class RevertAction extends Action {
 		$this->getOutput()->showErrorPage( 'nosuchaction', 'nosuchactiontext' );
 	}
 
-	public function execute() {}
+	public function execute() {
+	}
 }
 
 /**
@@ -63,8 +64,8 @@ class RevertFileAction extends FormAction {
 		$oldimage = $this->getRequest()->getText( 'oldimage' );
 		if ( strlen( $oldimage ) < 16
 			|| strpos( $oldimage, '/' ) !== false
-			|| strpos( $oldimage, '\\' ) !== false )
-		{
+			|| strpos( $oldimage, '\\' ) !== false
+		) {
 			throw new ErrorPageError( 'internalerror', 'unexpected', array( 'oldimage', $oldimage ) );
 		}
 
@@ -114,6 +115,7 @@ class RevertFileAction extends FormAction {
 	public function onSubmit( $data ) {
 		$source = $this->page->getFile()->getArchiveVirtualUrl( $this->getRequest()->getText( 'oldimage' ) );
 		$comment = $data['comment'];
+
 		// TODO: Preserve file properties from database instead of reloading from file
 		return $this->page->getFile()->upload( $source, $comment, $comment, 0, false, false, $this->getUser() );
 	}
@@ -139,6 +141,7 @@ class RevertFileAction extends FormAction {
 
 	protected function getDescription() {
 		$this->getOutput()->addBacklinkSubtitle( $this->getTitle() );
+
 		return '';
 	}
 }

@@ -153,6 +153,7 @@ class InfoAction extends FormlessAction {
 	 */
 	protected function makeHeader( $header ) {
 		$spanAttribs = array( 'class' => 'mw-headline', 'id' => Sanitizer::escapeId( $header ) );
+
 		return Html::rawElement( 'h2', array(), Html::element( 'span', $spanAttribs, $header ) );
 	}
 
@@ -306,7 +307,7 @@ class InfoAction extends FormlessAction {
 		if (
 			$user->isAllowed( 'unwatchedpages' ) ||
 			( $wgUnwatchedPageThreshold !== false &&
-			  $pageCounts['watchers'] >= $wgUnwatchedPageThreshold )
+				$pageCounts['watchers'] >= $wgUnwatchedPageThreshold )
 		) {
 			// Number of page watchers
 			$pageInfo['header-basic'][] = array(
@@ -736,6 +737,7 @@ class InfoAction extends FormlessAction {
 		);
 
 		wfProfileOut( __METHOD__ );
+
 		return $result;
 	}
 
@@ -803,6 +805,7 @@ class InfoAction extends FormlessAction {
 		}
 
 		$count = count( $fulllist );
+
 		# "Based on work by ..."
 		return $count
 			? $this->msg( 'othercontribs' )->rawParams(

@@ -122,6 +122,7 @@ class HistoryAction extends FormlessAction {
 		if ( $feedType ) {
 			$this->feed( $feedType );
 			wfProfileOut( __METHOD__ );
+
 			return;
 		}
 
@@ -141,6 +142,7 @@ class HistoryAction extends FormlessAction {
 				)
 			);
 			wfProfileOut( __METHOD__ );
+
 			return;
 		}
 
@@ -162,7 +164,7 @@ class HistoryAction extends FormlessAction {
 		}
 		if ( $this->getUser()->isAllowed( 'deletedhistory' ) ) {
 			$checkDeleted = Xml::checkLabel( $this->msg( 'history-show-deleted' )->text(),
-			'deleted', 'mw-show-deleted-only', $request->getBool( 'deleted' ) ) . "\n";
+				'deleted', 'mw-show-deleted-only', $request->getBool( 'deleted' ) ) . "\n";
 		} else {
 			$checkDeleted = '';
 		}
@@ -316,9 +318,10 @@ class HistoryAction extends FormlessAction {
 				$wgContLang->time( $rev->getTimestamp() ) )->inContentLanguage()->text();
 		} else {
 			$title = $rev->getUserText() .
-			$this->msg( 'colon-separator' )->inContentLanguage()->text() .
-			FeedItem::stripComment( $rev->getComment() );
+				$this->msg( 'colon-separator' )->inContentLanguage()->text() .
+				FeedItem::stripComment( $rev->getComment() );
 		}
+
 		return new FeedItem(
 			$title,
 			$text,
@@ -383,6 +386,7 @@ class HistoryPager extends ReverseChronologicalPager {
 			$this->tagFilter
 		);
 		wfRunHooks( 'PageHistoryPager::getQueryInfo', array( &$this, &$queryInfo ) );
+
 		return $queryInfo;
 	}
 
@@ -401,6 +405,7 @@ class HistoryPager extends ReverseChronologicalPager {
 			$s = '';
 		}
 		$this->lastRow = $row;
+
 		return $s;
 	}
 
@@ -457,13 +462,15 @@ class HistoryPager extends ReverseChronologicalPager {
 
 		$s .= $this->buttons;
 		$s .= '<ul id="pagehistory">' . "\n";
+
 		return $s;
 	}
 
 	private function getRevisionButton( $name, $msg ) {
 		$this->preventClickjacking();
 		# Note bug #20966, <button> is non-standard in IE<8
-		$element = Html::element( 'button',
+		$element = Html::element(
+			'button',
 			array(
 				'type' => 'submit',
 				'name' => $name,
@@ -502,6 +509,7 @@ class HistoryPager extends ReverseChronologicalPager {
 			$s .= $this->buttons;
 		}
 		$s .= '</form>';
+
 		return $s;
 	}
 
@@ -534,8 +542,7 @@ class HistoryPager extends ReverseChronologicalPager {
 	 * @return String: HTML output for the row
 	 */
 	function historyLine( $row, $next, $notificationtimestamp = false,
-		$latest = false, $firstInList = false )
-	{
+		$latest = false, $firstInList = false ) {
 		$rev = new Revision( $row );
 		$rev->setTitle( $this->getTitle() );
 
@@ -550,9 +557,9 @@ class HistoryPager extends ReverseChronologicalPager {
 		$lastlink = $this->lastLink( $rev, $next );
 		$diffButtons = $this->diffButtons( $rev, $firstInList );
 		$histLinks = Html::rawElement(
-				'span',
-				array( 'class' => 'mw-history-histlinks' ),
-				$this->msg( 'parentheses' )->rawParams( $curlink . $this->historyPage->message['pipe-separator'] . $lastlink )->escaped()
+			'span',
+			array( 'class' => 'mw-history-histlinks' ),
+			$this->msg( 'parentheses' )->rawParams( $curlink . $this->historyPage->message['pipe-separator'] . $lastlink )->escaped()
 		);
 		$s = $histLinks . $diffButtons;
 
@@ -635,8 +642,8 @@ class HistoryPager extends ReverseChronologicalPager {
 			}
 
 			if ( !$rev->isDeleted( Revision::DELETED_TEXT )
-				&& !$prevRev->isDeleted( Revision::DELETED_TEXT ) )
-			{
+				&& !$prevRev->isDeleted( Revision::DELETED_TEXT )
+			) {
 				# Create undo tooltip for the first (=latest) line only
 				$undoTooltip = $latest
 					? array( 'title' => $this->msg( 'tooltip-undo' )->text() )
@@ -705,6 +712,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		if ( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
 			$link = "<span class=\"history-deleted\">$link</span>";
 		}
+
 		return $link;
 	}
 
@@ -758,8 +766,8 @@ class HistoryPager extends ReverseChronologicalPager {
 				)
 			);
 		} elseif ( !$prevRev->userCan( Revision::DELETED_TEXT, $this->getUser() )
-			|| !$nextRev->userCan( Revision::DELETED_TEXT, $this->getUser() ) )
-		{
+			|| !$nextRev->userCan( Revision::DELETED_TEXT, $this->getUser() )
+		) {
 			return $last;
 		} else {
 			return Linker::linkKnown(
@@ -816,6 +824,7 @@ class HistoryPager extends ReverseChronologicalPager {
 				array_merge( $radio, $checkmark, array(
 					'name' => 'diff',
 					'id' => "mw-diff-$id" ) ) );
+
 			return $first . $second;
 		} else {
 			return '';
