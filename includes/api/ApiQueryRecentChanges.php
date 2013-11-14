@@ -37,9 +37,9 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 	}
 
 	private $fld_comment = false, $fld_parsedcomment = false, $fld_user = false, $fld_userid = false,
-			$fld_flags = false, $fld_timestamp = false, $fld_title = false, $fld_ids = false,
-			$fld_sizes = false, $fld_redirect = false, $fld_patrolled = false, $fld_loginfo = false,
-			$fld_tags = false, $fld_sha1 = false, $token = array();
+		$fld_flags = false, $fld_timestamp = false, $fld_title = false, $fld_ids = false,
+		$fld_sizes = false, $fld_redirect = false, $fld_patrolled = false, $fld_loginfo = false,
+		$fld_tags = false, $fld_sha1 = false, $token = array();
 
 	private $tokenFunctions;
 
@@ -64,6 +64,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			'patrol' => array( 'ApiQueryRecentChanges', 'getPatrolToken' )
 		);
 		wfRunHooks( 'APIQueryRecentChangesTokens', array( &$this->tokenFunctions ) );
+
 		return $this->tokenFunctions;
 	}
 
@@ -80,8 +81,8 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 		if ( $rc ) {
 			if ( ( $wgUser->useRCPatrol() && $rc->getAttribute( 'rc_type' ) == RC_EDIT ) ||
-				( $wgUser->useNPPatrol() && $rc->getAttribute( 'rc_type' ) == RC_NEW ) )
-			{
+				( $wgUser->useNPPatrol() && $rc->getAttribute( 'rc_type' ) == RC_NEW )
+			) {
 				$validTokenUser = true;
 			}
 		} else {
@@ -96,11 +97,11 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			if ( is_null( $cachedPatrolToken ) ) {
 				$cachedPatrolToken = $wgUser->getEditToken( 'patrol' );
 			}
+
 			return $cachedPatrolToken;
 		} else {
 			return false;
 		}
-
 	}
 
 	/**
@@ -155,7 +156,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			$cont = explode( '|', $params['continue'] );
 			if ( count( $cont ) != 2 ) {
 				$this->dieUsage( 'Invalid continue param. You should pass the ' .
-								'original value returned by the previous query', '_badcontinue' );
+					'original value returned by the previous query', '_badcontinue' );
 			}
 
 			$timestamp = $this->getDB()->addQuotes( wfTimestamp( TS_MW, $cont[0] ) );
@@ -187,10 +188,10 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 			/* Check for conflicting parameters. */
 			if ( ( isset( $show['minor'] ) && isset( $show['!minor'] ) )
-					|| ( isset( $show['bot'] ) && isset( $show['!bot'] ) )
-					|| ( isset( $show['anon'] ) && isset( $show['!anon'] ) )
-					|| ( isset( $show['redirect'] ) && isset( $show['!redirect'] ) )
-					|| ( isset( $show['patrolled'] ) && isset( $show['!patrolled'] ) )
+				|| ( isset( $show['bot'] ) && isset( $show['!bot'] ) )
+				|| ( isset( $show['anon'] ) && isset( $show['!anon'] ) )
+				|| ( isset( $show['redirect'] ) && isset( $show['!redirect'] ) )
+				|| ( isset( $show['patrolled'] ) && isset( $show['!patrolled'] ) )
 			) {
 				$this->dieUsageMsg( 'show' );
 			}
@@ -311,7 +312,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 		/* Iterate through the rows, adding data extracted from them to our query result. */
 		foreach ( $res as $row ) {
-			if ( ++ $count > $params['limit'] ) {
+			if ( ++$count > $params['limit'] ) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
 				$this->setContinueEnumParameter( 'continue', wfTimestamp( TS_ISO_8601, $row->rc_timestamp ) . '|' . $row->rc_id );
 				break;
@@ -520,6 +521,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			foreach ( $type as $t ) {
 				$retval[] = $this->parseRCType( $t );
 			}
+
 			return $retval;
 		}
 		switch ( $type ) {
@@ -549,6 +551,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			// formatComment() calls wfMessage() among other things
 			return 'anon-public-user-private';
 		}
+
 		return 'public';
 	}
 
@@ -640,6 +643,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 	public function getParamDescription() {
 		$p = $this->getModulePrefix();
+
 		return array(
 			'start' => 'The timestamp to start enumerating from',
 			'end' => 'The timestamp to end enumerating',

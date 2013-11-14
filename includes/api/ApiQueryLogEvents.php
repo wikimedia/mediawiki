@@ -168,7 +168,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		$res = $this->select( __METHOD__ );
 		$result = $this->getResult();
 		foreach ( $res as $row ) {
-			if ( ++ $count > $limit ) {
+			if ( ++$count > $limit ) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
 				$this->setContinueEnumParameter( 'start', wfTimestamp( TS_ISO_8601, $row->log_timestamp ) );
 				break;
@@ -285,6 +285,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			$result->setIndexedTagName_recursive( $logParams, 'param' );
 			$vals = array_merge( $vals, $logParams );
 		}
+
 		return $vals;
 	}
 
@@ -392,6 +393,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 
 	public function getAllowedParams() {
 		global $wgLogTypes, $wgLogActions, $wgLogActionsHandlers;
+
 		return array(
 			'prop' => array(
 				ApiBase::PARAM_ISMULTI => true,
@@ -444,6 +446,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 
 	public function getParamDescription() {
 		$p = $this->getModulePrefix();
+
 		return array(
 			'prop' => array(
 				'Which properties to get',
@@ -473,6 +476,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 
 	public function getResultProperties() {
 		global $wgLogTypes;
+
 		return array(
 			'ids' => array(
 				'logid' => 'integer',

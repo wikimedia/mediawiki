@@ -115,6 +115,7 @@ class ApiQueryPageProps extends ApiQueryBase {
 		if ( !$fit ) {
 			$this->setContinueEnumParameter( 'continue', $page );
 		}
+
 		return $fit;
 	}
 
