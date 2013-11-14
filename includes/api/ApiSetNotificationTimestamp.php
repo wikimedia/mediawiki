@@ -172,6 +172,7 @@ class ApiSetNotificationTimestamp extends ApiBase {
 		if ( !isset( $this->mPageSet ) ) {
 			$this->mPageSet = new ApiPageSet( $this );
 		}
+
 		return $this->mPageSet;
 	}
 
@@ -210,8 +211,8 @@ class ApiSetNotificationTimestamp extends ApiBase {
 		if ( $flags ) {
 			$result += $this->getPageSet()->getFinalParams( $flags );
 		}
-		return $result;
 
+		return $result;
 	}
 
 	public function getParamDescription() {
@@ -271,6 +272,7 @@ class ApiSetNotificationTimestamp extends ApiBase {
 
 	public function getPossibleErrors() {
 		$ps = $this->getPageSet();
+
 		return array_merge(
 			parent::getPossibleErrors(),
 			$ps->getFinalPossibleErrors(),

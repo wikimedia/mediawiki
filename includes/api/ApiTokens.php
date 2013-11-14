@@ -67,6 +67,7 @@ class ApiTokens extends ApiBase {
 		wfRunHooks( 'ApiTokensGetTokenTypes', array( &$types ) );
 		ksort( $types );
 		wfProfileOut( __METHOD__ );
+
 		return $types;
 	}
 
