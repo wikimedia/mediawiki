@@ -17,9 +17,15 @@
 		mw.util.init();
 
 		/**
+		 * Fired after new wiki content is present in the DOM
+		 *
+		 * This includes the ready event on a page load (including post-edit loads)
+		 * and when content has been previewed with LivePreview.
+		 *
 		 * @event wikipage_content
 		 * @member mw.hook
-		 * @param {jQuery} $content
+		 * @param {jQuery} $content the new content, or the most appropriate
+		 *   ancestor
 		 */
 		mw.hook( 'wikipage.content' ).fire( $( '#mw-content-text' ) );
 	} );
