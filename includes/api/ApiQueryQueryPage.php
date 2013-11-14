@@ -138,6 +138,7 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 		if ( $qp->getRestriction() != '' ) {
 			return 'private';
 		}
+
 		return 'public';
 	}
 

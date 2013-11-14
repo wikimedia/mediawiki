@@ -212,6 +212,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 
 	public function getParamDescription() {
 		$desc = $this->description;
+
 		return array(
 			'namespace' => "Show {$desc}s in this namespace(s) only",
 			'limit' => "How many {$desc}s to return",
@@ -237,6 +238,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 	public function getExamples() {
 		$desc = $this->description;
 		$name = $this->getModuleName();
+
 		return array(
 			"api.php?action=query&prop={$name}&titles=Main%20Page" => "Get {$desc}s from the [[Main Page]]",
 			"api.php?action=query&generator={$name}&titles=Main%20Page&prop=info" => "Get information about the {$desc} pages in the [[Main Page]]",
