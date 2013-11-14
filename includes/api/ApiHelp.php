@@ -78,9 +78,9 @@ class ApiHelp extends ApiBase {
 				}
 				if ( $module === null ) {
 					if ( count( $subNames ) === 2
-							&& $i === 1
-							&& $subNames[0] === 'query'
-							&& in_array( $subNames[1], $queryModules )
+						&& $i === 1
+						&& $subNames[0] === 'query'
+						&& in_array( $subNames[1], $queryModules )
 					) {
 						// Legacy: This is one of the renamed 'querymodule=...' parameters,
 						// do not use '+' notation in the output, use submodule's name instead.

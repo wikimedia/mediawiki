@@ -145,6 +145,7 @@ class ApiImageRotate extends ApiBase {
 		if ( $this->mPageSet === null ) {
 			$this->mPageSet = new ApiPageSet( $this, 0, NS_FILE );
 		}
+
 		return $this->mPageSet;
 	}
 
@@ -163,6 +164,7 @@ class ApiImageRotate extends ApiBase {
 		if ( $permissionErrors ) {
 			// Just return the first error
 			$msg = $this->parseMsg( $permissionErrors[0] );
+
 			return $msg['info'];
 		}
 
@@ -191,11 +193,13 @@ class ApiImageRotate extends ApiBase {
 		if ( $flags ) {
 			$result += $this->getPageSet()->getFinalParams( $flags );
 		}
+
 		return $result;
 	}
 
 	public function getParamDescription() {
 		$pageSet = $this->getPageSet();
+
 		return $pageSet->getFinalParamDescription() + array(
 			'rotation' => 'Degrees to rotate image clockwise',
 			'token' => 'Edit token. You can get one of these through action=tokens',
@@ -216,6 +220,7 @@ class ApiImageRotate extends ApiBase {
 
 	public function getPossibleErrors() {
 		$pageSet = $this->getPageSet();
+
 		return array_merge(
 			parent::getPossibleErrors(),
 			$pageSet->getFinalPossibleErrors()
