@@ -101,7 +101,8 @@ class ApiQueryContributions extends ApiQueryBase {
 		// Fetch each row
 		foreach ( $res as $row ) {
 			if ( ++$count > $limit ) {
-				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
+				// We've reached the one extra which shows that there are
+				// additional pages to be had. Stop here...
 				if ( $this->multiUserMode ) {
 					$this->setContinueEnumParameter( 'continue', $this->continueStr( $row ) );
 				} else {
@@ -122,7 +123,10 @@ class ApiQueryContributions extends ApiQueryBase {
 			}
 		}
 
-		$this->getResult()->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'item' );
+		$this->getResult()->setIndexedTagName_internal(
+			array( 'query', $this->getModuleName() ),
+			'item'
+		);
 	}
 
 	/**
@@ -177,7 +181,8 @@ class ApiQueryContributions extends ApiQueryBase {
 		}
 		// We only want pages by the specified users.
 		if ( $this->prefixMode ) {
-			$this->addWhere( 'rev_user_text' . $this->getDB()->buildLike( $this->userprefix, $this->getDB()->anyString() ) );
+			$this->addWhere( 'rev_user_text' .
+				$this->getDB()->buildLike( $this->userprefix, $this->getDB()->anyString() ) );
 		} else {
 			$this->addWhereFld( 'rev_user_text', $this->usernames );
 		}
@@ -224,7 +229,10 @@ class ApiQueryContributions extends ApiQueryBase {
 			$this->fld_patrolled
 		) {
 			if ( !$user->useRCPatrol() && !$user->useNPPatrol() ) {
-				$this->dieUsage( 'You need the patrol right to request the patrolled flag', 'permissiondenied' );
+				$this->dieUsage(
+					'You need the patrol right to request the patrolled flag',
+					'permissiondenied'
+				);
 			}
 
 			// Use a redundant join condition on both
@@ -262,13 +270,17 @@ class ApiQueryContributions extends ApiQueryBase {
 
 		if ( $this->fld_tags ) {
 			$this->addTables( 'tag_summary' );
-			$this->addJoinConds( array( 'tag_summary' => array( 'LEFT JOIN', array( 'rev_id=ts_rev_id' ) ) ) );
+			$this->addJoinConds(
+				array( 'tag_summary' => array( 'LEFT JOIN', array( 'rev_id=ts_rev_id' ) ) )
+			);
 			$this->addFields( 'ts_tags' );
 		}
 
 		if ( isset( $this->params['tag'] ) ) {
 			$this->addTables( 'change_tag' );
-			$this->addJoinConds( array( 'change_tag' => array( 'INNER JOIN', array( 'rev_id=ct_rev_id' ) ) ) );
+			$this->addJoinConds(
+				array( 'change_tag' => array( 'INNER JOIN', array( 'rev_id=ct_rev_id' ) ) )
+			);
 			$this->addWhereFld( 'ct_tag', $this->params['tag'] );
 			$index['change_tag'] = 'change_tag_tag_id';
 		}
@@ -348,8 +360,13 @@ class ApiQueryContributions extends ApiQueryBase {
 			$vals['size'] = intval( $row->rev_len );
 		}
 
-		if ( $this->fld_sizediff && !is_null( $row->rev_len ) && !is_null( $row->rev_parent_id ) ) {
-			$parentLen = isset( $this->parentLens[$row->rev_parent_id] ) ? $this->parentLens[$row->rev_parent_id] : 0;
+		if ( $this->fld_sizediff
+			&& !is_null( $row->rev_len )
+			&& !is_null( $row->rev_parent_id )
+		) {
+			$parentLen = isset( $this->parentLens[$row->rev_parent_id] )
+				? $this->parentLens[$row->rev_parent_id]
+				: 0;
 			$vals['sizediff'] = intval( $row->rev_len - $parentLen );
 		}
 
@@ -448,7 +465,10 @@ class ApiQueryContributions extends ApiQueryBase {
 			'end' => 'The end timestamp to return to',
 			'continue' => 'When more results are available, use this to continue',
 			'user' => 'The users to retrieve contributions for',
-			'userprefix' => "Retrieve contributions for all users whose names begin with this value. Overrides {$p}user",
+			'userprefix' => array(
+				"Retrieve contributions for all users whose names begin with this value.",
+				"Overrides {$p}user",
+			),
 			'dir' => $this->getDirectionDescription( $p ),
 			'namespace' => 'Only list contributions in these namespaces',
 			'prop' => array(
@@ -464,8 +484,11 @@ class ApiQueryContributions extends ApiQueryBase {
 				' patrolled      - Tags patrolled edits',
 				' tags           - Lists tags for the edit',
 			),
-			'show' => array( "Show only items that meet this criteria, e.g. non minor edits only: {$p}show=!minor",
-				"NOTE: If {$p}show=patrolled or {$p}show=!patrolled is set, revisions older than \$wgRCMaxAge ($wgRCMaxAge) won't be shown", ),
+			'show' => array(
+				"Show only items that meet thse criteria, e.g. non minor edits only: {$p}show=!minor",
+				"NOTE: If {$p}show=patrolled or {$p}show=!patrolled is set, revisions older than",
+				"\$wgRCMaxAge ($wgRCMaxAge) won't be shown",
+			),
 			'tag' => 'Only list revisions tagged with this tag',
 			'toponly' => 'Only list changes which are the latest revision',
 		);
@@ -539,7 +562,10 @@ class ApiQueryContributions extends ApiQueryBase {
 			array( 'code' => 'param_user', 'info' => 'User parameter may not be empty.' ),
 			array( 'code' => 'param_user', 'info' => 'User name user is not valid' ),
 			array( 'show' ),
-			array( 'code' => 'permissiondenied', 'info' => 'You need the patrol right to request the patrolled flag' ),
+			array(
+				'code' => 'permissiondenied',
+				'info' => 'You need the patrol right to request the patrolled flag'
+			),
 		) );
 	}
 

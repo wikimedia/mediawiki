@@ -25,9 +25,10 @@
  */
 
 /**
- * A query action to enumerate revisions of a given page, or show top revisions of multiple pages.
- * Various pieces of information may be shown - flags, comments, and the actual wiki markup of the rev.
- * In the enumeration mode, ranges of revisions may be requested and filtered.
+ * A query action to enumerate revisions of a given page, or show top revisions
+ * of multiple pages. Various pieces of information may be shown - flags,
+ * comments, and the actual wiki markup of the rev. In the enumeration mode,
+ * ranges of revisions may be requested and filtered.
  *
  * @ingroup API
  */
@@ -40,8 +41,9 @@ class ApiQueryRevisions extends ApiQueryBase {
 		parent::__construct( $query, $moduleName, 'rv' );
 	}
 
-	private $fld_ids = false, $fld_flags = false, $fld_timestamp = false, $fld_size = false, $fld_sha1 = false,
-		$fld_comment = false, $fld_parsedcomment = false, $fld_user = false, $fld_userid = false,
+	private $fld_ids = false, $fld_flags = false, $fld_timestamp = false,
+		$fld_size = false, $fld_sha1 = false, $fld_comment = false,
+		$fld_parsedcomment = false, $fld_user = false, $fld_userid = false,
 		$fld_content = false, $fld_tags = false, $fld_contentmodel = false;
 
 	private $tokenFunctions;
@@ -107,11 +109,20 @@ class ApiQueryRevisions extends ApiQueryBase {
 		}
 
 		if ( $revCount > 0 && $enumRevMode ) {
-			$this->dieUsage( 'The revids= parameter may not be used with the list options (limit, startid, endid, dirNewer, start, end).', 'revids' );
+			$this->dieUsage(
+				'The revids= parameter may not be used with the list options ' .
+					'(limit, startid, endid, dirNewer, start, end).',
+				'revids'
+			);
 		}
 
 		if ( $pageCount > 1 && $enumRevMode ) {
-			$this->dieUsage( 'titles, pageids or a generator was used to supply multiple pages, but the limit, startid, endid, dirNewer, user, excludeuser, start and end parameters may only be used on a single page.', 'multpages' );
+			$this->dieUsage(
+				'titles, pageids or a generator was used to supply multiple pages, ' .
+					'but the limit, startid, endid, dirNewer, user, excludeuser, start ' .
+					'and end parameters may only be used on a single page.',
+				'multpages'
+			);
 		}
 
 		if ( !is_null( $params['difftotext'] ) ) {
@@ -123,7 +134,10 @@ class ApiQueryRevisions extends ApiQueryBase {
 			if ( ( !ctype_digit( $params['diffto'] ) || $params['diffto'] < 0 )
 				&& $params['diffto'] != 'prev' && $params['diffto'] != 'next'
 			) {
-				$this->dieUsage( 'rvdiffto must be set to a non-negative number, "prev", "next" or "cur"', 'diffto' );
+				$this->dieUsage(
+					'rvdiffto must be set to a non-negative number, "prev", "next" or "cur"',
+					'diffto'
+				);
 			}
 			// Check whether the revision exists and is readable,
 			// DifferenceEngine returns a rather ambiguous empty
@@ -184,13 +198,17 @@ class ApiQueryRevisions extends ApiQueryBase {
 		if ( isset( $prop['tags'] ) ) {
 			$this->fld_tags = true;
 			$this->addTables( 'tag_summary' );
-			$this->addJoinConds( array( 'tag_summary' => array( 'LEFT JOIN', array( 'rev_id=ts_rev_id' ) ) ) );
+			$this->addJoinConds(
+				array( 'tag_summary' => array( 'LEFT JOIN', array( 'rev_id=ts_rev_id' ) ) )
+			);
 			$this->addFields( 'ts_tags' );
 		}
 
 		if ( !is_null( $params['tag'] ) ) {
 			$this->addTables( 'change_tag' );
-			$this->addJoinConds( array( 'change_tag' => array( 'INNER JOIN', array( 'rev_id=ct_rev_id' ) ) ) );
+			$this->addJoinConds(
+				array( 'change_tag' => array( 'INNER JOIN', array( 'rev_id=ct_rev_id' ) ) )
+			);
 			$this->addWhereFld( 'ct_tag', $params['tag'] );
 			$index['change_tag'] = 'change_tag_tag_id';
 		}
@@ -368,7 +386,8 @@ class ApiQueryRevisions extends ApiQueryBase {
 
 		foreach ( $res as $row ) {
 			if ( ++$count > $limit ) {
-				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
+				// We've reached the one extra which shows that there are
+				// additional pages to be had. Stop here...
 				if ( !$enumRevMode ) {
 					ApiBase::dieDebug( __METHOD__, 'Got more rows then expected' ); // bug report
 				}
@@ -500,7 +519,10 @@ class ApiQueryRevisions extends ApiQueryBase {
 			if ( $content && $this->section !== false ) {
 				$content = $content->getSection( $this->section, false );
 				if ( !$content ) {
-					$this->dieUsage( "There is no section {$this->section} in r" . $revision->getId(), 'nosuchsection' );
+					$this->dieUsage(
+						"There is no section {$this->section} in r" . $revision->getId(),
+						'nosuchsection'
+					);
 				}
 			}
 		}
@@ -511,7 +533,11 @@ class ApiQueryRevisions extends ApiQueryBase {
 				if ( $content->getModel() === CONTENT_MODEL_WIKITEXT ) {
 					$t = $content->getNativeData(); # note: don't set $text
 
-					$wgParser->startExternalParse( $title, ParserOptions::newFromContext( $this->getContext() ), OT_PREPROCESS );
+					$wgParser->startExternalParse(
+						$title,
+						ParserOptions::newFromContext( $this->getContext() ),
+						OT_PREPROCESS
+					);
 					$dom = $wgParser->preprocessToDom( $t );
 					if ( is_callable( array( $dom, 'saveXML' ) ) ) {
 						$xml = $dom->saveXML();
@@ -531,7 +557,11 @@ class ApiQueryRevisions extends ApiQueryBase {
 				if ( $content->getModel() === CONTENT_MODEL_WIKITEXT ) {
 					$text = $content->getNativeData();
 
-					$text = $wgParser->preprocess( $text, $title, ParserOptions::newFromContext( $this->getContext() ) );
+					$text = $wgParser->preprocess(
+						$text,
+						$title,
+						ParserOptions::newFromContext( $this->getContext() )
+					);
 				} else {
 					$this->setWarning( "Template expansion is supported for wikitext only, " .
 						$title->getPrefixedDBkey() .
@@ -541,7 +571,11 @@ class ApiQueryRevisions extends ApiQueryBase {
 				}
 			}
 			if ( $this->parseContent ) {
-				$po = $content->getParserOutput( $title, $revision->getId(), ParserOptions::newFromContext( $this->getContext() ) );
+				$po = $content->getParserOutput(
+					$title,
+					$revision->getId(),
+					ParserOptions::newFromContext( $this->getContext() )
+				);
 				$text = $po->getText();
 			}
 
@@ -600,7 +634,12 @@ class ApiQueryRevisions extends ApiQueryBase {
 							"content model $model used by $name", 'badformat' );
 					}
 
-					$difftocontent = ContentHandler::makeContent( $this->difftotext, $title, $model, $this->contentFormat );
+					$difftocontent = ContentHandler::makeContent(
+						$this->difftotext,
+						$title,
+						$model,
+						$this->contentFormat
+					);
 
 					$engine = $handler->createDifferenceEngine( $context );
 					$engine->setContent( $content, $difftocontent );
@@ -740,8 +779,11 @@ class ApiQueryRevisions extends ApiQueryBase {
 			'continue' => 'When more results are available, use this to continue',
 			'diffto' => array( 'Revision ID to diff each revision to.',
 				'Use "prev", "next" and "cur" for the previous, next and current revision respectively' ),
-			'difftotext' => array( 'Text to diff each revision to. Only diffs a limited number of revisions.',
-				"Overrides {$p}diffto. If {$p}section is set, only that section will be diffed against this text" ),
+			'difftotext' => array(
+				'Text to diff each revision to. Only diffs a limited number of revisions.',
+				"Overrides {$p}diffto. If {$p}section is set, only that section will be",
+				'diffed against this text',
+			),
 			'tag' => 'Only list revisions tagged with this tag',
 			'contentformat' => 'Serialization format used for difftotext and expected for output of content',
 		);
@@ -825,12 +867,21 @@ class ApiQueryRevisions extends ApiQueryBase {
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'nosuchrevid', 'diffto' ),
-			array( 'code' => 'revids', 'info' => 'The revids= parameter may not be used with the list options '
-				. '(limit, startid, endid, dirNewer, start, end).' ),
-			array( 'code' => 'multpages', 'info' => 'titles, pageids or a generator was used to supply multiple pages, '
-				. ' but the limit, startid, endid, dirNewer, user, excludeuser, '
-				. 'start and end parameters may only be used on a single page.' ),
-			array( 'code' => 'diffto', 'info' => 'rvdiffto must be set to a non-negative number, "prev", "next" or "cur"' ),
+			array(
+				'code' => 'revids',
+				'info' => 'The revids= parameter may not be used with the list options '
+					. '(limit, startid, endid, dirNewer, start, end).'
+			),
+			array(
+				'code' => 'multpages',
+				'info' => 'titles, pageids or a generator was used to supply multiple pages, '
+					. ' but the limit, startid, endid, dirNewer, user, excludeuser, '
+					. 'start and end parameters may only be used on a single page.'
+			),
+			array(
+				'code' => 'diffto',
+				'info' => 'rvdiffto must be set to a non-negative number, "prev", "next" or "cur"'
+			),
 			array( 'code' => 'badparams', 'info' => 'start and startid cannot be used together' ),
 			array( 'code' => 'badparams', 'info' => 'end and endid cannot be used together' ),
 			array( 'code' => 'badparams', 'info' => 'user and excludeuser cannot be used together' ),
@@ -843,17 +894,23 @@ class ApiQueryRevisions extends ApiQueryBase {
 	public function getExamples() {
 		return array(
 			'Get data with content for the last revision of titles "API" and "Main Page"',
-			'  api.php?action=query&prop=revisions&titles=API|Main%20Page&rvprop=timestamp|user|comment|content',
+			'  api.php?action=query&prop=revisions&titles=API|Main%20Page&' .
+				'rvprop=timestamp|user|comment|content',
 			'Get last 5 revisions of the "Main Page"',
-			'  api.php?action=query&prop=revisions&titles=Main%20Page&rvlimit=5&rvprop=timestamp|user|comment',
+			'  api.php?action=query&prop=revisions&titles=Main%20Page&rvlimit=5&' .
+				'rvprop=timestamp|user|comment',
 			'Get first 5 revisions of the "Main Page"',
-			'  api.php?action=query&prop=revisions&titles=Main%20Page&rvlimit=5&rvprop=timestamp|user|comment&rvdir=newer',
+			'  api.php?action=query&prop=revisions&titles=Main%20Page&rvlimit=5&' .
+				'rvprop=timestamp|user|comment&rvdir=newer',
 			'Get first 5 revisions of the "Main Page" made after 2006-05-01',
-			'  api.php?action=query&prop=revisions&titles=Main%20Page&rvlimit=5&rvprop=timestamp|user|comment&rvdir=newer&rvstart=20060501000000',
+			'  api.php?action=query&prop=revisions&titles=Main%20Page&rvlimit=5&' .
+				'rvprop=timestamp|user|comment&rvdir=newer&rvstart=20060501000000',
 			'Get first 5 revisions of the "Main Page" that were not made made by anonymous user "127.0.0.1"',
-			'  api.php?action=query&prop=revisions&titles=Main%20Page&rvlimit=5&rvprop=timestamp|user|comment&rvexcludeuser=127.0.0.1',
+			'  api.php?action=query&prop=revisions&titles=Main%20Page&rvlimit=5&' .
+				'rvprop=timestamp|user|comment&rvexcludeuser=127.0.0.1',
 			'Get first 5 revisions of the "Main Page" that were made by the user "MediaWiki default"',
-			'  api.php?action=query&prop=revisions&titles=Main%20Page&rvlimit=5&rvprop=timestamp|user|comment&rvuser=MediaWiki%20default',
+			'  api.php?action=query&prop=revisions&titles=Main%20Page&rvlimit=5&' .
+				'rvprop=timestamp|user|comment&rvuser=MediaWiki%20default',
 		);
 	}
 

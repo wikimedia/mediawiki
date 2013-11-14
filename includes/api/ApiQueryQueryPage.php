@@ -126,7 +126,10 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 			}
 		}
 		if ( is_null( $resultPageSet ) ) {
-			$result->setIndexedTagName_internal( array( 'query', $this->getModuleName(), 'results' ), 'page' );
+			$result->setIndexedTagName_internal(
+				array( 'query', $this->getModuleName(), 'results' ),
+				'page'
+			);
 		} else {
 			$resultPageSet->populateFromTitles( $titles );
 		}
