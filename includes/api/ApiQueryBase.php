@@ -219,7 +219,9 @@ abstract class ApiQueryBase extends ApiBase {
 		if ( $sort ) {
 			$order = $field . ( $isDirNewer ? '' : ' DESC' );
 			// Append ORDER BY
-			$optionOrderBy = isset( $this->options['ORDER BY'] ) ? (array)$this->options['ORDER BY'] : array();
+			$optionOrderBy = isset( $this->options['ORDER BY'] )
+				? (array)$this->options['ORDER BY']
+				: array();
 			$optionOrderBy[] = $order;
 			$this->addOption( 'ORDER BY', $optionOrderBy );
 		}
@@ -260,16 +262,37 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @param string $method Function the query should be attributed to.
 	 *  You should usually use __METHOD__ here
 	 * @param array $extraQuery Query data to add but not store in the object
-	 *  Format is array( 'tables' => ..., 'fields' => ..., 'where' => ..., 'options' => ..., 'join_conds' => ... )
+	 *  Format is array(
+	 *    'tables' => ...,
+	 *    'fields' => ...,
+	 *    'where' => ...,
+	 *    'options' => ...,
+	 *    'join_conds' => ...
+	 *  )
 	 * @return ResultWrapper
 	 */
 	protected function select( $method, $extraQuery = array() ) {
 
-		$tables = array_merge( $this->tables, isset( $extraQuery['tables'] ) ? (array)$extraQuery['tables'] : array() );
-		$fields = array_merge( $this->fields, isset( $extraQuery['fields'] ) ? (array)$extraQuery['fields'] : array() );
-		$where = array_merge( $this->where, isset( $extraQuery['where'] ) ? (array)$extraQuery['where'] : array() );
-		$options = array_merge( $this->options, isset( $extraQuery['options'] ) ? (array)$extraQuery['options'] : array() );
-		$join_conds = array_merge( $this->join_conds, isset( $extraQuery['join_conds'] ) ? (array)$extraQuery['join_conds'] : array() );
+		$tables = array_merge(
+			$this->tables,
+			isset( $extraQuery['tables'] ) ? (array)$extraQuery['tables'] : array()
+		);
+		$fields = array_merge(
+			$this->fields,
+			isset( $extraQuery['fields'] ) ? (array)$extraQuery['fields'] : array()
+		);
+		$where = array_merge(
+			$this->where,
+			isset( $extraQuery['where'] ) ? (array)$extraQuery['where'] : array()
+		);
+		$options = array_merge(
+			$this->options,
+			isset( $extraQuery['options'] ) ? (array)$extraQuery['options'] : array()
+		);
+		$join_conds = array_merge(
+			$this->join_conds,
+			isset( $extraQuery['join_conds'] ) ? (array)$extraQuery['join_conds'] : array()
+		);
 
 		// getDB has its own profileDBIn/Out calls
 		$db = $this->getDB();
@@ -289,7 +312,13 @@ abstract class ApiQueryBase extends ApiBase {
 	protected function checkRowCount() {
 		$db = $this->getDB();
 		$this->profileDBIn();
-		$rowcount = $db->estimateRowCount( $this->tables, $this->fields, $this->where, __METHOD__, $this->options );
+		$rowcount = $db->estimateRowCount(
+			$this->tables,
+			$this->fields,
+			$this->where,
+			__METHOD__,
+			$this->options
+		);
 		$this->profileDBOut();
 
 		global $wgAPIMaxDBRows;

@@ -149,7 +149,8 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		if ( $this->params['filterredir'] == 'redirects' ) {
 			$this->addWhereFld( 'page_is_redirect', 1 );
 		} elseif ( $this->params['filterredir'] == 'nonredirects' && !$this->redirect ) {
-			// bug 22245 - Check for !redirect, as filtering nonredirects, when getting what links to them is contradictory
+			// bug 22245 - Check for !redirect, as filtering nonredirects, when
+			// getting what links to them is contradictory
 			$this->addWhereFld( 'page_is_redirect', 0 );
 		}
 
@@ -269,7 +270,8 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 
 		foreach ( $res as $row ) {
 			if ( ++$count > $this->params['limit'] ) {
-				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
+				// We've reached the one extra which shows that there are
+				// additional pages to be had. Stop here...
 				// Continue string preserved in case the redirect query doesn't pass the limit
 				$this->continueStr = $this->getContinueStr( $row->page_id );
 				break;
@@ -294,7 +296,8 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 			$count = 0;
 			foreach ( $res as $row ) {
 				if ( ++$count > $this->params['limit'] ) {
-					// We've reached the one extra which shows that there are additional pages to be had. Stop here...
+					// We've reached the one extra which shows that there are
+					// additional pages to be had. Stop here...
 					// We need to keep the parent page of this redir in
 					if ( $this->hasNS ) {
 						$parentID = $this->pageMap[$row->{$this->bl_ns}][$row->{$this->bl_title}];
@@ -384,7 +387,10 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		$parentID = $this->pageMap[$ns][$row->{$this->bl_title}];
 		// Put all the results in an array first
 		$this->resultArr[$parentID]['redirlinks'][] = $a;
-		$this->getResult()->setIndexedTagName( $this->resultArr[$parentID]['redirlinks'], $this->bl_code );
+		$this->getResult()->setIndexedTagName(
+			$this->resultArr[$parentID]['redirlinks'],
+			$this->bl_code
+		);
 	}
 
 	protected function processContinue() {
@@ -396,7 +402,10 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 
 		// only image titles are allowed for the root in imageinfo mode
 		if ( !$this->hasNS && $this->rootTitle->getNamespace() !== NS_FILE ) {
-			$this->dieUsage( "The title for {$this->getModuleName()} query must be an image", 'bad_image_title' );
+			$this->dieUsage(
+				"The title for {$this->getModuleName()} query must be an image",
+				'bad_image_title'
+			);
 		}
 	}
 
@@ -494,9 +503,14 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		);
 		if ( $this->getModuleName() != 'embeddedin' ) {
 			return array_merge( $retval, array(
-				'redirect' => 'If linking page is a redirect, find all pages that link to that redirect as well. Maximum limit is halved.',
-				'filterredir' => "How to filter for redirects. If set to nonredirects when {$this->bl_code}redirect is enabled, this is only applied to the second level",
-				'limit' => "How many total pages to return. If {$this->bl_code}redirect is enabled, limit applies to each level separately (which means you may get up to 2 * limit results)."
+				'redirect' => 'If linking page is a redirect, find all pages ' .
+					'that link to that redirect as well. Maximum limit is halved.',
+				'filterredir' => 'How to filter for redirects. If set to ' .
+					"nonredirects when {$this->bl_code}redirect is enabled, " .
+					'this is only applied to the second level',
+				'limit' => 'How many total pages to return. If ' .
+					"{$this->bl_code}redirect is enabled, limit applies to each " .
+					'level separately (which means you may get up to 2 * limit results).'
 			) );
 		}
 
@@ -534,7 +548,10 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		return array_merge( parent::getPossibleErrors(),
 			$this->getTitleOrPageIdErrorMessage(),
 			array(
-				array( 'code' => 'bad_image_title', 'info' => "The title for {$this->getModuleName()} query must be an image" ),
+				array(
+					'code' => 'bad_image_title',
+					'info' => "The title for {$this->getModuleName()} query must be an image"
+				),
 			)
 		);
 	}

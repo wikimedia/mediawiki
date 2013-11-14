@@ -220,14 +220,16 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 		return array(
 			'prop' => array(
 				'Which additional properties to get for each category',
-				' sortkey    - Adds the sortkey (hexadecimal string) and sortkey prefix (human-readable part) for the category',
+				' sortkey    - Adds the sortkey (hexadecimal string) and sortkey prefix',
+				'              (human-readable part) for the category',
 				' timestamp  - Adds timestamp of when the category was added',
 				' hidden     - Tags categories that are hidden with __HIDDENCAT__',
 			),
 			'limit' => 'How many categories to return',
 			'show' => 'Which kind of categories to show',
 			'continue' => 'When more results are available, use this to continue',
-			'categories' => 'Only list these categories. Useful for checking whether a certain page is in a certain category',
+			'categories' => 'Only list these categories. Useful for checking ' .
+				'whether a certain page is in a certain category',
 			'dir' => 'The direction in which to list',
 		);
 	}
@@ -263,8 +265,10 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=query&prop=categories&titles=Albert%20Einstein' => 'Get a list of categories [[Albert Einstein]] belongs to',
-			'api.php?action=query&generator=categories&titles=Albert%20Einstein&prop=info' => 'Get information about all categories used in the [[Albert Einstein]]',
+			'api.php?action=query&prop=categories&titles=Albert%20Einstein'
+				=> 'Get a list of categories [[Albert Einstein]] belongs to',
+			'api.php?action=query&generator=categories&titles=Albert%20Einstein&prop=info'
+				=> 'Get information about all categories used in the [[Albert Einstein]]',
 		);
 	}
 
