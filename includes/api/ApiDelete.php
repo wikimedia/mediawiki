@@ -121,6 +121,7 @@ class ApiDelete extends ApiBase {
 		}
 
 		$error = '';
+
 		// Luckily, Article.php provides a reusable delete function that does the hard work for us
 		return $page->doDeleteArticleReal( $reason, false, 0, true, $error );
 	}
@@ -159,6 +160,7 @@ class ApiDelete extends ApiBase {
 		if ( is_null( $reason ) ) { // Log and RC don't like null reasons
 			$reason = '';
 		}
+
 		return FileDeleteForm::doDelete( $title, $file, $oldimage, $reason, $suppress, $user );
 	}
 
@@ -204,6 +206,7 @@ class ApiDelete extends ApiBase {
 
 	public function getParamDescription() {
 		$p = $this->getModulePrefix();
+
 		return array(
 			'title' => "Title of the page you want to delete. Cannot be used together with {$p}pageid",
 			'pageid' => "Page ID of the page you want to delete. Cannot be used together with {$p}title",

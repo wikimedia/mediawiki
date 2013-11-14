@@ -43,9 +43,9 @@ abstract class ApiFormatBase extends ApiBase {
 	public function __construct( $main, $format ) {
 		parent::__construct( $main, $format );
 
-		$this->mIsHtml = ( substr( $format, - 2, 2 ) === 'fm' ); // ends with 'fm'
+		$this->mIsHtml = ( substr( $format, -2, 2 ) === 'fm' ); // ends with 'fm'
 		if ( $this->mIsHtml ) {
-			$this->mFormat = substr( $format, 0, - 2 ); // remove ending 'fm'
+			$this->mFormat = substr( $format, 0, -2 ); // remove ending 'fm'
 		} else {
 			$this->mFormat = $format;
 		}
@@ -360,8 +360,8 @@ class ApiFormatFeedWrapper extends ApiFormatBase {
 
 	/**
 	 * This class expects the result data to be in a custom format set by self::setResult()
-	 * $result['_feed']		- an instance of one of the $wgFeedClasses classes
-	 * $result['_feeditems']	- an array of FeedItem instances
+	 * $result['_feed'] - an instance of one of the $wgFeedClasses classes
+	 * $result['_feeditems'] - an array of FeedItem instances
 	 */
 	public function execute() {
 		$data = $this->getResultData();

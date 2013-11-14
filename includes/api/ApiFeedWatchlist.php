@@ -135,7 +135,6 @@ class ApiFeedWatchlist extends ApiBase {
 			$feed = new $wgFeedClasses[$params['feedformat']] ( $feedTitle, htmlspecialchars( $msg ), $feedUrl );
 
 			ApiFormatFeedWrapper::setResult( $this->getResult(), $feed, $feedItems );
-
 		} catch ( Exception $e ) {
 
 			// Error results should not be cached
@@ -199,6 +198,7 @@ class ApiFeedWatchlist extends ApiBase {
 			$this->watchlistModule = $this->getMain()->getModuleManager()->getModule( 'query' )
 				->getModuleManager()->getModule( 'watchlist' );
 		}
+
 		return $this->watchlistModule;
 	}
 
@@ -235,11 +235,13 @@ class ApiFeedWatchlist extends ApiBase {
 			$ret['wltype'] = null;
 			$ret['wlexcludeuser'] = null;
 		}
+
 		return $ret;
 	}
 
 	public function getParamDescription() {
 		$wldescr = $this->getWatchlistModule()->getParamDescription();
+
 		return array(
 			'feedformat' => 'The format of the feed',
 			'hours' => 'List pages modified within this many hours from now',
