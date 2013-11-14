@@ -333,6 +333,7 @@ $wgAutoloadLocalClasses = array(
 	'ApiQueryCategoryInfo' => 'includes/api/ApiQueryCategoryInfo.php',
 	'ApiQueryCategoryMembers' => 'includes/api/ApiQueryCategoryMembers.php',
 	'ApiQueryContributions' => 'includes/api/ApiQueryUserContributions.php',
+	'ApiQueryContributors' => 'includes/api/ApiQueryContributors.php',
 	'ApiQueryDeletedrevs' => 'includes/api/ApiQueryDeletedrevs.php',
 	'ApiQueryDisabled' => 'includes/api/ApiQueryDisabled.php',
 	'ApiQueryDuplicateFiles' => 'includes/api/ApiQueryDuplicateFiles.php',
