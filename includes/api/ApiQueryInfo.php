@@ -109,7 +109,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		return $this->tokenFunctions;
 	}
 
-	static $cachedTokens = array();
+	static protected $cachedTokens = array();
 
 	public static function resetTokenCache() {
 		ApiQueryInfo::$cachedTokens = array();
