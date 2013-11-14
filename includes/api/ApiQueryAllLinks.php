@@ -54,7 +54,8 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 				$this->dfltNamespace = NS_TEMPLATE;
 				$this->hasNamespace = true;
 				$this->indexTag = 't';
-				$this->description = 'List all transclusions (pages embedded using {{x}}), including non-existing';
+				$this->description =
+					'List all transclusions (pages embedded using {{x}}), including non-existing';
 				$this->descriptionWhat = 'transclusion';
 				$this->descriptionTargets = 'transcluded titles';
 				$this->descriptionLinking = 'transcluding';
@@ -113,8 +114,10 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		if ( $params['unique'] ) {
 			if ( $fld_ids ) {
 				$this->dieUsage(
-					"{$this->getModuleName()} cannot return corresponding page ids in unique {$this->descriptionWhat}s mode",
-					'params' );
+					"{$this->getModuleName()} cannot return corresponding page " .
+						"ids in unique {$this->descriptionWhat}s mode",
+					'params'
+				);
 			}
 			$this->addOption( 'DISTINCT' );
 		}
@@ -145,12 +148,15 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		}
 
 		// 'continue' always overrides 'from'
-		$from = ( $continue || is_null( $params['from'] ) ? null : $this->titlePartToKey( $params['from'] ) );
+		$from = $continue || is_null( $params['from'] )
+			? null
+			: $this->titlePartToKey( $params['from'] );
 		$to = ( is_null( $params['to'] ) ? null : $this->titlePartToKey( $params['to'] ) );
 		$this->addWhereRange( $pfx . $fieldTitle, 'newer', $from, $to );
 
 		if ( isset( $params['prefix'] ) ) {
-			$this->addWhere( $pfx . $fieldTitle . $db->buildLike( $this->titlePartToKey( $params['prefix'] ), $db->anyString() ) );
+			$this->addWhere( $pfx . $fieldTitle .
+				$db->buildLike( $this->titlePartToKey( $params['prefix'] ), $db->anyString() ) );
 		}
 
 		$this->addFields( array( 'pl_title' => $pfx . $fieldTitle ) );
@@ -178,7 +184,8 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		$result = $this->getResult();
 		foreach ( $res as $row ) {
 			if ( ++$count > $limit ) {
-				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
+				// We've reached the one extra which shows that there are
+				// additional pages to be had. Stop here...
 				if ( $params['unique'] ) {
 					$this->setContinueEnumParameter( 'continue', $row->pl_title );
 				} else {
@@ -313,7 +320,10 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		$what = $this->descriptionWhat;
 
 		return array_merge( parent::getPossibleErrors(), array(
-			array( 'code' => 'params', 'info' => "{$m} cannot return corresponding page ids in unique {$what}s mode" ),
+			array(
+				'code' => 'params',
+				'info' => "{$m} cannot return corresponding page ids in unique {$what}s mode"
+			),
 		) );
 	}
 

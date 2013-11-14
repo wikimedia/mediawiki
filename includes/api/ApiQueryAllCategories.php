@@ -80,7 +80,8 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 		}
 
 		if ( isset( $params['prefix'] ) ) {
-			$this->addWhere( 'cat_title' . $db->buildLike( $this->titlePartToKey( $params['prefix'] ), $db->anyString() ) );
+			$this->addWhere( 'cat_title' .
+				$db->buildLike( $this->titlePartToKey( $params['prefix'] ), $db->anyString() ) );
 		}
 
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
@@ -110,7 +111,8 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 		$count = 0;
 		foreach ( $res as $row ) {
 			if ( ++$count > $params['limit'] ) {
-				// We've reached the one extra which shows that there are additional cats to be had. Stop here...
+				// We've reached the one extra which shows that there are
+				// additional cats to be had. Stop here...
 				$this->setContinueEnumParameter( 'continue', $row->cat_title );
 				break;
 			}

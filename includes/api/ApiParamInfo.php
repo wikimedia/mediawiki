@@ -226,7 +226,8 @@ class ApiParamInfo extends ApiBase {
 			if ( isset( $p[ApiBase::PARAM_TYPE] ) ) {
 				$a['type'] = $p[ApiBase::PARAM_TYPE];
 				if ( is_array( $a['type'] ) ) {
-					$a['type'] = array_values( $a['type'] ); // to prevent sparse arrays from being serialized to JSON as objects
+					// To prevent sparse arrays from being serialized to JSON as objects
+					$a['type'] = array_values( $a['type'] );
 					$result->setIndexedTagName( $a['type'], 't' );
 				}
 			}
@@ -341,7 +342,8 @@ class ApiParamInfo extends ApiBase {
 			'modules' => 'List of module names (value of the action= parameter)',
 			'querymodules' => 'List of query module names (value of prop=, meta= or list= parameter)',
 			'mainmodule' => 'Get information about the main (top-level) module as well',
-			'pagesetmodule' => 'Get information about the pageset module (providing titles= and friends) as well',
+			'pagesetmodule' => 'Get information about the pageset module ' .
+				'(providing titles= and friends) as well',
 			'formatmodules' => 'List of format module names (value of format= parameter)',
 		);
 	}

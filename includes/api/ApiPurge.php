@@ -30,7 +30,6 @@
  * @ingroup API
  */
 class ApiPurge extends ApiBase {
-
 	private $mPageSet;
 
 	/**
@@ -91,7 +90,12 @@ class ApiPurge extends ApiBase {
 
 					# Parse content; note that HTML generation is only needed if we want to cache the result.
 					$content = $page->getContent( Revision::RAW );
-					$p_result = $content->getParserOutput( $title, $page->getLatest(), $popts, $wgEnableParserCache );
+					$p_result = $content->getParserOutput(
+						$title,
+						$page->getLatest(),
+						$popts,
+						$wgEnableParserCache
+					);
 
 					# Update the links tables
 					$updates = $content->getSecondaryDataUpdates(
