@@ -88,12 +88,14 @@ class ApiComparePages extends ApiBase {
 			if ( !$title || $title->isExternal() ) {
 				$this->dieUsageMsg( array( 'invalidtitle', $titleText ) );
 			}
+
 			return $title->getLatestRevID();
 		} elseif ( $titleId ) {
 			$title = Title::newFromID( $titleId );
 			if ( !$title ) {
 				$this->dieUsageMsg( array( 'nosuchpageid', $titleId ) );
 			}
+
 			return $title->getLatestRevID();
 		}
 		$this->dieUsage( 'inputneeded', 'A title, a page ID, or a revision number is needed for both the from and the to parameters' );

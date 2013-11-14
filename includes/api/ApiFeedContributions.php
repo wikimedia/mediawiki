@@ -61,8 +61,8 @@ class ApiFeedContributions extends ApiBase {
 		$feedUrl = SpecialPage::getTitleFor( 'Contributions', $params['user'] )->getFullURL();
 
 		$target = $params['user'] == 'newbies'
-				? 'newbies'
-				: Title::makeTitleSafe( NS_USER, $params['user'] )->getText();
+			? 'newbies'
+			: Title::makeTitleSafe( NS_USER, $params['user'] )->getText();
 
 		$feed = new $wgFeedClasses[$params['feedformat']] (
 			$feedTitle,
@@ -107,6 +107,7 @@ class ApiFeedContributions extends ApiBase {
 				$comments
 			);
 		}
+
 		return null;
 	}
 
@@ -142,12 +143,14 @@ class ApiFeedContributions extends ApiBase {
 				htmlspecialchars( FeedItem::stripComment( $revision->getComment() ) ) .
 				"</p>\n<hr />\n<div>" . $html . "</div>";
 		}
+
 		return '';
 	}
 
 	public function getAllowedParams() {
 		global $wgFeedClasses;
 		$feedFormatNames = array_keys( $wgFeedClasses );
+
 		return array(
 			'feedformat' => array(
 				ApiBase::PARAM_DFLT => 'rss',

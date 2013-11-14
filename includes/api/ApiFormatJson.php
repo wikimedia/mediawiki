@@ -43,6 +43,7 @@ class ApiFormatJson extends ApiFormatBase {
 		if ( $params['callback'] ) {
 			return 'text/javascript';
 		}
+
 		return 'application/json';
 	}
 

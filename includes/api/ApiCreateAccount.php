@@ -172,6 +172,7 @@ class ApiCreateAccount extends ApiBase {
 
 	public function getAllowedParams() {
 		global $wgEmailConfirmToEdit;
+
 		return array(
 			'name' => array(
 				ApiBase::PARAM_TYPE => 'user',
@@ -196,6 +197,7 @@ class ApiCreateAccount extends ApiBase {
 
 	public function getParamDescription() {
 		$p = $this->getModulePrefix();
+
 		return array(
 			'name' => 'Username',
 			'password' => "Password (ignored if {$p}mailpassword is set)",
@@ -280,6 +282,7 @@ class ApiCreateAccount extends ApiBase {
 			'code' => 'passwordtooshort',
 			'info' => wfMessage( 'passwordtooshort', $wgMinimalPasswordLength )->inLanguage( 'en' )->useDatabase( false )->parse()
 		);
+
 		return $errors;
 	}
 
