@@ -3,6 +3,18 @@
 Security reminder: MediaWiki does not require PHP's register_globals. If you
 have it on, turn it '''off''' if you can.
 
+== MediaWiki 1.21.3 ==
+
+This is a security adn maintenance release of the MediaWiki 1.21 branch.
+
+=== Changes since 1.21.2 ===
+
+* (bug 53032) SECURITY: Don't cache when a call could autocreate
+* (bug 55332) SECURITY: Improve css javascript detection
+* (bug 49717) Fix behaviour $wgVerifyMimeType = false; in Upload
+* Fix comma errors in various js files
+* Translations
+
 == MediaWiki 1.21.2 ==
 
 This is a security adn maintenance release of the MediaWiki 1.21 branch.
