@@ -234,7 +234,8 @@ class ApiQueryUserInfo extends ApiQueryBase {
 				'  ratelimits       - Lists all rate limits applying to the current user',
 				'  realname         - Adds the user\'s real name',
 				'  email            - Adds the user\'s email address and email authentication date',
-				'  acceptlang       - Echoes the Accept-Language header sent by the client in a structured format',
+				'  acceptlang       - Echoes the Accept-Language header sent by ' .
+					'the client in a structured format',
 				'  registrationdate - Adds the user\'s registration date',
 			)
 		);
