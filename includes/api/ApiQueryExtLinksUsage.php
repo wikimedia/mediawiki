@@ -102,7 +102,8 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 		$count = 0;
 		foreach ( $res as $row ) {
 			if ( ++$count > $limit ) {
-				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
+				// We've reached the one extra which shows that there are
+				// additional pages to be had. Stop here...
 				$this->setContinueEnumParameter( 'offset', $offset + $limit );
 				break;
 			}
@@ -222,7 +223,8 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 				"Protocol of the URL. If empty and {$p}query set, the protocol is http.",
 				"Leave both this and {$p}query empty to list all external links"
 			),
-			'query' => 'Search string without protocol. See [[Special:LinkSearch]]. Leave empty to list all external links',
+			'query' => 'Search string without protocol. See [[Special:LinkSearch]]. ' .
+				'Leave empty to list all external links',
 			'namespace' => 'The page namespace(s) to enumerate.',
 			'limit' => 'How many pages to return.',
 			'expandurl' => 'Expand protocol-relative URLs with the canonical protocol',

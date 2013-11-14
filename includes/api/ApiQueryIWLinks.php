@@ -106,7 +106,10 @@ class ApiQueryIWLinks extends ApiQueryBase {
 			if ( ++$count > $params['limit'] ) {
 				// We've reached the one extra which shows that
 				// there are additional pages to be had. Stop here...
-				$this->setContinueEnumParameter( 'continue', "{$row->iwl_from}|{$row->iwl_prefix}|{$row->iwl_title}" );
+				$this->setContinueEnumParameter(
+					'continue',
+					"{$row->iwl_from}|{$row->iwl_prefix}|{$row->iwl_title}"
+				);
 				break;
 			}
 			$entry = array( 'prefix' => $row->iwl_prefix );
@@ -121,7 +124,10 @@ class ApiQueryIWLinks extends ApiQueryBase {
 			ApiResult::setContent( $entry, $row->iwl_title );
 			$fit = $this->addPageSubItem( $row->iwl_from, $entry );
 			if ( !$fit ) {
-				$this->setContinueEnumParameter( 'continue', "{$row->iwl_from}|{$row->iwl_prefix}|{$row->iwl_title}" );
+				$this->setContinueEnumParameter(
+					'continue',
+					"{$row->iwl_from}|{$row->iwl_prefix}|{$row->iwl_title}"
+				);
 				break;
 			}
 		}
@@ -190,7 +196,8 @@ class ApiQueryIWLinks extends ApiQueryBase {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=query&prop=iwlinks&titles=Main%20Page' => 'Get interwiki links from the [[Main Page]]',
+			'api.php?action=query&prop=iwlinks&titles=Main%20Page'
+				=> 'Get interwiki links from the [[Main Page]]',
 		);
 	}
 

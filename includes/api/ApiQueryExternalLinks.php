@@ -135,7 +135,8 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 				"Protocol of the URL. If empty and {$p}query set, the protocol is http.",
 				"Leave both this and {$p}query empty to list all external links"
 			),
-			'query' => 'Search string without protocol. Useful for checking whether a certain page contains a certain external url',
+			'query' => 'Search string without protocol. Useful for checking ' .
+				'whether a certain page contains a certain external url',
 			'expandurl' => 'Expand protocol-relative URLs with the canonical protocol',
 		);
 	}
@@ -160,7 +161,8 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=query&prop=extlinks&titles=Main%20Page' => 'Get a list of external links on the [[Main Page]]',
+			'api.php?action=query&prop=extlinks&titles=Main%20Page'
+				=> 'Get a list of external links on the [[Main Page]]',
 		);
 	}
 

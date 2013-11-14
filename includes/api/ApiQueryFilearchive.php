@@ -41,7 +41,10 @@ class ApiQueryFilearchive extends ApiQueryBase {
 		$user = $this->getUser();
 		// Before doing anything at all, let's check permissions
 		if ( !$user->isAllowed( 'deletedhistory' ) ) {
-			$this->dieUsage( 'You don\'t have permission to view deleted file information', 'permissiondenied' );
+			$this->dieUsage(
+				'You don\'t have permission to view deleted file information',
+				'permissiondenied'
+			);
 		}
 
 		$db = $this->getDB();
@@ -92,7 +95,8 @@ class ApiQueryFilearchive extends ApiQueryBase {
 		$to = ( is_null( $params['to'] ) ? null : $this->titlePartToKey( $params['to'] ) );
 		$this->addWhereRange( 'fa_name', $dir, $from, $to );
 		if ( isset( $params['prefix'] ) ) {
-			$this->addWhere( 'fa_name' . $db->buildLike( $this->titlePartToKey( $params['prefix'] ), $db->anyString() ) );
+			$this->addWhere( 'fa_name' .
+				$db->buildLike( $this->titlePartToKey( $params['prefix'] ), $db->anyString() ) );
 		}
 
 		$sha1Set = isset( $params['sha1'] );
@@ -137,7 +141,8 @@ class ApiQueryFilearchive extends ApiQueryBase {
 		$result = $this->getResult();
 		foreach ( $res as $row ) {
 			if ( ++$count > $limit ) {
-				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
+				// We've reached the one extra which shows that there are
+				// additional pages to be had. Stop here...
 				$this->setContinueEnumParameter( 'continue', $row->fa_name );
 				break;
 			}
@@ -275,7 +280,8 @@ class ApiQueryFilearchive extends ApiQueryBase {
 				' sha1              - Adds SHA-1 hash for the image',
 				' timestamp         - Adds timestamp for the uploaded version',
 				' user              - Adds user who uploaded the image version',
-				' size              - Adds the size of the image in bytes and the height, width and page count (if applicable)',
+				' size              - Adds the size of the image in bytes and the height, ' .
+					'width and page count (if applicable)',
 				' dimensions        - Alias for size',
 				' description       - Adds description the image version',
 				' parseddescription - Parse the description on the version',
@@ -358,10 +364,16 @@ class ApiQueryFilearchive extends ApiQueryBase {
 
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
-			array( 'code' => 'permissiondenied', 'info' => 'You don\'t have permission to view deleted file information' ),
+			array(
+				'code' => 'permissiondenied',
+				'info' => 'You don\'t have permission to view deleted file information'
+			),
 			array( 'code' => 'hashsearchdisabled', 'info' => 'Search by hash disabled in Miser Mode' ),
-			array( 'code' => 'invalidsha1hash', 'info' => 'The SHA1 hash provided is not valid' ),
-			array( 'code' => 'invalidsha1base36hash', 'info' => 'The SHA1Base36 hash provided is not valid' ),
+			array( 'code' => 'invalidsha1hash', 'info' => 'The SHA-1 hash provided is not valid' ),
+			array(
+				'code' => 'invalidsha1base36hash',
+				'info' => 'The SHA1Base36 hash provided is not valid'
+			),
 		) );
 	}
 
