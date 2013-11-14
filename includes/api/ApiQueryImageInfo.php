@@ -267,6 +267,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		if ( !$h ) {
 			$this->setWarning( 'Could not create thumbnail because ' .
 				$image->getName() . ' does not have an associated image handler' );
+
 			return $thumbParams;
 		}
 
@@ -278,6 +279,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			// handlers.
 			$this->setWarning( "Could not parse {$p}urlparam for " . $image->getName()
 				. '. Using only width and height' );
+
 			return $thumbParams;
 		}
 
@@ -389,7 +391,8 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		$uploadwarning = isset( $prop['uploadwarning'] );
 
 		if ( ( $url || $sha1 || $meta || $mime || $mediatype || $archive || $bitdepth )
-				&& $file->isDeleted( File::DELETED_FILE ) ) {
+			&& $file->isDeleted( File::DELETED_FILE )
+		) {
 			$vals['filehidden'] = '';
 
 			//Early return, tidier than indenting all following things one level
@@ -505,6 +508,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			}
 		}
 		$result->setIndexedTagName( $retval, 'metadata' );
+
 		return $retval;
 	}
 
@@ -521,11 +525,13 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		if ( $start === null ) {
 			$start = $img->getTimestamp();
 		}
+
 		return $img->getOriginalTitle()->getDBkey() . '|' . $start;
 	}
 
 	public function getAllowedParams() {
 		global $wgContLang;
+
 		return array(
 			'prop' => array(
 				ApiBase::PARAM_ISMULTI => true,
@@ -634,6 +640,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	 */
 	public function getParamDescription() {
 		$p = $this->getModulePrefix();
+
 		return array(
 			'prop' => self::getPropertyDescriptions( array(), $p ),
 			'urlwidth' => array( "If {$p}prop=url is set, a URL to an image scaled to this width will be returned.",
@@ -646,10 +653,10 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			'start' => 'Timestamp to start listing from',
 			'end' => 'Timestamp to stop listing at',
 			'metadataversion' => array( "Version of metadata to use. if 'latest' is specified, use latest version.",
-						"Defaults to '1' for backwards compatibility" ),
+				"Defaults to '1' for backwards compatibility" ),
 			'extmetadatalanguage' => array( 'What language to fetch extmetadata in. This affects both which',
-						'translation to fetch, if multiple are available, as well as how things',
-						'like numbers and various values are formatted.' ),
+				'translation to fetch, if multiple are available, as well as how things',
+				'like numbers and various values are formatted.' ),
 			'extmetadatamultilang' => 'If translations for extmetadata property are available, fetch all of them.',
 			'continue' => 'If the query response includes a continue value, use it here to get another page of results',
 			'localonly' => 'Look only for files in the local repository',
@@ -773,6 +780,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				)
 			),
 		);
+
 		return array_diff_key( $props, array_flip( $filter ) );
 	}
 
@@ -786,6 +794,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 
 	public function getPossibleErrors() {
 		$p = $this->getModulePrefix();
+
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'code' => "{$p}urlwidth", 'info' => "{$p}urlheight cannot be used without {$p}urlwidth" ),
 			array( 'code' => 'urlparam', 'info' => "Invalid value for {$p}urlparam" ),

@@ -101,7 +101,7 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 		$result = $this->getResult();
 		$count = 0;
 		foreach ( $res as $row ) {
-			if ( ++ $count > $limit ) {
+			if ( ++$count > $limit ) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
 				$this->setContinueEnumParameter( 'offset', $offset + $limit );
 				break;
@@ -140,7 +140,7 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 
 		if ( is_null( $resultPageSet ) ) {
 			$result->setIndexedTagName_internal( array( 'query', $this->getModuleName() ),
-					$this->getModulePrefix() );
+				$this->getModulePrefix() );
 		}
 	}
 
@@ -186,6 +186,7 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 				$protocols[] = substr( $p, 0, strpos( $p, ':' ) );
 			}
 		}
+
 		return $protocols;
 	}
 

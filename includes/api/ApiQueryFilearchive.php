@@ -180,8 +180,8 @@ class ApiQueryFilearchive extends ApiQueryBase {
 			}
 			if ( $fld_metadata ) {
 				$file['metadata'] = $row->fa_metadata
-						? ApiQueryImageInfo::processMetaData( unserialize( $row->fa_metadata ), $result )
-						: null;
+					? ApiQueryImageInfo::processMetaData( unserialize( $row->fa_metadata ), $result )
+					: null;
 			}
 			if ( $fld_bitdepth ) {
 				$file['bitdepth'] = $row->fa_bits;

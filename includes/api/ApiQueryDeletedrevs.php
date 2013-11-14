@@ -172,10 +172,10 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			$ts = $db->addQuotes( $db->timestamp( $cont[2] ) );
 			$op = ( $dir == 'newer' ? '>' : '<' );
 			$this->addWhere( "ar_namespace $op $ns OR " .
-					"(ar_namespace = $ns AND " .
-					"(ar_title $op $title OR " .
-					"(ar_title = $title AND " .
-					"ar_timestamp $op= $ts)))" );
+				"(ar_namespace = $ns AND " .
+				"(ar_title $op $title OR " .
+				"(ar_title = $title AND " .
+				"ar_timestamp $op= $ts)))" );
 		}
 
 		$this->addOption( 'LIMIT', $limit + 1 );
@@ -188,7 +188,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 				$this->addOption( 'ORDER BY', array(
 					'ar_title' . $sort,
 					'ar_timestamp' . $sort
-				));
+				) );
 			}
 		} else {
 			if ( $mode == 'revs' ) {
@@ -385,6 +385,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 
 	public function getDescription() {
 		$p = $this->getModulePrefix();
+
 		return array(
 			'List deleted revisions.',
 			'Operates in three modes:',
