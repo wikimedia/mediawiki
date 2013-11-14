@@ -317,6 +317,7 @@ class ApiParamInfo extends ApiBase {
 		sort( $querymodules );
 		$formatmodules = $this->getMain()->getModuleManager()->getNames( 'format' );
 		sort( $formatmodules );
+
 		return array(
 			'modules' => array(
 				ApiBase::PARAM_ISMULTI => true,

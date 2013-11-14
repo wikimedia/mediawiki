@@ -109,7 +109,7 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 		$result = $this->getResult();
 		$count = 0;
 		foreach ( $res as $row ) {
-			if ( ++ $count > $params['limit'] ) {
+			if ( ++$count > $params['limit'] ) {
 				// We've reached the one extra which shows that there are additional cats to be had. Stop here...
 				$this->setContinueEnumParameter( 'continue', $row->cat_title );
 				break;
