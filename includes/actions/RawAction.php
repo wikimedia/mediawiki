@@ -212,6 +212,7 @@ class RawAction extends FormlessAction {
 				$oldid = 0;
 				break;
 		}
+
 		return $oldid;
 	}
 
@@ -273,6 +274,7 @@ class RawPage extends RawAction {
 		if ( $this->mOldId !== null ) {
 			return $this->mOldId;
 		}
+
 		return parent::getOldId();
 	}
 }

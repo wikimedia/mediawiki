@@ -184,5 +184,4 @@ abstract class CachedAction extends FormlessAction implements ICacheHelper {
 			$this->getOutput()->setSubtitle( $this->cacheHelper->getCachedNotice( $this->getContext() ) );
 		}
 	}
-
 }
