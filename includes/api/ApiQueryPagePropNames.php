@@ -63,7 +63,8 @@ class ApiQueryPagePropNames extends ApiQueryBase {
 		$count = 0;
 		foreach ( $this->select( __METHOD__ ) as $row ) {
 			if ( ++$count > $limit ) {
-				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
+				// We've reached the one extra which shows that there are
+				// additional pages to be had. Stop here...
 				$this->setContinueEnumParameter( 'continue', $row->pp_propname );
 				break;
 			}

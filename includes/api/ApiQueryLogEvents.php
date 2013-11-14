@@ -84,7 +84,10 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		$this->addFieldsIf( array( 'log_id', 'page_id' ), $this->fld_ids );
 		$this->addFieldsIf( array( 'log_user', 'log_user_text', 'user_name' ), $this->fld_user );
 		$this->addFieldsIf( 'log_user', $this->fld_userid );
-		$this->addFieldsIf( array( 'log_namespace', 'log_title' ), $this->fld_title || $this->fld_parsedcomment );
+		$this->addFieldsIf(
+			array( 'log_namespace', 'log_title' ),
+			$this->fld_title || $this->fld_parsedcomment
+		);
 		$this->addFieldsIf( 'log_comment', $this->fld_comment || $this->fld_parsedcomment );
 		$this->addFieldsIf( 'log_params', $this->fld_details );
 
@@ -96,7 +99,8 @@ class ApiQueryLogEvents extends ApiQueryBase {
 
 		if ( !is_null( $params['tag'] ) ) {
 			$this->addTables( 'change_tag' );
-			$this->addJoinConds( array( 'change_tag' => array( 'INNER JOIN', array( 'log_id=ct_log_id' ) ) ) );
+			$this->addJoinConds( array( 'change_tag' => array( 'INNER JOIN',
+				array( 'log_id=ct_log_id' ) ) ) );
 			$this->addWhereFld( 'ct_tag', $params['tag'] );
 			$index['change_tag'] = 'change_tag_tag_id';
 		}
@@ -110,7 +114,12 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			$index['logging'] = 'type_time';
 		}
 
-		$this->addTimestampWhereRange( 'log_timestamp', $params['dir'], $params['start'], $params['end'] );
+		$this->addTimestampWhereRange(
+			'log_timestamp',
+			$params['dir'],
+			$params['start'],
+			$params['end']
+		);
 
 		$limit = $params['limit'];
 		$this->addOption( 'LIMIT', $limit + 1 );
@@ -169,7 +178,8 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		$result = $this->getResult();
 		foreach ( $res as $row ) {
 			if ( ++$count > $limit ) {
-				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
+				// We've reached the one extra which shows that there are
+				// additional pages to be had. Stop here...
 				$this->setContinueEnumParameter( 'start', wfTimestamp( TS_ISO_8601, $row->log_timestamp ) );
 				break;
 			}
@@ -197,7 +207,9 @@ class ApiQueryLogEvents extends ApiQueryBase {
 	 * @param $legacy bool
 	 * @return array
 	 */
-	public static function addLogParams( $result, &$vals, $params, $type, $action, $ts, $legacy = false ) {
+	public static function addLogParams( $result, &$vals, $params, $type,
+		$action, $ts, $legacy = false
+	) {
 		switch ( $type ) {
 			case 'move':
 				if ( $legacy ) {

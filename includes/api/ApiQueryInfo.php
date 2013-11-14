@@ -42,7 +42,8 @@ class ApiQueryInfo extends ApiQueryBase {
 	private $pageRestrictions, $pageIsRedir, $pageIsNew, $pageTouched,
 		$pageLatest, $pageLength;
 
-	private $protections, $watched, $watchers, $notificationtimestamps, $talkids, $subjectids, $displaytitles;
+	private $protections, $watched, $watchers, $notificationtimestamps,
+		$talkids, $subjectids, $displaytitles;
 	private $showZeroWatchers = false;
 
 	private $tokenFunctions;
@@ -349,7 +350,8 @@ class ApiQueryInfo extends ApiQueryBase {
 	 */
 	private function extractPageInfo( $pageid, $title ) {
 		$pageInfo = array();
-		$titleExists = $pageid > 0; //$title->exists() needs pageid, which is not set for all title objects
+		// $title->exists() needs pageid, which is not set for all title objects
+		$titleExists = $pageid > 0;
 		$ns = $title->getNamespace();
 		$dbkey = $title->getDBkey();
 
@@ -411,7 +413,8 @@ class ApiQueryInfo extends ApiQueryBase {
 		if ( $this->fld_notificationtimestamp ) {
 			$pageInfo['notificationtimestamp'] = '';
 			if ( isset( $this->notificationtimestamps[$ns][$dbkey] ) ) {
-				$pageInfo['notificationtimestamp'] = wfTimestamp( TS_ISO_8601, $this->notificationtimestamps[$ns][$dbkey] );
+				$pageInfo['notificationtimestamp'] =
+					wfTimestamp( TS_ISO_8601, $this->notificationtimestamps[$ns][$dbkey] );
 			}
 		}
 
@@ -698,7 +701,8 @@ class ApiQueryInfo extends ApiQueryBase {
 				$this->watched[$row->wl_namespace][$row->wl_title] = true;
 			}
 			if ( $this->fld_notificationtimestamp ) {
-				$this->notificationtimestamps[$row->wl_namespace][$row->wl_title] = $row->wl_notificationtimestamp;
+				$this->notificationtimestamps[$row->wl_namespace][$row->wl_title] =
+					$row->wl_notificationtimestamp;
 			}
 		}
 	}
