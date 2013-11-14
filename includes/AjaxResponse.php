@@ -220,7 +220,7 @@ class AjaxResponse {
 		}
 
 		if ( !$wgCachePages ) {
-			wfDebug( "$fname: CACHE DISABLED\n", false );
+			wfDebug( "$fname: CACHE DISABLED\n", 'log' );
 			return false;
 		}
 
@@ -234,8 +234,8 @@ class AjaxResponse {
 			$modsince = preg_replace( '/;.*$/', '', $_SERVER["HTTP_IF_MODIFIED_SINCE"] );
 			$modsinceTime = strtotime( $modsince );
 			$ismodsince = wfTimestamp( TS_MW, $modsinceTime ? $modsinceTime : 1 );
-			wfDebug( "$fname: -- client send If-Modified-Since: " . $modsince . "\n", false );
-			wfDebug( "$fname: --  we might send Last-Modified : $lastmod\n", false );
+			wfDebug( "$fname: -- client send If-Modified-Since: " . $modsince . "\n", 'log' );
+			wfDebug( "$fname: --  we might send Last-Modified : $lastmod\n", 'log' );
 
 			if ( ( $ismodsince >= $timestamp ) && $wgUser->validateCache( $ismodsince ) && $ismodsince >= $wgCacheEpoch ) {
 				ini_set( 'zlib.output_compression', 0 );
@@ -243,15 +243,15 @@ class AjaxResponse {
 				$this->disable();
 				$this->mLastModified = $lastmod;
 
-				wfDebug( "$fname: CACHED client: $ismodsince ; user: {$wgUser->getTouched()} ; page: $timestamp ; site $wgCacheEpoch\n", false );
+				wfDebug( "$fname: CACHED client: $ismodsince ; user: {$wgUser->getTouched()} ; page: $timestamp ; site $wgCacheEpoch\n", 'log' );
 
 				return true;
 			} else {
-				wfDebug( "$fname: READY  client: $ismodsince ; user: {$wgUser->getTouched()} ; page: $timestamp ; site $wgCacheEpoch\n", false );
+				wfDebug( "$fname: READY  client: $ismodsince ; user: {$wgUser->getTouched()} ; page: $timestamp ; site $wgCacheEpoch\n", 'log' );
 				$this->mLastModified = $lastmod;
 			}
 		} else {
-			wfDebug( "$fname: client did not send If-Modified-Since header\n", false );
+			wfDebug( "$fname: client did not send If-Modified-Since header\n", 'log' );
 			$this->mLastModified = $lastmod;
 		}
 		return false;

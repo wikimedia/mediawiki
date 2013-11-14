@@ -924,13 +924,25 @@ function wfMatchesDomainList( $url, $domains ) {
  * $wgDebugComments - if on, some debug items may appear in comments in the HTML output.
  *
  * @param $text String
- * @param bool $logonly set true to avoid appearing in HTML when $wgDebugComments is set
+ * @param string|bool $dest Destination of the message:
+ *     - 'all': both to the log and HTML (debug toolbar or HTML comments)
+ *     - 'log': only to the log and not in HTML
+ *   For backward compatibility, it can also take a boolean:
+ *     - true: same as 'all'
+ *     - false: same as 'log'
  */
-function wfDebug( $text, $logonly = false ) {
+function wfDebug( $text, $dest = 'all' ) {
 	global $wgDebugLogFile, $wgProfileOnly, $wgDebugRawPage, $wgDebugLogPrefix;
 
 	if ( !$wgDebugRawPage && wfIsDebugRawPage() ) {
 		return;
+	}
+
+	// Turn $dest into a string if it's a boolean (for b/c)
+	if ( $dest === true ) {
+		$dest = 'all';
+	} elseif ( $dest === false ) {
+		$dest = 'log';
 	}
 
 	$timer = wfDebugTimer();
@@ -938,7 +950,7 @@ function wfDebug( $text, $logonly = false ) {
 		$text = preg_replace( '/[^\n]/', $timer . '\0', $text, 1 );
 	}
 
-	if ( !$logonly ) {
+	if ( $dest === 'all' ) {
 		MWDebug::debugMsg( $text );
 	}
 
@@ -1019,16 +1031,36 @@ function wfDebugMem( $exact = false ) {
  * @param $text String
  * @param bool $public whether to log the event in the public log if no private
  *                     log file is specified, (default true)
+ * @param string|bool $dest Destination of the message:
+ *     - 'all': both to the log and HTML (debug toolbar or HTML comments)
+ *     - 'log': only to the log and not in HTML
+ *     - 'private': only to the specifc log if set in $wgDebugLogGroups and
+ *       discarded otherwise
+ *   For backward compatibility, it can also take a boolean:
+ *     - true: same as 'all'
+ *     - false: same as 'private'
  */
-function wfDebugLog( $logGroup, $text, $public = true ) {
+function wfDebugLog( $logGroup, $text, $dest = 'all' ) {
 	global $wgDebugLogGroups;
+
 	$text = trim( $text ) . "\n";
 
+	// Turn $dest into a string if it's a boolean (for b/c)
+	if ( $dest === true ) {
+		$dest = 'all';
+	} elseif ( $dest === false ) {
+		$dest = 'private';
+	}
+
 	if ( !isset( $wgDebugLogGroups[$logGroup] ) ) {
-		if ( $public === true ) {
-			wfDebug( "[$logGroup] $text", false );
+		if ( $dest !== 'private' ) {
+			wfDebug( "[$logGroup] $text", $dest );
 		}
 		return;
+	}
+
+	if ( $dest === 'all' ) {
+		MWDebug::debugMsg( "[$logGroup] $text" );
 	}
 
 	$logConfig = $wgDebugLogGroups[$logGroup];

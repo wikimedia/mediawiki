@@ -908,7 +908,7 @@ class MWExceptionHandler {
 
 			$json = self::jsonSerializeException( $e, false, FormatJson::ALL_OK );
 			if ( $json !== false ) {
-				wfDebugLog( 'exception-json', $json, false );
+				wfDebugLog( 'exception-json', $json, 'private' );
 			}
 		}
 
