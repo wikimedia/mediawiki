@@ -32,6 +32,7 @@ resources/mediawiki.libs/
 resources/oojs/
 resources/oojs-ui/
 resources/sinonjs/
+resources/moment/
 
 # github.com/jshint/jshint/issues/729
 tests/qunit/suites/resources/mediawiki/mediawiki.jscompat.test.js
