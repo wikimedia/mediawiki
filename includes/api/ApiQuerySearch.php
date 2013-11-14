@@ -112,12 +112,12 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 			$totalhits = $matches->getTotalHits();
 			if ( $totalhits !== null ) {
 				$apiResult->addValue( array( 'query', 'searchinfo' ),
-						'totalhits', $totalhits );
+					'totalhits', $totalhits );
 			}
 		}
 		if ( isset( $searchInfo['suggestion'] ) && $matches->hasSuggestion() ) {
 			$apiResult->addValue( array( 'query', 'searchinfo' ),
-						'suggestion', $matches->getSuggestionQuery() );
+				'suggestion', $matches->getSuggestionQuery() );
 		}
 
 		// Add the search results to the result
@@ -127,7 +127,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		$result = $matches->next();
 
 		while ( $result ) {
-			if ( ++ $count > $limit ) {
+			if ( ++$count > $limit ) {
 				// We've reached the one extra which shows that there are additional items to be had. Stop here...
 				$this->setContinueEnumParameter( 'offset', $params['offset'] + $params['limit'] );
 				break;
@@ -184,7 +184,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 
 				// Add item to results and see whether it fits
 				$fit = $apiResult->addValue( array( 'query', $this->getModuleName() ),
-						null, $vals );
+					null, $vals );
 				if ( !$fit ) {
 					$this->setContinueEnumParameter( 'offset', $params['offset'] + $count - 1 );
 					break;
@@ -198,8 +198,8 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 
 		if ( is_null( $resultPageSet ) ) {
 			$apiResult->setIndexedTagName_internal( array(
-						'query', $this->getModuleName()
-					), 'p' );
+				'query', $this->getModuleName()
+			), 'p' );
 		} else {
 			$resultPageSet->populateFromTitles( $titles );
 		}
