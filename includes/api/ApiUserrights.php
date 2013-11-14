@@ -72,6 +72,7 @@ class ApiUserrights extends ApiBase {
 		}
 
 		$this->mUser = $user;
+
 		return $user;
 	}
 
