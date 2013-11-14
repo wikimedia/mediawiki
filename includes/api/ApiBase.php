@@ -30,10 +30,10 @@
  * The class functions are divided into several areas of functionality:
  *
  * Module parameters: Derived classes can define getAllowedParams() to specify
- * 	which parameters to expect, how to parse and validate them.
+ *    which parameters to expect, how to parse and validate them.
  *
  * Profiling: various methods to allow keeping tabs on various tasks and their
- * 	time costs
+ *    time costs
  *
  * Self-documentation: code to allow the API to document its own state
  *
@@ -124,6 +124,7 @@ abstract class ApiBase extends ContextSource {
 	 */
 	public function getVersion() {
 		wfDeprecated( __METHOD__, '1.21' );
+
 		return '';
 	}
 
@@ -194,6 +195,7 @@ abstract class ApiBase extends ContextSource {
 		if ( $this->isMain() ) {
 			ApiBase::dieDebug( __METHOD__, 'base method was called on main module. ' );
 		}
+
 		return $this->getMain()->getResult();
 	}
 
@@ -216,6 +218,7 @@ abstract class ApiBase extends ContextSource {
 	 */
 	public function createContext() {
 		wfDeprecated( __METHOD__, '1.19' );
+
 		return new DerivativeContext( $this->getContext() );
 	}
 
@@ -293,7 +296,8 @@ abstract class ApiBase extends ContextSource {
 				$msg .= "\nThis module only accepts POST requests";
 			}
 			if ( $this->isReadMode() || $this->isWriteMode() ||
-					$this->mustBePosted() ) {
+				$this->mustBePosted()
+			) {
 				$msg .= "\n";
 			}
 
@@ -359,8 +363,10 @@ abstract class ApiBase extends ContextSource {
 				$msg = '  ';
 			}
 			$msg .= implode( $prefix, $input ) . "\n";
+
 			return $msg;
 		}
+
 		return '';
 	}
 
@@ -479,9 +485,10 @@ abstract class ApiBase extends ContextSource {
 
 						$isArray = is_array( $type );
 						if ( !$isArray
-								|| $isArray && count( $type ) > self::LIMIT_SML1 ) {
+							|| $isArray && count( $type ) > self::LIMIT_SML1
+						) {
 							$desc .= $paramPrefix . "Maximum number of values " .
-									self::LIMIT_SML1 . " (" . self::LIMIT_SML2 . " for bots)";
+								self::LIMIT_SML1 . " (" . self::LIMIT_SML2 . " for bots)";
 						}
 					}
 				}
@@ -493,8 +500,8 @@ abstract class ApiBase extends ContextSource {
 
 				$msg .= sprintf( "  %-19s - %s\n", $this->encodeParamName( $paramName ), $desc );
 			}
-			return $msg;
 
+			return $msg;
 		} else {
 			return false;
 		}
@@ -555,6 +562,7 @@ abstract class ApiBase extends ContextSource {
 	public function getFinalParams( $flags = 0 ) {
 		$params = $this->getAllowedParams( $flags );
 		wfRunHooks( 'APIGetAllowedParams', array( &$this, &$params, $flags ) );
+
 		return $params;
 	}
 
@@ -567,6 +575,7 @@ abstract class ApiBase extends ContextSource {
 	public function getFinalParamDescription() {
 		$desc = $this->getParamDescription();
 		wfRunHooks( 'APIGetParamDescription', array( &$this, &$desc ) );
+
 		return $desc;
 	}
 
@@ -599,6 +608,7 @@ abstract class ApiBase extends ContextSource {
 	public function getFinalResultProperties() {
 		$properties = $this->getResultProperties();
 		wfRunHooks( 'APIGetResultProperties', array( $this, &$properties ) );
+
 		return $properties;
 	}
 
@@ -624,6 +634,7 @@ abstract class ApiBase extends ContextSource {
 	public function getFinalDescription() {
 		$desc = $this->getDescription();
 		wfRunHooks( 'APIGetDescription', array( &$this, &$desc ) );
+
 		return $desc;
 	}
 
@@ -660,6 +671,7 @@ abstract class ApiBase extends ContextSource {
 			}
 			$this->mParamCache[$parseLimit] = $results;
 		}
+
 		return $this->mParamCache[$parseLimit];
 	}
 
@@ -672,6 +684,7 @@ abstract class ApiBase extends ContextSource {
 	protected function getParameter( $paramName, $parseLimit = true ) {
 		$params = $this->getFinalParams();
 		$paramSettings = $params[$paramName];
+
 		return $this->getParameterFromSettings( $paramName, $paramSettings, $parseLimit );
 	}
 
@@ -810,6 +823,7 @@ abstract class ApiBase extends ContextSource {
 	 */
 	public static function getValidNamespaces() {
 		wfDeprecated( __METHOD__, '1.17' );
+
 		return MWNamespace::getValidNamespaces();
 	}
 
@@ -818,7 +832,7 @@ abstract class ApiBase extends ContextSource {
 	 * @param string $watchlist Valid values: 'watch', 'unwatch', 'preferences', 'nochange'
 	 * @param $titleObj Title the page under consideration
 	 * @param string $userOption The user option to consider when $watchlist=preferences.
-	 * 	If not set will use watchdefault always and watchcreations if $titleObj doesn't exist.
+	 *    If not set will use watchdefault always and watchcreations if $titleObj doesn't exist.
 	 * @return bool
 	 */
 	protected function getWatchlistValue( $watchlist, $titleObj, $userOption = null ) {
@@ -842,6 +856,7 @@ abstract class ApiBase extends ContextSource {
 					return $this->getUser()->getBoolOption( 'watchdefault' ) ||
 						$this->getUser()->getBoolOption( 'watchcreations' ) && !$titleObj->exists();
 				}
+
 				# Watch the article based on the user preference
 				return $this->getUser()->getBoolOption( $userOption );
 
@@ -964,7 +979,7 @@ abstract class ApiBase extends ContextSource {
 						$min = isset( $paramSettings[self::PARAM_MIN] ) ? $paramSettings[self::PARAM_MIN] : null;
 						$max = isset( $paramSettings[self::PARAM_MAX] ) ? $paramSettings[self::PARAM_MAX] : null;
 						$enforceLimits = isset( $paramSettings[self::PARAM_RANGE_ENFORCE] )
-								? $paramSettings[self::PARAM_RANGE_ENFORCE] : false;
+							? $paramSettings[self::PARAM_RANGE_ENFORCE] : false;
 
 						if ( is_array( $value ) ) {
 							$value = array_map( 'intval', $value );
@@ -1067,7 +1082,7 @@ abstract class ApiBase extends ContextSource {
 		// This is a bit awkward, but we want to avoid calling canApiHighLimits() because it unstubs $wgUser
 		$valuesList = explode( '|', $value, self::LIMIT_SML2 + 1 );
 		$sizeLimit = count( $valuesList ) > self::LIMIT_SML1 && $this->mMainModule->canApiHighLimits() ?
-				self::LIMIT_SML2 : self::LIMIT_SML1;
+			self::LIMIT_SML2 : self::LIMIT_SML1;
 
 		if ( self::truncateArray( $valuesList, $sizeLimit ) ) {
 			$this->setWarning( "Too many values supplied for parameter '$valueName': the limit is $sizeLimit" );
@@ -1153,6 +1168,7 @@ abstract class ApiBase extends ContextSource {
 		if ( $unixTimestamp === false ) {
 			$this->dieUsage( "Invalid value '$value' for timestamp parameter $encParamName", "badtimestamp_{$encParamName}" );
 		}
+
 		return wfTimestamp( TS_MW, $unixTimestamp );
 	}
 
@@ -1167,6 +1183,7 @@ abstract class ApiBase extends ContextSource {
 		if ( $title === null ) {
 			$this->dieUsage( "Invalid value '$value' for user parameter $encParamName", "baduser_{$encParamName}" );
 		}
+
 		return $title->getText();
 	}
 
@@ -1196,6 +1213,7 @@ abstract class ApiBase extends ContextSource {
 			array_pop( $arr );
 			$modified = true;
 		}
+
 		return $modified;
 	}
 
@@ -1521,6 +1539,7 @@ abstract class ApiBase extends ContextSource {
 	public function isReadMode() {
 		return true;
 	}
+
 	/**
 	 * Indicates whether this module requires write mode
 	 * @return bool
@@ -1584,6 +1603,7 @@ abstract class ApiBase extends ContextSource {
 			}
 			$user = $this->getUser();
 		}
+
 		return $user;
 	}
 
@@ -1656,6 +1676,7 @@ abstract class ApiBase extends ContextSource {
 	public function getFinalPossibleErrors() {
 		$possibleErrors = $this->getPossibleErrors();
 		wfRunHooks( 'APIGetPossibleErrors', array( $this, &$possibleErrors ) );
+
 		return $possibleErrors;
 	}
 
@@ -1674,6 +1695,7 @@ abstract class ApiBase extends ContextSource {
 				$ret[] = $this->parseMsg( $row );
 			}
 		}
+
 		return $ret;
 	}
 
@@ -1730,6 +1752,7 @@ abstract class ApiBase extends ContextSource {
 		if ( $this->mTimeIn !== 0 ) {
 			ApiBase::dieDebug( __METHOD__, 'called without calling profileOut() first' );
 		}
+
 		return $this->mModuleTime;
 	}
 
@@ -1779,6 +1802,7 @@ abstract class ApiBase extends ContextSource {
 		if ( $this->mDBTimeIn !== 0 ) {
 			ApiBase::dieDebug( __METHOD__, 'called without calling profileDBOut() first' );
 		}
+
 		return $this->mDBTime;
 	}
 
@@ -1792,6 +1816,7 @@ abstract class ApiBase extends ContextSource {
 			$this->mSlaveDB = wfGetDB( DB_SLAVE, 'api' );
 			$this->profileDBOut();
 		}
+
 		return $this->mSlaveDB;
 	}
 

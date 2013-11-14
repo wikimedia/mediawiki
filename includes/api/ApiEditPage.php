@@ -38,9 +38,9 @@ class ApiEditPage extends ApiBase {
 		$params = $this->extractRequestParams();
 
 		if ( is_null( $params['text'] ) && is_null( $params['appendtext'] ) &&
-				is_null( $params['prependtext'] ) &&
-				$params['undo'] == 0 )
-		{
+			is_null( $params['prependtext'] ) &&
+			$params['undo'] == 0
+		) {
 			$this->dieUsageMsg( 'missingtext' );
 		}
 
@@ -53,8 +53,8 @@ class ApiEditPage extends ApiBase {
 				$oldTitle = $titleObj;
 
 				$titles = Revision::newFromTitle( $oldTitle, false, Revision::READ_LATEST )
-							->getContent( Revision::FOR_THIS_USER, $user )
-							->getRedirectChain();
+					->getContent( Revision::FOR_THIS_USER, $user )
+					->getRedirectChain();
 				// array_shift( $titles );
 
 				$redirValues = array();
@@ -101,7 +101,7 @@ class ApiEditPage extends ApiBase {
 			$model = $contentHandler->getModelID();
 
 			$this->dieUsage( "The requested format $contentFormat is not supported for content model " .
-							" $model used by $name", 'badformat' );
+				" $model used by $name", 'badformat' );
 		}
 
 		if ( $params['createonly'] && $titleObj->exists() ) {
@@ -121,8 +121,7 @@ class ApiEditPage extends ApiBase {
 		}
 
 		$toMD5 = $params['text'];
-		if ( !is_null( $params['appendtext'] ) || !is_null( $params['prependtext'] ) )
-		{
+		if ( !is_null( $params['appendtext'] ) || !is_null( $params['prependtext'] ) ) {
 			$content = $pageObj->getContent();
 
 			if ( !$content ) {
@@ -138,6 +137,7 @@ class ApiEditPage extends ApiBase {
 						$content = ContentHandler::makeContent( $text, $this->getTitle() );
 					} catch ( MWContentSerializationException $ex ) {
 						$this->dieUsage( $ex->getMessage(), 'parseerror' );
+
 						return;
 					}
 				} else {
@@ -187,7 +187,7 @@ class ApiEditPage extends ApiBase {
 			if ( $params['undoafter'] > 0 ) {
 				if ( $params['undo'] < $params['undoafter'] ) {
 					list( $params['undo'], $params['undoafter'] ) =
-					array( $params['undoafter'], $params['undo'] );
+						array( $params['undoafter'], $params['undo'] );
 				}
 				$undoafterRev = Revision::newFromID( $params['undoafter'] );
 			}
@@ -363,6 +363,7 @@ class ApiEditPage extends ApiBase {
 			if ( count( $r ) ) {
 				$r['result'] = 'Failure';
 				$apiResult->addValue( null, $this->getModuleName(), $r );
+
 				return;
 			} else {
 				$this->dieUsageMsg( 'hookaborted' );
@@ -513,11 +514,11 @@ class ApiEditPage extends ApiBase {
 				array( 'code' => 'invalidsection', 'info' => 'The section parameter must be set to an integer or \'new\'' ),
 				array( 'code' => 'sectionsnotsupported', 'info' => 'Sections are not supported for this type of page.' ),
 				array( 'code' => 'editnotsupported', 'info' => 'Editing of this type of page is not supported using '
-																. 'the text based edit API.' ),
+					. 'the text based edit API.' ),
 				array( 'code' => 'appendnotsupported', 'info' => 'This type of page can not be edited by appending '
-																. 'or prepending text.' ),
+					. 'or prepending text.' ),
 				array( 'code' => 'badformat', 'info' => 'The requested serialization format can not be applied to '
-														. 'the page\'s content model' ),
+					. 'the page\'s content model' ),
 				array( 'customcssprotected' ),
 				array( 'customjsprotected' ),
 			)
@@ -591,6 +592,7 @@ class ApiEditPage extends ApiBase {
 
 	public function getParamDescription() {
 		$p = $this->getModulePrefix();
+
 		return array(
 			'title' => "Title of the page you want to edit. Cannot be used together with {$p}pageid",
 			'pageid' => "Page ID of the page you want to edit. Cannot be used together with {$p}title",
@@ -598,17 +600,17 @@ class ApiEditPage extends ApiBase {
 			'sectiontitle' => 'The title for a new section',
 			'text' => 'Page content',
 			'token' => array( 'Edit token. You can get one of these through prop=info.',
-						"The token should always be sent as the last parameter, or at least, after the {$p}text parameter"
+				"The token should always be sent as the last parameter, or at least, after the {$p}text parameter"
 			),
 			'summary' => "Edit summary. Also section title when {$p}section=new and {$p}sectiontitle is not set",
 			'minor' => 'Minor edit',
 			'notminor' => 'Non-minor edit',
 			'bot' => 'Mark this edit as bot',
 			'basetimestamp' => array( 'Timestamp of the base revision (obtained through prop=revisions&rvprop=timestamp).',
-						'Used to detect edit conflicts; leave unset to ignore conflicts'
+				'Used to detect edit conflicts; leave unset to ignore conflicts'
 			),
 			'starttimestamp' => array( 'Timestamp when you obtained the edit token.',
-						'Used to detect edit conflicts; leave unset to ignore conflicts'
+				'Used to detect edit conflicts; leave unset to ignore conflicts'
 			),
 			'recreate' => 'Override any errors about the article having been deleted in the meantime',
 			'createonly' => 'Don\'t edit the page if it exists already',
@@ -617,10 +619,10 @@ class ApiEditPage extends ApiBase {
 			'unwatch' => 'Remove the page from your watchlist',
 			'watchlist' => 'Unconditionally add or remove the page from your watchlist, use preferences or do not change watch',
 			'md5' => array( "The MD5 hash of the {$p}text parameter, or the {$p}prependtext and {$p}appendtext parameters concatenated.",
-					'If set, the edit won\'t be done unless the hash is correct' ),
+				'If set, the edit won\'t be done unless the hash is correct' ),
 			'prependtext' => "Add this text to the beginning of the page. Overrides {$p}text",
 			'appendtext' => array( "Add this text to the end of the page. Overrides {$p}text.",
-						"Use {$p}section=new to append a new section" ),
+				"Use {$p}section=new to append a new section" ),
 			'undo' => "Undo this revision. Overrides {$p}text, {$p}prependtext and {$p}appendtext",
 			'undoafter' => 'Undo all revisions from undo to this one. If not set, just undo one revision',
 			'redirect' => 'Automatically resolve redirects',

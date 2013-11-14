@@ -58,7 +58,6 @@ class ApiFileRevert extends ApiBase {
 		}
 
 		$this->getResult()->addValue( null, $this->getModuleName(), $result );
-
 	}
 
 	/**
@@ -130,7 +129,6 @@ class ApiFileRevert extends ApiBase {
 				ApiBase::PARAM_REQUIRED => true
 			),
 		);
-
 	}
 
 	public function getParamDescription() {
