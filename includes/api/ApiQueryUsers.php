@@ -314,7 +314,8 @@ class ApiQueryUsers extends ApiQueryBase {
 				'  rights         - Lists all the rights the user(s) has',
 				'  editcount      - Adds the user\'s edit count',
 				'  registration   - Adds the user\'s registration timestamp',
-				'  emailable      - Tags if the user can and wants to receive email through [[Special:Emailuser]]',
+				'  emailable      - Tags if the user can and wants to receive ' .
+					'email through [[Special:Emailuser]]',
 				'  gender         - Tags the gender of the user. Returns "male", "female", or "unknown"',
 			),
 			'users' => 'A list of users to obtain the same information for',

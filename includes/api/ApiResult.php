@@ -26,9 +26,9 @@
 
 /**
  * This class represents the result of the API operations.
- * It simply wraps a nested array() structure, adding some functions to simplify array's modifications.
- * As various modules execute, they add different pieces of information to this result,
- * structuring it as it will be given to the client.
+ * It simply wraps a nested array() structure, adding some functions to simplify
+ * array's modifications. As various modules execute, they add different pieces
+ * of information to this result, structuring it as it will be given to the client.
  *
  * Each subarray may either be a dictionary - key-value pairs with unique keys,
  * or lists, where the items are added using $data[] = $value notation.
@@ -151,14 +151,17 @@ class ApiResult extends ApiBase {
 	 * @param array $arr to add $value to
 	 * @param string $name Index of $arr to add $value at
 	 * @param $value mixed
-	 * @param int $flags Zero or more OR-ed flags like OVERRIDE | ADD_ON_TOP. This parameter used to be
-	 *        boolean, and the value of OVERRIDE=1 was specifically chosen so that it would be backwards
-	 *        compatible with the new method signature.
+	 * @param int $flags Zero or more OR-ed flags like OVERRIDE | ADD_ON_TOP.
+	 *    This parameter used to be boolean, and the value of OVERRIDE=1 was
+	 *    specifically chosen so that it would be backwards compatible with the
+	 *    new method signature.
 	 *
 	 * @since 1.21 int $flags replaced boolean $override
 	 */
 	public static function setElement( &$arr, $name, $value, $flags = 0 ) {
-		if ( $arr === null || $name === null || $value === null || !is_array( $arr ) || is_array( $name ) ) {
+		if ( $arr === null || $name === null || $value === null
+			|| !is_array( $arr ) || is_array( $name )
+		) {
 			ApiBase::dieDebug( __METHOD__, 'Bad parameter' );
 		}
 
@@ -177,7 +180,10 @@ class ApiResult extends ApiBase {
 				ApiBase::dieDebug( __METHOD__, "Attempting to merge element $name" );
 			}
 		} else {
-			ApiBase::dieDebug( __METHOD__, "Attempting to add element $name=$value, existing value is {$arr[$name]}" );
+			ApiBase::dieDebug(
+				__METHOD__,
+				"Attempting to add element $name=$value, existing value is {$arr[$name]}"
+			);
 		}
 	}
 
@@ -272,9 +278,10 @@ class ApiResult extends ApiBase {
 	 * @param $path array|string|null
 	 * @param $name string
 	 * @param $value mixed
-	 * @param int $flags Zero or more OR-ed flags like OVERRIDE | ADD_ON_TOP. This parameter used to be
-	 *        boolean, and the value of OVERRIDE=1 was specifically chosen so that it would be backwards
-	 *        compatible with the new method signature.
+	 * @param int $flags Zero or more OR-ed flags like OVERRIDE | ADD_ON_TOP. This
+	 *    parameter used to be boolean, and the value of OVERRIDE=1 was specifically
+	 *    chosen so that it would be backwards compatible with the new method
+	 *    signature.
 	 * @return bool True if $value fits in the result, false if not
 	 *
 	 * @since 1.21 int $flags replaced boolean $override
