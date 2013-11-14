@@ -155,7 +155,7 @@ class MWDebug {
 
 		$callerDescription = self::getCallerDescription( $callerOffset );
 
-		self::sendWarning( $msg, $callerDescription, $level );
+		self::sendWarning( $msg, $callerDescription, 'warning', $level );
 
 		if ( self::$enabled ) {
 			self::$log[] = array(
@@ -227,7 +227,7 @@ class MWDebug {
 
 		if ( $sendToLog ) {
 			global $wgDevelopmentWarnings; // we could have a more specific $wgDeprecationWarnings setting.
-			self::sendWarning( $msg, $callerDescription, $wgDevelopmentWarnings ? E_USER_DEPRECATED : false );
+			self::sendWarning( $msg, $callerDescription, 'deprecated', $wgDevelopmentWarnings ? E_USER_DEPRECATED : false );
 		}
 
 		if ( self::$enabled ) {
@@ -287,16 +287,17 @@ class MWDebug {
 	 *
 	 * @param $msg string Message to send
 	 * @param $caller array caller description get from getCallerDescription()
+	 * @param $group string log group on which to send the message
 	 * @param $level int|bool error level to use; set to false to not trigger an error
 	 */
-	private static function sendWarning( $msg, $caller, $level ) {
+	private static function sendWarning( $msg, $caller, $group, $level ) {
 		$msg .= ' [Called from ' . $caller['func'] . ' in ' . $caller['file'] . ']';
 
 		if ( $level !== false ) {
 			trigger_error( $msg, $level );
 		}
 
-		wfDebug( "$msg\n" );
+		wfDebugLog( $group, $msg, 'log' );
 	}
 
 	/**

@@ -689,11 +689,11 @@ class OutputPage extends ContextSource {
 			return false;
 		}
 		if ( !$wgCachePages ) {
-			wfDebug( __METHOD__ . ": CACHE DISABLED\n", false );
+			wfDebug( __METHOD__ . ": CACHE DISABLED\n", 'log' );
 			return false;
 		}
 		if ( $this->getUser()->getOption( 'nocache' ) ) {
-			wfDebug( __METHOD__ . ": USER DISABLED CACHE\n", false );
+			wfDebug( __METHOD__ . ": USER DISABLED CACHE\n", 'log' );
 			return false;
 		}
 
@@ -714,7 +714,7 @@ class OutputPage extends ContextSource {
 
 		$clientHeader = $this->getRequest()->getHeader( 'If-Modified-Since' );
 		if ( $clientHeader === false ) {
-			wfDebug( __METHOD__ . ": client did not send If-Modified-Since header\n", false );
+			wfDebug( __METHOD__ . ": client did not send If-Modified-Since header\n", 'log' );
 			return false;
 		}
 
@@ -742,17 +742,17 @@ class OutputPage extends ContextSource {
 		}
 
 		wfDebug( __METHOD__ . ": client sent If-Modified-Since: " .
-			wfTimestamp( TS_ISO_8601, $clientHeaderTime ) . "\n", false );
+			wfTimestamp( TS_ISO_8601, $clientHeaderTime ) . "\n", 'log' );
 		wfDebug( __METHOD__ . ": effective Last-Modified: " .
-			wfTimestamp( TS_ISO_8601, $maxModified ) . "\n", false );
+			wfTimestamp( TS_ISO_8601, $maxModified ) . "\n", 'log' );
 		if ( $clientHeaderTime < $maxModified ) {
-			wfDebug( __METHOD__ . ": STALE, $info\n", false );
+			wfDebug( __METHOD__ . ": STALE, $info\n", 'log' );
 			return false;
 		}
 
 		# Not modified
 		# Give a 304 response code and disable body output
-		wfDebug( __METHOD__ . ": NOT MODIFIED, $info\n", false );
+		wfDebug( __METHOD__ . ": NOT MODIFIED, $info\n", 'log' );
 		ini_set( 'zlib.output_compression', 0 );
 		$this->getRequest()->response()->header( "HTTP/1.1 304 Not Modified" );
 		$this->sendCacheControl();
@@ -1928,7 +1928,7 @@ class OutputPage extends ContextSource {
 					# We'll purge the proxy cache explicitly, but require end user agents
 					# to revalidate against the proxy on each visit.
 					# Surrogate-Control controls our Squid, Cache-Control downstream caches
-					wfDebug( __METHOD__ . ": proxy caching with ESI; {$this->mLastModified} **\n", false );
+					wfDebug( __METHOD__ . ": proxy caching with ESI; {$this->mLastModified} **\n", 'log' );
 					# start with a shorter timeout for initial testing
 					# header( 'Surrogate-Control: max-age=2678400+2678400, content="ESI/1.0"');
 					$response->header( 'Surrogate-Control: max-age=' . $wgSquidMaxage . '+' . $this->mSquidMaxage . ', content="ESI/1.0"' );
@@ -1938,7 +1938,7 @@ class OutputPage extends ContextSource {
 					# to revalidate against the proxy on each visit.
 					# IMPORTANT! The Squid needs to replace the Cache-Control header with
 					# Cache-Control: s-maxage=0, must-revalidate, max-age=0
-					wfDebug( __METHOD__ . ": local proxy caching; {$this->mLastModified} **\n", false );
+					wfDebug( __METHOD__ . ": local proxy caching; {$this->mLastModified} **\n", 'log' );
 					# start with a shorter timeout for initial testing
 					# header( "Cache-Control: s-maxage=2678400, must-revalidate, max-age=0" );
 					$response->header( 'Cache-Control: s-maxage=' . $this->mSquidMaxage . ', must-revalidate, max-age=0' );
@@ -1946,7 +1946,7 @@ class OutputPage extends ContextSource {
 			} else {
 				# We do want clients to cache if they can, but they *must* check for updates
 				# on revisiting the page.
-				wfDebug( __METHOD__ . ": private caching; {$this->mLastModified} **\n", false );
+				wfDebug( __METHOD__ . ": private caching; {$this->mLastModified} **\n", 'log' );
 				$response->header( 'Expires: ' . gmdate( 'D, d M Y H:i:s', 0 ) . ' GMT' );
 				$response->header( "Cache-Control: private, must-revalidate, max-age=0" );
 			}
@@ -1954,7 +1954,7 @@ class OutputPage extends ContextSource {
 				$response->header( "Last-Modified: {$this->mLastModified}" );
 			}
 		} else {
-			wfDebug( __METHOD__ . ": no caching **\n", false );
+			wfDebug( __METHOD__ . ": no caching **\n", 'log' );
 
 			# In general, the absence of a last modified header should be enough to prevent
 			# the client from using its cache. We send a few other things just to make sure.
