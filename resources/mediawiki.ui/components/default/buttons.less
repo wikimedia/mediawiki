@@ -5,65 +5,65 @@
 
 // Button styling
 .mw-ui-button {
-    // Container layout
-    display: inline-block;
-    padding: 0.4em 1em 0.4em 1em;
-    margin: 0;
+	// Container layout
+	display: inline-block;
+	padding: 0.4em 1em 0.4em 1em;
+	margin: 0;
 
-    // IE6/IE7 hack
-    // http://stackoverflow.com/a/5838575/365238
-    *display: inline;
-    zoom: 1;
+	// IE6/IE7 hack
+	// http://stackoverflow.com/a/5838575/365238
+	*display: inline;
+	zoom: 1;
 
-    // Container styling
-    .buttonColors();
-    border-radius: @buttonBorderRadius;
+	// Container styling
+	.buttonColors();
+	border-radius: @buttonBorderRadius;
 
-    // Content styling
-    vertical-align: middle;
+	// Content styling
+	vertical-align: middle;
 
-    text-align: center;
-    text-decoration: none;
+	text-align: center;
+	text-decoration: none;
 
-    font-weight: bold;
+	font-weight: bold;
 
-    // Interaction styling
-    cursor: pointer;
+	// Interaction styling
+	cursor: pointer;
 
-    &:disabled,
-    &.mw-ui-disabled {
-        cursor: default;
-    }
+	&:disabled,
+	&.mw-ui-disabled {
+		cursor: default;
+	}
 
-    // Button sizes and displays
-    // -----------------------------------------
-    &.mw-ui-big {
-        font-size: @baseFontSize * 1.3;
-    }
-    &.mw-ui-block {
-        display: block;
-        width: 100%;
-    }
+	// Button sizes and displays
+	// -----------------------------------------
+	&.mw-ui-big {
+		font-size: @baseFontSize * 1.3;
+	}
+	&.mw-ui-block {
+		display: block;
+		width: 100%;
+	}
 }
 
 // This overrides an underline declaration on a:hover and a:focus in commonElements.css, which the
 // class alone isn't specific enough to do
 a.mw-ui-button {
-    text-decoration: none;
+	text-decoration: none;
 }
 
 // Button groups
 .mw-ui-button-group > * {
-  border-radius: 0;
-  float: left;
+	border-radius: 0;
+	float: left;
 
-  &:first-child{
-    border-top-left-radius: @buttonBorderRadius;
-    border-bottom-left-radius: @buttonBorderRadius;
-  }
+	&:first-child{
+		border-top-left-radius: @buttonBorderRadius;
+		border-bottom-left-radius: @buttonBorderRadius;
+	}
 
-  &:last-child{
-    border-top-right-radius: @buttonBorderRadius;
-    border-bottom-right-radius: @buttonBorderRadius;
-  }
+	&:last-child{
+		border-top-right-radius: @buttonBorderRadius;
+		border-bottom-right-radius: @buttonBorderRadius;
+	}
 }
